@@ -22,6 +22,21 @@ define('CONFIG_PHP', true);
 require('include/init.inc.php');
 require('include/sql_parse.php');
 
+// Options disabled in bridged version
+$options_to_disable = array('reg_notify_admin_email',
+							'reg_requires_valid_email',
+							'allow_duplicate_emails_addr',
+							'allow_email_change',
+							'login_treshold',
+							'login_expiry',
+							'user_profile1_name',
+							'user_profile2_name',
+							'user_profile3_name',
+							'user_profile4_name',
+							'user_profile5_name',
+							'user_profile6_name',
+							);
+
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
 function form_label($text)
@@ -62,7 +77,7 @@ EOT;
 
 function form_input($text, $name, $help = '')
 {
-    global $CONFIG;
+    global $CONFIG, $disabled_selected;
 
     $value = $CONFIG[$name];
     $help = cpg_display_help($help);
@@ -74,7 +89,7 @@ function form_input($text, $name, $help = '')
                                 $text
                         </td>
                 <td width="40%" class="tableb" valign="top">
-                    <input type="text" class="textinput" style="width: 100%" name="$name" value="$value" />
+                    <input type="text" class="textinput" style="width: 100%" name="$name" value="$value" $disabled_selected/>
                         </td>
                         <td class="tableb" width="10%">
                                 $help
@@ -86,9 +101,8 @@ EOT;
 
 function form_yes_no($text, $name, $help = '')
 {
-    global $CONFIG, $lang_yes, $lang_no;
+    global $CONFIG, $lang_yes, $lang_no, $disabled_selected;
     $help = cpg_display_help($help);
-
 
     $value = $CONFIG[$name];
     $yes_selected = $value ? 'checked="checked"' : '';
@@ -100,9 +114,9 @@ function form_yes_no($text, $name, $help = '')
                                 $text
                         </td>
                 <td class="tableb" valign="top" width="50%">
-                                <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected /><label for="{$name}1" class="clickable_option">$lang_yes</label>
+                                <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected $disabled_selected/><label for="{$name}1" class="clickable_option">$lang_yes</label>
                                 &nbsp;&nbsp;
-                                <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
+                                <input type="radio" id="{$name}0" name="$name" value="0" $no_selected $disabled_selected/><label for="{$name}0" class="clickable_option">$lang_no</label>
                         </td>
                         <td class="tableb" width="10%">
                                 $help
@@ -564,11 +578,12 @@ EOT;
 
 function create_form(&$data)
 {
-        global $sn1, $sn2, $sn3;
+        global $sn1, $sn2, $sn3, $options_to_disable, $disabled_selected;
 
     foreach($data as $element) {
         if ((is_array($element))) {
                 $element[3] = (isset($element[3])) ? $element[3] : '';
+                $disabled_selected = (defined('UDB_INTEGRATION') AND in_array($element[1],$options_to_disable)) ? 'disabled="disabled"' : 'nah';
                 $sn1 = max($sn1,(strpos($element[0],'<a href="#notice1"')));
                 $sn2 = max($sn2,(strpos($element[0],'<a href="#notice2"')));
                 $sn3 = max($sn3,(strpos($element[0],'<a href="#notice3"')));

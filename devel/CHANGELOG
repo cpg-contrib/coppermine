@@ -168,3 +168,4 @@ Added clickable keyword search and keyword manager - 12 August 2004, GauGau
 Silenced CHMOD command to avoid issues on servers not supporting the command - 13 August 2004, GauGau
 Added advanced sorting hack (sort by position, picture manager) - 13 August 2004, GauGau
 Added version check routine for easier upgrades - 16 August 2004, GauGau
+Added facility to disable config settings that are irrelevent with bridged installs - 20th August, Nibbler
