@@ -670,7 +670,7 @@ function get_private_album_set($aid_str="")
 function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $set_caption = true)
 {
         global $USER, $CONFIG, $ALBUM_SET, $CURRENT_CAT_NAME, $CURRENT_ALBUM_KEYWORD, $HTTP_GET_VARS, $HTML_SUBST, $THEME_DIR, $FAVPICS;
-        global $album_date_fmt, $lastcom_date_fmt, $lastup_date_fmt, $lasthit_date_fmt;
+        global $album_date_fmt, $lastcom_date_fmt, $lastup_date_fmt, $lasthit_date_fmt, $cat;
         global $lang_get_pic_data, $lang_meta_album_names, $lang_errors;
 
         $sort_array = array('na' => 'filename ASC', 'nd' => 'filename DESC', 'ta'=>'title ASC', 'td'=>'title DESC', 'da' => 'pid ASC', 'dd' => 'pid DESC');
@@ -1055,7 +1055,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $count = $nbEnr[0];
                 mysql_free_result($result);
 
-                $result = db_query("SELECT *,{$CONFIG['TABLE_ALBUMS']}.title AS title,{$CONFIG['TABLE_ALBUMS']}.aid AS aid  FROM {$CONFIG['TABLE_PICTURES']},{$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND approved = 'YES' $ALBUM_SET GROUP  BY {$CONFIG['TABLE_PICTURES']}.aid ORDER BY {$CONFIG['TABLE_PICTURES']}.ctime DESC $limit");
+                $result = db_query("SELECT *,{$CONFIG['TABLE_ALBUMS']}.title AS title,{$CONFIG['TABLE_ALBUMS']}.aid AS aid,  FROM {$CONFIG['TABLE_PICTURES']},{$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND approved = 'YES' $ALBUM_SET GROUP  BY {$CONFIG['TABLE_PICTURES']}.aid ORDER BY {$CONFIG['TABLE_PICTURES']}.ctime DESC $limit");
                 $rowset = db_fetch_rowset($result);
                 mysql_free_result($result);
 
@@ -1577,7 +1577,7 @@ function display_film_strip($album, $cat, $pos)
  * @return string
  **/
 
-function get_pic_url(&$pic_row, $mode,$system_pic = false)
+function& get_pic_url(&$pic_row, $mode,$system_pic = false)
 {
         global $CONFIG,$THEME_DIR;
 
@@ -1597,6 +1597,8 @@ function get_pic_url(&$pic_row, $mode,$system_pic = false)
         }
 
         $mime_content = get_type($pic_row['filename']);
+        $pic_row = array_merge($pic_row,$mime_content);
+
         $filepathname = null;
 
         // Code to handle custom thumbnails
@@ -1670,9 +1672,23 @@ function get_pic_url(&$pic_row, $mode,$system_pic = false)
                                        }
                                }
                 }
-                return path2url($filepathname);
+                $filepathname = path2url($filepathname);
         }
-        return $url_prefix[$pic_row['url_prefix']]. path2url($pic_row['filepath']. $pic_prefix[$mode]. $pic_row['filename']);
+
+        if (is_null($filepathname)) {
+            $filepathname = $url_prefix[$pic_row['url_prefix']]. path2url($pic_row['filepath']. $pic_prefix[$mode]. $pic_row['filename']);
+        }
+        
+        $pic_row['url'] = $filepathname;
+        $pic_row['mode'] = $mode;
+        
+        if (defined('DISPLAYIMAGE_PHP') && ($mode == 'fullsize' || $mode == 'normal')) {
+            $pic_row = CPGPluginAPI::filter('file_data',$pic_row);
+        } elseif ($mode == 'thumb') {
+            $pic_row = CPGPluginAPI::filter('thumb_data',$pic_row);
+        }
+        
+        return $pic_row['url'];
 }
 
 
