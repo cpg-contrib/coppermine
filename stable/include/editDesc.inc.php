@@ -252,7 +252,7 @@ EOT;
 echo <<<EOT
         <tr>
             <td class="tableb" style="white-space: nowrap;">
-                {$CONFIG['user_field1_name']}
+                {$CONFIG['user_field4_name']}
         </td>
         <td width="100%" class="tableb" valign="top">
                 <input type="text" style="width: 100%" name="user4" maxlength="255" value="{$CURRENT_PIC['user4']}" class="textinput">
