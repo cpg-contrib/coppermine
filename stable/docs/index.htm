@@ -1346,6 +1346,7 @@ top</a></p>
   <li>YaBB SE</li>
   <li>SMF</li>
   <li>Woltlab Burning Board 2.1</li>
+  <li>PunBB 1.1.5</li>
 </ul>
 <p>The login integration use your bulletin board cookies, therefore it won't work if your board cookies are not visible by Coppermine. So unless you are an expert, keep things simple and install Coppermine and your bulletin board on the same domain. Examples :
 <table border="0" cellspacing="5" cellpadding="5" class="border1">
@@ -1390,7 +1391,8 @@ Coppermine: http://gallery.yourdomain.com/</td>
 // define('UDB_INTEGRATION', 'vbulletin30');
 // define('UDB_INTEGRATION', 'yabbse');
 // define('UDB_INTEGRATION', 'smf');
-// define('UDB_INTEGRATION', 'woltlab21');</pre>
+// define('UDB_INTEGRATION', 'woltlab21');
+// define('UDB_INTEGRATION', 'punbb');</pre>
 <p>Un-comment the line that corresponds to the bulletin board you use (eg. remove
   the &quot;//&quot; that are at the beginning of the line)</p>
 <pre>define('UDB_INTEGRATION', 'phpbb');</pre>
@@ -1415,7 +1417,7 @@ define('PHPBB_WEB_PATH', '/phpBB2/');
 define('PHPBB_LOGOUT_GET', TRUE);</pre>
 <p>Modify them according to the configuration of your board and save the file.</p>
 <br />
-<table border="0" cellspacing="0" cellpadding="10" style="border: #999999 1px solid;"><tr><td style="background-color:#DEE3E7"><span class="important">Important</span>: if you use phpBB, you'll have to do this additional step, those who run any other bbs won't have to do this:</td></tr><tr><td>
+<table border="0" cellspacing="0" cellpadding="10" style="border: #999999 1px solid;"><tr><td style="background-color:#DEE3E7"><span class="important">Important</span>: if you use phpBB, you'll have to do this additional step:</td></tr><tr><td>
 Create a new file named <b>cpg_redir.php</b> in your <b>phpBB directory</b>, and paste the following code into the file:
 <pre>&lt;?php
 if (!$_SERVER['HTTP_HOST']) {
@@ -1434,6 +1436,25 @@ exit;
 <li>If you change both variables make sure that either $cpg_host contains a trailing slash or $cpg_path contains a leading slash. In other words, the concatenation of the two variables must result in a correct path such as <i>www.my-other-domain.com<span class="important">/</span>my_gallery_dir</i></li>
 </ul>
 </td></tr></table>
+<br />
+<table border="0" cellspacing="0" cellpadding="10" style="border: #999999 1px solid;"><tr><td style="background-color:#DEE3E7"><span class="important">Important</span>: if you use PunBB, you'll have to do this additional step:</td></tr><tr><td>
+Create a new file named <b>redir.php</b> in your <b>PunBB directory</b>, and paste the following code into the file:
+<pre>&lt;?php
+/// Set URL of coppermine to return to
+$cpg_url = 'http://www.yoursite.com/coppermine';
+
+if (isset($_POST['redir'])){
+	echo '&lt;html&gt;&lt;body onload="document.redir.submit();"&gt;&lt;form name="redir" method="post" action="'.$_POST['redir'].'"&gt;&lt;/form&gt;&lt;/body&gt;&lt;/html&gt;';
+} else {
+	header("Location: $cpg_url");
+}
+?&gt;</pre>
+<span class="important">Important</span> - before you save the file, you must ensure that:
+<ul>
+<li><b>$cpg_url</b> - contains the the path in which Coppermine is installed </li>
+</ul>
+</td></tr></table>
+
 <p>Upload all files onto your webserver. Visit your coppermine gallery in your browser. To login as an admin, you will need to use the admin username and password of your board.</p>
 <p>Login using the admin account of your board. Go to the gallery, enter admin mode and click on the &quot;Groups&quot;
   button. This will synchronize Coppermine groups with those of your board. The
