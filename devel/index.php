@@ -753,6 +753,9 @@ $elements = preg_split("|/|", $CONFIG['main_page_layout'], -1, PREG_SPLIT_NO_EMP
 
 foreach ($elements as $element) {
     if (preg_match("/(\w+),*(\d+)*/", $element, $matches)){
+          if (!isset($matches[2])) { // added to fix notice about undefined index
+              $matches[2] = 0;
+          }
           switch ($matches[1]) {
             case 'breadcrumb':
                 // Added breadcrumb as a separate listable block from config
