@@ -114,9 +114,9 @@ function picrow($picfile, $picid, $albid)
     if (file_exists($thumb_file)) {
         $thumb_info = getimagesize($picname);
         $thumb_size = compute_img_size($thumb_info[0], $thumb_info[1], 48);
-        $img = '<img src="' . path2url($thumb_file) . '" ' . $thumb_size['geom'] . ' class="thumbnail" border="0">';
+        $img = '<img src="' . path2url($thumb_file) . '" ' . $thumb_size['geom'] . ' class="thumbnail" border="0" />';
     } else {
-        $img = '<img src="showthumb.php?picfile=' . $pic_url . '&size=48" class="thumbnail" border="0">';
+        $img = '<img src="showthumb.php?picfile=' . $pic_url . '&size=48" class="thumbnail" border="0" />';
     }
 
     if (filesize($picname) && is_readable($picname)) {
@@ -129,15 +129,15 @@ function picrow($picfile, $picid, $albid)
         return <<<EOT
         <tr>
                 <td class="tableb" valign="middle">
-                        <input name="pics[]" id="picselector" type="checkbox" value="$picid" $checked>
-                        <input name="album_lb_id_$picid" type="hidden" value="$albid">
-                        <input name="picfile_$picid" type="hidden" value="$encoded_picfile">
+                        <input name="pics[]" id="picselector" type="checkbox" value="$picid" $checked />
+                        <input name="album_lb_id_$picid" type="hidden" value="$albid" />
+                        <input name="picfile_$picid" type="hidden" value="$encoded_picfile" />
                 </td>
                 <td class="tableb" valign="middle" width="100%">
                         <a href="javascript:;" onClick= "MM_openBrWindow('displayimage.php?&fullsize=1&picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')">$pic_fname</a>
                 </td>
                 <td class="tableb" valign="middle" align="center">
-                        <a href="javascript:;" onClick= "MM_openBrWindow('displayimage.php?&fullsize=1&picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')">$img<br /></a>
+                        <a href="javascript:;" onClick= "MM_openBrWindow('displayimage.php?&fullsize=1&picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')"><img src="images/spacer.gif" width="1" height="48" alt="" border="0" />$img<br /></a>
                 </td>
         </tr>
 EOT;
@@ -153,7 +153,7 @@ EOT;
                         <i>$pic_fname</i>
                 </td>
                 <td class="tableb" valign="middle" align="center">
-                        <a href="javascript:;" onClick= "MM_openBrWindow('displayimage.php?&fullsize=1&picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')"><img src="showthumb.php?picfile=$pic_url&size=48" class="thumbnail" border="0"><br /></a>
+                        <a href="javascript:;" onClick= "MM_openBrWindow('displayimage.php?&fullsize=1&picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')"><img src="showthumb.php?picfile=$pic_url&size=48" class="thumbnail" border="0" /><br /></a>
                 </td>
         </tr>
 EOT;
@@ -215,7 +215,7 @@ function display_dir_tree($folder, $ident)
             echo <<<EOT
                         <tr>
                                 <td class="tableb">
-                                        $ident<img src="images/folder.gif" alt="">&nbsp;<a href= "$PHP_SELF?startdir=$start_target">$file</a>$warnings
+                                        $ident<img src="images/folder.gif" alt="" />&nbsp;<a href= "$PHP_SELF?startdir=$start_target">$file</a>$warnings
                                 </td>
                         </tr>
 EOT;
