@@ -109,6 +109,7 @@ INSERT INTO CPG_config VALUES ('slideshow_interval', '5000');
 #
 
 INSERT INTO CPG_filetypes VALUES ('jpg', 'image/jpg', 'image');
+INSERT INTO CPG_filetypes VALUES ('jpe', 'image/jpg', 'image');
 INSERT INTO CPG_filetypes VALUES ('gif', 'image/gif', 'image');
 INSERT INTO CPG_filetypes VALUES ('png', 'image/png', 'image');
 INSERT INTO CPG_filetypes VALUES ('bmp', 'image/bmp', 'image');

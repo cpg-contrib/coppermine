@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS CPG_filetypes (
 ) TYPE=MyISAM COMMENT='Used to store the file extensions';
 
 INSERT INTO CPG_filetypes VALUES ('jpg', 'image/jpg', 'image');
+INSERT INTO CPG_filetypes VALUES ('jpe', 'image/jpe', 'image');
 INSERT INTO CPG_filetypes VALUES ('gif', 'image/gif', 'image');
 INSERT INTO CPG_filetypes VALUES ('png', 'image/png', 'image');
 INSERT INTO CPG_filetypes VALUES ('psd', 'image/psd', 'image');
