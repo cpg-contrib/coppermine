@@ -170,8 +170,8 @@ $template_album_list_cat = <<<EOT
         <tr>
 <!-- END c_header -->
 <!-- BEGIN c_album_cell -->
-        <td width="{COL_WIDTH}%" height="100%" valign="top">
-        <table width="100%" height="100%" cellspacing="0" cellpadding="0">
+        <td width="{COL_WIDTH}%" valign="top">
+        <table width="100%" cellspacing="0" cellpadding="0">
         <tr>
                 <td colspan="3" height="1" valign="top" class="tableh2">
                         <a href="{ALB_LINK_TGT}" class="alblink"><b>{ALBUM_TITLE}</b></a>
@@ -182,16 +182,16 @@ $template_album_list_cat = <<<EOT
                         <img src="images/spacer.gif" width="1" height="1"><br />
                 </td>
         </tr>
-        <tr height="100%">
-                <td align="center" height="100%" valign="middle" class="thumbnails">
+        <tr>
+                <td align="center" valign="middle" class="thumbnails">
                         <img src="images/spacer.gif" width="{THUMB_CELL_WIDTH}" height="1" class="image" style="margin-top: 0px;
  margin-bottom: 0px; border: none;"><br />
                         <a href="{ALB_LINK_TGT}" class="albums">{ALB_LINK_PIC}<br /></a>
                 </td>
-                <td height="100%">
+                <td>
                         <img src="images/spacer.gif" width="1" height="1">
                 </td>
-                <td width="100%" height="100%" valign="top" class="tableb_compact">
+                <td width="100%" valign="top" class="tableb_compact">
                         {ADMIN_MENU}
                         <p>{ALB_DESC}</p>
                         <p class="album_stat">{ALB_INFOS}</p>
@@ -201,8 +201,8 @@ $template_album_list_cat = <<<EOT
         </td>
 <!-- END c_album_cell -->
 <!-- BEGIN c_empty_cell -->
-        <td width="{COL_WIDTH}%" height="100%" valign="top">
-        <table width="100%" height="100%" cellspacing="0" cellpadding="0">
+        <td width="{COL_WIDTH}%" valign="top">
+        <table width="100%" cellspacing="0" cellpadding="0">
         <tr>
                 <td height="1" valign="top" class="tableh2">
                         <b>&nbsp;</b>
@@ -213,8 +213,8 @@ $template_album_list_cat = <<<EOT
                         <img src="images/spacer.gif" width="1" height="1"><br />
                 </td>
         </tr>
-        <tr height="100%">
-                <td width="100%" height="100%" valign="top" class="tableb_compact">
+        <tr>
+                <td width="100%" valign="top" class="tableb_compact">
                         &nbsp;
                 </td>
         </tr>
@@ -256,8 +256,8 @@ $template_album_list = <<<EOT
         <tr>
 <!-- END header -->
 <!-- BEGIN album_cell -->
-        <td width="{COL_WIDTH}%" height="100%" valign="top">
-        <table width="100%" height="100%" cellspacing="0" cellpadding="0">
+        <td width="{COL_WIDTH}%" valign="top">
+        <table width="100%" cellspacing="0" cellpadding="0">
         <tr>
                 <td colspan="3" height="1" valign="top" class="tableh2">
                         <a href="{ALB_LINK_TGT}" class="alblink"><b>{ALBUM_TITLE}</b></a>
@@ -268,15 +268,15 @@ $template_album_list = <<<EOT
                         <img src="images/spacer.gif" width="1" height="1" alt=""><br />
                 </td>
         </tr>
-        <tr height="100%">
-                <td align="center" height="100%" valign="middle" class="thumbnails">
+        <tr>
+                <td align="center" valign="middle" class="thumbnails">
                         <img src="images/spacer.gif" width="{THUMB_CELL_WIDTH}" height="1" class="image" style="margin-top: 0px; margin-bottom: 0px; border: none;" alt="" /><br />
                         <a href="{ALB_LINK_TGT}" class="albums">{ALB_LINK_PIC}</a><br />
                 </td>
-                <td height="100%">
+                <td>
                         <img src="images/spacer.gif" width="1" height="1" alt="" />
                 </td>
-                <td width="100%" height="100%" valign="top" class="tableb_compact">
+                <td width="100%" valign="top" class="tableb_compact">
                         {ADMIN_MENU}
                         <p>{ALB_DESC}</p>
                         <p class="album_stat">{ALB_INFOS}</p>
@@ -286,8 +286,8 @@ $template_album_list = <<<EOT
         </td>
 <!-- END album_cell -->
 <!-- BEGIN empty_cell -->
-        <td width="{COL_WIDTH}%" height="100%" valign="top">
-        <table width="100%" height="100%" cellspacing="0" cellpadding="0">
+        <td width="{COL_WIDTH}%" valign="top">
+        <table width="100%" cellspacing="0" cellpadding="0">
         <tr>
                 <td height="1" valign="top" class="tableh2">
                         <b>&nbsp;</b>
@@ -298,8 +298,8 @@ $template_album_list = <<<EOT
                         <img src="images/spacer.gif" width="1" height="1" alt="" /><br />
                 </td>
         </tr>
-        <tr height="100%">
-                <td width="100%" height="100%" valign="top" class="tableb_compact">
+        <tr>
+                <td width="100%" valign="top" class="tableb_compact">
                         &nbsp;
                 </td>
         </tr>
@@ -354,7 +354,7 @@ $template_thumb_view_title_row = <<<EOT
                                 <td width="100%" class="statlink"><h2>{ALBUM_NAME}</h2></td>
                                 <td><img src="images/spacer.gif" width="1" alt="" /></td>
                                 <td class="sortorder_cell">
-                                        <table height="100%" cellpadding="0" cellspacing="0">
+                                        <table cellpadding="0" cellspacing="0">
                                         <tr>
                                                 <td class="sortorder_options">{TITLE}</td>
                                                 <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=ta" title="{SORT_TA}">&nbsp;+&nbsp;</a></span></td>
@@ -414,7 +414,7 @@ $template_fav_thumb_view_title_row = <<<EOT
                                 <td width="100%" class="statlink"><h2>{ALBUM_NAME}</h2></td>
                                 <td><img src="images/spacer.gif" width="1"></td>
                                 <td class="sortorder_cell">
-                                        <table height="100%" cellpadding="0" cellspacing="0">
+                                        <table cellpadding="0" cellspacing="0">
                                                 <tr>
                                                         <td class="sortorder_options"><span class="statlink"><a href="zipdownload.php">{DOWNLOAD_ZIP}</a></span></td>
                                                 </tr>
@@ -568,12 +568,12 @@ $template_image_rating = <<<EOT
                 <td colspan="6" class="tableh2_compact"><b>{TITLE}</b> {VOTES}</td>
         </tr>
         <tr>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE0}" title="{RUBBISH}" class="nobg"><img src="themes/fruity/images/rating0.gif" alt="{RUBBISH}" border="0" /></a><br /></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE1}" title="{POOR}" class="nobg"><img src="themes/fruity/images/rating1.gif" alt="{POOR}" border="0" /></a><br /></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE2}" title="{FAIR}" class="nobg"><img src="themes/fruity/images/rating2.gif" alt="{FAIR}" border="0" /></a><br /></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE3}" title="{GOOD}" class="nobg"><img src="themes/fruity/images/rating3.gif" alt="{GOOD}" border="0" /></a><br /></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE4}" title="{EXCELLENT}" class="nobg"><img src="themes/fruity/images/rating4.gif" alt="{EXCELLENT}" border="0" /></a><br /></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE5}" title="{GREAT}" class="nobg"><img src="themes/fruity/images/rating5.gif" alt="{GREAT}" border="0" /></a><br /></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE0}" title="{RUBBISH}" class="nobg"><img src="themes/fruity/images/rating0.gif" alt="{RUBBISH}" border="0" alt="" /></a><br /></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE1}" title="{POOR}" class="nobg"><img src="themes/fruity/images/rating1.gif" alt="{POOR}" border="0" alt="" /></a><br /></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE2}" title="{FAIR}" class="nobg"><img src="themes/fruity/images/rating2.gif" alt="{FAIR}" border="0" alt="" /></a><br /></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE3}" title="{GOOD}" class="nobg"><img src="themes/fruity/images/rating3.gif" alt="{GOOD}" border="0" alt="" /></a><br /></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE4}" title="{EXCELLENT}" class="nobg"><img src="themes/fruity/images/rating4.gif" alt="{EXCELLENT}" border="0" alt="" /></a><br /></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE5}" title="{GREAT}" class="nobg"><img src="themes/fruity/images/rating5.gif" alt="{GREAT}" border="0" alt="" /></a><br /></td>
         </tr>
 
 EOT;
@@ -770,7 +770,7 @@ $template_ecard = <<<EOT
            <img src="{PIC_URL}" border="1" alt="" /><br />
           </td>
           <td valign="top" width="200" height="250">
-            <div align="right"><img src="{URL_PREFIX}images/stamp.gif" alt="" border="0" /></div>
+            <div align="right"><img src="{URL_PREFIX}images/stamp.gif" alt="" border="0" alt="" /></div>
             <br />
             <b><font face="arial" color="#000000" size="4">{GREETINGS}</font></b>
             <br />

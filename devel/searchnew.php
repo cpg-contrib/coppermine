@@ -37,8 +37,8 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
  * @param string $id the name of the listbox
  * @return the HTML code
  */
- 
- 
+
+
  function albumselect($id = "album") {
 // frogfoot re-wrote this function to present the list in categorized, sorted and nicely formatted order
 
@@ -150,17 +150,17 @@ function picrow($picfile, $picid, $albid)
     if (file_exists($thumb_file)) {
         $thumb_info = getimagesize($picname);
         $thumb_size = compute_img_size($thumb_info[0], $thumb_info[1], 48);
-        $img = '<img src="' . path2url($thumb_file) . '" ' . $thumb_size['geom'] . ' class="thumbnail" border="0" />';
+        $img = '<img src="' . path2url($thumb_file) . '" ' . $thumb_size['geom'] . ' class="thumbnail" border="0" alt="" />';
     } elseif (is_image($picname)) {
-        $img = '<img src="showthumb.php?picfile=' . $pic_url . '&size=48" class="thumbnail" border="0">';
+        $img = '<img src="showthumb.php?picfile=' . $pic_url . '&size=48" class="thumbnail" border="0" alt="" />';
     } else {
         $file['filepath'] = $pic_dirname.'/'; //substr($picname,0,strrpos($picname,'/'))
         $file['filename'] = $pic_fname;
         $filepathname = get_pic_url($file,'thumb');
         //$mime_content = get_type($picname);
         //$extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
-        //$img = '<img src="images/thumb_'.$extension.'.jpg" class="thumbnail" width="48" border="0">';
-        $img = '<img src="'.$filepathname.'" class="thumbnail" width="48" border="0">';
+        //$img = '<img src="images/thumb_'.$extension.'.jpg" class="thumbnail" width="48" border="0" alt="" />';
+        $img = '<img src="'.$filepathname.'" class="thumbnail" width="48" border="0" alt="" />';
     }
 
     if (filesize($picname) && is_readable($picname)) {
@@ -183,7 +183,7 @@ function picrow($picfile, $picid, $albid)
                         <a href="javascript:;" onClick= "MM_openBrWindow('displayimage.php?&fullsize=1&picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')">$pic_fname</a>
                 </td>
                 <td class="tableb" valign="middle" align="center">
-                        <a href="javascript:;" onClick= "MM_openBrWindow('displayimage.php?&fullsize=1&picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')"><img src="images/spacer.gif" width="1" height="48" alt="" border="0" />$img<br /></a>
+                        <a href="javascript:;" onClick= "MM_openBrWindow('displayimage.php?&fullsize=1&picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')"><img src="images/spacer.gif" width="1" height="48" alt="" border="0" alt="" />$img<br /></a>
                 </td>
         </tr>
 EOT;
@@ -199,7 +199,7 @@ EOT;
                         <i>$pic_fname</i>
                 </td>
                 <td class="tableb" valign="middle" align="center">
-                        <a href="javascript:;" onClick= "MM_openBrWindow('displayimage.php?&fullsize=1&picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')"><img src="showthumb.php?picfile=$pic_url&size=48" class="thumbnail" border="0" /><br /></a>
+                        <a href="javascript:;" onClick= "MM_openBrWindow('displayimage.php?&fullsize=1&picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')"><img src="showthumb.php?picfile=$pic_url&size=48" class="thumbnail" border="0" alt="" /><br /></a>
                 </td>
         </tr>
 EOT;

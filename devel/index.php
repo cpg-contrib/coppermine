@@ -360,7 +360,7 @@ function list_users()
     $user_list = array();
     foreach ($rowset as $user) {
         $cpg_nopic_data = cpg_get_system_thumb('nopic.jpg', $user['user_id']);
-        $user_thumb = '<img src="' . $cpg_nopic_data['thumb'] . '" ' . $cpg_nopic_data['whole'] . ' class="image" border="0" />';
+        $user_thumb = '<img src="' . $cpg_nopic_data['thumb'] . '" ' . $cpg_nopic_data['whole'] . ' class="image" border="0" alt="" />';
         $user_pic_count = $user['pic_count'];
         $user_thumb_pid = $user['thumb_pid'];
         $user_album_count = $user['alb_count'];
@@ -494,12 +494,12 @@ function list_albums()
             } else { // Inserts an empty thumbnail if the album contains 0 images
                 // $image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
                 $cpg_nopic_data = cpg_get_system_thumb('nopic.jpg', $alb_thumb['category']);
-                $alb_list[$alb_idx]['thumb_pic'] = '<img src="' . $cpg_nopic_data['thumb'] . '" ' . $cpg_nopic_data['whole'] . ' class="image" border="0" />';
+                $alb_list[$alb_idx]['thumb_pic'] = '<img src="' . $cpg_nopic_data['thumb'] . '" ' . $cpg_nopic_data['whole'] . ' class="image" border="0" alt="" />';
             }
         } elseif ($CONFIG['show_private']) {
             // $image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
             $cpg_privatepic_data = cpg_get_system_thumb('private.jpg', $alb_thumb['category']);
-            $alb_list[$alb_idx]['thumb_pic'] = '<img src="' . $cpg_privatepic_data['thumb'] . '" ' . $cpg_privatepic_data['whole'] . ' class="image" border="0" />';
+            $alb_list[$alb_idx]['thumb_pic'] = '<img src="' . $cpg_privatepic_data['thumb'] . '" ' . $cpg_privatepic_data['whole'] . ' class="image" border="0" alt="" />';
         }
         // Prepare everything
         if (!in_array($aid,$FORBIDDEN_SET_DATA) || $CONFIG['allow_private_albums'] == 0) {
@@ -629,11 +629,11 @@ function list_cat_albums($cat = 0)
                 $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$picture['filename']}\">";
             } else { // Inserts an empty thumbnail if the album contains 0 images
                 // $image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
-                $alb_list[$alb_idx]['thumb_pic'] = '<img src="' . $cpg_nopic_data['thumb'] . '" ' . $cpg_nopic_data['whole'] . ' class="image" border="0" />';
+                $alb_list[$alb_idx]['thumb_pic'] = '<img src="' . $cpg_nopic_data['thumb'] . '" ' . $cpg_nopic_data['whole'] . ' class="image" border="0" alt="" />';
             }
         } elseif ($CONFIG['show_private']) {
             // $image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
-            $alb_list[$alb_idx]['thumb_pic'] = '<img src="' . $cpg_privatepic_data['thumb'] . '" ' . $cpg_privatepic_data['whole'] . ' class="image" border="0" />';
+            $alb_list[$alb_idx]['thumb_pic'] = '<img src="' . $cpg_privatepic_data['thumb'] . '" ' . $cpg_privatepic_data['whole'] . ' class="image" border="0" alt="" />';
         }
         // Prepare everything
                 if (!in_array($aid,$FORBIDDEN_SET_DATA) || $CONFIG['allow_private_albums'] == 0) {

@@ -114,7 +114,7 @@ function process_smilies($message, $url_prefix = '')
         for($i = 0; $i < count($smilies); $i++) {
             $orig[] = "/(?<=.\W|\W.|^\W)" . preg_quote($smilies[$i][0], "/") . "(?=.\W|\W.|\W$)/";
             $smile_path = (file_exists($paths[0].$smilies[$i][1]))?($paths[0]):($paths[1]);
-            $repl[] = '<img src="' . $url_prefix . $smile_path . ($smilies[$i][1]) . '" alt="' . ($smilies[$i][2]) . '" border="0" />';
+            $repl[] = '<img src="' . $url_prefix . $smile_path . ($smilies[$i][1]) . '" alt="' . ($smilies[$i][2]) . '" border="0" alt="" />';
         }
     }
 

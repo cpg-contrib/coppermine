@@ -209,7 +209,7 @@ function html_picture()
         $pic_thumb_url = get_pic_url($CURRENT_PIC_DATA,'thumb');
         $pic_html = "<a href=\"{$picture_url}\" target=\"_blank\" class=\"document_link\"><img src=\"".$pic_thumb_url."\" border=\"0\" class=\"image\" /></a>\n<br />";
     } else {
-           	$autostart = ($CONFIG['mv_autostart']) ? ('true'):('false');
+                   $autostart = ($CONFIG['mv_autostart']) ? ('true'):('false');
             $pic_html = "<object {$image_size['whole']}><param name=\"autostart\" value=\"$autostart\"><param name=\"src\" value=\"". $picture_url . "\"><embed {$image_size['whole']} src=\"". $picture_url . "\" autostart=\"$autostart\"></embed></object><br />\n";
     }
 
@@ -459,7 +459,7 @@ function display_fullsize_pic()
 adjust_popup();
 </script>
 
-<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="2">
+<table width="100%" border="0" cellpadding="0" cellspacing="2">
  <td align="center" valign="middle">
   <table cellspacing="2" cellpadding="0" style="border: 1px solid #000000; background-color: #FFFFFF;">
    <td>

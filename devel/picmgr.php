@@ -331,7 +331,7 @@ EOT;
          <td>
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                 <tr>
-               <td><a href="javascript:Moveup_Option();"><img src="images/move_up.gif" width="26" height="21" border="0"></a><a href="javascript:Movedown_Option();"><img src="images/move_down.gif" width="26" height="21" border="0"></a>
+               <td><a href="javascript:Moveup_Option();"><img src="images/move_up.gif" width="26" height="21" border="0" alt="" /></a><a href="javascript:Movedown_Option();"><img src="images/move_down.gif" width="26" height="21" border="0" alt="" /></a>
                </td>
 <!-- Joe Ernst: I commented this out because I can't get it to work. -->
                <td align="center" style="width: 1px;"><img src="images/spacer.gif" width="1" alt=""><br>

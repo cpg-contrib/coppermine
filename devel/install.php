@@ -373,8 +373,8 @@ function html_input_config($error_msg = '')
                 </form>
        </tr>
       </table>
-   <img src="install.php?test_gd1=1&reload=<?php echo uniqid('') ?>" alt="" width="1" height="1" border="0">
-   <img src="install.php?test_gd2=1&reload=<?php echo uniqid('') ?>" alt="" width="1" height="1" border="0">
+   <img src="install.php?test_gd1=1&reload=<?php echo uniqid('') ?>" alt="" width="1" height="1" border="0" alt="" />
+   <img src="install.php?test_gd2=1&reload=<?php echo uniqid('') ?>" alt="" width="1" height="1" border="0" alt="" />
 <?php
 }
 

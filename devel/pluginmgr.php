@@ -72,7 +72,7 @@ EOT;
         if ($thisplugin->priority > 0 && count($CPG_PLUGINS) > 1) {
             echo <<<EOT
             <td class="tableb" width="3%" align="center" valign="middle">
-                <a href="pluginmgr.php?op=moveu&p={$thisplugin->plugin_id}"><img src="images/up.gif"  border="0"></a>
+                <a href="pluginmgr.php?op=moveu&p={$thisplugin->plugin_id}"><img src="images/up.gif"  border="0" alt="" /></a>
             </td>
 EOT;
         } else {
@@ -82,7 +82,7 @@ EOT;
         if ($thisplugin->priority < (count($CPG_PLUGINS)-1)) {
             echo <<<EOT
             <td class="tableb" width="3%" align="center" valign="middle">
-                <a href="pluginmgr.php?op=moved&p={$thisplugin->plugin_id}"><img src="images/down.gif"  border="0"></a>
+                <a href="pluginmgr.php?op=moved&p={$thisplugin->plugin_id}"><img src="images/down.gif"  border="0" alt="" /></a>
             </td>
 EOT;
         } else {
@@ -92,7 +92,7 @@ EOT;
         echo <<<EOT
             <td class="tableb" width="3%" align="center" valign="middle">
                 <a href="pluginmgr.php?op=uninstall&p={$thisplugin->plugin_id}" onClick="return confirmUninstall('$safename')">
-                    <img src="images/delete.gif"  border="0">
+                    <img src="images/delete.gif"  border="0" alt="" />
                 </a>
             </td>
         </tr>
@@ -158,11 +158,11 @@ EOT;
                 <img src="images/spacer.gif" width="16" height="16" />
             </td>
             <td class="tableb" width="5%" align="center" valign="middle">
-                <a href="pluginmgr.php?op=install&p=$path"><img src="images/info.gif"  border="0"></a>
+                <a href="pluginmgr.php?op=install&p=$path"><img src="images/info.gif"  border="0" alt="" /></a>
             </td>
             <td class="tableb" width="5%" align="center" valign="middle">
                 <a href="pluginmgr.php?op=delete&p=$path" onClick="return confirmDel('$safename')">
-                    <img src="images/delete.gif"  border="0">
+                    <img src="images/delete.gif"  border="0" alt="" />
                 </a>
             </td>
             </tr>

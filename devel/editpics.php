@@ -226,7 +226,7 @@ function form_pic_info($text)
                         $pic_info
                 </td>
                    <td class="tableb" align="center" rowspan="$THUMB_ROWSPAN">
-                        <a href="$thumb_link" target="_blank"><img src="$thumb_url" class="image" border="0"><br /></a>
+                        <a href="$thumb_link" target="_blank"><img src="$thumb_url" class="image" border="0" alt="" /><br /></a>
             </td>
         </tr>
 

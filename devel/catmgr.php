@@ -161,7 +161,7 @@ EOT;
                         {$lang_catmgr_php['cat_thumb']}
                 </td>
                 <td class="tableb" align="center">
-                        <table cellspacing="0" cellpadding="5" border="0">
+                        <table cellspacing="0" cellpadding="5" border="0" alt="" />
                                 <tr>
                                         <td width="$thumb_cell_height" height="$thumb_cell_height" align="center"><img src="$initial_thumb_url" name='Thumb' class='image' /><br /></td>
                                 </tr>
@@ -191,24 +191,24 @@ function display_cat_list()
         echo '                <td class="tableb" width="80%"><b>' . $category['name'] . '</b></td>' . "\n";
 
         if ($category['pos'] > 0 && $CONFIG['categories_alpha_sort'] != 1) {
-            echo '                <td class="tableb" width="4%"><a href="' . $PHP_SELF . '?op=move&cid1=' . $category['cid'] . '&pos1=' . ($category['pos']-1) . '&cid2=' . $category['prev'] . '&pos2=' . ($category['pos']) . '">' . '<img src="images/up.gif"  border="0">' . '</a></td>' . "\n";
+            echo '                <td class="tableb" width="4%"><a href="' . $PHP_SELF . '?op=move&cid1=' . $category['cid'] . '&pos1=' . ($category['pos']-1) . '&cid2=' . $category['prev'] . '&pos2=' . ($category['pos']) . '">' . '<img src="images/up.gif"  border="0" alt="" />' . '</a></td>' . "\n";
         } else {
             echo '                <td class="tableb" width="4%">' . '&nbsp;' . '</td>' . "\n";
         }
 
         if ($category['pos'] < $category['cat_count']-1  && $CONFIG['categories_alpha_sort'] != 1) {
-            echo '                <td class="tableb" width="4%"><a href="' . $PHP_SELF . '?op=move&cid1=' . $category['cid'] . '&pos1=' . ($category['pos'] + 1) . '&cid2=' . $category['next'] . '&pos2=' . ($category['pos']) . '">' . '<img src="images/down.gif"  border="0">' . '</a></td>' . "\n";
+            echo '                <td class="tableb" width="4%"><a href="' . $PHP_SELF . '?op=move&cid1=' . $category['cid'] . '&pos1=' . ($category['pos'] + 1) . '&cid2=' . $category['next'] . '&pos2=' . ($category['pos']) . '">' . '<img src="images/down.gif"  border="0" alt="" />' . '</a></td>' . "\n";
         } else {
             echo '                <td class="tableb" width="4%">' . '&nbsp;' . '</td>' . "\n";
         }
 
         if ($category['cid'] != 1) {
-            echo '                <td class="tableb" width="4%"><a href="' . $PHP_SELF . '?op=deletecat&cid=' . $category['cid'] . '" onClick="return confirmDel(\'' . addslashes(str_replace('&nbsp;', '', $category['name'])) . '\')">' . '<img src="images/delete.gif"  border="0">' . '</a></td>' . "\n";
+            echo '                <td class="tableb" width="4%"><a href="' . $PHP_SELF . '?op=deletecat&cid=' . $category['cid'] . '" onClick="return confirmDel(\'' . addslashes(str_replace('&nbsp;', '', $category['name'])) . '\')">' . '<img src="images/delete.gif"  border="0" alt="" />' . '</a></td>' . "\n";
         } else {
             echo '                <td class="tableb" width="4%">' . '&nbsp;' . '</td>' . "\n";
         }
 
-        echo '                <td class="tableb" width="4%">' . '<a href="' . $PHP_SELF . '?op=editcat&cid=' . $category['cid'] . '">' . '<img src="images/edit.gif" border="0">' . '</a></td>' . "\n";
+        echo '                <td class="tableb" width="4%">' . '<a href="' . $PHP_SELF . '?op=editcat&cid=' . $category['cid'] . '">' . '<img src="images/edit.gif" border="0" alt="" />' . '</a></td>' . "\n";
         echo '                <td class="tableb" width="4%">' . "\n" . cat_list_box($category['parent'], $category['cid']) . "\n" . '</td>' . "\n";
         echo "        </tr>\n";
     }

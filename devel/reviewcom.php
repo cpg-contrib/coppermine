@@ -126,7 +126,7 @@ while ($row = mysql_fetch_array($result)) {
                         {$row['msg_body']}
                 </td>
             <td class="tableb" align="center">
-                        <a href="$thumb_link" target="_blank"><img src="$thumb_url" {$image_size['geom']} class="image" border="0"><br /></a>
+                        <a href="$thumb_link" target="_blank"><img src="$thumb_url" {$image_size['geom']} class="image" border="0" alt="" /><br /></a>
         </td>
         </tr>
 
