@@ -95,11 +95,20 @@ function list_groups_alb_access() //shows a list of albums each group can see. C
     starttable(500, $lang_usermgr_php['groups_alb_access'], 3);
 
 		$sql = "
-			SELECT group_id, group_name, categories.name AS category, albums.title AS album
-			FROM {$CONFIG['TABLE_USERGROUPS']} AS groups, {$CONFIG['TABLE_ALBUMS']} AS albums, {$CONFIG['TABLE_CATEGORIES']} AS categories 
-			WHERE albums.visibility = groups.group_id AND albums.category = categories.cid 
-			GROUP BY group_name
-			ORDER BY group_name, category, album
+			SELECT 
+        group_id, group_name, categories.name AS category, albums.title AS album
+			FROM 
+        {$CONFIG['TABLE_USERGROUPS']} AS groups, {$CONFIG['TABLE_ALBUMS']} AS albums
+      LEFT JOIN 
+        {$CONFIG['TABLE_CATEGORIES']} AS categories 
+      ON 
+        albums.category = categories.cid
+			WHERE 
+        albums.visibility = groups.group_id
+			GROUP BY 
+        group_name
+			ORDER BY 
+        group_name, category, album
 		";
 				
 		$result = cpg_db_query($sql);
