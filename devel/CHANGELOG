@@ -1,3 +1,5 @@
+$Id$
+
 Added Title option to sort in albums, Tarique
 Separated the breadcrumb block so that it can be placed independently of category, Tarique
 Added option to choose max hieght or width for thumbnails - will help in creating nicer looking thumbnail rows and cols, Tarique

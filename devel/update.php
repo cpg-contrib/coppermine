@@ -1,4 +1,4 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
@@ -13,7 +13,10 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- // 
+// ------------------------------------------------------------------------- //
+/*
+$Id$
+*/
 
 // Report all errors except E_NOTICE
 // This is the default value set in php.ini
@@ -24,9 +27,9 @@ require ('include/config.inc.php');
 // ---------------------------- TEST PREREQUIRED --------------------------- //
 function test_fs()
 {
-    global $errors, $DFLT; 
+    global $errors, $DFLT;
     // No Filesystem Updates yet
-} 
+}
 // ----------------------------- TEST FUNCTIONS ---------------------------- //
 function test_sql_connection()
 {
@@ -36,8 +39,8 @@ function test_sql_connection()
         $errors .= "<hr /><br />Could not create a mySQL connection, please check the SQL values in include/config.inc.php<br /><br />MySQL error was : " . mysql_error() . "<br /><br />";
     } elseif (! mysql_select_db($CONFIG['dbname'], $connect_id)) {
         $errors .= "<hr /><br />mySQL could not locate a database called '{$CONFIG['dbname']}' please check the value entered for this in include/config.inc.php<br /><br />";
-    } 
-} 
+    }
+}
 // ------------------------- HTML OUTPUT FUNCTIONS ------------------------- //
 function html_header()
 {
@@ -52,7 +55,7 @@ function html_header()
  <div align="center">
   <div style="width:600px;">
 <?php
-} 
+}
 
 function html_logo()
 {
@@ -65,7 +68,7 @@ function html_logo()
        </tr>
       </table>
 <?php
-} 
+}
 
 function html_prereq_errors($error_msg)
 {
@@ -73,7 +76,7 @@ function html_prereq_errors($error_msg)
     ?>
       <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
        <tr>
-	    <form action="install.php">
+            <form action="install.php">
         <td class="tableh1" colspan="2"><h2>Welcome to Coppermine installation</h2>
         </td>
        </tr>
@@ -87,13 +90,13 @@ function html_prereq_errors($error_msg)
        </tr>
        <tr>
         <td colspan="2" align="center"><br />
-       	 <input type="submit" value="Try again !"><br /><br />
+                <input type="submit" value="Try again !"><br /><br />
         </td>
-		</form>
+                </form>
        </tr>
       </table>
 <?php
-} 
+}
 
 function html_error($error_msg = '')
 {
@@ -102,7 +105,7 @@ function html_error($error_msg = '')
     ?>
       <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
        <tr>
-	    <form action="upgrade.php" method="post">
+            <form action="upgrade.php" method="post">
         <td class="tableh1" colspan="2"><h2>Welcome to the Coppermine upgrade program</h2>
         </td>
        </tr>
@@ -119,14 +122,14 @@ function html_error($error_msg = '')
         </td>
        </tr>
 <?php
-    } 
+    }
 
     ?>
-    
+
        </tr>
       </table>
 <?php
-} 
+}
 
 function html_install_success($notes)
 {
@@ -135,7 +138,7 @@ function html_install_success($notes)
     ?>
       <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
        <tr>
-	    <td class="tableh1" colspan="2"><h2>Upgrade completed</h2>
+            <td class="tableh1" colspan="2"><h2>Upgrade completed</h2>
         </td>
        </tr>
        <tr>
@@ -144,13 +147,13 @@ function html_install_success($notes)
        </tr>
        <tr>
         <td colspan="2" align="center" class="tableh2"><br />
-       	 <a href="index.php">Let's continue !</a><br />
+                <a href="index.php">Let's continue !</a><br />
         </td>
-		</form>
+                </form>
        </tr>
       </table>
 <?php
-} 
+}
 
 function html_footer()
 {
@@ -162,7 +165,7 @@ function html_footer()
 </html>
 <noscript><plaintext>
 <?php
-} 
+}
 // ------------------------- SQL QUERIES TO CREATE TABLES ------------------ //
 function update_tables()
 {
@@ -173,7 +176,7 @@ function update_tables()
     $gallery_url_prefix = 'http://' . $HTTP_SERVER_VARS['HTTP_HOST'] . $gallery_dir . (substr($gallery_dir, -1) == '/' ? '' : '/');
 
     $db_update = 'sql/update.sql';
-    $sql_query = fread(fopen($db_update, 'r'), filesize($db_update)); 
+    $sql_query = fread(fopen($db_update, 'r'), filesize($db_update));
     // Update table prefix
     $sql_query = preg_replace('/CPG_/', $CONFIG['TABLE_PREFIX'], $sql_query);
 
@@ -181,7 +184,7 @@ function update_tables()
     $sql_query = split_sql_file($sql_query, ';');
 
     ?>
-	<table class="maintable">
+        <table class="maintable">
     <tr>
       <th colspan=2 class="tableh1">Performing Database Updates</th>
     </tr>
@@ -193,9 +196,9 @@ function update_tables()
             echo "<td class='updatesOK'>OK</td>";
         } else {
             echo "<td class='updatesFail'>Already Done</td>";
-        } 
-    } 
-} 
+        }
+    }
+}
 // --------------------------------- MAIN CODE ----------------------------- //
 // The defaults values
 $table_prefix = $HTTP_POST_VARS['table_prefix'];
@@ -207,7 +210,7 @@ $DFLT = array('lck_f' => 'install.lock', // Name of install lock file
     );
 
 $errors = '';
-$notes = ''; 
+$notes = '';
 // The installer
 html_header();
 html_logo();
@@ -225,7 +228,7 @@ else {
         html_install_success($notes);
     else
         html_error($errors);
-} 
+}
 
 html_footer();
 

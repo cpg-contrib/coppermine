@@ -14,6 +14,10 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
+/*
+$Id$
+*/
+
 error_reporting (E_ALL ^ E_NOTICE);
 define('IN_COPPERMINE', true);
 define('PHPINFO_PHP', true);

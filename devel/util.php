@@ -17,6 +17,9 @@
 // If you know regular expressions scroll down to ADD YOUR OWN PARSEMODES    //
 // HERE to modify the included parsemodes.                                   //
 // ------------------------------------------------------------------------- //
+/*
+$Id$
+*/
 
 // USER CONFIGURATION
 // Default number of pictures to process at a time when rebuilding thumbs or normals:

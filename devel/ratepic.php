@@ -14,6 +14,9 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
+/*
+$Id$
+*/
 
 define('IN_COPPERMINE', true);
 define('RATEPIC_PHP', true);
@@ -54,7 +57,7 @@ if (mysql_num_rows($result)) cpg_die(ERROR, $lang_rate_pic_php['already_rated'],
 $user=USER_ID;
 $owner=$row['owner_id'];
 
-if (!empty($user) && $user==$owner && !USER_IS_ADMIN) cpg_die(ERROR, $lang_rate_pic_php['forbidden'], __FILE__, __LINE__);  
+if (!empty($user) && $user==$owner && !USER_IS_ADMIN) cpg_die(ERROR, $lang_rate_pic_php['forbidden'], __FILE__, __LINE__);
 // Update picture rating
 $new_rating = round(($row['votes'] * $row['pic_rating'] + $rate * 2000) / ($row['votes'] + 1));
 $sql = "UPDATE {$CONFIG['TABLE_PICTURES']} " . "SET pic_rating = '$new_rating', votes = votes + 1 " . "WHERE pid = '$pic' LIMIT 1";

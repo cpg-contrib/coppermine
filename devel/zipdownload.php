@@ -17,6 +17,10 @@
 // This script allows you to download your favpics as a zip, not linked      //
 // directly from anywhere as yet but works : Tarique <tarique@sanisoft.com   //
 //---------------------------------------------------------------------------//
+/*
+$Id$
+*/
+
 define('IN_COPPERMINE', true);
 define('THUMBNAILS_PHP', true);
 define('INDEX_PHP', true);

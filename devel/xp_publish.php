@@ -1,4 +1,4 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
@@ -13,19 +13,23 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- // 
-
-// Coppermine Windows XP Web Publishing Wizard Client
-// Based on the article posted by Sebastian Delmont
-// http://www.zonageek.com/code/misc/wizards/
-
-// Other information can be found on Microsoft web site
-// http://www.microsoft.com/whdc/hwdev/tech/WIA/imaging/webwizard.mspx
-// http://msdn.microsoft.com/library/default.asp?url=/library/en-us/shellcc/platform/shell/programmersguide/shell_basics/shell_basics_extending/publishing_wizard/pubwiz_intro.asp
-
-// Original implementation comes from Gallery
-// http://gallery.menalto.com
 // ------------------------------------------------------------------------- //
+// Coppermine Windows XP Web Publishing Wizard Client                        //
+// Based on the article posted by Sebastian Delmont                          //
+// http://www.zonageek.com/code/misc/wizards/                                //
+// ------------------------------------------------------------------------- //
+// Other information can be found on Microsoft web site                      //
+// http://www.microsoft.com/whdc/hwdev/tech/WIA/imaging/webwizard.mspx       //
+// http://msdn.microsoft.com/library/default.asp?url=/library/en-us/shellcc/platform/shell/programmersguide/shell_basics/shell_basics_extending/publishing_wizard/pubwiz_intro.asp
+// ------------------------------------------------------------------------- //
+// Original implementation comes from Gallery                                //
+// http://gallery.menalto.com                                                //
+// ------------------------------------------------------------------------- //
+
+/*
+$Id$
+*/
+
 define('IN_COPPERMINE', true);
 define('XP_PUBLISH_PHP', true);
 // Language file entry for xp_publish.php
@@ -57,87 +61,87 @@ define('LOGFILE', 'xp_publish.log');
 // ------------------------------------------------------------------------- //
 // HTML template for the login screen
 $template_login = <<<EOT
-	<p><b>{ENTER_LOGIN_PSWD}</b></p>
-	<form method="post" id="login" action="{POST_ACTION}">
-	    <table border="0" cellpadding="0" cellspasing="0">
-		<tr>
-			<td>{USERNAME}:&nbsp;</td>
-			<td><input type="text" name="username" value="" maxlength="25" /></td>
-		</tr>
-		<tr>
-			<td>{PASSWORD}:&nbsp;</td>
-			<td><input type="password" name="password" value="" maxlength="25" /></td>
-	    </tr>
-	    </table>
-	</form>
+        <p><b>{ENTER_LOGIN_PSWD}</b></p>
+        <form method="post" id="login" action="{POST_ACTION}">
+            <table border="0" cellpadding="0" cellspasing="0">
+                <tr>
+                        <td>{USERNAME}:&nbsp;</td>
+                        <td><input type="text" name="username" value="" maxlength="25" /></td>
+                </tr>
+                <tr>
+                        <td>{PASSWORD}:&nbsp;</td>
+                        <td><input type="password" name="password" value="" maxlength="25" /></td>
+            </tr>
+            </table>
+        </form>
 EOT;
 // HTML template for a successful login
 $template_login_success = <<< EOT
-	<p>{WELCOME}</p>
-	<form method="post" id="dummy" action="{POST_ACTION}">
-		<input type="hidden" name="dummy_val" value="1" />
-	</form>
+        <p>{WELCOME}</p>
+        <form method="post" id="dummy" action="{POST_ACTION}">
+                <input type="hidden" name="dummy_val" value="1" />
+        </form>
 <script language="javascript">
 dummy.submit();
 </script>
 EOT;
 // HTML template for an unsuccessful login
 $template_login_failure = <<< EOT
-	<p>{ERROR}</p>
-	<form method="post" id="dummy" action="{POST_ACTION}">
-		<input type="hidden" name="dummy_val" value="1" />
-	</form>
+        <p>{ERROR}</p>
+        <form method="post" id="dummy" action="{POST_ACTION}">
+                <input type="hidden" name="dummy_val" value="1" />
+        </form>
 EOT;
 // HTML template for the select destination/create new album screen
 $template_select_album = <<<EOT
-	<p>{WELCOME}</p>
-	<br />
+        <p>{WELCOME}</p>
+        <br />
 <!-- BEGIN no_album -->
-	<p>{NO_ALBUM}</p>
+        <p>{NO_ALBUM}</p>
 <!-- END no_album -->
    <table border="0" cellpadding="0" cellspasing="0">
 <!-- BEGIN existing_albums -->
-	<tr>
-		<td colspan="2"><b>{UPLOAD}</b></td>
-	</tr>
-	<form id="selform">
+        <tr>
+                <td colspan="2"><b>{UPLOAD}</b></td>
+        </tr>
+        <form id="selform">
     <tr>
-		<td>{ALBUM}: &nbsp;</td>
-		<td><select id="album" name="album">{SELECT_ALBUM}</select></td>
-	</tr>
-	</form>
-	<tr>
-		<td>&nbsp;</td>
-	</tr>
+                <td>{ALBUM}: &nbsp;</td>
+                <td><select id="album" name="album">{SELECT_ALBUM}</select></td>
+        </tr>
+        </form>
+        <tr>
+                <td>&nbsp;</td>
+        </tr>
 <!-- END existing_albums -->
 <!-- BEGIN create_album -->
-	<form method="post" id="createAlb" action="{POST_ACTION}">
-	<tr>
-		<td colspan="2"><b>{CREATE_NEW}</b></td>
-	</tr>
+        <form method="post" id="createAlb" action="{POST_ACTION}">
+        <tr>
+                <td colspan="2"><b>{CREATE_NEW}</b></td>
+        </tr>
     <tr>
-		<td>{ALBUM}: &nbsp;</td>
-		<td><input type="text" id="newAlbName" name="new_alb_name" value="" maxlength="255" /></td>
-	</tr>
+                <td>{ALBUM}: &nbsp;</td>
+                <td><input type="text" id="newAlbName" name="new_alb_name" value="" maxlength="255" /></td>
+        </tr>
 <!-- BEGIN select_category -->
-	<tr>
-		<td>{CATEGORY}: &nbsp;</td>
-		<td><select name="cat">{SELECT_CATEGORY}</select></td>
-	</tr>
+        <tr>
+                <td>{CATEGORY}: &nbsp;</td>
+                <td><select name="cat">{SELECT_CATEGORY}</select></td>
+        </tr>
 <!-- END select_category -->
-	</form>
+        </form>
 <!-- END create_album -->
-	</table>
-	
+        </table>
+
 EOT;
 // HTML template for a successful album creation
 $template_create_album = <<<EOT
-	<p>{NEW_ALB_CREATED}</p>
-	<p>{CONTINUE}</p>
-	<form id="selform">
-		<input type="hidden" id="album" name="album" value ="{ALBUM_ID}">
-	</form>
-	
+        <p>{NEW_ALB_CREATED}</p>
+        <p>{CONTINUE}</p>
+        <form id="selform">
+                <input type="hidden" id="album" name="album" value ="{ALBUM_ID}">
+        </form>
+
 EOT;
 // ------------------------------------------------------------------------- //
 // Simple die function (replace the cpg_die function that can't be used inside the wizard)
@@ -149,26 +153,26 @@ function simple_die($msg_code, $msg_text, $error_file, $error_line, $output_buff
 
     if (!$CONFIG['debug_mode']) {
         $msg .= '(' . $lang_cpg_die['file'] . ': ' . $error_file . ' / ' . $lang_cpg_die['line'] . ': ' . $error_line . ')';
-    } 
+    }
 
-    echo $msg; 
+    echo $msg;
     // If debug mode is active, write the output into a log file
     if (!$CONFIG['debug_mode']) {
         $ob = ob_get_contents();
         fwrite(fopen(LOGFILE, 'w'), $ob);
-    } 
+    }
 
     exit;
-} 
+}
 // Quote a string in order to make a valid JavaScript string
 function javascript_string($str)
-{ 
+{
     // replace \ with \\ and then ' with \'.
     $str = str_replace('\\', '\\\\', $str);
     $str = str_replace('\'', '\\\'', $str);
 
     return $str;
-} 
+}
 // Retrieve the category list
 function get_subcat_data($parent, $ident = '')
 {
@@ -180,9 +184,9 @@ function get_subcat_data($parent, $ident = '')
         foreach ($rowset as $subcat) {
             $CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
             get_subcat_data($subcat['cid'], $ident . '&nbsp;&nbsp;&nbsp;');
-        } 
-    } 
-} 
+        }
+    }
+}
 // Return the HTML code for the album list select box
 function html_album_list(&$alb_count)
 {
@@ -194,10 +198,10 @@ function html_album_list(&$alb_count)
             $public_albums_list = db_fetch_rowset($public_albums);
         } else {
             $public_albums_list = array();
-        } 
+        }
     } else {
         $public_albums_list = array();
-    } 
+    }
 
     if (USER_ID) {
         $user_albums = mysql_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' ORDER BY title");
@@ -205,23 +209,23 @@ function html_album_list(&$alb_count)
             $user_albums_list = db_fetch_rowset($user_albums);
         } else {
             $user_albums_list = array();
-        } 
+        }
     } else {
         $user_albums_list = array();
-    } 
+    }
 
     $alb_count = count($public_albums_list) + count($user_albums_list);
 
     $html = "\n";
     foreach($user_albums_list as $album) {
-        $html .= '			<option value="' . $album['aid'] . '">* ' . $album['title'] . "</option>\n";
-    } 
+        $html .= '                        <option value="' . $album['aid'] . '">* ' . $album['title'] . "</option>\n";
+    }
     foreach($public_albums_list as $album) {
-        $html .= '			<option value="' . $album['aid'] . '">' . $album['title'] . "</option>\n";
-    } 
+        $html .= '                        <option value="' . $album['aid'] . '">' . $album['title'] . "</option>\n";
+    }
 
     return $html;
-} 
+}
 // Return the HTML code for the category list select box
 function html_cat_list()
 {
@@ -236,11 +240,11 @@ function html_cat_list()
 
     $html = "\n";
     foreach($CAT_LIST as $category) {
-        $html .= '			<option value="' . $category[0] . '">' . $category[1] . "</option>\n";
-    } 
+        $html .= '                        <option value="' . $category[0] . '">' . $category[1] . "</option>\n";
+    }
 
     return $html;
-} 
+}
 // Display information on how to use/install the wizard client
 function display_instructions()
 {
@@ -255,64 +259,64 @@ function display_instructions()
 <style type="text/css">
 <!--
 body {
-	font-family : Verdana, Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	background : #F7F7F7 ;
-	color : Black;
-	margin: 30px;
-	line-height: 1.5;
+        font-family : Verdana, Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        background : #F7F7F7 ;
+        color : Black;
+        margin: 30px;
+        line-height: 1.5;
 }
 
 td {
-	font-size: 12px;
+        font-size: 12px;
 }
 
 h1{
-	font-weight: bold;
-	font-size: 22px;
-	font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
-	text-decoration: none;
-	line-height : 120%;
-	color : #000000;
+        font-weight: bold;
+        font-size: 22px;
+        font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+        text-decoration: none;
+        line-height : 120%;
+        color : #000000;
 }
 
 h2 {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 18px;
-	color: #0E72A4;
-	text-decoration: underline;
-	margin-top: 20px;
-	margin-bottom: 10px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 18px;
+        color: #0E72A4;
+        text-decoration: underline;
+        margin-top: 20px;
+        margin-bottom: 10px;
 }
 
 h3 {
-	font-weight: bold;
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	text-decoration: underline;
+        font-weight: bold;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        text-decoration: underline;
 }
 
 p {
-	font-family : Verdana, Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	margin: 10px 10px 0px 0px;
+        font-family : Verdana, Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        margin: 10px 10px 0px 0px;
 }
 
 ul {
-	margin-left: 5px;
-	margin-right: 0px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	padding: 0px;
-	list-style-type: square;
+        margin-left: 5px;
+        margin-right: 0px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 0px;
+        list-style-type: square;
 }
 
 li {
-	margin-left: 10px;
-	margin-top: 6px;
-	margin-bottom: 6px;
-	padding: 0px;
-	list-style-position: outside;
+        margin-left: 10px;
+        margin-top: 6px;
+        margin-bottom: 6px;
+        padding: 0px;
+        list-style-position: outside;
 }
 -->
 </style>
@@ -356,7 +360,7 @@ Coppermine.</p>
   <li>Once the upload has started, the wizard can't display any error message returned by
   the script so you can't know if the upload failed or succeeded until you check your gallery.</li>
   <li>If the upload fails, enable &quot;Debug mode&quot; on the Coppermine config page,
-  try with one single picture and check error messages in the 
+  try with one single picture and check error messages in the
   <a href="<?php echo dirname($PHP_SELF) . '/' . LOGFILE ?>"><?php echo LOGFILE ?></a> file
   that is located in Coppermine directory on your server.</li>
   <li>In order to avoid that the gallery be <i>flooded</i> by pictures uploaded through the wizard,
@@ -364,7 +368,7 @@ Coppermine.</p>
 </body>
 </html>
 <?php
-} 
+}
 // Output page header
 function output_header()
 {
@@ -381,72 +385,72 @@ function output_header()
 <style type="text/css">
 <!--
 body {
-	font-family : Verdana, Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	background : #FFFFFF ;
-	color : Black;
-	margin: 20px;
-	border: 1px solid #000000;
+        font-family : Verdana, Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        background : #FFFFFF ;
+        color : Black;
+        margin: 20px;
+        border: 1px solid #000000;
 }
 
 td {
-	font-size: 12px;
-	padding-top: 5px;
-	padding-bottom: 0px;
+        font-size: 12px;
+        padding-top: 5px;
+        padding-bottom: 0px;
 }
 
 h1{
-	font-weight: bold;
-	font-size: 22px;
-	font-family: Arial, Helvetica, sans-serif;
-	text-decoration: none;
-	line-height : 120%;
-	color : #0E72A4;
+        font-weight: bold;
+        font-size: 22px;
+        font-family: Arial, Helvetica, sans-serif;
+        text-decoration: none;
+        line-height : 120%;
+        color : #0E72A4;
 }
 
 h2 {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 18px;
-	color: #0E72A4;
-	text-decoration: underline;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 18px;
+        color: #0E72A4;
+        text-decoration: underline;
 }
 
 h3 {
-	font-weight: bold;
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	text-decoration: underline;
+        font-weight: bold;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        text-decoration: underline;
 }
 
 p {
-	font-family : Verdana, Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	margin: 10px 10px 0px 0px;
+        font-family : Verdana, Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        margin: 10px 10px 0px 0px;
 }
 
 ul {
-	margin-left: 5px;
-	margin-right: 0px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	padding: 0px;
+        margin-left: 5px;
+        margin-right: 0px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        padding: 0px;
 }
 
 li {
-	margin-left: 10px;
-	margin-top: 4px;
-	margin-bottom: 4px;
-	padding: 0px;
-	list-style-position: outside;
-	list-style-type: disc;
+        margin-left: 10px;
+        margin-top: 4px;
+        margin-bottom: 4px;
+        padding: 0px;
+        list-style-position: outside;
+        list-style-type: disc;
 }
 
 form {
-	display: inline;
+        display: inline;
 }
 
 input {
-	width: 200px;
+        width: 200px;
 }
 
 -->
@@ -457,7 +461,7 @@ input {
 <h1><?php echo $lang_xp_publish_php['title'] ?></h1>
 <p></p>
 <?php
-} 
+}
 // Output page footer
 function output_footer()
 {
@@ -470,60 +474,60 @@ function output_footer()
 
 <script language='javascript'>
 function create_alb() {
-	if (createAlb.newAlbName.value == ''){
-		return false;
-	} else {
-		createAlb.submit();
-	}
+        if (createAlb.newAlbName.value == ''){
+                return false;
+        } else {
+                createAlb.submit();
+        }
 }
 
 function create_alb_or_use_existing() {
-	if (createAlb.newAlbName.value == ''){
-		startUpload();
-	} else {
-		createAlb.submit();
-	}
+        if (createAlb.newAlbName.value == ''){
+                startUpload();
+        } else {
+                createAlb.submit();
+        }
 }
 
 function startUpload() {
-	var xml = window.external.Property('TransferManifest');
-	var files = xml.selectNodes('transfermanifest/filelist/file');
-	
-	for (i = 0; i < files.length; i++) {
-		var postTag = xml.createNode(1, 'post', '');
-		postTag.setAttribute('href', '<?php echo 'http://' . $HTTP_SERVER_VARS['HTTP_HOST'] . $PHP_SELF . '?cmd=add_picture'?>&album=' + selform.album.value);
-		postTag.setAttribute('name', 'userpicture');
-		
-		var dataTag = xml.createNode(1, 'formdata', '');
-		dataTag.setAttribute('name', 'MAX_FILE_SIZE');
-		dataTag.text = '10000000';
-		postTag.appendChild(dataTag);
-		
-		files.item(i).appendChild(postTag);
-	}
+        var xml = window.external.Property('TransferManifest');
+        var files = xml.selectNodes('transfermanifest/filelist/file');
 
-	var uploadTag = xml.createNode(1, 'uploadinfo', '');
-	uploadTag.setAttribute('friendlyname', '<?php echo javascript_string($CONFIG['gallery_name'])?>');
-	var htmluiTag = xml.createNode(1, 'htmlui', '');
-	htmluiTag.text = '<?php echo 'http://' . $HTTP_SERVER_VARS['HTTP_HOST'] . dirname($PHP_SELF) . '/'?>';
-	uploadTag.appendChild(htmluiTag);
-	
-	xml.documentElement.appendChild(uploadTag);
-	
-	window.external.Property('TransferManifest')=xml;
-	window.external.SetWizardButtons(true,true,true);
-	content.innerHtml=xml;
-	window.external.FinalNext();
+        for (i = 0; i < files.length; i++) {
+                var postTag = xml.createNode(1, 'post', '');
+                postTag.setAttribute('href', '<?php echo 'http://' . $HTTP_SERVER_VARS['HTTP_HOST'] . $PHP_SELF . '?cmd=add_picture'?>&album=' + selform.album.value);
+                postTag.setAttribute('name', 'userpicture');
+
+                var dataTag = xml.createNode(1, 'formdata', '');
+                dataTag.setAttribute('name', 'MAX_FILE_SIZE');
+                dataTag.text = '10000000';
+                postTag.appendChild(dataTag);
+
+                files.item(i).appendChild(postTag);
+        }
+
+        var uploadTag = xml.createNode(1, 'uploadinfo', '');
+        uploadTag.setAttribute('friendlyname', '<?php echo javascript_string($CONFIG['gallery_name'])?>');
+        var htmluiTag = xml.createNode(1, 'htmlui', '');
+        htmluiTag.text = '<?php echo 'http://' . $HTTP_SERVER_VARS['HTTP_HOST'] . dirname($PHP_SELF) . '/'?>';
+        uploadTag.appendChild(htmluiTag);
+
+        xml.documentElement.appendChild(uploadTag);
+
+        window.external.Property('TransferManifest')=xml;
+        window.external.SetWizardButtons(true,true,true);
+        content.innerHtml=xml;
+        window.external.FinalNext();
 }
 
 function OnBack() {
-	<?php echo $ONBACK_SCRIPT;
+        <?php echo $ONBACK_SCRIPT;
     ?>
-	window.external.SetWizardButtons(false,true,false);
+        window.external.SetWizardButtons(false,true,false);
 }
 
 function OnNext() {
-	<?php echo $ONNEXT_SCRIPT;
+        <?php echo $ONNEXT_SCRIPT;
     ?>
 }
 
@@ -531,15 +535,15 @@ function OnCancel() {
 }
 
 function window.onload() {
-	window.external.SetHeaderText('<?php echo javascript_string($CONFIG['gallery_name'])?>','<?php echo javascript_string($CONFIG['gallery_description'])?>');
-	window.external.SetWizardButtons(<?php echo $WIZARD_BUTTONS;
+        window.external.SetHeaderText('<?php echo javascript_string($CONFIG['gallery_name'])?>','<?php echo javascript_string($CONFIG['gallery_description'])?>');
+        window.external.SetWizardButtons(<?php echo $WIZARD_BUTTONS;
     ?>);
 }
 </script>
 </body>
 </html>
 <?php
-} 
+}
 // Send the file needed to register the service under Windows XP
 function send_reg_file()
 {
@@ -551,7 +555,7 @@ function send_reg_file()
     $lines[] = 'Windows Registry Editor Version 5.00';
     $lines[] = '';
     //$lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\PublishingWizard\Providers\CopperminePhotoGallery]';
-	$lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\PublishingWizard\Providers\\'. $CONFIG['gallery_name'] .']'; 
+        $lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\PublishingWizard\Providers\\'. $CONFIG['gallery_name'] .']';
     $lines[] = '"displayname"="' . $CONFIG['gallery_name'] . '"';
     $lines[] = '"description"="' . $CONFIG['gallery_description'] . '"';
     $lines[] = '"href"="' . "http://" . $HTTP_SERVER_VARS['HTTP_HOST'] . $PHP_SELF . '?cmd=publish"';
@@ -559,7 +563,7 @@ function send_reg_file()
     print join("\r\n", $lines);
     print "\r\n";
     exit;
-} 
+}
 // Display the login page
 function form_login()
 {
@@ -576,7 +580,7 @@ function form_login()
         $ONBACK_SCRIPT = 'window.external.FinalBack();';
         $WIZARD_BUTTONS = 'false,false,false';
         return;
-    } 
+    }
 
     $params = array('{POST_ACTION}' => $PHP_SELF . '?cmd=publish',
         '{ENTER_LOGIN_PSWD}' => $lang_login_php['enter_login_pswd'],
@@ -589,7 +593,7 @@ function form_login()
     $ONNEXT_SCRIPT = 'login.submit();';
     $ONBACK_SCRIPT = 'window.external.FinalBack();';
     $WIZARD_BUTTONS = 'true,true,false';
-} 
+}
 // Process login information
 function process_login()
 {
@@ -619,12 +623,12 @@ function process_login()
             );
 
         echo template_eval($template_login_failure, $params);
-    } 
+    }
 
     $ONNEXT_SCRIPT = 'dummy.submit();';
     $ONBACK_SCRIPT = 'dummy.submit();';
     $WIZARD_BUTTONS = 'true,true,false';
-} 
+}
 // Display the form that allows to choose/create the destination album
 function form_publish()
 {
@@ -687,8 +691,8 @@ function form_publish()
         $ONNEXT_SCRIPT = 'create_alb_or_use_existing();';
         $ONBACK_SCRIPT = 'window.external.FinalBack();';
         $WIZARD_BUTTONS = 'true,true,false';
-    } 
-} 
+    }
+}
 // Create a new album where pictures will be uploaded
 function create_album()
 {
@@ -703,7 +707,7 @@ function create_album()
         $category = (int)$HTTP_POST_VARS['cat'];
     } else {
         $category = FIRST_USER_CAT + USER_ID;
-    } 
+    }
 
     $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos) VALUES ('$category', '" . addslashes($HTTP_POST_VARS['new_alb_name']) . "', 'NO',  '0')";
     db_query($query);
@@ -718,7 +722,7 @@ function create_album()
     $ONNEXT_SCRIPT = 'startUpload();';
     $ONBACK_SCRIPT = 'window.external.FinalBack();';
     $WIZARD_BUTTONS = 'true,true,true';
-} 
+}
 // Add a picture
 function process_picture()
 {
@@ -736,7 +740,7 @@ function process_picture()
     $user1 = '';
     $user2 = '';
     $user3 = '';
-    $user4 = ''; 
+    $user4 = '';
     // Check if the album id provided is valid
     if (!USER_IS_ADMIN) {
         $result = db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album' and category = '" . (USER_ID + FIRST_USER_CAT) . "'");
@@ -750,9 +754,9 @@ function process_picture()
         $row = mysql_fetch_array($result);
         mysql_free_result($result);
         $category = $row['category'];
-    } 
+    }
     // Test if the filename of the temporary uploaded picture is empty
-    if ($HTTP_POST_FILES['userpicture']['tmp_name'] == '') simple_die(ERROR, $lang_db_input_php['no_pic_uploaded'], __FILE__, __LINE__); 
+    if ($HTTP_POST_FILES['userpicture']['tmp_name'] == '') simple_die(ERROR, $lang_db_input_php['no_pic_uploaded'], __FILE__, __LINE__);
     // Create destination directory for pictures
     if (USER_ID && !defined('SILLY_SAFE_MODE')) {
         if (USER_IS_ADMIN && ($category != (USER_ID + FIRST_USER_CAT))) {
@@ -760,7 +764,7 @@ function process_picture()
             $filepath = 'wpw-' . substr($hash, 0, 2);
         } else {
             $filepath = $CONFIG['userpics'] . (USER_ID + FIRST_USER_CAT);
-        } 
+        }
         $dest_dir = $CONFIG['fullpath'] . $filepath;
         if (!is_dir($dest_dir)) {
             mkdir($dest_dir, octdec($CONFIG['default_dir_mode']));
@@ -769,60 +773,60 @@ function process_picture()
             $fp = fopen($dest_dir . '/index.html', 'w');
             fwrite($fp, ' ');
             fclose($fp);
-        } 
+        }
         $dest_dir .= '/';
         $filepath .= '/';
     } else {
         $filepath = $CONFIG['userpics'];
         $dest_dir = $CONFIG['fullpath'] . $filepath;
-    } 
+    }
     // Check that target dir is writable
     if (!is_writable($dest_dir)) simple_die(CRITICAL_ERROR, sprintf($lang_db_input_php['dest_dir_ro'], $dest_dir), __FILE__, __LINE__, true);
 
     $matches = array();
 
-    if (get_magic_quotes_gpc()) $HTTP_POST_FILES['userpicture']['name'] = stripslashes($HTTP_POST_FILES['userpicture']['name']); 
+    if (get_magic_quotes_gpc()) $HTTP_POST_FILES['userpicture']['name'] = stripslashes($HTTP_POST_FILES['userpicture']['name']);
     // Replace forbidden chars with underscores
     $forbidden_chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>'));
-    $picture_name = strtr($HTTP_POST_FILES['userpicture']['name'], $forbidden_chars, str_repeat('_', strlen($CONFIG['forbiden_fname_char']))); 
+    $picture_name = strtr($HTTP_POST_FILES['userpicture']['name'], $forbidden_chars, str_repeat('_', strlen($CONFIG['forbiden_fname_char'])));
     // Check that the file uploaded has a valid extension
     if (!preg_match("/(.+)\.(.*?)\Z/", $picture_name, $matches)) {
         $matches[1] = 'invalid_fname';
         $matches[2] = 'xxx';
-    } 
+    }
     if ($matches[2] == '' || !stristr($CONFIG['allowed_file_extensions'], $matches[2])) {
         simple_die(ERROR, sprintf($lang_db_input_php['err_invalid_fext'], $CONFIG['allowed_file_extensions']), __FILE__, __LINE__);
-    } 
+    }
     // Create a unique name for the uploaded file
     $nr = 0;
     $picture_name = $matches[1] . '.' . $matches[2];
     while (file_exists($dest_dir . $picture_name)) {
         $picture_name = $matches[1] . '~' . $nr++ . '.' . $matches[2];
-    } 
-    $uploaded_pic = $dest_dir . $picture_name; 
+    }
+    $uploaded_pic = $dest_dir . $picture_name;
     // Move the picture into its final location
     if (!move_uploaded_file($HTTP_POST_FILES['userpicture']['tmp_name'], $uploaded_pic))
-        simple_die(CRITICAL_ERROR, sprintf($lang_db_input_php['err_move'], $picture_name, $dest_dir), __FILE__, __LINE__, true); 
+        simple_die(CRITICAL_ERROR, sprintf($lang_db_input_php['err_move'], $picture_name, $dest_dir), __FILE__, __LINE__, true);
     // Change file permission
-    chmod($uploaded_pic, octdec($CONFIG['default_file_mode'])); 
+    chmod($uploaded_pic, octdec($CONFIG['default_file_mode']));
     // Get picture information
-    $imginfo = getimagesize($uploaded_pic); 
+    $imginfo = getimagesize($uploaded_pic);
     // Check that picture size (in pixels) is lower than the maximum allowed
     if (max($imginfo[0], $imginfo[1]) > $CONFIG['max_upl_width_height']) {
         @unlink($uploaded_pic);
-        simple_die(ERROR, sprintf($lang_db_input_php['err_fsize_too_large'], $CONFIG['max_upl_width_height'], $CONFIG['max_upl_width_height']), __FILE__, __LINE__); 
+        simple_die(ERROR, sprintf($lang_db_input_php['err_fsize_too_large'], $CONFIG['max_upl_width_height'], $CONFIG['max_upl_width_height']), __FILE__, __LINE__);
         // Check that picture file size is lower than the maximum allowed
     } elseif (filesize($uploaded_pic) > ($CONFIG['max_upl_size'] << 10)) {
         @unlink($uploaded_pic);
-        simple_die(ERROR, sprintf($lang_db_input_php['err_imgsize_too_large'], $CONFIG['max_upl_size']), __FILE__, __LINE__); 
+        simple_die(ERROR, sprintf($lang_db_input_php['err_imgsize_too_large'], $CONFIG['max_upl_size']), __FILE__, __LINE__);
         // getimagesize does not recognize the file as a picture
     } elseif ($imginfo == null) {
         @unlink($uploaded_pic);
-        simple_die(ERROR, $lang_db_input_php['err_invalid_img'], __FILE__, __LINE__, true); 
+        simple_die(ERROR, $lang_db_input_php['err_invalid_img'], __FILE__, __LINE__, true);
         // JPEG and PNG only are allowed with GD
     } elseif ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && ($CONFIG['thumb_method'] == 'gd1' || $CONFIG['thumb_method'] == 'gd2')) {
         @unlink($uploaded_pic);
-        simple_die(ERROR, $lang_errors['gd_file_type_err'], __FILE__, __LINE__, true); 
+        simple_die(ERROR, $lang_errors['gd_file_type_err'], __FILE__, __LINE__, true);
         // Check image type is among those allowed for ImageMagick
     } elseif (!stristr($CONFIG['allowed_img_types'], $IMG_TYPES[$imginfo[2]]) && $CONFIG['thumb_method'] == 'im') {
         @unlink($uploaded_pic);
@@ -836,14 +840,14 @@ function process_picture()
         } else {
             echo ("SUCCESS");
             exit;
-        } 
-    } 
-} 
+        }
+    }
+}
 // ------------------------------------------------------------------------- //
 if (USER_IS_ADMIN && !GALLERY_ADMIN_MODE) {
     $USER['am'] = 1;
     user_save_profile();
-} 
+}
 
 $cmd = empty($HTTP_GET_VARS['cmd']) ? '' : $HTTP_GET_VARS['cmd'];
 

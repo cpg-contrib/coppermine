@@ -14,6 +14,9 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
+/*
+$Id$
+*/
 
 // Check if standalone is installed in a portal like phpNuke (added by DJMaze)
 $DIR=preg_split("/[\/\\\]/",dirname($_SERVER["SCRIPT_FILENAME"] ? $_SERVER["SCRIPT_FILENAME"] : $HTTP_SERVER_VARS["SCRIPT_FILENAME"]));

@@ -1,4 +1,4 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
@@ -13,7 +13,10 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- // 
+// ------------------------------------------------------------------------- //
+/*
+$Id$
+*/
 
 define('IN_COPPERMINE', true);
 define('ADDPIC_PHP', true);
@@ -38,12 +41,12 @@ if (mysql_num_rows($result)) {
 } else {
     $file_name = "images/up_pb.gif";
     echo $ERROR;
-} 
+}
 
 if (ob_get_length()) {
     ob_end_flush();
     exit;
-} 
+}
 
 header('Content-type: image/gif');
 echo fread(fopen($file_name, 'rb'), filesize($file_name));

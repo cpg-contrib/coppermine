@@ -1,4 +1,4 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
@@ -13,7 +13,10 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- // 
+// ------------------------------------------------------------------------- //
+/*
+$Id$
+*/
 
 define('IN_COPPERMINE', true);
 define('DISPLAYECARD_PHP', true);
@@ -28,7 +31,7 @@ $data = @unserialize(@base64_decode($HTTP_GET_VARS['data']));
 
 if (!is_array($data)) {
     cpg_die(CRITICAL_ERROR, 'Sorry but e-card data have been corrupted by your mail client', __FILE__, __LINE__);
-} 
+}
 // Remove HTML tags as we can't trust what we receive
 foreach($data as $key => $value) $data[$key] = strtr($value, $HTML_SUBST);
 // Load template parameters

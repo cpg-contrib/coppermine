@@ -16,6 +16,10 @@
 // ------------------------------------------------------------------------- //
 // Report all errors except E_NOTICE
 // This is the default value set in php.ini
+/*
+$Id$
+*/
+
 
 // Check if standalone is installed in a portal like phpNuke (added by DJMaze)
 $DIR=preg_split("/[\/\\\]/",dirname($_SERVER["SCRIPT_FILENAME"] ? $_SERVER["SCRIPT_FILENAME"] : $HTTP_SERVER_VARS["SCRIPT_FILENAME"]));
@@ -55,7 +59,7 @@ function test_fs()
         $errors .= "<hr /><br />A subdirectory called '{$DFLT['edt_d']}' should normally exist in the 'albums' directory. The installer can't find this directory. Check that you have uploaded all Coppermine files to your server.<br /><br />";
     } elseif (! is_writable("{$DFLT['alb_d']}/{$DFLT['edt_d']}")) {
         $errors .= "<hr /><br />The '{$DFLT['edt_d']}' directory (located in the 'albums' directory on your server) should be writable in order to allow pictures upload. Use your FTP program to change its mode to 777.<br /><br />";
-    }    
+    }
 }
 // ----------------------------- TEST FUNCTIONS ---------------------------- //
 function test_sql_connection()
@@ -384,7 +388,7 @@ function html_install_success($notes)
         </td>
        </tr>
        <tr>
-        <td class="tableb" colspan="2"> <a href="index.php">Coppermine</a> is now properly configured and ready to roll.<br /><br /><a href="login.php?">Login</a> using the information you provided for your admin account.<?php echo $notes ?>
+        <td class="tableb" colspan="2"> <a href="index.php">Coppermine</a> is now properly configured and ready to roll.<br /><br /><a href="login.php?">Login</a> using the information you provided for your admin account. Do <b>not</b> hit back, do <b>not</b> re-submit the installer form!<?php echo $notes ?>
         </td>
        </tr>
        <tr>

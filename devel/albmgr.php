@@ -1,4 +1,4 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
@@ -13,7 +13,10 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- // 
+// ------------------------------------------------------------------------- //
+/*
+$Id$
+*/
 
 define('IN_COPPERMINE', true);
 define('ALBMGR_PHP', true);
@@ -32,9 +35,9 @@ function get_subcat_data($parent, $ident = '')
         foreach ($rowset as $subcat) {
             $CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
             get_subcat_data($subcat['cid'], $ident . '&nbsp;&nbsp;&nbsp;');
-        } 
-    } 
-} 
+        }
+    }
+}
 
 pageheader($lang_albmgr_php['alb_mrg']);
 
@@ -195,26 +198,26 @@ pageheader($lang_albmgr_php['alb_mrg']);
     function Album_NameChange(change_name)
     {
 
-		try {
-		    var album = new Object();
-		    var to = document.album_menu.to;
-		    var value;
-		    var text;
+                try {
+                    var album = new Object();
+                    var to = document.album_menu.to;
+                    var value;
+                    var text;
 
-		    album = new parseSelectValue(to, selectedOptIndex);
-		    if (album.action == '1')
-		        action = '1';
-		    else
-		        action = '2';
+                    album = new parseSelectValue(to, selectedOptIndex);
+                    if (album.action == '1')
+                        action = '1';
+                    else
+                        action = '2';
 
-		    text = change_name.substring(0, 80);
-		    value = make_value(album.album_no, change_name, album.album_sort, action);
-		    make_option(text, value, to, selectedOptIndex);
-		}
-		catch(e) {
-			alert("<?php echo $lang_albmgr_php['select_first'] ?>");
-		}
-	}
+                    text = change_name.substring(0, 80);
+                    value = make_value(album.album_no, change_name, album.album_sort, action);
+                    make_option(text, value, to, selectedOptIndex);
+                }
+                catch(e) {
+                        alert("<?php echo $lang_albmgr_php['select_first'] ?>");
+                }
+        }
 
     function make_option(text, value, target, index)
     {
@@ -325,15 +328,15 @@ $i = 100;
 $sort_order = '';
 if (count ($rowset) > 0) foreach ($rowset as $album) {
     $sort_order .= $album['aid'] . '@' . ($i++) . ',';
-} 
+}
 
 ?>
-	<form name="album_menu" method="post" action="delete.php?what=albmgr" onSubmit="return CheckAlbumForm(this);">
-	<input type="hidden" name="delete_album" value="">
-	<input type="hidden" name="sort_order" value="<?php echo $sort_order ?>">
-	<td class="tableb" valign="top" align="center">
-		<br>
-		<table width="300" border="0" cellspacing="0" cellpadding="0">
+        <form name="album_menu" method="post" action="delete.php?what=albmgr" onSubmit="return CheckAlbumForm(this);">
+        <input type="hidden" name="delete_album" value="">
+        <input type="hidden" name="sort_order" value="<?php echo $sort_order ?>">
+        <td class="tableb" valign="top" align="center">
+                <br>
+                <table width="300" border="0" cellspacing="0" cellpadding="0">
 <?php
 if (GALLERY_ADMIN_MODE) {
     $CAT_LIST = array();
@@ -342,70 +345,70 @@ if (GALLERY_ADMIN_MODE) {
     get_subcat_data(0, '');
 
     echo <<<EOT
-		<tr>
-			<td>
-				<b>{$lang_albmgr_php['select_category']}</b>
-				<select onChange="if(this.options[this.selectedIndex].value) window.location.href='$PHP_SELF?cat='+this.options[this.selectedIndex].value;"  name="cat" class="listbox">
+                <tr>
+                        <td>
+                                <b>{$lang_albmgr_php['select_category']}</b>
+                                <select onChange="if(this.options[this.selectedIndex].value) window.location.href='$PHP_SELF?cat='+this.options[this.selectedIndex].value;"  name="cat" class="listbox">
 EOT;
     foreach($CAT_LIST as $category) {
-        echo '				<option value="' . $category[0] . '"' . ($cat == $category[0] ? ' selected': '') . ">" . $category[1] . "</option>\n";
-    } 
+        echo '                                <option value="' . $category[0] . '"' . ($cat == $category[0] ? ' selected': '') . ">" . $category[1] . "</option>\n";
+    }
     echo <<<EOT
-				</select>
-				<br /><br />
-			</td>
-		</tr>
+                                </select>
+                                <br /><br />
+                        </td>
+                </tr>
 
 EOT;
-} 
+}
 
 ?>
-		<tr>
-			<td>
-				<select id="to" name="to[]" size="<?php echo min(max(count ($rowset) + 3, 15), 40) ?>" multiple onChange="Album_Select(this.selectedIndex);" class="listbox" style="width: 300px">
+                <tr>
+                        <td>
+                                <select id="to" name="to[]" size="<?php echo min(max(count ($rowset) + 3, 15), 40) ?>" multiple onChange="Album_Select(this.selectedIndex);" class="listbox" style="width: 300px">
 <?php
 $i = 100;
 $lb = '';
 if (count ($rowset) > 0) foreach ($rowset as $album) {
-    $lb .= '					<option value="album_no=' . $album['aid'] . ',album_nm=\'' . $album['title'] . '\',album_sort=' . ($i++) . ',action=0">' . stripslashes($album['title']) . "</option>\n";
-} 
+    $lb .= '                                        <option value="album_no=' . $album['aid'] . ',album_nm=\'' . $album['title'] . '\',album_sort=' . ($i++) . ',action=0">' . stripslashes($album['title']) . "</option>\n";
+}
 echo $lb;
 
 ?>
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                </select>
+                        </td>
+                </tr>
                 <tr>
-					<td><a href="javascript:Moveup_Option();"><img src="images/move_up.gif" width="26" height="21" border="0"></a><a href="javascript:Movedown_Option();"><img src="images/move_down.gif" width="26" height="21" border="0"></a>
-					</td>
-					<td align="center" style="background-color: #D4D0C8; width: 80px; height: 21px; border-top: 1px solid White; border-left: 1px solid White; border-right: 1px solid #808080; border-bottom: 1px solid #808080;"><a href="javascript:Album_Delete();" style="color: Black; font-weight: bold;"><?php echo $lang_albmgr_php['delete'] ?></a>
-					</td>
-					<td align="center" style="width: 1px;"><img src="images/spacer.gif" width="1" alt=""><br>
-					</td>
-					<td align="center" style="background-color: #D4D0C8; width: 80px; height: 21px; border-top: 1px solid White; border-left: 1px solid White; border-right: 1px solid #808080; border-bottom: 1px solid #808080;"><a href="javascript:Album_Create();" style="color: Black; font-weight: bold;"><?php echo $lang_albmgr_php['new'] ?></a>
-					</td>
-				</tr>
-				</table>
-			</td>
-		</tr>
-		<tr>
-			<td><br>
-				<input type="text" name="album_nm" size="27" maxlength="80" class="textinput" style="width: 300px;" onChange="Album_NameChange(this.value);" onKeyUp="Album_NameChange(this.value);">
-				<br>
-				<br>
-			</td>
-		</tr>
+                        <td>
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                                        <td><a href="javascript:Moveup_Option();"><img src="images/move_up.gif" width="26" height="21" border="0"></a><a href="javascript:Movedown_Option();"><img src="images/move_down.gif" width="26" height="21" border="0"></a>
+                                        </td>
+                                        <td align="center" style="background-color: #D4D0C8; width: 80px; height: 21px; border-top: 1px solid White; border-left: 1px solid White; border-right: 1px solid #808080; border-bottom: 1px solid #808080;"><a href="javascript:Album_Delete();" style="color: Black; font-weight: bold;"><?php echo $lang_albmgr_php['delete'] ?></a>
+                                        </td>
+                                        <td align="center" style="width: 1px;"><img src="images/spacer.gif" width="1" alt=""><br>
+                                        </td>
+                                        <td align="center" style="background-color: #D4D0C8; width: 80px; height: 21px; border-top: 1px solid White; border-left: 1px solid White; border-right: 1px solid #808080; border-bottom: 1px solid #808080;"><a href="javascript:Album_Create();" style="color: Black; font-weight: bold;"><?php echo $lang_albmgr_php['new'] ?></a>
+                                        </td>
+                                </tr>
+                                </table>
+                        </td>
+                </tr>
+                <tr>
+                        <td><br>
+                                <input type="text" name="album_nm" size="27" maxlength="80" class="textinput" style="width: 300px;" onChange="Album_NameChange(this.value);" onKeyUp="Album_NameChange(this.value);">
+                                <br>
+                                <br>
+                        </td>
+                </tr>
         </table>
-	</td>
+        </td>
 </tr>
 <tr>
-	<td colspan="2" align="center" class="tablef">
-	<input type="submit" class="button" value="<?php echo $lang_albmgr_php['apply_modifs'] ?>">
-	</td>
-	</form>
+        <td colspan="2" align="center" class="tablef">
+        <input type="submit" class="button" value="<?php echo $lang_albmgr_php['apply_modifs'] ?>">
+        </td>
+        </form>
 </tr>
 <?php
 endtable();
