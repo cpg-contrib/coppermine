@@ -78,7 +78,7 @@ function udb_authenticate()
     $REMOTE_ADDR = substr($HTTP_SERVER_VARS['REMOTE_ADDR'], 0, 50);
 
     if (is_array($HTTP_COOKIE_VARS)) {
-        $sessionhash = isset($HTTP_COOKIE_VARS['sessionhash']) ? $HTTP_COOKIE_VARS['sessionhash'] : '';
+        $sessionhash = isset($HTTP_COOKIE_VARS[VB_COOKIE_PREFIX . 'sessionhash']) ? $HTTP_COOKIE_VARS[VB_COOKIE_PREFIX . 'sessionhash'] : '';
         $bbuserid = isset($HTTP_COOKIE_VARS[VB_COOKIE_PREFIX . 'userid']) ? $HTTP_COOKIE_VARS[VB_COOKIE_PREFIX . 'userid'] : 0;
         $bbpassword = isset($HTTP_COOKIE_VARS[VB_COOKIE_PREFIX . 'password']) ? $HTTP_COOKIE_VARS[VB_COOKIE_PREFIX . 'password'] : '';
     }
