@@ -1,4 +1,4 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
@@ -714,7 +714,22 @@ foreach ($elements as $element) {
                 } 
                 flush();
                 break;
-        } 
+            case 'plugin':
+                if ($cat == 0) {
+                    $scope = (int) $_GET['scope'];
+                    
+                    // Scrub: Remove '..' and leftover '//' from filename
+                    $file = str_replace('//','',str_replace('..','',$_GET['file']));
+                    
+                    // Don't include the codebase and credits files
+                    if ($file != 'codebase.php' && $file != 'credits.php') {
+                        
+                        // Include the code from the plugin
+                        @include_once('./plugins/'.$CPG_PLUGINS[$scope]->path.'/'.$file);
+                    }
+                }
+                break;
+        }
     } 
 
     pagefooter();
