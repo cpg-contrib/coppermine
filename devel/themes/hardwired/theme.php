@@ -204,12 +204,12 @@ $template_cat_list = <<<EOT
 <!-- END header -->
 <!-- BEGIN catrow_noalb -->
         <tr>
-                <td class="tableh2" colspan="3"><span class="catlink"><b>{CAT_TITLE}</b></span>{CAT_DESC}</td>
+                <td class="tableh2" colspan="3"><table border="0"><tr><td>{CAT_THUMB}</td><td><span class="catlink"><b>{CAT_TITLE}</b></span>{CAT_DESC}</td></tr></table></td>
         </tr>
 <!-- END catrow_noalb -->
 <!-- BEGIN catrow -->
         <tr>
-                <td class="tableb"><span class="catlink"><b>{CAT_TITLE}</b></span>{CAT_DESC}</td>
+                <td class="tableb"><table border="0"><tr><td>{CAT_THUMB}</td><td><span class="catlink"><b>{CAT_TITLE}</b></span>{CAT_DESC}</td></tr></table></td>
                 <td class="tableb" align="center">{ALB_COUNT}</td>
                 <td class="tableb" align="center">{PIC_COUNT}</td>
         </tr>
@@ -1097,13 +1097,15 @@ function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
     $template_noabl = template_extract_block($template_cat_list, 'catrow_noalb');
     $template = template_extract_block($template_cat_list, 'catrow');
     foreach($cat_data as $category) {
-        if (count($category) == 2) {
+        if (count($category) == 3) {
             $params = array('{CAT_TITLE}' => $category[0],
+                '{CAT_THUMB}' => $category['cat_thumb'],
                 '{CAT_DESC}' => $category[1]
                 );
             echo template_eval($template_noabl, $params);
         } else {
             $params = array('{CAT_TITLE}' => $category[0],
+                '{CAT_THUMB}' => $category['cat_thumb'],
                 '{CAT_DESC}' => $category[1],
                 '{CAT_ALBUMS}' => $category['cat_albums'],
                 '{ALB_COUNT}' => $category[2],

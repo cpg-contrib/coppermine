@@ -126,12 +126,12 @@ $template_cat_list = <<<EOT
 <!-- END header -->
 <!-- BEGIN catrow_noalb -->
         <tr>
-                <td class="tableh2" colspan="3"><span class="catlink">{CAT_TITLE}</span>{CAT_DESC}</td>
+                <td class="tableh2" colspan="3"><table border="0"><tr><td>{CAT_THUMB}</td><td><span class="catlink"><b>{CAT_TITLE}</b></span>{CAT_DESC}</td></tr></table></td>
         </tr>
 <!-- END catrow_noalb -->
 <!-- BEGIN catrow -->
         <tr>
-                <td class="tableb"><span class="catlink">{CAT_TITLE}</span>{CAT_DESC}</td>
+                <td class="tableb"><table border="0"><tr><td>{CAT_THUMB}</td><td><span class="catlink"><b>{CAT_TITLE}</b></span>{CAT_DESC}</td></tr></table></td>
                 <td class="tableb" align="center">{ALB_COUNT}</td>
                 <td class="tableb" align="center">{PIC_COUNT}</td>
         </tr>
@@ -1039,13 +1039,15 @@ function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
     $template_noabl = template_extract_block($template_cat_list, 'catrow_noalb');
     $template = template_extract_block($template_cat_list, 'catrow');
     foreach($cat_data as $category) {
-        if (count($category) == 2) {
+        if (count($category) == 3) {
             $params = array('{CAT_TITLE}' => $category[0],
+                '{CAT_THUMB}' => $category['cat_thumb'],
                 '{CAT_DESC}' => $category[1]
                 );
             echo template_eval($template_noabl, $params);
         } else {
             $params = array('{CAT_TITLE}' => $category[0],
+                '{CAT_THUMB}' => $category['cat_thumb'],
                 '{CAT_DESC}' => $category[1],
                 '{CAT_ALBUMS}' => $category['cat_albums'],
                 '{ALB_COUNT}' => $category[2],
@@ -1196,27 +1198,27 @@ function theme_display_album_list_cat(&$alb_list, $nbAlb, $cat, $page, $total_pa
     }
 
     echo $header;
-	if (is_array($alb_list)) {
-		foreach($alb_list as $album) {
-			$count ++;
+        if (is_array($alb_list)) {
+                foreach($alb_list as $album) {
+                        $count ++;
 
-			$params = array('{COL_WIDTH}' => $column_width,
-			'{ALBUM_TITLE}' => $album['album_title'],
-			'{THUMB_CELL_WIDTH}' => $thumb_cell_width,
-			'{ALB_LINK_TGT}' => "thumbnails.php?album={$album['aid']}",
-			'{ALB_LINK_PIC}' => $album['thumb_pic'],
-			'{ADMIN_MENU}' => $album['album_adm_menu'],
-			'{ALB_DESC}' => $album['album_desc'],
-			'{ALB_INFOS}' => $album['album_info'],
-			);
+                        $params = array('{COL_WIDTH}' => $column_width,
+                        '{ALBUM_TITLE}' => $album['album_title'],
+                        '{THUMB_CELL_WIDTH}' => $thumb_cell_width,
+                        '{ALB_LINK_TGT}' => "thumbnails.php?album={$album['aid']}",
+                        '{ALB_LINK_PIC}' => $album['thumb_pic'],
+                        '{ADMIN_MENU}' => $album['album_adm_menu'],
+                        '{ALB_DESC}' => $album['album_desc'],
+                        '{ALB_INFOS}' => $album['album_info'],
+                        );
 
-			echo template_eval($album_cell, $params);
+                        echo template_eval($album_cell, $params);
 
-			if ($count % $columns == 0 && $count < count($alb_list)) {
-			echo $rows_separator;
-			}
-		}
-	}
+                        if ($count % $columns == 0 && $count < count($alb_list)) {
+                        echo $rows_separator;
+                        }
+                }
+        }
 
     $params = array('{COL_WIDTH}' => $column_width);
     $empty_cell = template_eval($empty_cell, $params);
