@@ -18,6 +18,7 @@
 // Confirm we are in Coppermine and set the language block.
 define('IN_COPPERMINE', true);
 define('UPLOAD_PHP', true);
+define('DB_INPUT_PHP', true);
 
 // Call basic functions, etc. 
 require('include/init.inc.php');
