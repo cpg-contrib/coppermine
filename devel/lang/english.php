@@ -1845,10 +1845,9 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'album' => 'Album', // cpg1.4
   'category' => 'Category', // cpg1.4
   'modify' => 'Modify?', // cpg1.4
-  'group_alb_access' => 'Album access for this group', // cpg1.4
   'group_no_access' => 'This group has no special access', // cpg1.4
   'notice' => 'Notice', // cpg1.4
-  'group_can_access' => '%s can access:', // cpg1.4
+  'group_can_access' => 'Albums "%s" can view', // cpg1.4
 );
 
 // ------------------------------------------------------------------------- //
