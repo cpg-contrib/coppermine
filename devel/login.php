@@ -80,7 +80,7 @@ if (!isset($_COOKIE[$CONFIG['cookie_name'] . '_data'])) {
     $cookie_warning = <<<EOT
                   <tr>
                           <td colspan="2" align="center" class="tableh2">
-                        <font size="1" color="red"><b>Warning your browser does not accept script's cookies<b></font>
+                        <font size="1" color="red"><b>{$lang_login_php['cookie_warning']}<b></font>
                         </td>
                   </tr>
 

@@ -1172,6 +1172,7 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
   'err_login' => '*** Couldn\'t log in. Try again ***',
   'err_already_logged_in' => 'You are already logged in !',
   'forgot_password_link' => 'I forgot my password',
+  'cookie_warning' => 'Warning your browser does not accept script\'s cookies',
 );
 
 // ------------------------------------------------------------------------- //
