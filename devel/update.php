@@ -41,8 +41,16 @@ function update_system_thumbs()
     } // while
     mysql_free_result($results);
     
-    @unlink('images/thumb_nopic.jpg');
-    @unlink('images/thumb_private.jpg');
+    // If old images exist, delete the new ones
+    if (file_exists('images/nopic.jpg')) {
+        @unlink('images/thumb_nopic.jpg');
+    }
+
+    if (file_exists('images/private.jpg')) {
+        @unlink('images/thumb_private.jpg');
+    }
+
+    // Rename old images to new format
     @rename('images/nopic.jpg','images/'.$CONFIG['thumb_pfx'].'nopic.jpg');
     @rename('images/private.jpg','images/'.$CONFIG['thumb_pfx'].'private.jpg');
 }
