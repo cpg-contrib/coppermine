@@ -225,7 +225,7 @@ print <<<EOT
                         $pic_info
                 </td>
                    <td class="tableb" align="center" rowspan="$THUMB_ROWSPAN">
-                        <img src="$thumb_url" class="image" border="0"><br />
+                        <a href="$thumb_link"><img src="$thumb_url" class="image" border="0"></a><br />
             </td>
         </tr>
 EOT;
@@ -319,7 +319,7 @@ print <<<EOT
         <tr>
                 <td colspan="3" align="center" class="tablef">
                         <input type="submit" value="{$lang_editpics_php['apply']}" name="submitDescription" class="button">
-                </td>
+               <br><a href="$thumb_link" class="button">$lang_back</a></td>
                 </form>
         </tr>
 </table>
