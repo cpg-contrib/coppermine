@@ -409,6 +409,7 @@ EOT;
             // added individually using a separate script that returns an image
             $status = "<a href=\"addpic.php?aid=$album_id&pic_file=" . ($_POST['picfile_' . $pic_id]) . "&reload=" . uniqid('') . "\"><img src=\"addpic.php?aid=$album_id&pic_file=" . ($_POST['picfile_' . $pic_id]) . "&reload=" . uniqid('') . "\" class=\"thumbnail\" border=\"0\" width=\"24\" height=\"24\" alt=\"{$lang_search_new_php['result_icon']}\" /><br /></a>";
             $album_name = $album_array[$album_id];
+            $edit_pics_content .= '<a href="editpics.php?album='.$album_id. '">' . $lang_search_new_php['edit_pics'] . ' : ' . $album_name . '</a><br />';
         } else {
             $album_name = $lang_search_new_php['no_album'];
             $status = "<img src=\"images/up_na.gif\" alt=\"" . $lang_search_new_php['no_album'] . "\" class=\"thumbnail\" border=\"0\" width=\"24\" height=\"24\" /><br />";
@@ -435,7 +436,7 @@ EOT;
         </tr>
         <tr>
                 <td class="tableb" colspan="4">
-                <p align="center"><a href="editpics.php?album={$album_id}">{$lang_search_new_php['edit_pics']}</a></p>
+                <p align="center">{$edit_pics_content}</p>
                 </td>
         </tr>
 

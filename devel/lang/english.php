@@ -1477,7 +1477,7 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
    'albums_no_category' => 'Albums with no category', //cpg1.4.0, album pulldown mod, added by frogfoot
   'personal_albums' => '* Personal albums', //cpg1.4.0, album pulldown mod, added by frogfoot
   'browse_batch_add' => 'Browsable interface (recommended)', //cpg1.4.0
-  'edit_pics' => 'Edit the Pictures', //cpg1.4.0
+  'edit_pics' => 'Edit files in album', //cpg1.4.0
 );
 
 
