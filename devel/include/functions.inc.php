@@ -169,9 +169,9 @@ function localised_date($timestamp = -1, $datefmt)
         $timestamp = time();
     }
     $diff_to_GMT = date("O") / 100;
-    
+
     $timestamp += ($CONFIG['time_offset'] - $diff_to_GMT) * 3600;
-    
+
     $date = ereg_replace('%[aA]', $lang_day_of_week[(int)strftime('%w', $timestamp)], $datefmt);
     $date = ereg_replace('%[bB]', $lang_month[(int)strftime('%m', $timestamp)-1], $date);
 
@@ -432,12 +432,12 @@ function get_private_album_set()
         if (mysql_num_rows($result))
         {
                 $set = array();
-           		while ($album = mysql_fetch_array($result)) $set[] = $album['aid'];
+                           while ($album = mysql_fetch_array($result)) $set[] = $album['aid'];
                 $csv = implode(',',$set);
                 $FORBIDDEN_SET = "p.aid NOT IN ($csv) ";
                 $ALBUM_SET .= "AND aid NOT IN ($csv) ";
         }
-       	mysql_free_result($result);
+               mysql_free_result($result);
 }
 
 // Retrieve the data for a picture or a set of picture
@@ -1092,7 +1092,7 @@ function cpg_get_system_thumb_list($search_folder = 'images/')
 {
         global $CONFIG;
         static $thumbs = array();
-        
+
         $folder = 'images/';
 
         $thumb_pfx =& $CONFIG['thumb_pfx'];
@@ -1133,12 +1133,12 @@ function& cpg_get_system_thumb($filename,$user=10001)
         // Correct user_id
         if ($user<10000)
         {
-        	$user += 10000;
+                $user += 10000;
         }
-        
+
         if ($user==10000) {
                 $user = 10001;
-        }        
+        }
 
         // Get image data for thumb
         $picdata = array('filename'=>$filename,
@@ -1366,7 +1366,7 @@ function& cpg_lang_var($varname,$index=null) {
         }
 }
 
-//defined new debug_output function here in functions.inc.php instead of theme.php with different function names to avoid incompatibilities with users not updating their themes as required. Advanced info is only output if (GALLERY_ADMIN_MODE == TRUE)  - GauGau 2003-11-23
+//defined new debug_output function here in functions.inc.php instead of theme.php with different function names to avoid incompatibilities with users not updating their themes as required. Advanced info is only output if (GALLERY_ADMIN_MODE == TRUE)
 
 function cpg_debug_output()
 {
@@ -1377,7 +1377,7 @@ function cpg_debug_output()
 
         $query_count = count($query_stats);
         $total_query_time = array_sum($query_stats);
-        
+
         $debug_underline = '&#0010;------------------&#0010;';
         $debug_separate = '&#0010;==========================&#0010;';
         echo '<form name="debug">';
@@ -1431,6 +1431,9 @@ tempval.select()
         $mySqlVersion = cpg_phpinfo_mysql_version();
         if (strcmp('3.23.23', $mySqlVersion) == 1) {$version_comment = ' - your mySQL version isn\'t good enough! Minimum requirements: 3.23.23';}
         echo 'mySQL version: ' . $mySqlVersion . $version_comment;
+        echo $debug_underline;
+        echo 'Coppermine version: ';
+        echo COPPERMINE_VERSION . '(' . COPPERMINE_VERSION_STATUS . ')';
         echo $debug_separate;
         error_reporting  (E_ERROR | E_WARNING | E_PARSE);
         echo cpg_phpinfo_mod_output('gd','text');
