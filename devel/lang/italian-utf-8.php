@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 // ------------------------------------------------------------------------- //
 //  Coppermine Photo Gallery                                                 //
 // ------------------------------------------------------------------------- //
@@ -8,13 +8,28 @@
 //  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
 //  http://www.stoverud.com/PHPhotoalbum/                                    //
 // ------------------------------------------------------------------------- //
+//  Hacked by Tarique Sani <tarique@sanisoft.com> and Girsh Nair             //
+//  <girish@sanisoft.com> see http://www.sanisoft.com/cpg/README.txt for     //
+//  details                                                                  //
+// ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
 //  the Free Software Foundation; either version 2 of the License, or        //
 //  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
 
-$lang_charset = 'utf-8';
+// info about translators and translated language
+$lang_translation_info = array(
+'lang_name_english' => 'Italian',  //the name of your language in English, e.g. 'Greek' or 'Spanish'
+'lang_name_native' => 'Italiano', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espa&ntilde;ol'
+'lang_country_code' => 'it', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es'
+'trans_name'=> '(Completed by) Sesto Avolio', //the name of the translator - can be a nickname
+'trans_email' => 'webmaster@eolica.net', //translator's email address (optional)
+'trans_website' => 'http://www.eolica.net/', //translator's website (optional)
+'trans_date' => '2003-10-04', //the date the translation was created / last modified
+);
+
+$lang_charset = 'iso-8859-1';
 $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 
 // shortcuts for Byte, Kilo, Mega
@@ -29,7 +44,7 @@ $lang_yes = 'Si';
 $lang_no  = 'No';
 $lang_back = 'INDIETRO';
 $lang_continue = 'CONTINUA';
-$lang_info = 'Informatione';
+$lang_info = 'Informazione';
 $lang_error = 'Errore';
 
 // The various date formats
@@ -47,11 +62,13 @@ $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clit
 $lang_meta_album_names = array(
 	'random' => 'Immagini...a casaccio',
 	'lastup' => 'Ultimi arrivi',
+	'lastalb'=> 'Last updated albums',
 	'lastcom' => 'Ultimi commenti',
 	'topn' => 'Le più viste',
 	'toprated' => 'Le più votate',
 	'lasthits' => 'Viste di recente',
-	'search' => 'Risultati della ricerca'
+	'search' => 'Risultati della ricerca',
+        'favpics'=> 'Immagini Preferite'
 );
 
 $lang_errors = array(
@@ -68,7 +85,9 @@ $lang_errors = array(
 	'orphan_cat' => 'Una categoria non è legata, correggi il problema col Manager Categorie.',
 	'directory_ro' => 'La directory \'%s\' è protetta in scrittura, le immagini non possono essere cancellate',
 	'non_exist_comment' => 'Il commento selezionato non esiste.',
-	'pic_in_invalid_album' => 'Immagine appartenente ad un album inesistente (%s)!?'
+	'pic_in_invalid_album' => 'Immagine appartenente ad un album inesistente (%s)!?',
+        'banned' => 'Sei stato bannato e non puoi usare questo sito.',
+        'not_with_udb' => 'Questa funzione è disabilitata in Coppermine perché è integrata con il software del forum. Ciò che stai cercando di fare non è supportato in questa configurazione, oppure questa funzione dovrebbe essere gestita dal software del forum.',
 );
 
 // ------------------------------------------------------------------------- //
@@ -96,6 +115,8 @@ $lang_main_menu = array(
 	'topn_lnk' => 'Le più viste',
 	'toprated_lnk' => 'Le più votate',
 	'search_lnk' => 'Cerca',
+        'fav_lnk' => 'I miei Preferiti',
+
 );
 
 $lang_gallery_admin_menu = array(
@@ -107,6 +128,8 @@ $lang_gallery_admin_menu = array(
 	'groups_lnk' => 'Gruppi',
 	'comments_lnk' => 'Commenti',
 	'searchnew_lnk' => 'Aggiungi immagini multiple',
+        'util_lnk' => 'Ridimensiona immagini',
+        'ban_lnk' => 'Banna Utenti',
 );
 
 $lang_user_admin_menu = array(
@@ -116,7 +139,7 @@ $lang_user_admin_menu = array(
 );
 
 $lang_cat_list = array(
-	'category' => 'Categoria',
+	'category' => 'Gallerie',
 	'albums' => 'Albums',
 	'pictures' => 'Immagini',
 );
@@ -127,11 +150,15 @@ $lang_album_list = array(
 
 $lang_thumb_view = array(
 	'date' => 'DATE',
-	'name' => 'NAME',
+//Sort by filename and title
+    'name' => 'FILE NAME',
+    'title' => 'TITLE',
 	'sort_da' => 'Ordina per data ascendente',
 	'sort_dd' => 'Ordina per data discendente',
 	'sort_na' => 'Ordina per name ascendente',
 	'sort_nd' => 'Ordina per name discendente',
+        'sort_ta' => 'Ordina per titolo ascendente',
+        'sort_td' => 'Ordina per titolo discendente',
 	'pic_on_page' => '%d immagini in %d pagine',
 	'user_on_page' => '%d utenti in %d pagine'
 );
@@ -208,7 +235,7 @@ $lang_get_pic_data = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
-	'Exclamation' => 'Esclamatione',
+	'Exclamation' => 'Esclamazione',
 	'Question' => 'Dubbio',
 	'Very Happy' => 'Molto felice',
 	'Smile' => 'Sorriso',
@@ -223,7 +250,7 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 	'Embarassed' => 'Imbarazzato',
 	'Crying or Very sad' => 'Molto triste',
 	'Evil or Very Mad' => 'Cattivo',
-	'Twisted Evil' => 'Molto cativo',
+	'Twisted Evil' => 'Molto cattivo',
 	'Rolling Eyes' => 'Occhi fuori orbita',
 	'Wink' => 'Wink',
 	'Idea' => 'Idea',
@@ -273,10 +300,10 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
-	'miss_param' => 'Parametri necessari per \'%s\'operatione non forniti !',
+	'miss_param' => 'Parametri necessari per \'%s\'operazione non forniti !',
 	'unknown_cat' => 'La categoria scelta non è nel database',
 	'usergal_cat_ro' => 'La categoria delle gallerie personali non può essere cancellata !',
-	'manage_cat' => 'Manage categories',
+	'manage_cat' => 'Gestisci categorie',
 	'confirm_delete' => 'Vuoi davvero cancellare questa categoria?',
 	'category' => 'Categoria',
 	'operations' => 'Operazioni',
@@ -300,7 +327,9 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
 	'upd_success' => 'Configurazione aggiornata',
 	'restore_success' => 'Configurazione di default ripristinata',
 	'name_a' => 'Nome ascendente',
-	'name_d' => 'Nome discendente',
+ 	'name_d' => 'Nome discendente',
+        'title_a' => 'Titolo ascendente',
+        'title_d' => 'Titolo discendente',
 	'date_a' => 'Data ascendente',
 	'date_d' => 'Data discendente'
 );
@@ -321,6 +350,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Numero di colonne della lista album', 'album_list_cols', 0),
 	array('Dimensione miniature in pixels', 'alb_list_thumb_size', 0),
 	array('Contenuto della pagina principale', 'main_page_layout', 0),
+	array('Mostra miniatyre per primo livello album nelle categorie','first_level',1),
 
 	'Vista miniature',
 	array('Numero di colonne nella pagina delle miniature', 'thumbcols', 0),
@@ -340,10 +370,13 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Max numero di caratteri in una parola', 'max_com_wlength', 0),
 	array('Max numero di linee in un commento', 'max_com_lines', 0),
 	array('Lunghezza massima del commento', 'max_com_size', 0),
+    array('Mostra film strip', 'display_film_strip', 1),
+    array('Numero di miniature nella film strip', 'max_film_strip_items', 0),
 
 	'Impostazioni immagini e miniature',
 	array('Qualità files JPEG', 'jpeg_qual', 0),
-	array('Max larghezza o altezza della miniature <b>*</b>', 'thumb_width', 0),
+	array('Max dimensione delle miniature <b>*</b>', 'thumb_width', 0),
+    array('Usa dimensione ( larghezza o altezza o aspetto Max per miniature )<b>*</b>', 'thumb_use', 7),
 	array('Crea immagini intermedie','make_intermediate',1),
 	array('Max larghezza o altezza delle immagini intermedie <b>*</b>', 'picture_width', 0),
 	array('Peso massimo dei files (KB)', 'max_upl_size', 0),
@@ -362,12 +395,13 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Nome campo 4', 'user_field4_name', 0),
 
 	'Impostazioni avanzate immagini e miniature',
+	array('Mostra Icona album privati ad utenti non connessi','show_private',1),
 	array('Caratteri proibiti nei nomi dei files', 'forbiden_fname_char',0),
 	array('Estensioni consentite per le immagini ', 'allowed_file_extensions',0),
 	array('Metodo ridimensionamento immagini','thumb_method',2),
 	array('Percorso per ImageMagick (esempio /usr/bin/X11/)', 'impath', 0),
 	array('Tipi di immagini consentiti (solo per ImageMagick)', 'allowed_img_types',0),
-	array('Options per ImageMagick', 'im_options', 0),
+	array('Opzioni per ImageMagick', 'im_options', 0),
 	array('Leggi dati EXIF nei files JPEG', 'read_exif_data', 1),
 	array('Directory degli album <b>*</b>', 'fullpath', 0),
 	array('Directory immagini utenti <b>*</b>', 'userpics', 0),
@@ -375,6 +409,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Prefisso delle miniature <b>*</b>', 'thumb_pfx', 0),
 	array('Chmod di default per le directories', 'default_dir_mode', 0),
 	array('Chmod di default per le immagini', 'default_file_mode', 0),
+        array('Disabilita click destro nei pop-up full-size (JavaScript - metodo insicuro)', 'disable_popup_rightclick', 1),
+        array('Disabilita click destro in tutte le pagine &quot;normali&quot; (JavaScript - metodo insicuro)', 'disable_gallery_rightclick', 1),
 
 	'Cookies &amp; Impostazioni caratteri',
 	array('Nome del cookie usato dallo script', 'cookie_name', 0),
@@ -428,7 +464,7 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 	'del_success' => 'cancellata con successo',
 	'ns_pic' => 'immagine normale',
 	'err_del' => 'non può essere cancellata',
-	'thumb_pic' => 'miniatuta',
+	'thumb_pic' => 'miniatura',
 	'comment' => 'commento',
 	'im_in_alb' => 'immagine nello album',
 	'alb_del_success' => 'Album \'%s\' cancellato',
@@ -439,7 +475,7 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 	'del_pic' => 'Cancella immagine',
 	'del_alb' => 'Cancella album',
 	'del_user' => 'Cancella utente',
-	'err_unknown_user' => 'Utente inesisente !',
+	'err_unknown_user' => 'Utente inesistente !',
 	'comment_deleted' => 'Commento cancellato con successo',
 );
 
@@ -469,7 +505,7 @@ $lang_picinfo = array(
 	'title' =>'Info immagine',
 	'Filename' => 'Nome file',
 	'Album name' => 'Nome album',
-	'Rating' => 'Meida (%s voti)',
+	'Rating' => 'Media (%s voti)',
 	'Keywords' => 'Keywords',
 	'File Size' => 'Peso file',
 	'Dimensions' => 'Dimensioni',
@@ -479,7 +515,10 @@ $lang_picinfo = array(
 	'Aperture' => 'Apertura',
 	'Exposure time' => 'Esposizione',
 	'Focal length' => 'Focale',
-	'Comment' => 'Commento'
+	'Comment' => 'Commento',
+        'addFav'=>'Aggiungi a Pref',
+        'addFavPhrase'=>'Preferiti',
+        'remFav'=>'Rimuovi da Pref',
 );
 
 $lang_display_comments = array(
@@ -487,8 +526,14 @@ $lang_display_comments = array(
 	'edit_title' => 'Edita questo commento',
 	'confirm_delete' => 'Vuoi davvero cancellare questo commento?',
 	'add_your_comment' => 'Aggiungi il tuo commento',
-	'your_name' => 'Il tuo nome',
+        'name'=>'Nome',
+        'comment'=>'Commento',
+        'your_name' => 'Anon',
 );
+$lang_fullsize_popup = array(
+        'click_to_close' => 'Clicca l\'immagine per chiudere questa finestra',
+);
+
 
 }
 
@@ -651,7 +696,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 	'public_alb' => 'Tutti (album pubblico)',
 	'me_only' => 'Solo per me',
 	'owner_only' => 'Solo per il titolare (%s)',
-	'groupp_only' => 'Members of the \'%s\' group',
+	'groupp_only' => 'Membri del gruppo \'%s\' ',
 	'err_no_alb_to_modify' => 'Nessun album che tu possa modificare.',
 	'update' => 'Aggiorna album'
 );
@@ -736,7 +781,9 @@ Grazie per esserti registrato su {SITE_NAME}
 La tua username è : "{USER_NAME}"
 La tua password è : "{PASSWORD}"
 
-Per completare la attivazione clicca sul link qui sotto o aprilo nel browser
+Per completare la attivazione clicca sul link qui sotto
+o copia e incolla nel browser
+
 {ACT_LINK}
 
 Cordiali saluti,
@@ -810,6 +857,20 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 
 // Void
 
+// ------------------------------------------------------------------------- //
+// File banning.php
+// ------------------------------------------------------------------------- //
+
+if (defined('BANNING_PHP')) $lang_banning_php = array(
+                'title' => 'Ban Utenti',
+                'user_name' => 'Nome Utente',
+                'ip_address' => 'Indirizzo IP',
+                'expiry' => 'Scadenza (vuoto è permanente)',
+                'edit_ban' => 'Salva Modifiche',
+                'delete_ban' => 'Cancella',
+                'add_new' => 'Aggiungi Nuovo Ban',
+                'add_ban' => 'Aggiungi',
+);
 
 // ------------------------------------------------------------------------- //
 // File upload.php
@@ -871,4 +932,56 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 	'user_interests' => 'Interessi utente',
 	'user_occupation' => 'Occupazione utente',
 );
+
+// ------------------------------------------------------------------------- //
+// File util.php
+// ------------------------------------------------------------------------- //
+
+if (defined('UTIL_PHP')) $lang_util_php = array(
+        'title' => 'Ridimensiona immagini',
+        'what_it_does' => 'Cosa fa',
+        'what_update_titles' => 'Aggiorna titoli da nome file',
+        'what_delete_title' => 'Cancella titoli',
+        'what_rebuild' => 'Ricostruisce miniature e immagini ridimensionate',
+        'what_delete_originals' => 'Cancella immagini originali e sostituisce con versione ridimensionata',
+        'file' => 'File',
+        'title_set_to' => 'titolo impostato a',
+        'submit_form' => 'esegui',
+        'updated_succesfully' => 'aggiornamento riuscito',
+        'error_create' => 'ERRORE creando',
+        'continue' => 'Processa più immagini',
+        'main_success' => 'Il file %s è stato impostato come immagine principale',
+        'error_rename' => 'Errore rinominando %s in %s',
+        'error_not_found' => 'Il file %s non è stato trovato',
+        'back' => 'torna al menu principale',
+        'thumbs_wait' => 'Aggiornamento miniature e/o immagini ridimensionate, attendi...',
+        'thumbs_continue_wait' => 'Continua aggiornamento miniature e/o immagini ridimensionate...',
+        'titles_wait' => 'Aggiornamento titoli, attendi...',
+        'delete_wait' => 'Cancellazione titoli, attendi...',
+        'replace_wait' => 'Cancellazione originali e sostituzione con immagini ridimensionate, attendi..',
+        'instruction' => 'Istruzioni rapide',
+        'instruction_action' => 'Scegli azione',
+        'instruction_parameter' => 'Imposta parametri',
+        'instruction_album' => 'Scegli album',
+        'instruction_press' => 'Premi %s',
+        'update' => 'Aggiorna miniature e/o immagini ridimensionate',
+        'update_what' => 'Cosa aggiornare',
+        'update_thumb' => 'Solo miniature',
+        'update_pic' => 'Solo immagini ridimensionate',
+        'update_both' => 'Sia le miniature che le immagini ridimensionate',
+        'update_number' => 'Numero di immagini elaborate per click',
+        'update_option' => '(Prova ad impostare questa opzione ad un valore basso se hai problemi di timeout)',
+        'filename_title' => 'Nome File &rArr; Titolo Immagine',
+        'filename_how' => 'Come modificare il nome file',
+        'filename_remove' => 'Rimuovi il .jpg finale e sostituisci _ (underscore) con spazi',
+        'filename_euro' => 'Cambia 2003_11_23_13_20_20.jpg in 23/11/2003 13:20',
+        'filename_us' => 'Cambia 2003_11_23_13_20_20.jpg in 11/23/2003 13:20',
+        'filename_time' => 'Cambia 2003_11_23_13_20_20.jpg in 13:20',
+        'delete' => 'Cancella titoli immagini o immagini con dimensioni originali',
+        'delete_title' => 'Cancella titoli immagini',
+        'delete_original' => 'Cancella immagini con dimensioni originali',
+        'delete_replace' => 'Cancella immagini originali sostituendole con la versione ridimensionata',
+        'select_album' => 'Scegli album',
+);
+
 ?>

@@ -1,12 +1,16 @@
-<?php
+﻿<?php
 // ------------------------------------------------------------------------- //
 //  Coppermine Photo Gallery                                                 //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Grégory DEMAR <gdemar@wanadoo.fr>               //
+//  Copyright (C) 2002,2003  Gregory DEMAR <gdemar@wanadoo.fr>               //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
+//  Based on PHPhotoalbum by Henning Stverud <henning@stoverud.com>         //
 //  http://www.stoverud.com/PHPhotoalbum/                                    //
+// ------------------------------------------------------------------------- //
+//  Hacked by Tarique Sani <tarique@sanisoft.com> and Girsh Nair             //
+//  <girish@sanisoft.com> see http://www.sanisoft.com/cpg/README.txt for     //
+//  details                                                                  //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -14,7 +18,18 @@
 //  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
 
-$lang_charset = 'utf-8';
+// info about translators and translated language 
+$lang_translation_info = array( 
+'lang_name_english' => 'Finnish',  //the name of your language in English, e.g. 'Greek' or 'Spanish' 
+'lang_name_native' => 'Suomenkielinen', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Español' 
+'lang_country_code' => 'fi', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es' 
+'trans_name'=> 'V.Taavila', //the name of the translator - can be a nickname 
+'trans_email' => 'quandox@kastema.to', //translator's email address (optional) 
+'trans_website' => 'http://', //translator's website (optional) 
+'trans_date' => '2003-10-03', //the date the translation was created / last modified 
+); 
+
+$lang_charset = 'iso-8859-15';
 $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 
 // shortcuts for Byte, Kilo, Mega
@@ -44,15 +59,17 @@ $comment_date_fmt =  '%B %d, %Y at %I:%M %p';
 // For the word censor
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
 
-$lang_meta_album_names = array(
-	'random' => 'Satunaiset kuvat',
-	'lastup' => 'Uusimmat kuvat',
-	'lastcom' => 'Uusimmat kommentit',
-	'topn' => 'Katsotuimmat',
-	'toprated' => 'Suosituimmat',
-	'lasthits' => 'Viimeksi katsottuja',
-	'search' => 'Haun tulokset'
-);
+$lang_meta_album_names = array( 
+        'random' => 'Satunaiset kuvat', 
+        'lastup' => 'Uusimmat kuvat', 
+        'lastalb'=> 'Viimeksi päivitetyt albumit', 
+        'lastcom' => 'Uusimmat komentit', 
+        'topn' => 'Katsotuimmat', 
+        'toprated' => 'Suosituimmat', 
+        'lasthits' => 'Viimeksi tarkasteltu', 
+        'search' => 'Haun tulokset', 
+        'favpics'=> 'Suosikki Kuvat' 
+); 
 
 $lang_errors = array(
 	'access_denied' => 'Ei oikeuksia tälle sivulle.',
@@ -68,7 +85,9 @@ $lang_errors = array(
 	'orphan_cat' => 'Ongelmia kategoriassa, aja kategoria manageri selvitääksesi ongelma.',
 	'directory_ro' => 'Hakemistoon \'%s\' ei ole määritelty kirjoitusoikeuksia. Kuvia ei voi poistaa',
 	'non_exist_comment' => 'Valittua kommenttia ei löydy.',
-	'pic_in_invalid_album' => 'Kuvaa ei ole albumissa (%s)!?'
+	'pic_in_invalid_album' => 'Kuvaa ei ole albumissa (%s)!?',
+	'banned' => 'Sinulta on evätty pääsy tälle sivulle.', 
+    'not_with_udb' => 'Tämä toiminto on poistettu käytöstä Coppermine gallerissa koska tämä on integroitu foorumi ohjelmistoon. Toiminto jota eritit tehdä ei ole tuettuna tässä kokoonpanossa, toiminto löytyy mahdollisesti foorumi ohjelmistosta.', 
 );
 
 // ------------------------------------------------------------------------- //
@@ -81,10 +100,10 @@ $lang_main_menu = array(
 	'my_gal_title' => 'Mene omaan galleriaan',
 	'my_gal_lnk' => 'Oma galleria',
 	'my_prof_lnk' => 'Omat asetukset',
-	'adm_mode_title' => 'Vaihda admin modeen',
-	'adm_mode_lnk' => 'Admin mode',
-	'usr_mode_title' => 'Vaihda käyttäjä modeen',
-	'usr_mode_lnk' => 'Käyttäjä mode',
+	'adm_mode_title' => 'Vaihda ylläpitotilaan',
+	'adm_mode_lnk' => 'Ylläpitotila',
+	'usr_mode_title' => 'Vaihda käyttäjätilaan',
+	'usr_mode_lnk' => 'Käyttäjätila',
 	'upload_pic_title' => 'Lisää kuva albumiin',
 	'upload_pic_lnk' => 'Lisää kuva',
 	'register_title' => 'Luo uusi tili',
@@ -96,6 +115,8 @@ $lang_main_menu = array(
 	'topn_lnk' => 'Katsotuimmat',
 	'toprated_lnk' => 'Suosituimmat',
 	'search_lnk' => 'Haku',
+	'fav_lnk' => 'Suosikkini',
+	
 );
 
 $lang_gallery_admin_menu = array(
@@ -107,6 +128,9 @@ $lang_gallery_admin_menu = array(
 	'groups_lnk' => 'Ryhmät',
 	'comments_lnk' => 'Kommentit',
 	'searchnew_lnk' => 'Lisää "FTP" kuvat',
+	'util_lnk' => 'Pienennä Kuvia',
+	'ban_lnk' => 'Kiellä Käyttäjiä',
+        'ban_lnk' => 'Ban Users', //new in cpg1.2.0 
 );
 
 $lang_user_admin_menu = array(
@@ -127,12 +151,16 @@ $lang_album_list = array(
 
 $lang_thumb_view = array(
 	'date' => 'PVM',
-	'name' => 'NIMI',
+	//Sort by filename and title 
+    'name' => 'NIMI', 
+    'title' => 'OTSIKKO', 
 	'sort_da' => 'Järjestä päivämäärittäin nousevasti',
 	'sort_dd' => 'Järjestä päivämäärittäin laskevasti',
 	'sort_na' => 'Järjestä nimellä nousevasti',
 	'sort_nd' => 'Järjestä nimellä laskevasti',
-	'pic_on_page' => '%d kuvia %d sivu(a)',
+	'sort_ta' => 'Järjestä otsikolla nousevasti', 
+    'sort_td' => 'Järjestä otsikolla laskevasti',
+	'pic_on_page' => '%d kuvaa %d sivu(a)',
 	'user_on_page' => '%d käyttäjää %d sivu(a)'
 );
 
@@ -243,8 +271,8 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ADMIN_PHP')) $lang_admin_php = array(
-	0 => 'Poistuu admin modesta...',
-	1 => 'Sisään admin modeen...',
+	0 => 'Poistuu ylläpitotilasta...',
+	1 => 'Sisään ylläpitotilaan...',
 );
 
 // ------------------------------------------------------------------------- //
@@ -282,7 +310,7 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
 	'operations' => 'Toiminnot',
 	'move_into' => 'Siirrä',
 	'update_create' => 'Päivitä/Luo kategoria',
-	'parent_cat' => 'Pää kategoria',
+	'parent_cat' => 'Pääkategoria',
 	'cat_title' => 'Kategorian otsikko',
 	'cat_desc' => 'Kategorian tarkenne'
 );
@@ -301,6 +329,8 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
 	'restore_success' => 'Coppermine oletusasetukset palautettu',
 	'name_a' => 'Nimi nousevasti',
 	'name_d' => 'Nimi laskevasti',
+	'title_a' => 'Otsikko nousevasti', 
+    'title_d' => 'Otsikko laskevasti',
 	'date_a' => 'Päivä nousevasti',
 	'date_d' => 'Päivä laskevasti'
 );
@@ -317,10 +347,11 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	'Albumin "näyttö" asetukset',
 	array('Päätaulukon leveys (pikseleissä tai %)', 'main_table_width', 0),
 	array('Kuinka monta kategoriaa näytetään tasolla', 'subcat_level', 0),
-	array('Kuinka monta albumia näytetään', 'albums_per_page', 0),
+	array('Kuinka monta albumia näytetään sivulla', 'albums_per_page', 0),
 	array('Kuinka monta saraketta näytetään albumi listassa', 'album_list_cols', 0),
 	array('Thumbnailien koko pikseleissä', 'alb_list_thumb_size', 0),
 	array('Mitä tietoja etusivulla näytetään', 'main_page_layout', 0),
+	array('Näytä ensimmäisen tason albumin thumbnailit kategoriassa','first_level',1),
 
 	'Thumbnailien näyttö',
 	array('Sarakkeita thumbnail sivulla', 'thumbcols', 0),
@@ -340,10 +371,13 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Maksimi määrä merkkejä sanassa', 'max_com_wlength', 0),
 	array('Kommentti rivien maksimi määrä', 'max_com_lines', 0),
 	array('Kommentin maksimi pituus', 'max_com_size', 0),
+	array('Näytä filmi strippi', 'display_film_strip', 1), 
+    array('Kohteita filmi stripissä', 'max_film_strip_items', 0), 
 
 	'Kuvien ja thumbnailien asetukset',
 	array('Tarkkuus JPEG tiedostoilla', 'jpeg_qual', 0),
 	array('Thumbnail maksimi leveys tai korkeus <b>*</b>', 'thumb_width', 0),
+    array('Käytä mittaa ( leveys tai korkeus tai Maksimi mitta thumbnaileissa )<b>*</b>', 'thumb_use', 7), 
 	array('Luo väliaikaiset kuvat','make_intermediate',1),
 	array('Väliaikaiset kuvien maksimi leveys tai korkeus <b>*</b>', 'picture_width', 0),
 	array('Ladattavien kuvien maksimi koko (KB)', 'max_upl_size', 0),
@@ -362,6 +396,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Kenttä 4 nimi', 'user_field4_name', 0),
 
 	'Kuvien ja thumbnailien lisä asetukset',
+	array('Näytä yksityisessa albumissa Ikoni kirjautumattomalle käyttäjälle','show_private',1),
 	array('Kielletyt merkit tiedostonimissä', 'forbiden_fname_char',0),
 	array('Hyväksytyt tiedotopäätteet', 'allowed_file_extensions',0),
 	array('Kuvien koot muutetaan käyttämällä','thumb_method',2),
@@ -375,6 +410,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Thumbnailien etuliite <b>*</b>', 'thumb_pfx', 0),
 	array('Hakemistojen oletus oikeudet', 'default_dir_mode', 0),
 	array('Kuvien oletus oikeudet', 'default_file_mode', 0),
+	array('Estä oikea-klikkaus täytikokoisessa pop-up ikkunassa (JavaScript - ei idioottivarma menettelytapa)', 'disable_popup_rightclick', 1), 
+    array('Estä oikea-klikkaus kaikilla myös "tavallisella" sivulla (JavaScript - ei idioottivarma menettelytapa)', 'disable_gallery_rightclick', 1), 
 
 	'Eväste &amp; koodaus asetukset',
 	array('Evästeen nimi', 'cookie_name', 0),
@@ -479,7 +516,10 @@ $lang_picinfo = array(
 	'Aperture' => 'Aukko',
 	'Exposure time' => 'Valotusaika',
 	'Focal length' => 'Polttoväli',
-	'Comment' => 'Kommentti'
+	'Comment' => 'Kommentti',
+	'addFav'=>'Lisää suosikkeihin', 
+    'addFavPhrase'=>'Suosikit', 
+    'remFav'=>'Poista suosikeista',
 );
 
 $lang_display_comments = array(
@@ -487,8 +527,14 @@ $lang_display_comments = array(
 	'edit_title' => 'Muokkaa kommenttia',
 	'confirm_delete' => 'Haluatko varmasti poistaa tämän kommentin ?',
 	'add_your_comment' => 'Lisää kommenttisi',
+	'name'=>'Nimi', 
+    'comment'=>'Komenti', 
 	'your_name' => 'Nimesi',
 );
+
+$lang_fullsize_popup = array( 
+        'click_to_close' => 'Klikkaa kuvaa sulkeaksesi tämä ikkuna', 
+); 
 
 }
 
@@ -812,6 +858,20 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 
 // Void
 
+// ------------------------------------------------------------------------- // 
+// File banning.php 
+// ------------------------------------------------------------------------- // 
+
+if (defined('BANNING_PHP')) $lang_banning_php = array( 
+                'title' => 'Kiellä Kättäjiä', 
+                'user_name' => 'Käyttäjänimi', 
+                'ip_address' => 'IP Osoite', 
+                'expiry' => 'Päättyy (tyhjä jos pysyvä)', 
+                'edit_ban' => 'Tallenna Muutokset', 
+                'delete_ban' => 'Poista', 
+                'add_new' => 'Lisää Uusi Esto', 
+                'add_ban' => 'Lisää', 
+);
 
 // ------------------------------------------------------------------------- //
 // File upload.php
@@ -873,4 +933,56 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 	'user_interests' => 'Käyttäjän kiinnostukset',
 	'user_occupation' => 'Käyttäjän koulutus',
 );
+
+// ------------------------------------------------------------------------- // 
+// File util.php 
+// ------------------------------------------------------------------------- // 
+
+if (defined('UTIL_PHP')) $lang_util_php = array( 
+        'title' => 'Pienennä kuvia', 
+        'what_it_does' => 'Mitä mikäkin tekee', 
+        'what_update_titles' => 'Päivittää otsikot tiedostonimiin', 
+        'what_delete_title' => 'Poistaa otsikot', 
+        'what_rebuild' => 'Tekee uudet thumbnailit ja pienentää kuvat', 
+        'what_delete_originals' => 'Poistaa alkuperäisen kokoiset kuvat ja korvaa ne pienennetyillä versioilla', 
+        'file' => 'Tiedosto', 
+        'title_set_to' => 'otsikon asetti', 
+        'submit_form' => 'lähetä', 
+        'updated_succesfully' => 'päivitetty onnistuneesti', 
+        'error_create' => 'VIRHE tapahtumassa', 
+        'continue' => 'Käsittele lisää kuvia', 
+        'main_success' => 'Tiedostoa %s on onnistuneesti käytetty pääkuvana', 
+        'error_rename' => 'Virhe uudelleen nimeämisessä %s ei voitu nimetä %s', 
+        'error_not_found' => 'Tiedostoa %s ei löydy', 
+        'back' => 'takaisin etusivulle', 
+        'thumbs_wait' => 'Päivitää thumbnaileja ja/tai pienentää kuvia, odota hetki...', 
+        'thumbs_continue_wait' => 'Jatkaa thumbnailien päivittämistä ja/tai kuvien pienentämistä...', 
+        'titles_wait' => 'Päivittää otsikoita, odota hetki...', 
+        'delete_wait' => 'Poistaa otsikoita, odota hetki...', 
+        'replace_wait' => 'Poistaa alkuperäisia kuvia ja korvaa ne pienennetyillä, odota hetki..', 
+        'instruction' => 'Pikaohje', 
+        'instruction_action' => 'Valitse toiminto', 
+        'instruction_parameter' => 'Aseta arvot', 
+        'instruction_album' => 'Valitse albumi', 
+        'instruction_press' => 'Paina %s', 
+        'update' => 'Päivitä thumbnailit ja/tai pienennä kuvat', 
+        'update_what' => 'Mitä päivitetään', 
+        'update_thumb' => 'Ainoastaan thumbnailit', 
+        'update_pic' => 'Pienennetään pelkät kuvat', 
+        'update_both' => 'Molemmat, pienennetään kuvat ja päivitetään thumbnailit', 
+        'update_number' => 'Kuinka monta kuvaa käsitellään joka klikkauksella', 
+        'update_option' => '(Kokeile säätää toimintoa pienemmälle jos tulee timeout ongelmia)', 
+        'filename_title' => 'Tiedostonimi ? Kuvan otsikko', 
+        'filename_how' => 'Kuinka tiedostonimet muokatann', 
+        'filename_remove' => 'Poista .jpg pääte ja korvaa välit _ (alleviivaus)', 
+        'filename_euro' => 'Muuta 2003_11_23_13_20_20.jpg tämmöiseksi 23/11/2003 13:20', 
+        'filename_us' => 'Muuta 2003_11_23_13_20_20.jpg tämmöiseksi 11/23/2003 13:20', 
+        'filename_time' => 'Muuta 2003_11_23_13_20_20.jpg tämmöiseksi 13:20', 
+        'delete' => 'Poista otsikot tai alkuperäisen kokoiset kuvat', 
+        'delete_title' => 'Poista kuvien otsikot', 
+        'delete_original' => 'Poista alkuperäisen kokoiset kuvat', 
+        'delete_replace' => 'Poistaa alkuperäiset kuvat ja korvaa ne pienennetyillä versioilla', 
+        'select_album' => 'Valitse albumi', 
+); 
+
 ?>

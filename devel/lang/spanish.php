@@ -2,20 +2,32 @@
 // ------------------------------------------------------------------------- //
 //  Coppermine Photo Gallery                                                 //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Grégory DEMAR <gdemar@wanadoo.fr>               //
+//  Copyright (C) 2002,2003  Gregory DEMAR <gdemar@wanadoo.fr>               //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
+//  Based on PHPhotoalbum by Henning Stverud <henning@stoverud.com>         //
 //  http://www.stoverud.com/PHPhotoalbum/                                    //
+// ------------------------------------------------------------------------- //
+//  Hacked by Tarique Sani <tarique@sanisoft.com> and Girsh Nair             //
+//  <girish@sanisoft.com> see http://www.sanisoft.com/cpg/README.txt for     //
+//  details                                                                  //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
 //  the Free Software Foundation; either version 2 of the License, or        //
 //  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
-//  Translation by Daniel Villoldo (Akela) <dvp@arrakis.es>                  //
-//  http://akela.proel334.net/                                               //
-// ------------------------------------------------------------------------- //
+
+// info about translators and translated language
+$lang_translation_info = array(
+'lang_name_english' => 'Spanish',  //the name of your language in English, e.g. 'Greek' or 'Spanish'
+'lang_name_native' => 'Espa&ntilde;ol', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espa&ntilde;ol'
+'lang_country_code' => 'es', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es'
+'trans_name'=> 'Daniel Villoldo (Grumpywolf)', //the name of the translator - can be a nickname
+'trans_email' => 'dvp@arrakis.es', //translator's email address (optional)
+'trans_website' => 'http://grumpywolf.net/', //translator's website (optional)
+'trans_date' => '2003-10-03', //the date the translation was created / last modified
+);
 
 $lang_charset = 'iso-8859-1';
 $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
@@ -50,11 +62,13 @@ $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clit
 $lang_meta_album_names = array(
 	'random' => 'Fotos al azar',
 	'lastup' => 'Últimas fotos',
+        'lastalb'=> 'Últimos albums modificados',
 	'lastcom' => 'Últimos comentarios',
 	'topn' => 'Más vistas',
 	'toprated' => 'Más valoradas',
 	'lasthits' => 'Últimas vistas',
-	'search' => 'Resultado de la búsqueda'
+	'search' => 'Resultado de la búsqueda',
+        'favpics'=> 'Fotos favoritas'
 );
 
 $lang_errors = array(
@@ -71,7 +85,9 @@ $lang_errors = array(
 	'orphan_cat' => 'Una categoría no tiene padre, ejecuta la utilidad de categorías para corregir el problema.',
 	'directory_ro' => 'El directorio \'%s\' no tiene permisos de escritura, las fotos no pueden ser borradas.',
 	'non_exist_comment' => 'El comentario seleccionado no existe.',
-	'pic_in_invalid_album' => '¿¡La foto está en un album que no existe (%s)!?'
+	'pic_in_invalid_album' => '¿¡La foto está en un album que no existe (%s)!?',
+        'banned' => 'Actualmente estás expulsado respecto al uso de esta web.',
+        'not_with_udb' => 'Esta función está desactivada en Coppermine porque está integrada con un software de foros. Lo que fuese que estás intentando hacer no está soportado en esta configuración, o la función debe ser manejada por el software de foros.',
 );
 
 // ------------------------------------------------------------------------- //
@@ -98,7 +114,10 @@ $lang_main_menu = array(
 	'lastcom_lnk' => 'Últimos comentarios',
 	'topn_lnk' => 'Más vistas',
 	'toprated_lnk' => 'Más valoradas',
-	'search_lnk' => 'Buscar'
+	'search_lnk' => 'Buscar',
+	'fav_lnk' => 'Mis Favoritos',
+        'ban_lnk' => 'Ban usuarios', //new in cpg1.2.0
+	
 );
 
 $lang_gallery_admin_menu = array(
@@ -110,6 +129,9 @@ $lang_gallery_admin_menu = array(
 	'groups_lnk' => 'Grupos',
 	'comments_lnk' => 'Comentarios',
 	'searchnew_lnk' => 'Añadir fotos (Batch)',
+        'util_lnk' => 'Cambiar tamaño de las fotos',
+        'ban_lnk' => 'Expulsar a Usuarios',
+
 );
 
 $lang_user_admin_menu = array(
@@ -130,11 +152,15 @@ $lang_album_list = array(
 
 $lang_thumb_view = array(
 	'date' => 'FECHA',
+        //Sort by filename and title
 	'name' => 'NOMBRE',
+        'title' => 'TITULO',
 	'sort_da' => 'Ordenado por fecha ascendente',
 	'sort_dd' => 'Ordenado por fecha descendente',
 	'sort_na' => 'Ordenado por nombre ascendente',
 	'sort_nd' => 'Ordenado por nombre descendente',
+        'sort_ta' => 'Ordenado por título ascendente',
+        'sort_td' => 'Ordenado por título descendente',
 	'pic_on_page' => '%d fotos en %d página(s)',
 	'user_on_page' => '%d usuarios en %d página(s)'
 );
@@ -304,6 +330,8 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
 	'restore_success' => 'Valores por defecto de Coppermine restaurados',
 	'name_a' => 'Ascendente por nombre',
 	'name_d' => 'Descendente por nombre',
+        'title_a' => 'Ascendente por título',
+        'title_d' => 'Descendente por título',
 	'date_a' => 'Ascendente por fecha',
 	'date_d' => 'Descendente por fecha'
 );
@@ -324,6 +352,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Número de columnas en la lista de albums', 'album_list_cols', 0),
 	array('Tamaño de los thumbnails en pixels', 'alb_list_thumb_size', 0),
 	array('Contenido de la página principal', 'main_page_layout', 0),
+            array('Mostrar thumbnails de albums de primer nivel en categorías','first_level',1),
 
 	'Aspecto de la vista de Thumbnails',
 	array('Número de columnas en la página de thumbnails', 'thumbcols', 0),
@@ -343,10 +372,13 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Máximo número de caracteres en una palabra', 'max_com_wlength', 0),
 	array('Máximo número de lineas en un comentario', 'max_com_lines', 0),
 	array('Máxima longitud de un comentario', 'max_com_size', 0),
+        array('Mostrar tira de película', 'display_film_strip', 1),
+        array('Número de objetos en tira de película', 'max_film_strip_items', 0),
 
 	'Configuración de las fotos y thumbnails',
 	array('Calidad para los ficheros JPEG', 'jpeg_qual', 0),
 	array('Máxima anchura o altura de los thumbnail <b>*</b>', 'thumb_width', 0),
+        array('Usar dimensión ( anchura o altura o Máximo para los thumbnail )<b>*</b>', 'thumb_use', 7),
 	array('Crear fotos de tamaño intermedio','make_intermediate',1),
 	array('Máxima anchura o altura de las fotos de tamaño intermedio <b>*</b>', 'picture_width', 0),
 	array('Máximo tamaño de los fotos de usuarios por upload (KB)', 'max_upl_size', 0),
@@ -365,6 +397,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Nombre del campo 4', 'user_field4_name', 0),
 
 	'Configuración avanzada de fotos y thumbnails',
+        array('Mostrar icono de album privado a usuarios no registrados','show_private',1),
 	array('Caracteres prohibidos en los nombres de las fotos', 'forbiden_fname_char',0),
 	array('Extensiones de fichero admitidos en los uploads', 'allowed_file_extensions',0),
 	array('Método para el reescalado de fotos','thumb_method',2),
@@ -378,6 +411,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Prefijo para los thumbnails <b>*</b>', 'thumb_pfx', 0),
 	array('Modo por defecto de los directorios', 'default_dir_mode', 0),
 	array('Modo por defecto para las fotos', 'default_file_mode', 0),
+        array('Deshabilitar botón derecho cuando se muestran las fotos en pantalla completa (JavaScript)', 'disable_popup_rightclick', 1),
+        array('Deshabilitar botón derecho en todas las páginas &quot;normales&quot; (JavaScript)', 'disable_gallery_rightclick', 1),
 
 	'Configuración de cookies y Juego de Caracteres',
 	array('Nombre de la cookie usada por el script', 'cookie_name', 0),
@@ -482,7 +517,10 @@ $lang_picinfo = array(
 	'Aperture' => 'Apertura',
 	'Exposure time' => 'Tiempo de exposición',
 	'Focal length' => 'Longitud del foco',
-	'Comment' => 'Comentario'
+	'Comment' => 'Comentario',
+        'addFav'=>'Añadir a Favoritos',
+        'addFavPhrase'=>'Favoritos',
+        'remFav'=>'Quitar de Favoritos',
 );
 
 $lang_display_comments = array(
@@ -490,7 +528,13 @@ $lang_display_comments = array(
 	'edit_title' => 'Editar el comentario',
 	'confirm_delete' => '¿Estás seguro de querer borrar el comentario?',
 	'add_your_comment' => 'Añadir un comentario',
-	'your_name' => 'Tu nombre',
+        'name'=>'Nombre',
+        'comment'=>'Comentario',
+	'your_name' => 'Anónimo',
+);
+
+$lang_fullsize_popup = array(
+        'click_to_close' => 'Pulsa en la imagen para cerrar esta ventana',
 );
 
 }
@@ -675,11 +719,11 @@ if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
-A pesar de que los administradores de {SITE_NAME} intentarán eliminar o editar cualquier material desagradable tan pronto como puedan, resulta imposible revisar todos los envios que se realizan. Por lo tanto debes tener en cuenta que todos los envíos hechos hacia esta web expresan el punto de vista y opiniones de sus autores y no los de los administradores o webmasters (excepto los añadidos por ellos mismos).<br />
+A pesar de que los administradores de {SITE_NAME} intentarán eliminar o editar cualquier material desagradable tan pronto como puedan, resulta imposible revisar todos los envíos que se realizan. Por lo tanto debes tener en cuenta que todos los envíos hechos hacia esta web expresan el punto de vista y opiniones de sus autores y no los de los administradores o webmasters (excepto los añadidos por ellos mismos).<br />
 <br />
-Usted acuerda no añadir ningún material abusivo, obsceno, vulgar, slanderous, odioso, amenazador, de orientación sexual, o ningún otro que pueda violar cualquier ley aplicable.  Usted está de acuerdo con que el webmaster, el administrador y los asesores de { SITE_NAME } tienen el derecho de quitar o de corregir cualquier contenido en cualquier momento si lo consideran necesario.  Como usuario, accedes a que  cualquier información añadida será almacenada en una base de datos.  Asi mismo, esta información no será divulgada a terceros sin su consentimiento.  El webmaster y el administrador no se pueden hacer responsables de ningún intento de destrucción de la base de datos que pueda conducir a la pérdida de la misma.<br />
+Usted acuerda no añadir ningún material abusivo, obsceno, vulgar, escandaloso, odioso, amenazador, de orientación sexual, o ningún otro que pueda violar cualquier ley aplicable. Usted está de acuerdo con que el webmaster, el administrador y los asesores de { SITE_NAME } tienen el derecho de quitar o de corregir cualquier contenido en cualquier momento si lo consideran necesario. Como usuario, accede a que cualquier información añadida será almacenada en una base de datos. Asi mismo, esta información no será divulgada a terceros sin su consentimiento. El webmaster y el administrador no se pueden hacer responsables de ningún intento de destrucción de la base de datos que pueda conducir a la pérdida de la misma.<br />
 <br />
-Este sitio utiliza cookies para almacenar la información en su ordenador.  Estas cookies sirven para mejorar la navegación en este sitio.  La dirección de email se utiliza solamente para confirmar sus detalles y contraseña del registro.<br />
+Este sitio utiliza cookies para almacenar la información en su ordenador. Estas cookies sirven para mejorar la navegación en este sitio. La dirección de email se utiliza solamente para confirmar sus detalles y contraseña del registro.<br />
 <br />
 Pulsando 'estoy de acuerdo' expresas tu conformidad con estas condiciones.
 EOT;
@@ -815,6 +859,20 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 
 // Void
 
+// ------------------------------------------------------------------------- //
+// File banning.php
+// ------------------------------------------------------------------------- //
+
+if (defined('BANNING_PHP')) $lang_banning_php = array(
+                'title' => 'Expulsar Usuarios',
+                'user_name' => 'Nombre de Usuario',
+                'ip_address' => 'Dirección IP',
+                'expiry' => 'Caduca (en blanco es permanente)',
+                'edit_ban' => 'Guardar Cambios',
+                'delete_ban' => 'Borrar',
+                'add_new' => 'Añadir Nueva Expulsión',
+                'add_ban' => 'Añadir',
+);
 
 // ------------------------------------------------------------------------- //
 // File upload.php
@@ -876,4 +934,56 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 	'user_interests' => 'Intereses del usuario',
 	'user_occupation' => 'Ocupación del usuario',
 );
+
+// ------------------------------------------------------------------------- //
+// File util.php
+// ------------------------------------------------------------------------- //
+
+if (defined('UTIL_PHP')) $lang_util_php = array(
+        'title' => 'Cambiar tamaño a las fotos',
+        'what_it_does' => 'Qué hace',
+        'what_update_titles' => 'Actualiza los nombres de fichero',
+        'what_delete_title' => 'Borra los títulos',
+        'what_rebuild' => 'Vuelve a crear los thumbnails y otros tamaños de las fotos',
+        'what_delete_originals' => 'Borra las fotos originales reemplazándolas con versiones de nuevo tamaño',
+        'file' => 'Fichero',
+        'title_set_to' => 'título a poner',
+        'submit_form' => 'enviar',
+        'updated_succesfully' => 'actualizado con éxito',
+        'error_create' => 'ERROR al crear',
+        'continue' => 'Procesar más imágnes',
+        'main_success' => 'El fichero %s ha sido usado como foto principal con éxito',
+        'error_rename' => 'Error renombrando %s a %s',
+        'error_not_found' => 'No se encuentra el fichero %s',
+        'back' => 'volver al inicio',
+        'thumbs_wait' => 'Actualizando thumbnails y/o tamaños de fotos, por favor espere...',
+        'thumbs_continue_wait' => 'Continuando la actualización de thumbnails y/o tamaños de fotos...',
+        'titles_wait' => 'Actualizando títulos, por favor espere...',
+        'delete_wait' => 'Borrando títulos, por favor espere...',
+        'replace_wait' => 'Borrando originales y reemplazándolos con las fotos de nuevo tamaño, por favor espere...',
+        'instruction' => 'Instrucciones rápidas',
+        'instruction_action' => 'Selecionar acción',
+        'instruction_parameter' => 'Poner parámetros',
+        'instruction_album' => 'Seleccionar album',
+        'instruction_press' => 'Pulsar %s',
+        'update' => 'Actualizar thumbs y/o tamaños de fotos',
+        'update_what' => 'Qué debe ser actualizado',
+        'update_thumb' => 'Solo thumbnails',
+        'update_pic' => 'Solo tamaños de fotos',
+        'update_both' => 'Thumbnails y tamaños de fotos (ambos)',
+        'update_number' => 'Número de imágenes procesadas por cada click',
+        'update_option' => '(Prueba a poner un número menor si experimentas problemas de timeout)',
+        'filename_title' => 'Fichero &rArr; Título de la foto',
+        'filename_how' => 'Cómo debe ser el fichero modificado',
+        'filename_remove' => 'Quitar .jpg del final y reemplazar _ (underscore) con espacios',
+        'filename_euro' => 'Cambiar 2003_11_23_13_20_20.jpg a 23/11/2003 13:20',
+        'filename_us' => 'Cambiar 2003_11_23_13_20_20.jpg a 11/23/2003 13:20',
+        'filename_time' => 'Cambiar 2003_11_23_13_20_20.jpg a 13:20',
+        'delete' => 'Borrar títulos de fotos o fotos de tamaño original',
+        'delete_title' => 'Borrar títulos de fotos',
+        'delete_original' => 'Borrar fotos de tamaño original',
+        'delete_replace' => 'Borra las imágenes originales, reemplazándolas con otras de tamaño nuevo',
+        'select_album' => 'Selecciona album',
+);
+
 ?>
