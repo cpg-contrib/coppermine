@@ -18,6 +18,7 @@
 **********************************************/
 
 function get_IPTC($filename) {
+        $IPTC_data=array();
         $size = GetImageSize ($filename, $info);
         if (isset($info["APP13"])) {
         $iptc = iptcparse($info["APP13"]);
@@ -44,7 +45,8 @@ function get_IPTC($filename) {
                                         "Caption"                =>         $iptc["2#120"][0],        # Max 2000 octets, non-repeatable, alphanumeric
                                         "CaptionWriter"                =>         $iptc["2#122"][0]        # Max 32 octets, non-repeatable, alphanumeric
                                 );
-                } else $IPTC_data=array();
+                $IPTC_data=filter_content($IPTC_data);
+                }
         }
 return $IPTC_data;
 }
