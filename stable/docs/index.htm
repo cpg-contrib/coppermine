@@ -131,7 +131,7 @@ a.external {
           <li class="content"><a href="#how"><span class="menu2">2.1 How To Install The Script</a></span></li>
           <li class="content"><a href="#getting"><span class="menu2">2.2 Getting Started</a></span></li>
           <li class="content"><a href="#xp"><span class="menu2">2.3 Using Windows XP Web Publishing Wizard with Coppermine</a></span></li>
-          <li class="content"><a href="#creating"><span class="menu2">2.4 Creating your own themes</a></span></li>
+          <li class="content"><a href="#creating"><span class="menu2">2.4 Creating or upgrading your own themes</a></span></li>
           <li class="content"><a href="#safe"><span class="menu2">2.5 Safe mode issues</a></span></li>
           <li class="content"><a href="#smtp"><span class="menu2">2.6 Using SMTP to send emails</a></span></li>
         </ul>
@@ -282,13 +282,12 @@ open-source photo gallery!</p>
   can't do (in the <a href="#group_cp">groups</a> panel).</p>
 <p>Use the <b><a href="#modif_alb_pics">properties</a></b> of an album to modify its description and permissions.
 </p>
-<p>In order for a user to be allowed to upload a file in album three conditions
+<p>In order for a user to be allowed to upload a file in album two conditions
   must be met:</p>
 <ul>
-  <li>&quot;<a href="#config_user">Users can have private albums</a>&quot; must be turned on in coppermine config</li>
   <li> The user must be part of a <a href="#group_cp">group</a> that can upload files.</li>
   <li>There must be at least one album where &quot;<b>Visitors can upload files</b>&quot;
-    has been set to &quot;<b>Yes</b>&quot;.</li>
+    has been set to &quot;<b>Yes</b>&quot;,<br> <b>OR</b> <br>The user has created an album in the 'user galleries', if allowed.</li>
 </ul>
 <p>The same applies to <b>picture rating</b> and <b>comment posting</b>.</p>
 <p>If you have installed the script succesfully but are having trouble getting
@@ -316,7 +315,8 @@ open-source photo gallery!</p>
 <p><a class="back" href="#top">Back to top</a></p>
 
 <a name="creating"></a>
-<h2>2.4 Creating your own themes</h2>
+<h2>2.4 Creating or upgrading your own themes</h2>
+<p>To upgrade an existing custom theme, to version 1.3.x, read <a href="theme.htm">theme.htm</a></p>
 <p>Coppermine themes are stored in the &quot;<b>themes</b>&quot; directory, they
   consist of 3 files : </p>
 <ul>
@@ -520,7 +520,23 @@ open-source photo gallery!</p>
       </li>
       <li><b>Review Comments</b><br />edit/delete user's comments</li>
       <li><b>Batch add files</b><br /><a href="#batch_add_pics">Batch-add files</a> to the coppermine database that have been uploaded by FTP.</li>
-      <li><b>Admin Tools (Resize Pictures)</b><br />Collection of utilities to resize, rename or delete full-size pictures, intermediate pictures and thumbnails</li>
+      <li><b>Admin Tools (Resize Pictures)</b><br />Collection of utilities to;<br><br>
+		<dd><b>Rebuild or resize intermediate pictures and thumbnails.</b><br>
+		<dd><img src="pics/util_re-size.gif" width="451" height="188" alt="" border="0"><br>Use this if you have changed the settings for thumbnail or intermediate images in config, or if you have to replace corrupt versions.<br>Select the radio button for this action, then choose to rebuild the thumbnails, intermediates, or both.<br>This uses a lot of server resources, so if you have timeout problems, try doing it in smaller batches.
+		<br><br><dd><b>Delete full-size pictures.</b><br></dd>
+		Use this to save space on your webspace.<br>When selected, Coppermine checks to see if an intermediate copy exists, and if it does, it deletes the original sized picture, then re-names the intermediate. If no intermediate exists, Coppermine leaves the original in place.<br><br>
+		<dd><b>Delete orphaned comments.</b><br></dd>
+		Sometimes, when pictures have been deleted, any comments associated with them remain in the database.  Use this to remove them from the database entirely.<br><br>
+		<dd><b>Rename file titles.</b><br></dd>
+		Use this to re-name the title of all files in an album, using info from the filename.<br><br>
+		<dd><b>Delete file titles.</b><br></dd>
+		Use this to clear the file titles from one or more albums.<br><br>
+		<dd><b>View your server php info.</b><br></dd>
+		If you are having problems, it is sometimes caused by server setup.  Clicking this link will provide you with all your php and mySQL settings, as well as on the GD library (if installed).  This may be needed by the support team, if you are unable to sort problems yourself.<br>It is not possible for visitors to your site to browse to this information, so if asked for it, copy and paste it to the support board.<br><br>
+		<dd><b>Run a database update (update.php).</b><br></dd>
+		After an update/upgrade, it is usually necessary to run update.php.  This can be done by typing the address directly into your browser, or by clicking this link.
+		
+		</li><br><br>
       <li><b>My profile</b><br />Edit your own user profile</li>
       </ul>
       <p>There's an admin mode and user mode for &quot;regular&quot; users as well - the user admin has these options:</p>
@@ -976,7 +992,7 @@ Right now, you can't.</li>
         <img src="pics/cpg121.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_ok.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
         <img src="pics/cpg130.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_ok.gif" width="18" height="20" border="0" alt="">
         </li>
-        <li>'<b>lastalb</b>': last updated albums<br />
+        <li>'<b>lastalb</b>': last created albums<br />
         <img src="pics/cpg10.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
       <img src="pics/cpg110.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
       <img src="pics/cpg111.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
@@ -1118,7 +1134,7 @@ Right now, you can't.</li>
       <a name="config_picture_thumb_advanced"></a>
       <h3>4.10.7 Files and thumbnails advanced settings</h3>
                         <h4>Show private album Icon to unlogged user </h4>
-                        <p>Toggles the display of the private album icon to unlogged users.</p>
+                        <p>Toggles the display of the private album icon to unlogged users.<br>Set to 'NO', the album is hidden from unauthorised users.<br>Set to 'YES', the album name, description and statistics are shown, but not the thumbnails or files.</p>
       <h4>Characters forbidden in filenames</h4>
       <p>When the filename of a file that is uploaded contains one of these
       characters, it will be replaced with an underscore.</p>
@@ -1272,7 +1288,7 @@ Right now, you can't.</li>
       only by users that belong to a certain group.</p>
       <p>If a user is a member of a group that can have its own gallery and this
       option is turned on then this user will have the permission to hide some
-      of this albums to other users.</p>
+      of their albums to other users.</p>
       <p class="important">Note: if you switch from 'yes' to 'no' any current private albums will become public!</p>
       <h4>Notify admin of user upload awaiting approval</h4>
       <p>When enabled, the gallery admin receives an email notification of all pics that wait for his approval (depends on the approval settings in &quot;<a href="#group_cp">groups</a>&quot;). The email is sent to the address specified in &quot;<a href="#config_general">General settings</a>&quot;.<br />This option is only recommended with low or medium traffic (if users only upload every now and then).<br />
