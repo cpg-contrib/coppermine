@@ -2223,9 +2223,9 @@ function cpg_phpinfo_mod($search)
     $delimiter = '#cpgdelimiter#';
     ob_end_clean();
     // find out the first occurence of "<h2" and throw the superfluos stuff away
-    $string = strstr($string, 'module_' . $search);
+    $string = stristr($string, 'module_' . $search);
     $string = eregi_replace('</table>(.*)', '', $string);
-    $string = strstr($string, '<tr>');
+    $string = stristr($string, '<tr');
     $string = str_replace('</td>', '|', $string);
     $string = str_replace('</tr>', $delimiter, $string);
     $string = chop(strip_tags($string));
