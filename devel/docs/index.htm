@@ -1,5 +1,5 @@
 <!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
 <title>Coppermine Photo Gallery - Documentation &amp; Manual</title>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
@@ -13,14 +13,14 @@
 <meta name="MSSmartTagsPreventParsing" content="true">
 <meta http-equiv="imagetoolbar" content="no">
 <!-- CVS version info: $Id$ -->
-<link rel="stylesheet" type="text/css" href="style.css" />
+<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 <table cellspacing="0" cellpadding="0" width="100%" border="0">
   <tbody>
   <tr>
     <td>
-                        <p><img src="../images/coppermine_logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery">
+                        <p><img src="../images/coppermine_logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" />
 <h1>Coppermine Photo Gallery v1.4.1: Documentation and Manual</h1>
 <h1>About Coppermine</h1>
 <p>Coppermine Photo Gallery is a picture gallery script. Users can upload pictures with a web browser (thumbnails are created on the fly), rate pictures, add comments and send e-cards. The admins can manage the galleries and batch add pictures that have been uploaded on the server by FTP. Support for multimedia files has been added recently.</p>
@@ -139,12 +139,12 @@
                            <li class="content"><a href="#integrating_steps_bridge_start">5.3.3.2 Edit your bridge file</a></li>
                            <li class="content"><a href="#integrating_steps_init_start">5.3.3.3 Enable bbs integration</a></li>
                        </ul>
-                       <li class="content"><a href="#integrating_steps_special_start">5.3.4 Special steps depending on the bbs you use</a>
+                     <li class="content"><a href="#integrating_steps_special_start">5.3.4 Special steps depending on the bbs you use</a>
                            <ul class="content">
                                <li class="content"><a href="#integrating_steps_special_phpbb_start">5.3.4.1 For phpBB only</a></li>
                                <li class="content"><a href="#integrating_steps_special_punbb_start">5.3.4.2 For PunBB only</a></li>
                            </ul>
-                       </li>
+                     </li>
                        <li class="content"><a href="#integrating_steps_upload_start">5.3.5 Upload the modified files</a></li>
                        <li class="content"><a href="#integrating_steps_sync_start">5.3.6 Synchronsising the bbs groups with Coppermine's groups</a></li>
                    </ul>
@@ -207,7 +207,7 @@
   <li>A web server that supports PHP (the script should work with any version
     &gt;= 4.1.0)</li>
   <li>A MySQL database<br />
-  You need at least version 3.23.23 or better (4.x recommended). Your mySQL user needs permissions to perform CREATE, ALTER, SELECT, UPDATE, DELETE (most user have this permissions when webhosted; if you don't have them, you won't be able to use any pre-made scripts at all).</li>
+  You need at least version 3.23.23 or better (4.x recommended). Your mySQL user needs permissions to perform CREATE, ALTER, SELECT, UPDATE, DELETE (most user have these permissions when webhosted; if you don't have them, you won't be able to use any pre-made scripts at all).</li>
   <li>PHP (version 4.1.0 or better), either compiled with the support for the GD library or permission to use the exec() function for the ImageMagick &quot;convert&quot; utility in order to make thumbnails and reduced size images.</li>
 </ul>
 
@@ -220,7 +220,7 @@
 <ul>
   <li><b>Unpack the archive preserving the directory structure</b><br />(you can rename the coppermine folder, but not the files or folders within).</li>
   <li><b>Upload all files onto your webserver</b> (make sure to use the correct ftp mode)</li>
-  <li><b>CHMOD the folders <i>albums</i> and <i>include</i> to 755 (or 777, depending on your server config)</b> - this step is really important, don't skip it!<br />There are a lot of tutorials for beginners how to use chmod available: <a href="http://www.google.com/search?q=chmod+tutorial" class="external">search chmod tutorials with google</a>. If you're on a windows server, you'll have to set permissions accordingly as well (usually the webserver runs under the user name &quot;IUSR_hostname&quot; - you'll have to set rwx-permissions for this user).</li>
+  <li><b>CHMOD the folders <i>albums</i> and <i>include</i> to 755 (or 777, depending on your server config)</b> - this step is really important, don't skip it!<p>There are a lot of tutorials for beginners how to use chmod available: <a href="http://www.google.com/search?q=chmod+tutorial" class="external">search chmod tutorials with google</a>. If you're on a windows server, you'll have to set permissions accordingly as well (usually the webserver runs under the user name &quot;IUSR_hostname&quot; - you'll have to set rwx-permissions for this user).</p></li>
   <li><b>Run the install script on your server</b> (http://your_server/coppermine_dir/install.php)
     and follow the instructions</li>
 </ul>
@@ -377,8 +377,8 @@
 <p>Since cpg1.3.2 Coppermine comes with an additional version checking tool to help you solve issues with upgrade easily. Unless others parts of coppermine that will only work for the version it has been written for, the versioncheck tool can be used with all versions starting from cpg1.2.1. To launch the versioncheck, simply add <tt>versioncheck.php</tt> to your browser's address bar after being logged into coppermine as admin (example: <tt>http://yourdomain.tld/your_coppermine_folder/versioncheck.php</tt>).</p>
 <a name="versioncheck_description_start"></a>
 <h3>3.5.1 What it does</h3>
-<p>The script &quot;versioncheck&quot; is meant for users who have updated their coppermine install. This script goes through the files on your webserver and tries to determine if your local file versions on the webserver are the same as the ones from the repository at http://coppermine.sourceforge.net, this way displaying the files you were meant to update as well.<br />
-It will show everything in <span style="color:red;font-weight:bold">red</span> that needs to be fixed. Entries in <span style="color:#FFBE00;font-weight:bold">yellow</span> need looking into. Entries in <span style="color:green;font-weight:bold">green</span> (or your theme's default font color) are OK and should be left alone. When an entry is <span style="color:red;font-weight:bold">red</span> or <span style="color:#FFBE00;font-weight:bold">yellow</span>, a help icon will appear next to it. Click it to find out more. Hovering with your mouse over an item will display additional information as well (tooltip).</p>
+<p>The script &quot;versioncheck&quot; is meant for users who have updated their coppermine install. This script goes through the files on your webserver and tries to determine if your local file versions on the webserver are the same as the ones from the repository at http://coppermine.sourceforge.net, this way displaying the files you were meant to update as well.</p>
+<p>It will show everything in <span style="color:red;font-weight:bold">red</span> that needs to be fixed. Entries in <span style="color:#FFBE00;font-weight:bold">yellow</span> need looking into. Entries in <span style="color:green;font-weight:bold">green</span> (or your theme's default font color) are OK and should be left alone. When an entry is <span style="color:red;font-weight:bold">red</span> or <span style="color:#FFBE00;font-weight:bold">yellow</span>, a help icon will appear next to it. Click it to find out more. Hovering with your mouse over an item will display additional information as well (tooltip).</p>
 <p>The versioncheck screen has several sections:</p>
 <ul>
 <li>Section 1 explains what the versioncheck tool can be used for</li>
@@ -413,11 +413,11 @@ It will show everything in <span style="color:red;font-weight:bold">red</span> t
 <p>There is a lot of information on a small space available. Here's an example of a possible output and what the output means:</p>
 <img src="pics/versioncheck_comparison.gif" width="411" height="279" border="0" alt="" title="version comparison" />
 <ul>
-<li>Column &quot;icon&quot; shows if the entry is a folder or a file. Clicking on the icon takes you to the page, e.g. clicking on util.php will take you to the &quot;admin tools page&quot; (although not all coppermine files can be opened directly by running them in the browser).<br />In above example, rows &quot;A&quot; to &quot;E&quot; are folders, rows &quot;F&quot; to &quot;K&quot; are files.</li>
+<li>Column &quot;icon&quot; shows if the entry is a folder or a file. Clicking on the icon takes you to the page, e.g. clicking on util.php will take you to the &quot;admin tools page&quot; (although not all coppermine files can be opened directly by running them in the browser).<p>In above example, rows &quot;A&quot; to &quot;E&quot; are folders, rows &quot;F&quot; to &quot;K&quot; are files.</p></li>
 <li>Column &quot;folder/file&quot; holds the relative path from your coppermine root to the folder/file in question.<br />
-If an entry is in your default font color, it exists (in above example, all rows but &quot;G&quot; and &quot;H&quot;).<br />
-If the entry is in <span style="color:#FFBE00;font-weight:bold">yellow</span> (row &quot;G&quot;), the corresponding folder/file doesn't exist on your webserver, but it is only considered to be optional (e.g. a language file that comes with the coppermine package that you don't want to use can be deleted from the webserver. It will then be shown in <span style="color:#FFBE00;font-weight:bold">yellow</span>, as it's only optional to have it). It's up to you if you need it.<br />
-If the entry is in <span style="color:red;font-weight:bold">red</span> (row &quot;H&quot;), the folder/file in question doesn't exist on your webserver, but it is mandatory to have it. You should upload the file from your coppermine package to your webserver. Only leave it as-is if you really know what you're doing.</li>
+<p>If an entry is in your default font color, it exists (in above example, all rows but &quot;G&quot; and &quot;H&quot;).<br />
+<p>If the entry is in <span style="color:#FFBE00;font-weight:bold">yellow</span> (row &quot;G&quot;), the corresponding folder/file doesn't exist on your webserver, but it is only considered to be optional (e.g. a language file that comes with the coppermine package that you don't want to use can be deleted from the webserver. It will then be shown in <span style="color:#FFBE00;font-weight:bold">yellow</span>, as it's only optional to have it). It's up to you if you need it.</p>
+<p>If the entry is in <span style="color:red;font-weight:bold">red</span> (row &quot;H&quot;), the folder/file in question doesn't exist on your webserver, but it is mandatory to have it. You should upload the file from your coppermine package to your webserver. Only leave it as-is if you really know what you're doing.</p></li>
 <li>The column &quot;writable&quot; shows information if the folder in question is writable, and wether this is correct. The write permissions for files are not being displayed, as this would slow down the script very much. Usually, there are icons that show the writable status of your folder (if you have the icon resources on your webspace). Optionally, a plain text message in brackets might be visible (if you don't have the icon resources).
 <ul>
 <li>A white pencil with a <span style="color:green;font-weight:bold">green</span> &quot;x&quot; indicates that the folder is not writable and is isn't suppossed to be writable - everything is OK then (row &quot;A&quot;)</li>
@@ -427,11 +427,16 @@ If the entry is in <span style="color:red;font-weight:bold">red</span> (row &quo
 </ul>
 </li>
 <li>A question mark in a yellow box (help icon) indicates that there is additional information available. Click on the icon to see a pop-up window with this information.</li>
-<li>The column &quot;cpg version&quot; displays what coppermine package your file on your webserver is from, and what version it should be from. The data is being extracted from the header of the file, that's why folders are shown as &quot;n/a&quot; - they have no header information containing their coppermine version (rows &quot;A&quot; to &quot;E&quot;).<br />
-Files that contain header information are being displayed with your file version and the cpg version of the file in the repository, saparated with a slash. It's possible that a file version may differ from the version of your whole package - this doesn't matter as long as both your version and the repository versions match (the are displayed in <span style="color:green;font-weight:bold">green</span>) - in above example: rows &quot;F&quot;, &quot;J&quot; and &quot;K&quot;.<br />Of course version numbers from files that don't exist can't be extracted, that's why rows &quot;G&quot; and &quot;H&quot; have a dash as cpg version. If your cpg version is lower than the repository version, your version is being displayed in <span style="color:red;font-weight:bold">red</span>: if this is the case, you probably haven't uploaded the proper file from your coppermine package to your webserver (replacing the file that exists on your webserver) - you should do so now (row &quot;I&quot;).<br />If your local version is being displayed in <span style="color:#FFBE00;font-weight:bold">yellow</span>, you're using a file that belongs to a higher coppermine version than the rest of your files - you probably downloaded a file from the devel branch: remember that using devel files go unsupported, do so on your own risk (if you know what you're doing). If most or all of your files are being displayed in <span style="color:#FFBE00;font-weight:bold">yellow</span>, you probably have upgraded some files, but you forgot to upgrade the file &quot;include/init.inc.php&quot; (that holds the version info for your install). Make sure to upload <b>all</b> files from the package to your server.</li>
-<li>The column &quot;file version&quot; holds the individual file's version that get's increased during development of a new coppermine version (each time a developer modifies a certain file, the version number increases by one). As folders can't contain such version numbers, they are again labelled as &quot;n/a&quot; (rows &quot;A&quot; to &quot;E&quot;); the same applies to files that don't exist, that's why their file version is displayed as dash (rows &quot;G&quot; and &quot;H&quot;). Also the file version is irrelevant when comparing files from different coppermine packages, that's why row &quot;I&quot; has a dash as well.<br />
-The coloring scheme is similar to the cpg version system: <span style="color:green;font-weight:bold">green</span> means &quot;everything is OK&quot;, <span style="color:red;font-weight:bold">red</span> means &quot;you're using an outdated version&quot; and <span style="color:#FFBE00;font-weight:bold">yellow</span> means &quot;you're using a newer version than you're actually suppossed to.<br />
-The difference between the cpg version and the file version columns is the way you should obtain the file that is suppossed to replace the existing one on your server: a <span style="color:red;font-weight:bold">red</span> entry in the cpg version column means the file on your server hasn't been replaced with the file from the coppermine package; a <span style="color:red;font-weight:bold">red</span> entry in the file version column (row &quot;J&quot;) usually means that there have been updates to a certain file after the release of the package - you should either check if there is a newer package available or get the most recent file from the <acronym title="Concurrent version system">CVS</acronym> (enable the web cvs link column in the versioncheck <a href="#versioncheck_options_start">options</a>).</li>
+<li>The column &quot;cpg version&quot; displays what coppermine package your file on your webserver is from, and what version it should be from. The data is being extracted from the header of the file, that's why folders are shown as &quot;n/a&quot; - they have no header information containing their coppermine version (rows &quot;A&quot; to &quot;E&quot;).
+<p>Files that contain header information are being displayed with your file version and the cpg version of the file in the repository, saparated with a slash. It's possible that a file version may differ from the version of your whole	package - this doesn't matter as long as both your version and the repository	versions match (the are displayed in <span style="color:green;font-weight:bold">green</span>)	- in above example: rows &quot;F&quot;, &quot;J&quot; and &quot;K&quot;.</p>
+<p>Of course, version numbers from files that don't exist can't be extracted, that's why rows &quot;G&quot; and &quot;H&quot; have a dash as cpg version. If your cpg version is lower than the repository version, your version is	being displayed in <span style="color:red;font-weight:bold">red</span>: if this is the case, you probably haven't uploaded the proper file from your	coppermine package to your webserver (replacing the file that exists on your webserver) - you should do so now (row &quot;I&quot;).</p>
+<p>If your local version is being displayed in <span style="color:#FFBE00;font-weight:bold">yellow</span>, you are using a file that belongs to a higher coppermine version than the rest of your files - you probably downloaded a file from the devel branch: remember that using devel files go unsupported, do so on your own risk (if you know what you're doing). If most or all of your files are being displayed in <span style="color:#FFBE00;font-weight:bold">yellow</span>, you probably have upgraded some files, but you forgot to upgrade the file &quot;include/init.inc.php&quot; (that holds the version info for your install). Make sure to upload <b>all</b> files	from the package to your server.</p>
+</li>
+<li>
+<p>The column &quot;file version&quot; holds the individual file's version that get's increased during development of a new coppermine version (each time a developer modifies a certain file, the version number increases by one). As folders can't contain such version numbers, they are again labelled as &quot;n/a&quot; (rows &quot;A&quot; to &quot;E&quot;); the same applies to files that don't exist, that's why their file version is displayed as dash (rows &quot;G&quot; and &quot;H&quot;). Also the file version is irrelevant when comparing files from different coppermine packages, that's why row &quot;I&quot; has a dash as well.</p>
+<p>The coloring scheme is similar to the cpg version system: <span style="color:green;font-weight:bold">green</span> means &quot;everything is OK&quot;, <span style="color:red;font-weight:bold">red</span> means &quot;you're using an outdated version&quot; and <span style="color:#FFBE00;font-weight:bold">yellow</span> means &quot;you're using a newer version than you're actually suppossed to.</p>
+<p>The difference between the cpg version and the file version columns is the way you should obtain the file that is suppossed to replace the existing one on your server: a <span style="color:red;font-weight:bold">red</span> entry in the cpg version column means the file on your server hasn't been replaced with the file from the coppermine package; a <span style="color:red;font-weight:bold">red</span> entry in the file version column (row &quot;J&quot;) usually means that there have been updates to a certain file after the release of the package - you should either check if there is a newer package available or get the most recent file from the <acronym title="Concurrent version system">CVS</acronym> (enable the web cvs link column in the versioncheck <a href="#versioncheck_options_start">options</a>).</p>
+</li>
 <li>The column &quot;web cvs&quot; (off by default) links to the corresponding file in the <acronym title="Concurrent version system">CVS</acronym>. You're recommended to use this only if there appears to be a newer version in the cvs than your coppermine package has and you know what you're doing.</li>
 </ul>
 <a name="versioncheck_comparison_end"></a>
@@ -472,23 +477,23 @@ the main page of the script.</p>
   <span class="small">[cpg1.3.0 or better required]</span>
   </li>
   <li><b>Review Comments</b><br />edit/delete user's comments</li>
-  <li><a name="ecard_log"></a><b>Display Ecards</b><br />View the ecards sent by users.<br />
-  You will have to enable ecard-logging in the config first (by default, logging is disabled). When enabled, all ecards that are being sent are as well written into the database, where the coppermine admin can view them.<br />
+  <li><a name="ecard_log"></a><b>Display Ecards</b><p>View the ecards sent by users.</p>
+  <p>You will have to enable ecard-logging in the config first (by default, logging is disabled). When enabled, all ecards that are being sent are as well written into the database, where the coppermine admin can view them.</p>
   <img src="pics/ecard_log.gif" border="0" alt="" /><br />
   You can sort the log by clicking on the arrow icons next to each heading, and you can delete single or multiple log entries (deleting the log entries will not disable the ecard recipient to view the ecard).<br />
-  Before switching this option on, make sure that logging is legal in your country. It is also advisable to notify your users that all ecards are being logged (preferrably on the registration screen).<br />
+  <p>Before switching this option on, make sure that logging is legal in your country. It is also advisable to notify your users that all ecards are being logged (preferrably on the registration screen).</p>
   <span class="small">[cpg1.3.0 or better required]</span>
   <a name="ecard_log_end"></a>
   </li>
-  <li><b>Sort my pictures</b><br />Picture manager that can be used to custom-sort files within an album. By default, the thumbnail page that represents an album will be sorted by the sorting order specified in &quot;<a href="#admin_thumbnail_view">Default sort order for files</a>&quot; on the config page. The "sort my pictures" option overrides this default sorting mechanism and displays the thumbnails in the order you specified. As this means an additional effort in the maintenance of each album, it's recommended to use the default sorting by filename and (instead of specifying a custom sort order) and naming the files appropriately before upload.<br />
-  Note: each user (including the admin) can use the sort controls on the album thumbnails page to again manually override the sorting that was specified in coppermine's config and the "Sort my pictures" option; this final method of changing the sort order is stored locally in a cookie of the client.</li>
+  <li><b>Sort my pictures</b><p>Picture manager that can be used to custom-sort files within an album. By default, the thumbnail page that represents an album will be sorted by the sorting order specified in &quot;<a href="#admin_thumbnail_view">Default sort order for files</a>&quot; on the config page. The "sort my pictures" option overrides this default sorting mechanism and displays the thumbnails in the order you specified. As this means an additional effort in the maintenance of each album, it's recommended to use the default sorting by filename and (instead of specifying a custom sort order) and naming the files appropriately before upload.</p>
+  <p>Note: each user (including the admin) can use the sort controls on the album thumbnails page to again manually override the sorting that was specified in coppermine's config and the "Sort my pictures" option; this final method of changing the sort order is stored locally in a cookie of the client.</p></li>
   <li><b>Batch add files</b><br /><a href="#batch_add_pics">Batch-add files</a> to the coppermine database that have been uploaded by FTP.</li>
   <li><a name="admin_tools"></a><b>Admin Tools (Resize Pictures)</b><br />Collection of utilities to:
 	<dl>
       <dt>Rebuild or resize intermediate pictures and thumbnails.</dt>
-      <dd><img src="pics/util_re-size.gif" alt="" border="0" /><br />Use this if you have changed the settings for thumbnail or intermediate images in config, or if you have to replace corrupt versions.<br />Select the radio button for this action, then choose to rebuild the thumbnails, intermediates, or both.<br />This uses a lot of server resources, so if you have timeout problems, try doing it in smaller batches.</dd>
+      <dd><img src="pics/util_re-size.gif" alt="" border="0" /><br /><p>Use this if you have changed the settings for thumbnail or intermediate images in config, or if you have to replace corrupt versions.</p><p>Select the radio button for this action, then choose to rebuild the thumbnails, intermediates, or both.</p><p>This uses a lot of server resources, so if you have timeout problems, try doing it in smaller batches.</p></dd>
       <dt>Delete full-size pictures.</dt>
-      <dd>Use this to save space on your webspace.<br />When selected, Coppermine checks to see if an intermediate copy exists, and if it does, it deletes the original sized picture, then re-names the intermediate. If no intermediate exists, Coppermine leaves the original in place.</dd>
+      <dd><p>Use this to save space on your webspace.</p><p>When selected, Coppermine checks to see if an intermediate copy exists, and if it does, it deletes the original sized picture, then re-names the intermediate. If no intermediate exists, Coppermine leaves the original in place.</p></dd>
       <dt>Delete orphaned comments.</dt>
       <dd>Sometimes, when pictures have been deleted, any comments associated with them remain in the database.  Use this to remove them from the database entirely.</dd>
       <dt>Rename file titles.</dt>
@@ -503,8 +508,8 @@ the main page of the script.</p>
   </li>
   <li><b>My profile</b><br />Edit your own user profile</li>
 </ul>
-<p>There used to be an admin mode and user mode for &quot;regular&quot; users as well in versions before cpg1.4.x, which has been removed as it was confusing for end users and didn't serve any special purpose.<br />
-The user admin has these options:</p>
+<p>There used to be an admin mode and user mode for &quot;regular&quot; users as well in versions before cpg1.4.x, which has been removed as it was confusing for end users and didn't serve any special purpose.</p>
+<p>The user admin has these options:</p>
 <ul>
   <li><b>Create / order my albums</b><br />similar to album manager in admin mode, the user can create albums within his user gallery</li>
   <li><b>Modify my albums</b><br />The user can edit album title and description (similar to &quot;<a href="#album_prop">album properties</a>&quot; for the admin, but the user can't move his albums to other categories)</li>
@@ -542,8 +547,8 @@ The user admin has these options:</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="user_cp"></a><h2>4.4 The user control panel</h2>
-<p>The user control panel can be found when clicking "users" from the admin menu. It is the place where you create and manage your users.<br />
-<span class="important">If you have enabled integration (bridging) Coppermine with another application (e.g. your favorite BBS app), Coppermine will use the member table of the application you bridged with (your BBS), so the built-in Coppermine user management will be disabled in favor of the user management that comes with the bridged application.</span><br />As a result, you will not have this user control panel; clicking the "users" link will send you to your bridge application's user management instead.</p>
+<p>The user control panel can be found when clicking "users" from the admin menu. It is the place where you create and manage your users.</p>
+<p><span class="important">If you have enabled integration (bridging) Coppermine with another application (e.g. your favorite BBS app), Coppermine will use the member table of the application you bridged with (your BBS), so the built-in Coppermine user management will be disabled in favor of the user management that comes with the bridged application.</span></p><p>As a result, you will not have this user control panel; clicking the "users" link will send you to your bridge application's user management instead.</p>
 <img src="pics/usermgr.gif" width="600" height="550" border="0" alt="" title="user control panel" /><br />
 <a name="user_cp_page"></a><h3>4.4.1 Page controls</h3>
 <ul>
@@ -594,8 +599,8 @@ src="pics/edit.gif" width="16" height="16" alt="" /> button. </p>
 
 <a name="albmgr"></a><h2>4.6 The Album Manager</h2>
 <p><img src="pics/albmgr.gif" width="360" height="288" border="0" alt="" title="Album Manager" /></p>
-<p>Coppermine stores files inside of albums, so you'll need at least one album your pictures/files can go to. Albums can be stored in categories (but they don't <i>need</i> a category, they can as well go into the coppermine &quot;root&quot;).<br />
-When you click on &quot;albums&quot; in the admin menu, you will see the <i>Album Manager</i>.</p>
+<p>Coppermine stores files inside of albums, so you'll need at least one album your pictures/files can go to. Albums can be stored in categories (but they don't <i>need</i> a category, they can as well go into the coppermine &quot;root&quot;).</p>
+<p>When you click on &quot;albums&quot; in the admin menu, you will see the <i>Album Manager</i>.</p>
 <h3><a name="albmgr_create"></a>4.6.1 Creating albums</h3>
 <ul>
 <li><b>Choose a category from the dropdown list</b> &quot;Select category&quot; where your album should go to (or choose &quot;* No category *&quot; if the album should go into the coppermine &quot;root&quot;). If you haven't created a category yet, go to the <a href="#cat_cp">categories control panel</a> first, but you can later move the album as well using the <a href="#album_prop">album properties</a> page.</li>
@@ -666,8 +671,8 @@ Note: when setting an album password, the permission dropdown field "<i>Album ca
 <a name="album_prop_reset_start"></a>
 <h3>4.8.1 Reset album properties</h3>
 <img src="pics/modifyalb_reset.gif" width="436" height="148" border="0" alt="" />
-<p>You can reset the views and ratings in the album and even delete all pics at once in the sub-section &quot;Reset album&quot; by ticking the checkboxes and then submitting the form. To avoid accidental resets, you have to tick the checkbox &quot;I'm sure&quot; before you can actually submit the changes (the button will be greyed out if you don't).<br />
-Use these options with care: the deleting of files is irreversible, as well as the reset of views and ratings (you can only restore views and ratings by manually editing coppermine's database entries with third-party tools like <a href="http://www.phpmyadmin.net/" class="external" rel="external">phpMyAdmin</a> - not recommended).</p>
+<p>You can reset the views and ratings in the album and even delete all pics at once in the sub-section &quot;Reset album&quot; by ticking the checkboxes and then submitting the form. To avoid accidental resets, you have to tick the checkbox &quot;I'm sure&quot; before you can actually submit the changes (the button will be greyed out if you don't).</p>
+<p>Use these options with care: the deleting of files is irreversible, as well as the reset of views and ratings (you can only restore views and ratings by manually editing coppermine's database entries with third-party tools like <a href="http://www.phpmyadmin.net/" class="external" rel="external">phpMyAdmin</a> - not recommended).</p>
 <a name="album_prop_reset_end"></a>
 <a name="album_prop_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
@@ -740,7 +745,7 @@ Right now, you can't.</li>
 
 <a name="ftp"></a><a name="batch_add_pics"></a>
 <h2>4.11 Uploading pics by FTP / Batch-Add Pictures</h2>
-<p>It's recommended that the coppermine admin uses ftp to upload many pics in one go. Use your ftp software to create sub-folders within <i>your_coppermine_directory/albums/</i>, where your ftp uploads can go to. It's a good idea to have a folder structure within the <i>albums</i> folder that reflects your coppermine categories and albums, but it's not mandatory.<br /><span class="important">Important</span>: do not create folders or upload to the <i>userpics</i>- nor the <i>edit</i>-folder by ftp: these folders are used by coppermine internally and mustn't be used for any other purpose! Folder names mustn't contain dots and it's even recommended not to use any special chars - only use a-z, numbers and maybe <tt class="code">-</tt> or <tt class="code">_</tt>. Make sure to upload in binary or auto-mode.</p>
+<p>It's recommended that the coppermine admin uses ftp to upload many pics in one go. Use your ftp software to create sub-folders within <i>your_coppermine_directory/albums/</i>, where your ftp uploads can go to. It's a good idea to have a folder structure within the <i>albums</i> folder that reflects your coppermine categories and albums, but it's not mandatory.</p><p><span class="important">Important</span>: do not create folders or upload to the <i>userpics</i>- nor the <i>edit</i>-folder by ftp: these folders are used by coppermine internally and mustn't be used for any other purpose! Folder names mustn't contain dots and it's even recommended not to use any special chars - only use a-z, numbers and maybe <tt class="code">-</tt> or <tt class="code">_</tt>. Make sure to upload in binary or auto-mode.</p>
 <p>Once you have uploaded your photos by ftp, click on the Batch Add Pictures button. The batch-add is done in three steps:</p>
 <ul>
 <li>find the directory under which you have uploaded your photos. Select this directory by clicking on it.
@@ -780,7 +785,7 @@ on some templates below the name of your gallery.</p>
 <p>All emails sent by the gallery are sent with this email address. Make sure to enter a valid email address.</p>
 <a name="admin_general_email_end"></a>
 <a name="admin_general_coppermine-url"></a><h4>URL of your coppermine gallery folder</h4>
-<p>This is the URL where a user will be directed when he will click on the &quot;See more pictures&quot; link in an e-card. This <i>must</i> be the URL for your gallery (just the path to your coppermine folder, e.g. <i>http://yourdomain.tld/coppermine/</i>). Don't specify a certain file (like index.php) in this field. <br />In older versions of Coppermine, this field used to be labelled &quot;Target address for the 'See more pictures' link in e-cards&quot;, but since this url is used in other places of coppermine as well the label was changed.</p>
+<p>This is the URL where a user will be directed when he will click on the &quot;See more pictures&quot; link in an e-card. This <i>must</i> be the URL for your gallery (just the path to your coppermine folder, e.g. <i>http://yourdomain.tld/coppermine/</i>). Don't specify a certain file (like index.php) in this field.</p><p>In older versions of Coppermine, this field used to be labelled &quot;Target address for the 'See more pictures' link in e-cards&quot;, but since this url is used in other places of coppermine as well the label was changed.</p>
 <a name="admin_general_coppermine-url_end"></a>
 <a name="admin_general_home-url"></a><h4>URL of your home page</h4>
 <p>This is the URL where a user will be directed when he clicks on the &quot;Home&quot; button in the main menu.</p>
@@ -853,7 +858,7 @@ on some templates below the name of your gallery.</p>
       non-ASCII character may not be shown correctly.</p>
       <a name="admin_language_language_end"></a>
       <a name="admin_language_fallback"></a><h4>Fallback to English if translated phrase not found?</h4>
-      <p>Enable this option if you're using other languages than english. If a certain phrase doesn't exist within your language file, coppermine will show the english phrase instead.<br />This feature has been introduced to allow the usage of older language files, as during the development of new coppermine versions only the english language file is being updated. To make up for translations being submitted later, you can use this option. Most translations affect the admin part of coppermine only, so mostly the admin will see some phrases in english instead of his language that don't exist in his language file. Currently this fallback option only works for 95% of all phrases, so there still might be some missing translations.</p>
+      <p>Enable this option if you're using other languages than english. If a certain phrase doesn't exist within your language file, coppermine will show the english phrase instead.</p><p>This feature has been introduced to allow the usage of older language files, as during the development of new coppermine versions only the english language file is being updated. To make up for translations being submitted later, you can use this option. Most translations affect the admin part of coppermine only, so mostly the admin will see some phrases in english instead of his language that don't exist in his language file. Currently this fallback option only works for 95% of all phrases, so there still might be some missing translations.</p>
       <p class="small">[cpg1.4.0 or better required]</p>
       <a name="admin_language_fallback_end"></a>
       <a name="admin_language_theme"></a><h4>Theme</h4>
@@ -873,8 +878,8 @@ on some templates below the name of your gallery.</p>
       <p class="small">[cpg1.3.0 or better required]</p>
       <a name="admin_language_reset_end"></a>
       <a name="admin_language_theme_list"></a><h4>Display theme list</h4>
-      <p>Enable this option if you want your users to be able to select another theme with a dropdown list (you can specify to display only the list itself or a label saying &quot;<b>Choose your theme:</b>&quot; in front of the list). Edit your template file (/themes/yourtheme/template.html) to specify where the theme dropdown list should appear on your gallery (look for <b>{THEME_SELECT_LIST}</b>).<br />
-      This option only makes sense if you have at least one other theme in your /themes/ folder than your default theme. It's recommended to only offer this option if there's an additional benefit for the user (for example a theme with less graphics in it that loads faster for users on a dial-up connection, or a theme with reduced color pallettes and good contrast).</p>
+      <p>Enable this option if you want your users to be able to select another theme with a dropdown list (you can specify to display only the list itself or a label saying &quot;<b>Choose your theme:</b>&quot; in front of the list). Edit your template file (/themes/yourtheme/template.html) to specify where the theme dropdown list should appear on your gallery (look for <b>{THEME_SELECT_LIST}</b>).</p>
+      <p>This option only makes sense if you have at least one other theme in your /themes/ folder than your default theme. It's recommended to only offer this option if there's an additional benefit for the user (for example a theme with less graphics in it that loads faster for users on a dial-up connection, or a theme with reduced color pallettes and good contrast).</p>
       <p class="small">[cpg1.3.0 or better required]</p>
       <a name="admin_language_theme_list_end"></a>
       <a name="admin_language_theme_reset"></a><h4>Display &quot;reset&quot; in theme selection</h4>
@@ -1161,20 +1166,20 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 <a name="admin_picture_thumb_advanced_pic_extensions_end"></a>
 <a name="admin_thumbs_advanced_movie"></a>
 <h4>Allowed movie types</h4>
-<p>&quot;<i>ALL</i>&quot; will result in all allowed movie file types to be uploaded. If you want to restrict the allowed file types to certain extensions only, enter a coma-separated list of extensions, e.g. <tt class="code">wmv,avi,mov</tt>.<br />
-Note that being able to display a movie requires the cpg-user to have the codecs needed to display the movie installed and configured properly on their computer, e.g. if you allow the file type <tt class="faq">mov</tt>, the user who is going to watch the movie will need to have Apple's Quick-Time plug-in installed. Also note that <tt class="code">avi</tt> is just a container for different codecs - this means that a computer which is capable of playing movie1.avi may not be capable of playing movie2.avi if those files have been encoded with different codecs.</p>
+<p>&quot;<i>ALL</i>&quot; will result in all allowed movie file types to be uploaded. If you want to restrict the allowed file types to certain extensions only, enter a coma-separated list of extensions, e.g. <tt class="code">wmv,avi,mov</tt>.</p>
+<p>Note that being able to display a movie requires the cpg-user to have the codecs needed to display the movie installed and configured properly on their computer, e.g. if you allow the file type <tt class="faq">mov</tt>, the user who is going to watch the movie will need to have Apple's Quick-Time plug-in installed. Also note that <tt class="code">avi</tt> is just a container for different codecs - this means that a computer which is capable of playing movie1.avi may not be capable of playing movie2.avi if those files have been encoded with different codecs.</p>
 <p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_thumbs_advanced_movie_end"></a>
 <a name="admin_picture_thumb_advanced_audio_extensions"></a>
 <h4>Allowed audio types</h4>
-<p>&quot;<i>ALL</i>&quot; will result in all allowed audio file types to be uploaded. If you want to restrict the allowed file types to certain extensions only, enter a coma-separated list of extensions, e.g. <tt class="code">wav,mp3,wma</tt>.<br />
-Note that being able to listen to an audio file requires the cpg-user to have the codecs needed installed and configured properly on their computer, e.g. if you allow the file type <tt class="code">mp3</tt>, the user who is going to listen to the file will need to have an mp3-player installed.</p>
+<p>&quot;<i>ALL</i>&quot; will result in all allowed audio file types to be uploaded. If you want to restrict the allowed file types to certain extensions only, enter a coma-separated list of extensions, e.g. <tt class="code">wav,mp3,wma</tt>.</p>
+<p>Note that being able to listen to an audio file requires the cpg-user to have the codecs needed installed and configured properly on their computer, e.g. if you allow the file type <tt class="code">mp3</tt>, the user who is going to listen to the file will need to have an mp3-player installed.</p>
 <p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_picture_thumb_advanced_audio_extensions_end"></a>
 <a name="admin_picture_thumb_advanced_doc_extensions"></a>
 <h4>Allowed document types</h4>
-<p>&quot;<i>ALL</i>&quot; will result in all allowed document file types to be uploaded. If you want to restrict the allowed file types to certain extensions only, enter a coma-separated list of extensions, e.g. <tt class="code">txt,pdf</tt>.<br />
-Note that being able to browse a document file requires the cpg-user to have a software installed and configured properly on their computer that is capable of displaying the document type uploaded, e.g. if you allow the file type <tt class="code">xls</tt>, the user who is going browse the file will need to have an application installed that can display MS-Excel sheets. Be carefull with some document types (especially if you allow users to be capable of uploading documents without admin approval), as they may contain macro viruses.</p>
+<p>&quot;<i>ALL</i>&quot; will result in all allowed document file types to be uploaded. If you want to restrict the allowed file types to certain extensions only, enter a comma-separated list of extensions, e.g. <tt class="code">txt,pdf</tt>.</p>
+<p>Note that being able to browse a document file requires the cpg-user to have a software installed and configured properly on their computer that is capable of displaying the document type uploaded, e.g. if you allow the file type <tt class="code">xls</tt>, the user who is going browse the file will need to have an application installed that can display MS-Excel sheets. Be carefull with some document types (especially if you allow users to be capable of uploading documents without admin approval), as they may contain macro viruses.</p>
 <p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_picture_thumb_advanced_doc_extensions_end"></a>
 <a name="admin_picture_thumb_advanced_resize_method"></a>
@@ -1281,17 +1286,17 @@ address. Recommended setting is NO. This option is considered as deprecated and 
 <a name="admin_allow_duplicate_emails_addr_end"></a>
 <a name="admin_approval_notify"></a>
 <h4>Notify admin of user upload awaiting approval</h4>
-<p>When enabled, the gallery admin receives an email notification of all pics that wait for his approval (depends on the approval settings in &quot;<a href="#group_cp">groups</a>&quot;). The email is sent to the address specified in &quot;<a href="#admin_general">General settings</a>&quot;.<br />This option is only recommended with low or medium traffic (if users only upload every now and then).</p>
+<p>When enabled, the gallery admin receives an email notification of all pics that wait for his approval (depends on the approval settings in &quot;<a href="#group_cp">groups</a>&quot;). The email is sent to the address specified in &quot;<a href="#admin_general">General settings</a>&quot;.</p><p>This option is only recommended with low or medium traffic (if users only upload every now and then).</p>
 <a name="admin_approval_notify_end"></a>
 <p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_user_memberlist"></a>
 <h4>Allow logged in users to view memberlist</h4>
-<p>When enabled, an additional menu item &quot;Memberlist&quot; is being displayed in the coppermine main menu if a user is logged in, to let him see a list of all users, with stats on their last visits, uploads and quota usage.<br />This is a new feature in cpg1.3.0 (user contribution by <a href="#contributors">Jason</a>) - it's available as <a href="http://sourceforge.net/project/showfiles.php?group_id=89658&amp;package_id=98542">mod</a> (not in the regular coppermine package) for older versions than cpg1.3.0.</p>
+<p>When enabled, an additional menu item &quot;Memberlist&quot; is being displayed in the coppermine main menu if a user is logged in, to let him see a list of all users, with stats on their last visits, uploads and quota usage.</p><p>This is a new feature in cpg1.3.0 (user contribution by <a href="#contributors">Jason</a>) - it's available as <a href="http://sourceforge.net/project/showfiles.php?group_id=89658&amp;package_id=98542">mod</a> (not in the regular coppermine package) for older versions than cpg1.3.0.</p>
 <a name="admin_user_memberlist_end"></a>
 <p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_user_allow_email_change"></a><h4>Allow users to change their email address in profile</h4>
-<p>This option has impact on the user's profile page, it toggles wether the user can change his/her own email address.<br />Use this option wisely, as the old email address of a user is not recorded: if you let users change their email address, they might change it to a non-existing email address (e.g. after uploading some pics that break your gallery's rules) - you would have no chance of tracking this user.<br />
-This option will only be taken into account if you use Coppermine as a standalone application; if you run Coppermine integrated with a bbs, this option will simply not be taken into account, as the user profile from your bbs will be used to manage your user's profile.</p>
+<p>This option has impact on the user's profile page, it toggles wether the user can change his/her own email address.<br />Use this option wisely, as the old email address of a user is not recorded: if you let users change their email address, they might change it to a non-existing email address (e.g. after uploading some pics that break your gallery's rules) - you would have no chance of tracking this user.</p>
+<p>This option will only be taken into account if you use Coppermine as a standalone application; if you run Coppermine integrated with a bbs, this option will simply not be taken into account, as the user profile from your bbs will be used to manage your user's profile.</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_user_allow_email_change_end"></a>
 <a name="admin_user_editpics_public_start"></a><h4>Allow users to retain control over their pics in public galleries</h4>
@@ -1300,14 +1305,14 @@ This option will only be taken into account if you use Coppermine as a standalon
 <a name="admin_user_editpics_public_end"></a>
 <a name="admin_user_login_start"></a>
 <a name="admin_user_login_threshold_start"></a>
-<h4>Number of failed login attemps untill temporary ban (to avoid brute force attacks)</h4>
-<p>To make brute force attacks (where a hostile script tries to log into coppermine as admin by running through all possible combinations of username and password automatically) less effective Coppermine temporarily bans the IP address of a possible attacker after a certain amount of failed logins. This way, the brute force attack would need way to long to try all possible combinations.<br/>
-With this setting you specify the number of failed logins after that the IP address is temporarily banned.</p>
+<h4>Number of failed login attempts until temporary ban (to avoid brute force attacks)</h4>
+<p>To make brute force attacks (where a hostile script tries to log into coppermine as admin by running through all possible combinations of username and password automatically) less effective Coppermine temporarily bans the IP address of a possible attacker after a certain amount of failed logins. This way, the brute force attack would need way to long to try all possible combinations.</p>
+<p>With this setting you specify the number of failed logins after that the IP address is temporarily banned.</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_user_login_threshold_end"></a>
 <a name="admin_user_login_expiry_start"></a>
 <h4>Duration of a temporary ban after failed logins</h4>
-<p>This value specifies the duration of the temporary ban (in minutes) after the number of failed logins specified with <a href="#admin_user_login_threshold_start">Number of failed login attemps untill temporary ban</a>.</p>
+<p>This value specifies the duration of the temporary ban (in minutes) after the number of failed logins specified with <a href="#admin_user_login_threshold_start">Number of failed login attempts until temporary ban</a>.</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_user_login_expiry_end"></a>
 <a name="admin_user_login_end"></a>
@@ -1408,8 +1413,8 @@ All log files are written in english</p>
 <a name="admin_misc"></a>
 <h3>4.12.16 Miscellaneous settings</h3>
 <a name="debug_mode"></a><h4>Enable debug mode</h4>
-<p>CPG will show error messages which are normally suppressed.  This is helpful in troubleshooting problems with your gallery or when asking      for help on the <a href="http://coppermine.sourceforge.net/board/">CPG Support Forums</a>. Turn this feature off if you don't experience problems.<br />
-Turn it on (option &quot;Everyone&quot;) if you are requesting help on the <a href="http://coppermine.sourceforge.net/board/">coppermine support board</a>, so the supporters can have a look at the debug output as well. Choose the option &quot;Admin only&quot; when trouble-shooting on your own - debug output will be only visible when you're logged in as admin, regular users or guests won't see the debug output.</p>
+<p>CPG will show error messages which are normally suppressed.  This is helpful in troubleshooting problems with your gallery or when asking      for help on the <a href="http://coppermine.sourceforge.net/board/">CPG Support Forums</a>. Turn this feature off if you don't experience problems.</p>
+<p>Turn it on (option &quot;Everyone&quot;) if you are requesting help on the <a href="http://coppermine.sourceforge.net/board/">coppermine support board</a>, so the supporters can have a look at the debug output as well. Choose the option &quot;Admin only&quot; when trouble-shooting on your own - debug output will be only visible when you're logged in as admin, regular users or guests won't see the debug output.</p>
 <a name="admin_misc_debug_notices"></a><h4>Display notices in debug mode</h4>
 <p>May be helpfull to trouble-shoot problems with your coppermine install - only recommended if you know a little PHP and you can understand the additional error messages this option shows. This option only applies if debug mode is enabled.</p>
 <a name="admin_misc_debug_notices_end"></a>
@@ -1442,14 +1447,14 @@ You can toggle this option on the <a href="#batch_add_pics">batch-add</a> page a
 <a name="admin_misc_include_path_end"></a>
 
 <a name="admin_misc_enable_report"></a><h4>Enable reports</h4>
-<p>Enable reports. When set to yes, this allows users to report uploaded files or comments to the site admin.<br />
-This setting is dependant on e-cards being enabled.  Only users who have permission to send e-cards in the 'groups' settings are able to send reports. The report icon is hidden from those not allowed to do so.</p>
+<p>Enable reports. When set to yes, this allows users to report uploaded files or comments to the site admin.</p>
+<p>This setting is dependant on e-cards being enabled.  Only users who have permission to send e-cards in the 'groups' settings are able to send reports. The report icon is hidden from those not allowed to do so.</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_misc_enable_report_end"></a>
 
 <a name="admin_activation"></a><h4>Admin Activation</h4>
-<p>Enable admin activation. When set to yes, this gives control to gallery administrator to activate new registrations.<br />
-By default, it is set to no, so users would activate their own accounts upon registering.</p>
+<p>Enable admin activation. When set to yes, this gives control to gallery administrator to activate new registrations.</p>
+<p>By default, it is set to no, so users would activate their own accounts upon registering.</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_activation_end"></a>
 
@@ -1526,11 +1531,11 @@ Coppermine: http://gallery.yourdomain.com/</td>
 <p>The bridge manager is a new feature in cpg1.4, it is not available in older versions. Instead of manually editing coppermine code files, you can enable/disable bridging in your browser, using a wizard-like user interface. To start the bridge manager, log in as admin, choose &quot;Admin Tools&quot; from the navigation and the &quot;bridge manager&quot;</p>
 <p><img src="pics/bridge_01_start.gif" width="429" height="72" border="0" alt="" align="right" />If you run the bridge manager for the first time, there will only be one button that let's you actually start the wizard (if you return to the bridge manager later, you will also find a switch to enable/disable bridging) click it.</p>
 <p class="important">Note: with each step in the wizard, some information is being written to the coppermine database. Unlike other wizards (mostly on your local machine), the bridge manager doesn't have a &quot;&quot;cancel&quot;-button! Once you have enabled bridging and everything is working fine, you shouldn't change any values just out of curiosity, as they will get written to the database, which might result in a bridging that used to work not working any more after &quot;playing&quot; with it.<br clear="all" /></p>
-<p><img src="pics/bridge_02_app.gif" width="581" height="368" border="0" alt="" align="right" />In the first actual step of the wizard &quot;choose application to bridge coppermine with&quot;, you have to choose the application you actually want to coppermine with. Note that you <b>must</b> have this application already installed on your webserver, it has to be properly configured and must be up-and-running. Don't use the bridge manager yet if you only <i>plan</i> to integrate coppermine with another application later.<br />
-If you have a custom-made bridge file that is not available in the wizard, choose the radio button in front of the text field and enter the name of your bridge file there, without the extension &quot;.inc.php&quot; (the bridge file must reside in the coppermine sub-folder &quot;bridge&quot;).<br />
+<p><img src="pics/bridge_02_app.gif" width="581" height="368" border="0" alt="" align="right" />In the first actual step of the wizard &quot;choose application to bridge coppermine with&quot;, you have to choose the application you actually want to coppermine with. Note that you <b>must</b> have this application already installed on your webserver, it has to be properly configured and must be up-and-running. Don't use the bridge manager yet if you only <i>plan</i> to integrate coppermine with another application later.</p>
+<p>If you have a custom-made bridge file that is not available in the wizard, choose the radio button in front of the text field and enter the name of your bridge file there, without the extension &quot;.inc.php&quot; (the bridge file must reside in the coppermine sub-folder &quot;bridge&quot;).<br />
 Click &quot;next&quot;</p>
-<p>The next steps depend on the application you have chosen to bridge with: some applications need <acronym title="Uniform Resource Locator">URL</acronym>s to be entered, or paths. Some need mySQL table information or cookie data to be entered, others don't. The point of the wizard is that it will only &quot;aks&quot; you the relevant settings for your application - if one or more items of the following description doesn't turn up for your application, there's no need to worry - just keep filling in the mandatory information and then hit &quot;next&quot;. However, you have to understand that coppermine can proof-check only some of your input - some input goes unvalidated.<br />
-If a reset button (<img src="../images/flags/reset.gif" width="16" height="11" border="0" alt="" />) is being displayed next to an input field, the field value doesn't have the default value. It can be perfectly OK to have a non-default value in a field, however you should keep in mind that if you have &quot;played&quot; with the bridge manager before, previous settings might exist in a field that are not correct - do not light-heartedly skip a step without paying attention to it. Use the reset button to revert to the default value (not necessarily &quot;quor&quot; default value though).<br clear="all" /></p>
+<p>The next steps depend on the application you have chosen to bridge with: some applications need <acronym title="Uniform Resource Locator">URL</acronym>s to be entered, or paths. Some need mySQL table information or cookie data to be entered, others don't. The point of the wizard is that it will only &quot;aks&quot; you the relevant settings for your application - if one or more items of the following description doesn't turn up for your application, there's no need to worry - just keep filling in the mandatory information and then hit &quot;next&quot;. However, you have to understand that coppermine can proof-check only some of your input - some input goes unvalidated.</p>
+<p>If a reset button (<img src="../images/flags/reset.gif" width="16" height="11" border="0" alt="" />) is being displayed next to an input field, the field value doesn't have the default value. It can be perfectly OK to have a non-default value in a field, however you should keep in mind that if you have &quot;played&quot; with the bridge manager before, previous settings might exist in a field that are not correct - do not light-heartedly skip a step without paying attention to it. Use the reset button to revert to the default value (not necessarily &quot;quor&quot; default value though).<br clear="all" /></p>
 <a name="bridge_manager_app_start"></a>
 <h4>5.3.1.1 choose application to bridge coppermine with</h4>
 <ul>
@@ -2002,11 +2007,11 @@ if (isset($_POST['redir'])){
 <p>This application is opensource software released under the <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a>.
 </p>
 <p>Because the program is licensed free of charge, there is no warranty for the program, to the extent permitted by applicable law. Except when otherwise stated in writing the copyright holders and/or other parties provide the program &quot;as is&quot; without warranty of any kind, either expressed or implied, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose. The entire risk as to the quality and performance of the program is with you. Should the program prove defective, you assume the cost of all necessary servicing, repair or correction. </p>
-<p>Coppermine Photo Gallery is Copyright &copy; 2002 - 2004 Gr&eacute;gory  DEMAR and the Coppermine Dev Team, All Rights Reserved.<br />
+<p>Coppermine Photo Gallery is Copyright &copy; 2002 - 2005 Gr&eacute;gory  DEMAR and the Coppermine Dev Team, All Rights Reserved.<br />
 </p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 
-                        </td></tr></tbody></table>
+      </td></tr></tbody></table>
 </body>
 </html>
