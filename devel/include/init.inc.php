@@ -171,7 +171,8 @@ if (defined('UDB_INTEGRATION')) {
 
     if (mysql_num_rows($results)) {
         $USER_DATA = mysql_fetch_array($results);
-        unset($USER_DATA['user_password']);
+        //unset($USER_DATA['user_password']);
+        $USER_DATA['user_password'] = '********';
 
         define('USER_ID', (int)$USER_DATA['user_id']);
         define('USER_NAME', $USER_DATA['user_name']);

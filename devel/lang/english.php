@@ -232,8 +232,10 @@ $lang_get_pic_data = array(
 );
 
 $lang_cpg_debug_output = array(
+        'debug_info' => 'Debug Info',
         'select_all' => 'Select All',
-        'copy_and_paste_instructions' => 'If you\'re going to request help on the coppermine support board, copy-and-paste this debug output into your posting.',
+        'copy_and_paste_instructions' => 'If you\'re going to request help on the coppermine support board, copy-and-paste this debug output into your posting. Make sure to replace any passwords from the query with *** before posting.',
+        'phpinfo' => 'display phpinfo',
 );
 
 $lang_language_selection = array(

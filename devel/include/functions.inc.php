@@ -1197,9 +1197,9 @@ function cpg_debug_output()
         $total_query_time = round($total_query_time, 3);
         $debug_underline = '&#0010;------------------&#0010;';
         $debug_separate = '&#0010;==========================&#0010;';
-        starttable('100%', 'Debug info');
-        echo "<tr><td class=\"\">";
         echo '<form name="debug">';
+        starttable('100%', $lang_cpg_debug_output['debug_info'],2);
+        echo '<tr><td align="center" valign="middle" class="tableh2">';
         echo '<script language="Javascript">
 <!--
 
@@ -1210,13 +1210,12 @@ tempval.select()
 }
 //-->
 </script>';
-        echo '<table border="0" cellpadding="0" cellspacing="1">
-        <tr>
-        <td align="center" valign="middle" class="admin_menu">
-        <a href="javascript:HighlightAll(\'debug.debugtext\')" class="adm_menu">' . $lang_cpg_debug_output['select_all'] . '</a>
-        </td>';
-        if (GALLERY_ADMIN_MODE){echo '<td class="album_stat">('.$lang_cpg_debug_output['copy_and_paste_instructions'].')</td>';}
-        echo '</tr></table>';
+        echo '
+        <div class="admin_menu"><a href="javascript:HighlightAll(\'debug.debugtext\')" class="adm_menu">' . $lang_cpg_debug_output['select_all'] . '</a></div>';
+        echo '</td><td align="left" valign="middle" class="tableh2">';
+        if (GALLERY_ADMIN_MODE){echo '<span class="album_stat">('.$lang_cpg_debug_output['copy_and_paste_instructions'].')</span>';}
+        echo '</td></tr>';
+        echo '<tr><td class="tableb" colspan="2">';
         echo '<textarea  rows="10" class="debug_text" name="debugtext">';
         echo "USER: ";
         echo $debug_underline;
@@ -1289,18 +1288,16 @@ tempval.select()
 Page generated in $time seconds - $query_count queries in $total_query_time seconds - Album set : $ALBUM_SET
 EOT;
         echo "</textarea>";
-        echo "</form>";
         echo "</td>";
         echo "</tr>";
-        echo "<tr><td class=\"tableb\">";
-        //echo "<a href=\"phpinfo.php\">Advanced debug mode</a> (phpinfo)";
-        error_reporting  (E_ERROR | E_WARNING | E_PARSE);
-        //echo '<pre>';
-        //echo cpg_phpinfo_mod_output('gd','text');
-        //echo $foo1;
-        //echo '</pre>';
-        echo "</td></tr>";
+        if (GALLERY_ADMIN_MODE){
+          echo "<tr><td class=\"tableb\" colspan=\"2\">";
+          echo "<a href=\"phpinfo.php\">".$lang_cpg_debug_output['phpinfo']."</a>";
+          error_reporting  (E_ERROR | E_WARNING | E_PARSE);
+          echo "</td></tr>";
+        }
         endtable();
+        echo "</form>";
 }
 
 //phpinfo-related functions:
