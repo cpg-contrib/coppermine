@@ -314,15 +314,7 @@ function html_picinfo()
     if ($CONFIG['read_exif_data']) $exif = exif_parse_file($path_to_pic);
 
     if (isset($exif) && is_array($exif)) {
-        if (isset($exif['Camera'])) $info[$lang_picinfo['Camera']] = $exif['Camera'];
-        if (isset($exif['DateTaken'])) $info[$lang_picinfo['Date taken']] = $exif['DateTaken'];
-        if (isset($exif['Aperture'])) $info[$lang_picinfo['Aperture']] = $exif['Aperture'];
-        if (isset($exif['ISO'])) $info[$lang_picinfo['ISO']] = $exif['ISO'];
-        if (isset($exif['ExposureTime'])) $info[$lang_picinfo['Exposure time']] = $exif['ExposureTime'];
-        if (isset($exif['FocalLength'])) $info[$lang_picinfo['Focal length']] = $exif['FocalLength'];
-        if (@strlen(trim($exif['Comment'])) > 0 ) {
-                $info[$lang_picinfo['Comment']] = trim($exif['Comment']);
-        }
+        $info = array_merge($info,$exif);
     }
 
     if ($CONFIG['read_iptc_data']) $iptc = get_IPTC($path_to_pic);
