@@ -477,6 +477,42 @@ $default_bridge_data['woltlab21'] = array(
   'relative_path_to_config_file_used' => 'lookfor,index.php',  
 );
 
+$default_bridge_data['mybb'] = array(
+  'full_name' => 'MyBB Release Candidate 4',
+  'short_name' => 'mybb',
+  'support_url' => 'http://www.mybboard.com/',
+  'full_forum_url_default' => 'http://www.yoursite.com/board',
+  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',    
+  'relative_path_to_config_file_default' => '../board/inc',
+  'relative_path_to_config_file_used' => 'lookfor,config.php',  
+  'use_post_based_groups_default' => '0',
+  'use_post_based_groups_used' => 'radio,1,0',    
+);
+
+$default_bridge_data['xmb'] = array(
+  'full_name' => 'XMB 1.9',
+  'short_name' => 'xmb',
+  'support_url' => 'http://www.xmbforum.com/',
+  'full_forum_url_default' => 'http://www.yoursite.com/board',
+  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',    
+  'relative_path_to_config_file_default' => '../board/',
+  'relative_path_to_config_file_used' => 'lookfor,config.php',  
+  'use_post_based_groups_default' => '0',
+  'use_post_based_groups_used' => 'radio,1,0',    
+);
+
+$default_bridge_data['xoops'] = array(
+  'full_name' => 'Xoops 2.0',
+  'short_name' => 'xoops',
+  'support_url' => 'http://www.xoops.org/',
+  'full_forum_url_default' => 'http://www.yoursite.com/board',
+  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',    
+  'relative_path_to_config_file_default' => '../board/',
+  'relative_path_to_config_file_used' => 'lookfor,mainfile.php',  
+  'use_post_based_groups_default' => '0',
+  'use_post_based_groups_used' => 'radio,1,0',    
+);
+
 //////////////// main code start //////////////////////
 
 // initialize vars

@@ -277,3 +277,4 @@ Fixed display of bb_code'ed comments being displayed raw in thumbnail captions, 
 Removed styleguide theme from package (available in coppermine download section instead), usage is deprecated - 9 March 2005, GauGau
 Added thai language file (user contribution) - 22 March 2005, GauGau
 Added persian (farsi) language file (user contribution) - 22 March 2005, GauGau
+Added new bridge files (Xoops, XMB, MyBB) to bridge manager - 23 March 2005, Nibbler
