@@ -133,7 +133,7 @@ acronym {
 <h1>Coppermine Photo Gallery v1.4.1: Documentation and Manual</h1>
 <h1>About Coppermine</h1>
 <p>Coppermine Photo Gallery is a picture gallery script. Users can upload pictures with a web browser (thumbnails are created on the fly), rate pictures, add comments and send e-cards. The admins can manage the galleries and batch add pictures that have been uploaded on the server by FTP. Support for multimedia files has been added recently.</p>
-<p>Images are stored in albums and albums can be grouped by categories. The script supports multiple users and each user can possibly have its own set of albums.</p>
+<p>Images are stored in albums, and albums can be grouped by categories. The script supports multiple users and each user can possibly have its own set of albums.</p>
 <p>The script also supports multiple languages and has a theme system. It uses PHP, a MySQL database and the GD library (version 1.x or 2.x) or ImageMagick to make the thumbnails. An install script makes the installation fast and simple.</p>
 
       <a name="top"></a>
@@ -274,9 +274,9 @@ acronym {
 
 <a name="testVersion"></a>
 <h1>0. Beta (Testing) version</h1>
-<p>Dear Tester,<br />&nbsp;<br />
-Thank you for taking the time to test Coppermine Photo Gallery. Please be rough on the program so that we can track down and eliminate bugs from our public release of version 1.4.<br />
-Please understand that this is still beta software that is meant to be used for testing purposes and not for production, so there is no support for cpg1.4.1 yet.</p>
+<p>Dear Tester,</p>
+<p>Thank you for taking the time to test Coppermine Photo Gallery. Please be rough on the program so that we can track down and eliminate bugs from our public release of version 1.4.</p>
+<p>Please understand that this is still beta software that is meant to be used for testing purposes and not for production, so there is no support for cpg1.4.1 yet.</p>
 
 <p>While testing CPG 1.4, please make certain to note any odd behavior you encounter.  This could include typographical errors, misleading instructions, or any other out-right error.  If you encounter a major error, please switch the debug mode to &quot;on&quot; in the configuration panel and copy the text in the debug window.  This will greatly aid the development team in hunting down the problem.</p>
 
@@ -298,7 +298,7 @@ Please understand that this is still beta software that is meant to be used for 
 <li>Themes fully tested (by fully tested, we mean as many different features as possible using that theme)</li>
 <li>Major Errors</li>
 <li>Client OS and Browser</li>
-<li>Fresh install or upgrade (if yes, from which version of cpg)</li>
+<li>Fresh install or upgrade (if upgrade, from which version of cpg)</li>
 </ul>
 
 <p>Your test results will not merely be used to fix problems but will also be used to tout the compatibility of CPG with multiple browsers and OS's.  That is why this information is important EVEN IF YOU FIND NOTHING WRONG.</p>
@@ -402,7 +402,7 @@ Please understand that this is still beta software that is meant to be used for 
 
 <a name="safe"></a>
 <h2>2.5 Safe mode issues</h2>
-<p>A significant number of webhost on the Internet run PHP in safe mode. Coppermine runs without any problem in safe mode and with the &quot;open basedir restriction&quot; active, provided safe mode is properly configured. Unfortunately on many hosts, safe mode is not configured properly.</p>
+<p>A significant number of webhosts on the Internet run PHP in safe mode. Coppermine runs without any problem in safe mode and with the &quot;open basedir restriction&quot; active, provided safe mode is properly configured. Unfortunately on many hosts, safe mode is not configured properly.</p>
 <p>If your webhost is running PHP in safe mode but is misconfigured, you may need to do the following :</p>
 <ul>
   <li>With a FTP program, change the mode of Coppermine's &quot;<b>include</b>&quot; directory on your server to <b>0777</b>.</li>
@@ -500,7 +500,7 @@ It will show everything in <span style="color:red;font-weight:bold">red</span> t
 
 <a name="versioncheck_options_start"></a>
 <h3>3.5.2 Options</h3>
-<p>The options screen let's you configure the versioncheck, or rather what is being displayed. The options aren't saved anywhere, so you will have to adjust them each time you run versioncheck. The default options should be OK for most users - only change them if you have good reasons to do so.</p>
+<p>The options screen lets you configure the versioncheck, or rather what is being displayed. The options aren't saved anywhere, so you will have to adjust them each time you run versioncheck. The default options should be OK for most users - only change them if you have good reasons to do so.</p>
 <img src="pics/versioncheck_options.gif" width="844" height="176" border="0" alt="" title="" />
 <ul>
 <li><i>show optional folders/files</i><br />Uncheck this to hide files that are tagged as &quot;optional&quot; (display mandatory files only)</li>
@@ -918,15 +918,15 @@ on some templates below the name of your gallery.</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_general_time-offset_end"></a>
 <a name="admin_general_encrypt_password_start"></a><h4>Enable encrypted passwords</h4>
-<p>This option is only available when the user passwords are stored in plain text the database (usually happens if you upgraded from previous versions of coppermine that didn't have this feature). It will encrypt all passwords in the database, and all future passwords will be stored encypted as well. This process can not be undone: once encryption in turned on, it can not be turned off, so use this option wisely.<br />
-The option increases security of coppermine, but there is a drawback to this method as well: even the admin can not recover a lost password of a user (or his own password), the password can only be reset to another value, but the admin can not read the current password of a user.</p>
+<p>This option is only available when the user passwords are stored in plain text the database (usually happens if you upgraded from previous versions of coppermine that didn't have this feature). It will encrypt all passwords in the database, and all future passwords will be stored encypted as well. This process can not be undone: once encryption in turned on, it can not be turned off, so use this option wisely.</p>
+<p>The option increases security of coppermine, but there is a drawback to this method as well: even the admin can not recover a lost password of a user (or his own password), the password can only be reset to another value, but the admin can not read the current password of a user.</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_general_encrypt_password_end"></a>
 <a name="admin_general_help"></a><h4>Enable help-icons</h4>
-<p>Enable display of the help icons in various places within coppermine admin pages. When enabled, make sure you have uploaded the docs folder into your coppermine folder on your webserver.<br />
-If you choose to set this to &quot;Yes: everyone&quot;, logged in users will see the help icon in some places as well, e.g. when creating a user gallery.<br />
-As the help text is based on the documentation that comes with coppermine, it is available in English only. If the native language of your users is not English, it is advisable to set this option to &quot;Yes: admin only&quot; to avoid confusion among your users.<br />
-It is strongly recommended not to disable the help icons alltogether: even though you might think that you know your way around in your Coppermine install, the help icons might give you a clue what a specific option does later.</p>
+<p>Enable display of the help icons in various places within coppermine admin pages. When enabled, make sure you have uploaded the docs folder into your coppermine folder on your webserver.</p>
+<p>If you choose to set this to &quot;Yes: everyone&quot;, logged in users will see the help icon in some places as well, e.g. when creating a user gallery.</p>
+<p>As the help text is based on the documentation that comes with coppermine, it is available in English only. If the native language of your users is not English, it is advisable to set this option to &quot;Yes: admin only&quot; to avoid confusion among your users.</p>
+<p>It is strongly recommended not to disable the help icons alltogether: even though you might think that you know your way around in your Coppermine install, the help icons might give you a clue what a specific option does later.</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_general_help_end"></a>
 <a name="admin_general_keywords_start"></a><h4>Enable clickable keywords in search</h4>
@@ -1530,7 +1530,7 @@ Turn it on (option &quot;Everyone&quot;) if you are requesting help on the <a hr
 
 <a name="admin_misc_private-ip"></a><h4>Allow banning of non-routable (private) IP addresses</h4>
 <p>Usually most people on the internet have dynamic IP addresses assigned to them when connecting to the internet by their Internet Service Provider. These IP adresses change with each session users connect to the internet, but during an internet session these IP addresses are &quot;visible&quot; for the web-sites the user is surfing. From the range of all IP adresses (0.0.0.0 to 255.255.255.255), some ranges have been reserved for special purposes (mostly for the use on private networks). The banning feature won't accept IP adresses to be banned that belong to these private ranges (e.g. 192.168.0.1) to avoid unexperienced coppermine admins to ban IP addresses within their own LAN. If you're actually running Coppermine on your LAN/WAN that uses private IP addresses (e.g. on a company's intranet) and you want to be able to ban users, switch this option to &quot;Yes&quot;. If you're running coppermine on a webserver located in the internet (e.g. you're webhosted), you should keep this option set to &quot;No&quot;.<br />
-If you don't use banning at all, you can savely ignore this setting completely.</p>
+If you don't use banning at all, you can safely ignore this setting completely.</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_misc_private-ip_end"></a>
 
@@ -1555,6 +1555,13 @@ You can toggle this option on the <a href="#batch_add_pics">batch-add</a> page a
 This setting is dependant on e-cards being enabled.  Only users who have permission to send e-cards in the 'groups' settings are able to send reports. The report icon is hidden from those not allowed to do so.</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_misc_enable_report_end"></a>
+
+<a name="admin_activation"></a><h4>Admin Activation</h4>
+<p>Enable admin activation. When set to yes, this gives control to gallery administrator to activate new registrations.<br />
+By default, it is set to no, so users would activate their own accounts upon registering.</p>
+<p class="small">[cpg1.4.0 or better required]</p>
+<a name="admin_activation_end"></a>
+
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="integrating"></a>
@@ -1608,7 +1615,7 @@ Coppermine: http://gallery.yourdomain.com/</td>
 
 <a name="integrating_backup_start"></a>
 <h3>5.2.4 Backup</h3>
-<p><span class="important">Backup</span>: it is very advisable to backup both your coppermine database and your files before enabling bbs integration, so you can savely go back if the integration fails.</p>
+<p><span class="important">Backup</span>: it is very advisable to backup both your coppermine database and your files before enabling bbs integration, so you can safely go back if the integration fails.</p>
 <p>In fact you're encouraged to backup your database on a regular base, and especially before applying code changes.</p>
 <a name="integrating_backup_end"></a>
 
@@ -1873,7 +1880,7 @@ if (isset($_POST['redir'])){
         <li>Some small text items are only available in English, e.g picEditor. (Language issue)</li>
         <li>Documentation (this document) and <a href="faq.htm">FAQ</a> still incomplete.</li>
         <li>The <a href="http://coppermine.sourceforge.net/board/index.php?topic=1866.0">arrows used for navigation</a> from one pic to the other display in the wrong order for rtl-languages</li>
-        <li class="important">As you're currently using the alpha version of coppermine 1.4, there are several more known issues that are being discussed in the <a href="http://coppermine.sourceforge.net/board/index.php?board=29.0">CPG 1.4 Testing/Bugs</a> board. Please refer to the board for details.</li>
+        <li class="important">As you're currently using the beta version of coppermine 1.4, there are several more known issues that are being discussed in the <a href="http://coppermine.sourceforge.net/board/index.php?board=29.0">CPG 1.4 Testing/Bugs</a> board. Please refer to the board for details.</li>
 </ul>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
