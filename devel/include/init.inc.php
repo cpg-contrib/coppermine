@@ -167,8 +167,6 @@ while ($row = mysql_fetch_array($results)) {
 } // while
 mysql_free_result($results);
 
-
-
 // Reference 'site_url' to 'ecards_more_pic_target'
 $CONFIG['site_url'] =& $CONFIG['ecards_more_pic_target'];
 
@@ -202,10 +200,7 @@ if ($CONFIG['bridge_enable'] == 1) {
 
 define('UDB_INTEGRATION', $BRIDGE['short_name']);
 
-// User DB system
-//if (!CPGPluginAPI::action('UDB_INTEGRATION',false,CPG_EXEC_FIRST) && defined('UDB_INTEGRATION')) {
-    require_once 'bridge/' . UDB_INTEGRATION . '.inc.php';
-//}
+require_once 'bridge/' . UDB_INTEGRATION . '.inc.php';
 
 // Retrieve Array of Admin Groups (used for hiding admin usernames on thumbnails)
 $results = cpg_db_query("SELECT group_id FROM {$CONFIG['TABLE_USERGROUPS']} WHERE has_admin_access ");
@@ -216,7 +211,7 @@ while ($row = mysql_fetch_array($results)) {
 mysql_free_result($results);
 
 // Retrieve Array of Admin Users (used for hiding admin usernames on thumbnails)
-$results = cpg_db_query("SELECT {$cpg_udb->field['user_id']} FROM $cpg_udb->usertable WHERE {$cpg_udb->field['usertbl_group_id']} in (" . implode(',',$CONFIG['ADMIN_GROUPS']).')');
+$results = cpg_db_query("SELECT {$cpg_udb->field['user_id']} as user_id FROM $cpg_udb->usertable WHERE {$cpg_udb->field['usertbl_group_id']} in (" . implode(',',$CONFIG['ADMIN_GROUPS']).')');
 $CONFIG['ADMIN_USERS']=array();
 while ($row = mysql_fetch_array($results)) {
     $CONFIG['ADMIN_USERS'][] = $row['user_id'];
@@ -230,61 +225,7 @@ ob_start('cpg_filter_page_html');
 user_get_profile();
 
 // Authenticate
-//if (defined('UDB_INTEGRATION')) {
-    $cpg_udb->authenticate();
-/*} else {
-    if (!isset($_COOKIE[$CONFIG['cookie_name'] . '_uid']) || !isset($_COOKIE[$CONFIG['cookie_name'] . '_pass'])) {
-        $cookie_uid = 0;
-        $cookie_pass = '*';
-    } else {
-        $cookie_uid = (int)$_COOKIE[$CONFIG['cookie_name'] . '_uid'];
-        $cookie_pass = substr(addslashes($_COOKIE[$CONFIG['cookie_name'] . '_pass']), 0, 32);
-    }
-
-    $sql = "SELECT * " . "FROM {$CONFIG['TABLE_USERS']} WHERE user_id='$cookie_uid'" . "AND user_active = 'YES' " . "AND user_password != '' " . "AND BINARY MD5(user_password) = '$cookie_pass'";
-    $results = cpg_db_query($sql);
-
-    if (mysql_num_rows($results)) {
-        $USER_DATA = mysql_fetch_assoc($results);
-        //unset($USER_DATA['user_password']);
-        $USER_DATA['user_password'] = '********';
-
-                $USER_DATA = $USER_DATA + cpgGetUserData($USER_DATA['user_group'], explode(',', $USER_DATA['user_group_list']));
-
-        define('USER_ID', (int)$USER_DATA['user_id']);
-        define('USER_NAME', $USER_DATA['user_name']);
-        define('USER_GROUP', $USER_DATA['group_name']);
-        define('USER_GROUP_SET', '(' . implode(',', $USER_DATA['groups']) . ')');
-        define('USER_IS_ADMIN', (int)$USER_DATA['has_admin_access']);
-        define('USER_CAN_SEND_ECARDS', (int)$USER_DATA['can_send_ecards']);
-        define('USER_CAN_RATE_PICTURES', (int)$USER_DATA['can_rate_pictures']);
-        define('USER_CAN_POST_COMMENTS', (int)$USER_DATA['can_post_comments']);
-        define('USER_CAN_UPLOAD_PICTURES', (int)$USER_DATA['can_upload_pictures']);
-        define('USER_CAN_CREATE_ALBUMS', (int)$USER_DATA['can_create_albums']);
-        define('USER_UPLOAD_FORM', (int)$USER_DATA['upload_form_config']);
-        define('CUSTOMIZE_UPLOAD_FORM', (int)$USER_DATA['custom_user_upload']);
-        define('NUM_FILE_BOXES', (int)$USER_DATA['num_file_upload']);
-        define('NUM_URI_BOXES', (int)$USER_DATA['num_URI_upload']);
-        mysql_free_result($results);
-    } else {
-        $USER_DATA = cpgGetUserData(3, array(3));
-        define('USER_ID', 0);
-        define('USER_NAME', 'Anonymous');
-        define('USER_GROUP', $USER_DATA['group_name']);
-        define('USER_GROUP_SET', '(' . $USER_DATA['group_id'] . ')');
-        define('USER_IS_ADMIN', 0);
-        define('USER_CAN_SEND_ECARDS', (int)$USER_DATA['can_send_ecards']);
-        define('USER_CAN_RATE_PICTURES', (int)$USER_DATA['can_rate_pictures']);
-        define('USER_CAN_POST_COMMENTS', (int)$USER_DATA['can_post_comments']);
-        define('USER_CAN_UPLOAD_PICTURES', (int)$USER_DATA['can_upload_pictures']);
-        define('USER_CAN_CREATE_ALBUMS', 0);
-        define('USER_UPLOAD_FORM', (int)$USER_DATA['upload_form_config']);
-        define('CUSTOMIZE_UPLOAD_FORM', (int)$USER_DATA['custom_user_upload']);
-        define('NUM_FILE_BOXES', (int)$USER_DATA['num_file_upload']);
-        define('NUM_URI_BOXES', (int)$USER_DATA['num_URI_upload']);
-        mysql_free_result($results);
-    }*/
-//}
+$cpg_udb->authenticate();
 
 // Test if admin mode
 $USER['am'] = isset($USER['am']) ? (int)$USER['am'] : 0;
@@ -298,13 +239,6 @@ if (!USER_IS_ADMIN) {
     if (!$CONFIG['debug_mode']) $cpgdebugger->stop(); // useless to run debugger cos there's no output
     error_reporting(0); // hide all errors for visitors
 }
-/*
-if ($CONFIG['debug_notice']==1 && ($CONFIG['debug_mode']==1 || ($CONFIG['debug_mode']==2 && GALLERY_ADMIN_MODE ))) {
-    error_reporting (E_ALL);
-} else {
-    error_reporting (E_ALL ^ E_NOTICE);
-}
-*/
 
 // Process theme selection if present in URI or in user profile
 if (!empty($_GET['theme'])) {
@@ -338,7 +272,7 @@ if (isset($USER['lang']) && !strstr($USER['lang'], '/') && file_exists('lang/' .
 elseif ($CONFIG['charset'] == 'utf-8') 
 {
     include('include/select_lang.inc.php');
-    if (file_exists('lang/' . $USER['lang'] . '.php')) 
+    if (file_exists('lang/' . $USER['lang'] . '.php'))
     {
         $CONFIG['default_lang'] = $CONFIG['lang'];      // Save default language
         $CONFIG['lang'] = $USER['lang'];
