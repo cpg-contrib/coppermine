@@ -24,7 +24,7 @@ require('include/init.inc.php');
 require('include/smilies.inc.php');
 require('include/mailer.inc.php');
 
-if (!USER_CAN_SEND_ECARDS) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+if (!$CONFIG['report_post']==1) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
 //print_r(get_defined_constants());
 
