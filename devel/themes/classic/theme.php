@@ -1544,7 +1544,7 @@ function theme_html_picinfo(&$info)
     $html = '';
 
     $html .= "        <tr><td colspan=\"2\" class=\"tableh2_compact\"><b>{$lang_picinfo['title']}</b></td></tr>\n";
-    $template = "        <tr><td class=\"tableb_compact\" valign=\"top\" >%s:</td><td class=\"tableb_compact\">%s</td></tr>\n";
+    $template = "        <tr><td align=\"left\" class=\"tableb_compact\" valign=\"top\" >%s:</td><td align=\"left\" class=\"tableb_compact\">%s</td></tr>\n";
     foreach ($info as $key => $value) $html .= sprintf($template, $key, $value);
 
     return $html;
