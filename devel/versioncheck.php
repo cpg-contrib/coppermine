@@ -1728,7 +1728,7 @@ $return = '
 1.4.0|getlang.php|1.4.0|1.8|mandatory|r@
 1.4.0|groupmgr.php|1.4.0|1.17|mandatory|r@
 1.4.0|hitDetails.php|1.4.0|1.1|mandatory|r@
-1.4.0|image_processor.php|1.4.0|1.15|mandatory|r@
+1.4.0|image_processor.php|1.4.0|1.16|mandatory|r@
 1.4.0|index.php|1.4.0|1.67|mandatory|r@
 1.4.0|install.php|1.4.0|1.25|mandatory|r@
 1.4.0|installer.css|1.4.0|1.5|mandatory|r@
@@ -1754,7 +1754,7 @@ $return = '
 1.4.0|thumbnails.php|1.4.0|1.20|mandatory|r@
 1.4.0|update.php|1.4.0|1.16|mandatory|r@
 1.4.0|upgrade-1.0-to-1.2.php|1.4.0|1.7|mandatory|r@
-1.4.0|upload.php|1.4.0|1.55|mandatory|r@
+1.4.0|upload.php|1.4.0|1.56|mandatory|r@
 1.4.0|usermgr.php|1.4.0|1.26|mandatory|r@
 1.4.0|util.php|1.4.0|1.22|mandatory|r@
 1.4.0|versioncheck.php|1.4.0|1.28|mandatory|r@
