@@ -894,7 +894,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'groupp_only' => 'Membres du groupe \'%s\'',
   'err_no_alb_to_modify' => 'Il n\'y a pas d\'album modifiable dans la base.',
   'update' => 'Mettre l\'album à jour',
-  'notice1' => '(*) en fonction de la configuration des %sgroupes%s', (do not translate %s!)
+  'notice1' => '(*) en fonction de la configuration des %sgroupes%s', //(do not translate %s!)
 );
 
 // ------------------------------------------------------------------------- //
