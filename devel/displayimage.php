@@ -407,10 +407,7 @@ function display_fullsize_pic()
 <link rel="stylesheet" href="<?php echo $THEME_DIR ?>style.css" />
 <script type="text/javascript" src="scripts.js"></script>
 </head>
-<body scroll="auto" <?php if ($CONFIG['disable_popup_rightclick'] == 1) {
-        print 'onkeydown = "onKeyDown()"';
-    }
-    ?>>
+<body scroll="auto" marginwidth="0" marginheight="0">
 <script language="JavaScript" type="text/JavaScript">
 adjust_popup();
 </script>
