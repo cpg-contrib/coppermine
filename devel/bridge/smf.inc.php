@@ -204,6 +204,7 @@ function udb_authenticate()
         define('NUM_FILE_BOXES', (int)$USER_DATA['num_file_upload']);
         define('NUM_URI_BOXES', (int)$USER_DATA['num_URI_upload']);
     }
+    $USER_DATA['user_name'] = USER_NAME;
 }
 
 // Retrieve the name of a user
