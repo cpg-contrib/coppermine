@@ -429,7 +429,7 @@ function create_tables()
     $db_basic = 'sql/basic.sql';
     $sql_query .= fread(fopen($db_basic, 'r'), filesize($db_basic));
     // Insert the admin account
-    $sql_query .= "INSERT INTO CPG_users VALUES (1, 1, 'YES', '" . $HTTP_POST_VARS['admin_username'] . "', '" . $HTTP_POST_VARS['admin_password'] . "', NOW(), NOW(), '', '', '', '', '', '', '');\n";
+    $sql_query .= "INSERT INTO CPG_users VALUES (1, 1, 'YES', '" . $HTTP_POST_VARS['admin_username'] . "', '" . $HTTP_POST_VARS['admin_password'] . "', NOW(), NOW(), '', '', '', '', '', '', '','');\n";
     // Set configuration values for image package
     $sql_query .= "REPLACE INTO CPG_config VALUES ('thumb_method', '" . $HTTP_POST_VARS['thumb_method'] . "');\n";
     $sql_query .= "REPLACE INTO CPG_config VALUES ('impath', '" . $HTTP_POST_VARS['impath'] . "');\n";
