@@ -400,7 +400,7 @@ function get_and_convert_to_bytes ($ini_variable_name) {
 }
 // Moved to 'logger.inc.php' - omni
 // The function spring_cleaning is a garbage collection routine used to purge a directory of old files.
-if (!function_exists('spring_cleaning'))
+if (!function_exists('spring_cleaning')){
 function& spring_cleaning($directory_path, $cache_time = 86400, $exclusion_list = array('index.html')) {
 
     //Storage the deleted files
@@ -416,7 +416,7 @@ function& spring_cleaning($directory_path, $cache_time = 86400, $exclusion_list 
         return;
 
     }
-    
+
     // Now let's read through the directory contents.
     while (!(($file = readdir($directory_handle)) === false)) {
 
@@ -459,8 +459,8 @@ function& spring_cleaning($directory_path, $cache_time = 86400, $exclusion_list 
     // Don't forget to close the directory.
     closedir($directory_handle);
     return $deleted_list;
+	}
 }
-
 // The create_record function. Takes the encoded string. Returns the unique record ID.
 function create_record($encoded_string) {
 
