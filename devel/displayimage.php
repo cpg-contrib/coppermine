@@ -142,7 +142,6 @@ function html_picture()
         $pic_title ='';
         if ($CURRENT_PIC_DATA['title'] != '') {$pic_title .= $CURRENT_PIC_DATA['title']."\n";}
         if ($CURRENT_PIC_DATA['caption'] != '') {$pic_title .= $CURRENT_PIC_DATA['caption']."\n";}
-        if ($CURRENT_PIC_DATA['description'] != '') {$pic_title .= $CURRENT_PIC_DATA['description']."\n";}
         if ($CURRENT_PIC_DATA['keywords'] != '') {$pic_title .= "Abgebildet: ".$CURRENT_PIC_DATA['keywords']; }// added by gaugau
 
         if (isset($image_size['reduced'])) {
@@ -624,3 +623,5 @@ if (isset($HTTP_GET_VARS['fullsize'])){
         ob_end_flush();
 }
 ?>
+
+
