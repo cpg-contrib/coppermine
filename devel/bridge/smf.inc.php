@@ -139,11 +139,18 @@ function cm_get_user_data($pri_group, $groups)
         'can_create_albums' => 0,
         'pub_upl_need_approval' => 1,
         'priv_upl_need_approval' => 1,
+        'upload_form_config' => 0,
+        'custom_user_upload' => 0,
+        'num_file_upload' => 0,
+        'num_URI_upload' => 0,
         );
 
         if (isset($groups[0])) {
                 $result = db_query("SELECT MAX(group_quota) as disk_max, MIN(group_quota) as disk_min, " .
                         "MAX(can_rate_pictures) as can_rate_pictures, MAX(can_send_ecards) as can_send_ecards, " .
+                        "MAX(upload_form_config) as ufc_max, MIN(upload_form_config) as ufc_min, " .
+                        "MAX(custom_user_upload) as custom_user_upload, MAX(num_file_upload) as num_file_upload, " .
+                        "MAX(num_URI_upload) as num_URI_upload, " .
                         "MAX(can_post_comments) as can_post_comments, MAX(can_upload_pictures) as can_upload_pictures, " .
                         "MAX(can_create_albums) as can_create_albums, " .
                         "MIN(pub_upl_need_approval) as pub_upl_need_approval, MIN( priv_upl_need_approval) as  priv_upl_need_approval ".
@@ -158,6 +165,29 @@ function cm_get_user_data($pri_group, $groups)
 
                 $result = db_query("SELECT group_name FROM  {$CONFIG['TABLE_USERGROUPS']} WHERE group_id= " . $pri_group);
                 $temp_arr = mysql_fetch_array($result);
+
+                if ( $USER_DATA['ufc_max'] == $USER_DATA['ufc_min'] ) {
+
+                    $USER_DATA["upload_form_config"] = $USER_DATA['ufc_min'];
+
+                } elseif ($USER_DATA['ufc_min'] == 0) {
+
+                    $USER_DATA["upload_form_config"] = $USER_DATA['ufc_max'];
+
+                } elseif ((($USER_DATA['ufc_max'] == 2) or ($USER_DATA['ufc_max'] == 3)) and ($USER_DATA['ufc_min'] == 1)) { 
+
+                    $USER_DATA["upload_form_config"] = 3;
+
+                } elseif (($USER_DATA['ufc_max'] == 3) and ($USER_DATA['ufc_min'] == 2)) { 
+
+                    $USER_DATA["upload_form_config"] = 3;
+
+                } else {
+
+                    $USER_DATA["upload_form_config"] = 0;
+
+                }
+
                 $USER_DATA["group_quota"] = ($USER_DATA["disk_min"])?$USER_DATA["disk_max"]:0;
                 $USER_DATA["group_name"] = $temp_arr["group_name"];
                 $USER_DATA["group_id"] = $pri_group;
@@ -207,6 +237,10 @@ function udb_authenticate()
         'can_create_albums' => 0,
         'pub_upl_need_approval' => 1,
         'priv_upl_need_approval' => 1,
+        'upload_form_config' => 0,
+        'custom_user_upload' => 0,
+        'num_file_upload' => 0,
+        'num_URI_upload' => 0,
         );
 
     // get first 50 chars
@@ -230,6 +264,10 @@ function udb_authenticate()
         define('USER_CAN_POST_COMMENTS', (int)$USER_DATA['can_post_comments']);
         define('USER_CAN_UPLOAD_PICTURES', (int)$USER_DATA['can_upload_pictures']);
         define('USER_CAN_CREATE_ALBUMS', 0);
+        define('USER_UPLOAD_FORM', (int)$USER_DATA['upload_form_config']);
+        define('CUSTOMIZE_UPLOAD_FORM', (int)$USER_DATA['custom_user_upload']);
+        define('NUM_FILE_BOXES', (int)$USER_DATA['num_file_upload']);
+        define('NUM_URI_BOXES', (int)$USER_DATA['num_URI_upload']);
         mysql_free_result($result);
     } else {
                 if ($user_settings['ID_GROUP']){
@@ -254,6 +292,10 @@ function udb_authenticate()
         define('USER_CAN_POST_COMMENTS', (int)$USER_DATA['can_post_comments']);
         define('USER_CAN_UPLOAD_PICTURES', (int)$USER_DATA['can_upload_pictures']);
         define('USER_CAN_CREATE_ALBUMS', (int)$USER_DATA['can_create_albums']);
+        define('USER_UPLOAD_FORM', (int)$USER_DATA['upload_form_config']);
+        define('CUSTOMIZE_UPLOAD_FORM', (int)$USER_DATA['custom_user_upload']);
+        define('NUM_FILE_BOXES', (int)$USER_DATA['num_file_upload']);
+        define('NUM_URI_BOXES', (int)$USER_DATA['num_URI_upload']);
     }
 }
 

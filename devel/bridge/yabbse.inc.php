@@ -141,6 +141,10 @@ function udb_authenticate()
         'can_create_albums' => 0,
         'pub_upl_need_approval' => 1,
         'priv_upl_need_approval' => 1,
+        'upload_form_config' => 0,
+        'custom_user_upload' => 0,
+        'num_file_upload' => 0,
+        'num_URI_upload' => 0,
         );
     // get first 50 chars
     $HTTP_USER_AGENT = substr($HTTP_SERVER_VARS['HTTP_USER_AGENT'], 0, 50);
@@ -163,6 +167,10 @@ function udb_authenticate()
         define('USER_CAN_POST_COMMENTS', (int)$USER_DATA['can_post_comments']);
         define('USER_CAN_UPLOAD_PICTURES', (int)$USER_DATA['can_upload_pictures']);
         define('USER_CAN_CREATE_ALBUMS', 0);
+        define('USER_UPLOAD_FORM', (int)$USER_DATA['upload_form_config']);
+        define('CUSTOMIZE_UPLOAD_FORM', (int)$USER_DATA['custom_user_upload']);
+        define('NUM_FILE_BOXES', (int)$USER_DATA['num_file_upload']);
+        define('NUM_URI_BOXES', (int)$USER_DATA['num_URI_upload']);
         mysql_free_result($result);
     } else {
         if ($settings[7] == 'Administrator' || $settings[7] == 'Global Moderator')
@@ -203,6 +211,10 @@ function udb_authenticate()
         define('USER_CAN_POST_COMMENTS', (int)$USER_DATA['can_post_comments']);
         define('USER_CAN_UPLOAD_PICTURES', (int)$USER_DATA['can_upload_pictures']);
         define('USER_CAN_CREATE_ALBUMS', (int)$USER_DATA['can_create_albums']);
+        define('USER_UPLOAD_FORM', (int)$USER_DATA['upload_form_config']);
+        define('CUSTOMIZE_UPLOAD_FORM', (int)$USER_DATA['custom_user_upload']);
+        define('NUM_FILE_BOXES', (int)$USER_DATA['num_file_upload']);
+        define('NUM_URI_BOXES', (int)$USER_DATA['num_URI_upload']);
         mysql_free_result($result);
     }
 }
