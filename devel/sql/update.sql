@@ -447,5 +447,7 @@ INSERT INTO CPG_config VALUES ('users_can_edit_pics', '0');
 
 INSERT INTO CPG_config VALUES ('allow_unlogged_access', '1');
 
+INSERT INTO CPG_config VALUES ('home_target', 'index.php');
+
 DELETE FROM CPG_config WHERE `name` = 'comment_email_notification';
 DELETE FROM CPG_CONFIG WHERE `name` = 'hide_admin_uploader';

@@ -50,6 +50,7 @@ INSERT INTO CPG_config VALUES ('default_dir_mode', '0755');
 INSERT INTO CPG_config VALUES ('default_file_mode', '0644');
 INSERT INTO CPG_config VALUES ('default_sort_order', 'na');
 INSERT INTO CPG_config VALUES ('ecards_more_pic_target', 'http://coppermine.sourceforge.net/');
+INSERT INTO CPG_config VALUES ('home_target', 'index.php');
 INSERT INTO CPG_config VALUES ('enable_smilies', '1');
 INSERT INTO CPG_config VALUES ('filter_bad_words', '0');
 INSERT INTO CPG_config VALUES ('forbiden_fname_char', '$/\\\\:*?&quot;\'&lt;&gt;|`');

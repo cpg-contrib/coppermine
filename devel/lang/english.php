@@ -109,6 +109,8 @@ $lang_bbcode_help = 'You can add clickable links and some formating to this fiel
 // ------------------------------------------------------------------------- //
 
 $lang_main_menu = array(
+  'home_title' => 'Go to the home page',
+  'home_lnk' => 'Home',
   'alb_list_title' => 'Go to the album list',
   'alb_list_lnk' => 'Album list',
   'my_gal_title' => 'Go to my personal gallery',
@@ -623,6 +625,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Gallery description', 'gallery_description', 0, 'f=index.htm&amp;as=admin_general_description&amp;ae=admin_general_description_end'), //cpg 1.4
   array('Gallery administrator email', 'gallery_admin_email', 0, 'f=index.htm&amp;as=admin_general_email&amp;ae=admin_general_email_end'), //cpg 1.4
   array('URL of your coppermine gallery folder (no \'index.php\' or similar at the end)', 'ecards_more_pic_target', 0, 'f=index.htm&amp;as=admin_general_coppermine-url&amp;ae=admin_general_coppermine-url_end'), //cpg 1.4
+  array('URL of your home page', 'home_target', 0, 'f=index.htm&amp;as=admin_general_home-url&amp;ae=admin_general_home-url_end'), //cpg 1.4
   array('Gallery is offline', 'offline', 1, 'f=index.htm&amp;as=admin_general_offline&amp;ae=admin_general_offline_end'), //cpg 1.4
   array('Allow ZIP-download of favorites', 'enable_zipdownload', 1, 'f=index.htm&amp;as=admin_general_zip-download&amp;ae=admin_general_zip-download_end'), //cpg 1.4
   array('Timezone difference relative to GMT (current time: ' . localised_date(-1, $comment_date_fmt) . ')','time_offset',0, 'f=index.htm&amp;as=admin_general_time-offset&amp;ae=admin_general_time-offset_end&amp;top=1'), //cpg 1.4
