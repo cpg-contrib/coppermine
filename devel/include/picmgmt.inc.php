@@ -56,7 +56,8 @@ function add_picture($aid, $filepath, $filename, $title = '', $caption = '', $ke
         $record = mysql_fetch_array($result);
         $total_space_used = $record[0];
         mysql_free_result($result);
-        if ($total_space_used + $total_filesize > $USER_DATA['group_quota'] << 10) {
+
+        if ((($total_space_used + $total_filesize)>>10) > $USER_DATA['group_quota'] ) {
             @unlink($image);
             if (is_image($image)) {
                 @unlink($normal);
