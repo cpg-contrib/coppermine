@@ -1234,7 +1234,7 @@ function& cpg_get_default_lang_var($language_var_name) {
                	$language = $CONFIG['lang'];
         }
         include('lang/'.$language.'.php');
-        return $$lang_var_name;
+        return $$language_var_name;
 }
 
 //defined new debug_output function here in functions.inc.php instead of theme.php with different function names to avoid incompatibilities with users not updating their themes as required. Advanced info is only output if (GALLERY_ADMIN_MODE == TRUE)  - GauGau 2003-11-23
