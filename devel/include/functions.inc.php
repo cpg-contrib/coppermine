@@ -2389,4 +2389,69 @@ mysql_free_result($results);
 return $BRIDGE;
 }
 
+function cpg_get_webroot_path() {
+    // get the webroot folder out of a given PHP_SELF of any coppermine page
+
+    // what we have: we can say for sure where we are right now: $PHP_SELF (if the server doesn't even have it, there will be problems everywhere anyway)
+
+    // let's make those into an array:
+    $path_from_serverroot[] = $_SERVER["SCRIPT_FILENAME"];
+    $path_from_serverroot[] = $_SERVER["PATH_TRANSLATED"];
+    $path_from_serverroot[] = $HTTP_SERVER_VARS["SCRIPT_FILENAME"];
+    $path_from_serverroot[] = $HTTP_SERVER_VARS["PATH_TRANSLATED"];
+    // for debugging: add some vars that actually don't exist, just to test the script
+    //$path_from_serverroot[] = '/foo/bar/coppermine/';
+    //$path_from_serverroot[] = '';
+    //$path_from_serverroot[] = '/foo/bar/public_html/coppermine/testpath.php';
+
+    // we should be able to tell the current script's filename by removing everything before and including the last slash in $PHP_SELF
+    $filename = ltrim(strrchr($PHP_SELF, '/'), '/');
+    //print 'filename:'.$filename;
+    //print "<hr />\n";
+
+    // let's eliminate all those vars that don't contain the filename (and replace the funny notation from windows machines)
+    foreach($path_from_serverroot as $key) {
+        $key = str_replace('\\\\', '/', $key); // replace the windows notation
+        if(strstr($key, $filename) != FALSE) { // eliminate all that don't contain the filename
+            $path_from_serverroot2[] = $key;
+        }
+    }
+
+    // remove double entries in the array
+    $path_from_serverroot3 = array_unique($path_from_serverroot2);
+
+    // in the best of all worlds, the array is not empty
+    if (is_array($path_from_serverroot3)) {
+        $counter = 0;
+        foreach($path_from_serverroot3 as $key) {
+            // easiest possible solution: $PHP_SELF is contained in the array - if yes, we're lucky (in fact we could have done this before, but I was going to leave room for other checks to be inserted before this one)
+            if(strstr($key, $PHP_SELF) != FALSE) { // eliminate all that don't contain $PHP_SELF
+                $path_from_serverroot4[] = $key;
+                $counter++;
+            }
+        }
+    } else {
+        // we're f***ed: the array is empty, there's no server var we could actually use
+        $return = '';
+    }
+
+    if ($counter == 1) { //we have only one entry left - we're happy
+        $return = $path_from_serverroot4[0];
+    } elseif ($counter == 0) { // we're f***ed: the array is empty, there's no server var we could actually use
+        $return = '';
+    } else { // there is more than one entry, and they differ. For now, let's use the first one. Maybe we could do some advanced checking later
+        $return = $path_from_serverroot4[0];
+    }
+
+    // strip the content from $PHP_SELF from the $return var and we should (hopefully) have the absolute path to the webroot
+    $return = str_replace($PHP_SELF, '', $return);
+
+    // the return var should at least contain a slash - if it doesn't, add it (although this is more or less wishfull thinking)
+    if ($return == '') {
+        $return = '/';
+    }
+
+    return $return;
+}
+
 ?>
