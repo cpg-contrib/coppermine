@@ -37,8 +37,13 @@ $search_string = preg_replace('/&.*;/i', '', $search_string);
 if (!$mb_charset)
 	$search_string = preg_replace('/[^0-9a-z %]/i', '', $search_string);
 
+if (!isset($USER['search']['params'])){
+	$USER['search']['params']['title'] = $USER['search']['params']['caption'] = $USER['search']['params']['keywords'] = 1;
+}
+
 if (isset($_GET['album']) && $_GET['album'] == 'search') 
 	$_POST = $USER['search'];
+
 
 $type = " {$_POST['type']} ";
 
