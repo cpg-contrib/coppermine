@@ -2748,6 +2748,36 @@ function cpg_get_custom_include($path = '')
     return $return;
 }
 
+/**
+ * filter_content()
+ *
+ * Replace strings that match badwords with tokens indicating it has been filtered.
+ *
+ * @param string or array $str
+ * @return string
+ **/
+function filter_content($str)
+{
+    global $lang_bad_words, $CONFIG, $ercp;
+    if ($CONFIG['filter_bad_words']) {
+        static $ercp=array();
+        if (!count($ercp)) foreach($lang_bad_words as $word) {
+            $ercp[] = '/' . ($word[0] == '*' ? '': '\b') . str_replace('*', '', $word) . ($word[(strlen($word)-1)] == '*' ? '': '\b') . '/i';
+        }
+        if (is_array($str)) {
+            $new_str=array();
+            foreach ($str as $key=>$element) {
+                $new_str[$key]=filter_content($element);
+            }
+            $str=$new_str;
+        } else {
+        $stripped_str = strip_tags($str);
+        $str = preg_replace($ercp, '(...)', $stripped_str);
+        }
+    }
+return $str;
+}
+
 /*function get_post_var($name, $default = '')
 {
     return isset($_POST[$name]) ? $_POST[$name] : $default;
