@@ -21,9 +21,9 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
 // info about translators and translated language
 $lang_translation_info = array(
-  'lang_name_english' => 'English',
-  'lang_name_native' => 'English',
-  'lang_country_code' => 'gb',
+  'lang_name_english' => 'English_US',
+  'lang_name_native' => 'English_US',
+  'lang_country_code' => 'us',
   'trans_name'=> 'Coppermine dev team',
   'trans_email' => '',
   'trans_website' => 'http://coppermine.sourceforge.net/',

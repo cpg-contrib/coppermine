@@ -1925,7 +1925,7 @@ function& cpg_get_default_lang_var($language_var_name,$overide_language = null) 
 }
 
 // Returns a variable from the current language file
-// If variable doesn't exists gets value from english lang file
+// If variable doesn't exists gets value from english_us lang file
 
 /**
  * cpg_lang_var()
@@ -2320,7 +2320,8 @@ $lang_language_data['croatian'] = array('Croatian','Hrvatski','hr');
 $lang_language_data['czech'] = array('Czech','&#x010C;esky','cz');
 $lang_language_data['danish'] = array('Danish','Dansk','dk');
 $lang_language_data['dutch'] = array('Dutch','Nederlands','nl');
-$lang_language_data['english'] = array('English','English','gb');
+$lang_language_data['english'] = array('English_US','English_US','us');
+$lang_language_data['english_gb'] = array('English_British','English_British','gb');
 $lang_language_data['estonian'] = array('Estonian','Eesti','ee');
 $lang_language_data['finnish'] = array('Finnish','Suomea','fi');
 $lang_language_data['french'] = array('French','Fran&ccedil;ais','fr');
