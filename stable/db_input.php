@@ -305,7 +305,7 @@ switch ($event) {
         } elseif ($PIC_NEED_APPROVAL) {
             pageheader($lang_info);
             msg_box($lang_info, $lang_db_input_php['upload_success'], $lang_continue, 'index.php');
-            // start: send admin approval mail added by gaugau: 03-11-09
+            // start: send admin approval mail
             if ($CONFIG['upl_notify_admin_email'])
             {
                 include_once('include/mailer.inc.php');
