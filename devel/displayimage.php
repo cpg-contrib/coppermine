@@ -379,7 +379,7 @@ function html_comments($pid)
 
 //report to moderator buttons
     if (($CONFIG['report_post']==1) && (USER_CAN_SEND_ECARDS)) {
-                                $report_comment_tgt = "report_file.php?album=$album$cat_link&amp;pid=$pid&amp;pos=$pos&what=comment";
+                                $report_comment_tgt = "report_file.php?album=$album$cat_link&amp;pid=$pid&amp;pos=$pos&amp;what=comment";
     } else { // remove buttons if report toggle is off
         template_extract_block($template_image_comments, 'report_comment_button');
     }

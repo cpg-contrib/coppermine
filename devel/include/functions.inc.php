@@ -2281,7 +2281,7 @@ if ($CONFIG['language_flags'] == 0 && $parameter == 'flags'){
  //get the url and all vars except $lang
  $cpgChangeUrl = $_SERVER["SCRIPT_NAME"]."?";
  foreach ($_GET as $key => $value) {
-    if ($key!="lang"){$cpgChangeUrl.= $key . "=" . $value . "&";}
+    if ($key!="lang"){$cpgChangeUrl.= $key . "=" . $value . "&amp;";}
  }
  $cpgChangeUrl.= 'lang=';
 
@@ -2423,7 +2423,7 @@ if ($CONFIG['theme_list'] == 0){
 //get the url and all vars except $theme
 $cpgCurrentTheme = $_SERVER["SCRIPT_NAME"]."?";
 foreach ($_GET as $key => $value) {
-    if ($key!="theme"){$cpgCurrentTheme.= $key . "=" . $value . "&";}
+    if ($key!="theme"){$cpgCurrentTheme.= $key . "=" . $value . "&amp;";}
 }
 $cpgCurrentTheme.="theme=";
 
@@ -2508,7 +2508,7 @@ $help_theme = $CONFIG['theme'];
 if (isset($USER['theme'])) {
     $help_theme = $USER['theme'];
 }
-$help_html = "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('docs/showdoc.php?css=" . $help_theme . "&" . $reference . "','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=" . $width . ",height=" . $height . "')\" style=\"cursor:help\"><img src=\"images/help.gif\" width=\"13\" height=\"11\" border=\"0\" alt=\"\" title=\"\" /></a>";
+$help_html = "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('docs/showdoc.php?css=" . $help_theme . "&amp;" . $reference . "','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=" . $width . ",height=" . $height . "')\" style=\"cursor:help\"><img src=\"images/help.gif\" width=\"13\" height=\"11\" border=\"0\" alt=\"\" title=\"\" /></a>";
 return $help_html;
 }
 
