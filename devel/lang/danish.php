@@ -23,10 +23,12 @@ $lang_translation_info = array(
 'lang_name_english' => 'Danish',  //the name of your language in English, e.g. 'Greek' or 'Spanish' 
 'lang_name_native' => 'Dansk', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '????????' or 'Español' 
 'lang_country_code' => 'dk', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es' 
-'trans_name'=> 'David Holm', //the name of the translator - can be a nickname 
-'trans_email' => 'wormie@alberg.dk', //translator's email address (optional) 
-'trans_website' => '', //translator's website (optional) 
-'trans_date' => '2003-10-04', //the date the translation was created / last modified 
+'trans_name'=> 'Laugesen', //the name of the translator - can be a nickname 
+'trans_email' => 'laugesen@tommerup.net', //translator's email address (optional) 
+'trans_website' => 'http://www.tommerup.net', //translator's website (optional) 
+'trans_name2'=> 'David Holm', //the name of the translator - can be a nickname 
+'trans_email2' => 'wormie@alberg.dk', //translator's email address (optional)
+'trans_date' => '2003-10-07', //the date the translation was created / last modified 
 ); 
 
 $lang_charset = 'iso-8859-1';
@@ -77,13 +79,13 @@ $lang_errors = array(
 	'param_missing' => 'Script kaldt uden de nødvendige parametre(r).',
 	'non_exist_ap' => 'Det valgte album/billede eksister ikke !',
 	'quota_exceeded' => 'Disk mængden overskredet<br /><br />Du har plads til en [quota]K, Dine billeder bruger aktuelt [space]K, tilføjelse af dette billede medfører en overskridelse af din tilladte mængde.',
-	'gd_file_type_err' => 'Når der anvendes GD billedeteknink, er tilladte typer kun JPEG og PNG.',
-	'invalid_image' => 'Billedet som du har uploadet er defekt eller kan ikke bruges med GD billedeteknik',
+	'gd_file_type_err' => 'Når der anvendes GD billede teknik, er tilladte typer kun JPEG og PNG.',
+	'invalid_image' => 'Billedet som du har uploadet er defekt eller kan ikke bruges med GD billede teknik',
 	'resize_failed' => 'Ej muligt at oprette minibillede eller reduceret billede størrelse.',
 	'no_img_to_display' => 'Intet billede at vise',
 	'non_exist_cat' => 'Den valgte kategori findes ikke',
-	'orphan_cat' => 'En kategori har ikke ikke et tilhørsforhold, kør kategori manager for at rette problemet.',
-	'directory_ro' => 'Mappen \'%s\' er skrivebeskyttet,billeder kan ikke slettes',
+	'orphan_cat' => 'En kategori har ikke et tilhørsforhold, kør kategori manager for at rette problemet.',
+	'directory_ro' => 'Mappen \'%s\' er skrivebeskyttet, billeder kan ikke slettes',
 	'non_exist_comment' => 'Den valgte kommentar findes ikke.',
 	'pic_in_invalid_album' => 'Billede er i et ikke eksisterende album (%s)!?'
         'banned' => 'Din adgang til denne side er spærret.', 
@@ -177,7 +179,7 @@ $lang_img_nav_bar = array(
 $lang_rate_pic = array(
 	'rate_this_pic' => 'Bedøm dette billede ',
 	'no_votes' => '(Ej bedømt endnu)',
-	'rating' => '(Aktuel karakter : %s / 5 med %s stemmer)',
+	'rating' => '(Aktuel karakter: %s / 5 med %s stemmer)',
 	'rubbish' => 'Dårligt',
 	'poor' => 'Ringe',
 	'fair' => 'Rimeligt',
@@ -205,10 +207,10 @@ $lang_cpg_die = array(
 );
 
 $lang_display_thumbnails = array(
-	'filename' => 'Filnavn : ',
-	'filesize' => 'Filstørrelse : ',
-	'dimensions' => 'Dimensioner : ',
-	'date_added' => 'Tilføjet dato : '
+	'filename' => 'Filnavn: ',
+	'filesize' => 'Filstørrelse: ',
+	'dimensions' => 'Dimensioner: ',
+	'date_added' => 'Tilføjet dato: '
 );
 
 $lang_get_pic_data = array(
@@ -278,12 +280,12 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
-	'alb_need_name' => 'Album skal have et navn !',
-	'confirm_modifs' => 'Er du sikker på at du vil lave disse ændringer ?',
-	'no_change' => 'Du lavede ingen ændringer !',
+	'alb_need_name' => 'Album skal have et navn!',
+	'confirm_modifs' => 'Er du sikker på at du vil lave disse ændringer?',
+	'no_change' => 'Du lavede ingen ændringer!',
 	'new_album' => 'Nyt album',
-	'confirm_delete1' => 'Er du sikker på du vil slette dette album ?',
-	'confirm_delete2' => '\nAlle billeder og kommentarer forsvinder !',
+	'confirm_delete1' => 'Er du sikker på du vil slette dette album?',
+	'confirm_delete2' => '\nAlle billeder og kommentarer forsvinder!',
 	'select_first' => 'Vælg først et album',
 	'alb_mrg' => 'Album Manager',
 	'my_gallery' => '* Mit galleri *',
@@ -299,9 +301,9 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
-	'miss_param' => 'Parameter Parameters obligatorisk ved \'%s\'operation ej udført  !',
+	'miss_param' => 'Parameter Parameters obligatorisk ved \'%s\'operation ej udført!',
 	'unknown_cat' => 'Valgte kategori eksister ikke i databasen',
-	'usergal_cat_ro' => 'Bruger galleri kategorien kan ikke slettes !',
+	'usergal_cat_ro' => 'Bruger galleri kategorien kan ikke slettes!',
 	'manage_cat' => 'Administrer kategorier',
 	'confirm_delete' => 'Er du sikker på du ønsker at SLETTE denne kategori',
 	'category' => 'Kategori',
@@ -374,12 +376,12 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 
 	'Billede og minibillede indstillinger',
 	array('Kvalitet for JPEG billeder', 'jpeg_qual', 0),
-	array('Max dimension på minibilleder <b>*</b>', 'thumb_width', 0),
-        array('Brug dimension ( bredde, højde eller maximum af de to til minibilleder )<b>*</b>', 'thumb_use', 7),
+	array('Maks. dimension på minibilleder <b>*</b>', 'thumb_width', 0),
+        array('Brug dimension ( bredde, højde eller maksimum af de to til minibilleder )<b>*</b>', 'thumb_use', 7),
 	array('Opret mellemstore billeder','make_intermediate',1),
-	array('Max bredde eller højde for et mellemliggende billede <b>*</b>', 'picture_width', 0),
-	array('Max størrelse for uploadet billeder (KB)', 'max_upl_size', 0),
-	array('Max bredde eller højde for uploadet billeder (pixels)', 'max_upl_width_height', 0),
+	array('Maks. bredde eller højde for et mellemliggende billede <b>*</b>', 'picture_width', 0),
+	array('Maks. størrelse for uploadet billeder (KB)', 'max_upl_size', 0),
+	array('Maks. bredde eller højde for uploadet billeder (pixels)', 'max_upl_width_height', 0),
 
 	'Bruger indstillinger',
 	array('Tillad registrering af nye brugere', 'allow_user_registration', 1),
@@ -393,8 +395,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Felt 3 navn', 'user_field3_name', 0),
 	array('Felt 4 navn', 'user_field4_name', 0),
 
-	'Advanceret billede og minibillede indstillinger',
-        array('Vis ikon for private album for anononyme brugere','show_private',1),
+	'Avanceret billede og minibillede indstillinger',
+        array('Vis ikon for private album for anonyme brugere','show_private',1),
 	array('Forbudte karakterer i filnavne', 'forbiden_fname_char',0),
 	array('Accepterede filtyper for uploadede billeder', 'allowed_file_extensions',0),
 	array('Program til skalering af billeder','thumb_method',2),
@@ -408,8 +410,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Foranstillet navn på minibilleder <b>*</b>', 'thumb_pfx', 0),
 	array('Standard tilstand på mapper', 'default_dir_mode', 0),
 	array('standard tilstand på billeder', 'default_file_mode', 0),
-        array('Bloker højre klik på fuld-størrelse popup vindue (JavaScript - kan omgåes)', 'disable_popup_rightclick', 1), 
-        array('Bloker højre klik på alle "almindelige" sider (JavaScript - kan omgåes)', 'disable_gallery_rightclick', 1), 
+        array('Bloker højre klik på fuld-størrelse popup vindue (JavaScript - kan omgås)', 'disable_popup_rightclick', 1), 
+        array('Bloker højre klik på alle "almindelige" sider (JavaScript - kan omgås)', 'disable_gallery_rightclick', 1), 
 
 	'Cookies &amp; tegn-kodnings indstillinger',
 	array('Navn på cookie brugt af dette system', 'cookie_name', 0),
@@ -429,7 +431,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 	'empty_name_or_com' => 'Du skal indtaste dit navn og en kommentar',
 	'com_added' => 'Din kommentar blev tilføjet',
-	'alb_need_title' => 'Du skal angive en titel for dit album !',
+	'alb_need_title' => 'Du skal angive en titel for dit album!',
 	'no_udp_needed' => 'Der var ikke behov for en opdatering.',
 	'alb_updated' => 'Albummet blev opdateret',
 	'unknown_album' => 'Det valgte album eksisterer ikke eller du har ikke rettigheder til at uploade til det',
@@ -439,14 +441,14 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 	'err_move' => 'Kunne ikke flytte %s til %s !',
 	'err_fsize_too_large' => 'Det billede du har uploadet er for stort (max tilladte størrelse er %s x %s) !',
 	'err_imgsize_too_large' => 'Den fil du har uploadet er for stor (max tilladte filstørrelse er %s KB) !',
-	'err_invalid_img' => 'Filen du har uploadet er ikke et gyldigt billede !',
+	'err_invalid_img' => 'Filen du har uploadet er ikke et gyldigt billede!',
 	'allowed_img_types' => 'Du kan kun uploade %s billeder.',
 	'err_insert_pic' => 'Billedet \'%s\' kunne ikke indsættes i albummet ',
 	'upload_success' => 'Dit billede blev uploadet med success<br /><br />Det er synligt når en administrator har godkendt det.',
 	'info' => 'Information',
 	'com_added' => 'Kommentar tilføjet',
 	'alb_updated' => 'Album opdateret',
-	'err_comment_empty' => 'Din kommentar er tom  !',
+	'err_comment_empty' => 'Din kommentar er tom !',
 	'err_invalid_fext' => 'Kun filer med følgende endelser er gyldige : <br /><br />%s.',
 	'no_flood' => 'Desværre, men du er stadig den seneste der har kommenteret dette billede<br /><br />Rediger kommentaren hvis du vil ændre den',
 	'redirect_msg' => 'Du bliver viderestillet.<br /><br /><br />Tryk på \'FORTSÆT\' hvis siden ikke opdateres automatisk',
@@ -491,7 +493,7 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 if (defined('DISPLAYIMAGE_PHP')){
 
 $lang_display_image_php = array(
-	'confirm_del' => 'Er du sikker på du ønsker at SLETTE dette billede ? \\nKommentarer bliver også slettet.',
+	'confirm_del' => 'Er du sikker på du ønsker at SLETTE dette billede? \\nKommentarer bliver også slettet.',
 	'del_pic' => 'SLET DETTE BILLEDE',
 	'size' => '%s x %s pixels',
 	'views' => '%s gange',
@@ -523,11 +525,11 @@ $lang_picinfo = array(
 $lang_display_comments = array(
 	'OK' => 'OK',
 	'edit_title' => 'Ret denne kommentar',
-	'confirm_delete' => 'Er du sikker på at du vil slette denn kommentar ?',
+	'confirm_delete' => 'Er du sikker på at du vil slette denne kommentar?',
 	'add_your_comment' => 'Tilføj din kommentar',
         'name'=>'Navn',
         'comment'=>'Kommentar',
-	'your_name' => 'Anononym',
+	'your_name' => 'Anonym',
 );
 
 $lang_fullsize_popup = array(
@@ -542,10 +544,10 @@ $lang_fullsize_popup = array(
 
 if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array(
 	'title' => 'Send et e-postkort',
-	'invalid_email' => '<b>Advarsel</b> : ugyldig e-mail adresse !',
+	'invalid_email' => '<b>Advarsel</b>: ugyldig e-mail adresse!',
 	'ecard_title' => 'Et e-postkort fra %s til dig',
 	'view_ecard' => 'Hvis kortet ikke vises korrekt, klik her',
-	'view_more_pics' => 'Klik på dette link for at se flere billeder !',
+	'view_more_pics' => 'Klik på dette link for at se flere billeder!',
 	'send_success' => 'Dit e-postkort blev sendt',
 	'send_failed' => 'Beklager men serveren kan ikke sende dit e-postkort...',
 	'from' => 'Fra',
@@ -599,7 +601,7 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
 	'apply' => 'Tilføj rettelser',
 	'create_new_group' => 'Opret ny gruppe',
 	'del_groups' => 'Slet valgte gruppe(er)',
-	'confirm_del' => 'Advarsel, når du sletter en gruppe, vil brugere tilhørende denne gruppe blive flyttet til gruppen af \'Registrerede\' brugere !\n\nVil du fortsætte ?',
+	'confirm_del' => 'Advarsel, når du sletter en gruppe, vil brugere tilhørende denne gruppe blive flyttet til gruppen af \'Registrerede\' brugere !\n\nVil du fortsætte?',
 	'title' => 'Administrer bruger grupper',
 	'approval_1' => 'Offentlig upload godkendelse(1)',
 	'approval_2' => 'Privat Upload godkendelse(2)',
@@ -615,11 +617,11 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
 if (defined('INDEX_PHP')){
 
 $lang_index_php = array(
-	'welcome' => 'Velkommen !'
+	'welcome' => 'Velkommen!'
 );
 
 $lang_album_admin_menu = array(
-	'confirm_delete' => 'Er du sikker på du vil SLETTE dette album ? \\nAlle billeder og kommentarer vil også blive slettet.',
+	'confirm_delete' => 'Er du sikker på du vil SLETTE dette album? \\nAlle billeder og kommentarer vil også blive slettet.',
 	'delete' => 'SLET',
 	'modify' => 'REDIGER',
 	'edit_pics' => 'REDIGER BILLEDER',
@@ -669,7 +671,7 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
 if (defined('LOGOUT_PHP')) $lang_logout_php = array(
 	'logout' => 'Logud',
 	'bye' => 'Farvel %s ...',
-	'err_not_loged_in' => 'Du er ikke logget ind !',
+	'err_not_loged_in' => 'Du er ikke logget ind!',
 );
 
 // ------------------------------------------------------------------------- //
@@ -696,7 +698,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 	'me_only' => 'Kun mig',
 	'owner_only' => 'Album ejer (%s)',
 	'groupp_only' => 'Medlemmer af \'%s\' gruppen',
-	'err_no_alb_to_modify' => 'Intet album at rette i databasen.',
+	'err_no_alb_to_modify' => 'Intet album at korrigerer i databasen.',
 	'update' => 'Opdater album'
 );
 
@@ -725,13 +727,13 @@ EOT;
 $lang_register_php = array(
 	'page_title' => 'Bruger registrering',
 	'term_cond' => 'Regler og betingelser',
-	'i_agree' => 'Jeg er ening',
+	'i_agree' => 'Jeg er enig',
 	'submit' => 'Send registrering',
 	'err_user_exists' => 'Brugernavnet du har skrevet findes allerede, vælge venligst et andet',
 	'err_password_mismatch' => 'de to password er ikke ens, prøv igen',
 	'err_uname_short' => 'Brugernavn skal være på mindst 2 karakterer',
 	'err_password_short' => 'Password skal være på mindst 2 karakterer',
-	'err_uname_pass_diff' => 'Username og password skal være forskellige',
+	'err_uname_pass_diff' => 'Brugernavn og password skal være forskellige',
 	'err_invalid_email' => 'E-mail adresse er ugyldig',
 	'err_duplicate_email' => 'En anden bruger er allerede registret med den e-mail du har opgivet',
 	'enter_info' => 'Angiv registrerings information',
@@ -744,17 +746,17 @@ $lang_register_php = array(
 	'location' => 'Sted',
 	'interests' => 'Interesser',
 	'website' => 'Hjemmeside',
-	'occupation' => 'Besæftigelse',
+	'occupation' => 'Beskæftigelse',
 	'error' => 'FEJL',
-	'confirm_email_subject' => '%s - Registrations godkendelse',
+	'confirm_email_subject' => '%s - Registrerings godkendelse ',
 	'information' => 'Information',
-	'failed_sending_email' => 'Registreings godkendelsen kan ikke sendes !',
+	'failed_sending_email' => 'Registrerings godkendelsen kan ikke sendes!',
 	'thank_you' => 'Tak for din registrering.<br /><br />En e-mail med informationer om hvordan du aktiver din konto, er blevet sendt til den adresse som du har angivet.',
 	'acct_created' => 'Din konto er blevet oprettet og du kan nu logge ind med dit brugernavn og password',
 	'acct_active' => 'Din konto er nu aktiv og du kan logge ind med dit brugernavn og password',
-	'acct_already_act' => 'Din konto er allerede aktiv !',
-	'acct_act_failed' => 'Denne konto kan ikke blive aktiveret !',
-	'err_unk_user' => 'Valgte bruger eksister ikke !',
+	'acct_already_act' => 'Din konto er allerede aktiv!',
+	'acct_act_failed' => 'Denne konto kan ikke blive aktiveret!',
+	'err_unk_user' => 'Valgte bruger eksister ikke!',
 	'x_s_profile' => '%s\'s profil',
 	'group' => 'Gruppe',
 	'reg_date' => 'Tilsluttet',
@@ -801,7 +803,7 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
 	'n_comm_disp' => 'Antal af kommentarer at vise',
 	'see_prev' => 'Se foregående',
 	'see_next' => 'Se næste',
-	'del_comm' => 'Slet valgte komentarer',
+	'del_comm' => 'Slet valgte kommentarer',
 );
 
 
@@ -810,7 +812,7 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCH_PHP')) $lang_search_php = array(
-	0 => 'Søg i billed samlingen',
+	0 => 'Søg i billede samlingen',
 );
 
 // ------------------------------------------------------------------------- //
@@ -822,7 +824,7 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 	'select_dir' => 'Vælg mappe',
 	'select_dir_msg' => 'Denne funktion tillader dig at massetilføje de billeder som du har uploadet via FTP.<br /><br />Vælg den mappe hvor du har uploadet dine billeder',
 	'no_pic_to_add' => 'Der er intet billede at tilføje',
-	'need_one_album' => 'Du skal have mindt et album oprettet, for at bruge denne funktion',
+	'need_one_album' => 'Du skal have mindst et album oprettet, for at bruge denne funktion',
 	'warning' => 'Advarsel',
 	'change_perm' => 'systemet kan ikke skrive i dette mappe, du skal ændre server rettigheder på denne mappe til 755 or 777 før du prøver at tilføje billeder !',
 	'target_album' => '<b>Anbring billeder af &quot;</b>%s<b>&quot; til </b>%s',
@@ -839,10 +841,10 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 	'be_patient' => 'Hav lidt tålmodighed, systemet arbejder på at tilføje billederne',
 	'notes' =>  '<ul>'.
 				'<li><b>OK</b> : Betyder at billedet blev tilføjet'.
-				'<li><b>DP</b> : Betyder at billedet er en dublikat og det allerede ligger i databasen'.
-				'<li><b>PB</b> : Betyder at billedet ikke kunne tilføjes, kontrolerer venligst din konfiguration samt tilladelser på de respektive mapper'.
-				'<li>Hvis OK, DP, PB \'signalet\' ikke kommer frem, klik da på de manglede billeder for at se om der da fremkommer nogle fejlmeddelser som frembringes af PHP'.
-				'<li>Hvis din browser laver timeout, da opdater den browser'.
+				'<li><b>DP</b> : Betyder at billedet er en duplikat og det allerede ligger i databasen'.
+				'<li><b>PB</b> : Betyder at billedet ikke kunne tilføjes, kontrollerer venligst din konfiguration samt tilladelser på de respektive mapper'.
+				'<li>Hvis OK, DP, PB \'signalet\' ikke kommer frem, klik da på de manglede billeder for at se om der da fremkommer nogle fejlmeddelelser som frembringes af PHP'.
+				'<li>Hvis din browser laver time-out, da opdater den browser'.
 				'</ul>',
 );
 
@@ -860,7 +862,7 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 if (defined('BANNING_PHP')) $lang_banning_php = array( 
                 'title' => 'Bloker brugere', 
                 'user_name' => 'Bruger navn', 
-                'ip_address' => 'IP Addresse', 
+                'ip_address' => 'IP Adresse', 
                 'expiry' => 'Udløber (efterlad tom for aldrig)', 
                 'edit_ban' => 'Gem ændringer', 
                 'delete_ban' => 'Slet', 
@@ -876,10 +878,10 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
 	'title' => 'Upload billede',
 	'max_fsize' => 'Max tilladte filstørrelse er sat til %s KB',
 	'album' => 'Album',
-	'picture' => 'Billed',
-	'pic_title' => 'Billed titel',
-	'description' => 'Billed beskrivelse',
-	'keywords' => 'Nøgleord (Adskil med medllemrum)',
+	'picture' => 'Billede',
+	'pic_title' => 'Billede titel',
+	'description' => ' Billede beskrivelse',
+	'keywords' => 'Nøgleord (Adskil med mellemrum)',
 	'err_no_alb_uploadables' => 'Beklager der er intet album, som du har tilladelse til at uploade billeder til',
 );
 
@@ -900,7 +902,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 	'disku_a' => 'Disk behandling stigende',
 	'disku_d' => 'Disk behandling faldende',
 	'sort_by' => 'Sorter brugere efter',
-	'err_no_users' => 'Bruger tabel er tom !',
+	'err_no_users' => 'Bruger tabel er tom!',
 	'err_edit_self' => 'Du kan ikke rette i egen profil, brug \'Min profil\' link til dette formål',
 	'edit' => 'RET',
 	'delete' => 'SLET',
@@ -912,9 +914,9 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 	'disk_space' => 'Plads brugt / Kvote',
 	'registered_on' => 'Registreret den',
 	'u_user_on_p_pages' => '%d bruger på %d side(r)',
-	'confirm_del' => 'Er du sikker på du vil SLETTE denne bruger ? \\nAlle billeder og albums vil også blive slettet.',
+	'confirm_del' => 'Er du sikker på du vil SLETTE denne bruger? \\nAlle billeder og albums vil også blive slettet.',
 	'mail' => 'POST',
-	'err_unknown_user' => 'Valgt bruger eksister ikke !',
+	'err_unknown_user' => 'Valgt bruger eksister ikke!',
 	'modify_user' => 'Rediger bruger',
 	'notes' => 'Noter',
 	'note_list' => '<li>Hvis du ikke vil rette det aktuelle password, så lad feltet "password" stå tomt',
@@ -943,18 +945,18 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
         'file' => 'Fil', 
         'title_set_to' => 'titel sat til', 
         'submit_form' => 'Udfør', 
-        'updated_succesfully' => 'opdateret med success', 
+        'updated_succesfully' => 'opdateret med succes', 
         'error_create' => 'FEJL ved oprettelse af', 
         'continue' => 'Fortsæt', 
         'main_success' => 'Filen %s bliver nu brugt som original billede', 
-        'error_rename' => 'Fejl ved omdøbning af %s til %s', 
+        'error_rename' => 'Fejl da filen skulle omdøbes fra %s til %s', 
         'error_not_found' => 'Filen %s blev ikke fundet', 
         'back' => 'tilbage til hovedmenu', 
         'thumbs_wait' => 'Opdaterer minibilleder og/eller mellemstore billeder, vent venligst...', 
         'thumbs_continue_wait' => 'Fortsætter med opdatering af minibilleder og/eller mellemstore billeder...', 
         'titles_wait' => 'Opdaterer titler, vent venligst...', 
         'delete_wait' => 'Slettet titler, vent venligst...', 
-        'replace_wait' => 'Sletter original billeder og erstatter dem med de mellemstore, vent venligst...', 
+        'replace_wait' => 'Sletter originale billeder og erstatter dem med de mellemstore, vent venligst...', 
         'instruction' => 'Hurtig manual', 
         'instruction_action' => 'Vælg funktion', 
         'instruction_parameter' => 'Indstil parametre', 
@@ -966,17 +968,17 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
         'update_pic' => 'Kun mellemstore billeder', 
         'update_both' => 'Både mini- og mellemstore billeder', 
         'update_number' => 'Antal behandlede billeder pr. klik', 
-        'update_option' => '(Prøv at sætte den værdi lavere hvis du oplever timeout fejl)', 
-        'filename_title' => 'Filnavn ? Billed titel', 
+        'update_option' => '(Prøv at sætte den værdi lavere hvis du oplever time-out fejl)', 
+        'filename_title' => 'Filnavn? Billede titel', 
         'filename_how' => 'Hvordan skal filnavnet modificeres', 
         'filename_remove' => 'Fjern .jpg endelsen og erstat _ (underscore) med mellemrum', 
         'filename_euro' => 'Omdøb 2003_11_23_13_20_20.jpg til 23/11/2003 13:20', 
         'filename_us' => 'Omdøb 2003_11_23_13_20_20.jpg til 11/23/2003 13:20', 
         'filename_time' => 'Omdøb 2003_11_23_13_20_20.jpg til 13:20', 
-        'delete' => 'Slet titler eller original størrese billeder', 
-        'delete_title' => 'Slet billed titler', 
+        'delete' => 'Slet titler eller original størrelse billeder', 
+        'delete_title' => 'Slet billede titler', 
         'delete_original' => 'Slet original størrelse billeder', 
-        'delete_replace' => 'Sletter de origanale billeder og erstatter dem med de mellemstore', 
+        'delete_replace' => 'Sletter de originale billeder og erstatter dem med de mellemstore', 
         'select_album' => 'Vælg album', 
 ); 
 
