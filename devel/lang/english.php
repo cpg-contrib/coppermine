@@ -738,7 +738,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Allow unlogged users (guest or anonymous) access', 'allow_unlogged_access', 1, 'f=index.htm&amp;as=admin_allow_unlogged_access&amp;ae=admin_allow_unlogged_access_end'), //cpg1.4
   array('User registration requires email verification', 'reg_requires_valid_email', 1, 'f=index.htm&amp;as=admin_registration_verify&amp;ae=admin_registration_verify_end'), //cpg1.4
   array('Notify admin of user registration by email', 'reg_notify_admin_email', 1, 'f=index.htm&amp;as=admin_registration_notify&amp;ae=admin_registration_notify_end'), //cpg1.4
-  array('Admin activation of registrations', 'admin_activation', 1, 'f=index.htm&amp;as=admin_activation&amp;ae=admin_activation_end'),  //cpg1.4  
+  array('Admin activation of registrations', 'admin_activation', 1, 'f=index.htm&amp;as=admin_activation&amp;ae=admin_activation_end'),  //cpg1.4
   array('Allow two users to have the same email address', 'allow_duplicate_emails_addr', 1, 'f=index.htm&amp;as=admin_allow_duplicate_emails_addr&amp;ae=admin_allow_duplicate_emails_addr_end'), //cpg1.4
   array('Notify admin of user upload awaiting approval', 'upl_notify_admin_email', 1, 'f=index.htm&amp;as=admin_approval_notify&amp;ae=admin_approval_notify_end'), //cpg1.4
   array('Allow logged in users to view memberlist', 'allow_memberlist', 1, 'f=index.htm&amp;as=admin_user_memberlist&amp;ae=admin_user_memberlist_end'), //cpg1.4
@@ -1524,8 +1524,8 @@ $lang_register_php = array(
   'pass_chg_success' => 'Your password was changed',
   'pass_chg_error' => 'Your password was not changed',
   'notify_admin_email_subject' => '%s - Registration notification',
-  'last_uploads' => 'Last uploaded file.<br>Click to see all uploads by', //cpg1.4
-  'last_comments' => 'Last comment.<br>Click to see all comments made by', //cpg1.4
+  'last_uploads' => 'Last uploaded file.<br />Click to see all uploads by', //cpg1.4
+  'last_comments' => 'Last comment.<br />Click to see all comments made by', //cpg1.4
   'notify_admin_email_body' => 'A new user with the username "%s" has registered in your gallery',
   'pic_count' => 'Files uploaded', //cpg1.4
   'notify_admin_request_email_subject' => '%s - Registration request', //cpg1.4
