@@ -36,9 +36,12 @@
 // $Id$
 // ------------------------------------------------------------------------- //
 // Simple Machines Forum Integration for Coppermine                          //
-// V0.5Beta                                                                  //
+// V0.5 Public Beta                                                          //
 // ------------------------------------------------------------------------- //
 // Modify the value below according to your Board installation               //
+//                                                                           //
+// WARNING : Do not activate this bridge if you already have pictures or     //
+//           usergroups in your gallery.                                     //
 // ------------------------------------------------------------------------- //
 
 // Set this to the location of your Settings file:
@@ -127,7 +130,9 @@ function cm_include_smf_funcs ($source_file, $funcs)
 
 function cm_db_query ($query, $other, $other2)
 {
-        return db_query($query);
+		global $UDB_DB_LINK_ID;
+		
+        return db_query($query, $UDB_DB_LINK_ID);
 }
 
 // Authenticate a user using cookies
@@ -296,7 +301,7 @@ function udb_get_user_infos($uid)
     }
 
         $sql = "SELECT groupName " . "FROM " . $UDB_DB_NAME_PREFIX . SMF_TABLE_PREFIX . SMF_GROUP_TABLE . " " . "WHERE ID_GROUP = '{$user_data['mgroup']}' ";
-    $result = db_query($sql);
+    $result = db_query($sql, $UDB_DB_LINK_ID);
 
         if (mysql_num_rows($result)) {
             $row = mysql_fetch_array($result);
@@ -425,6 +430,8 @@ $UDB_DB_LINK_ID = 0;
 $UDB_DB_NAME_PREFIX = SMF_DB_NAME ? '`' . SMF_DB_NAME . '`.' : '';
 if (!UDB_CAN_JOIN_TABLES) {
     $UDB_DB_LINK_ID = @mysql_connect(SMF_DB_HOST, SMF_DB_USERNAME, SMF_DB_PASSWORD);
+    
     if (!$UDB_DB_LINK_ID) die("<b>Coppermine critical error</b>:<br />Unable to connect to SMF Board database !<br /><br />MySQL said: <b>" . mysql_error() . "</b>");
+    mysql_select_db (SMF_DB_NAME, $UDB_DB_LINK_ID);
 }
 ?>
