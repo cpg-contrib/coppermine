@@ -208,7 +208,7 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use)
                 cpg_die(CRITICAL_ERROR, 'PHP running on your server does not support the GD image library, check with your webhost if ImageMagick is installed', __FILE__, __LINE__);
             }
             if (!function_exists('imagecreatetruecolor')) {
-                cpg_die(CRITICAL_ERROR, 'PHP running on your server does not support GD version 2.x, please switch to GD version 1.x on the config page', __FILE__, __LINE__);
+                cpg_die(CRITICAL_ERROR, 'PHP running on your server does not support GD version 2.x, please switch to GD version 1.x on the admin page', __FILE__, __LINE__);
             }
             if ($imginfo[2] == GIS_JPG)
                 $src_img = imagecreatefromjpeg($src_file);

@@ -69,9 +69,9 @@ problem already posted.
 
 Question:  All right!  It’s installed and working!  Now what?
 
-Answer:  You need to look at the configuration of Coppermine to make sure it’s set up 
+Answer:  You need to look at the administration of Coppermine to make sure it’s set up 
 the way you want it.  Log in as the admin (if the Admin link isn’t visible, you already are 
-logged in) and visit the Config section.  Here’s a few things you should look at:
+logged in) and visit the Admin section.  Here’s a few things you should look at:
 
 - General Settings: You should put in your site name and email address, and set your time 
 zone offset.
@@ -105,7 +105,7 @@ where you set the maximum allowed disk space for each group (disk quota).  It’s 
 Question:  I think everything is set right.  Can I upload pictures yet?
 
 Answer:  No.  First you need to create an album to put them in.  In the same row as the 
-Config link, you’ll see a link called Albums.  Click on it and you are taken to a screen 
+Admin link, you’ll see a link called Albums.  Click on it and you are taken to a screen 
 that allows you to create an album.  Click “New Album”, then rename it to whatever 
 you’d like.  Click “Apply changes” and presto!  You now have an album.
 

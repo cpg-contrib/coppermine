@@ -68,7 +68,7 @@ $template_gallery_admin_menu = <<<EOT
                 <table cellpadding="0" cellspacing="1">
                         <tr>
                                 <td class="admin_menu" id="{APPROVAL_ID}"><a href="editpics.php?mode=upload_approval" title="{UPL_APP_LNK}">{UPL_APP_LNK}</a></td>
-                                <td class="admin_menu"><a href="config.php" title="{CONFIG_LNK}">{CONFIG_LNK}</a></td>
+                                <td class="admin_menu"><a href="admin.php" title="{ADMIN_LNK}">{ADMIN_LNK}</a></td>
                                 <td class="admin_menu"><a href="albmgr.php{CATL}" title="{ALBUMS_LNK}">{ALBUMS_LNK}</a></td>
                                 <td class="admin_menu"><a href="catmgr.php" title="{CATEGORIES_LNK}">{CATEGORIES_LNK}</a></td>
                                 <td class="admin_menu"><a href="usermgr.php" title="{USERS_LNK}">{USERS_LNK}</a></td>
@@ -1049,7 +1049,7 @@ function theme_admin_mode_menu()
     if (GALLERY_ADMIN_MODE) {
         $param = array('{CATL}' => $cat_l,
             '{UPL_APP_LNK}' => $lang_gallery_admin_menu['upl_app_lnk'],
-            '{CONFIG_LNK}' => $lang_gallery_admin_menu['config_lnk'],
+            '{ADMIN_LNK}' => $lang_gallery_admin_menu['admin_lnk'],
             '{ALBUMS_LNK}' => $lang_gallery_admin_menu['albums_lnk'],
             '{CATEGORIES_LNK}' => $lang_gallery_admin_menu['categories_lnk'],
             '{USERS_LNK}' => $lang_gallery_admin_menu['users_lnk'],

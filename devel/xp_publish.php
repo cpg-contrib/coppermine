@@ -372,7 +372,7 @@ Coppermine.</p>
 <ul>
   <li>Once the upload has started, the wizard can't display any error message returned by
   the script so you can't know if the upload failed or succeeded until you check your gallery.</li>
-  <li>If the upload fails, enable &quot;Debug mode&quot; on the Coppermine config page,
+  <li>If the upload fails, enable &quot;Debug mode&quot; on the Coppermine admin page,
   try with one single picture and check error messages in the
   <a href="<?php echo dirname($PHP_SELF) . '/' . LOGFILE ?>"><?php echo LOGFILE ?></a> file
   that is located in Coppermine directory on your server.</li>

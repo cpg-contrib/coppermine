@@ -1695,14 +1695,14 @@ $return = '
 1.3.2|themes/water_drop/images|||optional|r@
 1.4.0|addfav.php|1.4.0|1.13|mandatory|r@
 1.4.0|addpic.php|1.4.0|1.9|mandatory|r@
-
+1.4.0|admin.php|1.4.0|1.45|mandatory|r@
 1.4.0|albmgr.php|1.4.0|1.10|mandatory|r@
 1.4.0|anycontent.php|1.4.0|1.9|mandatory|r@
 1.4.0|banning.php|1.4.0|1.17|mandatory|r@
 1.4.0|bridgemgr.php|1.4.0|1.3|mandatory|r@
 1.4.0|calendar.php|1.4.0|1.2|mandatory|r@
 1.4.0|catmgr.php|1.4.0|1.18|mandatory|r@
-1.4.0|config.php|1.4.0|1.39|mandatory|r@
+
 1.4.0|db_ecard.php|1.4.0|1.10|mandatory|r@
 1.4.0|db_input.php|1.4.0|1.29|mandatory|r@
 1.4.0|delete.php|1.4.0|1.9|mandatory|r@

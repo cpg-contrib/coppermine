@@ -20,7 +20,7 @@
 define('IN_COPPERMINE', true);
 define('UPLOAD_PHP', true);
 define('DB_INPUT_PHP', true);
-define('CONFIG_PHP', true);
+define('ADMIN_PHP', true);
 
 // Call basic functions, etc.
 require('include/init.inc.php');
@@ -1097,7 +1097,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                     // Initialise the $matches array.
                     $matches = array();
 
-                    // Get the forbidden characters from the Config console string, and do any necessary translation. Return the translated string.
+                    // Get the forbidden characters from the Admin console string, and do any necessary translation. Return the translated string.
                     $forbidden_chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>'));
 
                     // If magic quotes is on, remove the slashes it added to the file name.
@@ -1341,7 +1341,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
             // Initialise the $matches array.
             $matches = array();
 
-            // Get the forbidden characters from the Config console string, and do any necessary translation. Return the translated string.
+            // Get the forbidden characters from the Admin console string, and do any necessary translation. Return the translated string.
             $forbidden_chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>'));
 
             // Create the holder $picture_name by translating the possible file name. Translate any forbidden character into an underscore.
@@ -2525,8 +2525,8 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
     if((is_movie($file_set[1])) or (is_audio($file_set[1]))) {
 
         //Add width and height boxes to the form.
-        $form_array[] = array($lang_config_php['th_wd'],'movie_wd', 0, 4, 1);
-        $form_array[] = array($lang_config_php['th_ht'],'movie_ht', 0, 4, 1);
+        $form_array[] = array($lang_admin_php['th_wd'],'movie_wd', 0, 4, 1);
+        $form_array[] = array($lang_admin_php['th_ht'],'movie_ht', 0, 4, 1);
 
     }
 

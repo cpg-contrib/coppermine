@@ -17,7 +17,7 @@
 // ------------------------------------------------------------------------- //
 
 define('IN_COPPERMINE', true);
-define('CONFIG_PHP', true);
+define('ADMIN_PHP', true);
 
 define('LANG_DIR', 'lang');
 

@@ -254,7 +254,7 @@ if ($CONFIG['enable_plugins'] == 1) {
     CPGPluginAPI::load();
 }
 
-// Set UDB_INTEGRATION if enabled in config
+// Set UDB_INTEGRATION if enabled in admin
 if ($CONFIG['bridge_enable'] == 1) {
     $BRIDGE = cpg_get_bridge_db_values();
     define('UDB_INTEGRATION', $BRIDGE['short_name']);

@@ -137,17 +137,17 @@ if (defined('CATMGR_PHP')) {
 }
 
 // ------------------------------------------------------------------------- //
-// File config.php
+// File admin.php
 // ------------------------------------------------------------------------- //
 
-if (defined('CONFIG_PHP')) {
-  $lang_config_php_en = cpg_get_default_lang_var('lang_config_php','english');
-  $lang_config_php = array_merge($lang_config_php_en, $lang_config_php);
+if (defined('ADMIN_PHP')) {
+  $lang_admin_php_en = cpg_get_default_lang_var('lang_admin_php','english');
+  $lang_admin_php = array_merge($lang_admin_php_en, $lang_admin_php);
 }
 
 if (defined('CONFIG_PHP')) {
-  $lang_config_data_en = cpg_get_default_lang_var('lang_config_data','english');
-  $lang_config_data = array_merge($lang_config_data_en, $lang_config_data);
+  $lang_admin_data_en = cpg_get_default_lang_var('lang_admin_data','english');
+  $lang_admin_data = array_merge($lang_admin_data_en, $lang_admin_data);
 }
 
 // ------------------------------------------------------------------------- //

@@ -17,7 +17,7 @@
 // $Id$
 // ------------------------------------------------------------------------- //
 
-// REQUIRES GLOBAL VAR: CONFIG
+// REQUIRES GLOBAL VAR: ADMIN
 // REQUIRES GLOBAL FUNCTION: cpg_db_query
 
 global $FILE_TYPES;

@@ -19,7 +19,7 @@
 /**
 * Coppermine Photo Gallery 1.3.0 anycontent.php
 *
-* This file file gets included in the index.php if you set the option in config
+* This file file gets included in the index.php if you set the option in admin
 * can be used to display any content from any program, it is always to be edited
 * according to tastes and then used
 *
