@@ -83,6 +83,9 @@ define('CM_GMOD_GROUP_NAME', 'Global Moderators');
 
 define('YS_PASSWD_SEED', 'ys');
 
+if (function_exists('session_start') && (!session_id()))
+	session_start();
+
 function database_error($file="", $line="") {
 	global $CONFIG;
 
