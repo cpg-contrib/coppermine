@@ -625,6 +625,43 @@ switch ($what) {
                     pagefooter();
                     break; // end case "reset_password"
                 case 'change_group':
+                    pageheader($lang_delete_php['change_group']);
+                    starttable("100%", $lang_delete_php['change_group'], 2);
+                    print "<tr>\n";
+                    print "<td class=\"tableh2\"><b>{$lang_delete_php['username']}</b></td>\n";
+                    print "<td class=\"tableh2\"><b>{$lang_delete_php['status']}</b></td>\n";
+                    print "</tr>\n";
+                    $result_group = cpg_db_query("SELECT  group_id,group_name FROM {$CONFIG['TABLE_USERGROUPS']}");
+                    if (!mysql_num_rows($result_group)) {
+                        cpg_die(CRITICAL_ERROR, $lang_delete_php['err_empty_groups'], __FILE__, __LINE__);
+                    }
+                    $group_data = mysql_fetch_array($result_group);
+                    foreach ($group_data as $key => $value) {
+                      //$group_
+                    }
+                    foreach($users_scheduled_for_action as $key) {
+                        $result = cpg_db_query("SELECT user_name,user_group FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$key'");
+                        if (!mysql_num_rows($result)) {
+                            print '<tr><td class="tableb" colspan="2">'.$lang_delete_php['err_unknown_user'].'</td>';
+                        } else {
+                            $user_data = mysql_fetch_array($result);
+                            print '<tr>';
+                            print '<td class="tableb"><b>';
+                            print $user_data['user_name'];
+                            print '</b></td>';
+                            print '<td class="tableb">';
+                            // set this user's password
+                            //cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_group = '{$_REQUEST['group']}' WHERE  user_id = '$key'");
+                            printf($lang_delete_php['change_group_to_group'], '&laquo;'.$user_data['user_group'].'&raquo;', '&laquo;'.$_REQUEST['group'].'&raquo;');
+                            print '</b></td>';
+                        }
+                        mysql_free_result($result);
+                    } // foreach --- end
+                    echo "<tr><td colspan=\"2\" class=\"tablef\" align=\"center\">\n";
+                    echo "<a href=\"usermgr.php\" class=\"admin_menu\">$lang_continue</a>\n";
+                    echo "</td></tr>";
+                    endtable();
+                    pagefooter();
                     break; // end case "change_group"
                 case 'add_group':
                     break; // end case "add_group"

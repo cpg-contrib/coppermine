@@ -195,3 +195,4 @@ Added sub-section for logging and statistics in coppermine config and the docs t
 Added "check/uncheck all" option in exif manager - 07 October 2004, GauGau
 Added provisinal phpbb 2.2 integration support - 07 October, Nibbler
 Added batch-activation/deactivation/password-reset in user manager - 10 October 2004, GauGau
+Added "change primary group membership" for multiple users at once in user management - 13 October 2004, GauGau

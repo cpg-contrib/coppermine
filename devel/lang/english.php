@@ -822,6 +822,7 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
   'del_alb' => 'Delete album',
   'del_user' => 'Delete user',
   'err_unknown_user' => 'The selected user does not exist !',
+  'err_empty_groups' => 'There\'s no group table, or the group table is empty!', // cpg1.4.0
   'comment_deleted' => 'Comment was succesfully deleted',
   'npic' => 'Picture',
   'pic_mgr' => 'Picture Manager', // cpg1.4.0
@@ -839,6 +840,8 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
   'deactivated' => 'Deactivated', // cpg1.4.0
   'reset_password' => 'Reset password(s)', // cpg1.4.0
   'password_reset' => 'Password reset to %s', // cpg1.4.0
+  'change_group' => 'Change primary group', // cpg1.4.0
+  'change_group_to_group' => 'Changing from %s to %s', // cpg1.4.0
   'status' => 'Status', // cpg1.4.0
 );
 
@@ -1646,6 +1649,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'search_result' => 'Search results for: ', // cpg1.4.0
   'alert_no_selection' => 'You have to select a user first!', // cpg1.4.0 //js-alert
   'password' => 'password', // cpg1.4.0
+  'select_group' => 'Select group', // cpg1.4.0
 );
 
 // ------------------------------------------------------------------------- //

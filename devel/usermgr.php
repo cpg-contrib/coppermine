@@ -170,16 +170,28 @@ function selectaction(d,box) {
   }
   document.editForm.id.value = checked_string;
   //alert(document.editForm.id.value);
-  if (document.editForm.action.value == 'reset_password') {
-      // make the hidden form fields visible
+  document.editForm.new_password.style.visibility = "hidden";
+  document.editForm.group.style.visibility = "hidden";
+  document.editForm.go.style.visibility = "hidden";
+  switch(document.editForm.action.value) {
+    case "reset_password":
       document.editForm.new_password.style.visibility = "visible";
       document.editForm.go.style.visibility = "visible";
-  //} elseif (document.editForm.action.value == 'change_group' ||  document.editForm.action.value == 'add_group') {
-  //    document.editForm.new_password.value = '';
-  //    alert('group thingy');
-  } else {
+    break;
+    case "change_group":
+      document.editForm.new_password.value = '';
+      document.editForm.group.style.visibility = "visible";
+      if (document.editForm.group.value != '') {
+      document.editForm.submit();
+      }
+    break;
+    case "add_group":
+      document.editForm.new_password.value = '';
+    break;
+    default:
       document.editForm.new_password.value = '';
       document.editForm.submit();
+    break;
   }
 }
 -->
@@ -356,13 +368,29 @@ EOT;
                                 <option value="activate">{$lang_usermgr_php['activate']}</option>
                                 <option value="deactivate">{$lang_usermgr_php['deactivate']}</option>
                                 <option value="reset_password">{$lang_usermgr_php['reset_password']}</option>
-                                <!--<option value="change_group">{$lang_usermgr_php['change_primary_membergroup']}</option>-->
+                                <option value="change_group">{$lang_usermgr_php['change_primary_membergroup']}</option>
                                 <!--<option value="add_group">{$lang_usermgr_php['add_secondary_membergroup']}</option>-->
                             </select>
                             <input type="hidden" name="what" value="user"/>
-                            <!--<div style="margin-left:0px;margin-right:0px">-->
                               <input type="text" name="new_password" value="{$lang_usermgr_php['password']}" size="8" maxlength="8" class="textinput" onfocus="this.value='';" style="visibility:hidden" />
-                            <!--</div>-->
+                              <select name="group" size="1" class="listbox" style="visibility:hidden" onchange="return selectaction(this,'u');">
+                                  <option value="">{$lang_usermgr_php['select_group']}</option>
+
+EOT;
+        $sql = "SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} ORDER BY group_name";
+        $result = cpg_db_query($sql);
+        $group_list = cpg_db_fetch_rowset($result);
+        mysql_free_result($result);
+
+        $sel_group = $user_data[$element[1]];
+        $user_group_list = ($user_data['user_group_list'] == '') ? ',' . $sel_group . ',' : ',' . $user_data['user_group_list'] . ',' . $sel_group . ',';
+
+
+        foreach($group_list as $group) {
+            print '                                  <option value="' . $group['group_id'] . '"' . ($group['group_id'] == $sel_group ? ' selected' : '') . '>' . $group['group_name'] . "</option>\n";
+        }
+        echo <<<EOT
+                              </select>
                             <input type="submit" name="go" value="{$lang_usermgr_php['search_submit']}" class="button" style="visibility:hidden" />
                         </td>
                         <td align="center">
