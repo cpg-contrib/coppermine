@@ -415,7 +415,9 @@ class zipfile extends archive {
 
                 $crc32 = crc32($data);
                 $normlength = strlen($data);
-                $data = gzcompress($data,$this->level);
+		if(function_exists('gzcompress') ){
+                	$data = gzcompress($data,$this->level);
+		}
                 $data = substr($data,2,strlen($data)-6);
                 $complength = strlen($data);
 
