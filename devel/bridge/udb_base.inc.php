@@ -91,6 +91,9 @@ class core_udb {
 		
 		$USER_DATA['can_see_all_albums'] = $USER_DATA['has_admin_access'];
 		
+		// avoids a template error
+		if (!$USER_DATA['user_id']) $USER_DATA['can_create_albums'] = 0;
+		
 	    // For error checking
 		$CONFIG['TABLE_USERS'] = '**ERROR**';
 			

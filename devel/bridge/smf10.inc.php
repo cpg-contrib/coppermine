@@ -73,7 +73,7 @@ class cpg_udb extends core_udb {
 			'active' => 'is_activated', // is user account active?
 			'location' => 'location', // name of 'location' field in users table
 			'website' => 'websiteUrl', // name of 'website' field in users table
-			'usertbl_group_id' => 'ID_GROUP', // name of 'group id' field in users table
+			'usertbl_group_id' => 'ID_POST_GROUP', // name of 'group id' field in users table
 			'grouptbl_group_id' => 'ID_GROUP', // name of 'group id' field in groups table
 			'grouptbl_group_name' => 'groupName' // name of 'group name' field in groups table
 		);
