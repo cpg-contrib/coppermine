@@ -402,7 +402,7 @@ EOT;
                         'user_profile3' => $user_data['user_profile3'],
                         'user_profile4' => $user_data['user_profile4'],
                         'user_profile5' => $user_data['user_profile5'],
-                        'user_profile6' => $user_data['user_profile6'],
+                        'user_profile6' => bb_decode($user_data['user_profile6']),
             'user_thumb' => $quick_jump,
             );
 
