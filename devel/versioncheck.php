@@ -914,7 +914,7 @@ $return = '
 1.2.1|anycontent.php|1.2.1||mandatory|r@
 1.2.1|banning.php|1.2.1||mandatory|r@
 1.2.1|catmgr.php|1.2.1||mandatory|r@
-1.2.1|config.php|1.2.1||mandatory|r@
+
 1.2.1|db_input.php|1.2.1||mandatory|r@
 1.2.1|delete.php|1.2.1||mandatory|r@
 1.2.1|displayecard.php|1.2.1||mandatory|r@
@@ -1095,7 +1095,7 @@ $return = '
 1.3.0|anycontent.php|1.3.0|1.7|mandatory|r@
 1.3.0|banning.php|1.3.0|1.11|mandatory|r@
 1.3.0|catmgr.php|1.3.0|1.9|mandatory|r@
-1.3.0|config.php|1.3.0|1.15|mandatory|r@
+
 1.3.0|db_ecard.php|1.3.0|1.5|mandatory|r@
 1.3.0|db_input.php|1.3.0|1.23|mandatory|r@
 1.3.0|delete.php|1.3.0|1.5|mandatory|r@
@@ -1288,7 +1288,7 @@ $return = '
 1.3.1|banning.php|1.3.1|1.5|mandatory|r@
 1.3.1|calendar.php|1.3.1|1.2|mandatory|r@
 1.3.1|catmgr.php|1.3.1|1.5|mandatory|r@
-1.3.1|config.php|1.3.1|1.8|mandatory|r@
+
 1.3.1|db_ecard.php|1.3.1|1.2|mandatory|r@
 1.3.1|db_input.php|1.3.1|1.4|mandatory|r@
 1.3.1|delete.php|1.3.1|1.4|mandatory|r@
@@ -1487,7 +1487,7 @@ $return = '
 1.3.2|banning.php|1.3.2|1.6|mandatory|r@
 1.3.2|calendar.php|1.3.2|1.3|mandatory|r@
 1.3.2|catmgr.php|1.3.2|1.6|mandatory|r@
-1.3.2|config.php|1.3.2|1.9|mandatory|r@
+
 1.3.2|db_ecard.php|1.3.2|1.3|mandatory|r@
 1.3.2|db_input.php|1.3.2|1.6|mandatory|r@
 1.3.2|delete.php|1.3.2|1.5|mandatory|r@
