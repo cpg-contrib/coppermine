@@ -211,7 +211,7 @@ class core_udb {
 	// Edit user profile
 	function edit_profile($uid)
 	{
-		$this->redirect($this->page['edituserprofile']);
+		$this->redirect($this->page['edituserprofile'].$uid);
 	}
 	
 	// Get user information
@@ -253,7 +253,7 @@ class core_udb {
 		return $result;
 	}
 	
-	function udb_list_users_retrieve_data($result, $lower_limit, $count)
+	function list_users_retrieve_data($result, $lower_limit, $count)
 	{
 		global $CONFIG;
 
