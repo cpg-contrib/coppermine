@@ -72,8 +72,7 @@ if (!$valid_sender_email && count($HTTP_POST_VARS) > 0) $sender_email_warning = 
 if (!$valid_recipient_email && count($HTTP_POST_VARS) > 0) $recipient_email_warning = $invalid_email;
 // Create and send the e-card
 if (count($HTTP_POST_VARS) > 0 && $valid_sender_email && $valid_recipient_email) {
-    $gallery_url_prefix = $CONFIG['ecards_more_pic_target'] . '/';
-
+    $gallery_url_prefix = $CONFIG['ecards_more_pic_target']. (substr($CONFIG['ecards_more_pic_target'], -1) == '/' ? '' : '/');
     if ($CONFIG['make_intermediate'] && max($row['pwidth'], $row['pheight']) > $CONFIG['picture_width']) {
         $n_picname = get_pic_url($row, 'normal');
     } else {
