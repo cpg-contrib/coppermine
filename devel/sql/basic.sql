@@ -250,6 +250,7 @@ INSERT INTO CPG_bridge VALUES ('session_table', '');
 INSERT INTO CPG_bridge VALUES ('group_table', '');
 INSERT INTO CPG_bridge VALUES ('group_relation_table', '');
 INSERT INTO CPG_bridge VALUES ('group_mapping_table', '');
+INSERT INTO CPG_bridge VALUES ('use_standard_groups', '1');
 INSERT INTO CPG_bridge VALUES ('validating_group', '');
 INSERT INTO CPG_bridge VALUES ('guest_group', '');
 INSERT INTO CPG_bridge VALUES ('member_group', '');
@@ -258,5 +259,4 @@ INSERT INTO CPG_bridge VALUES ('banned_group', '');
 INSERT INTO CPG_bridge VALUES ('global_moderators_group', '');
 INSERT INTO CPG_bridge VALUES ('recovery_logon_failures', '0');
 INSERT INTO CPG_bridge VALUES ('recovery_logon_timestamp', '');
-
 
