@@ -38,8 +38,11 @@ if (!isset($HTTP_COOKIE_VARS[$CONFIG['cookie_name'].'_data'])) {
 	//See if this picture is already present in the array
 	if(!in_array($pic,$FAVPICS)){
 		$FAVPICS[]=$pic;
-		print_r($FAVPICS);
-		
+			
+	}else{
+	    $key=array_search($pic,$FAVPICS);
+	    unset ($FAVPICS[$key]);
+	
 	}
 		
 	$data = base64_encode(serialize($FAVPICS));

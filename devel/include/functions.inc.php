@@ -992,7 +992,10 @@ function display_film_strip($album, $cat, $pos)
         $new_pos=max(0,$pos-$l_limit);
 
         $pic_data = get_pic_data($album, $thumb_count, $album_name, $l_limit, $thumb_per_page);
-
+	
+	if (count($pic_data) < $max_item ){
+		$max_item = count($pic_data);
+	}
         $lower_limit=3;
 
         if(!isset($pic_data[$new_pos+1])) {

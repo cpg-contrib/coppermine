@@ -204,9 +204,9 @@ function html_rating_box()
 // Display picture information
 function html_picinfo()
 {
-	global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $THEME_DIR;
+	global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $THEME_DIR, $FAVPICS;
 	global $album, $lang_picinfo, $lang_display_image_php, $lang_byte_units;
-
+	
 	if ($CURRENT_PIC_DATA['owner_id'] && $CURRENT_PIC_DATA['owner_name']) {
 	    $owner_link = '<a href ="profile.php?uid='.$CURRENT_PIC_DATA['owner_id'].'">'.$CURRENT_PIC_DATA['owner_name'].'</a> / ';
 	} else {
@@ -254,7 +254,11 @@ function html_picinfo()
 	$info['URL']='<a href=http://'.$_SERVER["SERVER_NAME"].$_SERVER["SCRIPT_NAME"]."?pos=-$CURRENT_PIC_DATA[pid]".' >http://'.$_SERVER["SERVER_NAME"].$_SERVER["SCRIPT_NAME"]."?pos=-$CURRENT_PIC_DATA[pid]".'</a>';
 	
 	//Create the add to fav link
-	$info[$lang_picinfo['addFavPhrase']]="<a href=addfav.php?pid=".$CURRENT_PIC_DATA[pid]." >".$lang_picinfo['addFav'].'</a>';
+	if(!in_array($CURRENT_PIC_DATA[pid],$FAVPICS)){
+		$info[$lang_picinfo['addFavPhrase']]="<a href=addfav.php?pid=".$CURRENT_PIC_DATA[pid]." >".$lang_picinfo['addFav'].'</a>';
+	}else{
+		$info[$lang_picinfo['addFavPhrase']]="<a href=addfav.php?pid=".$CURRENT_PIC_DATA[pid]." >".$lang_picinfo['remFav'].'</a>';
+	}
 
 	return theme_html_picinfo($info);
 }
