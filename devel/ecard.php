@@ -40,8 +40,9 @@ $pid = (int)$HTTP_GET_VARS['pid'];
 $album = $HTTP_GET_VARS['album'];
 $pos = (int)$HTTP_GET_VARS['pos'];
 
-$sender_name = get_post_var('sender_name', USER_ID ? USER_NAME : (isset($USER['name']) ? $USER['name'] : ''));
-if (USER_ID){
+$sender_name = get_post_var('sender_name', USER_NAME ? USER_NAME : (isset($USER['name']) ? $USER['name'] : ''));
+if (defined('UDB_INTEGRATION')) $USER_DATA = array_merge($USER_DATA,udb_get_user_infos(USER_ID)); 
+if ($USER_DATA['user_email']){
 $sender_email = $USER_DATA['user_email'];
 $sender_box = $sender_email;
 } else { 
@@ -71,8 +72,7 @@ if (!$valid_sender_email && count($HTTP_POST_VARS) > 0) $sender_email_warning = 
 if (!$valid_recipient_email && count($HTTP_POST_VARS) > 0) $recipient_email_warning = $invalid_email;
 // Create and send the e-card
 if (count($HTTP_POST_VARS) > 0 && $valid_sender_email && $valid_recipient_email) {
-    $gallery_dir = strtr(dirname($PHP_SELF), '\\', '/');
-    $gallery_url_prefix = 'http://' . $HTTP_SERVER_VARS['HTTP_HOST'] . $gallery_dir . (substr($gallery_dir, -1) == '/' ? '' : '/');
+    $gallery_url_prefix = $CONFIG['ecards_more_pic_target'] . '/';
 
     if ($CONFIG['make_intermediate'] && max($row['pwidth'], $row['pheight']) > $CONFIG['picture_width']) {
         $n_picname = get_pic_url($row, 'normal');
@@ -86,7 +86,7 @@ if (count($HTTP_POST_VARS) > 0 && $valid_sender_email && $valid_recipient_email)
 
     $data = array('rn' => $HTTP_POST_VARS['recipient_name'],
         'sn' => $HTTP_POST_VARS['sender_name'],
-        'se' => $HTTP_POST_VARS['sender_email'],
+        'se' => $sender_email,
         'p' => $n_picname,
         'g' => $greetings,
         'm' => $message,
@@ -111,7 +111,7 @@ if (count($HTTP_POST_VARS) > 0 && $valid_sender_email && $valid_recipient_email)
 
     	$message = template_eval($template_ecard, $params);
         $tempTime = time();
-        $message .= "Sent by from IP" .$_SERVER["REMOTE_HOST"]." at ".gmstrftime("%A,  %B,%V,%Y %I:%M %p ", time())." [GMT]";
+        $message .= "Sent by $sender_name from IP {$_SERVER['REMOTE_ADDR']} at ".gmstrftime("%A,  %B,%V,%Y %I:%M %p ", time())." [GMT]";
     	$subject = sprintf($lang_ecard_php['ecard_title'], $sender_name);
 
     	$result = cpg_mail($recipient_email, $subject, $message, 'text/html', $sender_name, $sender_email);
