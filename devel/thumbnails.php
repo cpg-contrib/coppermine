@@ -161,7 +161,7 @@ EOT;
 }
 
 $valid = false; //flag to test whether the album is validated.
-if ($CONFIG['allow_private_albums'] == 0) {
+if ($CONFIG['allow_private_albums'] == 0 || !in_array($album,$FORBIDDEN_SET_DATA)) {
     $valid = true;
 } elseif (isset($HTTP_POST_VARS['validate_album'])) {
   $password = $HTTP_POST_VARS['password'];
