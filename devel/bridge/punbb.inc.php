@@ -41,6 +41,7 @@ define('PUNBB_WEB_PATH', $path); // The prefix used for the DB tables
 define('PUNBB_USER_TABLE', 'users'); // The members table
 
 // Group definitions
+define('PUNBB_MOD_GROUP', 4);
 define('PUNBB_GUEST_GROUP', 3);
 define('PUNBB_MEMBERS_GROUP', 2);
 define('PUNBB_ADMIN_GROUP', 1);
@@ -82,16 +83,19 @@ function udb_authenticate()
 	// Define the basic groups
 	        
 	switch ($USER_DATA['status']) {
-	       
-		case -1:
-			$USER_DATA['groups'][0] = PUNBB_GUEST_GROUP;
-			break;
+	
 		case 0:
 			$USER_DATA['groups'][0] = PUNBB_MEMBERS_GROUP;
 			break;
+		case 1:
+			$USER_DATA['groups'][0] = PUNBB_MOD_GROUP;
+			break;
 		case 2:
 			$USER_DATA['groups'][0] = PUNBB_ADMIN_GROUP;
-			break;       
+			break;
+		default:
+			$USER_DATA['groups'][0] = PUNBB_GUEST_GROUP;
+			break;	
 	}
 	
 	if ($USER_DATA['status'] == -1) {
@@ -118,7 +122,7 @@ function udb_authenticate()
 
 	$USER_DATA = array_merge($USER_DATA, cpgGetUserData($USER_DATA['groups'][0], $USER_DATA['groups'], PUNBB_GUEST_GROUP));
 	
-	$USER_DATA['has_admin_access'] = ($USER_DATA['status'] == 2) ? 1 : 0;
+	$USER_DATA['has_admin_access'] = (($USER_DATA['status'] == 2) || (($USER_DATA['status'] == 1) && MOD_IS_ADMIN)) ? 1 : 0;
 	$USER_DATA['can_see_all_albums'] = $USER_DATA['has_admin_access'];
 	
 	define('USER_NAME', $USER_DATA['user_name']);
@@ -282,7 +286,8 @@ function udb_synchronize_groups()
     $PUNBB_groups = array(
     	PUNBB_GUEST_GROUP => 'Guests',
     	PUNBB_MEMBERS_GROUP => 'Members',
-        PUNBB_ADMIN_GROUP => 'Administrators'
+        PUNBB_ADMIN_GROUP => 'Administrators',
+        PUNBB_MOD_GROUP => 'Moderators'
         );
 
     $result = cpg_db_query("SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1");
