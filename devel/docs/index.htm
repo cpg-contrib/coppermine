@@ -359,12 +359,28 @@ a.navbar:hover {
       of the screen.</p>
       <p>When you are in admin mode, you can administer your gallery and the
       following menu bar appears :</p>
-      <p><img src="pics/admin_mode_bar.GIF" border="1" /></p>
+      <p><a name="admin_menu"></a><img src="pics/admin_menu.gif" width="840" height="17" border="0" alt="Admin menu" /></p>
       <p>When you are in user mode you are just a regular user and can't access
       the admin pages.</p>
+      <p>The items in the admin menu should be pretty self-explanatory:</p>
+      <ul>
+      <li><b>Upload approval</b><br />See all pics that await approval by the admin (depending on the settings in the &quot;<a href="#group_cp">groups</a>&quot; control panel)</li>
+      <li><b>Config</b><br />Configure the overall look of your gallery and the settings using the &quot;<a href="#config">Config</a>&quot; button in the admin menu (note: you can not access the configuration by manually entering the url of the config file)</li>
+      <li><b>Albums</b><br />Create/edit/delete <a href="#albums_cp">albums</a></li>
+      <li><b>Categories</b><br />Create/edit/delete <a href="#cat_cp">categories</a></li>
+      <li><b>Users</b><br />Create/edit/delete <a href="#users_cp">users</a></li>
+      <li><b>Groups</b><br />Create/edit/delete <a href="#group_cp">groups</a></li>
+      <li><b>Ban Users</b><br />Ban users based on hostname or IP address. Make sure not to ban yourself! Use this feature with extreme care, since most users don't have static IP addresses, this feature should only be used if you really know what you're doing.</li>
+      <li><b>Review Comments</b><br />edit/delete user's comments</li>
+      <li><b>Batch add Pictures</b><br /><a href="#batch_add_pics">Batch-add pictures</a> to the coppermine database that have been uploaded by FTP.</li>
+      <li><b>Resize Pictures</b><br />Collection of utilities to resize, rename or delete full-size pictures, intermediate pictures and thumbnails</li>
+      <li><b>My profile</b><br />Edit your own user profile</li>
+      </ul>
       <p><a class="back" href="#top">Back to
       top</a></p>
       <hr>
+
+
 
       <h2>4.3 The group control panel<a id="group_cp" name="group_cp"></a></h2>
       <p><img src="pics/group_cp.GIF" border="1" /></p>
@@ -450,7 +466,7 @@ a.navbar:hover {
       <p>The "Album category" drop down list allows you to move an album between
       categories. If you set this to "* No category *" then the album will be
       displayed on your main page.</p>
-      <p>Coppermine understands the following bbCodes (the same bbCodes that are
+      <a name="bbcode"></a><p>Coppermine understands the following bbCodes (the same bbCodes that are
       used by phpBB) in image and album description</p>
       <ul>
         <li>[b]<b>bold</b>[/b]
@@ -532,6 +548,12 @@ a.navbar:hover {
       This option only makes sense if you have at least one other theme in your /themes/ folder than your default theme. It's recommended to only offer this option if there's an additional benefit for the user (for example a theme with less graphics in it that loads faster for users on a dial-up connection, or a theme with reduced color pallettes and good contrast).</p>
       <h4>Display &quot;reset&quot; in theme selection</h4>
       <p>This option only applies if you enabled theme selection at all - it will show a &quot;default&quot; list entry to let the users go back to the original theme of your gallery.</p>
+      <h4>Display FAQ</h4>
+      <p>This option adds &quot;FAQ&quot; to the menu bar when enabled. If a user clicks on it, it will display a list of &quot;Frequently asked question&quot; on how to use coppermine. To change the content of the FAQ, edit the file /your_coppermine_folder/lang/yourlanguage.php (e.g. english.php) and look for <pre>// ------------------------------------------------------------------------- //
+// File faq.php
+// ------------------------------------------------------------------------- //</pre><br />Edit the stuff that comes after it.</p>
+      <h4>Display bbcode help</h4>
+      <p>When enabled, this will display the <a href="#bbcode">bulletin board codes</a> that are allowed to use in description fields next to the field.</p>
       <h4>Character encoding</h4>
       <p>This should normally be set to "Default (language file)" or "Unicode
       (utf-8)". See the discussion in the &quot;<b><a href="#config_language">language</a></b>&quot; section of this
@@ -573,6 +595,7 @@ a.navbar:hover {
         <li>'<b>topn</b>': most viewed
         <li>'<b>toprated</b>': top rated
         <li>'<b>lastcom</b>': last comments </li>
+        <li>'<b>lasthits</b>': last viewed </li>
         <li>'<b>anycontent</b>': inserts php-generated content that has to reside within the file 'anycontent.php' into the index page. Can be used to include banner-rotation scripts or similar.</li></ul>
       <p></p>
       <p>The <b>,2</b> means 2 rows of thumbnails.</p>
@@ -646,12 +669,10 @@ a.navbar:hover {
       when using ImageMagick.</p>
                         <h4>Max dimension of a thumbnail</h4>
                         <p>Sets the maximum size in pixels for the specified dimension for thumbnails.
-                        <div class="important">This setting must not be changed if there are already
-                        photos in the gallery.</div></p>
+                        <div class="important">When changing this setting, only the pictures that are added from that point on are affected, so it is advisable that this setting must not be changed if there are already photos in the gallery. You can, however, apply the changes to the existing pictures with the &quot;resize pictures&quot; utility from the admin menu.</div></p>
                         <h4>Use dimension ( width or height or Max aspect for thumbnail )</h4>
                         <p>Sets the dimension for which the maximum pixel size should apply to.
-                        <div class="important">This setting must not be changed if there are already
-                        photos in the gallery.</div></p>
+                        <div class="important">When changing this setting, only the pictures that are added from that point on are affected, so it is advisable that this setting must not be changed if there are already photos in the gallery. You can, however, apply the changes to the existing pictures with the &quot;resize pictures&quot; utility from the admin menu.</div></p>
       <h4>Create intermediate pictures</h4>
       <p>By default, whenever you upload a picture, the script creates a
       thumbnail of the picture (picture name with a thumb_ prefix) plus an
