@@ -17,8 +17,6 @@
   $Date$
 **********************************************/
 
-// THIS FILE IS A COPY OF english.php
-
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
 // info about translators and translated language
