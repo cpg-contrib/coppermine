@@ -57,6 +57,7 @@ INSERT INTO CPG_config VALUES ('max_upl_size', '1024');
 INSERT INTO CPG_config VALUES ('max_upl_width_height', '2048');
 INSERT INTO CPG_config VALUES ('min_votes_for_rating', '1');
 INSERT INTO CPG_config VALUES ('normal_pfx', 'normal_');
+INSERT INTO CPG_config VALUES ('offline', '0');
 INSERT INTO CPG_config VALUES ('picture_table_width', '600');
 INSERT INTO CPG_config VALUES ('picture_width', '400');
 INSERT INTO CPG_config VALUES ('randpos_interval', '1063623637');
