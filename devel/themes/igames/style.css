@@ -100,7 +100,7 @@ li {
         background-position : left;
         padding-left : 12px;
         padding-right : 6px;
-        position: relative;
+        /*position: relative;*/
         display: block;
         height : 35px;
         line-height : 35px;
@@ -123,7 +123,7 @@ li {
         background-position : right;
         padding-right : 22px;
         padding-left : 6px;
-        position: relative;
+        /*position: relative;*/
         display: block;
         height : 35px;
         line-height : 35px;
@@ -145,7 +145,7 @@ li {
         background-position : left;
         padding-left : 6px;
         padding-right : 6px;
-        position: relative;
+        /*position: relative;*/
         display: block;
         height : 35px;
         line-height : 35px;
@@ -377,7 +377,7 @@ a:hover {
 }
 
 .navmenu a {
-        position: relative;
+        /*position: relative;*/
         display: block;
         padding-left: 5px;
         padding-right: 5px;
@@ -410,7 +410,7 @@ a:hover {
 .admin_menu_thumb a {
         text-decoration: none;
         display: block;
-        position: relative;
+        /*position: relative;*/
         padding-top: 1px;
         padding-bottom: 1px;
         padding-left: 10px;
@@ -434,7 +434,7 @@ a:hover {
 .admin_menu a {
         text-decoration: none;
         display: block;
-        position: relative;
+        /*position: relative;*/
         padding-top: 1px;
         padding-bottom: 1px;
         padding-left: 10px;

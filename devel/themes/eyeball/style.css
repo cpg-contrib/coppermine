@@ -182,7 +182,7 @@ li {
 
         text-decoration: none;
 
-        position: relative;
+        /*position: relative;*/
 
         display: block;
 
@@ -618,7 +618,7 @@ a:hover {
 
 .navmenu a {
 
-        position: relative;
+        /*position: relative;*/
 
         display: block;
 
@@ -670,7 +670,7 @@ a:hover {
 
         display: block;
 
-        position: relative;
+        /*position: relative;*/
 
         padding-top: 1px;
 
@@ -717,7 +717,7 @@ a:hover {
 
         display: block;
 
-        position: relative;
+        /*position: relative;*/
 
         padding-top: 1px;
 

@@ -281,7 +281,7 @@ bblink a:hover {
 }
 
 .navmenu a {
-        position: relative;
+        /*position: relative;*/
         display: block;
         padding-top: 2px;
         padding-right: 5px;
@@ -314,7 +314,7 @@ bblink a:hover {
         color: #000000;
         text-decoration: none;
         display: block;
-        position: relative;
+        /*position: relative;*/
         padding-top: 1px;
         padding-bottom: 1px;
         padding-left: 10px;
@@ -343,7 +343,7 @@ bblink a:hover {
         color: #000000;
         text-decoration: none;
         display: block;
-        position: relative;
+        /*position: relative;*/
         padding-top: 1px;
         padding-bottom: 1px;
         padding-left: 10px;
