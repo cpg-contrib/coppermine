@@ -61,18 +61,17 @@ class CPGPluginAPI {
         // Get the plugin properties from the database
         while ($plugin = mysql_fetch_assoc($result)) {
 
-            // Load the plugin into the current scope
-            $plugin_obj = CPGPluginAPI::wakeup($plugin);
+            //CPGPluginAPI::wakeup($plugin);
 
+            $CPG_PLUGINS[$plugin['plugin_id']] = new CPGPlugin($plugin);
 
-            // Copy the plugin to the global scope
-            $CPG_PLUGINS[$plugin['plugin_id']] = $plugin_obj;
-            
-            // Reference the plugin with the local scope
             $thisplugin =& $CPG_PLUGINS[$plugin['plugin_id']];
-            
+
+            require ('./plugins/'.$thisplugin->path.'/codebase.php');
+
             // Check if plugin has a wakeup action
             if (!($thisplugin->awake = CPGPluginAPI::action('plugin_wakeup',true))) {
+
 
                 if ($CONFIG['log_mode']) {
                     log_write("Couldn't wake plugin '".$thisplugin->name."' at ".date("F j, Y, g:i a"),CPG_GLOBAL_LOG);
@@ -146,9 +145,15 @@ class CPGPluginAPI {
     function& filter( $key, $value, $execute_scope = CPG_EXEC_ALL ) {
         global $CPG_PLUGINS,$CONFIG,$USER_DATA,$thisplugin;
 
+        // Get all the plugin ids
+        $ids = array_keys($CPG_PLUGINS);
+
         // Loop through all the plugins
-        foreach($CPG_PLUGINS as $thisplugin) {
-                                             	
+        foreach($ids as $plugin_id) {
+            
+            // Reference current plugin to local scope
+            $thisplugin = $CPG_PLUGINS[$plugin_id];
+
             // Get the filter's value from the plugin
             $plugin_function = @$thisplugin->filters[$key];
 
@@ -162,9 +167,17 @@ class CPGPluginAPI {
                 continue;
             }
 
-            // Pass the value to the filter's function and get a value back
-            $value = call_user_func($plugin_function,$value);
-            
+            if (function_exists($plugin_function)) {
+                // Pass the value to the filter's function and get a value back
+                $value = call_user_func($plugin_function,$value);
+
+                // Copy back to global scope
+                $CPG_PLUGINS[$plugin_id] = $thisplugin;
+            }
+
+            // Copy back to global scope
+            $CPG_PLUGINS[$plugin_id] = $thisplugin;
+
             if ($execute_scope != CPG_EXEC_ALL) {
                 return $value;
                 break;
@@ -190,8 +203,14 @@ class CPGPluginAPI {
     function& action( $key, $value, $execute_scope = CPG_EXEC_ALL ) {
         global $CPG_PLUGINS,$CONFIG,$USER_DATA,$thisplugin;
 
+        // Get all the plugin ids
+        $ids = array_keys($CPG_PLUGINS);
+
         // Loop through all the plugins
-        foreach($CPG_PLUGINS as $thisplugin) {
+        foreach($ids as $plugin_id) {
+
+            // Copy current plugin to local scope
+            $thisplugin = $CPG_PLUGINS[$plugin_id];
 
             // Get the action's value from the plugin
             $plugin_function = @$thisplugin->actions[$key];
@@ -206,8 +225,13 @@ class CPGPluginAPI {
                 continue;
             }
 
-            // Pass the value to the action's function and get a value back
-            $value = call_user_func($plugin_function,$value);
+            if (function_exists($plugin_function)) {
+                // Pass the value to the action's function and get a value back
+                $value = call_user_func($plugin_function,$value);
+
+                // Copy back to global scope
+                $CPG_PLUGINS[$plugin_id] = $thisplugin;
+            }
 
             if ($execute_scope != CPG_EXEC_ALL) {
                 return $value;
@@ -229,17 +253,19 @@ class CPGPluginAPI {
      * @return CPGPlugin $object
      **/
 
-    function& wakeup($properties) {
+    function wakeup($properties) {
         global $CONFIG,$USER_DATA,$CPG_PLUGINS,$thisplugin,$lang_plugin_api;
 
         // Get a new instance of the plugin object
-        $thisplugin = new CPGPlugin($properties);
+        $CPG_PLUGINS[$properties['plugin_id']] = new CPGPlugin($properties);
+
+        $thisplugin =& $CPG_PLUGINS[$properties['plugin_id']];
+
 
         // Include the plugin's code into Coppermine
-        require_once ('./plugins/'.$thisplugin->path.'/codebase.php');
-        
-        // Return a reference to plugin object
-        return $thisplugin;
+        require ('./plugins/'.$thisplugin->path.'/codebase.php');
+
+        return;
     }
 
 
@@ -318,7 +344,7 @@ class CPGPluginAPI {
 
         // Copy it to the global scope
         $CPG_PLUGINS['new'] = $thisplugin;
-        
+
         // If the plugin has an install action, execute it
         $installed = CPGPluginAPI::action('plugin_install',true,CPG_EXEC_NEW);
 
@@ -423,72 +449,67 @@ class CPGPlugin {
             $this->$key = stripslashes($value);
         }
     }
-}
 
-
-/**
- * cpg_add_filter()
- *
- * Add a plugin filter
- *
- * @param string $action
- * @param variant $value
- * @return N/A
- **/
-
-function cpg_add_filter($key,$value) {
-    global $thisplugin;
-    if (!isset($thisplugin->filters[$key])) {
-        $thisplugin->filters[$key] = $value;
+    /**
+     * cpg_add_filter()
+     *
+     * Add a plugin filter
+     *
+     * @param string $action
+     * @param variant $value
+     * @return N/A
+     **/
+    
+    function add_filter($key,$value) {
+        if (!isset($this->filters[$key])) {
+            $this->filters[$key] = $value;
+        }
     }
-}
-
-/**
- * cpg_delete_filter()
- *
- * Delete a plugin filter
- *
- * @param integer $plugin_id
- * @return N/A
- **/
-
-function cpg_delete_filter($key) {
-    global $thisplugin;
-    if (isset($thisplugin->filters[$key])) {
-        unset($thisplugin->filters[$key]);
+    
+    /**
+     * cpg_delete_filter()
+     *
+     * Delete a plugin filter
+     *
+     * @param integer $plugin_id
+     * @return N/A
+     **/
+    
+    function delete_filter($key) {
+        if (isset($this->filters[$key])) {
+            unset($this->filters[$key]);
+        }
     }
-}
-
-/**
- * cpg_add_action()
- *
- * Add a plugin action
- *
- * @param string $action
- * @param variant $value
- * @return N/A
- **/
-
-function cpg_add_action($key,$value) {
-    global $thisplugin;
-    if (!isset($thisplugin->actions[$key])) {
-        $thisplugin->actions[$key] = $value;
+    
+    /**
+     * cpg_add_action()
+     *
+     * Add a plugin action
+     *
+     * @param string $action
+     * @param variant $value
+     * @return N/A
+     **/
+    
+    function add_action($key,$value) {
+        if (!isset($this->actions[$key])) {
+            $this->actions[$key] = $value;
+        }
     }
-}
 
-/**
- * cpg_delete_action()
- *
- * Delete a plugin action
- *
- * @param integer $plugin_id
- * @return N/A
- **/
-
-function cpg_delete_action($key) {
-    global $thisplugin;
-    if (isset($thisplugin->actions[$key])) {
-        unset($thisplugin->actions[$key]);
+    /**
+     * cpg_delete_action()
+     *
+     * Delete a plugin action
+     *
+     * @param integer $plugin_id
+     * @return N/A
+     **/
+    
+    function delete_action($key) {
+        if (isset($this->actions[$key])) {
+            unset($this->actions[$key]);
+        }
     }
 }
 
@@ -541,7 +562,7 @@ function& cpg_filter_page_html( &$html ) {
 }
 
 /**
- * cpg_filter_page_html()
+ * cpg_get_dir_list()
  *
  * Returns all the subdirecties in a given folder
  *
