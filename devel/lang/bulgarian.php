@@ -25,7 +25,7 @@ $lang_translation_info = array(
   'trans_name'=> 'Mihail Tomoff',
   'trans_email' => 'gallery@starrydreams.com',
   'trans_website' => 'http://www.starrydreams.com/cpg/',
-  'trans_date' => '2004-05-15',
+  'trans_date' => '2004-05-29',
 );
 
 $lang_charset = 'windows-1251';
@@ -76,9 +76,9 @@ $lang_errors = array(
   'param_missing' => 'Скриптът е извикан без нужните параметри.',
   'non_exist_ap' => 'Избраният албум/файл не съществува !', //cpg1.3.0
   'quota_exceeded' => 'Достигната е дисковата квота<br /><br />Имате квота от [quota]K, в момента файловете ви използват [space]K, добавянето на този файл ще надмине квотата ви.', //cpg1.3.0
-  'gd_file_type_err' => 'Когато използвате GD библиотеката ще можете да използвате само JPEG и PNG.',
+  'gd_file_type_err' => 'Ако употребявате GD библиотеката ще можете да използвате само JPEG и PNG.',
   'invalid_image' => 'Файлът който качихте е дефектен и не може да бъде обработен от библиотеката GD',
-  'resize_failed' => 'Не е възможно създаването на thumbnail or образ с умалени размери.',
+  'resize_failed' => 'Не е възможно създаването на умалена картинка (thumnail) или образ с умалени размери.',
   'no_img_to_display' => 'Няма снимки за показване',
   'non_exist_cat' => 'Избраната категория не съществува',
   'orphan_cat' => 'Категорията има несъществуваща родителска категория, пуснете мениджъра за категории за да коригирате проблема!', //cpg1.3.0
@@ -86,10 +86,10 @@ $lang_errors = array(
   'non_exist_comment' => 'Избраният коментар не съществува.',
   'pic_in_invalid_album' => 'Файлът е в несъществуващ албум (%s)!?', //cpg1.3.0
   'banned' => 'В момента ви е забранено да използвате сайта.',
-  'not_with_udb' => 'Функцията е забранена от администратора на Coppermine защото е интегрирана в софтуера на форума. Това, което се опитвате или не е поддържано в тази конфигурация или функцията трябва да се обслужва от форумния софтуер.',
+  'not_with_udb' => 'Функцията е забранена от администратора на Coppermine, защото е интегрирана в софтуера на форума. Това, което се опитвате, или не е поддържано в тази конфигурация, или функцията трябва да се обслужва от форумния софтуер.',
   'offline_title' => 'Offline', //cpg1.3.0
   'offline_text' => 'Галерията е offline - проверете по-късно', //cpg1.3.0
-  'ecards_empty' => 'В момента няма ecard записи за показване. Проверете дали се позволили логването на електронните картички в конфигурацията на coppermine!', //cpg1.3.0
+  'ecards_empty' => 'В момента няма записи на картички. Проверете дали сте позволили логването на електронните картички в конфигурацията на coppermine!', //cpg1.3.0
   'action_failed' => 'Командата не бе изпълнена. Coppermine не може да я изпълни.', //cpg1.3.0
   'no_zip' => 'Нужните библиотеки за обработка на ZIP файлове не са в наличност. Обърнете се , моля, към администратора на Coppermine.', //cpg1.3.0
   'zip_type' => 'Не ви е позволено да качвате ZIP файлове.', //cpg1.3.0
@@ -130,7 +130,7 @@ $lang_main_menu = array(
 );
 
 $lang_gallery_admin_menu = array(
-  'upl_app_lnk' => 'Одобряване',
+  'upl_app_lnk' => 'Одобрение',
   'config_lnk' => 'Конфигурация',
   'albums_lnk' => 'Албуми',
   'categories_lnk' => 'Категории',
@@ -156,7 +156,7 @@ $lang_cat_list = array(
 );
 
 $lang_album_list = array(
-  'album_on_page' => '%d албума на %d страници',
+  'album_on_page' => '%d албум(а) на %d страница(и)',
 );
 
 $lang_thumb_view = array(
@@ -171,16 +171,16 @@ $lang_thumb_view = array(
   'sort_ta' => 'Сортиране по заглавие възходящо',
   'sort_td' => 'Сортиране по заглавие низходящо',
   'download_zip' => 'Свали като Zip файл', //cpg1.3.0
-  'pic_on_page' => '%d файла в %d страници',
-  'user_on_page' => '%d потребители на %d страници', //cpg1.3.0
+  'pic_on_page' => '%d файл(а) в %d страница(и)',
+  'user_on_page' => '%d потребител(и) на %d страница(и)', //cpg1.3.0
 );
 
 $lang_img_nav_bar = array(
-  'thumb_title' => 'Върни се в страницата с умалените снимки',
+  'thumb_title' => 'Връщане в страницата с умалените снимки',
   'pic_info_title' => 'Покажи/скрий информация за файла', //cpg1.3.0
   'slideshow_title' => 'Slideshow',
-  'ecard_title' => 'Изпрати файла като електронна картичка', //cpg1.3.0
-  'ecard_disabled' => 'електронните картички за изключени',
+  'ecard_title' => 'Изпратете файла като електронна картичка', //cpg1.3.0
+  'ecard_disabled' => 'Електронните картички за изключени',
   'ecard_disabled_msg' => 'Нямате право да изпращате картички', //js-alert //cpg1.3.0
   'prev_title' => 'Вж. предишния файл', //cpg1.3.0
   'next_title' => 'Вж. следващия файл', //cpg1.3.0
@@ -285,7 +285,7 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
   'Idea' => 'Имам идея',
   'Arrow' => 'Стрелка',
   'Neutral' => 'Неутрален съм',
-  'Mr. Green' => 'Mr. Green',
+  'Mr. Green' => 'Чичко-тревичко',
 );
 
 // ------------------------------------------------------------------------- //
@@ -329,9 +329,9 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
-  'miss_param' => 'Parameters required for \'%s\'operation not supplied !',
-  'unknown_cat' => 'Selected category does not exist in database',
-  'usergal_cat_ro' => 'User galleries category can\'t be deleted !',
+  'miss_param' => 'Параметрите изисквани за операцията \'%s\' не са зададени !',
+  'unknown_cat' => 'Избраната категория не съществува в базата данни',
+  'usergal_cat_ro' => 'Галериите на потребителите не могат да бъдат изтрити !',
   'manage_cat' => 'Управление на категории',
   'confirm_delete' => 'Наистина ли искате да изтриете категорията', //js-alert
   'category' => 'Категория',
@@ -340,7 +340,7 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
   'update_create' => 'Актуализиране/Създаване на категория',
   'parent_cat' => 'Родителска категория',
   'cat_title' => 'Заглавие на категорията',
-  'cat_thumb' => 'Thumbnail на категорията', //cpg1.3.0
+  'cat_thumb' => 'Умалена картинка на категорията', //cpg1.3.0
   'cat_desc' => 'Описание на категорията',
 );
 
@@ -394,24 +394,24 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Character encoding', 'charset', 4), //cpg1.3.0
 
   'Изглед на списъка с албуми',
-  array('Ширина на главната таблица (pixels or %)', 'main_table_width', 0),
+  array('Ширина на главната таблица (пиксели или %)', 'main_table_width', 0),
   array('Брой нива от категория за показване', 'subcat_level', 0),
   array('Брой албуми за показване', 'albums_per_page', 0),
   array('Брой колони за списъка от албуми', 'album_list_cols', 0),
-  array('Размер на thumbnail-ите в пиксели', 'alb_list_thumb_size', 0),
+  array('Размер на умалените картинки в пиксели', 'alb_list_thumb_size', 0),
   array('Съдържание на главната страница', 'main_page_layout', 0),
-  array('Показване на албумни thumbnails от първо ниво в категориите','first_level',1),
+  array('Показване на албумни умалени картинки от първо ниво в категориите','first_level',1),
 
-  'Изглед на Thumbnail-ите',
-  array('Брой колони в страница с thumbnail-и', 'thumbcols', 0),
-  array('Брой редове на страница с thumbnail-и', 'thumbrows', 0),
-  array('Максимум tabs за показване', 'max_tabs', 10), //cpg1.3.0
-  array('Показване на file caption (в допълнение към заглавието) под thumbnail-а', 'caption_in_thumbview', 1), //cpg1.3.0
-  array('Показване на броя виждания под thumbnail-а', 'views_in_thumbview', 1), //cpg1.3.0
-  array('Показване на броя коментари под thumbnail-а', 'display_comment_count', 1),
-  array('Показване на потребителя качил файла под thumbnail-а', 'display_uploader', 1), //cpg1.3.0
+  'Изглед на умалените картинки',
+  array('Брой колони в страница с умалени картинки', 'thumbcols', 0),
+  array('Брой редове на страница с умалени картинки', 'thumbrows', 0),
+  array('Максимум умалени картинки за показване', 'max_tabs', 10), //cpg1.3.0
+  array('Показване на пояснение (в допълнение към заглавието) под умалената картинка', 'caption_in_thumbview', 1), //cpg1.3.0
+  array('Показване на броя виждания под умалената картинка', 'views_in_thumbview', 1), //cpg1.3.0
+  array('Показване на броя коментари под умалената картинка', 'display_comment_count', 1),
+  array('Показване на потребителя качил файла под умалената картинка', 'display_uploader', 1), //cpg1.3.0
   array('Ред по подразбиране за сортиране на файловете', 'default_sort_order', 3), //cpg1.3.0
-  array('Минимален брой гласове за да се появи даден файл в \'Най-високо оценени\' list', 'min_votes_for_rating', 0), //cpg1.3.0
+  array('Минимален брой гласове за да се появи даден файл в \'Най-високо оценени\'', 'min_votes_for_rating', 0), //cpg1.3.0
 
   'Изглед на снимката &amp; настройки на коментарите',
   array('Ширина на таблицата за показване на файлове (пиксели или %)', 'picture_table_width', 0), //cpg1.3.0
@@ -428,16 +428,16 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Уведомяване на администратора за коментари по email', 'email_comment_notification', 1), //cpg1.3.0
   array('Интервал на Slideshow в милисекунди (1 секунда = 1000 милисекунди)', 'slideshow_interval', 0), //cpg1.3.0
 
-  'Настройки на файловете и thumbnail-ите', //cpg1.3.0
+  'Настройки на файловете и умалените картинки', //cpg1.3.0
   array('Качество за JPEG файловете', 'jpeg_qual', 0),
-  array('Максимален размер на thumbnail-а <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0), //cpg1.3.0
-  array('Използван размер ( ширина или височина или максимално отношение за thumbnail-а )<b>**</b>', 'thumb_use', 7),
+  array('Максимален размер на умалената картинка <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0), //cpg1.3.0
+  array('Използван размер ( ширина или височина или максимално отношение за умалената картинка )<b>**</b>', 'thumb_use', 7),
   array('Създаване на междинни образи','make_intermediate',1),
   array('Максимална ширина или височина на междинния образ/видео <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0), //cpg1.3.0
   array('Максимална големина на качен файл (KB)', 'max_upl_size', 0), //cpg1.3.0
   array('Максимална ширина или височина на качените образи/видео (пиксели)', 'max_upl_width_height', 0), //cpg1.3.0
 
-  'Настройки на файловете и thumbnail-ите за напреднали', //cpg1.3.0
+  'Настройки на файловете и умалените картинки за напреднали', //cpg1.3.0
   array('Показване на икона за частен албум на нелогнат потребител','show_private',1), //cpg1.3.0
   array('Забранение символи в имената на файловете', 'forbiden_fname_char',0), //cpg1.3.0
   //array('Accepted file extensions for uploaded pictures', 'allowed_file_extensions',0), //cpg1.3.0
@@ -454,7 +454,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Директория с албумите <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0), //cpg1.3.0
   array('Директория за потребителските файлове <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0), //cpg1.3.0
   array('Представка за междинните образи <a href="#notice1" class="clickable_option">*</a>', 'normal_pfx', 0), //cpg1.3.0
-  array('Представка за thumbnail-ите <a href="#notice1" class="clickable_option">*</a>', 'thumb_pfx', 0), //cpg1.3.0
+  array('Представка за умалените картинки <a href="#notice1" class="clickable_option">*</a>', 'thumb_pfx', 0), //cpg1.3.0
   array('Режим по подразбиране за директориите', 'default_dir_mode', 0), //cpg1.3.0
   array('Режим по подразбиране за файловете', 'default_file_mode', 0), //cpg1.3.0
 
@@ -558,12 +558,12 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DELETE_PHP')) $lang_delete_php = array(
-  'caption' => 'Caption',
+  'caption' => 'Пояснение',
   'fs_pic' => 'образ в цял размер',
   'del_success' => 'успешно изтрит',
   'ns_pic' => 'образ с нормален размер',
   'err_del' => 'не може да бъде изтрит',
-  'thumb_pic' => 'thumbnail',
+  'thumb_pic' => 'умалена картинка',
   'comment' => 'коментар',
   'im_in_alb' => 'образ в албума',
   'alb_del_success' => 'Албумът \'%s\' бе изтрит',
@@ -676,15 +676,15 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'title' => 'Заглавие',
   'desc' => 'Описание',
   'keywords' => 'Ключови думи',
-  'pic_info_str' => '%s &пъти; %s - %s KB - %s разглеждания - %s гласа',
-  'approve' => 'Одобряване на файл', //cpg1.3.0
+  'pic_info_str' => '%s пъти; %s - %s KB - %s разглеждания - %s гласа',
+  'approve' => 'Одобрение на файл', //cpg1.3.0
   'postpone_app' => 'Отлагане на одобряването',
   'del_pic' => 'Изтриване на файла', //cpg1.3.0
   'read_exif' => 'Прочитане на EXIF информацията отново', //cpg1.3.0
   'reset_view_count' => 'Нулиране на брояча за разглежданията',
   'reset_votes' => 'Нулиране на гласовете',
   'del_comm' => 'Изтриване на коментари',
-  'upl_approval' => 'Одобряване на качени файлове',
+  'upl_approval' => 'Одобрение на качени файлове',
   'edit_pics' => 'Редактиране на файлове', //cpg1.3.0
   'see_next' => 'Вижте следващите файлове', //cpg1.3.0
   'see_prev' => 'Вижте предишните файлове', //cpg1.3.0
@@ -694,7 +694,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'crop_title' => 'Coppermine Picture Editor', //cpg1.3.0
   'preview' => 'Предварителен преглед', //cpg1.3.0
   'save' => 'Запис на образа', //cpg1.3.0
-  'save_thumb' =>'Записване като thumbnail', //cpg1.3.0
+  'save_thumb' =>'Записване като умалена картинка', //cpg1.3.0
   'sel_on_img' =>'Селекцията трябва да бъде изцяло над образа!', //js-alert //cpg1.3.0
 );
 
@@ -810,21 +810,21 @@ $lang_album_admin_menu = array(
 
 $lang_list_categories = array(
   'home' => 'начало',
-  'stat1' => '<b>[pictures]</b> файла в <b>[albums]</b> албума и <b>[cat]</b> категории с <b>[comments]</b> коментара, видяни <b>[views]</b> пъти', //cpg1.3.0
-  'stat2' => '<b>[pictures]</b> файла в <b>[albums]</b> албума, видяни <b>[views]</b> пъти', //cpg1.3.0
+  'stat1' => '<b>[pictures]</b> файл(а) в <b>[albums]</b> албум(а) и <b>[cat]</b> категория(и) с <b>[comments]</b> коментар(а), видян(и) <b>[views]</b> път(и)', //cpg1.3.0
+  'stat2' => '<b>[pictures]</b> файл(а) в <b>[albums]</b> албум(а), видян(и) <b>[views]</b> път(и)', //cpg1.3.0
   'xx_s_gallery' => 'Галерия на %s',
-  'stat3' => '<b>[pictures]</b> файла в <b>[albums]</b> албумa с <b>[comments]</b> коментара, видяни <b>[views]</b> пъти', //cpg1.3.0
+  'stat3' => '<b>[pictures]</b> файл(а) в <b>[albums]</b> албум(a) с <b>[comments]</b> коментар(а), видян(и) <b>[views]</b> път(и)', //cpg1.3.0
 );
 
 $lang_list_users = array(
   'user_list' => 'Списък с потребители',
   'no_user_gal' => 'Няма потребителски галерии',
   'n_albums' => '%s албум(а)',
-  'n_pics' => '%s файла', //cpg1.3.0
+  'n_pics' => '%s файл(а)', //cpg1.3.0
 );
 
 $lang_list_albums = array(
-  'n_pictures' => '%s файла', //cpg1.3.0
+  'n_pictures' => '%s файл(а)', //cpg1.3.0
   'last_added' => ', последният добавен на %s',
 );
 
@@ -876,7 +876,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'alb_title' => 'Заглавие на албум',
   'alb_cat' => 'Категория на албум',
   'alb_desc' => 'Описание на албум',
-  'alb_thumb' => 'Thumbnail на албума',
+  'alb_thumb' => 'Умалена картинка на албума',
   'alb_perm' => 'Разрешения за този албум',
   'can_view' => 'Албумът може да бъде разглеждан само от',
   'can_upload' => 'Посетителите могат да качват файлове',
@@ -890,7 +890,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'me_only' => 'Само мен',
   'owner_only' => 'Само собственика на албума (%s) ',
   'groupp_only' => 'Членовете на групата \'%s\' ',
-  'err_no_alb_to_modify' => 'Нито един албум не можете да променята в базата данни.',
+  'err_no_alb_to_modify' => 'Нито един албум не можете да променяте в базата данни.',
   'update' => 'Актуализация на албум', //cpg1.3.0
   'notice1' => '(*) зависи от настройките на групата %sgroups%s ', //cpg1.3.0 (do not translate %s!)
 );
@@ -1168,8 +1168,8 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'name_d' => 'По име низходящо',
   'group_a' => 'По група възходящо',
   'group_d' => 'По група низходящо',
-  'reg_a' => 'По регистр. дата възходящо',
-  'reg_d' => 'По регистр. дата низходящо',
+  'reg_a' => 'По дата на регистрация възходящо',
+  'reg_d' => 'По дата на регистрация низходящо',
   'pic_a' => 'По брой файлове възходящо',
   'pic_d' => 'По брой файлове низходящо',
   'disku_a' => 'По използване на диска възходящо',
@@ -1218,7 +1218,7 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
   'what_it_does' => 'Какво прави',
   'what_update_titles' => 'Променя заглавията от имената на файловете',
   'what_delete_title' => 'Изтрива заглавия',
-  'what_rebuild' => 'Пресъздава thumbnail-ите и променя размерите на снимките',
+  'what_rebuild' => 'Пресъздава умалените картинки и променя размерите на снимките',
   'what_delete_originals' => 'Изтрива първоначалните снимки и ги замества със снимки с променените размери',
   'file' => 'Файл',
   'title_set_to' => 'заглавие сменено на',
@@ -1230,8 +1230,8 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
   'error_rename' => 'Грешка при преименуването от %s в %s',
   'error_not_found' => 'Файлът %s не бе открит',
   'back' => 'обратно в главната страница',
-  'thumbs_wait' => 'Актуализация на thumbnail-и и/или образи с променени размери, моля изчакайте...',
-  'thumbs_continue_wait' => 'Продължават да се актуализират thumbnail-и и/или образи с променени размери...',
+  'thumbs_wait' => 'Актуализация на умалени картинки и/или образи с променени размери, моля изчакайте...',
+  'thumbs_continue_wait' => 'Продължават да се актуализират умалени картинки и/или образи с променени размери...',
   'titles_wait' => 'Актуализация на файлове, моля изчакайте...',
   'delete_wait' => 'Триене на заглавия, моля изчакайте...',
   'replace_wait' => 'Триене на оригинали и заместването им с образи с променени размери, моля изчакайте...',
@@ -1240,11 +1240,11 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
   'instruction_parameter' => 'Нагласете параметрите',
   'instruction_album' => 'Изберете албум',
   'instruction_press' => 'Натиснете %s',
-  'update' => 'Актуализация на thumbnail-и и/или снимки с променени размери',
+  'update' => 'Актуализация на умалени картинки и/или снимки с променени размери',
   'update_what' => 'Какво трябва да бъде актуализирано',
-  'update_thumb' => 'Само thumbnail-и',
+  'update_thumb' => 'Само умалените картинки',
   'update_pic' => 'Само картините с променени размери',
-  'update_both' => 'И thumbnail-ите и картините с променени размери',
+  'update_both' => 'И умалените картинки и картините с променени размери',
   'update_number' => 'Брой обработвани образи при натискане',
   'update_option' => '(Опитайте да сложите по-ниски стойности на тази опция ако получавате проблеми с грешка от типа "Тimeout" )',
   'filename_title' => 'Име на файл &rArr; Заглавие на файл', //cpg1.3.0
