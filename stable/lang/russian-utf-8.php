@@ -405,8 +405,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('The prefix for thumbnails <b>*</b>', 'thumb_pfx', 0),
 	array('Default mode for directories', 'default_dir_mode', 0),
 	array('Default mode for pictures', 'default_file_mode', 0),
-        array('Disable right-click on full-size pop-up (JavaScript - no foolproof method)', 'disable_popup_rightclick', 1),  //new in cpg1.2.0
-        array('Disable right-click on all "regular" pages (JavaScript - no foolproof method)', 'disable_gallery_rightclick', 1),  //new in cpg1.2.0
 
 	'Cookies &amp; Charset settings',
 	array('Name of the cookie used by the script', 'cookie_name', 0),
@@ -962,7 +960,7 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
         'update_both' => 'Both thumbnails and resized pictures', 
         'update_number' => 'Number of processed images per click', 
         'update_option' => '(Try setting this option lower if you experience timeout problems)', 
-        'filename_title' => 'Filename ⇒ Picture title', 
+        'filename_title' => 'Filename ? Picture title', 
         'filename_how' => 'How should the filename be modified', 
         'filename_remove' => 'Remove the .jpg ending and replace _ (underscore) with spaces', 
         'filename_euro' => 'Change 2003_11_23_13_20_20.jpg to 23/11/2003 13:20', 

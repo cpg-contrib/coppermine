@@ -411,8 +411,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Πρόθεμα των thumbnails <b>*</b>', 'thumb_pfx', 0),
 	array('Προεγκαταστημένες ρυθμίσεις για καταλόγους', 'default_dir_mode', 0),
 	array('Προεγκαταστημένες ρυθμίσεις για φωτογραφίες', 'default_file_mode', 0),
-        array('Απενεργοποίηση δεξιού κλικ στο πλήρους μεγέθους pop-up (JavaScript - no foolproof method)', 'disable_popup_rightclick', 1), 
-        array('Απενεργοποίηση δεξιού κλικ σε όλες τις σελίδες (JavaScript - no foolproof method)', 'disable_gallery_rightclick', 1), 
 
 	'Ρυθμίσεις για τα Cookies &amp; και τις κωδικοποιήσεις χαρακτήρων',
 	array('Ονομα του cookie που χρησιμοποιεί το πρόγραμμα', 'cookie_name', 0),

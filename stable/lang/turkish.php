@@ -411,8 +411,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('K&uuml;ç&uuml;k resimler için &ouml;nek <b>*</b>', 'thumb_pfx', 0),
 	array('Dizinler için hazýr ayar', 'default_dir_mode', 0),
 	array('Resimleri için hazýr ayar', 'default_file_mode', 0),
-        array('Tam ekran yeni pencerede sað klik yasakla (JavaScript - foolproof metodu yok)', 'disable_popup_rightclick', 1), 
-        array('Bütün "sýradan" sayfalarda sað klik yasakla (JavaScript - foolproof metodu yok)', 'disable_gallery_rightclick', 1), 
 
 	'Cookie &amp; Charset ayarlarý',
 	array('Program tarafýndan kullanýlan cookielerin adý', 'cookie_name', 0),

@@ -412,8 +412,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('썸네일의 접두어 <b>*</b>', 'thumb_pfx', 0),
 	array('디렉토리 기본 퍼미션', 'default_dir_mode', 0),
         array('이미지 기본 퍼미션', 'default_file_mode', 0),
-        array('원래 이미지에 오른쪽 마우스 사용금지 (JavaScript - no foolproof method)', 'disable_popup_rightclick', 1), //new in cpg1.2.0
-        array(' &quot;regular&quot; pages 모두 오른쪽마우스 사용금지 (JavaScript - no foolproof method)', 'disable_gallery_rightclick', 1), //new in cpg1.2.0
 
         '쿠키 및 문서 인코딩 설정',
         array('쿠키이름', 'cookie_name', 0),

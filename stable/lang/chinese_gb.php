@@ -413,8 +413,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('生成缩图的前置字符 <b>*</b>', 'thumb_pfx', 0),
 	array('目录的缺省 CHMOD', 'default_dir_mode', 0),
 	array('图片文件的缺省 CHMOD', 'default_file_mode', 0),
-	array('最大弹出窗口禁用鼠标右键 (JavaScript - 仅提供基本保护)', 'disable_popup_rightclick', 1),
-	array('所有窗口禁用鼠标右键 (JavaScript - 仅提供基本保护)', 'disable_gallery_rightclick', 1),
+	
+
 
 	'Cookies &amp; 字符集 设定',
 	array('本程序所使用的 cookie 名称', 'cookie_name', 0),

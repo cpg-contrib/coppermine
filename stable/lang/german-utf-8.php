@@ -414,8 +414,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Vorsilbe für Thumbnails <b>*</b>', 'thumb_pfx', 0),
         array('Standard-Modus für Verzeichnisse', 'default_dir_mode', 0),
         array('Standard-Modus für Bilder', 'default_file_mode', 0),
-        array('Rechts-Klick für Bilder in voller Grösse deaktivieren (JavaScript - keine narrensichere Methode)', 'disable_popup_rightclick', 1),
-        array('Rechts-Klick für gesamte Galerie deaktivieren (JavaScript - keine narrensichere Methode)', 'disable_gallery_rightclick', 1),
 
         'Cookies &amp; Zeichensatz-Einstellungen',
         array('Cookie-Name, der vom Skript verwendet wird', 'cookie_name', 0),

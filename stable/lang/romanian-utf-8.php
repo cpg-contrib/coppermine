@@ -412,8 +412,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Prefixul pentru pictograme <b>*</b>', 'thumb_pfx', 0),
         array('Modul predefinit al directoarelor', 'default_dir_mode', 0),
         array('Modul predefinit al imaginilor', 'default_file_mode', 0),
-        array('Dezactiveaza right-click pe pop-up-ul cu imaginea finala (JavaScript - nu este o metoda garantata)', 'disable_popup_rightclick', 1), //new in cpg1.2.0
-        array('Dezactiveaza right-click pe toate paginile &quot;normale&quot; (JavaScript - nu este o metoda garantata)', 'disable_gallery_rightclick', 1), //new in cpg1.2.0
 
         'Cookies &amp; Charset settings',
         array('Numele cookie-ului utilizat de script', 'cookie_name', 0),

@@ -414,8 +414,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Prefiks untuk thumbnail <b>*</b>', 'thumb_pfx', 0),
         array('Mode default untuk direktori', 'default_dir_mode', 0),
         array('Mode default untuk foto', 'default_file_mode', 0),
-        array('Nonaktifkan klik-kanan pada pop-up ukuran penuh (JavaScript - no foolproof method)', 'disable_popup_rightclick', 1), //new in cpg1.2.0
-        array('Nonaktifkan klik-kanan pada semua halaman &quot;regular&quot; (JavaScript - no foolproof method)', 'disable_gallery_rightclick', 1), //new in cpg1.2.0
 
         'Setting Cookie &amp; Karakter Set ',
         array('Nama cookie yang digunakan oleh skrip', 'cookie_name', 0),

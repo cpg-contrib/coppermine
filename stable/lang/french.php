@@ -412,8 +412,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Préfixe pour les vignettes <b>*</b>', 'thumb_pfx', 0),
         array('Mode par défaut des répertoires', 'default_dir_mode', 0),
         array('Mode par défaut des images', 'default_file_mode', 0),
-        array('Désactiver le clic droit sur les images en taille réelle (JavaScript - il existe des moyens de contourner cette méthode)', 'disable_popup_rightclick', 1), //new in cpg1.2.0
-        array('Désactiver le clic droit sur toutes les pages normales (JavaScript - il existe des moyens de contourner cette méthode)', 'disable_gallery_rightclick', 1), //new in cpg1.2.0
 
         'Cookies &amp; paramètres d\'encodage des caractères',
         array('Nom du cookie utilisé par le script', 'cookie_name', 0),

@@ -411,8 +411,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('ÇáÍÑæÝ ÇáÇæáì áãÎÊÕÑÇÊ ÇáÕæÑ <b>*</b>', 'thumb_pfx', 0),
 	array('ÇáæÖÚ ÇáÇÚÊíÇÏí ááãÌáÏÇÊ', 'default_dir_mode', 0),
 	array('ÇáæÖÚ ÇáÇÚÊíÇÏí ááÕæÑ', 'default_file_mode', 0),
-        array('ãä ÇáÖÛØ Úáì ÒÑ ÇáÝÃÑÉ Çáíãíä ááÕæÑ ÐÇÊ ÇáÍÌã ÇáØÈíÚí (JavaScript - ØÑíÞÉ ÌÇÝÇ ÓßÑíÈ ÇáãÊíäÉ)', 'disable_popup_rightclick', 1),
-        array('ÊÚØíá ÇáÖÛØ Úáì ÒÑ ÇáÝÃÑÉ Çáíãíä Úáì ßá ÇáÕÝÍÇÊ &quot;ÇáÚÇÏíÉ&quot; (JavaScript - ØÑíÞÉ ÌÇÝÇ ÓßÑíÈÊ)', 'disable_gallery_rightclick', 1),
 
 	'ÇÚÏÇÏÇÊ ÇáßæßíÒ æäæÚ ÇáÍÑæÝ',
 	array('ÇÓã Çáßæßí ÇáãÓÊÚãá Ýí ÇáÈÑäÇãÌ', 'cookie_name', 0),

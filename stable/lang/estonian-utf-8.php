@@ -411,8 +411,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 				array('Eesliide pisipiltidele <b>*</b>', 'thumb_pfx', 0),
 				array('Vaikemood kataloogidele', 'default_dir_mode', 0),
 				array('Vaikemood piltidele', 'default_file_mode', 0),
-        array('Keela parem-klõps täis ekraan pop-up -idel (JavaScript - mitte täie kindlusega meetod)', 'disable_popup_rightclick', 1), //new in cpg1.2.0
-        array('Keela parem-klõps kõikidel &quot;regular&quot; lehtedel (JavaScript - mitte täie kindlusega meetod)', 'disable_gallery_rightclick', 1), //new in cpg1.2.0
 
  				'Präänikud &amp; Tähestiku seaded',
 				array('Skripti poolt kasutatava prääniku nimi', 'cookie_name', 0),

@@ -412,8 +412,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Thumbnailien etuliite <b>*</b>', 'thumb_pfx', 0),
 	array('Hakemistojen oletus oikeudet', 'default_dir_mode', 0),
 	array('Kuvien oletus oikeudet', 'default_file_mode', 0),
-	array('Estä oikea-klikkaus täytikokoisessa pop-up ikkunassa (JavaScript - ei idioottivarma menettelytapa)', 'disable_popup_rightclick', 1), 
-    array('Estä oikea-klikkaus kaikilla myös "tavallisella" sivulla (JavaScript - ei idioottivarma menettelytapa)', 'disable_gallery_rightclick', 1), 
 
 	'Eväste &amp; koodaus asetukset',
 	array('Evästeen nimi', 'cookie_name', 0),

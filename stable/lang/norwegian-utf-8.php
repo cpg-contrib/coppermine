@@ -411,8 +411,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('fårhåndsvalgt navn på miniatyrbilder <b>*</b>', 'thumb_pfx', 0),
 	array('Standard tilstand på mapper', 'default_dir_mode', 0),
 	array('Standard tilstand på bilder', 'default_file_mode', 0),
-	 array('Deaktiver høyreklikking på pop-up bilder (JavaScript - ikke helt sikker metode)', 'disable_popup_rightclick', 1), 
-     array('Deaktiver høyreklikking på alle sider (JavaScript - ikke helt sikker metode)', 'disable_gallery_rightclick', 1), 
 
 	'Cookies og tegnkoding',
 	array('Navnet på den cookie brukt av dette systemet', 'cookie_name', 0),

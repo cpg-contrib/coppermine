@@ -407,8 +407,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Prefix za slièice <b>*</b>', 'thumb_pfx', 0),
 	array('Default mode za direktorije', 'default_dir_mode', 0),
 	array('Default mode za slike', 'default_file_mode', 0),
-        array('Iskljuèi desni klik na full-sizr pop-up (JavaScript - no foolproof method)', 'disable_popup_rightclick', 1), 
-        array('Iskljuèi desni klik na "redovne" stranice (JavaScript - no foolproof method)', 'disable_gallery_rightclick', 1), 
 
 	'Cookies &amp; Charset settings',
 	array('Naziv cookie-ja korištenog u skripti', 'cookie_name', 0),

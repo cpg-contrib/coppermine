@@ -411,8 +411,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Prefix för miniatyrbilder <b>*</b>', 'thumb_pfx', 0),
         array('Standardläge för bibliotek', 'default_dir_mode', 0),
         array('Standardläge för bilder', 'default_file_mode', 0),
-        array('Ta bort funktionen högerklick på fullstorleks pop-up (JavaScript - ingen 100% säkerhet)', 'disable_popup_rightclick', 1),
-        array('Ta bort funktionen högerklick på alla &quot;vanliga&quot; sidor (JavaScript - ingen 100% säkerhet)', 'disable_gallery_rightclick', 1),
 
         'Inställningar för cookies &amp; teckenkodning',
         array('Namn på cookie som scriptet använder sig av', 'cookie_name', 0),

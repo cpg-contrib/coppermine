@@ -417,9 +417,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('De prefix voor tussen foto\'s *', 'normal_pfx', 0),
         array('De prefix voor thumbnails *', 'thumb_pfx', 0),
         array('Standaard modus voor mappen', 'default_dir_mode', 0),
-        array('Standaard modus voor foto\'s', 'default_file_mode', 0),
-        array('Schakel rechts-klikken uit op ware grootte pop-up (JavaScript - geen 100% zekere methode)', 'disable_popup_rightclick', 1), 
-        array('Schakel rechts-klikken uit op alle "reguliere" pagina\'s (JavaScript - geen 100% zekere methode)', 'disable_gallery_rightclick', 1),
 
         'Cookies/Tekenset instellingen',
         array('Naam van de cookie, gebruikt door het script', 'cookie_name', 0),

@@ -410,8 +410,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
     array('Prefix pro náhledy <b>*</b>', 'thumb_pfx', 0),
     array('Základní mód pro adresáøe', 'default_dir_mode', 0),
     array('Základní mód pro obrázky', 'default_file_mode', 0),
-    array('Zakázat kliknutí pravým tlaèítkem pøi plném zobrazení ( JavaScript metoda - NE neprustøelná odradí blbeèky :-D )', 'disable_popup_rightclick', 1),
-    array('Zakázat kliknutí pravým tlaèítkem na nornálních stránkách ( JavaScript metoda - NE neprustøelná odradí blbeèky :-D )', 'disable_gallery_rightclick', 1),
 
     'Cookies &amp; Kódová stráka',
     array('Jméno cookies u¾ívané programem (expertní volba)', 'cookie_name', 0),

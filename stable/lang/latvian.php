@@ -411,8 +411,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
     array('Mazo attçlu prefikss <b>*</b>', 'thumb_pfx', 0),
     array('Direktoriju skatîjuma reþîms pçc noklusçðanas', 'default_dir_mode', 0),
     array('Attçlu reþîms', 'default_file_mode', 0),
-    array('Atslçgt peles labo taustiòu uz lielajiem attçliem (JavaScript)', 'disable_popup_rightclick', 1), //new in cpg1.2.0
-    array('Atslçgt peles labo taustiòu &quot;parastajâs&quot; lapâs (JavaScript)', 'disable_gallery_rightclick', 1), //new in cpg1.2.0
 
     'Cepumi (cookies) &amp; Kodçjums',
     array('Cookie nosaukumus', 'cookie_name', 0),

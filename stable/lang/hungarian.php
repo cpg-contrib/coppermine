@@ -423,8 +423,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Ikonfájlok elõtagja <b>*</b>', 'thumb_pfx', 0),
         array('Könyvtárak alapértelmezett jogosultság beállítása', 'default_dir_mode', 0),
         array('Képek alapértelmezett jogosultság beállítása', 'default_file_mode', 0),
-        array('Jobb egérklikk tiltás teljes méretu ablaknál (JavaScript - nem hülyeségvédett eljárás)', 'disable_popup_rightclick', 1),
-        array('Jobb egérklikk tiltás minden "normális" oldalaknál (JavaScript - nem hülyeségvédett eljárás)', 'disable_gallery_rightclick', 1),
 
         'Cooky és karakterkészlet beállítások',
         array('A szkript által használt cookynév', 'cookie_name', 0),

@@ -414,8 +414,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Predpona za ikone <b>*</b>', 'thumb_pfx', 0),
         array('Privzete pravice za direktorije', 'default_dir_mode', 0),
         array('Privzete pravice za slike', 'default_file_mode', 0),
-        array('Izklopi desni klik pri slikah (JavaScript - ni 100% zanesljivo)', 'disable_popup_rightclick', 1), //new in cpg1.2.0
-        array('Izklopi desni klik na vseh straneh (JavaScript - ni 100% zanesljivo)', 'disable_gallery_rightclick', 1), //new in cpg1.2.0
 
         'Piškotki in kodne tabele',
         array('Ime za piškotke, ki jih uporablja galerija', 'cookie_name', 0),

@@ -413,8 +413,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('サムネイルの接頭辞 <b>*</b>', 'thumb_pfx', 0),
         array('ディレクトリのデフォルト・パーミッションモードモード', 'default_dir_mode', 0),
         array('写真のデフォルト・パーミッションモード', 'default_file_mode', 0),
-        array('フルサイズのポップアップページで右クリックを禁止する (JavaScript - no foolproof method)', 'disable_popup_rightclick', 1),
-        array('全ての&quot;通常&quot;ページで右クリックを禁止する (JavaScript - no foolproof method)', 'disable_gallery_rightclick', 1),
+        
 
         'クッキーとキャラクターセット設定',
         array('スクリプトで使用するクッキー名', 'cookie_name', 0),

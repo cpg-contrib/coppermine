@@ -389,40 +389,14 @@ function display_fullsize_pic()
 <title><?php echo $CONFIG['gallery_name'] ?>: <?php echo $lang_fullsize_popup['click_to_close'];
     ?></title>
 <meta http-equiv="content-type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'] ?>" />
-<?php if ($CONFIG['disable_popup_rightclick'] == 1) {
-        print '<meta http-equiv="imagetoolbar" content="no" />';
-    }
-    ?>
 <link rel="stylesheet" href="<?php echo $THEME_DIR ?>style.css" />
 <script type="text/javascript" src="scripts.js"></script>
 </head>
-<body scroll="auto" <?php if ($CONFIG['disable_popup_rightclick'] == 1) {
-        print 'onkeydown = "onKeyDown()"';
-    }
-    ?>>
+<body scroll="auto">
 <script language="JavaScript" type="text/JavaScript">
 adjust_popup();
 </script>
-<?php if ($CONFIG['disable_popup_rightclick'] == 1) {
-        print <<<EOT
-<script language="JavaScript" type="text/javascript">
-<!--
-document.oncontextmenu=new Function("return false")
 
-//if IE4+
-document.onselectstart=new Function ("return false")
-
-//if NS6
-if (window.sidebar){
-document.onmousedown=disableselect
-document.onclick=reEnable
-}
--->
-</script>
-EOT;
-    }
-
-    ?>
 <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="2">
  <td align="center" valign="middle">
   <table cellspacing="2" cellpadding="0" style="border: 1px solid #000000; background-color: #FFFFFF;">

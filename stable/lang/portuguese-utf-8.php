@@ -406,8 +406,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Prefixo para os thumbnails <b>*</b>', 'thumb_pfx', 0),
 	array('Permissões por defeito dos directórios', 'default_dir_mode', 0),
 	array('Permissões por defeito para as fotos', 'default_file_mode', 0),
-    array('Desactivar botão direito do rato nos pop-ups (JavaScript - não é um método 100% seguro)', 'disable_popup_rightclick', 1),  //new in cpg1.2.0
-    array('Desactivar botão direito do rato nas páginas normais (JavaScript - não é um método 100% seguro)', 'disable_gallery_rightclick', 1),  //new in cpg1.2.0
 
 	'Configuração de cookies e Conjunto de Caracteres',
 	array('Nome dos cookies usados pelo script', 'cookie_name', 0),

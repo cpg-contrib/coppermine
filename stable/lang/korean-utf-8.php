@@ -412,8 +412,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('½æ³×ÀÏÀÇ Á¢µÎ¾î <b>*</b>', 'thumb_pfx', 0),
 	array('µð·ºÅä¸® ±âº» ÆÛ¹Ì¼Ç', 'default_dir_mode', 0),
         array('ÀÌ¹ÌÁö ±âº» ÆÛ¹Ì¼Ç', 'default_file_mode', 0),
-        array('¿ø·¡ ÀÌ¹ÌÁö¿¡ ¿À¸¥ÂÊ ¸¶¿ì½º »ç¿ë±ÝÁö (JavaScript - no foolproof method)', 'disable_popup_rightclick', 1), //new in cpg1.2.0
-        array(' &quot;regular&quot; pages ¸ðµÎ ¿À¸¥ÂÊ¸¶¿ì½º »ç¿ë±ÝÁö (JavaScript - no foolproof method)', 'disable_gallery_rightclick', 1), //new in cpg1.2.0
 
         'ÄíÅ° ¹× ¹®¼­ ÀÎÄÚµù ¼³Á¤',
         array('ÄíÅ°ÀÌ¸§', 'cookie_name', 0),

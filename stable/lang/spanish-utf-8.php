@@ -414,8 +414,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Prefijo para los thumbnails <b>*</b>', 'thumb_pfx', 0),
 	array('Modo por defecto de los directorios', 'default_dir_mode', 0),
 	array('Modo por defecto para las fotos', 'default_file_mode', 0),
-        array('Deshabilitar botón derecho cuando se muestran las fotos en pantalla completa (JavaScript)', 'disable_popup_rightclick', 1),
-        array('Deshabilitar botón derecho en todas las páginas &quot;normales&quot; (JavaScript)', 'disable_gallery_rightclick', 1),
 
 	'Configuración de cookies y Juego de Caracteres',
 	array('Nombre de la cookie usada por el script', 'cookie_name', 0),

@@ -1,4 +1,4 @@
-<?php
+ï»¿<?php
 // ------------------------------------------------------------------------- //
 //  Coppermine Photo Gallery                                                 //
 // ------------------------------------------------------------------------- //
@@ -36,14 +36,14 @@ $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 $lang_byte_units = array('Bytes', 'KB', 'MB');
 
 // Day of weeks and months
-$lang_day_of_week = array('Sön', 'Mån', 'Tis', 'Ons', 'Tors', 'Fre', 'Lör');
+$lang_day_of_week = array('SÃ¶n', 'MÃ¥n', 'Tis', 'Ons', 'Tors', 'Fre', 'LÃ¶r');
 $lang_month = array('Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sept', 'Okt', 'Nov', 'Dec');
 
 // Some common strings
 $lang_yes = 'Ja';
 $lang_no  = 'Nej';
 $lang_back = 'TILLBAKA';
-$lang_continue = 'FORTSÄTT';
+$lang_continue = 'FORTSÃ„TT';
 $lang_info = 'Information';
 $lang_error = 'Fel';
 
@@ -57,37 +57,37 @@ $lasthit_date_fmt = '%B %d, %Y at %I:%M %p';
 $comment_date_fmt =  '%B %d, %Y at %I:%M %p';
 
 // For the word censor
-$lang_bad_words = array('*knulla*', 'fitta', 'arsle', 'kuk', 'mutta', 'fan', 'helvete', 'blatte', 'nigger', 'svarting', 'nasse', 'röv', 'ollon', 'dildo', 'fanculo', 'pattar', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
+$lang_bad_words = array('*knulla*', 'fitta', 'arsle', 'kuk', 'mutta', 'fan', 'helvete', 'blatte', 'nigger', 'svarting', 'nasse', 'rÃ¶v', 'ollon', 'dildo', 'fanculo', 'pattar', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
 
 $lang_meta_album_names = array(
-        'random' => 'Slumpmässiga bilder',
+        'random' => 'SlumpmÃ¤ssiga bilder',
         'lastup' => 'Senast inlagda',
         'lastalb'=> 'Senaste uppdaterade album',
         'lastcom' => 'Senaste kommentarer',
         'topn' => 'Mest visade',
         'toprated' => 'Topplista',
         'lasthits' => 'Senast visat',
-        'search' => 'Sökresultat',
+        'search' => 'SÃ¶kresultat',
         'favpics'=> 'Favoritbilder'
 );
 
 $lang_errors = array(
-        'access_denied' => 'Du har inte rättigheter till den här sidan.',
-        'perm_denied' => 'Du har inte tillåtelse att göra den här operationen.',
+        'access_denied' => 'Du har inte rÃ¤ttigheter till den hÃ¤r sidan.',
+        'perm_denied' => 'Du har inte tillÃ¥telse att gÃ¶ra den hÃ¤r operationen.',
         'param_missing' => 'Script called without the required parameter(s).',
         'non_exist_ap' => 'Det valda albumet/bilden finns inte !',
-        'quota_exceeded' => 'Diskkvota övertrasserad<br /><br />Du har en diskkvot på [quota]K, ditt bild är på [space]K, att lägga till den här bilden gör att du övertrasserar diskkvotan.',
-        'gd_file_type_err' => 'Vid användande av GD image library, så är endast JPEG- och PNG-format tillåtna.',
-        'invalid_image' => 'Bilden du laddade upp är skadad eller kan inte hanteras av GD library',
-        'resize_failed' => 'Kan inte skapa miniatyrbild eller förändra bildstorleken.',
+        'quota_exceeded' => 'Diskkvota Ã¶vertrasserad<br /><br />Du har en diskkvot pÃ¥ [quota]K, ditt bild Ã¤r pÃ¥ [space]K, att lÃ¤gga till den hÃ¤r bilden gÃ¶r att du Ã¶vertrasserar diskkvotan.',
+        'gd_file_type_err' => 'Vid anvÃ¤ndande av GD image library, sÃ¥ Ã¤r endast JPEG- och PNG-format tillÃ¥tna.',
+        'invalid_image' => 'Bilden du laddade upp Ã¤r skadad eller kan inte hanteras av GD library',
+        'resize_failed' => 'Kan inte skapa miniatyrbild eller fÃ¶rÃ¤ndra bildstorleken.',
         'no_img_to_display' => 'Ingen bild att visa',
         'non_exist_cat' => 'Den valda kategorin finns inte',
-        'orphan_cat' => 'En kategori har en s.k. non-existing parent, kör category manager för att rätta till problemet.',
-        'directory_ro' => 'Biblioteket \'%s\' är inte skrivbart, bildenn kan inte raderas',
+        'orphan_cat' => 'En kategori har en s.k. non-existing parent, kÃ¶r category manager fÃ¶r att rÃ¤tta till problemet.',
+        'directory_ro' => 'Biblioteket \'%s\' Ã¤r inte skrivbart, bildenn kan inte raderas',
         'non_exist_comment' => 'Den valda kommentaren finns inte.',
-        'pic_in_invalid_album' => 'Bilden är i ett icke existerande album (%s)!?',
-        'banned' => 'Du är för tillfället blockerad från den här siten.',
-        'not_with_udb' => 'Den här funktionen är inaktiverad i Coppermine för att den är integrerad med forumets mjukvara. Vad du än försöker göra så stöds det inte i den här konfigurationen, eller så ska funktionen skötas av forumets mjukvara.',
+        'pic_in_invalid_album' => 'Bilden Ã¤r i ett icke existerande album (%s)!?',
+        'banned' => 'Du Ã¤r fÃ¶r tillfÃ¤llet blockerad frÃ¥n den hÃ¤r siten.',
+        'not_with_udb' => 'Den hÃ¤r funktionen Ã¤r inaktiverad i Coppermine fÃ¶r att den Ã¤r integrerad med forumets mjukvara. Vad du Ã¤n fÃ¶rsÃ¶ker gÃ¶ra sÃ¥ stÃ¶ds det inte i den hÃ¤r konfigurationen, eller sÃ¥ ska funktionen skÃ¶tas av forumets mjukvara.',
 );
 
 // ------------------------------------------------------------------------- //
@@ -95,15 +95,15 @@ $lang_errors = array(
 // ------------------------------------------------------------------------- //
 
 $lang_main_menu = array(
-        'alb_list_title' => 'Gå till albumlistan',
+        'alb_list_title' => 'GÃ¥ till albumlistan',
         'alb_list_lnk' => 'Albumlista',
-        'my_gal_title' => 'Gå till mitt privata galleri',
+        'my_gal_title' => 'GÃ¥ till mitt privata galleri',
         'my_gal_lnk' => 'Mitt galleri',
         'my_prof_lnk' => 'Min profil',
-        'adm_mode_title' => 'Växla till adminläge',
-        'adm_mode_lnk' => 'Adminläge',
-        'usr_mode_title' => 'Växla till användarläge',
-        'usr_mode_lnk' => 'Användarläge',
+        'adm_mode_title' => 'VÃ¤xla till adminlÃ¤ge',
+        'adm_mode_lnk' => 'AdminlÃ¤ge',
+        'usr_mode_title' => 'VÃ¤xla till anvÃ¤ndarlÃ¤ge',
+        'usr_mode_lnk' => 'AnvÃ¤ndarlÃ¤ge',
         'upload_pic_title' => 'Ladda upp en bild till ett album',
         'upload_pic_lnk' => 'Ladda upp bild',
         'register_title' => 'Skapa ett konto',
@@ -114,26 +114,26 @@ $lang_main_menu = array(
         'lastcom_lnk' => 'Senaste kommentarer',
         'topn_lnk' => 'Mest visade',
         'toprated_lnk' => 'Topplista',
-        'search_lnk' => 'Sök',
+        'search_lnk' => 'SÃ¶k',
         'fav_lnk' => 'Mina Favoriter',
 );
 
 $lang_gallery_admin_menu = array(
-        'upl_app_lnk' => 'Klara för publicering',
+        'upl_app_lnk' => 'Klara fÃ¶r publicering',
         'config_lnk' => 'Konfigurera',
         'albums_lnk' => 'Album',
         'categories_lnk' => 'Kategorier',
-        'users_lnk' => 'Användare',
+        'users_lnk' => 'AnvÃ¤ndare',
         'groups_lnk' => 'Grupper',
         'comments_lnk' => 'Kommentarer',
-        'searchnew_lnk' => 'Lägg till ett parti av bilder',
-        'util_lnk' => 'Ändra storlek på bilden',
-        'ban_lnk' => 'Blockera användare',
+        'searchnew_lnk' => 'LÃ¤gg till ett parti av bilder',
+        'util_lnk' => 'Ã„ndra storlek pÃ¥ bilden',
+        'ban_lnk' => 'Blockera anvÃ¤ndare',
 );
 
 $lang_user_admin_menu = array(
         'albmgr_lnk' => 'Skapa / sortera mina album',
-        'modifyalb_lnk' => 'Ändra i mina album',
+        'modifyalb_lnk' => 'Ã„ndra i mina album',
         'my_prof_lnk' => 'Min profil',
 );
 
@@ -144,7 +144,7 @@ $lang_cat_list = array(
 );
 
 $lang_album_list = array(
-        'album_on_page' => '%d album på %d sida(or)'
+        'album_on_page' => '%d album pÃ¥ %d sida(or)'
 );
 
 $lang_thumb_view = array(
@@ -158,32 +158,32 @@ $lang_thumb_view = array(
         'sort_nd' => 'Sortera namn fallande',
         'sort_ta' => 'Sortera titel stigande',
         'sort_td' => 'Sortera titel fallande',
-        'pic_on_page' => '%d bilder på %d sida(or)',
-        'user_on_page' => '%d användare på %d sida(or)'
+        'pic_on_page' => '%d bilder pÃ¥ %d sida(or)',
+        'user_on_page' => '%d anvÃ¤ndare pÃ¥ %d sida(or)'
 );
 
 $lang_img_nav_bar = array(
-        'thumb_title' => 'Återvänd till miniatyrbildsida',
-        'pic_info_title' => 'Visa/dölj bild information',
+        'thumb_title' => 'Ã…tervÃ¤nd till miniatyrbildsida',
+        'pic_info_title' => 'Visa/dÃ¶lj bild information',
         'slideshow_title' => 'Bildspel',
-        'ecard_title' => 'Skicka den här bilden som ett e-vykort',
-        'ecard_disabled' => 'e-vykort är inaktiverat',
-        'ecard_disabled_msg' => 'Du har inte rättigheter att skicka e-vykort',
-        'prev_title' => 'Se föregående bild',
-        'next_title' => 'Se nästa bild',
+        'ecard_title' => 'Skicka den hÃ¤r bilden som ett e-vykort',
+        'ecard_disabled' => 'e-vykort Ã¤r inaktiverat',
+        'ecard_disabled_msg' => 'Du har inte rÃ¤ttigheter att skicka e-vykort',
+        'prev_title' => 'Se fÃ¶regÃ¥ende bild',
+        'next_title' => 'Se nÃ¤sta bild',
         'pic_pos' => 'BILD %s/%s',
 );
 
 $lang_rate_pic = array(
-        'rate_this_pic' => 'Betygsätt den här bilden ',
-        'no_votes' => '(Ingen röst än)',
-        'rating' => '(nuvarande betyg : %s / 5 från %s röster)',
-        'rubbish' => 'Skräp',
+        'rate_this_pic' => 'BetygsÃ¤tt den hÃ¤r bilden ',
+        'no_votes' => '(Ingen rÃ¶st Ã¤n)',
+        'rating' => '(nuvarande betyg : %s / 5 frÃ¥n %s rÃ¶ster)',
+        'rubbish' => 'SkrÃ¤p',
         'poor' => 'Kass',
-        'fair' => 'Godkänd',
+        'fair' => 'GodkÃ¤nd',
         'good' => 'Bra',
         'excellent' => 'Mycket bra',
-        'great' => 'Bäst',
+        'great' => 'BÃ¤st',
 );
 
 // ------------------------------------------------------------------------- //
@@ -214,7 +214,7 @@ $lang_display_thumbnails = array(
 $lang_get_pic_data = array(
         'n_comments' => '%s kommentarer',
         'n_views' => '%s visade',
-        'n_votes' => '(%s röster)'
+        'n_votes' => '(%s rÃ¶ster)'
 );
 
 // ------------------------------------------------------------------------- //
@@ -235,24 +235,24 @@ $lang_get_pic_data = array(
 
 if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
         'Exclamation' => 'Exclamation',
-        'Question' => 'Fråga',
+        'Question' => 'FrÃ¥ga',
         'Very Happy' => 'Mycket glad',
         'Smile' => 'Smil',
         'Sad' => 'Ledsen',
-        'Surprised' => 'Överraskad',
-        'Shocked' => 'Kvävd',
-        'Confused' => 'Förbryllad',
+        'Surprised' => 'Ã–verraskad',
+        'Shocked' => 'KvÃ¤vd',
+        'Confused' => 'FÃ¶rbryllad',
         'Cool' => 'Cool',
         'Laughing' => 'Skrattande',
         'Mad' => 'Galen',
         'Razz' => 'Razz',
-        'Embarassed' => 'Förlägen',
-        'Crying or Very sad' => 'Gråter eller Mycket ledsen',
+        'Embarassed' => 'FÃ¶rlÃ¤gen',
+        'Crying or Very sad' => 'GrÃ¥ter eller Mycket ledsen',
         'Evil or Very Mad' => 'Elak eller mycket arg',
         'Twisted Evil' => 'Twisted Evil',
-        'Rolling Eyes' => 'Rullande ögon',
+        'Rolling Eyes' => 'Rullande Ã¶gon',
         'Wink' => 'Blink',
-        'Idea' => 'Idé',
+        'Idea' => 'IdÃ©',
         'Arrow' => 'Pil',
         'Neutral' => 'Neutral',
         'Mr. Green' => 'Mr. Green',
@@ -269,8 +269,8 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ADMIN_PHP')) $lang_admin_php = array(
-        0 => 'Lämnar admin läge...',
-        1 => 'Startar admin läge...',
+        0 => 'LÃ¤mnar admin lÃ¤ge...',
+        1 => 'Startar admin lÃ¤ge...',
 );
 
 // ------------------------------------------------------------------------- //
@@ -278,20 +278,20 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
-        'alb_need_name' => 'Album måste namnges!',
-        'confirm_modifs' => 'Är du säker på att du vill göra dessa förändringar?',
-        'no_change' => 'Du gjorde ingen förändring!',
+        'alb_need_name' => 'Album mÃ¥ste namnges!',
+        'confirm_modifs' => 'Ã„r du sÃ¤ker pÃ¥ att du vill gÃ¶ra dessa fÃ¶rÃ¤ndringar?',
+        'no_change' => 'Du gjorde ingen fÃ¶rÃ¤ndring!',
         'new_album' => 'Nytt album',
-        'confirm_delete1' => 'Är du säker att du vill radera detta album?',
-        'confirm_delete2' => '\nAlla bilder och dess kommentarer kommer att förloras!',
-        'select_first' => 'Välj ett album först',
+        'confirm_delete1' => 'Ã„r du sÃ¤ker att du vill radera detta album?',
+        'confirm_delete2' => '\nAlla bilder och dess kommentarer kommer att fÃ¶rloras!',
+        'select_first' => 'VÃ¤lj ett album fÃ¶rst',
         'alb_mrg' => 'Album Manager',
         'my_gallery' => '* Mitt galleri *',
         'no_category' => '* Ingen kategori *',
         'delete' => 'Radera',
         'new' => 'Nytt',
-        'apply_modifs' => 'Verkställ förändringar',
-        'select_category' => 'Välj kategori',
+        'apply_modifs' => 'VerkstÃ¤ll fÃ¶rÃ¤ndringar',
+        'select_category' => 'VÃ¤lj kategori',
 );
 
 // ------------------------------------------------------------------------- //
@@ -299,11 +299,11 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
-        'miss_param' => 'Parametrar som krävs för \'%s\'operationen stöds inte!',
+        'miss_param' => 'Parametrar som krÃ¤vs fÃ¶r \'%s\'operationen stÃ¶ds inte!',
         'unknown_cat' => 'Vald kategory finns inte i databasen',
-        'usergal_cat_ro' => 'Kategorin Användargalleri kan inte raderas!',
-        'manage_cat' => 'Inställningar för kategorier',
-        'confirm_delete' => 'Är du säker att du vill RADERA denna kategori',
+        'usergal_cat_ro' => 'Kategorin AnvÃ¤ndargalleri kan inte raderas!',
+        'manage_cat' => 'InstÃ¤llningar fÃ¶r kategorier',
+        'confirm_delete' => 'Ã„r du sÃ¤ker att du vill RADERA denna kategori',
         'category' => 'Kategori',
         'operations' => 'Operationer',
         'move_into' => 'Flytta till',
@@ -319,12 +319,12 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
 
 if (defined('CONFIG_PHP')) $lang_config_php = array(
         'title' => 'Konfiguration',
-        'restore_cfg' => 'Återställ systemets grundinställningar',
+        'restore_cfg' => 'Ã…terstÃ¤ll systemets grundinstÃ¤llningar',
         'save_cfg' => 'Spara ny konfiguration',
         'notes' => 'Anm.',
         'info' => 'Information',
         'upd_success' => 'Coppermine konfigurationen uppdaterades',
-        'restore_success' => 'Coppermines grundinställning återskapades',
+        'restore_success' => 'Coppermines grundinstÃ¤llning Ã¥terskapades',
         'name_a' => 'Namn stigande',
         'name_d' => 'Namn fallande',
         'title_a' => 'Titel stigande',
@@ -337,92 +337,90 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
-        'Generalla inställningar',
+        'Generalla instÃ¤llningar',
         array('Galleri namn', 'gallery_name', 0),
         array('Galleri beskrivning', 'gallery_description', 0),
-        array('Galleri administratör e-post', 'gallery_admin_email', 0),
-        array('Måladress för \'Se fler bilder\' länk i e-vykort', 'ecards_more_pic_target', 0),
-        array('Språk', 'lang', 5),
+        array('Galleri administratÃ¶r e-post', 'gallery_admin_email', 0),
+        array('MÃ¥ladress fÃ¶r \'Se fler bilder\' lÃ¤nk i e-vykort', 'ecards_more_pic_target', 0),
+        array('SprÃ¥k', 'lang', 5),
         array('Tema', 'theme', 6),
 
-        'Utseende för albumlista',
-        array('Bredd på huvudtabell (pixlar eller %)', 'main_table_width', 0),
+        'Utseende fÃ¶r albumlista',
+        array('Bredd pÃ¥ huvudtabell (pixlar eller %)', 'main_table_width', 0),
         array('Antal underkategorier att visa', 'subcat_level', 0),
         array('Antal album att visa', 'albums_per_page', 0),
         array('Antal kolumner i album lista', 'album_list_cols', 0),
-        array('Storlek på miniatyrbilder i pixlar', 'alb_list_thumb_size', 0),
-        array('Innehåll på huvudsidan', 'main_page_layout', 0),
-            array('Visa första underkategorins miniatyrbilder i kategorierna','first_level',1),
+        array('Storlek pÃ¥ miniatyrbilder i pixlar', 'alb_list_thumb_size', 0),
+        array('InnehÃ¥ll pÃ¥ huvudsidan', 'main_page_layout', 0),
+            array('Visa fÃ¶rsta underkategorins miniatyrbilder i kategorierna','first_level',1),
 
-        'Utseende för miniatyrbildsfunktion',
-        array('Antal kolumner på miniatyrbildssida', 'thumbcols', 0),
-        array('Antal rader på miniatyrbildssida', 'thumbrows', 0),
+        'Utseende fÃ¶r miniatyrbildsfunktion',
+        array('Antal kolumner pÃ¥ miniatyrbildssida', 'thumbcols', 0),
+        array('Antal rader pÃ¥ miniatyrbildssida', 'thumbrows', 0),
         array('Max antal flikar att visa', 'max_tabs', 0),
-        array('Visa bildrubrik (inkl. titel) nedanför miniatyrbild', 'caption_in_thumbview', 1),
+        array('Visa bildrubrik (inkl. titel) nedanfÃ¶r miniatyrbild', 'caption_in_thumbview', 1),
         array('Visa antalet kommentarer under miniatyrbild', 'display_comment_count', 1),
-        array('Grundinställning för sortering av bilder', 'default_sort_order', 3),
-        array('Minimum antal röster för en bild för att det ska synas i \'topplistan\' ', 'min_votes_for_rating', 0),
+        array('GrundinstÃ¤llning fÃ¶r sortering av bilder', 'default_sort_order', 3),
+        array('Minimum antal rÃ¶ster fÃ¶r en bild fÃ¶r att det ska synas i \'topplistan\' ', 'min_votes_for_rating', 0),
 
-        'Utseende för bilder &amp; inställningar för kommentarer',
-        array('Tabellbredd för bildvisning (pixlar eller %)', 'picture_table_width', 0),
-        array('Bildinformation är synlig som grundinställning', 'display_pic_info', 1),
+        'Utseende fÃ¶r bilder &amp; instÃ¤llningar fÃ¶r kommentarer',
+        array('Tabellbredd fÃ¶r bildvisning (pixlar eller %)', 'picture_table_width', 0),
+        array('Bildinformation Ã¤r synlig som grundinstÃ¤llning', 'display_pic_info', 1),
         array('Filtrera fula ord i kommentarer', 'filter_bad_words', 1),
-        array('Tillåt smilies i kommentarer', 'enable_smilies', 1),
-        array('Max längd på bildbeskrivning', 'max_img_desc_length', 0),
+        array('TillÃ¥t smilies i kommentarer', 'enable_smilies', 1),
+        array('Max lÃ¤ngd pÃ¥ bildbeskrivning', 'max_img_desc_length', 0),
         array('Max antal tecken i ett ord', 'max_com_wlength', 0),
-        array('Max antal på rader i en kommentar', 'max_com_lines', 0),
-        array('Max längd på en kommentar', 'max_com_size', 0),
+        array('Max antal pÃ¥ rader i en kommentar', 'max_com_lines', 0),
+        array('Max lÃ¤ngd pÃ¥ en kommentar', 'max_com_size', 0),
         array('Visa filmsekvens', 'display_film_strip', 1),
         array('Antal objekt i en filmsekvens', 'max_film_strip_items', 0),
 
-        'Bild- och miniatyrbildsinställningar',
-        array('Kvalitet på JPEG filer', 'jpeg_qual', 0),
-        array('Max dimension på en miniatyrbild <b>*</b>', 'thumb_width', 0),
-        array('Använda dimensioner (bredd eller höjd eller Maxstorlek för miniatyrbild)<b>*</b>', 'thumb_use', 7),
+        'Bild- och miniatyrbildsinstÃ¤llningar',
+        array('Kvalitet pÃ¥ JPEG filer', 'jpeg_qual', 0),
+        array('Max dimension pÃ¥ en miniatyrbild <b>*</b>', 'thumb_width', 0),
+        array('AnvÃ¤nda dimensioner (bredd eller hÃ¶jd eller Maxstorlek fÃ¶r miniatyrbild)<b>*</b>', 'thumb_use', 7),
         array('Skapa mellanliggande bilder','make_intermediate',1),
-        array('Max bredd eller höjd på en mellanliggande bild <b>*</b>', 'picture_width', 0),
-        array('Max storlek för uppladdade bilder (KB)', 'max_upl_size', 0),
-        array('Max bredd eller höjd för uppladdade bilder (pixlar)', 'max_upl_width_height', 0),
+        array('Max bredd eller hÃ¶jd pÃ¥ en mellanliggande bild <b>*</b>', 'picture_width', 0),
+        array('Max storlek fÃ¶r uppladdade bilder (KB)', 'max_upl_size', 0),
+        array('Max bredd eller hÃ¶jd fÃ¶r uppladdade bilder (pixlar)', 'max_upl_width_height', 0),
 
-        'Användarinställningar',
-        array('Tillåt nya användare att registreras', 'allow_user_registration', 1),
-        array('Användarregistrering kräver e-postverifiering', 'reg_requires_valid_email', 1),
-        array('Tillåt två användare att ha samma e-postadress', 'allow_duplicate_emails_addr', 1),
-        array('Användare kan ha privata album', 'allow_private_albums', 1),
+        'AnvÃ¤ndarinstÃ¤llningar',
+        array('TillÃ¥t nya anvÃ¤ndare att registreras', 'allow_user_registration', 1),
+        array('AnvÃ¤ndarregistrering krÃ¤ver e-postverifiering', 'reg_requires_valid_email', 1),
+        array('TillÃ¥t tvÃ¥ anvÃ¤ndare att ha samma e-postadress', 'allow_duplicate_emails_addr', 1),
+        array('AnvÃ¤ndare kan ha privata album', 'allow_private_albums', 1),
 
-        'Valfria fält för bildbeskrivningar (lämna blankt om du inte vill använda funktionen)',
-        array('Fält 1 namn', 'user_field1_name', 0),
-        array('Fält 2 namn', 'user_field2_name', 0),
-        array('Fält 3 namn', 'user_field3_name', 0),
-        array('Fält 4 namn', 'user_field4_name', 0),
+        'Valfria fÃ¤lt fÃ¶r bildbeskrivningar (lÃ¤mna blankt om du inte vill anvÃ¤nda funktionen)',
+        array('FÃ¤lt 1 namn', 'user_field1_name', 0),
+        array('FÃ¤lt 2 namn', 'user_field2_name', 0),
+        array('FÃ¤lt 3 namn', 'user_field3_name', 0),
+        array('FÃ¤lt 4 namn', 'user_field4_name', 0),
 
-        'Avancerade inställningar för bilder och miniatyrbilder',
-        array('Visa ikon för privata album för ej inloggade användare','show_private',1),
-        array('Förbjudna tecken i filnamn', 'forbiden_fname_char',0),
-        array('Accepterade filändelser för uppladdade bilder', 'allowed_file_extensions',0),
-        array('Metod för ändra bildstorleksförändring','thumb_method',2),
-        array('Sökväk till ImageMagick \'konverterings\' funktion (exempel /usr/bin/X11/)', 'impath', 0),
-        array('Tillåtna bildformat (gäller endast för ImageMagick)', 'allowed_img_types',0),
-        array('Kommandolinjeval för ImageMagick', 'im_options', 0),
-        array('Läs EXIF data i JPEG filer', 'read_exif_data', 1),
+        'Avancerade instÃ¤llningar fÃ¶r bilder och miniatyrbilder',
+        array('Visa ikon fÃ¶r privata album fÃ¶r ej inloggade anvÃ¤ndare','show_private',1),
+        array('FÃ¶rbjudna tecken i filnamn', 'forbiden_fname_char',0),
+        array('Accepterade filÃ¤ndelser fÃ¶r uppladdade bilder', 'allowed_file_extensions',0),
+        array('Metod fÃ¶r Ã¤ndra bildstorleksfÃ¶rÃ¤ndring','thumb_method',2),
+        array('SÃ¶kvÃ¤k till ImageMagick \'konverterings\' funktion (exempel /usr/bin/X11/)', 'impath', 0),
+        array('TillÃ¥tna bildformat (gÃ¤ller endast fÃ¶r ImageMagick)', 'allowed_img_types',0),
+        array('Kommandolinjeval fÃ¶r ImageMagick', 'im_options', 0),
+        array('LÃ¤s EXIF data i JPEG filer', 'read_exif_data', 1),
         array('Albumbibliotek <b>*</b>', 'fullpath', 0),
-        array('Bibliotek för användarnas bilder <b>*</b>', 'userpics', 0),
-        array('Prefix för mellanliggande bilder <b>*</b>', 'normal_pfx', 0),
-        array('Prefix för miniatyrbilder <b>*</b>', 'thumb_pfx', 0),
-        array('Standardläge för bibliotek', 'default_dir_mode', 0),
-        array('Standardläge för bilder', 'default_file_mode', 0),
-        array('Ta bort funktionen högerklick på fullstorleks pop-up (JavaScript - ingen 100% säkerhet)', 'disable_popup_rightclick', 1),
-        array('Ta bort funktionen högerklick på alla &quot;vanliga&quot; sidor (JavaScript - ingen 100% säkerhet)', 'disable_gallery_rightclick', 1),
+        array('Bibliotek fÃ¶r anvÃ¤ndarnas bilder <b>*</b>', 'userpics', 0),
+        array('Prefix fÃ¶r mellanliggande bilder <b>*</b>', 'normal_pfx', 0),
+        array('Prefix fÃ¶r miniatyrbilder <b>*</b>', 'thumb_pfx', 0),
+        array('StandardlÃ¤ge fÃ¶r bibliotek', 'default_dir_mode', 0),
+        array('StandardlÃ¤ge fÃ¶r bilder', 'default_file_mode', 0),
 
-        'Inställningar för cookies &amp; teckenkodning',
-        array('Namn på cookie som scriptet använder sig av', 'cookie_name', 0),
-        array('Sökväg till cookie som scriptet använder sig av', 'cookie_path', 0),
+        'InstÃ¤llningar fÃ¶r cookies &amp; teckenkodning',
+        array('Namn pÃ¥ cookie som scriptet anvÃ¤nder sig av', 'cookie_name', 0),
+        array('SÃ¶kvÃ¤g till cookie som scriptet anvÃ¤nder sig av', 'cookie_path', 0),
         array('Teckenkodning', 'charset', 4),
 
-        'Övriga inställningar',
+        'Ã–vriga instÃ¤llningar',
         array('Aktivera debug mode', 'debug_mode', 1),
 
-        '<br /><div align="center">(*) Fält märkta med * får INTE ändras om du redan har bilder i ditt galleri</div><br />'
+        '<br /><div align="center">(*) FÃ¤lt mÃ¤rkta med * fÃ¥r INTE Ã¤ndras om du redan har bilder i ditt galleri</div><br />'
 );
 
 // ------------------------------------------------------------------------- //
@@ -430,29 +428,29 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
-        'empty_name_or_com' => 'Du måste skriva ditt namn och en kommentar',
-        'com_added' => 'Din kommentar är inlagd',
-        'alb_need_title' => 'Du måste ge albumet en titel!',
-        'no_udp_needed' => 'Ingen uppdatering behövs.',
+        'empty_name_or_com' => 'Du mÃ¥ste skriva ditt namn och en kommentar',
+        'com_added' => 'Din kommentar Ã¤r inlagd',
+        'alb_need_title' => 'Du mÃ¥ste ge albumet en titel!',
+        'no_udp_needed' => 'Ingen uppdatering behÃ¶vs.',
         'alb_updated' => 'Album uppdaterades',
-        'unknown_album' => 'Valt album existerar inte eller så har du inte rättigheter att ladda upp i detta album',
-        'no_pic_uploaded' => 'Ingen bild laddades upp!<br /><br />Om du är säker på att du valt en bild för uppladdning, kontrollera att servern tillåter uppladdning...',
+        'unknown_album' => 'Valt album existerar inte eller sÃ¥ har du inte rÃ¤ttigheter att ladda upp i detta album',
+        'no_pic_uploaded' => 'Ingen bild laddades upp!<br /><br />Om du Ã¤r sÃ¤ker pÃ¥ att du valt en bild fÃ¶r uppladdning, kontrollera att servern tillÃ¥ter uppladdning...',
         'err_mkdir' => 'Misslyckades att skapa biblioteket %s !',
-        'dest_dir_ro' => 'Målbiblioteket %s är inte skrivbart av scriptet!',
-        'err_move' => 'Omöjligt att flytta %s till %s !',
-        'err_fsize_too_large' => 'Bildstorleken du laddat upp är för stor (max tillåtet är %s x %s) !',
-        'err_imgsize_too_large' => 'Storleken på filen du laddat upp är för stor (max tillåtet är %s KB) !',
-        'err_invalid_img' => 'Filen du laddat upp är inte i tillåtet format!',
+        'dest_dir_ro' => 'MÃ¥lbiblioteket %s Ã¤r inte skrivbart av scriptet!',
+        'err_move' => 'OmÃ¶jligt att flytta %s till %s !',
+        'err_fsize_too_large' => 'Bildstorleken du laddat upp Ã¤r fÃ¶r stor (max tillÃ¥tet Ã¤r %s x %s) !',
+        'err_imgsize_too_large' => 'Storleken pÃ¥ filen du laddat upp Ã¤r fÃ¶r stor (max tillÃ¥tet Ã¤r %s KB) !',
+        'err_invalid_img' => 'Filen du laddat upp Ã¤r inte i tillÃ¥tet format!',
         'allowed_img_types' => 'Du kan bara ladda upp %s bilder.',
         'err_insert_pic' => 'Bilden \'%s\' kan inte infogas i albumet ',
-        'upload_success' => 'Din bild laddades upp utan problem<br /><br />Den kommer att bli synlig efter att admin godkänt den.',
+        'upload_success' => 'Din bild laddades upp utan problem<br /><br />Den kommer att bli synlig efter att admin godkÃ¤nt den.',
         'info' => 'Information',
         'com_added' => 'Kommentar inlagd',
         'alb_updated' => 'Album updaterat',
-        'err_comment_empty' => 'Din kommentar är tom!',
-        'err_invalid_fext' => 'Endast filer med följande ändelser är tillåtna: <br /><br />%s.',
-        'no_flood' => 'Ledsen men du är redan författare av den senaste kommentaren som är inlagd för den här bilden<br /><br />Ändra den redan inlagda kommentaren om du vill ämdra något',
-        'redirect_msg' => 'Du förflyttas.<br /><br /><br /Klicka \'FORTSÄTT\' om inte sidan uppdateras automatiskt',
+        'err_comment_empty' => 'Din kommentar Ã¤r tom!',
+        'err_invalid_fext' => 'Endast filer med fÃ¶ljande Ã¤ndelser Ã¤r tillÃ¥tna: <br /><br />%s.',
+        'no_flood' => 'Ledsen men du Ã¤r redan fÃ¶rfattare av den senaste kommentaren som Ã¤r inlagd fÃ¶r den hÃ¤r bilden<br /><br />Ã„ndra den redan inlagda kommentaren om du vill Ã¤mdra nÃ¥got',
+        'redirect_msg' => 'Du fÃ¶rflyttas.<br /><br /><br /Klicka \'FORTSÃ„TT\' om inte sidan uppdateras automatiskt',
         'upl_success' => 'Din bild infogades utan problem.',
 );
 
@@ -462,9 +460,9 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 
 if (defined('DELETE_PHP')) $lang_delete_php = array(
         'caption' => 'Rubrik',
-        'fs_pic' => 'full storlek på bild',
+        'fs_pic' => 'full storlek pÃ¥ bild',
         'del_success' => 'Radering lyckades',
-        'ns_pic' => 'normal storlek på bild',
+        'ns_pic' => 'normal storlek pÃ¥ bild',
         'err_del' => 'kan inte raderas',
         'thumb_pic' => 'miniatyrbild',
         'comment' => 'kommentar',
@@ -476,8 +474,8 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
         'update_alb' => 'Uppdaterar album \'%s\' med titeln \'%s\' och index \'%s\'',
         'del_pic' => 'Radera bild',
         'del_alb' => 'Radera album',
-        'del_user' => 'Radera användare',
-        'err_unknown_user' => 'Vald användare finns inte!',
+        'del_user' => 'Radera anvÃ¤ndare',
+        'err_unknown_user' => 'Vald anvÃ¤ndare finns inte!',
         'comment_deleted' => 'Kommentaren raderades utan problem',
 );
 
@@ -494,47 +492,47 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 if (defined('DISPLAYIMAGE_PHP')){
 
 $lang_display_image_php = array(
-        'confirm_del' => 'Är du säker på att du vill RADERA denna bild? \\nComments will also be deleted.',
+        'confirm_del' => 'Ã„r du sÃ¤ker pÃ¥ att du vill RADERA denna bild? \\nComments will also be deleted.',
         'del_pic' => 'RADERA DENNA BILD',
         'size' => '%s x %s pixlar',
-        'views' => '%s gånger',
+        'views' => '%s gÃ¥nger',
         'slideshow' => 'Bildspel',
         'stop_slideshow' => 'STOPPA BILDSPEL',
-        'view_fs' => 'Klicka för att se fullstorlek på bilden',
+        'view_fs' => 'Klicka fÃ¶r att se fullstorlek pÃ¥ bilden',
 );
 
 $lang_picinfo = array(
         'title' =>'Bildinformation',
         'Filename' => 'Filnamn',
         'Album name' => 'Albumnamn',
-        'Rating' => 'Betyg (%s röster)',
+        'Rating' => 'Betyg (%s rÃ¶ster)',
         'Keywords' => 'Nyckelords',
         'File Size' => 'Filstorlek',
         'Dimensions' => 'Dimensioner',
         'Displayed' => 'Visat',
         'Camera' => 'Kamera',
-        'Date taken' => 'Datum för fototillfälle',
+        'Date taken' => 'Datum fÃ¶r fototillfÃ¤lle',
         'Aperture' => 'Slutare',
         'Exposure time' => 'Exponeringstid',
-        'Focal length' => 'Focallängd',
+        'Focal length' => 'FocallÃ¤ngd',
         'Comment' => 'Kommentar',
-        'addFav'=>'Lägg till Fav',
+        'addFav'=>'LÃ¤gg till Fav',
         'addFavPhrase'=>'Favoriter',
-        'remFav'=>'Ta bort från Fav',
+        'remFav'=>'Ta bort frÃ¥n Fav',
 );
 
 $lang_display_comments = array(
         'OK' => 'OK',
         'edit_title' => 'Redigera denna kommentar',
-        'confirm_delete' => 'Är du säker på att du vill radera denna kommentar?',
-        'add_your_comment' => 'Lägg till din kommentar',
+        'confirm_delete' => 'Ã„r du sÃ¤ker pÃ¥ att du vill radera denna kommentar?',
+        'add_your_comment' => 'LÃ¤gg till din kommentar',
         'name'=>'Namn',
         'comment'=>'Kommentar',
         'your_name' => 'Anonym',
 );
 
 $lang_fullsize_popup = array(
-        'click_to_close' => 'Klicka på bilden för att stänga det här fönstret',
+        'click_to_close' => 'Klicka pÃ¥ bilden fÃ¶r att stÃ¤nga det hÃ¤r fÃ¶nstret',
 );
 
 }
@@ -546,12 +544,12 @@ $lang_fullsize_popup = array(
 if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array(
         'title' => 'Skicka ett e-vykort',
         'invalid_email' => '<b>Varning</b> : felaktig e-postadress !',
-        'ecard_title' => 'Ett e-vykort från %s till dig!',
-        'view_ecard' => 'Klicka på den här länken om inte e-vykortet visas riktigt',
-        'view_more_pics' => 'Klicka på den här länken för att se fler bilder!',
+        'ecard_title' => 'Ett e-vykort frÃ¥n %s till dig!',
+        'view_ecard' => 'Klicka pÃ¥ den hÃ¤r lÃ¤nken om inte e-vykortet visas riktigt',
+        'view_more_pics' => 'Klicka pÃ¥ den hÃ¤r lÃ¤nken fÃ¶r att se fler bilder!',
         'send_success' => 'Ditt e-vykort skickades',
         'send_failed' => 'Ledsen men servern kan inte skicka ditt e-vykort...',
-        'from' => 'Från',
+        'from' => 'FrÃ¥n',
         'your_name' => 'Ditt namn',
         'your_email' => 'Din e-postadress',
         'to' => 'Till',
@@ -571,20 +569,20 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
         'title' => 'Titel',
         'desc' => 'Beskrivning',
         'keywords' => 'Nyckelord',
-        'pic_info_str' => '%sx%s - %sKB - %s visningar - %s röster',
-        'approve' => 'Godkänn bild',
-        'postpone_app' => 'Senarelägg godkännande',
+        'pic_info_str' => '%sx%s - %sKB - %s visningar - %s rÃ¶ster',
+        'approve' => 'GodkÃ¤nn bild',
+        'postpone_app' => 'SenarelÃ¤gg godkÃ¤nnande',
         'del_pic' => 'Radera bild',
-        'reset_view_count' => 'Nollställ räknare för bildbesökare',
-        'reset_votes' => 'Nollställ röster',
+        'reset_view_count' => 'NollstÃ¤ll rÃ¤knare fÃ¶r bildbesÃ¶kare',
+        'reset_votes' => 'NollstÃ¤ll rÃ¶ster',
         'del_comm' => 'Radera kommentarer',
-        'upl_approval' => 'Godkännande för uppladdning',
+        'upl_approval' => 'GodkÃ¤nnande fÃ¶r uppladdning',
         'edit_pics' => 'Redigera bilder',
         'see_next' => 'Se kommande bild',
-        'see_prev' => 'Se föregående bilder',
+        'see_prev' => 'Se fÃ¶regÃ¥ende bilder',
         'n_pic' => '%s bilder',
         'n_of_pic_to_disp' => 'Antal bilder att visa',
-        'apply' => 'Verkställ förändringar'
+        'apply' => 'VerkstÃ¤ll fÃ¶rÃ¤ndringar'
 );
 
 // ------------------------------------------------------------------------- //
@@ -594,20 +592,20 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
         'group_name' => 'Grupp namn',
         'disk_quota' => 'Diskkvot',
-        'can_rate' => 'Kan betygsätta bilder',
+        'can_rate' => 'Kan betygsÃ¤tta bilder',
         'can_send_ecards' => 'Kan skicka e-vykort',
         'can_post_com' => 'Kan skriva kommentarer',
         'can_upload' => 'Kan ladda upp bilder',
         'can_have_gallery' => 'Kan ha ett personligt galleri',
-        'apply' => 'Verkställ förändringar',
+        'apply' => 'VerkstÃ¤ll fÃ¶rÃ¤ndringar',
         'create_new_group' => 'Skapa ny grupp',
         'del_groups' => 'Radera vald grupp(er)',
-        'confirm_del' => 'Varning, när du raderar en grupp kommer användare i den gruppen att flyttas till gruppen \'Registrerad\' !\n\nVill du fortsätta ?',
-        'title' => 'Behandla användargrupper',
-        'approval_1' => 'Pub. Uppl. godkännande (1)',
-        'approval_2' => 'Priv. Uppl. godkännande (2)',
-        'note1' => '<b>(1)</b> Uppladdningar i ett publikt album kräver godkännande från admin',
-        'note2' => '<b>(2)</b> Uppladdningar i ett album som tillhör användare kräver godkännande från admin',
+        'confirm_del' => 'Varning, nÃ¤r du raderar en grupp kommer anvÃ¤ndare i den gruppen att flyttas till gruppen \'Registrerad\' !\n\nVill du fortsÃ¤tta ?',
+        'title' => 'Behandla anvÃ¤ndargrupper',
+        'approval_1' => 'Pub. Uppl. godkÃ¤nnande (1)',
+        'approval_2' => 'Priv. Uppl. godkÃ¤nnande (2)',
+        'note1' => '<b>(1)</b> Uppladdningar i ett publikt album krÃ¤ver godkÃ¤nnande frÃ¥n admin',
+        'note2' => '<b>(2)</b> Uppladdningar i ett album som tillhÃ¶r anvÃ¤ndare krÃ¤ver godkÃ¤nnande frÃ¥n admin',
         'notes' => 'Anteckningar'
 );
 
@@ -618,11 +616,11 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
 if (defined('INDEX_PHP')){
 
 $lang_index_php = array(
-        'welcome' => 'Välkommen!'
+        'welcome' => 'VÃ¤lkommen!'
 );
 
 $lang_album_admin_menu = array(
-        'confirm_delete' => 'Är du säker att du vill RADERA detta album? \\nAlla bilder och kommentarer kommer även att radaras.',
+        'confirm_delete' => 'Ã„r du sÃ¤ker att du vill RADERA detta album? \\nAlla bilder och kommentarer kommer Ã¤ven att radaras.',
         'delete' => 'RADERA',
         'modify' => 'EGENSKAPER',
         'edit_pics' => 'REDIGERA BILDER',
@@ -630,15 +628,15 @@ $lang_album_admin_menu = array(
 
 $lang_list_categories = array(
         'home' => 'Hem',
-        'stat1' => '<b>[pictures]</b> bilder i <b>[albums]</b> album och <b>[cat]</b> kategorier med <b>[comments]</b> kommentarer visade <b>[views]</b> gånger',
-        'stat2' => '<b>[pictures]</b> bilder i <b>[albums]</b> album visade <b>[views]</b> gånger',
+        'stat1' => '<b>[pictures]</b> bilder i <b>[albums]</b> album och <b>[cat]</b> kategorier med <b>[comments]</b> kommentarer visade <b>[views]</b> gÃ¥nger',
+        'stat2' => '<b>[pictures]</b> bilder i <b>[albums]</b> album visade <b>[views]</b> gÃ¥nger',
         'xx_s_gallery' => '%s\'s Galleri',
-        'stat3' => '<b>[pictures]</b> bilder i <b>[albums]</b> album med <b>[comments]</b> kommentarer visade <b>[views]</b> gånger'
+        'stat3' => '<b>[pictures]</b> bilder i <b>[albums]</b> album med <b>[comments]</b> kommentarer visade <b>[views]</b> gÃ¥nger'
 );
 
 $lang_list_users = array(
-        'user_list' => 'Användarlista',
-        'no_user_gal' => 'Det finns inga användargallerier',
+        'user_list' => 'AnvÃ¤ndarlista',
+        'no_user_gal' => 'Det finns inga anvÃ¤ndargallerier',
         'n_albums' => '%s album',
         'n_pics' => '%s bild(er)'
 );
@@ -656,13 +654,13 @@ $lang_list_albums = array(
 
 if (defined('LOGIN_PHP')) $lang_login_php = array(
         'login' => 'Logga in',
-        'enter_login_pswd' => 'Skriv in ditt användarnamn och lösenord för att logga in',
-        'username' => 'Användarnamn',
-        'password' => 'Lösenord',
-        'remember_me' => 'Kom ihåg mig',
-        'welcome' => 'Välkommen %s ...',
-        'err_login' => '*** Kunde inte logga in. Försök igen ***',
-        'err_already_logged_in' => 'Du är redan inloggad!',
+        'enter_login_pswd' => 'Skriv in ditt anvÃ¤ndarnamn och lÃ¶senord fÃ¶r att logga in',
+        'username' => 'AnvÃ¤ndarnamn',
+        'password' => 'LÃ¶senord',
+        'remember_me' => 'Kom ihÃ¥g mig',
+        'welcome' => 'VÃ¤lkommen %s ...',
+        'err_login' => '*** Kunde inte logga in. FÃ¶rsÃ¶k igen ***',
+        'err_already_logged_in' => 'Du Ã¤r redan inloggad!',
 );
 
 // ------------------------------------------------------------------------- //
@@ -671,8 +669,8 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
 
 if (defined('LOGOUT_PHP')) $lang_logout_php = array(
         'logout' => 'Logga ut',
-        'bye' => 'Hej då %s ...',
-        'err_not_loged_in' => 'Du är inte inloggad!',
+        'bye' => 'Hej dÃ¥ %s ...',
+        'err_not_loged_in' => 'Du Ã¤r inte inloggad!',
 );
 
 // ------------------------------------------------------------------------- //
@@ -681,23 +679,23 @@ if (defined('LOGOUT_PHP')) $lang_logout_php = array(
 
 if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
         'upd_alb_n' => 'Uppdatera album %s',
-        'general_settings' => 'Generella inställningar',
+        'general_settings' => 'Generella instÃ¤llningar',
         'alb_title' => 'Album titel',
         'alb_cat' => 'Album kategori',
         'alb_desc' => 'Album beskrivning',
         'alb_thumb' => 'Album miniatyrbild',
-        'alb_perm' => 'Rättigheter för detta album',
+        'alb_perm' => 'RÃ¤ttigheter fÃ¶r detta album',
         'can_view' => 'Album kan ses av',
-        'can_upload' => 'Besökare kan ladda upp bilder',
-        'can_post_comments' => 'Besökare kan kommentera',
-        'can_rate' => 'Besökare kan betygsätta bilder',
-        'user_gal' => 'Användargalleri',
+        'can_upload' => 'BesÃ¶kare kan ladda upp bilder',
+        'can_post_comments' => 'BesÃ¶kare kan kommentera',
+        'can_rate' => 'BesÃ¶kare kan betygsÃ¤tta bilder',
+        'user_gal' => 'AnvÃ¤ndargalleri',
         'no_cat' => '* Ingen kategori *',
-        'alb_empty' => 'Album är tomt',
+        'alb_empty' => 'Album Ã¤r tomt',
         'last_uploaded' => 'Senast uppladdat',
         'public_alb' => 'Alla (publikt album)',
         'me_only' => 'Endast jag',
-        'owner_only' => 'Endast albumägare (%s)',
+        'owner_only' => 'Endast albumÃ¤gare (%s)',
         'groupp_only' => 'Medlemmar av gruppen \'%s\'',
         'err_no_alb_to_modify' => 'Inget album att redigera i databasen.',
         'update' => 'Uppdatera album'
@@ -708,8 +706,8 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
-        'already_rated' => 'Ledsen men du har redan betygsatt den här bilden',
-        'rate_ok' => 'Din röst är registrerad',
+        'already_rated' => 'Ledsen men du har redan betygsatt den hÃ¤r bilden',
+        'rate_ok' => 'Din rÃ¶st Ã¤r registrerad',
 );
 
 // ------------------------------------------------------------------------- //
@@ -719,34 +717,34 @@ if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
-Fastän administratörer på den här siten (SITE_NAME) försöker att ta bort eller ändra allt störande eller stötande material så fort som möjligt, är det omöjligt att gå igenom alla meddelanden. Vi vill därför meddela dig om att alla inlägg som skrivits på de här forumet uttrycker vad författaren tänker och tycker, och administratörer inte skall stå till ansvar för det (förutom för det de själva lagt in).<br />
+FastÃ¤n administratÃ¶rer pÃ¥ den hÃ¤r siten (SITE_NAME) fÃ¶rsÃ¶ker att ta bort eller Ã¤ndra allt stÃ¶rande eller stÃ¶tande material sÃ¥ fort som mÃ¶jligt, Ã¤r det omÃ¶jligt att gÃ¥ igenom alla meddelanden. Vi vill dÃ¤rfÃ¶r meddela dig om att alla inlÃ¤gg som skrivits pÃ¥ de hÃ¤r forumet uttrycker vad fÃ¶rfattaren tÃ¤nker och tycker, och administratÃ¶rer inte skall stÃ¥ till ansvar fÃ¶r det (fÃ¶rutom fÃ¶r det de sjÃ¤lva lagt in).<br />
 <br />
-Du går med på att inte posta något störande, stötande, rasistiskt, sexistiskt, vulgärt, hatiskt, hotande eller något annat material som kan tänkas bryta mot någon tillämplig lag. Om du bryter mot det här kan det leda till att du blir permanent avstängd från forumen (och din Internet leverantör blir kontaktad). Ip adressen av alla meddelanden sparas för att stärka de här vilkoren. Du går med på att webmaster, administratör och moderatorer har rätt att ta bort, ändra, flytta eller stänga vilka inlägg som helst när som helst. Som en användare går du med på att all information som du skrivit in sparas i databasen. Den informationen kommer INTE att distribueras till någon 3:e part utan ditt samtycke. Webmastern, administratören eller moderatorer kan inte hållas ansvariga vid hackningsförsök som kan leda till att data stjäls. <br />
+Du gÃ¥r med pÃ¥ att inte posta nÃ¥got stÃ¶rande, stÃ¶tande, rasistiskt, sexistiskt, vulgÃ¤rt, hatiskt, hotande eller nÃ¥got annat material som kan tÃ¤nkas bryta mot nÃ¥gon tillÃ¤mplig lag. Om du bryter mot det hÃ¤r kan det leda till att du blir permanent avstÃ¤ngd frÃ¥n forumen (och din Internet leverantÃ¶r blir kontaktad). Ip adressen av alla meddelanden sparas fÃ¶r att stÃ¤rka de hÃ¤r vilkoren. Du gÃ¥r med pÃ¥ att webmaster, administratÃ¶r och moderatorer har rÃ¤tt att ta bort, Ã¤ndra, flytta eller stÃ¤nga vilka inlÃ¤gg som helst nÃ¤r som helst. Som en anvÃ¤ndare gÃ¥r du med pÃ¥ att all information som du skrivit in sparas i databasen. Den informationen kommer INTE att distribueras till nÃ¥gon 3:e part utan ditt samtycke. Webmastern, administratÃ¶ren eller moderatorer kan inte hÃ¥llas ansvariga vid hackningsfÃ¶rsÃ¶k som kan leda till att data stjÃ¤ls. <br />
 <br />
-Det här systemet använder cookies till att spara information på din dator. Dessa cookies innehåller inte något av den information du skrivit in, utan används endast för att göra ditt användande av forumet bättre och smidigare. E-post adressen används bara för att aktivera din registrering, samt för omregistrering vid t.ex. byte av din e-post adress.<br />
+Det hÃ¤r systemet anvÃ¤nder cookies till att spara information pÃ¥ din dator. Dessa cookies innehÃ¥ller inte nÃ¥got av den information du skrivit in, utan anvÃ¤nds endast fÃ¶r att gÃ¶ra ditt anvÃ¤ndande av forumet bÃ¤ttre och smidigare. E-post adressen anvÃ¤nds bara fÃ¶r att aktivera din registrering, samt fÃ¶r omregistrering vid t.ex. byte av din e-post adress.<br />
 <br />
-Genom att klicka på knappen "Ja" nedan godkänner du ovan vilkor.
+Genom att klicka pÃ¥ knappen "Ja" nedan godkÃ¤nner du ovan vilkor.
 
 EOT;
 
 $lang_register_php = array(
-        'page_title' => 'Användarregistrering',
-        'term_cond' => 'Användarvillkor',
-        'i_agree' => 'Jag godkänner',
+        'page_title' => 'AnvÃ¤ndarregistrering',
+        'term_cond' => 'AnvÃ¤ndarvillkor',
+        'i_agree' => 'Jag godkÃ¤nner',
         'submit' => 'Skicka registrering',
-        'err_user_exists' => 'Användarnamnet du skrev in finns redan, vänligen väl ett nytt',
-        'err_password_mismatch' => 'Lösenorden stämmer inte med varandra, vänligen skriv in dem igen',
-        'err_uname_short' => 'Användarnamnet måste vara minst 2 tecken långt',
-        'err_password_short' => 'Lösenordet måste vara minst 2 tecken långt',
-        'err_uname_pass_diff' => 'Användarnamn och lösenord får inte vara olika',
-        'err_invalid_email' => 'E-postadressen är ogiltig',
-        'err_duplicate_email' => 'En annan användare har redan registrerat den e-postadress du skrev',
+        'err_user_exists' => 'AnvÃ¤ndarnamnet du skrev in finns redan, vÃ¤nligen vÃ¤l ett nytt',
+        'err_password_mismatch' => 'LÃ¶senorden stÃ¤mmer inte med varandra, vÃ¤nligen skriv in dem igen',
+        'err_uname_short' => 'AnvÃ¤ndarnamnet mÃ¥ste vara minst 2 tecken lÃ¥ngt',
+        'err_password_short' => 'LÃ¶senordet mÃ¥ste vara minst 2 tecken lÃ¥ngt',
+        'err_uname_pass_diff' => 'AnvÃ¤ndarnamn och lÃ¶senord fÃ¥r inte vara olika',
+        'err_invalid_email' => 'E-postadressen Ã¤r ogiltig',
+        'err_duplicate_email' => 'En annan anvÃ¤ndare har redan registrerat den e-postadress du skrev',
         'enter_info' => 'Fyll i registreringsinformation',
         'required_info' => 'Obligatorisk information',
         'optional_info' => 'Valfri information',
-        'username' => 'Användarnamn',
-        'password' => 'Lösenord',
-        'password_again' => 'Skriv lösenordet igen',
+        'username' => 'AnvÃ¤ndarnamn',
+        'password' => 'LÃ¶senord',
+        'password_again' => 'Skriv lÃ¶senordet igen',
         'email' => 'E-post',
         'location' => 'Plats',
         'interests' => 'Intressen',
@@ -756,42 +754,42 @@ $lang_register_php = array(
         'confirm_email_subject' => '%s - Registreringsinformation',
         'information' => 'Information',
         'failed_sending_email' => 'Registreringsinformationen kan inte skickas!',
-        'thank_you' => 'Tack för din registrering.<br /><br />Ett e-postmeddelande med information om hur du ska aktivera ditt konto skickades till den e-postadress du angav.',
-        'acct_created' => 'Ditt konto har skapats och du kan nu logga in med ditt användarnamn och lösenord',
-        'acct_active' => 'Ditt konto är nu aktivt och du kan nu logga in med ditt användarnamn och lösenord',
-        'acct_already_act' => 'Ditt konto är redan aktiverat!',
+        'thank_you' => 'Tack fÃ¶r din registrering.<br /><br />Ett e-postmeddelande med information om hur du ska aktivera ditt konto skickades till den e-postadress du angav.',
+        'acct_created' => 'Ditt konto har skapats och du kan nu logga in med ditt anvÃ¤ndarnamn och lÃ¶senord',
+        'acct_active' => 'Ditt konto Ã¤r nu aktivt och du kan nu logga in med ditt anvÃ¤ndarnamn och lÃ¶senord',
+        'acct_already_act' => 'Ditt konto Ã¤r redan aktiverat!',
         'acct_act_failed' => 'Detta konto kan inte aktiveras!',
-        'err_unk_user' => 'Vald användare finns inte!',
+        'err_unk_user' => 'Vald anvÃ¤ndare finns inte!',
         'x_s_profile' => '%s\'s profil',
         'group' => 'Grupp',
         'reg_date' => 'Blev medlem',
-        'disk_usage' => 'Diskanvändning',
-        'change_pass' => 'Byt lösenord',
-        'current_pass' => 'Nuvarande lösenord',
-        'new_pass' => 'Nytt lösenord',
-        'new_pass_again' => 'Nytt lösenord igen',
-        'err_curr_pass' => 'Detta lösenord är inte korrekt',
-        'apply_modif' => 'Verkställ ändringar',
-        'change_pass' => 'Ändra mitt lösenord',
+        'disk_usage' => 'DiskanvÃ¤ndning',
+        'change_pass' => 'Byt lÃ¶senord',
+        'current_pass' => 'Nuvarande lÃ¶senord',
+        'new_pass' => 'Nytt lÃ¶senord',
+        'new_pass_again' => 'Nytt lÃ¶senord igen',
+        'err_curr_pass' => 'Detta lÃ¶senord Ã¤r inte korrekt',
+        'apply_modif' => 'VerkstÃ¤ll Ã¤ndringar',
+        'change_pass' => 'Ã„ndra mitt lÃ¶senord',
         'update_success' => 'Din profil uppdaterades',
-        'pass_chg_success' => 'Ditt lösenord ändrades',
-        'pass_chg_error' => 'Ditt lösenord ändrades inte',
+        'pass_chg_success' => 'Ditt lÃ¶senord Ã¤ndrades',
+        'pass_chg_error' => 'Ditt lÃ¶senord Ã¤ndrades inte',
 );
 
 $lang_register_confirm_email = <<<EOT
-Tack för att du registrerade dig på {SITE_NAME}
+Tack fÃ¶r att du registrerade dig pÃ¥ {SITE_NAME}
 
-Ditt användarnamn är : "{USER_NAME}"
-Ditt lösenord är : "{PASSWORD}"
+Ditt anvÃ¤ndarnamn Ã¤r : "{USER_NAME}"
+Ditt lÃ¶senord Ã¤r : "{PASSWORD}"
 
-För att ditt konto ska aktiveras måste du klicka på nedanstående link
+FÃ¶r att ditt konto ska aktiveras mÃ¥ste du klicka pÃ¥ nedanstÃ¥ende link
 eller copy och klistra in den i din browser.
 
 {ACT_LINK}
 
-Vänligen,
+VÃ¤nligen,
 
-Administratören av {SITE_NAME}
+AdministratÃ¶ren av {SITE_NAME}
 
 EOT;
 
@@ -806,8 +804,8 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
         'no_comment' => 'Det finns ingen kommentar att granska',
         'n_comm_del' => '%s kommentar(er) raderade',
         'n_comm_disp' => 'Antal kommentarer att visa',
-        'see_prev' => 'Se föregående',
-        'see_next' => 'Se nästa',
+        'see_prev' => 'Se fÃ¶regÃ¥ende',
+        'see_next' => 'Se nÃ¤sta',
         'del_comm' => 'Radera valda kommentarer',
 );
 
@@ -817,7 +815,7 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCH_PHP')) $lang_search_php = array(
-        0 => 'Sök i bildkollektionen',
+        0 => 'SÃ¶k i bildkollektionen',
 );
 
 // ------------------------------------------------------------------------- //
@@ -825,31 +823,31 @@ if (defined('SEARCH_PHP')) $lang_search_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
-        'page_title' => 'Sök efter nya bilder',
-        'select_dir' => 'Välj bibliotek',
-        'select_dir_msg' => 'Den här funktionen gör det möjligt att lägga till ett parti med foton som du laddat upp på servern via FTP.<br /><br />Välj biblioteket där bilderna finns.',
-        'no_pic_to_add' => 'Det finns ingen bild att lägga till',
-        'need_one_album' => 'Du måste minst ha ett album för att kunna använda denna funktion',
+        'page_title' => 'SÃ¶k efter nya bilder',
+        'select_dir' => 'VÃ¤lj bibliotek',
+        'select_dir_msg' => 'Den hÃ¤r funktionen gÃ¶r det mÃ¶jligt att lÃ¤gga till ett parti med foton som du laddat upp pÃ¥ servern via FTP.<br /><br />VÃ¤lj biblioteket dÃ¤r bilderna finns.',
+        'no_pic_to_add' => 'Det finns ingen bild att lÃ¤gga till',
+        'need_one_album' => 'Du mÃ¥ste minst ha ett album fÃ¶r att kunna anvÃ¤nda denna funktion',
         'warning' => 'Varning',
-        'change_perm' => 'scriptet kan inte skriva i detta bibliotek, du måste ändra rättigheterna i det till 755 eller 777 innan du kan lägga till bilder!',
-        'target_album' => '<b>Lägg bilderna &quot;</b>%s<b>&quot; i </b>%s',
+        'change_perm' => 'scriptet kan inte skriva i detta bibliotek, du mÃ¥ste Ã¤ndra rÃ¤ttigheterna i det till 755 eller 777 innan du kan lÃ¤gga till bilder!',
+        'target_album' => '<b>LÃ¤gg bilderna &quot;</b>%s<b>&quot; i </b>%s',
         'folder' => 'Mapp',
         'image' => 'Bild',
         'album' => 'Album',
         'result' => 'Resultar',
         'dir_ro' => 'Inte skrivbart. ',
-        'dir_cant_read' => 'Inte läsbart. ',
-        'insert' => 'Lägger till nya bilder i galleriet',
-        'list_new_pic' => 'Förteckning på nya bilder',
-        'insert_selected' => 'Sätt in valda bilder',
+        'dir_cant_read' => 'Inte lÃ¤sbart. ',
+        'insert' => 'LÃ¤gger till nya bilder i galleriet',
+        'list_new_pic' => 'FÃ¶rteckning pÃ¥ nya bilder',
+        'insert_selected' => 'SÃ¤tt in valda bilder',
         'no_pic_found' => 'Ingen ny bild hittades',
-        'be_patient' => 'Ha tålamod, scriptet behöver lite tid att bearbeta bilderna',
+        'be_patient' => 'Ha tÃ¥lamod, scriptet behÃ¶ver lite tid att bearbeta bilderna',
         'notes' =>  '<ul>'.
                                 '<li><b>OK</b> : betyder att bilden blev inlagd'.
-                                '<li><b>DP</b> : betyder att bilden är en kopia och redan finns i databasen'.
-                                '<li><b>PB</b> : betyder att bilden inte kunde läggas till, kontrollera din konfiguration och rättigheterna i biblioteken där bilderna ska placeras'.
-                                '<li>Om OK, DP, PB \'symbolen\' inte visas, klicka på den felaktiga bilden för att se felmeddelandet som skapats av PHP'.
-                                '<li>Om din din browser gör timeout, tryck på knappen \'Uppdatera\''.
+                                '<li><b>DP</b> : betyder att bilden Ã¤r en kopia och redan finns i databasen'.
+                                '<li><b>PB</b> : betyder att bilden inte kunde lÃ¤ggas till, kontrollera din konfiguration och rÃ¤ttigheterna i biblioteken dÃ¤r bilderna ska placeras'.
+                                '<li>Om OK, DP, PB \'symbolen\' inte visas, klicka pÃ¥ den felaktiga bilden fÃ¶r att se felmeddelandet som skapats av PHP'.
+                                '<li>Om din din browser gÃ¶r timeout, tryck pÃ¥ knappen \'Uppdatera\''.
                                 '</ul>',
 );
 
@@ -865,14 +863,14 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('BANNING_PHP')) $lang_banning_php = array(
-                'title' => 'Blockera användare',
-                'user_name' => 'Användarnamn',
+                'title' => 'Blockera anvÃ¤ndare',
+                'user_name' => 'AnvÃ¤ndarnamn',
                 'ip_address' => 'IP-adress',
-                'expiry' => 'Förfaller (blankt är permanent)',
-                'edit_ban' => 'Spara ändringar',
+                'expiry' => 'FÃ¶rfaller (blankt Ã¤r permanent)',
+                'edit_ban' => 'Spara Ã¤ndringar',
                 'delete_ban' => 'Radera',
-                'add_new' => 'Lägg till ny blockering',
-                'add_ban' => 'Lägg till',
+                'add_new' => 'LÃ¤gg till ny blockering',
+                'add_ban' => 'LÃ¤gg till',
 );
 
 // ------------------------------------------------------------------------- //
@@ -881,13 +879,13 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
 
 if (defined('UPLOAD_PHP')) $lang_upload_php = array(
         'title' => 'Ladda upp bild',
-        'max_fsize' => 'Max filstorlek är %s KB',
+        'max_fsize' => 'Max filstorlek Ã¤r %s KB',
         'album' => 'Album',
         'picture' => 'Bild',
         'pic_title' => 'Bildtitel',
         'description' => 'Bildbeskrivning',
         'keywords' => 'Nyckelord (avskiljda med mellanslag)',
-        'err_no_alb_uploadables' => 'Ledsen, men det finns inget album där du har tillåtelse att ladda upp bilder i',
+        'err_no_alb_uploadables' => 'Ledsen, men det finns inget album dÃ¤r du har tillÃ¥telse att ladda upp bilder i',
 );
 
 // ------------------------------------------------------------------------- //
@@ -895,45 +893,45 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
-        'title' => 'Användarinställningar',
+        'title' => 'AnvÃ¤ndarinstÃ¤llningar',
         'name_a' => 'Namn stigande',
         'name_d' => 'Namn fallande',
         'group_a' => 'Grupp stigande',
         'group_d' => 'Grupp fallande',
         'reg_a' => 'Reg datum stigande',
         'reg_d' => 'Reg datum fallande',
-        'pic_a' => 'Bildräknare stigande',
-        'pic_d' => 'Bildräknare fallande',
-        'disku_a' => 'Diskanvändande stigande',
-        'disku_d' => 'Diskanvändande fallande',
-        'sort_by' => 'Sortera användare i',
-        'err_no_users' => 'Användartabell är tom!',
-        'err_edit_self' => 'Du kan inte redigera din egen profil, använd \'Min profil\' länken för det',
+        'pic_a' => 'BildrÃ¤knare stigande',
+        'pic_d' => 'BildrÃ¤knare fallande',
+        'disku_a' => 'DiskanvÃ¤ndande stigande',
+        'disku_d' => 'DiskanvÃ¤ndande fallande',
+        'sort_by' => 'Sortera anvÃ¤ndare i',
+        'err_no_users' => 'AnvÃ¤ndartabell Ã¤r tom!',
+        'err_edit_self' => 'Du kan inte redigera din egen profil, anvÃ¤nd \'Min profil\' lÃ¤nken fÃ¶r det',
         'edit' => 'REDIGERA',
         'delete' => 'RADERA',
-        'name' => 'Användarnamn',
+        'name' => 'AnvÃ¤ndarnamn',
         'group' => 'Grupp',
         'inactive' => 'Inaktiv',
         'operations' => 'Funktioner',
         'pictures' => 'Bilder',
-        'disk_space' => 'Utrymme använt / Kvot',
+        'disk_space' => 'Utrymme anvÃ¤nt / Kvot',
         'registered_on' => 'Registrerad den',
-        'u_user_on_p_pages' => '%d användare på %d sida(or)',
-        'confirm_del' => 'Är du säker att du vill RADERA denna användare? \\nAlla bilder och album kommer även att raderas för denna användare.',
+        'u_user_on_p_pages' => '%d anvÃ¤ndare pÃ¥ %d sida(or)',
+        'confirm_del' => 'Ã„r du sÃ¤ker att du vill RADERA denna anvÃ¤ndare? \\nAlla bilder och album kommer Ã¤ven att raderas fÃ¶r denna anvÃ¤ndare.',
         'mail' => 'E-POST',
-        'err_unknown_user' => 'Vald användare finns inte!',
-        'modify_user' => 'Spara användare',
+        'err_unknown_user' => 'Vald anvÃ¤ndare finns inte!',
+        'modify_user' => 'Spara anvÃ¤ndare',
         'notes' => 'Anteckningar',
-        'note_list' => '<li>Om du inte vill ändra nuvarande lösenord, lämna "lösenord" fältet blankt',
-        'password' => 'Lösenord',
-        'user_active' => 'Användaren är aktiv',
-        'user_group' => 'Användargrupp',
-        'user_email' => 'Användar e-post',
-        'user_web_site' => 'Användarens hemsida',
-        'create_new_user' => 'Skapa ny användare',
-        'user_location' => 'Användarens plats',
-        'user_interests' => 'Användarens intressen',
-        'user_occupation' => 'Användarens yrke',
+        'note_list' => '<li>Om du inte vill Ã¤ndra nuvarande lÃ¶senord, lÃ¤mna "lÃ¶senord" fÃ¤ltet blankt',
+        'password' => 'LÃ¶senord',
+        'user_active' => 'AnvÃ¤ndaren Ã¤r aktiv',
+        'user_group' => 'AnvÃ¤ndargrupp',
+        'user_email' => 'AnvÃ¤ndar e-post',
+        'user_web_site' => 'AnvÃ¤ndarens hemsida',
+        'create_new_user' => 'Skapa ny anvÃ¤ndare',
+        'user_location' => 'AnvÃ¤ndarens plats',
+        'user_interests' => 'AnvÃ¤ndarens intressen',
+        'user_occupation' => 'AnvÃ¤ndarens yrke',
 );
 
 // ------------------------------------------------------------------------- //
@@ -941,50 +939,50 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UTIL_PHP')) $lang_util_php = array(
-        'title' => 'Storleksändra bilder',
-        'what_it_does' => 'Vad den gör',
-        'what_update_titles' => 'Uppdatera titlar från filnamnet',
+        'title' => 'StorleksÃ¤ndra bilder',
+        'what_it_does' => 'Vad den gÃ¶r',
+        'what_update_titles' => 'Uppdatera titlar frÃ¥n filnamnet',
         'what_delete_title' => 'Radera titlar',
-        'what_rebuild' => 'Återuppbygger miniatyrbilder och storleksändrade bilder',
-        'what_delete_originals' => 'Raderar bildstorlek på originalet och ersätter den med den storleksändrade versionen',
+        'what_rebuild' => 'Ã…teruppbygger miniatyrbilder och storleksÃ¤ndrade bilder',
+        'what_delete_originals' => 'Raderar bildstorlek pÃ¥ originalet och ersÃ¤tter den med den storleksÃ¤ndrade versionen',
         'file' => 'Fil',
         'title_set_to' => 'titel satt till',
         'submit_form' => 'skicka',
         'updated_succesfully' => 'uppdatering lyckades',
         'error_create' => 'ERROR vid skapande av',
         'continue' => 'Bearbeta fler bilder',
-        'main_success' => 'Filen %s används nu som huvudbild',
-        'error_rename' => 'Fel vid namnbyte från %s till %s',
+        'main_success' => 'Filen %s anvÃ¤nds nu som huvudbild',
+        'error_rename' => 'Fel vid namnbyte frÃ¥n %s till %s',
         'error_not_found' => 'Filen %s hittades inte',
         'back' => 'tillbaka till huvudsidan',
-        'thumbs_wait' => 'Uppdaterar miniatyrbilder och/eller storleksändrade bilder, v.v. vänta...',
-        'thumbs_continue_wait' => 'Fortsätter att uppdatera miniatyrbilder och/eller storleksförändrade bilder...',
-        'titles_wait' => 'Uppdaterar titlar, v.v. vänta...',
-        'delete_wait' => 'Raderar titlar, v.v. vänta...',
-        'replace_wait' => 'Raderar original och ersätter dem med storleksförändrade bilder, v.v. vänta..',
+        'thumbs_wait' => 'Uppdaterar miniatyrbilder och/eller storleksÃ¤ndrade bilder, v.v. vÃ¤nta...',
+        'thumbs_continue_wait' => 'FortsÃ¤tter att uppdatera miniatyrbilder och/eller storleksfÃ¶rÃ¤ndrade bilder...',
+        'titles_wait' => 'Uppdaterar titlar, v.v. vÃ¤nta...',
+        'delete_wait' => 'Raderar titlar, v.v. vÃ¤nta...',
+        'replace_wait' => 'Raderar original och ersÃ¤tter dem med storleksfÃ¶rÃ¤ndrade bilder, v.v. vÃ¤nta..',
         'instruction' => 'Snabbinstruktioner',
-        'instruction_action' => 'Välj funktion',
-        'instruction_parameter' => 'Sätt parametrar',
-        'instruction_album' => 'Välj album',
+        'instruction_action' => 'VÃ¤lj funktion',
+        'instruction_parameter' => 'SÃ¤tt parametrar',
+        'instruction_album' => 'VÃ¤lj album',
         'instruction_press' => 'Tryck %s',
-        'update' => 'Uppdatera miniatyrbilder och/eller storleksförändra bilder',
+        'update' => 'Uppdatera miniatyrbilder och/eller storleksfÃ¶rÃ¤ndra bilder',
         'update_what' => 'Vad som ska uppdateras',
         'update_thumb' => 'Endast miniatyrbilder',
-        'update_pic' => 'Endast storleksförändrade bilder',
-        'update_both' => 'Både miniatyrbilder och storleksförändrade bilder',
+        'update_pic' => 'Endast storleksfÃ¶rÃ¤ndrade bilder',
+        'update_both' => 'BÃ¥de miniatyrbilder och storleksfÃ¶rÃ¤ndrade bilder',
         'update_number' => 'Antal bearbetade bilder per klick',
-        'update_option' => '(Försök att ställa detta alternativ lägre om du får timeout problem)',
+        'update_option' => '(FÃ¶rsÃ¶k att stÃ¤lla detta alternativ lÃ¤gre om du fÃ¥r timeout problem)',
         'filename_title' => 'Filnamn &rArr; Bildtitel',
-        'filename_how' => 'Hur ska filnamnet ändras',
-        'filename_remove' => 'Ta bort .jpg ändelsen och ersätt _ (underscore) med mellanslag',
-        'filename_euro' => 'Ändra 2003_11_23_13_20_20.jpg till 23/11/2003 13:20',
-        'filename_us' => 'Ändra 2003_11_23_13_20_20.jpg till 11/23/2003 13:20',
-        'filename_time' => 'Ändra 2003_11_23_13_20_20.jpg till 13:20',
+        'filename_how' => 'Hur ska filnamnet Ã¤ndras',
+        'filename_remove' => 'Ta bort .jpg Ã¤ndelsen och ersÃ¤tt _ (underscore) med mellanslag',
+        'filename_euro' => 'Ã„ndra 2003_11_23_13_20_20.jpg till 23/11/2003 13:20',
+        'filename_us' => 'Ã„ndra 2003_11_23_13_20_20.jpg till 11/23/2003 13:20',
+        'filename_time' => 'Ã„ndra 2003_11_23_13_20_20.jpg till 13:20',
         'delete' => 'Radera bildtitlar eller originalbildstorlek',
         'delete_title' => 'Radera bildtitlar',
         'delete_original' => 'Radera originalbildstorlek',
-        'delete_replace' => 'Raderar orginalbilder och ersätter med storleksförändrade versioner',
-        'select_album' => 'Välj album',
+        'delete_replace' => 'Raderar orginalbilder och ersÃ¤tter med storleksfÃ¶rÃ¤ndrade versioner',
+        'select_album' => 'VÃ¤lj album',
 );
 
 ?>

@@ -406,8 +406,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('÷éãåîú ìãåâîéåú <b>*</b>', 'thumb_pfx', 0),
 	array('áøéøú îçãì ìäøùàú îçéöåú', 'default_dir_mode', 0),
 	array('áøéøú îçãì ìäøùàú ÷áöé úîåðä', 'default_file_mode', 0),
-        array('ìçñåí ÷ìé÷-éîðé òì úîåðåú áâãåì îìà (ùéèä ìà îåùìîú á-JavaScript(', 'disable_popup_rightclick', 1),
-        array('ìçñåí ÷ìé÷-éîðé òì ãôéí "øâéìéí" (ùéèä ìà îåùìîú á-JavaScript', 'disable_gallery_rightclick', 1),
+
 	'äâãøåú Cookies åùôä',
 	array('ùí ä-Cookie ùì äâìøéä', 'cookie_name', 0),
 	array('ðúéá ä-Cookie ùì äâìøéä', 'cookie_path', 0),

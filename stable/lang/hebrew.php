@@ -406,8 +406,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('קידומת לדוגמיות <b>*</b>', 'thumb_pfx', 0),
 	array('ברירת מחדל להרשאת מחיצות', 'default_dir_mode', 0),
 	array('ברירת מחדל להרשאת קבצי תמונה', 'default_file_mode', 0),
-        array('לחסום קליק-ימני על תמונות בגדול מלא (שיטה לא מושלמת ב-JavaScript(', 'disable_popup_rightclick', 1),
-        array('לחסום קליק-ימני על דפים "רגילים" (שיטה לא מושלמת ב-JavaScript', 'disable_gallery_rightclick', 1),
+
 	'הגדרות Cookies ושפה',
 	array('שם ה-Cookie של הגלריה', 'cookie_name', 0),
 	array('נתיב ה-Cookie של הגלריה', 'cookie_path', 0),

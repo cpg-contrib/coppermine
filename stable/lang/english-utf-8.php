@@ -333,6 +333,9 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'th_any' => 'Max Aspect',
         'th_ht' => 'Height',
         'th_wd' => 'Width',
+                'th_any' => 'Max Aspect',
+                'th_ht' => 'Height',
+                'th_wd' => 'Width'
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
@@ -342,7 +345,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Gallery administrator email', 'gallery_admin_email', 0),
         array('Target address for the \'See more pictures\' link in e-cards', 'ecards_more_pic_target', 0),
         array('Language', 'lang', 5),
-        //array('enable language selection', 'lang_select_enable', 8 ), 
+        //array('enable language selection', 'lang_select_enable', 8 ),
         array('Theme', 'theme', 6),
         //array('enable theme selection', 'theme_select_enable', 8),
 
@@ -412,8 +415,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('The prefix for thumbnails <b>*</b>', 'thumb_pfx', 0),
         array('Default mode for directories', 'default_dir_mode', 0),
         array('Default mode for pictures', 'default_file_mode', 0),
-        array('Disable right-click on full-size pop-up (JavaScript - no foolproof method)', 'disable_popup_rightclick', 1), //new in cpg1.2.0
-        array('Disable right-click on all &quot;regular&quot; pages (JavaScript - no foolproof method)', 'disable_gallery_rightclick', 1), //new in cpg1.2.0
 
         'Cookies &amp; Charset settings',
         array('Name of the cookie used by the script', 'cookie_name', 0),

@@ -79,9 +79,9 @@ $lang_errors = array(
 	'param_missing' => 'Script kaldt uden de nødvendige parametre(r).',
 	'non_exist_ap' => 'Det valgte album/billede eksister ikke !',
 	'quota_exceeded' => 'Disk mængden overskredet<br /><br />Du har plads til en [quota]K, Dine billeder bruger aktuelt [space]K, tilføjelse af dette billede medfører en overskridelse af din tilladte mængde.',
-	'gd_file_type_err' => 'Når der anvendes GD billede teknik, er tilladte typer kun JPEG og PNG.',
-	'invalid_image' => 'Billedet som du har uploadet er defekt eller kan ikke bruges med GD billede teknik',
-	'resize_failed' => 'Ej muligt at oprette minibillede eller reduceret billede størrelse.',
+	'gd_file_type_err' => 'Når der anvendes GD billedeteknink, er tilladte typer kun JPEG og PNG.',
+	'invalid_image' => 'Billedet som du har uploadet er defekt eller kan ikke bruges med GD billedeteknik',
+	'resize_failed' => 'Ej muligt at oprette minibillede eller mellem stort billede.',
 	'no_img_to_display' => 'Intet billede at vise',
 	'non_exist_cat' => 'Den valgte kategori findes ikke',
 	'orphan_cat' => 'En kategori har ikke et tilhørsforhold, kør kategori manager for at rette problemet.',
@@ -161,7 +161,7 @@ $lang_thumb_view = array(
         'sort_ta' => 'Sorter stigende efter titel',
         'sort_td' => 'Sorter faldende efter titel',
 	'pic_on_page' => '%d billeder på %d side(r)',
-	'user_on_page' => '%d brugere på %d side(r)'
+	'user_on_page' => '%d brugere på %d side(r)',
 );
 
 $lang_img_nav_bar = array(
@@ -207,16 +207,16 @@ $lang_cpg_die = array(
 );
 
 $lang_display_thumbnails = array(
-	'filename' => 'Filnavn: ',
-	'filesize' => 'Filstørrelse: ',
-	'dimensions' => 'Dimensioner: ',
-	'date_added' => 'Tilføjet dato: '
+	'filename' => 'Filnavn : ',
+	'filesize' => 'Filstørrelse : ',
+	'dimensions' => 'Dimensioner : ',
+	'date_added' => 'Tilføjet dato : ',
 );
 
 $lang_get_pic_data = array(
 	'n_comments' => '%s kommentarer',
 	'n_views' => '%s visninger',
-	'n_votes' => '(%s stemmer)'
+	'n_votes' => '(%s stemmer)',
 );
 
 // ------------------------------------------------------------------------- //
@@ -312,7 +312,7 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
 	'update_create' => 'Opdater/Opret kategori',
 	'parent_cat' => 'Hoved kategori',
 	'cat_title' => 'Kategori titel',
-	'cat_desc' => 'Kategori beskrivelse'
+	'cat_desc' => 'Kategori beskrivelse',
 );
 
 // ------------------------------------------------------------------------- //
@@ -332,7 +332,7 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'title_a' => 'Titel stigende',
         'title_d' => 'Titel faldende',
 	'date_a' => 'Dato stigende',
-	'date_d' => 'Dato faldende',
+	'date_d' => 'Dato faldende',,
         'th_any' => 'Max Aspect',
         'th_ht' => 'Height',
         'th_wd' => 'Width',
@@ -382,9 +382,9 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Maks. dimension på minibilleder <b>*</b>', 'thumb_width', 0),
         array('Brug dimension ( bredde, højde eller maksimum af de to til minibilleder )<b>*</b>', 'thumb_use', 7),
 	array('Opret mellemstore billeder','make_intermediate',1),
-	array('Maks. bredde eller højde for et mellemliggende billede <b>*</b>', 'picture_width', 0),
-	array('Maks. størrelse for uploadet billeder (KB)', 'max_upl_size', 0),
-	array('Maks. bredde eller højde for uploadet billeder (pixels)', 'max_upl_width_height', 0),
+	array('Max bredde eller højde for et mellemstort billede <b>*</b>', 'picture_width', 0),
+	array('Max størrelse for uploadet billeder (KB)', 'max_upl_size', 0),
+	array('Max bredde eller højde for uploadet billeder (pixels)', 'max_upl_width_height', 0),
 
 	'Bruger indstillinger',
 	array('Tillad registrering af nye brugere', 'allow_user_registration', 1),
@@ -392,14 +392,14 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Tillad to brugere at have samme e-mail adresse', 'allow_duplicate_emails_addr', 1),
 	array('Brugere kan have private albums', 'allow_private_albums', 1),
 
-	'specialfremstillet felter ved billede beskrivelse (lad det forblive blanke, hvis det ikke skal bruges)',
+	'Brugerdefinerede felter til billedbeskrivelse (lad det forblive blanke, hvis ikke de skal bruges)',
 	array('Felt 1 navn', 'user_field1_name', 0),
 	array('Felt 2 navn', 'user_field2_name', 0),
 	array('Felt 3 navn', 'user_field3_name', 0),
 	array('Felt 4 navn', 'user_field4_name', 0),
 
-	'Avanceret billede og minibillede indstillinger',
-        array('Vis ikon for private album for anonyme brugere','show_private',1),
+	'Avancerede billede og minibillede indstillinger',
+        array('Vis ikon for private album for anononyme brugere','show_private',1),
 	array('Forbudte karakterer i filnavne', 'forbiden_fname_char',0),
 	array('Accepterede filtyper for uploadede billeder', 'allowed_file_extensions',0),
 	array('Program til skalering af billeder','thumb_method',2),
@@ -413,8 +413,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Foranstillet navn på minibilleder <b>*</b>', 'thumb_pfx', 0),
 	array('Standard tilstand på mapper', 'default_dir_mode', 0),
 	array('standard tilstand på billeder', 'default_file_mode', 0),
-        array('Bloker højre klik på fuld-størrelse popup vindue (JavaScript - kan omgås)', 'disable_popup_rightclick', 1), 
-        array('Bloker højre klik på alle "almindelige" sider (JavaScript - kan omgås)', 'disable_gallery_rightclick', 1), 
 
 	'Cookies &amp; tegn-kodnings indstillinger',
 	array('Navn på cookie brugt af dette system', 'cookie_name', 0),
@@ -586,7 +584,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 	'see_prev' => 'Se forrige billede',
 	'n_pic' => '%s billeder',
 	'n_of_pic_to_disp' => 'Antal billeder til fremvisning',
-	'apply' => 'Tilføj rettelser'
+	'apply' => 'Tilføj rettelser',
 );
 
 // ------------------------------------------------------------------------- //
@@ -610,7 +608,7 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
 	'approval_2' => 'Privat Upload godkendelse(2)',
 	'note1' => '<b>(1)</b> Upload i det offentlige album, kræver admin godkendelse',
 	'note2' => '<b>(2)</b> Upload i et album som tilhører brugeren, kræver admin godkendelse',
-	'notes' => 'Noter'
+	'notes' => 'Noter',
 );
 
 // ------------------------------------------------------------------------- //
@@ -971,8 +969,8 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
         'update_pic' => 'Kun mellemstore billeder', 
         'update_both' => 'Både mini- og mellemstore billeder', 
         'update_number' => 'Antal behandlede billeder pr. klik', 
-        'update_option' => '(Prøv at sætte den værdi lavere hvis du oplever time-out fejl)', 
-        'filename_title' => 'Filnavn? Billede titel', 
+        'update_option' => '(Prøv at sætte den værdi lavere hvis du oplever timeout fejl)', 
+        'filename_title' => 'Filnavn -> Billed titel', 
         'filename_how' => 'Hvordan skal filnavnet modificeres', 
         'filename_remove' => 'Fjern .jpg endelsen og erstat _ (underscore) med mellemrum', 
         'filename_euro' => 'Omdøb 2003_11_23_13_20_20.jpg til 23/11/2003 13:20', 

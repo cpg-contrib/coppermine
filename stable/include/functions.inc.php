@@ -363,30 +363,7 @@ function load_template()
         $template = str_replace($tmpl_loc['l'], $tmpl_loc['s'] ,$template);
 
         $template_header = substr($template, 0, $gallery_pos);
-        if ($CONFIG['disable_gallery_rightclick'] == 1)
-        {
-$replacement_body = <<<EOT
-<body onkeydown = "onKeyDown()">
-<script language="JavaScript" type="text/javascript">
-<!--
-document.oncontextmenu=new Function("return false")
 
-//if IE4+
-document.onselectstart=new Function ("return false")
-
-//if NS6
-if (window.sidebar){
-document.onmousedown=disableselect
-document.onclick=reEnable
-}
--->
-</script>
-EOT;
-$replacement_header ='<meta http-equiv="imagetoolbar" content="no" />
-</head>';
-        $template_header = ereg_replace("<body[^>]*>",$replacement_body,$template_header);
-        $template_header = ereg_replace("</head[^>]*>",$replacement_header,$template_header);
-        }
         $template_footer = substr($template, $gallery_pos);
         $add_version_info = '<!--Coppermine Photo Gallery '.COPPERMINE_VERSION.'--></body>';
         $template_footer = ereg_replace("</body[^>]*>",$add_version_info,$template_footer);
@@ -513,7 +490,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         } else {
                                 $user_link = $row['msg_author'];
                         }
-			$msg_body = strlen($row['msg_body']) > 50 ? @substr($row['msg_body'],0,50)."...": $row['msg_body'];
+                        $msg_body = strlen($row['msg_body']) > 50 ? @substr($row['msg_body'],0,50)."...": $row['msg_body'];
                         $caption = '<span class="thumb_title">'.$user_link.'</span>'.'<span class="thumb_caption">'.localised_date($row['msg_date'], $lastcom_date_fmt).'</span>'.'<span class="thumb_caption">'.$msg_body.'</span>';
                         $rowset[$key]['caption_text'] = $caption;
                 }

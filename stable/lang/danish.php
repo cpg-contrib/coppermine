@@ -413,8 +413,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Foranstillet navn på minibilleder <b>*</b>', 'thumb_pfx', 0),
 	array('Standard tilstand på mapper', 'default_dir_mode', 0),
 	array('standard tilstand på billeder', 'default_file_mode', 0),
-        array('Bloker højre klik på fuld-størrelse popup vindue (JavaScript - kan omgås)', 'disable_popup_rightclick', 1), 
-        array('Bloker højre klik på alle "almindelige" sider (JavaScript - kan omgås)', 'disable_gallery_rightclick', 1), 
 
 	'Cookies &amp; tegn-kodnings indstillinger',
 	array('Navn på cookie brugt af dette system', 'cookie_name', 0),
