@@ -376,7 +376,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         'Setari pentru imagini si pictograme',
         array('Calitatea fisierelor JPEG', 'jpeg_qual', 0),
         array('Dimensiunea maxima a unei pictograme <b>*</b>', 'thumb_width', 0), //new in cpg1.2.0
-        array('Utilizati dimensiunea ( latime sau inaltime sau aspectul Maxim pentru pictograma )<b>*</b>', //new in cpg1.2.0 'thumb_use', 7),
+        array('Utilizati dimensiunea ( latime sau inaltime sau aspectul Maxim pentru pictograma )<b>*</b>',  'thumb_use', 7),//new in cpg1.2.0
         array('Creaza imagini intermediare','make_intermediate',1),
         array('Latimea sau inaltimea maxima a unei imagini intermediare <b>*</b>', 'picture_width', 0),
         array('Dimensiunea maxima a unei imagini (KB)', 'max_upl_size', 0),

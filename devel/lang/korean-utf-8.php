@@ -376,7 +376,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         'ÀÌ¹ÌÁö ¹× ½æ³×ÀÏ ¼³Á¤',
         array('JPEG Ä÷¸®Æ¼', 'jpeg_qual', 0),
         array('½æ³×ÀÏ °¡·Î,¼¼·Î ÃÖ´ë<b>*</b>', 'thumb_width', 0), //new in cpg1.2.0
-        array('µð¸àÁÔ»ç¿ë (°¡·Î È¤Àº ¼¼·Î È¤Àº ½æ³×ÀÏÀÇ ÃÖ´ë¸ð¾ç)<b>*</b>', //new in cpg1.2.0 'thumb_use', 7),
+        array('µð¸àÁÔ»ç¿ë (°¡·Î È¤Àº ¼¼·Î È¤Àº ½æ³×ÀÏÀÇ ÃÖ´ë¸ð¾ç)<b>*</b>', 'thumb_use', 7), //new in cpg1.2.0
         array('ÀÌ¹ÌÁö º¸±â¿¡ »õ·Î¿î ÆÄÀÏ»ý¼º','make_intermediate',1),
 	array('»õ·Î »ý¼ºµÉ ÆÄÀÏÀÇ ÃÖ´ëÅ©±â(Æø)<b>*</b>', 'picture_width', 0),
         array('¾÷·Îµå ÀÌ¹ÌÁö ÃÖ´ë¿ë·® (KB)', 'max_upl_size', 0),

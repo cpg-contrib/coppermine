@@ -375,7 +375,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	'Bilde og miniatyrbilder',
 	array('Kvalitet på JPEG', 'jpeg_qual', 0),
 	array('Maks bredde og høyde på miniatyrbilder <b>*</b>', 'thumb_width', 0),
-      /* array('Bruk dimensjon ( bredde og høyde eller maks  )<b>*</b>', 'thumb_use', 7),  Get a "invalid error" message on configuration page */
+        array('Bruk dimensjon ( bredde og høyde eller maks  )<b>*</b>', 'thumb_use', 7),  //Get a "invalid error" message on configuration page 
 	array('Opprett mellomliggende bilder','make_intermediate',1),
 	array('Maks høyde eller bredde på mellomliggende bilde <b>*</b>', 'picture_width', 0),
 	array('Maks størrelse på bilder til opplasting (kB)', 'max_upl_size', 0),

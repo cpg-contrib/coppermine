@@ -378,6 +378,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 
         'Bild- und Thumbnail-Einstellungen',
         array('Qualität für JPEG-Dateien', 'jpeg_qual', 0),
+        array('Welche Dimension soll genutzt werden für Thumbnails ( Breite oder Höhe oder das, was jeweils grösser ist)<b>*</b>', 'thumb_use', 7),    //new in cpg1.2.0
         array('Maximale Höhe oder Breite von Thumbnails <b>*</b>', 'thumb_width', 0),
         array('Bilder in Zwischengröße erzeugen','make_intermediate',1),
         array('Maximale Breite oder Höhe von Bildern in Zwischengröße <b>*</b>', 'picture_width', 0),

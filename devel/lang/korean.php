@@ -376,7 +376,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         '이미지 및 썸네일 설정',
         array('JPEG 퀄리티', 'jpeg_qual', 0),
         array('썸네일 가로,세로 최대<b>*</b>', 'thumb_width', 0), //new in cpg1.2.0
-        array('디멘죤사용 (가로 혹은 세로 혹은 썸네일의 최대모양)<b>*</b>', //new in cpg1.2.0 'thumb_use', 7),
+        array('디멘죤사용 (가로 혹은 세로 혹은 썸네일의 최대모양)<b>*</b>', 'thumb_use', 7), //new in cpg1.2.0
         array('이미지 보기에 새로운 파일생성','make_intermediate',1),
 	array('새로 생성될 파일의 최대크기(폭)<b>*</b>', 'picture_width', 0),
         array('업로드 이미지 최대용량 (KB)', 'max_upl_size', 0),
