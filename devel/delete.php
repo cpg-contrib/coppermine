@@ -393,7 +393,7 @@ switch ($what) {
         } else {
             $query = "DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id='$msg_id' AND author_md5_id ='{$USER['ID']}' AND author_id = '0' LIMIT 1";
         }
-        $result = mysql_query($query);
+        $result = db_query($query);
 
         $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
         $redirect = "displayimage.php?pos=" . (- $comment_data['pid']);
