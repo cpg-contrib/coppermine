@@ -54,6 +54,62 @@ function show_memberlist()
         ob_end_flush();
 }
 
+function list_group_alb_access($group_id) {  //shows a list of albums a specific group can see. Categories are listed with albums for clarity
+    global $CONFIG, $group_id, $aid;
+		
+		$query = "
+			SELECT group_id, albums.aid AS aid, group_name, categories.name AS category, albums.title AS album 
+			FROM {$CONFIG['TABLE_USERGROUPS']} AS groups, {$CONFIG['TABLE_ALBUMS']} AS albums, {$CONFIG['TABLE_CATEGORIES']} AS categories
+			WHERE group_id = $group_id AND albums.category = categories.cid AND albums.visibility = groups.group_id 
+			ORDER BY category, album";
+		$result = cpg_db_query($query);
+		$albs = cpg_db_fetch_rowset($result);
+		mysql_free_result($result);
+
+		foreach($albs as $album) {
+			$aid = $album['aid'];
+			echo '
+				<tr>                            
+				<td>' . $album['category'] . '</td>
+				<td>' . $album['album'] . '</td>
+				<td>&nbsp;<a href="modifyalb.php?album=' . $album['aid'] . '"><img src="images/edit.gif" border="0" alt="" /></a></td>
+				</tr>
+				';
+	 }
+}
+
+function list_groups_alb_access() //shows a list of albums each group can see. Categories are listed with albums for clarity
+{
+    global $CONFIG;
+    global $lang_usermgr_php, $group_id;
+
+    starttable(500, $lang_usermgr_php['groups_alb_access'], 3);
+
+		$sql = "
+			SELECT group_id, group_name, categories.name AS category, albums.title AS album
+			FROM {$CONFIG['TABLE_USERGROUPS']} AS groups, {$CONFIG['TABLE_ALBUMS']} AS albums, {$CONFIG['TABLE_CATEGORIES']} AS categories 
+			WHERE albums.visibility = groups.group_id AND albums.category = categories.cid 
+			GROUP BY group_name
+			ORDER BY group_name, category, album
+		";
+				
+		$result = cpg_db_query($sql);
+		$groups = cpg_db_fetch_rowset($result);
+		mysql_free_result($result);
+
+		echo "
+		<td><b>{$lang_usermgr_php['category']}</b></td>
+		<td><b>{$lang_usermgr_php['album']}</b></td>
+		<td><b>{$lang_usermgr_php['modify']}</b></td>
+		";
+		foreach($groups as $group) {
+				$group_name = $group['group_name'];
+				$group_id = $group['group_id'];
+				echo '<tr><td colspan="3" class="tableh1_compact">' . $group_name . '</td></tr>';
+				list_group_alb_access($group_id);
+		}
+		endtable();
+}
 
 
 function list_users($search = '')
@@ -607,7 +663,10 @@ EOT;
             echo <<<EOT
                         </select><br />
                         $group_cb
-                </td>
+                        <br />
+                        <a href="usermgr.php?op=groups_alb_access">{$lang_usermgr_php['groups_alb_access']}</a>
+
+					</td>
         </tr>
 
 EOT;
@@ -729,13 +788,52 @@ switch ($op) {
         break;
 
     case 'new_user' :
-		$cpg_udb->edit_users();
+				$cpg_udb->edit_users();
         cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERS']}(user_regdate, user_active) VALUES (NOW(), 'YES')");
 
         $user_id = mysql_insert_id();
 
         pageheader($lang_usermgr_php['title']);
         edit_user($user_id);
+        pagefooter();
+        ob_end_flush();
+        break;
+
+    case 'groups_alb_access' : //show what albums user groups can see
+        pageheader($lang_usermgr_php['groups_alb_access']);
+        list_groups_alb_access();
+        pagefooter();
+        ob_end_flush();
+        break;
+
+    case 'group_alb_access' : //show what albums specific group can see
+        pageheader($lang_usermgr_php['group_alb_access']);
+				if (isset($_GET['gid'])) {
+					$group_id = $_GET['gid'];
+				}
+				$sql = "
+					SELECT group_name 
+					FROM {$CONFIG['TABLE_USERGROUPS']} AS groups, {$CONFIG['TABLE_ALBUMS']} AS albums
+					WHERE group_id = $group_id AND albums.visibility = groups.group_id
+				";
+				$result = cpg_db_query($sql);
+				$group = mysql_fetch_array($result);
+
+				if (!mysql_num_rows($result)) {
+					msg_box($lang_usermgr_php['notice'], $lang_usermgr_php['group_no_access']);
+				} else {
+						mysql_free_result($result);
+						$group_name = $group['group_name'];
+						starttable(500, sprintf($lang_usermgr_php['group_can_access'], $group_name), 3);
+						echo "
+						<td><b>{$lang_usermgr_php['category']}</b></td>
+						<td><b>{$lang_usermgr_php['album']}</b></td>
+						<td><b>{$lang_usermgr_php['modify']}</b></td>
+						";
+		
+						list_group_alb_access($group_id);
+						endtable();
+				}
         pagefooter();
         ob_end_flush();
         break;

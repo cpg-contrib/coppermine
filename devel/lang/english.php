@@ -1245,6 +1245,7 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
   'explain_greyed_out_title' => 'Why is this row greyed out?', // cpg1.4
   'explain_guests_greyed_out_text' => 'You can not change the properties of this group because you set the option &quot; Allow unlogged users (guest or anonymous) access&quot; to &quot;No&quot; on the config page. All guest (members of the group %s) can\'t do anything but login; therefor group settings don\'t apply for them.', // cpg1.4
   'explain_banned_greyed_out_text' => 'You can not change the properties of the group %s because it\'s members can\'t do anything anyway.', // cpg1.4
+  'group_assigned_album' => 'assigned album(s)', // cpg1.4
 );
 
 // ------------------------------------------------------------------------- //
@@ -1837,6 +1838,14 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'alert_no_selection' => 'You have to select at least one user first!', // cpg1.4 //js-alert
   'password' => 'password', // cpg1.4
   'select_group' => 'Select group', // cpg1.4
+  'groups_alb_access' => 'Album access by group', // cpg1.4
+  'album' => 'Album', // cpg1.4
+  'category' => 'Category', // cpg1.4
+  'modify' => 'Modify?', // cpg1.4
+  'group_alb_access' => 'Album access for this group', // cpg1.4
+  'group_no_access' => 'This group has no special access', // cpg1.4
+  'notice' => 'Notice', // cpg1.4
+  'group_can_access' => '%s can access:', // cpg1.4
 );
 
 // ------------------------------------------------------------------------- //

@@ -111,7 +111,8 @@ EOT;
         echo <<< EOT
                         <br />
                         {$lang_groupmgr_php['disk_quota']}: <input type="text" name="group_quota_{$group['group_id']}" value="{$group['group_quota']}" size="5" class="textinput" $disabled /> {$lang_byte_units[1]}
-                </td>
+                <br /><a href="usermgr.php?op=group_alb_access&gid={$group['group_id']}">{$lang_groupmgr_php['group_assigned_album']}</a>
+								</td>
                 <td class="$table_background" align="left" valign="top">
 EOT;
         foreach ($field_list as $field_name) {
