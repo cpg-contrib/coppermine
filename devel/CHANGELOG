@@ -207,3 +207,4 @@ Added option to sort comments ascending or descending - 08 November 2004, GauGau
 Changed help pop-up to so can be read when body dark colour - 09 November 2004, Casper
 Removed admin/user mode toggle for non-admins - 16 November 2004, GauGau
 Added IPB 2.0 bridge file (user contribution) - 19 November 2004, GauGau
+Added code to check/add trailing slash to ecards_more_pic_target in config.php - 26 November 2004, kegobeer
