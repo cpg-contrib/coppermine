@@ -311,6 +311,15 @@ if (defined('LOGOUT_PHP')) {
 }
 
 // ------------------------------------------------------------------------- //
+// File minibrowser.php
+// ------------------------------------------------------------------------- //
+
+if (defined('MINIBROWSER_PHP')) {
+  $lang_minibrowser_php_en = cpg_get_default_lang_var('lang_minibrowser_php','english');
+  $lang_minibrowser_php = array_merge($lang_minibrowser_php_en, $lang_minibrowser_php);
+}
+
+// ------------------------------------------------------------------------- //
 // File mode.php
 // ------------------------------------------------------------------------- //
 
