@@ -57,40 +57,40 @@ $comment_date_fmt =  '%d %b %Y, %H:%M';
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
 
 $lang_meta_album_names = array(
-        'random' => 'קובץ אקראי',
-        'lastup' => 'קבצים אחרונים',
-        'lastalb'=> 'אלבום אחרון שעודכן',
-        'lastcom' => 'הערות אחרונות',
-        'topn' => 'נצפים ביותר',
-        'toprated' => 'זכו לדרוגים הגבוהים ביותר',
-        'lasthits' => 'נצפו לאחרונה',
-        'search' => 'תוצאות חיפוש',
+	'random' => 'קבצים בבחירה אקראית',
+	'lastup' => 'קבצים אחרונים שנוספו',
+        'lastalb'=> 'אלבומים אחרונים שעודכנו',
+	'lastcom' => 'הערות אחרונות',
+	'topn' => 'נצפים ביותר',
+	'toprated' => 'זכו לדרוגים הגבוהים ביותר',
+	'lasthits' => 'נצפו לאחרונה',
+	'search' => 'תוצאות חיפוש',
         'favpics'=> 'קבצים מועדפים'
 );
 
 $lang_errors = array(
-        'access_denied' => 'אין לך הרשאה לצפות בעמוד זה.',
-        'perm_denied' => 'אין לך הרשאה לבצע פעולה זו.',
-        'param_missing' => 'התכנית (Script) נקראה ללא הפרמטרים הנחוצים לפעולתה.',
-        'non_exist_ap' => 'האלבום או הקובץ שבחרת אינם קיימים!',
-        'quota_exceeded' => 'חריגה מהקצאת דיסק<br /><br />הוקצו לך [quota]K, מתוכם ניצלת [space]K, כך שהוספת הקובץ גורמת לחריגה מהנפח המותר.',
-        'gd_file_type_err' => 'סוגי קבצי התמונות המותרים הם Jpeg ו- PNG.',
-        'invalid_image' => 'קובץ התמונה שהעלית משובש או מסוג שאינו נתמך על ידי המערכת.',
-        'resize_failed' => 'תקלה ביצירת דוגמית או תמונה מוקטנת.',
-        'no_img_to_display' => 'אין תמונה להציג.',
-        'non_exist_cat' => 'הקטגוריה שבחרת אינה קיימת.',
-        'orphan_cat' => 'קטגוריה אינה מסווגת כראוי. יש להפעיל את תכנית ניהול הקטגוריות.',
-        'directory_ro' => 'לא ניתן לכתוב/למחוק במחיצה %s, לכן לא ניתן למחוק את הקבצים.',
-        'non_exist_comment' => 'ההערה שנבחרה אינה קיימת.',
-        'pic_in_invalid_album' => 'הקובץ משוייך לאלבום לא קיים (%s) !?',
-        'banned' => 'נאסר עליך להשתמש באתר זה.',
-        'not_with_udb' => 'פעולה זו חסומה. הגלריה הוגדרה לפעול בסנכרון עם תכנית אחרת (למשל לוח מודעות). הפעולה המבוקשת אינה נתמכת במצב זה או שאמורה להתבצע על ידי התכנית האחרת.',
-        'offline_title' => 'לא זמין', //cpg1.3.0
-        'offline_text' => 'הגלריה אינה פעילה כרגע - נא לנסות שוב בקרוב', //cpg1.3.0
-        'ecards_empty' => 'אין רשומות של גלויות () להצגה. יש לבדוק עם מעקב הגלויות מופעל במסך התצורה.', //cpg1.3.0
-        'action_failed' => 'הפעולה נכשלה. התוכנה אינה יכולה לבצע את בקשתך.', //cpg1.3.0
-        'no_zip' => 'התוכנה אינה מוצאת את מודול הטיפול בקבצים דחוסים (ZIP). נא לפנות למנהל המערכת.', //cpg1.3.0
-        'zip_type' => 'אין לך הרשאה להעלות קבצים דחוסים (ZIP).', //cpg1.3.0
+	'access_denied' => 'אין לך הרשאה לצפות בעמוד זה.',
+	'perm_denied' => 'אין לך הרשאה לבצע פעולה זו.',
+	'param_missing' => 'התכנית (Script) נקראה ללא הפרמטרים הנחוצים לפעולתה.',
+	'non_exist_ap' => 'האלבום או הקובץ שבחרת אינם קיימים!',
+	'quota_exceeded' => 'חריגה מהקצאת דיסק<br /><br />הוקצו לך [quota]K, מתוכם ניצלת [space]K, כך שהוספת הקובץ גורמת לחריגה מהנפח המותר.',
+	'gd_file_type_err' => 'סוגי קבצי התמונות המותרים הם Jpeg ו- PNG.',
+	'invalid_image' => 'קובץ התמונה שהעלית משובש או מסוג שאינו נתמך על ידי המערכת.',
+	'resize_failed' => 'תקלה ביצירת דוגמית או תמונה מוקטנת.',
+	'no_img_to_display' => 'אין תמונה להציג.',
+	'non_exist_cat' => 'הקטגוריה שבחרת אינה קיימת.',
+	'orphan_cat' => 'קטגוריה אינה מסווגת כראוי. יש להפעיל את תכנית ניהול הקטגוריות.',
+	'directory_ro' => 'לא ניתן לכתוב/למחוק במחיצה %s, לכן לא ניתן למחוק את הקבצים.',
+	'non_exist_comment' => 'ההערה שנבחרה אינה קיימת.',
+	'pic_in_invalid_album' => 'הקובץ משוייך לאלבום לא קיים (%s) !?',
+	'banned' => 'נאסר עליך להשתמש באתר זה.',
+	'not_with_udb' => 'פעולה זו חסומה. הגלריה הוגדרה לפעול בסנכרון עם תכנית אחרת (למשל לוח מודעות). הפעולה המבוקשת אינה נתמכת במצב זה או שאמורה להתבצע על ידי התכנית האחרת.',
+	'offline_title' => 'לא זמין', //cpg1.3.0
+	'offline_text' => 'הגלריה אינה פעילה כרגע - נא לנסות שוב בקרוב', //cpg1.3.0
+	'ecards_empty' => 'אין רשומות של גלויות () להצגה. יש לבדוק עם מעקב הגלויות מופעל במסך התצורה.', //cpg1.3.0
+	'action_failed' => 'הפעולה נכשלה. התוכנה אינה יכולה לבצע את בקשתך.', //cpg1.3.0
+	'no_zip' => 'התוכנה אינה מוצאת את מודול הטיפול בקבצים דחוסים (ZIP). נא לפנות למנהל המערכת.', //cpg1.3.0
+	'zip_type' => 'אין לך הרשאה להעלות קבצים דחוסים (ZIP).', //cpg1.3.0
 );
 
 $lang_bbcode_help = 'אפשר להתשמש בקודי העיצוב הבאים: <li>[b]<b>הדגשה</b>[/b]</li> <li>[i]<i>נטיה</i>[/i]</li> <li>[url=http://yoursite.com/]קישור[/url]</li> <li>[email]user@domain.com[/email]</li>'; //cpg1.3.0
@@ -100,101 +100,101 @@ $lang_bbcode_help = 'אפשר להתשמש בקודי העיצוב הבאים: <li>[b]<b>הדגשה</b>[/b]</li
 // ------------------------------------------------------------------------- //
 
 $lang_main_menu = array(
-        'alb_list_title' => 'דלג לרשימת האלבומים',
-        'alb_list_lnk' => 'רשימת אלבומים',
-        'my_gal_title' => 'דלג לגלריה שלי',
-        'my_gal_lnk' => 'הגלריה שלי',
-        'my_prof_lnk' => 'הפרופיל שלי',
-        'adm_mode_title' => 'מעבר למצב מנהל',
-        'adm_mode_lnk' => 'מצב מנהל',
-        'usr_mode_title' => 'מעבר למצב משתמש',
-        'usr_mode_lnk' => 'מצב משתמש',
-        'upload_pic_title' => 'הוספת קובץ לאלבום',
-        'upload_pic_lnk' => 'הוספת קובץ',
-        'register_title' => 'פתיחת חשבון משתמש',
-        'register_lnk' => 'רישום',
-        'login_lnk' => 'התחברות',
-        'logout_lnk' => 'התנתקות',
-        'lastup_lnk' => 'קבצים אחרונים',
-        'lastcom_lnk' => 'הערות אחרונות',
-        'topn_lnk' => 'נצפות ביותר',
-        'toprated_lnk' => 'זכו לדרוגים הגבוהים ביותר',
-        'search_lnk' => 'חיפוש',
-        'fav_lnk' => 'המועדפים שלי',
-        'memberlist_title' => 'הצגת רשימת חברים רשומים', //cpg1.3.0
-        'memberlist_lnk' => 'רשימת חברים', //cpg1.3.0
-        'faq_title' => 'שאלות ותשובות נפוצות (FAQ) של גלריית "Coppermine"', //cpg1.3.0
-        'faq_lnk' => 'שאלות ותשובות נפוצות (FAQ)', //cpg1.3.0
+	'alb_list_title' => 'דלג לרשימת האלבומים',
+	'alb_list_lnk' => 'רשימת אלבומים',
+	'my_gal_title' => 'דלג לגלריה שלי',
+	'my_gal_lnk' => 'הגלריה שלי',
+	'my_prof_lnk' => 'הפרופיל שלי',
+	'adm_mode_title' => 'מעבר למצב מנהל',
+	'adm_mode_lnk' => 'מצב מנהל',
+	'usr_mode_title' => 'מעבר למצב משתמש',
+	'usr_mode_lnk' => 'מצב משתמש',
+	'upload_pic_title' => 'הוספת קובץ לאלבום',
+	'upload_pic_lnk' => 'הוספת קובץ',
+	'register_title' => 'פתיחת חשבון משתמש',
+	'register_lnk' => 'רישום',
+	'login_lnk' => 'התחברות',
+	'logout_lnk' => 'התנתקות',
+	'lastup_lnk' => 'קבצים אחרונים',
+	'lastcom_lnk' => 'הערות אחרונות',
+	'topn_lnk' => 'נצפים ביותר',
+	'toprated_lnk' => 'מדורגים ראשונים',
+	'search_lnk' => 'חיפוש',
+	'fav_lnk' => 'המועדפים שלי',
+	'memberlist_title' => 'הצגת רשימת חברים רשומים', //cpg1.3.0
+	'memberlist_lnk' => 'רשימת חברים', //cpg1.3.0
+	'faq_title' => 'תשובות לשאלות נפוצות (FAQ) של גלריית "Coppermine"', //cpg1.3.0
+	'faq_lnk' => 'תשובות לשאלות (FAQ)', //cpg1.3.0
 
 );
 
 $lang_gallery_admin_menu = array(
-        'upl_app_lnk' => 'אישור הוספה',
-        'config_lnk' => 'תצורה',
-        'albums_lnk' => 'אלבומים',
-        'categories_lnk' => 'קטגוריות',
-        'users_lnk' => 'משתמשים',
-        'groups_lnk' => 'קבוצות',
-        'comments_lnk' => 'הערות',
-        'searchnew_lnk' => 'הוספת סדרת קבצים',
-        'util_lnk' => 'עזרי ניהול',
-        'ban_lnk' => 'הרחקת משתמשים',
-        'db_ecard_lnk' => 'הצגת גלויות', //cpg1.3.0
+	'upl_app_lnk' => 'אישור הוספה',
+	'config_lnk' => 'תצורה',
+	'albums_lnk' => 'אלבומים',
+	'categories_lnk' => 'קטגוריות',
+	'users_lnk' => 'משתמשים',
+	'groups_lnk' => 'קבוצות',
+	'comments_lnk' => 'הערות',
+	'searchnew_lnk' => 'הוספת סדרת קבצים',
+	'util_lnk' => 'עזרי ניהול',
+	'ban_lnk' => 'הרחקת משתמשים',
+	'db_ecard_lnk' => 'הצגת גלויות', //cpg1.3.0
 );
 
 $lang_user_admin_menu = array(
-        'albmgr_lnk' => 'יצירה / ארגון אלבומים שלי',
-        'modifyalb_lnk' => 'שינוי אלבומים שלי',
-        'my_prof_lnk' => 'הפרופיל שלי',
+	'albmgr_lnk' => 'פתיחת/ארגון האלבומים שלי',
+	'modifyalb_lnk' => 'שינוי האלבומים שלי',
+	'my_prof_lnk' => 'הפרופיל שלי',
 );
 
 $lang_cat_list = array(
-        'category' => 'קטגוריה',
-        'albums' => 'אלבומים',
-        'pictures' => 'קבצים',
+	'category' => 'קטגוריה',
+	'albums' => 'אלבומים',
+	'pictures' => 'קבצים',
 );
 
 $lang_album_list = array(
-        'album_on_page' => '%d אלבומים ב- %d דפים'
+	'album_on_page' => '%d אלבומים ב- %d דפים'
 );
 
 $lang_thumb_view = array(
-        'date' => 'תאריך',
-        'name' => ' שם קובץ',
-        'title' => 'כותרת',
-        'sort_da' => 'מיון לפי תאריך מחדש לישן',
-        'sort_dd' => 'מיון לפי תאריך מישן לחדש',
-        'sort_na' => 'מיון לפי שם קובץ בסדר עולה',
-        'sort_nd' => 'מיון לפי שם קובץ בסדר יורד',
-        'sort_ta' => 'מיון לפי כותרת בסדר עולה',
-        'sort_td' => 'מיון לפי כותרת בסדר יורד',
-        'download_zip' => 'הורדה בקובץ דחוס (ZIP)', //cpg1.3.0
-        'pic_on_page' => '%d קבצים ב-%d דפים',
-        'user_on_page' => '%d משתמשים ב-%d דפים'
+	'date' => 'תאריך',
+	'name' => ' שם קובץ',
+	'title' => 'כותרת',
+	'sort_da' => 'מיון לפי תאריך מחדש לישן',
+	'sort_dd' => 'מיון לפי תאריך מישן לחדש',
+	'sort_na' => 'מיון לפי שם קובץ בסדר עולה',
+	'sort_nd' => 'מיון לפי שם קובץ בסדר יורד',
+	'sort_ta' => 'מיון לפי כותרת בסדר עולה',
+	'sort_td' => 'מיון לפי כותרת בסדר יורד',
+	'download_zip' => 'הורדה בקובץ דחוס (ZIP)', //cpg1.3.0
+	'pic_on_page' => '%d קבצים ב- %d דפים',
+	'user_on_page' => '%d משתמשים ב- %d דפים'
 );
 
 $lang_img_nav_bar = array(
-        'thumb_title' => 'חזרה לעמוד הדוגמיות',
-        'pic_info_title' => 'הצגת/הסתרת מידע על הקבצים',
-        'slideshow_title' => 'מצגת שקופיות',
-        'ecard_title' => 'שליחת הקובץ כגלויה וירטואלית',
-        'ecard_disabled' => 'גלויות וירטואליות אינן מותרות',
-        'ecard_disabled_msg' => 'אין לך הרשאה לשלוח גלויה וירטואלית',
-        'prev_title' => 'הצגת הקובץ הקודם',
-        'next_title' => 'הצגת הקובץ הבא',
-        'pic_pos' => 'קובץ %s מתוך %s',
+	'thumb_title' => 'חזרה לעמוד הדוגמיות',
+	'pic_info_title' => 'הצגת/הסתרת מידע על הקבצים',
+	'slideshow_title' => 'מצגת שקופיות',
+	'ecard_title' => 'שליחת הקובץ כגלויה וירטואלית',
+	'ecard_disabled' => 'גלויות וירטואליות אינן מותרות',
+	'ecard_disabled_msg' => 'אין לך הרשאה לשלוח גלויה וירטואלית',
+	'prev_title' => 'הצגת הקובץ הקודם',
+	'next_title' => 'הצגת הקובץ הבא',
+	'pic_pos' => 'קובץ %s מתוך %s',
 );
 
 $lang_rate_pic = array(
-        'rate_this_pic' => 'דרוג הקובץ ',
-        'no_votes' => '(אין קולות)',
-        'rating' => '(דרוג: %s/5 עם %s קולות)',
-        'rubbish' => 'גרועה',
-        'poor' => 'לא מוצלחת',
-        'fair' => 'סבירה',
-        'good' => 'טובה',
-        'excellent' => 'מצויינת',
-        'great' => 'נפלאה!',
+	'rate_this_pic' => 'דרוג הקובץ ',
+	'no_votes' => '(אין קולות)',
+	'rating' => '(דרוג: %s/5 עם %s קולות)',
+	'rubbish' => 'גרועה',
+	'poor' => 'לא מוצלחת',
+	'fair' => 'סבירה',
+	'good' => 'טובה',
+	'excellent' => 'מצויינת',
+	'great' => 'נפלאה!',
 );
 
 // ------------------------------------------------------------------------- //
@@ -208,41 +208,41 @@ $lang_rate_pic = array(
 // ------------------------------------------------------------------------- //
 
 $lang_cpg_die = array(
-        INFORMATION => $lang_info,
-        ERROR => $lang_error,
-        CRITICAL_ERROR => 'תקלה קריטית',
-        'file' => 'קובץ: ',
-        'line' => 'שורה: ',
+	INFORMATION => $lang_info,
+	ERROR => $lang_error,
+	CRITICAL_ERROR => 'תקלה קריטית',
+	'file' => 'קובץ: ',
+	'line' => 'שורה: ',
 );
 
 $lang_display_thumbnails = array(
-        'filename' => 'שם: ',
-        'filesize' => 'גודל: ',
-        'dimensions' => 'מידות: ',
-        'date_added' => 'נוסף ב: '
+	'filename' => 'שם: ',
+	'filesize' => 'גודל: ',
+	'dimensions' => 'מידות: ',
+	'date_added' => 'נוסף ב: '
 );
 
 $lang_get_pic_data = array(
-        'n_comments' => '%s הערות',
-        'n_views' => '%s צפיות',
-        'n_votes' => '(%s קולות)'
+	'n_comments' => '%s הערות',
+	'n_views' => '%s צפיות',
+	'n_votes' => '(%s קולות)'
 );
 
 $lang_cpg_debug_output = array(
-        'debug_info' => 'נתונים לאבחון - Debug Info', //cpg1.3.0
-        'select_all' => 'הכל', //cpg1.3.0
-        'copy_and_paste_instructions' => 'אם בכוונתך לבקש תמיכה בלוח המודעות של Coppermine, יש להעתיק את פלט האבחון לתוך ההודעה. נא להקפיד על הסתרת סיסמאות ע"י החלפתן ב- ***.', //cpg1.3.0
-        'phpinfo' => 'הצגת מידע PHP', //cpg1.3.0
+	'debug_info' => 'נתונים לאבחון - Debug Info', //cpg1.3.0
+	'select_all' => 'הכל', //cpg1.3.0
+	'copy_and_paste_instructions' => 'אם בכוונתך לבקש תמיכה בלוח המודעות של Coppermine, יש להעתיק את פלט האבחון לתוך ההודעה. נא להקפיד על הסתרת סיסמאות ע"י החלפתן ב- ***.', //cpg1.3.0
+	'phpinfo' => 'הצגת מידע PHP', //cpg1.3.0
 );
 
 $lang_language_selection = array(
-        'reset_language' => 'שפת ברירת מחדל', //cpg1.3.0
-        'choose_language' => 'בחירת שפה', //cpg1.3.0
+	'reset_language' => 'שפת ברירת מחדל', //cpg1.3.0
+	'choose_language' => 'בחירת שפה', //cpg1.3.0
 );
 
 $lang_theme_selection = array(
-        'reset_theme' => 'סגנון ברירת מחדל', //cpg1.3.0
-        'choose_theme' => 'בחירת סגנון', //cpg1.3.0
+	'reset_theme' => 'סגנון ברירת מחדל', //cpg1.3.0
+	'choose_theme' => 'בחירת סגנון', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -262,28 +262,28 @@ $lang_theme_selection = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
-        'Exclamation' => 'סימן קריאה!',
-        'Question' => 'סימן שאלה?',
-        'Very Happy' => 'מאושר מאד',
-        'Smile' => 'חיוך',
-        'Sad' => 'עצוב',
-        'Surprised' => 'מופתע',
-        'Shocked' => 'מזועזע',
-        'Confused' => 'מבולבל',
-        'Cool' => 'גזעי',
-        'Laughing' => 'צוחק',
-        'Mad' => 'משוגע',
-        'Razz' => 'Razz',
-        'Embarassed' => 'נבוך',
-        'Crying or Very sad' => 'עצוב ובוכה',
-        'Evil or Very Mad' => 'רשע מטורף',
-        'Twisted Evil' => 'רשע סוטה',
-        'Rolling Eyes' => 'מגלגל עיניים',
-        'Wink' => 'קורץ',
-        'Idea' => 'רעיון',
-        'Arrow' => 'חץ',
-        'Neutral' => 'נייטרלי',
-        'Mr. Green' => 'מיסטר ירוק',
+	'Exclamation' => 'סימן קריאה!',
+	'Question' => 'סימן שאלה?',
+	'Very Happy' => 'מאושר מאד',
+	'Smile' => 'חיוך',
+	'Sad' => 'עצוב',
+	'Surprised' => 'מופתע',
+	'Shocked' => 'מזועזע',
+	'Confused' => 'מבולבל',
+	'Cool' => 'גזעי',
+	'Laughing' => 'צוחק',
+	'Mad' => 'משוגע',
+	'Razz' => 'Razz',
+	'Embarassed' => 'נבוך',
+	'Crying or Very sad' => 'עצוב ובוכה',
+	'Evil or Very Mad' => 'רשע מטורף',
+	'Twisted Evil' => 'רשע סוטה',
+	'Rolling Eyes' => 'מגלגל עיניים',
+	'Wink' => 'קורץ',
+	'Idea' => 'רעיון',
+	'Arrow' => 'חץ',
+	'Neutral' => 'נייטרלי',
+	'Mr. Green' => 'מיסטר ירוק',
 );
 
 // ------------------------------------------------------------------------- //
@@ -297,8 +297,8 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ADMIN_PHP')) $lang_admin_php = array(
-        0 => 'יציאה ממצב מנהל...',
-        1 => 'כניסה למצב מנהל...',
+	0 => 'יציאה ממצב מנהל...',
+	1 => 'כניסה למצב מנהל...',
 );
 
 // ------------------------------------------------------------------------- //
@@ -306,20 +306,20 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
-        'alb_need_name' => 'חובה לתת שם לאלבום!',
-        'confirm_modifs' => 'האם את/ה בטוח/ה שברצונך לעשות שינויים אלה?',
-        'no_change' => 'לא ביצעת כל שינוי!',
-        'new_album' => 'אלבום חדש',
-        'confirm_delete1' => 'האם את/ה בטוח/ה שברצונך למחוק אלבום זה?',
-        'confirm_delete2' => '\nכל הקבצים וההערות שבו יאבדו!',
-        'select_first' => 'קודם עליך לבחור אלבום',
-        'alb_mrg' => 'מנהל האלבומים',
-        'my_gallery' => '* הגלריה שלי *',
-        'no_category' => '* ללא קטגוריה *',
-        'delete' => 'מחיקה',
-        'new' => 'פתיחת חדש',
-        'apply_modifs' => 'ביצוע שינויים',
-        'select_category' => 'בחירת קטגוריה',
+	'alb_need_name' => 'חובה לתת שם לאלבום!',
+	'confirm_modifs' => 'האם את/ה בטוח/ה שברצונך לעשות שינויים אלה?',
+	'no_change' => 'לא ביצעת כל שינוי!',
+	'new_album' => 'אלבום חדש',
+	'confirm_delete1' => 'האם את/ה בטוח/ה שברצונך למחוק אלבום זה?',
+	'confirm_delete2' => '\nכל הקבצים וההערות שבו יאבדו ללא אפשרות שחזור!',
+	'select_first' => 'קודם עליך לבחור אלבום',
+	'alb_mrg' => 'מנהל האלבומים',
+	'my_gallery' => '* הגלריה שלי *',
+	'no_category' => '* ללא קטגוריה *',
+	'delete' => 'מחיקה',
+	'new' => 'פתיחת חדש',
+	'apply_modifs' => 'ביצוע שינויים',
+	'select_category' => 'בחירת קטגוריה',
 );
 
 // ------------------------------------------------------------------------- //
@@ -327,19 +327,19 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
-        'miss_param' => 'חסרים פרמטרים הדרושים לפעולה "%s"',
-        'unknown_cat' => 'הקטגוריה שנבחרה אינה קיימת במס הנתונים (DB)',
-        'usergal_cat_ro' => 'לא ניתן למחוק את הקטגוריה "גלריות משתמשים"!',
-        'manage_cat' => 'ניהול קטגוריות',
-        'confirm_delete' => 'האם את/ה בטוח/ה שברצונך למחוק קטגוריה זו?',
-        'category' => 'קטגוריה',
-        'operations' => 'פעולות',
-        'move_into' => 'העבר אל',
-        'update_create' => 'יצירה/עדכון קטגוריה',
-        'parent_cat' => 'קטגוריית על',
-        'cat_title' => 'כותרת הקטגוריה',
-        'cat_thumb' => 'דוגמית הקטגוריה', //cpg1.3.0
-        'cat_desc' => 'תאור הקטגוריה'
+	'miss_param' => 'חסרים פרמטרים הדרושים לפעולה "%s"',
+	'unknown_cat' => 'הקטגוריה שנבחרה אינה קיימת במס הנתונים (DB)',
+	'usergal_cat_ro' => 'לא ניתן למחוק את הקטגוריה "גלריות משתמשים"!',
+	'manage_cat' => 'ניהול קטגוריות',
+	'confirm_delete' => 'האם את/ה בטוח/ה שברצונך למחוק קטגוריה זו?',
+	'category' => 'קטגוריה',
+	'operations' => 'פעולות',
+	'move_into' => 'העבר אל',
+	'update_create' => 'יצירה/עדכון קטגוריה',
+	'parent_cat' => 'קטגוריית על',
+	'cat_title' => 'כותרת הקטגוריה',
+	'cat_thumb' => 'דוגמית הקטגוריה', //cpg1.3.0
+	'cat_desc' => 'תאור הקטגוריה'
 );
 
 // ------------------------------------------------------------------------- //
@@ -347,141 +347,141 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('CONFIG_PHP')) $lang_config_php = array(
-        'title' => 'תצורה',
-        'restore_cfg' => 'שיחזור ברירות מחדל',
-        'save_cfg' => 'שמירת התצורה החדשה',
-        'notes' => 'הערות',
-        'info' => 'מידע',
-        'upd_success' => 'התצורה עודכנה',
-        'restore_success' => 'התצורה שוחזרה לברירות המחדל',
-        'name_a' => 'שם עולה',
-        'name_d' => 'שם יורד',
-        'title_a' => 'כותרת בסדר עולה',
-        'title_d' => 'כותרת בסדר יורד',
-        'date_a' => 'תאריך עולה',
-        'date_d' => 'תאירך יורד',
-        'th_any' => 'פרופורציה מקסימלית',
-        'th_ht' => 'גובה',
-        'th_wd' => 'רוחב',
-        'label' => 'תוית', //cpg1.3.0
-        'item' => 'פריט', //cpg1.3.0
-        'debug_everyone' => 'כל אחד', //cpg1.3.0
-        'debug_admin' => 'מנהל בלבד', //cpg1.3.0
+	'title' => 'תצורה',
+	'restore_cfg' => 'שיחזור ברירות מחדל',
+	'save_cfg' => 'שמירת התצורה החדשה',
+	'notes' => 'הערות',
+	'info' => 'מידע',
+	'upd_success' => 'התצורה עודכנה',
+	'restore_success' => 'התצורה שוחזרה לברירות המחדל',
+	'name_a' => 'שם עולה',
+	'name_d' => 'שם יורד',
+	'title_a' => 'כותרת בסדר עולה',
+	'title_d' => 'כותרת בסדר יורד',
+	'date_a' => 'תאריך עולה',
+	'date_d' => 'תאירך יורד',
+	'th_any' => 'פרופורציה מקסימלית',
+	'th_ht' => 'גובה',
+	'th_wd' => 'רוחב',
+	'label' => 'תוית', //cpg1.3.0
+	'item' => 'פריט', //cpg1.3.0
+	'debug_everyone' => 'כל אחד', //cpg1.3.0
+	'debug_admin' => 'מנהל בלבד', //cpg1.3.0
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
-        'הגדרות כלליות',
-        array('שם הגלריה', 'gallery_name', 0),
-        array('תאור הגלריה', 'gallery_description', 0),
-        array('כתובת דוא"ל של מנהל הגלריה', 'gallery_admin_email', 0),
-        array('כתובת (URL) שתופיע בגלויות בקישור "See more pictures" ', 'ecards_more_pic_target', 0),
-        array('גלריה לא זמינה', 'offline', 1), //cpg1.3.0
-        array('מעקב אחר גלויות', 'log_ecards', 1), //cpg1.3.0
-        array('אפשר הורדת קבוץ דחוס (ZIP) של מועדפים', 'enable_zipdownload', 1), //cpg1.3.0
+	'הגדרות כלליות',
+	array('שם הגלריה', 'gallery_name', 0),
+	array('תאור הגלריה', 'gallery_description', 0),
+	array('כתובת דוא"ל של מנהל הגלריה', 'gallery_admin_email', 0),
+	array('כתובת (URL) שתופיע בגלויות בקישור "See more pictures" ', 'ecards_more_pic_target', 0),
+	array('גלריה לא זמינה', 'offline', 1), //cpg1.3.0
+	array('מעקב אחר גלויות', 'log_ecards', 1), //cpg1.3.0
+	array('אפשר הורדת קבוץ דחוס (ZIP) של מועדפים', 'enable_zipdownload', 1), //cpg1.3.0
 
-        'שפה, עיצוב וקידוד תוים',
-        array('שפה', 'lang', 5),
-        array('סגנון עיצוב', 'theme', 6),
-        array('הצגת רשימת שפות', 'language_list', 8), //cpg1.3.0
-        array('הצגת דגלי מדינות', 'language_flags', 8), //cpg1.3.0
-        array('הצגת אפשרות לשפת ברירת מחדל', 'language_reset', 1), //cpg1.3.0
-        array('הצגת רשימת סגנונות עיצוב', 'theme_list', 8), //cpg1.3.0
-        array('הצגת אפשרות לסגנון ברירת מחדל', 'theme_reset', 1), //cpg1.3.0
-        array('הצגת שאלת ותשובות נפוצות (FAQ)', 'display_faq', 1), //cpg1.3.0
-        array('הצגת עזרה לקודי עיצוב (bbcode)', 'show_bbcode_help', 1), //cpg1.3.0
-        array('קידוד תוים (שפה)', 'charset', 4), //cpg1.3.0
+	'שפה, עיצוב וקידוד תוים',
+	array('שפה', 'lang', 5),
+	array('סגנון עיצוב', 'theme', 6),
+	array('הצגת רשימת שפות', 'language_list', 8), //cpg1.3.0
+	array('הצגת דגלי מדינות', 'language_flags', 8), //cpg1.3.0
+	array('הצגת אפשרות לשפת ברירת מחדל', 'language_reset', 1), //cpg1.3.0
+	array('הצגת רשימת סגנונות עיצוב', 'theme_list', 8), //cpg1.3.0
+	array('הצגת אפשרות לסגנון ברירת מחדל', 'theme_reset', 1), //cpg1.3.0
+	array('הצגת תשובות לשאלות נפוצות (FAQ)', 'display_faq', 1), //cpg1.3.0
+	array('הצגת עזרה לקודי עיצוב (bbcode)', 'show_bbcode_help', 1), //cpg1.3.0
+	array('קידוד תוים (שפה)', 'charset', 4), //cpg1.3.0
 
-        'הגדרות לרשימת אלבומים',
-        array('רוחב הטבלה הראשית (ב-% או בפקיסלים)', 'main_table_width', 0),
-        array('מספר רמות קטגוריה להציג', 'subcat_level', 0),
-        array('מספר אלבומים להציג', 'albums_per_page', 0),
-        array('מספר עמודות לרשימת האלבומים', 'album_list_cols', 0),
-        array('גודל הדוגמיות בפיקסלים', 'alb_list_thumb_size', 0),
-        array('תוכן הדף הראשי', 'main_page_layout', 0),
-        array('הצג דוגמיות (מאלבומים בהיררכיה העליונה) ברשימת הקטגוריות','first_level',1),
+	'הגדרות לרשימת אלבומים',
+	array('רוחב הטבלה הראשית (ב- % או בפקיסלים)', 'main_table_width', 0),
+	array('מספר רמות קטגוריה להציג', 'subcat_level', 0),
+	array('מספר אלבומים להציג', 'albums_per_page', 0),
+	array('מספר עמודות לרשימת האלבומים', 'album_list_cols', 0),
+	array('גודל הדוגמיות בפיקסלים', 'alb_list_thumb_size', 0),
+	array('תוכן הדף הראשי', 'main_page_layout', 0),
+	array('הצג דוגמיות (מאלבומים בהיררכיה העליונה) ברשימת הקטגוריות','first_level',1),
 
-        'הגדרות לתצוגת דוגמיות',
-        array('מספר עמודות בדף דוגמיות', 'thumbcols', 0),
-        array('מספר שורות בדף דוגמיות', 'thumbrows', 0),
-        array('מספר לשוניות מקסימלי להציג', 'max_tabs', 10),
-        array('הצגת כתובית (בנוסף לכותרת) מתחת לדוגמית', 'caption_in_thumbview', 1),
-        array('הצגת מספר הצפיות מתחת לדוגמית', 'views_in_thumbview', 1), //cpg1.3.0
-        array('הצגת מספר ההערות מתחת לדוגמית', 'display_comment_count', 1),
-        array('הצגת שם מוסיף-הקובץ מתחת לדוגמית', 'display_uploader', 1), //cpg1.3.0
-        array('מיון התחלתי של הדוגמיות', 'default_sort_order', 3),
-        array('מספר קולות מינימלי הנדרש לקובץ כדי שיופיע ברשימת הדרוגים הגבוהים ביותר ', 'min_votes_for_rating', 0),
+	'הגדרות לתצוגת דוגמיות',
+	array('מספר עמודות בדף דוגמיות', 'thumbcols', 0),
+	array('מספר שורות בדף דוגמיות', 'thumbrows', 0),
+	array('מספר לשוניות מקסימלי להציג', 'max_tabs', 10),
+	array('הצגת כתובית (בנוסף לכותרת) מתחת לדוגמית', 'caption_in_thumbview', 1),
+	array('הצגת מספר הצפיות מתחת לדוגמית', 'views_in_thumbview', 1), //cpg1.3.0
+	array('הצגת מספר ההערות מתחת לדוגמית', 'display_comment_count', 1),
+	array('הצגת שם מוסיף-הקובץ מתחת לדוגמית', 'display_uploader', 1), //cpg1.3.0
+	array('מיון התחלתי של הדוגמיות', 'default_sort_order', 3),
+	array('מספר קולות מינימלי הנדרש לקובץ כדי שיופיע ברשימת הדרוגים הגבוהים ביותר ', 'min_votes_for_rating', 0),
 
-        'הגדרות לתצוגת תמונה והערות',
-        array('רוחב הטבלה (ב-% או בפיקסלים)', 'picture_table_width', 0),
-        array('מידע על הקובץ מוצג כברירת מחדל', 'display_pic_info', 1),
-        array('האם לסנן ניבולי לשון מההערות', 'filter_bad_words', 1),
-        array('האם להרשות סמיילים בהערות', 'enable_smilies', 1),
-        array('האם להרשות מספר הערות רצופות ממשתמש אחד (ביטול מנגנון הגנה נגד "הצפות")', 'disable_comment_flood_protect', 1), //cpg1.3.0
-        array('אורך מקסימלי של תאור תמונה', 'max_img_desc_length', 0),
-        array('אורך מילה מקסימלי (למניעת "קישקושים")', 'max_com_wlength', 0),
-        array('מספר שורות מקסימלי בהערה', 'max_com_lines', 0),
-        array('מקסימום אורך ההערה', 'max_com_size', 0),
+	'הגדרות לתצוגת תמונה והערות',
+	array('רוחב הטבלה (ב- % או בפיקסלים)', 'picture_table_width', 0),
+	array('מידע על הקובץ מוצג כברירת מחדל', 'display_pic_info', 1),
+	array('האם לסנן ניבולי לשון מההערות', 'filter_bad_words', 1),
+	array('האם להרשות סמיילים בהערות', 'enable_smilies', 1),
+	array('האם להרשות מספר הערות רצופות ממשתמש אחד (ביטול מנגנון הגנה נגד "הצפות")', 'disable_comment_flood_protect', 1), //cpg1.3.0
+	array('אורך מקסימלי של תאור תמונה', 'max_img_desc_length', 0),
+	array('אורך מילה מקסימלי (למניעת "קישקושים")', 'max_com_wlength', 0),
+	array('מספר שורות מקסימלי בהערה', 'max_com_lines', 0),
+	array('מקסימום אורך ההערה', 'max_com_size', 0),
         array('הצג רצועת סרט צילום', 'display_film_strip', 1),
         array('מספר הפריטים ברצועת סרט צילום', 'max_film_strip_items', 0),
-        array('האם לשלוח למנהל הודעה על הוספת הערה', 'email_comment_notification', 1), //cpg1.3.0
-        array('זמן הצגת תמונה במצב "מצגת שקופיות" (באלפיות שניה)', 'slideshow_interval', 0), //cpg1.3.0
+	array('האם לשלוח למנהל הודעה על הוספת הערה', 'email_comment_notification', 1), //cpg1.3.0
+	array('זמן הצגת תמונה במצב "מצגת שקופיות" (באלפיות שניה)', 'slideshow_interval', 0), //cpg1.3.0
 
-        'הגדרות לקבצים ולדוגמיות',
-        array('רמת איכות לקבצי JPEG', 'jpeg_qual', 0),
+	'הגדרות לקבצים ולדוגמיות',
+	array('רמת איכות לקבצי JPEG', 'jpeg_qual', 0),
         array('ממדים מקסימליים של דוגמית <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0),
         array('להשתמש בממדים (רוחב או גובה או מקסימלי) של דוגמית <b>*</b>', 'thumb_use', 7),
-        array('מקסימום גובה או רוחב של דוגמית <b>*</b>', 'thumb_width', 0),
-        array('יצירה/הצגה של תמונות/סרטים בגודל ביניים','make_intermediate',1),
-        array('מקסימום גובה או רוחב של תמונה/סרט בגודל ביניים <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0),
-        array('מקסימום גודל של קובץ (KB)', 'max_upl_size', 0),
-        array('מקסימום גובה או רוחב של תמונה/סרט', 'max_upl_width_height', 0),
+	array('מקסימום גובה או רוחב של דוגמית <b>*</b>', 'thumb_width', 0),
+	array('יצירה/הצגה של תמונות/סרטים בגודל ביניים','make_intermediate',1),
+	array('מקסימום גובה או רוחב של תמונה/סרט בגודל ביניים <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0),
+	array('מקסימום גודל של קובץ (KB)', 'max_upl_size', 0),
+	array('מקסימום גובה או רוחב של תמונה/סרט', 'max_upl_width_height', 0),
 
-        'הגדרות מתקדמות לתמונות ודוגמיות',
+	'הגדרות מתקדמות לתמונות ודוגמיות',
         array('להציג צלמית אלבום פרטי למשתמש לא מחובר','show_private',1),
-        array('תוים אסורים בשם קובץ', 'forbiden_fname_char',0),
-        //array('סיומות מותרות של קבצי תמונה', 'allowed_file_extensions',0),
-        array('סוגי קבצי תמונה מותרים', 'allowed_img_types',0), //cpg1.3.0
-        array('סוגי קבצי סרט מותרים', 'allowed_mov_types',0), //cpg1.3.0
-        array('סוגי קבצי קול מותרים', 'allowed_snd_types',0), //cpg1.3.0
-        array('סוגי קבצי מסמך מותרים', 'allowed_doc_types',0), //cpg1.3.0
-        array('שיטת שינוי גודל התמונה','thumb_method',2),
-        array('נתיב לתוכנית Convert של חבילת ImageMagick (למשל /usr/bin/X11/)', 'impath', 0),
-        //array('סוגי קבצי תמונה מותרים (רק עבור ImageMagick)', 'allowed_img_types',0),
-        array('פרמטרים לשורת הפקודה של ImageMagick', 'im_options', 0),
-        array('קריאת מידע מורחב (EXIF) מקבצי JPEG', 'read_exif_data', 1),
-        array('קריאת מידע מורחב (IPTC) מקבצי JPEG', 'read_iptc_data', 1), //cpg1.3.0
-        array('נתיב למחיצת האלבומים <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0),
-        array('מחיצה לקבצי משתמשים <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0),
-        array('קידומת לתמונות בגודל ביניים <a href="#notice1" class="clickable_option">*</a>', 'normal_pfx', 0),
-        array('קידומת לדוגמיות <a href="#notice1" class="clickable_option">*</a>', 'thumb_pfx', 0),
-        array('ברירת מחדל להרשאת מחיצות', 'default_dir_mode', 0),
-        array('ברירת מחדל להרשאת קבצים', 'default_file_mode', 0),
+	array('תוים אסורים בשם קובץ', 'forbiden_fname_char',0),
+	//array('סיומות מותרות של קבצי תמונה', 'allowed_file_extensions',0),
+	array('סוגי קבצי תמונה מותרים', 'allowed_img_types',0), //cpg1.3.0
+	array('סוגי קבצי סרט מותרים', 'allowed_mov_types',0), //cpg1.3.0
+	array('סוגי קבצי קול מותרים', 'allowed_snd_types',0), //cpg1.3.0
+	array('סוגי קבצי מסמך מותרים', 'allowed_doc_types',0), //cpg1.3.0
+	array('שיטת שינוי גודל התמונה','thumb_method',2),
+	array('נתיב לתוכנית Convert של חבילת ImageMagick (למשל /usr/bin/X11/)', 'impath', 0),
+	//array('סוגי קבצי תמונה מותרים (רק עבור ImageMagick)', 'allowed_img_types',0),
+	array('פרמטרים לשורת הפקודה של ImageMagick', 'im_options', 0),
+	array('קריאת מידע מורחב (EXIF) מקבצי JPEG', 'read_exif_data', 1),
+	array('קריאת מידע מורחב (IPTC) מקבצי JPEG', 'read_iptc_data', 1), //cpg1.3.0
+	array('נתיב למחיצת האלבומים <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0),
+	array('מחיצה לקבצי משתמשים <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0),
+	array('קידומת לתמונות בגודל ביניים <a href="#notice1" class="clickable_option">*</a>', 'normal_pfx', 0),
+	array('קידומת לדוגמיות <a href="#notice1" class="clickable_option">*</a>', 'thumb_pfx', 0),
+	array('ברירת מחדל להרשאת מחיצות', 'default_dir_mode', 0),
+	array('ברירת מחדל להרשאת קבצים', 'default_file_mode', 0),
 
-        'הגדרות משתמשים',
-        array('לאפשר רישום של משתמשים חדשים', 'allow_user_registration', 1),
-        array('לבצע בדיקת דוא"ל של משתמש חדש', 'reg_requires_valid_email', 1),
-        array('לשלוח הודעה למנהל על רישום משתמש בדוא"ל', 'reg_notify_admin_email', 1), //cpg1.3.0
-        array('להרשות כפילות של כתובות דוא"ל בין משתמשים שונים', 'allow_duplicate_emails_addr', 1),
-        array('לאפשר למשתמשים ליצור אלבומים פרטיים (חשוב: שינוי ממצב "כן" למצב "לא" יגרום להפיכת כל האלבומים הפרטיים לציבוריים)', 'allow_private_albums', 1),
-        array('להודיע למנהל כאשר קבצי משתמשים ממתינים לאישור', 'upl_notify_admin_email', 1), //cpg1.3.0
-        array('להרשות למשתמשים מחוברים לצפות ברשימת המשתמשים הרשומים', 'allow_memberlist', 1), //cpg1.3.0
+	'הגדרות משתמשים',
+	array('לאפשר רישום של משתמשים חדשים', 'allow_user_registration', 1),
+	array('לבצע בדיקת דוא"ל של משתמש חדש', 'reg_requires_valid_email', 1),
+	array('לשלוח הודעה למנהל על רישום משתמש בדוא"ל', 'reg_notify_admin_email', 1), //cpg1.3.0
+	array('להרשות כפילות של כתובות דוא"ל בין משתמשים שונים', 'allow_duplicate_emails_addr', 1),
+	array('לאפשר למשתמשים ליצור אלבומים פרטיים (חשוב: שינוי ממצב "כן" למצב "לא" יגרום להפיכת כל האלבומים הפרטיים לציבוריים)', 'allow_private_albums', 1),
+	array('להודיע למנהל כאשר קבצי משתמשים ממתינים לאישור', 'upl_notify_admin_email', 1), //cpg1.3.0
+	array('להרשות למשתמשים מחוברים לצפות ברשימת המשתמשים הרשומים', 'allow_memberlist', 1), //cpg1.3.0
 
-        'שדות נוספים לתאור (להשאיר ריק אם אין צורך)',
-        array('שם שדה 1', 'user_field1_name', 0),
-        array('שם שדה 2', 'user_field2_name', 0),
-        array('שם שדה 3', 'user_field3_name', 0),
-        array('שם שדה 4', 'user_field4_name', 0),
+	'שדות נוספים לתאור (להשאיר ריק אם אין צורך)',
+	array('שם שדה 1', 'user_field1_name', 0),
+	array('שם שדה 2', 'user_field2_name', 0),
+	array('שם שדה 3', 'user_field3_name', 0),
+	array('שם שדה 4', 'user_field4_name', 0),
 
-        'הגדרות Cookies ושפה',
-        array('שם ה-Cookie של הגלריה', 'cookie_name', 0),
-        array('נתיב ה-Cookie של הגלריה', 'cookie_path', 0),
+	'הגדרות Cookies ושפה',
+	array('שם ה-Cookie של הגלריה', 'cookie_name', 0),
+	array('נתיב ה-Cookie של הגלריה', 'cookie_path', 0),
 
-        'הגדרות שונות',
-        array('הפעלת מצב אבחון (Debug)', 'debug_mode', 9),
-        array('להציג הודעות במצב אבחון (Debug)', 'debug_notice', 1), //cpg1.3.0
+	'הגדרות שונות',
+	array('הפעלת מצב אבחון (Debug)', 'debug_mode', 9),
+	array('להציג הודעות במצב אבחון (Debug)', 'debug_notice', 1), //cpg1.3.0
 
-        '<br /><div align="left"><a name="notice1"></a>(*) שדות המסומנים ב-* אסור לשנות אם יש כבר קבצים בגלריה!</div><br />
-        <a name="notice2"></a>(**) כאשר משנים הגדרות אלה, הן משפיעות רק על קבצים שנוספים לאחר השינוי. לכן מומלץ לא לשנותן אם כבר יש קבצים בגלריה. למרות זאת, אפשר להחיל את השינויים גם על קבצים קיימים, באמצעות "<a href="util.php">כלי ניהול</a> (שינוי גודל תמונות)" שבתפריט המנהל.</div><br />'
+	'<br /><a name="notice1"></a>(*) שדות המסומנים ב-* אסור לשנות אם יש כבר קבצים בגלריה!<br />
+	<a name="notice2"></a>(**) כאשר משנים הגדרות אלה, הן משפיעות רק על קבצים שנוספים לאחר השינוי. לכן מומלץ לא לשנותן אם כבר יש קבצים בגלריה. למרות זאת, אפשר להחיל את השינויים גם על קבצים קיימים, באמצעות "<a href="util.php">כלי ניהול</a> (שינוי גודל תמונות)" שבתפריט המנהל.</div><br />'
 );
 
 // ------------------------------------------------------------------------- //
@@ -522,36 +522,35 @@ if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
-        'empty_name_or_com' => 'עליך לציין את שמך ולכתוב הערה',
-        'com_added' => 'הערתך נוספה',
-        'alb_need_title' => 'עליך לתת כותרת לאלבום',
-        'no_udp_needed' => 'לא נדרש עדכון',
-        'alb_updated' => 'האלבום עודכן',
-        'unknown_album' => 'האלבום שבחרת אינו קיים או שאין לך הרשאה להוסיף לו קבצים',
-        'no_pic_uploaded' => 'לא העברת קובץ!<br /><br />אם אכן בצעת את פעולת ההעברה, יתכן שהשרת אינו מקבל קבצים (Upload)...',
-        'err_mkdir' => 'יצירת מחיצה "%s" נכשלה!',
-        'dest_dir_ro' => 'מחיצת היעד "%s" אינה מאפשרת לתוכנית לבצע שינויים!',
-        'err_move' => 'לא ניתן להעביר את "%s" אל "%s"!',
-        'err_fsize_too_large' => 'הקובץ שהעברת חורג מהממדים המקסימליים המותרים (%s&times;%s)!',
-        'err_imgsize_too_large' => 'הקובץ שהעברת חורג מהגודל המקסימלי המותר (%s)!',
-        'err_invalid_img' => 'הקובץ שהעברת אינו מכיל תמונה תקינה!',
-        'allowed_img_types' => 'באפשרותך להעביר עד %s קבצים.',
-        'err_insert_pic' => 'לא ניתן להוסיף את הקובץ %s לאלבום ',
-        'upload_success' => 'הקובץ עבר בהצלחה.<br /><br />ויופיע לאחר אישור המנהל.',
-        'notify_admin_email_subject' => '%s - הודעה על העלאת קובץ', //cpg1.3.0
-        'notify_admin_email_body' => 'משתמש %s העלה קובץ שדורש את אישורך. עבור אל %s', //cpg1.3.0
-        'info' => 'מידע',
-        'com_added' => 'הערה נוספה',
-        'alb_updated' => 'אלבום נוסף',
-        'err_comment_empty' => 'הערתך ריקה!',
-        'err_invalid_fext' => 'מתקבלים קבצים רק בעלי הסיומות: <br /><br />%s.',
-        'no_flood' => 'נראה כי ההערה האחרונה לקובץ היא שלך.<br /><br />אם ברצונך לשנות את ההערה באפשרותך לערוך אותה שוב.',
-        'redirect_msg' => 'הפניה אוטומטית לדף אחר.<br /><br /><br />אם הדף אינו מופיע תוך מספר שניות, יש להקליק על "המשך".',
-        'upl_success' => 'הקובץ נוסף בהצלחה',
-        'email_comment_subject' => 'הערה נוספה בגלריה', //cpg1.3.0
-        'email_comment_body' => 'מישהו הוסיף הערה לגלריה שלך. לצפיה עבור אל', //cpg1.3.0
+	'empty_name_or_com' => 'עליך לציין את שמך ולכתוב הערה',
+	'com_added' => 'הערתך נוספה',
+	'alb_need_title' => 'עליך לתת כותרת לאלבום',
+	'no_udp_needed' => 'לא נדרש עדכון',
+	'alb_updated' => 'האלבום עודכן',
+	'unknown_album' => 'האלבום שבחרת אינו קיים או שאין לך הרשאה להוסיף לו קבצים',
+	'no_pic_uploaded' => 'לא העברת קובץ!<br /><br />אם אכן בצעת את פעולת ההעברה, יתכן שהשרת אינו מקבל קבצים (Upload)...',
+	'err_mkdir' => 'יצירת מחיצה "%s" נכשלה!',
+	'dest_dir_ro' => 'מחיצת היעד "%s" אינה מאפשרת לתוכנית לבצע שינויים!',
+	'err_move' => 'לא ניתן להעביר את "%s" אל "%s"!',
+	'err_fsize_too_large' => 'הקובץ שהעברת חורג מהממדים המקסימליים המותרים (%s&times;%s)!',
+	'err_imgsize_too_large' => 'הקובץ שהעברת חורג מהגודל המקסימלי המותר (%s)!',
+	'err_invalid_img' => 'הקובץ שהעברת אינו מכיל תמונה תקינה!',
+	'allowed_img_types' => 'באפשרותך להעביר עד %s קבצים.',
+	'err_insert_pic' => 'לא ניתן להוסיף את הקובץ %s לאלבום ',
+	'upload_success' => 'הקובץ עבר בהצלחה.<br /><br />ויופיע לאחר אישור המנהל.',
+	'notify_admin_email_subject' => '%s - הודעה על העלאת קובץ', //cpg1.3.0
+	'notify_admin_email_body' => 'משתמש %s העלה קובץ שדורש את אישורך. עבור אל %s', //cpg1.3.0
+	'info' => 'מידע',
+	'com_added' => 'הערה נוספה',
+	'alb_updated' => 'אלבום נוסף',
+	'err_comment_empty' => 'הערתך ריקה!',
+	'err_invalid_fext' => 'מתקבלים קבצים רק בעלי הסיומות: <br /><br />%s.',
+	'no_flood' => 'נראה כי ההערה האחרונה לקובץ היא שלך.<br /><br />אם ברצונך לשנות את ההערה באפשרותך לערוך אותה שוב.',
+	'redirect_msg' => 'הפניה אוטומטית לדף אחר.<br /><br /><br />אם הדף אינו מופיע תוך מספר שניות, יש להקליק על "המשך".',
+	'upl_success' => 'הקובץ נוסף בהצלחה',
+	'email_comment_subject' => 'הערה נוספה בגלריה', //cpg1.3.0
+	'email_comment_body' => 'מישהו הוסיף הערה לגלריה שלך. לצפיה עבור אל', //cpg1.3.0
 );
-
 
 
 // ------------------------------------------------------------------------- //
@@ -559,24 +558,24 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DELETE_PHP')) $lang_delete_php = array(
-        'caption' => 'כתובית',
-        'fs_pic' => 'תמונה בגודל מלא',
-        'del_success' => 'המחיקה הצליחה',
-        'ns_pic' => 'תמונה בגודל רגיל',
-        'err_del' => 'לא ניתן למחוק',
-        'thumb_pic' => 'דוגמית',
-        'comment' => 'הערה',
-        'im_in_alb' => 'תמונה באלבום',
-        'alb_del_success' => 'אלבום "%s" נמחק',
-        'alb_mgr' => 'ניהול אלבומים',
-        'err_invalid_data' => 'מידע שגוי נקלט ב-%s',
-        'create_alb' => 'יוצר אלבום "%s"',
-        'update_alb' => 'מעדכן אלבום "%s" עם כותרת "%s" ואינדקס "%s"',
-        'del_pic' => 'מחיקת קובץ',
-        'del_alb' => 'מחיקת אלבום',
-        'del_user' => 'מחיקת משתמש',
-        'err_unknown_user' => 'המשתמש שנבחר אינו קיים!',
-        'comment_deleted' => 'הערה נמחקה בהצלחה',
+	'caption' => 'כתובית',
+	'fs_pic' => 'תמונה בגודל מלא',
+	'del_success' => 'המחיקה הצליחה',
+	'ns_pic' => 'תמונה בגודל רגיל',
+	'err_del' => 'לא ניתן למחוק',
+	'thumb_pic' => 'דוגמית',
+	'comment' => 'הערה',
+	'im_in_alb' => 'תמונה באלבום',
+	'alb_del_success' => 'אלבום "%s" נמחק',
+	'alb_mgr' => 'ניהול אלבומים',
+	'err_invalid_data' => 'מידע שגוי נקלט ב- %s',
+	'create_alb' => 'יוצר אלבום "%s"',
+	'update_alb' => 'מעדכן אלבום "%s" עם כותרת "%s" ואינדקס "%s"',
+	'del_pic' => 'מחיקת קובץ',
+	'del_alb' => 'מחיקת אלבום',
+	'del_user' => 'מחיקת משתמש',
+	'err_unknown_user' => 'המשתמש שנבחר אינו קיים!',
+	'comment_deleted' => 'הערה נמחקה בהצלחה',
 );
 
 // ------------------------------------------------------------------------- //
@@ -592,50 +591,50 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 if (defined('DISPLAYIMAGE_PHP')){
 
 $lang_display_image_php = array(
-        'confirm_del' => 'האם את/ה הטוח/ה שברצונך למחוק את הקובץ? \\nגם ההערות ימחקו.',
-        'del_pic' => 'מחיקת קובץ זה',
-        'size' => '%s&times;%s פיקסלים',
-        'views' => '%s פעמים',
-        'slideshow' => 'מצגת שקופיות',
-        'stop_slideshow' => 'הפסקת המצגת',
-        'view_fs' => 'יש להקליק לצפיה בתמונה בגודל מלא',
-        'edit_pic' => 'עריכת התאור', //cpg1.3.0
-        'crop_pic' => 'חיתוך וסיבוב', //cpg1.3.0
+	'confirm_del' => 'האם את/ה בטוח/ה שברצונך למחוק את הקובץ? \\nגם ההערות ימחקו.',
+	'del_pic' => 'מחיקה',
+	'size' => '%s&times;%s פיקסלים',
+	'views' => '%s פעמים',
+	'slideshow' => 'מצגת שקופיות',
+	'stop_slideshow' => 'הפסקת המצגת',
+	'view_fs' => 'יש להקליק לצפיה בתמונה בגודל מלא',
+	'edit_pic' => 'מאפיינים', //cpg1.3.0
+	'crop_pic' => 'עריכה', //cpg1.3.0
 );
 
 $lang_picinfo = array(
-        'title' =>'מידע על הקובץ',
-        'Filename' => 'שם הקובץ',
-        'Album name' => 'שם האלבום',
-        'Rating' => 'דרוג (%s קולות)',
-        'Keywords' => 'מילות מפתח',
-        'File Size' => 'גודל קובץ',
-        'Dimensions' => 'ממדים',
-        'Displayed' => 'הוצגה',
-        'Camera' => 'מצלמה',
-        'Date taken' => 'צולמה בתאריך',
-        'Aperture' => 'מיפתח צמצם',
-        'Exposure time' => 'זמן חשיפה',
-        'Focal length' => 'אורך מוקד',
-        'Comment' => 'הערה',
-        'addFav'=>'הוספה ל"מועדפים שלי"', //cpg1.3.0
-        'addFavPhrase'=>'מועדפים', //cpg1.3.0
-        'remFav'=>'הסרה מ"המועדפים שלי"', //cpg1.3.0
-        'iptcTitle'=>'כותרת IPTC', //cpg1.3.0
-        'iptcCopyright'=>'זכויות יוצרים IPTC', //cpg1.3.0
-        'iptcKeywords'=>'מלות מפתח IPTC', //cpg1.3.0
-        'iptcCategory'=>'קטגוריה IPTC', //cpg1.3.0
-        'iptcSubCategories'=>'תת-קטגוריות IPTC', //cpg1.3.0
+	'title' =>'מידע על הקובץ',
+	'Filename' => 'שם הקובץ',
+	'Album name' => 'שם האלבום',
+	'Rating' => 'דרוג (%s קולות)',
+	'Keywords' => 'מילות מפתח',
+	'File Size' => 'גודל קובץ',
+	'Dimensions' => 'ממדים',
+	'Displayed' => 'הוצגה',
+	'Camera' => 'מצלמה',
+	'Date taken' => 'צולמה בתאריך',
+	'Aperture' => 'מיפתח צמצם',
+	'Exposure time' => 'זמן חשיפה',
+	'Focal length' => 'אורך מוקד',
+	'Comment' => 'הערה',
+	'addFav'=>'הוספה ל"מועדפים שלי"', //cpg1.3.0
+	'addFavPhrase'=>'מועדפים', //cpg1.3.0
+	'remFav'=>'הסרה מ"המועדפים שלי"', //cpg1.3.0
+	'iptcTitle'=>'כותרת IPTC', //cpg1.3.0
+	'iptcCopyright'=>'זכויות יוצרים IPTC', //cpg1.3.0
+	'iptcKeywords'=>'מלות מפתח IPTC', //cpg1.3.0
+	'iptcCategory'=>'קטגוריה IPTC', //cpg1.3.0
+	'iptcSubCategories'=>'תת-קטגוריות IPTC', //cpg1.3.0
 );
 
 $lang_display_comments = array(
-        'OK' => 'OK',
-        'edit_title' => 'עריכת הערה זו',
-        'confirm_delete' => 'האם את/ה בטוח/ה שברצונך למחוק הודעה זו?',
-        'add_your_comment' => 'הוספת הערה',
-        'name'=>'שם',
-        'comment'=>'הערה',
-        'your_name' => 'אנונימי',
+	'OK' => 'OK',
+	'edit_title' => 'עריכת הערה זו',
+	'confirm_delete' => 'האם את/ה בטוח/ה שברצונך למחוק הודעה זו?',
+	'add_your_comment' => 'הוספת הערה',
+	'name'=>'שם',
+	'comment'=>'הערה',
+	'your_name' => 'אנונימי',
 );
 
 $lang_fullsize_popup = array(
@@ -649,22 +648,22 @@ $lang_fullsize_popup = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array(
-        'title' => 'שליחת גלויה וירטואלית',
-        'invalid_email' => '<b>אזהרה</b>: כתובת דוא"ל שגויה!',
-        'ecard_title' => 'An e-card from %s',
-        'error_not_image' => 'רק תמונות אפשר לשלוח כגלויה', //cpg1.3.0
-        'view_ecard' => 'If the e-card does not display correctly, click this link',
-        'view_more_pics' => 'Click this link to view more pictures !',
-        'send_success' => 'הגלויה נשלחה',
-        'send_failed' => 'סליחה אך השרת אינו יכול לשלוח את הגלויה...',
-        'from' => 'מאת',
-        'your_name' => 'שמך',
-        'your_email' => 'כתובת הדוא"ל שלך',
-        'to' => 'אל',
-        'rcpt_name' => 'שם הנמען',
-        'rcpt_email' => 'כתובת דוא"ל הנמען',
-        'greetings' => 'ברכות',
-        'message' => 'הודעה',
+	'title' => 'שליחת גלויה וירטואלית',
+	'invalid_email' => '<b>אזהרה</b>: כתובת דוא"ל שגויה!',
+	'ecard_title' => 'An e-card from %s',
+	'error_not_image' => 'רק תמונות אפשר לשלוח כגלויה', //cpg1.3.0
+	'view_ecard' => 'If the e-card does not display correctly, click this link',
+	'view_more_pics' => 'Click this link to view more pictures !',
+	'send_success' => 'הגלויה נשלחה',
+	'send_failed' => 'סליחה אך השרת אינו יכול לשלוח את הגלויה...',
+	'from' => 'מאת',
+	'your_name' => 'שמך',
+	'your_email' => 'כתובת הדוא"ל שלך',
+	'to' => 'אל',
+	'rcpt_name' => 'שם הנמען',
+	'rcpt_email' => 'כתובת דוא"ל הנמען',
+	'greetings' => 'ברכות',
+	'message' => 'הודעה',
 );
 
 // ------------------------------------------------------------------------- //
@@ -672,31 +671,31 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
 // ------------------------------------------------------------------------- //
 
 if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
-        'pic_info' => 'מידע על הקובץ',
-        'album' => 'אלבום',
-        'title' => 'כותרת',
-        'desc' => 'תאור',
-        'keywords' => 'מלות מפתח',
-        'pic_info_str' => '%s&times;%s - %sKB, עם %s צפיות ו- %s קולות',
-        'approve' => 'אישור הקובץ',
-        'postpone_app' => 'דחיית האישור',
-        'del_pic' => 'מחיקת הקובץ',
-        'read_exif' => 'קריאה מחדש של מידע EXIF', //cpg1.3.0
-        'reset_view_count' => 'איפוס מונה צפיות',
-        'reset_votes' => 'איפוס קולות',
-        'del_comm' => 'מחיקת הערות',
-        'upl_approval' => 'אישור העברה',
-        'edit_pics' => 'עריכת קבצים',
-        'see_next' => 'צפיה בקבצים הבאים',
-        'see_prev' => 'צפיה בקבצים הקודמים',
-        'n_pic' => '%s קבצים',
-        'n_of_pic_to_disp' => 'מספר קבצים להצגה',
-        'apply' => 'ביצוע השינויים',
-        'crop_title' => 'עורך התמונות של Coppermine', //cpg1.3.0
-        'preview' => 'תצוגה מוקדמת', //cpg1.3.0
-        'save' => 'שמירת התמונה', //cpg1.3.0
-        'save_thumb' =>'שמירה כדוגמית', //cpg1.3.0
-        'sel_on_img' =>'הבחירה צריכה להיות כולה על התמונה!', //js-alert //cpg1.3.0
+	'pic_info' => 'מידע על הקובץ',
+	'album' => 'אלבום',
+	'title' => 'כותרת',
+	'desc' => 'תאור',
+	'keywords' => 'מלות מפתח',
+	'pic_info_str' => '%s&times;%s - %sKB, עם %s צפיות ו- %s קולות',
+	'approve' => 'אישור הקובץ',
+	'postpone_app' => 'דחיית האישור',
+	'del_pic' => 'מחיקת הקובץ',
+	'read_exif' => 'קריאה מחדש של מידע EXIF', //cpg1.3.0
+	'reset_view_count' => 'איפוס מונה צפיות',
+	'reset_votes' => 'איפוס קולות',
+	'del_comm' => 'מחיקת הערות',
+	'upl_approval' => 'אישור העברה',
+	'edit_pics' => 'עריכת קבצים',
+	'see_next' => 'צפיה בקבצים הבאים',
+	'see_prev' => 'צפיה בקבצים הקודמים',
+	'n_pic' => '%s קבצים',
+	'n_of_pic_to_disp' => 'מספר קבצים להצגה',
+	'apply' => 'ביצוע השינויים',
+	'crop_title' => 'עורך התמונות של Coppermine', //cpg1.3.0
+	'preview' => 'תצוגה מוקדמת', //cpg1.3.0
+	'save' => 'שמירת התמונה', //cpg1.3.0
+	'save_thumb' =>'שמירה כדוגמית', //cpg1.3.0
+	'sel_on_img' =>'הבחירה צריכה להיות כולה על התמונה!', //js-alert //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -704,43 +703,43 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('FAQ_PHP')) $lang_faq_php = array(
-        'faq' => 'תשובות לשאלות נפוצות', //cpg1.3.0
-        'toc' => 'תוכן העניינים', //cpg1.3.0
-        'question' => 'שאלה: ', //cpg1.3.0
-        'answer' => 'תשובה: ', //cpg1.3.0
+	'faq' => 'תשובות לשאלות נפוצות', //cpg1.3.0
+	'toc' => 'תוכן העניינים', //cpg1.3.0
+	'question' => 'שאלה: ', //cpg1.3.0
+	'answer' => 'תשובה: ', //cpg1.3.0
 );
 
 if (defined('FAQ_PHP')) $lang_faq_data = array(
-        'כללי', //cpg1.3.0
-        array('מדוע צריך להרשם?', 'הדרישה לרישום בגלריה תלויה במנהל הגלריה. בדרך כלל נדרש רישום כדי ליצור אלבומים, להעלות קבצים, ליצור רשימת מועדפים, לכתוב הערות ועוד. ', 'allow_user_registration', '0'), //cpg1.3.0
-        array('כיצד נרשמים?', 'יש להקליק על "רישום", ולמלא את הפרטים הדרושים.<br />אם מנהל הגלריה הפעיל את מנגנון בדיקת הדוא"ל, אז בתום הרישום תשלח אליך הודעת דוא"ל ובה קישור והוראות. יש להקליק על הקישור ולעקוב אחר ההוראות, כדי שהרישום יכנס לתוקף.', 'allow_user_registration', '1'), //cpg1.3.0
-        array('כיצד להתחבר?', 'יש להקליק על "התחברות" ולהקליד את השם והסיסמה שבחרת בעת הרישום. מומלץ לסמן את תיבת "חבר אותי אוטומטית בכל ביקור".<br />חשוב: יש לודא שתוכנת הגלישה מקבלת Cookies כדי שהחיבור האוטומטי יפעל.</b>', 'offline', 0), //cpg1.3.0
-        array('כשאני מנסה להתחבר הפעולה נכשלת, מדוע?', 'האם ביצעת את תהליך הרישום במלואו? יתכן שהרישום דורש אימות דוא"ל - האם הגיעה אליך הודעה ופעלת לפי ההוראות שבה? אם פעלת לפי ההוראות ועדיין אין באפשרותך להתחבר, עליך לפנות למנהל הגלריה.', 'offline', 0), //cpg1.3.0
-        array('מה לעשות אם שכחתי את הסיסמה שלי?', 'אם מופיע קישור "שכחתי את סיסמתי" יש להקליק עליו ולפעול לפי ההוראות. אם לא מופיע קישור כזה, יש לפנות למנהל הגלריה.', 'offline', 0), //cpg1.3.0
-        array('מה לעשות כאשר משתנה כתובת הדוא"ל שלי?', 'עליך להתחבר ואז להקליק על הקישור "פרופיל" בתפריט הראשי, ולעדכן את שדה כתובת הדוא"ל.', 'offline', 0), //cpg1.3.0
-        array('איך אפשר להוסיף קובץ ל"מועדפים שלי"?', 'יש להקליק על קובץ ואחר כך על "מידע על הקובץ" (<img src="images/info.gif" width="16" height="16" border="0" alt="Picture information" />), ואז להקליק על אפשרות "הוספה למועדפים שלי" שמופיעה בחלק המידע למטה.<br />יתכן שהמידע על הקובץ כבר יופיע באופן אוטומטי.<br />חשוב: יש לודא שתוכנת הגלישה מקבלת Cookies כדי שהחיבור האוטומטי יפעל.', 'offline', 0), //cpg1.3.0
-        array('איך אפשר לדרג קבצים?', 'יש להכנס אל הקובץ המלא (בלחיצה על הדוגמית) ולבחור אחד מהדרוגים המופיעים מתחת לקובץ.', 'offline', 0), //cpg1.3.0
-        array('איך אפשר להוסיף הערה לקובץ?', 'יש להכנס אל הקובץ המלא (בלחיצה על הדוגמית), לכתוב את ההערה בשורה המתאימה בתחתית המסך, ולסיום לאשר בלחיצה על הכפתור.', 'offline', 0), //cpg1.3.0
-        array('איך אפשר להעלות קובץ?', 'יש לבחור "הוספת קובץ" מהתפריט הראשי של הגלריה, לבחור את האלבום אליו ברצונך להוסיף את הקובץ, להקליק על כפתור Browse ולבחור את הקובץ המיועד. אפשר אך לא חובה למלא גם את שדות הכותרת והתאור. ולסיום יש להקליק על Submit ולהמתין להודעת האישור.', 'allow_private_albums', 0), //cpg1.3.0
-        array('לאן באפשרותי להוסיף קבצים?', 'באפשרותך להוסיף קבצים לאלבומיך הפרטיים המופעים ב"הגלריה שלי". על פי החלטת מנהל הגלריה גם אלבומים ציבוריים יכולים להיות פתוחים להוספה.', 'allow_private_albums', 0), //cpg1.3.0
-        array('מה סוג וגודל הקבצים שאפשר להוסיף?', 'סוגי הקבצים המותרים (כגון JPG, GIF) וגודלם המקסימלי נקבעים על ידי מנהל הגלריה.', 'offline', 0), //cpg1.3.0
-        array('מהי "הגלריה שלי"?', '"הגלריה שלי" כשמה כן היא, גלריה פרטית לכל משתמש מורשה, שבה הוא חופשי לנהל אלבומים ולהוסיף קבצים במסגרת המגבלות שקובע מנהל הגלריה.', 'allow_private_albums', 0), //cpg1.3.0
-        array('איך אפשר ליצור ולמחוק אלבומים או לשנות שם אלבום?', 'אם אינך ב"מצב מנהל" עליך להקליק על "מצב מנהל" בתפריט הראשי של הגלריה. לאחר מכן יש להקליק על כפתור "פתיחה / ארגון האלבומים שלי" כדי להכנס למסך ניהול האלבומים.<br />לפתיחת אלבום חדש: יש להקליק על כפתור "פתיחת חדש" ולהקליד שם לאלבום בשורה שבתחתית המסך.<br />לשינוי שם אלבום: יש להקליק על שם האלבום ברשימה, ואז להקליד את השם החדש בשורה שבתחתית.<br />למחיקת אלבום: יש להקליק על שם האלבום ברשימה, ואח"כ על כפתור "מחיקה".<br />בסיום הפעולות יש להקליק על כפתור "ביצוע שינויים".<br />מומלץ לבצע מחיקה ושינוי ממסך "הגלריה שלי", באמצעות כפתורי "מחיקה" ו"מאפיינים" המופיעים ליד כל אלבום. במסך "מאפיינים" ניתן לשנות את כל מאפייני האלבום. <br />כמו כן ניתן להגיע למסך המאפיינים באמצעות לחיצה על "שינוי האלבומים שלי" ובחירת האלבום המבוקש מהרשימה הנגללת בצד שמאל.', 'allow_private_albums', 0), //cpg1.3.0
-        array('איך אפשר לשלוט בהרשאות של משתמשים אחרים לצפות באלבומים שלי?', 'אם אינך ב"מצב מנהל" עליך להקליק על "מצב מנהל" בתפריט הראשי של הגלריה. לאחר מכן יש להקליק על כפתור "שינוי האלבומים שלי" ולבחור את האלבום המבוקש מהרשימה הנגללת בצד שמאל.<br />במסך זה באפשרותך לשלוט בכל מאפייני האלבום: שם, דוגמית מייצגת, הרשאות, ועוד.<br />בסיום השינויים יש להקליק על כפתור "עדכון האלבום" שבתחתית המסך.<br />אפשר להגיע למסך זה גם דרך "הגלריה שלי" ולחיצה על כפתור "מאפיינים" המופיע האלבום.', 'allow_private_albums', 0), //cpg1.3.0
-        array('איך אפשר לצפות באלבומים של משתמשים אחרים?', 'יש לבחור "רשימת אלבומים" מהתפריט הראשי של הגלריה. ממסך האלבומים הראשי יש לבחור בקטגוריה "אלבומי חברים" (כותרת הקטגוריה עשויה להיות שונה מעט).', 'allow_private_albums', 0), //cpg1.3.0
-        array('מהן Cookies', 'Cookies הן כינוי חיבה לקבצי מידע קטנים, שאתרי אינטרנט משתמשים בהם כדי לאחסן מידע אישי בדפדפן שלך.<br />שימוש נכון ב-Cookies מאפשר לאתר אינטרנט לחסוך למשתמש טרחה, למשל להתחבר אוטומטית באמצעות שם וסיסמה או לאגור רשימה של קבצים מועדפים.<br />בדרך כלל שימוש ב-Cookies בטוח ויעיל, אך אתרים מסויימים מנצלים מנגנון זה בצורה לא הוגנת (הנושא גדול וסבוך ולא כאן המקום לפרט). כמובן שהגלריה משתמשת ב-Cookies בצורה בטוחה והוגנת, לטובת המשתמשים ולנוחיותם בלבד.', 'offline', 0), //cpg1.3.0
-        array('איך אפשר להשיג את תוכנת הגלריה הזו לשימוש באתר שלי?', 'Coppermine היא גלריית מולטימדיה חופשית ובחינם, המופצת תחת רשיון תוכנה חופשית (GNU GPL). הגלריה עשירה בתכונות מתקדמות ומתאימה להתקנה בפלטפורמות (מערכות הפעלה) שונות. לפרטים נוספים והורדת התוכנה נא לבקר ב- <a href="http://coppermine.sf.net/">אתר הבית של Coppermine</a>.', 'offline', 0), //cpg1.3.0
+	'כללי', //cpg1.3.0
+	array('מדוע צריך להרשם?', 'הדרישה לרישום בגלריה תלויה במנהל הגלריה. בדרך כלל נדרש רישום כדי ליצור אלבומים, להעלות קבצים, ליצור רשימת מועדפים, לכתוב הערות ועוד. ', 'allow_user_registration', '0'), //cpg1.3.0
+	array('כיצד נרשמים?', 'יש להקליק על "רישום", ולמלא את הפרטים הדרושים.<br />אם מנהל הגלריה הפעיל את מנגנון בדיקת הדוא"ל, אז בתום הרישום תשלח אליך הודעת דוא"ל ובה קישור והוראות. יש להקליק על הקישור ולעקוב אחר ההוראות, כדי שהרישום יכנס לתוקף.', 'allow_user_registration', '1'), //cpg1.3.0
+	array('כיצד להתחבר?', 'יש להקליק על "התחברות" ולהקליד את השם והסיסמא שבחרת בעת הרישום. מומלץ לסמן את תיבת "חבר אותי אוטומטית בכל ביקור".<br />חשוב: יש לודא שתוכנת הגלישה מקבלת Cookies כדי שהחיבור האוטומטי יפעל.</b>', 'offline', 0), //cpg1.3.0
+	array('כשאני מנסה להתחבר הפעולה נכשלת, מדוע?', 'האם ביצעת את תהליך הרישום במלואו? יתכן שהרישום דורש אימות דוא"ל - האם הגיעה אליך הודעה ופעלת לפי ההוראות שבה? אם פעלת לפי ההוראות ועדיין אין באפשרותך להתחבר, עליך לפנות למנהל הגלריה.', 'offline', 0), //cpg1.3.0
+	array('מה לעשות אם שכחתי את הסיסמא שלי?', 'אם מופיע קישור "שכחתי את סיסמתי" יש להקליק עליו ולפעול לפי ההוראות. אם לא מופיע קישור כזה, יש לפנות למנהל הגלריה.', 'offline', 0), //cpg1.3.0
+	array('מה לעשות כאשר משתנה כתובת הדוא"ל שלי?', 'עליך להתחבר ואז להקליק על הקישור "פרופיל" בתפריט הראשי, ולעדכן את שדה כתובת הדוא"ל.', 'offline', 0), //cpg1.3.0
+	array('איך אפשר להוסיף קובץ ל"מועדפים שלי"?', 'יש להקליק על קובץ ואחר כך על "מידע על הקובץ" (<img src="images/info.gif" width="16" height="16" border="0" alt="Picture information" />), ואז להקליק על אפשרות "הוספה למועדפים שלי" שמופיעה בחלק המידע למטה.<br />יתכן שהמידע על הקובץ כבר יופיע באופן אוטומטי.<br />חשוב: יש לודא שתוכנת הגלישה מקבלת Cookies כדי שרשימת "המועדפים שלי" תפעל.', 'offline', 0), //cpg1.3.0
+	array('איך אפשר לדרג קבצים?', 'יש להכנס אל הקובץ המלא (בלחיצה על הדוגמית) ולבחור אחד מהדרוגים המופיעים מתחת לקובץ.', 'offline', 0), //cpg1.3.0
+	array('איך אפשר להוסיף הערה לקובץ?', 'יש להכנס אל הקובץ המלא (בלחיצה על הדוגמית), לכתוב את ההערה בשורה המתאימה בתחתית המסך, ולסיום לאשר בלחיצה על הכפתור.', 'offline', 0), //cpg1.3.0
+	array('איך אפשר להעלות קובץ?', 'יש לבחור "הוספת קובץ" מהתפריט הראשי של הגלריה, לבחור את האלבום אליו ברצונך להוסיף את הקובץ, להקליק על כפתור Browse ולבחור את הקובץ המיועד. אפשר אך לא חובה למלא גם את שדות הכותרת והתאור. ולסיום יש להקליק על Submit ולהמתין להודעת האישור.', 'allow_private_albums', 0), //cpg1.3.0
+	array('לאן באפשרותי להוסיף קבצים?', 'באפשרותך להוסיף קבצים לאלבומיך הפרטיים המופעים ב"הגלריה שלי". על פי החלטת מנהל הגלריה גם אלבומים ציבוריים יכולים להיות פתוחים להוספה.', 'allow_private_albums', 0), //cpg1.3.0
+	array('מה סוג וגודל הקבצים שאפשר להוסיף?', 'סוגי הקבצים המותרים (כגון JPG, GIF) וגודלם המקסימלי נקבעים על ידי מנהל הגלריה.', 'offline', 0), //cpg1.3.0
+	array('מהי "הגלריה שלי"?', '"הגלריה שלי" כשמה כן היא, גלריה פרטית לכל משתמש מורשה, שבה הוא חופשי לנהל אלבומים ולהוסיף קבצים במסגרת המגבלות שקובע מנהל הגלריה.', 'allow_private_albums', 0), //cpg1.3.0
+	array('איך אפשר לפתוח ולמחוק אלבומים או לשנות שם אלבום?', 'אם אינך ב"מצב מנהל" עליך להקליק על "מצב מנהל" בתפריט הראשי של הגלריה. לאחר מכן יש להקליק על כפתור "פתיחת/ארגון האלבומים שלי" כדי להכנס למסך ניהול האלבומים.<br />לפתיחת אלבום חדש: יש להקליק על כפתור "פתיחת חדש" ולהקליד שם לאלבום בשורה שבתחתית המסך.<br />לשינוי שם אלבום: יש להקליק על שם האלבום ברשימה, ואז להקליד את השם החדש בשורה שבתחתית.<br />למחיקת אלבום: יש להקליק על שם האלבום ברשימה, ואח"כ על כפתור "מחיקה".<br />בסיום הפעולות יש להקליק על כפתור "ביצוע שינויים".<br />מומלץ לבצע מחיקה ושינוי ממסך "הגלריה שלי", באמצעות כפתורי "מחיקה" ו"מאפיינים" המופיעים ליד כל אלבום. במסך "מאפיינים" ניתן לשנות את כל מאפייני האלבום. <br />כמו כן ניתן להגיע למסך המאפיינים באמצעות לחיצה על "שינוי האלבומים שלי" ובחירת האלבום המבוקש מהרשימה הנגללת.', 'allow_private_albums', 0), //cpg1.3.0
+	array('איך אפשר לשלוט בהרשאות של משתמשים אחרים לצפות באלבומים שלי?', 'אם אינך ב"מצב מנהל" עליך להקליק על "מצב מנהל" בתפריט הראשי של הגלריה. לאחר מכן יש להקליק על כפתור "שינוי האלבומים שלי" ולבחור את האלבום המבוקש מהרשימה הנגללת.<br />במסך זה באפשרותך לשלוט בכל מאפייני האלבום: שם, דוגמית מייצגת, הרשאות, ועוד.<br />בסיום השינויים יש להקליק על כפתור "עדכון האלבום" שבתחתית המסך.<br />אפשר להגיע למסך זה גם דרך "הגלריה שלי" ולחיצה על כפתור "מאפיינים" המופיע האלבום.', 'allow_private_albums', 0), //cpg1.3.0
+	array('איך אפשר לצפות באלבומים של משתמשים אחרים?', 'יש לבחור "רשימת אלבומים" מהתפריט הראשי של הגלריה. ממסך האלבומים הראשי יש לבחור בקטגוריה "אלבומי חברים" (כותרת הקטגוריה עשויה להיות שונה מעט).', 'allow_private_albums', 0), //cpg1.3.0
+	array('מהן Cookies', 'Cookies הוא כינוי חיבה לקבצי מידע קטנים, שאתרי אינטרנט משתמשים בהם כדי לאחסן מידע אישי בדפדפן שלך.<br />שימוש נכון ב-Cookies מאפשר לאתר אינטרנט לחסוך למשתמש טרחה, למשל להתחבר אוטומטית באמצעות שם וסיסמא או לאגור רשימה של קבצים מועדפים.<br />בדרך כלל שימוש ב-Cookies בטוח ויעיל, אך אתרים מסויימים מנצלים מנגנון זה בצורה לא הוגנת (הנושא גדול וסבוך ולא כאן המקום לפרט). כמובן שהגלריה משתמשת ב-Cookies בצורה בטוחה והוגנת, לטובת המשתמשים ולנוחיותם בלבד.', 'offline', 0), //cpg1.3.0
+	array('איך אפשר להשיג את תוכנת הגלריה הזו לשימוש באתר שלי?', 'Coppermine היא גלריית מולטימדיה חופשית ובחינם, המופצת תחת רשיון תוכנה חופשית (GNU GPL). הגלריה עשירה בתכונות מתקדמות ומתאימה להתקנה על פלטפורמות (מערכות הפעלה) שונות. לפרטים נוספים והורדת התוכנה נא לבקר ב- <a href="http://coppermine.sf.net/">אתר הבית של Coppermine</a>.', 'offline', 0), //cpg1.3.0
 
-        ' תפריט הניווט בגלריה', //cpg1.3.0
-        array('רשימת אלבומים', 'אפשרות זו מציגה את רשימת האלבומים המלאה בגלריה, מסודרים בקטגוריות ומלווים בדוגמיות. זהו בעצם העמוד הראשי של הגלריה.', 'offline', 0), //cpg1.3.0
-        array('הגלריה שלי', 'אפשרות זו מציגה את עמוד הגלריה הפרטית שלך, בה תוכל (אם יש לך הרשאות ממנהל הגלריה), ליצור ולנהל אלבומים פרטיים.', 'allow_private_albums', 0), //cpg1.3.0
-        array('מה ההבדל בין "מצב מנהל" לבין "מצב משתמש"?', '"מצב מנהל" פתוח רק למשתמשים רשומים ובו נפתחות בפניך אפשרויות הניהול של "הגלריה שלי". לעומתו ב"מצב משתמש" באפשרותך רק לשוטט בגלריה כמשתמש שאינו רשום..', 'allow_private_albums', 0), //cpg1.3.0
-        array('הוספת קובץ', 'אפשרות זו מפעילה את ממשק העלאת קובץ. מותר לך להוסיף קבצים רק לאותם אלבומים להם מנהל הגלריה נתן לך הרשאות מתאימות. סוגי הקבצים המותרים וגודלם המקסימלי מוגבלים על פי החלטת מנהל הגלריה.', 'allow_private_albums', 0), //cpg1.3.0
-        array('קבצים אחרונים', 'אפשרות זו מציגה מסך בו מרוכזים הקבצים האחרונים שנוספו לכלל האלבומים.', 'offline', 0), //cpg1.3.0
-        array('הערות אחרונות', 'אפשרות זו מציגה את הקבצים להם נכתבו הערות לאחרונה, מכלל האלבומים.', 'offline', 0), //cpg1.3.0
-        array('נצפות ביותר', 'אפשרות זו מציגה את הקבצים שזכו לאחוזי הצפייה הגבוהים ביותר על ידי כלל המבקרים בגלריה.', 'offline', 0), //cpg1.3.0
-        array('זכו לדרוגים הגבוהים ביותר', 'אפשרות זו מציגה את הקבצים שזכו לדרוגים הגבוהים ביותר בכלל הגלריה, עם הדרוג הממוצע לכל קובץ.<br />הדרוגים נעים בין <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> (ציון גבוה ביותר) לבין <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" /> (ציון נמוך ביותר).', 'offline', 0), //cpg1.3.0
-        array('המועדפים שלי', 'אפשרות זו מציגה בפניך את כל הקבצים שבחרת להוסיף לרשימת המועדפים שלך (הסבר לעיל).', 'offline', 0), //cpg1.3.0
+	' תפריט הניווט בגלריה', //cpg1.3.0
+	array('רשימת אלבומים', 'אפשרות זו מציגה את רשימת האלבומים המלאה בגלריה, מסודרים בקטגוריות ומלווים בדוגמיות. זהו בעצם העמוד הראשי של הגלריה.', 'offline', 0), //cpg1.3.0
+	array('הגלריה שלי', 'אפשרות זו מציגה את עמוד הגלריה הפרטית שלך, בה תוכל (אם יש לך הרשאות ממנהל הגלריה), ליצור ולנהל אלבומים פרטיים.', 'allow_private_albums', 0), //cpg1.3.0
+	array('מה ההבדל בין "מצב מנהל" לבין "מצב משתמש"?', '"מצב מנהל" פתוח רק למשתמשים רשומים ובו נפתחות בפניך אפשרויות הניהול של "הגלריה שלי". לעומתו ב"מצב משתמש" באפשרותך רק לשוטט בגלריה ולצפות בקבצים (כמו אורח שאינו רשום).', 'allow_private_albums', 0), //cpg1.3.0
+	array('הוספת קובץ', 'אפשרות זו מפעילה את ממשק העלאת קובץ. מותר לך להוסיף קבצים רק לאותם אלבומים להם מנהל הגלריה נתן לך הרשאות מתאימות. סוגי הקבצים המותרים וגודלם המקסימלי מוגבלים על פי החלטת מנהל הגלריה.', 'allow_private_albums', 0), //cpg1.3.0
+	array('קבצים אחרונים', 'אפשרות זו מציגה מסך בו מרוכזים הקבצים האחרונים שנוספו לכלל האלבומים.', 'offline', 0), //cpg1.3.0
+	array('הערות אחרונות', 'אפשרות זו מציגה את הקבצים להם נכתבו הערות לאחרונה, מכלל האלבומים.', 'offline', 0), //cpg1.3.0
+	array('נצפות ביותר', 'אפשרות זו מציגה את הקבצים שזכו לאחוזי הצפייה הגבוהים ביותר על ידי כלל המבקרים בגלריה.', 'offline', 0), //cpg1.3.0
+	array('זכו לדרוגים הגבוהים ביותר', 'אפשרות זו מציגה את הקבצים שזכו לדרוגים הגבוהים ביותר בכלל הגלריה, עם הדרוג הממוצע לכל קובץ.<br />הדרוגים נעים בין <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> (ציון גבוה ביותר) לבין <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" /> (ציון נמוך ביותר).', 'offline', 0), //cpg1.3.0
+	array('המועדפים שלי', 'אפשרות זו מציגה בפניך את כל הקבצים שבחרת להוסיף לרשימת המועדפים שלך (הסבר לעיל).', 'offline', 0), //cpg1.3.0
 );
 
 
@@ -749,15 +748,15 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('FORGOT_PASSWD_PHP')) $lang_forgot_passwd_php = array(
-        'forgot_passwd' => 'תזכורת סיסמא', //cpg1.3.0
-        'err_already_logged_in' => 'את/ה כבר מחוברת !', //cpg1.3.0
-        'enter_username_email' => 'נא להקליד שם משתמש או כתובת דוא"ל', //cpg1.3.0
-        'submit' => 'שלח', //cpg1.3.0
-        'failed_sending_email' => 'שליחת תזכורת סיסמא בדוא"ל נכשלה !', //cpg1.3.0
-        'email_sent' => 'תזכורת סיסמא נשלחה בדוא"ל אל %s', //cpg1.3.0
-        'err_unk_user' => 'שם המשתמש שהוקלד אינו קיים!', //cpg1.3.0
-        'passwd_reminder_subject' => '%s - Password reminder', //cpg1.3.0
-        'passwd_reminder_body' => 'You have requested to be reminded on your login data:
+	'forgot_passwd' => 'תזכורת סיסמא', //cpg1.3.0
+	'err_already_logged_in' => 'את/ה כבר מחוברת !', //cpg1.3.0
+	'enter_username_email' => 'נא להקליד שם משתמש או כתובת דוא"ל', //cpg1.3.0
+	'submit' => 'שלח', //cpg1.3.0
+	'failed_sending_email' => 'שליחת תזכורת סיסמא בדוא"ל נכשלה !', //cpg1.3.0
+	'email_sent' => 'תזכורת סיסמא נשלחה בדוא"ל אל %s', //cpg1.3.0
+	'err_unk_user' => 'שם המשתמש שהוקלד אינו קיים!', //cpg1.3.0
+	'passwd_reminder_subject' => '%s - Password reminder', //cpg1.3.0
+	'passwd_reminder_body' => 'You have requested to be reminded on your login data:
 Username: %s
 Password: %s
 Click %s to log in.', //cpg1.3.0
@@ -768,28 +767,28 @@ Click %s to log in.', //cpg1.3.0
 // ------------------------------------------------------------------------- //
 
 if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
-        'group_name' => 'שם הקבוצה',
-        'disk_quota' => 'הקצאת נפח דיסק',
-        'can_rate' => 'הרשאה לדרוג קבצים',
-        'can_send_ecards' => 'הרשאה לשלוח גלויות',
-        'can_post_com' => 'הרשאה לכתוב הערות',
-        'can_upload' => 'הרשאה להוספת קבצים',
-        'can_have_gallery' => 'הרשאה לגלריה אישית',
-        'apply' => 'ביצוע השינויים',
-        'create_new_group' => 'יצירת קבוצה חדשה',
-        'del_groups' => 'מחיקת הקבוצות המסומנות',
-        'confirm_del' => 'אזהרה: מחיקת קבוצה תגרום להעברת כל המשתמשים בקבוצה אל קבוצת "Registered" - האם ברצונך להמשיך?',
-        'title' => 'ניהול קבוצות משתמשים',
-        'approval_1' => 'אישור הוספות ציבוריות (1)',
-        'approval_2' => 'אישור הוספות פרטיות (2)',
-        'upload_form_config' => 'תצורת מסך העלאת קבצים', //cpg1.3.0
-        'upload_form_config_values' => array( 'רק העלאת קובץ יחיד', 'רק העלאת מספר קבצים', 'רק העלאת קישורים (URI)', 'רק העלאת קבצי ZIP', 'קובץ-קישור', 'קובץ-ZIP', 'קישור-ZIP', 'קובץ-קישור-ZIP'), //cpg1.3.0
-        'custom_user_upload'=>'לאפשר למשתמש לשנות את מספר הקבצים להעלאה?', //cpg1.3.0
-        'num_file_upload'=>'מספר/מקסימום קבצים להעלאה', //cpg1.3.0
-        'num_URI_upload'=>'מספר/מקסימום קישורים להעלאה', //cpg1.3.0
-        'note1' => '<b>(1)</b> הוספת קבצים לאלבום ציבורי דורשת אישור מנהל',
-        'note2' => '<b>(2)</b> הוספת קבצים לאלבום פרטי דורשת אישור מנהל',
-        'notes' => 'הערות'
+	'group_name' => 'שם הקבוצה',
+	'disk_quota' => 'הקצאת נפח דיסק',
+	'can_rate' => 'הרשאה לדרוג קבצים',
+	'can_send_ecards' => 'הרשאה לשלוח גלויות',
+	'can_post_com' => 'הרשאה לכתוב הערות',
+	'can_upload' => 'הרשאה להוספת קבצים',
+	'can_have_gallery' => 'הרשאה לגלריה אישית',
+	'apply' => 'ביצוע השינויים',
+	'create_new_group' => 'יצירת קבוצה חדשה',
+	'del_groups' => 'מחיקת הקבוצות המסומנות',
+	'confirm_del' => 'אזהרה: מחיקת קבוצה תגרום להעברת כל המשתמשים בקבוצה אל קבוצת "Registered" - האם ברצונך להמשיך?',
+	'title' => 'ניהול קבוצות משתמשים',
+	'approval_1' => 'אישור הוספות ציבוריות (1)',
+	'approval_2' => 'אישור הוספות פרטיות (2)',
+	'upload_form_config' => 'תצורת מסך העלאת קבצים', //cpg1.3.0
+	'upload_form_config_values' => array( 'רק העלאת קישור יחיד', 'רק העלאת מספר קבצים', 'רק העלאת קישורים (URI)', 'רק העלאת קבצי ZIP', 'קובץ-קישור', 'קובץ-ZIP', 'קישור-ZIP', 'קובץ-קישור-ZIP'), //cpg1.3.0
+	'custom_user_upload'=>'לאפשר למשתמש לשנות את מספר הקבצים להעלאה?', //cpg1.3.0
+	'num_file_upload'=>'מספר/מקסימום קבצים להעלאה', //cpg1.3.0
+	'num_URI_upload'=>'מספר/מקסימום קישורים להעלאה', //cpg1.3.0
+	'note1' => '<b>(1)</b> הוספת קבצים לאלבום ציבורי דורשת אישור מנהל',
+	'note2' => '<b>(2)</b> הוספת קבצים לאלבום פרטי דורשת אישור מנהל',
+	'notes' => 'הערות'
 );
 
 // ------------------------------------------------------------------------- //
@@ -799,34 +798,34 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
 if (defined('INDEX_PHP')){
 
 $lang_index_php = array(
-        'welcome' => 'ברוכים הבאים!'
+	'welcome' => 'ברוכים הבאים!'
 );
 
 $lang_album_admin_menu = array(
-        'confirm_delete' => '?האם את/ה בטוח/ה שברצונך למחוק אלבום זה\n!כל הקבצים וההערות שבו יאבדו',
-        'delete' => 'מחיקה',
-        'modify' => 'מאפיינים',
-        'edit_pics' => 'עריכת קבצים',
+	'confirm_delete' => '?האם את/ה בטוח/ה שברצונך למחוק אלבום זה\n!כל הקבצים וההערות שבו יאבדו ללא אפשרות שחזור',
+	'delete' => 'מחיקה',
+	'modify' => 'מאפיינים',
+	'edit_pics' => 'עריכת קבצים',
 );
 
 $lang_list_categories = array(
-        'home' => 'דף ראשי',
-        'stat1' => '<b>[pictures]</b> קבצים ב- <b>[albums]</b> אלבומים ו- <b>[cat]</b> קטגוריות עם <b>[comments]</b> הערות, שנצפו <b>[views]</b> פעמים',
-        'stat2' => '<b>[pictures]</b> קבצים ב- <b>[albums]</b> אלבומים, שנצפו <b>[views]</b> פעמים',
-        'xx_s_gallery' => 'הגלריה של %s',
-        'stat3' => '<b>[pictures]</b> קבצים ב- <b>[albums]</b> אלבומים עם <b>[comments]</b> הערות, שנצפו <b>[views]</b> פעמים'
+	'home' => 'דף ראשי',
+	'stat1' => '<b>[pictures]</b> קבצים ב- <b>[albums]</b> אלבומים ו- <b>[cat]</b> קטגוריות עם <b>[comments]</b> הערות, שנצפו <b>[views]</b> פעמים',
+	'stat2' => '<b>[pictures]</b> קבצים ב- <b>[albums]</b> אלבומים, שנצפו <b>[views]</b> פעמים',
+	'xx_s_gallery' => 'הגלריה של %s',
+	'stat3' => '<b>[pictures]</b> קבצים ב- <b>[albums]</b> אלבומים עם <b>[comments]</b> הערות, שנצפו <b>[views]</b> פעמים'
 );
 
 $lang_list_users = array(
-        'user_list' => 'רשימת משתמשים',
-        'no_user_gal' => 'אין גלריות משתמשים',
-        'n_albums' => '%s אלבוםמים',
-        'n_pics' => '%s קבצים'
+	'user_list' => 'רשימת משתמשים',
+	'no_user_gal' => 'אין גלריות משתמשים',
+	'n_albums' => '%s אלבוםמים',
+	'n_pics' => '%s קבצים'
 );
 
 $lang_list_albums = array(
-        'n_pictures' => '%s קבצים',
-        'last_added' => ', האחרון נוספה בתאריך- %s'
+	'n_pictures' => '%s קבצים',
+	'last_added' => ', האחרון נוסף בתאריך- %s'
 );
 
 }
@@ -836,15 +835,15 @@ $lang_list_albums = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('LOGIN_PHP')) $lang_login_php = array(
-        'login' => 'התחברות',
-        'enter_login_pswd' => 'יש להקיש שם משתמש/ת וסיסמה כדי להתחבר',
-        'username' => 'שם משתמש/ת',
-        'password' => 'סיסמה',
-        'remember_me' => 'חבר אותי אוטומטית בפעמים הבאות)',
-        'welcome' => 'ברוכים הבאים',
-        'err_login' => '*** ההתחברות נכשלה, נא לנסות שוב ***',
-        'err_already_logged_in' => 'כבר התחברת!',
-        'forgot_password_link' => 'שכחתי את סיסמתי', //cpg1.3.0
+	'login' => 'התחברות',
+	'enter_login_pswd' => 'יש להקיש שם משתמש/ת וסיסמא כדי להתחבר',
+	'username' => 'שם משתמש/ת',
+	'password' => 'סיסמא',
+	'remember_me' => 'חבר אותי אוטומטית בפעמים הבאות)',
+	'welcome' => 'ברוכים הבאים',
+	'err_login' => '*** ההתחברות נכשלה, נא לנסות שוב ***',
+	'err_already_logged_in' => 'כבר התחברת!',
+	'forgot_password_link' => 'שכחתי את סיסמתי', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -852,9 +851,9 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('LOGOUT_PHP')) $lang_logout_php = array(
-        'logout' => 'התנתקות',
-        'bye' => 'להתראות...',
-        'err_not_loged_in' => 'עוד לא התחברת!',
+	'logout' => 'התנתקות',
+	'bye' => 'להתראות...',
+	'err_not_loged_in' => 'עוד לא התחברת!',
 );
 
 // ------------------------------------------------------------------------- //
@@ -862,9 +861,9 @@ if (defined('LOGOUT_PHP')) $lang_logout_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
-        'php_info' => 'מידע PHP', //cpg1.3.0
-        'explanation' => 'זהו הפלט הנוצר ע"י פונקציית <a href="http://www.php.net/phpinfo">phpinfo()</a>.', //cpg1.3.0
-        'no_link' => 'הצגת הפלט של phpinfo עלולה להוות פרצת אבטחה, לכן עמוד זה מוצג רק למנהל הגלריה. אין אפשרות לאחרים להכנס לעמוד זה גם באמצעות קישור (URL) ישיר.', //cpg1.3.0
+	'php_info' => 'מידע PHP', //cpg1.3.0
+	'explanation' => 'זהו הפלט הנוצר ע"י פונקציית <a href="http://www.php.net/phpinfo">phpinfo()</a>.', //cpg1.3.0
+	'no_link' => 'הצגת הפלט של phpinfo עלולה להוות פרצת אבטחה, לכן עמוד זה מוצג רק למנהל הגלריה. אין אפשרות לאחרים להכנס לעמוד זה גם באמצעות קישור (URL) ישיר.', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -872,28 +871,28 @@ if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
-        'upd_alb_n' => 'עדכון אלבום %s',
-        'general_settings' => 'הגדרות כלליות',
-        'alb_title' => 'כותרת האלבום',
-        'alb_cat' => 'קטגורית האלבום',
-        'alb_desc' => 'תאור האלבום',
-        'alb_thumb' => 'דוגמית מייצגת לאלבום',
-        'alb_perm' => 'הרשאות לאלבום',
-        'can_view' => 'הרשאות צפיה באלבום ל-',
-        'can_upload' => 'אורחים יכולים להוסיף קבצים',
-        'can_post_comments' => 'אורחים יכולים להוסיף הערות לקבצים',
-        'can_rate' => 'אורחים יכולים לדרג קבצים',
-        'user_gal' => 'גלריית משתמש',
-        'no_cat' => '* ללא קטגוריה *',
-        'alb_empty' => 'אלבום ריק',
-        'last_uploaded' => 'קובץ אחרון שנוסף',
-        'public_alb' => 'כולם (אלבום ציבורי)',
-        'me_only' => 'אני בלבד',
-        'owner_only' => 'בעל האלבום (%s) בלבד',
-        'groupp_only' => 'רק חברים בקבוצה "%s"',
-        'err_no_alb_to_modify' => 'לא נמצא אלבום שבאפשרותך לעדכן',
-        'update' => 'עדכון אלבום',
-        'notice1' => '(*) תלוי בהגדרות %sקבוצות%s settings', //cpg1.3.0 (do not translate %s!)
+	'upd_alb_n' => 'עדכון אלבום %s',
+	'general_settings' => 'הגדרות כלליות',
+	'alb_title' => 'כותרת האלבום',
+	'alb_cat' => 'קטגורית האלבום',
+	'alb_desc' => 'תאור האלבום',
+	'alb_thumb' => 'דוגמית מייצגת לאלבום',
+	'alb_perm' => 'הרשאות לאלבום',
+	'can_view' => 'הרשאות צפיה באלבום ל-',
+	'can_upload' => 'אורחים יכולים להוסיף קבצים',
+	'can_post_comments' => 'אורחים יכולים להוסיף הערות לקבצים',
+	'can_rate' => 'אורחים יכולים לדרג קבצים',
+	'user_gal' => 'גלריית משתמש',
+	'no_cat' => '* ללא קטגוריה *',
+	'alb_empty' => 'אלבום ריק',
+	'last_uploaded' => 'קובץ אחרון שנוסף',
+	'public_alb' => 'כולם (אלבום ציבורי)',
+	'me_only' => 'אני בלבד',
+	'owner_only' => 'בעל האלבום (%s) בלבד',
+	'groupp_only' => 'רק חברים בקבוצה "%s"',
+	'err_no_alb_to_modify' => 'לא נמצא אלבום שבאפשרותך לעדכן',
+	'update' => 'עדכון האלבום',
+	'notice1' => '(*) תלוי בהגדרות %sקבוצות%s', //cpg1.3.0 (do not translate %s!)
 );
 
 // ------------------------------------------------------------------------- //
@@ -901,9 +900,9 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
-        'already_rated' => 'כבר דרגת את הקובץ בעבר',
-        'rate_ok' => 'הצבעתך נקלטה',
-        'forbidden' => 'אין באפשרותך לדרג את הקבצים של עצמך.', //cpg1.3.0
+	'already_rated' => 'כבר דרגת את הקובץ בעבר',
+	'rate_ok' => 'הצבעתך נקלטה',
+	'forbidden' => 'אין באפשרותך לדרג את הקבצים של עצמך.', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -926,54 +925,54 @@ $lang_register_disclamer = <<<EOT
 EOT;
 
 $lang_register_php = array(
-        'page_title' => 'רישום משתמש/ת',
-        'term_cond' => 'תנאי השימוש באתר',
-        'i_agree' => 'אני מסכימ/ה',
-        'submit' => 'שליחת בקשת ההרשמה',
-        'err_user_exists' => 'שם המשתמש/ת שבחרת כבר תפוס, יש לבחור שם אחר',
-        'err_password_mismatch' => 'הסיסמאות אינן תואמות, נא להקישן שוב',
-        'err_uname_short' => ' שם המשתמש/ת חייב להכיל לפחות 2 אותיות (המלצה: 4 תוים לפחות)',
-        'err_password_short' => 'הסיסמה חייבת להכיל לפחות 2 תוים (המלצה: 6 תוים לפחות)',
-        'err_uname_pass_diff' => 'השם והסיסמה אינם יכולים להיות זהים',
-        'err_invalid_email' => 'כתובת הדואר האלקטרוני אינה תקינה',
-        'err_duplicate_email' => 'מישהו אחר כבר משתמש בכתובת הדואר האלקטרוני שציינת',
-        'enter_info' => 'נא למלא את פרטי הרישום',
-        'required_info' => 'מידע חובה',
-        'optional_info' => 'מידע רשות',
-        'username' => 'שם משתמש/ת',
-        'password' => 'סיסמה',
-        'password_again' => 'וידוא סיסמה',
-        'email' => 'דואר אלקטרוני',
-        'location' => 'מקום',
-        'interests' => 'תחומי ענין',
-        'website' => 'כתובת אתר',
-        'occupation' => 'עיסוק',
-        'error' => 'תקלה',
-        'confirm_email_subject' => '%s - אישור רישום',
-        'information' => 'מידע',
-        'failed_sending_email' => 'לא ניתן לשלוח הודעת אישור רישום',
-        'thank_you' => 'תודה שנרשמת.<br /><br />נשלחה הודעה לכתובת הדואר האלקטרוני שציינת, עם הוראות להפעלת חשבונך.',
-        'acct_created' => 'חשבונך נפתח ובאפשרותך להתחבר באמצעות השם והסיסמה שבחרת',
-        'acct_active' => 'חשבונך הופעל ובאפשרותך להתחבר באמצעות השם והסיסמה שבחרת',
-        'acct_already_act' => 'חשבונך כבר פעיל!',
-        'acct_act_failed' => 'לא ניתן להפעיל חשבון זה!',
-        'err_unk_user' => 'המשתמש שנבחר אינו קיים!',
-        'x_s_profile' => 'הפרופיל של %s',
-        'group' => 'קבוצה',
-        'reg_date' => 'הצטרפות',
-        'disk_usage' => 'הפח דיסק בשימוש',
-        'change_pass' => 'שינוי סיסמה',
-        'current_pass' => 'סיסמה נוכחית',
-        'new_pass' => 'סיסמה חדשה',
-        'new_pass_again' => 'וידוא סיסמה חדשה',
-        'err_curr_pass' => 'הסיסמה הנוכחית שגויה',
-        'apply_modif' => 'ביצוע השינויים',
-        'change_pass' => 'שינוי הסיסמה שלי',
-        'update_success' => 'הפרופיל שלך עודכן',
-        'pass_chg_success' => 'סיסמתך עודכנה',
-        'pass_chg_error' => 'סיסמתך לא עודכנה',
-        'notify_admin_email_subject' => '%s - Registration notification', //cpg1.3.0
-        'notify_admin_email_body' => 'A new user with the username "%s" has registered in your gallery', //cpg1.3.0
+	'page_title' => 'רישום משתמש/ת',
+	'term_cond' => 'תנאי השימוש באתר',
+	'i_agree' => 'אני מסכימ/ה',
+	'submit' => 'שליחת בקשת ההרשמה',
+	'err_user_exists' => 'שם המשתמש/ת שבחרת כבר תפוס, יש לבחור שם אחר',
+	'err_password_mismatch' => 'הסיסמאות אינן תואמות, נא להקישן שוב',
+	'err_uname_short' => ' שם המשתמש/ת חייב להכיל לפחות 2 אותיות (המלצה: 4 תוים לפחות)',
+	'err_password_short' => 'הסיסמא חייבת להכיל לפחות 2 תוים (המלצה: 6 תוים לפחות)',
+	'err_uname_pass_diff' => 'השם והסיסמא אינם יכולים להיות זהים',
+	'err_invalid_email' => 'כתובת הדואר האלקטרוני אינה תקינה',
+	'err_duplicate_email' => 'מישהו אחר כבר משתמש בכתובת הדואר האלקטרוני שציינת',
+	'enter_info' => 'נא למלא את פרטי הרישום',
+	'required_info' => 'מידע חובה',
+	'optional_info' => 'מידע רשות',
+	'username' => 'שם משתמש/ת',
+	'password' => 'סיסמא',
+	'password_again' => 'וידוא סיסמא',
+	'email' => 'דואר אלקטרוני',
+	'location' => 'מקום',
+	'interests' => 'תחומי ענין',
+	'website' => 'כתובת אתר',
+	'occupation' => 'עיסוק',
+	'error' => 'תקלה',
+	'confirm_email_subject' => '%s - אישור רישום',
+	'information' => 'מידע',
+	'failed_sending_email' => 'לא ניתן לשלוח הודעת אישור רישום',
+	'thank_you' => 'תודה שנרשמת.<br /><br />נשלחה הודעה לכתובת הדואר האלקטרוני שציינת, עם הוראות להפעלת חשבונך.',
+	'acct_created' => 'חשבונך נפתח ובאפשרותך להתחבר באמצעות השם והסיסמא שבחרת',
+	'acct_active' => 'חשבונך הופעל ובאפשרותך להתחבר באמצעות השם והסיסמא שבחרת',
+	'acct_already_act' => 'חשבונך כבר פעיל!',
+	'acct_act_failed' => 'לא ניתן להפעיל חשבון זה!',
+	'err_unk_user' => 'המשתמש שנבחר אינו קיים!',
+	'x_s_profile' => 'הפרופיל של %s',
+	'group' => 'קבוצה',
+	'reg_date' => 'הצטרפות',
+	'disk_usage' => 'נפח דיסק בשימוש',
+	'change_pass' => 'שינוי סיסמא',
+	'current_pass' => 'סיסמא נוכחית',
+	'new_pass' => 'סיסמא חדשה',
+	'new_pass_again' => 'וידוא סיסמא חדשה',
+	'err_curr_pass' => 'הסיסמא הנוכחית שגויה',
+	'apply_modif' => 'ביצוע השינויים',
+	'change_pass' => 'שינוי סיסמא',
+	'update_success' => 'הפרופיל שלך עודכן',
+	'pass_chg_success' => 'סיסמתך עודכנה',
+	'pass_chg_error' => 'סיסמתך לא עודכנה',
+	'notify_admin_email_subject' => '%s - Registration notification', //cpg1.3.0
+	'notify_admin_email_body' => 'A new user with the username "%s" has registered in your gallery', //cpg1.3.0
 );
 
 $lang_register_confirm_email = <<<EOT
@@ -1000,13 +999,13 @@ EOT;
 // ------------------------------------------------------------------------- //
 
 if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
-        'title' => 'סקירת הערות',
-        'no_comment' => 'אין הערות לסקור',
-        'n_comm_del' => '%s הערות נמחקו',
-        'n_comm_disp' => 'מספר הערות להצגה',
-        'see_prev' => 'דף הבא',
-        'see_next' => 'דף קודם',
-        'del_comm' => 'מחיקת ההערות המסומנות',
+	'title' => 'סקירת הערות',
+	'no_comment' => 'אין הערות לסקור',
+	'n_comm_del' => '%s הערות נמחקו',
+	'n_comm_disp' => 'מספר הערות להצגה',
+	'see_prev' => 'דף הבא',
+	'see_next' => 'דף קודם',
+	'del_comm' => 'מחיקת ההערות המסומנות',
 );
 
 
@@ -1015,7 +1014,7 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCH_PHP')) $lang_search_php = array(
-        0 => 'חיפוש במאגר הקבצים',
+	0 => 'חיפוש במאגר הקבצים',
 );
 
 // ------------------------------------------------------------------------- //
@@ -1023,34 +1022,34 @@ if (defined('SEARCH_PHP')) $lang_search_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
-        'page_title' => 'חיפוש קבצים חדשות',
-        'select_dir' => 'בחירת מחיצה',
-        'select_dir_msg' => 'פעולה זו מאפשרת לך להוסיף סדרת קבצים שכבר העברת אל האתר ב-FTP.<br /><br />עליך לבחור את המחיצה בשרת שבה נמצאים הקבצים',
-        'no_pic_to_add' => 'אין קבצים להוסיף',
-        'need_one_album' => 'צריך ליצור לפחות אלבום אחד כדי להשתמש בפעולה זו',
-        'warning' => 'אזהרה',
-        'change_perm' => 'התוכנית אינה יכולה לכתוב במחיצה זו. עליך לשנות את ההרשאה ל- 755 או 777 כדי להוסיף קבצים!',
-        'target_album' => '<b>הוספת קבצים של "</b>%s<b>" אל </b>%s',
-        'folder' => 'תיקיה',
-        'image' => 'קובץ',
-        'album' => 'אלבום',
-        'result' => 'תוצאה',
-        'dir_ro' => 'לא ניתן לכתיבה. ',
-        'dir_cant_read' => 'לא ניתן לקריאה. ',
-        'insert' => 'הוספת קובץ חדש לגלריה',
-        'list_new_pic' => 'רשימת קבצים חדשים',
-        'insert_selected' => 'הכנסת הקבצים החדשים',
-        'no_pic_found' => 'לא נמצא אף קובץ חדש',
-        'be_patient' => 'נא להמתין בסבלנות עד שהתוכנית תסיים להוסיף את הקבצים',
-        'no_album' => 'לא נבחר אלבום',  //cpg1.3.0
-        'notes' =>  'מקרא<ul>'.
-                                '<li><b>OK</b> : הקובץ נוסף בהצלחה'.
-                                '<li><b>DP</b> : הקובץ (או קובץ זהה) כבר נמצא במאגר'.
-                                '<li><b>PB</b> : הוספת הקובץ נכשלה. יש לבדוק את הגדרות המערכת ואת ההרשאות למחיצות'.
-                                '<li>אם סימן OK/DP/PB לא הופיע, יש להקליק על מסגרת הקובץ ולבדוק את הודעת השגיאה ממנוע PHP'.
-                                '<li><b>NA</b> : לא בחרת אלבום אליו יתווספו הקבצים. יש להקליק על \'<a href="javascript:history.back(1)">חזרה</a>\' ולבחור אלבום. אם טרם הקמת אלבומים אז קודם עליך <a href="albmgr.php">לפתוח אלבום חדש</a></li>'.
-                                '<li>אם תוכנת הגלישה מודיעה "Time out", יש להקליק על כפתור Refresh/Reload'.
-                                '</ul>',
+	'page_title' => 'חיפוש קבצים חדשות',
+	'select_dir' => 'בחירת מחיצה',
+	'select_dir_msg' => 'פעולה זו מאפשרת לך להוסיף סדרת קבצים שכבר העברת אל האתר ב-FTP.<br /><br />עליך לבחור את המחיצה בשרת שבה נמצאים הקבצים',
+	'no_pic_to_add' => 'אין קבצים להוסיף',
+	'need_one_album' => 'צריך ליצור לפחות אלבום אחד כדי להשתמש בפעולה זו',
+	'warning' => 'אזהרה',
+	'change_perm' => 'התוכנית אינה יכולה לכתוב במחיצה זו. עליך לשנות את ההרשאה ל- 755 או 777 כדי להוסיף קבצים!',
+	'target_album' => '<b>הוספת קבצים של "</b>%s<b>" אל </b>%s',
+	'folder' => 'תיקיה',
+	'image' => 'קובץ',
+	'album' => 'אלבום',
+	'result' => 'תוצאה',
+	'dir_ro' => 'לא ניתן לכתיבה. ',
+	'dir_cant_read' => 'לא ניתן לקריאה. ',
+	'insert' => 'הוספת קובץ חדש לגלריה',
+	'list_new_pic' => 'רשימת קבצים חדשים',
+	'insert_selected' => 'הכנסת הקבצים החדשים',
+	'no_pic_found' => 'לא נמצא אף קובץ חדש',
+	'be_patient' => 'נא להמתין בסבלנות עד שהתוכנית תסיים להוסיף את הקבצים',
+	'no_album' => 'לא נבחר אלבום',  //cpg1.3.0
+	'notes' =>  'מקרא<ul>'.
+				'<li><b>OK</b> : הקובץ נוסף בהצלחה'.
+				'<li><b>DP</b> : הקובץ (או קובץ זהה) כבר נמצא במאגר'.
+				'<li><b>PB</b> : הוספת הקובץ נכשלה. יש לבדוק את הגדרות המערכת ואת ההרשאות למחיצות'.
+				'<li>אם סימן OK/DP/PB לא הופיע, יש להקליק על מסגרת הקובץ ולבדוק את הודעת השגיאה ממנוע PHP'.
+				'<li><b>NA</b> : לא בחרת אלבום אליו יתווספו הקבצים. יש להקליק על \'<a href="javascript:history.back(1)">חזרה</a>\' ולבחור אלבום. אם טרם הקמת אלבומים אז קודם עליך <a href="albmgr.php">לפתוח אלבום חדש</a></li>'.
+				'<li>אם תוכנת הגלישה מודיעה "Time out", יש להקליק על כפתור Refresh/Reload'.
+				'</ul>',
 );
 
 
@@ -1066,22 +1065,22 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('BANNING_PHP')) $lang_banning_php = array(
-        'title' => 'חסימת משתמשים',
-        'user_name' => 'שם משתמש',
-        'ip_address' => 'כתובת IP',
-        'expiry' => 'בתוקף עד (ערך ריק = קבוע)',
-        'edit_ban' => 'שמירת שינויים',
-        'delete_ban' => 'מחיקה',
-        'add_new' => 'הוספת חסימה',
-        'add_ban' => 'הוספה',
-        'error_user' => 'לא נמצא משתמש', //cpg1.3.0
-        'error_specify' => 'יש להקליד שם משתמש או כתובת IP', //cpg1.3.0
-        'error_ban_id' => 'מספר (ID) חסימה לא תקין!', //cpg1.3.0
-        'error_admin_ban' => 'אין באפשרותך לחסום את עצמך!', //cpg1.3.0
-        'error_server_ban' => 'התכוונת לחסום את השרת של עצמך? אין אפשרות לעשות זאת...', //cpg1.3.0
-        'error_ip_forbidden' => 'אין אפשרות לחסום כתובת IP זו מכיון שהיא non-routable!', //cpg1.3.0
-        'lookup_ip' => 'בדיקת כתובת IP', //cpg1.3.0
-        'submit' => 'שלח!', //cpg1.3.0
+	'title' => 'חסימת משתמשים',
+	'user_name' => 'שם משתמש',
+	'ip_address' => 'כתובת&nbsp;IP',
+	'expiry' => 'בתוקף עד (ערך ריק = קבוע)',
+	'edit_ban' => 'שמירת שינויים',
+	'delete_ban' => 'מחיקה',
+	'add_new' => 'הוספת חסימה',
+	'add_ban' => 'הוספה',
+	'error_user' => 'לא נמצא משתמש', //cpg1.3.0
+	'error_specify' => 'יש להקליד שם משתמש או כתובת IP', //cpg1.3.0
+	'error_ban_id' => 'מספר (ID) חסימה לא תקין!', //cpg1.3.0
+	'error_admin_ban' => 'אין באפשרותך לחסום את עצמך!', //cpg1.3.0
+	'error_server_ban' => 'התכוונת לחסום את השרת של עצמך? אין אפשרות לעשות זאת...', //cpg1.3.0
+	'error_ip_forbidden' => 'אין אפשרות לחסום כתובת IP זו מכיון שהיא non-routable!', //cpg1.3.0
+	'lookup_ip' => 'בדיקת כתובת IP', //cpg1.3.0
+	'submit' => 'שלח!', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -1089,76 +1088,76 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UPLOAD_PHP')) $lang_upload_php = array(
-        'title' => 'הוספת קובץ',
-        'custom_title' => 'מסך הוספת קבצים ניתן להתאמה', //cpg1.3.0
-        'cust_instr_1' => 'באפשרותך לבחור את מספר הקבצים להעלאה, אך לא יותר מהמקסימום המצויין למטה.', //cpg1.3.0
-        'cust_instr_2' => 'קביעת מספר שדות', //cpg1.3.0
-        'cust_instr_3' => 'העלאת קבצים: %s', //cpg1.3.0
-        'cust_instr_4' => 'העלאת קישורים (URL/URI): %s', //cpg1.3.0
-        'cust_instr_5' => 'העלאת קישורים (URL/URI):', //cpg1.3.0
-        'cust_instr_6' => 'העלאת קבצים:', //cpg1.3.0
-        'cust_instr_7' => 'נא להזין את מספר השדות המבוקש לכל סוג ולסיום להקליק על "המשך". ', //cpg1.3.0
-        'reg_instr_1' => 'פעולה לא תקינה ביצירת טופס.', //cpg1.3.0
-        'reg_instr_2' => 'כעת באפשרותך להעלות את הקבצים. הגודל המרבי לכל קובץ הוא %s KB. קבצי ZIP שהועלו דרך "העלאת קבצים" או "העלאת קישורים" ישארו דחוסים.', //cpg1.3.0
-        'reg_instr_3' => 'אם ברצונך שהקבצים הדחוסים (ZIP) יפתחו, עליך להעלות את הקבצים דרך "העלאת קבצים דחוסים"', //cpg1.3.0
-        'reg_instr_4' => 'בהעלאת קישורים נא לציין את נתיב הקישור על פי הדוגמא: http://www.mysite.com/images/example.jpg', //cpg1.3.0
-        'reg_instr_5' => 'בסיום מילוי המסך נא להקליק על "המשך".', //cpg1.3.0
-        'reg_instr_6' => 'העלאת קבצים דחוסים:', //cpg1.3.0
-        'reg_instr_7' => 'העלאת קבצים:', //cpg1.3.0
-        'reg_instr_8' => 'העלאת קישורים (URL/URI):', //cpg1.3.0
-        'error_report' => 'דו"ח תקלות', //cpg1.3.0
-        'error_instr' => 'חלו תקלות בהעלאת הקבצים הבאים:', //cpg1.3.0
-        'file_name_url' => 'שם קובץ / נתיב קישור', //cpg1.3.0
-        'error_message' => 'הודעת התקלה', //cpg1.3.0
-        'no_post' => 'הקובץ לא הועלה באמצעות שיטת POST.', //cpg1.3.0
-        'forb_ext' => 'קובץ בעל סיומת אסורה.', //cpg1.3.0
-        'exc_php_ini' => 'גודל הקובץ חורג מהמקסימום המוגדר ב- php.ini.', //cpg1.3.0
-        'exc_file_size' => 'גודל הקובץ חורג מהמקסימום שקבע מנהל הגלריה.', //cpg1.3.0
-        'partial_upload' => 'הקובץ הועלה באופן חלקי.', //cpg1.3.0
-        'no_upload' => 'לא הועלה קובץ..', //cpg1.3.0
-        'unknown_code' => 'קוד תקלת PHP לא מוגדר.', //cpg1.3.0
-        'no_temp_name' => 'העלאה נכשלה - לא נוצר שם זמני.', //cpg1.3.0
-        'no_file_size' => 'לא מכיל תוכן או משובש.', //cpg1.3.0
-        'impossible' => 'לא ניתן להעביר למחיצת היעד.', //cpg1.3.0
-        'not_image' => 'לא תמונה או משובש.', //cpg1.3.0
-        'not_GD' => 'סיומת לא נתמכת ע"י GD', //cpg1.3.0
-        'pixel_allowance' => 'הגודל בפיקסלים חורג מהמותר', //cpg1.3.0
-        'incorrect_prefix' => 'קידומת נתיב קישור (URL/URI) שגויה', //cpg1.3.0
-        'could_not_open_URI' => 'הגישה לנתיב הקישור נכשלה.', //cpg1.3.0
-        'unsafe_URI' => 'נתיב הקישור אינו בטוח.', //cpg1.3.0
-        'meta_data_failure' => 'נכשלה קריאת מידע נלווה (Meta data).', //cpg1.3.0
-        'http_401' => '401 Unauthorized', //cpg1.3.0
-        'http_402' => '402 Payment Required', //cpg1.3.0
-        'http_403' => '403 Forbidden', //cpg1.3.0
-        'http_404' => '404 Not Found', //cpg1.3.0
-        'http_500' => '500 Internal Server Error', //cpg1.3.0
-        'http_503' => '503 Service Unavailable', //cpg1.3.0
-        'MIME_extraction_failure' => 'לא ניתן לחלץ את סוג ה- MIME.', //cpg1.3.0
-        'MIME_type_unknown' => 'סוג MIME לא מזוהה', //cpg1.3.0
-        'cant_create_write' => 'לא ניתן ליצור קובץ לכתיבה.', //cpg1.3.0
-        'not_writable' => 'לא ניתן לכתוב לקובץ הכתיבה.', //cpg1.3.0
-        'cant_read_URI' => 'לא ניתן לקרוא קישור (URL/URI).', //cpg1.3.0
-        'cant_open_write_file' => 'לא ניתן ליצור קובץ לכתיבה.', //cpg1.3.0
-        'cant_write_write_file' => 'לא ניתן לכתוב לקובץ הכתיבה.', //cpg1.3.0
-        'cant_unzip' => 'נכשלה פתיחת הדחיסה (Unzip).', //cpg1.3.0
-        'unknown' => 'תקלה לא מוגדרת', //cpg1.3.0
-        'succ' => 'העלאות תקינות', //cpg1.3.0
-        'success' => '%s העלאות הצליחו.', //cpg1.3.0
-        'add' => 'נא להקליק על "המשך" כדי להוסיף את הקבצים לאלבום.', //cpg1.3.0
-        'failure' => 'תקלת העלאה', //cpg1.3.0
-        'f_info' => 'מידע על הקובץ', //cpg1.3.0
-        'no_place' => 'העברת הקובץ הקודם למקומו נכשלה.', //cpg1.3.0
-        'yes_place' => 'הקובץ הקודם הועבר למקומו בהצלחה.', //cpg1.3.0
-        'max_fsize' => 'גודל הקובץ המקסימלי המותר %s KB',
-        'album' => 'אלבום',
-        'picture' => 'קובץ',
-        'pic_title' => 'כותרת הקובץ',
-        'description' => 'תאור הקובץ',
-        'keywords' => 'מילות מפתח (מופרדות ברווחים)',
-        'err_no_alb_uploadables' => 'לא נמצא אלבום שאליו מותר לך להוסיף קבצים',
-        'place_instr_1' => 'אנא מקם כל קובץ באלבום. באפשרותך גם להוסיף פרטים לכל קובץ.', //cpg1.3.0
-        'place_instr_2' => 'יש עוד קבצים שצריך למקם. נא להקליק על "המשך".', //cpg1.3.0
-        'process_complete' => 'כל הקבצים מוקמן בהצלחה.', //cpg1.3.0
+	'title' => 'הוספת קובץ',
+	'custom_title' => 'ממשק טעינת קבצים', //cpg1.3.0
+	'cust_instr_1' => 'באפשרותך לבחור את מספר הקבצים להעלאה, אך לא יותר מהמקסימום המפורט להלן.', //cpg1.3.0
+	'cust_instr_2' => 'קביעת מספר שדות', //cpg1.3.0
+	'cust_instr_3' => 'טעינת קבצים מהמחשב שלך: %s', //cpg1.3.0
+	'cust_instr_4' => 'טעינת קבצים מ-URL/קישורים: %s', //cpg1.3.0
+	'cust_instr_5' => 'טעינת קבצים מ-URL/קישורים:', //cpg1.3.0
+	'cust_instr_6' => 'טעינת קבצים מהמחשב שלך:', //cpg1.3.0
+	'cust_instr_7' => 'נא להזין את מספר הקבצים המבוקש לכל סוג טעינה ולסיום להקליק על "המשך". ', //cpg1.3.0
+	'reg_instr_1' => 'פעולה לא תקינה ביצירת טופס.', //cpg1.3.0
+	'reg_instr_2' => 'כעת באפשרותך להעלות את הקבצים. הגודל המרבי לכל קובץ הוא %s&nbsp;KB. קבצי ZIP שהועלו דרך "טעינת קבצים" או "טעינת קישורים" ישארו דחוסים.', //cpg1.3.0
+	'reg_instr_3' => 'אם ברצונך שהקבצים הדחוסים (ZIP) יפתחו, עליך להעלות את הקבצים דרך "טעינת קבצים דחוסים"', //cpg1.3.0
+	'reg_instr_4' => 'בטעינת קישורים נא לציין את נתיב הקישור על פי הדוגמא: http://www.mysite.com/images/example.jpg', //cpg1.3.0
+	'reg_instr_5' => 'בסיום מילוי המסך נא להקליק על "המשך".', //cpg1.3.0
+	'reg_instr_6' => 'טעינת קבצים דחוסים מהמחשב שלך:', //cpg1.3.0
+	'reg_instr_7' => 'טעינת קבצים מהמחשב שלך:', //cpg1.3.0
+	'reg_instr_8' => 'טעינת קבצים מ-URL/קישורים:', //cpg1.3.0
+	'error_report' => 'דו"ח תקלות', //cpg1.3.0
+	'error_instr' => 'חלו תקלות בטעינת הקבצים הבאים:', //cpg1.3.0
+	'file_name_url' => 'שם קובץ / נתיב קישור', //cpg1.3.0
+	'error_message' => 'הודעת התקלה', //cpg1.3.0
+	'no_post' => 'הקובץ לא נשלח באמצעות שיטת POST.', //cpg1.3.0
+	'forb_ext' => 'קובץ בעל סיומת אסורה.', //cpg1.3.0
+	'exc_php_ini' => 'גודל הקובץ חורג מהמקסימום המוגדר ב- php.ini.', //cpg1.3.0
+	'exc_file_size' => 'גודל הקובץ חורג מהמקסימום שקבע מנהל הגלריה.', //cpg1.3.0
+	'partial_upload' => 'הקובץ נטען באופן חלקי.', //cpg1.3.0
+	'no_upload' => 'לא הועלה קובץ..', //cpg1.3.0
+	'unknown_code' => 'קוד תקלת PHP לא מוגדר.', //cpg1.3.0
+	'no_temp_name' => 'טעינה נכשלה - לא נוצר שם זמני.', //cpg1.3.0
+	'no_file_size' => 'לא מכיל תוכן או משובש.', //cpg1.3.0
+	'impossible' => 'לא ניתן להעביר למחיצת היעד.', //cpg1.3.0
+	'not_image' => 'לא תמונה או משובש.', //cpg1.3.0
+	'not_GD' => 'סיומת לא נתמכת ע"י GD', //cpg1.3.0
+	'pixel_allowance' => 'הגודל בפיקסלים חורג מהמותר', //cpg1.3.0
+	'incorrect_prefix' => 'קידומת נתיב קישור (URL) שגויה', //cpg1.3.0
+	'could_not_open_URI' => 'הגישה לנתיב הקישור נכשלה.', //cpg1.3.0
+	'unsafe_URI' => 'נתיב הקישור אינו בטוח.', //cpg1.3.0
+	'meta_data_failure' => 'נכשלה קריאת מידע נלווה (Meta data).', //cpg1.3.0
+	'http_401' => '401 Unauthorized', //cpg1.3.0
+	'http_402' => '402 Payment Required', //cpg1.3.0
+	'http_403' => '403 Forbidden', //cpg1.3.0
+	'http_404' => '404 Not Found', //cpg1.3.0
+	'http_500' => '500 Internal Server Error', //cpg1.3.0
+	'http_503' => '503 Service Unavailable', //cpg1.3.0
+	'MIME_extraction_failure' => 'לא ניתן לחלץ את סוג ה- MIME.', //cpg1.3.0
+	'MIME_type_unknown' => 'סוג MIME לא מזוהה', //cpg1.3.0
+	'cant_create_write' => 'לא ניתן ליצור קובץ לכתיבה.', //cpg1.3.0
+	'not_writable' => 'לא ניתן לכתוב לקובץ הכתיבה.', //cpg1.3.0
+	'cant_read_URI' => 'לא ניתן לקרוא קישור (URL).', //cpg1.3.0
+	'cant_open_write_file' => 'לא ניתן ליצור קובץ לכתיבה.', //cpg1.3.0
+	'cant_write_write_file' => 'לא ניתן לכתוב לקובץ הכתיבה.', //cpg1.3.0
+	'cant_unzip' => 'נכשלה פתיחת הדחיסה (Unzip).', //cpg1.3.0
+	'unknown' => 'תקלה לא מוגדרת', //cpg1.3.0
+	'succ' => 'טעינות תקינות', //cpg1.3.0
+	'success' => '%s טעינות הצליחו.', //cpg1.3.0
+	'add' => 'נא להקליק על "המשך" כדי להוסיף את הקבצים לאלבום.', //cpg1.3.0
+	'failure' => 'תקלת טעינה', //cpg1.3.0
+	'f_info' => 'מידע על הקובץ', //cpg1.3.0
+	'no_place' => 'העברת הקובץ הקודם למקומו נכשלה.', //cpg1.3.0
+	'yes_place' => 'הקובץ הקודם הועבר למקומו בהצלחה.', //cpg1.3.0
+	'max_fsize' => 'גודל הקובץ המקסימלי המותר %s&nbsp;KB',
+	'album' => 'אלבום',
+	'picture' => 'קובץ',
+	'pic_title' => 'כותרת הקובץ',
+	'description' => 'תאור הקובץ',
+	'keywords' => 'מילות מפתח (מופרדות ברווחים)',
+	'err_no_alb_uploadables' => 'לא נמצא אלבום שאליו מותר לך להוסיף קבצים',
+	'place_instr_1' => 'נא למקם כל קובץ באלבום. באפשרותך גם להוסיף פרטים לכל קובץ.', //cpg1.3.0
+	'place_instr_2' => 'יש עוד קבצים שצריך למקם. נא להקליק על "המשך".', //cpg1.3.0
+	'process_complete' => 'כל הקבצים מוקמו בהצלחה.', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -1166,50 +1165,50 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
-        'title' => 'ניהול משתמשים',
-        'name_a' => 'שם, סדר עולה',
-        'name_d' => 'שם, סדר יורד',
-        'group_a' => 'קבוצה, סדר עולה',
-        'group_d' => 'קבוצה, סדר יורד',
-        'reg_a' => 'תאריך רישום, סדר עולה',
-        'reg_d' => 'תאריך רישום, סדר יורד',
-        'pic_a' => 'מספר קבצים, סדר עולה',
-        'pic_d' => 'מספר קבצים, סדר יורד',
-        'disku_a' => 'ניצול דיסק, סדר עולה',
-        'disku_d' => 'ניצול דיסק, סדר יורד',
-        'lv_a' => 'כניסה אחרונה, סדר עולה', //cpg1.3.0
-        'lv_d' => 'כניסה אחרונה, סדר יורד', //cpg1.3.0
-        'sort_by' => 'מיון משתמשים לפי',
-        'err_no_users' => 'טבלת המשתמשים ריקה!',
-        'err_edit_self' => 'אין באפשרותך לערוך כאן את הפרופיל של עצמך, לשם כך יש להקליק על קישור "הפרופיל שלי"',
-        'edit' => 'עריכה',
-        'delete' => 'מחיקה',
-        'name' => 'שם משתמש',
-        'group' => 'קבוצה',
-        'inactive' => 'לא פעיל',
-        'operations' => 'פעולות',
-        'pictures' => 'קבצים',
-        'disk_space' => 'נפח מנוצל / הרשאה',
-        'registered_on' => 'רישום מתאריך',
-        'last_visit' => 'כניסה אחרונה', //cpg1.3.0
-        'u_user_on_p_pages' => '%d משתמשים ב- %d דפים',
-        'confirm_del' => 'האם את/ה בטוח/ה שברצונך למחוק משתמש זה?\\nכל האלבומים והקבוצות שלו ימחקו.',
-        'mail' => 'דוא"ל',
-        'err_unknown_user' => 'המשתמש שנבחר אינו קיים',
-        'modify_user' => 'שינוי משתמש',
-        'notes' => 'הערות',
-        'note_list' => '<li>אם אינך רוצה לשנות את הסיסמה, עליך להשאיר את שדה הסיסמה ריק',
-        'password' => 'סיסמה',
-        'user_active' => 'משתמש פעיל',
-        'user_group' => 'קבוצה',
-        'user_email' => 'דוא"ל',
-        'user_web_site' => 'אתר אינטרנט',
-        'create_new_user' => 'הגדרת משתמש חדש',
-        'user_location' => 'מקום',
-        'user_interests' => 'תחומי ענין',
-        'user_occupation' => 'עיסוק',
-        'latest_upload' => 'קבצים אחרונים', //cpg1.3.0
-        'never' => 'לעולם לא', //cpg1.3.0
+	'title' => 'ניהול משתמשים',
+	'name_a' => 'שם, סדר עולה',
+	'name_d' => 'שם, סדר יורד',
+	'group_a' => 'קבוצה, סדר עולה',
+	'group_d' => 'קבוצה, סדר יורד',
+	'reg_a' => 'תאריך רישום, סדר עולה',
+	'reg_d' => 'תאריך רישום, סדר יורד',
+	'pic_a' => 'מספר קבצים, סדר עולה',
+	'pic_d' => 'מספר קבצים, סדר יורד',
+	'disku_a' => 'ניצול דיסק, סדר עולה',
+	'disku_d' => 'ניצול דיסק, סדר יורד',
+	'lv_a' => 'כניסה אחרונה, סדר עולה', //cpg1.3.0
+	'lv_d' => 'כניסה אחרונה, סדר יורד', //cpg1.3.0
+	'sort_by' => 'מיון משתמשים לפי',
+	'err_no_users' => 'טבלת המשתמשים ריקה!',
+	'err_edit_self' => 'אין באפשרותך לערוך כאן את הפרופיל של עצמך, לשם כך יש להקליק על קישור "הפרופיל שלי"',
+	'edit' => 'עריכה',
+	'delete' => 'מחיקה',
+	'name' => 'שם משתמש',
+	'group' => 'קבוצה',
+	'inactive' => 'לא פעיל',
+	'operations' => 'פעולות',
+	'pictures' => 'קבצים',
+	'disk_space' => 'נפח מנוצל / הרשאה',
+	'registered_on' => 'רישום מתאריך',
+	'last_visit' => 'כניסה אחרונה', //cpg1.3.0
+	'u_user_on_p_pages' => '%d משתמשים ב- %d דפים',
+	'confirm_del' => 'האם את/ה בטוח/ה שברצונך למחוק משתמש זה?\\nכל האלבומים והקבוצות שלו ימחקו ללא אפשרות שחזור!',
+	'mail' => 'דוא"ל',
+	'err_unknown_user' => 'המשתמש שנבחר אינו קיים',
+	'modify_user' => 'שינוי משתמש',
+	'notes' => 'הערות',
+	'note_list' => '<li>אם אינך רוצה לשנות את הסיסמא, עליך להשאיר את שדה הסיסמא ריק',
+	'password' => 'סיסמא',
+	'user_active' => 'משתמש פעיל',
+	'user_group' => 'קבוצה',
+	'user_email' => 'דוא"ל',
+	'user_web_site' => 'אתר אינטרנט',
+	'create_new_user' => 'הגדרת משתמש חדש',
+	'user_location' => 'מקום',
+	'user_interests' => 'תחומי ענין',
+	'user_occupation' => 'עיסוק',
+	'latest_upload' => 'קבצים אחרונים', //cpg1.3.0
+	'never' => 'אף פעם', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -1242,7 +1241,7 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
         'instruction_action' => 'בחירת פעולה',
         'instruction_parameter' => 'קביעת פרמטרים',
         'instruction_album' => 'בחירת אלבום',
-        'instruction_press' => 'נא להקליק על %s',
+        'instruction_press' => 'הקלקה על %s',
         'update' => 'עדכון דוגמיות ו/או תמונות בגודל מוגדר',
         'update_what' => 'מה צריך לעדכן',
         'update_thumb' => 'רק דוגמיות',
@@ -1261,15 +1260,15 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
         'delete_original' => 'מחיקת תמונות בגודל מקורי',
         'delete_replace' => 'מחיקת תמונות בגדול מקורי והחלפתן בתמונות בגודל קבוע',
         'select_album' => 'בחירת אלבום',
-        'delete_orphans' => 'מחיקת הערות "יתומות" (מכל האלבומים).', //cpg1.3.0
-        'orphan_comment' => 'הערות "יתומות" נמצאו', //cpg1.3.0
-        'delete' => 'מחק', //cpg1.3.0
-        'delete_all' => 'מחק הכל', //cpg1.3.0
-        'comment' => 'הערה: ', //cpg1.3.0
-        'nonexist' => 'מקושרת לקובץ שאינו קיים # ', //cpg1.3.0
-        'phpinfo' => 'הצגת מידע PHP', //cpg1.3.0
-        'update_db' => 'עדכון מסד הנתונים', //cpg1.3.0
-        'update_db_explanation' => 'אם שינית קבצי תוכנה של הגלריה, או התקנת תוספים, או שדרגת את גרסת הגלריה מגרסה קודמת, עליך לבצע "עדכון מס נתונים" פעם אחת. פעולה זו תיצור את טבלאות הנתונים ו/או ערכי הגדרות במסד הנתונים.', //cpg1.3.0
+	'delete_orphans' => 'מחיקת הערות "יתומות" (מכל האלבומים).', //cpg1.3.0
+	'orphan_comment' => 'הערות "יתומות" נמצאו', //cpg1.3.0
+	'delete' => 'מחק', //cpg1.3.0
+	'delete_all' => 'מחק הכל', //cpg1.3.0
+	'comment' => 'הערה: ', //cpg1.3.0
+	'nonexist' => 'מקושרת לקובץ שאינו קיים # ', //cpg1.3.0
+	'phpinfo' => 'הצגת מידע&nbsp;PHP&nbsp;', //cpg1.3.0
+	'update_db' => 'עדכון מסד הנתונים', //cpg1.3.0
+	'update_db_explanation' => 'אם שינית קבצי תוכנה של הגלריה, או התקנת תוספים, או שדרגת את גרסת הגלריה מגרסה קודמת, עליך לבצע "עדכון מס נתונים" פעם אחת. פעולה זו תיצור את טבלאות הנתונים ו/או ערכי הגדרות במסד הנתונים.', //cpg1.3.0
 );
 
 ?>
