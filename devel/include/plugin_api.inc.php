@@ -145,12 +145,10 @@ class CPGPluginAPI {
     function& filter( $key, $value, $execute_scope = CPG_EXEC_ALL ) {
         global $CPG_PLUGINS,$CONFIG,$USER_DATA,$thisplugin;
 
-        // Get all the plugin ids
-        $ids = array_keys($CPG_PLUGINS);
+        if(is_numeric($execute_scope)) {
 
-        // Loop through all the plugins
-        foreach($ids as $plugin_id) {
-            
+            $plugin_id = $execute_scope;
+
             // Reference current plugin to local scope
             $thisplugin = $CPG_PLUGINS[$plugin_id];
 
@@ -159,12 +157,7 @@ class CPGPluginAPI {
 
             // Skip this plugin; the key isn't set
             if (!isset($plugin_function) || (!$thisplugin->awake)) {
-                 continue;
-            }
-            
-            // Skip this plugin; Only looking for new plugins
-            if (($execute_scope == CPG_EXEC_NEW) && ($thisplugin->plugin_id != CPG_EXEC_NEW)) {
-                continue;
+                 return $value;
             }
 
             if (function_exists($plugin_function)) {
@@ -178,9 +171,44 @@ class CPGPluginAPI {
             // Copy back to global scope
             $CPG_PLUGINS[$plugin_id] = $thisplugin;
 
-            if ($execute_scope != CPG_EXEC_ALL) {
-                return $value;
-                break;
+        // Loop through all the plugins
+        } else {
+            // Get all the plugin ids
+            $ids = array_keys($CPG_PLUGINS);
+
+            foreach($ids as $plugin_id) {
+    
+                // Reference current plugin to local scope
+                $thisplugin = $CPG_PLUGINS[$plugin_id];
+
+                // Get the filter's value from the plugin
+                $plugin_function = @$thisplugin->filters[$key];
+    
+                // Skip this plugin; the key isn't set
+                if (!isset($plugin_function) || (!$thisplugin->awake)) {
+                     continue;
+                }
+                
+                // Skip this plugin; Only looking for new plugins
+                if (($execute_scope == CPG_EXEC_NEW) && ($thisplugin->plugin_id != CPG_EXEC_NEW)) {
+                    continue;
+                }
+    
+                if (function_exists($plugin_function)) {
+                    // Pass the value to the filter's function and get a value back
+                    $value = call_user_func($plugin_function,$value);
+    
+                    // Copy back to global scope
+                    $CPG_PLUGINS[$plugin_id] = $thisplugin;
+                }
+    
+                // Copy back to global scope
+                $CPG_PLUGINS[$plugin_id] = $thisplugin;
+    
+                if ($execute_scope != CPG_EXEC_ALL) {
+                    return $value;
+                    break;
+                }
             }
         }
 
@@ -203,39 +231,67 @@ class CPGPluginAPI {
     function& action( $key, $value, $execute_scope = CPG_EXEC_ALL ) {
         global $CPG_PLUGINS,$CONFIG,$USER_DATA,$thisplugin;
 
-        // Get all the plugin ids
-        $ids = array_keys($CPG_PLUGINS);
+        if(is_numeric($execute_scope)) {
 
-        // Loop through all the plugins
-        foreach($ids as $plugin_id) {
+            $plugin_id = $execute_scope;
 
-            // Copy current plugin to local scope
+            // Reference current plugin to local scope
             $thisplugin = $CPG_PLUGINS[$plugin_id];
 
-            // Get the action's value from the plugin
+            // Get the filter's value from the plugin
             $plugin_function = @$thisplugin->actions[$key];
 
             // Skip this plugin; the key isn't set
-            if (!isset($plugin_function) || ($key != 'plugin_wakeup' && !$thisplugin->awake)) {
-                 continue;
-            }
-
-            // Skip this plugin; Only looking for new plugins
-            if (($execute_scope == CPG_EXEC_NEW) && ($thisplugin->plugin_id != CPG_EXEC_NEW)) {
-                continue;
+            if (!isset($plugin_function) || (!$thisplugin->awake)) {
+                 return $value;
             }
 
             if (function_exists($plugin_function)) {
-                // Pass the value to the action's function and get a value back
+                // Pass the value to the filter's function and get a value back
                 $value = call_user_func($plugin_function,$value);
 
                 // Copy back to global scope
                 $CPG_PLUGINS[$plugin_id] = $thisplugin;
             }
 
-            if ($execute_scope != CPG_EXEC_ALL) {
-                return $value;
-                break;
+            // Copy back to global scope
+            $CPG_PLUGINS[$plugin_id] = $thisplugin;
+
+        // Loop through all the plugins
+        } else {
+            // Get all the plugin ids
+            $ids = array_keys($CPG_PLUGINS);
+    
+            foreach($ids as $plugin_id) {
+
+                // Copy current plugin to local scope
+                $thisplugin = $CPG_PLUGINS[$plugin_id];
+    
+                // Get the action's value from the plugin
+                $plugin_function = @$thisplugin->actions[$key];
+
+                // Skip this plugin; the key isn't set
+                if (!isset($plugin_function) || ($key != 'plugin_wakeup' && !$thisplugin->awake)) {
+                     continue;
+                }
+    
+                // Skip this plugin; Only looking for new plugins
+                if (($execute_scope == CPG_EXEC_NEW) && ($thisplugin->plugin_id != CPG_EXEC_NEW)) {
+                    continue;
+                }
+    
+                if (function_exists($plugin_function)) {
+                    // Pass the value to the action's function and get a value back
+                    $value = call_user_func($plugin_function,$value);
+    
+                    // Copy back to global scope
+                    $CPG_PLUGINS[$plugin_id] = $thisplugin;
+                }
+    
+                if ($execute_scope != CPG_EXEC_ALL) {
+                    return $value;
+                    break;
+                }
             }
         }
 
@@ -400,7 +456,9 @@ class CPGPluginAPI {
         $priority = $thisplugin->priority;
 
         // If plugin has an uninstall action, execute it
-        if (CPGPluginAPI::action('plugin_uninstall',true)) {
+        $uninstalled = CPGPluginAPI::action('plugin_uninstall',true);
+
+        if (is_bool($uninstalled) && $uninstalled) {
             $sql = 'delete from '.$CONFIG['TABLE_PLUGINS'].' '.
                    'where plugin_id='.$plugin_id.';';
             $result = db_query($sql);
@@ -412,6 +470,13 @@ class CPGPluginAPI {
             if ($CONFIG['log_mode']) {
                 log_write("Plugin '".$name."' uninstalled at ".date("F j, Y, g:i a"),CPG_GLOBAL_LOG);
             }
+            
+            return true;
+
+        // If $uninstalled is an integer then the plugin needs to be cleaned up; Return the value
+        } elseif (is_numeric($uninstalled)) {
+
+            return $uninstalled;
         } else {
 
             // The plugin's uninstall action failed
@@ -448,6 +513,8 @@ class CPGPlugin {
         foreach($properties as $key => $value) {
             $this->$key = stripslashes($value);
         }
+        
+        $this->fullpath = './plugins/'.$this->path;
     }
 
     /**
