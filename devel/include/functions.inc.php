@@ -17,14 +17,25 @@
 //  the Free Software Foundation; either version 2 of the License, or        //
 //  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
-// $Id$
-// ------------------------------------------------------------------------- //
 
-/**************************************************************************
-   Function for managing cookie saved user profile
- **************************************************************************/
+/**
+* Coppermine Photo Gallery 1.3.0 functions.inc.php
+*
+* This file has almost all the functions of Coppermine
+*
+* @copyright  2002,2003 Gregory DEMAR, Coppermine Dev Team
+* @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
+* @package Coppermine
+* @version  $Id$
+*/
 
-// Decode the user profile contained in a cookie
+/**
+ * user_get_profile()
+ *
+ * Decode the user profile contained in a cookie
+ *
+ **/
+
 function user_get_profile()
 {
         global $CONFIG, $USER, $HTTP_COOKIE_VARS;
@@ -46,6 +57,15 @@ function user_get_profile()
 }
 
 // Save the user profile in a cookie
+
+
+/**
+ * user_save_profile()
+ * 
+ * Save the user profile in a cookie
+ * 
+ **/
+
 function user_save_profile()
 {
         global $CONFIG, $USER, $HTTP_SERVER_VARS;
@@ -59,6 +79,13 @@ function user_save_profile()
  **************************************************************************/
 
 // Connect to the database
+
+/**
+ * cpg_db_connect()
+ * 
+ * Connect to the database
+ **/
+
 function cpg_db_connect()
 {
         global $CONFIG;
@@ -71,6 +98,17 @@ function cpg_db_connect()
 }
 
 // Perform a database query
+
+/**
+ * db_query()
+ * 
+ * Perform a database query
+ * 
+ * @param $query
+ * @param integer $link_id
+ * @return 
+ **/
+
 function db_query($query, $link_id = 0)
 {
         global $CONFIG, $query_stats, $queries;
@@ -93,6 +131,17 @@ function db_query($query, $link_id = 0)
 }
 
 // Error message if a query failed
+
+
+/**
+ * db_error()
+ * 
+ * Error message if a query failed
+ * 
+ * @param $the_error
+ * @return 
+ **/
+
 function db_error($the_error)
 {
         global $CONFIG;
@@ -111,6 +160,16 @@ function db_error($the_error)
 }
 
 // Fetch all rows in an array
+
+/**
+ * db_fetch_rowset()
+ * 
+ * Fetch all rows in an array
+ * 
+ * @param $result
+ * @return 
+ **/
+
 function db_fetch_rowset($result)
 {
         $rowset = array();
@@ -125,8 +184,25 @@ function db_fetch_rowset($result)
  **************************************************************************/
 
 //define ('LOC','YToyOntzOjE6ImwiO3M6OToie0dBTExFUll9IjtzOjE6InMiO3M6MTY5OiI8ZGl2IGNsYXNzPSJmb290ZXIiIGFsaWduPSJjZW50ZXIiIHN0eWxlPSJwYWRkaW5nLXRvcDogMTBweDsiPlBvd2VyZWQgYnkgPGEgaHJlZj0iaHR0cDovL3d3dy5jaGV6Z3JlZy5uZXQvY29wcGVybWluZS8iIHRhcmdldD0iX2JsYW5rIj5Db3BwZXJtaW5lIFBob3RvIEdhbGxlcnk8L2E+PC9kaXY+Ijt9');
+ /**
+ * @ignore
+ */
  define ('LOC','YToyOntzOjE6ImwiO3M6OToie0dBTExFUll9IjtzOjE6InMiO3M6MTU5OiI8ZGl2IGNsYXNzPSJmb290ZXIiIGFsaWduPSJjZW50ZXIiIHN0eWxlPSJwYWRkaW5nLXRvcDogMTBweDsiPlBvd2VyZWQgYnkgPGEgaHJlZj0iaHR0cDovL2NvcHBlcm1pbmUuc2YubmV0LyIgdGFyZ2V0PSJfYmxhbmsiPkNvcHBlcm1pbmUgUGhvdG8gR2FsbGVyeTwvYT48L2Rpdj4iO30=');
 // Replacement for the die function
+
+/**
+ * cpg_die()
+ * 
+ * Replacement for the die function
+ * 
+ * @param $msg_code
+ * @param $msg_text
+ * @param $error_file
+ * @param $error_line
+ * @param boolean $output_buffer
+ * @return 
+ **/
+ 
 function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer = false)
 {
         global $CONFIG, $lang_cpg_die, $template_cpg_die;
@@ -161,6 +237,17 @@ function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer
 }
 
 // Display a localised date
+
+/**
+ * localised_date()
+ * 
+ * Display a localised date
+ * 
+ * @param integer $timestamp
+ * @param $datefmt
+ * @return 
+ **/
+
 function localised_date($timestamp = -1, $datefmt)
 {
     global $lang_month, $lang_day_of_week, $CONFIG;
@@ -179,12 +266,36 @@ function localised_date($timestamp = -1, $datefmt)
 }
 
 // Function to create correct URLs for image name with space or exotic characters
+
+/**
+ * path2url()
+ * 
+ * Function to create correct URLs for image name with space or exotic characters
+ * 
+ * @param $path
+ * @return 
+ **/
+
 function path2url($path)
 {
         return str_replace("%2F","/",rawurlencode($path));
 }
 
 // Display a 'message box like' table
+
+/**
+ * msg_box()
+ * 
+ * Display a 'message box like' table
+ * 
+ * @param $title
+ * @param $msg_text
+ * @param string $button_text
+ * @param string $button_link
+ * @param string $width
+ * @return 
+ **/
+
 function msg_box($title, $msg_text, $button_text="", $button_link="", $width="-1")
 {
         global $template_msg_box;
@@ -204,6 +315,17 @@ function msg_box($title, $msg_text, $button_text="", $button_link="", $width="-1
         endtable();
 }
 
+
+/**
+ * create_tabs()
+ * 
+ * @param $items
+ * @param $curr_page
+ * @param $total_pages
+ * @param $template
+ * @return 
+ **/
+ 
 function create_tabs($items, $curr_page, $total_pages, $template)
 {
         global $CONFIG;
@@ -262,6 +384,14 @@ function create_tabs($items, $curr_page, $total_pages, $template)
  * Notes: the email one might get annoying - it's easy to make it more restrictive, though.. maybe
  * have it require something like xxxx@yyyy.zzzz or such. We'll see.
  */
+
+/**
+ * make_clickable()
+ * 
+ * @param $text
+ * @return 
+ **/
+
 function make_clickable($text)
 {
         $ret = " " . $text;
@@ -275,6 +405,14 @@ function make_clickable($text)
 
 // Allow the use of a limited set of phpBB bb codes in albums and image descriptions
 // Taken from phpBB code
+
+/**
+ * bb_decode()
+ * 
+ * @param $text
+ * @return 
+ **/
+
 function bb_decode($text)
 {
         $text = nl2br($text);
@@ -367,6 +505,15 @@ function bb_decode($text)
  **************************************************************************/
 
 // Load and parse the template.html file
+
+/**
+ * load_template()
+ * 
+ * Load and parse the template.html file
+ * 
+ * @return 
+ **/
+
 function load_template()
 {
         global $THEME_DIR, $CONFIG, $template_header, $template_footer;
@@ -407,6 +554,15 @@ function load_template()
 }
 
 // Eval a template (substitute vars with values)
+
+/**
+ * template_eval()
+ * 
+ * @param $template
+ * @param $vars
+ * @return 
+ **/
+
 function template_eval(&$template, &$vars)
 {
         return strtr($template, $vars);
@@ -414,6 +570,16 @@ function template_eval(&$template, &$vars)
 
 
 // Extract and return block '$block_name' from the template, the block is replaced by $subst
+
+/**
+ * template_extract_block()
+ * 
+ * @param $template
+ * @param $block_name
+ * @param string $subst
+ * @return 
+ **/
+
 function template_extract_block(&$template, $block_name, $subst='')
 {
         $pattern = "#(<!-- BEGIN $block_name -->)(.*?)(<!-- END $block_name -->)#s";
@@ -429,6 +595,13 @@ function template_extract_block(&$template, $block_name, $subst='')
  **************************************************************************/
 
 // Get the list of albums that the current user can't see
+
+/**
+ * get_private_album_set()
+ * 
+ * @param string $aid_str
+ * @return 
+ **/
 
 function get_private_album_set($aid_str="")
 {
@@ -481,6 +654,19 @@ function get_private_album_set($aid_str="")
 }
 
 // Retrieve the data for a picture or a set of picture
+
+/**
+ * get_pic_data()
+ * 
+ * @param $album
+ * @param $count
+ * @param $album_name
+ * @param integer $limit1
+ * @param integer $limit2
+ * @param boolean $set_caption
+ * @return 
+ **/
+
 function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $set_caption = true)
 {
         global $USER, $CONFIG, $ALBUM_SET, $CURRENT_CAT_NAME, $CURRENT_ALBUM_KEYWORD, $HTTP_GET_VARS, $HTML_SUBST, $THEME_DIR, $FAVPICS;
@@ -913,6 +1099,14 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
 
 // Get the name of an album
+
+/**
+ * get_album_name()
+ * 
+ * @param $aid
+ * @return 
+ **/
+
 function get_album_name($aid)
 {
         global $CONFIG;
@@ -929,6 +1123,13 @@ function get_album_name($aid)
 }
 
 // Return the name of a user
+
+/**
+ * get_username()
+ * 
+ * @param $uid
+ * @return 
+ **/
 function get_username($uid)
 {
         global $CONFIG;
@@ -949,6 +1150,13 @@ function get_username($uid)
 }
 
 // Return the ID of a user
+
+/**
+ * get_userid()
+ * 
+ * @param $username
+ * @return 
+ **/
 function get_userid($username)
 {
         global $CONFIG;
@@ -969,6 +1177,12 @@ function get_userid($username)
 }
 
 // get number of pending approvals
+
+/**
+ * cpg_get_pending_approvals()
+ * 
+ * @return 
+ **/
 function cpg_get_pending_approvals()
 {
     global $CONFIG;
@@ -980,6 +1194,14 @@ function cpg_get_pending_approvals()
 }
 
 // Return the total number of comments for a certain picture
+
+/**
+ * count_pic_comments()
+ * 
+ * @param $pid
+ * @param integer $skip
+ * @return 
+ **/
 function count_pic_comments($pid, $skip=0)
 {
         global $CONFIG;
@@ -992,6 +1214,13 @@ function count_pic_comments($pid, $skip=0)
 }
 
 // Add 1 everytime a picture is viewed.
+
+/**
+ * add_hit()
+ * 
+ * @param $pid
+ * @return 
+ **/
 function add_hit($pid)
 {
         global $CONFIG, $raw_ip;
@@ -999,8 +1228,17 @@ function add_hit($pid)
 
 }
 
+/**
+ * breadcrumb()
+ *
+ * Build the breadcrumb navigation
+ * 
+ * @param integer $cat
+ * @param string $breadcrumb
+ * @param string $BREADCRUMB_TEXT
+ * @return 
+ **/
 
-// Build the breadcrumb
 function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
 {
         global $album, $lang_errors, $lang_list_categories;
@@ -1061,6 +1299,17 @@ function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
  **************************************************************************/
 
 // Compute image geometry based on max width / height
+
+/**
+ * compute_img_size()
+ * 
+ * Compute image geometry based on max, width / height
+ *
+ * @param integer $width
+ * @param integer $height
+ * @param integer $max
+ * @return array
+ **/
 function compute_img_size($width, $height, $max)
 {
          global $CONFIG;
@@ -1093,6 +1342,20 @@ function compute_img_size($width, $height, $max)
 }
 
 // Prints thumbnails of pictures in an album
+
+/**
+ * display_thumbnails()
+ *
+ * Generates data to display thumbnails of pictures in an album 
+ * 
+ * @param mixed $album Either the album ID or the meta album name
+ * @param integer $cat Either the category ID or album ID if negative
+ * @param integer $page Page number to display
+ * @param integer $thumbcols
+ * @param integer $thumbrows
+ * @param boolean $display_tabs
+ **/
+
 function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $display_tabs)
 {
         global $CONFIG, $AUTHORIZED, $HTTP_GET_VARS;
