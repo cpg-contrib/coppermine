@@ -150,33 +150,33 @@ echo <<<EOT
 <table cellspacing="0" cellpadding="5" border="0" align="center">
 <tr><td>
 <table cellspacing="0" cellpadding="5" border="0" align="center">
-<tr><td align="center" valign="top"><DIV ID="imgDiv"><IMG SRC="$pic_url"></DIV></td></tr>
+<tr><td align="center" valign="top"><div ID="imgDiv"><img src="$pic_url"></div></td></tr>
 </table>
-<table border=0>
+<table border="0">
 <tr>
 <td align="right">
-    <input type="button" name="Submit2" value="{$lang_editpics_php['save_thumb']}" onclick="cropCheck('asThumb');" class="button" >
-    <input type="button" name="Submit2" value="{$lang_editpics_php['save']}" onclick="cropCheck('final');" class="button" >
-    <input type="button" name="Submit2" value="{$lang_editpics_php['preview']}" onclick="cropCheck('pre');" class="button" >
-    <input type="button" name="Submit3" value="{$txt['smaller']}" onMouseDown="cropZoom('in');" onMouseUp="stopZoom();" class="button" >
-    <input type="button" name="Submit3" value="{$txt['up']}" onMouseDown="cropZoom('up');" onMouseUp="stopZoom();" class="button" >
-    <input type="button" name="Submit3" value="{$txt['down']}" onMouseDown="cropZoom('down');" onMouseUp="stopZoom();" class="button" >
-    <input type="button" name="Submit4" value="{$txt['bigger']}" onMouseDown="cropZoom('out');" onMouseUp="stopZoom();" class="button" >
+    <input type="button" name="Submit2" value="{$lang_editpics_php['save_thumb']}" onclick="cropCheck('asThumb');" class="button" />
+    <input type="button" name="Submit2" value="{$lang_editpics_php['save']}" onclick="cropCheck('final');" class="button" />
+    <input type="button" name="Submit2" value="{$lang_editpics_php['preview']}" onclick="cropCheck('pre');" class="button" />
+    <input type="button" name="Submit3" value="{$txt['smaller']}" onMouseDown="cropZoom('in');" onMouseUp="stopZoom();" class="button" />
+    <input type="button" name="Submit3" value="{$txt['up']}" onMouseDown="cropZoom('up');" onMouseUp="stopZoom();" class="button" />
+    <input type="button" name="Submit3" value="{$txt['down']}" onMouseDown="cropZoom('down');" onMouseUp="stopZoom();" class="button" />
+    <input type="button" name="Submit4" value="{$txt['bigger']}" onMouseDown="cropZoom('out');" onMouseUp="stopZoom();" class="button" />
 </td>
 </tr>
-  </FORM>
+  </form>
 </table>
 </td></tr>
 </table>
 </td></tr>
 </table>
 
-<DIV ID="cropDiv">
+<div id="cropDiv">
   <table width="100%" height="100%" border="1" cellpadding="0" cellspacing="0" bordercolor="#000000">
 <tr>
       <td><img src="images/spacer.gif"></td>
     </tr>
   </table>
-</DIV>
+</div>
 EOT;
 ?>
