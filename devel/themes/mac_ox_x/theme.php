@@ -554,7 +554,7 @@ $template_display_picture = <<<EOT
                 <td align="center" class="tableb" height="{CELL_HEIGHT}" style="white-space: nowrap; padding: 0px;">
                         <table cellspacing="2" cellpadding="0" class="imageborder">
                                 <tr>
-                                        <td>
+                                        <td align="center">
                                                 {IMAGE}
                                                 {ADMIN_MENU}
                                         </td>
@@ -1360,7 +1360,7 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
        $param = array('{ALBUM_NAME}' => $album_name,
                              '{DOWNLOAD_ZIP}'=>$lang_thumb_view['download_zip']
                                );
-       $title = template_eval($template_fav_thumb_view_title_row, $param);        
+       $title = template_eval($template_fav_thumb_view_title_row, $param);
     } else {
         $title = $album_name;
     }

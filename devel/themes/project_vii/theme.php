@@ -551,7 +551,7 @@ $template_display_picture = <<<EOT
                 <td align="center" class="tableb" height="{CELL_HEIGHT}" style="white-space: nowrap; padding: 0px;">
                         <table cellspacing="2" cellpadding="0" class="imageborder">
                                 <tr>
-                                        <td>
+                                        <td align="center">
                                                 {IMAGE}
                                                 {ADMIN_MENU}
                                         </td>
