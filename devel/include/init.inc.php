@@ -449,5 +449,14 @@ if (!USER_IS_ADMIN && $CONFIG['offline'] && !strstr($_SERVER["SCRIPT_NAME"],'log
     exit;
 }
 
+// kick user into user_admin_mode (needed to fix "removed user mode for users" when upgrading)
+if (USER_ID && !USER_IS_ADMIN && !$USER['am']) { // user is logged in, but is not gallery admin and not in admin mode
+    $USER['am'] = 1;
+    pageheader($lang_info, "<META http-equiv=\"refresh\" content=\"1;url=$referer\">");
+    msg_box($lang_info, 'Sending you to admin mode', $lang_continue, $referer);
+    pagefooter();
+    ob_end_flush();
+    die();
+}
 
 ?>
