@@ -117,12 +117,12 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
  */
 function dirheader($dir, $dirid)
 {
-    global $CONFIG, $lang_search_new_php;
+    global $CONFIG, $lang_search_new_php,$lang_check_uncheck_all;
     $warning = '';
 
     if (!is_writable($CONFIG['fullpath'] . $dir))
         $warning = "<tr><td class=\"tableh2\" valign=\"middle\" colspan=\"3\">\n" . "<b>{$lang_search_new_php['warning']}</b>: {$lang_search_new_php['change_perm']}</td></tr>\n";
-    return "<tr><td class=\"tableh2\" valign=\"middle\" colspan=\"3\">\n" .
+    return "<tr><td class=\"tableh2\"><input type=\"checkbox\" name=\"checkAll2\" onClick=\"selectAll(this,'pics');\" class=\"checkbox\" title=\"".$lang_check_uncheck_all."\" /></td><td class=\"tableh2\" valign=\"middle\" colspan=\"2\">\n" .
     sprintf($lang_search_new_php['target_album'], $dir, albumselect($dirid)) . "</td></tr>\n" . $warning;
 }
 
@@ -239,7 +239,7 @@ function getfoldercontent($folder, &$dir_array, &$pic_array, &$expic_array)
 
 function display_dir_tree($folder, $ident)
 {
-    global $CONFIG, $lang_search_new_php; //$PHP_SELF, 
+    global $CONFIG, $lang_search_new_php; //$PHP_SELF,
     $dir_path = $CONFIG['fullpath'] . $folder;
 
 
@@ -441,6 +441,28 @@ EOT;
     $help = '&nbsp;'.cpg_display_help('f=index.htm&as=ftp&ae=ftp_end&top=1#ftp_select_file', '500', '400');
     starttable("100%");
     echo <<<EOT
+        <script language="javascript" type="text/javascript">
+        <!--
+        function selectAll(d,box) {
+          var f = document.selectPics;
+          for (i = 0; i < f.length; i++) {
+            //alert (f[i].name.indexOf(box));
+            if (f[i].type == "checkbox" && f[i].name.indexOf(box) >= 0) {
+              if (d.checked) {
+                f[i].checked = true;
+              } else {
+                f[i].checked = false;
+              }
+            }
+          }
+          if (d.name == "checkAll") {
+              document.getElementsByName('checkAll2')[0].checked = document.getElementsByName('checkAll')[0].checked;
+          } else {
+              document.getElementsByName('checkAll')[0].checked = document.getElementsByName('checkAll2')[0].checked;
+          }
+        }
+        -->
+        </script>
         <form method="post" action="{$_SERVER['PHP_SELF']}?insert=1" name="selectPics">
         <tr>
                 <td colspan="3" class="tableh1"><h2>{$lang_search_new_php['list_new_pic']}$help</h2></td>
@@ -448,42 +470,17 @@ EOT;
 
 EOT;
     $expic_array = array();
-    $check_all = $lang_search_new_php['check_all'];
-    $uncheck_all = $lang_search_new_php['uncheck_all'];
-    // added below table, JavaScript and additional check/uncheck options: gaugau 03-11-02
 
     getallpicindb($expic_array, $_GET['startdir']);
     if (CPGscandir($_GET['startdir'] . '/', $expic_array)) {
 
         echo <<<EOT
         <tr>
-                <td colspan="3" align="center" class="tablef">
-                                <script language="javascript" type="text/javascript">
-                                <!--
-                                function checkAll(field)
-                                {
-                                for (i = 0; i < field.length; i++)
-                                  field[i].checked = true ;
-                                }
-
-                                function uncheckAll(field)
-                                {
-                                for (i = 0; i < field.length; i++)
-                                  field[i].checked = false ;
-                                }
-                                -->
-                                </script>
-                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
-                        <tr>
-                        <td align="left">
-                        <input type="button" name="CheckAll" class="button" value="$check_all" onClick="checkAll(document.selectPics.picselector)">
-                        <input type="button" name="UnCheckAll" class="button" value="$uncheck_all" onClick="uncheckAll(document.selectPics.picselector)">
-                        </td>
-                        <td align="center">
+                <td class="tablef">
+                    <input type="checkbox" name="checkAll" onClick="selectAll(this,'pics');" class="checkbox" title="$lang_check_uncheck_all" />
+                </td>
+                <td colspan="2" align="center" class="tablef">
                         <input type="submit" class="button" name="insert" value="{$lang_search_new_php['insert_selected']}">
-                        </td>
-                        </tr>
-                        </table>
                 </td>
         </tr>
         </form>
