@@ -118,9 +118,9 @@ class cpg_udb extends core_udb {
 	}
 
 	// definition of how to extract id, name, group from a session cookie
-	function session_extraction($cookie_id)
+	function session_extraction()
 	{
-			// unused
+			return false; // unused
 	}
 	
 	// definition of how to extract an id and password hash from a cookie

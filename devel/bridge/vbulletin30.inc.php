@@ -99,7 +99,7 @@ class cpg_udb extends core_udb {
 	}
 
 	// definition of how to extract id, name, group from a session cookie
-	function session_extraction($cookie_id)
+	function session_extraction()
 	{
 		if (isset($_COOKIE[$this->cookie_name . 'sessionhash'])) {
 			$session_id = addslashes($_COOKIE[$this->cookie_name . 'sessionhash']);
@@ -145,10 +145,7 @@ class cpg_udb extends core_udb {
 	// definition of how to extract an id and password hash from a cookie
 	function cookie_extraction()
 	{
-	    $id = 0;
-		$pass = '';
-
-		return false; //array($id, $pass);
+		return false;
 	}
 	
 	// definition of actions required to convert a password from user database form to cookie form

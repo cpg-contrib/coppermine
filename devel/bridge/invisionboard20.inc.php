@@ -92,7 +92,7 @@ class cpg_udb extends core_udb {
 	}
 
 	// definition of how to extract id, name, group from a session cookie
-	function session_extraction($cookie_uid)
+	function session_extraction()
 	{
 		if (isset($_COOKIE['session_id'])) {
 			$session_id = addslashes($_COOKIE['session_id']);

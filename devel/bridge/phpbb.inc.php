@@ -119,12 +119,18 @@ class cpg_udb extends core_udb {
 		
 	}
 	// definition of how to extract id, name, group from a session cookie
-	function session_extraction($cookie_id)
+	function session_extraction()
 	{
+		/** 
+         * Need to set cookie_id? (Omni)
+         */
+        $cookie_id = null;
+
+
 		if (isset($_COOKIE[$this->cookie_name . '_sid'])) {
 			$session_id = addslashes($_COOKIE[$this->cookie_name . '_sid']);
 			
-			$sql = "SELECT u.{$this->field['user_id']} AS user_id, u.{$this->field['username']} AS username, u.{$this->field['password']} AS password, ug.{$this->field['usertbl_group_id']}+100 AS group_id FROM {$this->usertable} AS u, {$this->usergroupstable} AS ug WHERE u.{$this->field['user_id']}=ug.{$this->field['user_id']} AND u.{$this->field['user_id']}='$cookie_id'";
+			$sql = "SELECT u.{$this->field['user_id']} AS user_id, u.{$this->field['password']} AS password FROM {$this->usertable} AS u, {$this->usergroupstable} AS ug WHERE u.{$this->field['user_id']}=ug.{$this->field['user_id']} AND u.{$this->field['user_id']}='$cookie_id'";
 			
 			$result = cpg_db_query($sql, $this->link_id);
 			if (mysql_num_rows($result)){
