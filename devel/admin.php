@@ -793,7 +793,7 @@ starttable('100%', "{$lang_admin_php['title']} - $signature", 3);
 echo <<<EOT
     <tr>
         <td class="tableh2" colspan="3">
-            <a href="javascript:expand();" class="admin_menu">{$lang_admin_php['expand_all']}<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['expand_all']}" /></a>
+            <a href="javascript:expand();" class="admin_menu">{$lang_admin_php['expand_all']}&nbsp;&nbsp;<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_admin_php['expand_all']}" /></a>
         </td>
     </tr>
 EOT;
