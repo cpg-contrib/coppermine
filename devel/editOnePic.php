@@ -125,9 +125,9 @@ function form_alb_list_box()
                 <select name="aid" class="listbox">
 
 EOT;
-                foreach($public_albums_list as $album){
-                        echo '                        <option value="'.$album['aid'].'"'.($album['aid'] == $sel_album ? ' selected' : '').'>'.$album['title'] . "</option>\n";
-                }
+                foreach($public_albums_list as $album) { 
+        echo '              <option value="' . $album['aid'] . '"' . ($album['aid'] == $sel_album ? ' selected' : '') . '>' . $album['cat_title'] . "</option>\n"; 
+    }
                 foreach($user_albums_list as $album){
                         echo '                        <option value="'.$album['aid'].'"'.($album['aid'] == $sel_album ? ' selected' : '').'>* '.$album['title'] . "</option>\n";
                 }
@@ -165,7 +165,7 @@ if ($CONFIG['user_field4_name'] != '') $THUMB_ROWSPAN++;
 
 
 if (GALLERY_ADMIN_MODE) {
-    $public_albums = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < '".FIRST_USER_CAT."' ORDER BY title");
+    $public_albums = db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']}, {$CONFIG['TABLE_CATEGORIES']} WHERE category < '" . FIRST_USER_CAT . "' AND (category = 0 OR category = cid) ORDER BY cat_title");
         if (mysql_num_rows($public_albums)) {
             $public_albums_list=db_fetch_rowset($public_albums);
         } else {
