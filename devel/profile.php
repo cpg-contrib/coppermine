@@ -379,7 +379,7 @@ EOT;
                             . '<span class="thumb_title">' . $lang_register_php['last_comments'] . ' ' . $user_data['user_name'] . '<br /></span>'
                             . $lastcom
                             . '</a><br />';
-                $lastcom .= "<span class=\"thumb_caption\"><b>" . $row['msg_author'] . '</b></span>' . "<span class=\"thumb_caption\">" . localised_date($row['msg_date'], $lastcom_date_fmt) . '</span>' . "<span class=\"thumb_caption\">" . $row['msg_body'] . '</span></td>';
+                $lastcom .= "<span class=\"thumb_caption\">" . localised_date($row['msg_date'], $lastcom_date_fmt) . '</span>' . "<span class=\"thumb_caption\">" . $row['msg_body'] . '</span></td>';
             }
         }
 

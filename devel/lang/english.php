@@ -1399,8 +1399,8 @@ $lang_register_php = array(
   'pass_chg_success' => 'Your password was changed',
   'pass_chg_error' => 'Your password was not changed',
   'notify_admin_email_subject' => '%s - Registration notification',
-  'last_uploads' => 'Last uploads by',
-  'last_comments' => 'Last comments made by',
+  'last_uploads' => 'Last uploaded file.<br>Click to see all uploads by',
+  'last_comments' => 'Last comment.<br>Click to see all comments made by',
   'notify_admin_email_body' => 'A new user with the username "%s" has registered in your gallery',
   'pic_count' => 'Files uploaded', // cpg1.4.0
 );
