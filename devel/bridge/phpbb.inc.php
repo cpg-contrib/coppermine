@@ -89,28 +89,39 @@ function udb_authenticate()
             $cookie_pass = '*';
         }
     }
+
     // If autologin was not selected, we need to use the sessions table
     if ($cookie_uid && !$cookie_pass && isset($HTTP_COOKIE_VARS[PHPBB_COOKIE_PREFIX . '_sid'])) {
         $session_id = addslashes($HTTP_COOKIE_VARS[PHPBB_COOKIE_PREFIX . '_sid']);
 
-        $sql = "SELECT user_id, username as user_name, user_level " . "FROM " . $UDB_DB_NAME_PREFIX . PHPBB_TABLE_PREFIX . PHPBB_SESSION_TABLE . " " . "INNER JOIN " . $UDB_DB_NAME_PREFIX . PHPBB_TABLE_PREFIX . PHPBB_USER_TABLE . " ON session_user_id = user_id " . "WHERE session_id='$session_id' AND session_user_id ='$cookie_uid'";
+        $sql = "SELECT user_id, username as user_name, user_level " . "FROM " . $UDB_DB_NAME_PREFIX . PHPBB_TABLE_PREFIX . PHPBB_SESSION_TABLE . " " . "INNER JOIN " . $UDB_DB_NAME_PREFIX . PHPBB_TABLE_PREFIX . PHPBB_USER_TABLE . " ON session_user_id = user_id " . "WHERE session_id='$session_id' AND session_user_id ='$cookie_uid' AND user_active='1'";
     } else {
-        $sql = "SELECT user_id, username as user_name, user_level " . "FROM " . $UDB_DB_NAME_PREFIX . PHPBB_TABLE_PREFIX . PHPBB_USER_TABLE . " " . "WHERE user_id='$cookie_uid' AND user_password='$cookie_pass'";
+        $sql = "SELECT user_id, username as user_name, user_level " . "FROM " . $UDB_DB_NAME_PREFIX . PHPBB_TABLE_PREFIX . PHPBB_USER_TABLE . " " . "WHERE user_id='$cookie_uid' AND user_password='$cookie_pass' AND user_active='1'";
     }
+
     $result = db_query($sql, $UDB_DB_LINK_ID);
 
     if (mysql_num_rows($result)) {
         $USER_DATA = mysql_fetch_array($result);
         mysql_free_result($result);
 
-        define('USER_ID', (int)$USER_DATA['user_id']);
+        if($USER_DATA['user_id'] == "-1") {
+            define('USER_ID', 0);
+        } else {
+            define('USER_ID', (int)$USER_DATA['user_id']);
+        }
         define('USER_NAME', $USER_DATA['user_name']);
+
         // Define the basic groups
         if ($USER_DATA['user_level'] == 1) {
             $user_group_set = PHPBB_ADMIN_GROUP . ',' . PHPBB_MEMBERS_GROUP . ',';
-        } else {
+        } elseif ($USER_DATA['user_id'] == "-1") {
+            $user_group_set = PHPBB_GUEST_GROUP . ',';
+        }else {
             $user_group_set = PHPBB_MEMBERS_GROUP . ',';
         }
+
+
         // Retrieve the groups the user is a member of
         $sql = "SELECT (ug.group_id + 5) as group_id " . "FROM " . $UDB_DB_NAME_PREFIX . PHPBB_TABLE_PREFIX . PHPBB_UGROUP_TABLE . " as ug " . "LEFT JOIN " . $UDB_DB_NAME_PREFIX . PHPBB_TABLE_PREFIX . PHPBB_GROUP_TABLE . " as g ON ug.group_id = g.group_id " . "WHERE user_id = " . USER_ID . " AND user_pending = 0 AND group_single_user = 0";
         $result = db_query($sql, $UDB_DB_LINK_ID);
