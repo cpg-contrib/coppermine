@@ -14,9 +14,8 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-/*
-$Id$
-*/
+// $Id$
+// ------------------------------------------------------------------------- //
 
 // info about translators and translated language
 $lang_translation_info = array(
@@ -385,10 +384,10 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   'Language, Themes &amp; Charset settings',
   array('Jezik', 'lang', 5),
   array('Tema', 'theme', 6),
-  array('PrikaÂži seznam jezikov', 'language_list', 8), //cpg1.3.0
+  array('PrikaÂži seznam jezikov', 'language_list', 1), //cpg1.3.0
   array('PrikaÂži zastave jezikov', 'language_flags', 8), //cpg1.3.0
   array('PrikaÂži &quot;reset&quot; na seznamu jezikov', 'language_reset', 1), //cpg1.3.0
-  array('PrikaÂži seznam tem', 'theme_list', 8), //cpg1.3.0
+  array('PrikaÂži seznam tem', 'theme_list', 1), //cpg1.3.0
   array('PrikaÂži &quot;reset&quot; na seznamu tem', 'theme_reset', 1), //cpg1.3.0
   array('PrikaÂži FAQ', 'display_faq', 1), //cpg1.3.0
   array('PrikaÂži pomoÄ za bbcode', 'show_bbcode_help', 1), //cpg1.3.0

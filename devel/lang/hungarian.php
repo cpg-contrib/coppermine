@@ -2,7 +2,7 @@
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -406,10 +406,10 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         'Nyelv, téma és karakterkészlet beállítások',
         array('Nyelv', 'lang', 5),
         array('Téma', 'theme', 6),
-        array('Legördülõ nyelv-menü megjelenítése', 'language_list', 8), //cpg1.3.0
+        array('Legördülõ nyelv-menü megjelenítése', 'language_list', 1), //cpg1.3.0
         array('Ország zászlók megjelenítése', 'language_flags', 8), //cpg1.3.0
         array('&quot;Reset&quot; megjelenítése a nyelv-menüben', 'language_reset', 1), //cpg1.3.0
-        array('Legördülõ téma-menü megjelenítése', 'theme_list', 8), //cpg1.3.0
+        array('Legördülõ téma-menü megjelenítése', 'theme_list', 1), //cpg1.3.0
         array('&quot;Reset&quot; megjelenítése a téma-menüben', 'theme_reset', 1), //cpg1.3.0
         array('GYIK megjelenítése', 'display_faq', 1), //cpg1.3.0
         array('Bbcode help megjelenítése', 'show_bbcode_help', 1), //cpg1.3.0

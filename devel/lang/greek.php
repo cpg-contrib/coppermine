@@ -2,17 +2,17 @@
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
-//  http://www.chezgreg.net/coppermine/                                      //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
+// http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
 // (http://coppermine.sf.net/team/)                                          //
 // see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
+// This program is free software; you can redistribute it and/or modify      //
+// it under the terms of the GNU General Public License as published by      //
+// the Free Software Foundation; either version 2 of the License, or         //
+// (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
 // $Id$
 // ------------------------------------------------------------------------- //
@@ -385,10 +385,10 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	'Γλώσσα, Θέμα και επιλογές κωδικοποίησης χαρακτήρων',
 	array('Γλώσσα', 'lang', 5),
 	array('Θέμα', 'theme', 6),
-	array('Εμφάνιση λίστας γλωσσών', 'language_list', 8), //cpg1.3.0
+	array('Εμφάνιση λίστας γλωσσών', 'language_list', 1), //cpg1.3.0
 	array('Εμφάνιση σημαίας γλώσσας', 'language_flags', 8), //cpg1.3.0
 	array('Εμφάνιση &quot;reset&quot; στην επιλογή γλώσσας', 'language_reset', 1), //cpg1.3.0
-	array('Εμφάνιση λίστας θεμάτων', 'theme_list', 8), //cpg1.3.0
+	array('Εμφάνιση λίστας θεμάτων', 'theme_list', 1), //cpg1.3.0
 	array('Εμφάνιση &quot;reset&quot; στην επιλογή θέματος', 'theme_reset', 1), //cpg1.3.0
 	array('Εμφάνιση συχνών ερωτησεων και απαντήσεων (FAQ)', 'display_faq', 1), //cpg1.3.0
 	array('Εμφάνιση βοήθειας bbcode', 'show_bbcode_help', 1), //cpg1.3.0

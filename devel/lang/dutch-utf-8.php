@@ -2,7 +2,7 @@
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -384,10 +384,10 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         'Taal, Themas &amp; Tekenset instellingen',
         array('Taal', 'lang', 5),
         array('Thema', 'theme', 6),
-        array('Toon taal lijst', 'language_list', 8),
+        array('Toon taal lijst', 'language_list', 1),
         array('Toon taal vlaggen', 'language_flags', 8),
         array('Toon &quot;reset&quot; in taal selectie', 'language_reset', 1),
-        array('Toon thema lijst', 'theme_list', 8),
+        array('Toon thema lijst', 'theme_list', 1),
         array('Toon &quot;reset&quot; in thema selectie', 'theme_reset', 1),
         array('Toon FAQ', 'display_faq', 1),
         array('Toon bbcode help', 'show_bbcode_help', 1),

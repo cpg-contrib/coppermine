@@ -2,21 +2,20 @@
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
-//  http://www.chezgreg.net/coppermine/                                      //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
+// http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
 // (http://coppermine.sf.net/team/)                                          //
 // see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
+// This program is free software; you can redistribute it and/or modify      //
+// it under the terms of the GNU General Public License as published by      //
+// the Free Software Foundation; either version 2 of the License, or         //
+// (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-/*
-$Id$
-*/
+// $Id$
+// ------------------------------------------------------------------------- //
 
 // info about translators and translated language
 $lang_translation_info = array(
@@ -245,7 +244,7 @@ $lang_language_selection = array(
 
 $lang_theme_selection = array(
   'reset_theme' => 'Standard-Design', //cpg1.3.0
-  'choose_theme' => 'Wähle Desin', //cpg1.3.0
+  'choose_theme' => 'Wähle Design', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -386,10 +385,10 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   'Sprache-, Design- &amp; Zeichensatz-Einstellungen',
   array('Sprache', 'lang', 5),
   array('Design', 'theme', 6),
-  array('Sprachauswahl-Liste anzeigen', 'language_list', 8), //cpg1.3.0
+  array('Sprachauswahl-Liste anzeigen', 'language_list', 1), //cpg1.3.0
   array('Sprachauswahl-Flaggen anzeigen', 'language_flags', 8), //cpg1.3.0
   array('&quot;Standard&quot; in Sprachauswahl anzeigen', 'language_reset', 1), //cpg1.3.0
-  array('Designauswahl-Liste anzeigen', 'theme_list', 8), //cpg1.3.0
+  array('Designauswahl-Liste anzeigen', 'theme_list', 1), //cpg1.3.0
   array('&quot;Standard&quot; in Designauswahl-Liste anzeigen', 'theme_reset', 1), //cpg1.3.0
   array('FAQ anzeigen', 'display_faq', 1), //cpg1.3.0
   array('bbcode-Hilfe anzeigen', 'show_bbcode_help', 1), //cpg1.3.0

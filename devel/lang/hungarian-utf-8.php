@@ -406,10 +406,10 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         'Nyelv, tÃ©ma Ã©s karakterkÃ©szlet beÃ¡llÃ­tÃ¡sok',
         array('Nyelv', 'lang', 5),
         array('TÃ©ma', 'theme', 6),
-        array('LegÃ¶rdÃ¼lÅ‘ nyelv-menÃ¼ megjelenÃ­tÃ©se', 'language_list', 8), //cpg1.3.0
+        array('LegÃ¶rdÃ¼lÅ‘ nyelv-menÃ¼ megjelenÃ­tÃ©se', 'language_list', 1), //cpg1.3.0
         array('OrszÃ¡g zÃ¡szlÃ³k megjelenÃ­tÃ©se', 'language_flags', 8), //cpg1.3.0
         array('&quot;Reset&quot; megjelenÃ­tÃ©se a nyelv-menÃ¼ben', 'language_reset', 1), //cpg1.3.0
-        array('LegÃ¶rdÃ¼lÅ‘ tÃ©ma-menÃ¼ megjelenÃ­tÃ©se', 'theme_list', 8), //cpg1.3.0
+        array('LegÃ¶rdÃ¼lÅ‘ tÃ©ma-menÃ¼ megjelenÃ­tÃ©se', 'theme_list', 1), //cpg1.3.0
         array('&quot;Reset&quot; megjelenÃ­tÃ©se a tÃ©ma-menÃ¼ben', 'theme_reset', 1), //cpg1.3.0
         array('GYIK megjelenÃ­tÃ©se', 'display_faq', 1), //cpg1.3.0
         array('Bbcode help megjelenÃ­tÃ©se', 'show_bbcode_help', 1), //cpg1.3.0

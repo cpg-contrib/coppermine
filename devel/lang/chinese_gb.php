@@ -2,7 +2,7 @@
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -386,10 +386,10 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   '语系, 佈景 &amp; 文字编码设定',
   array('语言', 'lang', 5),
   array('佈景', 'theme', 6),
-  array('显示语言列表', 'language_list', 8), //cpg1.3.0
+  array('显示语言列表', 'language_list', 1), //cpg1.3.0
   array('显示语言国旗', 'language_flags', 8), //cpg1.3.0
   array('显示 &quot;重设&quot; 在语言选择', 'language_reset', 1), //cpg1.3.0
-  array('显示佈景列表', 'theme_list', 8), //cpg1.3.0
+  array('显示佈景列表', 'theme_list', 1), //cpg1.3.0
   array('显示 &quot;重设&quot; 在佈景选择', 'theme_reset', 1), //cpg1.3.0
   array('显示 FAQ', 'display_faq', 1), //cpg1.3.0
   array('显示 bbcode help', 'show_bbcode_help', 1), //cpg1.3.0

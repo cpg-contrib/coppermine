@@ -3,16 +3,18 @@
 // Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
 // Copyright (C) 2002-2004 Gregory DEMAR                                     //
-//  http://www.chezgreg.net/coppermine/                                      //
+// http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
 // (http://coppermine.sf.net/team/)                                          //
 // see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
+// This program is free software; you can redistribute it and/or modify      //
+// it under the terms of the GNU General Public License as published by      //
+// the Free Software Foundation; either version 2 of the License, or         //
+// (at your option) any later version.                                       //
+// ------------------------------------------------------------------------- //
+// $Id$
 // ------------------------------------------------------------------------- //
 
 // info about translators and translated language
@@ -382,10 +384,10 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	'×©×¤×”, ×¢×™×¦×•×‘ ×•×§×™×“×•×“ ×ª×•×™×',
 	array('×©×¤×”', 'lang', 5),
 	array('×¡×’× ×•×Ÿ ×¢×™×¦×•×‘', 'theme', 6),
-	array('×”×¦×’×ª ×¨×©×™×ž×ª ×©×¤×•×ª', 'language_list', 8), //cpg1.3.0
+	array('×”×¦×’×ª ×¨×©×™×ž×ª ×©×¤×•×ª', 'language_list', 1), //cpg1.3.0
 	array('×”×¦×’×ª ×“×’×œ×™ ×ž×“×™× ×•×ª', 'language_flags', 8), //cpg1.3.0
 	array('×”×¦×’×ª ××¤×©×¨×•×ª ×œ×©×¤×ª ×‘×¨×™×¨×ª ×ž×—×“×œ', 'language_reset', 1), //cpg1.3.0
-	array('×”×¦×’×ª ×¨×©×™×ž×ª ×¡×’× ×•× ×•×ª ×¢×™×¦×•×‘', 'theme_list', 8), //cpg1.3.0
+	array('×”×¦×’×ª ×¨×©×™×ž×ª ×¡×’× ×•× ×•×ª ×¢×™×¦×•×‘', 'theme_list', 1), //cpg1.3.0
 	array('×”×¦×’×ª ××¤×©×¨×•×ª ×œ×¡×’× ×•×Ÿ ×‘×¨×™×¨×ª ×ž×—×“×œ', 'theme_reset', 1), //cpg1.3.0
 	array('×”×¦×’×ª ×ª×©×•×‘×•×ª ×œ×©××œ×•×ª × ×¤×•×¦×•×ª (FAQ)', 'display_faq', 1), //cpg1.3.0
 	array('×”×¦×’×ª ×¢×–×¨×” ×œ×§×•×“×™ ×¢×™×¦×•×‘ (bbcode)', 'show_bbcode_help', 1), //cpg1.3.0

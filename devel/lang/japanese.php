@@ -2,7 +2,7 @@
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -14,9 +14,8 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-/*
-$Id$
-*/
+// $Id$
+// ------------------------------------------------------------------------- //
 
 // info about translators and translated language
 $lang_translation_info = array(
@@ -385,10 +384,10 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   '言語、テーマ &amp; Charset設定',
   array('言語', 'lang', 5),
   array('テーマ', 'theme', 6),
-  array('言語リストを表示する', 'language_list', 8),
+  array('言語リストを表示する', 'language_list', 1),
   array('国旗を表示する', 'language_flags', 8),
   array('言語選択に&quot;リセット&quot;を表示する', 'language_reset', 1),
-  array('テーマリストを表示', 'theme_list', 8),
+  array('テーマリストを表示', 'theme_list', 1),
   array('テーマ選択に&quot;リセット&quot;を表示する', 'theme_reset', 1), 
   array('FAQを表示する', 'display_faq', 1),
   array('bbcodeヘルプを表示する', 'show_bbcode_help', 1),

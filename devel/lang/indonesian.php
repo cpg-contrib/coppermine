@@ -2,7 +2,7 @@
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -384,10 +384,10 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   'Setting Bahasa, Theme &amp; Karakter Set',
   array('Bahasa', 'lang', 5),
   array('Theme', 'theme', 6),
-  array('Tampilkan pilihan bahasa', 'language_list', 8), //cpg1.3.0
+  array('Tampilkan pilihan bahasa', 'language_list', 1), //cpg1.3.0
   array('Tampilkan bendera', 'language_flags', 8), //cpg1.3.0
   array('Tampilkan &quot;reset&quot; dalam pilihan bahasa', 'language_reset', 1), //cpg1.3.0
-  array('Tampilkan pilihan theme', 'theme_list', 8), //cpg1.3.0
+  array('Tampilkan pilihan theme', 'theme_list', 1), //cpg1.3.0
   array('Tampilkan &quot;reset&quot; dalam pilihan theme', 'theme_reset', 1), //cpg1.3.0
   array('Tampilkan FAQ', 'display_faq', 1), //cpg1.3.0
   array('Tampilkan bantuan bbcode', 'show_bbcode_help', 1), //cpg1.3.0

@@ -14,9 +14,8 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-/*
-$Id$
-*/
+// $Id$
+// ------------------------------------------------------------------------- //
 
 // info about translators and translated language
 $lang_translation_info = array(
@@ -385,10 +384,10 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   'è¨€èªžã€ãƒ†ãƒ¼ãƒž &amp; Charsetè¨­å®š',
   array('è¨€èªž', 'lang', 5),
   array('ãƒ†ãƒ¼ãƒž', 'theme', 6),
-  array('è¨€èªžãƒªã‚¹ãƒˆã‚’è¡¨ç¤ºã™ã‚‹', 'language_list', 8),
+  array('è¨€èªžãƒªã‚¹ãƒˆã‚’è¡¨ç¤ºã™ã‚‹', 'language_list', 1),
   array('å›½æ——ã‚’è¡¨ç¤ºã™ã‚‹', 'language_flags', 8),
   array('è¨€èªžé¸æŠžã«&quot;ãƒªã‚»ãƒƒãƒˆ&quot;ã‚’è¡¨ç¤ºã™ã‚‹', 'language_reset', 1),
-  array('ãƒ†ãƒ¼ãƒžãƒªã‚¹ãƒˆã‚’è¡¨ç¤º', 'theme_list', 8),
+  array('ãƒ†ãƒ¼ãƒžãƒªã‚¹ãƒˆã‚’è¡¨ç¤º', 'theme_list', 1),
   array('ãƒ†ãƒ¼ãƒžé¸æŠžã«&quot;ãƒªã‚»ãƒƒãƒˆ&quot;ã‚’è¡¨ç¤ºã™ã‚‹', 'theme_reset', 1), 
   array('FAQã‚’è¡¨ç¤ºã™ã‚‹', 'display_faq', 1),
   array('bbcodeãƒ˜ãƒ«ãƒ—ã‚’è¡¨ç¤ºã™ã‚‹', 'show_bbcode_help', 1),

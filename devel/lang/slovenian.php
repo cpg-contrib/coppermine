@@ -2,7 +2,7 @@
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -14,9 +14,8 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-/*
-$Id$
-*/
+// $Id$
+// ------------------------------------------------------------------------- //
 
 // info about translators and translated language
 $lang_translation_info = array(
@@ -385,10 +384,10 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   'Language, Themes &amp; Charset settings',
   array('Jezik', 'lang', 5),
   array('Tema', 'theme', 6),
-  array('Prikaži seznam jezikov', 'language_list', 8), //cpg1.3.0
+  array('Prikaži seznam jezikov', 'language_list', 1), //cpg1.3.0
   array('Prikaži zastave jezikov', 'language_flags', 8), //cpg1.3.0
   array('Prikaži &quot;reset&quot; na seznamu jezikov', 'language_reset', 1), //cpg1.3.0
-  array('Prikaži seznam tem', 'theme_list', 8), //cpg1.3.0
+  array('Prikaži seznam tem', 'theme_list', 1), //cpg1.3.0
   array('Prikaži &quot;reset&quot; na seznamu tem', 'theme_reset', 1), //cpg1.3.0
   array('Prikaži FAQ', 'display_faq', 1), //cpg1.3.0
   array('Prikaži pomoè za bbcode', 'show_bbcode_help', 1), //cpg1.3.0

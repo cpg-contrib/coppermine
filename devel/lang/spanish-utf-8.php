@@ -384,10 +384,10 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	'Idioma, temas (aspecto) y juego de caracteres',
 	array('Idioma', 'lang', 5),
 	array('Tema (Aspecto)', 'theme', 6),
-	array('Mostrar lista de idiomas', 'language_list', 8), //cpg1.3.0
+	array('Mostrar lista de idiomas', 'language_list', 1), //cpg1.3.0
 	array('Mostrar banderas de idiomas', 'language_flags', 8), //cpg1.3.0
 	array('Mostrar &quot;reset&quot; en selecciÃ³n de idiomas', 'language_reset', 1), //cpg1.3.0
-	array('Mostrar lista de temas (aspecto)', 'theme_list', 8), //cpg1.3.0
+	array('Mostrar lista de temas (aspecto)', 'theme_list', 1), //cpg1.3.0
 	array('Mostrar &quot;reset&quot; en selecciÃ³n de temas', 'theme_reset', 1), //cpg1.3.0
 	array('Mostrar FAQ (preguntas frecuentes)', 'display_faq', 1), //cpg1.3.0
 	array('Mostrar ayuda sobre bbcode', 'show_bbcode_help', 1), //cpg1.3.0

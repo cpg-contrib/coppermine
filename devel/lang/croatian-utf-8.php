@@ -384,10 +384,10 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   'Language, Themes &amp; Charset settings',
   array('Jezik', 'lang', 5),
   array('PredloÂžak', 'theme', 6),
-  array('PokaÂži popis jezika', 'language_list', 8), //cpg1.3.0
+  array('PokaÂži popis jezika', 'language_list', 1), //cpg1.3.0
   array('PokaÂži zastave jezika', 'language_flags', 8), //cpg1.3.0
   array('PokaÂži &quot;reset&quot; u odabranom jeziku', 'language_reset', 1), //cpg1.3.0
-  array('PokaÂži popis predloÂžaka', 'theme_list', 8), //cpg1.3.0
+  array('PokaÂži popis predloÂžaka', 'theme_list', 1), //cpg1.3.0
   array('PokaÂži &quot;reset&quot; u odabiru predloÂžaka', 'theme_reset', 1), //cpg1.3.0
   array('PokaÂži FAQ', 'display_faq', 1), //cpg1.3.0
   array('PokaÂži bbcode help', 'show_bbcode_help', 1), //cpg1.3.0

@@ -14,9 +14,8 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-/*
-$Id$
-*/
+// $Id$
+// ------------------------------------------------------------------------- //
 
 // info about translators and translated language
 $lang_translation_info = array(
@@ -385,10 +384,10 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   'Language, Themes &amp; Charset settings',
   array('Language', 'lang', 5),
   array('Theme', 'theme', 6),
-  array('Display language list', 'language_list', 8), //cpg1.3.0
+  array('Display language list', 'language_list', 1), //cpg1.3.0
   array('Display language flags', 'language_flags', 8), //cpg1.3.0
   array('Display &quot;reset&quot; in language selection', 'language_reset', 1), //cpg1.3.0
-  array('Display theme list', 'theme_list', 8), //cpg1.3.0
+  array('Display theme list', 'theme_list', 1), //cpg1.3.0
   array('Display &quot;reset&quot; in theme selection', 'theme_reset', 1), //cpg1.3.0
   array('Display FAQ', 'display_faq', 1), //cpg1.3.0
   array('Display bbcode help', 'show_bbcode_help', 1), //cpg1.3.0
