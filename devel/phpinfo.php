@@ -13,12 +13,13 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- // 
+// ------------------------------------------------------------------------- //
 define('IN_COPPERMINE', true);
 
 require("include/config.inc.php");
 require('include/init.inc.php');
-require('include/picmgmt.inc.php');
+error_reporting (E_ALL ^ E_NOTICE);
+// require('include/picmgmt.inc.php');
 
 pageheader($lang_search_php[0]);
 
@@ -34,7 +35,7 @@ print '<div align="left">
 
 if (strcmp('4.0.0', phpversion()) == 1) {
     print ' - your PHP version isn\'t good enough! Minimum requirements: 4.x';
-} 
+}
 print '<br />
 ';
 
@@ -44,18 +45,26 @@ print '<h2>mySQL version: ' . $mySqlVersion . '</h2>
 
 if (strcmp('3.23.23', $mySqlVersion) == 1) {
     print ' - your mySQL version isn\'t good enough! Minimum requirements: 3.23.23';
-} 
+}
 print '<hr />
 ';
 
 print '<h2>Image Lib(s)</h2>
 ';
 
+cpgModOutput("gd");
+
+//print "foo".test_im();
+
+
+/*
 if (cpgModOutput("gd") . cpgModOutput("Image Magick") == "") {
     print '<h2>you seem to have neither GD nor Image Magick installed; Coppermine won\'t run!</h2>';
-} 
+}
 print '<br />
 ';
+*/
+
 
 starttable('100%', 'Server restrictions (safe mode)?', 3);
 print '<tr><td><b>Directive</b></td><td><b>Local Value</b></td><td><b>Master Value</b></td></tr>';
@@ -123,7 +132,7 @@ function cpgGetPhpinfoConf($search)
     ob_start();
     phpinfo(INFO_CONFIGURATION);
     $string = ob_get_contents();
-    ob_end_clean(); 
+    ob_end_clean();
     // find out the first occurence of "</tr" and throw the superfluos stuff in front of it away
     $string = strchr($string, '</tr>');
     $string = str_replace('</td>', '|', $string);
@@ -134,9 +143,9 @@ function cpgGetPhpinfoConf($search)
         $bits = explode("|", $val);
         if (strchr($bits[0], $search)) {
             return $bits;
-        } 
-    } 
-} 
+        }
+    }
+}
 
 function cpgGetPhpinfoMod($search)
 {
@@ -145,7 +154,7 @@ function cpgGetPhpinfoMod($search)
     phpinfo(INFO_MODULES);
     $string = ob_get_contents();
     $module = $string;
-    ob_end_clean(); 
+    ob_end_clean();
     // find out the first occurence of "<h2" and throw the superfluos stuff away
     $string = strchr($string, 'module_' . $search);
     $string = eregi_replace('</table>(.*)', '', $string);
@@ -156,9 +165,9 @@ function cpgGetPhpinfoMod($search)
     $pieces = explode("§", $string);
     foreach($pieces as $key => $val) {
         $bits[$key] = explode("|", $val);
-    } 
+    }
     return $bits;
-} 
+}
 
 function cpgModOutput($search)
 {
@@ -168,19 +177,59 @@ function cpgModOutput($search)
     foreach($pieces as $val) {
         print '<tr><td>' . $val[0] . '</td><td>' . $val[1] . '</td></tr>';
         $summ .= $val[0];
-    } 
+    }
     if (!$summ) {
         print '<tr><td colspan="2">module doesn\'t exist</td></tr>';
-    } 
+    }
     endtable();
     return $summ;
-} 
+}
 
 function cpgMysqlVersion()
 {
     $result = mysql_query("SELECT VERSION() as version");
     $row = mysql_fetch_row($result);
     return $row[0];
-} 
+}
+
+function test_im()
+{
+    global $errors, $DFLT, $im_installed,$CONFIG;
+
+    $im_installed = false;
+    $CONFIG['impath'] = '/tmp/';
+
+    if ($CONFIG['impath'] != '') {
+        if (!preg_match('|/\Z|', $CONFIG['impath']))
+            $CONFIG['impath'] .= '/';
+        if (!is_dir($CONFIG['impath'])) {
+            $errors .= "<hr /><br />The installer can not find the '{$CONFIG['impath']}' directory you have specified for ImageMagick or it does not have permission to access it. Check that your typing is correct and that you have access to the specified directory.<br /><br />";
+        } elseif (preg_match('/ /', $CONFIG['impath'])) {
+            $errors .= "<hr /><br />The path you have entered for ImageMagick ('{$CONFIG['impath']}') contains at least one space. This will cause problems in the script.<br /><br />
+                        You must move ImageMagick to another directory.<br /><br />";
+        } elseif (!file_exists($CONFIG['impath'] . 'convert') && !file_exists($CONFIG['impath'] . 'convert.exe')) {
+            $errors .= "<hr /><br />The installer can not find the 'convert' or 'convert.exe' ImageMagick program in directory '{$CONFIG['impath']}'. Check that you have entered the correct directory name.<br /><br />";
+        } else {
+            $output = array();
+            $tst_image = "{$DFLT['alb_d']}/{$DFLT['upl_d']}/im.gif";
+            exec ("{$CONFIG['impath']}convert images/nopic.jpg $tst_image", $output, $result);
+            $size = getimagesize($tst_image);
+            unlink($tst_image);
+            $im_installed = ($size[2] == 1);
+
+            if (!$im_installed)
+                $errors .= "<hr /><br />The installer found the ImageMagick 'convert' program in '{$CONFIG['impath']}', however it can't be executed by the script.<br /><br />
+                                        You may consider using GD instead of ImageMagick.<br /><br />";
+
+            if ($result && count($output)) {
+                $errors .= "The convert program said:<br /><pre>";
+                foreach($output as $line) $errors .= htmlspecialchars($line);
+                $errors .= "</pre><br /><br />";
+            }
+        }
+    }
+
+    return $im_installed;
+}
 
 ?>
