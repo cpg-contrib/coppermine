@@ -105,49 +105,26 @@
 #v_xhtml {float:right;background-image:url(../../images/valid-xhtml10.gif);}
 #v_xhtml:hover {background-image:url(../../images/h_valid-xhtml10.gif);}
 #v_css {float:right;background-image:url(../../images/valid-css.gif);}
-#v_css:hover{background-image:url(../../images/h_valid-css.gif);}
-</pre>
+#v_css:hover{background-image:url(../../images/h_valid-css.gif);}</pre>
     </li>
 		
-		<li>
-			Add a new class for the background color of the image in displayimage. The class is based on tableb. 
-			It was added to give the designer more flexibility in styling that element without affecting other elements that used tableb.
-			If you want to use the same attributes as you current have for tableb, you can copy the tableb block and name it:
-			display_media.
-			<p>
-			For example, in the classic theme:
-			</p>
-			<h6>copy and paste after the .imageborder block (You can paste it anywhere but that placement helps to keep things organized)</h6>
-			<pre>			.tableb {
-        background: #EFEFEF ;
-        padding-top: 3px;
-        padding-right: 10px;
-        padding-bottom: 3px;
-        padding-left: 10px;
-				}
-			</pre>
-			<p>
-			Replace "tableb" with "display_media"
-			</p>
+		<li>Add the "catrow_noalb" class. It  is used for rows that do not contain albums and was based on &quot;tableh2&quot;. In order to maintain your themes look simply add it to &quot;tableh2&quot; selector.
+	      <h6>Find:</h6>
+          <pre>.tableh2 {<br />        background: #D1D7DC ;<br />        color : #000000;<br />        padding-top: 3px;<br />        padding-right: 10px;<br />        padding-bottom: 3px;<br />        padding-left: 10px;<br />}</pre>
+          <h6>Replace with:</h6>
+          <pre>.tableh2, .catrow_noalb {<br />        background: #D1D7DC ;<br />        color : #000000;<br />        padding-top: 3px;<br />        padding-right: 10px;<br />        padding-bottom: 3px;<br />        padding-left: 10px;<br />}</pre>
 		</li>
-		<li>
-			"catrow" and "catrow_noalb" were added for the same reasons
-			as above for "display_media". They style the category rows on the index
-			page. "catrow_noalb" is used for rows that do not contain albums, at least
-			in the first level of the category. "catrow" is based on "tableb" so if
-			you want to keep the same look, copy and paste the "tableb" block as described
-			above and rename it "catrow". You can paste it anywhere but to keep things
-			organized, the recommended placement would be after the table blocks, before
-			"album_stat". "catrow_noalb" is based on "tableh2" so repeat the steps
-			as described above.
+		<li>Add the &quot;catrow&quot; and &quot;display_media&quot; classes which are both based on &quot;tableb&quot;. &quot;catrow&quot; styles the category rows on the index
+			page and &quot;display_media&quot; styles the background color of the intermediate image on the displayimage page.
+		  <h6>Find:</h6>
+          <pre>.tableb {<br />        background: #EFEFEF ;<br />        padding-top: 3px;<br />        padding-right: 10px;<br />        padding-bottom: 3px;<br />        padding-left: 10px;<br />}</pre>
+          <h6>Replace with:</h6>
+          <pre>.tableb , .display_media , .catrow {<br />        background: #EFEFEF ;<br />        padding-top: 3px;<br />        padding-right: 10px;<br />        padding-bottom: 3px;<br />        padding-left: 10px;<br />}</pre>
+        </li>
+		<li>Validate the style sheet: <a href="http://jigsaw.w3.org/css-validator/">http://jigsaw.w3.org/css-validator</a> 
+
+          <h6>Make changes as necessary.</h6>
 		</li>
-		
-    <li>
-      Validate the style sheet: <a href="http://jigsaw.w3.org/css-validator/">http://jigsaw.w3.org/css-validator</a> 
-
-      <h6>Make changes as necessary.</h6>
-    </li>
-
   </ol>
 <div id="footer" style="border-top: 1px solid gray; margin-top: 30px; padding-top: 10px;">
 	<a href="index.html">Previous</a>&nbsp;|&nbsp;<a href="edit_template.html">Next</a>

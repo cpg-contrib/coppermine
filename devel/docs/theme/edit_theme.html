@@ -409,7 +409,6 @@ $template_sys_menu = &lt;&lt;&lt;EOT
 &lt;!-- END logout --&gt;
                                 &lt;/tr&gt;
                         &lt;/table&gt;
-
 EOT;
 </pre>
     </li>
@@ -589,15 +588,15 @@ EOT;
     </li>
 
 
-    <li>
-			Replace $template_display_picture with $template_display_media
-			<h6>Find all instances of:</h6>
+    <li>If your theme modifies $template_display_picture
+			replace it with $template_display_media
+			  <h6>Find all instances of:</h6>
 			<pre>$template_display_picture</pre>
 			<h6>Replace all with:</h6>
 			<pre>$template_display_media</pre>
 		</li>
     <li>
-			Replace tableb with display_media in $template_display_media block	
+			If you used a previous $template_display_picture replace tableb with display_media in $template_display_media block	
 			  <h6>Find:</h6>
 			<pre>&lt;td align="center" class="tableb" nowrap="nowrap"&gt;</pre>
 			
@@ -605,15 +604,15 @@ EOT;
 			<pre>&lt;td align="center" class="display_media" nowrap="nowrap"&gt;</pre>
 		</li>
     <li>
-			Replace tableh2 with catrow_noalb in the catrow_noalb block
+			If your theme modifies $template_cat_list replace tableh2 with catrow_noalb in the catrow_noalb block
 			  <h6>Find:</h6>
 			<pre>&lt;!-- BEGIN catrow_noalb --&gt;<br />        &lt;tr&gt;<br />                &lt;td class="tableh2" colspan="3"&gt;&lt;table border="0"&gt;&lt;tr&gt;&lt;td align="left"&gt;{CAT_THUMB}&lt;/td&gt;&lt;td align="left"&gt;&lt;span class="catlink"&gt;&lt;b&gt;{CAT_TITLE}&lt;/b&gt;&lt;/span&gt;{CAT_DESC}&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;<br />        &lt;/tr&gt;<br />&lt;!-- END catrow_noalb --&gt;</pre>
 			<h6>Replace with :</h6>
 			<pre>&lt;!-- BEGIN catrow_noalb --&gt;<br />        &lt;tr&gt;<br />                &lt;td class="catrow_noalb" colspan="3"&gt;&lt;table border="0"&gt;&lt;tr&gt;&lt;td align="left"&gt;{CAT_THUMB}&lt;/td&gt;&lt;td align="left"&gt;&lt;span class="catlink"&gt;&lt;b&gt;{CAT_TITLE}&lt;/b&gt;&lt;/span&gt;{CAT_DESC}&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;<br />        &lt;/tr&gt;<br />&lt;!-- END catrow_noalb --&gt;</pre>
 		</li>
     <li>
-			Replace tableb with catrow in the catrow block
-			<h6>Find:</h6>
+			If your theme modifies $template_cat_list replace tableb with catrow in the catrow block
+			  <h6>Find:</h6>
 			<pre>&lt;!-- BEGIN catrow --&gt;<br />        &lt;tr&gt;<br />                &lt;td class="tableb" align="left"&gt;&lt;table border="0"&gt;&lt;tr&gt;&lt;td&gt;{CAT_THUMB}&lt;/td&gt;&lt;td&gt;&lt;span class="catlink"&gt;&lt;b&gt;{CAT_TITLE}&lt;/b&gt;&lt;/span&gt;{CAT_DESC}&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;<br />                &lt;td class="tableb" align="center"&gt;{ALB_COUNT}&lt;/td&gt;<br />                &lt;td class="tableb" align="center"&gt;{PIC_COUNT}&lt;/td&gt;<br />        &lt;/tr&gt;<br />        &lt;tr&gt;<br />            &lt;td class="tableb" colspan="3"&gt;{CAT_ALBUMS}&lt;/td&gt;<br />        &lt;/tr&gt;<br />&lt;!-- END catrow --&gt;</pre>
 			<h6>Replace with :</h6>
 			<pre>&lt;!-- BEGIN catrow --&gt;<br />        &lt;tr&gt;<br />                &lt;td class="catrow" align="left"&gt;&lt;table border="0"&gt;&lt;tr&gt;&lt;td&gt;{CAT_THUMB}&lt;/td&gt;&lt;td&gt;&lt;span class="catlink"&gt;&lt;b&gt;{CAT_TITLE}&lt;/b&gt;&lt;/span&gt;{CAT_DESC}&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;<br />                &lt;td class="catrow" align="center"&gt;{ALB_COUNT}&lt;/td&gt;<br />                &lt;td class="catrow" align="center"&gt;{PIC_COUNT}&lt;/td&gt;<br />        &lt;/tr&gt;<br />        &lt;tr&gt;<br />            &lt;td class="tableb" colspan="3"&gt;{CAT_ALBUMS}&lt;/td&gt;<br />        &lt;/tr&gt;<br />&lt;!-- END catrow --&gt;</pre>
