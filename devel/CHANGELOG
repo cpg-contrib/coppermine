@@ -36,3 +36,4 @@ Fixed corrupted language files (mustn't be in unicode, but ansi)  - 08th October
 Added romanian language file - 09th October 2003, GauGau
 fixed rtl-bug (filesize/unit) - 09th October 2003, GauGau
 Added french translation for 1.2.0 - 10th October 2003, GauGau
+Added korean language file for 1.2.0 - 10th October 2003, GauGau
