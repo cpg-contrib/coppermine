@@ -112,6 +112,8 @@ INSERT INTO CPG_config VALUES ('email_comment_notification', '0');
 INSERT INTO CPG_config VALUES ('enable_zipdownload', '1');
 INSERT INTO CPG_config VALUES ('slideshow_interval', '5000');
 
+INSERT INTO CPG_config VALUES ('log_mode', '0');
+
 
 #
 # Dumping data for table `CPG_filetypes`

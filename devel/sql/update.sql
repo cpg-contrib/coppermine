@@ -115,6 +115,8 @@ INSERT INTO CPG_config VALUES ('enable_zipdownload', '1');
 INSERT INTO CPG_config VALUES ('debug_notice', '0');
 INSERT INTO CPG_config VALUES ('slideshow_interval', '5000');
 
+INSERT INTO CPG_config VALUES ('log_mode', '0');
+
 
 # Modify structure for category thumb
 ALTER TABLE `CPG_categories` ADD `thumb` INT NOT NULL AFTER `parent` ;
