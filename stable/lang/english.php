@@ -672,7 +672,7 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
 // ------------------------------------------------------------------------- //
 
 if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
-  'pic_info' => 'File&nbsp;info', //cpg1.3.0
+  'pic_info' => 'File info', //cpg1.3.0
   'album' => 'Album',
   'title' => 'Title',
   'desc' => 'Description',
