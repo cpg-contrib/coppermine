@@ -63,6 +63,8 @@ function udb_authenticate()
 	$USER_DATA['user_id'] = 0;
 	$USER_DATA['status'] = -1;
 	$USER_DATA['user_name'] = 'Guest';
+	
+	$cookie_name = (isset($cookie_name)) ? $cookie_name : 'punbb_cookie';
 		
 	if (isset($_COOKIE[$cookie_name]))
 	{	
