@@ -1198,6 +1198,52 @@ if (defined('MINIBROWSER_PHP')) $lang_minibrowser_php = array(
 );
 
 // ------------------------------------------------------------------------- //
+// File modifyalb.php
+// ------------------------------------------------------------------------- //
+
+if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
+  'upd_alb_n' => 'Update album %s',
+  'general_settings' => 'General settings',
+  'alb_title' => 'Album title',
+  'alb_cat' => 'Album category',
+  'alb_desc' => 'Album description',
+  'alb_keyword' => 'Album Keyword (used for displaying images from other album into this album)',
+  'alb_thumb' => 'Album thumbnail',
+  'alb_perm' => 'Permissions for this album',
+  'can_view' => 'Album can be viewed by',
+  'can_upload' => 'Visitors can upload files',
+  'can_post_comments' => 'Visitors can post comments',
+  'can_rate' => 'Visitors can rate files',
+  'user_gal' => 'User Gallery',
+  'no_cat' => '* No category *',
+  'alb_empty' => 'Album is empty',
+  'last_uploaded' => 'Last uploaded',
+  'public_alb' => 'Everybody (public album)',
+  'me_only' => 'Me only',
+  'owner_only' => 'Album owner (%s) only',
+  'groupp_only' => 'Members of the \'%s\' group',
+  'err_no_alb_to_modify' => 'No album you can modify in the database.',
+  'update' => 'Update album',
+  'reset_album' => 'Reset album', //cpg1.4.0
+  'reset_views' => 'Reset views counter to &quot;0&quot; in %s', //cpg1.4.0
+  'reset_rating' => 'Reset ratings on all files in %s', //cpg1.4.0
+  'delete_comments' => 'Delete all comments made in %s', //cpg1.4.0
+  'delete_files' => '%sIrreversibly%s delete all files in %s', //cpg1.4.0
+  'views' => 'views', //cpg1.4.0
+  'votes' => 'votes', //cpg1.4.0
+  'comments' => 'comments', //cpg1.4.0
+  'files' => 'files', //cpg1.4.0
+  'submit_reset' => 'submit changes', //cpg1.4.0
+  'reset_views_confirm' => 'I\'m sure', //cpg1.4.0
+  'notice1' => '(*) depending on %sgroups%s settings', //(do not translate %s!)
+  'alb_password' => 'Album password (if you want the album to be password protected)', //cpg1.4.0
+  'alb_password_hint' => 'Album password hint (displayed at the password prompt)', //cpg1.4.0
+  'edit_files' =>'Edit files', //cpg1.4.0
+  'parent_category' =>'Parent category', //cpg1.4.0
+  'thumbnail_view' =>'Thumbnail view', //cpg1.4.0
+);
+
+// ------------------------------------------------------------------------- //
 // File phpinfo.php
 // ------------------------------------------------------------------------- //
 
@@ -1250,49 +1296,6 @@ $lang_pluginmgr_php = array(
   'upload' => 'Upload'
 );
 }
-
-// ------------------------------------------------------------------------- //
-// File modifyalb.php
-// ------------------------------------------------------------------------- //
-
-if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
-  'upd_alb_n' => 'Update album %s',
-  'general_settings' => 'General settings',
-  'alb_title' => 'Album title',
-  'alb_cat' => 'Album category',
-  'alb_desc' => 'Album description',
-  'alb_keyword' => 'Album Keyword (used for displaying images from other album into this album)',
-  'alb_thumb' => 'Album thumbnail',
-  'alb_perm' => 'Permissions for this album',
-  'can_view' => 'Album can be viewed by',
-  'can_upload' => 'Visitors can upload files',
-  'can_post_comments' => 'Visitors can post comments',
-  'can_rate' => 'Visitors can rate files',
-  'user_gal' => 'User Gallery',
-  'no_cat' => '* No category *',
-  'alb_empty' => 'Album is empty',
-  'last_uploaded' => 'Last uploaded',
-  'public_alb' => 'Everybody (public album)',
-  'me_only' => 'Me only',
-  'owner_only' => 'Album owner (%s) only',
-  'groupp_only' => 'Members of the \'%s\' group',
-  'err_no_alb_to_modify' => 'No album you can modify in the database.',
-  'update' => 'Update album',
-  'reset_album' => 'Reset album', //cpg1.4.0
-  'reset_views' => 'Reset views counter to &quot;0&quot; in %s', //cpg1.4.0
-  'reset_rating' => 'Reset ratings on all files in %s', //cpg1.4.0
-  'delete_comments' => 'Delete all comments made in %s', //cpg1.4.0
-  'delete_files' => '%sIrreversibly%s delete all files in %s', //cpg1.4.0
-  'views' => 'views', //cpg1.4.0
-  'votes' => 'votes', //cpg1.4.0
-  'comments' => 'comments', //cpg1.4.0
-  'files' => 'files', //cpg1.4.0
-  'submit_reset' => 'submit changes', //cpg1.4.0
-  'reset_views_confirm' => 'I\'m sure', //cpg1.4.0
-  'notice1' => '(*) depending on %sgroups%s settings', //(do not translate %s!)
-  'alb_password' => 'Album password (if you want the album to be password protected)', //cpg1.4.0
-  'alb_password_hint' => 'Album password hint (displayed at the password prompt)', //cpg1.4.0
-);
 
 // ------------------------------------------------------------------------- //
 // File ratepic.php

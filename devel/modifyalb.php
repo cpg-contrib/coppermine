@@ -475,20 +475,22 @@ if (!GALLERY_ADMIN_MODE && $ALBUM_DATA['category'] != FIRST_USER_CAT + USER_ID) 
 //////////// main code start ///////////////////
 
 pageheader(sprintf($lang_modifyalb_php['upd_alb_n'], $ALBUM_DATA['title']));
-starttable("100%");
 
 $album_lb = alb_list_box();
 $help = '&nbsp;'.cpg_display_help('f=index.htm&as=album_prop&ae=album_prop_end&top=1', '600', '400');
+starttable("100%",$lang_modifyalb_php['update'].$help, 2);
 echo <<<EOT
         <tr>
-                <td colspan="2" class="tableh1">
-                <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                        <tr>
-                        <td class="statlink"><h2>{$lang_modifyalb_php['update']}$help</h2></td>
-                        <td align="right">$album_lb</td>
-                        </tr>
-                </table>
-                </td>
+            <td class="tableh2" align="center">
+                <a href="editpics.php?album=$album" class="admin_menu">{$lang_modifyalb_php['edit_files']}</a>
+                &nbsp;&nbsp;-&nbsp;&nbsp;
+                <a href="index.php?cat={$ALBUM_DATA['category']}" class="admin_menu">{$lang_modifyalb_php['parent_category']}</a>
+                &nbsp;&nbsp;-&nbsp;&nbsp;
+                <a href="thumbnails.php?album=$album" class="admin_menu">{$lang_modifyalb_php['thumbnail_view']}</a>
+            </td>
+            <td class="tableh2" align="right">
+            $album_lb
+            </td>
         </tr>
         <form method="post" name="modifyalbum" action="db_input.php">
         <input type="hidden" name="event" value="album_update">
