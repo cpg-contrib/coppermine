@@ -760,6 +760,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
                 }
 
+				$rowset = CPGPluginAPI::filter('thumb_caption_regular',$rowset);
+                
                 return $rowset;
         }
 
@@ -808,6 +810,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $caption = '<span class="thumb_title">'.$user_link.'</span>'.'<span class="thumb_caption">'.localised_date($row['msg_date'], $lastcom_date_fmt).'</span>'.'<span class="thumb_caption">'.$msg_body.'</span>';
                         $rowset[$key]['caption_text'] = $caption;
                 }
+                
+                $rowset = CPGPluginAPI::filter('thumb_caption_lastcom',$rowset);
+                
                 return $rowset;
                 break;
 
@@ -852,6 +857,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $caption = '<span class="thumb_title">'.$user_link.'</span>'.'<span class="thumb_caption">'.localised_date($row['msg_date'], $lastcom_date_fmt).'</span>'.'<span class="thumb_caption">'.$row['msg_body'].'</span>';
                         $rowset[$key]['caption_text'] = $caption;
                 }
+                
+                $rowset = CPGPluginAPI::filter('thumb_caption_lastcomby',$rowset);
+                
                 return $rowset;
                 break;
 
@@ -881,6 +889,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $caption = $user_link.'<span class="thumb_caption">'.localised_date($row['ctime'], $lastup_date_fmt).'</span>';
                         $rowset[$key]['caption_text'] = $caption;
                 }
+                
+                $rowset = CPGPluginAPI::filter('thumb_caption_lastup',$rowset);
+                
                 return $rowset;
                 break;
 
@@ -921,6 +932,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $caption = $user_link.'<span class="thumb_caption">'.localised_date($row['ctime'], $lastup_date_fmt).'</span>';
                         $rowset[$key]['caption_text'] = $caption;
                 }
+                
+                $rowset = CPGPluginAPI::filter('thumb_caption_lastupby',$rowset);
+                
                 return $rowset;
                 break;
 
@@ -950,6 +964,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $caption = "<span class=\"thumb_caption\">".sprintf($lang_get_pic_data['n_views'], $row['hits']).'</span>';
                         $rowset[$key]['caption_text'] = $caption;
                 }
+                
+                $rowset = CPGPluginAPI::filter('thumb_caption_topn',$rowset);
+                
                 return $rowset;
                 break;
 
@@ -981,6 +998,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $caption = "<span class=\"thumb_caption\">".'<img src="'.$prefix.'images/rating'.round($row['pic_rating']/2000).'.gif" alt=""/>'.'<br />'.sprintf($lang_get_pic_data['n_votes'], $row['votes']).'</span>';
                         $rowset[$key]['caption_text'] = $caption;
                 }
+                
+                $rowset = CPGPluginAPI::filter('thumb_caption_toprated',$rowset);
+                
                 return $rowset;
                 break;
 
@@ -1007,6 +1027,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $caption = "<span class=\"thumb_caption\">".localised_date($row['mtime'], $lasthit_date_fmt)."<br/>".$row['hits']."<br/>".$row['lasthit_ip'].'</span>';
                         $rowset[$key]['caption_text'] = $caption;
                 }
+                
+                $rowset = CPGPluginAPI::filter('thumb_caption_lasthits',$rowset);
+                
                 return $rowset;
                 break;
 
@@ -1051,6 +1074,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $rowset[-$row['pid']] = $row;
                 }
                 mysql_free_result($result);
+                
+                $rowset = CPGPluginAPI::filter('thumb_caption_random',$rowset);
 
                 return $rowset;
                 break;
@@ -1076,6 +1101,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 }
 
                 include 'include/search.inc.php';
+                
+                $rowset = CPGPluginAPI::filter('thumb_caption_search',$rowset);
+                
                 return $rowset;
                 break;
 
@@ -1104,6 +1132,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $caption = "<span class=\"thumb_caption\">".$row['title']." - ".localised_date($row['ctime'], $lastup_date_fmt).'</span>';
                         $rowset[$key]['caption_text'] = $caption;
                 }
+                
+                $rowset = CPGPluginAPI::filter('thumb_caption_lastalb',$rowset);
+                
                 return $rowset;
                 break;
 
@@ -1132,6 +1163,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                                 $rowset[$key]['caption_text'] = $caption;
                         }
                 }
+                
+                $rowset = CPGPluginAPI::filter('thumb_caption_favpics',$rowset);
+                
                 return $rowset;
                 break;
 
