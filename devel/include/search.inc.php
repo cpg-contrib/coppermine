@@ -80,15 +80,8 @@ if ($search_string && isset($_POST['params'])) {
         $rowset = cpg_db_fetch_rowset($result);
         mysql_free_result($result);
 
-        if ($set_caption) {
-                foreach ($rowset as $key => $row) {
-                        $user_link = (($rowset[$key]['owner_id'] && $rowset[$key]['owner_name']) && ($CONFIG['display_uploader'] && !in_array($rowset[$key]['owner_id'],$CONFIG['ADMIN_USERS'])) || ($CONFIG['display_admin_uploader'] && in_array($rowset[$key]['owner_id'],$CONFIG['ADMIN_USERS']))) ? '<span class="thumb_title"><a href ="profile.php?uid='.$rowset[$key]['owner_id'].'">'.$rowset[$key]['owner_name'].'</a></span>' : '';
-                        $caption = $rowset[$key]['title'] ? "<span class=\"thumb_title\">" . $rowset[$key]['title'] . "</span>" : '';
-                        if ($CONFIG['caption_in_thumbview']) {
-                                $caption .= $rowset[$key]['caption'] ? "<span class=\"thumb_caption\">" . bb_decode($rowset[$key]['caption']) . "</span>" : '';
-                        }
-                        $rowset[$key]['caption_text'] = $user_link . $caption;
-                }
-        }
+        if ($set_caption) build_caption($rowset);
+
+
 }
 ?> 
