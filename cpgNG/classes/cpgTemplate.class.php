@@ -1,13 +1,12 @@
 <?php
-define ("SMARTY_DIR" , "smarty/libs/");
+define ("SMARTY_DIR", "libs/smarty/");
 include(SMARTY_DIR . 'Smarty.class.php');
-class cpgTemplate extends Smarty{
+class cpgTemplate extends Smarty {
   var $template_dir = "templates/";
   var $compile_check = true;
   var $debugging = false;
   var $force_compile = true;
 
-  //function getThumbnailHTML($thumbList, $nbThumb, $album_name, $aid, $cat, $page, $total_pages, $sort_options, $display_tabs, $mode = 'thumb')
   function getThumbnailHTML($thumbList)
   {
     global $CONFIG;
