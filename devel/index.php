@@ -62,7 +62,7 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
     $album_filter='';
     $pic_filter='';
     if (!empty($FORBIDDEN_SET)) {
-        $album_filter = ' and '.str_replace('p.','',$FORBIDDEN_SET);
+        $album_filter = ' and '.str_replace('p.','a.',$FORBIDDEN_SET);
         $pic_filter = ' and '.str_replace('p.',$CONFIG['TABLE_PICTURES'].'.',$FORBIDDEN_SET);
     }
 
@@ -72,7 +72,8 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
         $rowset = db_fetch_rowset($result);
         foreach ($rowset as $subcat) {
             if ($subcat['cid'] == USER_GAL_CAT) {
-                $result = db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category >= " . FIRST_USER_CAT);
+                $sql = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category>=" . FIRST_USER_CAT;
+                $result = db_query($sql);
                 $album_count = mysql_num_rows($result);
                 while ($row = mysql_fetch_array($result)) {
                     $album_set_array[] = $row['aid'];
@@ -164,16 +165,16 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
     $pic_filter='';
     $cat = (int) $cat;
     if (!empty($FORBIDDEN_SET)) {
-        $album_filter = ' and '.str_replace('p.','',$FORBIDDEN_SET);
+        $album_filter = ' and '.str_replace('p.','a.',$FORBIDDEN_SET);
         $pic_filter = ' and '.$FORBIDDEN_SET;
     }
 
     // Add the albums in the current category to the album set
     //if ($cat) {
         if ($cat == USER_GAL_CAT) {
-            $result = db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category >= " . FIRST_USER_CAT.$album_filter);
+            $result = db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category >= " . FIRST_USER_CAT.$album_filter);
         } else {
-            $sql = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = '$cat'".$album_filter;
+            $sql = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category = '$cat'".$album_filter;
             $result = db_query($sql);
         }
         while ($row = mysql_fetch_array($result)) {
@@ -193,7 +194,7 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
     }
     // Gather gallery statistics
     if ($cat == 0) {
-        $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_ALBUMS']} WHERE category>0".$album_filter);
+        $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category>0".$album_filter);
         $nbEnr = mysql_fetch_array($result);
         $album_count = $nbEnr[0];
         mysql_free_result($result);
@@ -202,27 +203,24 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
                 'LEFT JOIN '.$CONFIG['TABLE_ALBUMS'].' as a '.
                 'ON a.aid=p.aid '.
                 'WHERE a.category>0'.$pic_filter;
-        //die($sql);
         $result = db_query($sql);
         $nbEnr = mysql_fetch_array($result);
         $picture_count = $nbEnr[0];
         mysql_free_result($result);
 
         $sql = "SELECT count(*) FROM {$CONFIG['TABLE_COMMENTS']} as c ".
-                'LEFT JOIN '.$CONFIG['TABLE_PICTURES'].' as p,'.$CONFIG['TABLE_ALBUMS'].' as a '.
-                'ON c.pid=p.pid and a.aid=p.aid '.
+                'LEFT JOIN '.$CONFIG['TABLE_PICTURES'].' as p '.
+                'ON c.pid=p.pid '.
+                'LEFT JOIN '.$CONFIG['TABLE_ALBUMS'].' as a '.
+                'ON a.aid=p.aid '.
                 'WHERE a.category>0'.$pic_filter;
-                //die($sql);
         $result = db_query($sql);
         $nbEnr = mysql_fetch_array($result);
         $comment_count = $nbEnr[0];
         mysql_free_result($result);
 
-        $sql = "SELECT count(*) FROM {$CONFIG['TABLE_CATEGORIES']} ".
-                'LEFT JOIN '.$CONFIG['TABLE_ALBUMS'].' '.
-                'ON '.$CONFIG['TABLE_CATEGORIES'].'.cid = '.$CONFIG['TABLE_ALBUMS'].'.category '.
-                'WHERE 1 '.$album_filter;
-        $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_CATEGORIES']} WHERE 1");
+        $sql = "SELECT count(*) FROM {$CONFIG['TABLE_CATEGORIES']} WHERE 1";
+        $result = db_query($sql);
         $nbEnr = mysql_fetch_array($result);
         $cat_count = $nbEnr[0] - $HIDE_USER_CAT;
         mysql_free_result($result);
