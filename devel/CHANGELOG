@@ -35,3 +35,4 @@ Added 1.2.0 indonesian (done by sengsara), updated danish (Laugesen) - 08th Octo
 Fixed corrupted language files (mustn't be in unicode, but ansi)  - 08th October 2003, GauGau
 Added romanian language file - 09th October 2003, GauGau
 fixed rtl-bug (filesize/unit) - 09th October 2003, GauGau
+Added french translation for 1.2.0 - 10th October 2003, GauGau
