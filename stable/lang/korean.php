@@ -331,7 +331,10 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'title_a' => '제목순 순차배열', //new in cpg1.2.0
         'title_d' => '제목순 역차배열', //new in cpg1.2.0
         'date_a' => '일자순 순차배열',
-        'date_d' => '일자순 역차배열'
+        'date_d' => '일자순 역차배열',
+        'th_any' => 'Max Aspect',
+        'th_ht' => 'Height',
+        'th_wd' => 'Width',
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(

@@ -326,7 +326,10 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'title_a' => 'כותרת בסדר עולה',
         'title_d' => 'כותרת בסדר יורד',
 	'date_a' => 'תאריך עולה',
-	'date_d' => 'תאירך יורד'
+	'date_d' => 'תאירך יורד',
+        'th_any' => 'Max Aspect',
+        'th_ht' => 'Height',
+        'th_wd' => 'Width',
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
@@ -346,7 +349,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('גודל הדוגמיות בפיקסלים', 'alb_list_thumb_size', 0),
 	array('תוכן הדף הראשי', 'main_page_layout', 0),
         array('הצג דוגמיות (מאלבומים בהיררכיה העליונה) ברשימת הקטגוריות','first_level',1),
-
 	'הגדרות לתצוגת דוגמיות',
 	array('מספר עמודות בדף דוגמיות', 'thumbcols', 0),
 	array('מספר שורות בדף דוגמיות', 'thumbrows', 0),
@@ -367,7 +369,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('מקסימום אורך ההערה', 'max_com_size', 0),
         array('הצג רצועת סרט צילום', 'display_film_strip', 1),
         array('מספר הפריטים ברצועת סרט צילום', 'max_film_strip_items', 0),
-
 	'הגדרות לתמונות ולדוגמיות',
 	array('רמת איכות לקבצי JPEG', 'jpeg_qual', 0),
         array('ממדים מקסימליים של דוגמית <b>*</b>', 'thumb_width', 0),
@@ -407,7 +408,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('ברירת מחדל להרשאת קבצי תמונה', 'default_file_mode', 0),
         array('לחסום קליק-ימני על תמונות בגדול מלא (שיטה לא מושלמת ב-JavaScript(', 'disable_popup_rightclick', 1),
         array('לחסום קליק-ימני על דפים "רגילים" (שיטה לא מושלמת ב-JavaScript', 'disable_gallery_rightclick', 1),
-
 	'הגדרות Cookies ושפה',
 	array('שם ה-Cookie של הגלריה', 'cookie_name', 0),
 	array('נתיב ה-Cookie של הגלריה', 'cookie_path', 0),

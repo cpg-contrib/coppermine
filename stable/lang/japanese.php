@@ -331,7 +331,11 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'title_a' => '¥¿¥¤¥È¥ë¤Î¾º½ç',
         'title_d' => '¥¿¥¤¥È¥ë¤Î¹ß½ç',
         'date_a' => 'ÆüÉÕ¤Î¾º½ç',
-        'date_d' => 'ÆüÉÕ¤Î¹ß½ç'
+        'date_d' => 'ÆüÉÕ¤Î¹ß½ç',
+        'th_any' => 'Max Aspect',
+        'th_ht' => 'Height',
+        'th_wd' => 'Width',
+
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(

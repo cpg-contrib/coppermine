@@ -331,7 +331,10 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'title_a' => 'Pealkirjad kasvavalt', //new in cpg1.2.0
         'title_d' => 'Pealkirjad kahanevalt', //new in cpg1.2.0
         'date_a' => 'Kuupäev kasvavalt',
-        'date_d' => 'Kuupäev kahanevalt',
+        'date_d' => 'Kuupäev kahanevalt',,
+        'th_any' => 'Max Aspect',
+        'th_ht' => 'Height',
+        'th_wd' => 'Width',
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(

@@ -334,7 +334,10 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
     'title_a' => 'Titolo ascendente',
     'title_d' => 'Titolo discendente',
 	'date_a' => 'Data ascendente',
-	'date_d' => 'Data discendente'
+	'date_d' => 'Data discendente',
+        'th_any' => 'Max Aspect',
+        'th_ht' => 'Height',
+        'th_wd' => 'Width',
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(

@@ -330,7 +330,10 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
     'title_a' => 'Virsraksts augoði', //new in cpg1.2.0
     'title_d' => 'Virsraksts dilstoði', //new in cpg1.2.0
     'date_a' => 'Datums augoði',
-    'date_d' => 'Datums dilstoði'
+    'date_d' => 'Datums dilstoði',
+        'th_any' => 'Max Aspect',
+        'th_ht' => 'Height',
+        'th_wd' => 'Width',
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(

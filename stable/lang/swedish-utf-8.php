@@ -330,7 +330,10 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'title_a' => 'Titel stigande',
         'title_d' => 'Titel fallande',
         'date_a' => 'Date stigande',
-        'date_d' => 'Date fallande'
+        'date_d' => 'Date fallande',
+        'th_any' => 'Max Aspect',
+        'th_ht' => 'Height',
+        'th_wd' => 'Width',
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(

@@ -341,7 +341,10 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'title_a' => 'Cím szerint - növekvo',
         'title_d' => 'Cím szerint - csökkeno',
         'date_a' => 'Dátum növekvõ',
-        'date_d' => 'Dátum csökkenõ'
+        'date_d' => 'Dátum csökkenõ',
+        'th_any' => 'Max Aspect',
+        'th_ht' => 'Height',
+        'th_wd' => 'Width',
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(

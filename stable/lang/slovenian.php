@@ -331,7 +331,10 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'title_a' => 'Naslov narašèujoèe', //new in cpg1.2.0
         'title_d' => 'Naslov padajoèe', //new in cpg1.2.0
         'date_a' => 'Datum narašèujoèe',
-        'date_d' => 'Datum padajoèe'
+        'date_d' => 'Datum padajoèe',
+        'th_any' => 'Max Aspect',
+        'th_ht' => 'Height',
+        'th_wd' => 'Width',
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(

@@ -331,7 +331,10 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'title_a' => 'Titlu ascendent', //new in cpg1.2.0
         'title_d' => 'Titlu descendent', //new in cpg1.2.0
         'date_a' => 'Data ascendenta',
-        'date_d' => 'Data descendenta'
+        'date_d' => 'Data descendenta',
+        'th_any' => 'Max Aspect',
+        'th_ht' => 'Height',
+        'th_wd' => 'Width',
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(

@@ -329,7 +329,11 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
 	'title_a' => '标题递增',
 	'title_d' => '标题递减',
 	'date_a' => '日期递增',
-	'date_d' => '日期递减'
+	'date_d' => '日期递减',
+        'th_any' => 'Max Aspect',
+        'th_ht' => 'Height',
+        'th_wd' => 'Width',
+
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(

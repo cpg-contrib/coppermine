@@ -328,7 +328,10 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
 	'name_a' => 'Αυξων όνομα',
 	'name_d' => 'Φθίνων όνομα',
 	'date_a' => 'Αυξουσα ημερομηνία',
-	'date_d' => 'Φθίνουσα ημερομηνία',
+	'date_d' => 'Φθίνουσα ημερομηνία',,
+        'th_any' => 'Max Aspect',
+        'th_ht' => 'Height',
+        'th_wd' => 'Width',
         'title_a' => 'Αύξων τίτλος', 
         'title_d' => 'Φθίνων τίτλος', 
 );

@@ -326,7 +326,10 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'title_a' => 'Naslov razvrstan ascending', 
         'title_d' => 'Naslov razvrstan descending', 
 	'date_a' => 'Datum novije',
-	'date_d' => 'Datum starije'
+	'date_d' => 'Datum starije',
+        'th_any' => 'Max Aspect',
+        'th_ht' => 'Height',
+        'th_wd' => 'Width',
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(

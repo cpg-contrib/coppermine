@@ -334,7 +334,10 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'title_a' => 'Titel oploopend', 
         'title_d' => 'Titel afloopend', 
         'date_a' => 'Datum oplopend',
-        'date_d' => 'Datum aflopend'
+        'date_d' => 'Datum aflopend',
+        'th_any' => 'Max Aspect',
+        'th_ht' => 'Height',
+        'th_wd' => 'Width',
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(

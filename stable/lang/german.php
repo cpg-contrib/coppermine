@@ -331,7 +331,10 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'title_a' => 'aufsteigend nach Titel',
         'title_d' => 'absteigend nach Titel',
         'date_a' => 'aufsteigend nach Datum',
-        'date_d' => 'absteigend nach Datum'
+        'date_d' => 'absteigend nach Datum',
+        'th_any' => 'Maximalwert (entweder Höhe oder Breite)',
+        'th_ht' => 'Höhe',
+        'th_wd' => 'Breite',
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(

@@ -2,10 +2,10 @@
 // ------------------------------------------------------------------------- //
 //  Coppermine Photo Gallery                                                 //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Grégory DEMAR <gdemar@wanadoo.fr>               //
+//  Copyright (C) 2002,2003  Gr?gory DEMAR <gdemar@wanadoo.fr>               //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
+//  Based on PHPhotoalbum by Henning St?verud <henning@stoverud.com>         //
 //  http://www.stoverud.com/PHPhotoalbum/                                    //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
@@ -17,7 +17,7 @@
 // info about translators and translated language
 $lang_translation_info = array(
 'lang_name_english' => 'Hebrew',
-'lang_name_native' => 'עברית',
+'lang_name_native' => 'òáøéú',
 'lang_country_code' => 'he',
 'trans_name'=> 'Eyal Zvi',
 'trans_email' => 'eyal @at@ zvi.org',
@@ -25,23 +25,23 @@ $lang_translation_info = array(
 'trans_date' => '2003-10-04',
 );
 
-$lang_charset = 'utf-8';
+$lang_charset = 'iso-8859-8-i';
 $lang_text_dir = 'RTL';
 
 // shortcuts for Byte, Kilo, Mega
 $lang_byte_units = array('Bytes', 'KB', 'MB');
 
 // Day of weeks and months
-$lang_day_of_week = array("א'", "ב'", "ג'", "ד'", "ה'", "ו'", "ש'");
-$lang_month = array("ינו'", "פבר'", "מרץ", "אפר'", "מאי", "יוני", "יולי", "אוג'", "ספט'", "אוק'", "נוב'", "דצמ'");
+$lang_day_of_week = array("à'", "á'", "â'", "ã'", "ä'", "å'", "ù'");
+$lang_month = array("éðå'", "ôáø'", "îøõ", "àôø'", "îàé", "éåðé", "éåìé", "àåâ'", "ñôè'", "àå÷'", "ðåá'", "ãöî'");
 
 // Some common strings
-$lang_yes = 'כן';
-$lang_no  = 'לא';
-$lang_back = 'חזרה';
-$lang_continue = 'המשך';
-$lang_info = 'מידע';
-$lang_error = 'שגיאה';
+$lang_yes = 'ëï';
+$lang_no  = 'ìà';
+$lang_back = 'çæøä';
+$lang_continue = 'äîùê';
+$lang_info = 'îéãò';
+$lang_error = 'ùâéàä';
 
 // The various date formats
 // See http://www.php.net/manual/en/function.strftime.php to define the variable below
@@ -56,34 +56,34 @@ $comment_date_fmt =  '%d %b %Y, %H:%M';
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
 
 $lang_meta_album_names = array(
-	'random' => 'תמונות אקראיות',
-	'lastup' => 'תמונות אחרונות',
-        'lastalb'=> 'אלבום אחרון שעודכן',
-	'lastcom' => 'הערות אחרונות',
-	'topn' => 'נצפות ביותר',
-	'toprated' => 'זכו לדרוגים הגבוהים ביותר',
-	'lasthits' => 'נצפו לאחרונה',
-	'search' => 'תוצאות חיפוש',
-        'favpics'=> 'תמונות מועדפות'
+	'random' => 'úîåðåú à÷øàéåú',
+	'lastup' => 'úîåðåú àçøåðåú',
+        'lastalb'=> 'àìáåí àçøåï ùòåãëï',
+	'lastcom' => 'äòøåú àçøåðåú',
+	'topn' => 'ðöôåú áéåúø',
+	'toprated' => 'æëå ìãøåâéí äâáåäéí áéåúø',
+	'lasthits' => 'ðöôå ìàçøåðä',
+	'search' => 'úåöàåú çéôåù',
+        'favpics'=> 'úîåðåú îåòãôåú'
 );
 
 $lang_errors = array(
-	'access_denied' => 'אין לך הרשאה לצפות בעמוד זה.',
-	'perm_denied' => 'אין לך הרשאה לבצע פעולה זו.',
+	'access_denied' => 'àéï ìê äøùàä ìöôåú áòîåã æä.',
+	'perm_denied' => 'àéï ìê äøùàä ìáöò ôòåìä æå.',
 	'param_missing' => 'Script called without the required parameter(s).',
-	'non_exist_ap' => 'האלבום או התמונה שבחרת אינם קיימים!',
-	'quota_exceeded' => 'חריגה מהקצאת דיסק<br /><br />הוקצו לך [quota]K, מתוכם ניצלת [space]K, כך שהוספת התמונה גורמת לחריגה מהנפח המותר.',
-	'gd_file_type_err' => 'סוגי קבצי התמונות המותרים הם Jpeg ו- PNG.',
-	'invalid_image' => 'קובץ התמונה שהעלית משובש או מסוג שאינו נתמך על ידי המערכת.',
-	'resize_failed' => 'תקלה ביצירת תמונה מוקטנת.',
-	'no_img_to_display' => 'אין תמונה להציג.',
-	'non_exist_cat' => 'הקטגוריה שבחרת אינה קיימת.',
-	'orphan_cat' => 'קטגוריה אינה מסווגת כראוי. יש להפעיל את תכנית ניהול הקטגוריות.',
-	'directory_ro' => 'לא ניתן לכתוב/למחוק במחיצה %s, לכן לא ניתן למחוק את התמונות.',
-	'non_exist_comment' => 'ההערה שנבחרה אינה קיימת.',
-	'pic_in_invalid_album' => 'התמונה משוייכת לאלבום לא קיים (%s) !?',
-        'banned' => 'נאסר עליך להשתמש באתר זה.',
-        'not_with_udb' => 'פעולה זו חסומה. הגלריה הוגדרה לפעול בסנכרון עם תכנית אחרת (למשל לוח מודעות). הפעולה המבוקשת אינה נתמכת במצב זה או שאמורה להתבצע על ידי התכנית האחרת.',
+	'non_exist_ap' => 'äàìáåí àå äúîåðä ùáçøú àéðí ÷ééîéí!',
+	'quota_exceeded' => 'çøéâä îä÷öàú ãéñ÷<br /><br />äå÷öå ìê [quota]K, îúåëí ðéöìú [space]K, ëê ùäåñôú äúîåðä âåøîú ìçøéâä îäðôç äîåúø.',
+	'gd_file_type_err' => 'ñåâé ÷áöé äúîåðåú äîåúøéí äí Jpeg å- PNG.',
+	'invalid_image' => '÷åáõ äúîåðä ùäòìéú îùåáù àå îñåâ ùàéðå ðúîê òì éãé äîòøëú.',
+	'resize_failed' => 'ú÷ìä áéöéøú úîåðä îå÷èðú.',
+	'no_img_to_display' => 'àéï úîåðä ìäöéâ.',
+	'non_exist_cat' => 'ä÷èâåøéä ùáçøú àéðä ÷ééîú.',
+	'orphan_cat' => '÷èâåøéä àéðä îñååâú ëøàåé. éù ìäôòéì àú úëðéú ðéäåì ä÷èâåøéåú.',
+	'directory_ro' => 'ìà ðéúï ìëúåá/ìîçå÷ áîçéöä %s, ìëï ìà ðéúï ìîçå÷ àú äúîåðåú.',
+	'non_exist_comment' => 'ääòøä ùðáçøä àéðä ÷ééîú.',
+	'pic_in_invalid_album' => 'äúîåðä îùåééëú ìàìáåí ìà ÷ééí (%s) !?',
+        'banned' => 'ðàñø òìéê ìäùúîù áàúø æä.',
+        'not_with_udb' => 'ôòåìä æå çñåîä. äâìøéä äåâãøä ìôòåì áñðëøåï òí úëðéú àçøú (ìîùì ìåç îåãòåú). äôòåìä äîáå÷ùú àéðä ðúîëú áîöá æä àå ùàîåøä ìäúáöò òì éãé äúëðéú äàçøú.',
 );
 
 // ------------------------------------------------------------------------- //
@@ -91,95 +91,95 @@ $lang_errors = array(
 // ------------------------------------------------------------------------- //
 
 $lang_main_menu = array(
-	'alb_list_title' => 'דלג לרשימת האלבומים',
-	'alb_list_lnk' => 'רשימת אלבומים',
-	'my_gal_title' => 'דלג לגלריה שלי',
-	'my_gal_lnk' => 'הגלריה שלי',
-	'my_prof_lnk' => 'הפרופיל שלי',
-	'adm_mode_title' => 'מעבר למצב מנהל',
-	'adm_mode_lnk' => 'מצב מנהל',
-	'usr_mode_title' => 'מעבר למצב משתמש',
-	'usr_mode_lnk' => 'מצב משתמש',
-	'upload_pic_title' => 'הוספת תמונה לאלבום',
-	'upload_pic_lnk' => 'הוספת תמונה',
-	'register_title' => 'פתיחת חשבון משתמש',
-	'register_lnk' => 'רישום',
-	'login_lnk' => 'התחברות',
-	'logout_lnk' => 'התנתקות',
-	'lastup_lnk' => 'תמונות אחרונות',
-	'lastcom_lnk' => 'הערות אחרונות',
-	'topn_lnk' => 'נצפות ביותר',
-	'toprated_lnk' => 'זכו לדרוגים הגבוהים ביותר',
-	'search_lnk' => 'חיפוש',
-        'fav_lnk' => 'המועדפים שלי',
+	'alb_list_title' => 'ãìâ ìøùéîú äàìáåîéí',
+	'alb_list_lnk' => 'øùéîú àìáåîéí',
+	'my_gal_title' => 'ãìâ ìâìøéä ùìé',
+	'my_gal_lnk' => 'äâìøéä ùìé',
+	'my_prof_lnk' => 'äôøåôéì ùìé',
+	'adm_mode_title' => 'îòáø ìîöá îðäì',
+	'adm_mode_lnk' => 'îöá îðäì',
+	'usr_mode_title' => 'îòáø ìîöá îùúîù',
+	'usr_mode_lnk' => 'îöá îùúîù',
+	'upload_pic_title' => 'äåñôú úîåðä ìàìáåí',
+	'upload_pic_lnk' => 'äåñôú úîåðä',
+	'register_title' => 'ôúéçú çùáåï îùúîù',
+	'register_lnk' => 'øéùåí',
+	'login_lnk' => 'äúçáøåú',
+	'logout_lnk' => 'äúðú÷åú',
+	'lastup_lnk' => 'úîåðåú àçøåðåú',
+	'lastcom_lnk' => 'äòøåú àçøåðåú',
+	'topn_lnk' => 'ðöôåú áéåúø',
+	'toprated_lnk' => 'æëå ìãøåâéí äâáåäéí áéåúø',
+	'search_lnk' => 'çéôåù',
+        'fav_lnk' => 'äîåòãôéí ùìé',
 
 );
 
 $lang_gallery_admin_menu = array(
-	'upl_app_lnk' => 'אישור הוספה',
-	'config_lnk' => 'תצורה',
-	'albums_lnk' => 'אלבומים',
-	'categories_lnk' => 'קטגוריות',
-	'users_lnk' => 'משתמשים',
-	'groups_lnk' => 'קבוצות',
-	'comments_lnk' => 'הערות',
-	'searchnew_lnk' => 'הוספת סדרת תמונות',
-        'util_lnk' => 'שינוי גודל תמונות',
-        'ban_lnk' => 'הרחקת משתמשים',
+	'upl_app_lnk' => 'àéùåø äåñôä',
+	'config_lnk' => 'úöåøä',
+	'albums_lnk' => 'àìáåîéí',
+	'categories_lnk' => '÷èâåøéåú',
+	'users_lnk' => 'îùúîùéí',
+	'groups_lnk' => '÷áåöåú',
+	'comments_lnk' => 'äòøåú',
+	'searchnew_lnk' => 'äåñôú ñãøú úîåðåú',
+        'util_lnk' => 'ùéðåé âåãì úîåðåú',
+        'ban_lnk' => 'äøç÷ú îùúîùéí',
 );
 
 $lang_user_admin_menu = array(
-	'albmgr_lnk' => 'יצירה / ארגון אלבומים שלי',
-	'modifyalb_lnk' => 'שינוי אלבומים שלי',
-	'my_prof_lnk' => 'הפרופיל שלי',
+	'albmgr_lnk' => 'éöéøä / àøâåï àìáåîéí ùìé',
+	'modifyalb_lnk' => 'ùéðåé àìáåîéí ùìé',
+	'my_prof_lnk' => 'äôøåôéì ùìé',
 );
 
 $lang_cat_list = array(
-	'category' => 'קטגוריה',
-	'albums' => 'אלבומים',
-	'pictures' => 'תמונות',
+	'category' => '÷èâåøéä',
+	'albums' => 'àìáåîéí',
+	'pictures' => 'úîåðåú',
 );
 
 $lang_album_list = array(
-	'album_on_page' => '%d אלבומים ב- %d דפים'
+	'album_on_page' => '%d àìáåîéí á- %d ãôéí'
 );
 
 $lang_thumb_view = array(
-	'date' => 'תאריך',
-	'name' => ' שם קובץ',
-        'title' => 'כותרת',
-	'sort_da' => 'מיון לפי תאריך מחדש לישן',
-	'sort_dd' => 'מיון לפי תאריך מישן לחדש',
-	'sort_na' => 'מיון לפי שם קובץ בסדר עולה',
-	'sort_nd' => 'מיון לפי שם קובץ בסדר יורד',
-        'sort_ta' => 'מיון לפי כותרת בסדר עולה',
-        'sort_td' => 'מיון לפי כותרת בסדר יורד',
-	'pic_on_page' => '%d תמונות ב-%d דפים',
-	'user_on_page' => '%d משתמשים ב-%d דפים'
+	'date' => 'úàøéê',
+	'name' => ' ùí ÷åáõ',
+        'title' => 'ëåúøú',
+	'sort_da' => 'îéåï ìôé úàøéê îçãù ìéùï',
+	'sort_dd' => 'îéåï ìôé úàøéê îéùï ìçãù',
+	'sort_na' => 'îéåï ìôé ùí ÷åáõ áñãø òåìä',
+	'sort_nd' => 'îéåï ìôé ùí ÷åáõ áñãø éåøã',
+        'sort_ta' => 'îéåï ìôé ëåúøú áñãø òåìä',
+        'sort_td' => 'îéåï ìôé ëåúøú áñãø éåøã',
+	'pic_on_page' => '%d úîåðåú á-%d ãôéí',
+	'user_on_page' => '%d îùúîùéí á-%d ãôéí'
 );
 
 $lang_img_nav_bar = array(
-	'thumb_title' => 'חזרה לעמוד הדוגמיות',
-	'pic_info_title' => 'הצגת/הסתרת מידע של התמונות',
-	'slideshow_title' => 'מצגת שקופיות',
-	'ecard_title' => 'שליחת התמונה כגלויה וירטואלית',
-	'ecard_disabled' => 'גלויות וירטואליות אינן מותרות',
-	'ecard_disabled_msg' => 'אין לך הרשאה לשלוח גלויה וירטואלית',
-	'prev_title' => 'הצגת התמונה הקודמת',
-	'next_title' => 'הצגת התמונה הבאה',
-	'pic_pos' => 'תמונה %s מתוך %s',
+	'thumb_title' => 'çæøä ìòîåã äãåâîéåú',
+	'pic_info_title' => 'äöâú/äñúøú îéãò ùì äúîåðåú',
+	'slideshow_title' => 'îöâú ù÷åôéåú',
+	'ecard_title' => 'ùìéçú äúîåðä ëâìåéä åéøèåàìéú',
+	'ecard_disabled' => 'âìåéåú åéøèåàìéåú àéðï îåúøåú',
+	'ecard_disabled_msg' => 'àéï ìê äøùàä ìùìåç âìåéä åéøèåàìéú',
+	'prev_title' => 'äöâú äúîåðä ä÷åãîú',
+	'next_title' => 'äöâú äúîåðä äáàä',
+	'pic_pos' => 'úîåðä %s îúåê %s',
 );
 
 $lang_rate_pic = array(
-	'rate_this_pic' => 'דרוג התמונה ',
-	'no_votes' => '(אין קולות)',
-	'rating' => '(דרוג: %s/5 עם %s קולות)',
-	'rubbish' => 'גרועה',
-	'poor' => 'לא מוצלחת',
-	'fair' => 'סבירה',
-	'good' => 'טובה',
-	'excellent' => 'מצויינת',
-	'great' => 'נפלאה!',
+	'rate_this_pic' => 'ãøåâ äúîåðä ',
+	'no_votes' => '(àéï ÷åìåú)',
+	'rating' => '(ãøåâ: %s/5 òí %s ÷åìåú)',
+	'rubbish' => 'âøåòä',
+	'poor' => 'ìà îåöìçú',
+	'fair' => 'ñáéøä',
+	'good' => 'èåáä',
+	'excellent' => 'îöåééðú',
+	'great' => 'ðôìàä!',
 );
 
 // ------------------------------------------------------------------------- //
@@ -195,22 +195,22 @@ $lang_rate_pic = array(
 $lang_cpg_die = array(
 	INFORMATION => $lang_info,
 	ERROR => $lang_error,
-	CRITICAL_ERROR => 'תקלה קריטית',
-	'file' => 'קובץ: ',
-	'line' => 'שורה: ',
+	CRITICAL_ERROR => 'ú÷ìä ÷øéèéú',
+	'file' => '÷åáõ: ',
+	'line' => 'ùåøä: ',
 );
 
 $lang_display_thumbnails = array(
-	'filename' => 'שם: ',
-	'filesize' => 'גודל: ',
-	'dimensions' => 'מידות: ',
-	'date_added' => 'נוספה ב: '
+	'filename' => 'ùí: ',
+	'filesize' => 'âåãì: ',
+	'dimensions' => 'îéãåú: ',
+	'date_added' => 'ðåñôä á: '
 );
 
 $lang_get_pic_data = array(
-	'n_comments' => '%s הערות',
-	'n_views' => '%s צפיות',
-	'n_votes' => '(%s קולות)'
+	'n_comments' => '%s äòøåú',
+	'n_views' => '%s öôéåú',
+	'n_votes' => '(%s ÷åìåú)'
 );
 
 // ------------------------------------------------------------------------- //
@@ -230,28 +230,28 @@ $lang_get_pic_data = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
-	'Exclamation' => 'סימן קריאה!',
-	'Question' => 'סימן שאלה?',
-	'Very Happy' => 'מאושר מאד',
-	'Smile' => 'חיוך',
-	'Sad' => 'עצוב',
-	'Surprised' => 'מופתע',
-	'Shocked' => 'מזועזע',
-	'Confused' => 'מבולבל',
-	'Cool' => 'גזעי',
-	'Laughing' => 'צוחק',
-	'Mad' => 'משוגע',
+	'Exclamation' => 'ñéîï ÷øéàä!',
+	'Question' => 'ñéîï ùàìä?',
+	'Very Happy' => 'îàåùø îàã',
+	'Smile' => 'çéåê',
+	'Sad' => 'òöåá',
+	'Surprised' => 'îåôúò',
+	'Shocked' => 'îæåòæò',
+	'Confused' => 'îáåìáì',
+	'Cool' => 'âæòé',
+	'Laughing' => 'öåç÷',
+	'Mad' => 'îùåâò',
 	'Razz' => 'Razz',
-	'Embarassed' => 'נבוך',
-	'Crying or Very sad' => 'עצוב ובוכה',
-	'Evil or Very Mad' => 'רשע מטורף',
-	'Twisted Evil' => 'רשע סוטה',
-	'Rolling Eyes' => 'מגלגל עיניים',
-	'Wink' => 'קורץ',
-	'Idea' => 'רעיון',
-	'Arrow' => 'חץ',
-	'Neutral' => 'נייטרלי',
-	'Mr. Green' => 'מיסטר ירוק',
+	'Embarassed' => 'ðáåê',
+	'Crying or Very sad' => 'òöåá åáåëä',
+	'Evil or Very Mad' => 'øùò îèåøó',
+	'Twisted Evil' => 'øùò ñåèä',
+	'Rolling Eyes' => 'îâìâì òéðééí',
+	'Wink' => '÷åøõ',
+	'Idea' => 'øòéåï',
+	'Arrow' => 'çõ',
+	'Neutral' => 'ðééèøìé',
+	'Mr. Green' => 'îéñèø éøå÷',
 );
 
 // ------------------------------------------------------------------------- //
@@ -265,8 +265,8 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ADMIN_PHP')) $lang_admin_php = array(
-	0 => 'יציאה ממצב מנהל...',
-	1 => 'כניסה למצב מנהל...',
+	0 => 'éöéàä îîöá îðäì...',
+	1 => 'ëðéñä ìîöá îðäì...',
 );
 
 // ------------------------------------------------------------------------- //
@@ -274,20 +274,20 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
-	'alb_need_name' => 'חובה לתת שם לאלבום!',
-	'confirm_modifs' => 'האם את/ה בטוח/ה שברצונך לעשות שינויים אלה?',
-	'no_change' => 'לא ביצעת כל שינוי!',
-	'new_album' => 'אלבום חדש',
-	'confirm_delete1' => 'האם את/ה בטוח/ה שברצונך למחוק אלבום זה?',
-	'confirm_delete2' => '\nכל התמונות וההערות שבו יאבדו!',
-	'select_first' => 'קודם עליך לבחור אלבום',
-	'alb_mrg' => 'מנהל האלבומים',
-	'my_gallery' => '* הגלריה שלי *',
-	'no_category' => '* ללא קטגוריה *',
-	'delete' => 'מחיקה',
-	'new' => 'פתיחת חדש',
-	'apply_modifs' => 'ביצוע שינויים',
-	'select_category' => 'בחירת קטגוריה',
+	'alb_need_name' => 'çåáä ìúú ùí ìàìáåí!',
+	'confirm_modifs' => 'äàí àú/ä áèåç/ä ùáøöåðê ìòùåú ùéðåééí àìä?',
+	'no_change' => 'ìà áéöòú ëì ùéðåé!',
+	'new_album' => 'àìáåí çãù',
+	'confirm_delete1' => 'äàí àú/ä áèåç/ä ùáøöåðê ìîçå÷ àìáåí æä?',
+	'confirm_delete2' => '\nëì äúîåðåú åääòøåú ùáå éàáãå!',
+	'select_first' => '÷åãí òìéê ìáçåø àìáåí',
+	'alb_mrg' => 'îðäì äàìáåîéí',
+	'my_gallery' => '* äâìøéä ùìé *',
+	'no_category' => '* ììà ÷èâåøéä *',
+	'delete' => 'îçé÷ä',
+	'new' => 'ôúéçú çãù',
+	'apply_modifs' => 'áéöåò ùéðåééí',
+	'select_category' => 'áçéøú ÷èâåøéä',
 );
 
 // ------------------------------------------------------------------------- //
@@ -295,18 +295,18 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
-	'miss_param' => 'חסרים פרמטרים הדרושים לפעולה "%s"',
-	'unknown_cat' => 'הקטגוריה שנבחרה אינה קיימת במס הנתונים (DB)',
-	'usergal_cat_ro' => 'לא ניתן למחוק את הקטגוריה "גלריות משתמשים"!',
-	'manage_cat' => 'ניהול קטגוריות',
-	'confirm_delete' => 'האם את/ה בטוח/ה שברצונך למחוק קטגוריה זו?',
-	'category' => 'קטגוריה',
-	'operations' => 'פעולות',
-	'move_into' => 'העבר אל',
-	'update_create' => 'יצירה/עדכון קטגוריה',
-	'parent_cat' => 'קטגוריית על',
-	'cat_title' => 'כותרת הקטגוריה',
-	'cat_desc' => 'תאור הקטגוריה'
+	'miss_param' => 'çñøéí ôøîèøéí äãøåùéí ìôòåìä "%s"',
+	'unknown_cat' => 'ä÷èâåøéä ùðáçøä àéðä ÷ééîú áîñ äðúåðéí (DB)',
+	'usergal_cat_ro' => 'ìà ðéúï ìîçå÷ àú ä÷èâåøéä "âìøéåú îùúîùéí"!',
+	'manage_cat' => 'ðéäåì ÷èâåøéåú',
+	'confirm_delete' => 'äàí àú/ä áèåç/ä ùáøöåðê ìîçå÷ ÷èâåøéä æå?',
+	'category' => '÷èâåøéä',
+	'operations' => 'ôòåìåú',
+	'move_into' => 'äòáø àì',
+	'update_create' => 'éöéøä/òãëåï ÷èâåøéä',
+	'parent_cat' => '÷èâåøééú òì',
+	'cat_title' => 'ëåúøú ä÷èâåøéä',
+	'cat_desc' => 'úàåø ä÷èâåøéä'
 );
 
 // ------------------------------------------------------------------------- //
@@ -314,109 +314,109 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('CONFIG_PHP')) $lang_config_php = array(
-	'title' => 'תצורה',
-	'restore_cfg' => 'שיחזור ברירות מחדל',
-	'save_cfg' => 'שמירת התצורה החדשה',
-	'notes' => 'הערות',
-	'info' => 'מידע',
-	'upd_success' => 'התצורה עודכנה',
-	'restore_success' => 'התצורה שוחזרה לברירות המחדל',
-	'name_a' => 'שם עולה',
-	'name_d' => 'שם יורד',
-        'title_a' => 'כותרת בסדר עולה',
-        'title_d' => 'כותרת בסדר יורד',
-	'date_a' => 'תאריך עולה',
-	'date_d' => 'תאירך יורד'
+	'title' => 'úöåøä',
+	'restore_cfg' => 'ùéçæåø áøéøåú îçãì',
+	'save_cfg' => 'ùîéøú äúöåøä äçãùä',
+	'notes' => 'äòøåú',
+	'info' => 'îéãò',
+	'upd_success' => 'äúöåøä òåãëðä',
+	'restore_success' => 'äúöåøä ùåçæøä ìáøéøåú äîçãì',
+	'name_a' => 'ùí òåìä',
+	'name_d' => 'ùí éåøã',
+        'title_a' => 'ëåúøú áñãø òåìä',
+        'title_d' => 'ëåúøú áñãø éåøã',
+	'date_a' => 'úàøéê òåìä',
+	'date_d' => 'úàéøê éåøã',
+        'th_any' => 'Max Aspect',
+        'th_ht' => 'Height',
+        'th_wd' => 'Width',
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
-	'הגדרות כלליות',
-	array('שם הגלריה', 'gallery_name', 0),
-	array('תאור הגלריה', 'gallery_description', 0),
-	array('כתובת דוא"ל של מנהל הגלריה', 'gallery_admin_email', 0),
-	array('כתובת (URL) שתופיע בגלויות בקישור "See more pictures" ', 'ecards_more_pic_target', 0),
-	array('שפה', 'lang', 5),
-	array('סגנון עיצוב', 'theme', 6),
+	'äâãøåú ëììéåú',
+	array('ùí äâìøéä', 'gallery_name', 0),
+	array('úàåø äâìøéä', 'gallery_description', 0),
+	array('ëúåáú ãåà"ì ùì îðäì äâìøéä', 'gallery_admin_email', 0),
+	array('ëúåáú (URL) ùúåôéò áâìåéåú á÷éùåø "See more pictures" ', 'ecards_more_pic_target', 0),
+	array('ùôä', 'lang', 5),
+	array('ñâðåï òéöåá', 'theme', 6),
 
-	'הגדרות לרשימת אלבומים',
-	array('רוחב הטבלה הראשית (ב-% או בפקיסלים)', 'main_table_width', 0),
-	array('מספר רמות קטגוריה להציג', 'subcat_level', 0),
-	array('מספר אלבומים להציג', 'albums_per_page', 0),
-	array('מספר עמודות לרשימת האלבומים', 'album_list_cols', 0),
-	array('גודל הדוגמיות בפיקסלים', 'alb_list_thumb_size', 0),
-	array('תוכן הדף הראשי', 'main_page_layout', 0),
-        array('הצג דוגמיות (מאלבומים בהיררכיה העליונה) ברשימת הקטגוריות','first_level',1),
+	'äâãøåú ìøùéîú àìáåîéí',
+	array('øåçá äèáìä äøàùéú (á-% àå áô÷éñìéí)', 'main_table_width', 0),
+	array('îñôø øîåú ÷èâåøéä ìäöéâ', 'subcat_level', 0),
+	array('îñôø àìáåîéí ìäöéâ', 'albums_per_page', 0),
+	array('îñôø òîåãåú ìøùéîú äàìáåîéí', 'album_list_cols', 0),
+	array('âåãì äãåâîéåú áôé÷ñìéí', 'alb_list_thumb_size', 0),
+	array('úåëï äãó äøàùé', 'main_page_layout', 0),
+        array('äöâ ãåâîéåú (îàìáåîéí áäéøøëéä äòìéåðä) áøùéîú ä÷èâåøéåú','first_level',1),
+	'äâãøåú ìúöåâú ãåâîéåú',
+	array('îñôø òîåãåú áãó ãåâîéåú', 'thumbcols', 0),
+	array('îñôø ùåøåú áãó ãåâîéåú', 'thumbrows', 0),
+	array('îñôø ìùåðéåú î÷ñéîìé ìäöéâ', 'max_tabs', 0),
+	array('äöâú ëúåáéú (áðåñó ìëåúøú) îúçú ìãåâîéú', 'caption_in_thumbview', 1),
+	array('äöâú îñôø ääòøåú îúçú ìãåâîéú', 'display_comment_count', 1),
+	array('îéåï äúçìúé ùì äãåâîéåú', 'default_sort_order', 3),
+	array('îñôø ÷åìåú îéðéîìé äðãøù ìúîåðä ëãé ùúåôéò áøùéîú äãøåâéí äâáåäéí áéåúø ', 'min_votes_for_rating', 0),
 
-	'הגדרות לתצוגת דוגמיות',
-	array('מספר עמודות בדף דוגמיות', 'thumbcols', 0),
-	array('מספר שורות בדף דוגמיות', 'thumbrows', 0),
-	array('מספר לשוניות מקסימלי להציג', 'max_tabs', 0),
-	array('הצגת כתובית (בנוסף לכותרת) מתחת לדוגמית', 'caption_in_thumbview', 1),
-	array('הצגת מספר ההערות מתחת לדוגמית', 'display_comment_count', 1),
-	array('מיון התחלתי של הדוגמיות', 'default_sort_order', 3),
-	array('מספר קולות מינימלי הנדרש לתמונה כדי שתופיע ברשימת הדרוגים הגבוהים ביותר ', 'min_votes_for_rating', 0),
+	'äâãøåú ìúöåâú úîåðä åäòøåú',
+	array('øåçá äèáìä (á-% àå áôé÷ñìéí)', 'picture_table_width', 0),
+	array('îéãò òì äúîåðä îåöâ ëáøéøú îçãì', 'display_pic_info', 1),
+	array('äàí ìñðï ðéáåìé ìùåï îääòøåú', 'filter_bad_words', 1),
+	array('äàí ìäøùåú ñîééìéí áäòøåú', 'enable_smilies', 1),
+	array('àåøê î÷ñéîìé ùì úàåø úîåðä', 'max_img_desc_length', 0),
+	array('àåøê îéìä î÷ñéîìé (ìîðéòú "÷éù÷åùéí")', 'max_com_wlength', 0),
+	array('îñôø ùåøåú î÷ñéîìé áäòøä', 'max_com_lines', 0),
+	array('î÷ñéîåí àåøê ääòøä', 'max_com_size', 0),
+        array('äöâ øöåòú ñøè öéìåí', 'display_film_strip', 1),
+        array('îñôø äôøéèéí áøöåòú ñøè öéìåí', 'max_film_strip_items', 0),
+	'äâãøåú ìúîåðåú åìãåâîéåú',
+	array('øîú àéëåú ì÷áöé JPEG', 'jpeg_qual', 0),
+        array('îîãéí î÷ñéîìééí ùì ãåâîéú <b>*</b>', 'thumb_width', 0),
+        array('ìäùúîù áîîãéí (øåçá àå âåáä àå î÷ñéîìé) ùì ãåâîéú <b>*</b>', 'thumb_use', 7),
+	array('î÷ñéîåí âåáä àå øåçá ùì ãåâîéú <b>*</b>', 'thumb_width', 0),
+	array('éöéøä/äöâä ùì úîåðåú áâåãì áéðééí','make_intermediate',1),
+	array('î÷ñéîåí âåáä àå øåçá ùì úîåðä áâåãì áéðééí <b>*</b>', 'picture_width', 0),
+	array('î÷ñéîåí âåãì ùì ÷åáõ úîåðä (KB)', 'max_upl_size', 0),
+	array('î÷ñéîåí âåáä àå øåçá ùì úîåðä', 'max_upl_width_height', 0),
 
-	'הגדרות לתצוגת תמונה והערות',
-	array('רוחב הטבלה (ב-% או בפיקסלים)', 'picture_table_width', 0),
-	array('מידע על התמונה מוצג כברירת מחדל', 'display_pic_info', 1),
-	array('האם לסנן ניבולי לשון מההערות', 'filter_bad_words', 1),
-	array('האם להרשות סמיילים בהערות', 'enable_smilies', 1),
-	array('אורך מקסימלי של תאור תמונה', 'max_img_desc_length', 0),
-	array('אורך מילה מקסימלי (למניעת "קישקושים")', 'max_com_wlength', 0),
-	array('מספר שורות מקסימלי בהערה', 'max_com_lines', 0),
-	array('מקסימום אורך ההערה', 'max_com_size', 0),
-        array('הצג רצועת סרט צילום', 'display_film_strip', 1),
-        array('מספר הפריטים ברצועת סרט צילום', 'max_film_strip_items', 0),
+	'äâãøåú îùúîùéí',
+	array('ìàôùø øéùåí ùì îùúîùéí çãùéí', 'allow_user_registration', 1),
+	array('ìáöò áãé÷ú ãåà"ì ùì îùúîù çãù', 'reg_requires_valid_email', 1),
+	array('ìäøùåú ëôéìåú ùì ëúåáåú ãåà"ì áéï îùúîùéí ùåðéí', 'allow_duplicate_emails_addr', 1),
+	array('ìàôùø ìîùúîùéí ìéöåø àìáåîéí ôøèééí', 'allow_private_albums', 1),
 
-	'הגדרות לתמונות ולדוגמיות',
-	array('רמת איכות לקבצי JPEG', 'jpeg_qual', 0),
-        array('ממדים מקסימליים של דוגמית <b>*</b>', 'thumb_width', 0),
-        array('להשתמש בממדים (רוחב או גובה או מקסימלי) של דוגמית <b>*</b>', 'thumb_use', 7),
-	array('מקסימום גובה או רוחב של דוגמית <b>*</b>', 'thumb_width', 0),
-	array('יצירה/הצגה של תמונות בגודל ביניים','make_intermediate',1),
-	array('מקסימום גובה או רוחב של תמונה בגודל ביניים <b>*</b>', 'picture_width', 0),
-	array('מקסימום גודל של קובץ תמונה (KB)', 'max_upl_size', 0),
-	array('מקסימום גובה או רוחב של תמונה', 'max_upl_width_height', 0),
+	'ùãåú ðåñôéí ìúàåø úîåðä (ìäùàéø øé÷ àí àéï öåøê)',
+	array('ùí ùãä 1', 'user_field1_name', 0),
+	array('ùí ùãä 2', 'user_field2_name', 0),
+	array('ùí ùãä 3', 'user_field3_name', 0),
+	array('ùí ùãä 4', 'user_field4_name', 0),
 
-	'הגדרות משתמשים',
-	array('לאפשר רישום של משתמשים חדשים', 'allow_user_registration', 1),
-	array('לבצע בדיקת דוא"ל של משתמש חדש', 'reg_requires_valid_email', 1),
-	array('להרשות כפילות של כתובות דוא"ל בין משתמשים שונים', 'allow_duplicate_emails_addr', 1),
-	array('לאפשר למשתמשים ליצור אלבומים פרטיים', 'allow_private_albums', 1),
+	'äâãøåú îú÷ãîåú ìúîåðåú åãåâîéåú',
+        array('ìäöéâ öìîéú àìáåí ôøèé ìîùúîù ùìà äúçáø','show_private',1),
+	array('úåéí àñåøéí áùí ÷åáõ úîåðä', 'forbiden_fname_char',0),
+	array('ñéåîåú îåúøåú ùì ÷áöé úîåðä', 'allowed_file_extensions',0),
+	array('ùéèú ùéðåé âåãì äúîåðä','thumb_method',2),
+	array('ðúéá ìúåëðéú Convert ùì çáéìú ImageMagick (ìîùì /usr/bin/X11/)', 'impath', 0),
+	array('ñåâé ÷áöé úîåðä îåúøéí (ø÷ òáåø ImageMagick)', 'allowed_img_types',0),
+	array('ôøîèøéí ìùåøú äô÷åãä ùì ImageMagick', 'im_options', 0),
+	array('÷øéàú îéãò îåøçá (EXIF) î÷áöé JPEG', 'read_exif_data', 1),
+	array('ðúéá ìîçéöú äàìáåîéí <b>*</b>', 'fullpath', 0),
+	array('îçéöä ìúîåðåú îùúîùéí <b>*</b>', 'userpics', 0),
+	array('÷éãåîú ìúîåðåú áâåãì áéðééí <b>*</b>', 'normal_pfx', 0),
+	array('÷éãåîú ìãåâîéåú <b>*</b>', 'thumb_pfx', 0),
+	array('áøéøú îçãì ìäøùàú îçéöåú', 'default_dir_mode', 0),
+	array('áøéøú îçãì ìäøùàú ÷áöé úîåðä', 'default_file_mode', 0),
+        array('ìçñåí ÷ìé÷-éîðé òì úîåðåú áâãåì îìà (ùéèä ìà îåùìîú á-JavaScript(', 'disable_popup_rightclick', 1),
+        array('ìçñåí ÷ìé÷-éîðé òì ãôéí "øâéìéí" (ùéèä ìà îåùìîú á-JavaScript', 'disable_gallery_rightclick', 1),
+	'äâãøåú Cookies åùôä',
+	array('ùí ä-Cookie ùì äâìøéä', 'cookie_name', 0),
+	array('ðúéá ä-Cookie ùì äâìøéä', 'cookie_path', 0),
+	array('÷éãåã úåéí (ùôä)', 'charset', 4),
 
-	'שדות נוספים לתאור תמונה (להשאיר ריק אם אין צורך)',
-	array('שם שדה 1', 'user_field1_name', 0),
-	array('שם שדה 2', 'user_field2_name', 0),
-	array('שם שדה 3', 'user_field3_name', 0),
-	array('שם שדה 4', 'user_field4_name', 0),
+	'äâãøåú ùåðåú',
+	array('äôòìú îöá Debug', 'debug_mode', 1),
 
-	'הגדרות מתקדמות לתמונות ודוגמיות',
-        array('להציג צלמית אלבום פרטי למשתמש שלא התחבר','show_private',1),
-	array('תוים אסורים בשם קובץ תמונה', 'forbiden_fname_char',0),
-	array('סיומות מותרות של קבצי תמונה', 'allowed_file_extensions',0),
-	array('שיטת שינוי גודל התמונה','thumb_method',2),
-	array('נתיב לתוכנית Convert של חבילת ImageMagick (למשל /usr/bin/X11/)', 'impath', 0),
-	array('סוגי קבצי תמונה מותרים (רק עבור ImageMagick)', 'allowed_img_types',0),
-	array('פרמטרים לשורת הפקודה של ImageMagick', 'im_options', 0),
-	array('קריאת מידע מורחב (EXIF) מקבצי JPEG', 'read_exif_data', 1),
-	array('נתיב למחיצת האלבומים <b>*</b>', 'fullpath', 0),
-	array('מחיצה לתמונות משתמשים <b>*</b>', 'userpics', 0),
-	array('קידומת לתמונות בגודל ביניים <b>*</b>', 'normal_pfx', 0),
-	array('קידומת לדוגמיות <b>*</b>', 'thumb_pfx', 0),
-	array('ברירת מחדל להרשאת מחיצות', 'default_dir_mode', 0),
-	array('ברירת מחדל להרשאת קבצי תמונה', 'default_file_mode', 0),
-        array('לחסום קליק-ימני על תמונות בגדול מלא (שיטה לא מושלמת ב-JavaScript(', 'disable_popup_rightclick', 1),
-        array('לחסום קליק-ימני על דפים "רגילים" (שיטה לא מושלמת ב-JavaScript', 'disable_gallery_rightclick', 1),
-
-	'הגדרות Cookies ושפה',
-	array('שם ה-Cookie של הגלריה', 'cookie_name', 0),
-	array('נתיב ה-Cookie של הגלריה', 'cookie_path', 0),
-	array('קידוד תוים (שפה)', 'charset', 4),
-
-	'הגדרות שונות',
-	array('הפעלת מצב Debug', 'debug_mode', 1),
-
-	'<br /><div align="center">(*) שדות המסומנים ב-* אסור לשנות אם יש כבר תמונות בגלריה!</div><br />'
+	'<br /><div align="center">(*) ùãåú äîñåîðéí á-* àñåø ìùðåú àí éù ëáø úîåðåú áâìøéä!</div><br />'
 );
 
 // ------------------------------------------------------------------------- //
@@ -424,30 +424,30 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
-	'empty_name_or_com' => 'עליך לציין את שמך ולכתוב הערה',
-	'com_added' => 'הערתך נוספה',
-	'alb_need_title' => 'עליך לתת כותרת לאלבום',
-	'no_udp_needed' => 'לא נדרש עדכון',
-	'alb_updated' => 'האלבום עודכן',
-	'unknown_album' => 'האלבום שבחרת אינו קיים או שאין לך הרשאה להוסיף לו תמונות',
-	'no_pic_uploaded' => 'לא העברת קובץ תמונה!<br /><br />אם אכן בצעת את פעולת ההעברה, יתכן שהשרת אינו מקבל קבצים (Upload)...',
-	'err_mkdir' => 'יצירת מחיצה "%s" נכשלה!',
-	'dest_dir_ro' => 'מחיצת היעד "%s" אינה מאפשרת לתוכנית לבצע שינויים!',
-	'err_move' => 'לא ניתן להעביר את "%s" אל "%s"!',
-	'err_fsize_too_large' => 'התמונה שהעברת חורגת מהממדים המקסימליים המותרים (%sx%s)!',
-	'err_imgsize_too_large' => 'התמונה שהעברת חורגת מגודל הקובץ המקסימלי המותר (%s)!',
-	'err_invalid_img' => 'הקובץ שהעברת אינו מכיל תמונה תקינה!',
-	'allowed_img_types' => 'באפשרותך להעביר עד %s קבצי תמונה.',
-	'err_insert_pic' => 'לא ניתן להוסיף את התמונה %s לאלבום ',
-	'upload_success' => 'התמונה עברה בהצלחה.<br /><br />התמונה תופיע לאחר אישור המנהל.',
-	'info' => 'מידע',
-	'com_added' => 'הערה נוספה',
-	'alb_updated' => 'אלבום נוסף',
-	'err_comment_empty' => 'הערתך ריקה!',
-	'err_invalid_fext' => 'מתקבלים קבצים רק בעלי הסיומות: <br /><br />%s.',
-	'no_flood' => 'נראה כי ההערה האחרונה לתמונה היא שלך.<br /><br />אם ברצונך לשנות את ההערה באפשרותך לערוך אותה שוב.',
-	'redirect_msg' => 'הפניה אוטומטית לדף אחר.<br /><br /><br />אם הדף אינו מופיע תוך מספר שניות, יש ללחוץ על "המשך".',
-	'upl_success' => 'תמונתך נוספה בהצלחה',
+	'empty_name_or_com' => 'òìéê ìöééï àú ùîê åìëúåá äòøä',
+	'com_added' => 'äòøúê ðåñôä',
+	'alb_need_title' => 'òìéê ìúú ëåúøú ìàìáåí',
+	'no_udp_needed' => 'ìà ðãøù òãëåï',
+	'alb_updated' => 'äàìáåí òåãëï',
+	'unknown_album' => 'äàìáåí ùáçøú àéðå ÷ééí àå ùàéï ìê äøùàä ìäåñéó ìå úîåðåú',
+	'no_pic_uploaded' => 'ìà äòáøú ÷åáõ úîåðä!<br /><br />àí àëï áöòú àú ôòåìú ääòáøä, éúëï ùäùøú àéðå î÷áì ÷áöéí (Upload)...',
+	'err_mkdir' => 'éöéøú îçéöä "%s" ðëùìä!',
+	'dest_dir_ro' => 'îçéöú äéòã "%s" àéðä îàôùøú ìúåëðéú ìáöò ùéðåééí!',
+	'err_move' => 'ìà ðéúï ìäòáéø àú "%s" àì "%s"!',
+	'err_fsize_too_large' => 'äúîåðä ùäòáøú çåøâú îäîîãéí äî÷ñéîìééí äîåúøéí (%sx%s)!',
+	'err_imgsize_too_large' => 'äúîåðä ùäòáøú çåøâú îâåãì ä÷åáõ äî÷ñéîìé äîåúø (%s)!',
+	'err_invalid_img' => 'ä÷åáõ ùäòáøú àéðå îëéì úîåðä ú÷éðä!',
+	'allowed_img_types' => 'áàôùøåúê ìäòáéø òã %s ÷áöé úîåðä.',
+	'err_insert_pic' => 'ìà ðéúï ìäåñéó àú äúîåðä %s ìàìáåí ',
+	'upload_success' => 'äúîåðä òáøä áäöìçä.<br /><br />äúîåðä úåôéò ìàçø àéùåø äîðäì.',
+	'info' => 'îéãò',
+	'com_added' => 'äòøä ðåñôä',
+	'alb_updated' => 'àìáåí ðåñó',
+	'err_comment_empty' => 'äòøúê øé÷ä!',
+	'err_invalid_fext' => 'îú÷áìéí ÷áöéí ø÷ áòìé äñéåîåú: <br /><br />%s.',
+	'no_flood' => 'ðøàä ëé ääòøä äàçøåðä ìúîåðä äéà ùìê.<br /><br />àí áøöåðê ìùðåú àú ääòøä áàôùøåúê ìòøåê àåúä ùåá.',
+	'redirect_msg' => 'äôðéä àåèåîèéú ìãó àçø.<br /><br /><br />àí äãó àéðå îåôéò úåê îñôø ùðéåú, éù ììçåõ òì "äîùê".',
+	'upl_success' => 'úîåðúê ðåñôä áäöìçä',
 );
 
 // ------------------------------------------------------------------------- //
@@ -455,24 +455,24 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DELETE_PHP')) $lang_delete_php = array(
-	'caption' => 'כתובית',
-	'fs_pic' => 'תמונה בגודל מלא',
-	'del_success' => 'המחיקה הצליחה',
-	'ns_pic' => 'תמונה בגודל רגיל',
-	'err_del' => 'לא ניתן למחוק',
-	'thumb_pic' => 'דוגמית',
-	'comment' => 'הערה',
-	'im_in_alb' => 'תמונה באלבום',
-	'alb_del_success' => 'אלבום "%s" נמחק',
-	'alb_mgr' => 'ניהול אלבומים',
-	'err_invalid_data' => 'מידע שגוי נקלט ב-%s',
-	'create_alb' => 'יוצר אלבום "%s"',
-	'update_alb' => 'מעדכן אלבום "%s" עם כותרת "%s" ואינדקס "%s"',
-	'del_pic' => 'מחיקת תמונה',
-	'del_alb' => 'מחיקת אלבום',
-	'del_user' => 'מחיקת משתמש',
-	'err_unknown_user' => 'המשתמש שנבחר אינו קיים!',
-	'comment_deleted' => 'הערה נמחקה בהצלחה',
+	'caption' => 'ëúåáéú',
+	'fs_pic' => 'úîåðä áâåãì îìà',
+	'del_success' => 'äîçé÷ä äöìéçä',
+	'ns_pic' => 'úîåðä áâåãì øâéì',
+	'err_del' => 'ìà ðéúï ìîçå÷',
+	'thumb_pic' => 'ãåâîéú',
+	'comment' => 'äòøä',
+	'im_in_alb' => 'úîåðä áàìáåí',
+	'alb_del_success' => 'àìáåí "%s" ðîç÷',
+	'alb_mgr' => 'ðéäåì àìáåîéí',
+	'err_invalid_data' => 'îéãò ùâåé ð÷ìè á-%s',
+	'create_alb' => 'éåöø àìáåí "%s"',
+	'update_alb' => 'îòãëï àìáåí "%s" òí ëåúøú "%s" åàéðã÷ñ "%s"',
+	'del_pic' => 'îçé÷ú úîåðä',
+	'del_alb' => 'îçé÷ú àìáåí',
+	'del_user' => 'îçé÷ú îùúîù',
+	'err_unknown_user' => 'äîùúîù ùðáçø àéðå ÷ééí!',
+	'comment_deleted' => 'äòøä ðîç÷ä áäöìçä',
 );
 
 // ------------------------------------------------------------------------- //
@@ -488,38 +488,38 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 if (defined('DISPLAYIMAGE_PHP')){
 
 $lang_display_image_php = array(
-	'confirm_del' => 'האם את/ה הטוח/ה שברצונך למחוק את התמונה? \\nגם ההערות ימחקו.',
-	'del_pic' => 'מחיקת תמונה זו',
-	'size' => '%sx%s פיקסלים',
-	'views' => '%s פעמים',
-	'slideshow' => 'מצגת שקופיות',
-	'stop_slideshow' => 'הפסקת המצגת',
-	'view_fs' => 'יש להקליק לצפיה בתמונה בגודל מלא',
+	'confirm_del' => 'äàí àú/ä äèåç/ä ùáøöåðê ìîçå÷ àú äúîåðä? \\nâí ääòøåú éîç÷å.',
+	'del_pic' => 'îçé÷ú úîåðä æå',
+	'size' => '%sx%s ôé÷ñìéí',
+	'views' => '%s ôòîéí',
+	'slideshow' => 'îöâú ù÷åôéåú',
+	'stop_slideshow' => 'äôñ÷ú äîöâú',
+	'view_fs' => 'éù ìä÷ìé÷ ìöôéä áúîåðä áâåãì îìà',
 );
 
 $lang_picinfo = array(
-	'title' =>'מידע על התמונה',
-	'Filename' => 'שם הקובץ',
-	'Album name' => 'שם האלבום',
-	'Rating' => 'דרוג (%s קולות)',
-	'Keywords' => 'מילות מפתח',
-	'File Size' => 'גודל קובץ',
-	'Dimensions' => 'ממדים',
-	'Displayed' => 'הוצגה',
-	'Camera' => 'מצלמה',
-	'Date taken' => 'צולמה בתאריך',
-	'Aperture' => 'צמצם',
-	'Exposure time' => 'חשיפה',
-	'Focal length' => 'אורך מוקד',
-	'Comment' => 'הערה'
+	'title' =>'îéãò òì äúîåðä',
+	'Filename' => 'ùí ä÷åáõ',
+	'Album name' => 'ùí äàìáåí',
+	'Rating' => 'ãøåâ (%s ÷åìåú)',
+	'Keywords' => 'îéìåú îôúç',
+	'File Size' => 'âåãì ÷åáõ',
+	'Dimensions' => 'îîãéí',
+	'Displayed' => 'äåöâä',
+	'Camera' => 'îöìîä',
+	'Date taken' => 'öåìîä áúàøéê',
+	'Aperture' => 'öîöí',
+	'Exposure time' => 'çùéôä',
+	'Focal length' => 'àåøê îå÷ã',
+	'Comment' => 'äòøä'
 );
 
 $lang_display_comments = array(
 	'OK' => 'OK',
-	'edit_title' => 'עריכת הערה זו',
-	'confirm_delete' => 'האם את/ה בטוח/ה שברצונך למחוק הודעה זו?',
-	'add_your_comment' => 'הוספת הערה',
-	'your_name' => 'שמך',
+	'edit_title' => 'òøéëú äòøä æå',
+	'confirm_delete' => 'äàí àú/ä áèåç/ä ùáøöåðê ìîçå÷ äåãòä æå?',
+	'add_your_comment' => 'äåñôú äòøä',
+	'your_name' => 'ùîê',
 );
 
 }
@@ -529,21 +529,21 @@ $lang_display_comments = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array(
-	'title' => 'שליחת גלויה וירטואלית',
-	'invalid_email' => '<b>אזהרה</b>: כתובת דוא"ל שגויה!',
+	'title' => 'ùìéçú âìåéä åéøèåàìéú',
+	'invalid_email' => '<b>àæäøä</b>: ëúåáú ãåà"ì ùâåéä!',
 	'ecard_title' => 'An e-card from %s',
 	'view_ecard' => 'If the e-card does not display correctly, click this link',
 	'view_more_pics' => 'Click this link to view more pictures !',
-	'send_success' => 'הגלויה נשלחה',
-	'send_failed' => 'סליחה אך השרת אינו יכול לשלוח את הגלויה...',
-	'from' => 'מאת',
-	'your_name' => 'שמך',
-	'your_email' => 'כתובת הדוא"ל שלך',
-	'to' => 'אל',
-	'rcpt_name' => 'שם הנמען',
-	'rcpt_email' => 'כתובת דוא"ל הנמען',
-	'greetings' => 'ברכות',
-	'message' => 'הודעה',
+	'send_success' => 'äâìåéä ðùìçä',
+	'send_failed' => 'ñìéçä àê äùøú àéðå éëåì ìùìåç àú äâìåéä...',
+	'from' => 'îàú',
+	'your_name' => 'ùîê',
+	'your_email' => 'ëúåáú äãåà"ì ùìê',
+	'to' => 'àì',
+	'rcpt_name' => 'ùí äðîòï',
+	'rcpt_email' => 'ëúåáú ãåà"ì äðîòï',
+	'greetings' => 'áøëåú',
+	'message' => 'äåãòä',
 );
 
 // ------------------------------------------------------------------------- //
@@ -551,25 +551,25 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
 // ------------------------------------------------------------------------- //
 
 if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
-	'pic_info' => 'מידע על התמונה',
-	'album' => 'אלבום',
-	'title' => 'כותרת',
-	'desc' => 'תאור',
-	'keywords' => 'מלות מפתח',
-	'pic_info_str' => '%sx%s - %sKB, עם %s צפיות ו- %s קולות',
-	'approve' => 'אישור התמונה',
-	'postpone_app' => 'דחיית האישור',
-	'del_pic' => 'מחיקת התמונה',
-	'reset_view_count' => 'איפוס מונה צפיות',
-	'reset_votes' => 'איפוס קולות',
-	'del_comm' => 'מחיקת הערות',
-	'upl_approval' => 'אישור העברה',
-	'edit_pics' => 'עריכת תמונות',
-	'see_next' => 'צפיה בתמונות הבאות',
-	'see_prev' => 'צפיה בתמונות הקודמות',
-	'n_pic' => '%s תמונות',
-	'n_of_pic_to_disp' => 'מספר תמונות להצגה',
-	'apply' => 'ביצוע השינויים'
+	'pic_info' => 'îéãò òì äúîåðä',
+	'album' => 'àìáåí',
+	'title' => 'ëåúøú',
+	'desc' => 'úàåø',
+	'keywords' => 'îìåú îôúç',
+	'pic_info_str' => '%sx%s - %sKB, òí %s öôéåú å- %s ÷åìåú',
+	'approve' => 'àéùåø äúîåðä',
+	'postpone_app' => 'ãçééú äàéùåø',
+	'del_pic' => 'îçé÷ú äúîåðä',
+	'reset_view_count' => 'àéôåñ îåðä öôéåú',
+	'reset_votes' => 'àéôåñ ÷åìåú',
+	'del_comm' => 'îçé÷ú äòøåú',
+	'upl_approval' => 'àéùåø äòáøä',
+	'edit_pics' => 'òøéëú úîåðåú',
+	'see_next' => 'öôéä áúîåðåú äáàåú',
+	'see_prev' => 'öôéä áúîåðåú ä÷åãîåú',
+	'n_pic' => '%s úîåðåú',
+	'n_of_pic_to_disp' => 'îñôø úîåðåú ìäöâä',
+	'apply' => 'áéöåò äùéðåééí'
 );
 
 // ------------------------------------------------------------------------- //
@@ -577,23 +577,23 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
-	'group_name' => 'שם הקבוצה',
-	'disk_quota' => 'הקצאת נפח דיסק',
-	'can_rate' => 'הרשאה לדרוג תמונות',
-	'can_send_ecards' => 'הרשאה לשלוח גלויות',
-	'can_post_com' => 'הרשאה לכתוב הערות',
-	'can_upload' => 'הרשאה להוספת תמונות',
-	'can_have_gallery' => 'הרשאה לגלריה אישית',
-	'apply' => 'ביצוע השינויים',
-	'create_new_group' => 'יצירת קבוצה חדשה',
-	'del_groups' => 'מחיקת הקבוצות המסומנות',
-	'confirm_del' => 'אזהרה: מחיקת קבוצה תגרום להעברת כל המשתמשים בקבוצה אל קבוצת "Registered" - האם ברצונך להמשיך?',
-	'title' => 'ניהול קבוצות משתמשים',
-	'approval_1' => 'אישור הוספות ציבוריות (1)',
-	'approval_2' => 'אישור הוספות פרטיות (2)',
-	'note1' => '<b>(1)</b> הוספת תמונות לאלבום ציבורי דורשת אישור מנהל',
-	'note2' => '<b>(2)</b> הוספת תמונות לאלבום פרטי דורשת אישור מנהל',
-	'notes' => 'הערות'
+	'group_name' => 'ùí ä÷áåöä',
+	'disk_quota' => 'ä÷öàú ðôç ãéñ÷',
+	'can_rate' => 'äøùàä ìãøåâ úîåðåú',
+	'can_send_ecards' => 'äøùàä ìùìåç âìåéåú',
+	'can_post_com' => 'äøùàä ìëúåá äòøåú',
+	'can_upload' => 'äøùàä ìäåñôú úîåðåú',
+	'can_have_gallery' => 'äøùàä ìâìøéä àéùéú',
+	'apply' => 'áéöåò äùéðåééí',
+	'create_new_group' => 'éöéøú ÷áåöä çãùä',
+	'del_groups' => 'îçé÷ú ä÷áåöåú äîñåîðåú',
+	'confirm_del' => 'àæäøä: îçé÷ú ÷áåöä úâøåí ìäòáøú ëì äîùúîùéí á÷áåöä àì ÷áåöú "Registered" - äàí áøöåðê ìäîùéê?',
+	'title' => 'ðéäåì ÷áåöåú îùúîùéí',
+	'approval_1' => 'àéùåø äåñôåú öéáåøéåú (1)',
+	'approval_2' => 'àéùåø äåñôåú ôøèéåú (2)',
+	'note1' => '<b>(1)</b> äåñôú úîåðåú ìàìáåí öéáåøé ãåøùú àéùåø îðäì',
+	'note2' => '<b>(2)</b> äåñôú úîåðåú ìàìáåí ôøèé ãåøùú àéùåø îðäì',
+	'notes' => 'äòøåú'
 );
 
 // ------------------------------------------------------------------------- //
@@ -603,34 +603,34 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
 if (defined('INDEX_PHP')){
 
 $lang_index_php = array(
-	'welcome' => 'ברוכים הבאים!'
+	'welcome' => 'áøåëéí äáàéí!'
 );
 
 $lang_album_admin_menu = array(
-	'confirm_delete' => '?האם את/ה בטוח/ה שברצונך למחוק אלבום זה\n!כל התמונות וההערות שבו יאבדו',
-	'delete' => 'מחיקה',
-	'modify' => 'מאפיינים',
-	'edit_pics' => 'עריכת תמונות',
+	'confirm_delete' => '?äàí àú/ä áèåç/ä ùáøöåðê ìîçå÷ àìáåí æä\n!ëì äúîåðåú åääòøåú ùáå éàáãå',
+	'delete' => 'îçé÷ä',
+	'modify' => 'îàôééðéí',
+	'edit_pics' => 'òøéëú úîåðåú',
 );
 
 $lang_list_categories = array(
-	'home' => 'דף ראשי',
-	'stat1' => '<b>[pictures]</b> תמונות ב- <b>[albums]</b> אלבומים ו- <b>[cat]</b> קטגוריות עם <b>[comments]</b> הערות, שנצפו <b>[views]</b> פעמים',
-	'stat2' => '<b>[pictures]</b> תמונות ב- <b>[albums]</b> אלבומים, שנצפו <b>[views]</b> פעמים',
-	'xx_s_gallery' => 'הגלריה של %s',
-	'stat3' => '<b>[pictures]</b> תמונות ב- <b>[albums]</b> אלבומים עם <b>[comments]</b> הערות, שנצפו <b>[views]</b> פעמים'
+	'home' => 'ãó øàùé',
+	'stat1' => '<b>[pictures]</b> úîåðåú á- <b>[albums]</b> àìáåîéí å- <b>[cat]</b> ÷èâåøéåú òí <b>[comments]</b> äòøåú, ùðöôå <b>[views]</b> ôòîéí',
+	'stat2' => '<b>[pictures]</b> úîåðåú á- <b>[albums]</b> àìáåîéí, ùðöôå <b>[views]</b> ôòîéí',
+	'xx_s_gallery' => 'äâìøéä ùì %s',
+	'stat3' => '<b>[pictures]</b> úîåðåú á- <b>[albums]</b> àìáåîéí òí <b>[comments]</b> äòøåú, ùðöôå <b>[views]</b> ôòîéí'
 );
 
 $lang_list_users = array(
-	'user_list' => 'רשימת משתמשים',
-	'no_user_gal' => 'אין גלריות משתמשים',
-	'n_albums' => '%s אלבוםמים',
-	'n_pics' => '%s תמונות'
+	'user_list' => 'øùéîú îùúîùéí',
+	'no_user_gal' => 'àéï âìøéåú îùúîùéí',
+	'n_albums' => '%s àìáåíîéí',
+	'n_pics' => '%s úîåðåú'
 );
 
 $lang_list_albums = array(
-	'n_pictures' => '%s תמונות',
-	'last_added' => ', האחרונה נוספה בתאריך- %s'
+	'n_pictures' => '%s úîåðåú',
+	'last_added' => ', äàçøåðä ðåñôä áúàøéê- %s'
 );
 
 }
@@ -640,14 +640,14 @@ $lang_list_albums = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('LOGIN_PHP')) $lang_login_php = array(
-	'login' => 'התחברות',
-	'enter_login_pswd' => 'יש להקיש שם משתמש/ת וסיסמה כדי להתחבר',
-	'username' => 'שם משתמש/ת',
-	'password' => 'סיסמה',
-	'remember_me' => 'זכור אותי (חבר אותי אוטומטית בפעמים הבאות)',
-	'welcome' => 'ברוכים הבאים',
-	'err_login' => '*** ההתחברות נכשלה, נא לנסות שוב ***',
-	'err_already_logged_in' => 'כבר התחברת!',
+	'login' => 'äúçáøåú',
+	'enter_login_pswd' => 'éù ìä÷éù ùí îùúîù/ú åñéñîä ëãé ìäúçáø',
+	'username' => 'ùí îùúîù/ú',
+	'password' => 'ñéñîä',
+	'remember_me' => 'æëåø àåúé (çáø àåúé àåèåîèéú áôòîéí äáàåú)',
+	'welcome' => 'áøåëéí äáàéí',
+	'err_login' => '*** ääúçáøåú ðëùìä, ðà ìðñåú ùåá ***',
+	'err_already_logged_in' => 'ëáø äúçáøú!',
 );
 
 // ------------------------------------------------------------------------- //
@@ -655,9 +655,9 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('LOGOUT_PHP')) $lang_logout_php = array(
-	'logout' => 'התנתקות',
-	'bye' => 'להתראות...',
-	'err_not_loged_in' => 'עוד לא התחברת!',
+	'logout' => 'äúðú÷åú',
+	'bye' => 'ìäúøàåú...',
+	'err_not_loged_in' => 'òåã ìà äúçáøú!',
 );
 
 // ------------------------------------------------------------------------- //
@@ -665,27 +665,27 @@ if (defined('LOGOUT_PHP')) $lang_logout_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
-	'upd_alb_n' => 'עדכון אלבום %s',
-	'general_settings' => 'הגדרות כלליות',
-	'alb_title' => 'כותרת האלבום',
-	'alb_cat' => 'קטגורית האלבום',
-	'alb_desc' => 'תאור האלבום',
-	'alb_thumb' => 'דוגמית מייצגת לאלבום',
-	'alb_perm' => 'הרשאות לאלבום',
-	'can_view' => 'הרשאות צפיה באלבום ל-',
-	'can_upload' => 'אורחים יכולים להוסיף תמונות',
-	'can_post_comments' => 'אורחים יכולים להוסיף הערות לתמונות',
-	'can_rate' => 'אורחים יכולים לדרג תמונות',
-	'user_gal' => 'גלריית משתמש',
-	'no_cat' => '* ללא קטגוריה *',
-	'alb_empty' => 'אלבום ריק',
-	'last_uploaded' => 'תמונה אחרונה שנוספה',
-	'public_alb' => 'כולם (אלבום ציבורי)',
-	'me_only' => 'אני בלבד',
-	'owner_only' => 'בעל האלבום (%s) בלבד',
-	'groupp_only' => 'רק חברים בקבוצה "%s"',
-	'err_no_alb_to_modify' => 'לא נמצא אלבום שבאפשרותך לעדכן',
-	'update' => 'עדכון אלבום'
+	'upd_alb_n' => 'òãëåï àìáåí %s',
+	'general_settings' => 'äâãøåú ëììéåú',
+	'alb_title' => 'ëåúøú äàìáåí',
+	'alb_cat' => '÷èâåøéú äàìáåí',
+	'alb_desc' => 'úàåø äàìáåí',
+	'alb_thumb' => 'ãåâîéú îééöâú ìàìáåí',
+	'alb_perm' => 'äøùàåú ìàìáåí',
+	'can_view' => 'äøùàåú öôéä áàìáåí ì-',
+	'can_upload' => 'àåøçéí éëåìéí ìäåñéó úîåðåú',
+	'can_post_comments' => 'àåøçéí éëåìéí ìäåñéó äòøåú ìúîåðåú',
+	'can_rate' => 'àåøçéí éëåìéí ìãøâ úîåðåú',
+	'user_gal' => 'âìøééú îùúîù',
+	'no_cat' => '* ììà ÷èâåøéä *',
+	'alb_empty' => 'àìáåí øé÷',
+	'last_uploaded' => 'úîåðä àçøåðä ùðåñôä',
+	'public_alb' => 'ëåìí (àìáåí öéáåøé)',
+	'me_only' => 'àðé áìáã',
+	'owner_only' => 'áòì äàìáåí (%s) áìáã',
+	'groupp_only' => 'ø÷ çáøéí á÷áåöä "%s"',
+	'err_no_alb_to_modify' => 'ìà ðîöà àìáåí ùáàôùøåúê ìòãëï',
+	'update' => 'òãëåï àìáåí'
 );
 
 // ------------------------------------------------------------------------- //
@@ -693,8 +693,8 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
-	'already_rated' => 'כבר דרגת את התמונה בעבר',
-	'rate_ok' => 'הצבעתך נקלטה',
+	'already_rated' => 'ëáø ãøâú àú äúîåðä áòáø',
+	'rate_ok' => 'äöáòúê ð÷ìèä',
 );
 
 // ------------------------------------------------------------------------- //
@@ -704,65 +704,65 @@ if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
-מנהל האתר ישתדל להסיר כל חומר פוגע המבירות האפשרית. עם זאת, יש לזכור שלא ניתן לסרוק כל פיסת מידע או תמונה. כל המידע המפורסם באתר מבטא את השקפותיהם של המשתמשים ולא של מנהלי האתר (מלבד מידע שהם עצמם פרסמו). אי לכך מנהלי האתר אינם אחראים לכל פגיעה או נזק כתוצאה ממעשיהם של המשתמשים באתר.
+îðäì äàúø éùúãì ìäñéø ëì çåîø ôåâò äîáéøåú äàôùøéú. òí æàú, éù ìæëåø ùìà ðéúï ìñøå÷ ëì ôéñú îéãò àå úîåðä. ëì äîéãò äîôåøñí áàúø îáèà àú äù÷ôåúéäí ùì äîùúîùéí åìà ùì îðäìé äàúø (îìáã îéãò ùäí òöîí ôøñîå). àé ìëê îðäìé äàúø àéðí àçøàéí ìëì ôâéòä àå ðæ÷ ëúåöàä îîòùéäí ùì äîùúîùéí áàúø.
 <br />
 <br />
-אין לפרסם באתר כל חומר המוגדר כ: פגיעה, השמצה, עלבון, הסתה, איום, תועבה, או כל סוג אחר שאינו עולה בקנה אחד עם החוק. אין לפרסם באתר חומר המוגן בזכויות יוצרים, למעט אם בעל הזכויות נתן הרשאה מפורשת לפרסום. מנהלי האתר יסירו או יערכו מידע לפי שיקול דעתם הבלעדי. כל המידע באתר נשמר במאגר מידע. האתר אינו מיועד לשמש כגיבוי למידע של המשתמשים אלא כלוח פרסום זמני. מנהלי האתר אינם אחראים לאובדן או גניבה של מידע.
+àéï ìôøñí áàúø ëì çåîø äîåâãø ë: ôâéòä, äùîöä, òìáåï, äñúä, àéåí, úåòáä, àå ëì ñåâ àçø ùàéðå òåìä á÷ðä àçã òí äçå÷. àéï ìôøñí áàúø çåîø äîåâï áæëåéåú éåöøéí, ìîòè àí áòì äæëåéåú ðúï äøùàä îôåøùú ìôøñåí. îðäìé äàúø éñéøå àå éòøëå îéãò ìôé ùé÷åì ãòúí äáìòãé. ëì äîéãò áàúø ðùîø áîàâø îéãò. äàúø àéðå îéåòã ìùîù ëâéáåé ìîéãò ùì äîùúîùéí àìà ëìåç ôøñåí æîðé. îðäìé äàúø àéðí àçøàéí ìàåáãï àå âðéáä ùì îéãò.
 <br />
 <br />
-אתר זה משתמש ב"עוגיות" (Cookies) לאחסון מידע בתוכנת הגלישה שלך. "עוגיות" אלה נועדו להקל על השימוש באתר ואינן גורמות לכל נזק או פגיעה בפרטיות. כתובת הדואר האלקטרונית שלך תשמש רק לשליחת הודעות מהאתר.
+àúø æä îùúîù á"òåâéåú" (Cookies) ìàçñåï îéãò áúåëðú äâìéùä ùìê. "òåâéåú" àìä ðåòãå ìä÷ì òì äùéîåù áàúø åàéðï âåøîåú ìëì ðæ÷ àå ôâéòä áôøèéåú. ëúåáú äãåàø äàì÷èøåðéú ùìê úùîù ø÷ ìùìéçú äåãòåú îäàúø.
 <br />
 <br />
-לחיצה על "אני מסכימ/ה" מהווה אישורך להבנה וקבלה מלאה של כל האמור לעיל.
+ìçéöä òì "àðé îñëéî/ä" îäååä àéùåøê ìäáðä å÷áìä îìàä ùì ëì äàîåø ìòéì.
 EOT;
 
 $lang_register_php = array(
-	'page_title' => 'רישום משתמש/ת',
-	'term_cond' => 'תנאי השימוש באתר',
-	'i_agree' => 'אני מסכימ/ה',
-	'submit' => 'שליחת בקשת ההרשמה',
-	'err_user_exists' => 'שם המשתמש/ת שבחרת כבר תפוס, יש לבחור שם אחר',
-	'err_password_mismatch' => 'הסיסמאות אינן תואמות, נא להקישן שוב',
-	'err_uname_short' => ' שם המשתמש/ת חייב להכיל לפחות 2 אותיות (המלצה: 4 תוים לפחות)',
-	'err_password_short' => 'הסיסמה חייבת להכיל לפחות 2 תוים (המלצה: 6 תוים לפחות)',
-	'err_uname_pass_diff' => 'השם והסיסמה אינם יכולים להיות זהים',
-	'err_invalid_email' => 'כתובת הדואר האלקטרוני אינה תקינה',
-	'err_duplicate_email' => 'מישהו אחר כבר משתמש בכתובת הדואר האלקטרוני שציינת',
-	'enter_info' => 'נא למלא את פרטי הרישום',
-	'required_info' => 'מידע חובה',
-	'optional_info' => 'מידע רשות',
-	'username' => 'שם משתמש/ת',
-	'password' => 'סיסמה',
-	'password_again' => 'וידוא סיסמה',
-	'email' => 'דואר אלקטרוני',
-	'location' => 'מקום',
-	'interests' => 'תחומי ענין',
-	'website' => 'כתובת אתר',
-	'occupation' => 'עיסוק',
-	'error' => 'תקלה',
-	'confirm_email_subject' => '%s - אישור רישום',
-	'information' => 'מידע',
-	'failed_sending_email' => 'לא ניתן לשלוח הודעת אישור רישום',
-	'thank_you' => 'תודה שנרשמת.<br /><br />נשלחה הודעה לכתובת הדואר האלקטרוני שציינת, עם הוראות להפעלת חשבונך.',
-	'acct_created' => 'חשבונך נפתח ובאפשרותך להתחבר באמצעות השם והסיסמה שבחרת',
-	'acct_active' => 'חשבונך הופעל ובאפשרותך להתחבר באמצעות השם והסיסמה שבחרת',
-	'acct_already_act' => 'חשבונך כבר פעיל!',
-	'acct_act_failed' => 'לא ניתן להפעיל חשבון זה!',
-	'err_unk_user' => 'המשתמש שנבחר אינו קיים!',
-	'x_s_profile' => 'הפרופיל של %s',
-	'group' => 'קבוצה',
-	'reg_date' => 'הצטרפות',
-	'disk_usage' => 'הפח דיסק בשימוש',
-	'change_pass' => 'שינוי סיסמה',
-	'current_pass' => 'סיסמה נוכחית',
-	'new_pass' => 'סיסמה חדשה',
-	'new_pass_again' => 'וידוא סיסמה חדשה',
-	'err_curr_pass' => 'הסיסמה הנוכחית שגויה',
-	'apply_modif' => 'ביצוע השינויים',
-	'change_pass' => 'שינוי הסיסמה שלי',
-	'update_success' => 'הפרופיל שלך עודכן',
-	'pass_chg_success' => 'סיסמתך עודכנה',
-	'pass_chg_error' => 'סיסמתך לא עודכנה',
+	'page_title' => 'øéùåí îùúîù/ú',
+	'term_cond' => 'úðàé äùéîåù áàúø',
+	'i_agree' => 'àðé îñëéî/ä',
+	'submit' => 'ùìéçú á÷ùú ääøùîä',
+	'err_user_exists' => 'ùí äîùúîù/ú ùáçøú ëáø úôåñ, éù ìáçåø ùí àçø',
+	'err_password_mismatch' => 'äñéñîàåú àéðï úåàîåú, ðà ìä÷éùï ùåá',
+	'err_uname_short' => ' ùí äîùúîù/ú çééá ìäëéì ìôçåú 2 àåúéåú (äîìöä: 4 úåéí ìôçåú)',
+	'err_password_short' => 'äñéñîä çééáú ìäëéì ìôçåú 2 úåéí (äîìöä: 6 úåéí ìôçåú)',
+	'err_uname_pass_diff' => 'äùí åäñéñîä àéðí éëåìéí ìäéåú æäéí',
+	'err_invalid_email' => 'ëúåáú äãåàø äàì÷èøåðé àéðä ú÷éðä',
+	'err_duplicate_email' => 'îéùäå àçø ëáø îùúîù áëúåáú äãåàø äàì÷èøåðé ùöééðú',
+	'enter_info' => 'ðà ìîìà àú ôøèé äøéùåí',
+	'required_info' => 'îéãò çåáä',
+	'optional_info' => 'îéãò øùåú',
+	'username' => 'ùí îùúîù/ú',
+	'password' => 'ñéñîä',
+	'password_again' => 'åéãåà ñéñîä',
+	'email' => 'ãåàø àì÷èøåðé',
+	'location' => 'î÷åí',
+	'interests' => 'úçåîé òðéï',
+	'website' => 'ëúåáú àúø',
+	'occupation' => 'òéñå÷',
+	'error' => 'ú÷ìä',
+	'confirm_email_subject' => '%s - àéùåø øéùåí',
+	'information' => 'îéãò',
+	'failed_sending_email' => 'ìà ðéúï ìùìåç äåãòú àéùåø øéùåí',
+	'thank_you' => 'úåãä ùðøùîú.<br /><br />ðùìçä äåãòä ìëúåáú äãåàø äàì÷èøåðé ùöééðú, òí äåøàåú ìäôòìú çùáåðê.',
+	'acct_created' => 'çùáåðê ðôúç åáàôùøåúê ìäúçáø áàîöòåú äùí åäñéñîä ùáçøú',
+	'acct_active' => 'çùáåðê äåôòì åáàôùøåúê ìäúçáø áàîöòåú äùí åäñéñîä ùáçøú',
+	'acct_already_act' => 'çùáåðê ëáø ôòéì!',
+	'acct_act_failed' => 'ìà ðéúï ìäôòéì çùáåï æä!',
+	'err_unk_user' => 'äîùúîù ùðáçø àéðå ÷ééí!',
+	'x_s_profile' => 'äôøåôéì ùì %s',
+	'group' => '÷áåöä',
+	'reg_date' => 'äöèøôåú',
+	'disk_usage' => 'äôç ãéñ÷ áùéîåù',
+	'change_pass' => 'ùéðåé ñéñîä',
+	'current_pass' => 'ñéñîä ðåëçéú',
+	'new_pass' => 'ñéñîä çãùä',
+	'new_pass_again' => 'åéãåà ñéñîä çãùä',
+	'err_curr_pass' => 'äñéñîä äðåëçéú ùâåéä',
+	'apply_modif' => 'áéöåò äùéðåééí',
+	'change_pass' => 'ùéðåé äñéñîä ùìé',
+	'update_success' => 'äôøåôéì ùìê òåãëï',
+	'pass_chg_success' => 'ñéñîúê òåãëðä',
+	'pass_chg_error' => 'ñéñîúê ìà òåãëðä',
 );
 
 $lang_register_confirm_email = <<<EOT
@@ -789,13 +789,13 @@ EOT;
 // ------------------------------------------------------------------------- //
 
 if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
-	'title' => 'סקירת הערות',
-	'no_comment' => 'אין הערות לסקור',
-	'n_comm_del' => '%s הערות נמחקו',
-	'n_comm_disp' => 'מספר הערות להצגה',
-	'see_prev' => 'דף הבא',
-	'see_next' => 'דף קודם',
-	'del_comm' => 'מחיקת ההערות המסומנות',
+	'title' => 'ñ÷éøú äòøåú',
+	'no_comment' => 'àéï äòøåú ìñ÷åø',
+	'n_comm_del' => '%s äòøåú ðîç÷å',
+	'n_comm_disp' => 'îñôø äòøåú ìäöâä',
+	'see_prev' => 'ãó äáà',
+	'see_next' => 'ãó ÷åãí',
+	'del_comm' => 'îçé÷ú ääòøåú äîñåîðåú',
 );
 
 
@@ -804,7 +804,7 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCH_PHP')) $lang_search_php = array(
-	0 => 'חיפוש במאגר התמונות',
+	0 => 'çéôåù áîàâø äúîåðåú',
 );
 
 // ------------------------------------------------------------------------- //
@@ -812,31 +812,31 @@ if (defined('SEARCH_PHP')) $lang_search_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
-	'page_title' => 'חיפוש תמונות חדשות',
-	'select_dir' => 'בחירת מחיצה',
-	'select_dir_msg' => 'פעולה זו מאפשרת לך להוסיף סדרת תמונות שכבר העברת אל האתר ב-FTP.<br /><br />עליך לבחור את המחיצה בשרת שבה נמצאות התמונות',
-	'no_pic_to_add' => 'אין תמונות להוסיף',
-	'need_one_album' => 'צריך ליצור לפחות אלבום אחד כדי להשתמש בפעולה זו',
-	'warning' => 'אזהרה',
-	'change_perm' => 'התוכנית אינה יכולה לכתוב במחיצה זו. עליך לשנות את ההרשאה ל- 755 או 777 כדי להוסיף תמונות!',
-	'target_album' => '<b>הוספת תמונות של "</b>%s<b>" אל </b>%s',
-	'folder' => 'תיקיה',
-	'image' => 'תמונה',
-	'album' => 'אלבום',
-	'result' => 'תוצאה',
-	'dir_ro' => 'לא ניתן לכתיבה. ',
-	'dir_cant_read' => 'לא ניתן לקריאה. ',
-	'insert' => 'הוספת תמונה חדשה לגלריה',
-	'list_new_pic' => 'רשימת תמונות חדשות',
-	'insert_selected' => 'הכנסת התמונות המסומנות',
-	'no_pic_found' => 'לא נמצאה אף תמונה חדשה',
-	'be_patient' => 'נא להמתין בסבלנות עד שהתוכנית תסיים להוסיף את התמונות',
-	'notes' =>  'מקרא<ul>'.
-				'<li><b>OK</b> : התמונה נוספה בהצלחה'.
-				'<li><b>DP</b> : התמונה (או תמונה זהה) כבר נמצאת במאגר'.
-				'<li><b>PB</b> : הוספת התמונה נכשלה. יש לבדוק את הגדרות המערכת ואת ההרשאות למחיצות'.
-				'<li>אם סימן OK/DP/PB לא הופיע, יש ללחוץ על מסגרת התמונה ולבדוק את הודעת השגיאה ממנוע PHP'.
-				'<li>אם תוכנת הגלישה מודיעה "Time out", יש ללחוץ על כפתור Refresh/Reload'.
+	'page_title' => 'çéôåù úîåðåú çãùåú',
+	'select_dir' => 'áçéøú îçéöä',
+	'select_dir_msg' => 'ôòåìä æå îàôùøú ìê ìäåñéó ñãøú úîåðåú ùëáø äòáøú àì äàúø á-FTP.<br /><br />òìéê ìáçåø àú äîçéöä áùøú ùáä ðîöàåú äúîåðåú',
+	'no_pic_to_add' => 'àéï úîåðåú ìäåñéó',
+	'need_one_album' => 'öøéê ìéöåø ìôçåú àìáåí àçã ëãé ìäùúîù áôòåìä æå',
+	'warning' => 'àæäøä',
+	'change_perm' => 'äúåëðéú àéðä éëåìä ìëúåá áîçéöä æå. òìéê ìùðåú àú ääøùàä ì- 755 àå 777 ëãé ìäåñéó úîåðåú!',
+	'target_album' => '<b>äåñôú úîåðåú ùì "</b>%s<b>" àì </b>%s',
+	'folder' => 'úé÷éä',
+	'image' => 'úîåðä',
+	'album' => 'àìáåí',
+	'result' => 'úåöàä',
+	'dir_ro' => 'ìà ðéúï ìëúéáä. ',
+	'dir_cant_read' => 'ìà ðéúï ì÷øéàä. ',
+	'insert' => 'äåñôú úîåðä çãùä ìâìøéä',
+	'list_new_pic' => 'øùéîú úîåðåú çãùåú',
+	'insert_selected' => 'äëðñú äúîåðåú äîñåîðåú',
+	'no_pic_found' => 'ìà ðîöàä àó úîåðä çãùä',
+	'be_patient' => 'ðà ìäîúéï áñáìðåú òã ùäúåëðéú úñééí ìäåñéó àú äúîåðåú',
+	'notes' =>  'î÷øà<ul>'.
+				'<li><b>OK</b> : äúîåðä ðåñôä áäöìçä'.
+				'<li><b>DP</b> : äúîåðä (àå úîåðä æää) ëáø ðîöàú áîàâø'.
+				'<li><b>PB</b> : äåñôú äúîåðä ðëùìä. éù ìáãå÷ àú äâãøåú äîòøëú åàú ääøùàåú ìîçéöåú'.
+				'<li>àí ñéîï OK/DP/PB ìà äåôéò, éù ììçåõ òì îñâøú äúîåðä åìáãå÷ àú äåãòú äùâéàä îîðåò PHP'.
+				'<li>àí úåëðú äâìéùä îåãéòä "Time out", éù ììçåõ òì ëôúåø Refresh/Reload'.
 				'</ul>',
 );
 
@@ -853,14 +853,14 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('BANNING_PHP')) $lang_banning_php = array(
-                'title' => 'הרחקת משתמשים',
-                'user_name' => 'שם משתמש',
-                'ip_address' => 'כתובת IP',
-                'expiry' => 'בתוקף עד (ערך ריק = קבוע)',
-                'edit_ban' => 'שמירת שינויים',
-                'delete_ban' => 'מחיקה',
-                'add_new' => 'הוספת הרחקה',
-                'add_ban' => 'הוספה',
+                'title' => 'äøç÷ú îùúîùéí',
+                'user_name' => 'ùí îùúîù',
+                'ip_address' => 'ëúåáú IP',
+                'expiry' => 'áúå÷ó òã (òøê øé÷ = ÷áåò)',
+                'edit_ban' => 'ùîéøú ùéðåééí',
+                'delete_ban' => 'îçé÷ä',
+                'add_new' => 'äåñôú äøç÷ä',
+                'add_ban' => 'äåñôä',
 );
 
 // ------------------------------------------------------------------------- //
@@ -868,14 +868,14 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UPLOAD_PHP')) $lang_upload_php = array(
-	'title' => 'הוספת תמונה',
-	'max_fsize' => 'גודל הקובץ המקסימלי המותר %s KB',
-	'album' => 'אלבום',
-	'picture' => 'תמונה',
-	'pic_title' => 'כותרת התמונה',
-	'description' => 'תאור התמונה',
-	'keywords' => 'מילות מפתח (מופרדות ברווחים)',
-	'err_no_alb_uploadables' => 'לא נמצא אלבום שאליו מותר לך להוסיף תמונות',
+	'title' => 'äåñôú úîåðä',
+	'max_fsize' => 'âåãì ä÷åáõ äî÷ñéîìé äîåúø %s KB',
+	'album' => 'àìáåí',
+	'picture' => 'úîåðä',
+	'pic_title' => 'ëåúøú äúîåðä',
+	'description' => 'úàåø äúîåðä',
+	'keywords' => 'îéìåú îôúç (îåôøãåú áøååçéí)',
+	'err_no_alb_uploadables' => 'ìà ðîöà àìáåí ùàìéå îåúø ìê ìäåñéó úîåðåú',
 );
 
 // ------------------------------------------------------------------------- //
@@ -883,45 +883,45 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
-	'title' => 'ניהול משתמשים',
-	'name_a' => 'שם, סדר עולה',
-	'name_d' => 'שם, סדר יורד',
-	'group_a' => 'קבוצה, סדר עולה',
-	'group_d' => 'קבוצה, סדר יורד',
-	'reg_a' => 'תאריך רישום, סדר עולה',
-	'reg_d' => 'תאריך רישום, סדר יורד',
-	'pic_a' => 'מספר תמונות, סדר עולה',
-	'pic_d' => 'מספר תמונות, סדר יורד',
-	'disku_a' => 'ניצול דיסק, סדר עולה',
-	'disku_d' => 'ניצול דיסק, סדר יורד',
-	'sort_by' => 'מיון משתמשים לפי',
-	'err_no_users' => 'טבלת המשתמשים ריקה!',
-	'err_edit_self' => 'אין באפשרותך לערוך כאן את הפרופיל של עצמך, לשם כך יש ללחוץ על קישור "הפרופיל שלי"',
-	'edit' => 'עריכה',
-	'delete' => 'מחיקה',
-	'name' => 'שם משתמש',
-	'group' => 'קבוצה',
-	'inactive' => 'לא פעיל',
-	'operations' => 'פעולות',
-	'pictures' => 'תמונות',
-	'disk_space' => 'נפח מנוצל / הרשאה',
-	'registered_on' => 'רישום מתאריך',
-	'u_user_on_p_pages' => '%d משתמשים ב- %d דפים',
-	'confirm_del' => 'האם את/ה בטוח/ה שברצונך למחוק משתמש זה?\\nכל האלבומים והתמונות שלו ימחקו.',
-	'mail' => 'דוא"ל',
-	'err_unknown_user' => 'המשתמש שנבחר אינו קיים',
-	'modify_user' => 'שינוי משתמש',
-	'notes' => 'הערות',
-	'note_list' => '<li>אם אינך רוצה לשנות את הסיסמה, עליך להשאיר את שדה הסיסמה ריק',
-	'password' => 'סיסמה',
-	'user_active' => 'משתמש פעיל',
-	'user_group' => 'קבוצה',
-	'user_email' => 'דוא"ל',
-	'user_web_site' => 'אתר אינטרנט',
-	'create_new_user' => 'הגדרת משתמש חדש',
-	'user_location' => 'מקום',
-	'user_interests' => 'תחומי ענין',
-	'user_occupation' => 'עיסוק',
+	'title' => 'ðéäåì îùúîùéí',
+	'name_a' => 'ùí, ñãø òåìä',
+	'name_d' => 'ùí, ñãø éåøã',
+	'group_a' => '÷áåöä, ñãø òåìä',
+	'group_d' => '÷áåöä, ñãø éåøã',
+	'reg_a' => 'úàøéê øéùåí, ñãø òåìä',
+	'reg_d' => 'úàøéê øéùåí, ñãø éåøã',
+	'pic_a' => 'îñôø úîåðåú, ñãø òåìä',
+	'pic_d' => 'îñôø úîåðåú, ñãø éåøã',
+	'disku_a' => 'ðéöåì ãéñ÷, ñãø òåìä',
+	'disku_d' => 'ðéöåì ãéñ÷, ñãø éåøã',
+	'sort_by' => 'îéåï îùúîùéí ìôé',
+	'err_no_users' => 'èáìú äîùúîùéí øé÷ä!',
+	'err_edit_self' => 'àéï áàôùøåúê ìòøåê ëàï àú äôøåôéì ùì òöîê, ìùí ëê éù ììçåõ òì ÷éùåø "äôøåôéì ùìé"',
+	'edit' => 'òøéëä',
+	'delete' => 'îçé÷ä',
+	'name' => 'ùí îùúîù',
+	'group' => '÷áåöä',
+	'inactive' => 'ìà ôòéì',
+	'operations' => 'ôòåìåú',
+	'pictures' => 'úîåðåú',
+	'disk_space' => 'ðôç îðåöì / äøùàä',
+	'registered_on' => 'øéùåí îúàøéê',
+	'u_user_on_p_pages' => '%d îùúîùéí á- %d ãôéí',
+	'confirm_del' => 'äàí àú/ä áèåç/ä ùáøöåðê ìîçå÷ îùúîù æä?\\nëì äàìáåîéí åäúîåðåú ùìå éîç÷å.',
+	'mail' => 'ãåà"ì',
+	'err_unknown_user' => 'äîùúîù ùðáçø àéðå ÷ééí',
+	'modify_user' => 'ùéðåé îùúîù',
+	'notes' => 'äòøåú',
+	'note_list' => '<li>àí àéðê øåöä ìùðåú àú äñéñîä, òìéê ìäùàéø àú ùãä äñéñîä øé÷',
+	'password' => 'ñéñîä',
+	'user_active' => 'îùúîù ôòéì',
+	'user_group' => '÷áåöä',
+	'user_email' => 'ãåà"ì',
+	'user_web_site' => 'àúø àéðèøðè',
+	'create_new_user' => 'äâãøú îùúîù çãù',
+	'user_location' => 'î÷åí',
+	'user_interests' => 'úçåîé òðéï',
+	'user_occupation' => 'òéñå÷',
 );
 
 // ------------------------------------------------------------------------- //
@@ -929,50 +929,50 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UTIL_PHP')) $lang_util_php = array(
-        'title' => 'שינוי גודל תמונות',
-        'what_it_does' => 'מה זה עושה',
-        'what_update_titles' => 'מעדכן כותרות משמות הקבצים',
-        'what_delete_title' => 'מוחק כותרות',
-        'what_rebuild' => 'בונה מחדש דוגמיות ותמונות בגדול מוגדר',
-        'what_delete_originals' => 'מוחק תמונות בגודל המקורי ומחליפן בתמונות בגודל מוגדר',
-        'file' => 'קובץ',
-        'title_set_to' => 'כותרת שונתה ל-',
-        'submit_form' => 'אישור',
-        'updated_succesfully' => 'עודכן בהצלחה',
-        'error_create' => 'תקלה ביצירת',
-        'continue' => 'המשך לעבד תמונות נוספות',
-        'main_success' => 'הקובץ %s נקלט בצלחה כתמונה ראשית',
-        'error_rename' => 'תקלה בשינוי השם %s ל- %s',
-        'error_not_found' => 'הקובץ %s לא נמצא',
-        'back' => 'חזרה לראשי',
-        'thumbs_wait' => 'מעדכנים דוגמיות ו/או תמונות - נא להמתין...',
-        'thumbs_continue_wait' => 'ממשיך לעדכן דגומיות ו/או תמונות...',
-        'titles_wait' => 'מעדכן כותרות, נא להמתין...',
-        'delete_wait' => 'מוחק כותרות, נא להמתין...',
-        'replace_wait' => 'מוחק תמונות מקוריות ומחליף אותן בתמונות בגדול מוגדר, נא להמתין...',
-        'instruction' => 'הוראות מקוצרות',
-        'instruction_action' => 'בחירת פעולה',
-        'instruction_parameter' => 'קביעת פרמטרים',
-        'instruction_album' => 'בחירת אלבום',
-        'instruction_press' => 'נא ללחוץ על %s',
-        'update' => 'עדכון דוגמיות ו/או תמונות בגודל מוגדר',
-        'update_what' => 'מה צריך לעדכן',
-        'update_thumb' => 'רק דוגמיות',
-        'update_pic' => 'רק תמונות בגודל מוגדר',
-        'update_both' => 'הן דוגמיות והן תמונות בגודל מוגדר',
-        'update_number' => 'מספר תמונות לעיבוד בכל קליק',
-        'update_option' => '(יש לבחור בערך נמוך יותר אם מופיעות תקלות או הודעות Timeout)',
-        'filename_title' => 'שם קובץ = כותרת',
-        'filename_how' => 'כיצד לעבד את שם הקובץ',
-        'filename_remove' => 'הסרת הסיומת (כגון JPG) והחלפת קו-תחתון __ ברווח.',
-        'filename_euro' => 'קרא תאריך תאריך במבנה ארופאי - תרגם 20_20_13_23_11_2003 ל: 13:20 23/11/2003',
-        'filename_us' => 'קרא תאריך במבנה אמריקאי - תרגם 20_20_13_23_11_2003 ל: 13:20 11/23/2003',
-        'filename_time' => 'קרא זמן בלבד - תרגם 20_20_13_23_11_2003 ל: 13:20',
-        'delete' => 'מחיקת כותרות או תמונות בגודל מקורי',
-        'delete_title' => 'מחיקת כותרות',
-        'delete_original' => 'מחיקת תמונות בגודל מקורי',
-        'delete_replace' => 'מחיקת תמונות בגדול מקורי והחלפתן בתמונות בגודל מוגדר',
-        'select_album' => 'בחירת אלבום',
+        'title' => 'ùéðåé âåãì úîåðåú',
+        'what_it_does' => 'îä æä òåùä',
+        'what_update_titles' => 'îòãëï ëåúøåú îùîåú ä÷áöéí',
+        'what_delete_title' => 'îåç÷ ëåúøåú',
+        'what_rebuild' => 'áåðä îçãù ãåâîéåú åúîåðåú áâãåì îåâãø',
+        'what_delete_originals' => 'îåç÷ úîåðåú áâåãì äî÷åøé åîçìéôï áúîåðåú áâåãì îåâãø',
+        'file' => '÷åáõ',
+        'title_set_to' => 'ëåúøú ùåðúä ì-',
+        'submit_form' => 'àéùåø',
+        'updated_succesfully' => 'òåãëï áäöìçä',
+        'error_create' => 'ú÷ìä áéöéøú',
+        'continue' => 'äîùê ìòáã úîåðåú ðåñôåú',
+        'main_success' => 'ä÷åáõ %s ð÷ìè áöìçä ëúîåðä øàùéú',
+        'error_rename' => 'ú÷ìä áùéðåé äùí %s ì- %s',
+        'error_not_found' => 'ä÷åáõ %s ìà ðîöà',
+        'back' => 'çæøä ìøàùé',
+        'thumbs_wait' => 'îòãëðéí ãåâîéåú å/àå úîåðåú - ðà ìäîúéï...',
+        'thumbs_continue_wait' => 'îîùéê ìòãëï ãâåîéåú å/àå úîåðåú...',
+        'titles_wait' => 'îòãëï ëåúøåú, ðà ìäîúéï...',
+        'delete_wait' => 'îåç÷ ëåúøåú, ðà ìäîúéï...',
+        'replace_wait' => 'îåç÷ úîåðåú î÷åøéåú åîçìéó àåúï áúîåðåú áâãåì îåâãø, ðà ìäîúéï...',
+        'instruction' => 'äåøàåú î÷åöøåú',
+        'instruction_action' => 'áçéøú ôòåìä',
+        'instruction_parameter' => '÷áéòú ôøîèøéí',
+        'instruction_album' => 'áçéøú àìáåí',
+        'instruction_press' => 'ðà ììçåõ òì %s',
+        'update' => 'òãëåï ãåâîéåú å/àå úîåðåú áâåãì îåâãø',
+        'update_what' => 'îä öøéê ìòãëï',
+        'update_thumb' => 'ø÷ ãåâîéåú',
+        'update_pic' => 'ø÷ úîåðåú áâåãì îåâãø',
+        'update_both' => 'äï ãåâîéåú åäï úîåðåú áâåãì îåâãø',
+        'update_number' => 'îñôø úîåðåú ìòéáåã áëì ÷ìé÷',
+        'update_option' => '(éù ìáçåø áòøê ðîåê éåúø àí îåôéòåú ú÷ìåú àå äåãòåú Timeout)',
+        'filename_title' => 'ùí ÷åáõ = ëåúøú',
+        'filename_how' => 'ëéöã ìòáã àú ùí ä÷åáõ',
+        'filename_remove' => 'äñøú äñéåîú (ëâåï JPG) åäçìôú ÷å-úçúåï __ áøååç.',
+        'filename_euro' => '÷øà úàøéê úàøéê áîáðä àøåôàé - úøâí 20_20_13_23_11_2003 ì: 13:20 23/11/2003',
+        'filename_us' => '÷øà úàøéê áîáðä àîøé÷àé - úøâí 20_20_13_23_11_2003 ì: 13:20 11/23/2003',
+        'filename_time' => '÷øà æîï áìáã - úøâí 20_20_13_23_11_2003 ì: 13:20',
+        'delete' => 'îçé÷ú ëåúøåú àå úîåðåú áâåãì î÷åøé',
+        'delete_title' => 'îçé÷ú ëåúøåú',
+        'delete_original' => 'îçé÷ú úîåðåú áâåãì î÷åøé',
+        'delete_replace' => 'îçé÷ú úîåðåú áâãåì î÷åøé åäçìôúï áúîåðåú áâåãì îåâãø',
+        'select_album' => 'áçéøú àìáåí',
 );
 
 ?>

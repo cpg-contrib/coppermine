@@ -331,7 +331,10 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
 	'title_a' => 'Otsikko nousevasti', 
     'title_d' => 'Otsikko laskevasti',
 	'date_a' => 'Päivä nousevasti',
-	'date_d' => 'Päivä laskevasti'
+	'date_d' => 'Päivä laskevasti',
+        'th_any' => 'Max Aspect',
+        'th_ht' => 'Height',
+        'th_wd' => 'Width',
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(

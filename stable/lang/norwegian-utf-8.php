@@ -330,7 +330,10 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
 	 'title_a' => 'Tittel i stigende rekkefølge', 
      'title_d' => 'Tittel i synkende rekkefølge', 
 	'date_a' => 'Dato stigende',
-	'date_d' => 'Date synkende'
+	'date_d' => 'Date synkende',
+        'th_any' => 'Max Aspect',
+        'th_ht' => 'Height',
+        'th_wd' => 'Width',
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(

@@ -302,7 +302,10 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
 	'name_a' => 'שם בסדר עולה',
 	'name_d' => 'שם בסדר יורד',
 	'date_a' => 'תאריך בסדר עולה',
-	'date_d' => 'תאריך בסדר יורד'
+	'date_d' => 'תאריך בסדר יורד',
+        'th_any' => 'Max Aspect',
+        'th_ht' => 'Height',
+        'th_wd' => 'Width',
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
