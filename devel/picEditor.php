@@ -56,8 +56,9 @@ if ($_GET['img']=="right"){cornerright();exit;}
 
 define('IN_COPPERMINE', true);
 define('EDITPICS_PHP', true);
-define('IMG_DIR','edit/images');
+define('IMG_DIR','albums/edit/');
 require('include/init.inc.php');
+require('include/picmgmt.inc.php');
 
 if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
@@ -76,6 +77,18 @@ if ($pid > 0){
 	mysql_free_result($result);
 	$pic_url = get_pic_url($CURRENT_PIC,'fullsize');	
 	
+}
+
+//Garbage collection run at an probability of 25% and delete all files older than one hour
+if (rand(1,100) < 25){
+$d = opendir(IMG_DIR);
+
+	while ($file = readdir($d)){    
+		if (is_file(IMG_DIR.$file) && ((time() - filemtime(IMG_DIR.$file))/60) > 60  ){
+			@unlink(IMG_DIR.$file);
+		}	
+
+	}
 }
 
 //Include the proper class for image Object
@@ -128,9 +141,30 @@ if ($_GET['id']){
       $newimage = $imgObj->filename;      
    }//   newimage
    
-   if(isset($_POST["save"])) {          
+   if(isset($_POST["save"])) {
+	$width=$imgObj->width;
+	$height=$imgObj->height;
+   
+   	  //Full image replace          
           copy($img_dir.$newimage,$CONFIG['fullpath'].$CURRENT_PIC['filepath'].$CURRENT_PIC['filename'])   ;
+	  
+	  // Normal image resized and replace, use the CPG resize method instead of the object resizeImage 
+	  // as using the object resizeImage will make the final display of image to be a thumbnail in the editor
+	  
+	  if ($CONFIG['make_intermediate']) {	  	
+                resize_image($img_dir.$newimage, $CONFIG['fullpath'] . $CURRENT_PIC['filepath'] . $CONFIG['normal_pfx'] . $CURRENT_PIC['filename'], $CONFIG['picture_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use']);                
+          }
+	  
+	  //thumbnail resized and replace
+                resize_image($img_dir.$newimage, $CONFIG['fullpath'] . $CURRENT_PIC['filepath'] . $CONFIG['thumb_pfx'] . $CURRENT_PIC['filename'], $CONFIG['thumb_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use']);		
+	  //Update the image size in the DB
+	  db_query("UPDATE {$CONFIG['TABLE_PICTURES']} 
+	  		SET pheight = $height,
+			    pwidth = $width  
+	  		WHERE pid = '$pid'");
+	  
 	  $message = "Picture successfully saved - you can close this window now";
+	  
    }
    
    if(isset($_POST["save_thumb"])) {
