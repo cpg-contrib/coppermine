@@ -439,6 +439,10 @@ if ($action == 'thumbs') {
     endtable();
     print '<br />';
 
+    starttable('100%', '<a href="viewlog.php">' . $lang_util_php['view_log'] . '</a> (1)');
+    endtable();
+    print '<br />';
+
     print '&nbsp;<br />';
 
     print '<h2>'.$lang_util_php['select_album'].'</h2>';
