@@ -408,7 +408,7 @@ function get_private_album_set()
             while($album=mysql_fetch_array($result)){
                     $set .= $album['aid'].',';
             } // while
-                $FORBIDDEN_SET = "AND p.aid NOT IN (".substr($set, 0, -1).') ';
+                $FORBIDDEN_SET = "p.aid NOT IN (".substr($set, 0, -1).') ';
                 $ALBUM_SET .= 'AND aid NOT IN ('.substr($set, 0, -1).') ';
         }
         mysql_free_result($result);

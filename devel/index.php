@@ -234,7 +234,19 @@ function list_users()
     if (defined('UDB_INTEGRATION')) {
         $result = udb_list_users_query($user_count);
     } else {
-        $sql = "SELECT user_id," . "        user_name," . "        COUNT(DISTINCT a.aid) as alb_count," . "        COUNT(DISTINCT pid) as pic_count," . "        MAX(pid) as thumb_pid " . "FROM {$CONFIG['TABLE_USERS']} AS u " . "INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON category = " . FIRST_USER_CAT . " + user_id " . "INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid " . "WHERE approved = 'YES' " . "$FORBIDDEN_SET " . "GROUP BY user_id " . "ORDER BY user_name ";
+//        $sql = "SELECT user_id," . "        user_name," . "        COUNT(DISTINCT a.aid) as alb_count," . "        COUNT(DISTINCT pid) as pic_count," . "        MAX(pid) as thumb_pid " . "FROM {$CONFIG['TABLE_USERS']} AS u " . "INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON category = " . FIRST_USER_CAT . " + user_id " . "INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid " . "WHERE approved = 'YES' " . "$FORBIDDEN_SET " . "GROUP BY user_id " . "ORDER BY user_name ";
+// Fixed correct album count DJMaze
+        $sql = "SELECT user_id, " .
+               "user_name, " .
+               "COUNT(DISTINCT a.aid) as alb_count, " .
+               "COUNT(DISTINCT pid) as pic_count, " .
+               "MAX(pid) as thumb_pid " .
+               "FROM {$CONFIG['TABLE_USERS']} AS u " .
+               "INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON category = " . FIRST_USER_CAT . " + user_id " .
+               "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON (p.aid = a.aid AND approved = 'YES') ";
+        if ($FORBIDDEN_SET != "") $sql .= "WHERE $FORBIDDEN_SET ";
+        $sql .= "GROUP BY user_id " .
+                "ORDER BY user_name";
         $result = db_query($sql);
 
         $user_count = mysql_num_rows($result);

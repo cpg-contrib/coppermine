@@ -57,11 +57,11 @@ function make_form($form_param, $form_data)
     foreach ($form_param as $element) switch ($element[0]) {
         case 'label' :
             echo <<<EOT
-	<tr>
-    	<td colspan="2" class="tableh2">
-			<b>{$element[1]}<b>
+    <tr>
+        <td colspan="2" class="tableh2">
+            <b>{$element[1]}<b>
         </td>
-	</tr>
+    </tr>
 
 EOT;
             break;
@@ -69,14 +69,14 @@ EOT;
         case 'text' :
             if ($form_data[$element[1]] == '') break;
             echo <<<EOT
-	<tr>
-    	<td width="40%" class="tableb" height="25">
-			{$element[2]}
+    <tr>
+        <td width="40%" class="tableb" height="25">
+            {$element[2]}
         </td>
         <td width="60%" class="tableb">
-			{$form_data[$element[1]]}
+            {$form_data[$element[1]]}
         </td>
-	</tr>
+    </tr>
 
 EOT;
 
@@ -85,28 +85,28 @@ EOT;
             $value = $form_data[$element[1]];
 
             echo <<<EOT
-	<tr>
-    	<td width="40%" class="tableb"  height="25">
-			{$element[2]}
+    <tr>
+        <td width="40%" class="tableb"  height="25">
+            {$element[2]}
         </td>
         <td width="60%" class="tableb" valign="top">
-        	<input type="text" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="$value" class="textinput">
-		</td>
-	</tr>
+            <input type="text" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="$value" class="textinput">
+        </td>
+    </tr>
 
 EOT;
             break;
 
         case 'password' :
             echo <<<EOT
-	<tr>
-    	<td width="40%" class="tableb">
-			{$element[2]}
+    <tr>
+        <td width="40%" class="tableb">
+            {$element[2]}
         </td>
         <td width="60%" class="tableb" valign="top">
-        	<input type="password" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="" class="textinput">
-		</td>
-	</tr>
+            <input type="password" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="" class="textinput">
+        </td>
+    </tr>
 
 EOT;
             break;
@@ -114,15 +114,15 @@ EOT;
             $value = $form_data[$element[1]];
 
             if ($value) echo <<<EOT
-	<td valign="top" colspan="2" class="thumbnails" align="center">
-		<table width="100%" cellpadding="0" cellspacing="0">
-			<tr>
-				<td align="center">
-					$value
-				</td>
-			</tr>
-		</table>
-	</td>
+    <td valign="top" colspan="2" class="thumbnails" align="center">
+        <table width="100%" cellpadding="0" cellspacing="0">
+            <tr>
+                <td align="center">
+                    $value
+                </td>
+            </tr>
+        </table>
+    </td>
 EOT;
             break;
 
@@ -228,19 +228,19 @@ switch ($op) {
         pageheader($title);
         starttable(-1, $title, 2);
         echo <<<EOT
-	<form method="post" action="$PHP_SELF">
+    <form method="post" action="$PHP_SELF">
 
 EOT;
         make_form($edit_profile_form_param, $form_data);
         echo <<<EOT
-	<tr>
-		<td colspan="2" align="center" class="tablef">
-			<input type="submit" name="change_profile" value="{$lang_register_php['apply_modif']}" class="button">
-			<img src="images/spacer.gif" width="20" height="1">
-			<input type="submit" name="change_pass" value="{$lang_register_php['change_pass']}" class="button">
-		</td>
-	</tr>
-	</form>
+    <tr>
+        <td colspan="2" align="center" class="tablef">
+            <input type="submit" name="change_profile" value="{$lang_register_php['apply_modif']}" class="button">
+            <img src="images/spacer.gif" width="20" height="1">
+            <input type="submit" name="change_pass" value="{$lang_register_php['change_pass']}" class="button">
+        </td>
+    </tr>
+    </form>
 
 EOT;
         endtable();
@@ -255,17 +255,17 @@ EOT;
         pageheader($title);
         starttable(-1, $title, 2);
         echo <<<EOT
-	<form method="post" action="$PHP_SELF">
+    <form method="post" action="$PHP_SELF">
 
 EOT;
         make_form($change_password_form_param, '');
         echo <<<EOT
-	<tr>
-		<td colspan="2" align="center" class="tablef">
-			<input type="submit" name="change_password" value="$title" class="button">
-		</td>
-	</tr>
-	</form>
+    <tr>
+        <td colspan="2" align="center" class="tablef">
+            <input type="submit" name="change_password" value="$title" class="button">
+        </td>
+    </tr>
+    </form>
 
 EOT;
         endtable();
@@ -287,13 +287,13 @@ EOT;
             mysql_free_result($result);
         } 
 
-        $result = db_query("SELECT count(*), MAX(pid) FROM {$CONFIG['TABLE_PICTURES']} AS p WHERE owner_id = '$uid' AND approved = 'YES' $FORBIDDEN_SET");
+        $result = db_query("SELECT count(*), MAX(pid) FROM {$CONFIG['TABLE_PICTURES']} AS p WHERE owner_id = '$uid' AND approved = 'YES' AND $FORBIDDEN_SET");
         $nbEnr = mysql_fetch_array($result);
         $picture_count = $nbEnr[0];
         $thumb_pid = $nbEnr[1];
         mysql_free_result($result);
 
-        $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_ALBUMS']} AS p WHERE category = '" . (FIRST_USER_CAT + $uid) . "' $FORBIDDEN_SET");
+        $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_ALBUMS']} AS p WHERE category = '" . (FIRST_USER_CAT + $uid) . "' AND $FORBIDDEN_SET");
         $nbEnr = mysql_fetch_array($result);
         $album_count = $nbEnr[0];
         mysql_free_result($result);

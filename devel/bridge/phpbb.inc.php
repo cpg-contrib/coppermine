@@ -124,7 +124,7 @@ function udb_authenticate()
         $USER_DATA['pub_upl_need_approval'] = 1;
         $USER_DATA['priv_upl_need_approval'] = 1;
 
-        $sql = "SELECT  group_quota as gq, " . "		can_rate_pictures as crp, " . "		can_send_ecards as cse, " . "		can_post_comments as cpc, " . "		can_upload_pictures as cup, " . "		can_create_albums as cca, " . "		pub_upl_need_approval as puna, " . "		priv_upl_need_approval as pruna " . "FROM {$CONFIG['TABLE_USERGROUPS']} " . "WHERE group_id IN " . $user_group_set;
+        $sql = "SELECT  group_quota as gq, " . "        can_rate_pictures as crp, " . "        can_send_ecards as cse, " . "        can_post_comments as cpc, " . "        can_upload_pictures as cup, " . "        can_create_albums as cca, " . "        pub_upl_need_approval as puna, " . "        priv_upl_need_approval as pruna " . "FROM {$CONFIG['TABLE_USERGROUPS']} " . "WHERE group_id IN " . $user_group_set;
         $result = db_query($sql); 
         // Merge permissions for groups the user is a member of
         while ($row = mysql_fetch_array($result)) {
@@ -246,7 +246,7 @@ function udb_list_users_query(&$user_count)
 {
     global $CONFIG, $FORBIDDEN_SET;
 
-    $sql = "SELECT (category - " . FIRST_USER_CAT . ") as user_id," . "		'???' as user_name," . "		COUNT(DISTINCT a.aid) as alb_count," . "		COUNT(DISTINCT pid) as pic_count," . "		MAX(pid) as thumb_pid " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid " . "WHERE approved = 'YES' AND category > " . FIRST_USER_CAT . " " . "$FORBIDDEN_SET " . "GROUP BY category " . "ORDER BY category ";
+    $sql = "SELECT (category - " . FIRST_USER_CAT . ") as user_id," . "        '???' as user_name," . "        COUNT(DISTINCT a.aid) as alb_count," . "        COUNT(DISTINCT pid) as pic_count," . "        MAX(pid) as thumb_pid " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid " . "WHERE approved = 'YES' AND category > " . FIRST_USER_CAT . " AND $FORBIDDEN_SET " . "GROUP BY category " . "ORDER BY category ";
     $result = db_query($sql);
 
     $user_count = mysql_num_rows($result);
