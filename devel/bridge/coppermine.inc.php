@@ -37,7 +37,6 @@ class cpg_udb extends core_udb {
                         include_once('../include/config.inc.php');
 
                 } else {
-                        //include_once($BRIDGE['relative_path_to_config_file'] . 'config.inc.php');
                         $this->boardurl = $CONFIG['site_url'];
                         $this->use_post_based_groups = @$BRIDGE['use_post_based_groups'];
                 }
@@ -106,45 +105,45 @@ class cpg_udb extends core_udb {
         function login( $username = null, $password = null, $remember = false ) {
                 global $CONFIG;
 
-        // Create the session_id from concat(cookievalue,client_id)
+                // Create the session_id from concat(cookievalue,client_id)
                 $session_id = $this->session_id.$this->client_id;
 
-        // Check if encrypted passwords are enabled
+                // Check if encrypted passwords are enabled
                 if ($CONFIG['enable_encrypted_passwords']) {
                         $encpassword = md5($password);
                 } else {
                         $encpassword = $password;
                 }
 
-        // Check for user in users table
+                // Check for user in users table
                 $sql =  "SELECT user_id, user_name, user_password FROM {$this->usertable} WHERE ";
                 $sql .= "user_name = '$username' AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
                 $results = cpg_db_query($sql);
 
-        // If exists update lastvisit value, session, and login
+                // If exists update lastvisit value, session, and login
                 if (mysql_num_rows($results)) {
 
-            // Update lastvisit value
-            $sql =  "UPDATE {$this->usertable} SET user_lastvisit = NOW() ";
+                        // Update lastvisit value
+                        $sql =  "UPDATE {$this->usertable} SET user_lastvisit = NOW() ";
                         $sql .= "WHERE user_name = '$username' AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
                         cpg_db_query($sql, $this->link_id);
-
+        
                         $USER_DATA = mysql_fetch_assoc($results);
                         mysql_free_result($results);
-
-            // If this is a 'remember me' login set the remember field to true
+        
+                        // If this is a 'remember me' login set the remember field to true
                         if ($remember) {
-                      $remember_sql = ",remember = 'true' ";
+                                $remember_sql = ",remember = 'true' ";
                         } else {
-                            $remember_sql = '';
+                                $remember_sql = '';
                         }
-
-            // Update guest session with user's information
-                $sql  = "update {$this->sessionstable} set ";
-                $sql .= "user_id={$USER_DATA['user_id']} ";
-                $sql .= $remember_sql;
-                $sql .= "where session_id=md5('$session_id');";
-                cpg_db_query($sql, $this->link_id);
+        
+                        // Update guest session with user's information
+                        $sql  = "update {$this->sessionstable} set ";
+                        $sql .= "user_id={$USER_DATA['user_id']} ";
+                        $sql .= $remember_sql;
+                        $sql .= "where session_id=md5('$session_id');";
+                        cpg_db_query($sql, $this->link_id);
 
                         return $USER_DATA;
                 } else {
@@ -157,11 +156,11 @@ class cpg_udb extends core_udb {
         // Logout function
         function logout() {
 
-        // Revert authenticated session to a guest session
-        $session_id = $this->session_id.$this->client_id;
-        $sql  = "update {$this->sessionstable} set user_id = 0, remember=0 where session_id=md5('$session_id');";
-        cpg_db_query($sql, $this->link_id);
-    }
+                // Revert authenticated session to a guest session
+                $session_id = $this->session_id.$this->client_id;
+                $sql  = "update {$this->sessionstable} set user_id = 0, remember=0 where session_id=md5('$session_id');";
+                cpg_db_query($sql, $this->link_id);
+        }
 
 
         // Get groups of which user is member
@@ -200,97 +199,97 @@ class cpg_udb extends core_udb {
                 $id = 0;
                 $pass = '';
 
-        // Get the session cookie value
+                // Get the session cookie value
                 $sessioncookie = $_COOKIE[$this->client_id];
 
                 // Create the session id by concat(session_cookie_value, client_id)
                 $session_id = $sessioncookie.$this->client_id;
 
-        // Lifetime of 'remember me' session is 2 weeks
-        $rememberme_life_time = time()-(CPG_WEEK*2);
-
-        // Lifetime of normal session is 1 hour
-        $session_life_time = time()-CPG_HOUR;
-
-        // Delete old sessions
-        $sql = "delete from {$this->sessionstable} where time<$session_life_time and remember=0;";
-        cpg_db_query($sql, $this->link_id);
-
-        // Delete stale 'remember me' sessions
-        $sql = "delete from {$this->sessionstable} where time<$rememberme_life_time;";
-        cpg_db_query($sql, $this->link_id);
-
-        // Check for valid session if session_cookie_value exists
-        if ($sessioncookie) {
-
-            // Check for valid session
-            $sql =  'select user_id from '.$this->sessionstable.' where session_id=md5("'.$session_id.'");';
-            $result = cpg_db_query($sql);
-
-            // If session exists...
-            if (mysql_num_rows($result)) {
-                $row = mysql_fetch_assoc($result);
-                mysql_free_result($result);
-
-                $row['user_id'] = (int) $row['user_id'];
-
-                // Check if there's a user for this session
-                $sql =  'select user_id as id, user_password as password ';
-                $sql .= 'from '.$this->usertable.' ';
-                $sql .= 'where user_id='.$row['user_id'];
-                $result = cpg_db_query($sql, $this->link_id);
-
-                // If user exists, use the current session
-                if ($result) {
-                    $row = mysql_fetch_assoc($result);
-                    mysql_free_result($result);
-
-                    $pass = $row['password'];
-                    $id = (int) $row['id'];
-                    $this->session_id = $sessioncookie;
-
-                // If the user doesn't exist, use default guest credentials
+                // Lifetime of 'remember me' session is 2 weeks
+                $rememberme_life_time = time()-(CPG_WEEK*2);
+        
+                // Lifetime of normal session is 1 hour
+                $session_life_time = time()-CPG_HOUR;
+        
+                // Delete old sessions
+                $sql = "delete from {$this->sessionstable} where time<$session_life_time and remember=0;";
+                cpg_db_query($sql, $this->link_id);
+        
+                // Delete stale 'remember me' sessions
+                $sql = "delete from {$this->sessionstable} where time<$rememberme_life_time;";
+                cpg_db_query($sql, $this->link_id);
+        
+                // Check for valid session if session_cookie_value exists
+                if ($sessioncookie) {
+        
+                    // Check for valid session
+                    $sql =  'select user_id from '.$this->sessionstable.' where session_id=md5("'.$session_id.'");';
+                    $result = cpg_db_query($sql);
+        
+                    // If session exists...
+                    if (mysql_num_rows($result)) {
+                        $row = mysql_fetch_assoc($result);
+                        mysql_free_result($result);
+        
+                        $row['user_id'] = (int) $row['user_id'];
+        
+                        // Check if there's a user for this session
+                        $sql =  'select user_id as id, user_password as password ';
+                        $sql .= 'from '.$this->usertable.' ';
+                        $sql .= 'where user_id='.$row['user_id'];
+                        $result = cpg_db_query($sql, $this->link_id);
+        
+                        // If user exists, use the current session
+                        if ($result) {
+                            $row = mysql_fetch_assoc($result);
+                            mysql_free_result($result);
+        
+                            $pass = $row['password'];
+                            $id = (int) $row['id'];
+                            $this->session_id = $sessioncookie;
+        
+                        // If the user doesn't exist, use default guest credentials
+                        }
+        
+                    // If not a valid session exists, create a new session
+                    } else {
+        
+                        $this->create_session();
+                    }
+        
+                // No session exists; create one
+                } else {
+        
+                    $this->create_session();
                 }
-
-            // If not a valid session exists, create a new session
-            } else {
-
-                $this->create_session();
-            }
-
-        // No session exists; create one
-        } else {
-
-            $this->create_session();
-        }
 
                 return ($id) ? array($id, $pass) : false;
         }
 
 
-    // Function used to keep the session alive
+        // Function used to keep the session alive
         function session_update()
-    {
-        $session_id = $this->session_id.$this->client_id;
-        $sql = "update {$this->sessionstable} set time='".time()."' where session_id=md5('$session_id');";
-        cpg_db_query($sql);
-    }
+        {
+                $session_id = $this->session_id.$this->client_id;
+                $sql = "update {$this->sessionstable} set time='".time()."' where session_id=md5('$session_id');";
+                cpg_db_query($sql);
+        }
 
 
         // Create a new session with the cookie lifetime set to 2 weeks
         function create_session() {
                 // start session
-        $this->session_id = $this->generateId();
-        $session_id = $this->session_id.$this->client_id;
-
-        $sql =  'insert into '.$this->sessionstable.' (session_id, user_id, time, remember) values ';
-        $sql .= '("'.md5($session_id).'", 0, "'.time().'", 0);';
-
+                $this->session_id = $this->generateId();
+                $session_id = $this->session_id.$this->client_id;
+        
+                $sql =  'insert into '.$this->sessionstable.' (session_id, user_id, time, remember) values ';
+                $sql .= '("'.md5($session_id).'", 0, "'.time().'", 0);';
+        
                 // insert the guest session
-        cpg_db_query($sql, $this->link_id);
-
+                cpg_db_query($sql, $this->link_id);
+        
                 // set the session cookie
-        setcookie( $this->client_id, $this->session_id, time() + (CPG_WEEK*2), $CONFIG['cookie_path'] );
+                setcookie( $this->client_id, $this->session_id, time() + (CPG_WEEK*2), $CONFIG['cookie_path'] );
         }
 
 
@@ -300,7 +299,7 @@ class cpg_udb extends core_udb {
                 $randnum = 0;
                 while ($failsafe--) {
                         $randnum = md5( uniqid( microtime(), 1 ));
-            $session_id = $randnum.$this->client_id;
+                        $session_id = $randnum.$this->client_id;
                         if ($randnum != "") {
                                 $sql = "SELECT session_id FROM {$this->sessionstable} WHERE session_id=MD5('$session_id')";
                                 if (!$result = cpg_db_query($sql, $this->link_id)) {
@@ -315,23 +314,22 @@ class cpg_udb extends core_udb {
 
         // Gets user/guest count
         function get_session_users() {
-           static $count = array();
+                static $count = array();
+    
+                if (!$count) {
+                        // Get guest count
+                        $sql = "select count(user_id) as num_guests from {$this->sessionstable} where user_id=0;";
+                        $result = cpg_db_query($sql, $this->link_id);
+                        $count = mysql_fetch_assoc($result);
+            
+                        // Get authenticated user count
+                        $sql = "select count(user_id) as num_users from {$this->sessionstable} where user_id>0;";
+                        $result = cpg_db_query($sql, $this->link_id);
+                        $count = array_merge(mysql_fetch_assoc($result), $count);
+                }
 
-           if (!$count) {
-
-            // Get guest count
-                $sql = "select count(user_id) as num_guests from {$this->sessionstable} where user_id=0;";
-                $result = cpg_db_query($sql, $this->link_id);
-                $count = mysql_fetch_assoc($result);
-
-            // Get authenticated user count
-                $sql = "select count(user_id) as num_users from {$this->sessionstable} where user_id>0;";
-                $result = cpg_db_query($sql, $this->link_id);
-                $count = array_merge(mysql_fetch_assoc($result), $count);
+                return $count;
         }
-
-        return $count;
-    }
 
 
         /*
@@ -341,7 +339,7 @@ class cpg_udb extends core_udb {
         function cookie_extraction()
         {
                 return false;
-    }
+        }
 
         // Register
         function register_page()
@@ -368,7 +366,7 @@ class cpg_udb extends core_udb {
 
         function logout_page() {
             $this->logout();
-    }
+        }
 
         function synchronize_groups()
         {   }

@@ -431,19 +431,6 @@ class core_udb {
         
         mysql_free_result($result);
 
-/*
-		$sql  = "SELECT (category - " . FIRST_USER_CAT . ") as user_id,";
-        $sql .= "'???' as user_name,";
-        $sql .= "COUNT(DISTINCT a.aid) as alb_count,";
-        $sql .= "COUNT(DISTINCT pid) as pic_count,";
-        $sql .= "MAX(pid) as thumb_pid, ";
-        $sql .= "MAX(galleryicon) as gallery_pid ";
-        $sql .= "FROM {$CONFIG['TABLE_ALBUMS']} AS a ";
-        $sql .= "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid ";
-        $sql .= "WHERE ((approved = 'YES' or approved=null) AND category > " . FIRST_USER_CAT . ") $forbidden GROUP BY category ";
-        $sql .= "ORDER BY category ";
-*/
-
         $users_per_page = $CONFIG['thumbcols'] * $CONFIG['thumbrows'];
         $totalPages = ceil($user_count / $users_per_page);
         if ($PAGE > $totalPages) $PAGE = 1;
@@ -473,40 +460,6 @@ class core_udb {
 		return $users;
 	}
 
-/*
-	function list_users_retrieve_data($result, $lower_limit, $count)
-	{
-		global $CONFIG;
-
-		mysql_data_seek($result, $lower_limit);
-
-		$rowset = array();
-		$i = 0;
-		$user_id_set = '';
-
-		while (($row = mysql_fetch_array($result)) && ($i++ < $count)) {
-			$user_id_set .= $row['user_id'] . ',';
-			$rowset[] = $row;
-		}
-		mysql_free_result($result);
-
-		$user_id_set = '(' . substr($user_id_set, 0, -1) . ')';
-		
-		$sql = "SELECT {$this->field['user_id']} AS user_id, {$this->field['username']} AS user_name FROM {$this->usertable} WHERE {$this->field['user_id']} IN $user_id_set";
-										
-		$result = cpg_db_query($sql, $this->link_id);
-    
-		while ($row = mysql_fetch_array($result)) {
-			$name[$row['user_id']] = $row['user_name'];
-		}
-    
-		for($i = 0; $i < count($rowset); $i++) {
-			$rowset[$i]['user_name'] = empty($name[$rowset[$i]['user_id']]) ? '???' : $name[$rowset[$i]['user_id']];
-		}
-
-		return $rowset;
-	}
-*/
 
 	// Group table synchronisation
 	function synchronize_groups()
