@@ -202,7 +202,7 @@ function textCounter(field, maxlimit) {
 }
 </script>
 
-<form method="post" action="image_processor.php" ENCTYPE="multipart/form-data">
+<form method="post" action="db_input.php" ENCTYPE="multipart/form-data">
 <input type="hidden" name="event" value="picture">
 
 EOT;
