@@ -971,7 +971,10 @@ $lang_pluginmgr_php = array(
   'i_plugins' => 'Installed Plugins',
   'n_plugins' => 'Plugins Not installed',
   'none_installed' => 'None Installed',
-  'operation' => 'Operation'
+  'operation' => 'Operation',
+  'not_plugin_package' => 'The file uploaded is not a plugin package.',
+  'copy_error' => 'There was an error copying the package to the plugins folder.',
+  'upload' => 'Upload'
 );
 }
 
