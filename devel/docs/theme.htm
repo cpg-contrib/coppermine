@@ -183,7 +183,8 @@ $template_fav_thumb_view_title_row = &lt;&lt;&lt;EOT
                                 &lt;td class="sortorder_cell"&gt;
                                         &lt;table height="100%" cellpadding="0" cellspacing="0"&gt;
                                                 &lt;tr&gt;
-                                                        &lt;td class="sortorder_options"&gt;&lt;span class="statlink"&gt;&lt;a href="zipdownload.php"&gt;{DOWNLOAD_ZIP}&lt;/a&gt;&lt;/span&gt;&lt;/td&gt;
+                                                        &lt;td class="sortorder_options"&gt;&lt;span class="statlink"&gt;
+                                                        &lt;a href="zipdownload.php"&gt;{DOWNLOAD_ZIP}&lt;/a&gt;&lt;/span&gt;&lt;/td&gt;
                                                 &lt;/tr&gt;
                                                 &lt;/table&gt;
                                 &lt;/td&gt;
@@ -194,7 +195,8 @@ EOT;</pre>
 Make sure there are no spaces in front of or after the <tt class="code">EOT;</tt> in the last line.</li>
 <li>Replace hardcoded format of intermediate pic with css format: <br />
 Edit theme.php and find
-<pre>          &lt;table cellspacing="2" cellpadding="0" style="border: 1px solid #000000; background-color: #FFFFFF; margin-top: 30px; margin-bottom: 30px;"&gt;
+<pre>          &lt;table cellspacing="2" cellpadding="0" style="border: 1px solid #000000; background-color: #FFFFFF;
+          margin-top: 30px; margin-bottom: 30px;"&gt;
                                 &lt;tr&gt;
                                         &lt;td&gt;</pre>
 and replace with
@@ -237,7 +239,8 @@ Edit theme.php and find
         print_r($_POST);
         echo "&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;td class=\"tableb\" &gt;";
         echo &lt;&lt;&lt;EOT
-                Page generated in &lt;b&gt;$time&lt;/b&gt; seconds - &lt;b&gt;$query_count&lt;/b&gt; queries in &lt;b&gt;$total_query_time&lt;/b&gt; seconds - Album set : $ALBUM_SET
+                Page generated in &lt;b&gt;$time&lt;/b&gt; seconds - &lt;b&gt;
+                $query_count&lt;/b&gt; queries in &lt;b&gt;$total_query_time&lt;/b&gt; seconds - Album set : $ALBUM_SET
 EOT;
         echo "&lt;/td&gt;&lt;/tr&gt;";
         echo "&lt;tr&gt;&lt;td class=\"tableb\"&gt;";
@@ -342,7 +345,8 @@ and replace with
 Edit theme.php and find
 <pre>    global $template_thumb_view_title_row, $lang_thumb_view, $template_tab_display, $template_thumbnail_view;</pre>
 and replace with
-<pre>    global $template_thumb_view_title_row,$template_fav_thumb_view_title_row, $lang_thumb_view, $template_tab_display, $template_thumbnail_view;
+<pre>    global $template_thumb_view_title_row,$template_fav_thumb_view_title_row, $lang_thumb_view;
+    global $template_tab_display, $template_thumbnail_view;
 </pre>
 </li>
 <li>Enable favorites - switch:<br />
@@ -425,11 +429,16 @@ Edit theme.php and find
     $theme_thumb_tab_tmpl = $template_tab_display;
 
     if ($mode == 'thumb') {
-        $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_thumb_view['pic_on_page']));
-        $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . '&page=%d'));
+        $theme_thumb_tab_tmpl['left_text'] =
+            strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_thumb_view['pic_on_page']));
+        $theme_thumb_tab_tmpl['inactive_tab'] =
+            strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' =>
+            'thumbnails.php?album=' . $aid . $cat_link . '&page=%d'));
     } else {
-        $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_thumb_view['user_on_page']));
-        $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&page=%d'));
+        $theme_thumb_tab_tmpl['left_text'] =
+            strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_thumb_view['user_on_page']));
+        $theme_thumb_tab_tmpl['inactive_tab'] =
+            strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&page=%d'));
     }
 </pre>and replace with
 <pre>    if ((!$template)) {
@@ -466,12 +475,14 @@ Edit style.css and find
 Edit theme.php and find
 <pre>
 &lt;td class="tableh2" colspan="3"&gt;&lt;span class="catlink"&gt;&lt;b&gt;{CAT_TITLE}&lt;/b&gt;&lt;/span&gt;{CAT_DESC}&lt;/td&gt;</pre>. Replace it with
-<pre>&lt;td class="tableh2" colspan="3"&gt;&lt;table border=0 &gt;&lt;tr&gt;&lt;td&gt;{CAT_THUMB}&lt;/td&gt;&lt;td&gt;&lt;span class="catlink"&gt;&lt;b&gt;{CAT_TITLE}&lt;/b&gt;&lt;/span&gt;{CAT_DESC}&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;</pre>
+<pre>&lt;td class="tableh2" colspan="3"&gt;&lt;table border=0 &gt;&lt;tr&gt;&lt;td&gt;{CAT_THUMB}&lt;/td&gt;
+&lt;td&gt;&lt;span class="catlink"&gt;&lt;b&gt;{CAT_TITLE}&lt;/b&gt;&lt;/span&gt;{CAT_DESC}&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;</pre>
 </li>
 <li>Replace some missing/wrong formating:<br />
 Edit theme.php and find
 <pre>&lt;td class="tableb"&gt;&lt;span class="catlink"&gt;&lt;b&gt;{CAT_TITLE}&lt;/b&gt;&lt;/span&gt;{CAT_DESC}&lt;/td&gt;</pre>. Replace it with
-<pre>&lt;td class="tableb"&gt;&lt;table border=0 &gt;&lt;tr&gt;&lt;td&gt;{CAT_THUMB}&lt;/td&gt;&lt;td&gt;&lt;span class="catlink"&gt;&lt;b&gt;{CAT_TITLE}&lt;/b&gt;&lt;/span&gt;{CAT_DESC}&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;</pre>
+<pre>&lt;td class="tableb"&gt;&lt;table border=0 &gt;&lt;tr&gt;&lt;td&gt;{CAT_THUMB}&lt;/td&gt;&lt;td&gt;
+&lt;span class="catlink"&gt;&lt;b&gt;{CAT_TITLE}&lt;/b&gt;&lt;/span&gt;{CAT_DESC}&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;</pre>
 </li>
 <li>Add closing table to fix a bug:<br />
 Edit theme.php and find
