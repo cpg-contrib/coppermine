@@ -853,7 +853,7 @@ function pageheader($section, $meta = '')
 // Function for writing a pagefooter
 function pagefooter()
 {
-    global $USER, $USER_DATA, $ALBUM_SET, $CONFIG, $time_start, $query_stats, $queries;;
+    global $USER, $USER_DATA, $ALBUM_SET, $CONFIG, $cpg_time_start, $query_stats, $queries;;
     global $template_footer;
 
     if ($CONFIG['debug_mode']==1 || ($CONFIG['debug_mode']==2 && GALLERY_ADMIN_MODE)) {

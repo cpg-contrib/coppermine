@@ -109,7 +109,7 @@ function cpgGetMicroTime()
     list($usec, $sec) = explode(" ", microtime());
     return ((float)$usec + (float)$sec);
 }
-$time_start = cpgGetMicroTime();
+$cpg_time_start = cpgGetMicroTime();
 // Do some cleanup in GET, POST and cookie data and un-register global vars
 $HTML_SUBST = array('"' => '&quot;', '<' => '&lt;', '>' => '&gt;');
 if (get_magic_quotes_gpc()) {

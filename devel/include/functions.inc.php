@@ -1839,9 +1839,9 @@ function& cpg_lang_var($varname,$index=null) {
 
 function cpg_debug_output()
 {
-    global $USER, $USER_DATA, $ALBUM_SET, $CONFIG, $time_start, $query_stats, $queries, $lang_cpg_debug_output;
+    global $USER, $USER_DATA, $ALBUM_SET, $CONFIG, $cpg_time_start, $query_stats, $queries, $lang_cpg_debug_output;
         $time_end = cpgGetMicroTime();
-        $time = round($time_end - $time_start, 3);
+        $time = round($time_end - $cpg_time_start, 3);
 
         $query_count = count($query_stats);
         $total_query_time = array_sum($query_stats);
