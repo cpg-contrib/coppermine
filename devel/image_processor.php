@@ -510,6 +510,9 @@ imagedestroy($destination_image_handle);
 	
 	exec ($cmd, $output, $retval);
 
+	// Restore the user abort setting.
+	ignore_user_abort(false);
+
 	if ($retval) {
 		$ERROR = $lang_image_processor_php['IM_Error'] . $retval;
 		if ($CONFIG['debug_mode']) {
@@ -523,10 +526,7 @@ imagedestroy($destination_image_handle);
 		}
 		die($ERROR);
 
-	}
-
-	// Restore the user abort setting.
-	ignore_user_abort(false);	
+	}	
 
 }
 
