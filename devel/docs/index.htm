@@ -3,6 +3,10 @@
 <head>
 <title>Coppermine Photo Gallery - Documentation &amp; Manual</title>
 <meta http-equiv=content-type content="text/html; charset=iso-8859-1">
+<!--
+CVS version info:
+$Id$
+-->
 <style type=text/css>
 
 body {
@@ -103,6 +107,7 @@ a.navbar:hover {
           <li class="content"><a href="#10">3.1 Upgrading from version 1.0</a></li>
           <li class="content"><a href="#11">3.2 Upgrading from releases of version 1.1</a></li>
           <li class="content"><a href="#12">3.3 Upgrading from cpg1.2.0rc2 or cpg1.2.0final to version cpg1.2.1</a></li>
+          <li class="content"><a href="#13">3.4 Upgrading from cpg1.2.0 (or better) to version cpg1.3.0</a></li>
         </ul>
         <li class="content"><a href="#administration"><b>4. Configuration &amp; Administration</b></a></li>
         <ul class="content">
@@ -110,23 +115,31 @@ a.navbar:hover {
           <li class="content"><a href="#admin_user_mode">4.2 Admin mode &amp; User mode</a></li>
           <li class="content"><a href="#group_cp">4.3 The group control panel</a></li>
           <li class="content"><a href="#cat_cp">4.4 The category control panel</a></li>
-          <li class="content"><a href="#modif_alb_pics">4.5 Modifying album/pictures</a></li>
-          <li class="content"><a href="#batch_add_pics">4.6 Batch Add Pictures</a></li>
-          <li class="content"><a href="#album_prop">4.7 Album properties</a></li>
-          <li class="content"><a href="#edit_pics">4.8 Editing pictures</a></li>
-          <li class="content"><a href="#config">4.9 The configuration page</a></li>
+          <li class="content"><a href="#albmgr">4.5 The album manager</a>
+          <ul class="content">
+            <li class="content"><a href="#albmgr_create">4.5.1 Creating albums</a></li>
+            <li class="content"><a href="#albmgr_rename">4.5.2 Renaming albums</a></li>
+            <li class="content"><a href="#albmgr_order">4.5.3 Changing the album order</a></li>
+            <li class="content"><a href="#albmgr_delete">4.5.4 Deleting albums</a></li>
+          </ul>
+          </li>
+          <li class="content"><a href="#modif_alb_pics">4.6 Modifying album/pictures</a></li>
+          <li class="content"><a href="#batch_add_pics">4.7 Batch Add Pictures</a></li>
+          <li class="content"><a href="#album_prop">4.8 Album properties</a></li>
+          <li class="content"><a href="#edit_pics">4.9 Editing pictures</a></li>
+          <li class="content"><a href="#config">4.10 The configuration page</a></li>
             <ul class="content">
-            <li class="content"><a href="#config_general">4.9.1 General settings</a></li>
-            <li class="content"><a href="#config_language">4.9.2 Language, Themes &amp; Charset settings</a></li>
-            <li class="content"><a href="#config_album_list">4.9.3 Album list view</a></li>
-            <li class="content"><a href="#config_thumbnail_view">4.9.4 Thumbnail view</a></li>
-            <li class="content"><a href="#config_image_comment">4.9.5 Image view &amp; Comment settings</a></li>
-            <li class="content"><a href="#config_picture_thumbnail">4.9.6 Picture and thumbnail settings</a></li>
-            <li class="content"><a href="#config_picture_thumb_advanced">4.9.7 Pictures and thumbnails advanced settings</a></li>
-            <li class="content"><a href="#config_user">4.9.8 User settings</a></li>
-            <li class="content"><a href="#config_custom">4.9.9 Custom fields for image description</a></li>
-            <li class="content"><a href="#config_cookie">4.9.10 Cookie settings</a></li>
-            <li class="content"><a href="#config_misc">4.9.11 Miscellaneous settings</a></li>
+            <li class="content"><a href="#config_general">4.10.1 General settings</a></li>
+            <li class="content"><a href="#config_language">4.10.2 Language, Themes &amp; Charset settings</a></li>
+            <li class="content"><a href="#config_album_list">4.10.3 Album list view</a></li>
+            <li class="content"><a href="#config_thumbnail_view">4.10.4 Thumbnail view</a></li>
+            <li class="content"><a href="#config_image_comment">4.10.5 Image view &amp; Comment settings</a></li>
+            <li class="content"><a href="#config_picture_thumbnail">4.10.6 Picture and thumbnail settings</a></li>
+            <li class="content"><a href="#config_picture_thumb_advanced">4.10.7 Pictures and thumbnails advanced settings</a></li>
+            <li class="content"><a href="#config_user">4.10.8 User settings</a></li>
+            <li class="content"><a href="#config_custom">4.10.9 Custom fields for image description</a></li>
+            <li class="content"><a href="#config_cookie">4.10.10 Cookie settings</a></li>
+            <li class="content"><a href="#config_misc">4.10.11 Miscellaneous settings</a></li>
             </ul>
           </ul>
         <li class="content"><a href="#integrating"><b>5. Integrating the script with your bulletin board</b></a></li>
@@ -134,7 +147,7 @@ a.navbar:hover {
         <li class="content"><a href="#known_issues"><b>7. Known Issues</b></a></li>
         <li class="content"><a href="#credits"><b>8. Credits</b></li>
         <ul class="content">
-          <li class="content"><a href="#developers">8.1 Developers</a></li>
+          <li class="content"><a href="#developers">8.1 Coppermine team</a></li>
           <li class="content"><a href="#contributors">8.2 Contributors</a></li>
           <li class="content"><a href="#codebase">8.3 Code used in Coppermine</a></li>
           <li class="content"><a href="#copyright">8.4 License</a> (Copyright &amp; disclaimer)</li>
@@ -325,6 +338,21 @@ a.navbar:hover {
         </ul>
 
 <p><a class="back" href="#top">Back to top</a></p>
+
+<a name="13"></a>
+<h2>3.4 Upgrading from cpg1.2.0 (or better) to version cpg1.3.0</h2>
+        <ul>
+                <li>Backup your include/config.inc.php file and your "albums" directoy.</li>
+                <li>Unpack the archive</li>
+                <li>If the file <b>install.php</b> exists in the root directory, delete it.</li>
+                <li><b>Except for the &quot;albums&quot; directory</b>, upload all of the new files and directories making sure not to overwrite the include/config.inc.php file or the albums directory.</li>
+                <li>Run the file &quot;update.php&quot; in the coppermine directory once in your browser (e.g. http://yourdomain.tld/coppermine/update.php). This will update your coppermine install by making all necessary changes in the database.</li>
+                <li>If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme</li>
+        </ul>
+
+<p><a class="back" href="#top">Back to top</a></p>
+
+
 <hr />
 
 <a name="administration"></a>
@@ -437,7 +465,51 @@ a.navbar:hover {
       top</a></p>
       <hr>
 
-      <h2>4.5 Modifying albums/picture<a id="modif_alb_pics"
+      <h2><a name="albmgr"></a>4.5 The Album Manager</h2>
+      <p><img src="pics/albmgr.gif" width="360" height="288" border="0" alt="" title="Album Manager" /></p>
+      <p>Coppermine stores files inside of albums, so you'll need at least one album your pictures/files can go to. Albums can be stored in categories (but they don't <i>need</i> a category, they can as well go into the coppermine &quot;root&quot;).<br />
+      When you click on &quot;albums&quot; in the admin menu, you will see the <i>Album Manager</i>.</p>
+      <h3><a name="albmgr_create"></a>4.5.1 Creating albums</h3>
+      <ul>
+      <li><b>Choose a category from the dropdown list</b> &quot;Select category&quot; where your album should go to (or choose &quot;* No category *&quot; if the album should go into the coppermine &quot;root&quot;). If you haven't created a category yet, go to the <a href="#cat_cp">categories control panel</a> first, but you can later move the album as well using the <a href="#album_prop">album properties</a> page.</li>
+      <li><b>Click on the button &quot;New&quot;</b> - your new album will appear on the list, by default labelled &quot;New album&quot;</li>
+      <li><b>Click on the text input filed at the bottom of the screen</b>, highlighting the default name &quot;New album&quot;</li>
+      <li><b>Type the album name you want to assign</b></li>
+      <li>(repeat steps 2 to 4 to add more than one album)</li>
+      <li><b>click &quot;Apply modifications&quot;</b> to submit your changes to the database (if you don't, all changes will be lost)</li>
+      <li><b>Confirm the alert box with &quot;OK&quot;</b> (<i>Are you sure you want to make these modifications ?</i>)</li>
+      </ul>
+      <h3><a name="albmgr_rename"></a>4.5.2 Renaming albums</h3>
+      <ul>
+      <li><b>Choose a category from the dropdown list</b></li>
+      <li><b>Click on the album you want to change</b></li>
+      <li><b>Click on the text input filed at the bottom of the screen</b>, highlighting the album name</li>
+      <li><b>Type the album name you want to assign</b></li>
+      <li><b>click &quot;Apply modifications&quot;</b></li>
+      <li><b>Confirm the alert box with &quot;OK&quot;</b> (<i>Are you sure you want to make these modifications ?</i>)</li>
+      </ul>
+      <h3><a name="albmgr_order"></a>4.5.3 Changing the album order</h3>
+      <ul>
+      <li><b>Choose a category from the dropdown list</b></li>
+      <li><b>Click on the album you want to move up or down in the list</b></li>
+      <li><b>Use the arrow buttons to move the album up<img src="../images/move_up.gif" width="26" height="21" border="0" alt="" title="move the album up" /> or down<img src="../images/move_down.gif" width="26" height="21" border="0" alt="" title="move the album down" /></b></li>
+      <li><b>click &quot;Apply modifications&quot;</b></li>
+      <li><b>Confirm the alert box with &quot;OK&quot;</b> (<i>Are you sure you want to make these modifications ?</i>)</li>
+      </ul>
+      <h3><a name="albmgr_delete"></a>4.5.4 Deleting albums</h3>
+      <ul>
+      <li><b>Choose a category from the dropdown list</b></li>
+      <li><b>Click on the album you want to delete</b></li>
+      <li><b>Click the &quot;Delete&quot; button</b></li>
+      <li><b>Confirm the alert box with &quot;OK&quot;</b> (<i>Are you sure you want to delete this album ? All files and comments it contains will be lost !</i>)</li>
+      <li><b>click &quot;Apply modifications&quot;</b></li>
+      <li><b>Confirm the alert box with &quot;OK&quot;</b> (<i>Are you sure you want to make these modifications ?</i>)</li>
+      </ul>
+      <p><a class="back" href="#top">Back to
+      top</a></p>
+      <hr>
+
+      <h2>4.6 Modifying albums/picture<a id="modif_alb_pics"
       name="modif_alb_pics"></a></h2>
       <p>When you are in admin mode there is a menu displayed next to each
       album</p>
@@ -453,7 +525,7 @@ a.navbar:hover {
       top</a></p>
       <hr>
 
-      <h2>4.6 Batch Add Pictures<a id="batch_add_pics"
+      <h2>4.7 Batch Add Pictures<a id="batch_add_pics"
       name="batch_add_pics"></a></h2>
       <p>CPG allows you to batch add pictures via FTP.  You can upload entire groups
       of pictures to be added all at once through this function.  Photos should be
@@ -468,7 +540,7 @@ a.navbar:hover {
       top</a></p>
       <hr>
 
-      <h2>4.7 Album properties<a id="album_prop" name="album_prop"></a></h2>
+      <h2>4.8 Album properties<a id="album_prop" name="album_prop"></a></h2>
       <p><img src="pics/edit_album.GIF" border="1" /></p>
       <p>The "Album category" drop down list allows you to move an album between
       categories. If you set this to "* No category *" then the album will be
@@ -495,7 +567,7 @@ a.navbar:hover {
       top</a></p>
       <hr>
 
-      <h2>4.8 Editing pictures<a id="edit_pics" name="edit_pics"></a></h2>
+      <h2>4.9 Editing pictures<a id="edit_pics" name="edit_pics"></a></h2>
       <p><img src="pics/edit_picture.GIF" border="1" /></p>
       <p>This is where you can modify the title description, keywords and custom
       fields (if they are used) of a picture.</p>
@@ -504,9 +576,9 @@ a.navbar:hover {
       top</a></p>
       <hr>
 
-      <h2>4.9 The configuration page<a id="config" name="config"></a></h2>
+      <h2>4.10 The configuration page<a id="config" name="config"></a></h2>
       <a name="config_general"></a>
-      <h3>4.9.1 General settings</h3>
+      <h3>4.10.1 General settings</h3>
       <h4>Gallery name</h4>
       <p>This is the name of your gallery. It will appear in the title of your
       page and is shown on some templates.</p>
@@ -523,10 +595,13 @@ a.navbar:hover {
       <p>If you have to do maintenance work to do on your gallery, switch it to offline mode. Only members of the admin group will be able to log in, all other users will only see &quot;Gallery is offline&quot;. Remember to switch this option off once your maintenance work is done.</p>
       <h4>Log ecards</h4>
       <p>When enabled, all ecards that are being sent are as well written into the database, where the coppermine admin can view them. Before switching this option on, make sure that logging is legal in your country. It is also advisable to notify your users that all ecards are being logged (preferrably on the registration screen).</p>
+      <h4>Allow ZIP-download of favorites</h4>
+      <p>When enabled, the user can download the files put into the favorites in a zip-file from the &quot;My favorites&quot; page.</p>
       <p><a class="back" href="#top">Back to top</a></p>
+      <hr />
 
       <a name="config_language"></a>
-      <h3>4.9.2 Language, Themes &amp; Charset settings</h3>
+      <h3>4.10.2 Language, Themes &amp; Charset settings</h3>
       <p><img src="pics/config_language.gif" width="612" height="234" border="1" alt=""></p>
       <h4>Language</h4>
       <p>This is the default language for your gallery. All language files are
@@ -571,8 +646,10 @@ a.navbar:hover {
       page.</p>
       <p><a class="back" href="#top">Back to
       top</a></p>
+      <hr />
+
       <a name="config_album_list"></a>
-      <h3>4.9.3 Album list view</h3>
+      <h3>4.10.3 Album list view</h3>
       <h4>Width of the main table (pixels or %)</h4>
       <p>This is the width of tables used on your main page or when you are
       viewing thumbnails of an album. You can enter a width in pixels or specify
@@ -616,9 +693,10 @@ a.navbar:hover {
                         the first album in the categories.</p>
                         <p><a class="back" href="#top">Back to
       top</a></p>
+      <hr />
 
       <a name="config_thumbnail_view"></a>
-      <h3>4.9.4 Thumbnail view</h3>
+      <h3>4.10.4 Thumbnail view</h3>
       <h4>Number of columns on thumbnail page</h4>
       <p>Default value is 4 this means that each row will show 4 thumbnails.</p>
       <h4>Number of rows on thumbnail page</h4>
@@ -645,8 +723,10 @@ a.navbar:hover {
                         votes, it will not be displayed on the "top-rated" page.</p>
                         <p><a class="back" href="#top">Back to
       top</a></p>
+      <hr />
+
       <a name="config_image_comment"></a>
-      <h3>4.9.5 Image view &amp; Comment settings</h3>
+      <h3>4.10.5 Image view &amp; Comment settings</h3>
       <h4>Width of the table for picture display (pixels or %)</h4>
       <p>The width of the table used to display the intermediate picture.</p>
       <h4>Picture information are visible by default</h4>
@@ -672,8 +752,10 @@ a.navbar:hover {
                         <p>Set the number of thumbnails to display in film strip.</p>
                         <p><a class="back" href="#top">Back to
       top</a></p>
+      <hr />
+
       <a name="config_picture_thumbnail"></a>
-      <h3>4.9.6 Picture and thumbnail settings</h3>
+      <h3>4.10.6 Picture and thumbnail settings</h3>
       <h4>Quality for JPEG files</h4>
       <p>The quality used for JPEG compression when the script resizes an image.
       Value can range from 0 (worst) to 100 (best). This value can be set to 75
@@ -701,9 +783,10 @@ a.navbar:hover {
       pictures requires a lot of memory and consumes CPU.</p>
       <p><a class="back" href="#top">Back to
       top</a></p>
+      <hr />
 
       <a name="config_picture_thumb_advanced"></a>
-      <h3>4.9.7 Pictures and thumbnails advanced settings</h3>
+      <h3>4.10.7 Pictures and thumbnails advanced settings</h3>
                         <h4>Show private album Icon to unlogged user </h4>
                         <p>Toggles the display of the private album icon to unlogged users.</p>
       <h4>Characters forbidden in filenames</h4>
@@ -774,9 +857,10 @@ a.navbar:hover {
       not having the right permissions set this to <b>0666</b>.</p>
       <p><a class="back" href="#top">Back to
       top</a></p>
+      <hr />
 
       <a name="config_user"></a>
-      <h3>4.9.8 User settings</h3>
+      <h3>4.10.8 User settings</h3>
       <h4>Allow new user registrations</h4>
       <p>Define whether new users can self-register or not.</p>
       <h4>User registration requires email verification</h4>
@@ -798,16 +882,18 @@ a.navbar:hover {
       <p>When enabled, an additional menu item &quot;Memberlist&quot; is being displayed in the coppermine main menu if a user is logged in, to let him see a list of all users, with stats on their last visits, uploads and quota usage.<br />This is a new feature in cpg1.3.0 (user contribution by <a href="#contributors">Jason</a>) - it's available as <a href="http://sourceforge.net/project/showfiles.php?group_id=89658&package_id=98542">mod</a> (not in the regular coppermine package) for older versions than cpg1.3.0.</p>
       <p><a class="back" href="#top">Back to
       top</a></p>
+      <hr />
 
       <a name="config_custom"></a>
-      <h3>4.9.9 Custom fields for image description (leave blank if unused)</h3>
+      <h3>4.10.9 Custom fields for image description (leave blank if unused)</h3>
       <p>These fields are displayed within the "picture information" area. They
       will appear only if you give them a name.</p>
       <p><a class="back" href="#top">Back to
       top</a></p>
+      <hr />
 
       <a name="config_cookie"></a>
-      <h3>4.9.10 Cookie settings</h3>
+      <h3>4.10.10 Cookie settings</h3>
       <h4>Name of the cookie used by the script</h4>
       <p>Default value is "cpg11d". Even if you have multiple instances of the
       script running on the same server you can keep the default value.</p>
@@ -820,9 +906,10 @@ a.navbar:hover {
       <p>When using bbs integration into Coppermine, make sure to use <b>different</b> cookie names for coppermine and your bbs!</p>
       <p><a class="back" href="#top">Back to
       top</a></p>
+      <hr />
 
       <a name="config_misc"></a>
-      <h3>4.9.11 Miscellaneous settings</h3>
+      <h3>4.10.11 Miscellaneous settings</h3>
       <a name="debug_mode"></a><h4>Enable debug mode</h4>
       <p>CPG will show error messages which are normally suppressed.  This is
       helpful in troubleshooting problems with your gallery or when asking
@@ -831,6 +918,7 @@ a.navbar:hover {
       Turn it on (option &quot;Everyone&quot;) if you are requesting help on the <a ref="http://coppermine.sf.net/board/">coppermine support board</a>, so the supporters can have a look at the debug output as well. Choose the option &quot;Admin only&quot; when trouble-shooting on your own - debug output will be only visible when you're logged in as admin, regular users or guests won't see the debug output.</p>
       <p><a class="back" href="#top">Back to
 top</a></p>
+      <hr />
 
 <a name="integrating"></a>
 <h1>5. Integrating the script with your bulletin board</h1>
@@ -925,6 +1013,9 @@ exit;
   or logout is performed you won't be redirected automatically to the gallery
   because your board does not have any function for that. It's up to you to add
   a link on your board to get you back to the gallery.</p>
+  <p><a class="back" href="#top">Back to top</a></p>
+  <hr />
+
 <a name="translating"></a>
 <h1>6. Translating Coppermine into other languages</h1>
 <p>Coppermine has a separate language file that make the translation of the
@@ -940,6 +1031,7 @@ exit;
 <p> If you have translated Coppermine into a language not already supported, please visit the <a href="http://coppermine.sf.net">Coppermine Web Site</a> at Sourceforge and follow the instructions for submitting your language.</p>
 <p></p>
 <p><a class="back" href="#top">Back to top</a></p>
+<hr />
 
 <a name="known_issues"></a>
 <h1>7. Known Issues</h1>
@@ -952,11 +1044,12 @@ exit;
         <li>Administrators can ban themselves making it necessary to fix directly in dB. (Usability issue.)</li>
 </ul>
 <p><a class="back" href="#top">Back to top</a></p>
+<hr />
 
 <a name="credits"></a>
 <h1>8. Credits</h1>
 <a name="developers"></a>
-<h2>8.1 Developers</h2>
+<h2>8.1 Coppermine team</h2>
 <table border="0" cellspacing="6" cellpadding="4">
 <tr>
         <td><b>Developer</b></td>
@@ -1010,19 +1103,19 @@ exit;
         <td>John Asendorf</td>
         <td><a href="http://coppermine.sourceforge.net/board/profile.php?mode=viewprofile&u=30">jasendorf</a></td>
         <td>Developer</td>
-        <td>active</td>
+        <td>pending</td>
 </tr>
 <tr>
         <td>Dave Kazebeer</td>
         <td><a href="http://coppermine.sourceforge.net/board/profile.php?mode=viewprofile&u=7">kegobeer</a></td>
         <td>Support Technician</td>
-        <td>active</td>
+        <td>pending</td>
 </tr>
 <tr>
         <td>mitirapa</td>
         <td><a href="http://coppermine.sourceforge.net/board/profile.php?mode=viewprofile&u=133">mitirapa</a></td>
         <td>Porter (Cross Platform Devel.)</td>
-        <td>pending</td>
+        <td>retired</td>
 </tr>
 <tr>
         <td>Moorey</td>
@@ -1046,7 +1139,7 @@ exit;
         <td>Mark Zerr</td>
         <td><a href="http://coppermine.sourceforge.net/board/profile.php?mode=viewprofile&u=11">zarsky99</a></td>
         <td>Tester</td>
-        <td>active</td>
+        <td>retired</td>
 </tr>
 <tr>
         <td>Gr&eacute;gory Demar</td>
@@ -1060,7 +1153,15 @@ exit;
         <td>Developer</td>
         <td>active</td>
 </tr>
+<tr>
+        <td>Casper Biering</td>
+        <td><a href="http://coppermine.sourceforge.net/board/profile.php?mode=viewprofile&u=56">casper</a></td>
+        <td>Supporter</td>
+        <td>active</td>
+</tr>
 </table>
+<p><a class="back" href="#top">Back to top</a></p>
+<hr />
 
 <a name="contributors"></a>
 <h2>8.2 Contributors</h2>
@@ -1086,6 +1187,8 @@ exit;
   <td>Jason did the <a href="http://coppermine.sourceforge.net/board/viewtopic.php?t=1985">memberlist hack</a></td>
 </tr>
 </table>
+<p><a class="back" href="#top">Back to top</a></p>
+<hr />
 
 <a name="codebase"></a>
 <h2>8.3 Coppermine uses code from the following free softwares :</h2>
@@ -1103,6 +1206,7 @@ exit;
   URL: <a href="http://www.stoverud.com/PHPhotoalbum/">http://www.stoverud.com/PHPhotoalbum/</a><br />
 </p>
 <p><a class="back" href="#top">Back to top</a></p>
+<hr />
 
 <a name="copyright"></a>
 <h2>8.4 Copyright and disclaimer</h2>
@@ -1120,7 +1224,10 @@ exit;
 <p>Coppermine Photo Gallery is Copyright &copy; 2002 - 2004 <a href="http://www.chezgreg.net/coppermine/">Gr&eacute;gory
   DEMAR</a> and the Coppermine Dev Team, All Rights Reserved.<br />
 </p>
+<p><a class="back" href="#top">Back to top</a></p>
+<hr />
 
 
                         </td></tr></tbody></table>
-</body></html>
+</body>
+</html>
