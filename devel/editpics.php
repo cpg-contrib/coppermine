@@ -61,7 +61,7 @@ $USER_ALBUMS_ARRAY=array(0 => array());
 //      2 => text_area
 //      3 => picture information
 $captionLabel = $lang_editpics_php['desc'];
-if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&t='.urlencode(base64_encode(serialize($lang_bbcode_help))),400,180);}
+if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_bbcode_help_title.'&nbsp;'))).'&t='.urlencode(base64_encode(serialize($lang_bbcode_help))),400,180);}
 $data = array(
         array($lang_editpics_php['pic_info'], '', 3),
         array($lang_editpics_php['album'], 'aid', 1),
@@ -255,10 +255,10 @@ EOT;
                     <table border="0" cellspacing="0" cellpadding="0" width="100%">
                         <tr>
                             <td width="20%" align="center"></td>
-                            <td width="20%" align="center"><input type="checkbox" name="delete{$CURRENT_PIC['pid']}" value="1" class="checkbox">{$lang_editpics_php['del_pic']}</td>
-                            <td width="20%" align="center"><input type="checkbox" name="reset_vcount{$CURRENT_PIC['pid']}" value="1" class="checkbox">{$lang_editpics_php['reset_view_count']}</td>
-                            <td width="20%" align="center"><input type="checkbox" name="reset_votes{$CURRENT_PIC['pid']}" value="1" class="checkbox">{$lang_editpics_php['reset_votes']}</td>
-                            <td width="20%" align="center"><input type="checkbox" name="del_comments{$CURRENT_PIC['pid']}" value="1" class="checkbox">{$lang_editpics_php['del_comm']}</td>
+                            <td width="20%" align="center"><input type="checkbox" name="delete{$CURRENT_PIC['pid']}" id="delete{$CURRENT_PIC['pid']}" value="1" class="checkbox"><label for="delete{$CURRENT_PIC['pid']}" class="clickable_option">{$lang_editpics_php['del_pic']}</label></td>
+                            <td width="20%" align="center"><input type="checkbox" name="reset_vcount{$CURRENT_PIC['pid']}" id="reset_vcount{$CURRENT_PIC['pid']}" value="1" class="checkbox"><label for="reset_vcount{$CURRENT_PIC['pid']}" class="clickable_option">{$lang_editpics_php['reset_view_count']}</label></td>
+                            <td width="20%" align="center"><input type="checkbox" name="reset_votes{$CURRENT_PIC['pid']}" id="reset_votes{$CURRENT_PIC['pid']}" value="1" class="checkbox"><label for="reset_votes{$CURRENT_PIC['pid']}" class="clickable_option">{$lang_editpics_php['reset_votes']}</label></td>
+                            <td width="20%" align="center"><input type="checkbox" name="del_comments{$CURRENT_PIC['pid']}" id="del_comments{$CURRENT_PIC['pid']}" value="1" class="checkbox"><label for="del_comments{$CURRENT_PIC['pid']}" class="clickable_option">{$lang_editpics_php['del_comm']}</label></td>
                         </tr>
                     </table>
                 </td>
