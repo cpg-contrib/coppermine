@@ -429,9 +429,9 @@ function list_albums()
 // Redone for a cleaner approach
 function list_cat_albums($cat = 0)
 {
-    global $CONFIG, $USER, $PAGE, $lastup_date_fmt, $HTTP_GET_VARS, $USER_DATA;
+    global $CONFIG, $USER, $lastup_date_fmt, $HTTP_GET_VARS, $USER_DATA;
     global $lang_list_albums, $lang_errors;
-
+    $PAGE = 1;
     if ($cat == 0) {
         return '';
     } 
