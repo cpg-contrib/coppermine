@@ -21,14 +21,6 @@ define('BRIDGEMGR_PHP', true);
 
 require('include/init.inc.php');
 
-function cpg_test_local_file($path,$key = '') {
-global $BRIDGE,$CONFIG,$default_bridge_data,$lang_bridgemgr_php, $previous_step, $next_step,$new_line;
-if (file_exists($path) == false) {
-    $return = $path.' doesn\'t exist';
-}
-return $return;
-}
-
 function write_to_db($step) {
     global $BRIDGE,$CONFIG,$default_bridge_data,$lang_bridgemgr_php, $previous_step, $next_step;
     $error = 0;
@@ -60,6 +52,16 @@ function write_to_db($step) {
                         $return[$key] = sprintf($lang_bridgemgr_php['error_mandatory_field_empty'], '<i>'.$lang_bridgemgr_php[$key].'</i>');
                     }
                 } // check for empty mandatory fields --- end
+                if ($options[0] == 'no_trailing_slash' || $options[1] == 'no_trailing_slash' || $options[2] == 'no_trailing_slash') { // check for unneeded trailing slashes --- start
+                    if ($value != rtrim($value, '/')) {
+                        $return[$key] = sprintf($lang_bridgemgr_php['error_no_trailing_slash'], '<i>'.$lang_bridgemgr_php[$key].'</i>');
+                    }
+                } // check for unneeded traling slashes --- end
+                if ($options[0] == 'trailing_slash' || $options[1] == 'trailing_slash' || $options[2] == 'trailing_slash') { // check for needed trailing slashes --- start
+                    if ($value == rtrim($value, '/')) {
+                        $return[$key] = sprintf($lang_bridgemgr_php['error_trailing_slash'], '<i>'.$lang_bridgemgr_php[$key].'</i>');
+                    }
+                } // check for needed traling slashes --- end
                 //print "<hr />\n";
                 //print $options[0].':'.$options[1].','.$options[2];
                 //print "<hr />\n";
@@ -85,7 +87,7 @@ function write_to_db($step) {
     //if ($_POST['short_name'] == '') {
     //    $return['short_name'] = $lang_bridgemgr_php['error_specify_bbs'];
     //}
-    //$return['short_name'] = cpg_test_local_file('folder1/cross.gi','relative_path_of_forum_from_webroot');
+
        break;
 
     case "db_group":
@@ -448,7 +450,7 @@ $default_bridge_data['phpbb'] = array(
   'db_password_default' => '',
   'db_password_used' => 'password',
   'relative_path_of_forum_from_webroot_default' => '/phpBB2/',
-  'relative_path_of_forum_from_webroot_used' => 'mandatory,not_empty',
+  'relative_path_of_forum_from_webroot_used' => 'mandatory,not_empty,trailing_slash',
   'logout_flag_default' => '1',
   'logout_flag_used' => 'radio,1,0',
   'cookie_prefix_default' => 'phpbb2mysql',
@@ -461,6 +463,8 @@ $default_bridge_data['phpbb'] = array(
   'session_table_used' => 'mandatory,not_empty',
   'group_table_default' => 'groups',
   'group_table_used' => 'mandatory,not_empty',
+  'group_mapping_table_default' => 'user_group',
+  'group_mapping_table_used' => 'mandatory,not_empty',
   'use_standard_groups_default' => '1',
   'use_standard_groups_used' => 'mandatory,not_empty',
   'guest_group_default' => '3',
@@ -478,7 +482,7 @@ $default_bridge_data['punbb'] = array(
   'short_name' => 'punbb',
   'support_url' => 'http://www.punbb.org/',
   'full_forum_url_default' => 'http://www.yoursite.com/punbb',
-  'full_forum_url_used' => 'mandatory,not_empty',
+  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
   'relative_path_of_forum_from_webroot_default' => '',
   'relative_path_of_forum_from_webroot_used' => '',
   'relative_path_to_config_file_default' => '../punbb/config.php',
