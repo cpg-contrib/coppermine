@@ -2065,6 +2065,7 @@ $return = '
 1.4.1|include|||mandatory|w@
 1.4.1|include/archive.php|1.4.1|1.4|mandatory|r@
 1.4.1|include/config.inc.php|||mandatory|r@
+1.4.1|include/core.inc.php|1.4.1|1.4|mandatory|r@
 1.4.1|include/crop.inc.php|1.4.1|1.12|mandatory|r@
 1.4.1|include/debugger.inc.php|1.4.1|1.7|mandatory|r@
 1.4.1|include/exif.php|1.4.1|1.4|mandatory|r@
