@@ -261,6 +261,9 @@ if (defined('INDEX_PHP')) {
 $lang_album_admin_menu_en = cpg_get_default_lang_var('lang_album_admin_menu','english');
 $lang_album_admin_menu = array_merge($lang_album_admin_menu_en, $lang_album_admin_menu);
 
+$lang_list_categories_en = cpg_get_default_lang_var('lang_list_categories','english');
+$lang_list_categories = array_merge($lang_list_categories_en, $lang_list_categories);
+
 $lang_list_users_en = cpg_get_default_lang_var('lang_list_users','english');
 $lang_list_users = array_merge($lang_list_users_en, $lang_list_users);
 
