@@ -838,7 +838,7 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
   'user_already_inactive' => 'Account has already been inactive', // cpg1.4.0
   'deactivated' => 'Deactivated', // cpg1.4.0
   'reset_password' => 'Reset password(s)', // cpg1.4.0
-  'password_reset' => 'Password reset to %s', // cpg1.4.0  
+  'password_reset' => 'Password reset to %s', // cpg1.4.0
   'status' => 'Status', // cpg1.4.0
 );
 
@@ -1583,6 +1583,7 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
 
 if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'memberlist' => 'Memberlist', // cpg1.4.0
+  'user_manager' => 'User manager', // cpg1.4.0
   'title' => 'Manage users',
   'name_a' => 'Name ascending',
   'name_d' => 'Name descending',
@@ -1643,8 +1644,6 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'search' => 'User search', // cpg1.4.0
   'search_submit' => 'Go!', // cpg1.4.0
   'search_result' => 'Search results for: ', // cpg1.4.0
-  'search_help_title' => 'Searching for users', // cpg1.4.0
-  'search_help_text' => 'You can use the wildcards <tt class="debug_text">*</tt> (any string) and <tt class="debug_text">?</tt> (any single character) or even <tt class="debug_text">%expression%</tt>.<br />Example: searching for <tt class="debug_text">j*</tt> will return both <tt class="debug_text">Jack</tt> and <tt class="debug_text">Jill</tt>', // cpg1.4.0
   'alert_no_selection' => 'You have to select a user first!', // cpg1.4.0 //js-alert
   'password' => 'password', // cpg1.4.0
 );

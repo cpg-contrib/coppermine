@@ -192,13 +192,20 @@ EOT;
         } else {
             $search_filter = '';
         }
+        $help = '&nbsp;'.cpg_display_help('f=index.htm&as=user_cp&ae=user_cp_end&top=1', '650', '500');
     echo <<<EOT
         <tr>
             <td colspan="$number_of_columns" class="tableh1">
                 <table border="0" cellspacing="0" cellpadding="0" width="100%">
                     <tr>
                         <td class="tableh1">
-                            <h2>{$lang_usermgr_php['memberlist']}</h2>
+EOT;
+if (!$lim_user) {
+    echo '<h2>'.$lang_usermgr_php['user_manager'].$help.'</h2>';
+} else {
+    echo '<h2>'.$lang_usermgr_php['memberlist'].'</h2>';
+}
+echo <<<EOT
                         </td>
                         $search_filter
                         <td class="tableh1" align="right"><b>{$lang_usermgr_php['sort_by']}</b>:
@@ -335,7 +342,7 @@ EOT;
         } else {
             $search_string_default = 'value="'.$lang_usermgr_php['search'].'" onfocus="this.value=\'\'"';
         }
-            $help = cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_usermgr_php['search_help_title']))).'&t='.urlencode(base64_encode(serialize($lang_usermgr_php['search_help_text']))),400,150);
+            $help = cpg_display_help('f=index.htm&as=user_cp_search&ae=user_cp_search_end&top=1', '400', '150');
         echo <<<EOT
         <tr>
                 <td class="tablef" align="center"><input type="checkbox" name="checkAll2" onClick="selectAll(this,'u');" class="checkbox" title="$lang_check_uncheck_all" /></td>
