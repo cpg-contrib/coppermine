@@ -18,18 +18,18 @@
 // ------------------------------------------------------------------------- //
 
 // Get the vars from the url
-$file = $_REQUEST['f'];
-$anchor_start = $_REQUEST['as'];
-$anchor_end = $_REQUEST['ae'];
-$remove_head = $_REQUEST['remove_head'];
-$remove_stylesheet = $_REQUEST['remove_stylesheet'];
-$remove_to_top = $_REQUEST['top'];
-$add_stylesheet = $_REQUEST['css'];
-$header = $_REQUEST['h'];
-$text = $_REQUEST['t'];
-$style = $_REQUEST['style'];
-$close = $_REQUEST['close'];
-$base = $_REQUEST['base'];
+if (isset($_REQUEST['f'])) { $file = $_REQUEST['f']; } else { $file = ''; }
+if (isset($_REQUEST['as'])) { $anchor_start = $_REQUEST['as']; } else { $anchor_start = ''; }
+if (isset($_REQUEST['ae'])) { $anchor_end = $_REQUEST['ae']; } else { $anchor_end = ''; }
+if (isset($_REQUEST['remove_head'])) { $remove_head = $_REQUEST['remove_head']; } else { $remove_head = '0'; }
+if (isset($_REQUEST['remove_stylesheet'])) { $remove_stylesheet = $_REQUEST['remove_stylesheet']; } else { $remove_stylesheet = '0'; }
+if (isset($_REQUEST['top'])) { $remove_to_top = $_REQUEST['top']; } else { $remove_to_top = '0'; }
+if (isset($_REQUEST['css'])) { $add_stylesheet = $_REQUEST['css']; } else { $add_stylesheet = '0'; }
+if (isset($_REQUEST['h'])) { $header = $_REQUEST['h']; } else { $header = ''; }
+if (isset($_REQUEST['t'])) { $text = $_REQUEST['t']; } else { $text = ''; }
+if (isset($_REQUEST['style'])) { $style = $_REQUEST['style']; } else { $style = ''; }
+if (isset($_REQUEST['close'])) { $close = $_REQUEST['close']; } else { $close = '0'; }
+if (isset($_REQUEST['base'])) { $base = $_REQUEST['base']; } else { $base = ''; }
 
 if ($base != '') {
 // content of header and text have been base64-encoded - decode it now
@@ -65,7 +65,7 @@ if ($remove_stylesheet == 1) {
     $string = preg_replace($pattern, $replacement, $string);
 }
 
-if ($anchor_start) {
+if ($anchor_start != '') {
     $pattern = '<a name="' . $anchor_start . '"></a>';
     $string = strstr($string, $pattern);
     //remove the start anchor
@@ -73,7 +73,7 @@ if ($anchor_start) {
     $string = preg_replace($pattern, "", $string);
 }
 
-if ($anchor_end) {
+if ($anchor_end != '') {
     $pattern = '<a name="' . $anchor_end . '"></a>';
     $string2 = strstr($string, $pattern);
     //remove the start anchor
@@ -83,7 +83,7 @@ if ($anchor_end) {
     $string = preg_replace($pattern, "", $string);
 }
 
-if ($remove_to_top) {
+if ($remove_to_top ==1) {
     $pattern = '<a class="back" href="#top">Back to top</a>';
     $pattern = "'".$pattern."'si";
     $string = preg_replace($pattern, '', $string);
@@ -99,21 +99,14 @@ if ($string == '' && $header == '') {
 }
 */
 
-if ($add_stylesheet) {
+if ($add_stylesheet == 1) {
     $string = "<html>\n<head>\n<title>Help</title>\n" . '<link rel="stylesheet" href="../themes/'.$add_stylesheet.'/style.css" />' . "\n</head>\n<body>\n<div style=\"padding: 5px;\">\n" . $string;
     $string .= $close_link."\n</div>\n</body>\n</html>";
 }
 
-if ($header) {
+if ($header != '') {
 $string = "<html>\n<head>\n<title>".$header."</title>\n" . '<link rel="stylesheet" href="../themes/'.$add_stylesheet.'/style.css" />' . "\n</head>\n<body>\n<h1>" . $header . "</h1>\n<div style=\"padding: 5px;\">\n" . $text . "\n".$close_link."\n</div>\n</body>\n</html>";
 }
 
-
-
 print $string;
-
-
-
-
-
 ?>
