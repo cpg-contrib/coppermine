@@ -265,7 +265,7 @@ function create_form(&$data) {
                 case 0 :
 
                     //Call the form input function.
-                    text_box_input($element[0], $element[1], $element[3], $element[4], @$element[5]);
+                    text_box_input($element[0], $element[1], $element[3], $element[4], (isset($element[5])) ? $element[5] : '');
                     break;
 
                 // If the type is a file input.
@@ -286,7 +286,7 @@ function create_form(&$data) {
                 case 3 :
 
                     // Call the text area function.
-                    text_area_input($element[0], $element[1], $element[3], @$element[4]);
+                    text_area_input($element[0], $element[1], $element[3], (isset($element[4])) ? $element[4] : '');
                     break;
 
                 // If the type is a hidden form
@@ -2507,9 +2507,9 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
 
     $form_array = array(
     array($lang_upload_php['album'], 'album', 2),
-    array($lang_upload_php['pic_title'], 'title', 0, 255, 1, @$iptc['Title']),
-    array($captionLabel, 'caption', 3, $CONFIG['max_img_desc_length'], @$iptc['Caption']),
-    array($lang_upload_php['keywords'], 'keywords', 0, 255, 1,@implode(' ',$iptc['Keywords'])),
+    array($lang_upload_php['pic_title'], 'title', 0, 255, 1, (isset($iptc['Title'])) ? $iptc['Title'] : ''),
+    array($captionLabel, 'caption', 3, $CONFIG['max_img_desc_length'], (isset($iptc['Caption'])) ? $iptc['Caption'] : ''),
+    array($lang_upload_php['keywords'], 'keywords', 0, 255, 1,(isset($iptc['Keywords'])) ? implode(' ',$iptc['Keywords']): ''),
     array('control', 'phase_2', 4),
     array('unique_ID', $_POST['unique_ID'], 4),
     );
