@@ -2027,37 +2027,41 @@ function theme_display_fullsize_pic()
     }
     
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
 <title><?php echo $CONFIG['gallery_name'] ?>: <?php echo $lang_fullsize_popup['click_to_close'];
     ?></title>
 <meta http-equiv="content-type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'] ?>" />
-<link rel="stylesheet" href="<?php echo $THEME_DIR ?>style.css" />
+<link rel="stylesheet" href="<?php echo $THEME_DIR ?>style.css" type="text/css" />
 <script type="text/javascript" src="scripts.js"></script>
 </head>
-<body class="tableb" scroll="auto" marginwidth="0" marginheight="0">
+<body class="tableb" style="margin:0px">
 <script language="JavaScript" type="text/JavaScript">
 adjust_popup();
 </script>
 
 <table width="100%" border="0" cellpadding="0" cellspacing="2">
- <td align="center" valign="middle">
-  <table cellspacing="2" cellpadding="0" style="border: 1px solid #000000; background-color: #FFFFFF;">
-   <td>
-<?php     echo  '<a href="javascript: window.close()"><img src="' 
-    . htmlspecialchars($imagedata['path']) . '" ' 
-    . $imagedata['geometry'] 
-    . ' class="image"  alt="'
-    . htmlspecialchars($imagedata['name'])
-    . '" title="' 
-    . htmlspecialchars($imagedata['name']) 
-    . "\n" . $lang_fullsize_popup['click_to_close'] 
-    . '" /></a><br />' ."\n";
- ?>
-   </td>
-  </table>
- </td>
+  <tr>
+    <td align="center" valign="middle">
+      <table cellspacing="2" cellpadding="0" style="border: 1px solid #000000; background-color: #FFFFFF;">
+        <tr>
+         <td>
+            <?php     echo  '<a href="javascript: window.close()"><img src="'
+              . htmlspecialchars($imagedata['path']) . '" '
+              . $imagedata['geometry']
+              . ' class="image"  alt="'
+              . htmlspecialchars($imagedata['name'])
+              . '" title="'
+              . htmlspecialchars($imagedata['name'])
+              . "\n" . $lang_fullsize_popup['click_to_close']
+              . '" /></a><br />' ."\n";
+             ?>
+         </td>
+       </tr>
+      </table>
+    </td>
+  </tr>
 </table>
 </body>
 </html>
