@@ -188,7 +188,7 @@ function get_post_var($var)
 
 function check_user_info(&$error)
 {
-    global $CONFIG, $HTTP_SERVER_VARS, $PHP_SELF;
+    global $CONFIG, $HTTP_POST_VARS, $PHP_SELF;
     global $lang_register_php, $lang_register_confirm_email, $lang_continue;
 
     $user_name = trim(get_post_var('username'));
