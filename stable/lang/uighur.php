@@ -21,22 +21,22 @@
 $lang_translation_info = array(
   'lang_name_english' => 'Uighur',
   'lang_name_native' => 'Uighur',
-  'lang_country_code' => 'ug',
+  'lang_country_code' => 'Uig',
   'trans_name'=> 'Abduwahit Semet.NEWRUZ',
   'trans_email' => 'abduwahit@yahoo.com or qumluq@yahoo.com.cn',
   'trans_website' => 'http://www.shehrizat.com/album',
   'trans_date' => '2004-08-30',
 );
 
-$lang_charset = 'windows-1254';
+$lang_charset = 'iso-8859-9';
 $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 
 // shortcuts for Byte, Kilo, Mega
 $lang_byte_units = array('Bytes', 'KB', 'MB');
 
 // Day of weeks and months
-$lang_day_of_week = array('Yek', 'Du', 'Sey', 'Char', 'Pey', 'Jü', 'Shem');
-$lang_month = array('Yanwar', 'Fébral', 'Mart', 'April', 'May', 'Iyon', 'Iyol', 'Awghust', 'Sintebir', 'Oktebir', 'Noyabir', 'Dikabir');
+$lang_day_of_week = array('Yek', 'Dü', 'Sey', 'Char', 'Pey', 'Jüme', 'Shem');
+$lang_month = array('Yanwar', ' Féwral', 'Mart', 'April', 'May', 'Iyun', 'Iyul', 'Awghust', 'Séntebir', 'öktebir', 'Noyabir', 'Dékabir');
 
 // Some common strings
 $lang_yes = 'Hee';
@@ -75,7 +75,7 @@ $lang_errors = array(
   'perm_denied' => 'Bu paaliyitingiz cheklinidu.',
   'param_missing' => 'Bu sizge bilazm paramétir.',
   'non_exist_ap' => 'Tallighan albüm/höjjet Yoq!', //cpg1.3.0
-  'quota_exceeded' => 'Teqsim chektin ashti<br /><br />Teqsimingiz[quota]K, Ishletkiningiz[space]K, Bu hïjjet bilen teqsim chektin ashidu.', //cpg1.3.0
+  'quota_exceeded' => 'Teqsim chektin ashti<br /><br />Teqsimingiz[quota]K, Ishletkiningiz[space]K, Bu höjjet bilen teqsim chektin ashidu.', //cpg1.3.0
   'gd_file_type_err' => 'Ishletken GD ambiringiz JPEG bilen PNG la qollaydu.',
   'invalid_image' => 'Yükingiz buzulghan yaki GD ambar bir terep qilalmaydu.',
   'resize_failed' => 'Kichiklitilme yaki özgertilme élip baralmidim.',
@@ -106,7 +106,7 @@ $lang_main_menu = array(
   'alb_list_lnk' => 'Albüm sehipisi',
   'my_gal_title' => 'Albümimgha qaytimen',
   'my_gal_lnk' => 'Albümim',
-  'my_prof_lnk' => 'Arxiwim',
+  'my_prof_lnk' => 'Arxipim',
   'adm_mode_title' => 'Admingha aylinish',
   'adm_mode_lnk' => 'Admin Könümi',
   'usr_mode_title' => 'Qollanchi könümige aylinish',
@@ -119,13 +119,13 @@ $lang_main_menu = array(
   'logout_lnk' => 'Chiqing',
   'lastup_lnk' => 'Yéngi Yük',
   'lastcom_lnk' => 'Yéngi Söz',
-  'topn_lnk' => 'Köp körülme',
+  'topn_lnk' => 'Köp körüm',
   'toprated_lnk' => 'Yoquri Nomur',
   'search_lnk' => 'Izde',
   'fav_lnk' => 'Könglümdikisi',
   'memberlist_title' => 'Qollanchi tizimliki', //cpg1.3.0
   'memberlist_lnk' => 'Qollanchilar', //cpg1.3.0
-  'faq_title' => 'Galleryning Daimliq sualigha jawap &quot;Coppermine&quot;', //cpg1.3.0
+  'faq_title' => 'Galleryning Daimliq soaligha jawap &quot;Coppermine&quot;', //cpg1.3.0
   'faq_lnk' => 'FAQ', //cpg1.3.0
 );
 
@@ -133,12 +133,12 @@ $lang_gallery_admin_menu = array(
   'upl_app_lnk' => 'Bap Yüklesh',
   'config_lnk' => 'Tengshesh',
   'albums_lnk' => 'Albümlar',
-  'categories_lnk' => 'Katigoriyeler',
+  'categories_lnk' => 'Katégoriyiler',
   'users_lnk' => 'Qollanchilar',
   'groups_lnk' => 'Grouplar',
   'comments_lnk' => 'Pikirler', //cpg1.3.0
   'searchnew_lnk' => 'Höjjetber', //cpg1.3.0
-  'util_lnk' => 'Ataman Arxiwi', //cpg1.3.0
+  'util_lnk' => 'Ataman Arxipi', //cpg1.3.0
   'ban_lnk' => 'Cheklen`genler',
   'db_ecard_lnk' => 'Atrétkilar', //cpg1.3.0
 );
@@ -146,7 +146,7 @@ $lang_gallery_admin_menu = array(
 $lang_user_admin_menu = array(
   'albmgr_lnk' => 'Albümimni/Qurush ',
   'modifyalb_lnk' => 'Albümimni Tehrirlesh',
-  'my_prof_lnk' => 'Arxiwim',
+  'my_prof_lnk' => 'Arxipim',
 );
 
 $lang_cat_list = array(
@@ -164,8 +164,8 @@ $lang_thumb_view = array(
   //Sort by filename and title
   'name' => 'Höjjet nami',
   'title' => 'Tambet',
-  'sort_da' => 'WAqt tertiwi Yéqindin yiraqqa',
-  'sort_dd' => 'WAqt tertiwi yiraqtin yéqingha',
+  'sort_da' => 'WAqt tertipi Yéqindin yiraqqa',
+  'sort_dd' => 'WAqt tertipi yiraqtin yéqin`gha',
   'sort_na' => 'Nam Kichiktin chonggha',
   'sort_nd' => 'Nam Chongdin kichikke',
   'sort_ta' => 'Téma Kichiktin chonggha',
@@ -213,7 +213,7 @@ $lang_cpg_die = array(
   INFORMATION => $lang_info,
   ERROR => $lang_error,
   CRITICAL_ERROR => 'Jiddiy xataliq',
-  'file' => 'Hüjjet: ',
+  'file' => 'Höjjet: ',
   'line' => 'Qur sani: ',
 );
 
@@ -317,7 +317,7 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
   'select_first' => 'Albüm tallang', //js-alert
   'alb_mrg' => 'Album Bashqurghuchisi',
   'my_gallery' => '* Méning galleryim *',
-  'no_category' => '* Katigoriye yoq *',
+  'no_category' => '* Katégoriye yoq *',
   'delete' => 'Öcher',
   'new' => 'Qoshush',
   'apply_modifs' => 'Tüzitish',
@@ -330,18 +330,18 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 
 if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
   'miss_param' => 'Meshghulatqa kéreklik \'%s\'miqdar teminlenmidi !',
-  'unknown_cat' => 'Tallighan katigoriye san ambirida yoq',
-  'usergal_cat_ro' => 'Qollanchi galleries Katigoriyesini öchürüshke bolmaydu !',
-  'manage_cat' => 'Katigoriye bashqurush',
-  'confirm_delete' => 'Bu katigoriyeni rastinla öchüremsiz', //js-alert
-  'category' => 'Katigoriye',
+  'unknown_cat' => 'Tallighan Katégoriye san ambirida yoq',
+  'usergal_cat_ro' => 'Qollanchi galleries Katégoriyisidin öchürüshke bolmaydu !',
+  'manage_cat' => 'Katégoriye bashqurush',
+  'confirm_delete' => 'Bu Katégoriyeni rastinla öchüremsiz', //js-alert
+  'category' => 'Katégoriye',
   'operations' => 'Meshghulat',
   'move_into' => 'gh yötkesh',
-  'update_create' => 'Katigoriyeni Yéngilash/Qurush ',
-  'parent_cat' => 'Ata katogiriye',
-  'cat_title' => 'Katigoriye münderijisi',
-  'cat_thumb' => 'Katigoriye kichiklitilme süriti', //cpg1.3.0
-  'cat_desc' => 'Katigoriye izahati',
+  'update_create' => 'Katégoriyeni Yéngilash/Qurush ',
+  'parent_cat' => 'Ata Katégoriye',
+  'cat_title' => 'Katégoriye munderijisi',
+  'cat_thumb' => 'Katégoriye kichiklitilme süriti', //cpg1.3.0
+  'cat_desc' => 'Katégoriye izahati',
 );
 
 // ------------------------------------------------------------------------- //
@@ -361,7 +361,7 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
   'title_a' => 'Tambet kichiktin chonggha',
   'title_d' => 'Tambet chongdin kichikke',
   'date_a' => 'Waqt yeqindin yiraqqa',
-  'date_d' => 'Waqt yiraqtin yéqingha',
+  'date_d' => 'Waqt yiraqtin yéqin`gha',
   'th_any' => 'Eng chong körüm',
   'th_ht' => 'Igizliki',
   'th_wd' => 'Kengliki',
@@ -389,7 +389,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Körünüsh &quot;Qayata tengshesh&quot; Tambet tengshesh ichide', 'language_reset', 1), //cpg1.3.0
   array('Tambet Munderijisi', 'theme_list', 1), //cpg1.3.0
   array('Körünüsh &quot;Qayta tengshesh&quot; Tambet tengshesh ichide', 'theme_reset', 1), //cpg1.3.0
-  array('Sual_jawab körünüsh', 'display_faq', 1), //cpg1.3.0
+  array('Soal_jawab körünüsh', 'display_faq', 1), //cpg1.3.0
   array('bbcode Yardimi körünüsh', 'show_bbcode_help', 1), //cpg1.3.0
   array('Xet kodi', 'charset', 4), //cpg1.3.0
 
@@ -397,20 +397,20 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Asasliq jedwel kengliki (süzükliki or %)', 'main_table_width', 0),
   array('Tür körsitish sani', 'subcat_level', 0),
   array('Albüm sani', 'albums_per_page', 0),
-  array('Albüm münderijisi qur sani', 'album_list_cols', 0),
+  array('Albüm munderijisi qur sani', 'album_list_cols', 0),
   array('Kichiklitilgen höjjetning Süzükliki', 'alb_list_thumb_size', 0),
   array('Bash bet mezmuni', 'main_page_layout', 0),
   array('albüm kichiklitilme bash béti','first_level',1),
 
   'Kichiklitip körsitish',
   array('Kichik körsitish qur sani', 'thumbcols', 0),
-  array('Kichik körsitish tikqur sani', 'thumbrows', 0),
+  array('Kichik körsitish tik qur sani', 'thumbrows', 0),
   array('Jedwel körinish eng chong sani', 'max_tabs', 10), //cpg1.3.0
-  array('Höjjet chüshnchisi, kichik körsitish astida (Qoshumche Téma)', 'caption_in_thumbview', 1), //cpg1.3.0
+  array('Höjjet chüshenchisi, kichik körsitish astida (Qoshumche Téma)', 'caption_in_thumbview', 1), //cpg1.3.0
   array('Körüm sani kichiklitilmining astida körülidu', 'views_in_thumbview', 1), //cpg1.3.0
   array('Söz sani kichiklitilmining astida körülidu', 'display_comment_count', 1),
   array('Yük ismi kichiklitilmining astida körülidu', 'display_uploader', 1), //cpg1.3.0
-  array('Höjjet körüm sani tertiwi', 'default_sort_order', 3), //cpg1.3.0
+  array('Höjjet körüm sani tertipi', 'default_sort_order', 3), //cpg1.3.0
   array('höjjetke qizghin tashlan`ghan bélet\'lazmliq eng az bélet sani', 'min_votes_for_rating', 0), //cpg1.3.0
 
   'Resim körünüsh &amp; Söz Tengshiki',
@@ -423,10 +423,10 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('izahatning xet chéki sani', 'max_com_wlength', 0),
   array('izahatning qur chéki sani', 'max_com_lines', 0),
   array('izahatning uzunliqi', 'max_com_size', 0),
-  array('Resimche körünüs qur sani', 'display_film_strip', 1),
+  array('Resimche körünüsh qur sani', 'display_film_strip', 1),
   array('ziyaret qurdiki resim sani', 'max_film_strip_items', 0),
   array('Söz berse ataman`gha Émail arqiliq uqturulsun', 'email_comment_notification', 1), //cpg1.3.0
-  array('Uzulmey körünüshi milliseconds (1 second = 1000 milliseconds)', 'slideshow_interval', 0), //cpg1.3.0
+  array('Üzülmey körünüshi milliseconds (1 second = 1000 milliseconds)', 'slideshow_interval', 0), //cpg1.3.0
 
   'Höjjet kichiklitilme tengshigi', //cpg1.3.0
   array('JPEG Höjjitining süpiti', 'jpeg_qual', 0),
@@ -449,8 +449,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Path to ImageMagick \'convert\' ulinish yoli (mesilen /usr/bin/X11/)', 'impath', 0), //cpg1.3.0
   //array('Qobul resim shekli (peqet ImageMagick la ishleydu)', 'allowed_img_types',0), //cpg1.3.0
   array('ImageMagick ning buyruq tallanmiliri', 'im_options', 0), //cpg1.3.0
-  array('JPEG ning EXIF matiryalini oqush', 'read_exif_data', 1), //cpg1.3.0
-  array('JPEG ning IPTC matiryalini oqush', 'read_iptc_data', 1), //cpg1.3.0
+  array('JPEG ning EXIF matériyalini oqush', 'read_exif_data', 1), //cpg1.3.0
+  array('JPEG ning IPTC matériyalini oqush', 'read_iptc_data', 1), //cpg1.3.0
   array('Albüm yoli <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0), //cpg1.3.0
   array('Qollanchi höjjet yoli <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0), //cpg1.3.0
   array('Ara resimning prefix li <a href="#notice1" class="clickable_option">*</a>', 'normal_pfx', 0), //cpg1.3.0
@@ -463,11 +463,11 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Émail arqiliq tizim testiqlinidu', 'reg_requires_valid_email', 1),
   array('ishletküchi tizimlatsa Ataman`gha Émail ewertilsun', 'reg_notify_admin_email', 1), //cpg1.3.0
   array('Ikki qollanchi bir émail ishletse bolidu', 'allow_duplicate_emails_addr', 1),
-  array('Qollanchiningmu albümi bolsun (Diqqet: Eger hee din yaqqa almashtursingiz Qollanchi albümi ammiliship qalidu)', 'allow_private_albums', 1), //cpg1.3.0
-  array('Qollanchi yük testiqi atamangha uqturulsun', 'upl_notify_admin_email', 1), //cpg1.3.0
+  array('Qollanchiningmu albümi bolsun (Diqqet: Eger hee din yaqqa almashtursingiz Qollanchi albümi ammiwiliship qalidu)', 'allow_private_albums', 1), //cpg1.3.0
+  array('Qollanchi yük testiqi ataman`gha uqturulsun', 'upl_notify_admin_email', 1), //cpg1.3.0
   array('Ezalar qollanchi tizimini körelisun', 'allow_memberlist', 1), //cpg1.3.0
 
-  'Süret izahati öz quri (ishletmisigniz bosh qalsun)',
+  'Süret izahati öz quri (ishletmisingiz bosh qalsun)',
   array('Qur 1 nami', 'user_field1_name', 0),
   array('Qur 2 nami', 'user_field2_name', 0),
   array('Qur 3 nami', 'user_field3_name', 0),
@@ -481,8 +481,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Xataliq shekli qozghutulsun', 'debug_mode', 9), //cpg1.3.0
   array('Xataliq shekli körünme uchuri', 'debug_notice', 1), //cpg1.3.0
 
-  '<br /><div align="left"><a name="notice1"></a>(*) Bu höjjet san ambirida alla burunbar.<br />
-  <a name="notice2"></a>(**) özgertilme bar arxipqila ishleyd, Qandaqla bolmisun ataman iqtidaridin arxipni tengshisingiz &quot;<a href="util.php">ataman qorali</a> da(Resim chong_kichiklikini tengshash)&quot; </div><br />', //cpg1.3.0
+  '<br /><div align="left"><a name="notice1"></a>(*) Bu höjjet san ambirida alla burun bar.<br />
+  <a name="notice2"></a>(**) özgertilme bar arxipqila ishleydu, Qandaqla bolmisun ataman iqtidaridin arxipni tengshisingiz &quot;<a href="util.php">ataman qorali</a> da(Resim chong_kichiklikini tengshesh)&quot; </div><br />', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -491,8 +491,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 
 if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
   'title' => 'É kartisi yollash', //cpg1.3.0
-  'ecard_sender' => 'Berguchi', //cpg1.3.0
-  'ecard_recipient' => 'Bérilguchi', //cpg1.3.0
+  'ecard_sender' => 'Bergüchi', //cpg1.3.0
+  'ecard_recipient' => 'Bérilgüchi', //cpg1.3.0
   'ecard_date' => 'Waqt', //cpg1.3.0
   'ecard_display' => 'ékard körünüsh', //cpg1.3.0
   'ecard_name' => 'Nami', //cpg1.3.0
@@ -501,18 +501,18 @@ if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
   'ecard_ascending' => 'ashurush', //cpg1.3.0
   'ecard_descending' => 'kémeytish', //cpg1.3.0
   'ecard_sorted' => 'tertip', //cpg1.3.0
-  'ecard_by_date' => 'Ber Waqt', //cpg1.3.0
-  'ecard_by_sender_name' => 'Ber Yollanchi nami\'s name', //cpg1.3.0
+  'ecard_by_date' => 'Bergen Waqt', //cpg1.3.0
+  'ecard_by_sender_name' => 'Bergen Yollanchi nami\'s name', //cpg1.3.0
   'ecard_by_sender_email' => 'Berguchi\'s émail', //cpg1.3.0
-  'ecard_by_sender_ip' => 'Berguchi\'s IP adrisi', //cpg1.3.0
-  'ecard_by_recipient_name' => 'Bérilguchi\'s nami', //cpg1.3.0
-  'ecard_by_recipient_email' => 'Bérilguchi\'s émail', //cpg1.3.0
+  'ecard_by_sender_ip' => 'Berguchi\'s IP adrési', //cpg1.3.0
+  'ecard_by_recipient_name' => 'Bérilgüchi\'s nami', //cpg1.3.0
+  'ecard_by_recipient_email' => 'Bérilgüchi\'s émail', //cpg1.3.0
   'ecard_number' => 'Kör xatire %s din %s gha %s', //cpg1.3.0
   'ecard_goto_page' => 'Betke baridu', //cpg1.3.0
   'ecard_records_per_page' => 'Bet qétim sani', //cpg1.3.0
   'check_all' => 'Hemmini tallash', //cpg1.3.0
   'uncheck_all' => 'Tallimasliq', //cpg1.3.0
-  'ecards_delete_selected' => 'Tallanghanni öchürüsh', //cpg1.3.0
+  'ecards_delete_selected' => 'Tallan`ghanni öchürüsh', //cpg1.3.0
   'ecards_delete_confirm' => 'Rastinla xatirini öchermekchimu? Emise tallang!', //cpg1.3.0
   'ecards_delete_sure' => 'Muqimlidim', //cpg1.3.0
 );
@@ -529,9 +529,9 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
   'no_udp_needed' => 'Yéngilash bihajet.',
   'alb_updated' => 'Albüm yéngilinip bolghan',
   'unknown_album' => 'Tallighan albüm yoq yaki siz cheklimige uchurdingiz.',
-  'no_pic_uploaded' => 'Höjjet yüklenmidi !<br /><br />Yük bermek bolsingiz, yükleshke ijazet barmu yoq tekshurep biling...', //cpg1.3.0
-  'err_mkdir' => 'Münderije qurghili bolmidi %s !',
-  'dest_dir_ro' => 'Münderije %s Xatirige yézilmidi !',
+  'no_pic_uploaded' => 'Höjjet yüklenmidi !<br /><br />Yük bermek bolsingiz, yükleshke ijazet barmu yoq tekshürüp biling...', //cpg1.3.0
+  'err_mkdir' => 'Munderije qurghili bolmidi %s !',
+  'dest_dir_ro' => 'Munderije %s Xatirige yézilmidi !',
   'err_move' => 'ge %s Yötkilelmidi %s !',
   'err_fsize_too_large' => 'Yük resimi chong ( %s x %s din ashmisun) !', //cpg1.3.0
   'err_imgsize_too_large' => 'Höjjet hejimi chong ( %s KB din ashmisun) !',
@@ -549,7 +549,7 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
   'no_flood' => 'Kechürüng Eng axirqi söz sizning<br /><br />Tehrirliwalsingiz bolidu.', //cpg1.3.0
   'redirect_msg' => 'Bet yötkiliwatidu.<br /><br /><br />Chéking \'Dawami\' Eger bet özligidin chötkilanmisa',
   'upl_success' => 'Höjjitingiz saqlandi', //cpg1.3.0
-  'email_comment_subject' => 'Coppermine Photo Galleryge s"zo bérip bolghan', //cpg1.3.0
+  'email_comment_subject' => 'Siz Coppermine Photo Galleryge pikir sözi bérip bolghan', //cpg1.3.0
   'email_comment_body' => 'Galleryingizge kishiler söz qaldurdi. Körüng', //cpg1.3.0
 );
 
@@ -574,7 +574,7 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
   'del_pic' => 'Höjjetni öchürüsh', //cpg1.3.0
   'del_alb' => 'Albümni öchürüsh',
   'del_user' => 'Qollanchini öchürüsh',
-  'err_unknown_user' => 'Tallanghan qollanchi yoq !',
+  'err_unknown_user' => 'Tallan`ghan qollanchi yoq !',
   'comment_deleted' => 'Sözler öchürüldi',
 );
 
@@ -605,7 +605,7 @@ $lang_display_image_php = array(
 $lang_picinfo = array(
   'title' =>'Höjjet uchuri', //cpg1.3.0
   'Filename' => 'Höjjet nami',
-  'Album name' => 'Albümm nami',
+  'Album name' => 'Albüm nami',
   'Rating' => 'Nomur qoyush (%s chi bélet)',
   'Keywords' => 'halqiliq söz',
   'File Size' => 'Höjjet hejimi',
@@ -625,7 +625,7 @@ $lang_picinfo = array(
   'iptcCopyright'=>'IPTC Neshir hoquqi', //cpg1.3.0
   'iptcKeywords'=>'IPTC Halqiliq söz', //cpg1.3.0
   'iptcCategory'=>'IPTC Katégoriye', //cpg1.3.0
-  'iptcSubCategories'=>'IPTC Tarmaq Kaigoriye', //cpg1.3.0
+  'iptcSubCategories'=>'IPTC Tarmaq Katégoriye', //cpg1.3.0
 );
 
 $lang_display_comments = array(
@@ -661,7 +661,7 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
   'your_name' => 'Namingiz',
   'your_email' => 'Émail adrésisingiz',
   'to' => 'Yollan`ghuchi',
-  'rcpt_name' => 'Dostingizning Isimi',
+  'rcpt_name' => 'Dostingizning nami',
   'rcpt_email' => 'Dostingizning Émail adrési',
   'greetings' => 'Salam témisi',
   'message' => 'Salam sözi',
@@ -677,17 +677,17 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'title' => 'Téma',
   'desc' => 'Izahat',
   'keywords' => 'Halqiliq söz',
-  'pic_info_str' => '%s &times; %s - %s KB - %s Körildi - %s Bahalandi',
-  'approve' => 'Höjjetni tekshurup-bahalash', //cpg1.3.0
-  'postpone_app' => 'Tekshurup bahalashni kéchikturush',
+  'pic_info_str' => '%s &times; %s - %s KB - %s Körüldi - %s Bahalandi',
+  'approve' => 'Höjjetni tekshürüp-bahalash', //cpg1.3.0
+  'postpone_app' => 'Tekshürüp bahalash uzartildi',
   'del_pic' => 'Höjjetni öchürüsh', //cpg1.3.0
   'read_exif' => 'Yene EXIF uchurini oqush', //cpg1.3.0
   'reset_view_count' => 'Sanaqni qayta tengshesh',
-  'reset_votes' => 'Bahani qayta tengshash',
+  'reset_votes' => 'Bahani qayta tengshesh',
   'del_comm' => 'Sözni öchürwétish',
-  'upl_approval' => 'Bahalanghanni yüklesh',
+  'upl_approval' => 'Bahalan`ghanni yüklesh',
   'edit_pics' => 'Höjjetni tehrirlesh', //cpg1.3.0
-  'see_next' => 'Kýinki höjjet', //cpg1.3.0
+  'see_next' => 'Kéyinki höjjet', //cpg1.3.0
   'see_prev' => 'Aldinqi höjjet', //cpg1.3.0
   'n_pic' => '%s Höjjet', //cpg1.3.0
   'n_of_pic_to_disp' => 'Höjjet körinish sani', //cpg1.3.0
@@ -704,41 +704,41 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('FAQ_PHP')) $lang_faq_php = array(
-  'faq' => 'Daimliq sual_jawablar', //cpg1.3.0
+  'faq' => 'Daimliq soal_jawablar', //cpg1.3.0
   'toc' => 'Münderije', //cpg1.3.0
-  'question' => 'Sual: ', //cpg1.3.0
+  'question' => 'Soal: ', //cpg1.3.0
   'answer' => 'Jawap: ', //cpg1.3.0
 );
 
 if (defined('FAQ_PHP')) $lang_faq_data = array(
-  'Adettiki sual_jawap', //cpg1.3.0
+  'Adettiki soal_jawap', //cpg1.3.0
   array('Nime üchün tizimlinimiz?', 'Ataman qollanchilarni testiqlaydu. Tizimlansingiz nurghun iqtidarlardin behriman bolisiz, mesilen: Yüklesh, Könglümdikisi, Höjjetlerge baha béreleysiz yaki söz qalduralaysiz qatarliqlar.', 'allow_user_registration', '1'), //cpg1.3.0
-  array('Qandaq tizimlinimen?', '&quot;Tizimlinishni &quot; Chékip, katekchilerni toldurimiz (Tallap toldurimiz).<br />Eger, Ataman Émail aktiplashni qozghatqan bolsa, Aktiplinish toldurma uchuringizni tapshurwalisiz, sehipimizge kirishtin burun choqum aktiplinishingiz kérek.', 'allow_user_registration', '1'), //cpg1.3.0
-  array('Qandaq kirimen?', ' &quot; Kirish &quot;, ni chékip Nam we Imni toldurisiz &quot;Méni unutmang &quot; Tallap qoysingiz kélerki kirishingiz aptumatik orunlinidu.<br /><b>Diqqet:Kompingizning Cookies iqtidari ochuq bolsun. cookie ponkitimiz kompingizgha saqlaydu.</b>', 'offline', 0), //cpg1.3.0
+  array('Qandaq tizimlinimen?', '&quot; Tizimlinishni &quot; Chékip, katekchilerni toldurimiz (Tallap toldurimiz).<br />Eger, Ataman Émail aktiplashni qozghatqan bolsa, Aktiplinish toldurma uchuringizni tapshurwalisiz, sehipimizge kirishtin burun choqum aktiplinishingiz kérek.', 'allow_user_registration', '1'), //cpg1.3.0
+  array('Qandaq kirimen?', ' &quot; Kirish &quot;, ni chékip Nam we Im(parol)ni toldurisiz &quot;Méni unutmang &quot; Tallap qoysingiz kélerki kirishingiz aptumatik orunlinidu.<br /><b>Diqqet: Kompingizning Cookies iqtidari ochuq bolsun. cookie ponkitimiz kompingizgha saqlaydu.</b>', 'offline', 0), //cpg1.3.0
   array('Nechün kirelmeymen?', 'Tizimlinipmu kirelmigen bolsingiz qaytip émailingizgha qarang. (aktiplandingizmu yoq) Qaldi ishlar bolsa béket atamanidin sorang.', 'offline', 0), //cpg1.3.0
-  array('Imni untuptimen?', 'Eger bu tor bette &quot;Im untulsa &quot; ni chéking. Bolmisa ataman`gha éyting sizge yéngidin Im ewertip bersun.', 'offline', 0), //cpg1.3.0
-  //array('Émailim özgerdi ne qilay?', 'Kirgenla bolsingiz &quot;Arxiwingizdin özgertiwalsingizla bolghini;', 'offline', 0), //cpg1.3.0
-  array('Resimlerni Qandaq &quot;könglümdikige&quot;Qoshimen?', 'Awal resimni chékip Tallaysiz (<img src="images/info.gif" width="16" height="16" border="0" alt="Picture information" />);  mushu belgini chékisiz, bet astida könglümdikisi dégen xetni chékip saqliwalimiz.<br />Ataman choqum bu iqtidarni tengshep qoyghan bolishi kérek.<br />Diqqet:Kompingizning Cookies iqtidari ochuq bolsun. cookie ponkitimiz kompingizgha saqlaydu.', 'offline', 0), //cpg1.3.0
+  array('Imni untuptimen?', 'Eger bu tor bette &quot;Im(parol) untulsa &quot; ni chéking. Bolmisa ataman`gha éyting sizge yéngidin Im(parol) ewertip bersun.', 'offline', 0), //cpg1.3.0
+  //array('Émailim özgerdi ne qilay?', 'Kirgenla bolsingiz &quot;Arxipingizdin özgertiwalsingizla bolghini;', 'offline', 0), //cpg1.3.0
+  array('Resimlerni Qandaq &quot;könglümdikisi&quot; ge Qoshimen?', 'Awal resimni chékip Tallaysiz (<img src="images/info.gif" width="16" height="16" border="0" alt="Picture information" />);  mushu belgini chékisiz, bet astida  &quot;könglümdikisi &quot; dégen xetni chékip saqliwalimiz.<br />Ataman choqum bu iqtidarni tengshep qoyghan bolishi kérek.<br />Diqqet: Kompingizning Cookies iqtidari ochuq bolsun. cookie ponkitimiz kompingizgha saqlaydu.', 'offline', 0), //cpg1.3.0
   array('Höjjetni Qandaq bahalaymiz?', 'Kichiklitilmining astidiki bahalarni tallang.', 'offline', 0), //cpg1.3.0
   array('Qandaq pikir bérimiz?', 'Kichiklitilmining astidiki Sözberge yazsingiz bolidu.', 'offline', 0), //cpg1.3.0
   array('Höjjetni qandaq yükleymiz?', ' &quot;Höjjet yüklesh &quot;ni chékip. Albümni tallap bolup &quot??/ziyaret&quot arqiliq yükleymiz, Andin, izah we Höjjet namini toldurup yollisaqla boldi.', 'allow_private_albums', 0), //cpg1.3.0
   array('Höjjetni qandaq Yükleymiz?', ' &quot;Méning albümim&quot;. Arqiliq yükleysiz. eskertish: Ataman bu iqtidarni aktiplighan bolishi kérek.', 'allow_private_albums', 0), //cpg1.3.0
   array('Yüklenmining hejimi, höjjet shekli qandaq bolidu?', 'Hejim, höjjet sheklini Ataman belgileydu. (mesilen: jpg, png, etc...wav, rm, xx.Kb qatarliqlar) .', 'offline', 0), //cpg1.3.0
-  array('&quot;Albümim&quot;digen nime?', 'özingizning yüki hem bashqurush ijazet rayoningizdur.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Yüklesh, özgertish, öchürüsh qandaq élip bérilidu;?', ' awal bu chéking &quot;Qollanchi k?n¨¹mi&quo;<br />Andin, &quot;Albüm qurushni&quot; &quot;Albüm tehrirleshni&quot; chékip özgertsingiz bolidu.<br />You can also rename any of the albums in your gallery.<br />Click &quot;Apply Modifications&quot;.', 'allow_private_albums', 0), //cpg1.3.0
+  array('&quot;Albümim&quot;dégen nime?', 'özingizning yüki hem bashqurush ijazet rayoningizdur.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Yüklesh, özgertish, öchürüsh qandaq élip bérilidu;?', ' awal bu chéking &quot;Qollanchi kirish&quot; ni <br /> Andin, &quo;Albüm qurush&quot; ni chékip albüm qurup &quot;Albüm yüklesh &quot;ni chékip yüklep we  &quot;tehrirlesh &quot;ni chékip özgertsingiz bolidu.', 'allow_private_albums', 0), //cpg1.3.0
   array('cookies nime?', 'Cookie ni ponkitimiz kompingizgha saqlaydu, meqset siz kéler qétim ziyaret qilghanda tizimlanmisingizmu aptumatik tizimlinisiz.<br />Cookies ni cheklep qoysingiz bu iqtidardin behriman bolalmaysiz.', 'offline', 0), //cpg1.3.0
-  array('Siz bu ponkit programisini nedin yükliwalghan?', 'Coppermine GNU GPL ni asas qilghan heqsiz Multimedia Gallery. yaqtursingiz <a href="http://coppermine.sf.net/">Coppermine Ana bétini</a> ziyaret qilip yükliwéling.', 'offline', 0), //cpg1.3.0
+  array('Siz bu ponkit programmisini nedin yükliwalghan?', 'Coppermine GNU GPL ni asas qilghan heqsiz Multimedia Gallery. yaqtursingiz <a href="http://coppermine.sf.net/">Coppermine Ana bétini</a> ziyaret qilip yükliwéling. Andin www.newruz.com teminligen Uyghur terjime til höjjitini ishletsingiz bolidu.', 'offline', 0), //cpg1.3.0
 
   'Tor béket yétekchisi', //cpg1.3.0
-  array('&quot;Albüm sehipisi&quot; digen nime?', 'Barliq albümlar, katigoriyeler, kichiklitilmiler bar bash betni körsitidu..', 'offline', 0), //cpg1.3.0
-  array('&quot;Albümim&quot; digen nime?', 'Qollanchilar üchün qurulghan, yük qoshush, tehrirlesh, öchürsh rayonidur.(Elwette ataman ruxsiti bolishi kerek.)', 'allow_private_albums', 0), //cpg1.3.0
-  array('&quot;Bashqurush shekli we Qollanchi shekli&quot; Qandaq ayrilidu?', 'Qollanchi shekli ziyaritingiz üchün, Bashqurush shekli tehrirlesh, öchürüsh, Yük qoshishingiz üchün ajritildi. (Elwette, Atamanning ruxsiti bolishi shert.) their gallery (as well as others if allowed by the administrator).', 'allow_private_albums', 0), //cpg1.3.0
-  array('&quot;Yüklesh&quot; digen nime?', 'Höjjet yollishingizni körsitidu. (Elwette, hejimini, höjjer sheklini ataman belgileydu.)', 'allow_private_albums', 0), //cpg1.3.0
-  array('&quot;Eng yéngi yük&quot; digen nime?', 'Siz we bashqilar yollighan eng yéng höjjetlerni körsitidu.', 'offline', 0), //cpg1.3.0
-  array('&quot;Eng yéngi söz&quot; digen nime?', 'Békettiki höjjetlerge bérilgen eng yéngi pikir yazmilirini körsitidu.', 'offline', 0), //cpg1.3.0
-  array('&quot;Köp  Körülme &quot; digen nime?', 'Ezalar bolsun yaki Méhmanlar bolsun chékilish sani yoquri höjjetlerni körsitidu. ', 'offline', 0), //cpg1.3.0
-  array('&quot;Yoquri baha &quot; digen nime?', 'Yoquri baha nomurlirini körsitidu. (Mesilen: Besh qollanchi <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> ni Berse, Netijisi <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />Bolidu; Besh qollanchi 1 din 5 kiche (1,2,3,4,5) Nomur berse, Netijisi<img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> Bolidu .)<br />Netijisi <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> (e`la) din <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" /> (Nachar)gha Tizilidu.', 'offline', 0), //cpg1.3.0
-  array('&quot;Könglümdikisi &quot; digen nime?', 'Siz yaqturup tallighan höjjetlerni körsitidu.cookie ni lazimlaydu.', 'offline', 0), //cpg1.3.0
+  array('&quot;Albüm sehipisi&quot; dégen nime?', 'Barliq albümlar, katigoriyeler, kichiklitilmiler bar bash betni körsitidu..', 'offline', 0), //cpg1.3.0
+  array('&quot;Albümim&quot; dégen nime?', 'Qollanchilar üchün qurulghan, yük qoshush, tehrirlesh, öchürsh rayonidur.(Elwette ataman ruxsiti bolishi kérek.)', 'allow_private_albums', 0), //cpg1.3.0
+  array('&quot;Bashqurush shekli we Qollanchi shekli&quot; Qandaq ayrilidu?', 'Qollanchi shekli ziyaritingiz üchün, Bashqurush shekli tehrirlesh, öchürüsh, Yük qoshishingiz üchün ajritildi. (Elwette, Atamanning ruxsiti bolishi shert.)', 'allow_private_albums', 0), //cpg1.3.0
+  array('&quot;Yüklesh&quot; dégen nime?', 'Höjjet yollishingizni körsitidu. (Elwette, hejimini, höjjer sheklini ataman belgileydu.)', 'allow_private_albums', 0), //cpg1.3.0
+  array('&quot;Eng yéngi yük&quot; dégen nime?', 'Siz we bashqilar yollighan eng yéngi höjjetlerni körsitidu.', 'offline', 0), //cpg1.3.0
+  array('&quot;Eng yéngi söz&quot; dégen nime?', 'Békettiki höjjetlerge bérilgen eng yéngi pikir yazmilarni körsitidu.', 'offline', 0), //cpg1.3.0
+  array('&quot;Köp  Körülme &quot; dégen nime?', 'Ezalar bolsun yaki Méhmanlar bolsun chékilish sani yoquri höjjetlerni körsitidu. ', 'offline', 0), //cpg1.3.0
+  array('&quot;Yoquri baha &quot; dégen nime?', 'Érishken yoquri nomurni körsitidu. (Mesilen: Besh qollanchi <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> ni Berse, Netijisi <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />Bolidu; Besh qollanchi 1 din 5 kiche (1,2,3,4,5) Nomur berse, Netijisi<img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> Bolidu .)<br />Netijisi <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> (e`la) din <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" /> (Nachar)gha Tizilidu.', 'offline', 0), //cpg1.3.0
+  array('&quot;Könglümdikisi &quot; dégen nime?', 'Siz yaqturup tallighan höjjetlerni körsitidu. cookie ni lazimlaydu.', 'offline', 0), //cpg1.3.0
 );
 
 
@@ -747,14 +747,14 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('FORGOT_PASSWD_PHP')) $lang_forgot_passwd_php = array(
-  'forgot_passwd' => 'Imni üntüptimen', //cpg1.3.0
+  'forgot_passwd' => 'Im(parol)ni üntüptimen', //cpg1.3.0
   'err_already_logged_in' => 'Siz kirip bolghan !', //cpg1.3.0
   'enter_username_email' => 'Qollanchi nami yaki Émail adrésini toldurung', //cpg1.3.0
   'submit' => 'Muqimlash', //cpg1.3.0
-  'failed_sending_email' => 'Im teminlesh émaligha ewertishke amalsizmiz !', //cpg1.3.0
+  'failed_sending_email' => 'Im(parol) teminlen`gen émalni ewertishke amalsizmiz !', //cpg1.3.0
   'email_sent' => 'Nam we Imingizni %sge éwertip bolundi', //cpg1.3.0
   'err_unk_user' => 'Bu qollanchi yoq!', //cpg1.3.0
-  'passwd_reminder_subject' => '%s - Im Eskertishi', //cpg1.3.0
+  'passwd_reminder_subject' => '%s – Im(parol) Eskertishi', //cpg1.3.0
   'passwd_reminder_body' => 'Kirgüzgen uchuringiz mundaq:
 Username: %s
 Password: %s
@@ -768,7 +768,7 @@ Chékip %s gha kirish.', //cpg1.3.0
 if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
   'group_name' => 'Group nami',
   'disk_quota' => 'Disk hejimi',
-  'can_rate' => 'Höjjet baha qoshsun', //cpg1.3.0
+  'can_rate' => 'Höjjetke baha qoshalisun', //cpg1.3.0
   'can_send_ecards' => 'Écards yolliyalisun',
   'can_post_com' => 'Söz bérelisun',
   'can_upload' => 'Höjjet yolliyalisun', //cpg1.3.0
@@ -782,7 +782,7 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
   'approval_2' => 'xususiy albümni testiqlash (2)',
   'upload_form_config' => 'Yük shekillirini tengshesh', //cpg1.3.0
   'upload_form_config_values' => array( 'Bir höjjetni yüklesh', 'Köp höjjetni yüklesh', 'URI nila yüklesh', 'ZIP nila yüklesh', 'File-URI', 'File-ZIP', 'URI-ZIP', 'File-URI-ZIP'), //cpg1.3.0
-  'custom_user_upload'=>'Qollanchilar yüklenme somka sani?', //cpg1.3.0
+  'custom_user_upload'=>'Qollanchilar yüklime somka sani?', //cpg1.3.0
   'num_file_upload'=>'Eng köp/Yük Höjjet somka sani', //cpg1.3.0
   'num_URI_upload'=>'Eng köp/Yük URI Höjjet somka sani', //cpg1.3.0
   'note1' => '<b>(1)</b> Ammiwiy albüm yüklimisini ataman testiqlaydu',
@@ -797,7 +797,7 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
 if (defined('INDEX_PHP')){
 
 $lang_index_php = array(
-  'welcome' => 'Xush keldinigz !',
+  'welcome' => 'Xush keldingiz !',
 );
 
 $lang_album_admin_menu = array(
@@ -809,15 +809,15 @@ $lang_album_admin_menu = array(
 
 $lang_list_categories = array(
   'home' => 'Ana bet',
-  'stat1' => '<b>[pictures]</b> Höjjetler <b>[albums]</b> Albümde we<b>[cat]</b> Katigoriyede, <b>[comments]</b> Jawap söz <b>[views]</b> Körülme bar.', //cpg1.3.0
+  'stat1' => '<b>[pictures]</b> Höjjetler <b>[albums]</b> Albümde we<b>[cat]</b> Katigoriyede, <b>[comments]</b> Jawap söz <b>[views]</b> Körüm(ziyaret xatirisi) bar.', //cpg1.3.0
   'stat2' => '<b>[pictures]</b> Höjjetler <b>[albums]</b> Albümde we<b>[views]</b> Jawap söz bar.', //cpg1.3.0
   'xx_s_gallery' => '%s\'s Gallery',
-  'stat3' => '<b>[pictures]</b> Höjjetler <b>[albums]</b> Albümde we <b>[comments]</b> Jawap söz <b>[views]</b> Körülme bar.', //cpg1.3.0
+  'stat3' => '<b>[pictures]</b> Höjjetler <b>[albums]</b> Albümda we <b>[comments]</b> Jawap söz <b>[views]</b> Körüm(ziyaret xatirisi) bar.', //cpg1.3.0
 );
 
 $lang_list_users = array(
   'user_list' => 'Qollanchi tizimi',
-  'no_user_gal' => 'Bu yoq qollanchi galleriesi',
+  'no_user_gal' => 'Qollanchi albümi yoq',
   'n_albums' => '%s Albüm(lar)',
   'n_pics' => '%s Höjjet(ler)', //cpg1.3.0
 );
@@ -834,15 +834,15 @@ $lang_list_albums = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('LOGIN_PHP')) $lang_login_php = array(
-  'login' => 'Kire',
-  'enter_login_pswd' => 'Nam we Imni toldurung',
+  'login' => 'Kiring',
+  'enter_login_pswd' => 'Nam we Im(parol)ni toldurung',
   'username' => 'Nam',
-  'password' => 'Im',
+  'password' => 'Im(parol)',
   'remember_me' => 'Méni unutmang',
   'welcome' => 'Merhaba %s ...',
   'err_login' => '*** Kirelmidingiz Qayta sinang***',
   'err_already_logged_in' => 'Ow! siz kirip bolghan!',
-  'forgot_password_link' => 'Imni untuptimen', //cpg1.3.0
+  'forgot_password_link' => 'Im(parol)ni untuptimen', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -860,9 +860,9 @@ if (defined('LOGOUT_PHP')) $lang_logout_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
-  'php_info' => 'PHP info', //cpg1.3.0
-  'explanation' => 'This is the output generated by the PHP-function <a href="http://www.php.net/phpinfo">phpinfo()</a>, displayed within Copermine (trimming the output at the right corner).', //cpg1.3.0
-  'no_link' => 'Having others see your phpinfo can be a security risk, that\'s why this page is only visible when you\'re logged in as admin. You can not post a link to this page for others, they will be denied access.', //cpg1.3.0
+  'php_info' => 'PHP uchuri', //cpg1.3.0
+  'explanation' => 'Buni PHP-function keltürüp chiqarghan <a href="http://www.php.net/phpinfo">phpinfo()</a>, Copermine azqisim uchurlirini körsitish.', //cpg1.3.0
+  'no_link' => 'Bashqilar phpinfo yingizni körse bixeterlik xataliqi körilidu, Ataman bolup kirishingizdiki sewebmu shu. Bu ulunushni bashqilargha dep bermeng, bolmisa saqlash xataliqi körilidu.', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -873,7 +873,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'upd_alb_n' => 'Update album %s',
   'general_settings' => 'General settings',
   'alb_title' => 'Albüm Munderijisi',
-  'alb_cat' => 'Albüm katogiriyesi',
+  'alb_cat' => 'Albüm katégoriyisi',
   'alb_desc' => 'Albüm izahati',
   'alb_thumb' => 'Albüm ülgisi',
   'alb_perm' => 'Albüm cheklimisi',
@@ -911,12 +911,12 @@ if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
- {SITE_NAME} ning Atamani, Adette namuwapiq höjjetlerni retlep tursimu, Biraq, Barliq höjjetlerni waqtida körüp bolishi mumkin emes. Shunga, Yüklimining mesulyiti yollighuchighila tewe bolup, Atamanning (Ataman yükligen höjjetler buningdin sirtida) meydanini bildurmeydu hem qanuniy mesuliyetni öz ustige alalmaydu.
+ {SITE_NAME} ning Atamani, Adette namuwapiq höjjetlerni retlep tursimu, Biraq, Barliq höjjetlerni waqtida körüp bolishi mumkin emes. Shunga, Yüklimining mesuliyiti yollighuchighila tewe bolup, Atamanning (Ataman yükligen höjjetler buningdin sirtida) meydanini bildürmeydu hem qanuniy mesuliyetni öz üstige alalmaydu.
 <br />
 <br />
-Siz choqum eza bolghandin kéyin, bashqilarning shexsiyitige yatidighan, Zorawanliq, Shehwaniliq, Dinniy esebiylikni, Xurapatliqni terghip qilidighan qanungha xilap bolghan herqandaq höjjetni yollimasliqqa qoshulishingiz shert. Siz {SITE_NAME} ning Atamani herqandaq waqitta höjjetlerni tehrirlishige yaki öchürishige yol qoyisiz. Yüklimingiz sanliq ambarda saqlinidu, Sizning ruxsitignizsiz biz hich kishige ötünmeymiz. Shunisi, Hachkérliq qilmishi bilen oghurlinip kétilse mesuliyetni ustimizge alalmaymiz.  <br />
+Siz choqum eza bolghandin kéyin, bashqilarning shexsiyitige yatidighan, Zorawanliq, Shehwaniliq, Dinniy esebiylikni, Xurapatliqni terghip qilidighan qanungha xilap bolghan herqandaq höjjetni yollimasliqqa qoshulishingiz shert. Siz {SITE_NAME} ning Atamani herqandaq waqtta höjjetlerni tehrirlishige yaki öchürüshige yol qoyisiz. Yüklimingiz sanliq ambarda saqlinidu, Sizning ruxsitingizsiz biz héch kishige ötünmeymiz. Shunisi, Hachkérliq qilmishi bilen oghurlunup kétilse mesuliyetni ustimizge alalmaymiz.  <br />
 <br />
-Békitimiz "cookiesa" arqiliq kompingizgha uchur saqlap yene ziyaret qilishingizni asanlashturidu. Émailingiz peqetla tizim arxiwingizni (parolingizni) aktiplash üchünla ishlitilidu. <br />
+Békitimiz "cookiesa" arqiliq kompingizgha uchur saqlap yene ziyaret qilishingizni asanlashturidu. Émailingiz peqetla tizim arxipingizni (parolingizni) aktiplash üchünla ishlitilidu. <br />
 <br />
 'Qoshulimen' ni chékish arqiliq shertlirimizge könüng.
 EOT;
@@ -926,19 +926,19 @@ $lang_register_php = array(
   'term_cond' => 'Shertler',
   'i_agree' => 'Qoshulimen',
   'submit' => 'Tizimlinimen',
-  'err_user_exists' => 'Kechürisiz,Bu nam qollinip bolunghan, bashqa Namni qollunung',
-  'err_password_mismatch' => 'Ikki im oxshash bolmidi, qayat yézing',
+  'err_user_exists' => 'Kechürisiz, Bu nam qollinip bolun`ghan, bashqa Namni qollunung',
+  'err_password_mismatch' => 'Ikki im(parol) oxshash bolmidi, qayta yézing',
   'err_uname_short' => 'Namingiz ikki herptin kam bolmisun.',
-  'err_password_short' => 'Im ikki herptin kam bolmisun.',
-  'err_uname_pass_diff' => 'Im we Nam oxshash bolmisun.',
-  'err_invalid_email' => 'Émail adéris xata.',
-  'err_duplicate_email' => 'Bu Émail ishlitilip bolunghan.',
+  'err_password_short' => 'Im(parol) ikki herptin kam bolmisun.',
+  'err_uname_pass_diff' => 'Im(parol) we Nam oxshash bolmisun.',
+  'err_invalid_email' => 'Émail adrési xata.',
+  'err_duplicate_email' => 'Bu émail ishlitilip bolun`ghan.',
   'enter_info' => 'Tizimlitish uchurini toldurung',
   'required_info' => 'Choqum toldurung',
   'optional_info' => 'Toldurmisingizmu bolidu',
   'username' => 'Namingiz',
-  'password' => 'Imlik',
-  'password_again' => 'Imni qayta yézing',
+  'password' => 'Im(parol)',
+  'password_again' => 'Im(parol)ni qayta yézing',
   'email' => 'Émail',
   'location' => 'Orningiz',
   'interests' => 'Qiziqishingiz',
@@ -947,28 +947,28 @@ $lang_register_php = array(
   'error' => 'Xataliq',
   'confirm_email_subject' => '%s - Höjjet Yüklime uqturushi',
   'information' => 'Uchur',
-  'failed_sending_email' => 'Tizimlan`ghan Émail adrési ewertelmeydu !',
-  'thank_you' => 'Tizimlatqiningizgha teshekkür.<br /><br />hésawingizni aktiplash uchuri Éamalingizgha yollandi.',
-  'acct_created' => 'Hésawingiz quruldi, kirsinigz bolidu.',
-  'acct_active' => 'Hésawingiz qozghitildi, kirsingiz bolidu.',
-  'acct_already_act' => 'Hésawingiz qozghitildi!',
-  'acct_act_failed' => 'Hésawingiz qozghilishqa amalsiz!',
+  'failed_sending_email' => 'Tizimlan`ghan émail adrési ewertelmeydu !',
+  'thank_you' => 'Tizimlatqiningizgha teshekkür.<br /><br />Hésapingizni aktiplash uchuri émalingizgha yollandi.',
+  'acct_created' => 'Hésapingiz quruldi, kirsinigz bolidu.',
+  'acct_active' => 'Hésapingiz qozghitildi, kirsingiz bolidu.',
+  'acct_already_act' => 'Hésapingiz qozghitildi!',
+  'acct_act_failed' => 'Hésapingiz qozghilishqa amalsiz!',
   'err_unk_user' => 'Siz tallighan Qollanchi mewjüt emes !',
-  'x_s_profile' => '%s\'s ning arxiwi',
+  'x_s_profile' => '%s\'s ning arxipi',
   'group' => 'Group',
   'reg_date' => 'Eza bolung',
   'disk_usage' => 'Disk Hejimi',
-  'change_pass' => 'özger IM',
-  'current_pass' => 'Esli IM',
-  'new_pass' => 'Yéngi IM',
-  'new_pass_again' => 'Yéngi Imni muqimlang',
-  'err_curr_pass' => 'Esli IM xata',
+  'change_pass' => ' IM(parol) özgertish ',
+  'current_pass' => 'Esli IM(parol)',
+  'new_pass' => 'Yéngi IM(parol)',
+  'new_pass_again' => 'Yéngi Im(parol)ni muqimlang',
+  'err_curr_pass' => 'Esli IM(parol) xata',
   'apply_modif' => 'Özgertish',
-  'change_pass' => 'IMni özgertish',
-  'update_success' => 'Arxiwingiz yéngilandi',
-  'pass_chg_success' => 'IM özgerdi',
-  'pass_chg_error' => 'IM özgermidi',
-  'notify_admin_email_subject' => '%s - Tizimlitish uqturishi', //cpg1.3.0
+  'change_pass' => 'IM(parol)ni özgertish',
+  'update_success' => 'Arxipingiz yéngilandi',
+  'pass_chg_success' => 'IM(parol) özgerdi',
+  'pass_chg_error' => 'IM(parol) özgermidi',
+  'notify_admin_email_subject' => '%s - Tizimlitish uqturushi', //cpg1.3.0
   'notify_admin_email_body' => 'Yene bir yéngi eza nami"%s" galleryge tizimlandi', //cpg1.3.0
 );
 
@@ -976,9 +976,9 @@ $lang_register_confirm_email = <<<EOT
 {SITE_NAME} ge tizimlatqiningizgha köp teshekkür
 
 Qollanchi namingiz : "{USER_NAME}"
-IMingiz : "{PASSWORD}"
+IM(parol)ingiz : "{PASSWORD}"
 
-Töwendiki ulanmini chékip hésawingizni qozghutung yaki ulanmini E ulanmisigha chaplang.
+Töwendiki ulanmini chékip Hésapingizni qozghutung yaki ulanmini E ulanmisigha chaplang.
 or copy and paste it in your web browser.
 
 {ACT_LINK}
@@ -1022,10 +1022,10 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'page_title' => 'Yéngidin höjjet izdesh', //cpg1.3.0
   'select_dir' => 'Münderijini tallash',
   'select_dir_msg' => 'Bu iqtida sizning FTP arqiliq top höjjet yolishinigzni qollaydu.<br /><br />Yollimaqchi bolghan top höjjet münderijisini tallang', //cpg1.3.0
-  'no_pic_to_add' => 'Qoshulghili höjjet yoqken', //cpg1.3.0
-  'need_one_album' => 'Bu iqtidarni ishlitishün azkem bir alüm bolsun.',
+  'no_pic_to_add' => 'Qoshulidighan höjjet yoqken', //cpg1.3.0
+  'need_one_album' => 'Bu iqtidarni ishlitishchün azkem bir albüm bolsun.',
   'warning' => 'agahlandurush',
-  'change_perm' => 'Münderijini quralmidim, CMOD qimmitini 775 yaki 777 qilip ishlitip körüng!', //cpg1.3.0
+  'change_perm' => 'Münderije qurulmisa, CMOD qimmitini 775 yaki 777 qilip tengshep körüng!', //cpg1.3.0
   'target_album' => '<b>Höjjetni &quot;</b>%s<b>&quot; ge yollang </b>%s', //cpg1.3.0
   'folder' => 'Somka',
   'image' => 'Höjjet',
@@ -1042,13 +1042,13 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'notes' =>  '<ul>'.
                           '<li><b>OK</b> : Höjjet muwapiqiyetlik yüklendi'.
                           '<li><b>DP</b> : Höjjet qaytilan`ghan yaki ambarda bar'.
-                          '<li><b>PB</b> : Höjjet Yüklenmeysu, tengshekni yaki munderije xheklimisini tekshurep körüng.'.
-                          '<li><b>NA</b> : Höjjet albümini tallimapsiz, Muqimlash \'<a href="javascript:history.back(1)">Qaytish</a>\' Albümni tallag. Albümingiz bolmisa <a href="albmgr.php">Awal birni qurung</a></li>'.
-                          '<li>Eger OK, DP, PB \'Belgiler\' Höjjet körünmise PHP körsetke xataliq uchurini tekshureng.'.
-                          '<li>Eger torkezning waqti ötse qaytidin retleng.'.
+                          '<li><b>PB</b> : Höjjet Yüklenmeyse, tengshekni yaki munderije cheklimisini tekshürüp körüng.'.
+                          '<li><b>NA</b> : Höjjet albümini tallimapsiz, Muqimlash \'<a href="javascript:history.back(1)">Qaytish</a>\' Albümni tallang. Albümingiz bolmisa <a href="albmgr.php">Albüm qurung</a></li>'.
+                          '<li>Eger OK, DP, PB \'Belgiler\' Höjjet körünmise PHP körsetken xataliq uchurini tekshürüng.'.
+                          '<li>Eger torkez(browser/???)ning waqti ötse qaytidin retleng.'.
                           '</ul>', //cpg1.3.0
   'select_album' => 'Albümni tallang', //cpg1.3.0
-  'check_all' => 'Hemmini talang', //cpg1.3.0
+  'check_all' => 'Hemmini tallang', //cpg1.3.0
   'uncheck_all' => 'Hemmini tallimang', //cpg1.3.0
 );
 
@@ -1066,19 +1066,19 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 if (defined('BANNING_PHP')) $lang_banning_php = array(
   'title' => 'Cheklen`gen Qollanchi',
   'user_name' => 'Qollanchi Nami',
-  'ip_address' => 'IP Adrisi',
+  'ip_address' => 'IP Adrési',
   'expiry' => 'Chéki (Bosh qalsa menggülüktur)',
-  'edit_ban' => 'özgireshni saqlash',
+  'edit_ban' => 'özgirishni saqlash',
   'delete_ban' => 'Öchürüsh',
   'add_new' => 'Cheklen`gen Qollanchi Qoshush',
   'add_ban' => 'Qoshush',
   'error_user' => 'Bundaq qolanchi yoq', //cpg1.3.0
-  'error_specify' => 'Qollanchi namini we IP adrisini kirgüzüng', //cpg1.3.0
+  'error_specify' => 'Qollanchi namini we IP adrésini kirgüzüng', //cpg1.3.0
   'error_ban_id' => 'Xata ID!', //cpg1.3.0
   'error_admin_ban' => 'Özingizni cheklimekchimu!', //cpg1.3.0
-  'error_server_ban' => 'Özingizning Mulazimétirini cheklimekchimu? boldi...boldi..axmaqliq qilmang!', //cpg1.3.0
+  'error_server_ban' => 'Özingizning Mulazimétirini cheklimekchimu? boldi...boldi.. axmaqliq qilmang!', //cpg1.3.0
   'error_ip_forbidden' => 'Bu IP ni chekliyelmeysiz- chünki u, non-routable!', //cpg1.3.0
-  'lookup_ip' => 'IP adrisini tekshuresh', //cpg1.3.0
+  'lookup_ip' => 'IP adrésini tekshürüsh', //cpg1.3.0
   'submit' => 'Ijra!', //cpg1.3.0
 );
 
@@ -1099,9 +1099,9 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'reg_instr_1' => 'Inawetsiz paaliyet.', //cpg1.3.0
   'reg_instr_2' => 'Höjjetlerni "töwendiki yük somkisi arqiliq yollisingiz bolidu. Yük hejimi %s KB etrapida. ZIP Höjjet yollinidu \'Höjjet yollash\' we \'URI/URL Yollash\' arqiliq baridu.', //cpg1.3.0
   'reg_instr_3' => 'Eger zipliq yaki zipsiz höjjetlerni choqum Höjjet yollash arqiliq yükleng \'ZIPsiz Höjjet yüklesh\' arqiliq Yüklinidu.', //cpg1.3.0
-  'reg_instr_4' => 'Eger URI/URL Yükini tallaisingiz, Höjjet ulinishini tallang Mesilen: http://www.mysite.com/images/example.jpg', //cpg1.3.0
+  'reg_instr_4' => 'Eger URI/URL Yükini tallisingiz, Höjjet ulinishini tallang Mesilen: http://www.mysite.com/images/example.jpg', //cpg1.3.0
   'reg_instr_5' => 'Tallap bolghandin kéyin, Chéking \'dawami\'.', //cpg1.3.0
-  'reg_instr_6' => 'Yéshilme ZIP Yüklesh:', //cpg1.3.0
+  'reg_instr_6' => 'Yéshilme ZIP yüklesh:', //cpg1.3.0
   'reg_instr_7' => 'Höjjet yüklesh:', //cpg1.3.0
   'reg_instr_8' => 'URI/URL Yüki:', //cpg1.3.0
   'error_report' => 'Xata doklat', //cpg1.3.0
@@ -1117,12 +1117,12 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'unknown_code' => 'Biligsiz PHP xata code.', //cpg1.3.0
   'no_temp_name' => 'Yüklenmidi - temp nam yoq.', //cpg1.3.0
   'no_file_size' => 'Mezmun yoq/Corrupted', //cpg1.3.0
-  'impossible' => 'Arxiplanmidi.', //cpg1.3.0
+  'impossible' => 'Arxipqa yollanmidi.', //cpg1.3.0
   'not_image' => 'Bu ölchemsiz téma', //cpg1.3.0
   'not_GD' => 'Bu GD ning yandash nami emes.', //cpg1.3.0
   'pixel_allowance' => 'Bek chong bolup ketti.', //cpg1.3.0
   'incorrect_prefix' => 'URI/URL xata, prefix', //cpg1.3.0
-  'could_not_open_URI' => 'URI Qozghuluishqa amalsiz.', //cpg1.3.0
+  'could_not_open_URI' => 'URI Qozghulushqa amalsiz.', //cpg1.3.0
   'unsafe_URI' => 'Bixeterlik testiqlanmidi.', //cpg1.3.0
   'meta_data_failure' => 'Höjjetni aylandurush muwapiqiyetsiz', //cpg1.3.0
   'http_401' => '401 Ziyaret tosulghan', //cpg1.3.0
@@ -1131,18 +1131,18 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'http_404' => '404 Mualzimétirdin jawab yoq', //cpg1.3.0
   'http_500' => '500 Mulazimétirdiki chataq', //cpg1.3.0
   'http_503' => '503 Mulazimétir uzaq saqlighach mulazimet toxtitildi.', //cpg1.3.0
-  'MIME_extraction_failure' => 'MIME Tekshürlüp testiqlanmidi.', //cpg1.3.0
+  'MIME_extraction_failure' => 'MIME Tekshürüp testiqlanmidi.', //cpg1.3.0
   'MIME_type_unknown' => 'Bilgili bolmas MIME type', //cpg1.3.0
   'cant_create_write' => 'Yazma arxipni qoshqili bolmidi.', //cpg1.3.0
   'not_writable' => 'Yazghili bolmidi.', //cpg1.3.0
-  'cant_read_URI' => 'URI/URL lar uqulmidi', //cpg1.3.0
+  'cant_read_URI' => 'URI/URL lar oqulmidi', //cpg1.3.0
   'cant_open_write_file' => 'URI Qozghatqili bolmidi.', //cpg1.3.0
   'cant_write_write_file' => 'URI ni xatirligili bolmidi.', //cpg1.3.0
   'cant_unzip' => 'Muwapiqiyetsiz unzip.', //cpg1.3.0
   'unknown' => 'Chüshiniksiz xataliq', //cpg1.3.0
   'succ' => 'Yüklendi', //cpg1.3.0
-  'success' => '%s Yüklinip bolunghan.', //cpg1.3.0
-  'add' => 'Chéking \'Dawamlashturung\' Höjjet arxiwini albümgha qoshush.', //cpg1.3.0
+  'success' => '%s Yüklinip bolun`ghan.', //cpg1.3.0
+  'add' => 'Chéking \'Dawamlashturung\' Höjjet arxipini albümgha qoshush.', //cpg1.3.0
   'failure' => 'Yüklenmidi', //cpg1.3.0
   'f_info' => 'Höjjet uchuri', //cpg1.3.0
   'no_place' => 'Yüklime arxipqa saqlanmidi.', //cpg1.3.0
@@ -1155,8 +1155,8 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'keywords' => 'Halqiliq söz (Bosh orun)',
   'err_no_alb_uploadables' => 'Siz yollighudek albüm yoq', //cpg1.3.0
   'place_instr_1' => 'Höjjetlerni albümgha chaplang.  Siz hazir bu arxipning munasiwetlik uchurlirini kirgüzsingiz bolidu.', //cpg1.3.0
-  'place_instr_2' => 'Köpligen höjjetler Seplinishni kütiwatidu. Chéking \'Dawamlashturung\'.', //cpg1.3.0
-  'process_complete' => 'Qutluq! Hemme höjjetni muwapiqiyetlik yüklep boldinigz.', //cpg1.3.0
+  'place_instr_2' => 'Köpligen höjjetler Seplinishni kütüwatidu. Chéking \'Dawamlashturung\'.', //cpg1.3.0
+  'process_complete' => 'Qutluq! Hemme höjjetni muwapiqiyetlik yüklep boldingiz.', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -1175,29 +1175,29 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'pic_d' => 'Höjjet sani köptin azgha',
   'disku_a' => 'Hejimi kichiktin chonggha',
   'disku_d' => 'Hejimi chongdin kichikke',
-  'lv_a' => 'Yéngi ziyariti yéqindin yiraqqa', //cpg1.3.0
-  'lv_d' => 'Yéngi ziyariti yiraqtin yéqin`Qollanchi Tehrirleshgha', //cpg1.3.0
-  'sort_by' => 'Sort users by',
+  'lv_a' => 'Qollanchi ziyariti yéqindin yiraqqa', //cpg1.3.0
+  'lv_d' => ' Qollanchi ziyariti yiraqtin yéqin`gha', //cpg1.3.0
+  'sort_by' => '`Qollanchi réti ',
   'err_no_users' => 'Ezalar matiryal béti quruq !',
-  'err_edit_self' => 'özingizni arxiwini özgertelmeysiz \'profilingizgha\' kélip özgerting',
+  'err_edit_self' => 'özingizni arxipini özgertelmeysiz \'profilingizgha\' kélip özgerting',
   'edit' => 'Tehrir',
   'delete' => 'öcher',
   'name' => 'Qollanchi nami',
   'group' => 'Group',
   'inactive' => 'Qozghalmighan',
   'operations' => 'Herketlen',
-  'pictures' => 'Hïjjet', //cpg1.3.0
+  'pictures' => 'Höjjet', //cpg1.3.0
   'disk_space' => 'Hejimi/ Chéki',
   'registered_on' => 'Tizimlatqan waqit',
   'last_visit' => 'Yéngi ziyaret', //cpg1.3.0
-  'u_user_on_p_pages' => '%d Qollanchi %d bet(liri)',
+  'u_user_on_p_pages' => '%d Qollanchi %d bet',
   'confirm_del' => 'Bu qollanchini rastla öchiremsiz? \\nBarliq höjjetlirimu öchüp kétidu.', //js-alert //cpg1.3.0
   'mail' => 'Émail',
   'err_unknown_user' => 'Siz tallighan Qollanchi mewjüt emes!',
   'modify_user' => 'Qollanchi Tehrirlesh',
   'notes' => 'Diqqet',
-  'note_list' => '<li>Imni özgertmisingiz, "Im" ornini bosh qaldurung.',
-  'password' => 'Im',
+  'note_list' => '<li>Im(parol)ni özgertmisingiz, "Im(parol)" ornini bosh qaldurung.',
+  'password' => 'Im(parol)',
   'user_active' => 'Qollanchini aktiplash',
   'user_group' => 'Qollanchi group',
   'user_email' => 'Qollanchi émail',
@@ -1217,7 +1217,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 if (defined('UTIL_PHP')) $lang_util_php = array(
   'title' => 'Ataman qorali (Resim chong_kichiklikini tengshesh)', //cpg1.3.0
   'what_it_does' => 'Iqtidar',
-  'what_update_titles' => 'Arxiptiki ismidin resim arxiwini özgertish.',
+  'what_update_titles' => 'Arxiptiki ismidin resim arxipini özgertish.',
   'what_delete_title' => 'Témini öchürüsh',
   'what_rebuild' => 'Qaytidin kichiklitilme we resim chong kichiklikini békitish.',
   'what_delete_originals' => 'Qayta tengshelgen resim esli resimning ornini alsun.',
@@ -1226,7 +1226,7 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
   'submit_form' => 'Muqimlash',
   'updated_succesfully' => 'Yéngilandi',
   'error_create' => 'Xataliq körüldi',
-  'continue' => 'Bashqa resimlerni ijaralsh',
+  'continue' => 'Bashqa resimlerni ijralash',
   'main_success' => 'Bu Höjjet %s Bash resim qilindi', //cpg1.3.0
   'error_rename' => 'Xataliq %s ismini  %s gha özgertimiz',
   'error_not_found' => 'Bu höjjet %s Tépilmidi',
@@ -1234,9 +1234,9 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
   'thumbs_wait' => 'Kichiklitilmini dawamliq yéngilash yaki resim chong kichiklikini tengshash boliwatidu, Sel saqlang...',
   'thumbs_continue_wait' => 'Continuing to update thumbnails and/or resized images...',
   'titles_wait' => 'Témini yéngilawatidu, Sel saqlang...',
-  'delete_wait' => 'Témini öchürwatidu, Sel saqlang...',
+  'delete_wait' => 'Témini öchürüwatidu, Sel saqlang...',
   'replace_wait' => 'Tengshelgen resim esli resimning ornigha almishiwatidu, sel saqlang..',
-  'instruction' => 'Addiy paaliyet chüshendurilishi',
+  'instruction' => 'Addiy paaliyet chüshendürilishi',
   'instruction_action' => 'Paaliyetni tallash',
   'instruction_parameter' => 'parameterni tallash',
   'instruction_album' => 'Albümni tallang',
@@ -1247,17 +1247,17 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
   'update_pic' => 'Peqet Resim chong_kichiklikini tengshesh.',
   'update_both' => 'Kichiklitilme resim hem ölchimini yéngilash.',
   'update_number' => 'Her chékilgende resim sanini belgilesh',
-  'update_option' => '(Eger piragiramma ijrasida mesile körülse, Tengshekni töwenliting.)',
+  'update_option' => '(Eger programma ijrasida mesile körülse, Tengshekni töwenliting.)',
   'filename_title' => 'Höjjet nami &rArr; Höjjet ', //cpg1.3.0
   'filename_how' => 'Höjjet nami qandaq özgertilidu.',
-  'filename_remove' => 'Esli .jpg öchürilip _ (underscore) gha özgertilidu.',
+  'filename_remove' => 'Esli .jpg öchürülüp _ (underscore) gha özgertilidu.',
   'filename_euro' => 'Bu 2003_11_23_13_20_20.jpg gha özgertilidu 23/11/2003 13:20',
   'filename_us' => 'Bu 2003_11_23_13_20_20.jpg gha özgertilidu 11/23/2003 13:20',
   'filename_time' => 'Bu 2003_11_23_13_20_20.jpg gha özgertilidu 13:20',
-  'delete' => 'Höjjet münderijisi yaki olchimini öchürüsh', //cpg1.3.0
+  'delete' => 'Höjjet münderijisi yaki ölchimini öchürüsh', //cpg1.3.0
   'delete_title' => 'Höjjet munderijisini öchürüsh.', //cpg1.3.0
   'delete_original' => 'Esli ölchemdiki resimni öchürüsh',
-  'delete_replace' => 'Eslidiki ölchem öchürlüp yéngi ölchem qollinilsun.',
+  'delete_replace' => 'Eslidiki ölchem öchürülüp yéngi ölchem qollinilsun.',
   'select_album' => 'Albüm tallash',
   'delete_orphans' => 'Parche_purat Sözlerni öchürüsh(Hemme albümdiki)', //cpg1.3.0
   'orphan_comment' => 'Parche_purat Sözler bayqaldi.', //cpg1.3.0
@@ -1267,7 +1267,7 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
   'nonexist' => 'Qoshumche qoshulma yoq # ', //cpg1.3.0
   'phpinfo' => 'php uchurini körsitish', //cpg1.3.0
   'update_db' => 'San ambirini yéngilash', //cpg1.3.0
-  'update_db_explanation' => 'coppermine ning arxiwini yéngilimaq bolsingiz, özgertish yaki neshirini yéngilimaq bolsingiz, Matiryal ambirini yéngilashni ijra qiling. shundila coppermine ning matiryal ambirigha yéngidin jedwe qoshulidu. yaki Tengshilidu.', //cpg1.3.0
+  'update_db_explanation' => 'coppermine ning arxipini yéngilimaq bolsingiz, özgertish yaki neshirini yéngilimaq bolsingiz, Matiryal ambirini yéngilashni ijra qiling. shundila coppermine ning matiryal ambirigha yéngidin jedwel qoshulidu. yaki Tengshilidu.', //cpg1.3.0
 );
 
 ?>
