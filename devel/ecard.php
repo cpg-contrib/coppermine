@@ -23,7 +23,8 @@ require('include/smilies.inc.php');
 require('include/mailer.inc.php');
 
 if (!USER_CAN_SEND_ECARDS) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
-
+// cheap cookie fix
+if (!USER) setcookie('ecard',1);
 function get_post_var($name, $default = '')
 {
     global $HTTP_POST_VARS;
@@ -96,10 +97,16 @@ if (count($HTTP_POST_VARS) > 0 && $valid_sender_email && $valid_recipient_email)
         );
 
     $message = template_eval($template_ecard, $params);
-
+	$message .= "Sent by from IP .$_SERVER["REMOTE_HOST"]. at .gmstrftime("%A,  %B,%V,%Y %I:%M %p ", time()). [GMT]"; 
     $subject = sprintf($lang_ecard_php['ecard_title'], $sender_name);
-    $result = cpg_mail($recipient_email, $subject, $message, 'text/html', $sender_name, $sender_email);
-
+    //cheap cookie fix
+	if ((!USER_ID)||($_COOKIE['cookiename']==1))
+	{
+	$result = cpg_mail($recipient_email, $subject, $message, 'text/html', $sender_name, $sender_email);
+	} else {
+		cpg_die(ERROR, $lang_ecard_php['send_failed'], __FILE__, __LINE__);
+    }
+	if (!USER) setcookie('ecard',1);
     if (!USER_ID) {
         $USER['name'] = $sender_name;
         $USER['email'] = $sender_email;
@@ -107,7 +114,9 @@ if (count($HTTP_POST_VARS) > 0 && $valid_sender_email && $valid_recipient_email)
 
     if ($result) {
         pageheader($lang_ecard_php['title'], "<META http-equiv=\"refresh\" content=\"3;url=displayimage.php?album=$album&pos=$pos\">");
-        msg_box($lang_cpg_die[INFORMATION], $lang_ecard_php['send_success'], $lang_continue, "displayimage.php?album=$album&pos=$pos");
+        //cheap cookie fix
+		if (!USER) setcookie('ecard',0); 
+    msg_box($lang_cpg_die[INFORMATION], $lang_ecard_php['send_success'], $lang_continue, "displayimage.php?album=$album&pos=$pos");
         pagefooter();
         ob_end_flush();
         exit;
