@@ -101,30 +101,30 @@ EOT;
 
            if ($count == '4') {
 
-	       if ($group['upload_form_config'] == 3) {
+               if ($group['upload_form_config'] == 3) {
                    $selected = 'selected';
                } else {
                    $selected = '';
                }
 
-	       echo "<option value=\"3\" $selected >{$lang_groupmgr_php['upload_form_config_values'][4]}</option>";
+               echo "<option value=\"3\" $selected >{$lang_groupmgr_php['upload_form_config_values'][4]}</option>";
 
-               continue;        
+               continue;
 
            }
 
-	   if ($group['upload_form_config'] == $count) {
+           if ($group['upload_form_config'] == $count) {
                $selected = 'selected';
            } else {
                $selected = '';
            }
 
-	   echo "<option value=\"$count\" $selected >{$lang_groupmgr_php['upload_form_config_values'][$count]}</option>";
+           echo "<option value=\"$count\" $selected >{$lang_groupmgr_php['upload_form_config_values'][$count]}</option>";
 
        }
 
         echo "</select>";
-	echo "</td>";
+        echo "</td>";
 
      // Create custom form request permission box
      echo "<td class=\"tableb\" align=\"center\">";
@@ -140,15 +140,25 @@ EOT;
      echo "</select>";
      echo "</td>";
 
-     // Create permissible number of file upload boxes box. 
+     // Create permissible number of file upload boxes box.
      echo "<td class=\"tableb\" align=\"center\">";
-     echo "<input type=\"text\" name=\"num_file_upload_{$group['group_id']}\" value=\"{$group['num_file_upload']}\" class=\"textinput\" size=\"5\">";
+     echo "<select name=\"num_file_upload_{$group['group_id']}\" class=\"listbox\">";
+     for ($i = 1; $i <= 10; $i++) {
+     echo "<option value=\"$i\"";
+     if($group['num_file_upload']==$i){echo "selected=\"selected\"";}
+     echo " >$i</option>";
+     }
      echo "</select>";
      echo "</td>";
 
-     // Create permissible number of URI upload boxes box. 
+     // Create permissible number of URI upload boxes box.
      echo "<td class=\"tableb\" align=\"center\">";
-     echo "<input type=\"text\" name=\"num_URI_upload_{$group['group_id']}\" value=\"{$group['num_URI_upload']}\" class=\"textinput\" size=\"5\">";
+     echo "<select name=\"num_URI_upload_{$group['group_id']}\" class=\"listbox\">";
+     for ($i = 1; $i <= 10; $i++) {
+     echo "<option value=\"$i\"";
+     if($group['num_URI_upload']==$i){echo "selected=\"selected\"";}
+     echo " >$i</option>";
+     }
      echo "</select>";
      echo "</td>";
 
@@ -230,7 +240,7 @@ echo <<<EOT
                 <td class="tableh1" align="center"><b><span class="statlink">{$lang_groupmgr_php['approval_1']}</span></b></td>
                 <td class="tableh1" align="center"><b><span class="statlink">{$lang_groupmgr_php['can_have_gallery']}</span></b></td>
                 <td class="tableh1" align="center"><b><span class="statlink">{$lang_groupmgr_php['approval_2']}</span></b></td>
-                <td class="tableh1" align="center"><b><span class="statlink">{$lang_groupmgr_php['upload_form_config']}</span></b></td>                        
+                <td class="tableh1" align="center"><b><span class="statlink">{$lang_groupmgr_php['upload_form_config']}</span></b></td>
                 <td class="tableh1" align="center"><b><span class="statlink">{$lang_groupmgr_php['custom_user_upload']}</span></b></td>
                 <td class="tableh1" align="center"><b><span class="statlink">{$lang_groupmgr_php['num_file_upload']}</span></b></td>
                 <td class="tableh1" align="center"><b><span class="statlink">{$lang_groupmgr_php['num_URI_upload']}</span></b></td>
