@@ -11,7 +11,7 @@
 </head>
 <body>
 <h1 id="header">{$GALLERY_DESCRIPTION}</h1>
-<div id="menu"><ul >
+<div id="menu"><ul>
 <!-- BEGIN album_list -->
     <li><a href="index.php?cat={$smarty.get.cat}" title="{$lang_main_menu.alb_list_title}">{$lang_main_menu.alb_list_lnk}</a> ::</li>
 <!-- END album_list -->
@@ -50,8 +50,10 @@
   <li><a href="thumbnailsNew.php?album=toprated&amp;cat={$smarty.get.cat}&amp;albumid={$smarty.get.album}">{$lang_main_menu.toprated_lnk}</a> ::</li>
   <li><a href="thumbnailsNew.php?album=favpics">{$lang_main_menu.fav_lnk}</a> ::</li>
   <li><a href="search.php">{$lang_main_menu.search_lnk}</a></li>
-</ul>           </div>
-<div id="admin_menu" >
+</ul>
+</div>
+{if $GALLERY_ADMIN_MODE || $USER_ADMIN_MODE}
+<div id="admin_menu">
   <div align="left">
   <table cellpadding="0" cellspacing="1">
     <tr>
@@ -78,7 +80,9 @@
   </table>
   </div>
 </div>
-<div id="content"><div class="innerdiv">
+{/if}
+<div id="content">
+  <div class="innerdiv">
 {if $breadcrumbHTML ne ""}
 <!-- Breadcrum for category Starts-->
 {$breadcrumbHTML}
@@ -104,7 +108,7 @@
         tempval.focus()
         tempval.select()
         }
-      //-br->
+      //-->
       {/literal}
       </script>
       <a href="javascript:HighlightAll('debug.debugtext')" class="admin_menu">{$lang_cpg_debug_output.select_all}</a>
@@ -146,6 +150,7 @@
     </td>
   </tr>
 </table>
+</form>
 {/if}
 <p style="color:white; text-align: center;">Syndicate this page with <a href="rss.php?album=1">RSS1.0</a></p>
 <div class="footer" align="center" style="padding-top: 10px;">
@@ -153,6 +158,6 @@ Powered by <a href="http://coppermine.sourceforge.net/" title="Coppermine Photo 
 </div>
 </div>
 </div>
-<!--Coppermine Photo Gallery Next Generation (alpha)-->
+<!-- Coppermine Photo Gallery Next Generation (alpha) //-->
 </body>
 </html>
