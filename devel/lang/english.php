@@ -336,6 +336,39 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 );
 
 // ------------------------------------------------------------------------- //
+// File banning.php
+// ------------------------------------------------------------------------- //
+
+if (defined('BANNING_PHP')) $lang_banning_php = array(
+  'title' => 'Ban Users',
+  'user_name' => 'User Name',
+  'ip_address' => 'IP Address',
+  'expiry' => 'Expires (blank is permanent)',
+  'edit_ban' => 'Save Changes',
+  'delete_ban' => 'Delete',
+  'add_new' => 'Add New Ban',
+  'add_ban' => 'Add',
+  'error_user' => 'Cannot find user',
+  'error_specify' => 'You need to specifiy either a user name or an IP address',
+  'error_ban_id' => 'Invalid ban ID!',
+  'error_admin_ban' => 'You cannnot ban yourself!',
+  'error_server_ban' => 'You were going to ban your own server? Tsk tsk, cannot do that...',
+  'error_ip_forbidden' => 'You cannnot ban this IP - it is non-routable!',
+  'lookup_ip' => 'Lookup an IP address',
+  'submit' => 'go!',
+  'select_date' => 'select date',
+);
+
+// ------------------------------------------------------------------------- //
+// File calendar.php
+// ------------------------------------------------------------------------- //
+
+if (defined('CALENDAR_PHP')) $lang_calendar_php = array(
+  'close' => 'close',
+  'clear_date' => 'clear date',
+);
+
+// ------------------------------------------------------------------------- //
 // File catmgr.php
 // ------------------------------------------------------------------------- //
 
@@ -1097,29 +1130,6 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 // ------------------------------------------------------------------------- //
 
 // Void
-
-// ------------------------------------------------------------------------- //
-// File banning.php
-// ------------------------------------------------------------------------- //
-
-if (defined('BANNING_PHP')) $lang_banning_php = array(
-  'title' => 'Ban Users',
-  'user_name' => 'User Name',
-  'ip_address' => 'IP Address',
-  'expiry' => 'Expires (blank is permanent)',
-  'edit_ban' => 'Save Changes',
-  'delete_ban' => 'Delete',
-  'add_new' => 'Add New Ban',
-  'add_ban' => 'Add',
-  'error_user' => 'Cannot find user',
-  'error_specify' => 'You need to specifiy either a user name or an IP address',
-  'error_ban_id' => 'Invalid ban ID!',
-  'error_admin_ban' => 'You cannnot ban yourself!',
-  'error_server_ban' => 'You were going to ban your own server? Tsk tsk, cannot do that...',
-  'error_ip_forbidden' => 'You cannnot ban this IP - it is non-routable!',
-  'lookup_ip' => 'Lookup an IP address',
-  'submit' => 'go!',
-);
 
 // ------------------------------------------------------------------------- //
 // File upload.php
