@@ -433,11 +433,6 @@ EOT;
                         {$lang_search_new_php['notes']}
                 </td>
         </tr>
-        <tr>
-                <td class="tableb" colspan="4">
-                <p align="center"><a href="editpics.php?album={$album_id}">{$lang_search_new_php['edit_pics']}</a></p>
-                </td>
-        </tr>
 
 EOT;
     endtable();
@@ -549,6 +544,7 @@ EOT;
     // configure batch-add interface (classic or browsable)
     $yes_selected = $CONFIG['browse_batch_add'] ? 'checked="checked"' : '';
     $no_selected = !$CONFIG['browse_batch_add'] ? 'checked="checked"' : '';
+    $help = cpg_display_help('f=index.htm&as=admin_misc_browsable_batch_add&ae=admin_misc_browsable_batch_add_end', '500', '300');
 
     echo <<<EOT
         <tr>
@@ -561,6 +557,7 @@ EOT;
         <tr>
             <td class="tablef" colspan="6">
                         {$lang_search_new_php['browse_batch_add']}
+                        $help
                         &nbsp;&nbsp;
                         <input type="radio" id="browse_batch_add1" name="browse_batch_add" value="1"  onclick="document.interfaceconfig.submit();" $yes_selected /><label for="browse_batch_add1" class="clickable_option">$lang_yes</label>
                         &nbsp;&nbsp;
