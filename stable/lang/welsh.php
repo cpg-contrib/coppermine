@@ -41,7 +41,7 @@ $lang_month = array('Ion', 'Chwe', 'Maw', 'Ebr', 'Mai', 'Meh', 'Gor', 'Aws', 'Me
 // Some common strings
 $lang_yes = 'Ie';
 $lang_no  = 'Na';
-$lang_back = 'N&Ocirc;L';
+$lang_back = 'NÔL';
 $lang_continue = 'PARHAU';
 $lang_info = 'Gwybodaeth';
 $lang_error = 'Gwall';
@@ -71,11 +71,11 @@ $lang_meta_album_names = array(
 );
 
 $lang_errors = array(
-  'access_denied' => 'Does gen ti ddim caniat&acirc;d i gael mynediad i\'r dudalen hon.',
-  'perm_denied' => 'Does gen ti ddim caniat&acirc;d i gyflawni\'r weithred hon.',
+  'access_denied' => 'Does gen ti ddim caniatâd i gael mynediad i\'r dudalen hon.',
+  'perm_denied' => 'Does gen ti ddim caniatâd i gyflawni\'r weithred hon.',
   'param_missing' => 'Galwyd y sgript heb y paramedrau anghenrheidiol.',
   'non_exist_ap' => 'Dyw\'r Llyfr Lluniau/ffeil ddewises di ddim yn bodoli !', //cpg1.3.0
-  'quota_exceeded' => 'Dros dy gwota<br /><br />Mae [quota]K ar dy gyfer di, ac mae dy ffeiliau yn defnyddio[space]K, byddai ychwanegu\'r ffeil hon yn mynd &acirc; ti dros dy gwota.', //cpg1.3.0
+  'quota_exceeded' => 'Dros dy gwota<br /><br />Mae [quota]K ar dy gyfer di, ac mae dy ffeiliau yn defnyddio[space]K, byddai ychwanegu\'r ffeil hon yn mynd â ti dros dy gwota.', //cpg1.3.0
   'gd_file_type_err' => 'Yr unig fathau o ddelweddau allu di ddefnyddio gyda llyfrgell delweddau GD yw JPEG a PNG.',
   'invalid_image' => 'Mae\'r ddelwedd wnes di anfon wedi\'i llygru neu\'n anaddas ar gyfer llyfrgell GD',
   'resize_failed' => 'Methu creu bawdlun neu ddelwedd llai o faint.',
@@ -86,16 +86,16 @@ $lang_errors = array(
   'non_exist_comment' => 'Dyw\'r sylw wnes di ddewis ddim yn bodoli.',
   'pic_in_invalid_album' => 'Mae\'r ffeil mewn Llyfr Lluniau (%s)!? sydd ddim yn bodoli', //cpg1.3.0
   'banned' => 'Rwyt ti wedi cael dy wahardd rhag defnyddio\'r safle.',
-  'not_with_udb' => 'Mae\'r weithred wedi ei hanalluogi yn Coppermine oherwydd ei fod wedi ei integreiddio gyda meddalwedd fforwm. Naill ai dyw beth rwyt ti\'n ceisio gwneud ddim yn cael ei gefnogi gan y cyfluniad hwn, neu dylai meddalwedd y fforwm fod yn ymdrin &acirc;\'r swyddogaeth.',
+  'not_with_udb' => 'Mae\'r weithred wedi ei hanalluogi yn Coppermine oherwydd ei fod wedi ei integreiddio gyda meddalwedd fforwm. Naill ai dyw beth rwyt ti\'n ceisio gwneud ddim yn cael ei gefnogi gan y cyfluniad hwn, neu dylai meddalwedd y fforwm fod yn ymdrin â\'r swyddogaeth.',
   'offline_title' => 'Ddim arlein', //cpg1.3.0
-  'offline_text' => 'Dyw\'r oriel ddim arlein ar hyn o bryd, dere n&ocirc;l yn fuan', //cpg1.3.0
+  'offline_text' => 'Dyw\'r oriel ddim arlein ar hyn o bryd, dere nôl yn fuan', //cpg1.3.0
   'ecards_empty' => 'Does dim cofnodion egardiau i\'w harddangos. Gwna\'n siwr dy fod wedi galluogi logio egardiau yng nghyfluniad Coppermine!', //cpg1.3.0
   'action_failed' => 'Methodd y weithred.  Dyw Coppermine ddim yn medru prosesu dy gais.', //cpg1.3.0
-  'no_zip' => 'Dyw\'r llyfrgelloedd sydd eu hangen i brosesu ffeiliau ZIP ddim ar gael.  Cysyllta &acirc;\'r gweinyddwr.', //cpg1.3.0
-  'zip_type' => 'Does gen ti ddim caniat&acirc;d i anfon ffeiliau ZIP.', //cpg1.3.0
+  'no_zip' => 'Dyw\'r llyfrgelloedd sydd eu hangen i brosesu ffeiliau ZIP ddim ar gael.  Cysyllta â\'r gweinyddwr.', //cpg1.3.0
+  'zip_type' => 'Does gen ti ddim caniatâd i anfon ffeiliau ZIP.', //cpg1.3.0
 );
 
-$lang_bbcode_help = 'Gallai\'r c&ocirc;d canlynol fod yn ddefnyddiol: <li>[b]<b>Cryf</b>[/b]</li> <li>[i]<i>Italig</i>[/i]</li> <li>[url=http://dy_safle.com/]Testun[/url]</li> <li>[email]defnyddiwr@safle.com[/email]</li>'; //cpg1.3.0
+$lang_bbcode_help = 'Gallai\'r côd canlynol fod yn ddefnyddiol: <li>[b]<b>Cryf</b>[/b]</li> <li>[i]<i>Italig</i>[/i]</li> <li>[url=http://dy_safle.com/]Testun[/url]</li> <li>[email]defnyddiwr@safle.com[/email]</li>'; //cpg1.3.0
 
 // ------------------------------------------------------------------------- //
 // File theme.php
@@ -164,24 +164,24 @@ $lang_thumb_view = array(
   //Sort by filename and title
   'name' => 'ENW FFEIL',
   'title' => 'TEITL',
-  'sort_da' => 'Trefnu yn &ocirc;l dyddiad yn esgynnol',
-  'sort_dd' => 'Trefnu yn &ocirc;l dyddiad yn ddisgynnol',
-  'sort_na' => 'Trefnu yn &ocirc;l enw yn esgynnol',
-  'sort_nd' => 'Trefnu yn &ocirc;l enw yn ddisgynnol',
-  'sort_ta' => 'Trefnu yn &ocirc;l teitl yn esgynnol',
-  'sort_td' => 'Trefnu yn &ocirc;l teitl yn ddisgynnol',
+  'sort_da' => 'Trefnu yn ôl dyddiad yn esgynnol',
+  'sort_dd' => 'Trefnu yn ôl dyddiad yn ddisgynnol',
+  'sort_na' => 'Trefnu yn ôl enw yn esgynnol',
+  'sort_nd' => 'Trefnu yn ôl enw yn ddisgynnol',
+  'sort_ta' => 'Trefnu yn ôl teitl yn esgynnol',
+  'sort_td' => 'Trefnu yn ôl teitl yn ddisgynnol',
   'download_zip' => 'Llwytho lawr fel ffeil Zip', //cpg1.3.0
   'pic_on_page' => '%d o ffeiliau ar %d tudalen',
   'user_on_page' => '%d o ddefnyddwyr ar %d tudalen', //cpg1.3.0
 );
 
 $lang_img_nav_bar = array(
-  'thumb_title' => 'N&ocirc;l i\'r dudalen bawdluniau',
+  'thumb_title' => 'Nôl i\'r dudalen bawdluniau',
   'pic_info_title' => 'Dangos/cuddio gwybodaeth ffeiliau', //cpg1.3.0
   'slideshow_title' => 'Sioe sleidiau',
   'ecard_title' => 'Anfon y ffeil hwn fel egerdyn', //cpg1.3.0
   'ecard_disabled' => 'Egardiau wedi\'u hanalluogi',
-  'ecard_disabled_msg' => 'Does gen ti ddim caniat&acirc;d i anfon egardiau', //js-alert //cpg1.3.0
+  'ecard_disabled_msg' => 'Does gen ti ddim caniatâd i anfon egardiau', //js-alert //cpg1.3.0
   'prev_title' => 'Gweld ffeil blaenorol', //cpg1.3.0
   'next_title' => 'Gweld ffeil nesaf', //cpg1.3.0
   'pic_pos' => 'FFEIL %s/%s', //cpg1.3.0
@@ -267,7 +267,7 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
   'Exclamation' => 'Ebychiad',
   'Question' => 'Cwestiwn',
   'Very Happy' => 'Hapus Iawn',
-  'Smile' => 'Gw&ecirc;n',
+  'Smile' => 'Gwên',
   'Sad' => 'Trist',
   'Surprised' => 'Syndod',
   'Shocked' => 'Sioc',
@@ -331,7 +331,7 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 
 if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
   'miss_param' => 'Dyw\'r paramedrau sydd eu hangen ar gyfer \'%s\'ddim wedi cael eu darparu!',
-  'unknown_cat' => 'Dyw\'r categori hwn ddim yn bodoli yn y b&acirc;s data',
+  'unknown_cat' => 'Dyw\'r categori hwn ddim yn bodoli yn y bâs data',
   'usergal_cat_ro' => 'Does dim modd dileu categori Oriel Defnyddiwr !',
   'manage_cat' => 'Rheoli categoriau',
   'confirm_delete' => 'Wyt ti\\\'n siwr dy fod eisiau DILEU y categori hwn', //js-alert
@@ -380,15 +380,15 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Cyfeiriad targed ar gyfer dolen \'Gweld mwy o luniau\' mewn egardiau', 'ecards_more_pic_target', 0),
   array('Oriel ddim arlein', 'offline', 1), //cpg1.3.0
   array('Logio egardiau', 'log_ecards', 1), //cpg1.3.0
-  array('Caniat&aacute;u llwytho Ffefrynnau lawr ar ffurf ZIP', 'enable_zipdownload', 1), //cpg1.3.0
+  array('Caniatáu llwytho Ffefrynnau lawr ar ffurf ZIP', 'enable_zipdownload', 1), //cpg1.3.0
 
-  'Gosodiadau iaith, them&acirc;u &amp; chymeriadau iaith',
+  'Gosodiadau iaith, themâu &amp; chymeriadau iaith',
   array('Iaith', 'lang', 5),
   array('Thema', 'theme', 6),
   array('Dangos rhestr ieithoedd', 'language_list', 1), //cpg1.3.0
   array('Dangos baneri ieithoedd', 'language_flags', 8), //cpg1.3.0
   array('Dangos &quot;ailosod&quot; yn y dewisiadau iaith', 'language_reset', 1), //cpg1.3.0
-  array('Dangos rhestr them&acirc;u', 'theme_list', 1), //cpg1.3.0
+  array('Dangos rhestr themâu', 'theme_list', 1), //cpg1.3.0
   array('Dangos &quot;ailosod&quot; yn y dewisiadau thema', 'theme_reset', 1), //cpg1.3.0
   array('Dangos Cwestiynau Cyffredin', 'display_faq', 1), //cpg1.3.0
   array('Dangos cymorth bbcode', 'show_bbcode_help', 1), //cpg1.3.0
@@ -407,7 +407,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Nifer o golofnau ar y dudalen bawdluniau', 'thumbcols', 0),
   array('Nifer o resi ar y dudalen bawdluniau', 'thumbrows', 0),
   array('Uchafswm nifer y tabiau i\'w harddangos', 'max_tabs', 10), //cpg1.3.0
-  array('Dangos pennawd ffeil (yn ogystal &acirc; theitl) o dan y bawdlun', 'caption_in_thumbview', 1), //cpg1.3.0
+  array('Dangos pennawd ffeil (yn ogystal â theitl) o dan y bawdlun', 'caption_in_thumbview', 1), //cpg1.3.0
   array('Dangos sawl gwaith yr edrychwyd arno dan y bawdlun', 'views_in_thumbview', 1), //cpg1.3.0
   array('Dangos nifer o sylwadau o dan y bawdlun', 'display_comment_count', 1),
   array('Dangos enw\'r person anfonodd y ffeil dan y bawdlun', 'display_uploader', 1), //cpg1.3.0
@@ -418,8 +418,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Lled y tabl i arddangos ffeiliau (picseli neu %)', 'picture_table_width', 0), //cpg1.3.0
   array('Gwybodaeth ffeiliau yn weladwy', 'display_pic_info', 1), //cpg1.3.0
   array('Hidlo geiriau drwg o sylwadau', 'filter_bad_words', 1),
-  array('Caniat&acirc;u gwenogluniau', 'enable_smilies', 1),
-  array('Caniat&acirc;u sawl sylw ar un ffeil gan yr un defnyddiwr (analluogi diogelwch llifeiriant)', 'disable_comment_flood_protect', 1), //cpg1.3.0
+  array('Caniatâu gwenogluniau', 'enable_smilies', 1),
+  array('Caniatâu sawl sylw ar un ffeil gan yr un defnyddiwr (analluogi diogelwch llifeiriant)', 'disable_comment_flood_protect', 1), //cpg1.3.0
   array('Uchafswm disgrifiad llun', 'max_img_desc_length', 0),
   array('Uchafswm llythrennau mewn gair', 'max_com_wlength', 0),
   array('Uchafswm y llinellau mewn sylw', 'max_com_lines', 0),
@@ -442,13 +442,13 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Dangos eicon llyfr lluniau preifat i ddefnyddiwr sydd heb ei logio','show_private',1), //cpg1.3.0
   array('Cymeriadau i\'w gwahardd mewn enwau ffeiliau', 'forbiden_fname_char',0), //cpg1.3.0
   array('Pa fathau o ffeiliau sydd hawl eu hanfon', 'allowed_file_extensions',0), //cpg1.3.0
-  array('Ffeiliau delweddau sy\'n cael eu caniat&aacute;u', 'allowed_img_types',0), //cpg1.3.0
-  array('Ffeiliau ffilm sy\'n cael eu caniat&aacute;u', 'allowed_mov_types',0), //cpg1.3.0
-  array('Ffeiliau sain sy\'n cael eu caniat&aacute;u', 'allowed_snd_types',0), //cpg1.3.0
-  array('Dogfennau sy\'n cael eu caniat&aacute;u', 'allowed_doc_types',0), //cpg1.3.0
+  array('Ffeiliau delweddau sy\'n cael eu caniatáu', 'allowed_img_types',0), //cpg1.3.0
+  array('Ffeiliau ffilm sy\'n cael eu caniatáu', 'allowed_mov_types',0), //cpg1.3.0
+  array('Ffeiliau sain sy\'n cael eu caniatáu', 'allowed_snd_types',0), //cpg1.3.0
+  array('Dogfennau sy\'n cael eu caniatáu', 'allowed_doc_types',0), //cpg1.3.0
   array('Dull o newid maint delweddau','thumb_method',2), //cpg1.3.0
   array('Llwybr i wasanaeth \'trosi\' ImageMagick (enghraifft /usr/bin/X11/ ar Linux)', 'impath', 0), //cpg1.3.0
-  array('Ffeiliau sy\'n cael eu caniat&aacute;u (dim ond yn ddilys ar gyfer ImageMagick)', 'allowed_img_types',0), //cpg1.3.0
+  array('Ffeiliau sy\'n cael eu caniatáu (dim ond yn ddilys ar gyfer ImageMagick)', 'allowed_img_types',0), //cpg1.3.0
   array('Opsiynau llinell gorchymyn ImageMagick', 'im_options', 0), //cpg1.3.0
   array('Darllen gwybodaeth EXIF mewn ffeiliau JPEG', 'read_exif_data', 1), //cpg1.3.0
   array('Darllen gwybodaeth IPTC mewn ffeiliau JPEG', 'read_iptc_data', 1), //cpg1.3.0
@@ -460,13 +460,13 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Modd diofyn ffeiliau', 'default_file_mode', 0), //cpg1.3.0
 
   'Gosodiadau defnyddiwr',
-  array('Caniat&aacute;u cofrestu defnyddiwr newydd', 'allow_user_registration', 1),
+  array('Caniatáu cofrestu defnyddiwr newydd', 'allow_user_registration', 1),
   array('Angen gwirio defnyddiwr newydd ag ebost', 'reg_requires_valid_email', 1),
   array('Rhoi gwybod i\'r gweinyddwr am gofrestru defnyddwyr newydd', 'reg_notify_admin_email', 1), //cpg1.3.0
-  array('Caniat&aacute;u dau ddefnyddiwr i gael yr un cyfeiriad ebost', 'allow_duplicate_emails_addr', 1),
+  array('Caniatáu dau ddefnyddiwr i gael yr un cyfeiriad ebost', 'allow_duplicate_emails_addr', 1),
   array('Hawl gan ddefnyddwyr i gael llyfrau lluniau preifat (Sylwer: os newidiwch chi o \'ie\' i \'na\' bydd llyfrau llunaiu preifat yn dod yn gyhoeddus)', 'allow_private_albums', 1), //cpg1.3.0
   array('Rhoi gwybod i\'r gweinyddwr pan fydd ffeiliau\'n cael eu hanfon', 'upl_notify_admin_email', 1), //cpg1.3.0
-  array('Caniat&aacute;u defnyddwyr sydd wedi mewngofnodi i weld rhestr aelodau', 'allow_memberlist', 1), //cpg1.3.0
+  array('Caniatáu defnyddwyr sydd wedi mewngofnodi i weld rhestr aelodau', 'allow_memberlist', 1), //cpg1.3.0
 
   'Meysydd arferol i ddisgrifio lluniau (gadewch yn wag os nad ydych yn eu defnyddio)',
   array('Enw Maes 1', 'user_field1_name', 0),
@@ -482,7 +482,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Galluogi modd dadfygio', 'debug_mode', 9), //cpg1.3.0
   array('Dangos rhybuddion yn modd dadfygio', 'debug_notice', 1), //cpg1.3.0
 
-  '<br /><div align="left"><a name="notice1"></a>(*) Rhaid peidio newid y gosodiadau hyn os oes ffeiliau eisoes yn y b&acirc;s data.<br />
+  '<br /><div align="left"><a name="notice1"></a>(*) Rhaid peidio newid y gosodiadau hyn os oes ffeiliau eisoes yn y bâs data.<br />
   <a name="notice2"></a>(**) Pan yn newid hwn, dim ond ffeiliau sy\'n cael eu hychwanegu o hynny ymlaen sy\'n cael eu heffeithio, felly mae\'n well peidio newid hwn os oes ffeiliau eisoes yn y Oriel. Gallwch serch hynny gymhwyso\'r newidiadau i ffeiliau sy\'n bodoli\'n barod gyda\'r &quot;<a href="util.php">offer gweinyddol</a> (newid maint lluniau)&quot; o\'r ddewislen gweinyddol.</div><br />', //cpg1.3.0
 );
 
@@ -502,12 +502,12 @@ if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
   'ecard_ascending' => 'esgynnol', //cpg1.3.0
   'ecard_descending' => 'disgynnol', //cpg1.3.0
   'ecard_sorted' => 'Didoli', //cpg1.3.0
-  'ecard_by_date' => 'yn &ocirc;l dyddiad', //cpg1.3.0
-  'ecard_by_sender_name' => 'yn &ocirc;l enw\'r anfonwr', //cpg1.3.0
-  'ecard_by_sender_email' => 'yn &ocirc;l ebost anfonwr', //cpg1.3.0
-  'ecard_by_sender_ip' => 'yn &ocirc;l cyferiad IP anfonwr', //cpg1.3.0
-  'ecard_by_recipient_name' => 'yn &ocirc;l enw derbyniwr', //cpg1.3.0
-  'ecard_by_recipient_email' => 'yn &ocirc;l ebost derbyniwr', //cpg1.3.0
+  'ecard_by_date' => 'yn ôl dyddiad', //cpg1.3.0
+  'ecard_by_sender_name' => 'yn ôl enw\'r anfonwr', //cpg1.3.0
+  'ecard_by_sender_email' => 'yn ôl ebost anfonwr', //cpg1.3.0
+  'ecard_by_sender_ip' => 'yn ôl cyferiad IP anfonwr', //cpg1.3.0
+  'ecard_by_recipient_name' => 'yn ôl enw derbyniwr', //cpg1.3.0
+  'ecard_by_recipient_email' => 'yn ôl ebost derbyniwr', //cpg1.3.0
   'ecard_number' => 'dangos cofnod %s i %s o %s', //cpg1.3.0
   'ecard_goto_page' => 'mynd i dudalen', //cpg1.3.0
   'ecard_records_per_page' => 'Cofnod ar bob tudalen', //cpg1.3.0
@@ -530,12 +530,12 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
   'no_udp_needed' => 'Dim angen diweddaru.',
   'alb_updated' => 'Cafodd y llyfr lluniau ei ddiweddaru',
   'unknown_album' => 'Dyw\'r llyfr lluniau ddewises di ddim yn bodoli neu does gen ti ddim hawl anfon lluniau i\'r llyfr lluniau hwn',
-  'no_pic_uploaded' => 'Dim ffeil wedi\'i anfon !<br /><br />Os ddewises di ffeil gwna\'n siwr bod y gweinydd yn caniat&aacute;u anfon ffeiliau...', //cpg1.3.0
+  'no_pic_uploaded' => 'Dim ffeil wedi\'i anfon !<br /><br />Os ddewises di ffeil gwna\'n siwr bod y gweinydd yn caniatáu anfon ffeiliau...', //cpg1.3.0
   'err_mkdir' => 'Methwyd creu cyfeiriadur %s !',
   'dest_dir_ro' => 'Does dim modd i\'r sgript ysgrifennu i gyfeiriadur %s !',
   'err_move' => 'Amhosib symud %s i %s !',
-  'err_fsize_too_large' => 'Mae maint y ffeil wnes di anfon yn rhy fawr (uchafswm sy\'n cael ei ganiat&aacute;u yw %s x %s) !', //cpg1.3.0
-  'err_imgsize_too_large' => 'Mae maint y ffeil wnes di anfon yn rhy fawr (uchafswm sy\'n cael ei ganiat&aacute;u yw %s KB) !',
+  'err_fsize_too_large' => 'Mae maint y ffeil wnes di anfon yn rhy fawr (uchafswm sy\'n cael ei ganiatáu yw %s x %s) !', //cpg1.3.0
+  'err_imgsize_too_large' => 'Mae maint y ffeil wnes di anfon yn rhy fawr (uchafswm sy\'n cael ei ganiatáu yw %s KB) !',
   'err_invalid_img' => 'Dyw\'r ffeil wnes di anfon ddim yn ddelwedd ddilys !',
   'allowed_img_types' => 'Dim ond %s delwedd allu di anfon.',
   'err_insert_pic' => 'Does dim modd rhoi ffeil \'%s\' yn y Llyfr Lluniau', //cpg1.3.0
@@ -716,14 +716,14 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   array('Pam fod angen i fi gofrestru?', 'Bydd rhai Gweinyddwyr angen i ti gofrestru, a rhai ddim. O gofrestru fe gei di nodweddion ychwanegol fel anfon lluniau, creu rhestr Ffefrynnau, graddio lluniau, a chyflwyno sylwadau ayb. ', 'allow_user_registration', '1'), //cpg1.3.0
   array('Sut mae cofrestru?', 'Cer i &quot;Cofrestru&quot; a llenwi\'r meysydd gorfodol (a\'r rhai dewisol os wyt ti eisiau). Os yw\'r gweinyddwr wedi galluogi Ebost, fe fyddi di\'n derbyn ebost drwy\'r cyfeiriad roies di wrth gofrestru yn cynnwys cyfarwyddiadau ar sut i fynd ati i weithredu dy gyfrif. Rhaid gweithredu\'r cyfrif cyn mewngofnodi.', 'allow_user_registration', '1'), //cpg1.3.0
   array('Sut mae mewngofnodi?', 'Cer i &quot;Mewngofnodi&quot;, llenwa\'r bylchau gyda dy enw defnyddiwr a chyfrinair, a rhoi tic yn y blwch &quot;Cofia fi\'r tro nesaf&quot; os wyt ti eisiau mewngofnodi\'n syth bob tro.  PWYSIG: Rhaid galluogi cwcis a rhaid peidio dileu\'r cwci o\'r safle hwn cyn bod &quot;Cofia fi\'r tro nesaf&quot; yn gweithio.', 'offline', 0), //cpg1.3.0
-  array('Alla i ddim mewngofnodi. Pam?', 'Wnes di gofrestru a rhoi clec i\'r ddolen ges di mewn ebost? Mae\'r ddolen yn gwneud dy gyfri\'n weithredol. Cysyllta &acirc;\'r gweinyddwr os yw dy broblem mewngofnodi\'n parhau.', 'offline', 0), //cpg1.3.0
-  array('Beth os wna i anghofio cyfrinair?', 'Os oes gan y safle ddolen &quot;Wedi anghofio cyfrinair&quot; defnyddia hi. Fel arall, cysyllta &acirc;\'r gweinyddwr am gyfrinair newydd.', 'offline', 0), //cpg1.3.0
+  array('Alla i ddim mewngofnodi. Pam?', 'Wnes di gofrestru a rhoi clec i\'r ddolen ges di mewn ebost? Mae\'r ddolen yn gwneud dy gyfri\'n weithredol. Cysyllta â\'r gweinyddwr os yw dy broblem mewngofnodi\'n parhau.', 'offline', 0), //cpg1.3.0
+  array('Beth os wna i anghofio cyfrinair?', 'Os oes gan y safle ddolen &quot;Wedi anghofio cyfrinair&quot; defnyddia hi. Fel arall, cysyllta â\'r gweinyddwr am gyfrinair newydd.', 'offline', 0), //cpg1.3.0
   array('Beth os ydw i wedi newid fy nghyfeiriad ebost?', 'Mewngofnoda a newid dy gyfeiriad ebost drwy roi clec i &quot;Fy mhroffil&quot;', 'offline', 0), //cpg1.3.0
   array('Sut mae cadw llun yn &quot;Ffefrynnau&quot;?', 'Clicia ar y llun a wedyn ar y ddolen &quot;gwybodaeth ffeil&quot; (<img src="images/info.gif" width="16" height="16" border="0" alt="Picture information" />); sgrolia lawr i\'r wybodaeth a rho glec i &quot;Ychwanegu at ffefrynnau&quot;. Efallai na fydd y gweinyddwr wedi dewis gwneud &quot;gwybodaeth ffeil&quot; yn weithredol.  PWYSIG: Rhaid galluogi cwcis a rhaid peidio dileu\'r cwci o\'r safle hwn.<b></b>.', 'offline', 0), //cpg1.3.0
   array('Sut mae graddio ffeil?', 'Clicia ar un o\'r bawdluniau a cher i\'r gwaelod i ddewis gradd.', 'offline', 0), //cpg1.3.0
   array('Sut mae ychwanegu sylwadau at lun?', 'Clicia ar un o\'r bawdluniau a cher i\'r gwaelod i ychwanegu sylw.', 'offline', 0), //cpg1.3.0
   array('Sut mae anfon llun?', 'Cer i &quot;Anfon llun&quot; a dewis y llyfr lluniau i anfon y llun iddo, rho glec i &quot;Pori&quot; neu &quot;Browse&quot; (mae\'n bryd i ti ddechrau defnyddio porwr Cymraeg!) a chwilia am y ffeil rwyt ti am anfon, wedyn rho glec i &quot;agor neu open&quot; (gallu di roi teitl a disgrifiad os wyt ti eisiau) a rho glec i &quot;Parhau&quot;', 'offline', 0), //cpg1.3.0
-  array('I ble alla i anfon llun?', 'Gallu di anfon llun i un o dy lyfrau lluniau yn &quot;Fy oriel&quot;. Efallai fydd y Gweinyddwr hefyd yn caniat&aacute;u i ti anfon llun i un neu fwy o\'r llyfrau lluniau cyhoeddus.', 'allow_private_albums', 0), //cpg1.3.0
+  array('I ble alla i anfon llun?', 'Gallu di anfon llun i un o dy lyfrau lluniau yn &quot;Fy oriel&quot;. Efallai fydd y Gweinyddwr hefyd yn caniatáu i ti anfon llun i un neu fwy o\'r llyfrau lluniau cyhoeddus.', 'allow_private_albums', 0), //cpg1.3.0
   array('Pa fath o lun alla i anfon, a pha faint?', 'Dewis y Gweinyddwr yw pa fath o ffeil, a pha faint allu di anfon (jpg, png, ayb).', 'offline', 0), //cpg1.3.0
   array('Beth yw &quot;Fy oriel&quot;?', 'Oriel bersonol y gall defnyddiwr reoli ac anfon lluniau iddi yw &quot;Fy oriel&quot;.', 'allow_private_albums', 0), //cpg1.3.0
   array('Sut rwy\'n creu, ailenwi neu ddileu llyfr lluniau yn &quot;Fy oriel&quot;?', 'Newid i &quot;Modd Gweinyddwr&quot;<br />Cer i &quot;Creu/trefnu fy Llyfrau Lluniau&quot; a rho glec i &quot;Newydd&quot;. Newid &quot;Llyfr lluniau newydd&quot; ar y gwaelod i\'r enw rwyt ti eisiau. Rwyt ti hefyd yn gallu ailenwi llyfrau lluniau yn dy oriel.<br />Rho glec i &quot;Cadw newidiadau&quot; cyn gorffen.', 'allow_private_albums', 0), //cpg1.3.0
@@ -736,9 +736,9 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   array('Beth yw &quot;Rhestr Llyfrau Lluniau&quot;?', 'Mae hwn yn dangos popeth yn y categori rwyt ti ynddo, gyda dolen i bob llyfr lluniau. Os nag wyt ti mewn categori, mae\'n dangos yr oriel gyfan gyda dolen i bob categori. Gall bawdlun fod yn ddolen i\'r categori.', 'offline', 0), //cpg1.3.0
   array('Beth yw &quot;Fy oriel&quot;?', 'Mae hwn yn galluogi defnyddiwr i greu ei oriel ei hun gan ychwanegu, dileu neu addasu llyfrau lluniau neu anfon lluniau iddyn nhw.', 'allow_private_albums', 0), //cpg1.3.0
   array('Beth yw the difference between &quot;Modd gweinyddwr&quot; and &quot;Modd defnyddiwr&quot;?', 'This feature, when in admin-mode, allows a user to modify their gallery (as well as others if allowed by the administrator).', 'allow_private_albums', 0), //cpg1.3.0
-  array('Beth yw &quot;Anfon llun&quot;?', 'Drwy roi clec i hwn fe allu di anfon llun i oriel neu lyfr lluniau o dy ddewis di. Y gweinyddwr sy\'n penderfynu pa fath a ffeil a pha faint all hi fod, a phwy sydd &acirc;\'r hawl i anfon lluniau i ble!.', 'offline', 0), //cpg1.3.0
+  array('Beth yw &quot;Anfon llun&quot;?', 'Drwy roi clec i hwn fe allu di anfon llun i oriel neu lyfr lluniau o dy ddewis di. Y gweinyddwr sy\'n penderfynu pa fath a ffeil a pha faint all hi fod, a phwy sydd â\'r hawl i anfon lluniau i ble!.', 'offline', 0), //cpg1.3.0
   array('Beth yw &quot;Lluniau mwyaf newydd&quot;?', 'Mae\'n dangos y lluniau diweddaraf i gael eu hanfon i\'r safle.', 'offline', 0), //cpg1.3.0
-  array('Beth yw &quot;Sylwadau diwethaf&quot;?', 'Mae\'n dangos y sylwadau diweddaraf gyda\'r lluniau sy\'n cydfynd &acirc; nhw.', 'offline', 0), //cpg1.3.0
+  array('Beth yw &quot;Sylwadau diwethaf&quot;?', 'Mae\'n dangos y sylwadau diweddaraf gyda\'r lluniau sy\'n cydfynd â nhw.', 'offline', 0), //cpg1.3.0
   array('Beth yw &quot;Edrychwyd arno fwyaf&quot;?', 'Mae\'n dangos y lluniau mae defnyddwyr wedi edrych arnyn nhw fwyaf.', 'offline', 0), //cpg1.3.0
   array('Beth yw &quot;Gradd uchaf&quot;?', 'Mae\'n dangos y ffeliau sydd wedi cael y graddau uchaf gan ddefnyddwyr (e.e: os yw pump defnyddiwr yn rhoi gradd o <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />: cyfartaledd gradd y ffeil fydd <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> ; byddai cael pump defnyddiwr yn rhoi gradd o 1 i 5 (1,2,3,4,5) hefyd yn creu cyfartaledd o <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> .) Mae\'r graddau\'n mynd o <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> (gorau) i <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" /> (gwaethaf).', 'offline', 0), //cpg1.3.0
   array('Beth yw &quot;Ffefrynnau&quot;?', 'Mae defnyddiwr yn gallu creu rhestr o\'i hoff luniau, ac mae gwybodaeth am rhain yn cael eu cadw mewn cwci. Mae modd eu llwytho lawr wedyn ar ffurf ffeil ZIP os yw\'n dewis.', 'offline', 0), //cpg1.3.0
@@ -779,7 +779,7 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
   'apply' => 'Cadw\'r newidiadau',
   'create_new_group' => 'Creu grwp newydd',
   'del_groups' => 'Dileu\'r grwp(iau) ddewiswyd',
-  'confirm_del' => 'Rhybudd: pan fyddi di\\\'n dileu grwp bydd defnyddwyr sy\\\'n rhan o\\\'r grwp yn cael eu trosglwyddo i grwp \\\'Wedi cofrestru\\\'! Wyt ti eisiau parhau?', //js-alert //cpg1.3.0
+  'confirm_del' => 'Rhybudd: pan fyddi di\\\'n dileu grwp bydd defnyddwyr sy\\\'n rhan o\\\'r grwp yn cael eu trosglwyddo i grwp \\\'Wedi cofrestru\\\' ! Wyt ti eisiau parhau?', //js-alert //cpg1.3.0
   'title' => 'Rheoli grwpiau defnyddwyr',
   'approval_1' => 'Cymeradwyo anfon cyhoeddus (1)',
   'approval_2' => 'Cymeradwyo anfon preifat (2)',
@@ -804,7 +804,7 @@ $lang_index_php = array(
 );
 
 $lang_album_admin_menu = array(
-  'confirm_delete' => 'Wyt ti\\\'n siwr dy fod am DDILEU y llyfr lluniau? Bydd pob ffeil a sylw hefyd yn cael eu dileu.', //js-alert //cpg1.3.0
+  'confirm_delete' => 'Wyt ti\\'n siwr dy fod am DDILEU y llyfr lluniau? Bydd pob ffeil a sylw hefyd yn cael eu dileu.', //js-alert //cpg1.3.0
   'delete' => 'DILEU',
   'modify' => 'PRIODWEDDAU',
   'edit_pics' => 'GOLYGU FFEIL', //cpg1.3.0
@@ -865,7 +865,7 @@ if (defined('LOGOUT_PHP')) $lang_logout_php = array(
 if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
   'php_info' => 'Gwybodaeth PHP', //cpg1.3.0
   'explanation' => 'Hwn yw\'r allbwn sy\'n cael ei greu gan <a href="http://www.php.net/phpinfo">gwybodaeth php()</a>.', //cpg1.3.0
-  'no_link' => 'Gall caniat&aacute;u i eraill weld dy wybodaeth php fod yn beryglus, a dyna pam mae\'r dudalen hon ond yn weladwy pan fyddi di wedi mewngofnodi fel gweinyddwr. Allu di ddim creu dolen i eraill i\'r dudalen hon.', //cpg1.3.0
+  'no_link' => 'Gall caniatáu i eraill weld dy wybodaeth php fod yn beryglus, a dyna pam mae\'r dudalen hon ond yn weladwy pan fyddi di wedi mewngofnodi fel gweinyddwr. Allu di ddim creu dolen i eraill i\'r dudalen hon.', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -892,7 +892,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'me_only' => 'Fi yn unig',
   'owner_only' => 'Perchennog yn unig (%s)',
   'groupp_only' => 'Aelodau grwp \'%s\'',
-  'err_no_alb_to_modify' => 'Dim llyfr lluniau i\'w ddiweddaru yn y b&acirc;s data.',
+  'err_no_alb_to_modify' => 'Dim llyfr lluniau i\'w ddiweddaru yn y bâs data.',
   'update' => 'Diweddaru llyfr lluniau', //cpg1.3.0
   'notice1' => '(*) dibynnu ar osodiadau %sgrwp%s', //cpg1.3.0 (do not translate %s!)
 );
@@ -914,9 +914,9 @@ if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
-Tra bod gweinyddwyr {SITE_NAME} yn ceisio symud unrhyw ddeunydd annymunol cyn gynted &acirc; phosib, mae'n amhosib rhoi sylw i bob cyfraniad. Rwyt ti felly'n derbyn bod cyfraniadau i'r safle hwn yn cynrychioli barn yr awdur, ac nid o reidrwydd gweinyddwyr y safle, a fyddan nhw felly ddim yn atebol amdanyn nhw.<br />
+Tra bod gweinyddwyr {SITE_NAME} yn ceisio symud unrhyw ddeunydd annymunol cyn gynted â phosib, mae'n amhosib rhoi sylw i bob cyfraniad. Rwyt ti felly'n derbyn bod cyfraniadau i'r safle hwn yn cynrychioli barn yr awdur, ac nid o reidrwydd gweinyddwyr y safle, a fyddan nhw felly ddim yn atebol amdanyn nhw.<br />
 <br />
-Rwyt ti'n cytuno i beidio anfon sylwadau anweddus, ymosodol, atgas, rhywiol eu natur, bygythiol, enllibus, neu unrhyw beth arall sy'n groes i'r gyfraith. Rwyt ti'n cytuno bod gan gwefeistr, gweinyddwyr a chymedrolwyr safwe {SITE_NAME} yr hawl i dynnu neu olygu gwybodaeth ar unrhyw adeg. Fel defnyddiwr rwyt ti'n cytuno i wybodaeth rwyt ti wedi ei gyflwyno i gael ei gadw ar f&acirc;s data. Er na fydd y wybodaeth yn cael ei datgelu i unrhyw un heb dy ganiat&acirc;d all y gwefeistr na'r gweinyddwyr ddim fod yn gyfrifol dros unrhyw ymdrech lwyddiannus i hacio'r safle all arwain at ddatgelu gwybodaeth.<br />
+Rwyt ti'n cytuno i beidio anfon sylwadau anweddus, ymosodol, atgas, rhywiol eu natur, bygythiol, enllibus, neu unrhyw beth arall sy'n groes i'r gyfraith. Rwyt ti'n cytuno bod gan gwefeistr, gweinyddwyr a chymedrolwyr safwe {SITE_NAME} yr hawl i dynnu neu olygu gwybodaeth ar unrhyw adeg. Fel defnyddiwr rwyt ti'n cytuno i wybodaeth rwyt ti wedi ei gyflwyno i gael ei gadw ar fâs data. Er na fydd y wybodaeth yn cael ei datgelu i unrhyw un heb dy ganiatâd all y gwefeistr na'r gweinyddwyr ddim fod yn gyfrifol dros unrhyw ymdrech lwyddiannus i hacio'r safle all arwain at ddatgelu gwybodaeth.<br />
 <br />
 Mae'r safle'n defnyddio cwcis i gadw gwybodaeth ar dy gyfrifiadur di. Unig nod y cwcis hyn yw gwneud pethau'n haws i ti. Yr unig ddefnydd fydd yn cael ei wneud o dy gyfeiriad ebost yw cadarnhau dy enw a chyfrinair.<br />
 <br />
@@ -1042,7 +1042,7 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'no_album' => 'Dim llyfr lluniau wedi ei ddewis',  //cpg1.3.0
   'notes' =>  '<ul>'.
                           '<li><b>IA</b> : sy\'n golygu fod y ffeil wedi ei llwytho\'n llwyddiannus'.
-                          '<li><b>CO</b> : sy\'n golygu fod y ffeil yn gopi o ffeil sydd eisoes yn y b&acirc;s data'.
+                          '<li><b>CO</b> : sy\'n golygu fod y ffeil yn gopi o ffeil sydd eisoes yn y bâs data'.
                           '<li><b>CY</b> : sy\'n golygu nad oedd modd ychwanegu\'r ffeil; gwiria\'r cyfluniad a chaniatadau y cyfeiriadur ble roedd y ffeil i fod i gael ei anfon'.
                           '<li><b>DO</b> : sy\'n golygu nad wyt ti wedi dewis llyfr lluniau; rho glec i \'<a href="javascript:history.back(1)">blaenorol</a>\' a dewis llyfr lluniau. Os nag oes un yn bodoli <a href="albmgr.php">mae angen creu un yn gyntaf</a></li>'.
                           '<li>Os nag yw IA, CO, CY, DO i weld \'signs\' chwilia am neges PHP sy\'n dangos gwall'.
@@ -1111,8 +1111,8 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'error_message' => 'Gwall', //cpg1.3.0
   'no_post' => 'Methwyd llwytho\'r ffeil.', //cpg1.3.0
   'forb_ext' => 'Estyniad ffeil wedi ei wahardd.', //cpg1.3.0
-  'exc_php_ini' => 'Mae ffeil yn fwy na\'r hyn sy\'n cael ei ganiat&aacute;u yn php.ini.', //cpg1.3.0
-  'exc_file_size' => 'Mae ffeil yn fwy na\'r hyn sy\'n cael ei ganiat&aacute;u gan CPG.', //cpg1.3.0
+  'exc_php_ini' => 'Mae ffeil yn fwy na\'r hyn sy\'n cael ei ganiatáu yn php.ini.', //cpg1.3.0
+  'exc_file_size' => 'Mae ffeil yn fwy na\'r hyn sy\'n cael ei ganiatáu gan CPG.', //cpg1.3.0
   'partial_upload' => 'Heb anfon yn llawn.', //cpg1.3.0
   'no_upload' => 'Heb anfon yn iawn.', //cpg1.3.0
   'unknown_code' => 'Gwall nad yw PHP yn gyfarwydd ag ef.', //cpg1.3.0
@@ -1121,12 +1121,12 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'impossible' => 'Amhosib symud.', //cpg1.3.0
   'not_image' => 'Ddim yn llun/wedi llygru', //cpg1.3.0
   'not_GD' => 'Ddim yn estyniad GD.', //cpg1.3.0
-  'pixel_allowance' => 'Uwch na\'r caniat&acirc;d picseli.', //cpg1.3.0
+  'pixel_allowance' => 'Uwch na\'r caniatâd picseli.', //cpg1.3.0
   'incorrect_prefix' => 'Rhagddodiad URI/URL anghywir', //cpg1.3.0
   'could_not_open_URI' => 'Methu agor URI.', //cpg1.3.0
   'unsafe_URI' => 'Methu gwirio diogelwch.', //cpg1.3.0
   'meta_data_failure' => 'Methiant gwybodaeth Meta', //cpg1.3.0
-  'http_401' => '401 Dim caniat&acirc;d', //cpg1.3.0
+  'http_401' => '401 Dim caniatâd', //cpg1.3.0
   'http_402' => '402 Angen taliad', //cpg1.3.0
   'http_403' => '403 Gwaharddwyd', //cpg1.3.0
   'http_404' => '404 Heb ei ganfod', //cpg1.3.0
@@ -1148,13 +1148,13 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'f_info' => 'Gwybodaeth ffeil', //cpg1.3.0
   'no_place' => 'Methwyd anfon y ffeil flaenorol.', //cpg1.3.0
   'yes_place' => 'Gosodwyd y ffeil yn llwyddiannus.', //cpg1.3.0
-  'max_fsize' => 'Mwyafswm maint ffeil sy\'n cael ei ganiat&acirc;u yw %s KB',
+  'max_fsize' => 'Mwyafswm maint ffeil sy\'n cael ei ganiatâu yw %s KB',
   'album' => 'Llyfr Lluniau',
   'picture' => 'Llun', //cpg1.3.0
   'pic_title' => 'Teitl y llun', //cpg1.3.0
   'description' => 'Digrifiad o\'r llun', //cpg1.3.0
   'keywords' => 'Geiriau allweddol (gadewch fwlch rhwng pob gair)',
-  'err_no_alb_uploadables' => 'Mae\'n flin gen i, ond does dim llyfr lluniau ble mae gen ti ganiat&acirc;d i anfon lluniau', //cpg1.3.0
+  'err_no_alb_uploadables' => 'Mae\'n flin gen i, ond does dim llyfr lluniau ble mae gen ti ganiatâd i anfon lluniau', //cpg1.3.0
   'place_instr_1' => 'Rho\'r lluniau mewn llyfr lluniau nawr.  Galli di hefyd gyflwyno gwybodaeth berthnasol am bob llun.', //cpg1.3.0
   'place_instr_2' => 'Angen gosod mwy o ffeiliau. Rho glec i \'Parhau\'.', //cpg1.3.0
   'process_complete' => 'Rwyt ti wedi gosod bob llun yn llwyddiannus.', //cpg1.3.0
@@ -1231,7 +1231,7 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
   'main_success' => 'Defnyddiwyd %s yn llwyddiannus fel prif ffeil', //cpg1.3.0
   'error_rename' => 'Gwall wrth ailenwi %s i %s',
   'error_not_found' => 'Methu canfod %s',
-  'back' => 'N&ocirc;l i\'r brif dudalen',
+  'back' => 'Nôl i\'r brif dudalen',
   'thumbs_wait' => 'Diweddaru bawdluniau a/neu delweddau maint newydd, amynedd os gweli di\'n dda...',
   'thumbs_continue_wait' => 'Parhau i ddiweddaru bawdluniau a/neu delweddau maint newydd...',
   'titles_wait' => 'Diweddaru penawdau, amynedd os gweli di\'n dda...',
@@ -1267,8 +1267,8 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
   'comment' => 'Sylw: ', //cpg1.3.0
   'nonexist' => 'ynghlwm wrth ffeil sydd ddim yn bodoli # ', //cpg1.3.0
   'phpinfo' => 'Dangos gwybodaeth php', //cpg1.3.0
-  'update_db' => 'Diweddaru b&acirc;s data', //cpg1.3.0
-  'update_db_explanation' => 'Os wyt ti wedi ailosod ffeiliau coppermine, addasu coppermine neu ddiweddaru o fersiwn arall o coppermine, rhaid diweddaru\'r b&acirc;s data unwaith. Bydd hyn yn creu\'r tablau sydd eu hangen a\'r gwerthoedd cyflunio ym m&acirc;s data coppermine.', //cpg1.3.0
+  'update_db' => 'Diweddaru bâs data', //cpg1.3.0
+  'update_db_explanation' => 'Os wyt ti wedi ailosod ffeiliau coppermine, addasu coppermine neu ddiweddaru o fersiwn arall o coppermine, rhaid diweddaru\'r bâs data unwaith. Bydd hyn yn creu\'r tablau sydd eu hangen a\'r gwerthoedd cyflunio ym mâs data coppermine.', //cpg1.3.0
 );
 
 ?>
