@@ -49,7 +49,7 @@ function form_input($text, $name)
                         $text
         </td>
         <td width="40%" class="tableb" valign="top">
-                <input type="text" class="textinput" style="width: 100%" name="$name" value="$value">
+                <input type="text" maxlength="255" class="textinput" style="width: 100%" name="$name" value="$value">
                 </td>
         </tr>
 
