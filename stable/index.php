@@ -130,6 +130,7 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
                 $link = "<a href=\"index.php?cat={$subcat['cid']}\">{$subcat['name']}</a>";
                 $user_thumb = $ident.$user_thumb;
                 if ($pic_count == 0 && $album_count == 0) {
+					$user_thumb = $ident;
                     $cat_data[] = array($link, $subcat['description'],'cat_thumb' =>$user_thumb);
                 } else {
                     // Check if you need to show subcat_level
@@ -183,7 +184,7 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
         } // while
         mysql_free_result($result);
     //}
-    if (count($album_set_array)&& $cat) {
+    if (count($album_set_array)&&$cat) {
         $set = '';
         foreach ($album_set_array as $album) $set .= $album . ',';
         $set = substr($set, 0, -1);
