@@ -391,19 +391,20 @@ function udb_get_admin_album_list()
 
 function udb_util_filloptions()
 {
-    global $albumtbl, $picturetbl, $categorytbl, $lang_util_php, $CONFIG, $UDB_DB_NAME_PREFIX, $UDB_DB_LINK_ID;
+    global $lang_util_php, $CONFIG, $UDB_DB_NAME_PREFIX, $UDB_DB_LINK_ID;
 
     $usertbl = $UDB_DB_NAME_PREFIX.PHPBB_TABLE_PREFIX.PHPBB_USER_TABLE;
 
     if (UDB_CAN_JOIN_TABLES) {
 
-        $query = "SELECT aid, category, IF(username IS NOT NULL, CONCAT('(', username, ') ', a.title), CONCAT(' - ', a.title)) AS title " . "FROM $albumtbl AS a " . "LEFT JOIN $usertbl AS u ON category = (" . FIRST_USER_CAT . " + user_id) " . "ORDER BY category, title";
+        $query = "SELECT aid, category, IF(username IS NOT NULL, CONCAT('(', username, ') ', a.title), CONCAT(' - ', a.title)) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "LEFT JOIN $usertbl AS u ON category = (" . FIRST_USER_CAT . " + user_id) " . "ORDER BY category, title";
         $result = db_query($query, $UDB_DB_LINK_ID);
         // $num=mysql_numrows($result);
-        echo '<select size="1" name="albumid">';
+        echo '<select size="1" name="albumid" class="listbox">';
+        echo '<option value="0">All Albums</option>';
 
         while ($row = mysql_fetch_array($result)) {
-            $sql = "SELECT name FROM $categorytbl WHERE cid = " . $row["category"];
+            $sql = "SELECT name FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = " . $row["category"];
             $result2 = db_query($sql);
             $row2 = mysql_fetch_array($result2);
 
@@ -411,7 +412,7 @@ function udb_util_filloptions()
         }
 
         print '</select> (3)';
-        print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="submit" /> (4)';
+        print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="button" /> (4)';
         print '</form>';
 
     } else {
@@ -502,7 +503,8 @@ function udb_util_filloptions()
         }
 
         // The user albums and public albums have been merged into one list. Print the dropdown.
-        echo '<select size="1" name="albumid">';
+        echo '<select size="1" name="albumid" class="listbox">';
+        echo '<option value="0">All Albums</option>';
 
         foreach ($merged_array as $menu_item) {
 
@@ -512,7 +514,7 @@ function udb_util_filloptions()
 
         // Close list, etc.
         print '</select> (3)';
-        print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="submit" /> (4)';
+        print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="button" /> (4)';
         print '</form>'; 
 
     }
