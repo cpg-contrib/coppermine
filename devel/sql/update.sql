@@ -237,9 +237,9 @@ ALTER TABLE `CPG_users` ADD `user_profile6` varchar(255) default '' NOT NULL;
 
 
 
-INSERT INTO CPG_config VALUES ('user_profile1_name', '$lang_register_php['location']');
-INSERT INTO CPG_config VALUES ('user_profile2_name', '$lang_register_php['interests']');
-INSERT INTO CPG_config VALUES ('user_profile3_name', '$lang_register_php['website']');
-INSERT INTO CPG_config VALUES ('user_profile4_name', '$lang_register_php['occupation']');
+INSERT INTO CPG_config VALUES ('user_profile1_name', 'Location');
+INSERT INTO CPG_config VALUES ('user_profile2_name', 'Interests');
+INSERT INTO CPG_config VALUES ('user_profile3_name', 'Website');
+INSERT INTO CPG_config VALUES ('user_profile4_name', 'Occupation');
 INSERT INTO CPG_config VALUES ('user_profile5_name', '');
 INSERT INTO CPG_config VALUES ('user_profile6_name', '');
