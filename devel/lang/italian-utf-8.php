@@ -29,7 +29,7 @@ $lang_translation_info = array(
 'trans_name2'=> '(Completed by) Sesto Avolio', //the name of the translator - can be a nickname
 'trans_email2' => 'webmaster@eolica.net', //translator's email address (optional)
 'trans_website2' => 'http://www.eolica.net/', //translator's website (optional)
-'trans_date' => '2003-10-04', //the date the translation was created / last modified
+'trans_date' => '2003-10-13', //the date the translation was created / last modified
 );
 
 $lang_charset = 'iso-8859-1';
@@ -118,20 +118,20 @@ $lang_main_menu = array(
 	'topn_lnk' => 'Le più viste',
 	'toprated_lnk' => 'Le più votate',
 	'search_lnk' => 'Cerca',
-        'fav_lnk' => 'I miei Preferiti',
+                'fav_lnk' => 'I miei Preferiti',
 
 );
 
 $lang_gallery_admin_menu = array(
-	'upl_app_lnk' => 'Approvazione uploads',
-	'config_lnk' => 'Configurazione',
+	'upl_app_lnk' => 'Approva uploads',
+	'config_lnk' => 'Configura',
 	'albums_lnk' => 'Albums',
 	'categories_lnk' => 'Categorie',
 	'users_lnk' => 'Utenti',
 	'groups_lnk' => 'Gruppi',
 	'comments_lnk' => 'Commenti',
-	'searchnew_lnk' => 'Aggiungi immagini multiple',
-        'util_lnk' => 'Ridimensiona immagini',
+	'searchnew_lnk' => 'Aggiungi immagini',
+        'util_lnk' => 'Utilità',
         'ban_lnk' => 'Banna Utenti',
 );
 
@@ -160,8 +160,8 @@ $lang_thumb_view = array(
 	'sort_dd' => 'Ordina per data discendente',
 	'sort_na' => 'Ordina per name ascendente',
 	'sort_nd' => 'Ordina per name discendente',
-        'sort_ta' => 'Ordina per titolo ascendente',
-        'sort_td' => 'Ordina per titolo discendente',
+    'sort_ta' => 'Ordina per titolo ascendente',
+    'sort_td' => 'Ordina per titolo discendente',
 	'pic_on_page' => '%d immagini in %d pagine',
 	'user_on_page' => '%d utenti in %d pagine'
 );
@@ -330,9 +330,9 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
 	'upd_success' => 'Configurazione aggiornata',
 	'restore_success' => 'Configurazione di default ripristinata',
 	'name_a' => 'Nome ascendente',
- 	'name_d' => 'Nome discendente',
-        'title_a' => 'Titolo ascendente',
-        'title_d' => 'Titolo discendente',
+	'name_d' => 'Nome discendente',
+    'title_a' => 'Titolo ascendente',
+    'title_d' => 'Titolo discendente',
 	'date_a' => 'Data ascendente',
 	'date_d' => 'Data discendente'
 );
@@ -529,9 +529,9 @@ $lang_display_comments = array(
 	'edit_title' => 'Edita questo commento',
 	'confirm_delete' => 'Vuoi davvero cancellare questo commento?',
 	'add_your_comment' => 'Aggiungi il tuo commento',
-        'name'=>'Nome',
-        'comment'=>'Commento',
-        'your_name' => 'Anon',
+    'name'=>'Nome',
+    'comment'=>'Commento',
+    'your_name' => 'Anon',
 );
 $lang_fullsize_popup = array(
         'click_to_close' => 'Clicca l\'immagine per chiudere questa finestra',
@@ -625,7 +625,7 @@ $lang_index_php = array(
 $lang_album_admin_menu = array(
 	'confirm_delete' => 'Vuoi davvero cancellare questo album ? \\nTutte le immagini ed i commenti andranno persi.',
 	'delete' => 'CANCELLA',
-	'modify' => 'PROPRIETA',
+	'modify' => 'PROPRIETA\'',
 	'edit_pics' => 'EDITA IMMAGINI',
 );
 
@@ -832,7 +832,7 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 	'need_one_album' => 'Hai bisogno almeno di un album per usare questa function',
 	'warning' => 'Attento',
 	'change_perm' => 'lo script non può scrivere in questa directory, fai il chmod a 755 o 777 e riprova!',
-	'target_album' => '<b>Metti le immagini di&quot;</b>%s<b>&quot; in </b>%s',
+	'target_album' => '<b>Metti le immagini di &quot;</b>%s<b>&quot; in </b>%s',
 	'folder' => 'Cartella',
 	'image' => 'Immgine',
 	'album' => 'Album',
