@@ -261,10 +261,10 @@ function html_picinfo()
         $info['URL']='<a href=http://'.$_SERVER["SERVER_NAME"].$_SERVER["SCRIPT_NAME"]."?pos=-$CURRENT_PIC_DATA[pid]".' >http://'.$_SERVER["SERVER_NAME"].$_SERVER["SCRIPT_NAME"]."?pos=-$CURRENT_PIC_DATA[pid]".'</a>';
 
         //Create the add to fav link
-        if(!in_array($CURRENT_PIC_DATA[pid],$FAVPICS)){
-                $info[$lang_picinfo['addFavPhrase']]="<a href=addfav.php?pid=".$CURRENT_PIC_DATA[pid]." >".$lang_picinfo['addFav'].'</a>';
+        if(!in_array($CURRENT_PIC_DATA['pid'],$FAVPICS)){
+                $info[$lang_picinfo['addFavPhrase']]="<a href=addfav.php?pid=".$CURRENT_PIC_DATA['pid']." >".$lang_picinfo['addFav'].'</a>';
         }else{
-                $info[$lang_picinfo['addFavPhrase']]="<a href=addfav.php?pid=".$CURRENT_PIC_DATA[pid]." >".$lang_picinfo['remFav'].'</a>';
+                $info[$lang_picinfo['addFavPhrase']]="<a href=addfav.php?pid=".$CURRENT_PIC_DATA['pid']." >".$lang_picinfo['remFav'].'</a>';
         }
 
         return theme_html_picinfo($info);
