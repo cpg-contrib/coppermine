@@ -94,6 +94,7 @@ function delete_picture($pid)
     $aid = $pic['aid'];
     $dir = $CONFIG['fullpath'] . $pic['filepath'];
     $file = $pic['filename'];
+    
 
     if (!is_writable($dir)) cpg_die(CRITICAL_ERROR, sprintf($lang_errors['directory_ro'], htmlspecialchars($dir)), __FILE__, __LINE__);
 
@@ -120,7 +121,10 @@ function delete_picture($pid)
     else
         echo "&nbsp;";
     echo "</td>";
-
+    
+    $query = "DELETE FROM {$CONFIG['TABLE_EXIF']} WHERE filename='$dir$file' LIMIT 1";
+    $result = db_query($query);
+    
     $query = "DELETE FROM {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' LIMIT 1";
     $result = db_query($query);
     echo "<td class=\"tableb\" align=\"center\">";
