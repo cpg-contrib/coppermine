@@ -49,25 +49,25 @@ $tasks =  array(
                 <input type="radio" name="parsemode" value="2" class="nobg" /><label class="labelradio">'.$lang_util_php['filename_us'].'</label><br />
                 <input type="radio" name="parsemode" value="3" class="nobg" /><label class="labelradio">'.$lang_util_php['filename_time'].'</label><br /><br />'),
 
-        'del_titles' => array('del_titles', $lang_util_php['delete_title'], 'This will remove all titles on files in the album you specify.'),
+        'del_titles' => array('del_titles', $lang_util_php['delete_title'], $lang_util_php['delete_title_explanation']),
 
-        'del_orig' => array('del_orig', $lang_util_php['delete_original'], 'This will remove the full sized pictures.'),
+        'del_orig' => array('del_orig', $lang_util_php['delete_original'], $lang_util_php['delete_original_explanation']),
 
-        'del_norm' => array('del_norm', 'Delete intermediate pictures','This will delete intermediate (normal) pictures.<br />Use this to free up disk space if you have disabled \'Make intermediate pics\' in config after adding pictures.'),
+        'del_norm' => array('del_norm', $lang_util_php['delete_intermediate'], $lang_util_php['delete_intermediate_explanation']),
 
-        'del_orphans' => array('del_orphans', 'Delete comments on missing files','This will identify and allow you to delete any comments associated with files no longer in the gallery.<br />Checks all albums.'),
+        'del_orphans' => array('del_orphans', $lang_util_php['delete_orphans'], $lang_util_php['delete_orphans_explanation']),
 
-        'refresh_db' => array('refresh_db', 'Reload file dimensions and size information','This will re-read file sizes and dimensions. Use this if quota\'s are incorrect or you have chnaged the files manually.<br />' . $lang_util_php['update_number'].'
+        'refresh_db' => array('refresh_db', $lang_util_php['refresh_db'], $lang_util_php['refresh_db'].'<br />' . $lang_util_php['update_number'].'
 
                 <input type="text" name="refresh_numpics" value="'.$defpicnum.'" size="5" class="textinput" /><br />'.$lang_util_php['update_option']),
 
-        'reset_views' => array('reset_views', 'Reset view counters', 'Sets all file view counts to zero in the album specified.'),
+        'reset_views' => array('reset_views', $lang_util_php['reset_views'], $lang_util_php['reset_views_explanation']),
 
-        'php_info' => array('', '<a href="phpinfo.php">' . $lang_util_php['phpinfo'] . '</a>', 'Contains technical information about your server.<br /> - You may be asked to provide information from this when requesting support.'),
+        'php_info' => array('', '<a href="phpinfo.php">' . $lang_util_php['phpinfo'] . '</a>', $lang_util_php['phpinfo_explanation']),
 
         'upd_db' => array('', '<a href="update.php">' . $lang_util_php['update_db'].'</a>',$lang_util_php['update_db_explanation']),
 
-        'view_log' => array('', '<a href="viewlog.php">' . $lang_util_php['view_log'] . '</a>', ''),
+        'view_log' => array('', '<a href="viewlog.php">' . $lang_util_php['view_log'] . '</a>', $lang_util_php['view_log_explanation']),
 
         );
 
@@ -84,12 +84,11 @@ if (array_key_exists($action, $tasks)){
 
         echo '<tr>
                         <td class="tablef"><b>'.$lang_util_php['what_it_does'] . '</b>:
-                                <ul style="margin-top:0px;margin-bottom:0px;list-style-type:square">
-                                        <li>' . $lang_util_php['what_update_titles'] . '</li>
-                                  <li>' . $lang_util_php['what_delete_title'] . '</li>
-                                  <li>' . $lang_util_php['what_rebuild'] . '</li>
-                                  <li>' . $lang_util_php['what_delete_originals'] . '</li>
-                                </ul>
+                                <ul style="margin-top:0px;margin-bottom:0px;list-style-type:square">';
+        foreach($lang_util_desc_php as $value) {
+        echo "<li>$value</li>\n";
+        }
+        echo '                        </ul>
                           </td>
                         <td class="tableb"><b>' . $lang_util_php['instruction'] . '</b>:<br />
                                 (1) ' . $lang_util_php['instruction_action'] . '<br />
@@ -512,8 +511,6 @@ function refresh_db()
 EOT;
         }
 }
-
-//echo 'Util.mod 1.4 - Created by David Alberg Holm';
 pagefooter();
 ob_end_flush();
 ?>
