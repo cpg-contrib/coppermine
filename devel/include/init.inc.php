@@ -250,7 +250,7 @@ mysql_free_result($results);
 
 
 // Include logger functions
-include_once('logger.inc.php');
+include_once('include/logger.inc.php');
 
 
 require 'include/media.functions.inc.php';
