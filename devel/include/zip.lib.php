@@ -1,4 +1,20 @@
-<?
+<?php
+// ------------------------------------------------------------------------- //
+// Coppermine Photo Gallery 1.4.0                                            //
+// ------------------------------------------------------------------------- //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
+// http://www.chezgreg.net/coppermine/                                       //
+// ------------------------------------------------------------------------- //
+// Updated by the Coppermine Dev Team                                        //
+// see /docs/credits.html for details                                        //
+// ------------------------------------------------------------------------- //
+// This program is free software; you can redistribute it and/or modify      //
+// it under the terms of the GNU General Public License as published by      //
+// the Free Software Foundation; either version 2 of the License, or         //
+// (at your option) any later version.                                       //
+// ------------------------------------------------------------------------- //
+// $Id$
+// ------------------------------------------------------------------------- //
 
 // Created by bouchon
 // http://dev.maxg.info
@@ -60,25 +76,25 @@ class zip
     pack('V', strlen($ctrldir)) . pack('V', strlen($data)) . "\x00\x00";
  }
 
- function add_dir($name) 
- { 
-   $name = str_replace("\\", "/", $name); 
-   $fr = "\x50\x4b\x03\x04\x0a\x00\x00\x00\x00\x00\x00\x00\x00\x00"; 
+ function add_dir($name)
+ {
+   $name = str_replace("\\", "/", $name);
+   $fr = "\x50\x4b\x03\x04\x0a\x00\x00\x00\x00\x00\x00\x00\x00\x00";
 
-   $fr .= pack("V",0).pack("V",0).pack("V",0).pack("v", strlen($name) ); 
-   $fr .= pack("v", 0 ).$name.pack("V", 0).pack("V", 0).pack("V", 0); 
+   $fr .= pack("V",0).pack("V",0).pack("V",0).pack("v", strlen($name) );
+   $fr .= pack("v", 0 ).$name.pack("V", 0).pack("V", 0).pack("V", 0);
    $this -> datasec[] = $fr;
 
-   $new_offset = strlen(implode("", $this->datasec)); 
+   $new_offset = strlen(implode("", $this->datasec));
 
-   $cdrec = "\x50\x4b\x01\x02\x00\x00\x0a\x00\x00\x00\x00\x00\x00\x00\x00\x00"; 
-   $cdrec .= pack("V",0).pack("V",0).pack("V",0).pack("v", strlen($name) ); 
-   $cdrec .= pack("v", 0 ).pack("v", 0 ).pack("v", 0 ).pack("v", 0 ); 
-   $ext = "\xff\xff\xff\xff"; 
-   $cdrec .= pack("V", 16 ).pack("V", $this -> old_offset ).$name; 
+   $cdrec = "\x50\x4b\x01\x02\x00\x00\x0a\x00\x00\x00\x00\x00\x00\x00\x00\x00";
+   $cdrec .= pack("V",0).pack("V",0).pack("V",0).pack("v", strlen($name) );
+   $cdrec .= pack("v", 0 ).pack("v", 0 ).pack("v", 0 ).pack("v", 0 );
+   $ext = "\xff\xff\xff\xff";
+   $cdrec .= pack("V", 16 ).pack("V", $this -> old_offset ).$name;
 
-   $this -> ctrl_dir[] = $cdrec; 
-   $this -> old_offset = $new_offset; 
+   $this -> ctrl_dir[] = $cdrec;
+   $this -> old_offset = $new_offset;
    $this -> dirs[] = $name;
  }
 
@@ -131,7 +147,7 @@ class zip
      $timearray['mday'] = 1; $timearray['hours'] = 0;
      $timearray['minutes'] = 0; $timearray['seconds'] = 0;
    }
-   return (($timearray['year'] - 1980) << 25) | ($timearray['mon'] << 21) |     ($timearray['mday'] << 16) | ($timearray['hours'] << 11) | 
+   return (($timearray['year'] - 1980) << 25) | ($timearray['mon'] << 21) |     ($timearray['mday'] << 16) | ($timearray['hours'] << 11) |
     ($timearray['minutes'] << 5) | ($timearray['seconds'] >> 1);
  }
 
@@ -157,7 +173,7 @@ class zip
      @rewind($zip); fseek($zip, $header['offset']);
      if(in_array("-1",$index)||in_array($i,$index))
       $stat[$header['filename']]=$this->ExtractFile($header, $to, $zip);
-      
+
    }
    fclose($zip);
    return $stat;
