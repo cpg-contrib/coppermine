@@ -1550,6 +1550,7 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'coppermine_version' => 'cpg version',
   'file_version' => 'file version',
   'writable' => 'writable',
+  'help' => 'Help',
   'help_file_not_exist_optional1' => 'file/folder does not exist',
   'help_file_not_exist_optional2' => 'The file/folder %s has not been found on your server. Although it is optional you should upload it (using your FTP client) to your webserver if you are experiencing problems.',
   'help_file_not_exist_mandatory1' => 'file/folder does not exist',
@@ -1562,6 +1563,8 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'help_local_version_na2' => 'The script could not determine what cvs version the file on your webserver is. You should upload the file from your package.',
   'help_local_version_dev1' => 'Development version',
   'help_local_version_dev2' => 'The file on your webserver seems to be newer than your Coppermine version. You are either using a development file (you should only do so if you know what you are doing), or you have upgraded your Coppermine install and not uploaded include/init.inc.php',
+  'your_file' => 'your file',
+  'reference_file' => 'reference file',
 );
 
 // ------------------------------------------------------------------------- //
