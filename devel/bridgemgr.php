@@ -357,7 +357,7 @@ return $return;
 ///////////// function defintions end /////////////////////////////
 
 
-if (TRUE) { // gallery admin mode --- start
+if (GALLERY_ADMIN_MODE) { // gallery admin mode --- start
 
 // define the var array
 
@@ -398,6 +398,8 @@ $default_bridge_data['phpbb'] = array(
   'relative_path_to_config_file_used' => 'lookfor,config.php',
   'use_post_based_groups_default' => '0',
   'use_post_based_groups_used' => 'radio,1,0',
+   'cookie_prefix_default' => 'phpbb2mysql', 	 
+   'cookie_prefix_used' => 'cookie',  
 );
 
 // status: bridge ok, manager unknown
@@ -1023,6 +1025,17 @@ case "finalize":
 		if ($CONFIG['bridge_enable']){
 			if (!isset($cpg_udb)) include 'bridge/' . $BRIDGE['short_name'] . '.inc.php';
 			$cpg_udb->synchronize_groups();
+		} else {
+			// ok, then restore group table
+			cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1");
+			cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+			VALUES (1, 'Administrators', 0, 1, 1, 1, 1, 1, 1, 0, 0, 3, 0, 5, 3)");
+			cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+			VALUES (2, 'Registered', 1024, 0, 1, 1, 1, 1, 1, 1, 0, 3, 0, 5, 3)");
+			cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+			VALUES (3, 'Anonymous', 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
+			cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+			VALUES (4, 'Banned', 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
 		}
         print '<form name="'.$step.'" action="'.$_SERVER['PHP_SELF'].'" method="post">';
         echo <<<EOT
