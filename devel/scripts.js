@@ -27,53 +27,129 @@ function readCookie(cookieName){
 
 function blocking(nr, cookie, vis_state)
 {
-	if (document.layers)
-	{
-		current = (document.layers[nr].display == 'none') ? vis_state : 'none';
-		if (cookie != '')
-			writeCookie(nr, current);
-		document.layers[nr].display = current;
-	}
-	else if (document.all)
-	{
-		current = (document.all[nr].style.display == 'none') ? vis_state : 'none';
-		if (cookie != '')
-			writeCookie(nr, current);
-		document.all[nr].style.display = current;
-	}
-	else if (document.getElementById)
-	{
-		display = (document.getElementById(nr).style.display == 'none') ? vis_state : 'none';
-		if (cookie != '')
-			writeCookie(nr, display);
-		document.getElementById(nr).style.display = display;
-	}
+        if (document.layers)
+        {
+                current = (document.layers[nr].display == 'none') ? vis_state : 'none';
+                if (cookie != '')
+                        writeCookie(nr, current);
+                document.layers[nr].display = current;
+        }
+        else if (document.all)
+        {
+                current = (document.all[nr].style.display == 'none') ? vis_state : 'none';
+                if (cookie != '')
+                        writeCookie(nr, current);
+                document.all[nr].style.display = current;
+        }
+        else if (document.getElementById)
+        {
+                display = (document.getElementById(nr).style.display == 'none') ? vis_state : 'none';
+                if (cookie != '')
+                        writeCookie(nr, display);
+                document.getElementById(nr).style.display = display;
+        }
 }
 
 
 function adjust_popup()
 {
-	var w, h, fixedW, fixedH, diffW, diffH;
-	
-	if (document.all) {
-		fixedW = document.body.clientWidth;
-		fixedH = document.body.clientHeight;
-		window.resizeTo(fixedW, fixedH);
-		diffW = fixedW - document.body.clientWidth;
-		diffH = fixedH - document.body.clientHeight;
-	} else {
-		fixedW = window.innerWidth;
-		fixedH = window.innerHeight;
-		window.resizeTo(fixedW, fixedH);
-		diffW = fixedW - window.innerWidth;
-		diffH = fixedH - window.innerHeight;
-	}
-	w = fixedW + diffW;
-	h = fixedH + diffH;
-	if (h >= screen.availHeight) w += 16;
-	if (w >= screen.availWidth)  h += 16;
-	w = Math.min(w,screen.availWidth);
-	h = Math.min(h,screen.availHeight);
-	window.resizeTo(w,h);
-	window.moveTo((screen.availWidth-w)/2, (screen.availHeight-h)/2);
+        var w, h, fixedW, fixedH, diffW, diffH;
+
+        if (document.all) {
+                fixedW = document.body.clientWidth;
+                fixedH = document.body.clientHeight;
+                window.resizeTo(fixedW, fixedH);
+                diffW = fixedW - document.body.clientWidth;
+                diffH = fixedH - document.body.clientHeight;
+        } else {
+                fixedW = window.innerWidth;
+                fixedH = window.innerHeight;
+                window.resizeTo(fixedW, fixedH);
+                diffW = fixedW - window.innerWidth;
+                diffH = fixedH - window.innerHeight;
+        }
+        w = fixedW + diffW;
+        h = fixedH + diffH;
+        if (h >= screen.availHeight) w += 16;
+        if (w >= screen.availWidth)  h += 16;
+        w = Math.min(w,screen.availWidth);
+        h = Math.min(h,screen.availHeight);
+        window.resizeTo(w,h);
+        window.moveTo((screen.availWidth-w)/2, (screen.availHeight-h)/2);
 }
+
+
+
+
+
+
+
+
+
+
+///////////////////////////////////
+function clickIE4(){
+if (event.button==2){
+//alert(message);
+return false;
+}
+}
+
+function clickNS4(e){
+if (document.layers||document.getElementById&&!document.all){
+if (e.which==2||e.which==3){
+//alert(message);
+return false;
+}
+}
+}
+
+if (document.layers){
+document.captureEvents(Event.MOUSEDOWN);
+document.onmousedown=clickNS4;
+}
+else if (document.all&&!document.getElementById){
+document.onmousedown=clickIE4;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function disableselect(e){
+return false
+}
+
+function reEnable(){
+return true
+}
+
+
+
+
+
+
+
+function onKeyDown() {
+ // current pressed key
+ var pressedKey = String.fromCharCode(event.keyCode).toLowerCase();
+ //"n" and "s" can be modified
+ if (event.ctrlKey && (pressedKey == "n" ||
+                        pressedKey == "s" ||
+                        event.keyCode == "104")) {
+   // disable key press porcessing
+   event.returnValue = false;
+   //alert if required using alert("Cant use Ctrl + n")
+ }
+
+} // onKeyDown

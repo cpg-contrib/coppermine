@@ -233,17 +233,17 @@ function html_picinfo()
         }
 
         if ($CURRENT_PIC_DATA['keywords'] != ""){
-			$info[$lang_picinfo['Keywords']]   = '<span class="alblink">'.preg_replace("/(\S+)/","<a href=\"thumbnails.php?album=search&search=\\1\">\\1</a>" , $CURRENT_PIC_DATA['keywords']).'</span>';
-		}	
+                        $info[$lang_picinfo['Keywords']]   = '<span class="alblink">'.preg_replace("/(\S+)/","<a href=\"thumbnails.php?album=search&search=\\1\">\\1</a>" , $CURRENT_PIC_DATA['keywords']).'</span>';
+                }
 
         for ($i =1; $i<= 4; $i++){
-      		if ($CONFIG['user_field'.$i.'_name']) {
-          		if($CURRENT_PIC_DATA['user'.$i] != ""){
-            		$info[$CONFIG['user_field'.$i.'_name']] = make_clickable($CURRENT_PIC_DATA['user'.$i]);
-         		}
-      		}
-   		} 
-   
+                      if ($CONFIG['user_field'.$i.'_name']) {
+                          if($CURRENT_PIC_DATA['user'.$i] != ""){
+                            $info[$CONFIG['user_field'.$i.'_name']] = make_clickable($CURRENT_PIC_DATA['user'.$i]);
+                         }
+                      }
+                   }
+
 
         $info[$lang_picinfo['File Size']]  = ($CURRENT_PIC_DATA['filesize'] > 10240 ? ($CURRENT_PIC_DATA['filesize'] >> 10).' '.$lang_byte_units[1] : $CURRENT_PIC_DATA['filesize'].' '.$lang_byte_units[0]);
         $info[$lang_picinfo['Dimensions']] = sprintf($lang_display_image_php['size'], $CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight']);
@@ -264,7 +264,7 @@ function html_picinfo()
 
         //Create the absolute URL for display in info
         $info['URL']='<a href='.$CONFIG["ecards_more_pic_target"].$_SERVER["SCRIPT_NAME"]."?pos=-$CURRENT_PIC_DATA[pid]".' >'.$CONFIG["ecards_more_pic_target"].$_SERVER["SCRIPT_NAME"]."?pos=-$CURRENT_PIC_DATA[pid]".'</a>';
-		//with subdomains the variable is $_SERVER["SERVER_NAME"] does not return the right value instead of using a new config variable I reused $CONFIG["ecards_more_pic_target"] no trailing slash in the configure
+                //with subdomains the variable is $_SERVER["SERVER_NAME"] does not return the right value instead of using a new config variable I reused $CONFIG["ecards_more_pic_target"] no trailing slash in the configure
 
         //Create the add to fav link
         if(!in_array($CURRENT_PIC_DATA['pid'],$FAVPICS)){
@@ -313,7 +313,7 @@ function html_comments($pid)
                         $comment_body = make_clickable($row['msg_body']);
                         $smilies = '';
                 }
-				
+
                 $params = array(
                         '{EDIT}' => &$comment_edit_box,
                         '{BUTTONS}' => &$comment_buttons,
@@ -384,14 +384,34 @@ function display_fullsize_pic()
 <head>
 <title><?php echo $CONFIG['gallery_name'] ?>: <?php echo $lang_fullsize_popup['click_to_close']; ?></title>
 <meta http-equiv="Content-Type" content="text/html; charset=<?php echo $CONFIG['charset'] ?>" />
-<meta http-equiv="imagetoolbar" content="no">
+<?php if ($CONFIG['disable_popup_rightclick'] == 1){print '<meta http-equiv="imagetoolbar" content="no" />';} ?>
 <link rel="stylesheet" href="<?php echo $THEME_DIR ?>style.css" />
 <script type="text/javascript" src="scripts.js"></script>
 </head>
-<body scroll="auto">
+<body scroll="auto" <?php if ($CONFIG['disable_popup_rightclick'] == 1){print 'onkeydown = "onKeyDown()"';} ?>>
 <script language="JavaScript" type="text/JavaScript">
 adjust_popup();
 </script>
+<?php if ($CONFIG['disable_popup_rightclick'] == 1)
+{
+print <<<EOT
+<script language="JavaScript" type="text/javascript">
+<!--
+document.oncontextmenu=new Function("return false")
+
+//if IE4+
+document.onselectstart=new Function ("return false")
+
+//if NS6
+if (window.sidebar){
+document.onmousedown=disableselect
+document.onclick=reEnable
+}
+-->
+</script>
+EOT;
+}
+?>
 <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="2">
  <td align="center" valign="middle">
   <table cellspacing="2" cellpadding="0" style="border: 1px solid #000000; background-color: #FFFFFF;">

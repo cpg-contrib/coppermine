@@ -406,6 +406,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('The prefix for thumbnails <b>*</b>', 'thumb_pfx', 0),
         array('Default mode for directories', 'default_dir_mode', 0),
         array('Default mode for pictures', 'default_file_mode', 0),
+        array('Disable right-click on full-size pop-up (JavaScript - no foolproof method)', 'disable_popup_rightclick', 1),
+        array('Disable right-click on all &quot;regular&quot; pages (JavaScript - no foolproof method)', 'disable_gallery_rightclick', 1),
 
         'Cookies &amp; Charset settings',
         array('Name of the cookie used by the script', 'cookie_name', 0),
