@@ -30,9 +30,9 @@ if (USER_ID) cpg_die(ERROR, $lang_forgot_passwd_php['err_already_logged_in'], __
 $lookup_failed = '';
 
 if (isset($_POST['email'])) {
-	$emailaddress = addslashes($_POST['email']);
-	
-	$sql = "SELECT user_group,user_active,user_name, user_password, user_email  FROM {$CONFIG['TABLE_USERS']} WHERE user_email = '$emailaddress' AND user_active = 'YES'";
+        $emailaddress = addslashes($_POST['email']);
+
+        $sql = "SELECT user_group,user_active,user_name, user_password, user_email  FROM {$CONFIG['TABLE_USERS']} WHERE user_email = '$emailaddress' AND user_active = 'YES'";
 
     $results = cpg_db_query($sql);
     if (mysql_num_rows($results))
@@ -48,17 +48,17 @@ if (isset($_POST['email'])) {
           }
         }
 
-		$USER_DATA['user_password'] = $cpg_udb->make_password();
+                $USER_DATA['user_password'] = $cpg_udb->make_password();
 
-		// send the email
+                // send the email
         if (!cpg_mail($USER_DATA['user_email'], sprintf($lang_forgot_passwd_php['passwd_reminder_subject'], $CONFIG['gallery_name']), sprintf($lang_forgot_passwd_php['passwd_reminder_body'], $USER_DATA['user_name'],$USER_DATA['user_password'],  $CONFIG['ecards_more_pic_target'].(substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') .'login.php' ))){
             cpg_die(CRITICAL_ERROR, $lang_forgot_passwd_php['failed_sending_email'], __FILE__, __LINE__);
         }
 
-   		$sql =  "update {$cpg_udb->usertable} set ";
-   		$sql .= "{$cpg_udb->field['password']}='".md5($USER_DATA['user_password'])."' ";
-   		$sql .= "where {$cpg_udb->field['email']}='{$USER_DATA['user_email']}'";
-   		cpg_db_query($sql);
+                   $sql =  "update {$cpg_udb->usertable} set ";
+                   $sql .= "{$cpg_udb->field['password']}='".md5($USER_DATA['user_password'])."' ";
+                   $sql .= "where {$cpg_udb->field['email']}='{$USER_DATA['user_email']}'";
+                   cpg_db_query($sql);
 
 
         // output the message
@@ -96,7 +96,7 @@ echo <<< EOT
                   <tr>
                         <td colspan="2" align="center" class="tablef"><script language="javascript" type="text/javascript">
                         <!--
-                        document.passwordreminder.username.focus();
+                        document.passwordreminder.email.focus();
                         -->
                         </script>
                                                 <input name="submitted" type="submit" class="button" value="{$lang_forgot_passwd_php['submit']}" /></td>
