@@ -99,7 +99,7 @@ echo <<< EOT
                   <tr>
                     <form action="login.php?referer=$referer" method="post" name="loginbox">
                         <td class="tableb" width="40%">{$lang_login_php['username']}</td>
-                        <td class="tableb" width="60%"><input type="text" class="textinput" name="username" style="width: 100%" /></td>
+                        <td class="tableb" width="60%"><input type="text" class="textinput" name="username" style="width: 100%" tabindex="1" /></td>
                         <script language="javascript" type="text/javascript">
                         <!--
                         document.loginbox.username.focus();
@@ -108,14 +108,14 @@ echo <<< EOT
                   </tr>
                   <tr>
                           <td class="tableb">{$lang_login_php['password']}</td>
-                        <td class="tableb"><input type="password" class="textinput" name="password" style="width: 100%" /></td>
+                        <td class="tableb"><input type="password" class="textinput" name="password" style="width: 100%" tabindex="2" /></td>
                   </tr>
                   <tr>
-                    <td colspan="2" align="center" class="tableb">{$lang_login_php['remember_me']} <input name="remember_me" type="checkbox" class="checkbox" value="1"></td>
+                    <td colspan="2" align="center" class="tableb">{$lang_login_php['remember_me']} <input name="remember_me" type="checkbox" class="checkbox" value="1" tabindex="3" /></td>
                   </tr>
                   <tr>
                     <td align="center" class="tablef"><a href="forgot_passwd.php" class="topmenu">{$lang_login_php['forgot_password_link']}</a></td>
-                    <td align="left" class="tablef"><input name="submitted" type="submit" class="button" value="{$lang_login_php['login']}"></td>
+                    <td align="left" class="tablef"><input name="submitted" type="submit" class="button" value="{$lang_login_php['login']}" tabindex="4" /></td>
                     </form>
                   </tr>
 
