@@ -100,6 +100,7 @@ echo $cal->getMonthView($month, $year);
 <div align="center"><a href="javascript:window.close()" class="admin_menu"><?php print $lang_calendar_php['close']; ?></a> <a href="#" onclick="sendDate('', '', '');" class="admin_menu"><?php print $lang_calendar_php['clear_date']; ?></a></div>
 <br />
 </body>
+</html>
 <?php
 } // end action=banning
 
