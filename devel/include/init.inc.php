@@ -356,6 +356,10 @@ if (isset($USER['lang']) && !strstr($USER['lang'], '/') && file_exists('lang/' .
     unset($USER['lang']);
 }
 
+if (isset($CONFIG['default_lang']) && ($CONFIG['default_lang']==$CONFIG['lang'])) {
+        unset($CONFIG['default_lang']);
+}
+
 if (!file_exists("lang/{$CONFIG['lang']}.php")) $CONFIG['lang'] = 'english';
 require "lang/{$CONFIG['lang']}.php";
 // See if the fav cookie is set else set it

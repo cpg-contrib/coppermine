@@ -1252,7 +1252,8 @@ function& cpg_get_default_lang_var($language_var_name,$overide_language = null) 
                 if (isset($CONFIG['default_lang'])) {
                         $language = $CONFIG['default_lang'];
                 } else {
-                       	$language = $CONFIG['lang'];
+                       	global $$language_var_name;
+                       	return $$language_var_name;
                 }
         } else {
                	$language = $overide_language;
