@@ -91,7 +91,8 @@ echo <<< EOT
                     <td colspan="2" align="center" class="tableb">{$lang_login_php['remember_me']} <input name="remember_me" type="checkbox" class="checkbox" value="1"></td>
                   </tr>
                   <tr>
-                    <td colspan="2" align="center" class="tablef"><input name="submitted" type="submit" class="button" value="{$lang_login_php['login']}"></td>
+                    <td align="center" class="tablef"><a href="forgot_passwd.php" class="topmenu">{$lang_login_php['forgot_password_link']}</a></td>
+                    <td align="left" class="tablef"><input name="submitted" type="submit" class="button" value="{$lang_login_php['login']}"></td>
                     </form>
                   </tr>
 

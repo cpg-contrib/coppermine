@@ -192,6 +192,25 @@ $lang_rate_pic = array(
 // void
 
 // ------------------------------------------------------------------------- //
+// File forgot_passwd.php
+// ------------------------------------------------------------------------- //
+
+if (defined('FORGOT_PASSWD_PHP')) $lang_forgot_passwd_php = array(
+        'forgot_passwd' => 'Password reminder',
+        'err_already_logged_in' => 'You are already logged in !',
+        'enter_username_email' => 'Enter your username or email address',
+        'submit' => 'go',
+        'failed_sending_email' => 'The password reminder email can\'t be send !',
+        'email_sent' => 'An email with your username and password was sent to %s',
+        'err_unk_user' => 'Selected user does not exist!',
+        'passwd_reminder_subject' => '%s - Password reminder',
+        'passwd_reminder_body' => 'You have requested to be reminded on your login data:
+Username: %s
+Password: %s
+Click %s to log in.',
+);
+
+// ------------------------------------------------------------------------- //
 // File include/functions.inc.php
 // ------------------------------------------------------------------------- //
 
