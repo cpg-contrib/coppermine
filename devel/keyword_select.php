@@ -40,7 +40,7 @@ if (!USER_CAN_UPLOAD_PICTURES) {
 $query = "SELECT * FROM {$CONFIG['TABLE_PREFIX']}dict ORDER BY keyword";
 $result = cpg_db_query($query);
 while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
-    $keywordIds[] = $row["keywordId"];
+    $keywordIds[] = $row["keyId"];
     $keywords[]   = $row["keyword"];
 }
 
@@ -89,28 +89,28 @@ if ($total > 0) {
     <form name="form" name="keywordform">
     <table align="center">
     <tr>
-        <td align="center"><select name="keyword" size="15" onChange="CM_select(this)">";
+        <td align="center"><select name="keyword" size="15" onChange="CM_select(this)">';
 
         foreach ($keywords as $keyword) {
-            $form.= '<option value="$keyword">$keyword</option>';
+            $form.= '<option value="'.$keyword.'">'.$keyword.'</option>';
         }
     $form .= '
             </select>
         </td>
     </tr>
     <tr>
-        <td align="center"><a href="#" onClick="window.close()">{$lang_upload_php['close']}</a></td>
+        <td align="center"><a href="#" onClick="window.close()">'.$lang_upload_php['close'].'</a></td>
     </tr>
     </table>
     </form>';
 } else {
-    echo '<b>{$lang_upload_php['no_keywords']}</b>';
+    echo '<b>'.$lang_upload_php['no_keywords'].'</b>';
 }
 print($form);
 endtable();
 
 if (GALLERY_ADMIN_MODE) {
-        echo '<center><a href="keyword_create_dict.php">{$lang_upload_php['regenerate_dictionary']}</a></center>';
+        echo '<center><a href="keyword_create_dict.php">'.$lang_upload_php['regenerate_dictionary'].'</a></center>';
 }
 ?>
 </body>
