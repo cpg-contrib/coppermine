@@ -207,6 +207,8 @@ Added option to sort comments ascending or descending - 08 November 2004, GauGau
 Changed help pop-up to so can be read when body dark colour - 09 November 2004, Casper
 Removed admin/user mode toggle for non-admins - 16 November 2004, GauGau
 Added IPB 2.0 bridge file (user contribution) - 19 November 2004, GauGau
+Added ability to hide ecard button when user can't send - 19 November 2004, TranzNDance
+Added report to admin/mod function for files and comments - 20 November 2004, TranzNDance
 Added code to check/add trailing slash to ecards_more_pic_target in config.php - 26 November 2004, kegobeer
 Added file renaming option - 28 November 2004, Nibbler
 Added ability for users to edit their pics after upload - 28 November 2004, Nibbler
@@ -217,3 +219,4 @@ Added server relocation script - 10 December 2004, kegobeer
 Changed coppermine version from cpg1.4.0 alpha to cpg1.4.1 beta - 12 December 2004, GauGau
 Added admin option "Allow unlogged users (guest or anonymous) access" - 12 December 2004, GauGau
 Added Basque language (user contribution) - 14 December 2004, GauGau
+Added ability to preview and edit ecard before sending - 15 December 2004, TranzNDance
