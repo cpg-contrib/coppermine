@@ -165,7 +165,7 @@ switch ($event) {
         $comments = $HTTP_POST_VARS['comments'] == 'YES' ? 'YES' : 'NO';
         $votes = $HTTP_POST_VARS['votes'] == 'YES' ? 'YES' : 'NO';
         $password = $HTTP_POST_VARS['alb_password'];
-		$password_hint = addslashes(trim($HTTP_POST_VARS['alb_password_hint']));
+                $password_hint = addslashes(trim($HTTP_POST_VARS['alb_password_hint']));
         $visibility = !empty($password) ? FIRST_USER_CAT + USER_ID : $visibility;
 
         if (!$title) cpg_die(ERROR, $lang_db_input_php['alb_need_title'], __FILE__, __LINE__);
@@ -183,6 +183,62 @@ switch ($event) {
         }
 
         if (!mysql_affected_rows()) cpg_die(INFORMATION, $lang_db_input_php['no_udp_needed'], __FILE__, __LINE__);
+        if ($CONFIG['debug_mode'] == 0) {
+            pageheader($lang_db_input_php['alb_updated'], "<META http-equiv=\"refresh\" content=\"1;url=modifyalb.php?album=$aid\">");
+        }
+        msg_box($lang_db_input_php['info'], $lang_db_input_php['alb_updated'], $lang_continue, "modifyalb.php?album=$aid");
+        pagefooter();
+        ob_end_flush();
+        exit;
+        break;
+
+    // Reset album
+
+    case 'album_reset':
+        if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
+
+        $counter_affected_rows = 0;
+        $aid = (int)$HTTP_POST_VARS['aid'];
+        $reset_views = (int)($HTTP_POST_VARS['reset_views']);
+        $reset_rating = (int)$HTTP_POST_VARS['reset_rating'];
+        $delete_comments = (int)($HTTP_POST_VARS['delete_comments']);
+        $delete_files = (int)$HTTP_POST_VARS['delete_files'];
+
+        if ($reset_views) { // if reset_views start
+            $query = "UPDATE {$CONFIG['TABLE_PICTURES']} SET hits='0' WHERE aid='$aid'";
+                $update = db_query($query);
+            if (isset($CONFIG['debug_mode']) && ($CONFIG['debug_mode'] == 1)) {
+                $queries[] = $query;
+            }
+            if (mysql_affected_rows()) {
+                $counter_affected_rows++;
+            }
+        } // if reset_views end
+
+        if ($reset_rating) { // if reset_rating start
+            $query = "UPDATE {$CONFIG['TABLE_PICTURES']} SET  pic_rating='0',  votes='0' WHERE aid='$aid'";
+                $update = db_query($query);
+            if (isset($CONFIG['debug_mode']) && ($CONFIG['debug_mode'] == 1)) {
+                $queries[] = $query;
+            }
+            if (mysql_affected_rows()) {
+                $counter_affected_rows++;
+            }
+        } // if reset_rating end
+
+        if ($delete_files) { // if delete_files start
+            $query = "DELETE FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$aid'";
+                $update = db_query($query);
+            if (isset($CONFIG['debug_mode']) && ($CONFIG['debug_mode'] == 1)) {
+                $queries[] = $query;
+            }
+            if (mysql_affected_rows()) {
+                $counter_affected_rows++;
+            }
+        } // if delete_files end
+
+
+        if ($counter_affected_rows == 0) cpg_die(INFORMATION, $lang_db_input_php['no_udp_needed'], __FILE__, __LINE__);
         if ($CONFIG['debug_mode'] == 0) {
             pageheader($lang_db_input_php['alb_updated'], "<META http-equiv=\"refresh\" content=\"1;url=modifyalb.php?album=$aid\">");
         }

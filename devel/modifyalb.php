@@ -211,6 +211,7 @@ EOT;
 
     echo <<<EOT
 <script language="JavaScript" type="text/JavaScript">
+<!--
 var Pic = new Array()
 
 Pic[0] = '$initial_thumb_url'
@@ -230,6 +231,32 @@ function ChangeThumb(index)
 {
         document.images.Thumb.src = Pic[index]
 }
+
+var checkobj
+
+function agreesubmit(el){
+    checkobj=el
+    if (document.all||document.getElementById){
+        for (i=0;i<checkobj.form.length;i++){  //hunt down submit button
+            var tempobj=checkobj.form.elements[i]
+            if(tempobj.type.toLowerCase()=="submit")
+                tempobj.disabled=!checkobj.checked
+        }
+    }
+}
+
+function defaultagree(el){
+    if (!document.all&&!document.getElementById){
+        if (window.checkobj&&checkobj.checked)
+            return true
+        else{
+            alert("{$lang_modifyalb_php['reset_views_confirm']}")
+            return false
+        }
+    }
+}
+
+-->
 </script>
 
 EOT;
@@ -444,6 +471,9 @@ if (!GALLERY_ADMIN_MODE && $ALBUM_DATA['category'] != FIRST_USER_CAT + USER_ID) 
     cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 }
 
+
+//////////// main code start ///////////////////
+
 pageheader(sprintf($lang_modifyalb_php['upd_alb_n'], $ALBUM_DATA['title']));
 starttable("100%");
 
@@ -460,7 +490,7 @@ echo <<<EOT
                 </table>
                 </td>
         </tr>
-        <form method="post" action="db_input.php">
+        <form method="post" name="modifyalbum" action="db_input.php">
         <input type="hidden" name="event" value="album_update">
         <input type="hidden" name="aid" value="$album">
 
@@ -483,13 +513,90 @@ echo <<<EOT
 </tr>
 <tr>
         <td colspan="2" align="center" class="tablef">
-        <input type="submit" class="button" value="{$lang_modifyalb_php['update']}">
+        <input type="submit" class="button" value="{$lang_modifyalb_php['update']}" />
         </td>
         </form>
 </tr>
 EOT;
 
 endtable();
+
+if (GALLERY_ADMIN_MODE) {
+    // get the album stats
+    $result = db_query("SELECT SUM(hits) FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$album'");
+    $nbEnr = mysql_fetch_array($result);
+    $hits = $nbEnr[0];
+    if (!$hits) { $hits = 0; }
+    mysql_free_result($result);
+    $result = db_query("SELECT SUM(votes) FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' AND votes > 0");
+    $nbEnr = mysql_fetch_array($result);
+    $votes = $nbEnr[0];
+    if (!$votes) { $votes = 0; }
+    mysql_free_result($result);
+    $result = db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$album'");
+    $nbEnr = mysql_fetch_array($result);
+    $files = $nbEnr[0];
+    if (!$files) { $files = 0; }
+    mysql_free_result($result);
+
+    echo <<<EOT
+    <br />
+    <form action="db_input.php" method="post" name="reset_views_form" onSubmit="return defaultagree(this)">
+    <input type="hidden" name="event" value="album_reset">
+    <input type="hidden" name="aid" value="$album">
+EOT;
+// set up the translation strings
+$translation_reset_views = sprintf($lang_modifyalb_php['reset_views'], '&quot;'.$ALBUM_DATA['title'].'&quot;');
+$translation_reset_rating = sprintf($lang_modifyalb_php['reset_rating'], '&quot;'.$ALBUM_DATA['title'].'&quot;');
+$translation_delete_comments = sprintf($lang_modifyalb_php['delete_comments'], '&quot;'.$ALBUM_DATA['title'].'&quot;');
+$translation_delete_files = sprintf($lang_modifyalb_php['delete_files'], '<span style="color:red;font-weight:bold">', '</span>', '&quot;'.$ALBUM_DATA['title'].'&quot;');
+    starttable('100%',$lang_modifyalb_php['reset_album'], 2);
+    echo <<<EOT
+    <tr>
+            <td align="left" class="tableb">
+                <b>$hits</b> {$lang_modifyalb_php['views']}
+            </td>
+            <td align="left" class="tableb">
+                <input type="Checkbox" name="reset_views" id="reset_views" value="1" class="checkbox" /><label for="reset_views" class="clickable_option">$translation_reset_views</label>
+            </td>
+    </tr>
+    <tr>
+            <td align="left" class="tableb">
+                <b>$votes</b> {$lang_modifyalb_php['votes']}
+            </td>
+            <td align="left" class="tableb">
+                <input type="Checkbox" name="reset_rating" id="reset_rating" value="1" class="checkbox" /><label for="reset_rating" class="clickable_option">$translation_reset_rating</label>
+            </td>
+    </tr>
+    <!--not implemented yet
+    <tr>
+            <td align="left" class="tableb">
+                <b>$comments</b> {$lang_modifyalb_php['comments']}
+            </td>
+            <td align="left" class="tableb">
+                <input type="Checkbox" name="delete_comments" id="delete_comments" value="1" class="checkbox" /><label for="delete_comments" class="clickable_option">$translation_delete_comments</label>
+            </td>
+    </tr>
+    -->
+    <tr>
+            <td align="left" class="tableb">
+                <b>$files</b> {$lang_modifyalb_php['files']}
+            </td>
+            <td align="left" class="tableb">
+                <input type="Checkbox" name="delete_files" id="delete_files" value="1" class="checkbox" /><label for="delete_files" class="clickable_option">$translation_delete_files</label>
+            </td>
+    </tr>
+    <tr>
+            <td class="tablef" colspan="2" align="center" valign="bottom">
+                <input type="submit" class="button" value="{$lang_modifyalb_php['submit_reset']}" disabled="disabled" />
+                <input name="agreecheck" type="checkbox" onClick="agreesubmit(this)">{$lang_modifyalb_php['reset_views_confirm']}
+            </td>
+    </tr>
+EOT;
+    endtable();
+    print "</form>\n";
+}
+
 pagefooter();
 ob_end_flush();
 ?>
