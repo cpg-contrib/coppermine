@@ -62,27 +62,27 @@ if ($file_versions == 0) {$number_of_columns = $number_of_columns-2;}
 
 
 // check if the file is being included as a pop-up; return the stuff from showdoc if true
-if ($_REQUEST['pop']) { // pop-up start
-$header = $_REQUEST['h'];
-$text = $_REQUEST['t'];
-$add_stylesheet = $_REQUEST['css'];
-$style = $_REQUEST['style'];
-$close = $_REQUEST['close'];
-$base = $_REQUEST['base'];
+if (isset($_REQUEST['pop'])) { // pop-up start
+    $header = $_REQUEST['h'];
+    $text = $_REQUEST['t'];
+    $add_stylesheet = $_REQUEST['css'];
+    $style = $_REQUEST['style'];
+    $close = $_REQUEST['close'];
+    $base = $_REQUEST['base'];
 
-if ($base != '') {
-    // content of header and text have been base64-encoded - decode it now
-    $header = @unserialize(@base64_decode($header));
-    $text = @unserialize(@base64_decode($text));
-}
-if ($close != 1) {
-    $close_link = '<br />&nbsp;<br /><div align="center"><a href="#" class="admin_menu" onclick="window.close();">close</a><br />&nbsp;</div>';
-}
-if ($header) {
-    $string = "<html>\n<head>\n<title>".$header."</title>\n" . '<link rel="stylesheet" href="themes/'.$add_stylesheet.'/style.css" />' . "\n</head>\n<body>\n<h2>" . $header . "</h2>\n" . $text . "\n".$close_link."\n</body>\n</html>";
-}
-print $string;
-die;
+    if ($base != '') {
+        // content of header and text have been base64-encoded - decode it now
+        $header = @unserialize(@base64_decode($header));
+        $text = @unserialize(@base64_decode($text));
+    }
+    if ($close != 1) {
+        $close_link = '<br />&nbsp;<br /><div align="center"><a href="#" class="admin_menu" onclick="window.close();">close</a><br />&nbsp;</div>';
+    }
+    if ($header) {
+        $string = "<html>\n<head>\n<title>".$header."</title>\n" . '<link rel="stylesheet" href="themes/'.$add_stylesheet.'/style.css" />' . "\n</head>\n<body>\n<h2>" . $header . "</h2>\n" . $text . "\n".$close_link."\n</body>\n</html>";
+    }
+    print $string;
+    die;
 } // pop-up end
 
 // check if we're using a version older than cpg1.4.0, if yes use hard-coded language (english)
@@ -236,7 +236,7 @@ echo <<< EOT
 </style>
 EOT;
 
-if ($older_version && $additional_info != 0) {
+if (isset($older_version) && $additional_info != 0) {
     echo <<<EOT
     <tr>
     <td colspan="$number_of_columns" class="tableb">
@@ -813,7 +813,7 @@ if ($file_versions == 1) { //display file versions: start
             $counter_cvs_version_older++;
             $error_counter++;
         } elseif (cpg_version_compare($file_version_info['cvs_version']) == cpg_version_compare($repository_cvs[$file_complete_path])) {
-            print '<td class="tablegreen" align="right" title="'.$lang_versioncheck_php['you_file'].'">';
+            print '<td class="tablegreen" align="right" title="'.$lang_versioncheck_php['your_file'].'">';
             print $file_version_info['cvs_version'];
             print '</td>';
             print '<td class="tablegreen" align="left" title="'.$lang_versioncheck_php['reference_file'].'">';
@@ -887,12 +887,13 @@ return $return;
 
 function cpg_version_compare($version)
 {
-$version_info = explode ( '.', $version);
-for ($i=0;$i<count($version_info);$i++) {
-$power = @pow('100',count($version_info)-$i)*$version_info[$i];
-$return = $return + $power;
-}
-return $return;
+    $return = '';
+    $version_info = explode ( '.', $version);
+    for ($i=0;$i<count($version_info);$i++) {
+        $power = @pow('100',count($version_info)-$i)*$version_info[$i];
+        $return = $return + $power;
+    }
+    return $return;
 }
 
 function cpg_vc_help($helptitle='',$helpoutput='') {
@@ -1711,12 +1712,12 @@ $return = '
 1.4.0|albmgr.php|1.4.0|1.13|mandatory|r@
 1.4.0|anycontent.php|1.4.0|1.10|mandatory|r@
 1.4.0|banning.php|1.4.0|1.20|mandatory|r@
-1.4.0|bridgemgr.php|1.4.0|1.10|mandatory|r@
+1.4.0|bridgemgr.php|1.4.0|1.11|mandatory|r@
 1.4.0|calendar.php|1.4.0|1.2|mandatory|r@
 1.4.0|catmgr.php|1.4.0|1.22|mandatory|r@
 1.4.0|db_ecard.php|1.4.0|1.11|mandatory|r@
 1.4.0|db_input.php|1.4.0|1.38|mandatory|r@
-1.4.0|delete.php|1.4.0|1.15|mandatory|r@
+1.4.0|delete.php|1.4.0|1.17|mandatory|r@
 1.4.0|displayecard.php|1.4.0|1.9|mandatory|r@
 1.4.0|displayimage.php|1.4.0|1.65|mandatory|r@
 1.4.0|ecard.php|1.4.0|1.22|mandatory|r@
@@ -1726,10 +1727,10 @@ $return = '
 1.4.0|faq.php|1.4.0|1.5|mandatory|r@
 1.4.0|forgot_passwd.php|1.4.0|1.11|mandatory|r@
 1.4.0|getlang.php|1.4.0|1.8|mandatory|r@
-1.4.0|groupmgr.php|1.4.0|1.17|mandatory|r@
+1.4.0|groupmgr.php|1.4.0|1.19|mandatory|r@
 1.4.0|hitDetails.php|1.4.0|1.1|mandatory|r@
 1.4.0|image_processor.php|1.4.0|1.16|mandatory|r@
-1.4.0|index.php|1.4.0|1.67|mandatory|r@
+1.4.0|index.php|1.4.0|1.69|mandatory|r@
 1.4.0|install.php|1.4.0|1.25|mandatory|r@
 1.4.0|installer.css|1.4.0|1.5|mandatory|r@
 1.4.0|keyword_create_dict.php|1.4.0|1.3|mandatory|r@
@@ -1743,7 +1744,7 @@ $return = '
 1.4.0|picEditor.php|1.4.0|1.19|mandatory|r@
 1.4.0|picmgr.php|1.4.0|1.7|mandatory|r@
 1.4.0|pluginmgr.php|1.4.0|1.12|mandatory|r@
-1.4.0|profile.php|1.4.0|1.31|mandatory|r@
+1.4.0|profile.php|1.4.0|1.32|mandatory|r@
 1.4.0|ratepic.php|1.4.0|1.11|mandatory|r@
 1.4.0|register.php|1.4.0|1.19|mandatory|r@
 1.4.0|reviewcom.php|1.4.0|1.14|mandatory|r@
@@ -1754,14 +1755,14 @@ $return = '
 1.4.0|thumbnails.php|1.4.0|1.20|mandatory|r@
 1.4.0|update.php|1.4.0|1.16|mandatory|r@
 1.4.0|upgrade-1.0-to-1.2.php|1.4.0|1.7|mandatory|r@
-1.4.0|upload.php|1.4.0|1.56|mandatory|r@
-1.4.0|usermgr.php|1.4.0|1.26|mandatory|r@
+1.4.0|upload.php|1.4.0|1.59|mandatory|r@
+1.4.0|usermgr.php|1.4.0|1.28|mandatory|r@
 1.4.0|util.php|1.4.0|1.22|mandatory|r@
-1.4.0|versioncheck.php|1.4.0|1.28|mandatory|r@
+1.4.0|versioncheck.php|1.4.0|1.32|mandatory|r@
 1.4.0|viewlog.php|1.4.0|1.8|mandatory|r@
 1.4.0|voteDetails.php|1.4.0|1.1|mandatory|r@
-1.4.0|xp_publish.php|1.4.0|1.21|mandatory|r@
-1.4.0|zipdownload.php|1.4.0|1.7|mandatory|r@
+1.4.0|xp_publish.php|1.4.0|1.23|mandatory|r@
+1.4.0|zipdownload.php|1.4.0|1.8|mandatory|r@
 1.4.0|albums|||mandatory|w@
 1.4.0|albums/index.html||1.2|mandatory|w@
 1.4.0|albums/edit/index.html|||mandatory|w@
@@ -1790,27 +1791,27 @@ $return = '
 1.4.0|include/archive.php|1.4.0|1.3|mandatory|r@
 1.4.0|include/config.inc.php|||mandatory|r@
 1.4.0|include/crop.inc.php|1.4.0|1.11|mandatory|r@
-1.4.0|include/debugger.inc.php|1.4.0|1.1|mandatory|r@
+1.4.0|include/debugger.inc.php|1.4.0|1.2|mandatory|r@
 1.4.0|include/exif.php|1.4.0|1.3|mandatory|r@
 1.4.0|include/exif_php.inc.php|1.4.0|1.13|mandatory|r@
 1.4.0|include/exifReader.inc.php|1.4.0|1.5|mandatory|r@
-1.4.0|include/functions.inc.php|1.4.0|1.129|mandatory|r@
+1.4.0|include/functions.inc.php|1.4.0|1.131|mandatory|r@
 1.4.0|include/imageObjectGD.class.php|1.4.0|1.6|mandatory|r@
 1.4.0|include/imageObjectIM.class.php|1.4.0|1.6|mandatory|r@
 1.4.0|include/index.html|||mandatory|r@
-1.4.0|include/init.inc.php|1.4.0|1.68|mandatory|r@
+1.4.0|include/init.inc.php|1.4.0|1.70|mandatory|r@
 1.4.0|include/iptc.inc.php|1.4.0|1.6|mandatory|r@
-1.4.0|include/keyword.inc.php|1.4.0|1.3|mandatory|r@
-1.4.0|include/langfallback.inc.php|1.4.0|1.9|mandatory|r@
+1.4.0|include/keyword.inc.php|1.4.0|1.4|mandatory|r@
+1.4.0|include/langfallback.inc.php|1.4.0|1.11|mandatory|r@
 1.4.0|include/logger.inc.php|1.4.0|1.12|mandatory|r@
 1.4.0|include/mailer.inc.php|1.4.0|1.10|mandatory|r@
 1.4.0|include/media.functions.inc.php|1.4.0|1.9|mandatory|r@
-1.4.0|include/picmgmt.inc.php|1.4.0|1.26|mandatory|r@
+1.4.0|include/picmgmt.inc.php|1.4.0|1.27|mandatory|r@
 1.4.0|include/plugin_api.inc.php|1.4.0|1.11|mandatory|r@
 1.4.0|include/search.inc.php|1.4.0|1.11|mandatory|r@
 1.4.0|include/select_lang.inc.php|1.4.0|1.7|mandatory|r@
 1.4.0|include/slideshow.inc.php|1.4.0|1.10|mandatory|r@
-1.4.0|include/smilies.inc.php|1.4.0|1.10|mandatory|r@
+1.4.0|include/smilies.inc.php|1.4.0|1.11|mandatory|r@
 1.4.0|include/smtp.inc.php|1.4.0|1.2|mandatory|r@
 1.4.0|include/sql_parse.php|1.4.0|1.5|mandatory|r@
 1.4.0|include/zip.lib.php|1.4.0|1.2|mandatory|r@
@@ -1842,7 +1843,7 @@ $return = '
 1.4.0|lang/danish-utf-8.php|1.3.0|1.6|optional|r@
 1.4.0|lang/dutch.php|1.3.2|1.12|optional|r@
 1.4.0|lang/dutch-utf-8.php|1.3.2|1.12|optional|r@
-1.4.0|lang/english.php|1.4.0|1.195|mandatory|r@
+1.4.0|lang/english.php|1.4.0|1.203|mandatory|r@
 1.4.0|lang/english-utf-8.php|1.3.0|1.14|mandatory|r@
 1.4.0|lang/estonian.php|1.3.2|1.6|mandatory|r@
 1.4.0|lang/estonian-utf-8.php|1.3.2|1.5|mandatory|r@
