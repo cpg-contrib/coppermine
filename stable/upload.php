@@ -1961,7 +1961,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
         }
 
         // Prepare success data for user.
-        starttable("100%", 'Successful Uploads', 2);
+        starttable("100%", $lang_upload_php['succ'], 2);
         echo "<tr><td colspan=\"2\">";
         printf ($lang_upload_php['success'], $escrow_array_count);
         echo "<br /><br />";
