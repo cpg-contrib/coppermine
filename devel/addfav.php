@@ -35,6 +35,15 @@ if (!isset($HTTP_COOKIE_VARS[$CONFIG['cookie_name'].'_data'])) {
 	exit;
 }
 
+	//See if this picture is already present in the array
+	if(!in_array($pic,$FAVPICS)){
+		$FAVPICS[]=$pic;
+		print_r($FAVPICS);
+		
+	}
+		
+	$data = base64_encode(serialize($FAVPICS));
+	setcookie($CONFIG['cookie_name'].'_fav', $data, time()+86400*30, $CONFIG['cookie_path']);
 
 $location = "displayimage.php?pos=".(-$pic);
 $header_location = ( @preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE')) ) ? 'Refresh: 0; URL=' : 'Location: ';

@@ -2,10 +2,10 @@
 // ------------------------------------------------------------------------- //
 //  Coppermine Photo Gallery                                                 //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Grégory DEMAR <gdemar@wanadoo.fr>               //
+//  Copyright (C) 2002,2003  Grï¿½ory DEMAR <gdemar@wanadoo.fr>               //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
+//  Based on PHPhotoalbum by Henning Stverud <henning@stoverud.com>         //
 //  http://www.stoverud.com/PHPhotoalbum/                                    //
 // ------------------------------------------------------------------------- //
 //  Hacked by Tarique Sani <tarique@sanisoft.com>                            //
@@ -252,6 +252,9 @@ function html_picinfo()
 
 	//Create the absolute URL for display in info
 	$info['URL']='<a href=http://'.$_SERVER["SERVER_NAME"].$_SERVER["SCRIPT_NAME"]."?pos=-$CURRENT_PIC_DATA[pid]".' >http://'.$_SERVER["SERVER_NAME"].$_SERVER["SCRIPT_NAME"]."?pos=-$CURRENT_PIC_DATA[pid]".'</a>';
+	
+	//Create the add to fav link
+	$info[$lang_picinfo['addFavPhrase']]="<a href=addfav.php?pid=".$CURRENT_PIC_DATA[pid]." >".$lang_picinfo['addFav'].'</a>';
 
 	return theme_html_picinfo($info);
 }
