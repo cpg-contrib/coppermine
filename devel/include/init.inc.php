@@ -364,6 +364,7 @@ if (isset($USER['theme']) && !strstr($USER['theme'], '/') && is_dir('themes/' . 
 
 if (!file_exists("themes/{$CONFIG['theme']}/theme.php")) $CONFIG['theme'] = 'classic';
 require "themes/{$CONFIG['theme']}/theme.php";
+require "include/core.inc.php";  //All Fallback Theme Templates and Functions
 $THEME_DIR = "themes/{$CONFIG['theme']}/";
 // Process language selection if present in URI or in user profile or try
 // autodetection if default charset is utf-8
