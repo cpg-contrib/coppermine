@@ -44,9 +44,8 @@ $forbidden_chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '
 
 // Create the holder $picture_name by translating the file name. Translate any forbidden character into an underscore.
 $sane_name = strtr($file_name, $forbidden_chars, str_repeat('_', strlen($CONFIG['forbiden_fname_char'])));
-$source = addslashes("./" . $CONFIG['fullpath'] . $dir_name . $file_name);
+$source = "./" . $CONFIG['fullpath'] . $dir_name . $file_name;
 rename($source, "./" . $CONFIG['fullpath'] . $dir_name . $sane_name);
-
 $sql = "SELECT pid " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE filepath='" . addslashes($dir_name) . "' AND filename='" . addslashes($file_name) . "' " . "LIMIT 1";
 $result = db_query($sql);
 
