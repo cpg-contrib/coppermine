@@ -3,7 +3,7 @@
   Coppermine Photo Gallery
   ************************
   Copyright (c) 2003-2005 Coppermine Dev Team
-  v1.1 originaly written by Gregory DEMAR
+  v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -16,42 +16,6 @@
   $Author$
   $Date$
 **********************************************/
-
-
-
-/*****************************
- IMPORTANT NOTE TO THE DEVELOPERS!
- Please modify the file english-utf-8.php instead of this one.
- == chtito, 2005-01-03
-*****************************/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
