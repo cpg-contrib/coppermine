@@ -284,6 +284,31 @@ $template_thumb_view_title_row = <<<EOT
 EOT;
 
 // HTML template for thumbnails display
+        //added film strip var: Zarsky
+$template_film_strip = <<<EOT
+
+        <tr>
+         <td valign="top" background='themes/igames/images/tile.gif' align="center" height='30'>&nbsp;</td>
+        </tr>
+        <tr>
+        <td valign="bottom" class="thumbnails" align="center">
+          {THUMB_STRIP}
+        </td>
+        </tr>
+        <tr>
+         <td valign="top" background='themes/igames/images/tile.gif' align="center" height='30'>&nbsp;</td>
+        </tr>
+<!-- BEGIN thumb_cell -->
+                                        <a href="{LINK_TGT}">{THUMB}</a>&nbsp;
+                                        {CAPTION}
+                                        {ADMIN_MENU}
+<!-- END thumb_cell -->
+<!-- BEGIN empty_cell -->
+                <td valign="top" align="center" >1&nbsp;</td>
+<!-- END empty_cell -->
+
+EOT;
+
 $template_thumbnail_view = <<<EOT
 
 <!-- BEGIN header -->
@@ -449,7 +474,7 @@ $template_image_comments = <<<EOT
                                 <td class="tableh2_compact" nowrap>
                                         <b>{MSG_AUTHOR}</b>
 <!-- BEGIN ipinfo -->
-										 ({HDR_IP} [{RAW_IP}])
+                                                                                 ({HDR_IP} [{RAW_IP}])
 <!-- END ipinfo -->                                                
                                 </td>
                                 <td class="tableh2_compact" align="right" width="100%">
@@ -1151,6 +1176,87 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
         echo $spacer;
 }
 
+//Added to display flim_strip: Zarsky
+function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $pos, $sort_options, $mode='thumb')
+{
+        global $CONFIG;
+        global $template_film_strip, $lang_film_strip;
+
+        static $template='';
+        static $thumb_cell='';
+        static $empty_cell='';
+        static $spacer='';
+
+        if ((!$template)) {
+                $template = $template_film_strip;
+                $thumb_cell = template_extract_block($template, 'thumb_cell');
+                $empty_cell = template_extract_block($template, 'empty_cell');
+//                $spacer = template_extract_block($template, 'spacer');
+        }
+
+        //if ($header == '') {}
+
+        $cat_link= is_numeric($aid) ? '' : '&cat='.$cat;
+
+        $theme_thumb_tab_tmpl = $template_tab_display;
+
+        if ($mode == 'thumb') {
+                $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'],array('{LEFT_TEXT}' => $lang_thumb_view['pic_on_page']));
+                $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'],array('{LINK}' => 'thumbnails.php?album='.$aid.$cat_link.'&page=%d'));
+        } else {
+                $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'],array('{LEFT_TEXT}' => $lang_thumb_view['user_on_page']));
+                $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'],array('{LINK}' => 'index.php?cat='.$cat.'&page=%d'));
+        }
+
+        $thumbcols = $CONFIG['thumbcols'];
+        $cell_width = ceil(100/$CONFIG['max_film_strip_items']).'%';
+
+        $i = 0;
+        $thumb_strip='';
+        foreach($thumb_list as $thumb){
+                $i++;
+                if ($mode == 'thumb') {
+                        $params =array(
+                                '{CELL_WIDTH}' => $cell_width,
+                                '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&pos={$thumb['pos']}",
+                                '{THUMB}' => $thumb['image'],
+                                '{CAPTION}' => '',
+                                '{ADMIN_MENU}' => ''
+                        );
+                } else {
+                        $params =array(
+                                '{CELL_WIDTH}' => $cell_width,
+                                '{LINK_TGT}' => "index.php?cat={$thumb['cat']}",
+                                '{THUMB}' => $thumb['image'],
+                                '{CAPTION}' => '',
+                                '{ADMIN_MENU}' => ''
+                        );
+                }
+                $thumb_strip.=template_eval($thumb_cell, $params);
+//                if ((($i % $thumbcols) == 0) && ($i < count($thumb_list))) {
+//                        echo $row_separator;
+//                }
+        }
+//        for (;($i % $thumbcols); $i++){
+//                echo $empty_cell;
+//        }
+
+                        $params =array(
+                                '{THUMB_STRIP}' => $thumb_strip,
+                                '{COLS}'=>$i);
+
+        ob_start();
+        starttable('');
+        echo template_eval($template, $params);
+        endtable();
+        $film_strip=ob_get_contents();
+        ob_end_clean();
+
+        return $film_strip;
+
+}
+
+
 function theme_no_img_to_display($album_name)
 {
         global $lang_errors, $template_no_img_to_display;
@@ -1169,7 +1275,7 @@ function theme_no_img_to_display($album_name)
         endtable();
 }
 
-function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments)
+function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, $film_strip)  //added $film_strip: Zarsky
 {
         global $HTTP_COOKIE_VARS, $CONFIG;
 
@@ -1180,7 +1286,9 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments)
         starttable();
         echo $picture;
         endtable();
-
+        if($CONFIG['display_film_strip']==1) {             //added film strip code: Zarsky
+                        echo $film_strip;
+     }
         starttable();
         echo $votes;
         endtable();
