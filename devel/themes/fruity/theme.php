@@ -159,7 +159,93 @@ $template_breadcrumb = <<<EOT
 
 EOT;
 
-// HTML template for the album list
+// HTML template for the album list cat: added by zarsky
+$template_album_list_cat = <<<EOT
+
+<!-- BEGIN c_stat_row -->
+        <tr>
+                <td colspan="{COLUMNS}" class="tableh1" align="center"><span class="statlink"><b>{STATISTICS}</b></span></td>
+        </tr>
+<!-- END c_stat_row -->
+<!-- BEGIN c_header -->
+        <tr>
+<!-- END c_header -->
+<!-- BEGIN c_album_cell -->
+        <td width="{COL_WIDTH}%" height="100%" valign="top">
+        <table width="100%" height="100%" cellspacing="0" cellpadding="0">
+        <tr>
+                <td colspan="3" height="1" valign="top" class="tableh2">
+                        <b>{ALBUM_TITLE}</b>
+                </td>
+        </tr>
+        <tr>
+                <td colspan="3">
+                        <img src="images/spacer.gif" width="1" height="1"><br />
+                </td>
+        </tr>
+        <tr height="100%">
+                <td align="center" height="100%" valign="middle" class="thumbnails">
+                        <img src="images/spacer.gif" width="{THUMB_CELL_WIDTH}" height="1" class="image" style="margin-top: 0px;
+ margin-bottom: 0px; border: none;"><br />
+                        <a href="{ALB_LINK_TGT}" class="albums">{ALB_LINK_PIC}<br /></a>
+                </td>
+                <td height="100%">
+                        <img src="images/spacer.gif" width="1" height="1">
+                </td>
+                <td width="100%" height="100%" valign="top" class="tableb_compact">
+                        {ADMIN_MENU}
+                        <p>{ALB_DESC}</p>
+                        <p class="album_stat">{ALB_INFOS}</p>
+                </td>
+        </tr>
+        </table>
+        </td>
+<!-- END c_album_cell -->
+<!-- BEGIN c_empty_cell -->
+        <td width="{COL_WIDTH}%" height="100%" valign="top">
+        <table width="100%" height="100%" cellspacing="0" cellpadding="0">
+        <tr>
+                <td height="1" valign="top" class="tableh2">
+                        <b>&nbsp;</b>
+                </td>
+        </tr>
+        <tr>
+                <td>
+                        <img src="images/spacer.gif" width="1" height="1"><br />
+                </td>
+        </tr>
+        <tr height="100%">
+                <td width="100%" height="100%" valign="top" class="tableb_compact">
+                        &nbsp;
+                </td>
+        </tr>
+        </table>
+        </td>
+<!-- END c_empty_cell -->
+<!-- BEGIN c_row_separator -->
+        </tr>
+        <tr>
+<!-- END c_row_separator -->
+<!-- BEGIN c_footer -->
+        </tr>
+<!-- END c_footer -->
+<!-- BEGIN c_tabs -->
+        <tr>
+                <td colspan="{COLUMNS}" style="padding: 0px;">
+                        <table width="100%" cellspacing="0" cellpadding="0">
+                                <tr>
+                                        {TABS}
+                                </tr>
+                        </table>
+                </td>
+        </tr>
+<!-- END c_tabs -->
+<!-- BEGIN c_spacer -->
+        <img src="images/spacer.gif" width="1" height="17" /><br />
+<!-- END c_spacer -->
+
+EOT;
+
 $template_album_list = <<<EOT
 
 <!-- BEGIN stat_row -->
@@ -1091,6 +1177,95 @@ function theme_display_album_list(&$alb_list,$nbAlb, $cat, $page, $total_pages)
         echo $spacer;
 
 }
+
+//Function to display first level Albums of a category : added by zarsky
+function theme_display_album_list_cat(&$alb_list,$nbAlb, $cat, $page, $total_pages)
+{
+        global $CONFIG, $STATS_IN_ALB_LIST, $statistics, $template_tab_display, $template_album_list_cat, $lang_album_list;
+        if (!$CONFIG['first_level']){
+                return;
+        }
+
+        $theme_alb_list_tab_tmpl = $template_tab_display;
+
+        $theme_alb_list_tab_tmpl['left_text'] = strtr($theme_alb_list_tab_tmpl['left_text'],array('{LEFT_TEXT}' => $lang_album_list['album_on_page']));
+        $theme_alb_list_tab_tmpl['inactive_tab'] = strtr($theme_alb_list_tab_tmpl['inactive_tab'],array('{LINK}' => 'index.php?cat='.$cat.'&page=%d'));
+
+        $tabs = create_tabs($nbAlb, $page, $total_pages, $theme_alb_list_tab_tmpl);
+        //echo $template_album_list_cat;
+        $template_album_list_cat1=$template_album_list_cat;
+        $album_cell = template_extract_block($template_album_list_cat1, 'c_album_cell');
+        $empty_cell = template_extract_block($template_album_list_cat1, 'c_empty_cell');
+        $tabs_row = template_extract_block($template_album_list_cat1, 'c_tabs');
+        $stat_row = template_extract_block($template_album_list_cat1, 'c_stat_row');
+        $spacer = template_extract_block($template_album_list_cat1, 'c_spacer');
+        $header = template_extract_block($template_album_list_cat1, 'c_header');
+        $footer = template_extract_block($template_album_list_cat1, 'c_footer');
+        $rows_separator = template_extract_block($template_album_list_cat1, 'c_row_separator');
+
+        $count = 0;
+
+        $columns = $CONFIG['album_list_cols'];
+        $column_width = ceil(100/$columns);
+        $thumb_cell_width = $CONFIG['alb_list_thumb_size']+2;
+
+        starttable('100%');
+
+        if ($STATS_IN_ALB_LIST) {
+                $params = array(
+                        '{STATISTICS}' => $statistics,
+                        '{COLUMNS}' => $columns,
+                );
+                echo template_eval($stat_row, $params);
+        }
+
+        echo $header;
+
+        if(is_array($alb_list)){
+                foreach($alb_list as $album){
+                        $count ++;
+
+                        $params = array(
+                                '{COL_WIDTH}' => $column_width,
+                                '{ALBUM_TITLE}' => $album['album_title'],
+                                '{THUMB_CELL_WIDTH}' => $thumb_cell_width,
+                                '{ALB_LINK_TGT}' => "thumbnails.php?album={$album['aid']}",
+                                '{ALB_LINK_PIC}' => $album['thumb_pic'],
+                                '{ADMIN_MENU}' => $album['album_adm_menu'],
+                                '{ALB_DESC}' => $album['album_desc'],
+                                '{ALB_INFOS}' => $album['album_info'],
+                        );
+
+                        echo template_eval($album_cell, $params);
+
+                        if ($count % $columns == 0 && $count < count($alb_list)) {
+                                echo $rows_separator;
+                        }
+                }
+        }
+
+        $params = array('{COL_WIDTH}' => $column_width);
+        $empty_cell = template_eval($empty_cell, $params);
+
+        while ($count++ % $columns != 0) {
+                echo $empty_cell;
+        }
+
+        echo $footer;
+
+        // Tab display
+        $params = array(
+                '{COLUMNS}' => $columns,
+                '{TABS}' => $tabs,
+        );
+        echo template_eval($tabs_row, $params);
+
+        endtable();
+
+        echo $spacer;
+
+}
+
 
 function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $page, $total_pages, $sort_options, $display_tabs, $mode='thumb')
 {
