@@ -29,6 +29,8 @@
 * @version $Id$
 */
 
+if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
+
 starttable("100%", "Welcome");
 
 ?>
