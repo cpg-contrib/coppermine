@@ -17,7 +17,7 @@
 
 // info about translators and translated language 
 $lang_translation_info = array( 
-'lang_name_english' => 'Turkish',  
+'lang_name_english' => 'Turkish', 
 'lang_name_native' => 'Türkçe', 
 'lang_country_code' => 'tr', 
 'trans_name'=> 'Mustafa Tolga YILMAZ', //the name of the translator - can be a nickname 
@@ -325,7 +325,7 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
 	'name_a' => 'Ad k&uuml;ç&uuml;kten b&uuml;y&uuml;y&uuml;ðe',
 	'name_d' => 'Ad b&uuml;y&uuml;kten k&uuml;ç&uuml;y&uuml;ðe',
 	'date_a' => 'Tarih k&uuml;ç&uuml;kten b&uuml;y&uuml;y&uuml;ðe',
-	'date_d' => 'Date b&uuml;y&uuml;kten k&uuml;ç&uuml;y&uuml;ðe',,
+	'date_d' => 'Date b&uuml;y&uuml;kten k&uuml;ç&uuml;y&uuml;ðe',
         'th_any' => 'Max Aspect',
         'th_ht' => 'Height',
         'th_wd' => 'Width',
