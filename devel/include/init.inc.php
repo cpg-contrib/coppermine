@@ -427,8 +427,8 @@ CPGPluginAPI::action('page_start',null);
 // load the main template
 load_template();
 // Remove expired bans
-$now = time();
-cpg_db_query("DELETE FROM {$CONFIG['TABLE_BANNED']} WHERE expiry < $now");
+$now = date('Y-m-d H:i:s');
+cpg_db_query("DELETE FROM {$CONFIG['TABLE_BANNED']} WHERE expiry < '$now'");
 // Check if the user is banned
 $user_id = USER_ID;
 $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_BANNED']} WHERE (ip_addr='$raw_ip' OR ip_addr='$hdr_ip' OR user_id=$user_id) AND brute_force=0");
