@@ -428,7 +428,7 @@ function list_albums()
 // Redone for a cleaner approach: DJMaze
 function list_cat_albums($cat = 0, $buffer = true)
 {
-    global $CONFIG, $USER, $PAGE, $lastup_date_fmt, $HTTP_GET_VARS, $USER_DATA;
+    global $CONFIG, $USER, $PAGE, $lastup_date_fmt, $HTTP_GET_VARS, $USER_DATA, $cat;
     global $lang_list_albums, $lang_errors;
 
     if ($cat == 0 && $buffer) return '';
@@ -436,6 +436,7 @@ function list_cat_albums($cat = 0, $buffer = true)
     $alb_per_page = $CONFIG['albums_per_page'];
     $maxTab = $CONFIG['max_tabs'];
 
+    $visible = '';
     if (!USER_IS_ADMIN && !$CONFIG['show_private'])
         $visible = "AND (visibility = 0 OR visibility = ".(FIRST_USER_CAT + USER_ID)." OR visibility = ".$USER_DATA['group_id'].")";
 
