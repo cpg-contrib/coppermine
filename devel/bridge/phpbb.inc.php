@@ -100,9 +100,9 @@ function udb_authenticate()
     if ($cookie_uid && !$cookie_pass && isset($HTTP_COOKIE_VARS[PHPBB_COOKIE_PREFIX . '_sid'])) {
         $session_id = addslashes($HTTP_COOKIE_VARS[PHPBB_COOKIE_PREFIX . '_sid']);
 
-        $sql = "SELECT user_id, username as user_name, user_level " . "FROM " . $UDB_DB_NAME_PREFIX . PHPBB_TABLE_PREFIX . PHPBB_SESSION_TABLE . " " . "INNER JOIN " . $UDB_DB_NAME_PREFIX . PHPBB_TABLE_PREFIX . PHPBB_USER_TABLE . " ON session_user_id = user_id " . "WHERE session_id='$session_id' AND session_user_id ='$cookie_uid'";
+        $sql = "SELECT user_id, username as user_name, user_level " . "FROM " . $UDB_DB_NAME_PREFIX . PHPBB_TABLE_PREFIX . PHPBB_SESSION_TABLE . " " . "INNER JOIN " . $UDB_DB_NAME_PREFIX . PHPBB_TABLE_PREFIX . PHPBB_USER_TABLE . " ON session_user_id = user_id " . "WHERE session_id='$session_id' AND session_user_id ='$cookie_uid' AND user_active='1'";
     } else {
-        $sql = "SELECT user_id, username as user_name, user_level " . "FROM " . $UDB_DB_NAME_PREFIX . PHPBB_TABLE_PREFIX . PHPBB_USER_TABLE . " " . "WHERE user_id='$cookie_uid' AND user_password='$cookie_pass'";
+        $sql = "SELECT user_id, username as user_name, user_level " . "FROM " . $UDB_DB_NAME_PREFIX . PHPBB_TABLE_PREFIX . PHPBB_USER_TABLE . " " . "WHERE user_id='$cookie_uid' AND user_password='$cookie_pass' AND user_active='1'";
     }
     $result = db_query($sql, $UDB_DB_LINK_ID);
 
@@ -110,15 +110,29 @@ function udb_authenticate()
         $USER_DATA = mysql_fetch_array($result);
         mysql_free_result($result);
 
-		$USER_DATA['groups'] = array();
+	$USER_DATA['groups'] = array();
 
-        define('USER_ID', (int)$USER_DATA['user_id']);
-        define('USER_NAME', $USER_DATA['user_name']);
-        // Define the basic groups
-        if ($USER_DATA['user_level'] == 1) {
-        	array_push($USER_DATA['groups'], PHPBB_ADMIN_GROUP);
+        if($USER_DATA['user_id'] == "-1") {
+            define('USER_ID', 0);
+        } else {
+            define('USER_ID', (int)$USER_DATA['user_id']);
         }
-        array_push($USER_DATA['groups'], PHPBB_MEMBERS_GROUP);
+
+        define('USER_NAME', $USER_DATA['user_name']);
+
+        // Define the basic groups
+        if ($USER_DATA['user_id'] == "-1") {
+
+            array_push($USER_DATA['groups'], PHPBB_GUEST_GROUP);
+
+        } else {
+
+            if ($USER_DATA['user_level'] == 1) {
+        	array_push($USER_DATA['groups'], PHPBB_ADMIN_GROUP);
+            }
+            array_push($USER_DATA['groups'], PHPBB_MEMBERS_GROUP);
+
+        }
         
         // Retrieve the groups the user is a member of
         $sql = "SELECT (ug.group_id + 5) as group_id " . "FROM " . $UDB_DB_NAME_PREFIX . PHPBB_TABLE_PREFIX . PHPBB_UGROUP_TABLE . " as ug " . "LEFT JOIN " . $UDB_DB_NAME_PREFIX . PHPBB_TABLE_PREFIX . PHPBB_GROUP_TABLE . " as g ON ug.group_id = g.group_id " . "WHERE user_id = " . USER_ID . " AND user_pending = 0 AND group_single_user = 0";
@@ -143,51 +157,7 @@ function udb_authenticate()
         $USER_DATA['num_URI_upload'] = 0;
         $USER_DATA['custom_user_upload'] = 0; 
 
-//        $sql = "SELECT  group_quota as gq, " . "        can_rate_pictures as crp, " . "        can_send_ecards as cse, " . "        can_post_comments as cpc, " . "        can_upload_pictures as cup, " . "        can_create_albums as cca, " . "        pub_upl_need_approval as puna, " . "        priv_upl_need_approval as pruna, " . "        upload_form_config as ufc, " . "        custom_user_upload as cuu, " . "        num_file_upload as nfu, " . "        num_URI_upload as nuu " . "FROM {$CONFIG['TABLE_USERGROUPS']} " . "WHERE group_id IN " . $user_group_set;
-//        $result = db_query($sql);
-//        // Merge permissions for groups the user is a member of
-//        while ($row = mysql_fetch_array($result)) {
-//            $USER_DATA['can_rate_pictures'] += $row['crp'];
-//            $USER_DATA['can_send_ecards'] += $row['cse'];
-//            $USER_DATA['can_post_comments'] += $row['cpc'];
-//            $USER_DATA['can_upload_pictures'] += $row['cup'];
-//            $USER_DATA['can_create_albums'] += $row['cca'];
-//            $USER_DATA['pub_upl_need_approval'] *= $row['puna'];
-//            $USER_DATA['priv_upl_need_approval'] *= $row['pruna'];
-//            $USER_DATA['custom_user_upload'] += $row['cuu'];
-
-//            $quota = $USER_DATA['group_quota'];
-//            if (($quota && $row['gq'] > $quota) || !$row['gq']) $USER_DATA['group_quota'] = $row['gq'];
-
-//            $form_number = $row['ufc'];
-//            if(($USER_DATA['upload_form_config'] == 0) and ($form_number > $USER_DATA['upload_form_config'])) {
-
-//                $USER_DATA['upload_form_config'] = $form_number; 
-
-//            } elseif (($USER_DATA['upload_form_config'] == 1) and (($form_number == 2) or ($form_number == 3))) {
-
-//              $USER_DATA['upload_form_config'] = 3; 
-
-//            } elseif (($USER_DATA['upload_form_config'] == 2) and (($form_number == 1) or ($form_number == 3))) {
-
-//                $USER_DATA['upload_form_config'] = 3; 
-
-//            } elseif ($USER_DATA['upload_form_config'] == 3) {
-
-//                $USER_DATA['upload_form_config'] = 3; 
-
-//            }
-
-//            $fbox_number = $row['nfu'];
-//            if($fbox_number  > $USER_DATA['num_file_upload']) $USER_DATA['num_file_upload'] = $fbox_number; 
-
-//            $ubox_number = $row['nuu'];
-//            if($ubox_number > $USER_DATA['num_URI_upload']) $USER_DATA['num_URI_upload'] = $ubox_number; 
-
-//        }
-//        mysql_free_result($result);
-
-		$USER_DATA = array_merge($USER_DATA, cpgGetUserData($USER_DATA['groups'][0], $USER_DATA['groups'], PHPBB_GUEST_GROUP));
+	$USER_DATA = array_merge($USER_DATA, cpgGetUserData($USER_DATA['groups'][0], $USER_DATA['groups'], PHPBB_GUEST_GROUP));
 
         define('USER_GROUP', '');
         define('USER_GROUP_SET', $user_group_set);
@@ -202,12 +172,6 @@ function udb_authenticate()
         define('NUM_FILE_BOXES', (int)$USER_DATA['num_file_upload']);
         define('NUM_URI_BOXES', (int)$USER_DATA['num_URI_upload']);
     } else {
-//        $result = db_query("SELECT * FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = " . PHPBB_GUEST_GROUP);
-//        if (!mysql_num_rows($result)) {
-//            $USER_DATA = $default_group;
-//        } else {
-//            $USER_DATA = mysql_fetch_array($result);
-//        }
         $USER_DATA = cpgGetUserData(PHPBB_GUEST_GROUP, array(), PHPBB_GUEST_GROUP);
         define('USER_ID', 0);
         define('USER_NAME', 'Anonymous');
@@ -265,9 +229,10 @@ function udb_get_user_id($username)
 // Redirect
 function udb_redirect($target)
 {
-    header('Location: ' . PHPBB_WEB_PATH . $target);
+    header('Location: http://' . $_SERVER['HTTP_HOST'] . PHPBB_WEB_PATH . $target);
     exit;
 }
+
 // Register
 function udb_register_page()
 {
@@ -423,6 +388,31 @@ function udb_get_admin_album_list()
         return $sql;
     }
 }
+
+function udb_util_filloptions()
+{
+    global $albumtbl, $picturetbl, $categorytbl, $lang_util_php;
+
+    $usertbl = $UDB_DB_NAME_PREFIX.PHPBB_TABLE_PREFIX.PHPBB_USER_TABLE;
+
+    $query = "SELECT aid, category, IF(username IS NOT NULL, CONCAT('(', username, ') ',title), CONCAT(' - ', title)) AS title " . "FROM $albumtbl AS a " . "LEFT JOIN $usertbl AS u ON category = (" . FIRST_USER_CAT . " + user_id) " . "ORDER BY category, title";
+    $result = db_query($query, $UDB_DB_LINK_ID);
+    // $num=mysql_numrows($result);
+    echo '<select size="1" name="albumid">';
+
+    while ($row = mysql_fetch_array($result)) {
+        $sql = "SELECT name FROM $categorytbl WHERE cid = " . $row["category"];
+        $result2 = db_query($sql);
+        $row2 = mysql_fetch_array($result2);
+
+        print "<option value=\"" . $row["aid"] . "\">" . $row2["name"] . $row["title"] . "</option>\n";
+    }
+
+    print '</select> (3)';
+    print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="submit" /> (4)';
+    print '</form>';
+}
+
 // ------------------------------------------------------------------------- //
 // Define wheter we can join tables or not in SQL queries (same host & same db or user)
 define('UDB_CAN_JOIN_TABLES', (PHPBB_BD_HOST == $CONFIG['dbserver'] && (PHPBB_DB_NAME == $CONFIG['dbname'] || PHPBB_DB_USERNAME == $CONFIG['dbuser'])));
