@@ -42,7 +42,8 @@ if (isset($_REQUEST['radio'])) {$radio = rawurldecode($_REQUEST['radio']);} else
 $newline = "\n";
 
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html>
 <head>
 <title><?php echo $CONFIG['gallery_name'] ?>: <?php echo $lang_fullsize_popup['click_to_close'];
@@ -71,7 +72,7 @@ adjust_popup();
 //} // print the javascript bit that updates the parent element --- end
 ?>
 </head>
-<body scroll="auto" marginwidth="0" marginheight="0">
+<body class="tableb" scroll="auto" marginwidth="0px" marginheight="0px">
 
 <form name="childform" id="childform" method="get" action="<?php print $_SERVER['PHP_SELF']; ?>" onsubmit="return updateParent();">
 
@@ -113,7 +114,7 @@ if ($radio != 0) {
 }
 print '</td>'.$newline;
 print '<td class="tableh2">'.$newline;
-print '<input type="text" name="cf2" size="50" value="/'.ltrim($folder, '/').'" disabled="disabled" class="tableh2_compact">&nbsp;'.$newline;
+print '<input type="text" name="cf2" size="50px" value="/'.ltrim($folder, '/').'" disabled="disabled" class="tableh2_compact">&nbsp;'.$newline;
 if ($linktarget != '') {
     print '<a href="'.$linktarget.'?startdir='.rtrim(str_replace($_REQUEST['limitfolder'], '',$folder), '/').'" class="admin_menu" target="_parent">'.$lang_minibrowser_php['submit'].'</a>'.$newline;
 } else {
@@ -141,7 +142,7 @@ if (($_REQUEST['folder'] != '' || $_REQUEST['startfolder'] != '') && ($folder !=
         print '&nbsp;';
         print '</td>'.$newline;
         print '<td class="tableb">'.$newline;
-        print '<img src="images/spacer.gif" width="16" height="16" border="0" alt="" align="left">'.$newline;
+        print '<img src="images/spacer.gif" width="16px" height="16px" border="0px" alt="" align="left" />'.$newline;
         print '<a href="'.$_SERVER['PHP_SELF'].'?folder='.rawurlencode($uplink).'&parentform='.rawurlencode($parentform).'&formelementname='.rawurlencode($formelementname).'&no_popup='.$_REQUEST['no_popup'].'&limitfolder='.$_REQUEST['limitfolder'].'&hidefolders='.$_REQUEST['hidefolders'].'&linktarget='.$_REQUEST['linktarget'].'">'.$newline;
         print '.. '.$lang_minibrowser_php['up'];
         print '</a>'.$newline;
@@ -163,7 +164,7 @@ if (is_array($foldername)) {
             print '</td>'.$newline;
             print '<td class="tableb">'.$newline;
             print '<a href="'.$_SERVER['PHP_SELF'].'?folder='.rawurlencode('/'.ltrim($folder, '/').$key.'/').'&parentform='.rawurlencode($parentform).'&formelementname='.rawurlencode($formelementname).'&no_popup='.$_REQUEST['no_popup'].'&limitfolder='.$_REQUEST['limitfolder'].'&hidefolders='.$_REQUEST['hidefolders'].'&linktarget='.$_REQUEST['linktarget'].'">'.$newline;
-            print '<img src="images/folder.gif" width="16" height="16" border="0" alt="" title="folder" />'.$newline;
+            print '<img src="images/folder.gif" width="16px" height="16px" border="0px" alt="" title="folder" />'.$newline;
             print $key.$newline;
             print '</a>'.$newline;
             print '</td>'.$newline;
@@ -180,7 +181,7 @@ if (is_array($filename)) {
         print '&nbsp;';
         print '</td>'.$newline;
         print '<td class="tableb">'.$newline;
-        print '<img src="images/spacer.gif" width="10" height="15" border="0" alt="" align="left">'.$newline;
+        print '<img src="images/spacer.gif" width="10px" height="15px" border="0px" alt="" align="left" />'.$newline;
         print $key.$newline;
         print '</td>'.$newline;
         print '</tr>'.$newline;
