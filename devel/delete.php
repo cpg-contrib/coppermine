@@ -449,75 +449,194 @@ switch ($what) {
 
     case 'user':
         $user_id = str_replace('u', '', $_GET['id']);
-        $users_scheduled_for_deletion = explode(',', $user_id);
+        $users_scheduled_for_action = explode(',', $user_id);
         if (!(GALLERY_ADMIN_MODE) || ($user_id == USER_ID) || defined('UDB_INTEGRATION')) cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
-        pageheader($lang_delete_php['del_user']);
-        starttable("100%", $lang_delete_php['del_user'], 6);
-        print "<tr>\n";
-        print "<td class=\"tableh2\"><b>{$lang_delete_php['username']}</b></td>\n";
-        print "<td class=\"tableh2\"><b>{$lang_delete_php['deleted_albums']}</b></td>\n";
-        print "<td class=\"tableh2\"><b>{$lang_delete_php['anonymized_comments']}</b></td>\n";
-        print "<td class=\"tableh2\"><b>{$lang_delete_php['anonymized_uploads']}</b></td>\n";
-        print "<td class=\"tableh2\"><b>{$lang_delete_php['del_user']}</b></td>\n";
-        print "</tr>\n";
+        switch ($_REQUEST['action']) {
+                case 'delete':
+                    pageheader($lang_delete_php['del_user']);
+                    starttable("100%", $lang_delete_php['del_user'], 6);
+                    print "<tr>\n";
+                    print "<td class=\"tableh2\"><b>{$lang_delete_php['username']}</b></td>\n";
+                    print "<td class=\"tableh2\"><b>{$lang_delete_php['deleted_albums']}</b></td>\n";
+                    print "<td class=\"tableh2\"><b>{$lang_delete_php['anonymized_comments']}</b></td>\n";
+                    print "<td class=\"tableh2\"><b>{$lang_delete_php['anonymized_uploads']}</b></td>\n";
+                    print "<td class=\"tableh2\"><b>{$lang_delete_php['del_user']}</b></td>\n";
+                    print "</tr>\n";
 
-        foreach($users_scheduled_for_deletion as $key) {
-            $result = cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$key'");
-            if (!mysql_num_rows($result)) {
-                print '<tr><td class="tableb" colspan="5">'.$lang_delete_php['err_unknown_user'].'</td>';
-                // cpg_die(CRITICAL_ERROR, $lang_delete_php['err_unknown_user'], __FILE__, __LINE__);
-            } else {
-                $user_data = mysql_fetch_array($result);
-                print '<tr>';
-                print '<td class="tableb"><b>';
-                print $user_data['user_name'];
-                print '</b></td>';
-                // First delete the albums
-                $result2 = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = '" . (FIRST_USER_CAT + key) . "'");
-                $user_alb_counter = 0;
-                while ($album = mysql_fetch_array($result2)) {
-                    delete_album($album['aid']);
-                    $user_alb_counter++;
-                } // while
-                mysql_free_result($result2);
-                print '<td class="tableb">'.$user_alb_counter;
-                print '</td>';
+                    foreach($users_scheduled_for_action as $key) {
+                        $result = cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$key'");
+                        if (!mysql_num_rows($result)) {
+                            print '<tr><td class="tableb" colspan="5">'.$lang_delete_php['err_unknown_user'].'</td>';
+                            // cpg_die(CRITICAL_ERROR, $lang_delete_php['err_unknown_user'], __FILE__, __LINE__);
+                        } else {
+                            $user_data = mysql_fetch_array($result);
+                            print '<tr>';
+                            print '<td class="tableb"><b>';
+                            print $user_data['user_name'];
+                            print '</b></td>';
+                            // First delete the albums
+                            $result2 = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = '" . (FIRST_USER_CAT + key) . "'");
+                            $user_alb_counter = 0;
+                            while ($album = mysql_fetch_array($result2)) {
+                                delete_album($album['aid']);
+                                $user_alb_counter++;
+                            } // while
+                            mysql_free_result($result2);
+                            print '<td class="tableb">'.$user_alb_counter;
+                            print '</td>';
 
-                if ($need_caption) output_caption();
-                // Then anonymize comments posted by the user
-                $comment_result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_COMMENTS']} WHERE author_id = '$key'");
-                $comment_counter = mysql_fetch_array($comment_result);
-                mysql_free_result($comment_result);
-                cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET  author_id = '0' WHERE  author_id = '$key'");
-                print '<td class="tableb">';
-                print $comment_counter[0];
-                print '</td>';
-                // Do the same for pictures uploaded in public albums
-                $publ_upload_result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_id = '$key'");
-                $publ_upload_counter = mysql_fetch_array($publ_upload_result);
-                mysql_free_result($publ_upload_result);
-                cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET  owner_id = '0' WHERE  owner_id = '$key'");
-                print '<td class="tableb">';
-                print $publ_upload_counter[0];
-                print '</td>';
-                // Finally delete the user
-                cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$key'");
-                print '<td class="tableb">';
-                print $lang_delete_php['done'];
-                print '</td>';
-            }
-            mysql_free_result($result);
-            print '</tr>';
+                            if ($need_caption) output_caption();
+                            // Then anonymize comments posted by the user
+                            $comment_result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_COMMENTS']} WHERE author_id = '$key'");
+                            $comment_counter = mysql_fetch_array($comment_result);
+                            mysql_free_result($comment_result);
+                            cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET  author_id = '0' WHERE  author_id = '$key'");
+                            print '<td class="tableb">';
+                            print $comment_counter[0];
+                            print '</td>';
+                            // Do the same for pictures uploaded in public albums
+                            $publ_upload_result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_id = '$key'");
+                            $publ_upload_counter = mysql_fetch_array($publ_upload_result);
+                            mysql_free_result($publ_upload_result);
+                            cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET  owner_id = '0' WHERE  owner_id = '$key'");
+                            print '<td class="tableb">';
+                            print $publ_upload_counter[0];
+                            print '</td>';
+                            // Finally delete the user
+                            cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$key'");
+                            print '<td class="tableb">';
+                            print $lang_delete_php['done'];
+                            print '</td>';
+                        }
+                        mysql_free_result($result);
+                        print '</tr>';
+                    }
+                    echo "<tr><td colspan=\"6\" class=\"tablef\" align=\"center\">\n";
+                    echo "<a href=\"usermgr.php\"  class=\"admin_menu\">$lang_continue</a>\n";
+                    echo "</td></tr>";
+                    endtable();
+                    pagefooter();
+                    break; // end case "delete"
+                case 'activate':
+                    pageheader($lang_delete_php['activate_user']);
+                    starttable("100%", $lang_delete_php['activate_user'], 2);
+                    print "<tr>\n";
+                    print "<td class=\"tableh2\"><b>{$lang_delete_php['username']}</b></td>\n";
+                    print "<td class=\"tableh2\"><b>{$lang_delete_php['status']}</b></td>\n";
+                    print "</tr>\n";
+
+                    foreach($users_scheduled_for_action as $key) {
+                        $result = cpg_db_query("SELECT user_name,user_active FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$key'");
+                        if (!mysql_num_rows($result)) {
+                            print '<tr><td class="tableb" colspan="2">'.$lang_delete_php['err_unknown_user'].'</td>';
+                        } else {
+                            $user_data = mysql_fetch_array($result);
+                            print '<tr>';
+                            print '<td class="tableb"><b>';
+                            print $user_data['user_name'];
+                            print '</b></td>';
+                            print '<td class="tableb">';
+                            if ($user_data['user_active'] == 'YES') {
+                                // user is already active
+                                print $lang_delete_php['user_already_active'];
+                            } else {
+                                // activate this user
+                                cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_active = 'YES' WHERE  user_id = '$key'");
+                                print $lang_delete_php['activated'];
+                            }
+                            print '</b></td>';
+                        }
+                        mysql_free_result($result);
+                    } // foreach --- end
+                    echo "<tr><td colspan=\"2\" class=\"tablef\" align=\"center\">\n";
+                    echo "<a href=\"usermgr.php\" class=\"admin_menu\">$lang_continue</a>\n";
+                    echo "</td></tr>";
+                    endtable();
+                    pagefooter();
+                    break; // end case "activate"
+                case 'deactivate':
+                    pageheader($lang_delete_php['deactivate_user']);
+                    starttable("100%", $lang_delete_php['deactivate_user'], 2);
+                    print "<tr>\n";
+                    print "<td class=\"tableh2\"><b>{$lang_delete_php['username']}</b></td>\n";
+                    print "<td class=\"tableh2\"><b>{$lang_delete_php['status']}</b></td>\n";
+                    print "</tr>\n";
+
+                    foreach($users_scheduled_for_action as $key) {
+                        $result = cpg_db_query("SELECT user_name,user_active FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$key'");
+                        if (!mysql_num_rows($result)) {
+                            print '<tr><td class="tableb" colspan="2">'.$lang_delete_php['err_unknown_user'].'</td>';
+                        } else {
+                            $user_data = mysql_fetch_array($result);
+                            print '<tr>';
+                            print '<td class="tableb"><b>';
+                            print $user_data['user_name'];
+                            print '</b></td>';
+                            print '<td class="tableb">';
+                            if ($user_data['user_active'] == 'NO') {
+                                // user is already inactive
+                                print $lang_delete_php['user_already_inactive'];
+                            } else {
+                                // deactivate this user
+                                cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_active = 'NO' WHERE  user_id = '$key'");
+                                print $lang_delete_php['deactivated'];
+                            }
+                            print '</b></td>';
+                        }
+                        mysql_free_result($result);
+                    } // foreach --- end
+                    echo "<tr><td colspan=\"2\" class=\"tablef\" align=\"center\">\n";
+                    echo "<a href=\"usermgr.php\" class=\"admin_menu\">$lang_continue</a>\n";
+                    echo "</td></tr>";
+                    endtable();
+                    pagefooter();
+                    break; // end case "deactivate"
+                case 'reset_password':
+                    pageheader($lang_delete_php['reset_password']);
+                    starttable("100%", $lang_delete_php['reset_password'], 2);
+                    print "<tr>\n";
+                    print "<td class=\"tableh2\"><b>{$lang_delete_php['username']}</b></td>\n";
+                    print "<td class=\"tableh2\"><b>{$lang_delete_php['status']}</b></td>\n";
+                    print "</tr>\n";
+
+                    foreach($users_scheduled_for_action as $key) {
+                        $result = cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$key'");
+                        if (!mysql_num_rows($result)) {
+                            print '<tr><td class="tableb" colspan="2">'.$lang_delete_php['err_unknown_user'].'</td>';
+                        } else {
+                            $user_data = mysql_fetch_array($result);
+                            print '<tr>';
+                            print '<td class="tableb"><b>';
+                            print $user_data['user_name'];
+                            print '</b></td>';
+                            print '<td class="tableb">';
+                            // set this user's password
+                            cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_password = '{$_REQUEST['new_password']}' WHERE  user_id = '$key'");
+                            printf($lang_delete_php['password_reset'], '&laquo;'.$_REQUEST['new_password'].'&raquo;');
+                            print '</b></td>';
+                        }
+                        mysql_free_result($result);
+                    } // foreach --- end
+                    echo "<tr><td colspan=\"2\" class=\"tablef\" align=\"center\">\n";
+                    echo "<a href=\"usermgr.php\" class=\"admin_menu\">$lang_continue</a>\n";
+                    echo "</td></tr>";
+                    endtable();
+                    pagefooter();
+                    break; // end case "reset_password"
+                case 'change_group':
+                    break; // end case "change_group"
+                case 'add_group':
+                    break; // end case "add_group"
+                default:
+                    cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
+                    break;
         }
 
 
 
-        echo "<tr><td colspan=\"6\" class=\"tablef\" align=\"center\">\n";
-        echo "<a href=\"usermgr.php\"  class=\"admin_menu\">$lang_continue</a>\n";
-        echo "</td></tr>";
-        endtable();
-        pagefooter();
+
+
         ob_end_flush();
         break;
 

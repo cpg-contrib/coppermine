@@ -60,6 +60,7 @@ function list_users($search = '')
     global $CONFIG; //, $PHP_SELF;
     global $lang_usermgr_php, $lang_byte_units, $register_date_fmt,$lang_check_uncheck_all;
     global $lim_user,$number_of_columns;
+    global $USER_DATA;
 
     $number_of_columns_minus_one = $number_of_columns - 1;
 
@@ -142,7 +143,7 @@ function selectAll(d,box) {
 
 function selectaction(d,box) {
 // check if an action has been selected
-  var action = document.editForm.what.value;
+  var action = document.editForm.action.value;
   if (action == '') {
     return false;
   }
@@ -163,13 +164,23 @@ function selectaction(d,box) {
     }
   }
   if (checked_counter == 0) {
-    document.editForm.what.value = '';
+    document.editForm.action.value = '';
     alert('{$lang_usermgr_php['alert_no_selection']}');
     return false;
   }
   document.editForm.id.value = checked_string;
   //alert(document.editForm.id.value);
-  document.editForm.submit();
+  if (document.editForm.action.value == 'reset_password') {
+      // make the hidden form fields visible
+      document.editForm.new_password.style.visibility = "visible";
+      document.editForm.go.style.visibility = "visible";
+  //} elseif (document.editForm.action.value == 'change_group' ||  document.editForm.action.value == 'add_group') {
+  //    document.editForm.new_password.value = '';
+  //    alert('group thingy');
+  } else {
+      document.editForm.new_password.value = '';
+      document.editForm.submit();
+  }
 }
 -->
 </script>
@@ -273,11 +284,22 @@ EOT;
 
 
         if (!$lim_user) {
-         echo <<< EOT
+                if ($user['user_id'] == $USER_DATA['user_id']) {
+                    $profile_link = 'profile.php?op=edit_profile';
+                    $checkbox_html = '';
+                } else {
+                    $profile_link = $_SERVER['PHP_SELF'].'?op=edit&user_id='.$user['user_id'];
+                    $checkbox_html = '<input name="u'.$user['user_id'].'" type="checkbox" value="" class="checkbox" />';
+                }
+                echo <<< EOT
         <tr>
-                <td class="tableb" align="center"><input name="u{$user['user_id']}" type="checkbox" value="" /></td>
+                <td class="tableb" align="center">$checkbox_html</td>
                 <td class="tableb">$usr_link</td>
-                <td class="tableb" align="center"><a href="{$_SERVER['PHP_SELF']}?op=edit&user_id={$user['user_id']}"><img src="images/edit.gif" width="16" height="16" border="0" alt="" title="{$lang_usermgr_php['edit']}" /></a></td>
+                <td class="tableb" align="center">
+                    <button type="button" class="button" onclick="window.location.href ='$profile_link';">
+                        <img src="images/edit.gif" width="16" height="16" border="0" alt="" title="{$lang_usermgr_php['edit']}" />
+                    </button>
+                </td>
                 <td class="tableb">{$user['group_name']}</td>
                 <td class="tableb">{$user['user_regdate']}</td>
                 <td class="tableb">{$user['user_lastvisit']}</td>
@@ -313,11 +335,7 @@ EOT;
         } else {
             $search_string_default = 'value="'.$lang_usermgr_php['search'].'" onfocus="this.value=\'\'"';
         }
-        if ($CONFIG['enable_help'] == 1 ) {
             $help = cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_usermgr_php['search_help_title']))).'&t='.urlencode(base64_encode(serialize($lang_usermgr_php['search_help_text']))),400,150);
-        } else {
-            $help = '';
-        }
         echo <<<EOT
         <tr>
                 <td class="tablef" align="center"><input type="checkbox" name="checkAll2" onClick="selectAll(this,'u');" class="checkbox" title="$lang_check_uncheck_all" /></td>
@@ -325,11 +343,20 @@ EOT;
                 <table cellpadding="0" cellspacing="0" width="100%" border="0">
                 <tr>
                         <td align="left">
-                            <select name="what" size="1" class="listbox" onchange="return selectaction(this,'u');">
+                            <select name="action" size="1" class="listbox" onchange="return selectaction(this,'u');">
                                 <option value="" checked="checked">{$lang_usermgr_php['with_selected']}</option>
-                                <option value="user">{$lang_usermgr_php['delete']}</option>
+                                <option value="delete">{$lang_usermgr_php['delete']}</option>
+                                <option value="activate">{$lang_usermgr_php['activate']}</option>
+                                <option value="deactivate">{$lang_usermgr_php['deactivate']}</option>
+                                <option value="reset_password">{$lang_usermgr_php['reset_password']}</option>
+                                <!--<option value="change_group">{$lang_usermgr_php['change_primary_membergroup']}</option>-->
+                                <!--<option value="add_group">{$lang_usermgr_php['add_secondary_membergroup']}</option>-->
                             </select>
-                            <noscript><input type="submit" name="Go" value="{$lang_usermgr_php['search_submit']}" /></noscript>
+                            <input type="hidden" name="what" value="user"/>
+                            <!--<div style="margin-left:0px;margin-right:0px">-->
+                              <input type="text" name="new_password" value="{$lang_usermgr_php['password']}" size="8" maxlength="8" class="textinput" onfocus="this.value='';" style="visibility:hidden" />
+                            <!--</div>-->
+                            <input type="submit" name="go" value="{$lang_usermgr_php['search_submit']}" class="button" style="visibility:hidden" />
                         </td>
                         <td align="center">
                         <a href="{$_SERVER['PHP_SELF']}?op=new_user" class="admin_menu">{$lang_usermgr_php['create_new_user']}</a>
@@ -447,18 +474,19 @@ EOT;
 
         case 'yesno' :
             $value = $user_data[$element[1]];
-            $yes_selected = ($value == 'YES') ? 'selected' : '';
-            $no_selected = ($value == 'NO') ? 'selected' : '';
+            $yes_selected = ($value == 'YES') ? 'checked="checked"' : '';
+            $no_selected = ($value == 'NO') ? 'checked="checked"' : '';
+            //$yes_selected = ($value == 'YES') ? 'selected' : '';
+            //$no_selected = ($value == 'NO') ? 'selected' : '';
             echo <<< EOT
         <tr>
             <td class="tableb">
                         {$element[2]}
         </td>
                 <td class="tableb">
-                        <select name="{$element[1]}" class="listbox">
-                                <option value="YES" $yes_selected>$lang_yes</option>
-                                <option value="NO" $no_selected>$lang_no</option>
-                        </select>
+                    <input type="radio" id="yes" name="{$element[1]}" value="YES" $yes_selected /><label for="yes" class="clickable_option">$lang_yes</label>
+                    &nbsp;&nbsp;
+                    <input type="radio" id="no" name="{$element[1]}" value="NO" $no_selected /><label for="no" class="clickable_option">$lang_no</label>
                 </td>
         </tr>
 

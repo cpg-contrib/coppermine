@@ -1186,20 +1186,24 @@ there. Don't forget the trailing "<tt class="code">/</tt>".</p>
 <p>This is the base directory for your "Image Store". The path is relative to the main directory of the script. </p>
 <p>You can use ../ in the path to move-up one level in the directory tree.</p>
 <p>You can <b>not</b> use an absolute path there ("/var/my_images/" will not work) and the album directory must be visible by your web server.</p>
+<p>This setting mustn't be changed if you already have files in your database. If you do, all reference to your existing files will break.</p>
 <a name="admin_picture_thumb_advanced_albums_dir_end"></a>
 <a name="admin_picture_thumb_advanced_userpics_dir"></a>
 <h4>The directory for user files</h4>
 <p>This is the directory where files uploaded with the web interface are stored. This directory is a subdirectory of the album directory.</p>
 <p>The same remarks as above apply.</p>
 <p>When you upload files by FTP, store them in a subdirectory of the "album directory" and not inside the &quot;directory for user files&quot;. </p>
+<p>This setting mustn't be changed if you already have files in your database. If you do, all reference to your existing files will break.</p>
 <a name="admin_picture_thumb_advanced_userpics_dir_end"></a>
 <a name="admin_picture_thumb_advanced_intermediate_prefix"></a>
 <h4>The prefix for intermediate pictures</h4>
 <p>This prefix is added to the file name of created pictures.</p>
+<p>These setting mustn't be changed if you already have files in your database. If you do, all reference to your existing files will break.</p>
 <a name="admin_picture_thumb_advanced_intermediate_prefix_end"></a>
 <a name="admin_picture_thumb_advanced_thumbs_prefix"></a>
 <h4>The prefix for thumbnails</h4>
 <p>This prefix is added to the file name of created intermediate thumbnails.</p>
+<p>These setting mustn't be changed if you already have files in your database. If you do, all reference to your existing files will break.</p>
 <a name="admin_picture_thumb_advanced_thumbs_prefix_end"></a>
 <a name="admin_picture_thumb_advanced_chmod_folder"></a>
 <h4>Default mode for directories</h4>
@@ -1272,31 +1276,31 @@ With this setting you specify the number of failed logins after that the IP addr
 <a name="admin_user_login_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
-      <a name="admin_custom"></a>
-       <h3>4.11.10 Custom fields for user profile (leave blank if unused). Use Profile 6 for long entries, such as biographies </h3>
-      <p>These fields are displayed within the &quot;user profile&quot; area. They will appear only if you give them a name. As the heading says, use field 6 for long entries, such as biographies, or if you want to use bb code.</p>
-      <a name="admin_custom_end"></a>
+<a name="admin_custom"></a>
+<h3>4.11.10 Custom fields for user profile (leave blank if unused). Use Profile 6 for long entries, such as biographies </h3>
+<p>These fields are displayed within the &quot;user profile&quot; area. They will appear only if you give them a name. As the heading says, use field 6 for long entries, such as biographies, or if you want to use bb code.</p>
+<a name="admin_custom_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
-      <a name="admin_custom_image"></a>
-      <h3>4.11.11 Custom fields for image description (leave blank if unused)</h3>
-      <p>These fields are displayed within the &quot;file information&quot; area. They will appear only if you give them a name.</p>
-      <a name="admin_custom_image_end"></a>
+<a name="admin_custom_image"></a>
+<h3>4.11.11 Custom fields for image description (leave blank if unused)</h3>
+<p>These fields are displayed within the &quot;file information&quot; area. They will appear only if you give them a name.</p>
+<a name="admin_custom_image_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
-      <a name="admin_cookie"></a>
-      <h3>4.11.12 Cookie settings</h3>
-      <h4>Name of the cookie used by the script</h4>
-      <p>Default value is &quot;cpg140&quot;. Even if you have multiple instances of the
-      script running on the same server you can keep the default value.<br /><span class="important">When using bbs integration, make sure it <b>differs</b> from the bbs's cookie name</span></p>
-      <a name="admin_cookie_path"></a><h4>Path of the cookie used by the script</h4>
-      <p>Default value is "/". Don't change this unless you know what you are
-      doing. This may prevent you from logging in.</p>
-      <p>If you have broken your gallery by modifying this value, use phpMyAdmin
-      to edit the xxxx_config table in your database and restore the default
-      value. </p>
-      <a name="admin_cookie_path_end"></a>
-      <p>When using bbs integration into Coppermine, make sure to use <b>different</b> cookie names for coppermine and your bbs!</p>
+<a name="admin_cookie"></a>
+<h3>4.11.12 Cookie settings</h3>
+<a name="admin_cookie_name"></a>
+<h4>Name of the cookie used by the script</h4>
+<p>Default value is &quot;cpg140&quot;. Even if you have multiple instances of the script running on the same server you can keep the default value.<br /><span class="important">When using bbs integration, make sure it <b>differs</b> from the bbs's cookie name</span></p>
+<a name="admin_cookie_name_end"></a>
+<a name="admin_cookie_path"></a>
+<h4>Path of the cookie used by the script</h4>
+<p>Default value is "/". Don't change this unless you know what you are doing. This may prevent you from logging in.</p>
+<p>If you have broken your gallery by modifying this value, use phpMyAdmin to edit the xxxx_config table in your database and restore the default value. </p>
+<p>When using bbs integration into Coppermine, make sure to use <b>different</b> cookie names for coppermine and your bbs! The paths in both applications have to be set so coppermine is able to read both. Usually the default value &quot;<tt class="code">/</tt>&quot; should be set as path both for coppermine install and the BBS app you bridge with.</p>
+<a name="admin_cookie_path_end"></a>
+<a name="admin_cookie"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
       <a name="admin_email"></a>

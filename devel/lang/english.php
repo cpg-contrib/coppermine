@@ -657,26 +657,26 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Auto resize images that are larger than max width or height', 'auto_resize', 16, 'f=index.htm&as=admin_picture_thumbnail_auto-resize&ae=admin_picture_thumbnail_auto-resize_end'),
 
   'Files and thumbnails advanced settings',
-  array('Albums can be private (Note: if you switch from \'yes\' to \'no\' any current private albums will become public)', 'allow_private_albums', 1),
-  array('Show private album Icon to unlogged user','show_private',1),
-  array('Characters forbidden in filenames', 'forbiden_fname_char',0),
-  //array('Accepted file extensions for uploaded pictures', 'allowed_file_extensions',0),
-  array('Allowed image types', 'allowed_img_types',0),
+  array('Albums can be private (Note: if you switch from \'yes\' to \'no\' any current private albums will become public)', 'allow_private_albums', 1, 'f=index.htm&as=admin_picture_thumb_advanced_private_toggle&ae=admin_picture_thumb_advanced_private_toggle_end'),
+  array('Show private album Icon to unlogged user','show_private',1, 'f=index.htm&as=admin_picture_thumb_advanced_private_icon_show&ae=admin_picture_thumb_advanced_private_icon_show_end'),
+  array('Characters forbidden in filenames', 'forbiden_fname_char',0, 'f=index.htm&as=admin_picture_thumb_advanced_filename_forbidden_chars&ae=admin_picture_thumb_advanced_filename_forbidden_chars_end'),
+  //array('Accepted file extensions for uploaded pictures', 'allowed_file_extensions',0, 'f=index.htm&as=&ae=_end'),
+  array('Allowed image types', 'allowed_img_types',0, 'f=index.htm&as=admin_picture_thumb_advanced_pic_extensions&ae=admin_picture_thumb_advanced_pic_extensions_end'),
   array('Allowed movie types', 'allowed_mov_types',0, 'f=index.htm&as=admin_thumbs_advanced_movie&ae=admin_thumbs_advanced_movie_end'),
-  array('Allowed audio types', 'allowed_snd_types',0),
-  array('Allowed document types', 'allowed_doc_types',0),
-  array('Method for resizing images','thumb_method',2),
-  array('Path to ImageMagick \'convert\' utility (example /usr/bin/X11/)', 'impath', 0),
-  //array('Allowed image types (only valid for ImageMagick)', 'allowed_img_types',0),
-  array('Command line options for ImageMagick', 'im_options', 0),
-  array('Read EXIF data in JPEG files', 'read_exif_data', 13),
-  array('Read IPTC data in JPEG files', 'read_iptc_data', 1),
-  array('The album directory <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0),
-  array('The directory for user files <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0),
-  array('The prefix for intermediate pictures <a href="#notice1" class="clickable_option">*</a>', 'normal_pfx', 0),
-  array('The prefix for thumbnails <a href="#notice1" class="clickable_option">*</a>', 'thumb_pfx', 0),
-  array('Default mode for directories', 'default_dir_mode', 0),
-  array('Default mode for files', 'default_file_mode', 0),
+  array('Allowed audio types', 'allowed_snd_types',0, 'f=index.htm&as=admin_picture_thumb_advanced_audio_extensions&ae=admin_picture_thumb_advanced_audio_extensions_end'),
+  array('Allowed document types', 'allowed_doc_types',0, 'f=index.htm&as=admin_picture_thumb_advanced_doc_extensions&ae=admin_picture_thumb_advanced_doc_extensions_end'),
+  array('Method for resizing images','thumb_method',2, 'f=index.htm&as=admin_picture_thumb_advanced_resize_method&ae=admin_picture_thumb_advanced_resize_method_end'),
+  array('Path to ImageMagick \'convert\' utility (example /usr/bin/X11/)', 'impath', 0, 'f=index.htm&as=admin_picture_thumb_advanced_im_path&ae=admin_picture_thumb_advanced_im_path_end'),
+  //array('Allowed image types (only valid for ImageMagick)', 'allowed_img_types',0, 'f=index.htm&as=admin_picture_thumb_advanced_allowed_imagetypes&ae=admin_picture_thumb_advanced_allowed_imagetypes_end'),
+  array('Command line options for ImageMagick', 'im_options', 0, 'f=index.htm&as=admin_picture_thumb_advanced_im_commandline&ae=admin_picture_thumb_advanced_im_commandline_end'),
+  array('Read EXIF data in JPEG files', 'read_exif_data', 13, 'f=index.htm&as=admin_picture_thumb_advanced_exif&ae=admin_picture_thumb_advanced_exif_end'),
+  array('Read IPTC data in JPEG files', 'read_iptc_data', 1, 'f=index.htm&as=admin_picture_thumb_advanced_iptc&ae=admin_picture_thumb_advanced_iptc_end'),
+  array('The album directory <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0, 'f=index.htm&as=admin_picture_thumb_advanced_albums_dir&ae=admin_picture_thumb_advanced_albums_dir_end'),
+  array('The directory for user files <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0, 'f=index.htm&as=admin_picture_thumb_advanced_userpics_dir&ae=admin_picture_thumb_advanced_userpics_dir_end'),
+  array('The prefix for intermediate pictures <a href="#notice1" class="clickable_option">*</a>', 'normal_pfx', 0, 'f=index.htm&as=admin_picture_thumb_advanced_intermediate_prefix&ae=admin_picture_thumb_advanced_intermediate_prefix_end'),
+  array('The prefix for thumbnails <a href="#notice1" class="clickable_option">*</a>', 'thumb_pfx', 0, 'f=index.htm&as=admin_picture_thumb_advanced_thumbs_prefix&ae=admin_picture_thumb_advanced_thumbs_prefix_end'),
+  array('Default mode for directories', 'default_dir_mode', 0, 'f=index.htm&as=admin_picture_thumb_advanced_chmod_folder&ae=admin_picture_thumb_advanced_chmod_folder_end'),
+  array('Default mode for files', 'default_file_mode', 0, 'f=index.htm&as=admin_picture_thumb_advanced_chmod_files&ae=admin_picture_thumb_advanced_chmod_files_end'),
 
   'Movie Playback Settings',
   array('Autostart', 'media_autostart',1, 'f=index.htm&as=admin_movie_autoplay&ae=admin_movie_autoplay_end'),
@@ -831,6 +831,15 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
   'anonymized_comments' => 'Anonymized comments', // cpg1.4.0
   'anonymized_uploads' => 'Anonymized uploads', // cpg1.4.0
   'done' => 'done', // cpg1.4.0
+  'activate_user' => 'Activate user', // cpg1.4.0
+  'user_already_active' => 'Account has already been active', // cpg1.4.0
+  'activated' => 'Activated', // cpg1.4.0
+  'deactivate_user' => 'Deactivate user', // cpg1.4.0
+  'user_already_inactive' => 'Account has already been inactive', // cpg1.4.0
+  'deactivated' => 'Deactivated', // cpg1.4.0
+  'reset_password' => 'Reset password(s)', // cpg1.4.0
+  'password_reset' => 'Password reset to %s', // cpg1.4.0  
+  'status' => 'Status', // cpg1.4.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -1591,8 +1600,13 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'err_no_users' => 'User table is empty !',
   'err_edit_self' => 'You can\'t edit your own profile, use the \'My profile\' link for that',
   'edit' => 'Edit',
-  'with_selected' => 'With selected:',
-  'delete' => 'Delete selected user(s)',
+  'with_selected' => 'With selected:', // cpg1.4.0
+  'delete' => 'Delete', // cpg1.4.0
+  'activate' => 'Activate', // cpg1.4.0
+  'deactivate' => 'Deactivate', // cpg1.4.0
+  'reset_password' => 'Reset Password', // cpg1.4.0
+  'change_primary_membergroup' => 'Change primary membergroup', // cpg1.4.0
+  'add_secondary_membergroup' => 'Add secondary membergroup', // cpg1.4.0
   'name' => 'User name',
   'group' => 'Group',
   'inactive' => 'Inactive',
@@ -1632,6 +1646,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'search_help_title' => 'Searching for users', // cpg1.4.0
   'search_help_text' => 'You can use the wildcards <tt class="debug_text">*</tt> (any string) and <tt class="debug_text">?</tt> (any single character) or even <tt class="debug_text">%expression%</tt>.<br />Example: searching for <tt class="debug_text">j*</tt> will return both <tt class="debug_text">Jack</tt> and <tt class="debug_text">Jill</tt>', // cpg1.4.0
   'alert_no_selection' => 'You have to select a user first!', // cpg1.4.0 //js-alert
+  'password' => 'password', // cpg1.4.0
 );
 
 // ------------------------------------------------------------------------- //
