@@ -120,3 +120,4 @@ function cpg_error_handler($errno, $errmsg, $filename, $linenum, $vars='') {
 error_reporting(E_ALL);
 $cpgdebugger =& new cpg_debugger();
 $cpgdebugger->start();
+?>
