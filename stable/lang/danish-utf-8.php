@@ -55,8 +55,8 @@ $album_date_fmt =    '%d. %B, %Y';
 $lastcom_date_fmt =  '%d/%b/%y kl. %H:%M';
 $lastup_date_fmt = '%d. %B, %Y';
 $register_date_fmt = '%d. %B, %Y';
-$lasthit_date_fmt = '%d. %B, %Y kl. %R';
-$comment_date_fmt =  '%d. %B, %Y kl. %R';
+$lasthit_date_fmt = '%d. %B, %Y kl. %H:%M';
+$comment_date_fmt =  '%d. %B, %Y kl. %H:%M';
 
 // For the word censor
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
