@@ -324,7 +324,7 @@ EOT;
 
 function form_visibility($text, $name)
 {
-    global $CONFIG, $USER_DATA, $ALBUM_DATA, $lang_modifyalb_php;
+    global $CONFIG, $USER_DATA, $ALBUM_DATA, $lang_modifyalb_php, $cpg_udb;
 
     if (!$CONFIG['allow_private_albums']) {
         echo '        <input type="hidden" name="' . $name . '" value="0">' . "\n";
@@ -335,7 +335,7 @@ function form_visibility($text, $name)
         $options = array(0 => $lang_modifyalb_php['public_alb'], FIRST_USER_CAT + USER_ID => $lang_modifyalb_php['me_only']);
         if ($ALBUM_DATA['category'] > FIRST_USER_CAT) {
             if (defined('UDB_INTEGRATION')) {
-                $owner_name = udb_get_user_name($ALBUM_DATA['category'] - FIRST_USER_CAT);
+                $owner_name = $cpg_udb->get_user_name($ALBUM_DATA['category'] - FIRST_USER_CAT);
             } else {
                 $result = cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id='" . ($ALBUM_DATA['category'] - FIRST_USER_CAT) . "'");
                 if (mysql_num_rows($result)) {
@@ -418,7 +418,7 @@ function create_form(&$data)
 
 function alb_list_box()
 {
-    global $CONFIG, $album; //, $PHP_SELF;
+    global $CONFIG, $album, $cpg_udb; //, $PHP_SELF;
 
     if (GALLERY_ADMIN_MODE) {
         $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < '" . FIRST_USER_CAT . "' ORDER BY title");
@@ -426,7 +426,7 @@ function alb_list_box()
         mysql_free_result($result);
 
         if (defined('UDB_INTEGRATION')) {
-            $sql = udb_get_admin_album_list();
+            $sql = $cpg_udb->get_admin_album_list();
         } else {
             $sql = "SELECT aid, CONCAT('(', user_name, ') ', title) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id) " . "ORDER BY title";
         }

@@ -17,6 +17,7 @@
   $Date$
 **********************************************/
 
+
 define('IN_COPPERMINE', true);
 define('BRIDGEMGR_PHP', true);
 
@@ -49,6 +50,7 @@ function write_to_db($step) {
                             $return[$key] = sprintf($lang_bridgemgr_php['error_cookie_not_readible'], '&quot;<tt>'.$value.'</tt>*&quot;','<i>'.$lang_bridgemgr_php[$key].'</i>');
                         }
                     }  // loop through the cookie global var --- end
+					if (isset($temp_err)) $return[$key] = $temp_err;
                 } // check for the existance of a cookie --- end
                 if ($options[1] == 'not_empty') { // check for empty mandatory fields --- start
                     if ($value == '') {
@@ -358,366 +360,119 @@ return $return;
 if (TRUE) { // gallery admin mode --- start
 
 // define the var array
-$default_bridge_data['invisionboard'] = array(
-  'full_name' => 'Invision Power Board 1.x',
-  'short_name' => 'invisionboard',
-  'support_url' => 'http://forums.invisionpower.com/',
-  'db_database_name_default' => 'ivboard',
-  'db_database_name_used' => 'mandatory,not_empty',
-  'db_hostname_default' => 'localhost',
-  'db_hostname_used' => 'mandatory,not_empty',
-  'db_username_default' => '',
-  'db_username_used' => 'mandatory,not_empty',
-  'db_password_default' => '',
-  'db_password_used' => 'password',
-  'relative_path_of_forum_from_webroot_default' => '/ivboard/',
-  'relative_path_of_forum_from_webroot_used' => 'mandatory,not_empty',
-  'cookie_prefix_default' => '',
-  'cookie_prefix_used' => 'cookie,empty',
-  'table_prefix_default' => 'ipb_',
-  'table_prefix_used' => 'optional',
-  'user_table_default' => 'members',
-  'user_table_used' => 'mandatory,not_empty',
-  'session_table_default' => 'sessions',
-  'session_table_used' => 'mandatory,not_empty',
-  'group_table_default' => 'groups',
-  'group_table_used' => 'mandatory,not_empty',
-  'use_standard_groups_default' => '1',
-  'use_standard_groups_used' => 'mandatory,not_empty',
-  'validating_group_default' => '1',
-  'validating_group_used' => 'optional',
-  'guest_group_default' => '2',
-  'guest_group_used' => 'optional',
-  'member_group_default' => '3',
-  'member_group_used' => 'optional',
-  'admin_group_default' => '4',
-  'admin_group_used' => 'optional',
-  'banned_group_default' => '5',
-  'banned_group_used' => 'optional',
-);
 
-$default_bridge_data['invisionboard_2.0'] = array(
+// status: bridge ok, manager was ok a while ago ..
+$default_bridge_data['invisionboard20'] = array(
   'full_name' => 'Invision Power Board 2.x',
-  'short_name' => 'invisionboard_2.0',
+  'short_name' => 'invisionboard20',
   'support_url' => 'http://forums.invisionpower.com/',
-  'db_database_name_default' => 'ivboard',
-  'db_database_name_used' => 'mandatory,not_empty',
-  'db_hostname_default' => 'localhost',
-  'db_hostname_used' => 'mandatory,not_empty',
-  'db_username_default' => '',
-  'db_username_used' => 'mandatory,not_empty',
-  'db_password_default' => '',
-  'db_password_used' => 'password',
-  'relative_path_of_forum_from_webroot_default' => '/ivboard/',
-  'relative_path_of_forum_from_webroot_used' => 'mandatory,not_empty',
-  'cookie_prefix_default' => 'iv2_',
-  'cookie_prefix_used' => 'cookie,empty',
-  'table_prefix_default' => 'ipb_',
-  'table_prefix_used' => 'optional',
-  'user_table_default' => 'members',
-  'user_table_used' => 'mandatory,not_empty',
-  'session_table_default' => 'sessions',
-  'session_table_used' => 'mandatory,not_empty',
-  'group_table_default' => 'groups',
-  'group_table_used' => 'mandatory,not_empty',
-  'use_standard_groups_default' => '1',
-  'use_standard_groups_used' => 'mandatory,not_empty',
-  'validating_group_default' => '1',
-  'validating_group_used' => 'optional',
-  'guest_group_default' => '2',
-  'guest_group_used' => 'optional',
-  'member_group_default' => '3',
-  'member_group_used' => 'optional',
-  'admin_group_default' => '4',
-  'admin_group_used' => 'optional',
-  'banned_group_default' => '5',
-  'banned_group_used' => 'optional',
+  'full_forum_url_default' => 'http://www.yoursite.com/board',
+  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
+  'relative_path_to_config_file_default' => '../board/',
+  'relative_path_to_config_file_used' => 'lookfor,conf_global.php',
+  'use_post_based_groups_default' => '0',
+  'use_post_based_groups_used' => 'radio,1,0',
 );
 
+// status: bridge ok, manager ok
 $default_bridge_data['mambo'] = array(
   'full_name' => 'Mambo server',
   'short_name' => 'mambo',
   'support_url' => 'http://www.mamboserver.com/',
-  'db_database_name_default' => 'database',
-  'db_database_name_used' => 'mandatory,not_empty',
-  'db_hostname_default' => 'localhost',
-  'db_hostname_used' => 'mandatory,not_empty',
-  'db_username_default' => '',
-  'db_username_used' => 'mandatory,not_empty',
-  'db_password_default' => '',
-  'db_password_used' => 'password',
-  'relative_path_of_forum_from_webroot_default' => '/mambo/',
-  'relative_path_of_forum_from_webroot_used' => 'mandatory,not_empty',
-  'table_prefix_default' => 'mos_',
-  'table_prefix_used' => 'mandatory,not_empty',
-  'user_table_default' => 'users',
-  'user_table_used' => 'mandatory,not_empty',
-  'session_table_default' => 'session',
-  'session_table_used' => 'mandatory,not_empty',
-  'group_table_default' => 'core_acl_aro_groups',
-  'group_table_used' => 'mandatory,not_empty',
-  'group_relation_table_default' => 'core_acl_aro',
-  'group_relation_table_used' => 'mandatory,not_empty',
-  'group_mapping_table_default' => 'core_acl_groups_aro_map',
-  'group_mapping_table_used' => 'mandatory,not_empty',
-  'use_standard_groups_default' => '1',
-  'use_standard_groups_used' => 'mandatory,not_empty',
-  'guest_group_default' => '3',
-  'guest_group_used' => 'optional',
-  'member_group_default' => '2',
-  'member_group_used' => 'optional',
-  'admin_group_default' => '1',
-  'admin_group_used' => 'optional',
-  'banned_group_default' => '4',
-  'banned_group_used' => 'optional',
+  'full_forum_url_default' => 'http://www.yoursite.com/board',
+  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
+  'relative_path_to_config_file_default' => '../board/',
+  'relative_path_to_config_file_used' => 'lookfor,configuration.php',
+  'use_post_based_groups_default' => '0',
+  'use_post_based_groups_used' => 'radio,1,0',
 );
 
+// status: bridge ok, manager ok
 $default_bridge_data['phpbb'] = array(
-  'full_name' => 'phpBB',
-  'short_name' => 'phpbb',
+  'full_name' => 'phpBB 2.0.x',
+  'short_name' => 'phpbb20',
   'support_url' => 'http://www.phpbb.com/',
-  'db_database_name_default' => 'phpBB',
-  'db_database_name_used' => 'mandatory,not_empty',
-  'db_hostname_default' => 'localhost',
-  'db_hostname_used' => 'mandatory,not_empty',
-  'db_username_default' => '',
-  'db_username_used' => 'mandatory,not_empty',
-  'db_password_default' => '',
-  'db_password_used' => 'password',
-  'relative_path_of_forum_from_webroot_default' => '/phpBB2/',
-  'relative_path_of_forum_from_webroot_used' => 'mandatory,not_empty,trailing_slash',
-  'logout_flag_default' => '1',
-  'logout_flag_used' => 'radio,1,0',
-  'cookie_prefix_default' => 'phpbb2mysql',
-  'cookie_prefix_used' => 'cookie',
-  'table_prefix_default' => 'phpbb_',
-  'table_prefix_used' => 'mandatory,not_empty',
-  'user_table_default' => 'users',
-  'user_table_used' => 'mandatory,not_empty',
-  'session_table_default' => 'sessions',
-  'session_table_used' => 'mandatory,not_empty',
-  'group_table_default' => 'groups',
-  'group_table_used' => 'mandatory,not_empty',
-  'group_mapping_table_default' => 'user_group',
-  'group_mapping_table_used' => 'mandatory,not_empty',
-  'use_standard_groups_default' => '1',
-  'use_standard_groups_used' => 'mandatory,not_empty',
-  'guest_group_default' => '3',
-  'guest_group_used' => 'optional',
-  'member_group_default' => '2',
-  'member_group_used' => 'optional',
-  'admin_group_default' => '1',
-  'admin_group_used' => 'optional',
-  'banned_group_default' => '4',
-  'banned_group_used' => 'optional',
+  'full_forum_url_default' => 'http://www.yoursite.com/board',
+  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',  
+  'relative_path_to_config_file_default' => '../board/',
+  'relative_path_to_config_file_used' => 'lookfor,config.php',
+  'use_post_based_groups_default' => '0',
+  'use_post_based_groups_used' => 'radio,1,0',
 );
 
+// status: bridge ok, manager unknown
 $default_bridge_data['phpbb22'] = array(
   'full_name' => 'phpBB 2.2',
-  'short_name' => 'phpbb 2.2',
+  'short_name' => 'phpbb22',
   'support_url' => 'http://www.phpbb.com/',
-  'db_database_name_default' => 'phpBB',
-  'db_database_name_used' => 'mandatory,not_empty',
-  'db_hostname_default' => 'localhost',
-  'db_hostname_used' => 'mandatory,not_empty',
-  'db_username_default' => '',
-  'db_username_used' => 'mandatory,not_empty',
-  'db_password_default' => '',
-  'db_password_used' => 'password',
-  'relative_path_of_forum_from_webroot_default' => '/phpBB2/',
-  'relative_path_of_forum_from_webroot_used' => 'mandatory,not_empty,trailing_slash',
-  'cookie_prefix_default' => 'phpbb22',
-  'cookie_prefix_used' => 'cookie',
-  'table_prefix_default' => 'phpbb_',
-  'table_prefix_used' => 'mandatory,not_empty',
-  'user_table_default' => 'users',
-  'user_table_used' => 'mandatory,not_empty',
-  'session_table_default' => 'sessions',
-  'session_table_used' => 'mandatory,not_empty',
-  'group_table_default' => 'groups',
-  'group_table_used' => 'mandatory,not_empty',
-  'group_mapping_table_default' => 'user_group',
-  'group_mapping_table_used' => 'mandatory,not_empty',
-  'use_standard_groups_default' => '1',
-  'use_standard_groups_used' => 'mandatory,not_empty',
-  'guest_group_default' => '3',
-  'guest_group_used' => 'optional',
-  'member_group_default' => '2',
-  'member_group_used' => 'optional',
-  'admin_group_default' => '1',
-  'admin_group_used' => 'optional',
-  'banned_group_default' => '4',
-  'banned_group_used' => 'optional',
-);
-
-$default_bridge_data['punbb'] = array(
-  'full_name' => 'PunBB',
-  'short_name' => 'punbb',
-  'support_url' => 'http://www.punbb.org/',
-  'full_forum_url_default' => 'http://www.yoursite.com/punbb',
-  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
-  'relative_path_of_forum_from_webroot_default' => '',
-  'relative_path_of_forum_from_webroot_used' => '',
-  'relative_path_to_config_file_default' => '../punbb/',
+  'full_forum_url_default' => 'http://www.yoursite.com/board',
+  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',  
+  'relative_path_to_config_file_default' => '../board/',
   'relative_path_to_config_file_used' => 'lookfor,config.php',
-  'create_redir_file_content' => '&lt;?php
-if (isset($_POST[\'redir\'])){
-        echo \'&lt;html&gt;
-                  &lt;body onload="document.redir.submit();"&gt;
-                      &lt;form name="redir" method="post" action="\'.$_POST[\'redir\'].\'"&gt;
-                      &lt;/form&gt;
-                  &lt;/body&gt;
-              &lt;/html&gt;\';
-} else {
-        header("Location: {COPPERMINE_URL}");
-}
-?&gt;
-  ',
-  'create_redir_file_location' => '{BBS_LOCATION}/cpg_redir.php',
-  'create_redir_file_action' => 'display,write',
+  'use_post_based_groups_default' => '0',
+  'use_post_based_groups_used' => 'radio,1,0',
 );
 
+// status: bridge unknown, manager unknown
+$default_bridge_data['punbb115'] = array(
+  'full_name' => 'PunBB v1.1.5',
+  'short_name' => 'punbb115',
+  'support_url' => 'http://www.punbb.org/',
+  'full_forum_url_default' => 'http://www.yoursite.com/board',
+  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
+  'relative_path_to_config_file_default' => '../board/',
+  'relative_path_to_config_file_used' => 'lookfor,config.php',
+  'use_post_based_groups_default' => '0',
+);
+
+// status: bridge ok, manager ok
 $default_bridge_data['punbb12'] = array(
   'full_name' => 'PunBB v1.2',
   'short_name' => 'punbb12',
   'support_url' => 'http://www.punbb.org/',
-  'full_forum_url_default' => 'http://www.yoursite.com/punbb',
+  'full_forum_url_default' => 'http://www.yoursite.com/board',
   'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
-  'relative_path_of_forum_from_webroot_default' => '',
-  'relative_path_of_forum_from_webroot_used' => '',
-  'relative_path_to_config_file_default' => '../punbb/',
+  'relative_path_to_config_file_default' => '../board/',
   'relative_path_to_config_file_used' => 'lookfor,config.php',
-  'create_redir_file_content' => '&lt;?php
-if (isset($_POST[\'redir\'])){
-        echo \'&lt;html&gt;
-                  &lt;body onload="document.redir.submit();"&gt;
-                      &lt;form name="redir" method="post" action="\'.$_POST[\'redir\'].\'"&gt;
-                      &lt;/form&gt;
-                  &lt;/body&gt;
-              &lt;/html&gt;\';
-} else {
-        header("Location: {COPPERMINE_URL}");
-}
-?&gt;
-  ',
-  'create_redir_file_location' => '{BBS_LOCATION}/redir.php',
-  'create_redir_file_action' => 'display,write',
+  'use_post_based_groups_default' => '0',
+  'use_post_based_groups_used' => 'radio,1,0',
 );
 
-$default_bridge_data['smf'] = array(
+// status: bridge ok, manager ok
+$default_bridge_data['smf10'] = array(
   'full_name' => 'Simple Machines (SMF)',
-  'short_name' => 'smf',
+  'short_name' => 'smf10',
   'support_url' => 'http://www.simplemachines.org/',
-  'relative_path_to_config_file_default' => '../smf/',
+  'full_forum_url_default' => 'http://www.yoursite.com/board',
+  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',  
+  'relative_path_to_config_file_default' => '../board/',
   'relative_path_to_config_file_used' => 'lookfor,Settings.php',
   'use_post_based_groups_default' => '0',
   'use_post_based_groups_used' => 'radio,1,0',
-  'create_redir_file_content' => '&lt;?php\necho\'Hello World\';\n?&gt;\n',
-  'create_redir_file_location' => '{BBS_LOCATION}/cpg_redir.php',
-  'create_redir_file_action' => 'display,write',
 );
 
-$default_bridge_data['vbulletin23'] = array(
-  'full_name' => 'vBulletin 2.3',
-  'short_name' => 'vbulletin23',
-  'support_url' => 'http://www.vbulletin.com/',
-  'db_database_name_default' => 'vbulletin23',
-  'db_database_name_used' => 'mandatory,not_empty',
-  'db_hostname_default' => 'localhost',
-  'db_hostname_used' => 'mandatory,not_empty',
-  'db_username_default' => '',
-  'db_username_used' => 'mandatory,not_empty',
-  'db_password_default' => '',
-  'db_password_used' => 'password',
-  'relative_path_of_forum_from_webroot_default' => '/vbulletin23/',
-  'relative_path_of_forum_from_webroot_used' => 'mandatory,not_empty',
-  'user_table_default' => 'user',
-  'user_table_used' => 'mandatory,not_empty',
-  'session_table_default' => 'session',
-  'session_table_used' => 'mandatory,not_empty',
-  'group_table_default' => 'usergroup',
-  'group_table_used' => 'mandatory,not_empty',
-  'use_standard_groups_default' => '1',
-  'use_standard_groups_used' => 'mandatory,not_empty',
-  'validating_group_default' => '3',
-  'validating_group_used' => 'optional',
-  'guest_group_default' => '1',
-  'guest_group_used' => 'optional',
-  'member_group_default' => '2',
-  'member_group_used' => 'optional',
-  'admin_group_default' => '6',
-  'admin_group_used' => 'optional',
-);
-
+// status: bridge unknown, manager unknown
 $default_bridge_data['vbulletin30'] = array(
   'full_name' => 'vBulletin 3.0',
   'short_name' => 'vbulletin30',
   'support_url' => 'http://www.vbulletin.com/',
-  'license_number_default' => 'xxxxxxxx',
-  'license_number_used' => 'mandatory,not_empty',
-  'db_database_name_default' => 'forum',
-  'db_database_name_used' => 'mandatory,not_empty',
-  'db_hostname_default' => 'localhost',
-  'db_hostname_used' => 'mandatory,not_empty',
-  'db_username_default' => '',
-  'db_username_used' => 'mandatory,not_empty',
-  'db_password_default' => '',
-  'db_password_used' => 'password',
-  'relative_path_of_forum_from_webroot_default' => '/vbulletin3/',
-  'relative_path_of_forum_from_webroot_used' => 'mandatory,not_empty',
-  'cookie_prefix_default' => 'bb',
-  'cookie_prefix_used' => 'cookie,empty',
-  'user_table_default' => 'user',
-  'user_table_used' => 'mandatory,not_empty',
-  'session_table_default' => 'session',
-  'session_table_used' => 'mandatory,not_empty',
-  'group_table_default' => 'usergroup',
-  'group_table_used' => 'mandatory,not_empty',
-  'use_standard_groups_default' => '1',
-  'use_standard_groups_used' => 'mandatory,not_empty',
-  'validating_group_default' => '3',
-  'validating_group_used' => 'optional',
-  'guest_group_default' => '1',
-  'guest_group_used' => 'optional',
-  'member_group_default' => '2',
-  'member_group_used' => 'optional',
-  'admin_group_default' => '6',
-  'admin_group_used' => 'optional',
-  'create_redir_file_content' => '&lt;?php\necho\'Hello World\';\n?&gt;\n',
-  'create_redir_file_location' => '{BBS_LOCATION}/cpg_redir.php',
-  'create_redir_file_action' => 'display,write',
+  'full_forum_url_default' => 'http://www.yoursite.com/board',
+  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
+  'relative_path_to_config_file_default' => '../board/',
+  'relative_path_to_config_file_used' => 'lookfor,includes/config.php',
+  'use_post_based_groups_default' => '0',
+  'use_post_based_groups_used' => 'radio,1,0',  
 );
 
+// status: bridge unknown, manager unknown
 $default_bridge_data['woltlab21'] = array(
   'full_name' => 'Woltlab Burning Board 2.1',
   'short_name' => 'woltlab21',
   'support_url' => 'http://www.woltlab.de/',
-  'relative_path_of_forum_from_webroot_default' => '/wbb2/',
-  'relative_path_of_forum_from_webroot_used' => 'mandatory,not_empty',
-  'relative_path_to_config_file_default' => '../wbb2/',
-  'relative_path_to_config_file_used' => 'lookfor,index.php',
-);
-
-$default_bridge_data['yabbse'] = array(
-  'full_name' => 'YaBB SE ',
-  'short_name' => 'yabbse',
-  'support_url' => 'http://www.yabbse.org/community/',
-  'relative_path_of_forum_from_webroot_default' => '',
-  'relative_path_of_forum_from_webroot_used' => '',
-  'relative_path_to_config_file_default' => '../yabbse/Settings.php',
-  'relative_path_to_config_file_used' => 'lookfor',
-  'use_standard_groups_default' => '1',
-  'use_standard_groups_used' => 'mandatory,not_empty',
-  'guest_group_default' => '3',
-  'guest_group_used' => 'optional',
-  'member_group_default' => '2',
-  'member_group_used' => 'optional',
-  'admin_group_default' => '1',
-  'admin_group_used' => 'optional',
-  'banned_group_default' => '4',
-  'banned_group_used' => 'optional',
-  'global_moderators_group_default' => '5',
-  'global_moderators_group_used' => 'optional',
+  'full_forum_url_default' => 'http://www.yoursite.com/board',
+  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',    
+  'relative_path_to_config_file_default' => '../board/',
+  'relative_path_to_config_file_used' => 'lookfor,index.php',  
 );
 
 //////////////// main code start //////////////////////
@@ -728,12 +483,21 @@ if (!$step) {
     $step = 'finalize';
 }
 $new_line = "\n";
+/*
 $next_step = array( // this defines the order of steps
   'choose_bbs' => 'settings_path',
   'settings_path' => 'db_connect',
   'db_connect' => 'db_tables',
   'db_tables' => 'db_groups',
   'db_groups' => 'special_settings',
+  'special_settings' => 'finalize',
+  'finalize' => 'finalize',
+);
+*/
+
+$next_step = array( // this defines the order of steps
+  'choose_bbs' => 'settings_path',
+  'settings_path' => 'special_settings',
   'special_settings' => 'finalize',
   'finalize' => 'finalize',
 );
@@ -1254,6 +1018,12 @@ case "finalize":
     if (!$error) {
         $BRIDGE = cpg_get_bridge_db_values();
         $CONFIG = cpg_refresh_config_db_values();
+		
+		// sync groups here now :)
+		if ($CONFIG['bridge_enable']){
+			if (!isset($cpg_udb)) include 'bridge/' . $BRIDGE['short_name'] . '.inc.php';
+			$cpg_udb->synchronize_groups();
+		}
         print '<form name="'.$step.'" action="'.$_SERVER['PHP_SELF'].'" method="post">';
         echo <<<EOT
     <script type="text/javascript">

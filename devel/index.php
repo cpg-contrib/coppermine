@@ -319,10 +319,10 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
 function list_users()
 {
     global $CONFIG, $PAGE, $FORBIDDEN_SET;
-    global $lang_list_users, $lang_errors, $template_user_list_info_box, $cpg_show_private_album;
+    global $lang_list_users, $lang_errors, $template_user_list_info_box, $cpg_show_private_album, $cpg_udb;
 
     if (defined('UDB_INTEGRATION')) {
-        $result = udb_list_users_query($user_count);
+        $result = $cpg_udb->list_users_query($user_count);
     } else {
         // $sql = "SELECT user_id," . "        user_name," . "        COUNT(DISTINCT a.aid) as alb_count," . "        COUNT(DISTINCT pid) as pic_count," . "        MAX(pid) as thumb_pid " . "FROM {$CONFIG['TABLE_USERS']} AS u " . "INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON category = " . FIRST_USER_CAT . " + user_id " . "INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid " . "WHERE approved = 'YES' " . "$FORBIDDEN_SET " . "GROUP BY user_id " . "ORDER BY user_name ";
         // Fixed correct album count DJMaze
@@ -349,7 +349,7 @@ function list_users()
     $row_count = $upper_limit - $lower_limit;
 
     if (defined('UDB_INTEGRATION')) {
-        $rowset = udb_list_users_retrieve_data($result, $lower_limit, $row_count);
+        $rowset = $cpg_udb->list_users_retrieve_data($result, $lower_limit, $row_count);
     } else {
         $rowset = array();
         $i = 0;

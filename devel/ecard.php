@@ -39,7 +39,7 @@ $album = $_GET['album'];
 $pos = (int)$_GET['pos'];
 
 $sender_name = get_post_var('sender_name', USER_NAME ? USER_NAME : (isset($USER['name']) ? $USER['name'] : ''));
-if (defined('UDB_INTEGRATION')AND USER_ID) $USER_DATA = array_merge($USER_DATA,udb_get_user_infos(USER_ID));
+if (defined('UDB_INTEGRATION')AND USER_ID) $USER_DATA = array_merge($USER_DATA,$cpg_udb->get_user_infos(USER_ID));
 if ($USER_DATA['user_email']){
 $sender_email = $USER_DATA['user_email'];
 $sender_box = $sender_email;

@@ -23,7 +23,7 @@ define('PROFILE_PHP', true);
 
 require('include/init.inc.php');
 
-if (defined('UDB_INTEGRATION')) udb_edit_users();
+if (defined('UDB_INTEGRATION')) $cpg_udb->edit_users();
 
 if (USER_ID !='') {
  if (GALLERY_ADMIN_MODE) {

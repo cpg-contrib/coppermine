@@ -426,7 +426,7 @@ if (UPLOAD_APPROVAL_MODE) {
         $result = cpg_db_query($sql);
         while($row = mysql_fetch_array($result)){
                 if(defined('UDB_INTEGRATION')){
-                        $owner_name = udb_get_user_name($row['owner_id']);
+                        $owner_name = $cpg_udb->get_user_name($row['owner_id']);
                 } else {
                     $result2 = cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '".$row['owner_id']."'");
                         if (mysql_num_rows($result2)){

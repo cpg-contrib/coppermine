@@ -24,7 +24,7 @@ require('include/init.inc.php');
 
 if (USER_ID) cpg_die(ERROR, $lang_login_php['err_already_logged_in'], __FILE__, __LINE__);
 
-if (defined('UDB_INTEGRATION')) udb_login_page();
+if (defined('UDB_INTEGRATION')) $cpg_udb->login_page();
 
 $referer = $_GET['referer'] ? $_GET['referer'] : 'index.php';
 if (strpos($referer, "http") !== false) {

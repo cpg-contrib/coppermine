@@ -42,7 +42,7 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
  function albumselect($id = "album") {
 // frogfoot re-wrote this function to present the list in categorized, sorted and nicely formatted order
 
-    global $CONFIG, $lang_search_new_php;
+    global $CONFIG, $lang_search_new_php, $cpg_udb;
     static $select = "";
 
     // Reset counter
@@ -70,7 +70,7 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
         mysql_free_result($result);
 
         if (defined('UDB_INTEGRATION')) {
-            $sql = udb_get_admin_album_list();
+            $sql = $cpg_udb->get_admin_album_list();
         } else {
             $sql = "SELECT aid, CONCAT('(', user_name, ') ', title) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id)";
         }

@@ -1215,14 +1215,14 @@ function get_album_name($aid)
  **/
 function get_username($uid)
 {
-        global $CONFIG;
+        global $CONFIG, $cpg_udb;
 
         $uid = (int)$uid;
 
         if (!$uid) {
             return 'Anonymous';
         } elseif (defined('UDB_INTEGRATION')) {
-           return udb_get_user_name($uid);
+           return $cpg_udb->get_user_name($uid);
         } else {
                 $result = cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '".$uid."'");
                 if (mysql_num_rows($result) == 0) return '';
@@ -1242,14 +1242,14 @@ function get_username($uid)
  **/
 function get_userid($username)
 {
-        global $CONFIG;
+        global $CONFIG, $cpg_udb;
 
         $username = addslashes($username);
 
         if (!$username) {
             return 0;
         } elseif (defined('UDB_INTEGRATION')) { // (Altered to fix banning w/ bb integration - Nibbler)
-           return udb_get_user_id($username);
+           return $cpg_udb->get_user_id($username);
         } else {
                 $result = cpg_db_query("SELECT user_id FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '".$username."'");
                 if (mysql_num_rows($result) == 0) return 0;

@@ -278,7 +278,7 @@ user_get_profile();
 
 // Authenticate
 if (defined('UDB_INTEGRATION')) {
-    udb_authenticate();
+    $cpg_udb->authenticate();
 } else {
     if (!isset($_COOKIE[$CONFIG['cookie_name'] . '_uid']) || !isset($_COOKIE[$CONFIG['cookie_name'] . '_pass'])) {
         $cookie_uid = 0;

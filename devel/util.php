@@ -124,7 +124,7 @@ if (array_key_exists($action, $tasks)){
         starttable('100%', $lang_util_php['select_album']);
         echo '<tr><td class="tablef"><br />';
         if (defined('UDB_INTEGRATION')){
-                udb_util_filloptions();
+                $cpg_udb->util_filloptions();
         } else {
                 filloptions();
         }

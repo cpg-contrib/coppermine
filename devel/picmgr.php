@@ -40,7 +40,7 @@ function get_album_data()
 function albumselect($id = "album") {
 // frogfoot re-wrote this function to present the list in categorized, sorted and nicely formatted order
 
-    global $CONFIG, $lang_picmgr_php, $aid, $lang_errors;
+    global $CONFIG, $lang_picmgr_php, $aid, $lang_errors, $cpg_udb;
     static $select = "";
 
     // Reset counter
@@ -76,7 +76,7 @@ function albumselect($id = "album") {
         // albums in user's personal galleries
         if (defined('UDB_INTEGRATION')) {
             if (GALLERY_ADMIN_MODE) {
-                $sql = udb_get_admin_album_list();
+                $sql = $cpg_udb->get_admin_album_list();
             } else {
                 $sql = "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = ".(FIRST_USER_CAT + USER_ID);
             }

@@ -25,7 +25,7 @@ require('include/mailer.inc.php');
 
 if (!$CONFIG['allow_user_registration'] || USER_ID) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
-if (defined('UDB_INTEGRATION')) udb_register_page();
+if (defined('UDB_INTEGRATION')) $cpg_udb->register_page();
 // Display the disclaimer
 function display_disclaimer()
 {

@@ -24,7 +24,7 @@ require('include/init.inc.php');
 
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
-if (defined('UDB_INTEGRATION')) udb_synchronize_groups();
+if (defined('UDB_INTEGRATION')) $cpg_udb->synchronize_groups();
 
 function display_group_list()
 {
