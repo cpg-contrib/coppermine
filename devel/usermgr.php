@@ -169,31 +169,31 @@ function selectaction(d,box) {
     return false;
   }
   document.editForm.id.value = checked_string;
-  document.editForm.new_password.style.visibility = "hidden";
-  document.editForm.group.style.visibility = "hidden";
-  document.editForm.go.style.visibility = "hidden";
-  //document.editForm.delete_files.style.visibility = "hidden";
-  document.editForm.delete_comments.style.visibility = "hidden";
+  document.editForm.new_password.style.display = "none";
+  document.editForm.group.style.display = "none";
+  document.editForm.go.style.display = "none";
+  document.editForm.delete_files.style.display = "none";
+  document.editForm.delete_comments.style.display = "none";
   switch(document.editForm.action.value) {
     case "delete":
-      document.editForm.delete_files.style.visibility = "visible";
-      document.editForm.delete_comments.style.visibility = "visible";
-      document.editForm.go.style.visibility = "visible";
+      document.editForm.delete_files.style.display = "inline";
+      document.editForm.delete_comments.style.display = "inline";
+      document.editForm.go.style.display = "inline";
     break;
     case "reset_password":
-      document.editForm.new_password.style.visibility = "visible";
-      document.editForm.go.style.visibility = "visible";
+      document.editForm.new_password.style.display = "inline";
+      document.editForm.go.style.display = "inline";
     break;
     case "change_group":
       document.editForm.new_password.value = '';
-      document.editForm.group.style.visibility = "visible";
+      document.editForm.group.style.display = "inline";
       if (document.editForm.group.value != '') {
       document.editForm.submit();
       }
     break;
     case "add_group":
       document.editForm.new_password.value = '';
-      document.editForm.group.style.visibility = "visible";
+      document.editForm.group.style.display = "inline";
       if (document.editForm.group.value != '') {
       document.editForm.submit();
       }
@@ -382,8 +382,8 @@ EOT;
                                 <option value="add_group">{$lang_usermgr_php['add_secondary_membergroup']}</option>
                             </select>
                             <input type="hidden" name="what" value="user"/>
-                              <input type="text" name="new_password" value="{$lang_usermgr_php['password']}" size="8" maxlength="8" class="textinput" onfocus="this.value='';" style="visibility:hidden" />
-                              <select name="group" size="1" class="listbox" style="visibility:hidden" onchange="return selectaction(this,'u');">
+                              <input type="text" name="new_password" value="{$lang_usermgr_php['password']}" size="8" maxlength="8" class="textinput" onfocus="this.value='';" style="display:none" />
+                              <select name="group" size="1" class="listbox" style="display:none" onchange="return selectaction(this,'u');">
                                   <option value="">{$lang_usermgr_php['select_group']}</option>
 
 EOT;
@@ -392,7 +392,11 @@ EOT;
         $group_list = cpg_db_fetch_rowset($result);
         mysql_free_result($result);
 
-        $sel_group = $user_data[$element[1]];
+        if (isset($element[1])) {
+            $sel_group = $user_data[$element[1]];
+        } else {
+            $sel_group = '';
+        }
         $user_group_list = ($user_data['user_group_list'] == '') ? ',' . $sel_group . ',' : ',' . $user_data['user_group_list'] . ',' . $sel_group . ',';
 
 
@@ -401,15 +405,15 @@ EOT;
         }
         echo <<<EOT
                               </select>
-                            <select name="delete_files" size="1" class="listbox" style="visibility:hidden">
+                            <select name="delete_files" size="1" class="listbox" style="display:none">
                                 <option value="no">{$lang_usermgr_php['delete_files_no']}</option>
-                                <option value="yes">{$lang_usermgr_php['delete_files_yes']}(not implemented yet)</option>
+                                <option value="yes">{$lang_usermgr_php['delete_files_yes']}</option>
                             </select>
-                            <select name="delete_comments" size="1" class="listbox" style="visibility:hidden">
+                            <select name="delete_comments" size="1" class="listbox" style="display:none">
                                 <option value="no">{$lang_usermgr_php['delete_comments_no']}</option>
-                                <option value="yes">{$lang_usermgr_php['delete_comments_yes']}(not implemented yet)</option>
+                                <option value="yes">{$lang_usermgr_php['delete_comments_yes']}</option>
                             </select>
-                            <input type="submit" name="go" value="{$lang_usermgr_php['search_submit']}" class="button" style="visibility:hidden" />
+                            <input type="submit" name="go" value="{$lang_usermgr_php['submit']}" class="button" style="display:none" />
                         </td>
                         <td align="center">
                         <a href="{$_SERVER['PHP_SELF']}?op=new_user" class="admin_menu">{$lang_usermgr_php['create_new_user']}</a>

@@ -35,16 +35,16 @@ function output_table_header()
     $header_printed = true;
     $need_caption = true;
 
-    ?>
+echo <<<EOT
 <tr>
-<td class="tableh2"><b><?php echo $lang_delete_php['npic'] ?></b></td>
-<td class="tableh2" align="center"><b>F</b></td>
-<td class="tableh2" align="center"><b>N</b></td>
-<td class="tableh2" align="center"><b>T</b></td>
-<td class="tableh2" align="center"><b>C</b></td>
-<td class="tableh2" align="center"><b>D</b></td>
+<td class="tableh2"><b>{$lang_delete_php['npic']}</b></td>
+<td class="tableh2" align="center"><b>{$lang_delete_php['fs_pic']}</b></td>
+<td class="tableh2" align="center"><b>{$lang_delete_php['ns_pic']}</b></td>
+<td class="tableh2" align="center"><b>{$lang_delete_php['thumb_pic']}</b></td>
+<td class="tableh2" align="center"><b>{$lang_delete_php['comment']}</b></td>
+<td class="tableh2" align="center"><b>{$lang_delete_php['im_in_alb']}</b></td>
 </tr>
-<?php
+EOT;
 }
 
 function output_caption()
@@ -456,57 +456,74 @@ switch ($what) {
                 case 'delete':
                     pageheader($lang_delete_php['del_user']);
                     starttable("100%", $lang_delete_php['del_user'], 6);
-                    print "<tr>\n";
-                    print "<td class=\"tableh2\"><b>{$lang_delete_php['username']}</b></td>\n";
-                    print "<td class=\"tableh2\"><b>{$lang_delete_php['deleted_albums']}</b></td>\n";
-                    print "<td class=\"tableh2\"><b>{$lang_delete_php['anonymized_comments']}</b></td>\n";
-                    print "<td class=\"tableh2\"><b>{$lang_delete_php['anonymized_uploads']}</b></td>\n";
-                    print "<td class=\"tableh2\"><b>{$lang_delete_php['del_user']}</b></td>\n";
-                    print "</tr>\n";
-
                     foreach($users_scheduled_for_action as $key) {
                         $result = cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$key'");
+                        print '<tr>';
                         if (!mysql_num_rows($result)) {
-                            print '<tr><td class="tableb" colspan="5">'.$lang_delete_php['err_unknown_user'].'</td>';
-                            // cpg_die(CRITICAL_ERROR, $lang_delete_php['err_unknown_user'], __FILE__, __LINE__);
+                            print '<td class="tableb">'.$lang_delete_php['err_unknown_user'].'</td>';
                         } else {
                             $user_data = mysql_fetch_array($result);
-                            print '<tr>';
-                            print '<td class="tableb"><b>';
-                            print $user_data['user_name'];
-                            print '</b></td>';
+                            print '<td class="tableb">';
                             // First delete the albums
                             $result2 = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = '" . (FIRST_USER_CAT + $key) . "'");
                             $user_alb_counter = 0;
                             while ($album = mysql_fetch_array($result2)) {
+                                starttable('100%');
                                 delete_album($album['aid']);
+                                endtable();
                                 $user_alb_counter++;
                             } // while
                             mysql_free_result($result2);
-                            print '<td class="tableb">'.$user_alb_counter;
-                            print '</td>';
-
-                            if ($need_caption) output_caption();
+                            starttable('100%');
+                            print '<tr>';
                             // Then anonymize comments posted by the user
                             $comment_result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_COMMENTS']} WHERE author_id = '$key'");
                             $comment_counter = mysql_fetch_array($comment_result);
                             mysql_free_result($comment_result);
-                            cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET  author_id = '0' WHERE  author_id = '$key'");
-                            print '<td class="tableb">';
-                            print $comment_counter[0];
+                            print '<td class="tableb" width="25%">';
+                            if ($_REQUEST['delete_comments'] == 'yes') {
+                                cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE author_id = '$key'");
+                                if ($comment_counter[0] > 0) {
+                                    print '<img src="images/green.gif" width="12" height="12" border="0" alt="" /> ';
+                                }
+                                printf($lang_delete_php['deleted_comments'], $comment_counter[0]);
+                            } else {
+                                cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET  author_id = '0' WHERE  author_id = '$key'");
+                                if ($comment_counter[0] > 0) {
+                                    print '<img src="images/green.gif" width="12" height="12" border="0" alt="" /> ';
+                                }
+                                printf($lang_delete_php['anonymized_comments'], $comment_counter[0]);
+                            }
                             print '</td>';
                             // Do the same for pictures uploaded in public albums
                             $publ_upload_result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_id = '$key'");
                             $publ_upload_counter = mysql_fetch_array($publ_upload_result);
                             mysql_free_result($publ_upload_result);
-                            cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET  owner_id = '0' WHERE  owner_id = '$key'");
-                            print '<td class="tableb">';
-                            print $publ_upload_counter[0];
+                            print '<td class="tableb" width="25%">';
+                            if ($_REQUEST['delete_files'] == 'yes') {
+                                cpg_db_query("DELETE FROM {$CONFIG['TABLE_PICTURES']} WHERE  owner_id = '$key'");
+                                if ($publ_upload_counter[0] > 0) {
+                                    print '<img src="images/green.gif" width="12" height="12" border="0" alt="" /> ';
+                                }
+                                printf($lang_delete_php['deleted_uploads'], $publ_upload_counter[0]);
+                            } else {
+                                cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET  owner_id = '0' WHERE  owner_id = '$key'");
+                                if ($publ_upload_counter[0] > 0) {
+                                    print '<img src="images/green.gif" width="12" height="12" border="0" alt="" /> ';
+                                }
+                                printf($lang_delete_php['anonymized_uploads'], $publ_upload_counter[0]);
+                            }
                             print '</td>';
                             // Finally delete the user
                             cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$key'");
-                            print '<td class="tableb">';
-                            print $lang_delete_php['done'];
+                            print '<td class="tableb" width="50%">';
+                            print '<b>';
+                            print '<img src="images/green.gif" width="12" height="12" border="0" alt="" /> ';
+                            printf($lang_delete_php['user_deleted'],'&laquo;'.$user_data['user_name'].'&raquo;');
+                            print '</b>';
+                            print '</td>';
+                            print '</tr>';
+                            endtable();
                             print '</td>';
                         }
                         mysql_free_result($result);
@@ -698,8 +715,6 @@ switch ($what) {
                             if (!in_array($_REQUEST['group'], $user_group)){
                                 $user_group[] =  $_REQUEST['group'];
                             }
-                            //print_r($user_group);
-                            //print '|'.$user_data['user_group_list'].'|';
                             $group_output = '';
                             $new_group_query = '';
                             foreach($user_group as $group) {
@@ -712,8 +727,6 @@ switch ($what) {
                             $new_group_query = trim($new_group_query, ',');
                             // set this user's group
                             cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_group_list = '$new_group_query' WHERE  user_id = '$key'");
-                            //print $group_output;
-                            //print $new_group_query;
                             printf($lang_delete_php['add_group_to_group'], '&laquo;'.$user_data['user_name'].'&raquo;', '&laquo;'.$group_label[$_REQUEST['group']].'&raquo;', '&laquo;'.$group_label[$user_data['user_group']].'&raquo;', $group_output);
                             print '</b></td>';
                         }
