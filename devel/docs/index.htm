@@ -94,12 +94,12 @@ a.external {
           }
 .quote
 {
-	color: #000000;
-	background-color: #C3B8D0;
-	border: 1px solid #000000;
-	margin: 1px;
-	padding: 1px;
-	font-size: x-small;
+        color: #000000;
+        background-color: #C3B8D0;
+        border: 1px solid #000000;
+        margin: 1px;
+        padding: 1px;
+        font-size: x-small;
 }
 </style>
 </head>
@@ -124,7 +124,7 @@ a.external {
       <a id="top" name="top"></a>
       <h1>Table of contents</h1>
       <ul class="content">
-        <li class="content"><a href="#testVersion"><span class="menu1">0. Beta (Testing) version</span></a></li>
+        <!--<li class="content"><a href="#testVersion"><span class="menu1">0. Beta (Testing) version</span></a></li>-->
         <li class="content"><a href="#what"><span class="menu1">1. What is required</span></a></li>
         <li class="content"><a href="#installation"><span class="menu1">2. Installation and setup</span></a></li>
         <ul style="margin-top:0px;margin-bottom:0px;list-style-type:none">
@@ -191,7 +191,7 @@ a.external {
         </ul>
       </ul>
       <hr />
-
+<!--
 <a name="testVersion"></a>
 <h1>0. Beta (Testing) version</h1>
 <p>Dear Tester,<br />&nbsp;<br />
@@ -239,6 +239,8 @@ open-source photo gallery!</p>
 <p>Coppermine Development Team</p>
 <p><a class="back" href="#top">Back to
       top</a></p>
+-->
+
 
 <a name="what"></a>
 <h1>1. What is required</h1>
@@ -440,7 +442,7 @@ open-source photo gallery!</p>
 <p><a class="back" href="#top">Back to top</a></p>
 
 <a name="13"></a>
-<h2>3.4 Upgrading from cpg1.2.0 (or better) to version cpg1.3.0</h2>
+<h2>3.4 Upgrading from cpg1.2.0, cpg1.2.1 or cpg1.3.0beta to version cpg1.3.0</h2>
         <ul>
                 <li>Backup your include/config.inc.php file and your &quot;albums&quot; directoy.</li>
                 <li>Unpack the archive</li>
@@ -451,9 +453,9 @@ open-source photo gallery!</p>
                 <li>If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme - refer to the <a href="theme.htm">theme-upgrade guide</a>.</li>
                 <li>You can not use language files from older versions of Coppermine - make sure to only have the language files that come with this package inside your lang folder (delete or rename all files from older versions within the lang folder)</li>
         </ul>
+<p>Please note: as there have been changes both in the coppermine files and the database from cpg1.3.0beta to cpg1.3.0 (final), users of the beta will have to apply all steps mentioned above: both the files have to be replaced and the update.php script has to be run once.</p>
 
 <p><a class="back" href="#top">Back to top</a></p>
-
 
 <hr />
 
@@ -1469,6 +1471,7 @@ exit;
         <li>There are <a href="http://coppermine.sourceforge.net/board/viewtopic.php?t=4793">known issues</a> with the vbulletin bridge files that will affect users who are not members of the &quot;Registered User&quot; group</li>
         <li>Only a few <a href="http://coppermine.sourceforge.net/board/viewtopic.php?t=4623">language files</a> have been sent back, so there's not many languages to test with.</li>
         <li>&quot;Download favorites as zip&quot; only works if the zlib library is installed on the server</li>
+        <li>The <a href="http://coppermine.sourceforge.net/board/index.php?topic=1866.0">arrows used for navigation</a> from one pic to the other display in the wrong order for rtl-languages</li>
 </ul>
 <p><a class="back" href="#top">Back to top</a></p>
 <hr />
@@ -1485,7 +1488,7 @@ exit;
         <td><b>Status</b></td>
 </tr>
 <tr>
-        <td>Casper Biering</td>
+        <td>Clive Leech</td>
         <td><a href="http://coppermine.sourceforge.net/board/profile.php?mode=viewprofile&u=56">casper</a></td>
         <td>Supporter</td>
         <td>active</td>
@@ -1493,7 +1496,7 @@ exit;
 <tr>
         <td>Maarten Hagoort</td>
         <td><a href="http://coppermine.sourceforge.net/board/profile.php?mode=viewprofile&u=404">DJ Maze</a></td>
-        <td>Developer</td>
+        <td>Developer (nuke team)</td>
         <td>active</td>
 </tr>
 <tr>
@@ -1511,7 +1514,7 @@ exit;
 <tr>
         <td>Scott Gahres</td>
         <td><a href="http://coppermine.sourceforge.net/board/profile.php?mode=viewprofile&u=66">gtroll</a></td>
-        <td>Developer</td>
+        <td>Developer (nuke team)</td>
         <td>active</td>
 </tr>
 <tr>
@@ -1533,9 +1536,15 @@ exit;
         <td>active</td>
 </tr>
 <tr>
-        <td>Nibbler</td>
+        <td>Tommy</td>
         <td><a href="http://coppermine.sourceforge.net/board/profile.php?mode=viewprofile&u=941">Nibbler</a></td>
         <td>Supporter</td>
+        <td>active</td>
+</tr>
+<tr>
+        <td>Jay Hao-En Liu</td>
+        <td><a href="http://coppermine.sourceforge.net/board/profile.php?mode=viewprofile&u=59">Oasis</a></td>
+        <td>Developer</td>
         <td>active</td>
 </tr>
 <tr>
@@ -1586,12 +1595,6 @@ exit;
         <td><a href="http://coppermine.sourceforge.net/board/profile.php?mode=viewprofile&u=133">mitirapa</a></td>
         <td>Porter (Cross Platform Devel.)</td>
         <td>retired</td>
-</tr>
-<tr>
-        <td>Jay Hao-En Liu</td>
-        <td><a href="http://coppermine.sourceforge.net/board/profile.php?mode=viewprofile&u=59">Oasis</a></td>
-        <td>Developer</td>
-        <td>pending</td>
 </tr>
 <tr>
         <td>Mark Zerr</td>
