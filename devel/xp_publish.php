@@ -538,10 +538,10 @@ function form_login()
     //global $PHP_SELF;
     global $ONNEXT_SCRIPT, $ONBACK_SCRIPT, $WIZARD_BUTTONS;
     global $template_login;
-    global $lang_login_php, $lang_xp_publish_php;
+    global $lang_login_php, $lang_xp_publish_php, $cpg_udb;
 
 
-    if (UDB_INTEGRATION != 'coppermine') {
+    if (!method_exists($cpg_udb,'login')) {
         echo '<p>' . $lang_xp_publish_php['need_login'] . '</p>';
         $ONNEXT_SCRIPT = '';
         $ONBACK_SCRIPT = 'window.external.FinalBack();';
@@ -567,11 +567,12 @@ function process_login()
 {
     global $CONFIG, $USER; //$PHP_SELF,
     global $ONNEXT_SCRIPT, $ONBACK_SCRIPT, $WIZARD_BUTTONS;
-    global $template_login_success, $template_login_failure;
-    global $lang_login_php;
+    global $template_login_success, $template_login_failure,$template_login;
+    global $lang_login_php, $cpg_udb;
+
+    $tt = 'worked';
 
     if ( $USER_DATA = $cpg_udb->login(addslashes($_POST['username']), addslashes($_POST['password'])) ) {
-        $USER_DATA = mysql_fetch_array($results);
         $USER['am'] = 1;
         user_save_profile();
 
@@ -585,6 +586,7 @@ function process_login()
             '{POST_ACTION}' => $_SERVER['PHP_SELF'] . '?cmd=publish',
             );
 
+        
         echo template_eval($template_login_failure, $params);
     }
 
