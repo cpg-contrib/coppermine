@@ -134,3 +134,4 @@ Added 'if' block for unlink operations in update.php - 4 July 2004, Chris
 Added 'media-autostart' to config values - 4 July 2004, Chris
 Added 'media_autostart' to lang_config_data - 4 July 2004, Chris
 Added Password protected albums - 6th July 2004, Tarique
+Changed hard coded english in delete.php and upload.php to lang file, user contribution u3uk, 6 July 2004, Casper
