@@ -432,7 +432,11 @@ EOT;
     // Display the albums that have new pictures added
     foreach ($edit_album_array as $edit_album)
     {
-      $edit_pics_content .= '<a href="editpics.php?album='.$edit_album. '">' . $lang_search_new_php['edit_pics'] . ' : ' . $album_array[$edit_album] . '</a><br />';
+      $edit_pics_content .= $lang_search_new_php['album'] . ' &laquo;' . $album_array[$edit_album] .'&raquo;: ';
+      $edit_pics_content .= '<a href="editpics.php?album='.$edit_album. '" class="admin_menu">' . $lang_search_new_php['edit_pics'] . '</a> ';
+      $edit_pics_content .= '<a href="modifyalb.php?album='.$edit_album. '" class="admin_menu">' . $lang_search_new_php['edit_properties'] . '</a> ';
+      $edit_pics_content .= '<a href="thumbnails.php?album='.$edit_album. '" class="admin_menu">' . $lang_search_new_php['view_thumbs'] . '</a> ';
+      $edit_pics_content .= '<br />';
     }
 
     echo <<<EOT

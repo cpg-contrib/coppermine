@@ -1575,13 +1575,13 @@ $lang_search_php = array(
   'edit_keywords' => 'Edit keywords', // cpg1.4
   'search in' => 'Search in:', //cpg 1.4
   'ip_address' => 'IP address', //cpg 1.4
-  'fields' => 'Fields', //cpg 1.4
+  'fields' => 'Search in', //cpg 1.4
   'age' => 'Age', //cpg 1.4
   'newer_than' => 'Newer than', //cpg 1.4
   'older_than' => 'Older than', //cpg 1.4
   'days' => 'days', //cpg 1.4
-  'all_words' => 'Match all words', //cpg 1.4
-  'any_words' => 'Match any words', //cpg 1.4
+  'all_words' => 'Match all words (AND)', //cpg 1.4
+  'any_words' => 'Match any words (OR)', //cpg 1.4
 );
 
 $lang_adv_opts = array(
@@ -1635,7 +1635,9 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
    'albums_no_category' => 'Albums with no category', //cpg1.4 // album pulldown mod, added by frogfoot
   'personal_albums' => '* Personal albums', //cpg1.4 // album pulldown mod, added by frogfoot
   'browse_batch_add' => 'Browsable interface (recommended)', //cpg1.4
-  'edit_pics' => 'Edit files in album', //cpg1.4
+  'edit_pics' => 'Edit files', //cpg1.4
+  'edit_properties' => 'Album properties', //cpg1.4
+  'view_thumbs' => 'Thumbnail view', //cpg1.4
 );
 
 
