@@ -665,6 +665,7 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
   'upl_success' => 'Your file was successfully added',
   'email_comment_subject' => 'Comment posted on Coppermine Photo Gallery',
   'email_comment_body' => 'Someone has posted a comment on your gallery. See it at',
+  'album_not_selected' => 'Album not selected',
 );
 
 // ------------------------------------------------------------------------- //
@@ -1387,6 +1388,7 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'process_complete' => 'You have successfully placed all the files.',
    'albums_no_category' => 'Albums with no category', //cpg1.4.0, album pulldown mod, added by frogfoot
   'personal_albums' => '* Personal albums', //cpg1.4.0, album pulldown mod, added by frogfoot
+  'select_album' => 'Select album', //cpg1.4.0, album pulldown mod, added by frogfoot
 );
 
 // ------------------------------------------------------------------------- //

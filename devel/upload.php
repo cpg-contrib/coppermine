@@ -218,6 +218,7 @@ EOT;
 
     // Finally, print out the nicely sorted and formatted drop down list
     $alb_cat = '';
+	echo '                <option value="">' . $lang_upload_php['select_album'] . "</option>\n";
     foreach ($listArray as $val) {
         if ($val[cat] != $alb_cat) {
 if ($alb_cat) echo "                </optgroup>\n";
@@ -411,7 +412,7 @@ function get_and_convert_to_bytes ($ini_variable_name) {
 // Moved to 'logger.inc.php' - omni
 // The function spring_cleaning is a garbage collection routine used to purge a directory of old files.
 if (!function_exists('spring_cleaning')){
-function& spring_cleaning($directory_path, $cache_time = 86400, $exclusion_list = array('index.html')) {
+function spring_cleaning($directory_path, $cache_time = 86400, $exclusion_list = array('index.html')) {
 
     //Storage the deleted files
     $deleted_list = array();
@@ -2081,7 +2082,14 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
 
     // Check for incoming album placement data.
     if ((isset($_POST['album'])) and (isset($_POST['unique_ID']))) {
-
+	
+	    // Check if user selected an album to upload picture to. If not, die with error.
+        // added by frogfoot
+        $album = (int)$_POST['album'];
+        if (!$album){
+			cpg_die(ERROR, $lang_db_input_php['album_not_selected'], __FILE__, __LINE__);
+		}
+		
         if (isset($_POST['unique_ID'])) {
 
             // The unique ID is set, so let us retrieve the record.
