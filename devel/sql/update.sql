@@ -153,3 +153,24 @@ CREATE TABLE CPG_ecards (
   sender_ip tinytext NOT NULL,
   PRIMARY KEY  (eid)
 ) TYPE=MyISAM COMMENT='Used to log ecards';
+
+#
+# Modify structure for table 'CPG_usergroups' - Upload form control - Hyperion
+#
+
+ALTER TABLE 'CPG_usergroups' ADD 'upload_form_config' TINYINT(4) NOT NULL DEFAULT '3';
+ALTER TABLE 'CPG_usergroups' ADD 'custom_user_upload' TINYINT(4) NOT NULL DEFAULT '0';
+ALTER TABLE 'CPG_usergroups' ADD 'num_file_upload' TINYINT(4) NOT NULL DEFAULT '5';
+ALTER TABLE 'CPG_usergroups' ADD 'num_URI_upload' TINYINT(4) NOT NULL DEFAULT '3';
+
+
+#
+# Table structure for table `CPG_temp_data` - Temporary data for file uploads - Hyperion
+#
+
+CREATE TABLE IF NOT EXISTS `CPG_temp_data` (
+`unique_ID` CHAR( 8 ) NOT NULL ,
+`encoded_string` BLOB NOT NULL ,
+`timestamp` INT( 11 ) UNSIGNED NOT NULL ,
+PRIMARY KEY ( `unique_ID` ) 
+) TYPE = MYISAM COMMENT = 'Holds temporary file data for multiple file uploads';

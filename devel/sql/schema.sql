@@ -135,6 +135,10 @@ CREATE TABLE CPG_usergroups (
   can_create_albums tinyint(4) NOT NULL default '0',
   pub_upl_need_approval tinyint(4) NOT NULL default '1',
   priv_upl_need_approval tinyint(4) NOT NULL default '1',
+  upload_form_config tinyint(4) NOT NULL default '3',
+  custom_user_upload tinyint(4) NOT NULL default '0',
+  num_file_upload tinyint(4) NOT NULL default '5',
+  num_URI_upload tinyint(4) NOT NULL default '3',
   PRIMARY KEY  (group_id)
 ) TYPE=MyISAM;
 # --------------------------------------------------------
@@ -226,3 +230,16 @@ CREATE TABLE CPG_ecards (
   sender_ip tinytext NOT NULL,
   PRIMARY KEY  (eid)
 ) TYPE=MyISAM COMMENT='Used to log ecards';
+
+
+
+#
+# Table structure for table `CPG_temp_data`
+#
+
+CREATE TABLE IF NOT EXISTS `CPG_temp_data` (
+`unique_ID` CHAR( 8 ) NOT NULL ,
+`encoded_string` BLOB NOT NULL ,
+`timestamp` INT( 11 ) UNSIGNED NOT NULL ,
+PRIMARY KEY ( `unique_ID` ) 
+) TYPE = MYISAM COMMENT = 'Holds temporary file data for multiple file uploads';
