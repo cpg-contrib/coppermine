@@ -136,7 +136,8 @@ For credits and copyrights, see <a href="index.htm#credits">Coppermine documenta
 <li><a class="content" href="#EmptyDelimiter">I get the <b>error</b> &quot;<tt class="code">Warning: Empty Delimiter in search.inc.php line 33&quot;</tt>. What can I do?</a></li>
 <li><a class="content" href="#zerosizedreply">I get the <b>error</b> <tt class="code">Zero Sized Reply</tt> during install. What can I do?</a></li>
 <li><a class="content" href="#ErrorUndefinedIndex">I have the error message <tt class="code">Warning: Undefined index: SCRIPT_NAME in /www.your-domain.com/include/init.inc.php on line 90</tt>. What can I do?</a></li>
-<li><a class="content" href="#ErrorCantMovePic">When a user tries to upload a picture I get the error message <tt class="code">Impossible to move somepic.jpg to albums/userpics/ | Warning: move_uploaded_file(/tmp/phpezCYKr) [function.move-uploaded-file]: failed to create stream: Operation not permitted</tt>. What&#39;s wrong?</a></li>
+<li><a class="content" href="#ErrorCantMovePic">When I try to upload a picture I get the error message <tt class="code">Impossible to move somepic.jpg to albums/userpics/ | Warning: move_uploaded_file(/tmp/phpezCYKr) [function.move-uploaded-file]: failed to create stream: Operation not permitted</tt>. What&#39;s wrong?</a></li>
+<li><a class="content" href="#ErrorFailedToOpenDir">When I try to upload a picture I get the error message <tt class="code">Warning: opendir(./albums/edit): failed to open dir: No such file or directory</tt>. What&#39;s wrong?</a></li>
 <li><a class="content" href="#httpPostVars">When uploading I get the error <tt class="code">Warning: Undefined variable: HTTP_POST_VARS in include/init.inc.php on line 43</tt>. What can I do?</a></li>
 </ul>
 
@@ -381,9 +382,17 @@ to<br />
 </p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 
 <a name="ErrorCantMovePic"></a>
-<h3>When a user tries to upload a picture I get the error message <tt class="code">Impossible to move somepic.jpg to albums/userpics/ | Warning: move_uploaded_file(/tmp/phpezCYKr) [function.move-uploaded-file]: failed to create stream: Operation not permitted</tt>. What&#39;s wrong?</h3>
+<h3>When I try to upload a picture I get the error message <tt class="code">Impossible to move somepic.jpg to albums/userpics/ | Warning: move_uploaded_file(/tmp/phpezCYKr) [function.move-uploaded-file]: failed to create stream: Operation not permitted</tt>. What&#39;s wrong?</h3>
 <p>You should contact the admin of your webhost because usually you can&#39;t change the location of the temporary directory for file uploads yourself (it is part of PHP configuration) .<br />
 If the open basedir restriction is in effect on your site then the temp directory for file uploads should be one that you can access.<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+
+<a name="ErrorFailedToOpenDir"></a>
+<h3>When I try to upload a picture I get the error message <tt class="code">Warning: opendir(./albums/edit): failed to open dir: No such file or directory</tt>. What&#39;s wrong?</h3>
+<ul>
+<li>Make sure you have a folder named 'edit' in your albums folder.</li>
+<li>Make sure the 'edit' directory has been chmod to 777 or 755.</li>
+<li>Make sure you have completely upgraded to Coppermine 1.3.2.</li>
+</ul><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 
 <a name="httpPostVars"></a>
 <h3>When uploading I get the error <tt class="code">Warning: Undefined variable: HTTP_POST_VARS in include/init.inc.php on line 43</tt>. What can I do?</h3>
