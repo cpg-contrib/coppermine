@@ -36,12 +36,19 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
  **/
 function albumselect($id="album")
 {
-        global $CONFIG;
+        global $CONFIG, $lang_search_new_php;
         static $select = "";
 
         if ($select == ""){
-                $result = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < '".FIRST_USER_CAT."' ORDER BY title");
-                $rowset = db_fetch_rowset($result);
+        		$result = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0 ORDER BY title");
+        		$rowset = db_fetch_rowset($result);
+        		mysql_free_result($result);
+        		
+                $result = db_query("SELECT DISTINCT a.aid as aid, a.title as title, c.name as cname FROM {$CONFIG['TABLE_ALBUMS']} as a, {$CONFIG['TABLE_CATEGORIES']} as c WHERE a.category = c.cid AND a.category < '".FIRST_USER_CAT."' ORDER BY title");
+                while($row=mysql_fetch_array($result)) { 
+                	$row['title'] = $row['cname'] . " - ". $row['title'];
+                	$rowset[] = $row;
+                }
                 mysql_free_result($result);
 
                 if(defined('UDB_INTEGRATION')){
@@ -55,6 +62,8 @@ function albumselect($id="album")
                 $result = db_query($sql);
                 while($row=mysql_fetch_array($result)) $rowset[] = $row;
                 mysql_free_result($result);
+
+				$select = '<option value="0">' . $lang_search_new_php['select_album'] . '</option>\n';
 
                 foreach ($rowset as $row) {
                         $select .= "<option value=\"" . $row["aid"] . "\">" . $row["title"] . "</option>\n";
@@ -340,15 +349,20 @@ EOT;
         foreach ($HTTP_POST_VARS['pics'] as $pic_id){
                 $album_lb_id = $HTTP_POST_VARS['album_lb_id_'.$pic_id];
                 $album_id    = $HTTP_POST_VARS[$album_lb_id];
-                $album_name  = $album_array[$album_id];
+                
                 $pic_file    = base64_decode($HTTP_POST_VARS['picfile_'.$pic_id]);
                 $dir_name    = dirname($pic_file)."/";
                 $file_name   = basename($pic_file);
 
-                // To avoid problems with PHP scripts max execution time limit, each picture is
-                // added individually using a separate script that returns an image
-                $status = "<a href=\"addpic.php?aid=$album_id&pic_file=".($HTTP_POST_VARS['picfile_'.$pic_id])."&reload=".uniqid('')."\"><img src=\"addpic.php?aid=$album_id&pic_file=".($HTTP_POST_VARS['picfile_'.$pic_id])."&reload=".uniqid('')."\" class=\"thumbnail\" border=\"0\" width=\"24\" height=\"24\" /><br /></a>";
-
+				if ($album_id) {
+					// To avoid problems with PHP scripts max execution time limit, each picture is
+                	// added individually using a separate script that returns an image
+                	$status = "<a href=\"addpic.php?aid=$album_id&pic_file=".($HTTP_POST_VARS['picfile_'.$pic_id])."&reload=".uniqid('')."\"><img src=\"addpic.php?aid=$album_id&pic_file=".($HTTP_POST_VARS['picfile_'.$pic_id])."&reload=".uniqid('')."\" class=\"thumbnail\" border=\"0\" width=\"24\" height=\"24\" /><br /></a>";
+					$album_name  = $album_array[$album_id];
+				} else {
+					$album_name = $lang_search_new_php['no_album'];
+					$status = "<img src=\"images/up_na.gif\" alt=\"".$lang_search_new_php['no_album'] . "\" class=\"thumbnail\" border=\"0\" width=\"24\" height=\"24\" /><br />";
+				}
                 echo "<tr>\n";
                 echo "<td class=\"tableb\" valign=\"middle\" align=\"left\">$dir_name</td>\n";
                 echo "<td class=\"tableb\" valign=\"middle\" align=\"left\">$file_name</td>\n";

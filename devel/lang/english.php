@@ -823,10 +823,13 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
         'insert_selected' => 'Insert selected pictures',
         'no_pic_found' => 'No new picture was found',
         'be_patient' => 'Please be patient, the script needs time to add the pictures',
+        'select_album' => 'Select an Album',
+        'no_album' => 'No Album Selected!',
         'notes' =>  '<ul>'.
                                 '<li><b>OK</b> : means that the picture was succesfully added'.
                                 '<li><b>DP</b> : means that the picture is a duplicate and is already in the database'.
                                 '<li><b>PB</b> : means that the picture could not be added, check your configuration and the permission of directories where the pictures are located'.
+                                '<li><b>NA</b> : means that you have not selected an album for this picture, click the back button to correct'.
                                 '<li>If the OK, DP, PB \'signs\' does not appear click on the broken picture to see any error message produced by PHP'.
                                 '<li>If your browser timeout, hit the reload button'.
                                 '</ul>',
