@@ -61,7 +61,7 @@ INSERT INTO CPG_config VALUES ('im_options', '-antialias');
 INSERT INTO CPG_config VALUES ('impath', '');
 INSERT INTO CPG_config VALUES ('jpeg_qual', '80');
 INSERT INTO CPG_config VALUES ('keep_votes_time', '30');
-INSERT INTO CPG_config VALUES ('lang', 'english-utf-8');
+INSERT INTO CPG_config VALUES ('lang', 'english');
 INSERT INTO CPG_config VALUES ('main_page_layout', 'breadcrumb/catlist/alblist/random,2/lastup,2');
 INSERT INTO CPG_config VALUES ('main_table_width', '100%');
 INSERT INTO CPG_config VALUES ('make_intermediate', '1');
