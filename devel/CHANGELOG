@@ -271,3 +271,4 @@ Added ability to see summaries of which albums different user groups have access
 Enabled smilies in reviewcom.php (Review Comments) for comments with smilies - 18 Februrary 2005, TranzNDance
 Added single function to generate the thumbnail captions - 19 Februrary 2005, Donnoman 
 Added linked file statistics along with normal stats. (Admin setable) - February 15 2005, Aditya
+Added plugin actions to put content below the breadcrumb on thumbnail.php and displayimage.php - March 7 2005, Donnoman 
