@@ -515,6 +515,11 @@ $template_img_navbar = <<<EOT
                 <td align="center" valign="middle" class="navmenu" width="100%">
                         {PIC_POS}
                 </td>
+<!-- BEGIN report_button --> 
+                <td align="center" valign="middle" class="navmenu" width="48px">
+                        <a href="{REPORT_TGT}">report</a>
+                </td>
+<!-- END report_button --> 
 <!-- BEGIN ecard_button -->
                 <td align="center" valign="middle" class="navmenu" width="48px">
                         <a href="{ECARD_TGT}" title="{ECARD_TITLE}"><img src="images/ecard.gif" width="16px" height="16px" border="0px" align="middle" alt="{ECARD_TITLE}" /></a>
@@ -828,6 +833,64 @@ $template_ecard_plaintext = <<<EOT
 
 
 {GREETINGS}
+{PLAINTEXT_MESSAGE}
+
+{SENDER_NAME} ({SENDER_EMAIL})
+
+-----------------------------------------
+{VIEW_MORE_LNK}:
+{VIEW_MORE_TGT}
+EOT;
+
+// HTML template for report
+$template_report = <<<EOT
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="{LANG_DIR}">
+<head>
+<title>{TITLE}</title>
+<meta http-equiv="content-type" content="text/html; charset={CHARSET}" />
+</head>
+<body bgcolor="#FFFFFF" text="#0F5475" link="#0F5475" vlink="#0F5475" alink="#0F5475">
+<br />
+<p align="center"><a href="{VIEW_REPORT_TGT}"><b>{VIEW_REPORT_LNK}</b></a></p>
+<table border="0px" cellspacing="0px" cellpadding="1px" align="center">
+  <tr>
+    <td bgcolor="#000000">
+      <table border="0px" cellspacing="0px" cellpadding="10px" bgcolor="#ffffff">
+        <tr>
+          <td valign="top">
+           <img src="{PIC_URL}" border="1px" alt="" /><br />
+          </td>
+          <td valign="top" width="200px">
+            <b><font face="arial" color="#000000" size="4">{SUBJECT}</font></b>
+            <br />{REASON}
+            <br />
+            <font face="arial" color="#000000" size="2">{MESSAGE}</font>
+            <br />
+            <br />
+            <font face="arial" color="#000000" size="2">{SENDER_NAME}</font>
+            (<a href="mailto:{SENDER_EMAIL}"><font face="arial" color="#000000" size="2">{SENDER_EMAIL}</font></a>)
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<p align="center"><a href="{VIEW_MORE_TGT}"><b>{VIEW_MORE_LNK}</b></a></p>
+</body>
+</html>
+EOT;
+
+// plain-text template for reports (as fallback for clients that can't display html-formatted mails)
+$template_report_plaintext = <<<EOT
+{TITLE}
+=========================================
+
+{VIEW_REPORT_LNK_PLAINTEXT}:
+{VIEW_REPORT_TGT}
+
+
+{SUBJECT}
 {PLAINTEXT_MESSAGE}
 
 {SENDER_NAME} ({SENDER_EMAIL})

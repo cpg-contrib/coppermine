@@ -92,8 +92,16 @@ function html_img_nav_menu()
         /*$ecard_tgt = "javascript:alert('" . addslashes($lang_img_nav_bar['ecard_disabled_msg']) . "');";
         $ecard_title = $lang_img_nav_bar['ecard_disabled'];*/
     }
-
-    $thumb_tgt = "thumbnails.php?album=$album$cat_link&amp;page=$page";
+		
+		//report to moderator button
+    if (USER_CAN_SEND_ECARDS) {
+				$report_tgt = "report_file.php?album=$album$cat_link&amp;pid=$pid&amp;pos=$pos";
+        //$ecard_title = $lang_img_nav_bar['ecard_title'];
+    } else {
+        template_extract_block($template_img_navbar, 'report_button');
+    }
+		
+		    $thumb_tgt = "thumbnails.php?album=$album$cat_link&amp;page=$page";
         $meta_nav .= "<link rel=\"up\" href=\"$thumb_tgt\" title=\"".$lang_img_nav_bar['thumb_title']."\"/>
         ";
 
@@ -109,12 +117,13 @@ function html_img_nav_menu()
         '{PIC_POS}' => $pic_pos,
         '{ECARD_TGT}' => $ecard_tgt,
         '{ECARD_TITLE}' => $ecard_title,
-        '{PREV_TGT}' => $prev_tgt,
+				'{PREV_TGT}' => $prev_tgt,
         '{PREV_TITLE}' => $prev_title,
         '{NEXT_TGT}' => $next_tgt,
         '{NEXT_TITLE}' => $next_title,
         '{PREV_IMAGE}' => ($lang_text_dir=='ltr') ? 'prev' : 'next',
         '{NEXT_IMAGE}' => ($lang_text_dir=='ltr') ? 'next' : 'prev',
+        '{REPORT_TGT}' => $report_tgt,
         );
 
     return template_eval($template_img_navbar, $params);

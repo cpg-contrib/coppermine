@@ -1013,6 +1013,30 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
 );
 
 // ------------------------------------------------------------------------- //
+// File report_file.php
+// ------------------------------------------------------------------------- //
+
+if (defined('REPORT_PHP') || defined('DISPLAYREPORT_PHP')) $lang_report_php =array(
+  'title' => 'Report file to administrator',
+  'invalid_email' => '<b>Warning</b> : invalid email address !',
+  'report_title' => 'A report from %s on a gallery file',
+  'view_report' => 'Alternate link if the report does not display correctly',
+  'view_report_plaintext' => 'To view the report, copy and paste this url into your browser\'s address bar:', //cpg1.4.0
+  'view_more_pics' => 'Gallery',
+  'send_success' => 'Your report was sent',
+  'send_failed' => 'Sorry but the server can\'t send your report...',
+  'from' => 'From',
+  'your_name' => 'Your name',
+  'your_email' => 'Your email address',
+  'to' => 'To',
+  'administrator' => 'Administrator/Mod',
+  'subject' => 'Subject',
+  'reason' => 'Reason',
+  'message' => 'Message',
+  'report_footer' => 'Sent by %s from IP %s at %s (Gallery time)',
+);
+
+// ------------------------------------------------------------------------- //
 // File editpics.php
 // ------------------------------------------------------------------------- //
 
