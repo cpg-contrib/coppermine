@@ -1147,7 +1147,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
 
                 // The file contains no data or was corrupted. Make a note of it in the error array.
 
-                $file_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'file_name'=> $file_name, 'error_code'=>$land_upload_php['no_file_size']);
+                $file_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'file_name'=> $file_name, 'error_code'=>$lang_upload_php['no_file_size']);
 
                 // There is no need for further tests or action, so skip the remainder of the iteration.
                 continue;
