@@ -275,12 +275,7 @@ function localised_date($timestamp = -1, $datefmt)
 {
     global $lang_month, $lang_day_of_week, $CONFIG;
 
-    if ($timestamp == -1) {
-        $timestamp = time();
-    }
-    $diff_to_GMT = date("O") / 100;
-
-    $timestamp += ($CONFIG['time_offset'] - $diff_to_GMT) * 3600;
+    $timestamp = localised_timestamp($timestamp);
 
     $date = ereg_replace('%[aA]', $lang_day_of_week[(int)strftime('%w', $timestamp)], $datefmt);
     $date = ereg_replace('%[bB]', $lang_month[(int)strftime('%m', $timestamp)-1], $date);
@@ -295,9 +290,19 @@ function localised_date($timestamp = -1, $datefmt)
  *
  * @return
  **/
-function localised_timestamp()
+function localised_timestamp($timestamp = -1)
 {
-	return strtotime(localised_date(-1, '%B %d, %Y'));
+	global $CONFIG;
+	
+	if ($timestamp == -1) {
+        $timestamp = time();
+    }
+
+    $diff_to_GMT = date("O") / 100;
+
+    $timestamp += ($CONFIG['time_offset'] - $diff_to_GMT) * 3600;
+	
+	return $timestamp;
 }
 
 // Function to create correct URLs for image name with space or exotic characters
