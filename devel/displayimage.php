@@ -55,7 +55,7 @@ EOT;
 // Prints the image-navigation menu
 function html_img_nav_menu()
 {
-    global $CONFIG, $HTTP_SERVER_VARS, $HTTP_GET_VARS, $CURRENT_PIC_DATA, $PHP_SELF;
+    global $CONFIG, $HTTP_SERVER_VARS, $HTTP_GET_VARS, $CURRENT_PIC_DATA, $PHP_SELF, $meta_nav ;
     global $album, $cat, $pos, $pic_count, $lang_img_nav_bar, $lang_text_dir, $template_img_navbar;
 
     $cat_link = is_numeric($album) ? '' : '&amp;cat=' . $cat;
@@ -68,6 +68,8 @@ function html_img_nav_menu()
         $prev = $pos - 1;
         $prev_tgt = "$PHP_SELF?album=$album$cat_link&amp;pos=$prev";
         $prev_title = $lang_img_nav_bar['prev_title'];
+		$meta_nav .= "<LINK rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />
+		";
     } else {
         $prev_tgt = "javascript:;";
         $prev_title = "";
@@ -76,6 +78,8 @@ function html_img_nav_menu()
         $next = $pos + 1;
         $next_tgt = "$PHP_SELF?album=$album$cat_link&amp;pos=$next";
         $next_title = $lang_img_nav_bar['next_title'];
+		$meta_nav .= "<LINK rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>
+		";		
     } else {
         $next_tgt = "javascript:;";
         $next_title = "";
@@ -90,7 +94,9 @@ function html_img_nav_menu()
     }
 
     $thumb_tgt = "thumbnails.php?album=$album$cat_link&amp;page=$page";
-
+	$meta_nav .= "<LINK rel=\"up\" href=\"$thumb_tgt\" title=\"".$lang_img_nav_bar['thumb_title']."\"/>
+	";
+	
     $slideshow_tgt = "$PHP_SELF?album=$album$cat_link&amp;pid=$pid&amp;slideshow=".$CONFIG['slideshow_interval'];
 
     $pic_pos = sprintf($lang_img_nav_bar['pic_pos'], $human_pos, $pic_count);
@@ -622,14 +628,16 @@ if (isset($HTTP_GET_VARS['fullsize'])) {
 } else {
     if (!isset($HTTP_GET_VARS['pos'])) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
     $picture_title = $CURRENT_PIC_DATA['title'] ? $CURRENT_PIC_DATA['title'] : strtr(preg_replace("/(.+)\..*?\Z/", "\\1", htmlspecialchars($CURRENT_PIC_DATA['filename'])), "_", " ");
-
+	
     $nav_menu = html_img_nav_menu();
     $picture = html_picture();
     $votes = html_rating_box();
     $pic_info = html_picinfo();
     $comments = html_comments($CURRENT_PIC_DATA['pid']);
     if ($CURRENT_PIC_DATA['keywords']) { $meta_keywords = "<meta name=\"keywords\" content=\"".$CURRENT_PIC_DATA['keywords']."\"/>"; }
-
+	$meta_nav .= "<link rel=\"alternate\" type=\"text/xml\" title=\"RSS feed\" href=\"rss.php\" />
+	";
+	$meta_keywords .= $meta_nav;
     pageheader($album_name . '/' . $picture_title, $meta_keywords, false);
     // Display Breadcrumbs
     if ($breadcrumb && !(strpos($CONFIG['main_page_layout'],"breadcrumb")===false)) {
