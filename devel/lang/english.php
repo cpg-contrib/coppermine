@@ -1535,10 +1535,11 @@ $lang_util_php = array(
 
 if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'title' => 'Versioncheck',
+  'what_it_does' => 'This page is meant for users who have updated their coppermine install. This script goes through the files on your webserver and tries to determine if your local file versions on the webserver are the same as the ones from the repository at http://coppermine.sourceforge.net, this way displaying the files you were meant to update as well.<br />It will show everything in red that needs to be fixed. Entries in yellow need looking into. Entries in green (or your default font color) are OK.<br />Click on the help icons to find out more.',
   'online_repository_unable' => 'Unable to connect to online repository',
   'online_repository_noconnect' => 'Coppermine was unable to connect to the online repository. This can have two reasons:',
   'online_repository_reason1' => 'the coppermine online repository is currently down - check if you can browse this page: %s - if you can\'t access this page, try again later.',
-  'online_repository_reason2' => 'PHP on your webserver is configured with %s turned off (by default, it\'s turned on). If the server is yours to administer, turn this option on in <i>php.ini</i>. If you\'re webhosted, you will probably have to live with the fact that you can\'t compare your files to the online repository. This page will then only display the file versions that came with your distribution - updates will not be displayed.',
+  'online_repository_reason2' => 'PHP on your webserver is configured with %s turned off (by default, it\'s turned on). If the server is yours to administer, turn this option on in <i>php.ini</i> (at least allow it to be overridden with <i>ini_set</i>). If you\'re webhosted, you will probably have to live with the fact that you can\'t compare your files to the online repository. This page will then only display the file versions that came with your distribution - updates will not be displayed.',
   'online_repository_to_local' => 'The script is defaulting to the local copy of the version-files now. The data may be inacurate if you have upgraded Coppermine and you haven\'t uploaded all files. Changes to the files after the release won\'t be taken into account as well.',
   'local_repository_unable' => 'Unable to connect to the repository on your server',
   'local_repository_explanation' => 'Coppermine was unable to connect to the repository file %s on your webserver. This probably means that you haven\'t uploaded the repository file to your webserver. Do so now and then try to run this page once more (hit refresh).<br />If the script still fails, your webhost might have disabled parts of <a href="http://www.php.net/manual/en/ref.filesystem.php">PHP\'s filesystem functions</a> completely. In this case, you simply won\'t be able to use this tool at all, sorry.',
@@ -1565,6 +1566,12 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'help_local_version_dev2' => 'The file on your webserver seems to be newer than your Coppermine version. You are either using a development file (you should only do so if you know what you are doing), or you have upgraded your Coppermine install and not uploaded include/init.inc.php',
   'your_file' => 'your file',
   'reference_file' => 'reference file',
+  'summary' => 'Summary',
+  'total' => 'Total files/folders checked',
+  'mandatory_files_missing' => 'Mandatory files missing',
+  'optional_files_missing' => 'Optional files missing',
+  'files_from_older_version' => 'Files left over from outdated version',
+  'file_version_outdated' => 'Outdated file versions',
 );
 
 // ------------------------------------------------------------------------- //
