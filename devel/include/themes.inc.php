@@ -1283,15 +1283,16 @@ function theme_admin_mode_menu()
 
     $cat_l = isset($cat) ? "?cat=$cat" : '';
 
-    if ($CONFIG['log_ecards'] == 0) {
-        template_extract_block($template_gallery_admin_menu, 'log_ecards');
-    }
-
-    if (cpg_get_pending_approvals() == 0) {
-         template_extract_block($template_gallery_admin_menu, 'admin_approval');
-    }
-
     if (GALLERY_ADMIN_MODE) {
+		
+		if ($CONFIG['log_ecards'] == 0) {
+			template_extract_block($template_gallery_admin_menu, 'log_ecards');
+		}
+
+		if (cpg_get_pending_approvals() == 0) {
+			 template_extract_block($template_gallery_admin_menu, 'admin_approval');
+		}
+	
         $param = array('{CATL}' => $cat_l,
             '{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_title'],
             '{UPL_APP_LNK}' => $lang_gallery_admin_menu['upl_app_lnk'],
