@@ -740,7 +740,7 @@ $template_image_comments = <<<EOT
 
                                 <td class="tableh2_compact" align="right" width="100%">
 <!-- BEGIN report_comment_button -->
-                                        <a href="{REPORT_COMMENT_TGT}" title="{REPORT_COMMENT_TITLE}"><img src="images/report.gif" width="16px" height="16px" border="0px" align="middle" alt="{REPORT_COMMENT_TITLE}" /></a>
+     <a href="report_file.php?pid={PID}&msg_id={MSG_ID}&what=comment" title="{REPORT_COMMENT_TITLE}"><img src="images/report.gif" width="16px" height="16px" border="0px" align="middle" alt="{REPORT_COMMENT_TITLE}" /></a>
 <!-- END report_comment_button -->
 
 
@@ -2017,7 +2017,7 @@ function theme_html_img_nav_menu()
 
                 //report to moderator buttons
     if (($CONFIG['report_post']==1) && (USER_CAN_SEND_ECARDS)) {
-                                $report_tgt = "report_file.php?album=$album$cat_link&amp;pid=$pid&amp;pos=$pos";
+        $report_tgt = "report_file.php?album=$album$cat_link&amp;pid=$pid&amp;pos=$pos";
     } else { // remove button if report toggle is off
         template_extract_block($template_img_navbar, 'report_file_button');
 
@@ -2054,6 +2054,7 @@ function theme_html_img_nav_menu()
         '{REPORT_TGT}' => $report_tgt,
         '{REPORT_TITLE}' => $lang_img_nav_bar['report_title'],
         '{LOCATION}' => $location,
+        '{REPORT_COMMENT_TGT}' => $report_comment_tgt,
         );
 
     return template_eval($template_img_navbar, $params);
@@ -2109,9 +2110,7 @@ function theme_html_comments($pid)
     $html = '';
 
 //report to moderator buttons
-    if (($CONFIG['report_post']==1) && (USER_CAN_SEND_ECARDS)) {
-                                $report_comment_tgt = "report_file.php?album=$album$cat_link&amp;pid=$pid&amp;pos=$pos&amp;what=comment";
-    } else { // remove buttons if report toggle is off
+    if (!(($CONFIG['report_post']==1) && (USER_CAN_SEND_ECARDS))) {
         template_extract_block($template_image_comments, 'report_comment_button');
     }
 
@@ -2133,7 +2132,7 @@ function theme_html_comments($pid)
     } else {
         $comment_sort_order = 'ASC';
     }
-    $result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid' ORDER BY msg_id $comment_sort_order");
+    $result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip, pid FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid' ORDER BY msg_id $comment_sort_order");
 
     while ($row = mysql_fetch_array($result)) {
         $user_can_edit = (GALLERY_ADMIN_MODE) || (USER_ID && USER_ID == $row['author_id'] && USER_CAN_POST_COMMENTS) || (!USER_ID && USER_CAN_POST_COMMENTS && ($USER['ID'] == $row['author_md5_id']));
@@ -2158,6 +2157,7 @@ function theme_html_comments($pid)
 
         $params = array('{MSG_AUTHOR}' => $row['msg_author'],
             '{MSG_ID}' => $row['msg_id'],
+            '{PID}' => $row['pid'],
             '{EDIT_TITLE}' => &$lang_display_comments['edit_title'],
             '{CONFIRM_DELETE}' => &$lang_display_comments['confirm_delete'],
             '{MSG_DATE}' => localised_date($row['msg_date'], $comment_date_fmt),
@@ -2168,7 +2168,7 @@ function theme_html_comments($pid)
             '{HDR_IP}' => $row['msg_hdr_ip'],
             '{RAW_IP}' => $row['msg_raw_ip'],
             '{REPORT_COMMENT_TGT}' => $report_comment_tgt,
-                        '{REPORT_COMMENT_TITLE}' => &$lang_display_comments['report_comment_title'],
+            '{REPORT_COMMENT_TITLE}' => &$lang_display_comments['report_comment_title'],
             );
 
         $html .= template_eval($template, $params);

@@ -100,6 +100,7 @@ $lang_errors = array(
   'no_zip' => 'The necessary libraries to process ZIP files are not available.  Please contact your Coppermine administrator.',
   'zip_type' => 'You do not have permission to upload ZIP files.',
   'database_query' => 'There was an error while processing a database query', //cpg 1.4.0
+  'non_exist_comment' => 'The selected comment does not exist',
 );
 
 $lang_bbcode_help_title = 'bbcode help';
@@ -1068,7 +1069,7 @@ if (defined('REPORT_FILE_PHP') || defined('DISPLAYREPORT_PHP')) $lang_report_php
   'to' => 'To',
   'administrator' => 'Administrator/Mod',
   'subject' => 'Subject',
-  'comment' => 'Reporting on Comment',
+  'comment_field_name' => 'Reporting on Comment by "%s"',
   'reason' => 'Reason',
   'message' => 'Message',
   'report_footer' => 'Sent by %s from IP %s at %s (Gallery time)',

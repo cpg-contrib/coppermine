@@ -27,8 +27,6 @@ require('include/mailer.inc.php');
 if ((!$CONFIG['report_post']==1) || (!USER_CAN_SEND_ECARDS)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
 $pid = (int)$_GET['pid'];
-$album = $_GET['album'];
-$pos = (int)$_GET['pos'];
 $cid = (int)$_GET['msg_id']; //comment id
 $what = $_GET['what'];
 
@@ -52,16 +50,16 @@ if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FIL
 $row = mysql_fetch_array($result);
 $thumb_pic_url = get_pic_url($row, 'thumb');
         
-if ($what == 'picture') {
-	//template_extract_block($template_report_form, 'display_comment'); //need help remove comment preview when reporting picture
-} elseif ($what == 'comment') { //need help display the comment as preview just like when reporting picture shows picture
-	$result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id='$cid'");
+if ($what == 'comment') {
+	$result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id='$cid' AND pid='$pid'");
 	if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_comment'], __FILE__, __LINE__);
 	$row = mysql_fetch_array($result);
 	$comment = bb_decode($row['msg_body']);
 	$msg_author = $row['msg_author'];
 	$comment_field_name = sprintf($lang_report_php['comment_field_name'], $msg_author);
 	//template_extract_block($template_report_form, 'reason_missing'); //need help to toggle off reason(missing) since doesn't apply to comments
+} else {
+	//template_extract_block($template_report_form, 'display_comment'); //need help remove comment preview when reporting picture
 }
 
 // Check supplied email address
@@ -144,8 +142,8 @@ if (count($_POST) > 0 && $valid_sender_email) {
     }
 
     if ($result) {
-        pageheader($lang_report_php['title'], "<meta http-equiv=\"refresh\" content=\"3;url=displayimage.php?album=$album&pos=$pos\" />");
-        msg_box($lang_cpg_die[INFORMATION], $lang_report_php['send_success'], $lang_continue, "displayimage.php?album=$album&pos=$pos");
+        pageheader($lang_report_php['title'], "<meta http-equiv=\"refresh\" content=\"3;url=displayimage.php?pos=-{$pid}\" />");
+        msg_box($lang_cpg_die[INFORMATION], $lang_report_php['send_success'], $lang_continue, "displayimage.php?pos=-{$pid}");
         pagefooter();
         ob_end_flush();
         exit;
@@ -168,7 +166,7 @@ echo <<<EOT
         </tr>
         <tr>
                 <td class="tableb" valign="top" width="40%">
-                        <form method="post" name="post" action="{$_SERVER['PHP_SELF']}?album=$album&pid=$pid&pos=$pos">
+                        <form method="post" name="post" action="{$_SERVER['PHP_SELF']}?pid=$pid&pos=$pos">
                         {$lang_report_php['your_name']}<br />
                 </td>
                 <td valign="top" class="tableb" width="60%">
