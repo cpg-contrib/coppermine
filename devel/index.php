@@ -1,4 +1,4 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
@@ -299,7 +299,8 @@ function list_users()
 
     $user_list = array();
     foreach ($rowset as $user) {
-        $user_thumb = '<img src="images/nopic.jpg" class="image" border="0" />';
+        $cpg_nopic_data = cpg_get_system_thumb('nopic.jpg',$user['user_id']);
+        $user_thumb = '<img src="'.$cpg_nopic_data['thumb'].'" '.$cpg_nopic_data['whole'].' class="image" border="0" />';
         $user_pic_count = $user['pic_count'];
         $user_thumb_pid = $user['thumb_pid'];
         $user_album_count = $user['alb_count'];
@@ -317,7 +318,7 @@ function list_users()
                     $picture['pheight'] = $image_info[1];
                 } 
                 $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
-                $user_thumb = "<img src=\"" . get_pic_url($picture, 'thumb') . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"\">";
+                $user_thumb = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"\">";
             } 
         } 
 
@@ -371,7 +372,7 @@ function list_albums()
     $upper_limit = min($nbAlb, $PAGE * $alb_per_page);
     $limit = "LIMIT " . $lower_limit . "," . ($upper_limit - $lower_limit);
 
-    $sql = 'SELECT a.aid, a.title, a.description, visibility, filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE category=' . $cat . $album_filter . ' ORDER BY a.pos ' . $limit;
+    $sql = 'SELECT a.aid, a.title, a.description, category, visibility, filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE category=' . $cat . $album_filter . ' ORDER BY a.pos ' . $limit;
 
     $alb_thumbs_q = db_query($sql);
     $alb_thumbs = db_fetch_rowset($alb_thumbs_q);
@@ -425,13 +426,14 @@ function list_albums()
                 $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
                 $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$picture['filename']}\"/>";
             } else { // Inserts an empty thumbnail if the album contains 0 images
-                $image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
-
-                $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/nopic.jpg\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
-            } 
+                //$image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
+                $cpg_nopic_data = cpg_get_system_thumb('nopic.jpg',$alb_thumb['category']);
+                $alb_list[$alb_idx]['thumb_pic'] = '<img src="'.$cpg_nopic_data['thumb'].'" '.$cpg_nopic_data['whole'].' class="image" border="0" />';
+            }
         } elseif ($CONFIG['show_private']) {
-            $image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
-            $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/private.jpg\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
+            //$image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
+            $cpg_privatepic_data = cpg_get_system_thumb('private.jpg',$alb_thumb['category']);
+            $alb_list[$alb_idx]['thumb_pic'] = '<img src="'.$cpg_privatepic_data['thumb'].'" '.$cpg_privatepic_data['whole'].' class="image" border="0" />';
         } 
         // Prepare everything
         if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || in_array($visibility, $USER_DATA['groups']) || $USER_DATA['can_see_all_albums'] || $CONFIG['allow_private_albums'] == 0) {
@@ -467,10 +469,15 @@ function list_cat_albums($cat = 0)
 {
     global $CONFIG, $USER, $lastup_date_fmt, $HTTP_GET_VARS, $USER_DATA, $FORBIDDEN_SET, $cpg_show_private_album;
     global $lang_list_albums, $lang_errors;
+
     $PAGE = 1;
     if ($cat == 0) {
         return '';
-    } 
+    }
+    
+    $cat_owner_id = ($cat>10000)?(10000-$cat):(10001);
+    $cpg_nopic_data = cpg_get_system_thumb('nopic.jpg',$cat_owner_id);
+    $cpg_privatepic_data = cpg_get_system_thumb('private.jpg',$cat_owner_id);
 
     $alb_per_page = $CONFIG['albums_per_page'];
     $maxTab = $CONFIG['max_tabs'];
@@ -561,12 +568,12 @@ function list_cat_albums($cat = 0)
                 $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
                 $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$picture['filename']}\">";
             } else { // Inserts an empty thumbnail if the album contains 0 images
-                $image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
-                $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/nopic.jpg\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
-            } 
+                //$image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
+                $alb_list[$alb_idx]['thumb_pic'] = '<img src="'.$cpg_nopic_data['thumb'].'" '.$cpg_nopic_data['whole'].' class="image" border="0" />';
+            }
         } elseif ($CONFIG['show_private']) {
-            $image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
-            $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/private.jpg\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
+            //$image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
+            $alb_list[$alb_idx]['thumb_pic'] = '<img src="'.$cpg_privatepic_data['thumb'].'" '.$cpg_privatepic_data['whole'].' class="image" border="0" />';
         } 
         // Prepare everything
         if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || in_array($visibility, $USER_DATA['groups']) || $USER_DATA['can_see_all_albums'] || $CONFIG['allow_private_albums'] == 0) {

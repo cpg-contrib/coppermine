@@ -30,6 +30,21 @@ function test_fs()
     global $errors, $DFLT;
     // No Filesystem Updates yet
 }
+
+function update_system_thumbs()
+{
+    global $CONFIG;
+
+    $results = mysql_query("SELECT * FROM ".$CONFIG['TABLE_PREFIX']."config;");
+    while ($row = mysql_fetch_array($results)) {
+        $CONFIG[$row['name']] = $row['value'];
+    } // while
+    mysql_free_result($results);
+    
+    @rename('images/nopic.jpg','images/'.$CONFIG['thumb_pfx'].'nopic.jpg');
+    @rename('images/private.jpg','images/'.$CONFIG['thumb_pfx'].'private.jpg');
+}
+
 // ----------------------------- TEST FUNCTIONS ---------------------------- //
 function test_sql_connection()
 {
@@ -221,9 +236,12 @@ if ($errors != '')
 else {
     test_sql_connection();
     if ($errors == '')
+    {
         update_tables();
-    else
+        update_system_thumbs();
+    } else {
         html_error($errors);
+    }
     if ($errors == '')
         html_install_success($notes);
     else

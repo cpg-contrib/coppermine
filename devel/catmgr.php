@@ -112,7 +112,7 @@ EOT;
 
 function form_alb_thumb()
 {
-    global $CONFIG, $lang_catmgr_php, $lang_modifyalb_php, $current_category, $cid;
+    global $CONFIG, $lang_catmgr_php, $lang_modifyalb_php, $current_category, $cid,$USER_DATA;
     $results = db_query("SELECT pid, filepath, filename, url_prefix FROM {$CONFIG['TABLE_PICTURES']},{$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND {$CONFIG['TABLE_ALBUMS']}.category = '$cid' AND approved='YES' ORDER BY filename");
     if (mysql_num_rows($results) == 0) {
         echo <<<EOT
@@ -129,16 +129,17 @@ function form_alb_thumb()
 EOT;
         return;
     }
+    $cpg_nopic_data = cpg_get_system_thumb('nopic.jpg',$USER_DATA['user_id']);
+    $initial_thumb_url = $cpg_nopic_data['thumb']; //'images/nopic.jpg';
 
     echo <<<EOT
 <script language="JavaScript" type="text/JavaScript">
 var Pic = new Array()
 
-Pic[0] = 'images/nopic.jpg'
+Pic[0] = '$initial_thumb_url'
 
 EOT;
 
-    $initial_thumb_url = 'images/nopic.jpg';
     $img_list = array(0 => $lang_modifyalb_php['last_uploaded']);
     while ($picture = mysql_fetch_array($results)) {
         $thumb_url = get_pic_url($picture, 'thumb');
