@@ -116,3 +116,9 @@ li h5 {
 	border-left: solid gray 2px;
 	border-right: solid gray 1px;
 }
+
+#footer {
+	border-top: 1px solid gray;
+	margin-top: 30px;
+	padding-top: 10px;
+}
