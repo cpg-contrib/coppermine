@@ -92,6 +92,15 @@ define("GIS_GIF", 1);
 define("GIS_JPG", 2);
 define("GIS_PNG", 3);
 
+// Add 'edit' directory if it doesn't exist
+// Set access to read+write only
+if (!is_dir($CONFIG['fullpath'].'edit')) {
+    $cpg_umask = umask(0);
+    @mkdir($CONFIG['fullpath'].'edit',0666);
+    umask($cpg_umask);
+    unset($cpg_umask);
+}
+
 /**
 * resize_image()
 *
