@@ -387,6 +387,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         'User settings',
         array('Allow new user registrations', 'allow_user_registration', 1),
         array('User registration requires email verification', 'reg_requires_valid_email', 1),
+        array('Notify admin of user registration by email', 'reg_notify_admin_email', 1),
         array('Allow two users to have the same email address', 'allow_duplicate_emails_addr', 1),
         array('Users can can have private albums', 'allow_private_albums', 1),
 
@@ -788,6 +789,8 @@ $lang_register_php = array(
         'update_success' => 'Your profile was updated',
         'pass_chg_success' => 'Your password was changed',
         'pass_chg_error' => 'Your password was not changed',
+        'notify_admin_email_subject' => '%s - Registration notification',
+        'notify_admin_email_body' => 'A new user with the username "%s" has registered in your gallery',
 );
 
 $lang_register_confirm_email = <<<EOT

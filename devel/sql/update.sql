@@ -25,12 +25,15 @@ INSERT INTO CPG_config VALUES ('installed_folder', 'html');
 INSERT INTO CPG_config VALUES ('read_iptc_data', '0');
 INSERT INTO CPG_config VALUES ('module_name', 'coppermine');
 INSERT INTO CPG_config VALUES ('picinfo_display_filename', '1');
-INSERT INTO CPG_config VALUES ('picinfo_display_album_name', '1');	
-INSERT INTO CPG_config VALUES ('picinfo_display_file_size', '1');	
-INSERT INTO CPG_config VALUES ('picinfo_display_dimensions', '1');		
-INSERT INTO CPG_config VALUES ('picinfo_display_count_displayed', '1');	
-INSERT INTO CPG_config VALUES ('picinfo_display_URL', '1');	
-INSERT INTO CPG_config VALUES ('picinfo_display_URL_bookmark', '1');	
+INSERT INTO CPG_config VALUES ('picinfo_display_album_name', '1');
+INSERT INTO CPG_config VALUES ('picinfo_display_file_size', '1');
+INSERT INTO CPG_config VALUES ('picinfo_display_dimensions', '1');
+INSERT INTO CPG_config VALUES ('picinfo_display_count_displayed', '1');
+INSERT INTO CPG_config VALUES ('picinfo_display_URL', '1');
+INSERT INTO CPG_config VALUES ('picinfo_display_URL_bookmark', '1');
+
+INSERT INTO CPG_config VALUES ('reg_notify_admin_email', '0');
+
 =======
 
 # Modify structure for category thumb
@@ -41,11 +44,11 @@ INSERT INTO CPG_config VALUES ('picinfo_display_URL_bookmark', '1');
 #
 
 CREATE TABLE CPG_banned (
-	ban_id int(11) NOT NULL auto_increment,
-	user_id int(11) DEFAULT NULL,
-	ip_addr tinytext DEFAULT NULL,
-	expiry datetime DEFAULT NULL,
-	PRIMARY KEY  (ban_id)
+        ban_id int(11) NOT NULL auto_increment,
+        user_id int(11) DEFAULT NULL,
+        ip_addr tinytext DEFAULT NULL,
+        expiry datetime DEFAULT NULL,
+        PRIMARY KEY  (ban_id)
 ) TYPE=MyISAM;
 
 #

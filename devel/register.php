@@ -1,4 +1,4 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.2.0                                            //
 // ------------------------------------------------------------------------- //
@@ -13,7 +13,7 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- // 
+// ------------------------------------------------------------------------- //
 
 define('IN_COPPERMINE', true);
 define('REGISTER_PHP', true);
@@ -32,26 +32,26 @@ function display_disclaimer()
 
     starttable(-1, $lang_register_php['term_cond']);
     echo <<<EOT
-	<form method="post" action="$PHP_SELF">
-	<tr>
-		<td class="tableb" style="padding: 10px;">
+        <form method="post" action="$PHP_SELF">
+        <tr>
+                <td class="tableb" style="padding: 10px;">
 
 EOT;
     echo str_replace('{SITE_NAME}', $CONFIG['gallery_name'], $lang_register_disclamer);
 
     echo <<<EOT
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2" align="center" class="tablef">
-			<input type="submit" name="agree" value="{$lang_register_php['i_agree']}" class="button">
-		</td>
-	</tr>
-	</form>
+                </td>
+        </tr>
+        <tr>
+                <td colspan="2" align="center" class="tablef">
+                        <input type="submit" name="agree" value="{$lang_register_php['i_agree']}" class="button">
+                </td>
+        </tr>
+        </form>
 
 EOT;
     endtable();
-} 
+}
 
 function input_user_info($errors = '')
 {
@@ -60,7 +60,7 @@ function input_user_info($errors = '')
 
     starttable(-1, $lang_register_php['enter_info'], 2);
     echo <<<EOT
-	<form method="post" action="$PHP_SELF">
+        <form method="post" action="$PHP_SELF">
 
 EOT;
 
@@ -80,11 +80,11 @@ EOT;
     foreach ($form_data as $element) switch ($element[0]) {
         case 'label' :
             echo <<<EOT
-	<tr>
-    	<td colspan="2" class="tableh2">
-			<b>{$element[1]}<b>
+        <tr>
+            <td colspan="2" class="tableh2">
+                        <b>{$element[1]}<b>
         </td>
-	</tr>
+        </tr>
 
 EOT;
             break;
@@ -94,64 +94,64 @@ EOT;
                 $value = $HTTP_POST_VARS[$element[1]];
             } else {
                 $value = '';
-            } 
+            }
             echo <<<EOT
-	<tr>
-    	<td width="40%" class="tableb"  height="25">
-			{$element[2]}
+        <tr>
+            <td width="40%" class="tableb"  height="25">
+                        {$element[2]}
         </td>
         <td width="60%" class="tableb" valign="top">
-        	<input type="text" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="$value" class="textinput">
-		</td>
-	</tr>
+                <input type="text" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="$value" class="textinput">
+                </td>
+        </tr>
 
 EOT;
             break;
 
         case 'password' :
             echo <<<EOT
-	<tr>
-    	<td width="40%" class="tableb"  height="25">
-			{$element[2]}
+        <tr>
+            <td width="40%" class="tableb"  height="25">
+                        {$element[2]}
         </td>
         <td width="60%" class="tableb" valign="top">
-        	<input type="password" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="" class="textinput">
-		</td>
-	</tr>
+                <input type="password" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="" class="textinput">
+                </td>
+        </tr>
 
 EOT;
             break;
 
         default:
             cpg_die(CRITICAL_ERROR, 'Invalid action for form creation ' . $element[0], __FILE__, __LINE__);
-    } 
+    }
 
     if ($errors) {
         echo <<<EOT
-	<tr>
-		<td colspan="2" class="tableh2" align="center">
-			<b>&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;{$lang_register_php['error']}&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</b>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2" class="tableb">
-			<b><ul>$errors</ul><b>
-		</td>
-	</tr>
+        <tr>
+                <td colspan="2" class="tableh2" align="center">
+                        <b>&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;{$lang_register_php['error']}&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</b>
+                </td>
+        </tr>
+        <tr>
+                <td colspan="2" class="tableb">
+                        <b><ul>$errors</ul><b>
+                </td>
+        </tr>
 
 EOT;
-    } 
+    }
     echo <<<EOT
-	<tr>
-		<td colspan="2" align="center" class="tablef">
-			<input type="submit" name="submit" value="{$lang_register_php['submit']}" class="button">
-		</td>
-	</tr>
-	</form>
+        <tr>
+                <td colspan="2" align="center" class="tablef">
+                        <input type="submit" name="submit" value="{$lang_register_php['submit']}" class="button">
+                </td>
+        </tr>
+        </form>
 
 EOT;
     endtable();
-} 
+}
 
 function get_post_var($var)
 {
@@ -159,7 +159,7 @@ function get_post_var($var)
 
     if (!isset($HTTP_POST_VARS[$var])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'] . " ($var)", __FILE__, __LINE__);
     return trim($HTTP_POST_VARS[$var]);
-} 
+}
 
 function check_user_info(&$error)
 {
@@ -182,7 +182,7 @@ function check_user_info(&$error)
     if (mysql_num_rows($result)) {
         $error = '<li>' . $lang_register_php['err_user_exists'];
         return false;
-    } 
+    }
     mysql_free_result($result);
 
     if (strlen($user_name) < 2) $error .= '<li>' . $lang_register_php['err_uname_short'];
@@ -201,10 +201,10 @@ function check_user_info(&$error)
         if (mysql_num_rows($result)) {
             $error = '<li>' . $lang_register_php['err_duplicate_email'];
             return false;
-        } 
+        }
 
         mysql_free_result($result);
-    } 
+    }
 
     if ($CONFIG['reg_requires_valid_email']) {
         $active = 'NO';
@@ -215,7 +215,7 @@ function check_user_info(&$error)
     } else {
         $active = 'YES';
         $act_key = '';
-    } 
+    }
 
     $sql = "INSERT INTO {$CONFIG['TABLE_USERS']} " . "(user_regdate, user_active, user_actkey, user_name, user_password, user_email, user_location, user_interests, user_website, user_occupation) " . "VALUES (NOW(), '$active', '$act_key', '" . addslashes($user_name) . "', '" . addslashes($password) . "', '" . addslashes($email) . "', '$location', '$interests', '$website', '$occupation' )";
     $result = db_query($sql);
@@ -229,14 +229,20 @@ function check_user_info(&$error)
             );
         if (!cpg_mail($email, sprintf($lang_register_php['confirm_email_subject'], $CONFIG['gallery_name']), strtr($lang_register_confirm_email, $template_vars))) {
             cpg_die(CRITICAL_ERROR, $lang_register_php['failed_sending_email'], __FILE__, __LINE__);
-        } 
+        }
         msg_box($lang_register_php['information'], $lang_register_php['thank_you'], $lang_continue, 'index.php');
     } else {
         msg_box($lang_register_php['information'], $lang_register_php['acct_active'], $lang_continue, 'index.php');
-    } 
+    }
+
+    // email notification to admin
+        if ($CONFIG['reg_notify_admin_email'])
+        {
+        cpg_mail($CONFIG['gallery_admin_email'], sprintf($lang_register_php['notify_admin_email_subject'], $CONFIG['gallery_name']), sprintf($lang_register_php['notify_admin_email_body'], $user_name));
+        }
 
     return true;
-} 
+}
 
 pageheader($lang_register_php['page_title']);
 if (isset($HTTP_POST_VARS['agree'])) {
@@ -245,7 +251,7 @@ if (isset($HTTP_POST_VARS['agree'])) {
     $errors = '';
     if (!check_user_info($errors)) {
         input_user_info($errors);
-    } 
+    }
 } elseif (isset($HTTP_GET_VARS['activate'])) {
     $act_key = addslashes(substr($HTTP_GET_VARS['activate'], 0 , 32));
     if (strlen($act_key) != 32) cpg_die(ERROR, $lang_register_php['acct_act_failed'], __FILE__, __LINE__);
@@ -265,7 +271,7 @@ if (isset($HTTP_POST_VARS['agree'])) {
     msg_box($lang_register_php['information'], $lang_register_php['acct_active'], $lang_continue, 'index.php');
 } else {
     display_disclaimer();
-} 
+}
 pagefooter();
 ob_end_flush();
 
