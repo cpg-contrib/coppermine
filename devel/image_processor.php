@@ -76,8 +76,11 @@ switch ($method) {
 
 		$output = array();
 
+		// Set IM path.
+		$im_path = $CONFIG['impath'];
+
 		//Check the IM path for the final slash.
-		if ($path[strlen($CONFIG['impath']) - 1] == '/') {
+		if (eregi('/$',$im_path) or empty($im_path)) {
         		$trailing_slash = "";
     		} else {
         		$trailing_slash = "/";
@@ -419,13 +422,6 @@ $source_image_type = $source_image_size_and_type[2];
 //Now we can upload the file.
 
 
-//Begin processing if GD is used.
-
-if ($method == "gd2" or $method =="gd1") {
-
-// Get image handle
-$image_handle = get_handle($path_to_primary_image);
-
 // Calculate dimensions.
 		
 if ($source_image_width > $maximum_width) {
@@ -439,6 +435,14 @@ if ($source_image_width > $maximum_width) {
 	$new_height = $source_image_height;
 
 }
+
+
+//Begin processing if GD is used.
+
+if ($method == "gd2" or $method =="gd1") {
+
+// Get image handle
+$image_handle = get_handle($path_to_primary_image);
 
 // Create the destination image handle.
 
@@ -491,9 +495,11 @@ imagedestroy($destination_image_handle);
 
 } elseif ($method == "im") {
 
+	// Set IM path.
+	$im_path = $CONFIG['impath'];
 
 	//Check the IM path for the final slash.
-	if ($path[strlen($CONFIG['impath']) - 1] == '/') {
+	if (eregi('/$',$im_path) or empty($im_path)) {
         	$trailing_slash = "";
     	} else {
         	$trailing_slash = "/";
@@ -506,7 +512,7 @@ imagedestroy($destination_image_handle);
 	
 	$output = array();
 
-	$cmd = "{$CONFIG['impath']}".$trailing_slash."convert -geometry {$maximum_width}x \"$path_to_primary_image\" \"$path_to_preview_image\"";
+	$cmd = "{$CONFIG['impath']}".$trailing_slash."convert -geometry {$new_width}x{$new_height} \"$path_to_primary_image\" \"$path_to_preview_image\"";
 	
 	exec ($cmd, $output, $retval);
 
