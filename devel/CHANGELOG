@@ -258,3 +258,6 @@ Added link to user profile and sort options in review comments page - 01 Februar
 Added {pseudo} session functionality - 03 Februaru 2005, Chris
 Added IPTC import of title, caption, and keywords with upload.php and batch add - 05 February 2005, Donnoman
 Added function filter_content that filters arbitrary arrays of strings for bad_word matches and replaces them with the bad_word token (...) - 05 February 2005, Donnoman
+Changed wording on the ability to hide admin uploaders to Display admin uploaders under thumbnails - 08 February 2005, Donnoman
+Changed the reliance on having regular uploaders displayed in order to turn on or off displaying admin uploaders being displayed under thumbnails - 08 February 2005, Donnoman
+
