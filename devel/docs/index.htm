@@ -142,7 +142,7 @@ a.external {
           </ul>
           </li>
           <li class="content"><a href="#modif_alb_pics"><span class="menu2">4.6 Modifying album/pictures</a></span></li>
-          <li class="content"><a href="#batch_add_pics"><span class="menu2">4.7 Batch Add Pictures</a></span></li>
+          <li class="content"><a href="#batch_add_pics"><span class="menu2">4.7 Uploading pics by FTP / Batch-Add Pictures</a></span></li>
           <li class="content"><a href="#album_prop"><span class="menu2">4.8 Album properties</a></span></li>
           <li class="content"><a href="#edit_pics"><span class="menu2">4.9 Editing pictures</a></span></li>
           <li class="content"><a href="#config"><span class="menu2">4.10 The configuration page</a></span></li>
@@ -241,7 +241,7 @@ open-source photo gallery!</p>
 <ul>
   <li><b>Unpack the archive preserving the directory structure</b><br />(you can rename the coppermine folder, but not the files or folders within).</li>
   <li><b>Upload all files onto your webserver</b> (make sure to use the correct ftp mode)</li>
-  <li><b>CHMOD the folders <i>albums</i> and <i>include</i> to 755 (or 777, depending on your server config)</b> - this step is really important, don't skip it!<br />There are a lot of tutorials for beginners how to use chmod available: <a href="http://www.google.com/search?q=chmod+tutorial">search chmod tutorials with google</a>. If you're on a windows server, you'll have to set permissions accordingly as well (usually the webserver runs under the user name &quot;IUSR_hostname&quot; - you'll have to set rwx-permissions for this user).</li>
+  <li><b>CHMOD the folders <i>albums</i> and <i>include</i> to 755 (or 777, depending on your server config)</b> - this step is really important, don't skip it!<br />There are a lot of tutorials for beginners how to use chmod available: <a href="http://www.google.com/search?q=chmod+tutorial" class="external">search chmod tutorials with google</a>. If you're on a windows server, you'll have to set permissions accordingly as well (usually the webserver runs under the user name &quot;IUSR_hostname&quot; - you'll have to set rwx-permissions for this user).</li>
   <li><b>Run the install script on your server</b> (http://your_server/coppermine_dir/install.php)
     and follow the instructions</li>
 </ul>
@@ -537,22 +537,22 @@ open-source photo gallery!</p>
       <p><img src="pics/category_cp.GIF" border="1" /></p>
       <p>This is where you can edit your categories.</p>
       <ul>
-        <li>The <img src="pics/edit.gif" border="0" width="16" height="16" alt=""> button
+        <li>The <img src="pics/edit.gif" border="0" width="16" height="16" alt="" /> button
         allows you to edit the title, description and parent category of an
         existing cetegory.
-        <li>The <img height=16 src="pics/delete.gif" width=16> button
+        <li>The <img src="pics/delete.gif" width="16" height="16" alt="" /> button
         allows you to delete a category. Deleting a category does not delete the
         albums and pictures it contains. They are simply moved to the "Root"
         category.
-        <li>The <img height=16 src="pics/up.gif" width=16> and <img
-        height=16 src="pics/down.gif" width=16> buttons allow you to
+        <li>The <img src="pics/up.gif" width="16" height="16" alt="" /> and <img
+        src="pics/down.gif" width="16" height="16" alt="" /> buttons allow you to
         order your categories.
-        <li>The "<b>Move into</b>" dropdown lists allow you to change the parent
+        <li>The &quot;<b>Move into</b>&quot; dropdown lists allow you to change the parent
         of a specific category. </li></ul>
-      <p>"<b>User galleries</b>" is a special category. It is not visible unless
+      <p>&quot;<b>User galleries</b>&quot; is a special category. It is not visible unless
       you have some users that have created their own gallery. It can't be
       deleted but you can edit its title and description by using the <img
-      height="16" src="pics/edit.gif" width="16"> button. </p>
+      src="pics/edit.gif" width="16" height="16" alt="" /> button. </p>
       <p><a class="back" href="#top">Back to
       top</a></p>
       <hr>
@@ -617,20 +617,30 @@ open-source photo gallery!</p>
       top</a></p>
       <hr>
 
-      <h2>4.7 Batch Add Pictures<a id="batch_add_pics"
-      name="batch_add_pics"></a></h2>
-      <p>CPG allows you to batch add pictures via FTP.  You can upload entire groups
-      of pictures to be added all at once through this function.  Photos should be
-      uploaded under the albums directory; but: <b class="important">they should not be uploaded anywhere
-      under the userpics directory!</b>, nor should folder names contain a dot (&quot;.&quot;).</p>
-      <p>Once you have uploaded your photos, click on the Batch Add Pictures button
-      and find the directory under which you have uploaded your photos.  Select this
-      directory and then select the photos you wish to upload and the album you
-      wish to insert them into.  Click &quot;Insert Selected Pictures&quot;.  CPG will
-      then display the results of the batch add.</p>
-      <p><a class="back" href="#top">Back to
-      top</a></p>
-      <hr>
+<a name="ftp"></a><a name="batch_add_pics"></a>
+<h2>4.7 Uploading pics by FTP / Batch-Add Pictures</h2>
+<p>It's recommended that the coppermine admin uses ftp to upload many pics in one go. Use your ftp software to create sub-folders within <i>your_coppermine_directory/albums/</i>, where your ftp uploads can go to. It's a good idea to have a folder structure within the <i>albums</i> folder that reflects your coppermine categories and albums, but it's not mandatory.<br /><span class="important">Important</span>: do not create folders or upload to the <i>userpics</i>- nor the <i>edit</i>-folder by ftp: these folders are used by coppermine internally and mustn't be used for any other purpose! Folder names mustn't contain dots and it's even recommended not to use any special chars - only use a-z, numbers and maybe <tt class="code">-</tt> or <tt class="code">_</tt>. Make sure to upload in binary or auto-mode.</p>
+<p>Once you have uploaded your photos by ftp, click on the Batch Add Pictures button. The batch-add is done in three steps:</p>
+<ul>
+<li>find the directory under which you have uploaded your photos. Select this directory by clicking on it.
+<br /><img src="pics/searchnew_1.gif" width="602" height="185" border="0" alt="" /></li>
+<li>select the photos you wish to upload (by ticking them, the new pics are pre-selected, those that already are in your coppermine database are not selected) and the album you wish to insert them into. Click &quot;Insert Selected Pictures&quot; to start the batch-add process.<br />
+<img src="pics/searchnew_2.gif" width="561" height="320" border="0" alt="" /></li>
+<li>CPG will then display the results of the batch-add (allow some time untill all results are being shown).<br />
+If the OK, DP, PB 'signs' does not appear click on the broken file to see any error message produced by PHP.<br />
+If your browser times out, hit the reload button.
+<ul>
+<li>OK : means that the file was succesfully added</li>
+<li>DP : means that the file is a duplicate and is already in the database</li>
+<li>PB : means that the file could not be added, check your configuration and the permission of directories where the files are located</li>
+<li>NA : means that you haven't selected an album the files should go to, hit 'back' and select an album. If you don't have an album create one first</li>
+</ul>
+</li>
+</ul>
+<p>Giving FTP-access to other users is a serious security threat, that's why batch-add is only available for the coppermine gallery admin.</p>
+<p>Once files have been added to coppermine's database, make sure not to rename or delete them by ftp - use coppermine's admin menu to remove files instead, since this way they will be removed both from the file system <b>and</b> the database.</p>
+<p><a class="back" href="#top">Back to top</a></p>
+<hr />
 
       <h2>4.8 Album properties<a id="album_prop" name="album_prop"></a></h2>
       <p><img src="pics/edit_album.GIF" border="1" /></p>
@@ -1296,6 +1306,12 @@ exit;
         <td>active</td>
 </tr>
 <tr>
+        <td>Eyal Zvi</td>
+        <td><a href="http://coppermine.sourceforge.net/board/profile.php?mode=viewprofile&u=94">EZ</a></td>
+        <td>Developer</td>
+        <td>active</td>
+</tr>
+<tr>
         <td>Joachim M&uuml;ller</td>
         <td><a href="http://coppermine.sourceforge.net/board/profile.php?mode=viewprofile&u=2">gaugau</a></td>
         <td>Project Manager</td>
@@ -1323,6 +1339,12 @@ exit;
         <td>Moorey</td>
         <td><a href="http://coppermine.sourceforge.net/board/profile.php?mode=viewprofile&u=13">moorey</a></td>
         <td>Web Designer</td>
+        <td>active</td>
+</tr>
+<tr>
+        <td>Nibbler</td>
+        <td><a href="http://coppermine.sourceforge.net/board/profile.php?mode=viewprofile&u=941">Nibbler</a></td>
+        <td>Supporter</td>
         <td>active</td>
 </tr>
 <tr>
@@ -1404,10 +1426,6 @@ exit;
 <tr>
   <td><a href="http://www.sanisoft.com/aboutus.php3">Girish Nair</a></td>
   <td>Girish has contributed to the film strip feature</td>
-</tr>
-<tr>
-  <td><a href="http://coppermine.sourceforge.net/board/profile.php?mode=viewprofile&u=94">EZ</a></td>
-  <td>Eyal has done bug hunting, support and code improvements</td>
 </tr>
 <tr>
   <td><a href="http://coppermine.sourceforge.net/board/profile.php?mode=viewprofile&u=378">Jason Kawaja</a></td>
