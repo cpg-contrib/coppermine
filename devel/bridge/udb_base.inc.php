@@ -404,22 +404,76 @@ class core_udb {
 	// Query used to list users
 	function list_users_query(&$user_count)
 	{
-		global $CONFIG, $FORBIDDEN_SET;
+		global $CONFIG, $FORBIDDEN_SET, $PAGE;
+
+        $f =& $this->field;
 
 		if ($FORBIDDEN_SET != "") {
-			$forbidden = "AND ($FORBIDDEN_SET or p.galleryicon=p.pid)";
+			$forbidden_with_icon = "AND ($FORBIDDEN_SET or p.galleryicon=p.pid)";
+			$forbidden = "AND ($FORBIDDEN_SET)";
 		} else {
+			$forbidden_with_icon = '';
 			$forbidden = '';
 		}
-		
-		$sql = "SELECT (category - " . FIRST_USER_CAT . ") as user_id," . "        '???' as user_name," . "        COUNT(DISTINCT a.aid) as alb_count," . "        COUNT(DISTINCT pid) as pic_count," . "        MAX(pid) as thumb_pid, " . "        MAX(galleryicon) as gallery_pid " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid " . "WHERE (approved = 'YES' AND category > " . FIRST_USER_CAT . ") $forbidden GROUP BY category " . "ORDER BY category ";
+
+        // Get the total number of users with albums
+        $sql  = "select null ";
+        $sql .= "from {$CONFIG['TABLE_ALBUMS']} as p ";
+        $sql .= "where ( category>".FIRST_USER_CAT." $forbidden) ";
+        $sql .= "group by category;";
+
+        $result = cpg_db_query($sql, $this->link_id);
+        $user_count = mysql_num_rows($result);
+
+        if ($user_count == 0) {
+            return false;
+        }
+        
+        mysql_free_result($result);
+
+/*
+		$sql  = "SELECT (category - " . FIRST_USER_CAT . ") as user_id,";
+        $sql .= "'???' as user_name,";
+        $sql .= "COUNT(DISTINCT a.aid) as alb_count,";
+        $sql .= "COUNT(DISTINCT pid) as pic_count,";
+        $sql .= "MAX(pid) as thumb_pid, ";
+        $sql .= "MAX(galleryicon) as gallery_pid ";
+        $sql .= "FROM {$CONFIG['TABLE_ALBUMS']} AS a ";
+        $sql .= "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid ";
+        $sql .= "WHERE ((approved = 'YES' or approved=null) AND category > " . FIRST_USER_CAT . ") $forbidden GROUP BY category ";
+        $sql .= "ORDER BY category ";
+*/
+
+        $users_per_page = $CONFIG['thumbcols'] * $CONFIG['thumbrows'];
+        $totalPages = ceil($user_count / $users_per_page);
+        if ($PAGE > $totalPages) $PAGE = 1;
+        $lower_limit = ($PAGE-1) * $users_per_page;
+
+		$sql  = "SELECT {$f['user_id']} as user_id,";
+        $sql .= "{$f['username']} as user_name,";
+        $sql .= "COUNT(DISTINCT a.aid) as alb_count,";
+        $sql .= "COUNT(DISTINCT pid) as pic_count,";
+        $sql .= "MAX(pid) as thumb_pid, ";
+        $sql .= "MAX(galleryicon) as gallery_pid ";
+        $sql .= "FROM {$CONFIG['TABLE_ALBUMS']} AS a ";
+        $sql .= "INNER JOIN {$this->usertable} as u on u.{$f['user_id']}+".FIRST_USER_CAT."=a.category ";
+        $sql .= "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid ";
+        $sql .= "WHERE ((isnull(approved) or approved='YES') AND category > " . FIRST_USER_CAT . ") $forbidden_with_icon GROUP BY category ";
+        $sql .= "ORDER BY category ";
+        $sql .= "LIMIT $lower_limit, $users_per_page ";
+
+
 		$result = cpg_db_query($sql);
 
-		$user_count = mysql_num_rows($result);
+        while ($row = mysql_fetch_array($result)) {
+            $users[] = $row;
+        }
+        mysql_free_result($result);
 
-		return $result;
+		return $users;
 	}
-	
+
+/*
 	function list_users_retrieve_data($result, $lower_limit, $count)
 	{
 		global $CONFIG;
@@ -452,7 +506,8 @@ class core_udb {
 
 		return $rowset;
 	}
-	
+*/
+
 	// Group table synchronisation
 	function synchronize_groups()
 	{
