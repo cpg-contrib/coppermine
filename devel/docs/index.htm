@@ -79,6 +79,9 @@ a.navbar:hover {
         margin-top: 10px; font-size: 10px; margin-bottom: 10px
 }
 .important { color: red }
+.menu1 {font-weight:bolder;font-stretch:expanded;font-size:120%}
+.menu2 {font-weight:bold;font-stretch:normal;font-size:100%}
+.menu3 {font-weight:normal;font-stretch:condensed }
 </style>
 </head>
 <body>
@@ -87,7 +90,7 @@ a.navbar:hover {
   <tr>
     <td>
                         <p><img src="../images/coppermine_logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery">
-<h1>Coppermine Photo Gallery v1.3.0 - dev: Documentation and Manual</h1>
+<h1>Coppermine Photo Gallery v1.3.0: Documentation and Manual</h1>
 <h1>About Coppermine</h1>
 <p>Coppermine Photo Gallery is a picture gallery script. Users can upload pictures
   with a web browser (thumbnails are created on the fly), rate pictures, add comments
@@ -102,30 +105,30 @@ a.navbar:hover {
       <a id="top" name="top"></a>
       <h1>Table of contents</h1>
       <ul class="content">
-        <li class="content"><a href="#what"><b>1. What is required</b></a></li>
-        <li class="content"><a href="#installation"><b>2. Installation and setup</b></a></li>
+        <li class="content"><a href="#what"><span class="menu1">1. What is required</span></a></li>
+        <li class="content"><a href="#installation"><span class="menu1">2. Installation and setup</span></a></li>
         <ul style="margin-top:0px;margin-bottom:0px;list-style-type:none">
-          <li class="content"><a href="#how">2.1 How To Install The Script</a></li>
-          <li class="content"><a href="#getting">2.2 Getting Started</a></li>
-          <li class="content"><a href="#xp">2.3 Using Windows XP Web Publishing Wizard with Coppermine</a></li>
-          <li class="content"><a href="#creating">2.4 Creating your own themes</a></li>
-          <li class="content"><a href="#safe">2.5 Safe mode issues</a></li>
-          <li class="content"><a href="#smtp">2.6 Using SMTP to send emails</a></li>
+          <li class="content"><a href="#how"><span class="menu2">2.1 How To Install The Script</a></span></li>
+          <li class="content"><a href="#getting"><span class="menu2">2.2 Getting Started</a></span></li>
+          <li class="content"><a href="#xp"><span class="menu2">2.3 Using Windows XP Web Publishing Wizard with Coppermine</a></span></li>
+          <li class="content"><a href="#creating"><span class="menu2">2.4 Creating your own themes</a></span></li>
+          <li class="content"><a href="#safe"><span class="menu2">2.5 Safe mode issues</a></span></li>
+          <li class="content"><a href="#smtp"><span class="menu2">2.6 Using SMTP to send emails</a></span></li>
         </ul>
-        <li class="content"><a href="#upgrade"><b>3. Upgrading</b></a></li>
+        <li class="content"><a href="#upgrade"><span class="menu1">3. Upgrading</span></a></li>
         <ul class="content">
-          <li class="content"><a href="#10">3.1 Upgrading from version 1.0</a></li>
-          <li class="content"><a href="#11">3.2 Upgrading from releases of version 1.1</a></li>
-          <li class="content"><a href="#12">3.3 Upgrading from cpg1.2.0rc2 or cpg1.2.0final to version cpg1.2.1</a></li>
-          <li class="content"><a href="#13">3.4 Upgrading from cpg1.2.0 (or better) to version cpg1.3.0</a></li>
+          <li class="content"><a href="#10"><span class="menu2">3.1 Upgrading from version 1.0</span></a></li>
+          <li class="content"><a href="#11"><span class="menu2">3.2 Upgrading from releases of version 1.1</a></span></li>
+          <li class="content"><a href="#12"><span class="menu2">3.3 Upgrading from cpg1.2.0rc2 or cpg1.2.0final to version cpg1.2.1</a></span></li>
+          <li class="content"><a href="#13"><span class="menu2">3.4 Upgrading from cpg1.2.0 (or better) to version cpg1.3.0</a></span></li>
         </ul>
-        <li class="content"><a href="#administration"><b>4. Configuration &amp; Administration</b></a></li>
+        <li class="content"><a href="#administration"><span class="menu1">4. Configuration &amp; Administration</span></a></li>
         <ul class="content">
-          <li class="content"><a href="#cat_alb_pic">4.1 Categories, albums and pictures</a></li>
-          <li class="content"><a href="#admin_user_mode">4.2 Admin mode &amp; User mode</a></li>
-          <li class="content"><a href="#group_cp">4.3 The group control panel</a></li>
-          <li class="content"><a href="#cat_cp">4.4 The category control panel</a></li>
-          <li class="content"><a href="#albmgr">4.5 The album manager</a>
+          <li class="content"><a href="#cat_alb_pic"><span class="menu2">4.1 Categories, albums and pictures</a></span></li>
+          <li class="content"><a href="#admin_user_mode"><span class="menu2">4.2 Admin mode &amp; User mode</a></span></li>
+          <li class="content"><a href="#group_cp"><span class="menu2">4.3 The group control panel</a></span></li>
+          <li class="content"><a href="#cat_cp"><span class="menu2">4.4 The category control panel</a></span></li>
+          <li class="content"><a href="#albmgr"><span class="menu2">4.5 The album manager</a></span>
           <ul class="content">
             <li class="content"><a href="#albmgr_create">4.5.1 Creating albums</a></li>
             <li class="content"><a href="#albmgr_rename">4.5.2 Renaming albums</a></li>
@@ -133,11 +136,11 @@ a.navbar:hover {
             <li class="content"><a href="#albmgr_delete">4.5.4 Deleting albums</a></li>
           </ul>
           </li>
-          <li class="content"><a href="#modif_alb_pics">4.6 Modifying album/pictures</a></li>
-          <li class="content"><a href="#batch_add_pics">4.7 Batch Add Pictures</a></li>
-          <li class="content"><a href="#album_prop">4.8 Album properties</a></li>
-          <li class="content"><a href="#edit_pics">4.9 Editing pictures</a></li>
-          <li class="content"><a href="#config">4.10 The configuration page</a></li>
+          <li class="content"><a href="#modif_alb_pics"><span class="menu2">4.6 Modifying album/pictures</a></span></li>
+          <li class="content"><a href="#batch_add_pics"><span class="menu2">4.7 Batch Add Pictures</a></span></li>
+          <li class="content"><a href="#album_prop"><span class="menu2">4.8 Album properties</a></span></li>
+          <li class="content"><a href="#edit_pics"><span class="menu2">4.9 Editing pictures</a></span></li>
+          <li class="content"><a href="#config"><span class="menu2">4.10 The configuration page</a></span></li>
             <ul class="content">
             <li class="content"><a href="#config_general">4.10.1 General settings</a></li>
             <li class="content"><a href="#config_language">4.10.2 Language, Themes &amp; Charset settings</a></li>
@@ -152,15 +155,15 @@ a.navbar:hover {
             <li class="content"><a href="#config_misc">4.10.11 Miscellaneous settings</a></li>
             </ul>
           </ul>
-        <li class="content"><a href="#integrating"><b>5. Integrating the script with your bulletin board</b></a></li>
-        <li class="content"><a href="#translating"><b>6. Translating Coppermine into other languages</b></a></li>
-        <li class="content"><a href="#known_issues"><b>7. Known Issues</b></a></li>
-        <li class="content"><a href="#credits"><b>8. Credits</b></li>
+        <li class="content"><a href="#integrating"><span class="menu1">5. Integrating the script with your bulletin board</span></a></li>
+        <li class="content"><a href="#translating"><span class="menu1">6. Translating Coppermine into other languages</span></a></li>
+        <li class="content"><a href="#known_issues"><span class="menu1">7. Known Issues</span></a></li>
+        <li class="content"><a href="#credits"><span class="menu1">8. Credits</span></li>
         <ul class="content">
-          <li class="content"><a href="#developers">8.1 Coppermine team</a></li>
-          <li class="content"><a href="#contributors">8.2 Contributors</a></li>
-          <li class="content"><a href="#codebase">8.3 Code used in Coppermine</a></li>
-          <li class="content"><a href="#copyright">8.4 License</a> (Copyright &amp; disclaimer)</li>
+          <li class="content"><a href="#developers"><span class="menu2">8.1 Coppermine team</a></span></li>
+          <li class="content"><a href="#contributors"><span class="menu2">8.2 Contributors</a></span></li>
+          <li class="content"><a href="#codebase"><span class="menu2">8.3 Code used in Coppermine</a></span></li>
+          <li class="content"><a href="#copyright"><span class="menu2">8.4 License</a> (Copyright &amp; disclaimer)</span></li>
         </ul>
       </ul>
       <hr />
@@ -185,7 +188,7 @@ a.navbar:hover {
 <h2>2.1 How to install the script</h2>
 <ul>
   <li><b>Unpack the archive preserving the directory structure</b><br />(you can rename the coppermine folder, but not the files or folders within).</li>
-  <li><b>Uploads all files onto your webserver</b></li>
+  <li><b>Upload all files onto your webserver</b> (make sure to use the correct ftp mode)</li>
   <li><b>CHMOD the folders <i>albums</i> and <i>include</i> to 755 (or 777, depending on your server config)</b> - this step is really important, don't skip it!<br />There are a lot of tutorials for beginners how to use chmod available: <a href="http://www.google.com/search?q=chmod+tutorial">search chmod tutorials with google</a>. If you're on a windows server, you'll have to set permissions accordingly as well.</li>
   <li><b>Run the install script on your server</b> (http://your_server/coppermine_dir/install.php)
     and follow the instructions</li>
@@ -195,24 +198,26 @@ a.navbar:hover {
 
 <a name="getting"></a>
 <h2>2.2 Getting started</h2>
-<p>Login with the admin username and password, click on the &quot;admin mode&quot;
+<p>Log in with the admin username and password you set up during install, click on the &quot;admin mode&quot;
   link if it is visible, go to the <b>Config</b> page and start to configure your
   gallery. Note that even if you are a member of the administrator group, you
   need to be in &quot;admin mode&quot; to configure your gallery.</p>
+<p>There are some settings in config that can't be changed later (if there are already pictures in the database) - make sure to set them up correctly in the first place. Although you'll surely want to start using coppermine immediately it is advisable to configure those settings (marked with an asterisk &quot;*&quot;) properly at the very beginning.</p>
+<p>Use the &quot;<b><a href="#albmgr">Album Manager</a></b>&quot; (&quot;Albums&quot; link in the admin
+  menu) in to create and order your albums. You'll need at least one album your pictures can go into.</p>
 <p>Use the <b>anonymous</b> group to define what non-regsitered users can and
-  can't do.</p>
-<p>Use the &quot;<b>Album Manager</b>&quot; (&quot;Albums&quot; link in the admin
-  menu) in to create and order your albums.</p>
-<p>Use the <b>properties</b> of an album to modify its description and permissions.
+  can't do (in the <a href="#group_cp">groups</a> panel).</p>
+<p>Use the <b><a href="#modif_alb_pics">properties</a></b> of an album to modify its description and permissions.
 </p>
-<p>In order for a user to be allowed to upload a picture in album two conditions
+<p>In order for a user to be allowed to upload a picture in album three conditions
   must be met:</p>
 <ul>
-  <li> The user must be part of a group that can upload picture.</li>
+  <li>&quot;<a href="#config_user">Users can have private albums</a>&quot; must be turned on in coppermine config</li>
+  <li> The user must be part of a <a href="#group_cp">group</a> that can upload picture.</li>
   <li>There must be at least one album where &quot;<b>Visitors can upload pictures</b>&quot;
     has been set to &quot;<b>Yes</b>&quot;.</li>
 </ul>
-<p>The same apply to <b>picture rating</b> and <b>comment posting</b>.</p>
+<p>The same applies to <b>picture rating</b> and <b>comment posting</b>.</p>
 <p>If you have installed the script succesfully but are having trouble getting
   it working properly you can enable the &quot;<b><a href="#debug_mode">debug mode</a></b>&quot; on the
   <b>config page</b>. In this mode, the script outputs most of the warning/error
@@ -560,7 +565,7 @@ a.navbar:hover {
         <li>[email]user@domain.tld[/email] </li></ul>
       <p>The thumbnail is the picture that will represent the album in the album
       list.</p>
-      <p>If you have set "Users can can have private albums" to YES on the
+      <p>If you have set &quot;Users can can have private albums&quot; to YES on the
       <a href="#config">config page</a>, you can define who can view the pictures of this album.</p>
       <p>When "visitors can upload picture" is set to YES, it is possible to
       upload pictures in this album. <b>Note that a visitor will have the right
@@ -884,6 +889,7 @@ a.navbar:hover {
       <p>If a user is a member of a group that can have its own gallery and this
       option is turned on then this user will have the permission to hide some
       of this albums to other users.</p>
+      <p class="important">Note: if you switch from 'yes' to 'no' any current private albums will become public!</p>
       <h4>Notify admin of user upload awaiting approval</h4>
       <p>When enabled, the gallery admin receives an email notification of all pics that wait for his approval (depends on the approval settings in &quot;<a href="#group_cp">groups</a>&quot;). The email is sent to the address specified in &quot;<a href="#config_general">General settings</a>&quot;.<br />This option is only recommended with low or medium traffic (if users only upload every now and then).</p>
       <h4>Allow logged in users to view memberlist</h4>
@@ -937,6 +943,7 @@ top</a></p>
   <li>Invision Power Board</li>
   <li>vBulletin</li>
   <li>YaBB SE</li>
+  <li>Woltlab Burning Board 2.1</li>
 </ul>
 <p>The login integration use your bulletin board cookies, therefore it won't work
   if your board cookies are not visible by Coppermine. So unless you are an expert,
@@ -969,7 +976,8 @@ top</a></p>
 // define('UDB_INTEGRATION', 'phpbb');
 // define('UDB_INTEGRATION', 'invisionboard');
 // define('UDB_INTEGRATION', 'vbulletin');
-// define('UDB_INTEGRATION', 'yabbse');</pre>
+// define('UDB_INTEGRATION', 'yabbse');
+// define('UDB_INTEGRATION', 'wbb21');</pre>
 <p>Un-comment the line that corresponds to the bulletin board you use (eg. remove
   the &quot;//&quot; that are at the beginning of the line)</p>
 <pre>define('UDB_INTEGRATION', 'phpbb');</pre>
@@ -1046,7 +1054,7 @@ exit;
 <p>The following slight quirks and tiny issues are known and will be fixed in future releases.</p>
 <ul>
         <li>Some drop down menus (particularly in configuration page) and other small text items are only available in English. (Language issue)</li>
-        <li>Various error messages (especially notices) while in debug mode. (Does not affect main CPG app)</li>
+        <li>Various error messages (especially notices) while in debug mode with notices display turned on. (Does not affect main CPG app)</li>
 </ul>
 <p><a class="back" href="#top">Back to top</a></p>
 <hr />
@@ -1132,7 +1140,7 @@ exit;
 <tr>
         <td>Gr&eacute;gory Demar</td>
         <td><a href="http://coppermine.sourceforge.net/board/profile.php?mode=viewprofile&u=259">Greg</a></td>
-        <td>Developer</td>
+        <td>Developer, Original creator of Coppermine</td>
         <td>retired</td>
 </tr>
 <tr>
