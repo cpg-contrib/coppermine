@@ -100,7 +100,7 @@ case 'changeword':
 
    if ($_REQUEST['keywordEdit'] && $_REQUEST['newword'])
    {
-       $keywordEdit = $_REQUEST['keywordEdit'];
+       $keywordEdit = addslashes($_REQUEST['keywordEdit']);
 
        $query = "SELECT `pid`,`keywords` FROM {$CONFIG['TABLE_PICTURES']} WHERE CONCAT(' ',`keywords`,' ') LIKE '% {$keywordEdit} %'";
        $result = cpg_db_query($query) or die(mysql_error());
@@ -108,12 +108,12 @@ case 'changeword':
        while (list($id,$keywords) = mysql_fetch_row($result))
        {
            $array_new = array();
-           $array_old = explode(" ", trim($keywords));
+           $array_old = explode(" ", addslashes(trim($keywords)));
 
            foreach($array_old as $word)
            {
                // convert old to new if its the same word
-               if (strtolower($word) == $_REQUEST['keywordEdit']) $word = $_REQUEST['newword'];
+               if (strtolower($word) == $keywordEdit) $word = addslashes($_REQUEST['newword']);
 
                // rebuild array to reprocess it
                $array_new[] = $word;
@@ -133,7 +133,7 @@ break;
 
 case 'delete':
 
-       $keywordEdit = $_REQUEST['remov'];
+       $keywordEdit = addslashes($_REQUEST['remov']);
 
        $query = "SELECT `pid`,`keywords` FROM {$CONFIG['TABLE_PICTURES']} WHERE CONCAT(' ',`keywords`,' ') LIKE '% {$keywordEdit} %'";
        $result = cpg_db_query($query) or die(mysql_error());
@@ -141,19 +141,19 @@ case 'delete':
        while (list($id,$keywords) = mysql_fetch_row($result))
        {
            $array_new = array();
-           $array_old = explode(" ", trim($keywords));
+           $array_old = explode(" ", addslashes(trim($keywords)));
 
            foreach($array_old as $word)
            {
                // convert old to new if its the same word
-               if (strtolower($word) == $_REQUEST['keywordEdit']) $word = $_REQUEST['newword'];
+               if (strtolower($word) == $keywordEdit) $word = '';
 
                // rebuild array to reprocess it
                $array_new[] = $word;
            }
 
            $keywords = implode(" ", $array_new);
-           $newquerys[] = "UPDATE {$CONFIG['TABLE_PICTURES']} SET `keywords` = '' WHERE `pid` = '$id'";
+           $newquerys[] = "UPDATE {$CONFIG['TABLE_PICTURES']} SET `keywords` = '$keywords' WHERE `pid` = '$id'";
        }
 
    $newquerys[] = "UPDATE {$CONFIG['TABLE_PICTURES']} SET `keywords` = TRIM(REPLACE(`keywords`,'  ',' '))";
