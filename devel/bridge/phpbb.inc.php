@@ -14,13 +14,13 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
+// $Id$
+// ------------------------------------------------------------------------- //
+// phpBB2 Integration for Coppermine                                         //
+// ------------------------------------------------------------------------- //
+// Modify the values below according to your Board installation              //
+// ------------------------------------------------------------------------- //
 
-// phpBB2 Integration for Coppermine
-
-// ------------------------------------------------------------------------- //
-// ------------------------------------------------------------------------- //
-// Modify the values below according to your Board installation
-// ------------------------------------------------------------------------- //
 // database configuration
 define('PHPBB_DB_NAME', 'phpBB'); // The name of the database used by the board
 define('PHPBB_BD_HOST', 'localhost'); // The name of the database server

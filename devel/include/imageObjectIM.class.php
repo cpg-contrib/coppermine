@@ -13,7 +13,11 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- // 
+// ------------------------------------------------------------------------- //
+
+/*
+$Id$
+*/
 
 class imageObject{
 
@@ -34,27 +38,27 @@ class imageObject{
 
          //constructor
          function imageObject($directory,$filename,$previous=null)
-	{
-	$this->directory = $directory;
-	$this->filename = $filename;
-	$this->previous = $previous;
-	$this->truecolor = true;
-	
-	if (file_exists($directory.$filename)){
-			$this->filesize = round(filesize($directory.$filename)/1000);
-			if($this->filesize>0){
-				$size = @GetImageSize($directory.$filename);
-				// For IM we don't need an Image Resource (work directly on file :)
-				if ($size && !$this->imgRes) {
-					$this->imgRes = true;
-				}
-				
-				$this->width = $size[0];
-				$this->height = $size[1];
-				$this->string = $size[3];
-				}
-			}// if
-	}// constructor
+        {
+        $this->directory = $directory;
+        $this->filename = $filename;
+        $this->previous = $previous;
+        $this->truecolor = true;
+
+        if (file_exists($directory.$filename)){
+                        $this->filesize = round(filesize($directory.$filename)/1000);
+                        if($this->filesize>0){
+                                $size = @GetImageSize($directory.$filename);
+                                // For IM we don't need an Image Resource (work directly on file :)
+                                if ($size && !$this->imgRes) {
+                                        $this->imgRes = true;
+                                }
+
+                                $this->width = $size[0];
+                                $this->height = $size[1];
+                                $this->string = $size[3];
+                                }
+                        }// if
+        }// constructor
 
          function cropImage(&$clipval)
          {
@@ -66,57 +70,57 @@ class imageObject{
 
              $new_w = $clip_right - $clip_left;
              $new_h = $clip_bottom - $clip_top;
-	     
-	     
-	     $imgFile = escapeshellarg("$this->directory$this->filename");
-	     
-	     
+
+
+             $imgFile = escapeshellarg("$this->directory$this->filename");
+
+
              $output = array();
-	     $cmd = "{$CONFIG['impath']}convert -quality {$this->quality} {$CONFIG['im_options']} -crop '{$new_w}x{$new_h} +{$clip_left} +{$clip_top}' $imgFile $imgFile";	     	     
-	     exec ($cmd, $output, $retval);
-	     
-	     //To Do check for errors in execution etc
-	     
-    	     // Call the constructor again to repopulate the dimensions etc	
-	     $this->imageObject($this->directory,$this->filename);
-	     
+             $cmd = "{$CONFIG['impath']}convert -quality {$this->quality} {$CONFIG['im_options']} -crop '{$new_w}x{$new_h} +{$clip_left} +{$clip_top}' $imgFile $imgFile";
+             exec ($cmd, $output, $retval);
+
+             //To Do check for errors in execution etc
+
+                 // Call the constructor again to repopulate the dimensions etc
+             $this->imageObject($this->directory,$this->filename);
+
              return $this;
 
          }
-	 	 
-	 function rotateImage(&$angle){
-	 
-	     $imgFile = escapeshellarg("$this->directory$this->filename");
-	     	     	     
+
+         function rotateImage(&$angle){
+
+             $imgFile = escapeshellarg("$this->directory$this->filename");
+
              $output = array();
-	     $cmd = "{$CONFIG['impath']}convert -quality {$this->quality} {$CONFIG['im_options']} -rotate '$angle' $imgFile $imgFile";	     
-	     exec ($cmd, $output, $retval);
-	     	     
-	     //To Do check for errors in execution etc	     
-    	     
-	     // Call the constructor again to repopulate the dimensions etc	
-	     $this->imageObject($this->directory,$this->filename);	     
-             return $this;	 		 
-	 
-	 }
-         
-	 
-	 function resizeImage($new_w=0,$new_h=0){
-	     
-	     $imgFile = escapeshellarg("$this->directory$this->filename");
-	     	     	     
-             $output = array();
-	     $cmd = "{$CONFIG['impath']}convert -quality {$this->quality} {$CONFIG['im_options']} -geometry '{$new_w}x{$new_h}' $imgFile $imgFile";	     
-	     exec ($cmd, $output, $retval);
-	     	     
-	     //To Do check for errors in execution etc	     
-    	     
-	     // Call the constructor again to repopulate the dimensions etc	
-	     $this->imageObject($this->directory,$this->filename);	     
+             $cmd = "{$CONFIG['impath']}convert -quality {$this->quality} {$CONFIG['im_options']} -rotate '$angle' $imgFile $imgFile";
+             exec ($cmd, $output, $retval);
+
+             //To Do check for errors in execution etc
+
+             // Call the constructor again to repopulate the dimensions etc
+             $this->imageObject($this->directory,$this->filename);
              return $this;
-	     	
+
          }
 
-	 
-   }   
+
+         function resizeImage($new_w=0,$new_h=0){
+
+             $imgFile = escapeshellarg("$this->directory$this->filename");
+
+             $output = array();
+             $cmd = "{$CONFIG['impath']}convert -quality {$this->quality} {$CONFIG['im_options']} -geometry '{$new_w}x{$new_h}' $imgFile $imgFile";
+             exec ($cmd, $output, $retval);
+
+             //To Do check for errors in execution etc
+
+             // Call the constructor again to repopulate the dimensions etc
+             $this->imageObject($this->directory,$this->filename);
+             return $this;
+
+         }
+
+
+   }
  ?>

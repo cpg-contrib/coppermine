@@ -14,6 +14,11 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
+
+/*
+$Id$
+*/
+
 define('COPPERMINE_VERSION', '1.3.0 - devel');
 // User database integration
 // Uncomment the applicable line if you want to use it

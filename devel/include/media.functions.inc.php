@@ -18,6 +18,10 @@
 //  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
 
+/*
+$Id$
+*/
+
 // REQUIRES GLOBAL VAR: CONFIG
 // REQUIRES GLOBAL FUNCTION: db_query
 
@@ -28,9 +32,9 @@ $content_types_to_vars = array('image'=>'allowed_img_types','audio'=>'allowed_sn
 $CONFIG['allowed_file_extensions'] = '';
 
 if (count($FILE_TYPES)==0) {
- 	$result = db_query('SELECT extension, mime, content FROM '.$CONFIG['TABLE_FILETYPES'].';');
- 	while ($row = mysql_fetch_array($result)) {
- 	    // Only add types that are in both the database and user defined parameter
+         $result = db_query('SELECT extension, mime, content FROM '.$CONFIG['TABLE_FILETYPES'].';');
+         while ($row = mysql_fetch_array($result)) {
+             // Only add types that are in both the database and user defined parameter
         if ($CONFIG[$content_types_to_vars[$row['content']]]=='ALL' || is_int(strpos('/'.$CONFIG[$content_types_to_vars[$row['content']]].'/','/'.$row['extension'].'/')))
         {
             $FILE_TYPES[$row['extension']] = $row;

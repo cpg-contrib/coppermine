@@ -14,6 +14,11 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
+
+/*
+$Id$
+*/
+
 // Add a picture to an album
 function add_picture($aid, $filepath, $filename, $title = '', $caption = '', $keywords = '', $user1 = '', $user2 = '', $user3 = '', $user4 = '', $category = 0, $raw_ip = '', $hdr_ip = '',$iwidth=0,$iheight=0)
 {
@@ -75,7 +80,7 @@ function add_picture($aid, $filepath, $filename, $title = '', $caption = '', $ke
     $PIC_NEED_APPROVAL = ($approved == 'NO');
     // User ID is not recorded when in admin mode (ie. for batch uploads)
     $user_id = GALLERY_ADMIN_MODE ? 0 : USER_ID;
-	$username=$USER_DATA['user_name'] ;
+        $username=$USER_DATA['user_name'] ;
     $query = "INSERT INTO {$CONFIG['TABLE_PICTURES']} (pid, aid, filepath, filename, filesize, total_filesize, pwidth, pheight, ctime, owner_id, owner_name, title, caption, keywords, approved, user1, user2, user3, user4, pic_raw_ip, pic_hdr_ip) VALUES ('', '$aid', '" . addslashes($filepath) . "', '" . addslashes($filename) . "', '$image_filesize', '$total_filesize', '{$imagesize[0]}', '{$imagesize[1]}', '" . time() . "', '$user_id', '$username','$title', '$caption', '$keywords', '$approved', '$user1', '$user2', '$user3', '$user4', '$raw_ip', '$hdr_ip')";
     $result = db_query($query);
 

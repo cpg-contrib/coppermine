@@ -14,6 +14,12 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
+
+/*
+$Id$
+*/
+
+
 define('THEME_HAS_RATING_GRAPHICS', 1);
 // HTML template for main menu
 $template_main_menu1 = <<<EOT
@@ -1185,27 +1191,27 @@ function theme_display_album_list(&$alb_list, $nbAlb, $cat, $page, $total_pages)
 
     echo $header;
     if (is_array($alb_list)) {
-	foreach($alb_list as $album) {
-		$count ++;
+        foreach($alb_list as $album) {
+                $count ++;
 
-		$params = array('{COL_WIDTH}' => $column_width,
-		'{ALBUM_TITLE}' => $album['album_title'],
-		'{THUMB_CELL_WIDTH}' => $thumb_cell_width,
-		'{ALB_LINK_TGT}' => "thumbnails.php?album={$album['aid']}",
-		'{ALB_LINK_PIC}' => $album['thumb_pic'],
-		'{ADMIN_MENU}' => $album['album_adm_menu'],
-		'{ALB_DESC}' => $album['album_desc'],
-		'{ALB_INFOS}' => $album['album_info'],
-		);
+                $params = array('{COL_WIDTH}' => $column_width,
+                '{ALBUM_TITLE}' => $album['album_title'],
+                '{THUMB_CELL_WIDTH}' => $thumb_cell_width,
+                '{ALB_LINK_TGT}' => "thumbnails.php?album={$album['aid']}",
+                '{ALB_LINK_PIC}' => $album['thumb_pic'],
+                '{ADMIN_MENU}' => $album['album_adm_menu'],
+                '{ALB_DESC}' => $album['album_desc'],
+                '{ALB_INFOS}' => $album['album_info'],
+                );
 
-		echo template_eval($album_cell, $params);
+                echo template_eval($album_cell, $params);
 
-		if ($count % $columns == 0 && $count < count($alb_list)) {
-		echo $rows_separator;
-		}
-	}
+                if ($count % $columns == 0 && $count < count($alb_list)) {
+                echo $rows_separator;
+                }
+        }
     }
-    
+
     $params = array('{COL_WIDTH}' => $column_width);
     $empty_cell = template_eval($empty_cell, $params);
 
@@ -1263,27 +1269,27 @@ function theme_display_album_list_cat(&$alb_list, $nbAlb, $cat, $page, $total_pa
 
     echo $header;
     if (is_array($alb_list)) {
-	foreach($alb_list as $album) {
-		$count ++;
+        foreach($alb_list as $album) {
+                $count ++;
 
-		$params = array('{COL_WIDTH}' => $column_width,
-		'{ALBUM_TITLE}' => $album['album_title'],
-		'{THUMB_CELL_WIDTH}' => $thumb_cell_width,
-		'{ALB_LINK_TGT}' => "thumbnails.php?album={$album['aid']}",
-		'{ALB_LINK_PIC}' => $album['thumb_pic'],
-		'{ADMIN_MENU}' => $album['album_adm_menu'],
-		'{ALB_DESC}' => $album['album_desc'],
-		'{ALB_INFOS}' => $album['album_info'],
-		);
+                $params = array('{COL_WIDTH}' => $column_width,
+                '{ALBUM_TITLE}' => $album['album_title'],
+                '{THUMB_CELL_WIDTH}' => $thumb_cell_width,
+                '{ALB_LINK_TGT}' => "thumbnails.php?album={$album['aid']}",
+                '{ALB_LINK_PIC}' => $album['thumb_pic'],
+                '{ADMIN_MENU}' => $album['album_adm_menu'],
+                '{ALB_DESC}' => $album['album_desc'],
+                '{ALB_INFOS}' => $album['album_info'],
+                );
 
-		echo template_eval($album_cell, $params);
+                echo template_eval($album_cell, $params);
 
-		if ($count % $columns == 0 && $count < count($alb_list)) {
-		echo $rows_separator;
-		}
-	}
+                if ($count % $columns == 0 && $count < count($alb_list)) {
+                echo $rows_separator;
+                }
+        }
     }
-    
+
     $params = array('{COL_WIDTH}' => $column_width);
     $empty_cell = template_eval($empty_cell, $params);
 

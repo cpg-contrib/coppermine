@@ -1,3 +1,5 @@
+# $Id$
+
 #
 # Dumping data for table `CPG_config`
 #

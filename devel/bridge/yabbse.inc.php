@@ -1,4 +1,4 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
@@ -33,11 +33,11 @@
 // exception; this exception also makes it possible to release a modified    //
 // version which carries forward this exception.                             //
 // ------------------------------------------------------------------------- //
-// YaBB SE 1.5.4 Integration for Coppermine                                  //
-
-
+// $Id$
 // ------------------------------------------------------------------------- //
-// Modify the value below according to your Board installation
+// YaBB SE 1.5.4 Integration for Coppermine                                  //
+// ------------------------------------------------------------------------- //
+// Modify the value below according to your Board installation               //
 // ------------------------------------------------------------------------- //
 
 // Set this to the location of your Settings file
@@ -84,24 +84,24 @@ define('CM_GMOD_GROUP_NAME', 'Global Moderators');
 define('YS_PASSWD_SEED', 'ys');
 
 if (function_exists('session_start') && (!session_id()))
-	session_start();
+        session_start();
 
 function database_error($file="", $line="") {
-	global $CONFIG;
+        global $CONFIG;
 
-	if (!$CONFIG['debug_mode']) {
-		cpg_die(CRITICAL_ERROR, 'There was an error while processing a database query', $file, $line);
-	} else {
-		$the_error = "\n\nmySQL error: ".mysql_error()."\n";
-		$out = "<br />There was an error while processing a database query.<br /><br/>" .
-			"<form name='mysql'><textarea rows=\"8\" cols=\"60\">".htmlspecialchars($the_error)."</textarea></form>";
-		cpg_die(CRITICAL_ERROR, $out, $file, $line);
-	}
+        if (!$CONFIG['debug_mode']) {
+                cpg_die(CRITICAL_ERROR, 'There was an error while processing a database query', $file, $line);
+        } else {
+                $the_error = "\n\nmySQL error: ".mysql_error()."\n";
+                $out = "<br />There was an error while processing a database query.<br /><br/>" .
+                        "<form name='mysql'><textarea rows=\"8\" cols=\"60\">".htmlspecialchars($the_error)."</textarea></form>";
+                cpg_die(CRITICAL_ERROR, $out, $file, $line);
+        }
 }
 
 function cm_banning()
 {
-    global $txt, $settings, $username, $REMOTE_ADDR, $db_prefix, $UDB_DB_NAME_PREFIX; 
+    global $txt, $settings, $username, $REMOTE_ADDR, $db_prefix, $UDB_DB_NAME_PREFIX;
     // ALL TYPES OF BANNING AT ONCE (SpeedUpBoardIndex mod)
     $remote_ip = $REMOTE_ADDR;
     $ipparts = explode(".", $REMOTE_ADDR);
@@ -114,8 +114,8 @@ function cm_banning()
         $username = "Guest";
         cpg_die(ERROR, "You are BANNED, go away!", __FILE__, __LINE__);
         return;
-    } 
-} 
+    }
+}
 // Authenticate a user using cookies
 function udb_authenticate()
 {
@@ -127,9 +127,9 @@ function udb_authenticate()
 
     LoadCookie();
     LoadUserSettings();
-    cm_banning(); 
+    cm_banning();
     // For error checking
-    $CONFIG['TABLE_USERS'] = '**ERROR**'; 
+    $CONFIG['TABLE_USERS'] = '**ERROR**';
     // Permissions for a default group
     $default_group = array('group_id' => YS_GUEST_GROUP,
         'group_name' => CM_GUEST_GROUP_NAME,
@@ -141,7 +141,7 @@ function udb_authenticate()
         'can_create_albums' => 0,
         'pub_upl_need_approval' => 1,
         'priv_upl_need_approval' => 1,
-        ); 
+        );
     // get first 50 chars
     $HTTP_USER_AGENT = substr($HTTP_SERVER_VARS['HTTP_USER_AGENT'], 0, 50);
     $REMOTE_ADDR = substr($HTTP_SERVER_VARS['REMOTE_ADDR'], 0, 50);
@@ -153,7 +153,7 @@ function udb_authenticate()
             $USER_DATA = $default_group;
         } else {
             $USER_DATA = mysql_fetch_array($result);
-        } 
+        }
         define('USER_ID', 0);
         define('USER_NAME', 'Anonymous');
         define('USER_GROUP_SET', '(' . YS_GUEST_GROUP . ')');
@@ -177,8 +177,8 @@ function udb_authenticate()
                 $cm_group_id = $temp[0];
             } else {
                 $cm_group_id = YS_MEMBERS_GROUP;
-            } 
-        } 
+            }
+        }
         // Retrieve group information
         $sql = "SELECT * " . "FROM {$CONFIG['TABLE_USERGROUPS']} " . "WHERE group_id = '" . $cm_group_id . "'";
         $result = db_query($sql);
@@ -186,11 +186,11 @@ function udb_authenticate()
             $USER_DATA = mysql_fetch_array($result);
         } else {
             $USER_DATA = $default_group;
-        } 
+        }
         if (get_magic_quotes_gpc() == 0) {
             $realname = mysql_escape_string($realname);
             $USER_DATA['group_name'] = mysql_escape_string($USER_DATA['group_name']);
-        } 
+        }
 
         define('USER_ID', $ID_MEMBER);
         define('USER_NAME', $realname);
@@ -204,8 +204,8 @@ function udb_authenticate()
         define('USER_CAN_UPLOAD_PICTURES', (int)$USER_DATA['can_upload_pictures']);
         define('USER_CAN_CREATE_ALBUMS', (int)$USER_DATA['can_create_albums']);
         mysql_free_result($result);
-    } 
-} 
+    }
+}
 // Retrieve the name of a user
 function udb_get_user_name($uid)
 {
@@ -221,38 +221,38 @@ function udb_get_user_name($uid)
         return $row['user_name'];
     } else {
         return '';
-    } 
-} 
+    }
+}
 // Redirect
 function udb_redirect($target)
 {
     header('Location: ' . YS_WEB_PATH . $target);
     exit;
-} 
+}
 // Register
 function udb_register_page()
 {
     $target = 'index.php?action=register';
     udb_redirect($target);
-} 
+}
 // Login
 function udb_login_page()
 {
     $target = 'index.php?action=login';
     udb_redirect($target);
-} 
+}
 // Logout
 function udb_logout_page()
 {
     $target = 'index.php?&action=logout;sesc=' . session_id();
     udb_redirect($target);
-} 
+}
 // Edit users
 function udb_edit_users()
 {
     $target = 'index.php';
     udb_redirect($target);
-} 
+}
 // Get user information
 function udb_get_user_infos($uid)
 {
@@ -286,18 +286,18 @@ function udb_get_user_infos($uid)
             $user_data['mgroup'] = $row['mgroup'];
         } else {
             $user_data['mgroup'] = YS_MEMBERS_GROUP;
-        } 
+        }
         mysql_free_result($result);
-    } 
+    }
 
     return $user_data;
-} 
+}
 // Edit user profile
 function udb_edit_profile($uid)
 {
     $target = 'index.php?action=profile;user=' . YSE_USER_NAME;
     udb_redirect($target);
-} 
+}
 // Query used to list users
 function udb_list_users_query(&$user_count)
 {
@@ -309,7 +309,7 @@ function udb_list_users_query(&$user_count)
     $user_count = mysql_num_rows($result);
 
     return $result;
-} 
+}
 
 function udb_list_users_retrieve_data($result, $lower_limit, $count)
 {
@@ -324,7 +324,7 @@ function udb_list_users_retrieve_data($result, $lower_limit, $count)
     while (($row = mysql_fetch_array($result)) && ($i++ < $count)) {
         $user_id_set .= $row['user_id'] . ',';
         $rowset[] = $row;
-    } 
+    }
     mysql_free_result($result);
 
     $user_id_set = '(' . substr($user_id_set, 0, -1) . ')';
@@ -332,13 +332,13 @@ function udb_list_users_retrieve_data($result, $lower_limit, $count)
     $result = db_query($sql, $UDB_DB_LINK_ID);
     while ($row = mysql_fetch_array($result)) {
         $name[$row['user_id']] = $row['user_name'];
-    } 
+    }
     for($i = 0; $i < count($rowset); $i++) {
         $rowset[$i]['user_name'] = empty($name[$rowset[$i]['user_id']]) ? '???' : $name[$rowset[$i]['user_id']];
-    } 
+    }
 
     return $rowset;
-} 
+}
 // Group table synchronisation
 function udb_synchronize_groups()
 {
@@ -347,7 +347,7 @@ function udb_synchronize_groups()
     $result = db_query("SELECT ID_GROUP as usergroupid, membergroup as title FROM " . $UDB_DB_NAME_PREFIX . YS_TABLE_PREFIX . YS_GROUP_TABLE . " WHERE grouptype=1", $UDB_DB_LINK_ID);
     while ($row = mysql_fetch_array($result)) {
         $YS_groups[$row['title']] = $row['usergroupid'];
-    } 
+    }
     mysql_free_result($result);
 
     $YS_groups[CM_ADMIN_GROUP_NAME] = YS_ADMIN_GROUP;
@@ -359,29 +359,29 @@ function udb_synchronize_groups()
     $result = db_query("SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1");
     while ($row = mysql_fetch_array($result)) {
         $cpg_groups[$row['group_name']] = $row['group_id'];
-    } 
-    mysql_free_result($result); 
+    }
+    mysql_free_result($result);
     // Scan Coppermine groups that need to be deleted
     foreach($cpg_groups as $c_group_name => $c_group_id) {
         if ((!isset($YS_groups[$c_group_name]))) {
             db_query("DELETE FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = '" . $c_group_id . "' LIMIT 1");
             unset($cpg_groups[$c_group_name]);
-        } 
-    } 
+        }
+    }
     // Scan Board groups that need to be created inside Coppermine table
     foreach($YS_groups as $i_group_name => $i_group_id) {
         if ((!isset($cpg_groups[$i_group_name]))) {
             db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} (group_id, group_name) VALUES ('$i_group_id', '" . addslashes($i_group_name) . "')");
             $cpg_groups[$i_group_name] = $i_group_id;
-        } 
-    } 
+        }
+    }
     // Update Group names -- Can't be done with YSE
     // foreach($YS_groups as $i_group_id => $i_group_name){
     // if ($cpg_groups[$i_group_id] != $i_group_name) {
     // db_query("UPDATE {$CONFIG['TABLE_USERGROUPS']} SET group_name = '".addslashes($i_group_name)."' WHERE group_id = '$i_group_id' LIMIT 1");
     // }
     // }
-} 
+}
 // Retrieve the album list used in gallery admin mode
 function udb_get_admin_album_list()
 {
@@ -393,8 +393,8 @@ function udb_get_admin_album_list()
     } else {
         $sql = "SELECT aid, IF(category > " . FIRST_USER_CAT . ", CONCAT('* ', title), CONCAT(' ', title)) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} " . "ORDER BY title";
         return $sql;
-    } 
-} 
+    }
+}
 // ------------------------------------------------------------------------- //
 // Define wheter we can join tables or not in SQL queries (same host & same db or user)
 define('UDB_CAN_JOIN_TABLES', (YS_DB_HOST == $CONFIG['dbserver'] && (YS_DB_NAME == $CONFIG['dbname'] || YS_DB_USERNAME == $CONFIG['dbuser'])));
@@ -404,6 +404,6 @@ $UDB_DB_NAME_PREFIX = YS_DB_NAME ? '`' . YS_DB_NAME . '`.' : '';
 if (!UDB_CAN_JOIN_TABLES) {
     $UDB_DB_LINK_ID = @mysql_connect(YS_BD_HOST, YS_DB_USERNAME, YS_DB_PASSWORD);
     if (!$UDB_DB_LINK_ID) die("<b>Coppermine critical error</b>:<br />Unable to connect to YaBB SE Board database !<br /><br />MySQL said: <b>" . mysql_error() . "</b>");
-} 
+}
 
 ?>

@@ -1,4 +1,4 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
@@ -14,6 +14,11 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
+
+/*
+$Id$
+*/
+
 /**
  * phpMyAdmin Language Loading File
  */
@@ -36,12 +41,12 @@
  *     without the '.php' extension.
  * 4. The last values associated to the key is the language code as defined by
  *     the RFC1766.
- * 
+ *
  * Beware that the sorting order (first values associated to keys by
  * alphabetical reverse order in the array) is important: 'zh-tw' (chinese
  * traditional) must be detected before 'zh' (chinese simplified) for
  * example.
- * 
+ *
  * When there are more than one charset for a language, we put the -utf-8
  * first.
  */
@@ -89,12 +94,12 @@ $available_languages = array('ar' => array('ar([-_][[:alpha:]]{2})?|arabic', 'ar
 /**
  * Analyzes some PHP environment variables to find the most probable language
  * that should be used
- * 
+ *
  * @param string $ string to analyze
  * @param integer $ type of the PHP environment variable which value is $str
  * @global array    the list of available translations
  * @global string   the retained translation keyword
- * @access private 
+ * @access private
  */
 function lang_detect($str = '', $envType = '')
 {
@@ -108,9 +113,9 @@ function lang_detect($str = '', $envType = '')
         if (($envType == 1 && eregi('^(' . $value[0] . ')(;q=[0-9]\\.[0-9])?$', $str)) || ($envType == 2 && eregi('(\(|\[|;[[:space:]])(' . $value[0] . ')(;|\]|\))', $str))) {
             $lang = $key;
             break;
-        } 
-    } 
-} 
+        }
+    }
+}
 
 /**
  * Get some global variables if 'register_globals' is set to 'off'
@@ -120,13 +125,13 @@ if (!empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
     $HTTP_ACCEPT_LANGUAGE = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
 } else if (!empty($HTTP_SERVER_VARS['HTTP_ACCEPT_LANGUAGE'])) {
     $HTTP_ACCEPT_LANGUAGE = $HTTP_SERVER_VARS['HTTP_ACCEPT_LANGUAGE'];
-} 
+}
 
 if (!empty($_SERVER['HTTP_USER_AGENT'])) {
     $HTTP_USER_AGENT = $_SERVER['HTTP_USER_AGENT'];
 } else if (!empty($HTTP_SERVER_VARS['HTTP_USER_AGENT'])) {
     $HTTP_USER_AGENT = $HTTP_SERVER_VARS['HTTP_USER_AGENT'];
-} 
+}
 
 /**
  * Do the work!
@@ -141,15 +146,15 @@ if (empty($lang) && !empty($HTTP_ACCEPT_LANGUAGE)) {
     reset($accepted);
     for ($i = 0; $i < $acceptedCnt && empty($lang); $i++) {
         lang_detect($accepted[$i], 1);
-    } 
-} 
+    }
+}
 // 2. try to findout user's language by checking its HTTP_USER_AGENT variable
 if (empty($lang) && !empty($HTTP_USER_AGENT)) {
     lang_detect($HTTP_USER_AGENT, 2);
-} 
+}
 // 3. If we catch a valid language, configure it
 if (!empty($lang)) {
     $USER['lang'] = $available_languages[$lang][1];
-} 
+}
 // $__PMA_SELECT_LANG_LIB__
 ?>

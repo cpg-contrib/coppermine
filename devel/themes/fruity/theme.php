@@ -21,6 +21,12 @@
 // guess no one will care). The usage of this theme is free for personal     //
 // use, not for commercial use (according to the disclaimer of studiocasa)!  //
 // ------------------------------------------------------------------------- //
+
+/*
+$Id$
+*/
+
+
 // HTML template for main menu
 $template_main_menu = <<<EOT
                 <span class="topmenu">

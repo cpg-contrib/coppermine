@@ -15,6 +15,10 @@
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
 
+/*
+$Id$
+*/
+
 // HTML template for main menu
 $template_main_menu = <<<EOT
                 <span class="topmenu">

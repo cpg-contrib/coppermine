@@ -1,4 +1,4 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
@@ -14,13 +14,13 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
+// $Id$
+// ------------------------------------------------------------------------- //
+// vBulletin 2.3 Integration for Coppermine                                  //
+// ------------------------------------------------------------------------- //
+// Modify the values below according to your Board installation              //
+// ------------------------------------------------------------------------- //
 
-// vBulletin 2.3 Integration for Coppermine
-
-// ------------------------------------------------------------------------- //
-// ------------------------------------------------------------------------- //
-// Modify the values below according to your Board installation
-// ------------------------------------------------------------------------- //
 // database configuration
 define('VB_DB_NAME', 'vbulletin23'); // The name of the database used by the board
 define('VB_BD_HOST', 'localhost'); // The name of the database server
@@ -48,9 +48,9 @@ define('VB_ADMIN_GROUP', 6);
 function udb_authenticate()
 {
     global $HTTP_COOKIE_VARS, $USER_DATA, $UDB_DB_LINK_ID, $UDB_DB_NAME_PREFIX, $CONFIG;
-    global $HTTP_SERVER_VARS, $HTTP_X_FORWARDED_FOR, $HTTP_PROXY_USER, $REMOTE_ADDR; 
+    global $HTTP_SERVER_VARS, $HTTP_X_FORWARDED_FOR, $HTTP_PROXY_USER, $REMOTE_ADDR;
     // For error checking
-    $CONFIG['TABLE_USERS'] = '**ERROR**'; 
+    $CONFIG['TABLE_USERS'] = '**ERROR**';
     // Permissions for a default group
     $default_group = array('group_id' => VB_GUEST_GROUP,
         'group_name' => 'Unknown',
@@ -62,7 +62,7 @@ function udb_authenticate()
         'can_create_albums' => 0,
         'pub_upl_need_approval' => 1,
         'priv_upl_need_approval' => 1,
-        ); 
+        );
     // get first 50 chars
     $HTTP_USER_AGENT = substr($HTTP_SERVER_VARS['HTTP_USER_AGENT'], 0, 50);
     $REMOTE_ADDR = substr($HTTP_SERVER_VARS['REMOTE_ADDR'], 0, 50);
@@ -72,7 +72,7 @@ function udb_authenticate()
         $bbuserid = isset($HTTP_COOKIE_VARS['bbuserid']) ? $HTTP_COOKIE_VARS['bbuserid'] : 0;
         $bbpassword = isset($HTTP_COOKIE_VARS['bbpassword']) ? $HTTP_COOKIE_VARS['bbpassword'] : '';
         $bbalthash = isset($HTTP_COOKIE_VARS['bbalthash']) ? $HTTP_COOKIE_VARS['bbalthash'] : '';
-    } 
+    }
 
     if ($bbuserid && $bbpassword) {
         // If userid and password exist in cookies we use them to login
@@ -93,10 +93,10 @@ function udb_authenticate()
             $result = db_query($sql, $UDB_DB_LINK_ID);
         } else {
             $sql = "SELECT userid as user_id, username as user_name, usergroupid as mgroup " . "FROM " . $UDB_DB_NAME_PREFIX . VB_TABLE_PREFIX . VB_USER_TABLE . " " . "WHERE 0";
-        } 
+        }
     } else {
         $sql = "SELECT userid as user_id, username as user_name, usergroupid as mgroup " . "FROM " . $UDB_DB_NAME_PREFIX . VB_TABLE_PREFIX . VB_USER_TABLE . " " . "WHERE 0";
-    } 
+    }
 
     $result = db_query($sql, $UDB_DB_LINK_ID);
 
@@ -105,7 +105,7 @@ function udb_authenticate()
         mysql_free_result($result);
 
         define('USER_ID', (int)$USER_DATA['user_id']);
-        define('USER_NAME', $USER_DATA['user_name']); 
+        define('USER_NAME', $USER_DATA['user_name']);
         // Retrieve group information
         $sql = "SELECT * " . "FROM {$CONFIG['TABLE_USERGROUPS']} " . "WHERE group_id = '{$USER_DATA['mgroup']}'";
         $result = db_query($sql);
@@ -113,7 +113,7 @@ function udb_authenticate()
             $USER_DATA2 = mysql_fetch_array($result);
         } else {
             $USER_DATA2 = $default_group;
-        } 
+        }
 
         $USER_DATA = array_merge($USER_DATA, $USER_DATA2);
 
@@ -132,7 +132,7 @@ function udb_authenticate()
             $USER_DATA = $default_group;
         } else {
             $USER_DATA = mysql_fetch_array($result);
-        } 
+        }
         define('USER_ID', 0);
         define('USER_NAME', 'Anonymous');
         define('USER_GROUP_SET', '(' . VB_GUEST_GROUP . ')');
@@ -143,8 +143,8 @@ function udb_authenticate()
         define('USER_CAN_UPLOAD_PICTURES', (int)$USER_DATA['can_upload_pictures']);
         define('USER_CAN_CREATE_ALBUMS', 0);
         mysql_free_result($result);
-    } 
-} 
+    }
+}
 // Retrieve the name of a user
 function udb_get_user_name($uid)
 {
@@ -160,38 +160,38 @@ function udb_get_user_name($uid)
         return $row['user_name'];
     } else {
         return '';
-    } 
-} 
+    }
+}
 // Redirect
 function udb_redirect($target)
 {
     header('Location: ' . VB_WEB_PATH . $target);
     exit;
-} 
+}
 // Register
 function udb_register_page()
 {
     $target = 'register.php';
     udb_redirect($target);
-} 
+}
 // Login
 function udb_login_page()
 {
     $target = 'index.php';
     udb_redirect($target);
-} 
+}
 // Logout
 function udb_logout_page()
 {
     $target = 'member.php?&action=logout';
     udb_redirect($target);
-} 
+}
 // Edit users
 function udb_edit_users()
 {
     $target = 'admin/index.php';
     udb_redirect($target);
-} 
+}
 // Get user information
 function udb_get_user_infos($uid)
 {
@@ -216,17 +216,17 @@ function udb_get_user_infos($uid)
     if (mysql_num_rows($result)) {
         $row = mysql_fetch_array($result);
         $user_data['group_name'] = $row['group_name'];
-    } 
+    }
     mysql_free_result($result);
 
     return $user_data;
-} 
+}
 // Edit user profile
 function udb_edit_profile($uid)
 {
     $target = 'usercp.php';
     udb_redirect($target);
-} 
+}
 // Query used to list users
 function udb_list_users_query(&$user_count)
 {
@@ -238,7 +238,7 @@ function udb_list_users_query(&$user_count)
     $user_count = mysql_num_rows($result);
 
     return $result;
-} 
+}
 
 function udb_list_users_retrieve_data($result, $lower_limit, $count)
 {
@@ -253,7 +253,7 @@ function udb_list_users_retrieve_data($result, $lower_limit, $count)
     while (($row = mysql_fetch_array($result)) && ($i++ < $count)) {
         $user_id_set .= $row['user_id'] . ',';
         $rowset[] = $row;
-    } 
+    }
     mysql_free_result($result);
 
     $user_id_set = '(' . substr($user_id_set, 0, -1) . ')';
@@ -261,13 +261,13 @@ function udb_list_users_retrieve_data($result, $lower_limit, $count)
     $result = db_query($sql, $UDB_DB_LINK_ID);
     while ($row = mysql_fetch_array($result)) {
         $name[$row['user_id']] = $row['user_name'];
-    } 
+    }
     for($i = 0; $i < count($rowset); $i++) {
         $rowset[$i]['user_name'] = empty($name[$rowset[$i]['user_id']]) ? '???' : $name[$rowset[$i]['user_id']];
-    } 
+    }
 
     return $rowset;
-} 
+}
 // Group table synchronisation
 function udb_synchronize_groups()
 {
@@ -276,35 +276,35 @@ function udb_synchronize_groups()
     $result = db_query("SELECT usergroupid, title FROM " . $UDB_DB_NAME_PREFIX . VB_TABLE_PREFIX . VB_GROUP_TABLE . " WHERE 1", $UDB_DB_LINK_ID);
     while ($row = mysql_fetch_array($result)) {
         $VB_groups[$row['usergroupid']] = $row['title'];
-    } 
+    }
     mysql_free_result($result);
 
     $result = db_query("SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1");
     while ($row = mysql_fetch_array($result)) {
         $cpg_groups[$row['group_id']] = $row['group_name'];
-    } 
-    mysql_free_result($result); 
+    }
+    mysql_free_result($result);
     // Scan Coppermine groups that need to be deleted
     foreach($cpg_groups as $c_group_id => $c_group_name) {
         if ((!isset($VB_groups[$c_group_id]))) {
             db_query("DELETE FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = '" . $c_group_id . "' LIMIT 1");
             unset($cpg_groups[$c_group_id]);
-        } 
-    } 
+        }
+    }
     // Scan vBulletin Board groups that need to be created inside Coppermine table
     foreach($VB_groups as $i_group_id => $i_group_name) {
         if ((!isset($cpg_groups[$i_group_id]))) {
             db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} (group_id, group_name) VALUES ('$i_group_id', '" . addslashes($i_group_name) . "')");
             $cpg_groups[$i_group_id] = $i_group_name;
-        } 
-    } 
+        }
+    }
     // Update Group names
     foreach($VB_groups as $i_group_id => $i_group_name) {
         if ($cpg_groups[$i_group_id] != $i_group_name) {
             db_query("UPDATE {$CONFIG['TABLE_USERGROUPS']} SET group_name = '" . addslashes($i_group_name) . "' WHERE group_id = '$i_group_id' LIMIT 1");
-        } 
-    } 
-} 
+        }
+    }
+}
 // Retrieve the album list used in gallery admin mode
 function udb_get_admin_album_list()
 {
@@ -316,8 +316,8 @@ function udb_get_admin_album_list()
     } else {
         $sql = "SELECT aid, IF(category > " . FIRST_USER_CAT . ", CONCAT('* ', title), CONCAT(' ', title)) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} " . "ORDER BY title";
         return $sql;
-    } 
-} 
+    }
+}
 // ------------------------------------------------------------------------- //
 // Define wheter we can join tables or not in SQL queries (same host & same db or user)
 define('UDB_CAN_JOIN_TABLES', (VB_BD_HOST == $CONFIG['dbserver'] && (VB_DB_NAME == $CONFIG['dbname'] || VB_DB_USERNAME == $CONFIG['dbuser'])));
@@ -327,6 +327,6 @@ $UDB_DB_NAME_PREFIX = VB_DB_NAME ? '`' . VB_DB_NAME . '`.' : '';
 if (!UDB_CAN_JOIN_TABLES) {
     $UDB_DB_LINK_ID = @mysql_connect(VB_BD_HOST, VB_DB_USERNAME, VB_DB_PASSWORD);
     if (!$UDB_DB_LINK_ID) die("<b>Coppermine critical error</b>:<br />Unable to connect to vBulletin Board database !<br /><br />MySQL said: <b>" . mysql_error() . "</b>");
-} 
+}
 
 ?>

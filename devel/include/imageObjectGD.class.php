@@ -13,7 +13,11 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- // 
+// ------------------------------------------------------------------------- //
+
+/*
+$Id$
+*/
 
 class imageObject{
 
@@ -36,27 +40,27 @@ class imageObject{
 
          //constructor
          function imageObject($directory,$filename,$previous=null)
-	{
-	$this->directory = $directory;
-	$this->filename = $filename;
-	$this->previous = $previous;
-	$this->imgRes = $previous->imgRes;
-	if (file_exists($directory.$filename)){
-			$this->filesize = round(filesize($directory.$filename)/1000);
-			if($this->filesize>0){
-				$size = @GetImageSize($directory.$filename);
-				if ($size && !$this->imgRes) {
-					$this->imgRes = $this->getimgRes($directory.$filename,$size[2]);
-				}
-				if (function_exists("imagecreatetruecolor")){
-					$this->truecolor = true;
-				}
-				$this->width = $size[0];
-				$this->height = $size[1];
-				$this->string = $size[3];
-				}
-			}// if
-	}// constructor
+        {
+        $this->directory = $directory;
+        $this->filename = $filename;
+        $this->previous = $previous;
+        $this->imgRes = $previous->imgRes;
+        if (file_exists($directory.$filename)){
+                        $this->filesize = round(filesize($directory.$filename)/1000);
+                        if($this->filesize>0){
+                                $size = @GetImageSize($directory.$filename);
+                                if ($size && !$this->imgRes) {
+                                        $this->imgRes = $this->getimgRes($directory.$filename,$size[2]);
+                                }
+                                if (function_exists("imagecreatetruecolor")){
+                                        $this->truecolor = true;
+                                }
+                                $this->width = $size[0];
+                                $this->height = $size[1];
+                                $this->string = $size[3];
+                                }
+                        }// if
+        }// constructor
 
          // private methods
          function getimgRes($name,&$type)
@@ -78,21 +82,21 @@ class imageObject{
 
          function createUnique(&$imgnew)
          {
-           srand((double)microtime()*100000);           
-	   $unique_str = "temp_".md5(rand(0,999999)).".jpg";
+           srand((double)microtime()*100000);
+           $unique_str = "temp_".md5(rand(0,999999)).".jpg";
            @imagejpeg($imgnew,$this->directory.$unique_str,$this->quality);
            @imagedestroy($this->imgRes);
-	   //Don't clutter with old images	   
-	   @unlink($this->directory.$this->filename);              
-	   //Create a new ImageObject
-           return new imageObject($this->directory,$unique_str,&$imgnew);	   
+           //Don't clutter with old images
+           @unlink($this->directory.$this->filename);
+           //Create a new ImageObject
+           return new imageObject($this->directory,$unique_str,&$imgnew);
          }
 
          function createImage($new_w,$new_h)
          {
            if (function_exists("imagecreatetruecolor")){
-             $retval = @imagecreatetruecolor($new_w,$new_h);	     
-	   }
+             $retval = @imagecreatetruecolor($new_w,$new_h);
+           }
            if (!$retval) $retval = imagecreate($new_w,$new_h);
            return $retval;
          }
@@ -116,10 +120,10 @@ class imageObject{
              return $this->createUnique($dst_img);
 
          }
-	 	 
-	 function rotateImage(&$angle){
-	 
-	  if ($angle == 180){
+
+         function rotateImage(&$angle){
+
+          if ($angle == 180){
               $dst_img = @imagerotate($this->imgRes, $angle, 0);
           }else{
                   $width = imagesx($this->imgRes);
@@ -128,30 +132,30 @@ class imageObject{
                       $size = $width;
                       }else{
                       $size = $height;
-		  }
-		  
+                  }
+
                   $dst_img = $this->createImage($size, $size);
                   imagecopy($dst_img, $this->imgRes, 0, 0, 0, 0, $width, $height);
                   $dst_img = imagerotate($dst_img, $angle, 0);
                   $this->imgRes = $dst_img;
                   $dst_img = $this->createImage($height, $width);
-		  
-		  if ((($angle == 90) && ($width > $height)) || (($angle == 270) && ($width < $height))){		  	  
+
+                  if ((($angle == 90) && ($width > $height)) || (($angle == 270) && ($width < $height))){
                           imagecopy($dst_img, $this->imgRes, 0, 0, 0, 0, $size, $size);
-			  
-		  }
-		  
+
+                  }
+
                   if ((($angle == 270) && ($width > $height)) || (($angle == 90) && ($width < $height))){
                           imagecopy($dst_img, $this->imgRes, 0, 0, $size - $height, $size - $width, $size, $size);
-		  }
+                  }
           }
 
            return $this->createUnique($dst_img);
-	 }
+         }
 
-         
-	 
-	 function resizeImage($new_w=0,$new_h=0){
+
+
+         function resizeImage($new_w=0,$new_h=0){
 
              $dst_img = $this->createImage($new_w,$new_h);
 
@@ -162,9 +166,9 @@ class imageObject{
          }
 
 
-	 function saveImage(){
-	 	
-	 }
+         function saveImage(){
 
-   }   
+         }
+
+   }
  ?>

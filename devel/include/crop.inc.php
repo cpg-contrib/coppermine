@@ -14,6 +14,11 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
+
+/*
+$Id$
+*/
+
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 //////////////////// Variables //////////////////////////////
 // used texts
@@ -37,11 +42,11 @@ echo <<<cropUIjs
 <!--
 
 function libinit(){
-	obj=new lib_obj('cropDiv')
-	obj.dragdrop()
-	objImg =new lib_obj('imgDiv')
-	//alert (objImg.x + "-" + objImg.y);	
-	obj.moveIt(objImg.x,objImg.y)	
+        obj=new lib_obj('cropDiv')
+        obj.dragdrop()
+        objImg =new lib_obj('imgDiv')
+        //alert (objImg.x + "-" + objImg.y);
+        obj.moveIt(objImg.x,objImg.y)
 }
 
 function cropCheck(crA){
@@ -56,22 +61,22 @@ function cropCheck(crA){
       url = url+'&final=1';
       window.open(url,'prevWin','width='+obj.cr+',height='+(obj.cb));
     }else if(crA == 'asThumb') {
-    
-	thumb_use = "{$CONFIG['thumb_use']}"
-	thumb_width = {$CONFIG['thumb_width']}
 
-	if ( thumb_use== "ht") {
-		ratio = obj.cb / thumb_width ;
-	} else if (thumb_use == "wd") {
-		ratio = obj.cr / thumb_width ;
-	} else {
-		ratio = Math.max(obj.cb, obj.cr) / thumb_width ;
-	} 
+        thumb_use = "{$CONFIG['thumb_use']}"
+        thumb_width = {$CONFIG['thumb_width']}
 
-	ratio = Math.max(ratio, 1.0);
-	destWidth = (obj.cr / ratio);
-	destHeight = (obj.cb / ratio);
-	    
+        if ( thumb_use== "ht") {
+                ratio = obj.cb / thumb_width ;
+        } else if (thumb_use == "wd") {
+                ratio = obj.cr / thumb_width ;
+        } else {
+                ratio = Math.max(obj.cb, obj.cr) / thumb_width ;
+        }
+
+        ratio = Math.max(ratio, 1.0);
+        destWidth = (obj.cr / ratio);
+        destHeight = (obj.cb / ratio);
+
       url = url+'&asThumb=1';
       window.open(url,'prevWin','width='+destWidth+',height='+destHeight);
       }
@@ -93,27 +98,27 @@ function cropZoom(dir) {
   if (loop == true) {
     if (direction == "in") {
       if ((obj.cr > 60 )){
-	cW = obj.cr - 1;
-	cH = obj.cb ;	
-	obj.clipTo(0,cW,cH,0,1);
+        cW = obj.cr - 1;
+        cH = obj.cb ;
+        obj.clipTo(0,cW,cH,0,1);
       }
     } else if (direction == "out") {
       if ((obj.cr < ({$CURRENT_PIC['pwidth']}-5))){
-	cW = obj.cr + 1;
-	cH = obj.cb ;
-	obj.clipTo(0,cW,cH,0,1);
+        cW = obj.cr + 1;
+        cH = obj.cb ;
+        obj.clipTo(0,cW,cH,0,1);
       }
-    } else if (direction == "down") {    
+    } else if (direction == "down") {
       if ((obj.cb < ({$CURRENT_PIC['pheight']}-5) )){
-	cW = obj.cr ;
-	cH = obj.cb + 1;
-	obj.clipTo(0,cW,cH,0,1);
+        cW = obj.cr ;
+        cH = obj.cb + 1;
+        obj.clipTo(0,cW,cH,0,1);
       }
-    } else if (direction == "up") {    
+    } else if (direction == "up") {
       if ((obj.cb > 60 )){
-	cW = obj.cr ;
-	cH = obj.cb - 1;
-	obj.clipTo(0,cW,cH,0,1);
+        cW = obj.cr ;
+        cH = obj.cb - 1;
+        obj.clipTo(0,cW,cH,0,1);
       }
     }
     zoomtimer = setTimeout("cropZoom(direction)", 10);
@@ -126,17 +131,17 @@ onload=libinit;
 <style>
 
 #cropDiv{
-	position:absolute;
-	left:10px;
-	top:10px;
-	width:60px;
-	height:60px;
-	z-index:2;
-	background-image: url(images/spacer.gif);
+        position:absolute;
+        left:10px;
+        top:10px;
+        width:60px;
+        height:60px;
+        z-index:2;
+        background-image: url(images/spacer.gif);
 }
 
 #imgDiv{
-	position:relative;
+        position:relative;
 }
 </style>
 cropUIjs;

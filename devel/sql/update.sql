@@ -1,3 +1,5 @@
+# $Id$
+
 #
 # Table structure for table `CPG_filetypes`
 #

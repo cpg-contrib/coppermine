@@ -1,3 +1,5 @@
+# $Id$
+
 ## Dumping data for table `cpg11d_config`##INSERT INTO cpg11d_config VALUES ('allowed_file_extensions', 'GIF/PNG/JPG/JPEG/TIF/TIFF');#INSERT INTO cpg11d_config VALUES ('allowed_img_types', 'JPG/GIF/PNG/TIFF');
 
 #INSERT INTO cpg11d_config VALUES ('allowed_mov_types', 'ALL');
