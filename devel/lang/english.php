@@ -187,7 +187,7 @@ $lang_thumb_view = array(
   'enter_alb_pass' => 'Enter Album Password',
   'invalid_pass' => 'Invalid Password',
   'pass' => 'Password',
-  'submit' => 'Submit'
+  'submit' => 'Submit',
 );
 
 $lang_img_nav_bar = array(
@@ -960,7 +960,7 @@ $lang_picinfo = array(
   'ManageExifDisplay' => 'Manage Exif Display',
   'submit' => 'Submit',
   'success' => 'Information updated successfully.',
-  'details' => 'Details'
+  'details' => 'Details',
 );
 
 $lang_display_comments = array(
@@ -1890,7 +1890,7 @@ EOT;
 
 
 $lang_xp_publish_php = array(
-		'title' => 'Coppermine - XP Web Publishing Wizard',
+                'title' => 'Coppermine - XP Web Publishing Wizard',
         'welcome' => 'Welcome <b>%s</b>,',
         'need_login' => 'You need to login to the gallery using your web browser before you can use this wizard.<p/><p>When you login don\'t forget to select the <b>remember me</b> option if it is present.',
         'no_alb' => 'Sorry but there is no album where you are allowed to upload pictures with this wizard.',
@@ -1900,7 +1900,7 @@ $lang_xp_publish_php = array(
         'category' => 'Category',
         'new_alb_created' => 'Your new album &quot;<b>%s</b>&quot; was created.',
         'continue' => 'Press &quot;Next&quot; to start to upload your pictures',
-		'link' => 'this link',		
+                'link' => 'this link',
 );
 }
 ?>
