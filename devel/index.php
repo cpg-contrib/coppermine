@@ -183,7 +183,7 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
             }
 
             if ($level > 1) {
-                                get_subcat_data($subcat['cid'], $cat_data, $album_set_array, $level -1, $ident . "</td><td><img src=\"images/spacer.gif\" width=\"20\" height=\"1\"></td><td>");
+                                get_subcat_data($subcat['cid'], $cat_data, $album_set_array, $level -1, $ident . "</td><td><img src=\"images/spacer.gif\" width=\"20\" height=\"1\" border=\"0\" alt=\"\" /></td><td>");
                         }
         }
     }
@@ -378,7 +378,7 @@ function list_users()
                     $picture['pheight'] = $image_info[1];
                 }
                 $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
-                $user_thumb = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"\">";
+                $user_thumb = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"\" />";
             }
         }
 
@@ -451,10 +451,10 @@ function list_albums()
     $album_set = '(' . substr($album_set, 0, -2) . ')';
 
     //This query will fetch album stats and keyword for the albums
-    $sql = "SELECT p.aid, count(p.pid) as pic_count, max(p.pid) as last_pid, max(p.ctime) as last_upload, a.keyword " . 
-            "FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a " . 
-            "WHERE p.aid IN $album_set AND 
-             p.aid = a.aid AND 
+    $sql = "SELECT p.aid, count(p.pid) as pic_count, max(p.pid) as last_pid, max(p.ctime) as last_upload, a.keyword " .
+            "FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a " .
+            "WHERE p.aid IN $album_set AND
+             p.aid = a.aid AND
             p.approved = 'YES' " . "GROUP BY p.aid";
     $alb_stats_q = db_query($sql);
     $alb_stats = db_fetch_rowset($alb_stats_q);
@@ -464,8 +464,8 @@ function list_albums()
         $cross_ref[$value['aid']] = &$alb_stats[$key];
         if ($CONFIG['link_pic_count'] == 1) {
           if (!empty($value['keyword'])) {
-            $query = "SELECT count(pid) AS link_pic_count 
-                      FROM {$CONFIG['TABLE_PICTURES']} 
+            $query = "SELECT count(pid) AS link_pic_count
+                      FROM {$CONFIG['TABLE_PICTURES']}
                         WHERE aid != {$value['aid']} AND
                         keywords LIKE '%{$value['keyword']}%' AND
                         approved = 'YES'";
@@ -508,7 +508,7 @@ function list_albums()
                     $picture['pheight'] = $image_info[1];
                 }
                 $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
-                $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$picture['filename']}\"/>";
+                $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$picture['filename']}\" />";
             } else { // Inserts an empty thumbnail if the album contains 0 images
                 // $image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
                 $cpg_nopic_data = cpg_get_system_thumb('nopic.jpg', $alb_thumb['category']);
@@ -615,21 +615,21 @@ function list_cat_albums($cat = 0)
     mysql_free_result($alb_stats_q);*/
 
     //This query will fetch album stats and keyword for the albums
-    $sql = "SELECT p.aid, count(p.pid) as pic_count, max(p.pid) as last_pid, max(p.ctime) as last_upload, a.keyword " . 
-            "FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a " . 
-            "WHERE p.aid IN $album_set AND 
-             p.aid = a.aid AND 
+    $sql = "SELECT p.aid, count(p.pid) as pic_count, max(p.pid) as last_pid, max(p.ctime) as last_upload, a.keyword " .
+            "FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a " .
+            "WHERE p.aid IN $album_set AND
+             p.aid = a.aid AND
             p.approved = 'YES' " . "GROUP BY p.aid";
     $alb_stats_q = db_query($sql);
     $alb_stats = db_fetch_rowset($alb_stats_q);
     mysql_free_result($alb_stats_q);
-    
+
     foreach($alb_stats as $key => $value) {
         $cross_ref[$value['aid']] = &$alb_stats[$key];
         if ($CONFIG['link_pic_count'] == 1) {
           if (!empty($value['keyword'])) {
-            $query = "SELECT count(pid) AS link_pic_count 
-                      FROM {$CONFIG['TABLE_PICTURES']} 
+            $query = "SELECT count(pid) AS link_pic_count
+                      FROM {$CONFIG['TABLE_PICTURES']}
                         WHERE aid != {$value['aid']} AND
                         keywords LIKE '%{$value['keyword']}%' AND
                         approved = 'YES'";
