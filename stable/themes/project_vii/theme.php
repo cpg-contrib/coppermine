@@ -1116,6 +1116,7 @@ function theme_display_breadcrumb($breadcrumb, &$cat_data)
             );
         echo template_eval($template, $params);
     }
+    endtable();
 }
 
 function theme_display_album_list(&$alb_list, $nbAlb, $cat, $page, $total_pages)
