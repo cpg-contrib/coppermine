@@ -198,7 +198,7 @@ echo <<<EOT
 				</tr>
         <tr>
                 <td class="tableb" valign="top" width="40%" colspan="3">
-                        COMMENT PREVIEW GOES HERE<br />
+                Link to comment to go here<br />
                 </td>
         </tr>
 <!-- END display_comment -->
@@ -218,9 +218,9 @@ echo <<<EOT
 <!-- BEGIN reason_obscene -->
 									<input value="obscene" type="checkbox" name="reason">{$lang_report_php['obscene']}</input>
 <!-- END reason_obscene -->
-
+<!-- BEGIN reason_offensive -->
 									<input value="offensive" type="checkbox" name="reason">{$lang_report_php['offensive']}</input>
-
+<!-- END reason_offensive -->
 
 <!-- BEGIN reason_misplaced -->
 									<input value="misplaced" type="checkbox" name="reason">{$lang_report_php['misplaced']}</input>

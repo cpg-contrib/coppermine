@@ -611,11 +611,15 @@ $template_image_comments = <<<EOT
 <!-- BEGIN ipinfo -->
                                                                                  ({HDR_IP} [{RAW_IP}])
 <!-- END ipinfo -->
-                                </td>
-                                <td class="tableh2_compact" align="right" width="100%">
+</td><td class="tableh2_compact" align="center" width="35%">
 <!-- BEGIN report_comment_button -->
                                         <a href="report_file.php?msg_id={MSG_ID}&what=comment">report</a>
 <!-- END report_comment_button -->
+                                </td>
+								
+								
+                                <td class="tableh2_compact" align="right" width="100%">
+
 <!-- BEGIN buttons -->
                                         <a href="javascript:;" onclick="blocking('cbody{MSG_ID}','', 'block'); blocking('cedit{MSG_ID}','', 'block'); return false;" title="{EDIT_TITLE}"><img src="images/edit.gif" border="0px" align="middle" /></a>
                                         <a href="delete.php?msg_id={MSG_ID}&what=comment"  onclick="return confirm('{CONFIRM_DELETE}');"><img src="images/delete.gif" border="0px" align="middle" /></a>

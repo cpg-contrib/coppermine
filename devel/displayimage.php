@@ -96,9 +96,9 @@ function html_img_nav_menu()
 		//report to moderator buttons
     if ($CONFIG['report_post']==1) {
 				$report_tgt = "report_file.php?album=$album$cat_link&amp;pid=$pid&amp;pos=$pos";
-    } else { // remove buttons if report toggle is off
+    } else { // remove button if report toggle is off
         template_extract_block($template_img_navbar, 'report_file_button'); 
-        template_extract_block($template_image_comments, 'report_comment_button'); //need help: error message said button not found but it's in theme.php
+        
     }
 		
 		    $thumb_tgt = "thumbnails.php?album=$album$cat_link&amp;page=$page";
@@ -375,6 +375,13 @@ function html_comments($pid)
     global $template_image_comments, $template_add_your_comment, $lang_display_comments;
 
     $html = '';
+	
+//report to moderator buttons
+    if ($CONFIG['report_post']==1) {
+				$report1_tgt = "report_file.php?album=$album$cat_link&amp;pid=$pid&amp;pos=$pos";
+    } else { // remove buttons if report toggle is off
+        template_extract_block($template_image_comments, 'report_comment_button'); 
+    }
 
     if (!$CONFIG['enable_smilies']) {
         $tmpl_comment_edit_box = template_extract_block($template_image_comments, 'edit_box_no_smilies', '{EDIT}');
@@ -428,6 +435,7 @@ function html_comments($pid)
             '{SMILIES}' => $smilies,
             '{HDR_IP}' => $row['msg_hdr_ip'],
             '{RAW_IP}' => $row['msg_raw_ip'],
+			'{REPORT1_TGT}' => $report1_tgt,
             );
 
         $html .= template_eval($template, $params);
