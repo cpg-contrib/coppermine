@@ -747,9 +747,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 }
 		
 		
-		$ALBUM_SET = str_replace( "aid", $CONFIG['TABLE_PICTURES'].".aid" , $ALBUM_SET );
-		
-		echo "ALBUM SET ". $ALBUM_SET;
+		$ALBUM_SET = str_replace( "aid", $CONFIG['TABLE_PICTURES'].".aid" , $ALBUM_SET );		
 		 
                 $result = db_query("SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $ALBUM_SET");
                 $nbEnr = mysql_fetch_array($result);
