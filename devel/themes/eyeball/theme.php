@@ -1115,7 +1115,8 @@ function theme_admin_mode_menu()
     } elseif (USER_ADMIN_MODE) {
         $param = array('{ALBMGR_LNK}' => $lang_user_admin_menu['albmgr_lnk'],
             '{MODIFYALB_LNK}' => $lang_user_admin_menu['modifyalb_lnk'],
-            '{MY_PROF_LNK}' => $lang_user_admin_menu['my_prof_lnk']
+            '{MY_PROF_LNK}' => $lang_user_admin_menu['my_prof_lnk'],
+            '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
             );
 
         $html = template_eval($template_user_admin_menu, $param);
