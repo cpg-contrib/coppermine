@@ -1010,7 +1010,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'err_no_alb_to_modify' => 'No album you can modify in the database.',
   'update' => 'Update album',
   'notice1' => '(*) depending on %sgroups%s settings', //(do not translate %s!)
-  'alb_password' => 'Album password(if you want the album to be password protected)',
+  'alb_password' => 'Album password (if you want the album to be password protected)', //cpg1.4.0
 );
 
 // ------------------------------------------------------------------------- //
