@@ -268,7 +268,7 @@ function udb_get_user_id($username)
 // Redirect
 function udb_redirect($target)
 {
-    header('Location: http://' . $_SERVER['HTTP_HOST'] . YS_WEB_PATH . $target);
+    header('Location: ' . YS_WEB_PATH . $target);
     exit;
 }
 
