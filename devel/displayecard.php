@@ -1,20 +1,21 @@
 <?php
-// ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.4.1                                            //
-// ------------------------------------------------------------------------- //
-// Copyright (C) 2002-2004 Gregory DEMAR                                     //
-// http://www.chezgreg.net/coppermine/                                       //
-// ------------------------------------------------------------------------- //
-// Updated by the Coppermine Dev Team                                        //
-// see /docs/credits.html for details                                        //
-// ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- //
-// $Id$
-// ------------------------------------------------------------------------- //
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2005 Coppermine Dev Team
+  v1.1 originaly written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  ********************************************
+  Coppermine version: 1.4.1
+  $Source$
+  $Revision$
+  $Author$
+  $Date$
+**********************************************/
 
 define('IN_COPPERMINE', true);
 define('DISPLAYECARD_PHP', true);
@@ -29,11 +30,11 @@ $data = @unserialize(@base64_decode($_GET['data']));
 
 // attempt to obtain full link from db if ecard logging enabled and min 12 chars of data is provided and only 1 match
 if ((!is_array($data)) && $CONFIG['log_ecards'] && (strlen($_GET['data']) > 12)) {
-	$result = cpg_db_query("SELECT link FROM {$CONFIG['TABLE_ECARDS']} WHERE link LIKE '{$_GET['data']}%'");
-	if (mysql_num_rows($result) === 1) {
-		$row = mysql_fetch_assoc($result);
-		$data = @unserialize(@base64_decode($row['link']));
-	}
+        $result = cpg_db_query("SELECT link FROM {$CONFIG['TABLE_ECARDS']} WHERE link LIKE '{$_GET['data']}%'");
+        if (mysql_num_rows($result) === 1) {
+                $row = mysql_fetch_assoc($result);
+                $data = @unserialize(@base64_decode($row['link']));
+        }
 }
 
 if (is_array($data)) {
@@ -59,6 +60,6 @@ $params = array('{LANG_DIR}' => $lang_text_dir,
 echo template_eval($template_ecard, $params);
 
 } else {
-	cpg_die(CRITICAL_ERROR, $lang_displayecard_php['invalid_data'], __FILE__, __LINE__);
+        cpg_die(CRITICAL_ERROR, $lang_displayecard_php['invalid_data'], __FILE__, __LINE__);
 }
 ?>

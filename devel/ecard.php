@@ -1,21 +1,21 @@
 <?php
-// ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.4.1                                            //
-// ------------------------------------------------------------------------- //
-// Copyright (C) 2002-2004 Gregory DEMAR                                     //
-// http://www.chezgreg.net/coppermine/                                       //
-// ------------------------------------------------------------------------- //
-// Updated by the Coppermine Dev Team                                        //
-// (http://coppermine.sf.net/team/)                                          //
-// see /docs/credits.html for details                                        //
-// ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- //
-// $Id$
-// ------------------------------------------------------------------------- //
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2005 Coppermine Dev Team
+  v1.1 originaly written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  ********************************************
+  Coppermine version: 1.4.1
+  $Source$
+  $Revision$
+  $Author$
+  $Date$
+**********************************************/
 
 define('IN_COPPERMINE', true);
 define('ECARDS_PHP', true);
@@ -113,14 +113,14 @@ if (count($_POST) > 0 && $valid_sender_email && $valid_recipient_email) {
         '{VIEW_MORE_LNK}' => $lang_ecard_php['view_more_pics'],
         );
 
-				$message = template_eval($template_ecard, $params);
-				$plaintext_message = template_eval($template_ecard_plaintext, $params);
+                                $message = template_eval($template_ecard, $params);
+                                $plaintext_message = template_eval($template_ecard_plaintext, $params);
 
         $tempTime = time();
         $message .= sprintf($lang_ecard_php['ecards_footer'], $sender_name, $_SERVER['REMOTE_ADDR'], localised_date(-1,$comment_date_fmt));
-				$subject = sprintf($lang_ecard_php['ecard_title'], $sender_name);
+                                $subject = sprintf($lang_ecard_php['ecard_title'], $sender_name);
 
-				$result = cpg_mail($recipient_email, $subject, $message, 'text/html', $sender_name, $sender_email, $plaintext_message);
+                                $result = cpg_mail($recipient_email, $subject, $message, 'text/html', $sender_name, $sender_email, $plaintext_message);
 
         //write ecard log
         if ($CONFIG['log_ecards'] == 1) {
@@ -135,19 +135,19 @@ if (count($_POST) > 0 && $valid_sender_email && $valid_recipient_email) {
     if ($result) {
         //pageheader($lang_ecard_php['title']);
         msg_box($lang_cpg_die[INFORMATION], $lang_ecard_php['send_success'], $lang_continue, "displayimage.php?album=$album&pos=$pos");
-				echo '<br />';
-				starttable('100%', $lang_ecard_php['preview']);
-				echo '<tr><td>';
-				echo template_eval($template_ecard, $params);
-				echo '</td></tr>';
-				endtable();
+                                echo '<br />';
+                                starttable('100%', $lang_ecard_php['preview']);
+                                echo '<tr><td>';
+                                echo template_eval($template_ecard, $params);
+                                echo '</td></tr>';
+                                endtable();
         pagefooter();
         ob_end_flush();
         exit;
     } else {
         cpg_die(ERROR, $lang_ecard_php['send_failed'], __FILE__, __LINE__);
     }
-	}
+        }
 }//submit
 
 elseif (isset($_POST['preview'])) {
@@ -182,12 +182,12 @@ elseif (isset($_POST['preview'])) {
         '{VIEW_MORE_LNK}' => $lang_ecard_php['view_more_pics'],
         );
 
-				starttable('100%', $lang_ecard_php['preview']);
-				echo '<tr><td>';
-				echo template_eval($template_ecard, $params);
-				echo '</td></tr>';
-				endtable();
-				echo '<br />';
+                                starttable('100%', $lang_ecard_php['preview']);
+                                echo '<tr><td>';
+                                echo template_eval($template_ecard, $params);
+                                echo '</td></tr>';
+                                endtable();
+                                echo '<br />';
 }//preview
 
 //pageheader($lang_ecard_php['title']);
@@ -268,7 +268,7 @@ echo <<<EOT
         <tr>
                 <td colspan="3" align="center" class="tablef">
                         <input type="submit" class="button" name="preview" title="preview" value="{$lang_ecard_php['preview_button']}">
-												&nbsp;&nbsp;
+                                                                                                &nbsp;&nbsp;
                         <input type="submit" class="button" name="submit" title="submit" value="{$lang_ecard_php['submit_button']}">
                         </form>
                 </td>

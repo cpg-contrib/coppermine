@@ -1,20 +1,21 @@
 <?php
-// ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.4.1                                            //
-// ------------------------------------------------------------------------- //
-// Copyright (C) 2002-2004 Gregory DEMAR                                     //
-// http://www.chezgreg.net/coppermine/                                       //
-// ------------------------------------------------------------------------- //
-// Updated by the Coppermine Dev Team                                        //
-// see /docs/credits.html for details                                        //
-// ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- //
-// $Id$
-// ------------------------------------------------------------------------- //
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2005 Coppermine Dev Team
+  v1.1 originaly written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  ********************************************
+  Coppermine version: 1.4.1
+  $Source$
+  $Revision$
+  $Author$
+  $Date$
+**********************************************/
 
 define('IN_COPPERMINE', true);
 define('EDITPICS_PHP', true);
@@ -61,7 +62,7 @@ function process_post_data()
                 $pic = mysql_fetch_array($result);
                 mysql_free_result($result);
 
-				if (!(GALLERY_ADMIN_MODE || $pic['category'] == FIRST_USER_CAT + USER_ID || ($CONFIG['users_can_edit_pics'] && $pic['owner_id'] == USER_ID))) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+                                if (!(GALLERY_ADMIN_MODE || $pic['category'] == FIRST_USER_CAT + USER_ID || ($CONFIG['users_can_edit_pics'] && $pic['owner_id'] == USER_ID))) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
                 $update  = "aid = '".$aid."'";
                 if (is_movie($pic['filename'])) {
@@ -87,59 +88,59 @@ function process_post_data()
                         $query = "UPDATE {$CONFIG['TABLE_PICTURES']} SET $update WHERE pid='$pid' LIMIT 1";
                         $result = cpg_db_query($query);
                 }
-				
-				// rename a file
-				if ($_POST['filename'] != $pic['filename'])
-				{
-					$forbidden_chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>'));
-					if($CONFIG['thumb_use']=='ht' && $pic['pheight'] > $CONFIG['picture_width'])
-					{
-						$condition = true;
-					} elseif ($CONFIG['thumb_use']=='wd' && $pic['pwidth'] > $CONFIG['picture_width']){
-						$condition = true;
-					} elseif ($CONFIG['thumb_use']=='any' && max($pic['pwidth'], $pic['pheight']) > $CONFIG['picture_width']){
-						$condition = true;
-					} else {
-						 $condition = false;
-					}
-	
-					if ($CONFIG['make_intermediate'] && $condition ) {
-						$prefices = array('fullsize', 'normal', 'thumb');
-					} else {
-						$prefices = array('fullsize', 'thumb');
-					}
-	
-					if (!is_image($pic['filename'])){
-						$prefices = array('fullsize');
-					}
-					
-					foreach ($prefices as $prefix)
-					{
-						$oldname = get_pic_url($pic, $prefix);
-						$filename = strtr($_POST['filename'], $forbidden_chars, str_repeat('_', strlen($CONFIG['forbiden_fname_char'])));
-						$newname = str_replace($pic['filename'], $filename, $oldname);
-						
-						$old_mime = cpg_get_type($oldname);
-						$new_mime = cpg_get_type($newname);
-						
-						if (($old_mime['mime'] != $new_mime['mime']) && isset($new_mime['mime']))
-							cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['mime_conv'], $old_mime['mime'], $new_mime['mime']), __FILE__, __LINE__);
-						
-						if (!is_known_filetype($newname))
-							cpg_die(CRITICAL_ERROR, $lang_editpics_php['forb_ext'], __FILE__, __LINE__);
-							
-						if (file_exists($newname))
-							cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['file_exists'], $newname), __FILE__, __LINE__);
-							
-						if (!file_exists($oldname))
-							cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['src_file_missing'], $oldname), __FILE__, __LINE__);
 
-						if (rename($oldname, $newname))
-						{
-							cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET filename = '$filename' WHERE pid = '$pid' LIMIT 1");
-						} else cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['rename_failed'], $oldname, $newname), __FILE__, __LINE__);
-					}
-				}
+                                // rename a file
+                                if ($_POST['filename'] != $pic['filename'])
+                                {
+                                        $forbidden_chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>'));
+                                        if($CONFIG['thumb_use']=='ht' && $pic['pheight'] > $CONFIG['picture_width'])
+                                        {
+                                                $condition = true;
+                                        } elseif ($CONFIG['thumb_use']=='wd' && $pic['pwidth'] > $CONFIG['picture_width']){
+                                                $condition = true;
+                                        } elseif ($CONFIG['thumb_use']=='any' && max($pic['pwidth'], $pic['pheight']) > $CONFIG['picture_width']){
+                                                $condition = true;
+                                        } else {
+                                                 $condition = false;
+                                        }
+
+                                        if ($CONFIG['make_intermediate'] && $condition ) {
+                                                $prefices = array('fullsize', 'normal', 'thumb');
+                                        } else {
+                                                $prefices = array('fullsize', 'thumb');
+                                        }
+
+                                        if (!is_image($pic['filename'])){
+                                                $prefices = array('fullsize');
+                                        }
+
+                                        foreach ($prefices as $prefix)
+                                        {
+                                                $oldname = get_pic_url($pic, $prefix);
+                                                $filename = strtr($_POST['filename'], $forbidden_chars, str_repeat('_', strlen($CONFIG['forbiden_fname_char'])));
+                                                $newname = str_replace($pic['filename'], $filename, $oldname);
+
+                                                $old_mime = cpg_get_type($oldname);
+                                                $new_mime = cpg_get_type($newname);
+
+                                                if (($old_mime['mime'] != $new_mime['mime']) && isset($new_mime['mime']))
+                                                        cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['mime_conv'], $old_mime['mime'], $new_mime['mime']), __FILE__, __LINE__);
+
+                                                if (!is_known_filetype($newname))
+                                                        cpg_die(CRITICAL_ERROR, $lang_editpics_php['forb_ext'], __FILE__, __LINE__);
+
+                                                if (file_exists($newname))
+                                                        cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['file_exists'], $newname), __FILE__, __LINE__);
+
+                                                if (!file_exists($oldname))
+                                                        cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['src_file_missing'], $oldname), __FILE__, __LINE__);
+
+                                                if (rename($oldname, $newname))
+                                                {
+                                                        cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET filename = '$filename' WHERE pid = '$pid' LIMIT 1");
+                                                } else cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['rename_failed'], $oldname, $newname), __FILE__, __LINE__);
+                                        }
+                                }
 }
 
 function get_user_albums($user_id)
@@ -291,7 +292,7 @@ print <<<EOT
                                 <input type="text" style="width: 100%" name="filename" maxlength="255" value="{$CURRENT_PIC['filename']}" class="textinput" />
                         </td>
         </tr>
-		
+
         <tr>
                         <td class="tableb" valign="top" style="white-space: nowrap;">
                                 {$lang_editpics_php['desc']}$captionLabel

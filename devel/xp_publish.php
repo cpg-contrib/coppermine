@@ -1,19 +1,22 @@
 <?php
-// ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.4.1                                            //
-// ------------------------------------------------------------------------- //
-// Copyright (C) 2002-2004 Gregory DEMAR                                     //
-// http://www.chezgreg.net/coppermine/                                       //
-// ------------------------------------------------------------------------- //
-// Updated by the Coppermine Dev Team                                        //
-// see /docs/credits.html for details                                        //
-// ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- //
-// $Id$
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2005 Coppermine Dev Team
+  v1.1 originaly written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  ********************************************
+  Coppermine version: 1.4.1
+  $Source$
+  $Revision$
+  $Author$
+  $Date$
+**********************************************/
+
 // ------------------------------------------------------------------------- //
 // Coppermine Windows XP Web Publishing Wizard Client                        //
 // Based on the article posted by Sebastian Delmont                          //
@@ -243,7 +246,7 @@ function html_cat_list()
 function display_instructions()
 {
     //global $PHP_SELF;
-	global $lang_xp_publish_required, $lang_xp_publish_client, $lang_xp_publish_select, $lang_xp_publish_testing, $lang_xp_publish_notes, $lang_xp_publish_flood, $lang_xp_publish_php;
+        global $lang_xp_publish_required, $lang_xp_publish_client, $lang_xp_publish_select, $lang_xp_publish_testing, $lang_xp_publish_notes, $lang_xp_publish_flood, $lang_xp_publish_php;
 
     ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -324,7 +327,7 @@ li {
 <?php echo $lang_xp_publish_required ?> <a href="<?php echo $_SERVER['PHP_SELF'] ?>?cmd=send_reg"><?php echo $lang_xp_publish_php['link'] ?></a>. <?php echo $lang_xp_publish_select,
 $lang_xp_publish_testing,
 $lang_xp_publish_notes; ?>
-  <a href="<?php echo dirname($_SERVER['PHP_SELF']) . '/' . LOGFILE ?>"><?php echo LOGFILE ?></a> 
+  <a href="<?php echo dirname($_SERVER['PHP_SELF']) . '/' . LOGFILE ?>"><?php echo LOGFILE ?></a>
 <?php echo $lang_xp_publish_flood ?>
 </body>
 </html>
@@ -429,7 +432,7 @@ input {
 function output_footer()
 {
     global $WIZARD_BUTTONS, $ONBACK_SCRIPT, $ONNEXT_SCRIPT;
-    global $CONFIG; //$PHP_SELF, 
+    global $CONFIG; //$PHP_SELF,
 
     ?>
 
@@ -562,7 +565,7 @@ function form_login()
 // Process login information
 function process_login()
 {
-    global $CONFIG, $USER; //$PHP_SELF, 
+    global $CONFIG, $USER; //$PHP_SELF,
     global $ONNEXT_SCRIPT, $ONBACK_SCRIPT, $WIZARD_BUTTONS;
     global $template_login_success, $template_login_failure;
     global $lang_login_php;

@@ -1,20 +1,21 @@
 <?php
-// ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.4.1                                            //
-// ------------------------------------------------------------------------- //
-// Copyright (C) 2002-2004 Gregory DEMAR                                     //
-// http://www.chezgreg.net/coppermine/                                       //
-// ------------------------------------------------------------------------- //
-// Updated by the Coppermine Dev Team                                        //
-// see /docs/credits.html for details                                        //
-// ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- //
-// $Id$
-// ------------------------------------------------------------------------- //
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2005 Coppermine Dev Team
+  v1.1 originaly written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  ********************************************
+  Coppermine version: 1.4.1
+  $Source$
+  $Revision$
+  $Author$
+  $Date$
+**********************************************/
 
 define('IN_COPPERMINE', true);
 define('DB_INPUT_PHP', true);
@@ -24,10 +25,10 @@ require('include/picmgmt.inc.php');
 require('include/mailer.inc.php');
 
 /*known issue: code was edited to not count URL in comment character count. However
-this resulted in the character count not being respected at all. 
+this resulted in the character count not being respected at all.
 
 With the new code, the long urls don't affect the display of the hyperlinked word.
-However, I can't figure out how to make the code respect the max comment word length and max comment length. 
+However, I can't figure out how to make the code respect the max comment word length and max comment length.
 Formatted and unformatted words that are longer than the allowed setting do not get truncated. -Thu */
 function check_comment(&$str)
 {
@@ -37,8 +38,8 @@ function check_comment(&$str)
     if ($CONFIG['filter_bad_words']) foreach($lang_bad_words as $word) {
         $ercp[] = '/' . ($word[0] == '*' ? '': '\b') . str_replace('*', '', $word) . ($word[(strlen($word)-1)] == '*' ? '': '\b') . '/i';
     }
-		
-		$stripped_str = strip_tags($str);
+
+                $stripped_str = strip_tags($str);
     if (strlen($stripped_str) > $CONFIG['max_com_size']) $stripped_str = substr($stripped_str, 0, ($CONFIG['max_com_size'] -3)) . '...';
     $stripped_str = preg_replace($ercp, '(...)', $stripped_str);
 }
@@ -103,7 +104,7 @@ switch ($event) {
         if (!(USER_CAN_POST_COMMENTS)) cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
         check_comment($_POST['msg_body']);
-		check_comment($_POST['msg_author']);
+                check_comment($_POST['msg_author']);
         $msg_author = addslashes(trim($_POST['msg_author']));
         $msg_body = addslashes(trim($_POST['msg_body']));
         $pid = (int)$_POST['pid'];
@@ -188,7 +189,7 @@ switch ($event) {
         $update = cpg_db_query($query);
 
         if (!mysql_affected_rows()) cpg_die(INFORMATION, $lang_db_input_php['no_udp_needed'], __FILE__, __LINE__);
-		pageheader($lang_db_input_php['alb_updated'], "<META http-equiv=\"refresh\" content=\"1;url=modifyalb.php?album=$aid\">");
+                pageheader($lang_db_input_php['alb_updated'], "<META http-equiv=\"refresh\" content=\"1;url=modifyalb.php?album=$aid\">");
         msg_box($lang_db_input_php['info'], $lang_db_input_php['alb_updated'], $lang_continue, "modifyalb.php?album=$aid");
         pagefooter();
         ob_end_flush();

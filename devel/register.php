@@ -1,20 +1,21 @@
 <?php
-// ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.4.1                                            //
-// ------------------------------------------------------------------------- //
-// Copyright (C) 2002-2004 Gregory DEMAR                                     //
-// http://www.chezgreg.net/coppermine/                                       //
-// ------------------------------------------------------------------------- //
-// Updated by the Coppermine Dev Team                                        //
-// see /docs/credits.html for details                                        //
-// ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- //
-// $Id$
-// ------------------------------------------------------------------------- //
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2005 Coppermine Dev Team
+  v1.1 originaly written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  ********************************************
+  Coppermine version: 1.4.1
+  $Source$
+  $Revision$
+  $Author$
+  $Date$
+**********************************************/
 
 define('IN_COPPERMINE', true);
 define('REGISTER_PHP', true);
@@ -188,9 +189,9 @@ function check_user_info(&$error)
 {
     global $CONFIG; //, $PHP_SELF;
     global $lang_register_php, $lang_register_confirm_email, $lang_continue, $lang_register_approve_email, $lang_register_activated_email, $lang_register_user_login;
-		//$CONFIG['admin_activation'] = FALSE;
-		$CONFIG['admin_activation'] = TRUE;
-		
+                //$CONFIG['admin_activation'] = FALSE;
+                $CONFIG['admin_activation'] = TRUE;
+
     $user_name = trim(get_post_var('username'));
     $password = trim(get_post_var('password'));
     $password_again = trim(get_post_var('password_verification'));
@@ -253,40 +254,40 @@ function check_user_info(&$error)
 
     if ($CONFIG['reg_requires_valid_email']) {
         if (!$CONFIG['admin_activation']) { //user gets activation email
-					$act_link = rtrim($CONFIG['site_url'], '/') . '/register.php?activate=' . $act_key;
-					$template_vars = array(
-							'{SITE_NAME}' => $CONFIG['gallery_name'],
-							'{USER_NAME}' => $user_name,
-							'{PASSWORD}' => $password,
-							'{ACT_LINK}' => $act_link
+                                        $act_link = rtrim($CONFIG['site_url'], '/') . '/register.php?activate=' . $act_key;
+                                        $template_vars = array(
+                                                        '{SITE_NAME}' => $CONFIG['gallery_name'],
+                                                        '{USER_NAME}' => $user_name,
+                                                        '{PASSWORD}' => $password,
+                                                        '{ACT_LINK}' => $act_link
             );
-					if (!cpg_mail($email, sprintf($lang_register_php['confirm_email_subject'], $CONFIG['gallery_name']), nl2br(strtr($lang_register_confirm_email, $template_vars)))) {
-							cpg_die(CRITICAL_ERROR, $lang_register_php['failed_sending_email'], __FILE__, __LINE__);
-					}
-				}
+                                        if (!cpg_mail($email, sprintf($lang_register_php['confirm_email_subject'], $CONFIG['gallery_name']), nl2br(strtr($lang_register_confirm_email, $template_vars)))) {
+                                                        cpg_die(CRITICAL_ERROR, $lang_register_php['failed_sending_email'], __FILE__, __LINE__);
+                                        }
+                                }
         if ($CONFIG['admin_activation']) {
-					msg_box($lang_register_php['information'], $lang_register_php['thank_you_admin_activation'], $lang_continue, 'index.php');
-				} else {
-					msg_box($lang_register_php['information'], $lang_register_php['thank_you'], $lang_continue, 'index.php');
-				}
+                                        msg_box($lang_register_php['information'], $lang_register_php['thank_you_admin_activation'], $lang_continue, 'index.php');
+                                } else {
+                                        msg_box($lang_register_php['information'], $lang_register_php['thank_you'], $lang_continue, 'index.php');
+                                }
     } else {
-					msg_box($lang_register_php['information'], $lang_register_php['acct_active'], $lang_continue, 'index.php');
+                                        msg_box($lang_register_php['information'], $lang_register_php['acct_active'], $lang_continue, 'index.php');
     }
 
     // email notification to admin
         if ($CONFIG['reg_notify_admin_email']) {
-					if ($CONFIG['admin_activation']) {
-							$act_link = rtrim($CONFIG['site_url'], '/') . '/register.php?activate=' . $act_key;
-							$template_vars = array(
-									'{SITE_NAME}' => $CONFIG['gallery_name'],
-									'{USER_NAME}' => $user_name,
-									'{ACT_LINK}' => $act_link,
-							);
-							cpg_mail('admin', sprintf($lang_register_php['notify_admin_request_email_subject'], $CONFIG['gallery_name']), nl2br(strtr($lang_register_approve_email, $template_vars)));
-					} else {
-							cpg_mail('admin', sprintf($lang_register_php['notify_admin_email_subject'], $CONFIG['gallery_name']), sprintf($lang_register_php['notify_admin_email_body'], $user_name));
-        	}
-				}
+                                        if ($CONFIG['admin_activation']) {
+                                                        $act_link = rtrim($CONFIG['site_url'], '/') . '/register.php?activate=' . $act_key;
+                                                        $template_vars = array(
+                                                                        '{SITE_NAME}' => $CONFIG['gallery_name'],
+                                                                        '{USER_NAME}' => $user_name,
+                                                                        '{ACT_LINK}' => $act_link,
+                                                        );
+                                                        cpg_mail('admin', sprintf($lang_register_php['notify_admin_request_email_subject'], $CONFIG['gallery_name']), nl2br(strtr($lang_register_approve_email, $template_vars)));
+                                        } else {
+                                                        cpg_mail('admin', sprintf($lang_register_php['notify_admin_email_subject'], $CONFIG['gallery_name']), sprintf($lang_register_php['notify_admin_email_body'], $user_name));
+                }
+                                }
 
     return true;
 }
@@ -300,8 +301,8 @@ if (isset($_POST['agree'])) {
         input_user_info($errors);
     }
 } elseif (isset($_GET['activate'])) {
-		//$CONFIG['admin_activation'] = FALSE;
-		$CONFIG['admin_activation'] = TRUE;
+                //$CONFIG['admin_activation'] = FALSE;
+                $CONFIG['admin_activation'] = TRUE;
 
     $act_key = addslashes(substr($_GET['activate'], 0 , 32));
     if (strlen($act_key) != 32) cpg_die(ERROR, $lang_register_php['acct_act_failed'], __FILE__, __LINE__);
@@ -314,28 +315,28 @@ if (isset($_POST['agree'])) {
     mysql_free_result($result);
 
     if ($row['user_active'] == 'YES') cpg_die(ERROR, $lang_register_php['acct_already_act'], __FILE__, __LINE__);
-		
-		$email = $row['user_email'];
-		$user_name = $row['user_name'];
-		$password = $row['user_password'];
-		
+
+                $email = $row['user_email'];
+                $user_name = $row['user_name'];
+                $password = $row['user_password'];
+
     $sql = "UPDATE {$CONFIG['TABLE_USERS']} " . "SET user_active = 'YES' " . "WHERE user_actkey = '$act_key' " . "LIMIT 1";
     $result = cpg_db_query($sql);
 
-		if ($CONFIG['admin_activation']) { //after admin approves, user receives email notification
-			msg_box($lang_register_php['information'], $lang_register_php['acct_active_admin_activation'], $lang_continue, 'index.php');
-			$site_link = $CONFIG['site_url'];
-			$template_vars = array(
-			 '{SITE_LINK}' => $site_link,
-			 '{USER_NAME}' => $user_name,
-			 '{PASSWORD}' => $password,
-			 '{SITE_NAME}' => $CONFIG['gallery_name'],
-				);
-			cpg_mail($email, sprintf($lang_register_php['notify_user_email_subject'], $CONFIG['gallery_name']), nl2br(strtr($lang_register_activated_email, $template_vars)));
-		} else { //user self-activated, gets message box that account was activated
-			msg_box($lang_register_php['information'], $lang_register_php['acct_active'], $lang_continue, 'index.php');
-		}
-				
+                if ($CONFIG['admin_activation']) { //after admin approves, user receives email notification
+                        msg_box($lang_register_php['information'], $lang_register_php['acct_active_admin_activation'], $lang_continue, 'index.php');
+                        $site_link = $CONFIG['site_url'];
+                        $template_vars = array(
+                         '{SITE_LINK}' => $site_link,
+                         '{USER_NAME}' => $user_name,
+                         '{PASSWORD}' => $password,
+                         '{SITE_NAME}' => $CONFIG['gallery_name'],
+                                );
+                        cpg_mail($email, sprintf($lang_register_php['notify_user_email_subject'], $CONFIG['gallery_name']), nl2br(strtr($lang_register_activated_email, $template_vars)));
+                } else { //user self-activated, gets message box that account was activated
+                        msg_box($lang_register_php['information'], $lang_register_php['acct_active'], $lang_continue, 'index.php');
+                }
+
 } else {
     display_disclaimer();
 }

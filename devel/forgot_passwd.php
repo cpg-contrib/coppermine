@@ -1,20 +1,21 @@
 <?php
-// ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.4.1                                            //
-// ------------------------------------------------------------------------- //
-// Copyright (C) 2002-2004 Gregory DEMAR                                     //
-// http://www.chezgreg.net/coppermine/                                       //
-// ------------------------------------------------------------------------- //
-// Updated by the Coppermine Dev Team                                        //
-// see /docs/credits.html for details                                        //
-// ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- //
-// $Id$
-// ------------------------------------------------------------------------- //
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2005 Coppermine Dev Team
+  v1.1 originaly written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  ********************************************
+  Coppermine version: 1.4.1
+  $Source$
+  $Revision$
+  $Author$
+  $Date$
+**********************************************/
 
 define('IN_COPPERMINE', true);
 define('FORGOT_PASSWD_PHP', true);
@@ -78,7 +79,7 @@ echo <<< EOT
                  <tr>
                         <td class="tableb" width="40%">{$lang_forgot_passwd_php['enter_username_email']}</td>
                         <td class="tableb" width="60%"><input type="text" class="textinput" name="username" style="width: 100%" /></td>
-                        
+
                   </tr>
                   <tr>
                         <td colspan="2" align="center" class="tablef"><script language="javascript" type="text/javascript">
@@ -86,7 +87,7 @@ echo <<< EOT
                         document.passwordreminder.username.focus();
                         -->
                         </script>
-						<input name="submitted" type="submit" class="button" value="{$lang_forgot_passwd_php['submit']}" /></td>
+                                                <input name="submitted" type="submit" class="button" value="{$lang_forgot_passwd_php['submit']}" /></td>
                   </tr>
 
 EOT;
