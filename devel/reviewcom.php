@@ -112,7 +112,7 @@ EOT;
 echo <<<EOT
         <tr>
                 <td class="tableh2">
-                        <input type="checkbox" name="checkAll" onClick="selectAll(this,'cid_array');" class="checkbox" title="{$lang_reviewcom_php['check_all']}" />
+                        <input type="checkbox" name="checkAll" onClick="selectAll(this,'cid_array');" class="checkbox" title="$lang_check_uncheck_all" />
                 </td>
                 <td class="tableh2" colspan="3">
                         $prev_link
@@ -173,7 +173,7 @@ mysql_free_result($result);
 echo <<<EOT
         <tr>
             <td class="tablef">
-                <input type="checkbox" name="checkAll2" onClick="selectAll(this,'cid_array');" class="checkbox" title="{$lang_reviewcom_php['check_all']}" />
+                <input type="checkbox" name="checkAll2" onClick="selectAll(this,'cid_array');" class="checkbox" title="$lang_check_uncheck_all" />
             </td>
             <td colspan="3" align="center" class="tablef">
                         <input type="submit" value="{$lang_reviewcom_php['del_comm']}" class="button" />

@@ -201,7 +201,7 @@ EOT;
      echo <<< EOT
 
         <tr>
-                <td class="tableh1" align="center"><input type="checkbox" name="checkAll" onClick="selectAll(this,'u');" class="checkbox" title="{$lang_usermgr_php['check_all']}" /></td>
+                <td class="tableh1" align="center"><input type="checkbox" name="checkAll" onClick="selectAll(this,'u');" class="checkbox" title="$lang_check_uncheck_all" /></td>
                 <td class="tableh1" colspan="2"><b><span class="statlink">{$lang_usermgr_php['name']}</span></b>
                 <a href="{$_SERVER['PHP_SELF']}?page=$page&sort=name_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_a']}" /></a>
                 <a href="{$_SERVER['PHP_SELF']}?page=$page&sort=name_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_d']}" /></a>
@@ -316,7 +316,7 @@ EOT;
         }
         echo <<<EOT
         <tr>
-                <td class="tablef" align="center"><input type="checkbox" name="checkAll2" onClick="selectAll(this,'u');" class="checkbox" title="{$lang_usermgr_php['check_all']}" /></td>
+                <td class="tablef" align="center"><input type="checkbox" name="checkAll2" onClick="selectAll(this,'u');" class="checkbox" title="$lang_check_uncheck_all" /></td>
                 <td colspan="$number_of_columns_minus_one"  class="tablef">
                 <table cellpadding="0" cellspacing="0" width="100%" border="0">
                 <tr>
