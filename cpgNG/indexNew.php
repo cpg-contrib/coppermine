@@ -56,11 +56,8 @@ $cpg_show_private_album = $CONFIG['allow_private_albums'] ? $CONFIG['show_privat
 
 $albumData = new cpgAlbumData();
 $indexData = new cpgIndexData($cat, $PAGE);
+
 $t = new cpgTemplate();
-/**
- * Get breadcrumb
- */
-//$albumData->getBreadCrumbData()
 
 $elements = preg_split("|/|", $CONFIG['main_page_layout'], -1, PREG_SPLIT_NO_EMPTY);
 
@@ -105,6 +102,7 @@ foreach ($elements as $element) {
     }
   }
 }
+
 /**#@+
  * Assign all the data to smarty
  */
@@ -148,5 +146,5 @@ if (!USER_ID) {
  */
 $t->assign("CONTENT", $t->getIndexHTML($indexData));
 
-$t->display ($CONFIG["theme"]."/main.html");
+$t->display ("main.html");
 ?>

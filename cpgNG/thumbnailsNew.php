@@ -103,5 +103,5 @@ $t->assign("USER_NAME", USER_NAME);
 $t->assign("my_cat_id", FIRST_USER_CAT + USER_ID);
 /**#@-*/
 
-$t->display ("2bornot2b/main.html");
+$t->display ("main.html");
 ?>

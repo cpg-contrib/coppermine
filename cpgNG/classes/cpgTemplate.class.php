@@ -19,7 +19,7 @@ class cpgTemplate extends Smarty{
     $this->assign("thumbList", $thumbList);
     $this->assign("lang_errors", $lang_errors);
 
-    return $this->fetch($CONFIG["theme"]."/common/thumbnail.html");
+    return $this->fetchHTML("common/thumbnail.html");
   }
 
   function getBreadcrumbHTML($breadcrumb)
@@ -28,7 +28,7 @@ class cpgTemplate extends Smarty{
     $this->assign("breadcrumb", $breadcrumb);
     $this->assign("lang_list_categories", $lang_list_categories);
 
-    return $this->fetch($CONFIG["theme"]."/common/breadcrumb.html");
+    return $this->fetchHTML("common/breadcrumb.html");
   }
 
   function getDisplayImageHTML($picData, $picCount, $pos, $page, $displayPicInfo, $votes, $comments, $commentBox, $picInfo, $filmStrip, $slideshowTgt)
@@ -52,7 +52,7 @@ class cpgTemplate extends Smarty{
     $this->assign("lang_display_image_php", $lang_display_image_php);
     $this->assign("lang_picinfo", $lang_picinfo);
 
-    return $this->fetch($CONFIG["theme"]."/common/displayimage.html");
+    return $this->fetchHTML("common/displayimage.html");
   }
 
   function getIndexHTML($indexData)
@@ -60,7 +60,7 @@ class cpgTemplate extends Smarty{
     global $CONFIG;
     $this->assign("indexData", $indexData);
 
-    return $this->fetch($CONFIG["theme"]."/common/index.html");
+    return $this->fetchHTML("common/index.html");
   }
 
   function display($fileName)
@@ -79,7 +79,17 @@ class cpgTemplate extends Smarty{
     } else {
       $this->assign("showDebug", 0);
     }
-    parent::display($fileName);
+    parent::display($CONFIG["theme"]."/".$fileName);
+  }
+
+  function fetchHTML($fileName)
+  {
+    global $CONFIG;
+    if (file_exists($CONFIG["theme"]."/".$fileName)) {
+      return $this->fetch($CONFIG["theme"]."/".$fileName);
+    } else {
+      return $this->fetch($fileName);
+    }
   }
 }
 ?>

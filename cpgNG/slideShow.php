@@ -65,7 +65,7 @@ $t->assign("album", $album);
 $t->assign("startImage", $start_img);
 $t->assign("cellHeight", $CONFIG['picture_width'] + 100);
 $t->assign("lang_display_image_php", $lang_display_image_php);
-$t->assign("CONTENT", $t->fetch("2bornot2b/commom/slideShow.html"));
+$t->assign("CONTENT", $t->fetchHTML("commom/slideShow.html"));
 
 $t->assign("PAGE_TITLE", $CONFIG["gallery_name"] . " - " . $lang_display_image_php["slideshow"]);
 $t->assign("GALLERY_DESCRIPTION", $CONFIG["gallery_description"]);
@@ -96,5 +96,5 @@ $t->assign("REFERER", $REFERER);
 $t->assign("cat", $cat);
 $t->assign("USER_NAME", USER_NAME);
 $t->assign("my_cat_id", FIRST_USER_CAT + USER_ID);
-$t->display("2bornot2b/main.html");
+$t->display("main.html");
 ?>

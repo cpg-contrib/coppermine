@@ -4,8 +4,8 @@
  *
  * Script to display images.
  *
- * This script displays individual image. It also displays the pic info, filmstrip, comments, 
- * and other related data. 
+ * This script displays individual image. It also displays the pic info, filmstrip, comments,
+ * and other related data.
  *
  * @package cpgNG
  * @author Abbas <abbas@sanisoft.com>
@@ -34,7 +34,7 @@ require('classes/cpgDisplayImageData.class.php');
 /**#@-*/
 
 /**
- * If smilies is enabled then include smilies.inc.php 
+ * If smilies is enabled then include smilies.inc.php
  */
 if ($CONFIG['enable_smilies']) {
   include("include/smilies.inc.php");
@@ -43,7 +43,7 @@ if ($CONFIG['enable_smilies']) {
 
 if (isset($_GET['aid'])) {
   /**
-   * @var Integer 
+   * @var Integer
    * Variable to hold numeric album id
    */
   $aid = (int)$_GET['aid'];
@@ -51,7 +51,7 @@ if (isset($_GET['aid'])) {
 
 if (isset($_GET['pid'])) {
   /**
-   * @var Integer 
+   * @var Integer
    * Variable to hold picture id
    */
   $pid = (int)$_GET['pid'];
@@ -61,7 +61,7 @@ if (isset($_GET['pid'])) {
 
 if (isset($_GET['albumName'])) {
   /**
-   * @var String/Integer 
+   * @var String/Integer
    * Variable to hold albumName/ablbumId
    */
   $album = $_GET['albumName'];
@@ -70,7 +70,7 @@ if (isset($_GET['albumName'])) {
 }
 if (isset($_GET['pos'])) {
   /**
-   * @var Integer 
+   * @var Integer
    * Variable to hold picture position
    */
   $pos = (int)$_GET['pos'];
@@ -269,5 +269,5 @@ $t->assign("my_cat_id", FIRST_USER_CAT + USER_ID);
 /**
  * Display the common html file
  */
-$t->display ("2bornot2b/main.html");
+$t->display ("main.html");
 ?>
