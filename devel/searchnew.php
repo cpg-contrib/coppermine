@@ -157,7 +157,7 @@ function picrow($picfile, $picid, $albid)
         $file['filepath'] = $pic_dirname.'/'; //substr($picname,0,strrpos($picname,'/'))
         $file['filename'] = $pic_fname;
         $filepathname = get_pic_url($file,'thumb');
-        //$mime_content = get_type($picname);
+        //$mime_content = cpg_get_type($picname);
         //$extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
         //$img = '<img src="images/thumb_'.$extension.'.jpg" class="thumbnail" width="48" border="0" alt="" />';
         $img = '<img src="'.$filepathname.'" class="thumbnail" width="48" border="0" alt="" />';

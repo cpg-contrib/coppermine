@@ -364,7 +364,7 @@ EOT;
                         $row['pheight'] = $image_info[1];
                 }
                 $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
-                $mime_content = get_type($row['filename']);
+                $mime_content = cpg_get_type($row['filename']);
                 $lastcom = '<img src="' . $pic_url . '" class="image"' . $image_size['geom'] . ' border="0" alt="">';
                 $lastcom = '<td width="50%" valign="top" align="center">'
                             . '<a href="thumbnails.php?album=lastcomby&uid=' . $uid . '">'
@@ -389,7 +389,7 @@ EOT;
                         $picture['pheight'] = $image_info[1];
                 }
                 $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['thumb_width']);
-                $mime_content = get_type($picture['filename']);
+                $mime_content = cpg_get_type($picture['filename']);
                 $user_thumb = '<img src="' . $pic_url . '" class="image"'
                                 . $image_size['geom'] . ' border="0" alt="">';
                 $user_thumb = '<td width="50%" valign="top" align="center">'

@@ -74,19 +74,20 @@ while (!file_exists($possible_paths[$correct] . '/Settings.php') &&
 count($possible_paths) > $correct)
         $correct++;
 
-require_once($possible_paths[$correct] . '/Settings.php');
+//require_once($possible_paths[$correct] . '/Settings.php');
 
-define ('SMF', 1);
+//define ('SMF', 1);
+require($possible_paths[$correct] . '/SSI.php');
 
 // Changes to account for the cpg_db_query renaming.  No longer needed to do any eval stuff!
 // other includes
 //cm_include_smf_funcs("$sourcedir/Load.php", array("reloadSettings", "md5_hmac", "loadUserSettings"));
 //cm_include_smf_funcs("$sourcedir/Subs.php", array("updateMemberData", "updateStats", "updateSettings"));
-require_once($sourcedir . '/QueryString.php');
-require_once($sourcedir . '/Subs.php');
-require_once($sourcedir . '/Errors.php');
-require_once($sourcedir . '/Load.php');
-require_once($sourcedir . '/Security.php');
+//require_once($sourcedir . '/QueryString.php');
+//require_once($sourcedir . '/Subs.php');
+//require_once($sourcedir . '/Errors.php');
+//require_once($sourcedir . '/Load.php');
+//require_once($sourcedir . '/Security.php');
 
 // database configuration
 define('SMF_DB_NAME', $db_name); // The name of the database used by the board
@@ -95,10 +96,10 @@ define('SMF_DB_USERNAME', $db_user); // The username to use to connect to the da
 define('SMF_DB_PASSWORD', $db_passwd); // The password to use to connect to the database
 
 // Connect to the MySQL database.
-if (empty($db_persist))
-	$db_connection = @mysql_connect($db_server, $db_user, $db_passwd);
-else
-	$db_connection = @mysql_pconnect($db_server, $db_user, $db_passwd);
+//if (empty($db_persist))
+//	$db_connection = @mysql_connect($db_server, $db_user, $db_passwd);
+//else
+//	$db_connection = @mysql_pconnect($db_server, $db_user, $db_passwd);
 	
 // The web path to your SMF Board directory
 define('SMF_WEB_PATH', "$boardurl/");
@@ -161,8 +162,8 @@ function udb_authenticate()
         session_start();
 
         reloadSettings();
-        LoadUserSettings();
 
+        LoadUserSettings();
     // For error checking
     $CONFIG['TABLE_USERS'] = '**ERROR**';
 
@@ -283,7 +284,8 @@ function udb_login_page()
 // Logout
 function udb_logout_page()
 {
-    $target = 'index.php?&action=logout;sesc=' . $_SESSION['rand_code'];
+    global $sc;
+    $target = 'index.php?&action=logout;sesc=' . $sc;
     udb_redirect($target);
 }
 

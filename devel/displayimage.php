@@ -179,7 +179,7 @@ function html_picture()
     $image_size = compute_img_size($CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight'], $CONFIG['picture_width']);
 
     $pic_title = '';
-    $mime_content = get_type($CURRENT_PIC_DATA['filename']);
+    $mime_content = cpg_get_type($CURRENT_PIC_DATA['filename']);
 
     if ($CURRENT_PIC_DATA['pwidth']==0 || $CURRENT_PIC_DATA['pheight']==0) {
         $image_size['geom']='';

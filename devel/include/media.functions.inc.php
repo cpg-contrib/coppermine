@@ -40,7 +40,7 @@ if (count($FILE_TYPES)==0) {
 
 $CONFIG['allowed_file_extensions'] = substr($CONFIG['allowed_file_extensions'],1);
 
-function get_type($filename,$filter=null)
+function cpg_get_type($filename,$filter=null)
 {
     global $FILE_TYPES;
     if (!is_array($filename))
@@ -58,22 +58,22 @@ function get_type($filename,$filter=null)
 
 function is_image(&$file)
 {
-    return get_type($file,'image');
+    return cpg_get_type($file,'image');
 }
 
 function is_movie(&$file)
 {
-    return get_type($file,'movie');
+    return cpg_get_type($file,'movie');
 }
 
 function is_audio(&$file)
 {
-    return get_type($file,'audio');
+    return cpg_get_type($file,'audio');
 }
 
 function is_document(&$file)
 {
-    return get_type($file,'document');
+    return cpg_get_type($file,'document');
 }
 
 function is_known_filetype($file)
@@ -87,7 +87,7 @@ function cpg_file_html(&$file,$type='thumb',$file_title='')
 {
     global $CONFIG, $pic_title;
 
-    $mime_content = get_type($file['filename']);
+    $mime_content = cpg_get_type($file['filename']);
     $extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
 
     if ($mime_content['content']=='image' && $type=='thumb') {

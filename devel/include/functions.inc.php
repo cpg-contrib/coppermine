@@ -1637,7 +1637,7 @@ function& get_pic_url(&$pic_row, $mode,$system_pic = false)
                 );
         }
 
-        $mime_content = get_type($pic_row['filename']);
+        $mime_content = cpg_get_type($pic_row['filename']);
         $pic_row = array_merge($pic_row,$mime_content);
 
         $filepathname = null;
