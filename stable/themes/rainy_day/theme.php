@@ -5,7 +5,7 @@
 // Copyright (C) 2002,2003  Gr&eacute;gory DEMAR <gdemar@wanadoo.fr>               //
 // http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-// Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
+// Based on PHPhotoalbum by Henning Stverud <henning@stoverud.com>         //
 // http://www.stoverud.com/PHPhotoalbum/                                    //
 // ------------------------------------------------------------------------- //
 // Hacked by Tarique Sani <tarique@sanisoft.com> and Girsh Nair             //
@@ -667,7 +667,7 @@ $template_image_comments = <<<EOT
                                                 <input type="hidden" name="msg_id" value="{MSG_ID}">
                                                 <tr>
                                                 <td>
-                                                   <input type=text name=msg_author value={MSG_AUTHOR} class="textinput" size=10>
+                                                   <input type=text name=msg_author value="{MSG_AUTHOR}" class="textinput" size=10>
                                                 </td>
                                                 </tr>
                                                 <tr>
@@ -694,7 +694,7 @@ $template_image_comments = <<<EOT
                                                 <input type="hidden" name="event" value="comment_update">
                                                 <input type="hidden" name="msg_id" value="{MSG_ID}">
                                                 <td> 
-                                                <input type=text name=msg_author value={MSG_AUTHOR} class="textinput" size=10> 
+                                                <input type=text name=msg_author value="{MSG_AUTHOR}" class="textinput" size=10> 
                                                 </td> 
                                         </tr>
                                         <tr>
@@ -735,7 +735,7 @@ $template_add_your_comment = <<<EOT
                           {NAME}
                  </td>
                  <td class="tableb_compact">
-                                        <input type="text" class="textinput" name="msg_author" size="10" maxlength="20" value={USER_NAME}>
+                                        <input type="text" class="textinput" name="msg_author" size="10" maxlength="20" value="{USER_NAME}">
                                 </td>
 <!-- END user_name_input -->
 <!-- BEGIN input_box_smilies -->
