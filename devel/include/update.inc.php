@@ -103,8 +103,8 @@ function html_install_success($notes)
     ?>
 <h2>Upgrade completed</h2>
 
-        <p class="tableb">Please <?php echo $loginaddress ?>login</a> and proceed to the <a href="charsetmgr.php">charset manager</a> to convert the encoding of your database, if needed.</p>
-        <p align="center" class="tableh2">
+  <!--  <p class="tableb">Please <?php echo $loginaddress ?>login</a> and proceed to the <a href="charsetmgr.php">charset manager</a> to convert the encoding of your database, if needed.</p> -->
+        <p style="align:center" class="tableh2">
                 It's recommended to <a href="versioncheck.php">check your file versions</a> if you just upgraded from an older version of coppermine.<br />
                 If you didn't (or you don't want to check), you can go to <a href="index.php">your gallery's start page</a><br />
 </p>
