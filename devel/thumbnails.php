@@ -2,7 +2,7 @@
 // ------------------------------------------------------------------------- //
 //  Coppermine Photo Gallery                                                 //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Grégory DEMAR <gdemar@wanadoo.fr>               //
+//  Copyright (C) 2002,2003  Gregory DEMAR <gdemar@wanadoo.fr>               //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
 //  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
@@ -26,40 +26,40 @@ function get_subcat_data($parent, &$album_set_array, $level)
 {
     global $CONFIG;
 
-	$result = db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent'");
-	if (mysql_num_rows($result) > 0){
-		$rowset = db_fetch_rowset($result);
-		foreach ($rowset as $subcat){
-			$result=db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = {$subcat['cid']}");
-			$album_count = mysql_num_rows($result);
-			while($row = mysql_fetch_array($result)){
-				$album_set_array[] = $row['aid'];
-			} // while
-		}
-		if ($level > 1) get_subcat_data($subcat['cid'], $album_set_array, $level -1);
-	}
+        $result = db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent'");
+        if (mysql_num_rows($result) > 0){
+                $rowset = db_fetch_rowset($result);
+                foreach ($rowset as $subcat){
+                        $result=db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = {$subcat['cid']}");
+                        $album_count = mysql_num_rows($result);
+                        while($row = mysql_fetch_array($result)){
+                                $album_set_array[] = $row['aid'];
+                        } // while
+                }
+                if ($level > 1) get_subcat_data($subcat['cid'], $album_set_array, $level -1);
+        }
 }
 
 /**************************************************************************
  * Main code
  **************************************************************************/
 
-if (isset($HTTP_GET_VARS['sort']))	$USER['sort'] = $HTTP_GET_VARS['sort'];
+if (isset($HTTP_GET_VARS['sort']))        $USER['sort'] = $HTTP_GET_VARS['sort'];
 if (isset($HTTP_GET_VARS['cat'])) $cat = (int)$HTTP_GET_VARS['cat'];
 if (isset($HTTP_GET_VARS['uid'])) $USER['uid'] = (int)$HTTP_GET_VARS['uid'];
 if (isset($HTTP_GET_VARS['search'])){
-	$USER['search'] = $HTTP_GET_VARS['search'];
-	if (isset($HTTP_GET_VARS['type']) && $HTTP_GET_VARS['type'] == 'full') {
-	    $USER['search'] = '###'.$USER['search'];
-	}
+        $USER['search'] = $HTTP_GET_VARS['search'];
+        if (isset($HTTP_GET_VARS['type']) && $HTTP_GET_VARS['type'] == 'full') {
+            $USER['search'] = '###'.$USER['search'];
+        }
 }
 
 $album = $HTTP_GET_VARS['album'];
 
 if (isset($HTTP_GET_VARS['page'])){
-	$page = max((int)$HTTP_GET_VARS['page'], 1);
+        $page = max((int)$HTTP_GET_VARS['page'], 1);
 } else {
-	$page = 1;
+        $page = 1;
 }
 
 $breadcrumb = '';
@@ -69,55 +69,55 @@ $lang_meta_album_names['lastupby'] = $lang_meta_album_names['lastup'];
 $lang_meta_album_names['lastcomby'] = $lang_meta_album_names['lastcom'];
 
 if (is_numeric($album)){
-	$result = db_query("SELECT category, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
-	if (mysql_num_rows($result)>0) {
-		$CURRENT_ALBUM_DATA = mysql_fetch_array($result);
-		$actual_cat = $CURRENT_ALBUM_DATA['category'];
-		breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);
-		$cat = -$album;
-	}
+        $result = db_query("SELECT category, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
+        if (mysql_num_rows($result)>0) {
+                $CURRENT_ALBUM_DATA = mysql_fetch_array($result);
+                $actual_cat = $CURRENT_ALBUM_DATA['category'];
+                breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);
+                $cat = -$album;
+        }
 
 } elseif (isset($cat) && $cat) { // Meta albums, we need to restrict the albums to the current category
-	if ($cat < 0) {
-		$result = db_query("SELECT category, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='".(-$cat)."'");
-		if (mysql_num_rows($result)>0) {
-			$CURRENT_ALBUM_DATA = mysql_fetch_array($result);
-			$actual_cat = $CURRENT_ALBUM_DATA['category'];
-		}
-		$ALBUM_SET .= 'AND aid IN ('.(-$cat).') ';
-		breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);
-		$CURRENT_CAT_NAME = $CURRENT_ALBUM_DATA['title'];
-	} else {
-		$album_set_array = array();
-		if ($cat == USER_GAL_CAT)
-		    $where = 'category > '.FIRST_USER_CAT;
-		else
-			$where = "category = '$cat'";
+        if ($cat < 0) {
+                $result = db_query("SELECT category, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='".(-$cat)."'");
+                if (mysql_num_rows($result)>0) {
+                        $CURRENT_ALBUM_DATA = mysql_fetch_array($result);
+                        $actual_cat = $CURRENT_ALBUM_DATA['category'];
+                }
+                $ALBUM_SET .= 'AND aid IN ('.(-$cat).') ';
+                breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);
+                $CURRENT_CAT_NAME = $CURRENT_ALBUM_DATA['title'];
+        } else {
+                $album_set_array = array();
+                if ($cat == USER_GAL_CAT)
+                    $where = 'category > '.FIRST_USER_CAT;
+                else
+                        $where = "category = '$cat'";
 
-		$result=db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE $where");
-		while($row = mysql_fetch_array($result)){
-			$album_set_array[] = $row['aid'];
-		} // while
-		if ($cat >= FIRST_USER_CAT) {
-			$user_name = get_username($cat - FIRST_USER_CAT);
-			$CURRENT_CAT_NAME = sprintf($lang_list_categories['xx_s_gallery'], $user_name);
-		} else {
-		    $result = db_query("SELECT name FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '$cat'");
-			if (mysql_num_rows($result) == 0) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_cat'], __FILE__, __LINE__);
-			$row = mysql_fetch_array($result);
-			$CURRENT_CAT_NAME = $row['name'];
-		}
-		get_subcat_data($cat, $album_set_array, $CONFIG['subcat_level']);
+                $result=db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE $where");
+                while($row = mysql_fetch_array($result)){
+                        $album_set_array[] = $row['aid'];
+                } // while
+                if ($cat >= FIRST_USER_CAT) {
+                        $user_name = get_username($cat - FIRST_USER_CAT);
+                        $CURRENT_CAT_NAME = sprintf($lang_list_categories['xx_s_gallery'], $user_name);
+                } else {
+                    $result = db_query("SELECT name FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '$cat'");
+                        if (mysql_num_rows($result) == 0) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_cat'], __FILE__, __LINE__);
+                        $row = mysql_fetch_array($result);
+                        $CURRENT_CAT_NAME = $row['name'];
+                }
+                get_subcat_data($cat, $album_set_array, $CONFIG['subcat_level']);
 
-		// Treat the album set
-		if (count($album_set_array)) {
-			$set ='';
-		    foreach ($album_set_array as $album_id) $set .= ($set == '') ? $album_id : ','.$album_id;
-			$ALBUM_SET .= "AND aid IN ($set) ";
-		}
+                // Treat the album set
+                if (count($album_set_array)) {
+                        $set ='';
+                    foreach ($album_set_array as $album_id) $set .= ($set == '') ? $album_id : ','.$album_id;
+                        $ALBUM_SET .= "AND aid IN ($set) ";
+                }
 
-		breadcrumb($cat, $breadcrumb, $breadcrumb_text);
-	}
+                breadcrumb($cat, $breadcrumb, $breadcrumb_text);
+        }
 }
 
 pageheader(isset($CURRENT_ALBUM_DATA) ? $CURRENT_ALBUM_DATA['title'] : $lang_meta_album_names[$album]);
