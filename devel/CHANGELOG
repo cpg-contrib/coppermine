@@ -107,6 +107,7 @@ Added server side favorite, 14th June 2004 tarique
 Added more info display to lasthits meta album, 14th June 2004 tarique
 Added ISO to EXIF extraction, 14th June 2004 tarique
 Fixed bug in update.sql, 14th June 2004, casper
-Changed 'cpg130_filetypes' to 'CPG_filetypes' - 14 June 2004, Chris
+Changed 'cpg130_filetypes' to 'CPG_filetypes', 14 June 2004, Chris
+Fixed bug in index.php of not showing user gallery thumbnails, 15 June 2004, Tarique
 Fixed album visibility issue - 16 June 2004, Chris
 Fixed 'install not working' - 16 June 2004, Chris
