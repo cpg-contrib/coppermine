@@ -18,7 +18,7 @@
 $lang_translation_info = array(
 'lang_name_english' => 'Hebrew',
 'lang_name_native' => 'òáøéú',
-'lang_country_code' => 'he',
+'lang_country_code' => 'il',
 'trans_name'=> 'Eyal Zvi',
 'trans_email' => 'eyal @at@ zvi.org',
 'trans_website' => 'http://zvi.org',
