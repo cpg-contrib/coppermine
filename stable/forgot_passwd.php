@@ -30,7 +30,7 @@ if (USER_ID) cpg_die(ERROR, $lang_forgot_passwd_php['err_already_logged_in'], __
 
 $lookup_failed = '';
 
-if (isset($HTTP_POST_VARS['submitted'])) {
+if ($_POST['username']) {
     $results = db_query("SELECT user_group,user_active,user_name, user_password, user_email  FROM {$CONFIG['TABLE_USERS']} WHERE (user_name = '" . addslashes($HTTP_POST_VARS['username']) . "' OR  user_email = '" . addslashes($HTTP_POST_VARS['username']) . "') AND user_active = 'YES'");
     if (mysql_num_rows($results))
         { // something has been found start
@@ -38,7 +38,7 @@ if (isset($HTTP_POST_VARS['submitted'])) {
         // check if we have an admin account (with empty email address)
         if ($USER_DATA['user_email'] == '') {
           // the password is empty. Is the current user the gallery admin?
-          if ($USER_DATA['user_group' == 1]) {
+          if ($USER_DATA['user_group'] == 1) {
             $USER_DATA['user_email'] = $CONFIG['gallery_admin_email'];
           } else {
             cpg_die(CRITICAL_ERROR, $lang_forgot_passwd_php['failed_sending_email'], __FILE__, __LINE__); //not the gallery admin account
