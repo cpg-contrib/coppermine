@@ -74,19 +74,20 @@ function albumselect($id = "album") {
         }
 
         // albums in user's personal galleries
-        if (defined('UDB_INTEGRATION')) {
+//        if (defined('UDB_INTEGRATION')) {
             //if (GALLERY_ADMIN_MODE) {
-                $sql = $cpg_udb->get_admin_album_list();
+//                $sql = $cpg_udb->get_admin_album_list();
             /*} else {
                 $sql = "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = ".(FIRST_USER_CAT + USER_ID);
             }*/
-        } else {
+//       } else {
             if (GALLERY_ADMIN_MODE) {
-                $sql = "SELECT aid, CONCAT('(', user_name, ') ', title) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id)";
+//                $sql = "SELECT aid, CONCAT('(', user_name, ') ', title) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id)";
+                $sql = $cpg_udb->get_admin_album_list();  //it's always bridged so we no longer need to check.
             } else {
                 $sql = "SELECT aid, title AS title FROM {$CONFIG['TABLE_ALBUMS']}  WHERE category = " . (FIRST_USER_CAT + USER_ID);
             }
-        }
+//       }
         $result = cpg_db_query($sql);
         while ($row = mysql_fetch_array($result)) {
             // Add to multi-dim array for later sorting
