@@ -68,7 +68,7 @@ $thumbData = $albumData->getThumbnailData($album, $cat, $page, $CONFIG['thumbcol
 /**
  * Fetch the breadcrumb only if there are some pictures in the album
  */
-if ($thumbData["thumbCount"] != 0) {
+if ($thumbData['thumbCount'] != 0) {
   $breadcrumbHTML = $t->getBreadcrumbHTML($breadcrumb);
 }
 
@@ -79,8 +79,8 @@ $CONTENT = $t->getThumbnailHTML($thumbData);
  */
 $t->assign("breadcrumbHTML", $breadcrumbHTML);
 $t->assign("CONTENT", $CONTENT);
-$t->assign("PAGE_TITLE", $CONFIG["gallery_name"] . " - " . $album_name);
-$t->assign("GALLERY_DESCRIPTION", $CONFIG["gallery_description"]);
+$t->assign("PAGE_TITLE", $CONFIG['gallery_name'] . " - " . $album_name);
+$t->assign("GALLERY_DESCRIPTION", $CONFIG['gallery_description']);
 
 $t->assign("lang_main_menu", $lang_main_menu);
 $t->assign("lang_gallery_admin_menu", $lang_gallery_admin_menu);

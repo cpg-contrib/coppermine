@@ -33,7 +33,7 @@ require_once('classes/cpgTemplate.class.php');
  */
 if (isset($_POST['continue'])) {
   if (!USER_CAN_UPLOAD_PICTURES) cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
-  for ($i=0; $i < count($_POST["album"]); $i++) {
+  for ($i=0; $i < count($_POST['album']); $i++) {
     $album = (int)$_POST['album'][$i];
     $title = addslashes($_POST['title'][$i]);
     $caption = addslashes($_POST['caption'][$i]);
@@ -148,7 +148,7 @@ if (isset($_POST['continue'])) {
         // start: send admin approval mail added by gaugau: 03-11-09
         if ($CONFIG['upl_notify_admin_email']) {
             include_once('include/mailer.inc.php');
-            cpg_mail('admin', sprintf($lang_db_input_php['notify_admin_email_subject'], $CONFIG['gallery_name']), sprintf($lang_db_input_php['notify_admin_email_body'], USER_NAME,  $CONFIG['ecards_more_pic_target'].(substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') .'editpics.php?mode=upload_approval' ));
+            cpg_mail('admin', sprintf($lang_db_input_php['notify_admin_email_subject'], $CONFIG['gallery_name']), sprintf($lang_db_input_php['notify_admin_email_body'], USER_NAME,  $CONFIG['ecards_more_pic_target'].(substr($CONFIG['ecards_more_pic_target'], -1) == '/' ? '' : '/') .'editpics.php?mode=upload_approval' ));
         }
         // end: send admin approval mail
         //ob_end_flush();
@@ -268,7 +268,7 @@ $t->assign("USER_NAME", USER_NAME);
 $t->assign("my_cat_id", FIRST_USER_CAT + USER_ID);
 $t->assign("breadcrumbHTML", $breadcrumbHTML);
 $t->assign("PAGE_TITLE", $lang_index_php['welcome']);
-$t->assign("GALLERY_DESCRIPTION", $CONFIG["gallery_name"]);
+$t->assign("GALLERY_DESCRIPTION", $CONFIG['gallery_name']);
 $t->assign("USER_NAME", USER_NAME);
 $t->assign("my_cat_id", FIRST_USER_CAT + USER_ID);
 

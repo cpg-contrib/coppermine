@@ -12,13 +12,13 @@ require('include/init.inc.php');
 require_once('classes/cpgNumericAlbumData.class.php');
 require_once('classes/cpgTemplate.class.php');
 
-if (!isset($_GET["album"]) || !isset($_GET["pid"])) {
-  cpg_die(CRITICAL_ERROR, $lang_errors["param_mising"], __FILE__, __LINE__);
+if (!isset($_GET['album']) || !isset($_GET['pid'])) {
+  cpg_die(CRITICAL_ERROR, $lang_errors['param_mising'], __FILE__, __LINE__);
 }
 
-$album = $_GET["album"];
-$pid = (int)$_GET["pid"];
-$interval = isset($_GET["slideshow"]) ? $_GET["slideshow"] : 5000;
+$album = $_GET['album'];
+$pid = (int)$_GET['pid'];
+$interval = isset($_GET['slideshow']) ? $_GET['slideshow'] : 5000;
 
 $albumData = new cpgNumericAlbumData;
 $t = new cpgTemplate;
@@ -67,8 +67,8 @@ $t->assign("cellHeight", $CONFIG['picture_width'] + 100);
 $t->assign("lang_display_image_php", $lang_display_image_php);
 $t->assign("CONTENT", $t->fetchHTML("common/slideShow.html"));
 
-$t->assign("PAGE_TITLE", $CONFIG["gallery_name"] . " - " . $lang_display_image_php["slideshow"]);
-$t->assign("GALLERY_DESCRIPTION", $CONFIG["gallery_description"]);
+$t->assign("PAGE_TITLE", $CONFIG['gallery_name'] . " - " . $lang_display_image_php['slideshow']);
+$t->assign("GALLERY_DESCRIPTION", $CONFIG['gallery_description']);
 
 /**
  * Assign lang array's

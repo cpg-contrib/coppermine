@@ -21,8 +21,8 @@ function check_comment(&$str)
     $str = preg_replace($ercp, '(...)', $str);
 }
 
-if (isset($_POST["event"])) {
-  $event = $_POST["event"];
+if (isset($_POST['event'])) {
+  $event = $_POST['event'];
 
         if (!(USER_CAN_POST_COMMENTS)) cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
@@ -53,7 +53,7 @@ if ($CONFIG['enable_smilies']) include("include/smilies.inc.php");
 if (isset($_GET['msg_id'])) {
   $msg_id = (int)$_GET['msg_id'];
 } else {
-  cpg_die(ERROR, $lang_errors["non_exist_comment"], __FILE__, __LINE__);
+  cpg_die(ERROR, $lang_errors['non_exist_comment'], __FILE__, __LINE__);
 }
 
 $query = "SELECT msg_author, msg_body FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id = '$msg_id'";
@@ -61,23 +61,23 @@ $query = "SELECT msg_author, msg_body FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg
 $db->query($query);
 
 if ($db->nf() == 0) {
-  cpg_die(ERROR, $lang_errors["non_exist_comment"], __FILE__, __LINE__);
+  cpg_die(ERROR, $lang_errors['non_exist_comment'], __FILE__, __LINE__);
 }
 
 $row = $db->fetchRow();
 
 $comment = array (
                   "msg_id" => $msg_id,
-                  "msg_author" => $row["msg_author"],
-                  "msg_body" => $row["msg_body"]
+                  "msg_author" => $row['msg_author'],
+                  "msg_body" => $row['msg_body']
                  );
 
 $t = new cpgTemplate;
 
-if ($CONFIG["enable_smilies"]) {
-  $comment["smilies"] = "enabled";
+if ($CONFIG['enable_smilies']) {
+  $comment['smilies'] = "enabled";
 } else {
-  $comment["smilies"] = "disabled";
+  $comment['smilies'] = "disabled";
 }
 
 if (isset($commentUpdated)) {
@@ -87,7 +87,7 @@ if (isset($commentUpdated)) {
 $t->assign("comment", $comment);
 $t->assign("lang_display_comments", $lang_display_comments);
 $t->assign("CONTENT", $t->fetchHTML("common/editComment.html"));
-$t->assign("PAGE_TITLE", $CONFIG["gallery_name"]);
+$t->assign("PAGE_TITLE", $CONFIG['gallery_name']);
 $t->assign("CHARSET", $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset']);
 
 /**

@@ -66,7 +66,7 @@ if (isset($_GET['albumName'])) {
    */
   $album = $_GET['albumName'];
 } else {
-  cpg_die(CRITICAL_ERROR, $lang_errors["param_missing"], __FILE__, __LINE__);
+  cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
 }
 if (isset($_GET['pos'])) {
   /**
@@ -75,7 +75,7 @@ if (isset($_GET['pos'])) {
    */
   $pos = (int)$_GET['pos'];
 } else {
-  cpg_die(CRITICAL_ERROR, $lang_errors["param_missing"], __FILE__, __LINE__);
+  cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
 }
 
 /**
@@ -125,10 +125,10 @@ if (isset($_GET['pos'])) {
     }
 }
 
-if (!$picData["pid"]) {
+if (!$picData['pid']) {
   cpg_die(INFORMATION, $lang_errors['no_img_to_display']);
 } elseif ($pid == 0) {
-  $pid = $picData["pid"];
+  $pid = $picData['pid'];
 }
 
 /**
@@ -148,7 +148,7 @@ if (isset($picData)) {
  * If user is admin then show the edit menu
  */
 if ((USER_ADMIN_MODE && $CURRENT_ALBUM_DATA['category'] == FIRST_USER_CAT + USER_ID) || GALLERY_ADMIN_MODE) {
-  $picData["menu"] = "show";
+  $picData['menu'] = "show";
 }
 
 /**
@@ -166,14 +166,14 @@ $picComments = $imgData->getPicComments($pid);
  */
 if (USER_CAN_POST_COMMENTS && $CURRENT_ALBUM_DATA['comments'] == 'YES') {
   if (USER_ID) {
-    $commentBox["userName"] = USER_NAME;
-    $commentBox["status"] = "loggedin";
+    $commentBox['userName'] = USER_NAME;
+    $commentBox['status'] = "loggedin";
   } else {
-    $commentBox["userName"] = isset($USER['name']) ? strtr($USER['name'], $HTML_SUBST) : $lang_display_comments['your_name'];
-    $commentBox["status"] = "anon";
+    $commentBox['userName'] = isset($USER['name']) ? strtr($USER['name'], $HTML_SUBST) : $lang_display_comments['your_name'];
+    $commentBox['status'] = "anon";
   }
-  $commentBox["maxComSize"] = $CONFIG["max_com_size"];
-  $commentBox["enableSmilies"] = $CONFIG["enable_smilies"];
+  $commentBox['maxComSize'] = $CONFIG['max_com_size'];
+  $commentBox['enableSmilies'] = $CONFIG['enable_smilies'];
 }
 
 $thumbPage = ceil(($pos + 1) / ($CONFIG['thumbrows'] * $CONFIG['thumbcols']));
@@ -206,11 +206,11 @@ if (!(USER_CAN_RATE_PICTURES && $CURRENT_ALBUM_DATA['votes'] == 'YES')) {
  * Check whether user can send ecards and display the Send Ecards link accordingly
  */
 if (USER_CAN_SEND_ECARDS) {
-    $picData["ecardTgt"] = "ecard.php?album=$album&amp;pid=$pid&amp;pos=$pos";
-    $picData["ecardTitle"] = $lang_img_nav_bar['ecard_title'];
+    $picData['ecardTgt'] = "ecard.php?album=$album&amp;pid=$pid&amp;pos=$pos";
+    $picData['ecardTitle'] = $lang_img_nav_bar['ecard_title'];
 } else {
-    $picData["ecardTgt"] = "javascript:alert('" . addslashes($lang_img_nav_bar['ecard_disabled_msg']) . "');";
-    $picData["ecardTitle"] = $lang_img_nav_bar['ecard_disabled'];
+    $picData['ecardTgt'] = "javascript:alert('" . addslashes($lang_img_nav_bar['ecard_disabled_msg']) . "');";
+    $picData['ecardTitle'] = $lang_img_nav_bar['ecard_disabled'];
 }
 
 /**
@@ -235,8 +235,8 @@ $pictureTitle = $picData['title'] ? $picData['title'] : strtr(preg_replace("/(.+
  */
 $t->assign("breadcrumbHTML", $breadcrumbHTML);
 $t->assign("CONTENT", $CONTENT);
-$t->assign("PAGE_TITLE", $CONFIG["gallery_name"] . " - " . $album_name."/".$pictureTitle);
-$t->assign("GALLERY_DESCRIPTION", $CONFIG["gallery_description"]);
+$t->assign("PAGE_TITLE", $CONFIG['gallery_name'] . " - " . $album_name."/".$pictureTitle);
+$t->assign("GALLERY_DESCRIPTION", $CONFIG['gallery_description']);
 /**#@-*/
 
 /**#@+
