@@ -1,11 +1,11 @@
-<?php
+﻿<?php
 // ------------------------------------------------------------------------- //
 //  Coppermine Photo Gallery                                                 //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  GrÃ©gory DEMAR <gdemar@wanadoo.fr>               //
+//  Copyright (C) 2002,2003  Gregory DEMAR <gdemar@wanadoo.fr>               //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning StÃ¸verud <henning@stoverud.com>         //
+//  Based on PHPhotoalbum by Henning Stoverud <henning@stoverud.com>         //
 //  http://www.stoverud.com/PHPhotoalbum/                                    //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
@@ -13,11 +13,19 @@
 //  the Free Software Foundation; either version 2 of the License, or        //
 //  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
-//  Translation by Daniel Villoldo (Akela) <dvp@arrakis.es>                  //
-//  http://akela.proel334.net/                                               //
-// ------------------------------------------------------------------------- //
 
-$lang_charset = 'utf-8';
+// info about translators and translated language 
+$lang_translation_info = array( 
+'lang_name_english' => 'Portuguese',  //the name of your language in English, e.g. 'Greek' or 'Spanish' 
+'lang_name_native' => '', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espa&ntilde;ol' 
+'lang_country_code' => '', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es' 
+'trans_name'=> 'Daniel Villoldo (Akela)', //the name of the translator - can be a nickname 
+'trans_email' => 'dvp@arrakis.es', //translator's email address (optional) 
+'trans_website' => 'http://akela.proel334.net/', //translator's website (optional) 
+'trans_date' => '2003-10-07', //the date the translation was created / last modified 
+); 
+
+$lang_charset = 'ISO-8859-1';
 $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 
 // shortcuts for Byte, Kilo, Mega
@@ -55,6 +63,7 @@ $lang_meta_album_names = array(
 	'toprated' => 'Melhor Classificadas',
 	'lasthits' => 'Últimas vistas',
 	'search' => 'Resultado da procura'
+        'favpics'=> 'Favourite Pictures', //new in cpg1.2.0
 );
 
 $lang_errors = array(
@@ -71,7 +80,9 @@ $lang_errors = array(
 	'orphan_cat' => 'Uma categora­a não têm pai, execute a opção "Categori­as" para corrigir este problema.',
 	'directory_ro' => 'O directório \'%s\' não tem permissões de escrita, as fotos não podem ser apagadas.',
 	'non_exist_comment' => 'O comentário seleccionado não existe.',
-	'pic_in_invalid_album' => 'Â¿Â¡A foto está num album que não existe (%s)!?'
+	'pic_in_invalid_album' => 'Â¿Â¡A foto está num album que não existe (%s)!?',
+        'banned' => 'You are currently banned from using this site.',  //new in cpg1.2.0
+        'not_with_udb' => 'This function is disabled in Coppermine because it is integrated with forum software. Either what you are trying to do is not supported in this configuration, or the function should be handled by the forum software.',  //new in cpg1.2.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -99,6 +110,7 @@ $lang_main_menu = array(
 	'topn_lnk' => 'Mais vistas',
 	'toprated_lnk' => 'Melhor Classificadas',
 	'search_lnk' => 'Procurar'
+        'fav_lnk' => 'My Favorites', //new in cpg1.2.0
 );
 
 $lang_gallery_admin_menu = array(
@@ -110,6 +122,8 @@ $lang_gallery_admin_menu = array(
 	'groups_lnk' => 'Grupos',
 	'comments_lnk' => 'Comentários',
 	'searchnew_lnk' => 'Adicionar fotos (Batch)',
+        'util_lnk' => 'Resize pictures',  //new in cpg1.2.0
+        'ban_lnk' => 'Ban Users',  //new in cpg1.2.0
 );
 
 $lang_user_admin_menu = array(
@@ -130,11 +144,15 @@ $lang_album_list = array(
 
 $lang_thumb_view = array(
 	'date' => 'DATA',
-	'name' => 'NOME',
+        //Sort by filename and title
+        'name' => 'NOME', //new in cpg1.2.0
+        'title' => 'TITLE', //new in cpg1.2.0
 	'sort_da' => 'Ordenado por data ascendente',
 	'sort_dd' => 'Ordenado por data descendente',
 	'sort_na' => 'Ordenado por nome ascendente',
 	'sort_nd' => 'Ordenado por nome descendente',
+        'sort_ta' => 'Sort by title ascending',  //new in cpg1.2.0
+        'sort_td' => 'Sort by title descending',  //new in cpg1.2.0
 	'pic_on_page' => '%d foto(s) na(s) %d página(s)',
 	'user_on_page' => '%d utilizadore(s) na(s) %d página(s)'
 );
@@ -304,6 +322,8 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
 	'restore_success' => 'Valores por defeicto de Coppermine restaurados',
 	'name_a' => 'Ascendente por nome',
 	'name_d' => 'Descendente por nome',
+        'title_a' => 'Title ascending',  //new in cpg1.2.0
+        'title_d' => 'Title descending',  //new in cpg1.2.0
 	'date_a' => 'Ascendente por data',
 	'date_d' => 'Descendente por data'
 );
@@ -324,6 +344,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Número de colunas na lista de álbuns', 'album_list_cols', 0),
 	array('Tamanho dos thumbnails em pixeis', 'alb_list_thumb_size', 0),
 	array('Conteúdo da página principal', 'main_page_layout', 0),
+        array('Show first level album thumbnails in categories','first_level',1),  //new in cpg1.2.0
 
 	'Aspecto da vista de Thumbnails',
 	array('Número de colunas na página de thumbnails', 'thumbcols', 0),
@@ -343,10 +364,13 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Número máximo de caracteres numa palavra', 'max_com_wlength', 0),
 	array('Número máximo de lineas num comentário', 'max_com_lines', 0),
 	array('Tamanho máximo de um comentário', 'max_com_size', 0),
+        array('Show film strip', 'display_film_strip', 1),  //new in cpg1.2.0
+        array('Number of items in film strip', 'max_film_strip_items', 0), 
 
 	'Configuração das fotos e thumbnails',
 	array('Qualidade dos ficheros JPEG', 'jpeg_qual', 0),
-	array('Largura máxima dos thumbnails <b>*</b>', 'thumb_width', 0),
+        array('Max dimension of a thumbnail <b>*</b>', 'thumb_width', 0),  //new in cpg1.2.0
+        array('Use dimension ( width or height or Max aspect for thumbnail )<b>*</b>', 'thumb_use', 7),  //new in cpg1.2.0
 	array('Criar fotos de tamanho intermédio','make_intermediate',1),
 	array('Largura máxima das fotos de tamanho intermédio <b>*</b>', 'picture_width', 0),
 	array('Tamanho máximo das fotos de utilizadores por upload (KB)', 'max_upl_size', 0),
@@ -365,6 +389,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Nome do campo 4', 'user_field4_name', 0),
 
 	'Configuração avançada de fotos e thumbnails',
+        array('Show private album Icon to unlogged user','show_private',1),  //new in cpg1.2.0
 	array('Caracteres proibidos nos nomes das fotos', 'forbiden_fname_char',0),
 	array('Extenções de ficheros admitidas nos uploads', 'allowed_file_extensions',0),
 	array('Método para organização das fotos','thumb_method',2),
@@ -378,6 +403,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Prefixo para os thumbnails <b>*</b>', 'thumb_pfx', 0),
 	array('Modo por defeito dos directórios', 'default_dir_mode', 0),
 	array('Modo por defeito para as fotos', 'default_file_mode', 0),
+        array('Disable right-click on full-size pop-up (JavaScript - no foolproof method)', 'disable_popup_rightclick', 1),  //new in cpg1.2.0
+        array('Disable right-click on all "regular" pages (JavaScript - no foolproof method)', 'disable_gallery_rightclick', 1),  //new in cpg1.2.0
 
 	'Configuração de cookies e Conjunto de Caracteres',
 	array('Nome dos cookies usados pelo script', 'cookie_name', 0),
@@ -483,6 +510,9 @@ $lang_picinfo = array(
 	'Exposure time' => 'Tempo de exposição',
 	'Focal length' => 'Distância Focal ',
 	'Comment' => 'Comentário'
+        'addFav'=>'Add to Fav',  //new in cpg1.2.0
+        'addFavPhrase'=>'Favourites',  //new in cpg1.2.0
+        'remFav'=>'Remove from Fav',  //new in cpg1.2.0
 );
 
 $lang_display_comments = array(
@@ -490,7 +520,13 @@ $lang_display_comments = array(
 	'edit_title' => 'Editar o comentário',
 	'confirm_delete' => 'Tem a certeza que quer apagar o comentário?',
 	'add_your_comment' => 'Adicionar um comentário',
+        'name'=>'Name',  //new in cpg1.2.0
+        'comment'=>'Comment',  //new in cpg1.2.0
 	'your_name' => 'Nome',
+);
+
+$lang_fullsize_popup = array( 
+        'click_to_close' => 'Click image to close this window',  //new in cpg1.2.0
 );
 
 }
@@ -816,6 +852,21 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 // Void
 
 
+// ------------------------------------------------------------------------- // 
+// File banning.php  //new in cpg1.2.0
+// ------------------------------------------------------------------------- // 
+
+if (defined('BANNING_PHP')) $lang_banning_php = array( 
+                'title' => 'Ban Users', 
+                'user_name' => 'User Name', 
+                'ip_address' => 'IP Address', 
+                'expiry' => 'Expires (blank is permanent)', 
+                'edit_ban' => 'Save Changes', 
+                'delete_ban' => 'Delete', 
+                'add_new' => 'Add New Ban', 
+                'add_ban' => 'Add', 
+); 
+
 // ------------------------------------------------------------------------- //
 // File upload.php
 // ------------------------------------------------------------------------- //
@@ -876,4 +927,56 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 	'user_interests' => 'Interesses do utilizador',
 	'user_occupation' => 'Ocupação do utilizador',
 );
+
+// ------------------------------------------------------------------------- // 
+// File util.php  //new in cpg1.2.0
+// ------------------------------------------------------------------------- // 
+
+if (defined('UTIL_PHP')) $lang_util_php = array( 
+        'title' => 'Resize pictures', 
+        'what_it_does' => 'What it does', 
+        'what_update_titles' => 'Updates titles from filename', 
+        'what_delete_title' => 'Deletes titles', 
+        'what_rebuild' => 'Rebuilds thumbnails and resized photos', 
+        'what_delete_originals' => 'Deletes original sized photos replacing them with the sized version', 
+        'file' => 'File', 
+        'title_set_to' => 'title set to', 
+        'submit_form' => 'submit', 
+        'updated_succesfully' => 'updated succesfully', 
+        'error_create' => 'ERROR creating', 
+        'continue' => 'Process more images', 
+        'main_success' => 'The file %s was successfully used as main picture', 
+        'error_rename' => 'Error renaming %s to %s', 
+        'error_not_found' => 'The file %s was not found', 
+        'back' => 'back to main', 
+        'thumbs_wait' => 'Updating thumbnails and/or resized images, please wait...', 
+        'thumbs_continue_wait' => 'Continuing to update thumbnails and/or resized images...', 
+        'titles_wait' => 'Updating titles, please wait...', 
+        'delete_wait' => 'Deleting titles, please wait...', 
+        'replace_wait' => 'Deleting originals and replacing them with resized images, please wait..', 
+        'instruction' => 'Quick instructions', 
+        'instruction_action' => 'Select action', 
+        'instruction_parameter' => 'Set parameters', 
+        'instruction_album' => 'Select album', 
+        'instruction_press' => 'Press %s', 
+        'update' => 'Update thumbs and/or resized photos', 
+        'update_what' => 'What should be updated', 
+        'update_thumb' => 'Only thumbnails', 
+        'update_pic' => 'Only resized pictures', 
+        'update_both' => 'Both thumbnails and resized pictures', 
+        'update_number' => 'Number of processed images per click', 
+        'update_option' => '(Try setting this option lower if you experience timeout problems)', 
+        'filename_title' => 'Filename ⇒ Picture title', 
+        'filename_how' => 'How should the filename be modified', 
+        'filename_remove' => 'Remove the .jpg ending and replace _ (underscore) with spaces', 
+        'filename_euro' => 'Change 2003_11_23_13_20_20.jpg to 23/11/2003 13:20', 
+        'filename_us' => 'Change 2003_11_23_13_20_20.jpg to 11/23/2003 13:20', 
+        'filename_time' => 'Change 2003_11_23_13_20_20.jpg to 13:20', 
+        'delete' => 'Delete picture titles or original size photos', 
+        'delete_title' => 'Delete picture titles', 
+        'delete_original' => 'Delete original size photos', 
+        'delete_replace' => 'Deletes the original images replacing them with the sized versions', 
+        'select_album' => 'Select album', 
+); 
+
 ?>

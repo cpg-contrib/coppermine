@@ -1,8 +1,8 @@
-<?php
+﻿<?php
 // ------------------------------------------------------------------------- //
 //  Coppermine Photo Gallery                                                 //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Grégory DEMAR <gdemar@wanadoo.fr>               //
+//  Copyright (C) 2002,2003  Gregory DEMAR <gdemar@wanadoo.fr>               //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
 //  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
@@ -13,10 +13,19 @@
 //  the Free Software Foundation; either version 2 of the License, or        //
 //  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
-//  Translation by Meelis Rüütli (m_ryytli@hotmail.com) from estonia         //
-// ------------------------------------------------------------------------- //
 
-$lang_charset = 'utf-8';
+// info about translators and translated language 
+$lang_translation_info = array( 
+'lang_name_english' => 'Estonian',  //the name of your language in English, e.g. 'Greek' or 'Spanish' 
+'lang_name_native' => 'Eesti', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espa&ntilde;ol' 
+'lang_country_code' => '', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es' 
+'trans_name'=> 'Meelis Rüütli', //the name of the translator - can be a nickname 
+'trans_email' => 'm_ryytli@hotmail.com', //translator's email address (optional) 
+'trans_website' => '', //translator's website (optional) 
+'trans_date' => '2003-10-07', //the date the translation was created / last modified 
+); 
+
+$lang_charset = 'ISO-8859-4';
 $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 
 // shortcuts for Byte, Kilo, Mega
@@ -30,7 +39,7 @@ $lang_month = array('Jaanuar', 'Veebruar', 'Märts', 'Aprill', 'Mai', 'Juuni', '
 $lang_yes = 'Jah';
 $lang_no  = 'Ei';
 $lang_back = 'TAGASI';
-$lang_continue = 'JÄTKA';
+$lang_continue = 'J&Auml;TKA';
 $lang_info = 'Info';
 $lang_error = 'Viga';
 
@@ -54,6 +63,7 @@ $lang_meta_album_names = array(
 	'toprated' => 'Edetabel',
 	'lasthits' => 'Viimati vaadatud',
 	'search' => 'Otsingu tulemused'
+        'favpics'=> 'Favourite Pictures', //new in cpg1.2.0
 );
 
 $lang_errors = array(
@@ -70,7 +80,9 @@ $lang_errors = array(
 	'orphan_cat' => 'Kategoorial on olematu juur, jätka kategooria-halduriga probleemi lahendamiseks.',
 	'directory_ro' => 'Kataloog \'%s\' pole kirjutamisõiguslik, pilte ei saa kustutada',
 	'non_exist_comment' => 'Valitud kommentaar puudub.',
-	'pic_in_invalid_album' => 'Pilt on olematus albumis (%s)!?'
+	'pic_in_invalid_album' => 'Pilt on olematus albumis (%s)!?',
+        'banned' => 'You are currently banned from using this site.',  //new in cpg1.2.0
+        'not_with_udb' => 'This function is disabled in Coppermine because it is integrated with forum software. Either what you are trying to do is not supported in this configuration, or the function should be handled by the forum software.',  //new in cpg1.2.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -98,6 +110,7 @@ $lang_main_menu = array(
 	'topn_lnk' => 'Enim vaadatud',
 	'toprated_lnk' => 'Edetabel',
 	'search_lnk' => 'Otsing',
+        'fav_lnk' => 'My Favorites', //new in cpg1.2.0
 );
 
 $lang_gallery_admin_menu = array(
@@ -109,6 +122,8 @@ $lang_gallery_admin_menu = array(
 	'groups_lnk' => 'Grupid',
 	'comments_lnk' => 'Kommentaarid',
 	'searchnew_lnk' => 'Lisa "FTP" pilte',
+        'util_lnk' => 'Resize pictures',  //new in cpg1.2.0
+        'ban_lnk' => 'Ban Users',  //new in cpg1.2.0
 );
 
 $lang_user_admin_menu = array(
@@ -128,12 +143,16 @@ $lang_album_list = array(
 );
 
 $lang_thumb_view = array(
-	'date' => 'KUUPÄEV',
-	'name' => 'NIMI',
+	'date' => 'KUUP&Auml;EV',
+        //Sort by filename and title
+        'name' => 'NIMI', //new in cpg1.2.0
+        'title' => 'TITLE', //new in cpg1.2.0
 	'sort_da' => 'Sordi kuupäeva järgi kasvavalt',
 	'sort_dd' => 'Sordi kuupäeva järgi kahanevalt',
 	'sort_na' => 'Sordi nime järgi kasvavalt',
 	'sort_nd' => 'Sordi nime järgi kahanevalt',
+        'sort_ta' => 'Sort by title ascending',  //new in cpg1.2.0
+        'sort_td' => 'Sort by title descending',  //new in cpg1.2.0
 	'pic_on_page' => '%d pilti on %d-el lehel',
 	'user_on_page' => '%d kasutajat on %d-el lehel'
 );
@@ -215,7 +234,7 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 	'Very Happy' => 'Väga õnnelik',
 	'Smile' => 'Naer',
 	'Sad' => 'Kurb',
-	'Surprised' => 'Üllatnud',
+	'Surprised' => '&Uuml;llatnud',
 	'Shocked' => 'Vapustatud',
 	'Confused' => 'Hämmeldunud',
 	'Cool' => 'Lahe',
@@ -303,12 +322,14 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
 	'restore_success' => 'Vaikekonfiguratsioon taastatud',
 	'name_a' => 'Nimed kasvavalt',
 	'name_d' => 'Nimed kahanevalt',
+        'title_a' => 'Title ascending',  //new in cpg1.2.0
+        'title_d' => 'Title descending',  //new in cpg1.2.0
 	'date_a' => 'Kuupäev kasvavalt',
 	'date_d' => 'Kuupäev kahanevalt'
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
-	'Üldised seaded',
+	'&Uuml;ldised seaded',
 	array('Galerii nimi', 'gallery_name', 0),
 	array('Galrii kirjeldus', 'gallery_description', 0),
 	array('Galerii administraatorile epost', 'gallery_admin_email', 0),
@@ -323,6 +344,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Number veergusid albumi loeteluks', 'album_list_cols', 0),
 	array('pisipildi suurus pixelites', 'alb_list_thumb_size', 0),
 	array('Pealehe sisu', 'main_page_layout', 0),
+        array('Show first level album thumbnails in categories','first_level',1),  //new in cpg1.2.0
 
 	'Pisipiltide vaade',
 	array('Veergude arv pisipiltide lehel', 'thumbcols', 0),
@@ -342,10 +364,13 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Maksimaalne number tähti sõnas', 'max_com_wlength', 0),
 	array('Maksimaalne number ridu kommentaaris', 'max_com_lines', 0),
 	array('Maksimaalne kommentaari pikkus', 'max_com_size', 0),
+        array('Show film strip', 'display_film_strip', 1),  //new in cpg1.2.0
+        array('Number of items in film strip', 'max_film_strip_items', 0), 
 
 	'Piltide ja pisipiltide seaded',
 	array('JPEG failide kvaliteet', 'jpeg_qual', 0),
-	array('Pisipildi max laius või kõrgus <b>*</b>', 'thumb_width', 0),
+        array('Max dimension of a thumbnail <b>*</b>', 'thumb_width', 0),  //new in cpg1.2.0
+        array('Use dimension ( width or height or Max aspect for thumbnail )<b>*</b>', 'thumb_use', 7),  //new in cpg1.2.0
 	array('Loo keskmised pildid','make_intermediate',1),
 	array('Keskmiste piltide laius või kõrgus <b>*</b>', 'picture_width', 0),
 	array('Salvestatud piltide max suurus (KB)', 'max_upl_size', 0),
@@ -364,6 +389,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Väli 4 nimi', 'user_field4_name', 0),
 
 	'Piltide ja pisipiltide lisaseaded',
+        array('Show private album Icon to unlogged user','show_private',1),  //new in cpg1.2.0
 	array('Faili nimes keelatud tähemärgid', 'forbiden_fname_char',0),
 	array('Lubatud failitüübid salvestatavatele piltidele', 'allowed_file_extensions',0),
 	array('Piltide suurusemuutmise meetod','thumb_method',2),
@@ -377,6 +403,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Eesliide pisipiltidele <b>*</b>', 'thumb_pfx', 0),
 	array('Vaikemood kataloogidele', 'default_dir_mode', 0),
 	array('Vaikemood piltidele', 'default_file_mode', 0),
+        array('Disable right-click on full-size pop-up (JavaScript - no foolproof method)', 'disable_popup_rightclick', 1),  //new in cpg1.2.0
+        array('Disable right-click on all "regular" pages (JavaScript - no foolproof method)', 'disable_gallery_rightclick', 1),  //new in cpg1.2.0
 
 	'Präänikud &amp; Tähestiku seaded',
 	array('Skripti poolt kasutatava prääniku nimi', 'cookie_name', 0),
@@ -400,7 +428,7 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 	'no_udp_needed' => 'Uuendust pole vaja.',
 	'alb_updated' => 'Album uuendatud',
 	'unknown_album' => 'Valitud album puudub või sul pole õigusi salvestada sellesse albumisse',
-	'no_pic_uploaded' => 'Ühtegi pilti ei salvestatud !<br /><br />Kui sul tõesti on valitud pilt salvestamiseks, kontrolli et server lubaks failide salvestamist...',
+	'no_pic_uploaded' => '&Uuml;htegi pilti ei salvestatud !<br /><br />Kui sul tõesti on valitud pilt salvestamiseks, kontrolli et server lubaks failide salvestamist...',
 	'err_mkdir' => 'Viga kataloogi %s loomisel !',
 	'dest_dir_ro' => 'Sihtkataloog %s pole skripti poolt kirjutamisõiguslik !',
 	'err_move' => 'Võimatu liigutada %s -> %s !',
@@ -416,7 +444,7 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 	'err_comment_empty' => 'Sinu kommentaar on tühi !',
 	'err_invalid_fext' => 'Ainult järgmised failitüübid aksepteeritakse : <br /><br />%s.',
 	'no_flood' => 'Vabandust, aga sa oled juba selle pildile viimati lisatud kommentaari autor<br /><br />Paranda oma lisatud kommentaari kui soovid seda muuta',
-	'redirect_msg' => 'Sind suunatakse ümber.<br /><br /><br />Klikka \'JÄTKA\' kui lehekülg automaatselt ei uuene',
+	'redirect_msg' => 'Sind suunatakse ümber.<br /><br /><br />Klikka \'J&Auml;TKA\' kui lehekülg automaatselt ei uuene',
 	'upl_success' => 'Sinu pilt edukalt lisatud',
 );
 
@@ -477,11 +505,14 @@ $lang_picinfo = array(
 	'Dimensions' => 'Dimensioonid',
 	'Displayed' => 'Kuvatud',
 	'Camera' => 'Kaamera',
-	'Date taken' => 'Ülesvõtte kuupäev',
+	'Date taken' => '&Uuml;lesvõtte kuupäev',
 	'Aperture' => 'Ava',
 	'Exposure time' => 'Säritusaeg',
 	'Focal length' => 'Fookuskaugus',
 	'Comment' => 'Kommentaar'
+        'addFav'=>'Add to Fav',  //new in cpg1.2.0
+        'addFavPhrase'=>'Favourites',  //new in cpg1.2.0
+        'remFav'=>'Remove from Fav',  //new in cpg1.2.0
 );
 
 $lang_display_comments = array(
@@ -489,7 +520,13 @@ $lang_display_comments = array(
 	'edit_title' => 'Muuda seda kommentaari',
 	'confirm_delete' => 'Oled kindel, et tahad seda kommentaari kustutada ?',
 	'add_your_comment' => 'Lisa oma kommentaar',
+        'name'=>'Name',  //new in cpg1.2.0
+        'comment'=>'Comment',  //new in cpg1.2.0
 	'your_name' => 'Sinu nimi',
+);
+
+$lang_fullsize_popup = array( 
+        'click_to_close' => 'Click image to close this window',  //new in cpg1.2.0
 );
 
 }
@@ -636,7 +673,7 @@ if (defined('LOGOUT_PHP')) $lang_logout_php = array(
 
 if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 	'upd_alb_n' => 'Uuenda album %s',
-	'general_settings' => 'Üldised seaded',
+	'general_settings' => '&Uuml;ldised seaded',
 	'alb_title' => 'Albumi pealkiri',
 	'alb_cat' => 'Albumi kategooria',
 	'alb_desc' => 'Albumi kirjeldus',
@@ -654,7 +691,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 	'me_only' => 'Ainult mina',
 	'owner_only' => 'Albumi omanik (%s) ainult',
 	'groupp_only' => 'Grupi \'%s\' liikmed',
-	'err_no_alb_to_modify' => 'Ühtegi albumit sa ei saa muuta andmebaasis.',
+	'err_no_alb_to_modify' => '&Uuml;htegi albumit sa ei saa muuta andmebaasis.',
 	'update' => 'Uuenda album'
 );
 
@@ -815,6 +852,21 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 // Void
 
 
+// ------------------------------------------------------------------------- // 
+// File banning.php  //new in cpg1.2.0
+// ------------------------------------------------------------------------- // 
+
+if (defined('BANNING_PHP')) $lang_banning_php = array( 
+                'title' => 'Ban Users', 
+                'user_name' => 'User Name', 
+                'ip_address' => 'IP Address', 
+                'expiry' => 'Expires (blank is permanent)', 
+                'edit_ban' => 'Save Changes', 
+                'delete_ban' => 'Delete', 
+                'add_new' => 'Add New Ban', 
+                'add_ban' => 'Add', 
+); 
+
 // ------------------------------------------------------------------------- //
 // File upload.php
 // ------------------------------------------------------------------------- //
@@ -875,4 +927,56 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 	'user_interests' => 'Kasutaja huvid',
 	'user_occupation' => 'Kasutaja elukutse',
 );
+
+// ------------------------------------------------------------------------- // 
+// File util.php  //new in cpg1.2.0
+// ------------------------------------------------------------------------- // 
+
+if (defined('UTIL_PHP')) $lang_util_php = array( 
+        'title' => 'Resize pictures', 
+        'what_it_does' => 'What it does', 
+        'what_update_titles' => 'Updates titles from filename', 
+        'what_delete_title' => 'Deletes titles', 
+        'what_rebuild' => 'Rebuilds thumbnails and resized photos', 
+        'what_delete_originals' => 'Deletes original sized photos replacing them with the sized version', 
+        'file' => 'File', 
+        'title_set_to' => 'title set to', 
+        'submit_form' => 'submit', 
+        'updated_succesfully' => 'updated succesfully', 
+        'error_create' => 'ERROR creating', 
+        'continue' => 'Process more images', 
+        'main_success' => 'The file %s was successfully used as main picture', 
+        'error_rename' => 'Error renaming %s to %s', 
+        'error_not_found' => 'The file %s was not found', 
+        'back' => 'back to main', 
+        'thumbs_wait' => 'Updating thumbnails and/or resized images, please wait...', 
+        'thumbs_continue_wait' => 'Continuing to update thumbnails and/or resized images...', 
+        'titles_wait' => 'Updating titles, please wait...', 
+        'delete_wait' => 'Deleting titles, please wait...', 
+        'replace_wait' => 'Deleting originals and replacing them with resized images, please wait..', 
+        'instruction' => 'Quick instructions', 
+        'instruction_action' => 'Select action', 
+        'instruction_parameter' => 'Set parameters', 
+        'instruction_album' => 'Select album', 
+        'instruction_press' => 'Press %s', 
+        'update' => 'Update thumbs and/or resized photos', 
+        'update_what' => 'What should be updated', 
+        'update_thumb' => 'Only thumbnails', 
+        'update_pic' => 'Only resized pictures', 
+        'update_both' => 'Both thumbnails and resized pictures', 
+        'update_number' => 'Number of processed images per click', 
+        'update_option' => '(Try setting this option lower if you experience timeout problems)', 
+        'filename_title' => 'Filename ⇒ Picture title', 
+        'filename_how' => 'How should the filename be modified', 
+        'filename_remove' => 'Remove the .jpg ending and replace _ (underscore) with spaces', 
+        'filename_euro' => 'Change 2003_11_23_13_20_20.jpg to 23/11/2003 13:20', 
+        'filename_us' => 'Change 2003_11_23_13_20_20.jpg to 11/23/2003 13:20', 
+        'filename_time' => 'Change 2003_11_23_13_20_20.jpg to 13:20', 
+        'delete' => 'Delete picture titles or original size photos', 
+        'delete_title' => 'Delete picture titles', 
+        'delete_original' => 'Delete original size photos', 
+        'delete_replace' => 'Deletes the original images replacing them with the sized versions', 
+        'select_album' => 'Select album', 
+); 
+
 ?>

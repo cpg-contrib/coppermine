@@ -1,11 +1,11 @@
-<?php
+﻿<?php
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery v1.1 Devel                                      //
+//  Coppermine Photo Gallery v1.2.0                                          //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002  Grйgory DEMAR <gdemar@wanadoo.fr>                    //
+//  Copyright (C) 2002  Grégory DEMAR <gdemar@wanadoo.fr>                    //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Stшverud <henning@stoverud.com>         //
+//  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
 //  http://www.stoverud.com/PHPhotoalbum/                                    //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
@@ -14,23 +14,34 @@
 //  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
 
-$lang_charset = 'utf-8';
+// info about translators and translated language 
+$lang_translation_info = array( 
+'lang_name_english' => 'Russian',  //the name of your language in English, e.g. 'Greek' or 'Spanish' 
+'lang_name_native' => '', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espa&ntilde;ol' 
+'lang_country_code' => 'ru', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es' 
+'trans_name'=> '?', //the name of the translator - can be a nickname 
+'trans_email' => '', //translator's email address (optional) 
+'trans_website' => '', //translator's website (optional) 
+'trans_date' => '2003-10-07', //the date the translation was created / last modified 
+); 
+
+$lang_charset = 'windows-1251';
 $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 
 // shortcuts for Byte, Kilo, Mega
-$lang_byte_units = array('Байт', 'KB', 'MB');
+$lang_byte_units = array('Áàéò', 'KB', 'MB');
 
 // Day of weeks and months
-$lang_day_of_week = array('Вск', 'Пон', 'Втор', 'Среда', 'Чет', 'Пят', 'Суб');
-$lang_month = array('Янв', 'Февр', 'Март', 'Апр', 'Май', 'Июнь', 'Июль', 'Авг', 'Сент', 'Окт', 'Ноябрь', 'Дек');
+$lang_day_of_week = array('Âñê', 'Ïîí', 'Âòîð', 'Ñðåäà', '×åò', 'Ïÿò', 'Ñóá');
+$lang_month = array('ßíâ', 'Ôåâð', 'Ìàðò', 'Àïð', 'Ìàé', 'Èþíü', 'Èþëü', 'Àâã', 'Ñåíò', 'Îêò', 'Íîÿáðü', 'Äåê');
 
 // Some common strings
-$lang_yes = 'Да';
-$lang_no  = 'Нет';
-$lang_back = 'Назад';
-$lang_continue = 'Вперед';
-$lang_info = 'Информация';
-$lang_error = 'Ошибка';
+$lang_yes = 'Äà';
+$lang_no  = 'Íåò';
+$lang_back = 'Íàçàä';
+$lang_continue = 'Âïåðåä';
+$lang_info = 'Èíôîðìàöèÿ';
+$lang_error = 'Îøèáêà';
 
 // The various date formats
 // See http://www.php.net/manual/en/function.strftime.php to define the variable below
@@ -45,30 +56,33 @@ $comment_date_fmt =  '%B %d, %Y at %I:%M %p';
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
 
 $lang_meta_album_names = array(
-	'random' => 'Картинка на халяву',
-	'lastup' => 'Последние пополнения',
-	'lastcom' => 'Последние комментарии',
-	'topn' => 'Самые популярные',
-	'toprated' => 'Лучшие по рейтингу',
-	'lasthits' => 'Последние показы',
-	'search' => 'Результаты поиска'
+	'random' => 'Êàðòèíêà íà õàëÿâó',
+	'lastup' => 'Ïîñëåäíèå ïîïîëíåíèÿ',
+	'lastcom' => 'Ïîñëåäíèå êîììåíòàðèè',
+	'topn' => 'Ñàìûå ïîïóëÿðíûå',
+	'toprated' => 'Ëó÷øèå ïî ðåéòèíãó',
+	'lasthits' => 'Ïîñëåäíèå ïîêàçû',
+	'search' => 'Ðåçóëüòàòû ïîèñêà'
+        'favpics'=> 'Favourite Pictures', //new in cpg1.2.0
 );
 
 $lang_errors = array(
-	'access_denied' => 'У Вас нет доступа сюда.',
-	'perm_denied' => 'Нет доступа для выполнения команды.',
-	'param_missing' => 'Скрипт был вызван без необходимых параметров.',
-	'non_exist_ap' => 'Выбранный альбом/фотка не существует !',
-	'quota_exceeded' => 'ВАше место закончилось<br /><br />You have a space quota of [quota]K, your pictures currently use [space]K, adding this picture would make you exceed your quota.',
+	'access_denied' => 'Ó Âàñ íåò äîñòóïà ñþäà.',
+	'perm_denied' => 'Íåò äîñòóïà äëÿ âûïîëíåíèÿ êîìàíäû.',
+	'param_missing' => 'Ñêðèïò áûë âûçâàí áåç íåîáõîäèìûõ ïàðàìåòðîâ.',
+	'non_exist_ap' => 'Âûáðàííûé àëüáîì/ôîòêà íå ñóùåñòâóåò !',
+	'quota_exceeded' => 'ÂÀøå ìåñòî çàêîí÷èëîñü<br /><br />You have a space quota of [quota]K, your pictures currently use [space]K, adding this picture would make you exceed your quota.',
 	'gd_file_type_err' => 'When using the GD image library allowed image types are only JPEG and PNG.',
 	'invalid_image' => 'The image you have uploaded is corrupted or can\'t be handled by the GD library',
 	'resize_failed' => 'Unable to create thumbnail or reduced size image.',
-	'no_img_to_display' => 'Картинок нету :(',
+	'no_img_to_display' => 'Êàðòèíîê íåòó :(',
 	'non_exist_cat' => 'The selected category does not exist',
 	'orphan_cat' => 'A category has a non-existing parent, runs the category manager to correct the problem.',
 	'directory_ro' => 'Directory \'%s\' is not writable, pictures can\'t be deleted',
 	'non_exist_comment' => 'The selected comment does not exist.',
 	'pic_in_invalid_album' => 'Picture is in a non existant album (%s)!?'
+        'banned' => 'You are currently banned from using this site.',  //new in cpg1.2.0
+        'not_with_udb' => 'This function is disabled in Coppermine because it is integrated with forum software. Either what you are trying to do is not supported in this configuration, or the function should be handled by the forum software.',  //new in cpg1.2.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -76,26 +90,27 @@ $lang_errors = array(
 // ------------------------------------------------------------------------- //
 
 $lang_main_menu = array(
-	'alb_list_title' => 'К списку альбомов',
-	'alb_list_lnk' => 'Список альбомов',
+	'alb_list_title' => 'Ê ñïèñêó àëüáîìîâ',
+	'alb_list_lnk' => 'Ñïèñîê àëüáîìîâ',
 	'my_gal_title' => 'Go to my personal gallery',
 	'my_gal_lnk' => 'My gallery',
-	'my_prof_lnk' => 'Мои настройки',
-	'adm_mode_title' => 'Врубить режим админа',
-	'adm_mode_lnk' => 'Режим админа',
-	'usr_mode_title' => 'Врубить режим юзера',
-	'usr_mode_lnk' => 'Режим юзверя',
+	'my_prof_lnk' => 'Ìîè íàñòðîéêè',
+	'adm_mode_title' => 'Âðóáèòü ðåæèì àäìèíà',
+	'adm_mode_lnk' => 'Ðåæèì àäìèíà',
+	'usr_mode_title' => 'Âðóáèòü ðåæèì þçåðà',
+	'usr_mode_lnk' => 'Ðåæèì þçâåðÿ',
 	'upload_pic_title' => 'Upload a picture into an album',
-	'upload_pic_lnk' => 'Закачать картинку',
-	'register_title' => 'Создать акунт',
-	'register_lnk' => 'Регистрироваться',
-	'login_lnk' => 'Войти',
-	'logout_lnk' => 'Выйти',
-	'lastup_lnk' => 'Последние закачки',
-	'lastcom_lnk' => 'Последние комментарии',
-	'topn_lnk' => 'Самые популярные',
-	'toprated_lnk' => 'Лучшие по рейтингу',
-	'search_lnk' => 'Поиск',
+	'upload_pic_lnk' => 'Çàêà÷àòü êàðòèíêó',
+	'register_title' => 'Ñîçäàòü àêóíò',
+	'register_lnk' => 'Ðåãèñòðèðîâàòüñÿ',
+	'login_lnk' => 'Âîéòè',
+	'logout_lnk' => 'Âûéòè',
+	'lastup_lnk' => 'Ïîñëåäíèå çàêà÷êè',
+	'lastcom_lnk' => 'Ïîñëåäíèå êîììåíòàðèè',
+	'topn_lnk' => 'Ñàìûå ïîïóëÿðíûå',
+	'toprated_lnk' => 'Ëó÷øèå ïî ðåéòèíãó',
+	'search_lnk' => 'Ïîèñê',
+        'fav_lnk' => 'My Favorites', //new in cpg1.2.0
 );
 
 $lang_gallery_admin_menu = array(
@@ -107,6 +122,8 @@ $lang_gallery_admin_menu = array(
 	'groups_lnk' => 'Groups',
 	'comments_lnk' => 'Comments',
 	'searchnew_lnk' => 'Batch add pictures',
+        'util_lnk' => 'Resize pictures',  //new in cpg1.2.0
+        'ban_lnk' => 'Ban Users',  //new in cpg1.2.0
 );
 
 $lang_user_admin_menu = array(
@@ -116,22 +133,26 @@ $lang_user_admin_menu = array(
 );
 
 $lang_cat_list = array(
-	'category' => 'Категория',
-	'albums' => 'Альбомы',
-	'pictures' => 'Фотки',
+	'category' => 'Êàòåãîðèÿ',
+	'albums' => 'Àëüáîìû',
+	'pictures' => 'Ôîòêè',
 );
 
 $lang_album_list = array(
-	'album_on_page' => '%d альбомов на %d страницах'
+	'album_on_page' => '%d àëüáîìîâ íà %d ñòðàíèöàõ'
 );
 
 $lang_thumb_view = array(
-	'date' => 'Дата',
-	'name' => 'Имя',
+	'date' => 'Äàòà',
+        //Sort by filename and title
+        'name' => 'Èìÿ', //new in cpg1.2.0
+        'title' => 'TITLE', //new in cpg1.2.0
 	'sort_da' => 'Sort by date ascending',
 	'sort_dd' => 'Sort by date descending',
 	'sort_na' => 'Sort by name ascending',
 	'sort_nd' => 'Sort by name descending',
+        'sort_ta' => 'Sort by title ascending',  //new in cpg1.2.0
+        'sort_td' => 'Sort by title descending',  //new in cpg1.2.0
 	'pic_on_page' => '%d pictures on %d page(s)',
 	'user_on_page' => '%d users on %d page(s)'
 );
@@ -145,19 +166,19 @@ $lang_img_nav_bar = array(
 	'ecard_disabled_msg' => 'You don\'t have permission to send ecards',
 	'prev_title' => 'See previous picture',
 	'next_title' => 'See next picture',
-	'pic_pos' => 'Фото %s/%s',
+	'pic_pos' => 'Ôîòî %s/%s',
 );
 
 $lang_rate_pic = array(
-	'rate_this_pic' => 'Оценит фотку (жми звездочки) ',
-	'no_votes' => '(Еще нет голосов :((()',
+	'rate_this_pic' => 'Îöåíèò ôîòêó (æìè çâåçäî÷êè) ',
+	'no_votes' => '(Åùå íåò ãîëîñîâ :((()',
 	'rating' => '(current rating : %s / 5 with %s votes)',
-	'rubbish' => 'Мусор',
-	'poor' => 'Плохо',
-	'fair' => 'Средне',
-	'good' => 'Хорошо',
-	'excellent' => 'Отлично',
-	'great' => 'Великолепно!',
+	'rubbish' => 'Ìóñîð',
+	'poor' => 'Ïëîõî',
+	'fair' => 'Ñðåäíå',
+	'good' => 'Õîðîøî',
+	'excellent' => 'Îòëè÷íî',
+	'great' => 'Âåëèêîëåïíî!',
 );
 
 // ------------------------------------------------------------------------- //
@@ -300,6 +321,8 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
 	'restore_success' => 'Coppermine default configuration restored',
 	'name_a' => 'Name ascending',
 	'name_d' => 'Name descending',
+        'title_a' => 'Title ascending',  //new in cpg1.2.0
+        'title_d' => 'Title descending',  //new in cpg1.2.0
 	'date_a' => 'Date ascending',
 	'date_d' => 'Date descending'
 );
@@ -320,6 +343,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Number of columns for the album list', 'album_list_cols', 0),
 	array('Size of thumbnails in pixels', 'alb_list_thumb_size', 0),
 	array('The content of the main page', 'main_page_layout', 0),
+        array('Show first level album thumbnails in categories','first_level',1),  //new in cpg1.2.0
 
 	'Thumbnail view',
 	array('Number of columns on thumbnail page', 'thumbcols', 0),
@@ -339,10 +363,13 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Max number of characters in a word', 'max_com_wlength', 0),
 	array('Max number of lines in a comment', 'max_com_lines', 0),
 	array('Maximum length of a comment', 'max_com_size', 0),
+        array('Show film strip', 'display_film_strip', 1),  //new in cpg1.2.0
+        array('Number of items in film strip', 'max_film_strip_items', 0), 
 
 	'Pictures and thumbnails settings',
 	array('Quality for JPEG files', 'jpeg_qual', 0),
-	array('Max width or height of a thumbnail <b>*</b>', 'thumb_width', 0),
+        array('Max dimension of a thumbnail <b>*</b>', 'thumb_width', 0),  //new in cpg1.2.0
+        array('Use dimension ( width or height or Max aspect for thumbnail )<b>*</b>', 'thumb_use', 7),  //new in cpg1.2.0
 	array('Create intermediate pictures','make_intermediate',1),
 	array('Max width or height of an intermediate picture <b>*</b>', 'picture_width', 0),
 	array('Max size for uploaded pictures (KB)', 'max_upl_size', 0),
@@ -361,6 +388,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Field 4 name', 'user_field4_name', 0),
 
 	'Pictures and thumbnails advanced settings',
+        array('Show private album Icon to unlogged user','show_private',1),  //new in cpg1.2.0
 	array('Characters forbidden in filenames', 'forbiden_fname_char',0),
 	array('Accepted file extensions for uploaded pictures', 'allowed_file_extensions',0),
 	array('Method for resizing images','thumb_method',2),
@@ -374,6 +402,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('The prefix for thumbnails <b>*</b>', 'thumb_pfx', 0),
 	array('Default mode for directories', 'default_dir_mode', 0),
 	array('Default mode for pictures', 'default_file_mode', 0),
+        array('Disable right-click on full-size pop-up (JavaScript - no foolproof method)', 'disable_popup_rightclick', 1),  //new in cpg1.2.0
+        array('Disable right-click on all "regular" pages (JavaScript - no foolproof method)', 'disable_gallery_rightclick', 1),  //new in cpg1.2.0
 
 	'Cookies &amp; Charset settings',
 	array('Name of the cookie used by the script', 'cookie_name', 0),
@@ -478,14 +508,23 @@ $lang_picinfo = array(
 	'Exposure time' => 'Exposure time',
 	'Focal length' => 'Focal length',
 	'Comment' => 'Comment'
+        'addFav'=>'Add to Fav',  //new in cpg1.2.0
+        'addFavPhrase'=>'Favourites',  //new in cpg1.2.0
+        'remFav'=>'Remove from Fav',  //new in cpg1.2.0
 );
 
 $lang_display_comments = array(
 	'OK' => 'OK',
-	'edit_title' => 'Отредактировать',
-	'confirm_delete' => 'Точно удалить ?',
-	'add_your_comment' => 'Прокомментировать',
-	'your_name' => 'Ваше имя',
+	'edit_title' => 'Îòðåäàêòèðîâàòü',
+	'confirm_delete' => 'Òî÷íî óäàëèòü ?',
+	'add_your_comment' => 'Ïðîêîììåíòèðîâàòü',
+        'name'=>'Name',  //new in cpg1.2.0
+        'comment'=>'Comment',  //new in cpg1.2.0
+	'your_name' => 'Âàøå èìÿ',
+);
+
+$lang_fullsize_popup = array( 
+        'click_to_close' => 'Click image to close this window',  //new in cpg1.2.0
 );
 
 }
@@ -495,21 +534,21 @@ $lang_display_comments = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array(
-	'title' => 'Послать открытку',
-	'invalid_email' => '<b>Внимание</b> : непрвильный адрес мыла !',
-	'ecard_title' => 'Для Вас открытка от %s',
-	'view_ecard' => 'Если открытк не отображена правильно, жмите сюда',
+	'title' => 'Ïîñëàòü îòêðûòêó',
+	'invalid_email' => '<b>Âíèìàíèå</b> : íåïðâèëüíûé àäðåñ ìûëà !',
+	'ecard_title' => 'Äëÿ Âàñ îòêðûòêà îò %s',
+	'view_ecard' => 'Åñëè îòêðûòê íå îòîáðàæåíà ïðàâèëüíî, æìèòå ñþäà',
 	'view_more_pics' => 'Click this link to view more PICTURE !',
 	'send_success' => 'Your ecard was sent',
 	'send_failed' => 'Sorry but the server can\'t send your e-card...',
-	'from' => 'От',
-	'your_name' => 'Ваше имя',
-	'your_email' => 'Ваш е-мейл',
-	'to' => 'Кому',
-	'rcpt_name' => 'Имя получателя',
-	'rcpt_email' => 'Е-мейл получателя',
-	'greetings' => 'Заголовок',
-	'message' => 'Сообщение',
+	'from' => 'Îò',
+	'your_name' => 'Âàøå èìÿ',
+	'your_email' => 'Âàø å-ìåéë',
+	'to' => 'Êîìó',
+	'rcpt_name' => 'Èìÿ ïîëó÷àòåëÿ',
+	'rcpt_email' => 'Å-ìåéë ïîëó÷àòåëÿ',
+	'greetings' => 'Çàãîëîâîê',
+	'message' => 'Ñîîáùåíèå',
 );
 
 // ------------------------------------------------------------------------- //
@@ -581,7 +620,7 @@ $lang_album_admin_menu = array(
 
 $lang_list_categories = array(
 	'home' => 'Home',
-	'stat1' => '<b>[pictures]</b> фоток в <b>[albums]</b> альбомах и <b>[cat]</b> катерогиях с <b>[comments]</b> коментариями. Просмотрено <b>[views]</b> раз',
+	'stat1' => '<b>[pictures]</b> ôîòîê â <b>[albums]</b> àëüáîìàõ è <b>[cat]</b> êàòåðîãèÿõ ñ <b>[comments]</b> êîìåíòàðèÿìè. Ïðîñìîòðåíî <b>[views]</b> ðàç',
 	'stat2' => '<b>[pictures]</b> pictures in <b>[albums]</b> albums viewed <b>[views]</b> times',
 	'xx_s_gallery' => '%s\'s Gallery',
 	'stat3' => '<b>[pictures]</b> pictures in <b>[albums]</b> albums with <b>[comments]</b> comments viewed <b>[views]</b> times'
@@ -607,13 +646,13 @@ $lang_list_albums = array(
 
 if (defined('LOGIN_PHP')) $lang_login_php = array(
 	'login' => 'Login',
-	'enter_login_pswd' => 'Введите Ваше имя пользователя и пароль',
-	'username' => 'Имя пользователя',
-	'password' => 'Пароль',
-	'remember_me' => 'Запомнить меня',
-	'welcome' => 'Добро пожаловать %s ...',
-	'err_login' => '*** Неполучается. Попробуйте еще раз ***',
-	'err_already_logged_in' => 'Вы уже внутри :) !',
+	'enter_login_pswd' => 'Ââåäèòå Âàøå èìÿ ïîëüçîâàòåëÿ è ïàðîëü',
+	'username' => 'Èìÿ ïîëüçîâàòåëÿ',
+	'password' => 'Ïàðîëü',
+	'remember_me' => 'Çàïîìíèòü ìåíÿ',
+	'welcome' => 'Äîáðî ïîæàëîâàòü %s ...',
+	'err_login' => '*** Íåïîëó÷àåòñÿ. Ïîïðîáóéòå åùå ðàç ***',
+	'err_already_logged_in' => 'Âû óæå âíóòðè :) !',
 );
 
 // ------------------------------------------------------------------------- //
@@ -621,9 +660,9 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('LOGOUT_PHP')) $lang_logout_php = array(
-	'logout' => 'Выйти',
-	'bye' => 'Пока %s ...',
-	'err_not_loged_in' => 'Ну вот ты ...$%^& и вышел !',
+	'logout' => 'Âûéòè',
+	'bye' => 'Ïîêà %s ...',
+	'err_not_loged_in' => 'Íó âîò òû ...$%^& è âûøåë !',
 );
 
 // ------------------------------------------------------------------------- //
@@ -659,8 +698,8 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
-	'already_rated' => 'Держи жулика! Вы уже голосовали',
-	'rate_ok' => 'Спасибо за голос',
+	'already_rated' => 'Äåðæè æóëèêà! Âû óæå ãîëîñîâàëè',
+	'rate_ok' => 'Ñïàñèáî çà ãîëîñ',
 );
 
 // ------------------------------------------------------------------------- //
@@ -670,33 +709,33 @@ if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
-Кароче админ сайта это Big_Boss. Так что ругайте его :)
+Êàðî÷å àäìèí ñàéòà ýòî Big_Boss. Òàê ÷òî ðóãàéòå åãî :)
 EOT;
 
 $lang_register_php = array(
-	'page_title' => 'Регистрация пользователя',
-	'term_cond' => 'Это можно не читать :)',
-	'i_agree' => 'Согласен',
-	'submit' => 'Понеслась регистрация',
-	'err_user_exists' => 'Блин такое имя уже есть. Придется выбрать другое',
-	'err_password_mismatch' => 'Пароли не совпадают. Попробуйте снова',
-	'err_uname_short' => 'Имя должно быть минимум 2 буквы',
-	'err_password_short' => 'Пароль минимум 2 символа',
-	'err_uname_pass_diff' => 'Имя и пароль должны быть разные',
-	'err_invalid_email' => 'Неправильный емайл',
-	'err_duplicate_email' => 'Хммм... подозрительно этот емайл я еже видел. Не катит!',
-	'enter_info' => 'Введите информацию',
-	'required_info' => 'Необходимо',
-	'optional_info' => 'По желанию',
-	'username' => 'Имя пользователя',
-	'password' => 'Пароль',
-	'password_again' => 'Еще раз пароль',
-	'email' => 'Емайл',
-	'location' => 'Месторасположение',
-	'interests' => 'Интересы',
-	'website' => 'Сайт',
-	'occupation' => 'Род деятельности',
-	'error' => 'ОШИБКА',
+	'page_title' => 'Ðåãèñòðàöèÿ ïîëüçîâàòåëÿ',
+	'term_cond' => 'Ýòî ìîæíî íå ÷èòàòü :)',
+	'i_agree' => 'Ñîãëàñåí',
+	'submit' => 'Ïîíåñëàñü ðåãèñòðàöèÿ',
+	'err_user_exists' => 'Áëèí òàêîå èìÿ óæå åñòü. Ïðèäåòñÿ âûáðàòü äðóãîå',
+	'err_password_mismatch' => 'Ïàðîëè íå ñîâïàäàþò. Ïîïðîáóéòå ñíîâà',
+	'err_uname_short' => 'Èìÿ äîëæíî áûòü ìèíèìóì 2 áóêâû',
+	'err_password_short' => 'Ïàðîëü ìèíèìóì 2 ñèìâîëà',
+	'err_uname_pass_diff' => 'Èìÿ è ïàðîëü äîëæíû áûòü ðàçíûå',
+	'err_invalid_email' => 'Íåïðàâèëüíûé åìàéë',
+	'err_duplicate_email' => 'Õììì... ïîäîçðèòåëüíî ýòîò åìàéë ÿ åæå âèäåë. Íå êàòèò!',
+	'enter_info' => 'Ââåäèòå èíôîðìàöèþ',
+	'required_info' => 'Íåîáõîäèìî',
+	'optional_info' => 'Ïî æåëàíèþ',
+	'username' => 'Èìÿ ïîëüçîâàòåëÿ',
+	'password' => 'Ïàðîëü',
+	'password_again' => 'Åùå ðàç ïàðîëü',
+	'email' => 'Åìàéë',
+	'location' => 'Ìåñòîðàñïîëîæåíèå',
+	'interests' => 'Èíòåðåñû',
+	'website' => 'Ñàéò',
+	'occupation' => 'Ðîä äåÿòåëüíîñòè',
+	'error' => 'ÎØÈÁÊÀ',
 	'confirm_email_subject' => '%s - Registration confirmation',
 	'information' => 'Information',
 	'failed_sending_email' => 'The registration confirmation email can\'t be send !',
@@ -805,6 +844,21 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 // Void
 
 
+// ------------------------------------------------------------------------- // 
+// File banning.php  //new in cpg1.2.0
+// ------------------------------------------------------------------------- // 
+
+if (defined('BANNING_PHP')) $lang_banning_php = array( 
+                'title' => 'Ban Users', 
+                'user_name' => 'User Name', 
+                'ip_address' => 'IP Address', 
+                'expiry' => 'Expires (blank is permanent)', 
+                'edit_ban' => 'Save Changes', 
+                'delete_ban' => 'Delete', 
+                'add_new' => 'Add New Ban', 
+                'add_ban' => 'Add', 
+); 
+
 // ------------------------------------------------------------------------- //
 // File upload.php
 // ------------------------------------------------------------------------- //
@@ -865,4 +919,57 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 	'user_interests' => 'User interests',
 	'user_occupation' => 'User occupation',
 );
+
+
+// ------------------------------------------------------------------------- // 
+// File util.php  //new in cpg1.2.0
+// ------------------------------------------------------------------------- // 
+
+if (defined('UTIL_PHP')) $lang_util_php = array( 
+        'title' => 'Resize pictures', 
+        'what_it_does' => 'What it does', 
+        'what_update_titles' => 'Updates titles from filename', 
+        'what_delete_title' => 'Deletes titles', 
+        'what_rebuild' => 'Rebuilds thumbnails and resized photos', 
+        'what_delete_originals' => 'Deletes original sized photos replacing them with the sized version', 
+        'file' => 'File', 
+        'title_set_to' => 'title set to', 
+        'submit_form' => 'submit', 
+        'updated_succesfully' => 'updated succesfully', 
+        'error_create' => 'ERROR creating', 
+        'continue' => 'Process more images', 
+        'main_success' => 'The file %s was successfully used as main picture', 
+        'error_rename' => 'Error renaming %s to %s', 
+        'error_not_found' => 'The file %s was not found', 
+        'back' => 'back to main', 
+        'thumbs_wait' => 'Updating thumbnails and/or resized images, please wait...', 
+        'thumbs_continue_wait' => 'Continuing to update thumbnails and/or resized images...', 
+        'titles_wait' => 'Updating titles, please wait...', 
+        'delete_wait' => 'Deleting titles, please wait...', 
+        'replace_wait' => 'Deleting originals and replacing them with resized images, please wait..', 
+        'instruction' => 'Quick instructions', 
+        'instruction_action' => 'Select action', 
+        'instruction_parameter' => 'Set parameters', 
+        'instruction_album' => 'Select album', 
+        'instruction_press' => 'Press %s', 
+        'update' => 'Update thumbs and/or resized photos', 
+        'update_what' => 'What should be updated', 
+        'update_thumb' => 'Only thumbnails', 
+        'update_pic' => 'Only resized pictures', 
+        'update_both' => 'Both thumbnails and resized pictures', 
+        'update_number' => 'Number of processed images per click', 
+        'update_option' => '(Try setting this option lower if you experience timeout problems)', 
+        'filename_title' => 'Filename ⇒ Picture title', 
+        'filename_how' => 'How should the filename be modified', 
+        'filename_remove' => 'Remove the .jpg ending and replace _ (underscore) with spaces', 
+        'filename_euro' => 'Change 2003_11_23_13_20_20.jpg to 23/11/2003 13:20', 
+        'filename_us' => 'Change 2003_11_23_13_20_20.jpg to 11/23/2003 13:20', 
+        'filename_time' => 'Change 2003_11_23_13_20_20.jpg to 13:20', 
+        'delete' => 'Delete picture titles or original size photos', 
+        'delete_title' => 'Delete picture titles', 
+        'delete_original' => 'Delete original size photos', 
+        'delete_replace' => 'Deletes the original images replacing them with the sized versions', 
+        'select_album' => 'Select album', 
+); 
+
 ?>
