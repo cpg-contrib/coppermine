@@ -17,3 +17,15 @@ INSERT INTO CPG_config VALUES ('comment_email_notification', '0');
 ALTER TABLE `CPG_pictures` ADD `description` VARCHAR( 255 ) NOT NULL AFTER `caption` ;
 INSERT INTO CPG_config VALUES ('disable_popup_rightclick', '0');
 INSERT INTO CPG_config VALUES ('disable_gallery_rightclick', '0');
+
+#
+# Table structure for table `CPG_banned`
+#
+
+CREATE TABLE CPG_banned (
+	ban_id int(11) NOT NULL auto_increment,
+	user_id int(11) DEFAULT NULL,
+	ip_addr tinytext DEFAULT NULL,
+	expiry datetime DEFAULT NULL,
+	PRIMARY KEY  (ban_id)
+) TYPE=MyISAM;

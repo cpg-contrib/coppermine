@@ -155,6 +155,7 @@ $CONFIG['TABLE_CONFIG']		= $CONFIG['TABLE_PREFIX']."config";
 $CONFIG['TABLE_USERGROUPS']	= $CONFIG['TABLE_PREFIX']."usergroups";
 $CONFIG['TABLE_VOTES']		= $CONFIG['TABLE_PREFIX']."votes";
 $CONFIG['TABLE_USERS']		= $CONFIG['TABLE_PREFIX']."users";
+$CONFIG['TABLE_BANNED']	= $CONFIG['TABLE_PREFIX']."banned";
 
 // User DB system
 if(defined('UDB_INTEGRATION')) require 'bridge/'.UDB_INTEGRATION.'.inc.php';
@@ -285,6 +286,20 @@ if (isset($HTTP_COOKIE_VARS[$CONFIG['cookie_name'].'_fav'])) {
 
 // load the main template
 load_template();
+
+// Remove expired bans
+$now = time();
+db_query("DELETE FROM {$CONFIG['TABLE_BANNED']} WHERE expiry < $now");
+
+// Check if the user is banned
+$result = db_query("SELECT * FROM {$CONFIG['TABLE_BANNED']} WHERE ip_addr='$raw_ip' OR ip_addr='$hdr_ip'");
+if (mysql_num_rows($result)) {
+	 pageheader($lang_error);
+	msg_box('', $lang_errors['banned']);
+	pagefooter();
+    exit;
+}
+mysql_free_result($result);
 
 // Retrieve the "private" album set
 if (!GALLERY_ADMIN_MODE && $CONFIG['allow_private_albums']) get_private_album_set();

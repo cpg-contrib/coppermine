@@ -85,7 +85,9 @@ $lang_errors = array(
         'orphan_cat' => 'A category has a non-existing parent, runs the category manager to correct the problem.',
         'directory_ro' => 'Directory \'%s\' is not writable, pictures can\'t be deleted',
         'non_exist_comment' => 'The selected comment does not exist.',
-        'pic_in_invalid_album' => 'Picture is in a non existant album (%s)!?'
+        'pic_in_invalid_album' => 'Picture is in a non existant album (%s)!?',
+        'banned' => 'You are currently banned from using this site.',
+        'not_with_udb' => 'This function is disabled in Coppermine because it is integrated with forum software. Either what you are trying to do is not supported in this configuration, or the function should be handled by the forum software.',
 );
 
 // ------------------------------------------------------------------------- //
@@ -854,6 +856,20 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 
 // Void
 
+// ------------------------------------------------------------------------- //
+// File banning.php
+// ------------------------------------------------------------------------- //
+
+if (defined('BANNING_PHP')) $lang_banning_php = array(
+		'title' => 'Ban Users',
+		'user_name' => 'User Name',
+		'ip_address' => 'IP Address',
+		'expiry' => 'Expires (blank is permanent)',
+		'edit_ban' => 'Save Changes',
+		'delete_ban' => 'Delete',
+		'add_new' => 'Add New Ban',
+		'add_ban' => 'Add',
+);
 
 // ------------------------------------------------------------------------- //
 // File upload.php

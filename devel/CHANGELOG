@@ -22,3 +22,4 @@ Added 'no right-click' admin option (I know this is childish but has been reques
 IP Logging now on picture uploads - 30th September 2003, Jack
 fixed improper html tags in hardwired theme - 1st October, GauGau
 added version info to html output (above </body>) for easier support - 1st October, GauGau
+Added basic banning functionality  - no theme button yet, doesn't do username based banning & expiry date entry still krufty - 2nd October, 2003,

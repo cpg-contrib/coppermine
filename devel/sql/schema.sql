@@ -169,4 +169,17 @@ CREATE TABLE CPG_votes (
   vote_time int(11) NOT NULL default '0',
   PRIMARY KEY  (pic_id,user_md5_id)
 ) TYPE=MyISAM;
+#---------------------------------------------------------
+
+#
+# Table structure for table `CPG_banned`
+#
+
+CREATE TABLE CPG_banned (
+	ban_id int(11) NOT NULL auto_increment,
+	user_id int(11) DEFAULT NULL,
+	ip_addr tinytext DEFAULT NULL,
+	expiry datetime DEFAULT NULL,
+	PRIMARY KEY  (ban_id)
+) TYPE=MyISAM;
 

@@ -870,6 +870,26 @@ function get_username($uid)
         }
 }
 
+// Return the ID of a user
+function get_userid($username)
+{
+        global $CONFIG;
+
+        $username = addslashes($username);
+
+        if (!$username) {
+            return 0;
+//        } elseif (defined('UDB_INTEGRATION')) {
+//           return udb_get_user_name($uid);
+        } else {
+                $result = db_query("SELECT user_id FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '".$username."'");
+                if (mysql_num_rows($result) == 0) return 0;
+                $row = mysql_fetch_array($result);
+                mysql_free_result($result);
+                return $row['user_id'];
+        }
+}
+
 // Return the total number of comments for a certain picture
 function count_pic_comments($pid, $skip=0)
 {
