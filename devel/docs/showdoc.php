@@ -41,7 +41,7 @@ $text = @unserialize(@base64_decode($text));
 }
 
 if ($close != 1) {
-$close_link = '<br />&nbsp;<br /><div align="center"><a href="#" class="admin_menu" onclick="window.close();">close</a><br />&nbsp;</div>';
+$close_link = '<br />&nbsp;<br /><div align="center"><a href="#" class="admin_menu" onclick="window.close();">Close</a><br />&nbsp;</div>';
 }
 
 
@@ -103,12 +103,12 @@ if ($string == '' && $header == '') {
 */
 
 if ($add_stylesheet) {
-    $string = "<html>\n<head>\n<title>Help</title>\n" . '<link rel="stylesheet" href="../themes/'.$add_stylesheet.'/style.css" />' . "\n</head>\n<body>\n" . $string;
-    $string .= $close_link."\n</body>\n</html>";
+    $string = "<html>\n<head>\n<title>Help</title>\n" . '<link rel="stylesheet" href="../themes/'.$add_stylesheet.'/style.css" />' . "\n</head>\n<body>\n<div style=\"padding: 5px;\">\n" . $string;
+    $string .= $close_link."\n</div>\n</body>\n</html>";
 }
 
 if ($header) {
-$string = "<html>\n<head>\n<title>".$header."</title>\n" . '<link rel="stylesheet" href="../themes/'.$add_stylesheet.'/style.css" />' . "\n</head>\n<body>\n<h1>" . $header . "</h1>\n" . $text . "\n".$close_link."\n</body>\n</html>";
+$string = "<html>\n<head>\n<title>".$header."</title>\n" . '<link rel="stylesheet" href="../themes/'.$add_stylesheet.'/style.css" />' . "\n</head>\n<body>\n<h1>" . $header . "</h1>\n<div style=\"padding: 5px;\">\n" . $text . "\n".$close_link."\n</div>\n</body>\n</html>";
 }
 
 
