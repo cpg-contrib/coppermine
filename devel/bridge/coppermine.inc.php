@@ -44,7 +44,7 @@ class cpg_udb extends core_udb {
                 // A hash that's a little specific to the client's configuration
                 $this->client_id = md5($_SERVER['HTTP_USER_AGENT'].$_SERVER['SERVER_PROTOCOL'].$CONFIG['site_url']);
 
-                $this->multigroups = 0;
+                $this->multigroups = 1;
 
                 $this->group_overrride = !$this->use_post_based_groups;
 
@@ -166,20 +166,29 @@ class cpg_udb extends core_udb {
         // Get groups of which user is member
         function get_groups($row)
         {
-                $i = 1;
-                $data[0] = in_array($row['group_id'] - 100, $this->admingroups) ? $i : 2;
 
-                if ($this->use_post_based_groups){
-                        $sql = "SELECT ug.{$this->field['usertbl_group_id']}+100 AS group_id FROM {$this->usertable} AS u, {$this->groupstable} as g WHERE u.{$this->field['user_id']}='{$row[$this->field['user_id']]}' AND g.{$this->field['grouptbl_group_id']} = u.{$this->field['usertbl_group_id']}";
+                $group_list = in_array($row['group_id'] - 100, $this->admingroups) ? 1 : 2;
 
-                        $result = cpg_db_query($sql, $this->link_id);
+                $sql = "SELECT user_group_list FROM {$this->usertable} AS u WHERE {$this->field['user_id']}='{$row['id']}' and user_group_list <> '';";
 
-                        while ($row = mysql_fetch_array($result)) {
-                                $data[] = $row['group_id'];
+                $result = cpg_db_query($sql, $this->link_id);
+
+                if ( $row = mysql_fetch_array($result) ) {
+
+                        if ($row['user_group_list']) {
+                                $group_list .= ','.$row['user_group_list'];
                         }
+
+                        mysql_free_result($result);
                 }
 
-                return $data;
+                $all_groups = explode(',',$group_list);
+                
+                if ( $admin_groups = array_intersect($this->admingroups, $all_groups) ) {
+                        $all_groups[0] = 1;
+                }        
+
+                return $all_groups;
         }
 
 
