@@ -227,33 +227,28 @@ li {
 <p></p>
 
 <h2>Upgrading from version 1.0</h2>
-<!--<p>If you already have installed version 1.0 and you want to transfer your albums
-  to version 1.1 proceed in the following way:</p>
+
+<p>If you already have installed version 1.0 and you want to transfer your albums
+  to version 1.2 proceed in the following way:</p>
 <ul>
-  <li> Install version 1.1 normally in a directory different from the one where
+  <li> Install version 1.2 normally in a directory different from the one where
     you installed v 1.0. Note that in order to use the upgrade script, <b>tables
-    for version 1.0 and 1.1 must be stored in the same database</b>.</li>
+    for version 1.0 and 1.2 must be stored in the same database</b>.</li>
   <li>Copy the &quot;<b>albums</b>&quot; directory of version 1.0 into the directory
-    where you installed version 1.1</li>
-  <li>Get the upgrade script that you can download <a href="http://chez.greg.free.fr/downloads/upgrade-1.0-to-1.1.zip">here</a>.</li>
-  <li>Unpack and upload the file to your server in the directory where you installed
-    version 1.1</li>
+    where you installed version 1.2</li>
   <li>The upgrade script assumes that you used the &quot;<b>CPG_</b>&quot; prefix
     for tables (default value) when you installed version 1.0, if this is not
-    the case, edit the PHP file and put the correct value inside.</li>
-  <li>Login, enter the admin mode</li>
-  <li>Call the upgrade script http://yousitename/coppermine_dir/upgrade-1.0-to-1.1.php</li>
-  <li>If you don't get any error you're done. <b>Delete the file from your server</b>.
-    If you get an error, go to Coppermine 1.1 config page, enable debug mode,
+    the case, edit upgrade-1.0-to-1.2.php and edit the $prefix10 variable.</li>
+  <li>Login to your 1.2 Gallery, enter the admin mode</li>
+  <li>Call the upgrade script, http://yousitename/coppermine_dir/upgrade-1.0-to-1.2.php</li>
+  <li><b>The upgrade from 1.0 to 1.2 is a two-step process.</b> You must click the link which comes up on the bottom of the page to complete the upgrade!.</li>
+	<li><b>Delete upgrade-1.0-to-1.2.php from your server</b>.
+  <li>If you get an error, go to Coppermine 1.2 config page, enable debug mode,
     try to call the upgrade script again and check what errors you get.</li>
 </ul>
-<p> <b>This upgrade process leave your v1.0 gallery untouched </b></p>-->
+<p> <b>This upgrade process leaves your v1.0 gallery untouched </b></p>
 
 <h2>Upgrading from releases of version 1.1</h2>
-<!--<p>Unpack the archive, delete the file <b>config.inc.php</b> that may possibly
-  exist in the <b>&quot;include&quot;</b> directory and the file <b>install.php</b>
-  (you don't need to run the install script when doing an upgrade). Upload the
-  new files to your server overwriting the existing ones</p>-->
 	<ul>
 		<li>Backup your include/config.inc.php file and your "albums" directoy.</li>
 		<li>Unpack the archive</li>
