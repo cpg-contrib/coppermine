@@ -64,16 +64,25 @@ class CPGPluginAPI {
         // Register plugin_sleep action for shutdown
         register_shutdown_function(array('CPGPluginAPI','sleep'));
 
+        // Used as a failsafe to keep plugins in order
+        $index = 0;
+
         // Get the plugin properties from the database
         while ($plugin = mysql_fetch_assoc($result)) {
 
-            //CPGPluginAPI::wakeup($plugin);
+            // If config and codebase files aren't present, skip this plugin.
+            if (!file_exists('./plugins/'.$plugin['path'].'/codebase.php') &&
+                !file_exists('./plugins/'.$plugin['path'].'/config.php')) {
+                continue;
+            }
+
+            $plugin['index'] = $index;
 
             $CPG_PLUGINS[$plugin['plugin_id']] = new CPGPlugin($plugin);
 
             $thisplugin =& $CPG_PLUGINS[$plugin['plugin_id']];
 
-            require ('./plugins/'.$thisplugin->path.'/codebase.php');
+            include ('./plugins/'.$thisplugin->path.'/codebase.php');
 
             // Check if plugin has a wakeup action
             if (!($thisplugin->awake = CPGPluginAPI::action('plugin_wakeup',true))) {
@@ -83,14 +92,14 @@ class CPGPluginAPI {
                     log_write("Couldn't wake plugin '".$thisplugin->name."' at ".date("F j, Y, g:i a"),CPG_GLOBAL_LOG);
                 }
 
-                // Die if plugin's wakeup action failed
-                // cpg_die(CRITICAL_ERROR, "Couldn't wake plugin '{$thisplugin->name}'",__FILE__,__LINE__);
                 $thisplugin->filters = array();
                 $thisplugin->actions = array();
                 if (!isset($thisplugin->error['desc']) || is_null($thisplugin->error['desc'])) {
                     $thisplugin->error['desc'] = "Couldn't wake plugin '{$thisplugin->name}'";
                 }
             }
+            
+            $index++;
         }
         mysql_free_result($result);
     }
@@ -245,6 +254,7 @@ class CPGPluginAPI {
 
             // Skip this plugin; the key isn't set
             if (!isset($thisplugin->actions[$key]) || (!$thisplugin->awake)) {
+
                  return $value;
             }
 
@@ -323,7 +333,7 @@ class CPGPluginAPI {
 
 
         // Include the plugin's code into Coppermine
-        require ('./plugins/'.$thisplugin->path.'/codebase.php');
+        include ('./plugins/'.$thisplugin->path.'/codebase.php');
 
         return;
     }
@@ -370,6 +380,17 @@ class CPGPluginAPI {
     function install($path) {
         global $CONFIG,$thisplugin,$CPG_PLUGINS,$lang_plugin_api;
 
+        // If this plugin is already installed return true
+        if (CPGPluginAPI::installed($path)) {
+            return true;
+        }
+
+        // If the codebase and config.php file is missing return false
+        if (!file_exists('./plugins/'.$path.'/codebase.php') &&
+            !file_exists('./plugins/'.$path.'/config.php')) {
+            return false;
+        }
+
         // Get the lowest priority level (highest number) from the database
         $sql = 'select priority from '.$CONFIG['TABLE_PLUGINS'].' order by priority desc limit 1;';
         $result = cpg_db_query($sql);
@@ -380,27 +401,22 @@ class CPGPluginAPI {
         // Set the execution priority to last
         $priority = (is_null($data['priority'])) ? (0) : ($data['priority']+1);
 
-        if (CPGPluginAPI::installed($path)) {
-            return true;
-        }
-
-
         // Grab the plugin's credits
-        require_once ('./plugins/'.$path.'/credits.php');
+        include_once ('./plugins/'.$path.'/credits.php');
 
         // Create a generic plugin object
         $thisplugin = new CPGPlugin(
                                     array(
                                           'plugin_id' => 'new',
                                           'name' => $name,
-                                          'priority' => 1000000,
+                                          'priority' => $priority,
                                           'path' => $path
                                          )
                                     );
         $thisplugin->awake = true;
 
         // Grab plugin's code
-        require_once ('./plugins/'.$path.'/codebase.php');
+        include_once ('./plugins/'.$path.'/codebase.php');
 
         // Copy it to the global scope
         $CPG_PLUGINS['new'] = $thisplugin;
@@ -450,7 +466,7 @@ class CPGPluginAPI {
         global $CONFIG,$USER_DATA,$CPG_PLUGINS,$thisplugin,$lang_plugin_api;
 
         if (!isset($CPG_PLUGINS[$plugin_id])) {
-            return;
+            return true;
         }
 
         // Grab the plugin from the global scope
@@ -460,9 +476,10 @@ class CPGPluginAPI {
         $priority = $thisplugin->priority;
 
         // If plugin has an uninstall action, execute it
-        $uninstalled = CPGPluginAPI::action('plugin_uninstall',true);
+        $uninstalled = CPGPluginAPI::action('plugin_uninstall',true,$plugin_id);
 
         if (is_bool($uninstalled) && $uninstalled) {
+
             $sql = 'delete from '.$CONFIG['TABLE_PLUGINS'].' '.
                    'where plugin_id='.$plugin_id.';';
             $result = cpg_db_query($sql);
@@ -470,6 +487,8 @@ class CPGPluginAPI {
             // Shift the plugins up
             $sql = 'update '.$CONFIG['TABLE_PLUGINS'].' set priority=priority-1 where priority>'.$priority.';';
             $result = cpg_db_query($sql);
+
+            unset($CPG_PLUGINS[$plugin_id]);
 
             if ($CONFIG['log_mode']) {
                 log_write("Plugin '".$name."' uninstalled at ".date("F j, Y, g:i a"),CPG_GLOBAL_LOG);

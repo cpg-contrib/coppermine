@@ -737,7 +737,7 @@ if (isset($_GET['file'])) {
     $path = './plugins/'.$file.'.php';
 
     // Don't include the codebase and credits files
-    if ($file != 'codebase' && $file != 'credits' && file_exists($path)) {
+    if ($file != 'codebase' && $file != 'config' && file_exists($path)) {
 
         // Include the code from the plugin
         include_once($path);

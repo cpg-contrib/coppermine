@@ -40,9 +40,11 @@ $thisplugin->add_filter('page_html','sef_urls_convert');
  */
 function sef_urls_convert(&$html) {
 
+    // Rewrite index.php?cat=[category]&page=[page] URLs to index-[category]-page-[page].html
+    $html = preg_replace('/index\.php\?cat=([0-9]+)(\&|\&amp;)page=([0-9]+)/i','index-$1-page-$3.html',$html);
+
     // Rewrite index.php?cat=[category] URLs to index-[category].html
     $html = preg_replace('/index\.php\?cat=([0-9]+)/i','index-$1.html',$html);
-
 
     // Rewrite thumnails.php?album=[album]&cat=[category] URLs to thumbnails-[album]-[category].html
     $html = preg_replace('/thumbnails\.php\?album=([a-z0-9]+)(\&|\&amp;)cat=([0-9]+)/i','thumbnails-$1-$3.html',$html);
@@ -192,7 +194,7 @@ function sef_urls_uninstall() {
     } elseif (file_exists('.htaccess') && !isset($delete)) {
         return 1;
 
-    // User has click 'no' on the cleanup form. Uninstall plugin. Don't delete '.htaccess' file
+    // User has clicked 'no' on the cleanup form. Uninstall plugin. Don't delete '.htaccess' file
     } else {
         return true;
     }

@@ -50,7 +50,7 @@ EOT;
     $installed_count = 0;
     foreach ($CPG_PLUGINS as $thisplugin) {
         $installed_count++;
-        require('./plugins/'.$thisplugin->path.'/credits.php');
+        include('./plugins/'.$thisplugin->path.'/config.php');
 
         $safename = addslashes(str_replace('&nbsp;', '', $name));
         $extra = (isset($install_info)) ? ($install_info):(null);
@@ -78,7 +78,7 @@ EOT;
                 </table>
             </td>
 EOT;
-        if ($thisplugin->priority > 0 && count($CPG_PLUGINS) > 1) {
+        if ($thisplugin->index > 0 && count($CPG_PLUGINS) > 1) {
             echo <<<EOT
             <td class="tableb" width="3%" align="center" valign="middle">
                 <a href="pluginmgr.php?op=moveu&p={$thisplugin->plugin_id}"><img src="images/up.gif"  border="0" alt="" /></a>
@@ -88,7 +88,7 @@ EOT;
             echo '<td class="tableb" width="3%"><img src="images/spacer.gif" width="16" height="16" /></td>';
         }
 
-        if ($thisplugin->priority < (count($CPG_PLUGINS)-1)) {
+        if ($thisplugin->index < (count($CPG_PLUGINS)-1)) {
             echo <<<EOT
             <td class="tableb" width="3%" align="center" valign="middle">
                 <a href="pluginmgr.php?op=moved&p={$thisplugin->plugin_id}"><img src="images/down.gif"  border="0" alt="" /></a>
@@ -139,12 +139,12 @@ EOT;
     foreach ($available_plugins as $path) {
         if (($plugin_id = CPGPluginAPI::installed($path))===false) {
 
-            // If codebase.php and credits.php don't exist, skip this folder
-            if (!(file_exists('./plugins/'.$path.'/codebase.php') && file_exists('./plugins/'.$path.'/credits.php'))) {
+            // If codebase.php and config.php don't exist, skip this folder
+            if (!(file_exists('./plugins/'.$path.'/codebase.php') && file_exists('./plugins/'.$path.'/config.php'))) {
                 continue;
             }
 
-            require('./plugins/'.$path.'/credits.php');
+            include('./plugins/'.$path.'/config.php');
 
             $safename = addslashes(str_replace('&nbsp;', '', $name));
             $extra = (isset($extra_info)) ? ($extra_info):(null);

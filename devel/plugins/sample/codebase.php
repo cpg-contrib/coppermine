@@ -28,11 +28,19 @@ $thisplugin->add_action('plugin_configure','sample_configure');
 // Add a filter for the gallery header
 $thisplugin->add_filter('gallery_header','sample_header');
 
+$thisplugin->add_filter('plugin_block','sample_block_mgr');
+
+
 // Sample function to modify gallery header html
 function sample_header($html) {
     global $thisplugin;
     return '<p style="color:red;"><b>This is sample data returned from plugin "'.$thisplugin->name.'".</b></p>'.$html;
 }
+
+function sample_block_mgr($block) {
+    return $block;
+}
+
 
 // Install function
 // Checks if uid is 'me' and pwd is 'you'; If so, then install the plugin
