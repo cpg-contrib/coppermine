@@ -94,7 +94,7 @@ if (rand(1,100) < 25){
 $d = opendir(IMG_DIR);
 
         while ($file = readdir($d)){
-                if (is_file(IMG_DIR.$file) && ((time() - filemtime(IMG_DIR.$file))/60) > 60  ){
+                if (is_file(IMG_DIR.$file) && ((time() - filemtime(IMG_DIR.$file))/60) > 60 && $file !="index.html" ){
                         @unlink(IMG_DIR.$file);
                 }
 
