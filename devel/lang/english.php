@@ -26,7 +26,6 @@ $lang_translation_info = array(
 'trans_name'=> 'Gregory Demar', //the name of the translator - can be a nickname
 'trans_email' => 'gdemar@wanadoo.fr', //translator's email address (optional)
 'trans_website' => 'http://www.chezgreg.net/', //translator's website (optional)
-);
 'trans_date' => '2003-04-20', //the date the translation was created / last modified
 );
 
@@ -130,6 +129,7 @@ $lang_gallery_admin_menu = array(
         'comments_lnk' => 'Comments',
         'searchnew_lnk' => 'Batch add pictures',
         'util_lnk' => 'Resize pictures',
+        'ban_lnk' => 'Ban Users',
 );
 
 $lang_user_admin_menu = array(
