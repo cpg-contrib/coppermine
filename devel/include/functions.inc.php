@@ -747,6 +747,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
                 // if we have more than 1000 pictures, we limit the number of picture returned
                 // by the SELECT statement as ORDER BY RAND() is time consuming
+				/* Commented out due to image not found bug
                 if ($pic_count > 1000) {
                     $result = db_query("SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES'");
                         $nbEnr = mysql_fetch_array($result);
@@ -760,8 +761,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $random_num_set = substr($random_num_set,0, -2);
                         $result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE  randpos IN ($random_num_set) AND approved = 'YES' $ALBUM_SET ORDER BY RAND() LIMIT $limit2");
                 } else {
-                        $result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $ALBUM_SET ORDER BY RAND() LIMIT $limit2");
-                }
+				*/ 
+                $result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $ALBUM_SET ORDER BY RAND() LIMIT $limit2");
+                
 
                 $rowset = array();
                 while($row = mysql_fetch_array($result)){
