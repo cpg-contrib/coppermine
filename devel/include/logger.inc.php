@@ -168,6 +168,7 @@ function& spring_cleaning($directory_path, $cache_time = CPG_HOUR, $exclusion_li
     return $deleted_list;
 }
 
-
-spring_cleaning('logs', CPG_DAY*2, array('log_header.inc.php'));
+if ($CONFIG['log_mode']) {
+        spring_cleaning('logs', CPG_DAY*2, array('log_header.inc.php'));
+}        
 ?>
