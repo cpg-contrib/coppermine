@@ -42,25 +42,19 @@ $tasks =  array(
 	
 		'update_thumbs' => array('update_thumbs', $lang_util_php['update'],'
 
-	<tr>
-    		<td class="tablef"><b>'.$lang_util_php['update_what'].' (2):</b><br />
+			<b>'.$lang_util_php['update_what'].' (2):</b><br />
 			<input type="radio" name="updatetype" value="0" class="nobg" /><label class="labelradio">'.$lang_util_php['update_thumb'].'</label><br />
 			<input type="radio" name="updatetype" value="1" class="nobg" /><label class="labelradio">'.$lang_util_php['update_pic'].'</label><br />
 			<input type="radio" name="updatetype" value="2" checked="checked" class="nobg" /><label class="labelradio">'.$lang_util_php['update_both'].'</label><br />'.$lang_util_php['update_number'].' 
-			<input type="text" name="numpics" value="'.$defpicnum.'" size="5" class="textinput" /><br />'.$lang_util_php['update_option'].'<br /><br />
-    		</td>
-	</tr>'),
+			<input type="text" name="numpics" value="'.$defpicnum.'" size="5" class="textinput" /><br />'.$lang_util_php['update_option'].'<br /><br />'),
 	
 		'filename_to_title' => array('filename_to_title', $lang_util_php['filename_title'],'
 		
-	<tr>
-    		<td class="tablef"><b>'.$lang_util_php['filename_how'].' (2):</b><br />
+			<b>'.$lang_util_php['filename_how'].' (2):</b><br />
         		<input type="radio" name="parsemode" value="0" checked="checked" class="nobg" /><label class="labelradio">' . $lang_util_php['filename_remove'] . '</label><br />
 			<input type="radio" name="parsemode" value="1" class="nobg" /><label class="labelradio">'.$lang_util_php['filename_euro'].'</label><br />
 			<input type="radio" name="parsemode" value="2" class="nobg" /><label class="labelradio">'.$lang_util_php['filename_us'].'</label><br />
-			<input type="radio" name="parsemode" value="3" class="nobg" /><label class="labelradio">'.$lang_util_php['filename_time'].'</label><br /><br />
-    		</td>
-	</tr>'),
+			<input type="radio" name="parsemode" value="3" class="nobg" /><label class="labelradio">'.$lang_util_php['filename_time'].'</label><br /><br />'),
 	
 		'del_titles' => array('del_titles', $lang_util_php['delete_title'], 'This will remove all titles on files in the album you specify.'),
 		
@@ -129,7 +123,7 @@ function make_main_page()
     		if ($name) {
     			starttable('100%', "<input type=\"radio\" name=\"action\" value=\"$name\" checked=\"checked\" class=\"nobg\" /><label class=\"labelradio\">$title</label> (1)");
 		} else {
-  			starttable('100%', "$title");
+  			starttable('100%', $title);
 		}
 		echo "<tr><td class=\"tablef\">$options</td></tr>";
 		endtable();
@@ -144,7 +138,7 @@ function make_main_page()
     	} else {
         	filloptions();
     	}
-    	echo '<br /></tr></td>';
+    	echo '<br /></td></tr>';
     	endtable();
     	echo '</form>';
 }
@@ -234,7 +228,7 @@ function filloptions()
     	
     	echo '</select> (3)';
     	echo '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="button" /> (4)';
-    	echo '</form>';
+    	//echo '</form>';
 }
 
 function update_thumbs()
