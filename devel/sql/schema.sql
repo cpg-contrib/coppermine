@@ -324,7 +324,7 @@ CREATE TABLE `CPG_vote_stats` (
   `browser` varchar(255) NOT NULL default '',
   `os` varchar(50) NOT NULL default '',
   PRIMARY KEY  (`sid`)
-) ENGINE=MyISAM;
+);
 
 CREATE TABLE CPG_hit_stats` (
   `sid` int(11) NOT NULL auto_increment,
@@ -336,4 +336,4 @@ CREATE TABLE CPG_hit_stats` (
   `browser` varchar(255) NOT NULL default '',
   `os` varchar(50) NOT NULL default '',
   PRIMARY KEY  (`sid`)
-) ENGINE=MyISAM;
+);
