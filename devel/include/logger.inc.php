@@ -23,15 +23,17 @@ function log_write( $text, $log = null ) {
                 $log = 'global';
         }
 
-        $log = 'logs/'.$log.'.php';
+        $log = 'logs/'.$log.'.log.php';
 
         if (!file_exists($log)) {
                 $log_header = implode('',file('logs/log_header.inc.php'));
+        } else {
+               	$log_header = '';
         }
 
-        $fp = fileopen($log,'a');
-        fwrite($log_header);
-        fwrite($text);
+        $fp = fopen($log,'a');
+        fwrite($fp,$log_header);
+        fwrite($fp,$text);
         fclose($fp);
 }
 
@@ -40,7 +42,7 @@ function log_read( $log = null ) {
                 $log = 'global';
         }
 
-        $log = 'logs/'.$log.'.php';
+        $log = 'logs/'.$log.'.log.php';
         
         @include($log);
 }
