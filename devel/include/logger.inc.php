@@ -46,4 +46,32 @@ function log_read( $log = null ) {
         
         @include($log);
 }
+
+function log_delete( $log = null ) {
+        if (is_null($log)) {
+                $log_list = getloglist('logs/');
+                foreach ($log_list as $log) {
+                        unlink('logs/'.$log['filename']);
+                }
+        } else {
+               	unlink('logs/'.$log.'.log.php');
+        }
+}
+
+function& getloglist($folder)
+{
+    global $CONFIG;
+    $file_array = array();
+
+    $dir = opendir($folder);
+    while (($file = readdir($dir))!==false) {
+        if (is_file($folder . $file) && $file != 'log_header.inc.php') {
+                $file_array[] = array('filename'=>$file,'logname'=>str_replace('.log.php','',$file));
+        }
+    }
+    closedir($dir);
+
+    natcasesort($file_array);
+    return $file_array;
+}
 ?>
