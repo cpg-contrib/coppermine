@@ -43,7 +43,7 @@ $template_main_menu1 = <<<EOT
                                         <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
                                         <td><img name="button1_r1_c1" src="themes/rainy_day/images/button1_r1_c1.gif" width="5" height="25" border="0" id="button1_r1_c1" alt="" /></td>
                                         <td background="themes/rainy_day/images/button1_r1_c2.gif">
-                                                <a href="{MY_PROF_TGT}">{MY_PROF_LNK}</a>
+                                                <a href="{MY_PROF_TGT}" title="{MY_PROF_LNK}">{MY_PROF_LNK}</a>
                                         </td>
                                         <td><img name="button1_r1_c3" src="themes/rainy_day/images/button1_r1_c3.gif" width="5" height="25" border="0" id="button1_r1_c3" alt="" /></td>
 <!-- END my_profile -->
@@ -92,7 +92,7 @@ $template_main_menu1 = <<<EOT
                                         <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
                                         <td><img name="button1_r1_c1" src="themes/rainy_day/images/button1_r1_c1.gif" width="5" height="25" border="0" id="button1_r1_c1" alt="" /></td>
                                         <td background="themes/rainy_day/images/button1_r1_c2.gif">
-                                                <a href="{LOGIN_TGT}">{LOGIN_LNK}</a>
+                                                <a href="{LOGIN_TGT}" title="{LOGIN_LNK}">{LOGIN_LNK}</a>
                                         </td>
                                         <td><img name="button1_r1_c3" src="themes/rainy_day/images/button1_r1_c3.gif" width="5" height="25" border="0" id="button1_r1_c3" alt="" /></td>
 <!-- END login -->
@@ -100,7 +100,7 @@ $template_main_menu1 = <<<EOT
                                         <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
                                         <td><img name="button1_r1_c1" src="themes/rainy_day/images/button1_r1_c1.gif" width="5" height="25" border="0" id="button1_r1_c1" alt="" /></td>
                                         <td background="themes/rainy_day/images/button1_r1_c2.gif">
-                                                <a href="{LOGOUT_TGT}">{LOGOUT_LNK}</a>
+                                                <a href="{LOGOUT_TGT}" title="{LOGOUT_LNK}">{LOGOUT_LNK}</a>
                                         </td>
                                         <td><img name="button1_r1_c3" src="themes/rainy_day/images/button1_r1_c3.gif" width="5" height="25" border="0" id="button1_r1_c3" alt="" /></td>
 <!-- END logout -->
@@ -121,37 +121,37 @@ $template_main_menu2 = <<<EOT
                                         <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
                                         <td><img name="button1_r1_c1" src="themes/rainy_day/images/button1_r1_c1.gif" width="5" height="25" border="0" id="button1_r1_c1" alt="" /></td>
                                         <td background="themes/rainy_day/images/button1_r1_c2.gif">
-                                                <a href="{LASTUP_TGT}">{LASTUP_LNK}</a>
+                                                <a href="{LASTUP_TGT}" title="{LASTUP_LNK}">{LASTUP_LNK}</a>
                                         </td>
                                         <td><img name="button1_r1_c3" src="themes/rainy_day/images/button1_r1_c3.gif" width="5" height="25" border="0" id="button1_r1_c3" alt="" /></td>
                                         <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
                                         <td><img name="button1_r1_c1" src="themes/rainy_day/images/button1_r1_c1.gif" width="5" height="25" border="0" id="button1_r1_c1" alt="" /></td>
                                         <td background="themes/rainy_day/images/button1_r1_c2.gif">
-                                                <a href="{LASTCOM_TGT}">{LASTCOM_LNK}</a>
+                                                <a href="{LASTCOM_TGT}" title="{LASTCOM_LNK}">{LASTCOM_LNK}</a>
                                         </td>
                                         <td><img name="button1_r1_c3" src="themes/rainy_day/images/button1_r1_c3.gif" width="5" height="25" border="0" id="button1_r1_c3" alt="" /></td>
                                         <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
                                         <td><img name="button1_r1_c1" src="themes/rainy_day/images/button1_r1_c1.gif" width="5" height="25" border="0" id="button1_r1_c1" alt="" /></td>
                                         <td background="themes/rainy_day/images/button1_r1_c2.gif">
-                                                <a href="{TOPN_TGT}">{TOPN_LNK}</a>
+                                                <a href="{TOPN_TGT}" title="{TOPN_LNK}">{TOPN_LNK}</a>
                                         </td>
                                         <td><img name="button1_r1_c3" src="themes/rainy_day/images/button1_r1_c3.gif" width="5" height="25" border="0" id="button1_r1_c3" alt="" /></td>
                                         <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
                                         <td><img name="button1_r1_c1" src="themes/rainy_day/images/button1_r1_c1.gif" width="5" height="25" border="0" id="button1_r1_c1" alt="" /></td>
                                         <td background="themes/rainy_day/images/button1_r1_c2.gif">
-                                                <a href="{TOPRATED_TGT}">{TOPRATED_LNK}</a>
+                                                <a href="{TOPRATED_TGT}" title="{TOPRATED_LNK}">{TOPRATED_LNK}</a>
                                         </td>
                                         <td><img name="button1_r1_c3" src="themes/rainy_day/images/button1_r1_c3.gif" width="5" height="25" border="0" id="button1_r1_c3" alt="" /></td>
                                         <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
                                         <td><img name="button1_r1_c1" src="themes/rainy_day/images/button1_r1_c1.gif" width="5" height="25" border="0" id="button1_r1_c1" alt="" /></td>
                                         <td background="themes/rainy_day/images/button1_r1_c2.gif">
-                                                <a href="{FAV_TGT}">{FAV_LNK}</a>
+                                                <a href="{FAV_TGT}" title="{FAV_LNK}">{FAV_LNK}</a>
                                         </td>
                                         <td><img name="button1_r1_c3" src="themes/rainy_day/images/button1_r1_c3.gif" width="5" height="25" border="0" id="button1_r1_c3" alt="" /></td>
                                         <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
                                         <td><img name="button1_r1_c1" src="themes/rainy_day/images/button1_r1_c1.gif" width="5" height="25" border="0" id="button1_r1_c1" alt="" /></td>
                                         <td background="themes/rainy_day/images/button1_r1_c2.gif">
-                                                <a href="{SEARCH_TGT}">{SEARCH_LNK}</a>
+                                                <a href="{SEARCH_TGT}" title="{SEARCH_LNK}">{SEARCH_LNK}</a>
                                         </td>
                                         <td><img name="button1_r1_c3" src="themes/rainy_day/images/button1_r1_c3.gif" width="5" height="25" border="0" id="button1_r1_c3" alt="" /></td>
 EOT;
@@ -161,19 +161,19 @@ $template_gallery_admin_menu = <<<EOT
                 <div align="center">
                 <table cellpadding="0" cellspacing="1">
                         <tr>
-                                <td class="admin_menu" id="{APPROVAL_ID}"><a href="editpics.php?mode=upload_approval" title="">{UPL_APP_LNK}</a></td>
-                                <td class="admin_menu"><a href="config.php" title="">{CONFIG_LNK}</a></td>
-                                <td class="admin_menu"><a href="albmgr.php{CATL}" title="">{ALBUMS_LNK}</a></td>
-                                <td class="admin_menu"><a href="catmgr.php" title="">{CATEGORIES_LNK}</a></td>
-                                <td class="admin_menu"><a href="usermgr.php" title="">{USERS_LNK}</a></td>
-                                <td class="admin_menu"><a href="groupmgr.php" title="">{GROUPS_LNK}</a></td>
-                                <td class="admin_menu"><a href="banning.php" title="">{BAN_LNK}</a></td>
-                                <td class="admin_menu"><a href="db_ecard.php" title="">{DB_ECARD_LNK}</a></td>
-                                <td class="admin_menu"><a href="reviewcom.php" title="">{COMMENTS_LNK}</a></td>
-                                <td class="admin_menu"><a href="picmgr.php" title="">{PICTURES_LNK}</a></td>
-                                <td class="admin_menu"><a href="searchnew.php" title="">{SEARCHNEW_LNK}</a></td>
-                                <td class="admin_menu"><a href="util.php" title="">{UTIL_LNK}</a></td>
-                                <td class="admin_menu"><a href="profile.php?op=edit_profile" title="">{MY_PROF_LNK}</a></td>
+                                <td class="admin_menu" id="{APPROVAL_ID}"><a href="editpics.php?mode=upload_approval" title="{UPL_APP_LNK}">{UPL_APP_LNK}</a></td>
+                                <td class="admin_menu"><a href="config.php" title="{CONFIG_LNK}">{CONFIG_LNK}</a></td>
+                                <td class="admin_menu"><a href="albmgr.php{CATL}" title="{ALBUMS_LNK}">{ALBUMS_LNK}</a></td>
+                                <td class="admin_menu"><a href="catmgr.php" title="{CATEGORIES_LNK}">{CATEGORIES_LNK}</a></td>
+                                <td class="admin_menu"><a href="usermgr.php" title="{USERS_LNK}">{USERS_LNK}</a></td>
+                                <td class="admin_menu"><a href="groupmgr.php" title="{GROUPS_LNK}">{GROUPS_LNK}</a></td>
+                                <td class="admin_menu"><a href="banning.php" title="{BAN_LNK}">{BAN_LNK}</a></td>
+                                <td class="admin_menu"><a href="db_ecard.php" title="{DB_ECARD_LNK}">{DB_ECARD_LNK}</a></td>
+                                <td class="admin_menu"><a href="reviewcom.php" title="{COMMENTS_LNK}">{COMMENTS_LNK}</a></td>
+                                <td class="admin_menu"><a href="picmgr.php" title="{PICTURES_LNK}">{PICTURES_LNK}</a></td>
+                                <td class="admin_menu"><a href="searchnew.php" title="{SEARCHNEW_LNK}">{SEARCHNEW_LNK}</a></td>
+                                <td class="admin_menu"><a href="util.php" title="{UTIL_LNK}">{UTIL_LNK}</a></td>
+                                <td class="admin_menu"><a href="profile.php?op=edit_profile" title="{MY_PROF_LNK}">{MY_PROF_LNK}</a></td>
                         </tr>
                 </table>
                 </div>
@@ -185,10 +185,10 @@ $template_user_admin_menu = <<<EOT
                 <div align="center">
                 <table cellpadding="0" cellspacing="1">
                         <tr>
-                                <td class="admin_menu"><a href="albmgr.php" title="">{ALBMGR_LNK}</a></td>
-                                <td class="admin_menu"><a href="modifyalb.php" title="">{MODIFYALB_LNK}</a></td>
-                                <td class="admin_menu"><a href="profile.php?op=edit_profile" title="">{MY_PROF_LNK}</a></td>
-                                <td class="admin_menu"><a href="picmgr.php" title="">{PICTURES_LNK}</a></td>
+                                <td class="admin_menu"><a href="albmgr.php" title="{ALBMGR_LNK}">{ALBMGR_LNK}</a></td>
+                                <td class="admin_menu"><a href="modifyalb.php" title="{MODIFYALB_LNK}">{MODIFYALB_LNK}</a></td>
+                                <td class="admin_menu"><a href="profile.php?op=edit_profile" title="{MY_PROF_LNK}">{MY_PROF_LNK}</a></td>
+                                <td class="admin_menu"><a href="picmgr.php" title="{PICTURES_LNK}">{PICTURES_LNK}</a></td>
                         </tr>
                 </table>
                 </div>
