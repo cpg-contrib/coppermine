@@ -462,14 +462,14 @@ function build_cfg_file()
 // Coppermine configuration file
 $silly_safe_mode
 // MySQL configuration
-\$CONFIG['dbserver'] =                         "{$HTTP_POST_VARS['dbserver']}";        // Your database server
-\$CONFIG['dbuser'] =                         "{$HTTP_POST_VARS['dbuser']}";        // Your mysql username
-\$CONFIG['dbpass'] =                         "{$HTTP_POST_VARS['dbpass']}";                // Your mysql password
-\$CONFIG['dbname'] =                         "{$HTTP_POST_VARS['dbname']}";        // Your mysql database name
+\$CONFIG['dbserver'] =                         '{$HTTP_POST_VARS['dbserver']}';        // Your database server
+\$CONFIG['dbuser'] =                         '{$HTTP_POST_VARS['dbuser']}';        // Your mysql username
+\$CONFIG['dbpass'] =                         '{$HTTP_POST_VARS['dbpass']}';                // Your mysql password
+\$CONFIG['dbname'] =                         '{$HTTP_POST_VARS['dbname']}';        // Your mysql database name
 
 
 // MySQL TABLE NAMES PREFIX
-\$CONFIG['TABLE_PREFIX'] =                "{$HTTP_POST_VARS['table_prefix']}";
+\$CONFIG['TABLE_PREFIX'] =                '{$HTTP_POST_VARS['table_prefix']}';
 ?>
 EOT;
 }
