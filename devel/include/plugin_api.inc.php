@@ -188,7 +188,9 @@ class CPGPluginAPI {
                 $thisplugin = $CPG_PLUGINS[$plugin_id];
 
                 // Get the filter's value from the plugin
-                $plugin_function = @$thisplugin->filters[$key];
+                if (isset($thisplugin->filters[$key])) {
+                    $plugin_function = $thisplugin->filters[$key];
+                }
 
                 // Skip this plugin; the key isn't set
                 if (!isset($plugin_function) || (!$thisplugin->awake)) {
@@ -274,7 +276,9 @@ class CPGPluginAPI {
                 $thisplugin = $CPG_PLUGINS[$plugin_id];
 
                 // Get the action's value from the plugin
-                $plugin_function = @$thisplugin->actions[$key];
+                if (isset($thisplugin->actions[$key])) {
+                    $plugin_function = $thisplugin->actions[$key];
+                }
 
                 // Skip this plugin; the key isn't set
                 if (!isset($plugin_function) || ($key != 'plugin_wakeup' && !$thisplugin->awake)) {

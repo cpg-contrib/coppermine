@@ -1892,6 +1892,7 @@ function theme_html_picture()
     global $lang_display_image_php, $lang_picinfo;
 
     $pid = $CURRENT_PIC_DATA['pid'];
+    $pic_title = '';
 
     if (!isset($USER['liv']) || !is_array($USER['liv'])) {
         $USER['liv'] = array();
@@ -1983,7 +1984,7 @@ function theme_html_picture()
         $pic_thumb_url = get_pic_url($CURRENT_PIC_DATA,'thumb');
         $pic_html = "<a href=\"{$picture_url}\" target=\"_blank\" class=\"document_link\"><img src=\"".$pic_thumb_url."\" border=\"0\" class=\"image\" /></a>\n<br />";
     } else {
-        $autostart = ($CONFIG['mv_autostart']) ? ('true'):('false');
+        $autostart = ($CONFIG['media_autostart']) ? ('true'):('false');
 
         $players['WMP'] = array('id' => 'MediaPlayer',
                                 'clsid' => 'classid="clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6" ',

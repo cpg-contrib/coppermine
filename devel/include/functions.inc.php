@@ -744,7 +744,10 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
         if(count($FORBIDDEN_SET_DATA) > 0 ){
             $forbidden_set_string =" AND aid NOT IN (".implode(",", $FORBIDDEN_SET_DATA).")";
+        } else {
+            $forbidden_set_string = '';
         }
+            
         // Keyword
         if (!empty($CURRENT_ALBUM_KEYWORD)){
                 $keyword = "OR (keywords like '%$CURRENT_ALBUM_KEYWORD%' $forbidden_set_string )";
