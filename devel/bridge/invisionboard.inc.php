@@ -209,12 +209,14 @@ function udb_get_user_id($username)
         return '';
     }
 }
+
 // Redirect
 function udb_redirect($target)
 {
-    header('Location: ' . IB_WEB_PATH . $target);
+    header('Location: http://' . $_SERVER['HTTP_HOST'] . IB_WEB_PATH . $target);
     exit;
 }
+
 // Register
 function udb_register_page()
 {
@@ -363,6 +365,30 @@ function udb_get_admin_album_list()
         $sql = "SELECT aid, IF(category > " . FIRST_USER_CAT . ", CONCAT('* ', title), CONCAT(' ', title)) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} " . "ORDER BY title";
         return $sql;
     }
+}
+
+function udb_util_filloptions()
+{
+    global $albumtbl, $picturetbl, $categorytbl, $lang_util_php;
+
+    $usertbl = $UDB_DB_NAME_PREFIX.IB_TABLE_PREFIX . IB_USER_TABLE;
+
+    $query = "SELECT aid, category, IF(name IS NOT NULL, CONCAT('(', name, ') ',title), CONCAT(' - ', title)) AS title " . "FROM $albumtbl AS a " . "LEFT JOIN $usertbl AS u ON category = (" . FIRST_USER_CAT . " + id) " . "ORDER BY category, title";
+    $result = db_query($query, $UDB_DB_LINK_ID);
+    // $num=mysql_numrows($result);
+    echo '<select size="1" name="albumid">';
+
+    while ($row = mysql_fetch_array($result)) {
+        $sql = "SELECT name FROM $categorytbl WHERE cid = " . $row["category"];
+        $result2 = db_query($sql);
+        $row2 = mysql_fetch_array($result2);
+
+        print "<option value=\"" . $row["aid"] . "\">" . $row2["name"] . $row["title"] . "</option>\n";
+    }
+
+    print '</select> (3)';
+    print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="submit" /> (4)';
+    print '</form>';
 }
 // ------------------------------------------------------------------------- //
 // Define wheter we can join tables or not in SQL queries (same host & same db or user)
