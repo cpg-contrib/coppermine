@@ -178,14 +178,9 @@ switch ($event) {
         }
 
         $update = cpg_db_query($query);
-        if (isset($CONFIG['debug_mode']) && ($CONFIG['debug_mode'] == 1)) {
-            $queries[] = $query;
-        }
 
         if (!mysql_affected_rows()) cpg_die(INFORMATION, $lang_db_input_php['no_udp_needed'], __FILE__, __LINE__);
-        if ($CONFIG['debug_mode'] == 0) {
-            pageheader($lang_db_input_php['alb_updated'], "<META http-equiv=\"refresh\" content=\"1;url=modifyalb.php?album=$aid\">");
-        }
+		pageheader($lang_db_input_php['alb_updated'], "<META http-equiv=\"refresh\" content=\"1;url=modifyalb.php?album=$aid\">");
         msg_box($lang_db_input_php['info'], $lang_db_input_php['alb_updated'], $lang_continue, "modifyalb.php?album=$aid");
         pagefooter();
         ob_end_flush();
