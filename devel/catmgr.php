@@ -275,7 +275,13 @@ switch ($op) {
 
     case 'updatecat':
         if (!isset($HTTP_POST_VARS['cid']) || !isset($HTTP_POST_VARS['parent']) || !isset($HTTP_POST_VARS['name']) || !isset($HTTP_POST_VARS['description'])) cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'updatecat'), __FILE__, __LINE__);
+		
+		$name = trim($HTTP_POST_VARS['name']);		
+		if (empty($name)){
+			break;
+		}
 
+		
         $cid = (int)$HTTP_POST_VARS['cid'];
         $parent = (int)$HTTP_POST_VARS['parent'];
         $thumb = (int)$HTTP_POST_VARS['thumb'];
@@ -292,8 +298,15 @@ switch ($op) {
 
     case 'createcat':
         if (!isset($HTTP_POST_VARS['parent']) || !isset($HTTP_POST_VARS['name']) || !isset($HTTP_POST_VARS['description'])) cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'createcat'), __FILE__, __LINE__);
+        
+		$name = trim($HTTP_POST_VARS['name']);
+		
+		if (empty($name)){
+			break;
+		}
 
-        $parent = (int)$HTTP_POST_VARS['parent'];
+		
+		$parent = (int)$HTTP_POST_VARS['parent'];
         $name = trim($HTTP_POST_VARS['name']) ? addslashes($HTTP_POST_VARS['name']) : '&lt;???&gt;';
         $description = addslashes($HTTP_POST_VARS['description']);
 
