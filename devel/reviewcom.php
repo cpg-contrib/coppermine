@@ -142,6 +142,7 @@ while ($row = mysql_fetch_array($result)) {
     $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['alb_list_thumb_size']);
     $thumb_link = 'displayimage.php?pos=' . - $row['pid'];
     $msg_date = localised_date($row['msg_date'], $comment_date_fmt);
+    $msg_body = bb_decode($row['msg_body']);
     echo <<<EOT
         <tr>
         <td class="tableb" rowspan="2">
@@ -161,8 +162,8 @@ while ($row = mysql_fetch_array($result)) {
         </tr>
         <tr>
         <td class="tableb" valign="top" width="100%">
-                        {$row['msg_body']}
-                </td>
+                        {$msg_body}
+        </td>
         </tr>
 
 EOT;
