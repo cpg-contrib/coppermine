@@ -1,8 +1,8 @@
 ﻿<?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.3.1                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -13,6 +13,8 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
+// ------------------------------------------------------------------------- //
+// $Id$
 // ------------------------------------------------------------------------- //
 
 // info about translators and translated language
@@ -747,7 +749,7 @@ array('Как добавить (выгрузить) файл?', 'Перейти 
 if (defined('FORGOT_PASSWD_PHP')) $lang_forgot_passwd_php = array(
   'forgot_passwd' => 'Напомнить пароль', //cpg1.3.0
   'err_already_logged_in' => 'Вы уже вошли !', //cpg1.3.0
-  'enter_username_email' => 'Ввести имя или пароль', //cpg1.3.0
+  'enter_username_email' => 'Ввести имя или e-mail адрес', //cpg1.3.0
   'submit' => 'Вперед', //cpg1.3.0
   'failed_sending_email' => 'Е-mail с паролем не отослан !', //cpg1.3.0
   'email_sent' => 'Е-mail с именем и паролем отослан на %s', //cpg1.3.0
