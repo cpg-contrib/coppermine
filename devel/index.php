@@ -13,7 +13,7 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-// $Id$
+// CVS file version: $Id$
 // ------------------------------------------------------------------------- //
 
 /**
@@ -27,11 +27,6 @@
 * @package Coppermine
 * @version $Id$
 */
-
-// Check if standalone is installed in a portal like phpNuke (added by DJMaze)
-if (is_dir('../../modules')) {
-    die("<html><body><h1>ERROR</h1>You installed the standalone Coppermine into your Nuke portal.<br />" . "This version can only be used as standalone.</body></html>");
-} // end check
 
 /**
 * Unless this is true most things wont work - protection against direct execution of inc files
