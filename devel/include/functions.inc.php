@@ -70,7 +70,7 @@ function cpg_db_connect()
 // Perform a database query
 function db_query($query, $link_id = 0)
 {
-	global $query_stats;
+	global $CONFIG, $query_stats, $queries;
 
 	$query_start = getmicrotime();
 	if (($link_id)) {
@@ -79,7 +79,10 @@ function db_query($query, $link_id = 0)
 		$result = mysql_query($query);
 	}
 	$query_end = getmicrotime();
-	$query_stats[] = $query_end - $query_start;
+	if ($CONFIG['debug_mode']) {
+		$query_stats[] = $query_end - $query_start;
+		$queries[] = $query;
+	}
 
 	if (!$result) db_error("While executing query \"$query\" on $link_id");
 

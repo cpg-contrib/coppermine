@@ -37,7 +37,7 @@ set_magic_quotes_runtime(0);
 
 // used for timing purpose
 $query_stats = array();
-
+$queries = array();
 function getmicrotime(){
 	list($usec, $sec) = explode(" ",microtime());
 	return ((float)$usec + (float)$sec);
