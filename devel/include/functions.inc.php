@@ -16,7 +16,6 @@
 //  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
 
-
 /**************************************************************************
    Function for managing cookie saved user profile
  **************************************************************************/
@@ -447,7 +446,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         if ($limit2 == 1) {
             $select_columns = '*';
         } else {
-            $select_columns = 'pid, filepath, filename, url_prefix, filesize, pwidth, pheight, ctime';
+            $select_columns = 'pid, filepath, filename, url_prefix, filesize, pwidth, pheight, ctime, aid';
         }
 
         // Regular albums
@@ -469,7 +468,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
                 // Set picture caption
                 if ($set_caption) foreach ($rowset as $key => $row){
-                        $caption = $rowset[$key]['title'] ? "<span class=\"thumb_title\">".$rowset[$key]['title']."-".sprintf($lang_get_pic_data['n_views'], $rowset[$key]['hits'])."</span>" : '';
+                        $caption = ($rowset[$key]['title']||$rowset[$key]['hits']) ? "<span class=\"thumb_title\">".$rowset[$key]['title'].(($rowset[$key]['title'])?"-":"").sprintf($lang_get_pic_data['n_views'], $rowset[$key]['hits'])."</span>" : '';
                         if ($CONFIG['caption_in_thumbview']){
                            $caption .= $rowset[$key]['caption'] ? "<span class=\"thumb_caption\">".bb_decode(($rowset[$key]['caption']))."</span>" : '';
                         }
@@ -514,6 +513,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                                 $user_link = $row['msg_author'];
                         }
 			$msg_body = strlen($row['msg_body']) > 50 ? @substr($row['msg_body'],0,50)."...": $row['msg_body'];
+			if ($CONFIG['enable_smilies']) $msg_body = process_smilies($msg_body);
                         $caption = '<span class="thumb_title">'.$user_link.'</span>'.'<span class="thumb_caption">'.localised_date($row['msg_date'], $lastcom_date_fmt).'</span>'.'<span class="thumb_caption">'.$msg_body.'</span>';
                         $rowset[$key]['caption_text'] = $caption;
                 }
@@ -792,12 +792,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 mysql_free_result($result);
 
                 if ($set_caption) foreach ($rowset as $key => $row){
-                        if ($row['user_id']) {
-                            $user_link = '<br /><a href ="profile.php?uid='.$row['user_id'].'">'.$row['user_name'].'</a>';
-                        } else {
-                                $user_link = '';
-                        }
-                        $caption = "<span class=\"thumb_caption\">".$row['title']." - ".localised_date($row['ctime'], $lastup_date_fmt).$user_link.'</span>';
+                        $caption = "<span class=\"thumb_caption\">".$row['title']." - ".localised_date($row['ctime'], $lastup_date_fmt).'</span>';
                         $rowset[$key]['caption_text'] = $caption;
                 }
                 return $rowset;

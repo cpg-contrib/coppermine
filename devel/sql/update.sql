@@ -13,9 +13,14 @@ INSERT INTO CPG_config VALUES ('first_level', '1');
 INSERT INTO CPG_config VALUES ('display_film_strip', '1');
 INSERT INTO CPG_config VALUES ('max_film_strip_items', '5');
 INSERT INTO CPG_config VALUES ('comment_email_notification', '0');
+INSERT INTO CPG_config VALUES ('read_iptc_data', '0');
 
 INSERT INTO CPG_config VALUES ('disable_popup_rightclick', '0');
 INSERT INTO CPG_config VALUES ('disable_gallery_rightclick', '0');
+
+# Modify structure for category thumb
+ALTER TABLE `CPG_categories` ADD `thumb` INT NOT NULL AFTER `parent` ;
+
 
 #
 # Table structure for table `CPG_banned`
@@ -27,4 +32,13 @@ CREATE TABLE CPG_banned (
 	ip_addr tinytext DEFAULT NULL,
 	expiry datetime DEFAULT NULL,
 	PRIMARY KEY  (ban_id)
+) TYPE=MyISAM;
+
+#
+# Table structure for table `CPG_exif`
+#
+CREATE TABLE CPG_exif (
+  `filename` varchar(255) NOT NULL default '',
+  `exifData` text NOT NULL,
+  UNIQUE KEY `filename` (`filename`)
 ) TYPE=MyISAM;

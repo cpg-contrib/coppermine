@@ -135,15 +135,17 @@ $IMG_TYPES = array(1 => 'GIF',
 require 'include/config.inc.php';
 require 'include/functions.inc.php';
 
-$CONFIG['TABLE_PICTURES'] = $CONFIG['TABLE_PREFIX'] . "pictures";
-$CONFIG['TABLE_ALBUMS'] = $CONFIG['TABLE_PREFIX'] . "albums";
-$CONFIG['TABLE_COMMENTS'] = $CONFIG['TABLE_PREFIX'] . "comments";
-$CONFIG['TABLE_CATEGORIES'] = $CONFIG['TABLE_PREFIX'] . "categories";
-$CONFIG['TABLE_CONFIG'] = $CONFIG['TABLE_PREFIX'] . "config";
-$CONFIG['TABLE_USERGROUPS'] = $CONFIG['TABLE_PREFIX'] . "usergroups";
-$CONFIG['TABLE_VOTES'] = $CONFIG['TABLE_PREFIX'] . "votes";
-$CONFIG['TABLE_USERS'] = $CONFIG['TABLE_PREFIX'] . "users";
-$CONFIG['TABLE_BANNED'] = $CONFIG['TABLE_PREFIX'] . "banned";
+$CONFIG['TABLE_PICTURES']	= $CONFIG['TABLE_PREFIX']."pictures";
+$CONFIG['TABLE_ALBUMS']		= $CONFIG['TABLE_PREFIX']."albums";
+$CONFIG['TABLE_COMMENTS']	= $CONFIG['TABLE_PREFIX']."comments";
+$CONFIG['TABLE_CATEGORIES']	= $CONFIG['TABLE_PREFIX']."categories";
+$CONFIG['TABLE_CONFIG']		= $CONFIG['TABLE_PREFIX']."config";
+$CONFIG['TABLE_USERGROUPS']	= $CONFIG['TABLE_PREFIX']."usergroups";
+$CONFIG['TABLE_VOTES']		= $CONFIG['TABLE_PREFIX']."votes";
+$CONFIG['TABLE_USERS']		= $CONFIG['TABLE_PREFIX']."users";
+$CONFIG['TABLE_BANNED']		= $CONFIG['TABLE_PREFIX']."banned";
+$CONFIG['TABLE_EXIF']		= $CONFIG['TABLE_PREFIX']."exif";
+
 // User DB system
 if (defined('UDB_INTEGRATION')) require 'bridge/' . UDB_INTEGRATION . '.inc.php';
 // Connect to database

@@ -19,6 +19,7 @@ define('THUMBNAILS_PHP', true);
 define('INDEX_PHP', true);
 
 require('include/init.inc.php');
+if ($CONFIG['enable_smilies']) include("include/smilies.inc.php");
 
 function get_subcat_data($parent, &$album_set_array, $level)
 {

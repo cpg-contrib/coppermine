@@ -105,8 +105,79 @@ EOT;
 EOT;
 
     return $lb;
-} 
+}
 
+function form_alb_thumb()
+{
+    global $CONFIG, $lang_catmgr_php, $lang_modifyalb_php, $current_category, $cid;
+    $results = db_query("SELECT pid, filepath, filename, url_prefix FROM {$CONFIG['TABLE_PICTURES']},{$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND {$CONFIG['TABLE_ALBUMS']}.category = '$cid' AND approved='YES' ORDER BY filename");
+    if (mysql_num_rows($results) == 0) {
+        echo <<<EOT
+	<tr>
+		<td class="tableb" valign="top">
+			{$lang_modifyalb_php['alb_thumb']}
+		</td>
+		<td class="tableb" valign="top">
+			<i>{$lang_modifyalb_php['alb_empty']}</i>
+			<input type="hidden" name="thumb" value="0">
+		</td>
+	</tr>
+
+EOT;
+        return;
+    } 
+
+    echo <<<EOT
+<script language="JavaScript" type="text/JavaScript">
+var Pic = new Array()
+
+Pic[0] = 'images/nopic.jpg'
+
+EOT;
+
+    $initial_thumb_url = 'images/nopic.jpg';
+    $img_list = array(0 => $lang_modifyalb_php['last_uploaded']);
+    while ($picture = mysql_fetch_array($results)) {
+        $thumb_url = get_pic_url($picture, 'thumb');
+        echo "Pic[{$picture['pid']}] = '" . $thumb_url . "'\n";
+        if ($picture['pid'] == $current_category['thumb']) $initial_thumb_url = $thumb_url;
+        $img_list[$picture['pid']] = htmlspecialchars($picture['filename']);
+    } // while
+    echo <<<EOT
+
+function ChangeThumb(index)
+{
+	document.images.Thumb.src = Pic[index]
+}
+</script>
+
+EOT;
+    $thumb_cell_height = $CONFIG['thumb_width'] + 17;
+    echo <<<EOT
+	<tr>
+		<td class="tableb" valign="top">
+			{$lang_catmgr_php['cat_thumb']}
+		</td>
+		<td class="tableb" align="center">
+			<table cellspacing="0" cellpadding="5" border="0">
+				<tr>
+					<td width="$thumb_cell_height" height="$thumb_cell_height" align="center"><img src="$initial_thumb_url" name='Thumb' class='image' /><br /></td>
+				</tr>
+			</table>
+			<select name="thumb" class="listbox" onChange="if(this.options[this.selectedIndex].value) ChangeThumb(this.options[this.selectedIndex].value);" onKeyUp="if(this.options[this.selectedIndex].value) ChangeThumb(this.options[this.selectedIndex].value);">
+
+EOT;
+    foreach($img_list as $pid => $pic_name) {
+        echo '				<option value="' . $pid . '"' . ($pid == $current_category['thumb'] ? ' selected':'') . '>' . $pic_name . "</option>\n";
+    } 
+    echo <<<EOT
+			</select>
+		</td>
+	</tr>
+
+EOT;
+} 
+ 
 function display_cat_list()
 {
     global $CAT_LIST, $PHP_SELF;
@@ -170,7 +241,7 @@ switch ($op) {
         if (!isset($HTTP_GET_VARS['cid'])) cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'editcat'), __FILE__, __LINE__);
 
         $cid = (int)$HTTP_GET_VARS['cid'];
-        $result = db_query("SELECT cid, name, parent, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '$cid' LIMIT 1");
+        $result = db_query("SELECT cid, name, parent, description, thumb FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '$cid' LIMIT 1");
 
         if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_catmgr_php['unknown_cat'], __FILE__, __LINE__);
         $current_category = mysql_fetch_array($result);
@@ -181,10 +252,11 @@ switch ($op) {
 
         $cid = (int)$HTTP_POST_VARS['cid'];
         $parent = (int)$HTTP_POST_VARS['parent'];
+	$thumb = (int)$HTTP_POST_VARS['thumb'];
         $name = trim($HTTP_POST_VARS['name']) ? addslashes($HTTP_POST_VARS['name']) : '&lt;???&gt;';
         $description = addslashes($HTTP_POST_VARS['description']);
 
-        db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent', name='$name', description='$description' WHERE cid = '$cid' LIMIT 1");
+        db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent', name='$name', description='$description', thumb='$thumb' WHERE cid = '$cid' LIMIT 1");
         break;
 
     case 'createcat':
@@ -283,6 +355,11 @@ echo <<<EOT
 			<textarea name="description" ROWS="5" COLS="40" SIZE="9"  WRAP="virtual" STYLE="WIDTH: 100%;" class="textinput">{$current_category['description']}</textarea>
 		</td>
 	</tr>
+EOT;
+
+form_alb_thumb();
+
+echo <<<EOT
 	<tr>
 		<td colspan="2" align="center" class="tablef">
 		<input type="submit" value="{$lang_catmgr_php['update_create']}" class="button">

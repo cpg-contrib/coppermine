@@ -34,9 +34,10 @@ Added 1.2.0 changes in english language to bosnian.php, brazilian.php, estonian.
 Added 1.2.0 indonesian (done by sengsara), updated danish (Laugesen) - 08th October 2003, GauGau
 Fixed corrupted language files (mustn't be in unicode, but ansi)  - 08th October 2003, GauGau
 Added romanian language file - 09th October 2003, GauGau
-fixed rtl-bug (filesize/unit) - 09th October 2003, GauGau
+Fixed rtl-bug (filesize/unit) - 09th October 2003, GauGau
 Added french translation for 1.2.0 - 10th October 2003, GauGau
 Added korean language file for 1.2.0 - 10th October 2003, GauGau
 Added slovenian language file for 1.2.0 - 12th October 2003, GauGau
 Added croatian language file for 1.2.0 - 14th October 2003, GauGau
 Added chinese_gb language file for 1.2.0 - 14th October 2003, GauGau
+Added Thumbnails for categories, Edit Single Picture, EXIF and IPTC data shown, some bug fixes and new bugs - 16th October 2003, Tarique 

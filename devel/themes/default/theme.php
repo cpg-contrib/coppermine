@@ -101,12 +101,12 @@ $template_cat_list = <<<EOT
 <!-- END header -->
 <!-- BEGIN catrow_noalb -->
         <tr>
-                <td class="tableh2" colspan="3"><span class="catlink"><b>{CAT_TITLE}</b></span>{CAT_DESC}</td>
+                <td class="tableh2" colspan="3"><table border=0 ><tr><td>{CAT_THUMB}</td><td><span class="catlink"><b>{CAT_TITLE}</b></span>{CAT_DESC}</td></tr></table></td>
         </tr>
 <!-- END catrow_noalb -->
 <!-- BEGIN catrow -->
         <tr>
-                <td class="tableb"><span class="catlink"><b>{CAT_TITLE}</b></span>{CAT_DESC}</td>
+                <td class="tableb"><table border=0 ><tr><td>{CAT_THUMB}</td><td><span class="catlink"><b>{CAT_TITLE}</b></span>{CAT_DESC}</td></tr></table></td>
                 <td class="tableb" align="center">{ALB_COUNT}</td>
                 <td class="tableb" align="center">{PIC_COUNT}</td>
         </tr>
@@ -1018,14 +1018,16 @@ function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
     $template_noabl = template_extract_block($template_cat_list, 'catrow_noalb');
     $template = template_extract_block($template_cat_list, 'catrow');
     foreach($cat_data as $category) {
-        if (count($category) == 2) {
+        if (count($category) == 3) {
             $params = array('{CAT_TITLE}' => $category[0],
+	    	'{CAT_THUMB}' => $category['cat_thumb'],
                 '{CAT_DESC}' => $category[1]
                 );
             echo template_eval($template_noabl, $params);
         } elseif (isset($category['cat_albums']) && ($category['cat_albums'] != '')) {
             $params = array('{CAT_TITLE}' => $category[0],
-                '{CAT_DESC}' => $category[1],
+                '{CAT_THUMB}' => $category['cat_thumb'],
+		'{CAT_DESC}' => $category[1],
                 '{CAT_ALBUMS}' => $category['cat_albums'],
                 '{ALB_COUNT}' => $category[2],
                 '{PIC_COUNT}' => $category[3],
@@ -1033,7 +1035,8 @@ function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
             echo template_eval($template, $params);
         } else {
             $params = array('{CAT_TITLE}' => $category[0],
-                '{CAT_DESC}' => $category[1],
+                '{CAT_THUMB}' => $category['cat_thumb'],
+		'{CAT_DESC}' => $category[1],
                 '{CAT_ALBUMS}' => '',
                 '{ALB_COUNT}' => $category[2],
                 '{PIC_COUNT}' => $category[3],
@@ -1359,21 +1362,10 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
         $template = $template_film_strip;
         $thumb_cell = template_extract_block($template, 'thumb_cell');
         $empty_cell = template_extract_block($template, 'empty_cell');
-        // $spacer = template_extract_block($template, 'spacer');
     }
-    // if ($header == '') {}
+
     $cat_link = is_numeric($aid) ? '' : '&cat=' . $cat;
-
-    $theme_thumb_tab_tmpl = $template_tab_display;
-
-    if ($mode == 'thumb') {
-        $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_thumb_view['pic_on_page']));
-        $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . '&page=%d'));
-    } else {
-        $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_thumb_view['user_on_page']));
-        $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&page=%d'));
-    }
-
+	
     $thumbcols = $CONFIG['thumbcols'];
     $cell_width = ceil(100 / $CONFIG['max_film_strip_items']) . '%';
 
@@ -1397,13 +1389,8 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                 );
         }
         $thumb_strip .= template_eval($thumb_cell, $params);
-        // if ((($i % $thumbcols) == 0) && ($i < count($thumb_list))) {
-        // echo $row_separator;
-        // }
-    }
-    // for (;($i % $thumbcols); $i++){
-    // echo $empty_cell;
-    // }
+    } 
+    
     $params = array('{THUMB_STRIP}' => $thumb_strip,
         '{COLS}' => $i);
 

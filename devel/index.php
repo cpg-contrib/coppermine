@@ -17,8 +17,9 @@
 
 define('IN_COPPERMINE', true);
 define('INDEX_PHP', true);
-require('include/init.inc.php');
 
+require('include/init.inc.php');
+if ($CONFIG['enable_smilies']) include("include/smilies.inc.php");
 /**
  * Local functions definition
  */
@@ -49,7 +50,7 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
 {
     global $CONFIG, $HIDE_USER_CAT;
 
-    $result = db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent'  ORDER BY pos");
+    $result = db_query("SELECT cid, name, description, thumb FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent'  ORDER BY pos");
 
     if (mysql_num_rows($result) > 0) {
         $rowset = db_fetch_rowset($result);
@@ -86,12 +87,24 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
                 $nbEnr = mysql_fetch_array($result);
                 mysql_free_result($result);
                 $pic_count = $nbEnr[0];
-
+	        if ($subcat['thumb']>0) {
+            		$sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='{$subcat['thumb']}'";
+            		$result = db_query($sql);
+            		if (mysql_num_rows($result)) {
+                		$picture = mysql_fetch_array($result);
+                		mysql_free_result($result);
+                		$image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
+                		$user_thumb = "<a href=\"index.php?cat={$subcat['cid']}\"><img src=\"" . get_pic_url($picture, 'thumb') . "\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" align=top /></a>";
+            		} 
+        	}else{
+			$user_thumb ="";
+		}
                 $subcat['name'] = $subcat['name'];
                 $subcat['description'] = preg_replace("/<br.*?>[\r\n]*/i", '<br />' . $ident , bb_decode($subcat['description']));
-                $link = $ident . "<a href=\"index.php?cat={$subcat['cid']}\">{$subcat['name']}</a>";
+                $link = "<a href=\"index.php?cat={$subcat['cid']}\">{$subcat['name']}</a>";
+		$user_thumb = $ident.$user_thumb;
                 if ($pic_count == 0 && $album_count == 0) {
-                    $cat_data[] = array($link, $ident . $subcat['description']);
+                    $cat_data[] = array($link, $subcat['description'],'cat_thumb' =>$user_thumb);
                 } else {
                     // Check if you need to show subcat_level
                     if ($level == $CONFIG['subcat_level']) {
@@ -99,11 +112,11 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
                     } else {
                         $cat_albums = '';
                     } 
-                    $cat_data[] = array($link, $ident . $subcat['description'], $album_count, $pic_count, 'cat_albums' => $cat_albums);
+                    $cat_data[] = array($link, $subcat['description'], $album_count, $pic_count, 'cat_albums' => $cat_albums,'cat_thumb' =>$user_thumb);
                 } 
             } 
 
-            if ($level > 1) get_subcat_data($subcat['cid'], $cat_data, $album_set_array, $level -1, $ident . "<img src=\"images/spacer.gif\" width=\"20\" height=\"1\">");
+            if ($level > 1) get_subcat_data($subcat['cid'], $cat_data, $album_set_array, $level -1, $ident . "</td><td><img src=\"images/spacer.gif\" width=\"20\" height=\"1\"></td><td>");
         } 
     } 
 } 

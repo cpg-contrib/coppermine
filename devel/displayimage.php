@@ -27,10 +27,11 @@ $breadcrumb = '';
 $breadcrumb_text = '';
 $cat_data = array();
 
-if ($CONFIG['read_exif_data'] && function_exists('exif_read_data')) {
-    include("include/exif_php.inc.php");
-} elseif ($CONFIG['read_exif_data']) {
-    cpg_die(CRITICAL_ERROR, 'PHP running on your server does not support reading EXIF data in JPEG files, please turn this off on the config page', __FILE__, __LINE__);
+if($CONFIG['read_exif_data'] ){
+        include("include/exif_php.inc.php");
+}
+if($CONFIG['read_iptc_data'] ){
+        include("include/iptc.inc.php");
 }
 
 /**
@@ -42,7 +43,7 @@ function html_picture_menu($id)
     global $lang_display_image_php;
 
     return <<<EOT
-<div align="center" class="admin_menu"><a href="delete.php?id=$id&what=picture"  class="adm_menu" onclick="return confirm('{$lang_display_image_php['confirm_del']}');">{$lang_display_image_php['del_pic']}</a></div>
+     <center><a href="editOnePic.php?id=$id&what=picture"  class="admin_menu">{$lang_display_image_php['edit_pic']}</a> <a href="delete.php?id=$id&what=picture"  class="admin_menu" onclick="return confirm('{$lang_display_image_php['confirm_del']}');">{$lang_display_image_php['del_pic']}</a></center>
 
 EOT;
 }
@@ -269,8 +270,20 @@ function html_picinfo()
         if (isset($exif['Aperture'])) $info[$lang_picinfo['Aperture']] = $exif['Aperture'];
         if (isset($exif['ExposureTime'])) $info[$lang_picinfo['Exposure time']] = $exif['ExposureTime'];
         if (isset($exif['FocalLength'])) $info[$lang_picinfo['Focal length']] = $exif['FocalLength'];
-        if (isset($exif['Comment'])) $info[$lang_picinfo['Comment']] = $exif['Comment'];
-    }
+        if (@strlen(trim($exif['Comment'])) > 0 ) {
+		$info[$lang_picinfo['Comment']] = trim($exif['Comment']);
+	}
+    } 
+    
+    if ($CONFIG['read_iptc_data']) $iptc = get_IPTC($path_to_pic);
+
+    if (isset($iptc) && is_array($iptc)) {
+        if (isset($iptc['Title'])) $info[$lang_picinfo['iptcTitle']] = trim($iptc['Title']);
+	if (isset($iptc['Copyright'])) $info[$lang_picinfo['iptcCopyright']] = trim($iptc['Copyright']);
+	if (isset($iptc['Keywords'])) $info[$lang_picinfo['iptcKeywords']] = trim(implode(" ",$iptc['Keywords']));
+	if (isset($iptc['Category'])) $info[$lang_picinfo['iptcCategory']] = trim($iptc['Category']);
+	if (isset($iptc['SubCategories'])) $info[$lang_picinfo['iptcSubCategories']] = trim(implode(" ",$iptc['SubCategories']));
+    } 
     // Create the absolute URL for display in info
     $info['URL'] = '<a href=' . $CONFIG["ecards_more_pic_target"] . '/' . basename($_SERVER['PHP_SELF']) . "?pos=-$CURRENT_PIC_DATA[pid]" . ' >' . $CONFIG["ecards_more_pic_target"] . '/' . basename($_SERVER['PHP_SELF']) . "?pos=-$CURRENT_PIC_DATA[pid]" . '</a>';
     // with subdomains the variable is $_SERVER["SERVER_NAME"] does not return the right value instead of using a new config variable I reused $CONFIG["ecards_more_pic_target"] no trailing slash in the configure

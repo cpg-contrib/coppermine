@@ -32,6 +32,7 @@ CREATE TABLE CPG_categories (
   description text NOT NULL,
   pos int(11) NOT NULL default '0',
   parent int(11) NOT NULL default '0',
+  thumb int(11) NOT NULL default '0',
   subcat_count int(11) NOT NULL default '0',
   alb_count int(11) NOT NULL default '0',
   pic_count int(11) NOT NULL default '0',
@@ -183,3 +184,14 @@ CREATE TABLE CPG_banned (
 	PRIMARY KEY  (ban_id)
 ) TYPE=MyISAM;
 
+#---------------------------------------------------------
+
+#
+# Table structure for table `CPG_exif`
+#
+
+CREATE TABLE CPG_exif (
+  `filename` varchar(255) NOT NULL default '',
+  `exifData` text NOT NULL,
+  UNIQUE KEY `filename` (`filename`)
+) TYPE=MyISAM;

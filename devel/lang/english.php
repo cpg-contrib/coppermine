@@ -309,6 +309,7 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
         'update_create' => 'Update/Create category',
         'parent_cat' => 'Parent category',
         'cat_title' => 'Category title',
+	'cat_thumb' => 'Category thumbnail',
         'cat_desc' => 'Category description'
 );
 
@@ -403,6 +404,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Allowed image types (only valid for ImageMagick)', 'allowed_img_types',0),
         array('Command line options for ImageMagick', 'im_options', 0),
         array('Read EXIF data in JPEG files', 'read_exif_data', 1),
+	array('Read IPTC data in JPEG files', 'read_iptc_data', 1),
         array('The album directory <b>*</b>', 'fullpath', 0),
         array('The directory for user pictures <b>*</b>', 'userpics', 0),
         array('The prefix for intermediate pictures <b>*</b>', 'normal_pfx', 0),
@@ -499,6 +501,7 @@ $lang_display_image_php = array(
         'slideshow' => 'Slideshow',
         'stop_slideshow' => 'STOP SLIDESHOW',
         'view_fs' => 'Click to view full size image',
+	'edit_pic' => 'EDIT THIS PICTURE',
 );
 
 $lang_picinfo = array(
@@ -519,6 +522,11 @@ $lang_picinfo = array(
         'addFav'=>'Add to Fav', //new in cpg1.2.0
         'addFavPhrase'=>'Favourites', //new in cpg1.2.0
         'remFav'=>'Remove from Fav', //new in cpg1.2.0
+	'iptcTitle'=>'IPTC Title',
+	'iptcCopyright'=>'IPTC Copyright',
+	'iptcKeywords'=>'IPTC Keywords',
+	'iptcCategory'=>'IPTC Category',
+	'iptcSubCategories'=>'IPTC Sub Categories',
 );
 
 $lang_display_comments = array(
@@ -573,6 +581,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
         'approve' => 'Approve picture',
         'postpone_app' => 'Postpone approval',
         'del_pic' => 'Delete picture',
+	'read_exif' => 'Read EXIF info again',
         'reset_view_count' => 'Reset view counter',
         'reset_votes' => 'Reset votes',
         'del_comm' => 'Delete comments',
