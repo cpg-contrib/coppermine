@@ -39,6 +39,12 @@ require('include/init.inc.php');
 
 if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
+/**
+ * alb_get_subcat_data()
+ * 
+ * @param integer $parent
+ * @param string $ident
+ **/
 function alb_get_subcat_data($parent, $ident = '')
 {
     global $CONFIG, $CAT_LIST;

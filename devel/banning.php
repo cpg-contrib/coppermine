@@ -16,6 +16,17 @@
 // ------------------------------------------------------------------------- //
 // $Id$
 // ------------------------------------------------------------------------- //
+/**
+* Coppermine Photo Gallery 1.3.0 banning.php
+* 
+* Someone please add a description
+* 
+* @copyright 2002,2003 Gregory DEMAR, Coppermine Dev Team
+* @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
+* @package Coppermine
+* @version $Id$
+*/
+
 
 define('IN_COPPERMINE', true);
 define('BANNING_PHP', true);
@@ -25,6 +36,12 @@ require('include/sql_parse.php');
 
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 // if (defined('UDB_INTEGRATION')) cpg_die(ERROR, $lang_errors['not_with_udb'], __FILE__, __LINE__);
+
+/**
+ * create_banlist()
+ * 
+ * @return 
+ **/
 function create_banlist()
 {
     global $CONFIG, $PHP_SELF, $lang_banning_php, $album_date_fmt;
