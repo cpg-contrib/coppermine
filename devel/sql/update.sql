@@ -245,3 +245,7 @@ INSERT INTO CPG_config VALUES ('user_profile3_name', 'Website');
 INSERT INTO CPG_config VALUES ('user_profile4_name', 'Occupation');
 INSERT INTO CPG_config VALUES ('user_profile5_name', '');
 INSERT INTO CPG_config VALUES ('user_profile6_name', '');
+
+
+INSERT INTO CPG_config VALUES ('language_fallback', '0');
+

@@ -108,6 +108,9 @@ INSERT INTO CPG_config VALUES ('email_comment_notification', '0');
 INSERT INTO CPG_config VALUES ('enable_zipdownload', '1');
 INSERT INTO CPG_config VALUES ('slideshow_interval', '5000');
 
+INSERT INTO CPG_config VALUES ('language_fallback', '0');
+
+
 #
 # Dumping data for table `CPG_usergroups`
 #
@@ -122,3 +125,5 @@ INSERT INTO CPG_usergroups VALUES (4, 'Banned', 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0,
 #
 
 INSERT INTO CPG_categories VALUES (1, 0, 'User galleries', 'This category contains albums that belong to Coppermine users.', 0, 0, 0, 0, 0, 'NO');
+
+

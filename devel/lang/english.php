@@ -388,6 +388,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 
   'Language, Themes &amp; Charset settings',
   array('Language', 'lang', 5),
+  array('Fallback to English if translated phrase not found?', 'language_fallback', 1),
   array('Theme', 'theme', 6),
   array('Display language list', 'language_list', 1), //cpg1.3.0
   array('Display language flags', 'language_flags', 8), //cpg1.3.0

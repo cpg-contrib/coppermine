@@ -365,6 +365,11 @@ if (isset($CONFIG['default_lang']) && ($CONFIG['default_lang']==$CONFIG['lang'])
 
 if (!file_exists("lang/{$CONFIG['lang']}.php")) $CONFIG['lang'] = 'english';
 require "lang/{$CONFIG['lang']}.php";
+
+// Include and process fallback here if lang <> english
+if($CONFIG['lang'] != 'english' && $CONFIG['language_fallback']==1 ){
+	require "include/langfallback.inc.php";
+}
 // See if the fav cookie is set else set it
 if (isset($HTTP_COOKIE_VARS[$CONFIG['cookie_name'] . '_fav'])) {
     $FAVPICS = @unserialize(@base64_decode($HTTP_COOKIE_VARS[$CONFIG['cookie_name'] . '_fav']));
