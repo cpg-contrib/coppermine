@@ -39,12 +39,12 @@ set_magic_quotes_runtime(0);
 // used for timing purpose
 $query_stats = array();
 $queries = array();
-function getmicrotime()
+function cpgGetMicroTime()
 {
     list($usec, $sec) = explode(" ", microtime());
     return ((float)$usec + (float)$sec);
 }
-$time_start = getmicrotime();
+$time_start = cpgGetMicroTime();
 // Do some cleanup in GET, POST and cookie data and un-register global vars
 $HTML_SUBST = array('"' => '&quot;', '<' => '&lt;', '>' => '&gt;');
 if (get_magic_quotes_gpc()) {

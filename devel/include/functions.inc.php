@@ -77,13 +77,13 @@ function db_query($query, $link_id = 0)
 {
         global $CONFIG, $query_stats, $queries;
 
-        $query_start = getmicrotime();
+        $query_start = cpgGetMicroTime();
         if (($link_id)) {
             $result = mysql_query($query, $link_id);
         } else {
                 $result = mysql_query($query);
         }
-        $query_end = getmicrotime();
+        $query_end = cpgGetMicroTime();
         if (isset($CONFIG['debug_mode']) && (($CONFIG['debug_mode']==1) || ($CONFIG['debug_mode']==2) )) {
                 $query_stats[] = $query_end - $query_start;
                 $queries[] = $query;
@@ -1190,7 +1190,7 @@ function cpg_debug_output()
 {
     global $HTTP_GET_VARS, $HTTP_POST_VARS, $HTTP_SERVER_VARS;
     global $USER, $USER_DATA, $ALBUM_SET, $CONFIG, $time_start, $query_stats, $queries, $lang_cpg_debug_output;
-        $time_end = getmicrotime();
+        $time_end = cpgGetMicroTime();
         $time = round($time_end - $time_start, 3);
 
         $query_count = count($query_stats);

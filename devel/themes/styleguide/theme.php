@@ -832,7 +832,7 @@ function pagefooter()
     global $template_footer;
 
     if ($CONFIG['debug_mode']==1 || ($CONFIG['debug_mode']==2 && GALLERY_ADMIN_MODE)) {
-        $time_end = getmicrotime();
+        $time_end = cpgGetMicroTime();
         $time = round($time_end - $time_start, 3);
 
         $query_count = count($query_stats);

@@ -325,7 +325,7 @@ class phpExifReader {
      *
      */
     function phpExifReader($file = "") {
-      $this->timeStart = $this->getmicrotime();
+      $this->timeStart = $this->cpgGetMicroTime();
       if(!empty($file)) {
         $this->file = $file;
       }
@@ -394,7 +394,7 @@ class phpExifReader {
     function processFile() {
         /** dont reparse the whole file. */
         if(!$this->newFile) return true;
-        
+
         if(!file_exists($this->file)) {
             echo "<br>Error: File ".($this->file)."does not exists!";
             exit;
@@ -735,13 +735,13 @@ class phpExifReader {
                     $this->ImageInfo['h']["exifComment"] = $tmp;
                     break;
 
-				case TAG_ARTIST:
+                                case TAG_ARTIST:
                     $this->ImageInfo['h']["artist"] = substr($ValuePtr,0,$ByteCount);
-					break;
+                                        break;
 
-				case TAG_COPYRIGHT:
+                                case TAG_COPYRIGHT:
                     $this->ImageInfo['h']["copyright"] = htmlentities(substr($ValuePtr,0,$ByteCount));
-					break;
+                                        break;
 
                 case TAG_FNUMBER:
                     // Simplest way of expressing aperture, so I trust it the most.
@@ -1470,11 +1470,11 @@ class phpExifReader {
 
         return $retArr;
     }
-    
+
     /**
     * Returns time in microseconds
     */
-    function getmicrotime(){
+    function cpgGetMicroTime(){
         list($usec, $sec) = explode(" ",microtime());
         return ((float)$usec + (float)$sec);
     }
@@ -1483,7 +1483,7 @@ class phpExifReader {
     *  Get the time difference
     */
     function getDiffTime() {
-            return ($this->getmicrotime() - $this->timeStart);
+            return ($this->cpgGetMicroTime() - $this->timeStart);
     }
 } // end of class
 ?>
