@@ -91,3 +91,6 @@ Added pic keywords to meta tags - 14th March 2004, GauGau
 Added multiple URI upload changes to the language file - 16th March 2004, Hyperion
 Fixed album thumb bug - 22 March 2004, Chris
 Added support for multiple HTTP/URI uploads - 30 March 2004, Hyperion
+Added height/width fields to editOnePic.php - 20 April 2004, Chris
+Fixed height/width fields in editpics.php - 20 April 2004, Chris
+Fixed 'missing controls' bug in displayimage.php - 20 April 2004, Chris
