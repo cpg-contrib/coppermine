@@ -31,12 +31,20 @@ $pic_file = base64_decode($HTTP_GET_VARS['pic_file']);
 $dir_name = dirname($pic_file) . "/";
 $file_name = basename($pic_file);
 
+// Get the forbidden characters from the Config console string, and do any necessary translation. Return the translated string.
+$forbidden_chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>'));
+
+// Create the holder $picture_name by translating the file name. Translate any forbidden character into an underscore.
+$sane_name = strtr($file_name, $forbidden_chars, str_repeat('_', strlen($CONFIG['forbiden_fname_char'])));
+$source = addslashes("./" . $CONFIG['fullpath'] . $dir_name . $file_name);
+rename($source, "./" . $CONFIG['fullpath'] . $dir_name . $sane_name);
+
 $sql = "SELECT pid " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE filepath='" . addslashes($dir_name) . "' AND filename='" . addslashes($file_name) . "' " . "LIMIT 1";
 $result = db_query($sql);
 
 if (mysql_num_rows($result)) {
     $file_name = "images/up_dup.gif";
-} elseif (add_picture($aid, $dir_name, $file_name)) {
+} elseif (add_picture($aid, $dir_name, $sane_name)) {
     $file_name = "images/up_ok.gif";
 } else {
     $file_name = "images/up_pb.gif";
