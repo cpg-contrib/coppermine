@@ -40,7 +40,7 @@ if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 // Switch that allows overriding the bridge manager with hard-coded values
 define('USE_BRIDGEMGR', 1);
 
-require 'core.inc.php';
+require 'udb_base.inc.php';
 
 class cpg_udb extends core_udb {
 

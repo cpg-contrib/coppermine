@@ -288,6 +288,18 @@ function localised_date($timestamp = -1, $datefmt)
     return strftime($date, $timestamp);
 }
 
+/**
+ * localised_timestamp()
+ *
+ * Display a localised timestamp
+ *
+ * @return
+ **/
+function localised_timestamp()
+{
+	return strtotime(localised_date(-1, '%B %d, %Y'));
+}
+
 // Function to create correct URLs for image name with space or exotic characters
 
 /**
@@ -2346,7 +2358,7 @@ $lang_language_data['vietnamese'] = array('Vietnamese','Tieng Viet','vn');
   $lang_dir = 'lang/';
   $dir = opendir($lang_dir);
   while ($file = readdir($dir)) {   
-     $lang_array[] = strtolower(substr($file, 0 , -4)); 
+     if ($file != '.' AND $file != '..')$lang_array[] = strtolower(substr($file, 0 , -4)); 
   }
   closedir($dir);
   natcasesort($lang_array);

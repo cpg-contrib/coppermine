@@ -47,7 +47,7 @@ function create_banlist()
 {
     global $CONFIG, $lang_banning_php, $album_date_fmt; //$PHP_SELF,
 
-    $result = cpg_db_query ("SELECT * FROM {$CONFIG['TABLE_BANNED']} WHERE brute_force=0");
+    $result = cpg_db_query ("SELECT *, UNIX_TIMESTAMP(expiry) AS expiry FROM {$CONFIG['TABLE_BANNED']} WHERE brute_force=0");
     $count = mysql_num_rows($result);
     if ($count > 0) {
         echo <<<EOHEAD
@@ -66,9 +66,9 @@ EOHEAD;
             } else {
                 $username = '';
             }
-            if ($row['expiry']) {
-                //$expiry = strftime ('%H:%M:%S %d %b %Y %Z', $row['expiry']);
-                $expiry = $row['expiry'];
+
+            if ($row['expiry']) {;
+                $expiry = localised_date($row['expiry'], '%Y-%m-%d');
             } else {
                 $expiry = '';
             }

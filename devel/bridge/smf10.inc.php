@@ -128,7 +128,7 @@ class cpg_udb extends core_udb {
 		{
 			$udb_groups[$row[$this->field['grouptbl_group_id']]+100] = ucfirst(strtolower($row[$this->field['grouptbl_group_name']]));
 		}
-		var_dump($udb_groups);
+		//var_dump($udb_groups);
 		return $udb_groups;
 	}
 	

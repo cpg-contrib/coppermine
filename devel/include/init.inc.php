@@ -444,7 +444,7 @@ CPGPluginAPI::action('page_start',null);
 // load the main template
 load_template();
 // Remove expired bans
-$now = date('Y-m-d H:i:s');
+$now = date('Y-m-d H:i:s', localised_timestamp());
 cpg_db_query("DELETE FROM {$CONFIG['TABLE_BANNED']} WHERE expiry < '$now'");
 // Check if the user is banned
 $user_id = USER_ID;

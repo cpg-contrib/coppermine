@@ -52,7 +52,7 @@ function sendDate(month, day, year)
     selectedDate = selectedDate.replace(/m/, month);
     selectedDate = selectedDate.replace(/d/, day);
     selectedDate = selectedDate.replace(/y/, year);
-    selectedDate = selectedDate + ' 00:00:00';
+    //selectedDate = selectedDate + ' 00:00:00';
     if (selectedDate == '-0-0 00:00:00') {
        selectedDate = '';
        }
@@ -76,13 +76,10 @@ class MyCalendar extends Calendar
 
     function getDateLink($day, $month, $year)
     {
-            $link = "<a href=\"#\" onclick=\"sendDate('".$month."', '".$day."', '".$year."');\" class=\"user_thumb_infobox\">";
+            $link = (mktime(0,0,0,$month, $day, $year) > localised_timestamp())  ? "<a href=\"#\" onclick=\"sendDate('".$month."', '".$day."', '".$year."');\" class=\"user_thumb_infobox\">" : '';
         return $link;
     }
 }
-
-
-
 
 $month = $_REQUEST['month'];
 $year = $_REQUEST['year'];
@@ -242,7 +239,7 @@ class Calendar
     */
     function getCurrentMonthView()
     {
-        $d = getdate(time());
+        $d = getdate(localised_timestamp());
         return $this->getMonthView($d["mon"], $d["year"]);
     }
 
@@ -252,7 +249,7 @@ class Calendar
     */
     function getCurrentYearView()
     {
-        $d = getdate(time());
+        $d = getdate(localised_timestamp());
         return $this->getYearView($d["year"]);
     }
 
