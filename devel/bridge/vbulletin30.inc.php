@@ -96,15 +96,15 @@ function udb_authenticate()
     } elseif ($sessionhash) {
         // session hash exists
         // validate it:
-        if ($HTTP_SERVER_VARS['HTTP_CLIENT_IP'])
+        if (isset($HTTP_SERVER_VARS['HTTP_CLIENT_IP']))
         {
             $alt_ip =  $HTTP_SERVER_VARS['HTTP_CLIENT_IP'];
         }
-        else if ($HTTP_SERVER_VARS['HTTP_X_FORWARDED_FOR'] AND preg_match('#\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}#s', $HTTP_SERVER_VARS['HTTP_X_FORWARDED_FOR'], $matches))
+        else if (isset($HTTP_SERVER_VARS['HTTP_X_FORWARDED_FOR']) AND preg_match('#\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}#s', $HTTP_SERVER_VARS['HTTP_X_FORWARDED_FOR'], $matches))
         {
             $alt_ip = $matches[0];
         }
-        else if ($HTTP_SERVER_VARS['HTTP_FROM'])
+        else if (isset($HTTP_SERVER_VARS['HTTP_FROM']))
         {
             $alt_ip = $HTTP_SERVER_VARS['HTTP_FROM'];
         }
