@@ -23,6 +23,12 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}       //{CORE}//
 // The following terms can be defined in theme.php
 // ('THEME_HAS_RATING_GRAPHICS', 1) : The location for the ratings graphics will
 //    be directed to the themes images folder.
+//    RUBBISH   : images/rating0.gif
+//    POOR      : images/rating1.gif
+//    FAIR      : images/rating2.gif
+//    GOOD      : images/rating3.gif
+//    EXCELLENT : images/rating4.gif
+//    GREAT     : images/rating5.gif
 //('THEME_HAS_NAVBAR_GRAPHICS', 1); : The location for the navbar graphics will
 //    be directed to the themes images folder.
 //    Back to thumbnails   : images/thumbnails.gif
@@ -32,6 +38,11 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}       //{CORE}//
 //    Ecard                : images/ecard.gif
 //    Previous             : images/prev.gif
 //    Next                 : images/next.gif
+// ('THEME_HAS_FILM_STRIP_GRAPHICS', 1) : The location for the film strip graphics will
+//    be directed to the themes images folder.
+//    tile on the top      : images/tile1.gif
+//    tile on the bottom   : images/tile2.gif
+
 
 // HTML template for main menu spacer first
 if (!isset($template_main_menu_spacer_first))  //{CORE}
@@ -153,10 +164,9 @@ $template_cat_list = <<<EOT
                 <td class="tableb" align="center">{ALB_COUNT}</td>
                 <td class="tableb" align="center">{PIC_COUNT}</td>
         </tr>
-     <!--if (isset(CAT_ALBUMS)){-->
-          <tr>
+        <tr>
             <td class="tableb" colspan="3">{CAT_ALBUMS}</td>
-      </tr><!--};-->
+        </tr>
 <!-- END catrow -->
 <!-- BEGIN footer -->
         <tr>
@@ -281,7 +291,7 @@ if (!isset($template_film_strip))  //{CORE}
 $template_film_strip = <<<EOT
 
         <tr>
-         <td valign="top" style="background-image: url(themes/classic/images/tile.gif);" align="center" height='30'>&nbsp;</td>
+         <td valign="top" style="background-image: url({TILE1});" align="center" height='30'>&nbsp;</td>
         </tr>
         <tr>
         <td valign="bottom" class="thumbnails" align="center">
@@ -289,7 +299,7 @@ $template_film_strip = <<<EOT
         </td>
         </tr>
         <tr>
-         <td valign="top" style="background-image: url(themes/classic/images/tile.gif);" align="center" height='30'>&nbsp;</td>
+         <td valign="top" style="background-image: url({TILE2});" align="center" height='30'>&nbsp;</td>
         </tr>
 <!-- BEGIN thumb_cell -->
                                         <a href="{LINK_TGT}">{THUMB}</a>&nbsp;
@@ -416,9 +426,9 @@ $template_thumb_view_title_row = <<<EOT
                                 <td class="sortorder_cell">
                                         <table cellpadding="0" cellspacing="0">
                                         <tr>
-                                <td class="sortorder_options">{TITLE}</td>
-                                <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=ta" title="{SORT_TA}">&nbsp;+&nbsp;</a></span></td>
-                                <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=td" title="{SORT_TD}">&nbsp;-&nbsp;</a></span></td>
+                                                <td class="sortorder_options">{TITLE}</td>
+                                                <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=ta" title="{SORT_TA}">&nbsp;+&nbsp;</a></span></td>
+                                                <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=td" title="{SORT_TD}">&nbsp;-&nbsp;</a></span></td>
                                         </tr>
                                         <tr>
                                                 <td class="sortorder_options">{NAME}</td>
@@ -431,11 +441,10 @@ $template_thumb_view_title_row = <<<EOT
                                                 <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=dd" title="{SORT_DD}">&nbsp;-&nbsp;</a></span></td>
                                         </tr>
                                         <tr>
-                                            <td class="sortorder_options">{POSITION}</td>
-                                            <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=pa" title="{SORT_PA}">&nbsp;+&nbsp;</a></span></td>
-                                            <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=pd" title="{SORT_PD}">&nbsp;-&nbsp;</a></span></td>
+                                                <td class="sortorder_options">{POSITION}</td>
+                                                <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=pa" title="{SORT_PA}">&nbsp;+&nbsp;</a></span></td>
+                                                <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=pd" title="{SORT_PD}">&nbsp;-&nbsp;</a></span></td>
                                         </tr>
-
                                         </table>
                                 </td>
                         </tr>
@@ -547,32 +556,32 @@ $template_img_navbar = <<<EOT
 
         <tr>
                 <td align="center" valign="middle" class="navmenu" width="48px">
-                        <a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="{LOCATION}images/thumbnails.gif" width="16px" height="16px" align="middle" border="0px" alt="{THUMB_TITLE}" /></a>
+                        <a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="{LOCATION}images/thumbnails.gif" align="middle" border="0px" alt="{THUMB_TITLE}" /></a>
                 </td>
                 <td align="center" valign="middle" class="navmenu" width="48px">
-                        <a href="javascript:;" onclick="blocking('picinfo','yes', 'block'); return false;" title="{PIC_INFO_TITLE}"><img src="{LOCATION}images/info.gif" width="16px" height="16px" border="0px" align="middle" alt="{PIC_INFO_TITLE}" /></a>
+                        <a href="javascript:;" class="navmenu_pic" onclick="blocking('picinfo','yes', 'block'); return false;" title="{PIC_INFO_TITLE}"><img src="{LOCATION}images/info.gif" border="0px" align="middle" alt="{PIC_INFO_TITLE}" /></a>
                 </td>
                 <td align="center" valign="middle" class="navmenu" width="48px">
-                        <a href="{SLIDESHOW_TGT}" title="{SLIDESHOW_TITLE}"><img src="{LOCATION}images/slideshow.gif" width="16px" height="16px" border="0px" align="middle" alt="{SLIDESHOW_TITLE}" /></a>
+                        <a href="{SLIDESHOW_TGT}" class="navmenu_pic" title="{SLIDESHOW_TITLE}"><img src="{LOCATION}images/slideshow.gif" border="0px" align="middle" alt="{SLIDESHOW_TITLE}" /></a>
                 </td>
                 <td align="center" valign="middle" class="navmenu" width="100%">
                         {PIC_POS}
                 </td>
 <!-- BEGIN report_file_button -->
                 <td align="center" valign="middle" class="navmenu" width="48px">
-                        <a href="{REPORT_TGT}" title="{REPORT_TITLE}"><img src="{LOCATION}images/report.gif" width="16" height="16" border="0" align="middle" alt="{REPORT_TITLE}" /></a>
+                        <a href="{REPORT_TGT}" class="navmenu_pic" title="{REPORT_TITLE}"><img src="{LOCATION}images/report.gif" border="0" align="middle" alt="{REPORT_TITLE}" /></a>
                 </td>
 <!-- END report_file_button -->
 <!-- BEGIN ecard_button -->
                 <td align="center" valign="middle" class="navmenu" width="48px">
-                        <a href="{ECARD_TGT}" title="{ECARD_TITLE}"><img src="{LOCATION}images/ecard.gif" width="16px" height="16px" border="0px" align="middle" alt="{ECARD_TITLE}" /></a>
+                        <a href="{ECARD_TGT}" class="navmenu_pic" title="{ECARD_TITLE}"><img src="{LOCATION}images/ecard.gif"  border="0px" align="middle" alt="{ECARD_TITLE}" /></a>
                 </td>
 <!-- END ecard_button -->
                 <td align="center" valign="middle" class="navmenu" width="48px">
-                        <a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="{LOCATION}images/prev.gif" width="16px" height="16px" border="0px" align="middle" alt="{PREV_TITLE}" /></a>
+                        <a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="{LOCATION}images/prev.gif"  border="0px" align="middle" alt="{PREV_TITLE}" /></a>
                 </td>
                 <td align="center" valign="middle" class="navmenu" width="48px">
-                        <a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="{LOCATION}images/next.gif" width="16px" height="16px" border="0px" align="middle" alt="{NEXT_TITLE}" /></a>
+                        <a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="{LOCATION}images/next.gif"  border="0px" align="middle" alt="{NEXT_TITLE}" /></a>
                 </td>
         </tr>
 
@@ -1618,7 +1627,7 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
 if (!function_exists('theme_display_film_strip')) {  //{CORE}
 function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $pos, $sort_options, $mode = 'thumb')
 {
-    global $CONFIG;
+    global $CONFIG, $THEME_DIR;
     global $template_film_strip, $lang_film_strip;
 
     static $template = '';
@@ -1658,9 +1667,19 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
         }
         $thumb_strip .= template_eval($thumb_cell, $params);
     }
+    
+    if (defined('THEME_HAS_FILM_STRIP_GRAPHICS')) {
+                $tile1 = $THEME_DIR . 'images/tile1.gif';
+                $tile2 = $THEME_DIR . 'images/tile2.gif';
+    } else {
+        $tile1=$tile2= 'images/tile.gif';
+    }
 
     $params = array('{THUMB_STRIP}' => $thumb_strip,
-        '{COLS}' => $i);
+        '{COLS}' => $i,
+        '{TILE1}' => $tile1,
+        '{TILE2}' => $tile2,
+        );
 
     ob_start();
     starttable($CONFIG['picture_table_width']);
@@ -1930,7 +1949,7 @@ function theme_html_img_nav_menu()
         '{PIC_POS}' => $pic_pos,
         '{ECARD_TGT}' => $ecard_tgt,
         '{ECARD_TITLE}' => $ecard_title,
-		'{PREV_TGT}' => $prev_tgt,
+		    '{PREV_TGT}' => $prev_tgt,
         '{PREV_TITLE}' => $prev_title,
         '{NEXT_TGT}' => $next_tgt,
         '{NEXT_TITLE}' => $next_title,
