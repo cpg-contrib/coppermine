@@ -182,23 +182,24 @@ a.external {
             <li class="content"><a href="#edit_vids">4.8.1 Editing videos</a></li>
             <li class="content"><a href="#cust_thmb">4.8.2 Custom thumbnails</a></li>
             </ul>
-          <li class="content"><a href="#batch_add_pics" class="menu2">4.9 Uploading pics by FTP / Batch-Add Pictures</a></li>
-          <li class="content"><a href="#config" class="menu2">4.10 The configuration page</a></li>
+          <li class="content"><a href="#bbcode" class="menu2">4.9 Using bbcode to insert links and format in descriptions</a></li>
+          <li class="content"><a href="#batch_add_pics" class="menu2">4.10 Uploading pics by FTP / Batch-Add Pictures</a></li>
+          <li class="content"><a href="#config" class="menu2">4.11 The configuration page</a></li>
             <ul class="content">
-            <li class="content"><a href="#config_general">4.10.1 General settings</a></li>
-            <li class="content"><a href="#config_language">4.10.2 Language, Themes &amp; Charset settings</a></li>
-            <li class="content"><a href="#config_album_list">4.10.3 Album list view</a></li>
-            <li class="content"><a href="#config_thumbnail_view">4.10.4 Thumbnail view</a></li>
-            <li class="content"><a href="#config_image_comment">4.10.5 Image view &amp; Comment settings</a></li>
-            <li class="content"><a href="#config_picture_thumbnail">4.10.6 File and thumbnail settings</a></li>
-            <li class="content"><a href="#config_picture_thumb_advanced">4.10.7 Files and thumbnails advanced settings</a></li>
-            <li class="content"><a href="#config_user">4.10.8 User settings</a></li>
+            <li class="content"><a href="#config_general">4.11.1 General settings</a></li>
+            <li class="content"><a href="#config_language">4.11.2 Language, Themes &amp; Charset settings</a></li>
+            <li class="content"><a href="#config_album_list">4.11.3 Album list view</a></li>
+            <li class="content"><a href="#config_thumbnail_view">4.11.4 Thumbnail view</a></li>
+            <li class="content"><a href="#config_image_comment">4.11.5 Image view &amp; Comment settings</a></li>
+            <li class="content"><a href="#config_picture_thumbnail">4.11.6 File and thumbnail settings</a></li>
+            <li class="content"><a href="#config_picture_thumb_advanced">4.11.7 Files and thumbnails advanced settings</a></li>
+            <li class="content"><a href="#config_user">4.11.8 User settings</a></li>
 
-            <li class="content"><a href="#config_custom">4.10.9 Custom fields for user profile</a></li>
-             <li class="content"><a href="#config_custom_image">4.10.10 Custom fields for image description</a></li>
-            <li class="content"><a href="#config_cookie">4.10.11 Cookie settings</a></li>
-            <li class="content"><a href="#config_email">4.10.12 Email settings</a></li>
-            <li class="content"><a href="#config_misc">4.10.13 Miscellaneous settings</a></li>
+            <li class="content"><a href="#config_custom">4.11.9 Custom fields for user profile</a></li>
+             <li class="content"><a href="#config_custom_image">4.11.10 Custom fields for image description</a></li>
+            <li class="content"><a href="#config_cookie">4.11.11 Cookie settings</a></li>
+            <li class="content"><a href="#config_email">4.11.12 Email settings</a></li>
+            <li class="content"><a href="#config_misc">4.11.13 Miscellaneous settings</a></li>
             </ul>
           </ul>
         <li class="content"><a href="#integrating" class="menu1">5. Integrating the script with your bulletin board</a>
@@ -426,7 +427,7 @@ open-source photo gallery!</p>
 <a name="11"></a>
 <h2>3.2 Upgrading from releases of version 1.1</h2>
   <ul>
-  	  <li>First, make a backup (dump) of your database.</li>
+            <li>First, make a backup (dump) of your database.</li>
       <li>Backup your include/config.inc.php file, your anycontent.php file and your "albums" directoy.</li>
       <li>Unpack the archive</li>
       <li>If the file <b>install.php</b> exists in the root directory, delete it.</li>
@@ -440,7 +441,7 @@ open-source photo gallery!</p>
 <a name="12"></a>
 <h2>3.3 Upgrading from cpg1.2.0rc2 or cpg1.2.0final to version cpg1.2.1</h2>
     <ul>
-		<li>First, make a backup (dump) of your database.</li>
+                <li>First, make a backup (dump) of your database.</li>
         <li>Backup your include/config.inc.php file, your anycontent.php file and your "albums" directoy.</li>
         <li>Unpack the archive</li>
         <li>If the file <b>install.php</b> exists in the root directory, delete it.</li>
@@ -454,7 +455,7 @@ open-source photo gallery!</p>
 <a name="13"></a>
 <h2>3.4 Upgrading from cpg1.2.0rc2 or cpg1.2.0, cpg1.2.1 or cpg1.3.0beta to version cpg1.3.0</h2>
     <ul>
-		<li>First, make a backup (dump) of your database.</li>
+                <li>First, make a backup (dump) of your database.</li>
         <li>Backup your include/config.inc.php file, your anycontent.php file and your &quot;albums&quot; directoy.</li>
         <li>Unpack the archive</li>
         <li>If the file <b>install.php</b> exists in the root directory, delete it.</li>
@@ -724,12 +725,7 @@ src="pics/edit.gif" width="16" height="16" alt="" /> button. </p>
 <a name="album_prop"></a><h2>4.7 Album properties</h2>
 <p><img src="pics/edit_album.gif" border="1" /></p>
 <p>The "Album category" drop down list allows you to move an album between categories. If you set this to &quot;* No category *&quot; then the album will be displayed on your main page.</p>
-<a name="bbcode"></a><p>Coppermine understands the following bbCodes (the same bbCodes that are used by phpBB) in image and album description</p>
-<ul>
-  <li>[b]<b>bold</b>[/b]
-  <li>[i]<i>italic</i>[/i]
-  <li>[url=http://url]URL text[/url]
-  <li>[email]user@domain.tld[/email] </li></ul>
+<p>Use <a href="#bbcode">bbcode</a> to add links and some formating to the description.</p>
 <p>The thumbnail is the picture that will represent the album in the album list.</p>
 <p>If you have set &quot;Users can can have private albums&quot; to YES on the <a href="#config">config page</a>, you can define who can view the files of this album.</p>
 <p>When &quot;visitors can upload file&quot; is set to YES, it is possible to upload files in this album. <b>Note that a visitor will have the right to upload files into an album where this option is set to YES only if he is a member of a group for which &quot;Can upload pictures&quot; is set to YES.</b> Non registered users are members of the &quot;Anonymous&quot; group.</p>
@@ -803,8 +799,23 @@ Right now, you can't.</li>
 <a name="edit_pics_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
+
+<a name="bbcode"></a>
+<h2>4.9 Using bbcode to insert links and format in descriptions</h2>
+<p>Coppermine understands the following bbCodes (the same bbCodes that are used by phpBB and many other BBS apps) in image and album description</p>
+<ul>
+  <li><tt class="code">[b]Bold[/b]</tt> =&gt; <b>Bold</b></li>
+  <li><tt class="code">[i]Italic[/i]</tt> =&gt; <i>Italic</i></li>
+  <li><tt class="code">[url=http://yoursite.com/]Url Text[/url]</tt> =&gt; <a href="http://yoursite.com">Url Text</a></li>
+  <li><tt class="code">[email]user@domain.com[/email]</tt> =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li>
+  <li><tt class="code">[color=red]some text[/color]</tt> =&gt; <span style="color:red">some text</span></li>
+  <li><tt class="code">[img]http://coppermine.sf.net/demo/images/red.gif[/img]</tt> => <img src="../images/red.gif" border="0" alt="" /></li>
+</ul>
+<a name="bbcode_end"></a>
+<p><a class="back" href="#top">Back to top</a></p><hr />
+
 <a name="ftp"></a><a name="batch_add_pics"></a>
-<h2>4.9 Uploading pics by FTP / Batch-Add Pictures</h2>
+<h2>4.10 Uploading pics by FTP / Batch-Add Pictures</h2>
 <p>It's recommended that the coppermine admin uses ftp to upload many pics in one go. Use your ftp software to create sub-folders within <i>your_coppermine_directory/albums/</i>, where your ftp uploads can go to. It's a good idea to have a folder structure within the <i>albums</i> folder that reflects your coppermine categories and albums, but it's not mandatory.<br /><span class="important">Important</span>: do not create folders or upload to the <i>userpics</i>- nor the <i>edit</i>-folder by ftp: these folders are used by coppermine internally and mustn't be used for any other purpose! Folder names mustn't contain dots and it's even recommended not to use any special chars - only use a-z, numbers and maybe <tt class="code">-</tt> or <tt class="code">_</tt>. Make sure to upload in binary or auto-mode.</p>
 <p>Once you have uploaded your photos by ftp, click on the Batch Add Pictures button. The batch-add is done in three steps:</p>
 <ul>
@@ -829,9 +840,9 @@ If your browser times out, hit the reload button.
 <a name="ftp_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
-      <h2>4.10 The configuration page<a name="config"></a></h2>
+      <h2>4.11 The configuration page<a name="config"></a></h2>
       <a name="config_general"></a>
-      <h3>4.10.1 General settings</h3>
+      <h3>4.11.1 General settings</h3>
       <a name="config_general_name"></a><h4>Gallery name</h4>
       <p>This is the name of your gallery. It will appear in the title of your
       page and is shown on some templates.</p>
@@ -906,7 +917,7 @@ If your browser times out, hit the reload button.
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
       <a name="config_language"></a>
-      <h3>4.10.2 Language, Themes &amp; Charset settings</h3>
+      <h3>4.11.2 Language, Themes &amp; Charset settings</h3>
       <p><img src="pics/config_language.gif" width="612" height="234" border="1" alt=""></p>
       <a name="config_language_language"></a><h4>Language</h4>
       <p>This is the default language for your gallery. All language files are
@@ -1029,7 +1040,7 @@ If your browser times out, hit the reload button.
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
       <a name="config_album_list"></a>
-      <h3>4.10.3 Album list view</h3>
+      <h3>4.11.3 Album list view</h3>
       <h4>Width of the main table (pixels or %)</h4>
       <p>This is the width of tables used on your main page or when you are
       viewing thumbnails of an album. You can enter a width in pixels or specify
@@ -1089,7 +1100,7 @@ If your browser times out, hit the reload button.
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
       <a name="config_thumbnail_view"></a>
-      <h3>4.10.4 Thumbnail view</h3>
+      <h3>4.11.4 Thumbnail view</h3>
       <h4>Number of columns on thumbnail page</h4>
       <p>Default value is 4 this means that each row will show 4 thumbnails.</p>
       <h4>Number of rows on thumbnail page</h4>
@@ -1141,7 +1152,7 @@ If your browser times out, hit the reload button.
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="config_image_comment"></a>
-<h3>4.10.5 Image view &amp; Comment settings</h3>
+<h3>4.11.5 Image view &amp; Comment settings</h3>
 <h4>Width of the table for picture display (pixels or %)</h4>
 <p>The width of the table used to display the intermediate picture.</p>
 <h4>File information are visible by default</h4>
@@ -1180,7 +1191,7 @@ words with more than 38 characters are censored.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
       <a name="config_picture_thumbnail"></a>
-      <h3>4.10.6 Picture and thumbnail settings</h3>
+      <h3>4.11.6 Picture and thumbnail settings</h3>
       <h4>Quality for JPEG files</h4>
       <p>The quality used for JPEG compression when the script resizes an image.
       Value can range from 0 (worst) to 100 (best). This value can be set to 75
@@ -1216,7 +1227,7 @@ words with more than 38 characters are censored.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
       <a name="config_picture_thumb_advanced"></a>
-      <h3>4.10.7 Files and thumbnails advanced settings</h3>
+      <h3>4.11.7 Files and thumbnails advanced settings</h3>
           <h4>Albums can be private</h4>
       <p>If set to YES then your gallery can contain albums that can be visible
       only by users that belong to a certain group.</p>
@@ -1366,7 +1377,7 @@ words with more than 38 characters are censored.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
       <a name="config_user"></a>
-      <h3>4.10.8 User settings</h3>
+      <h3>4.11.8 User settings</h3>
       <h4>Allow new user registrations</h4>
       <p>Define whether new users can self-register or not.</p>
       <h4>User registration requires email verification</h4>
@@ -1451,19 +1462,19 @@ With this setting you specify the number of failed logins after that the IP addr
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
       <a name="config_custom"></a>
-       <h3>4.10.9 Custom fields for user profile (leave blank if unused). Use Profile 6 for long entries, such as biographies </h3>
+       <h3>4.11.9 Custom fields for user profile (leave blank if unused). Use Profile 6 for long entries, such as biographies </h3>
       <p>These fields are displayed within the &quot;user profile&quot; area. They
       will appear only if you give them a name. As the heading says, use field 6 for long entries, such as biographies, or if you want to use bb code.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
       <a name="config_custom_image"></a>
-      <h3>4.10.10 Custom fields for image description (leave blank if unused)</h3>
+      <h3>4.11.10 Custom fields for image description (leave blank if unused)</h3>
       <p>These fields are displayed within the &quot;file information&quot; area. They
       will appear only if you give them a name.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
       <a name="config_cookie"></a>
-      <h3>4.10.11 Cookie settings</h3>
+      <h3>4.11.11 Cookie settings</h3>
       <h4>Name of the cookie used by the script</h4>
       <p>Default value is &quot;cpg140&quot;. Even if you have multiple instances of the
       script running on the same server you can keep the default value.<br /><span class="important">When using bbs integration, make sure it <b>differs</b> from the bbs's cookie name</span></p>
@@ -1478,7 +1489,7 @@ With this setting you specify the number of failed logins after that the IP addr
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
       <a name="config_email"></a>
-      <h3>4.10.12 Email settings</h3>
+      <h3>4.11.12 Email settings</h3>
       <p>Usually nothing has to be changed here; leave all fields blank when not sure. Only if you run into problems (e.g. if ecards, registration info or notifications don't get sent) you should change these settings. If you're not sure what to enter, ask your webhost for support.</p>
       <h4>SMTP Host</h4>
       <p>The hostname of the SMTP server<br />
@@ -1512,7 +1523,7 @@ With this setting you specify the number of failed logins after that the IP addr
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
       <a name="config_misc"></a>
-      <h3>4.10.13 Miscellaneous settings</h3>
+      <h3>4.11.13 Miscellaneous settings</h3>
       <a name="debug_mode"></a><h4>Enable debug mode</h4>
       <p>CPG will show error messages which are normally suppressed.  This is helpful in troubleshooting problems with your gallery or when asking      for help on the <a href="http://coppermine.sf.net/board/">CPG Support Forums</a>. Turn this feature off if you don't experience problems.<br />
       Turn it on (option &quot;Everyone&quot;) if you are requesting help on the <a href="http://coppermine.sf.net/board/">coppermine support board</a>, so the supporters can have a look at the debug output as well. Choose the option &quot;Admin only&quot; when trouble-shooting on your own - debug output will be only visible when you're logged in as admin, regular users or guests won't see the debug output.</p>
