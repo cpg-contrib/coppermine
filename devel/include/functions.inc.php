@@ -618,11 +618,13 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 mysql_free_result($result);
 
                 if ($set_caption) foreach ($rowset as $key => $row){
+				if ($CONFIG['display_uploader']){
                         if ($row['owner_id'] && $row['owner_name']) {
                             $user_link = '<span class="thumb_title"><a href ="profile.php?uid='.$row['owner_id'].'">'.$row['owner_name'].'</a></span>';
                         } else {
                                 $user_link = '';
                         }
+					}
                         $caption = $user_link.'<span class="thumb_caption">'.localised_date($row['ctime'], $lastup_date_fmt).'</span>';
                         $rowset[$key]['caption_text'] = $caption;
                 }
