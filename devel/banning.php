@@ -265,7 +265,7 @@ function getCalendar(in_dateField)
     }
 
     var cal_width = 300;
-    var cal_height = 200;
+    var cal_height = 260;
 
     // IE needs less space to make this thing
     if ((document.all) && (navigator.userAgent.indexOf("Konqueror") == -1)) {

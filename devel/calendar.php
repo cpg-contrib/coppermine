@@ -352,7 +352,7 @@ class Calendar
 
       $header = $monthName . (($showYear > 0) ? " " . $year : "");
 
-      $s .= "<table class=\"maintable\">\n";
+      $s .= "<table class=\"maintable\" align=\"center\">\n";
       $s .= "<tr>\n";
       $s .= "<td align=\"center\" valign=\"top\">" . (($prevMonth == "") ? "&nbsp;" : "<a href=\"$prevMonth\" class=\"user_thumb_infobox\">&laquo;</a>")  . "</td>\n";
       $s .= "<td align=\"center\" valign=\"top\" class=\"tableh1\" colspan=\"5\">$header</td>\n";
