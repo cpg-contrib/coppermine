@@ -17,7 +17,7 @@
 // $Id$
 // ------------------------------------------------------------------------- //
 
-define('COPPERMINE_VERSION', '1.4.0 - devel');
+define('COPPERMINE_VERSION', '1.4.0');
 define('COPPERMINE_STATUS', 'alpha');
 
 // User database integration
