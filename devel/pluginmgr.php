@@ -46,7 +46,7 @@ EOT;
             <td width="90%">
                 <table border="0" width="100%" cellspacing="0" cellpadding="0">
                     <tr>
-                        <td class="tableb" width="50%"><b>{$lang_pluginmgr_php['name']}</b> $name {$lang_pluginmgr_php['name']}$version</td>
+                        <td class="tableb" width="50%"><b>{$lang_pluginmgr_php['name']}</b> $name {$lang_pluginmgr_php['vers']}$version</td>
                         <td class="tableb" width="50%"><b>{$lang_pluginmgr_php['author']}</b> $author</td>
                     </tr>
                     <tr>
@@ -103,7 +103,7 @@ EOT;
     foreach ($available_plugins as $path) {
         if (($plugin_id = CPGPluginAPI::installed($path))===false) {
             
-            // If codebase.php and credits.php don't exist, skip this folder                                                       	
+            // If codebase.php and credits.php don't exist, skip this folder
             if (!(file_exists('./plugins/'.$path.'/codebase.php') && file_exists('./plugins/'.$path.'/credits.php'))) {
                 continue;
             }
@@ -117,7 +117,7 @@ EOT;
             <td width="90%">
                 <table border="0" width="100%" cellspacing="0" cellpadding="0">
                     <tr>
-                        <td class="tableb" width="50%"><b>{$lang_pluginmgr_php['name']}</b> $name {$lang_pluginmgr_php['name']}$version</td>
+                        <td class="tableb" width="50%"><b>{$lang_pluginmgr_php['name']}</b> $name {$lang_pluginmgr_php['vers']}$version</td>
                         <td class="tableb" width="50%"><b>{$lang_pluginmgr_php['author']}</b> $author</td>
                     </tr>
                     <tr>
