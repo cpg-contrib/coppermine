@@ -17,12 +17,16 @@
 //  the Free Software Foundation; either version 2 of the License, or        //
 //  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
-//  Language name in English: English                                        //
-//  Language name in your lanuage (use unicode): English                     //
-//  Translator name: Gregory Demar                                           //
-//  Translator email (optional): -                                           //
-//  Translator web page : http://www.chezgreg.net/                           //
-// ------------------------------------------------------------------------- //
+
+// info about translators and translated language
+$lang_translation_info = array(
+        'lang_name_english' => 'English',  //the name of your language in English, e.g. 'Greek' or 'Spanish'
+        'lang_name_native' => 'English', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espa&ntilde;ol'
+        'lang_country_code' => 'gb', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es'
+        'trans_name'=> 'Gregory Demar', //the name of the translator - can be a nickname
+        'trans_email' => 'gdemar@wanadoo.fr', //translator's email address (optional)
+        'trans_website' => 'http://www.chezgreg.net/', //translator's website (optional)
+);
 
 
 $lang_charset = 'iso-8859-1';
