@@ -138,3 +138,4 @@ Changed hard coded english in delete.php and upload.php to lang file, user contr
 Fixed expiration bug in banning.php, added calendar.php to select date - 6 July 2004, GauGau
 Added admin option to allow banning of private IPs  - 6 July 2004, GauGau
 Moved SMTP settings from include/mailer.inc.php to coppermine config - 8 July 2004, GauGau
+Added various changes for plugin API - 8 July 2004, Chris
