@@ -106,7 +106,7 @@ switch ($sort) {
 if ($sortDirection == 'ASC'){$sortDirectionText = $lang_db_ecard_php['ecard_ascending'];}
 
 // determine the total number of entries
-$result = mysql_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_ECARDS']}");
+$result = db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_ECARDS']}");
 if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['ecards_empty'], __FILE__, __LINE__, false);
 $totalEcards = mysql_fetch_array($result);
 $totalEcards = $totalEcards[0];
