@@ -389,8 +389,8 @@ if (count($HTTP_POST_VARS)) process_post_data();
 
 $start = isset($HTTP_GET_VARS['start']) ? (int)$HTTP_GET_VARS['start'] : 0;
 $count = isset($HTTP_GET_VARS['count']) ? (int)$HTTP_GET_VARS['count'] : 25;
-$next_target = $PHP_SELF.'?album='.$album_id.'&start='.($start+$count).'&count='.$count;
-$prev_target = $PHP_SELF.'?album='.$album_id.'&start='.max(0,$start-$count).'&count='.$count;
+$next_target = $PHP_SELF.'?album='.$album_id.'&start='.($start+$count).'&count='.$count.(('UPLOAD_APPROVAL_MODE')?"&mode=upload_approval":"");
+$prev_target = $PHP_SELF.'?album='.$album_id.'&start='.max(0,$start-$count).'&count='.$count.(('UPLOAD_APPROVAL_MODE')?"&mode=upload_approval":"");
 $s50 = $count == 50 ? 'selected' : '';
 $s75 = $count == 75 ? 'selected' : '';
 $s100 = $count == 100 ? 'selected' : '';
@@ -470,16 +470,16 @@ function textCounter(field, maxlimit) {
 }
 </script>
 EOT;
-
+$mode= ('UPLOAD_APPROVAL_MODE')?"&mode=upload_approval":"";
 echo <<<EOT
 	<tr>
 		<td class="tableb" colspan="3" align="center">
-		<form method="post" action="$form_target">
+		<form method="post" action="$form_target$mode">		
 			<b>$pic_count_text</b>&nbsp;&nbsp;-&nbsp;&nbsp;
 			$prev_link
 			$next_link
 			<b>{$lang_editpics_php['n_of_pic_to_disp']}</b>
-			<select onChange="if(this.options[this.selectedIndex].value) window.location.href='$PHP_SELF?album=$album_id&start=$start&count='+this.options[this.selectedIndex].value;"  name="count" class="listbox">
+			<select onChange="if(this.options[this.selectedIndex].value) window.location.href='$PHP_SELF?album=$album_id$mode&start=$start&count='+this.options[this.selectedIndex].value;"  name="count" class="listbox">
 				<option value="25">25</option>
 				<option value="50" $s50>50</option>
 				<option value="75" $s75>75</option>
