@@ -289,7 +289,7 @@ EOT;
 $template_film_strip = <<<EOT
 
         <tr>
-         <td valign="top" background='themes/mac_ox_x/images/tile.gif' align="center" height='30'>&nbsp;</td>
+         <td valign="top" background="themes/mac_ox_x/images/tile.gif" align="center" height="30">&nbsp;</td>
         </tr>
         <tr>
         <td valign="bottom" class="thumbnails" align="center">
@@ -297,7 +297,7 @@ $template_film_strip = <<<EOT
         </td>
         </tr>
         <tr>
-         <td valign="top" background='themes/mac_ox_x/images/tile.gif' align="center" height='30'>&nbsp;</td>
+         <td valign="top" background="themes/mac_ox_x/images/tile.gif" align="center" height="30">&nbsp;</td>
         </tr>
 <!-- BEGIN thumb_cell -->
                                         <a href="{LINK_TGT}">{THUMB}</a>&nbsp;
@@ -526,10 +526,10 @@ $template_img_navbar = <<<EOT
                         <a href="{ECARD_TGT}" title="{ECARD_TITLE}"><img src="images/spacer.gif" width="16" height="4" border="0" alt="" /><img src="images/ecard.gif" width="16" height="16" border="0" align="absmiddle" alt="{ECARD_TITLE}"></a>
                 </td>
                 <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="images/spacer.gif" width="16" height="4" border="0" alt="" /><img src="images/prev.gif" width="16" height="16" border="0" align="absmiddle" alt="{PREV_TITLE}" /></a>
+                        <a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="images/spacer.gif" width="16" height="4" border="0" alt="" /><img src="images/{PREV_IMAGE}.gif" width="16" height="16" border="0" align="absmiddle" alt="{PREV_TITLE}" /></a>
                 </td>
                 <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="images/spacer.gif" width="16" height="4" border="0" alt="" /><img src="images/next.gif" width="16" height="16" border="0" align="absmiddle" alt="{NEXT_TITLE}" /></a>
+                        <a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="images/spacer.gif" width="16" height="4" border="0" alt="" /><img src="images/{NEXT_IMAGE}.gif" width="16" height="16" border="0" align="absmiddle" alt="{NEXT_TITLE}" /></a>
                 </td>
         </tr>
 

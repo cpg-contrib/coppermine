@@ -273,7 +273,7 @@ EOT;
 $template_film_strip = <<<EOT
 
         <tr>
-         <td valign="top" background='themes/eyeball/images/tile.gif' align="center" height='30'>&nbsp;</td>
+         <td valign="top" background="themes/eyeball/images/tile.gif" align="center" height="30">&nbsp;</td>
         </tr>
         <tr>
         <td valign="bottom" class="thumbnails" align="center">
@@ -281,7 +281,7 @@ $template_film_strip = <<<EOT
         </td>
         </tr>
         <tr>
-         <td valign="top" background='themes/eyeball/images/tile.gif' align="center" height='30'>&nbsp;</td>
+         <td valign="top" background="themes/eyeball/images/tile.gif" align="center" height="30">&nbsp;</td>
         </tr>
 <!-- BEGIN thumb_cell -->
                                         <a href="{LINK_TGT}">{THUMB}</a>&nbsp;
@@ -512,10 +512,10 @@ $template_img_navbar = <<<EOT
                         <a href="{ECARD_TGT}" title="{ECARD_TITLE}"><img src="themes/eyeball/images/imv_ecards.gif" border="0" align="absmiddle" alt="{ECARD_TITLE}"></a>
                 </td>
                 <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="themes/eyeball/images/imv_prev.gif" border="0" align="absmiddle" alt="{PREV_TITLE}" /></a>
+                        <a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="themes/eyeball/images/imv_{PREV_IMAGE}.gif" border="0" align="absmiddle" alt="{PREV_TITLE}" /></a>
                 </td>
                 <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="themes/eyeball/images/imv_next.gif" border="0" align="absmiddle" alt="{NEXT_TITLE}" /></a>
+                        <a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="themes/eyeball/images/imv_{NEXT_IMAGE}.gif" border="0" align="absmiddle" alt="{NEXT_TITLE}" /></a>
                 </td>
                 <td align="center" valign="middle" class="navmenu" width="50%">
                         &nbsp;

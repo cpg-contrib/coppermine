@@ -103,6 +103,8 @@ function html_img_nav_menu()
         '{PREV_TITLE}' => $prev_title,
         '{NEXT_TGT}' => $next_tgt,
         '{NEXT_TITLE}' => $next_title,
+        '{PREV_IMAGE}' => ($lang_text_dir=='LTR') ? 'prev' : 'next',
+        '{NEXT_IMAGE}' => ($lang_text_dir=='LTR') ? 'next' : 'prev',
         );
 
     return template_eval($template_img_navbar, $params);
