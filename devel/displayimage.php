@@ -311,6 +311,7 @@ function html_picinfo()
         if (isset($exif['Camera'])) $info[$lang_picinfo['Camera']] = $exif['Camera'];
         if (isset($exif['DateTaken'])) $info[$lang_picinfo['Date taken']] = $exif['DateTaken'];
         if (isset($exif['Aperture'])) $info[$lang_picinfo['Aperture']] = $exif['Aperture'];
+        if (isset($exif['ISO'])) $info[$lang_picinfo['ISO']] = $exif['ISO'];	
         if (isset($exif['ExposureTime'])) $info[$lang_picinfo['Exposure time']] = $exif['ExposureTime'];
         if (isset($exif['FocalLength'])) $info[$lang_picinfo['Focal length']] = $exif['FocalLength'];
         if (@strlen(trim($exif['Comment'])) > 0 ) {
@@ -631,7 +632,7 @@ if (isset($HTTP_GET_VARS['fullsize'])) {
 
     pageheader($album_name . '/' . $picture_title, $meta_keywords, false);
     // Display Breadcrumbs
-    if ($breadcrumb) {
+    if ($breadcrumb && !(strpos($CONFIG['main_page_layout'],"breadcrumb")===false)) {
         theme_display_breadcrumb($breadcrumb, $cat_data);
     }
     // Display Filmstrip if the album is not search
