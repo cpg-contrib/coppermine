@@ -73,12 +73,12 @@ INSERT INTO CPG_config VALUES ('userpics', 'userpics/');
 #
 # added custom profile
 #
-INSERT INTO CPG_config VALUES ('user_profile1_name', '');
-INSERT INTO CPG_config VALUES ('user_profile2_name', '');
-INSERT INTO CPG_config VALUES ('user_profile3_name', '');
-INSERT INTO CPG_config VALUES ('user_profile4_name', '');
+INSERT INTO CPG_config VALUES ('user_profile1_name', 'Location');
+INSERT INTO CPG_config VALUES ('user_profile2_name', 'Interests');
+INSERT INTO CPG_config VALUES ('user_profile3_name', 'Website');
+INSERT INTO CPG_config VALUES ('user_profile4_name', 'Occupation');
 INSERT INTO CPG_config VALUES ('user_profile5_name', '');
-INSERT INTO CPG_config VALUES ('user_profile6_name', '');
+INSERT INTO CPG_config VALUES ('user_profile6_name', 'Biography');
 INSERT INTO CPG_config VALUES ('user_field1_name', '');
 INSERT INTO CPG_config VALUES ('user_field2_name', '');
 INSERT INTO CPG_config VALUES ('user_field3_name', '');
