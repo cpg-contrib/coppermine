@@ -109,10 +109,7 @@ INSERT INTO CPG_config VALUES ('slideshow_interval', '5000');
 INSERT INTO CPG_filetypes VALUES ('jpg', 'image/jpg', 'image');
 INSERT INTO CPG_filetypes VALUES ('gif', 'image/gif', 'image');
 INSERT INTO CPG_filetypes VALUES ('png', 'image/png', 'image');
-INSERT INTO CPG_filetypes VALUES ('psd', 'image/psd', 'image');
 INSERT INTO CPG_filetypes VALUES ('bmp', 'image/bmp', 'image');
-INSERT INTO CPG_filetypes VALUES ('tiff', 'image/tiff', 'image');
-INSERT INTO CPG_filetypes VALUES ('tif', 'image/tif', 'image');
 INSERT INTO CPG_filetypes VALUES ('jpc', 'image/jpc', 'image');
 INSERT INTO CPG_filetypes VALUES ('jp2', 'image/jp2', 'image');
 INSERT INTO CPG_filetypes VALUES ('jpx', 'image/jpx', 'image');
@@ -121,7 +118,7 @@ INSERT INTO CPG_filetypes VALUES ('swc', 'image/swc', 'image');
 INSERT INTO CPG_filetypes VALUES ('iff', 'image/iff', 'image');
 
 INSERT INTO CPG_filetypes VALUES ('asf', 'video/x-ms-asf', 'movie');
-INSERT INTO CPG_filetypes VALUES ('asx', 'video/x-ms-asf', 'movie');
+INSERT INTO CPG_filetypes VALUES ('asx', 'video/x-ms-asx', 'movie');
 INSERT INTO CPG_filetypes VALUES ('mpg', 'video/mpeg', 'movie');
 INSERT INTO CPG_filetypes VALUES ('mpeg', 'video/mpeg', 'movie');
 INSERT INTO CPG_filetypes VALUES ('wmv', 'video/x-ms-wmv', 'movie');
@@ -129,8 +126,6 @@ INSERT INTO CPG_filetypes VALUES ('swf', 'application/x-shockwave-flash', 'movie
 INSERT INTO CPG_filetypes VALUES ('avi', 'video/avi', 'movie');
 INSERT INTO CPG_filetypes VALUES ('mov', 'video/quicktime', 'movie');
 
-INSERT INTO CPG_filetypes VALUES ('ram', 'audio/x-pn-realaudio', 'audio');
-INSERT INTO CPG_filetypes VALUES ('ra', 'audio/x-realaudio', 'audio');
 INSERT INTO CPG_filetypes VALUES ('mp3', 'audio/mpeg3', 'audio');
 INSERT INTO CPG_filetypes VALUES ('midi', 'audio/midi', 'audio');
 INSERT INTO CPG_filetypes VALUES ('mid', 'audio/midi', 'audio');
@@ -138,6 +133,12 @@ INSERT INTO CPG_filetypes VALUES ('wma', 'audio/x-ms-wma', 'audio');
 INSERT INTO CPG_filetypes VALUES ('wav', 'audio/wav', 'audio');
 INSERT INTO CPG_filetypes VALUES ('ogg', 'audio/ogg', 'audio');
 
+INSERT INTO CPG_filetypes VALUES ('psd', 'image/psd', 'document');
+INSERT INTO CPG_filetypes VALUES ('ram', 'audio/x-pn-realaudio', 'document');
+INSERT INTO CPG_filetypes VALUES ('ra', 'audio/x-realaudio', 'document');
+INSERT INTO CPG_filetypes VALUES ('rm', 'audio/x-realmedia', 'document');
+INSERT INTO CPG_filetypes VALUES ('tiff', 'image/tiff', 'document');
+INSERT INTO CPG_filetypes VALUES ('tif', 'image/tif', 'document');
 INSERT INTO CPG_filetypes VALUES ('doc', 'application/msword', 'document');
 INSERT INTO CPG_filetypes VALUES ('htm', 'text/html', 'document');
 INSERT INTO CPG_filetypes VALUES ('html', 'text/html', 'document');
