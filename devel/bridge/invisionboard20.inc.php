@@ -97,20 +97,6 @@ class cpg_udb extends core_udb {
 		if (isset($_COOKIE['session_id'])) {
 			$session_id = addslashes($_COOKIE['session_id']);
 
-        if (isset($_SERVER['REMOTE_ADDR'])) {
-            $remote_ip = $_SERVER['REMOTE_ADDR'];
-        } elseif (isset($HTTP_X_FORWARDED_FOR)) {
-            $remote_ip = $HTTP_X_FORWARDED_FOR;
-        } elseif (isset($HTTP_PROXY_USER)) {
-            $remote_ip = $HTTP_PROXY_USER;
-        } elseif (isset($REMOTE_ADDR)) {
-            $remote_ip = $REMOTE_ADDR;
-        } else {
-            $remote_ip = '-1';
-        };
-		
-		 $remote_ip = preg_replace("/^([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})\.([0-9]{1,3})/", "\\1.\\2.\\3.\\4", $remote_ip);
-			
 			$sql = "SELECT member_id AS id, member_name AS name, member_group AS mgroup FROM {$this->sessionstable} WHERE id = '$session_id'";
 			
 			$result = cpg_db_query($sql, $this->link_id);
