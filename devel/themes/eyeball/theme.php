@@ -1,8 +1,8 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.2.0                                            //
+// Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR <gdemar@wanadoo.fr>                 //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -493,31 +493,31 @@ EOT;
 $template_img_navbar = <<<EOT
 
         <tr>
-                <td align="center" valign="middle" class="navmenu" width="50%">
+                <td class="navmenu" width="50%">
                         &nbsp;
                 </td>
-                <td align="center" valign="middle" class="navmenu" width="48">
+                <td class="navmenu" width="48">
                         <a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="themes/eyeball/images/imv_up.gif" align="absmiddle" border="0" alt="{THUMB_TITLE}" /></a>
                 </td>
-                <td align="center" valign="middle" class="navmenu" width="48">
+                <td class="navmenu" width="48">
                         <a href="javascript:;" onClick="blocking('picinfo','yes', 'block'); return false;" title="{PIC_INFO_TITLE}"><img src="themes/eyeball/images/imv_picinfo.gif" border="0" align="absmiddle" alt="{PIC_INFO_TITLE}" /></a>
                 </td>
-                <td align="center" valign="middle" class="navmenu" width="48">
+                <td class="navmenu" width="48">
                         <a href="{SLIDESHOW_TGT}" title="{SLIDESHOW_TITLE}"><img src="themes/eyeball/images/imv_slideshow.gif" border="0" align="absmiddle" alt="{SLIDESHOW_TITLE}" /></a>
                 </td>
-                <td align="center" valign="middle" class="navmenu" style="white-space: nowrap; padding-left: 15px; padding-right: 15px; font-size: 18px; font-weight: normal;">
+                <td class="navmenu" style="white-space: nowrap; padding-left: 15px; padding-right: 15px; font-size: 18px; font-weight: normal;">
                         {PIC_POS}
                 </td>
-                <td align="center" valign="middle" class="navmenu" width="48">
+                <td class="navmenu" width="48">
                         <a href="{ECARD_TGT}" title="{ECARD_TITLE}"><img src="themes/eyeball/images/imv_ecards.gif" border="0" align="absmiddle" alt="{ECARD_TITLE}"></a>
                 </td>
-                <td align="center" valign="middle" class="navmenu" width="48">
+                <td class="navmenu" width="48">
                         <a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="themes/eyeball/images/imv_{PREV_IMAGE}.gif" border="0" align="absmiddle" alt="{PREV_TITLE}" /></a>
                 </td>
-                <td align="center" valign="middle" class="navmenu" width="48">
+                <td class="navmenu" width="48">
                         <a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="themes/eyeball/images/imv_{NEXT_IMAGE}.gif" border="0" align="absmiddle" alt="{NEXT_TITLE}" /></a>
                 </td>
-                <td align="center" valign="middle" class="navmenu" width="50%">
+                <td class="navmenu" width="50%">
                         &nbsp;
                 </td>
         </tr>
@@ -799,7 +799,7 @@ $template_tab_display = array('left_text' => '<td width="100%%" align="left" val
     'tab_header' => '',
     'tab_trailer' => '',
     'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1"></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%d</b></td>',
-    'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1"></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"<b>%d</b></a></td>' . "\n"
+    'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1"></td>' . "\n" . '<td class="navmenu"><a href="{LINK}"><b>%d</b></a></td>' . "\n"
     );
 
 function pageheader($section, $meta = '')
