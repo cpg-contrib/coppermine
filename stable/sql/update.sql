@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS CPG_filetypes (
   KEY extension (extension)
 ) TYPE=MyISAM COMMENT='Used to store the file extensions';
 
-ALTER TABLE `cpg130_filetypes` DROP INDEX `EXTENSION`, ADD PRIMARY KEY ( `extension` );
+ALTER TABLE `CPG_filetypes` DROP INDEX `EXTENSION`, ADD PRIMARY KEY ( `extension` );
 
 INSERT INTO CPG_filetypes VALUES ('jpg', 'image/jpg', 'image');
 INSERT INTO CPG_filetypes VALUES ('jpeg', 'image/jpeg', 'image');

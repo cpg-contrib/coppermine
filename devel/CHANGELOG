@@ -105,3 +105,4 @@ Removed 'field1' typo in editOnepics.php, 13th June 2004 casper
 Added valid XHTML 1.0 transitional output to index and thumbnail,  14th June 2004 tarique
 Added server side favorite, 14th June 2004 tarique
 Fixed bug in update.sql, 14th June 2004, casper
+Changed 'cpg130_filetypes' to 'CPG_filetypes' - 14 June 2004, Chris

@@ -102,3 +102,4 @@ Calculate suitable permissioons and quotas for users in multiple usergroups - Ma
 Album visibility now correct for admins and users in multiple usergroups - May 2004, Jack
 Release 1.3.0 - 11 June 2004, GauGau
 Removed 'field1' typo in editOnepics.php, 13th June 2004 casper
+Changed 'cpg130_filetypes' to 'CPG_filetypes' - 14 June 2004, Chris
