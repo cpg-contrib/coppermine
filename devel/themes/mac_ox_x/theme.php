@@ -106,7 +106,7 @@ EOT;
 // HTML template for gallery admin menu
 $template_gallery_admin_menu = <<<EOT
 
-                <div align="left">
+                <div align="center">
                 <table cellpadding="0" cellspacing="1">
                         <tr>
                                 <td><img src="images/spacer.gif" width="8" height="1" alt=""></br /></td>
@@ -130,7 +130,7 @@ EOT;
 // HTML template for user admin menu
 $template_user_admin_menu = <<<EOT
 
-                <div align="left">
+                <div align="center">
                 <table cellpadding="0" cellspacing="1">
                         <tr>
                                 <td class="admin_menu"><a href="albmgr.php" title="">{ALBMGR_LNK}</a></td>
