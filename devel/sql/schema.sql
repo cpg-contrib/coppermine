@@ -53,6 +53,8 @@ CREATE TABLE CPG_comments (
   msg_author varchar(25) NOT NULL default '',
   msg_body text NOT NULL,
   msg_date datetime NOT NULL default '0000-00-00 00:00:00',
+  msg_raw_ip tinytext,
+  msg_hdr_ip tinytext,
   author_md5_id varchar(32) NOT NULL default '',
   author_id int(11) NOT NULL default '0',
   PRIMARY KEY  (msg_id),

@@ -98,6 +98,18 @@ switch ($event){
 	$msg_author = addslashes(trim($HTTP_POST_VARS['msg_author']));
 	$msg_body = addslashes(trim($HTTP_POST_VARS['msg_body']));
 	$pid = (int)$HTTP_POST_VARS['pid'];
+	$raw_ip=$_SERVER['REMOTE_ADDR'];
+	
+	
+	if ($_SERVER['HTTP_CLIENT_IP']) {
+		$hdr_ip = $_SERVER['HTTP_CLIENT_IP'];
+	}else{
+		if ($_SERVER['HTTP_X_FORWARDED_FOR']) {
+			$hdr_ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		}else{
+			$hdr_ip = $raw_ip;
+		}
+	}
 
 	if($msg_author == '' || $msg_body == '') cpg_die(ERROR, $lang_db_input_php['empty_name_or_com'], __FILE__, __LINE__);
 
@@ -117,7 +129,7 @@ switch ($event){
 	}
 
 	if (!USER_ID) { // Anonymous users, we need to use META refresh to save the cookie
-		$insert = db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id) VALUES ('$pid', '$msg_author', '$msg_body', NOW(), '{$USER['ID']}', '0')");
+		$insert = db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip) VALUES ('$pid', '$msg_author', '$msg_body', NOW(), '{$USER['ID']}', '0', '$raw_ip', '$hdr_ip')");
 
 		$USER['name'] = $HTTP_POST_VARS['msg_author'];
 		$redirect = "displayimage.php?pos=".(-$pid);
@@ -127,7 +139,7 @@ switch ($event){
 		ob_end_flush();
 		exit;
 	} else { // Registered users, we can use Location to redirect
-		$insert = db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id) VALUES ('$pid', '".addslashes(USER_NAME)."', '$msg_body', NOW(), '', '".USER_ID."')");
+		$insert = db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip) VALUES ('$pid', '".addslashes(USER_NAME)."', '$msg_body', NOW(), '', '".USER_ID."', '$raw_ip', '$hdr_ip')");
 		$header_location = ( @preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE')) ) ? 'Refresh: 0; URL=' : 'Location: ';
 		$redirect = "displayimage.php?pos=".(-$pid);
 		header($header_location.$redirect);
