@@ -1085,8 +1085,39 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
         }
 }
 
-// Prints thumbnails of pictures in an album
+/**
+ * Gets data for system thumbs
+ */
+function& cpg_get_system_thumb($filename,$user=10001)
+{
+        global $CONFIG,$USER_DATA;
 
+        // Correct user_id
+        if ($user<10000)
+        {
+        	$user += 10000;
+        }
+        
+        if ($user==10000) {
+                $user = 10001;
+        }        
+
+        // Get image data for thumb
+        $picdata = array('filename'=>$filename,
+                         'filepath'=>$CONFIG['userpics'].$user.'/',
+                         'url_prefix'=>0);
+        $pic_url = get_pic_url($picdata,'thumb',true);
+        $picdata['thumb'] = $pic_url;
+        $image_info = getimagesize($pic_url);
+        $picdata['pwidth'] = $image_info[0];
+        $picdata['pheight'] = $image_info[1];
+        $image_size = compute_img_size($picdata['pwidth'], $picdata['pheight'], $CONFIG['alb_list_thumb_size']);
+        $picdata['whole'] = $image_size['whole'];
+        $picdata['reduced'] = (isset($image_size['reduced']) && $image_size['reduced']);
+        return $picdata;
+}
+
+// Prints thumbnails of pictures in an album
 function display_film_strip($album, $cat, $pos)
 {
         global $CONFIG, $AUTHORIZED, $HTTP_GET_VARS;
@@ -1160,7 +1191,7 @@ function display_film_strip($album, $cat, $pos)
 }
 
 // Return the url for a picture, allows to have pictures spreaded over multiple servers
-function get_pic_url(&$pic_row, $mode)
+function get_pic_url(&$pic_row, $mode,$system_pic = false)
 {
         global $CONFIG,$THEME_DIR;
 
@@ -1184,9 +1215,9 @@ function get_pic_url(&$pic_row, $mode)
 
         // Code to handle custom thumbnails
         // If fullsize or normal mode use regular file
-        if ($mime_content['content'] != 'image' && $mode!= 'thumb') {
+        if ($mime_content['content'] != 'image' && $mode== 'normal') {
                 $mode = 'fullsize';
-        } elseif ($mime_content['content'] != 'image' && $mode == 'thumb') {
+        } elseif (($mime_content['content'] != 'image' && $mode == 'thumb') || $system_pic) {
                 $thumb_extensions = Array('.gif','.png','.jpg');
                 // Check for user-level custom thumbnails
                 // Create custom thumb path and erase extension using filename; Erase filename's extension
@@ -1199,43 +1230,55 @@ function get_pic_url(&$pic_row, $mode)
                                 break;
                         }
                 }
-                // Check for extension-specific thumbs
-                if (is_null($filepathname)) {
-                        foreach ($thumb_extensions as $extension) {
-                                if (file_exists($custom_thumb_path.$mime_content['extension'].$extension)) {
-                                        $filepathname = $custom_thumb_path.$mime_content['extension'].$extension;
-                                        break;
+                if (!$system_pic) {
+                        // Check for extension-specific thumbs
+                        if (is_null($filepathname)) {
+                                foreach ($thumb_extensions as $extension) {
+                                        if (file_exists($custom_thumb_path.$mime_content['extension'].$extension)) {
+                                                $filepathname = $custom_thumb_path.$mime_content['extension'].$extension;
+                                                break;
+                                        }
                                 }
                         }
-                }
-                // Check for content-specific thumbs
-                if (is_null($filepathname)) {
-                        foreach ($thumb_extensions as $extension) {
-                                if (file_exists($custom_thumb_path.$mime_content['content'].$extension)) {
-                                        $filepathname = $custom_thumb_path.$mime_content['content'].$extension;
-                                        break;
+                        // Check for content-specific thumbs
+                        if (is_null($filepathname)) {
+                                foreach ($thumb_extensions as $extension) {
+                                        if (file_exists($custom_thumb_path.$mime_content['content'].$extension)) {
+                                                $filepathname = $custom_thumb_path.$mime_content['content'].$extension;
+                                                break;
+                                        }
                                 }
                         }
                 }
                 // Use default thumbs
                 if (is_null($filepathname)) {
                                // Check for default theme- and global-level thumbs
-                               $thumb_paths[] = $THEME_DIR.'/images/';                 // Used for custom theme thumbs
+                               $thumb_paths[] = $THEME_DIR.'images/';                 // Used for custom theme thumbs
                                $thumb_paths[] = 'images/';                             // Default Coppermine thumbs
                                foreach ($thumb_paths as $default_thumb_path) {
                                        if (is_dir($default_thumb_path)) {
-                                               foreach ($thumb_extensions as $extension) {
-                                                       // Check for extension-specific thumbs
-                                                       if (file_exists($default_thumb_path."thumb_{$mime_content['extension']}".$extension)) {
-                                                               $filepathname = $default_thumb_path."thumb_{$mime_content['extension']}".$extension;
-                                                               break 2;
+                                               if (!$system_pic) {
+                                                       foreach ($thumb_extensions as $extension) {
+                                                               // Check for extension-specific thumbs
+                                                               if (file_exists($default_thumb_path.$CONFIG['thumb_pfx'].$mime_content['extension'].$extension)) {
+                                                                       $filepathname = $default_thumb_path.$CONFIG['thumb_pfx'].$mime_content['extension'].$extension;
+                                                                       break 2;
+                                                               }
                                                        }
-                                        }
-                                               foreach ($thumb_extensions as $extension) {
-                                                       // Check for media-specific thumbs (movie,document,audio)
-                                                       if (file_exists($default_thumb_path."thumb_{$mime_content['content']}".$extension)) {
-                                                               $filepathname = $default_thumb_path."thumb_{$mime_content['content']}".$extension;
-                                                               break 2;
+                                                       foreach ($thumb_extensions as $extension) {
+                                                               // Check for media-specific thumbs (movie,document,audio)
+                                                               if (file_exists($default_thumb_path.$CONFIG['thumb_pfx'].$mime_content['content'].$extension)) {
+                                                                       $filepathname = $default_thumb_path.$CONFIG['thumb_pfx'].$mime_content['content'].$extension;
+                                                                       break 2;
+                                                               }
+                                                       }
+                                               } else {
+                                                       // Check for file-specific thumbs for system files
+                                                       foreach ($thumb_extensions as $extension) {
+                                                               if (file_exists($default_thumb_path.$CONFIG['thumb_pfx'].$file_base_name.$extension)) {
+                                                                       $filepathname = $default_thumb_path.$CONFIG['thumb_pfx'].$file_base_name.$extension;
+                                                                       break 2;
+                                                               }
                                                        }
                                                }
                                        }
@@ -1243,7 +1286,6 @@ function get_pic_url(&$pic_row, $mode)
                 }
                 return path2url($filepathname);
         }
-
         return $url_prefix[$pic_row['url_prefix']]. path2url($pic_row['filepath']. $pic_prefix[$mode]. $pic_row['filename']);
 }
 
