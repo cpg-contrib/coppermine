@@ -19,10 +19,16 @@ INSERT INTO CPG_config VALUES ('disable_popup_rightclick', '0');
 INSERT INTO CPG_config VALUES ('disable_gallery_rightclick', '0');
 INSERT INTO CPG_config VALUES ('nice_titles', '0');
 INSERT INTO CPG_config VALUES ('user_table_prefix','nuke_');
+INSERT INTO CPG_config VALUES ('advanced_debug_mode', '0');
+INSERT INTO CPG_config VALUES ('doc_root', '');
+INSERT INTO CPG_config VALUES ('installed_folder', 'modules/');
+#INSERT INTO CPG_config VALUES ('picinfo', 'array');
+INSERT INTO CPG_config VALUES ('read_iptc_data', '0');
+INSERT INTO CPG_config VALUES ('module_name', 'coppermine');
 =======
 
 # Modify structure for category thumb
-ALTER TABLE `CPG_categories` ADD `thumb` INT NOT NULL AFTER `parent` ;
+# ALTER TABLE `CPG_categories` ADD `thumb` INT NOT NULL AFTER `parent` ;
 
 #
 # Table structure for table `CPG_banned`
