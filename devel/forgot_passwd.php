@@ -57,8 +57,9 @@ if (isset($_POST['email'])) {
 
    		$sql =  "update {$cpg_udb->usertable} set ";
    		$sql .= "{$cpg_udb->field['password']}='".md5($USER_DATA['user_password'])."' ";
-   		$sql .= "where {$cpg_udb->field['email']}='$email';";
+   		$sql .= "where {$cpg_udb->field['email']}='{$USER_DATA['user_email']}'";
    		cpg_db_query($sql);
+
 
         // output the message
         pageheader($lang_forgot_passwd_php['forgot_passwd'], "<META http-equiv=\"refresh\" content=\"3;url=login.php\">");
