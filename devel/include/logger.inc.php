@@ -18,9 +18,21 @@
 //  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
 
+// Initiate defines
+define('CPG_SECURITY_LOG','security');
+define('CPG_GLOBAL_LOG','global');
+define('CPG_DATABASE_LOG','database');
+define('CPG_ACCESS_LOG','access');
+define('CPG_ERROR_LOG','error');
+
+define('CPG_LOG_ALL',2);
+define('CPG_LOG_NORMAL',1);
+define('CPG_NO_LOGGING',0);
+
+
 function log_write( $text, $log = null ) {
         if (is_null($log)) {
-                $log = 'global';
+                $log = CPG_GLOBAL_LOG;
         }
 
         $log = 'logs/'.$log.'.log.php';
@@ -33,13 +45,13 @@ function log_write( $text, $log = null ) {
 
         $fp = fopen($log,'a');
         fwrite($fp,$log_header);
-        fwrite($fp,$text);
+        fwrite($fp,$text."\n");
         fclose($fp);
 }
 
 function log_read( $log = null ) {
         if (is_null($log)) {
-                $log = 'global';
+                $log = CPG_GLOBAL_LOG;
         }
 
         $log = 'logs/'.$log.'.log.php';
