@@ -479,16 +479,16 @@ if (count($HTTP_POST_VARS) > 0) {
         pagefooter();
         exit;
     } elseif (isset($HTTP_POST_VARS['restore_config'])) {
-        $default_config = 'sql/restore_config.sql';
+        $default_config = 'sql/basic.sql';
         $sql_query = fread(fopen($default_config, 'r'), filesize($default_config));
         $sql_query = preg_replace('/CPG_/', $CONFIG['TABLE_PREFIX'], $sql_query);
-        $sql_query = preg_replace('/INSERT /', 'REPLACE ', $sql_query);
-
+        db_query("TRUNCATE TABLE {$CONFIG['TABLE_CONFIG']}");
+        db_query("TRUNCATE TABLE {$CONFIG['TABLE_FILETYPES']}");
         $sql_query = remove_remarks($sql_query);
         $sql_query = split_sql_file($sql_query, ';');
 
         $sql_count = count($sql_query);
-        for($i = 0; $i < $sql_count; $i++) db_query($sql_query[$i]);
+        for($i = 0; $i < $sql_count; $i++) if (strpos($sql_query[$i],'_config') || strpos($sql_query[$i],'_filetypes')) db_query($sql_query[$i]);
     }
     pageheader($lang_config_php['title']);
     msg_box($lang_config_php['info'], $lang_config_php['restore_success'], $lang_continue, $PHP_SELF);
