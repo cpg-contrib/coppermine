@@ -217,6 +217,12 @@ function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer
 
     $ob = ob_get_contents();
         if ($ob) ob_end_clean();
+        
+        if (function_exists('theme_cpg_die'))
+        {
+            theme_cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer);
+            return;
+        }
 
         if(!$CONFIG['debug_mode']) template_extract_block($template_cpg_die, 'file_line');
         if(!$output_buffer && !$CONFIG['debug_mode']) template_extract_block($template_cpg_die, 'output_buffer');
@@ -231,7 +237,7 @@ function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer
         );
 
         pageheader($lang_cpg_die[$msg_code]);
-        starttable(-1, $lang_cpg_die[$msg_code]);
+        starttable(-1, $lang_cpg_die[$msg_code]);echo "<!-- cpg_die -->";
         echo template_eval($template_cpg_die, $params);
         endtable();
         pagefooter();
@@ -300,6 +306,11 @@ function path2url($path)
 
 function msg_box($title, $msg_text, $button_text="", $button_link="", $width="-1")
 {
+    if (function_exists('theme_msg_box'))
+    {
+        theme_msg_box($title, $msg_text, $button_text, $button_link, $width);
+        return;
+    }
         global $template_msg_box;
 
         if (!$button_text) {
@@ -1381,54 +1392,88 @@ function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
 {
         global $album, $lang_errors, $lang_list_categories;
         global $CONFIG,$CURRENT_ALBUM_DATA, $CURRENT_CAT_NAME;
-        if ($cat != 0) { //Categories other than 0 need to be selected
-                $breadcrumb_array = array();
-                if ($cat >= FIRST_USER_CAT) {
-                        $user_name = get_username($cat - FIRST_USER_CAT);
-                        if (!$user_name) $user_name = 'Mr. X';
+        // first we build the category path: names and id
+        if ($cat != 0) 
+        { //Categories other than 0 need to be selected
+                $category_array = array();
+                if ($cat >= FIRST_USER_CAT) 
+                {
+                    $user_name = get_username($cat - FIRST_USER_CAT);
+                    if (!$user_name) $user_name = 'Mr. X';
 
-                        $breadcrumb_array[] = array($cat, $user_name);
-                        $CURRENT_CAT_NAME = sprintf($lang_list_categories['xx_s_gallery'], $user_name);
-                        $row['parent'] = 1;
-                } else {
+                    $category_array[] = array($cat, $user_name);
+                    $CURRENT_CAT_NAME = sprintf($lang_list_categories['xx_s_gallery'], $user_name);
+                    $row['parent'] = 1;
+                } 
+                else 
+                {
                     $result = cpg_db_query("SELECT name, parent FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '$cat'");
-                        if (mysql_num_rows($result) == 0) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_cat'], __FILE__, __LINE__);
-                        $row = mysql_fetch_array($result);
+                    if (mysql_num_rows($result) == 0) 
+                        cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_cat'], __FILE__, __LINE__);
+                    $row = mysql_fetch_array($result);
 
-                        $breadcrumb_array[] = array($cat, $row['name']);
-                        $CURRENT_CAT_NAME = $row['name'];
-                        mysql_free_result($result);
+                    $category_array[] = array($cat, $row['name']);
+                    $CURRENT_CAT_NAME = $row['name'];
+                    mysql_free_result($result);
                 }
 
-                while($row['parent'] != 0){
+                while($row['parent'] != 0)
+                {
                     $result = cpg_db_query("SELECT cid, name, parent FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '{$row['parent']}'");
-                        if (mysql_num_rows($result) == 0) cpg_die(CRITICAL_ERROR, $lang_errors['orphan_cat'], __FILE__, __LINE__);
-                        $row = mysql_fetch_array($result);
+                    if (mysql_num_rows($result) == 0) 
+                        cpg_die(CRITICAL_ERROR, $lang_errors['orphan_cat'], __FILE__, __LINE__);
+                    $row = mysql_fetch_array($result);
 
-                        $breadcrumb_array[] = array($row['cid'], $row['name']);
-                        mysql_free_result($result);
+                    $category_array[] = array($row['cid'], $row['name']);
+                    mysql_free_result($result);
                 } // while
 
-                $breadcrumb_array = array_reverse($breadcrumb_array);
-                $breadcrumb = '<a href="index.php">'.$lang_list_categories['home'].'</a>';
-                $BREADCRUMB_TEXT = $lang_list_categories['home'];
-
-                foreach ($breadcrumb_array as $category){
-                        $link = "<a href=\"index.php?cat={$category[0]}\">{$category[1]}</a>";
-                        $breadcrumb .= ' > ' . $link;
-                        $BREADCRUMB_TEXT .= ' > ' . $category[1];
-                }
-
-        }else{ //Dont bother just add the Home link  to breadcrumb
-                $breadcrumb = '<a href="index.php">'.$lang_list_categories['home'].'</a>';
-                $BREADCRUMB_TEXT = $lang_list_categories['home'];
+                $category_array = array_reverse($category_array);
         }
+        
+        $breadcrumb_links = array();
+        $BREADCRUMB_TEXTS = array();
+        
+        // Add the Home link  to breadcrumb
+        $breadcrumb_links[0] = '<a href="index.php">'.$lang_list_categories['home'].'</a>';
+        $BREADCRUMB_TEXTS[0] = $lang_list_categories['home'];
+        
+        $cat_order = 1;
+        foreach ($category_array as $category)
+        {
+            $breadcrumb_links[$cat_order] = "<a href=\"index.php?cat={$category[0]}\">{$category[1]}</a>";
+            $BREADCRUMB_TEXTS[$cat_order] = $category[1];
+            $cat_order += 1;
+        }
+
         //Add Link for album if aid is set
-        if (isset($CURRENT_ALBUM_DATA['aid'])){
-                $link = "<a href=\"thumbnails.php?album=".$CURRENT_ALBUM_DATA['aid']."\">".$CURRENT_ALBUM_DATA['title']."</a>";
-                $breadcrumb .= ' > ' . $link;
-                $BREADCRUMB_TEXT .= ' > ' . $CURRENT_ALBUM_DATA['title'];
+        if (isset($CURRENT_ALBUM_DATA['aid']))
+        {
+            $breadcrumb_links[$cat_order] = "<a href=\"thumbnails.php?album=".$CURRENT_ALBUM_DATA['aid']."\">".$CURRENT_ALBUM_DATA['title']."</a>";
+            $BREADCRUMB_TEXTS[$cat_order] = $CURRENT_ALBUM_DATA['title'];
         }
+        
+        // we check if the theme_breadcrumb exists...
+        if (function_exists('theme_breadcrumb'))
+        {
+            theme_breadcrumb($breadcrumb_list, $BREADCRUMB_TEXTS, $breadcrumb, $BREADCRUMB_TEXT);
+            return;
+        }
+        // otherwise we have a default breadcrumb builder:
+        $breadcrumb = '';
+        $BREADCRUMB_TEXT = '';
+        foreach ($breadcrumb_links as $breadcrumb_link)
+        {
+            $breadcrumb .= ' > ' . $breadcrumb_link;
+        }
+        foreach ($BREADCRUMB_TEXTS as $BREADCRUMB_TEXT_elt)
+        {
+            $BREADCRUMB_TEXT .= ' > ' . $BREADCRUMB_TEXT_elt;
+        }
+        // We remove the first ' > '
+        $breadcrumb = substr_replace($breadcrumb,'', 0, 3);
+        $BREADCRUMB_TEXT = substr_replace($BREADCRUMB_TEXT,'', 0, 3);
+        //echo $breadcrumb;
 }
 
 
