@@ -33,7 +33,6 @@ class cpgDB {
 
   /* public: this is an api revision, not a CVS revision. */
   var $type     = "mysql";
-  var $revision = "1.2";
 
   /* private: link and query handles */
   var $Link_ID  = 0;
@@ -45,7 +44,7 @@ class cpgDB {
   var $queries = array();
 
   /* public: constructor */
-  function cpgDbMysql($query = "") {
+  function cpgDB($query = "") {
       global $CONFIG;
 
       $this->Host     = $CONFIG["dbserver"];
@@ -59,7 +58,7 @@ class cpgDB {
     static $instance;
 
     if (!isset($instance)) {
-      $instance = new cpgDbMysql;
+      $instance = new cpgDB;
     }
 
     return ($instance);
@@ -142,9 +141,6 @@ class cpgDB {
       $this->free();
     }
 
-    if ($this->Debug)
-      printf("<br>Debug: query = %s\n", $Query_String);
-
     $this->Query_ID = @mysql_query($Query_String,$this->Link_ID);
     $this->Row   = 0;
     $this->Errno = mysql_errno();
@@ -152,8 +148,6 @@ class cpgDB {
     if (!$this->Query_ID) {
       $this->halt("Invalid SQL: ".$Query_String);
     }
-    if ($this->Debug)
-      printf(" - Results = %s<br>\n", $this->nf());
 
     if ($this->nf() > 0) {
       $this->nextRecord();
