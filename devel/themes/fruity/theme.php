@@ -1,4 +1,4 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.2.0                                            //
 // ------------------------------------------------------------------------- //
@@ -328,18 +328,14 @@ EOT;
 $template_album_admin_menu = <<<EOT
         <table border="0" cellpadding="0" cellspacing="1">
                 <tr>
-                        <td align="center" valign="middle">
-                                <div class="admin_menu"><a href="delete.php?id={ALBUM_ID}&what=album"  class="adm_menu" onclick="return confirm('{CONFIRM_DELETE}');">{DELETE}</a></div>
+                        <td align="center" valign="middle" class="admin_menu">
+                                <a href="delete.php?id={ALBUM_ID}&what=album"  class="adm_menu" onclick="return confirm('{CONFIRM_DELETE}');">{DELETE}</a>
                         </td>
-                        <td align="center" valign="middle">
-                                <div class="admin_menu">
-                                        <a href="modifyalb.php?album={ALBUM_ID}"  class="adm_menu">{MODIFY}</a>
-                                </div>
+                        <td align="center" valign="middle" class="admin_menu">
+                                <a href="modifyalb.php?album={ALBUM_ID}"  class="adm_menu">{MODIFY}</a>
                         </td>
-                        <td align="center" valign="middle">
-                                <div class="admin_menu">
-                                        <a href="editpics.php?album={ALBUM_ID}"  class="adm_menu">{EDIT_PICS}</a>
-                                </div>
+                        <td align="center" valign="middle" class="admin_menu">
+                                <a href="editpics.php?album={ALBUM_ID}"  class="adm_menu">{EDIT_PICS}</a>
                         </td>
                 </tr>
         </table>
@@ -375,7 +371,7 @@ $template_thumb_view_title_row = <<<EOT
                         </table>
 
 EOT;
-// HTML template for thumbnails display 
+// HTML template for thumbnails display
 // added film strip var: Zarsky
 $template_film_strip = <<<EOT
 
@@ -561,7 +557,7 @@ $template_image_comments = <<<EOT
                                         <b>{MSG_AUTHOR}</b>
 <!-- BEGIN ipinfo -->
                                                                                  ({HDR_IP} [{RAW_IP}])
-<!-- END ipinfo -->                                                
+<!-- END ipinfo -->
                                 </td>
                                 <td class="tableh2_compact" align="right" width="100%">
 <!-- BEGIN buttons -->
@@ -783,7 +779,7 @@ function pageheader($section, $meta = '')
         );
 
     echo template_eval($template_header, $template_vars);
-} 
+}
 // Function for writing a pagefooter
 function pagefooter()
 {
@@ -801,7 +797,7 @@ function pagefooter()
         foreach ($query_stats as $qtime) {
             $query_times .= round($qtime, 3) . "s ";
             $total_query_time += $qtime;
-        } 
+        }
         $total_query_time = round($total_query_time, 3);
 
         starttable('100%', 'Debug info');
@@ -823,10 +819,10 @@ EOT;
         echo "<a href=\"phpinfo.php\">Advanced debug mode</a> (phpinfo)";
         echo "</td></tr>";
         endtable();
-    } 
+    }
 
     echo $template_footer;
-} 
+}
 // Function to start a 'standard' table
 function starttable($width = '-1', $title = '', $title_colspan = '1')
 {
@@ -847,8 +843,8 @@ EOT;
         </tr>
 
 EOT;
-    } 
-} 
+    }
+}
 
 function endtable()
 {
@@ -857,7 +853,7 @@ function endtable()
 <!-- End standard table -->
 
 EOT;
-} 
+}
 
 function theme_main_menu()
 {
@@ -878,34 +874,34 @@ function theme_main_menu()
     } else {
         template_extract_block($template_main_menu, 'logout');
         template_extract_block($template_main_menu, 'my_profile');
-    } 
+    }
 
     if (GALLERY_ADMIN_MODE || USER_ADMIN_MODE) {
         template_extract_block($template_main_menu, 'enter_admin_mode');
     } elseif (USER_CAN_CREATE_ALBUMS || USER_IS_ADMIN) {
         template_extract_block($template_main_menu, 'leave_admin_mode');
-    } 
+    }
 
     if (!USER_CAN_CREATE_ALBUMS && !USER_IS_ADMIN) {
         template_extract_block($template_main_menu, 'enter_admin_mode');
         template_extract_block($template_main_menu, 'leave_admin_mode');
-    } 
+    }
 
     if (!USER_CAN_CREATE_ALBUMS) {
         template_extract_block($template_main_menu, 'my_gallery');
-    } 
+    }
 
     if (USER_CAN_CREATE_ALBUMS) {
         template_extract_block($template_main_menu, 'my_profile');
-    } 
+    }
 
     if (!USER_CAN_UPLOAD_PICTURES) {
         template_extract_block($template_main_menu, 'upload_pic');
-    } 
+    }
 
     if (USER_ID || !$CONFIG['allow_user_registration']) {
         template_extract_block($template_main_menu, 'register');
-    } 
+    }
 
     $param = array('{ALB_LIST_TGT}' => "index.php$cat_l",
         '{ALB_LIST_TITLE}' => $lang_main_menu['alb_list_title'],
@@ -947,7 +943,7 @@ function theme_main_menu()
 
     $main_menu = template_eval($template_main_menu, $param);
     return $main_menu;
-} 
+}
 
 function theme_admin_mode_menu()
 {
@@ -982,10 +978,10 @@ function theme_admin_mode_menu()
         $html = template_eval($template_user_admin_menu, $param);
     } else {
         $html = '';
-    } 
+    }
 
     return $html;
-} 
+}
 
 function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
 {
@@ -1000,7 +996,7 @@ function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
             '{PICTURES}' => $lang_cat_list['pictures'],
             );
         echo template_eval($template, $params);
-    } 
+    }
 
     $template_noabl = template_extract_block($template_cat_list, 'catrow_noalb');
     $template = template_extract_block($template_cat_list, 'catrow');
@@ -1026,19 +1022,19 @@ function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
                 '{PIC_COUNT}' => $category[3],
                 );
             echo template_eval($template, $params);
-        } 
-    } 
+        }
+    }
 
     if ($statistics && count($cat_data) > 0) {
         $template = template_extract_block($template_cat_list, 'footer');
         $params = array('{STATISTICS}' => $statistics);
         echo template_eval($template, $params);
-    } 
+    }
     endtable();
 
     if (count($cat_data) > 0)
         echo template_extract_block($template_cat_list, 'spacer');
-} 
+}
 
 function theme_display_breadcrumb($breadcrumb, &$cat_data)
 {
@@ -1053,8 +1049,8 @@ function theme_display_breadcrumb($breadcrumb, &$cat_data)
         $params = array('{BREADCRUMB}' => $breadcrumb
             );
         echo template_eval($template, $params);
-    } 
-} 
+    }
+}
 
 function theme_display_album_list(&$alb_list, $nbAlb, $cat, $page, $total_pages)
 {
@@ -1089,7 +1085,7 @@ function theme_display_album_list(&$alb_list, $nbAlb, $cat, $page, $total_pages)
             '{COLUMNS}' => $columns,
             );
         echo template_eval($stat_row, $params);
-    } 
+    }
 
     echo $header;
 
@@ -1110,17 +1106,17 @@ function theme_display_album_list(&$alb_list, $nbAlb, $cat, $page, $total_pages)
 
         if ($count % $columns == 0 && $count < count($alb_list)) {
             echo $rows_separator;
-        } 
-    } 
+        }
+    }
 
     $params = array('{COL_WIDTH}' => $column_width);
     $empty_cell = template_eval($empty_cell, $params);
 
     while ($count++ % $columns != 0) {
         echo $empty_cell;
-    } 
+    }
 
-    echo $footer; 
+    echo $footer;
     // Tab display
     $params = array('{COLUMNS}' => $columns,
         '{TABS}' => $tabs,
@@ -1130,21 +1126,21 @@ function theme_display_album_list(&$alb_list, $nbAlb, $cat, $page, $total_pages)
     endtable();
 
     echo $spacer;
-} 
+}
 // Function to display first level Albums of a category : added by zarsky
 function theme_display_album_list_cat(&$alb_list, $nbAlb, $cat, $page, $total_pages)
 {
     global $CONFIG, $STATS_IN_ALB_LIST, $statistics, $template_tab_display, $template_album_list_cat, $lang_album_list;
     if (!$CONFIG['first_level']) {
         return;
-    } 
+    }
 
     $theme_alb_list_tab_tmpl = $template_tab_display;
 
     $theme_alb_list_tab_tmpl['left_text'] = strtr($theme_alb_list_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_album_list['album_on_page']));
     $theme_alb_list_tab_tmpl['inactive_tab'] = strtr($theme_alb_list_tab_tmpl['inactive_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&page=%d'));
 
-    $tabs = create_tabs($nbAlb, $page, $total_pages, $theme_alb_list_tab_tmpl); 
+    $tabs = create_tabs($nbAlb, $page, $total_pages, $theme_alb_list_tab_tmpl);
     // echo $template_album_list_cat;
     $template_album_list_cat1 = $template_album_list_cat;
     $album_cell = template_extract_block($template_album_list_cat1, 'c_album_cell');
@@ -1169,7 +1165,7 @@ function theme_display_album_list_cat(&$alb_list, $nbAlb, $cat, $page, $total_pa
             '{COLUMNS}' => $columns,
             );
         echo template_eval($stat_row, $params);
-    } 
+    }
 
     echo $header;
 
@@ -1191,18 +1187,18 @@ function theme_display_album_list_cat(&$alb_list, $nbAlb, $cat, $page, $total_pa
 
             if ($count % $columns == 0 && $count < count($alb_list)) {
                 echo $rows_separator;
-            } 
-        } 
-    } 
+            }
+        }
+    }
 
     $params = array('{COL_WIDTH}' => $column_width);
     $empty_cell = template_eval($empty_cell, $params);
 
     while ($count++ % $columns != 0) {
         echo $empty_cell;
-    } 
+    }
 
-    echo $footer; 
+    echo $footer;
     // Tab display
     $params = array('{COLUMNS}' => $columns,
         '{TABS}' => $tabs,
@@ -1212,7 +1208,7 @@ function theme_display_album_list_cat(&$alb_list, $nbAlb, $cat, $page, $total_pa
     endtable();
 
     echo $spacer;
-} 
+}
 
 function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $page, $total_pages, $sort_options, $display_tabs, $mode = 'thumb')
 {
@@ -1235,7 +1231,7 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
         $row_separator = template_extract_block($template_thumbnail_view, 'row_separator');
         $footer = template_extract_block($template_thumbnail_view, 'footer');
         $spacer = template_extract_block($template_thumbnail_view, 'spacer');
-    } 
+    }
 
     $cat_link = is_numeric($aid) ? '' : '&cat=' . $cat;
 
@@ -1247,12 +1243,12 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     } else {
         $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_thumb_view['user_on_page']));
         $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&page=%d'));
-    } 
+    }
 
     $thumbcols = $CONFIG['thumbcols'];
     $cell_width = ceil(100 / $CONFIG['thumbcols']) . '%';
 
-    $tabs_html = $display_tabs ? create_tabs($nbThumb, $page, $total_pages, $theme_thumb_tab_tmpl) : ''; 
+    $tabs_html = $display_tabs ? create_tabs($nbThumb, $page, $total_pages, $theme_thumb_tab_tmpl) : '';
     // The sort order options are not available for meta albums
     if ($sort_options) {
         $param = array('{ALBUM_NAME}' => $album_name,
@@ -1271,13 +1267,13 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
         $title = template_eval($template_thumb_view_title_row, $param);
     } else {
         $title = $album_name;
-    } 
+    }
 
     if ($mode == 'thumb') {
         starttable('100%', $title, $thumbcols);
     } else {
         starttable('100%');
-    } 
+    }
 
     echo $header;
 
@@ -1298,16 +1294,16 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                 '{CAPTION}' => $thumb['caption'],
                 '{ADMIN_MENU}' => ''
                 );
-        } 
+        }
         echo template_eval($thumb_cell, $params);
 
         if ((($i % $thumbcols) == 0) && ($i < count($thumb_list))) {
             echo $row_separator;
-        } 
-    } 
+        }
+    }
     for (;($i % $thumbcols); $i++) {
         echo $empty_cell;
-    } 
+    }
     echo $footer;
 
     if ($display_tabs) {
@@ -1315,11 +1311,11 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
             '{TABS}' => $tabs_html
             );
         echo template_eval($tabs, $params);
-    } 
+    }
 
     endtable();
     echo $spacer;
-} 
+}
 // Added to display flim_strip: Zarsky
 function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $pos, $sort_options, $mode = 'thumb')
 {
@@ -1336,7 +1332,7 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
         $thumb_cell = template_extract_block($template, 'thumb_cell');
         $empty_cell = template_extract_block($template, 'empty_cell');
         // $spacer = template_extract_block($template, 'spacer');
-    } 
+    }
     // if ($header == '') {}
     $cat_link = is_numeric($aid) ? '' : '&cat=' . $cat;
 
@@ -1348,7 +1344,7 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     } else {
         $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_thumb_view['user_on_page']));
         $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&page=%d'));
-    } 
+    }
 
     $thumbcols = $CONFIG['thumbcols'];
     $cell_width = ceil(100 / $CONFIG['max_film_strip_items']) . '%';
@@ -1371,12 +1367,12 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                 '{CAPTION}' => '',
                 '{ADMIN_MENU}' => ''
                 );
-        } 
+        }
         $thumb_strip .= template_eval($thumb_cell, $params);
         // if ((($i % $thumbcols) == 0) && ($i < count($thumb_list))) {
         // echo $row_separator;
         // }
-    } 
+    }
     // for (;($i % $thumbcols); $i++){
     // echo $empty_cell;
     // }
@@ -1391,7 +1387,7 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     ob_end_clean();
 
     return $film_strip;
-} 
+}
 
 function theme_no_img_to_display($album_name)
 {
@@ -1403,13 +1399,13 @@ function theme_no_img_to_display($album_name)
     if ((!$template)) {
         $template = $template_no_img_to_display;
         $spacer = template_extract_block($template, 'spacer');
-    } 
+    }
 
     $params = array('{TEXT}' => $lang_errors['no_img_to_display']);
     starttable('100%', $album_name);
     echo template_eval($template, $params);
     endtable();
-} 
+}
 
 function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, $film_strip) // added $film_strip: Zarsky
 {
@@ -1424,7 +1420,7 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, 
     endtable();
     if ($CONFIG['display_film_strip'] == 1) { // added film strip code: Zarsky
         echo $film_strip;
-    } 
+    }
     starttable();
     echo $votes;
     endtable();
@@ -1439,7 +1435,7 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, 
     starttable();
     echo $comments;
     endtable();
-} 
+}
 
 function theme_html_picinfo(&$info)
 {
@@ -1452,6 +1448,6 @@ function theme_html_picinfo(&$info)
     foreach ($info as $key => $value) $html .= sprintf($template, $key, $value);
 
     return $html;
-} 
+}
 
 ?>
