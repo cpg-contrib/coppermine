@@ -17,10 +17,12 @@
 // If you know regular expressions scroll down to ADD YOUR OWN PARSEMODES    //
 // HERE to modify the included parsemodes.                                   //
 // ------------------------------------------------------------------------- //
+
 // USER CONFIGURATION
 // Default number of pictures to process at a time when rebuilding thumbs or normals:
 $defpicnum = 45;
 // END USER CONFIGURATION
+
 define('IN_COPPERMINE', true);
 define('UTIL_PHP', true);
 
@@ -42,6 +44,7 @@ $usertbl = $CONFIG['TABLE_PREFIX'] . 'users';
 $startpic = '';
 $action = "";
 $action = $_POST['action'];
+
 
 MYSQL_CONNECT($CONFIG['dbserver'], $CONFIG['dbuser'], $CONFIG['dbpass']) or die("can't connect to mysql server");
 MYSQL_SELECT_DB($CONFIG['dbname']);
@@ -251,6 +254,56 @@ function deleteorig()
     }
 }
 
+function deleteorphans()
+{
+	global $picturetbl, $CONFIG, $lang_util_php;
+	$phpself = $_SERVER['PHP_SELF'];
+	$del = $_POST['del'];
+	$single = $_POST['single'];
+	$count = 0; 
+
+	if ($single) {
+	  $delone = db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id=$single") or die ("failed to delete msgs - " . mysql_error());
+	}
+	
+	$result = db_query("SELECT pid,msg_id,msg_body FROM {$CONFIG['TABLE_COMMENTS']} WHERE 1");
+
+	while ($row = mysql_fetch_array($result)) {
+		$pid = $row['pid'];
+		$msg_id = $row['msg_id'];
+		$msg_body = $row['msg_body'];
+		$result2 = db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE pid=$pid");
+		if (!mysql_num_rows($result2)) {
+			if ($del == "all")
+			{
+			$Deletions = db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id=$msg_id") or die ("failed to delete msgs - " . mysql_error());			
+			} else {
+				$count++;
+				?>
+			        <form action=<?php echo $phpself;?> method="post">
+			        <input type="hidden" name="action" value="delorphans" />
+			        <input type="hidden" name="single" value="<?php echo $msg_id; ?>" />
+			        <?php echo $lang_util_php['comment'].' "'.$msg_body.'" '.$lang_util_php['nonexist'].' '.$pid; ?>
+			        <input type="submit" value="<?php print $lang_util_php['delete'];?>" class="submit" /></form>
+			 	<?php
+			}
+		}
+        
+	}
+
+	echo '<br>'.$count.' '.$lang_util_php['orphan_comment'].'<br><br>';
+	if ($count>=1) {
+	?>
+        <form action=<?php echo $phpself;?> method="post">
+        <input type="hidden" name="action" value="delorphans" />
+        <input type="hidden" name="del" value="all" />
+        Delete all orphans?
+        <input type="submit" value="<?php print $lang_util_php['delete_all'];?>" class="submit" /></form>
+ 	<?php
+	}
+}
+
+
 $phpself = $_SERVER['PHP_SELF'];
 // start output
 print '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -300,6 +353,9 @@ if ($action == 'thumbs') {
 
     deleteorig();
 
+    echo '<br /><a href="' . $phpself . '">' . $lang_util_php['back'] . '</a>';
+} else if ($action == 'delorphans') {
+    deleteorphans();
     echo '<br /><a href="' . $phpself . '">' . $lang_util_php['back'] . '</a>';
 } else {
     starttable('100%');
@@ -360,6 +416,10 @@ if ($action == 'thumbs') {
     print '<br />';
 
     starttable('100%', '<input type="radio" name="action" value="deltit" id="deltit" class="nobg" /><label for="deltit" accesskey="D" class="labelradio">' . $lang_util_php['delete_title'] . '</label> (1)');
+    endtable();
+    print '<br />';
+
+    starttable('100%', '<input type="radio" name="action" value="delorphans" id="delorphans" class="nobg" /><label for="delorphans" accesskey="O" class="labelradio">' . $lang_util_php['delete_orphans'] . '</label> (1)');
     endtable();
     print '<br />';
 
