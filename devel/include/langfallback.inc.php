@@ -421,4 +421,4 @@ if (defined('XP_PUBLISH_PHP')) {
   $lang_xp_publish_php = array_merge($lang_xp_publish_php_en, $lang_xp_publish_php);
 }
 
-?> 
+?>
