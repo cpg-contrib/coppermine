@@ -229,7 +229,8 @@ function html_install_success($notes)
        </tr>
        <tr>
         <td colspan="2" align="center" class="tableh2"><br />
-                <a href="index.php">Let's continue !</a><br />
+                It's recommended to <a href="versioncheck.php">check your file versions</a> if you just upgraded from an older version of coppermine.<br />
+                If you didn't (or you don't want to check), you can go to <a href="index.php">your gallery's start page</a><br />
         </td>
                 </form>
        </tr>
