@@ -254,8 +254,8 @@ $lang_theme_selection = array(
 );
 
 $lang_version_alert = array(
-  'version_alert' => 'Unsupported version!',
-  'no_stable_version' => 'You are running Coppermine  %s (%s) which is only meant for very experienced users - this version comes without support nor any warranties. Use it at your own risk or downgrade to the latest stable version if you need support!',
+  'version_alert' => 'Unsupported version!', //cpg1.4.0
+  'no_stable_version' => 'You are running Coppermine  %s (%s) which is only meant for very experienced users - this version comes without support nor any warranties. Use it at your own risk or downgrade to the latest stable version if you need support!', //cpg1.4.0
 );
 
 // ------------------------------------------------------------------------- //
