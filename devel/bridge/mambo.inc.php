@@ -73,6 +73,8 @@ class cpg_udb extends core_udb {
 			'password' => 'password', // name of 'password' field in users table
 			'email' => 'email', // name of 'email' field in users table
 			'regdate' => 'UNIX_TIMESTAMP(registerDate)', // name of 'registered' field in users table
+			'lastvisit' => 'UNIX_TIMESTAMP(lastvisitDate)', // last time user logged in
+			'active' => '1-block', // is user account active?
 			'location' => "''", // name of 'location' field in users table
 			'website' => "''", // name of 'website' field in users table
 			'usertbl_group_id' => 'gid', // name of 'group id' field in users table
@@ -86,31 +88,24 @@ class cpg_udb extends core_udb {
 			'editusers' => '/administrator/index.php',
 			'edituserprofile' => '/index.php?option=com_user&task=UserDetails'
 		);
-		
+
 		// Group ids - admin and guest only.
-		$this->admingroup = 25;
+		$this->admingroups = array(24,25);
 		$this->guestgroup = $this->use_post_based_groups ? 1 : 3;
+		
+		// Delete old sessions
+		$past = time()-$mosConfig_lifetime;
+		$sql = 'delete from '.$this->sessionstable.' where (time < '.$past.');';
+		cpg_db_query($sql);
 		
 		// Connect to db
 		$this->connect();
 	}
 
-	// definition of how to extract id, name, group from a session cookie
-	function session_extraction($cookie_id)
-	{
-		if (isset($_COOKIE['sessioncookie'])) {
-			$sessiondata = $_COOKIE['sessioncookie'];
-			$session_id = md5( $sessiondata . $_SERVER['REMOTE_ADDR'] );
-			
-			$sql = "SELECT username, userid AS id, group_id+100 AS gid FROM {$this->sessionstable} INNER JOIN {$this->groupstable} ON usertype = name WHERE session_id='$session_id'";
-			
-			$result = cpg_db_query($sql, $this->link_id);
-			
-			if (mysql_num_rows($result)){
-				$row = mysql_fetch_array($result);
-				return $row;
-			}
-		}
+	function session_update() {
+		$sql = 'update '.$this->sessionstable.' set time="'.time().'" '.
+		       'where session_id=md5("'.$this->session_id.'");';
+		$result = cpg_db_query($sql);
 	}
 	
 	function collect_groups()
@@ -133,12 +128,189 @@ class cpg_udb extends core_udb {
 	// definition of how to extract an id and password hash from a cookie
 	function cookie_extraction()
 	{
+	    global $CONFIG;
+
+		// Default anonymous values
 		$id = 0;
 		$pass = '';
-	
-		return array($id, $pass);
+		$f = $this->field;
+		
+		$sessioncookie = $_COOKIE['sessioncookie'];
+		$usercookie = $_COOKIE['usercookie'];
+
+        if ($sessioncookie) {
+
+            $sql =  'select userid from '.$this->sessionstable.' where session_id=md5("'.$sessioncookie.'");';
+            $result = cpg_db_query($sql, $this->link_id);
+
+            // If session exists, check if user exists
+            if ($result) {
+
+                $row = mysql_fetch_assoc($result);
+                mysql_free_result($result);
+
+                $row['userid'] = (int) $row['userid'];
+
+                $sql =  'select id, password ';
+                $sql .= 'from '.$this->usertable.' ';
+                $sql .= 'where id='.$row['userid'];
+
+                $result = cpg_db_query($sql, $this->link_id);
+
+                // If user exists, use the current session
+                if ($result) {
+                    $row = mysql_fetch_assoc($result);
+                    mysql_free_result($result);
+
+                    $pass = $row['password'];
+                    $id = (int) $row['id'];
+                    $this->session_id = $sessioncookie;
+
+                // If the user doesn't exist, use default guest credentials
+                }
+
+            // If no session exists, create a session
+            } else {
+ 
+                $this->create_session();
+            }
+        
+        // No session cookie exists, so create a session and check for remember me cookie
+        } else {
+
+			$this->create_session();
+			
+			// remember me cookie exists; login with user creditials
+            if ($usercookie) {
+                $username = (isset($usercookie['username'])) ? addslashes($usercookie['username']) : '';
+				$password = (isset($usercookie['password'])) ? addslashes($usercookie['password']) : '';
+				
+				// Grab id from Mambo database, if a cookie exists
+				if ($username) {
+					$sql =  'select u.'.$f['user_id'].' as id, u.'.$f['password'].' as password, u.'.
+					        $f['username'].' as username, u.'.$f['usertbl_group_id'].' as usertbl_group_id, '.
+							'g.'.$f['grouptbl_group_id'].' as grouptbl_group_id, g.'.$f['grouptbl_group_name'].' as grouptbl_group_name ';
+					$sql .= 'from '.$this->usertable.' as u ';
+					$sql .= 'inner join '.$this->groupstable.' as g ';
+					$sql .= 'on gid=group_id ';
+					$sql .= 'where u.'.$f['username'].'="'.$username.'" and u.'.$f['password'].'="'.$password.'" and u.block=0;';
+					
+					$result = cpg_db_query($sql, $this->link_id);
+					
+					// the user exists; finalize login procedures
+					if ($result) {
+					
+						$row = mysql_fetch_assoc($result);
+						mysql_free_result($result);
+
+						$gid = 1;
+						
+						if ($this->is_group_child_of($row['grouptbl_group_name'],'Registered') ||
+							$this->is_group_child_of($row['grouptbl_group_name'],'Administrator')) {
+							
+							$gid = 2;
+						}
+						
+						// update session information in session table
+						$sql =  'update '.$this->sessionstable.' set '.
+								'userid='.$row['id'].
+								',username="'.$row['username'].'"'.
+								',guest=0 '.
+								',gid='.$gid.' '.
+								',usertype="'.$row['grouptbl_group_name'].'" '.
+								'where session_id=md5("'.$this->session_id.'");';
+						
+						cpg_db_query($sql, $this->link_id);
+						
+						// update last visit date
+						$currentDate = date("Y-m-d\TH:i:s");
+						$sql = 'update '.$this->usertable.' set '.
+							   'lastvisitDate="'.$currentDate.'" '.
+							   'where id='.$row['id'];
+						
+						cpg_db_query($sql, $this->link_id);
+						
+						$pass = $password;
+						$id = $row['id'];
+					}
+				}
+            }
+        }
+
+		return ($id) ? array($id, $pass) : false;
 	}
 	
+	/** create a guest session */
+	function create_session() {
+		// start session
+        $this->session_id = $this->generateId();
+            
+        $sql =  'insert into '.$this->sessionstable.' (session_id, username, guest, time, gid) values ';
+        $sql .= '("'.md5($this->session_id).'", "", 1, "'.time().'",0)';
+
+		// insert the guest session
+        cpg_db_query($sql);
+
+		// set the session cookie
+        setcookie( "sessioncookie", $this->session_id, time() + 43200, "/" );
+	}
+
+	/** taken from Mambo session class */
+	function generateId() {
+		$failsafe = 20;
+		$randnum = 0;
+		while ($failsafe--) {
+			$randnum = md5( uniqid( microtime(), 1 ) );
+			if ($randnum != "") {
+				$sql = "SELECT session_id FROM {$this->sessionstable} WHERE session_id=MD5('$randnum')";
+				if (!$result = cpg_db_query($sql, $this->link_id)) {
+					break;
+				}
+			}
+		}
+		return $randnum;
+	}
+
+	/** taken from Mambo acl api class */
+	/*======================================================================*\
+		Function:	has_group_parent
+		Purpose:	Checks whether the 'source' group is a child of the 'target'
+	\*======================================================================*/
+	function is_group_child_of( $grp_src, $grp_tgt, $group_type='ARO' ) {
+		
+		$table = &$this->groupstable;
+
+		if (is_int( $grp_src ) && is_int($grp_tgt)) {
+			$sql = "SELECT COUNT(*)".
+				  "\nFROM $table AS g1".
+				  "\nLEFT JOIN $table AS g2 ON g1.lft > g2.lft AND g1.lft < g2.rgt".
+				  "\nWHERE g1.group_id=$grp_src AND g2.group_id=$grp_tgt";
+		} else if (is_string( $grp_src ) && is_string($grp_tgt)) {
+			$sql = "SELECT COUNT(*)".
+				  "\nFROM $table AS g1".
+				  "\nLEFT JOIN $table AS g2 ON g1.lft > g2.lft AND g1.lft < g2.rgt".
+				  "\nWHERE g1.name='$grp_src' AND g2.name='$grp_tgt'";
+		} else if (is_int( $grp_src ) && is_string($grp_tgt)) {
+			$sql = "SELECT COUNT(*)".
+				  "\nFROM $table AS g1".
+				  "\nLEFT JOIN $table AS g2 ON g1.lft > g2.lft AND g1.lft < g2.rgt".
+				  "\nWHERE g1.group_id='$grp_src' AND g2.name='$grp_tgt'";
+		} else {
+			$sql = "SELECT COUNT(*)".
+				  "\nFROM $table AS g1".
+				  "\nLEFT JOIN $table AS g2 ON g1.lft > g2.lft AND g1.lft < g2.rgt".
+				  "\nWHERE g1.name=$grp_src AND g2.group_id='$grp_tgt'";
+		}
+		
+		$result = cpg_db_query($sql, $this->link_id);
+		$count = mysql_num_rows($result);
+		if ($count) {
+			mysql_free_result($result);
+		}
+		
+		return ($count > 0);
+	}
+
 	// definition of actions required to convert a password from user database form to cookie form
 	function udb_hash_db($password)
 	{
@@ -152,8 +324,17 @@ class cpg_udb extends core_udb {
 
 	function logout_page()
 	{
-        $this->redirect("/index.php?option=logout&return=index.php");
+		global $CONFIG;
+        $this->redirect("/index.php?option=logout");
 	}
+	
+	function edit_profile() {
+		$this->redirect("/index.php?option=com_user&task=UserDetails&Itemid=21");
+	}
+
+	function view_users() {}
+	function view_profile() {}
+	function session_extraction($cookie_id)	{}
 }
 
 // and go !

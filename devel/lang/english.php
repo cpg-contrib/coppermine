@@ -917,6 +917,7 @@ $lang_display_image_php = array(
   'view_fs' => 'Click to view full size image',
   'edit_pic' => 'Edit file information', //cpg1.4
   'crop_pic' => 'Crop and Rotate',
+  'set_player' => 'Change player',
 );
 
 $lang_picinfo = array(

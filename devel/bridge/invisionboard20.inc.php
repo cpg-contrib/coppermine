@@ -84,7 +84,7 @@ class cpg_udb extends core_udb {
 	
 	
 		// Group ids - admin and guest only.
-		$this->admingroup = $this->use_post_based_groups ? $INFO['admin_group'] : 1;
+		$this->admingroups = array($this->use_post_based_groups ? $INFO['admin_group'] : 1);
 		$this->guestgroup = $this->use_post_based_groups ? $INFO['guest_group'] : 3;
 		
 		// Connect to db
@@ -135,7 +135,7 @@ class cpg_udb extends core_udb {
 			$pass = substr(addslashes($_COOKIE['pass_hash']), 0, 32);
 		}
 
-		return array($id, $pass);
+		return ($id) ? array($id, $pass) : false;
 	}
 	
 	// definition of actions required to convert a password from user database form to cookie form

@@ -52,17 +52,20 @@ function process_post_data()
                 $user3        = $_POST['user3'];
                 $user4        = $_POST['user4'];
 
+				$galleryicon = (int) $_POST['galleryicon'];
+				$isgalleryicon = ($galleryicon===$pid);
+
                 $read_exif    = isset($_POST['read_exif']);
                 $reset_vcount = isset($_POST['reset_vcount']);
                 $reset_votes  = isset($_POST['reset_votes']);
                 $del_comments = isset($_POST['del_comments']) || $delete;
 
-                $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a WHERE a.aid = p.aid AND pid = '$pid'");
+                $result = cpg_db_query("SELECT category, filepath, filename, owner_id FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a WHERE a.aid = p.aid AND pid = '$pid'");
                 if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
                 $pic = mysql_fetch_array($result);
                 mysql_free_result($result);
 
-                                if (!(GALLERY_ADMIN_MODE || $pic['category'] == FIRST_USER_CAT + USER_ID || ($CONFIG['users_can_edit_pics'] && $pic['owner_id'] == USER_ID))) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+                if (!(GALLERY_ADMIN_MODE || $pic['category'] == FIRST_USER_CAT + USER_ID || ($CONFIG['users_can_edit_pics'] && $pic['owner_id'] == USER_ID))) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
                 $update  = "aid = '".$aid."'";
                 if (is_movie($pic['filename'])) {
@@ -76,6 +79,12 @@ function process_post_data()
                 $update .= ", user2 = '".addslashes($user2)."'";
                 $update .= ", user3 = '".addslashes($user3)."'";
                 $update .= ", user4 = '".addslashes($user4)."'";
+
+                if ($isgalleryicon && $pic['category']>FIRST_USER_CAT) {
+					$sql = 'update '.$CONFIG['TABLE_PICTURES'].' set galleryicon=0 where owner_id='.$pic['owner_id'].';';
+					cpg_db_query($sql);
+					$update .= ", galleryicon = ".addslashes($galleryicon);
+				}
 
                 if ($reset_vcount) $update .= ", hits = '0'";
                 if ($reset_votes) $update .= ", pic_rating = '0', votes = '0'";
@@ -357,13 +366,23 @@ echo <<<EOT
         </tr>
 EOT;
 }
+
+// If this is the users gallery icon then check it
+$isgalleryicon_selected = ($CURRENT_PIC['galleryicon']) ? 'checked="checked" ': '';
+$isgalleryicon_disabled = ($CURRENT_PIC['category'] < FIRST_USER_CAT)? 'disabled="disabled" ':'';
+
 print <<<EOT
         <tr>
                         <td class="tableb" colspan="3" align="center">
-                                <b><input type="checkbox" name="read_exif" value="1" class="checkbox" />{$lang_editpics_php['read_exif']}</b>&nbsp;
-                                <b><input type="checkbox" name="reset_vcount" value="1" class="checkbox" />{$lang_editpics_php['reset_view_count']}</b>&nbsp;
-                                <b><input type="checkbox" name="reset_votes" value="1" class="checkbox" />{$lang_editpics_php['reset_votes']}</b>&nbsp;
-                                <b><input type="checkbox" name="del_comments" value="1" class="checkbox" />{$lang_editpics_php['del_comm']}</b>&nbsp;
+							<table border="0" cellspacing="0" cellpadding="0" width="100%">
+								<tr>
+									<td width="20%" align="center"><input type="checkbox" name="galleryicon" {$isgalleryicon_selected}{$isgalleryicon_disabled}value="{$CURRENT_PIC['pid']}" class="checkbox" />{$lang_editpics_php['gallery_icon']}</td>
+									<td width="20%" align="center"><input type="checkbox" name="read_exif" value="1" class="checkbox" />{$lang_editpics_php['read_exif']}</td>
+									<td width="20%" align="center"><input type="checkbox" name="reset_vcount" value="1" class="checkbox" />{$lang_editpics_php['reset_view_count']}</td>
+									<td width="20%" align="center"><input type="checkbox" name="reset_votes" value="1" class="checkbox" />{$lang_editpics_php['reset_votes']}</td>
+									<td width="20%" align="center"><input type="checkbox" name="del_comments" value="1" class="checkbox" />{$lang_editpics_php['del_comm']}</td>
+								</tr>
+							</table>
                         </td>
         </tr>
         <tr>

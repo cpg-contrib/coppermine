@@ -89,8 +89,9 @@ function cpg_db_connect()
 {
         global $CONFIG;
         $result = @mysql_connect($CONFIG['dbserver'], $CONFIG['dbuser'], $CONFIG['dbpass']);
-        if (!$result)
+        if (!$result) {
                 return false;
+        }
         if (!mysql_select_db($CONFIG['dbname']))
                 return false;
         return $result;
@@ -114,10 +115,10 @@ function cpg_db_query($query, $link_id = 0)
 
         $query_start = cpgGetMicroTime();
 
-        if (($link_id)) {
-            $result = mysql_query($query, $link_id);
+        if ($link_id) {
+				$result = mysql_query($query, $link_id);
         } else {
-                        $result = mysql_query($query, $CONFIG['LINK_ID']);
+				$result = mysql_query($query); //, $CONFIG['LINK_ID']);
         }
         $query_end = cpgGetMicroTime();
         if (isset($CONFIG['debug_mode']) && (($CONFIG['debug_mode']==1) || ($CONFIG['debug_mode']==2) )) {
@@ -230,7 +231,7 @@ function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer
                 exit;
         }
 
-    $ob = ob_get_contents();
+        $ob = ob_get_contents();
         if ($ob) ob_end_clean();
 
         if (function_exists('theme_cpg_die'))
@@ -238,9 +239,6 @@ function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer
             theme_cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer);
             return;
         }
-
-        if(!$CONFIG['debug_mode']) template_extract_block($template_cpg_die, 'file_line');
-        if(!$output_buffer && !$CONFIG['debug_mode']) template_extract_block($template_cpg_die, 'output_buffer');
 
         $params = array(
                 '{MESSAGE}' => $msg_text,
@@ -250,6 +248,9 @@ function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer
                 '{LINE}' => $error_line,
                 '{OUTPUT_BUFFER}' => $ob,
         );
+
+        if(!$CONFIG['debug_mode']) template_extract_block($template_cpg_die, 'file_line');
+        if(!$output_buffer && !$CONFIG['debug_mode']) template_extract_block($template_cpg_die, 'output_buffer');
 
         pageheader($lang_cpg_die[$msg_code]);
         starttable(-1, $lang_cpg_die[$msg_code]);echo "<!-- cpg_die -->";
@@ -1257,12 +1258,12 @@ function get_username($uid)
             return 'Anonymous';
         } elseif (defined('UDB_INTEGRATION')) {
            return $cpg_udb->get_user_name($uid);
-        } else {
+        /*} else {
                 $result = cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '".$uid."'");
                 if (mysql_num_rows($result) == 0) return '';
                 $row = mysql_fetch_array($result);
                 mysql_free_result($result);
-                return $row['user_name'];
+                return $row['user_name'];*/
         }
 }
 
@@ -1284,12 +1285,12 @@ function get_userid($username)
             return 0;
         } elseif (defined('UDB_INTEGRATION')) { // (Altered to fix banning w/ bb integration - Nibbler)
            return $cpg_udb->get_user_id($username);
-        } else {
+        /*} else {
                 $result = cpg_db_query("SELECT user_id FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '".$username."'");
                 if (mysql_num_rows($result) == 0) return 0;
                 $row = mysql_fetch_array($result);
                 mysql_free_result($result);
-                return $row['user_id'];
+                return $row['user_id'];*/
         }
 }
 
@@ -1417,10 +1418,12 @@ function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
 {
         global $album, $lang_errors, $lang_list_categories;
         global $CONFIG,$CURRENT_ALBUM_DATA, $CURRENT_CAT_NAME;
+
+        $category_array = array();
+
         // first we build the category path: names and id
         if ($cat != 0)
         { //Categories other than 0 need to be selected
-                $category_array = array();
                 if ($cat >= FIRST_USER_CAT)
                 {
                     $user_name = get_username($cat - FIRST_USER_CAT);

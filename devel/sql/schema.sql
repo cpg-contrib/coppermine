@@ -119,6 +119,7 @@ CREATE TABLE CPG_pictures (
   caption text NOT NULL,
   keywords varchar(255) NOT NULL default '',
   approved enum('YES','NO') NOT NULL default 'NO',
+  galleryicon int(11) NOT NULL default '0',
   user1 varchar(255) NOT NULL default '',
   user2 varchar(255) NOT NULL default '',
   user3 varchar(255) NOT NULL default '',
@@ -173,7 +174,7 @@ CREATE TABLE CPG_users (
   user_group int(11) NOT NULL default '2',
   user_active enum('YES','NO') NOT NULL default 'NO',
   user_name varchar(25) NOT NULL default '',
-  user_password varchar(25) NOT NULL default '',
+  user_password varchar(40) NOT NULL default '',
   user_lastvisit datetime NOT NULL default '0000-00-00 00:00:00',
   user_regdate datetime NOT NULL default '0000-00-00 00:00:00',
   user_group_list varchar(255) NOT NULL default '',
@@ -236,6 +237,7 @@ CREATE TABLE IF NOT EXISTS CPG_filetypes (
   extension char(7) NOT NULL default '',
   mime char(30) default NULL,
   content char(15) default NULL,
+  player varchar(5) default NULL,
   PRIMARY KEY (extension)
 ) TYPE=MyISAM COMMENT='Used to store the file extensions';
 

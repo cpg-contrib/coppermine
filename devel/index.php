@@ -321,19 +321,19 @@ function list_users()
     global $CONFIG, $PAGE, $FORBIDDEN_SET;
     global $lang_list_users, $lang_errors, $template_user_list_info_box, $cpg_show_private_album, $cpg_udb;
 
-    if (defined('UDB_INTEGRATION')) {
+    //if (defined('UDB_INTEGRATION')) {
         $result = $cpg_udb->list_users_query($user_count);
-    } else {
+    /*} else {
         // $sql = "SELECT user_id," . "        user_name," . "        COUNT(DISTINCT a.aid) as alb_count," . "        COUNT(DISTINCT pid) as pic_count," . "        MAX(pid) as thumb_pid " . "FROM {$CONFIG['TABLE_USERS']} AS u " . "INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON category = " . FIRST_USER_CAT . " + user_id " . "INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid " . "WHERE approved = 'YES' " . "$FORBIDDEN_SET " . "GROUP BY user_id " . "ORDER BY user_name ";
         // Fixed correct album count DJMaze
-        $sql = "SELECT user_id, " . "user_name, " . "COUNT(DISTINCT a.aid) as alb_count, " . "COUNT(DISTINCT pid) as pic_count, " . "MAX(pid) as thumb_pid " . "FROM {$CONFIG['TABLE_USERS']} AS u " . "INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON category = " . FIRST_USER_CAT . " + user_id " . "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON (p.aid = a.aid AND approved = 'YES') ";
-        if ($FORBIDDEN_SET != "" && !$cpg_show_private_album) $sql .= "WHERE $FORBIDDEN_SET ";
+        $sql = "SELECT user_id, " . "user_name, " . "COUNT(DISTINCT a.aid) as alb_count, " . "COUNT(DISTINCT pid) as pic_count, " . "MAX(galleryicon) as gallery_pid, MAX(pid) as thumb_pid " . "FROM {$CONFIG['TABLE_USERS']} AS u " . "INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON category = " . FIRST_USER_CAT . " + user_id " . "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON (p.aid = a.aid AND approved = 'YES') ";
+        if ($FORBIDDEN_SET != "" && !$cpg_show_private_album) $sql .= "WHERE $FORBIDDEN_SET or galleryicon>=0 ";
         $sql .= "GROUP BY user_id " . "ORDER BY user_name";
 
         $result = cpg_db_query($sql);
 
-        $user_count = mysql_num_rows($result);
-    }
+        $user_count = mysql_num_rows($result);*/
+    //}
 
     if (!$user_count) {
         msg_box($lang_list_users['user_list'], $lang_list_users['no_user_gal'], '', '', '100%');
@@ -348,22 +348,22 @@ function list_users()
     $upper_limit = min($user_count, $PAGE * $user_per_page);
     $row_count = $upper_limit - $lower_limit;
 
-    if (defined('UDB_INTEGRATION')) {
+    //if (defined('UDB_INTEGRATION')) {
         $rowset = $cpg_udb->list_users_retrieve_data($result, $lower_limit, $row_count);
-    } else {
+    /*} else {
         $rowset = array();
         $i = 0;
         mysql_data_seek($result, $lower_limit);
         while (($row = mysql_fetch_array($result)) && ($i++ < $row_count)) $rowset[] = $row;
-        mysql_free_result($result);
-    }
+        mysql_free_result($result);*/
+    //}
 
     $user_list = array();
     foreach ($rowset as $user) {
         $cpg_nopic_data = cpg_get_system_thumb('nopic.jpg', $user['user_id']);
         $user_thumb = '<img src="' . $cpg_nopic_data['thumb'] . '" ' . $cpg_nopic_data['whole'] . ' class="image" border="0" alt="" />';
         $user_pic_count = $user['pic_count'];
-        $user_thumb_pid = $user['thumb_pid'];
+        $user_thumb_pid = ($user['gallery_pid']) ? $user['gallery_pid'] : $user['thumb_pid'];
         $user_album_count = $user['alb_count'];
 
         if ($user_pic_count) {

@@ -69,11 +69,11 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
         }
         mysql_free_result($result);
 
-        if (defined('UDB_INTEGRATION')) {
+        //if (defined('UDB_INTEGRATION')) {
             $sql = $cpg_udb->get_admin_album_list();
-        } else {
+        /*} else {
             $sql = "SELECT aid, CONCAT('(', user_name, ') ', title) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id)";
-        }
+        }*/
         $result = cpg_db_query($sql);
         while ($row = mysql_fetch_array($result)) {
             // Add to multi-dim array for later sorting

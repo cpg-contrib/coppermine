@@ -250,7 +250,7 @@ EOT;
 // 4 => hidden input
 function create_form(&$data) {
 
-    global $CONFIG;
+    global $CONFIG, $lang_upload_php;
 
     // Cycle through the elements in the data array.
     foreach($data as $element) {
@@ -2185,7 +2185,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
 
         } else {
 
-            $movie_wd = 0;
+            $movie_wd = 320;
 
         }
 
@@ -2195,7 +2195,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
 
         } else {
 
-            $movie_ht = 0;
+            $movie_ht = 240;
 
         }
 

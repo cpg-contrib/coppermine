@@ -28,57 +28,67 @@ CREATE TABLE IF NOT EXISTS CPG_filetypes (
 ) TYPE=MyISAM COMMENT='Used to store the file extensions';
 
 ALTER TABLE `CPG_filetypes` DROP INDEX `EXTENSION`, ADD PRIMARY KEY ( `extension` );
+ALTER TABLE `CPG_filetypes` ADD `player` VARCHAR( 5 ) ;
 
-INSERT INTO CPG_filetypes VALUES ('jpg', 'image/jpg', 'image');
-INSERT INTO CPG_filetypes VALUES ('jpeg', 'image/jpeg', 'image');
-INSERT INTO CPG_filetypes VALUES ('jpe', 'image/jpe', 'image');
-INSERT INTO CPG_filetypes VALUES ('gif', 'image/gif', 'image');
-INSERT INTO CPG_filetypes VALUES ('png', 'image/png', 'image');
-INSERT INTO CPG_filetypes VALUES ('psd', 'image/psd', 'image');
-INSERT INTO CPG_filetypes VALUES ('bmp', 'image/bmp', 'image');
-INSERT INTO CPG_filetypes VALUES ('jpc', 'image/jpc', 'image');
-INSERT INTO CPG_filetypes VALUES ('jp2', 'image/jp2', 'image');
-INSERT INTO CPG_filetypes VALUES ('jpx', 'image/jpx', 'image');
-INSERT INTO CPG_filetypes VALUES ('jb2', 'image/jb2', 'image');
-INSERT INTO CPG_filetypes VALUES ('swc', 'image/swc', 'image');
-INSERT INTO CPG_filetypes VALUES ('iff', 'image/iff', 'image');
+INSERT INTO CPG_filetypes VALUES ('jpg', 'image/jpg', 'image', '');
+INSERT INTO CPG_filetypes VALUES ('jpeg', 'image/jpeg', 'image', '');
+INSERT INTO CPG_filetypes VALUES ('jpe', 'image/jpe', 'image', '');
+INSERT INTO CPG_filetypes VALUES ('gif', 'image/gif', 'image', '');
+INSERT INTO CPG_filetypes VALUES ('png', 'image/png', 'image', '');
+INSERT INTO CPG_filetypes VALUES ('psd', 'image/psd', 'image', '');
+INSERT INTO CPG_filetypes VALUES ('bmp', 'image/bmp', 'image', '');
+INSERT INTO CPG_filetypes VALUES ('jpc', 'image/jpc', 'image', '');
+INSERT INTO CPG_filetypes VALUES ('jp2', 'image/jp2', 'image', '');
+INSERT INTO CPG_filetypes VALUES ('jpx', 'image/jpx', 'image', '');
+INSERT INTO CPG_filetypes VALUES ('jb2', 'image/jb2', 'image', '');
+INSERT INTO CPG_filetypes VALUES ('swc', 'image/swc', 'image', '');
+INSERT INTO CPG_filetypes VALUES ('iff', 'image/iff', 'image', '');
 UPDATE CPG_config SET value='ALL' WHERE name='allowed_img_types';
 
-INSERT INTO CPG_filetypes VALUES ('asf', 'video/x-ms-asf', 'movie');
-INSERT INTO CPG_filetypes VALUES ('asx', 'video/x-ms-asx', 'movie');
-INSERT INTO CPG_filetypes VALUES ('mpg', 'video/mpeg', 'movie');
-INSERT INTO CPG_filetypes VALUES ('mpeg', 'video/mpeg', 'movie');
-INSERT INTO CPG_filetypes VALUES ('wmv', 'video/x-ms-wmv', 'movie');
+INSERT INTO CPG_filetypes VALUES ('asf', 'video/x-ms-asf', 'movie', 'WMP');
+INSERT INTO CPG_filetypes VALUES ('asx', 'video/x-ms-asx', 'movie', 'WMP');
+INSERT INTO CPG_filetypes VALUES ('mpg', 'video/mpeg', 'movie', 'WMP');
+INSERT INTO CPG_filetypes VALUES ('mpeg', 'video/mpeg', 'movie', 'WMP');
+INSERT INTO CPG_filetypes VALUES ('wmv', 'video/x-ms-wmv', 'movie', 'WMP');
 INSERT INTO CPG_filetypes VALUES ('swf', 'application/x-shockwave-flash', 'movie');
-INSERT INTO CPG_filetypes VALUES ('avi', 'video/avi', 'movie');
-INSERT INTO CPG_filetypes VALUES ('mov', 'video/quicktime', 'movie');
+INSERT INTO CPG_filetypes VALUES ('avi', 'video/avi', 'movie', 'WMP');
+INSERT INTO CPG_filetypes VALUES ('mov', 'video/quicktime', 'movie', 'QT');
 INSERT INTO CPG_config VALUES ('allowed_mov_types', 'ALL');
 
-INSERT INTO CPG_filetypes VALUES ('mp3', 'audio/mpeg3', 'audio');
-INSERT INTO CPG_filetypes VALUES ('midi', 'audio/midi', 'audio');
-INSERT INTO CPG_filetypes VALUES ('mid', 'audio/midi', 'audio');
-INSERT INTO CPG_filetypes VALUES ('wma', 'audio/x-ms-wma', 'audio');
-INSERT INTO CPG_filetypes VALUES ('wav', 'audio/wav', 'audio');
-INSERT INTO CPG_filetypes VALUES ('ogg', 'audio/ogg', 'audio');
+INSERT INTO CPG_filetypes VALUES ('mp3', 'audio/mpeg3', 'audio', 'WMP');
+INSERT INTO CPG_filetypes VALUES ('midi', 'audio/midi', 'audio', 'WMP');
+INSERT INTO CPG_filetypes VALUES ('mid', 'audio/midi', 'audio', 'WMP');
+INSERT INTO CPG_filetypes VALUES ('wma', 'audio/x-ms-wma', 'audio', 'WMP');
+INSERT INTO CPG_filetypes VALUES ('wav', 'audio/wav', 'audio', 'WMP');
+INSERT INTO CPG_filetypes VALUES ('ogg', 'audio/ogg', 'audio', '');
 INSERT INTO CPG_config VALUES ('allowed_snd_types', 'ALL');
 
-INSERT INTO CPG_filetypes VALUES ('ram', 'audio/x-pn-realaudio', 'document');
-INSERT INTO CPG_filetypes VALUES ('ra', 'audio/x-realaudio', 'document');
-INSERT INTO CPG_filetypes VALUES ('rm', 'audio/x-realmedia', 'document');
-INSERT INTO CPG_filetypes VALUES ('tiff', 'image/tiff', 'document');
-INSERT INTO CPG_filetypes VALUES ('tif', 'image/tif', 'document');
-INSERT INTO CPG_filetypes VALUES ('doc', 'application/msword', 'document');
-INSERT INTO CPG_filetypes VALUES ('txt', 'text/plain', 'document');
-INSERT INTO CPG_filetypes VALUES ('rtf', 'text/richtext', 'document');
-INSERT INTO CPG_filetypes VALUES ('pdf', 'application/pdf', 'document');
-INSERT INTO CPG_filetypes VALUES ('xls', 'application/excel', 'document');
-INSERT INTO CPG_filetypes VALUES ('pps', 'application/powerpoint', 'document');
-INSERT INTO CPG_filetypes VALUES ('ppt', 'application/powerpoint', 'document');
-INSERT INTO CPG_filetypes VALUES ('zip', 'application/zip', 'document');
-INSERT INTO CPG_filetypes VALUES ('rar', 'application/rar', 'document');
-INSERT INTO CPG_filetypes VALUES ('gz', 'application/gz', 'document');
-INSERT INTO CPG_filetypes VALUES ('mdb', 'application/msaccess', 'document');
+INSERT INTO CPG_filetypes VALUES ('ram', 'audio/x-pn-realaudio', 'document', 'RMP');
+INSERT INTO CPG_filetypes VALUES ('ra', 'audio/x-realaudio', 'document', 'RMP');
+INSERT INTO CPG_filetypes VALUES ('rm', 'audio/x-realmedia', 'document', 'RMP');
+INSERT INTO CPG_filetypes VALUES ('tiff', 'image/tiff', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('tif', 'image/tif', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('doc', 'application/msword', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('txt', 'text/plain', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('rtf', 'text/richtext', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('pdf', 'application/pdf', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('xls', 'application/excel', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('pps', 'application/powerpoint', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('ppt', 'application/powerpoint', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('zip', 'application/zip', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('rar', 'application/rar', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('gz', 'application/gz', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('mdb', 'application/msaccess', 'document', '');
 INSERT INTO CPG_config VALUES ('allowed_doc_types', 'ALL');
+
+
+#
+# Add default media player for movie/audio files
+#
+UPDATE CPG_filetypes SET player='WMP' WHERE extension IN ('asf','asx','mpg','mpeg','wmv','avi','mp3','midi','mid','wma','wav');
+UPDATE CPG_filetypes SET player='QT' WHERE extension IN ('mov');
+UPDATE CPG_filetypes SET player='RMP' WHERE extension IN ('ra','ram','rm');
+UPDATE CPG_filetypes SET player='SWF' WHERE extension IN ('swc','swf');
 
 
 #
@@ -134,6 +144,8 @@ INSERT INTO CPG_config VALUES ('slideshow_interval', '5000');
 INSERT INTO CPG_config VALUES ('log_mode', '0');
 
 INSERT INTO CPG_config VALUES ('media_autostart', '1');
+
+INSERT INTO CPG_config VALUES ('enable_encrypted_passwords','0');
 
 # Modify structure for category thumb
 ALTER TABLE `CPG_categories` ADD `thumb` INT NOT NULL AFTER `parent` ;
@@ -224,6 +236,11 @@ ALTER TABLE CPG_pictures ADD INDEX owner_id( `owner_id` );
 
 
 #
+# Allows user gallery icons
+#
+ALTER TABLE CPG_pictures ADD `galleryicon` INT UNSIGNED DEFAULT '0' NOT NULL AFTER `approved`;
+
+#
 # Record the last hit IP
 #
 
@@ -261,6 +278,12 @@ ALTER TABLE `CPG_users` CHANGE `user_occupation` `user_profile4` VARCHAR(255);
 
 ALTER TABLE `CPG_users` ADD `user_profile5` varchar(255) default '' NOT NULL;
 ALTER TABLE `CPG_users` ADD `user_profile6` varchar(255) default '' NOT NULL;
+
+#
+# Enlarge password field for MD5/SHA1 hash
+#
+
+ALTER TABLE `CPG_users` CHANGE `user_password` `user_password` VARCHAR( 40 ) NOT NULL;
 
 
 

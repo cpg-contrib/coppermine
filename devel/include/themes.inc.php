@@ -1157,14 +1157,17 @@ function theme_main_menu($which)
     global $AUTHORIZED, $CONFIG, $album, $actual_cat, $cat, $REFERER;
     global $lang_main_menu, $template_sys_menu, $template_sub_menu;
 
-    //static $main_menu = '';                  // what did I just disable? Donnoman
-    $main_menu = '';
-    // if ($main_menu != '') return $main_menu;   // what did I just disable? Donnoman
+
+    static $sys_menu = '', $sub_menu = '';
+    if ($$which != '') {
+        return $$which;
+    }
 
     $album_l = isset($album) ? "?album=$album" : '';
     $cat_l = (isset($actual_cat))? "?cat=$actual_cat" : (isset($cat) ? "?cat=$cat" : '');
     $cat_l2 = isset($cat) ? "&amp;cat=$cat" : '';
     $my_gallery_id = FIRST_USER_CAT + USER_ID;
+    
   if ($which == 'sys_menu' ) {
     if (USER_ID) {
         template_extract_block($template_sys_menu, 'login');
@@ -1241,7 +1244,7 @@ function theme_main_menu($which)
         '{FAQ_LNK}' => $lang_main_menu['faq_lnk'],
         );
 
-        $main_menu = template_eval($template_sys_menu, $param);
+        $sys_menu = template_eval($template_sys_menu, $param);
   } else {
     $param = array(
         '{ALB_LIST_TGT}' => "index.php$cat_l",
@@ -1266,10 +1269,10 @@ function theme_main_menu($which)
         '{SEARCH_TITLE}' => $lang_main_menu['search_title'],
         '{SEARCH_LNK}' => $lang_main_menu['search_lnk'],
         );
-    $main_menu = template_eval($template_sub_menu, $param);
+    $sub_menu = template_eval($template_sub_menu, $param);
   }
 
-    return $main_menu;
+    return $$which;
 }
 }  //{THEMES}
 
@@ -1283,64 +1286,70 @@ function theme_admin_mode_menu()
 
     $cat_l = isset($cat) ? "?cat=$cat" : '';
 
-    if (GALLERY_ADMIN_MODE) {
-		
-		if ($CONFIG['log_ecards'] == 0) {
-			template_extract_block($template_gallery_admin_menu, 'log_ecards');
-		}
+    static $admin_menu = '';
+    
+    // Populate the admin menu only if empty to avoid template errors
+    if ($admin_menu == '') {
+        if ($CONFIG['log_ecards'] == 0) {
+            template_extract_block($template_gallery_admin_menu, 'log_ecards');
+        }
+    
+        if (cpg_get_pending_approvals() == 0) {
+             template_extract_block($template_gallery_admin_menu, 'admin_approval');
+        }
+    
+        if (GALLERY_ADMIN_MODE) {
+            $param = array('{CATL}' => $cat_l,
+                '{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_title'],
+                '{UPL_APP_LNK}' => $lang_gallery_admin_menu['upl_app_lnk'],
+                '{ADMIN_TITLE}' => $lang_gallery_admin_menu['admin_title'],
+                '{ADMIN_LNK}' => $lang_gallery_admin_menu['admin_lnk'],
+                '{ALBUMS_TITLE}' => $lang_gallery_admin_menu['albums_title'],
+                '{ALBUMS_LNK}' => $lang_gallery_admin_menu['albums_lnk'],
+                '{CATEGORIES_TITLE}' => $lang_gallery_admin_menu['categories_title'],
+                '{CATEGORIES_LNK}' => $lang_gallery_admin_menu['categories_lnk'],
+                '{USERS_TITLE}' => $lang_gallery_admin_menu['users_title'],
+                '{USERS_LNK}' => $lang_gallery_admin_menu['users_lnk'],
+                '{GROUPS_TITLE}' => $lang_gallery_admin_menu['groups_title'],
+                '{GROUPS_LNK}' => $lang_gallery_admin_menu['groups_lnk'],
+                '{COMMENTS_TITLE}' => $lang_gallery_admin_menu['comments_title'],
+                '{COMMENTS_LNK}' => $lang_gallery_admin_menu['comments_lnk'],
+                '{SEARCHNEW_TITLE}' => $lang_gallery_admin_menu['searchnew_title'],
+                '{SEARCHNEW_LNK}' => $lang_gallery_admin_menu['searchnew_lnk'],
+                '{MY_PROF_TITLE}' => $lang_user_admin_menu['my_prof_title'],
+                '{MY_PROF_LNK}' => $lang_user_admin_menu['my_prof_lnk'],
+                '{UTIL_TITLE}' => $lang_gallery_admin_menu['util_title'],
+                '{UTIL_LNK}' => $lang_gallery_admin_menu['util_lnk'],
+                '{BAN_TITLE}' => $lang_gallery_admin_menu['ban_title'],
+                '{BAN_LNK}' => $lang_gallery_admin_menu['ban_lnk'],
+                '{DB_ECARD_TITLE}' => $lang_gallery_admin_menu['db_ecard_title'],
+                '{DB_ECARD_LNK}' => $lang_gallery_admin_menu['db_ecard_lnk'],
+                '{PICTURES_TITLE}' => $lang_gallery_admin_menu['pictures_title'],
+                '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
+                );
+    
+            $html = template_eval($template_gallery_admin_menu, $param);
+            $html.= cpg_alert_dev_version();
+        } elseif (USER_ADMIN_MODE) {
+            $param = array('{ALBMGR_TITLE}' => $lang_user_admin_menu['albmgr_title'],
+                '{ALBMGR_LNK}' => $lang_user_admin_menu['albmgr_lnk'],
+                '{MODIFYALB_TITLE}' => $lang_user_admin_menu['modifyalb_title'],
+                '{MODIFYALB_LNK}' => $lang_user_admin_menu['modifyalb_lnk'],
+                '{MY_PROF_TITLE}' => $lang_user_admin_menu['my_prof_title'],
+                '{MY_PROF_LNK}' => $lang_user_admin_menu['my_prof_lnk'],
+                '{PICTURES_TITLE}' => $lang_gallery_admin_menu['pictures_title'],
+                '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
+                );
+    
+            $html = template_eval($template_user_admin_menu, $param);
+        } else {
+            $html = '';
+        }
 
-		if (cpg_get_pending_approvals() == 0) {
-			 template_extract_block($template_gallery_admin_menu, 'admin_approval');
-		}
-	
-        $param = array('{CATL}' => $cat_l,
-            '{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_title'],
-            '{UPL_APP_LNK}' => $lang_gallery_admin_menu['upl_app_lnk'],
-            '{ADMIN_TITLE}' => $lang_gallery_admin_menu['admin_title'],
-            '{ADMIN_LNK}' => $lang_gallery_admin_menu['admin_lnk'],
-            '{ALBUMS_TITLE}' => $lang_gallery_admin_menu['albums_title'],
-            '{ALBUMS_LNK}' => $lang_gallery_admin_menu['albums_lnk'],
-            '{CATEGORIES_TITLE}' => $lang_gallery_admin_menu['categories_title'],
-            '{CATEGORIES_LNK}' => $lang_gallery_admin_menu['categories_lnk'],
-            '{USERS_TITLE}' => $lang_gallery_admin_menu['users_title'],
-            '{USERS_LNK}' => $lang_gallery_admin_menu['users_lnk'],
-            '{GROUPS_TITLE}' => $lang_gallery_admin_menu['groups_title'],
-            '{GROUPS_LNK}' => $lang_gallery_admin_menu['groups_lnk'],
-            '{COMMENTS_TITLE}' => $lang_gallery_admin_menu['comments_title'],
-            '{COMMENTS_LNK}' => $lang_gallery_admin_menu['comments_lnk'],
-            '{SEARCHNEW_TITLE}' => $lang_gallery_admin_menu['searchnew_title'],
-            '{SEARCHNEW_LNK}' => $lang_gallery_admin_menu['searchnew_lnk'],
-            '{MY_PROF_TITLE}' => $lang_user_admin_menu['my_prof_title'],
-            '{MY_PROF_LNK}' => $lang_user_admin_menu['my_prof_lnk'],
-            '{UTIL_TITLE}' => $lang_gallery_admin_menu['util_title'],
-            '{UTIL_LNK}' => $lang_gallery_admin_menu['util_lnk'],
-            '{BAN_TITLE}' => $lang_gallery_admin_menu['ban_title'],
-            '{BAN_LNK}' => $lang_gallery_admin_menu['ban_lnk'],
-            '{DB_ECARD_TITLE}' => $lang_gallery_admin_menu['db_ecard_title'],
-            '{DB_ECARD_LNK}' => $lang_gallery_admin_menu['db_ecard_lnk'],
-            '{PICTURES_TITLE}' => $lang_gallery_admin_menu['pictures_title'],
-            '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
-            );
-
-        $html = template_eval($template_gallery_admin_menu, $param);
-        $html.= cpg_alert_dev_version();
-    } elseif (USER_ADMIN_MODE) {
-        $param = array('{ALBMGR_TITLE}' => $lang_user_admin_menu['albmgr_title'],
-            '{ALBMGR_LNK}' => $lang_user_admin_menu['albmgr_lnk'],
-            '{MODIFYALB_TITLE}' => $lang_user_admin_menu['modifyalb_title'],
-            '{MODIFYALB_LNK}' => $lang_user_admin_menu['modifyalb_lnk'],
-            '{MY_PROF_TITLE}' => $lang_user_admin_menu['my_prof_title'],
-            '{MY_PROF_LNK}' => $lang_user_admin_menu['my_prof_lnk'],
-            '{PICTURES_TITLE}' => $lang_gallery_admin_menu['pictures_title'],
-            '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
-            );
-
-        $html = template_eval($template_user_admin_menu, $param);
-    } else {
-        $html = '';
+        $admin_menu = $html;
     }
 
-    return $html;
+    return $admin_menu;
 }
 }  //{THEMES}
 
@@ -1913,7 +1922,7 @@ function theme_html_picture()
         }
     }
 
-    $CURRENT_PIC_DATA['menu'] = ((USER_ADMIN_MODE && $CURRENT_ALBUM_DATA['category'] == FIRST_USER_CAT + USER_ID) || ($CONFIG['users_can_edit_pics'] && $CURRENT_PIC_DATA['owner_id'] == USER_ID && USER_ID != 0) || GALLERY_ADMIN_MODE) ? html_picture_menu($pid) : '';
+    $CURRENT_PIC_DATA['menu'] = html_picture_menu(); //((USER_ADMIN_MODE && $CURRENT_ALBUM_DATA['category'] == FIRST_USER_CAT + USER_ID) || ($CONFIG['users_can_edit_pics'] && $CURRENT_PIC_DATA['owner_id'] == USER_ID && USER_ID != 0) || GALLERY_ADMIN_MODE) ? html_picture_menu($pid) : '';
 
     if ($CONFIG['make_intermediate'] && $condition ) {
         $picture_url = get_pic_url($CURRENT_PIC_DATA, 'normal');
@@ -1925,11 +1934,19 @@ function theme_html_picture()
 
     $pic_title = '';
     $mime_content = cpg_get_type($CURRENT_PIC_DATA['filename']);
+    
 
-    if ($CURRENT_PIC_DATA['pwidth']==0 || $CURRENT_PIC_DATA['pheight']==0) {
-        $image_size['geom']='';
-        $image_size['whole'] = '';
-    } elseif ($mime_content['content']=='movie' || $mime_content['content']=='audio') {
+    if ($mime_content['content']=='movie' || $mime_content['content']=='audio') {
+
+        if ($CURRENT_PIC_DATA['pwidth']==0 || $CURRENT_PIC_DATA['pheight']==0) {
+            $CURRENT_PIC_DATA['pwidth']  = 320; // Default width
+
+            // Set default height; if file is a movie
+            if ($mime_content['content']=='movie') {
+                $CURRENT_PIC_DATA['pheight'] = 240; // Default height
+            }
+        }
+
         $ctrl_offset['mov']=15;
         $ctrl_offset['wmv']=45;
         $ctrl_offset['swf']=0;
@@ -1954,8 +1971,51 @@ function theme_html_picture()
         $pic_thumb_url = get_pic_url($CURRENT_PIC_DATA,'thumb');
         $pic_html = "<a href=\"{$picture_url}\" target=\"_blank\" class=\"document_link\"><img src=\"".$pic_thumb_url."\" border=\"0\" class=\"image\" /></a>\n<br />";
     } else {
-                   $autostart = ($CONFIG['mv_autostart']) ? ('true'):('false');
-            $pic_html = "<object {$image_size['whole']}><param name=\"autostart\" value=\"$autostart\"><param name=\"src\" value=\"". $picture_url . "\"><embed {$image_size['whole']} src=\"". $picture_url . "\" autostart=\"$autostart\"></embed></object><br />\n";
+        $autostart = ($CONFIG['mv_autostart']) ? ('true'):('false');
+
+        $players['WMP'] = array('id' => 'MediaPlayer', 
+                                'clsid' => 'classid="clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6" ',
+                                'codebase' => 'codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5,1,52,701" ',
+                                'mime' => 'type="application/x-mplayer2" ',
+                               );
+        $players['RMP'] = array('id' => 'RealPlayer',
+                                'clsid' => 'classid="clsid:CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA" ',
+                                'codebase' => '', 
+                                'mime' => 'type="audio/x-pn-realaudio-plugin" '
+                               );
+        $players['QT']  = array('id' => 'QuickTime', 
+                                'clsid' => 'classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" ',
+                                'codebase' => 'codebase="http://www.apple.com/qtactivex/qtplugin.cab" ',
+                                'mime' => 'type="video/x-quicktime" '
+                               );
+        $players['SWF'] = array('id' => 'SWFlash', 
+                                'clsid' => ' classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" ', 
+                                'codebase' => 'codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" ',
+                                'mime' => 'type="application/x-shockwave-flash" '
+                               );
+        $players['UNK'] = array('id' => 'DefaultPlayer', 
+                                'clsid' => '', 
+                                'codebase' => '',
+                                'mime' => ''
+                               );
+
+        if (isset($_COOKIE[$CONFIG['cookie_name'].'_'.$mime_content['extension'].'player'])) {
+            $user_player = $_COOKIE[$CONFIG['cookie_name'].'_'.$mime_content['extension'].'player'];
+        } else {
+            $user_player = $mime_content['player'];
+        }
+
+		// There isn't a player selected or user wants client-side control
+        if (!$user_player) {
+            $user_player = 'UNK';
+        }
+
+        $player = $players[$user_player];
+
+        $pic_html  = '<object id="'.$player['id'].'" '.$player['classid'].$player['codebase'].$player['mime'].$image_size['whole'].'>';
+        $pic_html .= "<param name=\"autostart\" value=\"$autostart\"><param name=\"src\" value=\"". $picture_url . "\">";
+        $pic_html .= "<embed {$image_size['whole']} src=\"". $picture_url . "\" autostart=\"$autostart\" type=\"".$player['mime']."\"></embed>";
+        $pic_html .= "</object><br />\n";
     }
 
     $CURRENT_PIC_DATA['html'] = $pic_html;

@@ -85,7 +85,7 @@ class cpg_udb extends core_udb {
 		);
 		
 		// Group ids - admin and guest only.
-		$this->admingroup = $this->use_post_based_groups ? 6 : 6;
+		$this->admingroups = array(6);
 		$this->guestgroup = $this->use_post_based_groups ? 101 : 3;
 		
 		// Use a special function to collect groups for cpg groups table
@@ -111,6 +111,8 @@ class cpg_udb extends core_udb {
 			if (mysql_num_rows($result)){
 				$row = mysql_fetch_array($result);
 				return $row;
+			} else {
+			    return false;
 			}
 		}
 	}
@@ -118,7 +120,7 @@ class cpg_udb extends core_udb {
 	// Get groups of which user is member
 	function get_groups($row)
 	{
-		$data[0] = $row[$this->field['usertbl_group_id']] - 100 == $this->admingroup ? 1 : 2;
+		$data[0] = in_array($row[$this->field['usertbl_group_id']] - 100, $this->admingroups) ? 1 : 2;
 		
 		if ($this->use_post_based_groups){
 			$sql = "SELECT g.{$this->field['usertbl_group_id']}+100 AS group_id, u.* FROM {$this->usertable} AS u, {$this->groupstable} as g WHERE g.{$this->field['grouptbl_group_id']} = u.{$this->field['usertbl_group_id']} AND u.{$this->field['user_id']} = '{$row[$this->field['user_id']]}'";
@@ -146,7 +148,7 @@ class cpg_udb extends core_udb {
 	    $id = 0;
 		$pass = '';
 
-		return array($id, $pass);
+		return false; //array($id, $pass);
 	}
 	
 	// definition of actions required to convert a password from user database form to cookie form

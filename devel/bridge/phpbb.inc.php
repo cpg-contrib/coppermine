@@ -72,6 +72,8 @@ class cpg_udb extends core_udb {
 			'password' => 'user_password', // name of 'password' field in users table
 			'email' => 'user_email', // name of 'email' field in users table
 			'regdate' => 'user_regdate', // name of 'registered' field in users table
+			'active' => 'user_active', // is user account active?
+			'lastvisit' => 'user_lastvisit', // name of 'location' field in users table
 			'location' => 'user_from', // name of 'location' field in users table
 			'website' => 'user_website', // name of 'website' field in users table
 			'usertbl_group_id' => 'group_id', // name of 'group id' field in users table
@@ -87,7 +89,7 @@ class cpg_udb extends core_udb {
 		);
 		
 		// Group ids - admin and guest only.
-		$this->admingroup = $this->use_post_based_groups ? 2 : 2;
+		$this->admingroups = array(2);
 		$this->guestgroup = $this->use_post_based_groups ? 3 : 3;
 		
 		// Use a special function to collect groups for cpg groups table
@@ -128,6 +130,8 @@ class cpg_udb extends core_udb {
 			if (mysql_num_rows($result)){
 				$row = mysql_fetch_array($result);
 				return $row;
+			} else {
+			    return false;
 			}
 		}
 	}
@@ -136,7 +140,7 @@ class cpg_udb extends core_udb {
 	function get_groups($row)
 	{
 		$i = $this->use_post_based_groups ? 102 : 1;
-		$data[0] = $row[$this->field['usertbl_group_id']] - 100 == $this->admingroup ? $i : 2;
+		$data[0] = in_array($row[$this->field['usertbl_group_id']] - 100, $this->admingroups) ? $i : 2;
 		
 		if ($this->use_post_based_groups){
 			$sql = "SELECT ug.{$this->field['usertbl_group_id']}+100 AS group_id FROM {$this->usertable} AS u, {$this->usergroupstable} AS ug, {$this->groupstable} as g WHERE u.{$this->field['user_id']}=ug.{$this->field['user_id']} AND u.{$this->field['user_id']}='{$row[$this->field['user_id']]}' AND g.{$this->field['grouptbl_group_id']} = ug.{$this->field['grouptbl_group_id']} AND g.group_single_user = 0";
@@ -163,7 +167,7 @@ class cpg_udb extends core_udb {
             $pass = (isset($sessiondata['autologinid'])) ? addslashes($sessiondata['autologinid']) : '';
 		}
 		
-		return array($id, $pass);
+		return ($id) ? array($id, $pass) : false;
 	}
 	
 	// definition of actions required to convert a password from user database form to cookie form
@@ -195,6 +199,9 @@ class cpg_udb extends core_udb {
 		
 		$this->redirect("/login.php?logout=true&redirect=$redirect");
 	}
+
+	function view_users() {}
+	function view_profile() {}
 }
 
 // and go !

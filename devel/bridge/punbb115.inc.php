@@ -102,7 +102,7 @@ class cpg_udb extends core_udb {
 		);
 		
 		// Group ids
-		$this->admingroup = 2;
+		$this->admingroups = array(2);
 		$this->guestgroup = -1;
 		
 		// Cookie settings - used in following functions only
@@ -115,7 +115,7 @@ class cpg_udb extends core_udb {
 	// definition of how to extract id, name, group from a session cookie
 	function session_extraction($cookie_id)
 	{
-		$row = array('id' => 0, 'username' => 'Guest', 'status' => -1);
+		$row = false; //array('id' => 0, 'username' => 'Guest', 'status' => -1);
 		
         if (isset($_COOKIE[$this->cookie_name])) {
 			list($username, $pass_hash) = unserialize($_COOKIE[$this->cookie_name]);
@@ -132,11 +132,9 @@ class cpg_udb extends core_udb {
 	// definition of how to extract an id and password hash from a cookie
 	function cookie_extraction()
 	{
-	    $id = 0;
-		
-		return array($id, '');
+		return false;
 	}
-	
+
 	// definition of actions required to convert a password from user database form to cookie form
 	function udb_hash_db($password)
 	{

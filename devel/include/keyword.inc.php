@@ -26,7 +26,7 @@ print '<br />';
 starttable("100%", $lang_search_php['keyword_list_title']);
 
 $result = mysql_query("select keywords from {$CONFIG['TABLE_PICTURES']}");
-if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap']);
+if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap'],__FILE__,__LINE__);
 
 // Find unique keywords
 $keywords_array = array();
@@ -36,8 +36,8 @@ while (list($keywords) = mysql_fetch_row($result)) {
 
         foreach($array as $word)
         {
-        if (!in_array($word,$keywords_array)) $keywords_array[] = $word;
-       }
+            if (!in_array($word,$keywords_array)) $keywords_array[] = $word;
+        }
 }
 
 // Sort selected keywords

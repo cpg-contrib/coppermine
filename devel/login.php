@@ -43,6 +43,7 @@ if (isset($_POST['submitted'])) {
         } else {
             $cookie_life_time = 86400;
         }
+
         setcookie($CONFIG['cookie_name'] . '_uid', $USER_DATA['user_id'], time() + $cookie_life_time, $CONFIG['cookie_path']);
         setcookie($CONFIG['cookie_name'] . '_pass', md5($_POST['password']), time() + $cookie_life_time, $CONFIG['cookie_path']);
 

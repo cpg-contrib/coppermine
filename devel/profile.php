@@ -22,9 +22,9 @@ define('PROFILE_PHP', true);
 
 require('include/init.inc.php');
 
-if (defined('UDB_INTEGRATION')){
-	$cpg_udb->edit_profile($_GET['uid']);
-}
+//if (defined('UDB_INTEGRATION')){
+	$cpg_udb->view_profile($_GET['uid']);
+//}
 
 $edit_profile_form_param = array(
     array('text', 'username', $lang_register_php['username']),
@@ -181,7 +181,7 @@ $op = isset($_GET['op']) ? $_GET['op'] : '';
 $uid = isset($_GET['uid']) ? (int)$_GET['uid'] : -1;
 if (isset($_POST['change_pass'])) $op = 'change_pass';
 
-if (isset($_POST['change_profile']) && USER_ID && !defined('UDB_INTEGRATION')) {
+if (isset($_POST['change_profile']) && USER_ID && UDB_INTEGRATION == 'coppermine') { //!defined('UDB_INTEGRATION')) {
 
         $profile1 = addslashes($_POST['user_profile1']);
         $profile2 = addslashes($_POST['user_profile2']);
@@ -206,7 +206,7 @@ if (isset($_POST['change_profile']) && USER_ID && !defined('UDB_INTEGRATION')) {
     exit;
 }
 
-if (isset($_POST['change_password']) && USER_ID && !defined('UDB_INTEGRATION')) {
+if (isset($_POST['change_password']) && USER_ID && UDB_INTEGRATION == 'coppermine') { //!defined('UDB_INTEGRATION')) {
     $current_pass = get_post_var('current_pass');
     $new_pass = get_post_var('new_pass');
     $new_pass_again = get_post_var('new_pass_again');
@@ -214,10 +214,23 @@ if (isset($_POST['change_password']) && USER_ID && !defined('UDB_INTEGRATION')) 
     if (strlen($new_pass) < 2) cpg_die(ERROR, $lang_register_php['err_password_short'], __FILE__, __LINE__);
     if ($new_pass != $new_pass_again) cpg_die(ERROR, $lang_register_php['err_password_mismatch'], __FILE__, __LINE__);
 
-    $sql = "UPDATE {$CONFIG['TABLE_USERS']} SET " . "user_password = '$new_pass' " . "WHERE user_id = '" . USER_ID . "' AND BINARY user_password = '$current_pass'";
+    $sql = "UPDATE {$cpg_udb->usertable} SET " .
+           $cpg_udb->field['password']." = '$new_pass' " .
+           "WHERE {$cpg_udb->field['user_id']} = '" . USER_ID . "' AND BINARY {$cpg->udb->['password']} = '$current_pass'";
 
     $result = cpg_db_query($sql);
     if (!mysql_affected_rows()) cpg_die(ERROR, $lang_register_php['pass_chg_error'], __FILE__, __LINE__);
+
+
+/**
+
+    TODO:
+
+    add setcookie function to udb objects (omni)
+
+*/
+
+
 
     setcookie($CONFIG['cookie_name'] . '_pass', md5($_POST['new_pass']), time() + 86400, $CONFIG['cookie_path']);
 
@@ -235,7 +248,7 @@ switch ($op) {
     case 'edit_profile' :
         if (!USER_ID) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
-        if (defined('UDB_INTEGRATION')) udb_edit_profile(USER_ID);
+        if (defined('UDB_INTEGRATION')) $cpg_udb->edit_profile(USER_ID);
 
         $sql = "SELECT user_name, user_email, user_group, UNIX_TIMESTAMP(user_regdate) as user_regdate, group_name, " . "user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6, user_group_list, " . "COUNT(pid) as pic_count, ROUND(SUM(total_filesize)/1024) as disk_usage, group_quota " . "FROM {$CONFIG['TABLE_USERS']} AS u " . "INNER JOIN {$CONFIG['TABLE_USERGROUPS']} AS g ON user_group = group_id " . "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.owner_id = u.user_id " . "WHERE user_id ='" . USER_ID . "' " . "GROUP BY user_id ";
 
@@ -295,7 +308,12 @@ EOT;
         break;
     // ------------------------------------------------------------------------- //
     case 'change_pass' :
-        if (!USER_ID || defined('UDB_INTEGRATION')) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+        if (!USER_ID /*|| defined('UDB_INTEGRATION')*/) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+        
+        // Just a sanity check (should get caught when user clicks 'My Profile')
+        if (UDB_INTEGRATION != 'coppermine') {
+            $cpg_udb->edit_profile(USER_ID);
+        }
 
         $title = $lang_register_php['change_pass'];
         pageheader($title);
@@ -321,9 +339,9 @@ EOT;
     // ------------------------------------------------------------------------- //
     default :
 
-        if (defined('UDB_INTEGRATION')) {
-            $user_data = udb_get_user_infos($uid);
-        } else {
+        //if (defined('UDB_INTEGRATION')) {
+            $user_data = $cpg_udb->get_user_infos($uid);
+        /*} else {
             $sql = "SELECT user_name, user_email, UNIX_TIMESTAMP(user_regdate) as user_regdate, group_name, " . "user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6 " . "FROM {$CONFIG['TABLE_USERS']} AS u " . "INNER JOIN {$CONFIG['TABLE_USERGROUPS']} AS g ON user_group = group_id " . "WHERE user_id ='$uid'";
 
             $result = cpg_db_query($sql);
@@ -331,7 +349,8 @@ EOT;
             if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_register_php['err_unk_user'], __FILE__, __LINE__);
             $user_data = mysql_fetch_array($result);
             mysql_free_result($result);
-        }
+        }*/
+
         if ($FORBIDDEN_SET != "") $FORBIDDEN_SET = "AND $FORBIDDEN_SET";
         $query = "SELECT count(*), MAX(pid) FROM {$CONFIG['TABLE_PICTURES']} AS p WHERE owner_id = '$uid' AND approved = 'YES' $FORBIDDEN_SET";
         $result = cpg_db_query($query);

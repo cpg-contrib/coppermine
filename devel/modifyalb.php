@@ -334,15 +334,15 @@ function form_visibility($text, $name)
     if (GALLERY_ADMIN_MODE) {
         $options = array(0 => $lang_modifyalb_php['public_alb'], FIRST_USER_CAT + USER_ID => $lang_modifyalb_php['me_only']);
         if ($ALBUM_DATA['category'] > FIRST_USER_CAT) {
-            if (defined('UDB_INTEGRATION')) {
+            //if (defined('UDB_INTEGRATION')) {
                 $owner_name = $cpg_udb->get_user_name($ALBUM_DATA['category'] - FIRST_USER_CAT);
-            } else {
+            /*} else {
                 $result = cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id='" . ($ALBUM_DATA['category'] - FIRST_USER_CAT) . "'");
                 if (mysql_num_rows($result)) {
                     $user = mysql_fetch_array($result);
                     $owner_name = $user['user_name'];
-                }
-            }
+                }*/
+            //}
             $options[$ALBUM_DATA['category']] = sprintf($lang_modifyalb_php['owner_only'], $owner_name);
         }
         $result = cpg_db_query("SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1");
@@ -425,11 +425,11 @@ function alb_list_box()
         $rowset = cpg_db_fetch_rowset($result);
         mysql_free_result($result);
 
-        if (defined('UDB_INTEGRATION')) {
+        //if (defined('UDB_INTEGRATION')) {
             $sql = $cpg_udb->get_admin_album_list();
-        } else {
+        /*} else {
             $sql = "SELECT aid, CONCAT('(', user_name, ') ', title) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id) " . "ORDER BY title";
-        }
+        }*/
         $result = cpg_db_query($sql);
         while ($row = mysql_fetch_array($result)) $rowset[] = $row;
         mysql_free_result($result);

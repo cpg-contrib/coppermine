@@ -75,11 +75,11 @@ function albumselect($id = "album") {
 
         // albums in user's personal galleries
         if (defined('UDB_INTEGRATION')) {
-            if (GALLERY_ADMIN_MODE) {
+            //if (GALLERY_ADMIN_MODE) {
                 $sql = $cpg_udb->get_admin_album_list();
-            } else {
+            /*} else {
                 $sql = "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = ".(FIRST_USER_CAT + USER_ID);
-            }
+            }*/
         } else {
             if (GALLERY_ADMIN_MODE) {
                 $sql = "SELECT aid, CONCAT('(', user_name, ') ', title) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id)";
@@ -106,6 +106,8 @@ function albumselect($id = "album") {
 
         // Create the nicely sorted and formatted drop down list
         $alb_cat = '';
+        
+
         foreach ($listArray as $val) {
             if ($val['cat'] != $alb_cat) {
           if ($alb_cat) $select .= "</optgroup>\n";

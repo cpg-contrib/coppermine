@@ -90,6 +90,8 @@ class cpg_udb extends core_udb {
 			'password' => 'user_password', // name of 'password' field in users table
 			'email' => 'user_email', // name of 'email' field in users table
 			'regdate' => 'user_regdate', // name of 'registered' field in users table
+			'active' => 'user_active', // is user account active?
+			'lastvisit' => 'user_lastvisit', // name of 'location' field in users table
 			'location' => 'user_from', // name of 'location' field in users table
 			'website' => 'user_website', // name of 'website' field in users table
 			'usertbl_group_id' => 'group_id', // name of 'group id' field in users table
@@ -103,9 +105,9 @@ class cpg_udb extends core_udb {
 			'editusers' => '/memberlist.php',
 			'edituserprofile' => "/memberlist.php?mode=viewprofile&u=",
 		);
-		
+
 		// Group ids
-		$this->admingroup = 7;
+		$this->admingroups = array(7);
 		$this->guestgroup = 1;
 		
 		// Cookie settings - used in following functions only
@@ -129,6 +131,8 @@ class cpg_udb extends core_udb {
 			if (mysql_num_rows($result)){
 				$row = mysql_fetch_array($result);
 				return $row;
+			} else {
+			    return false;
 			}
 		}
 	}
@@ -145,7 +149,7 @@ class cpg_udb extends core_udb {
             $pass = (isset($sessiondata['autologinid'])) ? addslashes($sessiondata['autologinid']) : '';
 		}
 	
-		return array($id, $pass);
+		return ($id) ? array($id, $pass) : false;
 	}
 	
 	// definition of actions required to convert a password from user database form to cookie form
@@ -169,6 +173,9 @@ class cpg_udb extends core_udb {
 		$redirect = urlencode($CONFIG['site_url']);
         $this->redirect("/ucp.php?mode=logout&redirect=$redirect");
 	}
+
+	function view_users() {}
+	function view_profile() {}
 }
 
 // and go !

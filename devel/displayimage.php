@@ -48,15 +48,27 @@ if($CONFIG['read_iptc_data'] ){
  * Local functions definition
  */
 
-function html_picture_menu($id)
+function html_picture_menu()
 {
-    global $lang_display_image_php;
+    global $lang_display_image_php, $CURRENT_PIC_DATA;
+	
+    $mime_content = cpg_get_type($CURRENT_PIC_DATA['filename']);
 
-    return <<<EOT
-     <a href="#" onclick="return MM_openBrWindow('picEditor.php?id=$id','Crop_Picture','scrollbars=yes,toolbar=no,status=yes,resizable=yes')" class="admin_menu" >{$lang_display_image_php['crop_pic']}</a> <a href="editOnePic.php?id=$id&amp;what=picture"  class="admin_menu">{$lang_display_image_php['edit_pic']}</a> <a href="delete.php?id=$id&amp;what=picture"  class="admin_menu" onclick="return confirm('{$lang_display_image_php['confirm_del']}'); return false; ">{$lang_display_image_php['del_pic']}</a>
-
+	if (false) { //(!($mime_content['content']=='image')) {
+		$picmenu = <<<EOT
+     <a href="#" onclick="return MM_openBrWindow('setplayer.php?={$mime_content['extension']}','Set_Player','scrollbars=no,toolbar=no,status=no,resizable=no')" class="admin_menu" >{$lang_display_image_php['set_player']}</a>
 EOT;
+	}
+	
+	if ((USER_ADMIN_MODE && $CURRENT_ALBUM_DATA['category'] == FIRST_USER_CAT + USER_ID) || ($CONFIG['users_can_edit_pics'] && $CURRENT_PIC_DATA['owner_id'] == USER_ID && USER_ID != 0) || GALLERY_ADMIN_MODE) {
+		$picmenu .= <<<EOT
+     <a href="javascript:;" onclick="return MM_openBrWindow('picEditor.php?id={$CURRENT_PIC_DATA['pid']}','Crop_Picture','scrollbars=yes,toolbar=no,status=yes,resizable=yes')" class="admin_menu" >{$lang_display_image_php['crop_pic']}</a> <a href="editOnePic.php?id={$CURRENT_PIC_DATA['pid']}&amp;what=picture"  class="admin_menu">{$lang_display_image_php['edit_pic']}</a> <a href="delete.php?id={$CURRENT_PIC_DATA['pid']}&amp;what=picture"  class="admin_menu" onclick="return confirm('{$lang_display_image_php['confirm_del']}'); return false; ">{$lang_display_image_php['del_pic']}</a>
+EOT;
+	}
+	
+	return $picmenu;
 }
+
 // Display picture information
 function html_picinfo()
 {

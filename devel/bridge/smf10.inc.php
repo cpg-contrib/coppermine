@@ -68,6 +68,8 @@ class cpg_udb extends core_udb {
 			'user_id' => 'ID_MEMBER', // name of 'id' field in users table
 			'email' => 'emailAddress', // name of 'email' field in users table
 			'regdate' => 'dateRegistered', // name of 'registered' field in users table
+			'lastvisit' => 'UNIX_TIMESTAMP(lastLogin)', // last time user logged in
+			'active' => 'is_activated', // is user account active?
 			'location' => 'location', // name of 'location' field in users table
 			'website' => 'websiteUrl', // name of 'website' field in users table
 			'usertbl_group_id' => 'ID_GROUP', // name of 'group id' field in users table
@@ -83,9 +85,9 @@ class cpg_udb extends core_udb {
 		);
 		
 
-		
+
 		// Group ids - admin and guest only.
-		$this->admingroup = $this->use_post_based_groups ? 1 : 1;
+		$this->admingroups = array(1);
 		$this->guestgroup = $this->use_post_based_groups ? 1 : 3;
 		
 		// Connect to db - or supply a connection id to be used instead of making own connection.
@@ -137,11 +139,13 @@ class cpg_udb extends core_udb {
 	{
 		global $user_settings;
 		
+		/*
 		if (!$user_settings){
 			$user_settings[$this->field['user_id']] = 0;
 			$user_settings[$this->field['username']] = 'Guest';
 			$user_settings[$this->field['usertbl_group_id']] = $this->guestgroup;
 		}
+		*/
 		
 		return $user_settings;
 	}
@@ -149,7 +153,7 @@ class cpg_udb extends core_udb {
 	// definition of how to extract an id and password hash from a cookie
 	function cookie_extraction()
 	{
-		return array(0, ''); //unused
+		return false; //array(0, ''); //unused
 	}
 	
 	// definition of actions required to convert a password from user database form to cookie form
@@ -178,7 +182,11 @@ class cpg_udb extends core_udb {
 		$this->boardurl = '';
         $this->redirect($matches[1]);
 	}
+
+	function view_users() {}
+	function view_profile() {}
 }
+
 
 // and go !
 $cpg_udb = new cpg_udb;

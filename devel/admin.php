@@ -699,12 +699,12 @@ EOT;
 
 function create_form(&$data)
 {
-        global $sn1, $sn2, $sn3, $options_to_disable;
+        global $sn1, $sn2, $sn3, $options_to_disable, $CONFIG;
 
     foreach($data as $element) {
         if ((is_array($element))) {
                 $element[3] = (isset($element[3])) ? $element[3] : '';
-                if (defined('UDB_INTEGRATION') AND in_array($element[1],$options_to_disable)) $element[2] = 15;
+                if (defined('UDB_INTEGRATION') AND in_array($element[1],$options_to_disable) AND $CONFIG['bridge_enable']) $element[2] = 15;
                 $sn1 = max($sn1,(strpos($element[0],'<a href="#notice1"')));
                 $sn2 = max($sn2,(strpos($element[0],'<a href="#notice2"')));
                 $sn3 = max($sn3,(strpos($element[0],'<a href="#notice3"')));

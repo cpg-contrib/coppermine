@@ -95,6 +95,9 @@ function process_post_data()
 
         if (!is_array($_POST['pid'])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
         $pid_array = &$_POST['pid'];
+		
+		$galleryicon = (int) $_POST['galleryicon'];
+		
         foreach($pid_array as $pid){
                 $pid = (int)$pid;
 
@@ -106,13 +109,15 @@ function process_post_data()
                 $user2       = get_post_var('user2', $pid);
                 $user3       = get_post_var('user3', $pid);
                 $user4       = get_post_var('user4', $pid);
+				
+				$isgalleryicon = ($galleryicon===$pid);
 
                 $delete       = isset($_POST['delete'.$pid]);
                 $reset_vcount = isset($_POST['reset_vcount'.$pid]);
                 $reset_votes  = isset($_POST['reset_votes'.$pid]);
                 $del_comments = isset($_POST['del_comments'.$pid]) || $delete;
 
-                $query = "SELECT category, filepath, filename FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND pid='$pid'";
+                $query = "SELECT category, filepath, filename, owner_id FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND pid='$pid'";
                 $result = cpg_db_query($query);
                 if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
                 $pic = mysql_fetch_array($result);
@@ -131,12 +136,19 @@ function process_post_data()
                 $update .= ", user2 = '".addslashes($user2)."'";
                 $update .= ", user3 = '".addslashes($user3)."'";
                 $update .= ", user4 = '".addslashes($user4)."'";
-        if (is_movie($pic['filename'])) {
-            $pwidth = get_post_var('pwidth', $pid);
-            $pheight = get_post_var('pheight', $pid);
-            $update .= ", pwidth = " .  (int) $pwidth;
-            $update .= ", pheight = " . (int) $pheight;
-        }
+				
+                if ($isgalleryicon && $pic['category']>FIRST_USER_CAT) {
+					$sql = 'update '.$CONFIG['TABLE_PICTURES'].' set galleryicon=0 where owner_id='.$pic['owner_id'].';';
+					cpg_db_query($sql);
+					$update .= ", galleryicon = ".addslashes($galleryicon);
+				}
+
+				if (is_movie($pic['filename'])) {
+					$pwidth = get_post_var('pwidth', $pid);
+					$pheight = get_post_var('pheight', $pid);
+					$update .= ", pwidth = " .  (int) $pwidth;
+					$update .= ", pheight = " . (int) $pheight;
+				}
 
                 if ($reset_vcount) $update .= ", hits = '0'";
                 if ($reset_votes) $update .= ", pic_rating = '0', votes = '0'";
@@ -238,6 +250,9 @@ function form_options()
 {
         global $CURRENT_PIC, $lang_editpics_php;
 
+		$isgalleryicon_selected = ($CURRENT_PIC['galleryicon']) ? 'checked="checked" ':'';
+		$isgalleryicon_disabled = ($CURRENT_PIC['category'] < FIRST_USER_CAT) ? 'disabled="disabled" ':'';
+
         if (UPLOAD_APPROVAL_MODE) {
                 echo <<<EOT
         <tr>
@@ -255,7 +270,7 @@ EOT;
                 <td class="tableb" colspan="3" align="center">
                     <table border="0" cellspacing="0" cellpadding="0" width="100%">
                         <tr>
-                            <td width="20%" align="center"></td>
+                            <td width="20%" align="center"><input type="radio" name="galleryicon" id="galleryicon{$CURRENT_PIC['pid']}" value="{$CURRENT_PIC['pid']}" {$isgalleryicon_selected}{$isgalleryicon_disabled}class="checkbox">{$lang_editpics_php['gallery_icon']}</td>
                             <td width="20%" align="center"><input type="checkbox" name="delete{$CURRENT_PIC['pid']}" id="delete{$CURRENT_PIC['pid']}" value="1" class="checkbox"><label for="delete{$CURRENT_PIC['pid']}" class="clickable_option">{$lang_editpics_php['del_pic']}</label></td>
                             <td width="20%" align="center"><input type="checkbox" name="reset_vcount{$CURRENT_PIC['pid']}" id="reset_vcount{$CURRENT_PIC['pid']}" value="1" class="checkbox"><label for="reset_vcount{$CURRENT_PIC['pid']}" class="clickable_option">{$lang_editpics_php['reset_view_count']}</label></td>
                             <td width="20%" align="center"><input type="checkbox" name="reset_votes{$CURRENT_PIC['pid']}" id="reset_votes{$CURRENT_PIC['pid']}" value="1" class="checkbox"><label for="reset_votes{$CURRENT_PIC['pid']}" class="clickable_option">{$lang_editpics_php['reset_votes']}</label></td>
@@ -425,9 +440,9 @@ if (UPLOAD_APPROVAL_MODE) {
         $sql = "SELECT pid, owner_id FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_id != 0 AND owner_name = ''";
         $result = cpg_db_query($sql);
         while($row = mysql_fetch_array($result)){
-                if(defined('UDB_INTEGRATION')){
+                //if(defined('UDB_INTEGRATION')){
                         $owner_name = $cpg_udb->get_user_name($row['owner_id']);
-                } else {
+                /*} else {
                     $result2 = cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '".$row['owner_id']."'");
                         if (mysql_num_rows($result2)){
                                 $row2 = mysql_fetch_array($result2);
@@ -435,8 +450,8 @@ if (UPLOAD_APPROVAL_MODE) {
                                 $owner_name = $row2['user_name'];
                         } else {
                                 $owner_name = '';
-                        }
-                }
+                        }*/
+                //}
 
                 if($owner_name){
                         cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET owner_name = '$owner_name' WHERE pid = {$row['pid']} LIMIT 1");
@@ -460,8 +475,12 @@ if (UPLOAD_APPROVAL_MODE) {
         $nbEnr = mysql_fetch_array($result);
         $pic_count = $nbEnr[0];
         mysql_free_result($result);
-
-    $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = '$album_id' ORDER BY filename LIMIT $start, $count");
+		$sql = "SELECT p.*,a.category FROM {$CONFIG['TABLE_PICTURES']} as p ".
+			   "INNER JOIN {$CONFIG['TABLE_ALBUMS']} as a ".
+			   "ON a.aid=p.aid ".
+			   "WHERE p.aid = '$album_id' ".
+			   "ORDER BY p.filename LIMIT $start, $count";
+		$result = cpg_db_query($sql);
         $form_target = $_SERVER['PHP_SELF'].'?album='.$album_id.'&start='.$start.'&count='.$count;
         $title = $lang_editpics_php['edit_pics'];
         $help = '&nbsp;'.cpg_display_help('f=index.htm&as=edit_pics&ae=edit_pics_end&top=1', '800', '500');

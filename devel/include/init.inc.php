@@ -188,7 +188,7 @@ define('CRITICAL_ERROR', 3);
 
 // Include config and functions files
 if(file_exists('include/config.inc.php')){
-  require 'include/config.inc.php';
+  require_once 'include/config.inc.php';
 } else {
   // error handling: if the config file doesn't exist go to install
   print <<< EOT
@@ -204,7 +204,7 @@ if(file_exists('include/config.inc.php')){
     </head>
     <body>
       <img src="images/coppermine_logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" /><br />
-      Coppermine Photo Gallery seems not to be installed correctly, or you're running coppermine for the first time. You'll be redirected to the installer. If your browser doesn't support redirect, click <a href="install.php">here</a>.
+      Coppermine Photo Gallery seems not to be installed correctly, or you are running coppermine for the first time. You'll be redirected to the installer. If your browser doesn't support redirect, click <a href="install.php">here</a>.
     </body>
 </html>
 EOT;
@@ -262,13 +262,19 @@ if ($CONFIG['enable_plugins'] == 1) {
 // Set UDB_INTEGRATION if enabled in admin
 if ($CONFIG['bridge_enable'] == 1) {
     $BRIDGE = cpg_get_bridge_db_values();
-    define('UDB_INTEGRATION', $BRIDGE['short_name']);
+} else {
+	$BRIDGE['short_name'] = 'coppermine';
+	$BRIDGE['use_standard_groups'] = 1;
+	$BRIDGE['recovery_logon_failures'] = 0;
+	$BRIDGE['use_post_based_groups'] = false;
 }
 
+define('UDB_INTEGRATION', $BRIDGE['short_name']);
+
 // User DB system
-if (!CPGPluginAPI::action('UDB_INTEGRATION',false,CPG_EXEC_FIRST) && defined('UDB_INTEGRATION')) {
-    require 'bridge/' . UDB_INTEGRATION . '.inc.php';
-}
+//if (!CPGPluginAPI::action('UDB_INTEGRATION',false,CPG_EXEC_FIRST) && defined('UDB_INTEGRATION')) {
+    require_once 'bridge/' . UDB_INTEGRATION . '.inc.php';
+//}
 
 // Start output buffering
 ob_start('cpg_filter_page_html');
@@ -277,9 +283,9 @@ ob_start('cpg_filter_page_html');
 user_get_profile();
 
 // Authenticate
-if (defined('UDB_INTEGRATION')) {
+//if (defined('UDB_INTEGRATION')) {
     $cpg_udb->authenticate();
-} else {
+/*} else {
     if (!isset($_COOKIE[$CONFIG['cookie_name'] . '_uid']) || !isset($_COOKIE[$CONFIG['cookie_name'] . '_pass'])) {
         $cookie_uid = 0;
         $cookie_pass = '*';
@@ -330,12 +336,14 @@ if (defined('UDB_INTEGRATION')) {
         define('NUM_FILE_BOXES', (int)$USER_DATA['num_file_upload']);
         define('NUM_URI_BOXES', (int)$USER_DATA['num_URI_upload']);
         mysql_free_result($results);
-    }
-}
+    }*/
+//}
+
 // Test if admin mode
 $USER['am'] = isset($USER['am']) ? (int)$USER['am'] : 0;
 define('GALLERY_ADMIN_MODE', USER_IS_ADMIN && $USER['am']);
 define('USER_ADMIN_MODE', USER_ID && USER_CAN_CREATE_ALBUMS && $USER['am'] && !GALLERY_ADMIN_MODE);
+
 
 // Set error logging level
 // Maze's new error report system
@@ -445,6 +453,9 @@ CPGPluginAPI::action('page_start',null);
 load_template();
 // Remove expired bans
 $now = date('Y-m-d H:i:s', localised_timestamp());
+
+$CONFIG['template_loaded'] = true;
+
 cpg_db_query("DELETE FROM {$CONFIG['TABLE_BANNED']} WHERE expiry < '$now'");
 // Check if the user is banned
 $user_id = USER_ID;
