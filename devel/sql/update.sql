@@ -27,6 +27,7 @@ INSERT INTO CPG_config VALUES ('read_iptc_data', '0');
 
 INSERT INTO CPG_config VALUES ('reg_notify_admin_email', '0');
 INSERT INTO CPG_config VALUES ('disable_comment_flood_protect', '0');
+INSERT INTO CPG_config VALUES ('upl_notify_admin_email', '0');
 
 # Modify structure for category thumb
 # ALTER TABLE `CPG_categories` ADD `thumb` INT NOT NULL AFTER `parent` ;

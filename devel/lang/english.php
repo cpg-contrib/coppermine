@@ -391,6 +391,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Notify admin of user registration by email', 'reg_notify_admin_email', 1),
         array('Allow two users to have the same email address', 'allow_duplicate_emails_addr', 1),
         array('Users can can have private albums', 'allow_private_albums', 1),
+        array('Notify admin of user upload awaiting approval', 'upl_notify_admin_email', 1),
 
         'Custom fields for image description (leave blank if unused)',
         array('Field 1 name', 'user_field1_name', 0),
@@ -447,6 +448,8 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
         'allowed_img_types' => 'You can only upload %s images.',
         'err_insert_pic' => 'The picture \'%s\' can\'t be inserted in the album ',
         'upload_success' => 'Your picture was uploaded successfully<br /><br />It will be visible after admin approval.',
+        'notify_admin_email_subject' => '%s - Upload notification',
+        'notify_admin_email_body' => 'The user "%s" has uploaded pictures that await approval',
         'info' => 'Information',
         'com_added' => 'Comment added',
         'alb_updated' => 'Album updated',
