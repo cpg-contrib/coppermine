@@ -31,7 +31,7 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
         return false;
     } elseif (is_image($filename)) {
         $imagesize = getimagesize($image);
-        if ($CONFIG['auto_resize']==1 && max($imagesize[0], $imagesize[1]) > $CONFIG['max_upl_width_height'])
+        if (((USER_IS_ADMIN && $CONFIG['auto_resize'] == 1) || (!USER_IS_ADMIN && $CONFIG['auto_resize'] > 0)) && max($imagesize[0], $imagesize[1]) > $CONFIG['max_upl_width_height']) //$CONFIG['auto_resize']==1
         {
           resize_image($image, $image, $CONFIG['max_upl_width_height'], $CONFIG['thumb_method'], $imagesize[0] > $CONFIG['max_upl_width_height'] ? 'wd' : 'ht');
           $imagesize = getimagesize($image);

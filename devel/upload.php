@@ -1252,7 +1252,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
 
                 // Check that picture size (in pixels) is lower than the maximum allowed. If not, delete it.
                 } elseif (max($imginfo[0], $imginfo[1]) > $CONFIG['max_upl_width_height']) {
-                  if ($CONFIG['auto_resize']==1)
+                  if ((USER_IS_ADMIN && $CONFIG['auto_resize'] == 1) || (!USER_IS_ADMIN && $CONFIG['auto_resize'] > 0)) //($CONFIG['auto_resize']==1)
                   {
                     resize_image($uploaded_pic, $uploaded_pic, $CONFIG['max_upl_width_height'], $CONFIG['thumb_method'], $imginfo[0] > $CONFIG['max_upl_width_height'] ? 'wd' : 'ht');
                   }

@@ -345,7 +345,7 @@ switch ($event) {
                 //cpg_die(ERROR, sprintf($lang_db_input_php['allowed_img_types'], $CONFIG['allowed_img_types']), __FILE__, __LINE__);
             // Check that picture size (in pixels) is lower than the maximum allowed
             } elseif (max($imginfo[0], $imginfo[1]) > $CONFIG['max_upl_width_height']) {
-              if ($CONFIG['auto_resize']==2)
+              if ((USER_IS_ADMIN && $CONFIG['auto_resize'] == 1) || (!USER_IS_ADMIN && $CONFIG['auto_resize'] > 0))
               {
                 resize_image($uploaded_pic, $uploaded_pic, $CONFIG['max_upl_width_height'], $CONFIG['thumb_method'], $imginfo[0] > $CONFIG['max_upl_width_height'] ? 'wd' : 'ht');
               }
@@ -359,7 +359,7 @@ switch ($event) {
 
         // Upload is ok
         // Create thumbnail and internediate image and add the image into the DB
-        $result = add_picture($album, $filepath, $picture_name, $title, $caption, $keywords, $user1, $user2, $user3, $user4, $category, $raw_ip, $hdr_ip,(int) $_POST['width'],(int) $_POST['height']);
+        $result = add_picture($album, $filepath, $picture_name, 0, $title, $caption, $keywords, $user1, $user2, $user3, $user4, $category, $raw_ip, $hdr_ip,(int) $_POST['width'],(int) $_POST['height']);
 
         if (!$result) {
             @unlink($uploaded_pic);
