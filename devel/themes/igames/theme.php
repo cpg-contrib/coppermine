@@ -84,6 +84,10 @@ $template_main_menu2 = <<<EOT
                                                 <a href="{TOPRATED_TGT}" onMouseOver="MM_showHideLayers('Menu1','','hide')">{TOPRATED_LNK}</a>
                                         </td>
                                         <td><img name="menu_spacer" src="themes/igames/images/menu_spacer.gif" width="2" height="35" border="0" id="menu_spcer" alt="" /><br /></td>
+                                        <td class="top_menu_bttn">
+                                                <a href="{FAV_TGT}" onMouseOver="MM_showHideLayers('Menu1','','hide')">{FAV_LNK}</a>
+                                        </td>					
+                                        <td><img name="menu_spacer" src="themes/igames/images/menu_spacer.gif" width="2" height="35" border="0" id="menu_spcer" alt="" /><br /></td>
                                         <td class="top_menu_right_bttn">
                                                 <a href="{SEARCH_TGT}" onMouseOver="MM_showHideLayers('Menu1','','hide')">{SEARCH_LNK}</a>
                                         </td>
@@ -105,7 +109,8 @@ $template_gallery_admin_menu = <<<EOT
                                 <td class="admin_menu"><a href="groupmgr.php" title="">{GROUPS_LNK}</a></td>
                                 <td class="admin_menu"><a href="reviewcom.php" title="">{COMMENTS_LNK}</a></td>
                                 <td class="admin_menu"><a href="searchnew.php" title="">{SEARCHNEW_LNK}</a></td>
-                                <td class="admin_menu"><a href="util.php" title="">{UTIL_LNK}</a></td>                                <td class="admin_menu"><a href="profile.php?op=edit_profile" title="">{MY_PROF_LNK}</a></td>
+                                <td class="admin_menu"><a href="util.php" title="">{UTIL_LNK}</a></td>
+                                <td class="admin_menu"><a href="profile.php?op=edit_profile" title="">{MY_PROF_LNK}</a></td>
                         </tr>
                 </table>
                 </div>

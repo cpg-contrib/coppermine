@@ -53,6 +53,7 @@ $template_main_menu = <<<EOT
                         <a href="{LASTCOM_TGT}">{LASTCOM_LNK}</a> ::
                         <a href="{TOPN_TGT}">{TOPN_LNK}</a> ::
                         <a href="{TOPRATED_TGT}">{TOPRATED_LNK}</a> ::
+                        <a href="{FAV_TGT}">{FAV_LNK}</a> ::
                         <a href="{SEARCH_TGT}">{SEARCH_LNK}</a>
                 </span>
 EOT;
@@ -71,7 +72,8 @@ $template_gallery_admin_menu = <<<EOT
                                 <td class="admin_menu"><a href="groupmgr.php" title="">{GROUPS_LNK}</a></td>
                                 <td class="admin_menu"><a href="reviewcom.php" title="">{COMMENTS_LNK}</a></td>
                                 <td class="admin_menu"><a href="searchnew.php" title="">{SEARCHNEW_LNK}</a></td>
-                                <td class="admin_menu"><a href="util.php" title="">{UTIL_LNK}</a></td>                                <td class="admin_menu"><a href="profile.php?op=edit_profile" title="">{MY_PROF_LNK}</a></td>
+                                <td class="admin_menu"><a href="util.php" title="">{UTIL_LNK}</a></td>
+                                <td class="admin_menu"><a href="profile.php?op=edit_profile" title="">{MY_PROF_LNK}</a></td>
                         </tr>
                 </table>
                 </div>
@@ -964,6 +966,8 @@ function theme_main_menu()
                 '{TOPN_LNK}' => $lang_main_menu['topn_lnk'],
                 '{TOPRATED_TGT}'=> "thumbnails.php?album=toprated$cat_l2",
                 '{TOPRATED_LNK}'=> $lang_main_menu['toprated_lnk'],
+                '{FAV_TGT}'=> "thumbnails.php?album=favpics",
+                '{FAV_LNK}'=> $lang_main_menu['fav_lnk'],		
                 '{SEARCH_TGT}'=> "search.php",
                 '{SEARCH_LNK}'=> $lang_main_menu['search_lnk'],
         );

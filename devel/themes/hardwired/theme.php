@@ -1,567 +1,291 @@
 <?php
-
 // ------------------------------------------------------------------------- //
-
 //  Coppermine Photo Gallery                                                 //
-
 // ------------------------------------------------------------------------- //
-
 //  Copyright (C) 2002,2003  Gr&eacute;gory DEMAR <gdemar@wanadoo.fr>               //
-
 //  http://www.chezgreg.net/coppermine/                                      //
-
 // ------------------------------------------------------------------------- //
-
 //  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
-
 //  http://www.stoverud.com/PHPhotoalbum/                                    //
-
 // ------------------------------------------------------------------------- //
-
 //  Hacked by Tarique Sani <tarique@sanisoft.com>                            //
-
 //  see http://www.sanisoft.com/cpg/README.txt for                           //
-
 //  details                                                                  //
-
 // ------------------------------------------------------------------------- //
-
 //  This program is free software; you can redistribute it and/or modify     //
-
 //  it under the terms of the GNU General Public License as published by     //
-
 //  the Free Software Foundation; either version 2 of the License, or        //
-
 //  (at your option) any later version.                                      //
-
 // ------------------------------------------------------------------------- //
-
-
 
 define('THEME_HAS_RATING_GRAPHICS', 1);
 
 
-
-
-
 // HTML template for main menu
-
 $template_main_menu1 = <<<EOT
-
 		<span class="topmenu">
-
 			<table border="0" cellpadding="0" cellspacing="0">
-
 				<tr>
-
 <!-- BEGIN my_gallery -->
-
 					<td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-
 					<td><img name="buttonleftmy" src="themes/hardwired/images/buttonleftmy.gif" width="17" height="25" border="0" id="buttonleftmy" alt="" /></td>
-
 					<td background="themes/hardwired/images/buttoncenter.gif">
-
 						<a href="{MY_GAL_TGT}" title="{MY_GAL_TITLE}">{MY_GAL_LNK}</a>
-
 					</td>
-
 					<td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0" id="buttonright" alt="" /></td>
-
 <!-- END my_gallery -->
-
 <!-- BEGIN my_profile -->
-
 					<td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-
 					<td><img name="buttonleft" src="themes/hardwired/images/buttonleft.gif" width="17" height="25" border="0" id="buttonleft" alt="" /></td>
-
 					<td background="themes/hardwired/images/buttoncenter.gif">
-
 						<a href="{MY_PROF_TGT}">{MY_PROF_LNK}</a>
-
 					</td>
-
 					<td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0" id="buttonright" alt="" /></td>
-
 <!-- END my_profile -->
-
 <!-- BEGIN enter_admin_mode -->
-
 					<td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-
 					<td><img name="buttonleftad" src="themes/hardwired/images/buttonleftad.gif" width="17" height="25" border="0" id="buttonleftad" alt="" /></td>
-
 					<td background="themes/hardwired/images/buttoncenter.gif">
-
 						<a href="{ADM_MODE_TGT}" title="{ADM_MODE_TITLE}">{ADM_MODE_LNK}</a>
-
 					</td>
-
 					<td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0" id="buttonright" alt="" /></td>
-
 <!-- END enter_admin_mode -->
-
 <!-- BEGIN leave_admin_mode -->
-
 					<td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-
 					<td><img name="buttonleftad" src="themes/hardwired/images/buttonleftad.gif" width="17" height="25" border="0" id="buttonleftad" alt="" /></td>
-
 					<td background="themes/hardwired/images/buttoncenter.gif">
-
 						<a href="{USR_MODE_TGT}" title="{USR_MODE_TITLE}">{USR_MODE_LNK}</a>
-
 					</td>
-
 					<td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0" id="buttonleft" alt="" /></td>
-
 <!-- END leave_admin_mode -->
-
 <!-- BEGIN upload_pic -->
-
 					<td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-
 					<td><img name="buttonleftup" src="themes/hardwired/images/buttonleftup.gif" width="17" height="25" border="0" id="buttonleftup" alt="" /></td>
-
 					<td background="themes/hardwired/images/buttoncenter.gif">
-
 						<a href="{UPL_PIC_TGT}" title="{UPL_PIC_TITLE}">{UPL_PIC_LNK}</a>
-
 					</td>
-
 					<td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0" id="buttonright" alt="" /></td>
-
 <!-- END upload_pic -->
-
 <!-- BEGIN register -->
-
 					<td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-
 					<td><img name="buttonleft" src="themes/hardwired/images/buttonleft.gif" width="17" height="25" border="0" id="buttonleft" alt="" /></td>
-
 					<td background="themes/hardwired/images/buttoncenter.gif">
-
 						<a href="{REGISTER_TGT}" title="{REGISTER_TITLE}">{REGISTER_LNK}</a>
-
 					</td>
-
 					<td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0" id="buttonright" alt="" /></td>
-
 <!-- END register -->
-
 <!-- BEGIN login -->
-
 					<td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-
 					<td><img name="buttonleft" src="themes/hardwired/images/buttonleft.gif" width="17" height="25" border="0" id="buttonleft" alt="" /></td>
-
 					<td background="themes/hardwired/images/buttoncenter.gif">
-
 						<a href="{LOGIN_TGT}">{LOGIN_LNK}</a>
-
 					</td>
-
 					<td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0" id="buttonright" alt="" /></td>
-
 <!-- END login -->
-
 <!-- BEGIN logout -->
-
 					<td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-
 					<td><img name="buttonleftout" src="themes/hardwired/images/buttonleftout.gif" width="17" height="25" border="0" id="buttonleftout" alt="" /></td>
-
 					<td background="themes/hardwired/images/buttoncenter.gif">
-
 						<a href="{LOGOUT_TGT}">{LOGOUT_LNK}</a>
-
 					</td>
-
 					<td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0" id="buttonright" alt="" /></td>
-
 <!-- END logout -->
-
 				</tr>
-
 			</table>
-
 		</span>
-
 EOT;
-
-
 
 $template_main_menu2 = <<<EOT
-
 		<span class="topmenu">
-
 			<table border="0" cellpadding="0" cellspacing="0">
-
 				<tr>
-
 <!-- BEGIN album_list -->
-
 					<td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-
 					<td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" id="buttonleft" alt="" /></td>
-
 					<td background="themes/hardwired/images/buttoncenter1.gif">
-
 						<a href="{ALB_LIST_TGT}" title="{ALB_LIST_TITLE}">{ALB_LIST_LNK}</a>
-
 					</td>
-
 					<td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" id="buttonright1" alt="" /></td>
-
 <!-- END album_list -->
-
 					<td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-
 					<td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" id="buttonleft1" alt="" /></td>
-
 					<td background="themes/hardwired/images/buttoncenter1.gif">
-
 						<a href="{LASTUP_TGT}">{LASTUP_LNK}</a>
-
 					</td>
-
 					<td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" id="buttonright1" alt="" /></td>
-
 					<td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-
 					<td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" id="buttonleft1" alt="" /></td>
-
 					<td background="themes/hardwired/images/buttoncenter1.gif">
-
 						<a href="{LASTCOM_TGT}">{LASTCOM_LNK}</a>
-
 					</td>
-
 					<td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" id="buttonright1" alt="" /></td>
-
 					<td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-
 					<td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" id="buttonleft1" alt="" /></td>
-
 					<td background="themes/hardwired/images/buttoncenter1.gif">
-
 						<a href="{TOPN_TGT}">{TOPN_LNK}</a>
-
 					</td>
-
 					<td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" id="buttonright1" alt="" /></td>
-
 					<td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-
 					<td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" id="buttonleft1" alt="" /></td>
-
 					<td background="themes/hardwired/images/buttoncenter1.gif">
-
 						<a href="{TOPRATED_TGT}">{TOPRATED_LNK}</a>
-
 					</td>
-
 					<td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" id="buttonright1" alt="" /></td>
-
 					<td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-
 					<td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" id="buttonleft1" alt="" /></td>
-
 					<td background="themes/hardwired/images/buttoncenter1.gif">
-
-						<a href="{SEARCH_TGT}">{SEARCH_LNK}</a>
-
-					</td>
-
+						<a href="{FAV_TGT}">{FAV_LNK}</a>
+					</td>					
 					<td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" id="buttonright1" alt="" /></td>
-
+					<td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
+					<td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" id="buttonleft1" alt="" /></td>
+					<td background="themes/hardwired/images/buttoncenter1.gif">
+						<a href="{SEARCH_TGT}">{SEARCH_LNK}</a>
+					</td>
+					<td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" id="buttonright1" alt="" /></td>
 				</tr>
-
 			</table>
-
 		</span>
-
 EOT;
-
-
 
 // HTML template for gallery admin menu
-
 $template_gallery_admin_menu = <<<EOT
 
-
-
 		<div align="left">
-
 		<table cellpadding="0" cellspacing="1">
-
 			<tr>
-
 				<td class="admin_menu"><a href="editpics.php?mode=upload_approval" title="">{UPL_APP_LNK}</a></td>
-
 				<td class="admin_menu"><a href="config.php" title="">{CONFIG_LNK}</a></td>
-
 				<td class="admin_menu"><a href="albmgr.php{CATL}" title="">{ALBUMS_LNK}</a></td>
-
 				<td class="admin_menu"><a href="catmgr.php" title="">{CATEGORIES_LNK}</a></td>
-
 				<td class="admin_menu"><a href="usermgr.php" title="">{USERS_LNK}</a></td>
-
 				<td class="admin_menu"><a href="groupmgr.php" title="">{GROUPS_LNK}</a></td>
-
 				<td class="admin_menu"><a href="reviewcom.php" title="">{COMMENTS_LNK}</a></td>
-
 				<td class="admin_menu"><a href="searchnew.php" title="">{SEARCHNEW_LNK}</a></td>
-
 				<td class="admin_menu"><a href="profile.php?op=edit_profile" title="">{MY_PROF_LNK}</a></td>
-
 			</tr>
-
 		</table>
-
 		</div>
 
-
-
 EOT;
-
-
 
 // HTML template for user admin menu
-
 $template_user_admin_menu = <<<EOT
 
-
-
 		<div align="left">
-
 		<table cellpadding="0" cellspacing="1">
-
 			<tr>
-
 				<td class="admin_menu"><a href="albmgr.php" title="">{ALBMGR_LNK}</a></td>
-
 				<td class="admin_menu"><a href="modifyalb.php" title="">{MODIFYALB_LNK}</a></td>
-
 				<td class="admin_menu"><a href="profile.php?op=edit_profile" title="">{MY_PROF_LNK}</a></td>
-
 			</tr>
-
 		</table>
-
 		</div>
 
-
-
 EOT;
-
-
 
 // HTML template for the category list
-
 $template_cat_list = <<<EOT
-
 <!-- BEGIN header -->
-
 	<tr>
-
 		<td class="tableh1" width="80%"><b>{CATEGORY}</b></td>
-
 		<td class="tableh1" width="10%" align="center"><b>{ALBUMS}</b></td>
-
 		<td class="tableh1" width="10%" align="center"><b>{PICTURES}</b></td>
-
 	</tr>
-
 <!-- END header -->
-
 <!-- BEGIN catrow_noalb -->
-
 	<tr>
-
 		<td class="tableh2" colspan="3"><span class="catlink"><b>{CAT_TITLE}</b></span>{CAT_DESC}</td>
-
 	</tr>
-
 <!-- END catrow_noalb -->
-
 <!-- BEGIN catrow -->
-
 	<tr>
-
 		<td class="tableb"><span class="catlink"><b>{CAT_TITLE}</b></span>{CAT_DESC}</td>
-
 		<td class="tableb" align="center">{ALB_COUNT}</td>
-
 		<td class="tableb" align="center">{PIC_COUNT}</td>
-
 	</tr>
-
       <tr>
-
             <td class="tableb" colspan=3>{CAT_ALBUMS}</td>
-
       </tr>
-
 <!-- END catrow -->
-
 <!-- BEGIN footer -->
-
 	<tr>
-
 		<td colspan="3" class="tableh1" align="center"><span class="statlink"><b>{STATISTICS}</b></span></td>
-
 	</tr>
-
 <!-- END footer -->
-
 <!-- BEGIN spacer -->
-
 	<img src="images/spacer.gif" width="1" height="17" /><br />
-
 <!-- END spacer -->
 
-
-
 EOT;
-
-
 
 //HTML template for the breadcrumb
-
 $template_breadcrumb = <<<EOT
-
 <!-- BEGIN breadcrumb -->
-
 	<tr>
-
 		<td colspan="3" class="tableh1"><span class="statlink"><b>{BREADCRUMB}</b></span></td>
-
 	</tr>
-
 <!-- END breadcrumb -->
-
 <!-- BEGIN breadcrumb_user_gal -->
-
 	<tr>
-
 		<td colspan="3" class="tableh1">
-
 		<table width="100%" cellpadding="0" cellspacing="0" border="0">
-
 		<tr>
-
 			<td><span class="statlink"><b>{BREADCRUMB}</b></span></td>
-
 			<td align="right"><span class="statlink"><b>{STATISTICS}</b></span></td>
-
 		</tr>
-
 		</table>
-
 		</td>
-
 	</tr>
-
 <!-- END breadcrumb_user_gal -->
 
-
-
 EOT;
-
-
-
 
 
 // HTML template for the album list
-
 $template_album_list = <<<EOT
 
-
-
 <!-- BEGIN stat_row -->
-
 	<tr>
-
 		<td colspan="{COLUMNS}" class="tableh1" align="center"><span class="statlink"><b>{STATISTICS}</b></span></td>
-
 	</tr>
-
 <!-- END stat_row -->
-
 <!-- BEGIN header -->
-
 	<tr>
-
 <!-- END header -->
-
 <!-- BEGIN album_cell -->
-
 	<td width="{COL_WIDTH}%" height="100%" valign="top">
-
 	<table width="100%" height="100%" cellspacing="0" cellpadding="0">
-
 	<tr>
-
 		<td colspan="3" height="1" valign="top" class="tableh2">
-
 			<b>{ALBUM_TITLE}</b>
-
 		</td>
-
 	</tr>
-
 	<tr>
-
 		<td colspan="3">
-
 			<img src="images/spacer.gif" width="1" height="1"><br />
-
 		</td>
-
 	</tr>
-
 	<tr height="100%">
-
 		<td align="center" height="100%" valign="middle" class="thumbnails">
-
 			<img src="images/spacer.gif" width="{THUMB_CELL_WIDTH}" height="1" class="image" style="margin-top: 0px;
-
  margin-bottom: 0px; border: none;"><br />
-
 			<a href="{ALB_LINK_TGT}" class="albums">{ALB_LINK_PIC}<br /></a>
-
 		</td>
-
 		<td height="100%">
-
 			<img src="images/spacer.gif" width="1" height="1">
-
 		</td>
-
 		<td width="100%" height="100%" valign="top" class="tableb_compact">
-
 			{ADMIN_MENU}
-
 			<p>{ALB_DESC}</p>
-
 			<p class="album_stat">{ALB_INFOS}</p>
-
 		</td>
-
 	</tr>
-
 	</table>
-
 	</td>
-
 <!-- END album_cell -->
-
 <!-- BEGIN empty_cell -->
-
 	<td width="{COL_WIDTH}%" height="100%" valign="top">
-
 	<table width="100%" height="100%" cellspacing="0" cellpadding="0">
 
 	<tr>
@@ -2147,7 +1871,8 @@ function theme_main_menu2()
 		'{TOPRATED_TGT}'=> "thumbnails.php?album=toprated$cat_l2",
 
 		'{TOPRATED_LNK}'=> $lang_main_menu['toprated_lnk'],
-
+		'{FAV_TGT}'=> "thumbnails.php?album=favpics",
+		'{FAV_LNK}'=> $lang_main_menu['fav_lnk'],		
 		'{SEARCH_TGT}'=> "search.php",
 
 		'{SEARCH_LNK}'=> $lang_main_menu['search_lnk'],

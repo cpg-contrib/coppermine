@@ -131,6 +131,12 @@ $template_main_menu2 = <<<EOT
                                         <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
                                         <td><img name="button1_r1_c1" src="themes/rainy_day/images/button1_r1_c1.gif" width="5" height="25" border="0" id="button1_r1_c1" alt="" /></td>
                                         <td background="themes/rainy_day/images/button1_r1_c2.gif">
+						<a href="{FAV_TGT}">{FAV_LNK}</a>
+					</td>					
+					<td><img name="button1_r1_c3" src="themes/rainy_day/images/button1_r1_c3.gif" width="5" height="25" border="0" id="button1_r1_c3" alt="" /></td>
+					<td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
+					<td><img name="button1_r1_c1" src="themes/rainy_day/images/button1_r1_c1.gif" width="5" height="25" border="0" id="button1_r1_c1" alt="" /></td>
+					<td background="themes/rainy_day/images/button1_r1_c2.gif">
                                                 <a href="{SEARCH_TGT}">{SEARCH_LNK}</a>
                                         </td>
                                         <td><img name="button1_r1_c3" src="themes/rainy_day/images/button1_r1_c3.gif" width="5" height="25" border="0" id="button1_r1_c3" alt="" /></td>
@@ -153,7 +159,8 @@ $template_gallery_admin_menu = <<<EOT
                                 <td class="admin_menu"><a href="groupmgr.php" title="">{GROUPS_LNK}</a></td>
                                 <td class="admin_menu"><a href="reviewcom.php" title="">{COMMENTS_LNK}</a></td>
                                 <td class="admin_menu"><a href="searchnew.php" title="">{SEARCHNEW_LNK}</a></td>
-                                <td class="admin_menu"><a href="util.php" title="">{UTIL_LNK}</a></td>                                <td class="admin_menu"><a href="profile.php?op=edit_profile" title="">{MY_PROF_LNK}</a></td>
+                                <td class="admin_menu"><a href="util.php" title="">{UTIL_LNK}</a></td>
+                                <td class="admin_menu"><a href="profile.php?op=edit_profile" title="">{MY_PROF_LNK}</a></td>
                         </tr>
                 </table>
                 </div>
@@ -1070,6 +1077,8 @@ function theme_main_menu2()
                 '{TOPN_LNK}' => $lang_main_menu['topn_lnk'],
                 '{TOPRATED_TGT}'=> "thumbnails.php?album=toprated$cat_l2",
                 '{TOPRATED_LNK}'=> $lang_main_menu['toprated_lnk'],
+				'{FAV_TGT}'=> "thumbnails.php?album=favpics",
+				'{FAV_LNK}'=> $lang_main_menu['fav_lnk'],		
                 '{SEARCH_TGT}'=> "search.php",
                 '{SEARCH_LNK}'=> $lang_main_menu['search_lnk'],
         );
