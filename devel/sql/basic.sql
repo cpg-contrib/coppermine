@@ -123,6 +123,19 @@ INSERT INTO CPG_config VALUES ('smtp_host', '');
 INSERT INTO CPG_config VALUES ('smtp_username', '');
 INSERT INTO CPG_config VALUES ('smtp_password', '');
 
+INSERT INTO CPG_config VALUES ('enable_plugins', '1');
+
+CREATE TABLE CPG_plugins (
+  plugin_id int(10) unsigned NOT NULL auto_increment,
+  name varchar(64) NOT NULL default '',
+  path varchar(128) NOT NULL default '',
+  priority int(10) unsigned NOT NULL default '0',
+  PRIMARY KEY  (plugin_id),
+  UNIQUE KEY name (name),
+  UNIQUE KEY path (path)
+) TYPE=MyISAM COMMENT='Stores the plugins';
+
+
 #
 # Dumping data for table `CPG_filetypes`
 #
