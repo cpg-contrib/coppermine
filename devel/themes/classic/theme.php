@@ -16,7 +16,7 @@
 // ------------------------------------------------------------------------- //
 // $Id$
 // ------------------------------------------------------------------------- //
-
+if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 // HTML template for main menu
 $template_main_menu = <<<EOT
                 <span class="topmenu">
@@ -262,7 +262,7 @@ $template_film_strip = <<<EOT
                                         {ADMIN_MENU}
 <!-- END thumb_cell -->
 <!-- BEGIN empty_cell -->
-                <td valign="top" align="center" >1&nbsp;</td>
+                <td valign="top" align="center" >&nbsp;</td>
 <!-- END empty_cell -->
 
 EOT;
@@ -585,7 +585,7 @@ $template_display_picture = <<<EOT
 EOT;
 // HTML template for the image rating box
 $template_image_rating = <<<EOT
-<table align="center" width="$width" cellspacing="1" cellpadding="0" class="maintable">
+<table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
         <tr>
                 <td colspan="6" class="tableh2_compact"><b>{TITLE}</b> {VOTES}</td>
         </tr>
@@ -698,7 +698,7 @@ $template_image_comments = <<<EOT
 EOT;
 
 $template_add_your_comment = <<<EOT
-<table align="center" width="90%" cellspacing="1" cellpadding="0" class="maintable">
+<table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
         <tr>
                 <td width="100%" class="tableh2_compact"><b>{ADD_YOUR_COMMENT}</b></td>
         </tr>
@@ -1578,7 +1578,7 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
         '{COLS}' => $i);
 
     ob_start();
-    starttable('');
+    starttable($CONFIG['picture_table_width']);
     echo template_eval($template, $params);
     endtable();
     $film_strip = ob_get_contents();
@@ -1867,6 +1867,7 @@ function theme_html_rating_box()
         '{GOOD}' => $lang_rate_pic['good'],
         '{EXCELLENT}' => $lang_rate_pic['excellent'],
         '{GREAT}' => $lang_rate_pic['great'],
+        '{WIDTH}' => $CONFIG['picture_table_width'],
         );
 
     return template_eval($template_image_rating, $params);
@@ -1964,6 +1965,7 @@ function theme_html_comments($pid)
             '{MAX_COM_LENGTH}' => $CONFIG['max_com_size'],
             '{OK}' => $lang_display_comments['OK'],
             '{SMILIES}' => '',
+            '{WIDTH}' => $CONFIG['picture_table_width'],
             );
 
         if ($CONFIG['enable_smilies']) $params['{SMILIES}'] = generate_smilies();
