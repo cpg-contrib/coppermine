@@ -335,9 +335,9 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
     'title_d' => 'Titolo discendente',
 	'date_a' => 'Data ascendente',
 	'date_d' => 'Data discendente',
-        'th_any' => 'Max Aspect',
-        'th_ht' => 'Height',
-        'th_wd' => 'Width',
+        'th_any' => 'Dimensione maggiore',
+        'th_ht' => 'Altezza',
+        'th_wd' => 'Larghezza',
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
@@ -574,7 +574,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 	'title' => 'Titolo',
 	'desc' => 'Descrizione',
 	'keywords' => 'Keywords',
-	'pic_info_str' => '%sx%s - %sKB - %s viste - %s voti',
+	'pic_info_str' => '%s&times;%s - %sKB - %s viste - %s voti',
 	'approve' => 'Approva immagine',
 	'postpone_app' => 'Rinvia approvazione',
 	'del_pic' => 'Cancella immagine',
