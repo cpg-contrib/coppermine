@@ -568,6 +568,7 @@ td #admin_menu_anim {
         border: 1px solid #FAFAFA;
         font-size: 80%;
         vertical-align : middle;
+        text-align:center;
 }
 #SUB_MENU {
         width:100%;
@@ -585,12 +586,17 @@ td #admin_menu_anim {
         visibility: hidden;
 }
 
-#SELECT_LISTS,#SELECT_FLAGS,#GALLERY {
-    padding: 0 20px;
-    text-align: center;
+#GALLERY {
+        padding: 0 20px;
+}
+
+#SELECT_LISTS, #SELECT_FLAGS {
+        padding: 0 20px;
+        text-align: center;
+
 }
 
 #CUSTOM_FOOTER,#CUSTOM_HEADER {
-    margin:0;
-    padding:0;
+        margin:0;
+        padding:0;
 }
