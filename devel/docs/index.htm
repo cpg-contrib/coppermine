@@ -1325,7 +1325,7 @@ If your browser times out, hit the reload button.
       <a name="config_cookie"></a>
       <h3>4.10.11 Cookie settings</h3>
       <h4>Name of the cookie used by the script</h4>
-      <p>Default value is "cpg130". Even if you have multiple instances of the
+      <p>Default value is &quot;cpg140&quot;. Even if you have multiple instances of the
       script running on the same server you can keep the default value.<br /><span class="important">When using bbs integration, make sure it <b>differs</b> from the bbs's cookie name</span></p>
       <a name="config_cookie_path"></a><h4>Path of the cookie used by the script</h4>
       <p>Default value is "/". Don't change this unless you know what you are
@@ -1342,6 +1342,7 @@ If your browser times out, hit the reload button.
       <p>Usually nothing has to be changed here; leave all fields blank when not sure. Only if you run into problems (e.g. if ecards, registration info or notifications don't get sent) you should change these settings. If you're not sure what to enter, ask your webhost for support.</p>
       <h4>SMTP Host</h4>
       <p>The hostname of the SMTP server<br />
+      If you leave this blank, sendmail (or a surrogate) will be used to send emails from your server. Sendmail exists on most Unix/Linux webservers. If you specify a SMTP hostname, Coppermine will try to send emails using SMTP (this usually is needed on Windows webservers).<br />
       <img src="pics/cpg10.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
       <img src="pics/cpg110.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
       <img src="pics/cpg111.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
@@ -1359,7 +1360,7 @@ If your browser times out, hit the reload button.
       <img src="pics/cpg13x.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
       <img src="pics/cpg140.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_ok.gif" width="18" height="20" border="0" alt=""></p>
       <h4>SMTP Password</h4>
-      <p>The password that goes with above mentioned username (not identical to your coppermine admin password).<br />
+      <p>The password that goes with above mentioned username (<b>not</b> identical to your coppermine admin password).<br />
       <img src="pics/cpg10.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
       <img src="pics/cpg110.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
       <img src="pics/cpg111.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
@@ -1367,6 +1368,7 @@ If your browser times out, hit the reload button.
       <img src="pics/cpg121.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
       <img src="pics/cpg13x.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
       <img src="pics/cpg140.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_ok.gif" width="18" height="20" border="0" alt=""></p>
+      <a name="config_email_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
       <a name="config_misc"></a>
@@ -1374,8 +1376,9 @@ If your browser times out, hit the reload button.
       <a name="debug_mode"></a><h4>Enable debug mode</h4>
       <p>CPG will show error messages which are normally suppressed.  This is helpful in troubleshooting problems with your gallery or when asking      for help on the <a href="http://coppermine.sf.net/board/">CPG Support Forums</a>. Turn this feature off if you don't experience problems.<br />
       Turn it on (option &quot;Everyone&quot;) if you are requesting help on the <a href="http://coppermine.sf.net/board/">coppermine support board</a>, so the supporters can have a look at the debug output as well. Choose the option &quot;Admin only&quot; when trouble-shooting on your own - debug output will be only visible when you're logged in as admin, regular users or guests won't see the debug output.</p>
-      <h4>Display notices in debug mode</h4>
+      <a name="config_misc_debug_notices"></a><h4>Display notices in debug mode</h4>
       <p>May be helpfull to trouble-shoot problems with your coppermine install - only recommended if you know a little PHP and you can understand the additional error messages this option shows. This option only applies if debug mode is enabled.</p>
+      <a name="config_misc_debug_notices_end"></a>
       <a name="debug_mode_end"></a>
       <a name="config_misc_enable-plugins"></a><h4>Enable plugins</h4>
       <p>Enable plugins. This feature is brand-new, there's no documentation for it yet.<br />

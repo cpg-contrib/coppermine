@@ -560,13 +560,13 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Path of the cookie used by the script', 'cookie_path', 0, 'f=index.htm&as=config_cookie_path&ae=config_cookie_path_end'),
 
   'Email settings  (usually nothing has to be changed here; leave all fields blank when not sure)',
-  array('SMTP Host (when left blank, sendmail will be used)', 'smtp_host', 0),
+  array('SMTP Host (when left blank, sendmail will be used)', 'smtp_host', 0, 'f=index.htm&as=config_email&ae=config_email_end'),
   array('SMTP Username', 'smtp_username', 0),
   array('SMTP Password', 'smtp_password', 0),
 
   'Miscellaneous settings',
   array('Enable debug mode', 'debug_mode', 9, 'f=index.htm&as=debug_mode&ae=debug_mode_end'),
-  array('Display notices in debug mode', 'debug_notice', 1),
+  array('Display notices in debug mode', 'debug_notice', 1, 'f=index.htm&as=config_misc_debug_notices&ae=config_misc_debug_notices_end'),
   array('Enable plugins', 'enable_plugins', 12, 'f=index.htm&as=config_misc_enable-plugins&ae=config_misc_enable-plugins_end'),  //cpg1.4.0
   array('Logging mode <a href="#notice3" class="clickable_option">***</a>', 'log_mode', 11, 'f=index.htm&as=config_misc_logging&ae=config_misc_logging_end'), //cpg1.4.0
   array('Allow banning of non-routable (private) IP addresses', 'ban_private_ip', 1,  'f=index.htm&as=config_misc_private-ip&ae=config_misc_private-ip_end'), //cpg1.4.0
