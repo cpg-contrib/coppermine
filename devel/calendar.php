@@ -66,7 +66,9 @@ class MyCalendar extends Calendar
     {
         // Redisplay the current page, but with some parameters
         // to set the new month and year
-        $s = getenv('SCRIPT_NAME');
+        
+        // Fixed possible security hole
+        $s = $_SERVER['PHP_SELF']; //getenv('SCRIPT_NAME');
         return "$s?action=".$_REQUEST['action']."&amp;month=$month&amp;year=$year";
     }
 
