@@ -112,19 +112,19 @@ li {
         list-style-type: disc;
 }
 
-
-.top_panel_tr {
+.top_panel {
         background-image: url(images/top_panel_r1_c1b.gif);
+        background-repeat: no-repeat;
         background-color: White;
         background-position: left;
-        background-repeat: no-repeat;
-        padding-left: 200px;
 }
 
-
-.top_panel td {
-        white-space: nowrap;
+.top_panel_r {
+        background-image:url(images/top_panel_r1_c2.jpg);
+        background-repeat:no-repeat;
+        background-position:right;
 }
+                  
 
 
 .top_menu_bttn a {
@@ -574,7 +574,7 @@ td #admin_menu_anim {
 }
 
 .clickable_option {
-        cursor : hand;
+        cursor : default;
 }
 
 .listbox_lang {
@@ -582,5 +582,49 @@ td #admin_menu_anim {
         background-color: #FAFAFA;
         border: 1px solid #FAFAFA;
         font-size: 80%;
-        vertical-align : middle;
+        display: inline;
+}
+
+#SUB_MENU {
+}
+
+#SUB_MENU a {
+        white-space: nowrap;
+}
+#SYS_MENU {
+        position: relative;
+        bottom: 10px;
+        left: 10px;
+        width:800px;
+        height:15px;
+        z-index:1;
+        text-align:left;
+        margin:0;
+        padding:0;
+        visibility: hidden;
+}
+
+#GAL_NAME {
+          width:400px;
+          height: 65px;
+          margin-left: auto;
+          margin-right: auto;
+          text-align: center;
+}
+
+#MENUS {
+          background-image:url(images/top_panel_r2_c1b.gif);
+          background-repeat: repeat-x;
+          border-collapse: collapse;
+          margin:0;
+          padding:0;
+}
+
+#SELECT_LISTS, #SELECT_FLAGS {
+        text-align: center;
+}
+
+#CUSTOM_FOOTER,#CUSTOM_HEADER {
+        margin:0;
+        padding:0;
 }
