@@ -31,14 +31,15 @@ INSERT INTO CPG_config VALUES ('picinfo_display_dimensions', '1');
 INSERT INTO CPG_config VALUES ('picinfo_display_count_displayed', '1');
 INSERT INTO CPG_config VALUES ('picinfo_display_URL', '1');
 INSERT INTO CPG_config VALUES ('picinfo_display_URL_bookmark', '1');
-
+INSERT INTO CPG_config VALUES ('picinfo_display_favorites', 1');
+# is this for registration?
 INSERT INTO CPG_config VALUES ('reg_notify_admin_email', '0');
 INSERT INTO CPG_config VALUES ('disable_comment_flood_protect', '0');
 
-=======
-
 # Modify structure for category thumb
 # ALTER TABLE `CPG_categories` ADD `thumb` INT NOT NULL AFTER `parent` ;
+
+ALTER TABLE `cpg_categories` CHANGE `namee` `catname` VARCHAR(255)  NOT NULL
 
 #
 # Table structure for table `CPG_banned`
