@@ -53,12 +53,12 @@ $counter_cpg_version_older = 0;
 $counter_cpg_version_younger = 0;
 $counter_cvs_version_older = 0;
 $counter_cvs_version_younger = 0;
-$number_of_columns = 6;
+$number_of_columns = 7;
 $line_counter = 0;
 $online_repository_connection = 0;
 $online_repository_url = 'http://coppermine.sourceforge.net/repository.txt';
 if ($webcvs == 0) {$number_of_columns = $number_of_columns-1;}
-if ($file_versions == 0) {$number_of_columns = $number_of_columns-1;}
+if ($file_versions == 0) {$number_of_columns = $number_of_columns-2;}
 
 
 // check if the file is being included as a pop-up; return the stuff from showdoc if true
@@ -190,39 +190,11 @@ EOT;
 } //display explanation what this file does: start
 echo <<< EOT
 <style type="text/css">
-/*
-.green {
-        font-weight: bold;
-        color: #CFCFCF;
-        border: 1px solid #CFCFCF;
-        background-color:green;
-        margin: 0px;
-        padding: 0px;
-        text-align: center;
-}
-.red {
-        font-weight: bold;
-        color: white;
-        border: 1px solid #CFCFCF;
-        background-color:red;
-        margin: 0px;
-        padding: 0px;
-        text-align: center;
-}
-.yellow {
-        font-weight: bold;
-        color: black;
-        border: 1px solid #CFCFCF;
-        background-color:#FFBE00;
-        margin: 0px;
-        padding: 0px;
-        text-align: center;
-}
-*/
 .green {
         font-weight: bold;
         color: green;
 }
+
 .red {
         font-weight: bold;
         color: red;
@@ -230,6 +202,36 @@ echo <<< EOT
 .yellow {
         font-weight: bold;
         color:#FFBE00;
+}
+.tablegreen {
+        color: #CFCFCF;
+        border: 1px solid #CFCFCF;
+        background-color:green;
+        margin: 0px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        padding-left: 10px;
+        padding-right: 10px;
+}
+.tableyellow {
+        color: black;
+        border: 1px solid #CFCFCF;
+        background-color:#FFBE00;
+        margin: 0px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        padding-left: 10px;
+        padding-right: 10px;
+}
+.tablered {
+        color: white;
+        border: 1px solid #CFCFCF;
+        background-color:red;
+        margin: 0px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        padding-left: 10px;
+        padding-right: 10px;
 }
 </style>
 EOT;
@@ -438,7 +440,7 @@ echo <<< EOT
     <td class="tablef" colspan="2"><b>{$lang_versioncheck_php['coppermine_version']}</b></td>
 EOT;
 
-if ($file_versions != 0) {print '    <td class="tablef"><b>'.$lang_versioncheck_php['file_version'].'</b></td>';}
+if ($file_versions != 0) {print '    <td class="tablef" colspan="2"><b>'.$lang_versioncheck_php['file_version'].'</b></td>';}
 if ($webcvs != '0') {print '    <td class="tablef"><b>'.$lang_versioncheck_php['webcvs'].'</b></td>';}
 print '</tr>';
 
@@ -467,6 +469,11 @@ EOT;
 
 // show summary
 $number_of_columns_minus_one = $number_of_columns - 1;
+if ($counter_file_mandatory_not_exist == 0){$style_mandatory_files='';}else{$style_mandatory_files='red';}
+if ($counter_file_optional_not_exist == 0){$style_optional_files='';}else{$style_optional_files='yellow';}
+if ($counter_cpg_version_older == 0){$style_cpg_version_older='tableb';}else{$style_cpg_version_older='tablered';}
+if ($counter_cvs_version_older == 0){$style_cvs_version_older='tableb';}else{$style_cvs_version_older='tablered';}
+
 echo <<<EOT
 <tr>
   <td colspan="$number_of_columns" class="tableh2">
@@ -486,7 +493,9 @@ echo <<<EOT
     {$lang_versioncheck_php['mandatory_files_missing']}:
   </td>
   <td colspan="$number_of_columns_minus_one" class="tableb">
+    <span class="$style_mandatory_files">
     $counter_file_mandatory_not_exist
+    </span>
   </td>
 </tr>
 <tr>
@@ -494,14 +503,16 @@ echo <<<EOT
     {$lang_versioncheck_php['optional_files_missing']}:
   </td>
   <td colspan="$number_of_columns_minus_one" class="tableb">
+    <span class="$style_optional_files">
     $counter_file_optional_not_exist
+    </span>
   </td>
 </tr>
 <tr>
   <td class="tableb">
     {$lang_versioncheck_php['files_from_older_version']}:
   </td>
-  <td colspan="$number_of_columns_minus_one" class="tableb">
+  <td colspan="$number_of_columns_minus_one" class="$style_cpg_version_older">
     $counter_cpg_version_older
   </td>
 </tr>
@@ -509,7 +520,7 @@ echo <<<EOT
   <td class="tableb">
     {$lang_versioncheck_php['file_version_outdated']}:
   </td>
-  <td colspan="$number_of_columns_minus_one" class="tableb">
+  <td colspan="$number_of_columns_minus_one" class="$style_cvs_version_older">
     $counter_cvs_version_older
   </td>
 </tr>
@@ -724,89 +735,60 @@ print '</td>';
     }
     if ($file_version_info['exists'] != 1)
     {
-        print '<td class="tableb">-</td><td class="tableb">';
+        print '<td class="tableb" colspan="2" align="center">-</td><td class="tableb">';
         $helptitle = '';
     } elseif (!$file_version_info['cpg_version'] && $repository_version[$file_complete_path] == '?') {
-        print '<td class="tableb">';
-        print 'n/a</td><td class="tableb">';
+        print '<td class="tableb" colspan="2" align="center">';
+        print 'n/a';
     } elseif ((!$file_version_info['cpg_version'] || $file_version_info['cpg_version'] == 'n/a') && $repository_version[$file_complete_path] != '?') {
         $cvs_version_check = 'disable';
-        print '<td class="tableb">';
-        print '<span class="red" title="'.$lang_versioncheck_php['your_file'].'">';
+        print '<td class="tableb" align="right" title="'.$lang_versioncheck_php['your_file'].'">';
         print '?';
-        print '</span>';
-        print '</td><td class="tableb">';
-        print '<span title="'.$lang_versioncheck_php['reference_file'].'">';
+        print cpg_vc_help($lang_versioncheck_php['help_no_local_version1'],$lang_versioncheck_php['help_no_local_version2']);
+        print '</td><td class="tableb" title="'.$lang_versioncheck_php['reference_file'].'">';
         print $repository_version[$file_complete_path];
-        print '</span>';
-        $helptitle = $lang_versioncheck_php['help_no_local_version1'];
-        $helpoutput = $lang_versioncheck_php['help_no_local_version2'];
         $counter_cpg_version_older++;
         $error_counter++;
     } elseif ((!$file_version_info['cpg_version'] || $file_version_info['cpg_version'] == 'n/a') && $repository_version[$file_complete_path] == '?') {
         $cvs_version_check = 'disable';
-        print '<td class="tableb">';
-        print '-</td><td class="tableb">';
-        $helptitle = '';
-        $helpoutput = '';
+        print '<td class="tableb" colspan="2" align="center">';
+        print '-';
     } elseif ($file_version_info['cpg_version'] == $repository_version[$file_complete_path]) {
-        print '<td class="tableb">';
-        print '<span class="green" title="'.$lang_versioncheck_php['your_file'].'">';
+        print '<td class="tablegreen" align="right" class="green" title="'.$lang_versioncheck_php['your_file'].'">';
         print $file_version_info['cpg_version'];
-        print '</span>';
-        print '</td><td class="tableb">';
-        print '<span class="green" title="'.$lang_versioncheck_php['reference_file'].'">';
+        print '</td><td class="tablegreen" title="'.$lang_versioncheck_php['reference_file'].'">';
         print $file_version_info['cpg_version'];
-        print '</span>';
-        $helptitle = '';
     } elseif ($file_version_info['cpg_version'] < $repository_version[$file_complete_path]) {
         $cvs_version_check = 'disable';
-        print '<td class="tableb">';
-        print '<span class="red" title="'.$lang_versioncheck_php['your_file'].'">';
+        print '<td class="tablered" align="right" title="'.$lang_versioncheck_php['your_file'].'">';
         print $file_version_info['cpg_version'];
-        print '</span>';
-        print '</td><td class="tableb">';
-        print '<span title="'.$lang_versioncheck_php['reference_file'].'">';
+        print cpg_vc_help($lang_versioncheck_php['help_local_version_outdated1'],$lang_versioncheck_php['help_local_version_outdated2']);
+        print '</td><td class="tableb" title="'.$lang_versioncheck_php['reference_file'].'">';
         print $repository_version[$file_complete_path];
-        print '</span>';
-        $helptitle = $lang_versioncheck_php['help_local_version_outdated1'];
-        $helpoutput = $lang_versioncheck_php['help_local_version_outdated2'];
         $counter_cpg_version_older++;
         $error_counter++;
     } elseif ($file_version_info['cpg_version'] > $repository_version[$file_complete_path]) {
         $cvs_version_check = 'disable';
-        print '<td class="tableb">';
-        print '<span title="'.$lang_versioncheck_php['your_file'].'">';
+        print '<td class="tableb" align="right" title="'.$lang_versioncheck_php['your_file'].'">';
         print $file_version_info['cpg_version'];
-        print '</td><td class="tableb">';
-        print '<span class="yellow" title="'.$lang_versioncheck_php['reference_file'].'">';
+        print '</td><td class="tableyellow" title="'.$lang_versioncheck_php['reference_file'].'">';
         print $repository_version[$file_complete_path];
-        print '</span>';
-        $helptitle = $lang_versioncheck_php['help_local_version_dev1'];
-        $helpoutput = $lang_versioncheck_php['help_local_version_dev2'];
+        print cpg_vc_help($lang_versioncheck_php['help_local_version_dev1'],$lang_versioncheck_php['help_local_version_dev2']);
         $counter_cpg_version_younger++;
         $error_counter++;
     } else {
         $cvs_version_check = 'disable';
-        print '<td class="tableb">';
-        print '<span class="red" title="'.$lang_versioncheck_php['your_file'].'">';
+        print '<td class="tablered" align="right" title="'.$lang_versioncheck_php['your_file'].'">';
         print $file_version_info['cpg_version'];
-        print '</span>';
-        print '</td><td class="tableb">';
-        print '<span class="red" title="'.$lang_versioncheck_php['reference_file'].'">';
+        print '</td><td class="tablered" title="'.$lang_versioncheck_php['reference_file'].'">';
         print $repository_version[$file_complete_path];
-        print '</span>';
         $counter_cpg_version_older++;
         $error_counter++;
     }
-   if ($helptitle != '') {
-      print '&nbsp;';
-      print cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($helptitle))).'&t='.urlencode(base64_encode(serialize($helpoutput))),400,150);
-   }
 // cpg version end
 print '</td>';
 if ($file_versions == 1) { //display file versions: start
-print '<td class="tableb">';
+//print '<td class="tableb">';
 // cvs version start
     $helptitle = '';
     if($file_version_info['cvs_version'] == '//') {$file_version_info['cvs_version'] = '';}
@@ -816,76 +798,56 @@ print '<td class="tableb">';
         }
         if ($file_version_info['exists'] != 1)
         {
-            print '-';
+            print '<td class="tableb" colspan="2" align="center">-';
         } elseif (!$file_version_info['cvs_version'] && $repository_cvs[$file_complete_path] == '?') {
-            print 'n/a';
+            print '<td class="tableb" colspan="2" align="center">n/a';
         } elseif ($file_version_info['cvs_version'] == 'n/a' && $file_version_info['cvs_version'] == 'n/a') {
-            print 'n/a';
-            $helptitle = '';
-            $helpoutput = '';
+            print '<td class="tableb" colspan="2" align="center" title="'.$lang_versioncheck_php['your_file'].'">n/a';
         } elseif (!$file_version_info['cvs_version'] || $file_version_info['cvs_version'] == 'n/a') {
-            print '<span class="red" title="'.$lang_versioncheck_php['your_file'].'">';
+            print '<td class="tablered" align="right" title="'.$lang_versioncheck_php['your_file'].'">';
             print $file_version_info['cvs_version'];
-            print '</span>';
-            print ' / ';
-            print '<span title="'.$lang_versioncheck_php['reference_file'].'">';
+            print cpg_vc_help($lang_versioncheck_php['help_local_version_na1'],$lang_versioncheck_php['help_local_version_na2']);
+            print '</td>';
+            print '<td class="tableb" title="'.$lang_versioncheck_php['reference_file'].'">';
             print $repository_cvs[$file_complete_path];
-            print '</span>';
-            $helptitle = $lang_versioncheck_php['help_local_version_na1'];
-            $helpoutput = $lang_versioncheck_php['help_local_version_na2'];
             $counter_cvs_version_older++;
             $error_counter++;
         } elseif (cpg_version_compare($file_version_info['cvs_version']) == cpg_version_compare($repository_cvs[$file_complete_path])) {
-            print '<span class="green" title="'.$lang_versioncheck_php['your_file'].'">';
+            print '<td class="tablegreen" align="right" title="'.$lang_versioncheck_php['you_file'].'">';
             print $file_version_info['cvs_version'];
-            print '</span>';
-            print ' / ';
-            print '<span class="green" title="'.$lang_versioncheck_php['reference_file'].'">';
+            print '</td>';
+            print '<td class="tablegreen" align="left" title="'.$lang_versioncheck_php['reference_file'].'">';
             print $repository_cvs[$file_complete_path];
-            print '</span>';
         } elseif (cpg_version_compare($file_version_info['cvs_version']) < cpg_version_compare($repository_cvs[$file_complete_path])) {
-            print '<span class="red" title="'.$lang_versioncheck_php['your_file'].'">';
+            print '<td class="tablered" align="right" title="'.$lang_versioncheck_php['your_file'].'">';
             print $file_version_info['cvs_version'];
-            print '</span>';
-            print ' / ';
-            print '<span title="'.$lang_versioncheck_php['reference_file'].'">';
+            print cpg_vc_help($lang_versioncheck_php['help_local_version_outdated1'],$lang_versioncheck_php['help_local_version_outdated2']);
+            print '</td>';
+            print '<td class="tableb" title="'.$lang_versioncheck_php['reference_file'].'">';
             print $repository_cvs[$file_complete_path];
-            print '</span>';
-            $helptitle = $lang_versioncheck_php['help_local_version_outdated1'];
-            $helpoutput = $lang_versioncheck_php['help_local_version_outdated2'];
             $counter_cvs_version_older++;
             $error_counter++;
         } elseif (cpg_version_compare($file_version_info['cvs_version']) > cpg_version_compare($repository_cvs[$file_complete_path])) {
-            print '<span title="'.$lang_versioncheck_php['your_file'].'">';
+            print '<td class="tableb" align="right" title="'.$lang_versioncheck_php['your_file'].'">';
             print $file_version_info['cvs_version'];
-            print '</span>';
-            print ' / ';
-            print '<span class="yellow" title="'.$lang_versioncheck_php['reference_file'].'">';
+            print '</td>';
+            print '<td class="tableyellow" title="'.$lang_versioncheck_php['reference_file'].'">';
             print $repository_cvs[$file_complete_path];
-            print '</span>';
-            $helptitle = $lang_versioncheck_php['help_local_version_dev1'];
-            $helpoutput = $lang_versioncheck_php['help_local_version_dev2'];
+            print cpg_vc_help($lang_versioncheck_php['help_local_version_dev1'],$lang_versioncheck_php['help_local_version_dev2']);
             $counter_cvs_version_younger++;
             $error_counter++;
         } else {
-            print '<span class="red" title="'.$lang_versioncheck_php['your_file'].'">';
+            print '<td class="tablered" align="right" title="'.$lang_versioncheck_php['your_file'].'">';
             print $file_version_info['cvs_version'];
-            print '</span>';
-            print ' / ';
-            print '<span class="red" title="'.$lang_versioncheck_php['reference_file'].'">';
+            print cpg_vc_help($lang_versioncheck_php['help_local_version_outdated1'],$lang_versioncheck_php['help_local_version_outdated2']);
+            print '</td>';
+            print '<td class="tablered" title="'.$lang_versioncheck_php['reference_file'].'">';
             print $repository_cvs[$file_complete_path];
-            print '</span>';
-            $helptitle = $lang_versioncheck_php['help_local_version_outdated1'];
-            $helpoutput = $lang_versioncheck_php['help_local_version_outdated2'];
             $counter_cvs_version_older++;
             $error_counter++;
         }
     } else {
-            print '-';
-    }
-    if ($helptitle != '') {
-        print '&nbsp;';
-        print cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($helptitle))).'&t='.urlencode(base64_encode(serialize($helpoutput)).'&css=1'),400,150);
+            print '<td class="tableb" colspan="2" align="center">-</td>';
     }
 // cvs version end
 print '</td>';
@@ -931,6 +893,16 @@ $power = @pow('100',count($version_info)-$i)*$version_info[$i];
 $return = $return + $power;
 }
 return $return;
+}
+
+function cpg_vc_help($helptitle='',$helpoutput='') {
+   $return= '';
+   if ($helptitle != '') {
+      $return = '&nbsp;';
+      $return .= cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($helptitle))).'&t='.urlencode(base64_encode(serialize($helpoutput))),400,150);
+
+   }
+   return $return;
 }
 
 function cpg_offline_repository() {
@@ -1724,58 +1696,57 @@ $return = '
 1.4.0|addfav.php|1.4.0|1.13|mandatory|r@
 1.4.0|addpic.php|1.4.0|1.9|mandatory|r@
 1.4.0|admin.php|1.4.0|1.6|mandatory|r@
-1.4.0|albmgr.php|1.4.0|1.8|mandatory|r@
+1.4.0|albmgr.php|1.4.0|1.10|mandatory|r@
 1.4.0|anycontent.php|1.4.0|1.9|mandatory|r@
-1.4.0|banning.php|1.4.0|1.16|mandatory|r@
-1.4.0|calendar.php|1.4.0|1.1|mandatory|r@
-1.4.0|catmgr.php|1.4.0|1.16|mandatory|r@
-1.4.0|config.php|1.4.0|1.35|mandatory|r@
-1.4.0|db_ecard.php|1.4.0|1.8|mandatory|r@
+1.4.0|banning.php|1.4.0|1.17|mandatory|r@
+1.4.0|calendar.php|1.4.0|1.2|mandatory|r@
+1.4.0|catmgr.php|1.4.0|1.18|mandatory|r@
+1.4.0|config.php|1.4.0|1.39|mandatory|r@
+1.4.0|db_ecard.php|1.4.0|1.10|mandatory|r@
 1.4.0|db_input.php|1.4.0|1.29|mandatory|r@
-1.4.0|delete.php|1.4.0|1.8|mandatory|r@
-1.4.0|displayecard.php|1.4.0|1.5|mandatory|r@
-1.4.0|displayimage.php|1.4.0|1.56|mandatory|r@
-1.4.0|ecard.php|1.4.0|1.17|mandatory|r@
+1.4.0|delete.php|1.4.0|1.9|mandatory|r@
+1.4.0|displayecard.php|1.4.0|1.7|mandatory|r@
+1.4.0|displayimage.php|1.4.0|1.57|mandatory|r@
+1.4.0|ecard.php|1.4.0|1.19|mandatory|r@
 1.4.0|editOnePic.php|1.4.0|1.19|mandatory|r@
-1.4.0|editpics.php|1.4.0|1.20|mandatory|r@
+1.4.0|editpics.php|1.4.0|1.21|mandatory|r@
 1.4.0|exifmgr.php|1.4.0|1.3|mandatory|r@
 1.4.0|faq.php|1.4.0|1.5|mandatory|r@
 1.4.0|forgot_passwd.php|1.4.0|1.9|mandatory|r@
 1.4.0|getlang.php|1.4.0|1.5|mandatory|r@
-1.4.0|groupmgr.php|1.4.0|1.10|mandatory|r@
+1.4.0|groupmgr.php|1.4.0|1.11|mandatory|r@
 1.4.0|image_processor.php|1.4.0|1.12|mandatory|r@
-1.4.0|index.php|1.4.0|1.59|mandatory|r@
-1.4.0|install.php|1.4.0|1.18|mandatory|r@
+1.4.0|index.php|1.4.0|1.61|mandatory|r@
+1.4.0|install.php|1.4.0|1.20|mandatory|r@
 1.4.0|installer.css|1.4.0|1.4|mandatory|r@
 1.4.0|keyword_create_dict.php|1.4.0|1.2|mandatory|r@
 1.4.0|keyword_select.php|1.4.0|1.2|mandatory|r@
-1.4.0|keywordmgr.php|1.4.0|1.2|mandatory|r@
-1.4.0|login.php|1.4.0|1.10|mandatory|r@
+1.4.0|keywordmgr.php|1.4.0|1.3|mandatory|r@
+1.4.0|login.php|1.4.0|1.11|mandatory|r@
 1.4.0|logout.php|1.4.0|1.5|mandatory|r@
-1.4.0|modifyalb.php|1.4.0|1.13|mandatory|r@
+1.4.0|modifyalb.php|1.4.0|1.15|mandatory|r@
 1.4.0|phpinfo.php|1.4.0|1.8|mandatory|r@
 1.4.0|picEditor.php|1.4.0|1.16|mandatory|r@
-1.4.0|picmgr.php|1.4.0|1.2|mandatory|r@
-1.4.0|pluginmgr.php|1.4.0|1.9|mandatory|r@
-1.4.0|profile.php|1.4.0|1.23|mandatory|r@
+1.4.0|picmgr.php|1.4.0|1.4|mandatory|r@
+1.4.0|pluginmgr.php|1.4.0|1.11|mandatory|r@
+1.4.0|profile.php|1.4.0|1.25|mandatory|r@
 1.4.0|ratepic.php|1.4.0|1.8|mandatory|r@
 1.4.0|register.php|1.4.0|1.15|mandatory|r@
-1.4.0|repository.txt|||mandatory|r@
-1.4.0|reviewcom.php|1.4.0|1.8|mandatory|r@
+1.4.0|reviewcom.php|1.4.0|1.9|mandatory|r@
 1.4.0|scripts.js|1.4.0|1.7|mandatory|r@
 1.4.0|search.php|1.4.0|1.7|mandatory|r@
-1.4.0|searchnew.php|1.4.0|1.20|mandatory|r@
+1.4.0|searchnew.php|1.4.0|1.22|mandatory|r@
 1.4.0|showthumb.php|1.4.0|1.5|mandatory|r@
 1.4.0|thumbnails.php|1.4.0|1.17|mandatory|r@
 1.4.0|update.php|1.4.0|1.13|mandatory|r@
 1.4.0|upgrade-1.0-to-1.2.php|1.4.0|1.6|mandatory|r@
-1.4.0|upload.php|1.4.0|1.42|mandatory|r@
-1.4.0|usermgr.php|1.4.0|1.12|mandatory|r@
-1.4.0|util.php|1.4.0|1.18|mandatory|r@
-1.4.0|versioncheck.php|1.4.0|1.9|mandatory|r@
+1.4.0|upload.php|1.4.0|1.45|mandatory|r@
+1.4.0|usermgr.php|1.4.0|1.13|mandatory|r@
+1.4.0|util.php|1.4.0|1.20|mandatory|r@
+1.4.0|versioncheck.php|1.4.0|1.16|mandatory|r@
 1.4.0|viewlog.php|1.4.0|1.7|mandatory|r@
-1.4.0|xp_publish.php|1.4.0|1.10|mandatory|r@
-1.4.0|zipdownload.php|1.4.0|1.5|mandatory|r@
+1.4.0|xp_publish.php|1.4.0|1.12|mandatory|r@
+1.4.0|zipdownload.php|1.4.0|1.6|mandatory|r@
 1.4.0|albums|||mandatory|w@
 1.4.0|albums/index.html||1.2|mandatory|w@
 1.4.0|albums/edit/index.html|||mandatory|w@
@@ -1783,14 +1754,14 @@ $return = '
 1.4.0|albums/edit/index.html|||mandatory|w@
 1.4.0|albums/userpics|||mandatory|w@
 1.4.0|albums/userpics/index.html||1.2|mandatory|w@
-1.4.0|bridge/invisionboard.inc.php|1.4.0|1.15|optional|r@
-1.4.0|bridge/mambo.inc.php|1.4.0|1.15|optional|r@
-1.4.0|bridge/phpbb.inc.php|1.4.0|1.21|optional|r@
-1.4.0|bridge/smf.inc.php|1.4.0|1.18|optional|r@
-1.4.0|bridge/vbulletin23.inc.php|1.4.0|1.9|optional|r@
-1.4.0|bridge/vbulletin30.inc.php|1.4.0|1.10|optional|r@
-1.4.0|bridge/woltlab21.inc.php|1.4.0|1.14|optional|r@
-1.4.0|bridge/yabbse.inc.php|1.4.0|1.26|optional|r@
+1.4.0|bridge/invisionboard.inc.php|1.4.0|1.16|optional|r@
+1.4.0|bridge/mambo.inc.php|1.4.0|1.4|optional|r@
+1.4.0|bridge/phpbb.inc.php|1.4.0|1.23|optional|r@
+1.4.0|bridge/smf.inc.php|1.4.0|1.19|optional|r@
+1.4.0|bridge/vbulletin23.inc.php|1.4.0|1.10|optional|r@
+1.4.0|bridge/vbulletin30.inc.php|1.4.0|1.11|optional|r@
+1.4.0|bridge/woltlab21.inc.php|1.4.0|1.15|optional|r@
+1.4.0|bridge/yabbse.inc.php|1.4.0|1.27|optional|r@
 1.4.0|docs|||mandatory|r@
 1.4.0|docs/credits.html||1.12|optional|r@
 1.4.0|docs/faq.htm|||optional|r@
@@ -1803,11 +1774,11 @@ $return = '
 1.4.0|include|||mandatory|w@
 1.4.0|include/archive.php|1.4.0|1.3|mandatory|r@
 1.4.0|include/config.inc.php|||mandatory|r@
-1.4.0|include/crop.inc.php|1.4.0|1.7|mandatory|r@
+1.4.0|include/crop.inc.php|1.4.0|1.10|mandatory|r@
 1.4.0|include/exif.php|1.4.0|1.3|mandatory|r@
 1.4.0|include/exif_php.inc.php|1.4.0|1.12|mandatory|r@
 1.4.0|include/exifReader.inc.php|1.4.0|1.5|mandatory|r@
-1.4.0|include/functions.inc.php|1.4.0|1.102|mandatory|r@
+1.4.0|include/functions.inc.php|1.4.0|1.106|mandatory|r@
 1.4.0|include/imageObjectGD.class.php|1.4.0|1.6|mandatory|r@
 1.4.0|include/imageObjectIM.class.php|1.4.0|1.5|mandatory|r@
 1.4.0|include/index.html|||mandatory|r@
@@ -1816,14 +1787,14 @@ $return = '
 1.4.0|include/keyword.inc.php|1.4.0|1.2|mandatory|r@
 1.4.0|include/langfallback.inc.php|1.4.0|1.5|mandatory|r@
 1.4.0|include/logger.inc.php|1.4.0|1.11|mandatory|r@
-1.4.0|include/mailer.inc.php|1.4.0|1.7|mandatory|r@
+1.4.0|include/mailer.inc.php|1.4.0|1.8|mandatory|r@
 1.4.0|include/media.functions.inc.php|1.4.0|1.5|mandatory|r@
 1.4.0|include/picmgmt.inc.php|1.4.0|1.17|mandatory|r@
 1.4.0|include/plugin_api.inc.php|1.4.0|1.9|mandatory|r@
 1.4.0|include/search.inc.php|1.4.0|1.7|mandatory|r@
 1.4.0|include/select_lang.inc.php|1.4.0|1.6|mandatory|r@
-1.4.0|include/slideshow.inc.php|1.4.0|1.8|mandatory|r@
-1.4.0|include/smilies.inc.php|1.4.0|1.9|mandatory|r@
+1.4.0|include/slideshow.inc.php|1.4.0|1.9|mandatory|r@
+1.4.0|include/smilies.inc.php|1.4.0|1.10|mandatory|r@
 1.4.0|include/smtp.inc.php|1.4.0|1.2|mandatory|r@
 1.4.0|include/sql_parse.php|1.4.0|1.5|mandatory|r@
 1.4.0|include/zip.lib.php|1.4.0|1.2|mandatory|r@
@@ -1840,7 +1811,7 @@ $return = '
 1.4.0|lang/brazilian_portuguese.php|1.3.0|1.6|optional|r@
 1.4.0|lang/brazilian_portuguese-utf-8.php|1.3.0|1.6|optional|r@
 1.4.0|lang/bulgarian.php|1.3.0|1.5|optional|r@
-1.4.0|lang/bulgarian-utf-8.php|1.3.0|1.4|optional|r@
+1.4.0|lang/bulgarian-utf-8.php|1.3.2|1.5|optional|r@
 1.4.0|lang/chinese_big5.php|1.3.0|1.5|optional|r@
 1.4.0|lang/chinese_big5-utf-8.php|1.3.0|1.6|optional|r@
 1.4.0|lang/chinese_gb.php|1.3.0|1.5|optional|r@
@@ -1851,16 +1822,16 @@ $return = '
 1.4.0|lang/czech-utf-8.php|1.3.0|1.6|optional|r@
 1.4.0|lang/danish.php|1.3.0|1.10|optional|r@
 1.4.0|lang/danish-utf-8.php|1.3.0|1.6|optional|r@
-1.4.0|lang/dutch.php|1.3.0|1.11|optional|r@
-1.4.0|lang/dutch-utf-8.php|1.3.0|1.11|optional|r@
-1.4.0|lang/english.php|1.4.0|1.144|mandatory|r@
+1.4.0|lang/dutch.php|1.3.2|1.12|optional|r@
+1.4.0|lang/dutch-utf-8.php|1.3.2|1.12|optional|r@
+1.4.0|lang/english.php|1.4.0|1.149|mandatory|r@
 1.4.0|lang/english-utf-8.php|1.3.0|1.13|mandatory|r@
 1.4.0|lang/finnish.php|1.3.0|1.5|optional|r@
 1.4.0|lang/finnish-utf-8.php|1.3.0|1.5|optional|r@
-1.4.0|lang/french.php|1.3.0|1.15|optional|r@
-1.4.0|lang/french-utf-8.php|1.2.1|1.13|optional|r@
-1.4.0|lang/german.php|1.3.0|1.15|optional|r@
-1.4.0|lang/german-utf-8.php|1.3.0|1.16|optional|r@
+1.4.0|lang/french.php|1.3.0|1.16|optional|r@
+1.4.0|lang/french-utf-8.php|1.2.1|1.14|optional|r@
+1.4.0|lang/german.php|1.3.0|1.18|optional|r@
+1.4.0|lang/german-utf-8.php|1.3.0|1.19|optional|r@
 1.4.0|lang/greek.php|1.3.0|1.7|optional|r@
 1.4.0|lang/greek-utf-8.php|1.3.0|1.7|optional|r@
 1.4.0|lang/hebrew.php|1.3.0|1.6|optional|r@
@@ -1913,53 +1884,53 @@ $return = '
 1.4.0|themes/classic|||optional|r@
 1.4.0|themes/classic/style.css||1.4|optional|r@
 1.4.0|themes/classic/template.html||1.3|optional|r@
-1.4.0|themes/classic/theme.php|1.4.0|1.10|optional|r@
+1.4.0|themes/classic/theme.php|1.4.0|1.13|optional|r@
 1.4.0|themes/classic/images|||optional|r@
 1.4.0|themes/eyeball|||optional|r@
 1.4.0|themes/eyeball/style.css||1.13|optional|r@
 1.4.0|themes/eyeball/template.html||1.8|optional|r@
-1.4.0|themes/eyeball/theme.php|1.4.0|1.39|optional|r@
+1.4.0|themes/eyeball/theme.php|1.4.0|1.43|optional|r@
 1.4.0|themes/eyeball/images|||optional|r@
 1.4.0|themes/fruity|||optional|r@
 1.4.0|themes/fruity/style.css||1.12|optional|r@
 1.4.0|themes/fruity/template.html||1.8|optional|r@
-1.4.0|themes/fruity/theme.php|1.4.0|1.37|optional|r@
+1.4.0|themes/fruity/theme.php|1.4.0|1.41|optional|r@
 1.4.0|themes/fruity/images|||optional|r@
 1.4.0|themes/hardwired|||optional|r@
 1.4.0|themes/hardwired/style.css||1.15|optional|r@
 1.4.0|themes/hardwired/template.html||1.9|optional|r@
-1.4.0|themes/hardwired/theme.php|1.4.0|1.40|optional|r@
+1.4.0|themes/hardwired/theme.php|1.4.0|1.43|optional|r@
 1.4.0|themes/hardwired/images|||optional|r@
 1.4.0|themes/igames|||optional|r@
 1.4.0|themes/igames/style.css||1.14|optional|r@
 1.4.0|themes/igames/template.html||1.9|optional|r@
-1.4.0|themes/igames/theme.php|1.4.0|1.42|optional|r@
+1.4.0|themes/igames/theme.php|1.4.0|1.45|optional|r@
 1.4.0|themes/igames/images|||optional|r@
 1.4.0|themes/mac_ox_x|||optional|r@
 1.4.0|themes/mac_ox_x/style.css||1.12|optional|r@
 1.4.0|themes/mac_ox_x/template.html||1.8|optional|r@
-1.4.0|themes/mac_ox_x/theme.php|1.4.0|1.38|optional|r@
+1.4.0|themes/mac_ox_x/theme.php|1.4.0|1.41|optional|r@
 1.4.0|themes/mac_ox_x/images|||optional|r@
 1.4.0|themes/classic|||optional|r@
 1.4.0|themes/project_vii/style.css||1.14|optional|r@
 1.4.0|themes/project_vii/template.html||1.7|optional|r@
-1.4.0|themes/project_vii/theme.php|1.4.0|1.39|optional|r@
+1.4.0|themes/project_vii/theme.php|1.4.0|1.42|optional|r@
 1.4.0|themes/project_vii/images|||optional|r@
 1.4.0|themes/rainy_day|||optional|r@
 1.4.0|themes/rainy_day/style.css||1.14|optional|r@
 1.4.0|themes/rainy_day/template.html||1.6|optional|r@
-1.4.0|themes/rainy_day/theme.php|1.4.0|1.42|optional|r@
+1.4.0|themes/rainy_day/theme.php|1.4.0|1.46|optional|r@
 1.4.0|themes/rainy_day/images|||optional|r@
 1.4.0|themes/styleguide|||optional|r@
 1.4.0|themes/styleguide/domLib.js|||optional|r@
 1.4.0|themes/styleguide/domTT.js|||optional|r@
 1.4.0|themes/styleguide/readme.htm||1.2|optional|r@
 1.4.0|themes/styleguide/template.html||1.4|optional|r@
-1.4.0|themes/styleguide/theme.php|1.4.0|1.20|optional|r@
+1.4.0|themes/styleguide/theme.php|1.4.0|1.24|optional|r@
 1.4.0|themes/styleguide/images|||optional|r@
 1.4.0|themes/water_drop|||optional|r@
 1.4.0|themes/water_drop/style.css||1.13|optional|r@
-1.4.0|themes/water_drop/theme.php|1.4.0|1.40|optional|r@
+1.4.0|themes/water_drop/theme.php|1.4.0|1.43|optional|r@
 1.4.0|themes/water_drop/images|||optional|r@
 ';
 return $return;
