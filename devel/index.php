@@ -83,7 +83,7 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
                 $pic_count = $nbEnr[0];
 
                 $subcat['description'] = preg_replace("/<br.*?>[\r\n]*/i", '<br />' . $ident , bb_decode($subcat['description']));
-                $link = $ident . "<a href=index.php?cat={$subcat['cid']}>{$subcat['name']}</a>";
+                $link = $ident . "<a href=\"index.php?cat={$subcat['cid']}\">{$subcat['name']}</a>";
                 if ($album_count) {
                     $cat_data[] = array($link, $ident . $subcat['description'], $album_count, $pic_count);
                     $HIDE_USER_CAT = 0;
