@@ -1,4 +1,19 @@
-# $Id$
+## ------------------------------------------------------------------------- ##
+## Coppermine Photo Gallery 1.4.0                                            ##
+## ------------------------------------------------------------------------- ##
+## Copyright (C) 2002-2004 Gregory DEMAR                                     ##
+## http://www.chezgreg.net#coppermine#                                       ##
+## ------------------------------------------------------------------------- ##
+## Updated by the Coppermine Dev Team                                        ##
+## see /docs/credits.html for details                                        ##
+## ------------------------------------------------------------------------- ##
+## This program is free software; you can redistribute it and#or modify      ##
+## it under the terms of the GNU General Public License as published by      ##
+## the Free Software Foundation; either version 2 of the License, or         ##
+## (at your option) any later version.                                       ##
+## ------------------------------------------------------------------------- ##
+## $Id$
+## ------------------------------------------------------------------------- ##
 
 #
 # Table structure for table `CPG_albums`
@@ -262,7 +277,7 @@ CREATE TABLE IF NOT EXISTS `CPG_temp_data` (
 `unique_ID` CHAR( 8 ) NOT NULL ,
 `encoded_string` BLOB NOT NULL ,
 `timestamp` INT( 11 ) UNSIGNED NOT NULL ,
-PRIMARY KEY ( `unique_ID` ) 
+PRIMARY KEY ( `unique_ID` )
 ) TYPE = MYISAM COMMENT = 'Holds temporary file data for multiple file uploads';
 
 #
@@ -272,7 +287,7 @@ PRIMARY KEY ( `unique_ID` )
 CREATE TABLE `CPG_favpics` (
 `user_id` INT( 11 ) NOT NULL ,
 `user_favpics` TEXT NOT NULL ,
-PRIMARY KEY ( `user_id` ) 
+PRIMARY KEY ( `user_id` )
 ) COMMENT = 'Stores the server side favourites';
 
 #
