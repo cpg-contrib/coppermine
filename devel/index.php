@@ -22,7 +22,6 @@ if ($DIR[count($DIR)-2] == "modules") {
          "Please download and install a CPG Port: <a href=\"http://sourceforge.net/project/showfiles.php?group_id=89658\">CPG for PostNuke OR CPG for PHPnuke</a></body></html>";
     die();
 } // end check
-
 define('IN_COPPERMINE', true);
 define('INDEX_PHP', true);
 
@@ -384,11 +383,11 @@ function list_albums()
                     $picture['pheight'] = 100;
                 }
                 $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
-                $mime_content = get_type($filename);
+                $mime_content = get_type($picture['filename']);
                 $extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
 
                 if ($mime_content['content']=='image') {
-                        $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"" . get_pic_url($row, 'thumb') . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\">";
+                        $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"" . get_pic_url($picture, 'thumb') . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\">";
                 } else {
                         $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/thumb_{$extension}.jpg\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\">";
                 }
@@ -509,11 +508,11 @@ function list_cat_albums($cat = 0)
                     $picture['pheight'] = 100;
                 }
                 $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
-                $mime_content = get_type($filename);
+                $mime_content = get_type($picture['filename']);
                 $extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
 
                 if ($mime_content['content']=='image') {
-                        $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"" . get_pic_url($row, 'thumb') . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\">";
+                        $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"" . get_pic_url($picture, 'thumb') . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\">";
                 } else {
                         $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/thumb_{$extension}.jpg\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\">";
                 }
