@@ -17,13 +17,6 @@ $Id$
 /* and replace on the hex color...             */
 
 body {
-scrollbar-face-color: #FFA600;
-scrollbar-highlight-color: #FFA600;
-scrollbar-shadow-color: #6BBE10;
-scrollbar-3dlight-color: #FFFF00;
-scrollbar-arrow-color:  #FFFF00;
-scrollbar-track-color: #FFFFFF;
-scrollbar-darkshadow-color: #6BBE10;
 background-color:#FFFFFF;
 margin-top:0px;
 margin-bottom:100px;
@@ -310,6 +303,7 @@ a:hover.yebg {
         font-weight: bold;
         background : #6BBE10 ;
         border-style: none;
+	
 }
 
 .navmenu img {
@@ -424,6 +418,17 @@ td #admin_menu_anim {
         padding: 5px;
 }
 
+.empty {
+		background: #F7F37B ;
+		padding: 5px;
+}
+
+.filmstrip {
+		background-image: url(images/tile.gif);
+		height: 30px;
+		
+}
+
 .footer {
         font-size : 9px;
 }
@@ -496,7 +501,6 @@ td #admin_menu_anim {
     border-left-width: 0px;
     background: #6BBE10;
     background-image : url(images/button_bg.gif);
-    background-position: middle;
     border-bottom-width: 0px;
     margin: 0px 0px 2px;
     color: #625b55;
@@ -555,7 +559,7 @@ td #admin_menu_anim {
 .clickable_option {
         color: #6BBE10;
         font-weight: bold;
-        cursor : hand;
+        cursor : default;
 }
 
 .listbox_lang {
@@ -565,6 +569,12 @@ td #admin_menu_anim {
         font-size: 80%;
         font-family: Arial, Helvetica, sans-serif;
         vertical-align : middle;
+}
+
+.blank_image {
+/* Margin should = .image (margin+border-width) */
+        border:0;
+        margin: 3px;
 }
 
 /* Colors used:                                */
@@ -579,4 +589,4 @@ td #admin_menu_anim {
 /* #5F5F5F = RGB  95, 95, 95 = (dark grey)     */
 /* #E7F38C = RGB 239,243,140 = (light green)   */
 /* if you don't like a color, just do a search */
-/* and replace on the hex color...
+/* and replace on the hex color...*/

@@ -615,7 +615,7 @@ $template_image_rating = <<<EOT
 EOT;
 // HTML template for the display of comments
 $template_image_comments = <<<EOT
-<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+<table align="center" width="90%" cellspacing="1" cellpadding="0" class="maintable">
 
         <tr>
                 <td>
@@ -712,7 +712,7 @@ $template_image_comments = <<<EOT
 EOT;
 
 $template_add_your_comment = <<<EOT
-<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+<table align="center" width="90%" cellspacing="1" cellpadding="0" class="maintable">
         <tr>
                 <td width="100%" class="tableh2_compact"><b>{ADD_YOUR_COMMENT}</b></td>
         </tr>

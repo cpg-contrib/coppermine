@@ -601,7 +601,7 @@ $template_image_rating = <<<EOT
 EOT;
 // HTML template for the display of comments
 $template_image_comments = <<<EOT
-<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+<table align="center" width="90%" cellspacing="1" cellpadding="0" class="maintable">
 
         <tr>
                 <td>
@@ -698,7 +698,7 @@ $template_image_comments = <<<EOT
 EOT;
 
 $template_add_your_comment = <<<EOT
-<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
+<table align="center" width="90%" cellspacing="1" cellpadding="0" class="maintable">
         <tr>
                 <td width="100%" class="tableh2_compact"><b>{ADD_YOUR_COMMENT}</b></td>
         </tr>
@@ -1585,6 +1585,8 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, 
 {
     global $CONFIG;
 
+    $width = $CONFIG['picture_table_width'];
+
     starttable();
     echo $nav_menu;
     endtable();
@@ -1606,14 +1608,11 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, 
     starttable();
     echo $pic_info;
     endtable();
-        echo "</div>\n";
+    echo "</div>\n";
 
-        echo "<div id=\"comments\">\n";
-
-        echo $comments;
-
-        echo "</div>\n";
-
+    echo "<div id=\"comments\">\n";
+	echo $comments;
+	echo "</div>\n";
 
 }
 
