@@ -92,7 +92,7 @@ INSERT INTO CPG_config VALUES ('offline', '0');
 #INSERT INTO CPG_config VALUES ('picinfo_display_count_displayed', '1');
 #INSERT INTO CPG_config VALUES ('picinfo_display_URL', '1');
 #INSERT INTO CPG_config VALUES ('picinfo_display_URL_bookmark', '1');
-#INSERT INTO CPG_config VALUES ('picinfo_display_favorites', 1');
+#INSERT INTO CPG_config VALUES ('picinfo_display_favorites', '1');
 
 INSERT INTO CPG_config VALUES ('reg_notify_admin_email', '0');
 INSERT INTO CPG_config VALUES ('disable_comment_flood_protect', '0');
@@ -248,5 +248,7 @@ INSERT INTO CPG_config VALUES ('user_profile6_name', 'Biography');
 
 
 INSERT INTO CPG_config VALUES ('language_fallback', '0');
+
+INSERT INTO CPG_config VALUES ('time_offset', '0');
 
 ALTER TABLE `CPG_users` CHANGE `user_profile6` `user_profile6` TEXT NOT NULL;

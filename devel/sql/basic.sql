@@ -114,6 +114,8 @@ INSERT INTO CPG_config VALUES ('slideshow_interval', '5000');
 
 INSERT INTO CPG_config VALUES ('log_mode', '0');
 
+INSERT INTO CPG_config VALUES ('time_offset', '0');
+
 
 #
 # Dumping data for table `CPG_filetypes`
