@@ -62,7 +62,7 @@ ul.content {
         padding-right: 0px; padding-left: 0px; padding-bottom: 0px; margin: 5px 5px 0px 0px; padding-top: 0px
 }
 li {
-        padding-right: 0px; margin-top: 4px; padding-left: 0px; list-style-position: outside; margin-bottom: 4px; padding-bottom: 0px; margin-left: 10px; padding-top: 0px; list-style-type: disc
+        padding-right: 0px; margin-top: 4px; padding-left: 0px; list-style-position: outside; margin-bottom: 4px; padding-bottom: 0px; margin-left: 10px; padding-top: 0px;
 }
 li.content {
         padding-right: 0px; margin-top: 0px; padding-left: 0px; list-style-position: outside; margin-bottom: 5px; padding-bottom: 0px; margin-left: 10px; padding-top: 0px; list-style-type: none;
@@ -157,6 +157,7 @@ For credits and copyrights, see <a href="index.htm#credits">Coppermine documenta
 <li><a class="content" href="#moveAlbum">How can I <b>move an album</b> from one category to another?</a></li>
 <li><a class="content" href="#sortAlbum">How can I change the <b>sorting order of the albums</b>?</a></li>
 <li><a class="content" href="#deleteIntermediates">I don't use the <b>intermediate pictures</b> anymore. How can I <b>delete</b> them to gain disk space?</a></li>
+<li><a class="content" href="#howAlbumsFolderWork">How do <b>albums and folders</b> work in coppermine?</a></li>
 </ul>
 <li><b>Add-ons / Modifications / Hacks</b></li>
 <ul class="nomargin">
@@ -550,6 +551,16 @@ Greg</p></td></tr></table><br /></p><br /><div class="totop">[<a href="#top" cla
 <h3>I don't use the <b>intermediate pictures</b> anymore. How can I <b>delete</b> them to gain disk space?</h3>
 <p></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 
+<a name="howAlbumsFolderWork"></a>
+<h3>How do <b>albums and folders</b> work in coppermine?</h3>
+<ol>
+<li>When you create an album, it is a 'virtual' album.  Coppermine doesn't create a folder for this album on the server's hard drive, it leaves the pictures where they are on the server, and uses the database to know which pic belongs in which album. You can move pics from album to album, but this is all done in the database, the pics are never moved on the server.</li>
+<li>When you upload by html, using the 'upload' link, coppermine places the pic (and the thumb and normal size copies) in the 'userpics' directory.</li>
+<li>When you upload by ftp, you should place the pics in a folder you create, within the 'albums' folder, but not in the 'userpics' folder.  You can create as many folders/sub-folders here as you want. You can call these folders anything you want, but we recommend mirroring the category/album structure you have created on the site, for eae of use.</li>
+<li>When you batch add, coppermine asks you what album you want to put the pics in, but it leaves the pics where they are on the server.</li>
+</ol>
+<br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+
 
 
 <br />&nbsp;<br />
@@ -891,12 +902,6 @@ GauGau (aka Joachim Mueller) - coppermine dev team
 
 
 
-<a name=""></a>
-<h3></h3>
-<p>
-<br /></p>
-<br />
-<div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 
 <a name=""></a>
 <h3></h3>
