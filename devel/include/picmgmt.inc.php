@@ -125,7 +125,7 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use)
         return false;
         // GD can only handle JPG & PNG images
     //if ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && ($method == 'gd1' || $method == 'gd2')) {
-    if ($imginfo[2] == GIS_GIF && $CONFIG['GIF_support'] == 0) {
+    if ($imginfo[2] != GIS_JPG && $imageinfo[2] != GIS_PNG && $CONFIG['GIF_support'] == 0) {
         $ERROR = $lang_errors['gd_file_type_err'];
         return false;
     }
