@@ -184,7 +184,7 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
         } // while
         mysql_free_result($result);
     //}
-    if (count($album_set_array)) {
+    if (count($album_set_array)&& $cat) {
         $set = '';
         foreach ($album_set_array as $album) $set .= $album . ',';
         $set = substr($set, 0, -1);
