@@ -24,18 +24,18 @@ require('include/sql_parse.php');
 
 // Options disabled in bridged version
 $options_to_disable = array('reg_notify_admin_email',
-							'reg_requires_valid_email',
-							'allow_duplicate_emails_addr',
-							'allow_email_change',
-							'login_treshold',
-							'login_expiry',
-							'user_profile1_name',
-							'user_profile2_name',
-							'user_profile3_name',
-							'user_profile4_name',
-							'user_profile5_name',
-							'user_profile6_name',
-							);
+                                                        'reg_requires_valid_email',
+                                                        'allow_duplicate_emails_addr',
+                                                        'allow_email_change',
+                                                        'login_treshold',
+                                                        'login_expiry',
+                                                        'user_profile1_name',
+                                                        'user_profile2_name',
+                                                        'user_profile3_name',
+                                                        'user_profile4_name',
+                                                        'user_profile5_name',
+                                                        'user_profile6_name',
+                                                        );
 
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
@@ -297,7 +297,9 @@ function form_theme($text, $name, $help = '')
     $help = cpg_display_help($help);
 
 
-    $value = $CONFIG[$name];
+    $result = db_query("SELECT value FROM {$CONFIG['TABLE_CONFIG']} WHERE name = 'theme'");
+    list($value) = mysql_fetch_row($result);
+    mysql_free_result($result);
     $theme_dir = 'themes/';
 
     $dir = opendir($theme_dir);
@@ -709,7 +711,7 @@ if (count($HTTP_POST_VARS) > 0) {
         $sql_count = count($sql_query);
         for($i = 0; $i < $sql_count; $i++) if (strpos($sql_query[$i],'config VALUES') || strpos($sql_query[$i],'filetypes VALUES')) db_query($sql_query[$i]);
         pageheader($lang_config_php['title']);
-    	msg_box($lang_config_php['info'], $lang_config_php['restore_success'], $lang_continue, $PHP_SELF);  
+            msg_box($lang_config_php['info'], $lang_config_php['restore_success'], $lang_continue, $PHP_SELF);
     }
         pagefooter();
         exit;
