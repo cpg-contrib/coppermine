@@ -18,13 +18,13 @@
 // ------------------------------------------------------------------------- //
 
 define('IN_COPPERMINE', true);
-define('REPORT_PHP', true);
+define('REPORT_FILE_PHP', true);
 
 require('include/init.inc.php');
 require('include/smilies.inc.php');
 require('include/mailer.inc.php');
 
-if (!$CONFIG['report_post']==1) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+if ((!$CONFIG['report_post']==1) || (!USER_CAN_SEND_ECARDS)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
 //print_r(get_defined_constants());
 
@@ -96,7 +96,7 @@ if (count($_POST) > 0 && $valid_sender_email) {
         );
 
     $encoded_data = urlencode(base64_encode(serialize($data)));
-
+	
     $params = array('{LANG_DIR}' => $lang_text_dir,
         '{TITLE}' => sprintf($lang_report_php['report_title'], $sender_name),
         '{CHARSET}' => $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'],
@@ -135,7 +135,7 @@ if (count($_POST) > 0 && $valid_sender_email) {
     }
 
     if ($result) {
-        pageheader($lang_report_php['title'], "<META http-equiv=\"refresh\" content=\"3;url=displayimage.php?album=$album&pos=$pos\">");
+        pageheader($lang_report_php['title'], "<meta http-equiv=\"refresh\" content=\"3;url=displayimage.php?album=$album&pos=$pos\" />");
         msg_box($lang_cpg_die[INFORMATION], $lang_report_php['send_success'], $lang_continue, "displayimage.php?album=$album&pos=$pos");
         pagefooter();
         ob_end_flush();
@@ -198,7 +198,7 @@ echo <<<EOT
                                 </tr>
         <tr>
                 <td class="tableb" valign="top" width="40%" colspan="3">
-                Link to comment to go here<br />
+           details of comment go here<br />
                 </td>
         </tr>
 <!-- END display_comment -->

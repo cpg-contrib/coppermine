@@ -1349,19 +1349,20 @@ With this setting you specify the number of failed logins after that the IP addr
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="admin_custom"></a>
-<h3>4.12.11 Custom fields for user profile (leave blank if unused). Use Profile 6 for long entries, such as biographies </h3>
+<h4>4.12.11 Custom fields for user profile (leave blank if unused). Use Profile 6 for long entries, such as biographies </h4>
 <p>These fields are displayed within the &quot;user profile&quot; area. They will appear only if you give them a name. As the heading says, use field 6 for long entries, such as biographies, or if you want to use bb code.</p>
+<p>You can also use field 6 for avatars.  To show an avatar in the profile, it should be entered in bbcode, for example to show 'avatar.gif', which is located in your images folder, use the code [img]http://www.yoursite.com/images/avatar.gif[/img]
 <a name="admin_custom_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="admin_custom_image"></a>
-<h3>4.12.12 Custom fields for image description (leave blank if unused)</h3>
+<h4>4.12.12 Custom fields for image description (leave blank if unused)</h4>
 <p>These fields are displayed within the &quot;file information&quot; area. They will appear only if you give them a name.</p>
 <a name="admin_custom_image_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="admin_cookie"></a>
-<h3>4.12.13 Cookie settings</h3>
+<h4>4.12.13 Cookie settings</h4>
 <a name="admin_cookie_name"></a>
 <h4>Name of the cookie used by the script</h4>
 <p>Default value is &quot;cpg140&quot;. Even if you have multiple instances of the script running on the same server you can keep the default value.<br /><span class="important">When using bbs integration, make sure it <b>differs</b> from the bbs's cookie name</span></p>
@@ -1376,7 +1377,7 @@ With this setting you specify the number of failed logins after that the IP addr
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="admin_email"></a>
-<h3>4.12.14 Email settings</h3>
+<h4>4.12.14 Email settings</h4>
 <p>Usually nothing has to be changed here; leave all fields blank when not sure. Only if you run into problems (e.g. if ecards, registration info or notifications don't get sent) you should change these settings. Coppermine itself doesn't come with an engine to send mails, it relies on a webserver being able to do so (using the built-in mechanisms of PHP). If you're not sure what to enter, ask your webhost for support.</p>
 <h4>SMTP Host</h4>
 <p>The hostname of the <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server<br />
@@ -1474,6 +1475,12 @@ You can toggle this option on the <a href="#batch_add_pics">batch-add</a> page a
 <p>Optional relative path to a custom footer file. The same remarks apply as for the custom header include path.</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_misc_include_path_end"></a>
+
+<a name="admin_misc_enable_report"></a><h4>Enable reports</h4>
+<p>Enable reports. When set to yes, this allows users to report uploaded files or comments to the site admin.<br />
+This setting is dependant on e-cards being enabled.  Only users who have permission to send e-cards in the 'groups' settings are able to send reports. The report icon is hidden from those not allowed to do so.</p>
+<p class="small">[cpg1.4.0 or better required]</p>
+<a name="admin_misc_enable_report_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="integrating"></a>

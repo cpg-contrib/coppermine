@@ -94,7 +94,7 @@ function html_img_nav_menu()
     }
 
                 //report to moderator buttons
-    if ($CONFIG['report_post']==1) {
+    if (($CONFIG['report_post']==1) && (USER_CAN_SEND_ECARDS)) {
                                 $report_tgt = "report_file.php?album=$album$cat_link&amp;pid=$pid&amp;pos=$pos";
     } else { // remove button if report toggle is off
         template_extract_block($template_img_navbar, 'report_file_button');
@@ -378,8 +378,8 @@ function html_comments($pid)
     $html = '';
 
 //report to moderator buttons
-    if ($CONFIG['report_post']==1) {
-                                $report_comment_tgt = "report_file.php?msg_id={MSG_ID}&what=comment";
+    if (($CONFIG['report_post']==1) && (USER_CAN_SEND_ECARDS)) {
+                                $report_comment_tgt = "report_file.php?album=$album$cat_link&amp;pid=$pid&amp;pos=$pos&what=comment";
     } else { // remove buttons if report toggle is off
         template_extract_block($template_image_comments, 'report_comment_button');
     }
