@@ -678,7 +678,7 @@ if (count($HTTP_POST_VARS) > 0) {
 
         foreach($lang_config_data as $element) {
             if ((is_array($element))) {
-                if ((!isset($HTTP_POST_VARS[$element[1]]))) cpg_die(CRITICAL_ERROR, "Missing config value for '{$element[1]}'", __FILE__, __LINE__);
+                if (!isset($HTTP_POST_VARS[$element[1]])) /*cpg_die(CRITICAL_ERROR, "Missing config value for '{$element[1]}'", __FILE__, __LINE__);*/ continue;
                 $value = addslashes($HTTP_POST_VARS[$element[1]]);
                 if ($CONFIG[$element[1]] !== stripslashes($value))
                      {
