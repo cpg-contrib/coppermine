@@ -103,14 +103,31 @@ $template_main_menu2 = <<<EOT
                                         </td>
                                         <td><img src="themes/mac_ox_x/images/menu_button_bg_right.gif" border="0" alt="" /><br /></td>
 EOT;
+// HTML template for title row of the thumbnail view (album title + sort options)
+$template_thumb_view_title_row = <<<EOT
 
+                        <table width="100%" cellpadding="0" cellspacing="0">
+                        <tr>
+                                <td width="100%" class="statlink">{ALBUM_NAME}</td>
+                                <td class="sortorder_options" style="font-size: 100%;">{TITLE}</td>
+                                <td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=ta" title="{SORT_TA}">&nbsp;+&nbsp;</a></span></td>
+                                <td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=td" title="{SORT_TD}">&nbsp;-&nbsp;</a></span></td>
+                                <td>&nbsp;&nbsp;</td>
+                                <td class="sortorder_options" style="font-size: 100%;">{NAME}</td>
+                                <td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=na" title="{SORT_NA}">&nbsp;+&nbsp;</a></span></td>
+                                <td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=nd" title="{SORT_ND}">&nbsp;-&nbsp;</a></span></td>
+                                <td>&nbsp;&nbsp;</td>
+                                <td class="sortorder_options" style="font-size: 100%;">{DATE}</td>
+                                <td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=da" title="{SORT_DA}">&nbsp;+&nbsp;</a></span></td>
+                                <td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=dd" title="{SORT_DD}">&nbsp;-&nbsp;</a></span></td>
+                                <td>&nbsp;&nbsp;</td>
+                                <td class="sortorder_options" style="font-size: 100%;">{POSITION}</td>
+                                <td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=pa" title="{SORT_PA}">&nbsp;+&nbsp;</a></span></td>
+                                <td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=pd" title="{SORT_PD}">&nbsp;-&nbsp;</a></span></td>
+                        </tr>
+                        </table>
 
-
-
-
-
-// HTML template for the image navigation bar
-
+EOT;
 
 function pageheader($section, $meta = '')
 {
@@ -136,6 +153,7 @@ function pageheader($section, $meta = '')
 
     echo template_eval($template_header, $template_vars);
 }
+
 // Function for writing a pagefooter
 function pagefooter()
 {
