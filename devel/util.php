@@ -443,11 +443,11 @@ if ($action == 'thumbs') {
 
     print '<h2>'.$lang_util_php['select_album'].'</h2>';
 
-    filloptions();
-
-
-
-
+    if (defined('UDB_INTEGRATION')) {
+        udb_util_filloptions();
+    } else {
+        filloptions();
+    }
 
 }
 print '</td></tr>';
