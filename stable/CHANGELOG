@@ -117,3 +117,4 @@ Added Czech language files (user contrib) - 30 June 2004, GauGau
 Added warning in docs to backup anycontent when upgrading, 4 July 2004, Casper
 Fixed double slash '//' bug in upload notification email, in upload.php - 17th July 2004, Casper
 Updated version info to cpg1.3.2
+Added PunBB integration support - 9th August, Nibbler
