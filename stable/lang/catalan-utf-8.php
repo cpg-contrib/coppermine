@@ -18,7 +18,7 @@
 // info about translators and translated language
 $lang_translation_info = array(
 'lang_name_english' => 'Catalan',  
-'lang_name_native' => 'Catal&agreugi;',
+'lang_name_native' => 'Català',
 'lang_country_code' => 'es', 
 'trans_name'=> 'Carles Escrig (simkin)', //the name of the translator - can be a nickname
 'trans_email' => 'simkin@ono.com', //translator's email address (optional)
