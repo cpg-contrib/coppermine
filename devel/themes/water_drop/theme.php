@@ -2,10 +2,10 @@
 // ------------------------------------------------------------------------- //
 //  Coppermine Photo Gallery                                                 //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Grégory DEMAR <gdemar@wanadoo.fr>               //
+//  Copyright (C) 2002,2003  Grï¿½ory DEMAR <gdemar@wanadoo.fr>               //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
+//  Based on PHPhotoalbum by Henning Stverud <henning@stoverud.com>         //
 //  http://www.stoverud.com/PHPhotoalbum/                                    //
 // ------------------------------------------------------------------------- //
 //  Hacked by Tarique Sani <tarique@sanisoft.com> and Girsh Nair             //
@@ -63,6 +63,8 @@ $template_main_menu = <<<EOT
 			<a href="{TOPN_TGT}">{TOPN_LNK}</a>
 			<img src="themes/water_drop/images/orange_carret.gif" />
 			<a href="{TOPRATED_TGT}">{TOPRATED_LNK}</a>
+			<img src="themes/water_drop/images/orange_carret.gif" />
+			<a href="{FAV_TGT}">{FAV_LNK}</a>			
 			<img src="themes/water_drop/images/orange_carret.gif" />
 			<a href="{SEARCH_TGT}">{SEARCH_LNK}</a>
 		</span>
@@ -975,6 +977,8 @@ function theme_main_menu()
 		'{TOPN_LNK}' => $lang_main_menu['topn_lnk'],
 		'{TOPRATED_TGT}'=> "thumbnails.php?album=toprated$cat_l2",
 		'{TOPRATED_LNK}'=> $lang_main_menu['toprated_lnk'],
+		'{FAV_TGT}'=> "thumbnails.php?album=favpics",
+		'{FAV_LNK}'=> $lang_main_menu['fav_lnk'],		
 		'{SEARCH_TGT}'=> "search.php",
 		'{SEARCH_LNK}'=> $lang_main_menu['search_lnk'],
 	);

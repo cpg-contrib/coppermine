@@ -2,10 +2,10 @@
 // ------------------------------------------------------------------------- //
 //  Coppermine Photo Gallery                                                 //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Grégory DEMAR <gdemar@wanadoo.fr>               //
+//  Copyright (C) 2002,2003  Grï¿½ory DEMAR <gdemar@wanadoo.fr>               //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
+//  Based on PHPhotoalbum by Henning Stverud <henning@stoverud.com>         //
 //  http://www.stoverud.com/PHPhotoalbum/                                    //
 // ------------------------------------------------------------------------- //
 //  Hacked by Tarique Sani <tarique@sanisoft.com>                            //
@@ -130,6 +130,12 @@ $template_main_menu2 = <<<EOT
 					<td background="themes/hardwired/images/buttoncenter1.gif">
 						<a href="{TOPRATED_TGT}">{TOPRATED_LNK}</a>
 					</td>
+					<td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" id="buttonright1" alt="" /></td>
+					<td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
+					<td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" id="buttonleft1" alt="" /></td>
+					<td background="themes/hardwired/images/buttoncenter1.gif">
+						<a href="{FAV_TGT}">{FAV_LNK}</a>
+					</td>					
 					<td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" id="buttonright1" alt="" /></td>
 					<td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
 					<td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" id="buttonleft1" alt="" /></td>
@@ -1073,6 +1079,8 @@ function theme_main_menu2()
 		'{TOPN_LNK}' => $lang_main_menu['topn_lnk'],
 		'{TOPRATED_TGT}'=> "thumbnails.php?album=toprated$cat_l2",
 		'{TOPRATED_LNK}'=> $lang_main_menu['toprated_lnk'],
+		'{FAV_TGT}'=> "thumbnails.php?album=favpics",
+		'{FAV_LNK}'=> $lang_main_menu['fav_lnk'],		
 		'{SEARCH_TGT}'=> "search.php",
 		'{SEARCH_LNK}'=> $lang_main_menu['search_lnk'],
 	);

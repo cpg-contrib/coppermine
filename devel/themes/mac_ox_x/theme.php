@@ -2,10 +2,10 @@
 // ------------------------------------------------------------------------- //
 //  Coppermine Photo Gallery                                                 //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Grégory DEMAR <gdemar@wanadoo.fr>               //
+//  Copyright (C) 2002,2003  Grï¿½ory DEMAR <gdemar@wanadoo.fr>               //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
+//  Based on PHPhotoalbum by Henning Stverud <henning@stoverud.com>         //
 //  http://www.stoverud.com/PHPhotoalbum/                                    //
 // ------------------------------------------------------------------------- //
 //  Hacked by Tarique Sani <tarique@sanisoft.com> and Girsh Nair             //
@@ -94,6 +94,11 @@ $template_main_menu2 = <<<EOT
 					<td background="themes/mac_ox_x/images/menu_button_bg_middle.gif" valign="top">
 						<a href="{TOPRATED_TGT}" onMouseOver="MM_showHideLayers('Menu1','','hide')">{TOPRATED_LNK}</a>
 					</td>
+					<td><img src="themes/mac_ox_x/images/menu_button_bg_right.gif" border="0" alt="" /><br /></td>
+					<td><img src="themes/mac_ox_x/images/menu_button_bg_left.gif" border="0" alt="" /><br /></td>
+					<td background="themes/mac_ox_x/images/menu_button_bg_middle.gif" valign="top">
+						<a href="{FAV_TGT}" onMouseOver="MM_showHideLayers('Menu1','','hide')">{FAV_LNK}</a>
+					</td>					
 					<td><img src="themes/mac_ox_x/images/menu_button_bg_right.gif" border="0" alt="" /><br /></td>
 					<td><img src="themes/mac_ox_x/images/menu_button_bg_left.gif" border="0" alt="" /><br /></td>
 					<td background="themes/mac_ox_x/images/menu_button_bg_middle.gif" valign="top">
@@ -1057,6 +1062,8 @@ function theme_main_menu2()
 		'{TOPN_LNK}' => $lang_main_menu['topn_lnk'],
 		'{TOPRATED_TGT}'=> "thumbnails.php?album=toprated$cat_l2",
 		'{TOPRATED_LNK}'=> $lang_main_menu['toprated_lnk'],
+		'{FAV_TGT}'=> "thumbnails.php?album=favpics",
+		'{FAV_LNK}'=> $lang_main_menu['fav_lnk'],		
 		'{SEARCH_TGT}'=> "search.php",
 		'{SEARCH_LNK}'=> $lang_main_menu['search_lnk'],
 	);

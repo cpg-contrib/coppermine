@@ -2,10 +2,10 @@
 // ------------------------------------------------------------------------- //
 //  Coppermine Photo Gallery                                                 //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Grégory DEMAR <gdemar@wanadoo.fr>               //
+//  Copyright (C) 2002,2003  Grï¿½ory DEMAR <gdemar@wanadoo.fr>               //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
+//  Based on PHPhotoalbum by Henning Stverud <henning@stoverud.com>         //
 //  http://www.stoverud.com/PHPhotoalbum/                                    //
 // ------------------------------------------------------------------------- //
 //  Hacked by Tarique Sani <tarique@sanisoft.com> and Girsh Nair             //
@@ -82,7 +82,11 @@ $template_main_menu2 = <<<EOT
                                         <td><img name="menu_spacer" src="themes/igames/images/menu_spacer.gif" width="2" height="35" border="0" id="menu_spcer" alt="" /><br /></td>
                                         <td class="top_menu_bttn">
                                                 <a href="{TOPRATED_TGT}" onMouseOver="MM_showHideLayers('Menu1','','hide')">{TOPRATED_LNK}</a>
-                                        </td>
+                                        </td>                                        
+                                        <td><img name="menu_spacer" src="themes/igames/images/menu_spacer.gif" width="2" height="35" border="0" id="menu_spcer" alt="" /><br /></td>                                        
+					<td class="top_menu_bttn">
+                                                <a href="{FAV_TGT}" onMouseOver="MM_showHideLayers('Menu1','','hide')">{FAV_LNK}</a>
+                                        </td>					
                                         <td><img name="menu_spacer" src="themes/igames/images/menu_spacer.gif" width="2" height="35" border="0" id="menu_spcer" alt="" /><br /></td>
                                         <td class="top_menu_right_bttn">
                                                 <a href="{SEARCH_TGT}" onMouseOver="MM_showHideLayers('Menu1','','hide')">{SEARCH_LNK}</a>
@@ -1025,10 +1029,13 @@ function theme_main_menu2()
                 '{LASTCOM_LNK}' => $lang_main_menu['lastcom_lnk'],
                 '{TOPN_TGT}' => "thumbnails.php?album=topn$cat_l2",
                 '{TOPN_LNK}' => $lang_main_menu['topn_lnk'],
-                '{TOPRATED_TGT}'=> "thumbnails.php?album=toprated$cat_l2",
-                '{TOPRATED_LNK}'=> $lang_main_menu['toprated_lnk'],
-                '{SEARCH_TGT}'=> "search.php",
+		'{TOPRATED_TGT}'=> "thumbnails.php?album=toprated$cat_l2",
+		'{TOPRATED_LNK}'=> $lang_main_menu['toprated_lnk'],		                
+		'{SEARCH_TGT}'=> "search.php",
                 '{SEARCH_LNK}'=> $lang_main_menu['search_lnk'],
+                '{FAV_TGT}'=> "thumbnails.php?album=favpics",
+                '{FAV_LNK}'=> $lang_main_menu['fav_lnk'],
+		
         );
 
         $main_menu = template_eval($template_main_menu, $param);
