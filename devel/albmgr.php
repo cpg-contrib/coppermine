@@ -311,7 +311,7 @@ pageheader($lang_albmgr_php['alb_mrg']);
 -->
 </script>
 
-<?php starttable("100%", $lang_albmgr_php['alb_mrg'], 1);
+<?php starttable("100%", $lang_albmgr_php['alb_mrg'].'&nbsp;'.cpg_display_help('f=index.htm&as=albmgr&ae=albmgr_end&top=1', '600', '400'), 1);
 ?>
 <tr>
 <?php

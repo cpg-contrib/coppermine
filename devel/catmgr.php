@@ -224,14 +224,14 @@ function verify_children($parent, $cid)
     $result = db_query($sql);
 
     if (($cat_count = mysql_num_rows($result)) > 0) {
-		while ($row = mysql_fetch_array($result)) {
-       		$children[]=$row['cid'];		       
+                while ($row = mysql_fetch_array($result)) {
+                       $children[]=$row['cid'];
        // call this function again to this this
        // child's children
-       		verify_children($row['cid'], $cid);
-   	   } 
+                       verify_children($row['cid'], $cid);
+              }
     }
-	return false;
+        return false;
 }
 
 $op = isset($HTTP_GET_VARS['op']) ? $HTTP_GET_VARS['op'] : '';
@@ -255,14 +255,14 @@ switch ($op) {
 
         $cid = (int)$HTTP_GET_VARS['cid'];
         $parent = (int)$HTTP_GET_VARS['parent'];
-		$children=array();	
-		verify_children($cid, $cid);
-		if (!in_array($parent, $children)){
-        	db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent', pos='-1' WHERE cid = '$cid' LIMIT 1");
-		}else{
-			cpg_die(ERROR, "You cannot move a category into its own child", __FILE__, __LINE__);
-		}    
-		break;
+                $children=array();
+                verify_children($cid, $cid);
+                if (!in_array($parent, $children)){
+                db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent', pos='-1' WHERE cid = '$cid' LIMIT 1");
+                }else{
+                        cpg_die(ERROR, "You cannot move a category into its own child", __FILE__, __LINE__);
+                }
+                break;
 
     case 'editcat':
         if (!isset($HTTP_GET_VARS['cid'])) cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'editcat'), __FILE__, __LINE__);
@@ -276,38 +276,38 @@ switch ($op) {
 
     case 'updatecat':
         if (!isset($HTTP_POST_VARS['cid']) || !isset($HTTP_POST_VARS['parent']) || !isset($HTTP_POST_VARS['name']) || !isset($HTTP_POST_VARS['description'])) cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'updatecat'), __FILE__, __LINE__);
-		
-		$name = trim($HTTP_POST_VARS['name']);		
-		if (empty($name)){
-			break;
-		}
 
-		
+                $name = trim($HTTP_POST_VARS['name']);
+                if (empty($name)){
+                        break;
+                }
+
+
         $cid = (int)$HTTP_POST_VARS['cid'];
         $parent = (int)$HTTP_POST_VARS['parent'];
         $thumb = (int)$HTTP_POST_VARS['thumb'];
         $name = trim($HTTP_POST_VARS['name']) ? addslashes($HTTP_POST_VARS['name']) : '&lt;???&gt;';
         $description = addslashes($HTTP_POST_VARS['description']);
-		$children=array();	
-		verify_children($cid, $cid);
-		if (!in_array($parent, $children)){
-        	db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent', name='$name', description='$description', thumb='$thumb' WHERE cid = '$cid' LIMIT 1");
-		}else{
-			db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET name='$name', description='$description', thumb='$thumb' WHERE cid = '$cid' LIMIT 1");
-		}
+                $children=array();
+                verify_children($cid, $cid);
+                if (!in_array($parent, $children)){
+                db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent', name='$name', description='$description', thumb='$thumb' WHERE cid = '$cid' LIMIT 1");
+                }else{
+                        db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET name='$name', description='$description', thumb='$thumb' WHERE cid = '$cid' LIMIT 1");
+                }
         break;
 
     case 'createcat':
         if (!isset($HTTP_POST_VARS['parent']) || !isset($HTTP_POST_VARS['name']) || !isset($HTTP_POST_VARS['description'])) cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'createcat'), __FILE__, __LINE__);
-        
-		$name = trim($HTTP_POST_VARS['name']);
-		
-		if (empty($name)){
-			break;
-		}
 
-		
-		$parent = (int)$HTTP_POST_VARS['parent'];
+                $name = trim($HTTP_POST_VARS['name']);
+
+                if (empty($name)){
+                        break;
+                }
+
+
+                $parent = (int)$HTTP_POST_VARS['parent'];
         $name = trim($HTTP_POST_VARS['name']) ? addslashes($HTTP_POST_VARS['name']) : '&lt;???&gt;';
         $description = addslashes($HTTP_POST_VARS['description']);
 
@@ -348,7 +348,7 @@ function confirmDel(catName)
 EOT;
 
 starttable('100%');
-$help = cpg_display_help('f=index.htm&as=cat_cp&ae=albmgr&top=1', '1000', '600');
+$help = cpg_display_help('f=index.htm&as=cat_cp&ae=albmgr&top=1', '600', '400');
 echo <<<EOT
         <tr>
                 <td class="tableh1"><b><span class="statlink">{$lang_catmgr_php['category']}</span></b>&nbsp;$help</td>
