@@ -241,8 +241,6 @@ $CONFIG['TABLE_ECARDS']          = $CONFIG['TABLE_PREFIX']."ecards";
 $CONFIG['TABLE_TEMPDATA']        = $CONFIG['TABLE_PREFIX']."temp_data";
 $CONFIG['TABLE_FAVPICS']        = $CONFIG['TABLE_PREFIX']."favpics";
 
-// User DB system
-if (defined('UDB_INTEGRATION')) require 'bridge/' . UDB_INTEGRATION . '.inc.php';
 // Connect to database
 cpg_db_connect() || die("<b>Coppermine critical error</b>:<br />Unable to connect to database !<br /><br />MySQL said: <b>" . mysql_error() . "</b>");
 // Retrieve DB stored configuration
@@ -259,6 +257,12 @@ require('include/plugin_api.inc.php');
 if ($CONFIG['enable_plugins'] == 1) {
     CPGPluginAPI::load();
 }
+
+// User DB system
+if (!CPGPluginAPI::action('UDB_INTEGRATION',false,CPG_EXEC_FIRST) && defined('UDB_INTEGRATION')) {
+    require 'bridge/' . UDB_INTEGRATION . '.inc.php';
+}
+
 
 // Start output buffering
 ob_start('cpg_filter_page_html');
@@ -401,6 +405,17 @@ if (USER_ID > 0){
                 $FAVPICS = array();
         }
 }
+
+/**
+ * CPGPluginAPI::action('page_start',null)
+ *
+ * Executes page_start action on all plugins
+ *
+ * @param null
+ * @return N/A
+ **/
+
+CPGPluginAPI::action('page_start',null);
 
 // load the main template
 load_template();
