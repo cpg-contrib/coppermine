@@ -1,4 +1,4 @@
-<?php
+<?php 
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
@@ -14,8 +14,17 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-/*
-$Id$
+/**
+* Coppermine Photo Gallery 1.3.0 addfav.php
+* 
+* This file does the needful when add to fav links are clicked, if the user is logged in then 
+* the favs are stored in the database else the favs are stored in a local cookie, the favs in 
+* database take precedence over the cookie favs
+* 
+* @copyright 2002,2003 Gregory DEMAR, Coppermine Dev Team
+* @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
+* @package Coppermine
+* @version $Id$
 */
 
 define('IN_COPPERMINE', true);
@@ -30,31 +39,27 @@ $pic = (int)$HTTP_GET_VARS['pid'];
 if (!isset($HTTP_COOKIE_VARS[$CONFIG['cookie_name'] . '_data'])) {
     header('Location: displayimage.php?pos=' . (- $pid));
     exit;
-}
+} 
 // See if this picture is already present in the array
 if (!in_array($pic, $FAVPICS)) {
     $FAVPICS[] = $pic;
 } else {
     $key = array_search($pic, $FAVPICS);
     unset ($FAVPICS[$key]);
-}
+} 
 
 $data = base64_encode(serialize($FAVPICS));
 setcookie($CONFIG['cookie_name'] . '_fav', $data, time() + 86400 * 30, $CONFIG['cookie_path']);
-
-//If the user is logged in then put it in the DB 
-if (USER_ID > 0){	
-	$sql = "UPDATE {$CONFIG['TABLE_FAVPICS']} SET user_favpics = '$data' WHERE user_id = ".USER_ID;	
-	db_query($sql);
-	
-	
-	// User never stored a fav... so insert new row	
-	if(!mysql_affected_rows()){
-	$sql = "INSERT INTO {$CONFIG['TABLE_FAVPICS']} ( user_id, user_favpics) VALUES (".USER_ID.", '$data')";
-	db_query($sql);	
-	}
-}
-
+// If the user is logged in then put it in the DB
+if (USER_ID > 0) {
+    $sql = "UPDATE {$CONFIG['TABLE_FAVPICS']} SET user_favpics = '$data' WHERE user_id = " . USER_ID;
+    db_query($sql); 
+    // User never stored a fav... so insert new row
+    if (!mysql_affected_rows()) {
+        $sql = "INSERT INTO {$CONFIG['TABLE_FAVPICS']} ( user_id, user_favpics) VALUES (" . USER_ID . ", '$data')";
+        db_query($sql);
+    } 
+} 
 
 $location = "displayimage.php?pos=" . (- $pic);
 $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
