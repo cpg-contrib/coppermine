@@ -770,10 +770,10 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 } else {
                         $album_name = $lang_meta_album_names['lastcom'];
                 }
-                
+
                 // Replacing the AND in ALBUM_SET with AND (
                 $TMP_SET = "AND (" . substr($ALBUM_SET, 3);
-                
+
                 $query = "SELECT COUNT(*) from {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']}  WHERE approved = 'YES' AND {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid $TMP_SET $keyword)";
                 $result = cpg_db_query($query);
 
@@ -822,7 +822,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 } else {
                         $album_name = $lang_meta_album_names['lastcom'].' - '. $user_name;
                 }
-                
+
                 $query = "SELECT COUNT(*) from {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']}  WHERE approved = 'YES' AND author_id = '$uid' AND {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid $ALBUM_SET";
                 $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
@@ -928,7 +928,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 } else {
                         $album_name = $lang_meta_album_names['topn'];
                 }
-                
+
                 $query ="SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND hits > 0  $ALBUM_SET $keyword";
 
                 $result = cpg_db_query($query);
@@ -1014,7 +1014,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 } else {
                         $album_name = $lang_meta_album_names['random'];
                 }
-                
+
                 $query = "SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $ALBUM_SET";
                 $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
@@ -2121,6 +2121,7 @@ $lang_language_data['arabic'] = array('Arabic','&#1575;&#1604;&#1593;&#1585;&#15
 $lang_language_data['bosnian'] = array('Bosnian','Bosanski','ba');
 $lang_language_data['brazilian_portuguese'] = array('Portuguese [Brazilian]','Portugu&ecirc;s Brasileiro','br');
 $lang_language_data['bulgarian'] = array('Bulgarian','&#1041;&#1098;&#1083;&#1075;&#1072;&#1088;&#1089;&#1082;&#1080;','bg');
+$lang_language_data['catalan'] = array('Catalan','Catal&agrave;','ct');
 $lang_language_data['chinese_big5'] = array('Chinese-Big5','&#21488;&#28771;','tw');
 $lang_language_data['chinese_gb'] = array('Chinese-GB2312','&#20013;&#22269;','cn');
 $lang_language_data['croatian'] = array('Croatian','Hrvatski','hr');
