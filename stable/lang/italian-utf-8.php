@@ -415,7 +415,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Prefisso delle miniature <b>*</b>', 'thumb_pfx', 0),
 	array('Chmod di default per le directories', 'default_dir_mode', 0),
 	array('Chmod di default per le immagini', 'default_file_mode', 0),
-        array('Disabilita click destro nei pop-up full-size (JavaScript - metodo insicuro)', 
 
 	'Cookies &amp; Impostazioni caratteri',
 	array('Nome del cookie usato dallo script', 'cookie_name', 0),
