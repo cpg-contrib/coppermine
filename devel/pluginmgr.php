@@ -185,7 +185,11 @@ $op = @$_GET['op'];
 
 switch ($op) {
     case 'uninstall':
-        CPGPluginAPI::uninstall($_GET['p']);
+        $plugin_id = $_GET['p'];
+        if (!is_int($_GET['p'])) {
+            $plugin_id = CPGPluginAPI::installed($plugin_id);
+        }
+        CPGPluginAPI::uninstall($plugin_id);
         break;
     case 'install':
         $installed = CPGPluginAPI::install($HTTP_GET_VARS['p']);
