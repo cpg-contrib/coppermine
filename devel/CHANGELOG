@@ -20,6 +20,7 @@ Moved hardcoded text from util.php to language file - 27th September 2003, GauGa
 updated dutch.php and greek.php (minor bugfixes by original translators) - 30th September 2003, GauGau
 Added 'no right-click' admin option (I know this is childish but has been requested often), db update necessary (see update.sql) - 30th September 2003, GauGau
 IP Logging now on picture uploads - 30th September 2003, Jack
-fixed improper html tags in hardwired theme - 1st October, GauGau
+fixed improper html tags in hardwired theme - 1st October 2003, GauGau
 added version info to html output (above </body>) for easier support - 1st October, GauGau
 Added basic banning functionality  - no theme button yet, doesn't do username based banning & expiry date entry still krufty - 2nd October, 2003,
+Added offline-manual in /docs-folder (manual.pdf) - 03rd October 2003, GauGau
