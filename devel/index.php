@@ -202,7 +202,7 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
         $sql = "SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} as p ".
                 'LEFT JOIN '.$CONFIG['TABLE_ALBUMS'].' as a '.
                 'ON a.aid=p.aid '.
-                'WHERE a.category>0'.$pic_filter;
+                'WHERE a.category>=0'.$pic_filter;
         $result = db_query($sql);
         $nbEnr = mysql_fetch_array($result);
         $picture_count = $nbEnr[0];
@@ -213,7 +213,7 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
                 'ON c.pid=p.pid '.
                 'LEFT JOIN '.$CONFIG['TABLE_ALBUMS'].' as a '.
                 'ON a.aid=p.aid '.
-                'WHERE a.category>0'.$pic_filter;
+                'WHERE a.category>=0'.$pic_filter;
         $result = db_query($sql);
         $nbEnr = mysql_fetch_array($result);
         $comment_count = $nbEnr[0];
@@ -228,7 +228,7 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
         $sql = "SELECT sum(hits) FROM {$CONFIG['TABLE_PICTURES']} as p ".
                 'LEFT JOIN '.$CONFIG['TABLE_ALBUMS'].' as a '.
                 'ON p.aid=a.aid '.
-                'WHERE a.category>0'.$pic_filter;
+                'WHERE a.category>=0'.$pic_filter;
         $result = db_query($sql);
         $nbEnr = mysql_fetch_array($result);
         $hit_count = (int)$nbEnr[0];
