@@ -1086,6 +1086,44 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
 }
 
 /**
+ * Return an array containing the system thumbs in a directory
+ */
+function cpg_get_system_thumb_list($search_folder = 'images/')
+{
+        global $CONFIG;
+        static $thumbs = array();
+        
+        $folder = 'images/';
+
+        $thumb_pfx =& $CONFIG['thumb_pfx'];
+        // If thumb array is empty get list from coppermine 'images' folder
+        if ((count($thumbs) == 0) && ($folder == $search_folder)) {
+                $dir = opendir($folder);
+                while (($file = readdir($dir))!==false) {
+                        if (is_file($folder . $file) && strpos($file,$thumb_pfx) === 0) {
+                                // Store filenames in an array
+                                $thumbs[] = array('filename' => $file);
+                        }
+                }
+                closedir($dir);
+                return $thumbs;
+        } elseif ($folder == $search_folder) {
+                // Search folder is the same as coppermine images folder; just return the array
+                return $thumbs;
+        } else {
+                // Search folder is the different; check for files in the given folder
+                $results = array();
+                foreach ($thumbs as $thumb) {
+                        if (is_file($search_folder.$thumb['filename'])) {
+                                $results[] = array('filename' => $thumb['filename']);
+                        }
+                }
+                return $results;
+        }
+}
+
+
+/**
  * Gets data for system thumbs
  */
 function& cpg_get_system_thumb($filename,$user=10001)
