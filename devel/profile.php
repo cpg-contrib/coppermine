@@ -23,7 +23,7 @@ define('PROFILE_PHP', true);
 require('include/init.inc.php');
 
 if (defined('UDB_INTEGRATION')){
-	$cpg_udb->edit_profile(USER_ID);
+	$cpg_udb->edit_profile($_GET['uid']);
 }
 
 $edit_profile_form_param = array(
