@@ -739,6 +739,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Browsable batch-add interface', 'browse_batch_add', 1, 'f=index.htm&as=admin_misc_browsable_batch_add&ae=admin_misc_browsable_batch_add_end'), //cpg1.4.0
   array('Path to custom header include', 'custom_header_path', 0, 'f=index.htm&as=admin_misc_include_path_start&ae=admin_misc_include_path_end'), //cpg1.4.0
   array('Path to custom footer include', 'custom_footer_path', 0, 'f=index.htm&as=admin_misc_include_path_start&ae=admin_misc_include_path_end'), //cpg1.4.0
+array('Enable Report to Admin', 'report_post', 1, 'f=index.htm&as=admin_misc_report_post&ae=admin_misc_report_post_end'),  //cpg1.4.0
 );
 
 // ------------------------------------------------------------------------- //

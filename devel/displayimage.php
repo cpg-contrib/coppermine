@@ -94,7 +94,7 @@ function html_img_nav_menu()
     }
 		
 		//report to moderator button
-    if (USER_CAN_SEND_ECARDS) {
+    if ($CONFIG['report_post']==1) {
 				$report_tgt = "report_file.php?album=$album$cat_link&amp;pid=$pid&amp;pos=$pos";
         //$ecard_title = $lang_img_nav_bar['ecard_title'];
     } else {
