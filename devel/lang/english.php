@@ -17,6 +17,13 @@
 //  the Free Software Foundation; either version 2 of the License, or        //
 //  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
+//  Language name in English: English                                        //
+//  Language name in your lanuage (use unicode): English                     //
+//  Translator name: Gregory Demar                                           //
+//  Translator email (optional): -                                           //
+//  Translator web page : http://www.chezgreg.net/                           //
+// ------------------------------------------------------------------------- //
+
 
 $lang_charset = 'iso-8859-1';
 $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
@@ -102,7 +109,7 @@ $lang_main_menu = array(
         'topn_lnk' => 'Most viewed',
         'toprated_lnk' => 'Top rated',
         'search_lnk' => 'Search',
-		'fav_lnk' => 'My Favorites',
+                'fav_lnk' => 'My Favorites',
 
 );
 
