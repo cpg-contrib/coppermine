@@ -1,4 +1,7 @@
 <?php
+/**
+ * $ID$
+ */
 error_reporting(E_ALL);
 define('IN_COPPERMINE', true);
 define('DISPLAYIMAGE_PHP', true);
@@ -80,8 +83,8 @@ if (isset($_GET['pos'])) {
     }
 }
 
-if (!$picData["pid"]) {
-  cpg_die(INFORMATION, $lang_errors['no_img_to_display']);
+if (empty($picData["pid"])) {
+  cpg_die(INFORMATION, $lang_errors['no_img_to_display'], __FILE__, __LINE__);
 } elseif ($pid == 0) {
   $pid = $picData["pid"];
 }
