@@ -510,7 +510,7 @@ function create_record($encoded_string) {
     do {
 
         // Create a random string by taking the first 8 characters of an MD5 hash of a concatenation of the current UNIX epoch time and the current server process ID.
-        $unique_ID = substr(md5(microtime().getmypid()), 0, 8);
+        $unique_ID = substr(md5(uniqid("")), 0, 8);
 
     } while (in_array($unique_ID, $unique_ID_array));
 
@@ -1195,7 +1195,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
             do {
 
                 // Create a random seed by taking the first 8 characters of an MD5 hash of a concatenation of the current UNIX epoch time and the current server process ID.
-                $seed = substr(md5(microtime().getmypid()), 0, 8);
+                $seed = substr(md5(uniqid("")), 0, 8);
 
                 // Assemble the file path.
                 $path_to_image = './albums/edit/'. $prefix . $seed . '.' . $suffix;
@@ -1633,7 +1633,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
             do {
 
                 // Create a random seed by taking the first 8 characters of an MD5 hash of a concatenation of the current UNIX epoch time and the current server process ID.
-                $seed = substr(md5(microtime().getmypid()), 0, 8);
+                $seed = substr(md5(uniqid("")), 0, 8);
 
                 // Assemble the file path.
                 $path_to_image = './albums/edit/'. $prefix . $seed . '.' . $suffix;
@@ -2418,7 +2418,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
         do {
 
             // Create a random seed by taking the first 8 characters of an MD5 hash of a concatenation of the current UNIX epoch time and the current server process ID.
-            $seed = substr(md5(microtime().getmypid()), 0, 8);
+            $seed = substr(md5(uniqid("")), 0, 8);
 
             // Assemble the file path.
             $path_to_preview = './albums/edit/preview_' . $seed . '.' . $extension;

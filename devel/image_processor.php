@@ -414,7 +414,7 @@ $source_image_type = $source_image_size_and_type[2];
         // Generate the unique name.
 
         do {
-                $seed = substr(md5(microtime().getmypid()), 0, 8);
+                $seed = substr(md5(uniqid("")), 0, 8);
                 $path_to_preview_image = $preview_image_directory . $prefix . $seed . $suffix;
             } while (file_exists($path_to_preview_image));
 
@@ -822,7 +822,7 @@ if (!isset($_POST['degrees'])) {
                 // Generate the unique name.
 
                 do {
-                        $seed = substr(md5(microtime().getmypid()), 0, 8);
+                        $seed = substr(md5(uniqid("")), 0, 8);
                         $path_to_primary_image = $transitory_file_directory . $prefix . $seed . $suffix;
                     } while (file_exists($path_to_primary_image));
 
