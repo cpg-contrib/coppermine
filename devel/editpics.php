@@ -184,7 +184,7 @@ function form_pic_info($text)
 	global $CURRENT_PIC, $THUMB_ROWSPAN, $CONFIG, $lang_byte_units, $lang_editpics_php;
 
 	if (UPLOAD_APPROVAL_MODE) {
-	    $pic_info = $CURRENT_PIC['pwidth'].'x'.$CURRENT_PIC['pheight'].' - '.($CURRENT_PIC['filesize'] >> 10).$lang_byte_units[1];
+	    $pic_info = $CURRENT_PIC['pwidth'].' &times; '.$CURRENT_PIC['pheight'].' - '.($CURRENT_PIC['filesize'] >> 10).$lang_byte_units[1];
 		if($CURRENT_PIC['owner_name']){
 			$pic_info .= ' - <a href ="profile.php?uid='.$CURRENT_PIC['owner_id'].'" target="_blank">'.$CURRENT_PIC['owner_name'].'</a>';
 		}
