@@ -41,6 +41,10 @@ $multibyte_charset = 'utf-8, big5, shift_jis, euc-kr, gb2312';
 
 $charset = $CONFIG['charset'] == 'language file' ? $GLOBALS['lang_charset'] : $CONFIG['charset'];
 
+$sort_array = array('na' => 'filename ASC', 'nd' => 'filename DESC', 'ta'=>'title ASC', 'td'=>'title DESC', 'da' => 'pid ASC', 'dd' => 'pid DESC');
+$sort_code = isset($USER['sort'])? $USER['sort'] : $CONFIG['default_sort_order'];
+$sort_order = isset($sort_array[$sort_code]) ? $sort_array[$sort_code] : $sort_array[$CONFIG['default_sort_order']];
+
 $mb_charset = stristr($multibyte_charset, $charset);
 
 function clean_words(&$entry, $mb_charset)
@@ -89,7 +93,7 @@ if (defined('USE_MYSQL_SEARCH') && $query_all) {
 
     if ($select_columns != '*') $select_columns .= ', title, caption';
 
-    $result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE MATCH(filename, title, caption, keywords) AGAINST ('$search_string' $boolean_mode) AND approved = 'YES' $ALBUM_SET $limit");
+    $result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE MATCH(filename, title, caption, keywords) AGAINST ('$search_string' $boolean_mode) AND approved = 'YES' $ALBUM_SET ORDER BY $sort_order $limit");
 
     $rowset = db_fetch_rowset($result);
 
@@ -143,7 +147,7 @@ if (defined('USE_MYSQL_SEARCH') && $query_all) {
 
                 $sql = "SELECT pid " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE CONCAT(' ', keywords, ' ') LIKE '$match_keyword' ";
 
-                if ($query_all) $sql .= "OR filename LIKE '$match_word' " . "OR title LIKE '$match_word' " . "OR caption LIKE '$match_word' " . "OR user1 LIKE '$match_word' " . "OR user2 LIKE '$match_word' " . "OR user3 LIKE '$match_word' " . "OR user4 LIKE '$match_word' ";
+                if ($query_all) $sql .= "OR filename LIKE '$match_word' " . "OR title LIKE '$match_word' " . "OR caption LIKE '$match_word' " . "OR user1 LIKE '$match_word' " . "OR user2 LIKE '$match_word' " . "OR user3 LIKE '$match_word' " . "OR user4 LIKE '$match_word' ORDER BY $sort_order";
 
                 $result = db_query($sql);
 
@@ -189,7 +193,7 @@ if (defined('USE_MYSQL_SEARCH') && $query_all) {
 
         if ($select_columns != '*') $select_columns .= ', title, caption';
 
-        $sql = "SELECT $select_columns " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE ($pic_set) " . "AND approved = 'YES' " . "$ALBUM_SET $limit";
+        $sql = "SELECT $select_columns " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE ($pic_set) " . "AND approved = 'YES' " . "$ALBUM_SET ORDER BY $sort_order $limit";
 
         $result = db_query($sql);
 
