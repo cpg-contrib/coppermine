@@ -91,11 +91,24 @@ EOT;
     endtable();
 
     echo('<p>&nbsp;</p>');
+    echo('<form action="pluginmgr.php?op=upload" method="post" enctype="multipart/form-data">');
 
     starttable('100%');
 echo <<<EOT
         <tr>
-                <td class="tableh1" width="90%"><b><span class="statlink">{$lang_pluginmgr_php['n_plugins']}</span></b></td>
+                <td class="tableh1" width="90%">
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                            <td align="left">
+                                <b><span class="statlink">{$lang_pluginmgr_php['n_plugins']}</span></b>
+                            </td>
+                            <td align="right">
+                                    <input type="file" size="40" name="plugin" />
+                                    <input type="submit" style="font-size: 12;" value="{$lang_pluginmgr_php['upload']}" />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
                 <td colspan="3" class="tableh1" align="center" width="10%"><b><span class="statlink">{$lang_pluginmgr_php['operation']}</span></b></td>
         </tr>
 EOT;
@@ -140,6 +153,8 @@ EOT;
 EOT;
         }
     }
+    echo('</form>');
+    endtable();
 }
 
 // Delete a directory and its contents
@@ -209,6 +224,34 @@ switch ($op) {
             db_query($sql);
         }
         break;
+    case 'upload':
+        if (is_uploaded_file($_FILES['plugin']['tmp_name'])) {
+            $file =& $_FILES['plugin'];
+            $info = pathinfo($file['name']);
+
+            if (strtolower($info['extension'] != 'zip')) {
+                cpg_die(CRITICAL_ERROR,$lang_pluginmgr_php['not_plugin_package'],__FILE__,__LINE__);
+            }
+            
+            if (!is_dir('./plugins/receive')) {
+                $mask = umask(0);
+                mkdir('./plugins/receive',0655);
+                umask($mask);
+            }
+
+            if (!move_uploaded_file($file['tmp_name'],'./plugins/receive/'.$file['name'])) {
+                cpg_die(CRITICAL_ERROR,$lang_pluginmgr_php['copy_error'],__FILE__,__LINE__);
+            }
+
+            require_once('./include/zip.lib.php');
+            
+            $zip =& new Zip();
+            $zip->Extract('./plugins/receive/'.$file['name'],'./plugins',array(-1));
+
+            unlink('./plugins/receive/'.$file['name']);
+        }
+        break;
+
 }
 
 // Refresh the screen
@@ -239,8 +282,6 @@ echo <<<EOT
         </form>
 
 EOT;
-
-endtable();
 
 echo "<br />\n";
 
