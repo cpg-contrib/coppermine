@@ -199,7 +199,7 @@ function form_pic_info($text)
         } else {
                 $pic_info = sprintf($lang_editpics_php['pic_info_str'], '<input type="text" name="pwidth'.$CURRENT_PIC['pid'].'" value="'.$CURRENT_PIC['pwidth'].'" size="5" maxlength="5" class="textinput" />', '<input type="text" name="pheight'.$CURRENT_PIC['pid'].'" value="'.$CURRENT_PIC['pheight'].'" size="5" maxlength="5" class="textinput" />', ($CURRENT_PIC['filesize'] >> 10), $CURRENT_PIC['hits'], $CURRENT_PIC['votes']);
         }
-    
+
         if (UPLOAD_APPROVAL_MODE) {
                 // Commented out by Omni; Duplicate of above
                 //$pic_info = $CURRENT_PIC['pwidth'].' &times; '.$CURRENT_PIC['pheight'].' - '.($CURRENT_PIC['filesize'] >> 10).$lang_byte_units[1];
@@ -306,8 +306,8 @@ function form_alb_list_box($text, $name)
                 <select name="$name" class="listbox">
 
 EOT;
-                foreach($public_albums_list as $album) { 
-        echo '              <option value="' . $album['aid'] . '"' . ($album['aid'] == $sel_album ? ' selected' : '') . '>' . $album['cat_title'] . "</option>\n"; 
+                foreach($public_albums_list as $album) {
+        echo '              <option value="' . $album['aid'] . '"' . ($album['aid'] == $sel_album ? ' selected' : '') . '>' . $album['cat_title'] . "</option>\n";
     }
                 foreach($user_albums_list as $album){
                         echo '                        <option value="'.$album['aid'].'"'.($album['aid'] == $sel_album ? ' selected' : '').'>* '.$album['title'] . "</option>\n";
@@ -487,6 +487,7 @@ function textCounter(field, maxlimit) {
 </script>
 EOT;
 $mode= (UPLOAD_APPROVAL_MODE==1) ? "&mode=upload_approval":"";
+$cat_l = (isset($actual_cat))? "?cat=$actual_cat" : (isset($cat) ? "?cat=$cat" : '');
 echo <<<EOT
         <tr>
                 <td class="tableb" colspan="3" align="center">
@@ -501,6 +502,9 @@ echo <<<EOT
                                 <option value="75" $s75>75</option>
                                 <option value="100" $s100>100</option>
                         </select>
+                        &nbsp;&nbsp;-&nbsp;&nbsp;<a href="modifyalb.php?album=$album_id" class="admin_menu">{$lang_editpics_php['album_properties']}</a>&nbsp;&nbsp;-&nbsp;&nbsp;
+                        <a href="index.php$cat_l" class="admin_menu">{$lang_editpics_php['parent_category']}</a>&nbsp;&nbsp;-&nbsp;&nbsp;
+                        <a href="thumbnails.php?album=$album_id" class="admin_menu">{$lang_editpics_php['thumbnail_view']}</a>
                 </td>
         </tr>
 
