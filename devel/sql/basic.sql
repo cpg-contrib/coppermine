@@ -89,6 +89,7 @@ INSERT INTO CPG_config VALUES ('thumb_method', 'im');
 INSERT INTO CPG_config VALUES ('thumb_pfx', 'thumb_');
 INSERT INTO CPG_config VALUES ('thumb_width', '100');
 INSERT INTO CPG_config VALUES ('userpics', 'userpics/');
+INSERT INTO CPG_config VALUES ('vanity_block','1');
 #
 # added custom profile
 #

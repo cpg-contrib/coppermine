@@ -627,6 +627,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Enable help-icons (help available in English only)','enable_help',9, 'f=index.htm&as=admin_general_help&ae=admin_general_help_end'),
   array('Enable clickable keywords in search','clickable_keyword_search',14),
   array('Show number of linked files','link_pic_count',1),
+  array('Show the vanity block on themes that are defined as XHTML and CSS compliant','vanity_block',1, 'f=index.htm&as=vanity_block&ae=vanity_block_end'),
 
   'Language, Themes &amp; Charset settings',
   array('Language', 'lang', 5, 'f=index.htm&as=admin_language_language&ae=admin_language_language_end'),

@@ -1057,7 +1057,7 @@ function pagefooter()
 
     $template_vars = array(
         '{CUSTOM_FOOTER}' => $custom_footer,
-        '{VANITY}' => defined('THEME_IS_XHTML10_TRANSITIONAL') ? theme_vanity() : '',
+        '{VANITY}' => (defined('THEME_IS_XHTML10_TRANSITIONAL') && $CONFIG['vanity_block']) ? theme_vanity() : '',
     );
 
     echo template_eval($template_footer, $template_vars);

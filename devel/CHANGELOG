@@ -243,3 +243,4 @@ Link to the charset manager added to update.php - 02 Jan 2005, chtito
 Moved the contents of english.php into english-utf-8.php - 02 Jan 2005, chtito
 Removed all the language-utf-8.files; the language.php files are encoded in utf-8 - 05 Jan 2005, chtito
 Added calendar icon to let users choose date on banning page - 13 January 2005, GauGau
+Added configuration option to disable the vanity block - 16 Jan 2005, Donnoman
