@@ -124,7 +124,8 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use)
     if ($imginfo == null)
         return false;
         // GD can only handle JPG & PNG images
-    if ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && ($method == 'gd1' || $method == 'gd2')) {
+    //if ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && ($method == 'gd1' || $method == 'gd2')) {
+    if ($imginfo[2] == GIS_GIF && $CONFIG['GIF_support'] == 0) {
         $ERROR = $lang_errors['gd_file_type_err'];
         return false;
     }
@@ -210,7 +211,9 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use)
             if (!function_exists('imagecreatetruecolor')) {
                 cpg_die(CRITICAL_ERROR, 'PHP running on your server does not support GD version 2.x, please switch to GD version 1.x on the admin page', __FILE__, __LINE__);
             }
-            if ($imginfo[2] == GIS_JPG)
+            if ($imginfo[2] == GIS_GIF && $CONFIG['GIF_support'] == 1)
+                $src_img = imagecreatefromgif($src_file);
+            elseif ($imginfo[2] == GIS_JPG)
                 $src_img = imagecreatefromjpeg($src_file);
             else
                 $src_img = imagecreatefrompng($src_file);

@@ -54,7 +54,8 @@ function makethumbnail($src_file, $newSize, $method)
         exit;
     }
     // GD can't handle gif images
-    if ($imginfo[2] == GIS_GIF && ($method == 'gd1' || $method == 'gd2')) {
+    //if ($imginfo[2] == GIS_GIF && ($method == 'gd1' || $method == 'gd2')) {
+    if ($imginfo[2] == GIS_GIF && $CONFIG['GIF_support'] == 0) {
         header("Content-type: image/gif");
         fpassthru(fopen(GIF_ICON, 'rb'));
         exit;
@@ -81,7 +82,9 @@ function makethumbnail($src_file, $newSize, $method)
             break;
 
         case "gd2" :
-            if ($imginfo[2] == GIS_JPG)
+            if ($imginfo[2] == GIS_GIF && $CONFIG['GIF_support'] == 1)
+                $src_img = imagecreatefromgif($src_file);
+            elseif ($imginfo[2] == GIS_JPG)
                 $src_img = imagecreatefromjpeg($src_file);
             else
                 $src_img = imagecreatefrompng($src_file);

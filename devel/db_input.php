@@ -334,7 +334,8 @@ switch ($event) {
                 @unlink($uploaded_pic);
                 cpg_die(ERROR, $lang_db_input_php['err_invalid_img'], __FILE__, __LINE__, true);
             // JPEG and PNG only are allowed with GD
-            } elseif ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && ($CONFIG['thumb_method'] == 'gd1' || $CONFIG['thumb_method'] == 'gd2')) {
+            //} elseif ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && ($CONFIG['thumb_method'] == 'gd1' || $CONFIG['thumb_method'] == 'gd2')) {
+            } elseif ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && $CONFIG['GIF_support'] == 0) {
                 @unlink($uploaded_pic);
                 cpg_die(ERROR, $lang_errors['gd_file_type_err'], __FILE__, __LINE__, true);
             // *** NOT NEEDED CHECK DONE BY 'is_image'

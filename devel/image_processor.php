@@ -497,6 +497,8 @@ imagedestroy($image_handle);
 
                 imagepng($destination_image_handle, $path_to_preview_image) or die($lang_image_processor_php['no_write']);
 
+        } elseif ($source_image_type == "1" && $CONFIG['GIF_support'] == 1) {
+                imagegif($destination_image_handle, $path_to_preview_image) or die($lang_image_processor_php['no_write']);
         }
 
 // Destroy $destination_image_handle.

@@ -248,6 +248,12 @@ include_once('include/logger.inc.php');
 // Include media functions
 require 'include/media.functions.inc.php';
 
+// Check for GD GIF Create support
+if ($CONFIG['thumb_method'] == 'im' || function_exists('imagecreatefromgif'))
+  $CONFIG['GIF_support'] = 1;
+else
+  $CONFIG['GIF_support'] = 0;
+
 // Include plugin API
 require('include/plugin_api.inc.php');
 if ($CONFIG['enable_plugins'] == 1) {

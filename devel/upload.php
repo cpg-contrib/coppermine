@@ -1240,7 +1240,8 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                     continue;
 
                 // JPEG and PNG only are allowed with GD. If the image is not allowed for GD,delete it.
-                } elseif ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && ($CONFIG['thumb_method'] == 'gd1' || $CONFIG['thumb_method'] == 'gd2')) {
+                //} elseif ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && ($CONFIG['thumb_method'] == 'gd1' || $CONFIG['thumb_method'] == 'gd2')) {
+                } elseif ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && $CONFIG['GIF_support'] == 0) {
                     @unlink($path_to_image);
 
                     // The file upload has failed -- the image is not allowed with GD.
@@ -1919,7 +1920,8 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                     continue;
 
                 // JPEG and PNG only are allowed with GD. If the image is not allowed for GD,delete it.
-                } elseif ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && ($CONFIG['thumb_method'] == 'gd1' || $CONFIG['thumb_method'] == 'gd2')) {
+                //} elseif ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && ($CONFIG['thumb_method'] == 'gd1' || $CONFIG['thumb_method'] == 'gd2')) {
+                } elseif ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && $CONFIG['GIF_support'] == 0) {
                     @unlink($path_to_image);
 
                     // The file upload has failed -- the image is not allowed with GD.

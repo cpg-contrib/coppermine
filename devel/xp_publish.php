@@ -864,7 +864,8 @@ function process_picture()
         }
 
         // JPEG and PNG only are allowed with GD
-        if ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && ($CONFIG['thumb_method'] == 'gd1' || $CONFIG['thumb_method'] == 'gd2')) {
+        //if ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && ($CONFIG['thumb_method'] == 'gd1' || $CONFIG['thumb_method'] == 'gd2')) {
+        if ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && $CONFIG['GIF_support'] == 0) {
             @unlink($uploaded_pic);
             simple_die(ERROR, $lang_errors['gd_file_type_err'], __FILE__, __LINE__, true);
         }
