@@ -473,7 +473,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 		if($select_columns == '*'){
 			$select_columns = 'p.*';
 		} else {
-			$select_columns = str_replace('pid', 'c.pid', $select_columns).', msg_id, author_id, msg_author, UNIX_TIMESTAMP(msg_date) as msg_date, msg_body';
+			$select_columns = str_replace('pid', 'c.pid', $select_columns).', msg_id, author_id, msg_author, UNIX_TIMESTAMP(msg_date) as msg_date, msg_body, aid';
 		}
 
 		$result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_COMMENTS']} as c, {$CONFIG['TABLE_PICTURES']} as p WHERE approved = 'YES' AND c.pid = p.pid $ALBUM_SET ORDER by msg_id DESC $limit");
@@ -514,7 +514,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 		if($select_columns == '*'){
 			$select_columns = 'p.*';
 		} else {
-			$select_columns = str_replace('pid', 'c.pid', $select_columns).', msg_id, author_id, msg_author, UNIX_TIMESTAMP(msg_date) as msg_date, msg_body';
+			$select_columns = str_replace('pid', 'c.pid', $select_columns).', msg_id, author_id, msg_author, UNIX_TIMESTAMP(msg_date) as msg_date, msg_body, aid';
 		}
 
 		$result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_COMMENTS']} as c, {$CONFIG['TABLE_PICTURES']} as p WHERE approved = 'YES' AND author_id = '$uid' AND c.pid = p.pid $ALBUM_SET ORDER by msg_id DESC $limit");
@@ -546,7 +546,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 		$count = $nbEnr[0];
 		mysql_free_result($result);
 
-		if($select_columns != '*' ) $select_columns .= ', owner_id, owner_name';
+		if($select_columns != '*' ) $select_columns .= ', owner_id, owner_name, aid';
 		
 		$result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $ALBUM_SET ORDER BY pid DESC $limit");
 
@@ -584,7 +584,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 		$count = $nbEnr[0];
 		mysql_free_result($result);
 
-		if($select_columns != '*' ) $select_columns .= ', owner_id, owner_name';
+		if($select_columns != '*' ) $select_columns .= ', owner_id, owner_name, aid';
 		
 		$result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND owner_id = '$uid' $ALBUM_SET ORDER BY pid DESC $limit");
 
@@ -614,7 +614,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 		$count = $nbEnr[0];
 		mysql_free_result($result);
 
-		if($select_columns != '*') $select_columns .= ', hits';
+		if($select_columns != '*') $select_columns .= ', hits, aid';
 
 		$result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES'AND hits > 0 $ALBUM_SET ORDER BY hits DESC $limit");
 		$rowset = db_fetch_rowset($result);
@@ -638,7 +638,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 		$count = $nbEnr[0];
 		mysql_free_result($result);
 
-		if($select_columns != '*') $select_columns .= ', pic_rating, votes';
+		if($select_columns != '*') $select_columns .= ', pic_rating, votes, aid';
 
 		$result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND votes >= '{$CONFIG['min_votes_for_rating']}' $ALBUM_SET ORDER BY ROUND((pic_rating+1)/2000) DESC, votes DESC $limit");
 		$rowset = db_fetch_rowset($result);
@@ -667,7 +667,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 		$count = $nbEnr[0];
 		mysql_free_result($result);
 
-		if($select_columns != '*') $select_columns .= ', UNIX_TIMESTAMP(mtime) as mtime';
+		if($select_columns != '*') $select_columns .= ', UNIX_TIMESTAMP(mtime) as mtime, aid';
 
 		$result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $ALBUM_SET ORDER BY mtime DESC $limit");
 		$rowset = db_fetch_rowset($result);
@@ -690,6 +690,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 		$nbEnr = mysql_fetch_array($result);
 		$pic_count = $nbEnr[0];
 		mysql_free_result($result);
+
+		if($select_columns != '*') $select_columns .= ', aid';
 
 		// if we have more than 1000 pictures, we limit the number of picture returned
 		// by the SELECT statement as ORDER BY RAND() is time consuming
