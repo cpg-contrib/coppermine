@@ -113,7 +113,7 @@ $lang_gallery_admin_menu = array(
         'groups_lnk' => 'Groups',
         'comments_lnk' => 'Comments',
         'searchnew_lnk' => 'Batch add pictures',
-        'util_lnk' => 'Resize pictures',
+	'util_lnk' => 'Resize pictures'
 );
 
 $lang_user_admin_menu = array(
@@ -323,6 +323,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Gallery name', 'gallery_name', 0),
         array('Gallery description', 'gallery_description', 0),
         array('Gallery administrator email', 'gallery_admin_email', 0),
+	array('Email notification of comments, send at administrator email ', 'comment_email_notification', 1),
         array('Target address for the \'See more pictures\' link in e-cards', 'ecards_more_pic_target', 0),
         array('Language', 'lang', 5),
         array('Theme', 'theme', 6),
@@ -334,7 +335,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Number of columns for the album list', 'album_list_cols', 0),
         array('Size of thumbnails in pixels', 'alb_list_thumb_size', 0),
         array('The content of the main page', 'main_page_layout', 0),
-            array('Show first level album thumbnails in categories','first_level',1),
+        array('Show first level album thumbnails in categories','first_level',1),
 
         'Thumbnail view',
         array('Number of columns on thumbnail page', 'thumbcols', 0),
@@ -434,6 +435,7 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
         'no_flood' => 'Sorry but you are already the author of the last comment posted for this picture<br /><br />Edit the comment you have posted if you want to modify it',
         'redirect_msg' => 'You are being redirected.<br /><br /><br />Click \'CONTINUE\' if the page does not refresh automatically',
         'upl_success' => 'Your picture was successfully added',
+	'email_comment_subject' =>'New comment added to picture'
 );
 
 // ------------------------------------------------------------------------- //
