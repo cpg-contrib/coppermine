@@ -20,13 +20,30 @@ $Id$
 */
 
 define("EXIF_CACHE_FILE","exif.dat");
-require("include/exifReader.inc.php");
+require("include/exif.php");
 
 function exif_parse_file($filename)
-{        global $CONFIG;
+{       
+        global $CONFIG, $lang_picinfo;
+        
+        //String containing all the available exif tags.
+        $exif_info = "AFFocusPosition|Adapter|ColorMode|ColorSpace|ComponentsConfiguration|CompressedBitsPerPixel|Contrast|CustomerRender|DateTimeOriginal|DateTimedigitized|DigitalZoom|DigitalZoomRatio|ExifImageHeight|ExifImageWidth|ExifInteroperabilityOffset|ExifOffset|ExifVersion|ExposureBiasValue|ExposureMode|ExposureProgram|ExposureTime|FNumber|FileSource|Flash|FlashPixVersion|FlashSetting|FocalLength|FocusMode|GainControl|IFD1Offset|ISOSelection|ISOSetting|ISOSpeedRatings|ImageAdjustment|ImageDescription|ImageSharpening|LightSource|Make|ManualFocusDistance|MaxApertureValue|MeteringMode|Model|NoiseReduction|Orientation|Quality|ResolutionUnit|Saturation|SceneCaptureMode|SceneType|Sharpness|Software|WhiteBalance|YCbCrPositioning|xResolution|yResolution";
+
         if (!is_readable($filename)) return false;
+       
         $size = @getimagesize($filename);
         if ($size[2] != 2) return false; // Not a JPEG file
+
+        $exifRawData = explode ("|",$exif_info);
+        $exifCurrentData = explode("|",$CONFIG['show_which_exif']);
+        
+        //Let's build the string of current exif values to be shown
+        $showExifStr = "";
+        foreach ($exifRawData as $key => $val) {
+          if ($exifCurrentData[$key] == 1) {
+            $showExifStr .= "|".$val;
+          }
+        }
 
         //Check if we have the data of the said file in the table
         $sql = "SELECT * FROM {$CONFIG['TABLE_EXIF']} ".
@@ -34,56 +51,44 @@ function exif_parse_file($filename)
 
         $result = db_query($sql);
 
-        if (mysql_num_rows($result)){
+        if (mysql_num_rows($result) > 0){
                 $row = mysql_fetch_array($result);
                 mysql_free_result($result);
-                $exifParsed = unserialize($row["exifData"]);
-                return $exifParsed;
+                $exifRawData = unserialize($row["exifData"]);
+        } else {
+          // No data in the table - read it from the image file
+          $exifRawData = read_exif_data_raw($filename);	
+          // Insert it into table for future reference
+          $sql = "INSERT INTO {$CONFIG['TABLE_EXIF']} ".
+                    "VALUES ('$filename', '".addslashes(serialize($exifRawData))."')";
+  
+          $result = db_query($sql);
         }
+        
+        $exif = array();
 
-        // No data in the table - read it from the image file
-        $exifObj = new phpExifReader($filename);
-        $exif = $exifObj->getImageInfo();
-
+        if (is_array($exifRawData['IFD0'])) {
+          $exif = array_merge ($exif,$exifRawData['IFD0']);
+        }
+        if (is_array($exifRawData['SubIFD'])) {
+          $exif = array_merge ($exif,$exifRawData['SubIFD']);
+        }
+        if (is_array($exifRawData['SubIFD']['MakerNote'])) {
+          $exif = array_merge ($exif,$exifRawData['SubIFD']['MakerNote']);
+        }
+        
+        $exif['IFD1OffSet'] = $exifRawData['IFD1OffSet'];
+        
         $exifParsed = array();
-
-        $Make = isset($exif['make']);
-        $Model = isset($exif['model']);
-
-        if (isset($exif['make']) && isset($exif['model'])){
-                $exifParsed['Camera'] = trim($exif['make'])." - ".trim($exif['model']);
+        
+        foreach ($exif as $key => $val) {
+          if (strpos($showExifStr,"|".$key) && isset($val)){
+                $exifParsed[$lang_picinfo[$key]] = $val;
+                //$exifParsed[$key] = $val;
+          }
         }
 
-        if (isset($exif['DateTime'])){
-                $exifParsed['DateTaken'] = $exif['DateTime'];
-        }
-
-        if (isset($exif['fnumber'])){
-                $exifParsed['Aperture'] = $exif['fnumber'];
-        }
-
-        if (isset($exif['exposureTime'])){
-                $exifParsed['ExposureTime'] = $exif['exposureTime'];
-        }
-
-        if (isset($exif['focalLength'])){
-                $exifParsed['FocalLength'] = $exif['focalLength'];
-        }
-		
-        if (isset($exif['isoEquiv'])){
-                $exifParsed['ISO'] = $exif['isoEquiv'];
-        }
-		
-        if (isset($exif['exifComment'])){
-                $comment = $exif['exifComment'];
-                $exifParsed['Comment'] = $comment; // eregi_replace("ASCII"," ", $comment);
-        }
-
-        // Insert it into table for future reference
-        $sql = "INSERT INTO {$CONFIG['TABLE_EXIF']} ".
-                  "VALUES ('$filename', '".addslashes(serialize($exifParsed))."')";
-
-        $result = db_query($sql);
+        ksort($exifParsed);
 
         return $exifParsed;
 }

@@ -89,7 +89,7 @@ class imageObject{
            //Don't clutter with old images
            @unlink($this->directory.$this->filename);
            //Create a new ImageObject
-           return new imageObject($this->directory,$unique_str,&$imgnew);
+           return new imageObject($this->directory,$unique_str,$imgnew);
          }
 
          function createImage($new_w,$new_h)
