@@ -419,7 +419,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('File information is visible by default', 'display_pic_info', 1), //cpg1.3.0
   array('Filter bad words in comments', 'filter_bad_words', 1),
   array('Allow smiles in comments', 'enable_smilies', 1),
-  array('Allow several consecutive comments on one pic from the same user (disable flood protection)', 'disable_comment_flood_protect', 1), //cpg1.3.0
+  array('Allow several consecutive comments on one file from the same user (disable flood protection)', 'disable_comment_flood_protect', 1), //cpg1.3.0
   array('Max length for an image description', 'max_img_desc_length', 0),
   array('Max number of characters in a word', 'max_com_wlength', 0),
   array('Max number of lines in a comment', 'max_com_lines', 0),
@@ -482,7 +482,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Enable debug mode', 'debug_mode', 9), //cpg1.3.0
   array('Display notices in debug mode', 'debug_notice', 1), //cpg1.3.0
 
-  '<br /><div align="left"><a name="notice1"></a>(*) This settings mustn\'t be changed if you already have pictures in your database.<br />
+  '<br /><div align="left"><a name="notice1"></a>(*) This settings mustn\'t be changed if you already have files in your database.<br />
   <a name="notice2"></a>(**) When changing this setting, only the files that are added from that point on are affected, so it is advisable that this setting must not be changed if there are already files in the gallery. You can, however, apply the changes to the existing files with the &quot;<a href="util.php">admin tools</a> (resize pictures)&quot; utility from the admin menu.</div><br />', //cpg1.3.0
 );
 
@@ -719,14 +719,14 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   array('What if I forgot my password?', 'If this site has a &quot;Forgot password&quot; link then use it. Other than that contact the site administrator for a new password.', 'offline', 0), //cpg1.3.0
   //array('What if I changed my email address?', 'Just simply login and change your email address through &quot;Profile&quot;', 'offline', 0), //cpg1.3.0
   array('How do I save a picture to &quot;My Favorites&quot;?', 'Click on a picture and click on the &quot;picture info&quot; link (<img src="images/info.gif" width="16" height="16" border="0" alt="Picture information" />); scroll down to the picture information set and click &quot;Add to fav&quot;.<br />The administrator may have the &quot;picture information&quot; on by default.<br />IMPORTANT:Cookies must be enabled and the cookie from this site must not be deleted.', 'offline', 0), //cpg1.3.0
-  array('How do I rate a picture?', 'Click on a thumbnailed picture and go to the bottom and choose a rating.', 'offline', 0), //cpg1.3.0
-  array('How do I post a comment for a picture?', 'Click on a thumbnailed picture and go to the bottom and post a comment.', 'offline', 0), //cpg1.3.0
-array('How do I upload a picture?', 'Go to &quot;Upload Picture&quot;and select the album that you want to upload to, click &quot;Browse&quot; and find the picture to upload and click &quot;open&quot; (add a title and description if you want to) and click &quot;Submit&quot;', 'allow_private_albums', 0), //cpg1.3.0
-  array('Where do I upload a picture to?', 'You will be able to upload a picture to one of your albums in &quot;My Gallery&quot;. The Administrator may also allow you to upload a picture to one or more of the albums in the Main Gallery.', 'allow_private_albums', 0), //cpg1.3.0
-  array('What type and size of a picture can I upload?', 'The size and type (jpg,gif,..etc.) is up to the administrator.', 'offline', 0), //cpg1.3.0
+  array('How do I rate a file?', 'Click on a thumbnail and go to the bottom and choose a rating.', 'offline', 0), //cpg1.3.0
+  array('How do I post a comment for a picture?', 'Click on a thumbnail and go to the bottom and post a comment.', 'offline', 0), //cpg1.3.0
+array('How do I upload a file?', 'Go to &quot;Upload&quot;and select the album that you want to upload to, click &quot;Browse&quot; and find the file to upload and click &quot;open&quot; (add a title and description if you want to) and click &quot;Submit&quot;', 'allow_private_albums', 0), //cpg1.3.0
+  array('Where do I upload a picture to?', 'You will be able to upload a file to one of your albums in &quot;My Gallery&quot;. The Administrator may also allow you to upload a file to one or more of the albums in the Main Gallery.', 'allow_private_albums', 0), //cpg1.3.0
+  array('What type and size of a file can I upload?', 'The size and type (jpg, png, etc.) is up to the administrator.', 'offline', 0), //cpg1.3.0
   array('What is &quot;My Gallery&quot;?', '&quot;My Gallery&quot; is a personal gallery that the user can upload to and manage.', 'allow_private_albums', 0), //cpg1.3.0
-  array('How do I create,rename or delete an album in &quot;My Gallery&quot;?', 'You should already be in &quot;Admin-Mode&quot;<br />Go to &quot;Create/Order My Albums&quot;and click &quot;New&quot;. Change &quot;New Album&quot; to your desired name.<br />You can also rename any of the albums in your gallery.<br />Click &quot;Apply Modifications&quot;.', 'allow_private_albums', 0), //cpg1.3.0
-  array('How can I modify and restrict users from viewing my albums?', 'You should already be in &quot;Admin. Mode&quot;<br />Go to &quot;Modify My Albums. On the &quot;Update Album&quot; bar, select the album that you want to modify.<br />Here, you can change the name, description, thumbnail picture, restrict viewing and comment/rating permissions.<br />Click &quot;Update Album&quot;.', 'allow_private_albums', 0), //cpg1.3.0
+  array('How do I create, rename or delete an album in &quot;My Gallery&quot;?', 'You should already be in &quot;Admin-Mode&quot;<br />Go to &quot;Create/Order My Albums&quot;and click &quot;New&quot;. Change &quot;New Album&quot; to your desired name.<br />You can also rename any of the albums in your gallery.<br />Click &quot;Apply Modifications&quot;.', 'allow_private_albums', 0), //cpg1.3.0
+  array('How can I modify and restrict users from viewing my albums?', 'You should already be in &quot;Admin Mode&quot;<br />Go to &quot;Modify My Albums. On the &quot;Update Album&quot; bar, select the album that you want to modify.<br />Here, you can change the name, description, thumbnail picture, restrict viewing and comment/rating permissions.<br />Click &quot;Update Album&quot;.', 'allow_private_albums', 0), //cpg1.3.0
   array('How can I view other users\' galleries?', 'Go to &quot;Album List&quot; and select &quot;User Galleries&quot;.', 'allow_private_albums', 0), //cpg1.3.0
   array('What are cookies?', 'Cookies are a plain text piece of data that is sent from a website and is put on to your computer.<br />Cookies usually allow a user to leave and return to the site without having to login again and other various chores.', 'offline', 0), //cpg1.3.0
   array('Where can I get this program for my site?', 'Coppermine is a free Multimedia Gallery, released under GNU GPL. It is full of features and has been ported to various platforms. Visit the <a href="http://coppermine.sf.net/">Coppermine Home Page</a> to find out more or download it.', 'offline', 0), //cpg1.3.0
@@ -735,12 +735,12 @@ array('How do I upload a picture?', 'Go to &quot;Upload Picture&quot;and select 
   array('What\'s &quot;Album List&quot;?', ''This will show you the entire category you are currently in, with a link to each album. If you are not in a category, it will show you the entire gallery with a link to each category. Thumbnails may be a link to the category.', 'offline', 0), //cpg1.3.0
   array('What\'s &quot;My Gallery&quot;?', 'This feature lets a user create their own gallery and add,delete or modify albums as well as upload to them.', 'allow_private_albums', 0), //cpg1.3.0
   array('What\'s the difference between &quot;Admin Mode&quot; and &quot;User Mode&quot;?', 'This feature, when in admin-mode, allows a user to modify their gallery (as well as others if allowed by the administrator).', 'allow_private_albums', 0), //cpg1.3.0
-  array('What\'s &quot;Upload Picture&quot;?', 'This feature allows a user to upload a picture (size and type is set by the site administrator) to a gallery selected by either you or the administrator.', 'allow_private_albums', 0), //cpg1.3.0
+  array('What\'s &quot;Upload Picture&quot;?', 'This feature allows a user to upload a file (size and type is set by the site administrator) to a gallery selected by either you or the administrator.', 'allow_private_albums', 0), //cpg1.3.0
   array('What\'s &quot;Last Uploads&quot;?', 'This feature shows the last uploads to the site.', 'offline', 0), //cpg1.3.0
-  array('What\'s &quot;Last Comments&quot;?', 'This feature shows the last comments along with the picture posted by users.', 'offline', 0), //cpg1.3.0
-  array('What\'s &quot;Most Viewed&quot;?', 'This feature shows the most viewed pictures by all users (whether logged in or not).', 'offline', 0), //cpg1.3.0
-  array('What\'s &quot;Top Rated&quot;?', 'This feature shows the top rated pictures rated by the users, showing the average rating (e.g: five users each gave a <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />: the picture would have an average rating of <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> ;Five users rated the picture from 1 to 5 (1,2,3,4,5) would result in an average <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> .)<br />The ratings go from <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> (best) to <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" /> (worst).', 'offline', 0), //cpg1.3.0
-  array('What\'s &quot;My Favorites&quot;?', 'This feature will let a user store a favorite picture in the cookie that was sent to your computer.', 'offline', 0), //cpg1.3.0
+  array('What\'s &quot;Last Comments&quot;?', 'This feature shows the last comments along with the files posted by users.', 'offline', 0), //cpg1.3.0
+  array('What\'s &quot;Most Viewed&quot;?', 'This feature shows the most viewed files by all users (whether logged in or not).', 'offline', 0), //cpg1.3.0
+  array('What\'s &quot;Top Rated&quot;?', 'This feature shows the top rated files rated by the users, showing the average rating (e.g: five users each gave a <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />: the file would have an average rating of <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> ;Five users rated the file from 1 to 5 (1,2,3,4,5) would result in an average <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> .)<br />The ratings go from <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> (best) to <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" /> (worst).', 'offline', 0), //cpg1.3.0
+  array('What\'s &quot;My Favorites&quot;?', 'This feature will let a user store a favorite file in the cookie that was sent to your computer.', 'offline', 0), //cpg1.3.0
 );
 
 
@@ -880,9 +880,9 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'alb_thumb' => 'Album thumbnail',
   'alb_perm' => 'Permissions for this album',
   'can_view' => 'Album can be viewed by',
-  'can_upload' => 'Visitors can upload pictures',
+  'can_upload' => 'Visitors can upload files',
   'can_post_comments' => 'Visitors can post comments',
-  'can_rate' => 'Visitors can rate pictures',
+  'can_rate' => 'Visitors can rate files',
   'user_gal' => 'User Gallery',
   'no_cat' => '* No category *',
   'alb_empty' => 'Album is empty',
@@ -903,7 +903,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
   'already_rated' => 'Sorry but you have already rated this file', //cpg1.3.0
   'rate_ok' => 'Your vote was accepted',
-  'forbidden' => 'You can not rate your own pictures.', //cpg1.3.0
+  'forbidden' => 'You can not rate your own files.', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -1012,7 +1012,7 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCH_PHP')) $lang_search_php = array(
-  0 => 'Search the image collection',
+  0 => 'Search the file collection',
 );
 
 // ------------------------------------------------------------------------- //
@@ -1029,7 +1029,7 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'change_perm' => 'the script can\'t write in this directory, you need to change its mode to 755 or 777 before trying to add the files !', //cpg1.3.0
   'target_album' => '<b>Put files of &quot;</b>%s<b>&quot; into </b>%s', //cpg1.3.0
   'folder' => 'Folder',
-  'image' => 'Image',
+  'image' => 'file',
   'album' => 'Album',
   'result' => 'Result',
   'dir_ro' => 'Not writable. ',
@@ -1172,8 +1172,8 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'group_d' => 'Group descending',
   'reg_a' => 'Reg date ascending',
   'reg_d' => 'Reg date descending',
-  'pic_a' => 'Pic count ascending',
-  'pic_d' => 'Pic count descending',
+  'pic_a' => 'File count ascending',
+  'pic_d' => 'File count descending',
   'disku_a' => 'Disk usage ascending',
   'disku_d' => 'Disk usage descending',
   'lv_a' => 'Last visit ascending', //cpg1.3.0
