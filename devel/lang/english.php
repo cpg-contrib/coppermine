@@ -435,12 +435,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Max size for uploaded files (KB)', 'max_upl_size', 0),
         array('Max width or height for uploaded pictures/videos (pixels)', 'max_upl_width_height', 0),
 
-        'Custom fields for image description (leave blank if unused)',
-        array('Field 1 name', 'user_field1_name', 0),
-        array('Field 2 name', 'user_field2_name', 0),
-        array('Field 3 name', 'user_field3_name', 0),
-        array('Field 4 name', 'user_field4_name', 0),
-
         'Files and thumbnails advanced settings',
         array('Show private album Icon to unlogged user','show_private',1),
         array('Characters forbidden in filenames', 'forbiden_fname_char',0),
