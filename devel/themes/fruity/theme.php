@@ -1891,7 +1891,7 @@ function theme_html_comments($pid)
             '{EDIT_TITLE}' => &$lang_display_comments['edit_title'],
             '{CONFIRM_DELETE}' => &$lang_display_comments['confirm_delete'],
             '{MSG_DATE}' => localised_date($row['msg_date'], $comment_date_fmt),
-            '{MSG_BODY}' => &$comment_body,
+            '{MSG_BODY}' => bb_decode($comment_body),
             '{MSG_BODY_RAW}' => $row['msg_body'],
             '{OK}' => &$lang_display_comments['OK'],
             '{SMILIES}' => $smilies,
