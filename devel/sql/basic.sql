@@ -41,7 +41,7 @@ INSERT INTO CPG_config VALUES ('allow_unlogged_access', '1');
 INSERT INTO CPG_config VALUES ('allow_duplicate_emails_addr', '0');
 INSERT INTO CPG_config VALUES ('caption_in_thumbview', '1');
 INSERT INTO CPG_config VALUES ('views_in_thumbview', '1');
-INSERT INTO CPG_config VALUES ('charset', 'language file');
+INSERT INTO CPG_config VALUES ('charset', 'utf-8');
 INSERT INTO CPG_config VALUES ('cookie_name', 'cpg140');
 INSERT INTO CPG_config VALUES ('cookie_path', '/');
 INSERT INTO CPG_config VALUES ('debug_mode', '0');
