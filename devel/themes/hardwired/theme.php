@@ -20,12 +20,13 @@
 // ------------------------------------------------------------------------- //
 // This theme has had redundant CORE items removed                           //
 // ------------------------------------------------------------------------- //
-
 define('THEME_HAS_RATING_GRAPHICS', 1);
 define('THEME_HAS_NAVBAR_GRAPHICS', 1);
+define('THEME_IS_XHTML10_TRANSITIONAL',1);  // Remove this if you edit this template until
+                                            // you have validated it. See docs/theme.htm.
 
 // HTML template for main menu
-$template_main_menu1 = <<<EOT
+$template_sys_menu = <<<EOT
 
                         <table border="0" cellpadding="0" cellspacing="0">
                                 <tr>
@@ -113,7 +114,7 @@ $template_main_menu1 = <<<EOT
                         </table>
 
 EOT;
-$template_main_menu2 = <<<EOT
+$template_sub_menu = <<<EOT
 
                         <table border="0" cellpadding="0" cellspacing="0">
                                 <tr>
@@ -195,145 +196,5 @@ $template_gallery_admin_menu = <<<EOT
 EOT;
 
 
-function pageheader($section, $meta = '')
-{
-    global $CONFIG, $THEME_DIR;
-    global $template_header, $lang_charset, $lang_text_dir;
-
-    $custom_header = cpg_get_custom_include($CONFIG['custom_header_path']);
-
-    header('P3P: CP="CAO DSP COR CURa ADMa DEVa OUR IND PHY ONL UNI COM NAV INT DEM PRE"');
-    user_save_profile();
-
-    $template_vars = array('{LANG_DIR}' => $lang_text_dir,
-        '{TITLE}' => $CONFIG['gallery_name'] . ' - ' . $section,
-        '{CHARSET}' => $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'],
-        '{META}' => $meta,
-        '{GAL_NAME}' => $CONFIG['gallery_name'],
-        '{GAL_DESCRIPTION}' => $CONFIG['gallery_description'],
-        '{MAIN_MENU1}' => theme_main_menu1(),
-        '{MAIN_MENU2}' => theme_main_menu2(),
-        '{ADMIN_MENU}' => theme_admin_mode_menu(),
-        '{CUSTOM_HEADER}' => $custom_header,
-        );
-
-    echo template_eval($template_header, $template_vars);
-}
-
-function theme_main_menu1()
-{
-    global $CONFIG, $album, $actual_cat, $cat, $REFERER;
-    global $lang_main_menu, $template_main_menu1;
-    static $main_menu = '';
-    if ($main_menu != '') return $main_menu;
-    $album_l = isset($album) ? "?album=$album" : '';
-    $cat_l = (isset($actual_cat))? "?cat=$actual_cat" : (isset($cat) ? "?cat=$cat" : '');
-    $my_gallery_id = FIRST_USER_CAT + USER_ID;
-    $template_main_menu = &$template_main_menu1;
-    if (USER_ID) {
-        template_extract_block($template_main_menu, 'login');
-    } else {
-        template_extract_block($template_main_menu, 'logout');
-        template_extract_block($template_main_menu, 'my_profile');
-    }
-    if (!USER_IS_ADMIN) {
-        template_extract_block($template_main_menu, 'enter_admin_mode');
-        template_extract_block($template_main_menu, 'leave_admin_mode');
-    } else {
-        if (GALLERY_ADMIN_MODE) {
-            template_extract_block($template_main_menu, 'enter_admin_mode');
-        } else {
-            template_extract_block($template_main_menu, 'leave_admin_mode');
-        }
-    }
-    if (!USER_CAN_CREATE_ALBUMS) {
-        template_extract_block($template_main_menu, 'my_gallery');
-    }
-    if (USER_CAN_CREATE_ALBUMS) {
-        template_extract_block($template_main_menu, 'my_profile');
-    }
-    if (!USER_CAN_UPLOAD_PICTURES) {
-        template_extract_block($template_main_menu, 'upload_pic');
-    }
-    if (USER_ID || !$CONFIG['allow_user_registration']) {
-        template_extract_block($template_main_menu, 'register');
-    }
-
-    if (!USER_ID || !$CONFIG['allow_memberlist']) {
-        template_extract_block($template_main_menu, 'allow_memberlist');
-    }
-
-    if (!$CONFIG['display_faq']) {
-        template_extract_block($template_main_menu, 'faq');
-    }
-
-    $param = array('{MY_GAL_TGT}' => "index.php?cat=$my_gallery_id",
-        '{MY_GAL_TITLE}' => $lang_main_menu['my_gal_title'],
-        '{MY_GAL_LNK}' => $lang_main_menu['my_gal_lnk'],
-        '{MEMBERLIST_TGT}' => "usermgr.php",
-        '{MEMBERLIST_TITLE}' => $lang_main_menu['memberlist_title'],
-        '{MEMBERLIST_LNK}' => $lang_main_menu['memberlist_lnk'],
-        '{MY_PROF_TGT}' => "profile.php?op=edit_profile",
-        '{MY_PROF_TITLE}' => $lang_main_menu['my_prof_title'],
-        '{MY_PROF_LNK}' => $lang_main_menu['my_prof_lnk'],
-        '{FAQ_TGT}' => "faq.php",
-        '{FAQ_TITLE}' => $lang_main_menu['faq_title'],
-        '{FAQ_LNK}' => $lang_main_menu['faq_lnk'],
-        '{ADM_MODE_TGT}' => "mode.php?admin_mode=1&amp;referer=$REFERER",
-        '{ADM_MODE_TITLE}' => $lang_main_menu['adm_mode_title'],
-        '{ADM_MODE_LNK}' => $lang_main_menu['adm_mode_lnk'],
-        '{USR_MODE_TGT}' => "mode.php?admin_mode=0&amp;referer=$REFERER",
-        '{USR_MODE_TITLE}' => $lang_main_menu['usr_mode_title'],
-        '{USR_MODE_LNK}' => $lang_main_menu['usr_mode_lnk'],
-        '{UPL_PIC_TGT}' => "upload.php",
-        '{UPL_PIC_TITLE}' => $lang_main_menu['upload_pic_title'],
-        '{UPL_PIC_LNK}' => $lang_main_menu['upload_pic_lnk'],
-        '{REGISTER_TGT}' => "register.php",
-        '{REGISTER_TITLE}' => $lang_main_menu['register_title'],
-        '{REGISTER_LNK}' => $lang_main_menu['register_lnk'],
-        '{LOGIN_TGT}' => "login.php?referer=$REFERER",
-        '{LOGIN_TITLE}' => $lang_main_menu['login_title'],
-        '{LOGIN_LNK}' => $lang_main_menu['login_lnk'],
-        '{LOGOUT_TGT}' => "logout.php?referer=$REFERER",
-        '{LOGOUT_TITLE}' => $lang_main_menu['logout_title'],
-        '{LOGOUT_LNK}' => $lang_main_menu['logout_lnk'] . " [" . USER_NAME . "]",
-        );
-    $main_menu = template_eval($template_main_menu, $param);
-    return $main_menu;
-}
-function theme_main_menu2()
-{
-    global $CONFIG, $album, $actual_cat, $cat, $REFERER;
-    global $lang_main_menu, $template_main_menu2;
-    static $main_menu = '';
-    if ($main_menu != '') return $main_menu;
-    $cat_l = isset($actual_cat) ? "?cat=$actual_cat" : (isset($cat) ? "?cat=$cat" : '');
-    $cat_l2 = isset($cat) ? "&amp;cat=$cat" : '';
-    $template_main_menu = &$template_main_menu2;
-    $param = array('{ALB_LIST_TGT}' => "index.php$cat_l",
-        '{ALB_LIST_TITLE}' => $lang_main_menu['alb_list_title'],
-        '{ALB_LIST_LNK}' => $lang_main_menu['alb_list_lnk'],
-        '{LASTUP_TGT}' => "thumbnails.php?album=lastup$cat_l2",
-        '{LASTUP_TITLE}' => $lang_main_menu['lastup_title'],
-        '{LASTUP_LNK}' => $lang_main_menu['lastup_lnk'],
-        '{LASTCOM_TGT}' => "thumbnails.php?album=lastcom$cat_l2",
-        '{LASTCOM_TITLE}' => $lang_main_menu['lastcom_title'],
-        '{LASTCOM_LNK}' => $lang_main_menu['lastcom_lnk'],
-        '{TOPN_TGT}' => "thumbnails.php?album=topn$cat_l2",
-        '{TOPN_TITLE}' => $lang_main_menu['topn_title'],
-        '{TOPN_LNK}' => $lang_main_menu['topn_lnk'],
-        '{TOPRATED_TGT}' => "thumbnails.php?album=toprated$cat_l2",
-        '{TOPRATED_TITLE}' => $lang_main_menu['toprated_title'],
-        '{TOPRATED_LNK}' => $lang_main_menu['toprated_lnk'],
-        '{FAV_TGT}' => "thumbnails.php?album=favpics",
-        '{FAV_TITLE}' => $lang_main_menu['fav_title'],
-        '{FAV_LNK}' => $lang_main_menu['fav_lnk'],
-        '{SEARCH_TGT}' => "search.php",
-        '{SEARCH_TITLE}' => $lang_main_menu['search_title'],
-        '{SEARCH_LNK}' => $lang_main_menu['search_lnk'],
-        );
-    $main_menu = template_eval($template_main_menu, $param);
-    return $main_menu;
-}
 
 ?>
