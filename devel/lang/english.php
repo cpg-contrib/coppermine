@@ -456,6 +456,7 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
   'notice1' => '(*) These settings mustn\'t be changed if you already have files in your database.', //cpg1.4.0 - (relocated)
   'notice2' => '(**) When changing this setting, only the files that are added from that point on are affected, so it is advisable that this setting must not be changed if there are already files in the gallery. You can, however, apply the changes to the existing files with the &quot;<a href="util.php">admin tools</a> (resize pictures)&quot; utility from the admin menu.', //cpg1.4.0 - (relocated)
   'notice3' => '(***) All log files are written in english.', //cpg1.4.0 - (relocated)
+  'bbs_disabled' => 'Function disabled when using bb integration',
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(

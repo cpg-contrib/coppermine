@@ -77,7 +77,7 @@ EOT;
 
 function form_input($text, $name, $help = '')
 {
-    global $CONFIG, $disabled_selected;
+    global $CONFIG;
 
     $value = $CONFIG[$name];
     $help = cpg_display_help($help);
@@ -89,7 +89,7 @@ function form_input($text, $name, $help = '')
                                 $text
                         </td>
                 <td width="40%" class="tableb" valign="top">
-                    <input type="text" class="textinput" style="width: 100%" name="$name" value="$value" $disabled_selected/>
+                    <input type="text" class="textinput" style="width: 100%" name="$name" value="$value"/>
                         </td>
                         <td class="tableb" width="10%">
                                 $help
@@ -101,7 +101,7 @@ EOT;
 
 function form_yes_no($text, $name, $help = '')
 {
-    global $CONFIG, $lang_yes, $lang_no, $disabled_selected;
+    global $CONFIG, $lang_yes, $lang_no;
     $help = cpg_display_help($help);
 
     $value = $CONFIG[$name];
@@ -114,9 +114,9 @@ function form_yes_no($text, $name, $help = '')
                                 $text
                         </td>
                 <td class="tableb" valign="top" width="50%">
-                                <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected $disabled_selected/><label for="{$name}1" class="clickable_option">$lang_yes</label>
+                                <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected/><label for="{$name}1" class="clickable_option">$lang_yes</label>
                                 &nbsp;&nbsp;
-                                <input type="radio" id="{$name}0" name="$name" value="0" $no_selected $disabled_selected/><label for="{$name}0" class="clickable_option">$lang_no</label>
+                                <input type="radio" id="{$name}0" name="$name" value="0" $no_selected/><label for="{$name}0" class="clickable_option">$lang_no</label>
                         </td>
                         <td class="tableb" width="10%">
                                 $help
@@ -578,14 +578,35 @@ function form_keywords_yes_no($text, $name, $help = '')
 EOT;
 }
 
+function form_disabled($text, $name, $help = '')
+{
+	global $lang_config_php;
+	$help = cpg_display_help($help);
+	
+    echo <<<EOT
+                <tr>
+                        <td width="60%" class="tableb">
+                                $text
+                        </td>
+                <td width="40%" class="tableb" valign="top">
+                    {$lang_config_php['bbs_disabled']}
+                        </td>
+                        <td class="tableb" width="10%">
+                                $help
+                        </td>
+        </tr>
+
+EOT;
+}
+
 function create_form(&$data)
 {
-        global $sn1, $sn2, $sn3, $options_to_disable, $disabled_selected;
+        global $sn1, $sn2, $sn3, $options_to_disable;
 
     foreach($data as $element) {
         if ((is_array($element))) {
                 $element[3] = (isset($element[3])) ? $element[3] : '';
-                $disabled_selected = (defined('UDB_INTEGRATION') AND in_array($element[1],$options_to_disable)) ? 'disabled="disabled"' : 'nah';
+                if (defined('UDB_INTEGRATION') AND in_array($element[1],$options_to_disable)) $element[2] = 15;
                 $sn1 = max($sn1,(strpos($element[0],'<a href="#notice1"')));
                 $sn2 = max($sn2,(strpos($element[0],'<a href="#notice2"')));
                 $sn3 = max($sn3,(strpos($element[0],'<a href="#notice3"')));
@@ -638,6 +659,9 @@ function create_form(&$data)
                     break;
                 case 14 :
                     form_keywords_yes_no($element[0], $element[1], $element[3]);
+                    break;
+				case 15 :
+                    form_disabled($element[0], $element[1], $element[3]);
                     break;
                 default:
                     die('Invalid action');
