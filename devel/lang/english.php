@@ -422,10 +422,10 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 
         'Files and thumbnails settings',
         array('Quality for JPEG files', 'jpeg_qual', 0),
-        array('Max dimension of a thumbnail <b>*</b>', 'thumb_width', 0),
+        array('Max dimension of a thumbnail <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0),
         array('Use dimension ( width or height or Max aspect for thumbnail )<b>*</b>', 'thumb_use', 7),
         array('Create intermediate pictures','make_intermediate',1),
-        array('Max width or height of an intermediate picture/video <b>*</b>', 'picture_width', 0),
+        array('Max width or height of an intermediate picture/video <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0),
         array('Max size for uploaded files (KB)', 'max_upl_size', 0),
         array('Max width or height for uploaded pictures/videos (pixels)', 'max_upl_width_height', 0),
 
@@ -449,10 +449,10 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Command line options for ImageMagick', 'im_options', 0),
         array('Read EXIF data in JPEG files', 'read_exif_data', 1),
         array('Read IPTC data in JPEG files', 'read_iptc_data', 1),
-        array('The album directory <b>*</b>', 'fullpath', 0),
-        array('The directory for user files <b>*</b>', 'userpics', 0),
-        array('The prefix for intermediate pictures <b>*</b>', 'normal_pfx', 0),
-        array('The prefix for thumbnails <b>*</b>', 'thumb_pfx', 0),
+        array('The album directory <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0),
+        array('The directory for user files <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0),
+        array('The prefix for intermediate pictures <a href="#notice1" class="clickable_option">*</a>', 'normal_pfx', 0),
+        array('The prefix for thumbnails <a href="#notice1" class="clickable_option">*</a>', 'thumb_pfx', 0),
         array('Default mode for directories', 'default_dir_mode', 0),
         array('Default mode for files', 'default_file_mode', 0),
 
@@ -479,7 +479,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         'Miscellaneous settings',
         array('Enable debug mode', 'debug_mode', 1),
 
-        '<br /><div align="center">(*) When changing this setting, only the files that are added from that point on are affected, so it is advisable that this setting must not be changed if there are already files in the gallery. You can, however, apply the changes to the existing files with the &quot;admin tools (resize pictures)&quot; utility from the admin menu.</div><br />'
+        '<br /><div align="left"><a name="notice1"></a>(*) This settings mustn\'t be changed if you already have pictures in your database.<br />
+        <a name="notice2"></a>(**) When changing this setting, only the files that are added from that point on are affected, so it is advisable that this setting must not be changed if there are already files in the gallery. You can, however, apply the changes to the existing files with the &quot;<a href="util.php">admin tools</a> (resize pictures)&quot; utility from the admin menu.</div><br />'
 );
 
 // ------------------------------------------------------------------------- //
