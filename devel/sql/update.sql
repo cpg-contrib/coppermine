@@ -206,4 +206,4 @@ ALTER TABLE `CPG_pictures` ADD `lasthit_ip` TINYTEXT ;
 # Store favpics in DB
 #
 
-ALTER TABLE `cpg130_users` ADD `user_favpics` TEXT ;
+ALTER TABLE `CPG_users` ADD `user_favpics` TEXT ;
