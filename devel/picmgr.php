@@ -39,6 +39,85 @@ function get_album_data()
    }
 }
 
+function albumselect($id = "album") {
+// frogfoot re-wrote this function to present the list in categorized, sorted and nicely formatted order
+
+    global $CONFIG, $lang_picmgr_php, $aid;
+    static $select = "";
+
+    // Reset counter
+    $list_count = 0;
+
+    if ($select == "") {
+        // albums in root category
+        if (GALLERY_ADMIN_MODE) {
+            $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0");
+            while ($row = mysql_fetch_array($result)) {
+                // Add to multi-dim array for later sorting
+                $listArray[$list_count][cat] = $lang_search_new_php['albums_no_category'];
+                $listArray[$list_count][aid] = $row['aid'];
+                $listArray[$list_count][title] = $row['title'];
+                $list_count++;
+            }
+            mysql_free_result($result);
+        }
+
+        // albums in public categories
+        if (GALLERY_ADMIN_MODE) {
+            $result = cpg_db_query("SELECT DISTINCT a.aid AS aid, a.title AS title, c.name AS cname FROM {$CONFIG['TABLE_ALBUMS']} AS a, {$CONFIG['TABLE_CATEGORIES']} AS c WHERE a.category = c.cid AND a.category < '" . FIRST_USER_CAT . "'");
+            while ($row = mysql_fetch_array($result)) {
+                // Add to multi-dim array for later sorting
+                $listArray[$list_count][cat] = $row['cname'];
+                $listArray[$list_count][aid] = $row['aid'];
+                $listArray[$list_count][title] = $row['title'];
+                $list_count++;
+            }
+            mysql_free_result($result);
+        }
+
+        // albums in user's personal galleries
+        //if (defined('UDB_INTEGRATION')) {
+        //    $sql = udb_get_admin_album_list();
+        //} else {
+            if (GALLERY_ADMIN_MODE) {
+                $sql = "SELECT aid, CONCAT('(', user_name, ') ', title) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id)";
+            } else {
+                $sql = "SELECT aid, title AS title FROM {$CONFIG['TABLE_ALBUMS']}  WHERE category = " . (FIRST_USER_CAT + USER_ID);
+            }
+        //}
+        $result = cpg_db_query($sql);
+        while ($row = mysql_fetch_array($result)) {
+            // Add to multi-dim array for later sorting
+            $listArray[$list_count][cat] = $lang_search_new_php['personal_albums'];
+            $listArray[$list_count][aid] = $row['aid'];
+            $listArray[$list_count][title] = $row['title'];
+            $list_count++;
+        }
+        mysql_free_result($result);
+
+        if (!$aid) {
+            $select = '<option value="0">' . $lang_picmgr_php['no_album'] . "</option>\n";
+        }
+
+        // Sort the pulldown options by category and album name
+        $listArray = array_csort($listArray,'cat','title');
+
+        // Create the nicely sorted and formatted drop down list
+        $alb_cat = '';
+        foreach ($listArray as $val) {
+            if ($val[cat] != $alb_cat) {
+          if ($alb_cat) $select .= "</optgroup>\n";
+                $select .= '<optgroup label="' . $val[cat] . '">' . "\n";
+                $alb_cat = $val[cat];
+            }
+            $select .= '<option value="' . $val[aid] . '"' . ($val[aid] == $aid ? ' selected="selected"' : '') . '>   ' . $val[title] . "</option>\n";
+        }
+        if ($alb_cat) $select .= "</optgroup>\n";
+    }
+
+    return "\n<select name=\"$id\" class=\"listbox\"  onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$_SERVER['PHP_SELF']}?aid='+this.options[this.selectedIndex].value;\" >\n$select</select>\n";
+}
+
 pageheader($lang_picmgr_php['pic_mgr']);
 ?>
 
@@ -298,20 +377,14 @@ echo <<<EOT
       <tr>
          <td>
             <b>{$lang_picmgr_php['select_album']}</b>
-            <select onChange="if(this.options[this.selectedIndex].value) window.location.href='{$_SERVER['PHP_SELF']}?aid='+this.options[this.selectedIndex].value;"  name="aid" class="listbox">
 EOT;
-foreach($ALBUM_LIST as $album){
-   echo '            <option value="'.$album[0].'"'.($aid == $album[0] ? ' selected': '').">".$album[1]."</option>\n";
-}
+        print albumselect('aid');
 echo <<<EOT
-            </select>
-            <br /><br />
          </td>
       </tr>
 
 EOT;
 }
-
 ?>
       <tr>
          <td>
