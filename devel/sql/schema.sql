@@ -122,7 +122,7 @@ CREATE TABLE CPG_pictures (
   pwidth smallint(6) NOT NULL default '0',
   pheight smallint(6) NOT NULL default '0',
   hits int(10) NOT NULL default '0',
-  mtime timestamp(14) NOT NULL,
+  mtime datetime NULL default '',
   ctime int(11) NOT NULL default '0',
   owner_id int(11) NOT NULL default '0',
   owner_name varchar(40) NOT NULL default '',

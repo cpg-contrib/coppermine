@@ -1433,7 +1433,7 @@ function count_pic_comments($pid, $skip=0)
 function add_hit($pid)
 {
         global $CONFIG, $raw_ip;
-        cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET hits=hits+1, lasthit_ip='$raw_ip' WHERE pid='$pid'");
+        cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET hits=hits+1, lasthit_ip='$raw_ip', mtime=CURRENT_TIMESTAMP WHERE pid='$pid'");
 
         /**
          * Code to record the details of hits for the picture, if the option is set in CONFIG
