@@ -1,17 +1,31 @@
-<?php  
+<?php
+// ------------------------------------------------------------------------- //
+// Coppermine Photo Gallery 1.4.0                                            //
+// ------------------------------------------------------------------------- //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
+// http://www.chezgreg.net/coppermine/                                       //
+// ------------------------------------------------------------------------- //
+// Updated by the Coppermine Dev Team                                        //
+// see /docs/credits.html for details                                        //
+// ------------------------------------------------------------------------- //
+// This program is free software; you can redistribute it and/or modify      //
+// it under the terms of the GNU General Public License as published by      //
+// the Free Software Foundation; either version 2 of the License, or         //
+// (at your option) any later version.                                       //
+// ------------------------------------------------------------------------- //
+// $Id$
+// ------------------------------------------------------------------------- //
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 // +----------------------------------------------------------------------+
-// | Filename: .php                                                           |
+// | Filename: keyword_select.php                                         |
 // +----------------------------------------------------------------------+
 // | Copyright (c) http://www.sanisoft.com                                |
 // +----------------------------------------------------------------------+
 // | Description:                                                         |
 // +----------------------------------------------------------------------+
-// | Authors: Original Author <author@example.com>                        |
-// |          SANIsoft Developement Team  <you@example.com>               |
+// | Authors: Original Author                                             |
+// |          SANIsoft Developement Team                                  |
 // +----------------------------------------------------------------------+
-//
-// $Id$
 
 define('IN_COPPERMINE', true);
 define('UPLOAD_PHP', true);
@@ -24,7 +38,7 @@ if (!USER_CAN_UPLOAD_PICTURES) {
 
 $query = "SELECT * FROM {$CONFIG['TABLE_PREFIX']}dict ORDER BY keyword";
 $result = db_query($query);
-while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) { 
+while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
     $keywordIds[] = $row["keywordId"];
     $keywords[]   = $row["keyword"];
 }
@@ -52,7 +66,7 @@ if ($total > 0) {
     <script language='JavaScript'>
     <!--
     var str;
-	
+
     function CM_select(f)
     {
         str = window.document.form.elements[0].value;
@@ -68,7 +82,7 @@ if ($total > 0) {
 
     //-->
     </script>
-    
+
     <form name='form'>
     <table align='center'>
     <tr>
@@ -82,7 +96,7 @@ if ($total > 0) {
     </tr>
     <tr>
         <td align=center ><a href='#' onClick='window.close()'>Close</a></td>
-    </tr>     
+    </tr>
     </table>
     </form>";
 } else {
@@ -92,7 +106,7 @@ print($form);
 endtable();
 
 if (GALLERY_ADMIN_MODE) {
-	echo "<center><a href='keyword_create_dict.php>Regenerate Dictionary</a></center>";
+        echo "<center><a href='keyword_create_dict.php>Regenerate Dictionary</a></center>";
 }
 ?>
 </html>

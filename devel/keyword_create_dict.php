@@ -1,17 +1,32 @@
-<?php  
+<?php
+// ------------------------------------------------------------------------- //
+// Coppermine Photo Gallery 1.4.0                                            //
+// ------------------------------------------------------------------------- //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
+// http://www.chezgreg.net/coppermine/                                       //
+// ------------------------------------------------------------------------- //
+// Updated by the Coppermine Dev Team                                        //
+// see /docs/credits.html for details                                        //
+// ------------------------------------------------------------------------- //
+// This program is free software; you can redistribute it and/or modify      //
+// it under the terms of the GNU General Public License as published by      //
+// the Free Software Foundation; either version 2 of the License, or         //
+// (at your option) any later version.                                       //
+// ------------------------------------------------------------------------- //
+// $Id$
+// ------------------------------------------------------------------------- //
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 // +----------------------------------------------------------------------+
-// | Filename: .php                                                           |
+// | Filename: keyword_create_dict.php                                    |
 // +----------------------------------------------------------------------+
 // | Copyright (c) http://www.sanisoft.com                                |
 // +----------------------------------------------------------------------+
 // | Description:                                                         |
 // +----------------------------------------------------------------------+
-// | Authors: Original Author <author@example.com>                        |
-// |          SANIsoft Developement Team  <you@example.com>               |
+// | Authors: Original Author                                             |
+// |          SANIsoft Developement Team                                  |
 // +----------------------------------------------------------------------+
-//
-// $Id$
+
 
 define('IN_COPPERMINE', true);
 define('EDITPICS_PHP', true);
@@ -20,19 +35,19 @@ if (!(GALLERY_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE_
 $query  = "SELECT keywords from {$CONFIG['TABLE_PREFIX']}pictures";
 $result = db_query($query);
 $i=0;
-   while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) { 
+   while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
 
     $keywords = $row["keywords"];
     $keyArr   = explode(" ",$keywords);
         foreach ($keyArr as $keyword) {
             $query = "SELECT keyword from {$CONFIG['TABLE_PREFIX']}dict WHERE keyword = '$keyword'";
             $result2 = db_query($query);
-                            
+
             if (mysql_num_rows($result2) == 0 && $keyword != "" && $keyword != " ") {
                 $query = "INSERT INTO {$CONFIG['TABLE_PREFIX']}dict SET keyword = '$keyword'";
                 db_query($query);
                 echo "* ";
-				$i++ ;
+                                $i++ ;
             } else {
                 echo "% ";
             }
