@@ -57,10 +57,8 @@ $i=0;
         mysql_free_result($result2);
         flush();
     }
-echo "<p>New keywords found = ".$i;
-echo '<br/>* = new keyword';
-echo '<br/>% = existing keyword</p>';
+echo "<p>{$lang_editpics_php['new_keywords']} = ".$i;
+echo "<br/>* = {$lang_editpics_php['new_keyword']}";
+echo "<br/>% = {$lang_editpics_php['existing_keyword']}</p>";
 mysql_free_result($result);
 ?>
-<br/>
-<a href="keyword_select.php">Return</a>
