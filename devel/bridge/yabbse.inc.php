@@ -134,6 +134,7 @@ function udb_authenticate()
     $default_group = array('group_id' => YS_GUEST_GROUP,
         'group_name' => CM_GUEST_GROUP_NAME,
         'has_admin_access' => 0,
+        'can_see_all_albums' => 0,
         'can_send_ecards' => 0,
         'can_rate_pictures' => 0,
         'can_post_comments' => 0,
@@ -158,6 +159,11 @@ function udb_authenticate()
         } else {
             $USER_DATA = mysql_fetch_array($result);
         }
+        
+   		$USER_DATA['has_admin_access']=0;
+		$USER_DATA['can_see_all_albums'] =0;
+		$USER_DATA['groups'] = array(YS_GUEST_GROUP);
+        
         define('USER_ID', 0);
         define('USER_NAME', 'Anonymous');
         define('USER_GROUP_SET', '(' . YS_GUEST_GROUP . ')');
@@ -191,7 +197,7 @@ function udb_authenticate()
         $sql = "SELECT * " . "FROM {$CONFIG['TABLE_USERGROUPS']} " . "WHERE group_id = '" . $cm_group_id . "'";
         $result = db_query($sql);
         if (mysql_num_rows($result)) {
-            $USER_DATA = mysql_fetch_array($result);
+            $USER_DATA = mysql_fetch_assoc($result);
         } else {
             $USER_DATA = $default_group;
         }
@@ -199,6 +205,10 @@ function udb_authenticate()
             $realname = mysql_escape_string($realname);
             $USER_DATA['group_name'] = mysql_escape_string($USER_DATA['group_name']);
         }
+
+		$USER_DATA['has_admin_access']= ($settings[7]== YS_ADMIN_GROUP);
+		$USER_DATA['can_see_all_albums'] = $USER_DATA['has_admin_access'];
+		$USER_DATA['groups'] = array($USER_DATA['group_id']);
 
         define('USER_ID', $ID_MEMBER);
         define('USER_NAME', $realname);
@@ -427,31 +437,6 @@ function udb_get_admin_album_list()
         return $sql;
     }
 }
-
-function udb_util_filloptions()
-{
-    global $albumtbl, $picturetbl, $categorytbl, $lang_util_php;
-
-    $usertbl = $UDB_DB_NAME_PREFIX.YS_TABLE_PREFIX.YS_USER_TABLE;
-
-    $query = "SELECT aid, category, IF(realName IS NOT NULL, CONCAT('(', realName, ') ',title), CONCAT(' - ', title)) AS title " . "FROM $albumtbl AS a " . "LEFT JOIN $usertbl AS u ON category = (" . FIRST_USER_CAT . " + ID_MEMBER) " . "ORDER BY category, title";
-    $result = db_query($query);
-    // $num=mysql_numrows($query, $UDB_DB_LINK_ID);
-    echo '<select size="1" name="albumid">';
-
-    while ($row = mysql_fetch_array($result)) {
-        $sql = "SELECT name FROM $categorytbl WHERE cid = " . $row["category"];
-        $result2 = db_query($sql);
-        $row2 = mysql_fetch_array($result2);
-
-        print "<option value=\"" . $row["aid"] . "\">" . $row2["name"] . $row["title"] . "</option>\n";
-    }
-
-    print '</select> (3)';
-    print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="submit" /> (4)';
-    print '</form>';
-}
-
 // ------------------------------------------------------------------------- //
 // Define wheter we can join tables or not in SQL queries (same host & same db or user)
 define('UDB_CAN_JOIN_TABLES', (YS_DB_HOST == $CONFIG['dbserver'] && (YS_DB_NAME == $CONFIG['dbname'] || YS_DB_USERNAME == $CONFIG['dbuser'])));
@@ -459,7 +444,7 @@ define('UDB_CAN_JOIN_TABLES', (YS_DB_HOST == $CONFIG['dbserver'] && (YS_DB_NAME 
 $UDB_DB_LINK_ID = 0;
 $UDB_DB_NAME_PREFIX = YS_DB_NAME ? '`' . YS_DB_NAME . '`.' : '';
 if (!UDB_CAN_JOIN_TABLES) {
-    $UDB_DB_LINK_ID = @mysql_connect(YS_BD_HOST, YS_DB_USERNAME, YS_DB_PASSWORD);
+    $UDB_DB_LINK_ID = @mysql_connect(YS_DB_HOST, YS_DB_USERNAME, YS_DB_PASSWORD);
     if (!$UDB_DB_LINK_ID) die("<b>Coppermine critical error</b>:<br />Unable to connect to YaBB SE Board database !<br /><br />MySQL said: <b>" . mysql_error() . "</b>");
 }
 

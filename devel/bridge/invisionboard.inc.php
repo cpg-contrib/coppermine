@@ -73,6 +73,9 @@ function udb_authenticate()
         'custom_user_upload' => 0,
         'num_file_upload' => 0,
         'num_URI_upload' => 0,
+        'has_admin_access' => 0,
+        'can_see_all_albums' => 0,
+        'groups' => array (IB_GUEST_GROUP)
         );
     // Retrieve cookie stored login information
     if (!isset($HTTP_COOKIE_VARS[IB_COOKIE_PREFIX . 'member_id']) || !isset($HTTP_COOKIE_VARS[IB_COOKIE_PREFIX . 'pass_hash'])) {
@@ -123,7 +126,12 @@ function udb_authenticate()
         }
 
         $USER_DATA = array_merge($USER_DATA, $USER_DATA2);
-
+		$USER_DATA['groups'] = array ($USER_DATA['group_id']);
+		
+		
+		$USER_DATA['has_admin_access'] = USER_ID ? ($USER_DATA['mgroup'] == IB_ADMIN_GROUP) : 0;
+		$USER_DATA['can_see_all_albums'] = $USER_DATA['has_admin_access'];
+		
         define('USER_GROUP', $USER_DATA['group_name']);
         define('USER_GROUP_SET', '(' . $USER_DATA['group_id'] . ')');
         define('USER_IS_ADMIN', USER_ID ? ($USER_DATA['mgroup'] == IB_ADMIN_GROUP) : 0);
@@ -144,6 +152,11 @@ function udb_authenticate()
         } else {
             $USER_DATA = mysql_fetch_array($result);
         }
+        
+        $USER_DATA['groups'] = array (IB_GUEST_GROUP);
+		$USER_DATA['has_admin_access'] = 0;
+		$USER_DATA['can_see_all_albums'] = 0;
+
         define('USER_ID', 0);
         define('USER_NAME', 'Anonymous');
         define('USER_GROUP_SET', '(' . IB_GUEST_GROUP . ')');
@@ -351,31 +364,6 @@ function udb_get_admin_album_list()
         return $sql;
     }
 }
-
-function udb_util_filloptions()
-{
-    global $albumtbl, $picturetbl, $categorytbl, $lang_util_php;
-
-    $usertbl = $UDB_DB_NAME_PREFIX.IB_TABLE_PREFIX . IB_USER_TABLE;
-
-    $query = "SELECT aid, category, IF(name IS NOT NULL, CONCAT('(', name, ') ',title), CONCAT(' - ', title)) AS title " . "FROM $albumtbl AS a " . "LEFT JOIN $usertbl AS u ON category = (" . FIRST_USER_CAT . " + id) " . "ORDER BY category, title";
-    $result = db_query($query, $UDB_DB_LINK_ID);
-    // $num=mysql_numrows($result);
-    echo '<select size="1" name="albumid">';
-
-    while ($row = mysql_fetch_array($result)) {
-        $sql = "SELECT name FROM $categorytbl WHERE cid = " . $row["category"];
-        $result2 = db_query($sql);
-        $row2 = mysql_fetch_array($result2);
-
-        print "<option value=\"" . $row["aid"] . "\">" . $row2["name"] . $row["title"] . "</option>\n";
-    }
-
-    print '</select> (3)';
-    print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="submit" /> (4)';
-    print '</form>';
-}
-
 // ------------------------------------------------------------------------- //
 // Define wheter we can join tables or not in SQL queries (same host & same db or user)
 define('UDB_CAN_JOIN_TABLES', (IB_BD_HOST == $CONFIG['dbserver'] && (IB_DB_NAME == $CONFIG['dbname'] || IB_DB_USERNAME == $CONFIG['dbuser'])));

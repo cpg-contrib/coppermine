@@ -125,84 +125,6 @@ function cm_include_smf_funcs ($source_file, $funcs)
         error_reporting ($oe);
 }
 
-function cm_get_user_data($pri_group, $groups)
-{
-                global $CONFIG;
-
-            $default_group = array('group_id' => SMF_GUEST_GROUP,
-        'group_name' => CM_GUEST_GROUP_NAME,
-        'has_admin_access' => 0,
-        'can_send_ecards' => 0,
-        'can_rate_pictures' => 0,
-        'can_post_comments' => 0,
-        'can_upload_pictures' => 0,
-        'can_create_albums' => 0,
-        'pub_upl_need_approval' => 1,
-        'priv_upl_need_approval' => 1,
-        'upload_form_config' => 0,
-        'custom_user_upload' => 0,
-        'num_file_upload' => 0,
-        'num_URI_upload' => 0,
-        );
-
-        if (isset($groups[0])) {
-                $result = db_query("SELECT MAX(group_quota) as disk_max, MIN(group_quota) as disk_min, " .
-                        "MAX(can_rate_pictures) as can_rate_pictures, MAX(can_send_ecards) as can_send_ecards, " .
-                        "MAX(upload_form_config) as ufc_max, MIN(upload_form_config) as ufc_min, " .
-                        "MAX(custom_user_upload) as custom_user_upload, MAX(num_file_upload) as num_file_upload, " .
-                        "MAX(num_URI_upload) as num_URI_upload, " .
-                        "MAX(can_post_comments) as can_post_comments, MAX(can_upload_pictures) as can_upload_pictures, " .
-                        "MAX(can_create_albums) as can_create_albums, " .
-                        "MIN(pub_upl_need_approval) as pub_upl_need_approval, MIN( priv_upl_need_approval) as  priv_upl_need_approval ".
-                        "FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id=" .  implode(" or group_id=", $groups));
-
-                if (mysql_num_rows($result)) {
-            $USER_DATA = mysql_fetch_array($result);
-                } else {
-                        $USER_DATA = $default_group;
-                }
-                mysql_free_result($result);
-
-                $result = db_query("SELECT group_name FROM  {$CONFIG['TABLE_USERGROUPS']} WHERE group_id= " . $pri_group);
-                $temp_arr = mysql_fetch_array($result);
-
-                if ( $USER_DATA['ufc_max'] == $USER_DATA['ufc_min'] ) {
-
-                    $USER_DATA["upload_form_config"] = $USER_DATA['ufc_min'];
-
-                } elseif ($USER_DATA['ufc_min'] == 0) {
-
-                    $USER_DATA["upload_form_config"] = $USER_DATA['ufc_max'];
-
-                } elseif ((($USER_DATA['ufc_max'] == 2) or ($USER_DATA['ufc_max'] == 3)) and ($USER_DATA['ufc_min'] == 1)) { 
-
-                    $USER_DATA["upload_form_config"] = 3;
-
-                } elseif (($USER_DATA['ufc_max'] == 3) and ($USER_DATA['ufc_min'] == 2)) { 
-
-                    $USER_DATA["upload_form_config"] = 3;
-
-                } else {
-
-                    $USER_DATA["upload_form_config"] = 0;
-
-                }
-
-                $USER_DATA["group_quota"] = ($USER_DATA["disk_min"])?$USER_DATA["disk_max"]:0;
-                $USER_DATA["group_name"] = $temp_arr["group_name"];
-                $USER_DATA["group_id"] = $pri_group;
-                mysql_free_result($result);
-
-        } else {
-                $USER_DATA = default_group;
-        }
-
-        if (get_magic_quotes_gpc() == 0)
-            $USER_DATA['group_name'] = mysql_escape_string($USER_DATA['group_name']);
-
-        return($USER_DATA);
-}
-
 function cm_db_query ($query, $other, $other2)
 {
         return db_query($query);
@@ -226,35 +148,14 @@ function udb_authenticate()
     // For error checking
     $CONFIG['TABLE_USERS'] = '**ERROR**';
 
-    // Permissions for a default group
-    $default_group = array('group_id' => SMF_GUEST_GROUP,
-        'group_name' => CM_GUEST_GROUP_NAME,
-        'has_admin_access' => 0,
-        'can_send_ecards' => 0,
-        'can_rate_pictures' => 0,
-        'can_post_comments' => 0,
-        'can_upload_pictures' => 0,
-        'can_create_albums' => 0,
-        'pub_upl_need_approval' => 1,
-        'priv_upl_need_approval' => 1,
-        'upload_form_config' => 0,
-        'custom_user_upload' => 0,
-        'num_file_upload' => 0,
-        'num_URI_upload' => 0,
-        );
-
     // get first 50 chars
     $HTTP_USER_AGENT = substr($HTTP_SERVER_VARS['HTTP_USER_AGENT'], 0, 50);
     $REMOTE_ADDR = substr($HTTP_SERVER_VARS['REMOTE_ADDR'], 0, 50);
 
     /* If the user is a guest, initialize all the critial user settings */
     if (!$ID_MEMBER) {
-        $result = db_query("SELECT * FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = " . SMF_GUEST_GROUP);
-        if (!mysql_num_rows($result)) {
-            $USER_DATA = $default_group;
-        } else {
-            $USER_DATA = mysql_fetch_array($result);
-        }
+        $USER_DATA = cpgGetUserData(SMF_GUEST_GROUP, array(SMF_GUEST_GROUP), SMF_GUEST_GROUP);
+      
         define('USER_ID', 0);
         define('USER_NAME', 'Anonymous');
         define('USER_GROUP_SET', '(' . SMF_GUEST_GROUP . ')');
@@ -268,9 +169,8 @@ function udb_authenticate()
         define('CUSTOMIZE_UPLOAD_FORM', (int)$USER_DATA['custom_user_upload']);
         define('NUM_FILE_BOXES', (int)$USER_DATA['num_file_upload']);
         define('NUM_URI_BOXES', (int)$USER_DATA['num_URI_upload']);
-        mysql_free_result($result);
     } else {
-                if ($user_settings['ID_GROUP']){
+        if ($user_settings['ID_GROUP']){
                 $cm_group_id = $user_settings['ID_GROUP'];
         }  else if ($user_settings['ID_POST_GROUP'] && defined ('USE_POST_GROUPS')){
                 $cm_group_id = $user_settings['ID_POST_GROUP'];
@@ -279,13 +179,15 @@ function udb_authenticate()
         }
 
         // Retrieve group information
-                $USER_DATA = cm_get_user_data($cm_group_id, $user_info['groups']);
+		$USER_DATA = cpgGetUserData($cm_group_id, $user_info['groups'], SMF_GUEST_GROUP);
+		$USER_DATA['has_admin_access'] = $user_info['is_admin'];
+        $USER_DATA['can_see_all_albums']=$USER_DATA['has_admin_access'] | in_array(SMF_GMOD_GROUP,$user_info['groups']);
 
         define('USER_ID', $ID_MEMBER);
         define('USER_NAME', $user_info['name']);
         define('SMF_USER_NAME', $user_info['username']);
         define('USER_GROUP', $USER_DATA['group_name']);
-        define('USER_GROUP_SET', '(' . $USER_DATA['group_id'] . ')');
+        define('USER_GROUP_SET', '(' . implode(",", $USER_DATA['groups']) . ')');
         define('USER_IS_ADMIN', $user_info['is_admin']);
         define('USER_CAN_SEND_ECARDS', (int)$USER_DATA['can_send_ecards']);
         define('USER_CAN_RATE_PICTURES', (int)$USER_DATA['can_rate_pictures']);
@@ -352,6 +254,8 @@ function udb_register_page()
 // Login
 function udb_login_page()
 {
+	$_SESSION['login_url'] = $HTTP_GET_VARS['referer'] ? $HTTP_GET_VARS['referer'] : 'index.php';
+	$_SESSION['login_url'] = "http://localhost/cgpcvs/";
     $target = 'index.php?action=login';
     udb_redirect($target);
 }
@@ -512,30 +416,6 @@ function udb_get_admin_album_list()
     }
 }
 
-function udb_util_filloptions()
-{
-    global $albumtbl, $picturetbl, $categorytbl, $lang_util_php;
-
-    $usertbl = $UDB_DB_NAME_PREFIX.SMF_TABLE_PREFIX.SMF_USER_TABLE;
-
-    $query = "SELECT aid, category, IF(realName IS NOT NULL, CONCAT('(', realName, ') ',title), CONCAT(' - ', title)) AS title " . "FROM $albumtbl AS a " . "LEFT JOIN $usertbl AS u ON category = (" . FIRST_USER_CAT . " + ID_MEMBER) " . "ORDER BY category, title";
-    $result = db_query($query, $UDB_DB_LINK_ID);
-    // $num=mysql_numrows($result);
-    echo '<select size="1" name="albumid">';
-
-    while ($row = mysql_fetch_array($result)) {
-        $sql = "SELECT name FROM $categorytbl WHERE cid = " . $row["category"];
-        $result2 = db_query($sql);
-        $row2 = mysql_fetch_array($result2);
-
-        print "<option value=\"" . $row["aid"] . "\">" . $row2["name"] . $row["title"] . "</option>\n";
-    }
-
-    print '</select> (3)';
-    print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="submit" /> (4)';
-    print '</form>';
-}
-
 // ------------------------------------------------------------------------- //
 
 // Define wheter we can join tables or not in SQL queries (same host & same db or user)
@@ -544,7 +424,7 @@ define('UDB_CAN_JOIN_TABLES', (SMF_DB_HOST == $CONFIG['dbserver'] && (SMF_DB_NAM
 $UDB_DB_LINK_ID = 0;
 $UDB_DB_NAME_PREFIX = SMF_DB_NAME ? '`' . SMF_DB_NAME . '`.' : '';
 if (!UDB_CAN_JOIN_TABLES) {
-    $UDB_DB_LINK_ID = @mysql_connect(SMF_BD_HOST, SMF_DB_USERNAME, SMF_DB_PASSWORD);
+    $UDB_DB_LINK_ID = @mysql_connect(SMF_DB_HOST, SMF_DB_USERNAME, SMF_DB_PASSWORD);
     if (!$UDB_DB_LINK_ID) die("<b>Coppermine critical error</b>:<br />Unable to connect to SMF Board database !<br /><br />MySQL said: <b>" . mysql_error() . "</b>");
 }
 ?>
