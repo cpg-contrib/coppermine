@@ -202,17 +202,18 @@ acronym {
             <li class="content"><a href="#admin_language">4.12.2 Language, Themes &amp; Charset settings</a></li>
             <li class="content"><a href="#admin_album_list">4.12.3 Album list view</a></li>
             <li class="content"><a href="#admin_thumbnail_view">4.12.4 Thumbnail view</a></li>
-            <li class="content"><a href="#admin_image_comment">4.12.5 Image view &amp; Comment settings</a></li>
-            <li class="content"><a href="#admin_picture_thumbnail">4.12.6 File and thumbnail settings</a></li>
-            <li class="content"><a href="#admin_picture_thumb_advanced">4.12.7 Files and thumbnails advanced settings</a></li>
-            <li class="content"><a href="#admin_user">4.12.8 User settings</a></li>
-            <li class="content"><a href="#admin_movie">4.12.9 Movie Playback Settings</a></li>
-            <li class="content"><a href="#admin_custom">4.12.10 Custom fields for user profile</a></li>
-            <li class="content"><a href="#admin_custom_image">4.12.11 Custom fields for image description</a></li>
-            <li class="content"><a href="#admin_cookie">4.12.12 Cookie settings</a></li>
-            <li class="content"><a href="#admin_email">4.12.13 Email settings</a></li>
-            <li class="content"><a href="#admin_logging">4.12.14 Logging &amp; statistics</a></li>
-            <li class="content"><a href="#admin_misc">4.12.15 Miscellaneous settings</a></li>
+            <li class="content"><a href="#admin_image_comment">4.12.5 Image view</a></li>
+            <li class="content"><a href="#admin_comment_start">4.12.6 Comment settings</a></li>
+            <li class="content"><a href="#admin_picture_thumbnail">4.12.7 File and thumbnail settings</a></li>
+            <li class="content"><a href="#admin_picture_thumb_advanced">4.12.8 Files and thumbnails advanced settings</a></li>
+            <li class="content"><a href="#admin_user">4.12.9 User settings</a></li>
+            <li class="content"><a href="#admin_movie">4.12.10 Movie Playback Settings</a></li>
+            <li class="content"><a href="#admin_custom">4.12.11 Custom fields for user profile</a></li>
+            <li class="content"><a href="#admin_custom_image">4.12.12 Custom fields for image description</a></li>
+            <li class="content"><a href="#admin_cookie">4.12.13 Cookie settings</a></li>
+            <li class="content"><a href="#admin_email">4.12.14 Email settings</a></li>
+            <li class="content"><a href="#admin_logging">4.12.15 Logging &amp; statistics</a></li>
+            <li class="content"><a href="#admin_misc">4.12.16 Miscellaneous settings</a></li>
             </ul>
           </ul>
         <li class="content"><a href="#integrating" class="menu1">5. Integrating the script with your bulletin board</a>
@@ -1070,7 +1071,7 @@ Used to determine how many votes a file must receive before appearing as &quot;t
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="admin_image_comment"></a>
-<h3>4.12.5 Image view &amp; Comment settings</h3>
+<h3>4.12.5 Image view</h3>
 <a name="admin_image_comment_table-width"></a>
 <h4>Width of the table for picture display (pixels or %)</h4>
 <p>The width of the table used to display the intermediate picture.</p>
@@ -1082,6 +1083,29 @@ Used to determine how many votes a file must receive before appearing as &quot;t
 <p>Define whether or not file information (those that appear when you
 click on the (i) button) should be visible by default.</p>
 <a name="admin_image_comment_info_visible_end"></a>
+<a name="admin_image_comment_descr_length"></a>
+<h4>Max length for an image description</h4>
+<p>Maximum number of characters that an image description may contain.</p>
+<a name="admin_image_comment_descr_length_end"></a>
+<a name="admin_image_comment_filmstrip_toggle"></a>
+<h4>Show film strip</h4>
+<p>Toggles display of a "film strip" showing thumbnails of prior and following photos in the album.</p>
+<p class="small">[cpg1.2.0 or better required]</p>
+<a name="admin_image_comment_filmstrip_toggle_end"></a>
+<a name="admin_image_comment_filmstrip_number"></a>
+<h4>Number of items in film strip</h4>
+<p>Set the number of thumbnails to display in film strip.</p>
+<p class="small">[cpg1.2.0 or better required]</p>
+<a name="admin_image_comment_filmstrip_number_end"></a>
+<a name="admin_image_comment_slideshow_interval"></a>
+<h4>Slideshow interval in milliseconds</h4>
+<p>This sets the time each pic is being displayed (transition interval) when a users views a slideshow (the next pic is being loaded/cached while the current one is being displayed). This setting has to be in milliseconds (1 second = 1000 milliseconds).<br />Remember that setting this to a very low value might not make sense for all users, especially those on dialup connections or if you have large files.</p>
+<a name="admin_image_comment_slideshow_interval_end"></a>
+<a name="admin_image_comment_end"></a>
+<p><a class="back" href="#top">Back to top</a></p><hr />
+
+<a name="admin_comment_start"></a>
+<h3>4.12.6 Comment settings</h3>
 <a name="admin_image_comment_bad_words"></a>
 <h4>Filter bad words in comments</h4>
 <p>Remove "bad words" from comments. The "bad words" list is in the language file. So far only the English language file has one.</p>
@@ -1094,10 +1118,6 @@ click on the (i) button) should be visible by default.</p>
 <h4>Allow several consecutive comments on one file from the same user</h4>
 <p>This setting toggles flood protection of the comments. When set to YES, a user can post another comment, even though he already posted a previous one. Recommended setting: NO.</p>
 <a name="admin_image_comment_flood_end"></a>
-<a name="admin_image_comment_descr_length"></a>
-<h4>Max length for an image description</h4>
-<p>Maximum number of characters that an image description may contain.</p>
-<a name="admin_image_comment_descr_length_end"></a>
 <a name="admin_image_comment_chars_per_word"></a>
 <h4>Max number of characters in a word</h4>
 <p>This is intended to prevent that someone break the layout of the gallery by posting a long comment without space. With the default value, words with more than 38 characters are censored.</p>
@@ -1110,29 +1130,15 @@ click on the (i) button) should be visible by default.</p>
 <h4>Maximum length of a comment</h4>
 <p>Maximum number of characters that a comment may contain.</p>
 <a name="admin_image_comment_length_end"></a>
-<a name="admin_image_comment_filmstrip_toggle"></a>
-<h4>Show film strip</h4>
-<p>Toggles display of a "film strip" showing thumbnails of prior and following photos in the album.</p>
-<p class="small">[cpg1.2.0 or better required]</p>
-<a name="admin_image_comment_filmstrip_toggle_end"></a>
-<a name="admin_image_comment_filmstrip_number"></a>
-<h4>Number of items in film strip</h4>
-<p>Set the number of thumbnails to display in film strip.</p>
-<p class="small">[cpg1.2.0 or better required]</p>
-<a name="admin_image_comment_filmstrip_number_end"></a>
 <a name="admin_image_comment_admin_notify"></a>
 <h4>Notify admin of comments by email</h4>
 <p>Toggle if you want to receive an email each time a comment is being posted. Warning: only enable this option on sites with very low traffic, or you will get flodded with notification emails.</p>
 <a name="admin_image_comment_admin_notify_end"></a>
-<a name="admin_image_comment_slideshow_interval"></a>
-<h4>Slideshow interval in milliseconds</h4>
-<p>This sets the time each pic is being displayed (transition interval) when a users views a slideshow (the next pic is being loaded/cached while the current one is being displayed). This setting has to be in milliseconds (1 second = 1000 milliseconds).<br />Remember that setting this to a very low value might not make sense for all users, especially those on dialup connections or if you have large files.</p>
-<a name="admin_image_comment_slideshow_interval_end"></a>
-<a name="admin_image_comment_end"></a>
+<a name="admin_comment_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="admin_picture_thumbnail"></a>
-<h3>4.12.6 Picture and thumbnail settings</h3>
+<h3>4.12.7 Picture and thumbnail settings</h3>
 <a name="admin_picture_thumbnail_jpeg_quality"></a>
 <h4>Quality for JPEG files</h4>
 <p>The quality used for JPEG compression when the script resizes an image. Value can range from 0 (worst) to 100 (best). This value can be set to 75 when using ImageMagick.<br />You shouldn't change this setting unless you know what you're doing, as the other thumbnail and intermediate pic options (dimensions) have a much greater impact on filesize than this compression level.</p>
@@ -1171,7 +1177,7 @@ click on the (i) button) should be visible by default.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="admin_picture_thumb_advanced"></a>
-<h3>4.12.7 Files and thumbnails advanced settings</h3>
+<h3>4.12.8 Files and thumbnails advanced settings</h3>
 <a name="admin_picture_thumb_advanced_private_toggle"></a>
 <h4>Albums can be private</h4>
 <p>If set to YES then your gallery can contain albums that can be visible only by users that belong to a certain group.</p>
@@ -1279,49 +1285,48 @@ there. Don't forget the trailing "<tt class="code">/</tt>".</p>
 <a name="admin_picture_thumb_advanced_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
-      <a name="admin_movie"></a>
-      <h3>4.12.8 Movie Playback Settings</h3>
-      <a name="admin_movie_autoplay"></a>
-      <h4>Autostart</h4>
-      <p>If set to YES, movies will instantly start playing when loaded (doesn't affect flash files though).</p>
-      <a name="admin_movie_autoplay_end"></a>
-      <a name="admin_movie_end"></a>
+<a name="admin_movie"></a>
+<h3>4.12.9 Movie Playback Settings</h3>
+<a name="admin_movie_autoplay"></a>
+<h4>Autostart</h4>
+<p>If set to YES, movies will instantly start playing when loaded (doesn't affect flash files though).</p>
+<a name="admin_movie_autoplay_end"></a>
+<a name="admin_movie_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
-      <a name="admin_user"></a>
-      <h3>4.12.9 User settings</h3>
-      <a name="admin_allow_registration"></a>
-      <h4>Allow new user registrations</h4>
-      <p>Define whether new users can self-register or not. If you set this to NO, only the admin can create new users and the &quot;register&quot; link won't be displayed in the navigation.</p>
-      <a name="admin_allow_registration_end"></a>
-      <a name="admin_registration_verify"></a>
-      <h4>User registration requires email verification</h4>
-      <p>If set to YES an email will be sent to the user that will contain a code to activate his account. If set to NO, user accounts become immediately active.</p>
-      <a name="admin_registration_verify_end"></a>
-      <a name="admin_registration_notify"></a>
-      <h4>Notify admin of user registration by email</h4>
-      <p>If set to YES an email will be sent to the gallery admin when a new user registers.</p>
-      <a name="admin_registration_notify_end"></a>
-      <p class="small">[cpg1.3.0 or better required]</p>
-      <h4>Allow two users to have the same email address</h4>
-      <p>Allow or prevent two users from registering with the same email
-      address. Recommended setting is NO</p>
-      <a name="admin_approval_notify"></a>
-      <h4>Notify admin of user upload awaiting approval</h4>
-      <p>When enabled, the gallery admin receives an email notification of all pics that wait for his approval (depends on the approval settings in &quot;<a href="#group_cp">groups</a>&quot;). The email is sent to the address specified in &quot;<a href="#admin_general">General settings</a>&quot;.<br />This option is only recommended with low or medium traffic (if users only upload every now and then).</p>
-      <a name="admin_approval_notify_end"></a>
-      <p class="small">[cpg1.3.0 or better required]</p>
-      <a name="admin_user_memberlist"></a>
-      <h4>Allow logged in users to view memberlist</h4>
-      <p>When enabled, an additional menu item &quot;Memberlist&quot; is being displayed in the coppermine main menu if a user is logged in, to let him see a list of all users, with stats on their last visits, uploads and quota usage.<br />This is a new feature in cpg1.3.0 (user contribution by <a href="#contributors">Jason</a>) - it's available as <a href="http://sourceforge.net/project/showfiles.php?group_id=89658&package_id=98542">mod</a> (not in the regular coppermine package) for older versions than cpg1.3.0.</p>
-      <a name="admin_user_memberlist_end"></a>
-      <p class="small">[cpg1.3.0 or better required]</p>
-      <a name="admin_user_allow_email_change"></a><h4>Allow users to change their email address in profile</h4>
-      <p>This option has impact on the user's profile page, it toggles wether the user can change his/her own email address.<br />Use this option wisely, as the old email address of a user is not recorded: if you let users change their email address, they might change it to a non-existing email address (e.g. after uploading some pics that break your gallery's rules) - you would have no chance of tracking this user.<br />
-      This option will only be taken into account if you use Coppermine as a standalone application; if you run Coppermine integrated with a bbs, this option will simply not be taken into account, as the user profile from your bbs will be used to manage your user's profile.</p>
-      <p class="small">[cpg1.4.0 or better required]</p>
-      <a name="admin_user_allow_email_change_end"></a>
-
+<a name="admin_user"></a>
+<h3>4.12.10 User settings</h3>
+<a name="admin_allow_registration"></a>
+<h4>Allow new user registrations</h4>
+<p>Define whether new users can self-register or not. If you set this to NO, only the admin can create new users and the &quot;register&quot; link won't be displayed in the navigation.</p>
+<a name="admin_allow_registration_end"></a>
+<a name="admin_registration_verify"></a>
+<h4>User registration requires email verification</h4>
+<p>If set to YES an email will be sent to the user that will contain a code to activate his account. If set to NO, user accounts become immediately active.</p>
+<a name="admin_registration_verify_end"></a>
+<a name="admin_registration_notify"></a>
+<h4>Notify admin of user registration by email</h4>
+<p>If set to YES an email will be sent to the gallery admin when a new user registers.</p>
+<a name="admin_registration_notify_end"></a>
+<p class="small">[cpg1.3.0 or better required]</p>
+<h4>Allow two users to have the same email address</h4>
+<p>Allow or prevent two users from registering with the same email
+address. Recommended setting is NO</p>
+<a name="admin_approval_notify"></a>
+<h4>Notify admin of user upload awaiting approval</h4>
+<p>When enabled, the gallery admin receives an email notification of all pics that wait for his approval (depends on the approval settings in &quot;<a href="#group_cp">groups</a>&quot;). The email is sent to the address specified in &quot;<a href="#admin_general">General settings</a>&quot;.<br />This option is only recommended with low or medium traffic (if users only upload every now and then).</p>
+<a name="admin_approval_notify_end"></a>
+<p class="small">[cpg1.3.0 or better required]</p>
+<a name="admin_user_memberlist"></a>
+<h4>Allow logged in users to view memberlist</h4>
+<p>When enabled, an additional menu item &quot;Memberlist&quot; is being displayed in the coppermine main menu if a user is logged in, to let him see a list of all users, with stats on their last visits, uploads and quota usage.<br />This is a new feature in cpg1.3.0 (user contribution by <a href="#contributors">Jason</a>) - it's available as <a href="http://sourceforge.net/project/showfiles.php?group_id=89658&package_id=98542">mod</a> (not in the regular coppermine package) for older versions than cpg1.3.0.</p>
+<a name="admin_user_memberlist_end"></a>
+<p class="small">[cpg1.3.0 or better required]</p>
+<a name="admin_user_allow_email_change"></a><h4>Allow users to change their email address in profile</h4>
+<p>This option has impact on the user's profile page, it toggles wether the user can change his/her own email address.<br />Use this option wisely, as the old email address of a user is not recorded: if you let users change their email address, they might change it to a non-existing email address (e.g. after uploading some pics that break your gallery's rules) - you would have no chance of tracking this user.<br />
+This option will only be taken into account if you use Coppermine as a standalone application; if you run Coppermine integrated with a bbs, this option will simply not be taken into account, as the user profile from your bbs will be used to manage your user's profile.</p>
+<p class="small">[cpg1.4.0 or better required]</p>
+<a name="admin_user_allow_email_change_end"></a>
 <a name="admin_user_login_start"></a>
 <a name="admin_user_login_threshold_start"></a>
 <h4>Number of failed login attemps untill temporary ban (to avoid brute force attacks)</h4>
@@ -1338,19 +1343,19 @@ With this setting you specify the number of failed logins after that the IP addr
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="admin_custom"></a>
-<h3>4.12.10 Custom fields for user profile (leave blank if unused). Use Profile 6 for long entries, such as biographies </h3>
+<h3>4.12.11 Custom fields for user profile (leave blank if unused). Use Profile 6 for long entries, such as biographies </h3>
 <p>These fields are displayed within the &quot;user profile&quot; area. They will appear only if you give them a name. As the heading says, use field 6 for long entries, such as biographies, or if you want to use bb code.</p>
 <a name="admin_custom_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="admin_custom_image"></a>
-<h3>4.12.11 Custom fields for image description (leave blank if unused)</h3>
+<h3>4.12.12 Custom fields for image description (leave blank if unused)</h3>
 <p>These fields are displayed within the &quot;file information&quot; area. They will appear only if you give them a name.</p>
 <a name="admin_custom_image_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="admin_cookie"></a>
-<h3>4.12.12 Cookie settings</h3>
+<h3>4.12.13 Cookie settings</h3>
 <a name="admin_cookie_name"></a>
 <h4>Name of the cookie used by the script</h4>
 <p>Default value is &quot;cpg140&quot;. Even if you have multiple instances of the script running on the same server you can keep the default value.<br /><span class="important">When using bbs integration, make sure it <b>differs</b> from the bbs's cookie name</span></p>
@@ -1364,104 +1369,105 @@ With this setting you specify the number of failed logins after that the IP addr
 <a name="admin_cookie"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
-      <a name="admin_email"></a>
-      <h3>4.12.13 Email settings</h3>
-      <p>Usually nothing has to be changed here; leave all fields blank when not sure. Only if you run into problems (e.g. if ecards, registration info or notifications don't get sent) you should change these settings. Coppermine itself doesn't come with an engine to send mails, it relies on a webserver being able to do so (using the built-in mechanisms of PHP). If you're not sure what to enter, ask your webhost for support.</p>
-      <h4>SMTP Host</h4>
-      <p>The hostname of the <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server<br />
-      If you leave this blank, sendmail (or a surrogate) will be used to send emails from your server. Sendmail exists on most Unix/Linux webservers. If you specify a SMTP hostname, Coppermine will try to send emails using SMTP (this usually is needed on Windows webservers).</p>
-      <p class="small">[cpg1.4.0 or better required]</p>
-      <h4>SMTP Username</h4>
-      <p>The username needed to authenticate on the SMTP server (this is <b>not</b> your coppermine admin username).</p>
-      <p class="small">[cpg1.4.0 or better required]</p>
-      <h4>SMTP Password</h4>
-      <p>The password that goes with above mentioned username (<b>not</b> identical to your coppermine admin password).</p>
-      <p class="small">[cpg1.4.0 or better required]</p>
-      <a name="admin_email_end"></a>
+<a name="admin_email"></a>
+<h3>4.12.14 Email settings</h3>
+<p>Usually nothing has to be changed here; leave all fields blank when not sure. Only if you run into problems (e.g. if ecards, registration info or notifications don't get sent) you should change these settings. Coppermine itself doesn't come with an engine to send mails, it relies on a webserver being able to do so (using the built-in mechanisms of PHP). If you're not sure what to enter, ask your webhost for support.</p>
+<h4>SMTP Host</h4>
+<p>The hostname of the <acronym title="Simple Mail Transfer Protocol">SMTP</acronym> server<br />
+If you leave this blank, sendmail (or a surrogate) will be used to send emails from your server. Sendmail exists on most Unix/Linux webservers. If you specify a SMTP hostname, Coppermine will try to send emails using SMTP (this usually is needed on Windows webservers).</p>
+<p class="small">[cpg1.4.0 or better required]</p>
+<h4>SMTP Username</h4>
+<p>The username needed to authenticate on the SMTP server (this is <b>not</b> your coppermine admin username).</p>
+<p class="small">[cpg1.4.0 or better required]</p>
+<h4>SMTP Password</h4>
+<p>The password that goes with above mentioned username (<b>not</b> identical to your coppermine admin password).</p>
+<p class="small">[cpg1.4.0 or better required]</p>
+<a name="admin_email_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
-      <a name="admin_logging"></a>
-      <h3>4.12.14 Logging &amp; statistics</h3>
-      <p>Like all logs (that record data that would get dropped if logging was disabled), the logging features of Coppermine will have a slight performance impact as well as an impact on webspace and database usage. You should make up your mind if you actually will need the logs before enabling the feature. A log is only helpfull if the admin actually looks into it.</p>
-      <a name="admin_logging_log_mode"></a><h4>Logging mode</h4>
-      <p>Set, what kind of logging you want to enable. This feature records all changes that are done in coppermine's database, which is especially helpfull if you're trying to debug or if there are various admins on a gallery.<br />
-      All log files are written in english</p>
-      <p class="small">[cpg1.4.0 or better required]</p>
-      <a name="admin_logging_log_mode_end"></a>
-      <a name="admin_general_log_ecards"></a><h4>Log ecards</h4>
-      <p>When enabled, all ecards that are being sent are as well written into the database, where the coppermine admin can view them. Before switching this option on, make sure that logging is legal in your country. It is also advisable to notify your users that all ecards are being logged (preferrably on the registration screen).</p>
-      <p class="small">[cpg1.3.0 or better required]</p>
-      <a name="admin_general_log_ecards_end"></a>
-      <a name="admin_logging_votedetails"></a><h4>Keep detailed vote statistics</h4>
-      <p>
-        Enabeling this option records:
-        <ol>
-          <li>Each vote seperatly</li>
-          <li>IP Address</li>
-          <li>Referer</li>
-          <li>Browser</li>
-          <li>Operating System</li>
-        </ol>
-         of the voter.
-      </p>
-      <p>
-        <br /><span class="important">Note: The total votes may not match if you enable details and do not reset the earlier votes.</span>
-      </p>
-      <a name="admin_logging_votedetails_end"></a>
-      <a name="admin_logging_hitdetails"></a><h4>Keep detailed hit statistics</h4>
-      <p>
-        Enabeling this option records:
-        <ol>
-          <li>Each vote seperatly</li>
-          <li>IP Address</li>
-          <li>Search Keyword, if the referer is Google, Yahoo! or Lycos search engines
-          <li>Referer</li>
-          <li>Browser</li>
-          <li>Operating System</li>
-        </ol>
-         of the voter.
-      </p>
-      <p>
-        <br /><span class="important">Note: The total hits may not match if you enable details and do not reset the earlier hits.</span>
-      </p>
-      <a name="admin_logging_hitdetails_end"></a>
-      <a name="admin_logging_end"></a>
+<a name="admin_logging"></a>
+<h3>4.12.15 Logging &amp; statistics</h3>
+<p>Like all logs (that record data that would get dropped if logging was disabled), the logging features of Coppermine will have a slight performance impact as well as an impact on webspace and database usage. You should make up your mind if you actually will need the logs before enabling the feature. A log is only helpfull if the admin actually looks into it.</p>
+<a name="admin_logging_log_mode"></a><h4>Logging mode</h4>
+<p>Set, what kind of logging you want to enable. This feature records all changes that are done in coppermine's database, which is especially helpfull if you're trying to debug or if there are various admins on a gallery.<br />
+All log files are written in english</p>
+<p class="small">[cpg1.4.0 or better required]</p>
+<a name="admin_logging_log_mode_end"></a>
+<a name="admin_general_log_ecards"></a><h4>Log ecards</h4>
+<p>When enabled, all ecards that are being sent are as well written into the database, where the coppermine admin can view them. Before switching this option on, make sure that logging is legal in your country. It is also advisable to notify your users that all ecards are being logged (preferrably on the registration screen).</p>
+<p class="small">[cpg1.3.0 or better required]</p>
+<a name="admin_general_log_ecards_end"></a>
+<a name="admin_logging_votedetails"></a><h4>Keep detailed vote statistics</h4>
+<p>
+  Enabeling this option records:
+  <ol>
+    <li>Each vote seperatly</li>
+    <li>IP Address</li>
+    <li>Referer</li>
+    <li>Browser</li>
+    <li>Operating System</li>
+  </ol>
+   of the voter.
+</p>
+<p>
+  <br /><span class="important">Note: The total votes may not match if you enable details and do not reset the earlier votes.</span>
+</p>
+<a name="admin_logging_votedetails_end"></a>
+<a name="admin_logging_hitdetails"></a><h4>Keep detailed hit statistics</h4>
+<p>
+  Enabeling this option records:
+  <ol>
+    <li>Each vote seperatly</li>
+    <li>IP Address</li>
+    <li>Search Keyword, if the referer is Google, Yahoo! or Lycos search engines
+    <li>Referer</li>
+    <li>Browser</li>
+    <li>Operating System</li>
+  </ol>
+   of the voter.
+</p>
+<p>
+  <br /><span class="important">Note: The total hits may not match if you enable details and do not reset the earlier hits.</span>
+</p>
+<a name="admin_logging_hitdetails_end"></a>
+<a name="admin_logging_end"></a>
+<p><a class="back" href="#top">Back to top</a></p><hr />
 
-      <a name="admin_misc"></a>
-      <h3>4.12.15 Miscellaneous settings</h3>
-      <a name="debug_mode"></a><h4>Enable debug mode</h4>
-      <p>CPG will show error messages which are normally suppressed.  This is helpful in troubleshooting problems with your gallery or when asking      for help on the <a href="http://coppermine.sf.net/board/">CPG Support Forums</a>. Turn this feature off if you don't experience problems.<br />
-      Turn it on (option &quot;Everyone&quot;) if you are requesting help on the <a href="http://coppermine.sf.net/board/">coppermine support board</a>, so the supporters can have a look at the debug output as well. Choose the option &quot;Admin only&quot; when trouble-shooting on your own - debug output will be only visible when you're logged in as admin, regular users or guests won't see the debug output.</p>
-      <a name="admin_misc_debug_notices"></a><h4>Display notices in debug mode</h4>
-      <p>May be helpfull to trouble-shoot problems with your coppermine install - only recommended if you know a little PHP and you can understand the additional error messages this option shows. This option only applies if debug mode is enabled.</p>
-      <a name="admin_misc_debug_notices_end"></a>
-      <a name="debug_mode_end"></a>
-      <a name="admin_misc_enable-plugins"></a><h4>Enable plugins</h4>
-      <p>Enable plugins. This feature is brand-new, there's no documentation for it yet.</p>
-      <p class="small">[cpg1.4.0 or better required]</p>
-      <a name="admin_misc_enable-plugins_end"></a>
+<a name="admin_misc"></a>
+<h3>4.12.16 Miscellaneous settings</h3>
+<a name="debug_mode"></a><h4>Enable debug mode</h4>
+<p>CPG will show error messages which are normally suppressed.  This is helpful in troubleshooting problems with your gallery or when asking      for help on the <a href="http://coppermine.sf.net/board/">CPG Support Forums</a>. Turn this feature off if you don't experience problems.<br />
+Turn it on (option &quot;Everyone&quot;) if you are requesting help on the <a href="http://coppermine.sf.net/board/">coppermine support board</a>, so the supporters can have a look at the debug output as well. Choose the option &quot;Admin only&quot; when trouble-shooting on your own - debug output will be only visible when you're logged in as admin, regular users or guests won't see the debug output.</p>
+<a name="admin_misc_debug_notices"></a><h4>Display notices in debug mode</h4>
+<p>May be helpfull to trouble-shoot problems with your coppermine install - only recommended if you know a little PHP and you can understand the additional error messages this option shows. This option only applies if debug mode is enabled.</p>
+<a name="admin_misc_debug_notices_end"></a>
+<a name="debug_mode_end"></a>
+<a name="admin_misc_enable-plugins"></a><h4>Enable plugins</h4>
+<p>Enable plugins. This feature is brand-new, there's no documentation for it yet.</p>
+<p class="small">[cpg1.4.0 or better required]</p>
+<a name="admin_misc_enable-plugins_end"></a>
 
-      <a name="admin_misc_private-ip"></a><h4>Allow banning of non-routable (private) IP addresses</h4>
-      <p>Usually most people on the internet have dynamic IP addresses assigned to them when connecting to the internet by their Internet Service Provider. These IP adresses change with each session users connect to the internet, but during an internet session these IP addresses are &quot;visible&quot; for the web-sites the user is surfing. From the range of all IP adresses (0.0.0.0 to 255.255.255.255), some ranges have been reserved for special purposes (mostly for the use on private networks). The banning feature won't accept IP adresses to be banned that belong to these private ranges (e.g. 192.168.0.1) to avoid unexperienced coppermine admins to ban IP addresses within their own LAN. If you're actually running Coppermine on your LAN/WAN that uses private IP addresses (e.g. on a company's intranet) and you want to be able to ban users, switch this option to &quot;Yes&quot;. If you're running coppermine on a webserver located in the internet (e.g. you're webhosted), you should keep this option set to &quot;No&quot;.<br />
-      If you don't use banning at all, you can savely ignore this setting completely.</p>
-      <p class="small">[cpg1.4.0 or better required]</p>
-      <a name="admin_misc_private-ip_end"></a>
+<a name="admin_misc_private-ip"></a><h4>Allow banning of non-routable (private) IP addresses</h4>
+<p>Usually most people on the internet have dynamic IP addresses assigned to them when connecting to the internet by their Internet Service Provider. These IP adresses change with each session users connect to the internet, but during an internet session these IP addresses are &quot;visible&quot; for the web-sites the user is surfing. From the range of all IP adresses (0.0.0.0 to 255.255.255.255), some ranges have been reserved for special purposes (mostly for the use on private networks). The banning feature won't accept IP adresses to be banned that belong to these private ranges (e.g. 192.168.0.1) to avoid unexperienced coppermine admins to ban IP addresses within their own LAN. If you're actually running Coppermine on your LAN/WAN that uses private IP addresses (e.g. on a company's intranet) and you want to be able to ban users, switch this option to &quot;Yes&quot;. If you're running coppermine on a webserver located in the internet (e.g. you're webhosted), you should keep this option set to &quot;No&quot;.<br />
+If you don't use banning at all, you can savely ignore this setting completely.</p>
+<p class="small">[cpg1.4.0 or better required]</p>
+<a name="admin_misc_private-ip_end"></a>
 
-      <a name="admin_misc_browsable_batch_add"></a><h4>Browsable batch-add interface</h4>
-      <p>When <a href="#batch_add_pics">batch-adding</a> files (that you have uploaded by <acronym title="File Transfer Protocol">FTP</acronym> before) to your gallery, you have the option to switch between a browsable list, where you can go through the directory structure in your <tt class="code">albums</tt>-folder and to display the whole directory structure at once. Enable this option if you have a larger structure of directories and subdirectories you want to browse through (this requires your browser to be capable of displaying <a href="http://www.w3schools.com/tags/tag_iframe.asp" class="external" rel="external">iframes</a>). Set this option to &quot;No&quot; (disabled) if you want to use the &quot;classic&quot; coppermine interface that shows a complete list of the structure at once.<br />
-      You can toggle this option on the <a href="#batch_add_pics">batch-add</a> page as well.</p>
-      <p class="small">[cpg1.4.0 or better required]</p>
-      <a name="admin_misc_browsable_batch_add_end"></a>
+<a name="admin_misc_browsable_batch_add"></a><h4>Browsable batch-add interface</h4>
+<p>When <a href="#batch_add_pics">batch-adding</a> files (that you have uploaded by <acronym title="File Transfer Protocol">FTP</acronym> before) to your gallery, you have the option to switch between a browsable list, where you can go through the directory structure in your <tt class="code">albums</tt>-folder and to display the whole directory structure at once. Enable this option if you have a larger structure of directories and subdirectories you want to browse through (this requires your browser to be capable of displaying <a href="http://www.w3schools.com/tags/tag_iframe.asp" class="external" rel="external">iframes</a>). Set this option to &quot;No&quot; (disabled) if you want to use the &quot;classic&quot; coppermine interface that shows a complete list of the structure at once.<br />
+You can toggle this option on the <a href="#batch_add_pics">batch-add</a> page as well.</p>
+<p class="small">[cpg1.4.0 or better required]</p>
+<a name="admin_misc_browsable_batch_add_end"></a>
 
-      <a name="admin_misc_include_path_start"></a>
-      <h4>Path to custom header include</h4>
-      <p>Optional relative path to a custom header file. Using this option, you can include non-coppermine code bits to be included into your theme, e.g. an overall navigation that gets included on your whole website. You can only add a relative path (seen from the root path of your coppermine install) - not an absolute one, nor a http include from another website. This option is only meant for experienced users who have some PHP know-how. <br />
-      <span class="important">Warning: you mustn't include full html pages that contain an html header or footer (tags like <tt class="code">&lt;head&gt;</tt> or <tt class="code">&lt;body&gt;</tt>), nor can the included file do file header manipulation, e.g. reading another (non-coppermine) cookie.</span></p>
-      <p class="small">[cpg1.4.0 or better required]</p>
-      <h4>Path to custom footer include</h4>
-      <p>Optional relative path to a custom footer file. The same remarks apply as for the custom header include path.</p>
-      <p class="small">[cpg1.4.0 or better required]</p>
-      <a name="admin_misc_include_path_end"></a>
+<a name="admin_misc_include_path_start"></a>
+<h4>Path to custom header include</h4>
+<p>Optional relative path to a custom header file. Using this option, you can include non-coppermine code bits to be included into your theme, e.g. an overall navigation that gets included on your whole website. You can only add a relative path (seen from the root path of your coppermine install) - not an absolute one, nor a http include from another website. This option is only meant for experienced users who have some PHP know-how. <br />
+<span class="important">Warning: you mustn't include full html pages that contain an html header or footer (tags like <tt class="code">&lt;head&gt;</tt> or <tt class="code">&lt;body&gt;</tt>), nor can the included file do file header manipulation, e.g. reading another (non-coppermine) cookie.</span></p>
+<p class="small">[cpg1.4.0 or better required]</p>
+<h4>Path to custom footer include</h4>
+<p>Optional relative path to a custom footer file. The same remarks apply as for the custom header include path.</p>
+<p class="small">[cpg1.4.0 or better required]</p>
+<a name="admin_misc_include_path_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="integrating"></a>
