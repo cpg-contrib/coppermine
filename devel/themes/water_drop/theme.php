@@ -80,31 +80,5 @@ EOT;
 
 
 
-// HTML template for filmstrip display
-$template_film_strip = <<<EOT
-
-        <tr>
-         <td valign="top" style="background-image: url(themes/water_drop/images/tile.gif);" align="center" height='30'>&nbsp;</td>
-        </tr>
-        <tr>
-        <td valign="bottom" class="thumbnails" align="center">
-          {THUMB_STRIP}
-        </td>
-        </tr>
-        <tr>
-         <td valign="top" style="background-image: url(themes/water_drop/images/tile.gif);" align="center" height='30'>&nbsp;</td>
-        </tr>
-<!-- BEGIN thumb_cell -->
-                                        <a href="{LINK_TGT}">{THUMB}</a>&nbsp;
-                                        {CAPTION}
-                                        {ADMIN_MENU}
-<!-- END thumb_cell -->
-<!-- BEGIN empty_cell -->
-                <td valign="top" align="center" >1&nbsp;</td>
-<!-- END empty_cell -->
-
-EOT;
-
-
 
 ?>
