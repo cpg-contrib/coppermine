@@ -451,7 +451,7 @@ switch ($what) {
     case 'user':
         $user_id = str_replace('u', '', $_GET['id']);
         $users_scheduled_for_action = explode(',', $user_id);
-        if (!(GALLERY_ADMIN_MODE) || ($user_id == USER_ID) || defined('UDB_INTEGRATION')) cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
+        if (!(GALLERY_ADMIN_MODE) || ($user_id == USER_ID) || UDB_INTEGRATION != 'coppermine') cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
         switch ($_REQUEST['action']) {
                 case 'delete':
