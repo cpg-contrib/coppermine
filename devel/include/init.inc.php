@@ -21,6 +21,7 @@ define('COPPERMINE_VERSION', '1.3.0 - devel');
 // define('UDB_INTEGRATION', 'invisionboard');
 // define('UDB_INTEGRATION', 'vbulletin');
 // define('UDB_INTEGRATION', 'yabbse');
+// define('UDB_INTEGRATION', 'woltlab21');
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 // Start output buffering
 ob_start();
