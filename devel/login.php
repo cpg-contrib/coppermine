@@ -42,7 +42,7 @@ if (isset($_POST['submitted'])) {
         setcookie($CONFIG['cookie_name'] . '_uid', $USER_DATA['user_id'], time() + $cookie_life_time, $CONFIG['cookie_path']);
         setcookie($CONFIG['cookie_name'] . '_pass', md5($_POST['password']), time() + $cookie_life_time, $CONFIG['cookie_path']);
 
-        pageheader($lang_login_php['login'], "<META http-equiv=\"refresh\" content=\"3;url=$referer\">");
+        pageheader($lang_login_php['login'], "<meta http-equiv=\"refresh\" content=\"3;url=$referer\" />");
         msg_box($lang_login_php['login'], sprintf($lang_login_php['welcome'], $USER_DATA['user_name']), $lang_continue, $referer);
         pagefooter();
         exit;
