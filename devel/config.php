@@ -33,9 +33,9 @@ function form_label($text)
 	static $cmi = 0;
 	static $open = false;
 					
-	if ($sn1) echo '<tr><td><a name="notice1"></a>'.$lang_config_php['notice1'].'</td></tr>';
-	if ($sn2) echo '<tr><td><a name="notice2"></a>'.$lang_config_php['notice2'].'</td></tr>'; 
-	if ($sn3) echo '<tr><td><a name="notice3"></a>'.$lang_config_php['notice3'].'</td></tr>'; 
+	if ($sn1) echo '<tr><td colspan ="2"><a name="notice1"></a>'.$lang_config_php['notice1'].'</td></tr>';
+	if ($sn2) echo '<tr><td colspan ="2"><a name="notice2"></a>'.$lang_config_php['notice2'].'</td></tr>'; 
+	if ($sn3) echo '<tr><td colspan ="2"><a name="notice3"></a>'.$lang_config_php['notice3'].'</td></tr>'; 
 	
 	$sn1 = $sn2 = $sn3 = 0;
 	
@@ -503,12 +503,14 @@ EOT;
 
 function create_form(&$data)
 {
+	global $sn1, $sn2, $sn3;
+	
     foreach($data as $element) {
         if ((is_array($element))) {
         	$element[3] = (isset($element[3])) ? $element[3] : '';
-        	$sn1 = max($sn1(strpos($element[0],'<a href="#notice1"')));
-        	$sn2 = max($sn2(strpos($element[0],'<a href="#notice2"')));
-        	$sn3 = max($sn3(strpos($element[0],'<a href="#notice3"')));
+        	$sn1 = max($sn1,(strpos($element[0],'<a href="#notice1"')));
+        	$sn2 = max($sn2,(strpos($element[0],'<a href="#notice2"')));
+        	$sn3 = max($sn3,(strpos($element[0],'<a href="#notice3"')));
             switch ($element[2]) {
                 case 0 :
                     form_input($element[0], $element[1], $element[3]);
@@ -644,9 +646,9 @@ echo "<form action=\"$PHP_SELF\" method=\"post\">";
 starttable('100%', "{$lang_config_php['title']} - $signature", 3);
 create_form($lang_config_data);
 
-	if ($sn1) echo '<tr><td><a name="notice1"></a>'.$lang_config_php['notice1'].'</td></tr>';
-	if ($sn2) echo '<tr><td><a name="notice2"></a>'.$lang_config_php['notice2'].'</td></tr>'; 
-	if ($sn3) echo '<tr><td><a name="notice3"></a>'.$lang_config_php['notice3'].'</td></tr>'; 
+	if ($sn1) echo '<tr><td colspan ="2"><a name="notice1"></a>'.$lang_config_php['notice1'].'</td></tr>';
+	if ($sn2) echo '<tr><td colspan ="2"><a name="notice2"></a>'.$lang_config_php['notice2'].'</td></tr>'; 
+	if ($sn3) echo '<tr><td colspan ="2"><a name="notice3"></a>'.$lang_config_php['notice3'].'</td></tr>'; 
 	
 echo '</table></td></tr>';
 
