@@ -27,6 +27,7 @@ $rate = (int)$HTTP_GET_VARS['rate'];
 
 $rate = min($rate, 5);
 $rate = max($rate, 0);
+
 // If user does not accept script's cookies, we don't accept the vote
 if (!isset($HTTP_COOKIE_VARS[$CONFIG['cookie_name'] . '_data'])) {
     header('Location: displayimage.php?pos=' . (- $pic));
@@ -52,7 +53,8 @@ if (mysql_num_rows($result)) cpg_die(ERROR, $lang_rate_pic_php['already_rated'],
 //Test for Self-Rating
 $user=USER_ID;
 $owner=$row['owner_id'];
-if ($user==$owner && !USER_IS_ADMIN) cpg_die(ERROR, $lang_rate_pic_php['forbidden'], __FILE__, __LINE__);  
+
+if (!empty($user) && $user==$owner && !USER_IS_ADMIN) cpg_die(ERROR, $lang_rate_pic_php['forbidden'], __FILE__, __LINE__);  
 // Update picture rating
 $new_rating = round(($row['votes'] * $row['pic_rating'] + $rate * 2000) / ($row['votes'] + 1));
 $sql = "UPDATE {$CONFIG['TABLE_PICTURES']} " . "SET pic_rating = '$new_rating', votes = votes + 1 " . "WHERE pid = '$pic' LIMIT 1";
