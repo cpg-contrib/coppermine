@@ -49,7 +49,6 @@ p {
 
 -->
 </style>
-<!-- $Id$ -->
 </head>
 <body>
 <h1><img src="../images/coppermine_logo.png" width="300" height="75" /></h1>
