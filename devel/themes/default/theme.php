@@ -1134,27 +1134,29 @@ function theme_display_album_list(&$alb_list,$nbAlb, $cat, $page, $total_pages)
         }
 
         echo $header;
+	
+	if(is_array($alb_list)){
+		foreach($alb_list as $album){
+			$count ++;
 
-        foreach($alb_list as $album){
-                $count ++;
+			$params = array(
+				'{COL_WIDTH}' => $column_width,
+				'{ALBUM_TITLE}' => $album['album_title'],
+				'{THUMB_CELL_WIDTH}' => $thumb_cell_width,
+				'{ALB_LINK_TGT}' => "thumbnails.php?album={$album['aid']}",
+				'{ALB_LINK_PIC}' => $album['thumb_pic'],
+				'{ADMIN_MENU}' => $album['album_adm_menu'],
+				'{ALB_DESC}' => $album['album_desc'],
+				'{ALB_INFOS}' => $album['album_info'],
+			);
 
-                $params = array(
-                        '{COL_WIDTH}' => $column_width,
-                        '{ALBUM_TITLE}' => $album['album_title'],
-                        '{THUMB_CELL_WIDTH}' => $thumb_cell_width,
-                        '{ALB_LINK_TGT}' => "thumbnails.php?album={$album['aid']}",
-                        '{ALB_LINK_PIC}' => $album['thumb_pic'],
-                        '{ADMIN_MENU}' => $album['album_adm_menu'],
-                        '{ALB_DESC}' => $album['album_desc'],
-                        '{ALB_INFOS}' => $album['album_info'],
-                );
+			echo template_eval($album_cell, $params);
 
-                echo template_eval($album_cell, $params);
-
-                if ($count % $columns == 0 && $count < count($alb_list)) {
-                        echo $rows_separator;
-                }
-        }
+			if ($count % $columns == 0 && $count < count($alb_list)) {
+				echo $rows_separator;
+			}
+		}
+	}
 
         $params = array('{COL_WIDTH}' => $column_width);
         $empty_cell = template_eval($empty_cell, $params);
@@ -1221,27 +1223,29 @@ function theme_display_album_list_cat(&$alb_list,$nbAlb, $cat, $page, $total_pag
 
         echo $header;
 
-        foreach($alb_list as $album){
-                $count ++;
+	if(is_array($alb_list)){	
+		foreach($alb_list as $album){
+			$count ++;
 
-                $params = array(
-                        '{COL_WIDTH}' => $column_width,
-                        '{ALBUM_TITLE}' => $album['album_title'],
-                        '{THUMB_CELL_WIDTH}' => $thumb_cell_width,
-                        '{ALB_LINK_TGT}' => "thumbnails.php?album={$album['aid']}",
-                        '{ALB_LINK_PIC}' => $album['thumb_pic'],
-                        '{ADMIN_MENU}' => $album['album_adm_menu'],
-                        '{ALB_DESC}' => $album['album_desc'],
-                        '{ALB_INFOS}' => $album['album_info'],
-                );
+			$params = array(
+				'{COL_WIDTH}' => $column_width,
+				'{ALBUM_TITLE}' => $album['album_title'],
+				'{THUMB_CELL_WIDTH}' => $thumb_cell_width,
+				'{ALB_LINK_TGT}' => "thumbnails.php?album={$album['aid']}",
+				'{ALB_LINK_PIC}' => $album['thumb_pic'],
+				'{ADMIN_MENU}' => $album['album_adm_menu'],
+				'{ALB_DESC}' => $album['album_desc'],
+				'{ALB_INFOS}' => $album['album_info'],
+			);
 
-                echo template_eval($album_cell, $params);
+			echo template_eval($album_cell, $params);
 
-                if ($count % $columns == 0 && $count < count($alb_list)) {
-                        echo $rows_separator;
-                }
-        }
-
+			if ($count % $columns == 0 && $count < count($alb_list)) {
+				echo $rows_separator;
+			}
+		}
+	}
+		
         $params = array('{COL_WIDTH}' => $column_width);
         $empty_cell = template_eval($empty_cell, $params);
 
@@ -1312,10 +1316,10 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                         '{AID}' => $aid,
                         '{PAGE}' => $page,
                         '{NAME}' => $lang_thumb_view['name'],
-            '{TITLE}' => $lang_thumb_view['title'],
+            		'{TITLE}' => $lang_thumb_view['title'],
                         '{DATE}' => $lang_thumb_view['date'],
-            '{SORT_TA}' => $lang_thumb_view['sort_ta'],
-            '{SORT_TD}' => $lang_thumb_view['sort_td'],
+            		'{SORT_TA}' => $lang_thumb_view['sort_ta'],
+            		'{SORT_TD}' => $lang_thumb_view['sort_td'],
                         '{SORT_NA}' => $lang_thumb_view['sort_na'],
                         '{SORT_ND}' => $lang_thumb_view['sort_nd'],
                         '{SORT_DA}' => $lang_thumb_view['sort_da'],
