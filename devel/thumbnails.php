@@ -243,7 +243,7 @@ if ($CONFIG['allow_private_albums'] == 0 || !in_array($album, $FORBIDDEN_SET_DAT
     }
 }
 $META_ALBUM_SET = $ALBUM_SET; //temporary assignment until we are sure we are keeping the $META_ALBUM_SET functionality.
-CPGPluginAPI::action('post_breadcrumb',null);
+CPGPluginAPI::filter('post_breadcrumb',null);
 if (!$valid) {
     form_albpw();
 } else {
