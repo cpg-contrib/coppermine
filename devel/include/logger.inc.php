@@ -26,7 +26,7 @@ function log_write( $text, $log = null ) {
         $log = 'logs/'.$log.'.php';
 
         if (!file_exists($log)) {
-                $log_header = readfile('logs/log_header.inc.php');
+                $log_header = implode('',file('logs/log_header.inc.php'));
         }
 
         $fp = fileopen($log,'a');
