@@ -259,7 +259,7 @@ function udb_get_user_infos($uid)
     global $UDB_DB_NAME_PREFIX, $UDB_DB_LINK_ID;
     global $lang_register_php;
 
-    $sql = "SELECT username as user_name, email as user_email, registerDate as user_regdate, " . "FROM " . $UDB_DB_NAME_PREFIX . MOS_TABLE_PREFIX . MOS_USER_TABLE . " " . "WHERE id = '$uid'";
+    $sql = "SELECT username as user_name, email as user_email, registerDate as user_regdate " . "FROM " . $UDB_DB_NAME_PREFIX . MOS_TABLE_PREFIX . MOS_USER_TABLE . " " . "WHERE id = '$uid'";
     $result = db_query($sql, $UDB_DB_LINK_ID);
     if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_register_php['err_unk_user'], __FILE__, __LINE__);
 
