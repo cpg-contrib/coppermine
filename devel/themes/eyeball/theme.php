@@ -2,10 +2,10 @@
 // ------------------------------------------------------------------------- //
 //  Coppermine Photo Gallery                                                 //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Grï¿½ory DEMAR <gdemar@wanadoo.fr>               //
+//  Copyright (C) 2002,2003  Gr&eacute;gory DEMAR <gdemar@wanadoo.fr>               //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Stverud <henning@stoverud.com>         //
+//  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
 //  http://www.stoverud.com/PHPhotoalbum/                                    //
 // ------------------------------------------------------------------------- //
 //  Hacked by Tarique Sani <tarique@sanisoft.com>                            //
@@ -22,114 +22,110 @@ define('THEME_HAS_RATING_GRAPHICS', 1);
 
 // HTML template for main menu
 $template_main_menu1 = <<<EOT
-		<span class="topmenu">
-			<table border="0" cellpadding="0" cellspacing="0">
-				<tr>
-					<td>
-						|
+                <span class="topmenu">
+                        <table border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                        <td>
+                                                |
 <!-- BEGIN my_gallery -->
-						<a href="{MY_GAL_TGT}" title="{MY_GAL_TITLE}">{MY_GAL_LNK}</a> |
+                                                <a href="{MY_GAL_TGT}" title="{MY_GAL_TITLE}">{MY_GAL_LNK}</a> |
 <!-- END my_gallery -->
 <!-- BEGIN my_profile -->
-						<a href="{MY_PROF_TGT}">{MY_PROF_LNK}</a> |
+                                                <a href="{MY_PROF_TGT}">{MY_PROF_LNK}</a> |
 <!-- END my_profile -->
 <!-- BEGIN enter_admin_mode -->
-						<a href="{ADM_MODE_TGT}" title="{ADM_MODE_TITLE}">{ADM_MODE_LNK}</a> |
+                                                <a href="{ADM_MODE_TGT}" title="{ADM_MODE_TITLE}">{ADM_MODE_LNK}</a> |
 <!-- END enter_admin_mode -->
 <!-- BEGIN leave_admin_mode -->
-						<a href="{USR_MODE_TGT}" title="{USR_MODE_TITLE}">{USR_MODE_LNK}</a> |
+                                                <a href="{USR_MODE_TGT}" title="{USR_MODE_TITLE}">{USR_MODE_LNK}</a> |
 <!-- END leave_admin_mode -->
 <!-- BEGIN upload_pic -->
-						<a href="{UPL_PIC_TGT}" title="{UPL_PIC_TITLE}">{UPL_PIC_LNK}</a> |
+                                                <a href="{UPL_PIC_TGT}" title="{UPL_PIC_TITLE}">{UPL_PIC_LNK}</a> |
 <!-- END upload_pic -->
 <!-- BEGIN register -->
-						<a href="{REGISTER_TGT}" title="{REGISTER_TITLE}">{REGISTER_LNK}</a> |
+                                                <a href="{REGISTER_TGT}" title="{REGISTER_TITLE}">{REGISTER_LNK}</a> |
 <!-- END register -->
 <!-- BEGIN login -->
-						<a href="{LOGIN_TGT}">{LOGIN_LNK}</a> |
+                                                <a href="{LOGIN_TGT}">{LOGIN_LNK}</a> |
 <!-- END login -->
 <!-- BEGIN logout -->
-						<a href="{LOGOUT_TGT}">{LOGOUT_LNK}</a> |
+                                                <a href="{LOGOUT_TGT}">{LOGOUT_LNK}</a> |
 <!-- END logout -->
-					</td>
-				</tr>
-			</table>
-		</span>
+                                        </td>
+                                </tr>
+                        </table>
+                </span>
 EOT;
 
 $template_main_menu2 = <<<EOT
-			<table border="0" cellpadding="0" cellspacing="0" border="0" class="top_menu_bttn">
-				<tr>
-					<td><img src="themes/eyeball/images/top_menu_left.gif" border="0" alt="" /><br /></td>
-					<td background="themes/eyeball/images/top_menu_button.gif">
-						<a href="index.php" onMouseOver="MM_showHideLayers('Menu1','','show')"><img src="themes/eyeball/images/home.gif" border="0" alt="" /><br /></a>
-					</td>
-					<td><img src="themes/eyeball/images/top_menu_spacer.gif" border="0" alt="" /><br /></td>
-					<td background="themes/eyeball/images/top_menu_button.gif">
-						<a href="{ALB_LIST_TGT}" title="{ALB_LIST_TITLE}">{ALB_LIST_LNK}</a>
-					</td>
-					<td><img src="themes/eyeball/images/top_menu_spacer.gif" border="0" alt="" /><br /></td>
-					<td background="themes/eyeball/images/top_menu_button.gif">
-						<a href="{LASTUP_TGT}">{LASTUP_LNK}</a>
-					</td>
-					<td><img src="themes/eyeball/images/top_menu_spacer.gif" border="0" alt="" /><br /></td>
-					<td background="themes/eyeball/images/top_menu_button.gif">
-						<a href="{LASTCOM_TGT}" onMouseOver="MM_showHideLayers('Menu1','','hide')">{LASTCOM_LNK}</a>
-					</td>
-					<td><img src="themes/eyeball/images/top_menu_spacer.gif" border="0" alt="" /><br /></td>
-					<td background="themes/eyeball/images/top_menu_button.gif">
-						<a href="{TOPN_TGT}" onMouseOver="MM_showHideLayers('Menu1','','hide')">{TOPN_LNK}</a>
-					</td>
-					<td><img src="themes/eyeball/images/top_menu_spacer.gif" border="0" alt="" /><br /></td>
-					<td background="themes/eyeball/images/top_menu_button.gif">
-						<a href="{TOPRATED_TGT}" onMouseOver="MM_showHideLayers('Menu1','','hide')">{TOPRATED_LNK}</a>
-					</td>
-					<td><img src="themes/eyeball/images/top_menu_spacer.gif" border="0" alt="" /><br /></td>
-					<td background="themes/eyeball/images/top_menu_button.gif">
-						<a href="{FAV_TGT}" onMouseOver="MM_showHideLayers('Menu1','','hide')">{FAV_LNK}</a>
-					</td>					
-					<td><img src="themes/eyeball/images/top_menu_spacer.gif" border="0" alt="" /><br /></td>
-					<td background="themes/eyeball/images/top_menu_button.gif">
-						<a href="{SEARCH_TGT}" onMouseOver="MM_showHideLayers('Menu1','','hide')">{SEARCH_LNK}</a>
-					</td>
-					<td><img src="themes/eyeball/images/top_menu_right.gif" border="0" alt="" /><br /></td>
-				</tr>
-			</table>
+                        <table border="0" cellpadding="0" cellspacing="0" border="0" class="top_menu_bttn">
+                                <tr>
+                                        <td><img src="themes/eyeball/images/top_menu_left.gif" border="0" alt="" /><br /></td>
+                                        <td background="themes/eyeball/images/top_menu_button.gif">
+                                                <a href="index.php" onMouseOver="MM_showHideLayers('Menu1','','show')"><img src="themes/eyeball/images/home.gif" border="0" alt="" /><br /></a>
+                                        </td>
+                                        <td><img src="themes/eyeball/images/top_menu_spacer.gif" border="0" alt="" /><br /></td>
+                                        <td background="themes/eyeball/images/top_menu_button.gif">
+                                                <a href="{ALB_LIST_TGT}" title="{ALB_LIST_TITLE}">{ALB_LIST_LNK}</a>
+                                        </td>
+                                        <td><img src="themes/eyeball/images/top_menu_spacer.gif" border="0" alt="" /><br /></td>
+                                        <td background="themes/eyeball/images/top_menu_button.gif">
+                                                <a href="{LASTUP_TGT}">{LASTUP_LNK}</a>
+                                        </td>
+                                        <td><img src="themes/eyeball/images/top_menu_spacer.gif" border="0" alt="" /><br /></td>
+                                        <td background="themes/eyeball/images/top_menu_button.gif">
+                                                <a href="{LASTCOM_TGT}" onMouseOver="MM_showHideLayers('Menu1','','hide')">{LASTCOM_LNK}</a>
+                                        </td>
+                                        <td><img src="themes/eyeball/images/top_menu_spacer.gif" border="0" alt="" /><br /></td>
+                                        <td background="themes/eyeball/images/top_menu_button.gif">
+                                                <a href="{TOPN_TGT}" onMouseOver="MM_showHideLayers('Menu1','','hide')">{TOPN_LNK}</a>
+                                        </td>
+                                        <td><img src="themes/eyeball/images/top_menu_spacer.gif" border="0" alt="" /><br /></td>
+                                        <td background="themes/eyeball/images/top_menu_button.gif">
+                                                <a href="{TOPRATED_TGT}" onMouseOver="MM_showHideLayers('Menu1','','hide')">{TOPRATED_LNK}</a>
+                                        </td>
+                                        <td><img src="themes/eyeball/images/top_menu_spacer.gif" border="0" alt="" /><br /></td>
+                                        <td background="themes/eyeball/images/top_menu_button.gif">
+                                                <a href="{SEARCH_TGT}" onMouseOver="MM_showHideLayers('Menu1','','hide')">{SEARCH_LNK}</a>
+                                        </td>
+                                        <td><img src="themes/eyeball/images/top_menu_right.gif" border="0" alt="" /><br /></td>
+                                </tr>
+                        </table>
 EOT;
 
 // HTML template for gallery admin menu
 $template_gallery_admin_menu = <<<EOT
 
-		<div align="left">
-		<table cellpadding="0" cellspacing="1">
-			<tr>
-				<td class="admin_menu"><a href="editpics.php?mode=upload_approval" title="">{UPL_APP_LNK}</a></td>
-				<td class="admin_menu"><a href="config.php" title="">{CONFIG_LNK}</a></td>
-				<td class="admin_menu"><a href="albmgr.php{CATL}" title="">{ALBUMS_LNK}</a></td>
-				<td class="admin_menu"><a href="catmgr.php" title="">{CATEGORIES_LNK}</a></td>
-				<td class="admin_menu"><a href="usermgr.php" title="">{USERS_LNK}</a></td>
-				<td class="admin_menu"><a href="groupmgr.php" title="">{GROUPS_LNK}</a></td>
-				<td class="admin_menu"><a href="reviewcom.php" title="">{COMMENTS_LNK}</a></td>
-				<td class="admin_menu"><a href="searchnew.php" title="">{SEARCHNEW_LNK}</a></td>
-				<td class="admin_menu"><a href="profile.php?op=edit_profile" title="">{MY_PROF_LNK}</a></td>
-			</tr>
-		</table>
-		</div>
+                <div align="left">
+                <table cellpadding="0" cellspacing="1">
+                        <tr>
+                                <td class="admin_menu"><a href="editpics.php?mode=upload_approval" title="">{UPL_APP_LNK}</a></td>
+                                <td class="admin_menu"><a href="config.php" title="">{CONFIG_LNK}</a></td>
+                                <td class="admin_menu"><a href="albmgr.php{CATL}" title="">{ALBUMS_LNK}</a></td>
+                                <td class="admin_menu"><a href="catmgr.php" title="">{CATEGORIES_LNK}</a></td>
+                                <td class="admin_menu"><a href="usermgr.php" title="">{USERS_LNK}</a></td>
+                                <td class="admin_menu"><a href="groupmgr.php" title="">{GROUPS_LNK}</a></td>
+                                <td class="admin_menu"><a href="reviewcom.php" title="">{COMMENTS_LNK}</a></td>
+                                <td class="admin_menu"><a href="searchnew.php" title="">{SEARCHNEW_LNK}</a></td>
+                                <td class="admin_menu"><a href="util.php" title="">{UTIL_LNK}</a></td>                                <td class="admin_menu"><a href="profile.php?op=edit_profile" title="">{MY_PROF_LNK}</a></td>
+                        </tr>
+                </table>
+                </div>
 
 EOT;
 
 // HTML template for user admin menu
 $template_user_admin_menu = <<<EOT
 
-		<div align="left">
-		<table cellpadding="0" cellspacing="1">
-			<tr>
-				<td class="admin_menu"><a href="albmgr.php" title="">{ALBMGR_LNK}</a></td>
-				<td class="admin_menu"><a href="modifyalb.php" title="">{MODIFYALB_LNK}</a></td>
-				<td class="admin_menu"><a href="profile.php?op=edit_profile" title="">{MY_PROF_LNK}</a></td>
-			</tr>
-		</table>
-		</div>
+                <div align="left">
+                <table cellpadding="0" cellspacing="1">
+                        <tr>
+                                <td class="admin_menu"><a href="albmgr.php" title="">{ALBMGR_LNK}</a></td>
+                                <td class="admin_menu"><a href="modifyalb.php" title="">{MODIFYALB_LNK}</a></td>
+                                <td class="admin_menu"><a href="profile.php?op=edit_profile" title="">{MY_PROF_LNK}</a></td>
+                        </tr>
+                </table>
+                </div>
 
 EOT;
 
@@ -137,34 +133,34 @@ EOT;
 $template_cat_list = <<<EOT
 
 <!-- BEGIN header -->
-	<tr>
-		<td class="tableh1" width="80%"><b>{CATEGORY}</b></td>
-		<td class="tableh1" width="10%" align="center"><b>{ALBUMS}</b></td>
-		<td class="tableh1" width="10%" align="center"><b>{PICTURES}</b></td>
-	</tr>
+        <tr>
+                <td class="tableh1" width="80%"><b>{CATEGORY}</b></td>
+                <td class="tableh1" width="10%" align="center"><b>{ALBUMS}</b></td>
+                <td class="tableh1" width="10%" align="center"><b>{PICTURES}</b></td>
+        </tr>
 <!-- END header -->
 <!-- BEGIN catrow_noalb -->
-	<tr>
-		<td class="tableh2" colspan="3"><span class="catlink">{CAT_TITLE}</span>{CAT_DESC}</td>
-	</tr>
+        <tr>
+                <td class="tableh2" colspan="3"><span class="catlink">{CAT_TITLE}</span>{CAT_DESC}</td>
+        </tr>
 <!-- END catrow_noalb -->
 <!-- BEGIN catrow -->
-	<tr>
-		<td class="tableb"><span class="catlink">{CAT_TITLE}</span>{CAT_DESC}</td>
-		<td class="tableb" align="center">{ALB_COUNT}</td>
-		<td class="tableb" align="center">{PIC_COUNT}</td>
-	</tr>
+        <tr>
+                <td class="tableb"><span class="catlink">{CAT_TITLE}</span>{CAT_DESC}</td>
+                <td class="tableb" align="center">{ALB_COUNT}</td>
+                <td class="tableb" align="center">{PIC_COUNT}</td>
+        </tr>
       <tr>
             <td class="tableb" colspan=3>{CAT_ALBUMS}</td>
       </tr>
 <!-- END catrow -->
 <!-- BEGIN footer -->
-	<tr>
-		<td colspan="3" class="tableb" align="center"><span class="statlink"><b>{STATISTICS}</b></span></td>
-	</tr>
+        <tr>
+                <td colspan="3" class="tableb" align="center"><span class="statlink"><b>{STATISTICS}</b></span></td>
+        </tr>
 <!-- END footer -->
 <!-- BEGIN spacer -->
-	<img src="images/spacer.gif" width="1" height="17" /><br />
+        <img src="images/spacer.gif" width="1" height="17" /><br />
 <!-- END spacer -->
 
 EOT;
@@ -172,21 +168,21 @@ EOT;
 //HTML template for the breadcrumb
 $template_breadcrumb = <<<EOT
 <!-- BEGIN breadcrumb -->
-	<tr>
-		<td colspan="3" class="tableh1"><span class="statlink"><b>{BREADCRUMB}</b></span></td>
-	</tr>
+        <tr>
+                <td colspan="3" class="tableh1"><span class="statlink"><b>{BREADCRUMB}</b></span></td>
+        </tr>
 <!-- END breadcrumb -->
 <!-- BEGIN breadcrumb_user_gal -->
-	<tr>
-		<td colspan="3" class="tableh1">
-		<table width="100%" cellpadding="0" cellspacing="0" border="0">
-		<tr>
-			<td><span class="statlink"><b>{BREADCRUMB}</b></span></td>
-			<td align="right"><span class="statlink"><b>{STATISTICS}</b></span></td>
-		</tr>
-		</table>
-		</td>
-	</tr>
+        <tr>
+                <td colspan="3" class="tableh1">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                        <td><span class="statlink"><b>{BREADCRUMB}</b></span></td>
+                        <td align="right"><span class="statlink"><b>{STATISTICS}</b></span></td>
+                </tr>
+                </table>
+                </td>
+        </tr>
 <!-- END breadcrumb_user_gal -->
 
 EOT;
@@ -195,85 +191,85 @@ EOT;
 $template_album_list = <<<EOT
 
 <!-- BEGIN stat_row -->
-	<tr>
-		<td colspan="{COLUMNS}" class="tableh1" align="center"><span class="statlink"><b>{STATISTICS}</b></span></td>
-	</tr>
+        <tr>
+                <td colspan="{COLUMNS}" class="tableh1" align="center"><span class="statlink"><b>{STATISTICS}</b></span></td>
+        </tr>
 <!-- END stat_row -->
 <!-- BEGIN header -->
-	<tr>
+        <tr>
 <!-- END header -->
 <!-- BEGIN album_cell -->
-	<td width="{COL_WIDTH}%" height="100%" valign="top">
-	<table width="100%" height="100%" cellspacing="0" cellpadding="0">
-	<tr>
-		<td colspan="3" height="1" valign="top" class="tableh2">
-			<b>{ALBUM_TITLE}</b>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="3">
-			<img src="images/spacer.gif" width="1" height="1"><br />
-		</td>
-	</tr>
-	<tr height="100%">
-		<td align="center" height="100%" valign="middle" class="thumbnails">
-			<img src="images/spacer.gif" width="{THUMB_CELL_WIDTH}" height="1" class="image" style="margin-top: 0px;
+        <td width="{COL_WIDTH}%" height="100%" valign="top">
+        <table width="100%" height="100%" cellspacing="0" cellpadding="0">
+        <tr>
+                <td colspan="3" height="1" valign="top" class="tableh2">
+                        <b>{ALBUM_TITLE}</b>
+                </td>
+        </tr>
+        <tr>
+                <td colspan="3">
+                        <img src="images/spacer.gif" width="1" height="1"><br />
+                </td>
+        </tr>
+        <tr height="100%">
+                <td align="center" height="100%" valign="middle" class="thumbnails">
+                        <img src="images/spacer.gif" width="{THUMB_CELL_WIDTH}" height="1" class="image" style="margin-top: 0px;
  margin-bottom: 0px; border: none;"><br />
-			<a href="{ALB_LINK_TGT}" class="albums">{ALB_LINK_PIC}<br /></a>
-		</td>
-		<td height="100%">
-			<img src="images/spacer.gif" width="1" height="1">
-		</td>
-		<td width="100%" height="100%" valign="top" class="tableb_compact">
-			{ADMIN_MENU}
-			<p>{ALB_DESC}</p>
-			<p class="album_stat">{ALB_INFOS}</p>
-		</td>
-	</tr>
-	</table>
-	</td>
+                        <a href="{ALB_LINK_TGT}" class="albums">{ALB_LINK_PIC}<br /></a>
+                </td>
+                <td height="100%">
+                        <img src="images/spacer.gif" width="1" height="1">
+                </td>
+                <td width="100%" height="100%" valign="top" class="tableb_compact">
+                        {ADMIN_MENU}
+                        <p>{ALB_DESC}</p>
+                        <p class="album_stat">{ALB_INFOS}</p>
+                </td>
+        </tr>
+        </table>
+        </td>
 <!-- END album_cell -->
 <!-- BEGIN empty_cell -->
-	<td width="{COL_WIDTH}%" height="100%" valign="top">
-	<table width="100%" height="100%" cellspacing="0" cellpadding="0">
-	<tr>
-		<td height="1" valign="top" class="tableh2">
-			<b>&nbsp;</b>
-		</td>
-	</tr>
-	<tr>
-		<td>
-			<img src="images/spacer.gif" width="1" height="1"><br />
-		</td>
-	</tr>
-	<tr height="100%">
-		<td width="100%" height="100%" valign="top" class="tableb_compact">
-			&nbsp;
-		</td>
-	</tr>
-	</table>
-	</td>
+        <td width="{COL_WIDTH}%" height="100%" valign="top">
+        <table width="100%" height="100%" cellspacing="0" cellpadding="0">
+        <tr>
+                <td height="1" valign="top" class="tableh2">
+                        <b>&nbsp;</b>
+                </td>
+        </tr>
+        <tr>
+                <td>
+                        <img src="images/spacer.gif" width="1" height="1"><br />
+                </td>
+        </tr>
+        <tr height="100%">
+                <td width="100%" height="100%" valign="top" class="tableb_compact">
+                        &nbsp;
+                </td>
+        </tr>
+        </table>
+        </td>
 <!-- END empty_cell -->
 <!-- BEGIN row_separator -->
-	</tr>
-	<tr>
+        </tr>
+        <tr>
 <!-- END row_separator -->
 <!-- BEGIN footer -->
-	</tr>
+        </tr>
 <!-- END footer -->
 <!-- BEGIN tabs -->
-	<tr>
-		<td colspan="{COLUMNS}" style="padding: 0px;">
-			<table width="100%" cellspacing="0" cellpadding="0">
-				<tr>
-					{TABS}
-				</tr>
-			</table>
-		</td>
-	</tr>
+        <tr>
+                <td colspan="{COLUMNS}" style="padding: 0px;">
+                        <table width="100%" cellspacing="0" cellpadding="0">
+                                <tr>
+                                        {TABS}
+                                </tr>
+                        </table>
+                </td>
+        </tr>
 <!-- END tabs -->
 <!-- BEGIN spacer -->
-	<img src="images/spacer.gif" width="1" height="17" /><br />
+        <img src="images/spacer.gif" width="1" height="17" /><br />
 <!-- END spacer -->
 
 EOT;
@@ -394,23 +390,23 @@ EOT;
 
 // HTML template for the ALBUM admin menu displayed in the album list
 $template_album_admin_menu = <<<EOT
-	<table border="0" cellpadding="0" cellspacing="1">
-		<tr>
-			<td align="center" valign="middle">
-				<div class="admin_menu"><a href="delete.php?id={ALBUM_ID}&what=album"  class="adm_menu" onclick="return confirm('{CONFIRM_DELETE}');">{DELETE}</a></div>
-			</td>
-			<td align="center" valign="middle">
-				<div class="admin_menu">
-					<a href="modifyalb.php?album={ALBUM_ID}"  class="adm_menu">{MODIFY}</a>
-				</div>
-			</td>
-			<td align="center" valign="middle">
-				<div class="admin_menu">
-					<a href="editpics.php?album={ALBUM_ID}"  class="adm_menu">{EDIT_PICS}</a>
-				</div>
-			</td>
-		</tr>
-	</table>
+        <table border="0" cellpadding="0" cellspacing="1">
+                <tr>
+                        <td align="center" valign="middle">
+                                <div class="admin_menu"><a href="delete.php?id={ALBUM_ID}&what=album"  class="adm_menu" onclick="return confirm('{CONFIRM_DELETE}');">{DELETE}</a></div>
+                        </td>
+                        <td align="center" valign="middle">
+                                <div class="admin_menu">
+                                        <a href="modifyalb.php?album={ALBUM_ID}"  class="adm_menu">{MODIFY}</a>
+                                </div>
+                        </td>
+                        <td align="center" valign="middle">
+                                <div class="admin_menu">
+                                        <a href="editpics.php?album={ALBUM_ID}"  class="adm_menu">{EDIT_PICS}</a>
+                                </div>
+                        </td>
+                </tr>
+        </table>
 
 EOT;
 
@@ -418,21 +414,21 @@ EOT;
 // HTML template for title row of the thumbnail view (album title + sort options)
 $template_thumb_view_title_row = <<<EOT
 
-			<table width="100%" cellpadding="0" cellspacing="0">
-			<tr>
-				<td width="100%" class="statlink">{ALBUM_NAME}</td>
+                        <table width="100%" cellpadding="0" cellspacing="0">
+                        <tr>
+                                <td width="100%" class="statlink">{ALBUM_NAME}</td>
                 <td class="sortorder_options">{TITLE}</td>
                 <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=ta" title="{SORT_TA}">&nbsp;+&nbsp;</a></span></td>
                 <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=td" title="{SORT_TD}">&nbsp;-&nbsp;</a></span></td>
-				<td class="sortorder_options" style="font-size: 100%;">{NAME}</td>
-				<td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=na" title="{SORT_NA}">&nbsp;+&nbsp;</a></span></td>
-				<td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=nd" title="{SORT_ND}">&nbsp;-&nbsp;</a></span></td>
-				<td>&nbsp&nbsp</td>
-				<td class="sortorder_options" style="font-size: 100%;">{DATE}</td>
-				<td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=da" title="{SORT_DA}">&nbsp;+&nbsp;</a></span></td>
-				<td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=dd" title="{SORT_DD}">&nbsp;-&nbsp;</a></span></td>
-			</tr>
-			</table>
+                                <td class="sortorder_options" style="font-size: 100%;">{NAME}</td>
+                                <td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=na" title="{SORT_NA}">&nbsp;+&nbsp;</a></span></td>
+                                <td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=nd" title="{SORT_ND}">&nbsp;-&nbsp;</a></span></td>
+                                <td>&nbsp&nbsp</td>
+                                <td class="sortorder_options" style="font-size: 100%;">{DATE}</td>
+                                <td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=da" title="{SORT_DA}">&nbsp;+&nbsp;</a></span></td>
+                                <td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=dd" title="{SORT_DD}">&nbsp;-&nbsp;</a></span></td>
+                        </tr>
+                        </table>
 
 EOT;
 
@@ -440,57 +436,57 @@ EOT;
 $template_thumbnail_view = <<<EOT
 
 <!-- BEGIN header -->
-	<tr>
+        <tr>
 <!-- END header -->
 <!-- BEGIN thumb_cell -->
-	<td valign="top" class="thumbnails" width ="{CELL_WIDTH}" align="center">
-		<table width="100%" cellpadding="0" cellspacing="0">
-			<tr>
-				<td align="center">
-					<a href="{LINK_TGT}">{THUMB}<br /></a>
-					{CAPTION}
-					{ADMIN_MENU}
-				</td>
-			</tr>
-		</table>
-	</td>
+        <td valign="top" class="thumbnails" width ="{CELL_WIDTH}" align="center">
+                <table width="100%" cellpadding="0" cellspacing="0">
+                        <tr>
+                                <td align="center">
+                                        <a href="{LINK_TGT}">{THUMB}<br /></a>
+                                        {CAPTION}
+                                        {ADMIN_MENU}
+                                </td>
+                        </tr>
+                </table>
+        </td>
 <!-- END thumb_cell -->
 <!-- BEGIN empty_cell -->
-		<td valign="top" class="thumbnails" align="center">&nbsp;</td>
+                <td valign="top" class="thumbnails" align="center">&nbsp;</td>
 <!-- END empty_cell -->
 <!-- BEGIN row_separator -->
-	</tr>
-	<tr>
+        </tr>
+        <tr>
 <!-- END row_separator -->
 <!-- BEGIN footer -->
-	</tr>
+        </tr>
 <!-- END footer -->
 <!-- BEGIN tabs -->
-	<tr>
-		<td colspan="{THUMB_COLS}" style="padding: 0px;">
-			<table width="100%" cellspacing="0" cellpadding="0">
-				<tr>
-					{TABS}
-				</tr>
-			</table>
-		</td>
-	</tr>
+        <tr>
+                <td colspan="{THUMB_COLS}" style="padding: 0px;">
+                        <table width="100%" cellspacing="0" cellpadding="0">
+                                <tr>
+                                        {TABS}
+                                </tr>
+                        </table>
+                </td>
+        </tr>
 <!-- END tabs -->
 <!-- BEGIN spacer -->
-	<img src="images/spacer.gif" width="1" height="17" /><br />
+        <img src="images/spacer.gif" width="1" height="17" /><br />
 <!-- END spacer -->
 
 EOT;
 
 // HTML template for the thumbnail view when there is no picture to show
 $template_no_img_to_display = <<<EOT
-	<tr>
-		<td class="tableb" height="200" align="center">
-			<font size="3"><b>{TEXT}</b></font>
-		</td>
-	</tr>
+        <tr>
+                <td class="tableb" height="200" align="center">
+                        <font size="3"><b>{TEXT}</b></font>
+                </td>
+        </tr>
 <!-- BEGIN spacer -->
-	<img src="images/spacer.gif" width="1" height="17" /><br />
+        <img src="images/spacer.gif" width="1" height="17" /><br />
 <!-- END spacer -->
 
 EOT;
@@ -498,146 +494,146 @@ EOT;
 // HTML template for the USER info box in the user list view
 $template_user_list_info_box = <<<EOT
 
-	<table cellspacing="1" cellpadding="0" border="0" width="100%" class="user_thumb_infobox">
-		<tr>
-			<th><a href="profile.php?uid={USER_ID}">{USER_NAME}</a></th>
-		</tr>
-		<tr>
-			<td>{ALBUMS}</td>
-		</tr>
-		<tr>
-			<td>{PICTURES}</td>
-		</tr>
-	</table>
+        <table cellspacing="1" cellpadding="0" border="0" width="100%" class="user_thumb_infobox">
+                <tr>
+                        <th><a href="profile.php?uid={USER_ID}">{USER_NAME}</a></th>
+                </tr>
+                <tr>
+                        <td>{ALBUMS}</td>
+                </tr>
+                <tr>
+                        <td>{PICTURES}</td>
+                </tr>
+        </table>
 
 EOT;
 
 // HTML template for the image navigation bar
 $template_img_navbar = <<<EOT
 
-	<tr>
-		<td align="center" valign="middle" class="navmenu" width="50%">
-			&nbsp;
-		</td>
-		<td align="center" valign="middle" class="navmenu" width="48">
-			<a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="themes/eyeball/images/imv_up.gif" align="absmiddle" border="0" alt="{THUMB_TITLE}" /></a>
-		</td>
-		<td align="center" valign="middle" class="navmenu" width="48">
-			<a href="javascript:;" onClick="blocking('picinfo','yes', 'block'); return false;" title="{PIC_INFO_TITLE}"><img src="themes/eyeball/images/imv_picinfo.gif" border="0" align="absmiddle" alt="{PIC_INFO_TITLE}" /></a>
-		</td>
-		<td align="center" valign="middle" class="navmenu" width="48">
-			<a href="{SLIDESHOW_TGT}" title="{SLIDESHOW_TITLE}"><img src="themes/eyeball/images/imv_slideshow.gif" border="0" align="absmiddle" alt="{SLIDESHOW_TITLE}" /></a>
-		</td>
-		<td align="center" valign="middle" class="navmenu" style="white-space: nowrap; padding-left: 15px; padding-right: 15px; font-size: 18px; font-weight: normal;">
-			{PIC_POS}
-		</td>
-		<td align="center" valign="middle" class="navmenu" width="48">
-			<a href="{ECARD_TGT}" title="{ECARD_TITLE}"><img src="themes/eyeball/images/imv_ecards.gif" border="0" align="absmiddle" alt="{ECARD_TITLE}"></a>
-		</td>
-		<td align="center" valign="middle" class="navmenu" width="48">
-			<a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="themes/eyeball/images/imv_prev.gif" border="0" align="absmiddle" alt="{PREV_TITLE}" /></a>
-		</td>
-		<td align="center" valign="middle" class="navmenu" width="48">
-			<a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="themes/eyeball/images/imv_next.gif" border="0" align="absmiddle" alt="{NEXT_TITLE}" /></a>
-		</td>
-		<td align="center" valign="middle" class="navmenu" width="50%">
-			&nbsp;
-		</td>
-	</tr>
+        <tr>
+                <td align="center" valign="middle" class="navmenu" width="50%">
+                        &nbsp;
+                </td>
+                <td align="center" valign="middle" class="navmenu" width="48">
+                        <a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="themes/eyeball/images/imv_up.gif" align="absmiddle" border="0" alt="{THUMB_TITLE}" /></a>
+                </td>
+                <td align="center" valign="middle" class="navmenu" width="48">
+                        <a href="javascript:;" onClick="blocking('picinfo','yes', 'block'); return false;" title="{PIC_INFO_TITLE}"><img src="themes/eyeball/images/imv_picinfo.gif" border="0" align="absmiddle" alt="{PIC_INFO_TITLE}" /></a>
+                </td>
+                <td align="center" valign="middle" class="navmenu" width="48">
+                        <a href="{SLIDESHOW_TGT}" title="{SLIDESHOW_TITLE}"><img src="themes/eyeball/images/imv_slideshow.gif" border="0" align="absmiddle" alt="{SLIDESHOW_TITLE}" /></a>
+                </td>
+                <td align="center" valign="middle" class="navmenu" style="white-space: nowrap; padding-left: 15px; padding-right: 15px; font-size: 18px; font-weight: normal;">
+                        {PIC_POS}
+                </td>
+                <td align="center" valign="middle" class="navmenu" width="48">
+                        <a href="{ECARD_TGT}" title="{ECARD_TITLE}"><img src="themes/eyeball/images/imv_ecards.gif" border="0" align="absmiddle" alt="{ECARD_TITLE}"></a>
+                </td>
+                <td align="center" valign="middle" class="navmenu" width="48">
+                        <a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="themes/eyeball/images/imv_prev.gif" border="0" align="absmiddle" alt="{PREV_TITLE}" /></a>
+                </td>
+                <td align="center" valign="middle" class="navmenu" width="48">
+                        <a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="themes/eyeball/images/imv_next.gif" border="0" align="absmiddle" alt="{NEXT_TITLE}" /></a>
+                </td>
+                <td align="center" valign="middle" class="navmenu" width="50%">
+                        &nbsp;
+                </td>
+        </tr>
 
 EOT;
 
 // HTML template for intermediate image display
 $template_display_picture = <<<EOT
-	<tr>
-		<td align="center" class="tableb" height="{CELL_HEIGHT}" style="white-space: nowrap; padding: 0px;">
-			<table cellspacing="2" cellpadding="0" style="border: 1px solid #000000; background-color: #FFFFFF; margin-top: 14px; margin-bottom: 10px;">
-				<tr>
-					<td>
-						{IMAGE}
-						{ADMIN_MENU}
-					</td>
-				</tr>
-			</table>
+        <tr>
+                <td align="center" class="tableb" height="{CELL_HEIGHT}" style="white-space: nowrap; padding: 0px;">
+                        <table cellspacing="2" cellpadding="0" style="border: 1px solid #000000; background-color: #FFFFFF; margin-top: 14px; margin-bottom: 10px;">
+                                <tr>
+                                        <td>
+                                                {IMAGE}
+                                                {ADMIN_MENU}
+                                        </td>
+                                </tr>
+                        </table>
 <!-- BEGIN img_desc -->
-			<table cellpadding="0" cellspacing="0" class="img_caption_table">
+                        <table cellpadding="0" cellspacing="0" class="img_caption_table">
 <!-- BEGIN title -->
-				<tr>
-					<th>
-						{TITLE}
-					</th>
-				</tr>
+                                <tr>
+                                        <th>
+                                                {TITLE}
+                                        </th>
+                                </tr>
 <!-- END title -->
 <!-- BEGIN caption -->
-				<tr>
-					<td>
-						{CAPTION}
-					</td>
-				</tr>
+                                <tr>
+                                        <td>
+                                                {CAPTION}
+                                        </td>
+                                </tr>
 <!-- END caption -->
-			</table>
+                        </table>
 <!-- END img_desc -->
-		</td>
-	</tr>
+                </td>
+        </tr>
 
 EOT;
 
 // HTML template for the image rating box
 $template_image_rating = <<<EOT
 
-	<tr>
-		<td colspan="6" class="tableh2_compact"><b>{TITLE}</b> {VOTES}</td>
-	</tr>
-	<tr>
-		<td class="tableb_compact" width="17%" align="center"><a href="{RATE0}" title="{RUBBISH}"><img src="themes/eyeball/images/rating0.gif" alt="{RUBBISH}" border="0" /><br /></a></td>
-		<td class="tableb_compact" width="17%" align="center"><a href="{RATE1}" title="{POOR}"><img src="themes/eyeball/images/rating1.gif" alt="{POOR}" border="0" /><br /></a></td>
-		<td class="tableb_compact" width="17%" align="center"><a href="{RATE2}" title="{FAIR}"><img src="themes/eyeball/images/rating2.gif" alt="{FAIR}" border="0" /><br /></a></td>
-		<td class="tableb_compact" width="17%" align="center"><a href="{RATE3}" title="{GOOD}"><img src="themes/eyeball/images/rating3.gif" alt="{GOOD}" border="0" /><br /></a></td>
-		<td class="tableb_compact" width="17%" align="center"><a href="{RATE4}" title="{EXCELLENT}"><img src="themes/eyeball/images/rating4.gif" alt="{EXCELLENT}" border="0" /><br /></a></td>
-		<td class="tableb_compact" width="17%" align="center"><a href="{RATE5}" title="{GREAT}"><img src="themes/eyeball/images/rating5.gif" alt="{GREAT}" border="0" /><br /></a></td>
-	</tr>
+        <tr>
+                <td colspan="6" class="tableh2_compact"><b>{TITLE}</b> {VOTES}</td>
+        </tr>
+        <tr>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE0}" title="{RUBBISH}"><img src="themes/eyeball/images/rating0.gif" alt="{RUBBISH}" border="0" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE1}" title="{POOR}"><img src="themes/eyeball/images/rating1.gif" alt="{POOR}" border="0" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE2}" title="{FAIR}"><img src="themes/eyeball/images/rating2.gif" alt="{FAIR}" border="0" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE3}" title="{GOOD}"><img src="themes/eyeball/images/rating3.gif" alt="{GOOD}" border="0" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE4}" title="{EXCELLENT}"><img src="themes/eyeball/images/rating4.gif" alt="{EXCELLENT}" border="0" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE5}" title="{GREAT}"><img src="themes/eyeball/images/rating5.gif" alt="{GREAT}" border="0" /><br /></a></td>
+        </tr>
 
 EOT;
 
 // HTML template for the display of comments
 $template_image_comments = <<<EOT
 
-	<tr>
-		<td>
-			<table width="100%" cellpadding="0" cellspacing="0">
-				<td class="tableh2_compact" nowrap>
-					<b>{MSG_AUTHOR}</b>
-				</td>
-				<td class="tableh2_compact" align="right" width="100%">
+        <tr>
+                <td>
+                        <table width="100%" cellpadding="0" cellspacing="0">
+                                <td class="tableh2_compact" nowrap>
+                                        <b>{MSG_AUTHOR}</b>
+                                </td>
+                                <td class="tableh2_compact" align="right" width="100%">
 <!-- BEGIN buttons -->
-					<a href="javascript:;" onClick="blocking('cbody{MSG_ID}','', 'block'); blocking('cedit{MSG_ID}','', 'block'); return false;" title="{EDIT_TITLE}"><img src="images/edit.gif" border="0" align="absmiddle" ></a>
-					<a href="delete.php?msg_id={MSG_ID}&what=comment"  onclick="return confirm('{CONFIRM_DELETE}');"><img src="images/delete.gif" border="0" align="absmiddle" ></a>
+                                        <a href="javascript:;" onClick="blocking('cbody{MSG_ID}','', 'block'); blocking('cedit{MSG_ID}','', 'block'); return false;" title="{EDIT_TITLE}"><img src="images/edit.gif" border="0" align="absmiddle" ></a>
+                                        <a href="delete.php?msg_id={MSG_ID}&what=comment"  onclick="return confirm('{CONFIRM_DELETE}');"><img src="images/delete.gif" border="0" align="absmiddle" ></a>
 <!-- END buttons -->
-				</td>
-				<td class="tableh2_compact" align="right" nowrap>
-					<span class="comment_date">[{MSG_DATE}]</span>
-				</td>
-			</table>
-		</td>
-	</tr>
-	<tr>
-		<td class="tableb_compact">
-			<div id="cbody{MSG_ID}" style="display:block">
-				{MSG_BODY}
-			</div>
-			<div id="cedit{MSG_ID}" style="display:none">
+                                </td>
+                                <td class="tableh2_compact" align="right" nowrap>
+                                        <span class="comment_date">[{MSG_DATE}]</span>
+                                </td>
+                        </table>
+                </td>
+        </tr>
+        <tr>
+                <td class="tableb_compact">
+                        <div id="cbody{MSG_ID}" style="display:block">
+                                {MSG_BODY}
+                        </div>
+                        <div id="cedit{MSG_ID}" style="display:none">
 <!-- BEGIN edit_box_smilies -->
                                 <table width="100%" cellpadding="0" cellspacing="0">
-                                        
+
                                                 <form name="f{MSG_ID}" method="POST" action="db_input.php">
                                                 <input type="hidden" name="event" value="comment_update">
                                                 <input type="hidden" name="msg_id" value="{MSG_ID}">
-						<tr>
-						<td>
-						   <input type=text name=msg_author value={MSG_AUTHOR} class="textinput" size=10> 
-						</td>
-						</tr>
-						<tr>
+                                                <tr>
+                                                <td>
+                                                   <input type=text name=msg_author value={MSG_AUTHOR} class="textinput" size=10>
+                                                </td>
+                                                </tr>
+                                                <tr>
                                                 <td width="80%">
                                                         <textarea cols="40" rows="2" class="textinput" name="msg_body" onselect="storeCaret_f{MSG_ID}(this);" onclick="storeCaret_f{MSG_ID}(this);" onkeyup="storeCaret_f{MSG_ID}(this);" style="width: 100%;">{MSG_BODY_RAW}</textarea>
                                                 </td>
@@ -655,73 +651,73 @@ $template_image_comments = <<<EOT
                                 {SMILIES}
 <!-- END edit_box_smilies -->
 <!-- BEGIN edit_box_no_smilies -->
-				<table width="100%" cellpadding="0" cellspacing="0">
-					<tr>
-						<form name="f{MSG_ID}" method="POST" action="db_input.php">
-						<input type="hidden" name="event" value="comment_update">
-						<input type="hidden" name="msg_id" value="{MSG_ID}">
-						<td width="100%">
-							<textarea cols="40" rows="2" class="textinput" name="msg_body" style="width: 100%;">{MSG_BODY_RAW}</textarea>
-						</td>
-						<td class="tableb_compact">
-						</td>
-						<td>
-							<input type="submit" class="comment_button" name="submit" value="{OK}">
-						</td>
-						</form>
-					</tr>
-					<tr>
-						<td colspan="3"><img src="images/spacer.gif" width="1" height="2" /><br /></td>
-					</tr>
-				</table>
+                                <table width="100%" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                                <form name="f{MSG_ID}" method="POST" action="db_input.php">
+                                                <input type="hidden" name="event" value="comment_update">
+                                                <input type="hidden" name="msg_id" value="{MSG_ID}">
+                                                <td width="100%">
+                                                        <textarea cols="40" rows="2" class="textinput" name="msg_body" style="width: 100%;">{MSG_BODY_RAW}</textarea>
+                                                </td>
+                                                <td class="tableb_compact">
+                                                </td>
+                                                <td>
+                                                        <input type="submit" class="comment_button" name="submit" value="{OK}">
+                                                </td>
+                                                </form>
+                                        </tr>
+                                        <tr>
+                                                <td colspan="3"><img src="images/spacer.gif" width="1" height="2" /><br /></td>
+                                        </tr>
+                                </table>
 <!-- END edit_box_no_smilies -->
-			</div>
-		</td>
-	</tr>
+                        </div>
+                </td>
+        </tr>
 
 EOT;
 
 $template_add_your_comment = <<<EOT
 
-	<tr>
-		<td class="tableh2_compact"><b>{ADD_YOUR_COMMENT}</b></td>
-	</tr>
-	<tr>
-		<form method="post" name="post" action="db_input.php">
-		<td colspan="3">
-			<table width="100%" cellpadding="0" cellspacing="0">
-				<input type="hidden" name="event" value="comment">
-				<input type="hidden" name="pid" value="{PIC_ID}">
+        <tr>
+                <td class="tableh2_compact"><b>{ADD_YOUR_COMMENT}</b></td>
+        </tr>
+        <tr>
+                <form method="post" name="post" action="db_input.php">
+                <td colspan="3">
+                        <table width="100%" cellpadding="0" cellspacing="0">
+                                <input type="hidden" name="event" value="comment">
+                                <input type="hidden" name="pid" value="{PIC_ID}">
 <!-- BEGIN user_name_input -->
-				<td class="tableb_compact">
+                                <td class="tableb_compact">
                                         {NAME}
                                 </td>
                                 <td class="tableb_compact">
-					<input type="text" class="textinput" name="msg_author" size="10" maxlength="20" value={USER_NAME}>
-				</td>
+                                        <input type="text" class="textinput" name="msg_author" size="10" maxlength="20" value={USER_NAME}>
+                                </td>
 <!-- END user_name_input -->
 <!-- BEGIN input_box_smilies -->
                                 <td class="tableb_compact">
                                 {COMMENT} </td>
-				<td width="100%" class="tableb_compact">
-				<input type="text" class="textinput" id="message" name="msg_body" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" maxlength="{MAX_COM_LENGTH}" style="width: 100%;">					<!-- END input_box_smilies -->
+                                <td width="100%" class="tableb_compact">
+                                <input type="text" class="textinput" id="message" name="msg_body" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" maxlength="{MAX_COM_LENGTH}" style="width: 100%;">                                        <!-- END input_box_smilies -->
 <!-- BEGIN input_box_no_smilies -->
-				<input type="text" class="textinput" id="message" name="msg_body"  maxlength="{MAX_COM_LENGTH}" style="width: 100%;">
+                                <input type="text" class="textinput" id="message" name="msg_body"  maxlength="{MAX_COM_LENGTH}" style="width: 100%;">
 <!-- END input_box_no_smilies -->
-				</td>
-				<td class="tableb_compact">
-				<input type="submit" class="comment_button" name="submit" value="{OK}">
-				</td>
-			</table>
-		</td>
-		</form>
-	</tr>
+                                </td>
+                                <td class="tableb_compact">
+                                <input type="submit" class="comment_button" name="submit" value="{OK}">
+                                </td>
+                        </table>
+                </td>
+                </form>
+        </tr>
 <!-- BEGIN smilies -->
-	<tr>
-		<td width="100%" class="tableb_compact">
-			{SMILIES}
-		</td>
-	</tr>
+        <tr>
+                <td width="100%" class="tableb_compact">
+                        {SMILIES}
+                </td>
+        </tr>
 <!-- END smilies -->
 
 EOT;
@@ -729,24 +725,24 @@ EOT;
 // HTML template used by the cpg_die function
 $template_cpg_die = <<<EOT
 
-	<tr>
-		<td class="tableb" height="300" align="center">
-			<font size="3"><b>{MESSAGE}</b></font>
+        <tr>
+                <td class="tableb" height="300" align="center">
+                        <font size="3"><b>{MESSAGE}</b></font>
 <!-- BEGIN file_line -->
-			<br />
-			<br />
-			{FILE_TXT}{FILE} - {LINE_TXT}{LINE}
+                        <br />
+                        <br />
+                        {FILE_TXT}{FILE} - {LINE_TXT}{LINE}
 <!-- END file_line -->
 <!-- BEGIN output_buffer -->
-			<br />
-			<br />
-			<div align="left">
-				{OUTPUT_BUFFER}
-			</div>
+                        <br />
+                        <br />
+                        <div align="left">
+                                {OUTPUT_BUFFER}
+                        </div>
 <!-- END output_buffer -->
-			<br /><br />
-		</td>
-	</tr>
+                        <br /><br />
+                </td>
+        </tr>
 
 
 EOT;
@@ -754,23 +750,23 @@ EOT;
 // HTML template used by the msg_box function
 $template_msg_box = <<<EOT
 
-	<tr>
-		<td class="tableb" height="150" align="center">
-			<font size="3"><b>{MESSAGE}</b></font>
-		</td>
-	</tr>
+        <tr>
+                <td class="tableb" height="150" align="center">
+                        <font size="3"><b>{MESSAGE}</b></font>
+                </td>
+        </tr>
 <!-- BEGIN button -->
-		<tr>
-			<td align="center" class="tablef">
-				<table cellpadding="0" cellspacing="0">
-					<tr>
-						<td class="admin_menu">
-							<a href="{LINK}">{TEXT}</a>
-						</td>
-					</tr>
-				</table>
-			</td>
-		</tr>
+                <tr>
+                        <td align="center" class="tablef">
+                                <table cellpadding="0" cellspacing="0">
+                                        <tr>
+                                                <td class="admin_menu">
+                                                        <a href="{LINK}">{TEXT}</a>
+                                                </td>
+                                        </tr>
+                                </table>
+                        </td>
+                </tr>
 <!-- END button -->
 
 EOT;
@@ -818,129 +814,129 @@ EOT;
 
 // Template used for tabbed display
 $template_tab_display = array(
-		'left_text' => '<td width="100%%" align="left" valign="middle" class="tableh1_compact" style="white-space: nowrap"><b>{LEFT_TEXT}</b></td>'."\n",
-		'tab_header' => '',
-		'tab_trailer' => '',
-		'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1"></td>'."\n".'<td align="center" valign="middle" class="tableb_compact"><b>%d</b></td>',
-		'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1"></td>'."\n".'<td align="center" valign="middle" class="navmenu"><a href="{LINK}"<b>%d</b></a></td>'."\n"
+                'left_text' => '<td width="100%%" align="left" valign="middle" class="tableh1_compact" style="white-space: nowrap"><b>{LEFT_TEXT}</b></td>'."\n",
+                'tab_header' => '',
+                'tab_trailer' => '',
+                'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1"></td>'."\n".'<td align="center" valign="middle" class="tableb_compact"><b>%d</b></td>',
+                'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1"></td>'."\n".'<td align="center" valign="middle" class="navmenu"><a href="{LINK}"<b>%d</b></a></td>'."\n"
 );
 
 function pageheader($section, $meta = '')
 {
-	global $CONFIG, $THEME_DIR;
-	global $template_header, $lang_charset, $lang_text_dir;
+        global $CONFIG, $THEME_DIR;
+        global $template_header, $lang_charset, $lang_text_dir;
 
-	header('P3P: CP="CAO DSP COR CURa ADMa DEVa OUR IND PHY ONL UNI COM NAV INT DEM PRE"');
-	user_save_profile();
+        header('P3P: CP="CAO DSP COR CURa ADMa DEVa OUR IND PHY ONL UNI COM NAV INT DEM PRE"');
+        user_save_profile();
 
-	$template_vars = array(
-		'{LANG_DIR}' => $lang_text_dir,
-		'{TITLE}' => $CONFIG['gallery_name'].' - '.$section,
-		'{CHARSET}' => $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'],
-		'{META}' => $meta,
-		'{GAL_NAME}' => $CONFIG['gallery_name'],
-		'{GAL_DESCRIPTION}' => $CONFIG['gallery_description'],
-		'{MAIN_MENU1}' => theme_main_menu1(),
-		'{MAIN_MENU2}' => theme_main_menu2(),
-		'{ADMIN_MENU}' => theme_admin_mode_menu()
-	);
+        $template_vars = array(
+                '{LANG_DIR}' => $lang_text_dir,
+                '{TITLE}' => $CONFIG['gallery_name'].' - '.$section,
+                '{CHARSET}' => $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'],
+                '{META}' => $meta,
+                '{GAL_NAME}' => $CONFIG['gallery_name'],
+                '{GAL_DESCRIPTION}' => $CONFIG['gallery_description'],
+                '{MAIN_MENU1}' => theme_main_menu1(),
+                '{MAIN_MENU2}' => theme_main_menu2(),
+                '{ADMIN_MENU}' => theme_admin_mode_menu()
+        );
 
-	echo template_eval($template_header, $template_vars);
+        echo template_eval($template_header, $template_vars);
 }
 
 
 // Function for writing a pagefooter
 function pagefooter()
 {
-	global $HTTP_GET_VARS, $HTTP_POST_VARS, $HTTP_SERVER_VARS;
-	global $USER, $ALBUM_SET, $CONFIG, $time_start, $query_stats;
-	global $template_footer;
+        global $HTTP_GET_VARS, $HTTP_POST_VARS, $HTTP_SERVER_VARS;
+        global $USER, $ALBUM_SET, $CONFIG, $time_start, $query_stats;
+        global $template_footer;
 
-	if ($CONFIG['debug_mode']) {
-		$time_end = getmicrotime();
-		$time = round($time_end - $time_start,3);
+        if ($CONFIG['debug_mode']) {
+                $time_end = getmicrotime();
+                $time = round($time_end - $time_start,3);
 
-		$query_count = count($query_stats);
-		$query_times = '';
-		$total_query_time = 0;
-		foreach ($query_stats as $qtime){
-			$query_times .= round($qtime,3)."s ";
-			$total_query_time += $qtime;
-		}
-		$total_query_time = round($total_query_time,3);
+                $query_count = count($query_stats);
+                $query_times = '';
+                $total_query_time = 0;
+                foreach ($query_stats as $qtime){
+                        $query_times .= round($qtime,3)."s ";
+                        $total_query_time += $qtime;
+                }
+                $total_query_time = round($total_query_time,3);
 
-		starttable('100%', 'Debug info');
-		echo "<tr><td class=\"tableb\">";
-		echo "USER: <pre>";
-		print_r($USER);
-		echo "</pre></td></tr><td class=\"tableb\">";
-		echo "GET :<pre>";
-		print_r($HTTP_GET_VARS);
-		echo "</pre></td></tr><td class=\"tableb\">";
-		echo "POST :<pre>";
-		print_r($HTTP_POST_VARS);
-		echo "</pre></td></tr><td class=\"tableb\" align=\"center\">";
-		echo <<<EOT
-		Page generated in <b>$time</b> seconds - <b>$query_count</b> queries in <b>$total_query_time</b> seconds - Album set : $ALBUM_SET
+                starttable('100%', 'Debug info');
+                echo "<tr><td class=\"tableb\">";
+                echo "USER: <pre>";
+                print_r($USER);
+                echo "</pre></td></tr><td class=\"tableb\">";
+                echo "GET :<pre>";
+                print_r($HTTP_GET_VARS);
+                echo "</pre></td></tr><td class=\"tableb\">";
+                echo "POST :<pre>";
+                print_r($HTTP_POST_VARS);
+                echo "</pre></td></tr><td class=\"tableb\" align=\"center\">";
+                echo <<<EOT
+                Page generated in <b>$time</b> seconds - <b>$query_count</b> queries in <b>$total_query_time</b> seconds - Album set : $ALBUM_SET
 EOT;
-		echo "</td></tr>";
-		endtable();
-	}
+                echo "</td></tr>";
+                endtable();
+        }
 
-	echo $template_footer;
+        echo $template_footer;
 }
 
 // Function to start a 'standard' table
 function starttable($width = '-1', $title='', $title_colspan='1')
 {
-	global $CONFIG;
-	global $table_need_close;
+        global $CONFIG;
+        global $table_need_close;
 
-	if ($width == '-1' )   $width = $CONFIG['picture_table_width'];
-	if ($width == '100%' ) $width = $CONFIG['main_table_width'];
-	if ($title) {
-	$table_need_close = true;
-	echo <<<EOT
+        if ($width == '-1' )   $width = $CONFIG['picture_table_width'];
+        if ($width == '100%' ) $width = $CONFIG['main_table_width'];
+        if ($title) {
+        $table_need_close = true;
+        echo <<<EOT
 <!-- Start standard table title -->
 <table align="center" width="$width" cellspacing="0" cellpadding="0" class="maintablea">
-	<tr>
-		<td>
-			<table width="100%" cellspacing="0" cellpadding="0" class="tableh1a">
-				<tr>
-					<td class="tableh1a"><img src="themes/eyeball/images/tableh1a_bg_left.gif"></td>
-					<td class="tableh1a" width="100%">$title</td>
-					<td class="tableh1a"><img src="themes/eyeball/images/tableh1a_bg_right.gif"></td>
-				</tr>
-			</table>
-		</td>
-	</tr>
+        <tr>
+                <td>
+                        <table width="100%" cellspacing="0" cellpadding="0" class="tableh1a">
+                                <tr>
+                                        <td class="tableh1a"><img src="themes/eyeball/images/tableh1a_bg_left.gif"></td>
+                                        <td class="tableh1a" width="100%">$title</td>
+                                        <td class="tableh1a"><img src="themes/eyeball/images/tableh1a_bg_right.gif"></td>
+                                </tr>
+                        </table>
+                </td>
+        </tr>
 </table>
 <!-- Start standard table -->
 <table align="center" width="$width" cellspacing="0" cellpadding="0">
   <tr>
    <td><img name="spacer" src="images/spacer.gif" width="20" height="1" border="0" alt="" /></td>
-	<td width="100%"><table width="100%" cellspacing="1" cellpadding="0" class="maintableb">
+        <td width="100%"><table width="100%" cellspacing="1" cellpadding="0" class="maintableb">
 
 EOT;
-	} else {
+        } else {
 
-	echo <<<EOT
+        echo <<<EOT
 
 <!-- Start standard table -->
 <table align="center" width="$width" cellspacing="0" cellpadding="0" class="maintable">
 
 EOT;
-	}
+        }
 }
 
 function endtable()
 {
-	global $table_need_close;
+        global $table_need_close;
 
-	if($table_need_close){
-		$table_need_close = false;
-		echo <<<EOT
-	</table>
+        if($table_need_close){
+                $table_need_close = false;
+                echo <<<EOT
+        </table>
    </td>
    <td><img name="spacer" src="images/spacer.gif" width="20" height="1" border="0" alt="" /></td>
   </tr>
@@ -948,220 +944,219 @@ function endtable()
 <!-- End standard table -->
 
 EOT;
-	} else {
-		echo <<<EOT
+        } else {
+                echo <<<EOT
 </table>
 <!-- End standard table -->
 
 EOT;
-	}
+        }
 }
 
 
 function theme_main_menu1()
 {
-	global $CONFIG, $album, $actual_cat, $cat, $REFERER, $HTTP_SERVER_VARS;
-	global $lang_main_menu, $template_main_menu1;
+        global $CONFIG, $album, $actual_cat, $cat, $REFERER, $HTTP_SERVER_VARS;
+        global $lang_main_menu, $template_main_menu1;
 
-	static $main_menu = '';
+        static $main_menu = '';
 
-	if ($main_menu != '') return $main_menu;
+        if ($main_menu != '') return $main_menu;
 
-	$album_l = isset($album) ? "?album=$album" : '';
-	$cat_l = (isset($actual_cat))? "?cat=$actual_cat"  : (isset($cat) ? "?cat=$cat" : '');
-	$my_gallery_id = FIRST_USER_CAT + USER_ID;
+        $album_l = isset($album) ? "?album=$album" : '';
+        $cat_l = (isset($actual_cat))? "?cat=$actual_cat"  : (isset($cat) ? "?cat=$cat" : '');
+        $my_gallery_id = FIRST_USER_CAT + USER_ID;
 
-	$template_main_menu = &$template_main_menu1;
+        $template_main_menu = &$template_main_menu1;
 
-	if (USER_ID) {
-		template_extract_block($template_main_menu, 'login');
-	} else {
-		template_extract_block($template_main_menu, 'logout');
-		template_extract_block($template_main_menu, 'my_profile');
-	}
+        if (USER_ID) {
+                template_extract_block($template_main_menu, 'login');
+        } else {
+                template_extract_block($template_main_menu, 'logout');
+                template_extract_block($template_main_menu, 'my_profile');
+        }
 
-	if (GALLERY_ADMIN_MODE || USER_ADMIN_MODE) {
-		template_extract_block($template_main_menu, 'enter_admin_mode');
-	} elseif (USER_CAN_CREATE_ALBUMS || USER_IS_ADMIN) {
-		template_extract_block($template_main_menu, 'leave_admin_mode');
-	}
+        if (GALLERY_ADMIN_MODE || USER_ADMIN_MODE) {
+                template_extract_block($template_main_menu, 'enter_admin_mode');
+        } elseif (USER_CAN_CREATE_ALBUMS || USER_IS_ADMIN) {
+                template_extract_block($template_main_menu, 'leave_admin_mode');
+        }
 
-	if (!USER_CAN_CREATE_ALBUMS && !USER_IS_ADMIN) {
-		template_extract_block($template_main_menu, 'enter_admin_mode');
-		template_extract_block($template_main_menu, 'leave_admin_mode');
-	}
+        if (!USER_CAN_CREATE_ALBUMS && !USER_IS_ADMIN) {
+                template_extract_block($template_main_menu, 'enter_admin_mode');
+                template_extract_block($template_main_menu, 'leave_admin_mode');
+        }
 
-	if (!USER_CAN_CREATE_ALBUMS) {
-		template_extract_block($template_main_menu, 'my_gallery');
-	}
+        if (!USER_CAN_CREATE_ALBUMS) {
+                template_extract_block($template_main_menu, 'my_gallery');
+        }
 
-	if (USER_CAN_CREATE_ALBUMS) {
-		template_extract_block($template_main_menu, 'my_profile');
-	}
+        if (USER_CAN_CREATE_ALBUMS) {
+                template_extract_block($template_main_menu, 'my_profile');
+        }
 
-	if (!USER_CAN_UPLOAD_PICTURES) {
-		template_extract_block($template_main_menu, 'upload_pic');
-	}
+        if (!USER_CAN_UPLOAD_PICTURES) {
+                template_extract_block($template_main_menu, 'upload_pic');
+        }
 
-	if (USER_ID || !$CONFIG['allow_user_registration']) {
-		template_extract_block($template_main_menu, 'register');
-	}
+        if (USER_ID || !$CONFIG['allow_user_registration']) {
+                template_extract_block($template_main_menu, 'register');
+        }
 
-	$param = array(
-		'{MY_GAL_TGT}' => "index.php?cat=$my_gallery_id",
-		'{MY_GAL_TITLE}' => $lang_main_menu['my_gal_title'],
-		'{MY_GAL_LNK}' => $lang_main_menu['my_gal_lnk'],
-		'{MY_PROF_TGT}' => "profile.php?op=edit_profile",
-		'{MY_PROF_LNK}' => $lang_main_menu['my_prof_lnk'],
-		'{ADM_MODE_TGT}' => "admin.php?admin_mode=1&referer=$REFERER",
-		'{ADM_MODE_TITLE}' => $lang_main_menu['adm_mode_title'],
-		'{ADM_MODE_LNK}' => $lang_main_menu['adm_mode_lnk'],
-		'{USR_MODE_TGT}' => "admin.php?admin_mode=0&referer=$REFERER",
-		'{USR_MODE_TITLE}' => $lang_main_menu['usr_mode_title'],
-		'{USR_MODE_LNK}' => $lang_main_menu['usr_mode_lnk'],
-		'{UPL_PIC_TGT}' => "upload.php",
-		'{UPL_PIC_TITLE}' => $lang_main_menu['upload_pic_title'],
-		'{UPL_PIC_LNK}' => $lang_main_menu['upload_pic_lnk'],
-		'{REGISTER_TGT}' => "register.php",
-		'{REGISTER_TITLE}' => $lang_main_menu['register_title'],
-		'{REGISTER_LNK}' => $lang_main_menu['register_lnk'],
-		'{LOGIN_TGT}' => "login.php?referer=$REFERER",
-		'{LOGIN_LNK}' => $lang_main_menu['login_lnk'],
-		'{LOGOUT_TGT}' => "logout.php?referer=$REFERER",
-		'{LOGOUT_LNK}' => $lang_main_menu['logout_lnk']." [".USER_NAME."]",
-	);
+        $param = array(
+                '{MY_GAL_TGT}' => "index.php?cat=$my_gallery_id",
+                '{MY_GAL_TITLE}' => $lang_main_menu['my_gal_title'],
+                '{MY_GAL_LNK}' => $lang_main_menu['my_gal_lnk'],
+                '{MY_PROF_TGT}' => "profile.php?op=edit_profile",
+                '{MY_PROF_LNK}' => $lang_main_menu['my_prof_lnk'],
+                '{ADM_MODE_TGT}' => "admin.php?admin_mode=1&referer=$REFERER",
+                '{ADM_MODE_TITLE}' => $lang_main_menu['adm_mode_title'],
+                '{ADM_MODE_LNK}' => $lang_main_menu['adm_mode_lnk'],
+                '{USR_MODE_TGT}' => "admin.php?admin_mode=0&referer=$REFERER",
+                '{USR_MODE_TITLE}' => $lang_main_menu['usr_mode_title'],
+                '{USR_MODE_LNK}' => $lang_main_menu['usr_mode_lnk'],
+                '{UPL_PIC_TGT}' => "upload.php",
+                '{UPL_PIC_TITLE}' => $lang_main_menu['upload_pic_title'],
+                '{UPL_PIC_LNK}' => $lang_main_menu['upload_pic_lnk'],
+                '{REGISTER_TGT}' => "register.php",
+                '{REGISTER_TITLE}' => $lang_main_menu['register_title'],
+                '{REGISTER_LNK}' => $lang_main_menu['register_lnk'],
+                '{LOGIN_TGT}' => "login.php?referer=$REFERER",
+                '{LOGIN_LNK}' => $lang_main_menu['login_lnk'],
+                '{LOGOUT_TGT}' => "logout.php?referer=$REFERER",
+                '{LOGOUT_LNK}' => $lang_main_menu['logout_lnk']." [".USER_NAME."]",
+        );
 
-	$main_menu = template_eval($template_main_menu, $param);
-	return $main_menu;
+        $main_menu = template_eval($template_main_menu, $param);
+        return $main_menu;
 }
 
 function theme_main_menu2()
 {
-	global $CONFIG, $album, $actual_cat, $cat, $REFERER, $HTTP_SERVER_VARS;
-	global $lang_main_menu, $template_main_menu2;
+        global $CONFIG, $album, $actual_cat, $cat, $REFERER, $HTTP_SERVER_VARS;
+        global $lang_main_menu, $template_main_menu2;
 
-	static $main_menu = '';
+        static $main_menu = '';
 
-	if ($main_menu != '') return $main_menu;
+        if ($main_menu != '') return $main_menu;
 
-	$cat_l = isset($actual_cat) ? "?cat=$actual_cat"  : (isset($cat) ? "?cat=$cat" : '');
-	$cat_l2 = isset($cat) ? "&cat=$cat" : '';
+        $cat_l = isset($actual_cat) ? "?cat=$actual_cat"  : (isset($cat) ? "?cat=$cat" : '');
+        $cat_l2 = isset($cat) ? "&cat=$cat" : '';
 
-	$template_main_menu = &$template_main_menu2;
+        $template_main_menu = &$template_main_menu2;
 
-	$param = array(
-		'{ALB_LIST_TGT}' => "index.php$cat_l",
-		'{ALB_LIST_TITLE}' => $lang_main_menu['alb_list_title'],
-		'{ALB_LIST_LNK}' => $lang_main_menu['alb_list_lnk'],
-		'{LASTUP_TGT}' => "thumbnails.php?album=lastup$cat_l2",
-		'{LASTUP_LNK}' => $lang_main_menu['lastup_lnk'],
-		'{LASTCOM_TGT}' => "thumbnails.php?album=lastcom$cat_l2",
-		'{LASTCOM_LNK}' => $lang_main_menu['lastcom_lnk'],
-		'{TOPN_TGT}' => "thumbnails.php?album=topn$cat_l2",
-		'{TOPN_LNK}' => $lang_main_menu['topn_lnk'],
-		'{TOPRATED_TGT}'=> "thumbnails.php?album=toprated$cat_l2",
-		'{TOPRATED_LNK}'=> $lang_main_menu['toprated_lnk'],
-		'{FAV_TGT}'=> "thumbnails.php?album=favpics",
-		'{FAV_LNK}'=> $lang_main_menu['fav_lnk'],		
-		'{SEARCH_TGT}'=> "search.php",
-		'{SEARCH_LNK}'=> $lang_main_menu['search_lnk'],
-	);
+        $param = array(
+                '{ALB_LIST_TGT}' => "index.php$cat_l",
+                '{ALB_LIST_TITLE}' => $lang_main_menu['alb_list_title'],
+                '{ALB_LIST_LNK}' => $lang_main_menu['alb_list_lnk'],
+                '{LASTUP_TGT}' => "thumbnails.php?album=lastup$cat_l2",
+                '{LASTUP_LNK}' => $lang_main_menu['lastup_lnk'],
+                '{LASTCOM_TGT}' => "thumbnails.php?album=lastcom$cat_l2",
+                '{LASTCOM_LNK}' => $lang_main_menu['lastcom_lnk'],
+                '{TOPN_TGT}' => "thumbnails.php?album=topn$cat_l2",
+                '{TOPN_LNK}' => $lang_main_menu['topn_lnk'],
+                '{TOPRATED_TGT}'=> "thumbnails.php?album=toprated$cat_l2",
+                '{TOPRATED_LNK}'=> $lang_main_menu['toprated_lnk'],
+                '{SEARCH_TGT}'=> "search.php",
+                '{SEARCH_LNK}'=> $lang_main_menu['search_lnk'],
+        );
 
-	$main_menu = template_eval($template_main_menu, $param);
-	return $main_menu;
+        $main_menu = template_eval($template_main_menu, $param);
+        return $main_menu;
 }
 
 function theme_admin_mode_menu()
 {
-	global $cat;
-	global $lang_gallery_admin_menu, $lang_user_admin_menu;
-	global $template_gallery_admin_menu, $template_user_admin_menu;
+        global $cat;
+        global $lang_gallery_admin_menu, $lang_user_admin_menu;
+        global $template_gallery_admin_menu, $template_user_admin_menu;
 
-	$cat_l = isset($cat) ? "?cat=$cat" : '';
+        $cat_l = isset($cat) ? "?cat=$cat" : '';
 
-	if (GALLERY_ADMIN_MODE) {
+        if (GALLERY_ADMIN_MODE) {
 
-		$param = array(
-			'{CATL}' => $cat_l,
-			'{UPL_APP_LNK}' => $lang_gallery_admin_menu['upl_app_lnk'],
-			'{CONFIG_LNK}' => $lang_gallery_admin_menu['config_lnk'],
-			'{ALBUMS_LNK}' => $lang_gallery_admin_menu['albums_lnk'],
-			'{CATEGORIES_LNK}' => $lang_gallery_admin_menu['categories_lnk'],
-			'{USERS_LNK}' => $lang_gallery_admin_menu['users_lnk'],
-			'{GROUPS_LNK}' => $lang_gallery_admin_menu['groups_lnk'],
-			'{COMMENTS_LNK}' => $lang_gallery_admin_menu['comments_lnk'],
-			'{SEARCHNEW_LNK}' => $lang_gallery_admin_menu['searchnew_lnk'],
-			'{MY_PROF_LNK}' => $lang_user_admin_menu['my_prof_lnk'],
-		);
+                $param = array(
+                        '{CATL}' => $cat_l,
+                        '{UPL_APP_LNK}' => $lang_gallery_admin_menu['upl_app_lnk'],
+                        '{CONFIG_LNK}' => $lang_gallery_admin_menu['config_lnk'],
+                        '{ALBUMS_LNK}' => $lang_gallery_admin_menu['albums_lnk'],
+                        '{CATEGORIES_LNK}' => $lang_gallery_admin_menu['categories_lnk'],
+                        '{USERS_LNK}' => $lang_gallery_admin_menu['users_lnk'],
+                        '{GROUPS_LNK}' => $lang_gallery_admin_menu['groups_lnk'],
+                        '{COMMENTS_LNK}' => $lang_gallery_admin_menu['comments_lnk'],
+                        '{SEARCHNEW_LNK}' => $lang_gallery_admin_menu['searchnew_lnk'],
+                        '{MY_PROF_LNK}' => $lang_user_admin_menu['my_prof_lnk'],
+                        '{UTIL_LNK}' => $lang_gallery_admin_menu['util_lnk'],
+                );
 
-		$html = template_eval($template_gallery_admin_menu, $param);
+                $html = template_eval($template_gallery_admin_menu, $param);
 
-	} elseif (USER_ADMIN_MODE) {
+        } elseif (USER_ADMIN_MODE) {
 
-		$param = array(
-			'{ALBMGR_LNK}' => $lang_user_admin_menu['albmgr_lnk'],
-			'{MODIFYALB_LNK}' => $lang_user_admin_menu['modifyalb_lnk'],
-			'{MY_PROF_LNK}' => $lang_user_admin_menu['my_prof_lnk']
-		);
+                $param = array(
+                        '{ALBMGR_LNK}' => $lang_user_admin_menu['albmgr_lnk'],
+                        '{MODIFYALB_LNK}' => $lang_user_admin_menu['modifyalb_lnk'],
+                        '{MY_PROF_LNK}' => $lang_user_admin_menu['my_prof_lnk']
+                );
 
-		$html = template_eval($template_user_admin_menu, $param);
+                $html = template_eval($template_user_admin_menu, $param);
 
-	}else{
+        }else{
 
-		$html ='';
+                $html ='';
 
-	}
+        }
 
-	return $html;
+        return $html;
 }
 
 function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
 {
 
-	global $template_cat_list, $lang_cat_list;
+        global $template_cat_list, $lang_cat_list;
 
-	starttable('100%');
+        starttable('100%');
 
-	if (count($cat_data)>0) {
-		$template = template_extract_block($template_cat_list, 'header');
-		$params = array(
-			'{CATEGORY}' => $lang_cat_list['category'],
-			'{ALBUMS}' => $lang_cat_list['albums'],
-			'{PICTURES}' => $lang_cat_list['pictures'],
-		);
-		echo template_eval($template, $params);
-	}
+        if (count($cat_data)>0) {
+                $template = template_extract_block($template_cat_list, 'header');
+                $params = array(
+                        '{CATEGORY}' => $lang_cat_list['category'],
+                        '{ALBUMS}' => $lang_cat_list['albums'],
+                        '{PICTURES}' => $lang_cat_list['pictures'],
+                );
+                echo template_eval($template, $params);
+        }
 
-	$template_noabl = template_extract_block($template_cat_list, 'catrow_noalb');
-	$template = template_extract_block($template_cat_list, 'catrow');
-	foreach($cat_data as $category){
-		if (count($category) == 2) {
-			$params = array(
-				'{CAT_TITLE}' => $category[0],
-				'{CAT_DESC}' => $category[1]
-			);
-			echo template_eval($template_noabl, $params);
-		} else {
-			$params = array(
-				'{CAT_TITLE}' => $category[0],
-				'{CAT_DESC}' => $category[1],
+        $template_noabl = template_extract_block($template_cat_list, 'catrow_noalb');
+        $template = template_extract_block($template_cat_list, 'catrow');
+        foreach($cat_data as $category){
+                if (count($category) == 2) {
+                        $params = array(
+                                '{CAT_TITLE}' => $category[0],
+                                '{CAT_DESC}' => $category[1]
+                        );
+                        echo template_eval($template_noabl, $params);
+                } else {
+                        $params = array(
+                                '{CAT_TITLE}' => $category[0],
+                                '{CAT_DESC}' => $category[1],
                 '{CAT_ALBUMS}'=>$category['cat_albums'],
-				'{ALB_COUNT}' => $category[2],
-				'{PIC_COUNT}' => $category[3],
-			);
-			echo template_eval($template, $params);
-		}
-	}
+                                '{ALB_COUNT}' => $category[2],
+                                '{PIC_COUNT}' => $category[3],
+                        );
+                        echo template_eval($template, $params);
+                }
+        }
 
-	if ($statistics && count($cat_data)>0) {
-		$template = template_extract_block($template_cat_list, 'footer');
-		$params = array('{STATISTICS}' => $statistics);
-		echo template_eval($template, $params);
-	}
-	endtable();
+        if ($statistics && count($cat_data)>0) {
+                $template = template_extract_block($template_cat_list, 'footer');
+                $params = array('{STATISTICS}' => $statistics);
+                echo template_eval($template, $params);
+        }
+        endtable();
 
-	if (count($cat_data)>0)
-		echo template_extract_block($template_cat_list, 'spacer');
+        if (count($cat_data)>0)
+                echo template_extract_block($template_cat_list, 'spacer');
 }
 
 function theme_display_breadcrumb($breadcrumb,&$cat_data)
@@ -1182,82 +1177,82 @@ function theme_display_breadcrumb($breadcrumb,&$cat_data)
 
 function theme_display_album_list(&$alb_list,$nbAlb, $cat, $page, $total_pages)
 {
-	global $CONFIG, $STATS_IN_ALB_LIST, $statistics, $template_tab_display, $template_album_list, $lang_album_list;
+        global $CONFIG, $STATS_IN_ALB_LIST, $statistics, $template_tab_display, $template_album_list, $lang_album_list;
 
-	$theme_alb_list_tab_tmpl = $template_tab_display;
+        $theme_alb_list_tab_tmpl = $template_tab_display;
 
-	$theme_alb_list_tab_tmpl['left_text'] = strtr($theme_alb_list_tab_tmpl['left_text'],array('{LEFT_TEXT}' => $lang_album_list['album_on_page']));
-	$theme_alb_list_tab_tmpl['inactive_tab'] = strtr($theme_alb_list_tab_tmpl['inactive_tab'],array('{LINK}' => 'index.php?cat='.$cat.'&page=%d'));
+        $theme_alb_list_tab_tmpl['left_text'] = strtr($theme_alb_list_tab_tmpl['left_text'],array('{LEFT_TEXT}' => $lang_album_list['album_on_page']));
+        $theme_alb_list_tab_tmpl['inactive_tab'] = strtr($theme_alb_list_tab_tmpl['inactive_tab'],array('{LINK}' => 'index.php?cat='.$cat.'&page=%d'));
 
-	$tabs = create_tabs($nbAlb, $page, $total_pages, $theme_alb_list_tab_tmpl);
+        $tabs = create_tabs($nbAlb, $page, $total_pages, $theme_alb_list_tab_tmpl);
 
-	$album_cell = template_extract_block($template_album_list, 'album_cell');
-	$empty_cell = template_extract_block($template_album_list, 'empty_cell');
-	$tabs_row = template_extract_block($template_album_list, 'tabs');
-	$stat_row = template_extract_block($template_album_list, 'stat_row');
-	$spacer = template_extract_block($template_album_list, 'spacer');
-	$header = template_extract_block($template_album_list, 'header');
-	$footer = template_extract_block($template_album_list, 'footer');
-	$rows_separator = template_extract_block($template_album_list, 'row_separator');
+        $album_cell = template_extract_block($template_album_list, 'album_cell');
+        $empty_cell = template_extract_block($template_album_list, 'empty_cell');
+        $tabs_row = template_extract_block($template_album_list, 'tabs');
+        $stat_row = template_extract_block($template_album_list, 'stat_row');
+        $spacer = template_extract_block($template_album_list, 'spacer');
+        $header = template_extract_block($template_album_list, 'header');
+        $footer = template_extract_block($template_album_list, 'footer');
+        $rows_separator = template_extract_block($template_album_list, 'row_separator');
 
-	$count = 0;
+        $count = 0;
 
-	$columns = $CONFIG['album_list_cols'];
-	$column_width = ceil(100/$columns);
-	$thumb_cell_width = $CONFIG['alb_list_thumb_size']+2;
+        $columns = $CONFIG['album_list_cols'];
+        $column_width = ceil(100/$columns);
+        $thumb_cell_width = $CONFIG['alb_list_thumb_size']+2;
 
-	starttable('100%');
+        starttable('100%');
 
-	if ($STATS_IN_ALB_LIST) {
-		$params = array(
-			'{STATISTICS}' => $statistics,
-			'{COLUMNS}' => $columns,
-		);
-		echo template_eval($stat_row, $params);
-	}
+        if ($STATS_IN_ALB_LIST) {
+                $params = array(
+                        '{STATISTICS}' => $statistics,
+                        '{COLUMNS}' => $columns,
+                );
+                echo template_eval($stat_row, $params);
+        }
 
-	echo $header;
+        echo $header;
 
-	foreach($alb_list as $album){
-		$count ++;
+        foreach($alb_list as $album){
+                $count ++;
 
-		$params = array(
-			'{COL_WIDTH}' => $column_width,
-			'{ALBUM_TITLE}' => $album['album_title'],
-			'{THUMB_CELL_WIDTH}' => $thumb_cell_width,
-			'{ALB_LINK_TGT}' => "thumbnails.php?album={$album['aid']}",
-			'{ALB_LINK_PIC}' => $album['thumb_pic'],
-			'{ADMIN_MENU}' => $album['album_adm_menu'],
-			'{ALB_DESC}' => $album['album_desc'],
-			'{ALB_INFOS}' => $album['album_info'],
-		);
+                $params = array(
+                        '{COL_WIDTH}' => $column_width,
+                        '{ALBUM_TITLE}' => $album['album_title'],
+                        '{THUMB_CELL_WIDTH}' => $thumb_cell_width,
+                        '{ALB_LINK_TGT}' => "thumbnails.php?album={$album['aid']}",
+                        '{ALB_LINK_PIC}' => $album['thumb_pic'],
+                        '{ADMIN_MENU}' => $album['album_adm_menu'],
+                        '{ALB_DESC}' => $album['album_desc'],
+                        '{ALB_INFOS}' => $album['album_info'],
+                );
 
-		echo template_eval($album_cell, $params);
+                echo template_eval($album_cell, $params);
 
-		if ($count % $columns == 0 && $count < count($alb_list)) {
-			echo $rows_separator;
-		}
-	}
+                if ($count % $columns == 0 && $count < count($alb_list)) {
+                        echo $rows_separator;
+                }
+        }
 
-	$params = array('{COL_WIDTH}' => $column_width);
-	$empty_cell = template_eval($empty_cell, $params);
+        $params = array('{COL_WIDTH}' => $column_width);
+        $empty_cell = template_eval($empty_cell, $params);
 
-	while ($count++ % $columns != 0) {
-		echo $empty_cell;
-	}
+        while ($count++ % $columns != 0) {
+                echo $empty_cell;
+        }
 
-	echo $footer;
+        echo $footer;
 
-	// Tab display
-	$params = array(
-		'{COLUMNS}' => $columns,
-		'{TABS}' => $tabs,
-	);
-	echo template_eval($tabs_row, $params);
+        // Tab display
+        $params = array(
+                '{COLUMNS}' => $columns,
+                '{TABS}' => $tabs,
+        );
+        echo template_eval($tabs_row, $params);
 
-	endtable();
+        endtable();
 
-	echo $spacer;
+        echo $spacer;
 
 }
 
@@ -1265,9 +1260,9 @@ function theme_display_album_list(&$alb_list,$nbAlb, $cat, $page, $total_pages)
 function theme_display_album_list_cat(&$alb_list,$nbAlb, $cat, $page, $total_pages)
 {
         global $CONFIG, $STATS_IN_ALB_LIST, $statistics, $template_tab_display, $template_album_list_cat, $lang_album_list;
-	if (!$CONFIG['first_level']){
-		return;
-	}
+        if (!$CONFIG['first_level']){
+                return;
+        }
 
         //$theme_alb_list_tab_tmpl = $template_tab_display;
 
@@ -1349,127 +1344,127 @@ function theme_display_album_list_cat(&$alb_list,$nbAlb, $cat, $page, $total_pag
 
 function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $page, $total_pages, $sort_options, $display_tabs, $mode='thumb')
 {
-	global $CONFIG;
-	global $template_thumb_view_title_row, $lang_thumb_view, $template_tab_display, $template_thumbnail_view;
+        global $CONFIG;
+        global $template_thumb_view_title_row, $lang_thumb_view, $template_tab_display, $template_thumbnail_view;
 
-	static $header='';
-	static $thumb_cell='';
-	static $empty_cell='';
-	static $row_separator='';
-	static $footer='';
-	static $tabs='';
-	static $spacer='';
+        static $header='';
+        static $thumb_cell='';
+        static $empty_cell='';
+        static $row_separator='';
+        static $footer='';
+        static $tabs='';
+        static $spacer='';
 
-	if ($header == '') {
-		$thumb_cell = template_extract_block($template_thumbnail_view, 'thumb_cell');
-		$tabs = template_extract_block($template_thumbnail_view, 'tabs');
-		$header = template_extract_block($template_thumbnail_view, 'header');
-		$empty_cell = template_extract_block($template_thumbnail_view, 'empty_cell');
-		$row_separator = template_extract_block($template_thumbnail_view, 'row_separator');
-		$footer = template_extract_block($template_thumbnail_view, 'footer');
-		$spacer = template_extract_block($template_thumbnail_view, 'spacer');
-	}
+        if ($header == '') {
+                $thumb_cell = template_extract_block($template_thumbnail_view, 'thumb_cell');
+                $tabs = template_extract_block($template_thumbnail_view, 'tabs');
+                $header = template_extract_block($template_thumbnail_view, 'header');
+                $empty_cell = template_extract_block($template_thumbnail_view, 'empty_cell');
+                $row_separator = template_extract_block($template_thumbnail_view, 'row_separator');
+                $footer = template_extract_block($template_thumbnail_view, 'footer');
+                $spacer = template_extract_block($template_thumbnail_view, 'spacer');
+        }
 
-	$cat_link= is_numeric($aid) ? '' : '&cat='.$cat;
+        $cat_link= is_numeric($aid) ? '' : '&cat='.$cat;
 
-	$theme_thumb_tab_tmpl = $template_tab_display;
+        $theme_thumb_tab_tmpl = $template_tab_display;
 
-	if ($mode == 'thumb') {
-		$theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'],array('{LEFT_TEXT}' => $lang_thumb_view['pic_on_page']));
-		$theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'],array('{LINK}' => 'thumbnails.php?album='.$aid.$cat_link.'&page=%d'));
-	} else {
-		$theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'],array('{LEFT_TEXT}' => $lang_thumb_view['user_on_page']));
-		$theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'],array('{LINK}' => 'index.php?cat='.$cat.'&page=%d'));
-	}
+        if ($mode == 'thumb') {
+                $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'],array('{LEFT_TEXT}' => $lang_thumb_view['pic_on_page']));
+                $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'],array('{LINK}' => 'thumbnails.php?album='.$aid.$cat_link.'&page=%d'));
+        } else {
+                $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'],array('{LEFT_TEXT}' => $lang_thumb_view['user_on_page']));
+                $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'],array('{LINK}' => 'index.php?cat='.$cat.'&page=%d'));
+        }
 
-	$thumbcols = $CONFIG['thumbcols'];
-	$cell_width = ceil(100/$CONFIG['thumbcols']).'%';
+        $thumbcols = $CONFIG['thumbcols'];
+        $cell_width = ceil(100/$CONFIG['thumbcols']).'%';
 
-	$tabs_html = $display_tabs ? create_tabs($nbThumb, $page, $total_pages, $theme_thumb_tab_tmpl) : '';
+        $tabs_html = $display_tabs ? create_tabs($nbThumb, $page, $total_pages, $theme_thumb_tab_tmpl) : '';
 
-	// The sort order options are not available for meta albums
-	if ($sort_options){
+        // The sort order options are not available for meta albums
+        if ($sort_options){
 
-		$param = array(
-			'{ALBUM_NAME}' => $album_name,
-			'{AID}' => $aid,
-			'{PAGE}' => $page,
-			'{NAME}' => $lang_thumb_view['name'],
+                $param = array(
+                        '{ALBUM_NAME}' => $album_name,
+                        '{AID}' => $aid,
+                        '{PAGE}' => $page,
+                        '{NAME}' => $lang_thumb_view['name'],
             '{TITLE}' => $lang_thumb_view['title'],
-			'{DATE}' => $lang_thumb_view['date'],
+                        '{DATE}' => $lang_thumb_view['date'],
             '{SORT_TA}' => $lang_thumb_view['sort_ta'],
             '{SORT_TD}' => $lang_thumb_view['sort_td'],
-			'{SORT_NA}' => $lang_thumb_view['sort_na'],
-			'{SORT_ND}' => $lang_thumb_view['sort_nd'],
-			'{SORT_DA}' => $lang_thumb_view['sort_da'],
-			'{SORT_DD}' => $lang_thumb_view['sort_dd'],
-		);
-		$title = template_eval($template_thumb_view_title_row, $param);
+                        '{SORT_NA}' => $lang_thumb_view['sort_na'],
+                        '{SORT_ND}' => $lang_thumb_view['sort_nd'],
+                        '{SORT_DA}' => $lang_thumb_view['sort_da'],
+                        '{SORT_DD}' => $lang_thumb_view['sort_dd'],
+                );
+                $title = template_eval($template_thumb_view_title_row, $param);
 
-	} else {
-		$title = $album_name;
-	}
+        } else {
+                $title = $album_name;
+        }
 
-	if ($mode == 'thumb') {
-		starttable('100%', $title, $thumbcols);
-	} else {
-		starttable('100%');
-	}
+        if ($mode == 'thumb') {
+                starttable('100%', $title, $thumbcols);
+        } else {
+                starttable('100%');
+        }
 
-	echo $header;
+        echo $header;
 
-	$i = 0;
-	foreach($thumb_list as $thumb){
-		$i++;
-		if ($mode == 'thumb') {
-			if ($aid =='lastalb'){
-				$params =array(
-					'{CELL_WIDTH}' => $cell_width,
-					'{LINK_TGT}' => "thumbnails.php?album={$thumb['aid']}",
-					'{THUMB}' => $thumb['image'],
-					'{CAPTION}' => $thumb['caption'],
-					'{ADMIN_MENU}' => $thumb['admin_menu']
-				);			
-			
-			} else { 
-			$params =array(
-				'{CELL_WIDTH}' => $cell_width,
-				'{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&pos={$thumb['pos']}",
-				'{THUMB}' => $thumb['image'],
-				'{CAPTION}' => $thumb['caption'],
-				'{ADMIN_MENU}' => $thumb['admin_menu']
-			);
-		 }
-		} else {
-			$params =array(
-				'{CELL_WIDTH}' => $cell_width,
-				'{LINK_TGT}' => "index.php?cat={$thumb['cat']}",
-				'{THUMB}' => $thumb['image'],
-				'{CAPTION}' => $thumb['caption'],
-				'{ADMIN_MENU}' => ''
-			);
-		}
-		echo template_eval($thumb_cell, $params);
+        $i = 0;
+        foreach($thumb_list as $thumb){
+                $i++;
+                if ($mode == 'thumb') {
+                        if ($aid =='lastalb'){
+                                $params =array(
+                                        '{CELL_WIDTH}' => $cell_width,
+                                        '{LINK_TGT}' => "thumbnails.php?album={$thumb['aid']}",
+                                        '{THUMB}' => $thumb['image'],
+                                        '{CAPTION}' => $thumb['caption'],
+                                        '{ADMIN_MENU}' => $thumb['admin_menu']
+                                );
 
-		if ((($i % $thumbcols) == 0) && ($i < count($thumb_list))) {
-			echo $row_separator;
-		}
-	}
-	for (;($i % $thumbcols); $i++){
-		echo $empty_cell;
-	}
-	echo $footer;
+                        } else {
+                        $params =array(
+                                '{CELL_WIDTH}' => $cell_width,
+                                '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&pos={$thumb['pos']}",
+                                '{THUMB}' => $thumb['image'],
+                                '{CAPTION}' => $thumb['caption'],
+                                '{ADMIN_MENU}' => $thumb['admin_menu']
+                        );
+                 }
+                } else {
+                        $params =array(
+                                '{CELL_WIDTH}' => $cell_width,
+                                '{LINK_TGT}' => "index.php?cat={$thumb['cat']}",
+                                '{THUMB}' => $thumb['image'],
+                                '{CAPTION}' => $thumb['caption'],
+                                '{ADMIN_MENU}' => ''
+                        );
+                }
+                echo template_eval($thumb_cell, $params);
 
-	if ($display_tabs) {
-		$params = array(
-			'{THUMB_COLS}' => $thumbcols,
-			'{TABS}' => $tabs_html
-		);
-		echo template_eval($tabs, $params);
-	}
+                if ((($i % $thumbcols) == 0) && ($i < count($thumb_list))) {
+                        echo $row_separator;
+                }
+        }
+        for (;($i % $thumbcols); $i++){
+                echo $empty_cell;
+        }
+        echo $footer;
 
-	endtable();
-	echo $spacer;
+        if ($display_tabs) {
+                $params = array(
+                        '{THUMB_COLS}' => $thumbcols,
+                        '{TABS}' => $tabs_html
+                );
+                echo template_eval($tabs, $params);
+        }
+
+        endtable();
+        echo $spacer;
 }
 
 //Added to display flim_strip
@@ -1555,85 +1550,85 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
 
 function theme_no_img_to_display($album_name)
 {
-	global $lang_errors, $template_no_img_to_display;
+        global $lang_errors, $template_no_img_to_display;
 
-	static $template = '';
-	static $spacer;
+        static $template = '';
+        static $spacer;
 
-	if ((!$template)) {
-		$template = $template_no_img_to_display;
-		$spacer = template_extract_block($template, 'spacer');
-	}
+        if ((!$template)) {
+                $template = $template_no_img_to_display;
+                $spacer = template_extract_block($template, 'spacer');
+        }
 
-	$params = array('{TEXT}' => $lang_errors['no_img_to_display']);
-	starttable('100%', $album_name);
-	echo template_eval($template, $params);
-	endtable();
+        $params = array('{TEXT}' => $lang_errors['no_img_to_display']);
+        starttable('100%', $album_name);
+        echo template_eval($template, $params);
+        endtable();
 }
 
 function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments,$film_strip)
 {
-	global $HTTP_COOKIE_VARS, $CONFIG;
-	
-	$spacer = <<<EOT
-	<tr>
-		<td><img src="themes/eyeball/images/hline_left.gif" alt="" /><br /></td>
-		<td width="100%" background="themes/eyeball/images/hline_bg.gif" align="center"><img src="themes/eyeball/images/hline_blue_ball.gif" alt="" /><br /></td>
-		<td><img src="themes/eyeball/images/hline_right.gif" alt="" /><br /></td>
-	</tr>
+        global $HTTP_COOKIE_VARS, $CONFIG;
+
+        $spacer = <<<EOT
+        <tr>
+                <td><img src="themes/eyeball/images/hline_left.gif" alt="" /><br /></td>
+                <td width="100%" background="themes/eyeball/images/hline_bg.gif" align="center"><img src="themes/eyeball/images/hline_blue_ball.gif" alt="" /><br /></td>
+                <td><img src="themes/eyeball/images/hline_right.gif" alt="" /><br /></td>
+        </tr>
 
 EOT;
 
-	echo '	<img src="images/spacer.gif" width="1" height="25" /><br />'."\n";
-	starttable();
-	echo $nav_menu;
-	endtable();
+        echo '        <img src="images/spacer.gif" width="1" height="25" /><br />'."\n";
+        starttable();
+        echo $nav_menu;
+        endtable();
 
-	starttable();
-	echo $picture;
-	endtable();
+        starttable();
+        echo $picture;
+        endtable();
       if($CONFIG['display_film_strip']==1) {
-			echo $film_strip;
+                        echo $film_strip;
      }
-	if($votes){
-		starttable();
-		echo $spacer;
-		endtable();
-		starttable();
-		echo $votes;
-		endtable();
-	}
+        if($votes){
+                starttable();
+                echo $spacer;
+                endtable();
+                starttable();
+                echo $votes;
+                endtable();
+        }
 
-	$picinfo = isset($HTTP_COOKIE_VARS['picinfo']) ? $HTTP_COOKIE_VARS['picinfo'] : ($CONFIG['display_pic_info'] ? 'block' : 'none');
-	echo "<div id=\"picinfo\" style=\"display: $picinfo;\">\n";
-	starttable();
-	echo $spacer;
-	endtable();
-	starttable();
-	echo $pic_info;
-	endtable();
-	echo "</div>\n";
+        $picinfo = isset($HTTP_COOKIE_VARS['picinfo']) ? $HTTP_COOKIE_VARS['picinfo'] : ($CONFIG['display_pic_info'] ? 'block' : 'none');
+        echo "<div id=\"picinfo\" style=\"display: $picinfo;\">\n";
+        starttable();
+        echo $spacer;
+        endtable();
+        starttable();
+        echo $pic_info;
+        endtable();
+        echo "</div>\n";
 
-	if($comments){
-		starttable();
-		echo $spacer;
-		endtable();
-		starttable();
-		echo $comments;
-		endtable();
-	}
+        if($comments){
+                starttable();
+                echo $spacer;
+                endtable();
+                starttable();
+                echo $comments;
+                endtable();
+        }
 }
 
 function theme_html_picinfo(&$info)
 {
-	global $lang_picinfo;
+        global $lang_picinfo;
 
-	$html = '';
+        $html = '';
 
-	$html .= "	<tr><td colspan=\"2\" class=\"tableh2_compact\"><b>{$lang_picinfo['title']}</b></td></tr>\n";
-	$template ="	<tr><td class=\"tableb_compact\" valign=\"top\" nowrap>%s:</td><td class=\"tableb_compact\">%s</td></tr>\n";
-	foreach ($info as $key => $value) $html .= sprintf($template, $key, $value);
+        $html .= "        <tr><td colspan=\"2\" class=\"tableh2_compact\"><b>{$lang_picinfo['title']}</b></td></tr>\n";
+        $template ="        <tr><td class=\"tableb_compact\" valign=\"top\" nowrap>%s:</td><td class=\"tableb_compact\">%s</td></tr>\n";
+        foreach ($info as $key => $value) $html .= sprintf($template, $key, $value);
 
-	return $html;
+        return $html;
 }
 ?>
