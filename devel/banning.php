@@ -180,6 +180,13 @@ echo <<<EOT
 					</th>
 					</tr>
 					<tr>
+						<th align="center">{$lang_banning_php['user_name']}</th>
+						<th align="center">{$lang_banning_php['ip_address']}</th>
+						<th align="center">{$lang_banning_php['expiry']}</th>
+						<th align="center"></th>
+					</tr>
+					
+					<tr>
 			       		<form action="$PHP_SELF" method="post">
 			           	  	<td width="20%" class="tableb" valign="top">
                 				<input type="text" class="textinput" style="width: 100%" name="add_ban_user_name" value="">
