@@ -263,6 +263,7 @@ class cpgIndexData {
                       $this->catData[] = array($link, $subcat['description'], $album_count, $pic_count, 'cat_albums' => $tmpArr[0], 'cat_thumb' => $user_thumb, 'albStats' => $tmpArr[1]);
                   }
               }
+              unset($tmpArr);
               if ($level > 1) {
                   $this->__getSubcatData($subcat['cid'], $album_set_array, $level -1, $ident . "</td><td><img src=\"images/spacer.gif\" width=\"20\" height=\"1\" border=\"0\" alt=\"\" /></td><td>");
               }
