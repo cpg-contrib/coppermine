@@ -604,6 +604,7 @@ if (isset($CURRENT_PIC_DATA)) {
         $cat = - $album;
     } else {
         $actual_cat = $CURRENT_ALBUM_DATA['category'];
+        breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);	
     }
 }
 
