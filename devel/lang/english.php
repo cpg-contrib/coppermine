@@ -265,6 +265,12 @@ $lang_version_alert = array(
 // void
 
 // ------------------------------------------------------------------------- //
+// File keyword.inc.php                                                           //
+// ------------------------------------------------------------------------- //
+
+// void
+
+// ------------------------------------------------------------------------- //
 // File include/picmgmt.inc.php
 // ------------------------------------------------------------------------- //
 
@@ -409,6 +415,7 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
   'title' => 'Configuration',
   'manage_exif' => 'Manage exif display', //cpg1.4.0
   'manage_plugins' => 'Manage plugins', //cpg1.4.0
+  'manage_keyword' => 'Manage keywords', //cpg1.4.0
   'restore_cfg' => 'Restore factory defaults',
   'save_cfg' => 'Save new configuration',
   'notes' => 'Notes',
@@ -450,6 +457,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Allow ZIP-download of favorites', 'enable_zipdownload', 1, 'f=index.htm&as=config_general_zip-download&ae=config_general_zip-download_end'),
   array('Timezone difference relative to GMT','time_offset',0, 'f=index.htm&as=config_general_time-offset&ae=config_general_time-offset_end&top=1'),
   array('Enable help-icons (help available in English only)','enable_help',9, 'f=index.htm&as=config_general_help&ae=config_general_help_end'),
+  array('Enable clickable keywords in search','clickable_keyword_search',14),
 
   'Language, Themes &amp; Charset settings',
   array('Language', 'lang', 5, 'f=index.htm&as=config_language_language&ae=config_language_language_end'),
@@ -852,6 +860,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'album_properties' =>'Album properties', //cpg1.4.0
   'parent_category' =>'Parent category', //cpg1.4.0
   'thumbnail_view' =>'Thumbnail view', //cpg1.4.0
+  'select_unselect' =>'select/unselect all', //cpg1.4.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -984,6 +993,21 @@ $lang_list_albums = array(
 );
 
 }
+
+// ------------------------------------------------------------------------- //
+// File keywordmgr.php                                                           //
+// ------------------------------------------------------------------------- //
+
+if (defined('KEYWORDMGR_PHP')) $lang_keywordmgr_php = array(
+  'title' => 'Keyword organization',
+  'edit' => 'edit',
+  'delete' => 'delete',
+  'search' => 'search',
+  'keyword_test_search' => 'search for %s in new window', // cpg1.4
+  'keyword_del' => 'delete the keyword %s', // cpg1.4
+  'confirm_delete' => 'Are you sure you want to delete the keyword %s from the whole gallery?', // cpg1.4  // js-alert
+  'change_keyword' => 'change keyword', // cpg1.4
+);
 
 // ------------------------------------------------------------------------- //
 // File login.php
@@ -1193,11 +1217,14 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
 
 
 // ------------------------------------------------------------------------- //
-// File search.php - OK
+// File search.php                                                           //
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCH_PHP')) $lang_search_php = array(
-  0 => 'Search the file collection',
+  'title' => 'Search the file collection',
+  'submit_search' => 'search', // cpg1.4
+  'keyword_list_title' => 'Keyword list', // cpg1.4
+  'edit_keywords' => 'Edit keywords', // cpg1.4
 );
 
 // ------------------------------------------------------------------------- //

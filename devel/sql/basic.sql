@@ -150,6 +150,8 @@ INSERT INTO CPG_config VALUES ('login_expiry', '10');
 
 INSERT INTO CPG_config VALUES ('allow_email_change', '0');
 
+INSERT INTO CPG_config VALUES ('clickable_keyword_search', '1');
+
 #
 # Dumping data for table `CPG_filetypes`
 #

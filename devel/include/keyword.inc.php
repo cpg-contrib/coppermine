@@ -19,37 +19,46 @@
 define('IN_COPPERMINE', true);
 define('SEARCH_PHP', true);
 
-require('include/init.inc.php');
+// ADDED QUICK KEYWORDS FUNCTIONALITY 8/6/2004
 
-pageheader($lang_search_php['title']);
-echo <<< EOT
-<script language="javascript" type="text/javascript">
-<!--
-document.searchcpg.search.focus();
--->
-</script>
-<form method="get" action="thumbnails.php" name="searchcpg">
-EOT;
+// Grab all keywords
+print '<br />';
+starttable("100%", $lang_search_php['keyword_list_title']);
 
+$result = mysql_query("select keywords from {$CONFIG['TABLE_PICTURES']}");
+if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap']);
 
-starttable('100%', $lang_search_php['title']);
-echo <<< EOT
-        <tr>
-            <td class="tableb" align="center">
-                <input type="input" style="width: 80%" name="search" maxlength="255" value="" class="textinput">
-                <input type="submit" value="{$lang_search_php['submit_search']}" class="button">
-                <input type="hidden" name="album" value="search">
-                <input type="hidden" name="type" value="full">
-            </td>
-        </tr>
-</form>
+// Find unique keywords
+$keywords_array = array();
 
-EOT;
-endtable();
-if ($CONFIG['clickable_keyword_search'] != 0) {
-    include('include/keyword.inc.php');
+while (list($keywords) = mysql_fetch_row($result)) {
+        $array = explode(" ",$keywords);
+
+        foreach($array as $word)
+        {
+        if (!in_array($word,$keywords_array)) $keywords_array[] = $word;
+       }
 }
-pagefooter();
-ob_end_flush();
 
+// Sort selected keywords
+sort($keywords_array);
+$count = count($keywords_array);
+
+// Result to table
+echo '<tr><td class="tableb">' ;
+for ($i = 0; $i < $count; $i++) {
+  echo "<a href=\"thumbnails.php?album=search&search=$keywords_array[$i]\">$keywords_array[$i]</a> | " ;
+
+}
+echo "</td></tr>" ;
+if (GALLERY_ADMIN_MODE == true){
+  $url = basename($_SERVER['PHP_SELF']);
+  if ($url != "keywordmgr.php"){
+    echo '<tr><td class="tableb" align="center">';
+    echo '<a href="keywordmgr.php" class="admin_menu">Edit Keywords</a>';
+    echo "</td></tr>" ;
+  }
+}
+endtable();
+ob_end_flush();
 ?>

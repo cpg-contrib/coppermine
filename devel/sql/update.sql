@@ -307,3 +307,4 @@ INSERT INTO CPG_config VALUES ('categories_alpha_sort', '0');
 ALTER TABLE `CPG_banned` ADD `brute_force` TINYINT( 5 ) DEFAULT '0' NOT NULL ;
 INSERT INTO CPG_config VALUES ('login_treshold', '5');
 INSERT INTO CPG_config VALUES ('login_expiry', '10');
+INSERT INTO CPG_config VALUES ('clickable_keyword_search', '1');

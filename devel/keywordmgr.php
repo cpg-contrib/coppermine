@@ -1,0 +1,175 @@
+<?php
+// ------------------------------------------------------------------------- //
+// Coppermine Photo Gallery 1.4.0                                            //
+// ------------------------------------------------------------------------- //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
+// http://www.chezgreg.net/coppermine/                                       //
+// ------------------------------------------------------------------------- //
+// Updated by the Coppermine Dev Team                                        //
+// see /docs/credits.html for details                                        //
+// ------------------------------------------------------------------------- //
+// This program is free software; you can redistribute it and/or modify      //
+// it under the terms of the GNU General Public License as published by      //
+// the Free Software Foundation; either version 2 of the License, or         //
+// (at your option) any later version.                                       //
+// ------------------------------------------------------------------------- //
+// $Id$
+// ------------------------------------------------------------------------- //
+
+define('IN_COPPERMINE', true);
+define('KEYWORDMGR_PHP', true);
+define('SEARCH_PHP', true);
+require('include/init.inc.php');
+//Die if not admin_mode
+if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+
+pageheader($lang_keywordmgr_php['title']);
+
+//print '<script language="JavaScript" src="keyword_toggle.js"></script>';
+
+starttable("100%", $lang_keywordmgr_php['title'], 3);
+echo <<<EOT
+      <tr>
+          <td class="tablef"><b>{$lang_keywordmgr_php['edit']}</b></td>
+          <td class="tablef"><b>{$lang_keywordmgr_php['delete']}</b></td>
+          <td class="tablef"><b>{$lang_keywordmgr_php['search']}</b></td>
+      </tr>
+
+EOT;
+
+switch($_REQUEST['page']) {
+
+default :
+case 'display':
+
+$result = mysql_query("select keywords from {$CONFIG['TABLE_PICTURES']}");
+if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap']);
+  // Find unique keywords
+   $total_array = array();
+
+   while (list($keywords) = mysql_fetch_row($result)) {
+       $array = explode(" ",$keywords);
+
+       foreach($array as $word)
+       {
+         if($word == "." || $word == "" || $word == " " )
+      continue;
+         $single_word = $word;
+         $lowercase_word = strtolower($single_word);
+         $word = <<<EOT
+         <td class="tableb">
+         <input type="radio" class="radio" name="keywordEdit" value="$lowercase_word" onClick="document.keywordForm.newword.value='$single_word'" id="$lowercase_word" />
+         <label for="$lowercase_word" class="clickable_option">
+         {$lang_keywordmgr_php['edit']} &quot;<i>$single_word</i>&quot;
+         </label>
+         </td>
+EOT;
+         $word .= '<td class="tableb"><a href="?page=delete&remov='.$single_word.'" onclick="return confirm(\''.sprintf($lang_keywordmgr_php['confirm_delete'], $single_word).'\')">';
+         $word .= sprintf($lang_keywordmgr_php['keyword_del'],'&quot;<i>'.$single_word.'</i>&quot;');
+         $word .= <<<EOT
+         </a></td>
+         <td class="tableb"><a href="thumbnails.php?album=search&search=$single_word" target="_blank">
+EOT;
+
+         $word .= sprintf($lang_keywordmgr_php['keyword_test_search'], '&quot;<i>'.$single_word.'</i>&quot;');
+         $word .= '</a></td>';
+
+           if (!in_array($word,$total_array)) $total_array[] = $word;
+       }
+   }
+
+   sort($total_array);
+
+   $output = implode("</tr>\n<tr>", $total_array);
+
+   echo <<<EOT
+<form name="keywordForm" action="?page=changeword" method="post">
+$output
+<tr><td colspan="5" class="tablef" align="center">
+   <input type="text" name="newword">
+   <input type="submit" value="{$lang_keywordmgr_php['change_keyword']}">
+</td></tr>
+</form>
+EOT;
+
+
+
+break;
+
+
+case 'changeword':
+
+   if ($_REQUEST['keywordEdit'] && $_REQUEST['newword'])
+   {
+       $keywordEdit = $_REQUEST['keywordEdit'];
+
+       $query = "SELECT `pid`,`keywords` FROM {$CONFIG['TABLE_PICTURES']} WHERE CONCAT(' ',`keywords`,' ') LIKE '% {$keywordEdit} %'";
+       $result = mysql_query($query) or die(mysql_error());
+
+       while (list($id,$keywords) = mysql_fetch_row($result))
+       {
+           $array_new = array();
+           $array_old = explode(" ", trim($keywords));
+
+           foreach($array_old as $word)
+           {
+               // convert old to new if its the same word
+               if (strtolower($word) == $_REQUEST['keywordEdit']) $word = $_REQUEST['newword'];
+
+               // rebuild array to reprocess it
+               $array_new[] = $word;
+           }
+
+           $keywords = implode(" ", $array_new);
+           $newquerys[] = "UPDATE {$CONFIG['TABLE_PICTURES']} SET `keywords` = '$keywords' WHERE `pid` = '$id'";
+       }
+   }
+   $newquerys[] = "UPDATE {$CONFIG['TABLE_PICTURES']} SET `keywords` = TRIM(REPLACE(`keywords`,'  ',' '))";
+
+   foreach ($newquerys as $query) { $result = mysql_query($query) or die($query."<br />".mysql_error()); }
+
+   header("Location: ?page=display");
+
+break;
+
+case 'delete':
+
+       $keywordEdit = $_REQUEST['remov'];
+
+       $query = "SELECT `pid`,`keywords` FROM {$CONFIG['TABLE_PICTURES']} WHERE CONCAT(' ',`keywords`,' ') LIKE '% {$keywordEdit} %'";
+       $result = mysql_query($query) or die(mysql_error());
+
+       while (list($id,$keywords) = mysql_fetch_row($result))
+       {
+           $array_new = array();
+           $array_old = explode(" ", trim($keywords));
+
+           foreach($array_old as $word)
+           {
+               // convert old to new if its the same word
+               if (strtolower($word) == $_REQUEST['keywordEdit']) $word = $_REQUEST['newword'];
+
+               // rebuild array to reprocess it
+               $array_new[] = $word;
+           }
+
+           $keywords = implode(" ", $array_new);
+           $newquerys[] = "UPDATE {$CONFIG['TABLE_PICTURES']} SET `keywords` = '' WHERE `pid` = '$id'";
+       }
+
+   $newquerys[] = "UPDATE {$CONFIG['TABLE_PICTURES']} SET `keywords` = TRIM(REPLACE(`keywords`,'  ',' '))";
+
+   foreach ($newquerys as $query) { $result = mysql_query($query) or die($query."<br />".mysql_error()); }
+
+   header("Location: ?page=display");
+
+break;
+
+}
+endtable();
+if ($CONFIG['clickable_keyword_search'] != 0) {
+    include('include/keyword.inc.php');
+}
+pagefooter();
+ob_end_flush();
+?>
