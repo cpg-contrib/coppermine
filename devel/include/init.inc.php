@@ -209,7 +209,7 @@ if(file_exists('include/config.inc.php')){
 <html>
     <head>
       <title>Coppermine not installed yet</title>
-      <meta http-equiv="refresh" content="100;url=install.php">
+      <meta http-equiv="refresh" content="10;url=install.php">
       <style type="text/css">
       <!--
       body { font-size: 12px; background: #FFFFFF; margin: 20%; color: black; font-family: verdana, arial, helvetica, sans-serif;}
@@ -381,7 +381,7 @@ require "lang/{$CONFIG['lang']}.php";
 
 // Include and process fallback here if lang <> english
 if($CONFIG['lang'] != 'english' && $CONFIG['language_fallback']==1 ){
-	require "include/langfallback.inc.php";
+        require "include/langfallback.inc.php";
 }
 // See if the fav cookie is set else set it
 if (isset($HTTP_COOKIE_VARS[$CONFIG['cookie_name'] . '_fav'])) {
