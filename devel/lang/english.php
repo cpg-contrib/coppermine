@@ -841,7 +841,7 @@ if (defined('SEARCH_PHP')) $lang_search_php = array(
 if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
         'page_title' => 'Search new pictures',
         'select_dir' => 'Select directory',
-        'select_dir_msg' => 'This function allows you to add a batch of picture that your have uploaded on your server by FTP.<br /><br />Select the directory where you have uploaded your pictures',
+        'select_dir_msg' => 'This function allows you to add a batch of picture that your have uploaded on your server by FTP.<br /><br />Select the directory where you have uploaded your pictures.<br /><br />Do not use the folders &quot;userpics&quot; nor &quot;manipulation&quot; - they exclusively belong to coppermine and musn\'t be touched.', //changed by gaugau 03-11-02
         'no_pic_to_add' => 'There is no picture to add',
         'need_one_album' => 'You need at least one album to use this function',
         'warning' => 'Warning',
@@ -859,12 +859,18 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
         'no_pic_found' => 'No new picture was found',
         'be_patient' => 'Please be patient, the script needs time to add the pictures',
         'notes' =>  '<ul>'.
-                                '<li><b>OK</b> : means that the picture was succesfully added'.
-                                '<li><b>DP</b> : means that the picture is a duplicate and is already in the database'.
-                                '<li><b>PB</b> : means that the picture could not be added, check your configuration and the permission of directories where the pictures are located'.
-                                '<li>If the OK, DP, PB \'signs\' does not appear click on the broken picture to see any error message produced by PHP'.
-                                '<li>If your browser timeout, hit the reload button'.
+                                '<li><b>OK</b> : means that the picture was succesfully added</li>'.
+                                '<li><b>DP</b> : means that the picture is a duplicate and is already in the database</li>'.
+                                '<li><b>PB</b> : means that the picture could not be added, check your configuration and the permission of directories where the pictures are located</li>'.
+                                '<li><b>NA</b> : means that you haven\'t selected an album the pics should go to, hit \'<a href="javascript:history.back(1)">back</a>\' and select an album. If you don\'t have an album <a href="albmgr.php">create one first</a></li>'.
+                                '<li>If the OK, DP, PB \'signs\' does not appear click on the broken picture to see any error message produced by PHP</li>'.
+                                '<li>If your browser timeout, hit the reload button</li>'.
                                 '</ul>',
+        'select_album' => 'select album', // added by gaugau 03-11-02
+        'check_all' => 'Check All', // added by gaugau 03-11-02
+        'uncheck_all' => 'Uncheck All', // added by gaugau 03-11-02
+        // added the ending </li> tags to be more html standards compliant by gaugau 03-11-02
+        // added the explanation for 'na' by gaugau 03-11-02
 );
 
 
