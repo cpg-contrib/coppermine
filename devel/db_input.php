@@ -2,10 +2,10 @@
 // ------------------------------------------------------------------------- //
 //  Coppermine Photo Gallery                                                 //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Grégory DEMAR <gdemar@wanadoo.fr>               //
+//  Copyright (C) 2002,2003  Grï¿½ory DEMAR <gdemar@wanadoo.fr>               //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
+//  Based on PHPhotoalbum by Henning Stverud <henning@stoverud.com>         //
 //  http://www.stoverud.com/PHPhotoalbum/                                    //
 // ------------------------------------------------------------------------- //
 //  Hacked by Tarique Sani <tarique@sanisoft.com>                            //
@@ -24,7 +24,7 @@ require('include/picmgmt.inc.php');
 
 function check_comment(&$str)
 {
-	global $CONFIG, $lang_bad_words;
+	global $CONFIG, $lang_bad_words, $queries;
 
 	$ercp = array('/\S{'.($CONFIG['max_com_wlength']+1).',}/i');
 	if ($CONFIG['filter_bad_words']) foreach($lang_bad_words as $word){
@@ -176,9 +176,14 @@ switch ($event){
 	}
 
 	$update = db_query($query);
-	if (!mysql_affected_rows()) cpg_die(INFORMATION, $lang_db_input_php['no_udp_needed'], __FILE__, __LINE__);
+	if (isset($CONFIG['debug_mode']) && ($CONFIG['debug_mode']==1)) {
+		$queries[] = $query;
+	}
 
-	pageheader($lang_db_input_php['alb_updated'],"<META http-equiv=\"refresh\" content=\"1;url=modifyalb.php?album=$aid\">");
+	if (!mysql_affected_rows()) cpg_die(INFORMATION, $lang_db_input_php['no_udp_needed'], __FILE__, __LINE__);
+        if ($CONFIG['debug_mode']==0) {
+		pageheader($lang_db_input_php['alb_updated'],"<META http-equiv=\"refresh\" content=\"1;url=modifyalb.php?album=$aid\">");
+	}
 	msg_box($lang_db_input_php['info'], $lang_db_input_php['alb_updated'], $lang_continue, "modifyalb.php?album=$aid");
 	pagefooter();
 	ob_end_flush();

@@ -314,7 +314,7 @@ function list_users()
 // List all albums
 function list_albums()
 {
-	global $CONFIG, $USER, $PAGE, $lastup_date_fmt;
+	global $CONFIG, $USER, $USER_DATA, $PAGE, $lastup_date_fmt;
 	global $cat;
 	global $lang_list_albums, $lang_errors;
 
@@ -404,6 +404,7 @@ function list_albums()
 		}
 
 		// Prepare everything
+		
 		if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || $visibility == $USER_DATA['group_id']) {
 			$last_upload_date = $count ? localised_date($alb_stat['last_upload'], $lastup_date_fmt) : '';
 			$alb_list[$alb_idx]['aid']            = $alb_thumb['aid'];
@@ -412,7 +413,7 @@ function list_albums()
 			$alb_list[$alb_idx]['pic_count']      = $count;
 			$alb_list[$alb_idx]['last_upl']       = $last_upload_date;
 			$alb_list[$alb_idx]['album_info']     = sprintf($lang_list_albums['n_pictures'], $count).($count ? sprintf($lang_list_albums['last_added'], $last_upload_date) : "" );
-			$alb_list[$alb_idx]['album_adm_menu'] = (GALLERY_ADMIN_MODE || (USER_ADMIN_MODE && $cat == USER_ID + FIRST_USER_CAT)) ? html_albummenu($alb_thumb['aid']) : '';
+			$alb_list[$alb_idx]['album_adm_menu'] = (GALLERY_ADMIN_MODE || (USER_ADMIN_MODE && $cat == USER_ID + FIRST_USER_CAT)) ? html_albummenu($alb_thumb['aid']) : ' ';
 		} elseif ($CONFIG['show_private']) { // uncomment this else block to show private album description
 			$last_upload_date = $count ? localised_date($alb_stat['last_upload'], $lastup_date_fmt) : '';
 			$alb_list[$alb_idx]['aid']            = $alb_thumb['aid'];
@@ -421,7 +422,7 @@ function list_albums()
 			$alb_list[$alb_idx]['pic_count']      = $count;
 			$alb_list[$alb_idx]['last_upl']       = $last_upload_date;
 			$alb_list[$alb_idx]['album_info']     = sprintf($lang_list_albums['n_pictures'], $count).($count ? sprintf($lang_list_albums['last_added'], $last_upload_date) : "" );
-			$alb_list[$alb_idx]['album_adm_menu'] = (GALLERY_ADMIN_MODE || (USER_ADMIN_MODE && $cat == USER_ID + FIRST_USER_CAT)) ? html_albummenu($alb_thumb['aid']) : '';
+			$alb_list[$alb_idx]['album_adm_menu'] = (GALLERY_ADMIN_MODE || (USER_ADMIN_MODE && $cat == USER_ID + FIRST_USER_CAT)) ? html_albummenu($alb_thumb['aid']) : ' ';
 		}			
 	}
 
