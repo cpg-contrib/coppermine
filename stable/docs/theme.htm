@@ -132,6 +132,12 @@ Edit style.css, go to the very end of the file and add this code:
 }</pre></li>
 <li>Choose a place where the language and theme selection should be located on your coppermine pages. It's recommended to do this even if you're not planning to actually use the language and theme selection options, since they can be enable/disabled at any time in Coppermine config:<br />
 Edit template.html and find a place anywhere between <tt class="code">&lt;body&gt;</tt> and <tt class="code">&lt;/body&gt;</tt> where you want the selectors to appear. Add <tt class="code">{LANGUAGE_SELECT_LIST}</tt> for the language selection dropdown, <tt class="code">{LANGUAGE_SELECT_FLAGS}</tt> for the language-by-flag selector and <tt class="code">{THEME_SELECT_LIST}</tt> for the theme selection dropdown.</li>
+<li>Make the header information of your local file match the version you have updated to.<br />
+Edit theme.php and find
+<pre>// Coppermine Photo Gallery 1.2.0                                            //</pre>
+and change it to
+<pre>// Coppermine Photo Gallery 1.3.2                                            //</pre>
+</li>
 <li>Find a place where the memberlist list should appear in your coppermine navigation. It's recommended to do this even if you're not planning to actually use the feature, since it can be enable/disabled at any time in Coppermine config.<br />
 Edit theme.php and find
 <pre>&lt;!-- END my_gallery --&gt;</pre>
