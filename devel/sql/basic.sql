@@ -125,7 +125,7 @@ INSERT INTO CPG_config VALUES ('smtp_password', '');
 
 INSERT INTO CPG_config VALUES ('enable_plugins', '1');
 
-INSERT INTO CPG_config VALUES ('enable_help', '1');
+INSERT INTO CPG_config VALUES ('enable_help', '2');
 
 #
 # Dumping data for table `CPG_filetypes`

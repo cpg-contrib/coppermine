@@ -61,9 +61,9 @@ function user_get_profile()
 
 /**
  * user_save_profile()
- * 
+ *
  * Save the user profile in a cookie
- * 
+ *
  **/
 
 function user_save_profile()
@@ -82,7 +82,7 @@ function user_save_profile()
 
 /**
  * cpg_db_connect()
- * 
+ *
  * Connect to the database
  **/
 
@@ -101,12 +101,12 @@ function cpg_db_connect()
 
 /**
  * db_query()
- * 
+ *
  * Perform a database query
- * 
+ *
  * @param $query
  * @param integer $link_id
- * @return 
+ * @return
  **/
 
 function db_query($query, $link_id = 0)
@@ -135,11 +135,11 @@ function db_query($query, $link_id = 0)
 
 /**
  * db_error()
- * 
+ *
  * Error message if a query failed
- * 
+ *
  * @param $the_error
- * @return 
+ * @return
  **/
 
 function db_error($the_error)
@@ -163,11 +163,11 @@ function db_error($the_error)
 
 /**
  * db_fetch_rowset()
- * 
+ *
  * Fetch all rows in an array
- * 
+ *
  * @param $result
- * @return 
+ * @return
  **/
 
 function db_fetch_rowset($result)
@@ -192,17 +192,17 @@ function db_fetch_rowset($result)
 
 /**
  * cpg_die()
- * 
+ *
  * Replacement for the die function
- * 
+ *
  * @param $msg_code
  * @param $msg_text
  * @param $error_file
  * @param $error_line
  * @param boolean $output_buffer
- * @return 
+ * @return
  **/
- 
+
 function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer = false)
 {
         global $CONFIG, $lang_cpg_die, $template_cpg_die;
@@ -240,12 +240,12 @@ function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer
 
 /**
  * localised_date()
- * 
+ *
  * Display a localised date
- * 
+ *
  * @param integer $timestamp
  * @param $datefmt
- * @return 
+ * @return
  **/
 
 function localised_date($timestamp = -1, $datefmt)
@@ -269,11 +269,11 @@ function localised_date($timestamp = -1, $datefmt)
 
 /**
  * path2url()
- * 
+ *
  * Function to create correct URLs for image name with space or exotic characters
- * 
+ *
  * @param $path
- * @return 
+ * @return
  **/
 
 function path2url($path)
@@ -285,15 +285,15 @@ function path2url($path)
 
 /**
  * msg_box()
- * 
+ *
  * Display a 'message box like' table
- * 
+ *
  * @param $title
  * @param $msg_text
  * @param string $button_text
  * @param string $button_link
  * @param string $width
- * @return 
+ * @return
  **/
 
 function msg_box($title, $msg_text, $button_text="", $button_link="", $width="-1")
@@ -318,14 +318,14 @@ function msg_box($title, $msg_text, $button_text="", $button_link="", $width="-1
 
 /**
  * create_tabs()
- * 
+ *
  * @param $items
  * @param $curr_page
  * @param $total_pages
  * @param $template
- * @return 
+ * @return
  **/
- 
+
 function create_tabs($items, $curr_page, $total_pages, $template)
 {
         global $CONFIG;
@@ -387,9 +387,9 @@ function create_tabs($items, $curr_page, $total_pages, $template)
 
 /**
  * make_clickable()
- * 
+ *
  * @param $text
- * @return 
+ * @return
  **/
 
 function make_clickable($text)
@@ -408,9 +408,9 @@ function make_clickable($text)
 
 /**
  * bb_decode()
- * 
+ *
  * @param $text
- * @return 
+ * @return
  **/
 
 function bb_decode($text)
@@ -508,10 +508,10 @@ function bb_decode($text)
 
 /**
  * load_template()
- * 
+ *
  * Load and parse the template.html file
- * 
- * @return 
+ *
+ * @return
  **/
 
 function load_template()
@@ -557,10 +557,10 @@ function load_template()
 
 /**
  * template_eval()
- * 
+ *
  * @param $template
  * @param $vars
- * @return 
+ * @return
  **/
 
 function template_eval(&$template, &$vars)
@@ -573,11 +573,11 @@ function template_eval(&$template, &$vars)
 
 /**
  * template_extract_block()
- * 
+ *
  * @param $template
  * @param $block_name
  * @param string $subst
- * @return 
+ * @return
  **/
 
 function template_extract_block(&$template, $block_name, $subst='')
@@ -598,9 +598,9 @@ function template_extract_block(&$template, $block_name, $subst='')
 
 /**
  * get_private_album_set()
- * 
+ *
  * @param string $aid_str
- * @return 
+ * @return
  **/
 
 function get_private_album_set($aid_str="")
@@ -657,14 +657,14 @@ function get_private_album_set($aid_str="")
 
 /**
  * get_pic_data()
- * 
+ *
  * @param $album
  * @param $count
  * @param $album_name
  * @param integer $limit1
  * @param integer $limit2
  * @param boolean $set_caption
- * @return 
+ * @return
  **/
 
 function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $set_caption = true)
@@ -1102,9 +1102,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
 /**
  * get_album_name()
- * 
+ *
  * @param $aid
- * @return 
+ * @return
  **/
 
 function get_album_name($aid)
@@ -1126,9 +1126,9 @@ function get_album_name($aid)
 
 /**
  * get_username()
- * 
+ *
  * @param $uid
- * @return 
+ * @return
  **/
 function get_username($uid)
 {
@@ -1153,9 +1153,9 @@ function get_username($uid)
 
 /**
  * get_userid()
- * 
+ *
  * @param $username
- * @return 
+ * @return
  **/
 function get_userid($username)
 {
@@ -1180,8 +1180,8 @@ function get_userid($username)
 
 /**
  * cpg_get_pending_approvals()
- * 
- * @return 
+ *
+ * @return
  **/
 function cpg_get_pending_approvals()
 {
@@ -1197,10 +1197,10 @@ function cpg_get_pending_approvals()
 
 /**
  * count_pic_comments()
- * 
+ *
  * @param $pid
  * @param integer $skip
- * @return 
+ * @return
  **/
 function count_pic_comments($pid, $skip=0)
 {
@@ -1217,9 +1217,9 @@ function count_pic_comments($pid, $skip=0)
 
 /**
  * add_hit()
- * 
+ *
  * @param $pid
- * @return 
+ * @return
  **/
 function add_hit($pid)
 {
@@ -1232,11 +1232,11 @@ function add_hit($pid)
  * breadcrumb()
  *
  * Build the breadcrumb navigation
- * 
+ *
  * @param integer $cat
  * @param string $breadcrumb
  * @param string $BREADCRUMB_TEXT
- * @return 
+ * @return
  **/
 
 function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
@@ -1302,7 +1302,7 @@ function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
 
 /**
  * compute_img_size()
- * 
+ *
  * Compute image geometry based on max, width / height
  *
  * @param integer $width
@@ -1346,8 +1346,8 @@ function compute_img_size($width, $height, $max)
 /**
  * display_thumbnails()
  *
- * Generates data to display thumbnails of pictures in an album 
- * 
+ * Generates data to display thumbnails of pictures in an album
+ *
  * @param mixed $album Either the album ID or the meta album name
  * @param integer $cat Either the category ID or album ID if negative
  * @param integer $page Page number to display
@@ -1401,9 +1401,9 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
 
  /**
  * cpg_get_system_thumb_list()
- * 
+ *
  * Return an array containing the system thumbs in a directory
- 
+
  * @param string $search_folder
  * @return array
  **/
@@ -1446,12 +1446,12 @@ function cpg_get_system_thumb_list($search_folder = 'images/')
  * cpg_get_system_thumb()
  *
  * Gets data for system thumbs
- * 
+ *
  * @param string $filename
  * @param integer $user
  * @return array
  **/
- 
+
 function& cpg_get_system_thumb($filename,$user=10001)
 {
         global $CONFIG,$USER_DATA;
@@ -1486,7 +1486,7 @@ function& cpg_get_system_thumb($filename,$user=10001)
  * display_film_strip()
  *
  * gets data for thumbnails in an album for the film strip
- * 
+ *
  * @param integer $album
  * @param integer $cat
  * @param integer $pos
@@ -1568,13 +1568,13 @@ function display_film_strip($album, $cat, $pos)
 
 /**
  * get_pic_url()
- * 
+ *
  * Return the url for a picture
  *
  * @param array $pic_row
  * @param string $mode
  * @param boolean $system_pic
- * @return string 
+ * @return string
  **/
 
 function get_pic_url(&$pic_row, $mode,$system_pic = false)
@@ -1678,12 +1678,12 @@ function get_pic_url(&$pic_row, $mode,$system_pic = false)
 
 /**
  * cpg_get_default_lang_var()
- * 
+ *
  * Return a variable from the default language file
  *
  * @param $language_var_name
  * @param unknown $overide_language
- * @return 
+ * @return
  **/
 function& cpg_get_default_lang_var($language_var_name,$overide_language = null) {
         global $CONFIG;
@@ -1706,10 +1706,10 @@ function& cpg_get_default_lang_var($language_var_name,$overide_language = null) 
 
 /**
  * cpg_lang_var()
- * 
+ *
  * @param $varname
  * @param unknown $index
- * @return 
+ * @return
  **/
 
 function& cpg_lang_var($varname,$index=null) {
@@ -1735,7 +1735,7 @@ function& cpg_lang_var($varname,$index=null) {
 
 /**
  * cpg_debug_output()
- * 
+ *
  * defined new debug_output function here in functions.inc.php instead of theme.php with different function names to avoid incompatibilities with users not updating their themes as required. Advanced info is only output if (GALLERY_ADMIN_MODE == TRUE)
  *
  **/
@@ -1865,7 +1865,7 @@ EOT;
  * phpinfo-related functions:
  *
  * @param $search
- * @return 
+ * @return
  **/
 
 function cpg_phpinfo_mod($search)
@@ -1893,10 +1893,10 @@ function cpg_phpinfo_mod($search)
 
 /**
  * cpg_phpinfo_mod_output()
- * 
+ *
  * @param $search
  * @param $output_type
- * @return 
+ * @return
  **/
 
 function cpg_phpinfo_mod_output($search,$output_type)
@@ -1948,8 +1948,8 @@ function cpg_phpinfo_mod_output($search,$output_type)
 
 /**
  * cpg_phpinfo_mysql_version()
- * 
- * @return 
+ *
+ * @return
  **/
 
 
@@ -1962,9 +1962,9 @@ function cpg_phpinfo_mysql_version()
 
 /**
  * cpg_phpinfo_conf()
- * 
+ *
  * @param $search
- * @return 
+ * @return
  **/
 
 function cpg_phpinfo_conf($search)
@@ -1995,9 +1995,9 @@ function cpg_phpinfo_conf($search)
 
 /**
  * cpg_phpinfo_conf_output()
- * 
+ *
  * @param $search
- * @return 
+ * @return
  **/
 
 function cpg_phpinfo_conf_output($search)
@@ -2012,9 +2012,9 @@ $pieces = cpg_phpinfo_conf($search);
 
 /**
  * languageSelect()
- * 
+ *
  * @param $parameter
- * @return 
+ * @return
  **/
 
 function languageSelect($parameter)
@@ -2162,11 +2162,11 @@ return $return;
 
 /**
  * themeSelect()
- * 
+ *
  * @param $parameter
- * @return 
+ * @return
  **/
- 
+
 function themeSelect($parameter)
 {
 global $CONFIG,$lang_theme_selection;
@@ -2224,8 +2224,8 @@ return $return;
 
 /**
  * cpg_alert_dev_version()
- * 
- * @return 
+ *
+ * @return
  **/
 
 function cpg_alert_dev_version() {
@@ -2247,16 +2247,17 @@ function cpg_alert_dev_version() {
 
 /**
  * cpg_display_help()
- * 
+ *
  * @param string $reference
  * @param string $width
  * @param string $height
- * @return 
+ * @return
  **/
- 
+
 function cpg_display_help($reference = 'f=index.htm', $width = '600', $height = '350') {
 global $CONFIG, $USER;
-if ($reference == '' || $CONFIG['enable_help'] != '1') {return; }
+if ($reference == '' || $CONFIG['enable_help'] == '0') {return; }
+if ($CONFIG['enable_help'] == '2' && GALLERY_ADMIN_MODE == false) {return; }
 $help_theme = $CONFIG['theme'];
 if ($USER['theme']) {
     $help_theme = $USER['theme'];

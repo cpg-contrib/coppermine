@@ -155,3 +155,5 @@ Changed activation email link to use config set gallery url - 19th July, Nibbler
 Added reset view counter into admin tools - 20 July 2004, Nibbler
 Modified groups manager to fit on one page - 20 July 2004, GauGau
 New javascript driven config page  - 20th July, Nibbler
+Added overview over used colors in style sheets - 22 July 2004, GauGau
+Changed help icon availability for all users vs. admin only - 22 July 2004, GauGau

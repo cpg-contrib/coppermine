@@ -446,7 +446,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Log ecards', 'log_ecards', 1, 'f=index.htm&as=config_general_log_ecards&ae=config_general_log_ecards_end'),
   array('Allow ZIP-download of favorites', 'enable_zipdownload', 1, 'f=index.htm&as=config_general_zip-download&ae=config_general_zip-download_end'),
   array('Timezone difference relative to GMT','time_offset',0, 'f=index.htm&as=config_general_time-offset&ae=config_general_time-offset_end&top=1'),
-  array('Enable help-icons','enable_help',1, 'f=index.htm&as=config_general_help&ae=config_general_help_end'),
+  array('Enable help-icons (help available in English only)','enable_help',9, 'f=index.htm&as=config_general_help&ae=config_general_help_end'),
 
   'Language, Themes &amp; Charset settings',
   array('Language', 'lang', 5, 'f=index.htm&as=config_language_language&ae=config_language_language_end'),

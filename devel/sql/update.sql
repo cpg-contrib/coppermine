@@ -280,5 +280,4 @@ CREATE TABLE CPG_plugins (
   UNIQUE KEY path (path)
 ) TYPE=MyISAM COMMENT='Stores the plugins';
 
-INSERT INTO CPG_config VALUES ('enable_help', '1');
-
+INSERT INTO CPG_config VALUES ('enable_help', '2');
