@@ -154,6 +154,7 @@ $template_gallery_admin_menu = <<<EOT
                                 <td class="admin_menu"><a href="banning.php" title="">{BAN_LNK}</a></td>
                                 <td class="admin_menu"><a href="reviewcom.php" title="">{COMMENTS_LNK}</a></td>
                                 <td class="admin_menu"><a href="searchnew.php" title="">{SEARCHNEW_LNK}</a></td>
+                                <td class="admin_menu"><a href="util.php" title="">{UTIL_LNK}</a></td>
                                 <td class="admin_menu"><a href="profile.php?op=edit_profile" title="">{MY_PROF_LNK}</a></td>
                         </tr>
                 </table>
@@ -1008,6 +1009,7 @@ function theme_admin_mode_menu()
             '{GROUPS_LNK}' => $lang_gallery_admin_menu['groups_lnk'],
             '{COMMENTS_LNK}' => $lang_gallery_admin_menu['comments_lnk'],
             '{SEARCHNEW_LNK}' => $lang_gallery_admin_menu['searchnew_lnk'],
+            '{UTIL_LNK}' => $lang_gallery_admin_menu['util_lnk'],
             '{MY_PROF_LNK}' => $lang_user_admin_menu['my_prof_lnk'],
             '{BAN_LNK}' => $lang_gallery_admin_menu['ban_lnk'],
             );
