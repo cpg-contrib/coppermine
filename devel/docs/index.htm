@@ -723,15 +723,18 @@ If your browser times out, hit the reload button.
       <h3>4.9.2 Custom Thumbnails<a id="cust_thmb" name="cust_thmb"></a></h3>
       <p><img src="pics/cust_thmb.gif" border="1" /></p>
       <p><b>Order of thumbnails:</b><br />
-      <b style="color:red;">Thumbnails are selected in this order: user-defined, theme-defined, then global.</b> User-defined thumbnails are stored
-      in the folder where the file is located. Theme-defined thumbnails are stored in the themes 'images' folder. Global
-      thumbnails are stored within the 'images' folder of the Coppermine root. <b style="color:red;">Thumbnails can be either a 'gif', 'png', or 'jpg'.</b>
+      <b style="color:red;">Thumbnails are selected by level (user-defined, theme-defined, global) then by type (file-specific,
+      extension-specific, media-specific) in order.</b> User-defined thumbnails are stored in the folder where the file is located. Theme-defined thumbnails
+      are stored in the themes 'images' folder. Global thumbnails are stored within the 'images' folder of the Coppermine root.
+      <b style="color:red;">Thumbnails can be either a 'gif', 'png', or 'jpg'.</b>
       </p>
       <p><b>Types of thumbnails:</b><br />
-      There are two types of thumbnails: file-specific and media-specific.</p>
-      <p><b style="color:red;">File-specific thumbnails must have the same base name as the file.</b> Using the example in the screenshot, its thumbnails could be
+      <b style="color:red;">File-specific thumbnails must have the same base name as the file.</b> Using the example in the screenshot, its thumbnails could be
       'thumb_<b>thailand_waterfall</b>.gif', 'thumb_<b>thailand_waterfall</b>.png', or 'thumb_<b>thailand_waterfall</b>.jpg'
       , chosen in that order.
+      </p>
+      <p><b style="color:red;">Extension-specific thumbnails are named after the extension of the file.</b>
+      (Examples: 'thumb_wmv.jpg', 'thumb_wav.jpg'.)
       </p>
       <p><b style="color:red;">The base name for media-specific thumbnails are 'thumb_movie', 'thumb_document', and 'thumb_audio'.</b>
       Images use file-specific thumbnails by default.
