@@ -1405,6 +1405,7 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
   'see_prev' => 'See previous',
   'see_next' => 'See next',
   'del_comm' => 'Delete selected comments',
+  'check_all' => 'check/uncheck all', // cpg1.4.0
 );
 
 

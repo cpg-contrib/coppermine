@@ -50,21 +50,50 @@ $s75 = $count == 75 ? 'selected' : '';
 $s100 = $count == 100 ? 'selected' : '';
 
 if ($start + $count < $comment_count) {
-    $next_link = "<a href=\"$next_target\"><b>{$lang_reviewcom_php['see_next']}</b></a>&nbsp;&nbsp;-&nbsp;&nbsp;";
+    $next_link = "<a href=\"$next_target\" class=\"admin_menu\">{$lang_reviewcom_php['see_next']}&raquo;</a>&nbsp;&nbsp;-&nbsp;&nbsp;";
 } else {
     $next_link = '';
 }
 
 if ($start > 0) {
-    $prev_link = "<a href=\"$prev_target\"><b>{$lang_reviewcom_php['see_prev']}</b></a>&nbsp;&nbsp;-&nbsp;&nbsp;";
+    $prev_link = "<a href=\"$prev_target\" class=\"admin_menu\">&laquo;{$lang_reviewcom_php['see_prev']}</a>&nbsp;&nbsp;-&nbsp;&nbsp;";
 } else {
     $prev_link = '';
 }
 
 pageheader($lang_reviewcom_php['title']);
-starttable(-1, $lang_reviewcom_php['title'], 3);
+starttable('100%', $lang_reviewcom_php['title'], 3);
 echo <<<EOT
-    <form action="$PHP_SELF?start=$start&count=$count" method="post">
+<script type="text/javascript" language="javascript">
+<!--
+function textCounter(field, maxlimit) {
+        if (field.value.length > maxlimit) // if too long...trim it!
+        field.value = field.value.substring(0, maxlimit);
+}
+
+function selectAll(d,box) {
+  var f = document.editForm;
+  for (i = 0; i < f.length; i++) {
+    //alert (f[i].name.indexOf(box));
+    if (f[i].type == "checkbox" && f[i].name.indexOf(box) >= 0) {
+      if (d.checked) {
+        f[i].checked = true;
+      } else {
+        f[i].checked = false;
+      }
+    }
+  }
+  if (d.name == "checkAll") {
+      document.getElementsByName('checkAll2')[0].checked = document.getElementsByName('checkAll')[0].checked;
+  } else {
+      document.getElementsByName('checkAll')[0].checked = document.getElementsByName('checkAll2')[0].checked;
+  }
+}
+
+-->
+</script>
+
+    <form action="$PHP_SELF?start=$start&count=$count" method="post" name="editForm">
 
 EOT;
 
@@ -72,7 +101,7 @@ if ($nb_com_del > 0) {
     $msg_txt = sprintf($lang_reviewcom_php['n_comm_del'], $nb_com_del);
     echo <<<EOT
         <tr>
-                <td class="tableh2" colspan="3" align="center">
+                <td class="tableh2" colspan="4" align="center">
                         <br /><b>$msg_txt</b><br /><br />
                 </td>
         </tr>
@@ -82,7 +111,10 @@ EOT;
 
 echo <<<EOT
         <tr>
-                <td class="tableb" colspan="3">
+                <td class="tableh2">
+                        <input type="checkbox" name="checkAll" onClick="selectAll(this,'cid_array');" class="checkbox" title="{$lang_reviewcom_php['check_all']}" />
+                </td>
+                <td class="tableh2" colspan="3">
                         $prev_link
                         $next_link
                         <b>{$lang_reviewcom_php['n_comm_disp']}</b>
@@ -111,23 +143,25 @@ while ($row = mysql_fetch_array($result)) {
     $msg_date = localised_date($row['msg_date'], $comment_date_fmt);
     echo <<<EOT
         <tr>
-        <td colspan="2" class="tableh2" valign="top">
+        <td class="tableb" rowspan="2">
+            <input name="cid_array[]" id="check{$row['msg_id']}" type="checkbox" value="{$row['msg_id']}" />
+        </td>
+        <td class="tableh2_compact" valign="top">
                 <table cellpadding="0" cellspacing="0" border ="0">
                         <tr>
-                        <td><input name="cid_array[]" type="checkbox" value="{$row['msg_id']}">
                         <td><img src="images/spacer.gif" width="5" height="1" /><br/></td>
                         <td><b>{$row['msg_author']}</b> - {$msg_date}</td>
                         </tr>
                 </table>
-                </td>
+        </td>
+        <td class="tableh2_compact" align="center" rowspan="2">
+                        <a href="$thumb_link"><img src="$thumb_url" {$image_size['geom']} class="image" border="0" alt="" /><br /></a>
+        </td>
         </tr>
         <tr>
         <td class="tableb" valign="top" width="100%">
                         {$row['msg_body']}
                 </td>
-            <td class="tableb" align="center">
-                        <a href="$thumb_link" target="_blank"><img src="$thumb_url" {$image_size['geom']} class="image" border="0" alt="" /><br /></a>
-        </td>
         </tr>
 
 EOT;
@@ -138,8 +172,11 @@ mysql_free_result($result);
 
 echo <<<EOT
         <tr>
+            <td class="tablef">
+                <input type="checkbox" name="checkAll2" onClick="selectAll(this,'cid_array');" class="checkbox" title="{$lang_reviewcom_php['check_all']}" />
+            </td>
             <td colspan="3" align="center" class="tablef">
-                        <input type="submit" value="{$lang_reviewcom_php['del_comm']}" class="button">
+                        <input type="submit" value="{$lang_reviewcom_php['del_comm']}" class="button" />
                 </td>
         </form>
         </tr>
