@@ -282,3 +282,4 @@ INSERT INTO CPG_config VALUES ('custom_footer_path', '');
 INSERT INTO CPG_config VALUES ('comments_sort_descending', '0');
 INSERT INTO CPG_config VALUES ('report_post', '0');
 INSERT INTO CPG_config VALUES ('comments_anon_pfx', 'Guest_');
+INSERT INTO CPG_config VALUES ('admin_activate', '0');
