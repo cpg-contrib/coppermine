@@ -21,4 +21,3 @@ if (!defined('IN_COPPERMINE')) {
         die();
 }
 ?>
-
