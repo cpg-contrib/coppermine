@@ -30,8 +30,12 @@
 $Id$
 */
 
+// Declare we are in Coppermine.
 define('IN_COPPERMINE', true);
+
+// Set the language block. 
 define('XP_PUBLISH_PHP', true);
+
 // Language file entry for xp_publish.php
 // You can copy and paste the code below in your language file and translate it.
 // ------------------------------------------------------------------------- //
@@ -49,16 +53,21 @@ if (defined('XP_PUBLISH_PHP')) $lang_xp_publish_php = array('title' => 'Coppermi
         'continue' => 'Press &quot;Next&quot; to start to upload your pictures',
         );
 // ------------------------------------------------------------------------- //
-// Required in order to get some language variables
+
+// Activate more language block sets.
 define('LOGIN_PHP', true);
 define('DB_INPUT_PHP', true);
 define('ALBMGR_PHP', true);
 
+
+// Call necessaryy files and subroutines.
 require('include/init.inc.php');
 require('include/picmgmt.inc.php');
 
+// Set the log file path.  
 define('LOGFILE', 'xp_publish.log');
 // ------------------------------------------------------------------------- //
+
 // HTML template for the login screen
 $template_login = <<<EOT
         <p><b>{ENTER_LOGIN_PSWD}</b></p>
@@ -75,6 +84,7 @@ $template_login = <<<EOT
             </table>
         </form>
 EOT;
+
 // HTML template for a successful login
 $template_login_success = <<< EOT
         <p>{WELCOME}</p>
@@ -92,6 +102,7 @@ $template_login_failure = <<< EOT
                 <input type="hidden" name="dummy_val" value="1" />
         </form>
 EOT;
+
 // HTML template for the select destination/create new album screen
 $template_select_album = <<<EOT
         <p>{WELCOME}</p>
@@ -144,6 +155,7 @@ $template_create_album = <<<EOT
 
 EOT;
 // ------------------------------------------------------------------------- //
+
 // Simple die function (replace the cpg_die function that can't be used inside the wizard)
 function simple_die($msg_code, $msg_text, $error_file, $error_line, $output_buffer = false)
 {
@@ -173,6 +185,7 @@ function javascript_string($str)
 
     return $str;
 }
+
 // Retrieve the category list
 function get_subcat_data($parent, $ident = '')
 {
@@ -187,6 +200,7 @@ function get_subcat_data($parent, $ident = '')
         }
     }
 }
+
 // Return the HTML code for the album list select box
 function html_album_list(&$alb_count)
 {
@@ -245,6 +259,7 @@ function html_cat_list()
 
     return $html;
 }
+
 // Display information on how to use/install the wizard client
 function display_instructions()
 {
@@ -369,6 +384,7 @@ Coppermine.</p>
 </html>
 <?php
 }
+
 // Output page header
 function output_header()
 {
@@ -462,6 +478,7 @@ input {
 <p></p>
 <?php
 }
+
 // Output page footer
 function output_footer()
 {
@@ -544,6 +561,7 @@ function window.onload() {
 </html>
 <?php
 }
+
 // Send the file needed to register the service under Windows XP
 function send_reg_file()
 {
@@ -564,6 +582,7 @@ function send_reg_file()
     print "\r\n";
     exit;
 }
+
 // Display the login page
 function form_login()
 {
@@ -594,6 +613,7 @@ function form_login()
     $ONBACK_SCRIPT = 'window.external.FinalBack();';
     $WIZARD_BUTTONS = 'true,true,false';
 }
+
 // Process login information
 function process_login()
 {
@@ -629,6 +649,7 @@ function process_login()
     $ONBACK_SCRIPT = 'dummy.submit();';
     $WIZARD_BUTTONS = 'true,true,false';
 }
+
 // Display the form that allows to choose/create the destination album
 function form_publish()
 {
@@ -693,6 +714,7 @@ function form_publish()
         $WIZARD_BUTTONS = 'true,true,false';
     }
 }
+
 // Create a new album where pictures will be uploaded
 function create_album()
 {
@@ -723,6 +745,7 @@ function create_album()
     $ONBACK_SCRIPT = 'window.external.FinalBack();';
     $WIZARD_BUTTONS = 'true,true,true';
 }
+
 // Add a picture
 function process_picture()
 {
@@ -760,8 +783,7 @@ function process_picture()
     // Create destination directory for pictures
     if (USER_ID && !defined('SILLY_SAFE_MODE')) {
         if (USER_IS_ADMIN && ($category != (USER_ID + FIRST_USER_CAT))) {
-            $hash = md5(time());
-            $filepath = 'wpw-' . substr($hash, 0, 2);
+            $filepath = 'wpw-' . date("Ymd");
         } else {
             $filepath = $CONFIG['userpics'] . (USER_ID + FIRST_USER_CAT);
         }
@@ -794,9 +816,11 @@ function process_picture()
         $matches[1] = 'invalid_fname';
         $matches[2] = 'xxx';
     }
-    if ($matches[2] == '' || !stristr($CONFIG['allowed_file_extensions'], $matches[2])) {
+
+    if ($matches[2] == '' || !is_known_filetype($matches)) {
         simple_die(ERROR, sprintf($lang_db_input_php['err_invalid_fext'], $CONFIG['allowed_file_extensions']), __FILE__, __LINE__);
     }
+
     // Create a unique name for the uploaded file
     $nr = 0;
     $picture_name = $matches[1] . '.' . $matches[2];
@@ -809,39 +833,46 @@ function process_picture()
         simple_die(CRITICAL_ERROR, sprintf($lang_db_input_php['err_move'], $picture_name, $dest_dir), __FILE__, __LINE__, true);
     // Change file permission
     chmod($uploaded_pic, octdec($CONFIG['default_file_mode']));
-    // Get picture information
-    $imginfo = getimagesize($uploaded_pic);
-    // Check that picture size (in pixels) is lower than the maximum allowed
-    if (max($imginfo[0], $imginfo[1]) > $CONFIG['max_upl_width_height']) {
-        @unlink($uploaded_pic);
-        simple_die(ERROR, sprintf($lang_db_input_php['err_fsize_too_large'], $CONFIG['max_upl_width_height'], $CONFIG['max_upl_width_height']), __FILE__, __LINE__);
-        // Check that picture file size is lower than the maximum allowed
-    } elseif (filesize($uploaded_pic) > ($CONFIG['max_upl_size'] << 10)) {
+
+    // Check file size. Delete if it is excessive.
+    if (filesize($uploaded_pic) > ($CONFIG['max_upl_size'] << 10)) {
         @unlink($uploaded_pic);
         simple_die(ERROR, sprintf($lang_db_input_php['err_imgsize_too_large'], $CONFIG['max_upl_size']), __FILE__, __LINE__);
+    } elseif (is_image($picture_name)) {
+
+        // Get picture information
+        $imginfo = getimagesize($uploaded_pic);
+
         // getimagesize does not recognize the file as a picture
-    } elseif ($imginfo == null) {
-        @unlink($uploaded_pic);
-        simple_die(ERROR, $lang_db_input_php['err_invalid_img'], __FILE__, __LINE__, true);
-        // JPEG and PNG only are allowed with GD
-    } elseif ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && ($CONFIG['thumb_method'] == 'gd1' || $CONFIG['thumb_method'] == 'gd2')) {
-        @unlink($uploaded_pic);
-        simple_die(ERROR, $lang_errors['gd_file_type_err'], __FILE__, __LINE__, true);
-        // Check image type is among those allowed for ImageMagick
-    } elseif (!stristr($CONFIG['allowed_img_types'], $IMG_TYPES[$imginfo[2]]) && $CONFIG['thumb_method'] == 'im') {
-        @unlink($uploaded_pic);
-        simple_die(ERROR, sprintf($lang_db_input_php['allowed_img_types'], $CONFIG['allowed_img_types']), __FILE__, __LINE__);
-    } else {
-        // Create thumbnail and internediate image and add the image into the DB
-        $result = add_picture($album, $filepath, $picture_name, $title, $caption, $keywords, $user1, $user2, $user3, $user4, $category);
-        if (!$result) {
+        if ($imginfo == null) {
             @unlink($uploaded_pic);
-            simple_die(CRITICAL_ERROR, sprintf($lang_db_input_php['err_insert_pic'], $uploaded_pic) . '<br /><br />' . $ERROR, __FILE__, __LINE__, true);
-        } else {
-            echo ("SUCCESS");
-            exit;
+            simple_die(ERROR, $lang_db_input_php['err_invalid_img'], __FILE__, __LINE__, true);
         }
+
+        // JPEG and PNG only are allowed with GD
+        if ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && ($CONFIG['thumb_method'] == 'gd1' || $CONFIG['thumb_method'] == 'gd2')) {
+            @unlink($uploaded_pic);
+            simple_die(ERROR, $lang_errors['gd_file_type_err'], __FILE__, __LINE__, true);
+        }
+
+        // Check that picture size (in pixels) is lower than the maximum allowed
+        if (max($imginfo[0], $imginfo[1]) > $CONFIG['max_upl_width_height']) {
+            @unlink($uploaded_pic);
+            simple_die(ERROR, sprintf($lang_db_input_php['err_fsize_too_large'], $CONFIG['max_upl_width_height'], $CONFIG['max_upl_width_height']), __FILE__, __LINE__);
+        }
+
     }
+
+    // Create thumbnail and internediate image and add the image into the DB
+    $result = add_picture($album, $filepath, $picture_name, $title, $caption, $keywords, $user1, $user2, $user3, $user4, $category);
+    if (!$result) {
+        @unlink($uploaded_pic);
+        simple_die(CRITICAL_ERROR, sprintf($lang_db_input_php['err_insert_pic'], $uploaded_pic) . '<br /><br />' . $ERROR, __FILE__, __LINE__, true);
+    } else {
+        echo ("SUCCESS");
+        exit;
+    }
+    
 }
 // ------------------------------------------------------------------------- //
 if (USER_IS_ADMIN && !GALLERY_ADMIN_MODE) {
