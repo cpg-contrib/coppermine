@@ -53,11 +53,11 @@ $sender_email_warning = '';
 $recipient_email_warning = '';
 // Get picture thumbnail url
 $result = mysql_query("SELECT * from {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' $ALBUM_SET");
-if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap']);
+if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
 $row = mysql_fetch_array($result);
 $thumb_pic_url = get_pic_url($row, 'thumb');
 
-if (!is_image($row['filename'])) cpg_die(ERROR, $lang_ecard_php['error_not_image']);
+if (!is_image($row['filename'])) cpg_die(ERROR, $lang_ecard_php['error_not_image'], __FILE__, __LINE__);
 
 // Check supplied email address
 $valid_email_pattern = "^[_\.0-9a-z\-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,6}$";
@@ -118,8 +118,8 @@ if (count($HTTP_POST_VARS) > 0 && $valid_sender_email && $valid_recipient_email)
           $result = db_query("INSERT INTO {$CONFIG['TABLE_ECARDS']} (sender_name, sender_email, recipient_name, recipient_email, link, date, sender_ip) VALUES ('$sender_name', '$sender_email', '$recipient_name', '$recipient_email',   '$encoded_data', '$tempTime', '{$_SERVER["REMOTE_ADDR"]}')");
           }
     } else {
-                cpg_die(ERROR, $lang_ecard_php['send_failed']);
-                // cpg_die(ERROR, $lang_ecard_php['cookie_required']);
+                cpg_die(ERROR, $lang_ecard_php['send_failed'], __FILE__, __LINE__);
+                // cpg_die(ERROR, $lang_ecard_php['cookie_required'], __FILE__, __LINE__);
     }
     if (!USER_ID) setcookie('ecard',1);
     if (!USER_ID) {
