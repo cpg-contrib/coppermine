@@ -65,7 +65,7 @@ $template_main_menu2 = <<<EOT
                                         </td>
                                         <td><img name="menu_spacer" src="themes/project_vii/images/menu_spacer.gif" width="2" height="35" border="0" id="menu_spcer" alt="" /><br /></td>
                                         <td class="top_menu_bttn">
-                                                <a href="{LASTUP_TGT}" title="{LASTUP_LNK}"</a>>{LASTUP_LNK}</a>
+                                                <a href="{LASTUP_TGT}" title="{LASTUP_LNK}">{LASTUP_LNK}</a>
                                         </td>
                                         <td><img name="menu_spacer" src="themes/project_vii/images/menu_spacer.gif" width="2" height="35" border="0" id="menu_spcer" alt="" /><br /></td>
                                         <td class="top_menu_bttn">
