@@ -359,6 +359,20 @@ if (isset($HTTP_COOKIE_VARS[$CONFIG['cookie_name'] . '_fav'])) {
 } else {
     $FAVPICS = array();
 }
+
+// If the person is logged in get favs from DB those in the DB have precedence 
+if (USER_ID > 0){	
+	$sql = "SELECT user_favpics FROM {$CONFIG['TABLE_USERS']} WHERE user_id = ".USER_ID;	
+	$results = db_query($sql);	
+	$row = mysql_fetch_array($results);
+	if (!empty($row['user_favpics'])){
+        	$FAVPICS = @unserialize(@base64_decode($row['user_favpics']));	
+	}else{
+		$FAVPICS = array();
+	}	
+}
+
+
 // load the main template
 load_template();
 // Remove expired bans

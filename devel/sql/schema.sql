@@ -162,6 +162,7 @@ CREATE TABLE CPG_users (
   user_interests varchar(255) NOT NULL default '',
   user_occupation varchar(255) NOT NULL default '',
   user_actkey varchar(32) NOT NULL default '',
+  user_favpics text ,
   PRIMARY KEY  (user_id),
   UNIQUE KEY user_name (user_name)
 ) TYPE=MyISAM;

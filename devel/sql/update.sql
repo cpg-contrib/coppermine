@@ -194,3 +194,16 @@ DELETE FROM `CPG_filetypes` WHERE mime='text/html';
 #
 
 ALTER TABLE `CPG_users` CHANGE user_lang user_group_list varchar(255) NOT NULL default ''; 
+
+
+#
+# Record the last hit IP
+#
+
+ALTER TABLE `CPG_pictures` ADD `lasthit_ip` TINYTEXT ;
+
+#
+# Store favpics in DB
+#
+
+ALTER TABLE `cpg130_users` ADD `user_favpics` TEXT ;
