@@ -8,7 +8,9 @@
 //  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
 //  http://www.stoverud.com/PHPhotoalbum/                                    //
 // ------------------------------------------------------------------------- //
-//  Translated by David Holm (wormie@alberg.dk)                              //
+//  Hacked by Tarique Sani <tarique@sanisoft.com> and Girsh Nair             //
+//  <girish@sanisoft.com> see http://www.sanisoft.com/cpg/README.txt for     //
+//  details                                                                  //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -16,11 +18,22 @@
 //  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
 
+// info about translators and translated language 
+$lang_translation_info = array( 
+'lang_name_english' => 'Danish',  //the name of your language in English, e.g. 'Greek' or 'Spanish' 
+'lang_name_native' => 'Dansk', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '????????' or 'Español' 
+'lang_country_code' => 'dk', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es' 
+'trans_name'=> 'David Holm', //the name of the translator - can be a nickname 
+'trans_email' => 'wormie@alberg.dk', //translator's email address (optional) 
+'trans_website' => '', //translator's website (optional) 
+'trans_date' => '2003-10-04', //the date the translation was created / last modified 
+); 
+
 $lang_charset = 'iso-8859-1';
 $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 
 // shortcuts for Byte, Kilo, Mega
-$lang_byte_units = array('Bytes', 'KB', 'MB');
+$lang_byte_units = array('Byte', 'KB', 'MB');
 
 // Day of weeks and months
 $lang_day_of_week = array('Søn', 'Man', 'Tir', 'Ons', 'Tor', 'Fre', 'Lør');
@@ -46,18 +59,17 @@ $comment_date_fmt =  '%d. %B, %Y kl. %R';
 // For the word censor
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
 
-$lang_meta_album_names = array(
-	'random' => 'Tilfældige billeder',
-	'lastup' => 'Nyeste tilføjelser',
-        'lastalb'=> 'Sidst opdaterede album',
-	'lastcom' => 'Nyeste komentarer',
-	'topn' => 'Mest viste',
-	'toprated' => 'Top karakter',
-	'lasthits' => 'Sidst viste',
-	'search' => 'Søgeresultat',
-	'favpics'=> 'Favorit billeder'
-);
-
+$lang_meta_album_names = array( 
+        'random' => 'Tilfældige billeder', 
+        'lastup' => 'Nyeste billeder', 
+        'lastalb'=> 'Sidst opdaterede albums', 
+        'lastcom' => 'Nyeste kommentarer', 
+        'topn' => 'Mest viste', 
+        'toprated' => 'Mest populære', 
+        'lasthits' => 'Sidst viste', 
+        'search' => 'Søge resultat', 
+        'favpics'=> 'Foretrukne billeder' 
+); 
 
 $lang_errors = array(
 	'access_denied' => 'Du har ikke tilladelse til at se denne side.',
@@ -74,6 +86,8 @@ $lang_errors = array(
 	'directory_ro' => 'Mappen \'%s\' er skrivebeskyttet,billeder kan ikke slettes',
 	'non_exist_comment' => 'Den valgte kommentar findes ikke.',
 	'pic_in_invalid_album' => 'Billede er i et ikke eksisterende album (%s)!?'
+        'banned' => 'Din adgang til denne side er spærret.', 
+        'not_with_udb' => 'Denne funktion er deaktiveret i Coppermine da den er integreret med forum software. Enten er det du ønsker at gøre ikke understøttet i denne opsætning eller også skal det gøres vha. forum software.', 
 );
 
 // ------------------------------------------------------------------------- //
@@ -101,7 +115,7 @@ $lang_main_menu = array(
 	'topn_lnk' => 'Mest viste',
 	'toprated_lnk' => 'Top karakter',
 	'search_lnk' => 'Søg',
-	'fav_lnk'=>'Foretrukne'
+	'fav_lnk'=>'Foretrukne',
 );
 
 $lang_gallery_admin_menu = array(
@@ -113,6 +127,8 @@ $lang_gallery_admin_menu = array(
 	'groups_lnk' => 'Grupper',
 	'comments_lnk' => 'Kommentarer',
 	'searchnew_lnk' => 'Masse tilføj billede',
+        'util_lnk' => 'Ændre billedstørrelse',
+        'ban_lnk' => 'Bloker brugere', 
 );
 
 $lang_user_admin_menu = array(
@@ -136,12 +152,12 @@ $lang_thumb_view = array(
         //Sort by filename and title
 	'name' => 'FILNAVN',
         'title' => 'TITEL',
-	'sort_da' => 'Sorteret stigende efter dato',
-	'sort_dd' => 'Sorteret faldende efter dato',
-	'sort_na' => 'Sorteret stigende efter navn',
-	'sort_nd' => 'Sorteret faldende efter navn',
-        'sort_ta' => 'Sorteret stigende efter titel',
-        'sort_td' => 'Sorteret faldende efter titel',
+	'sort_da' => 'Sorter stigende efter dato',
+	'sort_dd' => 'Sorter faldende efter dato',
+	'sort_na' => 'Sorter stigende efter navn',
+	'sort_nd' => 'Sorter faldende efter navn',
+        'sort_ta' => 'Sorter stigende efter titel',
+        'sort_td' => 'Sorter faldende efter titel',
 	'pic_on_page' => '%d billeder på %d side(r)',
 	'user_on_page' => '%d brugere på %d side(r)'
 );
@@ -303,18 +319,18 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
 
 if (defined('CONFIG_PHP')) $lang_config_php = array(
 	'title' => 'Konfiguration',
-	'restore_cfg' => 'Genskab standard instillinger',
-	'save_cfg' => 'Gem ny konfiguration',
+	'restore_cfg' => 'Genskab standard indstillinger',
+	'save_cfg' => 'Gem ny opsætning',
 	'notes' => 'Noter',
 	'info' => 'Information',
 	'upd_success' => 'Coppermine opsætning er opdateret',
-	'restore_success' => 'Coppermine standard opsltning er genskabt',
+	'restore_success' => 'Coppermine standard opsætning er genskabt',
 	'name_a' => 'Navn stigende',
 	'name_d' => 'Navn faldende',
         'title_a' => 'Titel stigende',
         'title_d' => 'Titel faldende',
 	'date_a' => 'Dato stigende',
-	'date_d' => 'Date faldende'
+	'date_d' => 'Dato faldende'
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
@@ -333,7 +349,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Antal af kolonner for albumliste', 'album_list_cols', 0),
 	array('Størrelse af minibilleder i pixels', 'alb_list_thumb_size', 0),
 	array('Indholdet af hovedsiden', 'main_page_layout', 0),
-            array('Vis øverste album niveaus minibilleder i kategorier','first_level',1),
+        array('Vis øverste album niveaus minibilleder i kategorier','first_level',1),
 
 	'Minibillede visning',
 	array('Antal kolonner på minibillede siden', 'thumbcols', 0),
@@ -360,7 +376,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Kvalitet for JPEG billeder', 'jpeg_qual', 0),
 	array('Max dimension på minibilleder <b>*</b>', 'thumb_width', 0),
         array('Brug dimension ( bredde, højde eller maximum af de to til minibilleder )<b>*</b>', 'thumb_use', 7),
-	array('Opret mellemliggende billeder','make_intermediate',1),
+	array('Opret mellemstore billeder','make_intermediate',1),
 	array('Max bredde eller højde for et mellemliggende billede <b>*</b>', 'picture_width', 0),
 	array('Max størrelse for uploadet billeder (KB)', 'max_upl_size', 0),
 	array('Max bredde eller højde for uploadet billeder (pixels)', 'max_upl_width_height', 0),
@@ -368,7 +384,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	'Bruger indstillinger',
 	array('Tillad registrering af nye brugere', 'allow_user_registration', 1),
 	array('Forlang e-mail godkendelse ved registrering', 'reg_requires_valid_email', 1),
-	array('Tillad 2 brugere at have samme e-mail adresse', 'allow_duplicate_emails_addr', 1),
+	array('Tillad to brugere at have samme e-mail adresse', 'allow_duplicate_emails_addr', 1),
 	array('Brugere kan have private albums', 'allow_private_albums', 1),
 
 	'specialfremstillet felter ved billede beskrivelse (lad det forblive blanke, hvis det ikke skal bruges)',
@@ -392,14 +408,16 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Foranstillet navn på minibilleder <b>*</b>', 'thumb_pfx', 0),
 	array('Standard tilstand på mapper', 'default_dir_mode', 0),
 	array('standard tilstand på billeder', 'default_file_mode', 0),
+        array('Bloker højre klik på fuld-størrelse popup vindue (JavaScript - kan omgåes)', 'disable_popup_rightclick', 1), 
+        array('Bloker højre klik på alle "almindelige" sider (JavaScript - kan omgåes)', 'disable_gallery_rightclick', 1), 
 
 	'Cookies &amp; tegn-kodnings indstillinger',
 	array('Navn på cookie brugt af dette system', 'cookie_name', 0),
 	array('Stien til cookie brugt at dette system', 'cookie_path', 0),
 	array('Tegn-kodning', 'charset', 4),
 
-	'Miscellaneous settings',
-	array('Enable debug mode', 'debug_mode', 1),
+	'Avancerede indstillinger',
+	array('Aktiver fejlfindings tilstand', 'debug_mode', 1),
 	
 	'<br /><div align="center">(*) Felter markeret med * skal skiftes hvis du allerede har billeder i dit galleri</div><br />'
 );
@@ -443,7 +461,7 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 	'caption' => 'Overskrift',
 	'fs_pic' => 'Fuld størrelse billede',
 	'del_success' => 'Slettet',
-	'ns_pic' => 'Normal størrelse billede',
+	'ns_pic' => 'Mellem størrelse billede',
 	'err_del' => 'Kan ikke slettes',
 	'thumb_pic' => 'Minibillede',
 	'comment' => 'Kommentar',
@@ -792,7 +810,7 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCH_PHP')) $lang_search_php = array(
-	0 => 'Søg i billede samlingen',
+	0 => 'Søg i billed samlingen',
 );
 
 // ------------------------------------------------------------------------- //
@@ -835,6 +853,20 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 
 // Void
 
+// ------------------------------------------------------------------------- // 
+// File banning.php 
+// ------------------------------------------------------------------------- // 
+
+if (defined('BANNING_PHP')) $lang_banning_php = array( 
+                'title' => 'Bloker brugere', 
+                'user_name' => 'Bruger navn', 
+                'ip_address' => 'IP Addresse', 
+                'expiry' => 'Udløber (efterlad tom for aldrig)', 
+                'edit_ban' => 'Gem ændringer', 
+                'delete_ban' => 'Slet', 
+                'add_new' => 'Tilføj ny blokering', 
+                'add_ban' => 'Tilføj', 
+); 
 
 // ------------------------------------------------------------------------- //
 // File upload.php
@@ -896,4 +928,56 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 	'user_interests' => 'Brugers interesser',
 	'user_occupation' => 'Brugers beskæftigelse',
 );
+
+// ------------------------------------------------------------------------- // 
+// File util.php 
+// ------------------------------------------------------------------------- // 
+
+if (defined('UTIL_PHP')) $lang_util_php = array( 
+        'title' => 'Ændre størrelse på billeder', 
+        'what_it_does' => 'Gør dette', 
+        'what_update_titles' => 'Opdater titler fra filnavn', 
+        'what_delete_title' => 'Slet titler', 
+        'what_rebuild' => 'Genskab minibilleder og mellemstore billeder', 
+        'what_delete_originals' => 'Sletter billeder med original størrelse og erstatter dem med de mellemstore billeder', 
+        'file' => 'Fil', 
+        'title_set_to' => 'titel sat til', 
+        'submit_form' => 'Udfør', 
+        'updated_succesfully' => 'opdateret med success', 
+        'error_create' => 'FEJL ved oprettelse af', 
+        'continue' => 'Fortsæt', 
+        'main_success' => 'Filen %s bliver nu brugt som original billede', 
+        'error_rename' => 'Fejl ved omdøbning af %s til %s', 
+        'error_not_found' => 'Filen %s blev ikke fundet', 
+        'back' => 'tilbage til hovedmenu', 
+        'thumbs_wait' => 'Opdaterer minibilleder og/eller mellemstore billeder, vent venligst...', 
+        'thumbs_continue_wait' => 'Fortsætter med opdatering af minibilleder og/eller mellemstore billeder...', 
+        'titles_wait' => 'Opdaterer titler, vent venligst...', 
+        'delete_wait' => 'Slettet titler, vent venligst...', 
+        'replace_wait' => 'Sletter original billeder og erstatter dem med de mellemstore, vent venligst...', 
+        'instruction' => 'Hurtig manual', 
+        'instruction_action' => 'Vælg funktion', 
+        'instruction_parameter' => 'Indstil parametre', 
+        'instruction_album' => 'Vælg album', 
+        'instruction_press' => 'Tryk %s', 
+        'update' => 'Opdater minibilleder og/eller mellemstore billeder', 
+        'update_what' => 'Hvad skal opdateres', 
+        'update_thumb' => 'Kun minibilleder', 
+        'update_pic' => 'Kun mellemstore billeder', 
+        'update_both' => 'Både mini- og mellemstore billeder', 
+        'update_number' => 'Antal behandlede billeder pr. klik', 
+        'update_option' => '(Prøv at sætte den værdi lavere hvis du oplever timeout fejl)', 
+        'filename_title' => 'Filnavn ? Billed titel', 
+        'filename_how' => 'Hvordan skal filnavnet modificeres', 
+        'filename_remove' => 'Fjern .jpg endelsen og erstat _ (underscore) med mellemrum', 
+        'filename_euro' => 'Omdøb 2003_11_23_13_20_20.jpg til 23/11/2003 13:20', 
+        'filename_us' => 'Omdøb 2003_11_23_13_20_20.jpg til 11/23/2003 13:20', 
+        'filename_time' => 'Omdøb 2003_11_23_13_20_20.jpg til 13:20', 
+        'delete' => 'Slet titler eller original størrese billeder', 
+        'delete_title' => 'Slet billed titler', 
+        'delete_original' => 'Slet original størrelse billeder', 
+        'delete_replace' => 'Sletter de origanale billeder og erstatter dem med de mellemstore', 
+        'select_album' => 'Vælg album', 
+); 
+
 ?>
