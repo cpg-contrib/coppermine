@@ -786,10 +786,11 @@ $template_image_comments = <<<EOT
 </table>
 EOT;
 
+if ($CONFIG['show_bbcode_help']) {$captionLabel = '&nbsp;'. cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
 $template_add_your_comment = <<<EOT
 <table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
         <tr>
-                <td width="100%" class="tableh2_compact"><b>{ADD_YOUR_COMMENT}</b></td>
+                <td width="100%" class="tableh2_compact"><b>{ADD_YOUR_COMMENT}</b>$captionLabel</td>
         </tr>
         <tr>
                 <form method="post" name="post" action="db_input.php">
