@@ -14,6 +14,7 @@ INSERT INTO CPG_config VALUES ('display_film_strip', '1');
 INSERT INTO CPG_config VALUES ('max_film_strip_items', '5');
 INSERT INTO CPG_config VALUES ('comment_email_notification', '0');
 INSERT INTO CPG_config VALUES ('read_iptc_data', '0');
+INSERT INTO CPG_config VALUES ('display_uploader', '0');
 
 #gtroll wil implement
 #INSERT INTO CPG_config VALUES ('picinfo_display_filename', '1');

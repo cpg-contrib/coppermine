@@ -445,15 +445,16 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $count = $nbEnr[0];
                 mysql_free_result($result);
 
-                if($select_columns != '*') $select_columns .= ', title, caption,hits';
+                if($select_columns != '*') $select_columns .= ', title, caption,hits,owner_id,owner_name';
 
                 $result = db_query("SELECT $select_columns from {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' $approved $ALBUM_SET ORDER BY $sort_order $limit");
                 $rowset = db_fetch_rowset($result);
-                mysql_free_result($result);
-
+                mysql_free_result($result);		
                 // Set picture caption
                 if ($set_caption) foreach ($rowset as $key => $row){
+		        
                         $caption = ($rowset[$key]['title']||$rowset[$key]['hits']) ? "<span class=\"thumb_title\">".$rowset[$key]['title'].(($rowset[$key]['title'])?"-":"").sprintf($lang_get_pic_data['n_views'], $rowset[$key]['hits'])."</span>" : '';
+			
                         if ($CONFIG['caption_in_thumbview']){
                            $caption .= $rowset[$key]['caption'] ? "<span class=\"thumb_caption\">".bb_decode(($rowset[$key]['caption']))."</span>" : '';
                         }
@@ -461,7 +462,13 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                                 $comments_nr = count_pic_comments($row['pid']);
                                 if ($comments_nr > 0) $caption .= "<span class=\"thumb_num_comments\">".sprintf($lang_get_pic_data['n_comments'], $comments_nr )."</span>";
                         }
+			
+			if ($CONFIG['display_uploader']){
+				$caption .= '<span class="thumb_title"><a href ="profile.php?uid='.$rowset[$key]['owner_id'].'">'.$rowset[$key]['owner_name'].'</a></span>';
+			}
+			
                         $rowset[$key]['caption_text'] = $caption;
+			
                 }
 
                 return $rowset;

@@ -379,6 +379,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Maximum number of tabs to display', 'max_tabs', 0),
         array('Display picture caption (in addition to title) below the thumbnail', 'caption_in_thumbview', 1),
         array('Display number of comments below the thumbnail', 'display_comment_count', 1),
+        array('Display uploader name below the thumbnail', 'display_uploader', 1),	
         array('Default sort order for pictures', 'default_sort_order', 3),
         array('Minimum number of votes for a picture to appear in the \'top-rated\' list', 'min_votes_for_rating', 0),
 
@@ -524,7 +525,8 @@ $lang_display_image_php = array(
         'slideshow' => 'Slideshow',
         'stop_slideshow' => 'STOP SLIDESHOW',
         'view_fs' => 'Click to view full size image',
-        'edit_pic' => 'EDIT THIS PICTURE',
+        'edit_pic' => 'Edit description',
+	'crop_pic' => 'Crop and Rotate',
 );
 
 $lang_picinfo = array(
@@ -615,10 +617,10 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
         'n_pic' => '%s pictures',
         'n_of_pic_to_disp' => 'Number of picture to display',
         'apply' => 'Apply modifications',
-        'crop_title' => 'Crop Picture',
-        'preview' => 'Preview Crop',
-        'save' => 'Save cropped picture',
-        'save_thumb' =>'Save cropped picture as thumbnail',
+        'crop_title' => 'Coppermine Picture Editor',
+        'preview' => 'Preview',
+        'save' => 'Save picture',
+        'save_thumb' =>'Save as thumbnail',
         'sel_on_img' =>'The selection has to be entirely on the image!'
 );
 
