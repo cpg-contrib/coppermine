@@ -53,7 +53,7 @@ function sendDate(month, day, year)
     selectedDate = selectedDate.replace(/d/, day);
     selectedDate = selectedDate.replace(/y/, year);
     //selectedDate = selectedDate + ' 00:00:00';
-    if (selectedDate == '-0-0 00:00:00') {
+    if (selectedDate == '-0-0') {
        selectedDate = '';
        }
     targetDateField.value = selectedDate;

@@ -83,7 +83,8 @@ EOHEAD;
                                                 <input type="text" class="textinput" size="15" name="edit_ban_ip_addr" value="{$row['ip_addr']}">
                                         </td>
                                                 <td class="tableb" valign="middle">
-                                                <input type="text" class="listbox_lang" size="20" name="edit_ban_expires" value="$expiry" readonly="readonly" onclick="return getCalendar(document.banlist$row_counter.edit_ban_expires);" style="cursor:pointer" title="{$lang_banning_php['select_date']}" />
+                                                <input type="text" class="listbox_lang" size="20" name="edit_ban_expires" value="$expiry" readonly="readonly" title="{$lang_banning_php['select_date']}" />
+                                                <a href="javascript:;"  onclick="return getCalendar(document.banlist$row_counter.edit_ban_expires);" title="{$lang_banning_php['select_date']}"><img src="images/calendar.gif" width="16" height="16" border="0" alt="" /></a>
                                         </td>
                                         <td class="tableb" valign="middle">
                                                                 <input type="submit" class="button" name="edit_ban" value="{$lang_banning_php['edit_ban']}">
@@ -303,7 +304,8 @@ echo <<<EOT
                                                 <input type="text" class="textinput" name="add_ban_ip_addr" value="" size="15" maxlength="15" />
                                         </td>
                                                 <td class="tableb" valign="middle">
-                                                <input type="text" class="listbox_lang"  name="add_ban_expires" value="" size="20" readonly="readonly" onclick="return getCalendar(document.list.add_ban_expires);" style="cursor:pointer" title="{$lang_banning_php['select_date']}" />
+                                                <input type="text" class="listbox_lang"  name="add_ban_expires" value="" size="20" readonly="readonly" title="{$lang_banning_php['select_date']}" />
+                                                <a href="javascript:;"  onclick="return getCalendar(document.list.add_ban_expires);" title="{$lang_banning_php['select_date']}"><img src="images/calendar.gif" width="16" height="16" border="0" alt="" /></a>
                                         </td>
                                         <td class="tableb" valign="top">
                                                                 <input type="submit" class="button" name="add_ban" value="{$lang_banning_php['add_ban']}" />
