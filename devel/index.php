@@ -87,22 +87,22 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
                 $nbEnr = mysql_fetch_array($result);
                 mysql_free_result($result);
                 $pic_count = $nbEnr[0];
-	        if ($subcat['thumb']>0) {
-            		$sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='{$subcat['thumb']}'";
-            		$result = db_query($sql);
-            		if (mysql_num_rows($result)) {
-                		$picture = mysql_fetch_array($result);
-                		mysql_free_result($result);
-                		$image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
-                		$user_thumb = "<a href=\"index.php?cat={$subcat['cid']}\"><img src=\"" . get_pic_url($picture, 'thumb') . "\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" align=top /></a>";
-            		} 
-        	}else{
-			$user_thumb ="";
-		}
+            if ($subcat['thumb']>0) {
+                    $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='{$subcat['thumb']}'";
+                    $result = db_query($sql);
+                    if (mysql_num_rows($result)) {
+                        $picture = mysql_fetch_array($result);
+                        mysql_free_result($result);
+                        $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
+                        $user_thumb = "<a href=\"index.php?cat={$subcat['cid']}\"><img src=\"" . get_pic_url($picture, 'thumb') . "\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" align=top /></a>";
+                    } 
+            }else{
+            $user_thumb ="";
+        }
                 $subcat['name'] = $subcat['name'];
                 $subcat['description'] = preg_replace("/<br.*?>[\r\n]*/i", '<br />' . $ident , bb_decode($subcat['description']));
                 $link = "<a href=\"index.php?cat={$subcat['cid']}\">{$subcat['name']}</a>";
-		$user_thumb = $ident.$user_thumb;
+        $user_thumb = $ident.$user_thumb;
                 if ($pic_count == 0 && $album_count == 0) {
                     $cat_data[] = array($link, $subcat['description'],'cat_thumb' =>$user_thumb);
                 } else {
@@ -226,7 +226,7 @@ function list_users()
     if (defined('UDB_INTEGRATION')) {
         $result = udb_list_users_query($user_count);
     } else {
-        $sql = "SELECT user_id," . "		user_name," . "		COUNT(DISTINCT a.aid) as alb_count," . "		COUNT(DISTINCT pid) as pic_count," . "		MAX(pid) as thumb_pid " . "FROM {$CONFIG['TABLE_USERS']} AS u " . "INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON category = " . FIRST_USER_CAT . " + user_id " . "INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid " . "WHERE approved = 'YES' " . "$FORBIDDEN_SET " . "GROUP BY user_id " . "ORDER BY user_name ";
+        $sql = "SELECT user_id," . "        user_name," . "        COUNT(DISTINCT a.aid) as alb_count," . "        COUNT(DISTINCT pid) as pic_count," . "        MAX(pid) as thumb_pid " . "FROM {$CONFIG['TABLE_USERS']} AS u " . "INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON category = " . FIRST_USER_CAT . " + user_id " . "INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid " . "WHERE approved = 'YES' " . "$FORBIDDEN_SET " . "GROUP BY user_id " . "ORDER BY user_name ";
         $result = db_query($sql);
 
         $user_count = mysql_num_rows($result);
@@ -315,7 +315,7 @@ function list_albums()
     $upper_limit = min($nbAlb, $PAGE * $alb_per_page);
     $limit = "LIMIT " . $lower_limit . "," . ($upper_limit - $lower_limit);
 
-    $sql = "SELECT a.aid, a.title, a.description, visibility, filepath, " . "		filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_ALBUMS']} as a " . "LEFT JOIN {$CONFIG['TABLE_PICTURES']} as p ON thumb=pid " . "WHERE category = '$cat' ORDER BY pos " . "$limit";
+    $sql = "SELECT a.aid, a.title, a.description, visibility, filepath, " . "        filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_ALBUMS']} as a " . "LEFT JOIN {$CONFIG['TABLE_PICTURES']} as p ON thumb=pid " . "WHERE category = '$cat' ORDER BY pos " . "$limit";
     $alb_thumbs_q = db_query($sql);
     $alb_thumbs = db_fetch_rowset($alb_thumbs_q);
     mysql_free_result($alb_thumbs_q);
@@ -348,9 +348,12 @@ function list_albums()
             $count = 0;
         } 
         // Inserts a thumbnail if the album contains 1 or more images
-        if ($count > 0) {
-            $visibility = $alb_thumb['visibility'];
-            if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || strstr(USER_GROUP_SET, $visibility)) {
+        $visibility = $alb_thumb['visibility'];
+        if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || $visibility == $USER_DATA['group_id'] || $USER_DATA['group_id'] == 1) {
+            if ($count > 0) {
+// Maze       if ($count > 0) {
+//            $visibility = $alb_thumb['visibility'];
+//            if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || strstr(USER_GROUP_SET, $visibility)) {
                 if ($alb_thumb['filename']) {
                     $picture = &$alb_thumb;
                 } else {
@@ -361,16 +364,21 @@ function list_albums()
                 } 
                 $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
                 $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"" . get_pic_url($picture, 'thumb') . "\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
-            } elseif ($CONFIG['show_private']) {
+            } else { // Inserts an empty thumbnail if the album contains 0 images
+// Maze           } elseif ($CONFIG['show_private']) {
                 $image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
-                $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/private.jpg\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
-            } 
-        } else {
+// Maze                $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/private.jpg\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
+                $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/nopic.jpg\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
+            }
+// Maze       } else {
+        } elseif ($CONFIG['show_private']) {
             $image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
-            $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/nopic.jpg\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
+            $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/private.jpg\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
+// Maze            $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/nopic.jpg\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
         } 
         // Prepare everything
-        if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || $visibility == $USER_DATA['group_id']) {
+        if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || $visibility == $USER_DATA['group_id'] || $USER_DATA['group_id'] == 1) {
+// Maze        if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || $visibility == $USER_DATA['group_id']) {
             $last_upload_date = $count ? localised_date($alb_stat['last_upload'], $lastup_date_fmt) : '';
             $alb_list[$alb_idx]['aid'] = $alb_thumb['aid'];
             $alb_list[$alb_idx]['album_title'] = $alb_thumb['title'];
@@ -461,7 +469,8 @@ function list_cat_albums($cat = 0)
         } 
         // Inserts a thumbnail if the album contains 1 or more images
         $visibility = $alb_thumb['visibility'];
-        if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || $visibility == $USER_DATA['group_id']) { // test for visibility
+        if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || $visibility == $USER_DATA['group_id'] || $USER_DATA['group_id'] == 1) { // test for visibility
+// Maze        if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || $visibility == $USER_DATA['group_id']) { // test for visibility
             if ($count > 0) { // Inserts a thumbnail if the album contains 1 or more images
                 if ($alb_thumb['filename']) {
                     $picture = &$alb_thumb;
@@ -482,7 +491,8 @@ function list_cat_albums($cat = 0)
             $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/private.jpg\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
         } 
         // Prepare everything
-        if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || $visibility == $USER_DATA['group_id']) {
+        if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || $visibility == $USER_DATA['group_id'] || $USER_DATA['group_id'] == 1) {
+// Maze        if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || $visibility == $USER_DATA['group_id']) {
             $last_upload_date = $count ? localised_date($alb_stat['last_upload'], $lastup_date_fmt) : '';
             $alb_list[$alb_idx]['aid'] = $alb_thumb['aid'];
             $alb_list[$alb_idx]['album_title'] = $alb_thumb['title'];
