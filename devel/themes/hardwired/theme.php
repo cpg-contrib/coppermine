@@ -225,7 +225,7 @@ $template_cat_list = <<<EOT
         </tr>
 <!-- END footer -->
 <!-- BEGIN spacer -->
-        <img src="images/spacer.gif" width="1" height="17" alt="" /><br />
+        <img src="images/spacer.gif" width="1" height="17" border="0" alt="" /><br />
 <!-- END spacer -->
 EOT;
 // HTML template for the breadcrumb
@@ -328,7 +328,7 @@ $template_album_list = <<<EOT
         </tr>
 <!-- END tabs -->
 <!-- BEGIN spacer -->
-        <img src="images/spacer.gif" width="1" height="17" alt="" /><br />
+        <img src="images/spacer.gif" width="1" height="17" border="0" alt="" /><br />
 <!-- END spacer -->
 
 EOT;
@@ -437,7 +437,7 @@ $template_album_list_cat = <<<EOT
         </tr>
 <!-- END c_tabs -->
 <!-- BEGIN c_spacer -->
-        <img src="images/spacer.gif" width="1" height="17" alt="" /><br />
+        <img src="images/spacer.gif" width="1" height="17" border="0" alt="" /><br />
 <!-- END c_spacer -->
 
 EOT;
@@ -556,7 +556,7 @@ $template_thumbnail_view = <<<EOT
         </tr>
 <!-- END tabs -->
 <!-- BEGIN spacer -->
-        <img src="images/spacer.gif" width="1" height="17" alt="" /><br />
+        <img src="images/spacer.gif" width="1" height="17" border="0" alt="" /><br />
 <!-- END spacer -->
 
 EOT;
@@ -568,7 +568,7 @@ $template_no_img_to_display = <<<EOT
                 </td>
         </tr>
 <!-- BEGIN spacer -->
-        <img src="images/spacer.gif" width="1" height="17" alt="" /><br />
+        <img src="images/spacer.gif" width="1" height="17" border="0" alt="" /><br />
 <!-- END spacer -->
 
 EOT;

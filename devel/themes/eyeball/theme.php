@@ -165,7 +165,7 @@ $template_cat_list = <<<EOT
         </tr>
 <!-- END footer -->
 <!-- BEGIN spacer -->
-        <img src="images/spacer.gif" width="1" height="17" /><br />
+        <img src="images/spacer.gif" width="1" height="17" border="" alt="" /><br />
 <!-- END spacer -->
 
 EOT;
@@ -216,8 +216,7 @@ $template_album_list = <<<EOT
         </tr>
         <tr>
                 <td align="center" valign="middle" class="thumbnails">
-                        <img src="images/spacer.gif" width="{THUMB_CELL_WIDTH}" height="1" class="image" style="margin-top: 0px;
- margin-bottom: 0px; border: none;"><br />
+                        <img src="images/spacer.gif" width="{THUMB_CELL_WIDTH}" height="1" class="image" style="margin-top: 0px; margin-bottom: 0px; border: none;" alt="" /><br />
                         <a href="{ALB_LINK_TGT}" class="albums">{ALB_LINK_PIC}<br /></a>
                 </td>
                 <td>
@@ -272,7 +271,7 @@ $template_album_list = <<<EOT
         </tr>
 <!-- END tabs -->
 <!-- BEGIN spacer -->
-        <img src="images/spacer.gif" width="1" height="17" /><br />
+        <img src="images/spacer.gif" width="1" height="17" border="" alt="" /><br />
 <!-- END spacer -->
 
 EOT;
@@ -326,8 +325,7 @@ $template_album_list_cat = <<<EOT
         </tr>
         <tr>
                 <td align="center" valign="middle" class="thumbnails">
-                        <img src="images/spacer.gif" width="{THUMB_CELL_WIDTH}" height="1" class="image" style="margin-top: 0px;
- margin-bottom: 0px; border: none;"><br />
+                        <img src="images/spacer.gif" width="{THUMB_CELL_WIDTH}" height="1" class="image" style="margin-top: 0px; margin-bottom: 0px; border: none;" alt="" /><br />
                         <a href="{ALB_LINK_TGT}" class="albums">{ALB_LINK_PIC}<br /></a>
                 </td>
                 <td>
@@ -382,7 +380,7 @@ $template_album_list_cat = <<<EOT
         </tr>
 <!-- END c_tabs -->
 <!-- BEGIN c_spacer -->
-        <img src="images/spacer.gif" width="1" height="17" /><br />
+        <img src="images/spacer.gif" width="1" height="17" border="" alt="" /><br />
 <!-- END c_spacer -->
 
 EOT;
@@ -491,7 +489,7 @@ $template_thumbnail_view = <<<EOT
         </tr>
 <!-- END tabs -->
 <!-- BEGIN spacer -->
-        <img src="images/spacer.gif" width="1" height="17" /><br />
+        <img src="images/spacer.gif" width="1" height="17" border="" alt="" /><br />
 <!-- END spacer -->
 
 EOT;
@@ -503,7 +501,7 @@ $template_no_img_to_display = <<<EOT
                 </td>
         </tr>
 <!-- BEGIN spacer -->
-        <img src="images/spacer.gif" width="1" height="17" /><br />
+        <img src="images/spacer.gif" width="1" height="17" border="" alt="" /><br />
 <!-- END spacer -->
 
 EOT;

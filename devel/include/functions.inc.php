@@ -1807,7 +1807,7 @@ tempval.select()
         if (GALLERY_ADMIN_MODE){echo '<span class="album_stat">('.$lang_cpg_debug_output['copy_and_paste_instructions'].')</span>';}
         echo '</td></tr>';
         echo '<tr><td class="tableb" colspan="2">';
-        echo '<textarea  rows="10" class="debug_text" name="debugtext">';
+        echo '<textarea  rows="10" cols="60" class="debug_text" name="debugtext">';
         echo "USER: ";
         echo $debug_underline;
         print_r($USER);
