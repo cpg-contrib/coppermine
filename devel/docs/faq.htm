@@ -123,6 +123,11 @@ For credits and copyrights, see <a href="index.htm#credits">Coppermine documenta
 <li><a class="content" href="#installIMwhenHosted">How can I <b>install ImageMagick or GD</b>?</a></li>
 </ul>
 
+<li><b>Upload</b></li>
+<ul class="nomargin">
+<li><a class="content" href="#uploadGeneralTroubleshooting">General Upload Troubleshooting</a></li>
+</ul>
+
 <li><b>Error messages</b></li>
 <ul class="nomargin">
 <li><a class="content" href="#WhatIsImageMagick">When installing I get the <b>error</b> <tt class="code">Fatal error: Call to undefined function: imagecreatefromjpeg() in /include/picmgmt.inc.php on line 168</tt>. What does that mean?</a></li>
@@ -198,7 +203,7 @@ For credits and copyrights, see <a href="index.htm#credits">Coppermine documenta
 <h3>What are the <b>minimum requirements</b> for the use of Coppermine 1.3.0 ?</h3>
 <p>
     <ul>
-        <li>any webserver, Apache recommended (Coppermine has been reported to work with <a href="http://httpd.apache.org/" class="external">Apache</a>, <a href="http://www.microsoft.com/iis/" class="external">Microsoft Internet Information Server</a> (IIS), <a href="http://www.roxen.com/products/webserver/" class="external">Roxen WebServer</a>, <a href="http://www.aprelium.com/" class="external">Abyss</a>)</li>
+        <li>any webserver, Apache recommended (Coppermine has been reported to work with <a href="http://httpd.apache.org/" class="external">Apache</a>, <a href="http://www.microsoft.com/iis/" class="external">Microsoft Internet Information Server</a> (IIS), <a href="http://www.roxen.com/products/webserver/" class="external">Roxen WebServer</a>, <a href="http://www.aprelium.com/" class="external">Abyss</a>, <a href="http://www.janaserver.de/" class="external">JanaServer</a>)</li>
         <li>PHP 4.1.0 or better</li>
         <li><a href="/specials/faq/coppermine.htm?q=WhatIsGD#WhatIsGD">GD lib</a> or Image Magick</li>
         <li>mySQL 3.23.23 or better (4.x recommended). Don&#39;t confuse the client api version (which is shown in phpinfo) with the mySQL version!</li>
@@ -252,6 +257,43 @@ For credits and copyrights, see <a href="index.htm#credits">Coppermine documenta
 <h3>How can I <b>install ImageMagick or GD</b>?</h3>
 <p>You can only <a href="faq.php?q=enableIMonWindows#enableIMonWindows">install ImageMagic or GD if you&#39;re running your own server</a> or if you have at least shell access to your webserver. If you&#39;re hosted by a webhost you can only contact your webhost and ask them to install it for you or choose another webhost.<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 
+<h2>Upload</h2>
+
+<a name="uploadGeneralTroubleshooting"></a>
+<h3>General Upload Troubleshooting</h3>
+<p>When troubleshooting uploads in CPG 1.3, you are advised to change the upload settings in the Groups console to 'Single uploads only' and to activate 'Debug mode' in the Config console.  Changing this setting negates some of the error masking done in the multiple upload setting.  This will allow you to access more detailed error messages.</p>
+<p><span class="important">First and foremost: check your permissions on the /albums, /albums/userpics, and /albums/edit directories.  All should be 777 or 755.</span><br />If you don't know what we mean when we write 777 or 755,  you need to do a Google search on UNIX file permissions. Windows has a similar set of file permissions. You can usually set these permissions using your FTP client.<br />
+For those of you who skim over statements written in red letters, I will repeat to try to get your attention:
+<br />
+<span class="important">Yes, we are writing about something that could apply to YOU.
+<br />&nbsp;<br />
+We repeat -- check your permissions on the <tt class="code">/albums</tt>, <tt class="code">/albums/userpics</tt>, and <tt class="code">/albums/edit</tt> directories.  All should be 777 or 755.
+<br />&nbsp;<br />
+Yes, we want you to check the permissions of each folder even if you think you have already done this. Yes, we mean it.</span>
+</p>
+<p>Please keep in mind that HTTP uploads are limited by the restrictions placed upon them in PHP's configuration.</p>
+<br />&nbsp;<br />
+<b>Things to check:</b>
+<ol>
+<li><b>max_input_time</b>- 60 seconds is the default time limit for uploading files.<br />This time limit includes the time it takes for the files to upload, so if you exceed this limit, the file will not even parse, and the browser will not get a response. You can workaround this by trying to upload smaller or fewer files, or you can try uploading over broadband. The best solution, of course, is to increase the time limit to something more in line with your needs.</li>
+<li><b>upload_max_filesize</b> - 2MB is the default limit for individual files.</li>
+<li><b>post_max_size</b> - 8MB is the default limit for post requests.</li>
+<li><b>memory_limit</b> - 8MB is the default size.</li>
+<li>PHP's <b>LimitRequestBody</b> - 512KB default limit. (mainly an issue on Redhat/Apache systems.  Found in /etc/http/conf.d)<br />In general, upload_max_filesize &lt; post_max_size &lt; memory_limit in order for uploads to function properly. Coppermine may warn you if a file exceeds upload_max_filesize, but it cannot warn you if the total size of all the files exceeds the post limit or the memory limit.</li>
+<li><b>file_uploads</b> – This determines whether or not PHP will allow file uploads. It must be set to ‘On’.</li>
+<li><b>upload_tmp_dir</b> – This specifies the temporary directory where PHP stores uploaded files.</li>
+</ol>
+
+<p>The most common issue caused by this setting is an open_basedir warning.  In this situation, your server administrator has restricted the files that PHP can work with to a certain directory.  If he does not create and specify a temporary directory within the open_basedir restriction, PHP will attempt to use the OS temporary directory, and it will be rebuffed by the open_basedir restriction.</p>
+
+<p><b>Some notes about the different types of upload mechanisms available in CPG 1.3:</b><br />
+Multiple HTTP uploads are designed to handle a small number of files, and have been capped at 10.  Therefore, they are not really suited for large numbers of files unless you have control over your php.ini configuration.
+<br />
+If you are looking to upload in excess of 15 or 20 files at a time, you should consider the batch add process or the XP_Publisher utility.  Each has its own drawbacks and advantages.
+<br />
+The batch add process is fast, but it puts quite a load on the server and may experience timeouts.  The XP Publisher utility is slower, but it limits the load on the server.  Also, it avoids many of the pitfalls caused by the php.ini configuration by uploading each file in the set as an individual post request.</p>
+
+<br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 
 <h2>Error Messages</h2>
 
@@ -826,7 +868,7 @@ This hack hasn&#39;t been tested, use at your own risk...!<br /></p><br /><div c
 <p>You can not completely prevent users from stealing your pics - that's the way the www works: if a picture is being displayed in the browser, the user already has a copy of it on his hard drive. There are however some methods to make it harder for newbie users to steal your pics:
 <ul>
 <li>Add a watermark to your images before you upload them</li>
-<li>Apply one of the watermark-hacks: <a href="http://coppermine.sourceforge.net/board/viewtopic.php?t=1467">Coppermine support board / mods / Watermarking hack (w/ ImageMagick)</a>, <a href="http://coppermine.sourceforge.net/board/viewtopic.php?t=3269">Coppermine support board / mods / Watermark on a per image basis (GD)</a>, <a href="http://coppermine.sourceforge.net/board/viewtopic.php?t=4312">Coppermine support board / mods / Permanent Watermark with GD2</a>. Please note that those hacks will result in a high server load, as the watermark is applied to a picture each time a users views the picture in his browser.</li>
+<li>Apply one of the watermark-hacks: <a href="http://coppermine.sourceforge.net/board/viewtopic.php?t=1467">Coppermine support board / mods / Watermarking hack (w/ ImageMagick)</a>, <a href="http://coppermine.sourceforge.net/board/index.php?topic=3269">Coppermine support board / mods / Watermark on a per image basis (GD)</a>, <a href="http://coppermine.sourceforge.net/board/index.php?topic=4312">Coppermine support board / mods / Permanent Watermark with GD2</a>. Please note that those hacks will result in a high server load, as the watermark is applied to a picture each time a users views the picture in his browser.</li>
 <li>Prevent Internet Explorer to show the image toolbar when a user hovers over a pic with the mouse. Edit themes/yourtheme/template.html, find <tt class="code">&lt;meta http-equiv="Pragma" content="no-cache" /&gt;</tt> and add after it <tt class="code">&lt;meta http-equiv="imagetoolbar" content="no" /&gt;</tt></li>
 <li>Use one of the many &quot;no right-click&quot; scripts that are available (e.g. <a href="http://coppermine.sourceforge.net/board/viewtopic.php?t=2450">Coppermine support board / mods / no right-click</a> or <a href="http://www.codelifter.com/main/javascript/norightclick1.html" class="external">codelifter.com: no right-click</a>)</li>
 </ul>
