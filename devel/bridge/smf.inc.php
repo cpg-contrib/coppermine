@@ -34,7 +34,7 @@
 // version which carries forward this exception.                             //
 // ------------------------------------------------------------------------- //
 // Simple Machines Forum Integration for Coppermine                          //
-// V0.4Beta                                                                  //
+// V0.5Beta                                                                  //
 
 
 // ------------------------------------------------------------------------- //
@@ -291,7 +291,7 @@ function udb_login_page()
 // Logout
 function udb_logout_page()
 {
-    $target = 'index.php?&action=logout;sesc=' . session_id();
+    $target = 'index.php?&action=logout;sesc=' . $_SESSION['rand_code'];
     udb_redirect($target);
 } 
 // Edit users
