@@ -56,16 +56,16 @@ $sender_email_warning = '';
 
 // Get picture thumbnail url
 if ($what == 'picture') {
-	$result = cpg_db_query("SELECT * from {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' $ALBUM_SET");
-	//if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
-	$row = mysql_fetch_array($result);
-	$thumb_pic_url = get_pic_url($row, 'thumb');
-	//template_extract_block($template_report_form, 'display_comment'); //need help remove comment preview when reporting picture
+        $result = cpg_db_query("SELECT * from {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' $ALBUM_SET");
+        //if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+        $row = mysql_fetch_array($result);
+        $thumb_pic_url = get_pic_url($row, 'thumb');
+        //template_extract_block($template_report_form, 'display_comment'); //need help remove comment preview when reporting picture
 } elseif ($what == 'comment') { //need help display the comment as preview just like when reporting picture shows picture
-	$result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid' ORDER BY msg_id $comment_sort_order");
-	$row = mysql_fetch_array($result);
-	//template_extract_block($template_report_form, 'display_thumbnail'); //need help remove picture preview when reporting comment
-	//template_extract_block($template_report_form, 'reason_missing'); //need help to toggle off reason(missing) since doesn't apply to comments
+        $result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid' ORDER BY msg_id $comment_sort_order");
+        $row = mysql_fetch_array($result);
+        //template_extract_block($template_report_form, 'display_thumbnail'); //need help remove picture preview when reporting comment
+        //template_extract_block($template_report_form, 'reason_missing'); //need help to toggle off reason(missing) since doesn't apply to comments
 }
 
 // Check supplied email address
@@ -183,19 +183,19 @@ echo <<<EOT
                         {$lang_report_php['administrator']}<br />
                 </td>
         </tr>
-		
-		<tr>
+
+                <tr>
                 <td class="tableh2" colspan="3"><b>{$lang_report_php['refers_to']};</b></td>
         </tr>
         <tr>
                 <td class="tableb" colspan="3">
-								<a href="{$CONFIG['ecards_more_pic_target']}displayimage.php?pos=-{$pid}">{$CONFIG['ecards_more_pic_target']}displayimage.php?pos=-{$pid}</a> <br />
+                                                                <a href="{$CONFIG['ecards_more_pic_target']}displayimage.php?pos=-{$pid}">{$CONFIG['ecards_more_pic_target']}displayimage.php?pos=-{$pid}</a> <br />
                 </td>
         </tr>
 <!-- BEGIN display_comment -->
-				<tr>
+                                <tr>
                 <td class="tableh2" valign="top" width="40%" colspan="3"><b>{$lang_report_php['comment']}</b></td>
-				</tr>
+                                </tr>
         <tr>
                 <td class="tableb" valign="top" width="40%" colspan="3">
                 Link to comment to go here<br />
@@ -207,7 +207,7 @@ echo <<<EOT
         </tr>
         <tr>
                 <td class="tableb" colspan="3">
-									<input type="text" class="textinput" name="subject"  value="$subject" style="WIDTH: 100%;"><br />
+                                                                        <input type="text" class="textinput" name="subject"  value="$subject" style="WIDTH: 100%;"><br />
                 </td>
         </tr>
         <tr>
@@ -215,25 +215,47 @@ echo <<<EOT
         </tr>
         <tr>
                 <td class="tableb" colspan="3">
+                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                        <tr>
 <!-- BEGIN reason_obscene -->
-									<input value="obscene" type="checkbox" name="reason">{$lang_report_php['obscene']}</input>
+                            <td>
+                                <input value="obscene" type="checkbox" name="reason" id="obscene" />
+                                <label for="obscene" class="clickable_option">{$lang_report_php['obscene']}</label>
+                            </td>
 <!-- END reason_obscene -->
 <!-- BEGIN reason_offensive -->
-									<input value="offensive" type="checkbox" name="reason">{$lang_report_php['offensive']}</input>
+                            <td>
+                                <input value="offensive" type="checkbox" name="reason" id="offensive" />
+                                <label for="offensive" class="clickable_option">{$lang_report_php['offensive']}</label>
+                            </td>
 <!-- END reason_offensive -->
 
 <!-- BEGIN reason_misplaced -->
-									<input value="misplaced" type="checkbox" name="reason">{$lang_report_php['misplaced']}</input>
+                            <td>
+                                <input value="misplaced" type="checkbox" name="reason" id="misplaced" />
+                                <label for="misplaced" class="clickable_option">{$lang_report_php['misplaced']}</label>
+                            </td>
 <!-- END reason_misplaced -->
 <!-- BEGIN reason_missing -->
-									<input value="missing" type="checkbox" name="reason">{$lang_report_php['missing']}</input>
+                            <td>
+                                <input value="missing" type="checkbox" name="reason" id="missing" />
+                                <label for="missing" class="clickable_option">{$lang_report_php['missing']}</label>
+                            </td>
 <!-- END reason_missing -->
 <!-- BEGIN reason_issue -->
-									<input value="issue" type="checkbox" name="reason">{$lang_report_php['issue']}</input>
+                            <td>
+                                <input value="issue" type="checkbox" name="reason" id="issue" />
+                                <label for="issue" class="clickable_option">{$lang_report_php['issue']}</label>
+                            </td>
 <!-- END reason_issue -->
 <!-- BEGIN reason_other -->
-									<input value="other" type="checkbox" name="reason">{$lang_report_php['other']}</input>
+                            <td>
+                                <input value="other" type="checkbox" name="reason" id="other" />
+                                <label for="other" class="clickable_option">{$lang_report_php['other']}</label>
+                            </td>
 <!-- END reason_other -->
+                        </tr>
+                    </table>
                 </td>
         </tr>
         <tr>
