@@ -16,8 +16,8 @@ INSERT INTO CPG_config VALUES ('charset', 'language file');
 INSERT INTO CPG_config VALUES ('cookie_name', 'cpg11d');
 INSERT INTO CPG_config VALUES ('cookie_path', '/');
 INSERT INTO CPG_config VALUES ('debug_mode', '0');
-INSERT INTO CPG_config VALUES ('default_dir_mode', '0777');
-INSERT INTO CPG_config VALUES ('default_file_mode', '0666');
+INSERT INTO CPG_config VALUES ('default_dir_mode', '0755');
+INSERT INTO CPG_config VALUES ('default_file_mode', '0644');
 INSERT INTO CPG_config VALUES ('default_sort_order', 'na');
 INSERT INTO CPG_config VALUES ('ecards_more_pic_target', 'http://coppermine.sourceforge.net/');
 INSERT INTO CPG_config VALUES ('enable_smilies', '1');
@@ -28,11 +28,11 @@ INSERT INTO CPG_config VALUES ('gallery_admin_email', 'you@somewhere.com');
 INSERT INTO CPG_config VALUES ('gallery_description', 'Your online photo album');
 INSERT INTO CPG_config VALUES ('gallery_name', 'Coppermine Photo Gallery');
 INSERT INTO CPG_config VALUES ('im_options', '-antialias');
-INSERT INTO CPG_config VALUES ('impath', '/usr/bin/X11/');
+INSERT INTO CPG_config VALUES ('impath', '');
 INSERT INTO CPG_config VALUES ('jpeg_qual', '80');
 INSERT INTO CPG_config VALUES ('keep_votes_time', '30');
 INSERT INTO CPG_config VALUES ('lang', 'english');
-INSERT INTO CPG_config VALUES ('main_page_layout', 'catlist/alblist/random,2/lastup,2');
+INSERT INTO CPG_config VALUES ('main_page_layout', 'breadcrumb/catlist/alblist/random,2/lastup,2');
 INSERT INTO CPG_config VALUES ('main_table_width', '100%');
 INSERT INTO CPG_config VALUES ('make_intermediate', '1');
 INSERT INTO CPG_config VALUES ('max_com_lines', '10');
@@ -57,7 +57,7 @@ INSERT INTO CPG_config VALUES ('thumb_method', 'im');
 INSERT INTO CPG_config VALUES ('thumb_pfx', 'thumb_');
 INSERT INTO CPG_config VALUES ('thumb_width', '100');
 INSERT INTO CPG_config VALUES ('userpics', 'userpics/');
-INSERT INTO CPG_config VALUES ('user_field1_name', 'Photographer');
+INSERT INTO CPG_config VALUES ('user_field1_name', '');
 INSERT INTO CPG_config VALUES ('user_field2_name', '');
 INSERT INTO CPG_config VALUES ('user_field3_name', '');
 INSERT INTO CPG_config VALUES ('user_field4_name', '');
@@ -67,7 +67,7 @@ INSERT INTO CPG_config VALUES ('first_level', '1');
 INSERT INTO CPG_config VALUES ('display_film_strip', '1');
 INSERT INTO CPG_config VALUES ('max_film_strip_items', '5');
 INSERT INTO CPG_config VALUES ('thumb_use', 'ht');
-
+INSERT INTO CPG_config VALUES ('comment_email_notification', '0');
 
 
 #
