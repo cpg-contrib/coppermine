@@ -2669,8 +2669,8 @@ function cpg_get_webroot_path() {
     if (isset($_SERVER["PATH_TRANSLATED"])) {
        $path_from_serverroot[] = $_SERVER["PATH_TRANSLATED"];
     }
-    $path_from_serverroot[] = $HTTP_SERVER_VARS["SCRIPT_FILENAME"];
-    $path_from_serverroot[] = $HTTP_SERVER_VARS["PATH_TRANSLATED"];
+    //$path_from_serverroot[] = $HTTP_SERVER_VARS["SCRIPT_FILENAME"];
+    //$path_from_serverroot[] = $HTTP_SERVER_VARS["PATH_TRANSLATED"];
 
     // we should be able to tell the current script's filename by removing everything before and including the last slash in $PHP_SELF
     $filename = ltrim(strrchr($_SERVER['PHP_SELF'], '/'), '/');

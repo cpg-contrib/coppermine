@@ -1064,7 +1064,7 @@ function pageheader($section, $meta = '')
 // Function for writing a pagefooter
 function pagefooter()
 {
-    global $HTTP_GET_VARS, $HTTP_POST_VARS, $HTTP_SERVER_VARS;
+    //global $HTTP_GET_VARS, $HTTP_POST_VARS, $HTTP_SERVER_VARS;
     global $USER, $USER_DATA, $ALBUM_SET, $CONFIG, $time_start, $query_stats, $queries;;
     global $template_footer;
 
