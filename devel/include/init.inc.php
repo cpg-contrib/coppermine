@@ -266,11 +266,16 @@ if ($CONFIG['enable_plugins'] == 1) {
     CPGPluginAPI::load();
 }
 
+// Set UDB_INTEGRATION if enabled in config
+if ($CONFIG['bridge_enable'] == 1) {
+    $BRIDGE = cpg_get_bridge_db_values();
+    define('UDB_INTEGRATION', $BRIDGE['short_name']);
+}
+
 // User DB system
 if (!CPGPluginAPI::action('UDB_INTEGRATION',false,CPG_EXEC_FIRST) && defined('UDB_INTEGRATION')) {
     require 'bridge/' . UDB_INTEGRATION . '.inc.php';
 }
-
 
 // Start output buffering
 ob_start('cpg_filter_page_html');
