@@ -88,7 +88,7 @@ li {
 <p>The script also supports multiple languages and has a theme system. It uses
   PHP, a MySQL database and the GD library (version 1.x or 2.x) or ImageMagick
   to make the thumbnails. An install script makes the installation fast and simple.</p>
-	
+
 <p><a href="#what">What is required</a><br />
 <a href="#how">How To Install The Script</a><br />
 <a href="#getting">Getting Started</a>
@@ -103,8 +103,8 @@ li {
 <a href="#integrating">Integrating the script with your bulletin board</a><br />
 <a href="#translating">Translating Coppermine into other languages</a><br />
 <a href="#credits">Credits
-</p>	
-	
+</p>
+
 <a name="what"></a>
 <h2>What is required</h2>
 <ul>
@@ -210,6 +210,7 @@ li {
   alt=&quot;&quot;/&gt;</i> and not <i>&lt;img src=&quot;images/image.gif&quot;
   alt=&quot;&quot;/&gt;.</i> The same apply for the &quot;<b>theme.php</b>&quot;
   file.</p>
+  <p>Also, make sure not to delete the line <i>&lt;script type="text/javascript" src="scripts.js"&gt;&lt;/script&gt;</i> that is needed for the full-size pop-ups and other stuff related to JavaScript.</p>
 <p>If you are using an HTML editor to make your template, the best solution is
   that you copy the &quot;<b>template.html</b>&quot; file into the main directory
   of the script and edit it there. If the script find a file named &quot;<b>template.html</b>&quot;
@@ -269,22 +270,22 @@ li {
   <li>Login to your 1.2 Gallery, enter the admin mode</li>
   <li>Call the upgrade script, http://yousitename/coppermine_dir/upgrade-1.0-to-1.2.php</li>
   <li><b>The upgrade from 1.0 to 1.2 is a two-step process.</b> You must click the link which comes up on the bottom of the page to complete the upgrade!.</li>
-	<li><b>Delete upgrade-1.0-to-1.2.php from your server</b>.
+        <li><b>Delete upgrade-1.0-to-1.2.php from your server</b>.
   <li>If you get an error, go to Coppermine 1.2 config page, enable debug mode,
     try to call the upgrade script again and check what errors you get.</li>
 </ul>
 <p> <b>This upgrade process leaves your v1.0 gallery untouched </b></p>
 <a name="11"></a>
 <h2>Upgrading from releases of version 1.1</h2>
-	<ul>
-		<li>Backup your include/config.inc.php file and your "albums" directoy.</li>
-		<li>Unpack the archive</li>
-		<li>If the file <b>config.inc.php</b> exists in the <b>&quot;include&quot;</b> directory, delete it.</li>
-		<li>If the file <b>install.php</b> exists in the root directory, delete it.</li>
-		<li><b>Except for the "albums" directory</b>, upload all of the new files and directories making sure not to overwrite the include/config.inc.php file or the albums directory.</li>
-		<li>Call the upgrade script http://yousitename/coppermine_dir/update.php</li>
-		<li>Your upgrade should be complete.</li>
-	</ul>
+        <ul>
+                <li>Backup your include/config.inc.php file and your "albums" directoy.</li>
+                <li>Unpack the archive</li>
+                <li>If the file <b>config.inc.php</b> exists in the <b>&quot;include&quot;</b> directory, delete it.</li>
+                <li>If the file <b>install.php</b> exists in the root directory, delete it.</li>
+                <li><b>Except for the "albums" directory</b>, upload all of the new files and directories making sure not to overwrite the include/config.inc.php file or the albums directory.</li>
+                <li>Call the upgrade script http://yousitename/coppermine_dir/update.php</li>
+                <li>Your upgrade should be complete.</li>
+        </ul>
 <a name="integrating"></a>
 <h2>Integrating the script with your bulletin board</h2>
 <p>Coppermine can be integrated with the following bulletin boards (eg. Coppermine
@@ -375,7 +376,7 @@ define('PHPBB_WEB_PATH','/phpBB2/');</pre>
 <h3>Language file translation :</h3>
 <p><b>Note</b> : if you have corrections to suggest on language files, mail them
   directly to the author of the translation.</p>
-	<p>
+        <p>
 <p>The list for the CPG 1.2 translators can be found in <a href="credits.html">credits.html</a></p>
 
 <h3>Coppermine uses code from the following free softwares :</h3>
@@ -395,11 +396,11 @@ define('PHPBB_WEB_PATH','/phpBB2/');</pre>
 <h2>Known Issues</h2>
 <p>The following slight quirks and tiny issues are known and will be fixed in future releases.</p>
 <ul>
-	<li>Some drop down menus (particularly in configuration page) and other small text items are only available in English. (Language issue)</li>
-	<li>There have been requests for the configuration page to have multiple submit buttons instead of one single button at the bottom of the page. (Usability issue)</li>
-	<li>Odd behavior if "Back" button is used during installation. (Installation issue)</li>
-	<li>Various error messages while in debug mode. (Does not affect main CPG app)</li>
-	<li>Administrators can ban themselves making it necessary to fix directly in dB. (Usability issue.)</li>
+        <li>Some drop down menus (particularly in configuration page) and other small text items are only available in English. (Language issue)</li>
+        <li>There have been requests for the configuration page to have multiple submit buttons instead of one single button at the bottom of the page. (Usability issue)</li>
+        <li>Odd behavior if "Back" button is used during installation. (Installation issue)</li>
+        <li>Various error messages while in debug mode. (Does not affect main CPG app)</li>
+        <li>Administrators can ban themselves making it necessary to fix directly in dB. (Usability issue.)</li>
 </ul>
 <h2>Copyright and disclaimer</h2>
 <p>This application is opensource software released under the <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a>.
