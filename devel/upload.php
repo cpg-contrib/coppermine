@@ -2468,7 +2468,13 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
 
     // Create the form and echo more instructions.
     create_form($form_array);
-    form_statement($lang_upload_php['place_instr_2']);
+
+    // More instructions.
+    if(count($escrow_array) > '1') {
+
+        form_statement($lang_upload_php['place_instr_2']);
+
+    }
 
     // Make button say 'Continue.'
     close_form($lang_continue);
