@@ -1,6 +1,6 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.2                                            //
+// Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
 // Copyright (C) 2002,2003 Gregory DEMAR                                     //
 //  http://www.chezgreg.net/coppermine/                                      //
@@ -16,7 +16,7 @@
 // ------------------------------------------------------------------------- //
 // Tanslation updated by Michal Ambroz <rebus@seznam.cz>                     //
 // ------------------------------------------------------------------------- //
-// CVS version: $Id$
+// $Id$
 // ------------------------------------------------------------------------- //
 
 
@@ -627,7 +627,6 @@ $lang_picinfo = array(
     'Displayed' => 'Zobrazeno',
     'Camera' => 'Fotoaparát',
     'Date taken' => 'Datum poøízení snímku',
-	'ISO'=>'ISO',
     'Aperture' => 'Clona',
     'Exposure time' => 'Expozièní èas',
     'Focal length' => 'Ohnisková vzdálenost',

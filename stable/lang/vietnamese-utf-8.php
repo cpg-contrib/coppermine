@@ -14,6 +14,8 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
+// ENCODING CHECK; SHOULD BE YEN BETA MU: ¥ ß µ
+// ------------------------------------------------------------------------- //
 // $Id$
 // ------------------------------------------------------------------------- //
 // Kyo's temp: /random,2/lastup,1

@@ -14,6 +14,8 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
+// ENCODING CHECK; SHOULD BE YEN BETA MU: ¥ ß µ
+// ------------------------------------------------------------------------- //
 // CVS version: $Id$
 // ------------------------------------------------------------------------- //
 
@@ -613,7 +615,6 @@ $lang_picinfo = array(
         'Displayed' => 'Getoond',
         'Camera' => 'Camera',
         'Date taken' => 'Opnamedatum',
-		'ISO'=>'ISO',
         'Aperture' => 'Opening',
         'Exposure time' => 'Sluitertijd',
         'Focal length' => 'Brandpuntsafstand',
