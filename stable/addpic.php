@@ -37,6 +37,7 @@ $forbidden_chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '
 $sane_name = strtr($file_name, $forbidden_chars, str_repeat('_', strlen($CONFIG['forbiden_fname_char'])));
 $source = "./" . $CONFIG['fullpath'] . $dir_name . $file_name;
 rename($source, "./" . $CONFIG['fullpath'] . $dir_name . $sane_name);
+$file_name = $sane_name;
 
 $sql = "SELECT pid " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE filepath='" . addslashes($dir_name) . "' AND filename='" . addslashes($file_name) . "' " . "LIMIT 1";
 $result = db_query($sql);
