@@ -286,8 +286,7 @@ EOT;
             $user_data = mysql_fetch_array($result);
             mysql_free_result($result);
         }
-	$query = "SELECT count(*), MAX(pid) FROM {$CONFIG['TABLE_PICTURES']} AS p WHERE owner_id = '$uid' AND approved = 'YES'".((!empty($FORBIDDEN_SET))?"AND $FORBIDDEN_SET":" ");
-	print $query;
+	$query = "SELECT count(*), MAX(pid) FROM {$CONFIG['TABLE_PICTURES']} AS p WHERE owner_id = '$uid' AND approved = 'YES'".((!empty($FORBIDDEN_SET))?"AND $FORBIDDEN_SET":" ");	
         $result = db_query($query);
         $nbEnr = mysql_fetch_array($result);
         $picture_count = $nbEnr[0];
