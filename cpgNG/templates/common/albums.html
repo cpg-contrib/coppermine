@@ -1,0 +1,90 @@
+<img src="images/spacer.gif" width="1" height="17" alt=" "/><br />
+{if $indexData->dispAlbumCount gt 0}
+<!-- Album list Starts-->
+<table align="center" width="100%" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    {assign var="col" value="0"}
+    {section name=element loop=$indexData->dispAlbumCount}
+      {if $col == $albcols}
+        </tr>
+        <tr>
+        {assign var="col" value="0"}
+      {/if}
+      <td width="{$colWidth}%" valign="top" class="tableb_album">
+        <table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td colspan="2" height="1" valign="top" class="tableh2">
+              <a href="thumbnailsNew.php?album={$indexData->albList[element].aid}" class="alblink"><b>{$indexData->albList[element].album_title}</b></a>
+            </td>
+          </tr>
+          <tr>
+            <td align="center" valign="top" class="thumbnails">
+             <a href="thumbnailsNew.php?album={$indexData->albList[element].aid}" class="albums">{$indexData->albList[element].thumb_pic}</a>
+            </td>
+            <td width="100%" valign="top" class="tableb_compact">
+              {if $GALLERY_ADMIN_MODE || ($USER_ADMIN_MODE && $cat eq $my_cat_id)}
+              <table border="0" cellpadding="0" cellspacing="1">
+                <tr>
+                  <td align="center" valign="middle" class="admin_menu">
+                    <a href="delete.php?id={$indexData->albList[element].aid}&amp;what=album" class="adm_menu" onclick="return  confirm('{$lang_album_admin_menu.confirm_delete}');">{$lang_album_admin_menu.delete}</a>
+                  </td>
+                  <td align="center" valign="middle" class="admin_menu">
+                    <a href="modifyalb.php?album={$indexData->albList[element].aid}" class="adm_menu">{$lang_album_admin_menu.modify}</a>
+                  </td>
+                  <td align="center" valign="middle" class="admin_menu">
+                    <a href="editpics.php?album={$indexData->albList[element].aid}" class="adm_menu">{$lang_album_admin_menu.edit_pics}</a>
+                  </td>
+                </tr>
+              </table>
+              {/if}
+              <p class="album_desc">{$indexData->albList[element].album_desc}</p>
+              <p class="album_stat">{$indexData->albList[element].album_info}</p>
+            </td>
+          </tr>
+        </table>
+      </td>
+      {assign var="col" value="`$col+1`"}
+    {/section}
+    {assign var="remainder" value="`$albcols-$col`"}
+    {section name=emptyElement loop=$remainder}
+      <td width="{$colWidth}%" valign="top" class="tableb_album">
+        <table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td height="1" valign="top" class="tableh2">
+                    <b>&nbsp;</b>
+            </td>
+          </tr>
+          <tr>
+            <td width="100%" height="100%" valign="top" class="tableb_compact">
+                    &nbsp;
+            </td>
+          </tr>
+        </table>
+      </td>
+    {/section}
+  </tr>
+  {if $indexData->totalPages.albums gt 1}
+  <!-- BEGIN tabs -->
+  <tr>
+    <td colspan="{$albcols}" style="padding: 0px;" align="right">
+      <table width="100%" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+          <td width="100%" align="left" valign="middle" class="tableh1_compact" style="white-space: nowrap"><b>{$indexData->albList[0].statistics}</b></td>
+          <td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>
+          {section name=page loop=$indexData->totalPages.albums}
+            {if $smarty.section.page.iteration eq $pg}
+              <td align="center" valign="middle" class="tableb_compact"><b>{$smarty.section.page.iteration}</b></td>
+            {else}
+              <td align="center" valign="middle" class="navmenu"><a   href="indexNew.php?cat={$cat}&amp;page={$smarty.section.page.iteration}">{$smarty.section.page.iteration}</a></td>
+            {/if}
+          {/section}
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <!-- END tabs -->
+  {/if}
+</table>
+<!-- Album list Ends-->
+{/if}
+<img src="images/spacer.gif" width="1" height="17" alt=" " /><br />

@@ -1,0 +1,59 @@
+{if $indexData->usrList|@count gt 0}
+<!-- User list starts -->
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="0" cellpadding="0" class="maintable">
+  <tr><TD>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="maintable">
+    <tr>
+    {assign var="col" value="0"}
+    {assign var=cur value=$indexData->usrList.currentPage-1}
+    {section name=element loop=$thumbcols*$thumbrows}
+        {if $col == $thumbcols}
+            </tr><tr>{assign var="col" value="0"}
+        {/if}
+        <td valign="top" class="thumbnails" width="{$thumbColWidth}%" align="center">
+          <a href="indexNew.php?cat={$indexData->usrList[element].cat}"><img src="{$indexData->usrList[element].image}" class="image" border="0" alt="" title="" /></a>
+          <br />
+          <table cellspacing="1" cellpadding="0" border="0" width="100%" class="user_thumb_infobox">
+            <tr>
+              <th><a href="profile.php?uid={$indexData->usrList[element].caption.userid}">{$indexData->usrList[element].caption.user}</a></th>
+            </tr>
+            <tr>
+              <td>{$indexData->usrList[element].caption.albums}</td>
+
+            </tr>
+            <tr>
+              <td>{$indexData->usrList[element].caption.pictures}</td>
+            </tr>
+        </table>
+        </td>
+        {assign var="col" value="`$col+1`"}
+    {/section}
+    {assign var="remainder" value="`$thumbcols-$col`"}
+    {section name=emptyElement loop=$remainder}
+        <td class="thumbnails">&nbsp;</td>
+    {/section}
+    </tr>
+    <tr>
+      <td colspan="4" style="padding: 0px;">
+        <table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="100%" align="left" valign="middle" class="tableh1_compact" style="white-space: nowrap"><b>{$indexData->usrList[0].statistics}</b></td>
+            <td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>
+            {if $indexData->totalPages.usrAlb gt 1}
+            {section name=page loop=$indexData->totalPages.usrAlb}
+              {if $smarty.section.page.iteration eq $indexData->currentPage.usrAlb}
+                <td align="center" valign="middle" class="tableb_compact"><b>{$smarty.section.page.iteration}</b></td>
+              {else}
+                <td align="center" valign="middle" class="navmenu"><a href="indexNew.php?cat={$cat}&amp;page={$smarty.section.page.iteration}">{$smarty.section.page.iteration}</a></td>
+              {/if}
+            {/section}
+            {/if}
+          </tr>
+        </table>
+      </td>
+    </tr>
+</table>
+<!-- End standard table -->
+<!-- User list ends -->
+{/if}
