@@ -308,7 +308,8 @@ CREATE TABLE CPG_dict (
 
 CREATE TABLE CPG_bridge (
   name varchar(40) NOT NULL default '0',
-  value varchar(255) NOT NULL default ''
+  value varchar(255) NOT NULL default '',
+  UNIQUE KEY name`(name)
 ) TYPE=MyISAM;
 
 #

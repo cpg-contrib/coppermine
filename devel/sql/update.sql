@@ -320,7 +320,8 @@ INSERT INTO CPG_config VALUES ('auto_resize', '0');
 
 CREATE TABLE CPG_bridge (
   name varchar(40) NOT NULL default '0',
-  value varchar(255) NOT NULL default ''
+  value varchar(255) NOT NULL default '',
+  UNIQUE KEY name (name)
 ) TYPE=MyISAM;
 
 #
