@@ -24,6 +24,11 @@ function cpg_mail($to, $subject, $msg_body = '', $type = 'text/plain', $sender_n
     global $CONFIG;
     global $lang_charset;
    	
+	// makeshift plaintext if not set
+	if (!$msg_body_plaintext){
+		$msg_body_plaintext = strip_tags($msg_body);
+	}
+	
 	// send mails to ALL admins - not bridged only
     if ($to == 'admin'){
     	if (!defined('UDB_INTEGRATION')) {
@@ -46,7 +51,7 @@ function cpg_mail($to, $subject, $msg_body = '', $type = 'text/plain', $sender_n
     $charset = $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'];
 
     $mail = new htmlMimeMail();
-    $mail->setHtml($msg_body);
+	$mail->setHtmlEncoding('8bit');
     $mail->setTextCharset($charset);
     $mail->setHtmlCharset($charset);
     $mail->setHtml($msg_body, $msg_body_plaintext, './');
