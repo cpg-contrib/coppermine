@@ -110,12 +110,12 @@ if (defined('SMILIES_PHP')) {
 }
 
 // ------------------------------------------------------------------------- //
-// File admin.php
+// File mode.php
 // ------------------------------------------------------------------------- //
 
-if (defined('ADMIN_PHP')) {
-  $lang_admin_php_en = cpg_get_default_lang_var('lang_admin_php','english');
-  $lang_admin_php = array_merge($lang_admin_php_en, $lang_admin_php);
+if (defined('MODE_PHP')) {
+  $lang_mode_php_en = cpg_get_default_lang_var('lang_mode_php','english');
+  $lang_mode_php = array_merge($lang_mode_php_en, $lang_mode_php);
 }
 
 // ------------------------------------------------------------------------- //

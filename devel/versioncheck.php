@@ -1695,7 +1695,7 @@ $return = '
 1.3.2|themes/water_drop/images|||optional|r@
 1.4.0|addfav.php|1.4.0|1.13|mandatory|r@
 1.4.0|addpic.php|1.4.0|1.9|mandatory|r@
-1.4.0|admin.php|1.4.0|1.6|mandatory|r@
+
 1.4.0|albmgr.php|1.4.0|1.10|mandatory|r@
 1.4.0|anycontent.php|1.4.0|1.9|mandatory|r@
 1.4.0|banning.php|1.4.0|1.17|mandatory|r@
@@ -1725,6 +1725,7 @@ $return = '
 1.4.0|keywordmgr.php|1.4.0|1.3|mandatory|r@
 1.4.0|login.php|1.4.0|1.11|mandatory|r@
 1.4.0|logout.php|1.4.0|1.5|mandatory|r@
+1.4.0|mode.php|1.4.0|1.6|mandatory|r@
 1.4.0|modifyalb.php|1.4.0|1.15|mandatory|r@
 1.4.0|phpinfo.php|1.4.0|1.8|mandatory|r@
 1.4.0|picEditor.php|1.4.0|1.16|mandatory|r@

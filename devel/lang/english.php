@@ -333,10 +333,10 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 // void
 
 // ------------------------------------------------------------------------- //
-// File admin.php
+// File mode.php
 // ------------------------------------------------------------------------- //
 
-if (defined('ADMIN_PHP')) $lang_admin_php = array(
+if (defined('MODE_PHP')) $lang_mode_php = array(
   0 => 'Leaving admin mode...',
   1 => 'Entering admin mode...',
 );
