@@ -366,36 +366,51 @@ if (!file_exists("themes/{$CONFIG['theme']}/theme.php")) $CONFIG['theme'] = 'cla
 require "themes/{$CONFIG['theme']}/theme.php";
 require "include/core.inc.php";  //All Fallback Theme Templates and Functions
 $THEME_DIR = "themes/{$CONFIG['theme']}/";
+
+
 // Process language selection if present in URI or in user profile or try
 // autodetection if default charset is utf-8
-if (!empty($_GET['lang'])) {
+if (!empty($_GET['lang'])) 
+{
     $USER['lang'] = $_GET['lang'];
 }
 
-if (isset($USER['lang']) && !strstr($USER['lang'], '/') && file_exists('lang/' . $USER['lang'] . '.php')) {
+if (isset($USER['lang']) && !strstr($USER['lang'], '/') && file_exists('lang/' . $USER['lang'] . '.php')) 
+{
     $CONFIG['default_lang'] = $CONFIG['lang'];          // Save default language
     $CONFIG['lang'] = strtr($USER['lang'], '$/\\:*?"\'<>|`', '____________');
-} elseif ($CONFIG['charset'] == 'utf-8') {
+} 
+elseif ($CONFIG['charset'] == 'utf-8') 
+{
     include('include/select_lang.inc.php');
-    if (file_exists('lang/' . $USER['lang'] . '.php')) {
+    if (file_exists('lang/' . $USER['lang'] . '.php')) 
+    {
         $CONFIG['default_lang'] = $CONFIG['lang'];      // Save default language
         $CONFIG['lang'] = $USER['lang'];
     }
-} else {
+}
+else 
+{
     unset($USER['lang']);
 }
 
-if (isset($CONFIG['default_lang']) && ($CONFIG['default_lang']==$CONFIG['lang'])) {
+if (isset($CONFIG['default_lang']) && ($CONFIG['default_lang']==$CONFIG['lang'])) 
+{
         unset($CONFIG['default_lang']);
 }
 
-if (!file_exists("lang/{$CONFIG['lang']}.php")) $CONFIG['lang'] = 'english';
+if (!file_exists("lang/{$CONFIG['lang']}.php")) 
+	$CONFIG['lang'] = 'english';
+
+// We load the chosen language file
 require "lang/{$CONFIG['lang']}.php";
 
 // Include and process fallback here if lang <> english
 if($CONFIG['lang'] != 'english' && $CONFIG['language_fallback']==1 ){
         require "include/langfallback.inc.php";
 }
+
+
 // See if the fav cookie is set else set it
 if (isset($_COOKIE[$CONFIG['cookie_name'] . '_fav'])) {
     $FAVPICS = @unserialize(@base64_decode($_COOKIE[$CONFIG['cookie_name'] . '_fav']));
