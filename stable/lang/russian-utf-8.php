@@ -924,57 +924,6 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 
 
 // ------------------------------------------------------------------------- // 
-// File util.php  //new in cpg1.2.0
-// ------------------------------------------------------------------------- // 
-
-if (defined('UTIL_PHP')) $lang_util_php = array( 
-        'title' => 'Resize pictures', 
-        'what_it_does' => 'What it does', 
-        'what_update_titles' => 'Updates titles from filename', 
-        'what_delete_title' => 'Deletes titles', 
-        'what_rebuild' => 'Rebuilds thumbnails and resized photos', 
-        'what_delete_originals' => 'Deletes original sized photos replacing them with the sized version', 
-        'file' => 'File', 
-        'title_set_to' => 'title set to', 
-        'submit_form' => 'submit', 
-        'updated_succesfully' => 'updated succesfully', 
-        'error_create' => 'ERROR creating', 
-        'continue' => 'Process more images', 
-        'main_success' => 'The file %s was successfully used as main picture', 
-        'error_rename' => 'Error renaming %s to %s', 
-        'error_not_found' => 'The file %s was not found', 
-        'back' => 'back to main', 
-        'thumbs_wait' => 'Updating thumbnails and/or resized images, please wait...', 
-        'thumbs_continue_wait' => 'Continuing to update thumbnails and/or resized images...', 
-        'titles_wait' => 'Updating titles, please wait...', 
-        'delete_wait' => 'Deleting titles, please wait...', 
-        'replace_wait' => 'Deleting originals and replacing them with resized images, please wait..', 
-        'instruction' => 'Quick instructions', 
-        'instruction_action' => 'Select action', 
-        'instruction_parameter' => 'Set parameters', 
-        'instruction_album' => 'Select album', 
-        'instruction_press' => 'Press %s', 
-        'update' => 'Update thumbs and/or resized photos', 
-        'update_what' => 'What should be updated', 
-        'update_thumb' => 'Only thumbnails', 
-        'update_pic' => 'Only resized pictures', 
-        'update_both' => 'Both thumbnails and resized pictures', 
-        'update_number' => 'Number of processed images per click', 
-        'update_option' => '(Try setting this option lower if you experience timeout problems)', 
-        'filename_title' => 'Filename ? Picture title', 
-        'filename_how' => 'How should the filename be modified', 
-        'filename_remove' => 'Remove the .jpg ending and replace _ (underscore) with spaces', 
-        'filename_euro' => 'Change 2003_11_23_13_20_20.jpg to 23/11/2003 13:20', 
-        'filename_us' => 'Change 2003_11_23_13_20_20.jpg to 11/23/2003 13:20', 
-        'filename_time' => 'Change 2003_11_23_13_20_20.jpg to 13:20', 
-        'delete' => 'Delete picture titles or original size photos', 
-        'delete_title' => 'Delete picture titles', 
-        'delete_original' => 'Delete original size photos', 
-        'delete_replace' => 'Deletes the original images replacing them with the sized versions', 
-        'select_album' => 'Select album', 
-); 
-
-// ------------------------------------------------------------------------- // 
 // File util.php 
 // ------------------------------------------------------------------------- // 
 
@@ -1003,7 +952,7 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
         'instruction' => 'Áûñòðûå èíñòðóêöèè', 
         'instruction_action' => 'Âûáåðèòå äåéñòâèå', 
         'instruction_parameter' => 'Óñòàíîâèòü ïàðàìåòðû', 
-        'instruction_album' => 'Âûáðàòü àëüáîì, 
+        'instruction_album' => 'Âûáðàòü àëüáîì', 
         'instruction_press' => 'Íàæìèòå %s', 
         'update' => 'Îáíîâëåíèå ýêñèçîâ è/èëè ðàçìåðîâ ôîòî', 
         'update_what' => '×òî äîëæíî áûòü îáíîâëåíî', 
