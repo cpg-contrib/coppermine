@@ -241,3 +241,4 @@ Added charsetmgr.php to convert the encoding of the whole database - 01 Jan 2005
 Made utf-8 the default encoding for new installs; added a "not recommended" warnin for the 'language file' encoding
 Link to the charset manager added to update.php - 02 Jan 2005, chtito
 Moved the contents of english.php into english-utf-8.php - 02 Jan 2005, chtito
+Removed all the language-utf-8.files; the language.php files are encoded in utf-8 - 05 Jan 2005, chtito
