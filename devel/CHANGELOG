@@ -27,3 +27,5 @@ Added offline-manual in /docs-folder (manual.pdf) - 03rd October 2003, GauGau
 Fixed charset in pop-up bug (http://coppermine.sourceforge.net/board/viewtopic.php?t=291) - 05th October 2003, GauGau
 Fixed pop-up scrollbar bug (http://coppermine.sourceforge.net/board/viewtopic.php?t=290) - 05th October 2003, GauGau
 Added 1.2.0 translations for dutch, finnish, norwegian, spanish - 05th October 2003, GauGau
+Added 1.2.0 translations for arabic, hebrew and turkish - 06th October 2003, GauGau
+Moved all docs into the docs folder - 06th October 2003, GauGau
