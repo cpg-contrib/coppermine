@@ -105,6 +105,8 @@ INSERT INTO CPG_config VALUES ('show_bbcode_help', '1');
 INSERT INTO CPG_config VALUES ('log_ecards', '0');
 INSERT INTO CPG_config VALUES ('email_comment_notification', '0');
 INSERT INTO CPG_config VALUES ('enable_zipdownload', '1');
+INSERT INTO CPG_config VALUES ('debug_notice', '0');
+INSERT INTO CPG_config VALUES ('slideshow_interval', '5000');
 
 
 # Modify structure for category thumb

@@ -26,6 +26,7 @@ INSERT INTO CPG_config VALUES ('charset', 'language file');
 INSERT INTO CPG_config VALUES ('cookie_name', 'cpg11d');
 INSERT INTO CPG_config VALUES ('cookie_path', '/');
 INSERT INTO CPG_config VALUES ('debug_mode', '0');
+INSERT INTO CPG_config VALUES ('debug_notice', '0');
 INSERT INTO CPG_config VALUES ('default_dir_mode', '0755');
 INSERT INTO CPG_config VALUES ('default_file_mode', '0644');
 INSERT INTO CPG_config VALUES ('default_sort_order', 'na');
@@ -98,6 +99,8 @@ INSERT INTO CPG_config VALUES ('show_bbcode_help', '1');
 INSERT INTO CPG_config VALUES ('log_ecards', '0');
 INSERT INTO CPG_config VALUES ('email_comment_notification', '0');
 INSERT INTO CPG_config VALUES ('enable_zipdownload', '1');
+INSERT INTO CPG_config VALUES ('slideshow_interval', '5000');
+
 
 #
 # Dumping data for table `CPG_filetypes`

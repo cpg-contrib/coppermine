@@ -428,6 +428,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Show film strip', 'display_film_strip', 1),
         array('Number of items in film strip', 'max_film_strip_items', 0),
         array('Notify admin of comments by email', 'email_comment_notification', 1),
+        array('Slideshow intervall in milliseconds (1 second = 1000 milliseconds)', 'slideshow_interval', 0),
 
         'Files and thumbnails settings',
         array('Quality for JPEG files', 'jpeg_qual', 0),
@@ -481,6 +482,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 
         'Miscellaneous settings',
         array('Enable debug mode', 'debug_mode', 9),
+        array('Display notices in debug mode', 'debug_notice', 1),
 
         '<br /><div align="left"><a name="notice1"></a>(*) This settings mustn\'t be changed if you already have pictures in your database.<br />
         <a name="notice2"></a>(**) When changing this setting, only the files that are added from that point on are affected, so it is advisable that this setting must not be changed if there are already files in the gallery. You can, however, apply the changes to the existing files with the &quot;<a href="util.php">admin tools</a> (resize pictures)&quot; utility from the admin menu.</div><br />'

@@ -88,7 +88,7 @@ function html_img_nav_menu()
 
     $thumb_tgt = "thumbnails.php?album=$album$cat_link&page=$page";
 
-    $slideshow_tgt = "$PHP_SELF?album=$album$cat_link&pid=$pid&slideshow=5000";
+    $slideshow_tgt = "$PHP_SELF?album=$album$cat_link&pid=$pid&slideshow=".$CONFIG['slideshow_interval'];
 
     $pic_pos = sprintf($lang_img_nav_bar['pic_pos'], $human_pos, $pic_count);
 
@@ -164,7 +164,7 @@ function html_picture()
     }
     if ($CURRENT_PIC_DATA['keywords'] != '') {
         $pic_title .= $lang_picinfo['Keywords'] . ": " . $CURRENT_PIC_DATA['keywords'];
-    } // added by gaugau
+    }
 
     if ($CURRENT_PIC_DATA['pwidth']==0 || $CURRENT_PIC_DATA['pheight']==0)
         $image_size['geom']='';
@@ -615,8 +615,9 @@ if (isset($HTTP_GET_VARS['fullsize'])) {
     $votes = html_rating_box();
     $pic_info = html_picinfo();
     $comments = html_comments($CURRENT_PIC_DATA['pid']);
+    if ($CURRENT_PIC_DATA['keywords']) { $meta_keywords = "<meta name=\"keywords\" content=\"".$CURRENT_PIC_DATA['keywords']."\">"; }
 
-    pageheader($album_name . '/' . $picture_title, '', false);
+    pageheader($album_name . '/' . $picture_title, $meta_keywords, false);
     // Display Breadcrumbs
     if ($breadcrumb) {
         theme_display_breadcrumb($breadcrumb, $cat_data);

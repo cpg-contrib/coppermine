@@ -21,7 +21,6 @@ define('COPPERMINE_VERSION', '1.3.0 - devel');
 // define('UDB_INTEGRATION', 'invisionboard');
 // define('UDB_INTEGRATION', 'vbulletin');
 // define('UDB_INTEGRATION', 'yabbse');
-// define('UDB_INTEGRATION', 'woltlab21');
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 // Start output buffering
 ob_start();
@@ -144,12 +143,6 @@ while ($row = mysql_fetch_array($results)) {
     $CONFIG[$row['name']] = $row['value'];
 } // while
 mysql_free_result($results);
-// Set error logging level (set further down to enable checking admin login)
-//if ($CONFIG['debug_mode']) {
-//    error_reporting (E_ALL);
-//} else {
-//    error_reporting (E_ALL ^ E_NOTICE);
-//}
 
 require 'include/media.functions.inc.php';
 
@@ -208,7 +201,7 @@ $USER['am'] = isset($USER['am']) ? (int)$USER['am'] : 0;
 define('GALLERY_ADMIN_MODE', USER_IS_ADMIN && $USER['am']);
 define('USER_ADMIN_MODE', USER_ID && USER_CAN_CREATE_ALBUMS && $USER['am'] && !GALLERY_ADMIN_MODE);
 // Set error logging level
-if ($CONFIG['debug_mode']==1 || ($CONFIG['debug_mode']==2 && GALLERY_ADMIN_MODE )) {
+if ($CONFIG['debug_notice']==1 && ($CONFIG['debug_mode']==1 || ($CONFIG['debug_mode']==2 && GALLERY_ADMIN_MODE ))) {
     error_reporting (E_ALL);
 } else {
     error_reporting (E_ALL ^ E_NOTICE);
