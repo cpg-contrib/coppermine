@@ -335,7 +335,7 @@ function list_albums()
 	$upper_limit = min($nbAlb, $PAGE * $alb_per_page);
 	$limit = "LIMIT ". $lower_limit . "," . ($upper_limit-$lower_limit);
 
-	$sql =  "SELECT a.aid, a.title, description, visibility, filepath, ".
+	$sql =  "SELECT a.aid, a.title, adescription, visibility, filepath, ".
 			"		filename, url_prefix, pwidth, pheight ".
 			"FROM {$CONFIG['TABLE_ALBUMS']} as a ".
 			"LEFT JOIN {$CONFIG['TABLE_PICTURES']} as p ON thumb=pid ".
@@ -461,7 +461,7 @@ function list_cat_albums($cat=0)
         $upper_limit = min($nbAlb, $PAGE * $alb_per_page);
         $limit = "LIMIT ". $lower_limit . "," . ($upper_limit-$lower_limit);
 
-        $sql =  "SELECT a.aid, a.title, description, visibility, filepath, ".
+        $sql =  "SELECT a.aid, a.title, adescription, visibility, filepath, ".
                         "                filename, url_prefix, pwidth, pheight ".
                         "FROM {$CONFIG['TABLE_ALBUMS']} as a ".
                         "LEFT JOIN {$CONFIG['TABLE_PICTURES']} as p ON thumb=pid ".
