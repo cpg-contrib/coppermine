@@ -316,7 +316,7 @@ class phpExifReader {
     var $debug = false;
 
     // Caching ralated variables
-    var $caching = true; /* Should cacheing of image thumnails be allowed? */
+    var $caching = false; /* Should cacheing of image thumnails be allowed? */
     var $cacheDir = ""; /* Checkout constructor for default path. */
 
     /**
