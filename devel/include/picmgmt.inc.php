@@ -33,7 +33,8 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
         $imagesize = getimagesize($image);
         if (((USER_IS_ADMIN && $CONFIG['auto_resize'] == 1) || (!USER_IS_ADMIN && $CONFIG['auto_resize'] > 0)) && max($imagesize[0], $imagesize[1]) > $CONFIG['max_upl_width_height']) //$CONFIG['auto_resize']==1
         {
-          resize_image($image, $image, $CONFIG['max_upl_width_height'], $CONFIG['thumb_method'], $imagesize[0] > $CONFIG['max_upl_width_height'] ? 'wd' : 'ht');
+          //resize_image($image, $image, $CONFIG['max_upl_width_height'], $CONFIG['thumb_method'], $imagesize[0] > $CONFIG['max_upl_width_height'] ? 'wd' : 'ht');
+          resize_image($image, $image, $CONFIG['max_upl_width_height'], $CONFIG['thumb_method'], $CONFIG['thumb_use']);
           $imagesize = getimagesize($image);
         }
         if (!file_exists($thumb)) {
