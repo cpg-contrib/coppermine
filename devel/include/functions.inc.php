@@ -1681,13 +1681,18 @@ function& get_pic_url(&$pic_row, $mode,$system_pic = false)
             $filepathname = $url_prefix[$pic_row['url_prefix']]. path2url($pic_row['filepath']. $pic_prefix[$mode]. $pic_row['filename']);
         }
 
-        $pic_row['url'] = $filepathname;
-        $pic_row['mode'] = $mode;
-
-        if ($mode == 'thumb') {
+        // Added hack:  "&& !isset($pic_row['mode'])" thumb_data filter isn't executed for the fullsize image
+        if ($mode == 'thumb' && !isset($pic_row['mode'])) {
+            $pic_row['url'] = $filepathname;
+            $pic_row['mode'] = $mode;
             $pic_row = CPGPluginAPI::filter('thumb_data',$pic_row);
+        } elseif $mode != 'thumb' {
+            $pic_row['url'] = $filepathname;
+            $pic_row['mode'] = $mode;
+        } else {
+            $pic_row['url'] = $filepathname;
         }
-
+        
         return $pic_row['url'];
 }
 
