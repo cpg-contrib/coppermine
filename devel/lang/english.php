@@ -231,7 +231,10 @@ $lang_img_nav_bar = array(
   'next_title' => 'See next file',
   'pic_pos' => 'FILE %s/%s',
   'report_title' => 'Report this file to the administrator', // cpg1.4
-
+  'go_album_end' => 'Skip to end', // cpg1.4
+  'go_album_start' => 'Return to start', // cpg1.4
+  'go_back_x_items' => 'go back %s items', // cpg1.4
+  'go_forward_x_items' => 'go forward %s items', // cpg1.4
 );
 
 $lang_rate_pic = array(
