@@ -358,7 +358,7 @@ print '</td><td class="tableb">';
     }
     if ($helptitle != '') {
         print '&nbsp;';
-        print cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($helptitle))).'&t='.urlencode(base64_encode(serialize($helpoutput))),400,150);
+        print cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($helptitle))).'&t='.urlencode(base64_encode(serialize($helpoutput)).'&css=1'),400,150);
     }
 // cvs version end
 print '</td><td class="tableb">';
