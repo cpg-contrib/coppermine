@@ -15,10 +15,11 @@
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- // 
 
-// Confirm we are in Coppermine and set the language block.
+// Confirm we are in Coppermine and set the language blocks.
 define('IN_COPPERMINE', true);
 define('UPLOAD_PHP', true);
 define('DB_INPUT_PHP', true);
+define('CONFIG_PHP', true);
 
 // Call basic functions, etc. 
 require('include/init.inc.php');
@@ -2123,6 +2124,27 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
         $user3 = addslashes($HTTP_POST_VARS['user3']);
         $user4 = addslashes($HTTP_POST_VARS['user4']);
 
+        // Capture movie or audio width and height if sent.
+        if(isset($HTTP_POST_VARS['movie_wd'])) {
+
+            $movie_wd = (int)$HTTP_POST_VARS['movie_wd'];
+
+        } else {
+
+            $movie_wd = 0;
+
+        }
+
+        if(isset($HTTP_POST_VARS['movie_ht'])) {
+
+            $movie_ht = (int)$HTTP_POST_VARS['movie_ht'];
+
+        } else {
+
+            $movie_ht = 0;
+
+        }
+
         // Check if the album id provided is valid
         if (!GALLERY_ADMIN_MODE) {
             $result = db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album' and (uploads = 'YES' OR category = '" . (USER_ID + FIRST_USER_CAT) . "')");
@@ -2183,7 +2205,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
             chmod($uploaded_pic, octdec($CONFIG['default_file_mode']));
 
             // Create thumbnail and internediate image and add the image into the DB
-            $result = add_picture($album, $filepath, $picture_name, $title, $caption, $keywords, $user1, $user2, $user3, $user4, $category, $raw_ip, $hdr_ip);
+            $result = add_picture($album, $filepath, $picture_name, $title, $caption, $keywords, $user1, $user2, $user3, $user4, $category, $raw_ip, $hdr_ip, $movie_wd, $movie_ht);
 
             if (!$result) {
 
@@ -2402,6 +2424,15 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
     array('control', 'phase_2', 4),
     array('unique_ID', $_POST['unique_ID'], 4),
     );
+
+    // Check for movies and audio, and create width and height boxes if true.
+    if((is_movie($file_set[1])) or (is_audio($file_set[1]))) {
+
+        //Add width and height boxes to the form.
+        $form_array[] = array($lang_config_php['th_wd'],'movie_wd', 0, 4, 1);
+        $form_array[] = array($lang_config_php['th_ht'],'movie_ht', 0, 4, 1);
+
+    }
 
     // Create the form and echo more instructions. 
     create_form($form_array);
