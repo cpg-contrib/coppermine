@@ -75,14 +75,14 @@ function hidden_input($name, $value) {
 
 // The text box form input function. Takes the text label for the box, the input name, the maximum length for text boxes,
 // and the number of iterations.
-function text_box_input($text, $name, $max_length, $iterations) {
+function text_box_input($text, $name, $max_length, $iterations, $default='') {
 
     global $CONFIG;
 
     $ordinal = '';
 
     if (($text == '') and ($iterations == '')) {
-        echo "        <input type=\"hidden\" name=\"$name\" value=\"\">\n";
+        echo "        <input type=\"hidden\" name=\"$name\" value=\"$default\">\n";
         return;
     }
 
@@ -102,7 +102,7 @@ function text_box_input($text, $name, $max_length, $iterations) {
                         $text  $ordinal
         </td>
         <td width="60%" class="tableb" valign="top">
-                <input type="text" style="width: 100%" name="$name" id="$name" maxlength="$max_length" value="" class="textinput">
+                <input type="text" style="width: 100%" name="$name" id="$name" maxlength="$max_length" value="$default" class="textinput">
                 </td>
         </tr>
 
@@ -140,7 +140,7 @@ EOT;
 }
 
 // The function for text areas on forms. Takes the label, field name, and maximum length as arguments.
-function text_area_input($text, $name, $max_length) {
+function text_area_input($text, $name, $max_length,$default='') {
 
     // Create the text area.
     echo <<<EOT
@@ -149,7 +149,7 @@ function text_area_input($text, $name, $max_length) {
                         $text
                 </td>
                 <td class="tableb" valign="top">
-                        <textarea name="$name" rows="5" cols="40" wrap="virtual"  class="textinput" style="width: 100%;" onKeyDown="textCounter(this, $max_length);" onKeyUp="textCounter(this, $max_length);"></textarea>
+                        <textarea name="$name" rows="5" cols="40" wrap="virtual"  class="textinput" style="width: 100%;" onKeyDown="textCounter(this, $max_length);" onKeyUp="textCounter(this, $max_length);">$default</textarea>
                 </td>
         </tr>
 EOT;
@@ -265,7 +265,7 @@ function create_form(&$data) {
                 case 0 :
 
                     //Call the form input function.
-                    text_box_input($element[0], $element[1], $element[3], $element[4]);
+                    text_box_input($element[0], $element[1], $element[3], $element[4], @$element[5]);
                     break;
 
                 // If the type is a file input.
@@ -286,7 +286,7 @@ function create_form(&$data) {
                 case 3 :
 
                     // Call the text area function.
-                    text_area_input($element[0], $element[1], $element[3]);
+                    text_area_input($element[0], $element[1], $element[3], @$element[4]);
                     break;
 
                 // If the type is a hidden form
@@ -2435,6 +2435,10 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
         // The file is an image, we must resize it for a preview image.
         resize_image($path_to_image, $path_to_preview, '150', $CONFIG['thumb_method'], 'wd');
 
+        if ($CONFIG['read_iptc_data']) {
+           $iptc = get_IPTC($path_to_image);
+        }
+        
     } else {
 
         // The file is not an image, so we will use the non-image thumbs
@@ -2503,9 +2507,9 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
 
     $form_array = array(
     array($lang_upload_php['album'], 'album', 2),
-    array($lang_upload_php['pic_title'], 'title', 0, 255, 1),
-    array($captionLabel, 'caption', 3, $CONFIG['max_img_desc_length']),
-    array($lang_upload_php['keywords'], 'keywords', 0, 255, 1),
+    array($lang_upload_php['pic_title'], 'title', 0, 255, 1, @$iptc['Title']),
+    array($captionLabel, 'caption', 3, $CONFIG['max_img_desc_length'], @$iptc['Caption']),
+    array($lang_upload_php['keywords'], 'keywords', 0, 255, 1,@implode(' ',$iptc['Keywords'])),
     array('control', 'phase_2', 4),
     array('unique_ID', $_POST['unique_ID'], 4),
     );
