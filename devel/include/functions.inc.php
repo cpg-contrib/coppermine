@@ -460,7 +460,12 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 // Set picture caption
                 if ($set_caption) foreach ($rowset as $key => $row){
 
-                        $caption = ($rowset[$key]['title']||$rowset[$key]['hits']) ? "<span class=\"thumb_title\">".$rowset[$key]['title'].(($rowset[$key]['title'])?"&nbsp;&ndash;&nbsp;":"").sprintf($lang_get_pic_data['n_views'], $rowset[$key]['hits'])."</span>" : '';
+                        if ($rowset[$key]['title']||$rowset[$key]['hits']) {
+                          $caption = "<span class=\"thumb_title\">".$rowset[$key]['title'];
+                          if ($rowset[$key]['title'] && $CONFIG['views_in_thumbview']) {$caption.= '-';}
+                          if ($CONFIG['views_in_thumbview']) { $caption.= sprintf($lang_get_pic_data['n_views'], $rowset[$key]['hits']);}
+                          $caption.= "</span>";
+                        }
 
                         if ($CONFIG['caption_in_thumbview']){
                            $caption .= $rowset[$key]['caption'] ? "<span class=\"thumb_caption\">".bb_decode(($rowset[$key]['caption']))."</span>" : '';

@@ -38,6 +38,8 @@ INSERT INTO CPG_config VALUES ('language_reset', '1');
 INSERT INTO CPG_config VALUES ('theme_reset', '1');
 INSERT INTO CPG_config VALUES ('offline', '0');
 
+INSERT INTO CPG_config VALUES ('views_in_thumbview', '1');
+
 
 # Modify structure for category thumb
 ALTER TABLE `CPG_categories` ADD `thumb` INT NOT NULL AFTER `parent` ;

@@ -387,6 +387,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Number of rows on thumbnail page', 'thumbrows', 0),
         array('Maximum number of tabs to display', 'max_tabs', 0),
         array('Display picture caption (in addition to title) below the thumbnail', 'caption_in_thumbview', 1),
+        array('Display number of views below the thumbnail', 'views_in_thumbview', 1),
         array('Display number of comments below the thumbnail', 'display_comment_count', 1),
         array('Display uploader name below the thumbnail', 'display_uploader', 1),
         array('Default sort order for pictures', 'default_sort_order', 3),

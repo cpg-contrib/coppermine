@@ -12,6 +12,7 @@ INSERT INTO CPG_config VALUES ('allow_private_albums', '1');
 INSERT INTO CPG_config VALUES ('allow_user_registration', '0');
 INSERT INTO CPG_config VALUES ('allow_duplicate_emails_addr', '0');
 INSERT INTO CPG_config VALUES ('caption_in_thumbview', '1');
+INSERT INTO CPG_config VALUES ('views_in_thumbview', '1');
 INSERT INTO CPG_config VALUES ('charset', 'language file');
 INSERT INTO CPG_config VALUES ('cookie_name', 'cpg11d');
 INSERT INTO CPG_config VALUES ('cookie_path', '/');
