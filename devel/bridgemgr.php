@@ -559,6 +559,21 @@ $default_bridge_data['punbb'] = array(
   'relative_path_of_forum_from_webroot_used' => '',
   'relative_path_to_config_file_default' => '../punbb/',
   'relative_path_to_config_file_used' => 'lookfor,config.php',
+  'create_redir_file_content' => '&lt;?php
+if (isset($_POST[\'redir\'])){
+        echo \'&lt;html&gt;
+                  &lt;body onload="document.redir.submit();"&gt;
+                      &lt;form name="redir" method="post" action="\'.$_POST[\'redir\'].\'"&gt;
+                      &lt;/form&gt;
+                  &lt;/body&gt;
+              &lt;/html&gt;\';
+} else {
+        header("Location: {COPPERMINE_URL}");
+}
+?&gt;
+  ',
+  'create_redir_file_location' => '{BBS_LOCATION}/cpg_redir.php',
+  'create_redir_file_action' => 'display,write',
 );
 
 $default_bridge_data['smf'] = array(
@@ -569,6 +584,9 @@ $default_bridge_data['smf'] = array(
   'relative_path_to_config_file_used' => 'lookfor,Settings.php',
   'use_post_based_groups_default' => '0',
   'use_post_based_groups_used' => 'radio,1,0',
+  'create_redir_file_content' => '&lt;?php\necho\'Hello World\';\n?&gt;\n',
+  'create_redir_file_location' => '{BBS_LOCATION}/cpg_redir.php',
+  'create_redir_file_action' => 'display,write',
 );
 
 $default_bridge_data['vbulletin23'] = array(
@@ -1125,6 +1143,12 @@ case "special_settings":
         } // foreach loop_array --- end
 
         if ($default_bridge_data[$BRIDGE['short_name']]['create_redir_file_content'] != '') { // create redirection file question --- start
+            // sub-step1: make up the content of the redir file
+            $default_bridge_data[$BRIDGE['short_name']]['create_redir_file_content'] = str_replace('{COPPERMINE_URL}', rtrim($CONFIG['ecards_more_pic_target'], '/').'/', $default_bridge_data[$BRIDGE['short_name']]['create_redir_file_content']);
+            // sub-step2: can we read the folder it's suppossed to go into?
+            // sub-step3: is the redir file already in place and if yes: does it match the content we have come up with?
+            // sub-step4: is the folder writable?
+            // if we can't write (for whatever reason), just output the contents for copy and paste
             // what do we need: write the file, display it only or do both?
             $redir_action = explode(',', $default_bridge_data[$BRIDGE['short_name']]['create_redir_file_action']);
             if (in_array('write',$redir_action)) { // the file should be created --- start
@@ -1151,6 +1175,8 @@ case "special_settings":
                 }
             } // the file should be created --- end
             // display the option
+            // temporarily removed this section, as it's still under construction
+            print '<!--';
             print '<tr>'.$new_line;
             print '    <td class="tableb" colspan="2">'.$new_line;
             print '        <input type="checkbox" name="create_redir_file" id="create_redir_file" class="checkbox" value="1" checked="checked" />'.$new_line;
@@ -1166,6 +1192,15 @@ case "special_settings":
             print '        </span>'.$new_line;
             print '    </td>'.$new_line;
             print '</tr>'.$new_line;
+            print '<tr>'.$new_line;
+            print '    <td class="tableb" colspan="3">'.$new_line;
+            print '        <textarea style="width:100%">';
+            print $default_bridge_data[$BRIDGE['short_name']]['create_redir_file_content'];
+            print '        </textarea>';
+            print '    </td>'.$new_line;
+            print '</tr>'.$new_line;
+            print '-->';
+            // temporarily removed this section, as it's still under construction --- end
         } // create redirection file question --- end
 
         if ($rows_displayed == 0) {
