@@ -55,10 +55,10 @@ function test_fs()
         $errors .= "<hr /><br />The '{$DFLT['upl_d']}' directory (located in the 'albums' directory on your server) should be writable in order to allow pictures upload. Use your FTP program to change its mode to 777.<br /><br />";
     }
     // edit must be writable to edit pictures
-    if (! is_dir("{$DFLT['alb_d']}/{$DFLT['edt_d']}")) {
-        $errors .= "<hr /><br />A subdirectory called '{$DFLT['edt_d']}' should normally exist in the 'albums' directory. The installer can't find this directory. Check that you have uploaded all Coppermine files to your server.<br /><br />";
-    } elseif (! is_writable("{$DFLT['alb_d']}/{$DFLT['edt_d']}")) {
-        $errors .= "<hr /><br />The '{$DFLT['edt_d']}' directory (located in the 'albums' directory on your server) should be writable in order to allow pictures upload. Use your FTP program to change its mode to 777.<br /><br />";
+    if (! is_dir("{$DFLT['alb_d']}/{$DFLT['edit_d']}")) {
+        $errors .= "<hr /><br />A subdirectory called '{$DFLT['edit_d']}' should normally exist in the 'albums' directory. The installer can't find this directory. Check that you have uploaded all Coppermine files to your server.<br /><br />";
+    } elseif (! is_writable("{$DFLT['alb_d']}/{$DFLT['edit_d']}")) {
+        $errors .= "<hr /><br />The '{$DFLT['edit_d']}' directory (located in the 'albums' directory on your server) should be writable in order to allow pictures upload. Use your FTP program to change its mode to 777.<br /><br />";
     }
 }
 // ----------------------------- TEST FUNCTIONS ---------------------------- //
