@@ -74,8 +74,6 @@ switch ($method) {
 
 		$real_path_to_primary_image = realpath($path_to_primary_image);
 
-		$escaped_path_to_primary_image = escapeshellarg($real_path_to_primary_image);
-
 		$output = array();
 
 		// Set IM path.
@@ -93,7 +91,7 @@ switch ($method) {
 		if (($degrees == 90) or ($degrees == 180) or ($degrees == 270)) {
 
 			//Form the command to rotate the image.
-			$cmd = "{$CONFIG['impath']}".$trailing_slash."mogrify -quality \"100\" -rotate \"$degrees\" $escaped_path_to_primary_image";
+			$cmd = "{$CONFIG['impath']}".$trailing_slash."mogrify -quality \"100\" -rotate \"$degrees\" \"$real_path_to_primary_image\"";
 
 		} 
 
