@@ -1,36 +1,49 @@
-<?php
+﻿<?php
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery v1.1 Beta 2                                     //
+// Coppermine Photo Gallery 1.2.0                                            //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Gregory DEMAR <gdemar@wanadoo.fr>               //
-//  http://www.chezgreg.net/coppermine/                                      //
+// Copyright (C) 2002,2003 Gregory DEMAR <gdemar@wanadoo.fr>                 //
+// http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Stoverud <henning@stoverud.com>         //
-//  http://www.stoverud.com/PHPhotoalbum/                                    //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
+// This program is free software; you can redistribute it and/or modify      //
+// it under the terms of the GNU General Public License as published by      //
+// the Free Software Foundation; either version 2 of the License, or         //
+// (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
+// to all devs: stop overwriting this file!
 
-$lang_charset = 'utf-8';
+// info about translators and translated language
+$lang_translation_info = array(
+'lang_name_english' => 'Chinese(GB2312)',  //the name of your language in English, e.g. 'Greek' or 'Spanish'
+'lang_name_native' => 'ÖÐÎÄ(¼òÌå)', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '¦¥¦Ë¦Ë¦Ç¦Í¦É¦Ê?' or 'Espanol'
+'lang_country_code' => 'cn', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es'
+'trans_name'=> 'hotsnow', //the name of the translator - can be a nickname
+'trans_email' => 'webmaster@qilu.tv', //translator's email address (optional)
+'trans_website' => 'http://bbs.qilu.tv/', //translator's website (optional)
+'trans_date' => '2003-10-16', //the date the translation was created / last modified
+);
+
+$lang_charset = 'GB2312';
 $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 
 // shortcuts for Byte, Kilo, Mega
 $lang_byte_units = array('Bytes', 'KB', 'MB');
 
 // Day of weeks and months
-$lang_day_of_week = array('星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六');
-$lang_month = array('一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月');
+$lang_day_of_week = array('ÖÜÈÕ', 'ÖÜÒ»', 'ÖÜ¶þ', 'ÖÜÈý', 'ÖÜËÄ', 'ÖÜÎå', 'ÖÜÁù');
+$lang_month = array('Ò»ÔÂ', '¶þÔÂ', 'ÈýÔÂ', 'ËÄÔÂ', 'ÎåÔÂ', 'ÁùÔÂ', 'ÆßÔÂ', '°ËÔÂ', '¾ÅÔÂ', 'Ê®ÔÂ', 'Ê®Ò»ÔÂ', 'Ê®¶þÔÂ');
 
 // Some common strings
-$lang_yes = '是';
-$lang_no  = '否';
-$lang_back = '返回';
-$lang_continue = '继续';
-$lang_info = '讯息';
-$lang_error = '错误';
+$lang_yes = 'ÊÇ';
+$lang_no  = '·ñ';
+$lang_back = '·µ»Ø';
+$lang_continue = '¼ÌÐø';
+$lang_info = 'ÐÅÏ¢';
+$lang_error = '´íÎó';
 
 // The various date formats
 // See http://www.php.net/manual/en/function.strftime.php to define the variable below
@@ -45,30 +58,34 @@ $comment_date_fmt =  '%B %d, %Y at %I:%M %p';
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
 
 $lang_meta_album_names = array(
-	'random' => '随机图片',
-	'lastup' => '最近加入图片',
-	'lastcom' => '最近的评论意见',
-	'topn' => '热门图片',
-	'toprated' => '热门投票',
-	'lasthits' => '最近观看',
-	'search' => '搜寻结果'
+	'random' => 'Ëæ»úÍ¼Æ¬',
+	'lastup' => '×îÐÂÌí¼Ó',
+	'lastalb'=> '×îÐÂ¸üÐÂÍ¼¼¯',
+	'lastcom' => '×îÐÂÆÀÂÛ',
+	'topn' => 'ÈÈÃÅÍ¼Æ¬',
+	'toprated' => 'ÈÈÃÅÍ¶Æ±',
+	'lasthits' => '×îÐÂä¯ÀÀ',
+	'search' => 'ËÑË÷½á¹û',
+	'favpics'=> 'ÎÒµÄÊÕ²Ø',
 );
 
 $lang_errors = array(
-	'access_denied' => '你没有使用本页的权限.',
-	'perm_denied' => '你没有权限执行此动作.',
-	'param_missing' => '程式呼叫不到需要的参数.',
-	'non_exist_ap' => '所选择的 相本/图片 不存在!',
-	'quota_exceeded' => '磁碟使用超过<br><br>您可以使用的空间有 [quota]K, 目前使用了 [space]K, 加入此图片可能超过您可以使用的空间大小.',
-	'gd_file_type_err' => '当使用 GD 图形程式库则可使用的图片型态为 JPEG 和 PNG.',
-	'invalid_image' => '您上传的图片已经中断或无法被 GD 程式库控制',
-	'resize_failed' => '无法建立缩图或产生适中的图档.',
-	'no_img_to_display' => '尚未有图片可以显示',
-	'non_exist_cat' => '所选择的类别并不存在',
-	'orphan_cat' => '这个子类别存于一个不存在的父类别, 请先至类别管理修正这个问题.',
-	'directory_ro' => '目录 \'%s\' 无法写入, 导致图片无法删除',
-	'non_exist_comment' => '所选择的意见并不存在.',
-	'pic_in_invalid_album' => '此图片存于不存在的图库夹 (%s)!?'
+	'access_denied' => 'ÄúÃ»ÓÐÈ¨ÏÞ·ÃÎÊ¸ÃÒ³.',
+	'perm_denied' => 'ÄúÃ»ÓÐÈ¨ÏÞÖ´ÐÐ¸Ã²Ù×÷.',
+	'param_missing' => '³ÌÐòµ÷ÓÃÈ±ÉÙ²ÎÊý.',
+	'non_exist_ap' => 'ËùÑ¡ÔñµÄÍ¼¼¯/Í¼Æ¬²»´æÔÚ!',
+	'quota_exceeded' => '¿Õ¼äÊ¹ÓÃÒÑ³¬¹ýÏÞ¶î<br><br>ÄúµÄ¿Õ¼äÏÞ¶îÎª [quota]K, Ä¿Ç°ÒÑÊ¹ÓÃ [space]K, ¼ÓÈë¸ÃÍ¼Æ¬¿ÉÄÜ»á³¬¹ýÄúµÄ¿Õ¼äÏÞ¶î.',
+	'gd_file_type_err' => 'µ±Ç°Ê¹ÓÃ GD Í¼ÐÎ¿â,¿ÉÓÃµÄÍ¼Æ¬¸ñÊ½Îª JPEG ºÍ PNG.',
+	'invalid_image' => 'ÄúÉÏ´«µÄÍ¼Æ¬ÒÑËð»µ»òÎÞ·¨±» GD Í¼ÐÎ¿â´¦Àí',
+	'resize_failed' => 'ÎÞ·¨Éú³ÉËõÍ¼»ò´óÐ¡ºÏÊÊµÄÍ¼Æ¬.',
+	'no_img_to_display' => 'Ä¿Ç°ÉÐÎÞÍ¼Æ¬',
+	'non_exist_cat' => 'ËùÑ¡ÔñµÄ·ÖÀà²»´æÔÚ',
+	'orphan_cat' => '¸Ã×ÓÀà±ðµÄ¸¸Àà±ð²»´æÔÚ,Çë½øÈëÀà±ð¹ÜÀíÐÞÕý.',
+	'directory_ro' => 'Ä¿Â¼ \'%s\' ²»¿ÉÐ´, Í¼Æ¬ÎÞ·¨É¾³ý',
+	'non_exist_comment' => 'ËùÑ¡ÔñµÄÆÀÂÛ²»´æÔÚ.',
+	'pic_in_invalid_album' => '¸ÃÍ¼Æ¬Î»ÓÚ²»´æÔÚµÄÍ¼¼¯ (%s)!?',
+	'banned' => 'ÄúÄ¿Ç°±»½ûÖ¹ä¯ÀÀ¸ÃÕ¾µã.',
+	'not_with_udb' => 'ÓÉÓÚÍ¼¼¯Ä¿Ç°ÓëÂÛÌ³³ÌÐò½áºÏ,Òò´Ë¸Ã¹¦ÄÜÎÞ·¨Ê¹ÓÃ.ÔÚÕâÖÖÉè¶¨Ä£Ê½ÏÂ²»Ö§³Ö¸Ã¹¦ÄÜ,»òÊÇ¸Ã¹¦ÄÜÓÉÂÛÌ³³ÌÐò´¦Àí.',
 );
 
 // ------------------------------------------------------------------------- //
@@ -76,88 +93,96 @@ $lang_errors = array(
 // ------------------------------------------------------------------------- //
 
 $lang_main_menu = array(
-	'alb_list_title' => '返回图库夹主页',
-	'alb_list_lnk' => '图库夹主页',
-	'my_gal_title' => '返回个人相簿',
-	'my_gal_lnk' => '个人相簿',
-	'my_prof_lnk' => '我的个人资料',
-	'adm_mode_title' => '执行管理模式',
-	'adm_mode_lnk' => '管理模式',
-	'usr_mode_title' => '执行使用者模式',
-	'usr_mode_lnk' => '使用者模式',
-	'upload_pic_title' => '上传图片至相簿',
-	'upload_pic_lnk' => '上传图片',
-	'register_title' => '建立帐号',
-	'register_lnk' => '注册',
-	'login_lnk' => '登入',
-	'logout_lnk' => '登出',
-	'lastup_lnk' => '最近上传',
-	'lastcom_lnk' => '最近的评论',
-	'topn_lnk' => '热门图片',
-	'toprated_lnk' => '热门投票',
-	'search_lnk' => '搜寻',
+	'alb_list_title' => '·µ»ØÍ¼¼¯ÁÐ±í',
+	'alb_list_lnk' => 'Í¼¼¯ÁÐ±í',
+	'my_gal_title' => '·µ»Ø¸öÈËÍ¼¼¯',
+	'my_gal_lnk' => '¸öÈËÍ¼¼¯',
+	'my_prof_lnk' => 'ÎÒµÄ¸öÈË×ÊÁÏ',
+	'adm_mode_title' => '½øÈë¹ÜÀíÄ£Ê½',
+	'adm_mode_lnk' => '¹ÜÀíÄ£Ê½',
+	'usr_mode_title' => '½øÈëÓÃ»§Ä£Ê½',
+	'usr_mode_lnk' => 'ÓÃ»§Ä£Ê½',
+	'upload_pic_title' => 'ÉÏ´«Í¼Æ¬ÖÁÍ¼¼¯',
+	'upload_pic_lnk' => 'ÉÏ´«Í¼Æ¬',
+	'register_title' => '×¢²áÕÊºÅ',
+	'register_lnk' => '×¢²á',
+	'login_lnk' => 'µÇÂ¼',
+	'logout_lnk' => 'ÍË³ö',
+	'lastup_lnk' => '×îÐÂÉÏ´«',
+	'lastcom_lnk' => '×îÐÂÆÀÂÛ',
+	'topn_lnk' => 'ÈÈÃÅÍ¼Æ¬',
+	'toprated_lnk' => 'ÈÈÃÅÍ¶Æ±',
+	'search_lnk' => 'ËÑË÷',
+	'fav_lnk' => 'ÎÒµÄÊÕ²Ø',
+
 );
 
 $lang_gallery_admin_menu = array(
-	'upl_app_lnk' => '核准上传',
-	'config_lnk' => '设置',
-	'albums_lnk' => '图库夹',
-	'categories_lnk' => '类别',
-	'users_lnk' => '使用者',
-	'groups_lnk' => '群组',
-	'comments_lnk' => '评论意见',
-	'searchnew_lnk' => '整批上传图片',
+	'upl_app_lnk' => 'ÉóºËÉÏ´«',
+	'config_lnk' => 'ÉèÖÃ',
+	'albums_lnk' => 'Í¼¼¯',
+	'categories_lnk' => 'Àà±ð',
+	'users_lnk' => 'ÓÃ»§',
+	'groups_lnk' => 'Èº×é',
+	'comments_lnk' => 'ÆÀÂÛ',
+	'searchnew_lnk' => 'ÅúÁ¿Ìí¼ÓÍ¼Æ¬',
+	'util_lnk' => 'µ÷ÕûÍ¼Æ¬´óÐ¡',
+	'ban_lnk' => 'ÆÁ±ÎÓÃ»§',
 );
 
 $lang_user_admin_menu = array(
-	'albmgr_lnk' => '建立 / 重整 图库夹',
-	'modifyalb_lnk' => '编辑我的相本',
-	'my_prof_lnk' => '个人资料',
+	'albmgr_lnk' => 'Éú³É/ÖØÕû Í¼¼¯',
+	'modifyalb_lnk' => '±à¼­ÎÒµÄÍ¼¼¯',
+	'my_prof_lnk' => 'ÎÒµÄ¸öÈË×ÊÁÏ',
 );
 
 $lang_cat_list = array(
-	'category' => '类别',
-	'albums' => '相本',
-	'pictures' => '图片',
+	'category' => 'Àà±ð',
+	'albums' => 'Í¼¼¯',
+	'pictures' => 'Í¼Æ¬',
 );
 
 $lang_album_list = array(
-	'album_on_page' => '%d 个相本于 %d 页'
+	'album_on_page' => '%d ¸öÍ¼¼¯ÓÚ %d Ò³'
 );
 
 $lang_thumb_view = array(
-	'date' => '日期',
-	'name' => '名称',
-	'sort_da' => '升次排序依日期',
-	'sort_dd' => '降次排序依日期',
-	'sort_na' => '升次排序依名称',
-	'sort_nd' => '降次排序依名称',
-	'pic_on_page' => '%d 张图片于 %d 页',
-	'user_on_page' => '%d 位使用者于 %d 页'
+	'date' => 'ÈÕÆÚ',
+	//Sort by filename and title
+	'name' => 'ÎÄ¼þÃû',
+	'title' => '±êÌâ',
+	'sort_da' => '°´ÈÕÆÚÉýÐòÅÅÐò',
+	'sort_dd' => '°´ÈÕÆÚ½µÐòÅÅÐò',
+	'sort_na' => '°´Ãû³ÆÉýÐòÅÅÐò',
+	'sort_nd' => '°´Ãû³Æ½µÐòÅÅÐò',
+	'sort_ta' => '°´±êÌâÉýÐòÅÅÐò',
+	'sort_td' => '°´±êÌâ½µÐòÅÅÐò',
+	'pic_on_page' => '%d ÕÅÍ¼Æ¬ÓÚ %d Ò³',
+	'user_on_page' => '%d Î»ÓÃ»§ÓÚ %d Ò³'
 );
 
 $lang_img_nav_bar = array(
-	'thumb_title' => '返回缩图页',
-	'pic_info_title' => '显示/隐藏 图片资讯',
-	'slideshow_title' => '连续播放',
-	'ecard_title' => '寄送 e-card',
-	'ecard_disabled' => 'e-cards 暂不可用',
-	'ecard_disabled_msg' => '您没有使用权',
-	'prev_title' => '观看前一张图片',
-	'next_title' => '观看下一张图片',
-	'pic_pos' => '图片 %s/%s',
+	'thumb_title' => '·µ»ØËõÍ¼Ò³Ãæ',
+	'pic_info_title' => 'ÏÔÊ¾/Òþ²Ø Í¼Æ¬ÐÅÏ¢',
+	'slideshow_title' => 'Á¬Ðø²¥·Å',
+	'ecard_title' => '·¢ËÍµç×ÓºØ¿¨',
+	'ecard_disabled' => 'µç×ÓºØ¿¨ÔÝ²»¿ÉÓÃ',
+	'ecard_disabled_msg' => 'ÄúÎÞÈ¨·¢ËÍµç×ÓºØ¿¨',
+	'prev_title' => 'Ç°Ò»ÕÅÍ¼Æ¬',
+	'next_title' => 'ºóÒ»ÕÅÍ¼Æ¬',
+	'pic_pos' => 'Í¼Æ¬ %s/%s',
 );
 
 $lang_rate_pic = array(
-	'rate_this_pic' => '投票 ',
-	'no_votes' => '(尚未有投票)',
-	'rating' => '(目前得分 : %s / 5 于 %s 个投票)',
-	'rubbish' => '不好',
-	'poor' => '差',
-	'fair' => '逊弊了',
-	'good' => '不错',
-	'excellent' => '极佳的',
-	'great' => '太棒了',
+	'rate_this_pic' => 'Í¶Æ± ',
+	'no_votes' => '(ÉÐÎÞÍ¶Æ±)',
+	'rating' => '(Ä¿Ç°µÃ·Ö : %s / 5 ÓÚ %s ¸öÍ¶Æ±)',
+	'rubbish' => '¼«²î',
+	'poor' => '½Ï²î',
+	'fair' => 'Ò»°ã',
+	'good' => 'ºÜºÃ',
+	'excellent' => '¼«¼Ñ',
+	'great' => 'Ì«°ôÁË',
 );
 
 // ------------------------------------------------------------------------- //
@@ -173,22 +198,22 @@ $lang_rate_pic = array(
 $lang_cpg_die = array(
 	INFORMATION => $lang_info,
 	ERROR => $lang_error,
-	CRITICAL_ERROR => '错误',
-	'file' => '档案: ',
-	'line' => '行数: ',
+	CRITICAL_ERROR => 'ÏµÍ³´íÎó',
+	'file' => 'ÎÄ¼þ: ',
+	'line' => 'ÐÐÊý: ',
 );
 
 $lang_display_thumbnails = array(
-	'filename' => '档名 : ',
-	'filesize' => '档案大小 : ',
-	'dimensions' => '维度 : ',
-	'date_added' => '新增日期 : '
+	'filename' => 'ÎÄ¼þÃû : ',
+	'filesize' => 'ÎÄ¼þ´óÐ¡ : ',
+	'dimensions' => '³ß´ç : ',
+	'date_added' => '¼ÓÈëÈÕÆÚ : '
 );
 
 $lang_get_pic_data = array(
-	'n_comments' => '%s 个意见',
-	'n_views' => '%s 次观看',
-	'n_votes' => '(%s 个投票)'
+	'n_comments' => '%s ¸öÆÀÂÛ',
+	'n_views' => '%s ´Îä¯ÀÀ',
+	'n_votes' => '(%s ¸öÍ¶Æ±)'
 );
 
 // ------------------------------------------------------------------------- //
@@ -208,27 +233,27 @@ $lang_get_pic_data = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
-	'Exclamation' => 'Exclamation',
-	'Question' => 'Question',
-	'Very Happy' => 'Very Happy',
-	'Smile' => 'Smile',
-	'Sad' => 'Sad',
-	'Surprised' => 'Surprised',
-	'Shocked' => 'Shocked',
-	'Confused' => 'Confused',
-	'Cool' => 'Cool',
-	'Laughing' => 'Laughing',
-	'Mad' => 'Mad',
-	'Razz' => 'Razz',
+	'Exclamation' => '¾ªÌ¾',
+	'Question' => 'ÒÉÎÊ',
+	'Very Happy' => '¸ßÐË',
+	'Smile' => 'Î¢Ð¦',
+	'Sad' => '±¯ÉË',
+	'Surprised' => '¾ªÑÈ',
+	'Shocked' => 'Õð¾ª',
+	'Confused' => 'ÒÉ»ó',
+	'Cool' => '¿á',
+	'Laughing' => '´óÐ¦',
+	'Mad' => '·è',
+	'Razz' => 'ÀäÐ¦',
 	'Embarassed' => 'Embarassed',
-	'Crying or Very sad' => 'Crying or Very sad',
-	'Evil or Very Mad' => 'Evil or Very Mad',
+	'Crying or Very sad' => '´ó¿Þ»ò·Ç³£ÉËÐÄ',
+	'Evil or Very Mad' => 'Ð°¶ñµÄ»ò·è¿ñµÄ',
 	'Twisted Evil' => 'Twisted Evil',
-	'Rolling Eyes' => 'Rolling Eyes',
-	'Wink' => 'Wink',
+	'Rolling Eyes' => '×ªÑÛÖé',
+	'Wink' => 'Õ£ÑÛ',
 	'Idea' => 'Idea',
-	'Arrow' => 'Arrow',
-	'Neutral' => 'Neutral',
+	'Arrow' => '¼ý',
+	'Neutral' => 'ÖÐÁ¢',
 	'Mr. Green' => 'Mr. Green',
 );
 
@@ -243,8 +268,8 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ADMIN_PHP')) $lang_admin_php = array(
-	0 => '正离开管理模式...',
-	1 => '正进入管理模式...',
+	0 => 'ÕýÀë¿ª¹ÜÀíÄ£Ê½...',
+	1 => 'Õý½øÈë¹ÜÀíÄ£Ê½...',
 );
 
 // ------------------------------------------------------------------------- //
@@ -252,20 +277,20 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
-	'alb_need_name' => '您需要给图库夹一个名称 !',
-	'confirm_modifs' => '确定要做这些修改吗 ?',
-	'no_change' => '您没有做任何改变 !',
-	'new_album' => '新图库夹',
-	'confirm_delete1' => '确定要删除此图库夹吗 ?',
-	'confirm_delete2' => '\n那么此图库夹内的所有图片及意见都会删除 !',
-	'select_first' => '请先选择一个图库夹',
-	'alb_mrg' => '图库夹管理',
-	'my_gallery' => '* 我的相本 *',
-	'no_category' => '* 没有类别 *',
-	'delete' => '删除',
-	'new' => '新增',
-	'apply_modifs' => '提报修改',
-	'select_category' => '选择类别',
+	'alb_need_name' => 'ÄúÐèÒª¸øÍ¼¼¯Ò»¸öÃû³Æ !',
+	'confirm_modifs' => 'ÄúÈ·¶¨Òª×öÕâÐ©ÐÞ¸ÄÂð ?',
+	'no_change' => 'ÄúÃ»ÓÐ×öÈÎºÎÐÞ¸Ä !',
+	'new_album' => 'ÐÂÍ¼¼¯',
+	'confirm_delete1' => 'ÄúÈ·¶¨ÒªÉ¾³ý´ËÍ¼¼¯Âð ?',
+	'confirm_delete2' => '\n´ËÍ¼¼¯ÄÚµÄËùÓÐÍ¼Æ¬¼°ÆÀÂÛ¶¼»á±»É¾³ý !',
+	'select_first' => 'ÇëÏÈÑ¡ÔñÒ»¸öÍ¼¼¯',
+	'alb_mrg' => 'Í¼¼¯¹ÜÀí',
+	'my_gallery' => '* ÎÒµÄÍ¼¼¯ *',
+	'no_category' => '* Ã»ÓÐÀà±ð *',
+	'delete' => 'É¾³ý',
+	'new' => 'Ìí¼Ó',
+	'apply_modifs' => 'Ìá½»ÐÞ¸Ä',
+	'select_category' => 'Ñ¡ÔñÀà±ð',
 );
 
 // ------------------------------------------------------------------------- //
@@ -273,18 +298,18 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
-	'miss_param' => '\'%s\'动作所需要的参数并未被提供使用!',
-	'unknown_cat' => '所选择的类别并不存在',
-	'usergal_cat_ro' => '使用者相本类别无法删除 !',
-	'manage_cat' => '类别管理',
-	'confirm_delete' => '确定要删除此类别吗',
-	'category' => '类别',
-	'operations' => '操作',
-	'move_into' => '搬移至',
-	'update_create' => '更新/建立 类别',
-	'parent_cat' => '父类别',
-	'cat_title' => '类别名称',
-	'cat_desc' => '类别描述'
+	'miss_param' => '\'%s\'²Ù×÷È±ÉÙ±ØÒªµÄ²ÎÊý !',
+	'unknown_cat' => 'ËùÑ¡ÔñµÄÀà±ð²»´æÔÚ',
+	'usergal_cat_ro' => 'ÓÃ»§Í¼¼¯Àà±ðÎÞ·¨É¾³ý !',
+	'manage_cat' => 'Àà±ð¹ÜÀí',
+	'confirm_delete' => 'ÄúÈ·¶¨ÒªÉ¾³ý´ËÀà±ðÂð ?',
+	'category' => 'Àà±ð',
+	'operations' => '²Ù×÷',
+	'move_into' => 'ÒÆ¶¯µ½',
+	'update_create' => '¸üÐÂ/´´½¨ Àà±ð',
+	'parent_cat' => '¸¸Àà±ð',
+	'cat_title' => 'Àà±ðÃû³Æ',
+	'cat_desc' => 'Àà±ðÃèÊö'
 );
 
 // ------------------------------------------------------------------------- //
@@ -292,99 +317,110 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('CONFIG_PHP')) $lang_config_php = array(
-	'title' => '组态设定',
-	'restore_cfg' => '回复预设组态',
-	'save_cfg' => '储存新设定',
-	'notes' => '注意',
-	'info' => '讯息',
-	'upd_success' => '组态设定已更新',
-	'restore_success' => '预设组态已回复',
-	'name_a' => '名称升次排序',
-	'name_d' => '名称降次排序',
-	'date_a' => '日期升次排序',
-	'date_d' => '日期降次排序'
+	'title' => 'ÏµÍ³ÉèÖÃ',
+	'restore_cfg' => '»Ö¸´Ô­Ê¼ÉèÖÃ',
+	'save_cfg' => '±£´æÐÂÉèÖÃ',
+	'notes' => '×¢Òâ',
+	'info' => 'ÐÅÏ¢',
+	'upd_success' => 'ÉèÖÃÒÑ¸üÐÂ',
+	'restore_success' => 'Ô­Ê¼ÉèÖÃÒÑ»Ö¸´',
+	'name_a' => 'Ãû³ÆµÝÔö',
+	'name_d' => 'Ãû³ÆµÝ¼õ',
+	'title_a' => '±êÌâµÝÔö',
+	'title_d' => '±êÌâµÝ¼õ',
+	'date_a' => 'ÈÕÆÚµÝÔö',
+	'date_d' => 'ÈÕÆÚµÝ¼õ'
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
-	'基本设定',
-	array('相簿名称', 'gallery_name', 0),
-	array('相簿描述', 'gallery_description', 0),
-	array('相簿管理人 email', 'gallery_admin_email', 0),
-	array('在寄送的e-cards内显示观看更多图片的连结网址', 'ecards_more_pic_target', 0),
-	array('语言', 'lang', 5),
-	array('布景', 'theme', 6),
+	'»ù±¾Éè¶¨',
+	array('Í¼¼¯Ãû³Æ', 'gallery_name', 0),
+	array('Í¼¼¯ÃèÊö', 'gallery_description', 0),
+	array('¹ÜÀíÔ±µç×ÓÓÊ¼þ', 'gallery_admin_email', 0),
+	array('ÔÚ·¢ËÍµÄµç×ÓºØ¿¨ÄÚÏÔÊ¾ \'ÐÀÉÍ¸ü¶àÍ¼Æ¬\' µÄÁ´½ÓÍøÖ·', 'ecards_more_pic_target', 0),
+	array('ÓïÑÔ', 'lang', 5),
+	//array('ÆôÓÃÓïÑÔÑ¡Ôñ', 'lang_select_enable', 8 ),
+	array('Ö÷Ìâ', 'theme', 6),
+	//array('ÆôÓÃÖ÷ÌâÑ¡Ôñ', 'theme_select_enable', 8),
 
-	'图库夹显示设定',
-	array('主要表格宽度 (pixels or %)', 'main_table_width', 0),
-	array('同一类别的子类别显示几个', 'subcat_level', 0),
-	array('图库夹显示个数', 'albums_per_page', 0),
-	array('图库夹栏数', 'album_list_cols', 0),
-	array('显示缩图的大小(pixels)', 'alb_list_thumb_size', 0),
-	array('主页的内容', 'main_page_layout', 0),
+	'Í¼¼¯ÁÐ±íÏÔÊ¾Éè¶¨',
+	array('Ö÷±í¸ñ¿í¶È (pixels or %)', 'main_table_width', 0),
+	array('Í¬Ò»Àà±ðµÄ×ÓÀà±ðÏÔÊ¾¸öÊý', 'subcat_level', 0),
+	array('Í¼¼¯ÏÔÊ¾¸öÊý', 'albums_per_page', 0),
+	array('Í¼¼¯ÁÐ±íµÄÁÐÊý', 'album_list_cols', 0),
+	array('ÏÔÊ¾ËõÍ¼µÄ´óÐ¡(pixels)', 'alb_list_thumb_size', 0),
+	array('Ö÷Ò³ÄÚÈÝ', 'main_page_layout', 0),
+	array('ÔÚÀà±ðÖÐÏÔÊ¾µÚÒ»²ãÍ¼¼¯µÄËõÍ¼','first_level',1), //new in cpg1.2.0
 
-	'缩图设定',
-	array('缩图页栏数', 'thumbcols', 0),
-	array('缩图页列数', 'thumbrows', 0),
-	array('新进图片纪录显示几个', 'max_tabs', 0),
-	array('显示图片标题 (附加的标题) 于缩图下方', 'caption_in_thumbview', 1),
-	array('显示意见数于缩图下方', 'display_comment_count', 1),
-	array('图片的排序次序', 'default_sort_order', 3),
-	array('要显示在 \'热门投票\' 内的图片最少需投几票', 'min_votes_for_rating', 0),
+	'ËõÍ¼Éè¶¨',
+	array('ËõÍ¼Ò³ÁÐÊý', 'thumbcols', 0),
+	array('ËõÍ¼Ò³ÐÐÊý', 'thumbrows', 0),
+	array('ÏÔÊ¾µÄ×î´ó tab Êý', 'max_tabs', 0),
+	array('ÏÔÊ¾Í¼Æ¬±êÌâ (¸½¼ÓµÄ±êÌâ) ÓÚËõÍ¼ÏÂ·½', 'caption_in_thumbview', 1),
+	array('ÏÔÊ¾ÆÀÂÛÊýÓÚËõÍ¼ÏÂ·½', 'display_comment_count', 1),
+	array('Í¼Æ¬µÄÄ¬ÈÏÅÅÁÐ´ÎÐò', 'default_sort_order', 3),
+	array('ÒªÏÔÊ¾ÔÚ \'ÈÈÃÅÍ¶Æ±\' ÄÚµÄÍ¼Æ¬×îÉÙÐèÍ¶¼¸Æ±', 'min_votes_for_rating', 0),
 
-	'观看图片 &amp; 评论意见设定',
-	array('图片显示的表格宽度 (pixels or %)', 'picture_table_width', 0),
-	array('图片资讯依预设值显示', 'display_pic_info', 1),
-	array('过滤不良字于评论意见', 'filter_bad_words', 1),
-	array('评论意见可以使用笑脸图示', 'enable_smilies', 1),
-	array('图片描述内容的最大长度', 'max_img_desc_length', 0),
-	array('描述内容的最大字元数', 'max_com_wlength', 0),
-	array('每行意见文字的最大数', 'max_com_lines', 0),
-	array('评论意见内容的最大长度', 'max_com_size', 0),
+	'Í¼Æ¬ÏÔÊ¾ &amp; ÆÀÂÛÉè¶¨',
+	array('Í¼Æ¬ÏÔÊ¾µÄ±í¸ñ¿í¶È (pixels or %)', 'picture_table_width', 0),
+	array('Ä¬ÈÏÏÔÊ¾Í¼Æ¬ÐÅÏ¢', 'display_pic_info', 1),
+	array('¹ýÂËÆÀÂÛÖÐµÄ²»Á¼×Ö·û', 'filter_bad_words', 1),
+	array('ÆÀÂÛÖÐ¿ÉÒÔÊ¹ÓÃÐ¦Á³Í¼Ê¾', 'enable_smilies', 1),
+	array('Í¼Æ¬ÃèÊöÄÚÈÝµÄ×î´ó³¤¶È', 'max_img_desc_length', 0),
+	array('Ã¿¸öµ¥´ÊµÄ×î´ó×Ö·ûÊý', 'max_com_wlength', 0),
+	array('ÆÀÂÛÖÐÃ¿ÐÐÔÊÐíµÄ×î´ó×Ö·ûÊý', 'max_com_lines', 0),
+	array('ÆÀÂÛÄÚÈÝµÄ×î´ó³¤¶È', 'max_com_size', 0),
+	array('ÏÔÊ¾Í¼Æ¬Ô¤ÀÀÁÐ', 'display_film_strip', 1),
+	array('Í¼Æ¬Ô¤ÀÀÁÐµÄÍ¼Æ¬Êý', 'max_film_strip_items', 0),
 
-	'图片及缩图设定',
-	array('JPEG 格式品质', 'jpeg_qual', 0),
-	array('缩图的最大宽度及高度 <b>*</b>', 'thumb_width', 0),
-	array('建立适中大小图片','make_intermediate',1),
-	array('适中大小图片的宽度或高度 <b>*</b>', 'picture_width', 0),
-	array('上传图档的最大限制 (KB)', 'max_upl_size', 0),
-	array('上传图片的宽度或高度最大限制 (pixels)', 'max_upl_width_height', 0),
+	'Í¼Æ¬¼°ËõÍ¼Éè¶¨',
+	array('JPEG ¸ñÊ½Æ·ÖÊ', 'jpeg_qual', 0),
+	array('ËõÍ¼µÄ×î´ó¿í¶È¼°¸ß¶È <b>*</b>', 'thumb_width', 0),
+	array('Ê¹ÓÃ³ß´ç£¨¿í¡¢¸ß»òËõÍ¼×î´ó³ß´ç£©<b>*</b>', 'thumb_use', 7),
+	array('Éú³ÉÊÊÖÐ´óÐ¡µÄÍ¼Æ¬','make_intermediate',1),
+	array('ÊÊÖÐ´óÐ¡Í¼Æ¬µÄ¿í¶È»ò¸ß¶È <b>*</b>', 'picture_width', 0),
+	array('ÉÏ´«Í¼Æ¬µÄ×î´óÏÞÖÆ (KB)', 'max_upl_size', 0),
+	array('ÉÏ´«Í¼Æ¬µÄ¿í¶È»ò¸ß¶È×î´óÏÞÖÆ (pixels)', 'max_upl_width_height', 0),
 
-	'使用者设定',
-	array('允许新使用者注册', 'allow_user_registration', 1),
-	array('新注册者需要 email 验证', 'reg_requires_valid_email', 1),
-	array('允许不同使用者使用同一个 email', 'allow_duplicate_emails_addr', 1),
-	array('使用者可以有私人的相簿', 'allow_private_albums', 1),
+	'ÓÃ»§Éè¶¨',
+	array('ÔÊÐíÐÂÓÃ»§×¢²á', 'allow_user_registration', 1),
+	array('ÓÃ»§×¢²áÐèÒª Email ÑéÖ¤', 'reg_requires_valid_email', 1),
+	array('ÔÊÐí²»Í¬ÓÃ»§Ê¹ÓÃÍ¬Ò»¸ö Email', 'allow_duplicate_emails_addr', 1),
+	array('ÔÊÐíÓÃ»§´´½¨Ë½ÈËÍ¼¼¯', 'allow_private_albums', 1),
 
-	'访客使用图片描述的栏位 (如果不使用请留下空白)',
-	array('图片描述1', 'user_field1_name', 0),
-	array('图片描述2', 'user_field2_name', 0),
-	array('图片描述3', 'user_field3_name', 0),
-	array('图片描述4', 'user_field4_name', 0),
+	'×Ô¶¨ÒåµÄÍ¼Æ¬ÃèÊö (Èç¹û²»ÓÃÇëÁô¿Õ)',
+	array('Í¼Æ¬ÃèÊö1', 'user_field1_name', 0),
+	array('Í¼Æ¬ÃèÊö2', 'user_field2_name', 0),
+	array('Í¼Æ¬ÃèÊö3', 'user_field3_name', 0),
+	array('Í¼Æ¬ÃèÊö4', 'user_field4_name', 0),
 
-	'图片和缩图的进阶设定',
-	array('档案名称排斥的字元', 'forbiden_fname_char',0),
-	array('上传图片可接受的副档名', 'allowed_file_extensions',0),
-	array('建立缩图的方法','thumb_method',2),
-	array('ImageMagick \'convert\' 程式的路径 (例如 /usr/bin/X11/)', 'impath', 0),
-	array('允许图片型态 (只对 ImageMagick 有效)', 'allowed_img_types',0),
-	array('ImageMagick 的命令列选项', 'im_options', 0),
-	array('可读EXIF 资料于 JPEG 档案', 'read_exif_data', 1),
-	array('图库夹目录 <b>*</b>', 'fullpath', 0),
-	array('使用者图片目录 <b>*</b>', 'userpics', 0),
-	array('产生适中图档的前置字元 <b>*</b>', 'normal_pfx', 0),
-	array('产生缩图档的前置字元 <b>*</b>', 'thumb_pfx', 0),
-	array('放置图档目录的预设CHMOD', 'default_dir_mode', 0),
-	array('上传图片的预设CHMOD', 'default_file_mode', 0),
+	'Í¼Æ¬ºÍËõÍ¼µÄ¸ß¼¶Éè¶¨',
+	array('½«¸öÈËÍ¼¼¯Í¼±êÏÔÊ¾¸øÎ´µÇÂ¼µÄÓÃ»§','show_private',1),
+	array('ÎÄ¼þÃû½ûÓÃµÄ×Ö·û', 'forbiden_fname_char',0),
+	array('ÉÏ´«Í¼Æ¬ÔÊÐíµÄÀ©Õ¹Ãû', 'allowed_file_extensions',0),
+	array('Éú³ÉËõÍ¼µÄ·½·¨','thumb_method',2),
+	array('ImageMagick \'convert\' ³ÌÐòµÄÂ·¾¶ (ÀýÈç /usr/bin/X11/)', 'impath', 0),
+	array('ÔÊÐíÍ¼Æ¬µÄÀàÐÍ (½ö¶Ô ImageMagick ÓÐÐ§)', 'allowed_img_types',0),
+	array('ImageMagick µÄÃüÁîÐÐÑ¡Ïî', 'im_options', 0),
+	array('¶ÁÈ¡ JPEG Í¼Æ¬µÄ EXIF ÐÅÏ¢', 'read_exif_data', 1),
+	array('Í¼¼¯Ä¿Â¼ <b>*</b>', 'fullpath', 0),
+	array('ÓÃ»§Í¼Æ¬Ä¿Â¼ <b>*</b>', 'userpics', 0),
+	array('Éú³ÉÊÊÖÐÍ¼Æ¬µÄÇ°ÖÃ×Ö·û <b>*</b>', 'normal_pfx', 0),
+	array('Éú³ÉËõÍ¼µÄÇ°ÖÃ×Ö·û <b>*</b>', 'thumb_pfx', 0),
+	array('Ä¿Â¼µÄÈ±Ê¡ CHMOD', 'default_dir_mode', 0),
+	array('Í¼Æ¬ÎÄ¼þµÄÈ±Ê¡ CHMOD', 'default_file_mode', 0),
+	array('×î´óµ¯³ö´°¿Ú½ûÓÃÊó±êÓÒ¼ü (JavaScript - ½öÌá¹©»ù±¾±£»¤)', 'disable_popup_rightclick', 1),
+	array('ËùÓÐ´°¿Ú½ûÓÃÊó±êÓÒ¼ü (JavaScript - ½öÌá¹©»ù±¾±£»¤)', 'disable_gallery_rightclick', 1),
 
-	'Cookies &amp; Charset 设定',
-	array('本程式所使用的 cookie 名称', 'cookie_name', 0),
-	array('本程式所使用的 cookie 路径', 'cookie_path', 0),
-	array('编码设定', 'charset', 4),
+	'Cookies &amp; ×Ö·û¼¯ Éè¶¨',
+	array('±¾³ÌÐòËùÊ¹ÓÃµÄ cookie Ãû³Æ', 'cookie_name', 0),
+	array('±¾³ÌÐòËùÊ¹ÓÃµÄ cookie Â·¾¶', 'cookie_path', 0),
+	array('×Ö·û¼¯±àÂë', 'charset', 4),
 
-	'Miscellaneous settings',
-	array('启动除错模式', 'debug_mode', 1),
+	'ÆäËûÉèÖÃ',
+	array('ÆôÓÃµ÷ÊÔÄ£Ê½', 'debug_mode', 1),
 
-	'<br><div align="center">(*) 栏位内标示有 * 符号表示必需视需要修改，也就是说一定要填写</div><br>'
+	'<br><div align="center">(*) Èç¹ûÍ¼¼¯ÖÐÒÑÓÐÍ¼Æ¬,Ôò±êÓÐ * ºÅµÄÏî²»ÔÊÐíÐÞ¸Ä</div><br>'
 );
 
 // ------------------------------------------------------------------------- //
@@ -392,30 +428,30 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
-	'empty_name_or_com' => '请输入大名和评论意见',
-	'com_added' => '您提供的评论意见已经加入',
-	'alb_need_title' => '您必需为图库夹提供一个标题 !',
-	'no_udp_needed' => '没有更新的必要.',
-	'alb_updated' => '图库夹已经更新',
-	'unknown_album' => '所选择的图库夹并不存在或您没有权限上传图片到此图库夹',
-	'no_pic_uploaded' => '没有图片被上传 !<br><br>如果您确定有选择图片上传, 请检查伺服器是或允许上传档案...',
-	'err_mkdir' => '无法建立目录 %s !',
-	'dest_dir_ro' => '目的目录 %s 无法写入 !',
-	'err_move' => '无法搬移 %s 到 %s !',
-	'err_fsize_too_large' => '您上传的图片太大 (不能超过 %s x %s) !',
-	'err_imgsize_too_large' => '您上传的图档太大 (不能超过 %s KB) !',
-	'err_invalid_img' => '上传的档案并不是正确的图片格式 !',
-	'allowed_img_types' => '您只可以上传 %s 张图片.',
-	'err_insert_pic' => '图片 \'%s\' 无法加入此图库夹 ',
-	'upload_success' => '图片上传完成<br><br>当管理者核准后您就可以看到图片了.',
-	'info' => '讯息',
-	'com_added' => '评论意见已加入',
-	'alb_updated' => '图库夹已更新',
-	'err_comment_empty' => '评论意见是空的 !',
-	'err_invalid_fext' => '只有下列的副档名才可以用 : <br><br>%s.',
-	'no_flood' => '抱歉，您已经是最后一个为此图片提供意见<br><br>您可以修改您张贴过的意见',
-	'redirect_msg' => '您已重整.<br><br><br>按 \'继续\' 如果页面没有自动刷新',
-	'upl_success' => '您的图片已加入完成',
+	'empty_name_or_com' => 'ÇëÊäÈëÄúµÄÃû×ÖºÍÆÀÂÛ',
+	'com_added' => 'ÄúµÄÆÀÂÛÒÑ¼ÓÈë',
+	'alb_need_title' => 'Äú±ØÐëÎªÍ¼¼¯Ìá¹©Ò»¸ö±êÌâ !',
+	'no_udp_needed' => 'Ã»ÓÐ±ØÒª¸üÐÂ.',
+	'alb_updated' => 'Í¼¼¯ÒÑ¸üÐÂ',
+	'unknown_album' => 'ËùÑ¡ÔñµÄÍ¼¼¯²»´æÔÚ»òÄúÃ»ÓÐÈ¨ÏÞÉÏ´«Í¼Æ¬µ½´ËÍ¼¼¯',
+	'no_pic_uploaded' => 'Í¼Æ¬Ã»ÓÐ±»ÉÏ´« !<br><br>Èç¹ûÄúÈ·ÊµÑ¡ÔñÁËÉÏ´«Í¼Æ¬, Çë¼ì²é·þÎñÆ÷ÊÇ»òÔÊÐíÉÏ´«ÎÄ¼þ...',
+	'err_mkdir' => 'ÎÞ·¨´´½¨Ä¿Â¼ %s !',
+	'dest_dir_ro' => 'Ä¿±êÄ¿Â¼ %s ÎÞ·¨Ð´Èë !',
+	'err_move' => 'ÎÞ·¨ÒÆ¶¯ %s µ½ %s !',
+	'err_fsize_too_large' => 'ÄúÉÏ´«µÄÍ¼Æ¬Ì«´ó (²»ÄÜ³¬¹ý %s x %s) !',
+	'err_imgsize_too_large' => 'ÄúÉÏ´«µÄÎÄ¼þÌ«´ó (²»ÄÜ³¬¹ý %s KB) !',
+	'err_invalid_img' => 'ÉÏ´«µÄÎÄ¼þ²»ÊÇÓÐÐ§µÄÍ¼Æ¬¸ñÊ½ !',
+	'allowed_img_types' => 'Äú½ö¿ÉÒÔÉÏ´« %s ÕÅÍ¼Æ¬.',
+	'err_insert_pic' => 'Í¼Æ¬ \'%s\' ÎÞ·¨¼ÓÈë´ËÍ¼¼¯ ',
+	'upload_success' => 'Í¼Æ¬ÉÏ´«Íê³É<br><br>¹ÜÀíÔ±ÉóºËºó²Å¿ÉÒÔÏÔÊ¾.',
+	'info' => 'ÐÅÏ¢',
+	'com_added' => 'ÆÀÂÛÒÑ¼ÓÈë',
+	'alb_updated' => 'Í¼¼¯ÒÑ¸üÐÂ',
+	'err_comment_empty' => 'ÆÀÂÛÊÇ¿ÕµÄ !',
+	'err_invalid_fext' => 'Ö»ÔÊÐí¾ßÓÐÏÂÁÐÀ©Õ¹ÃûµÄÎÄ¼þ : <br><br>%s.',
+	'no_flood' => '±§Ç¸,¸ÃÍ¼Æ¬µÄµ±Ç°×îºóÒ»¸öÆÀÂÛÊÇÄú·¢±íµÄ<br><br>Äú¿ÉÒÔÐÞ¸Ä·¢±í¹ýµÄÆÀÂÛ',
+	'redirect_msg' => 'ÕýÔÚ×ªÏò.<br><br><br>Èç¹ûÒ³ÃæÃ»ÓÐ×Ô¶¯Ë¢ÐÂ,Çë°´ \'¼ÌÐø\'',
+	'upl_success' => 'ÄúµÄÍ¼Æ¬ÒÑ³É¹¦¼ÓÈë',
 );
 
 // ------------------------------------------------------------------------- //
@@ -423,24 +459,24 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DELETE_PHP')) $lang_delete_php = array(
-	'caption' => '标题',
-	'fs_pic' => '实际大小图片',
-	'del_success' => '完成删除',
-	'ns_pic' => '标准大小图片',
-	'err_del' => '无法删除',
-	'thumb_pic' => '缩图',
-	'comment' => '评论意见',
-	'im_in_alb' => '图片于图库夹',
-	'alb_del_success' => '图库夹 \'%s\' 已删除',
-	'alb_mgr' => '图库夹管理',
-	'err_invalid_data' => '接收到不正确的资料于 \'%s\'',
-	'create_alb' => '建立图库夹 \'%s\'',
-	'update_alb' => '更新图库夹 \'%s\' 标题为 \'%s\' 索引值为 \'%s\'',
-	'del_pic' => '删除图片',
-	'del_alb' => '删除图库夹',
-	'del_user' => '删除使用者',
-	'err_unknown_user' => '所选择的使用者并不存在 !',
-	'comment_deleted' => '评论意见已经删除',
+	'caption' => '±êÌâ',
+	'fs_pic' => 'Êµ¼Ê´óÐ¡Í¼Æ¬',
+	'del_success' => '³É¹¦É¾³ý',
+	'ns_pic' => '±ê×¼´óÐ¡Í¼Æ¬',
+	'err_del' => 'ÎÞ·¨É¾³ý',
+	'thumb_pic' => 'ËõÍ¼',
+	'comment' => 'ÆÀÂÛ',
+	'im_in_alb' => 'Í¼Æ¬ÓÚÍ¼¼¯',
+	'alb_del_success' => 'Í¼¼¯ \'%s\' ÒÑÉ¾³ý',
+	'alb_mgr' => 'Í¼¼¯¹ÜÀí',
+	'err_invalid_data' => '½ÓÊÕµ½²»ÕýÈ·µÄ×ÊÁÏÓÚ \'%s\'',
+	'create_alb' => '´´½¨Í¼¼¯ \'%s\'',
+	'update_alb' => '¸üÐÂÍ¼¼¯ \'%s\' ±êÌâÎª \'%s\' Ë÷ÒýÖµÎª \'%s\'',
+	'del_pic' => 'É¾³ýÍ¼Æ¬',
+	'del_alb' => 'É¾³ýÍ¼¼¯',
+	'del_user' => 'É¾³ýÓÃ»§',
+	'err_unknown_user' => 'ËùÑ¡ÔñµÄÓÃ»§²»´æÔÚ !',
+	'comment_deleted' => 'ÆÀÂÛÒÑÉ¾³ý',
 );
 
 // ------------------------------------------------------------------------- //
@@ -456,38 +492,47 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 if (defined('DISPLAYIMAGE_PHP')){
 
 $lang_display_image_php = array(
-	'confirm_del' => '确定要删除此片吗 ? \\n连同意见也会被删除.',
-	'del_pic' => '删除此图片',
-	'size' => '%s x %s pixels',
-	'views' => '%s 次',
-	'slideshow' => '连续播放',
-	'stop_slideshow' => '停止连续播放',
-	'view_fs' => '按一下观看整张图片',
+	'confirm_del' => 'È·¶¨ÒªÉ¾³ý´ËÍ¼Æ¬Âð ? \\nÁ¬Í¬ÆÀÂÛÒ²»á±»Ò»ÆðÉ¾³ý.',
+	'del_pic' => 'É¾³ý´ËÍ¼Æ¬',
+	'size' => '%s x %s ÏñËØ',
+	'views' => '%s ´Î',
+	'slideshow' => 'Á¬Ðø²¥·Å',
+	'stop_slideshow' => 'Í£Ö¹Á¬Ðø²¥·Å',
+	'view_fs' => 'µã»÷¹Û¿´ÕûÕÅÍ¼Æ¬',
 );
 
 $lang_picinfo = array(
-	'title' =>'图片信息',
-	'Filename' => '档案名称',
-	'Album name' => '图库夹名称',
-	'Rating' => '评分 (%s 次投票)',
-	'Keywords' => '关键字',
-	'File Size' => '档案大小',
-	'Dimensions' => '维度',
-	'Displayed' => '显示',
-	'Camera' => '图片',
-	'Date taken' => '取得日期',
-	'Aperture' => '内容',
-	'Exposure time' => '时间',
-	'Focal length' => '大小',
-	'Comment' => '意见'
+	'title' =>'Í¼Æ¬ÐÅÏ¢',
+	'Filename' => 'ÎÄ¼þÃû',
+	'Album name' => 'Í¼¼¯Ãû³Æ',
+	'Rating' => 'ÆÀ·Ö (%s ´ÎÍ¶Æ±)',
+	'Keywords' => '¹Ø¼ü×Ö',
+	'File Size' => 'ÎÄ¼þ´óÐ¡',
+	'Dimensions' => '³ß´ç',
+	'Displayed' => 'ÏÔÊ¾',
+	'Camera' => 'Ïà»úÐÍºÅ',
+	'Date taken' => 'ÅÄÉãÊ±¼ä',
+	'Aperture' => '¹âÈ¦',
+	'Exposure time' => 'ÆØ¹âÊ±¼ä',
+	'Focal length' => '½¹¾à',
+	'Comment' => '×¢ÊÍ',
+	'addFav'=>'Ìí¼Óµ½ÎÒµÄÊÕ²Ø',
+	'addFavPhrase'=>'ÎÒµÄÊÕ²Ø',
+	'remFav'=>'´ÓÎÒµÄÊÕ²ØÉ¾³ý',
 );
 
 $lang_display_comments = array(
 	'OK' => 'OK',
-	'edit_title' => '编辑此评论意见',
-	'confirm_delete' => '确定要删除此意见吗 ?',
-	'add_your_comment' => '提供你的意见',
-	'your_name' => '您的大名',
+	'edit_title' => '±à¼­ÆÀÂÛ',
+	'confirm_delete' => 'È·¶¨É¾³ý´ËÆÀÂÛ ?',
+	'add_your_comment' => '·¢±íÆÀÂÛ',
+	'name'=>'êÇ³Æ',
+	'comment'=>'ÆÀÂÛ',
+	'your_name' => 'ÄúµÄÃû×Ö',
+);
+
+$lang_fullsize_popup = array(
+	'click_to_close' => 'Çëµã»÷Í¼Æ¬¹Ø±Õ´°¿Ú',
 );
 
 }
@@ -497,21 +542,21 @@ $lang_display_comments = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array(
-	'title' => '寄送 e-card',
-	'invalid_email' => '<b>警告</b> : 不正确的 email !',
-	'ecard_title' => '一张 e-card 由 %s 寄来给你',
-	'view_ecard' => '如果 e-card 无法正确显示, 请按这个连结',
-	'view_more_pics' => '按这里看更多图片 !',
-	'send_success' => '您的卡片已经送出',
-	'send_failed' => '抱歉,本伺服器无法为你寄送 e-card...',
-	'from' => '从',
-	'your_name' => '你的大名',
-	'your_email' => '你的 email',
-	'to' => '到',
-	'rcpt_name' => '收件者姓名',
-	'rcpt_email' => '收件者 email',
-	'greetings' => '祝福语',
-	'message' => '讯息内容',
+	'title' => '·¢ËÍµç×ÓºØ¿¨',
+	'invalid_email' => '<b>¾¯¸æ</b> : ÎÞÐ§µÄ Email µØÖ·!',
+	'ecard_title' => 'Çë²éÊÕ %s ¸øÄú¼ÄÀ´µÄµç×ÓºØ¿¨',
+	'view_ecard' => 'Èç¹ûµç×ÓºØ¿¨ÎÞ·¨ÕýÈ·ÏÔÊ¾, Çëµã»÷Õâ¸öÁ´½Ó',
+	'view_more_pics' => 'µã»÷ÕâÀïÐÀÉÍ¸ü¶àÍ¼Æ¬ !',
+	'send_success' => 'ÄúµÄµç×ÓºØ¿¨ÒÑ·¢ËÍ',
+	'send_failed' => '±§Ç¸,µ±Ç°ÎÞ·¨ÎªÄú·¢ËÍµç×ÓºØ¿¨...',
+	'from' => '·¢ËÍÕß',
+	'your_name' => 'ÄúµÄÃû×Ö',
+	'your_email' => 'ÄúµÄ Email',
+	'to' => '½ÓÊÕÕß',
+	'rcpt_name' => 'ÊÕ¼þÈËÐÕÃû',
+	'rcpt_email' => 'ÊÕ¼þÈË Email',
+	'greetings' => '×£¸£Óï',
+	'message' => 'ÐÅÏ¢ÄÚÈÝ',
 );
 
 // ------------------------------------------------------------------------- //
@@ -519,25 +564,25 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
 // ------------------------------------------------------------------------- //
 
 if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
-	'pic_info' => '图片&nbsp;资讯',
-	'album' => '图库夹',
-	'title' => '标题',
-	'desc' => '描述',
-	'keywords' => '关键字',
-	'pic_info_str' => '%sx%s - %sKB - %s 次观看 - %s 次投票',
-	'approve' => '核准图片',
-	'postpone_app' => 'Postpone approval',
-	'del_pic' => '删除图片',
-	'reset_view_count' => '重设观看数计数器',
-	'reset_votes' => '重设投票',
-	'del_comm' => '删除评论意见',
-	'upl_approval' => '核准上传',
-	'edit_pics' => '编辑图片',
-	'see_next' => '观看下一张图片',
-	'see_prev' => '观看上一张图片',
-	'n_pic' => '%s 张图片',
-	'n_of_pic_to_disp' => '图片显示数量',
-	'apply' => '提报修改'
+	'pic_info' => 'Í¼Æ¬&nbsp;ÐÅÏ¢',
+	'album' => 'Í¼¼¯',
+	'title' => '±êÌâ',
+	'desc' => 'ÃèÊö',
+	'keywords' => '¹Ø¼ü×Ö',
+	'pic_info_str' => '%sx%s - %sKB - %s ´Îµã»÷ - %s ´ÎÍ¶Æ±',
+	'approve' => 'ÉóºËÍ¼Æ¬',
+	'postpone_app' => 'ÔÝ²»Åú×¼',
+	'del_pic' => 'É¾³ýÍ¼Æ¬',
+	'reset_view_count' => 'ÖØÖÃµã»÷´ÎÊý',
+	'reset_votes' => 'ÖØÖÃÍ¶Æ±',
+	'del_comm' => 'É¾³ýÆÀÂÛ',
+	'upl_approval' => 'Åú×¼ÉÏ´«',
+	'edit_pics' => '±à¼­Í¼Æ¬',
+	'see_next' => 'ÏÂÒ»ÕÅÍ¼Æ¬',
+	'see_prev' => 'ÉÏÒ»ÕÅÍ¼Æ¬',
+	'n_pic' => '%s ÕÅÍ¼Æ¬',
+	'n_of_pic_to_disp' => 'Í¼Æ¬ÏÔÊ¾ÊýÁ¿',
+	'apply' => 'Ìá½»ÐÞ¸Ä'
 );
 
 // ------------------------------------------------------------------------- //
@@ -545,23 +590,23 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
-	'group_name' => '群组名称',
-	'disk_quota' => '使碟容量',
-	'can_rate' => '可以为图片评分',
-	'can_send_ecards' => '可以寄送 ecards',
-	'can_post_com' => '可以张贴评论意见',
-	'can_upload' => '可以上传图片',
-	'can_have_gallery' => '可以使用个人化相簿',
-	'apply' => '提报修改',
-	'create_new_group' => '建立新群组',
-	'del_groups' => '删除所选择的群组',
-	'confirm_del' => '警告, 当删除了一个群组, 属于该群组的使用者将被转移至 \'Registered\' 群组中 !也就是说，他们将失去部份权限\n\n确定要删除吗 ?',
-	'title' => '管理使用者群组',
-	'approval_1' => '公用图库夹上传核准 (1)',
-	'approval_2' => '私人图库夹上传核准 (2)',
-	'note1' => '<b>(1)</b> 上传图片至公用的相簿需管理者核准',
-	'note2' => '<b>(2)</b> 上传图片至自己的相簿需管理者核准',
-	'notes' => '注意'
+	'group_name' => 'Èº×éÃû³Æ',
+	'disk_quota' => '´ÅÅÌÏÞ¶î',
+	'can_rate' => 'ÔÊÐíÎªÍ¼Æ¬ÆÀ·Ö',
+	'can_send_ecards' => 'ÔÊÐí·¢ËÍµç×ÓºØ¿¨',
+	'can_post_com' => 'ÔÊÐí·¢±íÆÀÂÛ',
+	'can_upload' => 'ÔÊÐíÉÏ´«Í¼Æ¬',
+	'can_have_gallery' => 'ÔÊÐí¸öÈËÍ¼¼¯',
+	'apply' => 'Ìá½»ÐÞ¸Ä',
+	'create_new_group' => '´´½¨ÐÂÈº×é',
+	'del_groups' => 'É¾³ýËùÑ¡ÔñµÄÈº×é',
+	'confirm_del' => '¾¯¸æ, Èç¹ûÉ¾³ýÒ»¸öÈº×é, ÔòÊôÓÚ¸ÃÈº×éµÄÓÃ»§½«±»×ªÒÆÖÁ \'Registered\' Èº×éÖÐ !Ò²¾ÍÊÇËµ,ËûÃÇ½«Ê§È¥²¿·ÝÈ¨ÏÞ\n\nÈ·¶¨ÒªÉ¾³ýÂð ?',
+	'title' => '¹ÜÀíÓÃ»§Èº×é',
+	'approval_1' => '¹«ÓÃÍ¼¼¯ÉÏ´«ÉóºË (1)',
+	'approval_2' => '¸öÈËÍ¼¼¯ÉÏ´«ÉóºË (2)',
+	'note1' => '<b>(1)</b> ÉÏ´«ÖÁ¹«ÓÃÍ¼¼¯µÄÍ¼Æ¬Ðè¹ÜÀíÕßÉóºË',
+	'note2' => '<b>(2)</b> ÉÏ´«ÖÁ¸öÈËÍ¼¼¯µÄÍ¼Æ¬Ðè¹ÜÀíÕßÉóºË',
+	'notes' => '×¢Òâ'
 );
 
 // ------------------------------------------------------------------------- //
@@ -571,34 +616,34 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
 if (defined('INDEX_PHP')){
 
 $lang_index_php = array(
-	'welcome' => '欢迎 !'
+	'welcome' => '»¶Ó­!'
 );
 
 $lang_album_admin_menu = array(
-	'confirm_delete' => '确定要删除这个图库夹吗 ? \\n该图库夹内所有图片和意见将会同时被删除.',
-	'delete' => '删除',
-	'modify' => '属性',
-	'edit_pics' => '编辑图片',
+	'confirm_delete' => 'È·¶¨ÒªÉ¾³ý¸ÃÍ¼¼¯Âð ? \\n¸ÃÍ¼¼¯ÄÚËùÓÐÍ¼Æ¬ºÍÆÀÂÛ½«»áÍ¬Ê±±»É¾³ý.',
+	'delete' => 'É¾³ý',
+	'modify' => 'ÊôÐÔ',
+	'edit_pics' => '±à¼­Í¼Æ¬',
 );
 
 $lang_list_categories = array(
-	'home' => '主页',
-	'stat1' => '<b>[pictures]</b> 张图片于 <b>[albums]</b> 个图库夹， <b>[cat]</b> 个类别，<b>[comments]</b> 个评论意见， 观看 <b>[views]</b> 次',
-	'stat2' => '<b>[pictures]</b> 张图片于 <b>[albums]</b> 个图库夹， 观看 <b>[views]</b> 次',
-	'xx_s_gallery' => '%s 的相簿',
-	'stat3' => '<b>[pictures]</b> 张图片于 <b>[albums]</b> 个图库夹， <b>[comments]</b> 个评论意见，观看 <b>[views]</b> 次'
+	'home' => 'Ö÷Ò³',
+	'stat1' => '<b>[pictures]</b> ÕÅÍ¼Æ¬ÓÚ <b>[albums]</b> ¸öÍ¼¼¯,<b>[cat]</b> ¸öÀà±ð,<b>[comments]</b> ¸öÆÀÂÛ,µã»÷ <b>[views]</b> ´Î',
+	'stat2' => '<b>[pictures]</b> ÕÅÍ¼Æ¬ÓÚ <b>[albums]</b> ¸öÍ¼¼¯,µã»÷ <b>[views]</b> ´Î',
+	'xx_s_gallery' => '%s µÄÍ¼¼¯',
+	'stat3' => '<b>[pictures]</b> ÕÅÍ¼Æ¬ÓÚ <b>[albums]</b> ¸öÍ¼¼¯,<b>[comments]</b> ¸öÆÀÂÛ,µã»÷ <b>[views]</b> ´Î'
 );
 
 $lang_list_users = array(
-	'user_list' => '使用者列表',
-	'no_user_gal' => '尚未有使用者被允许使用图库夹',
-	'n_albums' => '%s 个图库夹',
-	'n_pics' => '%s 张图片'
+	'user_list' => 'ÓÃ»§ÁÐ±í',
+	'no_user_gal' => 'ÉÐÎ´ÓÐÓÃ»§Í¼¼¯',
+	'n_albums' => '%s ¸öÍ¼¼¯',
+	'n_pics' => '%s ÕÅÍ¼Æ¬'
 );
 
 $lang_list_albums = array(
-	'n_pictures' => '%s 张图片',
-	'last_added' => ', 最近新增于 %s'
+	'n_pictures' => '%s ÕÅÍ¼Æ¬',
+	'last_added' => ', ×îÐÂÌí¼ÓÓÚ %s'
 );
 
 }
@@ -608,14 +653,14 @@ $lang_list_albums = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('LOGIN_PHP')) $lang_login_php = array(
-	'login' => '登入',
-	'enter_login_pswd' => '输入使用者名称和密码',
-	'username' => '使用者名称',
-	'password' => '密码',
-	'remember_me' => '记住密码',
-	'welcome' => '欢迎 %s ...',
-	'err_login' => '*** 无法登入. 请重试 ***',
-	'err_already_logged_in' => '您已经登入 !',
+	'login' => 'µÇÂ½',
+	'enter_login_pswd' => 'ÇëÊäÈëÓÃ»§ÃûºÍÃÜÂëµÇÂ½',
+	'username' => 'ÓÃ»§Ãû',
+	'password' => 'ÃÜÂë',
+	'remember_me' => '¼Ç×¡ÃÜÂë',
+	'welcome' => '»¶Ó­ %s ...',
+	'err_login' => '*** ÎÞ·¨µÇÂ½. ÇëÖØÊÔ ***',
+	'err_already_logged_in' => 'ÄúÒÑ¾­µÇÂ½ !',
 );
 
 // ------------------------------------------------------------------------- //
@@ -623,9 +668,9 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('LOGOUT_PHP')) $lang_logout_php = array(
-	'logout' => '登出',
-	'bye' => '再见了 %s ...',
-	'err_not_loged_in' => '您尚未登入 !',
+	'logout' => 'ÍË³ö',
+	'bye' => 'ÔÙ¼û,%s ...',
+	'err_not_loged_in' => 'ÄúÉÐÎ´µÇÂ½ !',
 );
 
 // ------------------------------------------------------------------------- //
@@ -633,27 +678,27 @@ if (defined('LOGOUT_PHP')) $lang_logout_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
-	'upd_alb_n' => '更新图库夹 %s',
-	'general_settings' => '一般设定',
-	'alb_title' => '图库夹标题',
-	'alb_cat' => '图库夹类别',
-	'alb_desc' => '图库夹描述',
-	'alb_thumb' => '图库夹缩图',
-	'alb_perm' => '该图库夹存取遭拒',
-	'can_view' => '图库夹可观看依',
-	'can_upload' => '访客可以上传图片',
-	'can_post_comments' => '访客可以张贴评论意见',
-	'can_rate' => '访客可以为图片评分',
-	'user_gal' => '使用者相簿',
-	'no_cat' => '* 没有类别 *',
-	'alb_empty' => '图库夹是空的',
-	'last_uploaded' => '最近上传',
-	'public_alb' => '任何人 (公用图库夹)',
-	'me_only' => '只有我',
-	'owner_only' => '只有图库夹拥有人 (%s)',
-	'groupp_only' => '只有群组会员 \'%s\'',
-	'err_no_alb_to_modify' => '资料库内尚未有您可以编修的图库夹.',
-	'update' => '更新图库夹'
+	'upd_alb_n' => '¸üÐÂÍ¼¼¯ %s',
+	'general_settings' => 'Ò»°ãÉèÖÃ',
+	'alb_title' => 'Í¼¼¯±êÌâ',
+	'alb_cat' => 'Í¼¼¯Àà±ð',
+	'alb_desc' => 'Í¼¼¯ÃèÊö',
+	'alb_thumb' => 'Í¼¼¯ËõÍ¼',
+	'alb_perm' => 'Í¼¼¯Ðí¿ÉÈ¨ÏÞ',
+	'can_view' => 'Í¼¼¯ÔÊÐí¹Û¿´±»',
+	'can_upload' => '·Ã¿Í¿ÉÒÔÉÏ´«Í¼Æ¬',
+	'can_post_comments' => '·Ã¿Í¿ÉÒÔ·¢±íÆÀÂÛ',
+	'can_rate' => '·Ã¿Í¿ÉÒÔÎªÍ¼Æ¬ÆÀ·Ö',
+	'user_gal' => 'ÓÃ»§Í¼¼¯',
+	'no_cat' => '* Ã»ÓÐÀà±ð *',
+	'alb_empty' => 'Í¼¼¯Îª¿Õ',
+	'last_uploaded' => '×îÐÂÉÏ´«',
+	'public_alb' => 'ÈÎºÎÈË (¹«ÓÃÍ¼¼¯)',
+	'me_only' => 'Ö»ÓÐÎÒ',
+	'owner_only' => 'Ö»ÓÐÍ¼¼¯ÓµÓÐÈË (%s)',
+	'groupp_only' => 'Ö»ÓÐÈº×é»áÔ± \'%s\'',
+	'err_no_alb_to_modify' => 'Êý¾Ý¿âÄÚÃ»ÓÐ¿ÉÒÔ±à¼­µÄÍ¼¼¯.',
+	'update' => '¸üÐÂÍ¼¼¯'
 );
 
 // ------------------------------------------------------------------------- //
@@ -661,8 +706,8 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
-	'already_rated' => '抱歉,您已经为此图片评过分了',
-	'rate_ok' => '您的投票已经被接受',
+	'already_rated' => '±§Ç¸,ÄúÒÑ¾­Îª´ËÍ¼Æ¬ÆÀ¹ý·ÖÁË',
+	'rate_ok' => 'ÄúµÄÍ¶Æ±ÒÑ¾­±»½ÓÊÜ',
 );
 
 // ------------------------------------------------------------------------- //
@@ -672,78 +717,80 @@ if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
-管理者于<B> {SITE_NAME} </B>会尽快整理您的资料,但我们不可能随时详细观看每一份张文件. 因此您必需同意让本站有权利在任何时候做适当的调整您张贴的文件,以保持本站的品质.<br>
+¹ÜÀíÔ±»á¾¡¿ìÕûÀíÄúµÄ×ÊÁÏ,µ«ÎÒÃÇ²»¿ÉÄÜËæÊ±ÏêÏ¸²ì¿´Ã¿Ò»¸öÎÄ¼þ. ±¾Õ¾ÓÐÈ¨ÀûÔÚÈÎºÎÊ±ºò¶ÔÄúÕÅÌùµÄÎÄ¼þ×öÊÊµ±µÄµ÷Õû.<br>
 <br>
-您必需同意不可张贴任何色情, 暴力, 不良, 不正当, 不健康, 妨害国家安全, 或其他非正当取得文件.<B> {SITE_NAME} </B>在任何时候都有权利过滤并编辑您张贴的内容,并有权修改你留在本站内的资料. 但请放心,我们不会将您的资料转给其他人使用.除此之外,您在本站张贴的内容本站都不为您负任何责任.<br>
+Äú±ØÐëÍ¬Òâ²»ÄÜÕÅÌùÈÎºÎÉ«Çé¡¢±©Á¦¡¢²»Á¼¡¢²»Õýµ±¡¢²»½¡¿µ¡¢·Áº¦¹ú¼Ò°²È«¡¢»òÆäËû·ÇÕýµ±È¡µÃµÄÎÄ¼þ.±¾Õ¾ÔÚÈÎºÎÊ±ºò¶¼ÓÐÈ¨Àû¹ýÂË²¢±à¼­ÄúÕÅÌùµÄÄÚÈÝ,
 <br>
-本站使用COOKIES来储存您的电脑上资讯. 这样是方便您更快速阅读本站资讯. 您的 email 只是让我们认证您的资料而已,我们不会外泄.<br>
+²¢ÓÐÈ¨ÐÞ¸ÄÄúÔÚ±¾Õ¾ÄÚµÄ×ÊÁÏ.µ«Çë·ÅÐÄ,ÎÒÃÇ²»»á½«ÄúµÄÈÎºÎ×ÊÁÏÍ¸Â©¸øÈÎºÎµÚÈý·½.³ý´ËÖ®Íâ,ÄúÔÚ±¾Õ¾ÕÅÌùµÄÄÚÈÝ±¾Õ¾¶¼²»¸ºÈÎºÎÔðÈÎ.<br>
 <br>
-按下 '我同意' 继续.
+±¾Õ¾Ê¹ÓÃCOOKIESÀ´´¢´æÐÅÏ¢.·½±ãÄú¸ü¿ìËÙÔÄ¶Á±¾Õ¾ÐÅÏ¢. ÄúµÄ Email Ö»ÊÇÓÃÀ´ÈÏÖ¤ÄúµÄ×ÊÁÏ,ÎÒÃÇ¾ø²»»áÍâÐ¹.<br>
+<br>
+°´ÏÂ 'ÎÒÍ¬Òâ' ¼ÌÐø.
 EOT;
 
 $lang_register_php = array(
-	'page_title' => '注册使用者',
-	'term_cond' => '条件与规则',
-	'i_agree' => '我同意',
-	'submit' => '送出注册',
-	'err_user_exists' => '您所填写的使用者名称已被人使用, 请重填一个',
-	'err_password_mismatch' => '两次密码不合, 请重填一次',
-	'err_uname_short' => '使用者名称至少需 2 个字元',
-	'err_password_short' => '密码至少需 2 个字元',
-	'err_uname_pass_diff' => '使用者名称和密码不可以相同',
-	'err_invalid_email' => 'Email 不正确',
-	'err_duplicate_email' => '这个 email 已经被其他人使用过了',
-	'enter_info' => '加入注册者资料',
-	'required_info' => '必要的资料',
-	'optional_info' => '非必要的资料',
-	'username' => '使用者名称',
-	'password' => '密码',
-	'password_again' => '确认密码',
+	'page_title' => 'ÓÃ»§×¢²á',
+	'term_cond' => 'Ìõ¼þÓë¹æÔò',
+	'i_agree' => 'ÎÒÍ¬Òâ',
+	'submit' => 'Ìá½»×¢²á',
+	'err_user_exists' => '¸ÃÓÃ»§ÃûÒÑ´æÔÚ,ÇëÖØÌî',
+	'err_password_mismatch' => 'Á½´ÎÃÜÂë²»Ò»ÖÂ,ÇëÖØÌî',
+	'err_uname_short' => 'ÓÃ»§ÃûÖÁÉÙÐèÒª 2 ¸ö×Ö·û',
+	'err_password_short' => 'ÃÜÂëÖÁÉÙÐèÒª 2 ¸ö×Ö·û',
+	'err_uname_pass_diff' => 'ÓÃ»§ÃûºÍÃÜÂë²»¿ÉÒÔÏàÍ¬',
+	'err_invalid_email' => 'Email ²»ÕýÈ·',
+	'err_duplicate_email' => 'Õâ¸ö Email ÒÑ¾­±»ÆäËûÈËÊ¹ÓÃ¹ýÁË',
+	'enter_info' => 'ÊäÈë×¢²áÕßÐÅÏ¢',
+	'required_info' => '±ØÐèµÄ×ÊÁÏ',
+	'optional_info' => '¿ÉÑ¡µÄ×ÊÁÏ',
+	'username' => 'ÓÃ»§Ãû',
+	'password' => 'ÃÜÂë',
+	'password_again' => 'È·ÈÏÃÜÂë',
 	'email' => 'Email',
-	'location' => '位置',
-	'interests' => '兴趣',
-	'website' => '首页',
-	'occupation' => '职业',
-	'error' => '错误',
-	'confirm_email_subject' => '%s - 注册管理设定',
-	'information' => '讯息',
-	'failed_sending_email' => '所注册的 email 无法送出 !',
-	'thank_you' => '感谢您的注册.<br><br>一封 email 内含有如何启用帐号的资讯将被送到您所提供的信箱.',
-	'acct_created' => '您的帐号已经建立，现在您可以登入管理',
-	'acct_active' => '您的帐号已经启用，现在您可以登入管理个人资料',
-	'acct_already_act' => '您的帐号已经启用 !',
-	'acct_act_failed' => '此帐号无法启用 !',
-	'err_unk_user' => '所选择的使用者并不存在 !',
-	'x_s_profile' => '%s\' 的个人资料',
-	'group' => '群组',
-	'reg_date' => '加入',
-	'disk_usage' => '空间使用量',
-	'change_pass' => '修改密码',
-	'current_pass' => '旧密码',
-	'new_pass' => '新密码',
-	'new_pass_again' => '确认密码',
-	'err_curr_pass' => '旧密码不正确',
-	'apply_modif' => '提报修改',
-	'change_pass' => '修改我的密码',
-	'update_success' => '你的个人资料已经更新',
-	'pass_chg_success' => '你的密码已经修改',
-	'pass_chg_error' => '你的密码没有修改',
+	'location' => 'Î»ÖÃ',
+	'interests' => 'ÐËÈ¤',
+	'website' => 'Ö÷Ò³',
+	'occupation' => 'Ö°Òµ',
+	'error' => '´íÎó',
+	'confirm_email_subject' => '%s - ×¢²áÈ·ÈÏ',
+	'information' => 'ÐÅÏ¢',
+	'failed_sending_email' => 'ÎÞ·¨·¢ËÍ×¢²áÈ·ÈÏ Email !',
+	'thank_you' => '¸ÐÐ»ÄúµÄ×¢²á.<br><br>Ò»·âÄÚº¬ÈçºÎ¼¤»îÕÊºÅµÈÐÅÏ¢µÄ Email ÒÑ±»·¢ËÍµ½ÄúµÄÐÅÏä.',
+	'acct_created' => 'ÄúµÄÕÊºÅÒÑÉú³É,ÏÖÔÚÄú¿ÉÒÔµÇÂ½',
+	'acct_active' => 'ÄúµÄÕÊºÅÒÑ¼¤»î,ÏÖÔÚÄú¿ÉÒÔµÇÂ½',
+	'acct_already_act' => 'ÄúµÄÕÊºÅÒÑ¾­¼¤»î !',
+	'acct_act_failed' => '¸ÃÕÊºÅÎÞ·¨¼¤»î !',
+	'err_unk_user' => 'ËùÑ¡ÔñµÄÓÃ»§²»´æÔÚ !',
+	'x_s_profile' => '%s µÄ¸öÈË×ÊÁÏ',
+	'group' => 'Èº×é',
+	'reg_date' => '¼ÓÈë',
+	'disk_usage' => '¿Õ¼äÊ¹ÓÃÁ¿',
+	'change_pass' => 'ÐÞ¸ÄÃÜÂë',
+	'current_pass' => '¾ÉÃÜÂë',
+	'new_pass' => 'ÐÂÃÜÂë',
+	'new_pass_again' => 'È·ÈÏÃÜÂë',
+	'err_curr_pass' => '¾ÉÃÜÂë²»ÕýÈ·',
+	'apply_modif' => 'Ìá½»ÐÞ¸Ä',
+	'change_pass' => 'ÐÞ¸ÄÃÜÂë',
+	'update_success' => 'ÄúµÄ¸öÈË×ÊÁÏÒÑ¸üÐÂ',
+	'pass_chg_success' => 'ÄúµÄÃÜÂëÒÑÐÞ¸Ä',
+	'pass_chg_error' => 'ÄúµÄÃÜÂëÃ»ÓÐÐÞ¸Ä',
 );
 
 $lang_register_confirm_email = <<<EOT
-感谢您注册于 {SITE_NAME}
+¸ÐÐ»Äú×¢²á {SITE_NAME}
 
-您的帐号 : "{USER_NAME}"
-您的密码 : "{PASSWORD}"
+ÄúµÄÕÊºÅ : "{USER_NAME}"
+ÄúµÄÃÜÂë : "{PASSWORD}"
 
-为了方便启动您的帐号,您必需按一下下面的连结
-或者先将这个连结存起来.
+ÎªÁË¼¤»îÄúµÄÕÊºÅ,Äú±ØÐëµã»÷Ò»ÏÂÏÂÃæµÄÁ´½Ó
+»òÕßÏÈ½«Õâ¸öÁ´½Ó´æÆðÀ´.ÒÔºóÔÙ¼¤»î.
 
 {ACT_LINK}
 
-祝福您,
+¸ÐÐ»Äú,
 
- {SITE_NAME} 敬上
+ {SITE_NAME} ¾´ÉÏ
 
 EOT;
 
@@ -754,22 +801,21 @@ EOT;
 // ------------------------------------------------------------------------- //
 
 if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
-	'title' => '观看意见',
-	'no_comment' => '尚未有意见可以观看',
-	'n_comm_del' => '%s 个意见已删除',
-	'n_comm_disp' => '要显示的意见数量',
-	'see_prev' => '看前一个',
-	'see_next' => '看下一个',
-	'del_comm' => '删除所选的意见',
+	'title' => '²é¿´ÆÀÂÛ',
+	'no_comment' => 'ÉÐÎÞÆÀÂÛ¿ÉÒÔ²é¿´',
+	'n_comm_del' => '%s ¸öÆÀÂÛÒÑÉ¾³ý',
+	'n_comm_disp' => 'ÒªÏÔÊ¾µÄÆÀÂÛÊýÁ¿',
+	'see_prev' => '¿´ÉÏÒ»¸ö',
+	'see_next' => '¿´ÏÂÒ»¸ö',
+	'del_comm' => 'É¾³ýËùÑ¡µÄÆÀÂÛ',
 );
-
 
 // ------------------------------------------------------------------------- //
 // File search.php - OK
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCH_PHP')) $lang_search_php = array(
-	0 => '投寻图片内容',
+	0 => 'ËÑË÷Í¼Æ¬',
 );
 
 // ------------------------------------------------------------------------- //
@@ -777,34 +823,33 @@ if (defined('SEARCH_PHP')) $lang_search_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
-	'page_title' => '寻找新图片',
-	'select_dir' => '选择目录',
-	'select_dir_msg' => '本功能可以让你整批汇入你用 FTP 上传的图片.<br><br>请选择你所上传的图片目录',
-	'no_pic_to_add' => '没有图片可以加入',
-	'need_one_album' => '要使用此功能必需少要有一个图库夹',
-	'warning' => '警告',
-	'change_perm' => '程式无法写入这个目录, 请修改CHMOD 为 755 或 777 后再试一次!',
-	'target_album' => '<b>加入图片 &quot;</b>%s<b>&quot; 到 </b>%s',
-	'folder' => '资料夹',
-	'image' => '图片',
-	'album' => '图库夹',
-	'result' => '结果',
-	'dir_ro' => '无法写入. ',
-	'dir_cant_read' => '无法读取. ',
-	'insert' => '新增图片至相簿',
-	'list_new_pic' => '列出新图片',
-	'insert_selected' => '加入所选择的图片',
-	'no_pic_found' => '没有找到新图片',
-	'be_patient' => '请耐心等候, 程式需要一点时间来加入所选图片',
+	'page_title' => 'ËÑË÷ÐÂÍ¼Æ¬',
+	'select_dir' => 'Ñ¡ÔñÄ¿Â¼',
+	'select_dir_msg' => '±¾¹¦ÄÜ¿ÉÒÔÈÃÄúÅúÁ¿¼ÓÈëÄúÓÃ FTP ÉÏ´«µÄÍ¼Æ¬.<br><br>ÇëÑ¡ÔñÄúËùÉÏ´«µÄÍ¼Æ¬Ä¿Â¼',
+	'no_pic_to_add' => 'Ã»ÓÐÍ¼Æ¬¿ÉÒÔ¼ÓÈë',
+	'need_one_album' => 'ÒªÊ¹ÓÃ´Ë¹¦ÄÜ±ØÐèÖÁÉÙÓÐÒ»¸öÍ¼¼¯',
+	'warning' => '¾¯¸æ',
+	'change_perm' => 'ÎÞ·¨Ð´ÈëÕâ¸öÄ¿Â¼, ÇëÐÞ¸Ä CHMOD Îª 755 »ò 777 ºóÔÙÊÔÒ»´Î!',
+	'target_album' => '<b>¼ÓÈëÍ¼Æ¬ &quot;</b>%s<b>&quot; µ½ </b>%s',
+	'folder' => 'ÎÄ¼þ¼Ð',
+	'image' => 'Í¼Æ¬',
+	'album' => 'Í¼¼¯',
+	'result' => '½á¹û',
+	'dir_ro' => 'ÎÞ·¨Ð´Èë. ',
+	'dir_cant_read' => 'ÎÞ·¨¶ÁÈ¡. ',
+	'insert' => 'ÐÂÔöÍ¼Æ¬ÖÁÍ¼¼¯',
+	'list_new_pic' => 'ÁÐ³öÐÂÍ¼Æ¬',
+	'insert_selected' => '¼ÓÈëËùÑ¡ÔñµÄÍ¼Æ¬',
+	'no_pic_found' => 'Ã»ÓÐÕÒµ½ÐÂÍ¼Æ¬',
+	'be_patient' => 'ÇëÉÔºò,³ÌÐòÐèÒªÒ»Ð©Ê±¼äÀ´¼ÓÈëËùÑ¡Í¼Æ¬',
 	'notes' =>  '<ul>'.
-				'<li><b>OK</b> : 表示图片已成功被加入'.
-				'<li><b>DP</b> : 表示图片重覆或已存在资料库'.
-				'<li><b>PB</b> : 表示图片无法加入, 请检查组态设定或图片存放目录的使用权限'.
-				'<li>如果 OK, DP, PB \'符号\' 没有显示请按坏掉的图片看看 PHP 显示的错误讯息'.
-				'<li>如果浏览器延迟, 请按重新整理'.
+				'<li><b>OK</b> : ±íÊ¾Í¼Æ¬ÒÑ³É¹¦¼ÓÈë'.
+				'<li><b>DP</b> : ±íÊ¾Í¼Æ¬ÖØ¸´»òÒÑ´æÔÚ'.
+				'<li><b>PB</b> : ±íÊ¾Í¼Æ¬ÎÞ·¨¼ÓÈë, Çë¼ì²éÏµÍ³ÉèÖÃ»òÍ¼Æ¬´æ·ÅÄ¿Â¼µÄ·ÃÎÊÈ¨ÏÞ'.
+				'<li>Èç¹û OK, DP, PB \'·ûºÅ\' Ã»ÓÐÏÔÊ¾,Çëµã»÷Ëð»µµÄÍ¼Æ¬²é¿´ PHP ÏÔÊ¾µÄ´íÎóÐÅÏ¢'.
+				'<li>Èç¹ûä¯ÀÀÆ÷³¬Ê±, ÇëµãË¢ÐÂ°´Å¥'.
 				'</ul>',
 );
-
 
 // ------------------------------------------------------------------------- //
 // File thumbnails.php
@@ -812,20 +857,34 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 
 // Void
 
+// ------------------------------------------------------------------------- //
+// File banning.php
+// ------------------------------------------------------------------------- //
+
+if (defined('BANNING_PHP')) $lang_banning_php = array(
+                'title' => 'ÆÁ±ÎÓÃ»§',
+                'user_name' => 'ÓÃ»§Ãû',
+                'ip_address' => 'IPµØÖ·',
+                'expiry' => 'ÆÚÏÞ£¨¿Õ±íÊ¾ÓÀ¾Ã£©',
+                'edit_ban' => '±£´æÉèÖÃ',
+                'delete_ban' => 'É¾³ý',
+                'add_new' => 'Ìí¼ÓÆÁ±ÎÓÃ»§',
+                'add_ban' => 'Ìí¼Ó',
+);
 
 // ------------------------------------------------------------------------- //
 // File upload.php
 // ------------------------------------------------------------------------- //
 
 if (defined('UPLOAD_PHP')) $lang_upload_php = array(
-	'title' => '上传图片',
-	'max_fsize' => '可允许的档案最大为 %s KB',
-	'album' => '图库夹',
-	'picture' => '图片',
-	'pic_title' => '图片标题',
-	'description' => '图片描述',
-	'keywords' => '关键字 (请以空格区隔)',
-	'err_no_alb_uploadables' => '目前尚未有图库夹可以供您上传图片',
+	'title' => 'ÉÏ´«Í¼Æ¬',
+	'max_fsize' => '¿ÉÔÊÐíµÄÎÄ¼þ×î´óÎª %s KB',
+	'album' => 'Í¼¼¯',
+	'picture' => 'Í¼Æ¬',
+	'pic_title' => 'Í¼Æ¬±êÌâ',
+	'description' => 'Í¼Æ¬ÃèÊö',
+	'keywords' => '¹Ø¼ü×Ö (ÇëÒÔ¿Õ¸ñ·Ö¸ô)',
+	'err_no_alb_uploadables' => 'Ä¿Ç°ÉÐÎÞÍ¼¼¯ÔÊÐíÄúÉÏ´«Í¼Æ¬',
 );
 
 // ------------------------------------------------------------------------- //
@@ -833,44 +892,96 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
-	'title' => '使用者管理',
-	'name_a' => '名称升次排序',
-	'name_d' => '名称降次排序',
-	'group_a' => '群组升次排序',
-	'group_d' => '群组降次排序',
-	'reg_a' => '注册日期升次排序',
-	'reg_d' => '注册日期降次排序',
-	'pic_a' => '图片数升次排序',
-	'pic_d' => '图片数降次排序',
-	'disku_a' => '使用量升次排序',
-	'disku_d' => '使用量降次排序',
-	'sort_by' => '使用者排序依',
-	'err_no_users' => '使用者资料表是空的 !',
-	'err_edit_self' => '您无法编辑个人资料, 请利用 \'我的个人资料\' 来编辑',
-	'edit' => '编辑',
-	'delete' => '删除',
-	'name' => '使用者名称',
-	'group' => '群组',
-	'inactive' => '未启动',
-	'operations' => '动作',
-	'pictures' => '图片',
-	'disk_space' => '空间 使用量 / 总量',
-	'registered_on' => '注册日',
-	'u_user_on_p_pages' => '%d 个使用者于 %d 页',
-	'confirm_del' => '确定要删除这个使用者吗 ? \\n连同他的图库夹及图片都会被删除.',
+	'title' => 'ÓÃ»§¹ÜÀí',
+	'name_a' => 'Ãû³ÆÉý´ÎÅÅÐò',
+	'name_d' => 'Ãû³Æ½µ´ÎÅÅÐò',
+	'group_a' => 'Èº×éÉý´ÎÅÅÐò',
+	'group_d' => 'Èº×é½µ´ÎÅÅÐò',
+	'reg_a' => '×¢²áÈÕÆÚÉý´ÎÅÅÐò',
+	'reg_d' => '×¢²áÈÕÆÚ½µ´ÎÅÅÐò',
+	'pic_a' => 'Í¼Æ¬ÊýÉý´ÎÅÅÐò',
+	'pic_d' => 'Í¼Æ¬Êý½µ´ÎÅÅÐò',
+	'disku_a' => '¿Õ¼äÊ¹ÓÃÉý´ÎÅÅÐò',
+	'disku_d' => '¿Õ¼äÊ¹ÓÃ½µ´ÎÅÅÐò',
+	'sort_by' => 'ÓÃ»§ÅÅÐòÒÀ',
+	'err_no_users' => 'ÓÃ»§×ÊÁÏ±íÊÇ¿ÕµÄ !',
+	'err_edit_self' => 'ÄúÎÞ·¨±à¼­¸öÈË×ÊÁÏ, ÇëÊ¹ÓÃ \'ÎÒµÄ¸öÈË×ÊÁÏ\' À´±à¼­',
+	'edit' => '±à¼­',
+	'delete' => 'É¾³ý',
+	'name' => 'ÓÃ»§Ãû',
+	'group' => 'Èº×é',
+	'inactive' => 'Î´¼¤»î',
+	'operations' => '²Ù×÷',
+	'pictures' => 'Í¼Æ¬',
+	'disk_space' => '¿Õ¼ä Ê¹ÓÃÁ¿/×ÜÁ¿',
+	'registered_on' => '×¢²áÈÕÆÚ',
+	'u_user_on_p_pages' => '%d ¸öÓÃ»§ÓÚ %d Ò³',
+	'confirm_del' => 'È·¶¨ÒªÉ¾³ýÕâ¸öÓÃ»§Âð ? \\nÁ¬Í¬ËûµÄÍ¼¼¯¼°Í¼Æ¬¶¼»á±»É¾³ý.',
 	'mail' => 'MAIL',
-	'err_unknown_user' => '所选择的使用者并不存在 !',
-	'modify_user' => '编辑使用者',
-	'notes' => '注意',
-	'note_list' => '<li>如果你不想改变目前的密码, 请将 "密码" 位留下空白',
-	'password' => '密码',
-	'user_active' => '使用者启动中',
-	'user_group' => '使用者群组',
-	'user_email' => '使用者 email',
-	'user_web_site' => '使用者首页',
-	'create_new_user' => '建立新使用者',
-	'user_location' => '使用者位置',
-	'user_interests' => '使用者兴趣',
-	'user_occupation' => '使用者职业',
+	'err_unknown_user' => 'ËùÑ¡ÔñµÄÓÃ»§²»´æÔÚ !',
+	'modify_user' => '±à¼­ÓÃ»§',
+	'notes' => '×¢Òâ',
+	'note_list' => '<li>Èç¹ûÄú²»ÏëÐÞ¸Äµ±Ç°ÃÜÂë, Çë½« "ÃÜÂë" À¸Áô¿Õ',
+	'password' => 'ÃÜÂë',
+	'user_active' => 'ÓÃ»§¼¤»î',
+	'user_group' => 'ÓÃ»§Èº×é',
+	'user_email' => 'ÓÃ»§ Email',
+	'user_web_site' => 'ÓÃ»§Ö÷Ò³',
+	'create_new_user' => '´´½¨ÐÂÓÃ»§',
+	'user_location' => 'ÓÃ»§Î»ÖÃ',
+	'user_interests' => 'ÓÃ»§ÐËÈ¤',
+	'user_occupation' => 'ÓÃ»§Ö°Òµ',
 );
+
+// ------------------------------------------------------------------------- //
+// File util.php
+// ------------------------------------------------------------------------- //
+
+if (defined('UTIL_PHP')) $lang_util_php = array(
+        'title' => 'µ÷ÕûÍ¼Æ¬´óÐ¡',
+        'what_it_does' => 'ÕâÊÇ×öÊ²Ã´ÓÃµÄ',
+        'what_update_titles' => '´ÓÎÄ¼þÃûÈ¡µÃ±êÌâ',
+        'what_delete_title' => 'É¾³ý±êÌâ',
+        'what_rebuild' => 'ÖØÉèËõÍ¼¼°µ÷Õû¹ý´óÐ¡µÄÍ¼Æ¬',
+        'what_delete_originals' => 'É¾³ýÔ­Ê¼´óÐ¡µÄÍ¼Æ¬²¢ÒÔµ÷Õû¹ý´óÐ¡µÄÈ¡´ú',
+        'file' => 'ÎÄ¼þ',
+        'title_set_to' => '±êÌâÒÑÉè³É',
+       'submit_form' => 'Ìá½»',
+        'updated_succesfully' => '¸üÐÂ³É¹¦',
+        'error_create' => 'ÐÂÔö´íÎó',
+        'continue' => '¼ÌÐø´¦ÀíÍ¼Æ¬',
+        'main_success' => 'Í¼Æ¬ %s ÒÑ³É¹¦ÉèÎªÖ÷ÒªÍ¼Æ¬',
+        'error_rename' => 'ÎÞ·¨½« %s ¸üÃû³É %s',
+        'error_not_found' => 'ÎÄ¼þ %s ²»´æÔÚ',
+        'back' => '·µ»ØÖ÷½çÃæ',
+        'thumbs_wait' => 'ÕýÔÚ¸üÐÂËõÍ¼¼°(»ò)µ÷Õû¹ý´óÐ¡µÄÍ¼Æ¬,ÇëÉÔºò...',
+        'thumbs_continue_wait' => '¼ÌÐø¸üÐÂËõÍ¼¼°(»ò)µ÷Õû¹ý´óÐ¡µÄÍ¼Æ¬...',
+        'titles_wait' => '±êÌâ¸üÐÂÖÐ,ÇëÉÔºò...',
+        'delete_wait' => 'ÕýÔÚÉ¾³ý±êÌâ,ÇëÉÔºò...',
+        'replace_wait' => 'ÕýÔÚÒÔµ÷Õû¹ý´óÐ¡µÄÍ¼Æ¬È¡´úÔ­Ê¼´óÐ¡Í¼Æ¬,ÇëÉÔºò...',
+        'instruction' => '¼òÒ×²Ù×÷ËµÃ÷',
+        'instruction_action' => 'ÇëÑ¡Ôñ²Ù×÷',
+        'instruction_parameter' => 'Éè¶¨²ÎÊý',
+        'instruction_album' => 'Ñ¡ÔñÍ¼¼¯',
+        'instruction_press' => 'Çë°´ %s',
+        'update' => '¸üÐÂËõÍ¼¼°(»ò)µ÷Õû¹ý´óÐ¡µÄÍ¼Æ¬',
+        'update_what' => 'Òª¸üÐÂÊ²Ã´',
+        'update_thumb' => 'Ö»ÓÐËõÍ¼',
+        'update_pic' => 'Ö»ÓÐµ÷Õû¹ý´óÐ¡µÄÍ¼Æ¬',
+        'update_both' => 'ËõÍ¼¼°µ÷Õû¹ý´óÐ¡µÄÍ¼Æ¬',
+        'update_number' => 'Ã¿µãÑ¡Ò»´ÎÒª´¦ÀíµÄÍ¼Æ¬ÊýÄ¿',
+        'update_option' => '(Èç¹ûÄúÓöµ½²Ù×÷³ÌÐò³¬Ê±µÄÎÊÌâ,ÇëÊÔ×Å¼õÐ¡´ËÉè¶¨)',
+        'filename_title' => 'ÎÄ¼þÃûÍ¼Æ¬±êÌâ',
+        'filename_how' => 'ÈçºÎÐÞ¸ÄÎÄ¼þÃû',
+        'filename_remove' => 'É¾³ý .jpg ²¢½« _ (ÏÂ»®Ïß) ÓÃ¿Õ¸ñÈ¡´ú',
+        'filename_euro' => '½« 2003_11_23_13_20_20.jpg ¸Ä³É 23/11/2003 13:20',
+        'filename_us' => '½« 2003_11_23_13_20_20.jpg ¸Ä³É 11/23/2003 13:20',
+        'filename_time' => '½« 2003_11_23_13_20_20.jpg ¸Ä³É 13:20',
+        'delete' => 'É¾³ýÍ¼Æ¬±êÌâ»òÔ­Ê¼³ß´çµÄÍ¼Æ¬',
+        'delete_title' => 'É¾³ýÍ¼Æ¬±êÌâ',
+        'delete_original' => 'É¾³ýÔ­Ê¼³ß´çµÄÍ¼Æ¬',
+        'delete_replace' => 'É¾³ýÔ­Ê¼³ß´çµÄÍ¼Æ¬²¢ÒÔµ÷Õû¹ý´óÐ¡µÄÍ¼Æ¬È¡´ú',
+        'select_album' => 'Ñ¡ÔñÍ¼¼¯',
+);
+
 ?>
