@@ -1,22 +1,20 @@
 ﻿<?php
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery                                                 //
+// Coppermine Photo Gallery 1.2.0                                            //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Gregory DEMAR <gdemar@wanadoo.fr>               //
-//  http://www.chezgreg.net/coppermine/                                      //
+// Copyright (C) 2002,2003 Gregory DEMAR <gdemar@wanadoo.fr>                 //
+// http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Stverud <henning@stoverud.com>         //
-//  http://www.stoverud.com/PHPhotoalbum/                                    //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
-//  Hacked by Tarique Sani <tarique@sanisoft.com> and Girsh Nair             //
-//  <girish@sanisoft.com> see http://www.sanisoft.com/cpg/README.txt for     //
-//  details                                                                  //
+// This program is free software; you can redistribute it and/or modify      //
+// it under the terms of the GNU General Public License as published by      //
+// the Free Software Foundation; either version 2 of the License, or         //
+// (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-// ------------------------------------------------------------------------- //
+// to all devs: stop overwriting this file!
 
 // info about translators and translated language
 $lang_translation_info = array(
@@ -26,8 +24,7 @@ $lang_translation_info = array(
 'trans_name'=> 'Mitsuhiro Yoshida', //the name of the translator - can be a nickname
 'trans_email' => 'mits@mitstek.com', //translator's email address (optional)
 'trans_website' => 'http://mitstek.com/', //translator's website (optional)
-);
-'trans_date' => '2003-10-13', //the date the translation was created / last modified
+'trans_date' => '2003-11-07', //the date the translation was created / last modified
 );
 
 $lang_charset = 'EUC-JP';
@@ -86,7 +83,7 @@ $lang_errors = array(
         'orphan_cat' => 'Â¸ºß¤·¤Ê¤¤¿Æ¥«¥Æ¥´¥ê¡¼¤ò»ý¤Ã¤Æ¤¤¤Þ¤¹¡£¥«¥Æ¥´¥ê¡¼¥Þ¥Í¡¼¥¸¥ã¡¼¤ò»È¤Ã¤ÆÌäÂê¤ò²ò·è¤·¤Æ¤¯¤À¤µ¤¤¡£',
         'directory_ro' => '¥Ç¥£¥ì¥¯¥È¥ê \'%s\' ¤Ë½ñ¹þ¤ß¸¢¤¬¤¢¤ê¤Þ¤»¤ó¡£¼Ì¿¿¤Îºï½ü¤Ï½ÐÍè¤Þ¤»¤ó¡£',
         'non_exist_comment' => 'ÁªÂò¤·¤¿¥³¥á¥ó¥È¤ÏÂ¸ºß¤·¤Þ¤»¤ó¡£',
-        'pic_in_invalid_album' => 'Â¸ºß¤·¤Ê¤¤¥¢¥ë¥Ð¥à(%s)Æâ¤Ë¼Ì¿¿¤¬¤¢¤ê¤Þ¤¹ !?'
+        'pic_in_invalid_album' => 'Â¸ºß¤·¤Ê¤¤¥¢¥ë¥Ð¥à(%s)Æâ¤Ë¼Ì¿¿¤¬¤¢¤ê¤Þ¤¹ !?',
         'banned' => '¤¢¤Ê¤¿¤Ï¸½ºß¤³¤Î¥µ¥¤¥È¤Ø¤Î¥¢¥¯¥»¥¹¤òµñÈÝ¤µ¤ì¤Æ¤¤¤Þ¤¹¡£',
         'not_with_udb' => '¥Õ¥©¡¼¥é¥à¥½¥Õ¥È¤ËÅý¹ç¤µ¤ì¤¿°Ù¡¢¤³¤Îµ¡Ç½¤ÏCoppermine¤ÇÌµ¸ú¤Ë¤µ¤ì¤Æ¤¤¤Þ¤¹¡£¥Õ¥©¡¼¥é¥à¥½¥Õ¥È¤Ç´ÉÍý¤µ¤ì¤ë°Ù¡¢¤³¤Îµ¡Ç½¤Ë´Ø¤¹¤ëÀßÄê¤Ï¡¢¤³¤³¤Ç¥µ¥Ý¡¼¥È¤µ¤ì¤Þ¤»¤ó¡£',
 );
@@ -130,6 +127,7 @@ $lang_gallery_admin_menu = array(
         'comments_lnk' => '¥³¥á¥ó¥È',
         'searchnew_lnk' => '¼Ì¿¿¤Î°ì³çÅÐÏ¿',
         'util_lnk' => '¼Ì¿¿¤Î¥ê¥µ¥¤¥º',
+        'ban_lnk' => '¥¢¥¯¥»¥¹¶Ø»ß¥æ¡¼¥¶', 
 );
 
 $lang_user_admin_menu = array(
@@ -335,7 +333,6 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'th_any' => 'Max Aspect',
         'th_ht' => 'Height',
         'th_wd' => 'Width',
-
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
@@ -345,7 +342,9 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('´ÉÍý¼Ô¤Î¥á¡¼¥ë¥¢¥É¥ì¥¹', 'gallery_admin_email', 0),
         array('e-¥«¡¼¥É¤Î¡Ö¤â¤Ã¤È¼Ì¿¿¤ò¸«¤ë¡×¥ê¥ó¥¯¤Î¥¿¡¼¥²¥Ã¥È¥¢¥É¥ì¥¹', 'ecards_more_pic_target', 0),
         array('¸À¸ì', 'lang', 5),
+        //array('enable language selection', 'lang_select_enable', 8 ), 
         array('¥Æ¡¼¥Þ', 'theme', 6),
+        //array('enable theme selection', 'theme_select_enable', 8),
 
         '¥¢¥ë¥Ð¥à¥ê¥¹¥ÈÉ½¼¨',
         array('¥á¥¤¥ó¥Æ¡¼¥Ö¥ë¤ÎÉý (¥Ô¥¯¥»¥ëËô¤Ï%)', 'main_table_width', 0),
@@ -413,7 +412,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('¥µ¥à¥Í¥¤¥ë¤ÎÀÜÆ¬¼­ <b>*</b>', 'thumb_pfx', 0),
         array('¥Ç¥£¥ì¥¯¥È¥ê¤Î¥Ç¥Õ¥©¥ë¥È¡¦¥Ñ¡¼¥ß¥Ã¥·¥ç¥ó¥â¡¼¥É¥â¡¼¥É', 'default_dir_mode', 0),
         array('¼Ì¿¿¤Î¥Ç¥Õ¥©¥ë¥È¡¦¥Ñ¡¼¥ß¥Ã¥·¥ç¥ó¥â¡¼¥É', 'default_file_mode', 0),
-        
 
         '¥¯¥Ã¥­¡¼¤È¥­¥ã¥é¥¯¥¿¡¼¥»¥Ã¥ÈÀßÄê',
         array('¥¹¥¯¥ê¥×¥È¤Ç»ÈÍÑ¤¹¤ë¥¯¥Ã¥­¡¼Ì¾', 'cookie_name', 0),
@@ -518,7 +516,7 @@ $lang_picinfo = array(
         'Aperture' => '¥ì¥ó¥º',
         'Exposure time' => 'Ïª½Ð»þ´Ö',
         'Focal length' => '¾ÇÅÀµ÷Î¥',
-        'Comment' => '¥³¥á¥ó¥È'
+        'Comment' => '¥³¥á¥ó¥È',
         'addFav'=>'¤ªµ¤¤ËÆþ¤ê¤ËÄÉ²Ã',
         'addFavPhrase'=>'¤ªµ¤¤ËÆþ¤ê',
         'remFav'=>'¤ªµ¤¤ËÆþ¤ê¤«¤éºï½ü',
@@ -572,7 +570,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
         'title' => '¼Ì¿¿Ì¾',
         'desc' => 'ÀâÌÀ',
         'keywords' => '¥­¡¼¥ï¡¼¥É',
-        'pic_info_str' => '%sx%s - %sKB - ±ÜÍ÷²ó¿ô %s - ÅêÉ¼¿ô %s',
+        'pic_info_str' => '%s&times;%s - %sKB - ±ÜÍ÷²ó¿ô %s - ÅêÉ¼¿ô %s',
         'approve' => '¼Ì¿¿¤Î¾µÇ§',
         'postpone_app' => '¾µÇ§¤Î±ä´ü',
         'del_pic' => '¼Ì¿¿¤Îºï½ü',
@@ -793,7 +791,6 @@ $lang_register_confirm_email = <<<EOT
 
 {ACT_LINK}´ÉÍý¼Ô
 
-
 {SITE_NAME}
 
 EOT;
@@ -813,7 +810,6 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
         'see_next' => '¼¡¤Ø',
         'del_comm' => 'ÁªÂò¤·¤¿¥³¥á¥ó¥È¤òºï½ü',
 );
-
 
 // ------------------------------------------------------------------------- //
 // File search.php - OK
@@ -855,7 +851,6 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
                                 '<li>¥¿¥¤¥à¥¢¥¦¥È¤¬È¯À¸¤·¤¿¾ì¹ç¡¢¥Ö¥é¥¦¥¶¤Î¹¹¿·¥Ü¥¿¥ó¤ò¥¯¥ê¥Ã¥¯¤·¤Æ¤¯¤À¤µ¤¤¡£'.
                                 '</ul>',
 );
-
 
 // ------------------------------------------------------------------------- //
 // File thumbnails.php
@@ -989,5 +984,4 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
         'delete_replace' => '¥ª¥ê¥¸¥Ê¥ë¥µ¥¤¥º¤Î²èÁü¤òºï½ü¤·¤Æ¡¢¥µ¥¤¥ºÊÑ¹¹¸å¤Î²èÁü¤ÈÆþ¤ìÂØ¤¨¤ë',
         'select_album' => '¥¢¥ë¥Ð¥à¤ÎÁªÂò',
 );
-
 ?>

@@ -1,22 +1,20 @@
 <?php
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery                                                 //
+// Coppermine Photo Gallery 1.2.0                                            //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Gregory DEMAR <gdemar@wanadoo.fr>               //
-//  http://www.chezgreg.net/coppermine/                                      //
+// Copyright (C) 2002,2003 Gregory DEMAR <gdemar@wanadoo.fr>                 //
+// http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Stverud <henning@stoverud.com>         //
-//  http://www.stoverud.com/PHPhotoalbum/                                    //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
-//  Hacked by Tarique Sani <tarique@sanisoft.com> and Girsh Nair             //
-//  <girish@sanisoft.com> see http://www.sanisoft.com/cpg/README.txt for     //
-//  details                                                                  //
+// This program is free software; you can redistribute it and/or modify      //
+// it under the terms of the GNU General Public License as published by      //
+// the Free Software Foundation; either version 2 of the License, or         //
+// (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-// ------------------------------------------------------------------------- //
+// to all devs: stop overwriting this file!
 
 // info about translators and translated language
 $lang_translation_info = array(
@@ -26,8 +24,7 @@ $lang_translation_info = array(
 'trans_name'=> 'Mitsuhiro Yoshida', //the name of the translator - can be a nickname
 'trans_email' => 'mits@mitstek.com', //translator's email address (optional)
 'trans_website' => 'http://mitstek.com/', //translator's website (optional)
-);
-'trans_date' => '2003-10-13', //the date the translation was created / last modified
+'trans_date' => '2003-11-07', //the date the translation was created / last modified
 );
 
 $lang_charset = 'EUC-JP';
@@ -86,7 +83,7 @@ $lang_errors = array(
         'orphan_cat' => '存在しない親カテゴリーを持っています。カテゴリーマネージャーを使って問題を解決してください。',
         'directory_ro' => 'ディレクトリ \'%s\' に書込み権がありません。写真の削除は出来ません。',
         'non_exist_comment' => '選択したコメントは存在しません。',
-        'pic_in_invalid_album' => '存在しないアルバム(%s)内に写真があります !?'
+        'pic_in_invalid_album' => '存在しないアルバム(%s)内に写真があります !?',
         'banned' => 'あなたは現在このサイトへのアクセスを拒否されています。',
         'not_with_udb' => 'フォーラムソフトに統合された為、この機能はCoppermineで無効にされています。フォーラムソフトで管理される為、この機能に関する設定は、ここでサポートされません。',
 );
@@ -130,6 +127,7 @@ $lang_gallery_admin_menu = array(
         'comments_lnk' => 'コメント',
         'searchnew_lnk' => '写真の一括登録',
         'util_lnk' => '写真のリサイズ',
+        'ban_lnk' => 'アクセス禁止ユーザ', 
 );
 
 $lang_user_admin_menu = array(
@@ -335,7 +333,6 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'th_any' => 'Max Aspect',
         'th_ht' => 'Height',
         'th_wd' => 'Width',
-
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
@@ -345,7 +342,9 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('管理者のメールアドレス', 'gallery_admin_email', 0),
         array('e-カードの「もっと写真を見る」リンクのターゲットアドレス', 'ecards_more_pic_target', 0),
         array('言語', 'lang', 5),
+        //array('enable language selection', 'lang_select_enable', 8 ), 
         array('テーマ', 'theme', 6),
+        //array('enable theme selection', 'theme_select_enable', 8),
 
         'アルバムリスト表示',
         array('メインテーブルの幅 (ピクセル又は%)', 'main_table_width', 0),
@@ -413,7 +412,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('サムネイルの接頭辞 <b>*</b>', 'thumb_pfx', 0),
         array('ディレクトリのデフォルト・パーミッションモードモード', 'default_dir_mode', 0),
         array('写真のデフォルト・パーミッションモード', 'default_file_mode', 0),
-        
 
         'クッキーとキャラクターセット設定',
         array('スクリプトで使用するクッキー名', 'cookie_name', 0),
@@ -518,7 +516,7 @@ $lang_picinfo = array(
         'Aperture' => 'レンズ',
         'Exposure time' => '露出時間',
         'Focal length' => '焦点距離',
-        'Comment' => 'コメント'
+        'Comment' => 'コメント',
         'addFav'=>'お気に入りに追加',
         'addFavPhrase'=>'お気に入り',
         'remFav'=>'お気に入りから削除',
@@ -572,7 +570,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
         'title' => '写真名',
         'desc' => '説明',
         'keywords' => 'キーワード',
-        'pic_info_str' => '%sx%s - %sKB - 閲覧回数 %s - 投票数 %s',
+        'pic_info_str' => '%s&times;%s - %sKB - 閲覧回数 %s - 投票数 %s',
         'approve' => '写真の承認',
         'postpone_app' => '承認の延期',
         'del_pic' => '写真の削除',
@@ -793,7 +791,6 @@ $lang_register_confirm_email = <<<EOT
 
 {ACT_LINK}管理者
 
-
 {SITE_NAME}
 
 EOT;
@@ -813,7 +810,6 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
         'see_next' => '次へ',
         'del_comm' => '選択したコメントを削除',
 );
-
 
 // ------------------------------------------------------------------------- //
 // File search.php - OK
@@ -855,7 +851,6 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
                                 '<li>タイムアウトが発生した場合、ブラウザの更新ボタンをクリックしてください。'.
                                 '</ul>',
 );
-
 
 // ------------------------------------------------------------------------- //
 // File thumbnails.php
@@ -989,5 +984,4 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
         'delete_replace' => 'オリジナルサイズの画像を削除して、サイズ変更後の画像と入れ替える',
         'select_album' => 'アルバムの選択',
 );
-
 ?>
