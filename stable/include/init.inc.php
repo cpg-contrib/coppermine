@@ -329,7 +329,7 @@ if (isset($USER['theme']) && !strstr($USER['theme'], '/') && is_dir('themes/' . 
     unset($USER['theme']);
 }
 
-if (!file_exists("themes/{$CONFIG['theme']}/theme.php")) $CONFIG['theme'] = 'default';
+if (!file_exists("themes/{$CONFIG['theme']}/theme.php")) $CONFIG['theme'] = 'classic';
 require "themes/{$CONFIG['theme']}/theme.php";
 $THEME_DIR = "themes/{$CONFIG['theme']}/";
 // Process language selection if present in URI or in user profile or try
