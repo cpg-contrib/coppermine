@@ -49,7 +49,9 @@ class cpgNumericAlbumData extends cpgAlbumData{
               $thumb_list["album"] = $album;
               return $thumb_list;
       } else {
-              theme_no_img_to_display($album_name);
+              $thumb_list["albumName"] = $album_name;
+              $thumb_list["thumbCount"] = 0;
+              return $thumb_list;
       }
   }
 
@@ -114,7 +116,7 @@ class cpgNumericAlbumData extends cpgAlbumData{
         if($select_columns != '*') $select_columns .= ', title, caption,hits,owner_id,owner_name';
 
         $query = "SELECT $select_columns from {$CONFIG['TABLE_PICTURES']} WHERE (aid='$album' $forbidden_set_string ) $keyword $approved $ALBUM_SET ORDER BY $sort_order $limit";
-        
+
         $result = cpg_db_query($query);
         $rowset = cpg_db_fetch_rowset($result);
         mysql_free_result($result);
@@ -185,7 +187,7 @@ class cpgNumericAlbumData extends cpgAlbumData{
         return $rowset;
         //}
     }
-    
+
   function getFilmStripData($album, $pos)
   {
         global $CONFIG, $AUTHORIZED;
@@ -215,8 +217,8 @@ class cpgNumericAlbumData extends cpgAlbumData{
           if($new_pos > $hf ) {
                $lower_limit = $new_pos - $ihf;
           }
-          elseif($new_pos < $hf ) { 
-            $lower_limit = 0; 
+          elseif($new_pos < $hf ) {
+            $lower_limit = 0;
           }
         }
 
@@ -256,7 +258,7 @@ class cpgNumericAlbumData extends cpgAlbumData{
                         }
                 }
                 return ($thumb_list);
-        }  
-  }    
+        }
+  }
 }
 ?>

@@ -44,11 +44,15 @@ $breadcrumb = $albumData->getBreadcrumbData ($album);
 
 $thumbData = $albumData->getThumbnailData($album, $cat, $page, $CONFIG['thumbcols'], $CONFIG['thumbrows'], true);
 
-$breadcrumbHTML = $t->getBreadcrumbHTML($breadcrumb);
+/**
+ * Fetch the breadcrumb only if there are some pictures in the album
+ */
+if ($thumbData["thumbCount"] != 0) {
+  $breadcrumbHTML = $t->getBreadcrumbHTML($breadcrumb);
+}
 
 //$CONTENT = $t->getThumbnailHTML($thumbData, $thumb_count, $album_name, $album, $cat, $page, $total_pages, is_numeric($album), $display_tabs);
 $CONTENT = $t->getThumbnailHTML($thumbData);
-
 
 $t->assign("breadcrumbHTML", $breadcrumbHTML);
 $t->assign("CONTENT", $CONTENT);

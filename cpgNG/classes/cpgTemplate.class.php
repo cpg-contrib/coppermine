@@ -11,12 +11,13 @@ class cpgTemplate extends Smarty{
   //function getThumbnailHTML($thumbList, $nbThumb, $album_name, $aid, $cat, $page, $total_pages, $sort_options, $display_tabs, $mode = 'thumb')
   function getThumbnailHTML($thumbList)
   {
-    global $CONFIG;
+    global $CONFIG, $lang_errors;
 
     $this->assign("thumbcols", $CONFIG["thumbcols"]);
     $this->assign("thumbrows", $CONFIG["thumbrows"]);
     $this->assign("colWidth", 100/$CONFIG["thumbcols"]);
     $this->assign("thumbList", $thumbList);
+    $this->assign("lang_errors", $lang_errors);
 
     return $this->fetch($CONFIG["theme"]."/common/thumbnail.html");
   }
