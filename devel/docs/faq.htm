@@ -317,8 +317,8 @@ Yes, we want you to check the permissions of each folder even if you think you h
 <li><b>post_max_size</b> - 8MB is the default limit for post requests.</li>
 <li><b>memory_limit</b> - 8MB is the default size.</li>
 <li>PHP's <b>LimitRequestBody</b> - 512KB default limit. (mainly an issue on Redhat/Apache systems.  Found in /etc/http/conf.d)<br />In general, upload_max_filesize &lt; post_max_size &lt; memory_limit in order for uploads to function properly. Coppermine may warn you if a file exceeds upload_max_filesize, but it cannot warn you if the total size of all the files exceeds the post limit or the memory limit.</li>
-<li><b>file_uploads</b> Â– This determines whether or not PHP will allow file uploads. It must be set to Â‘OnÂ’.</li>
-<li><b>upload_tmp_dir</b> Â– This specifies the temporary directory where PHP stores uploaded files.</li>
+<li><b>file_uploads</b> &Acirc;– This determines whether or not PHP will allow file uploads. It must be set to &Acirc;‘On&Acirc;’.</li>
+<li><b>upload_tmp_dir</b> &Acirc;– This specifies the temporary directory where PHP stores uploaded files.</li>
 </ol>
 
 <p>The most common issue caused by this setting is an open_basedir warning.  In this situation, your server administrator has restricted the files that PHP can work with to a certain directory.  If he does not create and specify a temporary directory within the open_basedir restriction, PHP will attempt to use the OS temporary directory, and it will be rebuffed by the open_basedir restriction.</p>
@@ -426,6 +426,7 @@ Replace it with<br />
       <li>'<b>toprated</b>': top rated
       <li>'<b>lastcom</b>': last comments </li>
       <li>'<b>lasthits</b>': last viewed </li>
+      <li>'<b>lastalb</b>': last created albums</li>
       <li>'<b>anycontent</b>': inserts php-generated content that has to reside within the file 'anycontent.php' into the index page. Can be used to include banner-rotation scripts or similar.</li>
     </ul>
     (e.g. <tt class="code">catlist/alblist/random,2/lastup,2</tt> means &quot;category list, album list, 2 rows of random pics, 2 rows of last uploads&quot;)</li>
