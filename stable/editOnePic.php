@@ -120,7 +120,11 @@ function form_alb_list_box()
         global $CONFIG, $CURRENT_PIC;
         global $user_albums_list, $public_albums_list, $lang_editpics_php;
         $sel_album = $CURRENT_PIC['aid'];
-
+        
+        $test = db_query("SELECT title FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid = '$sel_album'");
+        $title_row = mysql_fetch_array($test);
+		$title = $title_row['title'];
+		
         echo <<<EOT
         <tr>
             <td class="tableb" style="white-space: nowrap;">
@@ -128,8 +132,12 @@ function form_alb_list_box()
         </td>
         <td class="tableb" valign="top">
                 <select name="aid" class="listbox">
-
 EOT;
+		if (count($public_albums_list) + count($user_albums_list) == 0){
+			echo "<option value=\"{$CURRENT_PIC['aid']}\" selected>{$title}</option>";
+		}	
+
+
                 foreach($public_albums_list as $album) {
         echo '              <option value="' . $album['aid'] . '"' . ($album['aid'] == $sel_album ? ' selected' : '') . '>' . $album['cat_title'] . "</option>\n";
     }
