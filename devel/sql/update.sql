@@ -217,6 +217,8 @@ ALTER TABLE `CPG_users` CHANGE user_lang user_group_list varchar(255) NOT NULL d
 #
 # Fix usermgr timing out with 1k+ users -Omni
 #
+ALTER TABLE CPG_pictures DROP INDEX `owner_id`;
+ALTER TABLE CPG_pictures DROP INDEX `owner_id_2`;
 ALTER TABLE CPG_pictures ADD INDEX ( `owner_id` );
 
 
