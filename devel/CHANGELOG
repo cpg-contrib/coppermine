@@ -169,3 +169,6 @@ Silenced CHMOD command to avoid issues on servers not supporting the command - 1
 Added advanced sorting hack (sort by position, picture manager) - 13 August 2004, GauGau
 Added version check routine for easier upgrades - 16 August 2004, GauGau
 Added facility to disable config settings that are irrelevent with bridged installs - 20th August, Nibbler
+Added alt tags to some images for xhtml compliance - 31 August 2004, GauGau
+Changed bbcode help to display help icon instad of full text - 31 August 2004, GauGau
+Added option to sort categories by name instead of position - 31 August 2004, GauGau

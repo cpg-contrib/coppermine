@@ -61,7 +61,7 @@ $USER_ALBUMS_ARRAY=array(0 => array());
 //      2 => text_area
 //      3 => picture information
 $captionLabel = $lang_editpics_php['desc'];
-if ($CONFIG['show_bbcode_help']) {$captionLabel .= '<hr />'.$lang_bbcode_help;}
+if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&t='.urlencode(base64_encode(serialize($lang_bbcode_help))),400,180);}
 $data = array(
         array($lang_editpics_php['pic_info'], '', 3),
         array($lang_editpics_php['album'], 'aid', 1),

@@ -185,7 +185,7 @@ function textCounter(field, maxlimit) {
         field.value = field.value.substring(0, maxlimit);
 }
 </script>
-<form method="post" action="editOnePic.php">
+<form name="editonepicform" method="post" action="editOnePic.php">
 <input type="hidden" name="id" value="{$CURRENT_PIC['pid']}" />
 EOT;
 
@@ -209,6 +209,8 @@ print <<<EOT
         <tr>
                         <td class="tableh2" colspan="3">
                                 <b>$filename</b>
+                                &nbsp;&nbsp;-&nbsp;&nbsp;<a href="modifyalb.php?album={$CURRENT_PIC['aid']}" class="admin_menu">{$lang_editpics_php['album_properties']}</a>&nbsp;&nbsp;-&nbsp;&nbsp;
+                        <a href="thumbnails.php?album={$CURRENT_PIC['aid']}" class="admin_menu">{$lang_editpics_php['thumbnail_view']}</a>
                         </td>
         </tr>
         <tr>
@@ -226,6 +228,8 @@ EOT;
 
 form_alb_list_box();
 
+if ($CONFIG['show_bbcode_help']) {$captionLabel = '&nbsp;'. cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&t='.urlencode(base64_encode(serialize($lang_bbcode_help))),400,180);}
+
 print <<<EOT
         <tr>
                         <td class="tableb" style="white-space: nowrap;">
@@ -239,7 +243,7 @@ EOT;
 echo <<<EOT
         <tr>
                         <td class="tableb" valign="top" style="white-space: nowrap;">
-                                {$lang_editpics_php['desc']}
+                                {$lang_editpics_php['desc']}$captionLabel
                         </td>
                         <td class="tableb" valign="top">
                                 <textarea name="caption" rows="5" cols="40" class="textinput" style="width: 100%;" onkeydown="textCounter(this, {$CONFIG['max_img_desc_length']});" onkeyup="textCounter(this, {$CONFIG['max_img_desc_length']});">{$CURRENT_PIC['caption']}</textarea>
