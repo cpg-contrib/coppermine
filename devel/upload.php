@@ -409,12 +409,20 @@ function spring_cleaning($directory_path) {
     // Now let's read through the directory contents.
     while (!(($file = readdir($directory_handle)) === false)) {
 
+            // Avoid deleting the index page of the directory.
+            if ($file == 'index.html') {
+
+                // This is the index file, so we move on.
+                continue;     
+
+            }
+
             $dir_path = "".$directory_path."/".$file."";
 
             if (is_dir($dir_path)) {
 
-                    // This is a directory, so we move on.
-                    continue;
+                // This is a directory, so we move on.
+                continue;
 
             }
 
@@ -930,6 +938,7 @@ if (!isset($_REQUEST['control'])) {
 
             // Unknown form number.
             cpg_die(ERROR, $lang_upload_php['reg_instr_1'], __FILE__, __LINE__);
+
         }
 
     }
@@ -1024,6 +1033,14 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
             } else {
 
                 $file_name = $_FILES['file_upload_array']['name'][$counter];
+
+            }
+
+            // Test for a blank file upload box.
+            if (empty($_FILES['file_upload_array']['tmp_name'][$counter])) {
+
+                // There is no need for further tests or action as there was no uploaded file, so skip the remainder of the iteration. 
+                continue;
 
             }
 
@@ -1232,6 +1249,15 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
 
             // Initialize the $URI_MIME_type variable.
             $URI_MIME_type = "0";
+
+            // Check to make sure the URI box was not blank.
+            if (empty($_POST['URI_array'][$counter])) {
+
+                // The box was empty.
+                // There is no need for further tests or action, so skip the remainder of the iteration. 
+                continue;
+
+            }
 
             // Check for magic quotes and remove slashes if necessary. 
             if (get_magic_quotes_gpc()) {
@@ -1893,6 +1919,55 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
     // Create page header.
     pageheader($lang_upload_php['title']);
 
+    // Check for successful uploads.
+    if ($escrow_array_count > '0') {
+
+        // Serialize and base64_encode the array.
+        $cayman_escrow = base64_encode(serialize($escrow_array));
+
+        // Add temp data record to database.
+        $unique_ID = create_record($cayman_escrow);
+
+        // Verify record was created.
+        if (!$unique_ID) {
+
+            cpg_die(CRITICAL_ERROR, $lang_upload_php['cant_create_write'], __FILE__, __LINE__);
+        
+        }
+
+        // Prepare success data for user.
+        starttable("100%", 'Successful Uploads', 2);
+        echo "<tr><td colspan=\"2\">";
+        printf ($lang_upload_php['success'], $escrow_array_count);
+        echo "<br /><br />";
+        echo $lang_upload_php['add'];
+        echo "</td></tr>";
+
+        // Set the form action to this script.
+        open_form($_SERVER['PHP_SELF']);
+
+        $form_array = array(
+             array('unique_ID', $unique_ID, 4),
+             array('control', 'phase_2', 4)
+        );
+
+        create_form($form_array);
+        close_form($lang_continue);
+        endtable();
+
+        // Throw in an HTML break for aesthetics.
+        echo "<br />"; 
+
+    } else {
+
+        // we had no successful uploads. We create a redirect box. 
+        msg_box($lang_info, sprintf($lang_upload_php['success'], $escrow_array_count), $lang_continue, 'index.php', "100%");
+
+        // Throw in an HTML break for aesthetics.
+        echo "<br />"; 
+
+    }
+
     // Create error report if we have errors.
     if (($file_error_count + $URI_error_count + $zip_error_count) > 0) {
 
@@ -1953,60 +2028,6 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
 
         // Close the error report table.
         endtable();
-
-        // Throw in an some HTML breaks for aesthetics.
-        echo "<br />"; 
-
-    }
-
-    // Check for successful uploads.
-    if ($escrow_array_count > '0') {
-
-        // Serialize and base64_encode the array.
-        $cayman_escrow = base64_encode(serialize($escrow_array));
-
-        // Add temp data record to database.
-        $unique_ID = create_record($cayman_escrow);
-
-        // Verify record was created.
-        if (!$unique_ID) {
-
-            cpg_die(CRITICAL_ERROR, $lang_upload_php['cant_create_write'], __FILE__, __LINE__);
-        
-        }
-
-        // Prepare success data for user.
-        starttable("100%", 'Successful Uploads', 2);
-        echo "<tr><td colspan=\"2\">";
-        printf ($lang_upload_php['success'], $escrow_array_count);
-        echo "<br /><br />";
-        echo $lang_upload_php['add'];
-        echo "</td></tr>";
-
-        // Set the form action to this script.
-        open_form($_SERVER['PHP_SELF']);
-
-        $form_array = array(
-             array('unique_ID', $unique_ID, 4),
-             array('control', 'phase_2', 4)
-        );
-
-        create_form($form_array);
-        close_form($lang_continue);
-        endtable();
-
-        // Create the footer and flush the output buffer.     
-        pagefooter();
-        ob_end_flush();
-
-        // Exit the script.
-    
-        exit;  
-
-    } else {
-
-        // we had no successful uploads. We create a redirect box. 
-        msg_box($lang_info, sprintf($lang_upload_php['success'], $escrow_array_count), $lang_continue, 'index.php', "100%");
 
     }
 
