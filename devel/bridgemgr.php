@@ -1218,7 +1218,7 @@ else { // not in gallery admin mode --- start
     } else { // the logon wait time has passed, the user is allowed to try to logon now
         // go through the list of standalone admins and check if we have a match
         $temp_user_table = $CONFIG['TABLE_PREFIX'].'users';
-        $results = cpg_db_query("SELECT user_id, user_name, user_password FROM $temp_user_table WHERE user_name = '" . addslashes($HTTP_POST_VARS['username']) . "' AND BINARY user_password = '" . addslashes($HTTP_POST_VARS['password']) . "' AND user_active = 'YES' AND user_group = '1'");
+        $results = cpg_db_query("SELECT user_id, user_name, user_password FROM $temp_user_table WHERE user_name = '" . addslashes($_POST['username']) . "' AND BINARY user_password = '" . addslashes($_POST['password']) . "' AND user_active = 'YES' AND user_group = '1'");
         if (mysql_num_rows($results)) {
             $retrieved_data = mysql_fetch_array($results);
         }
