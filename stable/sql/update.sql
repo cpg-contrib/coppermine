@@ -202,7 +202,7 @@ ALTER TABLE CPG_pictures DROP INDEX `owner_id`;
 ALTER TABLE CPG_pictures DROP INDEX `owner_id_2`;
 ALTER TABLE CPG_pictures DROP INDEX `owner_id_3`;
 ALTER TABLE CPG_pictures DROP INDEX `owner_id_4`;
-ALTER TABLE CPG_pictures ADD INDEX ( `owner_id` );
+ALTER TABLE CPG_pictures ADD INDEX owner_id( `owner_id` );
 
 
 #
