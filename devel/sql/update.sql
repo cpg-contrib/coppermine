@@ -403,3 +403,5 @@ INSERT INTO CPG_config VALUES ('report_post', '0');
 INSERT INTO CPG_config VALUES ('users_can_edit_pics', '0');
 
 INSERT INTO CPG_config VALUES ('allow_unlogged_access', '1');
+
+DELETE FROM CPG_config WHERE `name` = 'comment_email_notification';
