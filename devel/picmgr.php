@@ -54,9 +54,9 @@ function albumselect($id = "album") {
             $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0");
             while ($row = mysql_fetch_array($result)) {
                 // Add to multi-dim array for later sorting
-                $listArray[$list_count][cat] = $lang_search_new_php['albums_no_category'];
-                $listArray[$list_count][aid] = $row['aid'];
-                $listArray[$list_count][title] = $row['title'];
+                $listArray[$list_count]['cat'] = $lang_search_new_php['albums_no_category'];
+                $listArray[$list_count]['aid'] = $row['aid'];
+                $listArray[$list_count]['title'] = $row['title'];
                 $list_count++;
             }
             mysql_free_result($result);
@@ -67,9 +67,9 @@ function albumselect($id = "album") {
             $result = cpg_db_query("SELECT DISTINCT a.aid AS aid, a.title AS title, c.name AS cname FROM {$CONFIG['TABLE_ALBUMS']} AS a, {$CONFIG['TABLE_CATEGORIES']} AS c WHERE a.category = c.cid AND a.category < '" . FIRST_USER_CAT . "'");
             while ($row = mysql_fetch_array($result)) {
                 // Add to multi-dim array for later sorting
-                $listArray[$list_count][cat] = $row['cname'];
-                $listArray[$list_count][aid] = $row['aid'];
-                $listArray[$list_count][title] = $row['title'];
+                $listArray[$list_count]['cat'] = $row['cname'];
+                $listArray[$list_count]['aid'] = $row['aid'];
+                $listArray[$list_count]['title'] = $row['title'];
                 $list_count++;
             }
             mysql_free_result($result);
@@ -92,9 +92,9 @@ function albumselect($id = "album") {
         $result = cpg_db_query($sql);
         while ($row = mysql_fetch_array($result)) {
             // Add to multi-dim array for later sorting
-            $listArray[$list_count][cat] = $lang_search_new_php['personal_albums'];
-            $listArray[$list_count][aid] = $row['aid'];
-            $listArray[$list_count][title] = $row['title'];
+            $listArray[$list_count]['cat'] = $lang_search_new_php['personal_albums'];
+            $listArray[$list_count]['aid'] = $row['aid'];
+            $listArray[$list_count]['title'] = $row['title'];
             $list_count++;
         }
         mysql_free_result($result);
@@ -109,12 +109,12 @@ function albumselect($id = "album") {
         // Create the nicely sorted and formatted drop down list
         $alb_cat = '';
         foreach ($listArray as $val) {
-            if ($val[cat] != $alb_cat) {
+            if ($val['cat'] != $alb_cat) {
           if ($alb_cat) $select .= "</optgroup>\n";
-                $select .= '<optgroup label="' . $val[cat] . '">' . "\n";
-                $alb_cat = $val[cat];
+                $select .= '<optgroup label="' . $val['cat'] . '">' . "\n";
+                $alb_cat = $val['cat'];
             }
-            $select .= '<option value="' . $val[aid] . '"' . ($val[aid] == $aid ? ' selected="selected"' : '') . '>   ' . $val[title] . "</option>\n";
+            $select .= '<option value="' . $val['aid'] . '"' . ($val['aid'] == $aid ? ' selected="selected"' : '') . '>   ' . $val['title'] . "</option>\n";
         }
         if ($alb_cat) $select .= "</optgroup>\n";
     }

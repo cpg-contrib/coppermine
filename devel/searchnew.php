@@ -52,9 +52,9 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
         $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0");
         while ($row = mysql_fetch_array($result)) {
             // Add to multi-dim array for later sorting
-            $listArray[$list_count][cat] = $lang_search_new_php['albums_no_category'];
-            $listArray[$list_count][aid] = $row['aid'];
-            $listArray[$list_count][title] = $row['title'];
+            $listArray[$list_count]['cat'] = $lang_search_new_php['albums_no_category'];
+            $listArray[$list_count]['aid'] = $row['aid'];
+            $listArray[$list_count]['title'] = $row['title'];
             $list_count++;
         }
         mysql_free_result($result);
@@ -62,9 +62,9 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
         $result = cpg_db_query("SELECT DISTINCT a.aid as aid, a.title as title, c.name as cname FROM {$CONFIG['TABLE_ALBUMS']} as a, {$CONFIG['TABLE_CATEGORIES']} as c WHERE a.category = c.cid AND a.category < '" . FIRST_USER_CAT . "'");
         while ($row = mysql_fetch_array($result)) {
             // Add to multi-dim array for later sorting
-            $listArray[$list_count][cat] = $row['cname'];
-            $listArray[$list_count][aid] = $row['aid'];
-            $listArray[$list_count][title] = $row['title'];
+            $listArray[$list_count]['cat'] = $row['cname'];
+            $listArray[$list_count]['aid'] = $row['aid'];
+            $listArray[$list_count]['title'] = $row['title'];
             $list_count++;
         }
         mysql_free_result($result);
@@ -77,9 +77,9 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
         $result = cpg_db_query($sql);
         while ($row = mysql_fetch_array($result)) {
             // Add to multi-dim array for later sorting
-            $listArray[$list_count][cat] = $lang_search_new_php['personal_albums'];
-            $listArray[$list_count][aid] = $row['aid'];
-            $listArray[$list_count][title] = $row['title'];
+            $listArray[$list_count]['cat'] = $lang_search_new_php['personal_albums'];
+            $listArray[$list_count]['aid'] = $row['aid'];
+            $listArray[$list_count]['title'] = $row['title'];
             $list_count++;
         }
         mysql_free_result($result);
@@ -92,12 +92,12 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
         // Create the nicely sorted and formatted drop down list
         $alb_cat = '';
         foreach ($listArray as $val) {
-            if ($val[cat] != $alb_cat) {
+            if ($val['cat'] != $alb_cat) {
           if ($alb_cat) $select .= "</optgroup>\n";
-                $select .= '<optgroup label="' . $val[cat] . '">' . "\n";
-                $alb_cat = $val[cat];
+                $select .= '<optgroup label="' . $val['cat'] . '">' . "\n";
+                $alb_cat = $val['cat'];
             }
-            $select .= '<option value="' . $val[aid] . '"' . ($val[aid] == $sel_album ? ' selected' : '') . '>   ' . $val[title] . "</option>\n";
+            $select .= '<option value="' . $val['aid'] . '"' . ($val['aid'] == $sel_album ? ' selected' : '') . '>   ' . $val['title'] . "</option>\n";
         }
         if ($alb_cat) $select .= "</optgroup>\n";
     }
@@ -400,9 +400,9 @@ EOT;
     foreach ($_POST['pics'] as $pic_id) {
         $album_lb_id = $_POST['album_lb_id_' . $pic_id];
         $album_id = $_POST[$album_lb_id];
-        
+
         $edit_album_array[] = $album_id; //Load the album number into an array for later
-        
+
         $pic_file = base64_decode($_POST['picfile_' . $pic_id]);
         $dir_name = dirname($pic_file) . "/";
         $file_name = basename($pic_file);
@@ -426,7 +426,7 @@ EOT;
         $count++;
         flush();
     }
-    
+
     // Eliminate the duplicate albums from the edit_album_array
     $edit_album_array = array_unique($edit_album_array);
     // Display the albums that have new pictures added
@@ -434,7 +434,7 @@ EOT;
     {
       $edit_pics_content .= '<a href="editpics.php?album='.$edit_album. '">' . $lang_search_new_php['edit_pics'] . ' : ' . $album_array[$edit_album] . '</a><br />';
     }
-    
+
     echo <<<EOT
         <tr>
                 <td class="tableh2" colspan="4">
