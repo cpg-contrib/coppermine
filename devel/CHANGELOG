@@ -191,3 +191,4 @@ Added "reset group names to default" option in group manager - 04 October 2004, 
 Added "check/uncheck all" option in groupmanager - 05 October 2004, GauGau
 Added scripts for recording detailed statistics for votes and hits - 05 October 2004, Aditya
 Added optional browsing through batch-added files - 06 October 2004, GauGau
+Added sub-section for logging and statistics in coppermine config and the docs to reflect the additional log features introduced lately - 06 October 2004, GauGau

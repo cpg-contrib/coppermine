@@ -589,14 +589,11 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Gallery administrator email', 'gallery_admin_email', 0, 'f=index.htm&as=admin_general_email&ae=admin_general_email_end'),
   array('URL of your coppermine gallery folder (no \'index.php\' or similar at the end)', 'ecards_more_pic_target', 0, 'f=index.htm&as=admin_general_coppermine-url&ae=admin_general_coppermine-url_end'),
   array('Gallery is offline', 'offline', 1, 'f=index.htm&as=admin_general_offline&ae=admin_general_offline_end'),
-  array('Log ecards', 'log_ecards', 1, 'f=index.htm&as=admin_general_log_ecards&ae=admin_general_log_ecards_end'),
   array('Allow ZIP-download of favorites', 'enable_zipdownload', 1, 'f=index.htm&as=admin_general_zip-download&ae=admin_general_zip-download_end'),
   array('Timezone difference relative to GMT','time_offset',0, 'f=index.htm&as=admin_general_time-offset&ae=admin_general_time-offset_end&top=1'),
   array('Enable help-icons (help available in English only)','enable_help',9, 'f=index.htm&as=admin_general_help&ae=admin_general_help_end'),
   array('Enable clickable keywords in search','clickable_keyword_search',14),
   array('Show number of linked files','link_pic_count',1),
-  array('Keep detailed vote statistics','vote_details',1, 'f=index.htm&as=admin_general_votedetails&ae=admin_general_votedetails_end'),
-  array('Keep detailed hit statistics','hit_details',1, 'f=index.htm&as=admin_general_hitdetails&ae=admin_general_hitdetails_end'),
 
   'Language, Themes &amp; Charset settings',
   array('Language', 'lang', 5, 'f=index.htm&as=admin_language_language&ae=admin_language_language_end'),
@@ -681,16 +678,16 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Default mode for directories', 'default_dir_mode', 0),
   array('Default mode for files', 'default_file_mode', 0),
 
-  'Movie Playback Settings (Doesn\'t affect flash files)',
-  array('Autostart', 'media_autostart',1),
+  'Movie Playback Settings',
+  array('Autostart', 'media_autostart',1, 'f=index.htm&as=admin_movie_autoplay&ae=admin_movie_autoplay_end'),
 
   'User settings',
-  array('Allow new user registrations', 'allow_user_registration', 1),
-  array('User registration requires email verification', 'reg_requires_valid_email', 1),
-  array('Notify admin of user registration by email', 'reg_notify_admin_email', 1),
+  array('Allow new user registrations', 'allow_user_registration', 1, 'f=index.htm&as=admin_allow_registration&ae=admin_allow_registration_end'),
+  array('User registration requires email verification', 'reg_requires_valid_email', 1, 'f=index.htm&as=admin_registration_verify&ae=admin_registration_verify_end'),
+  array('Notify admin of user registration by email', 'reg_notify_admin_email', 1, 'f=index.htm&as=admin_registration_notify&ae=admin_registration_notify_end'),
   array('Allow two users to have the same email address', 'allow_duplicate_emails_addr', 1),
-  array('Notify admin of user upload awaiting approval', 'upl_notify_admin_email', 1),
-  array('Allow logged in users to view memberlist', 'allow_memberlist', 1),
+  array('Notify admin of user upload awaiting approval', 'upl_notify_admin_email', 1, 'f=index.htm&as=admin_approval_notify&ae=admin_approval_notify_end'),
+  array('Allow logged in users to view memberlist', 'allow_memberlist', 1, 'f=index.htm&as=admin_user_memberlist&ae=admin_user_memberlist_end'),
   array('Allow users to change their email address in profile', 'allow_email_change', 1, 'f=index.htm&as=admin_user_allow_email_change&ae=admin_user_allow_email_change_end'), //cpg1.4.0
   array('Number of failed login attemps untill temporary ban (to avoid brute force attacks)', 'login_threshold', 0, 'f=index.htm&as=admin_user_login_start&ae=admin_user_login_end'), //cpg1.4.0
   array('Duration of a temporary ban after failed logins', 'login_expiry', 0, 'f=index.htm&as=admin_user_login_start&ae=admin_user_login_end'), //cpg1.4.0
@@ -698,7 +695,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
 // custom profile fields, (casper) 1.4 devel
   'Custom fields for user profile (leave blank if unused).
   Use Profile 6 for long entries, such as biographies',
-  array('Profile 1 name', 'user_profile1_name', 0),
+  array('Profile 1 name', 'user_profile1_name', 0, 'f=index.htm&as=admin_custom&ae=admin_custom_end'),
   array('Profile 2 name', 'user_profile2_name', 0),
   array('Profile 3 name', 'user_profile3_name', 0),
   array('Profile 4 name', 'user_profile4_name', 0),
@@ -706,7 +703,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Profile 6 name', 'user_profile6_name', 0),
 
   'Custom fields for image description (leave blank if unused)',
-  array('Field 1 name', 'user_field1_name', 0),
+  array('Field 1 name', 'user_field1_name', 0, 'f=index.htm&as=admin_custom_image&ae=admin_custom_image_end'),
   array('Field 2 name', 'user_field2_name', 0),
   array('Field 3 name', 'user_field3_name', 0),
   array('Field 4 name', 'user_field4_name', 0),
@@ -720,13 +717,18 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('SMTP Username', 'smtp_username', 0),
   array('SMTP Password', 'smtp_password', 0),
 
+  'Logging and statistics',
+  array('Logging mode <a href="#notice3" class="clickable_option">***</a>', 'log_mode', 11, 'f=index.htm&as=admin_logging_log_mode&ae=admin_logging_log_mode_end'), //cpg1.4.0
+  array('Log ecards', 'log_ecards', 1, 'f=index.htm&as=admin_general_log_ecards&ae=admin_general_log_ecards_end'),
+  array('Keep detailed vote statistics','vote_details',1, 'f=index.htm&as=admin_logging_votedetails&ae=admin_logging_votedetails_end'),
+  array('Keep detailed hit statistics','hit_details',1, 'f=index.htm&as=admin_logging_hitdetails&ae=admin_logging_hitdetails_end'),
+
   'Miscellaneous settings',
   array('Enable debug mode', 'debug_mode', 9, 'f=index.htm&as=debug_mode&ae=debug_mode_end'),
   array('Display notices in debug mode', 'debug_notice', 1, 'f=index.htm&as=admin_misc_debug_notices&ae=admin_misc_debug_notices_end'),
   array('Enable plugins', 'enable_plugins', 12, 'f=index.htm&as=admin_misc_enable-plugins&ae=admin_misc_enable-plugins_end'),  //cpg1.4.0
-  array('Logging mode <a href="#notice3" class="clickable_option">***</a>', 'log_mode', 11, 'f=index.htm&as=admin_misc_logging&ae=admin_misc_logging_end'), //cpg1.4.0
   array('Allow banning of non-routable (private) IP addresses', 'ban_private_ip', 1,  'f=index.htm&as=admin_misc_private-ip&ae=admin_misc_private-ip_end'), //cpg1.4.0
-  array('Browsable batch-add interface', 'browse_batch_add', 1), //cpg1.4.0
+  array('Browsable batch-add interface', 'browse_batch_add', 1, 'f=index.htm&as=admin_misc_browsable_batch_add&ae=admin_misc_browsable_batch_add_end'), //cpg1.4.0
 );
 
 // ------------------------------------------------------------------------- //
