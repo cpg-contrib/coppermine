@@ -361,7 +361,7 @@ EOT;
         if ($album_id) {
             // To avoid problems with PHP scripts max execution time limit, each picture is
             // added individually using a separate script that returns an image
-            $status = "<a href=\"addpic.php?aid=$album_id&pic_file=" . ($HTTP_POST_VARS['picfile_' . $pic_id]) . "&reload=" . uniqid('') . "\"><img src=\"addpic.php?aid=$album_id&pic_file=" . ($HTTP_POST_VARS['picfile_' . $pic_id]) . "&reload=" . uniqid('') . "\" class=\"thumbnail\" border=\"0\" width=\"24\" height=\"24\" /><br /></a>";
+            $status = "<a href=\"addpic.php?aid=$album_id&pic_file=" . ($HTTP_POST_VARS['picfile_' . $pic_id]) . "&reload=" . uniqid('') . "\"><img src=\"addpic.php?aid=$album_id&pic_file=" . ($HTTP_POST_VARS['picfile_' . $pic_id]) . "&reload=" . uniqid('') . "\" class=\"thumbnail\" border=\"0\" width=\"24\" height=\"24\" alt=\"\" /><br /></a>";
             $album_name = $album_array[$album_id];
         } else {
             $album_name = $lang_search_new_php['no_album'];
