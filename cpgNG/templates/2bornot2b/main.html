@@ -79,7 +79,11 @@
   </div>
 </div>
 <div id="content"><div class="innerdiv">
+{if $breadcrumbHTML ne ""}
+<!-- Breadcrum for category Starts-->
 {$breadcrumbHTML}
+<!-- Breadcrum for category Ends-->
+{/if}
 <!-- CONTENT -->
 {$CONTENT}
 <img src="images/spacer.gif" width="1" height="17" alt="" /><br />
