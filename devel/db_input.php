@@ -99,18 +99,6 @@ switch ($event){
 	$msg_author = addslashes(trim($HTTP_POST_VARS['msg_author']));
 	$msg_body = addslashes(trim($HTTP_POST_VARS['msg_body']));
 	$pid = (int)$HTTP_POST_VARS['pid'];
-	$raw_ip=$_SERVER['REMOTE_ADDR'];
-	
-	
-	if ($_SERVER['HTTP_CLIENT_IP']) {
-		$hdr_ip = $_SERVER['HTTP_CLIENT_IP'];
-	}else{
-		if ($_SERVER['HTTP_X_FORWARDED_FOR']) {
-			$hdr_ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-		}else{
-			$hdr_ip = $raw_ip;
-		}
-	}
 
 	if($msg_author == '' || $msg_body == '') cpg_die(ERROR, $lang_db_input_php['empty_name_or_com'], __FILE__, __LINE__);
 
@@ -312,7 +300,7 @@ switch ($event){
 	} else {
 
 		// Create thumbnail and internediate image and add the image into the DB
-		$result = add_picture($album, $filepath, $picture_name, $title, $caption, $keywords, $user1, $user2, $user3, $user4, $category);
+		$result = add_picture($album, $filepath, $picture_name, $title, $caption, $keywords, $user1, $user2, $user3, $user4, $category, $raw_ip, $hdr_ip);
 		if(!$result){
 			@unlink($uploaded_pic);
 			cpg_die(CRITICAL_ERROR, sprintf($lang_db_input_php['err_insert_pic'], $uploaded_pic).'<br /><br />'.$ERROR, __FILE__, __LINE__, true);

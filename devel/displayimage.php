@@ -215,13 +215,27 @@ function html_picinfo()
         global $album, $lang_picinfo, $lang_display_image_php, $lang_byte_units;
 
         if ($CURRENT_PIC_DATA['owner_id'] && $CURRENT_PIC_DATA['owner_name']) {
-            $owner_link = '<a href ="profile.php?uid='.$CURRENT_PIC_DATA['owner_id'].'">'.$CURRENT_PIC_DATA['owner_name'].'</a> / ';
+            $owner_link = '<a href ="profile.php?uid='.$CURRENT_PIC_DATA['owner_id'].'">'.$CURRENT_PIC_DATA['owner_name'].'</a> ';
         } else {
                 $owner_link = '';
         }
+        
+        if (GALLERY_ADMIN_MODE && $CURRENT_PIC_DATA['pic_raw_ip']) {
+        	if ($CURRENT_PIC_DATA['pic_hdr_ip']) { 
+        		$ipinfo = ' (' . $CURRENT_PIC_DATA['pic_hdr_ip'] . '[' . $CURRENT_PIC_DATA['pic_raw_ip'] . ']) / ';
+        	} else {
+        		$ipinfo = ' (' . $CURRENT_PIC_DATA['pic_raw_ip'] .') / ';
+        	}
+        } else {
+        	if ($owner_link) {
+	        	$ipinfo = '/ ';
+        	} else {
+        		$ipinfo = '';
+        	}
+        }
 
         $info[$lang_picinfo['Filename']]   = htmlspecialchars($CURRENT_PIC_DATA['filename']);
-        $info[$lang_picinfo['Album name']] = '<span class="alblink">'.$owner_link.'<a href="thumbnails.php?album=' . $CURRENT_PIC_DATA['aid'] . '">' . $CURRENT_ALBUM_DATA['title'].'</a></span>';
+        $info[$lang_picinfo['Album name']] = '<span class="alblink">' . $owner_link . $ipinfo .'<a href="thumbnails.php?album=' . $CURRENT_PIC_DATA['aid'] . '">' . $CURRENT_ALBUM_DATA['title'].'</a></span>';
 
         if ($CURRENT_PIC_DATA['votes'] > 0) {
                 if (defined('THEME_HAS_RATING_GRAPHICS')) {

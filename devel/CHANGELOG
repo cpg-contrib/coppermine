@@ -19,3 +19,4 @@ Added Email notification on Comment - 25th September 2003, Tarique
 Moved hardcoded text from util.php to language file - 27th September 2003, GauGau
 updated dutch.php and greek.php (minor bugfixes by original translators) - 30th September 2003, GauGau
 Added 'no right-click' admin option (I know this is childish but has been requested often), db update necessary (see update.sql) - 30th September 2003, GauGau
+IP Logging now on picture uploads - 30th September 2003, Jack

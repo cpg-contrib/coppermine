@@ -18,7 +18,7 @@
 ?><?php
 
 // Add a picture to an album
-function add_picture($aid, $filepath, $filename, $title='', $caption='', $keywords='', $user1='', $user2='', $user3='', $user4='', $category=0)
+function add_picture($aid, $filepath, $filename, $title='', $caption='', $keywords='', $user1='', $user2='', $user3='', $user4='', $category=0, $raw_ip='', $hdr_ip='')
 {
         global $CONFIG, $ERROR, $USER_DATA, $PIC_NEED_APPROVAL;
         global $lang_errors;
@@ -73,7 +73,7 @@ function add_picture($aid, $filepath, $filename, $title='', $caption='', $keywor
         // User ID is not recorded when in admin mode (ie. for batch uploads)
         $user_id = GALLERY_ADMIN_MODE ? 0 : USER_ID;
 
-        $query = "INSERT INTO {$CONFIG['TABLE_PICTURES']} (pid, aid, filepath, filename, filesize, total_filesize, pwidth, pheight, ctime, owner_id, title, caption, keywords, approved, user1, user2, user3, user4) VALUES ('', '$aid', '".addslashes($filepath)."', '".addslashes($filename)."', '$image_filesize', '$total_filesize', '{$imagesize[0]}', '{$imagesize[1]}', '".time()."', '$user_id', '$title', '$caption', '$keywords', '$approved', '$user1', '$user2', '$user3', '$user4')";
+        $query = "INSERT INTO {$CONFIG['TABLE_PICTURES']} (pid, aid, filepath, filename, filesize, total_filesize, pwidth, pheight, ctime, owner_id, title, caption, keywords, approved, user1, user2, user3, user4, pic_raw_ip, pic_hdr_ip) VALUES ('', '$aid', '".addslashes($filepath)."', '".addslashes($filename)."', '$image_filesize', '$total_filesize', '{$imagesize[0]}', '{$imagesize[1]}', '".time()."', '$user_id', '$title', '$caption', '$keywords', '$approved', '$user1', '$user2', '$user3', '$user4', '$raw_ip', '$hdr_ip')";
         $result = db_query($query);
 
         return $result;

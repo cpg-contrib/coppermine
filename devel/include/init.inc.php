@@ -101,6 +101,20 @@ $FORBIDDEN_SET ='';
 $CURRENT_CAT_NAME ='';
 $CAT_LIST = '';
 
+// Record User's IP address
+
+$raw_ip=stripslashes($HTTP_SERVER_VARS['REMOTE_ADDR']);
+	
+if (isset($HTTP_SERVER_VARS['HTTP_CLIENT_IP'])) {
+	$hdr_ip = stripslashes($HTTP_SERVER_VARS['HTTP_CLIENT_IP']);
+} else {
+	if (isset($HTTP_SERVER_VARS['HTTP_X_FORWARDED_FOR'])) {
+		$hdr_ip = stripslashes($HTTP_SERVER_VARS['HTTP_X_FORWARDED_FOR']);
+	} else {
+		$hdr_ip = $raw_ip;
+	}
+}
+
 // Define some constants
 define('USER_GAL_CAT', 1);
 define('FIRST_USER_CAT', 10000);

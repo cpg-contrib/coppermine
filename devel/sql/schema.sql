@@ -103,6 +103,8 @@ CREATE TABLE CPG_pictures (
   user4 varchar(255) NOT NULL default '',
   url_prefix tinyint(4) NOT NULL default '0',
   randpos int(11) NOT NULL default '0',
+  pic_raw_ip tinytext,
+  pic_hdr_ip tinytext,
   PRIMARY KEY  (pid),
   KEY pic_hits (hits),
   KEY pic_rate (pic_rating),
