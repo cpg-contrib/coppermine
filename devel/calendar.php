@@ -25,17 +25,13 @@ require('include/init.inc.php');
 
 if ($_REQUEST['action'] == 'banning') {
 ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
     <title><?php print $lang_calendar_php['title']; ?></title>
-<link rel="stylesheet" href="themes/
-<?php
-if ($USER['theme']) {
-    print $USER['theme'];
-} else {
-    print $CONFIG['theme'];
-}
-?>
+    <meta http-equiv="Content-Type" content="text/html; charset=<?php echo 'language file' ? $lang_charset : $CONFIG['charset']; ?>" />
+    <meta http-equiv="Pragma" content="no-cache" />
+<link rel="stylesheet" href="themes/<?php echo $CONFIG['theme']; ?>
 /style.css" />
 <script language="javascript" type="text/javascript">
 
@@ -71,7 +67,7 @@ class MyCalendar extends Calendar
         // Redisplay the current page, but with some parameters
         // to set the new month and year
         $s = getenv('SCRIPT_NAME');
-        return "$s?action=".$_REQUEST['action']."&month=$month&year=$year";
+        return "$s?action=".$_REQUEST['action']."&amp;month=$month&amp;year=$year";
     }
 
     function getDateLink($day, $month, $year)
