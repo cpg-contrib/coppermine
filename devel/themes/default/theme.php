@@ -1066,7 +1066,7 @@ function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
                         );
                         echo template_eval($template_noabl, $params);
                 } 
-				if (isset($category['cat_albums'])&&($category['cat_albums']!='')){
+				elseif (isset($category['cat_albums'])&&($category['cat_albums']!='')){
                         $params = array(
                                 '{CAT_TITLE}' => $category[0],
                                 '{CAT_DESC}' => $category[1],
