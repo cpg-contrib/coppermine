@@ -169,8 +169,12 @@ function html_picture()
         $pic_title .= $lang_picinfo['Keywords'] . ": " . $CURRENT_PIC_DATA['keywords'];
     }
 
-    if ($CURRENT_PIC_DATA['pwidth']==0 || $CURRENT_PIC_DATA['pheight']==0)
+    if ($CURRENT_PIC_DATA['pwidth']==0 || $CURRENT_PIC_DATA['pheight']==0) {
+
         $image_size['geom']='';
+        $image_size['whole'] = '';
+ 
+    }
 
     if ($mime_content['content']=='image')
         if (isset($image_size['reduced'])) {
@@ -184,7 +188,7 @@ function html_picture()
             $pic_html = "<img src=\"" . $picture_url . "\" {$image_size['geom']} class=\"image\" border=\"0\" /><br />\n";
         }
     elseif ($mime_content['content']=='movie')
-            $pic_html = "<object {$image_size['geom']}><param name=\"movie\" value=\"". $picture_url . "\"><embed {$image_size['geom']} src=\"". $picture_url . "\"></embed></object><br />\n";
+            $pic_html = "<object {$image_size['whole']}><param name=\"movie\" value=\"". $picture_url . "\"><embed {$image_size['whole']} src=\"". $picture_url . "\"></embed></object><br />\n";
     elseif ($mime_content['content']=='audio')
             $pic_html = "<object {$image_size['geom']}><param name=\"movie\" value=\"". $picture_url . "\"><embed {$image_size['geom']} src=\"". $picture_url . "\"></embed></object><br />\n";
     elseif ($mime_content['content']=='document') {
