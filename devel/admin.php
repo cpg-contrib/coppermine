@@ -18,6 +18,7 @@
 
 define('IN_COPPERMINE', true);
 define('ADMIN_PHP', true);
+define('CONFIG_PHP', true); // added for backwards compatibility (language fallback)
 
 require('include/init.inc.php');
 require('include/sql_parse.php');
