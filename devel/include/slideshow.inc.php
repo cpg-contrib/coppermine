@@ -33,10 +33,21 @@ $pid = (int)$HTTP_GET_VARS['pid'];
 $start_img = '';
 $pic_data = get_pic_data($HTTP_GET_VARS['album'], $pic_count, $album_name, -1, -1, false);
 foreach ($pic_data as $picture) {
-    if (is_image($picture['filename'])) {
-        if ($CONFIG['make_intermediate'] && max($picture['pwidth'], $picture['pheight']) > $CONFIG['picture_width']) {
+    
+    if($CONFIG['thumb_use']=='ht' && $picture['pheight'] > $CONFIG['picture_width'] ){ // The wierd comparision is because only picture_width is stored
+      $condition = true;
+    }elseif($CONFIG['thumb_use']=='wd' && $picture['pwidth'] > $CONFIG['picture_width']){
+      $condition = true;
+    }elseif($CONFIG['thumb_use']=='any' && max($picture['pwidth'], $picture['pheight']) > $CONFIG['picture_width']){
+      $condition = true;
+    }else{
+     $condition = false;
+    }
+
+    if (is_image($picture['filename'])) {    
+	if ($CONFIG['make_intermediate'] && $condition ) {
             $picture_url = get_pic_url($picture, 'normal');
-        } else {
+        } else {	
             $picture_url = get_pic_url($picture, 'fullsize');
         }
 
