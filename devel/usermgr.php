@@ -807,7 +807,6 @@ switch ($op) {
         break;
 
     case 'group_alb_access' : //show what albums specific group can see
-        pageheader($lang_usermgr_php['group_alb_access']);
 				if (isset($_GET['gid'])) {
 					$group_id = $_GET['gid'];
 				}
@@ -820,10 +819,12 @@ switch ($op) {
 				$group = mysql_fetch_array($result);
 
 				if (!mysql_num_rows($result)) {
+					pageheader(sprintf($lang_usermgr_php['group_no_access'], $group_name));
 					msg_box($lang_usermgr_php['notice'], $lang_usermgr_php['group_no_access']);
 				} else {
 						mysql_free_result($result);
 						$group_name = $group['group_name'];
+						pageheader(sprintf($lang_usermgr_php['group_can_access'], $group_name));
 						starttable(500, sprintf($lang_usermgr_php['group_can_access'], $group_name), 3);
 						echo "
 						<td><b>{$lang_usermgr_php['category']}</b></td>
