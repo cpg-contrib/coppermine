@@ -12,14 +12,15 @@
 <meta http-equiv="Content-Style-Type" content="text/css">
 <meta name="MSSmartTagsPreventParsing" content="true">
 <meta http-equiv="imagetoolbar" content="no">
-<!--
-CVS version info:
-$Id$
--->
+<!-- CVS version info: $Id$ -->
 <style type=text/css>
 
 body {
-        font-size: 12px; background: #F7F7F7; margin: 2%; color: black; font-family: verdana, arial, helvetica, sans-serif;
+        font-size: 12px;
+        background: #F7F7F7;
+        margin: 2%;
+        color: black;
+        font-family: verdana, arial, helvetica, sans-serif;
         scrollbar-face-color: #DEE3E7;
         scrollbar-highlight-color: #FFFFFF;
         scrollbar-shadow-color: #DEE3E7;
@@ -29,7 +30,7 @@ body {
         scrollbar-darkshadow-color: #98AAB1;
 }
 td {
-        font-size: 12px
+        font-size: 12px;
 }
 h1 {
         font-weight: bolder; font-size: 24px; color: #0E72A4; line-height: 120%; font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; text-decoration: none
@@ -47,7 +48,18 @@ p {
         font-size: 12px; margin: 10px 10px 0px 0px; font-family: Verdana, Arial, Helvetica, sans-serif
 }
 pre {
-        border-right: #999999 1px solid; padding-right: 5px; border-top: #999999 1px solid; padding-left: 5px; font-size: 12px; padding-bottom: 5px; margin: 10px 10px 0px 0px; border-left: #999999 1px solid; padding-top: 5px; border-bottom: #999999 1px solid; font-style: normal; font-family: "Courier New", Courier, mono; background-color: #E0E0E0
+        border-right: #999999 1px solid;
+        padding-right: 5px;
+        border-top: #999999 1px solid;
+        padding-left: 5px;
+        font-size: 12px;
+        padding-bottom: 5px;
+        margin: 10px 10px 0px 0px;
+        border-left: #999999 1px solid;
+        padding-top: 5px;
+        border-bottom: #999999 1px solid;
+        font-style: normal; font-family: "Courier New", Courier, mono;
+        background-color: #E0E0E0;
 }
 ul {
         padding-right: 0px; padding-left: 0px; padding-bottom: 0px; margin: 10px 0px 10px 5px; padding-top: 0px
@@ -62,7 +74,7 @@ li.content {
         padding-right: 0px; margin-top: 0px; padding-left: 0px; list-style-position: outside; margin-bottom: 5px; padding-bottom: 0px; margin-left: 10px; padding-top: 0px; list-style-type: none;
 }
 hr {
-        border-right: #000000 0px solid; border-top: #000000 1px solid; border-left: #000000 0px solid; border-bottom: #000000 0px solid; height: 0px
+        border-right: #000000 0px solid; border-top: #000000 1px solid; border-left: #000000 0px solid; border-bottom: #000000 0px solid; height: 0px; width:80%;text-align:left;
 }
 .navbar {
         font-weight: bold; font-size: 10px; background: url(/coppermine/themes/pixel-rave-blue100/images/nav-bar-button.gif) #72a5cc no-repeat; vertical-align: middle; color: #A5C6DF; font-family: Arial, Helvetica, sans-serif
@@ -182,7 +194,35 @@ a.external {
             <li class="content"><a href="#config_misc">4.10.13 Miscellaneous settings</a></li>
             </ul>
           </ul>
-        <li class="content"><a href="#integrating"><span class="menu1">5. Integrating the script with your bulletin board</span></a></li>
+        <li class="content"><a href="#integrating"><span class="menu1">5. Integrating the script with your bulletin board</span></a>
+            <ul class="content">
+               <li class="content"><a href="#integrating_bridge_start">5.1 Available bridge files</a></li>
+               <li class="content"><a href="#integrating_prerequisites_start">5.2 Pre-requistes</a>
+                   <ul class="content">
+                       <li class="content"><a href="#integrating_cookie_start">5.2.1 Authentification by cookie</a></li>
+                       <li class="content"><a href="#integrating_standalone_start">5.2.2 Standalone version first</a></li>
+                       <li class="content"><a href="#integrating_users_start">5.2.3 Coppermine users, groups and pics uploaded by users are lost when integrating</a></li>
+                       <li class="content"><a href="#integrating_backup_start">5.2.4 Backup</a></li>
+                       <li class="content"><a href="#integrating_database_start">5.2.5 Keep Coppermine and bbs tables in the same database</a></li>
+                   </ul>
+               </li>
+               <li class="content"><a href="#integrating_steps_start">5.3 Integration steps</a>
+                   <ul class="content">
+                       <li class="content"><a href="#integrating_steps_settings_start">5.3.1 Check your bbs settings</a></li>
+                       <li class="content"><a href="#integrating_steps_bridge_start">5.3.2 Edit your bridge file</a></li>
+                       <li class="content"><a href="#integrating_steps_init_start">5.3.3 Enable bbs integration</a></li>
+                       <li class="content"><a href="#integrating_steps_special_start">5.3.4 Special steps depending on the bbs you use</a>
+                           <ul class="content">
+                               <li class="content"><a href="#integrating_steps_special_phpbb_start">5.3.4.1 For phpBB only</a></li>
+                               <li class="content"><a href="#integrating_steps_special_punbb_start">5.3.4.2 For PunBB only</a></li>
+                           </ul>
+                       </li>
+                       <li class="content"><a href="#integrating_steps_upload_start">5.3.5 Upload the modified files</a></li>
+                       <li class="content"><a href="#integrating_steps_sync_start">5.3.6 Synchronsising the bbs groups with Coppermine's groups</a></li>
+                   </ul>
+               </li>
+            </ul>
+        </li>
         <li class="content"><a href="#translating"><span class="menu1">6. Translating Coppermine into other languages</span></a></li>
         <li class="content"><a href="#known_issues"><span class="menu1">7. Known Issues</span></a></li>
         <li class="content"><a href="#credits"><span class="menu1">8. Credits</span></li>
@@ -1033,26 +1073,26 @@ If your browser times out, hit the reload button.
                         votes, it will not be displayed on the "top-rated" page.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
-      <a name="config_image_comment"></a>
-      <h3>4.10.5 Image view &amp; Comment settings</h3>
-      <h4>Width of the table for picture display (pixels or %)</h4>
-      <p>The width of the table used to display the intermediate picture.</p>
-      <h4>File information are visible by default</h4>
-      <p>Define whether or not file information (those that appear when you
-      click on the (i) button) should be visible by default.</p>
-      <h4>Filter bad words in comments</h4>
-      <p>Remove "bad words" from comments. The "bad words" list is in the
-      language file. So far only the English language file has one.</p>
-      <h4>Max length for an image description</h4>
-      <p>Maximum number of characters that an image description may contain.</p>
-      <h4>Max number of characters in a word</h4>
-      <p>This is intended to prevent that someone break the layout of the
-      gallery by posting a long comment without space. With the default value,
-      words with more than 38 characters are censored.</p>
-      <h4>Max number of lines in a comment</h4>
-      <p>Prevent a comment for containing too many new line char.</p>
-      <h4>Maximum length of a comment</h4>
-      <p>Maximum number of characters that a comment may contain.</p>
+<a name="config_image_comment"></a>
+<h3>4.10.5 Image view &amp; Comment settings</h3>
+<h4>Width of the table for picture display (pixels or %)</h4>
+<p>The width of the table used to display the intermediate picture.</p>
+<h4>File information are visible by default</h4>
+<p>Define whether or not file information (those that appear when you
+click on the (i) button) should be visible by default.</p>
+<h4>Filter bad words in comments</h4>
+<p>Remove "bad words" from comments. The "bad words" list is in the
+language file. So far only the English language file has one.</p>
+<h4>Max length for an image description</h4>
+<p>Maximum number of characters that an image description may contain.</p>
+<h4>Max number of characters in a word</h4>
+<p>This is intended to prevent that someone break the layout of the
+gallery by posting a long comment without space. With the default value,
+words with more than 38 characters are censored.</p>
+<h4>Max number of lines in a comment</h4>
+<p>Prevent a comment for containing too many new line char.</p>
+<h4>Maximum length of a comment</h4>
+<p>Maximum number of characters that a comment may contain.</p>
                         <h4>Show film strip</h4>
                         <p>Toggles display of a "film strip" showing thumbnails of prior
                         and following photos in the album.<br />
@@ -1417,6 +1457,8 @@ If your browser times out, hit the reload button.
 
 <a name="integrating"></a>
 <h1>5. Integrating the script with your bulletin board</h1>
+<a name="integrating_bridge_start"></a>
+<h2>5.1 Available bridge files</h2>
 <p>Coppermine can be integrated with the following bulletin boards (eg. Coppermine
   and your bulletin board will share the same user database).</p>
 <ul>
@@ -1429,7 +1471,14 @@ If your browser times out, hit the reload button.
   <li>Mambo</li>
   <li>PunBB 1.1.5</li>
 </ul>
-<p>The login integration use your bulletin board cookies, therefore it won't work if your board cookies are not visible by Coppermine. So unless you are an expert, keep things simple and install Coppermine and your bulletin board on the same domain. Examples :
+<a name="integrating_bridge_end"></a>
+
+<a name="integrating_prerequisites_start"></a>
+<h2>5.2 Pre-requistes</h2>
+
+<a name="integrating_cookie_start"></a>
+<h3>5.2.1 Authentification by cookie</h3>
+<p>The login integration uses your bulletin board cookies, therefore it won't work if your board cookies are not visible by Coppermine. So unless you are an expert, keep things simple and install Coppermine and your bulletin board on the same domain. Examples :</p>
 <table border="0" cellspacing="5" cellpadding="5" class="border1">
 <tr>
 <td>This <b>will</b> work:</td>
@@ -1442,46 +1491,49 @@ Coppermine: http://yourdomain.com/gallery/</td>
 Coppermine: http://gallery.yourdomain.com/</td>
 </tr>
 </table>
-</p>
-
-<p>To avoid confusion, make sure to set up both coppermine and your bbs as standalone first. Make sure they both run correctly without integration.</p>
-<p><span class="important">Warning:</span> If you already have users and custom groups in your coppermine database when you enable bbs integration, be aware that they will be lost. If your coppermine users have already created private albums and uploaded pics to them, they will be lost as well!</p>
-<p><span class="important">Backup</span>: it is very advisable to backup both your coppermine database before enabling bbs integration, so you can savely go back if the integration fails.</p>
-<p>If you are using phpBB 2, go to the admin control panel and check that &quot;Cookie
-  domain&quot; corresponds to your domain, &quot;Cookie name&quot; is &quot;phpbb2mysql&quot;
-  and &quot;Cookie path&quot; is &quot;/&quot;.</p>
-<p>If you are using Invision Power Board, go to the &quot;admin control panel
-  / board settings / cookies&quot; and check that all fields are blank. If they
-  are not, you modified the default values and you are an expert.</p>
-<p>If you are using vBulletin, go to the &quot;admin control panel / vBulletin
-  options / HTTP Headers and output&quot; and check that the value for &quot;Cookie
-  Domain&quot; corresponds to your domain and that &quot;Path to save cookies&quot;
-  is &quot;/&quot;</p>
-<p>It is also recommended that you use the same database for your board and Coppermine (in fact it is even mandatory!).</p>
 <p><span class="important">Important</span>: the cookie names of your bbs and coppermine must <b>not</b> be the same - they <b>must</b> differ!</p>
-<p>You will also need to perform the following operations after having unpacked
-  the archive on your harddrive and before uploading the files to your webserver
-  :</p>
-<p>Edit the file <i>include/init.inc.php</i>. At the beginning of the file you
-  will find the following lines :</p>
-<pre>// User database integration
-// Uncomment the applicable line if you want to use it
-// define('UDB_INTEGRATION', 'phpbb');
-// define('UDB_INTEGRATION', 'invisionboard');
-// define('UDB_INTEGRATION', 'vbulletin23');
-// define('UDB_INTEGRATION', 'vbulletin30');
-// define('UDB_INTEGRATION', 'yabbse');
-// define('UDB_INTEGRATION', 'smf');
-// define('UDB_INTEGRATION', 'woltlab21');
-// define('UDB_INTEGRATION', 'mambo');
-// define('UDB_INTEGRATION', 'punbb');</pre>
-<p>Un-comment the line that corresponds to the bulletin board you use (eg. remove
-  the &quot;//&quot; that are at the beginning of the line)</p>
-<pre>define('UDB_INTEGRATION', 'phpbb');</pre>
-<p>The go to the <i>bridge</i> directory and open the file that corresponds to
-  the bulletin board you use (eg. <i>phpbb.php</i>).</p>
-<p>At the beginning of the file there are a number a configuration values that
-  need to be set. For phpBB they are the following :</p>
+<a name="integrating_cookie_end"></a>
+
+<a name="integrating_standalone_start"></a>
+<h3>5.2.2 Standalone version first</h3>
+<p>To avoid confusion, make sure to set up both coppermine and your bbs as standalone first. Make sure they both run correctly without integration. Test all features of coppermine (like upload, registration etc.) when Coppermine is installed, before you even start integration.</p>
+<a name="integrating_standalone_end"></a>
+
+<a name="integrating_users_start"></a>
+<h3>5.2.3 Coppermine users, groups and pics uploaded by users are lost when integrating</h3>
+<p><span class="important">Warning:</span> If you already have users and custom groups in your coppermine database when you enable bbs integration, be aware that they will be lost. If your coppermine users have already created private albums and uploaded pics to them, they will be lost as well!</p>
+<a name="integrating_users_end"></a>
+
+<a name="integrating_backup_start"></a>
+<h3>5.2.4 Backup</h3>
+<p><span class="important">Backup</span>: it is very advisable to backup both your coppermine database before enabling bbs integration, so you can savely go back if the integration fails.</p>
+<p>In fact you're encouraged to backup your database on a regular base, and especially before applying code changes.</p>
+<a name="integrating_backup_end"></a>
+
+<a name="integrating_database_start"></a>
+<h3>5.2.5 Keep Coppermine and bbs tables in the same database</h3>
+<p>It is recommended that you use the same database for your board and Coppermine (in fact it is even mandatory!).</p>
+<a name="integrating_database_end"></a>
+
+<a name="integrating_prerequisites_end"></a>
+
+<a name="integrating_steps_start"></a>
+<h2>5.3 Integration steps</h2>
+
+<a name="integrating_steps_settings_start"></a>
+<h3>5.3.1 Check your bbs settings</h3>
+<p>You will also need to perform the following operations after having unpacked the archive on your harddrive and before uploading the files to your webserver:</p>
+<ul>
+<li>If you are using <b>phpBB</b> 2, go to the admin control panel and check that &quot;Cookie domain&quot; corresponds to your domain, &quot;Cookie name&quot; is &quot;phpbb2mysql&quot; and &quot;Cookie path&quot; is &quot;/&quot;.</li>
+<li>If you are using <b>Invision Power Board</b>, go to the &quot;admin control panel / board settings / cookies&quot; and check that all fields are blank. If they are not, you modified the default values and you are an expert.</li>
+<li>If you are using <b>vBulletin</b>, go to the &quot;admin control panel / vBulletin options / HTTP Headers and output&quot; and check that the value for &quot;Cookie Domain&quot; corresponds to your domain and that &quot;Path to save cookies&quot; is &quot;/&quot;</li>
+</ul>
+<a name="integrating_steps_settings_end"></a>
+
+<a name="integrating_steps_bridge_start"></a>
+<h3>5.3.2 Edit your bridge file</h3>
+<p>Go to the <i>bridge</i> directory and open the file that corresponds to the bulletin board you use (eg. <i>phpbb.inc.php</i> if you use phpBB) with a text editor.</p>
+<p>At the beginning of the file there are a number a configuration values that need to be set. For phpBB as an example they are the following :</p>
 <pre>// database configuration
 define('PHPBB_DB_NAME','phpBB');     // The name of the database used by the board
 define('PHPBB_BD_HOST','localhost'); // The name of the database server
@@ -1498,12 +1550,33 @@ define('PHPBB_WEB_PATH', '/phpBB2/');
 // if your version of phpBB is 2.0.5 or newer - leave it as TRUE
 define('PHPBB_LOGOUT_GET', TRUE);</pre>
 <p>Modify them according to the configuration of your board and save the file.</p>
-<br />
-<table border="0" cellspacing="0" cellpadding="10" style="border: #999999 1px solid;"><tr><td style="background-color:#DEE3E7"><span class="important">Important</span>: if you use phpBB or PunBB, you'll have to do this additional step:</td></tr><tr><td>
+<a name="integrating_steps_bridge_end"></a>
 
-For phpBB only:
+<a name="integrating_steps_init_start"></a>
+<h3>5.3.3 Enable bbs integration</h3>
+<p>Edit the file <i>include/init.inc.php</i>. At the beginning of the file you will find the following lines :</p>
+<pre>// User database integration
+// Uncomment the applicable line if you want to use it
+// define('UDB_INTEGRATION', 'phpbb');
+// define('UDB_INTEGRATION', 'invisionboard');
+// define('UDB_INTEGRATION', 'vbulletin23');
+// define('UDB_INTEGRATION', 'vbulletin30');
+// define('UDB_INTEGRATION', 'yabbse');
+// define('UDB_INTEGRATION', 'smf');
+// define('UDB_INTEGRATION', 'woltlab21');
+// define('UDB_INTEGRATION', 'mambo');
+// define('UDB_INTEGRATION', 'punbb');</pre>
+<p>Un-comment the line that corresponds to the bulletin board you use (eg. remove the &quot;//&quot; that are at the beginning of the line)</p>
+<pre>define('UDB_INTEGRATION', 'phpbb');</pre>
+<a name="integrating_steps_init_end"></a>
 
-Create a new file named <b>cpg_redir.php</b> in your <b>phpBB directory</b>, and paste the following code into the file:
+<a name="integrating_steps_special_start"></a>
+<h3>5.3.4 Special steps depending on the bbs you use</h3>
+<p><span class="important">Important</span>: if you use phpBB or PunBB, you'll have to do this additional steps</p>
+
+<a name="integrating_steps_special_phpbb_start"></a>
+<h4>5.3.4.1 For phpBB only</h4>
+<p>Create a new file named <b>cpg_redir.php</b> in your <b>phpBB directory</b>, and paste the following code into the file:</p>
 <pre>&lt;?php
 if (!$_SERVER['HTTP_HOST']) {
   $cpg_host=$HTTP_SERVER_VARS['HTTP_HOST'];
@@ -1514,47 +1587,53 @@ $cpg_path='/gallery';
 header("Location: http://".$cpg_host.$cpg_path);
 exit;
 ?&gt;</pre>
-<span class="important">Important</span> - before you save the file, you must ensure that:
+<p><span class="important">Important</span> - before you save the file, you must ensure that:</p>
 <ul>
 <li><b>$cpg_path</b> - contains the the path in which Coppermine is installed </li>
-<li><b>$cpg_host</b> - contains the domain pointer to Coppermine. If Coppermine and phpBB are installed on the same server and domain (the "normal" case), you should leave the default value. Otherwise you should provide a string constant which contains the domain where Coppermine is installed (for example: '<i>www.my-other-domain.com</i>').</li>
+<li><b>$cpg_host</b> - contains the domain pointer to Coppermine. If Coppermine and phpBB are installed on the same server and domain (the &quot;normal&quot; case), you should leave the default value. Otherwise you should provide a string constant which contains the domain where Coppermine is installed (for example: '<i>www.my-other-domain.com</i>').</li>
 <li>If you change both variables make sure that either $cpg_host contains a trailing slash or $cpg_path contains a leading slash. In other words, the concatenation of the two variables must result in a correct path such as <i>www.my-other-domain.com<span class="important">/</span>my_gallery_dir</i></li>
 </ul>
-</td></tr>
-<tr><td>
+<a name="integrating_steps_special_phpbb_end"></a>
 
-For PunBB only:
-
-Create a new file named <b>redir.php</b> in your <b>PunBB directory</b>, and paste the following code into the file:
+<a name="integrating_steps_special_punbb_start"></a>
+<h4>5.3.4.2 For PunBB only</h4>
+<p>Create a new file named <b>redir.php</b> in your <b>PunBB directory</b>, and paste the following code into the file:</p>
 <pre>&lt;?php
 
 /// Set URL of coppermine to return to after login
 $cpg_url = 'http://www.yousite.com/coppermine';
 
 if (isset($_POST['redir'])){
-	echo '&lt;html&gt;&lt;body onload="document.redir.submit();"&gt;&lt;form name="redir" method="post" action="'.$_POST['redir'].'"&gt;&lt;/form&gt;&lt;/body&gt;&lt;/html&gt;';
+        echo '&lt;html&gt;
+                  &lt;body onload="document.redir.submit();"&gt;
+                      &lt;form name="redir" method="post" action="'.$_POST['redir'].'"&gt;
+                      &lt;/form&gt;
+                  &lt;/body&gt;
+              &lt;/html&gt;';
 } else {
-	header("Location: $cpg_url");
+        header("Location: $cpg_url");
 }
 ?&gt;</pre>
 <span class="important">Important</span> - before you save the file, you must ensure that:
 <ul>
 <li><b>$cpg_url</b> - contains the the path in which Coppermine is installed </li>
 </ul>
-</td></tr>
-</table>
-<p>Upload all files onto your webserver. Visit your coppermine gallery in your browser. To login as an admin, you will need to use the admin username and password of your board.</p>
-<p>Login using the admin account of your board. Go to the gallery, enter admin mode and click on the &quot;Groups&quot;
-  button. This will synchronize Coppermine groups with those of your board. The
-  permission you will see for each group will be completely messy, so take some
-  time to set them properly.</p>
-<p>Each time you add or delete a group in your board you will need to do the operation
-  above in order to keep the synchronisation of the groups.</p>
-<p>When you will try to login / logout or manage users from Coppermine, you will
-  be redirected to the corresponding page of your bulletin board. Once the login
-  or logout is performed you won't be redirected automatically to the gallery
-  because your board does not have any function for that. It's up to you to add
-  a link on your board to get you back to the gallery.</p>
+<a name="integrating_steps_special_punbb_end"></a>
+<a name="integrating_steps_special_end"></a>
+
+<a name="integrating_steps_upload_start"></a>
+<h3>5.3.5 Upload the modified files</h3>
+<p>Upload all modified files (the file in the &quot;bridge&quot; folder that corresponds to your bbs and the file <i>include/init.inc.php</i>, plus the redirector files your created in step &quot;Special steps for depending on the bbs you use&quot; if you're using one of the mentioned bbs) onto your webserver. Visit your coppermine gallery in your browser. To login as an admin, you will need to use the admin username and password of your board.</p>
+<a name="integrating_steps_upload_end"></a>
+
+<a name="integrating_steps_sync_start"></a>
+<h3>5.3.6 Synchronsising the bbs groups with Coppermine's groups</h3>
+<p>Login using the admin account of your board. Go to the gallery, enter admin mode and click on the &quot;Groups&quot; button. This will synchronize Coppermine groups with those of your board. The permission you will see for each group will be completely messy, so take some time to set them properly.</p>
+<p>Each time you add or delete a group in your board you will need to do the operation above in order to keep the synchronisation of the groups.</p>
+<p>When you will try to login / logout or manage users from Coppermine, you will be redirected to the corresponding page of your bulletin board. Once the login or logout is performed you won't be redirected automatically to the gallery because your board does not have any function for that. It's up to you to add a link on your board to get you back to the gallery.</p>
+<a name="integrating_steps_sync_end"></a>
+<a name="integrating_steps_end"></a>
+<a name="integrating_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="translating"></a>
@@ -1630,12 +1709,6 @@ if (isset($_POST['redir'])){
         <td>active</td>
 </tr>
 <tr>
-        <td>Hyperion</td>
-        <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=125">hyperion01</a></td>
-        <td>Developer</td>
-        <td>active</td>
-</tr>
-<tr>
         <td>Jack</td>
         <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=6">datajack</a></td>
         <td>Developer</td>
@@ -1688,6 +1761,12 @@ if (isset($_POST['redir'])){
         <td>Gr&eacute;gory Demar</td>
         <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=259">Greg</a></td>
         <td>Developer, Original creator of Coppermine</td>
+        <td>retired</td>
+</tr>
+<tr>
+        <td>Hyperion</td>
+        <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=125">hyperion01</a></td>
+        <td>Developer</td>
         <td>retired</td>
 </tr>
 <tr>
@@ -1789,17 +1868,8 @@ if (isset($_POST['redir'])){
 <h2>8.4 Copyright and disclaimer</h2>
 <p>This application is opensource software released under the <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a>.
 </p>
-<p>Because the program is licensed free of charge, there is no warranty
-  for the program, to the extent permitted by applicable law. Except when
-  otherwise stated in writing the copyright holders and/or other parties
-  provide the program &quot;as is&quot; without warranty of any kind, either expressed
-  or implied, including, but not limited to, the implied warranties of
-  merchantability and fitness for a particular purpose. The entire risk as
-  to the quality and performance of the program is with you. Should the
-  program prove defective, you assume the cost of all necessary servicing,
-  repair or correction. </p>
-<p>Coppermine Photo Gallery is Copyright &copy; 2002 - 2004 <a href="http://www.chezgreg.net/coppermine/">Gr&eacute;gory
-  DEMAR</a> and the Coppermine Dev Team, All Rights Reserved.<br />
+<p>Because the program is licensed free of charge, there is no warranty for the program, to the extent permitted by applicable law. Except when otherwise stated in writing the copyright holders and/or other parties provide the program &quot;as is&quot; without warranty of any kind, either expressed or implied, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose. The entire risk as to the quality and performance of the program is with you. Should the program prove defective, you assume the cost of all necessary servicing, repair or correction. </p>
+<p>Coppermine Photo Gallery is Copyright &copy; 2002 - 2004 <a href="http://www.chezgreg.net/coppermine/">Gr&eacute;gory  DEMAR</a> and the Coppermine Dev Team, All Rights Reserved.<br />
 </p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
