@@ -52,6 +52,9 @@ class cpg_debugger {
             } else {
                 $this->old_handler = set_error_handler(array(&$this, 'handler'));
             }
+            if (is_bool($this->old_handler)) {
+                error_reporting(E_ALL ^ E_NOTICE);
+            }
 //            $this->old_error_log = ini_set('error_log', $this->logfile);
             $this->active = true;
         }
@@ -60,7 +63,9 @@ class cpg_debugger {
     function stop() {
         if ($this->active) {
             // restore the previous state
-            if ($this->old_handler) set_error_handler($this->old_handler);
+            if (!is_bool($this->old_handler) && $this->old_handler) {
+                set_error_handler($this->old_handler);
+            }
             ini_set('display_errors', $this->old_display_level);
             ini_set('log_errors', $this->old_error_logging);
 //            ini_set('error_log', $this->old_error_log);
