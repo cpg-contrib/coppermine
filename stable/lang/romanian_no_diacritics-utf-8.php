@@ -1,6 +1,6 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.2                                            //
+// Coppermine Photo Gallery 1.4.0                                            //
 // ------------------------------------------------------------------------- //
 // Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
@@ -17,7 +17,7 @@
 // $Id$
 // ------------------------------------------------------------------------- //
 
-// info about translators and translated language
+// informatii despre traducere si traducator
 $lang_translation_info = array(
         'lang_name_english' => 'Romanian',
         'lang_name_native' => 'Romana',
