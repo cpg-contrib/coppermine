@@ -44,6 +44,17 @@
 //           usergroups in your gallery.                                     //
 // ------------------------------------------------------------------------- //
 
+// In order for the login to redirect back to Coppermine, you'll need to edit
+// one SMF file.  Open up Sources/LogInOut.php and do the following:
+//
+// In function Login(), right before the closing }, add this:
+//
+//	if (isset($_SESSION['cpg_smf_login']))
+//	{
+//	  $_SESSION['login_url'] = $_SESSION['old_url'];
+//	  unset($_SESSION['cpg_smf_login']);
+//	}
+ 
 // Set this to the location of your Settings file:
 $path = '../smf';
 
@@ -74,20 +85,7 @@ while (!file_exists($possible_paths[$correct] . '/Settings.php') &&
 count($possible_paths) > $correct)
         $correct++;
 
-//require_once($possible_paths[$correct] . '/Settings.php');
-
-//define ('SMF', 1);
 require($possible_paths[$correct] . '/SSI.php');
-
-// Changes to account for the cpg_db_query renaming.  No longer needed to do any eval stuff!
-// other includes
-//cm_include_smf_funcs("$sourcedir/Load.php", array("reloadSettings", "md5_hmac", "loadUserSettings"));
-//cm_include_smf_funcs("$sourcedir/Subs.php", array("updateMemberData", "updateStats", "updateSettings"));
-//require_once($sourcedir . '/QueryString.php');
-//require_once($sourcedir . '/Subs.php');
-//require_once($sourcedir . '/Errors.php');
-//require_once($sourcedir . '/Load.php');
-//require_once($sourcedir . '/Security.php');
 
 // database configuration
 define('SMF_DB_NAME', $db_name); // The name of the database used by the board
@@ -95,12 +93,6 @@ define('SMF_DB_HOST', $db_server); // The name of the database server
 define('SMF_DB_USERNAME', $db_user); // The username to use to connect to the database
 define('SMF_DB_PASSWORD', $db_passwd); // The password to use to connect to the database
 
-// Connect to the MySQL database.
-//if (empty($db_persist))
-//	$db_connection = @mysql_connect($db_server, $db_user, $db_passwd);
-//else
-//	$db_connection = @mysql_pconnect($db_server, $db_user, $db_passwd);
-	
 // The web path to your SMF Board directory
 define('SMF_WEB_PATH', "$boardurl/");
 
@@ -123,34 +115,6 @@ define('SMF_ADMIN_GROUP', 1);
 
 define('SMF_PASSWD_SEED', 'ys');
 
-/* function cm_include_smf_funcs ($source_file, $funcs) // Again, this stuff isn't needed anymore
-{
-        $fp = fopen ($source_file, "r");
-        $len = filesize($source_file);
-
-        $source = fread($fp, $len);
-        fclose ($fp);
-        $oe = error_reporting(E_ERROR | E_WARNING | E_PARSE);
-
-        foreach ($funcs as $index => $func) {
-                preg_match('/\n\s*(function ' . $func . '.*?)\n\s*(function|\?>)/si', $source, $f);
-                $func = preg_replace("/cpg_db_query/s", "cm_cpg_db_query", $f[1]);
-                eval ($func);
-        }
-
-        error_reporting ($oe);
-}
-
-function cm_cpg_db_query ($query, $other, $other2)
-{
-                global $UDB_DB_LINK_ID;
-
-        return cpg_db_query($query, $UDB_DB_LINK_ID);
-}
-
-// Authenticate a user using cookies
-*/
-
 function udb_authenticate()
 {
     global $HTTP_COOKIE_VARS, $USER_DATA, $UDB_DB_LINK_ID, $UDB_DB_NAME_PREFIX, $CONFIG;
@@ -159,11 +123,9 @@ function udb_authenticate()
 
     $pwseed = SMF_PASSWD_SEED;
 
-        session_start();
-
-        reloadSettings();
-
-        LoadUserSettings();
+    reloadSettings();
+    LoadUserSettings();
+    
     // For error checking
     $CONFIG['TABLE_USERS'] = '**ERROR**';
 
@@ -275,8 +237,8 @@ function udb_register_page()
 // Login
 function udb_login_page()
 {
-        $_SESSION['login_url'] = $HTTP_GET_VARS['referer'] ? $HTTP_GET_VARS['referer'] : 'index.php';
-        $_SESSION['login_url'] = "http://localhost/cgpcvs/";
+    $_SESSION['old_url'] = $_SERVER['HTTP_REFERER'];
+    $_SESSION['cpg_smf_login'] = 1;
     $target = 'index.php?action=login';
     udb_redirect($target);
 }
@@ -284,8 +246,8 @@ function udb_login_page()
 // Logout
 function udb_logout_page()
 {
-    global $sc;
-    $target = 'index.php?&action=logout;sesc=' . $sc;
+    $_SESSION['logout_url'] = $_SERVER['HTTP_REFERER'];
+    $target = 'index.php?&action=logout;sesc=' . $_SESSION['rand_code'];
     udb_redirect($target);
 }
 
