@@ -353,7 +353,7 @@ Coppermine.</p>
 <ul>
   <li>Right click on <a href="<?php echo $PHP_SELF ?>?cmd=send_reg">this link</a>. Select &quot;save
    target as..&quot;. Save the file on your hard drive. When saving the file, check that the proposed
-   file name is <b>cpg_pub_wizard.reg</b>. Change it to that name if necessary. Double click on the
+   file name is <b>cpg_###.reg</b> (the ### represents a numerical timestamp). Change it to that name if necessary (leave the numbers). When downloaded, double click on the
    file in order to register your server with the web publishing wizard.</li>
 </ul>
 <h2>Testing</h2>
@@ -567,8 +567,9 @@ function send_reg_file()
     global $CONFIG, $HTTP_SERVER_VARS, $PHP_SELF;
 
     header("Content-Type: application/octet-stream");
-    header("Content-Disposition: attachment; filename=cpg_pub_wizard.reg");
-
+    $time_stamp = time();
+	header("Content-Disposition: attachment; filename=cpg_".$time_stamp.".reg");
+	
     $lines[] = 'Windows Registry Editor Version 5.00';
     $lines[] = '';
     //$lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\PublishingWizard\Providers\CopperminePhotoGallery]';
