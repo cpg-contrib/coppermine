@@ -16,14 +16,27 @@
   p { font-size: 100%; margin: 10px 10px 0px 0px; font-family: Verdana, Arial, Helvetica, sans-serif;}
   h1 { font-weight: bolder; font-size: 200%; color: #0E72A4; line-height: 120%; font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; text-decoration: none;}
   h2 {font-weight: bolder; font-size: 150%; color: #0E72A4; line-height: 120%; font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; text-decoration: none ;}
-  li {margin:5px;}
+  li {margin:25px 5px 5px 5px;}
   li h6 {margin:3px auto 0px;}
-  li pre {font-size: 12px; margin:3px; font-style: normal; font-family: 'Courier New', Courier, mono; border: 1px solid #999999; padding: 5px; background-color: #E0E0E0;width:auto;}
+  li pre {
+	font-size: 12px;
+	margin:3px auto 10px 3px;
+	font-style: normal;
+	font-family: 'Courier New', Courier, mono;
+	border: 2px solid #999999;
+	padding: 3px;
+	background-color: #E0E0E0;
+	width:90%;
+	height:90%;
+	overflow:auto;
+	padding: 0 3px 20px 3px;
+	}
   li span { font-size: 80%; font-weight: lighter; }
   li h5 {margin:4px auto 0px;}
   .vanity {width:400px; background-color:#E0E0E0; border:1px solid black;text-align:center;}
   .vanity img {margin:3px 15px;}
   .new {font-weight:heavy;color:red;}
+
   /*]]>*/
   </style>
 </head>
@@ -123,6 +136,37 @@ td #admin_menu_anim {
 
       <h6>Make changes as necessary.</h6>
     </li>
+		
+		<li>
+			Add a new class for the background color of the image in displayimage. The class is based on tableb. 
+			It was added to give the designer more flexibility in styling that element without affecting other elements that used tableb.
+			If you want to use the same attributes as you current have for tableb, you can copy the tableb block and name it:
+			display_media.
+			<p>
+			For example, in the classic theme:
+			<h6>copy and paste after the .imageborder block (You can paste it anywhere but that placement helps to keep things organized)</h6>
+			<pre>
+			.tableb {
+        background: #EFEFEF ;
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+				}
+			</pre>
+			Replace &quot;tableb" with "display_media"
+			</p>
+		</li>
+		<li>
+			&quot;catrow&quot; and &quot;catrow_noalb&quot; were added for the same reasons
+			as above for &quot;display_media&quot;. They style the category rows on the index
+			page. &quot;catrow_noalb&quot; is used for rows that do not contain albums, at least
+			in the first level of the category. &quot;catrow&quot; is based on &quot;tableb&quot; so if
+			you want to keep the same look, copy and paste the &quot;tableb&quot; block as described
+			above and rename it &quot;catrow&quot;. You can paste it anywhere but to keep things
+			organized, the recommended placement would be after the table blocks, before
+			&quot;album_stat&quot;. &quot;catrow_noalb&quot; is based on &quot;tableh2&quot; so repeat the steps
+			as described above.</li>
   </ol>
 
   <h2>Edit template.html</h2>
@@ -850,12 +894,40 @@ EOT;
 </pre>
     </li>
 
+
     <li>
-      For the majority of themes you are now done adding content to your theme.php. 
+			Replace $template_display_picture with $template_display_media
+			<h6>Find all instances of:</h6>
+			<pre>$template_display_picture</pre>
+			<h6>Replace all with:</h6>
+			<pre>$template_display_media</pre>
+		</li>
+    <li>
+			Replace tableb with display_media in $template_display_media block	
+			  <h6>Find:</h6>
+			<pre>&lt;td align=&quot;center&quot; class=&quot;tableb&quot; nowrap=&quot;nowrap&quot;&gt;</pre>
+			
+			<h6>Replace with:</h6>
+			<pre>&lt;td align=&quot;center&quot; class=&quot;display_media&quot; nowrap=&quot;nowrap&quot;&gt;</pre>
+		</li>
+    <li>
+			Replace tableh2 with catrow_noalb in the catrow_noalb block
+			  <h6>Find:</h6>
+			<pre>&lt;!-- BEGIN catrow_noalb --&gt;<br />        &lt;tr&gt;<br />                &lt;td class=&quot;tableh2&quot; colspan=&quot;3&quot;&gt;&lt;table border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;{CAT_THUMB}&lt;/td&gt;&lt;td align=&quot;left&quot;&gt;&lt;span class=&quot;catlink&quot;&gt;&lt;b&gt;{CAT_TITLE}&lt;/b&gt;&lt;/span&gt;{CAT_DESC}&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;<br />        &lt;/tr&gt;<br />&lt;!-- END catrow_noalb --&gt;</pre>
+			<h6>Replace with :</h6>
+			<pre>&lt;!-- BEGIN catrow_noalb --&gt;<br />        &lt;tr&gt;<br />                &lt;td class=&quot;catrow_noalb&quot; colspan=&quot;3&quot;&gt;&lt;table border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td align=&quot;left&quot;&gt;{CAT_THUMB}&lt;/td&gt;&lt;td align=&quot;left&quot;&gt;&lt;span class=&quot;catlink&quot;&gt;&lt;b&gt;{CAT_TITLE}&lt;/b&gt;&lt;/span&gt;{CAT_DESC}&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;<br />        &lt;/tr&gt;<br />&lt;!-- END catrow_noalb --&gt;</pre>
+		</li>
+    <li>
+			Replace tableb with catrow in the catrow block
+			<h6>Find:</h6>
+			<pre>&lt;!-- BEGIN catrow --&gt;<br />        &lt;tr&gt;<br />                &lt;td class=&quot;tableb&quot; align=&quot;left&quot;&gt;&lt;table border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td&gt;{CAT_THUMB}&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;catlink&quot;&gt;&lt;b&gt;{CAT_TITLE}&lt;/b&gt;&lt;/span&gt;{CAT_DESC}&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;<br />                &lt;td class=&quot;tableb&quot; align=&quot;center&quot;&gt;{ALB_COUNT}&lt;/td&gt;<br />                &lt;td class=&quot;tableb&quot; align=&quot;center&quot;&gt;{PIC_COUNT}&lt;/td&gt;<br />        &lt;/tr&gt;<br />        &lt;tr&gt;<br />            &lt;td class=&quot;tableb&quot; colspan=&quot;3&quot;&gt;{CAT_ALBUMS}&lt;/td&gt;<br />        &lt;/tr&gt;<br />&lt;!-- END catrow --&gt;</pre>
+			<h6>Replace with :</h6>
+			<pre>&lt;!-- BEGIN catrow --&gt;<br />        &lt;tr&gt;<br />                &lt;td class=&quot;catrow&quot; align=&quot;left&quot;&gt;&lt;table border=&quot;0&quot;&gt;&lt;tr&gt;&lt;td&gt;{CAT_THUMB}&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;catlink&quot;&gt;&lt;b&gt;{CAT_TITLE}&lt;/b&gt;&lt;/span&gt;{CAT_DESC}&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;<br />                &lt;td class=&quot;catrow&quot; align=&quot;center&quot;&gt;{ALB_COUNT}&lt;/td&gt;<br />                &lt;td class=&quot;catrow&quot; align=&quot;center&quot;&gt;{PIC_COUNT}&lt;/td&gt;<br />        &lt;/tr&gt;<br />        &lt;tr&gt;<br />            &lt;td class=&quot;tableb&quot; colspan=&quot;3&quot;&gt;{CAT_ALBUMS}&lt;/td&gt;<br />        &lt;/tr&gt;<br />&lt;!-- END catrow --&gt;</pre>
+		</li>
+    <li>For the majority of themes you are now done adding content to your theme.php.
 
       <p>Take stock of what you have so far, test your theme.</p>
     </li>
-
     <li>
       For a list of everything that could be modified examine Classic's theme.php. 
 
@@ -907,7 +979,7 @@ EOT;
         <li>emailed HTML E-card.</li>
       </ul>
 
-      <p>The following toolbar's can assist you in validating the resulting output of your theme:</p>
+      <p>The following toolbars can assist you in validating the resulting output of your theme:</p>
 
       <p>Internet Explorer:</p>
 
