@@ -454,8 +454,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 mysql_free_result($result);
                 // Set picture caption
                 if ($set_caption) foreach ($rowset as $key => $row){
-
-                        $caption = ($rowset[$key]['title']||$rowset[$key]['hits']) ? "<span class=\"thumb_title\">".$rowset[$key]['title'].(($rowset[$key]['title'])?"-":"").sprintf($lang_get_pic_data['n_views'], $rowset[$key]['hits'])."</span>" : '';
+                        
+			$caption = ($rowset[$key]['title']||$rowset[$key]['hits']) ? "<span class=\"thumb_title\">".$rowset[$key]['title'].(($rowset[$key]['title'])?"&nbsp;&ndash;&nbsp;":"").sprintf($lang_get_pic_data['n_views'], $rowset[$key]['hits'])."</span>" : '';
 
                         if ($CONFIG['caption_in_thumbview']){
                            $caption .= $rowset[$key]['caption'] ? "<span class=\"thumb_caption\">".bb_decode(($rowset[$key]['caption']))."</span>" : '';
@@ -1259,9 +1259,9 @@ function cpg_phpinfo_mod($search)
     $string = eregi_replace('</table>(.*)', '', $string);
     $string = strstr($string, '<tr>');
     $string = str_replace('</td>', '|', $string);
-    $string = str_replace('</tr>', '§', $string);
+    $string = str_replace('</tr>', '', $string);
     $string = chop(strip_tags($string));
-    $pieces = explode("§", $string);
+    $pieces = explode("", $string);
     foreach($pieces as $key => $val) {
         $bits[$key] = explode("|", $val);
     }
@@ -1335,9 +1335,9 @@ function cpg_phpinfo_conf($search)
     // find out the first occurence of "</tr" and throw the superfluos stuff in front of it away
     $string = strchr($string, '</tr>');
     $string = str_replace('</td>', '|', $string);
-    $string = str_replace('</tr>', '§', $string);
+    $string = str_replace('</tr>', '', $string);
     $string = chop(strip_tags($string));
-    $pieces = explode("§", $string);
+    $pieces = explode("", $string);
     foreach($pieces as $val) {
         $bits = explode("|", $val);
         if (strchr($bits[0], $search)) {
