@@ -30,8 +30,7 @@ define('COPPERMINE_VERSION_STATUS', 'alpha');
 // define('UDB_INTEGRATION', 'smf');
 // define('UDB_INTEGRATION', 'woltlab21');
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
-// Start output buffering
-ob_start();
+
 // Report all errors except E_NOTICE
 // This is the default value set in php.ini
 // error_reporting (E_ALL ^ E_NOTICE);
@@ -255,6 +254,9 @@ if ($CONFIG['enable_plugins'] == 1) {
     CPGPluginAPI::load();
 }
 
+// Start output buffering
+ob_start('cpg_filter_page_html');
+
 // Include logger functions
 include_once('include/logger.inc.php');
 
@@ -393,7 +395,6 @@ if (USER_ID > 0){
                 $FAVPICS = array();
         }
 }
-
 
 // load the main template
 load_template();

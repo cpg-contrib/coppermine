@@ -343,6 +343,11 @@ function& cpg_get_scope( $plugin_id = null ) {
     }
 }
 
+// Used as a work around because ob_start can't send parameters
+function& cpg_filter_page_html(&$html) {
+    return CPGPluginAPI::filter('page_html',$html);
+}
+
 // Returns all the subdirecties in a given folder
 function& cpg_get_dir_list($folder) {
     global $CONFIG;
