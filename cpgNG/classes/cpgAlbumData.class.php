@@ -1,7 +1,8 @@
 <?php
 /**
- * $Id:
+ * $Id$
  */
+error_reporting(E_ALL);
 class cpgAlbumData {
 
   function cgpAlbumData()
@@ -181,16 +182,17 @@ class cpgAlbumData {
     global $CONFIG, $lang_errors, $cat;
     $breadcrumb_array = array();
     $breadcrumb = array();
-
+    $db = cpgDB::getInstance();
+    
     if (!empty($albumName)) {
       $query = "SELECT aid, title, category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid = '$albumName'";
-      $result = cpg_db_query($query);
-
-      if (mysql_num_rows($result) == 0) {
+      $db->query($query);
+      
+      if ($db->nf() == 0) {
         cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap']);
       }
 
-      $row = mysql_fetch_array($result);
+      $row = $db->fetchRow();
       //$breadcrumb_array[] = array($albumName, $row["title"]);
 
       if ($row["category"] == 0) {
@@ -218,26 +220,24 @@ class cpgAlbumData {
     } else {
       $cat = $row["category"];
       $query = "SELECT cid, name, parent FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '".$row["category"]."'";
-      $result = cpg_db_query($query);
-      if (mysql_num_rows($result) == 0) {
+      $db->query($query);
+      if ($db->nf() == 0) {
         cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_cat'], __FILE__, __LINE__);
       }
-      $row = mysql_fetch_array($result);
+      $row = $db->fetchRow();
 
       $breadcrumb_array[] = array($row["cid"], $row['name']);
       $CURRENT_CAT_NAME = $row['name'];
-      mysql_free_result($result);
     }
     while($row['parent'] != 0){
       $query = "SELECT cid, name, parent FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '{$row['parent']}'";
-      $result = cpg_db_query($query);
-      if (mysql_num_rows($result) == 0) {
+      $db->query($query);
+      if ($db->nf() == 0) {
         cpg_die(CRITICAL_ERROR, $lang_errors['orphan_cat'], __FILE__, __LINE__);
       }
-      $row = mysql_fetch_array($result);
+      $row = $db->fetchRow();
 
       $breadcrumb_array[] = array($row['cid'], $row['name']);
-      mysql_free_result($result);
     } // while
 
     $breadcrumb_array = array_reverse($breadcrumb_array);
@@ -270,11 +270,12 @@ class cpgAlbumData {
   {
           global $CONFIG;
           global $lang_errors;
+          $db = cpgDB::getInstance();
 
-          $result = cpg_db_query("SELECT title,keyword from {$CONFIG['TABLE_ALBUMS']} WHERE aid='$aid'");
-          $count = mysql_num_rows($result);
-          if ($count > 0) {
-                  $row = mysql_fetch_array($result);
+          $query = "SELECT title,keyword from {$CONFIG['TABLE_ALBUMS']} WHERE aid='$aid'";
+          $db->query($query);
+          if ($db->nf() > 0) {
+                  $row = $db->fetchRow();
                   return $row;
           } else {
                   cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
@@ -294,16 +295,19 @@ class cpgAlbumData {
           global $CONFIG;
 
           $uid = (int)$uid;
+          $db = cpgDB::getInstance();
 
           if (!$uid) {
               return 'Anonymous';
           } elseif (defined('UDB_INTEGRATION')) {
             return udb_get_user_name($uid);
           } else {
-                  $result = cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '".$uid."'");
-                  if (mysql_num_rows($result) == 0) return '';
-                  $row = mysql_fetch_array($result);
-                  mysql_free_result($result);
+                  $query = "SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '".$uid."'";
+                  $db->query($query);
+                  if ($db->nf() == 0) {
+                    return '';
+                  }
+                  $row = $db->fetchRow();
                   return $row['user_name'];
           }
   }

@@ -2,6 +2,13 @@
 require_once ("cpgAlbumData.class.php");
 class cpgNumericAlbumData extends cpgAlbumData{
   var $cpgAlbumName;
+  var $db;
+  
+  function cpgNumericAlbumData()
+  {
+    $this->db = cpgDB::getInstance();
+  }
+  
   function getThumbnailData($album, $cat, $page, $thumbcols, $thumbrows, $display_tabs)
   {
       global $CONFIG, $AUTHORIZED;
@@ -109,18 +116,17 @@ class cpgNumericAlbumData extends cpgAlbumData{
         $approved = GALLERY_ADMIN_MODE ? '' : 'AND approved=\'YES\'';
 
         $query = "SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE (aid='$album' $forbidden_set_string ) $keyword $approved $ALBUM_SET";
-        $result = cpg_db_query($query);
-        $nbEnr = mysql_fetch_array($result);
+
+        $this->db->query($query);
+        $nbEnr = $this->db->fetchRow();
         $count = $nbEnr[0];
-        mysql_free_result($result);
 
         if($select_columns != '*') $select_columns .= ', title, caption,hits,owner_id,owner_name';
 
         $query = "SELECT $select_columns from {$CONFIG['TABLE_PICTURES']} WHERE (aid='$album' $forbidden_set_string ) $keyword $approved $ALBUM_SET ORDER BY $sort_order $limit";
 
-        $result = cpg_db_query($query);
-        $rowset = cpg_db_fetch_rowset($result);
-        mysql_free_result($result);
+        $this->db->query($query);
+        $rowset = $this->db->fetchRowSet();        
         // Set picture caption
 
         if ($set_caption) {

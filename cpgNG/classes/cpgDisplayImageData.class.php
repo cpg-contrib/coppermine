@@ -32,6 +32,18 @@ require_once ("include/media.functions.inc.php");
 class cpgDisplayImageData extends cpgAlbumData {
 
   /**
+   * @var object $db
+   */
+  var $db;
+
+  /**
+   * Constructor of the class
+   */
+  function cpgDisplayImageData() {
+    $this->db = cpgDB::getInstance();
+  }
+
+  /**
    * Get the picture data
    *
    * @param string $album
@@ -89,12 +101,12 @@ class cpgDisplayImageData extends cpgAlbumData {
 
                 $approved = GALLERY_ADMIN_MODE ? '' : 'AND approved=\'YES\'';
 
-                $query = "SELECT COUNT(pid) from {$CONFIG['TABLE_PICTURES']} WHERE (aid='$album' $forbidden_set_string ) $keyword $approved $ALBUM_SET";
+                $query = "SELECT COUNT(pid) FROM {$CONFIG['TABLE_PICTURES']} WHERE (aid='$album' $forbidden_set_string ) $keyword $approved $ALBUM_SET";
 
-                $result = cpg_db_query($query);
-                $nbEnr = mysql_fetch_array($result);
+                $this->db->query($query);
+                $nbEnr = $this->db->fetchRow();
+                
                 $count = $nbEnr[0];
-                mysql_free_result($result);
 
                 if ($pid != 0) {
                   $query = "SELECT * from {$CONFIG['TABLE_PICTURES']} WHERE (aid='$album' $forbidden_set_string ) AND pid='$pid' $approved $ALBUM_SET ORDER BY $sort_order";
@@ -102,15 +114,13 @@ class cpgDisplayImageData extends cpgAlbumData {
                   $query = "SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE (aid='$album' $forbidden_set_string ) $keyword  $approved $ALBUM_SET ORDER BY $sort_order $limit";
                 }
 
-                $result = cpg_db_query($query);
+                $this->db->query($query);
 
-                if (mysql_num_rows($result) == 0) {
+                if ($this->db->nf() == 0) {
                   return;
-                }
+                }                
 
-                $row = cpg_db_fetch_row($result);
-
-                mysql_free_result($result);
+                $row = $this->db->fetchRow();
 
                 $row = CPGPluginAPI::filter('thumb_caption_regular',$row);
 
@@ -204,9 +214,9 @@ class cpgDisplayImageData extends cpgAlbumData {
 
     $query = "SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid' ORDER BY msg_id ASC";
 
-    $result = cpg_db_query($query);
+    $this->db->query($query);
 
-    while ($row = mysql_fetch_array($result)) {
+    while ($row = $this->db->fetchRow()) {
         $user_can_edit = (GALLERY_ADMIN_MODE) || (USER_ID && USER_ID == $row['author_id'] && USER_CAN_POST_COMMENTS) || (!USER_ID && USER_CAN_POST_COMMENTS && ($USER['ID'] == $row['author_md5_id']));
 
         $comment_ipinfo = ($row['msg_raw_ip'] && GALLERY_ADMIN_MODE);

@@ -13,6 +13,7 @@ class cpgIndexData {
   var $totalPages = array();
   var $currentPage = array();
   var $dispAlbumCount;
+  var $db;
 
   /**
    * Constructor
@@ -21,6 +22,7 @@ class cpgIndexData {
   {
     $this->cat = (int)$cat;
     $this->page = $page;
+    $this->db = cpgDB::getInstance();
   }
 
   /**
@@ -72,15 +74,14 @@ class cpgIndexData {
       // Add the albums in the current category to the album set
       if ($this->cat == USER_GAL_CAT) {
           $sql = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category >= " . FIRST_USER_CAT . $album_filter;
-          $result = cpg_db_query($sql);
+          $this->db->query($sql);
       } else {
           $sql = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category = '".$this->cat."'" . $album_filter;
-          $result = cpg_db_query($sql);
+          $this->db->query($sql);
       }
-      while ($row = mysql_fetch_array($result)) {
+      while ($row = $this->db->fetchRow()) {
           $album_set_array[] = $row['aid'];
       } // while
-      mysql_free_result($result);
       // }
       if (count($album_set_array) && $this->cat) {
           $set = '';
@@ -95,34 +96,29 @@ class cpgIndexData {
       // Gather gallery statistics
       if ($this->cat == 0) {
           $query = "SELECT count(aid) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE 1" . $album_filter;
-          $result = cpg_db_query($query);
-          $nbEnr = mysql_fetch_array($result);
+          $this->db->query($query);
+          $nbEnr = $this->db->fetchRow();
           $album_count = $nbEnr[0];
-          mysql_free_result($result);
 
           $sql = "SELECT count(pid) FROM {$CONFIG['TABLE_PICTURES']} as p " . 'LEFT JOIN ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'ON a.aid=p.aid ' . 'WHERE 1' . $pic_filter;
-          $result = cpg_db_query($sql);
-          $nbEnr = mysql_fetch_array($result);
+          $this->db->query($sql);
+          $nbEnr = $this->db->fetchRow();          
           $picture_count = $nbEnr[0];
-          mysql_free_result($result);
 
           $sql = "SELECT count(msg_id) FROM {$CONFIG['TABLE_COMMENTS']} as c " . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON c.pid=p.pid ' . 'LEFT JOIN ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'ON a.aid=p.aid ' . 'WHERE 1' . $pic_filter;
-          $result = cpg_db_query($sql);
-          $nbEnr = mysql_fetch_array($result);
+          $this->db->query($sql);
+          $nbEnr = $this->db->fetchRow();          
           $comment_count = $nbEnr[0];
-          mysql_free_result($result);
 
           $sql = "SELECT count(cid) FROM {$CONFIG['TABLE_CATEGORIES']} WHERE 1";
-          $result = cpg_db_query($sql);
-          $nbEnr = mysql_fetch_array($result);
+          $this->db->query($sql);
+          $nbEnr = $this->db->fetchRow();          
           $cat_count = $nbEnr[0] - $HIDE_USER_CAT;
-          mysql_free_result($result);
 
           $sql = "SELECT sum(hits) FROM {$CONFIG['TABLE_PICTURES']} as p " . 'LEFT JOIN ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'ON p.aid=a.aid ' . 'WHERE 1' . $pic_filter;
-          $result = cpg_db_query($sql);
-          $nbEnr = mysql_fetch_array($result);
+          $this->db->query($sql);
+          $nbEnr = $this->db->fetchRow();          
           $hit_count = (int)$nbEnr[0];
-          mysql_free_result($result);
 
           if (count($this->catData)) {
               $this->statistics = strtr($lang_list_categories['stat1'], array('[pictures]' => $picture_count,
@@ -139,22 +135,19 @@ class cpgIndexData {
           }
       } elseif ($this->cat >= FIRST_USER_CAT && $ALBUM_SET) {
           $query = "SELECT count(aid) FROM {$CONFIG['TABLE_ALBUMS']} WHERE 1 $current_album_set";
-          $result = cpg_db_query($query);
-          $nbEnr = mysql_fetch_array($result);
+          $this->db->query($query);
+          $nbEnr = $this->db->fetchRow();          
           $album_count = $nbEnr[0];
-          mysql_free_result($result);
 
           $query = "SELECT count(pid) FROM {$CONFIG['TABLE_PICTURES']} WHERE 1 $current_album_set";
-          $result = cpg_db_query($query);
-          $nbEnr = mysql_fetch_array($result);
+          $this->db->query($query);
+          $nbEnr = $this->db->fetchRow();          
           $picture_count = $nbEnr[0];
-          mysql_free_result($result);
 
           $query = "SELECT sum(hits) FROM {$CONFIG['TABLE_PICTURES']} WHERE 1 $current_album_set";
-          $result = cpg_db_query($query);
-          $nbEnr = mysql_fetch_array($result);
+          $this->db->query($query);
+          $nbEnr = $this->db->fetchRow();          
           $hit_count = (int)$nbEnr[0];
-          mysql_free_result($result);
 
           $this->statistics = strtr($lang_list_categories['stat2'], array('[pictures]' => $picture_count,
                   '[albums]' => $album_count,
@@ -187,22 +180,24 @@ class cpgIndexData {
           $pic_filter = ' and ' . str_replace('p.', $CONFIG['TABLE_PICTURES'] . '.', $FORBIDDEN_SET);
       }
       if ($CONFIG['categories_alpha_sort'] == 1) {$cat_sort_order = 'name';}else{$cat_sort_order = 'pos';}
-      $result = cpg_db_query("SELECT cid, name, description, thumb FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent'  ORDER BY $cat_sort_order");
-
-      if (mysql_num_rows($result) > 0) {
-          $rowset = cpg_db_fetch_rowset($result);
+      
+      $query = "SELECT cid, name, description, thumb FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent'  ORDER BY $cat_sort_order";
+      $this->db->query($query);
+      if ($this->db->nf() > 0) {
+          $rowset = $this->db->fetchRowSet();          
           foreach ($rowset as $subcat) {
               if ($subcat['cid'] == USER_GAL_CAT) {
                   $sql = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category>=" . FIRST_USER_CAT . $album_filter;
-                  $result = cpg_db_query($sql);
-                  $album_count = mysql_num_rows($result);
-                  while ($row = mysql_fetch_array($result)) {
+
+                  $this->db->query($sql);
+                  $album_count = $this->db->nf();
+                  while ($row = $this->db->fetchRow()) {
                       $album_set_array[] = $row['aid'];
                   } // while
-                  mysql_free_result($result);
 
-                  $result = cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} as p, {$CONFIG['TABLE_ALBUMS']} as a WHERE p.aid = a.aid AND category >= " . FIRST_USER_CAT . $album_filter);
-                  $nbEnr = mysql_fetch_array($result);
+                  $query = "SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} as p, {$CONFIG['TABLE_ALBUMS']} as a WHERE p.aid = a.aid AND category >= " . FIRST_USER_CAT . $album_filter;
+                  $this->db->query($query);
+                  $nbEnr = $this->db->fetchRow();
                   $pic_count = $nbEnr[0];
 
                   $subcat['description'] = preg_replace("/<br.*?>[\r\n]*/i", '<br />' . $ident , bb_decode($subcat['description']));
@@ -216,23 +211,24 @@ class cpgIndexData {
                   }
               } else {
                   $unaliased_album_filter = str_replace('a.', '', $album_filter);
-                  $result = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = {$subcat['cid']}" . $unaliased_album_filter);
-                  $album_count = mysql_num_rows($result);
-                  while ($row = mysql_fetch_array($result)) {
+
+                  $query = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = {$subcat['cid']}" . $unaliased_album_filter;
+                  $this->db->query($query);
+                  $album_count = $this->db->nf();
+                  while ($row = $this->db->fetchRow()) {
                       $album_set_array[] = $row['aid'];
                   } // while
-                  mysql_free_result($result);
 
-                  $result = cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} as p, {$CONFIG['TABLE_ALBUMS']} as a WHERE p.aid = a.aid AND category = {$subcat['cid']}" . $album_filter);
-                  $nbEnr = mysql_fetch_array($result);
-                  mysql_free_result($result);
+                  $query = "SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} as p, {$CONFIG['TABLE_ALBUMS']} as a WHERE p.aid = a.aid AND category = {$subcat['cid']}" . $album_filter;
+                  $this->db->query($query);
+                  $nbEnr = $this->db->fetchRow();
                   $pic_count = $nbEnr[0];
                   if ($subcat['thumb'] > 0) {
                       $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='{$subcat['thumb']}'" . $pic_filter;
-                      $result = cpg_db_query($sql);
-                      if (mysql_num_rows($result)) {
-                          $picture = mysql_fetch_array($result);
-                          mysql_free_result($result);
+
+                      $this->db->query($sql);
+                      if ($this->db->nf() > 0) {
+                          $picture = $this->db->fetchRow();
                           $pic_url = get_pic_url($picture, 'thumb');
                           if (!is_image($picture['filename'])) {
                               $image_info = getimagesize($pic_url);
@@ -304,10 +300,10 @@ class cpgIndexData {
     }
 
     $sql = "SELECT count(aid) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category = '$cat'" . $album_filter;
-    $result = cpg_db_query($sql);
-    $nbEnr = mysql_fetch_array($result);
+
+    $this->db->query($sql);
+    $nbEnr = $this->db->fetchRow();
     $nbAlb = $nbEnr[0];
-    mysql_free_result($result);
 
     if ($nbAlb == 0) {
         return;
@@ -323,9 +319,8 @@ class cpgIndexData {
 
     $sql = 'SELECT a.aid, a.title, a.description, visibility, filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE category=' . $cat . $album_filter . ' ORDER BY a.pos ' . $limit;
 
-    $alb_thumbs_q = cpg_db_query($sql);
-    $alb_thumbs = cpg_db_fetch_rowset($alb_thumbs_q);
-    mysql_free_result($alb_thumbs_q);
+    $this->db->query($sql);
+    $alb_thumbs = $this->db->fetchRowSet();
 
     $disp_album_count = count($alb_thumbs);
     $album_set = '';
@@ -340,9 +335,10 @@ class cpgIndexData {
             "WHERE p.aid IN $album_set AND
              p.aid = a.aid AND
             p.approved = 'YES' " . "GROUP BY p.aid";
-    $alb_stats_q = cpg_db_query($sql);
-    $alb_stats = cpg_db_fetch_rowset($alb_stats_q);
-    mysql_free_result($alb_stats_q);
+
+    $this->db->query($sql);
+    $alb_stats = $this->db->fetchRowSet();    
+    
 
     foreach($alb_stats as $key => $value) {
         $cross_ref[$value['aid']] = &$alb_stats[$key];
@@ -353,9 +349,9 @@ class cpgIndexData {
                         WHERE aid != {$value['aid']} AND
                         keywords LIKE '%{$value['keyword']}%' AND
                         approved = 'YES'";
-            $result = cpg_db_query($query);
-            $link_stat = mysql_fetch_array ($result);
-            mysql_free_result($result);
+
+            $this->db->query($query);
+            $link_stat = $this->db->fetchRow();            
             $alb_stats[$key]['link_pic_count'] = $link_stat['link_pic_count'];
           }
        }
@@ -380,9 +376,9 @@ class cpgIndexData {
                     $picture = &$alb_thumb;
                 } else {
                     $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='{$alb_stat['last_pid']}'";
-                    $result = cpg_db_query($sql);
-                    $picture = mysql_fetch_array($result);
-                    mysql_free_result($result);
+
+                    $this->db->query($sql);
+                    $picture = $this->db->fetchRow();                    
                 }
                 $pic_url = get_pic_url($picture, 'thumb');
                 if (!is_image($picture['filename'])) {
@@ -450,10 +446,10 @@ class cpgIndexData {
       }
 
       $sql = "SELECT count(*) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category = '".$this->cat."'" . $album_filter;
-      $result = cpg_db_query($sql);
-      $nbEnr = mysql_fetch_array($result);
+
+      $this->db->query($sql);
+      $nbEnr = $this->db->fetchRow();      
       $nbAlb = $nbEnr[0];
-      mysql_free_result($result);
 
       if (!$nbAlb) return;
 
@@ -468,9 +464,9 @@ class cpgIndexData {
       $limit = "LIMIT " . $lower_limit . "," . ($upper_limit - $lower_limit);
 
       $sql = 'SELECT a.aid, a.title, a.description, category, visibility, filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE category=' . $this->cat . $album_filter . ' ORDER BY a.pos ' . $limit;
-      $alb_thumbs_q = cpg_db_query($sql);
-      $alb_thumbs = cpg_db_fetch_rowset($alb_thumbs_q);
-      mysql_free_result($alb_thumbs_q);
+
+      $this->db->query($sql);
+      $alb_thumbs = $this->db->fetchRowSet();      
 
       $this->dispAlbumCount = count($alb_thumbs);
       $album_set = '';
@@ -485,9 +481,9 @@ class cpgIndexData {
               "WHERE p.aid IN $album_set AND
               p.aid = a.aid AND
               p.approved = 'YES' " . "GROUP BY p.aid";
-      $alb_stats_q = cpg_db_query($sql);
-      $alb_stats = cpg_db_fetch_rowset($alb_stats_q);
-      mysql_free_result($alb_stats_q);
+
+      $this->db->query($sql);
+      $alb_stats = $this->db->fetchRowSet();      
 
       foreach($alb_stats as $key => $value) {
           $cross_ref[$value['aid']] = &$alb_stats[$key];
@@ -498,9 +494,9 @@ class cpgIndexData {
                           WHERE aid != {$value['aid']} AND
                           keywords LIKE '%{$value['keyword']}%' AND
                           approved = 'YES'";
-              $result = cpg_db_query($query);
-              $link_stat = mysql_fetch_array ($result);
-              mysql_free_result($result);
+
+              $this->db->query($query);
+              $link_stat = $this->db->fetchRow();              
               $alb_stats[$key]['link_pic_count'] = $link_stat['link_pic_count'];
             }
         }
@@ -525,9 +521,9 @@ class cpgIndexData {
                       $picture = &$alb_thumb;
                   } else {
                       $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='{$alb_stat['last_pid']}'";
-                      $result = cpg_db_query($sql);
-                      $picture = mysql_fetch_array($result);
-                      mysql_free_result($result);
+
+                      $this->db->query($sql);
+                      $picture = $this->db->fetchRow();                      
                   }
                   $pic_url = get_pic_url($picture, 'thumb');
                   if (!is_image($picture['filename'])) {
@@ -593,14 +589,12 @@ class cpgIndexData {
           if ($FORBIDDEN_SET != "" && !$cpg_show_private_album) $sql .= "WHERE $FORBIDDEN_SET ";
           $sql .= "GROUP BY user_id " . "ORDER BY user_name";
 
-          $result = cpg_db_query($sql);
-
-          $user_count = mysql_num_rows($result);
+          $this->db->query($sql);
+          $user_count = $this->db->nf();          
       }
 
       if (!$user_count) {
           msg_box($lang_list_users['user_list'], $lang_list_users['no_user_gal'], '', '', '100%');
-          mysql_free_result($result);
           return;
       }
 
@@ -617,9 +611,10 @@ class cpgIndexData {
       } else {
           $rowset = array();
           $i = 0;
-          mysql_data_seek($result, $lower_limit);
-          while (($row = mysql_fetch_array($result)) && ($i++ < $row_count)) $rowset[] = $row;
-          mysql_free_result($result);
+          $this->db->seek($lower_limit);
+          while (($row = $this->db->fetchRow()) && ($i++ < $row_count)) {
+            $rowset[] = $row;
+          }
       }
 
       $this->usrList = array();
@@ -632,10 +627,10 @@ class cpgIndexData {
 
           if ($user_pic_count) {
               $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='$user_thumb_pid'";
-              $result = cpg_db_query($sql);
-              if (mysql_num_rows($result)) {
-                  $picture = mysql_fetch_array($result);
-                  mysql_free_result($result);
+
+              $this->db->query($sql);
+              if ($this->db->nf() > 0) {
+                  $picture = $this->db->fetchRow();
                   $pic_url = get_pic_url($picture, 'thumb');
                   if (!is_image($picture['filename'])) {
                       $image_info = getimagesize($pic_url);
