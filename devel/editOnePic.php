@@ -225,14 +225,15 @@ if ($CONFIG['user_field4_name'] != '') $THUMB_ROWSPAN++;
 if (GALLERY_ADMIN_MODE) {
 //    $public_albums = cpg_db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']}, {$CONFIG['TABLE_CATEGORIES']} WHERE category < '" . FIRST_USER_CAT . "' AND (category = 0 OR category = cid) ORDER BY cat_title");  // albums weren't coming up in the list when there were no cats
     $public_albums = cpg_db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']} LEFT JOIN {$CONFIG['TABLE_CATEGORIES']} ON category = cid WHERE category < '" . FIRST_USER_CAT . "' ORDER BY cat_title");
-        if (mysql_num_rows($public_albums)) {
-            $public_albums_list=cpg_db_fetch_rowset($public_albums);
-        } else {
-                $public_albums_list = array();
-        }
-        mysql_free_result($public_albums);
 } else {
-        $public_albums_list = array();
+	$forbidden_set_alt = $FORBIDDEN_SET ? 'AND ' . str_replace('p.', '', $FORBIDDEN_SET) : '';
+	$public_albums = cpg_db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']} LEFT JOIN {$CONFIG['TABLE_CATEGORIES']} ON category = cid WHERE category < '" . FIRST_USER_CAT . "' AND uploads = 'YES' $forbidden_set_alt ORDER BY cat_title");
+}
+
+if (mysql_num_rows($public_albums)) {
+	$public_albums_list=cpg_db_fetch_rowset($public_albums);
+} else {
+	$public_albums_list = array();
 }
 
 if (GALLERY_ADMIN_MODE && $CURRENT_PIC['owner_id'] != USER_ID) {
