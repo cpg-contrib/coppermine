@@ -293,13 +293,6 @@ switch ($event) {
             } elseif ($PIC_NEED_APPROVAL) {
                 pageheader($lang_info);
                 msg_box($lang_info, $lang_db_input_php['upload_success'], $lang_continue, 'index.php');
-                // start: send admin approval mail added by gaugau: 03-11-02
-                if ($CONFIG['upl_notify_admin_email'])
-                {
-                include_once('include/mailer.inc.php');
-                cpg_mail($CONFIG['gallery_admin_email'], sprintf($lang_db_input_php['notify_admin_email_subject'], $CONFIG['gallery_name']), sprintf($lang_db_input_php['notify_admin_email_body'], $CONFIG['ecards_more_pic_target'].'editpics.php?mode=upload_approval' ));
-                }
-                // end: send admin approval mail
                 pagefooter();
                 ob_end_flush();
             } else {
