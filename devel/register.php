@@ -23,7 +23,7 @@ define('REGISTER_PHP', true);
 require('include/init.inc.php');
 require('include/mailer.inc.php');
 
-if (!$CONFIG['allow_user_registration'] || USER_ID) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+if (!$CONFIG['allow_user_registration']) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
 if (defined('UDB_INTEGRATION')) $cpg_udb->register_page();
 // Display the disclaimer
@@ -272,7 +272,7 @@ function check_user_info(&$error)
                 } else {
                         $encpassword = $password;
                 }
-				
+
     $sql = "INSERT INTO {$CONFIG['TABLE_USERS']} ".
            "(user_regdate, user_active, user_actkey, user_name, user_password, user_email, user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6) ".
            "VALUES (NOW(), '$active', '$act_key', '" . addslashes($user_name) . "', '" . addslashes($encpassword) . "', '" . addslashes($email) . "', '$profile1', '$profile2', '$profile3', '$profile4', '$profile5', '$profile6')";
@@ -320,15 +320,7 @@ function check_user_info(&$error)
     return true;
 }
 
-pageheader($lang_register_php['page_title']);
-if (isset($_POST['agree'])) {
-    input_user_info();
-} elseif (isset($_POST['submit'])) {
-    $errors = '';
-    if (!check_user_info($errors)) {
-        input_user_info($errors);
-    }
-} elseif (isset($_GET['activate'])) {
+if (isset($_GET['activate'])) {
                 //$CONFIG['admin_activation'] = FALSE;
                 //$CONFIG['admin_activation'] = TRUE;
 
@@ -344,9 +336,10 @@ if (isset($_POST['agree'])) {
 
     if ($row['user_active'] == 'YES') cpg_die(ERROR, $lang_register_php['acct_already_act'], __FILE__, __LINE__);
 
-                $email = $row['user_email'];
-                $user_name = $row['user_name'];
-                $password = $row['user_password'];
+    pageheader($lang_register_php['page_title']);
+    $email = $row['user_email'];
+    $user_name = $row['user_name'];
+    $password = $row['user_password'];
 
     $sql = "UPDATE {$CONFIG['TABLE_USERS']} " . "SET user_active = 'YES' " . "WHERE user_actkey = '$act_key' " . "LIMIT 1";
     $result = cpg_db_query($sql);
@@ -364,9 +357,18 @@ if (isset($_POST['agree'])) {
                 } else { //user self-activated, gets message box that account was activated
                         msg_box($lang_register_php['information'], $lang_register_php['acct_active'], $lang_continue, 'index.php');
                 }
-
 } else {
+  pageheader($lang_register_php['page_title']);
+  if (isset($_POST['agree'])) {
+    input_user_info();
+  } elseif (isset($_POST['submit'])) {
+    $errors = '';
+    if (!check_user_info($errors)) {
+      input_user_info($errors);
+    }
+  } else {
     display_disclaimer();
+  }
 }
 pagefooter();
 ob_end_flush();
