@@ -79,6 +79,7 @@ class cpgTemplate extends Smarty{
     } else {
       $this->assign("showDebug", 0);
     }
+    user_save_profile();
     parent::display($CONFIG["theme"]."/".$fileName);
   }
 
