@@ -56,7 +56,7 @@ EOT;
 function html_img_nav_menu()
 {
     global $CONFIG, $HTTP_SERVER_VARS, $HTTP_GET_VARS, $CURRENT_PIC_DATA, $PHP_SELF;
-    global $album, $cat, $pos, $pic_count, $lang_img_nav_bar, $template_img_navbar;
+    global $album, $cat, $pos, $pic_count, $lang_img_nav_bar, $lang_text_dir, $template_img_navbar;
 
     $cat_link = is_numeric($album) ? '' : '&cat=' . $cat;
 
@@ -118,7 +118,7 @@ function html_picture()
 {
     global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $USER, $HTTP_COOKIE_VARS;
     global $album, $comment_date_fmt, $template_display_picture;
-    global $lang_display_image_php;
+    global $lang_display_image_php, $lang_picinfo;
 
     $pid = $CURRENT_PIC_DATA['pid'];
 
