@@ -396,6 +396,28 @@ $template_thumb_view_title_row = <<<EOT
                         </table>
 
 EOT;
+
+
+// HTML template for title row of the fav thumbnail view (album title + download)
+$template_fav_thumb_view_title_row = <<<EOT
+
+                        <table width="100%" cellpadding="0" cellspacing="0">
+                        <tr>
+                                <td width="100%" class="statlink"><h2>{ALBUM_NAME}</h2></td>
+                                <td><img src="images/spacer.gif" width="1"></td>
+                                <td class="sortorder_cell">
+                                        <table height="100%" cellpadding="0" cellspacing="0">
+						<tr>                              
+							<td class="sortorder_options"><span class="statlink"><a href="zipdownload.php">{DOWNLOAD_ZIP}</a></span></td>                                
+						</tr>
+						</table>
+                                </td>
+                        </tr>
+                        </table>
+
+EOT;
+
+
 // HTML template for thumbnails display
 $template_thumbnail_view = <<<EOT
 
@@ -1057,7 +1079,8 @@ function theme_display_breadcrumb($breadcrumb, &$cat_data)
 }
 
 function theme_display_album_list(&$alb_list, $nbAlb, $cat, $page, $total_pages)
-{
+{   
+    
     global $CONFIG, $STATS_IN_ALB_LIST, $statistics, $template_tab_display, $template_album_list, $lang_album_list;
 
     $theme_alb_list_tab_tmpl = $template_tab_display;
@@ -1219,7 +1242,7 @@ function theme_display_album_list_cat(&$alb_list, $nbAlb, $cat, $page, $total_pa
 function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $page, $total_pages, $sort_options, $display_tabs, $mode = 'thumb')
 {
     global $CONFIG;
-    global $template_thumb_view_title_row, $lang_thumb_view, $template_tab_display, $template_thumbnail_view;
+    global $template_thumb_view_title_row,$template_fav_thumb_view_title_row, $lang_thumb_view, $template_tab_display, $template_thumbnail_view;
 
     static $header = '';
     static $thumb_cell = '';
@@ -1271,10 +1294,16 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
             '{SORT_DD}' => $lang_thumb_view['sort_dd'],
             );
         $title = template_eval($template_thumb_view_title_row, $param);
-    } else {
+    } else if ($aid == 'favpics') { //Lots of stuff can be added here later
+       $param = array('{ALBUM_NAME}' => $album_name,
+       		      '{DOWNLOAD_ZIP}'=>$lang_thumb_view['download_zip']
+       			);
+       $title = template_eval($template_fav_thumb_view_title_row, $param);       
+    }else{
         $title = $album_name;
     }
-
+        
+    
     if ($mode == 'thumb') {
         starttable('100%', $title, $thumbcols);
     } else {

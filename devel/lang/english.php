@@ -171,6 +171,7 @@ $lang_thumb_view = array(
         'sort_nd' => 'Sort by name descending',
         'sort_ta' => 'Sort by title ascending',
         'sort_td' => 'Sort by title descending',
+	'download_zip' => 'Download as Zip file',
         'pic_on_page' => '%d files on %d page(s)',
         'user_on_page' => '%d users on %d page(s)'
 );
