@@ -201,6 +201,22 @@ bblink a:hover {
         padding-left: 10px;
 }
 
+.tableb_compact {
+        background: #EFEFEF ;
+        padding-top: 2px;
+        padding-right: 5px;
+        padding-bottom: 2px;
+        padding-left: 5px;
+}
+
+.tablef {
+        background: #D1D7DC;
+        padding-top: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+}
+
 .catrow_noalb {
         background: #D1D7DC ;
         color : #000000;
@@ -215,22 +231,6 @@ bblink a:hover {
         padding-top: 3px;
         padding-right: 10px;
         padding-bottom: 3px;
-        padding-left: 10px;
-}
-
-.tableb_compact {
-        background: #EFEFEF ;
-        padding-top: 2px;
-        padding-right: 5px;
-        padding-bottom: 2px;
-        padding-left: 5px;
-}
-
-.tablef {
-        background: #D1D7DC;
-        padding-top: 10px;
-        padding-right: 10px;
-        padding-bottom: 10px;
         padding-left: 10px;
 }
 
@@ -436,6 +436,14 @@ td #admin_menu_anim {
         background-color: #FFFFFF;
         margin-top: 30px;
         margin-bottom: 30px;
+}
+
+.display_media {
+        background: #EFEFEF ;
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
 }
 
 .thumbnails {
