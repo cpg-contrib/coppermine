@@ -27,12 +27,23 @@ function MM_showHideLayers() { //v6.0
 </script>
 </head>
 <body>
-<div id="Menu1" style="position:absolute; width:780px; height:30px; z-index:1; left: 22px; top: 47px; visibility: hidden;">{MAIN_MENU1}</div>
+<div id="Menu1" style="position:absolute; width:780px; height:30px; z-index:1; left: 22px; top: 47px; visibility: hidden;">
+                <span class="topmenu">
+                        <table border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                        <td>
+                                        {MAIN_MENU1}
+                                        &nbsp;{LANGUAGE_SELECT_FLAGS}
+                                        </td>
+                                </tr>
+                        </table>
+                </span>
+                                        </div>
 <table border="0" cellpadding="0" cellspacing="0" width="100%" class="top_panel">
   <tr>
    <td><table border="0" cellpadding="0" cellspacing="0" width="100%">
           <tr>
-           <td width="49%" background="themes/eyeball/images/top_background_r1_c1.gif"></td>
+           <td width="49%" background="themes/eyeball/images/top_background_r1_c1.gif">{THEME_SELECT_LIST}</td>
            <td width="2%"><table border="0" cellpadding="0" cellspacing="0" wisth="100%">
                   <tr>
                    <td><table border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -53,7 +64,7 @@ function MM_showHideLayers() { //v6.0
                         </table></td>
                   </tr>
                 </table></td>
-           <td width="49%" background="themes/eyeball/images/top_background_r1_c7.gif"></td>
+           <td width="49%" background="themes/eyeball/images/top_background_r1_c7.gif">{LANGUAGE_SELECT_LIST}</td>
           </tr>
         </table></td>
   </tr>

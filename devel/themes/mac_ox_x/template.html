@@ -26,7 +26,19 @@ function MM_showHideLayers() { //v6.0
 //-->
 </script>
 <body>
-<div id="Menu1" style="position:absolute; width:800px; height:30px; z-index:1; left: 25px; top: 95px; visibility: hidden;">{MAIN_MENU1}</div>
+<div id="Menu1" style="position:absolute; width:800px; height:30px; z-index:1; left: 25px; top: 95px; visibility: hidden;">
+                <span class="topmenu">
+                        <table border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                        <td>
+                                        {MAIN_MENU1}&nbsp;
+                                        {LANGUAGE_SELECT_FLAGS}&nbsp;
+                                        {LANGUAGE_SELECT_LIST}
+                                        </td>
+                                </tr>
+                        </table>
+                </span>
+</div>
 <table border="0" cellpadding="0" cellspacing="0" width="100%" class="top_panel">
   <tr>
     <td><table border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -42,7 +54,13 @@ function MM_showHideLayers() { //v6.0
     <td><table border="0" cellpadding="0" cellspacing="0" width="100%">
         <tr>
          <!-- <td><img name="top_panel_r2_c1" src="themes/mac_ox_x/images/top_panel_r2_c1.gif" width="30" height="35" border="0" id="top_panel_r2_c1" alt="" /></td> -->
-          <td align="center" background="themes/mac_ox_x/images/top_panel_r2_c1b.gif">{MAIN_MENU2}</td>
+          <td align="center" background="themes/mac_ox_x/images/top_panel_r2_c1b.gif">
+                        <table border="0" cellpadding="0" cellspacing="0" border="0" class="top_menu_bttn">
+                                <tr>
+                                   {MAIN_MENU2}
+                                </tr>
+                        </table>
+          </td>
          <!-- <td width="100%" background="themes/mac_ox_x/images/top_panel_r2_c1b.gif">&nbsp;</td> -->
         </tr>
       </table></td>
@@ -53,6 +71,7 @@ function MM_showHideLayers() { //v6.0
     <td align="center">{ADMIN_MENU} {GALLERY} </td>
   </tr>
 </table>
+{THEME_SELECT_LIST}
 <p>&nbsp;</p>
 </body>
 </html>

@@ -5,7 +5,7 @@
 //  Copyright (C) 2002,2003  Gregory DEMAR                                   //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Stverud <henning@stoverud.com>         //
+//  Based on PHPhotoalbum by Henning Stverud <henning@stoverud.com>          //
 //  http://www.stoverud.com/PHPhotoalbum/                                    //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -367,7 +367,12 @@ function load_template()
         } else die("<b>Coppermine critical error</b>:<br />Unable to load template file ".TEMPLATE_FILE."!</b>");
 
         $template = fread(fopen($template_file, 'r'), filesize($template_file));
-
+        $gallery_pos = strpos($template, '{LANGUAGE_SELECT_FLAGS}');
+        $template = str_replace('{LANGUAGE_SELECT_FLAGS}', languageSelect('flags') ,$template);
+        $gallery_pos = strpos($template, '{LANGUAGE_SELECT_LIST}');
+        $template = str_replace('{LANGUAGE_SELECT_LIST}', languageSelect('list') ,$template);
+        $gallery_pos = strpos($template, '{THEME_SELECT_LIST}');
+        $template = str_replace('{THEME_SELECT_LIST}', themeSelect('list') ,$template);
         $gallery_pos = strpos($template, $tmpl_loc['l']);
         $template = str_replace($tmpl_loc['l'], $tmpl_loc['s'] ,$template);
 
@@ -1330,6 +1335,7 @@ function cpg_phpinfo_conf($search)
     $pieces = '';
     $delimiter = '#cpgdelimiter#';
     $bits = '';
+
     ob_start();
     phpinfo(INFO_CONFIGURATION);
     $string = ob_get_contents();
@@ -1354,5 +1360,208 @@ $pieces = cpg_phpinfo_conf($search);
         $return= $pieces[0] . ' | ' . $pieces[1] . ' | ' . $pieces[2];
         return $return;
 }
+
+// theme and language selection
+function languageSelect($parameter)
+{
+global $CONFIG,$lang_language_selection;
+$return= '';
+$lineBreak = "\n";
+
+//check if language display is enabled
+if ($CONFIG['language_list'] == 0 && $parameter == 'list'){
+    return;
+}
+if ($CONFIG['language_flags'] == 0 && $parameter == 'flags'){
+    return;
+}
+
+
+
+
+// get the current language
+ //use the default language of the gallery
+ $cpgCurrentLanguage=$CONFIG['lang'];
+ // is a user logged in?
+ //has the user already chosen another language for himself?
+ //if($USER['lang']!=""){
+ //   $cpgCurrentLanguage = $USER['lang'];
+ //   }
+ //has the language been set to something else on the previous page?
+ if($_GET['lang']!= ''){
+    $cpgCurrentLanguage = $_GET['lang'];
+    }
+ //get the url and all vars except $lang
+ $cpgChangeUrl = $_SERVER["SCRIPT_NAME"]."?";
+ foreach ($_GET as $key => $value) {
+    if ($key!="lang"){$cpgChangeUrl.= $key . "=" . $value . "&";}
+ }
+ $cpgChangeUrl.= 'lang=';
+
+
+// get an array of english and native language names and flags
+// for now, use a static array definition here - this could later be made into a true database query
+$lang_language_data['arabic'] = array('Arabic','&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;','sa');
+$lang_language_data['bosnian'] = array('Bosnian','Bosanski','ba');
+$lang_language_data['brazilian_portuguese'] = array('Portuguese [Brazilian]','br');
+$lang_language_data['bulgarian'] = array('Bulgarian','&#1041;&#1098;&#1083;&#1075;&#1072;&#1088;&#1089;&#1082;&#1080;','bg');
+$lang_language_data['chinese_big5'] = array('Chinese-Big5','&#21488;&#28771;','tw');
+$lang_language_data['chinese_gb'] = array('Chinese-GB2312','&#20013;&#22269;','cn');
+$lang_language_data['croatian'] = array('Croatian(Hrvatski','hr');
+$lang_language_data['czech'] = array('Czech(&#x010C;esky','cz');
+$lang_language_data['danish'] = array('Danish','Dansk','dk');
+$lang_language_data['dutch'] = array('Dutch','Nederlands','nl');
+$lang_language_data['english'] = array('English','English','gb');
+$lang_language_data['estonian'] = array('Estonian','Eesti','ee');
+$lang_language_data['finnish'] = array('Finnish','Suomea','fi');
+$lang_language_data['french'] = array('French','Fran&ccedil;ais','fr');
+$lang_language_data['german'] = array('German','Deutsch','de');
+$lang_language_data['greek'] = array('Greek','&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;','gr');
+$lang_language_data['hebrew'] = array('Hebrew','&#1506;&#1489;&#1512;&#1497;&#1514;','il');
+$lang_language_data['hungarian'] = array('Hungarian','Magyarul','hu');
+$lang_language_data['indonesian'] = array('Indonesian','Bahasa Indonesia','in');
+$lang_language_data['italian'] = array('Italian','Italiano','it');
+$lang_language_data['japanese'] = array('Japanese','&#26085;&#26412;&#35486;','jp');
+$lang_language_data['korean'] = array('Korean','&#54620;&#44397;&#50612;','kr');
+$lang_language_data['latvian'] = array('Latvian','Latvian','lv');
+$lang_language_data['norwegian'] = array('Norwegian','Norsk','no');
+$lang_language_data['polish'] = array('Polish','Polski','pl');
+$lang_language_data['portuguese'] = array('Portuguese [Portugal]','Portugu&ecirc;s','pt');
+$lang_language_data['russian'] = array('Russian','&#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081;','ru');
+$lang_language_data['slovak'] = array('Slovak','Slovensky','sl');
+$lang_language_data['slovenian'] = array('Slovenian','Slovensko','si');
+$lang_language_data['spanish'] = array('Spanish','Espa&ntilde;ol','es');
+$lang_language_data['swedish'] = array('Swedish','Svenska','se');
+$lang_language_data['thai'] = array('Thai','&#3652;&#3607;&#3618;','th');
+$lang_language_data['turkish'] = array('Turkish','T&uuml;rk&ccedil;e','tr');
+$lang_language_data['vietnamese'] = array('Vietnamese','vn');
+
+
+
+
+// get list of available languages
+  $value = strtolower($CONFIG['lang']);
+  $lang_dir = 'lang/';
+  $dir = opendir($lang_dir);
+  while ($file = readdir($dir)) {
+      if (is_file($lang_dir . $file) && strtolower(substr($file, -4)) == '.php' && strstr($file,'utf-8') == false) {
+          $lang_array[] = strtolower(substr($file, 0 , -4));
+      }
+  }
+  closedir($dir);
+  natcasesort($lang_array);
+
+//start the output
+switch ($parameter) {
+   case 'flags':
+       if ($CONFIG['language_flags'] == 2){
+           $return.= $lang_language_selection['choose_language'].': ';
+       }
+       foreach ($lang_array as $language) {
+              if (array_key_exists($language, $lang_language_data)){
+              $return.= $lineBreak .  '<a href="' .$cpgChangeUrl. $language . '"><img src="images/flags/' . $lang_language_data[$language][2] . '.gif" border="0" width="16" height="10" alt="" title="';
+              $return.= $lang_language_data[$language][0];
+              if ($lang_language_data[$language][1] != $lang_language_data[$language][0]){
+                  $return.= ' (' . $lang_language_data[$language][1] . ')';
+                  }
+              $return.= '" /></a>&nbsp;' . $lineBreak;
+              }
+              }
+          if ($CONFIG['language_reset'] == 1){
+              $return.=  '<a href="' .$cpgChangeUrl. 'xxx"><img src="images/flags/reset.gif" border="0" width="16" height="11" alt="" title="';
+              $return.=  $lang_language_selection['reset_language'] . '" /></a>' . $lineBreak;
+          }
+       break;
+   case 'table':
+       $return = 'not yet implemented';
+       break;
+   default:
+       $return.= $lineBreak . '<form name="cpgChooseLanguage" action="' . $cpgChangeUrl . '" method="get" style="margin-top:0px;margin-bottom:0px;margin-left:0px;margin-right:0px;display:inline">' . $lineBreak;
+       if ($CONFIG['language_list'] == 2){
+           $return.= $lang_language_selection['choose_language'].':';
+       }
+       $return.= '<select name="cpgLanguageSelect" class="listbox_lang" onchange="if (this.options[this.selectedIndex].value) window.location.href=\'' . $cpgChangeUrl . '\' + this.options[this.selectedIndex].value;">' . $lineBreak;
+       foreach ($lang_array as $language) {
+          $return.=  '<option value="' . $language . '" ' . ($value == $language ? 'selected' : '') . '>';
+              if (array_key_exists($language, $lang_language_data)){
+              $return.= $lang_language_data[$language][0];
+              if ($lang_language_data[$language][1] != $lang_language_data[$language][0]){
+                  $return.= ' (' . $lang_language_data[$language][1] . ')';
+                  }
+              }
+              else{
+                  $return.= ucfirst($language);
+                  }
+              $return.= '</option>' . $lineBreak;
+              }
+          if ($CONFIG['language_reset'] == 1){
+              $return.=  '<option value="xxx">' . $lang_language_selection['reset_language'] . '</option>' . $lineBreak;
+          }
+          $return.=  '</select>' . $lineBreak;
+          $return.=  '</form>' . $lineBreak;
+   }
+
+return $return;
+}
+
+function themeSelect($parameter)
+{
+global $CONFIG,$lang_theme_selection;
+$return= '';
+$lineBreak = "\n";
+
+if ($CONFIG['theme_list'] == 0){
+    return;
+}
+
+// get the current theme
+//get the url and all vars except $theme
+$cpgCurrentTheme = $_SERVER["SCRIPT_NAME"]."?";
+foreach ($_GET as $key => $value) {
+    if ($key!="theme"){$cpgCurrentTheme.= $key . "=" . $value . "&";}
+}
+$cpgCurrentTheme.="theme=";
+
+// get list of available languages
+    $value = $CONFIG['theme'];
+    $theme_dir = 'themes/';
+
+    $dir = opendir($theme_dir);
+    while ($file = readdir($dir)) {
+        if (is_dir($theme_dir . $file) && $file != "." && $file != "..") {
+            $theme_array[] = $file;
+        }
+    }
+    closedir($dir);
+
+    natcasesort($theme_array);
+
+//start the output
+switch ($parameter) {
+   case 'table':
+       $return = 'not yet implemented';
+       break;
+   default:
+       $return.= $lineBreak . '<form name="cpgChooseTheme" action="' . $cpgCurrentTheme . '" method="get" style="margin-top:0px;margin-bottom:0px;margin-left:0px;margin-right:0px;display:inline">' . $lineBreak;
+       if ($CONFIG['theme_list'] == 2){
+           $return.= $lang_theme_selection['choose_theme'].':';
+       }
+       $return.= '<select name="cpgThemeSelect" class="listbox_lang" onchange="if (this.options[this.selectedIndex].value) window.location.href=\'' . $cpgCurrentTheme . '\' + this.options[this.selectedIndex].value;">' . $lineBreak;
+       foreach ($theme_array as $theme) {
+           $return.= '<option value="' . $theme . '" ' . ($value == $theme ? 'selected' : '') . '>' . strtr(ucfirst($theme), '_', ' ') . '</option>' . $lineBreak;
+       }
+          if ($CONFIG['theme_reset'] == 1){
+              $return.=  '<option value="xxx">' . $lang_theme_selection['reset_theme'] . '</option>' . $lineBreak;
+          }
+          $return.=  '</select>' . $lineBreak;
+          $return.=  '</form>' . $lineBreak;
+   }
+
+return $return;
+}
+
+
+
+
 
 ?>

@@ -100,7 +100,7 @@ li {
         background-position : left;
         padding-left : 12px;
         padding-right : 6px;
-        /*position: relative;*/
+        position: relative;
         display: block;
         height : 35px;
         line-height : 35px;
@@ -123,7 +123,7 @@ li {
         background-position : right;
         padding-right : 22px;
         padding-left : 6px;
-        /*position: relative;*/
+        position: relative;
         display: block;
         height : 35px;
         line-height : 35px;
@@ -145,7 +145,7 @@ li {
         background-position : left;
         padding-left : 6px;
         padding-right : 6px;
-        /*position: relative;*/
+        position: relative;
         display: block;
         height : 35px;
         line-height : 35px;
@@ -370,8 +370,6 @@ a:hover {
         font-weight: bold;
         border: none;
         background-image: url(images/tableh1_bg.gif);
-        vertical-align: middle;
-        text-align: center;
 }
 
 .navmenu img {
@@ -379,7 +377,7 @@ a:hover {
 }
 
 .navmenu a {
-        /*position: relative;*/
+        position: relative;
         display: block;
         padding-left: 5px;
         padding-right: 5px;
@@ -412,7 +410,7 @@ a:hover {
 .admin_menu_thumb a {
         text-decoration: none;
         display: block;
-        /*position: relative;*/
+        position: relative;
         padding-top: 1px;
         padding-bottom: 1px;
         padding-left: 10px;
@@ -436,7 +434,7 @@ a:hover {
 .admin_menu a {
         text-decoration: none;
         display: block;
-        /*position: relative;*/
+        position: relative;
         padding-top: 1px;
         padding-bottom: 1px;
         padding-left: 10px;
@@ -458,14 +456,6 @@ a:hover {
 
 .thumbnails {
         padding: 5px;
-        vertical-align: middle;
-        text-align: center;
-}
-
-.thumbnails_top {
-        padding: 5px;
-        vertical-align: top;
-        text-align: center;
 }
 
 .footer {
@@ -553,4 +543,13 @@ a:hover {
 .clickable_option {
         font-weight: bold;
         cursor : hand;
+}
+
+.listbox_lang {
+        color: #C6B78E;
+        background-color: #4A4A4A;
+        border: 1px solid #4A4A4A;
+        font-size: 80%;
+        font-family: Arial, Helvetica, sans-serif;
+        vertical-align : middle;
 }

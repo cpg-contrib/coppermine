@@ -69,7 +69,7 @@ li {
         background-position : left;
         padding-left : 12px;
         padding-right : 6px;
-        /*position: relative;*/
+        position: relative;
         display: block;
         height : 35px;
         line-height : 35px;
@@ -92,7 +92,7 @@ li {
         background-position : right;
         padding-right : 22px;
         padding-left : 6px;
-        /*position: relative;*/
+        position: relative;
         display: block;
         height : 35px;
         line-height : 35px;
@@ -114,7 +114,7 @@ li {
         background-position : left;
         padding-left : 6px;
         padding-right : 6px;
-        /*position: relative;*/
+        position: relative;
         display: block;
         height : 35px;
         line-height : 35px;
@@ -350,8 +350,6 @@ bblink a:hover {
         font-weight: bold;
         background : #BDBDBD ;
         border-style: none;
-        vertical-align: middle;
-        text-align: center;
 }
 
 .navmenu img {
@@ -362,7 +360,7 @@ bblink a:hover {
 }
 
 .navmenu a {
-        /*position: relative;*/
+        position: relative;
         display: block;
         padding-top: 2px;
         padding-right: 5px;
@@ -395,7 +393,7 @@ bblink a:hover {
         color: #000000;
         text-decoration: none;
         display: block;
-        /*position: relative;*/
+        position: relative;
         padding-top: 1px;
         padding-bottom: 1px;
         padding-left: 10px;
@@ -424,7 +422,7 @@ bblink a:hover {
         color: #000000;
         text-decoration: none;
         display: block;
-        /*position: relative;*/
+        position: relative;
         padding-top: 1px;
         padding-bottom: 1px;
         padding-left: 10px;
@@ -452,15 +450,6 @@ bblink a:hover {
 .thumbnails {
         background: #FFFFFF ;
         padding: 5px;
-        vertical-align: middle;
-        text-align: center;
-}
-
-.thumbnails_top {
-        background: #FFFFFF ;
-        padding: 5px;
-        vertical-align: top;
-        text-align: center;
 }
 
 .footer {
@@ -570,4 +559,13 @@ bblink a:hover {
 
 .clickable_option {
         cursor : hand;
+}
+
+.listbox_lang {
+        color: #000000;
+        background-color: #FAFAFA;
+        border: 1px solid #FAFAFA;
+        font-size: 80%;
+        font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
+        vertical-align : middle;
 }

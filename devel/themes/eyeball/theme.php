@@ -1,8 +1,8 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.2.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002,2003 Gregory DEMAR <gdemar@wanadoo.fr>                 //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -17,10 +17,7 @@
 define('THEME_HAS_RATING_GRAPHICS', 1);
 // HTML template for main menu
 $template_main_menu1 = <<<EOT
-                <span class="topmenu">
-                        <table border="0" cellpadding="0" cellspacing="0">
-                                <tr>
-                                        <td>
+
                                                 |
 <!-- BEGIN my_gallery -->
                                                 <a href="{MY_GAL_TGT}" title="{MY_GAL_TITLE}">{MY_GAL_LNK}</a> |
@@ -46,10 +43,7 @@ $template_main_menu1 = <<<EOT
 <!-- BEGIN logout -->
                                                 <a href="{LOGOUT_TGT}">{LOGOUT_LNK}</a> |
 <!-- END logout -->
-                                        </td>
-                                </tr>
-                        </table>
-                </span>
+
 EOT;
 
 $template_main_menu2 = <<<EOT
@@ -208,7 +202,7 @@ $template_album_list = <<<EOT
                 </td>
         </tr>
         <tr height="100%">
-                <td height="100%" class="thumbnails">
+                <td align="center" height="100%" valign="middle" class="thumbnails">
                         <img src="images/spacer.gif" width="{THUMB_CELL_WIDTH}" height="1" class="image" style="margin-top: 0px;
  margin-bottom: 0px; border: none;"><br />
                         <a href="{ALB_LINK_TGT}" class="albums">{ALB_LINK_PIC}<br /></a>
@@ -273,15 +267,15 @@ EOT;
 $template_film_strip = <<<EOT
 
         <tr>
-         <td valign="top" background="themes/eyeball/images/tile.gif" align="center" height="30">&nbsp;</td>
+         <td valign="top" background='themes/igames/images/tile.gif' align="center" height='30'>&nbsp;</td>
         </tr>
         <tr>
-        <td class="thumbnails">
+        <td valign="bottom" class="thumbnails" align="center">
           {THUMB_STRIP}
         </td>
         </tr>
         <tr>
-         <td valign="top" background="themes/eyeball/images/tile.gif" align="center" height="30">&nbsp;</td>
+         <td valign="top" background='themes/igames/images/tile.gif' align="center" height='30'>&nbsp;</td>
         </tr>
 <!-- BEGIN thumb_cell -->
                                         <a href="{LINK_TGT}">{THUMB}</a>&nbsp;
@@ -318,7 +312,7 @@ $template_album_list_cat = <<<EOT
                 </td>
         </tr>
         <tr height="100%">
-                <td height="100%" class="thumbnails">
+                <td align="center" height="100%" valign="middle" class="thumbnails">
                         <img src="images/spacer.gif" width="{THUMB_CELL_WIDTH}" height="1" class="image" style="margin-top: 0px;
  margin-bottom: 0px; border: none;"><br />
                         <a href="{ALB_LINK_TGT}" class="albums">{ALB_LINK_PIC}<br /></a>
@@ -423,7 +417,7 @@ $template_thumbnail_view = <<<EOT
         <tr>
 <!-- END header -->
 <!-- BEGIN thumb_cell -->
-        <td class="thumbnails_top" width ="{CELL_WIDTH}">
+        <td valign="top" class="thumbnails" width ="{CELL_WIDTH}" align="center">
                 <table width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                                 <td align="center">
@@ -436,7 +430,7 @@ $template_thumbnail_view = <<<EOT
         </td>
 <!-- END thumb_cell -->
 <!-- BEGIN empty_cell -->
-                <td class="thumbnails_top">&nbsp;</td>
+                <td valign="top" class="thumbnails" align="center">&nbsp;</td>
 <!-- END empty_cell -->
 <!-- BEGIN row_separator -->
         </tr>
@@ -493,31 +487,31 @@ EOT;
 $template_img_navbar = <<<EOT
 
         <tr>
-                <td class="navmenu" width="50%">
+                <td align="center" valign="middle" class="navmenu" width="50%">
                         &nbsp;
                 </td>
-                <td class="navmenu" width="48">
+                <td align="center" valign="middle" class="navmenu" width="48">
                         <a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="themes/eyeball/images/imv_up.gif" align="absmiddle" border="0" alt="{THUMB_TITLE}" /></a>
                 </td>
-                <td class="navmenu" width="48">
+                <td align="center" valign="middle" class="navmenu" width="48">
                         <a href="javascript:;" onClick="blocking('picinfo','yes', 'block'); return false;" title="{PIC_INFO_TITLE}"><img src="themes/eyeball/images/imv_picinfo.gif" border="0" align="absmiddle" alt="{PIC_INFO_TITLE}" /></a>
                 </td>
-                <td class="navmenu" width="48">
+                <td align="center" valign="middle" class="navmenu" width="48">
                         <a href="{SLIDESHOW_TGT}" title="{SLIDESHOW_TITLE}"><img src="themes/eyeball/images/imv_slideshow.gif" border="0" align="absmiddle" alt="{SLIDESHOW_TITLE}" /></a>
                 </td>
-                <td class="navmenu" style="white-space: nowrap; padding-left: 15px; padding-right: 15px; font-size: 18px; font-weight: normal;">
+                <td align="center" valign="middle" class="navmenu" style="white-space: nowrap; padding-left: 15px; padding-right: 15px; font-size: 18px; font-weight: normal;">
                         {PIC_POS}
                 </td>
-                <td class="navmenu" width="48">
+                <td align="center" valign="middle" class="navmenu" width="48">
                         <a href="{ECARD_TGT}" title="{ECARD_TITLE}"><img src="themes/eyeball/images/imv_ecards.gif" border="0" align="absmiddle" alt="{ECARD_TITLE}"></a>
                 </td>
-                <td class="navmenu" width="48">
-                        <a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="themes/eyeball/images/imv_{PREV_IMAGE}.gif" border="0" align="absmiddle" alt="{PREV_TITLE}" /></a>
+                <td align="center" valign="middle" class="navmenu" width="48">
+                        <a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="themes/eyeball/images/imv_prev.gif" border="0" align="absmiddle" alt="{PREV_TITLE}" /></a>
                 </td>
-                <td class="navmenu" width="48">
-                        <a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="themes/eyeball/images/imv_{NEXT_IMAGE}.gif" border="0" align="absmiddle" alt="{NEXT_TITLE}" /></a>
+                <td align="center" valign="middle" class="navmenu" width="48">
+                        <a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="themes/eyeball/images/imv_next.gif" border="0" align="absmiddle" alt="{NEXT_TITLE}" /></a>
                 </td>
-                <td class="navmenu" width="50%">
+                <td align="center" valign="middle" class="navmenu" width="50%">
                         &nbsp;
                 </td>
         </tr>
@@ -799,7 +793,7 @@ $template_tab_display = array('left_text' => '<td width="100%%" align="left" val
     'tab_header' => '',
     'tab_trailer' => '',
     'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1"></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%d</b></td>',
-    'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1"></td>' . "\n" . '<td class="navmenu"><a href="{LINK}"><b>%d</b></a></td>' . "\n"
+    'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1"></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"<b>%d</b></a></td>' . "\n"
     );
 
 function pageheader($section, $meta = '')

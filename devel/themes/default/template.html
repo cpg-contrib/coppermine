@@ -11,28 +11,35 @@
 <body>
 <table width="100%" height="100%" border="0" cellpadding="20" cellspacing="20" bgcolor="#CCCCCC">
 <tr>
-	<td valign="top" bordercolor="#666666" bgcolor="#FFFFFF" style="border: 1px solid;">
-		<table width="100%" border="0" cellspacing="0" cellpadding="0">
-	       	<tr>
-				<td><a href="index.php"><img src="themes/default/images/site_logo.png" alt="" border="0" /><br /></a></td>
-				<td width="100%" align="center">
-					<h1>{GAL_NAME}</h1>
-					<h3>{GAL_DESCRIPTION}</h3><br />
-					{MAIN_MENU}
-				</td>
-			</tr>
-		</table>
-		<img src="images/spacer.gif" width="1" height="15" /><br />
-		<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-			<tr>
-				<td align="center" valign="top">
-					{ADMIN_MENU}
-					{GALLERY}
-				</td>
-			</tr>
-		</table>
-		</td>
-	</tr>
+        <td valign="top" bordercolor="#666666" bgcolor="#FFFFFF" style="border: 1px solid;">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                       <tr>
+                                <td><a href="index.php"><img src="themes/default/images/site_logo.png" alt="" border="0" /><br /></a></td>
+                                <td width="100%" align="center">
+                                        <h1>{GAL_NAME}</h1>
+                                        <h3>{GAL_DESCRIPTION}</h3><br />
+                                        {MAIN_MENU}
+                                </td>
+                        </tr>
+                </table>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                  <td>{LANGUAGE_SELECT_FLAGS}</td>
+                  <td>{LANGUAGE_SELECT_LIST}</td>
+                  <td>{THEME_SELECT_LIST}</td>
+                  </tr>
+                </table>
+                <img src="images/spacer.gif" width="1" height="15" /><br />
+                <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                        <tr>
+                                <td align="center" valign="top">
+                                        {ADMIN_MENU}
+                                        {GALLERY}
+                                </td>
+                        </tr>
+                </table>
+                </td>
+        </tr>
 </table>
 </body>
 </html>

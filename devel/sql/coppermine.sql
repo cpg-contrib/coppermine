@@ -75,6 +75,12 @@ INSERT INTO CPG_config VALUES ('reg_notify_admin_email', '0');
 INSERT INTO CPG_config VALUES ('disable_comment_flood_protect', '0');
 INSERT INTO CPG_config VALUES ('upl_notify_admin_email', '0');
 
+INSERT INTO CPG_config VALUES ('language_list', '0');
+INSERT INTO CPG_config VALUES ('language_flags', '0');
+INSERT INTO CPG_config VALUES ('theme_list', '0');
+INSERT INTO CPG_config VALUES ('language_reset', '1');
+INSERT INTO CPG_config VALUES ('theme_reset', '1');
+
 #
 # Dumping data for table `CPG_usergroups`
 #

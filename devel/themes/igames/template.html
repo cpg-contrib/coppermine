@@ -26,7 +26,18 @@ function MM_showHideLayers() { //v6.0
 //-->
 </script>
 <body>
-<div id="Menu1" style="position:absolute; width:800px; height:30px; z-index:1; left: 20px; top: 100px; visibility: hidden;">{MAIN_MENU1}</div>
+<div id="Menu1" style="position:absolute; width:800px; height:30px; z-index:1; left: 20px; top: 100px; visibility: hidden;">
+                <span class="topmenu">
+                        <table border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                        <td>
+                                        {MAIN_MENU1}
+                                        &nbsp;{LANGUAGE_SELECT_FLAGS}
+                                        </td>
+                                </tr>
+                        </table>
+                </span>
+</div>
 <table border="0" cellpadding="0" cellspacing="0" width="100%" class="top_panel">
   <!-- fwtable fwsrc="top_panel.png" fwbase="top_panel" fwstyle="Dreamweaver" fwdocid = "742308039" fwnested="1" -->
   <tr>
@@ -36,7 +47,7 @@ function MM_showHideLayers() { //v6.0
             <h1>{GAL_NAME}</h1>
             <h3>{GAL_DESCRIPTION}</h3></td>
           <td  background="themes/igames/images/top_panel_r1_c4.jpg"><img src="themes/igames/images/aladdin.gif" ></td>
-          <td width="50%" background="themes/igames/images/top_panel_r1_c4.jpg" valign="center"></td>
+          <td width="50%" background="themes/igames/images/top_panel_r1_c4.jpg" valign="center" align="right">{THEME_SELECT_LIST}&nbsp;{LANGUAGE_SELECT_LIST}&nbsp;</td>
         </tr>
       </table></td>
   </tr>
