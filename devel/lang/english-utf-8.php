@@ -339,9 +339,9 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Gallery administrator email', 'gallery_admin_email', 0),
         array('Target address for the \'See more pictures\' link in e-cards', 'ecards_more_pic_target', 0),
         array('Language', 'lang', 5),
-        array('enable language selection', 'lang_select_enable', 8),
+        //array('enable language selection', 'lang_select_enable', 8 ), 
         array('Theme', 'theme', 6),
-        array('enable user theme selection', 'theme_select_enable', 8),
+        //array('enable theme selection', 'theme_select_enable', 8),
 
         'Album list view',
         array('Width of the main table (pixels or %)', 'main_table_width', 0),
