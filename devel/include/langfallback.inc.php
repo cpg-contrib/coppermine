@@ -412,4 +412,13 @@ if (defined('HITDETAILS_PHP')) {
   $lang_hitdetails_php = array_merge($lang_hitdetails_php_en, $lang_hitdetails_php);
 }
 
+// ------------------------------------------------------------------------- //
+// File xp_publish.php
+// ------------------------------------------------------------------------- //
+
+if (defined('XP_PUBLISH_PHP')) {
+  $lang_xp_publish_php_en = cpg_get_default_lang_var('lang_xp_publish_php','english');
+  $lang_xp_publish_php = array_merge($lang_xp_publish_php_en, $lang_xp_publish_php);
+}
+
 ?> 
