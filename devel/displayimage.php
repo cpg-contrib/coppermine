@@ -44,7 +44,7 @@ function html_picture_menu($id)
     global $lang_display_image_php;
 
     return <<<EOT
-     <center><a href="editOnePic.php?id=$id&what=picture"  class="admin_menu">{$lang_display_image_php['edit_pic']}</a> <a href="delete.php?id=$id&what=picture"  class="admin_menu" onclick="return confirm('{$lang_display_image_php['confirm_del']}');">{$lang_display_image_php['del_pic']}</a></center>
+     <center><a href="" onClick="MM_openBrWindow('picEditor.php?id=$id','Crop Picture','scrollbars=yes,toolbar=no,status=yes,resizable=yes')" class="admin_menu" >{$lang_display_image_php['crop_pic']}</a> <a href="editOnePic.php?id=$id&what=picture"  class="admin_menu">{$lang_display_image_php['edit_pic']}</a> <a href="delete.php?id=$id&what=picture"  class="admin_menu" onclick="return confirm('{$lang_display_image_php['confirm_del']}'); return false; ">{$lang_display_image_php['del_pic']}</a></center>
 
 EOT;
 }
@@ -156,7 +156,7 @@ function html_picture()
         $pic_html .= "<img src=\"" . $picture_url . "\" class=\"image\" border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
         $pic_html .= "</a>\n";
     } else {
-        $pic_html = "<img src=\"" . $picture_url . "\" {$image_size['geom']} class=\"image\" border=\"0\" /><br />\n";
+        $pic_html = "<img src=\"" . $picture_url . "\" class=\"image\" border=\"0\" /><br />\n";
     }
 
     if (!$CURRENT_PIC_DATA['title'] && !$CURRENT_PIC_DATA['caption']) {
