@@ -187,3 +187,4 @@ Added GIF support for GD back into Coppermine - 27 September 2004, kegobeer
 Fixed typos in French language file (user contribution) - 29 September 2004, GauGau
 Added overhauled Russian translation (user contribution) - 29 September 2004, GauGau
 Added mulitiple user selection and deleting - 04 October 2004, GauGau
+Added "reset group names to default" option in group manager - 04 October 2004, GauGau

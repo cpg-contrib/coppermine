@@ -39,6 +39,12 @@ function display_group_list()
     $td_end = '</td>';
     //$approval_needed = ', admin approval needed';
     //$approval_not_needed = ', visible instantly';
+    $default_group_names = array(
+        '1' => 'Administrators',
+        '2' => 'Registered',
+        '3' => 'Anonymous',
+        '4' => 'Banned',
+    );
 
     $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1 ORDER BY group_id");
     if (!mysql_num_rows($result)) {
@@ -78,6 +84,15 @@ EOT;
                 <td class="$table_background" align="left" valign="top">
                         <input type="hidden" name="group_id[]" value="{$group['group_id']}" />
                         <input type="text" name="group_name_{$group['group_id']}" value="{$group['group_name']}" class="textinput" size="15" />
+EOT;
+        // show reset option if applicable
+        if (!defined('UDB_INTEGRATION')) {
+            if ($group['group_name'] != $default_group_names[$group['group_id']] && $default_group_names[$group['group_id']] != '') {
+                // we have a group here that doesn't have the default name
+                print '<img src="images/flags/reset.gif" width="16" height="11" border="0" alt="" title="'.sprintf($lang_groupmgr_php['reset_to_default'], $default_group_names[$group['group_id']]).'" style="cursor:pointer" onclick="document.groupmanager.group_name_'.$group['group_id'].'.value=\''.$default_group_names[$group['group_id']].'\'" />';
+            }
+        }
+        echo <<< EOT
                         <br />
                         {$lang_groupmgr_php['disk_quota']}: <input type="text" name="group_quota_{$group['group_id']}" value="{$group['group_quota']}" size="5" class="textinput" /> {$lang_byte_units[1]}
                 </td>
@@ -245,9 +260,9 @@ function confirmDel()
 EOT;
 
 starttable('100%');
-$help_group = '&nbsp;'.cpg_display_help('f=index.htm&as=group_cp&ae=group_cp_end&top=1', '700', '400');
-$help_permissions = '&nbsp;'.cpg_display_help('f=index.htm&as=group_cp_permissions&ae=group_cp_permissions_end&top=1', '400', '150');
-$help_personal = '&nbsp;'.cpg_display_help('f=index.htm&as=group_cp_personal&ae=group_cp_personal_end&top=1', '400', '150');
+$help_group = '&nbsp;'.cpg_display_help('f=index.htm&as=group_cp&ae=group_cp_end&top=1', '700', '500');
+$help_permissions = '&nbsp;'.cpg_display_help('f=index.htm&as=group_cp_permissions&ae=group_cp_permissions_end&top=1', '500', '200');
+$help_personal = '&nbsp;'.cpg_display_help('f=index.htm&as=group_cp_personal&ae=group_cp_personal_end&top=1', '500', '200');
 $help_upload_method = '&nbsp;'.cpg_display_help('f=index.htm&as=group_cp_upload_method&ae=group_cp_upload_method_end&top=1', '700', '400');
 echo <<<EOT
         <form method="post" action="{$_SERVER['PHP_SELF']}" name="groupmanager">
