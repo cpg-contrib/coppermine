@@ -258,7 +258,7 @@ EOT;
 // Added for allowing user to select which aspect of thumbnails to scale
 function form_scale($text, $name)
 {
-    global $CONFIG;
+    global $CONFIG, $lang_config_php;
 
     $value = $CONFIG[$name];
     $any_selected = ($value == 'max') ? 'selected' : '';
