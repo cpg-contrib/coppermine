@@ -333,7 +333,29 @@ function form_lang_debug($text, $name)
 EOT;
 }
 
+function form_number_dropdown($text, $name)
+{
+   global $CONFIG, $lang_config_php ;
 
+    echo <<<EOT
+        <tr>
+            <td class="tableb">
+                        $text
+        </td>
+        <td class="tableb" valign="top">
+                        <select name="$name" class="listbox">
+EOT;
+        for ($i = 5; $i <= 25; $i++) {
+        echo "<option value=\"".$i."\"";
+        if ($i == $CONFIG[$name]) { echo " selected=\"selected\"";}
+        echo ">".$i."</option>\n";
+        }
+     echo <<<EOT
+     </select>
+                </td>
+        </tr>
+EOT;
+}
 
 
 function create_form(&$data)
@@ -373,6 +395,10 @@ function create_form(&$data)
                 // debug mode selection
                 case 9 :
                     form_lang_debug($element[0], $element[1]);
+                    break;
+                // tabbed display fix
+                case 10 :
+                    form_number_dropdown($element[0], $element[1]);
                     break;
                 default:
                     die('Invalid action');

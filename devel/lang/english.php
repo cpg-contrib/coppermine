@@ -405,7 +405,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         'Thumbnail view',
         array('Number of columns on thumbnail page', 'thumbcols', 0),
         array('Number of rows on thumbnail page', 'thumbrows', 0),
-        array('Maximum number of tabs to display', 'max_tabs', 0),
+        array('Maximum number of tabs to display', 'max_tabs', 10),
         array('Display file caption (in addition to title) below the thumbnail', 'caption_in_thumbview', 1),
         array('Display number of views below the thumbnail', 'views_in_thumbview', 1),
         array('Display number of comments below the thumbnail', 'display_comment_count', 1),
