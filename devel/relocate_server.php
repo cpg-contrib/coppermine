@@ -14,6 +14,8 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
+// $Id$
+// ------------------------------------------------------------------------- //
 
 // This is an experimental server relocation script.
 
@@ -22,21 +24,21 @@ global $lang, $config_inc;
 
 // Load up the name/language array
 $lang = array(
-	'dbserver' => 'Your database server',
-	'dbuser' => 'Your MySQL username',
-	'dbpass' => 'Your MySQL password',
-	'dbname' => 'Your MySQL database name',
-	'TABLE_PREFIX' => 'Your MySQL table names prefix',
-	'ecards_more_pic_target' => 'URL of your coppermine gallery folder',
-	'gallery_admin_email' => 'Gallery administrator email',
-	'smtp_host' => 'SMTP Host',
-	'smtp_username' => 'SMTP Username',
-	'smtp_password' => 'SMTP Password',
-	'impath' => 'Path to ImageMagick \'convert\' utility',
-	'thumb_method' => 'Method for resizing images',
-	'gd1' => 'GD Version 1.x',
-	'gd2' => 'GD Version 2.x',
-	'im' => 'ImageMagick'
+        'dbserver' => 'Your database server',
+        'dbuser' => 'Your MySQL username',
+        'dbpass' => 'Your MySQL password',
+        'dbname' => 'Your MySQL database name',
+        'TABLE_PREFIX' => 'Your MySQL table names prefix',
+        'ecards_more_pic_target' => 'URL of your coppermine gallery folder',
+        'gallery_admin_email' => 'Gallery administrator email',
+        'smtp_host' => 'SMTP Host',
+        'smtp_username' => 'SMTP Username',
+        'smtp_password' => 'SMTP Password',
+        'impath' => 'Path to ImageMagick \'convert\' utility',
+        'thumb_method' => 'Method for resizing images',
+        'gd1' => 'GD Version 1.x',
+        'gd2' => 'GD Version 2.x',
+        'im' => 'ImageMagick'
 );
 
 session_start();
@@ -171,17 +173,17 @@ function config_inc($errors='')
   // We have the array, now to find the variables and their values...
   foreach ($line_array as $values)
   {
-	  if (strpos($values, '='))
-	  {
-		  $tempc = substr($values, 0, strpos($values, '='));
-		  $value = str_replace($tempc.'=', '', $values);
-		  $tempc = str_replace('$CONFIG[\'', '', $tempc);
-		  $tempc = str_replace('\']', '', $tempc);
-		  $value = str_replace("'", '', substr($value, 0, strpos($value, ";")));
-		  $value = str_replace('"', '', $value);
-		  $tempc = trim($tempc);
-		  $value = trim($value);
-		  $config_inc[$tempc]=$value;
+          if (strpos($values, '='))
+          {
+                  $tempc = substr($values, 0, strpos($values, '='));
+                  $value = str_replace($tempc.'=', '', $values);
+                  $tempc = str_replace('$CONFIG[\'', '', $tempc);
+                  $tempc = str_replace('\']', '', $tempc);
+                  $value = str_replace("'", '', substr($value, 0, strpos($value, ";")));
+                  $value = str_replace('"', '', $value);
+                  $tempc = trim($tempc);
+                  $value = trim($value);
+                  $config_inc[$tempc]=$value;
     }
   }
   $_SESSION['config_inc'] = $config_inc;
@@ -196,7 +198,7 @@ echo '<form name="mysql" method="post" action="' . $_SERVER["PHP_SELF"] . '">
 <td>Old</td><td>New</td></tr>';
   foreach ($_SESSION['config_inc'] as $key => $value)
   {
-	  echo '<tr><td class="border">' . $lang[$key] . '</td>
+          echo '<tr><td class="border">' . $lang[$key] . '</td>
 <td class="border">'. $value . '</td>
 <td class="border"><input name="' . $key . '" type="text" size="30" maxlength="75"' . (isset($_SESSION['config_inc_new']) ? ' value="' . $_SESSION['config_inc_new'][$key] . '"' : '') . '></td></tr>
 ';
@@ -215,11 +217,11 @@ echo '<form name="mysql" method="post" action="' . $_SERVER["PHP_SELF"] . '">
 function config_table($errors='')
 {
   global $lang;
-  
+
   // We need to know where the gallery is now located.
   $gallery_dir = strtr(dirname($_SERVER['PHP_SELF']), '\\', '/');
   $gallery_url_prefix = 'http://' . $_SERVER['HTTP_HOST'] . $gallery_dir . (substr($gallery_dir, -1) == '/' ? '' : '/');
-  
+
   // Let's pull the info from the config table now.
   if (!$_SESSION['config_table'])
   {
@@ -228,20 +230,20 @@ function config_table($errors='')
   {
     $temp[$arr['name']] = $arr['value'];
   }
-  
+
   // Load the config table into the session variable
-  
+
   $_SESSION['config_table'] = array(
-      'ecards_more_pic_target' => $temp['ecards_more_pic_target'], 
-      'gallery_admin_email' => $temp['gallery_admin_email'], 
-      'smtp_host' => $temp['smtp_host'], 
-      'smtp_password' => $temp['smtp_password'], 
+      'ecards_more_pic_target' => $temp['ecards_more_pic_target'],
+      'gallery_admin_email' => $temp['gallery_admin_email'],
+      'smtp_host' => $temp['smtp_host'],
+      'smtp_password' => $temp['smtp_password'],
       'smtp_username' => $temp['smtp_username'],
       'thumb_method' => $temp['thumb_method'],
       'impath' => $temp['impath']
     );
   }
-  
+
   // Display the stuff
   echo '<h2>Step 2: Edit your ' . $_SESSION['config_inc_new']['TABLE_PREFIX'] .'config table</h2>
 ';
@@ -340,7 +342,7 @@ function error_check()
     {
       $errors = 'You did not enter the path to the ImageMagick convert utility.  Check your path and try again.';
     }
-      
+
   }
   return $errors;
 }
@@ -399,10 +401,10 @@ switch($steps)
     break;
   case '2':
     $_SESSION['config_inc_new'] = array(
-      'dbserver' => $_POST['dbserver'] ? $_POST['dbserver'] : $_SESSION['config_inc']['dbserver'], 
-      'dbuser' => $_POST['dbuser'] ? $_POST['dbuser'] : $_SESSION['config_inc']['dbuser'], 
-      'dbpass' => $_POST['dbpass'] ? $_POST['dbpass'] : $_SESSION['config_inc']['dbpass'], 
-      'dbname' => $_POST['dbname'] ? $_POST['dbname'] : $_SESSION['config_inc']['dbname'], 
+      'dbserver' => $_POST['dbserver'] ? $_POST['dbserver'] : $_SESSION['config_inc']['dbserver'],
+      'dbuser' => $_POST['dbuser'] ? $_POST['dbuser'] : $_SESSION['config_inc']['dbuser'],
+      'dbpass' => $_POST['dbpass'] ? $_POST['dbpass'] : $_SESSION['config_inc']['dbpass'],
+      'dbname' => $_POST['dbname'] ? $_POST['dbname'] : $_SESSION['config_inc']['dbname'],
       'TABLE_PREFIX' => $_POST['TABLE_PREFIX'] ? $_POST['TABLE_PREFIX'] : $_SESSION['config_inc']['TABLE_PREFIX']
     );
     $errors = error_check();
@@ -413,10 +415,10 @@ switch($steps)
     break;
   case '3':
     $_SESSION['config_table_new'] = array(
-      'ecards_more_pic_target' => $_POST['ecards_more_pic_target'] ? $_POST['ecards_more_pic_target'] : $_SESSION['config_table']['ecards_more_pic_target'], 
-      'gallery_admin_email' => $_POST['gallery_admin_email'] ? $_POST['gallery_admin_email'] : $_SESSION['config_table']['gallery_admin_email'], 
-      'smtp_host' => $_POST['smtp_host'] ? $_POST['smtp_host'] : $_SESSION['config_table']['smtp_host'], 
-      'smtp_password' => $_POST['smtp_password'] ? $_POST['smtp_password'] : $_SESSION['config_table']['smtp_password'], 
+      'ecards_more_pic_target' => $_POST['ecards_more_pic_target'] ? $_POST['ecards_more_pic_target'] : $_SESSION['config_table']['ecards_more_pic_target'],
+      'gallery_admin_email' => $_POST['gallery_admin_email'] ? $_POST['gallery_admin_email'] : $_SESSION['config_table']['gallery_admin_email'],
+      'smtp_host' => $_POST['smtp_host'] ? $_POST['smtp_host'] : $_SESSION['config_table']['smtp_host'],
+      'smtp_password' => $_POST['smtp_password'] ? $_POST['smtp_password'] : $_SESSION['config_table']['smtp_password'],
       'smtp_username' => $_POST['smtp_username'] ? $_POST['smtp_username'] : $_SESSION['config_table']['smtp_username'],
       'thumb_method' => $_POST['thumb_method'] ? $_POST['thumb_method'] : $_SESSION['config_table']['thumb_method'],
       'impath' => $_POST['impath'] ? $_POST['impath'] : $_SESSION['config_table']['impath']
