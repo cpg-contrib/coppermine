@@ -368,6 +368,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Picture information are visible by default', 'display_pic_info', 1),
         array('Filter bad words in comments', 'filter_bad_words', 1),
         array('Allow smiles in comments', 'enable_smilies', 1),
+        array('Allow several consecutive comments on one pic from the same user (disable flood protection)', 'disable_comment_flood_protect', 1),
         array('Max length for an image description', 'max_img_desc_length', 0),
         array('Max number of characters in a word', 'max_com_wlength', 0),
         array('Max number of lines in a comment', 'max_com_lines', 0),
