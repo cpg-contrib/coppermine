@@ -170,10 +170,15 @@ function html_picture()
     }
 
     if ($CURRENT_PIC_DATA['pwidth']==0 || $CURRENT_PIC_DATA['pheight']==0) {
-
         $image_size['geom']='';
         $image_size['whole'] = '';
- 
+    } elseif ($mime_content['content']=='movie' || $mime_content['content']=='audio') {
+        $ctrl_offset['mov']=15;
+        $ctrl_offset['wmv']=45;
+        $ctrl_offset['swf']=0;
+        $ctrl_offset_default=45;
+        $ctrl_height = (isset($ctrl_offset[$mime_content['extension']]))?($ctrl_offset[$mime_content['extension']]):$ctrl_offset_default;
+        $image_size['whole']='width="'.$CURRENT_PIC_DATA['pwidth'].'" height="'.($CURRENT_PIC_DATA['pheight']+$ctrl_height).'"';
     }
 
     if ($mime_content['content']=='image')
@@ -190,9 +195,9 @@ function html_picture()
     elseif ($mime_content['content']=='movie')
             $pic_html = "<object {$image_size['whole']}><param name=\"movie\" value=\"". $picture_url . "\"><embed {$image_size['whole']} src=\"". $picture_url . "\"></embed></object><br />\n";
     elseif ($mime_content['content']=='audio')
-            $pic_html = "<object {$image_size['geom']}><param name=\"movie\" value=\"". $picture_url . "\"><embed {$image_size['geom']} src=\"". $picture_url . "\"></embed></object><br />\n";
+            $pic_html = "<object {$image_size['whole']}><param name=\"movie\" value=\"". $picture_url . "\"><embed {$image_size['whole']} src=\"". $picture_url . "\"></embed></object><br />\n";
     elseif ($mime_content['content']=='document') {
-        $pic_html = "<a href=\"{$picture_url}\" target=\"_blank\" class=\"document_link\"><img src=\"images/thumb_$extension.jpg\" border=\"0\" class=\"image\" /></a>\n";
+        $pic_html = "<a href=\"{$picture_url}\" target=\"_blank\" class=\"document_link\"><img src=\"images/thumb_$extension.jpg\" border=\"0\" class=\"image\" /></a>\n<br />";
     }
 
     if (!$CURRENT_PIC_DATA['title'] && !$CURRENT_PIC_DATA['caption']) {
