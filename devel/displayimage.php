@@ -217,7 +217,7 @@ function html_picture()
     $CURRENT_PIC_DATA['header'] = '';
     $CURRENT_PIC_DATA['footer'] = '';
 
-    CPGPluginAPI::filter('file_data',$CURRENT_PIC_DATA);
+    $CURRENT_PIC_DATA = CPGPluginAPI::filter('file_data',$CURRENT_PIC_DATA);
 
     $params = array('{CELL_HEIGHT}' => '100',
         '{IMAGE}' => $CURRENT_PIC_DATA['header'].$CURRENT_PIC_DATA['html'].$CURRENT_PIC_DATA['footer'],
