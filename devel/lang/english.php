@@ -617,124 +617,124 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
 
 if (defined('ADMIN_PHP')) $lang_admin_data = array(
   'General settings',
-  array('Gallery name', 'gallery_name', 0, 'f=index.htm&as=admin_general_name&ae=admin_general_name_end'), //cpg 1.4
-  array('Gallery description', 'gallery_description', 0, 'f=index.htm&as=admin_general_description&ae=admin_general_description_end'), //cpg 1.4
-  array('Gallery administrator email', 'gallery_admin_email', 0, 'f=index.htm&as=admin_general_email&ae=admin_general_email_end'), //cpg 1.4
-  array('URL of your coppermine gallery folder (no \'index.php\' or similar at the end)', 'ecards_more_pic_target', 0, 'f=index.htm&as=admin_general_coppermine-url&ae=admin_general_coppermine-url_end'), //cpg 1.4
-  array('Gallery is offline', 'offline', 1, 'f=index.htm&as=admin_general_offline&ae=admin_general_offline_end'), //cpg 1.4
-  array('Allow ZIP-download of favorites', 'enable_zipdownload', 1, 'f=index.htm&as=admin_general_zip-download&ae=admin_general_zip-download_end'), //cpg 1.4
-  array('Timezone difference relative to GMT (current time: ' . localised_date(-1, $comment_date_fmt) . ')','time_offset',0, 'f=index.htm&as=admin_general_time-offset&ae=admin_general_time-offset_end&top=1'), //cpg 1.4
-  array('Enable help-icons (help available in English only)','enable_help',9, 'f=index.htm&as=admin_general_help&ae=admin_general_help_end'), //cpg 1.4
+  array('Gallery name', 'gallery_name', 0, 'f=index.htm&amp;as=admin_general_name&amp;ae=admin_general_name_end'), //cpg 1.4
+  array('Gallery description', 'gallery_description', 0, 'f=index.htm&amp;as=admin_general_description&amp;ae=admin_general_description_end'), //cpg 1.4
+  array('Gallery administrator email', 'gallery_admin_email', 0, 'f=index.htm&amp;as=admin_general_email&amp;ae=admin_general_email_end'), //cpg 1.4
+  array('URL of your coppermine gallery folder (no \'index.php\' or similar at the end)', 'ecards_more_pic_target', 0, 'f=index.htm&amp;as=admin_general_coppermine-url&amp;ae=admin_general_coppermine-url_end'), //cpg 1.4
+  array('Gallery is offline', 'offline', 1, 'f=index.htm&amp;as=admin_general_offline&amp;ae=admin_general_offline_end'), //cpg 1.4
+  array('Allow ZIP-download of favorites', 'enable_zipdownload', 1, 'f=index.htm&amp;as=admin_general_zip-download&amp;ae=admin_general_zip-download_end'), //cpg 1.4
+  array('Timezone difference relative to GMT (current time: ' . localised_date(-1, $comment_date_fmt) . ')','time_offset',0, 'f=index.htm&amp;as=admin_general_time-offset&amp;ae=admin_general_time-offset_end&amp;top=1'), //cpg 1.4
+  array('Enable help-icons (help available in English only)','enable_help',9, 'f=index.htm&amp;as=admin_general_help&amp;ae=admin_general_help_end'), //cpg 1.4
   array('Enable clickable keywords in search','clickable_keyword_search',14), //cpg 1.4
   array('Show number of linked files','link_pic_count',1), //cpg 1.4
-  array('Show the vanity block on themes that are defined as XHTML and CSS compliant','vanity_block',1, 'f=index.htm&as=vanity_block&ae=vanity_block_end'), //cpg 1.4
+  array('Show the vanity block on themes that are defined as XHTML and CSS compliant','vanity_block',1, 'f=index.htm&amp;as=vanity_block&amp;ae=vanity_block_end'), //cpg 1.4
 
   'Language, Themes &amp; Charset settings',
-  array('Language', 'lang', 5, 'f=index.htm&as=admin_language_language&ae=admin_language_language_end'), //cpg 1.4
-  array('Fallback to English if translated phrase not found?', 'language_fallback', 1, 'f=index.htm&as=admin_language_fallback&ae=admin_language_fallback_end'), //cpg 1.4
-  array('Theme', 'theme', 6, 'f=index.htm&as=admin_language_theme&ae=admin_language_theme_end'), //cpg 1.4
-  array('Display language list', 'language_list', 1, 'f=index.htm&as=admin_language_list&ae=admin_language_list_end'), //cpg 1.4
-  array('Display language flags', 'language_flags', 8, 'f=index.htm&as=admin_language_flags&ae=admin_language_flags_end&top=1'), //cpg 1.4
-  array('Display &quot;reset&quot; in language selection', 'language_reset', 1, 'f=index.htm&as=admin_language_reset&ae=admin_language_reset_end&top=1'), //cpg 1.4
-  array('Display theme list', 'theme_list', 1, 'f=index.htm&as=admin_language_theme_list&ae=admin_language_theme_list_end'), //cpg 1.4
-  array('Display &quot;reset&quot; in theme selection', 'theme_reset', 1, 'f=index.htm&as=admin_language_theme_reset&ae=admin_language_theme_reset_end'), //cpg 1.4
-  array('Display FAQ', 'display_faq', 1, 'f=index.htm&as=admin_language_faq&ae=admin_language_faq_end'), //cpg 1.4
-  array('Display bbcode help', 'show_bbcode_help', 1, 'f=index.htm&as=admin_language_bbcode&ae=admin_language_bbcode_end&top=1'), //cpg 1.4
+  array('Language', 'lang', 5, 'f=index.htm&amp;as=admin_language_language&amp;ae=admin_language_language_end'), //cpg 1.4
+  array('Fallback to English if translated phrase not found?', 'language_fallback', 1, 'f=index.htm&amp;as=admin_language_fallback&amp;ae=admin_language_fallback_end'), //cpg 1.4
+  array('Theme', 'theme', 6, 'f=index.htm&amp;as=admin_language_theme&amp;ae=admin_language_theme_end'), //cpg 1.4
+  array('Display language list', 'language_list', 1, 'f=index.htm&amp;as=admin_language_list&amp;ae=admin_language_list_end'), //cpg 1.4
+  array('Display language flags', 'language_flags', 8, 'f=index.htm&amp;as=admin_language_flags&amp;ae=admin_language_flags_end&amp;top=1'), //cpg 1.4
+  array('Display &quot;reset&quot; in language selection', 'language_reset', 1, 'f=index.htm&amp;as=admin_language_reset&amp;ae=admin_language_reset_end&amp;top=1'), //cpg 1.4
+  array('Display theme list', 'theme_list', 1, 'f=index.htm&amp;as=admin_language_theme_list&amp;ae=admin_language_theme_list_end'), //cpg 1.4
+  array('Display &quot;reset&quot; in theme selection', 'theme_reset', 1, 'f=index.htm&amp;as=admin_language_theme_reset&amp;ae=admin_language_theme_reset_end'), //cpg 1.4
+  array('Display FAQ', 'display_faq', 1, 'f=index.htm&amp;as=admin_language_faq&amp;ae=admin_language_faq_end'), //cpg 1.4
+  array('Display bbcode help', 'show_bbcode_help', 1, 'f=index.htm&amp;as=admin_language_bbcode&amp;ae=admin_language_bbcode_end&amp;top=1'), //cpg 1.4
   //array('Display previous/next on tabbed pages', 'previous_next_tab', 1), //cpg 1.4
-  array('Character encoding', 'charset', 4, 'f=index.htm&as=admin_language_charset&ae=admin_language_charset_end'), //cpg 1.4
+  array('Character encoding', 'charset', 4, 'f=index.htm&amp;as=admin_language_charset&amp;ae=admin_language_charset_end'), //cpg 1.4
 
   'Album list view',
-  array('Width of the main table (pixels or %)', 'main_table_width', 0, 'f=index.htm&as=admin_album_table-width&ae=admin_album_table-width_end'), //cpg 1.4
-  array('Number of levels of categories to display', 'subcat_level', 0, 'f=index.htm&as=admin_album_category-levels&ae=admin_album_category-levels_end'), //cpg 1.4
-  array('Number of albums to display', 'albums_per_page', 0, 'f=index.htm&as=admin_album_number&ae=admin_album_number_end'), //cpg 1.4
-  array('Number of columns for the album list', 'album_list_cols', 0, 'f=index.htm&as=admin_album_columns&ae=admin_album_columns_end'), //cpg 1.4
-  array('Size of thumbnails in pixels', 'alb_list_thumb_size', 0, 'f=index.htm&as=admin_album_thumbnail-size&ae=admin_album_thumbnail-size_end'), //cpg 1.4
-  array('The content of the main page', 'main_page_layout', 0, 'f=index.htm&as=admin_album_list_content&ae=admin_album_list_content_end'), //cpg 1.4
-  array('Show first level album thumbnails in categories','first_level',1, 'f=index.htm&as=admin_album_first-level_thumbs&ae=admin_album_first-level_thumbs_end'), //cpg 1.4
-  array('Sort categories alphabetically (instead of custom sort order)','categories_alpha_sort',1, 'f=index.htm&as=admin_album_list_alphasort_start&ae=admin_album_list_alphasort_end'), //cpg 1.4
+  array('Width of the main table (pixels or %)', 'main_table_width', 0, 'f=index.htm&amp;as=admin_album_table-width&amp;ae=admin_album_table-width_end'), //cpg 1.4
+  array('Number of levels of categories to display', 'subcat_level', 0, 'f=index.htm&amp;as=admin_album_category-levels&amp;ae=admin_album_category-levels_end'), //cpg 1.4
+  array('Number of albums to display', 'albums_per_page', 0, 'f=index.htm&amp;as=admin_album_number&amp;ae=admin_album_number_end'), //cpg 1.4
+  array('Number of columns for the album list', 'album_list_cols', 0, 'f=index.htm&amp;as=admin_album_columns&amp;ae=admin_album_columns_end'), //cpg 1.4
+  array('Size of thumbnails in pixels', 'alb_list_thumb_size', 0, 'f=index.htm&amp;as=admin_album_thumbnail-size&amp;ae=admin_album_thumbnail-size_end'), //cpg 1.4
+  array('The content of the main page', 'main_page_layout', 0, 'f=index.htm&amp;as=admin_album_list_content&amp;ae=admin_album_list_content_end'), //cpg 1.4
+  array('Show first level album thumbnails in categories','first_level',1, 'f=index.htm&amp;as=admin_album_first-level_thumbs&amp;ae=admin_album_first-level_thumbs_end'), //cpg 1.4
+  array('Sort categories alphabetically (instead of custom sort order)','categories_alpha_sort',1, 'f=index.htm&amp;as=admin_album_list_alphasort_start&amp;ae=admin_album_list_alphasort_end'), //cpg 1.4
 
   'Thumbnail view',
-  array('Number of columns on thumbnail page', 'thumbcols', 0, 'f=index.htm&as=admin_thumbnail_columns&ae=admin_thumbnail_columns_end'), //cpg 1.4
-  array('Number of rows on thumbnail page', 'thumbrows', 0, 'f=index.htm&as=admin_thumbnail_rows&ae=admin_thumbnail_rows_end'), //cpg 1.4
-  array('Maximum number of tabs to display', 'max_tabs', 10, 'f=index.htm&as=admin_thumbnail_tabs&ae=admin_thumbnail_tabs_end'), //cpg 1.4
-  array('Display file caption (in addition to title) below the thumbnail', 'caption_in_thumbview', 1, 'f=index.htm&as=admin_thumbnail_display_caption&ae=admin_thumbnail_display_caption_end'), //cpg 1.4
-  array('Display number of views below the thumbnail', 'views_in_thumbview', 1, 'f=index.htm&as=admin_thumbnail_display_views&ae=admin_thumbnail_display_views_end'), //cpg 1.4
-  array('Display number of comments below the thumbnail', 'display_comment_count', 1, 'f=index.htm&as=admin_thumbnail_display_comments&ae=admin_thumbnail_display_comments_end'), //cpg 1.4
-  array('Display uploader name below the thumbnail', 'display_uploader', 1, 'f=index.htm&as=admin_thumbnail_display_uploader&ae=admin_thumbnail_display_uploader_end'), //cpg 1.4
-  array('Display album description', 'alb_desc_thumb', 1, 'f=index.htm&as=admin_thumbnail_display_description&ae=admin_thumbnail_display_description_end'), //cpg 1.4
-  array('Default sort order for files', 'default_sort_order', 3, 'f=index.htm&as=admin_thumbnail_default_sortorder&ae=admin_thumbnail_default_sortorder_end'), //cpg 1.4
-  array('Minimum number of votes for a file to appear in the \'top-rated\' list', 'min_votes_for_rating', 0, 'f=index.htm&as=admin_thumbnail_minimum_votes&ae=admin_thumbnail_minimum_votes_end'), //cpg 1.4
+  array('Number of columns on thumbnail page', 'thumbcols', 0, 'f=index.htm&amp;as=admin_thumbnail_columns&amp;ae=admin_thumbnail_columns_end'), //cpg 1.4
+  array('Number of rows on thumbnail page', 'thumbrows', 0, 'f=index.htm&amp;as=admin_thumbnail_rows&amp;ae=admin_thumbnail_rows_end'), //cpg 1.4
+  array('Maximum number of tabs to display', 'max_tabs', 10, 'f=index.htm&amp;as=admin_thumbnail_tabs&amp;ae=admin_thumbnail_tabs_end'), //cpg 1.4
+  array('Display file caption (in addition to title) below the thumbnail', 'caption_in_thumbview', 1, 'f=index.htm&amp;as=admin_thumbnail_display_caption&amp;ae=admin_thumbnail_display_caption_end'), //cpg 1.4
+  array('Display number of views below the thumbnail', 'views_in_thumbview', 1, 'f=index.htm&amp;as=admin_thumbnail_display_views&amp;ae=admin_thumbnail_display_views_end'), //cpg 1.4
+  array('Display number of comments below the thumbnail', 'display_comment_count', 1, 'f=index.htm&amp;as=admin_thumbnail_display_comments&amp;ae=admin_thumbnail_display_comments_end'), //cpg 1.4
+  array('Display uploader name below the thumbnail', 'display_uploader', 1, 'f=index.htm&amp;as=admin_thumbnail_display_uploader&amp;ae=admin_thumbnail_display_uploader_end'), //cpg 1.4
+  array('Display album description', 'alb_desc_thumb', 1, 'f=index.htm&amp;as=admin_thumbnail_display_description&amp;ae=admin_thumbnail_display_description_end'), //cpg 1.4
+  array('Default sort order for files', 'default_sort_order', 3, 'f=index.htm&amp;as=admin_thumbnail_default_sortorder&amp;ae=admin_thumbnail_default_sortorder_end'), //cpg 1.4
+  array('Minimum number of votes for a file to appear in the \'top-rated\' list', 'min_votes_for_rating', 0, 'f=index.htm&amp;as=admin_thumbnail_minimum_votes&amp;ae=admin_thumbnail_minimum_votes_end'), //cpg 1.4
 
   'Image view', //cpg 1.4
-  array('Width of the table for file display (pixels or %)', 'picture_table_width', 0, 'f=index.htm&as=admin_image_comment_table-width&ae=admin_image_comment_table-width_end'), //cpg 1.4
-  array('File information is visible by default', 'display_pic_info', 1, 'f=index.htm&as=admin_image_comment_info_visible&ae=admin_image_comment_info_visible_end'), //cpg 1.4
-  array('Max length for an image description', 'max_img_desc_length', 0, 'f=index.htm&as=admin_image_comment_descr_length&ae=admin_image_comment_descr_length_end'), //cpg 1.4
-  array('Max number of characters in a word', 'max_com_wlength', 0, 'f=index.htm&as=admin_image_comment_chars_per_word&ae=admin_image_comment_chars_per_word_end'), //cpg 1.4
-  array('Show film strip', 'display_film_strip', 1, 'f=index.htm&as=admin_image_comment_filmstrip_toggle&ae=admin_image_comment_filmstrip_toggle_end'), //cpg 1.4
-  array('Number of items in film strip', 'max_film_strip_items', 0, 'f=index.htm&as=admin_image_comment_filmstrip_number&ae=admin_image_comment_filmstrip_number_end'), //cpg 1.4
-  array('Slideshow interval in milliseconds (1 second = 1000 milliseconds)', 'slideshow_interval', 0, 'f=index.htm&as=admin_image_comment_slideshow_interval&ae=admin_image_comment_slideshow_interval_end'), //cpg 1.4
+  array('Width of the table for file display (pixels or %)', 'picture_table_width', 0, 'f=index.htm&amp;as=admin_image_comment_table-width&amp;ae=admin_image_comment_table-width_end'), //cpg 1.4
+  array('File information is visible by default', 'display_pic_info', 1, 'f=index.htm&amp;as=admin_image_comment_info_visible&amp;ae=admin_image_comment_info_visible_end'), //cpg 1.4
+  array('Max length for an image description', 'max_img_desc_length', 0, 'f=index.htm&amp;as=admin_image_comment_descr_length&amp;ae=admin_image_comment_descr_length_end'), //cpg 1.4
+  array('Max number of characters in a word', 'max_com_wlength', 0, 'f=index.htm&amp;as=admin_image_comment_chars_per_word&amp;ae=admin_image_comment_chars_per_word_end'), //cpg 1.4
+  array('Show film strip', 'display_film_strip', 1, 'f=index.htm&amp;as=admin_image_comment_filmstrip_toggle&amp;ae=admin_image_comment_filmstrip_toggle_end'), //cpg 1.4
+  array('Number of items in film strip', 'max_film_strip_items', 0, 'f=index.htm&amp;as=admin_image_comment_filmstrip_number&amp;ae=admin_image_comment_filmstrip_number_end'), //cpg 1.4
+  array('Slideshow interval in milliseconds (1 second = 1000 milliseconds)', 'slideshow_interval', 0, 'f=index.htm&amp;as=admin_image_comment_slideshow_interval&amp;ae=admin_image_comment_slideshow_interval_end'), //cpg 1.4
 
   'Comment settings', //cpg 1.4
-  array('Filter bad words in comments', 'filter_bad_words', 1, 'f=index.htm&as=admin_image_comment_bad_words&ae=admin_image_comment_bad_words_end'), //cpg 1.4
-  array('Allow smiles in comments', 'enable_smilies', 1, 'f=index.htm&as=admin_image_comment_smilies&ae=admin_image_comment_smilies_end'), //cpg 1.4
-  array('Allow several consecutive comments on one file from the same user (disable flood protection)', 'disable_comment_flood_protect', 1, 'f=index.htm&as=admin_image_comment_flood&ae=admin_image_comment_flood_end'), //cpg 1.4
-  array('Max number of lines in a comment', 'max_com_lines', 0, 'f=index.htm&as=admin_image_comment_lines&ae=admin_image_comment_lines_end'), //cpg 1.4
-  array('Maximum length of a comment', 'max_com_size', 0, 'f=index.htm&as=admin_image_comment_length&ae=admin_image_comment_length_end'), //cpg 1.4
-  array('Notify admin of comments by email', 'email_comment_notification', 1, 'f=index.htm&as=admin_image_comment_admin_notify&ae=admin_image_comment_admin_notify_end'), //cpg 1.4
-  array('Sort order of comments', 'comments_sort_descending', 17, 'f=index.htm&as=admin_comment_sort_start&ae=admin_comment_sort_end'), //cpg 1.4
+  array('Filter bad words in comments', 'filter_bad_words', 1, 'f=index.htm&amp;as=admin_image_comment_bad_words&amp;ae=admin_image_comment_bad_words_end'), //cpg 1.4
+  array('Allow smiles in comments', 'enable_smilies', 1, 'f=index.htm&amp;as=admin_image_comment_smilies&amp;ae=admin_image_comment_smilies_end'), //cpg 1.4
+  array('Allow several consecutive comments on one file from the same user (disable flood protection)', 'disable_comment_flood_protect', 1, 'f=index.htm&amp;as=admin_image_comment_flood&amp;ae=admin_image_comment_flood_end'), //cpg 1.4
+  array('Max number of lines in a comment', 'max_com_lines', 0, 'f=index.htm&amp;as=admin_image_comment_lines&amp;ae=admin_image_comment_lines_end'), //cpg 1.4
+  array('Maximum length of a comment', 'max_com_size', 0, 'f=index.htm&amp;as=admin_image_comment_length&amp;ae=admin_image_comment_length_end'), //cpg 1.4
+  array('Notify admin of comments by email', 'email_comment_notification', 1, 'f=index.htm&amp;as=admin_image_comment_admin_notify&amp;ae=admin_image_comment_admin_notify_end'), //cpg 1.4
+  array('Sort order of comments', 'comments_sort_descending', 17, 'f=index.htm&amp;as=admin_comment_sort_start&amp;ae=admin_comment_sort_end'), //cpg 1.4
 
   'Files and thumbnails settings',
-  array('Quality for JPEG files', 'jpeg_qual', 0, 'f=index.htm&as=admin_picture_thumbnail_jpeg_quality&ae=admin_picture_thumbnail_jpeg_quality_end'), //cpg 1.4
-  array('Max dimension of a thumbnail <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0, 'f=index.htm&as=admin_picture_thumbnail_max-dimension&ae=admin_picture_thumbnail_max-dimension_end'), //cpg 1.4
-  array('Use dimension ( width or height or Max aspect for thumbnail ) <a href="#notice2" class="clickable_option">**</a>', 'thumb_use', 7, 'f=index.htm&as=admin_picture_thumbnail_use-dimension&ae=admin_picture_thumbnail_use-dimension_end'), //cpg 1.4
-  array('Create intermediate pictures','make_intermediate',1, 'f=index.htm&as=admin_picture_thumbnail_intermediate_toggle&ae=admin_picture_thumbnail_intermediate_toggle_end'), //cpg 1.4
-  array('Max width or height of an intermediate picture/video <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0, 'f=index.htm&as=admin_picture_thumbnail_intermediate_dimension&ae=admin_picture_thumbnail_intermediate_dimension_end'), //cpg 1.4
-  array('Max size for uploaded files (KB)', 'max_upl_size', 0, 'f=index.htm&as=admin_picture_thumbnail_max_upload_size&ae=admin_picture_thumbnail_max_upload_size_end'), //cpg 1.4
-  array('Max width or height for uploaded pictures/videos (pixels)', 'max_upl_width_height', 0, 'f=index.htm&as=admin_picture_thumbnail_max_upload_dimension&ae=admin_picture_thumbnail_max_upload_dimension_end'), //cpg 1.4
-  array('Auto resize images that are larger than max width or height', 'auto_resize', 16, 'f=index.htm&as=admin_picture_thumbnail_auto-resize&ae=admin_picture_thumbnail_auto-resize_end'), //cpg 1.4
+  array('Quality for JPEG files', 'jpeg_qual', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_jpeg_quality&amp;ae=admin_picture_thumbnail_jpeg_quality_end'), //cpg 1.4
+  array('Max dimension of a thumbnail <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max-dimension&amp;ae=admin_picture_thumbnail_max-dimension_end'), //cpg 1.4
+  array('Use dimension ( width or height or Max aspect for thumbnail ) <a href="#notice2" class="clickable_option">**</a>', 'thumb_use', 7, 'f=index.htm&amp;as=admin_picture_thumbnail_use-dimension&amp;ae=admin_picture_thumbnail_use-dimension_end'), //cpg 1.4
+  array('Create intermediate pictures','make_intermediate',1, 'f=index.htm&amp;as=admin_picture_thumbnail_intermediate_toggle&amp;ae=admin_picture_thumbnail_intermediate_toggle_end'), //cpg 1.4
+  array('Max width or height of an intermediate picture/video <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_intermediate_dimension&amp;ae=admin_picture_thumbnail_intermediate_dimension_end'), //cpg 1.4
+  array('Max size for uploaded files (KB)', 'max_upl_size', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max_upload_size&amp;ae=admin_picture_thumbnail_max_upload_size_end'), //cpg 1.4
+  array('Max width or height for uploaded pictures/videos (pixels)', 'max_upl_width_height', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max_upload_dimension&amp;ae=admin_picture_thumbnail_max_upload_dimension_end'), //cpg 1.4
+  array('Auto resize images that are larger than max width or height', 'auto_resize', 16, 'f=index.htm&amp;as=admin_picture_thumbnail_auto-resize&amp;ae=admin_picture_thumbnail_auto-resize_end'), //cpg 1.4
 
   'Files and thumbnails advanced settings',
-  array('Albums can be private (Note: if you switch from \'yes\' to \'no\' any current private albums will become public)', 'allow_private_albums', 1, 'f=index.htm&as=admin_picture_thumb_advanced_private_toggle&ae=admin_picture_thumb_advanced_private_toggle_end'), //cpg 1.4
-  array('Show private album Icon to unlogged user','show_private',1, 'f=index.htm&as=admin_picture_thumb_advanced_private_icon_show&ae=admin_picture_thumb_advanced_private_icon_show_end'), //cpg 1.4
-  array('Characters forbidden in filenames', 'forbiden_fname_char',0, 'f=index.htm&as=admin_picture_thumb_advanced_filename_forbidden_chars&ae=admin_picture_thumb_advanced_filename_forbidden_chars_end'), //cpg 1.4
-  //array('Accepted file extensions for uploaded pictures', 'allowed_file_extensions',0, 'f=index.htm&as=&ae=_end'), //cpg 1.4
-  array('Allowed image types', 'allowed_img_types',0, 'f=index.htm&as=admin_picture_thumb_advanced_pic_extensions&ae=admin_picture_thumb_advanced_pic_extensions_end'), //cpg 1.4
-  array('Allowed movie types', 'allowed_mov_types',0, 'f=index.htm&as=admin_thumbs_advanced_movie&ae=admin_thumbs_advanced_movie_end'), //cpg 1.4
-  array('Allowed audio types', 'allowed_snd_types',0, 'f=index.htm&as=admin_picture_thumb_advanced_audio_extensions&ae=admin_picture_thumb_advanced_audio_extensions_end'), //cpg 1.4
-  array('Allowed document types', 'allowed_doc_types',0, 'f=index.htm&as=admin_picture_thumb_advanced_doc_extensions&ae=admin_picture_thumb_advanced_doc_extensions_end'), //cpg 1.4
-  array('Method for resizing images','thumb_method',2, 'f=index.htm&as=admin_picture_thumb_advanced_resize_method&ae=admin_picture_thumb_advanced_resize_method_end'), //cpg 1.4
-  array('Path to ImageMagick \'convert\' utility (example /usr/bin/X11/)', 'impath', 0, 'f=index.htm&as=admin_picture_thumb_advanced_im_path&ae=admin_picture_thumb_advanced_im_path_end'), //cpg 1.4
-  //array('Allowed image types (only valid for ImageMagick)', 'allowed_img_types',0, 'f=index.htm&as=admin_picture_thumb_advanced_allowed_imagetypes&ae=admin_picture_thumb_advanced_allowed_imagetypes_end'), //cpg 1.4
-  array('Command line options for ImageMagick', 'im_options', 0, 'f=index.htm&as=admin_picture_thumb_advanced_im_commandline&ae=admin_picture_thumb_advanced_im_commandline_end'), //cpg 1.4
-  array('Read EXIF data in JPEG files', 'read_exif_data', 13, 'f=index.htm&as=admin_picture_thumb_advanced_exif&ae=admin_picture_thumb_advanced_exif_end'), //cpg 1.4
-  array('Read IPTC data in JPEG files', 'read_iptc_data', 1, 'f=index.htm&as=admin_picture_thumb_advanced_iptc&ae=admin_picture_thumb_advanced_iptc_end'), //cpg 1.4
-  array('The album directory <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0, 'f=index.htm&as=admin_picture_thumb_advanced_albums_dir&ae=admin_picture_thumb_advanced_albums_dir_end'), //cpg 1.4
-  array('The directory for user files <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0, 'f=index.htm&as=admin_picture_thumb_advanced_userpics_dir&ae=admin_picture_thumb_advanced_userpics_dir_end'), //cpg 1.4
-  array('The prefix for intermediate pictures <a href="#notice1" class="clickable_option">*</a>', 'normal_pfx', 0, 'f=index.htm&as=admin_picture_thumb_advanced_intermediate_prefix&ae=admin_picture_thumb_advanced_intermediate_prefix_end'), //cpg 1.4
-  array('The prefix for thumbnails <a href="#notice1" class="clickable_option">*</a>', 'thumb_pfx', 0, 'f=index.htm&as=admin_picture_thumb_advanced_thumbs_prefix&ae=admin_picture_thumb_advanced_thumbs_prefix_end'), //cpg 1.4
-  array('Default mode for directories', 'default_dir_mode', 0, 'f=index.htm&as=admin_picture_thumb_advanced_chmod_folder&ae=admin_picture_thumb_advanced_chmod_folder_end'), //cpg 1.4
-  array('Default mode for files', 'default_file_mode', 0, 'f=index.htm&as=admin_picture_thumb_advanced_chmod_files&ae=admin_picture_thumb_advanced_chmod_files_end'), //cpg 1.4
+  array('Albums can be private (Note: if you switch from \'yes\' to \'no\' any current private albums will become public)', 'allow_private_albums', 1, 'f=index.htm&amp;as=admin_picture_thumb_advanced_private_toggle&amp;ae=admin_picture_thumb_advanced_private_toggle_end'), //cpg 1.4
+  array('Show private album Icon to unlogged user','show_private',1, 'f=index.htm&amp;as=admin_picture_thumb_advanced_private_icon_show&amp;ae=admin_picture_thumb_advanced_private_icon_show_end'), //cpg 1.4
+  array('Characters forbidden in filenames', 'forbiden_fname_char',0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_filename_forbidden_chars&amp;ae=admin_picture_thumb_advanced_filename_forbidden_chars_end'), //cpg 1.4
+  //array('Accepted file extensions for uploaded pictures', 'allowed_file_extensions',0, 'f=index.htm&amp;as=&amp;ae=_end'), //cpg 1.4
+  array('Allowed image types', 'allowed_img_types',0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_pic_extensions&amp;ae=admin_picture_thumb_advanced_pic_extensions_end'), //cpg 1.4
+  array('Allowed movie types', 'allowed_mov_types',0, 'f=index.htm&amp;as=admin_thumbs_advanced_movie&amp;ae=admin_thumbs_advanced_movie_end'), //cpg 1.4
+  array('Allowed audio types', 'allowed_snd_types',0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_audio_extensions&amp;ae=admin_picture_thumb_advanced_audio_extensions_end'), //cpg 1.4
+  array('Allowed document types', 'allowed_doc_types',0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_doc_extensions&amp;ae=admin_picture_thumb_advanced_doc_extensions_end'), //cpg 1.4
+  array('Method for resizing images','thumb_method',2, 'f=index.htm&amp;as=admin_picture_thumb_advanced_resize_method&amp;ae=admin_picture_thumb_advanced_resize_method_end'), //cpg 1.4
+  array('Path to ImageMagick \'convert\' utility (example /usr/bin/X11/)', 'impath', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_im_path&amp;ae=admin_picture_thumb_advanced_im_path_end'), //cpg 1.4
+  //array('Allowed image types (only valid for ImageMagick)', 'allowed_img_types',0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_allowed_imagetypes&amp;ae=admin_picture_thumb_advanced_allowed_imagetypes_end'), //cpg 1.4
+  array('Command line options for ImageMagick', 'im_options', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_im_commandline&amp;ae=admin_picture_thumb_advanced_im_commandline_end'), //cpg 1.4
+  array('Read EXIF data in JPEG files', 'read_exif_data', 13, 'f=index.htm&amp;as=admin_picture_thumb_advanced_exif&amp;ae=admin_picture_thumb_advanced_exif_end'), //cpg 1.4
+  array('Read IPTC data in JPEG files', 'read_iptc_data', 1, 'f=index.htm&amp;as=admin_picture_thumb_advanced_iptc&amp;ae=admin_picture_thumb_advanced_iptc_end'), //cpg 1.4
+  array('The album directory <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_albums_dir&amp;ae=admin_picture_thumb_advanced_albums_dir_end'), //cpg 1.4
+  array('The directory for user files <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_userpics_dir&amp;ae=admin_picture_thumb_advanced_userpics_dir_end'), //cpg 1.4
+  array('The prefix for intermediate pictures <a href="#notice1" class="clickable_option">*</a>', 'normal_pfx', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_intermediate_prefix&amp;ae=admin_picture_thumb_advanced_intermediate_prefix_end'), //cpg 1.4
+  array('The prefix for thumbnails <a href="#notice1" class="clickable_option">*</a>', 'thumb_pfx', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_thumbs_prefix&amp;ae=admin_picture_thumb_advanced_thumbs_prefix_end'), //cpg 1.4
+  array('Default mode for directories', 'default_dir_mode', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_chmod_folder&amp;ae=admin_picture_thumb_advanced_chmod_folder_end'), //cpg 1.4
+  array('Default mode for files', 'default_file_mode', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_chmod_files&amp;ae=admin_picture_thumb_advanced_chmod_files_end'), //cpg 1.4
 
   'Movie Playback Settings', //cpg 1.4
-  array('Autostart', 'media_autostart',1, 'f=index.htm&as=admin_movie_autoplay&ae=admin_movie_autoplay_end'), //cpg 1.4
+  array('Autostart', 'media_autostart',1, 'f=index.htm&amp;as=admin_movie_autoplay&amp;ae=admin_movie_autoplay_end'), //cpg 1.4
 
   'User settings',
-  array('Allow new user registrations', 'allow_user_registration', 1, 'f=index.htm&as=admin_allow_registration&ae=admin_allow_registration_end'), //cpg 1.4
-  array('Allow unlogged users (guest or anonymous) access', 'allow_unlogged_access', 1, 'f=index.htm&as=admin_allow_unlogged_access&ae=admin_allow_unlogged_access_end'), //cpg 1.4
-  array('User registration requires email verification', 'reg_requires_valid_email', 1, 'f=index.htm&as=admin_registration_verify&ae=admin_registration_verify_end'), //cpg 1.4
-  array('Notify admin of user registration by email', 'reg_notify_admin_email', 1, 'f=index.htm&as=admin_registration_notify&ae=admin_registration_notify_end'), //cpg 1.4
-  array('Allow two users to have the same email address', 'allow_duplicate_emails_addr', 1, 'f=index.htm&as=admin_allow_duplicate_emails_addr&ae=admin_allow_duplicate_emails_addr_end'), //cpg 1.4
-  array('Notify admin of user upload awaiting approval', 'upl_notify_admin_email', 1, 'f=index.htm&as=admin_approval_notify&ae=admin_approval_notify_end'), //cpg 1.4
-  array('Allow logged in users to view memberlist', 'allow_memberlist', 1, 'f=index.htm&as=admin_user_memberlist&ae=admin_user_memberlist_end'), //cpg 1.4
-  array('Allow users to change their email address in profile', 'allow_email_change', 1, 'f=index.htm&as=admin_user_allow_email_change&ae=admin_user_allow_email_change_end'), //cpg1.4
+  array('Allow new user registrations', 'allow_user_registration', 1, 'f=index.htm&amp;as=admin_allow_registration&amp;ae=admin_allow_registration_end'), //cpg 1.4
+  array('Allow unlogged users (guest or anonymous) access', 'allow_unlogged_access', 1, 'f=index.htm&amp;as=admin_allow_unlogged_access&amp;ae=admin_allow_unlogged_access_end'), //cpg 1.4
+  array('User registration requires email verification', 'reg_requires_valid_email', 1, 'f=index.htm&amp;as=admin_registration_verify&amp;ae=admin_registration_verify_end'), //cpg 1.4
+  array('Notify admin of user registration by email', 'reg_notify_admin_email', 1, 'f=index.htm&amp;as=admin_registration_notify&amp;ae=admin_registration_notify_end'), //cpg 1.4
+  array('Allow two users to have the same email address', 'allow_duplicate_emails_addr', 1, 'f=index.htm&amp;as=admin_allow_duplicate_emails_addr&amp;ae=admin_allow_duplicate_emails_addr_end'), //cpg 1.4
+  array('Notify admin of user upload awaiting approval', 'upl_notify_admin_email', 1, 'f=index.htm&amp;as=admin_approval_notify&amp;ae=admin_approval_notify_end'), //cpg 1.4
+  array('Allow logged in users to view memberlist', 'allow_memberlist', 1, 'f=index.htm&amp;as=admin_user_memberlist&amp;ae=admin_user_memberlist_end'), //cpg 1.4
+  array('Allow users to change their email address in profile', 'allow_email_change', 1, 'f=index.htm&amp;as=admin_user_allow_email_change&amp;ae=admin_user_allow_email_change_end'), //cpg1.4
   array('Allow users to retain control over their pics in public galleries', 'users_can_edit_pics', 1), //cpg1.4
-  array('Number of failed login attempts until temporary ban (to avoid brute force attacks)', 'login_threshold', 0, 'f=index.htm&as=admin_user_login_start&ae=admin_user_login_end'), //cpg1.4
-  array('Duration of a temporary ban after failed logins', 'login_expiry', 0, 'f=index.htm&as=admin_user_login_start&ae=admin_user_login_end'), //cpg1.4
+  array('Number of failed login attempts until temporary ban (to avoid brute force attacks)', 'login_threshold', 0, 'f=index.htm&amp;as=admin_user_login_start&amp;ae=admin_user_login_end'), //cpg1.4
+  array('Duration of a temporary ban after failed logins', 'login_expiry', 0, 'f=index.htm&amp;as=admin_user_login_start&amp;ae=admin_user_login_end'), //cpg1.4
 
 // custom profile fields,  //cpg 1.4
   'Custom fields for user profile (leave blank if unused).
   Use Profile 6 for long entries, such as biographies', //cpg 1.4
-  array('Profile 1 name', 'user_profile1_name', 0, 'f=index.htm&as=admin_custom&ae=admin_custom_end'), //cpg 1.4
+  array('Profile 1 name', 'user_profile1_name', 0, 'f=index.htm&amp;as=admin_custom&amp;ae=admin_custom_end'), //cpg 1.4
   array('Profile 2 name', 'user_profile2_name', 0), //cpg 1.4
   array('Profile 3 name', 'user_profile3_name', 0), //cpg 1.4
   array('Profile 4 name', 'user_profile4_name', 0), //cpg 1.4
@@ -742,35 +742,35 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Profile 6 name', 'user_profile6_name', 0), //cpg 1.4
 
   'Custom fields for image description (leave blank if unused)',
-  array('Field 1 name', 'user_field1_name', 0, 'f=index.htm&as=admin_custom_image&ae=admin_custom_image_end'), //cpg 1.4
+  array('Field 1 name', 'user_field1_name', 0, 'f=index.htm&amp;as=admin_custom_image&amp;ae=admin_custom_image_end'), //cpg 1.4
   array('Field 2 name', 'user_field2_name', 0),
   array('Field 3 name', 'user_field3_name', 0),
   array('Field 4 name', 'user_field4_name', 0),
 
   'Cookies settings',
   array('Name of the cookie used by the script (when using bbs integration, make sure it differs from the bbs\'s cookie name)', 'cookie_name', 0),
-  array('Path of the cookie used by the script', 'cookie_path', 0, 'f=index.htm&as=admin_cookie_path&ae=admin_cookie_path_end'), //cpg 1.4
+  array('Path of the cookie used by the script', 'cookie_path', 0, 'f=index.htm&amp;as=admin_cookie_path&amp;ae=admin_cookie_path_end'), //cpg 1.4
 
   'Email settings  (usually nothing has to be changed here; leave all fields blank when not sure)', //cpg 1.4
-  array('SMTP Host (when left blank, sendmail will be used)', 'smtp_host', 0, 'f=index.htm&as=admin_email&ae=admin_email_end'), //cpg 1.4
+  array('SMTP Host (when left blank, sendmail will be used)', 'smtp_host', 0, 'f=index.htm&amp;as=admin_email&amp;ae=admin_email_end'), //cpg 1.4
   array('SMTP Username', 'smtp_username', 0), //cpg 1.4
   array('SMTP Password', 'smtp_password', 0), //cpg 1.4
 
   'Logging and statistics', //cpg 1.4
-  array('Logging mode <a href="#notice3" class="clickable_option">***</a>', 'log_mode', 11, 'f=index.htm&as=admin_logging_log_mode&ae=admin_logging_log_mode_end'), //cpg1.4
-  array('Log ecards', 'log_ecards', 1, 'f=index.htm&as=admin_general_log_ecards&ae=admin_general_log_ecards_end'), //cpg 1.4
-  array('Keep detailed vote statistics','vote_details',1, 'f=index.htm&as=admin_logging_votedetails&ae=admin_logging_votedetails_end'), //cpg 1.4
-  array('Keep detailed hit statistics','hit_details',1, 'f=index.htm&as=admin_logging_hitdetails&ae=admin_logging_hitdetails_end'), //cpg 1.4
+  array('Logging mode <a href="#notice3" class="clickable_option">***</a>', 'log_mode', 11, 'f=index.htm&amp;as=admin_logging_log_mode&amp;ae=admin_logging_log_mode_end'), //cpg1.4
+  array('Log ecards', 'log_ecards', 1, 'f=index.htm&amp;as=admin_general_log_ecards&amp;ae=admin_general_log_ecards_end'), //cpg 1.4
+  array('Keep detailed vote statistics','vote_details',1, 'f=index.htm&amp;as=admin_logging_votedetails&amp;ae=admin_logging_votedetails_end'), //cpg 1.4
+  array('Keep detailed hit statistics','hit_details',1, 'f=index.htm&amp;as=admin_logging_hitdetails&amp;ae=admin_logging_hitdetails_end'), //cpg 1.4
 
   'Miscellaneous settings',
-  array('Enable debug mode', 'debug_mode', 9, 'f=index.htm&as=debug_mode&ae=debug_mode_end'), //cpg 1.4
-  array('Display notices in debug mode', 'debug_notice', 1, 'f=index.htm&as=admin_misc_debug_notices&ae=admin_misc_debug_notices_end'), //cpg 1.4
-  array('Enable plugins', 'enable_plugins', 12, 'f=index.htm&as=admin_misc_enable-plugins&ae=admin_misc_enable-plugins_end'),  //cpg1.4
-  array('Allow banning of non-routable (private) IP addresses', 'ban_private_ip', 1,  'f=index.htm&as=admin_misc_private-ip&ae=admin_misc_private-ip_end'), //cpg1.4
-  array('Browsable batch-add interface', 'browse_batch_add', 1, 'f=index.htm&as=admin_misc_browsable_batch_add&ae=admin_misc_browsable_batch_add_end'), //cpg1.4
-  array('Path to custom header include', 'custom_header_path', 0, 'f=index.htm&as=admin_misc_include_path_start&ae=admin_misc_include_path_end'), //cpg1.4
-  array('Path to custom footer include', 'custom_footer_path', 0, 'f=index.htm&as=admin_misc_include_path_start&ae=admin_misc_include_path_end'), //cpg1.4
-array('Enable Report to Admin', 'report_post', 1, 'f=index.htm&as=admin_misc_enable_report&ae=admin_misc_enable_report_end'),  //cpg1.4
+  array('Enable debug mode', 'debug_mode', 9, 'f=index.htm&amp;as=debug_mode&amp;ae=debug_mode_end'), //cpg 1.4
+  array('Display notices in debug mode', 'debug_notice', 1, 'f=index.htm&amp;as=admin_misc_debug_notices&amp;ae=admin_misc_debug_notices_end'), //cpg 1.4
+  array('Enable plugins', 'enable_plugins', 12, 'f=index.htm&amp;as=admin_misc_enable-plugins&amp;ae=admin_misc_enable-plugins_end'),  //cpg1.4
+  array('Allow banning of non-routable (private) IP addresses', 'ban_private_ip', 1,  'f=index.htm&amp;as=admin_misc_private-ip&amp;ae=admin_misc_private-ip_end'), //cpg1.4
+  array('Browsable batch-add interface', 'browse_batch_add', 1, 'f=index.htm&amp;as=admin_misc_browsable_batch_add&amp;ae=admin_misc_browsable_batch_add_end'), //cpg1.4
+  array('Path to custom header include', 'custom_header_path', 0, 'f=index.htm&amp;as=admin_misc_include_path_start&amp;ae=admin_misc_include_path_end'), //cpg1.4
+  array('Path to custom footer include', 'custom_footer_path', 0, 'f=index.htm&amp;as=admin_misc_include_path_start&amp;ae=admin_misc_include_path_end'), //cpg1.4
+array('Enable Report to Admin', 'report_post', 1, 'f=index.htm&amp;as=admin_misc_enable_report&amp;ae=admin_misc_enable_report_end'),  //cpg1.4
 );
 
 // ------------------------------------------------------------------------- //
