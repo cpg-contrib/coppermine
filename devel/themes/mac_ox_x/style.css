@@ -51,7 +51,7 @@ body { background-color: #FAFAFA; }
 
 .tableh2, .catrow_noalb, .tableh2_compact, .tablef, .img_caption_table th {         background : #FFFFFF ; }
 
-.tableb, .catrow, .tableb_compact, .thumbnails, .img_caption_table td { background : #FFFFFF ; }
+.tableb, .catrow, .display_media, .tableb_compact, .thumbnails, .img_caption_table td { background : #FFFFFF ; }
 
 
 /* Borders for input controls */
@@ -289,21 +289,6 @@ a:hover {
         padding-left: 10px;
 }
 
-.catrow_noalb {
-        padding-top: 3px;
-        padding-right: 10px;
-        padding-bottom: 3px;
-        padding-left: 10px;
-        background-image: url(images/tableh2_bg.gif);
-}
-
-.catrow {
-        padding-top: 3px;
-        padding-right: 10px;
-        padding-bottom: 3px;
-        padding-left: 10px;
-}
-
 .tableb_compact {
         padding-top: 2px;
         padding-right: 5px;
@@ -319,6 +304,20 @@ a:hover {
         padding-left: 10px;
 }
 
+.catrow_noalb {
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+        background-image: url(images/tableh2_bg.gif);
+}
+
+.catrow {
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+}
 
 .album_stat {
         font-size : 85%;
@@ -502,6 +501,12 @@ td #admin_menu_anim {
         margin: 2px;
 }
 
+.display_media {
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+}
 
 .thumbnails {
         padding: 5px;
