@@ -429,12 +429,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Max size for uploaded files (KB)', 'max_upl_size', 0),
         array('Max width or height for uploaded pictures/videos (pixels)', 'max_upl_width_height', 0),
 
-        'User settings',
-        array('Allow new user registrations', 'allow_user_registration', 1),
-        array('User registration requires email verification', 'reg_requires_valid_email', 1),
-        array('Allow two users to have the same email address', 'allow_duplicate_emails_addr', 1),
-        array('Users can can have private albums', 'allow_private_albums', 1),
-
         'Custom fields for image description (leave blank if unused)',
         array('Field 1 name', 'user_field1_name', 0),
         array('Field 2 name', 'user_field2_name', 0),
