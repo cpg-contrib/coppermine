@@ -421,7 +421,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 				array('Activer le mode debug', 'debug_mode', 1),
 	
 	'<br /><div align="center">(*) Les champs marqués d\'un * ne doivent pas être modifiés si des images existent déjà !</div><br />'
-;)
+);
 // ------------------------------------------------------------------------- //
 // File db_input.php
 // ------------------------------------------------------------------------- //
@@ -759,7 +759,7 @@ $lang_register_php = array(
         'acct_already_act' => 'Votre compte est déjà actif!',
         'acct_act_failed' => 'Ce compte ne peut pas être activé!',
         'err_unk_user' => 'L\'utilisateur sélectionné n\'existe pas!',
-        'x_s_profile' => 'Profil de %s\',
+        'x_s_profile' => 'Profil de %s',
         'group' => 'Groupe',
         'reg_date' => 'Date d\'inscription',
         'disk_usage' => 'Utilisation du disque',

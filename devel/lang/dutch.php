@@ -22,12 +22,12 @@
 // info about translators and translated language 
 $lang_translation_info = array( 
 'lang_name_english' => 'Dutch',  //the name of your language in English, e.g. 'Greek' or 'Spanish' 
-'lang_name_native' => 'Nederlands', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Español' 
+'lang_name_native' => 'Nederlands', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '????????' or 'Español' 
 'lang_country_code' => 'nl', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es' 
 'trans_name'=> 'Ron Bos', //the name of the translator - can be a nickname 
 'trans_email' => 'ron@ronbos.nl', //translator's email address (optional) 
 'trans_website' => 'http://www.ronbos.nl/', //translator's website (optional) 
-'trans_date' => '2003-10-3', //the date the translation was created / last modified 
+'trans_date' => '2003-10-5', //the date the translation was created / last modified 
 ); 
 
 $lang_charset = 'iso-8859-1';
@@ -37,8 +37,8 @@ $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 $lang_byte_units = array('Bytes', 'KB', 'MB');
 
 // Day of weeks and months
-$lang_day_of_week = array('Zon', 'Maa', 'Din', 'Woe', 'Don', 'Vri', 'Zat');
-$lang_month = array('Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec');
+$lang_day_of_week = array('zon', 'maa', 'din', 'woe', 'don', 'vri', 'zat');
+$lang_month = array('jan', 'feb', 'mar', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec');
 
 $lang_yes = 'Ja';
 $lang_no  = 'Nee';
@@ -50,7 +50,7 @@ $lang_error = 'Fout';
 
 // See http://www.php.net/manual/en/function.strftime.php to define the
 // variable below
-$album_date_fmt =    '%d %B  %Y';
+$album_date_fmt =    '%d %B %Y';
 $lastcom_date_fmt =  '%d-%m-%y om %H:%M';
 $lastup_date_fmt = '%d %B %Y';
 $register_date_fmt = '%d %B %Y';
@@ -76,7 +76,7 @@ $lang_errors = array(
         'perm_denied' => 'Je hebt geen toestemming om deze handeling uit te voeren.',
         'param_missing' => 'Script aangeroepen zonder de vereiste parameters.',
         'non_exist_ap' => 'Geselecteerde album/foto bestaat niet !',
-        'quota_exceeded' => 'Disk quota overschreden<br /><br />Je hebt een quota van [quota]K, je foto\'s gebruiken nu [space]K, het toevoegen van deze foto zorgt er voor dat je je quota overschrijdt.',
+        'quota_exceeded' => 'Diskquota overschreden<br /><br />Je hebt een quota van [quota]K, je foto\'s gebruiken nu [space]K, het toevoegen van deze foto zorgt er voor dat je je quota overschrijdt.',
         'gd_file_type_err' => 'Indien je de GD image library gebruikt zijn alleen JPEG en PNG toegestaan.',
         'invalid_image' => 'De foto welke je hebt geupload is corrupt of kan niet behandeld worden door de GD library',
         'resize_failed' => 'Niet in staat de thumbnail of de aangepaste foto afmeting te maken.',
@@ -100,10 +100,10 @@ $lang_main_menu = array(
         'my_gal_title' => 'Ga naar mijn persoonlijke galerij',
         'my_gal_lnk' => 'Mijn galerij',
         'my_prof_lnk' => 'Mijn profiel',
-        'adm_mode_title' => 'Schakel naar admin modus',
-        'adm_mode_lnk' => 'Admin modus',
-        'usr_mode_title' => 'Schakel naar gebruiker modus',
-        'usr_mode_lnk' => 'Gebruiker modus',
+        'adm_mode_title' => 'Schakel naar admin-modus',
+        'adm_mode_lnk' => 'Admin-modus',
+        'usr_mode_title' => 'Schakel naar gebruiker-modus',
+        'usr_mode_lnk' => 'Gebruiker-modus',
         'upload_pic_title' => 'Upload van een foto in een album',
         'upload_pic_lnk' => 'Upload foto',
         'register_title' => 'Creëer een account',
@@ -127,8 +127,9 @@ $lang_gallery_admin_menu = array(
         'groups_lnk' => 'Groepen',
         'comments_lnk' => 'Commentaren',
         'searchnew_lnk' => 'Batch toevoegen foto\'s',
-        'util_lnk' => 'Grootte aanpassen foto\'s',
-        'ban_lnk' => 'Ban Users', //new in cpg1.2.0 
+        'util_lnk' => 'Grootte aanpassen foto\'s', 
+        'ban_lnk' => 'Ban Gebruiker', //new in cpg1.2.0
+
 );
 
 $lang_user_admin_menu = array(
@@ -148,16 +149,16 @@ $lang_album_list = array(
 );
 
 $lang_thumb_view = array(
-        'date' => 'Datum',
+        'date' => 'DATUM',
         //Sort by filename and title 
-        'name' => 'BESTANDS NAAM', 
+        'name' => 'BESTANDSNAAM', 
         'title' => 'TITEL', 
         'sort_da' => 'Sorteer op datum oplopend',
         'sort_dd' => 'Sorteer op datum aflopend',
         'sort_na' => 'Sorteer op naam oplopend',
         'sort_nd' => 'Sorteer op naam aflopend',
-        'sort_ta' => 'Sorteer op titel afloopend', 
-        'sort_td' => 'Sorteer op titel oploopend', 
+        'sort_ta' => 'Sorteer op titel oploopend', 
+        'sort_td' => 'Sorteer op titel afloopend', 
         'pic_on_page' => '%d foto(\'s) op %d pagina(\'s)',
         'user_on_page' => '%d gebruiker(s) op %d pagina(\'s)'
 );
@@ -214,7 +215,7 @@ $lang_display_thumbnails = array(
 
 $lang_get_pic_data = array(
         'n_comments' => '%s commentaren',
-        'n_views' => '%s bekeken',
+        'n_views' => '%s x bekeken',
         'n_votes' => '(%s stemmen)'
 );
 
@@ -270,8 +271,8 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ADMIN_PHP')) $lang_admin_php = array(
-        0 => 'Verlaten admin modus',
-        1 => 'Admin modus geactiveerd'
+        0 => 'Verlaten admin-modus',
+        1 => 'Admin-modus geactiveerd'
 );
 
 // ------------------------------------------------------------------------- //
@@ -340,7 +341,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         'Algemene instellingen',
         array('galerij naam', 'gallery_name', 0),
         array('galerij omschrijving', 'gallery_description', 0),
-        array('galerij administrator e-mailadres', 'gallery_admin_email', 0),
+        array('E-mailadres galerij administrator', 'gallery_admin_email', 0),
         array('Het doel adres van de \'Zie meer foto\'s\' link in e-cards', 'ecards_more_pic_target', 0),
         array('Taal', 'lang', 5),
         array('Thema', 'theme', 6),
@@ -353,7 +354,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Grootte van de thumbnails in pixels', 'alb_list_thumb_size', 0),
         array('De inhoud van de hoofd pagina', 'main_page_layout', 0),
         array('Laat eerste niveau album thumbnails zien in categorieën','first_level',1), 
-
 
         'Thumbnail uiterlijk',
         array('Aantal kolommen op de thumbnail pagina', 'thumbcols', 0),
@@ -380,8 +380,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         'Foto en thumbnail instellingen',
         array('Kwaliteit voor JPEG bestanden', 'jpeg_qual', 0),
         array('Maximale breedte of hoogte van een thumbnail *', 'thumb_width', 0),
-        array('Max dimensie van een thumbnail <b>*</b>', 'thumb_width', 0), 
-        array('gebruik dimensie  (breedte of hoogte verhouding van thumbnail) <b>*</b>', 'thumb_use', 7), 
+        array('Max afmeting van een thumbnail <b>*</b>', 'thumb_width', 0), 
+        array('gebruik afmeting  (breedte of hoogte verhouding van thumbnail) <b>*</b>', 'thumb_use', 7), 
         array('Creëer tussen foto\'s','make_intermediate',1),
         array('Maximale breedte of hoogte van tussen foto\'s *', 'picture_width', 0),
         array('Maximale grootte van upload foto\'s (KB)', 'max_upl_size', 0),
@@ -391,7 +391,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Laat nieuwe gebruiker registratie toe', 'allow_user_registration', 1),
         array('Gebruiker registratie vereist e-mail verificatie', 'reg_requires_valid_email', 1),
         array('Laat toe dat twee gebruikers hetzelfde e-mail adres hebben', 'allow_duplicate_emails_addr', 1),
-        array('Gebruikers kunnen prive albums hebben', 'allow_private_albums', 1),
+        array('Gebruikers kunnen privé albums hebben', 'allow_private_albums', 1),
 
 
         'Eigen velden voor foto beschrijving (laat leeg indien niet gebruikt)',
@@ -405,6 +405,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Verboden tekens in bestandsnamen', 'forbiden_fname_char',0),
         array('Toegestane bestandstype (alleen geldig voor ImageMagick)', 'allowed_img_types',0),
         array('Geaccepteerde bestandsextensies voor upload foto\'s', 'allowed_file_extensions',0),
+        array('Command line opties voor ImageMagick', 'im_options', 0),
         array('Methode van aanpassen grootte foto\'s','thumb_method',2),
         array('Pad naar ImageMagick \'convert\' utility (voorbeeld /usr/bin/X11/)', 'impath', 0),
         array('Lees EXIF data in JPEG bestanden', 'read_exif_data', 1),
@@ -431,6 +432,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 // ------------------------------------------------------------------------- //
 // File db_input.php
 // ------------------------------------------------------------------------- //
+
 
 if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
         'empty_name_or_com' => 'Je moet je naam en commentaar ingeven',
@@ -512,7 +514,7 @@ $lang_picinfo = array(
         'Album name' => 'Albumnaam',
         'Rating' => 'Waardering (%s stemmen)',
         'Keywords' => 'Sleutelwoorden',
-        'File Size' => 'Bestands grootte',
+        'File Size' => 'Bestandsgrootte',
         'Dimensions' => 'Afmetingen',
         'Displayed' => 'Getoond',
         'Camera' => 'Camera',
@@ -536,11 +538,11 @@ $lang_display_comments = array(
         'your_name' => 'Anon', 
 );
 
-}
 $lang_fullsize_popup = array( 
         'click_to_close' => 'Klik op de foto om dit window te sluiten', 
 ); 
 
+}
 
 // ------------------------------------------------------------------------- //
 // File ecard.php
@@ -627,7 +629,7 @@ $lang_index_php = array(
 $lang_album_admin_menu = array(
         'confirm_delete' => 'Weet je het zeker dat je dit album wilt VERWIJDEREN ? \\nAlle foto\'s en commentaren worden ook verwijderd.',
         'delete' => 'Verw',
-        'modify' => 'Aanp',
+        'modify' => 'Eig',
         'edit_pics' => 'Wijzig foto\'s',
 );
 
@@ -744,7 +746,7 @@ $lang_register_php = array(
         'err_uname_short' => 'Gebruikersnaam moet minimaal 2 tekens lang zijn',
         'err_password_short' => 'Wachtwoord moet minimaal 2 tekens lang zijn',
         'err_uname_pass_diff' => 'Gebruikersnaam en wachtwoord moeten verschillend zijn',
-        'err_invalid_email' => 'e-mail adres is ongeldig',
+        'err_invalid_email' => 'E-mail adres is ongeldig',
         'err_duplicate_email' => 'Een andere gebruiker heeft zich reeds geregistreerd met dit e-mail adres',
         'enter_info' => 'Voer registratie informatie in ',
         'required_info' => 'Verplichte informatie',
@@ -855,7 +857,7 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
                                 '<li><b>DP</b> : betekent dat de foto dubbel is en zich reeds in de database bevindt'.
                                 '<li><b>PB</b> : betekent dat de foto niet toegevoegd kon worden, controleer je configuratie en de permissies op mappen waar de foto\'s zich bevinden'.
                                 '<li>Als de OK, DP, PB \'tekens\' niet verschijnen klik dan op de verbroken foto om te kijken of er een PHP fout bericht gegeven wordt'.
-                                '<li>Indien je browser uittimed druk dan op de herlaad knop'.
+                                '<li>Indien je browser uittimed klik dan op de herlaad knop'.
                                 '</ul>'
 );
 
@@ -974,7 +976,7 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
         'instruction_action' => 'Selecteer actie', 
         'instruction_parameter' => 'Zet parameters', 
         'instruction_album' => 'Selecteer album', 
-        'instruction_press' => 'Druk %s', 
+        'instruction_press' => 'Klik %s', 
         'update' => 'Aanpassen thumbs en/of grootte foto\'s', 
         'update_what' => 'Wat moet er aangepast worden', 
         'update_thumb' => 'Alleen thumbnails', 

@@ -21,12 +21,12 @@
 // info about translators and translated language 
 $lang_translation_info = array( 
 'lang_name_english' => 'Finnish',  //the name of your language in English, e.g. 'Greek' or 'Spanish' 
-'lang_name_native' => 'Suomenkielinen', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Español' 
+'lang_name_native' => 'Suomea', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Español' 
 'lang_country_code' => 'fi', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es' 
 'trans_name'=> 'V.Taavila', //the name of the translator - can be a nickname 
 'trans_email' => 'quandox@kastema.to', //translator's email address (optional) 
 'trans_website' => 'http://', //translator's website (optional) 
-'trans_date' => '2003-10-03', //the date the translation was created / last modified 
+'trans_date' => '2003-10-14', //the date the translation was created / last modified 
 ); 
 
 $lang_charset = 'iso-8859-15';
@@ -68,7 +68,7 @@ $lang_meta_album_names = array(
         'toprated' => 'Suosituimmat', 
         'lasthits' => 'Viimeksi tarkasteltu', 
         'search' => 'Haun tulokset', 
-        'favpics'=> 'Suosikki Kuvat' 
+        'favpics'=> 'Suosikkikini' 
 ); 
 
 $lang_errors = array(
@@ -128,9 +128,8 @@ $lang_gallery_admin_menu = array(
 	'groups_lnk' => 'Ryhmät',
 	'comments_lnk' => 'Kommentit',
 	'searchnew_lnk' => 'Lisää "FTP" kuvat',
-	'util_lnk' => 'Pienennä Kuvia',
+	'util_lnk' => 'Käsittele Kuvia',
 	'ban_lnk' => 'Kiellä Käyttäjiä',
-        'ban_lnk' => 'Ban Users', //new in cpg1.2.0 
 );
 
 $lang_user_admin_menu = array(
@@ -371,8 +370,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Maksimi määrä merkkejä sanassa', 'max_com_wlength', 0),
 	array('Kommentti rivien maksimi määrä', 'max_com_lines', 0),
 	array('Kommentin maksimi pituus', 'max_com_size', 0),
-	array('Näytä filmi strippi', 'display_film_strip', 1), 
-    array('Kohteita filmi stripissä', 'max_film_strip_items', 0), 
+	array('Näytä thumbnaileja kuva sivulla', 'display_film_strip', 1), 
+    array('Thumbnaileja kuva sivulla', 'max_film_strip_items', 0), 
 
 	'Kuvien ja thumbnailien asetukset',
 	array('Tarkkuus JPEG tiedostoilla', 'jpeg_qual', 0),
@@ -815,7 +814,7 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCH_PHP')) $lang_search_php = array(
-	0 => 'Hae kuva kokoelmasta',
+	0 => 'Hae kuva',
 );
 
 // ------------------------------------------------------------------------- //
@@ -869,7 +868,7 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
                 'expiry' => 'Päättyy (tyhjä jos pysyvä)', 
                 'edit_ban' => 'Tallenna Muutokset', 
                 'delete_ban' => 'Poista', 
-                'add_new' => 'Lisää Uusi Esto', 
+                'add_new' => 'Lisää uusi esto', 
                 'add_ban' => 'Lisää', 
 );
 
@@ -940,7 +939,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 
 if (defined('UTIL_PHP')) $lang_util_php = array( 
         'title' => 'Pienennä kuvia', 
-        'what_it_does' => 'Mitä mikäkin tekee', 
+        'what_it_does' => 'Ominaisuudet', 
         'what_update_titles' => 'Päivittää otsikot tiedostonimiin', 
         'what_delete_title' => 'Poistaa otsikot', 
         'what_rebuild' => 'Tekee uudet thumbnailit ja pienentää kuvat', 
@@ -954,7 +953,7 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
         'main_success' => 'Tiedostoa %s on onnistuneesti käytetty pääkuvana', 
         'error_rename' => 'Virhe uudelleen nimeämisessä %s ei voitu nimetä %s', 
         'error_not_found' => 'Tiedostoa %s ei löydy', 
-        'back' => 'takaisin etusivulle', 
+        'back' => 'takaisin', 
         'thumbs_wait' => 'Päivitää thumbnaileja ja/tai pienentää kuvia, odota hetki...', 
         'thumbs_continue_wait' => 'Jatkaa thumbnailien päivittämistä ja/tai kuvien pienentämistä...', 
         'titles_wait' => 'Päivittää otsikoita, odota hetki...', 
@@ -969,7 +968,7 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
         'update_what' => 'Mitä päivitetään', 
         'update_thumb' => 'Ainoastaan thumbnailit', 
         'update_pic' => 'Pienennetään pelkät kuvat', 
-        'update_both' => 'Molemmat, pienennetään kuvat ja päivitetään thumbnailit', 
+        'update_both' => 'Pienennetään kuvat ja päivitetään thumbnailit', 
         'update_number' => 'Kuinka monta kuvaa käsitellään joka klikkauksella', 
         'update_option' => '(Kokeile säätää toimintoa pienemmälle jos tulee timeout ongelmia)', 
         'filename_title' => 'Tiedostonimi ? Kuvan otsikko', 
