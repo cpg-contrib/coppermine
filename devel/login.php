@@ -35,6 +35,7 @@ $cookie_warning = '';
 
 if (isset($_POST['submitted'])) {
     if ( $USER_DATA = $cpg_udb->login( addslashes($_POST['username']), addslashes($_POST['password']), isset($_POST['remember_me']) ) ) {
+        $referer=preg_replace("'&amp;'","&",$referer);
         pageheader($lang_login_php['login'], "<META http-equiv=\"refresh\" content=\"3;url=$referer\">");
         msg_box($lang_login_php['login'], sprintf($lang_login_php['welcome'], $USER_DATA['user_name']), $lang_continue, $referer);
         pagefooter();
@@ -55,7 +56,7 @@ EOT;
         $failed_logon_counter = mysql_fetch_array($result);
         mysql_free_result($result);
         $expiry_date = date("Y-m-d H:i:s", mktime(date('H'), date('i')+$CONFIG['login_expiry'], date('s'), date('m'), date('d'),date('Y')));
-        
+
         if ($failed_logon_counter['brute_force']) {
             $failed_logon_counter['brute_force'] = $failed_logon_counter['brute_force'] - 1;
             $query_string = "UPDATE {$CONFIG['TABLE_BANNED']} SET brute_force='".$failed_logon_counter['brute_force']."',  expiry='".$expiry_date."' WHERE ban_id=".$failed_logon_counter['ban_id'];
@@ -63,7 +64,7 @@ EOT;
             $failed_logon_counter['brute_force'] = $CONFIG['login_threshold'];
             $query_string = "INSERT INTO {$CONFIG['TABLE_BANNED']} (ip_addr, expiry, brute_force) VALUES ('$raw_ip', '$expiry_date','".$failed_logon_counter['brute_force']."')";
         }
-        
+
         //write the logon counter to the database
         cpg_db_query($query_string);
     }
