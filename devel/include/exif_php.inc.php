@@ -57,7 +57,7 @@ function exif_parse_file($filename)
                 $exifRawData = unserialize($row["exifData"]);
         } else {
           // No data in the table - read it from the image file
-          $exifRawData = read_exif_data_raw($filename);	
+          $exifRawData = read_exif_data_raw($filename,0);	
           // Insert it into table for future reference
           $sql = "INSERT INTO {$CONFIG['TABLE_EXIF']} ".
                     "VALUES ('$filename', '".addslashes(serialize($exifRawData))."')";
