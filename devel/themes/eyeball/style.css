@@ -32,6 +32,8 @@
 /* Foreground color definition */
 body { color : #FFFFFF; }
 
+table { border-collapse: collapse; }
+
 .topmenu, .topmenu a { color : #FFFFFF; }
 
 .topmenu a:hover { color : #666666; }
@@ -155,6 +157,7 @@ li {
         list-style-position: outside;
         list-style-type: disc;
 }
+
 
 
 .top_panel td {
@@ -608,7 +611,7 @@ td #admin_menu_anim {
 }
 
 .clickable_option {
-        cursor : hand;
+        cursor : default;
 }
 
 .listbox_lang {
@@ -618,4 +621,21 @@ td #admin_menu_anim {
         font-size: 80%;
         font-family: Arial, Helvetica, sans-serif;
         vertical-align : middle;
+}
+
+/* Modified Holly-Hack to fix IE 3px bug */
+
+/* Hides from IE-mac \*/
+
+* html .ie_fix {margin-bottom: -3px;}
+/* End hide from IE-mac */
+
+
+#Menu1 {
+         position:relative;
+         width:780px;
+         height:15px;
+         top: 3px;
+         left: 20px;
+         visibility: hidden;
 }
