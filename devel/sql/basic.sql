@@ -85,4 +85,4 @@ INSERT INTO CPG_usergroups VALUES (4, 'Banned', 0, 0, 0, 0, 0, 0, 0, 1, 1);
 # Dumping data for table `CPG_categories`
 #
 
-INSERT INTO CPG_categories VALUES (1, 0, 'User galleries', 'This category contains albums that belong to Coppermine users.', 0, 0, 0, 0, 0, 'NO');
+INSERT INTO CPG_categories VALUES (1, 0, 'User galleries', 'This category contains albums that belong to Coppermine users.', 0, 0, 0, 0, 0, 0, 'NO');
