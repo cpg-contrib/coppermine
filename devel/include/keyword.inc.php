@@ -46,8 +46,12 @@ $count = count($keywords_array);
 // Result to table
 echo '<tr><td class="tableb">' ;
 for ($i = 0; $i < $count; $i++) {
-  echo "<a href=\"thumbnails.php?album=search&search=$keywords_array[$i]\">$keywords_array[$i]</a> | " ;
-
+  if ($keywords_array[$i]) {     // Eliminates Null Keywords
+    echo "<a href=\"thumbnails.php?album=search&search=$keywords_array[$i]\">$keywords_array[$i]</a>";
+    if ($i<$count-1) {		     // Eliminates Trailing Pipe after last keyword
+      echo " | ";
+    }
+  }
 }
 echo "</td></tr>" ;
 if (GALLERY_ADMIN_MODE == true){
