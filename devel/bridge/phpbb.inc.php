@@ -131,7 +131,8 @@ function udb_authenticate()
         $USER_DATA['priv_upl_need_approval'] = 1;
         $USER_DATA['upload_form_config'] = 0;
         $USER_DATA['num_file_upload'] = 0; 
-        $USER_DATA['num_URI_upoad'] = 0; 
+        $USER_DATA['num_URI_upoad'] = 0;
+        $USER_DATA['custom_user_upload'] = 0; 
 
         $sql = "SELECT  group_quota as gq, " . "        can_rate_pictures as crp, " . "        can_send_ecards as cse, " . "        can_post_comments as cpc, " . "        can_upload_pictures as cup, " . "        can_create_albums as cca, " . "        pub_upl_need_approval as puna, " . "        priv_upl_need_approval as pruna, " . "        upload_form_config as ufc, " . "        custom_user_upload as cuu, " . "        num_file_upload as nfu, " . "        num_URI_upload as nuu " . "FROM {$CONFIG['TABLE_USERGROUPS']} " . "WHERE group_id IN " . $user_group_set;
         $result = db_query($sql);
@@ -172,7 +173,7 @@ function udb_authenticate()
             if($fbox_number  > $USER_DATA['num_file_upload']) $USER_DATA['num_file_upload'] = $fbox_number; 
 
             $ubox_number = $row['nuu'];
-            if($ubox_number > $USER_DATA['num_URI_upoad']) $USER_DATA['num_URI_upoad'] = $ubox_number; 
+            if($ubox_number > $USER_DATA['num_URI_upload']) $USER_DATA['num_URI_upload'] = $ubox_number; 
 
         }
         mysql_free_result($result);
