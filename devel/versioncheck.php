@@ -1916,7 +1916,7 @@ $return = '
 1.4.0|themes|||mandatory|r@
 1.4.0|themes/classic|||optional|r@
 1.4.0|themes/classic/style.css||1.8|optional|r@
-1.4.0|themes/classic/template.html||1.3|optional|r@
+1.4.0|themes/classic/template.html||1.9|optional|r@
 1.4.0|themes/classic/theme.php|1.4.0|1.22|optional|r@
 1.4.0|themes/classic/images|||optional|r@
 1.4.0|themes/eyeball|||optional|r@
