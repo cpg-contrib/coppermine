@@ -1,8 +1,8 @@
-<?php
+﻿<?php
 // ------------------------------------------------------------------------- //
 //  Coppermine Photo Gallery v1.1 Beta 2                                     //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Grégory DEMAR <gdemar@wanadoo.fr>               //
+//  Copyright (C) 2002,2003  Gr&eacute;gory DEMAR <gdemar@wanadoo.fr>               //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
 //  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
@@ -18,21 +18,32 @@
 //  Translation Version 1.0 Alpha 2                                          //
 // ------------------------------------------------------------------------- //
 
-$lang_charset = 'utf-8';
+// info about translators and translated language 
+$lang_translation_info = array( 
+'lang_name_english' => 'Turkish',  //the name of your language in English, e.g. 'Greek' or 'Spanish' 
+'lang_name_native' => 'Türkçe', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Español' 
+'lang_country_code' => 'tr', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es' 
+'trans_name'=> 'Mustafa Tolga YILMAZ', //the name of the translator - can be a nickname 
+'trans_email' => 'mtolgay@yahoo.com', //translator's email address (optional) 
+'trans_website' => 'http://www.fiat.web.tr/', //translator's website (optional) 
+'trans_date' => '2003-10-02', //the date the translation was created / last modified 
+); 
+
+$lang_charset = 'windows-1254';
 $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 
 // shortcuts for Byte, Kilo, Mega
 $lang_byte_units = array('Bayt', 'KB', 'MB');
 
 // Day of weeks and months
-$lang_day_of_week = array('Paz', 'Pzt', 'Sal', 'Çrş', 'Prş', 'Cum', 'Cmt');
-$lang_month = array('Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Au&Auml;�', 'Eyl', 'Eki', 'Kas', 'Ara');
+$lang_day_of_week = array('Paz', 'Pzt', 'Sal', 'Çrþ', 'Prþ', 'Cum', 'Cmt');
+$lang_month = array('Oca', 'Þub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Auð', 'Eyl', 'Eki', 'Kas', 'Ara');
 
 // Some common strings
 $lang_yes = 'Evet';
-$lang_no  = 'Hay&Auml;�r';
-$lang_back = 'GER&Auml;�';
-$lang_continue = '&Auml;�LER&Auml;�';
+$lang_no  = 'Hayýr';
+$lang_back = 'GERÝ';
+$lang_continue = 'ÝLERÝ';
 $lang_info = 'Bilgi';
 $lang_error = 'Hata';
 
@@ -48,119 +59,130 @@ $comment_date_fmt =  '%d %B %Y at %H:%M';
 // For the word censor
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*', '*sik*', 'am*', 'yarrak', 'yarak', 'orospu');
 
-$lang_meta_album_names = array(
-	'random' => 'Rasgele resimler',
-	'lastup' => 'Son eklenenler',
-	'lastcom' => 'Son yorumlar',
-	'topn' => 'En çok izlenenler',
-	'toprated' => 'En çok oy alanlar',
-	'lasthits' => 'Son izlenenler',
-	'search' => 'Arama sonuçlar'
+$lang_meta_album_names = array( 
+        'random' => 'Rasgele resimler', 
+        'lastup' => 'Son eklenenler', 
+        'lastalb'=> 'Son güncellenen albümler', 
+        'lastcom' => 'Son yorumlar', 
+        'topn' => 'En çok izlenen', 
+        'toprated' => 'En çok oylanan', 
+        'lasthits' => 'En son izlenen', 
+        'search' => 'Arama sonuçlarý', 
+        'favpics'=> 'Sýk Kullanýlan Resimler' 
 );
 
 $lang_errors = array(
-	'access_denied' => 'Bu sayfay&Auml;� görüntülemeye izniniz yok.',
-	'perm_denied' => 'Bu işlemi yürütmeye izniniz yok.',
-	'param_missing' => 'Program&Auml;� çal&Auml;�şt&Auml;�rmak için yetersiz komut(lar).',
-	'non_exist_ap' => 'Şeçilmiş olan Albüm/Resim yok !',
-	'quota_exceeded' => 'Disk kotas&Auml;� aş&Auml;�ld&Auml;�<br /><br />Sizin şu an ki alan&Auml;�n&Auml;�z [quota]K, resimleriniz [space]K alan kapl&Auml;�yor, bu resim eklenseydi kotan&Auml;�z&Auml;� aşm&Auml;�ş olacakt&Auml;�n&Auml;�z.',
-	'gd_file_type_err' => 'GD Resim Kütüphanesini kullan&Auml;�rken geçerli olan resim tipleri JPG ve PNG.',
-	'invalid_image' => 'Yükledi&Auml;�iniz resim ya bozuk ya da GD Kütüphanesi taraf&Auml;�ndan tan&Auml;�mlanam&Auml;�yor.',
-	'resize_failed' => 'Küçük resim veya düşük boyutlu resim oluşturulam&Auml;�yor.',
-	'no_img_to_display' => 'Gösterilecek resim yok',
-	'non_exist_cat' => 'Seçilmiş olan kategori yok',
-	'orphan_cat' => 'Bir kategorinin ana dal&Auml;� yok, bu sorunu haletmek için Kategori Yöneticisini çal&Auml;�şt&Auml;�r&Auml;�n.',
-	'directory_ro' => 'Dizin \'%s\'  e yaz&Auml;�labilir de&Auml;�il, resimler silinemiyor',
-	'non_exist_comment' => 'Şeçilmiş olan yorum yok.',
-	'pic_in_invalid_album' => 'Resim var olmayan bir albümde (%s)!?'
-);
+	'access_denied' => 'Bu sayfayý g&ouml;r&uuml;nt&uuml;lemeye izniniz yok.',
+	'perm_denied' => 'Bu iþlemi y&uuml;r&uuml;tmeye izniniz yok.',
+	'param_missing' => 'Programý çalýþtýrmak için yetersiz komut(lar).',
+	'non_exist_ap' => 'Þeçilmiþ olan Alb&uuml;m/Resim yok !',
+	'quota_exceeded' => 'Disk kotasý aþýldý<br /><br />Sizin þu an ki alanýnýz [quota]K, resimleriniz [space]K alan kaplýyor, bu resim eklenseydi kotanýzý aþmýþ olacaktýnýz.',
+	'gd_file_type_err' => 'GD Resim K&uuml;t&uuml;phanesini kullanýrken geçerli olan resim tipleri JPG ve PNG.',
+	'invalid_image' => 'Y&uuml;klediðiniz resim ya bozuk ya da GD K&uuml;t&uuml;phanesi tarafýndan tanýmlanamýyor.',
+	'resize_failed' => 'K&uuml;ç&uuml;k resim veya d&uuml;þ&uuml;k boyutlu resim oluþturulamýyor.',
+	'no_img_to_display' => 'G&ouml;sterilecek resim yok',
+	'non_exist_cat' => 'Seçilmiþ olan kategori yok',
+	'orphan_cat' => 'Bir kategorinin ana dalý yok, bu sorunu haletmek için Kategori Y&ouml;neticisini çalýþtýrýn.',
+	'directory_ro' => 'Dizin \'%s\'  e yazýlabilir deðil, resimler silinemiyor',
+	'non_exist_comment' => 'Þeçilmiþ olan yorum yok.',
+        'pic_in_invalid_album' => 'Resim var olmayan bir albümde (%s)!?', 
+        'banned' => 'Bu siteyi þimdlik kullanmanýz yasaklanmýþtýr.', 
+        'not_with_udb' => 'Bu fonksiyon Coppermine'da iptal edilmiþtir çünkü forum yazýlýmý ile birleþtirilmiþtir. Denemek istediðiniz ya bu konfigurasyon ile desteklenmiyor veyahut bu fonksiyon forum yazýlýmý tarafýndan uygulanacak.', 
+); 
 
 // ------------------------------------------------------------------------- //
 // File theme.php
 // ------------------------------------------------------------------------- //
 
 $lang_main_menu = array(
-	'alb_list_title' => 'Albüm listesine git',
-	'alb_list_lnk' => 'Albüm listesi',
-	'my_gal_title' => 'Kişisel galerime git',
-	'my_gal_lnk' => 'Kişisel Galerim',
+	'alb_list_title' => 'Alb&uuml;m listesine git',
+	'alb_list_lnk' => 'Alb&uuml;m listesi',
+	'my_gal_title' => 'Kiþisel galerime git',
+	'my_gal_lnk' => 'Kiþisel Galerim',
 	'my_prof_lnk' => 'My profile',
-	'adm_mode_title' => 'Yönetici konumuna geçiş yap',
-	'adm_mode_lnk' => 'Yönetici konumu',
-	'usr_mode_title' => 'Kullan&Auml;�c&Auml;� konumuna geçiş yap',
-	'usr_mode_lnk' => 'Kullan&Auml;�c&Auml;� konumu',
-	'upload_pic_title' => 'Bir resimi bir albüme yükle',
-	'upload_pic_lnk' => 'Resim yükle',
-	'register_title' => 'Bir hesap oluştur',
-	'register_lnk' => 'Kay&Auml;�t ol',
-	'login_lnk' => 'Giriş',
-	'logout_lnk' => 'Ç&Auml;�k&Auml;�ş',
-	'lastup_lnk' => 'Son yüklenenler',
+	'adm_mode_title' => 'Y&ouml;netici konumuna geçiþ yap',
+	'adm_mode_lnk' => 'Y&ouml;netici konumu',
+	'usr_mode_title' => 'Kullanýcý konumuna geçiþ yap',
+	'usr_mode_lnk' => 'Kullanýcý konumu',
+	'upload_pic_title' => 'Bir resimi bir alb&uuml;me y&uuml;kle',
+	'upload_pic_lnk' => 'Resim y&uuml;kle',
+	'register_title' => 'Bir hesap oluþtur',
+	'register_lnk' => 'Kayýt ol',
+	'login_lnk' => 'Giriþ',
+	'logout_lnk' => 'Çýkýþ',
+	'lastup_lnk' => 'Son y&uuml;klenenler',
 	'lastcom_lnk' => 'Son yorumlar',
 	'topn_lnk' => 'En çok izlenenler',
 	'toprated_lnk' => 'En çok oy alanlar',
 	'search_lnk' => 'Ara',
+        'fav_lnk' => 'Sýk Kullanýlanlar', 
 );
 
 $lang_gallery_admin_menu = array(
-	'upl_app_lnk' => 'Yükleme izini',
+	'upl_app_lnk' => 'Y&uuml;kleme izini',
 	'config_lnk' => 'Seçenekler',
-	'albums_lnk' => 'Albümler',
+	'albums_lnk' => 'Alb&uuml;mler',
 	'categories_lnk' => 'Kategoriler',
-	'users_lnk' => 'Kullan&Auml;�c&Auml;�lar',
+	'users_lnk' => 'Kullanýcýlar',
 	'groups_lnk' => 'Gruplar',
 	'comments_lnk' => 'Yorumlar',
-	'searchnew_lnk' => 'Küme resimleri ekle',
+	'searchnew_lnk' => 'K&uuml;me resimleri ekle',
+        'util_lnk' => 'Resimleri boyutlandýr', 
+        'ban_lnk' => 'Kullanýcýlarý yasakla', 
 );
 
 $lang_user_admin_menu = array(
-	'albmgr_lnk' => 'Oluştur veya albümleri iste',
-	'modifyalb_lnk' => 'Albümlerde de&Auml;�işiklik yap',
+	'albmgr_lnk' => 'Oluþtur veya alb&uuml;mleri iste',
+	'modifyalb_lnk' => 'Alb&uuml;mlerde deðiþiklik yap',
 	'my_prof_lnk' => 'Profilim',
 );
 
 $lang_cat_list = array(
 	'category' => 'Kategori',
-	'albums' => 'Albümler',
+	'albums' => 'Alb&uuml;mler',
 	'pictures' => 'Resimler',
 );
 
 $lang_album_list = array(
-	'album_on_page' => '%d albümünüz %d sayfadad&Auml;�r'
+	'album_on_page' => '%d alb&uuml;m&uuml;n&uuml;z %d sayfadadýr'
 );
 
 $lang_thumb_view = array(
-	'date' => 'TAR&Auml;�H',
-	'name' => 'AD',
-	'sort_da' => 'Tarihi küçükten büyüyü&Auml;�e s&Auml;�rala',
-	'sort_dd' => 'Tarihi büyükten küçüyü&Auml;�e s&Auml;�rala',
-	'sort_na' => 'Ad&Auml;� küçükten büyüyü&Auml;�e s&Auml;�rala',
-	'sort_nd' => 'Ad&Auml;� büyükten küçüyü&Auml;�e s&Auml;�rala',
-	'pic_on_page' => '%d resim %d sayfadad&Auml;�r',
-	'user_on_page' => '%d kullan&Auml;�c&Auml;� %d sayfadad&Auml;�r'
+	'date' => 'TARÝH',
+        //Sort by filename and title 
+        'name' => 'DOSYA ADI', 
+        'title' => 'BAÞLIK',
+	'sort_da' => 'Tarihi k&uuml;ç&uuml;kten b&uuml;y&uuml;y&uuml;ðe sýrala',
+	'sort_dd' => 'Tarihi b&uuml;y&uuml;kten k&uuml;ç&uuml;y&uuml;ðe sýrala',
+	'sort_na' => 'Adý k&uuml;ç&uuml;kten b&uuml;y&uuml;y&uuml;ðe sýrala',
+	'sort_nd' => 'Adý b&uuml;y&uuml;kten k&uuml;ç&uuml;y&uuml;ðe sýrala',
+        'sort_ta' => 'Baþlýða göre küçükten büyüðe diz', 
+        'sort_td' => 'Baþlýða göre büyükten küçüðe diz', 
+	'pic_on_page' => '%d resim %d sayfadadýr',
+	'user_on_page' => '%d kullanýcý %d sayfadadýr'
 );
 
 $lang_img_nav_bar = array(
-	'thumb_title' => 'Küçük resim sayfas&Auml;�na geri dön',
-	'pic_info_title' => 'Resmi bilgilerine göster/sakla',
-	'slideshow_title' => 'Gösteri',
+	'thumb_title' => 'K&uuml;ç&uuml;k resim sayfasýna geri d&ouml;n',
+	'pic_info_title' => 'Resmi bilgilerine g&ouml;ster/sakla',
+	'slideshow_title' => 'G&ouml;steri',
 	'ecard_title' => 'Bu resimi e-Kart olarak yolla',
-	'ecard_disabled' => 'e-Kart iptal edilmiştir',
-	'ecard_disabled_msg' => 'e-Kart göndermeye izininiz yok',
-	'prev_title' => 'Önceki resime bak',
+	'ecard_disabled' => 'e-Kart iptal edilmiþtir',
+	'ecard_disabled_msg' => 'e-Kart g&ouml;ndermeye izininiz yok',
+	'prev_title' => '&Ouml;nceki resime bak',
 	'next_title' => 'Bir sonraki resime bak',
-	'pic_pos' => 'RES&Auml;�M %s/%s',
+	'pic_pos' => 'RESÝM %s/%s',
 );
 
 $lang_rate_pic = array(
-	'rate_this_pic' => 'Bu resimi oylay&Auml;�n ',
-	'no_votes' => '(Oy yok şimdilik)',
-	'rating' => '(Şu anki durum : %s / 5 ile %s oy)',
+	'rate_this_pic' => 'Bu resimi oylayýn ',
+	'no_votes' => '(Oy yok þimdilik)',
+	'rating' => '(Þu anki durum : %s / 5 ile %s oy)',
 	'rubbish' => 'Saçma',
 	'poor' => 'Yetersiz',
 	'fair' => 'Orta',
-	'good' => '&Auml;�yi',
-	'excellent' => 'Mükemmel',
+	'good' => 'Ýyi',
+	'excellent' => 'M&uuml;kemmel',
 	'great' => 'Harikulade',
 );
 
@@ -179,19 +201,19 @@ $lang_cpg_die = array(
 	ERROR => $lang_error,
 	CRITICAL_ERROR => 'Ciddi hata',
 	'file' => 'Dosya: ',
-	'line' => 'Sat&Auml;�r: ',
+	'line' => 'Satýr: ',
 );
 
 $lang_display_thumbnails = array(
-	'filename' => 'Dosya ad&Auml;� : ',
+	'filename' => 'Dosya adý : ',
 	'filesize' => 'Dosya boyutu : ',
-	'dimensions' => 'Boyutlar&Auml;� : ',
+	'dimensions' => 'Boyutlarý : ',
 	'date_added' => 'Eklenme tarihi : '
 );
 
 $lang_get_pic_data = array(
 	'n_comments' => '%s yorum',
-	'n_views' => '%s görüntüleme',
+	'n_views' => '%s g&ouml;r&uuml;nt&uuml;leme',
 	'n_votes' => '(%s oy)'
 );
 
@@ -212,28 +234,28 @@ $lang_get_pic_data = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
-	'Exclamation' => 'Ünlem',
+	'Exclamation' => '&Uuml;nlem',
 	'Question' => 'Soru',
 	'Very Happy' => 'Çok mutlu',
-	'Smile' => 'Gül',
+	'Smile' => 'G&uuml;l',
 	'Sad' => 'Mutsuz',
-	'Surprised' => 'Şaş&Auml;�rm&Auml;�ş',
-	'Shocked' => 'Sars&Auml;�lm&Auml;�ş',
+	'Surprised' => 'Þaþýrmýþ',
+	'Shocked' => 'Sarsýlmýþ',
 	'Confused' => 'Confused',
-	'Cool' => 'Süper',
-	'Laughing' => 'Gülerek',
+	'Cool' => 'S&uuml;per',
+	'Laughing' => 'G&uuml;lerek',
 	'Mad' => 'Deli',
 	'Razz' => 'Razz',
-	'Embarassed' => 'Utanm&Auml;�ş',
-	'Crying or Very sad' => 'A&Auml;�lamak veya çok mutsuz',
+	'Embarassed' => 'Utanmýþ',
+	'Crying or Very sad' => 'Aðlamak veya çok mutsuz',
 	'Evil or Very Mad' => 'Bela veya çok deli',
 	'Twisted Evil' => 'Cilveli Bela',
-	'Rolling Eyes' => 'Yuvarlanan Gözler',
-	'Wink' => 'Göz k&Auml;�rpma',
+	'Rolling Eyes' => 'Yuvarlanan G&ouml;zler',
+	'Wink' => 'G&ouml;z kýrpma',
 	'Idea' => 'Fikir',
 	'Arrow' => 'Ok',
-	'Neutral' => 'Tarafs&Auml;�z',
-	'Mr. Green' => 'Bay Yeşil',
+	'Neutral' => 'Tarafsýz',
+	'Mr. Green' => 'Bay Yeþil',
 );
 
 // ------------------------------------------------------------------------- //
@@ -247,8 +269,8 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ADMIN_PHP')) $lang_admin_php = array(
-	0 => 'Yönetici konumu kapat&Auml;�l&Auml;�yor...',
-	1 => 'Yönetici konumu aç&Auml;�l&Auml;�yor...',
+	0 => 'Y&ouml;netici konumu kapatýlýyor...',
+	1 => 'Y&ouml;netici konumu açýlýyor...',
 );
 
 // ------------------------------------------------------------------------- //
@@ -256,19 +278,19 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
-	'alb_need_name' => 'Albümleri isim vermelisiniz !',
-	'confirm_modifs' => 'Bu de&Auml;�işiklikleri uygulamak istedi&Auml;�inizden eminmisiniz ?',
-	'no_change' => 'Herhangi bir de&Auml;�işklik yap&Auml;�lmad&Auml;� !',
-	'new_album' => 'Yeni Albüm',
-	'confirm_delete1' => 'Bu albümü silmek istedi&Auml;�inizden emin misiniz ?',
-	'confirm_delete2' => '\n&Auml;�çerdi&Auml;�i bütün resim ve yorumlar silinecektir !',
-	'select_first' => 'Önce bir albüm seçin',
-	'alb_mrg' => 'Albüm Yöneticisi',
+	'alb_need_name' => 'Alb&uuml;mleri isim vermelisiniz !',
+	'confirm_modifs' => 'Bu deðiþiklikleri uygulamak istediðinizden eminmisiniz ?',
+	'no_change' => 'Herhangi bir deðiþklik yapýlmadý !',
+	'new_album' => 'Yeni Alb&uuml;m',
+	'confirm_delete1' => 'Bu alb&uuml;m&uuml; silmek istediðinizden emin misiniz ?',
+	'confirm_delete2' => '\nÝçerdiði b&uuml;t&uuml;n resim ve yorumlar silinecektir !',
+	'select_first' => '&Ouml;nce bir alb&uuml;m seçin',
+	'alb_mrg' => 'Alb&uuml;m Y&ouml;neticisi',
 	'my_gallery' => '* Benim Galerim *',
 	'no_category' => '* Kategori Yok *',
 	'delete' => 'Sil',
 	'new' => 'Yeni',
-	'apply_modifs' => 'De&Auml;�işiklikleri uygula',
+	'apply_modifs' => 'Deðiþiklikleri uygula',
 	'select_category' => 'Kategori seçin',
 );
 
@@ -277,18 +299,18 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
-	'miss_param' => '\'%s\' için komutlar gerekli işlem yap&Auml;�lamad&Auml;� !',
-	'unknown_cat' => 'Seçilmiş olan kategori veritaban&Auml;�nda bulunamad&Auml;�',
-	'usergal_cat_ro' => 'Kullan&Auml;�c&Auml;� galerileri silinemez !',
-	'manage_cat' => 'Kategorileri düzenle',
-	'confirm_delete' => 'Bu kategoriyi S&Auml;�LMEK istedi&Auml;�inizden eminmisiniz ?',
+	'miss_param' => '\'%s\' için komutlar gerekli iþlem yapýlamadý !',
+	'unknown_cat' => 'Seçilmiþ olan kategori veritabanýnda bulunamadý',
+	'usergal_cat_ro' => 'Kullanýcý galerileri silinemez !',
+	'manage_cat' => 'Kategorileri d&uuml;zenle',
+	'confirm_delete' => 'Bu kategoriyi SÝLMEK istediðinizden eminmisiniz ?',
 	'category' => 'Kategori',
-	'operations' => '&Auml;�şlemler',
-	'move_into' => 'Sürükle',
-	'update_create' => 'Kategori oluştur/güncelle',
+	'operations' => 'Ýþlemler',
+	'move_into' => 'S&uuml;r&uuml;kle',
+	'update_create' => 'Kategori oluþtur/g&uuml;ncelle',
 	'parent_cat' => 'Ana kategori',
-	'cat_title' => 'Kategori başl&Auml;�&Auml;�&Auml;�',
-	'cat_desc' => 'Kategori aç&Auml;�klamas&Auml;�'
+	'cat_title' => 'Kategori baþlýðý',
+	'cat_desc' => 'Kategori açýklamasý'
 );
 
 // ------------------------------------------------------------------------- //
@@ -297,98 +319,107 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
 
 if (defined('CONFIG_PHP')) $lang_config_php = array(
 	'title' => 'Seçenekler',
-	'restore_cfg' => 'Ayarlar&Auml;� s&Auml;�f&Auml;�rla',
+	'restore_cfg' => 'Ayarlarý sýfýrla',
 	'save_cfg' => 'Yeni seçenekleri kaydet',
 	'notes' => 'Notlar',
 	'info' => 'Bilgi',
-	'upd_success' => 'Coppermine seçenekleri güncellendi',
-	'restore_success' => 'Coppermine ayarlar&Auml;� s&Auml;�f&Auml;�rland&Auml;�',
-	'name_a' => 'Ad küçükten büyüyü&Auml;�e',
-	'name_d' => 'Ad büyükten küçüyü&Auml;�e',
-	'date_a' => 'Tarih küçükten büyüyü&Auml;�e',
-	'date_d' => 'Date büyükten küçüyü&Auml;�e'
+	'upd_success' => 'Coppermine seçenekleri g&uuml;ncellendi',
+	'restore_success' => 'Coppermine ayarlarý sýfýrlandý',
+	'name_a' => 'Ad k&uuml;ç&uuml;kten b&uuml;y&uuml;y&uuml;ðe',
+	'name_d' => 'Ad b&uuml;y&uuml;kten k&uuml;ç&uuml;y&uuml;ðe',
+	'date_a' => 'Tarih k&uuml;ç&uuml;kten b&uuml;y&uuml;y&uuml;ðe',
+	'date_d' => 'Date b&uuml;y&uuml;kten k&uuml;ç&uuml;y&uuml;ðe'
+        'title_a' => 'Baþlýk küçükten büyüðe', 
+        'title_d' => 'Baþlýk büyükten küçüðe',
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
 	'Genel Seçenekler',
-	array('Galeri &Auml;�smi', 'gallery_name', 0),
-	array('Galeri Aç&Auml;�klamas&Auml;�', 'gallery_description', 0),
-	array('Galeri Yöneticisi e-Posta', 'gallery_admin_email', 0),
-	array('\'See more pictures\' hedef adres ba&Auml;�lant&Auml;�s&Auml;� e-Kartlar içinde', 'ecards_more_pic_target', 0),
+	array('Galeri Ýsmi', 'gallery_name', 0),
+	array('Galeri Açýklamasý', 'gallery_description', 0),
+	array('Galeri Y&ouml;neticisi e-Posta', 'gallery_admin_email', 0),
+	array('\'See more pictures\' hedef adres baðlantýsý e-Kartlar içinde', 'ecards_more_pic_target', 0),
 	array('Dil', 'lang', 5),
-	array('Arayüz', 'theme', 6),
+	array('Aray&uuml;z', 'theme', 6),
 
-	'Albüm liste görüntüsü',
-	array('Ana tablonun genişli&Auml;�i (piksel veya %)', 'main_table_width', 0),
-	array('Gösterilecek olan kategori düzeylerinin say&Auml;�s&Auml;�', 'subcat_level', 0),
-	array('Gösterilecek albümlerin say&Auml;�s&Auml;�', 'albums_per_page', 0),
-	array('Albüm listesi için sütun say&Auml;�s&Auml;�', 'album_list_cols', 0),
-	array('Küçük resimlerin boyutu piksel olarak', 'alb_list_thumb_size', 0),
-	array('Ana sayfan&Auml;�n içeri&Auml;�i', 'main_page_layout', 0),
+	'Alb&uuml;m liste g&ouml;r&uuml;nt&uuml;s&uuml;',
+	array('Ana tablonun geniþliði (piksel veya %)', 'main_table_width', 0),
+	array('G&ouml;sterilecek olan kategori d&uuml;zeylerinin sayýsý', 'subcat_level', 0),
+	array('G&ouml;sterilecek alb&uuml;mlerin sayýsý', 'albums_per_page', 0),
+	array('Alb&uuml;m listesi için s&uuml;tun sayýsý', 'album_list_cols', 0),
+	array('K&uuml;ç&uuml;k resimlerin boyutu piksel olarak', 'alb_list_thumb_size', 0),
+	array('Ana sayfanýn içeriði', 'main_page_layout', 0),
+        array('Birinci seviye albümlerin küçük resimlerini kategorilerde göster','first_level',1), 
 
-	'Küçük resim görüntüsü',
-	array('Küçük resim sayfas&Auml;�ndaki sütun say&Auml;�s&Auml;�', 'thumbcols', 0),
-	array('Küçük resim sayfas&Auml;�ndaki s&Auml;�ra say&Auml;�s&Auml;�', 'thumbrows', 0),
-	array('En çok gösterilecek etiket say&Auml;�s&Auml;�', 'max_tabs', 0),
-	array('Resim manşet başl&Auml;�&Auml;�&Auml;�n&Auml;� küçük resim sayfas&Auml;�nda göster', 'caption_in_thumbview', 1),
-	array('Küçük resimlerin alt&Auml;�nda yorum say&Auml;�s&Auml;�n&Auml;� görüntüle', 'display_comment_count', 1),
-	array('Haz&Auml;�r ayarlar&Auml;� kullanarak resimleri s&Auml;�rala', 'default_sort_order', 3),
-	array('Bir resmin \'top-rated\' listesine gözükebilmesi için almas&Auml;� gerekn azami oy say&Auml;�s&Auml;�', 'min_votes_for_rating', 0),
+	'K&uuml;ç&uuml;k resim g&ouml;r&uuml;nt&uuml;s&uuml;',
+	array('K&uuml;ç&uuml;k resim sayfasýndaki s&uuml;tun sayýsý', 'thumbcols', 0),
+	array('K&uuml;ç&uuml;k resim sayfasýndaki sýra sayýsý', 'thumbrows', 0),
+	array('En çok g&ouml;sterilecek etiket sayýsý', 'max_tabs', 0),
+	array('Resim manþet baþlýðýný k&uuml;ç&uuml;k resim sayfasýnda g&ouml;ster', 'caption_in_thumbview', 1),
+	array('K&uuml;ç&uuml;k resimlerin altýnda yorum sayýsýný g&ouml;r&uuml;nt&uuml;le', 'display_comment_count', 1),
+	array('Hazýr ayarlarý kullanarak resimleri sýrala', 'default_sort_order', 3),
+	array('Bir resmin \'top-rated\' listesine g&ouml;z&uuml;kebilmesi için almasý gerekn azami oy sayýsý', 'min_votes_for_rating', 0),
 
-	'Resim görüntüleme &amp; Yorum seçenekleri',
-	array('Resimlerin gösterilece&Auml;�i tablonun genişli&Auml;�i (piksel veya %)', 'picture_table_width', 0),
-	array('Resim bilgilerine göster', 'display_pic_info', 1),
-	array('Küfürleri yorumlarda filtrele', 'filter_bad_words', 1),
-	array('Yorumlar da smiley kullan&Auml;�m&Auml;�na izin ver', 'enable_smilies', 1),
-	array('Bir resim aç&Auml;�klmas&Auml;�n&Auml;�n maksimum uzunlu&Auml;�u', 'max_img_desc_length', 0),
-	array('Bir kelime içindeki maksimum harf say&Auml;�s&Auml;�', 'max_com_wlength', 0),
-	array('Bir yorum içindeki maksimum sat&Auml;�r say&Auml;�s&Auml;�', 'max_com_lines', 0),
-	array('Bir yorumun maksimum uzunlu&Auml;�u', 'max_com_size', 0),
+	'Resim g&ouml;r&uuml;nt&uuml;leme &amp; Yorum seçenekleri',
+	array('Resimlerin g&ouml;sterileceði tablonun geniþliði (piksel veya %)', 'picture_table_width', 0),
+	array('Resim bilgilerine g&ouml;ster', 'display_pic_info', 1),
+	array('K&uuml;f&uuml;rleri yorumlarda filtrele', 'filter_bad_words', 1),
+	array('Yorumlar da smiley kullanýmýna izin ver', 'enable_smilies', 1),
+	array('Bir resim açýklmasýnýn maksimum uzunluðu', 'max_img_desc_length', 0),
+	array('Bir kelime içindeki maksimum harf sayýsý', 'max_com_wlength', 0),
+	array('Bir yorum içindeki maksimum satýr sayýsý', 'max_com_lines', 0),
+	array('Bir yorumun maksimum uzunluðu', 'max_com_size', 0),
+        array('Film þeridi göster', 'display_film_strip', 1), 
+        array('Film þeridindeki adet sayýsý', 'max_film_strip_items', 0), 
 
-	'Resim ve küçük resim seçenekleri',
-	array('JPEG dosyalar&Auml;� için kalite ayar&Auml;�', 'jpeg_qual', 0),
-	array('Bir küçük resimin maksiumum genişli&Auml;�i veya boyu <b>*</b>', 'thumb_width', 0),
+	'Resim ve k&uuml;ç&uuml;k resim seçenekleri',
+	array('JPEG dosyalarý için kalite ayarý', 'jpeg_qual', 0),
+        array('Küçük resmin en büyük boyutu <b>*</b>', 'thumb_width', 0), 
+        array('Boyut kullan ( geniþlik veya yükseklik veya en büyük görünüþ küçük resimler için ) <b>*</b>', 'thumb_use', 7), 
 	array('Ara resimleri yarat','make_intermediate',1),
-	array('Bir ara resmin maksium genişli&Auml;�i veya boyu <b>*</b>', 'picture_width', 0),
-	array('Yüklenecek olan resimler için maksimum boyut (KB)', 'max_upl_size', 0),
-	array('Yüklenecek olan resimler için makisum genişlik veya boy (piksel)', 'max_upl_width_height', 0),
+	array('Bir ara resmin maksium geniþliði veya boyu <b>*</b>', 'picture_width', 0),
+	array('Y&uuml;klenecek olan resimler için maksimum boyut (KB)', 'max_upl_size', 0),
+	array('Y&uuml;klenecek olan resimler için makisum geniþlik veya boy (piksel)', 'max_upl_width_height', 0),
 
-	'Kullan&Auml;�c&Auml;� seçenekleri',
-	array('Yeni kullan&Auml;�c&Auml;� kayd&Auml;�na izin ver', 'allow_user_registration', 1),
-	array('Yeni kullan&Auml;�c&Auml;� kayd&Auml;� için e-Posta onay&Auml;�na ihtiyaç var', 'reg_requires_valid_email', 1),
-	array('&Auml;�ki kullan&Auml;�c&Auml;� ayn&Auml;� e-Posta adresine sahip olmas&Auml;�na izin ver', 'allow_duplicate_emails_addr', 1),
-	array('Kullan&Auml;�c&Auml;�lar&Auml;�n kişisel galerileri olabilir', 'allow_private_albums', 1),
+	'Kullanýcý seçenekleri',
+	array('Yeni kullanýcý kaydýna izin ver', 'allow_user_registration', 1),
+	array('Yeni kullanýcý kaydý için e-Posta onayýna ihtiyaç var', 'reg_requires_valid_email', 1),
+	array('Ýki kullanýcý ayný e-Posta adresine sahip olmasýna izin ver', 'allow_duplicate_emails_addr', 1),
+	array('Kullanýcýlarýn kiþisel galerileri olabilir', 'allow_private_albums', 1),
 
-	'Resim aç&Auml;�klamalar&Auml;� için özel alanlar (e&Auml;�er kullan&Auml;�lmayacaksa boş b&Auml;�rak&Auml;�n)',
-	array('Alan 1 ad&Auml;�', 'user_field1_name', 0),
-	array('Alan 2 ad&Auml;�', 'user_field2_name', 0),
-	array('Alan 3 ad&Auml;�', 'user_field3_name', 0),
-	array('Alan 4 ad&Auml;�', 'user_field4_name', 0),
+	'Resim açýklamalarý için &ouml;zel alanlar (eðer kullanýlmayacaksa boþ býrakýn)',
+	array('Alan 1 adý', 'user_field1_name', 0),
+	array('Alan 2 adý', 'user_field2_name', 0),
+	array('Alan 3 adý', 'user_field3_name', 0),
+	array('Alan 4 adý', 'user_field4_name', 0),
 
-	'Resim ve küçük resim gelişmiş seçenekleri',
+	'Resim ve k&uuml;ç&uuml;k resim geliþmiþ seçenekleri',
+        array('Çýkýþ yapmamýþ kullanýcýya özel resim ikonunu göster','show_private',1), 
 	array('Dosya isimlerinde karakterlere izin verme', 'forbiden_fname_char',0),
-	array('Yüklenmiş olan resimler için kabul edilen uzant&Auml;�lar', 'allowed_file_extensions',0),
-	array('Resimleri boyutland&Auml;�rmak için kullan&Auml;�lan yöntem','thumb_method',2),
+	array('Y&uuml;klenmiþ olan resimler için kabul edilen uzantýlar', 'allowed_file_extensions',0),
+	array('Resimleri boyutlandýrmak için kullanýlan y&ouml;ntem','thumb_method',2),
 	array('ImageMagick için yol (example /usr/bin/X11/)', 'impath', 0),
 	array('Kabul edilen resim tipleri (sadece ImageMagick için geçerli)', 'allowed_img_types',0),
-	array('Komut sat&Auml;�r seçenekleri ImageMagick için', 'im_options', 0),
-	array('EXIF bilgisini oku JPEG dosyalar&Auml;�nda', 'read_exif_data', 1),
-	array('Albüm dizini <b>*</b>', 'fullpath', 0),
-	array('Kullan&Auml;�c&Auml;� resimleri için dizin <b>*</b>', 'userpics', 0),
-	array('Ara resimler için önek <b>*</b>', 'normal_pfx', 0),
-	array('Küçük resimler için önek <b>*</b>', 'thumb_pfx', 0),
-	array('Dizinler için haz&Auml;�r ayar', 'default_dir_mode', 0),
-	array('Resimleri için haz&Auml;�r ayar', 'default_file_mode', 0),
+	array('Komut satýr seçenekleri ImageMagick için', 'im_options', 0),
+	array('EXIF bilgisini oku JPEG dosyalarýnda', 'read_exif_data', 1),
+	array('Alb&uuml;m dizini <b>*</b>', 'fullpath', 0),
+	array('Kullanýcý resimleri için dizin <b>*</b>', 'userpics', 0),
+	array('Ara resimler için &ouml;nek <b>*</b>', 'normal_pfx', 0),
+	array('K&uuml;ç&uuml;k resimler için &ouml;nek <b>*</b>', 'thumb_pfx', 0),
+	array('Dizinler için hazýr ayar', 'default_dir_mode', 0),
+	array('Resimleri için hazýr ayar', 'default_file_mode', 0),
+        array('Tam ekran yeni pencerede sað klik yasakla (JavaScript - foolproof metodu yok)', 'disable_popup_rightclick', 1), 
+        array('Bütün "sýradan" sayfalarda sað klik yasakla (JavaScript - foolproof metodu yok)', 'disable_gallery_rightclick', 1), 
 
-	'Cookie &amp; Charset ayarlar&Auml;�',
-	array('Program taraf&Auml;�ndan kullan&Auml;�lan cookielerin ad&Auml;�', 'cookie_name', 0),
-	array('Program taraf&Auml;�ndan kullan&Auml;�lan cookielerin dizin yolu', 'cookie_path', 0),
+	'Cookie &amp; Charset ayarlarý',
+	array('Program tarafýndan kullanýlan cookielerin adý', 'cookie_name', 0),
+	array('Program tarafýndan kullanýlan cookielerin dizin yolu', 'cookie_path', 0),
 	array('Karakter kodlama', 'charset', 4),
 
-	'Di&Auml;�er seçenekler',
-	array('Hata çözümleme seçene&Auml;�i aç', 'debug_mode', 1),
+	'Diðer seçenekler',
+	array('Hata ç&ouml;z&uuml;mleme seçeneði aç', 'debug_mode', 1),
 	
-	'<br /><div align="center">(*) * ile gösterilmiş olan alanlar, resim galerinizde resim bulunuyorsa de&Auml;�iştirilmemeli</div><br />'
+	'<br /><div align="center">(*) * ile g&ouml;sterilmiþ olan alanlar, resim galerinizde resim bulunuyorsa deðiþtirilmemeli</div><br />'
 );
 
 // ------------------------------------------------------------------------- //
@@ -396,30 +427,30 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
-	'empty_name_or_com' => 'Ad&Auml;�n&Auml;�z&Auml;� ve bir yorum yazman&Auml;�z gerek',
+	'empty_name_or_com' => 'Adýnýzý ve bir yorum yazmanýz gerek',
 	'com_added' => 'Yorumunuz eklendi',
-	'alb_need_title' => 'Albüm için bir başl&Auml;�k vermeniz gerek !',
-	'no_udp_needed' => 'Güncellemeye gerek yok.',
-	'alb_updated' => 'Albüm güncellenmiştir.',
-	'unknown_album' => 'Albüm yok veya sizin o albümü de&Auml;�iştirmeye izniniz yok',
-	'no_pic_uploaded' => 'Hiçbir resim yüklenmedi !<br /><br />E&Auml;�er bir resim seçtiyseniz, ana makinanin resim yüklemeye izin verdi&Auml;�inden emin olun...',
-	'err_mkdir' => '%s dizini yarat&Auml;�lamad&Auml;�!',
-	'dest_dir_ro' => '%s dizinine program taraf&Auml;�ndan yaz&Auml;�lam&Auml;�yor !',
-	'err_move' => '%s &Auml;� %s e sürüklemek imkans&Auml;�z!',
-	'err_fsize_too_large' => 'Yüklemeye çal&Auml;�şt&Auml;�&Auml;�&Auml;�n&Auml;�z resmin boyutu çok büyük (izin verilen %s x %s) !',
-	'err_imgsize_too_large' => 'Yüklemeye çal&Auml;�şt&Auml;�&Auml;�&Auml;�n&Auml;�z resmin boyutu çok büyük (izin verilen %s KB) !',
-	'err_invalid_img' => 'Yüklemeye çal&Auml;�şt&Auml;�&Auml;�&Auml;�n&Auml;�z resim geçersiz bir resim biçimidir !',
-	'allowed_img_types' => 'Sadece %s resim yükleyebilirsiniz.',
-	'err_insert_pic' => '\'%s\' resmi albüme eklenemiyor ',
-	'upload_success' => 'Resiminiz başar&Auml;� ile yüklenmiştir<br /><br />Yönetici onay&Auml;�ndan sonra yay&Auml;�nlanacakt&Auml;�r.',
+	'alb_need_title' => 'Alb&uuml;m için bir baþlýk vermeniz gerek !',
+	'no_udp_needed' => 'G&uuml;ncellemeye gerek yok.',
+	'alb_updated' => 'Alb&uuml;m g&uuml;ncellenmiþtir.',
+	'unknown_album' => 'Alb&uuml;m yok veya sizin o alb&uuml;m&uuml; deðiþtirmeye izniniz yok',
+	'no_pic_uploaded' => 'Hiçbir resim y&uuml;klenmedi !<br /><br />Eðer bir resim seçtiyseniz, ana makinanin resim y&uuml;klemeye izin verdiðinden emin olun...',
+	'err_mkdir' => '%s dizini yaratýlamadý!',
+	'dest_dir_ro' => '%s dizinine program tarafýndan yazýlamýyor !',
+	'err_move' => '%s ý %s e s&uuml;r&uuml;klemek imkansýz!',
+	'err_fsize_too_large' => 'Y&uuml;klemeye çalýþtýðýnýz resmin boyutu çok b&uuml;y&uuml;k (izin verilen %s x %s) !',
+	'err_imgsize_too_large' => 'Y&uuml;klemeye çalýþtýðýnýz resmin boyutu çok b&uuml;y&uuml;k (izin verilen %s KB) !',
+	'err_invalid_img' => 'Y&uuml;klemeye çalýþtýðýnýz resim geçersiz bir resim biçimidir !',
+	'allowed_img_types' => 'Sadece %s resim y&uuml;kleyebilirsiniz.',
+	'err_insert_pic' => '\'%s\' resmi alb&uuml;me eklenemiyor ',
+	'upload_success' => 'Resiminiz baþarý ile y&uuml;klenmiþtir<br /><br />Y&ouml;netici onayýndan sonra yayýnlanacaktýr.',
 	'info' => 'Bilgi',
 	'com_added' => 'Yorum eklendi',
-	'alb_updated' => 'Albüm güncellendi',
-	'err_comment_empty' => 'Yorumunuz boş !',
-	'err_invalid_fext' => 'Sadece bu uzant&Auml;�lara sahip resimler kabul edilir : <br /><br />%s.',
-	'no_flood' => 'Bu resim için son yorumu yollayan zaten sizsiniz<br /><br />E&Auml;�er başka birşey eklemek istiyorsan&Auml;�z kendi yorumunuzu güncelleyin',
-	'redirect_msg' => 'Şu anda yönlendiriliyorsunuz.<br /><br /><br />\'CONTINUE\' a bas&Auml;�n e&Auml;�er sayfa kendili&Auml;�inden yenilenmezse',
-	'upl_success' => 'Resminiz başar&Auml;� ile eklenmiştir',
+	'alb_updated' => 'Alb&uuml;m g&uuml;ncellendi',
+	'err_comment_empty' => 'Yorumunuz boþ !',
+	'err_invalid_fext' => 'Sadece bu uzantýlara sahip resimler kabul edilir : <br /><br />%s.',
+	'no_flood' => 'Bu resim için son yorumu yollayan zaten sizsiniz<br /><br />Eðer baþka birþey eklemek istiyorsanýz kendi yorumunuzu g&uuml;ncelleyin',
+	'redirect_msg' => 'Þu anda y&ouml;nlendiriliyorsunuz.<br /><br /><br />\'CONTINUE\' a basýn eðer sayfa kendiliðinden yenilenmezse',
+	'upl_success' => 'Resminiz baþarý ile eklenmiþtir',
 );
 
 // ------------------------------------------------------------------------- //
@@ -427,24 +458,24 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DELETE_PHP')) $lang_delete_php = array(
-	'caption' => 'Başl&Auml;�k',
+	'caption' => 'Baþlýk',
 	'fs_pic' => 'tam boy resim',
-	'del_success' => 'başar&Auml;� ile silindi',
+	'del_success' => 'baþarý ile silindi',
 	'ns_pic' => 'normal boyut resim',
 	'err_del' => 'silinemiyor',
-	'thumb_pic' => 'küçük resim',
+	'thumb_pic' => 'k&uuml;ç&uuml;k resim',
 	'comment' => 'yorum',
-	'im_in_alb' => 'albümdeki resim',
-	'alb_del_success' => 'Albüm \'%s\' silindi',
-	'alb_mgr' => 'Albüm Yöneticisi',
-	'err_invalid_data' => 'Geçersiz veri al&Auml;�nd&Auml;� \'%s\' da',
-	'create_alb' => 'Albüm \'%s\' oluşturuluyor',
-	'update_alb' => 'Albüm \'%s\' güncelleniyor, \'%s\' başl&Auml;�&Auml;�&Auml;�d&Auml;�r ve \'%s\' içeri&Auml;�i ile',
+	'im_in_alb' => 'alb&uuml;mdeki resim',
+	'alb_del_success' => 'Alb&uuml;m \'%s\' silindi',
+	'alb_mgr' => 'Alb&uuml;m Y&ouml;neticisi',
+	'err_invalid_data' => 'Geçersiz veri alýndý \'%s\' da',
+	'create_alb' => 'Alb&uuml;m \'%s\' oluþturuluyor',
+	'update_alb' => 'Alb&uuml;m \'%s\' g&uuml;ncelleniyor, \'%s\' baþlýðýdýr ve \'%s\' içeriði ile',
 	'del_pic' => 'Resimi sil',
-	'del_alb' => 'Albümü sil',
-	'del_user' => 'Kullan&Auml;�c&Auml;� sil',
-	'err_unknown_user' => 'Seçilen kullan&Auml;�c&Auml;� yok !',
-	'comment_deleted' => 'Yorum başar&Auml;� ile silindi',
+	'del_alb' => 'Alb&uuml;m&uuml; sil',
+	'del_user' => 'Kullanýcý sil',
+	'err_unknown_user' => 'Seçilen kullanýcý yok !',
+	'comment_deleted' => 'Yorum baþarý ile silindi',
 );
 
 // ------------------------------------------------------------------------- //
@@ -460,39 +491,48 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 if (defined('DISPLAYIMAGE_PHP')){
 
 $lang_display_image_php = array(
-	'confirm_del' => 'Bu resmi silece&Auml;�inizden emin misiniz ? \\nYorumlar da silinecektir.',
-	'del_pic' => 'BU RESM&Auml;� S&Auml;�L',
+	'confirm_del' => 'Bu resmi sileceðinizden emin misiniz ? \\nYorumlar da silinecektir.',
+	'del_pic' => 'BU RESMÝ SÝL',
 	'size' => '%s x %s piksel',
 	'views' => '%s kere',
-	'slideshow' => 'Gösteri',
-	'stop_slideshow' => 'GÖSTER&Auml;�Y&Auml;� DURDUR',
-	'view_fs' => 'Tam boy resmi görebilmek için t&Auml;�klay&Auml;�n',
+	'slideshow' => 'G&ouml;steri',
+	'stop_slideshow' => 'G&Ouml;STERÝYÝ DURDUR',
+	'view_fs' => 'Tam boy resmi g&ouml;rebilmek için týklayýn',
 );
 
 $lang_picinfo = array(
 	'title' =>'Resim bilgileri',
-	'Filename' => 'Dosya ad&Auml;�',
-	'Album name' => 'Albüm ad&Auml;�',
-	'Rating' => 'Be&Auml;�enilme (%s oy)',
+	'Filename' => 'Dosya adý',
+	'Album name' => 'Alb&uuml;m adý',
+	'Rating' => 'Beðenilme (%s oy)',
 	'Keywords' => 'Anahtar kelime',
 	'File Size' => 'Dosya boyutu',
 	'Dimensions' => 'Boyutlar',
-	'Displayed' => 'Gösterilen',
+	'Displayed' => 'G&ouml;sterilen',
 	'Camera' => 'Kamera',
-	'Date taken' => 'Al&Auml;�nan tarih',
-	'Aperture' => 'Foto&Auml;�raf makinesi aç&Auml;�kl&Auml;�&Auml;�&Auml;�',
-	'Exposure time' => '&Auml;�fşa zaman&Auml;�',
-	'Focal length' => 'Merkez uzunlu&Auml;�u',
-	'Comment' => 'Yorum'
+	'Date taken' => 'Alýnan tarih',
+	'Aperture' => 'Fotoðraf makinesi açýklýðý',
+	'Exposure time' => 'Ýfþa zamaný',
+	'Focal length' => 'Merkez uzunluðu',
+	'Comment' => 'Yorum',
+        'addFav'=>'Sýk Kullanýlana ekle', 
+        'addFavPhrase'=>'Sýk Kullanýlanlar', 
+        'remFav'=>'Sýk Kullanýlanlarda çýkar', 
 );
 
 $lang_display_comments = array(
 	'OK' => 'TAMAM',
-	'edit_title' => 'Bu yorumu güncelle',
-	'confirm_delete' => 'Bu yorumu silmek istedi&Auml;�inizden emin misiniz ?',
+	'edit_title' => 'Bu yorumu g&uuml;ncelle',
+	'confirm_delete' => 'Bu yorumu silmek istediðinizden emin misiniz ?',
 	'add_your_comment' => 'Yorumunuzu ekleyin',
-	'your_name' => 'Ad&Auml;�n&Auml;�z',
+        'name'=>'Ýsim', 
+        'comment'=>'Yorum', 
+        'your_name' => 'Anonim', 
 );
+
+$lang_fullsize_popup = array( 
+        'click_to_close' => 'Bu pencereyi kapatmak için resime klikleyin', 
+); 
 
 }
 
@@ -501,21 +541,21 @@ $lang_display_comments = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array(
-	'title' => 'Bir e-Kart yollay&Auml;�n',
-	'invalid_email' => '<b>Dikkat</b> : yanl&Auml;�ş e-Posta adresi !',
-	'ecard_title' => 'Size %s taraf&Auml;�ndan bir e-Kart gönderilmiştir',
-	'view_ecard' => 'E&Auml;�er e-Kart&Auml;�n&Auml;�z&Auml;� do&Auml;�ru görüntüleyemiyorsan&Auml;�z buraya t&Auml;�klay&Auml;�n',
-	'view_more_pics' => 'Daha fazla resim görebilmek için bu ba&Auml;�lant&Auml;�ya t&Auml;�klay&Auml;�n !',
-	'send_success' => 'e-Kart&Auml;�n&Auml;�z gönderilmiştir',
-	'send_failed' => 'Ana makina e-Kart&Auml;�n&Auml;�z&Auml;� gönderemiyor',
+	'title' => 'Bir e-Kart yollayýn',
+	'invalid_email' => '<b>Dikkat</b> : yanlýþ e-Posta adresi !',
+	'ecard_title' => 'Size %s tarafýndan bir e-Kart g&ouml;nderilmiþtir',
+	'view_ecard' => 'Eðer e-Kartýnýzý doðru g&ouml;r&uuml;nt&uuml;leyemiyorsanýz buraya týklayýn',
+	'view_more_pics' => 'Daha fazla resim g&ouml;rebilmek için bu baðlantýya týklayýn !',
+	'send_success' => 'e-Kartýnýz g&ouml;nderilmiþtir',
+	'send_failed' => 'Ana makina e-Kartýnýzý g&ouml;nderemiyor',
 	'from' => 'Kimden',
-	'your_name' => 'Sizin ad&Auml;�n&Auml;�z',
+	'your_name' => 'Sizin adýnýz',
 	'your_email' => 'Sizin e-Posta adresiniz',
 	'to' => 'Kime',
-	'rcpt_name' => 'Al&Auml;�c&Auml;�n&Auml;�n &Auml;�smi',
-	'rcpt_email' => 'Al&Auml;�c&Auml;�n&Auml;�n e-Posta adresi',
+	'rcpt_name' => 'Alýcýnýn Ýsmi',
+	'rcpt_email' => 'Alýcýnýn e-Posta adresi',
 	'greetings' => 'Selamlar',
-	'message' => '&Auml;�leti',
+	'message' => 'Ýleti',
 );
 
 // ------------------------------------------------------------------------- //
@@ -524,24 +564,24 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
 
 if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 	'pic_info' => 'Resim bilgileri',
-	'album' => 'Albüm',
-	'title' => 'Başl&Auml;�k',
-	'desc' => 'Aç&Auml;�klama',
+	'album' => 'Alb&uuml;m',
+	'title' => 'Baþlýk',
+	'desc' => 'Açýklama',
 	'keywords' => 'Anahta kelimeler',
-	'pic_info_str' => '%sx%s - %sKB - %s görüntüleme - %s oy',
+	'pic_info_str' => '%sx%s - %sKB - %s g&ouml;r&uuml;nt&uuml;leme - %s oy',
 	'approve' => 'Resimi onayla',
-	'postpone_app' => 'Onaylamay&Auml;� ertele',
+	'postpone_app' => 'Onaylamayý ertele',
 	'del_pic' => 'Resimi sil',
-	'reset_view_count' => 'Görüntüleme sayac&Auml;�n&Auml;� s&Auml;�f&Auml;�rla',
-	'reset_votes' => 'Oylamalar&Auml;� s&Auml;�f&Auml;�rla',
-	'del_comm' => 'Yorumlar&Auml;� sil',
-	'upl_approval' => 'Yüklemeyi onayla',
-	'edit_pics' => 'Resimlerde de&Auml;�işiklik yap',
-	'see_next' => 'Sonraki resimleri gör',
-	'see_prev' => 'Önceki resimleri gör',
+	'reset_view_count' => 'G&ouml;r&uuml;nt&uuml;leme sayacýný sýfýrla',
+	'reset_votes' => 'Oylamalarý sýfýrla',
+	'del_comm' => 'Yorumlarý sil',
+	'upl_approval' => 'Y&uuml;klemeyi onayla',
+	'edit_pics' => 'Resimlerde deðiþiklik yap',
+	'see_next' => 'Sonraki resimleri g&ouml;r',
+	'see_prev' => '&Ouml;nceki resimleri g&ouml;r',
 	'n_pic' => '%s resim',
-	'n_of_pic_to_disp' => 'Gösterilecek olan resim say&Auml;�s&Auml;�',
-	'apply' => 'De&Auml;�işiklikleri uygula'
+	'n_of_pic_to_disp' => 'G&ouml;sterilecek olan resim sayýsý',
+	'apply' => 'Deðiþiklikleri uygula'
 );
 
 // ------------------------------------------------------------------------- //
@@ -549,22 +589,22 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
-	'group_name' => 'Grup ad&Auml;�',
-	'disk_quota' => 'Disk kotas&Auml;�',
+	'group_name' => 'Grup adý',
+	'disk_quota' => 'Disk kotasý',
 	'can_rate' => 'Resimleri oylayabilir',
-	'can_send_ecards' => 'e-Kart gönderebilir',
+	'can_send_ecards' => 'e-Kart g&ouml;nderebilir',
 	'can_post_com' => 'Yorum yazabilir',
-	'can_upload' => 'Resim yükleyebilir',
-	'can_have_gallery' => 'Kişisel galeri yapabilir',
-	'apply' => 'De&Auml;�işiklikleri uygula',
+	'can_upload' => 'Resim y&uuml;kleyebilir',
+	'can_have_gallery' => 'Kiþisel galeri yapabilir',
+	'apply' => 'Deðiþiklikleri uygula',
 	'create_new_group' => 'Yeni grup yarat',
-	'del_groups' => 'Seçilmiş olan grup(lar&Auml;�) sil',
-	'confirm_del' => 'Dikkat ! E&Auml;�er bu grubu silerseniz, gruptaki bütün kullan&Auml;�c&Auml;�lar \'Registered\' grubuna transfer edilecektir !\n\nDevam etmek istiyormusunuz ?',
-	'title' => 'Kullan&Auml;�c&Auml;� gruplar&Auml;�n&Auml;� düzenle',
-	'approval_1' => 'Herkese aç&Auml;�k yükleme onay&Auml;� (1)',
-	'approval_2' => 'Kişisel yükleme onay&Auml;� (2)',
-	'note1' => '<b>(1)</b> Kişisel galeriye yüklenecek olan resimler yönetici taraf&Auml;�ndan onaylanmal&Auml;�',
-	'note2' => '<b>(2)</b> Kullan&Auml;�c&Auml;�ya ait galeriye yükleme yapmak için yönetici onay&Auml;�na gerek',
+	'del_groups' => 'Seçilmiþ olan grup(larý) sil',
+	'confirm_del' => 'Dikkat ! Eðer bu grubu silerseniz, gruptaki b&uuml;t&uuml;n kullanýcýlar \'Registered\' grubuna transfer edilecektir !\n\nDevam etmek istiyormusunuz ?',
+	'title' => 'Kullanýcý gruplarýný d&uuml;zenle',
+	'approval_1' => 'Herkese açýk y&uuml;kleme onayý (1)',
+	'approval_2' => 'Kiþisel y&uuml;kleme onayý (2)',
+	'note1' => '<b>(1)</b> Kiþisel galeriye y&uuml;klenecek olan resimler y&ouml;netici tarafýndan onaylanmalý',
+	'note2' => '<b>(2)</b> Kullanýcýya ait galeriye y&uuml;kleme yapmak için y&ouml;netici onayýna gerek',
 	'notes' => 'Notlar'
 );
 
@@ -575,28 +615,28 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
 if (defined('INDEX_PHP')){
 
 $lang_index_php = array(
-	'welcome' => 'Hoşgeldiniz !'
+	'welcome' => 'Hoþgeldiniz !'
 );
 
 $lang_album_admin_menu = array(
-	'confirm_delete' => 'Bu albümü silmek istedi&Auml;�inizden emin misiniz ? \\nBütün resimler ve yorumlar da silinecektir.',
-	'delete' => 'S&Auml;�L',
-	'modify' => 'ÖZELL&Auml;�KLER',
-	'edit_pics' => 'RES&Auml;�MLERDE DE&Auml;�&Auml;�Ş&Auml;�&Auml;�KL&Auml;�LK YAP',
+	'confirm_delete' => 'Bu alb&uuml;m&uuml; silmek istediðinizden emin misiniz ? \\nB&uuml;t&uuml;n resimler ve yorumlar da silinecektir.',
+	'delete' => 'SÝL',
+	'modify' => '&Ouml;ZELLÝKLER',
+	'edit_pics' => 'RESÝMLERDE DEÐÝÞÝÝKLÝLK YAP',
 );
 
 $lang_list_categories = array(
 	'home' => 'Ana',
-	'stat1' => '<b>[pictures]</b> resimler <b>[albums]</b> albümde ve <b>[cat]</b> kategoride, <b>[comments]</b> yorum <b>[views]</b> kere görüntülenmiştir',
-	'stat2' => '<b>[pictures]</b> resim <b>[albums]</b> albümde <b>[views]</b> kere görüntülenmiştir',
+	'stat1' => '<b>[pictures]</b> resimler <b>[albums]</b> alb&uuml;mde ve <b>[cat]</b> kategoride, <b>[comments]</b> yorum <b>[views]</b> kere g&ouml;r&uuml;nt&uuml;lenmiþtir',
+	'stat2' => '<b>[pictures]</b> resim <b>[albums]</b> alb&uuml;mde <b>[views]</b> kere g&ouml;r&uuml;nt&uuml;lenmiþtir',
 	'xx_s_gallery' => '%s\ in Galerisi',
-	'stat3' => '<b>[pictures]</b> resim <b>[albums]</b> albümde <b>[comments]</b> yorum <b>[views]</b> kere görüntülenmiştir'
+	'stat3' => '<b>[pictures]</b> resim <b>[albums]</b> alb&uuml;mde <b>[comments]</b> yorum <b>[views]</b> kere g&ouml;r&uuml;nt&uuml;lenmiþtir'
 );
 
 $lang_list_users = array(
-	'user_list' => 'Kullan&Auml;�c&Auml;� listesi',
-	'no_user_gal' => 'Albüm yaratma izni olan hiçbir kullan&Auml;�c&Auml;� yok',
-	'n_albums' => '%s albüm',
+	'user_list' => 'Kullanýcý listesi',
+	'no_user_gal' => 'Alb&uuml;m yaratma izni olan hiçbir kullanýcý yok',
+	'n_albums' => '%s alb&uuml;m',
 	'n_pics' => '%s resim'
 );
 
@@ -612,14 +652,14 @@ $lang_list_albums = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('LOGIN_PHP')) $lang_login_php = array(
-	'login' => 'Giriş',
-	'enter_login_pswd' => 'Giriş yapabilmek için kullan&Auml;�c&Auml;� ad&Auml;�n&Auml;�z&Auml;� ve şifrenizi kullan&Auml;�n',
-	'username' => 'Kullan&Auml;�c&Auml;� ad&Auml;�',
-	'password' => 'Şifre',
-	'remember_me' => 'Beni hat&Auml;�rla',
-	'welcome' => 'Hoşgeldin %s ...',
-	'err_login' => '*** Giriş yap&Auml;�lmad&Auml;� tekrar deneyim ***',
-	'err_already_logged_in' => 'Zaten Giriş yapm&Auml;�şs&Auml;�n&Auml;�z !',
+	'login' => 'Giriþ',
+	'enter_login_pswd' => 'Giriþ yapabilmek için kullanýcý adýnýzý ve þifrenizi kullanýn',
+	'username' => 'Kullanýcý adý',
+	'password' => 'Þifre',
+	'remember_me' => 'Beni hatýrla',
+	'welcome' => 'Hoþgeldin %s ...',
+	'err_login' => '*** Giriþ yapýlmadý tekrar deneyim ***',
+	'err_already_logged_in' => 'Zaten Giriþ yapmýþsýnýz !',
 );
 
 // ------------------------------------------------------------------------- //
@@ -627,9 +667,9 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('LOGOUT_PHP')) $lang_logout_php = array(
-	'logout' => 'Ç&Auml;�k&Auml;�ş',
-	'bye' => 'Görüşmek üzere %s ...',
-	'err_not_loged_in' => 'Giriş yapmad&Auml;�n&Auml;�z ki !',
+	'logout' => 'Çýkýþ',
+	'bye' => 'G&ouml;r&uuml;þmek &uuml;zere %s ...',
+	'err_not_loged_in' => 'Giriþ yapmadýnýz ki !',
 );
 
 // ------------------------------------------------------------------------- //
@@ -637,27 +677,27 @@ if (defined('LOGOUT_PHP')) $lang_logout_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
-	'upd_alb_n' => 'Albümü güncelle %s',
+	'upd_alb_n' => 'Alb&uuml;m&uuml; g&uuml;ncelle %s',
 	'general_settings' => 'Genel seçenekler',
-	'alb_title' => 'Albüm başl&Auml;�&Auml;�&Auml;�',
-	'alb_cat' => 'Albüm kategorisi',
-	'alb_desc' => 'Albüm aç&Auml;�klamas&Auml;�',
-	'alb_thumb' => 'Albüm küçük resimler',
-	'alb_perm' => 'Bu albüm için izinler',
-	'can_view' => 'Albüm kimler taraf&Auml;�ndan görüntülenebilir',
-	'can_upload' => 'Ziyaretçiler resim yükleyebilir',
+	'alb_title' => 'Alb&uuml;m baþlýðý',
+	'alb_cat' => 'Alb&uuml;m kategorisi',
+	'alb_desc' => 'Alb&uuml;m açýklamasý',
+	'alb_thumb' => 'Alb&uuml;m k&uuml;ç&uuml;k resimler',
+	'alb_perm' => 'Bu alb&uuml;m için izinler',
+	'can_view' => 'Alb&uuml;m kimler tarafýndan g&ouml;r&uuml;nt&uuml;lenebilir',
+	'can_upload' => 'Ziyaretçiler resim y&uuml;kleyebilir',
 	'can_post_comments' => 'Ziyaretçiler yorum yollayabilir',
 	'can_rate' => 'Ziyaretçiler resim oylayabilir',
-	'user_gal' => 'Kullan&Auml;�c&Auml;� galerisi',
+	'user_gal' => 'Kullanýcý galerisi',
 	'no_cat' => '* Kategori yok *',
-	'alb_empty' => 'Albüm boş',
-	'last_uploaded' => 'Son yüklenen',
-	'public_alb' => 'Herkes (aç&Auml;�k albüm)',
+	'alb_empty' => 'Alb&uuml;m boþ',
+	'last_uploaded' => 'Son y&uuml;klenen',
+	'public_alb' => 'Herkes (açýk alb&uuml;m)',
 	'me_only' => 'Sadece ben',
-	'owner_only' => 'Albüm sahibi (%s) sadece',
-	'groupp_only' => '\'%s\' grubunun üyesi',
-	'err_no_alb_to_modify' => 'Güncelleme yapabilece&Auml;�iniz bir albüm yok veritaban&Auml;�nda.',
-	'update' => 'Albümü güncelle'
+	'owner_only' => 'Alb&uuml;m sahibi (%s) sadece',
+	'groupp_only' => '\'%s\' grubunun &uuml;yesi',
+	'err_no_alb_to_modify' => 'G&uuml;ncelleme yapabileceðiniz bir alb&uuml;m yok veritabanýnda.',
+	'update' => 'Alb&uuml;m&uuml; g&uuml;ncelle'
 );
 
 // ------------------------------------------------------------------------- //
@@ -665,7 +705,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
-	'already_rated' => 'Bu resimi önceden oylad&Auml;�n&Auml;�z',
+	'already_rated' => 'Bu resimi &ouml;nceden oyladýnýz',
 	'rate_ok' => 'Oyunuz kabul edildi',
 );
 
@@ -676,78 +716,78 @@ if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
-{SITE_NAME} yöneticileri herhangi nahoş malzemeleri en k&Auml;�sa sürede ortadan kald&Auml;�racakt&Auml;�r, her iletiyi okumak imkans&Auml;�zd&Auml;�r. Böylelikle gönderilen bütün iletilerin yöneticilerin veya site sahibinin görüşlerini de&Auml;�il, yazar&Auml;�n&Auml;�n görüşlerini yans&Auml;�tt&Auml;�&Auml;�&Auml;�n&Auml;� kabul etmiş oluyorsunuz (yöneticiler taraf&Auml;�ndan göndeirlenler hariç) bu nedenle yöneticiler veya site sahibi sorumlu tutulamaz. .<br />
+{SITE_NAME} y&ouml;neticileri herhangi nahoþ malzemeleri en kýsa s&uuml;rede ortadan kaldýracaktýr, her iletiyi okumak imkansýzdýr. B&ouml;ylelikle g&ouml;nderilen b&uuml;t&uuml;n iletilerin y&ouml;neticilerin veya site sahibinin g&ouml;r&uuml;þlerini deðil, yazarýnýn g&ouml;r&uuml;þlerini yansýttýðýný kabul etmiþ oluyorsunuz (y&ouml;neticiler tarafýndan g&ouml;ndeirlenler hariç) bu nedenle y&ouml;neticiler veya site sahibi sorumlu tutulamaz. .<br />
 <br />
-Böylelikle herhangi sövgü dolu, müstehcen, kaba, karalay&Auml;�c&Auml;�, nefret dolu, tehdit edici, cinsel içerikli ve uygulanabilir yasalar&Auml;� çi&Auml;�neyecek içerikli ileti yollamamay&Auml;� kabul etmiş oluyorsunuz. {SITE_NAME} in site sahibinin, yöneticilerinin ve moderatörlerin uygun gördükleri takdirde, içerikleri silebilme veya bunlarda de&Auml;�işiklikler yapabilme haklar&Auml;�na her içerik için her zaman sahip olduklar&Auml;�n&Auml;� da kabul etmiş oluyorsunuz. Bir kullan&Auml;�c&Auml;� olarak veritaban&Auml;�na eklenmiş olan herhangi bir bilgiyi de kabul etmiş oluyorsunuz. Bu bilgi sizin izniniz olmadan hiç birşekilde üçünçü kişilere ulaşt&Auml;�r&Auml;�lmayacakt&Auml;�r, fakat site sahibi ve yöneticileri hacklenme sonucu bu verilen kaybolmas&Auml;� ve/veya kullan&Auml;�lmas&Auml;� sonucu ve/veya çal&Auml;�nmas&Auml;� durumunda sorumlu tutulamaz..<br />
+B&ouml;ylelikle herhangi s&ouml;vg&uuml; dolu, m&uuml;stehcen, kaba, karalayýcý, nefret dolu, tehdit edici, cinsel içerikli ve uygulanabilir yasalarý çiðneyecek içerikli ileti yollamamayý kabul etmiþ oluyorsunuz. {SITE_NAME} in site sahibinin, y&ouml;neticilerinin ve moderat&ouml;rlerin uygun g&ouml;rd&uuml;kleri takdirde, içerikleri silebilme veya bunlarda deðiþiklikler yapabilme haklarýna her içerik için her zaman sahip olduklarýný da kabul etmiþ oluyorsunuz. Bir kullanýcý olarak veritabanýna eklenmiþ olan herhangi bir bilgiyi de kabul etmiþ oluyorsunuz. Bu bilgi sizin izniniz olmadan hiç birþekilde &uuml;ç&uuml;nç&uuml; kiþilere ulaþtýrýlmayacaktýr, fakat site sahibi ve y&ouml;neticileri hacklenme sonucu bu verilen kaybolmasý ve/veya kullanýlmasý sonucu ve/veya çalýnmasý durumunda sorumlu tutulamaz..<br />
 <br />
-Bu site bilgisayar&Auml;�n&Auml;�zda bilgi kaydetmek amac&Auml;�yla cookie'ler kullan&Auml;�yor. Bu cookie'ler sadece sizin görüntüleme zevkinizi geliştirmek amac&Auml;�yla kullan&Auml;�l&Auml;�r. E-Posta adresiniz sadece kaydolma bilgilerinizi ve şifrenizi onaylama amac&Auml;� ile kullan&Auml;�l&Auml;�r.<br />
+Bu site bilgisayarýnýzda bilgi kaydetmek amacýyla cookie'ler kullanýyor. Bu cookie'ler sadece sizin g&ouml;r&uuml;nt&uuml;leme zevkinizi geliþtirmek amacýyla kullanýlýr. E-Posta adresiniz sadece kaydolma bilgilerinizi ve þifrenizi onaylama amacý ile kullanýlýr.<br />
 <br />
-'Kabul Ediyorum' a basarak bu koşullara ba&Auml;�l&Auml;� kalmay&Auml;� kabul etmiş oluyorsunuz.
+'Kabul Ediyorum' a basarak bu koþullara baðlý kalmayý kabul etmiþ oluyorsunuz.
 EOT;
 
 $lang_register_php = array(
-	'page_title' => 'Kullan&Auml;�c&Auml;� kayd&Auml;�',
-	'term_cond' => 'Şartlar ve durumlar',
+	'page_title' => 'Kullanýcý kaydý',
+	'term_cond' => 'Þartlar ve durumlar',
 	'i_agree' => 'Kabul Ediyorum',
-	'submit' => 'Kayd&Auml;� Gönder',
-	'err_user_exists' => 'Yazd&Auml;�&Auml;�&Auml;�n&Auml;�z kullan&Auml;�c&Auml;� ad&Auml;� kullan&Auml;�lmaktad&Auml;�r, başka bir kullan&Auml;�c&Auml;� ad&Auml;� deneyin',
-	'err_password_mismatch' => 'Yazd&Auml;�&Auml;�&Auml;�n&Auml;�z şifreler tutmuyor lütfen şifreleriniz tekrar girin',
-	'err_uname_short' => 'Kullan&Auml;�c&Auml;� ad&Auml;� en az 2 karakterden oluşmal&Auml;�',
-	'err_password_short' => 'Şifre en az 2 karakterden oluşmal&Auml;�',
-	'err_uname_pass_diff' => 'Kullan&Auml;�c&Auml;� ad&Auml;� ve şifre farkl&Auml;� olmal&Auml;�',
+	'submit' => 'Kaydý G&ouml;nder',
+	'err_user_exists' => 'Yazdýðýnýz kullanýcý adý kullanýlmaktadýr, baþka bir kullanýcý adý deneyin',
+	'err_password_mismatch' => 'Yazdýðýnýz þifreler tutmuyor l&uuml;tfen þifreleriniz tekrar girin',
+	'err_uname_short' => 'Kullanýcý adý en az 2 karakterden oluþmalý',
+	'err_password_short' => 'Þifre en az 2 karakterden oluþmalý',
+	'err_uname_pass_diff' => 'Kullanýcý adý ve þifre farklý olmalý',
 	'err_invalid_email' => 'E-Posta adresi geçersizdir',
-	'err_duplicate_email' => 'Başka bir kullan&Auml;�c&Auml;� bu E-Posta adresini kullanarak kaydolmuştur',
+	'err_duplicate_email' => 'Baþka bir kullanýcý bu E-Posta adresini kullanarak kaydolmuþtur',
 	'enter_info' => 'Bilgilerinizi girin',
 	'required_info' => 'Gerekli bilgiler',
 	'optional_info' => 'Seçimlik bilgiler',
-	'username' => 'Kullan&Auml;�c&Auml;� Ad&Auml;�',
-	'password' => 'Şifre',
-	'password_again' => 'Şifrenizi yeniden girin',
+	'username' => 'Kullanýcý Adý',
+	'password' => 'Þifre',
+	'password_again' => 'Þifrenizi yeniden girin',
 	'email' => 'E-Posta',
 	'location' => 'Konum',
-	'interests' => '&Auml;�lgi alanlar&Auml;�',
-	'website' => 'Kişisel Sayfa',
+	'interests' => 'Ýlgi alanlarý',
+	'website' => 'Kiþisel Sayfa',
 	'occupation' => 'Meslek',
 	'error' => 'HATA',
-	'confirm_email_subject' => '%s - Kay&Auml;�t onay&Auml;�',
+	'confirm_email_subject' => '%s - Kayýt onayý',
 	'information' => 'Bilgi',
-	'failed_sending_email' => 'Kay&Auml;�t onay&Auml;� e-Postas&Auml;� yollanam&Auml;�yor !',
-	'thank_you' => 'Kaydoldu&Auml;�unuz için teşekkür ederiz.<br /><br />Hesab&Auml;�n&Auml;�z&Auml;� nas&Auml;�l etkinleştirece&Auml;�inizi yazan bir E-Posta adersinize yollanm&Auml;�şt&Auml;�r.',
-	'acct_created' => 'Hesab&Auml;�n&Auml;�z oluşturulmuştur, şimdi kullan&Auml;�c&Auml;� ad&Auml;�n&Auml;�z&Auml;� ve şifrenizi kullanarak giriş yapabilirsiniz',
-	'acct_active' => 'Hesab&Auml;�n&Auml;�z etkinleştirildi, şimdi sisteme giriş yapabilirsiniz',
+	'failed_sending_email' => 'Kayýt onayý e-Postasý yollanamýyor !',
+	'thank_you' => 'Kaydolduðunuz için teþekk&uuml;r ederiz.<br /><br />Hesabýnýzý nasýl etkinleþtireceðinizi yazan bir E-Posta adersinize yollanmýþtýr.',
+	'acct_created' => 'Hesabýnýz oluþturulmuþtur, þimdi kullanýcý adýnýzý ve þifrenizi kullanarak giriþ yapabilirsiniz',
+	'acct_active' => 'Hesabýnýz etkinleþtirildi, þimdi sisteme giriþ yapabilirsiniz',
 	'acct_already_act' => 'Bu hesap zaten etkin !',
-	'acct_act_failed' => 'Bu hesab etkinleştirilemiyor !',
-	'err_unk_user' => 'Seçilen kullan&Auml;�c&Auml;� yok !',
+	'acct_act_failed' => 'Bu hesab etkinleþtirilemiyor !',
+	'err_unk_user' => 'Seçilen kullanýcý yok !',
 	'x_s_profile' => '%s\'in profili',
 	'group' => 'Grup',
-	'reg_date' => 'Kat&Auml;�lma tarihi',
-	'disk_usage' => 'Disk kullan&Auml;�m&Auml;�',
-	'change_pass' => 'Şifre de&Auml;�iştir',
-	'current_pass' => 'Şu anki şifre',
-	'new_pass' => 'Yeni şifre',
-	'new_pass_again' => 'Yeni şifre yeniden',
-	'err_curr_pass' => 'Şu anki şifre yanl&Auml;�ş',
-	'apply_modif' => 'De&Auml;�işiklikleri uygula',
-	'change_pass' => 'Şifremi de&Auml;�iştir',
-	'update_success' => 'Profiliniz güncelleştirildi',
-	'pass_chg_success' => 'Şifreniz de&Auml;�iştirildi',
-	'pass_chg_error' => 'Şifreniz de&Auml;�iştirildi',
+	'reg_date' => 'Katýlma tarihi',
+	'disk_usage' => 'Disk kullanýmý',
+	'change_pass' => 'Þifre deðiþtir',
+	'current_pass' => 'Þu anki þifre',
+	'new_pass' => 'Yeni þifre',
+	'new_pass_again' => 'Yeni þifre yeniden',
+	'err_curr_pass' => 'Þu anki þifre yanlýþ',
+	'apply_modif' => 'Deðiþiklikleri uygula',
+	'change_pass' => 'Þifremi deðiþtir',
+	'update_success' => 'Profiliniz g&uuml;ncelleþtirildi',
+	'pass_chg_success' => 'Þifreniz deðiþtirildi',
+	'pass_chg_error' => 'Þifreniz deðiþtirildi',
 );
 
 $lang_register_confirm_email = <<<EOT
-{SITE_NAME} de kaydoldu&Auml;�unuz için teşekkür ederiz
+{SITE_NAME} de kaydolduðunuz için teþekk&uuml;r ederiz
 
-Kullan&Auml;�c&Auml;� ad&Auml;�n&Auml;�z : "{USER_NAME}"
-Şifreniz : "{PASSWORD}"
+Kullanýcý adýnýz : "{USER_NAME}"
+Þifreniz : "{PASSWORD}"
 
-Hesab&Auml;�n&Auml;�z&Auml;� etkinleştirebilmek için aşa&Auml;�&Auml;�daki ba&Auml;�lant&Auml;�ya t&Auml;�klay&Auml;�n
-Veya tarayc&Auml;�n&Auml;�z&Auml;�n adres çubu&Auml;�una kopyalay&Auml;�n
+Hesabýnýzý etkinleþtirebilmek için aþaðýdaki baðlantýya týklayýn
+Veya taraycýnýzýn adres çubuðuna kopyalayýn
 
 {ACT_LINK}
 
-Sayf&Auml;�lar&Auml;�m&Auml;�zla,
+Sayfýlarýmýzla,
 
-{SITE_NAME} yöneticileri
+{SITE_NAME} y&ouml;neticileri
 
 EOT;
 
@@ -758,13 +798,13 @@ EOT;
 // ------------------------------------------------------------------------- //
 
 if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
-	'title' => 'Eleştiri yorumlar&Auml;�',
-	'no_comment' => 'Eleştirilecek yorum yok',
+	'title' => 'Eleþtiri yorumlarý',
+	'no_comment' => 'Eleþtirilecek yorum yok',
 	'n_comm_del' => '%s yorum silindi',
-	'n_comm_disp' => 'Gösterilecek yorum say&Auml;�s&Auml;�',
-	'see_prev' => 'Öncekini gör',
-	'see_next' => 'Sonrakini göre',
-	'del_comm' => 'Seçilmiş yorumlar&Auml;� sil',
+	'n_comm_disp' => 'G&ouml;sterilecek yorum sayýsý',
+	'see_prev' => '&Ouml;ncekini g&ouml;r',
+	'see_next' => 'Sonrakini g&ouml;re',
+	'del_comm' => 'Seçilmiþ yorumlarý sil',
 );
 
 
@@ -773,7 +813,7 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCH_PHP')) $lang_search_php = array(
-	0 => 'Resim arşivinde ara',
+	0 => 'Resim arþivinde ara',
 );
 
 // ------------------------------------------------------------------------- //
@@ -783,29 +823,29 @@ if (defined('SEARCH_PHP')) $lang_search_php = array(
 if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 	'page_title' => 'Yeni resimler ara',
 	'select_dir' => 'Dizin seç',
-	'select_dir_msg' => 'Bu fonksiyon size FTP ile yükled&Auml;�iniz bir grup resmi eklemenizi sa&Auml;�lar.<br /><br />Yükledi&Auml;�iniz resimlerin dizinini seçin',
+	'select_dir_msg' => 'Bu fonksiyon size FTP ile y&uuml;kledðiniz bir grup resmi eklemenizi saðlar.<br /><br />Y&uuml;klediðiniz resimlerin dizinini seçin',
 	'no_pic_to_add' => 'Eklenecek resim yok',
-	'need_one_album' => 'Bu fonksiyonu kullanabilmek için en az bir albüme ihtiyac&Auml;�n&Auml;�z var',
+	'need_one_album' => 'Bu fonksiyonu kullanabilmek için en az bir alb&uuml;me ihtiyacýnýz var',
 	'warning' => 'Dikkat',
-	'change_perm' => 'Program bu dizine yazam&Auml;�yor, yazabilmek için CHMOD unu 755 veya 777 yapman&Auml;�z gerekiyor resimleri yüklemeden önce !',
-	'target_album' => '<b>Resimlerini &quot;</b>%s<b>&quot; e gönder </b>%s',
-	'folder' => 'Klasör',
+	'change_perm' => 'Program bu dizine yazamýyor, yazabilmek için CHMOD unu 755 veya 777 yapmanýz gerekiyor resimleri y&uuml;klemeden &ouml;nce !',
+	'target_album' => '<b>Resimlerini &quot;</b>%s<b>&quot; e g&ouml;nder </b>%s',
+	'folder' => 'Klas&ouml;r',
 	'image' => 'Resim',
-	'album' => 'Albüm',
+	'album' => 'Alb&uuml;m',
 	'result' => 'Sonuç',
-	'dir_ro' => 'Yaz&Auml;�lamaz. ',
+	'dir_ro' => 'Yazýlamaz. ',
 	'dir_cant_read' => 'Okunamaz. ',
 	'insert' => 'Galeriye yeni resim ekle',
 	'list_new_pic' => 'Yeni resimlerin listesi',
-	'insert_selected' => 'Seçilmiş resimleri ekle',
-	'no_pic_found' => 'Yeni resim bulunamad&Auml;�',
-	'be_patient' => 'Lütfen bekleyiniz, program işleminiz yapmaktad&Auml;�r',
+	'insert_selected' => 'Seçilmiþ resimleri ekle',
+	'no_pic_found' => 'Yeni resim bulunamadý',
+	'be_patient' => 'L&uuml;tfen bekleyiniz, program iþleminiz yapmaktadýr',
 	'notes' =>  '<ul>'.
-				'<li><b>OK</b> : Resminiz başar&Auml;� ile eklenmiştir.'.
-				'<li><b>DP</b> : Resim bir kopya, başka bir kopyas&Auml;� veritaban&Auml;�nda bulunmaktad&Auml;�r'.
-				'<li><b>PB</b> : Resim yüklenemedi, resimlerin bulundu&Auml;�u dizinlerin do&Auml;�ru ayarlanm&Auml;�ş oldu&Auml;�undan emin olun'.
-				'<li>E&Auml;�er OK, DP, PB \'signs\' işaretlerinden biri ç&Auml;�km&Auml;�yorsa, k&Auml;�r&Auml;�k resmin üzerine t&Auml;�klay&Auml;�n PHP hata iletisini görebilmek için'.
-				'<li>E&Auml;�er sunucu zaman ba&Auml;�lant&Auml;� hatas&Auml;� olursa, yenile tuşuna bas&Auml;�n'.
+				'<li><b>OK</b> : Resminiz baþarý ile eklenmiþtir.'.
+				'<li><b>DP</b> : Resim bir kopya, baþka bir kopyasý veritabanýnda bulunmaktadýr'.
+				'<li><b>PB</b> : Resim y&uuml;klenemedi, resimlerin bulunduðu dizinlerin doðru ayarlanmýþ olduðundan emin olun'.
+				'<li>Eðer OK, DP, PB \'signs\' iþaretlerinden biri çýkmýyorsa, kýrýk resmin &uuml;zerine týklayýn PHP hata iletisini g&ouml;rebilmek için'.
+				'<li>Eðer sunucu zaman baðlantý hatasý olursa, yenile tuþuna basýn'.
 				'</ul>',
 );
 
@@ -816,20 +856,34 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 
 // Void
 
+// ------------------------------------------------------------------------- // 
+// File banning.php 
+// ------------------------------------------------------------------------- // 
+
+if (defined('BANNING_PHP')) $lang_banning_php = array( 
+                'title' => 'Kullanýcýlarý Yasakla', 
+                'user_name' => 'Kullanýcý Adý', 
+                'ip_address' => 'IP Adresi', 
+                'expiry' => 'Bitiþ süresi (boþ daimi anlamýnda)', 
+                'edit_ban' => 'Deðiþiklikleri Kayýt Et', 
+                'delete_ban' => 'Sil', 
+                'add_new' => 'Yeni Yasaklý Ekle', 
+                'add_ban' => 'Ekle', 
+); 
 
 // ------------------------------------------------------------------------- //
 // File upload.php
 // ------------------------------------------------------------------------- //
 
 if (defined('UPLOAD_PHP')) $lang_upload_php = array(
-	'title' => 'Resim yükleme',
+	'title' => 'Resim y&uuml;kleme',
 	'max_fsize' => 'En fazla izin verilen boyut %s KB',
-	'album' => 'Albüm',
+	'album' => 'Alb&uuml;m',
 	'picture' => 'Resim',
-	'pic_title' => 'Resim Başl&Auml;�&Auml;�&Auml;�',
-	'description' => 'Resim aç&Auml;�klamas&Auml;�',
-	'keywords' => 'Anahat kelimeler (her anahtar kelimesi aras&Auml;�nda boşluk b&Auml;�rak&Auml;�n)',
-	'err_no_alb_uploadables' => 'Yükleyebilece&Auml;�iniz herhangi bir albümünüz yok',
+	'pic_title' => 'Resim Baþlýðý',
+	'description' => 'Resim açýklamasý',
+	'keywords' => 'Anahat kelimeler (her anahtar kelimesi arasýnda boþluk býrakýn)',
+	'err_no_alb_uploadables' => 'Y&uuml;kleyebileceðiniz herhangi bir alb&uuml;m&uuml;n&uuml;z yok',
 );
 
 // ------------------------------------------------------------------------- //
@@ -837,44 +891,96 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
-	'title' => 'Kullan&Auml;�c&Auml;�lar düzenle',
-	'name_a' => '&Auml;�simler küçükten büyü&Auml;�e s&Auml;�rala ',
-	'name_d' => '&Auml;�simler büyüktan küçü&Auml;�e s&Auml;�rala',
-	'group_a' => 'Gruplar&Auml;� küçükten büyü&Auml;�e s&Auml;�rala',
-	'group_d' => 'Gruplar&Auml;� büyüktan küçü&Auml;�e s&Auml;�rala',
-	'reg_a' => 'Kay&Auml;�t olma tarihi küçükten büyü&Auml;�e s&Auml;�rala',
-	'reg_d' => 'Kay&Auml;�t olma tarihi büyüktan küçü&Auml;�e s&Auml;�rala',
-	'pic_a' => 'Resim sayma küçükten bü&Auml;�ü&Auml;�e',
-	'pic_d' => 'Resim sayma büyükten küçü&Auml;�e',
-	'disku_a' => 'Disk kullan&Auml;�m&Auml;� küçükten büyü&Auml;�e',
-	'disku_d' => 'Disk kullan&Auml;�m&Auml;� büyükten küçü&Auml;�e',
-	'sort_by' => 'Kullan&Auml;�c&Auml;�lar&Auml;� göre s&Auml;�rala',
-	'err_no_users' => 'Kullan&Auml;�c&Auml;� tablosu boş !',
-	'err_edit_self' => 'Kendi profilinizi düzenleyemezsiniz, bunun için \'My profile\' ba&Auml;�lant&Auml;�s&Auml;�n&Auml;� kullan&Auml;�n',
-	'edit' => 'DÜZENLE',
-	'delete' => 'S&Auml;�L',
-	'name' => 'Kullan&Auml;�c&Auml;� ad',
+	'title' => 'Kullanýcýlar d&uuml;zenle',
+	'name_a' => 'Ýsimler k&uuml;ç&uuml;kten b&uuml;y&uuml;ðe sýrala ',
+	'name_d' => 'Ýsimler b&uuml;y&uuml;ktan k&uuml;ç&uuml;ðe sýrala',
+	'group_a' => 'Gruplarý k&uuml;ç&uuml;kten b&uuml;y&uuml;ðe sýrala',
+	'group_d' => 'Gruplarý b&uuml;y&uuml;ktan k&uuml;ç&uuml;ðe sýrala',
+	'reg_a' => 'Kayýt olma tarihi k&uuml;ç&uuml;kten b&uuml;y&uuml;ðe sýrala',
+	'reg_d' => 'Kayýt olma tarihi b&uuml;y&uuml;ktan k&uuml;ç&uuml;ðe sýrala',
+	'pic_a' => 'Resim sayma k&uuml;ç&uuml;kten b&uuml;ð&uuml;ðe',
+	'pic_d' => 'Resim sayma b&uuml;y&uuml;kten k&uuml;ç&uuml;ðe',
+	'disku_a' => 'Disk kullanýmý k&uuml;ç&uuml;kten b&uuml;y&uuml;ðe',
+	'disku_d' => 'Disk kullanýmý b&uuml;y&uuml;kten k&uuml;ç&uuml;ðe',
+	'sort_by' => 'Kullanýcýlarý g&ouml;re sýrala',
+	'err_no_users' => 'Kullanýcý tablosu boþ !',
+	'err_edit_self' => 'Kendi profilinizi d&uuml;zenleyemezsiniz, bunun için \'My profile\' baðlantýsýný kullanýn',
+	'edit' => 'D&Uuml;ZENLE',
+	'delete' => 'SÝL',
+	'name' => 'Kullanýcý ad',
 	'group' => 'Grup',
 	'inactive' => 'Pasif',
-	'operations' => '&Auml;�şlemler',
+	'operations' => 'Ýþlemler',
 	'pictures' => 'Resimler',
-	'disk_space' => 'Kullan&Auml;�lan alan / kota',
-	'registered_on' => 'Kay&Auml;�t olma tarihi',
-	'u_user_on_p_pages' => '%d kullan&Auml;�c&Auml;� %d sayfada',
-	'confirm_del' => 'Bu kullan&Auml;�c&Auml;�y S&Auml;�LMEK istedi&Auml;�inizden emin misiniz ? \\nBütün resim ve albümleri silinecektir.',
+	'disk_space' => 'Kullanýlan alan / kota',
+	'registered_on' => 'Kayýt olma tarihi',
+	'u_user_on_p_pages' => '%d kullanýcý %d sayfada',
+	'confirm_del' => 'Bu kullanýcýy SÝLMEK istediðinizden emin misiniz ? \\nB&uuml;t&uuml;n resim ve alb&uuml;mleri silinecektir.',
 	'mail' => 'POSTA',
-	'err_unknown_user' => 'Seçilen kullan&Auml;�c&Auml;� yok !',
-	'modify_user' => 'Kullan&Auml;�c&Auml;�y Düzenle',
+	'err_unknown_user' => 'Seçilen kullanýcý yok !',
+	'modify_user' => 'Kullanýcýy D&uuml;zenle',
 	'notes' => 'Notlar',
-	'note_list' => '<li>Şu anki şifreyi de&Auml;�iştirmek istemiyorsan&Auml;�z Şifre alan&Auml;�n&Auml;� boş b&Auml;�rak&Auml;�n&Auml;�z',
-	'password' => 'Şifre',
-	'user_active_cp' => 'Kulann&Auml;�c&Auml;� etkin',
-	'user_group_cp' => 'Kullan&Auml;�c&Auml;� grubu',
-	'user_email' => 'Kullan&Auml;�c&Auml;� e-Posta',
-	'user_web_site' => 'Kullan&Auml;�c&Auml;� a&Auml;� sitesi',
-	'create_new_user' => 'Yeni kullan&Auml;�c&Auml;� oluştur',
-	'user_from' => 'Kullan&Auml;�c&Auml;� konumu',
-	'user_interests' => 'Kullan&Auml;�c&Auml;� &Auml;�lgi alanlar&Auml;�',
-	'user_occ' => 'Kullan&Auml;�c&Auml;� Mesle&Auml;�i',
+	'note_list' => '<li>Þu anki þifreyi deðiþtirmek istemiyorsanýz Þifre alanýný boþ býrakýnýz',
+	'password' => 'Þifre',
+	'user_active_cp' => 'Kulannýcý etkin',
+	'user_group_cp' => 'Kullanýcý grubu',
+	'user_email' => 'Kullanýcý e-Posta',
+	'user_web_site' => 'Kullanýcý að sitesi',
+	'create_new_user' => 'Yeni kullanýcý oluþtur',
+	'user_from' => 'Kullanýcý konumu',
+	'user_interests' => 'Kullanýcý Ýlgi alanlarý',
+	'user_occ' => 'Kullanýcý Mesleði',
 );
+
+// ------------------------------------------------------------------------- // 
+// File util.php 
+// ------------------------------------------------------------------------- // 
+
+if (defined('UTIL_PHP')) $lang_util_php = array( 
+        'title' => 'Resimleri boyutlandýr', 
+        'what_it_does' => 'Ne yapar', 
+        'what_update_titles' => 'Dosya Adýndan baþlýklarý günceller', 
+        'what_delete_title' => 'Baþlýklarý Siler', 
+        'what_rebuild' => 'Küçük resimleri ve boyutlandýrýlmýþ resimleri yeniden yapýlandýrýr', 
+        'what_delete_originals' => 'Gerçek boyuttaki resimleri siler ve onlarý boyutlandýrýlmýþla deðiþtirir', 
+        'file' => 'Dosya', 
+        'title_set_to' => 'baþlýk ayarlanmýþ', 
+        'submit_form' => 'ilet', 
+        'updated_succesfully' => 'güncelleme baþarýlý', 
+        'error_create' => 'yaratýrken HATA', 
+        'continue' => 'Daha fazla resim iþle', 
+        'main_success' => ' %s dosyasý baþarýlý bir þekilde ana resim olarak kullanýldý', 
+        'error_rename' => ' %s ye %s yeniden adlandýrýken hata oluþtu', 
+        'error_not_found' => ' %s dosyasý bulunamadý', 
+        'back' => 'anasyafa geri dön', 
+        'thumbs_wait' => 'Küçük resimleri ve/veya boyutlandýrýlmýþ resimler güncelleniyor, lütfen bekleyiniz...', 
+        'thumbs_continue_wait' => 'Küçük resimlerin ve/veya boyutlandýrýlmýþ resimlerin güncellenmesine devam ediliyor...', 
+        'titles_wait' => 'Baþlýklar güncelleniyor, lütfen bekleyiniz...', 
+        'delete_wait' => 'Baþlýklar siliniyor, lütfen bekleyiniz...', 
+        'replace_wait' => 'Asýl resimler siliniyor ve/veya boyutlandýrýlmýþ resimleri ile deðiþtiriliyor, lütfen bekleyiniz...', 
+        'instruction' => 'Hýzlý Talimat', 
+        'instruction_action' => 'Hareket seç', 
+        'instruction_parameter' => 'Parametreleri ayarlar', 
+        'instruction_album' => 'Albüm seç', 
+        'instruction_press' => ' %s bas', 
+        'update' => 'Küçük resimleri ve/veya boyutlandýrýlmýþ resimleri güncelle', 
+        'update_what' => 'Neler güncellenmeli', 
+        'update_thumb' => 'Sadece küçük resimler', 
+        'update_pic' => 'Sadece boyutlandýrýlmýþ resimler', 
+        'update_both' => 'Her ikiside küçük resimler ve boyutlandýrýlmýþ resimler', 
+        'update_number' => 'Klik baþýna iþlenmiþ resimlerin sayýsý', 
+        'update_option' => '(Eðer timeout sorunlarý yaþýyorsanýz daha düþüðe getirmeyi deneyin)', 
+        'filename_title' => 'Dosya Adý ? Resim baþlýðý', 
+        'filename_how' => 'Dosya adý nasýl deðiþtirilsin', 
+        'filename_remove' => '.jpg sonunu kaldýr ve _ (alt çizgi)yi boþlukla deðiþtir', 
+        'filename_euro' => '2003_11_23_13_20_20.jpg yi 3/11/2003 13:20 ye deðiþtir', 
+        'filename_us' => '2003_11_23_13_20_20.jpg yi 11/23/2003 13:20 ye deðiþtir', 
+        'filename_time' => '2003_11_23_13_20_20.jpg yi 13:20 ye deðiþtir', 
+        'delete' => 'Resim baþlýklarýný veya gerçek boyut resimlerini sil', 
+        'delete_title' => 'Resim baþlýklarýný sil', 
+        'delete_original' => 'Gerçek boy resimleri sil', 
+        'delete_replace' => 'Asýl resimleri sil ve bunlarý boyutlandýrýlmýþlarla deðiþtir', 
+        'select_album' => 'Albüm seç', 
+); 
+
 ?>

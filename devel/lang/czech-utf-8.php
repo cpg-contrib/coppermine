@@ -1,17 +1,11 @@
-<?php
-/*
-czech lang by Michal Soukup aka migon
-migon@boule.cz
-http://www.boule.cz
-*/
-
+﻿<?php
 // ------------------------------------------------------------------------- //
 //  Coppermine Photo Gallery                                                 //
 // ------------------------------------------------------------------------- //
 //  Copyright (C) 2002,2003  Grégory DEMAR <gdemar@wanadoo.fr>               //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Střverud <henning@stoverud.com>         //
+//  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
 //  http://www.stoverud.com/PHPhotoalbum/                                    //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
@@ -20,21 +14,33 @@ http://www.boule.cz
 //  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
 
-$lang_charset = 'utf-8';
+// info about translators and translated language
+$lang_translation_info = array(
+'lang_name_english' => 'Czech',  //the name of your language in English, e.g. 'Greek' or 'Spanish'
+'lang_name_native' => '&#x10C;esky', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espan~ol'
+'lang_country_code' => 'cz', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es'
+'trans_name'=> 'Michal Soukup aka migon', //the name of the translator - can be a nickname
+'trans_email' => 'migon@boule.cz', //translator's email address (optional)
+'trans_website' => 'http://www.boule.cz/', //translator's website (optional)
+'trans_date' => '2003-10-02', //the date the translation was created / last modified
+);
+
+
+$lang_charset = 'iso-8859-2';
 $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 
 // shortcuts for Byte, Kilo, Mega
-$lang_byte_units = array('Bytů', 'KB', 'MB');
+$lang_byte_units = array('Bytù', 'KB', 'MB');
 
 // Day of weeks and months
-$lang_day_of_week = array('Ne', 'Po', 'Út', 'St', 'Čt', 'Pá', 'So');
-$lang_month = array('Leden', 'Únor', 'Březen', 'Duben', 'Květen', 'Červen', 'Červenec', 'Srpen', 'Září', 'Říjen', 'Listopad', 'Prosinec');
+$lang_day_of_week = array('Ne', 'Po', 'Út', 'St', 'Èt', 'Pá', 'So');
+$lang_month = array('Leden', 'Únor', 'Bøezen', 'Duben', 'Kvìten', 'Èerven', 'Èervenec', 'Srpen', 'Záøí', 'Øíjen', 'Listopad', 'Prosinec');
 
 // Some common strings
 $lang_yes = 'Ano';
 $lang_no  = 'Ne';
-$lang_back = 'ZPĚT';
-$lang_continue = 'POKRAČOVAT';
+$lang_back = 'ZPÌT';
+$lang_continue = 'POKRAÈOVAT';
 $lang_info = 'Informace';
 $lang_error = 'Chyba';
 
@@ -48,33 +54,37 @@ $lasthit_date_fmt = '%B %d, %Y at %I:%M %p';
 $comment_date_fmt =  '%B %d, %Y at %I:%M %p';
 
 // For the word censor
-$lang_bad_words = array('píča', 'hovno', '*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
+$lang_bad_words = array('píèa', 'hovno', '*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
 
 $lang_meta_album_names = array(
-    'random' => 'Náhodné Obrázky',
-    'lastup' => 'Nejnovější obrázky',
-    'lastcom' => 'Poslední komentáře',
-    'topn' => 'Nejprohlíženější',
-    'toprated' => 'Nejlépe hodnocené',
-    'lasthits' => 'Naposledy prohlížené',
-    'search' => 'Výsledky vyhledávání'
+        'random' => 'Náhodné obrázky',
+        'lastup' => 'Nejnovìj¹í',
+        'lastalb'=> 'Naposledy aktualizovaná alba',
+        'lastcom' => 'Nejnovìj¹í komentáøe',
+        'topn' => 'Nejprohlí¾enìj¹í',
+        'toprated' => 'Nejlépe hodnocené',
+        'lasthits' => 'Naposledy zobrazené',
+        'search' => 'Výsledky hledání',
+        'favpics'=> 'Oblíbené obrázky'
 );
 
 $lang_errors = array(
-    'access_denied' => 'Nemáte oprávnění na tuto stránku',
-    'perm_denied' => 'Nemáte dostatečná práva pro potvrzení této operace.',
-    'param_missing' => 'Skriptu nebyly předány potřebné parametry',
+    'access_denied' => 'Nemáte oprávnìní na tuto stránku',
+    'perm_denied' => 'Nemáte dostateèná práva pro potvrzení této operace.',
+    'param_missing' => 'Skriptu nebyly pøedány potøebné parametry',
     'non_exist_ap' => 'Vybrané album/obrázek neexistuje',
-    'quota_exceeded' => 'Vyčerpal(a) jste místo na disku.<br /><br />Vaše kvóta je[quota]K, Vaše obrázky zbírají [space]K, přidáním tohoto obrázku by jste svoji kvótu překročil',
-    'gd_file_type_err' => 'Pokud používáte GD knihovnu jsou podporovány jen obrázky JPG a PNG',
-    'invalid_image' => 'Tento obrázek je poškozen/porušen GD knihovna s ním nemůže pracovat.',
-    'resize_failed' => 'Nelze vytvořit náhled či zmenšený obrázek',
+    'quota_exceeded' => 'Vyèerpal(a) jste místo na disku.<br /><br />Va¹e kvóta je[quota]K, Va¹e obrázky zbírají [space]K, pøidáním tohoto obrázku by jste svoji kvótu pøekroèil',
+    'gd_file_type_err' => 'Pokud pou¾íváte GD knihovnu jsou podporovány jen obrázky JPG a PNG',
+    'invalid_image' => 'Tento obrázek je po¹kozen/poru¹en GD knihovna s ním nemù¾e pracovat.',
+    'resize_failed' => 'Nelze vytvoøit náhled èi zmen¹ený obrázek',
     'no_img_to_display' => 'Zde není obrázek který by jste si mohl(a) prohlédnout',
     'non_exist_cat' => 'Vybraná kategorie neexistuje',
-    'orphan_cat' => 'Podkategorie nemá nadřízenou kategorii. Problém opravte přes nastavení kategorií.',
-    'directory_ro' => 'Do adresáře \'%s\' nelze zapisovat (nedostatečná práva), obrázky nemohly být smazány.',
-    'non_exist_comment' => 'Vybraný komentář neexistuje',
+    'orphan_cat' => 'Podkategorie nemá nadøízenou kategorii. Problém opravte pøes nastavení kategorií.',
+    'directory_ro' => 'Do adresáøe \'%s\' nelze zapisovat (nedostateèná práva), obrázky nemohly být smazány.',
+    'non_exist_comment' => 'Vybraný komentáø neexistuje',
     'pic_in_invalid_album' => 'Obrázek(y) je/jsou v neexitujícím albu (%s)!?'
+    'banned' => 'Byl jse vykopnut z tìchto stránek, není Vám umo¾nìno je pou¾ívat.',
+    'not_with_udb' => 'Tato funkce je vypnutá jeliko¾ je integrována ve fóru. Buï není po¾adovaná fukce dostupná na tomto systému, nebo tuto/tyto funci/e plní fórum.',
 );
 
 // ------------------------------------------------------------------------- //
@@ -82,26 +92,27 @@ $lang_errors = array(
 // ------------------------------------------------------------------------- //
 
 $lang_main_menu = array(
-    'alb_list_title' => 'Přejít na seznam galerií',
+    'alb_list_title' => 'Pøejít na seznam galerií',
     'alb_list_lnk' => 'Seznam galerií',
-    'my_gal_title' => 'Přejít do mé osobní galerie',
+    'my_gal_title' => 'Pøejít do mé osobní galerie',
     'my_gal_lnk' => 'Moje galerie',
-    'my_prof_lnk' => 'Můj Profil',
+    'my_prof_lnk' => 'Mùj Profil',
     'adm_mode_title' => 'Do Admin módu',
     'adm_mode_lnk' => 'Admin mód',
-    'usr_mode_title' => 'Do Uživatelského módu',
-    'usr_mode_lnk' => 'Uživatelský mód',
+    'usr_mode_title' => 'Do U¾ivatelského módu',
+    'usr_mode_lnk' => 'U¾ivatelský mód',
     'upload_pic_title' => 'Nahrát obrázek do gallerie',
     'upload_pic_lnk' => 'Upload obrázku',
-    'register_title' => 'Vytvořit účet',
+    'register_title' => 'Vytvoøit úèet',
     'register_lnk' => 'Registrovat se',
-    'login_lnk' => 'Přihlásit',
+    'login_lnk' => 'Pøihlásit',
     'logout_lnk' => 'Odhlásit',
-    'lastup_lnk' => 'Nejnovější obrázky',
-    'lastcom_lnk' => 'Poslední komentáře',
-    'topn_lnk' => 'Nejprohlíženější',
+    'lastup_lnk' => 'Nejnovìj¹í obrázky',
+    'lastcom_lnk' => 'Poslední komentáøe',
+    'topn_lnk' => 'Nejprohlí¾enìj¹í',
     'toprated_lnk' => 'Nejlépe hodnocené',
     'search_lnk' => 'Vyhledávání',
+    'fav_lnk' => 'Oblíbené',
 );
 
 $lang_gallery_admin_menu = array(
@@ -109,16 +120,18 @@ $lang_gallery_admin_menu = array(
     'config_lnk' => 'Nastavení',
     'albums_lnk' => 'Galerie',
     'categories_lnk' => 'Kategorie',
-    'users_lnk' => 'Uživatelé',
-    'groups_lnk' => 'Už. skupiny',
-    'comments_lnk' => 'Komentáře',
-    'searchnew_lnk' => 'Dávkové přidání obrázků',
+    'users_lnk' => 'U¾ivatelé',
+    'groups_lnk' => 'U¾. skupiny',
+    'comments_lnk' => 'Komentáøe',
+    'searchnew_lnk' => 'Dávkové pøidání obrázkù',
+    'util_lnk' => 'Zmìnit velikost obrázkù',
+    'ban_lnk' => 'Vykopnout u¾ivatele',
 );
 
 $lang_user_admin_menu = array(
-    'albmgr_lnk' => 'Vytvořit / organizovat moje galerie',
-    'modifyalb_lnk' => 'Změnit moje galerie',
-    'my_prof_lnk' => 'Můj profil',
+    'albmgr_lnk' => 'Vytvoøit / organizovat moje galerie',
+    'modifyalb_lnk' => 'Zmìnit moje galerie',
+    'my_prof_lnk' => 'Mùj profil',
 );
 
 $lang_cat_list = array(
@@ -133,30 +146,34 @@ $lang_album_list = array(
            //ascending VZESTUPNE
 $lang_thumb_view = array(
     'date' => 'DATUM',
-    'name' => 'JMÉNO',
-    'sort_da' => 'Řadit vzestupně podle data',
-    'sort_dd' => 'Řadit sestupně podle data',
-    'sort_na' => 'Řadit vzestupně podle jména',
-    'sort_nd' => 'Řadit sestupně podle jména',
-    'pic_on_page' => '%d obrázkků na %d stránkách',
-    'user_on_page' => '%d uživatelů na %d stránkách'
+    //Sort by filename and title
+    'name' => 'JMÉNO SOUBORU',
+    'title' => 'NADPIS',
+    'sort_da' => 'Øadit vzestupnì podle data',
+    'sort_dd' => 'Øadit sestupnì podle data',
+    'sort_na' => 'Øadit vzestupnì podle jména',
+    'sort_nd' => 'Øadit sestupnì podle jména',
+    'sort_ta' => 'Øadit podle nadpisu vzestupnì',
+    'sort_td' => 'Øadit podle nadpisu sestupnì',
+    'pic_on_page' => '%d obrázkkù na %d stránkách',
+    'user_on_page' => '%d u¾ivatelù na %d stránkách'
 );
 
 $lang_img_nav_bar = array(
-    'thumb_title' => 'Zpět na stránku s náhledy',
+    'thumb_title' => 'Zpìt na stránku s náhledy',
     'pic_info_title' => 'Zobraz/skryj informace o obrázku',
     'slideshow_title' => 'Slideshow',
     'ecard_title' => 'Poslat tento obrázek jako pohlednici',
     'ecard_disabled' => 'Pohlednice jsou vypnuté',
-    'ecard_disabled_msg' => 'Nemáte dostatečná práva pro zaslání pohlednice',
-    'prev_title' => 'Předchozí obrázek',
-    'next_title' => 'Další obrázek',
+    'ecard_disabled_msg' => 'Nemáte dostateèná práva pro zaslání pohlednice',
+    'prev_title' => 'Pøedchozí obrázek',
+    'next_title' => 'Dal¹í obrázek',
     'pic_pos' => 'OBRÁZEK %s/%s',
 );
 
 $lang_rate_pic = array(
     'rate_this_pic' => 'Hodnotit tento obrázek ',
-    'no_votes' => '(žádné hodnocení)',
+    'no_votes' => '(¾ádné hodnocení)',
     'rating' => '(Aktualní hodnocení : %s / z 5, hlasováno %s krát)',
     'rubbish' => 'Hnusný',
     'poor' => 'Mizerný',
@@ -181,20 +198,20 @@ $lang_cpg_die = array(
     ERROR => $lang_error,
     CRITICAL_ERROR => 'Kritická chyba',
     'file' => 'Soubor: ',
-    'line' => 'Řádka: ',
+    'line' => 'Øádka: ',
 );
 
 $lang_display_thumbnails = array(
     'filename' => 'Jméno souboru : ',
     'filesize' => 'Velikost souboru : ',
-    'dimensions' => 'Rozměry : ',
-    'date_added' => 'Datum přidání : '
+    'dimensions' => 'Rozmìry : ',
+    'date_added' => 'Datum pøidání : '
 );
 
 $lang_get_pic_data = array(
-    'n_comments' => '%s Komentář(ů)',
+    'n_comments' => '%s Komentáø(ù)',
     'n_views' => '%s zobrazení',
-    'n_votes' => '(%s hlas(ů))'
+    'n_votes' => '(%s hlas(ù))'
 );
 
 // ------------------------------------------------------------------------- //
@@ -249,7 +266,7 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ADMIN_PHP')) $lang_admin_php = array(
-    0 => 'Opouštím Admin Mód....:-(',
+    0 => 'Opou¹tím Admin Mód....:-(',
     1 => 'Vstupuji do Admin Módu....:-)',
 );
 
@@ -259,18 +276,18 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
 
 if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
     'alb_need_name' => 'Galerie musí mít jméno',
-    'confirm_modifs' => 'Ste si jist(a) těmito změnami ?',
-    'no_change' => 'Neudělal(a) jste žádné změny !',
+    'confirm_modifs' => 'Ste si jist(a) tìmito zmìnami ?',
+    'no_change' => 'Neudìlal(a) jste ¾ádné zmìny !',
     'new_album' => 'Nová galerie',
-    'confirm_delete1' => 'Jste si jist(a), že chcete smazat tuto galerii ?',
-    'confirm_delete2' => '\nVšechny obrázky a komentáře budou smazány !',
+    'confirm_delete1' => 'Jste si jist(a), ¾e chcete smazat tuto galerii ?',
+    'confirm_delete2' => '\nV¹echny obrázky a komentáøe budou smazány !',
     'select_first' => 'Nejprve vyberte galerii',
     'alb_mrg' => 'Správce galerií',
     'my_gallery' => '* Moje galerie *',
     'no_category' => '* Není kategorie *',
     'delete' => 'Smazat',
     'new' => 'Nový/á',
-    'apply_modifs' => 'Potvrdit změny',
+    'apply_modifs' => 'Potvrdit zmìny',
     'select_category' => 'Vybrat kategorii',
 );
 
@@ -279,16 +296,16 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
-    'miss_param' => 'Parametry potřebné pro \'%s\'operaci not supplied !',
+    'miss_param' => 'Parametry potøebné pro \'%s\'operaci not supplied !',
     'unknown_cat' => 'Vybraná kategorie v databázi neexistuje',
-    'usergal_cat_ro' => 'Nelze smazat uživatelské galerie !',
+    'usergal_cat_ro' => 'Nelze smazat u¾ivatelské galerie !',
     'manage_cat' => 'Spravovat kategorie',
     'confirm_delete' => 'Opravdu chcete SMAZAT tuto kategorii',
     'category' => 'Kategorie',
     'operations' => 'Operace',
-    'move_into' => 'Přesunout do',
-    'update_create' => 'Aktualizovat/Vytvořit kategorii',
-    'parent_cat' => 'Nadřazená kategorie',
+    'move_into' => 'Pøesunout do',
+    'update_create' => 'Aktualizovat/Vytvoøit kategorii',
+    'parent_cat' => 'Nadøazená kategorie',
     'cat_title' => 'Nadpis kategorie',
     'cat_desc' => 'Popis kategorie'
 );
@@ -300,15 +317,17 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
 if (defined('CONFIG_PHP')) $lang_config_php = array(
     'title' => 'Nastavení',
     'restore_cfg' => 'Nastavit výchozí',
-    'save_cfg' => 'Uložit konfiguraci',
+    'save_cfg' => 'Ulo¾it konfiguraci',
     'notes' => 'Poznámky',
     'info' => 'Informace',
-    'upd_success' => 'Konfigurace byla změněna',
+    'upd_success' => 'Konfigurace byla zmìnìna',
     'restore_success' => 'Konfigurace byla nastavena na výchozí nastavení',
-    'name_a' => 'Jméno vzestupně',
-    'name_d' => 'Jméno sestupně',
-    'date_a' => 'Datum vzestupně',
-    'date_d' => 'Datum sestupně'
+    'name_a' => 'Jméno vzestupnì',
+    'name_d' => 'Jméno sestupnì',
+    'date_a' => 'Datum vzestupnì',
+    'date_d' => 'Datum sestupnì',
+    'title_a' => 'Nadpis vzestupnì',
+    'title_d' => 'Nadpis sestupnì',
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
@@ -316,81 +335,88 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
     array('Jméno gallerie', 'gallery_name', 0),
     array('Popis Galerie', 'gallery_description', 0),
     array('Email administrátora galerie', 'gallery_admin_email', 0),
-    array('Cílová adresa pro odkaz \'Zobrazit další obrázky\' v odkazu pohlednice', 'ecards_more_pic_target', 0),
+    array('Cílová adresa pro odkaz \'Zobrazit dal¹í obrázky\' v odkazu pohlednice', 'ecards_more_pic_target', 0),
     array('Jazyk', 'lang', 5),
     array('Témátko', 'theme', 6),
 
     'Nastavení zobrazení',
-    array('Šířka hlavní tabulky v (pixelech nebo %)', 'main_table_width', 0),
-    array('Počet úrovní subkategorií', 'subcat_level', 0),
-    array('Počet galerií na stránku', 'albums_per_page', 0),
-    array('Počet sloupců v přehledu galerií', 'album_list_cols', 0),
-    array('Velikost náhledů v pixelech', 'alb_list_thumb_size', 0),
+    array('©íøka hlavní tabulky v (pixelech nebo %)', 'main_table_width', 0),
+    array('Poèet úrovní subkategorií', 'subcat_level', 0),
+    array('Poèet galerií na stránku', 'albums_per_page', 0),
+    array('Poèet sloupcù v pøehledu galerií', 'album_list_cols', 0),
+    array('Velikost náhledù v pixelech', 'alb_list_thumb_size', 0),
     array('Obsah hlavní stránky', 'main_page_layout', 0),
+    array('Ukazovat v kategoriích náhledy galerií první úrovnì','first_level',1),
 
-    'Zobrazení náhledů',
-    array('Počet sloupců na stránku', 'thumbcols', 0),
-    array('Počet řádků na stránku', 'thumbrows', 0),
-    array('Maximální množství záložek', 'max_tabs', 0),
+    'Zobrazení náhledù',
+    array('Poèet sloupcù na stránku', 'thumbcols', 0),
+    array('Poèet øádkù na stránku', 'thumbrows', 0),
+    array('Maximální mno¾ství zálo¾ek', 'max_tabs', 0),
     array('Zobrazit legendu obrázku pod náhledem', 'caption_in_thumbview', 1),
-    array('Zobrazit počet komentářů pod náhldem', 'display_comment_count', 1),
-    array('Základní řazení náhledů', 'default_sort_order', 3),
-    array('Min. počet hlasů potřebný k zařazení do seznamu \'Nejlépe hodnocené\'', 'min_votes_for_rating', 0),
+    array('Zobrazit poèet komentáøù pod náhldem', 'display_comment_count', 1),
+    array('Základní øazení náhledù', 'default_sort_order', 3),
+    array('Min. poèet hlasù potøebný k zaøazení do seznamu \'Nejlépe hodnocené\'', 'min_votes_for_rating', 0),
 
-    'Zobrazení obrázků &amp; Nastavení komentářů',
-    array('Šířka tabulky pro zobrazení obrázku (v pixelech nebo %)', 'picture_table_width', 0),
-    array('Vždy zobrazit podrobné info', 'display_pic_info', 1),
-    array('CENZUROVAT slova v komentářích', 'filter_bad_words', 1),
-    array('Povilit smajlíky v komentářích', 'enable_smilies', 1),
+    'Zobrazení obrázkù &amp; Nastavení komentáøù',
+    array('©íøka tabulky pro zobrazení obrázku (v pixelech nebo %)', 'picture_table_width', 0),
+    array('V¾dy zobrazit podrobné info', 'display_pic_info', 1),
+    array('CENZUROVAT slova v komentáøích', 'filter_bad_words', 1),
+    array('Povilit smajlíky v komentáøích', 'enable_smilies', 1),
     array('Maximální dálka popisu obrázku', 'max_img_desc_length', 0),
-    array('Maximální délka slova v komentáři', 'max_com_wlength', 0),
-    array('Maximální množství řádků v komentáři', 'max_com_lines', 0),
-    array('Maximální délka komentáře', 'max_com_size', 0),
+    array('Maximální délka slova v komentáøi', 'max_com_wlength', 0),
+    array('Maximální mno¾ství øádkù v komentáøi', 'max_com_lines', 0),
+    array('Maximální délka komentáøe', 'max_com_size', 0),
+    array('Ukázat filmový prou¾ek', 'display_film_strip', 1),
+    array('Poèet polo¾ek ve filmovém prou¾ku', 'max_film_strip_items', 0),
 
-    'Obrázky a nastavení náhledů',
-    array('Kvalita souborů JPEG', 'jpeg_qual', 0),
-    array('Maximální šířka nebo výška náhledu<b>*</b>', 'thumb_width', 0),
-    array('Vytvořit střední obrázek','make_intermediate',1),
-    array('Maximální šířka nebo výška střeního obrázku <b>*</b>', 'picture_width', 0),
-    array('Maximální velikost uploadovaných obrázků (KB)', 'max_upl_size', 0),
-    array('Maximální rozměry uploadovaných obrázků (v pixelech)', 'max_upl_width_height', 0),
+    'Obrázky a nastavení náhledù',
+    array('Kvalita souborù JPEG', 'jpeg_qual', 0),
+    array('Maximální rozmìry náhledu <b>*</b>', 'thumb_width', 0),
+    array('Pou¾ít rozmìr ( ¹íøka nebo vý¹ka nebo maximální rozmìr náhledu )<b>*</b>', 'thumb_use', 7),
+    array('Vytvoøit støední obrázek','make_intermediate',1),
+    array('Maximální ¹íøka nebo vý¹ka støeního obrázku <b>*</b>', 'picture_width', 0),
+    array('Maximální velikost uploadovaných obrázkù (KB)', 'max_upl_size', 0),
+    array('Maximální rozmìry uploadovaných obrázkù (v pixelech)', 'max_upl_width_height', 0),
 
-    'Nastavení uživatelů',
-    array('Povolit registraci nových uživatelů', 'allow_user_registration', 1),
-    array('Pro registraci vyžadovat potvrzení admina', 'reg_requires_valid_email', 1),
-    array('Povolit pro dva uživatele stejný email', 'allow_duplicate_emails_addr', 1),
-    array('Mají mít uživatelé vlastní galerii?', 'allow_private_albums', 1),
+    'Nastavení u¾ivatelù',
+    array('Povolit registraci nových u¾ivatelù', 'allow_user_registration', 1),
+    array('Pro registraci vy¾adovat potvrzení admina', 'reg_requires_valid_email', 1),
+    array('Povolit pro dva u¾ivatele stejný email', 'allow_duplicate_emails_addr', 1),
+    array('Mají mít u¾ivatelé vlastní galerii?', 'allow_private_albums', 1),
 
     'Custom fields for image description (Nechte prázné a nezobrazí se)',
-    array('Jméno položky 1', 'user_field1_name', 0),
-    array('Jméno položky 2', 'user_field2_name', 0),
-    array('Jméno položky 3', 'user_field3_name', 0),
-    array('Jméno položky 4', 'user_field4_name', 0),
+    array('Jméno polo¾ky 1', 'user_field1_name', 0),
+    array('Jméno polo¾ky 2', 'user_field2_name', 0),
+    array('Jméno polo¾ky 3', 'user_field3_name', 0),
+    array('Jméno polo¾ky 4', 'user_field4_name', 0),
 
-    'Obrázky a náhledy rozšířené nastavení',
-    array('Znaky zakázané v názvech souborů', 'forbiden_fname_char',0),
-    array('Povolené koncovky uploadovaných souborů', 'allowed_file_extensions',0),
-    array('Metoda změny velikosti obrázků','thumb_method',2),
-    array('Cesta k ImageMagicu (příklad /usr/bin/X11/)', 'impath', 0),
-    array('Povolené typy obrázků (pouze pro ImageMagic)', 'allowed_img_types',0),
+    'Obrázky a náhledy roz¹íøené nastavení',
+    array('Zobrazit ikonu zamknuté galerie nepøihlá¹enému u¾ivateli.','show_private',1),
+    array('Znaky zakázané v názvech souborù', 'forbiden_fname_char',0),
+    array('Povolené koncovky uploadovaných souborù', 'allowed_file_extensions',0),
+    array('Metoda zmìny velikosti obrázkù','thumb_method',2),
+    array('Cesta k ImageMagicu (pøíklad /usr/bin/X11/)', 'impath', 0),
+    array('Povolené typy obrázkù (pouze pro ImageMagic)', 'allowed_img_types',0),
     array('Parametry pro ImageMagic', 'im_options', 0),
-    array('Číst EXIF data ze souborů JPEG', 'read_exif_data', 1),
-    array('Adresář pro galerie <b>*</b>', 'fullpath', 0),
-    array('Adresář pro galerie uživatelů <b>*</b>', 'userpics', 0),
-    array('Prefix pro středně velké obrázky <b>*</b>', 'normal_pfx', 0),
+    array('Èíst EXIF data ze souborù JPEG', 'read_exif_data', 1),
+    array('Adresáø pro galerie <b>*</b>', 'fullpath', 0),
+    array('Adresáø pro galerie u¾ivatelù <b>*</b>', 'userpics', 0),
+    array('Prefix pro støednì velké obrázky <b>*</b>', 'normal_pfx', 0),
     array('Prefix pro náhledy <b>*</b>', 'thumb_pfx', 0),
-    array('Základní mód pro adresáře', 'default_dir_mode', 0),
+    array('Základní mód pro adresáøe', 'default_dir_mode', 0),
     array('Základní mód pro obrázky', 'default_file_mode', 0),
+    array('Zakázat kliknutí pravým tlaèítkem pøi plném zobrazení ( JavaScript metoda - NE neprustøelná odradí blbeèky :-D )', 'disable_popup_rightclick', 1),
+    array('Zakázat kliknutí pravým tlaèítkem na nornálních stránkách ( JavaScript metoda - NE neprustøelná odradí blbeèky :-D )', 'disable_gallery_rightclick', 1),
 
     'Cookies &amp; Kódová stráka',
-    array('Jméno cookies užívané programem (expertní volba)', 'cookie_name', 0),
-    array('Cesta pro cookies užívaná programem (expertní volba)', 'cookie_path', 0),
+    array('Jméno cookies u¾ívané programem (expertní volba)', 'cookie_name', 0),
+    array('Cesta pro cookies u¾ívaná programem (expertní volba)', 'cookie_path', 0),
     array('Kódová stránka', 'charset', 4),
 
-    'Další nastavení',
+    'Dal¹í nastavení',
     array('Zapnour debug mód (jen pro testování)', 'debug_mode', 1),
 
-    '<br /><div align="center">(*) Položky označené * se NESMÍ změnit pokud již máte ve vaší Galerii nahrané obrázky</div><br />'
+    '<br /><div align="center">(*) Polo¾ky oznaèené * se NESMÍ zmìnit pokud ji¾ máte ve va¹í Galerii nahrané obrázky</div><br />'
 );
 
 // ------------------------------------------------------------------------- //
@@ -398,30 +424,30 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
-    'empty_name_or_com' => 'Vložte jméno a Váš komentář',
-    'com_added' => 'Váš komentář byl přidán',
+    'empty_name_or_com' => 'Vlo¾te jméno a Vá¹ komentáø',
+    'com_added' => 'Vá¹ komentáø byl pøidán',
     'alb_need_title' => 'Prosím, dejte galerii nadpis !',
-    'no_udp_needed' => 'Aktualizace není třeba.',
-    'alb_updated' => 'Galerie byla přidána',
+    'no_udp_needed' => 'Aktualizace není tøeba.',
+    'alb_updated' => 'Galerie byla pøidána',
     'unknown_album' => 'Vybrané album neexistuje nebo nemáte práva pro upload do tohoto alba',
-    'no_pic_uploaded' => 'Obrázek nebyl uploadován!<br /><br />zkontrolujte zda server podporuje upload souborů, či zda jste opravdu zadal(a) obrázek k uploadu...',
-    'err_mkdir' => '  ERROR: Chyba při vytváření adresáře (nebyl vytvořen) %s !',
-    'dest_dir_ro' => 'Do cílového adresáře %s nemůže skript zapisovat (zkontrolujte práva) !',
-    'err_move' => 'Nelze přesunout %s do %s !',
-    'err_fsize_too_large' => 'Rozměry obrázku, který se snažíte uploadovat, jsou příliš velké (max. velikost je %s x %s) !',
-    'err_imgsize_too_large' => 'Velikost souboru, který se snažíte uploadovat, je příliš velká (max. velikost je %s KB) !',
+    'no_pic_uploaded' => 'Obrázek nebyl uploadován!<br /><br />zkontrolujte zda server podporuje upload souborù, èi zda jste opravdu zadal(a) obrázek k uploadu...',
+    'err_mkdir' => '  ERROR: Chyba pøi vytváøení adresáøe (nebyl vytvoøen) %s !',
+    'dest_dir_ro' => 'Do cílového adresáøe %s nemù¾e skript zapisovat (zkontrolujte práva) !',
+    'err_move' => 'Nelze pøesunout %s do %s !',
+    'err_fsize_too_large' => 'Rozmìry obrázku, který se sna¾íte uploadovat, jsou pøíli¹ velké (max. velikost je %s x %s) !',
+    'err_imgsize_too_large' => 'Velikost souboru, který se sna¾íte uploadovat, je pøíli¹ velká (max. velikost je %s KB) !',
     'err_invalid_img' => 'Soubor který jste nahrál(a) na server není validním obrázkem !',
-    'allowed_img_types' => 'Můžete uploadovat pouze obrázky %s .',
-    'err_insert_pic' => 'Obrázek \'%s\' nelze vložit do galerie ',
-    'upload_success' => 'Váš obrázek byl nahrán na server bez problémů<br /><br />Bude viditelný po schválení adminem.',
+    'allowed_img_types' => 'Mù¾ete uploadovat pouze obrázky %s .',
+    'err_insert_pic' => 'Obrázek \'%s\' nelze vlo¾it do galerie ',
+    'upload_success' => 'Vá¹ obrázek byl nahrán na server bez problémù<br /><br />Bude viditelný po schválení adminem.',
     'info' => 'Informace',
-    'com_added' => 'Komentářu přidáno',
+    'com_added' => 'Komentáøu pøidáno',
     'alb_updated' => 'Galerie aktualizována',
-    'err_comment_empty' => 'Váš komentář je prázdný !',
+    'err_comment_empty' => 'Vá¹ komentáø je prázdný !',
     'err_invalid_fext' => 'Pouze soubory s následujícími koncovkami jsou podporované : <br /><br />%s.',
-    'no_flood' => 'Jste autor posledního komentáře k tomuto obrázku<br /><br />Pokud ho chcete změnit použijte volbu upravit ',
-    'redirect_msg' => 'Právě jste přesměrováván(a).<br /><br /><br />Klikněte na \'POKRAČOVAT\' pokud se stránka nepřesměruje sama',
-    'upl_success' => 'Váš obrázek byl v pořádku přidán',
+    'no_flood' => 'Jste autor posledního komentáøe k tomuto obrázku<br /><br />Pokud ho chcete zmìnit pou¾ijte volbu upravit ',
+    'redirect_msg' => 'Právì jste pøesmìrováván(a).<br /><br /><br />Kliknìte na \'POKRAÈOVAT\' pokud se stránka nepøesmìruje sama',
+    'upl_success' => 'Vá¹ obrázek byl v poøádku pøidán',
 );
 
 // ------------------------------------------------------------------------- //
@@ -430,23 +456,23 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 
 if (defined('DELETE_PHP')) $lang_delete_php = array(
     'caption' => 'Legenda(popisek)',
-    'fs_pic' => 'původní velikost obrázku',
-    'del_success' => 'bezchybně smazáno',
+    'fs_pic' => 'pùvodní velikost obrázku',
+    'del_success' => 'bezchybnì smazáno',
     'ns_pic' => 'normální velikost obrázku',
     'err_del' => 'nelze smazat',
     'thumb_pic' => 'náhled',
-    'comment' => 'komentář',
-    'im_in_alb' => 'patří do galerie',
+    'comment' => 'komentáø',
+    'im_in_alb' => 'patøí do galerie',
     'alb_del_success' => 'Galerie \'%s\' smazána',
     'alb_mgr' => 'Správce galerií',
-    'err_invalid_data' => 'Obdržena chybná data \'%s\'',
-    'create_alb' => 'Vytvářím galerii \'%s\'',
+    'err_invalid_data' => 'Obdr¾ena chybná data \'%s\'',
+    'create_alb' => 'Vytváøím galerii \'%s\'',
     'update_alb' => 'Aktualizuji galerii \'%s\' s nadpisem \'%s\' a seznamem \'%s\'',
     'del_pic' => 'Smazat obrázek',
     'del_alb' => 'Smazat galerii',
-    'del_user' => 'Smazat uživatele',
-    'err_unknown_user' => 'Vybraný uživatel neexistuje !',
-    'comment_deleted' => 'Komentář bezchybně smazán ! ',
+    'del_user' => 'Smazat u¾ivatele',
+    'err_unknown_user' => 'Vybraný u¾ivatel neexistuje !',
+    'comment_deleted' => 'Komentáø bezchybnì smazán ! ',
 );
 
 // ------------------------------------------------------------------------- //
@@ -462,38 +488,47 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 if (defined('DISPLAYIMAGE_PHP')){
 
 $lang_display_image_php = array(
-    'confirm_del' => 'Jste si jist, že chcete smazat tento obrázek ? \\nPřiložené komentáře budou straceny.',
+    'confirm_del' => 'Jste si jist, ¾e chcete smazat tento obrázek ? \\nPøilo¾ené komentáøe budou straceny.',
       'del_pic' => 'SMAZAT TENTO OBRÁZEK',
-    'size' => '%s x %s pixelelů',
+    'size' => '%s x %s pixelelù',
     'views' => '%s krát',
     'slideshow' => 'Slideshow',
     'stop_slideshow' => 'ZASTAVIT SLIDESHOW',
-        'view_fs' => 'klikněte pro zobrazení původního obrázku',
+        'view_fs' => 'kliknìte pro zobrazení pùvodního obrázku',
 );
 
 $lang_picinfo = array(
     'title' =>'Informace o obrázku',
     'Filename' => 'Jméno souboru',
     'Album name' => 'Jméno galerie',
-    'Rating' => 'Hodnocení (%s hlas(ů))',
-    'Keywords' => 'Klíčová slova',
+    'Rating' => 'Hodnocení (%s hlas(ù))',
+    'Keywords' => 'Klíèová slova',
     'File Size' => 'Velikost souboru',
-    'Dimensions' => 'Rozměry',
+    'Dimensions' => 'Rozmìry',
     'Displayed' => 'Zobrazeno',
     'Camera' => 'Fotoaparát',
-    'Date taken' => 'Datum pořízení snímku',
+    'Date taken' => 'Datum poøízení snímku',
     'Aperture' => 'Clona',
-    'Exposure time' => 'Expoziční čas',
+    'Exposure time' => 'Expozièní èas',
     'Focal length' => 'Ohnisková vzdálenost',
-    'Comment' => 'Komentáře'
+    'Comment' => 'Komentáøe'
+    'addFav'=>'Pøidat k oblíbeným',
+    'addFavPhrase'=>'Oblíbené',
+    'remFav'=>'Odstranit z oblíbených',
 );
 
 $lang_display_comments = array(
     'OK' => 'OK',
-    'edit_title' => 'Upravit tento komentář',
-    'confirm_delete' => 'Jste si jist(a), že chcete smazat tento komentář ?',
-    'add_your_comment' => 'Přidat komentář',
-    'your_name' => 'Vaše jméno',
+    'edit_title' => 'Upravit tento komentáø',
+    'confirm_delete' => 'Jste si jist(a), ¾e chcete smazat tento komentáø ?',
+    'add_your_comment' => 'Pøidat komentáø',
+    'name'=>'Jméno',
+    'comment'=>'Komentáø',
+    'your_name' => 'Anonym',
+);
+
+$lang_fullsize_popup = array(
+        'click_to_close' => 'Kliknutím na obrázek zavøete okno',
 );
 
 }
@@ -507,16 +542,16 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
     'invalid_email' => '<b>Varování</b> : neplatná emailová adresa !',
     'ecard_title' => 'Pohlednice ze serveru %s pro vás/tebe',
     'view_ecard' => 'Pokud se pohlednice nezobrazila klikni na link',
-    'view_more_pics' => 'Klikni pro další obrázky !',
-    'send_success' => 'Vaše pohlednice byla odeslána',
-    'send_failed' => 'Omlouváme se, ale server nebyl schopen odeslat Vaší pohlednici zkuste
+    'view_more_pics' => 'Klikni pro dal¹í obrázky !',
+    'send_success' => 'Va¹e pohlednice byla odeslána',
+    'send_failed' => 'Omlouváme se, ale server nebyl schopen odeslat Va¹í pohlednici zkuste
      to znovu za chvíli...',
     'from' => 'Od',
-    'your_name' => 'Vaše jméno',
-    'your_email' => 'Váš email',
+    'your_name' => 'Va¹e jméno',
+    'your_email' => 'Vá¹ email',
     'to' => 'Komu',
-    'rcpt_name' => 'Jméno příjemce',
-    'rcpt_email' => 'Doručit na email',
+    'rcpt_name' => 'Jméno pøíjemce',
+    'rcpt_email' => 'Doruèit na email',
     'greetings' => 'Pozdrav/oslovení',
     'message' => 'Zpráva',
 );
@@ -530,21 +565,21 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
     'album' => 'Galerie',
     'title' => 'Nadpis',
     'desc' => 'Popis',
-    'keywords' => 'Klíčová slova',
-    'pic_info_str' => '%sx%s - %sKB - %s zobrazení - %s hlas(ů)',
+    'keywords' => 'Klíèová slova',
+    'pic_info_str' => '%sx%s - %sKB - %s zobrazení - %s hlas(ù)',
     'approve' => 'Schválit obrázek',
-    'postpone_app' => 'Odložit schválení',
+    'postpone_app' => 'Odlo¾it schválení',
     'del_pic' => 'Smazat obrázek',
-    'reset_view_count' => 'Vynulovat počítadlo zobrazení',
+    'reset_view_count' => 'Vynulovat poèítadlo zobrazení',
     'reset_votes' => 'Vynulovat hlasy',
-    'del_comm' => 'Smazat komentáře',
+    'del_comm' => 'Smazat komentáøe',
     'upl_approval' => 'Potvrzení uploadu',
     'edit_pics' => 'Upravit obrázky',
-    'see_next' => 'Zobrazit další obrázky',
-    'see_prev' => 'Zobrazit předchozí obrázky',
-    'n_pic' => '%s obrázků',
-    'n_of_pic_to_disp' => 'Počet obrázku k zobrazení',
-    'apply' => 'Uložit změny'
+    'see_next' => 'Zobrazit dal¹í obrázky',
+    'see_prev' => 'Zobrazit pøedchozí obrázky',
+    'n_pic' => '%s obrázkù',
+    'n_of_pic_to_disp' => 'Poèet obrázku k zobrazení',
+    'apply' => 'Ulo¾it zmìny'
 );
 
 // ------------------------------------------------------------------------- //
@@ -556,18 +591,18 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
     'disk_quota' => 'Disková kvóta',
     'can_rate' => 'Mohou hodnotit obrázky',
     'can_send_ecards' => 'mohou posílat pohlednice',
-    'can_post_com' => 'Mohou posílat komentáře',
+    'can_post_com' => 'Mohou posílat komentáøe',
     'can_upload' => 'Mohou nahrávat obrázky',
     'can_have_gallery' => 'Mohou mít osobní galerii',
-    'apply' => 'Uložit změny',
-    'create_new_group' => 'Vytvořit novou skupinu',
+    'apply' => 'Ulo¾it zmìny',
+    'create_new_group' => 'Vytvoøit novou skupinu',
     'del_groups' => 'Smazat vybrané skupiny',
-    'confirm_del' => 'Pokud smažete tuto skupinu všichni uživatelé, patřící do této skupiny budou přesunuti do skupiny \'Registered\' !\n\nPřejete si pokračovat ?',
-    'title' => 'Spravovat uživatelské skupiny',
-    'approval_1' => 'Potvrzení veřejného. Upl. (1)',
+    'confirm_del' => 'Pokud sma¾ete tuto skupinu v¹ichni u¾ivatelé, patøící do této skupiny budou pøesunuti do skupiny \'Registered\' !\n\nPøejete si pokraèovat ?',
+    'title' => 'Spravovat u¾ivatelské skupiny',
+    'approval_1' => 'Potvrzení veøejného. Upl. (1)',
     'approval_2' => 'Potvrzení soukromého. Upl. (2)',
-    'note1' => '<b>(1)</b> Upload do veřejných galerií vyžaduje potvrzení adminem',
-    'note2' => '<b>(2)</b> Upload do galerie patřící uživateli vyžaduje potvrzení adminem',
+    'note1' => '<b>(1)</b> Upload do veøejných galerií vy¾aduje potvrzení adminem',
+    'note2' => '<b>(2)</b> Upload do galerie patøící u¾ivateli vy¾aduje potvrzení adminem',
     'notes' => 'Poznámky'
 );
 
@@ -582,30 +617,30 @@ $lang_index_php = array(
 );
 
 $lang_album_admin_menu = array(
-    'confirm_delete' => 'Jste si jist(a), že chcete smazat tuto galerii? \\nVšechny obrázky a komentáře půjdou do pekla taky. Přejete si pokračovat.',
+    'confirm_delete' => 'Jste si jist(a), ¾e chcete smazat tuto galerii? \\nV¹echny obrázky a komentáøe pùjdou do pekla taky. Pøejete si pokraèovat.',
     'delete' => 'SMAZAT',
     'modify' => 'VLASTNOSTI',
     'edit_pics' => 'UPRAVIT OBR.',
 );
 
 $lang_list_categories = array(
-    'home' => 'Domů',
-    'stat1' => '<b>[pictures]</b> obrázky v <b>[albums]</b> glalerii <b>[cat]</b>v kategorii s <b>[comments]</b> komentáři zobrazeno <b>[views]</b> krát',
+    'home' => 'Domù',
+    'stat1' => '<b>[pictures]</b> obrázky v <b>[albums]</b> glalerii <b>[cat]</b>v kategorii s <b>[comments]</b> komentáøi zobrazeno <b>[views]</b> krát',
     'stat2' => '<b>[pictures]</b> obrázky v <b>[albums]</b> galerii zobrazeno <b>[views]</b> krát',
     'xx_s_gallery' => '%s\' Galerie',
-    'stat3' => '<b>[pictures]</b> obrázků v <b>[albums]</b> galserii s <b>[comments]</b> komentáři zobrazeno <b>[views]</b> krát'
+    'stat3' => '<b>[pictures]</b> obrázkù v <b>[albums]</b> galserii s <b>[comments]</b> komentáøi zobrazeno <b>[views]</b> krát'
 );
 
 $lang_list_users = array(
-    'user_list' => 'Seznam uživatelů',
-    'no_user_gal' => 'Nejsou žádné uživatelské alerie',
+    'user_list' => 'Seznam u¾ivatelù',
+    'no_user_gal' => 'Nejsou ¾ádné u¾ivatelské alerie',
     'n_albums' => '%s galerií',
-    'n_pics' => '%s obrázků'
+    'n_pics' => '%s obrázkù'
 );
 
 $lang_list_albums = array(
-    'n_pictures' => '%s obrázků',
-    'last_added' => ', poslední přidán %s'
+    'n_pictures' => '%s obrázkù',
+    'last_added' => ', poslední pøidán %s'
 );
 
 }
@@ -615,14 +650,14 @@ $lang_list_albums = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('LOGIN_PHP')) $lang_login_php = array(
-    'login' => 'Přihlášení',
-    'enter_login_pswd' => 'Zadejte Vaše jméno a heslo pro přihlášení',
+    'login' => 'Pøihlá¹ení',
+    'enter_login_pswd' => 'Zadejte Va¹e jméno a heslo pro pøihlá¹ení',
     'username' => 'Jméno',
     'password' => 'Heslo',
-    'remember_me' => 'Pamatuj si mě',
+    'remember_me' => 'Pamatuj si mì',
     'welcome' => 'Vítej u nás %s ...',
-    'err_login' => '*** Chyba při přihlášení skuste to znova ***',
-    'err_already_logged_in' => 'Již jste přihlášen !',
+    'err_login' => '*** Chyba pøi pøihlá¹ení skuste to znova ***',
+    'err_already_logged_in' => 'Ji¾ jste pøihlá¹en !',
 );
 
 // ------------------------------------------------------------------------- //
@@ -631,8 +666,8 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
 
 if (defined('LOGOUT_PHP')) $lang_logout_php = array(
     'logout' => 'Odhlásit',
-    'bye' => 'Tak si to užij zase jinde %s ...',
-    'err_not_loged_in' => 'Nejste přihlášen !',
+    'bye' => 'Tak si to u¾ij zase jinde %s ...',
+    'err_not_loged_in' => 'Nejste pøihlá¹en !',
 );
 
 // ------------------------------------------------------------------------- //
@@ -646,19 +681,19 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
     'alb_cat' => 'Kategorie galerie',
     'alb_desc' => 'Popis galerie',
     'alb_thumb' => 'Náhled reprezentující album',
-    'alb_perm' => 'Přístupová práva pro tuto galerii',
-    'can_view' => 'Album můžou prohlížet',
-    'can_upload' => 'Návštěvníci smějí přidávat obrázky',
-    'can_post_comments' => 'Povolit komentáře',
-    'can_rate' => 'Návštěvníci mohou hlasovat',
+    'alb_perm' => 'Pøístupová práva pro tuto galerii',
+    'can_view' => 'Album mù¾ou prohlí¾et',
+    'can_upload' => 'Náv¹tìvníci smìjí pøidávat obrázky',
+    'can_post_comments' => 'Povolit komentáøe',
+    'can_rate' => 'Náv¹tìvníci mohou hlasovat',
     'user_gal' => 'User Gallery',
     'no_cat' => '* Není kategorie *',
     'alb_empty' => 'Galerie je prázdná',
-    'last_uploaded' => 'Nejnovější obrázek',
-    'public_alb' => 'kdokoliv (veřejná galerie)',
+    'last_uploaded' => 'Nejnovìj¹í obrázek',
+    'public_alb' => 'kdokoliv (veøejná galerie)',
     'me_only' => 'Pouze já',
     'owner_only' => 'Pouze vlastník (%s)',
-    'groupp_only' => 'Členové skupiny \'%s\'',
+    'groupp_only' => 'Èlenové skupiny \'%s\'',
     'err_no_alb_to_modify' => 'Album nelze modifikovat v databázi.',
     'update' => 'Aktualizovat album'
 );
@@ -668,8 +703,8 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
-    'already_rated' => 'Tento obázek jste již hodnotil(a)',
-    'rate_ok' => 'Vás hlas byl přijat. Děkujeme.',
+    'already_rated' => 'Tento obázek jste ji¾ hodnotil(a)',
+    'rate_ok' => 'Vás hlas byl pøijat. Dìkujeme.',
 );
 
 // ------------------------------------------------------------------------- //
@@ -679,38 +714,38 @@ if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
-Administrátoři serveru {SITE_NAME}, potažmo této galerie si vyhrazují právo zásahu do obsahu galerie např. komentáře, mazání obrázků případně úprava (pokud porušují pravidla galerie nebo dobré mravy).
-Pokud budou obrázky nahrané uživetelem porušovat zákon(y) budou ihned po zjištění jejich umístění na serveru smazány. Administrátoři/provozovatelé této galerie si distancují od
-případného závadného obsahu nahraného na server uživateli. Vlastníkem dat v galerii jsou jejich autoři. Administrátoři předpokládají, že na server jsou umísťovaná uživateli pouze obrázky k nímž vlastní uživatel autorská práva.
+Administrátoøi serveru {SITE_NAME}, pota¾mo této galerie si vyhrazují právo zásahu do obsahu galerie napø. komentáøe, mazání obrázkù pøípadnì úprava (pokud poru¹ují pravidla galerie nebo dobré mravy).
+Pokud budou obrázky nahrané u¾ivetelem poru¹ovat zákon(y) budou ihned po zji¹tìní jejich umístìní na serveru smazány. Administrátoøi/provozovatelé této galerie si distancují od
+pøípadného závadného obsahu nahraného na server u¾ivateli. Vlastníkem dat v galerii jsou jejich autoøi. Administrátoøi pøedpokládají, ¾e na server jsou umís»ovaná u¾ivateli pouze obrázky k ním¾ vlastní u¾ivatel autorská práva.
 <br />
-Pokud souhlasíte, že nebudete posílat jakýkoliv závadný materiál jako vulgární a obscéní obrázky/komentáře, jakýkoliv materiál vzbuzující nenávist, rasismus, nebo jiný materiál porušující zákony. Souhlasíte, že administrátoři, provozovatelé a moderátoři  {SITE_NAME}   mají právo smazat případně upravit jakýkoliv materiál kdykoliv to uznají za vhodné. Vložené informace budou uložené na serveru a v databázi a nebudou poskytnuty žádné třetí straně bez vašeho souhlasu. Administátoři/povozovatelé serveru  však nejsou ani nebudou ručit za data na serveru uložená pokud dojde k jakémukoliv útoku na sever.
+Pokud souhlasíte, ¾e nebudete posílat jakýkoliv závadný materiál jako vulgární a obscéní obrázky/komentáøe, jakýkoliv materiál vzbuzující nenávist, rasismus, nebo jiný materiál poru¹ující zákony. Souhlasíte, ¾e administrátoøi, provozovatelé a moderátoøi  {SITE_NAME}   mají právo smazat pøípadnì upravit jakýkoliv materiál kdykoliv to uznají za vhodné. Vlo¾ené informace budou ulo¾ené na serveru a v databázi a nebudou poskytnuty ¾ádné tøetí stranì bez va¹eho souhlasu. Administátoøi/povozovatelé serveru  v¹ak nejsou ani nebudou ruèit za data na serveru ulo¾ená pokud dojde k jakémukoliv útoku na sever.
 <br />
 <br />
-Tyto stránky využívají k uložení uživatelských dat cookies. Cookies slouží pouze pro zvýšení konfortu při používání této aplikace. Emailová adresa slouží jen pro potvrzení vašich údajů a poslání hesla.<br />
+Tyto stránky vyu¾ívají k ulo¾ení u¾ivatelských dat cookies. Cookies slou¾í pouze pro zvý¹ení konfortu pøi pou¾ívání této aplikace. Emailová adresa slou¾í jen pro potvrzení va¹ich údajù a poslání hesla.<br />
 <br />
-Kliknutím na 'Souhlasím' souhlasíte z výše uvedenými pravidly..
+Kliknutím na 'Souhlasím' souhlasíte z vý¹e uvedenými pravidly..
 EOT;
 
 $lang_register_php = array(
-    'page_title' => 'Registrace nového uživatele',
+    'page_title' => 'Registrace nového u¾ivatele',
     'term_cond' => 'Podmínky a pravidla',
     'i_agree' => 'Souhlasím',
     'submit' => 'Poslat registraci',
-    'err_user_exists' => 'Zadané uživatelské jméno již existuje vyberte si prosím jiné',
-    'err_password_mismatch' => 'Hesla se musí schodovat pokuste je obě zadat znovu',
-    'err_uname_short' => 'Minimální délka uživatelského jména je 2 znaky',
-    'err_password_short' => 'Heslo musí být alespoň 2 znaky dlouhé',
+    'err_user_exists' => 'Zadané u¾ivatelské jméno ji¾ existuje vyberte si prosím jiné',
+    'err_password_mismatch' => 'Hesla se musí schodovat pokuste je obì zadat znovu',
+    'err_uname_short' => 'Minimální délka u¾ivatelského jména je 2 znaky',
+    'err_password_short' => 'Heslo musí být alespoò 2 znaky dlouhé',
     'err_uname_pass_diff' => 'Jméno a heslo se nesmí shodovat',
     'err_invalid_email' => 'Byla zadána neplatná emailová adresa',
-    'err_duplicate_email' => 'Jiný uživatel se zaregistroval se zadaným emailem. Email musí být jedinečný',
-    'enter_info' => 'Zadané registrační informace',
-    'required_info' => 'Vyžadované informace',
+    'err_duplicate_email' => 'Jiný u¾ivatel se zaregistroval se zadaným emailem. Email musí být jedineèný',
+    'enter_info' => 'Zadané registraèní informace',
+    'required_info' => 'Vy¾adované informace',
     'optional_info' => 'Volitelné informace',
     'username' => 'Jméno',
     'password' => 'Heslo',
     'password_again' => 'Heslo (potvrzení)',
     'email' => 'Email',
-    'location' => 'Místo (např. Brno apod.)',
+    'location' => 'Místo (napø. Brno apod.)',
     'interests' => 'Zájmy',
     'website' => 'Domácí stránka',
     'occupation' => 'Povolání',
@@ -718,36 +753,36 @@ $lang_register_php = array(
     'confirm_email_subject' => '%s - Potvrzení registracce',
     'information' => 'Informace',
     'failed_sending_email' => 'Nelze odeslat potvrzení registace !',
-    'thank_you' => 'Děkujeme za registraci.<br /><br />Na adresu zadanou při registraci Vám budou doručeny informace o aktivaci vašeho účtu',
-    'acct_created' => 'Váš uživatelský účet byl bezchybně vytvořen. Nyní se přihlašte pomocí vašeho jména a hesla',
-    'acct_active' => 'Váš účet je nyní aktivní přihlašte se pomocí vašeho jména a hesla.',
-    'acct_already_act' => 'Váš účet je již aktivní !',
-    'acct_act_failed' => 'Tento účet nmůže být aktivován !',
-    'err_unk_user' => 'Vybraný uživatel neexistuje !',
+    'thank_you' => 'Dìkujeme za registraci.<br /><br />Na adresu zadanou pøi registraci Vám budou doruèeny informace o aktivaci va¹eho úètu',
+    'acct_created' => 'Vá¹ u¾ivatelský úèet byl bezchybnì vytvoøen. Nyní se pøihla¹te pomocí va¹eho jména a hesla',
+    'acct_active' => 'Vá¹ úèet je nyní aktivní pøihla¹te se pomocí va¹eho jména a hesla.',
+    'acct_already_act' => 'Vá¹ úèet je ji¾ aktivní !',
+    'acct_act_failed' => 'Tento úèet nmù¾e být aktivován !',
+    'err_unk_user' => 'Vybraný u¾ivatel neexistuje !',
     'x_s_profile' => '%s\' profil',
     'group' => 'Skupina',
-    'reg_date' => 'Připojen',
-    'disk_usage' => 'Využití disku',
-    'change_pass' => 'Změnit heslo',
-    'current_pass' => 'Současné heslo',
+    'reg_date' => 'Pøipojen',
+    'disk_usage' => 'Vyu¾ití disku',
+    'change_pass' => 'Zmìnit heslo',
+    'current_pass' => 'Souèasné heslo',
     'new_pass' => 'Nové heslo',
     'new_pass_again' => 'Nové heslo (kontola)',
-    'err_curr_pass' => 'Současné heslo zadáno nesprávně',
-    'apply_modif' => 'potvrdit změny',
-    'change_pass' => 'Změnit heslo',
-    'update_success' => 'Váš profil byl aktualizován',
-    'pass_chg_success' => 'Vyše heslo bylo změněno',
-    'pass_chg_error' => 'Vaše heslo nebylo změněno',
+    'err_curr_pass' => 'Souèasné heslo zadáno nesprávnì',
+    'apply_modif' => 'potvrdit zmìny',
+    'change_pass' => 'Zmìnit heslo',
+    'update_success' => 'Vá¹ profil byl aktualizován',
+    'pass_chg_success' => 'Vy¹e heslo bylo zmìnìno',
+    'pass_chg_error' => 'Va¹e heslo nebylo zmìnìno',
 );
 
 $lang_register_confirm_email = <<<EOT
-Děkujeme za registraci na {SITE_NAME}
+Dìkujeme za registraci na {SITE_NAME}
 
-Vaše jméno je : "{USER_NAME}"
-Vaše heslo je: "{PASSWORD}"
+Va¹e jméno je : "{USER_NAME}"
+Va¹e heslo je: "{PASSWORD}"
 
-Pro aktivaci vašeho účtu je přeba kliknout na odkaz níže nebo ho zkopírovat
-do adresního řádku vašeho browseru a přejít na tuto stránku
+Pro aktivaci va¹eho úètu je pøeba kliknout na odkaz ní¾e nebo ho zkopírovat
+do adresního øádku va¹eho browseru a pøejít na tuto stránku
 
 
 {ACT_LINK}
@@ -765,13 +800,13 @@ EOT;
 // ------------------------------------------------------------------------- //
 
 if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
-    'title' => 'Kontrola komentářů',
-    'no_comment' => 'Zde nejsou komentáře ke kontrole',
-    'n_comm_del' => '%s komentář(ů) smazán(o)',
-    'n_comm_disp' => 'Počet komentářů k zobrazení',
-    'see_prev' => 'Předchozí',
-    'see_next' => 'Další',
-    'del_comm' => 'Smazat vybrané komentáře',
+    'title' => 'Kontrola komentáøù',
+    'no_comment' => 'Zde nejsou komentáøe ke kontrole',
+    'n_comm_del' => '%s komentáø(ù) smazán(o)',
+    'n_comm_disp' => 'Poèet komentáøù k zobrazení',
+    'see_prev' => 'Pøedchozí',
+    'see_next' => 'Dal¹í',
+    'del_comm' => 'Smazat vybrané komentáøe',
 );
 
 
@@ -789,30 +824,30 @@ if (defined('SEARCH_PHP')) $lang_search_php = array(
 
 if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
     'page_title' => 'Najít nové obrázky',
-    'select_dir' => 'Vybrat adresář',
-    'select_dir_msg' => 'Tato funkce vám umožní dávkově zpracovat obrázky nahrané přes FTP.<br /><br />Vyberte adresář kde se nacházejí obrázky k spracování',
-    'no_pic_to_add' => 'Nejsou zde žádné obrázky k přidání',
-    'need_one_album' => 'Pořebujete mít vytvořenu alespoň jednu galerii',
+    'select_dir' => 'Vybrat adresáø',
+    'select_dir_msg' => 'Tato funkce vám umo¾ní dávkovì zpracovat obrázky nahrané pøes FTP.<br /><br />Vyberte adresáø kde se nacházejí obrázky k spracování',
+    'no_pic_to_add' => 'Nejsou zde ¾ádné obrázky k pøidání',
+    'need_one_album' => 'Poøebujete mít vytvoøenu alespoò jednu galerii',
     'warning' => 'Varování',
-    'change_perm' => 'Skript nemůže zapisovat do tohoto adresáře, musíte ho nastavit na CHMOD 755 nebo 777 před přidáním obrázků !',
-    'target_album' => '<b>Vložit obrázky z &quot;</b>%s<b>&quot; do </b>%s',
-    'folder' => 'Složka',
+    'change_perm' => 'Skript nemù¾e zapisovat do tohoto adresáøe, musíte ho nastavit na CHMOD 755 nebo 777 pøed pøidáním obrázkù !',
+    'target_album' => '<b>Vlo¾it obrázky z &quot;</b>%s<b>&quot; do </b>%s',
+    'folder' => 'Slo¾ka',
     'image' => 'Obrázek',
     'album' => 'Galerie',
     'result' => 'Výsledek',
     'dir_ro' => 'Nezapisovatelná. ',
-    'dir_cant_read' => 'Nečitelná. ',
-    'insert' => 'Přidávám nové obrázky do galerie',
-    'list_new_pic' => 'Seznam obrázků',
-    'insert_selected' => 'Vložit vybrané obrázky',
+    'dir_cant_read' => 'Neèitelná. ',
+    'insert' => 'Pøidávám nové obrázky do galerie',
+    'list_new_pic' => 'Seznam obrázkù',
+    'insert_selected' => 'Vlo¾it vybrané obrázky',
     'no_pic_found' => 'Nové obrázky nenalezeny',
-    'be_patient' => 'Prosím buďte trpělivý(á), program potřebuje na zpracování obrázku nějaý ten čas.',
+    'be_patient' => 'Prosím buïte trpìlivý(á), program potøebuje na zpracování obrázku nìjaý ten èas.',
     'notes' =>  '<ul>'.
-                '<li><b>OK</b> : Tyto obrázky byly přidány'.
+                '<li><b>OK</b> : Tyto obrázky byly pøidány'.
                 '<li><b>DP</b> : Zdvojení!, Tento obrázek ji existuje'.
-                '<li><b>PB</b> : tento obrázek nelze přidat, skontrolujte konfiguraci případně přístupová práva'.
-                '<li>Když se neukáže \'označení\' OK, DP, PB klepněte na obrázek a uvidíte chybovou hlášku generovanou PHP, která Vám pomůže zjistit příčinu problému'.
-                '<li>Pokud dojde k timeoutu F5 nebo reload stránky by měl pomoci'.
+                '<li><b>PB</b> : tento obrázek nelze pøidat, skontrolujte konfiguraci pøípadnì pøístupová práva'.
+                '<li>Kdy¾ se neuká¾e \'oznaèení\' OK, DP, PB klepnìte na obrázek a uvidíte chybovou hlá¹ku generovanou PHP, která Vám pomù¾e zjistit pøíèinu problému'.
+                '<li>Pokud dojde k timeoutu F5 nebo reload stránky by mìl pomoci'.
                 '</ul>',
 );
 
@@ -823,6 +858,20 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 
 // Void
 
+// ------------------------------------------------------------------------- //
+// File banning.php
+// ------------------------------------------------------------------------- //
+
+if (defined('BANNING_PHP')) $lang_banning_php = array(
+                'title' => 'Vykopnutí u¾ivatelé',
+                'user_name' => 'U¾ivatelské jméno',
+                'ip_address' => 'IP Adresa',
+                'expiry' => 'Vypr¹í za (nevyplòovat pro stálé vykopnutí)',
+                'edit_ban' => 'Ulo¾it zmìny',
+                'delete_ban' => 'Smazat',
+                'add_new' => 'Pøidat dal¹í vykopnutí',
+                'add_ban' => 'Pøidat',
+);
 
 // ------------------------------------------------------------------------- //
 // File upload.php
@@ -835,7 +884,7 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
     'picture' => 'Obrázek',
     'pic_title' => 'Nadpis obrázku',
     'description' => 'Popis obrázku',
-    'keywords' => 'Klíčová slova (oddělená mezerou)',
+    'keywords' => 'Klíèová slova (oddìlená mezerou)',
     'err_no_alb_uploadables' => 'Zde se nenalézá galerie do které je povolen upload.',
 );
 
@@ -844,44 +893,95 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
-    'title' => 'Spravovat uživatele',
+    'title' => 'Spravovat u¾ivatele',
     'name_a' => 'Jméno vzestup.',
     'name_d' => 'Jméno sestup.',
     'group_a' => 'Skupina vzestup.',
     'group_d' => 'Skupina sestup.',
     'reg_a' => 'Datum registrace vzestup.',
     'reg_d' => 'Datum registrace sestup.',
-    'pic_a' => 'Počet obrázků vzestup.',
-    'pic_d' => 'Počet obrázků sestup.',
-    'disku_a' => 'Využití disku vzestup.',
-    'disku_d' => 'Využití disku sestup.',
-    'sort_by' => 'Řadit užřivatele podle',
-    'err_no_users' => 'Tabulka uživatelů je prázdná!',
-    'err_edit_self' => 'Zde nelze editovat vlastní profil použijte příslušnou volbu pracující s vaším profilem',
+    'pic_a' => 'Poèet obrázkù vzestup.',
+    'pic_d' => 'Poèet obrázkù sestup.',
+    'disku_a' => 'Vyu¾ití disku vzestup.',
+    'disku_d' => 'Vyu¾ití disku sestup.',
+    'sort_by' => 'Øadit u¾øivatele podle',
+    'err_no_users' => 'Tabulka u¾ivatelù je prázdná!',
+    'err_edit_self' => 'Zde nelze editovat vlastní profil pou¾ijte pøíslu¹nou volbu pracující s va¹ím profilem',
     'edit' => 'UPRAVIT',
     'delete' => 'SMAZAT',
-    'name' => 'Uživ. jméno',
-    'group' => 'Skupina Uživ.',
+    'name' => 'U¾iv. jméno',
+    'group' => 'Skupina U¾iv.',
     'inactive' => 'Neaktivní',
     'operations' => 'Operace',
     'pictures' => 'Obrázky',
-    'disk_space' => 'Místo využité / kvóta',
+    'disk_space' => 'Místo vyu¾ité / kvóta',
     'registered_on' => 'Registrován',
-    'u_user_on_p_pages' => '%d uživatelů na %d stránkách',
-    'confirm_del' => 'Jste si jist(a), že chcete smazat tohoto uživatele ? \\nVšechny jeho obrázky, galerie a komentáře budou smazány.',
+    'u_user_on_p_pages' => '%d u¾ivatelù na %d stránkách',
+    'confirm_del' => 'Jste si jist(a), ¾e chcete smazat tohoto u¾ivatele ? \\nV¹echny jeho obrázky, galerie a komentáøe budou smazány.',
     'mail' => 'MAIL',
-    'err_unknown_user' => 'Vybraný uživ. neexistuje !',
-    'modify_user' => 'Změnit uživ.',
+    'err_unknown_user' => 'Vybraný u¾iv. neexistuje !',
+    'modify_user' => 'Zmìnit u¾iv.',
     'notes' => 'Poznámky',
-    'note_list' => '<li>Pokud nechcete změnit heslo ponechte políčko pro heslo prázdné',
+    'note_list' => '<li>Pokud nechcete zmìnit heslo ponechte políèko pro heslo prázdné',
     'password' => 'Heslo',
-    'user_active' => 'Uživ. je aktivní',
-    'user_group' => 'Uživ. Skupina',
-    'user_email' => 'Uživ. emaill',
-    'user_web_site' => 'Uživ. domácí stránka',
-    'create_new_user' => 'Vytvořit nového uživatle.',
-    'user_location' => 'Místo Uživ. (např. Praha apod.)',
-    'user_interests' => 'Uživ. zájmy',
-    'user_occupation' => 'Uživ. povolání',
+    'user_active' => 'U¾iv. je aktivní',
+    'user_group' => 'U¾iv. Skupina',
+    'user_email' => 'U¾iv. emaill',
+    'user_web_site' => 'U¾iv. domácí stránka',
+    'create_new_user' => 'Vytvoøit nového u¾ivatle.',
+    'user_location' => 'Místo U¾iv. (napø. Praha apod.)',
+    'user_interests' => 'U¾iv. zájmy',
+    'user_occupation' => 'U¾iv. povolání',
+);
+
+// ------------------------------------------------------------------------- //
+// File util.php
+// ------------------------------------------------------------------------- //
+
+if (defined('UTIL_PHP')) $lang_util_php = array(
+        'title' => 'Zmìnit velikost obrázku',
+        'what_it_does' => 'Co to dìlá?',
+        'what_update_titles' => 'Aktualizovat nadpisy podle jména souborù',
+        'what_delete_title' => 'Smazat nadpisy',
+        'what_rebuild' => 'Pøedìlat nahledy a zmìnìné obrázky',
+        'what_delete_originals' => 'Smazat originály a nahradit je støedními obrázky',
+        'file' => 'Soubor',
+        'title_set_to' => 'Nastavit nadpis na',
+        'submit_form' => 'odeslat',
+        'updated_succesfully' => 'Aktualizace probìhla OK',
+        'error_create' => 'CHYBA pøi vytváøení',
+        'continue' => 'Zpracovatvíce obrázkù',
+        'main_success' => 'Skoubor %s byl uspì¹nì pou¾it jako hlavní obrázek',
+        'error_rename' => 'Chyba pøejmenování %s na %s',
+        'error_not_found' => 'Soubor %s nebyl nalezen',
+        'back' => 'zpìt na halvní',
+        'thumbs_wait' => 'Aktualizuji náhledy a/nebo støední obrázky, prosím èekejte...',
+        'thumbs_continue_wait' => 'Pokraèuji v aktualizaci náhledù a/nebo støedních obrázkù...',
+        'titles_wait' => 'Aktualizuji nadpisy, prosím èekejte...',
+        'delete_wait' => 'Ma¾u nadpisy, prosím èekejte...',
+        'replace_wait' => 'Ma¾u originály a nahrazuji je støedními obrázky, prosím èekejte...',
+        'instruction' => 'Rychlé instrukce',
+        'instruction_action' => 'Vyberte akci',
+        'instruction_parameter' => 'Nastavit parametry',
+        'instruction_album' => 'Vybrat galerii',
+        'instruction_press' => 'Stisknìte %s',
+        'update' => 'Aktualizovat náhledy a/nebo støední obrázky',
+        'update_what' => 'Co má být aktualizováno',
+        'update_thumb' => 'Jen náhledy',
+        'update_pic' => 'Pouze støední obrázky',
+        'update_both' => 'Obojí náhledy i støední obrázky',
+        'update_number' => 'Poèet obrázkù, které zpracovat na 1 kliknutí',
+        'update_option' => '(Sni¾te èíslo pokud máte problémy s timeoutem)',
+        'filename_title' => 'Jméno souboru ? Nadpis obrázku',
+        'filename_how' => 'Jak se má zmìnit jméno obrázku?',
+        'filename_remove' => 'Odstranit .jpg koncovku a pøepsat _ (podtr¾ítka mezerami)',
+        'filename_euro' => 'Zmìnit 2003_11_23_13_20_20.jpg na 23/11/2003 13:20',
+        'filename_us' => 'Zmìnit 2003_11_23_13_20_20.jpg na 11/23/2003 13:20',
+        'filename_time' => 'Zmìnit 2003_11_23_13_20_20.jpg na 13:20',
+        'delete' => 'Smazat nadpisy obrázkù nebo originální obrázky',
+        'delete_title' => 'Smazat nadpisy obrázkù',
+        'delete_original' => 'Smazat originální obrázky',
+        'delete_replace' => 'Smazat originály a nahradit je støední verzí obrázkù',
+        'select_album' => 'Vybrat galerii',
 );
 ?>

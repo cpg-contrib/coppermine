@@ -8,34 +8,49 @@
 //  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
 //  http://www.stoverud.com/PHPhotoalbum/                                    //
 // ------------------------------------------------------------------------- //
+//  Hacked by Tarique Sani <tarique@sanisoft.com> and Girsh Nair             //
+//  <girish@sanisoft.com> see http://www.sanisoft.com/cpg/README.txt for     //
+//  details                                                                  //
+// ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
 //  the Free Software Foundation; either version 2 of the License, or        //
 //  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
 
+// info about translators and translated language
+$lang_translation_info = array(
+'lang_name_english' => 'Arabic',  //the name of your language in English, e.g. 'Greek' or 'Spanish'
+'lang_name_native' => 'ÚÑÈí', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espa&ntilde;ol'
+'lang_country_code' => 'ar', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es'
+'trans_name'=> 'Waheed Alsayer', //the name of the translator - can be a nickname
+'trans_email' => 'waheed@shamayel.com', //translator's email address (optional)
+'trans_website' => 'http://www.shamayel.com/', //translator's website (optional)
+'trans_date' => '2003-10-02', //the date the translation was created / last modified
+);
+
 $lang_charset = 'windows-1256';
 $lang_text_dir = 'rtl'; // ('ltr' for left to right, 'rtl' for right to left)
 
 // shortcuts for Byte, Kilo, Mega
-$lang_byte_units = array('Bytes', 'KB', 'MB');
+$lang_byte_units = array('ÈÇíÊ', 'ß.È', 'ã.È');
 
 // Day of weeks and months
-$lang_day_of_week = array('ÇáÃÍÏ', 'ÇáÃËäíä', 'ÇáËáÇËÇÁ', 'ÇáÃÑÈÚÜÇÁ', 'ÇáÎãíÓ', 'ÇáÌãÚÉ', 'ÇáÓÈÜÊ');
-$lang_month = array('Jan', 'İÈÑÇíÑ', 'ãÇÑÓ', 'ÃÈÑíá', 'ãÇíÜæ', 'íæäíæ', 'íæáíæ', 'ÃÛÓØÓ', 'ÓÈÊãÈÑ', 'ÃßÊæÈÑ', 'äæİãÈÑ', 'ÏíÓãÈÑ');
+$lang_day_of_week = array('ÇÍÏ', 'ÇËäíä', 'ËáÇËÇÁ', 'ÇÑÈÚÇÁ', 'ÎãíÓ', 'ÌãÚÉ', 'ÓÈÊ');
+$lang_month = array('íäÇíÑ', 'İÈÑÇíÑ', 'ãÇÑÓ', 'ÇÈÑíá', 'ãÇíæ', 'íæäíæ', 'íæáíæ', 'ÇÛÓØÓ', 'ÓÈÊãÈÑ', 'ÇßÊæÈÑ', 'äæİãÈÑ', 'ÏíÓãÈÑ');
 
 // Some common strings
 $lang_yes = 'äÚã';
 $lang_no  = 'áÇ';
-$lang_back = 'Çáì ÇáÎáİ';
-$lang_continue = 'ÇÓÊãÜÑ';
+$lang_back = 'ÑÌæÚ';
+$lang_continue = 'ÇÓÊãÑ';
 $lang_info = 'ãÚáæãÇÊ';
-$lang_error = 'ÎÜØÃ';
+$lang_error = 'ÎØÃ';
 
 // The various date formats
 // See http://www.php.net/manual/en/function.strftime.php to define the variable below
 $album_date_fmt =    '%B %d, %Y';
-$lastcom_date_fmt =  '%m/%d/%y at %H:%M';
+$lastcom_date_fmt =  '%d/%m/%y at %H:%M';
 $lastup_date_fmt = '%B %d, %Y';
 $register_date_fmt = '%B %d, %Y';
 $lasthit_date_fmt = '%B %d, %Y at %I:%M %p';
@@ -45,30 +60,33 @@ $comment_date_fmt =  '%B %d, %Y at %I:%M %p';
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
 
 $lang_meta_album_names = array(
-	'random' => 'ÕÜæÑÉ ÚÔÜæÇÆíÉ',
-	'lastup' => 'ÇáÊÍÏíË ÇáÃÎíÑ',
-	'lastcom' => 'ÂÎÜÑ ÊÚáíŞ',
-	'topn' => 'ÃßËÜÑãÔÇåÏÉ',
-	'toprated' => 'ÃßÈÑ ÊŞííã',
-	'lasthits' => 'ÂÎÑ ãÔÇåÏÉ',
-	'search' => 'äÊíÌÜÉ ÇáÈÍÜË'
+	'random' => 'ÕæÑ ÚÔæÇÆíÜÜÜÉ',
+	'lastup' => 'ÂÎÜÜÑ ÇÖÇİÜÜÇÊ',
+        'lastalb'=> 'ÂÎÑ ÃáÈæãÇÊ Êã ÊÍÏíËåÇ',
+	'lastcom' => 'ÂÎÑ ãáÇÍÙÜÜÇÊ',
+	'topn' => 'ÇßËÑåÇ ãÔÇåÏÉ',
+	'toprated' => 'ÇÚáÇåÇ ÊŞííãÇ',
+	'lasthits' => 'ÂÎÑ ãÇ ÔæåÏ',
+	'search' => 'äÊÇÆÌ ÇáÈÍÜË'
 );
 
 $lang_errors = array(
-	'access_denied' => 'ÚİÜæÇğ áíÓ áÏíß ÇáÕáÇÍíÉ ááÏÎæá Çáì åĞå ÇáÕİÍÉ.',
-	'perm_denied' => 'You don\'t have permission to perform this operation.',
-	'param_missing' => 'Script called without the required parameter(s).',
-	'non_exist_ap' => 'The selected album/picture does not exist !',
-	'quota_exceeded' => 'Disk quota exceeded<br /><br />You have a space quota of [quota]K, your pictures currently use [space]K, adding this picture would make you exceed your quota.',
-	'gd_file_type_err' => 'When using the GD image library allowed image types are only JPEG and PNG.',
-	'invalid_image' => 'The image you have uploaded is corrupted or can\'t be handled by the GD library',
-	'resize_failed' => 'Unable to create thumbnail or reduced size image.',
-	'no_img_to_display' => 'ÚÏã æÌæÏ ÕæÑ áÅÖåÇÑÇåÇ',
-	'non_exist_cat' => 'The selected category does not exist',
-	'orphan_cat' => 'A category has a non-existing parent, runs the category manager to correct the problem.',
-	'directory_ro' => 'Directory \'%s\' is not writable, pictures can\'t be deleted',
-	'non_exist_comment' => 'The selected comment does not exist.',
-	'pic_in_invalid_album' => 'Picture is in a non existant album (%s)!?'
+	'access_denied' => 'áíÜÓ áÏíß ÇáÕáÇÍíÉ áÏÎæá åĞå ÇáÕİÍÉ.',
+	'perm_denied' => 'áíÓ áÏíß ÇáÕáÇÍíÉ ááŞíÇã ÈÊáß ÇáÕáÇÍíÉ.',
+	'param_missing' => 'áŞÏ äæÏí ÇáÈÑäÇãÌ ÈÏæä ãÊÛíÑÇÊ.',
+	'non_exist_ap' => 'ÇáÃáÈæã Ãæ ÇáÕæÑÉ ÇáãÎÊÇÑÉ ÛíÑ ãæÌæÏÉ!',
+	'quota_exceeded' => 'ÊÎØíÊ ÍÏæÏ ÇáÊÎÒíä<br /><br />ÇáãÓÇÍÉ ÇáãÓãæÍÉ áß [quota]K, ÕæÑß ÊÍÊá ãÓÇÍÉ [space]K, æÈÅÖÇİÉ åĞå ÇáÕæÑÉ Óæİ ÊÊÎØì ÍÏæÏ ÇáÊÎÒíä ÇáãÓãæÍÉ áß.',
+	'gd_file_type_err' => 'ÚäÏ ÇÓÊÚãÇá ãßÊÈÉ GD ááÈÑÇãÌ áÇ íÓãÍ ÅáÇ ÈÜãáİÇÊ  JPEG æ PNG.',
+	'invalid_image' => 'ÇáÕæÑÉ ÇáãÍãáÉ ÛíÑ ÕÇáÍÉ Çæ áã ÊÚÇáÌ ÈãßÊÈÉ GD',
+	'resize_failed' => 'áã ÇÓÊØÚ Êßæíä ÇÎÊÕÇÑ ÇáÕæÑÉ Çæ ÊÕÛíÑåÇ.',
+	'no_img_to_display' => 'áÇ ÊæÌÏ ÕæÑÉ ááÚÑÖ',
+	'non_exist_cat' => 'ÇáÊÕäíİ ÇáãÎÊÇÑ ÛíÑ ãæÌæÏ',
+	'orphan_cat' => 'ÊÕäíİ áíÓ áå ÊÕäíİ ÑÆíÓí, ÔÛá ãÏíÑ ÇáÊÕäíİÇÊ áÚáÇÌ ÇáãÔßáÉ.',
+	'directory_ro' => 'ÇáÏáíá \'%s\' ÛíÑ ŞÇÈá ááßÊÇÈÉ, áÇ ÇÓÊØíÚ ÇáÛÇÁ ÇáÕæÑÉ',
+	'non_exist_comment' => 'ÇáÊÚáíŞ ÇáãÎÊÇÑ ÛíÑ ãæÌæÏ.',
+	'pic_in_invalid_album' => 'ÇáÕæÑÉ ÛíÑ ãæÌæÏÉ İí ÇáÇáÈæã (%s)!?',
+        'banned' => 'You are currently banned from using this site.',
+        'not_with_udb' => 'åĞå ÇáãíÒÉ ãÚØáÉ İí Coppermine áÃäåÇ ãÏãæÌÉ ãÚ ÇáãäÊÏì. ÇãÇ ãÇ ÊæÏ ÇáŞíÇã Èå ÛíÑ ãÏÚæã, Ãæ Çä ÈÑäÇãÌ ÇáãäÊÏì íŞæã ÈäİÓ ÇáãåãÉ.',
 );
 
 // ------------------------------------------------------------------------- //
@@ -76,73 +94,81 @@ $lang_errors = array(
 // ------------------------------------------------------------------------- //
 
 $lang_main_menu = array(
-	'alb_list_title' => 'Go to the album list',
-	'alb_list_lnk' => 'ãÚÑÖ ÇáÕæÑ',
-	'my_gal_title' => 'Go to my personal gallery',
-	'my_gal_lnk' => 'ãÚÑÖ ÇáÕæÑ',
-	'my_prof_lnk' => 'Çáãáİ ÇáÔÎÕí',
-	'adm_mode_title' => 'Switch to admin mode',
-	'adm_mode_lnk' => 'Admin mode',
-	'usr_mode_title' => 'Switch to user mode',
-	'usr_mode_lnk' => 'ÇáæÇÌåÉ - ÇáËíã',
-	'upload_pic_title' => 'Upload a picture into an album',
-	'upload_pic_lnk' => 'ÊÍãíá ÇáÕæÑ',
-	'register_title' => 'ÊÓÌíá ÌÏíÏ',
-	'register_lnk' => 'ÇáÊÓÌÜíá',
-	'login_lnk' => 'ÇáÏÎÜæá',
-	'logout_lnk' => 'ÇáÎÜÑæÌ',
+	'alb_list_title' => 'ÇäÊŞá Çáì ŞÇÆãÉ ÇáÇáÈæãÇÊ',
+	'alb_list_lnk' => 'ŞÇÆãÉ ÇáÇáÈæãÇÊ',
+	'my_gal_title' => 'ÇäÊŞá Çáì ÇáÈæãí ÇáÎÇÕ',
+	'my_gal_lnk' => 'ÇáÈæãí ÇáÎÇÕ',
+	'my_prof_lnk' => 'ÊÚÑíİí',
+	'adm_mode_title' => 'ÊÍæíá Çáì æÇÌåÉ ÇáÇÏÇÑÉ',
+	'adm_mode_lnk' => 'ÍÇáÉ ÇáÇÏÇÑÉ',
+	'usr_mode_title' => 'ÊÍæíá Çáì æÇÌåÉ ÇáÇÓÊÚãÇá',
+	'usr_mode_lnk' => 'ÍÇáÉ ÇáãÓÊÎÏã',
+	'upload_pic_title' => 'ÊÍãíá ÇáÕæÑÉ İí ÇáÇáÈæã',
+	'upload_pic_lnk' => 'ÊÍãíá ÇáÕæÑÉ',
+	'register_title' => 'Êßæíä ÍÓÇÈ',
+	'register_lnk' => 'ÊÓÌíá',
+	'login_lnk' => 'ÏÎæá',
+	'logout_lnk' => 'ÎÑæÌ',
 	'lastup_lnk' => 'ÂÎÑ ÊÍãíá',
-	'lastcom_lnk' => 'ÂÎÑ ÇáÊÚáíŞÇÊ',
-	'topn_lnk' => 'ÃßËÑ ãÔÇåÏÉ',
-	'toprated_lnk' => 'ÃßÈÑ ÊŞííã',
-	'search_lnk' => 'ÇáÈÍÜË',
+	'lastcom_lnk' => 'ÂÎÑ ÊÚáíŞÇÊ',
+	'topn_lnk' => 'ÇßËÑ ÇáÕæÑ ãØÇáÚÉ',
+	'toprated_lnk' => 'ÇÚáì ÇáÕæÑ ÊŞííãÇ',
+	'search_lnk' => 'ÇÈÍË',
+                'fav_lnk' => 'ÇáãİÖáÉ',
+
 );
 
 $lang_gallery_admin_menu = array(
-	'upl_app_lnk' => 'ãæÇİŞÉ ÇáÊÍãíá',
-	'config_lnk' => 'ÅÚÜÏÇÏ',
-	'albums_lnk' => 'ãÚÑÖ ÇáÕæÑ',
-	'categories_lnk' => 'ãæÇÖíÚ ÇáÕÜæÑ',
-	'users_lnk' => 'ãÓÊÎÏãíä',
+	'upl_app_lnk' => 'ÇáãæÇİŞÉ Úáì ÇáÊÍãíá',
+	'config_lnk' => 'ÊÚííÑ',
+	'albums_lnk' => 'ÇáÇáÈæãÇÊ',
+	'categories_lnk' => 'ÇáÊÕäíİÇÊ',
+	'users_lnk' => 'ÇáãÓÊÎÏãíä',
 	'groups_lnk' => 'ãÌãæÚÇÊ',
-	'comments_lnk' => 'ãáÇÍÙÇÊ',
-	'searchnew_lnk' => 'FTP',
+	'comments_lnk' => 'ÊÚáíŞÇÊ',
+	'searchnew_lnk' => 'ÇÖİ ãÌãæÚÉ ãä ÇáÕæÑ',
+        'util_lnk' => 'ÊÛííÑ ŞíÇÓÇÊ ÇáÕæÑ',
+        'ban_lnk' => 'ãäÚ ÇáãÓÊÎÏãíä',
 );
 
 $lang_user_admin_menu = array(
-	'albmgr_lnk' => 'Create / order my albums',
-	'modifyalb_lnk' => 'ÇáÈæã ÌÏíÏ',
+	'albmgr_lnk' => 'ÇÎáŞ / ÇİÑÒ ÇáÈæãÇÊí',
+	'modifyalb_lnk' => 'ÊÚÏíá ÇáÈæãÇÊí',
 	'my_prof_lnk' => 'Çáãáİ ÇáÔÎÕí',
 );
 
 $lang_cat_list = array(
-	'category' => 'ãæÇÖíÚ ÇáÕæÑ',
-	'albums' => 'ÚÏÏ ÇáÃáÈæãÇÊ',
-	'pictures' => 'ÚÏÏ ÇáÕæÑ',
+	'category' => 'ÇáÊÕäíİ',
+	'albums' => 'ÇáÇáÈæãÇÊ',
+	'pictures' => 'ÇáÕæÑ',
 );
 
 $lang_album_list = array(
-	'album_on_page' => '%d ÚÜÏ ãä ÇáÃáÈæãÇÊ İí ÚÏÏ %dãä ÇáÕİÍÜÇÊ'
+	'album_on_page' => '%d ÇáÈæã İí %d ÕİÍÉ'
 );
 
 $lang_thumb_view = array(
-	'date' => 'DATE',
-	'name' => 'NAME',
-	'sort_da' => 'Sort by date ascending',
-	'sort_dd' => 'Sort by date descending',
-	'sort_na' => 'Sort by name ascending',
-	'sort_nd' => 'Sort by name descending',
-	'pic_on_page' => '%d pictures on %d page(s)',
-	'user_on_page' => '%d users on %d page(s)'
+	'date' => 'ÇáÊÇÑíÎ',
+        //Sort by filename and title
+	'name' => 'ÇÓã Çáãáİ',
+        'title' => 'ÇáÚäæÇä',
+	'sort_da' => 'ÊÑÊíÈ ÊÕÇÚÏí ÍÓÈ ÇáÊÇÑíÎ',
+	'sort_dd' => 'ÊÑÊíÈ ÊäÇÒáí ááÊÇÑíÎ',
+	'sort_na' => 'ÊÑÊíÈ ÊÕÇÚÏí ááÇÓã',
+	'sort_nd' => 'ÊÑÊíÈ ÊäÇÒáí ááÇÓã',
+        'sort_ta' => 'ÊÑÊíÈ ÇáÚäæÇä ÊÕÇÚÏí',
+        'sort_td' => 'ÊÑÊíÈ ÇáÚäæÇä ÊäÇÒáí',
+	'pic_on_page' => '%d ÕæÑÉ İí %d ÕİÍÉ/ÕİÍÇÊ',
+	'user_on_page' => '%d ãÓÊÎÏã İí %d ÕİÍÉ'
 );
 
 $lang_img_nav_bar = array(
-	'thumb_title' => 'ÇáÚæÏÉ Çáì ÇáÕİÍÉ ÇáÓÇÈŞÉ ',
-	'pic_info_title' => 'Display/hide picture information',
-	'slideshow_title' => 'äÙÇã ÇáÔÑÇÆÍ',
-	'ecard_title' => 'ÇÑÓá åĞå ÇáÕæÑÉ ßÈØÇŞÉ ÈÑíÏíÉ',
-	'ecard_disabled' => 'e-cards are disabled',
-	'ecard_disabled_msg' => 'You don\'t have permission to send ecards',
+	'thumb_title' => 'ÇáÑÌæÚ Çáì ÇáãÎÊÕÑÇÊ',
+	'pic_info_title' => 'ÇÙåÑ/ÇÎİí ãÚáæãÇÊ ÇáÕæÑ',
+	'slideshow_title' => 'ÚÑÖ Âáí',
+	'ecard_title' => 'ÇÑÓá ÇáÕæÑÉ ßÈÑíÏ',
+	'ecard_disabled' => 'ÇáÕæÑ ÇáÈÑíÏÉ ãÚØáÉ',
+	'ecard_disabled_msg' => 'áíÓ áÏíß ÇáÕáÇÍíÉ áÇÑÓÇá ÕæÑ ÈÑíÏíÉ',
 	'prev_title' => 'ÇáÕæÑÉ ÇáÓÇÈŞÉ',
 	'next_title' => 'ÇáÕæÑÉ ÇáÊí ÊáíåÜÇ',
 	'pic_pos' => 'ÕÜæÑå %s/%s',
@@ -173,22 +199,22 @@ $lang_rate_pic = array(
 $lang_cpg_die = array(
 	INFORMATION => $lang_info,
 	ERROR => $lang_error,
-	CRITICAL_ERROR => 'Critical error',
-	'file' => 'File: ',
-	'line' => 'Line: ',
+	CRITICAL_ERROR => 'ÎØÃ ÎØíÑ',
+	'file' => 'ãáİ: ',
+	'line' => 'ÇáÓØÑ: ',
 );
 
 $lang_display_thumbnails = array(
-	'filename' => 'Filename : ',
-	'filesize' => 'Filesize : ',
-	'dimensions' => 'Dimensions : ',
-	'date_added' => 'Date added : '
+	'filename' => 'ÇÓã Çáãáİ : ',
+	'filesize' => 'ÇáÍÌã : ',
+	'dimensions' => 'ÇáÇÈÚÇÏ : ',
+	'date_added' => 'ÇÖíİ İí : '
 );
 
 $lang_get_pic_data = array(
-	'n_comments' => '%s comments',
-	'n_views' => '%s views',
-	'n_votes' => '(%s votes)'
+	'n_comments' => '%s ÊÚáíŞ',
+	'n_views' => '%s ãÔÇåÏÉ',
+	'n_votes' => '(%s ÊÕæíÊ)'
 );
 
 // ------------------------------------------------------------------------- //
@@ -208,27 +234,27 @@ $lang_get_pic_data = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
-	'Exclamation' => 'Exclamation',
-	'Question' => 'Question',
-	'Very Happy' => 'Very Happy',
-	'Smile' => 'Smile',
-	'Sad' => 'Sad',
-	'Surprised' => 'Surprised',
-	'Shocked' => 'Shocked',
-	'Confused' => 'Confused',
-	'Cool' => 'Cool',
-	'Laughing' => 'Laughing',
-	'Mad' => 'Mad',
+	'Exclamation' => 'ÊÚÌÈ',
+	'Question' => 'ÇÓÊİåÇã',
+	'Very Happy' => 'ÓÚíÏ ÌÏÇ',
+	'Smile' => 'ÇÈÊÓÇãÉ',
+	'Sad' => 'ÍÒíä',
+	'Surprised' => 'ÊÚÌÈ',
+	'Shocked' => 'ãÏåæÔ',
+	'Confused' => 'ãÑÊÈß',
+	'Cool' => 'ÚÌíÈ',
+	'Laughing' => 'íÖÍß',
+	'Mad' => 'ÛÇÖÈ',
 	'Razz' => 'Razz',
-	'Embarassed' => 'Embarassed',
-	'Crying or Very sad' => 'Crying or Very sad',
-	'Evil or Very Mad' => 'Evil or Very Mad',
+	'Embarassed' => 'ãÍÑÌ',
+	'Crying or Very sad' => 'íÈßí Ãæ ÍÒíä ÌÏÇ',
+	'Evil or Very Mad' => 'ÔíØÇäí Ãæ ÛÇÖÈ ÌÏÇ',
 	'Twisted Evil' => 'Twisted Evil',
-	'Rolling Eyes' => 'Rolling Eyes',
-	'Wink' => 'Wink',
-	'Idea' => 'Idea',
-	'Arrow' => 'Arrow',
-	'Neutral' => 'Neutral',
+	'Rolling Eyes' => 'Úíæä ÍÇÆÑÉ',
+	'Wink' => 'íÛãÒ',
+	'Idea' => 'İßÑÉ',
+	'Arrow' => 'Óåã',
+	'Neutral' => 'ÚÇÏí',
 	'Mr. Green' => 'Mr. Green',
 );
 
@@ -243,8 +269,8 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ADMIN_PHP')) $lang_admin_php = array(
-	0 => 'Leaving admin mode...',
-	1 => 'Entering admin mode...',
+	0 => 'ÇäÊ ÇáÂä ÊÊÑß ÍÇáÉ ÇáÇÏÇÑÉ...',
+	1 => 'ÇäÊ ÇáÂä ÊÏÎá ÍÇáÉ ÇáÇÏÇÑÉ...',
 );
 
 // ------------------------------------------------------------------------- //
@@ -263,7 +289,7 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 	'my_gallery' => '* ãÚÑÖÜí *',
 	'no_category' => '* ÇáãÚÑÖ ÛíÑ ãæÌæÏ *',
 	'delete' => 'ÇáÛÜÇÁ',
-	'new' => 'New',
+	'new' => 'ÌÏíÏ',
 	'apply_modifs' => 'ÇÓÊÚãá ÇáÊøÚÏíáÇÊ ',
 	'select_category' => 'ÇáÕøäİ ÇáãÎÊÇÑ ',
 );
@@ -273,18 +299,18 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
-	'miss_param' => 'Parameters required for \'%s\'operation not supplied !',
-	'unknown_cat' => 'Selected category does not exist in database',
-	'usergal_cat_ro' => 'User galleries category can\'t be deleted !',
-	'manage_cat' => 'Manage categories',
-	'confirm_delete' => 'Are you sure you want to DELETE this category',
-	'category' => 'Category',
-	'operations' => 'Operations',
-	'move_into' => 'Move into',
-	'update_create' => 'Update/Create category',
-	'parent_cat' => 'Parent category',
-	'cat_title' => 'Category title',
-	'cat_desc' => 'Category description'
+	'miss_param' => 'ÇáãÚáæãÇÊ ÇáãØáæÈÉ ááÚãáíÉ \'%s\'áã ÊÚØì !',
+	'unknown_cat' => 'ÇáÊÕäíİ ÇáãÎÊÇÑ ÛíÑ ãÚÑæİ',
+	'usergal_cat_ro' => 'áÇíÓãÍ ÈÇáÛÇÁ ÊÕäíİ ÇáãÓÊÎÏãíä !',
+	'manage_cat' => 'ÇÏÇÑÉ ÇáÊÕäíİÇÊ',
+	'confirm_delete' => 'åá ÇäÊ ãÊÃßÏ ãä ÇáÛÇÁ åĞÇ ÇáÊÕäíİ',
+	'category' => 'ÇáÊÕäíİ',
+	'operations' => 'ÇáÚãáíÇÊ',
+	'move_into' => 'ÇäŞá Çáì',
+	'update_create' => 'ÊÍÏíË Ãæ Êßæíä ÊÕäíİ',
+	'parent_cat' => 'ÇáÊÕäíİ ÇáÃÈ',
+	'cat_title' => 'ÚäæÇä ÇáÊÕäíİ',
+	'cat_desc' => 'ÔÑÍ ÇáÊÕäíİ'
 );
 
 // ------------------------------------------------------------------------- //
@@ -298,93 +324,102 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
 	'notes' => 'ãáÇÍÙÜÜÇÊ',
 	'info' => 'ÇáãÚÜáæãÜÇÊ',
 	'upd_success' => 'áŞÏ Êã ÊÍÏíË ÇáÅÚÜÏÇÏÊ',
-	'restore_success' => 'Coppermine default configuration restored',
-	'name_a' => 'Name ascending',
-	'name_d' => 'Name descending',
-	'date_a' => 'Date ascending',
-	'date_d' => 'Date descending'
+	'restore_success' => 'Êã ÇÑÌÇÚ ÇáÇÚÏÇÏÇÊ ÇáÇÕáíÉ',
+	'name_a' => 'ÊÕÇÚÏí Úáì ÇáÇÓã',
+	'name_d' => 'ÊäÇÒáí Úáì ÇáÇÓã',
+	'title_a' => 'ÊÕÇÚÏí Úáì ÇáÚäæÇä',
+	'title_d' => 'ÊäÇÒáí Úáì ÇáÚäæÇä',
+        'date_a' => 'ÊÇÑíÎ ÊÕÇÚÏí',
+        'date_d' => 'ÊÇÑíÎ ÊäÇÒáí'
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
-	'ÇáÊÌåíÒÇÊ ÇáÚÇãÉ',
-	array('Gallery name', 'gallery_name', 0),
-	array('Gallery description', 'gallery_description', 0),
-	array('Gallery administrator email', 'gallery_admin_email', 0),
-	array('Target address for the \'See more pictures\' link in e-cards', 'ecards_more_pic_target', 0),
-	array('Language', 'lang', 5),
-	array('Theme', 'theme', 6),
+	'ÇÚÏÇÏÇÊ ÚÇãÉ',
+	array('ÇÓã ÇáãÚÑÖ', 'gallery_name', 0),
+	array('ÔÑÍ ÇáãÚÑÖ', 'gallery_description', 0),
+	array('ÇáÈÑíÏ ÇáÇáßÊÑæäí áãÏíÑ ÇáãÚÑÖ', 'gallery_admin_email', 0),
+	array('ÇáÚäæÇä ÇáåÏİ áæÕáÉ \'ÑÄíÉ ÇáãÒíÏ ãä ÇáÕæÑ\' İí ÇáßÑæÊ', 'ecards_more_pic_target', 0),
+	array('ÇááÛÉ', 'lang', 5),
+	array('ÇáÓãÉ', 'theme', 6),
 
-	'Album list view',
-	array('Width of the main table (pixels or %)', 'main_table_width', 0),
-	array('Number of levels of categories to display', 'subcat_level', 0),
-	array('Number of albums to display', 'albums_per_page', 0),
-	array('Number of columns for the album list', 'album_list_cols', 0),
-	array('Size of thumbnails in pixels', 'alb_list_thumb_size', 0),
-	array('The content of the main page', 'main_page_layout', 0),
+	'ÑÄíÉ ÇáÇáÈæã ßŞÇÆãÉ',
+	array('ÚÑÖ ÇáÌÏæá ÇáÑÆíÓí áÚÑÖ ÇáÕæÑ (ÈÇáäŞÇØ Ãæ ÈÇáäÓÈÉ)', 'main_table_width', 0),
+	array('ÚÏÏ ãÓÊæíÇÊ ÇáÊÕäíİ ÇáÊí ÊÚÑÖ', 'subcat_level', 0),
+	array('ÚÏÏ ÇáÇáÈæãÇÊ ÇáÊí ÊÚÑÖ', 'albums_per_page', 0),
+	array('ÚÏÏ ÇáÇÚãÏÉ áÚÑÖ ÇáÇáÈæã', 'album_list_cols', 0),
+	array('ŞíÇÓ ÇáÇÎÊÕÇÑ ÈÇáäŞÇØ', 'alb_list_thumb_size', 0),
+	array('ãÍÊæíÇÊ ÇáÕİÍÉ ÇáÑÆíÓíÉ', 'main_page_layout', 0),
+            array('ÇÚÑÖ ãÎÊÕÑÇÊ ÇáÈæã ÇáãÓÊæì ÇáÇæá İí ÇáÊÕäíİÇÊ ','first_level',1),
 
-	'Thumbnail view',
-	array('Number of columns on thumbnail page', 'thumbcols', 0),
-	array('Number of rows on thumbnail page', 'thumbrows', 0),
-	array('Maximum number of tabs to display', 'max_tabs', 0),
-	array('Display picture caption (in addition to title) below the thumbnail', 'caption_in_thumbview', 1),
-	array('Display number of comments below the thumbnail', 'display_comment_count', 1),
-	array('Default sort order for pictures', 'default_sort_order', 3),
-	array('Minimum number of votes for a picture to appear in the \'top-rated\' list', 'min_votes_for_rating', 0),
+	'ÚÑÖ ÇáãÎÊÕÑÇÊ',
+	array('ÚÏÏ ÇáÇÚãÏÉ İí ÕİÍÉ ãÎÊÕÑÇÊ ÇáÕæÑ', 'thumbcols', 0),
+	array('ÚÏÏ ÇáÇÓØÑ İí ÕİÍÉ ãÎÊÕÑÇÊ ÇáÕæÑ', 'thumbrows', 0),
+	array('ÇßÈÑ ÚÏÏ ááÕİÍÇÊ ÇáÊí ÓÊÚÑÖ', 'max_tabs', 0),
+	array('ÚÑÖ ÚäæÇä ÇáÕæÑ ÇÓİá ÇáÕæÑÉ', 'caption_in_thumbview', 1),
+	array('ÇÙåÑ ÚÏÏ ÇáÊÚáíŞÇÊ ÇÓİá ÇáÕæÑÉ', 'display_comment_count', 1),
+	array('ÇáÊÑÊíÈ ÇáÊŞáíÏí ááÕæÑ', 'default_sort_order', 3),
+	array('ÇŞá ÚÏÏ ãä ÇáÊÕæíÊÇÊ áÙåæÑ ÇáÕæÑÉ İí ŞÇÆãÉ  \'ÇÚáì ÊŞííã\'', 'min_votes_for_rating', 0),
 
-	'Image view &amp; Comment settings',
-	array('Width of the table for picture display (pixels or %)', 'picture_table_width', 0),
-	array('Picture information are visible by default', 'display_pic_info', 1),
-	array('Filter bad words in comments', 'filter_bad_words', 1),
-	array('Allow smiles in comments', 'enable_smilies', 1),
-	array('Max length for an image description', 'max_img_desc_length', 0),
-	array('Max number of characters in a word', 'max_com_wlength', 0),
-	array('Max number of lines in a comment', 'max_com_lines', 0),
-	array('Maximum length of a comment', 'max_com_size', 0),
+	'ÇÚÏÇÏÇÊ ãäÙÑ ÇáÕæÑ æÇáÊÚáíŞÇÊ',
+	array('ÚÑÖ ÇáÌÏæá áÚÑÖ ÇáÕæÑ (ÈÇáäŞÇØ Ãæ ÈÇáäÓÈÉ)', 'picture_table_width', 0),
+	array('ãÚáæãÇÊ ÇáÕæÑ ÊÑì ÊáŞÇÆíÇ', 'display_pic_info', 1),
+	array('ÊÕİíÉ ÇáßáãÇÊ ÇáÓíÆÉ İí ÇáÊÚáíŞÇÊ (Úáíß ÊÎÒíä Êáß ÇáßáãÇÊ İí ÇáÈÑäÇãÌ ÇæáÇ)', 'filter_bad_words', 1),
+	array('ÇáÓãÇÍ ÈÇáæÌæå ÇáÖÇÍßÉ İí ÇáÊÚáíŞÇÊ', 'enable_smilies', 1),
+	array('ÇßÈÑ Øæá áæÕİ ÇáÕæÑÉ', 'max_img_desc_length', 0),
+	array('ÇßÈÑ ÚÏÏ ãä ÇáÍÑæİ İí ÇáßáãÉ', 'max_com_wlength', 0),
+	array('ÇßÈÑ ÚÏÏ ãä ÇáÇÓØÑ İí ÇáÊÚáíŞ', 'max_com_lines', 0),
+	array('ÇßÈÑ Øæá ááÊÚáíŞ', 'max_com_size', 0),
+        array('ÇÙåÑ ÔÑíØ Çáİáã', 'display_film_strip', 1),
+        array('ÚÏÏ ÇáÕæÑ İí ÔÑíØ Çáİáã', 'max_film_strip_items', 0),
 
-	'Pictures and thumbnails settings',
-	array('Quality for JPEG files', 'jpeg_qual', 0),
-	array('Max width or height of a thumbnail <b>*</b>', 'thumb_width', 0),
-	array('Create intermediate pictures','make_intermediate',1),
-	array('Max width or height of an intermediate picture <b>*</b>', 'picture_width', 0),
-	array('Max size for uploaded pictures (KB)', 'max_upl_size', 0),
-	array('Max width or height for uploaded pictures (pixels)', 'max_upl_width_height', 0),
+	'ÇÚÏÇÏÇÊ ÇáÕæÑ æãÎÊÕÑÇÊ',
+	array('æÖæÍ ÕæÑÉ Ìí ÈíÌ', 'jpeg_qual', 0),
+        array('ÇßÈÑ ŞíÇÓ áãÎÊÕÑ ÇáÕæÑÉ <b>*</b>', 'thumb_width', 0),
+        array('ÇÓÊÚãá ÇáŞíÇÓÇÊ (ÚÑÖ Çæ ÇÑÊİÇÚ Ãæ ÇßÈÑ ÊÈÇÚÏ áãÎÊÕÑ ÇáÕæÑ )<b>*</b>', 'thumb_use', 7),
+	array('ßæä ÕæÑ æÓíØÉ','make_intermediate',1),
+	array('ÇßÈÑ ÚÑÖ Çæ ÇÑÊİÇÚ áÕæÑÉ æÓØíÉ <b>*</b>', 'picture_width', 0),
+	array('ÇßÈÑ ÍÌã áÕæÑÉ ãÍãáÉ (ÈÇáßíáæ ÈÇíÊ)', 'max_upl_size', 0),
+	array('ÇßÈÑ ÚÑÖ Çæ ÇÑÊİÇÚ áÕæÑÉ ãÍãáÉ ÈÇáäŞÇØ', 'max_upl_width_height', 0),
 
-	'User settings',
-	array('Allow new user registrations', 'allow_user_registration', 1),
-	array('User registration requires email verification', 'reg_requires_valid_email', 1),
-	array('Allow two users to have the same email address', 'allow_duplicate_emails_addr', 1),
-	array('Users can can have private albums', 'allow_private_albums', 1),
+	'ÇÚÏÇÏÇÊ ÇáãÓÊÎÏã',
+	array('ÇáÓãÇÍ áãÓÊÎÏã ÌÏíÏ ÈÇáÊÓÌíá', 'allow_user_registration', 1),
+	array('ÊÓÌíá ÇáãÓÊÎÏã íÍÊÇÌ ÇáÊÃßíÏ ÈÇáÈÑíÏ ÇáÇáßÊÑæäí', 'reg_requires_valid_email', 1),
+	array('ÇáÓãÇÍ áãÓÊÎÏãíä ÇËäíä Çä íßæä áåã äİÓ ÇáÈÑíÏ ÇáÇáßÊÑæäí', 'allow_duplicate_emails_addr', 1),
+	array('íãßä ááãÓÊÎÏãíä Çä íßæä áåã ÇáÈæã ÎÇÕ', 'allow_private_albums', 1),
 
-	'Custom fields for image description (leave blank if unused)',
-	array('Field 1 name', 'user_field1_name', 0),
-	array('Field 2 name', 'user_field2_name', 0),
-	array('Field 3 name', 'user_field3_name', 0),
-	array('Field 4 name', 'user_field4_name', 0),
+	'ÈíÇäÇÊ ÇÖÇİíÉ áÔÑÍ ÇáÕæÑ (ÇÊÑßå İÇÑÛÇ Çä ßäÊ áÇ ÊÑíÏ ÇÓÊÚãÇáå)',
+	array('ÇÓã ÇáÍŞá ÇáÇæá', 'user_field1_name', 0),
+	array('ÇÓã ÇáÍŞá ÇáËÇäí', 'user_field2_name', 0),
+	array('ÇÓã ÇáÍŞá ÇáËÇáË', 'user_field3_name', 0),
+	array('ÇÓã ÇáÍŞá ÇáÑÇÈÚ', 'user_field4_name', 0),
 
-	'Pictures and thumbnails advanced settings',
-	array('Characters forbidden in filenames', 'forbiden_fname_char',0),
-	array('Accepted file extensions for uploaded pictures', 'allowed_file_extensions',0),
-	array('Method for resizing images','thumb_method',2),
-	array('Path to ImageMagick \'convert\' utility (example /usr/bin/X11/)', 'impath', 0),
-	array('Allowed image types (only valid for ImageMagick)', 'allowed_img_types',0),
-	array('Command line options for ImageMagick', 'im_options', 0),
-	array('Read EXIF data in JPEG files', 'read_exif_data', 1),
-	array('The album directory <b>*</b>', 'fullpath', 0),
-	array('The directory for user pictures <b>*</b>', 'userpics', 0),
-	array('The prefix for intermediate pictures <b>*</b>', 'normal_pfx', 0),
-	array('The prefix for thumbnails <b>*</b>', 'thumb_pfx', 0),
-	array('Default mode for directories', 'default_dir_mode', 0),
-	array('Default mode for pictures', 'default_file_mode', 0),
+	'ÇÚÏÇÏÇÊ ÇáÕæÑ æãÎÊÕÑÇÊ ÇáÕæÑ ÇáãÊŞÏãÉ',
+        array('ÇÙåÑ ÑãÒ ÇáÈæã ÎÇÕ ááãÓÊÎÏã ÇáãÌåæá','show_private',1),
+	array('ÇáÍÑæİ ÇáããäæÚÉ İí ÇÓãÇÁ ÇáãáİÇÊ', 'forbiden_fname_char',0),
+	array('ÇáÇãÊÏÇÏÇÊ ÇáãÓãæÍ ÈåÇ İí ÇáãáİÇÊ ÇáãÑÓáÉ', 'allowed_file_extensions',0),
+	array('ØÑíŞÉ ÇÚÇÏÉ ŞíÇÕ ÇáÕæÑÉ','thumb_method',2),
+	array('ÇáÏáíá Çáì ÇÏÇÉ ImageMagick \'ááÊÍæíá\'  (ãËÇá /usr/bin/X11/)', 'impath', 0),
+	array('ÇäæÇÚ ÇáÕæÑ ÇáãÓãæÍ ÈåÇ (íÓÊÚãá İŞØ áÜ ImageMagick)', 'allowed_img_types',0),
+	array('ÇæÇãÑ ÇáÈÑäÇãÌ ImageMagick', 'im_options', 0),
+	array('ÇŞÑÁ ÈíÇäÇÊ EXIF İí ãáİÇÊ JPEG', 'read_exif_data', 1),
+	array('Ïáíá ÇáÇáÈæã <b>*</b>', 'fullpath', 0),
+	array('Ïáíá ÕæÑ ÇáãÓÊÎÏãíä <b>*</b>', 'userpics', 0),
+	array('ÇáÍÑæİ ÇáÇæáì ááÕæÑ ÇáæÓíØÉ(íÌÈ Çä Êßæä ÇäÌáíÒíÉ <b>*</b>', 'normal_pfx', 0),
+	array('ÇáÍÑæİ ÇáÇæáì áãÎÊÕÑÇÊ ÇáÕæÑ <b>*</b>', 'thumb_pfx', 0),
+	array('ÇáæÖÚ ÇáÇÚÊíÇÏí ááãÌáÏÇÊ', 'default_dir_mode', 0),
+	array('ÇáæÖÚ ÇáÇÚÊíÇÏí ááÕæÑ', 'default_file_mode', 0),
+        array('ãä ÇáÖÛØ Úáì ÒÑ ÇáİÃÑÉ Çáíãíä ááÕæÑ ĞÇÊ ÇáÍÌã ÇáØÈíÚí (JavaScript - ØÑíŞÉ ÌÇİÇ ÓßÑíÈ ÇáãÊíäÉ)', 'disable_popup_rightclick', 1),
+        array('ÊÚØíá ÇáÖÛØ Úáì ÒÑ ÇáİÃÑÉ Çáíãíä Úáì ßá ÇáÕİÍÇÊ &quot;ÇáÚÇÏíÉ&quot; (JavaScript - ØÑíŞÉ ÌÇİÇ ÓßÑíÈÊ)', 'disable_gallery_rightclick', 1),
 
-	'Cookies &amp; Charset settings',
-	array('Name of the cookie used by the script', 'cookie_name', 0),
-	array('Path of the cookie used by the script', 'cookie_path', 0),
-	array('Character encoding', 'charset', 4),
+	'ÇÚÏÇÏÇÊ ÇáßæßíÒ æäæÚ ÇáÍÑæİ',
+	array('ÇÓã Çáßæßí ÇáãÓÊÚãá İí ÇáÈÑäÇãÌ', 'cookie_name', 0),
+	array('Ïáíá ÇáßæßíÒ ÇáãÓÊÚãá İí ÇáÈÑäÇãÌ', 'cookie_path', 0),
+	array('äæÚ ÇáÍÑæİ ÇáãÓÊÚãáÉ', 'charset', 4),
 
-	'Miscellaneous settings',
-	array('Enable debug mode', 'debug_mode', 1),
+	'ÇÚÏÇÏÇÊ ÇÎÑì',
+	array('Êãßíä æÖÚ ÇáÊÊÈÚ', 'debug_mode', 1),
 
-	'<br /><div align="center">(*) Fields marked with * must not be changed if you already have pictures in your gallery</div><br />'
+	'<br /><div align="center">(*) ÇáÈíÇäÇÊ ÇáãÄÔÑÉ ÈÇáÚáÇãÉ * íÌÈ ÚÏã ÊÛííÑåÇ Çä ßÇäÊ áÏíß ÕæÑ İí ÇáãÚÑÖ</div><br />'
 );
 
 // ------------------------------------------------------------------------- //
@@ -392,30 +427,30 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
-	'empty_name_or_com' => 'You need to type your name and a comment',
-	'com_added' => 'Your comment was added',
-	'alb_need_title' => 'You have to provide a title for the album !',
-	'no_udp_needed' => 'No update needed.',
-	'alb_updated' => 'The album was updated',
-	'unknown_album' => 'Selected album does not exist or you don\'t have permission to upload in this album',
-	'no_pic_uploaded' => 'No picture was uploaded !<br /><br />If you have really selected a picture to upload, check that the server allows file uploads...',
-	'err_mkdir' => 'Failed to create directory %s !',
-	'dest_dir_ro' => 'Destination directory %s is not writable by the script !',
-	'err_move' => 'Impossible to move %s to %s !',
-	'err_fsize_too_large' => 'The size of picture you have uploaded is too large (maximum allowed is %s x %s) !',
-	'err_imgsize_too_large' => 'The size of the file you have uploaded is too large (maximum allowed is %s KB) !',
-	'err_invalid_img' => 'The file you have uploaded is not a valid image !',
-	'allowed_img_types' => 'You can only upload %s images.',
-	'err_insert_pic' => 'The picture \'%s\' can\'t be inserted in the album ',
-	'upload_success' => 'Your picture was uploaded successfully<br /><br />It will be visible after admin approval.',
-	'info' => 'Information',
-	'com_added' => 'Comment added',
-	'alb_updated' => 'Album updated',
-	'err_comment_empty' => 'Your comment is empty !',
-	'err_invalid_fext' => 'Only files with the following extensions are accepted : <br /><br />%s.',
-	'no_flood' => 'Sorry but you are already the author of the last comment posted for this picture<br /><br />Edit the comment you have posted if you want to modify it',
-	'redirect_msg' => 'You are being redirected.<br /><br /><br />Click \'CONTINUE\' if the page does not refresh automatically',
-	'upl_success' => 'Your picture was successfully added',
+	'empty_name_or_com' => 'íÌÈ Çä ÊßÊÈ ÇÓãß æÊÚáíŞß',
+	'com_added' => 'Êã ÇÖÇİÉ ÇáÊÚáíŞ',
+	'alb_need_title' => 'íÌÈ Çä ÊÍÏÏ ÚäæÇä ááÇáÈæã !',
+	'no_udp_needed' => 'áÇ ÍÇÌÉ ááÊÍÏíË.',
+	'alb_updated' => 'Êã ÊÍÏíË ÇáÇáÈæã',
+	'unknown_album' => 'ÇáÇáÈæã ÇáãÎÊÇÑ ÛíÑ ãæÌæÏ Çæ áíÓ áß ÇáÕáÇÍíÉ ááÊÍãíá İí åĞÇ ÇáÇáÈæã',
+	'no_pic_uploaded' => 'áÇ ÊæÌÏ ÕæÑ ãÍãáÉ !<br /><br />ÇĞÇ ßäÊ İÚáÇ ÇÎÊÑÊ ÕæÑ ááÊÍãíá, ÊÃßÏ ãä Çä ÎÇÏã ÇáÕİÍÇÊ íÓãÍ ÈÇáÊÍãíá...',
+	'err_mkdir' => 'áã ÇÓÊØÚ Êßæíä ÇáãÌáÏ %s !',
+	'dest_dir_ro' => 'æÌåÉ Çáãáİ %s ÛíÑ ŞÇÈá ááßÊÇÈÉ !',
+	'err_move' => 'ãä ÇáãÓÊÍíá äŞá %s Çáì %s !',
+	'err_fsize_too_large' => 'ÇáÕæÑ ÇáÊí ÊÑíÏ ÊÍãíáåÇ ßÈíÑÉ ÌÏÇ (ÇßÈÑ ÍÌã ááÕæÑÉ åæ %s x %s) !',
+	'err_imgsize_too_large' => 'ÇáÕæÑ ÇáÊí ÊÑíÏ ÊÍãíáåÇ ßÈíÑÉ ÌÏÇ (ÇßÈÑ ÍÌã ááÕæÑÉ åæ %s KB) !',
+	'err_invalid_img' => 'ÇáÕæÑÉ ÇáÊí Êã ÊÍãíáåÇ ÛíÑ ÕÇáÍÉ !',
+	'allowed_img_types' => 'ÊÓÊØíÚ ÊÍãíá %s ÕæÑÉ.',
+	'err_insert_pic' => 'ÇáÕæÑÉ \'%s\' áÇ íãßä ÊÎÒíåÇ İí ÇáÇáÈæã ',
+	'upload_success' => 'Êãã ÊÍãíá ÇáÕæÑÉ ÈäÌÇÍ<br /><br />Óæİ ÊÑÇåÇ ÈÚÏ ãæÇİŞÉ ÇáãÏíÑ.',
+	'info' => 'ãÚáæãÇÊ',
+	'com_added' => 'Êã ÇÖÇİÉ ÇáÊÚáíŞ',
+	'alb_updated' => 'Êã ÊÍÏíË ÇáÇáÈæã',
+	'err_comment_empty' => 'áã ÊßÊÈ ÇáÊÚáíŞ !',
+	'err_invalid_fext' => 'Óæİ íÓãÍ ÈÇáãáİÇÊ ÇáÊí ÊäÊåí ÈÜ : <br /><br />%s.',
+	'no_flood' => 'äÃÓİ áßäß ÇäÊ ßäÊ ÂÎÑ ãÚáŞ Úáì åĞå ÇáÕæÑÉ<br /><br />ÊÓÊØíÚ ÊÛííÑ ÊÚáíŞß Úáì ÇáÕæÑÉ',
+	'redirect_msg' => 'ÓíÊã ÊÍæáíß Çáì ÕİÍÉ ÇÎÑì.<br /><br /><br />ÇÖÛØ Úáì  \'ÇÓÊãÜÜÑ\' Çä áã íÊã ÇÚÇÏÉ ÊäÔíØ ÇáÕİÍÉ ÊáŞÇÆíÇ',
+	'upl_success' => 'Êã ÊÍãíá ÇáÕæÑÉ ÈäÌÇÍ',
 );
 
 // ------------------------------------------------------------------------- //
@@ -423,24 +458,24 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DELETE_PHP')) $lang_delete_php = array(
-	'caption' => 'Caption',
-	'fs_pic' => 'full size image',
-	'del_success' => 'successfully deleted',
-	'ns_pic' => 'normal size image',
-	'err_del' => 'can\'t be deleted',
-	'thumb_pic' => 'thumbnail',
-	'comment' => 'comment',
-	'im_in_alb' => 'image in album',
-	'alb_del_success' => 'Album \'%s\' deleted',
-	'alb_mgr' => 'Album Manager',
-	'err_invalid_data' => 'Invalid data received in \'%s\'',
-	'create_alb' => 'Creating album \'%s\'',
-	'update_alb' => 'Updating album \'%s\' with title \'%s\' and index \'%s\'',
-	'del_pic' => 'Delete picture',
-	'del_alb' => 'Delete album',
-	'del_user' => 'Delete user',
-	'err_unknown_user' => 'The selected user does not exist !',
-	'comment_deleted' => 'Comment was succesfully deleted',
+	'caption' => 'ÇáÚäæÇä',
+	'fs_pic' => 'ÕæÑÉ ÈÇáÍÌã ÇáØÈíÚí',
+	'del_success' => 'Êã ÇáÛÇÁåÇ ÈäÌÇÍ',
+	'ns_pic' => 'ÕæÑÉ ÈÇáÍÌã ÇáØÈíÚí',
+	'err_del' => 'áÇ íãßä ÇáÛÇÁå',
+	'thumb_pic' => 'ãÎÊÕÑ',
+	'comment' => 'ÊÚáíŞ',
+	'im_in_alb' => 'ÕæÑÉ İí ÇáÇáÈæã',
+	'alb_del_success' => 'ÇáÇáÈæã \'%s\' Êã ÇáÛÇÁå',
+	'alb_mgr' => 'ãÏíÑ ÇáÇáÈæã',
+	'err_invalid_data' => 'ÈíÇäÇÊ ÛíÑ ÕÇáÍÉ Êã ÇÓÊŞÈÇáåÇ İí \'%s\'',
+	'create_alb' => 'ÌÇÑí Êßæíä ÇáÇáÈæã \'%s\'',
+	'update_alb' => 'ÌÇÑí ÊÍÏíË ÇáÇáÈæã \'%s\' ÈÇáÚäæÇä \'%s\' æÇáİåÑÓ \'%s\'',
+	'del_pic' => 'ÇáÛÇÁ ÇáÕæÑÉ',
+	'del_alb' => 'ÇáÛí ÇáÇáÈæã',
+	'del_user' => 'ÇáÛí ÇáãÓÊÎÏã',
+	'err_unknown_user' => 'ÇáãÓÊÎÏã ÇáãÎÊÇÑ ÛíÑ ãæÌæÏ !',
+	'comment_deleted' => 'Êã ÇáÛÇÁ ÇáÊÚáíŞ ÈäÌÇÍ',
 );
 
 // ------------------------------------------------------------------------- //
@@ -456,9 +491,9 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 if (defined('DISPLAYIMAGE_PHP')){
 
 $lang_display_image_php = array(
-	'confirm_del' => 'åá ÃäÊ ãÊÃßÏ áÅáÛÇÁ ÇáÕæÑÉ ? \\nComments will also be deleted.',
+	'confirm_del' => 'åá ÃäÊ ãÊÃßÏ áÅáÛÇÁ ÇáÕæÑÉ ? \\nÓíÊã ÇáÛÇÁ ÇáÊÚáíŞÇÊ ÇíÖÇ.',
 	'del_pic' => 'ÃÖÛØ áãÓÜÍ åĞå ÇáÕæÑÉ',
-	'size' => '%s x %s pixels',
+	'size' => '%s İí %s äŞØÉ',
 	'views' => '%s ãÜÑÇÊ',
 	'slideshow' => 'ÚÑÖ ÇáÔÑÇÆÍ',
 	'stop_slideshow' => 'áÊæŞíİ ÚÑÖ ÇáÔÑÇÆÍ',
@@ -479,15 +514,24 @@ $lang_picinfo = array(
 	'Aperture' => 'ÇáÚÏÓÉ ',
 	'Exposure time' => 'æŞÊ ÇáÊøÚÑøÖ ',
 	'Focal length' => 'ÇáÈÚÏ ÇáÈÄÑíø ',
-	'Comment' => 'ãáÇÍÙÇÊ'
+	'Comment' => 'ãáÇÍÙÇÊ',
+        'addFav'=>'ÇÖİ Çáì ÇáãİÖáÉ',
+        'addFavPhrase'=>'ÇáãİÖáÉ',
+        'remFav'=>'ÇáÛ ãä ÇáãİÖáÉ',
 );
 
 $lang_display_comments = array(
-	'OK' => 'OK',
+	'OK' => 'ÍÓäÜÇ',
 	'edit_title' => 'áÊÍÜÑíÑ ÇáãáÇÍÙÇÊ',
 	'confirm_delete' => 'åá ÃäÊ ãÊÃßÜÏ áÍÜĞİ åĞå ÇáãáÇÍÙÇÊ ?',
 	'add_your_comment' => 'ÃÏÎÜá ãáÇÍÙÇÊß',
-	'your_name' => 'ÃÓãÜß',
+        'name'=>'ÇáÇÓã',
+        'comment'=>'ÊÚáíŞ',
+        'your_name' => 'ãÌåæá',
+);
+
+$lang_fullsize_popup = array(
+        'click_to_close' => 'ÇÖÛØ Úáì ÇáÕæÑÉ áÇÛáÇŞ ÇáäÇİĞÉ',
 );
 
 }
@@ -497,20 +541,20 @@ $lang_display_comments = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array(
-	'title' => 'Send an e-card',
-	'invalid_email' => '<b>Warning</b> : invalid email address !',
-	'ecard_title' => 'An e-card from %s for you',
-	'view_ecard' => 'If the e-card does not display correctly, click this link',
-	'view_more_pics' => 'Click this link to view more pictures !',
-	'send_success' => 'Êã ÇÑÓÇá ÇáÈØÇŞÉ',
-	'send_failed' => 'Sorry but the server can\'t send your e-card...',
-	'from' => 'From',
+	'title' => 'ÇÑÓÇá ßÑÊ ãÚÇíÏÉ',
+	'invalid_email' => '<b>ÊäÈÜíå</b> : ÇáÈÑíÏ ÇáÇáßÊÑæäí ÎØÃ !',
+	'ecard_title' => 'ßÑÊ ãä  %s áß',
+	'view_ecard' => 'Çä áã íÙåÑ ÇáßÑÊ ÈÇáÕæÑÉ ÇáÕÍíÍÉ, ÇÖÛØ åäÇ',
+	'view_more_pics' => 'ÇÖÛØ åäÇ áÑÄíÉ ÇáãÒíÏ ãä ÇáÕæÑ !',
+	'send_success' => 'Êã ÇÑÓÇá ßÑÊß',
+	'send_failed' => 'äÃÓİ áßä ÇáÎÇÏã áÇ íÓÊØíÚ ÇÑÓÇá ÇáßÑÊ...',
+	'from' => 'ãä',
 	'your_name' => 'ÇÓãß',
 	'your_email' => 'ÇáÈÑíÏ ÇáÃáßÊÑæäí',
-	'to' => 'To',
-	'rcpt_name' => 'Recipient name',
-	'rcpt_email' => 'Recipient email address',
-	'greetings' => 'Greetings',
+	'to' => 'Çáì',
+	'rcpt_name' => 'ÇÓã ÇáãÑÓá Çáíå',
+	'rcpt_email' => 'ÈÑíÏ ÇáãÑÓá Çáíå ÇáÇáßÊÑæäí',
+	'greetings' => 'ÇáÊÍíÉ',
 	'message' => 'ÇáÑÓÇáÉ',
 );
 
@@ -524,20 +568,20 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 	'title' => 'ÚäæÇä ÇáÕæÑÉ',
 	'desc' => 'ÈíÇä Úä ÇáÕæÑÉ',
 	'keywords' => 'ÇáßáãÇÊ ÇáÑøÆíÓíøÉ ',
-	'pic_info_str' => '%sx%s - %sKB - %s views - %s votes',
-	'approve' => 'Approve picture',
-	'postpone_app' => 'Postpone approval',
+	'pic_info_str' => '%sx%s - %sßíáæÈÇíÊ - %s ãÔÇåÏÉ - %s ÊÕæíÊÇÊ',
+	'approve' => 'ÇÚÊãÏ ÇáÕæÑÉ',
+	'postpone_app' => 'ÊÃÌíá ÇáãæÇİŞÉ',
 	'del_pic' => 'ÇáÛÇÁ ÇáÕæÑÉ',
 	'reset_view_count' => 'ãÓÍ ÇáÚÏÇÏ',
 	'reset_votes' => 'ÇáÛÇÁ ÇáÊÕæíÊ',
 	'del_comm' => 'ãÓÍ ÇáãáÇÍÙÇÊ',
-	'upl_approval' => 'Upload approval',
+	'upl_approval' => 'ãæÇİŞÉ ÇáÊÍãíá',
 	'edit_pics' => 'ÊÍÜÑíÑ ÇáÕæÑ',
 	'see_next' => 'ÇáÕæÑ ÇáÊÇáíÜÉ',
 	'see_prev' => 'ÇáÕæÑ ÇáÓÇÈŞÉ',
 	'n_pic' => '%s ÇáÕÜæÑ',
 	'n_of_pic_to_disp' => 'ÚÏÏ ÇáÕæÑ ÇáãÚÑæÖÉ',
-	'apply' => 'Apply modifications'
+	'apply' => 'ÊØÈíŞ ÇáÊÚÏíá'
 );
 
 // ------------------------------------------------------------------------- //
@@ -545,23 +589,23 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
-	'group_name' => 'Group name',
-	'disk_quota' => 'Disk quota',
-	'can_rate' => 'Can rate pictures',
-	'can_send_ecards' => 'Can send ecards',
-	'can_post_com' => 'Can post comments',
-	'can_upload' => 'Can upload pictures',
-	'can_have_gallery' => 'Can have a personal gallery',
-	'apply' => 'Apply modifications',
-	'create_new_group' => 'Create new group',
-	'del_groups' => 'Delete selected group(s)',
-	'confirm_del' => 'Warning, when you delete a group, users that belong to this group will be transfered to the \'Registered\' group !\n\nDo you want to proceed ?',
-	'title' => 'Manage user groups',
-	'approval_1' => 'Pub. Upl. approval (1)',
-	'approval_2' => 'Priv. Upl. approval (2)',
-	'note1' => '<b>(1)</b> Uploads in a public album need admin approval',
-	'note2' => '<b>(2)</b> Uploads in an album that belong to the user need admin approval',
-	'notes' => 'Notes'
+	'group_name' => 'ÇÓã ÇáãÌãæÚÉ',
+	'disk_quota' => 'ãÓÇÍÉ ÇáÊÎÒíä ÇáãÓãæÍÉ',
+	'can_rate' => 'áÇ ÇÓÊØíÚ ÊŞííã ÇáÕæÑ',
+	'can_send_ecards' => 'íÓÊØíÚ ÇÑÓÇá ÇáÕæÑÉ ßÈÑíÏ',
+	'can_post_com' => 'íÓÊØíÚ ÇÖÇİÉ ÊÚáíŞÇÊ',
+	'can_upload' => 'íÓÊØíÚ ÊÍãíá ÇáÕæÑ',
+	'can_have_gallery' => 'íÓÊØíÚ ÇáÍÕæá Úáì ãÚÑÖ ÔÎÕí',
+	'apply' => 'ÊÎÒíä ÇáÊÚÏíáÇÊ',
+	'create_new_group' => 'Êßæíä ãÌãæÚÉ ãÓÊÎÏãíä ÌÏíÏÉ',
+	'del_groups' => 'ÇáÛÇÁ ÇáãÌãæÚÇÊ ÇáãÎÊÇÑÉ',
+	'confirm_del' => 'ÊÍĞíÑ, ÚäÏãÇ ÊãÓÍ ãÌãæÚÉ, ÓíÊã äŞá ÇáãÓÊÎÏãíä İí åĞå ÇáãÌãæÚÉ Çáì ŞÇÆãÉ \'ÇáãÓÌáíä\' !\n\nåá ÊæÏ ÇÓÊßãÇá ÇáÚãáíÉ  ?',
+	'title' => 'ÇÏÇÑÉ ãÌãæÚÇÊ ÇáãÓÊÎÏãíä',
+	'approval_1' => 'ãæÇİŞÉ ÊÍãíá ÚÇãÉ (1)',
+	'approval_2' => 'ãæÇİŞÉ ÊÍãíá ÚÇãÉ (2)',
+	'note1' => '<b>(1)</b> ÇáÊÍãíá İí ÇáÇáÈæã ÇáÚÇã íÍÊÇÌ ãæÇİŞÉ ÇáãÏíÑ',
+	'note2' => '<b>(2)</b> ÇáÊÍãíáÇÊ ÇáÊí íãßáåÇ ÇáãÓÊÎÏã ÊÍÊÇÌ ãæÇİŞÉ ÇáãÏíÑ',
+	'notes' => 'ãáÇÍÙÇÊ'
 );
 
 // ------------------------------------------------------------------------- //
@@ -582,23 +626,23 @@ $lang_album_admin_menu = array(
 );
 
 $lang_list_categories = array(
-	'home' => 'ÇáÕİÍÉ ÇáÑÆíÓíÉ',
-	'stat1' => '<b>[pictures]</b> ãä ÇáÕæÑ ÚÑÖÊ İí <b>[albums]</b> ÇáÈÜæã æ <b>[cat]</b> ãä ÇáÃÕäÇİ ãÚ ÚÏÏ <b>[comments]</b>ÔÇåÏ ÇáÊÚáíŞÇÊ <b>[views]</b> ãä ãÑÇÊ',
-	'stat2' => '<b>[pictures]</b> pictures in <b>[albums]</b> albums viewed <b>[views]</b> times',
-	'xx_s_gallery' => '%s\'s Gallery',
-	'stat3' => '<b>[pictures]</b> pictures in <b>[albums]</b> albums with <b>[comments]</b> comments viewed <b>[views]</b> times'
+	'home' => 'Home',
+	'stat1' => '<b>[pictures]</b> ÕæÑÉ İí <b>[albums]</b> ÇáÈæã æ <b>[cat]</b> ÊÕäíİÇÊ ãÚ <b>[comments]</b> ÊÚáíŞÇÊ ÔæåÏÊ <b>[views]</b> ãÑÉ',
+	'stat2' => '<b>[pictures]</b> ÕæÑÉ İí <b>[albums]</b> ÇáÈæã æÔæåÏÊ <b>[views]</b> ãÑÉ',
+	'xx_s_gallery' => 'ãÚÑÖ %s',
+	'stat3' => '<b>[pictures]</b> ÕæÑÉ İí <b>[albums]</b> ÇáÈæã ãÚ <b>[comments]</b> ÊÚáíŞÇÊ ÔæåÏÊ <b>[views]</b> ãÑÉ'
 );
 
 $lang_list_users = array(
-	'user_list' => 'User list',
-	'no_user_gal' => 'There are no user galleries',
-	'n_albums' => '%s album(s)',
-	'n_pics' => '%s picture(s)'
+	'user_list' => 'ŞÇÆãÉ ÇáãÓÊÎÏãíä',
+	'no_user_gal' => 'áÇ íæÌÏ ãÓÊÎÏãíä íãßä Çä íßæä áåã ÇáÈæãÇÊ',
+	'n_albums' => '%s ÇáÈæã',
+	'n_pics' => '%s ÕæÑÉ/ÕæÑ'
 );
 
 $lang_list_albums = array(
-	'n_pictures' => '%s åĞå ÂÎÜÑ',
-	'last_added' => ', ÕæÑÉ ÇÑÓáÊ İí %s'
+	'n_pictures' => '%s ÕæÑÉ',
+	'last_added' => ', ÂÎÑ ÕæÑÉ ÇÖíİÊ İí %s'
 );
 
 }
@@ -608,14 +652,14 @@ $lang_list_albums = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('LOGIN_PHP')) $lang_login_php = array(
-	'login' => 'ÊÓÌíÜá ÇáÏÎæá',
-	'enter_login_pswd' => 'ÃÏÎá ÇÓãß æÇáßáãÜÉ ÇáÓÑíÉ',
-	'username' => 'ÇÓã ÇáãÓÊÎÏã',
-	'password' => 'ÇáßáãÉ ÇáÓÑíÉ',
-	'remember_me' => 'ÃĞßÑäí ÚäÏ ÇáÏÎæá ãÑÉ ÃÎÑì',
-	'welcome' => 'ÃåÜáÇğ æÓÜåáÇğ Èß íÜÇ %s ...',
-	'err_login' => '*** áã ÊÏÎá ÍÇæá ãÑÉ ÃÎÑì ***',
-	'err_already_logged_in' => 'áŞÏ ÏÎáÊ !',
+	'login' => 'ÇáÏÎæá',
+	'enter_login_pswd' => 'ÇÏÎá ÇáßäíÉ æßáãÉ ÇáÓÑ ááÏÎæá',
+	'username' => 'ÇÓã ÇáãÊÓÎÏã',
+	'password' => 'ßáãÉ ÇáÓÑ',
+	'remember_me' => 'ÊĞßÑäí',
+	'welcome' => 'ÇåáÇ  %s ...',
+	'err_login' => '*** áã ÇÓÊØÚ ÇáÏÎæá ÍÇæá ãÑÉ ÇÎÑì ***',
+	'err_already_logged_in' => 'áŞÏ Êã ÊÓÌíá ÏÎæáß ãÓÈŞÇ !',
 );
 
 // ------------------------------------------------------------------------- //
@@ -623,9 +667,9 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('LOGOUT_PHP')) $lang_logout_php = array(
-	'logout' => 'ÇáÎÜÜÜÜÑæÌ',
-	'bye' => 'ÍíÇß Çááå æãÚ Ãáİ ÓÜáÇãå íÇ  %s ...',
-	'err_not_loged_in' => 'áÜã ÊÏÎÜá !',
+	'logout' => 'ÎÑæÌ',
+	'bye' => 'ãÚ ÇáÓáÇãÉ %s ...',
+	'err_not_loged_in' => 'áã ÊÓÌá ÇáÏÎæá !',
 );
 
 // ------------------------------------------------------------------------- //
@@ -633,27 +677,27 @@ if (defined('LOGOUT_PHP')) $lang_logout_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
-	'upd_alb_n' => 'ÊÍÏíË ÇáÃáÈæã %s',
-	'general_settings' => 'General settings',
-	'alb_title' => 'Album title',
-	'alb_cat' => 'Album category',
-	'alb_desc' => 'Album description',
-	'alb_thumb' => 'Album thumbnail',
-	'alb_perm' => 'Permissions for this album',
-	'can_view' => 'Album can be viewed by',
-	'can_upload' => 'Visitors can upload pictures',
-	'can_post_comments' => 'Visitors can post comments',
-	'can_rate' => 'Visitors can rate pictures',
-	'user_gal' => 'User Gallery',
-	'no_cat' => '* No category *',
-	'alb_empty' => 'Album is empty',
-	'last_uploaded' => 'Last uploaded',
-	'public_alb' => 'Everybody (public album)',
-	'me_only' => 'Me only',
-	'owner_only' => 'Album owner (%s) only',
-	'groupp_only' => 'Members of the \'%s\' group',
-	'err_no_alb_to_modify' => 'No album you can modify in the database.',
-	'update' => 'ÊÍÏíË ÇáÃáÈæã'
+	'upd_alb_n' => 'ÊÍÏíË ÇáÇáÈæã %s',
+	'general_settings' => 'ÇÚÏÇÏÇÊ ÚÇãÉ',
+	'alb_title' => 'ÚäæÇä ÇáÇáÈæã',
+	'alb_cat' => 'ÊÕäíİ ÇáÇáÈæã',
+	'alb_desc' => 'ÔÑÍ ÇáÇáÈæã',
+	'alb_thumb' => 'äÈĞÉ ÇáÇáÈæã',
+	'alb_perm' => 'ÕáÇÍíÇÊ ÇáÇáÈæã',
+	'can_view' => 'ãÔÇåÏíä ÇáÇáÈæã åã',
+	'can_upload' => 'ÇáÒæÇÑ íÓÊØíÚæä ÊÍãíá ÕæÑ',
+	'can_post_comments' => 'ÇáÒæÇÑ íÓÊØíÚæä ÊÓÌíá ÊÚáíŞÇÊ',
+	'can_rate' => 'ÇáÒæÇÑ íÓÊØíÚæä ÇáÊŞííã',
+	'user_gal' => 'ÇáÈæã ÇáãÓÊÎÏãíä',
+	'no_cat' => '* ÛíÑ ãÕäİ *',
+	'alb_empty' => 'ÇáÇáÈæã İÇÑÛ',
+	'last_uploaded' => 'ÂÎÑ ÊÍãíá',
+	'public_alb' => 'ááÌãíÚ (ÇáÈæã ÚÇã)',
+	'me_only' => 'áí İŞØ',
+	'owner_only' => 'ãÇáß ÇáÇáÈæã (%s) İŞØ',
+	'groupp_only' => 'ÇÚÖÇÁ ÇáãÌãæÚÉ \'%s\'',
+	'err_no_alb_to_modify' => 'áÇ íæÌÏ ÇáÈæã ÊÓÊØíÚ ÊÚÏíáå İí ŞÇÚÏÉ ÇáÈíÇäÇÊ.',
+	'update' => 'ÊÍÏíË ÇáÇáÈæã'
 );
 
 // ------------------------------------------------------------------------- //
@@ -661,8 +705,8 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
-	'already_rated' => 'ÚİæÇğ ..... áŞÏ ÑÔÍÊ åĞå ÇáÕæÑÉ ãä ŞÈá',
-	'rate_ok' => 'Êã ŞÈæá ÊÑÔíÍß',
+	'already_rated' => 'äÃÓİ áßä ßäÊ ŞÏ ŞíãÊ åĞå ÇáÕæÑÉ ãÓÈŞÇ',
+	'rate_ok' => 'Êã ŞÈæá ÊŞííãß',
 );
 
 // ------------------------------------------------------------------------- //
@@ -672,62 +716,62 @@ if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
-ÇáÃÎ ÇáãÓÊÎÏã<br />
+ÍíË Çä ãÏÑÇÁ ÇáãæŞÚ {SITE_NAME} ÓíŞæãæä ÈÊÚÏíá Çæ ÇáÛÇÁ ÇáÕæÑ ÇáÛíÑ ãÑÛæÈ İíåÇ, İãä ÇáÕÚÈ ãÑÇÌÚÉ ÌãíÚ ÇáÕæÑ. áĞÇ íÌÈ Úáíß ÇáÚáã Çä ÇáÕæÑ ÊãËá ÇÕÍÇÈåÇ İŞØ æáíÓ áåÇ ÚáÇŞÉ ÈÇáãÏÑÇÁ Ãæ ãÓÄæáíä ÇáÕİÍÉ (Çáì ÇĞÇ ŞÇãæ åã ÈĞáß) æÈÇáÊÇáí áä íÊÍãáæ ãÓÄæáíÉ Êáß ÇáÕæÑ.<br />
 <br />
-ÇáÓáÇã Úáíßã æÑÍãÉ Çááå æÈÑßÇÊå.<br />
+ÇäÊ ÊæÇİŞ Çäß áä ÊŞæã ÈÊÍãíá Çí ÕæÑ ãÑİæÖÉ, æŞÍÉ, ÎÇÑÌÉ Úä ÇááíÇŞÉ ÇáÚÇãÉ, ÊŞĞİ ÇáÛíÑ, ßÑÇåíÉ, ÊåÏÏ ÇáÛíÑ, ÌäÓíÉ Ãæ Çí ÕæÑ ÎÇÑÌÉ Úä äØÇŞ ÇáŞÇäæä. ÇäÊ ÊæÇİŞ Çä ãÓÄæá ÇáÕİÍÉ, ÇáãÏíÑ æÇáãÔÑİíä İí ÇáãæŞÚ {SITE_NAME} áåã ÇáÍŞ İí ÊÚÏíá æÇÒÇáÉ Çí ãÍÊæì İí Çí æŞÊ íÑæäå ãäÇÓÈÇ. æßãÇ ÊæÇİŞ Çä Êßæä ÇáÈíÇäÇÊ ÇáÊí ÊÏÎáåÇ Óæİ ÊÎÒä İí ŞÇÚÏÉ ÈíÇäÇÊ. æÍíË Çä åĞå ÇáãÚáæãÇÊ áä ÊÚáä áÔÎÕ ËÇáË Ïæä ãæÇŞŞÊß áä íÊÍãá ÇáãÓÄæá Çæ ãÏíÑ ÇáãæŞÚ Çí ÏÎæá ÊÎÑíÈí Úáì ÇáãæŞÚ íÊã Èå ãÚÑİÉ åĞå ÇáãÚáæãÇÊ.<br />
 <br />
-ÓíÊã ÇÒÇáÉ ßá ãÇ íÎÇáİ ÇáÔÑíÚÉ ÇáÅÓáÇãíÉ ãäåÇ ÇáÈĞÆ æÛíÑåÇ , æãÏíÑ ÇáÚÇã áãÚÑÖ ÇáÕæÑ æÇááæÍÇÊ ÇáİäíÉ  <br />
+åĞÇ ÇáãæŞÚ íÓÊÚãá ÇáßæßíÒ áÊÎÒíä ÇáãÚáæãÇÊ Úáì ÌåÇÒß. åĞå ÇáßæßíÒ ÊÍÓä ãä ÇØáÇÚß Úáì ÇáÕæÑ İŞØ. æíÓÊÚãá ÇáÈÑíÏ ÇáÇáßÊÑæäí áÊÃßíÏ ÚãáíÉ ÊÓÌíáß æßáãÉ ÇáÓÑ.<br />
 <br />
-ÇáÍŞ İí ÇÒÇáÊåÇ . æåæ ÛíÑ ãÓÆæá Úä ĞÇáß . æ áĞÇ ÃäÇ ÃæÇİŞ Úáì åĞå ÇáÔÑæØ ..
+ÈÇáÖÛØ Úáì ÒÑ 'ÇæÇİŞ' Çä ÊæÇİŞ æÊáÒã ÈåĞå ÇáÔÑæØ.
 EOT;
 
 $lang_register_php = array(
-	'page_title' => 'ÊÓÌíá ÇáãÓÊÎÏã ',
-	'term_cond' => 'ÈäæÏ æÔÑæØ',
-	'i_agree' => 'ãÜæÇİŞ',
-	'submit' => 'ãæÇİŞ Úáì ÇáÊÓÌíá',
-	'err_user_exists' => 'The username you have entered already exist, please choose a different one',
-	'err_password_mismatch' => 'The two passwords does not match, please input them again',
-	'err_uname_short' => 'Username must be 2 characters long minimum',
-	'err_password_short' => 'Password must be 2 characters long minimum',
-	'err_uname_pass_diff' => 'Username and password must be different',
-	'err_invalid_email' => 'Email address is invalid',
-	'err_duplicate_email' => 'Another user has already registered with the email address you entered',
-	'enter_info' => 'ãÚáæãÇÊ ÇáãÓÊÎÏã ÇáÌÏíÏ',
-	'required_info' => 'ÇáãÚáæãÇÊ ÇáãØáæÈÉ ',
-	'optional_info' => 'ÇáãÚáæãÇÊ ÇáÇÎÊíÇÑíøÉ ',
-	'username' => 'ÇÓã ÇáãÓÊÎÏã',
-	'password' => 'ÇáßáãÉ ÇáÓÑíÉ',
-	'password_again' => 'ÃÚÏ ßÊÇÈÉ ÇáßáãÉ ÇáÓÑíÉ',
-	'email' => 'ÇáÈÑíÏ ÇáÃáíßÊÑæäí',
-	'location' => 'ÇáãæŞÚ',
-	'interests' => 'ÇáÇåÊãÇãÇÊ ',
-	'website' => 'ÇáÕİÍÉ ÇáãİÖáÉ',
-	'occupation' => 'ÇáãåäÜÉ',
-	'error' => 'ÎÜÜØÃ',
-	'confirm_email_subject' => '%s - ÊÃßíÏ ÇáÊøÓÌíá ',
-	'information' => 'ãÚáæãÜÇÊ',
-	'failed_sending_email' => 'The registration confirmation email can\'t be send !',
-	'thank_you' => 'Thank your for registering.<br /><br />An email with information on how to activate your account was sent to the email address your provided.',
-	'acct_created' => 'Your account has been created and you can now login with your username and password',
-	'acct_active' => 'Your account is now active and you can login with your username and password',
-	'acct_already_act' => 'Your account is already active !',
-	'acct_act_failed' => 'This account can\'t be activated !',
-	'err_unk_user' => 'Selected user does not exist !',
-	'x_s_profile' => '%s\'s profile',
-	'group' => 'ãÌãæÚÉ',
-	'reg_date' => 'ãäÖã',
-	'disk_usage' => 'ÇÓÊÎÏÇã ãÓÇÍÉ İí ÇáŞÑÕ',
-	'change_pass' => 'ÊÛííÑ ÇáßáãÉ ÇáÓÑíÉ',
-	'current_pass' => 'ßáãÉ ÇáÓÑ ÇáÕÍíÍÉ',
-	'new_pass' => 'ßáãÉ ÓÑíÉ ÌÏíÏÉ',
-	'new_pass_again' => 'ãÑÉ ÃÎÑì ßáãÉ ÓÑíÉ ÌÏíÏÉ',
-	'err_curr_pass' => 'ßáãÉ ÇáÓøÑø ÇáÍÇáíøÉ ÎØÃ ',
-	'apply_modif' => 'ÇÓÊÚãá ÇáÊøÚÏíáÇÊ ',
-	'change_pass' => 'ÊÛííÑ ÇáßáãÉ ÇáÓÑíÉ',
-	'update_success' => 'Êã ÇáÊÍÜÏíË',
-	'pass_chg_success' => 'áŞÏ Êã ÊÛííÑ ÇáßáãÉ ÇáÓÑíÉ',
-	'pass_chg_error' => 'áã íÊã ÊÛííÑ ÇáßáãÉ ÇáÓÑíÉ',
+	'page_title' => 'ÊÓÌíá ÇáãÓÊÎÏã',
+	'term_cond' => 'ÇáÔÑæØ æÇáŞæÇÚÏ',
+	'i_agree' => 'ÇæÇİŞ',
+	'submit' => 'ÊÓÌíá ÇáØáÈ',
+	'err_user_exists' => 'ÇáÇÓã ÇáĞí ÇÏÎáÊå ãæÌæÏ ãÓÈŞÇ, ÇáÑÌÇÁ ÇÓÊÎÏÇã ÇÓã ÂÎÑ',
+	'err_password_mismatch' => 'ßáãÊí ÇáÓÑ áÇ íäØÈŞÇä¡ Úáíß ÇÏÎÇáåãÇ ãÑÉ ÇÎÑì',
+	'err_uname_short' => 'íÌÈ Çä Êßæä ÇáßäíÉ Úáì ÇáÇŞá ÍÑİíä',
+	'err_password_short' => 'íÌÈ Çä Êßæä ßáãÉ ÇáÓÑ Úáì ÇáÇŞá ÍÑİíä',
+	'err_uname_pass_diff' => 'íÌÈ Çä Êßæä ÇáßäíÉ ãÎÊáİÉ Úä ßáãÉ ÇáÓÑ',
+	'err_invalid_email' => 'ÇáÈÑíÏ ÇáÇáßÊÑæäí ÇáĞí ßÊÈÊå áÇ íÚãá',
+	'err_duplicate_email' => 'ãÓÊÎÏã ÂÎÑ ãÓÌá áå äİÕ ÇáÈÑíÏ ÇáÇáßÊÑæäí',
+	'enter_info' => 'ÇÏÎá ÈíÇäÇÊ ÇáÊÓÌíá',
+	'required_info' => 'ãÚáæãÇÊ ãØáæÈÉ',
+	'optional_info' => 'ãÚáæãÇÊ ÇÖÇİíÉ',
+	'username' => 'ÇáßäíÉ',
+	'password' => 'ßáãÉ ÇáÓÑ',
+	'password_again' => 'ÇÚÏ ÇÏÎÇá ßáãÉ ÇáÓÑ',
+	'email' => 'ÇáÈÑíÏ ÇáÇáßÊÑæäí',
+	'location' => 'ÇáãßÇä',
+	'interests' => 'ÇáÇåÊãÇãÇÊ',
+	'website' => 'ÕİÍÊß',
+	'occupation' => 'ÇáæÙíİÉ',
+	'error' => 'ÎØÃ',
+	'confirm_email_subject' => '%s - ÊÃßíÏ ÇáÊÓÌíá',
+	'information' => 'ÈíÇäÇÊ',
+	'failed_sending_email' => 'áã ÇÓÊØíÚ ÇÑÓÇá ÑÓÇáÉ ÊÃßíÏ ÇáÊÓÌíá !',
+	'thank_you' => 'ÔßÑÇ Úáì ÇáÊÓÌíá.<br /><br />Êã ÇÑÓÇá ÈÑíÏ íæÖÍ ßíİíÉ ÊİÚíá ÇáÇÔÊÑÇß.',
+	'acct_created' => 'Êã Êßæíä ÇÔÊÑÇßß æÊÓÊØíÚ ÇáÏÎæá ÈßäíÊß æßáãÉ ÇáÓÑ',
+	'acct_active' => 'ÇÔÊÑÇßß İÚÇá ÇáÂä æÊÓÊØíÚ ÇáÏÎæá ÈßäíÊß æßáãÉ ÇáÓÑ',
+	'acct_already_act' => 'ÇÔÊÑÇßß İÚÇá ãÓÈŞÇ !',
+	'acct_act_failed' => 'áÇ íãßä ÊİÚíá åĞÇ ÇáÍÓÇÈ !',
+	'err_unk_user' => 'ÇáãÓÊÎÏã ÇáãÎÊÇÑ ÛíÑ ãæÌæÏ !',
+	'x_s_profile' => 'ÈíÇäÇÊ %s',
+	'group' => 'ÇáãÌãæÚÉ',
+	'reg_date' => 'ãÔÇÑß',
+	'disk_usage' => 'ÇÓÊåáÇß ÇáÊÎÒíä',
+	'change_pass' => 'ÊÛííÑ ßáãÉ ÇáÓÑ',
+	'current_pass' => 'ßáãÉ ÇáÓÑ ÇáÍÇáíÉ',
+	'new_pass' => 'ßáãÉ ÓÑ ÌÏíÏÉ',
+	'new_pass_again' => 'ßáãÉ ÇáÓÑ ÇáÌÏíÏÉ ãÑÉ ÇÎÑì',
+	'err_curr_pass' => 'ßáãÉ ÇáÓÑ ÇáÍÇáíÉ ÛíÑ ÕÍíÍÉ',
+	'apply_modif' => 'ÊØÈíŞ ÇáÊÛííÑÇÊ',
+	'change_pass' => 'ÛíÑ ßáãÉ ÇáÓÑ',
+	'update_success' => 'Êã ÊÍÏíË ÈíÇäÇÊß',
+	'pass_chg_success' => 'Êã ÊÛííÑ ßáãÉ ÇáÓÑ',
+	'pass_chg_error' => 'áã ÊÊÛíÑ ßáãÉ ÇáÓÑ',
 );
 
 $lang_register_confirm_email = <<<EOT
@@ -736,8 +780,8 @@ Thank you for registering at {SITE_NAME}
 Your username is : "{USER_NAME}"
 Your password is : "{PASSWORD}"
 
-In order to activate your account, you need to click on the link below
-or copy and paste it in your web browser.
+áÊİÚíá ÇáÍÓÇÈ Úáíß ÇáÖÛØ Úáì ÇáæÕáÉ ÈÇáÇÓİá
+Çæ ÇäÓÎ æÇáÕŞ ÇáæÕáÉ İí ãÊÕİÍ ÇáÇäÊÑäÊ áÏíß.
 
 {ACT_LINK}
 
@@ -754,13 +798,13 @@ EOT;
 // ------------------------------------------------------------------------- //
 
 if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
-	'title' => 'ÊÚáíŞÇÊ ÇáãÑÇÌÚÉ ',
-	'no_comment' => 'áíÓ åäÇß ÊÚáíŞ ááäøŞÏ ',
-	'n_comm_del' => '%s comment(s) deleted',
-	'n_comm_disp' => 'ÚÑÖ ÚÏÏ ÇáÊÚáíŞÇÊ',
-	'see_prev' => 'ÇäÙÑ ááÓÇÈŞ',
-	'see_next' => 'ÇáÊÇáÜí',
-	'del_comm' => 'áÍĞİ ÇáÊÚáíŞÇÊ ÇáãÄÔÑ ÚáíåÇ',
+	'title' => 'ãÑÇÌÚÉ ÇáÊÚáíŞÇÊ',
+	'no_comment' => 'áÇ ÊÚáíŞÇÊ ááãÑÇÌÚÉ',
+	'n_comm_del' => '%s ÊÚáíŞ ÇáÛí',
+	'n_comm_disp' => 'ÚÏÏ ÇáÊÚáíŞÇÊ ÇáãÚÑæÖÉ',
+	'see_prev' => 'ÇáÓÇÈŞ',
+	'see_next' => 'ÇáÊÇáí',
+	'del_comm' => 'ÇáÛÇÁ ÇáÊÚáíŞÇÊ ÇáãÎÊÇÑÉ',
 );
 
 
@@ -769,7 +813,7 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCH_PHP')) $lang_search_php = array(
-	0 => 'ÇáÈÍÜË Úä ÕÜÜæÑå ÏÇÎá ÇáÃáÈæã',
+	0 => 'ÇÈÍË ãÌãæÚÉ ÇáÕæÑ',
 );
 
 // ------------------------------------------------------------------------- //
@@ -777,31 +821,31 @@ if (defined('SEARCH_PHP')) $lang_search_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
-	'page_title' => 'Search new pictures',
-	'select_dir' => 'Select directory',
-	'select_dir_msg' => 'This function allows you to add a batch of picture that your have uploaded on your server by FTP.<br /><br />Select the directory where you have uploaded your pictures',
-	'no_pic_to_add' => 'There is no picture to add',
-	'need_one_album' => 'You need at least one album to use this function',
-	'warning' => 'Warning',
-	'change_perm' => 'the script can\'t write in this directory, you need to change its mode to 755 or 777 before trying to add the pictures !',
-	'target_album' => '<b>Put pictures of &quot;</b>%s<b>&quot; into </b>%s',
-	'folder' => 'Folder',
-	'image' => 'Image',
-	'album' => 'Album',
-	'result' => 'Result',
-	'dir_ro' => 'Not writable. ',
-	'dir_cant_read' => 'Not readable. ',
-	'insert' => 'Adding new pictures to the gallery',
-	'list_new_pic' => 'List of new pictures',
-	'insert_selected' => 'Insert selected pictures',
-	'no_pic_found' => 'No new picture was found',
-	'be_patient' => 'Please be patient, the script needs time to add the pictures',
+	'page_title' => 'ÇÈÍË ÇáÕæÑ ÇáÌÏíÏÉ',
+	'select_dir' => 'ÇÎÊÑ ãÌáÏ',
+	'select_dir_msg' => 'åĞå ÇáÚãáíÉ Êãßäß ãä ÇÖÇİÉ ßãíÉ ãä ÇáÕæÑ Êã ÊÍãíáåÇ ÈæÇÓØÉ FTP Çáì ÎÇÏã ÇáÕİÍÇÊ áÏíß.<br /><br />ÇÎÊÑ ÇáÏáíá ÍíË ŞãÊ ÈÚãáíÉ ÇáÊÍãíá ãÓÈŞÇ',
+	'no_pic_to_add' => 'áÇ ÊæÌÏ ÕæÑÉ ÇÖíİåÇ',
+	'need_one_album' => 'ÊÍÊÇÌ Úáì ÇáÇŞá ÇáÈæãÇ æÇÍÏÇ áåĞå ÇáÚãáíÉ',
+	'warning' => 'ÊÍĞíÑ',
+	'change_perm' => 'áÇ íÓÊØíÚ ÇáÈÑäÇãÌ ÇáÊÎÒíä İí åĞÇ ÇáÏáíá, ÊÍÊÇÌ ÊÛííÑ ÕáÇÍíÇÊ ÇáÏáíá Çáì 755 Çæ 777 ŞÈá ÇÖÇİÉ ÇáÕæÑ !',
+	'target_album' => '<b>ÖÚ ÕæÑ &quot;</b>%s<b>&quot; İí </b>%s',
+	'folder' => 'ãÌáÏ',
+	'image' => 'ÕæÑÉ',
+	'album' => 'ÇáÈæã',
+	'result' => 'äÊíÌÉ',
+	'dir_ro' => 'ÛíÑ ŞÇÈá ááÊÎÒíä. ',
+	'dir_cant_read' => 'ÛíÑ ŞÇÈá ááŞÑÇÁÉ. ',
+	'insert' => 'ÇÖÇİÉ ÕæÑ ÌÏíÏÉ ááãÚÑÖ',
+	'list_new_pic' => 'ŞÇÆãÉ ÇáÕæÑ ÇáÌÏíÏÉ',
+	'insert_selected' => 'ÊÎÒíä ÇáÕæÑ ÇáãÎÊÇÑÉ',
+	'no_pic_found' => 'áÇ ÊæÌÏ ÕæÑ ÌÏíÏÉ',
+	'be_patient' => 'ÇáÑÌÇÁ ÇáÕÈÑ¡ ÍíË íÍÊÇÌ ÇáÈÑäÇãÌ áÈÚÖ ãä ÇáæŞÊ áÇÖÇİÉ ÇáÕæÑ',
 	'notes' =>  '<ul>'.
-				'<li><b>OK</b> : means that the picture was succesfully added'.
-				'<li><b>DP</b> : means that the picture is a duplicate and is already in the database'.
-				'<li><b>PB</b> : means that the picture could not be added, check your configuration and the permission of directories where the pictures are located'.
-				'<li>If the OK, DP, PB \'signs\' does not appear click on the broken picture to see any error message produced by PHP'.
-				'<li>If your browser timeout, hit the reload button'.
+				'<li><b>OK</b> : íÚäí Çäå Êã ÇÖÇİÉ ÇáÕæÑ ÈäÌÇÍ'.
+				'<li><b>DP</b> : íÚäí Çä ÇáÕæÑÉ ãßÑÑÉ İí ŞÇÚÏÉ ÇáÈíÇäÇÊ æåí ãæÌæÏÉ İÚáÇ'.
+				'<li><b>PB</b> : ÊÚäí Çääí áã ÇÊãßä ãä ÇÖÇİÉ ÇáÕæÑÉ, ÊÃßÏ ãä ÇáÇÚÏÇÏÇÊ æãä ÕáÇÍíÇÊß İí ÊÎÒíä ÇáÕæÑÉ İí åĞÇ ÇáãÌáÏ'.
+				'<li>ÇĞÇ ßÇä ÇáÑãÒ OK, DP, PB áÇ íÙåÑ ÇÖÛØ Úáì ÇáæÕáÉ ÇáãßÓæÑÉ áãÚÑİÉ ÓÈÈ ÚÏã ÙåæÑåÇ PHP'.
+				'<li>Çä áã íÑÏ Úáì ÇáãÊÕİÍ ÈÚÏ æŞÊ ßÇİ, ÇÖÛØ Úáì ÒÑ ÇÚÇÏÉ ÊÍãíá ÇáÕİÍÉ'.
 				'</ul>',
 );
 
@@ -812,20 +856,34 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 
 // Void
 
+// ------------------------------------------------------------------------- //
+// File banning.php
+// ------------------------------------------------------------------------- //
+
+if (defined('BANNING_PHP')) $lang_banning_php = array(
+                'title' => 'ãäÚ ÇáãÓÊÎÏãíä',
+                'user_name' => 'ÇÓã ÇáãÓÊÎÏã',
+                'ip_address' => 'ÑŞã ÇáÇäÊÑäÊ',
+                'expiry' => 'íäÊåí İí (İÇÑÛ íÚäí áÇ íäÊåí)',
+                'edit_ban' => 'ÍİÙ ÇáÊÛííÑÇÊ',
+                'delete_ban' => 'ÇáÛÇÁ',
+                'add_new' => 'ÇÖÇİÉ ãäÚ ÌÏíÏ',
+                'add_ban' => 'ÇÖÇİÉ',
+);
 
 // ------------------------------------------------------------------------- //
 // File upload.php
 // ------------------------------------------------------------------------- //
 
 if (defined('UPLOAD_PHP')) $lang_upload_php = array(
-	'title' => 'Upload picture',
-	'max_fsize' => 'Maximum allowed file size is %s KB',
-	'album' => 'Album',
-	'picture' => 'Picture',
-	'pic_title' => 'Picture title',
-	'description' => 'Picture description',
-	'keywords' => 'ÇáßáãÇÊ ÇáÑøÆíÓíøÉ  (separate with spaces)',
-	'err_no_alb_uploadables' => 'Sorry there is no album where you are allowed to upload pictures',
+	'title' => 'ÊÍãíá ÕæÑÉ',
+	'max_fsize' => 'ÇßÈÑ ÍÌã áãáİ ÇáÕæÑÉ åæ %s ßíáæ ÈÇíÊ',
+	'album' => 'ÇáÈæã',
+	'picture' => 'ÕæÑÉ',
+	'pic_title' => 'ÚäæÇä ÕæÑÉ',
+	'description' => 'ÔÑÍ ÇáÕæÑÉ',
+	'keywords' => 'ßáãÇÊ ÈÍË (ÇİÕá ÈíäåãÇ ÈãÓÇİÉ)',
+	'err_no_alb_uploadables' => 'äÃÓİ áßä áÇ íæÌÏ ÇáÈæã ÊÓÊØíÚ ÊÍãíá ÇáÕæÑ Çáíå',
 );
 
 // ------------------------------------------------------------------------- //
@@ -833,44 +891,96 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
-	'title' => 'Manage users',
-	'name_a' => 'Name ascending',
-	'name_d' => 'Name descending',
-	'group_a' => 'Group ascending',
-	'group_d' => 'Group descending',
-	'reg_a' => 'Reg date ascending',
-	'reg_d' => 'Reg date descending',
-	'pic_a' => 'Pic count ascending',
-	'pic_d' => 'Pic count descending',
-	'disku_a' => 'Disk usage ascending',
-	'disku_d' => 'Disk usage descending',
-	'sort_by' => 'ÇáÈÍË ÈæÇÓØÉ',
+	'title' => 'ÇÏÇÑÉ ÇáãÓÊÎÏãíä',
+	'name_a' => 'ÊÕÇÚÏí ÍÓÈ ÇáÇÓã',
+	'name_d' => 'ÊäÇÒáí ÍÓÈ ÇáÇÓã',
+	'group_a' => 'ÊÕÇÚÏí ÍÓÈ ÇáãÌãæÚÉ',
+	'group_d' => 'ÊäÇÒáí ÍÓÈ ÇáãÌãæÚÉ',
+	'reg_a' => 'ÊÕÇÚÏí ÍÓÈ ÊÇÑíÎ ÇáÊÓÌíá',
+	'reg_d' => 'ÊäÇÒáí ÍÓÈ ÊÇÑíÎ ÇáÊÓÌíá',
+	'pic_a' => 'ÊÕÇÚÏí ÍÓÈ ÚÏ ÇáÕæÑ',
+	'pic_d' => 'ÊäÇÒáí ÍÓÈ ÚÏ ÇáÕæÑ',
+	'disku_a' => 'ÊÕÇÚÏí ÍÓÈ ãÓÇÍÉ ÇáÊÎÒíä',
+	'disku_d' => 'ÊäÇÒáí ÍÓÈ ãÓÇÍÉ ÇáÊÎÒíä',
+	'sort_by' => 'ÑÊÈ ÇáãÓÊÎÏãíä ÍÓÈ',
 	'err_no_users' => 'ÌÏæá ÇáãÓÊÎÏã İÇÑÛ !',
-	'err_edit_self' => 'You can\'t edit your own profile, use the \'My profile\' link for that',
-	'edit' => 'ÇÖåÜÇÑ',
-	'delete' => 'ãÓÜÍ',
+	'err_edit_self' => 'áÇ ÊÓÊØíÚ ÊÚÏíá ÈíÇäÇÊß ÇáÎÇÕÉ, ÇÓÊÚãá ÒÑ \'ÈíÇäÇÊí\' áĞáß',
+	'edit' => 'ÊÚÏíá',
+	'delete' => 'ÇáÛÇÁ',
 	'name' => 'ÇÓã ÇáãÓÊÎÏã',
-	'group' => 'ãÌãÜÜæÚå',
-	'inactive' => 'Inactive',
-	'operations' => 'ÇáãÓãæÍ Èå',
-	'pictures' => 'ÇáÕÜÜæÑ',
-	'disk_space' => 'äÓÈÉ ÇÓÊÎÏÇã ÇáãÓÜÇÍÉ',
-	'registered_on' => 'ÊÇÑíÜÎ ÇáÊÓÌíá',
-	'u_user_on_p_pages' => '%d users on %d page(s)',
-	'confirm_del' => 'Are you sure you want to DELETE this user ? \\nAll his pictures and albums will also be deleted.',
-	'mail' => 'ÇáÈÑíÏ',
-	'err_unknown_user' => 'Selected user does not exist !',
-	'modify_user' => 'Modify user',
+	'group' => 'ÇáãÌãæÚÉ',
+	'inactive' => 'ãÚØá',
+	'operations' => 'ÇáÚãáíÇÊ',
+	'pictures' => 'ÇáÕæÑ',
+	'disk_space' => 'ãÓÇÍÉ ÇáÊÎÒíä ÇáãÓãæÍÉ / ßæÊÇ',
+	'registered_on' => 'Êã ÊÓÌíáå İí',
+	'u_user_on_p_pages' => '%d ãÓÊÎÏã İí %d ÕİÍÉ/ÕİÍÇÊ',
+	'confirm_del' => 'åá ÇäÊ ãÊÃßÏ ãä ÇáÛÇÁ åĞÇ ÇáãÓÊÎÏã ? \\nßá ÕæÑå æÇáÈæãÇÊå Óæİ ÊáÛì.',
+	'mail' => 'ÈÑíÏ',
+	'err_unknown_user' => 'ÇáãÓÊÎÏã ÇáãÎÊÇÑ ÛíÑ ãæÌæÏ !',
+	'modify_user' => 'ÊÛííÑ ÇáãÓÊÎÏã',
 	'notes' => 'ãáÇÍÙÇÊ',
-	'note_list' => '<li>If you don\'t want to change the current password, leave the "password" field blank',
-	'password' => 'ÇáßáãÉ ÇáÓÑíÉ',
-	'user_active' => 'ÊİÚíá ÇáãÓÊÎÏã',
-	'user_group' => 'ãÌãæÚÉ ÇáãÓÊÎÏã',
+	'note_list' => '<li>Çä áã ÊÑíÏ ÊÛííÑ ßáãÉ ÇáÓÑ, ÇÊÑß ãÑÈÚ ßáãÉ ÇáÓÑ İÇÑÛÇ',
+	'password' => 'ßáãÉ ÇáÓÑ',
+	'user_active' => 'ÇáãÓÊÎÏã ãÚØá',
+	'user_group' => 'ãÌãæÚÉ ÇáãÓÊÎÏãíä',
 	'user_email' => 'ÈÑíÏ ÇáãÓÊÎÏã',
-	'user_web_site' => 'ÕİÍÉ ÇáãÓÊÎÏã ÇáÔÎÕíÉ',
-	'create_new_user' => 'ÊÓÌíá ãÓÊÎÏã ÌÏíÏ',
+	'user_web_site' => 'ÕİÍÉ ÇáãÓÊÎÏã',
+	'create_new_user' => 'Êßæíä ãÓÊÎÏã ÌÏíÏ',
 	'user_location' => 'ãæŞÚ ÇáãÓÊÎÏã',
-	'user_interests' => 'åæÇíÇÊ ÇáãÓÊÎÏã',
-	'user_occupation' => 'ÇáæÙíİÜÉ',
+	'user_interests' => 'ÇåÊãÇãÇÊ ÇáãÊÓÎÏã',
+	'user_occ' => 'æÙíİÉ ÇáãÓÊÎÏã',
 );
+
+// ------------------------------------------------------------------------- //
+// File util.php
+// ------------------------------------------------------------------------- //
+
+if (defined('UTIL_PHP')) $lang_util_php = array(
+        'title' => 'ÊÛííÑ ŞíÇÕ ÇáÕæÑÉ',
+        'what_it_does' => 'ãÇĞÇ ÊÚãá',
+        'what_update_titles' => 'ÊÍÏíË ÇáÚäÇæíä ãä ÇÓãÇÁ ÇáãáİÇÊ',
+        'what_delete_title' => 'ÇáÛÇÁ ÇáÚäÇæíä',
+        'what_rebuild' => 'íÚÈÏ ÈäÇÁ ãÎÊÕÑÇÊ ÇáÕæÑ æíÚíÏ ŞíÇÓ ÇáÕæÑ',
+        'what_delete_originals' => 'íáÛí ÇáÕæÑ ÇáãÚÇÏ ŞíÇÓåÇ ÇáÇÕáíÉ æ íÓÊÈÏáåã ÈÕæÑ ãÚÇÏ ŞíÇÓåÇ',
+        'file' => 'ãáİ',
+        'title_set_to' => 'ÇáÚäæÇä ãÍÏÏ Çáì',
+        'submit_form' => 'ÓÌá',
+        'updated_succesfully' => 'Êã ÊÍÏíËå ÈäÌÇÍ',
+        'error_create' => 'ÎØÃ İí Êßæíä',
+        'continue' => 'ãÚÇáÌÉ ÇáãÒíÏ ãä ÇáÕæÑ',
+        'main_success' => 'Çáãáİ %s Êã ÇÓÊÚãÇáå ßÇáÕæÑÉ ÇáÑÆíÓíÉ',
+        'error_rename' => 'ÎØÃ İí ÊÛííÑ ÇáÇÓã %s Çáì %s',
+        'error_not_found' => 'Çáãáİ %s ÛíÑ ãæÌæÏ',
+        'back' => 'ÇáÑÌæÚ Çáì ÇáÑÆíÓíÉ',
+        'thumbs_wait' => 'ÊÍÏíË ãÎÊÕÑÇÊ ÇáÕæÑ æ/Çæ ÇáÕæÑ ÇáãÚÇÏ ŞíÇÓåÇ, ÇáÑÌÇÁ ÇáÇäÊÙÇÑ...',
+        'thumbs_continue_wait' => 'ãÓÊãÑ İí ÊÍÏíË ãÎÊÕÑÇÊ ÇáÕæÑ Çæ/æ ÇáÕæÑ ÇáãÚÇÏ ŞíÇÓåÇ...',
+        'titles_wait' => 'ÊÍÏíË ÇáÚäÇæíä, ÇáÑÌÇÁ ÇáÇäÊÙÇÑ...',
+        'delete_wait' => 'ÇáÛÇÁ ÇáÚäÇæíä, ÇáÑÌÇÁ ÇáÇäÊÙÇÑ...',
+        'replace_wait' => 'íÊã ÇáÛÇÁ ÇáÕæÑ ÇáÇÕáíÉ æíÊã ÇÓÊÈÏÇáå ÈÇÎÑì ãÚÇÏ ŞíÇÓåÇ, ÇáÑÌÇÁ ÇáÇäÊÙÇÑ..',
+        'instruction' => 'ÊÚáíãÇÊ ÓÑíÚÉ',
+        'instruction_action' => 'ÇÎÊÇÑ ÚãáíÉ',
+        'instruction_parameter' => 'ÊÍÏíÏ ÇáãÊÛíÑÇÊ',
+        'instruction_album' => 'ÇÎÊÑ ÇáÇáÈæã',
+        'instruction_press' => 'ÇÖÛØ Úáì %s',
+        'update' => 'ÊÍÏíË ÇáãÎÊÕÑÇÊ æ/Ãæ ÇÚÇÏÉ ÊŞííÓ ÇáÕæÑ',
+        'update_what' => 'ãÇĞÇ íÌÈ ÊÍÏíËå',
+        'update_thumb' => 'ãÎÊÕÑÇÊ ÇáÕæÑ İŞØ',
+        'update_pic' => 'ÇáÕæÑ ÇáãÚÇÏ ŞíÇÓåÇ İŞØ',
+        'update_both' => 'ÇáÕæÑ ÇáãÎÊÕÑÉ æÇáãÚÇÏ ŞíÇÓåÇ ãÚÇ',
+        'update_number' => 'ÚÏÏ ÇáÕæÑ ÇáãÚÇáÌÉ ÈÇáÖÛØÉ',
+        'update_option' => '(ÍÇá ÇáÊŞáíá ãä åĞÇ ÇáÇÚÏÇÏ Çä æÇÌåÊ ãÔÇßá ÇäÊåÇÁ ÇáæŞÊ)',
+        'filename_title' => 'ÇÓã Çáãáİ &rArr; ÚäæÇä ÇáÕæÑÉ',
+        'filename_how' => 'ßíİíÉ ÊÛííÑ ÇÓã Çáãáİ',
+        'filename_remove' => 'ÇÒÇáÉ äåÇíÉ .jpg æ ÇÓÊÈÏÇá _ (ÔÑØÉ ÓİáíÉ) ÈÇáãÓÇİÇÊ',
+        'filename_euro' => 'ÛíÑ 2003_11_23_13_20_20.jpg Çáì 23/11/2003 13:20',
+        'filename_us' => 'íÛíÑ  2003_11_23_13_20_20.jpg Çáì  11/23/2003 13:20',
+        'filename_time' => 'íÛíÑ  2003_11_23_13_20_20.jpg Çáì 13:20',
+        'delete' => 'íáÛí ÚäÇæíä ÇáÕæÑ Çæ ÕæÑ ÇáŞíÇÓ ÇáÇÕáíÉ',
+        'delete_title' => 'ÇáÛí ÚäÇæíä ÇáÕæÑ',
+        'delete_original' => 'ÇáÛí ÕæÑ ÇáŞíÇÓ ÇáÇÕáíÉ',
+        'delete_replace' => 'íáÛí ÇáÕæÑ ÇáÇÕáíÉ æíÓÊÈÏáåã ÈÇÎÑì ÈŞíÇÓ ãÎÊáİ',
+        'select_album' => 'ÇÎÊÇÑ ÇáÇáÈæã',
+);
+
 ?>

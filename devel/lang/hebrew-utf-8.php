@@ -13,11 +13,20 @@
 //  the Free Software Foundation; either version 2 of the License, or        //
 //  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
-//  * Hebrew version by Eyal Zvi <eyal@zvi.org>                              //
-// ------------------------------------------------------------------------- //
+
+// info about translators and translated language
+$lang_translation_info = array(
+'lang_name_english' => 'Hebrew',
+'lang_name_native' => 'עברית',
+'lang_country_code' => 'he',
+'trans_name'=> 'Eyal Zvi',
+'trans_email' => 'eyal @at@ zvi.org',
+'trans_website' => 'http://zvi.org',
+'trans_date' => '2003-10-04',
+);
 
 $lang_charset = 'utf-8';
-$lang_text_dir = 'RTL'; // ('ltr' for left to right, 'rtl' for right to left)
+$lang_text_dir = 'RTL';
 
 // shortcuts for Byte, Kilo, Mega
 $lang_byte_units = array('Bytes', 'KB', 'MB');
@@ -49,11 +58,13 @@ $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clit
 $lang_meta_album_names = array(
 	'random' => 'תמונות אקראיות',
 	'lastup' => 'תמונות אחרונות',
+        'lastalb'=> 'אלבום אחרון שעודכן',
 	'lastcom' => 'הערות אחרונות',
 	'topn' => 'נצפות ביותר',
 	'toprated' => 'זכו לדרוגים הגבוהים ביותר',
 	'lasthits' => 'נצפו לאחרונה',
-	'search' => 'תוצאות חיפוש'
+	'search' => 'תוצאות חיפוש',
+        'favpics'=> 'תמונות מועדפות'
 );
 
 $lang_errors = array(
@@ -70,7 +81,9 @@ $lang_errors = array(
 	'orphan_cat' => 'קטגוריה אינה מסווגת כראוי. יש להפעיל את תכנית ניהול הקטגוריות.',
 	'directory_ro' => 'לא ניתן לכתוב/למחוק במחיצה %s, לכן לא ניתן למחוק את התמונות.',
 	'non_exist_comment' => 'ההערה שנבחרה אינה קיימת.',
-	'pic_in_invalid_album' => 'התמונה משוייכת לאלבום לא קיים (%s) !?'
+	'pic_in_invalid_album' => 'התמונה משוייכת לאלבום לא קיים (%s) !?',
+        'banned' => 'נאסר עליך להשתמש באתר זה.',
+        'not_with_udb' => 'פעולה זו חסומה. הגלריה הוגדרה לפעול בסנכרון עם תכנית אחרת (למשל לוח מודעות). הפעולה המבוקשת אינה נתמכת במצב זה או שאמורה להתבצע על ידי התכנית האחרת.',
 );
 
 // ------------------------------------------------------------------------- //
@@ -98,6 +111,8 @@ $lang_main_menu = array(
 	'topn_lnk' => 'נצפות ביותר',
 	'toprated_lnk' => 'זכו לדרוגים הגבוהים ביותר',
 	'search_lnk' => 'חיפוש',
+        'fav_lnk' => 'המועדפים שלי',
+
 );
 
 $lang_gallery_admin_menu = array(
@@ -109,6 +124,8 @@ $lang_gallery_admin_menu = array(
 	'groups_lnk' => 'קבוצות',
 	'comments_lnk' => 'הערות',
 	'searchnew_lnk' => 'הוספת סדרת תמונות',
+        'util_lnk' => 'שינוי גודל תמונות',
+        'ban_lnk' => 'הרחקת משתמשים',
 );
 
 $lang_user_admin_menu = array(
@@ -129,11 +146,14 @@ $lang_album_list = array(
 
 $lang_thumb_view = array(
 	'date' => 'תאריך',
-	'name' => 'שם',
-	'sort_da' => 'מיון לפי תאריך יורד (מחדש לישן)',
-	'sort_dd' => 'מיון לפי תאריך עולה (מישן לחדש)',
-	'sort_na' => 'מיון לפי שם בסדר א"ב',
-	'sort_nd' => 'מיון לפי שם בסדר הפוך',
+	'name' => ' שם קובץ',
+        'title' => 'כותרת',
+	'sort_da' => 'מיון לפי תאריך מחדש לישן',
+	'sort_dd' => 'מיון לפי תאריך מישן לחדש',
+	'sort_na' => 'מיון לפי שם קובץ בסדר עולה',
+	'sort_nd' => 'מיון לפי שם קובץ בסדר יורד',
+        'sort_ta' => 'מיון לפי כותרת בסדר עולה',
+        'sort_td' => 'מיון לפי כותרת בסדר יורד',
 	'pic_on_page' => '%d תמונות ב-%d דפים',
 	'user_on_page' => '%d משתמשים ב-%d דפים'
 );
@@ -246,7 +266,7 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 
 if (defined('ADMIN_PHP')) $lang_admin_php = array(
 	0 => 'יציאה ממצב מנהל...',
-	1 => 'כניבה למצב מנהל...',
+	1 => 'כניסה למצב מנהל...',
 );
 
 // ------------------------------------------------------------------------- //
@@ -303,6 +323,8 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
 	'restore_success' => 'התצורה שוחזרה לברירות המחדל',
 	'name_a' => 'שם עולה',
 	'name_d' => 'שם יורד',
+        'title_a' => 'כותרת בסדר עולה',
+        'title_d' => 'כותרת בסדר יורד',
 	'date_a' => 'תאריך עולה',
 	'date_d' => 'תאירך יורד'
 );
@@ -323,6 +345,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('מספר עמודות לרשימת האלבומים', 'album_list_cols', 0),
 	array('גודל הדוגמיות בפיקסלים', 'alb_list_thumb_size', 0),
 	array('תוכן הדף הראשי', 'main_page_layout', 0),
+        array('הצג דוגמיות (מאלבומים בהיררכיה העליונה) ברשימת הקטגוריות','first_level',1),
 
 	'הגדרות לתצוגת דוגמיות',
 	array('מספר עמודות בדף דוגמיות', 'thumbcols', 0),
@@ -342,9 +365,13 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('אורך מילה מקסימלי (למניעת "קישקושים")', 'max_com_wlength', 0),
 	array('מספר שורות מקסימלי בהערה', 'max_com_lines', 0),
 	array('מקסימום אורך ההערה', 'max_com_size', 0),
+        array('הצג רצועת סרט צילום', 'display_film_strip', 1),
+        array('מספר הפריטים ברצועת סרט צילום', 'max_film_strip_items', 0),
 
 	'הגדרות לתמונות ולדוגמיות',
 	array('רמת איכות לקבצי JPEG', 'jpeg_qual', 0),
+        array('ממדים מקסימליים של דוגמית <b>*</b>', 'thumb_width', 0),
+        array('להשתמש בממדים (רוחב או גובה או מקסימלי) של דוגמית <b>*</b>', 'thumb_use', 7),
 	array('מקסימום גובה או רוחב של דוגמית <b>*</b>', 'thumb_width', 0),
 	array('יצירה/הצגה של תמונות בגודל ביניים','make_intermediate',1),
 	array('מקסימום גובה או רוחב של תמונה בגודל ביניים <b>*</b>', 'picture_width', 0),
@@ -364,6 +391,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('שם שדה 4', 'user_field4_name', 0),
 
 	'הגדרות מתקדמות לתמונות ודוגמיות',
+        array('להציג צלמית אלבום פרטי למשתמש שלא התחבר','show_private',1),
 	array('תוים אסורים בשם קובץ תמונה', 'forbiden_fname_char',0),
 	array('סיומות מותרות של קבצי תמונה', 'allowed_file_extensions',0),
 	array('שיטת שינוי גודל התמונה','thumb_method',2),
@@ -377,6 +405,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('קידומת לדוגמיות <b>*</b>', 'thumb_pfx', 0),
 	array('ברירת מחדל להרשאת מחיצות', 'default_dir_mode', 0),
 	array('ברירת מחדל להרשאת קבצי תמונה', 'default_file_mode', 0),
+        array('לחסום קליק-ימני על תמונות בגדול מלא (שיטה לא מושלמת ב-JavaScript(', 'disable_popup_rightclick', 1),
+        array('לחסום קליק-ימני על דפים "רגילים" (שיטה לא מושלמת ב-JavaScript', 'disable_gallery_rightclick', 1),
 
 	'הגדרות Cookies ושפה',
 	array('שם ה-Cookie של הגלריה', 'cookie_name', 0),
@@ -819,6 +849,21 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 
 
 // ------------------------------------------------------------------------- //
+// File banning.php
+// ------------------------------------------------------------------------- //
+
+if (defined('BANNING_PHP')) $lang_banning_php = array(
+                'title' => 'הרחקת משתמשים',
+                'user_name' => 'שם משתמש',
+                'ip_address' => 'כתובת IP',
+                'expiry' => 'בתוקף עד (ערך ריק = קבוע)',
+                'edit_ban' => 'שמירת שינויים',
+                'delete_ban' => 'מחיקה',
+                'add_new' => 'הוספת הרחקה',
+                'add_ban' => 'הוספה',
+);
+
+// ------------------------------------------------------------------------- //
 // File upload.php
 // ------------------------------------------------------------------------- //
 
@@ -878,4 +923,56 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 	'user_interests' => 'תחומי ענין',
 	'user_occupation' => 'עיסוק',
 );
+
+// ------------------------------------------------------------------------- //
+// File util.php
+// ------------------------------------------------------------------------- //
+
+if (defined('UTIL_PHP')) $lang_util_php = array(
+        'title' => 'שינוי גודל תמונות',
+        'what_it_does' => 'מה זה עושה',
+        'what_update_titles' => 'מעדכן כותרות משמות הקבצים',
+        'what_delete_title' => 'מוחק כותרות',
+        'what_rebuild' => 'בונה מחדש דוגמיות ותמונות בגדול מוגדר',
+        'what_delete_originals' => 'מוחק תמונות בגודל המקורי ומחליפן בתמונות בגודל מוגדר',
+        'file' => 'קובץ',
+        'title_set_to' => 'כותרת שונתה ל-',
+        'submit_form' => 'אישור',
+        'updated_succesfully' => 'עודכן בהצלחה',
+        'error_create' => 'תקלה ביצירת',
+        'continue' => 'המשך לעבד תמונות נוספות',
+        'main_success' => 'הקובץ %s נקלט בצלחה כתמונה ראשית',
+        'error_rename' => 'תקלה בשינוי השם %s ל- %s',
+        'error_not_found' => 'הקובץ %s לא נמצא',
+        'back' => 'חזרה לראשי',
+        'thumbs_wait' => 'מעדכנים דוגמיות ו/או תמונות - נא להמתין...',
+        'thumbs_continue_wait' => 'ממשיך לעדכן דגומיות ו/או תמונות...',
+        'titles_wait' => 'מעדכן כותרות, נא להמתין...',
+        'delete_wait' => 'מוחק כותרות, נא להמתין...',
+        'replace_wait' => 'מוחק תמונות מקוריות ומחליף אותן בתמונות בגדול מוגדר, נא להמתין...',
+        'instruction' => 'הוראות מקוצרות',
+        'instruction_action' => 'בחירת פעולה',
+        'instruction_parameter' => 'קביעת פרמטרים',
+        'instruction_album' => 'בחירת אלבום',
+        'instruction_press' => 'נא ללחוץ על %s',
+        'update' => 'עדכון דוגמיות ו/או תמונות בגודל מוגדר',
+        'update_what' => 'מה צריך לעדכן',
+        'update_thumb' => 'רק דוגמיות',
+        'update_pic' => 'רק תמונות בגודל מוגדר',
+        'update_both' => 'הן דוגמיות והן תמונות בגודל מוגדר',
+        'update_number' => 'מספר תמונות לעיבוד בכל קליק',
+        'update_option' => '(יש לבחור בערך נמוך יותר אם מופיעות תקלות או הודעות Timeout)',
+        'filename_title' => 'שם קובץ = כותרת',
+        'filename_how' => 'כיצד לעבד את שם הקובץ',
+        'filename_remove' => 'הסרת הסיומת (כגון JPG) והחלפת קו-תחתון __ ברווח.',
+        'filename_euro' => 'קרא תאריך תאריך במבנה ארופאי - תרגם 20_20_13_23_11_2003 ל: 13:20 23/11/2003',
+        'filename_us' => 'קרא תאריך במבנה אמריקאי - תרגם 20_20_13_23_11_2003 ל: 13:20 11/23/2003',
+        'filename_time' => 'קרא זמן בלבד - תרגם 20_20_13_23_11_2003 ל: 13:20',
+        'delete' => 'מחיקת כותרות או תמונות בגודל מקורי',
+        'delete_title' => 'מחיקת כותרות',
+        'delete_original' => 'מחיקת תמונות בגודל מקורי',
+        'delete_replace' => 'מחיקת תמונות בגדול מקורי והחלפתן בתמונות בגודל מוגדר',
+        'select_album' => 'בחירת אלבום',
+);
+
 ?>

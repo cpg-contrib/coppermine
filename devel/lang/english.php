@@ -18,6 +18,8 @@
 //  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
 
+// to all devs: stop overwriting this file!
+
 // info about translators and translated language
 $lang_translation_info = array(
 'lang_name_english' => 'English',  //the name of your language in English, e.g. 'Greek' or 'Spanish'

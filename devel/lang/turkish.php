@@ -18,6 +18,17 @@
 //  Translation Version 1.0 Alpha 2                                          //
 // ------------------------------------------------------------------------- //
 
+// info about translators and translated language 
+$lang_translation_info = array( 
+'lang_name_english' => 'Turkish',  //the name of your language in English, e.g. 'Greek' or 'Spanish' 
+'lang_name_native' => 'Türkçe', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Español' 
+'lang_country_code' => 'tr', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es' 
+'trans_name'=> 'Mustafa Tolga YILMAZ', //the name of the translator - can be a nickname 
+'trans_email' => 'mtolgay@yahoo.com', //translator's email address (optional) 
+'trans_website' => 'http://www.fiat.web.tr/', //translator's website (optional) 
+'trans_date' => '2003-10-02', //the date the translation was created / last modified 
+); 
+
 $lang_charset = 'windows-1254';
 $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 
@@ -48,14 +59,16 @@ $comment_date_fmt =  '%d %B %Y at %H:%M';
 // For the word censor
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*', '*sik*', 'am*', 'yarrak', 'yarak', 'orospu');
 
-$lang_meta_album_names = array(
-	'random' => 'Rasgele resimler',
-	'lastup' => 'Son eklenenler',
-	'lastcom' => 'Son yorumlar',
-	'topn' => 'En çok izlenenler',
-	'toprated' => 'En çok oy alanlar',
-	'lasthits' => 'Son izlenenler',
-	'search' => 'Arama sonuçlar'
+$lang_meta_album_names = array( 
+        'random' => 'Rasgele resimler', 
+        'lastup' => 'Son eklenenler', 
+        'lastalb'=> 'Son güncellenen albümler', 
+        'lastcom' => 'Son yorumlar', 
+        'topn' => 'En çok izlenen', 
+        'toprated' => 'En çok oylanan', 
+        'lasthits' => 'En son izlenen', 
+        'search' => 'Arama sonuçlarý', 
+        'favpics'=> 'Sýk Kullanýlan Resimler' 
 );
 
 $lang_errors = array(
@@ -72,8 +85,10 @@ $lang_errors = array(
 	'orphan_cat' => 'Bir kategorinin ana dalý yok, bu sorunu haletmek için Kategori Y&ouml;neticisini çalýþtýrýn.',
 	'directory_ro' => 'Dizin \'%s\'  e yazýlabilir deðil, resimler silinemiyor',
 	'non_exist_comment' => 'Þeçilmiþ olan yorum yok.',
-	'pic_in_invalid_album' => 'Resim var olmayan bir alb&uuml;mde (%s)!?'
-);
+        'pic_in_invalid_album' => 'Resim var olmayan bir albümde (%s)!?', 
+        'banned' => 'Bu siteyi þimdlik kullanmanýz yasaklanmýþtýr.', 
+        'not_with_udb' => 'Bu fonksiyon Coppermine'da iptal edilmiþtir çünkü forum yazýlýmý ile birleþtirilmiþtir. Denemek istediðiniz ya bu konfigurasyon ile desteklenmiyor veyahut bu fonksiyon forum yazýlýmý tarafýndan uygulanacak.', 
+); 
 
 // ------------------------------------------------------------------------- //
 // File theme.php
@@ -100,6 +115,7 @@ $lang_main_menu = array(
 	'topn_lnk' => 'En çok izlenenler',
 	'toprated_lnk' => 'En çok oy alanlar',
 	'search_lnk' => 'Ara',
+        'fav_lnk' => 'Sýk Kullanýlanlar', 
 );
 
 $lang_gallery_admin_menu = array(
@@ -111,6 +127,8 @@ $lang_gallery_admin_menu = array(
 	'groups_lnk' => 'Gruplar',
 	'comments_lnk' => 'Yorumlar',
 	'searchnew_lnk' => 'K&uuml;me resimleri ekle',
+        'util_lnk' => 'Resimleri boyutlandýr', 
+        'ban_lnk' => 'Kullanýcýlarý yasakla', 
 );
 
 $lang_user_admin_menu = array(
@@ -131,11 +149,15 @@ $lang_album_list = array(
 
 $lang_thumb_view = array(
 	'date' => 'TARÝH',
-	'name' => 'AD',
+        //Sort by filename and title 
+        'name' => 'DOSYA ADI', 
+        'title' => 'BAÞLIK',
 	'sort_da' => 'Tarihi k&uuml;ç&uuml;kten b&uuml;y&uuml;y&uuml;ðe sýrala',
 	'sort_dd' => 'Tarihi b&uuml;y&uuml;kten k&uuml;ç&uuml;y&uuml;ðe sýrala',
 	'sort_na' => 'Adý k&uuml;ç&uuml;kten b&uuml;y&uuml;y&uuml;ðe sýrala',
 	'sort_nd' => 'Adý b&uuml;y&uuml;kten k&uuml;ç&uuml;y&uuml;ðe sýrala',
+        'sort_ta' => 'Baþlýða göre küçükten büyüðe diz', 
+        'sort_td' => 'Baþlýða göre büyükten küçüðe diz', 
 	'pic_on_page' => '%d resim %d sayfadadýr',
 	'user_on_page' => '%d kullanýcý %d sayfadadýr'
 );
@@ -307,6 +329,8 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
 	'name_d' => 'Ad b&uuml;y&uuml;kten k&uuml;ç&uuml;y&uuml;ðe',
 	'date_a' => 'Tarih k&uuml;ç&uuml;kten b&uuml;y&uuml;y&uuml;ðe',
 	'date_d' => 'Date b&uuml;y&uuml;kten k&uuml;ç&uuml;y&uuml;ðe'
+        'title_a' => 'Baþlýk küçükten büyüðe', 
+        'title_d' => 'Baþlýk büyükten küçüðe',
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
@@ -325,6 +349,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Alb&uuml;m listesi için s&uuml;tun sayýsý', 'album_list_cols', 0),
 	array('K&uuml;ç&uuml;k resimlerin boyutu piksel olarak', 'alb_list_thumb_size', 0),
 	array('Ana sayfanýn içeriði', 'main_page_layout', 0),
+        array('Birinci seviye albümlerin küçük resimlerini kategorilerde göster','first_level',1), 
 
 	'K&uuml;ç&uuml;k resim g&ouml;r&uuml;nt&uuml;s&uuml;',
 	array('K&uuml;ç&uuml;k resim sayfasýndaki s&uuml;tun sayýsý', 'thumbcols', 0),
@@ -344,10 +369,13 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Bir kelime içindeki maksimum harf sayýsý', 'max_com_wlength', 0),
 	array('Bir yorum içindeki maksimum satýr sayýsý', 'max_com_lines', 0),
 	array('Bir yorumun maksimum uzunluðu', 'max_com_size', 0),
+        array('Film þeridi göster', 'display_film_strip', 1), 
+        array('Film þeridindeki adet sayýsý', 'max_film_strip_items', 0), 
 
 	'Resim ve k&uuml;ç&uuml;k resim seçenekleri',
 	array('JPEG dosyalarý için kalite ayarý', 'jpeg_qual', 0),
-	array('Bir k&uuml;ç&uuml;k resimin maksiumum geniþliði veya boyu <b>*</b>', 'thumb_width', 0),
+        array('Küçük resmin en büyük boyutu <b>*</b>', 'thumb_width', 0), 
+        array('Boyut kullan ( geniþlik veya yükseklik veya en büyük görünüþ küçük resimler için ) <b>*</b>', 'thumb_use', 7), 
 	array('Ara resimleri yarat','make_intermediate',1),
 	array('Bir ara resmin maksium geniþliði veya boyu <b>*</b>', 'picture_width', 0),
 	array('Y&uuml;klenecek olan resimler için maksimum boyut (KB)', 'max_upl_size', 0),
@@ -366,6 +394,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Alan 4 adý', 'user_field4_name', 0),
 
 	'Resim ve k&uuml;ç&uuml;k resim geliþmiþ seçenekleri',
+        array('Çýkýþ yapmamýþ kullanýcýya özel resim ikonunu göster','show_private',1), 
 	array('Dosya isimlerinde karakterlere izin verme', 'forbiden_fname_char',0),
 	array('Y&uuml;klenmiþ olan resimler için kabul edilen uzantýlar', 'allowed_file_extensions',0),
 	array('Resimleri boyutlandýrmak için kullanýlan y&ouml;ntem','thumb_method',2),
@@ -379,6 +408,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('K&uuml;ç&uuml;k resimler için &ouml;nek <b>*</b>', 'thumb_pfx', 0),
 	array('Dizinler için hazýr ayar', 'default_dir_mode', 0),
 	array('Resimleri için hazýr ayar', 'default_file_mode', 0),
+        array('Tam ekran yeni pencerede sað klik yasakla (JavaScript - foolproof metodu yok)', 'disable_popup_rightclick', 1), 
+        array('Bütün "sýradan" sayfalarda sað klik yasakla (JavaScript - foolproof metodu yok)', 'disable_gallery_rightclick', 1), 
 
 	'Cookie &amp; Charset ayarlarý',
 	array('Program tarafýndan kullanýlan cookielerin adý', 'cookie_name', 0),
@@ -483,7 +514,10 @@ $lang_picinfo = array(
 	'Aperture' => 'Fotoðraf makinesi açýklýðý',
 	'Exposure time' => 'Ýfþa zamaný',
 	'Focal length' => 'Merkez uzunluðu',
-	'Comment' => 'Yorum'
+	'Comment' => 'Yorum',
+        'addFav'=>'Sýk Kullanýlana ekle', 
+        'addFavPhrase'=>'Sýk Kullanýlanlar', 
+        'remFav'=>'Sýk Kullanýlanlarda çýkar', 
 );
 
 $lang_display_comments = array(
@@ -491,8 +525,14 @@ $lang_display_comments = array(
 	'edit_title' => 'Bu yorumu g&uuml;ncelle',
 	'confirm_delete' => 'Bu yorumu silmek istediðinizden emin misiniz ?',
 	'add_your_comment' => 'Yorumunuzu ekleyin',
-	'your_name' => 'Adýnýz',
+        'name'=>'Ýsim', 
+        'comment'=>'Yorum', 
+        'your_name' => 'Anonim', 
 );
+
+$lang_fullsize_popup = array( 
+        'click_to_close' => 'Bu pencereyi kapatmak için resime klikleyin', 
+); 
 
 }
 
@@ -816,6 +856,20 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 
 // Void
 
+// ------------------------------------------------------------------------- // 
+// File banning.php 
+// ------------------------------------------------------------------------- // 
+
+if (defined('BANNING_PHP')) $lang_banning_php = array( 
+                'title' => 'Kullanýcýlarý Yasakla', 
+                'user_name' => 'Kullanýcý Adý', 
+                'ip_address' => 'IP Adresi', 
+                'expiry' => 'Bitiþ süresi (boþ daimi anlamýnda)', 
+                'edit_ban' => 'Deðiþiklikleri Kayýt Et', 
+                'delete_ban' => 'Sil', 
+                'add_new' => 'Yeni Yasaklý Ekle', 
+                'add_ban' => 'Ekle', 
+); 
 
 // ------------------------------------------------------------------------- //
 // File upload.php
@@ -877,4 +931,56 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 	'user_interests' => 'Kullanýcý Ýlgi alanlarý',
 	'user_occ' => 'Kullanýcý Mesleði',
 );
+
+// ------------------------------------------------------------------------- // 
+// File util.php 
+// ------------------------------------------------------------------------- // 
+
+if (defined('UTIL_PHP')) $lang_util_php = array( 
+        'title' => 'Resimleri boyutlandýr', 
+        'what_it_does' => 'Ne yapar', 
+        'what_update_titles' => 'Dosya Adýndan baþlýklarý günceller', 
+        'what_delete_title' => 'Baþlýklarý Siler', 
+        'what_rebuild' => 'Küçük resimleri ve boyutlandýrýlmýþ resimleri yeniden yapýlandýrýr', 
+        'what_delete_originals' => 'Gerçek boyuttaki resimleri siler ve onlarý boyutlandýrýlmýþla deðiþtirir', 
+        'file' => 'Dosya', 
+        'title_set_to' => 'baþlýk ayarlanmýþ', 
+        'submit_form' => 'ilet', 
+        'updated_succesfully' => 'güncelleme baþarýlý', 
+        'error_create' => 'yaratýrken HATA', 
+        'continue' => 'Daha fazla resim iþle', 
+        'main_success' => ' %s dosyasý baþarýlý bir þekilde ana resim olarak kullanýldý', 
+        'error_rename' => ' %s ye %s yeniden adlandýrýken hata oluþtu', 
+        'error_not_found' => ' %s dosyasý bulunamadý', 
+        'back' => 'anasyafa geri dön', 
+        'thumbs_wait' => 'Küçük resimleri ve/veya boyutlandýrýlmýþ resimler güncelleniyor, lütfen bekleyiniz...', 
+        'thumbs_continue_wait' => 'Küçük resimlerin ve/veya boyutlandýrýlmýþ resimlerin güncellenmesine devam ediliyor...', 
+        'titles_wait' => 'Baþlýklar güncelleniyor, lütfen bekleyiniz...', 
+        'delete_wait' => 'Baþlýklar siliniyor, lütfen bekleyiniz...', 
+        'replace_wait' => 'Asýl resimler siliniyor ve/veya boyutlandýrýlmýþ resimleri ile deðiþtiriliyor, lütfen bekleyiniz...', 
+        'instruction' => 'Hýzlý Talimat', 
+        'instruction_action' => 'Hareket seç', 
+        'instruction_parameter' => 'Parametreleri ayarlar', 
+        'instruction_album' => 'Albüm seç', 
+        'instruction_press' => ' %s bas', 
+        'update' => 'Küçük resimleri ve/veya boyutlandýrýlmýþ resimleri güncelle', 
+        'update_what' => 'Neler güncellenmeli', 
+        'update_thumb' => 'Sadece küçük resimler', 
+        'update_pic' => 'Sadece boyutlandýrýlmýþ resimler', 
+        'update_both' => 'Her ikiside küçük resimler ve boyutlandýrýlmýþ resimler', 
+        'update_number' => 'Klik baþýna iþlenmiþ resimlerin sayýsý', 
+        'update_option' => '(Eðer timeout sorunlarý yaþýyorsanýz daha düþüðe getirmeyi deneyin)', 
+        'filename_title' => 'Dosya Adý ? Resim baþlýðý', 
+        'filename_how' => 'Dosya adý nasýl deðiþtirilsin', 
+        'filename_remove' => '.jpg sonunu kaldýr ve _ (alt çizgi)yi boþlukla deðiþtir', 
+        'filename_euro' => '2003_11_23_13_20_20.jpg yi 3/11/2003 13:20 ye deðiþtir', 
+        'filename_us' => '2003_11_23_13_20_20.jpg yi 11/23/2003 13:20 ye deðiþtir', 
+        'filename_time' => '2003_11_23_13_20_20.jpg yi 13:20 ye deðiþtir', 
+        'delete' => 'Resim baþlýklarýný veya gerçek boyut resimlerini sil', 
+        'delete_title' => 'Resim baþlýklarýný sil', 
+        'delete_original' => 'Gerçek boy resimleri sil', 
+        'delete_replace' => 'Asýl resimleri sil ve bunlarý boyutlandýrýlmýþlarla deðiþtir', 
+        'select_album' => 'Albüm seç', 
+); 
+
 ?>
