@@ -34,4 +34,28 @@ $lang_day_of_week = array_merge($lang_day_of_week_en, $lang_day_of_week);
 $lang_meta_album_names_en = cpg_get_default_lang_var('lang_meta_album_names','english');
 $lang_meta_album_names = array_merge($lang_meta_album_names_en, $lang_meta_album_names);
 
+$lang_errors_en = cpg_get_default_lang_var('lang_errors','english');
+$lang_errors = array_merge($lang_errors_en, $lang_errors);
+
+
+// ------------------------------------------------------------------------- //
+// File theme.php
+// ------------------------------------------------------------------------- //
+
+$lang_main_menu_en = cpg_get_default_lang_var('lang_main_menu','english');
+$lang_main_menu = array_merge($lang_main_menu_en, $lang_main_menu);
+
+$lang_gallery_admin_menu_en = cpg_get_default_lang_var('lang_gallery_admin_menu','english');
+$lang_gallery_admin_menu = array_merge($lang_gallery_admin_menu_en, $lang_gallery_admin_menu);
+
+$lang_user_admin_menu_en = cpg_get_default_lang_var('lang_user_admin_menu','english');
+$lang_user_admin_menu = array_merge($lang_user_admin_menu_en, $lang_user_admin_menu);
+
+$lang_cat_list_en = cpg_get_default_lang_var('lang_cat_list','english');
+$lang_cat_list = array_merge($lang_cat_list_en, $lang_cat_list);
+
+$lang_album_list_en = cpg_get_default_lang_var('lang_album_list','english');
+$lang_album_list = array_merge($lang_album_list_en, $lang_album_list);
+
+
 ?> 
