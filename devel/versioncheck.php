@@ -591,12 +591,14 @@ function cpg_get_fileversion($folder  = '',$file = '') {
     $return['cpg_version'] = trim(str_replace($cpg_version_determination, '', $return['cpg_version']));
     $return['cpg_version'] = trim(str_replace('#', '', $return['cpg_version']));
     $return['cpg_version'] = trim(substr($return['cpg_version'], 0, strpos($return['cpg_version'], '$')));
+    /*
     print $file;
     print ':<font color="red">';
     print $return['cpg_version'];
     print "</font>";
     print $double_slash_position;
     print "<br />\n";
+    */
     if (strlen($return['cpg_version']) > 5) {$return['cpg_version']='n/a';}
 
     // Fallback to the "old" cpg version determination method if no result (for compatibility with older versions)
