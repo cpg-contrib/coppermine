@@ -92,7 +92,7 @@ EOT;
 
 EOT;
     }
-    $lb .= '                        <option value="0"' . ($highlight == 0 ? ' selected': '') . ">' . $lang_albmgr_php['no_category'] . '</option>\n";
+    $lb .= '                        <option value="0"' . ($highlight == 0 ? ' selected': '') . '>' . $lang_albmgr_php['no_category'] . "</option>\n";
     foreach($CAT_LIST as $category) if ($category['cid'] != 1 && $category['cid'] != $curr_cat) {
         $lb .= '                        <option value="' . $category['cid'] . '"' . ($highlight == $category['cid'] ? ' selected': '') . ">" . $category['name'] . "</option>\n";
     } elseif ($category['cid'] != 1 && $category['cid'] == $curr_cat) {
