@@ -6,7 +6,7 @@
 	Exifer 1.4
 	Extracts EXIF information from digital photos.
 	
-	Copyright © 2003 Jake Olefsky
+	Copyright  2003 Jake Olefsky
 	http://www.offsky.com/software/exif/index.php
 	jake@olefsky.com
 	
@@ -112,12 +112,12 @@
 //================================================================================================
 
 
-	include('makers/nikon.php');
-	include('makers/olympus.php');
-	include('makers/canon.php');
-	include('makers/fujifilm.php');
-	include('makers/sanyo.php');
-	include('makers/gps.php');
+	include('include/makers/nikon.php');
+	include('include/makers/olympus.php');
+	include('include/makers/canon.php');
+	include('include/makers/fujifilm.php');
+	include('include/makers/sanyo.php');
+	include('include/makers/gps.php');
 
 
 //================================================================================================
