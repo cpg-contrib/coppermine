@@ -89,6 +89,9 @@ a.external {
 .code {
         font-size: 12px; font-style: normal; font-family: "Courier New", Courier, mono; background-color: #E0E0E0
 }
+.border1 {
+        border-right: #999999 1px solid; padding-right: 5px; border-top: #999999 1px solid; padding-left: 5px; font-size: 12px; padding-bottom: 5px; margin: 10px 10px 0px 0px; border-left: #999999 1px solid; padding-top: 5px; border-bottom: #999999 1px solid;
+          }
 </style>
 </head>
 <body>
@@ -1266,15 +1269,24 @@ top</a></p>
   <li>YaBB SE</li>
   <li>Woltlab Burning Board 2.1</li>
 </ul>
-<p>The login integration use your bulletin board cookies, therefore it won't work
-  if your board cookies are not visible by Coppermine. So unless you are an expert,
-  keep things simple and install Coppermine and your bulletin board on the same
-  domain. Example :</p>
-<ul>
-  <li>Bulletin board:<a href="javascript:;">http://yourdomain.com/board/</a></li>
-  <li>Coppermine:<a href="javascript:;">http://yourdomain.com/gallery/</a></li>
-</ul>
+<p>The login integration use your bulletin board cookies, therefore it won't work if your board cookies are not visible by Coppermine. So unless you are an expert, keep things simple and install Coppermine and your bulletin board on the same domain. Examples :
+<table border="0" cellspacing="5" cellpadding="5" class="border1">
+<tr>
+<td>This <b>will</b> work:</td>
+<td>This <b class="important">won't</b> work:</td>
+</tr>
+<tr>
+<td class="code">Bulletin board:<a href="javascript:;">http://yourdomain.com/board/</a><br />
+Coppermine:<a href="javascript:;">http://yourdomain.com/gallery/</a></td>
+<td class="code">Bulletin board:<a href="javascript:;">http://board.yourdomain.com/</a><br />
+Coppermine:<a href="javascript:;">http://gallery.yourdomain.com/</a></td>
+</tr>
+</table>
+</p>
+
 <p>To avoid confusion, make sure to set up both coppermine and your bbs as standalone first. Make sure they both run correctly without integration.</p>
+<p><span class="important">Warning:</span> If you already have users and custom groups in your coppermine database when you enable bbs integration, be aware that they will be lost. If your coppermine users have already created private albums and uploaded pics to them, they will be lost as well!</p>
+<p><span class="important">Backup</span>: it is very advisable to backup both your coppermine database before enabling bbs integration, so you can savely go back if the integration fails.</p>
 <p>If you are using phpBB 2, go to the admin control panel and check that &quot;Cookie
   domain&quot; corresponds to your domain, &quot;Cookie name&quot; is &quot;phpbb2mysql&quot;
   and &quot;Cookie path&quot; is &quot;/&quot;.</p>
@@ -1285,7 +1297,7 @@ top</a></p>
   options / HTTP Headers and output&quot; and check that the value for &quot;Cookie
   Domain&quot; corresponds to your domain and that &quot;Path to save cookies&quot;
   is &quot;/&quot;</p>
-<p>It is also recommended that you use the same database for your board and Coppermine.</p>
+<p>It is also recommended that you use the same database for your board and Coppermine (in fact it is even mandatory!).</p>
 <p><span class="important">Important</span>: the cookie names of your bbs and coppermine must <b>not</b> be the same - they <b>must</b> differ!</p>
 <p>You will also need to perform the following operations after having unpacked
   the archive on your harddrive and before uploading the files to your webserver
