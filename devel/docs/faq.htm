@@ -78,6 +78,13 @@ a.navbar:hover {
         color: #ffffff; text-decoration: none
 }
 
+a.content {
+        text-decoration: none
+}
+a.content:hover {
+        text-decoration: underline
+}
+
 .back {
         margin-top: 10px; font-size: 10px; margin-bottom: 10px
 }
@@ -100,19 +107,22 @@ For credits and copyrights, see <a href="index.htm#credits">Coppermine documenta
 <ul class="nomargin">
 <li><a class="content" href="#MinimumRequirements">What are the <b>minimum requirements</b> for the use of Coppermine 1.3.0 ?</a></li>
 <li><a class="content" href="#WhatIsGD">What's <b>GD</b> and how can I get it?</a></li>
+<li><a class="content" href="#VersionPHP">How do I find out <b>which version of PHP</b> I have?</a></li>
+<li><a class="content" href="#VersionGD">How do I find out <b>which version of GD</b> I have?</a></li>
+<li><a class="content" href="#GD1vsGD2">What&#39;s the difference between <b>GD1 and GD2</b>?</a></li>
+<li><a class="content" href="#InstallSteps">What are the <b>steps</b> to get Coppermine running?</a></li>
+<li><a class="content" href="#installIMwhenHosted">How can I <b>install ImageMagick or GD</b>?</a></li>
+</ul>
+
+<li><b>Error messages</b></li>
+<ul class="nomargin">
 <li><a class="content" href="#WhatIsImageMagick">When installing I get the <b>error</b> <tt class="codefaq">Fatal error: Call to undefined function: imagecreatefromjpeg() in /include/picmgmt.inc.php on line 168</tt>. What does that mean?</a></li>
 <li><a class="content" href="#mkdirPermissionDenied">When installing I get the <b>error</b> <tt class="codefaq">Warning: mkdir(dummy) [function.mkdir]: Permission denied in /your/path/to/coppermine/install.php on line 126</tt>. What does that mean?</a></li>
-<li><a class="content" href="#VersionPHP">How do I find out <b>which version of PHP</b> I have?</a></li>
-<li><a class="content" href="#VersionGD">How do I find out <b>which version of gd</b> I have?</a></li>
-<li><a class="content" href="#GD1vsGD2">What&#39;s the difference between <b>GD1 and GD2</b>?</a></li>
 <li><a class="content" href="#EmptyDelimiter">I get the <b>error</b> &quot;<tt class="codefaq">Warning: Empty Delimiter in search.inc.php line 33&quot;</tt>. What can I do?</a></li>
-<li><a class="content" href="#InstallSteps">What are the <b>steps</b> to get Coppermine running?</a></li>
 <li><a class="content" href="#zerosizedreply">I get the <b>error</b> <tt class="codefaq">Zero Sized Reply</tt> during install. What can I do?</a></li>
-<li><a class="content" href="#CoppermineOnFranceFr">How can I use Coppermine on <b>Free.fr</b></a></li>
 <li><a class="content" href="#ErrorUndefinedIndex">I have the error message <tt class="codefaq">Warning: Undefined index: SCRIPT_NAME in /www.your-domain.com/include/init.inc.php on line 90</tt>. What can I do?</a></li>
 <li><a class="content" href="#ErrorCantMovePic">When a user tries to upload a picture I get the error message <tt class="codefaq">Impossible to move somepic.jpg to albums/userpics/ | Warning: move_uploaded_file(/tmp/phpezCYKr) [function.move-uploaded-file]: failed to create stream: Operation not permitted</tt>. What&#39;s wrong?</a></li>
-<li><a class="content" href="#installIMwhenHosted">How can I <b>install ImageMagick or GD</b>?</a></li>
-<li><a class="content" href="#httpPostVars">When uploading I get the error <tt class="code">Warning: Undefined variable: HTTP_POST_VARS in include/init.inc.php on line 43</tt>. What can I do?</a></li>
+<li><a class="content" href="#httpPostVars">When uploading I get the error <tt class="codefaq">Warning: Undefined variable: HTTP_POST_VARS in include/init.inc.php on line 43</tt>. What can I do?</a></li>
 </ul>
 
 <li><b>Setup / Administration</b></li>
@@ -137,6 +147,7 @@ For credits and copyrights, see <a href="index.htm#credits">Coppermine documenta
 <li><a class="content" href="#cookie">I can&#39;t <b>login</b> to Coppermine. What&#39;s wrong?</a></li>
 <li><a class="content" href="#moveAlbum">How can I <b>move an album</b> from one category to another?</a></li>
 <li><a class="content" href="#sortAlbum">How can I change the <b>sorting order of the albums</b>?</a></li>
+<li><a class="content" href="#deleteIntermediates">I don't use the <b>intermediate pictures</b> anymore. How can I <b>delete</b> them to gain disk space?</a></li>
 </ul>
 <li><b>Add-ons / Modifications / Hacks</b></li>
 <ul class="nomargin">
@@ -152,8 +163,9 @@ For credits and copyrights, see <a href="index.htm#credits">Coppermine documenta
 <li><a class="content" href="#addFooterBeforePoweredBy">How can I <b>add</b> some output <b>directly before</b> the line &quot;Powered by Coppermine&quot;?</a></li>
 <li><a class="content" href="#commonPHP errors">Common PHP errors and how to get rid of them...</a></li>
 <li><a class="content" href="#multipleComments">How can I let users post several comments one one pic?</a></li>
+<li><a class="content" href="#renameTemplateHtml">Can I <b>rename template.html to template.php</b> to include <b>PHP code</b> in my template?</a></li>
 </ul>
-<li>I'm running my own server</li>
+<li><b>I'm running my own server</b></li>
 <ul class="nomargin">
 <li><a class="content" href="#enableGD">How do I <b>enable gd</b> on my Windows server?</a></li>
 <li><a class="content" href="#enableIMonWindows">How do I <b>enable ImageMagick</b> on my Windows server?</a></li>
@@ -178,19 +190,9 @@ For credits and copyrights, see <a href="index.htm#credits">Coppermine documenta
         <li>mySQL 3.23.23 or better (4.x recommended). Don&#39;t confuse the client api version (which is shown in phpinfo) with the mySQL version!</li>
     </ul><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 <a name="WhatIsGD"></a><!--WhatIsGD_l--><h3>What's <b>GD</b> and how can I get it?</h3>
-<p id="WhatIsGD_l">GD is a graphical library which enables PHP to do image manipulation. You can download it at <a href="http://www.boutell.com/gd/">www.boutell.com/gd/</a>. You will need to recompile PHP on (L)Unix systems, depending on your setup Apache as well. On most windows systems, you can just enable it in the php.ini file. (this can of course only be done if you're running your own server; if you're with a webhost: find out if your webspace has gd; if not: ask your webhost if you can have it or get another webhost).<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
-<a name="WhatIsImageMagick"></a><!--WhatIsImageMagick_l--><h3>When installing I get the <b>error</b> <tt class="codefaq">Fatal error: Call to undefined function: imagecreatefromjpeg() in /include/picmgmt.inc.php on line 168</tt>. What does that mean?</h3>
-<p id="WhatIsImageMagick_l">This error means that the version of PHP installed on your server has no support for the GD image library.<br />
-If the ImageMagick suite is installed on your server you can try to use it, else you have to complain to your webhost (the GD image library is now a standard component of PHP and should normally be installed de facto). Coppermine won´t run without gd or image magick.<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="mkdirPermissionDenied"></a><!--mkdirPermissionDenied_l--><h3>When installing I get the <b>error</b> <tt class="codefaq">Warning: mkdir(dummy) [function.mkdir]: Permission denied in /your/path/to/coppermine/install.php on line 126</tt>. What does that mean?</h3>
-<p id="mkdirPermissionDenied_l">The script must have the right to create and delete files.
-<ul>
-<li>on *nix/linux-webservers:<br />chmod the coppermine directory (and all subdirectories) to 755 (rwxr-xr-x). To find more about chmod: check some of these <a href="http://www.google.com/search?sourceid=navclient&hl=de&q=chmod+tutorial">fine chmod tutorials</a></li>
-<li>on Windows/IIS:<br />Check if the user the webserver runs the php-scripts under (usually called IUSR) has sufficient rights to read, execute, change, delete in the Coppermine folder. To find out how, ask your webhost or read the server manual if you´re running the server yourself.
-</li>
-<li>on Windows/Apache:<br />Check the account Apache runs under an set the rights in the file-system.
-</li>
-</ul><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="VersionPHP"></a><!--VersionPHP_l--><h3>How do I find out <b>which version of PHP</b> I have?</h3>
-<p id="VersionPHP_l">create a blank file named "info.php", put this code into it: <tt class="codefaq">&lt;?php phpinfo(); ?&gt;</tt>, upload this file to your webserver and run it in your browser (e.g. http://www.yourdomain.com/info.php). In the very first line it should say &quot;PHP Version X.Y.Z&quot;<br />Please note: leaving info.php on your server might be a security risk; either delete it after use or move it into a password protected directory!<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="VersionGD"></a><!--VersionGD_l--><h3>How do I find out <b>which version of gd</b> I have?</h3>
+<p id="WhatIsGD_l">GD is a graphical library which enables PHP to do image manipulation. You can download it at <a href="http://www.boutell.com/gd/">www.boutell.com/gd/</a>. You will need to recompile PHP on (L)Unix systems, depending on your setup Apache as well. Most recent versions of PHP come with GD - go for a package. On most windows systems, you can just enable it in the php.ini file. (this can of course only be done if you're running your own server; if you're with a webhost: find out if your webspace has gd; if not: ask your webhost if you can have it or get another webhost).<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+<a name="VersionPHP"></a><!--VersionPHP_l--><h3>How do I find out <b>which version of PHP</b> I have?</h3>
+<p id="VersionPHP_l">create a blank file named "info.php", put this code into it: <tt class="codefaq">&lt;?php phpinfo(); ?&gt;</tt>, upload this file to your webserver and run it in your browser (e.g. http://www.yourdomain.com/info.php). In the very first line it should say &quot;PHP Version X.Y.Z&quot;<br />Please note: leaving info.php on your server might be a security risk; either delete it after use or move it into a password protected directory!<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="VersionGD"></a><!--VersionGD_l--><h3>How do I find out <b>which version of GD</b> I have?</h3>
 <p id="VersionGD_l">create a blank file named "info.php", put this code into it: <tt class="codefaq">&lt;?php phpinfo(); ?&gt;</tt>, upload this file to your webserver and run it in your browser (e.g. http://www.yourdomain.com/info.php). Look for a table like this:<br />
 <div align="center" style="font-family: arial, helvetica, sans-serif; font-size: 14pt; font-weight: bold;">gd</div>
 <table border="0" cellpadding="3" cellspacing="1" width="600" bgcolor="#000000" align="center">
@@ -203,11 +205,9 @@ If the ImageMagick suite is installed on your server you can try to use it, else
 <tr valign="baseline" bgcolor="#cccccc"><td bgcolor="#ccccff" ><b>WBMP Support</b></td><td align="left">enabled</td></tr>
 </table>
 <br />Please note: leaving info.php on your server might be a security risk; either delete it after use or move it into a password protected directory!<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="GD1vsGD2"></a><!--GD1vsGD2_l--><h3>What&#39;s the difference between <b>GD1 and GD2</b>?</h3>
-<p id="GD1vsGD2_l">GD2 will create pictures with better quality (intermediate and thumbnails). <table border="0" class="frame2"><tr><td colspan="2"><span class="winzig">Here&#39;s an example taken from <a href="http://www.vddh.com/wnailer/index.php?pag=res&pic=1#comp">w-nailer: about resizing</a><br />(Original pic size: 1024 x 768 pixels):</span></td></tr><tr><td align="center"><img src="http://coppermine.sourceforge.net/images/128x96gd1.jpg" width="128" height="96" border="0" alt="" title="GD1"></td><td align="center"><img src="http://coppermine.sourceforge.net/images/128x96gd2.jpg" width="128" height="96" border="0" alt="" title="GD2"></td></tr><tr><td align="center"><span class="winzig">GD 1.8.4:<br />ImageCreate<br />ImageCopyResized<br />128 x 96 pixels</span></td><td align="center"><span class="winzig">GD 2.0.1:<br />ImageCreateTrueColor<br />ImageCopyResampled<br />128 x 96 pixels</span></td></tr></table>Upgrading GD lib when coppermine is already installed will therefor not affect the pictures which are already created, but only new ones. <b>You can not upgrade nor install GD lib unless you&#39;re running your own webserver - only your webhost can!</b><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="EmptyDelimiter"></a><!--EmptyDelimiter_l--><h3>I get the <b>error</b> &quot;<tt class="codefaq">Warning: Empty Delimiter in search.inc.php line 33&quot;</tt>. What can I do?</h3>
-<p id="EmptyDelimiter_l">Edit the file include/search.inc.php<br />
-Look for the line with<br /><tt class="codefaq">$charset = $CONFIG[&#39;charset&#39;] == &#39;language file&#39; ? $lang_charset : $CONFIG[&#39;charset&#39;];</tt><br />
-Replace it with :<br />
-<tt class="codefaq">$charset = $CONFIG[&#39;charset&#39;] == &#39;language file&#39; ? $GLOBALS[&#39;lang_charset&#39;] : $CONFIG[&#39;charset&#39;];</tt><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="InstallSteps"></a><!--InstallSteps_l--><h3>What are the <b>steps</b> to get Coppermine running?</h3>
+<p id="GD1vsGD2_l">GD2 will create pictures with better quality (intermediate and thumbnails). <table border="0" class="frame2"><tr><td colspan="2"><span class="winzig">Here&#39;s an example taken from <a href="http://www.vddh.com/wnailer/index.php?pag=res&pic=1#comp">w-nailer: about resizing</a><br />(Original pic size: 1024 x 768 pixels):</span></td></tr><tr><td align="center"><img src="http://coppermine.sourceforge.net/images/128x96gd1.jpg" width="128" height="96" border="0" alt="" title="GD1"></td><td align="center"><img src="http://coppermine.sourceforge.net/images/128x96gd2.jpg" width="128" height="96" border="0" alt="" title="GD2"></td></tr><tr><td align="center"><span class="winzig">GD 1.8.4:<br />ImageCreate<br />ImageCopyResized<br />128 x 96 pixels</span></td><td align="center"><span class="winzig">GD 2.0.1:<br />ImageCreateTrueColor<br />ImageCopyResampled<br />128 x 96 pixels</span></td></tr></table>Upgrading GD lib when coppermine is already installed will therefor not affect the pictures which are already created, but only new ones. <b>You can not upgrade nor install GD lib unless you&#39;re running your own webserver - only your webhost can!</b><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+
+<a name="InstallSteps"></a><!--InstallSteps_l--><h3>What are the <b>steps</b> to get Coppermine running?</h3>
 <p id="InstallSteps_l">as stated in the readme:
 <ol>
 <li>Download Coppermine</li>
@@ -220,6 +220,33 @@ Replace it with :<br />
 <li>Play around, toy a little, test if everything works</li>
 <li>Publish your site by linking it (e.g. from your homepage)</li>
 </ol><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+
+<a name="installIMwhenHosted"></a><!--installIMwhenHosted_l--><h3>How can I <b>install ImageMagick or GD</b>?</h3>
+<p id="installIMwhenHosted_l">You can only <a href="faq.php?q=enableIMonWindows#enableIMonWindows">install ImageMagic or GD if you&#39;re running your own server</a> or if you have at least shell access to your webserver. If you&#39;re hosted by a webhost you can only contact your webhost and ask them to install it for you or choose another webhost.<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+
+
+<h2>Error Messages</h2>
+
+<a name="WhatIsImageMagick"></a><!--WhatIsImageMagick_l--><h3>When installing I get the <b>error</b> <tt class="codefaq">Fatal error: Call to undefined function: imagecreatefromjpeg() in /include/picmgmt.inc.php on line 168</tt>. What does that mean?</h3>
+<p id="WhatIsImageMagick_l">This error means that the version of PHP installed on your server has no support for the GD image library.<br />
+If the ImageMagick suite is installed on your server you can try to use it, else you have to complain to your webhost (the GD image library is now a standard component of PHP and should normally be installed de facto). Coppermine won´t run without gd or image magick.<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+
+<a name="mkdirPermissionDenied"></a><!--mkdirPermissionDenied_l--><h3>When installing I get the <b>error</b> <tt class="codefaq">Warning: mkdir(dummy) [function.mkdir]: Permission denied in /your/path/to/coppermine/install.php on line 126</tt>. What does that mean?</h3>
+<p id="mkdirPermissionDenied_l">The script must have the right to create and delete files.
+<ul>
+<li>on *nix/linux-webservers:<br />chmod the coppermine directory (and all subdirectories) to 755 (rwxr-xr-x). To find more about chmod: check some of these <a href="http://www.google.com/search?sourceid=navclient&hl=de&q=chmod+tutorial">fine chmod tutorials</a></li>
+<li>on Windows/IIS:<br />Check if the user the webserver runs the php-scripts under (usually called IUSR) has sufficient rights to read, execute, change, delete in the Coppermine folder. To find out how, ask your webhost or read the server manual if you´re running the server yourself.
+</li>
+<li>on Windows/Apache:<br />Check the account Apache runs under an set the rights in the file-system.
+</li>
+</ul><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+
+<a name="EmptyDelimiter"></a><!--EmptyDelimiter_l--><h3>I get the <b>error</b> &quot;<tt class="codefaq">Warning: Empty Delimiter in search.inc.php line 33&quot;</tt>. What can I do?</h3>
+<p id="EmptyDelimiter_l">Edit the file include/search.inc.php<br />
+Look for the line with<br /><tt class="codefaq">$charset = $CONFIG[&#39;charset&#39;] == &#39;language file&#39; ? $lang_charset : $CONFIG[&#39;charset&#39;];</tt><br />
+Replace it with :<br />
+<tt class="codefaq">$charset = $CONFIG[&#39;charset&#39;] == &#39;language file&#39; ? $GLOBALS[&#39;lang_charset&#39;] : $CONFIG[&#39;charset&#39;];</tt><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+
 <a name="zerosizedreply"></a><!--zerosizedreply_l--><h3>I get the <b>error</b> <span class="codefaq">Zero Sized Reply</span> during install. What can I do?</h3>
 <p id="zerosizedreply_l">Some users experienced this error message during install:<br />
 <pre>While trying to retrieve the URL: http://yoursite.com/coppermine/install.php
@@ -228,39 +255,46 @@ Zero Sized Reply
 Reason:
 The remote server did not reply any data for this request.
 Please try again later</pre>
-It&#39;s unknown why this happens so far - those who have this error simply can&#39;t use Coppermine (sorry for that). If you have got an idea what causes this error (and possibly can come up with a solution), please visit the support board and clue us in!<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="CoppermineOnFranceFr"></a><!--CoppermineOnFranceFr_l--><h3>How can I use Coppermine on <b>Free.fr</b></h3>
-<p id="CoppermineOnFranceFr_l">As only french people will probably use france.fr as host the answer comes in french:<br />
-Pour utiliser Coppermine sur free.fr il est n&eacute;cessaire de modifier le fichier include/init.inc.php en supprimant la ligne avec:<br />
-<pre>$PHP_SELF = isset($HTTP_SERVER_VARS[&#39;REDIRECT_URL&#39;]) ? $HTTP_SERVER_VARS[&#39;REDIRECT_URL&#39;] : $HTTP_SERVER_VARS[&#39;SCRIPT_NAME&#39;];</pre>
-Du fait des restrictions impos&eacute;es par free :
-<ul>
-<li>L&#39;upload d&#39;images avec un browser n&#39;est pas possible</li>
-<li>Les e-cartes ne fonctionne pas (fonction mail desactiv&eacute;e par free)</li>
-</ul>
-There have been several postings since I originally have put this questions into the faq list in french - since I hardly speak any french I can&#39; tell you more. There seems to be a solution by <a href="ftp://ftp2.chezgreg.net/chezgreg/cpg-1.1/patches/free.fr_upload.zip,">downloading a patch by Greg</a><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="ErrorUndefinedIndex"></a><!--ErrorUndefinedIndex_l--><h3>I have the error message <tt class="codefaq">Warning: Undefined index: SCRIPT_NAME in /www.your-domain.com/include/init.inc.php on line 90</tt>. What can I do?</h3>
+It&#39;s unknown why this happens so far - those who have this error simply can&#39;t use Coppermine (sorry for that). If you have got an idea what causes this error (and possibly can come up with a solution), please visit the support board and clue us in!<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+
+<a name="ErrorUndefinedIndex"></a><!--ErrorUndefinedIndex_l--><h3>I have the error message <tt class="codefaq">Warning: Undefined index: SCRIPT_NAME in /www.your-domain.com/include/init.inc.php on line 90</tt>. What can I do?</h3>
 <p id="ErrorUndefinedIndex_l">Try to edit the file include/init.inc.php:<br />
 change<br />
 <pre>$PHP_SELF = isset($HTTP_SERVER_VARS[&#39;REDIRECT_URL&#39;]) ? $HTTP_SERVER_VARS[&#39;REDIRECT_URL&#39;] : $HTTP_SERVER_VARS[&#39;SCRIPT_NAME&#39;];</pre>
 to<br />
 <pre>$PHP_SELF = $HTTP_SERVER_VARS[&#39;PHP_SELF&#39;];</pre>
-</p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="ErrorCantMovePic"></a><!--ErrorCantMovePic_l--><h3>When a user tries to upload a picture I get the error message <tt class="codefaq">Impossible to move somepic.jpg to albums/userpics/ | Warning: move_uploaded_file(/tmp/phpezCYKr) [function.move-uploaded-file]: failed to create stream: Operation not permitted</tt>. What&#39;s wrong?</h3>
+</p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+
+<a name="ErrorCantMovePic"></a><!--ErrorCantMovePic_l--><h3>When a user tries to upload a picture I get the error message <tt class="codefaq">Impossible to move somepic.jpg to albums/userpics/ | Warning: move_uploaded_file(/tmp/phpezCYKr) [function.move-uploaded-file]: failed to create stream: Operation not permitted</tt>. What&#39;s wrong?</h3>
 <p id="ErrorCantMovePic_l">You should contact the admin of your webhost because usually you can&#39;t change the location of the temporary directory for file uploads yourself (it is part of PHP configuration) .<br />
-If the open basedir restriction is in effect on your site then the temp directory for file uploads should be one that you can access.<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="installIMwhenHosted"></a><!--installIMwhenHosted_l--><h3>How can I <b>install ImageMagick or GD</b>?</h3>
-<p id="installIMwhenHosted_l">You can only <a href="faq.php?q=enableIMonWindows#enableIMonWindows">install ImageMagic or GD if you&#39;re running your own server</a> or if you have shell access to your webserver. If you&#39;re hosted by a webhost you can only contact your webhost and ask them to install it for you or choose another webhost.<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="httpPostVars"></a><!--httpPostVars_l--><h3>When uploading I get the error <tt class="code">Warning: Undefined variable: HTTP_POST_VARS in include/init.inc.php on line 43</tt>. What can I do?</h3>
+If the open basedir restriction is in effect on your site then the temp directory for file uploads should be one that you can access.<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+
+<a name="httpPostVars"></a><!--httpPostVars_l--><h3>When uploading I get the error <tt class="codefaq">Warning: Undefined variable: HTTP_POST_VARS in include/init.inc.php on line 43</tt>. What can I do?</h3>
 <p id="httpPostVars_l">Check if <a href="coppermine.htm?q=VersionPHP#VersionPHP">your version of PHP</a> fullfills the <a href="coppermine.htm?q=MinimumRequirements#MinimumRequirements">minimum requirements</a> for Coppermine. If your version is 4.1.0 or better, then this error is probably caused by a misconfiguration of your server, so Coppermine isn&#39;t to blame in the first place. If the server isn&#39;t yours to configure properly (that is: if you&#39;re with a webhost), you can try this workaround (at your own risk):<br >
 Edit the file "init.inc.php" and look for<br />
-<pre>$PHP_SELF = isset($HTTP_SERVER_VARS[&#39;REDIRECT_URL&#39;]) ? $HTTP_SERVER_VARS[&#39;REDIRECT_URL&#39;] : $HTTP_SERVER_VARS[&#39;SCRIPT_NAME&#39;];<pre>
+<pre>$PHP_SELF = isset($HTTP_SERVER_VARS[&#39;REDIRECT_URL&#39;]) ? $HTTP_SERVER_VARS[&#39;REDIRECT_URL&#39;] : $HTTP_SERVER_VARS[&#39;SCRIPT_NAME&#39;];</pre>
 Replace it with<br />
-<tt class="code">$PHP_SELF = $HTTP_SERVER_VARS[&#39;PHP_SELF&#39;];</tt><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /></dl>
-
+<pre>$PHP_SELF = $HTTP_SERVER_VARS[&#39;PHP_SELF&#39;];</pre><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 
 <br />&nbsp;<br />
 <h2>Setup / Administration</h2><dl><a name="LinkInAlbumDescription"></a><!--LinkInAlbumDescription_l--><h3>How can I include a <b>link in an album description</b> or the caption of a pic?</h3>
-<p id="LinkInAlbumDescription_l">Coppermine understands the following bbCodes (the same bbCodes that are used by phpBB) in image and album description:<br />
-<pre>[b][/b] bold
-[i][/i] italic
-[url=http://www.foo.com/bar.html]URL text[/url]
-[email]user@domain.tld[/email]</pre></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="NoLastUploads"></a><!--NoLastUploads_l--><h3>I don&#39;t want to show the <b>last uploads</b> on the start page. How do I edit what&#39;s shown on the start page of coppermine?</h3>
+<p id="LinkInAlbumDescription_l">Coppermine understands the following bbCodes (the same bbCodes that are used by phpBB) in image and album description:</p>
+<table border="0">
+<tr>
+<th>code</th>
+<th>output</th>
+</tr>
+<tr><td><pre>[b]bold text[/b]</pre></td><td><b>bold text</b></td></tr>
+<tr><td><pre>[i]italic[/i]</pre></td><td><i>italic</i></td></tr>
+<tr><td><pre>[url=http://www.foo.com/bar.html]URL text[/url]</pre></td><td><a href="http://www.foo.com/bar.html">URL text</a></td></tr>
+<tr><td><pre>[email]user@domain.tld[/email]</pre></td><td><a href="mailto:user@domain.tld">user@domain.tld</a></td></tr>
+</table>
+
+
+
+
+<div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+<a name="NoLastUploads"></a><!--NoLastUploads_l--><h3>I don&#39;t want to show the <b>last uploads</b> on the start page. How do I edit what&#39;s shown on the start page of coppermine?</h3>
 <p id="NoLastUploads_l">  <ol>
     <li>login as admin into your CPG</li>
     <li>click on "Admin Mode" if it is not already enabled</li>
@@ -436,7 +470,9 @@ Greg</p></td></tr></table><br /></p><br /><div class="totop">[<a href="#top" cla
 <li>click &quot;Properties&quot; of the album you want to move</li>
 <li>in the dropdown box next to &quot;Album category&quot;, choose the category you want to move the album to</li>
 <li>click &quot;Update album&quot;</li>
-</ul><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="sortAlbum"></a><!--sortAlbum_l--><h3>How can I change the <b>sorting order of the albums</b>?</h3>
+</ul><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+
+<a name="sortAlbum"></a><!--sortAlbum_l--><h3>How can I change the <b>sorting order of the albums</b>?</h3>
 <p id="sortAlbum_l">By default the album appear in the order they were created. If you want to adjust the sorting order, do this:
 <ul>
 <li>log in as admin</li>
@@ -447,7 +483,11 @@ Greg</p></td></tr></table><br /></p><br /><div class="totop">[<a href="#top" cla
 <li>use the up <img src="http://coppermine.sourceforge.net/images/move_up.gif" width="13" height="11" border="0" alt="" /> and down <img src="http://coppermine.sourceforge.net/images/move_down.gif" width="13" height="11" border="0" alt="" /> buttons to change the position </li>
 <li>click &quot;apply modifications&quot;</li>
 <li>Confirm the message &quot;Are you sure you want to make these modifications ?&quot; with &quot;OK&quot;</li>
-</ul><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /></dl>
+</ul><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+
+<a name="deleteIntermediates"></a><!--deleteIntermediates--><h3>I don't use the <b>intermediate pictures</b> anymore. How can I <b>delete</b> them to gain disk space?</h3>
+<p id="deleteIntermediates"></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+
 
 
 <br />&nbsp;<br />
@@ -677,7 +717,9 @@ This hack hasn&#39;t been tested, use at your own risk...!<br /></p><br /><div c
 <li><tt class="code">Warning: fopen("file.txt","r+") - No such file or directory</tt> - the requested file or directory doesn&#39;t exist. Check the spelling (accuracy counts here).</li>
 <li><tt class="code">SAFE MODE Restriction in effect. The script whose uid is 531 is not allowed to access...</tt> - The safe mode is switched on. Some functions in the upload systems can&#39;t be used. Usually your webhost has put safe mode in place (often not correctly configured). Try switching silly_safe_mode on.</li>
 </ul>
-<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="multipleComments"></a><!--multipleComments_l--><h3>How can I let users post several comments one one pic?</h3>
+<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+
+<a name="multipleComments"></a><!--multipleComments_l--><h3>How can I let users post several comments one one pic?</h3>
 <p id="multipleComments_l">By default Coppermine doesn&#39;t let users comment pics more than once to avoid "flooding". If you want to disable the flooding protection (and allow users to post several comments to one and the same picture), edit <tt class="code">db_input.php</tt> and look for<br />
 <pre>                if ((USER_ID && $last_com_data[&#39;author_id&#39;] == USER_ID) || (!USER_ID && $last_com_data[&#39;author_md5_id&#39;] == $USER[&#39;ID&#39;])) {
                     cpg_die(ERROR, $lang_db_input_php[&#39;no_flood&#39;], __FILE__, __LINE__);
@@ -686,7 +728,11 @@ with<br />
 <pre>//                if ((USER_ID && $last_com_data[&#39;author_id&#39;] == USER_ID) || (!USER_ID && $last_com_data[&#39;author_md5_id&#39;] == $USER[&#39;ID&#39;])) {
 //                    cpg_die(ERROR, $lang_db_input_php[&#39;no_flood&#39;], __FILE__, __LINE__);
 //                }</pre>
-(in other words: comment it out).<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /></dl>
+(in other words: comment it out).<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+
+<a name="renameTemplateHtml"></a><!--renameTemplateHtml--><h3>Can I rename template.html to template.php to include PHP code in my template?</h3>
+<p id="renameTemplateHtml">No, this is simply not the way coppermine works; for &quot;normal&quot; pages the name of the extension tells the webserver wether the file should be parsed by the PHP interpreter. The template files within the themes folder are not being parsed this way - the extension .html was just chosen to make editing easier. You can not have PHP code in the template file, no matter how you name it - that's it!</p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+
 
 <br />&nbsp;<br />
 <h2>I&#39;m running my own server</h2><dl><a name="enableGD"></a><!--enableGD_l--><h3>How do I <b>enable gd</b> on my Windows server?</h3>
@@ -733,16 +779,12 @@ Greg<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of pag
 </p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 
 <a name="aboutTeam"></a><!--aboutTeam_l--><h3><b>Who</b> are you anyway?</h3>
-<p id="aboutTeam_l">We are a group of people who decided to form a team to develop Coppermine further - check the <a href="http://sourceforge.net/project/memberlist.php?group_id=89658">project team</a> page for details...<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
-<a name="originalCoppermineSite"></a><!--originalCoppermineSite_l--><h3>What happened to the <b>&quot;original&quot; Coppermine site</b> at www.chezgreg.net?</h3>
-<p id="originalCoppermineSite_l">Greg, the author of coppermine, has disappeared. Meanwhile, his webhosting contract has expired, so the site went down. We (some guys interessted in the continuation of the project) have formed a dev team, registered the project at <a href="http://sourceforge.net/">sourceforge.net</a> and are about to continue development on the software.<br />
-We have asked the webhost (<a href="http://www.ovh.com/">ovh</a>) of www.chezgreg.net to grant us access to the database, but they can&#39; do that without the consent of Greg, so we have no other choice than to start from scratch and build a new site and community.<br />
-We need your help and support for that - please contribute and give us your feedback on the new <a href="/board/">Coppermine support board</a> we have set up.<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
-</dl>
+<p id="aboutTeam_l">We are a group of people who decided to form a team to develop Coppermine further - check the <a href="http://coppermine.sourceforge.net/team/">team</a> page for details...<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+
 
 <br />&nbsp;<br />
 
-This FAQ is a work in progress, please contribute in the <a href="http://coppermine.sourceforge.net/board/">Coppermine Photo Gallery Support Board</a> (don't contact me to ask for fixes of your Coppermine install). Please <a href="/contact.php">report</a> any bugs, typos etc.<br />Check the <a href="http://coppermine.sourceforge.net/faq.php">online-version of this document</a> for updates!<br />Have fun!<br />
+This FAQ is a work in progress, please contribute in the <a href="http://coppermine.sourceforge.net/board/">Coppermine Photo Gallery Support Board</a> (don't contact me to ask for fixes of your Coppermine install). Please report any bugs, typos etc.<br />Check the <a href="http://coppermine.sourceforge.net/faq.php">online-version of this document</a> for updates!<br />Have fun!<br />
 <br />
 GauGau (aka Joachim Mueller) - coppermine dev team
 
