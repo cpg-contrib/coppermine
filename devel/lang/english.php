@@ -86,6 +86,8 @@ $lang_errors = array(
         'pic_in_invalid_album' => 'Picture is in a non existant album (%s)!?',
         'banned' => 'You are currently banned from using this site.',
         'not_with_udb' => 'This function is disabled in Coppermine because it is integrated with forum software. Either what you are trying to do is not supported in this configuration, or the function should be handled by the forum software.',
+	'offline_title' => 'Offline',
+	'offline_text' => 'Gallery is currently offline check back soon'
 );
 
 // ------------------------------------------------------------------------- //
@@ -360,6 +362,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Gallery description', 'gallery_description', 0),
         array('Gallery administrator email', 'gallery_admin_email', 0),
         array('Target address for the \'See more pictures\' link in e-cards', 'ecards_more_pic_target', 0),
+	array('Gallery is offline', 'offline', 1),
         'Language, Themes &amp; Charset settings',
         array('Language', 'lang', 5),
         array('Theme', 'theme', 6),

@@ -58,3 +58,4 @@ Added picture ownername display as an admin setable option - 17th November 2003,
 Moved debug_output from themes to functions.inc.php with easy copy-and-paste option - 22nd November 2003, GauGau
 Changed yes/no dropdown in config to radio buttons (less clicks!) - 22nd November 2003, GauGau
 Added language and theme selection - 19th December 2003, GauGau
+Added admin set able option to put gallery offline - 3rd January 2004, Tarique

@@ -270,4 +270,12 @@ mysql_free_result($result);
 // Retrieve the "private" album set
 if (!GALLERY_ADMIN_MODE && $CONFIG['allow_private_albums']) get_private_album_set();
 
+if (!GALLERY_ADMIN_MODE && $CONFIG['offline'] && !strstr($_SERVER["SCRIPT_NAME"],'login')) {
+pageheader($lang_errors['offline_title']);
+msg_box($lang_errors['offline_title'], $lang_errors['offline_text']);
+pagefooter();
+exit;
+}
+
+
 ?>

@@ -80,6 +80,7 @@ INSERT INTO CPG_config VALUES ('language_flags', '0');
 INSERT INTO CPG_config VALUES ('theme_list', '0');
 INSERT INTO CPG_config VALUES ('language_reset', '1');
 INSERT INTO CPG_config VALUES ('theme_reset', '1');
+INSERT INTO CPG_config VALUES ('offline', '0');
 
 #
 # Dumping data for table `CPG_usergroups`
