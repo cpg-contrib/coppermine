@@ -1086,7 +1086,7 @@ function display_film_strip($album, $cat, $pos)
                         $p=$i - 1 + $lower_limit;
                         $p=($p < 0 ? 0 : $p);
                         $thumb_list[$i]['pos'] = $key < 0 ? $key : $p;
-                        $thumb_list[$i]['image'] = "<img src=\"" . get_pic_url($row, 'thumb') . "\" class=\"image$hi\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\"></a>";
+                        $thumb_list[$i]['image'] = "<img src=\"" . get_pic_url($row, 'thumb') . "\" class=\"image$hi\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\">";
                         $thumb_list[$i]['caption'] = $row['caption_text'];
                         $thumb_list[$i]['admin_menu'] = '';
 
