@@ -135,7 +135,7 @@ function generate_smilies($form = 'post', $field = 'message')
 
     foreach($smilies as $smiley) {
         $caption = $smiley[2] . " " . $smiley[0];
-        $html .= '                <td width="5%"><a href="javascript:emoticon_' . $form . '(\'' . $smiley[0] . '\')"><img src="images/smiles/' . $smiley[1] . '" alt="' . $caption . '" width="15" height="15" border="0" title="' . $caption . '"></a></td>' . "\n";
+        $html .= '                <td width="5%"><a href="javascript:emoticon_' . $form . '(\'' . $smiley[0] . '\')"><img src="images/smiles/' . $smiley[1] . '" alt="' . $caption . '" width="15" height="15" border="0" title="' . $caption . '"/></a></td>' . "\n";
     }
 
     $html .= '        </tr>' . "\n" . '</table>' . "\n";
