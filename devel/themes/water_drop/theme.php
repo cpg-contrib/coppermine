@@ -16,7 +16,8 @@
 // ------------------------------------------------------------------------- //
 // $Id$
 // ------------------------------------------------------------------------- //
-define('THEME_IS_XHTML10_TRANSITIONAL',1);
+define('THEME_IS_XHTML10_TRANSITIONAL',1); // Remove this if you edit this template until
+                                           // you have validated it. See docs/theme.htm.
 
 // HTML template for template sys_menu spacer
 $template_sys_menu_spacer ='<img src="themes/water_drop/images/orange_carret.gif" width="8" height="8" border="0" alt="" />';
