@@ -252,7 +252,7 @@ function udb_login_page()
 // Logout
 function udb_logout_page()
 {
-   if (PHPBB_LOGOUT_GET) {
+   if (PHPBB_LOGOUT_GET == true || PHPBB_LOGOUT_GET == 1) {
 
        udb_redirect(LOGIN_REDIR.LOGOUT_FLAG);
    } else {
