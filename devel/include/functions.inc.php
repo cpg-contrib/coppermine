@@ -456,7 +456,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         // Keyword
         if (!empty($CURRENT_ALBUM_KEYWORD)){
                 $keyword = "OR keywords like '%$CURRENT_ALBUM_KEYWORD%'";
-        }
+        } else $keyword = '';
 
         // Regular albums
         if ((is_numeric($album))) {
@@ -841,6 +841,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         case 'favpics': // Favourite Pictures
 
                 $album_name = $lang_meta_album_names['favpics'];
+				$rowset = array();
                 if (count($FAVPICS)>0){
                         $favs = implode(",",$FAVPICS);
                         $result = db_query("SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND pid IN ($favs)");
@@ -1455,7 +1456,7 @@ if ($CONFIG['language_flags'] == 0 && $parameter == 'flags'){
  //   $cpgCurrentLanguage = $USER['lang'];
  //   }
  //has the language been set to something else on the previous page?
- if($_GET['lang']!= ''){
+ if (isset($_GET['lang'])){
     $cpgCurrentLanguage = $_GET['lang'];
     }
  //get the url and all vars except $lang
