@@ -250,7 +250,7 @@ function check_user_info(&$error)
     $result = cpg_db_query($sql);
 
     if ($CONFIG['reg_requires_valid_email']) {
-        $act_link = $CONFIG['site_url'] . 'register.php?activate=' . $act_key;
+        $act_link = rtrim($CONFIG['site_url'], '/') . '/register.php?activate=' . $act_key;
         $template_vars = array('{SITE_NAME}' => $CONFIG['gallery_name'],
             '{USER_NAME}' => $user_name,
             '{PASSWORD}' => $password,
