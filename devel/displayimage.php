@@ -147,7 +147,7 @@ function html_picture()
         if (isset($image_size['reduced'])) {
                 $winsizeX = $CURRENT_PIC_DATA['pwidth'] + 16;
                 $winsizeY = $CURRENT_PIC_DATA['pheight'] + 16;
-                $pic_html = "<a href=\"javascript:;\" onClick=\"MM_openBrWindow('displayimage.php?pid=$pid&fullsize=1','".uniqid(rand())."','toolbar=yes,status=yes,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
+                $pic_html = "<a href=\"javascript:;\" onClick=\"MM_openBrWindow('displayimage.php?pid=$pid&fullsize=1','".uniqid(rand())."','scrollbars=yes,toolbar=yes,status=yes,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
                 $pic_title = $lang_display_image_php['view_fs']."\n==============\n".$pic_title;   //added by gaugau
                 $pic_html .= "<img src=\"".$picture_url."\" {$image_size['geom']} class=\"image\" border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
                 $pic_html .= "</a>\n";
@@ -218,19 +218,19 @@ function html_picinfo()
         } else {
                 $owner_link = '';
         }
-        
+
         if (GALLERY_ADMIN_MODE && $CURRENT_PIC_DATA['pic_raw_ip']) {
-        	if ($CURRENT_PIC_DATA['pic_hdr_ip']) { 
-        		$ipinfo = ' (' . $CURRENT_PIC_DATA['pic_hdr_ip'] . '[' . $CURRENT_PIC_DATA['pic_raw_ip'] . ']) / ';
-        	} else {
-        		$ipinfo = ' (' . $CURRENT_PIC_DATA['pic_raw_ip'] .') / ';
-        	}
+                if ($CURRENT_PIC_DATA['pic_hdr_ip']) {
+                        $ipinfo = ' (' . $CURRENT_PIC_DATA['pic_hdr_ip'] . '[' . $CURRENT_PIC_DATA['pic_raw_ip'] . ']) / ';
+                } else {
+                        $ipinfo = ' (' . $CURRENT_PIC_DATA['pic_raw_ip'] .') / ';
+                }
         } else {
-        	if ($owner_link) {
-	        	$ipinfo = '/ ';
-        	} else {
-        		$ipinfo = '';
-        	}
+                if ($owner_link) {
+                        $ipinfo = '/ ';
+                } else {
+                        $ipinfo = '';
+                }
         }
 
         $info[$lang_picinfo['Filename']]   = htmlspecialchars($CURRENT_PIC_DATA['filename']);
@@ -385,7 +385,7 @@ function html_comments($pid)
 function display_fullsize_pic()
 {
         global $CONFIG, $HTTP_GET_VARS, $THEME_DIR, $ALBUM_SET;
-        global $lang_errors, $lang_fullsize_popup;
+        global $lang_errors, $lang_fullsize_popup, $lang_charset;
 
         if (function_exists('theme_display_fullsize_pic')) {
             theme_display_fullsize_pic();
@@ -396,7 +396,7 @@ function display_fullsize_pic()
 <html>
 <head>
 <title><?php echo $CONFIG['gallery_name'] ?>: <?php echo $lang_fullsize_popup['click_to_close']; ?></title>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo $CONFIG['charset'] ?>" />
+<meta http-equiv="content-type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'] ?>" />
 <?php if ($CONFIG['disable_popup_rightclick'] == 1){print '<meta http-equiv="imagetoolbar" content="no" />';} ?>
 <link rel="stylesheet" href="<?php echo $THEME_DIR ?>style.css" />
 <script type="text/javascript" src="scripts.js"></script>
@@ -623,5 +623,4 @@ if (isset($HTTP_GET_VARS['fullsize'])){
         ob_end_flush();
 }
 ?>
-
 
