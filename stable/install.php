@@ -446,7 +446,7 @@ function create_tables()
     $sql_query = split_sql_file($sql_query, ';');
 
     foreach($sql_query as $q) {
-        if (! db_query($q)) {
+        if (!mysql_query($q)) {
             $errors .= "mySQL Error: " . mysql_error() . "<br /><br />";
             return;
         }
