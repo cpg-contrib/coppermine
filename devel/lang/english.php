@@ -80,7 +80,7 @@ $lang_errors = array(
         'resize_failed' => 'Unable to create thumbnail or reduced size image.',
         'no_img_to_display' => 'No image to display',
         'non_exist_cat' => 'The selected category does not exist',
-        'orphan_cat' => 'A category has a non-existing parent, runs the category manager to correct the problem.',
+        'orphan_cat' => 'A category has a non-existing parent, run the category manager to correct the problem!',
         'directory_ro' => 'Directory \'%s\' is not writable, files can\'t be deleted',
         'non_exist_comment' => 'The selected comment does not exist.',
         'pic_in_invalid_album' => 'File is in a non existant album (%s)!?', //new in cpg1.2.0
@@ -464,7 +464,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('User registration requires email verification', 'reg_requires_valid_email', 1),
         array('Notify admin of user registration by email', 'reg_notify_admin_email', 1),
         array('Allow two users to have the same email address', 'allow_duplicate_emails_addr', 1),
-        array('Users can have private albums, your current private albums will become public as well', 'allow_private_albums', 1),
+        array('Users can have private albums (Note: if you switch from \'yes\' to \'no\' any current private albums will become public)', 'allow_private_albums', 1),
         array('Notify admin of user upload awaiting approval', 'upl_notify_admin_email', 1),
         array('Allow logged in users to view memberlist', 'allow_memberlist', 1),
 
