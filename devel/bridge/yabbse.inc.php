@@ -64,6 +64,19 @@ define('CM_GMOD_GROUP_NAME', 'Global Moderators');
 
 define('YS_PASSWD_SEED', 'ys');
 
+function database_error($file="", $line="") {
+	global $CONFIG;
+
+	if (!$CONFIG['debug_mode']) {
+		cpg_die(CRITICAL_ERROR, 'There was an error while processing a database query', $file, $line);
+	} else {
+		$the_error .= "\n\nmySQL error: ".mysql_error()."\n";
+		$out = "<br />There was an error while processing a database query.<br /><br/>" .
+			"<form name='mysql'><textarea rows=\"8\" cols=\"60\">".htmlspecialchars($the_error)."</textarea></form>";
+		cpg_die(CRITICAL_ERROR, $out, $file, $line);
+	}
+}
+
 function cm_banning()
 {
     global $txt, $settings, $username, $REMOTE_ADDR, $db_prefix; 
