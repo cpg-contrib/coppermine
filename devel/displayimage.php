@@ -18,7 +18,7 @@
 define('IN_COPPERMINE', true);
 define('DISPLAYIMAGE_PHP', true);
 define('INDEX_PHP', true);
-define('SMILIES_PHP', true);
+//define('SMILIES_PHP', true);
 
 require('include/init.inc.php');
 
@@ -155,7 +155,7 @@ function html_picture()
     } // added by gaugau
     if ($CURRENT_PIC_DATA['pwidth']==0 || $CURRENT_PIC_DATA['pheight']==0)
         $image_size['geom']='';
-    
+
     if ($mime_content['content']=='image')
         if (isset($image_size['reduced'])) {
             $winsizeX = $CURRENT_PIC_DATA['pwidth'] + 16;
