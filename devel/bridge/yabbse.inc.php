@@ -427,6 +427,31 @@ function udb_get_admin_album_list()
         return $sql;
     }
 }
+
+function udb_util_filloptions()
+{
+    global $albumtbl, $picturetbl, $categorytbl, $lang_util_php;
+
+    $usertbl = $UDB_DB_NAME_PREFIX.YS_TABLE_PREFIX.YS_USER_TABLE;
+
+    $query = "SELECT aid, category, IF(realName IS NOT NULL, CONCAT('(', realName, ') ',title), CONCAT(' - ', title)) AS title " . "FROM $albumtbl AS a " . "LEFT JOIN $usertbl AS u ON category = (" . FIRST_USER_CAT . " + ID_MEMBER) " . "ORDER BY category, title";
+    $result = db_query($query);
+    // $num=mysql_numrows($query, $UDB_DB_LINK_ID);
+    echo '<select size="1" name="albumid">';
+
+    while ($row = mysql_fetch_array($result)) {
+        $sql = "SELECT name FROM $categorytbl WHERE cid = " . $row["category"];
+        $result2 = db_query($sql);
+        $row2 = mysql_fetch_array($result2);
+
+        print "<option value=\"" . $row["aid"] . "\">" . $row2["name"] . $row["title"] . "</option>\n";
+    }
+
+    print '</select> (3)';
+    print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="submit" /> (4)';
+    print '</form>';
+}
+
 // ------------------------------------------------------------------------- //
 // Define wheter we can join tables or not in SQL queries (same host & same db or user)
 define('UDB_CAN_JOIN_TABLES', (YS_DB_HOST == $CONFIG['dbserver'] && (YS_DB_NAME == $CONFIG['dbname'] || YS_DB_USERNAME == $CONFIG['dbuser'])));
