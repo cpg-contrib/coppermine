@@ -21,7 +21,7 @@ define('IN_COPPERMINE', true);
 define('EDITPICS_PHP', true);
 require('include/init.inc.php');
 
-//if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
 
 if (isset($_REQUEST['id'])) {
@@ -151,7 +151,7 @@ mysql_free_result($result);
 if (!(GALLERY_ADMIN_MODE || $CURRENT_PIC['owner_id'] == USER_ID)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
 $thumb_url = get_pic_url($CURRENT_PIC, 'thumb');
-$thumb_link = 'displayimage.php?&amp;pos='.(-$CURRENT_PIC['pid']);
+$thumb_link = 'displayimage.php?pos='.(-$CURRENT_PIC['pid']);
 $filename = htmlspecialchars($CURRENT_PIC['filename']);
 
 $THUMB_ROWSPAN=5;
