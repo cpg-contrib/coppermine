@@ -63,6 +63,7 @@ class cpgNumericAlbumData extends cpgAlbumData{
         global $USER, $CONFIG, $ALBUM_SET, $CURRENT_CAT_NAME, $CURRENT_ALBUM_KEYWORD, $HTML_SUBST, $THEME_DIR, $FAVPICS, $FORBIDDEN_SET_DATA;
         global $album_date_fmt, $lastcom_date_fmt, $lastup_date_fmt, $lasthit_date_fmt, $cat;
         global $lang_get_pic_data, $lang_meta_album_names, $lang_errors;
+        $forbidden_set_string = "";
 
         $sort_array = array(
           'na' => 'filename ASC',

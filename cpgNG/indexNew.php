@@ -1,17 +1,34 @@
 <?php
 /**
  * indexNew.php
+ *
  * Index page for CPGNG
+ *
+ * @package cpgNG
+ * @author Aditya <adityamooley@sanisoft.com>
+ * @version $Id$
  */
 
+/**#@+
+ * Constant to prevent direct execution of config.inc.php
+ */
 define('IN_COPPERMINE', true);
 define('THUMBNAILS_PHP', true);
-
 define('INDEX_PHP', true);
+/**#@-*/
+
+/**
+ * Include init
+ */
 require('include/init.inc.php');
+
+/**#@+
+ * Include all the classes
+ */
 require_once('classes/cpgAlbumData.class.php');
 require_once('classes/cpgTemplate.class.php');
 require_once('classes/cpgIndexData.class.php');
+/**#@-*/
 
 /**
  * See if $page has been passed in GET
@@ -34,7 +51,7 @@ if (isset($_GET['cat'])) {
 } else {
   $cat = 0;
 }
-
+$breadcrumbHTML = "";
 $cpg_show_private_album = $CONFIG['allow_private_albums'] ? $CONFIG['show_private'] : true;
 
 $albumData = new cpgAlbumData();
@@ -88,9 +105,8 @@ foreach ($elements as $element) {
     }
   }
 }
-//print_r($indexData);
-/**
- * Assign lang array's
+/**#@+
+ * Assign all the data to smarty
  */
 $t->assign("lang_main_menu", $lang_main_menu);
 $t->assign("lang_gallery_admin_menu", $lang_gallery_admin_menu);
@@ -98,7 +114,6 @@ $t->assign("lang_user_admin_menu", $lang_user_admin_menu);
 $t->assign("lang_cat_list", $lang_cat_list);
 $t->assign("lang_album_admin_menu", $lang_album_admin_menu);
 
-//print_r($indexData->catData);
 $t->assign("cat", $cat);
 $t->assign("pg", $PAGE);
 $t->assign("albcols", $CONFIG['album_list_cols']);
@@ -106,7 +121,6 @@ $t->assign("thumbcols", $CONFIG["thumbcols"]);
 $t->assign("thumbrows", $CONFIG["thumbrows"]);
 $t->assign("colWidth", ceil(100/$CONFIG['album_list_cols']));
 $t->assign("thumbColWidth", ceil(100/$CONFIG['thumbcols']));
-$t->assign("thumbList", $thumbList);
 $t->assign("allowRegistration", $CONFIG['allow_user_registration']);
 $t->assign("GALLERY_ADMIN_MODE", GALLERY_ADMIN_MODE);
 $t->assign("USER_ADMIN_MODE", USER_ADMIN_MODE);
@@ -122,14 +136,12 @@ $t->assign("GALLERY_DESCRIPTION", $CONFIG["gallery_name"]);
 $t->assign("USER_NAME", USER_NAME);
 $t->assign("my_cat_id", FIRST_USER_CAT + USER_ID);
 
-/**
- * Assign user related data
- */
 if (!USER_ID) {
   $t->assign("loggedin", 0);
 } else {
   $t->assign("loggedin", 1);
 }
+/**#@-*/
 
 /**
  * Fetch the index page

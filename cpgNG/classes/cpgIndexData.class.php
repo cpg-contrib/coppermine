@@ -70,11 +70,11 @@ class cpgIndexData {
           $pic_filter = ' and ' . $FORBIDDEN_SET;
       }
       // Add the albums in the current category to the album set
-      if ($cat == USER_GAL_CAT) {
+      if ($this->cat == USER_GAL_CAT) {
           $sql = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category >= " . FIRST_USER_CAT . $album_filter;
           $result = cpg_db_query($sql);
       } else {
-          $sql = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category = '$cat'" . $album_filter;
+          $sql = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category = '".$this->cat."'" . $album_filter;
           $result = cpg_db_query($sql);
       }
       while ($row = mysql_fetch_array($result)) {
@@ -82,18 +82,18 @@ class cpgIndexData {
       } // while
       mysql_free_result($result);
       // }
-      if (count($album_set_array) && $cat) {
+      if (count($album_set_array) && $this->cat) {
           $set = '';
           foreach ($album_set_array as $album) $set .= $album . ',';
           $set = substr($set, 0, -1);
           $current_album_set = "AND aid IN ($set) ";
           $ALBUM_SET .= $current_album_set;
-      } elseif ($cat) {
+      } elseif ($this->cat) {
           $current_album_set = "AND aid IN (-1) ";
           $ALBUM_SET .= $current_album_set;
       }
       // Gather gallery statistics
-      if ($cat == 0) {
+      if ($this->cat == 0) {
           $query = "SELECT count(aid) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE 1" . $album_filter;
           $result = cpg_db_query($query);
           $nbEnr = mysql_fetch_array($result);
@@ -137,7 +137,7 @@ class cpgIndexData {
                       '[comments]' => $comment_count,
                       '[views]' => $hit_count));
           }
-      } elseif ($cat >= FIRST_USER_CAT && $ALBUM_SET) {
+      } elseif ($this->cat >= FIRST_USER_CAT && $ALBUM_SET) {
           $query = "SELECT count(aid) FROM {$CONFIG['TABLE_ALBUMS']} WHERE 1 $current_album_set";
           $result = cpg_db_query($query);
           $nbEnr = mysql_fetch_array($result);
@@ -179,7 +179,7 @@ class cpgIndexData {
   function __getSubcatData($parent, $album_set_array, $level, $ident = '')
   {
       global $CONFIG, $HIDE_USER_CAT, $FORBIDDEN_SET, $cpg_show_private_album;
-
+      global $tmpArr;
       $album_filter = '';
       $pic_filter = '';
       if (!empty($FORBIDDEN_SET) && !$cpg_show_private_album) {
@@ -271,15 +271,15 @@ class cpgIndexData {
       return $album_set_array;
   }
 
-/**
-* __listCatAlbums()
-*
-* This has been added to list the albums in a category, used for showing first level albumslargely a repetition of code elsewhere
-* Redone for a cleaner approach
-* @param integer $cat Category id for which albums are needed
-*/
-function __listCatAlbums($cat = 0)
-{
+  /**
+   * __listCatAlbums()
+   *
+   * This has been added to list the albums in a category, used for showing first level albumslargely a repetition of code elsewhere
+   * Redone for a cleaner approach
+   * @param integer $cat Category id for which albums are needed
+   */
+  function __listCatAlbums($cat = 0)
+  {
     global $CONFIG, $USER, $lastup_date_fmt, $USER_DATA, $FORBIDDEN_SET, $FORBIDDEN_SET_DATA, $cpg_show_private_album;
     global $lang_list_albums, $lang_errors, $lang_album_list;
 
@@ -314,7 +314,7 @@ function __listCatAlbums($cat = 0)
 
     $this->totalPages["catAlb"] = ceil($nbAlb / $alb_per_page);
 
-    if ($PAGE > $totalPages) $PAGE = 1;
+    if ($PAGE > $this->totalPages["catAlb"]) $PAGE = 1;
     $this->currentPage["catAlb"] = $PAGE;
     $lower_limit = ($PAGE-1) * $alb_per_page;
     $upper_limit = min($nbAlb, $PAGE * $alb_per_page);
