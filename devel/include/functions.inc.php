@@ -1226,15 +1226,41 @@ function get_pic_url(&$pic_row, $mode)
 }
 
 // Return a variable from the default language file
-function& cpg_get_default_lang_var($language_var_name) {
+function& cpg_get_default_lang_var($language_var_name,$overide_language = null) {
         global $CONFIG;
-        if (isset($CONFIG['default_lang'])) {
-                $language = $CONFIG['default_lang'];
+        if (is_null($overide_language)) {
+                if (isset($CONFIG['default_lang'])) {
+                        $language = $CONFIG['default_lang'];
+                } else {
+                       	$language = $CONFIG['lang'];
+                }
         } else {
-               	$language = $CONFIG['lang'];
+               	$language = $overide_language;
         }
         include('lang/'.$language.'.php');
         return $$language_var_name;
+}
+
+// Returns a variable from the current language file
+// If variable doesn't exists gets value from english lang file
+function& cpg_lang_var($varname,$index=null) {
+        global $$varname;
+
+        $lang_var =& $$varname;
+
+        if (isset($lang_var)) {
+                if (!is_null($index) && !isset($lang_var[$index])) {
+                        include('lang/english.php');
+                        return $lang_var[$index];
+                } elseif (is_null($index)) {
+                        return $lang_var;
+                } else {
+                       	return $lang_var[$index];
+                }
+        } else {
+               	include('lang/english.php');
+               	return $lang_var;
+        }
 }
 
 //defined new debug_output function here in functions.inc.php instead of theme.php with different function names to avoid incompatibilities with users not updating their themes as required. Advanced info is only output if (GALLERY_ADMIN_MODE == TRUE)  - GauGau 2003-11-23
