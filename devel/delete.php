@@ -476,7 +476,7 @@ switch ($what) {
                             print $user_data['user_name'];
                             print '</b></td>';
                             // First delete the albums
-                            $result2 = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = '" . (FIRST_USER_CAT + key) . "'");
+                            $result2 = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = '" . (FIRST_USER_CAT + $key) . "'");
                             $user_alb_counter = 0;
                             while ($album = mysql_fetch_array($result2)) {
                                 delete_album($album['aid']);
@@ -650,7 +650,7 @@ switch ($what) {
                             print '</b></td>';
                             print '<td class="tableb">';
                             // set this user's group
-                            //cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_group = '{$_REQUEST['group']}' WHERE  user_id = '$key'");
+                            cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_group = '{$_REQUEST['group']}' WHERE  user_id = '$key'");
                             printf($lang_delete_php['change_group_to_group'], '&laquo;'.$group_label[$user_data['user_group']].'&raquo;', '&laquo;'.$group_label[$_REQUEST['group']].'&raquo;');
                             print '</b></td>';
                         }
@@ -663,13 +663,13 @@ switch ($what) {
                     pagefooter();
                     break; // end case "change_group"
                 case 'add_group':
-                                        pageheader($lang_delete_php['add_group']);
+                    pageheader($lang_delete_php['add_group']);
                     starttable("100%", $lang_delete_php['add_group'], 2);
                     print "<tr>\n";
                     print "<td class=\"tableh2\"><b>{$lang_delete_php['username']}</b></td>\n";
                     print "<td class=\"tableh2\"><b>{$lang_delete_php['status']}</b></td>\n";
                     print "</tr>\n";
-                    $result_group = cpg_db_query("SELECT group_id,group_name FROM {$CONFIG['TABLE_USERGROUPS']}");
+                    $result_group = cpg_db_query("SELECT group_id,group_name FROM {$CONFIG['TABLE_USERGROUPS']} ORDER BY group_name");
                     if (!mysql_num_rows($result_group)) {
                         cpg_die(CRITICAL_ERROR, $lang_delete_php['err_empty_groups'], __FILE__, __LINE__);
                     }
@@ -687,9 +687,34 @@ switch ($what) {
                             print $user_data['user_name'];
                             print '</b></td>';
                             print '<td class="tableb">';
+                            // check group membership of this particular user
+                            $sql = "SELECT * FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$key'";
+                            $result_user = cpg_db_query($sql);
+                            if (!mysql_num_rows($result)) { print 'unknown user';}
+                            $user_data = mysql_fetch_array($result_user);
+                            mysql_free_result($result_user);
+                            $user_group = explode(',', $user_data['user_group_list']);
+                            natcasesort($user_group);
+                            if (!in_array($_REQUEST['group'], $user_group)){
+                                $user_group[] =  $_REQUEST['group'];
+                            }
+                            //print_r($user_group);
+                            //print '|'.$user_data['user_group_list'].'|';
+                            $group_output = '';
+                            $new_group_query = '';
+                            foreach($user_group as $group) {
+                                if ($group !='') {
+                                $group_output .= '&laquo;'.$group_label[$group].'&raquo;, ';
+                                $new_group_query .= $group.',';
+                                }
+                            }
+                            $group_output = trim(trim($group_output), ',');
+                            $new_group_query = trim($new_group_query, ',');
                             // set this user's group
-                            //cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_group = '{$_REQUEST['group']}' WHERE  user_id = '$key'");
-                            printf($lang_delete_php['change_group_to_group'], '&laquo;'.$group_label[$user_data['user_group']].'&raquo;', '&laquo;'.$group_label[$_REQUEST['group']].'&raquo;');
+                            cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_group_list = '$new_group_query' WHERE  user_id = '$key'");
+                            //print $group_output;
+                            //print $new_group_query;
+                            printf($lang_delete_php['add_group_to_group'], '&laquo;'.$user_data['user_name'].'&raquo;', '&laquo;'.$group_label[$_REQUEST['group']].'&raquo;', '&laquo;'.$group_label[$user_data['user_group']].'&raquo;', $group_output);
                             print '</b></td>';
                         }
                         mysql_free_result($result);

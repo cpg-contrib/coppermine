@@ -196,5 +196,6 @@ Added "check/uncheck all" option in exif manager - 07 October 2004, GauGau
 Added provisinal phpbb 2.2 integration support - 07 October, Nibbler
 Added batch-activation/deactivation/password-reset in user manager - 10 October 2004, GauGau
 Added "change primary group membership" for multiple users at once in user management - 13 October 2004, GauGau
-Changed edit dirctory creation from 666 to 777 in picmgmt.inc.php - 22 October - Casper
-Added language support for xp_publish.php - 26 October 2004 - Casper
+Changed edit dirctory creation from 666 to 777 in picmgmt.inc.php - 22 October 2004, Casper
+Added language support for xp_publish.php - 26 October 2004, Casper
+Added "change secondary group" for multiple users (usermgr.php) - 27 October 2004, GauGau

@@ -846,7 +846,7 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
   'change_group' => 'Change primary group', // cpg1.4.0
   'change_group_to_group' => 'Changing from %s to %s', // cpg1.4.0
   'add_group' => 'Add secondary group', // cpg1.4.0
-  'add_group_to_group' => 'Adding user to %s. He\'s now member of %s', // cpg1.4.0
+  'add_group_to_group' => 'Adding user %s to group %s. He\'s now member of %s as primary and of %s as secondary membergroup(s).', // cpg1.4.0
   'status' => 'Status', // cpg1.4.0
 );
 
@@ -1612,6 +1612,10 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'edit' => 'Edit',
   'with_selected' => 'With selected:', // cpg1.4.0
   'delete' => 'Delete', // cpg1.4.0
+  'delete_files_no' => 'keep files (but anonymize)', // cpg1.4.0
+  'delete_files_yes' => 'delete files as well', // cpg1.4.0
+  'delete_comments_no' => 'keep comments (but anonymize)', // cpg1.4.0
+  'delete_comments_yes' => 'delete comments as well', // cpg1.4.0
   'activate' => 'Activate', // cpg1.4.0
   'deactivate' => 'Deactivate', // cpg1.4.0
   'reset_password' => 'Reset Password', // cpg1.4.0
@@ -1653,7 +1657,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'search' => 'User search', // cpg1.4.0
   'search_submit' => 'Go!', // cpg1.4.0
   'search_result' => 'Search results for: ', // cpg1.4.0
-  'alert_no_selection' => 'You have to select a user first!', // cpg1.4.0 //js-alert
+  'alert_no_selection' => 'You have to select at least one user first!', // cpg1.4.0 //js-alert
   'password' => 'password', // cpg1.4.0
   'select_group' => 'Select group', // cpg1.4.0
 );

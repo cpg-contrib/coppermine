@@ -169,11 +169,17 @@ function selectaction(d,box) {
     return false;
   }
   document.editForm.id.value = checked_string;
-  //alert(document.editForm.id.value);
   document.editForm.new_password.style.visibility = "hidden";
   document.editForm.group.style.visibility = "hidden";
   document.editForm.go.style.visibility = "hidden";
+  //document.editForm.delete_files.style.visibility = "hidden";
+  document.editForm.delete_comments.style.visibility = "hidden";
   switch(document.editForm.action.value) {
+    case "delete":
+      document.editForm.delete_files.style.visibility = "visible";
+      document.editForm.delete_comments.style.visibility = "visible";
+      document.editForm.go.style.visibility = "visible";
+    break;
     case "reset_password":
       document.editForm.new_password.style.visibility = "visible";
       document.editForm.go.style.visibility = "visible";
@@ -373,7 +379,7 @@ EOT;
                                 <option value="deactivate">{$lang_usermgr_php['deactivate']}</option>
                                 <option value="reset_password">{$lang_usermgr_php['reset_password']}</option>
                                 <option value="change_group">{$lang_usermgr_php['change_primary_membergroup']}</option>
-                                <!--<option value="add_group">{$lang_usermgr_php['add_secondary_membergroup']}</option>Not implemented yet-->
+                                <option value="add_group">{$lang_usermgr_php['add_secondary_membergroup']}</option>
                             </select>
                             <input type="hidden" name="what" value="user"/>
                               <input type="text" name="new_password" value="{$lang_usermgr_php['password']}" size="8" maxlength="8" class="textinput" onfocus="this.value='';" style="visibility:hidden" />
@@ -395,23 +401,32 @@ EOT;
         }
         echo <<<EOT
                               </select>
+                            <select name="delete_files" size="1" class="listbox" style="visibility:hidden">
+                                <option value="no">{$lang_usermgr_php['delete_files_no']}</option>
+                                <option value="yes">{$lang_usermgr_php['delete_files_yes']}(not implemented yet)</option>
+                            </select>
+                            <select name="delete_comments" size="1" class="listbox" style="visibility:hidden">
+                                <option value="no">{$lang_usermgr_php['delete_comments_no']}</option>
+                                <option value="yes">{$lang_usermgr_php['delete_comments_yes']}(not implemented yet)</option>
+                            </select>
                             <input type="submit" name="go" value="{$lang_usermgr_php['search_submit']}" class="button" style="visibility:hidden" />
                         </td>
                         <td align="center">
                         <a href="{$_SERVER['PHP_SELF']}?op=new_user" class="admin_menu">{$lang_usermgr_php['create_new_user']}</a>
                         </td>
                         </form>
-                        <td align="right">
-                                <form method="post" action="{$_SERVER['PHP_SELF']}" name="searchUser">
-                                <input type="text" name="username" class="textinput" $search_string_default />
-                                <input type="submit" name="user_search" value="{$lang_usermgr_php['search_submit']}" class="button" />
-                                $help
-                                </form>
-                        </td>
                 </tr>
                 </table>
                 </td>
-
+        </tr>
+        <tr>
+            <td colspan="$number_of_columns"  class="tablef" align="center" valign="middle">
+                <form method="post" action="{$_SERVER['PHP_SELF']}" name="searchUser">
+                <input type="text" name="username" class="textinput" $search_string_default />
+                <input type="submit" name="user_search" value="{$lang_usermgr_php['search_submit']}" class="button" />
+                $help
+                </form>
+            </td>
         </tr>
 EOT;
     }
@@ -481,7 +496,11 @@ EOT;
             break;
 
         case 'textarea' :
-            $value = $form_data[$element[1]];
+            if (isset($form_data[$element[1]])) {
+                $value = $form_data[$element[1]];
+            } else {
+                $value = '';
+            }
 
            if ($element[2]) echo <<<EOT
         <tr>
