@@ -1699,6 +1699,7 @@ $return = '
 1.4.0|albmgr.php|1.4.0|1.10|mandatory|r@
 1.4.0|anycontent.php|1.4.0|1.9|mandatory|r@
 1.4.0|banning.php|1.4.0|1.17|mandatory|r@
+1.4.0|bridgemgr.php|1.4.0|1.3|mandatory|r@
 1.4.0|calendar.php|1.4.0|1.2|mandatory|r@
 1.4.0|catmgr.php|1.4.0|1.18|mandatory|r@
 1.4.0|config.php|1.4.0|1.39|mandatory|r@
@@ -1743,7 +1744,7 @@ $return = '
 1.4.0|upload.php|1.4.0|1.45|mandatory|r@
 1.4.0|usermgr.php|1.4.0|1.13|mandatory|r@
 1.4.0|util.php|1.4.0|1.20|mandatory|r@
-1.4.0|versioncheck.php|1.4.0|1.16|mandatory|r@
+1.4.0|versioncheck.php|1.4.0|1.18|mandatory|r@
 1.4.0|viewlog.php|1.4.0|1.7|mandatory|r@
 1.4.0|xp_publish.php|1.4.0|1.12|mandatory|r@
 1.4.0|zipdownload.php|1.4.0|1.6|mandatory|r@
@@ -1816,6 +1817,8 @@ $return = '
 1.4.0|lang/chinese_big5-utf-8.php|1.3.0|1.6|optional|r@
 1.4.0|lang/chinese_gb.php|1.3.0|1.5|optional|r@
 1.4.0|lang/chinese_gb-utf-8.php|1.3.0|1.5|optional|r@
+1.4.0|lang/catalan.php|1.3.2|1.1|optional|r@
+1.4.0|lang/catalan-utf-8.php|1.3.2|1.1|optional|r@
 1.4.0|lang/croatian.php|1.3.0|1.5|optional|r@
 1.4.0|lang/croatian-utf-8.php|1.3.0|1.5|optional|r@
 1.4.0|lang/czech.php|1.3.0|1.6|optional|r@
@@ -1826,12 +1829,16 @@ $return = '
 1.4.0|lang/dutch-utf-8.php|1.3.2|1.12|optional|r@
 1.4.0|lang/english.php|1.4.0|1.149|mandatory|r@
 1.4.0|lang/english-utf-8.php|1.3.0|1.13|mandatory|r@
+1.4.0|lang/estonian.php|1.3.2|1.6|mandatory|r@
+1.4.0|lang/estonian-utf-8.php|1.3.2|1.5|mandatory|r@
 1.4.0|lang/finnish.php|1.3.0|1.5|optional|r@
 1.4.0|lang/finnish-utf-8.php|1.3.0|1.5|optional|r@
 1.4.0|lang/french.php|1.3.0|1.16|optional|r@
 1.4.0|lang/french-utf-8.php|1.2.1|1.14|optional|r@
 1.4.0|lang/german.php|1.3.0|1.18|optional|r@
 1.4.0|lang/german-utf-8.php|1.3.0|1.19|optional|r@
+1.4.0|lang/german_sie.php|1.3.2|1.2|optional|r@
+1.4.0|lang/german_sie-utf-8.php|1.3.2|1.2|optional|r@
 1.4.0|lang/greek.php|1.3.0|1.7|optional|r@
 1.4.0|lang/greek-utf-8.php|1.3.0|1.7|optional|r@
 1.4.0|lang/hebrew.php|1.3.0|1.6|optional|r@
@@ -1866,6 +1873,12 @@ $return = '
 1.4.0|lang/spanish-utf-8.php|1.3.0|1.8|optional|r@
 1.4.0|lang/swedish.php|1.3.0|1.5|optional|r@
 1.4.0|lang/swedish-utf-8.php|1.3.0|1.4|optional|r@
+1.4.0|lang/turkish.php|1.3.2|1.5|optional|r@
+1.4.0|lang/turkish-utf-8.php|1.3.2|1.5|optional|r@
+1.4.0|lang/uighur.php|1.3.2|1.1|optional|r@
+1.4.0|lang/uighur-utf-8.php|1.3.2|1.1|optional|r@
+1.4.0|lang/vietnamese.php|1.3.2|1.1|optional|r@
+1.4.0|lang/vietnamese-utf-8.php|1.3.2|1.1|optional|r@
 1.4.0|logs|||mandatory|w@
 1.4.0|logs/log_header.inc.php|1.4.0|1.3|mandatory|r@
 1.4.0|plugins|||optional|r@
