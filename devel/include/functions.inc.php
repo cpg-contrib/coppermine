@@ -348,7 +348,6 @@ function load_template()
 
 	$tmpl_loc = array();
 	$tmpl_loc = unserialize(base64_decode(LOC));
-	print_r($tmpl_loc);
 
 	if (file_exists(TEMPLATE_FILE)) {
 	    $template_file = TEMPLATE_FILE;
