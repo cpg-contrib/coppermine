@@ -392,8 +392,6 @@ function list_albums()
         }
         // Inserts a thumbnail if the album contains 1 or more images
 	
-	echo (in_array($visibility,explode(",",$USER_DATA['user_lang'])));
-	
         $visibility = $alb_thumb['visibility'];
         if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || $visibility == $USER_DATA['group_id'] || $USER_DATA['group_id'] == 1 || $CONFIG['allow_private_albums']==0 || in_array($visibility,explode(",",$USER_DATA['user_lang'])) ) {
             if ($count > 0) {
