@@ -20,6 +20,7 @@ CREATE TABLE CPG_albums (
   stat_uptodate enum('YES','NO') NOT NULL default 'NO',
   keyword VARCHAR( 50 ),
   alb_password VARCHAR( 32 ),
+  alb_password_hint TEXT,
   PRIMARY KEY  (aid),
   KEY alb_category (category)
 ) TYPE=MyISAM;

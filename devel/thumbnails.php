@@ -110,7 +110,7 @@ if (is_numeric($album)) {
                 $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];
         }
 
-        $ALBUM_SET .= 'AND aid IN (' . (- $cat) . ') ';
+        $ALBUM_SET = 'AND aid IN (' . (- $cat) . ') '.$ALBUM_SET;
         breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);
         $CURRENT_CAT_NAME = $CURRENT_ALBUM_DATA['title'];
             $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];

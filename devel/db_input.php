@@ -164,16 +164,17 @@ switch ($event) {
         $uploads = $HTTP_POST_VARS['uploads'] == 'YES' ? 'YES' : 'NO';
         $comments = $HTTP_POST_VARS['comments'] == 'YES' ? 'YES' : 'NO';
         $votes = $HTTP_POST_VARS['votes'] == 'YES' ? 'YES' : 'NO';
-                $password = $HTTP_POST_VARS['alb_password'];
+        $password = $HTTP_POST_VARS['alb_password'];
+		$password_hint = addslashes(trim($HTTP_POST_VARS['alb_password_hint']));
         $visibility = !empty($password) ? FIRST_USER_CAT + USER_ID : $visibility;
 
         if (!$title) cpg_die(ERROR, $lang_db_input_php['alb_need_title'], __FILE__, __LINE__);
 
         if (GALLERY_ADMIN_MODE) {
-            $query = "UPDATE {$CONFIG['TABLE_ALBUMS']} SET title='$title', description='$description', category='$category', thumb='$thumb', uploads='$uploads', comments='$comments', votes='$votes', visibility='$visibility', alb_password='$password', keyword='$keyword' WHERE aid='$aid' LIMIT 1";
+            $query = "UPDATE {$CONFIG['TABLE_ALBUMS']} SET title='$title', description='$description', category='$category', thumb='$thumb', uploads='$uploads', comments='$comments', votes='$votes', visibility='$visibility', alb_password='$password', alb_password_hint='$password_hint', keyword='$keyword' WHERE aid='$aid' LIMIT 1";
         } else {
             $category = FIRST_USER_CAT + USER_ID;
-            $query = "UPDATE {$CONFIG['TABLE_ALBUMS']} SET title='$title', description='$description', thumb='$thumb',  comments='$comments', votes='$votes', visibility='$visibility', alb_password='$password' ,keyword='$keyword' WHERE aid='$aid' AND category='$category' LIMIT 1";
+            $query = "UPDATE {$CONFIG['TABLE_ALBUMS']} SET title='$title', description='$description', thumb='$thumb',  comments='$comments', votes='$votes', visibility='$visibility', alb_password='$password', alb_password_hint='$password_hint',keyword='$keyword' WHERE aid='$aid' AND category='$category' LIMIT 1";
         }
 
         $update = db_query($query);
