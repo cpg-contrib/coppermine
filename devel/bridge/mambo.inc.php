@@ -22,7 +22,7 @@
 // ------------------------------------------------------------------------- //
 
 // database configuration
-define('MOS_DB_NAME', 'mambo'); // The name of the database used by the board
+define('MOS_DB_NAME', 'database'); // The name of the database used by the board
 define('MOS_DB_HOST', 'localhost'); // The name of the database server
 define('MOS_DB_USERNAME', 'username'); // The username to use to connect to the database
 define('MOS_DB_PASSWORD', 'password'); // The password to use to connect to the database
@@ -365,7 +365,7 @@ function udb_get_admin_album_list()
     global $CONFIG, $UDB_DB_NAME_PREFIX, $UDB_DB_LINK_ID, $FORBIDDEN_SET;
 
     if (UDB_CAN_JOIN_TABLES) {
-        $sql = "SELECT aid, CONCAT('(', username, ') ', title) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN " . $UDB_DB_NAME_PREFIX . MOS_TABLE_PREFIX . MOS_USER_TABLE . " AS u ON category = (" . FIRST_USER_CAT . " + id) " . "ORDER BY title";
+        $sql = "SELECT aid, CONCAT('(', username, ') ', a.title) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN " . $UDB_DB_NAME_PREFIX . MOS_TABLE_PREFIX . MOS_USER_TABLE . " AS u ON category = (" . FIRST_USER_CAT . " + id) " . "ORDER BY a.title";
         return $sql;
     } else {
         $sql = "SELECT aid, IF(category > " . FIRST_USER_CAT . ", CONCAT('* ', title), CONCAT(' ', title)) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} " . "ORDER BY title";
@@ -379,7 +379,7 @@ function udb_util_filloptions()
 
     $usertbl = $UDB_DB_NAME_PREFIX.MOS_TABLE_PREFIX.MOS_USER_TABLE;
 
-    $query = "SELECT aid, category, IF(username IS NOT NULL, CONCAT('(', username, ') ',title), CONCAT(' - ', title)) AS title " . "FROM $albumtbl AS a " . "LEFT JOIN $usertbl AS u ON category = (" . FIRST_USER_CAT . " + id) " . "ORDER BY category, title";
+    $query = "SELECT aid, category, IF(username IS NOT NULL, CONCAT('(', username, ') ',a.title), CONCAT(' - ', a.title)) AS title " . "FROM $albumtbl AS a " . "LEFT JOIN $usertbl AS u ON category = (" . FIRST_USER_CAT . " + id) " . "ORDER BY category, a.title";
     $result = db_query($query, $UDB_DB_LINK_ID);
     // $num=mysql_numrows($result);
     echo '<select size="1" name="albumid">';
