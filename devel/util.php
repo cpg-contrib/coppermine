@@ -278,7 +278,7 @@ function update_thumbs()
                                 <input type="hidden" name="startpic" value="$startpic" />
                                 <input type="hidden" name="updatetype" value="$updatetype" />
                                 <input type="hidden" name="albumid" value="$albumid" />
-                                <input type="submit" value="{$lang_util_php['continue']}" class="submit" />
+                                <input type="submit" value="{$lang_util_php['continue']}" class="button" />
                         </form>
 EOT;
         }

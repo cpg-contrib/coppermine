@@ -124,7 +124,7 @@ function filloptions()
     }
 
     print '</select> (3)';
-    print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="submit" /> (4)';
+    print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="button" /> (4)';
     print '</form>';
 }
 
@@ -198,7 +198,7 @@ function updatethumbs()
                     <input type="hidden" name="updatetype" value="<?php echo $updatetype?>" />
             <input type="hidden" name="albumid" value="<?php echo $albumid?>" />
             <input type="submit" value="<?php print $lang_util_php['continue'];
-        ?>" class="submit" /></form>
+        ?>" class="button" /></form>
                     <?php
     }
 }
@@ -282,7 +282,7 @@ function deleteorphans()
                                 <input type="hidden" name="action" value="delorphans" />
                                 <input type="hidden" name="single" value="<?php echo $msg_id; ?>" />
                                 <?php echo $lang_util_php['comment'].' "'.$msg_body.'" '.$lang_util_php['nonexist'].' '.$pid; ?>
-                                <input type="submit" value="<?php print $lang_util_php['delete'];?>" class="submit" /></form>
+                                <input type="submit" value="<?php print $lang_util_php['delete'];?>" class="button" /></form>
                                  <?php
                         }
                 }
@@ -296,7 +296,7 @@ function deleteorphans()
         <input type="hidden" name="action" value="delorphans" />
         <input type="hidden" name="del" value="all" />
         Delete all orphans?
-        <input type="submit" value="<?php print $lang_util_php['delete_all'];?>" class="submit" /></form>
+        <input type="submit" value="<?php print $lang_util_php['delete_all'];?>" class="button" /></form>
          <?php
         }
 }
