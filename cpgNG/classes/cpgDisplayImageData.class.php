@@ -12,22 +12,22 @@
 /**
  * Include the base class file
  */
-require_once ("cpgAlbumData.class.php");
+require_once ('cpgAlbumData.class.php');
 
 /**
  * Include the exif file
  */
-require_once ("include/exif_php.inc.php");
+require_once ('include/exif_php.inc.php');
 
 /**
  * Include the iptc file
  */
-require_once ("include/iptc.inc.php");
+require_once ('include/iptc.inc.php');
 
 /**
  * Include the media file
  */
-require_once ("include/media.functions.inc.php");
+require_once ('include/media.functions.inc.php');
 
 class cpgDisplayImageData extends cpgAlbumData {
 
@@ -58,7 +58,7 @@ class cpgDisplayImageData extends cpgAlbumData {
   function getPicData ($album, &$album_name, &$count, $limit1 = -1, $limit2 = -1, $pid, $set_caption = true)
   {
         global $CONFIG, $USER, $ALBUM_SET, $FORBIDDEN_SET_DATA;
-        $forbidden_set_string = "";
+        $forbidden_set_string = '';
 
         if(count($FORBIDDEN_SET_DATA) > 0 ){
             $forbidden_set_string =" AND aid NOT IN (".implode(",", $FORBIDDEN_SET_DATA).")";
@@ -144,7 +144,7 @@ class cpgDisplayImageData extends cpgAlbumData {
         $USER['liv'] = array();
     }
     // Add 1 to hit counter
-    if (!USER_IS_ADMIN && $album != "lasthits" && !in_array($pid, $USER['liv']) && isset($_COOKIE[$CONFIG['cookie_name'] . '_data'])) {
+    if (!USER_IS_ADMIN && $album != 'lasthits' && !in_array($pid, $USER['liv']) && isset($_COOKIE[$CONFIG['cookie_name'] . '_data'])) {
         add_hit($pid);
         if (count($USER['liv']) > 4) array_shift($USER['liv']);
         array_push($USER['liv'], $pid);
@@ -161,9 +161,9 @@ class cpgDisplayImageData extends cpgAlbumData {
     }
 
     if ($CONFIG['make_intermediate'] && $condition ) {
-        $picData["picUrl"] = $this->__getPicUrl($picData, 'normal');
+        $picData['picUrl'] = $this->__getPicUrl($picData, 'normal');
     } else {
-        $picData["picUrl"] = $this->__getPicUrl($picData, 'fullsize');
+        $picData['picUrl'] = $this->__getPicUrl($picData, 'fullsize');
     }
 
     $image_size = $this->__computeImgSize($picData['pwidth'], $picData['pheight'], $CONFIG['picture_width']);
@@ -185,18 +185,18 @@ class cpgDisplayImageData extends cpgAlbumData {
 
     if ($mime_content['content']=='image') {
       if (isset($image_size['reduced'])) {
-        $picData["winsizeX"] = $picData['pwidth'] + 16;
+        $picData['winsizeX'] = $picData['pwidth'] + 16;
         //The height of the window needs to be large as we have added a 'Close' link in popup.html
-        $picData["winsizeY"] = $picData['pheight'] + 90;
+        $picData['winsizeY'] = $picData['pheight'] + 90;
       }
     } elseif ($mime_content['content']=='document') {
-      $picData["pic_thumb_url"] = $this->__getPicUrl($picData,'thumb');
+      $picData['pic_thumb_url'] = $this->__getPicUrl($picData,'thumb');
     } else {
-      $picData["autostart"] = ($CONFIG['mv_autostart']) ? ('true'):('false');
+      $picData['autostart'] = ($CONFIG['mv_autostart']) ? ('true'):('false');
     }
 
-    $picData["image_size"] = $image_size;
-    $picData["mime_content"] = $mime_content;
+    $picData['image_size'] = $image_size;
+    $picData['mime_content'] = $mime_content;
 
     $picData = CPGPluginAPI::filter('file_data',$picData);
   }
@@ -258,31 +258,31 @@ class cpgDisplayImageData extends cpgAlbumData {
     global $picData, $album, $album_name, $lang_picinfo, $lang_display_image_php, $lang_byte_units, $lastup_date_fmt, $pos;
 
     if ($picData['owner_id'] && $picData['owner_name']) {
-        $picInfo["ownerUid"] = $picData['owner_id'];
-        $picInfo["ownerName"] = $picData["owner_name"];
+        $picInfo['ownerUid'] = $picData['owner_id'];
+        $picInfo['ownerName'] = $picData['owner_name'];
     } else {
-        $picInfo["ownerUid"] = '';
+        $picInfo['ownerUid'] = '';
     }
 
-    $picInfo["pid"] = $picData["pid"];
+    $picInfo['pid'] = $picData['pid'];
 
     if (GALLERY_ADMIN_MODE && $picData['pic_raw_ip']) {
         if ($picData['pic_hdr_ip']) {
-            $picInfo["ipinfo"] = ' (' . $picData['pic_hdr_ip'] . '[' . $picData['pic_raw_ip'] . ']) / ';
+            $picInfo['ipinfo'] = ' (' . $picData['pic_hdr_ip'] . '[' . $picData['pic_raw_ip'] . ']) / ';
         } else {
-            $picInfo["ipinfo"] = ' (' . $picData['pic_raw_ip'] . ') / ';
+            $picInfo['ipinfo'] = ' (' . $picData['pic_raw_ip'] . ') / ';
         }
     } else {
-        if ($picInfo["ownerUid"]) {
-            $picInfo["ipinfo"] = '/ ';
+        if ($picInfo['ownerUid']) {
+            $picInfo['ipinfo'] = '/ ';
         } else {
-            $picInfo["ipinfo"] = '';
+            $picInfo['ipinfo'] = '';
         }
     }
 
-    $picInfo["fileName"] = htmlspecialchars($picData['filename']);
-    $picInfo["aid"] = $picData['aid'];
-    $picInfo["albumName"] = $album_name;
+    $picInfo['fileName'] = htmlspecialchars($picData['filename']);
+    $picInfo['aid'] = $picData['aid'];
+    $picInfo['albumName'] = $album_name;
 
     if ($picData['votes'] > 0) {
         if (defined('THEME_HAS_RATING_GRAPHICS')) {
@@ -291,46 +291,46 @@ class cpgDisplayImageData extends cpgAlbumData {
             $prefix = '';
         }
         if (GALLERY_ADMIN_MODE) {
-          $picInfo["width"] = 978;
-          $picInfo["height"] = 504;
+          $picInfo['width'] = 978;
+          $picInfo['height'] = 504;
         } else {
-          $picInfo["width"] = 418;
-          $picInfo["height"] = 232;
+          $picInfo['width'] = 418;
+          $picInfo['height'] = 232;
         }
 
-        $picInfo["voteDetailsLink"] = $CONFIG['vote_details'] ? "show" : "";
+        $picInfo['voteDetailsLink'] = $CONFIG['vote_details'] ? 'show' : '';
 
-        $picInfo["rating"] = sprintf($lang_picinfo['Rating'], $picData['votes']);
-        $picInfo["ratingImgPath"] = $prefix."images/rating".round($picData['pic_rating'] / 2000).".gif";
+        $picInfo['rating'] = sprintf($lang_picinfo['Rating'], $picData['votes']);
+        $picInfo['ratingImgPath'] = $prefix.'images/rating'.round($picData['pic_rating'] / 2000).'.gif';
     }
 
-    if ($picData['keywords'] != "") {
-        $picInfo["keywordLink"] = preg_replace("/(\S+)/", "<a href=\"thumbnails.php?album=search&amp;search=\\1\">\\1</a>" , $picData['keywords']);
-        $picInfo["keywords"] = $picData["keywords"];
+    if ($picData['keywords'] != '') {
+        $picInfo['keywordLink'] = preg_replace("/(\S+)/", "<a href=\"thumbnails.php?album=search&amp;search=\\1\">\\1</a>" , $picData['keywords']);
+        $picInfo['keywords'] = $picData['keywords'];
     }
 
     for ($i = 1; $i <= 4; $i++) {
         if ($CONFIG['user_field' . $i . '_name']) {
-            if ($picData['user' . $i] != "") {
-                $picInfo["userFields"][$CONFIG['user_field' . $i . '_name']] = make_clickable($picData['user' . $i]);
+            if ($picData['user' . $i] != '') {
+                $picInfo['userFields'][$CONFIG['user_field' . $i . '_name']] = make_clickable($picData['user' . $i]);
             }
         }
     }
 
-    $picInfo["fileSize"] = ($picData['filesize'] > 10240 ? ($picData['filesize'] >> 10) . '&nbsp;' . $lang_byte_units[1] : $picData['filesize'] . '&nbsp;' . $lang_byte_units[0]);
+    $picInfo['fileSize'] = ($picData['filesize'] > 10240 ? ($picData['filesize'] >> 10) . '&nbsp;' . $lang_byte_units[1] : $picData['filesize'] . '&nbsp;' . $lang_byte_units[0]);
 
-    $picInfo["dateAdded"] = localised_date($picData['ctime'], $lastup_date_fmt);
+    $picInfo['dateAdded'] = localised_date($picData['ctime'], $lastup_date_fmt);
 
-    $picInfo["dimensions"] = sprintf($lang_display_image_php['size'], $picData['pwidth'], $picData['pheight']);
+    $picInfo['dimensions'] = sprintf($lang_display_image_php['size'], $picData['pwidth'], $picData['pheight']);
 
-    $picInfo["hitsDetailsLink"] = ($picData['hits'] && $CONFIG['vote_details'] && GALLERY_ADMIN_MODE) ? "show" : "";
+    $picInfo['hitsDetailsLink'] = ($picData['hits'] && $CONFIG['vote_details'] && GALLERY_ADMIN_MODE) ? 'show' : '';
 
-    $picInfo["displayed"] = sprintf($lang_display_image_php['views'], $picData['hits']);
+    $picInfo['displayed'] = sprintf($lang_display_image_php['views'], $picData['hits']);
 
     $pathToPic = $CONFIG['fullpath'] . $picData['filepath'] . $picData['filename'];
 
     if ($CONFIG['read_exif_data']) {
-      $picInfo["exifInfo"] = exif_parse_file($pathToPic);
+      $picInfo['exifInfo'] = exif_parse_file($pathToPic);
     }
 
     if ($CONFIG['read_iptc_data']) {
@@ -338,21 +338,21 @@ class cpgDisplayImageData extends cpgAlbumData {
     }
 
     if (isset($iptc) && is_array($iptc)) {
-      if (isset($iptc['Title'])) $picInfo["iptcTitle"] = trim($iptc['Title']);
-      if (isset($iptc['Copyright'])) $picInfo["iptcCopyright"] = trim($iptc['Copyright']);
-      if (isset($iptc['Keywords'])) $picInfo["iptcKeywords"] = trim(implode(" ",$iptc['Keywords']));
-      if (isset($iptc['Category'])) $picInfo["iptcCategory"] = trim($iptc['Category']);
-      if (isset($iptc['SubCategories'])) $picInfo["iptcSubCategories"] = trim(implode(" ",$iptc['SubCategories']));
+      if (isset($iptc['Title'])) $picInfo['iptcTitle'] = trim($iptc['Title']);
+      if (isset($iptc['Copyright'])) $picInfo['iptcCopyright'] = trim($iptc['Copyright']);
+      if (isset($iptc['Keywords'])) $picInfo['iptcKeywords'] = trim(implode(" ",$iptc['Keywords']));
+      if (isset($iptc['Category'])) $picInfo['iptcCategory'] = trim($iptc['Category']);
+      if (isset($iptc['SubCategories'])) $picInfo['iptcSubCategories'] = trim(implode(" ",$iptc['SubCategories']));
     }
     // Create the absolute URL for display in info
-    $picInfo["URL"] = $CONFIG["ecards_more_pic_target"] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') .basename($_SERVER['PHP_SELF']) . "?albumName=$album&amp;aid=".$picData["aid"]."&amp;pid=".$picData["pid"]."&amp;pos=$pos";
+    $picInfo['URL'] = $CONFIG['ecards_more_pic_target'] . (substr($CONFIG['ecards_more_pic_target'], -1) == '/' ? '' : '/') .basename($_SERVER['PHP_SELF']) . "?albumName=$album&amp;aid=".$picData['aid']."&amp;pid=".$picData['pid']."&amp;pos=$pos";
 
     // with subdomains the variable is $_SERVER["SERVER_NAME"] does not return the right value instead of using a new config variable I reused $CONFIG["ecards_more_pic_target"] no trailing slash in the configure
     // Create the add to fav link
     if (!in_array($picData['pid'], $FAVPICS)) {
-      $picInfo["favPhrase"] = $lang_picinfo['addFav'];
+      $picInfo['favPhrase'] = $lang_picinfo['addFav'];
     } else {
-      $picInfo["favPhrase"] = $lang_picinfo['remFav'];
+      $picInfo['favPhrase'] = $lang_picinfo['remFav'];
     }
 
     return ($picInfo);

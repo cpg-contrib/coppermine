@@ -195,38 +195,38 @@ class cpgAlbumData {
       $row = $db->fetchRow();
       //$breadcrumb_array[] = array($albumName, $row["title"]);
 
-      if ($row["category"] == 0) {
-        $breadcrumb[0]["link"] = "thumbnails.php?album={$row['aid']}";
-        $breadcrumb[0]["title"] = $row["title"];
+      if ($row['category'] == 0) {
+        $breadcrumb[0]['link'] = "thumbnails.php?album={$row['aid']}";
+        $breadcrumb[0]['title'] = $row['title'];
         return $breadcrumb;
       }
       $albLink = "thumbnailsNew.php?album={$row['aid']}";
-      $albTitle = $row["title"];
+      $albTitle = $row['title'];
     } else {
       /**
        * Category is set, breadcrumb will be displayed on index page
        */
-      $row["category"] = $cat;
+      $row['category'] = $cat;
     }
-    if ($row["category"] >= FIRST_USER_CAT) {
-      $cat = $row["category"];
-      $userName = $this->__getUsername($row["category"] - FIRST_USER_CAT);
+    if ($row['category'] >= FIRST_USER_CAT) {
+      $cat = $row['category'];
+      $userName = $this->__getUsername($row['category'] - FIRST_USER_CAT);
       if (!$userName) {
         $userName = "Mr. X";
       }
-      $breadcrumb_array[] = array($row["category"], $userName);
-      $row["parent"] = 1;
+      $breadcrumb_array[] = array($row['category'], $userName);
+      $row['parent'] = 1;
       $CURRENT_CAT_NAME = sprintf($lang_list_categories['xx_s_gallery'], $user_name);
     } else {
-      $cat = $row["category"];
-      $query = "SELECT cid, name, parent FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '".$row["category"]."'";
+      $cat = $row['category'];
+      $query = "SELECT cid, name, parent FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '".$row['category']."'";
       $db->query($query);
       if ($db->nf() == 0) {
         cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_cat'], __FILE__, __LINE__);
       }
       $row = $db->fetchRow();
 
-      $breadcrumb_array[] = array($row["cid"], $row['name']);
+      $breadcrumb_array[] = array($row['cid'], $row['name']);
       $CURRENT_CAT_NAME = $row['name'];
     }
     while($row['parent'] != 0){
@@ -247,14 +247,14 @@ class cpgAlbumData {
      */
     $i = 0;
     foreach ($breadcrumb_array as $category){
-      $breadcrumb[$i]["link"] = "indexNew.php?cat={$category[0]}";
-      $breadcrumb[$i]["title"] = $category[1];
+      $breadcrumb[$i]['link'] = "indexNew.php?cat={$category[0]}";
+      $breadcrumb[$i]['title'] = $category[1];
       $i++;
     }
     if (!empty($albLink)) {
       $i++;
-      $breadcrumb[$i]["link"] = $albLink;
-      $breadcrumb[$i]["title"] = $albTitle;
+      $breadcrumb[$i]['link'] = $albLink;
+      $breadcrumb[$i]['title'] = $albTitle;
     }
     return $breadcrumb;
   }

@@ -37,7 +37,7 @@ require('classes/cpgDisplayImageData.class.php');
  * If smilies is enabled then include smilies.inc.php
  */
 if ($CONFIG['enable_smilies']) {
-  include("include/smilies.inc.php");
+  include('include/smilies.inc.php');
 }
 
 
@@ -154,7 +154,7 @@ if ((USER_ADMIN_MODE && $CURRENT_ALBUM_DATA['category'] == FIRST_USER_CAT + USER
 /**
  * Get the Url for the picture
  */
-$picUrl = $imgData->__getPicUrl($picData, "normal", false);
+$picUrl = $imgData->__getPicUrl($picData, 'normal', false);
 
 /**
  * Get the comment for the picture
@@ -167,10 +167,10 @@ $picComments = $imgData->getPicComments($pid);
 if (USER_CAN_POST_COMMENTS && $CURRENT_ALBUM_DATA['comments'] == 'YES') {
   if (USER_ID) {
     $commentBox['userName'] = USER_NAME;
-    $commentBox['status'] = "loggedin";
+    $commentBox['status'] = 'loggedin';
   } else {
     $commentBox['userName'] = isset($USER['name']) ? strtr($USER['name'], $HTML_SUBST) : $lang_display_comments['your_name'];
-    $commentBox['status'] = "anon";
+    $commentBox['status'] = 'anon';
   }
   $commentBox['maxComSize'] = $CONFIG['max_com_size'];
   $commentBox['enableSmilies'] = $CONFIG['enable_smilies'];
@@ -233,42 +233,42 @@ $pictureTitle = $picData['title'] ? $picData['title'] : strtr(preg_replace("/(.+
 /**#@+
  * Assign to smarty
  */
-$t->assign("breadcrumbHTML", $breadcrumbHTML);
-$t->assign("CONTENT", $CONTENT);
-$t->assign("PAGE_TITLE", $CONFIG['gallery_name'] . " - " . $album_name."/".$pictureTitle);
-$t->assign("GALLERY_DESCRIPTION", $CONFIG['gallery_description']);
+$t->assign('breadcrumbHTML', $breadcrumbHTML);
+$t->assign('CONTENT', $CONTENT);
+$t->assign('PAGE_TITLE', $CONFIG['gallery_name'] . ' - ' . $album_name.'/'.$pictureTitle);
+$t->assign('GALLERY_DESCRIPTION', $CONFIG['gallery_description']);
 /**#@-*/
 
 /**#@+
  * Assign lang array to smarty
  */
-$t->assign("lang_main_menu", $lang_main_menu);
-$t->assign("lang_gallery_admin_menu", $lang_gallery_admin_menu);
+$t->assign('lang_main_menu', $lang_main_menu);
+$t->assign('lang_gallery_admin_menu', $lang_gallery_admin_menu);
 /**#@-*/
 
 /**
  * Assign user related data
  */
 if (!USER_ID) {
-  $t->assign("login", 1);
+  $t->assign('login', 1);
 }
 
 /**#@+
  * Assign user related data to smarty
  */
-$t->assign("GALLERY_ADMIN_MODE", GALLERY_ADMIN_MODE);
-$t->assign("USER_ADMIN_MODE", USER_ADMIN_MODE);
-$t->assign("USER_CAN_CREATE_ALBUMS", USER_CAN_CREATE_ALBUMS);
-$t->assign("USER_IS_ADMIN", USER_IS_ADMIN);
-$t->assign("USER_CAN_UPLOAD_PICTURES", USER_CAN_UPLOAD_PICTURES);
-$t->assign("REFERER", $REFERER);
-$t->assign("cat", $cat);
-$t->assign("USER_NAME", USER_NAME);
-$t->assign("my_cat_id", FIRST_USER_CAT + USER_ID);
+$t->assign('GALLERY_ADMIN_MODE', GALLERY_ADMIN_MODE);
+$t->assign('USER_ADMIN_MODE', USER_ADMIN_MODE);
+$t->assign('USER_CAN_CREATE_ALBUMS', USER_CAN_CREATE_ALBUMS);
+$t->assign('USER_IS_ADMIN', USER_IS_ADMIN);
+$t->assign('USER_CAN_UPLOAD_PICTURES', USER_CAN_UPLOAD_PICTURES);
+$t->assign('REFERER', $REFERER);
+$t->assign('cat', $cat);
+$t->assign('USER_NAME', USER_NAME);
+$t->assign('my_cat_id', FIRST_USER_CAT + USER_ID);
 /**#@-*/
 
 /**
  * Display the common html file
  */
-$t->display ("main.html");
+$t->display ('main.html');
 ?>

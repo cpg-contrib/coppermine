@@ -67,31 +67,31 @@ if ($db->nf() == 0) {
 $row = $db->fetchRow();
 
 $comment = array (
-                  "msg_id" => $msg_id,
-                  "msg_author" => $row['msg_author'],
-                  "msg_body" => $row['msg_body']
+                  'msg_id' => $msg_id,
+                  'msg_author' => $row['msg_author'],
+                  'msg_body' => $row['msg_body']
                  );
 
 $t = new cpgTemplate;
 
 if ($CONFIG['enable_smilies']) {
-  $comment['smilies'] = "enabled";
+  $comment['smilies'] = 'enabled';
 } else {
-  $comment['smilies'] = "disabled";
+  $comment['smilies'] = 'disabled';
 }
 
 if (isset($commentUpdated)) {
-  $t->assign("commentUpdated", $commentUpdated);
-  $t->assign("successMessage", $lang_success["comment_updated"]);
+  $t->assign('commentUpdated', $commentUpdated);
+  $t->assign('successMessage', $lang_success['comment_updated']);
 }
-$t->assign("comment", $comment);
-$t->assign("lang_display_comments", $lang_display_comments);
-$t->assign("CONTENT", $t->fetchHTML("common/editComment.html"));
-$t->assign("PAGE_TITLE", $CONFIG['gallery_name']);
-$t->assign("CHARSET", $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset']);
+$t->assign('comment', $comment);
+$t->assign('lang_display_comments', $lang_display_comments);
+$t->assign('CONTENT', $t->fetchHTML('common/editComment.html'));
+$t->assign('PAGE_TITLE', $CONFIG['gallery_name']);
+$t->assign('CHARSET', $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset']);
 
 /**
   * Using print $t->fetchHTML() instead of $t->display() so that fallback for popup.html can be implemented.
   */
-print $t->fetchHTML("common/popup.html");
+print $t->fetchHTML('common/popup.html');
 ?>

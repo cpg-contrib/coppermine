@@ -309,10 +309,10 @@ class cpgIndexData {
         return;
     }
 
-    $this->totalPages["catAlb"] = ceil($nbAlb / $alb_per_page);
+    $this->totalPages['catAlb'] = ceil($nbAlb / $alb_per_page);
 
-    if ($PAGE > $this->totalPages["catAlb"]) $PAGE = 1;
-    $this->currentPage["catAlb"] = $PAGE;
+    if ($PAGE > $this->totalPages['catAlb']) $PAGE = 1;
+    $this->currentPage['catAlb'] = $PAGE;
     $lower_limit = ($PAGE-1) * $alb_per_page;
     $upper_limit = min($nbAlb, $PAGE * $alb_per_page);
     $limit = "LIMIT " . $lower_limit . "," . ($upper_limit - $lower_limit);
@@ -418,7 +418,7 @@ class cpgIndexData {
             $alb_list[$alb_idx]['album_adm_menu'] = (GALLERY_ADMIN_MODE || (USER_ADMIN_MODE && $cat == USER_ID + FIRST_USER_CAT)) ? $this->__htmlAlbummenu($alb_thumb['aid']) : '';
         }
     }
-    $albStats[$alb_idx]["statistics"] = sprintf($lang_album_list["album_on_page"], $nbAlb, $this->totalPages["catAlb"]);
+    $albStats[$alb_idx]['statistics'] = sprintf($lang_album_list['album_on_page'], $nbAlb, $this->totalPages['catAlb']);
     return array($alb_list, $albStats);
   }
 
@@ -453,9 +453,9 @@ class cpgIndexData {
 
       if (!$nbAlb) return;
 
-      $this->totalPages["albums"] = ceil($nbAlb / $alb_per_page);
+      $this->totalPages['albums'] = ceil($nbAlb / $alb_per_page);
 
-      if ($this->page > $this->totalPages["albums"]) {
+      if ($this->page > $this->totalPages['albums']) {
         $this->page = 1;
       }
       //$this->currentPage["albums"] = $PAGE;
@@ -567,7 +567,7 @@ class cpgIndexData {
               $this->albList[$alb_idx]['album_info'] = sprintf($lang_list_albums['n_pictures'], $count) . ($count ? sprintf($lang_list_albums['last_added'], $last_upload_date) : "") . (($CONFIG['link_pic_count'] && $link_pic_count > 0 ) ? sprintf(", {$lang_list_albums['n_link_pictures']},   {$lang_list_albums['total_pictures']}", $link_pic_count, $count + $link_pic_count) : "");
               $this->albList[$alb_idx]['album_adm_menu'] = (GALLERY_ADMIN_MODE || (USER_ADMIN_MODE && $this->cat == USER_ID + FIRST_USER_CAT)) ? $this->__htmlAlbummenu($alb_thumb['aid']) : ' ';
           }
-          $this->albList[$alb_idx]["statistics"] = sprintf($lang_album_list["album_on_page"], $nbAlb, $this->totalPages["albums"]);
+          $this->albList[$alb_idx]['statistics'] = sprintf($lang_album_list['album_on_page'], $nbAlb, $this->totalPages['albums']);
       }
   }
 
@@ -599,9 +599,9 @@ class cpgIndexData {
       }
 
       $user_per_page = $CONFIG['thumbcols'] * $CONFIG['thumbrows'];
-      $this->totalPages["usrAlb"] = ceil($user_count / $user_per_page);
-      if ($PAGE > $this->totalPages["usrAlb"]) $PAGE = 1;
-      $this->currentPage["usrAlb"] = $PAGE;
+      $this->totalPages['usrAlb'] = ceil($user_count / $user_per_page);
+      if ($PAGE > $this->totalPages['usrAlb']) $PAGE = 1;
+      $this->currentPage['usrAlb'] = $PAGE;
       $lower_limit = ($PAGE-1) * $user_per_page;
       $upper_limit = min($user_count, $PAGE * $user_per_page);
       $row_count = $upper_limit - $lower_limit;
@@ -653,8 +653,8 @@ class cpgIndexData {
 
           $this->usrList[] = array('cat' => FIRST_USER_CAT + $user['user_id'],
               'image' => $user_thumb,
-              'caption' => array("user" => $user["user_name"], "userid" => $user["user_id"], "albums" => $albums_txt, "pictures" => $pictures_txt),
-              "statistics" => sprintf($lang_album_list["album_on_page"], $user_count, $this->totalPages["usrAlb"])
+              'caption' => array('user' => $user['user_name'], 'userid' => $user['user_id'], 'albums' => $albums_txt, 'pictures' => $pictures_txt),
+              'statistics' => sprintf($lang_album_list['album_on_page'], $user_count, $this->totalPages['usrAlb'])
               );
       }
   }

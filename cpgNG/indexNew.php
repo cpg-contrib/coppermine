@@ -63,37 +63,37 @@ $t = new cpgTemplate();
 /**#@+
  * Assign all the data to smarty
  */
-$t->assign("lang_main_menu", $lang_main_menu);
-$t->assign("lang_gallery_admin_menu", $lang_gallery_admin_menu);
-$t->assign("lang_user_admin_menu", $lang_user_admin_menu);
-$t->assign("lang_cat_list", $lang_cat_list);
-$t->assign("lang_album_admin_menu", $lang_album_admin_menu);
+$t->assign('lang_main_menu', $lang_main_menu);
+$t->assign('lang_gallery_admin_menu', $lang_gallery_admin_menu);
+$t->assign('lang_user_admin_menu', $lang_user_admin_menu);
+$t->assign('lang_cat_list', $lang_cat_list);
+$t->assign('lang_album_admin_menu', $lang_album_admin_menu);
 
-$t->assign("cat", $cat);
-$t->assign("pg", $PAGE);
-$t->assign("albcols", $CONFIG['album_list_cols']);
-$t->assign("thumbcols", $CONFIG['thumbcols']);
-$t->assign("thumbrows", $CONFIG['thumbrows']);
-$t->assign("colWidth", ceil(100/$CONFIG['album_list_cols']));
-$t->assign("thumbColWidth", ceil(100/$CONFIG['thumbcols']));
-$t->assign("allowRegistration", $CONFIG['allow_user_registration']);
-$t->assign("GALLERY_ADMIN_MODE", GALLERY_ADMIN_MODE);
-$t->assign("USER_ADMIN_MODE", USER_ADMIN_MODE);
-$t->assign("USER_CAN_CREATE_ALBUMS", USER_CAN_CREATE_ALBUMS);
-$t->assign("USER_IS_ADMIN", USER_IS_ADMIN);
-$t->assign("USER_CAN_UPLOAD_PICTURES", USER_CAN_UPLOAD_PICTURES);
-$t->assign("REFERER", $REFERER);
-$t->assign("USER_NAME", USER_NAME);
-$t->assign("my_cat_id", FIRST_USER_CAT + USER_ID);
-$t->assign("PAGE_TITLE", $lang_index_php['welcome']);
-$t->assign("GALLERY_DESCRIPTION", $CONFIG['gallery_name']);
-$t->assign("USER_NAME", USER_NAME);
-$t->assign("my_cat_id", FIRST_USER_CAT + USER_ID);
+$t->assign('cat', $cat);
+$t->assign('pg', $PAGE);
+$t->assign('albcols', $CONFIG['album_list_cols']);
+$t->assign('thumbcols', $CONFIG['thumbcols']);
+$t->assign('thumbrows', $CONFIG['thumbrows']);
+$t->assign('colWidth', ceil(100/$CONFIG['album_list_cols']));
+$t->assign('thumbColWidth', ceil(100/$CONFIG['thumbcols']));
+$t->assign('allowRegistration', $CONFIG['allow_user_registration']);
+$t->assign('GALLERY_ADMIN_MODE', GALLERY_ADMIN_MODE);
+$t->assign('USER_ADMIN_MODE', USER_ADMIN_MODE);
+$t->assign('USER_CAN_CREATE_ALBUMS', USER_CAN_CREATE_ALBUMS);
+$t->assign('USER_IS_ADMIN', USER_IS_ADMIN);
+$t->assign('USER_CAN_UPLOAD_PICTURES', USER_CAN_UPLOAD_PICTURES);
+$t->assign('REFERER', $REFERER);
+$t->assign('USER_NAME', USER_NAME);
+$t->assign('my_cat_id', FIRST_USER_CAT + USER_ID);
+$t->assign('PAGE_TITLE', $lang_index_php['welcome']);
+$t->assign('GALLERY_DESCRIPTION', $CONFIG['gallery_name']);
+$t->assign('USER_NAME', USER_NAME);
+$t->assign('my_cat_id', FIRST_USER_CAT + USER_ID);
 
 if (!USER_ID) {
-  $t->assign("loggedin", 0);
+  $t->assign('loggedin', 0);
 } else {
-  $t->assign("loggedin", 1);
+  $t->assign('loggedin', 1);
 }
 /**#@-*/
 
@@ -121,18 +121,18 @@ foreach ($elements as $element) {
            * Array to store the category data. Breadcrumb, category data & statistics.
            */
           $indexData->getCatList();
-          $t->assign("indexData", $indexData);
-          $CONTENT .= $t->fetchHTML("common/category.html");
+          $t->assign('indexData', $indexData);
+          $CONTENT .= $t->fetchHTML('common/category.html');
           if (isset($cat) && $cat == USER_GAL_CAT) {
             $indexData->listUsers();
-            $t->assign("indexData", $indexData);
-            $CONTENT .= $t->fetchHTML("common/users.html");
+            $t->assign('indexData', $indexData);
+            $CONTENT .= $t->fetchHTML('common/users.html');
           }
           break;
       case 'alblist':
           $indexData->listAlbums();
-          $t->assign("indexData", $indexData);
-          $CONTENT .= $t->fetchHTML("common/albums.html");
+          $t->assign('indexData', $indexData);
+          $CONTENT .= $t->fetchHTML('common/albums.html');
           break;
       default:
         break;
@@ -143,8 +143,8 @@ foreach ($elements as $element) {
 /**
  * Assign data for main.html
  */
-$t->assign("CONTENT", $CONTENT);
-$t->assign("breadcrumbHTML", $breadcrumbHTML);
+$t->assign('CONTENT', $CONTENT);
+$t->assign('breadcrumbHTML', $breadcrumbHTML);
 
-$t->display ("main.html");
+$t->display ('main.html');
 ?>

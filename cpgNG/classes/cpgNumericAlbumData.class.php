@@ -1,5 +1,5 @@
 <?php
-require_once ("cpgAlbumData.class.php");
+require_once ('cpgAlbumData.class.php');
 class cpgNumericAlbumData extends cpgAlbumData{
   var $cpgAlbumName;
   var $db;
@@ -40,7 +40,7 @@ class cpgNumericAlbumData extends cpgAlbumData{
 
                       $thumb_list[$i]['pos'] = $key < 0 ? $key : $i - 1 + $lower_limit;
                       $thumb_list[$i]['pid'] = $row['pid'];
-                      $thumb_list[$i]['image'] = array("url"=>$pic_url, "alt"=>$row['filename'], "title"=>$pic_title);
+                      $thumb_list[$i]['image'] = array('url'=>$pic_url, 'alt'=>$row['filename'], 'title'=>$pic_title);
                       $thumb_list[$i]['caption'] = $row['caption_text'];
                       $thumb_list[$i]['comment'] = $row['comment_text'];
                       $thumb_list[$i]['owner'] = $row['owner_text'];
@@ -49,15 +49,15 @@ class cpgNumericAlbumData extends cpgAlbumData{
                       $thumb_list[$i]['aid'] = $row['aid'];
                       $i++;
               }
-              $thumb_list["totalPages"] = $total_pages;
-              $thumb_list["albumName"] = $album_name;
-              $thumb_list["thumbCount"] = $thumb_count;
-              $thumb_list["currentPage"] = $page;
-              $thumb_list["album"] = $album;
+              $thumb_list['totalPages'] = $total_pages;
+              $thumb_list['albumName'] = $album_name;
+              $thumb_list['thumbCount'] = $thumb_count;
+              $thumb_list['currentPage'] = $page;
+              $thumb_list['album'] = $album;
               return $thumb_list;
       } else {
-              $thumb_list["albumName"] = $album_name;
-              $thumb_list["thumbCount"] = 0;
+              $thumb_list['albumName'] = $album_name;
+              $thumb_list['thumbCount'] = 0;
               return $thumb_list;
       }
   }
@@ -70,7 +70,7 @@ class cpgNumericAlbumData extends cpgAlbumData{
         global $USER, $CONFIG, $ALBUM_SET, $CURRENT_CAT_NAME, $CURRENT_ALBUM_KEYWORD, $HTML_SUBST, $THEME_DIR, $FAVPICS, $FORBIDDEN_SET_DATA;
         global $album_date_fmt, $lastcom_date_fmt, $lastup_date_fmt, $lasthit_date_fmt, $cat;
         global $lang_get_pic_data, $lang_meta_album_names, $lang_errors;
-        $forbidden_set_string = "";
+        $forbidden_set_string = '';
 
         $sort_array = array(
           'na' => 'filename ASC',
@@ -131,14 +131,14 @@ class cpgNumericAlbumData extends cpgAlbumData{
 
         if ($set_caption) {
           foreach ($rowset as $key => $row){
-            $caption = "";
-            $comment = "";
-            $owner = "";
-            $ownerLink = "";
+            $caption = '';
+            $comment = '';
+            $owner = '';
+            $ownerLink = '';
             $caption .= ($rowset[$key]['title']||$rowset[$key]['hits']) ? $rowset[$key]['title'] : '';
             if ($CONFIG['views_in_thumbview']){
                 if ($rowset[$key]['title']){
-                    $caption .= "&nbsp;&ndash;&nbsp;";
+                    $caption .= '&nbsp;&ndash;&nbsp;';
                 }
                 $caption .= sprintf($lang_get_pic_data['n_views'], $rowset[$key]['hits']);
             }

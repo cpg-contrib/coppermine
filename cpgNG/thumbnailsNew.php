@@ -77,31 +77,31 @@ $CONTENT = $t->getThumbnailHTML($thumbData);
 /**#@+
  * Assign all the data to smarty
  */
-$t->assign("breadcrumbHTML", $breadcrumbHTML);
-$t->assign("CONTENT", $CONTENT);
-$t->assign("PAGE_TITLE", $CONFIG['gallery_name'] . " - " . $album_name);
-$t->assign("GALLERY_DESCRIPTION", $CONFIG['gallery_description']);
+$t->assign('breadcrumbHTML', $breadcrumbHTML);
+$t->assign('CONTENT', $CONTENT);
+$t->assign('PAGE_TITLE', $CONFIG['gallery_name'] . ' - ' . $album_name);
+$t->assign('GALLERY_DESCRIPTION', $CONFIG['gallery_description']);
 
-$t->assign("lang_main_menu", $lang_main_menu);
-$t->assign("lang_gallery_admin_menu", $lang_gallery_admin_menu);
-$t->assign("lang_user_admin_menu", $lang_user_admin_menu);
+$t->assign('lang_main_menu', $lang_main_menu);
+$t->assign('lang_gallery_admin_menu', $lang_gallery_admin_menu);
+$t->assign('lang_user_admin_menu', $lang_user_admin_menu);
 
 if (!USER_ID) {
-  $t->assign("loggedin", 0);
+  $t->assign('loggedin', 0);
 } else {
-  $t->assign("loggedin", 1);
+  $t->assign('loggedin', 1);
 }
 
-$t->assign("GALLERY_ADMIN_MODE", GALLERY_ADMIN_MODE);
-$t->assign("USER_ADMIN_MODE", USER_ADMIN_MODE);
-$t->assign("USER_CAN_CREATE_ALBUMS", USER_CAN_CREATE_ALBUMS);
-$t->assign("USER_IS_ADMIN", USER_IS_ADMIN);
-$t->assign("USER_CAN_UPLOAD_PICTURES", USER_CAN_UPLOAD_PICTURES);
-$t->assign("REFERER", $REFERER);
-$t->assign("cat", $cat);
-$t->assign("USER_NAME", USER_NAME);
-$t->assign("my_cat_id", FIRST_USER_CAT + USER_ID);
+$t->assign('GALLERY_ADMIN_MODE', GALLERY_ADMIN_MODE);
+$t->assign('USER_ADMIN_MODE', USER_ADMIN_MODE);
+$t->assign('USER_CAN_CREATE_ALBUMS', USER_CAN_CREATE_ALBUMS);
+$t->assign('USER_IS_ADMIN', USER_IS_ADMIN);
+$t->assign('USER_CAN_UPLOAD_PICTURES', USER_CAN_UPLOAD_PICTURES);
+$t->assign('REFERER', $REFERER);
+$t->assign('cat', $cat);
+$t->assign('USER_NAME', USER_NAME);
+$t->assign('my_cat_id', FIRST_USER_CAT + USER_ID);
 /**#@-*/
 
-$t->display ("main.html");
+$t->display ('main.html');
 ?>

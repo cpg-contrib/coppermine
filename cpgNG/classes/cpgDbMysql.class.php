@@ -12,16 +12,16 @@
 class cpgDB {
 
   /* public: connection parameters */
-  var $Host     = "";
-  var $Database = "";
-  var $User     = "";
-  var $Password = "";
+  var $Host     = '';
+  var $Database = '';
+  var $User     = '';
+  var $Password = '';
 
   /* public: configuration parameters */
   var $Auto_Free     = 0;     ## Set to 1 for automatic mysql_free_result()
   var $Debug         = 0;     ## Set to 1 for debugging messages.
-  var $Halt_On_Error = "yes"; ## "yes" (halt with message), "no" (ignore errors quietly), "report" (ignore errror, but spit a warning)
-  var $Seq_Table     = "db_sequence";
+  var $Halt_On_Error = 'yes'; ## "yes" (halt with message), "no" (ignore errors quietly), "report" (ignore errror, but spit a warning)
+  var $Seq_Table     = 'db_sequence';
 
   /* public: result array and current row number */
   var $Record   = array();
@@ -29,10 +29,10 @@ class cpgDB {
 
   /* public: current error number and error text */
   var $Errno    = 0;
-  var $Error    = "";
+  var $Error    = '';
 
   /* public: this is an api revision, not a CVS revision. */
-  var $type     = "mysql";
+  var $type     = 'mysql';
 
   /* private: link and query handles */
   var $Link_ID  = 0;
@@ -47,10 +47,10 @@ class cpgDB {
   function cpgDB($query = "") {
       global $CONFIG;
 
-      $this->Host     = $CONFIG["dbserver"];
-      $this->Database = $CONFIG["dbname"];
-      $this->User     = $CONFIG["dbuser"];
-      $this->Password = $CONFIG["dbpass"];
+      $this->Host     = $CONFIG['dbserver'];
+      $this->Database = $CONFIG['dbname'];
+      $this->User     = $CONFIG['dbuser'];
+      $this->Password = $CONFIG['dbpass'];
       $this->query($query);
   }
 
@@ -74,15 +74,15 @@ class cpgDB {
   }
 
   /* public: connection management */
-  function connect($Database = "", $Host = "", $User = "", $Password = "") {
+  function connect($Database = '', $Host = '', $User = '', $Password = '') {
     /* Handle defaults */
-    if ("" == $Database)
+    if ('' == $Database)
       $Database = $this->Database;
-    if ("" == $Host)
+    if ('' == $Host)
       $Host     = $this->Host;
-    if ("" == $User)
+    if ('' == $User)
       $User     = $this->User;
-    if ("" == $Password)
+    if ('' == $Password)
       $Password = $this->Password;
 
     /* establish connection, select database */
@@ -125,7 +125,7 @@ class cpgDB {
   /* public: perform a query */
   function query($Query_String) {
     /* No empty queries, please, since PHP4 chokes on them. */
-    if ($Query_String == "")
+    if ($Query_String == '')
       /* The empty query string is passed on from the constructor,
        * when calling the class without a query, e.g. in situations
        * like these: '$db = new DB_Sql_Subclass;'
@@ -162,7 +162,7 @@ class cpgDB {
   /* public: walk result set */
   function nextRecord() {
     if (!$this->Query_ID) {
-      $this->halt("nextRecord called with no query pending.");
+      $this->halt('nextRecord called with no query pending.');
       return 0;
     }
 
@@ -215,13 +215,13 @@ class cpgDB {
   }
 
   /* public: table locking */
-  function lock($table, $mode="write") {
+  function lock($table, $mode='write') {
     $this->connect();
 
-    $query="lock tables ";
+    $query='lock tables ';
     if (is_array($table)) {
       while (list($key,$value)=each($table)) {
-        if ($key=="read" && $key!=0) {
+        if ($key=='read' && $key!=0) {
           $query.="$value read, ";
         } else {
           $query.="$value $mode, ";
@@ -244,7 +244,7 @@ class cpgDB {
 
     $res = @mysql_query("unlock tables", $this->Link_ID);
     if (!$res) {
-      $this->halt("unlock() failed.");
+      $this->halt('unlock() failed.');
       return 0;
     }
     return $res;
@@ -330,11 +330,11 @@ class cpgDB {
       $this->connect();
       $id = @mysql_list_fields($this->Database, $table);
       if (!$id)
-        $this->halt("Metadata query failed.");
+        $this->halt('Metadata query failed.');
     } else {
       $id = $this->Query_ID;
       if (!$id)
-        $this->halt("No query specified.");
+        $this->halt('No query specified.');
     }
 
     $count = @mysql_num_fields($id);
@@ -342,22 +342,22 @@ class cpgDB {
     // made this IF due to performance (one if is faster than $count if's)
     if (!$full) {
       for ($i=0; $i<$count; $i++) {
-        $res[$i]["table"] = @mysql_field_table ($id, $i);
-        $res[$i]["name"]  = @mysql_field_name  ($id, $i);
-        $res[$i]["type"]  = @mysql_field_type  ($id, $i);
-        $res[$i]["len"]   = @mysql_field_len   ($id, $i);
-        $res[$i]["flags"] = @mysql_field_flags ($id, $i);
+        $res[$i]['table'] = @mysql_field_table ($id, $i);
+        $res[$i]['name']  = @mysql_field_name  ($id, $i);
+        $res[$i]['type']  = @mysql_field_type  ($id, $i);
+        $res[$i]['len']   = @mysql_field_len   ($id, $i);
+        $res[$i]['flags'] = @mysql_field_flags ($id, $i);
       }
     } else { // full
-      $res["num_fields"]= $count;
+      $res['num_fields']= $count;
 
       for ($i=0; $i<$count; $i++) {
-        $res[$i]["table"] = @mysql_field_table ($id, $i);
-        $res[$i]["name"]  = @mysql_field_name  ($id, $i);
-        $res[$i]["type"]  = @mysql_field_type  ($id, $i);
-        $res[$i]["len"]   = @mysql_field_len   ($id, $i);
-        $res[$i]["flags"] = @mysql_field_flags ($id, $i);
-        $res["meta"][$res[$i]["name"]] = $i;
+        $res[$i]['table'] = @mysql_field_table ($id, $i);
+        $res[$i]['name']  = @mysql_field_name  ($id, $i);
+        $res[$i]['type']  = @mysql_field_type  ($id, $i);
+        $res[$i]['len']   = @mysql_field_len   ($id, $i);
+        $res[$i]['flags'] = @mysql_field_flags ($id, $i);
+        $res['meta'][$res[$i]['name']] = $i;
       }
     }
 
@@ -370,13 +370,13 @@ class cpgDB {
   function halt($msg) {
     $this->Error = @mysql_error($this->Link_ID);
     $this->Errno = @mysql_errno($this->Link_ID);
-    if ($this->Halt_On_Error == "no")
+    if ($this->Halt_On_Error == 'no')
       return;
 
     $this->haltmsg($msg);
 
-    if ($this->Halt_On_Error != "report")
-      die("Session halted.");
+    if ($this->Halt_On_Error != 'report')
+      die('Session halted.');
   }
 
   function haltmsg($msg) {
@@ -391,9 +391,9 @@ class cpgDB {
     $i=0;
     while ($info=mysql_fetch_row($this->Query_ID))
      {
-      $return[$i]["table_name"]= $info[0];
-      $return[$i]["tablespace_name"]=$this->Database;
-      $return[$i]["database"]=$this->Database;
+      $return[$i]['table_name']= $info[0];
+      $return[$i]['tablespace_name']=$this->Database;
+      $return[$i]['database']=$this->Database;
       $i++;
      }
    return $return;
