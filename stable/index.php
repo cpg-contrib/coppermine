@@ -126,7 +126,7 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
                     $user_thumb ="";
                 }
                 $subcat['name'] = $subcat['name'];
-                $subcat['description'] = preg_replace("/<br.*?>[\r\n]*/i", '<br />' . $ident , bb_decode($subcat['description']));
+                $subcat['description'] = preg_replace("/<br.*?>[\r\n]*/i", '<br />', bb_decode($subcat['description']));
                 $link = "<a href=\"index.php?cat={$subcat['cid']}\">{$subcat['name']}</a>";
                 $user_thumb = $ident.$user_thumb;
                 if ($pic_count == 0 && $album_count == 0) {
