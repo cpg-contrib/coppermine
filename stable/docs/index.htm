@@ -1444,7 +1444,12 @@ Create a new file named <b>redir.php</b> in your <b>PunBB directory</b>, and pas
 $cpg_url = 'http://www.yoursite.com/coppermine';
 
 if (isset($_POST['redir'])){
-        echo '&lt;html&gt;&lt;body onload="document.redir.submit();"&gt;&lt;form name="redir" method="post" action="'.$_POST['redir'].'"&gt;&lt;/form&gt;&lt;/body&gt;&lt;/html&gt;';
+        echo '&lt;html&gt;
+              &lt;body onload="document.redir.submit();"&gt;
+              &lt;form name="redir" method="post" action="'.$_POST['redir'].'"&gt;
+              &lt;/form&gt;
+              &lt;/body&gt;
+              &lt;/html&gt;';
 } else {
         header("Location: $cpg_url");
 }
