@@ -68,7 +68,7 @@ function log_delete( $log = null ) {
         } else {
                	unlink('logs/'.$log.'.log.php');
         }
-        header('refresh: 2; url=viewlog.php');
+        header('Location: viewlog.php');
 }
 
 function& getloglist($folder)
