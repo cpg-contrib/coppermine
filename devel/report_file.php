@@ -200,8 +200,11 @@ echo <<<EOT
                 </td>
         </tr>
         <tr>
-                <td class="tableb" colspan="3" valign="top">
-
+                <td colspan="3" align="center" class="tablef">
+                        <input type="submit" class="button" value="{$lang_report_php['title']}">
+                        </form>
+                </td>
+        </tr>
 EOT;
 
 endtable();
