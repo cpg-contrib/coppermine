@@ -435,6 +435,15 @@ if (defined('SEARCHNEW_PHP')) {
 }
 
 // ------------------------------------------------------------------------- //
+// File stat_details.php
+// ------------------------------------------------------------------------- //
+
+if (defined('STAT_DETAILS_PHP')) {
+  $lang_stat_details_php_en = cpg_get_default_lang_var('lang_stat_details_php','english');
+  $lang_stat_details_php = array_merge($lang_stat_details_php_en, $lang_stat_details_php);
+}
+
+// ------------------------------------------------------------------------- //
 // File upload.php
 // ------------------------------------------------------------------------- //
 

@@ -1678,6 +1678,31 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'view_thumbs' => 'Thumbnail view', //cpg1.4
 );
 
+// ------------------------------------------------------------------------- //
+// File stat_details.php //cpg 1.4
+// ------------------------------------------------------------------------- //
+
+if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
+  'show_hide' => 'show/hide this column', //cpg 1.4
+  'vote' => 'Vote Details', //cpg 1.4
+  'hits' => 'Hit Details', //cpg 1.4
+  'stats' => 'Vote Statistics', //cpg 1.4
+  'sdate' => 'Date', //cpg 1.4
+  'rating' => 'Rating', //cpg 1.4
+  'search_phrase' => 'Search phrase', //cpg 1.4
+  'referer' => 'Referer', //cpg 1.4
+  'browser' => 'Browser', //cpg 1.4
+  'os' => 'Operating System', //cpg 1.4
+  'ip' => 'IP', // cpg1.4
+  'sort_by_xxx' => 'Sort by %s', // cpg1.4
+  'ascending' => 'ascending', // cpg1.4
+  'descending' => 'descending', // cpg1.4
+  'internal' => 'int', // cpg1.4
+  'close' => 'close', // cpg1.4
+  'hide_internal_referers' => 'hide internal referers', // cpg1.4
+  'date_display' => 'Date display', // cpg1.4
+  'submit' => 'submit / refresh', // cpg1.4
+);
 
 // ------------------------------------------------------------------------- //
 // File thumbnails.php
@@ -2027,37 +2052,6 @@ if (defined('VIEWLOG_PHP')) $lang_viewlog_php = array(
   'no_logs' => 'No logs created.', //cpg 1.4
 );
 
-// ------------------------------------------------------------------------- //
-// File stat_details.php //cpg 1.4
-// ------------------------------------------------------------------------- //
-
-if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
-  'title' => 'Vote Details', //cpg 1.4
-  'stats' => 'Vote Statistics', //cpg 1.4
-  'date' => 'Date', //cpg 1.4
-  'rating' => 'Rating', //cpg 1.4
-  'referer' => 'Referer', //cpg 1.4
-  'browser' => 'Browser', //cpg 1.4
-  'os' => 'Operating System', //cpg 1.4
-  'ip' => 'IP', // cpg1.4
-  'sort_by_xxx' => 'Sort by %s', // cpg1.4
-  'ascending' => 'ascending', // cpg1.4
-  'descending' => 'descending', // cpg1.4
-);
-
-// ------------------------------------------------------------------------- //
-// File hitDetails.php //cpg 1.4
-// ------------------------------------------------------------------------- //
-
-if (defined('HITDETAILS_PHP')) $lang_hitdetails_php = array(
-  'title' => 'Hit Details', //cpg 1.4
-  'date' => 'Date', //cpg 1.4
-  'search_phrase' => 'Search', //cpg 1.4
-  'rating' => 'Rating', //cpg 1.4
-  'referer' => 'Referer', //cpg 1.4
-  'browser' => 'Browser', //cpg 1.4
-  'os' => 'O.S.' //cpg 1.4
-);
 
 // ------------------------------------------------------------------------- //
 // File xp_publish.php //cpg 1.4
