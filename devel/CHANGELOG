@@ -184,3 +184,5 @@ Config.php renamed admin.php - 25 September 2004, Casper
 Added check/uncheck all fields in reviewcom.php - 27 September 2004, GauGau
 Added link to edit files, parent category and thumbnail view in album properties - 27 September 2004, GauGau
 Added GIF support for GD back into Coppermine - 27 September 2004, kegobeer
+Fixed typos in French language file (user contribution) - 29 September 2004, GauGau
+Added overhauled Russian translation (user contribution) - 29 September 2004, GauGau
