@@ -61,7 +61,7 @@ function display_group_list()
             echo <<< EOT
         <tr>
                 <td class="$table_background" align="center" valign="top" style="padding-left: 1px; padding-right: 1px" >
-                        <input type="checkbox" name="delete_group_{$group['group_id']}" value="{$group['group_id']}" class="checkbox">
+                        <input type="checkbox" name="delete_group[]" value="{$group['group_id']}" class="checkbox">
                 </td>
 
 EOT;
