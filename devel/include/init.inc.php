@@ -160,6 +160,7 @@ $CONFIG['TABLE_BANNED']                = $CONFIG['TABLE_PREFIX']."banned";
 $CONFIG['TABLE_EXIF']                = $CONFIG['TABLE_PREFIX']."exif";
 $CONFIG['TABLE_FILETYPES']          = $CONFIG['TABLE_PREFIX']."filetypes";
 $CONFIG['TABLE_ECARDS']          = $CONFIG['TABLE_PREFIX']."ecards";
+$CONFIG['TABLE_TEMPDATA']        = $CONFIG['TABLE_PREFIX']."temp_data";
 
 // User DB system
 if (defined('UDB_INTEGRATION')) require 'bridge/' . UDB_INTEGRATION . '.inc.php';
@@ -206,6 +207,10 @@ if (defined('UDB_INTEGRATION')) {
         define('USER_CAN_POST_COMMENTS', (int)$USER_DATA['can_post_comments']);
         define('USER_CAN_UPLOAD_PICTURES', (int)$USER_DATA['can_upload_pictures']);
         define('USER_CAN_CREATE_ALBUMS', (int)$USER_DATA['can_create_albums']);
+        define('USER_UPLOAD_FORM', (int)$USER_DATA['upload_form_config']);
+        define('CUSTOMIZE_UPLOAD_FORM', (int)$USER_DATA['custom_user_upload']);
+        define('NUM_FILE_BOXES', (int)$USER_DATA['num_file_upload']);
+        define('NUM_URI_BOXES', (int)$USER_DATA['num_URI_upload']);
         mysql_free_result($results);
     } else {
         $results = db_query("SELECT * FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = 3");
@@ -221,6 +226,10 @@ if (defined('UDB_INTEGRATION')) {
         define('USER_CAN_POST_COMMENTS', (int)$USER_DATA['can_post_comments']);
         define('USER_CAN_UPLOAD_PICTURES', (int)$USER_DATA['can_upload_pictures']);
         define('USER_CAN_CREATE_ALBUMS', 0);
+        define('USER_UPLOAD_FORM', (int)$USER_DATA['upload_form_config']);
+        define('CUSTOMIZE_UPLOAD_FORM', (int)$USER_DATA['custom_user_upload']);
+        define('NUM_FILE_BOXES', (int)$USER_DATA['num_file_upload']);
+        define('NUM_URI_BOXES', (int)$USER_DATA['num_URI_upload']);
         mysql_free_result($results);
     }
 }
