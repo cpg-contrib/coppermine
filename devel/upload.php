@@ -1308,6 +1308,9 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
             // We pop off the end of the $pieces array to obtain the possible file name.
             $possible_file_name = array_pop($pieces);
 
+            // Strip the hex equivalent for spaces from the possible file name and restore the spaces.
+            $possible_file_name = strtr($possible_file_name, array("%20"=>" "));
+
             // Check possible filename and extension:
 
             // Check that the possible file name has a valid name and extension, and replace forbidden chars with underscores.
