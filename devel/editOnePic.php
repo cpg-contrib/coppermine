@@ -311,7 +311,7 @@ print <<<EOT
         <tr>
                 <td colspan="3" align="center" class="tablef">
                         <input type="submit" value="{$lang_editpics_php['apply']}" name="submitDescription" class="button">
-               <br><a href="$thumb_link" class="button">$lang_back</a></td>
+               </td>
                 </form>
         </tr>
 </table>
