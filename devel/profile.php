@@ -216,6 +216,7 @@ if (isset($_POST['change_password']) && USER_ID && UDB_INTEGRATION == 'coppermin
 
 	if ($CONFIG['enable_encrypted_passwords']) {
 		$new_pass = md5($new_pass);
+		$current_pass = md5($current_pass);
 	}
 
     $sql = "UPDATE {$cpg_udb->usertable} SET " .
