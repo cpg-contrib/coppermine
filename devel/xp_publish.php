@@ -25,15 +25,13 @@
 // Original implementation comes from Gallery                                //
 // http://gallery.menalto.com                                                //
 // ------------------------------------------------------------------------- //
-
-/*
-$Id$
-*/
+// $Id$
+// ------------------------------------------------------------------------- //
 
 // Declare we are in Coppermine.
 define('IN_COPPERMINE', true);
 
-// Set the language block. 
+// Set the language block.
 define('XP_PUBLISH_PHP', true);
 
 // Language file entry for xp_publish.php
@@ -64,7 +62,7 @@ define('ALBMGR_PHP', true);
 require('include/init.inc.php');
 require('include/picmgmt.inc.php');
 
-// Set the log file path.  
+// Set the log file path.
 define('LOGFILE', 'xp_publish.log');
 // ------------------------------------------------------------------------- //
 
@@ -335,6 +333,7 @@ li {
 }
 -->
 </style>
+<!-- $Id$ -->
 </head>
 
 <body>
@@ -872,7 +871,7 @@ function process_picture()
         echo ("SUCCESS");
         exit;
     }
-    
+
 }
 // ------------------------------------------------------------------------- //
 if (USER_IS_ADMIN && !GALLERY_ADMIN_MODE) {
