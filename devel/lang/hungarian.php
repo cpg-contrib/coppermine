@@ -63,8 +63,8 @@ $lang_meta_album_names = array(
         'lastup' => 'Friss feltöltések',
         'lastalb'=> 'Utoljára módosított albumok',
         'lastcom' => 'Friss hozzászólások',
-        'topn' => 'Legtöbbször nézett',
-        'toprated' => 'Legtöbb szavazat',
+        'topn' => 'Top-nézett',
+        'toprated' => 'Top-szavazat',
         'lasthits' => 'Utoljára nézett',
         'search' => 'Keresés eredménye',
         'favpics'=> 'Kedvenc Fájlok' //cpg1.3.0
@@ -89,7 +89,7 @@ $lang_errors = array(
         'not_with_udb' => 'Ez a funkció le van tiltva a Coppermine-ban, mivel a fórum sw része. A kért funkciót vagy nem támogatja a jelen konfiguráció, vagy a fórum sw kezeli.',
         'offline_title' => 'Offline', //cpg1.3.0
         'offline_text' => 'A galéria jelenleg  offline - látogass vissza késõbb', //cpg1.3.0
-        'ecards_empty' => 'Jelenleg nincs megjeleníthetõ e-képeslap. Ellenõrizd, hogy engedélyezted -e az e-képeslapok naplózását a coppermine konfigurációban!', //cpg1.3.0
+        'ecards_empty' => 'Jelenleg nincs megjeleníthetõ e-képeslap. Ellenõrizd, hogy engedélyezted -e az e-lapok naplózását a coppermine konfigurációban!', //cpg1.3.0
         'action_failed' => 'A mûvelet sikertelen.  Coppermine nem tudja feldolgozni a kérést.', //cpg1.3.0
         'no_zip' => 'A ZIP fájlok feldolgozásához szükséges könyvtár nem áll rendelkezésre. Fordulj a Coppermine adminisztrátorhoz.', //cpg1.3.0
         'zip_type' => 'Nincs jogosultságod ZIP fájlok feltöltésére.', //cpg1.3.0
@@ -105,22 +105,22 @@ $lang_main_menu = array(
         'alb_list_title' => 'Ugrás az albumlistára',
         'alb_list_lnk' => 'Albumlista',
         'my_gal_title' => 'Ugrás a személyes képtárra',
-        'my_gal_lnk' => 'Én képtáram',
-        'my_prof_lnk' => 'Én profilom',
+        'my_gal_lnk' => 'Képtáram',
+        'my_prof_lnk' => 'Profilom',
         'adm_mode_title' => 'Váltás adminisztrátor módra',
-        'adm_mode_lnk' => 'Adminisztrátor mód',
+        'adm_mode_lnk' => 'Admin mód',
         'usr_mode_title' => 'Váltás felhasználó módra',
-        'usr_mode_lnk' => 'Felhasználó mód',
+        'usr_mode_lnk' => 'Felhaszn.mód',
         'upload_pic_title' => 'Fájl feltöltés az albumba', //cpg1.3.0
-        'upload_pic_lnk' => 'Fájl feltöltése', //cpg1.3.0
+        'upload_pic_lnk' => 'Feltöltés', //cpg1.3.0
         'register_title' => 'Felhasználó hozzáadása',
         'register_lnk' => 'Regisztráció',
         'login_lnk' => 'Bejelentkezés',
         'logout_lnk' => 'Kijelentkezés',
         'lastup_lnk' => 'Friss feltöltések',
         'lastcom_lnk' => 'Friss hozzászólások',
-        'topn_lnk' => 'Legtöbbször nézett',
-        'toprated_lnk' => 'Legtöbb szavazat',
+        'topn_lnk' => 'Top-nézett',
+        'toprated_lnk' => 'Top-szavazat',
         'search_lnk' => 'Keresés',
         'fav_lnk' => 'Kedvencek',
         'memberlist_title' => 'Taglista megmutatása', //cpg1.3.0
@@ -141,13 +141,13 @@ $lang_gallery_admin_menu = array(
         'searchnew_lnk' => 'Kötegelt feltöltés',
         'util_lnk' => 'Admin eszközök',
         'ban_lnk' => 'Felhasználók kitiltása',
-        'db_ecard_lnk' => 'E-képeslapok megtekintése', //cpg1.3.0
+        'db_ecard_lnk' => 'E-lapok megtekintése', //cpg1.3.0
 );
 
 $lang_user_admin_menu = array(
         'albmgr_lnk' => 'Személyes albumok szerkesztése',
         'modifyalb_lnk' => 'Személyes albumok tulajdonságai',
-        'my_prof_lnk' => 'Én profilom',
+        'my_prof_lnk' => 'Profilom',
 );
 
 $lang_cat_list = array(
@@ -180,7 +180,7 @@ $lang_img_nav_bar = array(
         'pic_info_title' => 'Fájl információ megtekintése / elrejtése', //cpg1.3.0
         'slideshow_title' => 'Diavetítés',
         'ecard_title' => 'Fájl elküldése e-képeslapként', //cpg1.3.0
-        'ecard_disabled' => 'e-képeslapok küldése nem engedélyezett',
+        'ecard_disabled' => 'e-lapok küldése nem engedélyezett',
         'ecard_disabled_msg' => 'Nincs jogosultságod e-képeslap küldésére', //js-alert //cpg1.3.0
         'prev_title' => 'Elõzõ fájl', //cpg1.3.0
         'next_title' => 'Következõ fájl', //cpg1.3.0
@@ -338,7 +338,7 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
         'confirm_delete2' => '\nA tartalmazott összes kép és hozzászólás törlõdik!', //js-alert
         'select_first' => 'Elõször válassz albumot', //js-alert
         'alb_mrg' => 'Albummenedzser',
-        'my_gallery' => '* Az én képtáram *',
+        'my_gallery' => '* Képtáram *',
         'no_category' => '* Nincs kategória *',
         'delete' => 'Törlés',
         'new' => 'Új',
@@ -387,7 +387,7 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'th_any' => 'Max Aspect',
         'th_ht' => 'Magasság',
         'th_wd' => 'Szélesség',
-        'label' => 'cimke', //cpg1.3.0
+        'label' => 'címke', //cpg1.3.0
         'item' => 'tétel', //cpg1.3.0
         'debug_everyone' => 'Mindenki', //cpg1.3.0
         'debug_admin' => 'Csak Admin', //cpg1.3.0
@@ -398,9 +398,9 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Képtár neve', 'gallery_name', 0),
         array('Képtár leírása', 'gallery_description', 0),
         array('Képtár adminisztrátor email címe', 'gallery_admin_email', 0),
-        array('Az e-képeslapok  \'További képek\' linkjéhez tartozó webcím', 'ecards_more_pic_target', 0),
+        array('Az e-lapok  \'További képek\' linkjéhez tartozó webcím', 'ecards_more_pic_target', 0),
         array('Galéria offline', 'offline', 1), //cpg1.3.0
-        array('E-képeslapok naplózása', 'log_ecards', 1), //cpg1.3.0
+        array('E-lapok naplózása', 'log_ecards', 1), //cpg1.3.0
         array('Kedvencek ZIP-letöltésének engedélyezése', 'enable_zipdownload', 1), //cpg1.3.0
 
         'Nyelv, téma és karakterkészlet beállítások',
@@ -434,14 +434,14 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Az ikon alatt megjelenjen -e a hozzászólások száma', 'display_comment_count', 1),
         array('Feltöltõ nevének kijelzése az ikon alatt', 'display_uploader', 1), //cpg1.3.0
         array('Fájlok alapértelmezett sorrendje', 'default_sort_order', 3), //cpg1.3.0
-        array('Szavazatok minimuma a \'legtöbbször nézett\' listára való felkerüléshez', 'min_votes_for_rating', 0),
+        array('Szavazatok minimuma a \'top-szavazat\' listára való felkerüléshez', 'min_votes_for_rating', 0),
 
         'Kép-nézet és hozzászólás beállítások',
         array('A fájl-nézethez tartozó táblázat szélessége (pixel vagy %)', 'picture_table_width', 0), //cpg1.3.0
         array('Fájl információk láthatók alapértelmezésben', 'display_pic_info', 1), //cpg1.3.0
         array('Trágár szavak kiszûrése a hozzászólásokból', 'filter_bad_words', 1),
         array('Hangulatkarakterek engedélyezése a hozzászólásokban', 'enable_smilies', 1),
-        array('Több egymást követõ hozzászólás engedélyezése egy képhez ugyanazon felhasználónak (visszaélés tvédelem tiltása)', 'disable_comment_flood_protect', 1), //cpg1.3.0
+        array('Több egymást követõ hozzászólás engedélyezése egy képhez ugyanazon felhasználónak (visszaélés védelem tiltása)', 'disable_comment_flood_protect', 1), //cpg1.3.0
         array('A képleírás maximális hossza', 'max_img_desc_length', 0),
         array('Maximális karakterszám szavanként', 'max_com_wlength', 0),
         array('Sorok maximális száma hozzászólásonként', 'max_com_lines', 0),
@@ -449,7 +449,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Filmcsík megjelenítése', 'display_film_strip', 1),
         array('Képkockák száma a filmcsíkban', 'max_film_strip_items', 0),
         array('Adminisztrátor értesítése a hozzászólásokról e-mailben', 'email_comment_notification', 1), //cpg1.3.0
-        array('Diavetítés idõ intervalluma miliszekundumban (1 second = 1000 milliseconds)', 'slideshow_interval', 0), //cpg1.3.0
+        array('Diavetítés idõ intervalluma milliszekundumban (1 second = 1000 milliseconds)', 'slideshow_interval', 0), //cpg1.3.0
 
         'Fájl- és ikonbeállítások', //cpg1.3.0
         array('JPEG fájlok minõsége', 'jpeg_qual', 0),
@@ -461,21 +461,21 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Feltöltött képek / videók maximális szélessége és magassága (pixel)', 'max_upl_width_height', 0), //cpg1.3.0
 
   	'Fájlok és ikonok extra beállításai', //cpg1.3.0
-  	array('Privát album ikon megjelenítése be nem jelentkezett felshasználó esetén','show_private',1), //cpg1.3.0
+  	array('Privát album ikon megjelenítése be nem jelentkezett felhasználó esetén','show_private',1), //cpg1.3.0
   	array('Fájlnevekben nem engedélyezett karakterek', 'forbiden_fname_char',0), //cpg1.3.0
   	//array('Feltöltött képek megengedett fájlkiterjesztései', 'allowed_file_extensions',0), //cpg1.3.0
   	array('Megengedett képtípusok', 'allowed_img_types',0), //cpg1.3.0
   	array('Megengedett videó típusok', 'allowed_mov_types',0), //cpg1.3.0
   	array('Megengedett audió típusok', 'allowed_snd_types',0), //cpg1.3.0
-  	array('Megengedett dokument típusok', 'allowed_doc_types',0), //cpg1.3.0
-  	array('Képek átmáretezésének módszere','thumb_method',2), //cpg1.3.0
+  	array('Megengedett dokumentum típusok', 'allowed_doc_types',0), //cpg1.3.0
+  	array('Képek átméretezésének módszere','thumb_method',2), //cpg1.3.0
   	array('Fájlelérési útvonal az ImageMagick \'convert\' programhoz (például /usr/bin/X11/)', 'impath', 0), //cpg1.3.0
   	//array('Megengedett képtípusok (csak ImageMagick esetén)', 'allowed_img_types',0), //cpg1.3.0
   	array('ImageMagick parancssor opciók', 'im_options', 0), //cpg1.3.0
   	array('EXIF adatok értelmezése a JPEG fájlokban', 'read_exif_data', 1), //cpg1.3.0
   	array('IPTC adatok értelmezése a JPEG fájlokban', 'read_iptc_data', 1), //cpg1.3.0
   	array('Album elérési útvonal <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0), //cpg1.3.0
-  	array('Felhasnálói fájlok elérési útvonala <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0), //cpg1.3.0
+  	array('Felhasználói fájlok elérési útvonala <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0), //cpg1.3.0
   	array('Közbensõ méretezésû képek prefixe <a href="#notice1" class="clickable_option">*</a>', 'normal_pfx', 0), //cpg1.3.0
   	array('Ikonfájlok prefixe <a href="#notice1" class="clickable_option">*</a>', 'thumb_pfx', 0), //cpg1.3.0
   	array('Könyvtárak alapértelmezett módja', 'default_dir_mode', 0), //cpg1.3.0
@@ -498,7 +498,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 
 
         'Cooky beállítások',
-        array('A szkript által használt cookynév (bbs integráció esetén gyõzõdj meg róla, hogy eltér a bbs cookynévtõl)', 'cookie_name', 0),
+        array('A szkript által használt cooky név (bbs integráció esetén gyõzõdj meg róla, hogy eltér a bbs cooky névtõl)', 'cookie_name', 0),
         array('A szkript által használt cooky útvonala', 'cookie_path', 0),
 
         'Egyéb beállítások',
@@ -514,7 +514,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
-  'title' => 'E-képeslapok küldése', //cpg1.3.0
+  'title' => 'E-lapok küldése', //cpg1.3.0
   'ecard_sender' => 'Feladó', //cpg1.3.0
   'ecard_recipient' => 'Címzett', //cpg1.3.0
   'ecard_date' => 'Dátum', //cpg1.3.0
@@ -527,16 +527,16 @@ if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
   'ecard_sorted' => 'Sorrendezett', //cpg1.3.0
   'ecard_by_date' => 'dátum szerint', //cpg1.3.0
   'ecard_by_sender_name' => 'feladó neve szerint', //cpg1.3.0
-  'ecard_by_sender_email' => 'feladó e-mailcíme szerint', //cpg1.3.0
+  'ecard_by_sender_email' => 'feladó e-mail címe szerint', //cpg1.3.0
   'ecard_by_sender_ip' => 'feladó IP címe szerint', //cpg1.3.0
   'ecard_by_recipient_name' => 'címzett neve szerint', //cpg1.3.0
-  'ecard_by_recipient_email' => 'címzett e-mailcíme szerint', //cpg1.3.0
+  'ecard_by_recipient_email' => 'címzett e-mail címe szerint', //cpg1.3.0
   'ecard_number' => 'Rekordok kijelzése: %s tõl %s összesen %s', //cpg1.3.0
   'ecard_goto_page' => 'ugrás oldalra', //cpg1.3.0
   'ecard_records_per_page' => 'Rekord per lap', //cpg1.3.0
   'check_all' => 'Mind kiválasztása', //cpg1.3.0
   'uncheck_all' => 'Mind NEM kiválasztása', //cpg1.3.0
-  'ecards_delete_selected' => 'Kiválasztott e-képeslapok törlése', //cpg1.3.0
+  'ecards_delete_selected' => 'Kiválasztott e-lapok törlése', //cpg1.3.0
   'ecards_delete_confirm' => 'Biztosan törölni akarod a rekordokat? Pipáld ki a négyzetet!', //cpg1.3.0
   'ecards_delete_sure' => 'Biztos vagyok benne', //cpg1.3.0
 );
@@ -619,7 +619,7 @@ $lang_display_image_php = array(
         'size' => '%s x %s pixel',
         'views' => '%s',
         'slideshow' => 'Diavetítés',
-        'stop_slideshow' => 'DIAVETíTÉS VÉGE',
+        'stop_slideshow' => 'DIAVETÍTÉS VÉGE',
         'view_fs' => 'Teljes méretû kép megtekintése',
 		'edit_pic' => 'Leírás szerkesztése', //cpg1.3.0
 		'crop_pic' => 'Kivágás és forgatás', //cpg1.3.0
@@ -718,7 +718,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 		'preview' => 'Elõnézet', //cpg1.3.0
 		'save' => 'Kép mentése', //cpg1.3.0
 		'save_thumb' =>'Mentés ikonként', //cpg1.3.0
-		'sel_on_img' =>'A kiválastott résznek a képen belül kell lennie!', //js-alert //cpg1.3.0
+		'sel_on_img' =>'A kiválasztott résznek a képen belül kell lennie!', //js-alert //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -737,33 +737,33 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   array('Miért kell regisztrálnom?', 'A regisztrálást kérheti az adminisztrátor. A regisztráció a tagnak plusz szolgáltatásokat biztosíthat, mint képek feltöltését, kedvencek lista vezetését, képek osztályozását és hozzászólások postázását stb.', 'allow_user_registration', '0'), //cpg1.3.0
   array('Hogyan regisztráljak?', 'Menj a &quot;Regisztráció&quot; menübe és töltsd ki a kívánt mezõket (és az opcionálisakat ha akarod).<br />Ha az adminisztrátor engedélyezte az e-mail aktiválást, akkor az információk megadása után egy e-mailben kapsz értesítést a regisztrációról, valamint arról, hogy hogyan aktiválhatod a hozzáférésedet, ami a bejelentkezéshez szükséges.', 'allow_user_registration', '1'), //cpg1.3.0
   array('Hogyan jelentkezhetek be?', 'Menj a &quot;Bejelentkezés&quot; menübe, add meg a felhasználóneved és jelszavadat. Ha azt akarod, hogy a legközelebbi látogatásod alkalmával automatikusan be legyél jelentkezve, x-eld ki a &quot;Emlékezz rám&quot; négyzetet.<br /><b>FONTOS: &quot;Az Emlékezz rám&quot; csak akkor mûködik, ha a Cooky-kat engedélyezted és nem törölted a webhelyeden!</b>', 'offline', 0), //cpg1.3.0
-  array('Miért nem tudok bejelentkezni?', 'Regisztráltál, és válaszoltál az e-mailben kapott linkre? Ez aktiválja a hozzáférésed. Egyébb bejelenkezési probléma esetén fordulj a webhely adminisztrátorához!', 'offline', 0), //cpg1.3.0
+  array('Miért nem tudok bejelentkezni?', 'Regisztráltál, és válaszoltál az e-mailben kapott linkre? Ez aktiválja a hozzáférésed. Egyéb bejelentkezési probléma esetén fordulj a webhely adminisztrátorához!', 'offline', 0), //cpg1.3.0
   array('Mi történik, ha elfelejtettem a jelszavam?', 'Ha látsz a webhelyen &quot;Elfelejtettem a jelszavam&quot; linket, használd! Egyébként kérj a webhely adminisztrátorától új jelszót!', 'offline', 0), //cpg1.3.0
-  //array('Mi történik, ha megváltozott az e-mail címem?', 'Egyszerûen lépj be és a &quot;Én profilom&quot; menüben változtasd meg az e-mail címedet!', 'offline', 0), //cpg1.3.0
-  array('Hogyan tárolhatok egy fájlt a &quot;Kedvencek&quot; között?', 'Klikkelj a képre, ha a kép alatt nem látható a &quot;Fájl információ&quot;, akkor klikkelj a fájlinformáció ikonra (<img src="images/info.gif" width="16" height="16" border="0" alt="Picture information" />), görgess le a &quot;Fájl információ&quot;-hoz, majd klikkelj a &quot;Hozzáadás a kedvencekhez&quot; likre!<br /><br />FONTOS: A cooky-kat engedélyezned kell és nem törölheted a webhelyeden!', 'offline', 0), //cpg1.3.0
+  //array('Mi történik, ha megváltozott az e-mail címem?', 'Egyszerûen lépj be és a &quot;Profilom&quot; menüben változtasd meg az e-mail címedet!', 'offline', 0), //cpg1.3.0
+  array('Hogyan tárolhatok egy fájlt a &quot;Kedvencek&quot; között?', 'Klikkelj a képre, ha a kép alatt nem látható a &quot;Fájl információ&quot;, akkor klikkelj a fájlinformáció ikonra (<img src="images/info.gif" width="16" height="16" border="0" alt="Fájl információ" />), görgess le a &quot;Fájl információ&quot;-hoz, majd klikkelj a &quot;Hozzáadás a kedvencekhez&quot; likre!<br /><br />FONTOS: A cooky-kat engedélyezned kell és nem törölheted a webhelyeden!', 'offline', 0), //cpg1.3.0
   array('Hogyan osztályozhatom a fájlokat?', 'Klikkelj az ikonizált képre, görgess az aljára, és válaszd a &quot;Fájl osztályozása&quot; részben klikkelj a megfelelõ osztályzatra!', 'offline', 0), //cpg1.3.0
   array('Hogyan postázhatok hozzászólást egy fájlhoz?', 'Klikkelj az ikonizált képre, mej az aljára, és postázz hozzászólást!', 'offline', 0), //cpg1.3.0
-  array('Hogyan tölthetek fel fájlokat?', 'Menj a &quot;Fájl feltöltése&quot; menübe és válaszd ki az albumot, amelyikbe fájlt akarsz feltölteni! Klikkelj a &quot;Browse...&quot; gombra és válaszd ki a feltöltendõ fájlt! Megadhatsz címet és képaláírást is igény szerint. Végül klikkelj a &quot;TOVÁBB&quot; gombra.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Hova tölthetek fel fájlokat?', 'Az &quot;Én képtáram&quot; valamelyik albumába tölthetsz fel fájlokat. Az adminisztrátor engedélyezheti, hogy feltölthess fájlokat a fõképtár egy vagy több albumába is.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Hogyan tölthetek fel fájlokat?', 'Menj a &quot;Feltöltés&quot; menübe és válaszd ki az albumot, amelyikbe fájlt akarsz feltölteni! Klikkelj a &quot;Browse...&quot; gombra és válaszd ki a feltöltendõ fájlt! Megadhatsz címet és képaláírást is igény szerint. Végül klikkelj a &quot;TOVÁBB&quot; gombra.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Hova tölthetek fel fájlokat?', 'Az &quot;Képtáram&quot; valamelyik albumába tölthetsz fel fájlokat. Az adminisztrátor engedélyezheti, hogy feltölthess fájlokat a fõképtár egy vagy több albumába is.', 'allow_private_albums', 0), //cpg1.3.0
   array('Milyen típusú és méretû fájlt tölthetek fel?', 'A méretet és típust (jpg,gif,..etc.) az adminisztrátor döntheti el.', 'offline', 0), //cpg1.3.0
-  array('Mi az &quot;Én képtáram&quot;?', 'Az &quot;Én képtáram&quot; egy személyes képtár, ahova a felhasználó feltölthet fájlt, és menedzselheti.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Hogyan hozhatok létre, nevezhetek át, vagy törölhetek albumot az &quot;Én képtáram&quot;-ban?', '&quot;Adminisztrátor mód&quot;-ban kell, hogy legyél.<br />Menj a &quot;Személyes albumok szerkesztése 
+  array('Mi az &quot;Képtáram&quot;?', 'Az &quot;Képtáram&quot; egy személyes képtár, ahova a felhasználó feltölthet fájlt, és menedzselheti.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Hogyan hozhatok létre, nevezhetek át, vagy törölhetek albumot az &quot;Képtáram&quot;-ban?', '&quot;Admin mód&quot;-ban kell, hogy legyél.<br />Menj a &quot;Személyes albumok szerkesztése 
  
 &quot; menübe és klikkelj a &quot;Új&quot; gombra. Írd át az &quot;Új album&quot;-ot a kívánt névre.<br />A képtárad bármelyik meglévõ albumát is átnevezheted.<br />Klikkelj a &quot;Módosítások végrehajtása&quot;-ra.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Hogyan szabályozhatom, hogy a felhasználók láthassák-e az albumomat?','&quot;Adminisztrátor mód&quot;-ban kell, hogy legyél.<br />Menj a &quot;Személyes albumom tulajdonságai&quot;-ba. Az &quot;Album módosítása&quot; legördülõ menübõl válaszd ki a kívánt albumot.<br />Itt megváltoztathatod az album nevét, leírását, ikonizált képét, és korlátozhatod az allbumban lévõ fájlok megtekintését, osztályozását, és hozzászólások postázását.<br />Klikkelj ezután az &quot;Album módosítása&quot; gombra!.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Hogyan láthatom más felhasználó képtárát?', 'Menj az &quot;Albumlistára&quot; és válaszd ki a &quot;User Galleries&quot; linket.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Mik a Cooky-k?', 'A cooky-k szöveges adatállományok, melyeket a webhely küld a számítógépedre.<br />A cooky-k általában azt teszik lehetõvé, hogy a felhasználó ismételt bejelentkezés nélkül is visszataláljon a webhelyre, és egyébb hasonló kényelmi lehetõségeket biztosít.', 'offline', 0), //cpg1.3.0
+  array('Hogyan szabályozhatom, hogy a felhasználók láthassák-e az albumomat?','&quot;Admin mód&quot;-ban kell, hogy legyél.<br />Menj a &quot;Személyes albumom tulajdonságai&quot;-ba. Az &quot;Album módosítása&quot; legördülõ menübõl válaszd ki a kívánt albumot.<br />Itt megváltoztathatod az album nevét, leírását, ikonizált képét, és korlátozhatod az albumban lévõ fájlok megtekintését, osztályozását, és hozzászólások postázását.<br />Klikkelj ezután az &quot;Album módosítása&quot; gombra!.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Hogyan láthatom más felhasználó képtárát?', 'Menj az &quot;Albumlistára&quot; és válaszd ki a &quot;Felhasználói képtárak&quot; linket.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Mik a Cooky-k?', 'A cooky-k szöveges adatállományok, melyeket a webhely küld a számítógépedre.<br />A cooky-k általában azt teszik lehetõvé, hogy a felhasználó ismételt bejelentkezés nélkül is visszataláljon a webhelyre, és egyéb hasonló kényelmi lehetõségeket biztosít.', 'offline', 0), //cpg1.3.0
   array('Hol kaphatom meg ezt a programot a webhelyemre?', 'Coppermine egy ingyenes multimédiás képtár, GNU GPL licensszel. Tele van szolgáltatásokkal és különbözõ platformokon mûködik. Látogass el a <a href="http://coppermine.sf.net/">Coppermine honlap</a>-ra további információért és a program letöltéséért.', 'offline', 0), //cpg1.3.0
 
   'Navigálás a webhelyen', //cpg1.3.0
-  array('Mi az &quot;Albumlista&quot;?', 'Ez megmutatja a teljes képtárat a kategóriákra mutató linkeken kersztül. A kategória linkje ikonizált kép is lehet.', 'offline', 0), //cpg1.3.0
-  array('Mi az &quot;Én képtáram&quot;?', 'Ennek a szolgáltatásnak a segítségével a felhasználók saját képtárt hozhatnak létre, ebben létrehothatnak, módosíthatnak és törölhetnek albumokat, valamint képeket tölthetnek fel ide.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Mi a különbség az &quot;Adminisztrátor mód&quot; és a &quot;Felhasználó mód&quot; között?', 'Adminisztrátor módban a felhasználó módosíthatja a képtárát (és másét, ha az adminisztrátor ezt engedélyezte).', 'allow_private_albums', 0), //cpg1.3.0
-  array('Mi a &quot;Fájl feltöltése&quot;?', 'Ez a szolgáltatás lehetõvé teszi a felhasználóknak fájlok feltöltését egy az általad vagy az adminisztrátor által megadott képtárba (méretet és típust az adminisztrátor engedélyez).', 'allow_private_albums', 0), //cpg1.3.0
+  array('Mi az &quot;Albumlista&quot;?', 'Ez megmutatja a teljes képtárat a kategóriákra mutató linkeken keresztül. A kategória linkje ikonizált kép is lehet.', 'offline', 0), //cpg1.3.0
+  array('Mi az &quot;Képtáram&quot;?', 'Ennek a szolgáltatásnak a segítségével a felhasználók saját képtárt hozhatnak létre, ebben létrehozhatnak, módosíthatnak és törölhetnek albumokat, valamint képeket tölthetnek fel ide.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Mi a különbség az &quot;Admin mód&quot; és a &quot;Felhaszn.mód&quot; között?', 'Adminisztrátor módban a felhasználó módosíthatja a képtárát (és másét, ha az adminisztrátor ezt engedélyezte).', 'allow_private_albums', 0), //cpg1.3.0
+  array('Mi a &quot;Feltöltése&quot;?', 'Ez a szolgáltatás lehetõvé teszi a felhasználóknak fájlok feltöltését egy az általad vagy az adminisztrátor által megadott képtárba (méretet és típust az adminisztrátor engedélyez).', 'allow_private_albums', 0), //cpg1.3.0
   array('Mi a &quot;Friss feltöltések&quot;?', 'Ez a szolgáltatás mutatja az utoljára feltöltött fájlokat.', 'offline', 0), //cpg1.3.0
   array('Mi a &quot;Friss hozzászólások&quot;?', 'Ez a szolgáltatás mutatja az utoljára postázott hozzászólásokat a fájlokhoz.', 'offline', 0), //cpg1.3.0
   array('Mi a &quot;Legtöbbször nézett&quot;?', 'Ez a szolgáltatás mutatja az összes felhasználó által legtöbbször nézett fájlokat, függetlenül attól, hogy bejelentkeztek-e, vagy nem.', 'offline', 0), //cpg1.3.0
-  array('Mi a &quot;Legtöbb szavazat&quot;?', 'Ez a szolgáltatás mutatja legtöbb szavazatot kapott fájlokat, az átlagosztályzattal (például ha 5 felhasználó mindegyike <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />-t adott, akkor a kép átlagosztályzata <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />. Ha ö felhasználó 1-tõl 5-ig osztályzott (1,2,3,4,5), akkor az átlagosztályzat <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> lesz.)<br />Az osztályzat <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" />-tõ (legjobb) megy <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" />-ig (legrosszabb).', 'offline', 0), //cpg1.3.0
+  array('Mi a &quot;Legtöbb szavazat&quot;?', 'Ez a szolgáltatás mutatja legtöbb szavazatot kapott fájlokat, az átlagosztályzattal (például ha 5 felhasználó mindegyike <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />-t adott, akkor a kép átlagosztályzata <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />. Ha ö felhasználó 1-tõl 5-ig osztályozott (1,2,3,4,5), akkor az átlagosztályzat <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> lesz.)<br />Az osztályzat <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" />-tõ (legjobb) megy <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" />-ig (legrosszabb).', 'offline', 0), //cpg1.3.0
   array('Mi a &quot;Kedvencek&quot;?', 'Ez a szolgáltatás a felhasználó számára lehetõvé teszi, hogy kedvenc képeire cooky segítségével emlékezzen a számítógép.', 'offline', 0), //cpg1.3.0
 );
 
@@ -777,10 +777,10 @@ if (defined('FORGOT_PASSWD_PHP')) $lang_forgot_passwd_php = array(
   'err_already_logged_in' => 'Már bejelentkeztél!', //cpg1.3.0
   'enter_username_email' => 'Add meg a felhasználóneved és e-mail címedet!', //cpg1.3.0
   'submit' => 'mehet', //cpg1.3.0
-  'failed_sending_email' => 'A jelszóemlékeztetõ e-mail kiküldése nem sikerült!', //cpg1.3.0
+  'failed_sending_email' => 'A jelszó-emlékeztetõ e-mail kiküldése nem sikerült!', //cpg1.3.0
   'email_sent' => 'Egy e-mailt küldtünk felhasználónévvel és jelszóval %s-nek', //cpg1.3.0
   'err_unk_user' => 'A kiválasztott felhasználó nem létezik!', //cpg1.3.0
-  'passwd_reminder_subject' => '%s - Jelszóemlékeztetõ', //cpg1.3.0
+  'passwd_reminder_subject' => '%s - Jelszó-emlékeztetõ', //cpg1.3.0
   'passwd_reminder_body' => 'Kérted, hogy emlékeztessünk a bejelentkezési adataidra:
 Felhasználónév: %s
 Jelszó: %s
@@ -802,7 +802,7 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
         'apply' => 'Módosítások végrehajtása',
         'create_new_group' => 'Új csoport létrehozása',
         'del_groups' => 'Kijelölt csoport(ok) törlése ',
-        'confirm_del' => 'Figyelmeztetés: ha törölsz egy csoportot, a hozzá tartozó felhasználók áthelyezõdnek a \'Registered\' csoportba !\n\nFolytatod ?', //js-alert //cpg1.3.0
+        'confirm_del' => 'Figyelmeztetés: ha törölsz egy csoportot, a hozzá tartozó felhasználók áthelyezõdnek a \'Regisztráltak\' csoportba !\n\nFolytatod ?', //js-alert //cpg1.3.0
         'title' => 'Felhasználócsoportok menedzselése',
         'approval_1' => 'Nyilvános feltöltés jóváhagyás (1)',
         'approval_2' => 'Privát feltöltés jóváhagyás (2)',
@@ -941,7 +941,7 @@ Bár a {SITE_NAME} adminisztrátora mindent elkövet, hogy amilyen gyorsan csak leh
 <br />
 Elfogadod, hogy nem postázol semmilyen sértõ, obszcén, vulgáris, rágalmazó, gyûlölködõ, fenyegetõ, szexuális tartalmú, vagy bármilyen más olyan tartalmú anyagot, amely érvényes törvényt sért. Elfogadod, hogy a {SITE_NAME} webmesterének, adminisztrátorának, vagy moderátorának bármikor jogában áll bármilyen tartalmat szükség esetén törölni, vagy szerkeszteni. Mint felhasználó egyetértesz a közölt információk adatbázisban történõ tárolásához. Bár a webmester, illetve adminisztrátor nem adja ki harmadik feleknek ezeket az információkat a hozzájárulásod nélkül, nem tehetõ felelõssé semmilyen olyan hacker kísérletért, melyek az adatok kompromittálásához vezet.<br />
 <br />
-Ez a weblap cookie formájában információt tárol a számítógépeden. Ezek a cookie-k csak azt a célt szolgálják, hogy fokozzák a nézhetõségi élményt. Az email cím csak a regisztrációs adataidnak és jelszavadnak nyugtázására szolgál.<br />
+Ez a weblap cooky formájában információt tárol a számítógépeden. Ezek a cooky-k csak azt a célt szolgálják, hogy fokozzák a nézhetõségi élményt. Az email cím csak a regisztrációs adataidnak és jelszavadnak nyugtázására szolgál.<br />
 <br />
 Az 'Egyetértek'-re klikkelve elfogadod ezeket a feltételeket.
 EOT;
@@ -1181,7 +1181,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 		'lv_d' => 'Utolsó látogatás csökkenõ', //cpg1.3.0
         'sort_by' => 'Felhasználók sorrendezése',
         'err_no_users' => 'Nincs felhasználó !',
-        'err_edit_self' => 'Nem szerkesztheted a saját profilod, használd az \'Én profilom\' menüpontot',
+        'err_edit_self' => 'Nem szerkesztheted a saját profilod, használd az \'Profilom\' menüpontot',
         'edit' => 'SZERKESZT',
         'delete' => 'TÖRÖL',
         'name' => 'Felhasználónév',
@@ -1269,7 +1269,7 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
 		'nonexist' => 'nem létezõ fájlhoz csatolva # ', //cpg1.3.0
 		'phpinfo' => 'Phpinfo kijelzése', //cpg1.3.0
 		'update_db' => 'Adatbázis aktualizálása', //cpg1.3.0
-		'update_db_explanation' => 'Ha lecseréltél coppermine fájlokat, módosításokat végeztél, vagy korábbu verziójú coppermine-ról upgrade-eltél, futtasd le az adatbázis update-et. Ez létrehozza a szükséges adattáblákat és / vagy konfigurációs értékeket a coppermine adatbázisodban.', //cpg1.3.0
+		'update_db_explanation' => 'Ha lecseréltél coppermine fájlokat, módosításokat végeztél, vagy korábbi verziójú coppermine-ról upgrade-eltél, futtasd le az adatbázis update-et. Ez létrehozza a szükséges adattáblákat és / vagy konfigurációs értékeket a coppermine adatbázisodban.', //cpg1.3.0
 );
 
 ?>

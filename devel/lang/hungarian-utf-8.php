@@ -63,8 +63,8 @@ $lang_meta_album_names = array(
         'lastup' => 'Friss feltÃ¶ltÃ©sek',
         'lastalb'=> 'UtoljÃ¡ra mÃ³dosÃ­tott albumok',
         'lastcom' => 'Friss hozzÃ¡szÃ³lÃ¡sok',
-        'topn' => 'LegtÃ¶bbszÃ¶r nÃ©zett',
-        'toprated' => 'LegtÃ¶bb szavazat',
+        'topn' => 'Top-nÃ©zett',
+        'toprated' => 'Top-szavazat',
         'lasthits' => 'UtoljÃ¡ra nÃ©zett',
         'search' => 'KeresÃ©s eredmÃ©nye',
         'favpics'=> 'Kedvenc FÃ¡jlok' //cpg1.3.0
@@ -89,7 +89,7 @@ $lang_errors = array(
         'not_with_udb' => 'Ez a funkciÃ³ le van tiltva a Coppermine-ban, mivel a fÃ³rum sw rÃ©sze. A kÃ©rt funkciÃ³t vagy nem tÃ¡mogatja a jelen konfigurÃ¡ciÃ³, vagy a fÃ³rum sw kezeli.',
         'offline_title' => 'Offline', //cpg1.3.0
         'offline_text' => 'A galÃ©ria jelenleg  offline - lÃ¡togass vissza kÃ©sÅ‘bb', //cpg1.3.0
-        'ecards_empty' => 'Jelenleg nincs megjelenÃ­thetÅ‘ e-kÃ©peslap. EllenÅ‘rizd, hogy engedÃ©lyezted -e az e-kÃ©peslapok naplÃ³zÃ¡sÃ¡t a coppermine konfigurÃ¡ciÃ³ban!', //cpg1.3.0
+        'ecards_empty' => 'Jelenleg nincs megjelenÃ­thetÅ‘ e-kÃ©peslap. EllenÅ‘rizd, hogy engedÃ©lyezted -e az e-lapok naplÃ³zÃ¡sÃ¡t a coppermine konfigurÃ¡ciÃ³ban!', //cpg1.3.0
         'action_failed' => 'A mÅ±velet sikertelen.  Coppermine nem tudja feldolgozni a kÃ©rÃ©st.', //cpg1.3.0
         'no_zip' => 'A ZIP fÃ¡jlok feldolgozÃ¡sÃ¡hoz szÃ¼ksÃ©ges kÃ¶nyvtÃ¡r nem Ã¡ll rendelkezÃ©sre. Fordulj a Coppermine adminisztrÃ¡torhoz.', //cpg1.3.0
         'zip_type' => 'Nincs jogosultsÃ¡god ZIP fÃ¡jlok feltÃ¶ltÃ©sÃ©re.', //cpg1.3.0
@@ -105,22 +105,22 @@ $lang_main_menu = array(
         'alb_list_title' => 'UgrÃ¡s az albumlistÃ¡ra',
         'alb_list_lnk' => 'Albumlista',
         'my_gal_title' => 'UgrÃ¡s a szemÃ©lyes kÃ©ptÃ¡rra',
-        'my_gal_lnk' => 'Ã‰n kÃ©ptÃ¡ram',
-        'my_prof_lnk' => 'Ã‰n profilom',
+        'my_gal_lnk' => 'KÃ©ptÃ¡ram',
+        'my_prof_lnk' => 'Profilom',
         'adm_mode_title' => 'VÃ¡ltÃ¡s adminisztrÃ¡tor mÃ³dra',
-        'adm_mode_lnk' => 'AdminisztrÃ¡tor mÃ³d',
+        'adm_mode_lnk' => 'Admin mÃ³d',
         'usr_mode_title' => 'VÃ¡ltÃ¡s felhasznÃ¡lÃ³ mÃ³dra',
-        'usr_mode_lnk' => 'FelhasznÃ¡lÃ³ mÃ³d',
+        'usr_mode_lnk' => 'Felhaszn.mÃ³d',
         'upload_pic_title' => 'FÃ¡jl feltÃ¶ltÃ©s az albumba', //cpg1.3.0
-        'upload_pic_lnk' => 'FÃ¡jl feltÃ¶ltÃ©se', //cpg1.3.0
+        'upload_pic_lnk' => 'FeltÃ¶ltÃ©s', //cpg1.3.0
         'register_title' => 'FelhasznÃ¡lÃ³ hozzÃ¡adÃ¡sa',
         'register_lnk' => 'RegisztrÃ¡ciÃ³',
         'login_lnk' => 'BejelentkezÃ©s',
         'logout_lnk' => 'KijelentkezÃ©s',
         'lastup_lnk' => 'Friss feltÃ¶ltÃ©sek',
         'lastcom_lnk' => 'Friss hozzÃ¡szÃ³lÃ¡sok',
-        'topn_lnk' => 'LegtÃ¶bbszÃ¶r nÃ©zett',
-        'toprated_lnk' => 'LegtÃ¶bb szavazat',
+        'topn_lnk' => 'Top-nÃ©zett',
+        'toprated_lnk' => 'Top-szavazat',
         'search_lnk' => 'KeresÃ©s',
         'fav_lnk' => 'Kedvencek',
         'memberlist_title' => 'Taglista megmutatÃ¡sa', //cpg1.3.0
@@ -141,13 +141,13 @@ $lang_gallery_admin_menu = array(
         'searchnew_lnk' => 'KÃ¶tegelt feltÃ¶ltÃ©s',
         'util_lnk' => 'Admin eszkÃ¶zÃ¶k',
         'ban_lnk' => 'FelhasznÃ¡lÃ³k kitiltÃ¡sa',
-        'db_ecard_lnk' => 'E-kÃ©peslapok megtekintÃ©se', //cpg1.3.0
+        'db_ecard_lnk' => 'E-lapok megtekintÃ©se', //cpg1.3.0
 );
 
 $lang_user_admin_menu = array(
         'albmgr_lnk' => 'SzemÃ©lyes albumok szerkesztÃ©se',
         'modifyalb_lnk' => 'SzemÃ©lyes albumok tulajdonsÃ¡gai',
-        'my_prof_lnk' => 'Ã‰n profilom',
+        'my_prof_lnk' => 'Profilom',
 );
 
 $lang_cat_list = array(
@@ -180,7 +180,7 @@ $lang_img_nav_bar = array(
         'pic_info_title' => 'FÃ¡jl informÃ¡ciÃ³ megtekintÃ©se / elrejtÃ©se', //cpg1.3.0
         'slideshow_title' => 'DiavetÃ­tÃ©s',
         'ecard_title' => 'FÃ¡jl elkÃ¼ldÃ©se e-kÃ©peslapkÃ©nt', //cpg1.3.0
-        'ecard_disabled' => 'e-kÃ©peslapok kÃ¼ldÃ©se nem engedÃ©lyezett',
+        'ecard_disabled' => 'e-lapok kÃ¼ldÃ©se nem engedÃ©lyezett',
         'ecard_disabled_msg' => 'Nincs jogosultsÃ¡god e-kÃ©peslap kÃ¼ldÃ©sÃ©re', //js-alert //cpg1.3.0
         'prev_title' => 'ElÅ‘zÅ‘ fÃ¡jl', //cpg1.3.0
         'next_title' => 'KÃ¶vetkezÅ‘ fÃ¡jl', //cpg1.3.0
@@ -338,7 +338,7 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
         'confirm_delete2' => '\nA tartalmazott Ã¶sszes kÃ©p Ã©s hozzÃ¡szÃ³lÃ¡s tÃ¶rlÅ‘dik!', //js-alert
         'select_first' => 'ElÅ‘szÃ¶r vÃ¡lassz albumot', //js-alert
         'alb_mrg' => 'Albummenedzser',
-        'my_gallery' => '* Az Ã©n kÃ©ptÃ¡ram *',
+        'my_gallery' => '* KÃ©ptÃ¡ram *',
         'no_category' => '* Nincs kategÃ³ria *',
         'delete' => 'TÃ¶rlÃ©s',
         'new' => 'Ãšj',
@@ -387,7 +387,7 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'th_any' => 'Max Aspect',
         'th_ht' => 'MagassÃ¡g',
         'th_wd' => 'SzÃ©lessÃ©g',
-        'label' => 'cimke', //cpg1.3.0
+        'label' => 'cÃ­mke', //cpg1.3.0
         'item' => 'tÃ©tel', //cpg1.3.0
         'debug_everyone' => 'Mindenki', //cpg1.3.0
         'debug_admin' => 'Csak Admin', //cpg1.3.0
@@ -398,9 +398,9 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('KÃ©ptÃ¡r neve', 'gallery_name', 0),
         array('KÃ©ptÃ¡r leÃ­rÃ¡sa', 'gallery_description', 0),
         array('KÃ©ptÃ¡r adminisztrÃ¡tor email cÃ­me', 'gallery_admin_email', 0),
-        array('Az e-kÃ©peslapok  \'TovÃ¡bbi kÃ©pek\' linkjÃ©hez tartozÃ³ webcÃ­m', 'ecards_more_pic_target', 0),
+        array('Az e-lapok  \'TovÃ¡bbi kÃ©pek\' linkjÃ©hez tartozÃ³ webcÃ­m', 'ecards_more_pic_target', 0),
         array('GalÃ©ria offline', 'offline', 1), //cpg1.3.0
-        array('E-kÃ©peslapok naplÃ³zÃ¡sa', 'log_ecards', 1), //cpg1.3.0
+        array('E-lapok naplÃ³zÃ¡sa', 'log_ecards', 1), //cpg1.3.0
         array('Kedvencek ZIP-letÃ¶ltÃ©sÃ©nek engedÃ©lyezÃ©se', 'enable_zipdownload', 1), //cpg1.3.0
 
         'Nyelv, tÃ©ma Ã©s karakterkÃ©szlet beÃ¡llÃ­tÃ¡sok',
@@ -434,14 +434,14 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Az ikon alatt megjelenjen -e a hozzÃ¡szÃ³lÃ¡sok szÃ¡ma', 'display_comment_count', 1),
         array('FeltÃ¶ltÅ‘ nevÃ©nek kijelzÃ©se az ikon alatt', 'display_uploader', 1), //cpg1.3.0
         array('FÃ¡jlok alapÃ©rtelmezett sorrendje', 'default_sort_order', 3), //cpg1.3.0
-        array('Szavazatok minimuma a \'legtÃ¶bbszÃ¶r nÃ©zett\' listÃ¡ra valÃ³ felkerÃ¼lÃ©shez', 'min_votes_for_rating', 0),
+        array('Szavazatok minimuma a \'top-szavazat\' listÃ¡ra valÃ³ felkerÃ¼lÃ©shez', 'min_votes_for_rating', 0),
 
         'KÃ©p-nÃ©zet Ã©s hozzÃ¡szÃ³lÃ¡s beÃ¡llÃ­tÃ¡sok',
         array('A fÃ¡jl-nÃ©zethez tartozÃ³ tÃ¡blÃ¡zat szÃ©lessÃ©ge (pixel vagy %)', 'picture_table_width', 0), //cpg1.3.0
         array('FÃ¡jl informÃ¡ciÃ³k lÃ¡thatÃ³k alapÃ©rtelmezÃ©sben', 'display_pic_info', 1), //cpg1.3.0
         array('TrÃ¡gÃ¡r szavak kiszÅ±rÃ©se a hozzÃ¡szÃ³lÃ¡sokbÃ³l', 'filter_bad_words', 1),
         array('Hangulatkarakterek engedÃ©lyezÃ©se a hozzÃ¡szÃ³lÃ¡sokban', 'enable_smilies', 1),
-        array('TÃ¶bb egymÃ¡st kÃ¶vetÅ‘ hozzÃ¡szÃ³lÃ¡s engedÃ©lyezÃ©se egy kÃ©phez ugyanazon felhasznÃ¡lÃ³nak (visszaÃ©lÃ©s tvÃ©delem tiltÃ¡sa)', 'disable_comment_flood_protect', 1), //cpg1.3.0
+        array('TÃ¶bb egymÃ¡st kÃ¶vetÅ‘ hozzÃ¡szÃ³lÃ¡s engedÃ©lyezÃ©se egy kÃ©phez ugyanazon felhasznÃ¡lÃ³nak (visszaÃ©lÃ©s vÃ©delem tiltÃ¡sa)', 'disable_comment_flood_protect', 1), //cpg1.3.0
         array('A kÃ©pleÃ­rÃ¡s maximÃ¡lis hossza', 'max_img_desc_length', 0),
         array('MaximÃ¡lis karakterszÃ¡m szavankÃ©nt', 'max_com_wlength', 0),
         array('Sorok maximÃ¡lis szÃ¡ma hozzÃ¡szÃ³lÃ¡sonkÃ©nt', 'max_com_lines', 0),
@@ -449,7 +449,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('FilmcsÃ­k megjelenÃ­tÃ©se', 'display_film_strip', 1),
         array('KÃ©pkockÃ¡k szÃ¡ma a filmcsÃ­kban', 'max_film_strip_items', 0),
         array('AdminisztrÃ¡tor Ã©rtesÃ­tÃ©se a hozzÃ¡szÃ³lÃ¡sokrÃ³l e-mailben', 'email_comment_notification', 1), //cpg1.3.0
-        array('DiavetÃ­tÃ©s idÅ‘ intervalluma miliszekundumban (1 second = 1000 milliseconds)', 'slideshow_interval', 0), //cpg1.3.0
+        array('DiavetÃ­tÃ©s idÅ‘ intervalluma milliszekundumban (1 second = 1000 milliseconds)', 'slideshow_interval', 0), //cpg1.3.0
 
         'FÃ¡jl- Ã©s ikonbeÃ¡llÃ­tÃ¡sok', //cpg1.3.0
         array('JPEG fÃ¡jlok minÅ‘sÃ©ge', 'jpeg_qual', 0),
@@ -461,21 +461,21 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('FeltÃ¶ltÃ¶tt kÃ©pek / videÃ³k maximÃ¡lis szÃ©lessÃ©ge Ã©s magassÃ¡ga (pixel)', 'max_upl_width_height', 0), //cpg1.3.0
 
   	'FÃ¡jlok Ã©s ikonok extra beÃ¡llÃ­tÃ¡sai', //cpg1.3.0
-  	array('PrivÃ¡t album ikon megjelenÃ­tÃ©se be nem jelentkezett felshasznÃ¡lÃ³ esetÃ©n','show_private',1), //cpg1.3.0
+  	array('PrivÃ¡t album ikon megjelenÃ­tÃ©se be nem jelentkezett felhasznÃ¡lÃ³ esetÃ©n','show_private',1), //cpg1.3.0
   	array('FÃ¡jlnevekben nem engedÃ©lyezett karakterek', 'forbiden_fname_char',0), //cpg1.3.0
   	//array('FeltÃ¶ltÃ¶tt kÃ©pek megengedett fÃ¡jlkiterjesztÃ©sei', 'allowed_file_extensions',0), //cpg1.3.0
   	array('Megengedett kÃ©ptÃ­pusok', 'allowed_img_types',0), //cpg1.3.0
   	array('Megengedett videÃ³ tÃ­pusok', 'allowed_mov_types',0), //cpg1.3.0
   	array('Megengedett audiÃ³ tÃ­pusok', 'allowed_snd_types',0), //cpg1.3.0
-  	array('Megengedett dokument tÃ­pusok', 'allowed_doc_types',0), //cpg1.3.0
-  	array('KÃ©pek Ã¡tmÃ¡retezÃ©sÃ©nek mÃ³dszere','thumb_method',2), //cpg1.3.0
+  	array('Megengedett dokumentum tÃ­pusok', 'allowed_doc_types',0), //cpg1.3.0
+  	array('KÃ©pek Ã¡tmÃ©retezÃ©sÃ©nek mÃ³dszere','thumb_method',2), //cpg1.3.0
   	array('FÃ¡jlelÃ©rÃ©si Ãºtvonal az ImageMagick \'convert\' programhoz (pÃ©ldÃ¡ul /usr/bin/X11/)', 'impath', 0), //cpg1.3.0
   	//array('Megengedett kÃ©ptÃ­pusok (csak ImageMagick esetÃ©n)', 'allowed_img_types',0), //cpg1.3.0
   	array('ImageMagick parancssor opciÃ³k', 'im_options', 0), //cpg1.3.0
   	array('EXIF adatok Ã©rtelmezÃ©se a JPEG fÃ¡jlokban', 'read_exif_data', 1), //cpg1.3.0
   	array('IPTC adatok Ã©rtelmezÃ©se a JPEG fÃ¡jlokban', 'read_iptc_data', 1), //cpg1.3.0
   	array('Album elÃ©rÃ©si Ãºtvonal <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0), //cpg1.3.0
-  	array('FelhasnÃ¡lÃ³i fÃ¡jlok elÃ©rÃ©si Ãºtvonala <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0), //cpg1.3.0
+  	array('FelhasznÃ¡lÃ³i fÃ¡jlok elÃ©rÃ©si Ãºtvonala <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0), //cpg1.3.0
   	array('KÃ¶zbensÅ‘ mÃ©retezÃ©sÅ± kÃ©pek prefixe <a href="#notice1" class="clickable_option">*</a>', 'normal_pfx', 0), //cpg1.3.0
   	array('IkonfÃ¡jlok prefixe <a href="#notice1" class="clickable_option">*</a>', 'thumb_pfx', 0), //cpg1.3.0
   	array('KÃ¶nyvtÃ¡rak alapÃ©rtelmezett mÃ³dja', 'default_dir_mode', 0), //cpg1.3.0
@@ -498,7 +498,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 
 
         'Cooky beÃ¡llÃ­tÃ¡sok',
-        array('A szkript Ã¡ltal hasznÃ¡lt cookynÃ©v (bbs integrÃ¡ciÃ³ esetÃ©n gyÅ‘zÅ‘dj meg rÃ³la, hogy eltÃ©r a bbs cookynÃ©vtÅ‘l)', 'cookie_name', 0),
+        array('A szkript Ã¡ltal hasznÃ¡lt cooky nÃ©v (bbs integrÃ¡ciÃ³ esetÃ©n gyÅ‘zÅ‘dj meg rÃ³la, hogy eltÃ©r a bbs cooky nÃ©vtÅ‘l)', 'cookie_name', 0),
         array('A szkript Ã¡ltal hasznÃ¡lt cooky Ãºtvonala', 'cookie_path', 0),
 
         'EgyÃ©b beÃ¡llÃ­tÃ¡sok',
@@ -514,7 +514,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
-  'title' => 'E-kÃ©peslapok kÃ¼ldÃ©se', //cpg1.3.0
+  'title' => 'E-lapok kÃ¼ldÃ©se', //cpg1.3.0
   'ecard_sender' => 'FeladÃ³', //cpg1.3.0
   'ecard_recipient' => 'CÃ­mzett', //cpg1.3.0
   'ecard_date' => 'DÃ¡tum', //cpg1.3.0
@@ -527,16 +527,16 @@ if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
   'ecard_sorted' => 'Sorrendezett', //cpg1.3.0
   'ecard_by_date' => 'dÃ¡tum szerint', //cpg1.3.0
   'ecard_by_sender_name' => 'feladÃ³ neve szerint', //cpg1.3.0
-  'ecard_by_sender_email' => 'feladÃ³ e-mailcÃ­me szerint', //cpg1.3.0
+  'ecard_by_sender_email' => 'feladÃ³ e-mail cÃ­me szerint', //cpg1.3.0
   'ecard_by_sender_ip' => 'feladÃ³ IP cÃ­me szerint', //cpg1.3.0
   'ecard_by_recipient_name' => 'cÃ­mzett neve szerint', //cpg1.3.0
-  'ecard_by_recipient_email' => 'cÃ­mzett e-mailcÃ­me szerint', //cpg1.3.0
+  'ecard_by_recipient_email' => 'cÃ­mzett e-mail cÃ­me szerint', //cpg1.3.0
   'ecard_number' => 'Rekordok kijelzÃ©se: %s tÅ‘l %s Ã¶sszesen %s', //cpg1.3.0
   'ecard_goto_page' => 'ugrÃ¡s oldalra', //cpg1.3.0
   'ecard_records_per_page' => 'Rekord per lap', //cpg1.3.0
   'check_all' => 'Mind kivÃ¡lasztÃ¡sa', //cpg1.3.0
   'uncheck_all' => 'Mind NEM kivÃ¡lasztÃ¡sa', //cpg1.3.0
-  'ecards_delete_selected' => 'KivÃ¡lasztott e-kÃ©peslapok tÃ¶rlÃ©se', //cpg1.3.0
+  'ecards_delete_selected' => 'KivÃ¡lasztott e-lapok tÃ¶rlÃ©se', //cpg1.3.0
   'ecards_delete_confirm' => 'Biztosan tÃ¶rÃ¶lni akarod a rekordokat? PipÃ¡ld ki a nÃ©gyzetet!', //cpg1.3.0
   'ecards_delete_sure' => 'Biztos vagyok benne', //cpg1.3.0
 );
@@ -619,7 +619,7 @@ $lang_display_image_php = array(
         'size' => '%s x %s pixel',
         'views' => '%s',
         'slideshow' => 'DiavetÃ­tÃ©s',
-        'stop_slideshow' => 'DIAVETÃ­TÃ‰S VÃ‰GE',
+        'stop_slideshow' => 'DIAVETÃTÃ‰S VÃ‰GE',
         'view_fs' => 'Teljes mÃ©retÅ± kÃ©p megtekintÃ©se',
 		'edit_pic' => 'LeÃ­rÃ¡s szerkesztÃ©se', //cpg1.3.0
 		'crop_pic' => 'KivÃ¡gÃ¡s Ã©s forgatÃ¡s', //cpg1.3.0
@@ -718,7 +718,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 		'preview' => 'ElÅ‘nÃ©zet', //cpg1.3.0
 		'save' => 'KÃ©p mentÃ©se', //cpg1.3.0
 		'save_thumb' =>'MentÃ©s ikonkÃ©nt', //cpg1.3.0
-		'sel_on_img' =>'A kivÃ¡lastott rÃ©sznek a kÃ©pen belÃ¼l kell lennie!', //js-alert //cpg1.3.0
+		'sel_on_img' =>'A kivÃ¡lasztott rÃ©sznek a kÃ©pen belÃ¼l kell lennie!', //js-alert //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -737,33 +737,33 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   array('MiÃ©rt kell regisztrÃ¡lnom?', 'A regisztrÃ¡lÃ¡st kÃ©rheti az adminisztrÃ¡tor. A regisztrÃ¡ciÃ³ a tagnak plusz szolgÃ¡ltatÃ¡sokat biztosÃ­that, mint kÃ©pek feltÃ¶ltÃ©sÃ©t, kedvencek lista vezetÃ©sÃ©t, kÃ©pek osztÃ¡lyozÃ¡sÃ¡t Ã©s hozzÃ¡szÃ³lÃ¡sok postÃ¡zÃ¡sÃ¡t stb.', 'allow_user_registration', '0'), //cpg1.3.0
   array('Hogyan regisztrÃ¡ljak?', 'Menj a &quot;RegisztrÃ¡ciÃ³&quot; menÃ¼be Ã©s tÃ¶ltsd ki a kÃ­vÃ¡nt mezÅ‘ket (Ã©s az opcionÃ¡lisakat ha akarod).<br />Ha az adminisztrÃ¡tor engedÃ©lyezte az e-mail aktivÃ¡lÃ¡st, akkor az informÃ¡ciÃ³k megadÃ¡sa utÃ¡n egy e-mailben kapsz Ã©rtesÃ­tÃ©st a regisztrÃ¡ciÃ³rÃ³l, valamint arrÃ³l, hogy hogyan aktivÃ¡lhatod a hozzÃ¡fÃ©rÃ©sedet, ami a bejelentkezÃ©shez szÃ¼ksÃ©ges.', 'allow_user_registration', '1'), //cpg1.3.0
   array('Hogyan jelentkezhetek be?', 'Menj a &quot;BejelentkezÃ©s&quot; menÃ¼be, add meg a felhasznÃ¡lÃ³neved Ã©s jelszavadat. Ha azt akarod, hogy a legkÃ¶zelebbi lÃ¡togatÃ¡sod alkalmÃ¡val automatikusan be legyÃ©l jelentkezve, x-eld ki a &quot;EmlÃ©kezz rÃ¡m&quot; nÃ©gyzetet.<br /><b>FONTOS: &quot;Az EmlÃ©kezz rÃ¡m&quot; csak akkor mÅ±kÃ¶dik, ha a Cooky-kat engedÃ©lyezted Ã©s nem tÃ¶rÃ¶lted a webhelyeden!</b>', 'offline', 0), //cpg1.3.0
-  array('MiÃ©rt nem tudok bejelentkezni?', 'RegisztrÃ¡ltÃ¡l, Ã©s vÃ¡laszoltÃ¡l az e-mailben kapott linkre? Ez aktivÃ¡lja a hozzÃ¡fÃ©rÃ©sed. EgyÃ©bb bejelenkezÃ©si problÃ©ma esetÃ©n fordulj a webhely adminisztrÃ¡torÃ¡hoz!', 'offline', 0), //cpg1.3.0
+  array('MiÃ©rt nem tudok bejelentkezni?', 'RegisztrÃ¡ltÃ¡l, Ã©s vÃ¡laszoltÃ¡l az e-mailben kapott linkre? Ez aktivÃ¡lja a hozzÃ¡fÃ©rÃ©sed. EgyÃ©b bejelentkezÃ©si problÃ©ma esetÃ©n fordulj a webhely adminisztrÃ¡torÃ¡hoz!', 'offline', 0), //cpg1.3.0
   array('Mi tÃ¶rtÃ©nik, ha elfelejtettem a jelszavam?', 'Ha lÃ¡tsz a webhelyen &quot;Elfelejtettem a jelszavam&quot; linket, hasznÃ¡ld! EgyÃ©bkÃ©nt kÃ©rj a webhely adminisztrÃ¡torÃ¡tÃ³l Ãºj jelszÃ³t!', 'offline', 0), //cpg1.3.0
-  //array('Mi tÃ¶rtÃ©nik, ha megvÃ¡ltozott az e-mail cÃ­mem?', 'EgyszerÅ±en lÃ©pj be Ã©s a &quot;Ã‰n profilom&quot; menÃ¼ben vÃ¡ltoztasd meg az e-mail cÃ­medet!', 'offline', 0), //cpg1.3.0
-  array('Hogyan tÃ¡rolhatok egy fÃ¡jlt a &quot;Kedvencek&quot; kÃ¶zÃ¶tt?', 'Klikkelj a kÃ©pre, ha a kÃ©p alatt nem lÃ¡thatÃ³ a &quot;FÃ¡jl informÃ¡ciÃ³&quot;, akkor klikkelj a fÃ¡jlinformÃ¡ciÃ³ ikonra (<img src="images/info.gif" width="16" height="16" border="0" alt="Picture information" />), gÃ¶rgess le a &quot;FÃ¡jl informÃ¡ciÃ³&quot;-hoz, majd klikkelj a &quot;HozzÃ¡adÃ¡s a kedvencekhez&quot; likre!<br /><br />FONTOS: A cooky-kat engedÃ©lyezned kell Ã©s nem tÃ¶rÃ¶lheted a webhelyeden!', 'offline', 0), //cpg1.3.0
+  //array('Mi tÃ¶rtÃ©nik, ha megvÃ¡ltozott az e-mail cÃ­mem?', 'EgyszerÅ±en lÃ©pj be Ã©s a &quot;Profilom&quot; menÃ¼ben vÃ¡ltoztasd meg az e-mail cÃ­medet!', 'offline', 0), //cpg1.3.0
+  array('Hogyan tÃ¡rolhatok egy fÃ¡jlt a &quot;Kedvencek&quot; kÃ¶zÃ¶tt?', 'Klikkelj a kÃ©pre, ha a kÃ©p alatt nem lÃ¡thatÃ³ a &quot;FÃ¡jl informÃ¡ciÃ³&quot;, akkor klikkelj a fÃ¡jlinformÃ¡ciÃ³ ikonra (<img src="images/info.gif" width="16" height="16" border="0" alt="FÃ¡jl informÃ¡ciÃ³" />), gÃ¶rgess le a &quot;FÃ¡jl informÃ¡ciÃ³&quot;-hoz, majd klikkelj a &quot;HozzÃ¡adÃ¡s a kedvencekhez&quot; likre!<br /><br />FONTOS: A cooky-kat engedÃ©lyezned kell Ã©s nem tÃ¶rÃ¶lheted a webhelyeden!', 'offline', 0), //cpg1.3.0
   array('Hogyan osztÃ¡lyozhatom a fÃ¡jlokat?', 'Klikkelj az ikonizÃ¡lt kÃ©pre, gÃ¶rgess az aljÃ¡ra, Ã©s vÃ¡laszd a &quot;FÃ¡jl osztÃ¡lyozÃ¡sa&quot; rÃ©szben klikkelj a megfelelÅ‘ osztÃ¡lyzatra!', 'offline', 0), //cpg1.3.0
   array('Hogyan postÃ¡zhatok hozzÃ¡szÃ³lÃ¡st egy fÃ¡jlhoz?', 'Klikkelj az ikonizÃ¡lt kÃ©pre, mej az aljÃ¡ra, Ã©s postÃ¡zz hozzÃ¡szÃ³lÃ¡st!', 'offline', 0), //cpg1.3.0
-  array('Hogyan tÃ¶lthetek fel fÃ¡jlokat?', 'Menj a &quot;FÃ¡jl feltÃ¶ltÃ©se&quot; menÃ¼be Ã©s vÃ¡laszd ki az albumot, amelyikbe fÃ¡jlt akarsz feltÃ¶lteni! Klikkelj a &quot;Browse...&quot; gombra Ã©s vÃ¡laszd ki a feltÃ¶ltendÅ‘ fÃ¡jlt! Megadhatsz cÃ­met Ã©s kÃ©palÃ¡Ã­rÃ¡st is igÃ©ny szerint. VÃ©gÃ¼l klikkelj a &quot;TOVÃBB&quot; gombra.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Hova tÃ¶lthetek fel fÃ¡jlokat?', 'Az &quot;Ã‰n kÃ©ptÃ¡ram&quot; valamelyik albumÃ¡ba tÃ¶lthetsz fel fÃ¡jlokat. Az adminisztrÃ¡tor engedÃ©lyezheti, hogy feltÃ¶lthess fÃ¡jlokat a fÅ‘kÃ©ptÃ¡r egy vagy tÃ¶bb albumÃ¡ba is.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Hogyan tÃ¶lthetek fel fÃ¡jlokat?', 'Menj a &quot;FeltÃ¶ltÃ©s&quot; menÃ¼be Ã©s vÃ¡laszd ki az albumot, amelyikbe fÃ¡jlt akarsz feltÃ¶lteni! Klikkelj a &quot;Browse...&quot; gombra Ã©s vÃ¡laszd ki a feltÃ¶ltendÅ‘ fÃ¡jlt! Megadhatsz cÃ­met Ã©s kÃ©palÃ¡Ã­rÃ¡st is igÃ©ny szerint. VÃ©gÃ¼l klikkelj a &quot;TOVÃBB&quot; gombra.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Hova tÃ¶lthetek fel fÃ¡jlokat?', 'Az &quot;KÃ©ptÃ¡ram&quot; valamelyik albumÃ¡ba tÃ¶lthetsz fel fÃ¡jlokat. Az adminisztrÃ¡tor engedÃ©lyezheti, hogy feltÃ¶lthess fÃ¡jlokat a fÅ‘kÃ©ptÃ¡r egy vagy tÃ¶bb albumÃ¡ba is.', 'allow_private_albums', 0), //cpg1.3.0
   array('Milyen tÃ­pusÃº Ã©s mÃ©retÅ± fÃ¡jlt tÃ¶lthetek fel?', 'A mÃ©retet Ã©s tÃ­pust (jpg,gif,..etc.) az adminisztrÃ¡tor dÃ¶ntheti el.', 'offline', 0), //cpg1.3.0
-  array('Mi az &quot;Ã‰n kÃ©ptÃ¡ram&quot;?', 'Az &quot;Ã‰n kÃ©ptÃ¡ram&quot; egy szemÃ©lyes kÃ©ptÃ¡r, ahova a felhasznÃ¡lÃ³ feltÃ¶lthet fÃ¡jlt, Ã©s menedzselheti.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Hogyan hozhatok lÃ©tre, nevezhetek Ã¡t, vagy tÃ¶rÃ¶lhetek albumot az &quot;Ã‰n kÃ©ptÃ¡ram&quot;-ban?', '&quot;AdminisztrÃ¡tor mÃ³d&quot;-ban kell, hogy legyÃ©l.<br />Menj a &quot;SzemÃ©lyes albumok szerkesztÃ©se 
+  array('Mi az &quot;KÃ©ptÃ¡ram&quot;?', 'Az &quot;KÃ©ptÃ¡ram&quot; egy szemÃ©lyes kÃ©ptÃ¡r, ahova a felhasznÃ¡lÃ³ feltÃ¶lthet fÃ¡jlt, Ã©s menedzselheti.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Hogyan hozhatok lÃ©tre, nevezhetek Ã¡t, vagy tÃ¶rÃ¶lhetek albumot az &quot;KÃ©ptÃ¡ram&quot;-ban?', '&quot;Admin mÃ³d&quot;-ban kell, hogy legyÃ©l.<br />Menj a &quot;SzemÃ©lyes albumok szerkesztÃ©se 
  
 &quot; menÃ¼be Ã©s klikkelj a &quot;Ãšj&quot; gombra. Ãrd Ã¡t az &quot;Ãšj album&quot;-ot a kÃ­vÃ¡nt nÃ©vre.<br />A kÃ©ptÃ¡rad bÃ¡rmelyik meglÃ©vÅ‘ albumÃ¡t is Ã¡tnevezheted.<br />Klikkelj a &quot;MÃ³dosÃ­tÃ¡sok vÃ©grehajtÃ¡sa&quot;-ra.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Hogyan szabÃ¡lyozhatom, hogy a felhasznÃ¡lÃ³k lÃ¡thassÃ¡k-e az albumomat?','&quot;AdminisztrÃ¡tor mÃ³d&quot;-ban kell, hogy legyÃ©l.<br />Menj a &quot;SzemÃ©lyes albumom tulajdonsÃ¡gai&quot;-ba. Az &quot;Album mÃ³dosÃ­tÃ¡sa&quot; legÃ¶rdÃ¼lÅ‘ menÃ¼bÅ‘l vÃ¡laszd ki a kÃ­vÃ¡nt albumot.<br />Itt megvÃ¡ltoztathatod az album nevÃ©t, leÃ­rÃ¡sÃ¡t, ikonizÃ¡lt kÃ©pÃ©t, Ã©s korlÃ¡tozhatod az allbumban lÃ©vÅ‘ fÃ¡jlok megtekintÃ©sÃ©t, osztÃ¡lyozÃ¡sÃ¡t, Ã©s hozzÃ¡szÃ³lÃ¡sok postÃ¡zÃ¡sÃ¡t.<br />Klikkelj ezutÃ¡n az &quot;Album mÃ³dosÃ­tÃ¡sa&quot; gombra!.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Hogyan lÃ¡thatom mÃ¡s felhasznÃ¡lÃ³ kÃ©ptÃ¡rÃ¡t?', 'Menj az &quot;AlbumlistÃ¡ra&quot; Ã©s vÃ¡laszd ki a &quot;User Galleries&quot; linket.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Mik a Cooky-k?', 'A cooky-k szÃ¶veges adatÃ¡llomÃ¡nyok, melyeket a webhely kÃ¼ld a szÃ¡mÃ­tÃ³gÃ©pedre.<br />A cooky-k Ã¡ltalÃ¡ban azt teszik lehetÅ‘vÃ©, hogy a felhasznÃ¡lÃ³ ismÃ©telt bejelentkezÃ©s nÃ©lkÃ¼l is visszatalÃ¡ljon a webhelyre, Ã©s egyÃ©bb hasonlÃ³ kÃ©nyelmi lehetÅ‘sÃ©geket biztosÃ­t.', 'offline', 0), //cpg1.3.0
+  array('Hogyan szabÃ¡lyozhatom, hogy a felhasznÃ¡lÃ³k lÃ¡thassÃ¡k-e az albumomat?','&quot;Admin mÃ³d&quot;-ban kell, hogy legyÃ©l.<br />Menj a &quot;SzemÃ©lyes albumom tulajdonsÃ¡gai&quot;-ba. Az &quot;Album mÃ³dosÃ­tÃ¡sa&quot; legÃ¶rdÃ¼lÅ‘ menÃ¼bÅ‘l vÃ¡laszd ki a kÃ­vÃ¡nt albumot.<br />Itt megvÃ¡ltoztathatod az album nevÃ©t, leÃ­rÃ¡sÃ¡t, ikonizÃ¡lt kÃ©pÃ©t, Ã©s korlÃ¡tozhatod az albumban lÃ©vÅ‘ fÃ¡jlok megtekintÃ©sÃ©t, osztÃ¡lyozÃ¡sÃ¡t, Ã©s hozzÃ¡szÃ³lÃ¡sok postÃ¡zÃ¡sÃ¡t.<br />Klikkelj ezutÃ¡n az &quot;Album mÃ³dosÃ­tÃ¡sa&quot; gombra!.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Hogyan lÃ¡thatom mÃ¡s felhasznÃ¡lÃ³ kÃ©ptÃ¡rÃ¡t?', 'Menj az &quot;AlbumlistÃ¡ra&quot; Ã©s vÃ¡laszd ki a &quot;FelhasznÃ¡lÃ³i kÃ©ptÃ¡rak&quot; linket.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Mik a Cooky-k?', 'A cooky-k szÃ¶veges adatÃ¡llomÃ¡nyok, melyeket a webhely kÃ¼ld a szÃ¡mÃ­tÃ³gÃ©pedre.<br />A cooky-k Ã¡ltalÃ¡ban azt teszik lehetÅ‘vÃ©, hogy a felhasznÃ¡lÃ³ ismÃ©telt bejelentkezÃ©s nÃ©lkÃ¼l is visszatalÃ¡ljon a webhelyre, Ã©s egyÃ©b hasonlÃ³ kÃ©nyelmi lehetÅ‘sÃ©geket biztosÃ­t.', 'offline', 0), //cpg1.3.0
   array('Hol kaphatom meg ezt a programot a webhelyemre?', 'Coppermine egy ingyenes multimÃ©diÃ¡s kÃ©ptÃ¡r, GNU GPL licensszel. Tele van szolgÃ¡ltatÃ¡sokkal Ã©s kÃ¼lÃ¶nbÃ¶zÅ‘ platformokon mÅ±kÃ¶dik. LÃ¡togass el a <a href="http://coppermine.sf.net/">Coppermine honlap</a>-ra tovÃ¡bbi informÃ¡ciÃ³Ã©rt Ã©s a program letÃ¶ltÃ©sÃ©Ã©rt.', 'offline', 0), //cpg1.3.0
 
   'NavigÃ¡lÃ¡s a webhelyen', //cpg1.3.0
-  array('Mi az &quot;Albumlista&quot;?', 'Ez megmutatja a teljes kÃ©ptÃ¡rat a kategÃ³riÃ¡kra mutatÃ³ linkeken kersztÃ¼l. A kategÃ³ria linkje ikonizÃ¡lt kÃ©p is lehet.', 'offline', 0), //cpg1.3.0
-  array('Mi az &quot;Ã‰n kÃ©ptÃ¡ram&quot;?', 'Ennek a szolgÃ¡ltatÃ¡snak a segÃ­tsÃ©gÃ©vel a felhasznÃ¡lÃ³k sajÃ¡t kÃ©ptÃ¡rt hozhatnak lÃ©tre, ebben lÃ©trehothatnak, mÃ³dosÃ­thatnak Ã©s tÃ¶rÃ¶lhetnek albumokat, valamint kÃ©peket tÃ¶lthetnek fel ide.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Mi a kÃ¼lÃ¶nbsÃ©g az &quot;AdminisztrÃ¡tor mÃ³d&quot; Ã©s a &quot;FelhasznÃ¡lÃ³ mÃ³d&quot; kÃ¶zÃ¶tt?', 'AdminisztrÃ¡tor mÃ³dban a felhasznÃ¡lÃ³ mÃ³dosÃ­thatja a kÃ©ptÃ¡rÃ¡t (Ã©s mÃ¡sÃ©t, ha az adminisztrÃ¡tor ezt engedÃ©lyezte).', 'allow_private_albums', 0), //cpg1.3.0
-  array('Mi a &quot;FÃ¡jl feltÃ¶ltÃ©se&quot;?', 'Ez a szolgÃ¡ltatÃ¡s lehetÅ‘vÃ© teszi a felhasznÃ¡lÃ³knak fÃ¡jlok feltÃ¶ltÃ©sÃ©t egy az Ã¡ltalad vagy az adminisztrÃ¡tor Ã¡ltal megadott kÃ©ptÃ¡rba (mÃ©retet Ã©s tÃ­pust az adminisztrÃ¡tor engedÃ©lyez).', 'allow_private_albums', 0), //cpg1.3.0
+  array('Mi az &quot;Albumlista&quot;?', 'Ez megmutatja a teljes kÃ©ptÃ¡rat a kategÃ³riÃ¡kra mutatÃ³ linkeken keresztÃ¼l. A kategÃ³ria linkje ikonizÃ¡lt kÃ©p is lehet.', 'offline', 0), //cpg1.3.0
+  array('Mi az &quot;KÃ©ptÃ¡ram&quot;?', 'Ennek a szolgÃ¡ltatÃ¡snak a segÃ­tsÃ©gÃ©vel a felhasznÃ¡lÃ³k sajÃ¡t kÃ©ptÃ¡rt hozhatnak lÃ©tre, ebben lÃ©trehozhatnak, mÃ³dosÃ­thatnak Ã©s tÃ¶rÃ¶lhetnek albumokat, valamint kÃ©peket tÃ¶lthetnek fel ide.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Mi a kÃ¼lÃ¶nbsÃ©g az &quot;Admin mÃ³d&quot; Ã©s a &quot;Felhaszn.mÃ³d&quot; kÃ¶zÃ¶tt?', 'AdminisztrÃ¡tor mÃ³dban a felhasznÃ¡lÃ³ mÃ³dosÃ­thatja a kÃ©ptÃ¡rÃ¡t (Ã©s mÃ¡sÃ©t, ha az adminisztrÃ¡tor ezt engedÃ©lyezte).', 'allow_private_albums', 0), //cpg1.3.0
+  array('Mi a &quot;FeltÃ¶ltÃ©se&quot;?', 'Ez a szolgÃ¡ltatÃ¡s lehetÅ‘vÃ© teszi a felhasznÃ¡lÃ³knak fÃ¡jlok feltÃ¶ltÃ©sÃ©t egy az Ã¡ltalad vagy az adminisztrÃ¡tor Ã¡ltal megadott kÃ©ptÃ¡rba (mÃ©retet Ã©s tÃ­pust az adminisztrÃ¡tor engedÃ©lyez).', 'allow_private_albums', 0), //cpg1.3.0
   array('Mi a &quot;Friss feltÃ¶ltÃ©sek&quot;?', 'Ez a szolgÃ¡ltatÃ¡s mutatja az utoljÃ¡ra feltÃ¶ltÃ¶tt fÃ¡jlokat.', 'offline', 0), //cpg1.3.0
   array('Mi a &quot;Friss hozzÃ¡szÃ³lÃ¡sok&quot;?', 'Ez a szolgÃ¡ltatÃ¡s mutatja az utoljÃ¡ra postÃ¡zott hozzÃ¡szÃ³lÃ¡sokat a fÃ¡jlokhoz.', 'offline', 0), //cpg1.3.0
   array('Mi a &quot;LegtÃ¶bbszÃ¶r nÃ©zett&quot;?', 'Ez a szolgÃ¡ltatÃ¡s mutatja az Ã¶sszes felhasznÃ¡lÃ³ Ã¡ltal legtÃ¶bbszÃ¶r nÃ©zett fÃ¡jlokat, fÃ¼ggetlenÃ¼l attÃ³l, hogy bejelentkeztek-e, vagy nem.', 'offline', 0), //cpg1.3.0
-  array('Mi a &quot;LegtÃ¶bb szavazat&quot;?', 'Ez a szolgÃ¡ltatÃ¡s mutatja legtÃ¶bb szavazatot kapott fÃ¡jlokat, az Ã¡tlagosztÃ¡lyzattal (pÃ©ldÃ¡ul ha 5 felhasznÃ¡lÃ³ mindegyike <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />-t adott, akkor a kÃ©p Ã¡tlagosztÃ¡lyzata <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />. Ha Ã¶ felhasznÃ¡lÃ³ 1-tÅ‘l 5-ig osztÃ¡lyzott (1,2,3,4,5), akkor az Ã¡tlagosztÃ¡lyzat <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> lesz.)<br />Az osztÃ¡lyzat <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" />-tÅ‘ (legjobb) megy <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" />-ig (legrosszabb).', 'offline', 0), //cpg1.3.0
+  array('Mi a &quot;LegtÃ¶bb szavazat&quot;?', 'Ez a szolgÃ¡ltatÃ¡s mutatja legtÃ¶bb szavazatot kapott fÃ¡jlokat, az Ã¡tlagosztÃ¡lyzattal (pÃ©ldÃ¡ul ha 5 felhasznÃ¡lÃ³ mindegyike <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />-t adott, akkor a kÃ©p Ã¡tlagosztÃ¡lyzata <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />. Ha Ã¶ felhasznÃ¡lÃ³ 1-tÅ‘l 5-ig osztÃ¡lyozott (1,2,3,4,5), akkor az Ã¡tlagosztÃ¡lyzat <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> lesz.)<br />Az osztÃ¡lyzat <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" />-tÅ‘ (legjobb) megy <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" />-ig (legrosszabb).', 'offline', 0), //cpg1.3.0
   array('Mi a &quot;Kedvencek&quot;?', 'Ez a szolgÃ¡ltatÃ¡s a felhasznÃ¡lÃ³ szÃ¡mÃ¡ra lehetÅ‘vÃ© teszi, hogy kedvenc kÃ©peire cooky segÃ­tsÃ©gÃ©vel emlÃ©kezzen a szÃ¡mÃ­tÃ³gÃ©p.', 'offline', 0), //cpg1.3.0
 );
 
@@ -777,10 +777,10 @@ if (defined('FORGOT_PASSWD_PHP')) $lang_forgot_passwd_php = array(
   'err_already_logged_in' => 'MÃ¡r bejelentkeztÃ©l!', //cpg1.3.0
   'enter_username_email' => 'Add meg a felhasznÃ¡lÃ³neved Ã©s e-mail cÃ­medet!', //cpg1.3.0
   'submit' => 'mehet', //cpg1.3.0
-  'failed_sending_email' => 'A jelszÃ³emlÃ©keztetÅ‘ e-mail kikÃ¼ldÃ©se nem sikerÃ¼lt!', //cpg1.3.0
+  'failed_sending_email' => 'A jelszÃ³-emlÃ©keztetÅ‘ e-mail kikÃ¼ldÃ©se nem sikerÃ¼lt!', //cpg1.3.0
   'email_sent' => 'Egy e-mailt kÃ¼ldtÃ¼nk felhasznÃ¡lÃ³nÃ©vvel Ã©s jelszÃ³val %s-nek', //cpg1.3.0
   'err_unk_user' => 'A kivÃ¡lasztott felhasznÃ¡lÃ³ nem lÃ©tezik!', //cpg1.3.0
-  'passwd_reminder_subject' => '%s - JelszÃ³emlÃ©keztetÅ‘', //cpg1.3.0
+  'passwd_reminder_subject' => '%s - JelszÃ³-emlÃ©keztetÅ‘', //cpg1.3.0
   'passwd_reminder_body' => 'KÃ©rted, hogy emlÃ©keztessÃ¼nk a bejelentkezÃ©si adataidra:
 FelhasznÃ¡lÃ³nÃ©v: %s
 JelszÃ³: %s
@@ -802,7 +802,7 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
         'apply' => 'MÃ³dosÃ­tÃ¡sok vÃ©grehajtÃ¡sa',
         'create_new_group' => 'Ãšj csoport lÃ©trehozÃ¡sa',
         'del_groups' => 'KijelÃ¶lt csoport(ok) tÃ¶rlÃ©se ',
-        'confirm_del' => 'FigyelmeztetÃ©s: ha tÃ¶rÃ¶lsz egy csoportot, a hozzÃ¡ tartozÃ³ felhasznÃ¡lÃ³k Ã¡thelyezÅ‘dnek a \'Registered\' csoportba !\n\nFolytatod ?', //js-alert //cpg1.3.0
+        'confirm_del' => 'FigyelmeztetÃ©s: ha tÃ¶rÃ¶lsz egy csoportot, a hozzÃ¡ tartozÃ³ felhasznÃ¡lÃ³k Ã¡thelyezÅ‘dnek a \'RegisztrÃ¡ltak\' csoportba !\n\nFolytatod ?', //js-alert //cpg1.3.0
         'title' => 'FelhasznÃ¡lÃ³csoportok menedzselÃ©se',
         'approval_1' => 'NyilvÃ¡nos feltÃ¶ltÃ©s jÃ³vÃ¡hagyÃ¡s (1)',
         'approval_2' => 'PrivÃ¡t feltÃ¶ltÃ©s jÃ³vÃ¡hagyÃ¡s (2)',
@@ -941,7 +941,7 @@ BÃ¡r a {SITE_NAME} adminisztrÃ¡tora mindent elkÃ¶vet, hogy amilyen gyorsan
 <br />
 Elfogadod, hogy nem postÃ¡zol semmilyen sÃ©rtÅ‘, obszcÃ©n, vulgÃ¡ris, rÃ¡galmazÃ³, gyÅ±lÃ¶lkÃ¶dÅ‘, fenyegetÅ‘, szexuÃ¡lis tartalmÃº, vagy bÃ¡rmilyen mÃ¡s olyan tartalmÃº anyagot, amely Ã©rvÃ©nyes tÃ¶rvÃ©nyt sÃ©rt. Elfogadod, hogy a {SITE_NAME} webmesterÃ©nek, adminisztrÃ¡torÃ¡nak, vagy moderÃ¡torÃ¡nak bÃ¡rmikor jogÃ¡ban Ã¡ll bÃ¡rmilyen tartalmat szÃ¼ksÃ©g esetÃ©n tÃ¶rÃ¶lni, vagy szerkeszteni. Mint felhasznÃ¡lÃ³ egyetÃ©rtesz a kÃ¶zÃ¶lt informÃ¡ciÃ³k adatbÃ¡zisban tÃ¶rtÃ©nÅ‘ tÃ¡rolÃ¡sÃ¡hoz. BÃ¡r a webmester, illetve adminisztrÃ¡tor nem adja ki harmadik feleknek ezeket az informÃ¡ciÃ³kat a hozzÃ¡jÃ¡rulÃ¡sod nÃ©lkÃ¼l, nem tehetÅ‘ felelÅ‘ssÃ© semmilyen olyan hacker kÃ­sÃ©rletÃ©rt, melyek az adatok kompromittÃ¡lÃ¡sÃ¡hoz vezet.<br />
 <br />
-Ez a weblap cookie formÃ¡jÃ¡ban informÃ¡ciÃ³t tÃ¡rol a szÃ¡mÃ­tÃ³gÃ©peden. Ezek a cookie-k csak azt a cÃ©lt szolgÃ¡ljÃ¡k, hogy fokozzÃ¡k a nÃ©zhetÅ‘sÃ©gi Ã©lmÃ©nyt. Az email cÃ­m csak a regisztrÃ¡ciÃ³s adataidnak Ã©s jelszavadnak nyugtÃ¡zÃ¡sÃ¡ra szolgÃ¡l.<br />
+Ez a weblap cooky formÃ¡jÃ¡ban informÃ¡ciÃ³t tÃ¡rol a szÃ¡mÃ­tÃ³gÃ©peden. Ezek a cooky-k csak azt a cÃ©lt szolgÃ¡ljÃ¡k, hogy fokozzÃ¡k a nÃ©zhetÅ‘sÃ©gi Ã©lmÃ©nyt. Az email cÃ­m csak a regisztrÃ¡ciÃ³s adataidnak Ã©s jelszavadnak nyugtÃ¡zÃ¡sÃ¡ra szolgÃ¡l.<br />
 <br />
 Az 'EgyetÃ©rtek'-re klikkelve elfogadod ezeket a feltÃ©teleket.
 EOT;
@@ -1181,7 +1181,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 		'lv_d' => 'UtolsÃ³ lÃ¡togatÃ¡s csÃ¶kkenÅ‘', //cpg1.3.0
         'sort_by' => 'FelhasznÃ¡lÃ³k sorrendezÃ©se',
         'err_no_users' => 'Nincs felhasznÃ¡lÃ³ !',
-        'err_edit_self' => 'Nem szerkesztheted a sajÃ¡t profilod, hasznÃ¡ld az \'Ã‰n profilom\' menÃ¼pontot',
+        'err_edit_self' => 'Nem szerkesztheted a sajÃ¡t profilod, hasznÃ¡ld az \'Profilom\' menÃ¼pontot',
         'edit' => 'SZERKESZT',
         'delete' => 'TÃ–RÃ–L',
         'name' => 'FelhasznÃ¡lÃ³nÃ©v',
@@ -1269,7 +1269,7 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
 		'nonexist' => 'nem lÃ©tezÅ‘ fÃ¡jlhoz csatolva # ', //cpg1.3.0
 		'phpinfo' => 'Phpinfo kijelzÃ©se', //cpg1.3.0
 		'update_db' => 'AdatbÃ¡zis aktualizÃ¡lÃ¡sa', //cpg1.3.0
-		'update_db_explanation' => 'Ha lecserÃ©ltÃ©l coppermine fÃ¡jlokat, mÃ³dosÃ­tÃ¡sokat vÃ©geztÃ©l, vagy korÃ¡bbu verziÃ³jÃº coppermine-rÃ³l upgrade-eltÃ©l, futtasd le az adatbÃ¡zis update-et. Ez lÃ©trehozza a szÃ¼ksÃ©ges adattÃ¡blÃ¡kat Ã©s / vagy konfigurÃ¡ciÃ³s Ã©rtÃ©keket a coppermine adatbÃ¡zisodban.', //cpg1.3.0
+		'update_db_explanation' => 'Ha lecserÃ©ltÃ©l coppermine fÃ¡jlokat, mÃ³dosÃ­tÃ¡sokat vÃ©geztÃ©l, vagy korÃ¡bbi verziÃ³jÃº coppermine-rÃ³l upgrade-eltÃ©l, futtasd le az adatbÃ¡zis update-et. Ez lÃ©trehozza a szÃ¼ksÃ©ges adattÃ¡blÃ¡kat Ã©s / vagy konfigurÃ¡ciÃ³s Ã©rtÃ©keket a coppermine adatbÃ¡zisodban.', //cpg1.3.0
 );
 
 ?>
