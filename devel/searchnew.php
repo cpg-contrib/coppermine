@@ -180,10 +180,10 @@ function picrow($picfile, $picid, $albid)
                         <input name="picfile_$picid" type="hidden" value="$encoded_picfile" />
                 </td>
                 <td class="tableb" valign="middle" width="100%">
-                        <a href="javascript:;" onClick= "MM_openBrWindow('displayimage.php?&fullsize=1&picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')">$pic_fname</a>
+                        <a href="javascript:;" onclick= "MM_openBrWindow('displayimage.php?&fullsize=1&picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')">$pic_fname</a>
                 </td>
                 <td class="tableb" valign="middle" align="center">
-                        <a href="javascript:;" onClick= "MM_openBrWindow('displayimage.php?&fullsize=1&picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')"><img src="images/spacer.gif" width="1" height="48" border="0" alt="" />$img<br /></a>
+                        <a href="javascript:;" onclick= "MM_openBrWindow('displayimage.php?&fullsize=1&picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')"><img src="images/spacer.gif" width="1" height="48" border="0" alt="" />$img<br /></a>
                 </td>
         </tr>
 EOT;
@@ -199,7 +199,7 @@ EOT;
                         <i>$pic_fname</i>
                 </td>
                 <td class="tableb" valign="middle" align="center">
-                        <a href="javascript:;" onClick= "MM_openBrWindow('displayimage.php?&fullsize=1&picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')"><img src="showthumb.php?picfile=$pic_url&size=48" class="thumbnail" border="0" alt="" /><br /></a>
+                        <a href="javascript:;" onclick= "MM_openBrWindow('displayimage.php?&fullsize=1&picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')"><img src="showthumb.php?picfile=$pic_url&size=48" class="thumbnail" border="0" alt="" /><br /></a>
                 </td>
         </tr>
 EOT;
