@@ -833,6 +833,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
         'already_rated' => 'Sorry but you have already rated this picture',
         'rate_ok' => 'Your vote was accepted',
+        'forbidden' => 'You can not rate your own pictures.',
 );
 
 // ------------------------------------------------------------------------- //
