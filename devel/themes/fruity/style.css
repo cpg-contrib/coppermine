@@ -235,6 +235,23 @@ a:hover.yebg {
         padding-left: 10px;
 }
 
+.catrow {
+        background: #F7F37B ;
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+}
+
+.catrow_noalb {
+        background: #F7F37B ;
+        color : #000000;
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+}
+
 .album_stat {
         font-size : 10px;
         margin: 5px 0px;

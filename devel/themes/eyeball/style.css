@@ -40,7 +40,7 @@ table { border-collapse: collapse; }
 
 .tableh1, .tableh1a, .tableh1_compact, .navmenu, .navmenu a, .sortorder_cell, .sortorder_options, .statlink, .statlink a, .statlink a:hover { color : #FFC956; }
 
-.tableh2, .tableh2_compact { color : #FFC956; }
+.tableh2, .tableh2_compact, .catrow_noalb { color : #FFC956; }
 
 .textinput, .listbox, .radio, .checkbox { color: #FFFFFF; }
 
@@ -66,9 +66,9 @@ body { background-color: #000000; }
 
 .tableh1, .tableh1_compact, .navmenu, .navmenu a, .navmenu a:hover  {         background : #000000 ; }
 
-.tableh2, .tableh2_compact, .tablef, .img_caption_table th {         background : #000000 ; }
+.tableh2, .catrow_noalb, .tableh2_compact, .tablef, .img_caption_table th {         background : #000000 ; }
 
-.tableb, .tableb_compact, .thumbnails, .img_caption_table td { background : #000000 ; }
+.tableb, .catrow, .tableb_compact, .thumbnails, .img_caption_table td { background : #000000 ; }
 
 
 /* Borders for input controls */
@@ -93,7 +93,7 @@ body { background-color: #000000; }
 /* Fonts definition */
 body { font-family: Arial, Helvetica, sans-serif; }
 
-.tableh1, .tableh1a, .catlink, .tableh2 { font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; }
+.tableh1, .tableh1a, .catlink, .tableh2, .catrow_noalb { font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; }
 
 .textinput, .listbox, .radio, .checkbox { font-family: Arial, Helvetica, sans-serif; }
 
@@ -298,7 +298,6 @@ a:hover {
         padding-left: 10px;
 }
 
-
 .tableh2_compact {
         padding-top: 2px;
         padding-right: 5px;
@@ -314,7 +313,19 @@ a:hover {
         padding-left: 10px;
 }
 
+.catrow_noalb {
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+}
 
+.catrow {
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+}
 .tableb_compact {
         padding-top: 2px;
         padding-right: 5px;
