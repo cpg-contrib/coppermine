@@ -898,7 +898,7 @@ if (!isset($_REQUEST['control'])) {
 
         // Declare an array containing the various upload form box definitions.
         $captionLabel = $lang_upload_php['description'];
-        if ($CONFIG['show_bbcode_help']) {$captionLabel .= '<hr />'.$lang_bbcode_help;}
+        if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&t='.urlencode(base64_encode(serialize($lang_bbcode_help))),450,250);}
         $form_array = array(
         sprintf($lang_upload_php['max_fsize'], $CONFIG['max_upl_size']),
         array($lang_upload_php['album'], 'album', 2),
@@ -2494,7 +2494,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
 
     // Declare an array containing the various upload form box definitions.
     $captionLabel = $lang_upload_php['description'];
-    if ($CONFIG['show_bbcode_help']) {$captionLabel .= '<hr />'.$lang_bbcode_help;}
+    if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&t='.urlencode(base64_encode(serialize($lang_bbcode_help))),450,250);}
     //$printed_file_name = "{$lang_upload_php['picture']} - {$file_set[0]}";
 
     $form_array = array(
