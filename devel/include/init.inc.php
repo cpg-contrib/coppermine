@@ -21,6 +21,7 @@ define('COPPERMINE_VERSION', '1.3.0 - devel');
 // define('UDB_INTEGRATION', 'invisionboard');
 // define('UDB_INTEGRATION', 'vbulletin');
 // define('UDB_INTEGRATION', 'yabbse');
+// define('UDB_INTEGRATION', 'wbb21');
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 // Start output buffering
 ob_start();
@@ -117,7 +118,29 @@ define('ERROR', 2);
 define('CRITICAL_ERROR', 3);
 
 // Include config and functions files
-require 'include/config.inc.php';
+if(file_exists('include/config.inc.php')){
+  require 'include/config.inc.php';
+} else {
+  // error handling: if the config file doesn't exist go to install
+  print <<< EOT
+<html>
+    <head>
+      <title>Coppermine not installed yet</title>
+      <meta http-equiv="refresh" content="100;url=install.php">
+      <style type="text/css">
+      <!--
+      body { font-size: 12px; background: #FFFFFF; margin: 20%; color: black; font-family: verdana, arial, helvetica, sans-serif;}
+      -->
+      </style>
+    </head>
+    <body>
+      <img src="images/coppermine_logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" /><br />
+      Coppermine Photo Gallery seems not to be installed correctly, or you're running coppermine for the first time. You'll be redirected to the installer. If your browser doesn't support redirect, click <a href="install.php">here</a>.
+    </body>
+</html>
+EOT;
+  die();
+}
 require 'include/functions.inc.php';
 
 $CONFIG['TABLE_PICTURES']        = $CONFIG['TABLE_PREFIX']."pictures";
