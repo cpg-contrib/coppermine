@@ -2353,13 +2353,12 @@ $lang_language_data['vietnamese'] = array('Vietnamese','Tieng Viet','vn');
 // get list of available languages
   $value = strtolower($CONFIG['lang']);
 
-
-
-
   $lang_dir = 'lang/';
   $dir = opendir($lang_dir);
-  while ($file = readdir($dir)) {   
-     if ($file != '.' AND $file != '..')$lang_array[] = strtolower(substr($file, 0 , -4)); 
+  while ($file = readdir($dir)) {
+     if ($file != '.' && $file != '..' && $file !='CVS') {
+         $lang_array[] = strtolower(substr($file, 0 , -4));
+     }
   }
   closedir($dir);
   natcasesort($lang_array);
