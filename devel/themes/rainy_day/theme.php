@@ -271,7 +271,7 @@ $template_album_list = <<<EOT
         </tr>
         <tr>
                 <td colspan="3">
-                        <img src="images/spacer.gif" width="1" height="1" border="0" alt="" /<br />
+                        <img src="images/spacer.gif" width="1" height="1" border="0" alt="" /><br />
                 </td>
         </tr>
         <tr>
@@ -280,7 +280,7 @@ $template_album_list = <<<EOT
                         <a href="{ALB_LINK_TGT}" class="albums">{ALB_LINK_PIC}<br /></a>
                 </td>
                 <td>
-                        <img src="images/spacer.gif" width="1" height="1" border="0" alt="" /
+                        <img src="images/spacer.gif" width="1" height="1" border="0" alt="" />
                 </td>
                 <td width="100%" valign="top" class="tableb_compact">
                         {ADMIN_MENU}
@@ -301,7 +301,7 @@ $template_album_list = <<<EOT
         </tr>
         <tr>
                 <td>
-                        <img src="images/spacer.gif" width="1" height="1" border="0" alt="" /<br />
+                        <img src="images/spacer.gif" width="1" height="1" border="0" alt="" /><br />
                 </td>
         </tr>
         <tr>
@@ -380,7 +380,7 @@ $template_album_list_cat = <<<EOT
         </tr>
         <tr>
                 <td colspan="3">
-                        <img src="images/spacer.gif" width="1" height="1" border="0" alt="" /<br />
+                        <img src="images/spacer.gif" width="1" height="1" border="0" alt="" /><br />
                 </td>
         </tr>
         <tr>
@@ -389,7 +389,7 @@ $template_album_list_cat = <<<EOT
                         <a href="{ALB_LINK_TGT}" class="albums">{ALB_LINK_PIC}<br /></a>
                 </td>
                 <td>
-                        <img src="images/spacer.gif" width="1" height="1" border="0" alt="" /
+                        <img src="images/spacer.gif" width="1" height="1" border="0" alt="" />
                 </td>
                 <td width="100%" valign="top" class="tableb_compact">
                         {ADMIN_MENU}
@@ -410,7 +410,7 @@ $template_album_list_cat = <<<EOT
         </tr>
         <tr>
                 <td>
-                        <img src="images/spacer.gif" width="1" height="1" border="0" alt="" /<br />
+                        <img src="images/spacer.gif" width="1" height="1" border="0" alt="" /><br />
                 </td>
         </tr>
         <tr>
@@ -467,7 +467,7 @@ $template_thumb_view_title_row = <<<EOT
                         <table width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                                 <td width="100%" class="statlink"><h2>{ALBUM_NAME}</h2></td>
-                                <td><img src="images/spacer.gif" width="1"></td>
+                                <td><img src="images/spacer.gif" width="1" /></td>
                                 <td class="sortorder_cell">
                                         <table cellpadding="0" cellspacing="0">
                                         <tr>
@@ -504,7 +504,7 @@ $template_fav_thumb_view_title_row = <<<EOT
                         <table width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                                 <td width="100%" class="statlink"><h2>{ALBUM_NAME}</h2></td>
-                                <td><img src="images/spacer.gif" width="1"></td>
+                                <td><img src="images/spacer.gif" width="1" /></td>
                                 <td class="sortorder_cell">
                                         <table cellpadding="0" cellspacing="0">
                                                 <tr>
@@ -685,8 +685,8 @@ $template_image_comments = <<<EOT
                                 </td>
                                 <td class="tableh2_compact" align="right" width="100%">
 <!-- BEGIN buttons -->
-                                        <a href="javascript:;" onClick="blocking('cbody{MSG_ID}','', 'block'); blocking('cedit{MSG_ID}','', 'block'); return false;" title="{EDIT_TITLE}"><img src="images/edit.gif" border="0" align="absmiddle" ></a>
-                                        <a href="delete.php?msg_id={MSG_ID}&what=comment"  onclick="return confirm('{CONFIRM_DELETE}');"><img src="images/delete.gif" border="0" align="absmiddle" ></a>
+                                        <a href="javascript:;" onClick="blocking('cbody{MSG_ID}','', 'block'); blocking('cedit{MSG_ID}','', 'block'); return false;" title="{EDIT_TITLE}"><img src="images/edit.gif" border="0" align="absmiddle" /></a>
+                                        <a href="delete.php?msg_id={MSG_ID}&what=comment"  onclick="return confirm('{CONFIRM_DELETE}');"><img src="images/delete.gif" border="0" align="absmiddle" /></a>
 <!-- END buttons -->
                                 </td>
                                 <td class="tableh2_compact" align="right" nowrap>
@@ -916,8 +916,8 @@ EOT;
 $template_tab_display = array('left_text' => '<td width="100%%" align="left" valign="middle" class="tableh1_compact" style="white-space: nowrap"><b>{LEFT_TEXT}</b></td>' . "\n",
     'tab_header' => '',
     'tab_trailer' => '',
-    'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /</td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%d</b></td>',
-    'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /</td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"<b>%d</b></a></td>' . "\n"
+    'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%d</b></td>',
+    'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"<b>%d</b></a></td>' . "\n"
     );
 
 function pageheader($section, $meta = '')
