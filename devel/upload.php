@@ -2247,7 +2247,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
         // Time for garbage cleanup.
 
         // First, we delete the preview image.
-        if (!strstr($preview_path, 'thumb')) {
+        if ((!strstr($preview_path, 'thumb')) and (file_exists($preview_path))) {
 
             unlink($preview_path);
 
@@ -2257,18 +2257,45 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
         if(count($escrow_array) == '0') {
 
             // Create the final message.
-            if ($file_placement == 'no') {
+            if ($PIC_NEED_APPROVAL) {
+ 
+                if ($file_placement == 'no') {
 
-                $final_message = ''.$lang_upload_php['no_place'].'<br /><br />'.$lang_upload_php['process_complete'];
+                    $final_message = ''.$lang_upload_php['no_place'].'<br /><br />'.$lang_db_input_php['upload_success'];
+
+                } else {
+
+                    $final_message = ''.$lang_upload_php['yes_place'].'<br /><br />'.$lang_db_input_php['upload_success'];
+
+                }
 
             } else {
 
-                $final_message = ''.$lang_upload_php['yes_place'].'<br /><br />'.$lang_upload_php['process_complete'];
+                if ($file_placement == 'no') {
 
-            }
+                    $final_message = ''.$lang_upload_php['no_place'].'<br /><br />'.$lang_upload_php['process_complete'];
+
+                } else {
+
+                    $final_message = ''.$lang_upload_php['yes_place'].'<br /><br />'.$lang_upload_php['process_complete'];
+
+                }
+
+            }           
 
             // Delete the temporary data file.
             delete_record($_POST['unique_ID']);
+
+            // Send e-mail notification to the admin if requested (added by gaugau: 03-11-09).
+            if (($CONFIG['upl_notify_admin_email']) and ($PIC_NEED_APPROVAL)) {
+
+                // Get the mail files.
+                include_once('include/mailer.inc.php');
+
+                // Send the message.
+                cpg_mail($CONFIG['gallery_admin_email'], sprintf($lang_db_input_php['notify_admin_email_subject'], $CONFIG['gallery_name']), sprintf($lang_db_input_php['notify_admin_email_body'], USER_NAME,  $CONFIG['ecards_more_pic_target'].'/editpics.php?mode=upload_approval' ));
+
+            }
 
             // That was the last one. Create a redirect box.
             pageheader($lang_info);
