@@ -188,7 +188,7 @@ echo <<<EOT
     </ol>
     </div>
 EOT;
-                echo '<input type="submit" class="button" name="convert" value="Convert" />';
+echo '<div class="input"><input type="submit" class="button" name="convert" value="Convert" /></div>';
                 echo '</form>';
             }
             if ($doconvert)
@@ -233,7 +233,7 @@ else
 
 pageheader("Charset Manager");
 
-if (!function_exists('iconva'))
+if (!function_exists('iconv'))
 {
     echo "<p class=\"warning\">The <a href=\"http://www.php.net/iconv\">iconv</a> function is not available. <b>You cannot use this script.</b></p>";
 }
