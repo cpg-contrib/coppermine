@@ -1,8 +1,8 @@
-<?php
+﻿<?php
 // ------------------------------------------------------------------------- //
 //  Coppermine Photo Gallery v1.1 Devel                                      //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002  Grégory DEMAR <gdemar@wanadoo.fr>                    //
+//  Copyright (C) 2002  Gregory DEMAR <gdemar@wanadoo.fr>                    //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
 //  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
@@ -13,11 +13,15 @@
 //  the Free Software Foundation; either version 2 of the License, or        //
 //  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
+//  Hacked by Tarique Sani <tarique@sanisoft.com> and Girsh Nair             //
+//  <girish@sanisoft.com> see http://www.sanisoft.com/cpg/README.txt for     //
+//  details                                                                  //
+// ------------------------------------------------------------------------- //
 //  Translation by Joachim Müller <mail@gaugau.de>                           //
 //  http://gaugau.de/                                                        //
 // ------------------------------------------------------------------------- //
 
-$lang_charset = 'utf-8';
+$lang_charset = 'iso-8859-1';
 $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 
 // shortcuts for Byte, Kilo, Mega
@@ -25,7 +29,7 @@ $lang_byte_units = array('Bytes', 'kB', 'MB');
 
 // Day of weeks and months
 $lang_day_of_week = array('So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa');
-$lang_month = array('Jan', 'Feb', 'Mrz', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez');
+$lang_month = array('Januar', 'Februar', 'M&auml;rz', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember');
 
 // Some common strings
 $lang_yes = 'Ja';
@@ -38,18 +42,19 @@ $lang_error = 'Fehler';
 // The various date formats
 // See http://www.php.net/manual/en/function.strftime.php to define the variable below
 $album_date_fmt =    '%d.%B %Y';
-$lastcom_date_fmt =  '%m.%d.%y um %H:%M';
+$lastcom_date_fmt =  '%d.%m.%y um %H:%M';
 $lastup_date_fmt = '%d.%B %Y';
 $register_date_fmt = '%d.%B %Y';
 $lasthit_date_fmt = '%d.%B %Y um %H:%M';
 $comment_date_fmt =  '%d.%B %Y um %H:%M';
 
 // For the word censor
-$lang_bad_words = array('*fuck*', '*fick*', '*arsch*', 'hure*', 'nutte', 'fotze', 'möse', 'scheiss*', 'scheiß*', 'motherfucker','nigger*', 'pussy', 'shit', 'slut', 'titties', 'titty');
+$lang_bad_words = array('*fuck*', '*fick*', '*arsch*', 'hure*', 'nutte', 'fotze', 'm&ouml;se', 'scheiss*', 'schei&szlig;*', 'motherfucker','nigger*', 'pussy', 'shit', 'slut', 'titties', 'titty');
 
 $lang_meta_album_names = array(
         'random' => 'Zufalls-Bilder',
         'lastup' => 'neueste Bilder',
+        'lastalb'=> 'Zuletzt aktualisierte Alben',
         'lastcom' => 'neueste Kommentare',
         'topn' => 'am meisten angesehen',
         'toprated' => 'am besten bewertet',
@@ -66,7 +71,7 @@ $lang_errors = array(
         'gd_file_type_err' => 'Bei Verwendung der GD-Bibliothek sind nur die Dateitypen JPG und PNG erlaubt.',
         'invalid_image' => 'Das Bild, das Du hochgeladen hast ist besch&auml;digt oder kann nicht von der GD-Bibliothek verarbeitet werden',
         'resize_failed' => 'Kann Thumbnail nicht erzeugen.',
-        'no_img_to_display' => 'Kein Bild zum Anzeigen vorhanden',
+        'no_img_to_display' => 'Kein Bild zum Anzeigen vorhanden (oder Du hast keine Berechtigung, das Album zu sehen)',
         'non_exist_cat' => 'Die gew&auml;hlte Kategorie existiert nicht',
         'orphan_cat' => 'Eine Kategorie besitzt ein nicht-existierendes Eltern-Element, benutze den Kategorie-Manager um das Problem zu beheben.',
         'directory_ro' => 'Das Verzeichnis \'%s\' ist nicht beschreibbar, die Bilder k&ouml;nnen nicht gel&ouml;scht werden',
@@ -99,7 +104,7 @@ $lang_main_menu = array(
         'topn_lnk' => 'am meisten angesehen',
         'toprated_lnk' => 'am besten bewertet',
         'search_lnk' => 'Suche',
-);
+        );
 
 $lang_gallery_admin_menu = array(
         'upl_app_lnk' => 'Upload-Best&auml;tigung',
@@ -110,6 +115,7 @@ $lang_gallery_admin_menu = array(
         'groups_lnk' => 'Gruppen',
         'comments_lnk' => 'Kommentare',
         'searchnew_lnk' => 'Batch-hinzuf&uuml;gen',
+        'util_lnk' => 'Gr&ouml;sse &auml;ndern',
 );
 
 $lang_user_admin_menu = array(
@@ -130,11 +136,15 @@ $lang_album_list = array(
 
 $lang_thumb_view = array(
         'date' => 'Datum',
+        //Sort by filename and title
         'name' => 'Dateiname',
+        'title' => 'Titel',
         'sort_da' => 'aufsteigend nach Datum sortieren',
         'sort_dd' => 'absteigend nach Datum sortieren',
         'sort_na' => 'aufsteigend nach Name sortieren',
         'sort_nd' => 'absteigend nach Name sortieren',
+        'sort_ta' => 'aufsteigend nach Titel sortieren',
+        'sort_td' => 'absteigend nach Titel sortieren',
         'pic_on_page' => '%d Bilder auf %d Seite(n)',
         'user_on_page' => '%d Benutzer auf %d Seite(n)'
 );
@@ -256,10 +266,10 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
 
 if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
         'alb_need_name' => 'Alben m&uuml;ssen einen Namen haben!',
-        'confirm_modifs' => 'Bist Du sicher, dass Du diese Änderungen durchführen willst?',
+        'confirm_modifs' => 'Bist Du sicher, dass Du diese &Auml;nderungen durchf&uuml;hren willst?',
         'no_change' => 'Du hast nichts ver&auml;ndert!',
         'new_album' => 'neues Album',
-        'confirm_delete1' => 'Willst Du dieses Album wirklich löschen?',
+        'confirm_delete1' => 'Willst Du dieses Album wirklich l&ouml;schen?',
         'confirm_delete2' => '\nAlle Bilder und Kommentare, die darin enthalten sind werden gel&ouml;scht!',
         'select_first' => 'W&auml;hle zuerst ein Album',
         'alb_mrg' => 'Alben-Manager',
@@ -280,14 +290,15 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
         'unknown_cat' => 'Gew&auml;hlte Kategorie existiert nicht in Datenbank',
         'usergal_cat_ro' => 'Benutzer-Galerie kann nicht gel&ouml;scht werden!',
         'manage_cat' => 'Kategorien verwalten',
-        'confirm_delete' => 'Willst Du diese Kategorie wriklich L&Ouml;SCHEN',
+        'confirm_delete' => 'Willst Du diese Kategorie wirklich L&Ouml;SCHEN',
         'category' => 'Kategorie',
         'operations' => 'Operationen',
         'move_into' => 'verschieben in',
         'update_create' => 'Kategorie erzeugen/&auml;ndern',
         'parent_cat' => 'Eltern-Kategorie',
         'cat_title' => 'Titel der Kategorie',
-        'cat_desc' => 'Beschreibung Kategorie'
+        'cat_desc' => 'Beschreibung Kategorie',
+        'no_category' => 'keine Kategorie'
 );
 
 // ------------------------------------------------------------------------- //
@@ -304,6 +315,8 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'restore_success' => 'Coppermine Standard-Einstellungen wieder hergestellt',
         'name_a' => 'aufsteigend nach Name',
         'name_d' => 'absteigend nach Name',
+        'title_a' => 'aufsteigend nach Titel',
+        'title_d' => 'absteigend nach Titel',
         'date_a' => 'aufsteigend nach Datum',
         'date_d' => 'absteigend nach Datum'
 );
@@ -324,6 +337,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Anzahl Spalten in Album-Liste', 'album_list_cols', 0),
         array('Thumbnail-Gr&ouml;sse in Pixel', 'alb_list_thumb_size', 0),
         array('Inhalt der Hauptseite', 'main_page_layout', 0),
+        array('Erste Ebene der Thumbnails der Alben auch in Kategorien anzeigen','first_level',1),
 
         'Ansicht Thumbnail',
         array('Spaltenzahl auf Thumbnail-Seite', 'thumbcols', 0),
@@ -343,6 +357,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Maximale Anzahl von Buchstaben in einem Wort', 'max_com_wlength', 0),
         array('Maximale Zeilenzahl eines Kommentars', 'max_com_lines', 0),
         array('Maximale L&auml;nge eines Kommentars', 'max_com_size', 0),
+        array('Film-Streifen anzeigen', 'display_film_strip', 1),
+        array('Anzahl Elemente in Film-Streifen', 'max_film_strip_items', 0),
 
         'Bild- und Thumbnail-Einstellungen',
         array('Qualit&auml;t f&uuml;r JPEG-Dateien', 'jpeg_qual', 0),
@@ -365,6 +381,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Name Feld 4', 'user_field4_name', 0),
 
         'Erweiterte Bild- und Thumbnail-Einstellungen',
+        array('Icons für Persönliche Alben nicht eingeloggten Benutzern anzeigen?','show_private',1),
         array('Nicht erlaubte Zeichen in Dateinamen', 'forbiden_fname_char',0),
         array('erlaubte Datei-Erweiterungen f&uuml;r das Hochladen von Bildern', 'allowed_file_extensions',0),
         array('Methode zur Gr&ouml;&szlig;en&auml;nderung von Bildern','thumb_method',2),
@@ -459,8 +476,9 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 if (defined('DISPLAYIMAGE_PHP')){
 
 $lang_display_image_php = array(
-        'confirm_del' => 'Dieses Bild wirklich LÖSCHEN? \\nKommentare werden ebenfalls gel&ouml;scht.',
+        'confirm_del' => 'Dieses Bild wirklich L&Ouml;SCHEN? \\nKommentare werden ebenfalls gel&ouml;scht.',
         'del_pic' => 'Dieses Bild L&ouml;schen',
+        'edit_pic' => 'Dieses Bild bearbeiten',
         'size' => '%s x %s Pixel',
         'views' => '%s mal',
         'slideshow' => 'Diashow',
@@ -482,14 +500,18 @@ $lang_picinfo = array(
         'Aperture' => 'Blende',
         'Exposure time' => 'Belichtungszeit',
         'Focal length' => 'Brennweite',
-        'Comment' => 'Kommentar'
+        'Comment' => 'Kommentar',
+        'addFav'=>'zu Favoriten hinzufügen',
+        'addFavPhrase'=>'Favoriten'
 );
 
 $lang_display_comments = array(
         'OK' => 'OK',
         'edit_title' => 'Diesen Kommentar bearbeiten',
-        'confirm_delete' => 'Willst Du diesen Kommentar wirklich lÖschen?',
+        'confirm_delete' => 'Willst Du diesen Kommentar wirklich l&ouml;schen?',
         'add_your_comment' => 'F&uuml;ge Deinen Kommentar hinzu',
+        'name'=>'Name',
+        'comment'=>'Kommentar',
         'your_name' => 'Dein Name',
 );
 
@@ -527,9 +549,9 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
         'title' => 'Titel',
         'desc' => 'Beschreibung',
         'keywords' => 'Stichworte',
-        'pic_info_str' => '%sx%s - %sKB - %s x angesehen - %s x abgestimmt',
+        'pic_info_str' => '%sx%s - %sKB - %s x angesehen - %s x bewertet',
         'approve' => 'Bild genehmigen',
-        'postpone_app' => 'Geneh,igung verschieben',
+        'postpone_app' => 'Genehmigung verschieben',
         'del_pic' => 'Bild l&ouml;schen',
         'reset_view_count' => 'Z&auml;hler x mal angesehen auf Null setzen',
         'reset_votes' => 'Anzahl Stimmen auf Null setzen',
@@ -560,8 +582,8 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
         'del_groups' => 'ausgew&auml;hlte Gruppe(n) l&ouml;schen',
         'confirm_del' => 'Achtung: wenn Du eine Gruppe l&ouml;schst werden die dazu geh&ouml;renden Benutzer in die Gruppe \'Registrierte Benutzer\' Verschoben !\n\nWillst Du das ?',
         'title' => 'Benutzer-Gruppen verwalten',
-        'approval_1' => '&Ouml;ffentl.Hochlad.Best. (1)',
-        'approval_2' => 'Priv.Hochlad.Best. (2)',
+        'approval_1' => '&Ouml;ffentl. Upload best. (1)',
+        'approval_2' => 'Priv. Upload best. (2)',
         'note1' => '<b>(1)</b> Das Hochladen in ein &ouml;ffentliches Album mu&szlig; durch den Admin best&auml;tigt werden',
         'note2' => '<b>(2)</b> Das Hochladen in ein privates Album mu&szlig; durch den Admin best&auml;tigt werden',
         'notes' => 'Anmerkungen'
@@ -578,9 +600,9 @@ $lang_index_php = array(
 );
 
 $lang_album_admin_menu = array(
-        'confirm_delete' => 'Willst Du dieses Album wirklich LÖSCHEN? \\nAlle darin befindlichen Bilder und Kommentare werden ebenfalls gel&ouml;scht.',
+        'confirm_delete' => 'Willst Du dieses Album wirklich L&Ouml;SCHEN? \\nAlle darin befindlichen Bilder und Kommentare werden ebenfalls gel&ouml;scht.',
         'delete' => 'l&ouml;schen',
-        'modify' => '&auml;ndern',
+        'modify' => 'Eigenschaften',
         'edit_pics' => 'Bilder bearbeiten',
 );
 
@@ -821,12 +843,13 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 
 if (defined('UPLOAD_PHP')) $lang_upload_php = array(
         'title' => 'Bild hochladen',
-        'max_fsize' => 'Maximal zul&auml;ssige Dateigr&ouml;sse ist %s KB',
+        'max_fsize' => 'Maximal zul&auml;ssige Dateigr&ouml;sse ist %s KB. Es k&ouml;nnen nur .jpg und .png - Dateien hochgeladen werden',
         'album' => 'Album',
         'picture' => 'Bild',
         'pic_title' => 'Bild-Titel',
-        'description' => 'Picture description',
-        'keywords' => 'Stichworte (Trennung mit Leerzeichen)',
+        'description' => 'Bild-Beschreibung',
+        'caption' => 'Bild-Beschreibung',
+        'keywords' => 'Stichworte (Trennung mit Komma)',
         'err_no_alb_uploadables' => 'Leider gibt es kein Album, in das Du Bilder hochladen darfst',
 );
 
@@ -859,7 +882,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
         'disk_space' => 'Speicherplatzverbrauch / Quota',
         'registered_on' => 'Registriert am',
         'u_user_on_p_pages' => '%d Benutzer auf %d Seite(n)',
-        'confirm_del' => 'Willst Du diesen Benutzer wirklich LÖSCHEN? \\nAlle seine Bilder und Alben werden ebenfalls gel&ouml;scht.',
+        'confirm_del' => 'Willst Du diesen Benutzer wirklich L&Ouml;SCHEN? \\nAlle seine Bilder und Alben werden ebenfalls gel&ouml;scht.',
         'mail' => 'MAIL',
         'err_unknown_user' => 'Gew&auml;hlter Benutzer existiert nicht!',
         'modify_user' => 'Benutzer &auml;ndern',
