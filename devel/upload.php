@@ -2250,7 +2250,10 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
 
         // Form path to temporary image.
         $path_to_image = './'.$CONFIG['fullpath'].'edit/'.$file_set[1];
-
+		
+		// prevent moving the edit directory...
+		if (is_dir($path_to_image)) cpg_die(CRITICAL_ERROR, $lang_upload_php['failure'] . " - '$path_to_image'", __FILE__, __LINE__, true);
+		
         // Move the picture into its final location
         if (rename($path_to_image, $uploaded_pic)) {
 
