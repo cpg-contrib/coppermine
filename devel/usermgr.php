@@ -187,6 +187,10 @@ function selectaction(d,box) {
     break;
     case "add_group":
       document.editForm.new_password.value = '';
+      document.editForm.group.style.visibility = "visible";
+      if (document.editForm.group.value != '') {
+      document.editForm.submit();
+      }
     break;
     default:
       document.editForm.new_password.value = '';
@@ -369,7 +373,7 @@ EOT;
                                 <option value="deactivate">{$lang_usermgr_php['deactivate']}</option>
                                 <option value="reset_password">{$lang_usermgr_php['reset_password']}</option>
                                 <option value="change_group">{$lang_usermgr_php['change_primary_membergroup']}</option>
-                                <!--<option value="add_group">{$lang_usermgr_php['add_secondary_membergroup']}</option>-->
+                                <!--<option value="add_group">{$lang_usermgr_php['add_secondary_membergroup']}</option>Not implemented yet-->
                             </select>
                             <input type="hidden" name="what" value="user"/>
                               <input type="text" name="new_password" value="{$lang_usermgr_php['password']}" size="8" maxlength="8" class="textinput" onfocus="this.value='';" style="visibility:hidden" />

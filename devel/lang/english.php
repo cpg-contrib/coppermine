@@ -842,6 +842,8 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
   'password_reset' => 'Password reset to %s', // cpg1.4.0
   'change_group' => 'Change primary group', // cpg1.4.0
   'change_group_to_group' => 'Changing from %s to %s', // cpg1.4.0
+  'add_group' => 'Add secondary group', // cpg1.4.0
+  'add_group_to_group' => 'Adding user to %s. He\'s now member of %s', // cpg1.4.0
   'status' => 'Status', // cpg1.4.0
 );
 
