@@ -1,0 +1,84 @@
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1" colspan="4">
+      <table width="100%" cellpadding="0" cellspacing="0">
+      <tr>
+              <td width="100%" class="statlink"><h2>{$thumbList.albumName}</h2></td>
+              <td><img src="images/spacer.gif" width="1" alt="" /></td>
+              <td class="sortorder_cell">
+                      <table cellpadding="0" cellspacing="0">
+                      <tr>
+              <td class="sortorder_options">TITLE</td>
+              <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={$thumbList.album}&amp;page={$thumbList.currentPage}&amp;sort=ta" title="Sort by title ascending">&nbsp;+&nbsp;</a></span></td>
+
+              <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={$thumbList.album}&amp;page={$thumbList.currentPage}&amp;sort=td" title="Sort by title descending">&nbsp;-&nbsp;</a></span></td>
+            </tr>
+            <tr>
+              <td class="sortorder_options">FILE NAME</td>
+              <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={$thumbList.album}&amp;page={$thumbList.currentPage}&amp;sort=na" title="Sort by name ascending">&nbsp;+&nbsp;</a></span></td>
+              <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={$thumbList.album}&amp;page={$thumbList.currentPage}&amp;sort=nd" title="Sort by name descending">&nbsp;-&nbsp;</a></span></td>
+        </tr>
+        <tr>
+                <td class="sortorder_options">DATE</td>
+                <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={$thumbList.album}&amp;page={$thumbList.currentPage}&amp;sort=da" title="Sort by date ascending">&nbsp;+&nbsp;</a></span></td>
+                <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={$thumbList.album}&amp;page={$thumbList.currentPage}&amp;sort=dd" title="Sort by date descending">&nbsp;-&nbsp;</a></span></td>
+              </tr>
+                      </table>
+                  </td>
+              </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+    {assign var="col" value="0"}
+    {assign var=cur value=$thumbList.currentPage-1}
+    {section name=element loop=$thumbcols*$thumbrows}
+        {if $col == $thumbcols}
+            </tr><tr>{assign var="col" value="0"}
+        {/if}
+        <td valign="top" class="thumbnails" width="{$colWidth}%" align="center">
+          <a href="displayimageNew.php?albumName={$thumbList.album}&amp;aid={$thumbList[element].aid}&amp;pid={$thumbList[element].pid}&amp;pos={if $thumbList.currentPage eq 1}{$smarty.section.element.index}{else}{$smarty.section.element.index+$thumbcols*$thumbrows*$cur}{/if}"><img src="{$thumbList[element].image.url}" class="image" border="0" alt="{$thumbList[element].image.alt}" title="{$thumbList[element].image.title}" /></a>
+          <br />
+          <span class=\"thumb_title\">{$thumbList[element].caption}</span>
+          {if $thumbList[element].comment ne ""}
+            <span class=\"thumb_num_comments\">{$thumbList[element].comment}</span>
+          {/if}
+          {if $thumbList[element].owner ne ""}
+            <span class="thumb_title"><a href="{$thumbList[element].ownerLink}">{$thumbList[element].owner}</a></span>
+          {/if}
+        </td>
+        {assign var="col" value="`$col+1`"}
+    {/section}
+    {assign var="remainder" value="`$thumbcols-$col`"}
+    {section name=emptyElement loop=$remainder}
+        <td class="thumbnails">&nbsp;</td>
+    {/section}
+    </tr>
+  </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="4" style="padding: 0px;">
+        <table width="100%" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="100%" align="left" valign="middle" class="tableh1_compact" style="white-space: nowrap"><b>{$thumbList.thumbCount} files on {$thumbList.totalPages} page(s)</b></td>
+            <td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>
+            {if $thumbList.totalPages gt 1}
+            {section name=page loop=$thumbList.totalPages}
+              {if $smarty.section.page.iteration eq $thumbList.currentPage}
+                <td align="center" valign="middle" class="tableb_compact"><b>{$smarty.section.page.iteration}</b></td>
+              {else}
+                <td align="center" valign="middle" class="navmenu"><a href="thumbnailsNew.php?album={$thumbList.album}&amp;page={$smarty.section.page.iteration}">{$smarty.section.page.iteration}</a></td>
+              {/if}
+            {/section}
+            {/if}
+          </tr>
+        </table>
+      </td>
+    </tr>
+</table>
+<!-- End standard table -->
