@@ -43,35 +43,47 @@
 // WARNING : Do not activate this bridge if you already have pictures or     //
 //           usergroups in your gallery.                                     //
 // ------------------------------------------------------------------------- //
-
 // In order for the login to redirect back to Coppermine, you'll need to edit
 // one SMF file.  Open up Sources/LogInOut.php and do the following:
 //
 // In function Login(), right before the closing }, add this:
 //
-//	if (isset($_SESSION['cpg_smf_login']))
-//	{
-//	  $_SESSION['login_url'] = $_SESSION['old_url'];
-//	  unset($_SESSION['cpg_smf_login']);
-//	}
- 
-// Set this to the location of your Settings file:
-$path = '../smf';
+//        if (isset($_SESSION['cpg_smf_login']))
+//        {
+//          $_SESSION['login_url'] = $_SESSION['old_url'];
+//          unset($_SESSION['cpg_smf_login']);
+//        }
+// ------------------------------------------------------------------------- //
+// Modify the values below according to your Board installation if you don't //
+// want to use the bridge manager integration by setting $use_bridgemgr = 0; //
+// ------------------------------------------------------------------------- //
 
-// Comment this out if you want to default user's group to 'Registered'
-// rather than using Post Count based groups.
-define('USE_POST_GROUPS', 1);
+// Switch that allows overriding the bridge manager with hard-coded values
+$use_bridgemgr = 1;
 
-// Set the names of implied groups here
-define('CM_ADMIN_GROUP_NAME', 'Administrators');
-define('CM_MEMBERS_GROUP_NAME', 'Registered');
-define('CM_GUEST_GROUP_NAME', 'Anonymous');
-define('CM_BANNED_GROUP_NAME', 'Banned');
-define('CM_GMOD_GROUP_NAME', 'Global Moderators');
+if ($use_bridgemgr == 0) { // the vars that are used when bridgemgr is disabled
+
+    // Set this to the location of your Settings file:
+    $path = '../smf';
+
+    // Comment this out if you want to default user's group to 'Registered'
+    // rather than using Post Count based groups.
+    define('USE_POST_GROUPS', 1);
+
+    // Set the names of implied groups here
+    define('CM_ADMIN_GROUP_NAME', 'Administrators');
+    define('CM_MEMBERS_GROUP_NAME', 'Registered');
+    define('CM_GUEST_GROUP_NAME', 'Anonymous');
+    define('CM_BANNED_GROUP_NAME', 'Banned');
+    define('CM_GMOD_GROUP_NAME', 'Global Moderators');
 
 // ------------------------------------------------------------------------- //
 // Nothing to edit below this line
 // ------------------------------------------------------------------------- //
+
+} else { // the vars from the bridgemgr
+       define('PHPBB_WEB_PATH', $BRIDGE['relative_path_to_config_file']);
+}
 
 // Otherwise, try to autodetect SMF path if not set:
 if (substr($path, -1) == '/')
@@ -125,7 +137,7 @@ function udb_authenticate()
 
     reloadSettings();
     LoadUserSettings();
-    
+
     // For error checking
     $CONFIG['TABLE_USERS'] = '**ERROR**';
 

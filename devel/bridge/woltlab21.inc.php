@@ -27,16 +27,27 @@
 // ------------------------------------------------------------------------- //
 // $Id$
 // ------------------------------------------------------------------------- //
+// Modify the values below according to your Board installation if you don't //
+// want to use the bridge manager integration by setting $use_bridgemgr = 0; //
+// ------------------------------------------------------------------------- //
 
-// In this example there are 2 subdirectories
-// WBB: http://yoursite_name.com/wbb2/
-// CPG: http://yoursite_name.com/cpg/
-// Setup path to your Woltlab Board directory to change this
+// Switch that allows overriding the bridge manager with hard-coded values
+$use_bridgemgr = 1;
 
-// The paths to your Woltlab Board directory
-define('RELATIVE_WBB_PATH','../wbb2/');
-define('WBB_WEB_PATH','/wbb2/');
+if ($use_bridgemgr == 0) { // the vars that are used when bridgemgr is disabled
 
+    // In this example there are 2 subdirectories
+    // WBB: http://yoursite_name.com/wbb2/
+    // CPG: http://yoursite_name.com/cpg/
+    // Setup path to your Woltlab Board directory to change this
+
+    // The paths to your Woltlab Board directory
+    define('RELATIVE_WBB_PATH','../wbb2/');
+    define('WBB_WEB_PATH','/wbb2/');
+} else { // the vars from the bridgemgr
+    define('RELATIVE_WBB_PATH', $BRIDGE['relative_path_to_config_file']);
+    define('WBB_WEB_PATH', $BRIDGE['relative_path_of_forum_from_webroot']);
+}
 // database configuration
 require_once(RELATIVE_WBB_PATH."acp/lib/config.inc.php");
 require_once(RELATIVE_WBB_PATH."acp/lib/options.inc.php");
@@ -55,7 +66,7 @@ define('WBB_COOKIE_USERPW',$cookieprefix."userpassword");
 // ------------------------------------------------------------------------- //
 
 // Prefix and names for the database tables
-define('WBB_TABLE_PREFIX','bb'.$n.'_');    // Leave empty, not supported by vBulletin 2.3
+define('WBB_TABLE_PREFIX','bb'.$n.'_');    // Leave empty, not supported by wbb
 define('WBB_USER_TABLE', 'users');      // The members table
 define('WBB_SESSION_TABLE', 'sessions');   // The sessions table
 define('WBB_GROUP_TABLE', 'groups');   // The groups table

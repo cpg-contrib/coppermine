@@ -20,40 +20,69 @@
 // ------------------------------------------------------------------------- //
 // $Id$
 // ------------------------------------------------------------------------- //
-// Modify the values below according to your Board installation              //
+// Modify the values below according to your Board installation if you don't //
+// want to use the bridge manager integration by setting $use_bridgemgr = 0; //
 // ------------------------------------------------------------------------- //
 
+// Switch that allows overriding the bridge manager with hard-coded values
+$use_bridgemgr = 1;
 
-// database configuration
-define('MOS_DB_NAME', 'database'); // The name of the database used by the board
-define('MOS_DB_HOST', 'localhost'); // The name of the database server
-define('MOS_DB_USERNAME', 'username'); // The username to use to connect to the database
-define('MOS_DB_PASSWORD', 'password'); // The password to use to connect to the database
+if ($use_bridgemgr == 0) { // the vars that are used when bridgemgr is disabled
 
-// The web path to your Mambo directory
-// If your URL to your board is for example 'http://yoursite_name.com/mambo/',
-// you'll have to set the below var to '/mambo/'.
-define('MOS_WEB_PATH', '/mambo/');
-// ------------------------------------------------------------------------- //
-// You can keep the default values below if your instalation is standard
-// ------------------------------------------------------------------------- //
+    // database configuration
+    define('MOS_DB_NAME', 'database'); // The name of the database used by the board
+    define('MOS_DB_HOST', 'localhost'); // The name of the database server
+    define('MOS_DB_USERNAME', 'username'); // The username to use to connect to the database
+    define('MOS_DB_PASSWORD', 'password'); // The password to use to connect to the database
 
-// Prefix and names for the database tables
-define('MOS_TABLE_PREFIX', 'mos_'); // The prefix used for the DB tables
-define('MOS_USER_TABLE', 'users'); // The members table
-define('MOS_SESSION_TABLE', 'session'); // The session table
-define('MOS_GROUP_TABLE', 'core_acl_aro_groups'); // The groups table
-define('MOS_UGROUP_TABLE', 'core_acl_aro'); // The group/user table
-define('MOS_UGROUPMAP_TABLE', 'core_acl_groups_aro_map'); // The group/user table
+    // The web path to your Mambo directory
+    // If your URL to your board is for example 'http://yoursite_name.com/mambo/',
+    // you'll have to set the below var to '/mambo/'.
+    define('MOS_WEB_PATH', '/mambo/');
+    // ------------------------------------------------------------------------- //
+    // You can keep the default values below if your instalation is standard
+    // ------------------------------------------------------------------------- //
+
+    // Prefix and names for the database tables
+    define('MOS_TABLE_PREFIX', 'mos_'); // The prefix used for the DB tables
+    define('MOS_USER_TABLE', 'users'); // The members table
+    define('MOS_SESSION_TABLE', 'session'); // The session table
+    define('MOS_GROUP_TABLE', 'core_acl_aro_groups'); // The groups table
+    define('MOS_UGROUP_TABLE', 'core_acl_aro'); // The group/user table
+    define('MOS_UGROUPMAP_TABLE', 'core_acl_groups_aro_map'); // The group/user table
 
 // ------------------------------------------------------------------------- //
 // Nothing to edit below this line
 // ------------------------------------------------------------------------- //
-// Group definitions
-define('MOS_ADMIN_GROUP', 1);
-define('MOS_MEMBERS_GROUP', 2);
-define('MOS_GUEST_GROUP', 3);
-define('MOS_BANNED_GROUP', 4);
+
+} else { // the vars from the bridgemgr
+    define('MOS_DB_NAME', $BRIDGE['db_database_name']); // The name of the database used by the board
+    define('MOS_BD_HOST', $BRIDGE['db_hostname']); // The name of the database server
+    define('MOS_DB_USERNAME', $BRIDGE['db_username']); // The username to use to connect to the database
+    define('MOS_DB_PASSWORD', $BRIDGE['db_password']); // The password to use to connect to the database
+    define('MOS_WEB_PATH', $BRIDGE['relative_path_of_forum_from_webroot']);
+
+    // Prefix and names for the database tables
+    define('MOS_TABLE_PREFIX', $BRIDGE['table_prefix']); // The prefix used for the DB tables
+    define('MOS_USER_TABLE', $BRIDGE['user_table']); // The members table
+    define('MOS_SESSION_TABLE', $BRIDGE['session_table']); // The session table
+    define('MOS_GROUP_TABLE', $BRIDGE['group_table']); // The groups table
+    define('MOS_UGROUP_TABLE', $BRIDGE['group_relation_table']); // The group/user table
+    define('MOS_UGROUPMAP_TABLE', $BRIDGE['group_mapping_table']); // The group/user table
+}
+
+// Group definitions (shouldn't be edited unless you know what you're doing!)
+    if ($use_bridgemgr != 0 && $BRIDGE['use_standard_groups'] == 0) {
+    define('MOS_ADMIN_GROUP', $BRIDGE['admin_group']);
+    define('MOS_MEMBERS_GROUP', $BRIDGE['member_group']);
+    define('MOS_GUEST_GROUP', $BRIDGE['guest_group']);
+    define('MOS_BANNED_GROUP', $BRIDGE['banned_group']);
+} else {
+    define('MOS_ADMIN_GROUP', 1);
+    define('MOS_MEMBERS_GROUP', 2);
+    define('MOS_GUEST_GROUP', 3);
+    define('MOS_BANNED_GROUP', 4);
+}
 // Authenticate a user using cookies
 function udb_authenticate()
 {

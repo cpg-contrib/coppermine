@@ -37,16 +37,24 @@
 // ------------------------------------------------------------------------- //
 // YaBB SE 1.5.4 Integration for Coppermine                                  //
 // ------------------------------------------------------------------------- //
-// Modify the value below according to your Board installation               //
+// Modify the values below according to your Board installation if you don't //
+// want to use the bridge manager integration by setting $use_bridgemgr = 0; //
 // ------------------------------------------------------------------------- //
 
-// Set this to the location of your Settings file
-require_once("../yabbse/Settings.php");
+// Switch that allows overriding the bridge manager with hard-coded values
+$use_bridgemgr = 1;
 
-// ------------------------------------------------------------------------- //
-// Nothing to edit below this line
-// ------------------------------------------------------------------------- //
+if ($use_bridgemgr == 0) { // the vars that are used when bridgemgr is disabled
 
+    // Set this to the location of your Settings file
+    require_once("../yabbse/Settings.php");
+
+    // ------------------------------------------------------------------------- //
+    // Nothing to edit below this line
+    // ------------------------------------------------------------------------- //
+} else { // the vars from the bridgemgr
+       require_once($BRIDGE['relative_path_to_config_file']);
+}
 // other includes
 require_once("$sourcedir/Load.php");
 require_once("$sourcedir/Security.php");

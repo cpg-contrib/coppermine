@@ -18,32 +18,60 @@
 // ------------------------------------------------------------------------- //
 // vBulletin 2.3 Integration for Coppermine                                  //
 // ------------------------------------------------------------------------- //
-// Modify the values below according to your Board installation              //
+// Modify the values below according to your Board installation if you don't //
+// want to use the bridge manager integration by setting $use_bridgemgr = 0; //
 // ------------------------------------------------------------------------- //
 
-// database configuration
-define('VB_DB_NAME', 'vbulletin23'); // The name of the database used by the board
-define('VB_BD_HOST', 'localhost'); // The name of the database server
-define('VB_DB_USERNAME', 'root'); // The username to use to connect to the database
-define('VB_DB_PASSWORD', ''); // The password to use to connect to the database
+// Switch that allows overriding the bridge manager with hard-coded values
+$use_bridgemgr = 1;
 
-// The web path to your vBulletin Board directory
-// In this example http://yoursite_name.com/vbulletin23/
-define('VB_WEB_PATH', '/vbulletin23/');
-// ------------------------------------------------------------------------- //
-// Nothing to edit below this line
-// ------------------------------------------------------------------------- //
-// Prefix and names for the database tables
-define('VB_TABLE_PREFIX', ''); // Leave empty, not supported by vBulletin 2.3
-define('VB_USER_TABLE', 'user'); // The members table
-define('VB_SESSION_TABLE', 'session'); // The sessions table
-define('VB_GROUP_TABLE', 'usergroup'); // The groups table
+if ($use_bridgemgr == 0) { // the vars that are used when bridgemgr is disabled
 
-// Group definitions (default values used by the board)
-define('VB_VALIDATING_GROUP', 3);
-define('VB_GUEST_GROUP', 1);
-define('VB_MEMBERS_GROUP', 2);
-define('VB_ADMIN_GROUP', 6);
+    // database configuration
+    define('VB_DB_NAME', 'vbulletin23'); // The name of the database used by the board
+    define('VB_BD_HOST', 'localhost'); // The name of the database server
+    define('VB_DB_USERNAME', 'root'); // The username to use to connect to the database
+    define('VB_DB_PASSWORD', ''); // The password to use to connect to the database
+
+    // The web path to your vBulletin Board directory
+    // In this example http://yoursite_name.com/vbulletin23/
+    define('VB_WEB_PATH', '/vbulletin23/');
+    // ------------------------------------------------------------------------- //
+    // Nothing to edit below this line
+    // ------------------------------------------------------------------------- //
+    // Prefix and names for the database tables
+    define('VB_TABLE_PREFIX', ''); // Leave empty, not supported by vBulletin 2.3
+    define('VB_USER_TABLE', 'user'); // The members table
+    define('VB_SESSION_TABLE', 'session'); // The sessions table
+    define('VB_GROUP_TABLE', 'usergroup'); // The groups table
+
+} else { // the vars from the bridgemgr
+    define('VB_DB_NAME', $BRIDGE['db_database_name']); // The name of the database used by the board
+    define('VB_BD_HOST', $BRIDGE['db_hostname']); // The name of the database server
+    define('VB_DB_USERNAME', $BRIDGE['db_username']); // The username to use to connect to the database
+    define('VB_DB_PASSWORD', $BRIDGE['db_password']); // The password to use to connect to the database
+    define('VB_WEB_PATH', $BRIDGE['relative_path_of_forum_from_webroot']);
+
+    // Prefix and names for the database tables
+    define('VB_TABLE_PREFIX', $BRIDGE['table_prefix']); // The prefix used for the DB tables
+    define('VB_USER_TABLE', $BRIDGE['user_table']); // The members table
+    define('VB_SESSION_TABLE', $BRIDGE['session_table']); // The session table
+    define('VB_GROUP_TABLE', $BRIDGE['group_table']); // The groups table
+}
+
+// Group definitions (shouldn't be edited unless you know what you're doing!)
+    if ($use_bridgemgr != 0 && $BRIDGE['use_standard_groups'] == 0) {
+    define('VB_ADMIN_GROUP', $BRIDGE['admin_group']);
+    define('VB_MEMBERS_GROUP', $BRIDGE['member_group']);
+    define('VB_GUEST_GROUP', $BRIDGE['guest_group']);
+    define('VB_VALIDATING_GROUP', $BRIDGE['validating_group']);
+} else {
+    define('VB_VALIDATING_GROUP', 3);
+    define('VB_GUEST_GROUP', 1);
+    define('VB_MEMBERS_GROUP', 2);
+    define('VB_ADMIN_GROUP', 6);
+}
+
 // Authenticate a user using cookies
 function udb_authenticate()
 {

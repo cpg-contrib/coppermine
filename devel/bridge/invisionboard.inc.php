@@ -18,36 +18,68 @@
 // ------------------------------------------------------------------------- //
 // Invision Power Board v1.1 Integration for Coppermine                      //
 // ------------------------------------------------------------------------- //
-// Modify the values below according to your Board installation              //
+// Modify the values below according to your Board installation if you don't //
+// want to use the bridge manager integration by setting $use_bridgemgr = 0; //
 // ------------------------------------------------------------------------- //
 
-// database configuration
-define('IB_DB_NAME', 'ivboard'); // The name of the database used by the board
-define('IB_BD_HOST', 'localhost'); // The name of the database server
-define('IB_DB_USERNAME', 'root'); // The username to use to connect to the database
-define('IB_DB_PASSWORD', ''); // The password to use to connect to the database
+// Switch that allows overriding the bridge manager with hard-coded values
+$use_bridgemgr = 1;
 
-// The web path to your Invision Board directory
-// In this example http://yoursite_name.com/ivboard/
-define('IB_WEB_PATH', '/ivboard/');
-// ------------------------------------------------------------------------- //
-// You can keep the default values below if your installation is standard
-// ------------------------------------------------------------------------- //
-// The prefix for the Invision Board cookies
-define('IB_COOKIE_PREFIX', ''); // The prefix used for board cookies
+if ($use_bridgemgr == 0) { // the vars that are used when bridgemgr is disabled
 
-// Prefix and names for the database tables
-define('IB_TABLE_PREFIX', 'ibf_'); // The prefix used for the DB tables
-define('IB_USER_TABLE', 'members'); // The members table
-define('IB_SESSION_TABLE', 'sessions'); // The sessions table
-define('IB_GROUP_TABLE', 'groups'); // The groups table
+    // database configuration
+    define('IB_DB_NAME', 'ivboard'); // The name of the database used by the board
+    define('IB_BD_HOST', 'localhost'); // The name of the database server
+    define('IB_DB_USERNAME', 'root'); // The username to use to connect to the database
+    define('IB_DB_PASSWORD', ''); // The password to use to connect to the database
 
-// Group definitions (default values used by the board)
-define('IB_VALIDATING_GROUP', 1);
-define('IB_GUEST_GROUP', 2);
-define('IB_MEMBERS_GROUP', 3);
-define('IB_ADMIN_GROUP', 4);
-define('IB_BANNED_GROUP', 5);
+    // The web path to your Invision Board directory
+    // In this example http://yoursite_name.com/ivboard/
+    define('IB_WEB_PATH', '/ivboard/');
+    // ------------------------------------------------------------------------- //
+    // You can keep the default values below if your installation is standard
+    // ------------------------------------------------------------------------- //
+    // The prefix for the Invision Board cookies
+    define('IB_COOKIE_PREFIX', ''); // The prefix used for board cookies
+
+    // Prefix and names for the database tables
+    define('IB_TABLE_PREFIX', 'ibf_'); // The prefix used for the DB tables
+    define('IB_USER_TABLE', 'members'); // The members table
+    define('IB_SESSION_TABLE', 'sessions'); // The sessions table
+    define('IB_GROUP_TABLE', 'groups'); // The groups table
+
+} else { // the vars from the bridgemgr
+    define('IB_DB_NAME', $BRIDGE['db_database_name']); // The name of the database used by the board
+    define('IB_BD_HOST', $BRIDGE['db_hostname']); // The name of the database server
+    define('IB_DB_USERNAME', $BRIDGE['db_username']); // The username to use to connect to the database
+    define('IB_DB_PASSWORD', $BRIDGE['db_password']); // The password to use to connect to the database
+    define('IB_WEB_PATH', $BRIDGE['relative_path_of_forum_from_webroot']);
+    define('IB_COOKIE_PREFIX', $BRIDGE['cookie_prefix']); // The prefix used for board cookies
+
+    // Prefix and names for the database tables
+    define('IB_TABLE_PREFIX', $BRIDGE['table_prefix']); // The prefix used for the DB tables
+    define('IB_USER_TABLE', $BRIDGE['user_table']); // The members table
+    define('IB_SESSION_TABLE', $BRIDGE['session_table']); // The session table
+    define('IB_GROUP_TABLE', $BRIDGE['group_table']); // The groups table
+}
+
+// Group definitions (shouldn't be edited unless you know what you're doing!)
+if ($use_bridgemgr != 0 && $BRIDGE['use_standard_groups'] == 0) {
+    define('IB_VALIDATING_GROUP', $BRIDGE['validating_group']);
+    define('IB_GUEST_GROUP', $BRIDGE['guest_group']);
+    define('IB_MEMBERS_GROUP', $BRIDGE['member_group']);
+    define('IB_ADMIN_GROUP', $BRIDGE['admin_group']);
+    define('IB_BANNED_GROUP', $BRIDGE['banned_group']);
+} else {
+    define('IB_VALIDATING_GROUP', 1);
+    define('IB_GUEST_GROUP', 2);
+    define('IB_MEMBERS_GROUP', 3);
+    define('IB_ADMIN_GROUP', 4);
+    define('IB_BANNED_GROUP', 5);
+}
+
+
+
 // ------------------------------------------------------------------------- //
 // Nothing to edit below this line
 // ------------------------------------------------------------------------- //
