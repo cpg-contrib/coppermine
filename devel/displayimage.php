@@ -1,8 +1,8 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.4.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -14,9 +14,8 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-/*
-$Id$
-*/
+// $Id$
+// ------------------------------------------------------------------------- //
 
 define('IN_COPPERMINE', true);
 define('DISPLAYIMAGE_PHP', true);
@@ -68,8 +67,8 @@ function html_img_nav_menu()
         $prev = $pos - 1;
         $prev_tgt = "$PHP_SELF?album=$album$cat_link&amp;pos=$prev";
         $prev_title = $lang_img_nav_bar['prev_title'];
-		$meta_nav .= "<LINK rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />
-		";
+                $meta_nav .= "<LINK rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />
+                ";
     } else {
         $prev_tgt = "javascript:;";
         $prev_title = "";
@@ -78,8 +77,8 @@ function html_img_nav_menu()
         $next = $pos + 1;
         $next_tgt = "$PHP_SELF?album=$album$cat_link&amp;pos=$next";
         $next_title = $lang_img_nav_bar['next_title'];
-		$meta_nav .= "<LINK rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>
-		";		
+                $meta_nav .= "<LINK rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>
+                ";
     } else {
         $next_tgt = "javascript:;";
         $next_title = "";
@@ -94,9 +93,9 @@ function html_img_nav_menu()
     }
 
     $thumb_tgt = "thumbnails.php?album=$album$cat_link&amp;page=$page";
-	$meta_nav .= "<LINK rel=\"up\" href=\"$thumb_tgt\" title=\"".$lang_img_nav_bar['thumb_title']."\"/>
-	";
-	
+        $meta_nav .= "<LINK rel=\"up\" href=\"$thumb_tgt\" title=\"".$lang_img_nav_bar['thumb_title']."\"/>
+        ";
+
     $slideshow_tgt = "$PHP_SELF?album=$album$cat_link&amp;pid=$pid&amp;slideshow=".$CONFIG['slideshow_interval'];
 
     $pic_pos = sprintf($lang_img_nav_bar['pic_pos'], $human_pos, $pic_count);
@@ -193,7 +192,7 @@ function html_picture()
             $winsizeX = $CURRENT_PIC_DATA['pwidth'] + 16;
             $winsizeY = $CURRENT_PIC_DATA['pheight'] + 16;
             $pic_html = "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('displayimage.php?pid=$pid&fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=yes,status=yes,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
-            $pic_title = $lang_display_image_php['view_fs'] . "\n==============\n" . $pic_title; //added by gaugau
+            $pic_title = $lang_display_image_php['view_fs'] . "\n==============\n" . $pic_title;
             $pic_html .= "<img src=\"" . $picture_url . "\" class=\"image\" border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
             $pic_html .= "</a>\n";
         } else {
@@ -317,7 +316,7 @@ function html_picinfo()
         if (isset($exif['Camera'])) $info[$lang_picinfo['Camera']] = $exif['Camera'];
         if (isset($exif['DateTaken'])) $info[$lang_picinfo['Date taken']] = $exif['DateTaken'];
         if (isset($exif['Aperture'])) $info[$lang_picinfo['Aperture']] = $exif['Aperture'];
-        if (isset($exif['ISO'])) $info[$lang_picinfo['ISO']] = $exif['ISO'];	
+        if (isset($exif['ISO'])) $info[$lang_picinfo['ISO']] = $exif['ISO'];
         if (isset($exif['ExposureTime'])) $info[$lang_picinfo['Exposure time']] = $exif['ExposureTime'];
         if (isset($exif['FocalLength'])) $info[$lang_picinfo['Focal length']] = $exif['FocalLength'];
         if (@strlen(trim($exif['Comment'])) > 0 ) {
@@ -615,7 +614,7 @@ if (isset($CURRENT_PIC_DATA)) {
         $cat = - $album;
     } else {
         $actual_cat = $CURRENT_ALBUM_DATA['category'];
-        breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);	
+        breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);
     }
 }
 
@@ -628,16 +627,16 @@ if (isset($HTTP_GET_VARS['fullsize'])) {
 } else {
     if (!isset($HTTP_GET_VARS['pos'])) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
     $picture_title = $CURRENT_PIC_DATA['title'] ? $CURRENT_PIC_DATA['title'] : strtr(preg_replace("/(.+)\..*?\Z/", "\\1", htmlspecialchars($CURRENT_PIC_DATA['filename'])), "_", " ");
-	
+
     $nav_menu = html_img_nav_menu();
     $picture = html_picture();
     $votes = html_rating_box();
     $pic_info = html_picinfo();
     $comments = html_comments($CURRENT_PIC_DATA['pid']);
     if ($CURRENT_PIC_DATA['keywords']) { $meta_keywords = "<meta name=\"keywords\" content=\"".$CURRENT_PIC_DATA['keywords']."\"/>"; }
-	$meta_nav .= "<link rel=\"alternate\" type=\"text/xml\" title=\"RSS feed\" href=\"rss.php\" />
-	";
-	$meta_keywords .= $meta_nav;
+        $meta_nav .= "<link rel=\"alternate\" type=\"text/xml\" title=\"RSS feed\" href=\"rss.php\" />
+        ";
+        $meta_keywords .= $meta_nav;
     pageheader($album_name . '/' . $picture_title, $meta_keywords, false);
     // Display Breadcrumbs
     if ($breadcrumb && !(strpos($CONFIG['main_page_layout'],"breadcrumb")===false)) {

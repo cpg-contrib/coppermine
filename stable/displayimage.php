@@ -2,7 +2,7 @@
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -14,9 +14,8 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-/*
-$Id$
-*/
+// $Id$
+// ------------------------------------------------------------------------- //
 
 define('IN_COPPERMINE', true);
 define('DISPLAYIMAGE_PHP', true);
@@ -187,7 +186,7 @@ function html_picture()
             $winsizeX = $CURRENT_PIC_DATA['pwidth'] + 16;
             $winsizeY = $CURRENT_PIC_DATA['pheight'] + 16;
             $pic_html = "<a href=\"javascript:;\" onClick=\"MM_openBrWindow('displayimage.php?pid=$pid&fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=yes,status=yes,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
-            $pic_title = $lang_display_image_php['view_fs'] . "\n==============\n" . $pic_title; //added by gaugau
+            $pic_title = $lang_display_image_php['view_fs'] . "\n==============\n" . $pic_title;
             $pic_html .= "<img src=\"" . $picture_url . "\" class=\"image\" border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
             $pic_html .= "</a>\n";
         } else {
@@ -311,7 +310,7 @@ function html_picinfo()
         if (isset($exif['Camera'])) $info[$lang_picinfo['Camera']] = $exif['Camera'];
         if (isset($exif['DateTaken'])) $info[$lang_picinfo['Date taken']] = $exif['DateTaken'];
         if (isset($exif['Aperture'])) $info[$lang_picinfo['Aperture']] = $exif['Aperture'];
-        if (isset($exif['ISO'])) $info[$lang_picinfo['ISO']] = $exif['ISO'];	
+        if (isset($exif['ISO'])) $info[$lang_picinfo['ISO']] = $exif['ISO'];
         if (isset($exif['ExposureTime'])) $info[$lang_picinfo['Exposure time']] = $exif['ExposureTime'];
         if (isset($exif['FocalLength'])) $info[$lang_picinfo['Focal length']] = $exif['FocalLength'];
         if (@strlen(trim($exif['Comment'])) > 0 ) {
@@ -609,7 +608,7 @@ if (isset($CURRENT_PIC_DATA)) {
         $cat = - $album;
     } else {
         $actual_cat = $CURRENT_ALBUM_DATA['category'];
-        breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);	
+        breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);
     }
 }
 
