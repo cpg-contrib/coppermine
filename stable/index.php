@@ -57,11 +57,11 @@ function html_albummenu($id)
 
 function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident = '')
 {
-    global $CONFIG, $HIDE_USER_CAT, $FORBIDDEN_SET;
+    global $CONFIG, $HIDE_USER_CAT, $FORBIDDEN_SET,$cpg_show_private_album;
 
     $album_filter='';
     $pic_filter='';
-    if (!empty($FORBIDDEN_SET)) {
+    if (!empty($FORBIDDEN_SET) && !$cpg_show_private_album) {
         $album_filter = ' and '.str_replace('p.','a.',$FORBIDDEN_SET);
         $pic_filter = ' and '.str_replace('p.',$CONFIG['TABLE_PICTURES'].'.',$FORBIDDEN_SET);
     }
@@ -72,7 +72,7 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
         $rowset = db_fetch_rowset($result);
         foreach ($rowset as $subcat) {
             if ($subcat['cid'] == USER_GAL_CAT) {
-                $sql = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category>=" . FIRST_USER_CAT;
+                $sql = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category>=" . FIRST_USER_CAT.$album_filter;
                 $result = db_query($sql);
                 $album_count = mysql_num_rows($result);
                 while ($row = mysql_fetch_array($result)) {
@@ -80,7 +80,7 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
                 } // while
                 mysql_free_result($result);
 
-                $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND category >= " . FIRST_USER_CAT);
+                $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} as p, {$CONFIG['TABLE_ALBUMS']} as a WHERE p.aid = a.aid AND category >= " . FIRST_USER_CAT.$album_filter);
                 $nbEnr = mysql_fetch_array($result);
                 $pic_count = $nbEnr[0];
 
@@ -151,7 +151,7 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
 function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
 {
     global $HTTP_GET_VARS, $CONFIG, $ALBUM_SET, $CURRENT_CAT_NAME, $BREADCRUMB_TEXT, $STATS_IN_ALB_LIST, $FORBIDDEN_SET;
-    global $HIDE_USER_CAT;
+    global $HIDE_USER_CAT,$cpg_show_private_album;
     global $cat;
     global $lang_list_categories, $lang_errors;
 
@@ -165,7 +165,7 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
     $album_filter='';
     $pic_filter='';
     $cat = (int) $cat;
-    if (!empty($FORBIDDEN_SET)) {
+    if (!empty($FORBIDDEN_SET) && !$cpg_show_private_album) {
         $album_filter = ' and '.str_replace('p.','a.',$FORBIDDEN_SET);
         $pic_filter = ' and '.$FORBIDDEN_SET;
     }
@@ -173,7 +173,8 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
     // Add the albums in the current category to the album set
     //if ($cat) {
         if ($cat == USER_GAL_CAT) {
-            $result = db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category >= " . FIRST_USER_CAT.$album_filter);
+            $sql = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category >= " . FIRST_USER_CAT.$album_filter;
+            $result = db_query($sql);
         } else {
             $sql = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category = '$cat'".$album_filter;
             $result = db_query($sql);
@@ -195,7 +196,7 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
     }
     // Gather gallery statistics
     if ($cat == 0) {
-        $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category>0".$album_filter);
+        $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE 1".$album_filter);
         $nbEnr = mysql_fetch_array($result);
         $album_count = $nbEnr[0];
         mysql_free_result($result);
@@ -203,7 +204,7 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
         $sql = "SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} as p ".
                 'LEFT JOIN '.$CONFIG['TABLE_ALBUMS'].' as a '.
                 'ON a.aid=p.aid '.
-                'WHERE a.category>=0'.$pic_filter;
+                'WHERE 1'.$pic_filter;
         $result = db_query($sql);
         $nbEnr = mysql_fetch_array($result);
         $picture_count = $nbEnr[0];
@@ -214,7 +215,7 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
                 'ON c.pid=p.pid '.
                 'LEFT JOIN '.$CONFIG['TABLE_ALBUMS'].' as a '.
                 'ON a.aid=p.aid '.
-                'WHERE a.category>=0'.$pic_filter;
+                'WHERE 1'.$pic_filter;
         $result = db_query($sql);
         $nbEnr = mysql_fetch_array($result);
         $comment_count = $nbEnr[0];
@@ -229,7 +230,7 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
         $sql = "SELECT sum(hits) FROM {$CONFIG['TABLE_PICTURES']} as p ".
                 'LEFT JOIN '.$CONFIG['TABLE_ALBUMS'].' as a '.
                 'ON p.aid=a.aid '.
-                'WHERE a.category>=0'.$pic_filter;
+                'WHERE 1'.$pic_filter;
         $result = db_query($sql);
         $nbEnr = mysql_fetch_array($result);
         $hit_count = (int)$nbEnr[0];
@@ -275,7 +276,7 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
 function list_users()
 {
     global $CONFIG, $PAGE, $FORBIDDEN_SET;
-    global $lang_list_users, $lang_errors, $template_user_list_info_box;
+    global $lang_list_users, $lang_errors, $template_user_list_info_box, $cpg_show_private_album;
 
     if (defined('UDB_INTEGRATION')) {
         $result = udb_list_users_query($user_count);
@@ -290,7 +291,7 @@ function list_users()
                "FROM {$CONFIG['TABLE_USERS']} AS u " .
                "INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON category = " . FIRST_USER_CAT . " + user_id " .
                "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON (p.aid = a.aid AND approved = 'YES') ";
-        if ($FORBIDDEN_SET != "") $sql .= "WHERE $FORBIDDEN_SET ";
+        if ($FORBIDDEN_SET != "" && !$cpg_show_private_album) $sql .= "WHERE $FORBIDDEN_SET ";
         $sql .= "GROUP BY user_id " .
                 "ORDER BY user_name";
                 
@@ -368,7 +369,7 @@ function list_albums()
 {
     global $CONFIG, $USER, $USER_DATA, $PAGE, $lastup_date_fmt,$FORBIDDEN_SET;
     global $cat;
-    global $lang_list_albums, $lang_errors;
+    global $lang_list_albums, $lang_errors,$cpg_show_private_album;
 
     $alb_per_page = $CONFIG['albums_per_page'];
     $maxTab = $CONFIG['max_tabs'];
@@ -376,10 +377,12 @@ function list_albums()
     $album_filter='';
     $pic_filter='';
     $pic_subquery='';
-    if (!empty($FORBIDDEN_SET)) {
+
+    if (!empty($FORBIDDEN_SET) && !$cpg_show_private_album) {
         $album_filter = ' and '.str_replace('p.','a.',$FORBIDDEN_SET);
         $pic_filter = ' and '.$FORBIDDEN_SET;
     }
+
 
     $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category = '$cat'".$album_filter);
     $nbEnr = mysql_fetch_array($result);
@@ -403,6 +406,7 @@ function list_albums()
            'WHERE category='.$cat.$album_filter.
            ' ORDER BY a.pos '.
            $limit;
+
 
     $alb_thumbs_q = db_query($sql);
     $alb_thumbs = db_fetch_rowset($alb_thumbs_q);
@@ -473,7 +477,7 @@ function list_albums()
         }
         // Prepare everything
 		
-        if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || in_array($visibility, $USER_DATA['groups']) || $USER_DATA['can_see_all_albums']) {
+        if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || in_array($visibility, $USER_DATA['groups']) || $USER_DATA['can_see_all_albums'] || $CONFIG['allow_private_albums']==0) {
             $last_upload_date = $count ? localised_date($alb_stat['last_upload'], $lastup_date_fmt) : '';
             $alb_list[$alb_idx]['aid'] = $alb_thumb['aid'];
             $alb_list[$alb_idx]['album_title'] = $alb_thumb['title'];
@@ -505,7 +509,7 @@ function list_albums()
 function list_cat_albums($cat = 0)
 {
     global $CONFIG, $USER, $lastup_date_fmt, $HTTP_GET_VARS, $USER_DATA, $FORBIDDEN_SET;
-    global $lang_list_albums, $lang_errors;
+    global $lang_list_albums, $lang_errors,$cpg_show_private_album;
     $PAGE = 1;
     if ($cat == 0) {
         return '';
@@ -516,7 +520,7 @@ function list_cat_albums($cat = 0)
 
     $album_filter='';
     $pic_filter='';
-    if (!empty($FORBIDDEN_SET)) {
+    if (!empty($FORBIDDEN_SET) && !$cpg_show_private_album) {
         $album_filter = ' and '.str_replace('p.','a.',$FORBIDDEN_SET);
         $pic_filter = ' and '.$FORBIDDEN_SET;
     }
@@ -556,7 +560,6 @@ function list_cat_albums($cat = 0)
            ' ORDER BY a.pos '.
            $limit;
 
-           //die($sql);
     $alb_thumbs_q = db_query($sql);
     $alb_thumbs = db_fetch_rowset($alb_thumbs_q);
     mysql_free_result($alb_thumbs_q);
@@ -670,6 +673,8 @@ $breadcrumb = '';
 $cat_data = array();
 $statistics = '';
 $STATS_IN_ALB_LIST = false;
+$cpg_show_private_album = ($CONFIG['allow_private_albums'])?($CONFIG['show_private']):(true);
+
 get_cat_list($breadcrumb, $cat_data, $statistics);
 
 pageheader($BREADCRUMB_TEXT ? $BREADCRUMB_TEXT : $lang_index_php['welcome']);
