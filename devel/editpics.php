@@ -208,15 +208,7 @@ function form_pic_info($text)
                 }
         }
 
-        /*$mime_content = get_type($CURRENT_PIC['filename']);
-        $extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
-
-        if ($mime_content['content']=='image') {*/
-                $thumb_url = get_pic_url($CURRENT_PIC, 'thumb');
-        /*} else {
-                $thumb_url = "images/thumb_{$extension}.jpg\"";
-        }*/
-
+        $thumb_url = get_pic_url($CURRENT_PIC, 'thumb');
         $thumb_link = 'displayimage.php?&pos='.(-$CURRENT_PIC['pid']);
         $filename = htmlspecialchars($CURRENT_PIC['filename']);
 

@@ -157,7 +157,6 @@ function html_picture()
 
     $pic_title = '';
     $mime_content = get_type($CURRENT_PIC_DATA['filename']);
-    //$extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
 
 
     if ($CURRENT_PIC_DATA['title'] != '') {
