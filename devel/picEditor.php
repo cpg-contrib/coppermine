@@ -154,8 +154,9 @@ if ($_GET['id']){
    if(isset($_POST["save"])) {
         $width=$imgObj->width;
         $height=$imgObj->height;
+		$filesize = @filesize($img_dir.$newimage);
 
-             //Full image replace
+          //Full image replace
           copy($img_dir.$newimage,$CONFIG['fullpath'].$CURRENT_PIC['filepath'].$CURRENT_PIC['filename'])   ;
 
           // Normal image resized and replace, use the CPG resize method instead of the object resizeImage
@@ -170,7 +171,8 @@ if ($_GET['id']){
           //Update the image size in the DB
           db_query("UPDATE {$CONFIG['TABLE_PICTURES']}
                           SET pheight = $height,
-                            pwidth = $width
+                            pwidth = $width,
+							filesize = $filesize
                           WHERE pid = '$pid'");
 
           $message = "Picture successfully saved - you can close this window now";
