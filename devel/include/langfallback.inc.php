@@ -103,6 +103,9 @@ $lang_language_selection = array_merge($lang_language_selection_en, $lang_langua
 $lang_theme_selection_en = cpg_get_default_lang_var('lang_theme_selection','english');
 $lang_theme_selection = array_merge($lang_theme_selection_en, $lang_theme_selection);
 
+$lang_version_alert_en = cpg_get_default_lang_var('lang_version_alert','english');
+$lang_version_alert = array_merge($lang_version_alert_en, $lang_version_alert);
+
 // ------------------------------------------------------------------------- //
 // File include/smilies.inc.php
 // ------------------------------------------------------------------------- //
