@@ -17,7 +17,41 @@
   $Date$
 **********************************************/
 
-// ENCODING CHECK; SHOULD BE YEN BETA MU: ¥ &szlig; &micro;
+
+
+/*****************************
+ IMPORTANT NOTE TO THE DEVELOPERS!
+ Please modify the file english-utf-8.php instead of this one.
+ == chtito, 2005-01-03
+*****************************/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 

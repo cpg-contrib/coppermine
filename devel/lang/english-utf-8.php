@@ -17,7 +17,6 @@
   $Date$
 **********************************************/
 
-// ENCODING CHECK; SHOULD BE YEN BETA MU: ¥ &szlig; &micro;
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
