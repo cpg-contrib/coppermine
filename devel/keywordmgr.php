@@ -25,8 +25,6 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
 
 pageheader($lang_keywordmgr_php['title']);
 
-//print '<script language="JavaScript" src="keyword_toggle.js"></script>';
-
 starttable("100%", $lang_keywordmgr_php['title'], 3);
 echo <<<EOT
       <tr>
@@ -60,12 +58,12 @@ if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap']);
          <td class="tableb">
          <input type="radio" class="radio" name="keywordEdit" value="$lowercase_word" onClick="document.keywordForm.newword.value='$single_word'" id="$lowercase_word" />
          <label for="$lowercase_word" class="clickable_option">
-         {$lang_keywordmgr_php['edit']} &quot;<i>$single_word</i>&quot;
+         <img src="images/edit.gif" width="16" height="16" border="0" alt="" title="{$lang_keywordmgr_php['edit']} &quot;$single_word&quot;" /> &quot;<i>$single_word</i>&quot;
          </label>
          </td>
 EOT;
-         $word .= '<td class="tableb"><a href="?page=delete&remov='.$single_word.'" onclick="return confirm(\''.sprintf($lang_keywordmgr_php['confirm_delete'], $single_word).'\')">';
-         $word .= sprintf($lang_keywordmgr_php['keyword_del'],'&quot;<i>'.$single_word.'</i>&quot;');
+         $word .= '<td class="tableb"><a href="?page=delete&remov='.$single_word.'" onclick="return confirm(\''.sprintf($lang_keywordmgr_php['confirm_delete'], '&quot;'.$single_word.'&quot;').'\')">';
+         $word .= '<img src="images/delete.gif" width="16" height="16" border="0" alt="" title="'.sprintf($lang_keywordmgr_php['keyword_del'],'&quot;'.$single_word.'&quot;').'" /> '.$single_word;
          $word .= <<<EOT
          </a></td>
          <td class="tableb"><a href="thumbnails.php?album=search&search=$single_word" target="_blank">
