@@ -146,15 +146,15 @@ function cpg_db_query($query, $link_id = 0)
 
 function cpg_db_error($the_error)
 {
-        global $CONFIG;
+        global $CONFIG,$lang_errors;
 
         if (!$CONFIG['debug_mode']) {
-            cpg_die(CRITICAL_ERROR, 'There was an error while processing a database query', __FILE__, __LINE__);
+            cpg_die(CRITICAL_ERROR, $lang_errors['database_query'], __FILE__, __LINE__);
         } else {
 
                 $the_error .= "\n\nmySQL error: ".mysql_error()."\n";
 
-                $out = "<br />There was an error while processing a database query.<br /><br/>
+                $out = "<br />".$lang_errors['database_query'].".<br /><br/>
                     <form name=\"mysql\"><textarea rows=\"8\" cols=\"60\">".htmlspecialchars($the_error)."</textarea></form>";
 
             cpg_die(CRITICAL_ERROR, $out, __FILE__, __LINE__);
@@ -739,8 +739,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
             if ($CONFIG['views_in_thumbview']){
                if ($rowset[$key]['title']){
-	       		$caption .= "&nbsp;&ndash;&nbsp;";
-	       }
+                               $caption .= "&nbsp;&ndash;&nbsp;";
+               }
                $caption .= sprintf($lang_get_pic_data['n_views'], $rowset[$key]['hits']);
             }
             $caption .= "</span>";
@@ -1408,8 +1408,8 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
         $lower_limit = ($page-1) * $thumb_per_page;
 
         $pic_data = get_pic_data($album, $thumb_count, $album_name, $lower_limit, $thumb_per_page);
-        
-	$total_pages = ceil($thumb_count / $thumb_per_page);
+
+        $total_pages = ceil($thumb_count / $thumb_per_page);
 
         $i = 0;
         if (count($pic_data) > 0) {
@@ -1431,7 +1431,7 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
                         $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
 
                         $thumb_list[$i]['pos'] = $key < 0 ? $key : $i - 1 + $lower_limit;
-			$thumb_list[$i]['pid'] = $row['pid'];;
+                        $thumb_list[$i]['pid'] = $row['pid'];;
                         $thumb_list[$i]['image'] = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\"/>";
                         $thumb_list[$i]['caption'] = $row['caption_text'];
                         $thumb_list[$i]['admin_menu'] = '';
@@ -1923,7 +1923,7 @@ EOT;
         echo "</tr>";
         if (GALLERY_ADMIN_MODE){
           echo "<tr><td class=\"tableb\" colspan=\"2\">";
-          echo "<a href=\"phpinfo.php\">".$lang_cpg_debug_output['phpinfo']."</a>";
+          echo "<a href=\"phpinfo.php\" class=\"admin_menu\">".$lang_cpg_debug_output['phpinfo']."</a>";
           error_reporting  (E_ERROR | E_WARNING | E_PARSE);
           echo "</td></tr>";
         }
