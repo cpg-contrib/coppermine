@@ -109,6 +109,9 @@ INSERT INTO CPG_config VALUES ('email_comment_notification', '0');
 # Modify structure for category thumb
 ALTER TABLE `CPG_categories` ADD `thumb` INT NOT NULL AFTER `parent` ;
 
+# Modify structure for multi album pictures
+ALTER TABLE `CPG_albums` ADD `keyword` VARCHAR( 50 ) NOT NULL ;
+
 
 #
 # Table structure for table `CPG_banned`
