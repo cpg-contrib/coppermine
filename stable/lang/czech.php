@@ -1,6 +1,6 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.3.2                                            //
 // ------------------------------------------------------------------------- //
 // Copyright (C) 2002,2003 Gregory DEMAR                                     //
 //  http://www.chezgreg.net/coppermine/                                      //
@@ -14,7 +14,10 @@
 //  the Free Software Foundation; either version 2 of the License, or        //
 //  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
-// Tanslation updated by Michal Ambroz <rebus@seznam.cz>
+// Tanslation updated by Michal Ambroz <rebus@seznam.cz>                     //
+// ------------------------------------------------------------------------- //
+// CVS version: $Id$
+// ------------------------------------------------------------------------- //
 
 
 // info about translators and translated language

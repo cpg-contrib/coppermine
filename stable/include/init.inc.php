@@ -1,6 +1,6 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.1                                            //
+// Coppermine Photo Gallery 1.3.2                                            //
 // ------------------------------------------------------------------------- //
 // Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
@@ -17,7 +17,7 @@
 // CVS version: $Id$
 // ------------------------------------------------------------------------- //
 
-define('COPPERMINE_VERSION', '1.3.1');
+define('COPPERMINE_VERSION', '1.3.2');
 // User database integration
 // Uncomment the applicable line if you want to use it
 // define('UDB_INTEGRATION', 'phpbb');

@@ -1,6 +1,6 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.1                                            //
+// Coppermine Photo Gallery 1.3.2                                            //
 // ------------------------------------------------------------------------- //
 // Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
@@ -1574,7 +1574,8 @@ if ($CONFIG['language_flags'] == 0 && $parameter == 'flags'){
 
 // get the current language
  //use the default language of the gallery
- $cpgCurrentLanguage=$CONFIG['lang'];
+ $cpgCurrentLanguage = $CONFIG['lang'];
+
  // is a user logged in?
  //has the user already chosen another language for himself?
  //if($USER['lang']!=""){
@@ -1630,16 +1631,21 @@ $lang_language_data['thai'] = array('Thai','&#3652;&#3607;&#3618;','th');
 $lang_language_data['turkish'] = array('Turkish','T&uuml;rk&ccedil;e','tr');
 $lang_language_data['vietnamese'] = array('Vietnamese','','vn');
 
-
-
-
 // get list of available languages
   $value = strtolower($CONFIG['lang']);
+  // is utf-8 selected?
+ if ($CONFIG['charset'] == 'utf-8') {
+     $cpg_charset = 'utf-8';
+ } else {
+     $cpg_charset = '';
+ }
   $lang_dir = 'lang/';
   $dir = opendir($lang_dir);
   while ($file = readdir($dir)) {
-      if (is_file($lang_dir . $file) && strtolower(substr($file, -4)) == '.php' && strstr($file,'utf-8') == false) {
-          $lang_array[] = strtolower(substr($file, 0 , -4));
+      if (is_file($lang_dir . $file) && strtolower(substr($file, -4)) == '.php') {
+          if (($cpg_charset != 'utf-8' && strstr($file,'utf-8') == false) || ($cpg_charset == 'utf-8' && strstr($file,'utf-8') == true)) {
+              $lang_array[] = strtolower(substr($file, 0 , -4));
+          }
       }
   }
   closedir($dir);
@@ -1652,8 +1658,9 @@ switch ($parameter) {
            $return.= $lang_language_selection['choose_language'].': ';
        }
        foreach ($lang_array as $language) {
-              if (array_key_exists($language, $lang_language_data)){
-              $return.= $lineBreak .  '<a href="' .$cpgChangeUrl. $language . '"><img src="images/flags/' . $lang_language_data[$language][2] . '.gif" border="0" width="16" height="10" alt="" title="';
+       $cpg_language_name = str_replace('-utf-8','', $language);
+              if (array_key_exists($cpg_language_name, $lang_language_data)){
+              $return.= $lineBreak .  '<a href="' .$cpgChangeUrl. $language . '"><img src="images/flags/' . $lang_language_data[$cpg_language_name][2] . '.gif" border="0" width="16" height="10" alt="" title="';
               $return.= $lang_language_data[$language][0];
               if ($lang_language_data[$language][1] != $lang_language_data[$language][0]){
                   $return.= ' (' . $lang_language_data[$language][1] . ')';
