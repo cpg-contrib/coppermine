@@ -446,6 +446,9 @@ function spring_cleaning($directory_path) {
             if ($access_time <= $delete_time) {
 
                     // The file is old. We delete it.
+                    if ($CONFIG['log_mode']) {
+                          log_write('Garbage collection deleted '.$dir_path.' via upload.php at '.date("F j, Y, g:i a"),CPG_GLOBAL_LOG);
+                    }
                     unlink($dir_path);
             }
 
