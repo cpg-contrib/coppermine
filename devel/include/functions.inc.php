@@ -2708,4 +2708,9 @@ function cpg_get_custom_include($path = '')
     $return = str_replace('</body>', '', $return);
     return $return;
 }
+
+function get_post_var($name, $default = '')
+{
+    return isset($_POST[$name]) ? $_POST[$name] : $default;
+}
 ?>
