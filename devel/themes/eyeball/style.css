@@ -313,19 +313,6 @@ a:hover {
         padding-left: 10px;
 }
 
-.catrow_noalb {
-        padding-top: 3px;
-        padding-right: 10px;
-        padding-bottom: 3px;
-        padding-left: 10px;
-}
-
-.catrow {
-        padding-top: 3px;
-        padding-right: 10px;
-        padding-bottom: 3px;
-        padding-left: 10px;
-}
 .tableb_compact {
         padding-top: 2px;
         padding-right: 5px;
@@ -341,6 +328,19 @@ a:hover {
         padding-left: 10px;
 }
 
+.catrow_noalb {
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+}
+
+.catrow {
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+}
 
 .album_stat {
         font-size : 85%;
@@ -521,6 +521,12 @@ td #admin_menu_anim {
         margin: 2px;
 }
 
+.display_media {
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+}
 
 .thumbnails {
         padding: 10px;
