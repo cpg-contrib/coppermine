@@ -283,3 +283,5 @@ CREATE TABLE CPG_plugins (
 INSERT INTO CPG_config VALUES ('enable_help', '2');
 
 INSERT INTO CPG_config VALUES ('allow_email_change', '0');
+INSERT INTO CPG_config VALUES ('show_which_exif', '|0|0|0|0|0|0|0|0|1|0|1|1|0|0|0|0|0|0|0|0|0|0|0|1|0|0|0|1|0|0|0|1|1|0|0|0|0|1|0|0|0|1|0|0|1|1|0|0|0|0|0|1|0|1|1');
+INSERT INTO CPG_config VALUES ('alb_desc_thumb', '1');
