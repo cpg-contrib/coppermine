@@ -42,11 +42,11 @@ $data = array($lang_modifyalb_php['general_settings'],
     array($lang_modifyalb_php['alb_title'], 'title', 0),
     array($lang_modifyalb_php['alb_cat'], 'category', 2),
     array($captionLabel, 'description', 3),
-	array($lang_modifyalb_php['alb_keyword'], 'keyword', 0),
+        array($lang_modifyalb_php['alb_keyword'], 'keyword', 0),
     array($lang_modifyalb_php['alb_thumb'], 'thumb', 4),
     $lang_modifyalb_php['alb_perm'],
     array($lang_modifyalb_php['can_view'], 'visibility', 5),
-	array($lang_modifyalb_php['alb_password'], 'alb_password', 6),
+        array($lang_modifyalb_php['alb_password'], 'alb_password', 6),
     array($lang_modifyalb_php['can_upload'].$notice1, 'uploads', 1),
     array($lang_modifyalb_php['can_post_comments'].$notice1, 'comments', 1),
     array($lang_modifyalb_php['can_rate'].$notice1, 'votes', 1),
@@ -264,7 +264,7 @@ function form_password($text, $name)
 {
   global $ALBUM_DATA;
   $value = $ALBUM_DATA[$name];
-  
+
   echo <<<EOT
         <tr>
           <td width="40%" class="tableb">
@@ -429,13 +429,13 @@ pageheader(sprintf($lang_modifyalb_php['upd_alb_n'], $ALBUM_DATA['title']));
 starttable("100%");
 
 $album_lb = alb_list_box();
-
+$help = '&nbsp;'.cpg_display_help('f=index.htm&as=album_prop&ae=album_prop_end&top=1', '600', '400');
 echo <<<EOT
         <tr>
                 <td colspan="2" class="tableh1">
                 <table width="100%" cellpadding="0" cellspacing="0" border="0">
                         <tr>
-                        <td class="statlink"><h2>{$lang_modifyalb_php['update']}</h2></td>
+                        <td class="statlink"><h2>{$lang_modifyalb_php['update']}$help</h2></td>
                         <td align="right">$album_lb</td>
                         </tr>
                 </table>

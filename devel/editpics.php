@@ -449,6 +449,7 @@ if (UPLOAD_APPROVAL_MODE) {
         $result = db_query($sql);
         $form_target = $PHP_SELF.'?mode=upload_approval&start='.$start.'&count='.$count;
         $title = $lang_editpics_php['upl_approval'];
+        $help = '';
 } else {
         $result=db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = '$album_id'");
         $nbEnr = mysql_fetch_array($result);
@@ -458,6 +459,7 @@ if (UPLOAD_APPROVAL_MODE) {
     $result = db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = '$album_id' ORDER BY filename LIMIT $start, $count");
         $form_target = $PHP_SELF.'?album='.$album_id.'&start='.$start.'&count='.$count;
         $title = $lang_editpics_php['edit_pics'];
+        $help = '&nbsp;'.cpg_display_help('f=index.htm&as=edit_pics&ae=edit_pics_end&top=1', '800', '500');
 }
 
 if (!mysql_num_rows($result)) cpg_die(INFORMATION, $lang_errors['no_img_to_display'], __FILE__, __LINE__);
@@ -477,7 +479,7 @@ if ($start > 0) {
 $pic_count_text = sprintf($lang_editpics_php['n_pic'], $pic_count);
 
 pageheader($title);
-starttable("100%", $title, 3);
+starttable("100%", $title.$help, 3);
 echo <<<EOT
 <SCRIPT LANGUAGE="JavaScript">
 function textCounter(field, maxlimit) {
@@ -502,12 +504,17 @@ echo <<<EOT
                                 <option value="75" $s75>75</option>
                                 <option value="100" $s100>100</option>
                         </select>
+EOT;
+if (UPLOAD_APPROVAL_MODE!=1) {
+echo <<<EOT
                         &nbsp;&nbsp;-&nbsp;&nbsp;<a href="modifyalb.php?album=$album_id" class="admin_menu">{$lang_editpics_php['album_properties']}</a>&nbsp;&nbsp;-&nbsp;&nbsp;
                         <a href="index.php$cat_l" class="admin_menu">{$lang_editpics_php['parent_category']}</a>&nbsp;&nbsp;-&nbsp;&nbsp;
                         <a href="thumbnails.php?album=$album_id" class="admin_menu">{$lang_editpics_php['thumbnail_view']}</a>
+EOT;
+}
+echo <<<EOT
                 </td>
         </tr>
-
 EOT;
 
 while($CURRENT_PIC = mysql_fetch_array($result)){
