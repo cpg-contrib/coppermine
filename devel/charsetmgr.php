@@ -121,9 +121,10 @@ function charset_convert($table_name, $column_name, $index_name, $charsetin, $ch
     
 }
 
-function set_charset($newcharset)
+function set_config($name, $value)
 {
-    cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value='$newcharset' WHERE name='charset'");
+    global $CONFIG;
+    cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value='$value' WHERE name='$name'");
 }
 
 // Either checks or carries out the conversion in all the necessary fields
@@ -208,7 +209,7 @@ echo '<div class="input"><input type="submit" class="button" name="convert" valu
             if ($doconvert)
             {
                 // the script has succeeded (hopefully): we change the charset accordingly in the database
-                set_charset($charsetout);
+                set_config('charset', $charsetout);
 
                 echo <<<EOT
                     <div class="warning">
@@ -237,7 +238,7 @@ if ($CONFIG['charset'] == 'language file')
     $thecharset = $lang_charset;
     $languagefilecfg = 1;
     // we set the charset once and for all (better than 'language file')
-    set_charset($thecharset);
+    set_config('charset', $thecharset);
 }
 else
 {
@@ -252,10 +253,14 @@ html_header("Charset Manager - 1/3 - Start");
 html_logo();
 echo '<h1>1/3 - Charset Manager Start</h1>';
 
+// We need these two to run the script
+$alreadyunicode = 0;
+$iconvavailable = 1;
+
 // We test whether the converting function is available
-if (!function_exists('iconvs'))
+if (!function_exists('iconv'))
 {
-    echo '<p class="warning">The <a href="http://www.php.net/iconv">iconv</a> function is not available. <b>You cannot use this script.</b> Coppermine will now run in English. You may install iconv and start this script again. You should now <a href="index.html">proceed to the main page</a>.</p>';
+    $iconvavailable = 0;
 }
 
 
@@ -276,6 +281,13 @@ EOT;
 if ($thecharset == 'utf-8')
 {
     echo '<p class="warning">Your site is already configured to use utf-8. <b>You don\'t need this script and should <a href="index.php">leave this page</a></b>.</p>';
+    $alreadyunicode = 1;
+}
+
+if (!$alreadyunicode && !$iconvavailable) // can't run the script but need it
+{
+    set_config('lang', 'english');
+    echo '<p class="warning">The <a href="http://www.php.net/iconv">iconv</a> function is not available. <b>You cannot use this script.</b> Coppermine will now run in English. <br/>You may install iconv and start this script again. You should now <a href="index.php?lang=english">proceed to the main page</a>.</p>';
 }
 
 
