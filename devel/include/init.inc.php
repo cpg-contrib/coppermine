@@ -14,18 +14,18 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-
-/*
-$Id$
-*/
+// $Id$
+// ------------------------------------------------------------------------- //
 
 define('COPPERMINE_VERSION', '1.3.0 - devel');
 // User database integration
 // Uncomment the applicable line if you want to use it
 // define('UDB_INTEGRATION', 'phpbb');
 // define('UDB_INTEGRATION', 'invisionboard');
-// define('UDB_INTEGRATION', 'vbulletin');
+// define('UDB_INTEGRATION', 'vbulletin23');
+// define('UDB_INTEGRATION', 'vbulletin30');
 // define('UDB_INTEGRATION', 'yabbse');
+// define('UDB_INTEGRATION', 'smf');
 // define('UDB_INTEGRATION', 'wbb21');
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 // Start output buffering
