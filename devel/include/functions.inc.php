@@ -1209,11 +1209,12 @@ function get_pic_url(&$pic_row, $mode)
                 $thumb_extensions = Array('.gif','.png','.jpg');
                 // Check for user-level custom thumbnails
                 // Create custom thumb path and erase extension using filename; Erase filename's extension
-                $custom_thumb_path = str_replace('.'.$mime_content['extension'],'',$url_prefix[$pic_row['url_prefix']].$pic_row['filepath'].$pic_prefix[$mode]);
+                $custom_thumb_path = $url_prefix[$pic_row['url_prefix']].$pic_row['filepath'].$pic_prefix[$mode];
+                $file_base_name = str_replace('.'.$mime_content['extension'],'',basename($pic_row['filename']));
                 // Check for file-specific thumbs
                 foreach ($thumb_extensions as $extension) {
-                        if (file_exists($custom_thumb_path.$pic_row['filename'].$extension)) {
-                                $filepathname = $custom_thumb_path.$pic_row['filename'].$extension;
+                        if (file_exists($custom_thumb_path.$file_base_name.$extension)) {
+                                $filepathname = $custom_thumb_path.$file_base_name.$extension;
                                 break;
                         }
                 }
@@ -1240,7 +1241,6 @@ function get_pic_url(&$pic_row, $mode)
                        	// Check for default theme- and global-level thumbs
                        	$thumb_paths[] = $THEME_DIR.'/images/';                 // Used for custom theme thumbs
                        	$thumb_paths[] = 'images/';                             // Default Coppermine thumbs
-                       	$thumb_extensions = Array('.gif','.png','.jpg');
                        	foreach ($thumb_paths as $default_thumb_path) {
                        	        if (is_dir($default_thumb_path)) {
                                	        foreach ($thumb_extensions as $extension) {
