@@ -59,7 +59,7 @@ $params = array('{LANG_DIR}' => $lang_text_dir,
     '{SENDER_NAME}' => $data['sn'],
     '{VIEW_MORE_TGT}' => $CONFIG['ecards_more_pic_target'],
     '{VIEW_MORE_LNK}' => $lang_report_php['view_more_pics'],
-                '{REASON}' => "reason goes here",
+    '{REASON}' => $data['r'],
     );
 // Parse template
 echo template_eval($template_report, $params);

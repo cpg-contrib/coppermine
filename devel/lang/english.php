@@ -1079,6 +1079,7 @@ if (defined('REPORT_FILE_PHP') || defined('DISPLAYREPORT_PHP')) $lang_report_php
   'issue' => 'Error/Cannot view',
   'other' => 'Other',
   'refers_to' => 'File report refers to',
+  'reasons_list_heading' => 'reason(s) for report: <br />',
 );
 
 // ------------------------------------------------------------------------- //

@@ -83,6 +83,17 @@ if (count($_POST) > 0 && $valid_sender_email) {
     }
 
     if (!stristr($n_picname, 'http:')) $n_picname = $gallery_url_prefix . $n_picname;
+		
+		//output list of reasons checkmarked
+		$reason = $lang_report_php['reasons_list_heading'];
+		if (isset($_POST['reason'])) {
+			foreach(get_post_var('reason') as $value) {
+				$value = $lang_report_php["$value"];
+				$reason .= "<li>$value</li>\n";
+			}
+		} else {
+				$reason .= "<li>no reason was selected</li>\n";
+		}
 
     $msg_content = nl2br(process_smilies($message, $gallery_url_prefix));
 
@@ -189,7 +200,7 @@ echo <<<EOT
         </tr>
         <tr>
                 <td class="tableb" colspan="3">
-                                                                <a href="{$CONFIG['ecards_more_pic_target']}displayimage.php?pos=-{$pid}">{$CONFIG['ecards_more_pic_target']}displayimage.php?pos=-{$pid}</a> <br />
+										<a href="{$CONFIG['ecards_more_pic_target']}displayimage.php?pos=-{$pid}">{$CONFIG['ecards_more_pic_target']}displayimage.php?pos=-{$pid}</a> <br />
                 </td>
         </tr>
 <!-- BEGIN display_comment -->
@@ -207,7 +218,7 @@ echo <<<EOT
         </tr>
         <tr>
                 <td class="tableb" colspan="3">
-                                                                        <input type="text" class="textinput" name="subject"  value="$subject" style="WIDTH: 100%;"><br />
+										<input type="text" class="textinput" name="subject"  value="$subject" style="WIDTH: 100%;"><br />
                 </td>
         </tr>
         <tr>
@@ -219,38 +230,38 @@ echo <<<EOT
                         <tr>
 <!-- BEGIN reason_obscene -->
                             <td>
-                                <input value="obscene" type="checkbox" name="reason" id="obscene" />
+                                <input value="obscene" type="checkbox" name="reason[]" id="obscene" />
                                 <label for="obscene" class="clickable_option">{$lang_report_php['obscene']}</label>
                             </td>
 <!-- END reason_obscene -->
 <!-- BEGIN reason_offensive -->
                             <td>
-                                <input value="offensive" type="checkbox" name="reason" id="offensive" />
+                                <input value="offensive" type="checkbox" name="reason[]" id="offensive" />
                                 <label for="offensive" class="clickable_option">{$lang_report_php['offensive']}</label>
                             </td>
 <!-- END reason_offensive -->
 
 <!-- BEGIN reason_misplaced -->
                             <td>
-                                <input value="misplaced" type="checkbox" name="reason" id="misplaced" />
+                                <input value="misplaced" type="checkbox" name="reason[]" id="misplaced" />
                                 <label for="misplaced" class="clickable_option">{$lang_report_php['misplaced']}</label>
                             </td>
 <!-- END reason_misplaced -->
 <!-- BEGIN reason_missing -->
                             <td>
-                                <input value="missing" type="checkbox" name="reason" id="missing" />
+                                <input value="missing" type="checkbox" name="reason[]" id="missing" />
                                 <label for="missing" class="clickable_option">{$lang_report_php['missing']}</label>
                             </td>
 <!-- END reason_missing -->
 <!-- BEGIN reason_issue -->
                             <td>
-                                <input value="issue" type="checkbox" name="reason" id="issue" />
+                                <input value="issue" type="checkbox" name="reason[]" id="issue" />
                                 <label for="issue" class="clickable_option">{$lang_report_php['issue']}</label>
                             </td>
 <!-- END reason_issue -->
 <!-- BEGIN reason_other -->
                             <td>
-                                <input value="other" type="checkbox" name="reason" id="other" />
+                                <input value="other" type="checkbox" name="reason[]" id="other" />
                                 <label for="other" class="clickable_option">{$lang_report_php['other']}</label>
                             </td>
 <!-- END reason_other -->
