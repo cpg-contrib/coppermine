@@ -88,8 +88,9 @@ function html_img_nav_menu()
         $ecard_tgt = "ecard.php?album=$album$cat_link&amp;pid=$pid&amp;pos=$pos";
         $ecard_title = $lang_img_nav_bar['ecard_title'];
     } else {
-        $ecard_tgt = "javascript:alert('" . addslashes($lang_img_nav_bar['ecard_disabled_msg']) . "');";
-        $ecard_title = $lang_img_nav_bar['ecard_disabled'];
+        template_extract_block($template_img_navbar, 'ecard_button'); // added to remove button if cannot send ecard
+        /*$ecard_tgt = "javascript:alert('" . addslashes($lang_img_nav_bar['ecard_disabled_msg']) . "');";
+        $ecard_title = $lang_img_nav_bar['ecard_disabled'];*/
     }
 
     $thumb_tgt = "thumbnails.php?album=$album$cat_link&amp;page=$page";

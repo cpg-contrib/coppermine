@@ -515,9 +515,11 @@ $template_img_navbar = <<<EOT
                 <td align="center" valign="middle" class="navmenu" width="100%">
                         {PIC_POS}
                 </td>
+<!-- BEGIN ecard_button -->
                 <td align="center" valign="middle" class="navmenu" width="48px">
                         <a href="{ECARD_TGT}" title="{ECARD_TITLE}"><img src="images/ecard.gif" width="16px" height="16px" border="0px" align="middle" alt="{ECARD_TITLE}" /></a>
                 </td>
+<!-- END ecard_button -->
                 <td align="center" valign="middle" class="navmenu" width="48px">
                         <a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="images/prev.gif" width="16px" height="16px" border="0px" align="middle" alt="{PREV_TITLE}" /></a>
                 </td>
