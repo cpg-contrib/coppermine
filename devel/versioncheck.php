@@ -1845,8 +1845,8 @@ $return = '
 1.4.0|lang/dutch-utf-8.php|1.3.2|1.12|optional|r@
 1.4.0|lang/english.php|1.4.0|1.203|mandatory|r@
 1.4.0|lang/english-utf-8.php|1.3.0|1.14|mandatory|r@
-1.4.0|lang/estonian.php|1.3.2|1.6|mandatory|r@
-1.4.0|lang/estonian-utf-8.php|1.3.2|1.5|mandatory|r@
+1.4.0|lang/estonian.php|1.3.2|1.6|optional|r@
+1.4.0|lang/estonian-utf-8.php|1.3.2|1.5|optional|r@
 1.4.0|lang/finnish.php|1.3.0|1.5|optional|r@
 1.4.0|lang/finnish-utf-8.php|1.3.0|1.5|optional|r@
 1.4.0|lang/french.php|1.3.2|1.17|optional|r@
