@@ -83,8 +83,9 @@ function db_query($query, $link_id = 0)
         }
         $query_end = cpgGetMicroTime();
         if (isset($CONFIG['debug_mode']) && (($CONFIG['debug_mode']==1) || ($CONFIG['debug_mode']==2) )) {
-                $query_stats[] = $query_end - $query_start;
-                $queries[] = $query;
+                $duration = round($query_end - $query_start, 3);
+                $query_stats[] = $duration;
+                $queries[] = "$query ({$duration}s)";
         }
         if (!$result) db_error("While executing query \"$query\" on $link_id");
 
@@ -162,12 +163,15 @@ function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer
 // Display a localised date
 function localised_date($timestamp = -1, $datefmt)
 {
-    global $lang_month, $lang_day_of_week;
+    global $lang_month, $lang_day_of_week, $CONFIG;
 
     if ($timestamp == -1) {
         $timestamp = time();
     }
-
+    $diff_to_GMT = date("O") / 100;
+    
+    $timestamp += ($CONFIG['time_offset'] - $diff_to_GMT) * 3600;
+    
     $date = ereg_replace('%[aA]', $lang_day_of_week[(int)strftime('%w', $timestamp)], $datefmt);
     $date = ereg_replace('%[bB]', $lang_month[(int)strftime('%m', $timestamp)-1], $date);
 
@@ -425,15 +429,15 @@ function get_private_album_set()
         if ($USER_DATA['can_see_all_albums']) return;
 
         $result = db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE visibility != '0' AND visibility !='".(FIRST_USER_CAT + USER_ID)."' AND visibility NOT IN ".USER_GROUP_SET);
-        if ((mysql_num_rows($result))) {
-                $set ='';
-            while($album=mysql_fetch_array($result)){
-                    $set .= $album['aid'].',';
-            } // while
-                $FORBIDDEN_SET = "p.aid NOT IN (".substr($set, 0, -1).') ';
-                $ALBUM_SET .= 'AND aid NOT IN ('.substr($set, 0, -1).') ';
+        if (mysql_num_rows($result))
+        {
+                $set = array();
+           		while ($album = mysql_fetch_array($result)) $set[] = $album['aid'];
+                $csv = implode(',',$set);
+                $FORBIDDEN_SET = "p.aid NOT IN ($csv) ";
+                $ALBUM_SET .= "AND aid NOT IN ($csv) ";
         }
-        mysql_free_result($result);
+       	mysql_free_result($result);
 }
 
 // Retrieve the data for a picture or a set of picture
@@ -1292,13 +1296,8 @@ function cpg_debug_output()
         $time = round($time_end - $time_start, 3);
 
         $query_count = count($query_stats);
-        $query_times = '';
-        $total_query_time = 0;
-        foreach ($query_stats as $qtime) {
-            $query_times .= round($qtime, 3) . "s ";
-            $total_query_time += $qtime;
-        }
-        $total_query_time = round($total_query_time, 3);
+        $total_query_time = array_sum($query_stats);
+        
         $debug_underline = '&#0010;------------------&#0010;';
         $debug_separate = '&#0010;==========================&#0010;';
         echo '<form name="debug">';
