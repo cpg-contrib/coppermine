@@ -776,7 +776,11 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 }
 
                 // Replacing the AND in ALBUM_SET with AND (
-                $TMP_SET = "AND (" . substr($ALBUM_SET, 3);
+		if($ALBUM_SET){
+                	$TMP_SET = "AND (" . substr($ALBUM_SET, 3);
+		}else{
+			$TMP_SET = "AND (1";
+		}
 
                 $query = "SELECT COUNT(*) from {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']}  WHERE approved = 'YES' AND {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid $TMP_SET $keyword)";
                 $result = cpg_db_query($query);
