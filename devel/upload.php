@@ -159,13 +159,13 @@ function form_alb_list_box($text, $name) {
 // frogfoot re-wrote this function to present the list in categorized, sorted and nicely formatted order
 
     // Pull the $CONFIG array and the GET array into the function
-    global $CONFIG, $HTTP_GET_VARS, $lang_upload_php;
+    global $CONFIG, $lang_upload_php;
 
     // Also pull the album lists into the function
     global $user_albums_list, $public_albums_list;
 
     // Check to see if an album has been preselected by URL addition. If so, make $sel_album the album number. Otherwise, make $sel_album 0.
-    $sel_album = isset($HTTP_GET_VARS['album']) ? $HTTP_GET_VARS['album'] : 0;
+    $sel_album = isset($_GET['album']) ? $_GET['album'] : 0;
 
     // Create the opening of the drop down box
     echo <<<EOT
@@ -2165,19 +2165,19 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
 
         // We have incoming placement data. Let's capture it.
 
-        $album = (int)$HTTP_POST_VARS['album'];
-        $title = addslashes($HTTP_POST_VARS['title']);
-        $caption = addslashes($HTTP_POST_VARS['caption']);
-        $keywords = addslashes($HTTP_POST_VARS['keywords']);
-        $user1 = addslashes($HTTP_POST_VARS['user1']);
-        $user2 = addslashes($HTTP_POST_VARS['user2']);
-        $user3 = addslashes($HTTP_POST_VARS['user3']);
-        $user4 = addslashes($HTTP_POST_VARS['user4']);
+        $album = (int)$_POST['album'];
+        $title = addslashes($_POST['title']);
+        $caption = addslashes($_POST['caption']);
+        $keywords = addslashes($_POST['keywords']);
+        $user1 = addslashes($_POST['user1']);
+        $user2 = addslashes($_POST['user2']);
+        $user3 = addslashes($_POST['user3']);
+        $user4 = addslashes($_POST['user4']);
 
         // Capture movie or audio width and height if sent.
-        if(isset($HTTP_POST_VARS['movie_wd'])) {
+        if(isset($_POST['movie_wd'])) {
 
-            $movie_wd = (int)$HTTP_POST_VARS['movie_wd'];
+            $movie_wd = (int)$_POST['movie_wd'];
 
         } else {
 
@@ -2185,9 +2185,9 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
 
         }
 
-        if(isset($HTTP_POST_VARS['movie_ht'])) {
+        if(isset($_POST['movie_ht'])) {
 
-            $movie_ht = (int)$HTTP_POST_VARS['movie_ht'];
+            $movie_ht = (int)$_POST['movie_ht'];
 
         } else {
 

@@ -30,14 +30,13 @@ if (!USER_CAN_SEND_ECARDS) cpg_die(ERROR, $lang_errors['access_denied'], __FILE_
 
 function get_post_var($name, $default = '')
 {
-    global $HTTP_POST_VARS;
 
-    return isset($HTTP_POST_VARS[$name]) ? $HTTP_POST_VARS[$name] : $default;
+    return isset($_POST[$name]) ? $_POST[$name] : $default;
 }
 
-$pid = (int)$HTTP_GET_VARS['pid'];
-$album = $HTTP_GET_VARS['album'];
-$pos = (int)$HTTP_GET_VARS['pos'];
+$pid = (int)$_GET['pid'];
+$album = $_GET['album'];
+$pos = (int)$_GET['pos'];
 
 $sender_name = get_post_var('sender_name', USER_NAME ? USER_NAME : (isset($USER['name']) ? $USER['name'] : ''));
 if (defined('UDB_INTEGRATION')AND USER_ID) $USER_DATA = array_merge($USER_DATA,udb_get_user_infos(USER_ID));
@@ -67,10 +66,10 @@ $valid_email_pattern = "^[_\.0-9a-z\-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,6}$";
 $valid_sender_email = eregi($valid_email_pattern, $sender_email);
 $valid_recipient_email = eregi($valid_email_pattern, $recipient_email);
 $invalid_email = '<font size="1">' . $lang_ecard_php['invalid_email'] . '</font>';
-if (!$valid_sender_email && count($HTTP_POST_VARS) > 0) $sender_email_warning = $invalid_email;
-if (!$valid_recipient_email && count($HTTP_POST_VARS) > 0) $recipient_email_warning = $invalid_email;
+if (!$valid_sender_email && count($_POST) > 0) $sender_email_warning = $invalid_email;
+if (!$valid_recipient_email && count($_POST) > 0) $recipient_email_warning = $invalid_email;
 // Create and send the e-card
-if (count($HTTP_POST_VARS) > 0 && $valid_sender_email && $valid_recipient_email) {
+if (count($_POST) > 0 && $valid_sender_email && $valid_recipient_email) {
     $gallery_url_prefix = $CONFIG['ecards_more_pic_target']. (substr($CONFIG['ecards_more_pic_target'], -1) == '/' ? '' : '/');
     if ($CONFIG['make_intermediate'] && max($row['pwidth'], $row['pheight']) > $CONFIG['picture_width']) {
         $n_picname = get_pic_url($row, 'normal');
@@ -82,8 +81,8 @@ if (count($HTTP_POST_VARS) > 0 && $valid_sender_email && $valid_recipient_email)
 
     $msg_content = nl2br(process_smilies($message, $gallery_url_prefix));
 
-    $data = array('rn' => $HTTP_POST_VARS['recipient_name'],
-        'sn' => $HTTP_POST_VARS['sender_name'],
+    $data = array('rn' => $_POST['recipient_name'],
+        'sn' => $_POST['sender_name'],
         'se' => $sender_email,
         'p' => $n_picname,
         'g' => $greetings,

@@ -40,10 +40,10 @@
 
 function user_get_profile()
 {
-        global $CONFIG, $USER, $HTTP_COOKIE_VARS;
+        global $CONFIG, $USER;
 
-        if (isset($HTTP_COOKIE_VARS[$CONFIG['cookie_name'].'_data'])) {
-                $USER = @unserialize(@base64_decode($HTTP_COOKIE_VARS[$CONFIG['cookie_name'].'_data']));
+        if (isset($_COOKIE[$CONFIG['cookie_name'].'_data'])) {
+                $USER = @unserialize(@base64_decode($_COOKIE[$CONFIG['cookie_name'].'_data']));
         }
 
         if (!isset($USER['ID']) || strlen($USER['ID']) != 32) {
@@ -70,7 +70,7 @@ function user_get_profile()
 
 function user_save_profile()
 {
-        global $CONFIG, $USER, $HTTP_SERVER_VARS;
+        global $CONFIG, $USER;
 
         $data = base64_encode(serialize($USER));
         setcookie($CONFIG['cookie_name'].'_data', $data, time()+86400*30, $CONFIG['cookie_path']);
@@ -609,13 +609,13 @@ function get_private_album_set($aid_str="")
 {
         if (GALLERY_ADMIN_MODE) return;
 
-        global $CONFIG, $ALBUM_SET, $USER_DATA, $FORBIDDEN_SET, $HTTP_COOKIE_VARS, $FORBIDDEN_SET_DATA;
+        global $CONFIG, $ALBUM_SET, $USER_DATA, $FORBIDDEN_SET, $FORBIDDEN_SET_DATA;
 
         if ($USER_DATA['can_see_all_albums']) return;
 
                 //Stuff for Album level passwords
-        if (isset($HTTP_COOKIE_VARS[$CONFIG['cookie_name']."_albpw"]) && empty($aid_str)) {
-          $alb_pw = unserialize($HTTP_COOKIE_VARS[$CONFIG['cookie_name']."_albpw"]);
+        if (isset($_COOKIE[$CONFIG['cookie_name']."_albpw"]) && empty($aid_str)) {
+          $alb_pw = unserialize($_COOKIE[$CONFIG['cookie_name']."_albpw"]);
           $aid_str = implode(",",array_keys($alb_pw));
           $sql = "SELECT aid, MD5(alb_password) as md5_password FROM ".$CONFIG['TABLE_ALBUMS']." WHERE aid IN ($aid_str)";
           $result = cpg_db_query($sql);
@@ -671,7 +671,7 @@ function get_private_album_set($aid_str="")
 
 function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $set_caption = true)
 {
-        global $USER, $CONFIG, $ALBUM_SET, $CURRENT_CAT_NAME, $CURRENT_ALBUM_KEYWORD, $HTTP_GET_VARS, $HTML_SUBST, $THEME_DIR, $FAVPICS, $FORBIDDEN_SET_DATA;
+        global $USER, $CONFIG, $ALBUM_SET, $CURRENT_CAT_NAME, $CURRENT_ALBUM_KEYWORD, $HTML_SUBST, $THEME_DIR, $FAVPICS, $FORBIDDEN_SET_DATA;
         global $album_date_fmt, $lastcom_date_fmt, $lastup_date_fmt, $lasthit_date_fmt, $cat;
         global $lang_get_pic_data, $lang_meta_album_names, $lang_errors;
 
@@ -1399,7 +1399,7 @@ function compute_img_size($width, $height, $max)
 
 function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $display_tabs)
 {
-        global $CONFIG, $AUTHORIZED, $HTTP_GET_VARS;
+        global $CONFIG, $AUTHORIZED;
         global $album_date_fmt, $lang_display_thumbnails, $lang_errors, $lang_byte_units;
 
         $thumb_per_page = $thumbcols * $thumbrows;
@@ -1535,7 +1535,7 @@ function& cpg_get_system_thumb($filename,$user=10001)
 
 function display_film_strip($album, $cat, $pos)
 {
-        global $CONFIG, $AUTHORIZED, $HTTP_GET_VARS;
+        global $CONFIG, $AUTHORIZED;
         global $album_date_fmt, $lang_display_thumbnails, $lang_errors, $lang_byte_units;
         $max_item=$CONFIG['max_film_strip_items'];
         //$thumb_per_page = $pos+$CONFIG['max_film_strip_items'];
@@ -1802,7 +1802,6 @@ function& cpg_lang_var($varname,$index=null) {
 
 function cpg_debug_output()
 {
-    global $HTTP_GET_VARS, $HTTP_POST_VARS, $HTTP_SERVER_VARS;
     global $USER, $USER_DATA, $ALBUM_SET, $CONFIG, $time_start, $query_stats, $queries, $lang_cpg_debug_output;
         $time_end = cpgGetMicroTime();
         $time = round($time_end - $time_start, 3);
@@ -1846,11 +1845,11 @@ tempval.select()
         echo $debug_separate;
         echo "GET :";
         echo $debug_underline;
-        print_r($HTTP_GET_VARS);
+        print_r($_GET);
         echo $debug_separate;
         echo "POST :";
         echo $debug_underline;
-        print_r($HTTP_POST_VARS);
+        print_r($_POST);
         echo $debug_separate;
         if (GALLERY_ADMIN_MODE){
         echo "VERSION INFO :";

@@ -40,8 +40,8 @@ require('include/picmgmt.inc.php');
 
 if (!GALLERY_ADMIN_MODE) die('Access denied');
 
-$aid = (int)$HTTP_GET_VARS['aid'];
-$pic_file = base64_decode($HTTP_GET_VARS['pic_file']);
+$aid = (int)$_GET['aid'];
+$pic_file = base64_decode($_GET['pic_file']);
 $dir_name = dirname($pic_file) . "/";
 $file_name = basename($pic_file);
 

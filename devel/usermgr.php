@@ -55,7 +55,7 @@ function show_memberlist()
 
 function list_users($search = '')
 {
-    global $CONFIG, $PHP_SELF, $HTTP_GET_VARS;
+    global $CONFIG, $PHP_SELF;
     global $lang_usermgr_php, $lang_byte_units, $register_date_fmt;
     global $lim_user;
 
@@ -74,7 +74,7 @@ function list_users($search = '')
         'lv_d' => 'user_lastvisit DESC',
         );
 
-    $sort = (!isset($HTTP_GET_VARS['sort']) || !isset($sort_codes[$HTTP_GET_VARS['sort']])) ? 'reg_d' : $HTTP_GET_VARS['sort'];
+    $sort = (!isset($_GET['sort']) || !isset($sort_codes[$_GET['sort']])) ? 'reg_d' : $_GET['sort'];
 
     $tab_tmpl = array('left_text' => '<td width="100%%" align="left" valign="middle" class="tableh1_compact" style="white-space: nowrap"><b>' . $lang_usermgr_php['u_user_on_p_pages'] . '</b></td>' . "\n",
         'tab_header' => '',
@@ -91,7 +91,7 @@ function list_users($search = '')
     if (!$user_count) cpg_die(CRITICAL_ERROR, $lang_usermgr_php['err_no_users'], __FILE__, __LINE__);
 
     $user_per_page = 25;
-    $page = isset($HTTP_GET_VARS['page']) ? (int)$HTTP_GET_VARS['page'] : 1;
+    $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
     $lower_limit = ($page-1) * $user_per_page;
     $total_pages = ceil($user_count / $user_per_page);
 
@@ -402,21 +402,21 @@ EOT;
 
 function update_user($user_id)
 {
-    global $CONFIG, $PHP_SELF, $HTTP_POST_VARS;
+    global $CONFIG, $PHP_SELF;
     global $lang_usermgr_php, $lang_register_php;
 
-    $user_name = addslashes(trim($HTTP_POST_VARS['user_name']));
-    $user_password = addslashes(trim($HTTP_POST_VARS['user_password']));
-    $user_email = addslashes(trim($HTTP_POST_VARS['user_email']));
-        $profile1 = addslashes($HTTP_POST_VARS['user_profile1']);
-        $profile2 = addslashes($HTTP_POST_VARS['user_profile2']);
-        $profile3 = addslashes($HTTP_POST_VARS['user_profile3']);
-        $profile4 = addslashes($HTTP_POST_VARS['user_profile4']);
-        $profile5 = addslashes($HTTP_POST_VARS['user_profile5']);
-        $profile6 = addslashes($HTTP_POST_VARS['user_profile6']);
-    $user_active = $HTTP_POST_VARS['user_active'];
-    $user_group = $HTTP_POST_VARS['user_group'];
-    $group_list = isset($HTTP_POST_VARS['group_list']) ? $HTTP_POST_VARS['group_list'] : '';
+    $user_name = addslashes(trim($_POST['user_name']));
+    $user_password = addslashes(trim($_POST['user_password']));
+    $user_email = addslashes(trim($_POST['user_email']));
+        $profile1 = addslashes($_POST['user_profile1']);
+        $profile2 = addslashes($_POST['user_profile2']);
+        $profile3 = addslashes($_POST['user_profile3']);
+        $profile4 = addslashes($_POST['user_profile4']);
+        $profile5 = addslashes($_POST['user_profile5']);
+        $profile6 = addslashes($_POST['user_profile6']);
+    $user_active = $_POST['user_active'];
+    $user_group = $_POST['user_group'];
+    $group_list = isset($_POST['group_list']) ? $_POST['group_list'] : '';
 
     $sql = "SELECT user_id " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_name = '" . addslashes($user_name) . "' AND user_id != $user_id";
     $result = cpg_db_query($sql);
@@ -445,11 +445,11 @@ function update_user($user_id)
     cpg_db_query($sql_update);
 }
 
-$op = isset($HTTP_GET_VARS['op']) ? $HTTP_GET_VARS['op'] : '';
+$op = isset($_GET['op']) ? $_GET['op'] : '';
 
 switch ($op) {
     case 'edit' :
-        $user_id = isset($HTTP_GET_VARS['user_id']) ? (int)$HTTP_GET_VARS['user_id'] : -1;
+        $user_id = isset($_GET['user_id']) ? (int)$_GET['user_id'] : -1;
 
         if (USER_ID == $user_id) cpg_die(ERROR, $lang_usermgr_php['err_edit_self'], __FILE__, __LINE__);
 
@@ -460,7 +460,7 @@ switch ($op) {
         break;
 
     case 'update' :
-        $user_id = isset($HTTP_GET_VARS['user_id']) ? (int)$HTTP_GET_VARS['user_id'] : -1;
+        $user_id = isset($_GET['user_id']) ? (int)$_GET['user_id'] : -1;
 
         update_user($user_id);
 

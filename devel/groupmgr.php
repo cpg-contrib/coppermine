@@ -169,15 +169,15 @@ EOT;
 
 function get_post_var($var)
 {
-    global $HTTP_POST_VARS, $lang_errors;
+    global $lang_errors;
 
-    if (!isset($HTTP_POST_VARS[$var])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'] . " ($var)", __FILE__, __LINE__);
-    return $HTTP_POST_VARS[$var];
+    if (!isset($_POST[$var])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'] . " ($var)", __FILE__, __LINE__);
+    return $_POST[$var];
 }
 
 function process_post_data()
 {
-    global $CONFIG, $HTTP_POST_VARS;
+    global $CONFIG;
 
     $field_list = array('group_name', 'group_quota', 'can_rate_pictures', 'can_send_ecards', 'can_post_comments', 'can_upload_pictures', 'pub_upl_need_approval', 'can_create_albums', 'priv_upl_need_approval', 'upload_form_config', 'custom_user_upload', 'num_file_upload', 'num_URI_upload');
 
@@ -185,32 +185,32 @@ function process_post_data()
     foreach ($group_id_array as $key => $group_id) {
         $set_statment = '';
         foreach ($field_list as $field) {
-            //if (!isset($HTTP_POST_VARS[$field . '_' . $group_id])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'] . " ({$field}_{$group_id})", __FILE__, __LINE__);
+            //if (!isset($_POST[$field . '_' . $group_id])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'] . " ({$field}_{$group_id})", __FILE__, __LINE__);
             //set the 'upload_form_config' entry
             // case File upload boxes=1 and URI upload boxes=0 => single uploads (0)
-            if ($HTTP_POST_VARS['num_file_upload_' . $group_id] == 1 && $HTTP_POST_VARS['num_URI_upload_' . $group_id] == 0) {
-                $HTTP_POST_VARS['upload_form_config_' . $group_id] = 0;
+            if ($_POST['num_file_upload_' . $group_id] == 1 && $_POST['num_URI_upload_' . $group_id] == 0) {
+                $_POST['upload_form_config_' . $group_id] = 0;
             }
             // case File upload boxes>1 and URI upload boxes=0 => multi file uploads (1)
-            if ($HTTP_POST_VARS['num_file_upload_' . $group_id] > 1 && $HTTP_POST_VARS['num_URI_upload_' . $group_id] == 0) {
-                $HTTP_POST_VARS['upload_form_config_' . $group_id] = 1;
+            if ($_POST['num_file_upload_' . $group_id] > 1 && $_POST['num_URI_upload_' . $group_id] == 0) {
+                $_POST['upload_form_config_' . $group_id] = 1;
             }
             // case File upload boxes=0 and URI upload boxes>0 => multi uri uploads (2)
-            if ($HTTP_POST_VARS['num_file_upload_' . $group_id] == 0 && $HTTP_POST_VARS['num_URI_upload_' . $group_id] > 0) {
-                $HTTP_POST_VARS['upload_form_config_' . $group_id] = 2;
+            if ($_POST['num_file_upload_' . $group_id] == 0 && $_POST['num_URI_upload_' . $group_id] > 0) {
+                $_POST['upload_form_config_' . $group_id] = 2;
             }
             // case File upload boxes>0 and URI upload boxes>0 => File and URI uploads (3)
-            if ($HTTP_POST_VARS['num_file_upload_' . $group_id] > 0 && $HTTP_POST_VARS['num_URI_upload_' . $group_id] > 0) {
-                $HTTP_POST_VARS['upload_form_config_' . $group_id] = 3;
+            if ($_POST['num_file_upload_' . $group_id] > 0 && $_POST['num_URI_upload_' . $group_id] > 0) {
+                $_POST['upload_form_config_' . $group_id] = 3;
             }
             // case File upload boxes=0 and URI upload boxes=0 => input error, default to single uploads (0)
-            if ($HTTP_POST_VARS['num_file_upload_' . $group_id] == 0 && $HTTP_POST_VARS['num_URI_upload_' . $group_id] == 0) {
-                $HTTP_POST_VARS['upload_form_config_' . $group_id] = 0;
+            if ($_POST['num_file_upload_' . $group_id] == 0 && $_POST['num_URI_upload_' . $group_id] == 0) {
+                $_POST['upload_form_config_' . $group_id] = 0;
             }
             if ($field == 'group_name') {
-                $set_statment .= $field . "='" . addslashes($HTTP_POST_VARS[$field . '_' . $group_id]) . "',";
+                $set_statment .= $field . "='" . addslashes($_POST[$field . '_' . $group_id]) . "',";
             } else {
-                $set_statment .= $field . "='" . (int)$HTTP_POST_VARS[$field . '_' . $group_id] . "',";
+                $set_statment .= $field . "='" . (int)$_POST[$field . '_' . $group_id] . "',";
             }
         }
         $set_statment = substr($set_statment, 0, -1);
@@ -218,15 +218,15 @@ function process_post_data()
     }
 }
 
-if (isset($HTTP_POST_VARS) && count($HTTP_POST_VARS)) {
-    if (isset($HTTP_POST_VARS['del_sel']) && isset($HTTP_POST_VARS['delete_group']) && is_array($HTTP_POST_VARS['delete_group'])) {
-        foreach($HTTP_POST_VARS['delete_group'] as $group_id) {
+if (isset($_POST) && count($_POST)) {
+    if (isset($_POST['del_sel']) && isset($_POST['delete_group']) && is_array($_POST['delete_group'])) {
+        foreach($_POST['delete_group'] as $group_id) {
             cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = '" . (int)$group_id . "' LIMIT 1");
             cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_group = '2' WHERE user_group = '" . (int)$group_id . "'");
         }
-    } elseif (isset($HTTP_POST_VARS['new_group'])) {
+    } elseif (isset($_POST['new_group'])) {
         cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} (group_name) VALUES ('')");
-    } elseif (isset($HTTP_POST_VARS['apply_modifs'])) {
+    } elseif (isset($_POST['apply_modifs'])) {
         process_post_data();
     }
 }

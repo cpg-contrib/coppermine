@@ -68,10 +68,10 @@ define('IMG_DIR', $CONFIG['fullpath'].'edit/');
 if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
 
-if (isset($HTTP_GET_VARS['id'])) {
-        $pid = (int)$HTTP_GET_VARS['id'];
-} elseif (isset($HTTP_POST_VARS['id'])) {
-        $pid = (int)$HTTP_POST_VARS['id'];
+if (isset($_GET['id'])) {
+        $pid = (int)$_GET['id'];
+} elseif (isset($_POST['id'])) {
+        $pid = (int)$_POST['id'];
 } else {
         $pid = -1;
 }

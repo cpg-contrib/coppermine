@@ -33,8 +33,8 @@ while ($file = readdir($dir)) {
 closedir($dir);
 asort($lang_files);
 
-if (isset($HTTP_GET_VARS['get'])) {
-    $file_index = (int)$HTTP_GET_VARS['get'];
+if (isset($_GET['get'])) {
+    $file_index = (int)$_GET['get'];
     if ((isset($lang_files[$file_index]))) {
         header("Content-type: application/php");
         header("Content-Disposition: attachment; filename={$lang_files[$file_index]}");

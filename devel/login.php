@@ -25,22 +25,22 @@ if (USER_ID) cpg_die(ERROR, $lang_login_php['err_already_logged_in'], __FILE__, 
 
 if (defined('UDB_INTEGRATION')) udb_login_page();
 
-$referer = $HTTP_GET_VARS['referer'] ? $HTTP_GET_VARS['referer'] : 'index.php';
+$referer = $_GET['referer'] ? $_GET['referer'] : 'index.php';
 $login_failed = '';
 $cookie_warning = '';
 
-if (isset($HTTP_POST_VARS['submitted'])) {
-    $results = cpg_db_query("SELECT user_id, user_name, user_password FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '" . addslashes($HTTP_POST_VARS['username']) . "' AND BINARY user_password = '" . addslashes($HTTP_POST_VARS['password']) . "' AND user_active = 'YES'");
-    $lastvisit = cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_lastvisit = NOW() WHERE user_name = '" . addslashes($HTTP_POST_VARS['username']) . "' AND BINARY user_password = '" . addslashes($HTTP_POST_VARS['password']) . "' AND user_active = 'YES'");
+if (isset($_POST['submitted'])) {
+    $results = cpg_db_query("SELECT user_id, user_name, user_password FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '" . addslashes($_POST['username']) . "' AND BINARY user_password = '" . addslashes($_POST['password']) . "' AND user_active = 'YES'");
+    $lastvisit = cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_lastvisit = NOW() WHERE user_name = '" . addslashes($_POST['username']) . "' AND BINARY user_password = '" . addslashes($_POST['password']) . "' AND user_active = 'YES'");
     if (mysql_num_rows($results)) {
         $USER_DATA = mysql_fetch_array($results);
-        if (isset($HTTP_POST_VARS['remember_me'])) {
+        if (isset($_POST['remember_me'])) {
             $cookie_life_time = 86400 * 30;
         } else {
             $cookie_life_time = 86400;
         }
         setcookie($CONFIG['cookie_name'] . '_uid', $USER_DATA['user_id'], time() + $cookie_life_time, $CONFIG['cookie_path']);
-        setcookie($CONFIG['cookie_name'] . '_pass', md5($HTTP_POST_VARS['password']), time() + $cookie_life_time, $CONFIG['cookie_path']);
+        setcookie($CONFIG['cookie_name'] . '_pass', md5($_POST['password']), time() + $cookie_life_time, $CONFIG['cookie_path']);
 
         pageheader($lang_login_php['login'], "<META http-equiv=\"refresh\" content=\"3;url=$referer\">");
         msg_box($lang_login_php['login'], sprintf($lang_login_php['welcome'], $USER_DATA['user_name']), $lang_continue, $referer);
@@ -76,7 +76,7 @@ cpg_db_query($query_string);
     }
 }
 
-if (!isset($HTTP_COOKIE_VARS[$CONFIG['cookie_name'] . '_data'])) {
+if (!isset($_COOKIE[$CONFIG['cookie_name'] . '_data'])) {
     $cookie_warning = <<<EOT
                   <tr>
                           <td colspan="2" align="center" class="tableh2">

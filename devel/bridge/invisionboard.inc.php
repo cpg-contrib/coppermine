@@ -86,8 +86,8 @@ if ($use_bridgemgr != 0 && $BRIDGE['use_standard_groups'] == 0) {
 // Authenticate a user using cookies
 function udb_authenticate()
 {
-    global $HTTP_COOKIE_VARS, $USER_DATA, $UDB_DB_LINK_ID, $UDB_DB_NAME_PREFIX, $CONFIG;
-    global $HTTP_SERVER_VARS, $HTTP_X_FORWARDED_FOR, $HTTP_PROXY_USER, $REMOTE_ADDR;
+    global $USER_DATA, $UDB_DB_LINK_ID, $UDB_DB_NAME_PREFIX, $CONFIG;
+    global $HTTP_X_FORWARDED_FOR, $HTTP_PROXY_USER, $REMOTE_ADDR;
     // For error checking
     $CONFIG['TABLE_USERS'] = '**ERROR**';
     // Permissions for a default group
@@ -110,19 +110,19 @@ function udb_authenticate()
         'groups' => array (IB_GUEST_GROUP)
         );
     // Retrieve cookie stored login information
-    if (!isset($HTTP_COOKIE_VARS[IB_COOKIE_PREFIX . 'member_id']) || !isset($HTTP_COOKIE_VARS[IB_COOKIE_PREFIX . 'pass_hash'])) {
+    if (!isset($_COOKIE[IB_COOKIE_PREFIX . 'member_id']) || !isset($_COOKIE[IB_COOKIE_PREFIX . 'pass_hash'])) {
         $cookie_uid = 0;
         $cookie_pass = '*';
     } else {
-        $cookie_uid = (int)$HTTP_COOKIE_VARS[IB_COOKIE_PREFIX . 'member_id'];
-        $cookie_pass = substr(addslashes($HTTP_COOKIE_VARS[IB_COOKIE_PREFIX . 'pass_hash']), 0, 32);
+        $cookie_uid = (int)$_COOKIE[IB_COOKIE_PREFIX . 'member_id'];
+        $cookie_pass = substr(addslashes($_COOKIE[IB_COOKIE_PREFIX . 'pass_hash']), 0, 32);
     }
     // If autologin was not selected, we need to use the sessions table
-    if (!$cookie_uid && isset($HTTP_COOKIE_VARS[IB_COOKIE_PREFIX . 'session_id'])) {
-        $session_id = addslashes($HTTP_COOKIE_VARS[IB_COOKIE_PREFIX . 'session_id']);
+    if (!$cookie_uid && isset($_COOKIE[IB_COOKIE_PREFIX . 'session_id'])) {
+        $session_id = addslashes($_COOKIE[IB_COOKIE_PREFIX . 'session_id']);
 
-        if (isset($HTTP_SERVER_VARS['REMOTE_ADDR'])) {
-            $remote_ip = $HTTP_SERVER_VARS['REMOTE_ADDR'];
+        if (isset($_SERVER['REMOTE_ADDR'])) {
+            $remote_ip = $_SERVER['REMOTE_ADDR'];
         } elseif (isset($HTTP_X_FORWARDED_FOR)) {
             $remote_ip = $HTTP_X_FORWARDED_FOR;
         } elseif (isset($HTTP_PROXY_USER)) {

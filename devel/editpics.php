@@ -23,13 +23,13 @@ require('include/init.inc.php');
 
 if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
-define('UPLOAD_APPROVAL_MODE', isset($HTTP_GET_VARS['mode']));
-define('EDIT_PICTURES_MODE', !isset($HTTP_GET_VARS['mode']));
+define('UPLOAD_APPROVAL_MODE', isset($_GET['mode']));
+define('EDIT_PICTURES_MODE', !isset($_GET['mode']));
 
-if (isset($HTTP_GET_VARS['album'])) {
-        $album_id = (int)$HTTP_GET_VARS['album'];
-} elseif (isset($HTTP_GET_VARS['album'])) {
-        $album_id = (int)$HTTP_POST_VARS['album'];
+if (isset($_GET['album'])) {
+        $album_id = (int)$_GET['album'];
+} elseif (isset($_GET['album'])) {
+        $album_id = (int)$_POST['album'];
 } else {
         $album_id = -1;
 }
@@ -77,23 +77,23 @@ $data = array(
 
 function get_post_var($var, $pid)
 {
-        global $HTTP_POST_VARS, $lang_errors;
+        global $lang_errors;
 
         $var_name = $var.$pid;
-        if(!isset($HTTP_POST_VARS[$var_name])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing']." ($var_name)", __FILE__, __LINE__);
-        return $HTTP_POST_VARS[$var_name];
+        if(!isset($_POST[$var_name])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing']." ($var_name)", __FILE__, __LINE__);
+        return $_POST[$var_name];
 }
 
 function process_post_data()
 {
-        global $HTTP_POST_VARS, $CONFIG;
+        global $CONFIG;
         global $user_albums_list, $lang_errors;
 
         $user_album_set = array();
         foreach($user_albums_list as $album) $user_album_set[$album['aid']] = 1;
 
-        if (!is_array($HTTP_POST_VARS['pid'])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
-        $pid_array = &$HTTP_POST_VARS['pid'];
+        if (!is_array($_POST['pid'])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
+        $pid_array = &$_POST['pid'];
         foreach($pid_array as $pid){
                 $pid = (int)$pid;
 
@@ -106,10 +106,10 @@ function process_post_data()
                 $user3       = get_post_var('user3', $pid);
                 $user4       = get_post_var('user4', $pid);
 
-                $delete       = isset($HTTP_POST_VARS['delete'.$pid]);
-                $reset_vcount = isset($HTTP_POST_VARS['reset_vcount'.$pid]);
-                $reset_votes  = isset($HTTP_POST_VARS['reset_votes'.$pid]);
-                $del_comments = isset($HTTP_POST_VARS['del_comments'.$pid]) || $delete;
+                $delete       = isset($_POST['delete'.$pid]);
+                $reset_vcount = isset($_POST['reset_vcount'.$pid]);
+                $reset_votes  = isset($_POST['reset_votes'.$pid]);
+                $del_comments = isset($_POST['del_comments'.$pid]) || $delete;
 
                 $query = "SELECT category, filepath, filename FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND pid='$pid'";
                 $result = cpg_db_query($query);
@@ -405,10 +405,10 @@ if (GALLERY_ADMIN_MODE) {
 
 get_user_albums(USER_ID);
 
-if (count($HTTP_POST_VARS)) process_post_data();
+if (count($_POST)) process_post_data();
 
-$start = isset($HTTP_GET_VARS['start']) ? (int)$HTTP_GET_VARS['start'] : 0;
-$count = isset($HTTP_GET_VARS['count']) ? (int)$HTTP_GET_VARS['count'] : 25;
+$start = isset($_GET['start']) ? (int)$_GET['start'] : 0;
+$count = isset($_GET['count']) ? (int)$_GET['count'] : 25;
 $next_target = $PHP_SELF.'?album='.$album_id.'&start='.($start+$count).'&count='.$count.((UPLOAD_APPROVAL_MODE==1)?"&mode=upload_approval":"");
 $prev_target = $PHP_SELF.'?album='.$album_id.'&start='.max(0,$start-$count).'&count='.$count.((UPLOAD_APPROVAL_MODE==1)?"&mode=upload_approval":"");
 $s50 = $count == 50 ? 'selected' : '';

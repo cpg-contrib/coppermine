@@ -481,7 +481,7 @@ input {
 function output_footer()
 {
     global $WIZARD_BUTTONS, $ONBACK_SCRIPT, $ONNEXT_SCRIPT;
-    global $HTTP_SERVER_VARS, $PHP_SELF, $CONFIG;
+    global $PHP_SELF, $CONFIG;
 
     ?>
 
@@ -510,7 +510,7 @@ function startUpload() {
 
         for (i = 0; i < files.length; i++) {
                 var postTag = xml.createNode(1, 'post', '');
-                postTag.setAttribute('href', '<?php echo 'http://' . $HTTP_SERVER_VARS['HTTP_HOST'] . $PHP_SELF . '?cmd=add_picture'?>&album=' + selform.album.value);
+                postTag.setAttribute('href', '<?php echo 'http://' . $_SERVER['HTTP_HOST'] . $PHP_SELF . '?cmd=add_picture'?>&album=' + selform.album.value);
                 postTag.setAttribute('name', 'userpicture');
 
                 var dataTag = xml.createNode(1, 'formdata', '');
@@ -524,7 +524,7 @@ function startUpload() {
         var uploadTag = xml.createNode(1, 'uploadinfo', '');
         uploadTag.setAttribute('friendlyname', '<?php echo javascript_string($CONFIG['gallery_name'])?>');
         var htmluiTag = xml.createNode(1, 'htmlui', '');
-        htmluiTag.text = '<?php echo 'http://' . $HTTP_SERVER_VARS['HTTP_HOST'] . dirname($PHP_SELF) . '/'?>';
+        htmluiTag.text = '<?php echo 'http://' . $_SERVER['HTTP_HOST'] . dirname($PHP_SELF) . '/'?>';
         uploadTag.appendChild(htmluiTag);
 
         xml.documentElement.appendChild(uploadTag);
@@ -563,7 +563,7 @@ function window.onload() {
 // Send the file needed to register the service under Windows XP
 function send_reg_file()
 {
-    global $CONFIG, $HTTP_SERVER_VARS, $PHP_SELF;
+    global $CONFIG, $PHP_SELF;
 
     header("Content-Type: application/octet-stream");
     $time_stamp = time();
@@ -575,8 +575,8 @@ function send_reg_file()
         $lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\PublishingWizard\Providers\\'. $CONFIG['gallery_name'] .']';
     $lines[] = '"displayname"="' . $CONFIG['gallery_name'] . '"';
     $lines[] = '"description"="' . $CONFIG['gallery_description'] . '"';
-    $lines[] = '"href"="' . "http://" . $HTTP_SERVER_VARS['HTTP_HOST'] . $PHP_SELF . '?cmd=publish"';
-    $lines[] = '"icon"="' . "http://" . $HTTP_SERVER_VARS['HTTP_HOST'] . '/favicon.ico"';
+    $lines[] = '"href"="' . "http://" . $_SERVER['HTTP_HOST'] . $PHP_SELF . '?cmd=publish"';
+    $lines[] = '"icon"="' . "http://" . $_SERVER['HTTP_HOST'] . '/favicon.ico"';
     print join("\r\n", $lines);
     print "\r\n";
     exit;
@@ -590,7 +590,6 @@ function form_login()
     global $template_login;
     global $lang_login_php, $lang_xp_publish_php;
 
-    global $HTTP_COOKIE_VARS;
 
     if (defined('UDB_INTEGRATION')) {
         echo '<p>' . $lang_xp_publish_php['need_login'] . '</p>';
@@ -616,18 +615,18 @@ function form_login()
 // Process login information
 function process_login()
 {
-    global $CONFIG, $HTTP_POST_VARS, $PHP_SELF, $USER;
+    global $CONFIG, $PHP_SELF, $USER;
     global $ONNEXT_SCRIPT, $ONBACK_SCRIPT, $WIZARD_BUTTONS;
     global $template_login_success, $template_login_failure;
     global $lang_login_php;
 
-    $results = cpg_db_query("SELECT user_id, user_name, user_password FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '" . addslashes($HTTP_POST_VARS['username']) . "' AND BINARY user_password = '" . addslashes($HTTP_POST_VARS['password']) . "' AND user_active = 'YES'");
+    $results = cpg_db_query("SELECT user_id, user_name, user_password FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '" . addslashes($_POST['username']) . "' AND BINARY user_password = '" . addslashes($_POST['password']) . "' AND user_active = 'YES'");
     if (mysql_num_rows($results)) {
         $USER_DATA = mysql_fetch_array($results);
 
         $cookie_life_time = 86400;
         setcookie($CONFIG['cookie_name'] . '_uid', $USER_DATA['user_id'], time() + $cookie_life_time, $CONFIG['cookie_path']);
-        setcookie($CONFIG['cookie_name'] . '_pass', md5($HTTP_POST_VARS['password']), time() + $cookie_life_time, $CONFIG['cookie_path']);
+        setcookie($CONFIG['cookie_name'] . '_pass', md5($_POST['password']), time() + $cookie_life_time, $CONFIG['cookie_path']);
         $USER['am'] = 1;
         user_save_profile();
 
@@ -717,7 +716,7 @@ function form_publish()
 // Create a new album where pictures will be uploaded
 function create_album()
 {
-    global $CONFIG, $HTTP_POST_VARS;
+    global $CONFIG;
     global $ONNEXT_SCRIPT, $ONBACK_SCRIPT, $WIZARD_BUTTONS;
     global $template_create_album;
     global $lang_errors, $lang_xp_publish_php;
@@ -725,15 +724,15 @@ function create_album()
     if (!(USER_CAN_CREATE_ALBUMS || USER_IS_ADMIN)) simple_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
     if (USER_IS_ADMIN) {
-        $category = (int)$HTTP_POST_VARS['cat'];
+        $category = (int)$_POST['cat'];
     } else {
         $category = FIRST_USER_CAT + USER_ID;
     }
 
-    $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos) VALUES ('$category', '" . addslashes($HTTP_POST_VARS['new_alb_name']) . "', 'NO',  '0')";
+    $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos) VALUES ('$category', '" . addslashes($_POST['new_alb_name']) . "', 'NO',  '0')";
     cpg_db_query($query);
 
-    $params = array('{NEW_ALB_CREATED}' => sprintf($lang_xp_publish_php['new_alb_created'], $HTTP_POST_VARS['new_alb_name']),
+    $params = array('{NEW_ALB_CREATED}' => sprintf($lang_xp_publish_php['new_alb_created'], $_POST['new_alb_name']),
         '{CONTINUE}' => $lang_xp_publish_php['continue'],
         '{ALBUM_ID}' => mysql_insert_id(),
         );
@@ -748,14 +747,14 @@ function create_album()
 // Add a picture
 function process_picture()
 {
-    global $HTTP_POST_VARS, $HTTP_GET_VARS, $HTTP_POST_FILES, $CONFIG, $IMG_TYPES;
+    global $CONFIG, $IMG_TYPES;
     global $lang_db_input_php, $lang_errors;
 
     @unlink(LOGFILE);
 
     if (!USER_ID || !USER_CAN_UPLOAD_PICTURES) simple_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
-    $album = (int)$HTTP_GET_VARS['album'];
+    $album = (int)$_GET['album'];
     $title = '';
     $caption = '';
     $keywords = '';
@@ -794,7 +793,7 @@ function process_picture()
 
 
     // Test if the filename of the temporary uploaded picture is empty
-    if ($HTTP_POST_FILES['userpicture']['tmp_name'] == '') simple_die(ERROR, $lang_db_input_php['no_pic_uploaded'], __FILE__, __LINE__);
+    if ($_POST['userpicture']['tmp_name'] == '') simple_die(ERROR, $lang_db_input_php['no_pic_uploaded'], __FILE__, __LINE__);
     // Create destination directory for pictures
     if (USER_ID && !defined('SILLY_SAFE_MODE')) {
         if (USER_IS_ADMIN && ($category != (USER_ID + FIRST_USER_CAT))) {
@@ -822,10 +821,10 @@ function process_picture()
 
     $matches = array();
 
-    if (get_magic_quotes_gpc()) $HTTP_POST_FILES['userpicture']['name'] = stripslashes($HTTP_POST_FILES['userpicture']['name']);
+    if (get_magic_quotes_gpc()) $_POST['userpicture']['name'] = stripslashes($_POST['userpicture']['name']);
     // Replace forbidden chars with underscores
     $forbidden_chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>'));
-    $picture_name = strtr($HTTP_POST_FILES['userpicture']['name'], $forbidden_chars, str_repeat('_', strlen($CONFIG['forbiden_fname_char'])));
+    $picture_name = strtr($_POST['userpicture']['name'], $forbidden_chars, str_repeat('_', strlen($CONFIG['forbiden_fname_char'])));
     // Check that the file uploaded has a valid extension
     if (!preg_match("/(.+)\.(.*?)\Z/", $picture_name, $matches)) {
         $matches[1] = 'invalid_fname';
@@ -844,7 +843,7 @@ function process_picture()
     }
     $uploaded_pic = $dest_dir . $picture_name;
     // Move the picture into its final location
-    if (!move_uploaded_file($HTTP_POST_FILES['userpicture']['tmp_name'], $uploaded_pic))
+    if (!move_uploaded_file($_POST['userpicture']['tmp_name'], $uploaded_pic))
         simple_die(CRITICAL_ERROR, sprintf($lang_db_input_php['err_move'], $picture_name, $dest_dir), __FILE__, __LINE__, true);
     // Change file permission
     chmod($uploaded_pic, octdec($CONFIG['default_file_mode']));
@@ -903,10 +902,10 @@ if (USER_IS_ADMIN && !GALLERY_ADMIN_MODE) {
     user_save_profile();
 }
 
-$cmd = empty($HTTP_GET_VARS['cmd']) ? '' : $HTTP_GET_VARS['cmd'];
+$cmd = empty($_GET['cmd']) ? '' : $_GET['cmd'];
 
 if (!USER_ID && $cmd && $cmd != 'send_reg') $cmd = 'login';
-if (!empty($HTTP_POST_VARS['username'])) $cmd = 'process_login';
+if (!empty($_POST['username'])) $cmd = 'process_login';
 
 switch ($cmd) {
     case 'login' :

@@ -1679,7 +1679,7 @@ define('PHPBB_LOGOUT_GET', TRUE);</pre>
 <p>Create a new file named <b>cpg_redir.php</b> in your <b>phpBB directory</b>, and paste the following code into the file:</p>
 <pre>&lt;?php
 if (!$_SERVER['HTTP_HOST']) {
-  $cpg_host=$HTTP_SERVER_VARS['HTTP_HOST'];
+  $cpg_host=$_SERVER['HTTP_HOST'];
 } else {
   $cpg_host=$_SERVER['HTTP_HOST'];
 }

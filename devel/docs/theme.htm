@@ -231,10 +231,10 @@ Edit theme.php and find
         print_r($queries);
         echo "&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;td class=\"tableb\"&gt;";
         echo "GET :&lt;pre&gt;";
-        print_r($HTTP_GET_VARS);
+        print_r($_GET);
         echo "&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;td class=\"tableb\"&gt;";
         echo "POST :&lt;pre&gt;";
-        print_r($HTTP_POST_VARS);
+        print_r($_POST);
         echo "&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;td class=\"tableb\" &gt;";
         echo &lt;&lt;&lt;EOT
                 Page generated in &lt;b&gt;$time&lt;/b&gt; seconds - &lt;b&gt;$query_count&lt;/b&gt; queries in &lt;b&gt;$total_query_time&lt;/b&gt; seconds - Album set : $ALBUM_SET

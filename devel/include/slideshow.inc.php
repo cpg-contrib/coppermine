@@ -24,7 +24,7 @@
 // ------------------------------------------------------------------------- //
 
 // Set slideShowSpeed (milliseconds)
-var slideShowSpeed = <?php echo (int)$HTTP_GET_VARS['slideshow'] ?>
+var slideShowSpeed = <?php echo (int)$_GET['slideshow'] ?>
 
 // Agent sniffer shamelessly 'stolen' from the excellent X library from cross-browser.com
 var xOp7=false,xOp5or6=false,xIE4Up=false,xNN4=false,xUA=navigator.userAgent.toLowerCase();
@@ -45,9 +45,9 @@ var Pic = new Array() // don't touch this
 <?php
 $i = 0;
 $j = 0;
-$pid = (int)$HTTP_GET_VARS['pid'];
+$pid = (int)$_GET['pid'];
 $start_img = '';
-$pic_data = get_pic_data($HTTP_GET_VARS['album'], $pic_count, $album_name, -1, -1, false);
+$pic_data = get_pic_data($_GET['album'], $pic_count, $album_name, -1, -1, false);
 foreach ($pic_data as $picture) {
 
     if($CONFIG['thumb_use']=='ht' && $picture['pheight'] > $CONFIG['picture_width'] ){ // The wierd comparision is because only picture_width is stored
@@ -118,8 +118,8 @@ function runSlideShow(){
 }
 
 function endSlideShow(){
-        self.document.location = 'displayimage.php?album=<?php echo isset($HTTP_GET_VARS['album']) ? $HTTP_GET_VARS['album'] : '';
-echo isset($HTTP_GET_VARS['cat']) ? '&cat=' . $HTTP_GET_VARS['cat'] : '' ?>&pos='+pos
+        self.document.location = 'displayimage.php?album=<?php echo isset($_GET['album']) ? $_GET['album'] : '';
+echo isset($_GET['cat']) ? '&cat=' . $_GET['cat'] : '' ?>&pos='+pos
 }
 
 preLoadPic(j)

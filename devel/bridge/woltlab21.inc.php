@@ -79,8 +79,8 @@ define('WBB_ADMIN_GROUP', 1);
 // Authenticate a user using cookies
 function udb_authenticate()
 {
-   global $HTTP_COOKIE_VARS, $USER_DATA, $UDB_DB_LINK_ID, $UDB_DB_NAME_PREFIX, $CONFIG;
-   global $HTTP_SERVER_VARS, $REMOTE_ADDR, $HTTP_X_FORWARDED_FOR;
+   global $USER_DATA, $UDB_DB_LINK_ID, $UDB_DB_NAME_PREFIX, $CONFIG;
+   global $REMOTE_ADDR, $HTTP_X_FORWARDED_FOR;
    global $lang_errors;
 
    // For error checking

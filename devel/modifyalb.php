@@ -448,7 +448,7 @@ function alb_list_box()
     }
 }
 
-if (!isset($HTTP_GET_VARS['album'])) {
+if (!isset($_GET['album'])) {
     if (GALLERY_ADMIN_MODE) {
         $results = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE 1 LIMIT 1");
     } else {
@@ -458,7 +458,7 @@ if (!isset($HTTP_GET_VARS['album'])) {
     $ALBUM_DATA = mysql_fetch_array($results);
     $album = $ALBUM_DATA['aid'];
 } else {
-    $album = (int)$HTTP_GET_VARS['album'];
+    $album = (int)$_GET['album'];
     $results = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
     if (!mysql_num_rows($results)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
     $ALBUM_DATA = mysql_fetch_array($results);

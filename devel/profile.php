@@ -66,7 +66,7 @@ $change_password_form_param = array(
 
 function make_form($form_param, $form_data)
 {
-    global $CONFIG, $PHP_SELF, $HTTP_POST_VARS;
+    global $CONFIG, $PHP_SELF;
     global $lang_register_php;
 
     foreach ($form_param as $element) switch ($element[0]) {
@@ -166,25 +166,25 @@ EOT;
 
 function get_post_var($var)
 {
-    global $HTTP_POST_VARS, $lang_errors;
+    global $lang_errors;
 
-    if (!isset($HTTP_POST_VARS[$var])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'] . " ($var)", __FILE__, __LINE__);
-    return addslashes(trim($HTTP_POST_VARS[$var]));
+    if (!isset($_POST[$var])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'] . " ($var)", __FILE__, __LINE__);
+    return addslashes(trim($_POST[$var]));
 }
 
-$op = isset($HTTP_GET_VARS['op']) ? $HTTP_GET_VARS['op'] : '';
-$uid = isset($HTTP_GET_VARS['uid']) ? (int)$HTTP_GET_VARS['uid'] : -1;
-if (isset($HTTP_POST_VARS['change_pass'])) $op = 'change_pass';
+$op = isset($_GET['op']) ? $_GET['op'] : '';
+$uid = isset($_GET['uid']) ? (int)$_GET['uid'] : -1;
+if (isset($_POST['change_pass'])) $op = 'change_pass';
 
-if (isset($HTTP_POST_VARS['change_profile']) && USER_ID && !defined('UDB_INTEGRATION')) {
+if (isset($_POST['change_profile']) && USER_ID && !defined('UDB_INTEGRATION')) {
 
-        $profile1 = addslashes($HTTP_POST_VARS['user_profile1']);
-        $profile2 = addslashes($HTTP_POST_VARS['user_profile2']);
-        $profile3 = addslashes($HTTP_POST_VARS['user_profile3']);
-        $profile4 = addslashes($HTTP_POST_VARS['user_profile4']);
-        $profile5 = addslashes($HTTP_POST_VARS['user_profile5']);
-        $profile6 = addslashes($HTTP_POST_VARS['user_profile6']);
-        $email = addslashes($HTTP_POST_VARS['email']);
+        $profile1 = addslashes($_POST['user_profile1']);
+        $profile2 = addslashes($_POST['user_profile2']);
+        $profile3 = addslashes($_POST['user_profile3']);
+        $profile4 = addslashes($_POST['user_profile4']);
+        $profile5 = addslashes($_POST['user_profile5']);
+        $profile6 = addslashes($_POST['user_profile6']);
+        $email = addslashes($_POST['email']);
 
     $sql = "UPDATE {$CONFIG['TABLE_USERS']} SET " . "user_profile1 = '$profile1', " . "user_profile2 = '$profile2', " . "user_profile3 = '$profile3', " . "user_profile4 = '$profile4', " . "user_profile5 = '$profile5', " . "user_profile6 = '$profile6', user_email = '$email' " . "WHERE user_id = '" . USER_ID . "'";
 
@@ -201,7 +201,7 @@ if (isset($HTTP_POST_VARS['change_profile']) && USER_ID && !defined('UDB_INTEGRA
     exit;
 }
 
-if (isset($HTTP_POST_VARS['change_password']) && USER_ID && !defined('UDB_INTEGRATION')) {
+if (isset($_POST['change_password']) && USER_ID && !defined('UDB_INTEGRATION')) {
     $current_pass = get_post_var('current_pass');
     $new_pass = get_post_var('new_pass');
     $new_pass_again = get_post_var('new_pass_again');
@@ -214,7 +214,7 @@ if (isset($HTTP_POST_VARS['change_password']) && USER_ID && !defined('UDB_INTEGR
     $result = cpg_db_query($sql);
     if (!mysql_affected_rows()) cpg_die(ERROR, $lang_register_php['pass_chg_error'], __FILE__, __LINE__);
 
-    setcookie($CONFIG['cookie_name'] . '_pass', md5($HTTP_POST_VARS['new_pass']), time() + 86400, $CONFIG['cookie_path']);
+    setcookie($CONFIG['cookie_name'] . '_pass', md5($_POST['new_pass']), time() + 86400, $CONFIG['cookie_path']);
 
     $title = sprintf($lang_register_php['x_s_profile'], USER_NAME);
     $redirect = $PHP_SELF . "?op=edit_profile";

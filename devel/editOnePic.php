@@ -36,25 +36,25 @@ pageheader($title);
 
 function process_post_data()
 {
-        global $HTTP_POST_VARS, $CONFIG;
+        global $CONFIG;
         global $lang_errors;
 
-                $pid          = (int)$HTTP_POST_VARS['id'];
-                $aid          = (int)$HTTP_POST_VARS['aid'];
-                $pwidth       = (int)$HTTP_POST_VARS['pwidth'];
-                $pheight      = (int)$HTTP_POST_VARS['pheight'];
-                $title        = $HTTP_POST_VARS['title'];
-                $caption      = $HTTP_POST_VARS['caption'];
-                $keywords     = $HTTP_POST_VARS['keywords'];
-                $user1        = $HTTP_POST_VARS['user1'];
-                $user2        = $HTTP_POST_VARS['user2'];
-                $user3        = $HTTP_POST_VARS['user3'];
-                $user4        = $HTTP_POST_VARS['user4'];
+                $pid          = (int)$_POST['id'];
+                $aid          = (int)$_POST['aid'];
+                $pwidth       = (int)$_POST['pwidth'];
+                $pheight      = (int)$_POST['pheight'];
+                $title        = $_POST['title'];
+                $caption      = $_POST['caption'];
+                $keywords     = $_POST['keywords'];
+                $user1        = $_POST['user1'];
+                $user2        = $_POST['user2'];
+                $user3        = $_POST['user3'];
+                $user4        = $_POST['user4'];
 
-                $read_exif    = isset($HTTP_POST_VARS['read_exif']);
-                $reset_vcount = isset($HTTP_POST_VARS['reset_vcount']);
-                $reset_votes  = isset($HTTP_POST_VARS['reset_votes']);
-                $del_comments = isset($HTTP_POST_VARS['del_comments']) || $delete;
+                $read_exif    = isset($_POST['read_exif']);
+                $reset_vcount = isset($_POST['reset_vcount']);
+                $reset_votes  = isset($_POST['reset_votes']);
+                $del_comments = isset($_POST['del_comments']) || $delete;
 
                 $query = "SELECT category, filepath, filename FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND pid='$pid'";
                 $result = cpg_db_query($query);
@@ -145,7 +145,7 @@ EOT;
 EOT;
 }
 
-if (isset($HTTP_POST_VARS['submitDescription'])) process_post_data();
+if (isset($_POST['submitDescription'])) process_post_data();
 
 $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = '$pid'");
 $CURRENT_PIC = mysql_fetch_array($result);

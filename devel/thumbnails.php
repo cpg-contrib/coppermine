@@ -67,21 +67,21 @@ function thumb_get_subcat_data($parent, &$album_set_array, $level)
  * Main code
  */
 
-if (isset($HTTP_GET_VARS['sort'])) $USER['sort'] = $HTTP_GET_VARS['sort'];
-if (isset($HTTP_GET_VARS['cat'])) $cat = (int)$HTTP_GET_VARS['cat'];
-if (isset($HTTP_GET_VARS['uid'])) $USER['uid'] = (int)$HTTP_GET_VARS['uid'];
+if (isset($_GET['sort'])) $USER['sort'] = $_GET['sort'];
+if (isset($_GET['cat'])) $cat = (int)$_GET['cat'];
+if (isset($_GET['uid'])) $USER['uid'] = (int)$_GET['uid'];
 
-if (isset($HTTP_GET_VARS['search'])) {
-    $USER['search'] = $HTTP_GET_VARS['search'];
-    if (isset($HTTP_GET_VARS['type']) && $HTTP_GET_VARS['type'] == 'full') {
+if (isset($_GET['search'])) {
+    $USER['search'] = $_GET['search'];
+    if (isset($_GET['type']) && $_GET['type'] == 'full') {
         $USER['search'] = '###' . $USER['search'];
     }
 }
 
-$album = $HTTP_GET_VARS['album'];
+$album = $_GET['album'];
 
-if (isset($HTTP_GET_VARS['page'])) {
-    $page = max((int)$HTTP_GET_VARS['page'], 1);
+if (isset($_GET['page'])) {
+    $page = max((int)$_GET['page'], 1);
 } else {
     $page = 1;
 }
@@ -159,10 +159,10 @@ if ($breadcrumb) {
 */
 function form_albpw()
 {
-    global $HTTP_POST_VARS, $lang_thumb_view, $CURRENT_ALBUM_DATA;
+    global $lang_thumb_view, $CURRENT_ALBUM_DATA;
     $login_falied =
           starttable('-1', $lang_thumb_view['enter_alb_pass'], 2);
-      if (isset($HTTP_POST_VARS['validate_album'])) {
+      if (isset($_POST['validate_album'])) {
           $login_failed = "<tr><td class='tableh2' colspan='2' align='center'>
                                <font color='red' size='1'>{$lang_thumb_view['invalid_pass']}</font></td></tr>
                                          ";
@@ -193,13 +193,13 @@ EOT;
 $valid = false; //flag to test whether the album is validated.
 if ($CONFIG['allow_private_albums'] == 0 || !in_array($album,$FORBIDDEN_SET_DATA)) {
     $valid = true;
-} elseif (isset($HTTP_POST_VARS['validate_album'])) {
-  $password = $HTTP_POST_VARS['password'];
+} elseif (isset($_POST['validate_album'])) {
+  $password = $_POST['password'];
   $sql = "SELECT aid FROM ".$CONFIG['TABLE_ALBUMS']." WHERE alb_password='$password' AND aid='$album'";
   $result = cpg_db_query($sql);
   if (mysql_num_rows($result)) {
-    if (!empty($HTTP_COOKIE_VARS[$CONFIG['cookie_name'].'_albpw'])) {
-      $albpw = unserialize($HTTP_COOKIE_VARS[$CONFIG['cookie_name'].'_albpw']);
+    if (!empty($_COOKIE[$CONFIG['cookie_name'].'_albpw'])) {
+      $albpw = unserialize($_COOKIE[$CONFIG['cookie_name'].'_albpw']);
     }
     $albpw[$album] = md5($password);
     $alb_cookie_str = serialize($albpw);
@@ -216,8 +216,8 @@ $result = cpg_db_query($sql);
 if (mysql_num_rows($result)) {
   // This album has a password.
   //Check whether the cookie is set for the current albums password
-  if (!empty($HTTP_COOKIE_VARS[$CONFIG['cookie_name'].'_albpw'])) {
-    $alb_pw = unserialize($HTTP_COOKIE_VARS[$CONFIG['cookie_name'].'_albpw']);
+  if (!empty($_COOKIE[$CONFIG['cookie_name'].'_albpw'])) {
+    $alb_pw = unserialize($_COOKIE[$CONFIG['cookie_name'].'_albpw']);
     //Check whether the alubm id in the cookie is same as that of the album id send by get
     if (isset($alb_pw[$album])) {
     $sql = "SELECT aid FROM ".$CONFIG['TABLE_ALBUMS']." WHERE MD5(alb_password)='{$alb_pw[$album]}' AND aid='{$album}'";

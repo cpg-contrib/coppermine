@@ -24,8 +24,8 @@ require('include/init.inc.php');
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 // Delete comments if form is posted
 $nb_com_del = 0;
-if (isset($HTTP_POST_VARS['cid_array'])) {
-    $cid_array = $HTTP_POST_VARS['cid_array'];
+if (isset($_POST['cid_array'])) {
+    $cid_array = $_POST['cid_array'];
     $cid_set = '';
     foreach ($cid_array as $cid)
     $cid_set .= ($cid_set == '') ? '(' . $cid : ', ' . $cid;
@@ -41,8 +41,8 @@ $comment_count = $nbEnr[0];
 
 if (!$comment_count) cpg_die(INFORMATION , $lang_reviewcom_php['no_comment'], __FILE__, __LINE__);
 
-$start = isset($HTTP_GET_VARS['start']) ? (int)$HTTP_GET_VARS['start'] : 0;
-$count = isset($HTTP_GET_VARS['count']) ? $HTTP_GET_VARS['count'] : 25;
+$start = isset($_GET['start']) ? (int)$_GET['start'] : 0;
+$count = isset($_GET['count']) ? $_GET['count'] : 25;
 $next_target = $PHP_SELF . '?start=' . ($start + $count) . '&count=' . $count;
 $prev_target = $PHP_SELF . '?start=' . max(0, $start - $count) . '&count=' . $count;
 $s50 = $count == 50 ? 'selected' : '';

@@ -129,23 +129,24 @@ define('SMF_PASSWD_SEED', 'ys');
 
 function udb_authenticate()
 {
-    global $HTTP_COOKIE_VARS, $USER_DATA, $UDB_DB_LINK_ID, $UDB_DB_NAME_PREFIX, $CONFIG;
-    global $HTTP_SERVER_VARS, $HTTP_X_FORWARDED_FOR, $HTTP_PROXY_USER, $REMOTE_ADDR;
+    global $USER_DATA, $UDB_DB_LINK_ID, $UDB_DB_NAME_PREFIX, $CONFIG;
+    global $HTTP_X_FORWARDED_FOR, $HTTP_PROXY_USER, $REMOTE_ADDR;
     global $password, $username, $pwseed, $settings, $ID_MEMBER, $realname, $txt, $user_info, $user_settings;
 
     $pwseed = SMF_PASSWD_SEED;
 
     reloadSettings();
-    LoadUserSettings();
+    loadUserSettings();
 
     // For error checking
     $CONFIG['TABLE_USERS'] = '**ERROR**';
 
     // get first 50 chars
-    $HTTP_USER_AGENT = substr($HTTP_SERVER_VARS['HTTP_USER_AGENT'], 0, 50);
-    $REMOTE_ADDR = substr($HTTP_SERVER_VARS['REMOTE_ADDR'], 0, 50);
+    $HTTP_USER_AGENT = substr($_SERVER['HTTP_USER_AGENT'], 0, 50);
+    $REMOTE_ADDR = substr($_SERVER['REMOTE_ADDR'], 0, 50);
 
     /* If the user is a guest, initialize all the critial user settings */
+
     if (!$ID_MEMBER) {
         $USER_DATA = cpgGetUserData(SMF_GUEST_GROUP, array(SMF_GUEST_GROUP), SMF_GUEST_GROUP);
 
@@ -172,8 +173,8 @@ function udb_authenticate()
         }
 
         // Retrieve group information
-                $USER_DATA = cpgGetUserData($cm_group_id, $user_info['groups'], SMF_GUEST_GROUP);
-                $USER_DATA['has_admin_access'] = $user_info['is_admin'];
+        $USER_DATA = cpgGetUserData($cm_group_id, $user_info['groups'], SMF_GUEST_GROUP);
+        $USER_DATA['has_admin_access'] = $user_info['is_admin'];
         $USER_DATA['can_see_all_albums']=$USER_DATA['has_admin_access'] | in_array(SMF_GMOD_GROUP,$user_info['groups']);
 
         define('USER_ID', $ID_MEMBER);
@@ -258,7 +259,8 @@ function udb_login_page()
 // Logout
 function udb_logout_page()
 {
-    $_SESSION['logout_url'] = $_SERVER['HTTP_REFERER'];
+    global $CONFIG;
+    $_SESSION['logout_url'] = $CONFIG['ecards_more_pic_target'];
     $target = 'index.php?&action=logout;sesc=' . $_SESSION['rand_code'];
     udb_redirect($target);
 }

@@ -372,9 +372,9 @@ It&#39;s unknown why this happens so far - those who have this error simply can&
 <h3>I have the error message <tt class="code">Warning: Undefined index: SCRIPT_NAME in /www.your-domain.com/include/init.inc.php on line 90</tt>. What can I do?</h3>
 <p>Try to edit the file include/init.inc.php:<br />
 change<br />
-<pre>$PHP_SELF = isset($HTTP_SERVER_VARS[&#39;REDIRECT_URL&#39;]) ? $HTTP_SERVER_VARS[&#39;REDIRECT_URL&#39;] : $HTTP_SERVER_VARS[&#39;SCRIPT_NAME&#39;];</pre>
+<pre>$PHP_SELF = isset($_SERVER[&#39;REDIRECT_URL&#39;]) ? $_SERVER[&#39;REDIRECT_URL&#39;] : $_SERVER[&#39;SCRIPT_NAME&#39;];</pre>
 to<br />
-<pre>$PHP_SELF = $HTTP_SERVER_VARS[&#39;PHP_SELF&#39;];</pre>
+<pre>$PHP_SELF = $_SERVER[&#39;PHP_SELF&#39;];</pre>
 </p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 
 <a name="ErrorCantMovePic"></a>
@@ -386,9 +386,9 @@ If the open basedir restriction is in effect on your site then the temp director
 <h3>When uploading I get the error <tt class="code">Warning: Undefined variable: HTTP_POST_VARS in include/init.inc.php on line 43</tt>. What can I do?</h3>
 <p>Check if <a href="#VersionPHP">your version of PHP</a> fullfills the <a href="#MinimumRequirements">minimum requirements</a> for Coppermine. If your version is 4.1.0 or better, then this error is probably caused by a misconfiguration of your server, so Coppermine isn&#39;t to blame in the first place. If the server isn&#39;t yours to configure properly (that is: if you&#39;re with a webhost), you can try this workaround (at your own risk):<br >
 Edit the file "init.inc.php" and look for<br />
-<pre>$PHP_SELF = isset($HTTP_SERVER_VARS[&#39;REDIRECT_URL&#39;]) ? $HTTP_SERVER_VARS[&#39;REDIRECT_URL&#39;] : $HTTP_SERVER_VARS[&#39;SCRIPT_NAME&#39;];</pre>
+<pre>$PHP_SELF = isset($_SERVER[&#39;REDIRECT_URL&#39;]) ? $_SERVER[&#39;REDIRECT_URL&#39;] : $_SERVER[&#39;SCRIPT_NAME&#39;];</pre>
 Replace it with<br />
-<pre>$PHP_SELF = $HTTP_SERVER_VARS[&#39;PHP_SELF&#39;];</pre><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+<pre>$PHP_SELF = $_SERVER[&#39;PHP_SELF&#39;];</pre><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 
 <br />&nbsp;<br />
 <h2>Setup / Administration</h2><a name="LinkInAlbumDescription"></a>

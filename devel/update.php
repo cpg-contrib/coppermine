@@ -115,7 +115,7 @@ function cpg_get_system_thumb_list($search_folder = 'images/')
 // ----------------------------- TEST FUNCTIONS ---------------------------- //
 function test_sql_connection()
 {
-    global $errors, $HTTP_POST_VARS, $CONFIG;
+    global $errors, $CONFIG;
 
     if (! $connect_id = @mysql_connect($CONFIG['dbserver'], $CONFIG['dbuser'], $CONFIG['dbpass'])) {
         $errors .= "<hr /><br />Could not create a mySQL connection, please check the SQL values in include/config.inc.php<br /><br />MySQL error was : " . mysql_error() . "<br /><br />";
@@ -182,7 +182,7 @@ function html_prereq_errors($error_msg)
 
 function html_error($error_msg = '')
 {
-    global $HTTP_POST_VARS, $im_installed;
+    global $im_installed;
 
     ?>
       <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
@@ -215,7 +215,7 @@ function html_error($error_msg = '')
 
 function html_install_success($notes)
 {
-    global $DFLT, $HTTP_POST_VARS;
+    global $DFLT;
 
     ?>
       <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
@@ -252,11 +252,11 @@ function html_footer()
 // ------------------------- SQL QUERIES TO CREATE TABLES ------------------ //
 function update_tables()
 {
-    global $HTTP_POST_VARS, $HTTP_SERVER_VARS, $errors, $CONFIG;
+    global $errors, $CONFIG;
 
-    $PHP_SELF = $HTTP_SERVER_VARS['PHP_SELF'];
+    $PHP_SELF = $_SERVER['PHP_SELF'];
     $gallery_dir = strtr(dirname($PHP_SELF), '\\', '/');
-    $gallery_url_prefix = 'http://' . $HTTP_SERVER_VARS['HTTP_HOST'] . $gallery_dir . (substr($gallery_dir, -1) == '/' ? '' : '/');
+    $gallery_url_prefix = 'http://' . $_SERVER['HTTP_HOST'] . $gallery_dir . (substr($gallery_dir, -1) == '/' ? '' : '/');
 
     $db_update = 'sql/update.sql';
     $sql_query = fread(fopen($db_update, 'r'), filesize($db_update));
@@ -284,7 +284,7 @@ function update_tables()
 }
 // --------------------------------- MAIN CODE ----------------------------- //
 // The defaults values
-$table_prefix = $HTTP_POST_VARS['table_prefix'];
+$table_prefix = $_POST['table_prefix'];
 $DFLT = array('lck_f' => 'install.lock', // Name of install lock file
     'cfg_d' => 'include', // The config file dir
     'cfg_f' => 'include/config.inc.php', // The config file name

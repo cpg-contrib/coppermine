@@ -80,8 +80,8 @@ if ($use_bridgemgr == 0) { // the vars that are used when bridgemgr is disabled
 // Authenticate a user using cookies
 function udb_authenticate()
 {
-    global $HTTP_COOKIE_VARS, $USER_DATA, $UDB_DB_LINK_ID, $UDB_DB_NAME_PREFIX, $CONFIG;
-    global $HTTP_SERVER_VARS, $HTTP_X_FORWARDED_FOR, $HTTP_PROXY_USER, $REMOTE_ADDR;
+    global $USER_DATA, $UDB_DB_LINK_ID, $UDB_DB_NAME_PREFIX, $CONFIG;
+    global $HTTP_X_FORWARDED_FOR, $HTTP_PROXY_USER, $REMOTE_ADDR;
     // For error checking
     $CONFIG['TABLE_USERS'] = '**ERROR**';
     // Permissions for a default group
@@ -102,13 +102,13 @@ function udb_authenticate()
         'num_URI_upload' => 0,
         );
     // get first 50 chars
-    $HTTP_USER_AGENT = substr($HTTP_SERVER_VARS['HTTP_USER_AGENT'], 0, 50);
-    $REMOTE_ADDR = substr($HTTP_SERVER_VARS['REMOTE_ADDR'], 0, 50);
+    $HTTP_USER_AGENT = substr($_SERVER['HTTP_USER_AGENT'], 0, 50);
+    $REMOTE_ADDR = substr($_SERVER['REMOTE_ADDR'], 0, 50);
 
-    if (is_array($HTTP_COOKIE_VARS)) {
-        $sessionhash = isset($HTTP_COOKIE_VARS[VB_COOKIE_PREFIX . 'sessionhash']) ? $HTTP_COOKIE_VARS[VB_COOKIE_PREFIX . 'sessionhash'] : '';
-        $bbuserid = isset($HTTP_COOKIE_VARS[VB_COOKIE_PREFIX . 'userid']) ? $HTTP_COOKIE_VARS[VB_COOKIE_PREFIX . 'userid'] : 0;
-        $bbpassword = isset($HTTP_COOKIE_VARS[VB_COOKIE_PREFIX . 'password']) ? $HTTP_COOKIE_VARS[VB_COOKIE_PREFIX . 'password'] : '';
+    if (is_array($_COOKIE)) {
+        $sessionhash = isset($_COOKIE['sessionhash']) ? $_COOKIE[VB_COOKIE_PREFIX . 'sessionhash'] : '';
+        $bbuserid = isset($_COOKIE[VB_COOKIE_PREFIX . 'userid']) ? $_COOKIE[VB_COOKIE_PREFIX . 'userid'] : 0;
+        $bbpassword = isset($_COOKIE[VB_COOKIE_PREFIX . 'password']) ? $_COOKIE[VB_COOKIE_PREFIX . 'password'] : '';
     }
 
     $got_user = 0;
@@ -126,25 +126,25 @@ function udb_authenticate()
     } elseif ($sessionhash) {
         // session hash exists
         // validate it:
-        if (isset($HTTP_SERVER_VARS['HTTP_CLIENT_IP']))
+        if (isset($_SERVER['HTTP_CLIENT_IP']))
         {
-            $alt_ip =  $HTTP_SERVER_VARS['HTTP_CLIENT_IP'];
+            $alt_ip =  $_SERVER['HTTP_CLIENT_IP'];
         }
-        elseif (isset($HTTP_SERVER_VARS['HTTP_X_FORWARDED_FOR']) AND preg_match('#\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}#s', $HTTP_SERVER_VARS['HTTP_X_FORWARDED_FOR'], $matches))
+        elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR']) AND preg_match('#\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}#s', $_SERVER['HTTP_X_FORWARDED_FOR'], $matches))
         {
             $alt_ip = $matches[0];
         }
-        elseif (isset($HTTP_SERVER_VARS['HTTP_FROM']))
+        elseif (isset($_SERVER['HTTP_FROM']))
         {
-            $alt_ip = $HTTP_SERVER_VARS['HTTP_FROM'];
+            $alt_ip = $_SERVER['HTTP_FROM'];
         }
         else
         {
-            $alt_ip = $HTTP_SERVER_VARS['REMOTE_ADDR'];
+            $alt_ip = $_SERVER['REMOTE_ADDR'];
         }
-        $idhash = md5($HTTP_SERVER_VARS['HTTP_USER_AGENT'] . $alt_ip );
+        $idhash = md5($_SERVER['HTTP_USER_AGENT'] . $alt_ip );
 
-        $sql = "SELECT sessionhash,userid,host,useragent,styleid " . "FROM " . $UDB_DB_NAME_PREFIX . VB_TABLE_PREFIX . VB_SESSION_TABLE . " " . "WHERE sessionhash='" . addslashes(trim($sessionhash)) . "' " . " AND host='" . addslashes(substr($HTTP_SERVER_VARS['REMOTE_ADDR'], 0, 15)) . "' " . "  AND idhash='" . addslashes($idhash) . "'";
+        $sql = "SELECT sessionhash,userid,host,useragent,styleid " . "FROM " . $UDB_DB_NAME_PREFIX . VB_TABLE_PREFIX . VB_SESSION_TABLE . " " . "WHERE sessionhash='" . addslashes(trim($sessionhash)) . "' " . " AND host='" . addslashes(substr($_SERVER['REMOTE_ADDR'], 0, 15)) . "' " . "  AND idhash='" . addslashes($idhash) . "'";
 
         $result = cpg_db_query($sql, $UDB_DB_LINK_ID);
 

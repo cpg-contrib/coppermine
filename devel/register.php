@@ -56,7 +56,7 @@ EOT;
 
 function input_user_info($errors = '')
 {
-    global $CONFIG, $PHP_SELF, $HTTP_POST_VARS;
+    global $CONFIG, $PHP_SELF;
     global $lang_register_php;
 
     starttable(-1, $lang_register_php['enter_info'], 2);
@@ -93,8 +93,8 @@ EOT;
             break;
 
         case 'input' :
-            if (isset($HTTP_POST_VARS[$element[1]])) {
-                $value = $HTTP_POST_VARS[$element[1]];
+            if (isset($_POST[$element[1]])) {
+                $value = $_POST[$element[1]];
             } else {
                 $value = '';
             }
@@ -112,8 +112,8 @@ EOT;
             break;
 
         case 'textarea' :
-            if (isset($HTTP_POST_VARS[$element[1]])) {
-                $value = $HTTP_POST_VARS[$element[1]];
+            if (isset($_POST[$element[1]])) {
+                $value = $_POST[$element[1]];
             } else {
                 $value = '';
             }
@@ -178,27 +178,27 @@ EOT;
 
 function get_post_var($var)
 {
-    global $HTTP_POST_VARS, $lang_errors;
+    global $lang_errors;
 
-    if (!isset($HTTP_POST_VARS[$var])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'] . " ($var)", __FILE__, __LINE__);
-    return trim($HTTP_POST_VARS[$var]);
+    if (!isset($_POST[$var])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'] . " ($var)", __FILE__, __LINE__);
+    return trim($_POST[$var]);
 }
 
 function check_user_info(&$error)
 {
-    global $CONFIG, $HTTP_POST_VARS, $PHP_SELF;
+    global $CONFIG, $PHP_SELF;
     global $lang_register_php, $lang_register_confirm_email, $lang_continue;
 
     $user_name = trim(get_post_var('username'));
     $password = trim(get_post_var('password'));
     $password_again = trim(get_post_var('password_verification'));
     $email = trim(get_post_var('email'));
-        $profile1 = addslashes($HTTP_POST_VARS['user_profile1']);
-        $profile2 = addslashes($HTTP_POST_VARS['user_profile2']);
-        $profile3 = addslashes($HTTP_POST_VARS['user_profile3']);
-        $profile4 = addslashes($HTTP_POST_VARS['user_profile4']);
-        $profile5 = addslashes($HTTP_POST_VARS['user_profile5']);
-        $profile6 = addslashes($HTTP_POST_VARS['user_profile6']);
+        $profile1 = addslashes($_POST['user_profile1']);
+        $profile2 = addslashes($_POST['user_profile2']);
+        $profile3 = addslashes($_POST['user_profile3']);
+        $profile4 = addslashes($_POST['user_profile4']);
+        $profile5 = addslashes($_POST['user_profile5']);
+        $profile6 = addslashes($_POST['user_profile6']);
 
     $sql = "SELECT user_id " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_name = '" . addslashes($user_name) . "'";
     $result = cpg_db_query($sql);
@@ -274,15 +274,15 @@ function check_user_info(&$error)
 }
 
 pageheader($lang_register_php['page_title']);
-if (isset($HTTP_POST_VARS['agree'])) {
+if (isset($_POST['agree'])) {
     input_user_info();
-} elseif (isset($HTTP_POST_VARS['submit'])) {
+} elseif (isset($_POST['submit'])) {
     $errors = '';
     if (!check_user_info($errors)) {
         input_user_info($errors);
     }
-} elseif (isset($HTTP_GET_VARS['activate'])) {
-    $act_key = addslashes(substr($HTTP_GET_VARS['activate'], 0 , 32));
+} elseif (isset($_GET['activate'])) {
+    $act_key = addslashes(substr($_GET['activate'], 0 , 32));
     if (strlen($act_key) != 32) cpg_die(ERROR, $lang_register_php['acct_act_failed'], __FILE__, __LINE__);
 
     $sql = "SELECT user_active " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_actkey = '$act_key' " . "LIMIT 1";

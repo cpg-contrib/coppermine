@@ -238,8 +238,8 @@ function verify_children($parent, $cid)
 }
 
 
-if (isset($HTTP_POST_VARS['update_config'])) {
-    $value = $HTTP_POST_VARS['categories_alpha_sort'];
+if (isset($_POST['update_config'])) {
+    $value = $_POST['categories_alpha_sort'];
             cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'categories_alpha_sort'");
             $CONFIG['categories_alpha_sort'] = $value;
             if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
@@ -254,27 +254,27 @@ if (isset($HTTP_POST_VARS['update_config'])) {
 }
 
 
-$op = isset($HTTP_GET_VARS['op']) ? $HTTP_GET_VARS['op'] : '';
+$op = isset($_GET['op']) ? $_GET['op'] : '';
 $current_category = array('cid' => '0', 'name' => '', 'parent' => '0', 'description' => '');
 
 switch ($op) {
     case 'move':
-        if (!isset($HTTP_GET_VARS['cid1']) || !isset($HTTP_GET_VARS['cid2']) || !isset($HTTP_GET_VARS['pos1']) || !isset($HTTP_GET_VARS['pos2'])) cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'move'), __FILE__, __LINE__);
+        if (!isset($_GET['cid1']) || !isset($_GET['cid2']) || !isset($_GET['pos1']) || !isset($_GET['pos2'])) cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'move'), __FILE__, __LINE__);
 
-        $cid1 = (int)$HTTP_GET_VARS['cid1'];
-        $cid2 = (int)$HTTP_GET_VARS['cid2'];
-        $pos1 = (int)$HTTP_GET_VARS['pos1'];
-        $pos2 = (int)$HTTP_GET_VARS['pos2'];
+        $cid1 = (int)$_GET['cid1'];
+        $cid2 = (int)$_GET['cid2'];
+        $pos1 = (int)$_GET['pos1'];
+        $pos2 = (int)$_GET['pos2'];
 
         cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='$pos1' WHERE cid = '$cid1' LIMIT 1");
         cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='$pos2' WHERE cid = '$cid2' LIMIT 1");
         break;
 
     case 'setparent':
-        if (!isset($HTTP_GET_VARS['cid']) || !isset($HTTP_GET_VARS['parent'])) cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'setparent'), __FILE__, __LINE__);
+        if (!isset($_GET['cid']) || !isset($_GET['parent'])) cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'setparent'), __FILE__, __LINE__);
 
-        $cid = (int)$HTTP_GET_VARS['cid'];
-        $parent = (int)$HTTP_GET_VARS['parent'];
+        $cid = (int)$_GET['cid'];
+        $parent = (int)$_GET['parent'];
                 $children=array();
                 verify_children($cid, $cid);
                 if (!in_array($parent, $children)){
@@ -285,9 +285,9 @@ switch ($op) {
                 break;
 
     case 'editcat':
-        if (!isset($HTTP_GET_VARS['cid'])) cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'editcat'), __FILE__, __LINE__);
+        if (!isset($_GET['cid'])) cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'editcat'), __FILE__, __LINE__);
 
-        $cid = (int)$HTTP_GET_VARS['cid'];
+        $cid = (int)$_GET['cid'];
         $result = cpg_db_query("SELECT cid, name, parent, description, thumb FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '$cid' LIMIT 1");
 
         if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_catmgr_php['unknown_cat'], __FILE__, __LINE__);
@@ -295,19 +295,19 @@ switch ($op) {
         break;
 
     case 'updatecat':
-        if (!isset($HTTP_POST_VARS['cid']) || !isset($HTTP_POST_VARS['parent']) || !isset($HTTP_POST_VARS['name']) || !isset($HTTP_POST_VARS['description'])) cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'updatecat'), __FILE__, __LINE__);
+        if (!isset($_POST['cid']) || !isset($_POST['parent']) || !isset($_POST['name']) || !isset($_POST['description'])) cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'updatecat'), __FILE__, __LINE__);
 
-                $name = trim($HTTP_POST_VARS['name']);
+                $name = trim($_POST['name']);
                 if (empty($name)){
                         break;
                 }
 
 
-        $cid = (int)$HTTP_POST_VARS['cid'];
-        $parent = (int)$HTTP_POST_VARS['parent'];
-        $thumb = (int)$HTTP_POST_VARS['thumb'];
-        $name = trim($HTTP_POST_VARS['name']) ? addslashes($HTTP_POST_VARS['name']) : '&lt;???&gt;';
-        $description = addslashes($HTTP_POST_VARS['description']);
+        $cid = (int)$_POST['cid'];
+        $parent = (int)$_POST['parent'];
+        $thumb = (int)$_POST['thumb'];
+        $name = trim($_POST['name']) ? addslashes($_POST['name']) : '&lt;???&gt;';
+        $description = addslashes($_POST['description']);
                 $children=array();
                 verify_children($cid, $cid);
                 if (!in_array($parent, $children)){
@@ -318,26 +318,26 @@ switch ($op) {
         break;
 
     case 'createcat':
-        if (!isset($HTTP_POST_VARS['parent']) || !isset($HTTP_POST_VARS['name']) || !isset($HTTP_POST_VARS['description'])) cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'createcat'), __FILE__, __LINE__);
+        if (!isset($_POST['parent']) || !isset($_POST['name']) || !isset($_POST['description'])) cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'createcat'), __FILE__, __LINE__);
 
-                $name = trim($HTTP_POST_VARS['name']);
+                $name = trim($_POST['name']);
 
                 if (empty($name)){
                         break;
                 }
 
 
-                $parent = (int)$HTTP_POST_VARS['parent'];
-        $name = trim($HTTP_POST_VARS['name']) ? addslashes($HTTP_POST_VARS['name']) : '&lt;???&gt;';
-        $description = addslashes($HTTP_POST_VARS['description']);
+                $parent = (int)$_POST['parent'];
+        $name = trim($_POST['name']) ? addslashes($_POST['name']) : '&lt;???&gt;';
+        $description = addslashes($_POST['description']);
 
         cpg_db_query("INSERT INTO {$CONFIG['TABLE_CATEGORIES']} (pos, parent, name, description) VALUES ('10000', '$parent', '$name', '$description')");
         break;
 
     case 'deletecat':
-        if (!isset($HTTP_GET_VARS['cid'])) cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'deletecat'), __FILE__, __LINE__);
+        if (!isset($_GET['cid'])) cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'deletecat'), __FILE__, __LINE__);
 
-        $cid = (int)$HTTP_GET_VARS['cid'];
+        $cid = (int)$_GET['cid'];
 
         $result = cpg_db_query("SELECT parent FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '$cid' LIMIT 1");
         if ($cid == 1) cpg_die(ERROR, $lang_catmgr_php['usergal_cat_ro'], __FILE__, __LINE__);

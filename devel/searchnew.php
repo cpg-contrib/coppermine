@@ -375,8 +375,8 @@ getallalbumsindb($album_array);
 // We need at least one album
 if (!count($album_array)) cpg_die(ERROR, $lang_search_new_php['need_one_album'], __FILE__, __LINE__);
 
-if (isset($HTTP_POST_VARS['insert'])) {
-    if (!isset($HTTP_POST_VARS['pics'])) cpg_die(ERROR, $lang_search_new_php['no_pic_to_add'], __FILE__, __LINE__);
+if (isset($_POST['insert'])) {
+    if (!isset($_POST['pics'])) cpg_die(ERROR, $lang_search_new_php['no_pic_to_add'], __FILE__, __LINE__);
 
     pageheader($lang_search_new_php['page_title']);
     $help = '&nbsp;'.cpg_display_help('f=index.htm&as=ftp&ae=ftp_end&top=1#ftp_show_result', '600', '400');
@@ -394,18 +394,18 @@ if (isset($HTTP_POST_VARS['insert'])) {
 EOT;
 
     $count = 0;
-    foreach ($HTTP_POST_VARS['pics'] as $pic_id) {
-        $album_lb_id = $HTTP_POST_VARS['album_lb_id_' . $pic_id];
-        $album_id = $HTTP_POST_VARS[$album_lb_id];
+    foreach ($_POST['pics'] as $pic_id) {
+        $album_lb_id = $_POST['album_lb_id_' . $pic_id];
+        $album_id = $_POST[$album_lb_id];
 
-        $pic_file = base64_decode($HTTP_POST_VARS['picfile_' . $pic_id]);
+        $pic_file = base64_decode($_POST['picfile_' . $pic_id]);
         $dir_name = dirname($pic_file) . "/";
         $file_name = basename($pic_file);
 
         if ($album_id) {
             // To avoid problems with PHP scripts max execution time limit, each picture is
             // added individually using a separate script that returns an image
-            $status = "<a href=\"addpic.php?aid=$album_id&pic_file=" . ($HTTP_POST_VARS['picfile_' . $pic_id]) . "&reload=" . uniqid('') . "\"><img src=\"addpic.php?aid=$album_id&pic_file=" . ($HTTP_POST_VARS['picfile_' . $pic_id]) . "&reload=" . uniqid('') . "\" class=\"thumbnail\" border=\"0\" width=\"24\" height=\"24\" alt=\"{$lang_search_new_php['result_icon']}\" /><br /></a>";
+            $status = "<a href=\"addpic.php?aid=$album_id&pic_file=" . ($_POST['picfile_' . $pic_id]) . "&reload=" . uniqid('') . "\"><img src=\"addpic.php?aid=$album_id&pic_file=" . ($_POST['picfile_' . $pic_id]) . "&reload=" . uniqid('') . "\" class=\"thumbnail\" border=\"0\" width=\"24\" height=\"24\" alt=\"{$lang_search_new_php['result_icon']}\" /><br /></a>";
             $album_name = $album_array[$album_id];
         } else {
             $album_name = $lang_search_new_php['no_album'];
@@ -436,7 +436,7 @@ EOT;
     endtable();
     pagefooter();
     ob_end_flush();
-} elseif (isset($HTTP_GET_VARS['startdir'])) {
+} elseif (isset($_GET['startdir'])) {
     pageheader($lang_search_new_php['page_title']);
     $help = '&nbsp;'.cpg_display_help('f=index.htm&as=ftp&ae=ftp_end&top=1#ftp_select_file', '500', '400');
     starttable("100%");
@@ -452,8 +452,8 @@ EOT;
     $uncheck_all = $lang_search_new_php['uncheck_all'];
     // added below table, JavaScript and additional check/uncheck options: gaugau 03-11-02
 
-    getallpicindb($expic_array, $HTTP_GET_VARS['startdir']);
-    if (CPGscandir($HTTP_GET_VARS['startdir'] . '/', $expic_array)) {
+    getallpicindb($expic_array, $_GET['startdir']);
+    if (CPGscandir($_GET['startdir'] . '/', $expic_array)) {
 
         echo <<<EOT
         <tr>

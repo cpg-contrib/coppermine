@@ -22,7 +22,7 @@ define('DISPLAYECARD_PHP', true);
 require('include/init.inc.php');
 require('include/smilies.inc.php');
 
-if (!isset($HTTP_GET_VARS['data'])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
+if (!isset($_GET['data'])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
 
 $data = array();
 $data = @unserialize(@base64_decode($_GET['data']));

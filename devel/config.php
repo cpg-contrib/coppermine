@@ -705,9 +705,8 @@ function create_form(&$data)
         }
     }
 }
-
-if (count($HTTP_POST_VARS) > 0) {
-    if (isset($HTTP_POST_VARS['update_config'])) {
+if (count($_POST) > 0) {
+    if (isset($_POST['update_config'])) {
         $need_to_be_positive = array('albums_per_page',
             'album_list_cols',
             'max_tabs',
@@ -722,24 +721,24 @@ if (count($HTTP_POST_VARS) > 0) {
         // Code to rename system thumbs in images folder
         $old_thumb_pfx =& $CONFIG['thumb_pfx'];
 
-        if ($old_thumb_pfx != $HTTP_POST_VARS['thumb_pfx']) {
+        if ($old_thumb_pfx != $_POST['thumb_pfx']) {
             $folders = array('images/', $THEME_DIR.'images/');
             foreach ($folders as $folder) {
                 $thumbs = cpg_get_system_thumb_list($folder);
                 foreach ($thumbs as $thumb) {
                     @rename($folder.$thumb['filename'],
-                            $folder.str_replace($old_thumb_pfx,$HTTP_POST_VARS['thumb_pfx'],$thumb['filename']));
+                            $folder.str_replace($old_thumb_pfx,$_POST['thumb_pfx'],$thumb['filename']));
                 }
             }
         }
 
         foreach ($need_to_be_positive as $parameter)
-        $HTTP_POST_VARS[$parameter] = max(1, (int)$HTTP_POST_VARS[$parameter]);
+        $_POST[$parameter] = max(1, (int)$_POST[$parameter]);
 
         foreach($lang_config_data as $element) {
             if ((is_array($element))) {
-                if (!isset($HTTP_POST_VARS[$element[1]])) /*cpg_die(CRITICAL_ERROR, "Missing config value for '{$element[1]}'", __FILE__, __LINE__);*/ continue;
-                $value = addslashes($HTTP_POST_VARS[$element[1]]);
+                if (!isset($_POST[$element[1]])) /*cpg_die(CRITICAL_ERROR, "Missing config value for '{$element[1]}'", __FILE__, __LINE__);*/ continue;
+                $value = addslashes($_POST[$element[1]]);
                 if ($CONFIG[$element[1]] !== stripslashes($value))
                      {
                         cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = '{$element[1]}'");
@@ -757,7 +756,7 @@ if (count($HTTP_POST_VARS) > 0) {
         pageheader($lang_config_php['title']);
         msg_box($lang_config_php['info'], $lang_config_php['upd_success'], $lang_continue, 'index.php');
 
-    } elseif (isset($HTTP_POST_VARS['restore_config'])) {
+    } elseif (isset($_POST['restore_config'])) {
         $default_config = 'sql/basic.sql';
         $sql_query = fread(fopen($default_config, 'r'), filesize($default_config));
         $sql_query = preg_replace('/CPG_/', $CONFIG['TABLE_PREFIX'], $sql_query);

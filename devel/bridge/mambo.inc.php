@@ -86,7 +86,7 @@ if ($use_bridgemgr == 0) { // the vars that are used when bridgemgr is disabled
 // Authenticate a user using cookies
 function udb_authenticate()
 {
-    global $HTTP_COOKIE_VARS, $USER_DATA, $UDB_DB_LINK_ID, $UDB_DB_NAME_PREFIX, $CONFIG;
+    global $USER_DATA, $UDB_DB_LINK_ID, $UDB_DB_NAME_PREFIX, $CONFIG;
     // For error checking
     $CONFIG['TABLE_USERS'] = '**ERROR**';
 
@@ -109,11 +109,11 @@ function udb_authenticate()
         'groups' => array (MOS_GUEST_GROUP)
         );
     // Retrieve cookie stored login information
-    if (!isset($HTTP_COOKIE_VARS['usercookie'])) {
+    if (!isset($_COOKIE['usercookie'])) {
         $cookie_uid = 0;
         $cookie_pass = '*';
     } else {
-        $sessiondata = $HTTP_COOKIE_VARS['usercookie'];
+        $sessiondata = $_COOKIE['usercookie'];
         if (is_array($sessiondata)) {
             $cookie_uid = (isset($sessiondata['username'])) ? addslashes($sessiondata['username']) : 0;
             $cookie_pass = (isset($sessiondata['password'])) ? addslashes($sessiondata['password']) : '*';

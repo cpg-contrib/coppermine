@@ -237,11 +237,11 @@ function parse_list($value)
  * Main code starts here
  */
 
-if (!isset($HTTP_GET_VARS['what']) && !isset($HTTP_POST_VARS['what'])) {
+if (!isset($_GET['what']) && !isset($_POST['what'])) {
     cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
 }
 
-$what = isset($HTTP_GET_VARS['what']) ? $HTTP_GET_VARS['what'] : $HTTP_POST_VARS['what'];
+$what = isset($_GET['what']) ? $_GET['what'] : $_POST['what'];
 switch ($what) {
 
     // Album manager (don't necessarily delete something ;-)
@@ -258,30 +258,30 @@ switch ($what) {
         pageheader($lang_delete_php['alb_mgr']);
         starttable("100%", $lang_delete_php['alb_mgr'], 6);
 
-        $orig_sort_order = parse_list($HTTP_POST_VARS['sort_order']);
+        $orig_sort_order = parse_list($_POST['sort_order']);
         foreach ($orig_sort_order as $album) {
             $op = parse_orig_sort_order($album);
             if (count ($op) == 2) {
                 $query = "UPDATE $CONFIG[TABLE_ALBUMS] SET pos='{$op['pos']}' WHERE aid='{$op['aid']}' $restrict LIMIT 1";
                 cpg_db_query($query);
             } else {
-                cpg_die (sprintf(CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], $HTTP_POST_VARS['sort_order']), __FILE__, __LINE__);
+                cpg_die (sprintf(CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], $_POST['sort_order']), __FILE__, __LINE__);
             }
         }
 
-        $to_delete = parse_list($HTTP_POST_VARS['delete_album']);
+        $to_delete = parse_list($_POST['delete_album']);
         foreach ($to_delete as $album_id) {
             delete_album((int)$album_id);
         }
 
-        if (isset($HTTP_POST_VARS['to'])) foreach ($HTTP_POST_VARS['to'] as $option_value) {
+        if (isset($_POST['to'])) foreach ($_POST['to'] as $option_value) {
             $op = parse_select_option(stripslashes($option_value));
             switch ($op['action']) {
                 case '0':
                     break;
                 case '1':
                     if (GALLERY_ADMIN_MODE) {
-                        $category = (int)$HTTP_POST_VARS['cat'];
+                        $category = (int)$_POST['cat'];
                     } else {
                         $category = FIRST_USER_CAT + USER_ID;
                     }
@@ -323,30 +323,30 @@ switch ($what) {
       pageheader($lang_delete_php['pic_mgr']);
       starttable("100%", $lang_delete_php['pic_mgr'], 6);
 
-      $orig_sort_order = parse_pic_list($HTTP_POST_VARS['sort_order']);
+      $orig_sort_order = parse_pic_list($_POST['sort_order']);
       foreach ($orig_sort_order as $picture){
          $op = parse_pic_orig_sort_order($picture);
          if (count ($op) == 2){
             $query = "UPDATE $CONFIG[TABLE_PICTURES] SET position='{$op['pos']}' WHERE pid='{$op['aid']}' $restrict LIMIT 1";
             cpg_db_query($query);
          } else {
-            cpg_die (sprintf(CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], $HTTP_POST_VARS['sort_order']), __FILE__, __LINE__);
+            cpg_die (sprintf(CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], $_POST['sort_order']), __FILE__, __LINE__);
          }
       }
 
-      $to_delete = parse_pic_list($HTTP_POST_VARS['delete_picture']);
+      $to_delete = parse_pic_list($_POST['delete_picture']);
       foreach ($to_delete as $picture_id){
          delete_picture((int)$picture_id);
       }
 
-      if (isset($HTTP_POST_VARS['to'])) foreach ($HTTP_POST_VARS['to'] as $option_value){
+      if (isset($_POST['to'])) foreach ($_POST['to'] as $option_value){
          $op = parse_pic_select_option(stripslashes($option_value));
          switch ($op['action']){
             case '0':
                break;
             case '1':
                if(GALLERY_ADMIN_MODE){
-                  $category = (int)$HTTP_POST_VARS['cat'];
+                  $category = (int)$_POST['cat'];
                } else {
                   $category = FIRST_USER_CAT + USER_ID;
                }
@@ -377,7 +377,7 @@ switch ($what) {
     // Comment
 
     case 'comment':
-        $msg_id = (int)$HTTP_GET_VARS['msg_id'];
+        $msg_id = (int)$_GET['msg_id'];
 
         $result = cpg_db_query("SELECT pid FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id='$msg_id'");
         if (!mysql_num_rows($result)) {
@@ -409,7 +409,7 @@ switch ($what) {
     case 'picture':
         if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
-        $pid = (int)$HTTP_GET_VARS['id'];
+        $pid = (int)$_GET['id'];
 
         pageheader($lang_delete_php['del_pic']);
         starttable("100%", $lang_delete_php['del_pic'], 6);
@@ -429,7 +429,7 @@ switch ($what) {
     case 'album':
         if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
-        $aid = (int)$HTTP_GET_VARS['id'];
+        $aid = (int)$_GET['id'];
 
         pageheader($lang_delete_php['del_alb']);
         starttable("100%", $lang_delete_php['del_alb'], 6);
@@ -448,7 +448,7 @@ switch ($what) {
     // User
 
     case 'user':
-        $user_id = (int)$HTTP_GET_VARS['id'];
+        $user_id = (int)$_GET['id'];
         if (!(GALLERY_ADMIN_MODE) || ($user_id == USER_ID) || defined('UDB_INTEGRATION')) cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
         $result = cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$user_id'");

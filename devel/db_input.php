@@ -36,11 +36,11 @@ function check_comment(&$str)
     $str = preg_replace($ercp, '(...)', $str);
 }
 
-if (!isset($HTTP_GET_VARS['event']) && !isset($HTTP_POST_VARS['event'])) {
+if (!isset($_GET['event']) && !isset($_POST['event'])) {
     cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
 }
 
-$event = isset($HTTP_POST_VARS['event']) ? $HTTP_POST_VARS['event'] : $HTTP_GET_VARS['event'];
+$event = isset($_POST['event']) ? $_POST['event'] : $_GET['event'];
 switch ($event) {
 
     // Comment update
@@ -48,11 +48,11 @@ switch ($event) {
     case 'comment_update':
         if (!(USER_CAN_POST_COMMENTS)) cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
-        check_comment($HTTP_POST_VARS['msg_body']);
-        check_comment($HTTP_POST_VARS['msg_author']);
-        $msg_body = addslashes(trim($HTTP_POST_VARS['msg_body']));
-        $msg_author = addslashes(trim($HTTP_POST_VARS['msg_author']));
-        $msg_id = (int)$HTTP_POST_VARS['msg_id'];
+        check_comment($_POST['msg_body']);
+        check_comment($_POST['msg_author']);
+        $msg_body = addslashes(trim($_POST['msg_body']));
+        $msg_author = addslashes(trim($_POST['msg_author']));
+        $msg_id = (int)$_POST['msg_id'];
 
         if ($msg_body == '') cpg_die(ERROR, $lang_db_input_php['err_comment_empty'], __FILE__, __LINE__);
 
@@ -95,10 +95,10 @@ switch ($event) {
     case 'comment':
         if (!(USER_CAN_POST_COMMENTS)) cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
-        check_comment($HTTP_POST_VARS['msg_body']);
-        $msg_author = addslashes(trim($HTTP_POST_VARS['msg_author']));
-        $msg_body = addslashes(trim($HTTP_POST_VARS['msg_body']));
-        $pid = (int)$HTTP_POST_VARS['pid'];
+        check_comment($_POST['msg_body']);
+        $msg_author = addslashes(trim($_POST['msg_author']));
+        $msg_body = addslashes(trim($_POST['msg_body']));
+        $pid = (int)$_POST['pid'];
 
         if ($msg_author == '' || $msg_body == '') cpg_die(ERROR, $lang_db_input_php['empty_name_or_com'], __FILE__, __LINE__);
 
@@ -121,7 +121,7 @@ switch ($event) {
 
         if (!USER_ID) { // Anonymous users, we need to use META refresh to save the cookie
             $insert = cpg_db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip) VALUES ('$pid', '$msg_author', '$msg_body', NOW(), '{$USER['ID']}', '0', '$raw_ip', '$hdr_ip')");
-            $USER['name'] = $HTTP_POST_VARS['msg_author'];
+            $USER['name'] = $_POST['msg_author'];
             $redirect = "displayimage.php?pos=" . (- $pid);
             if ($CONFIG['email_comment_notification']) {
                 $mail_body = $msg_body . "\n\r ".$lang_db_input_php['email_comment_body'] . " " . $CONFIG['ecards_more_pic_target'].(substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/').$redirect;
@@ -154,18 +154,18 @@ switch ($event) {
     case 'album_update':
         if (!(USER_ADMIN_MODE || GALLERY_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
-        $aid = (int)$HTTP_POST_VARS['aid'];
-        $title = addslashes(trim($HTTP_POST_VARS['title']));
-        $category = (int)$HTTP_POST_VARS['category'];
-        $description = addslashes(trim($HTTP_POST_VARS['description']));
-                $keyword = addslashes(trim($HTTP_POST_VARS['keyword']));
-        $thumb = (int)$HTTP_POST_VARS['thumb'];
-        $visibility = (int)$HTTP_POST_VARS['visibility'];
-        $uploads = $HTTP_POST_VARS['uploads'] == 'YES' ? 'YES' : 'NO';
-        $comments = $HTTP_POST_VARS['comments'] == 'YES' ? 'YES' : 'NO';
-        $votes = $HTTP_POST_VARS['votes'] == 'YES' ? 'YES' : 'NO';
-        $password = $HTTP_POST_VARS['alb_password'];
-                $password_hint = addslashes(trim($HTTP_POST_VARS['alb_password_hint']));
+        $aid = (int)$_POST['aid'];
+        $title = addslashes(trim($_POST['title']));
+        $category = (int)$_POST['category'];
+        $description = addslashes(trim($_POST['description']));
+                $keyword = addslashes(trim($_POST['keyword']));
+        $thumb = (int)$_POST['thumb'];
+        $visibility = (int)$_POST['visibility'];
+        $uploads = $_POST['uploads'] == 'YES' ? 'YES' : 'NO';
+        $comments = $_POST['comments'] == 'YES' ? 'YES' : 'NO';
+        $votes = $_POST['votes'] == 'YES' ? 'YES' : 'NO';
+        $password = $_POST['alb_password'];
+                $password_hint = addslashes(trim($_POST['alb_password_hint']));
         $visibility = !empty($password) ? FIRST_USER_CAT + USER_ID : $visibility;
 
         if (!$title) cpg_die(ERROR, $lang_db_input_php['alb_need_title'], __FILE__, __LINE__);
@@ -193,11 +193,11 @@ switch ($event) {
         if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
         $counter_affected_rows = 0;
-        $aid = (int)$HTTP_POST_VARS['aid'];
-        $reset_views = (int)($HTTP_POST_VARS['reset_views']);
-        $reset_rating = (int)$HTTP_POST_VARS['reset_rating'];
-        $delete_comments = (int)($HTTP_POST_VARS['delete_comments']);
-        $delete_files = (int)$HTTP_POST_VARS['delete_files'];
+        $aid = (int)$_POST['aid'];
+        $reset_views = (int)($_POST['reset_views']);
+        $reset_rating = (int)$_POST['reset_rating'];
+        $delete_comments = (int)($_POST['delete_comments']);
+        $delete_files = (int)$_POST['delete_files'];
 
         if ($reset_views) { // if reset_views start
             $query = "UPDATE {$CONFIG['TABLE_PICTURES']} SET hits='0' WHERE aid='$aid'";
@@ -249,14 +249,14 @@ switch ($event) {
     case 'picture':
         if (!USER_CAN_UPLOAD_PICTURES) cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
-        $album = (int)$HTTP_POST_VARS['album'];
-        $title = addslashes($HTTP_POST_VARS['title']);
-        $caption = addslashes($HTTP_POST_VARS['caption']);
-        $keywords = addslashes($HTTP_POST_VARS['keywords']);
-        $user1 = addslashes($HTTP_POST_VARS['user1']);
-        $user2 = addslashes($HTTP_POST_VARS['user2']);
-        $user3 = addslashes($HTTP_POST_VARS['user3']);
-        $user4 = addslashes($HTTP_POST_VARS['user4']);
+        $album = (int)$_POST['album'];
+        $title = addslashes($_POST['title']);
+        $caption = addslashes($_POST['caption']);
+        $keywords = addslashes($_POST['keywords']);
+        $user1 = addslashes($_POST['user1']);
+        $user2 = addslashes($_POST['user2']);
+        $user3 = addslashes($_POST['user3']);
+        $user4 = addslashes($_POST['user4']);
         // Check if the album id provided is valid
         if (!GALLERY_ADMIN_MODE) {
             $result = cpg_db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album' and (uploads = 'YES' OR category = '" . (USER_ID + FIRST_USER_CAT) . "')");
@@ -272,7 +272,7 @@ switch ($event) {
             $category = $row['category'];
         }
         // Test if the filename of the temporary uploaded picture is empty
-        if ($HTTP_POST_FILES['userpicture']['tmp_name'] == '') cpg_die(ERROR, $lang_db_input_php['no_pic_uploaded'], __FILE__, __LINE__);
+        if ($_FILES['userpicture']['tmp_name'] == '') cpg_die(ERROR, $lang_db_input_php['no_pic_uploaded'], __FILE__, __LINE__);
         // Pictures are moved in a directory named 10000 + USER_ID
         if (USER_ID && !defined('SILLY_SAFE_MODE')) {
             $filepath = $CONFIG['userpics'] . (USER_ID + FIRST_USER_CAT);
@@ -297,8 +297,8 @@ switch ($event) {
         $matches = array();
         $forbidden_chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>'));
         // Check that the file uploaded has a valid extension
-        if (get_magic_quotes_gpc()) $HTTP_POST_FILES['userpicture']['name'] = stripslashes($HTTP_POST_FILES['userpicture']['name']);
-        $picture_name = strtr($HTTP_POST_FILES['userpicture']['name'], $forbidden_chars, str_repeat('_', strlen($CONFIG['forbiden_fname_char'])));
+        if (get_magic_quotes_gpc()) $_FILES['userpicture']['name'] = stripslashes($_FILES['userpicture']['name']);
+        $picture_name = strtr($_FILES['userpicture']['name'], $forbidden_chars, str_repeat('_', strlen($CONFIG['forbiden_fname_char'])));
         if (!preg_match("/(.+)\.(.*?)\Z/", $picture_name, $matches)) {
             $matches[1] = 'invalid_fname';
             $matches[2] = 'xxx';
@@ -316,7 +316,7 @@ switch ($event) {
         }
         $uploaded_pic = $dest_dir . $picture_name;
         // Move the picture into its final location
-        if (!move_uploaded_file($HTTP_POST_FILES['userpicture']['tmp_name'], $uploaded_pic))
+        if (!move_uploaded_file($_FILES['userpicture']['tmp_name'], $uploaded_pic))
             cpg_die(CRITICAL_ERROR, sprintf($lang_db_input_php['err_move'], $picture_name, $dest_dir), __FILE__, __LINE__, true);
         // Change file permission
         chmod($uploaded_pic, octdec($CONFIG['default_file_mode']));

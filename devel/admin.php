@@ -35,10 +35,10 @@ require('include/init.inc.php');
 
 if (!USER_CAN_CREATE_ALBUMS && !USER_IS_ADMIN) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
-if (!isset($HTTP_GET_VARS['admin_mode']) || !isset($HTTP_GET_VARS['referer'])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
+if (!isset($_GET['admin_mode']) || !isset($_GET['referer'])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
 
-$admin_mode = (int)$HTTP_GET_VARS['admin_mode'] ? 1 : 0;
-$referer = $HTTP_GET_VARS['referer'] ? $HTTP_GET_VARS['referer'] : 'index.php';
+$admin_mode = (int)$_GET['admin_mode'] ? 1 : 0;
+$referer = $_GET['referer'] ? $_GET['referer'] : 'index.php';
 $USER['am'] = $admin_mode;
 if (!$admin_mode) $referer = 'index.php';
 

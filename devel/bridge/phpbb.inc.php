@@ -92,7 +92,7 @@ if ($use_bridgemgr == 0) { // the vars that are used when bridgemgr is disabled
 // Authenticate a user using cookies
 function udb_authenticate()
 {
-    global $HTTP_COOKIE_VARS, $USER_DATA, $UDB_DB_LINK_ID, $UDB_DB_NAME_PREFIX, $CONFIG;
+    global $USER_DATA, $UDB_DB_LINK_ID, $UDB_DB_NAME_PREFIX, $CONFIG;
     // For error checking
     $CONFIG['TABLE_USERS'] = '**ERROR**';
 
@@ -115,11 +115,11 @@ function udb_authenticate()
         'groups' => array (PHPBB_GUEST_GROUP)
         );
     // Retrieve cookie stored login information
-    if (!isset($HTTP_COOKIE_VARS[PHPBB_COOKIE_PREFIX . '_data'])) {
+    if (!isset($_COOKIE[PHPBB_COOKIE_PREFIX . '_data'])) {
         $cookie_uid = 0;
         $cookie_pass = '*';
     } else {
-        $sessiondata = unserialize($HTTP_COOKIE_VARS[PHPBB_COOKIE_PREFIX . '_data']);
+        $sessiondata = unserialize($_COOKIE[PHPBB_COOKIE_PREFIX . '_data']);
         if (is_array($sessiondata)) {
             $cookie_uid = (isset($sessiondata['userid'])) ? intval($sessiondata['userid']) : 0;
             $cookie_pass = (isset($sessiondata['autologinid'])) ? addslashes($sessiondata['autologinid']) : '*';
@@ -129,8 +129,8 @@ function udb_authenticate()
         }
     }
     // If autologin was not selected, we need to use the sessions table
-    if ($cookie_uid && !$cookie_pass && isset($HTTP_COOKIE_VARS[PHPBB_COOKIE_PREFIX . '_sid'])) {
-        $session_id = addslashes($HTTP_COOKIE_VARS[PHPBB_COOKIE_PREFIX . '_sid']);
+    if ($cookie_uid && !$cookie_pass && isset($_COOKIE[PHPBB_COOKIE_PREFIX . '_sid'])) {
+        $session_id = addslashes($_COOKIE[PHPBB_COOKIE_PREFIX . '_sid']);
 
         $sql = "SELECT user_id, username as user_name, user_level " . "FROM " . $UDB_DB_NAME_PREFIX . PHPBB_TABLE_PREFIX . PHPBB_SESSION_TABLE . " " . "INNER JOIN " . $UDB_DB_NAME_PREFIX . PHPBB_TABLE_PREFIX . PHPBB_USER_TABLE . " ON session_user_id = user_id " . "WHERE session_id='$session_id' AND session_user_id ='$cookie_uid' AND user_active='1'";
     } else {

@@ -127,8 +127,8 @@ function cm_banning()
 // Authenticate a user using cookies
 function udb_authenticate()
 {
-    global $HTTP_COOKIE_VARS, $USER_DATA, $UDB_DB_LINK_ID, $UDB_DB_NAME_PREFIX, $CONFIG;
-    global $HTTP_SERVER_VARS, $HTTP_X_FORWARDED_FOR, $HTTP_PROXY_USER, $REMOTE_ADDR;
+    global $USER_DATA, $UDB_DB_LINK_ID, $UDB_DB_NAME_PREFIX, $CONFIG;
+    global $HTTP_X_FORWARDED_FOR, $HTTP_PROXY_USER, $REMOTE_ADDR;
     global $password, $username, $pwseed, $settings, $ID_MEMBER, $realname, $txt;
 
     $pwseed = YS_PASSWD_SEED;
@@ -156,8 +156,8 @@ function udb_authenticate()
         'num_URI_upload' => 0,
         );
     // get first 50 chars
-    $HTTP_USER_AGENT = substr($HTTP_SERVER_VARS['HTTP_USER_AGENT'], 0, 50);
-    $REMOTE_ADDR = substr($HTTP_SERVER_VARS['REMOTE_ADDR'], 0, 50);
+    $HTTP_USER_AGENT = substr($_SERVER['HTTP_USER_AGENT'], 0, 50);
+    $REMOTE_ADDR = substr($_SERVER['REMOTE_ADDR'], 0, 50);
 
     /* If the user is a guest, initialize all the critial user settings */
     if ($username == '' || $username == 'Guest') {

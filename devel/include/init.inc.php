@@ -113,67 +113,67 @@ $time_start = cpgGetMicroTime();
 // Do some cleanup in GET, POST and cookie data and un-register global vars
 $HTML_SUBST = array('"' => '&quot;', '<' => '&lt;', '>' => '&gt;');
 if (get_magic_quotes_gpc()) {
-    if (is_array($HTTP_POST_VARS)) {
-        foreach ($HTTP_POST_VARS as $key => $value) {
+    if (is_array($_POST)) {
+        foreach ($_POST as $key => $value) {
             if (!is_array($value))
-                $HTTP_POST_VARS[$key] = strtr(stripslashes($value), $HTML_SUBST);
+                $_POST[$key] = strtr(stripslashes($value), $HTML_SUBST);
             if (isset($$key)) unset($$key);
         }
     }
 
-    if (is_array($HTTP_GET_VARS)) {
-        foreach ($HTTP_GET_VARS as $key => $value) {
-            $HTTP_GET_VARS[$key] = strtr(stripslashes($value), $HTML_SUBST);
+    if (is_array($_GET)) {
+        foreach ($_GET as $key => $value) {
+            $_GET[$key] = strtr(stripslashes($value), $HTML_SUBST);
             if (isset($$key)) unset($$key);
         }
     }
 
-    if (is_array($HTTP_COOKIE_VARS)) {
-        foreach ($HTTP_COOKIE_VARS as $key => $value) {
+    if (is_array($_COOKIE)) {
+        foreach ($_COOKIE as $key => $value) {
             if (!is_array($value))
-                $HTTP_COOKIE_VARS[$key] = stripslashes($value);
+                $_COOKIE[$key] = stripslashes($value);
             if (isset($$key)) unset($$key);
         }
     }
 } else {
-    if (is_array($HTTP_POST_VARS)) {
-        foreach ($HTTP_POST_VARS as $key => $value) {
+    if (is_array($_POST)) {
+        foreach ($_POST as $key => $value) {
             if (!is_array($value))
-                $HTTP_POST_VARS[$key] = strtr($value, $HTML_SUBST);
+                $_POST[$key] = strtr($value, $HTML_SUBST);
             if (isset($$key)) unset($$key);
         }
     }
 
-    if (is_array($HTTP_GET_VARS)) {
-        foreach ($HTTP_GET_VARS as $key => $value) {
-            $HTTP_GET_VARS[$key] = strtr($value, $HTML_SUBST);
+    if (is_array($_GET)) {
+        foreach ($_GET as $key => $value) {
+            $_GET[$key] = strtr($value, $HTML_SUBST);
             if (isset($$key)) unset($$key);
         }
     }
 
-    if (is_array($HTTP_COOKIE_VARS)) {
-        foreach ($HTTP_COOKIE_VARS as $key => $value) {
+    if (is_array($_COOKIE)) {
+        foreach ($_COOKIE as $key => $value) {
             if (isset($$key)) unset($$key);
         }
     }
 }
 // Initialise the $CONFIG array and some other variables
 $CONFIG = array();
-$PHP_SELF = isset($HTTP_SERVER_VARS['REDIRECT_URL']) ? $HTTP_SERVER_VARS['REDIRECT_URL'] : $HTTP_SERVER_VARS['SCRIPT_NAME'];
-$REFERER = urlencode($PHP_SELF . (isset($HTTP_SERVER_VARS['QUERY_STRING']) && $HTTP_SERVER_VARS['QUERY_STRING'] ? '?' . $HTTP_SERVER_VARS['QUERY_STRING'] : ''));
+$PHP_SELF = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : $_SERVER['SCRIPT_NAME'];
+$REFERER = urlencode($PHP_SELF . (isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING'] ? '?' . $_SERVER['QUERY_STRING'] : ''));
 $ALBUM_SET = '';
 $FORBIDDEN_SET = '';
 $FORBIDDEN_SET_DATA = array();
 $CURRENT_CAT_NAME = '';
 $CAT_LIST = '';
 // Record User's IP address
-$raw_ip = stripslashes($HTTP_SERVER_VARS['REMOTE_ADDR']);
+$raw_ip = stripslashes($_SERVER['REMOTE_ADDR']);
 
-if (isset($HTTP_SERVER_VARS['HTTP_CLIENT_IP'])) {
-    $hdr_ip = stripslashes($HTTP_SERVER_VARS['HTTP_CLIENT_IP']);
+if (isset($_SERVER['HTTP_CLIENT_IP'])) {
+    $hdr_ip = stripslashes($_SERVER['HTTP_CLIENT_IP']);
 } else {
-    if (isset($HTTP_SERVER_VARS['HTTP_X_FORWARDED_FOR'])) {
-        $hdr_ip = stripslashes($HTTP_SERVER_VARS['HTTP_X_FORWARDED_FOR']);
+    if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        $hdr_ip = stripslashes($_SERVER['HTTP_X_FORWARDED_FOR']);
     } else {
         $hdr_ip = $raw_ip;
     }
@@ -274,12 +274,12 @@ user_get_profile();
 if (defined('UDB_INTEGRATION')) {
     udb_authenticate();
 } else {
-    if (!isset($HTTP_COOKIE_VARS[$CONFIG['cookie_name'] . '_uid']) || !isset($HTTP_COOKIE_VARS[$CONFIG['cookie_name'] . '_pass'])) {
+    if (!isset($_COOKIE[$CONFIG['cookie_name'] . '_uid']) || !isset($_COOKIE[$CONFIG['cookie_name'] . '_pass'])) {
         $cookie_uid = 0;
         $cookie_pass = '*';
     } else {
-        $cookie_uid = (int)$HTTP_COOKIE_VARS[$CONFIG['cookie_name'] . '_uid'];
-        $cookie_pass = substr(addslashes($HTTP_COOKIE_VARS[$CONFIG['cookie_name'] . '_pass']), 0, 32);
+        $cookie_uid = (int)$_COOKIE[$CONFIG['cookie_name'] . '_uid'];
+        $cookie_pass = substr(addslashes($_COOKIE[$CONFIG['cookie_name'] . '_pass']), 0, 32);
     }
 
     $sql = "SELECT * " . "FROM {$CONFIG['TABLE_USERS']} WHERE user_id='$cookie_uid'" . "AND user_active = 'YES' " . "AND user_password != '' " . "AND BINARY MD5(user_password) = '$cookie_pass'";
@@ -330,6 +330,7 @@ if (defined('UDB_INTEGRATION')) {
 $USER['am'] = isset($USER['am']) ? (int)$USER['am'] : 0;
 define('GALLERY_ADMIN_MODE', USER_IS_ADMIN && $USER['am']);
 define('USER_ADMIN_MODE', USER_ID && USER_CAN_CREATE_ALBUMS && $USER['am'] && !GALLERY_ADMIN_MODE);
+
 // Set error logging level
 if ($CONFIG['debug_notice']==1 && ($CONFIG['debug_mode']==1 || ($CONFIG['debug_mode']==2 && GALLERY_ADMIN_MODE ))) {
     error_reporting (E_ALL);
@@ -339,8 +340,8 @@ if ($CONFIG['debug_notice']==1 && ($CONFIG['debug_mode']==1 || ($CONFIG['debug_m
 
 
 // Process theme selection if present in URI or in user profile
-if (!empty($HTTP_GET_VARS['theme'])) {
-    $USER['theme'] = $HTTP_GET_VARS['theme'];
+if (!empty($_GET['theme'])) {
+    $USER['theme'] = $_GET['theme'];
 }
 // Load theme file
 if (isset($USER['theme']) && !strstr($USER['theme'], '/') && is_dir('themes/' . $USER['theme'])) {
@@ -354,8 +355,8 @@ require "themes/{$CONFIG['theme']}/theme.php";
 $THEME_DIR = "themes/{$CONFIG['theme']}/";
 // Process language selection if present in URI or in user profile or try
 // autodetection if default charset is utf-8
-if (!empty($HTTP_GET_VARS['lang'])) {
-    $USER['lang'] = $HTTP_GET_VARS['lang'];
+if (!empty($_GET['lang'])) {
+    $USER['lang'] = $_GET['lang'];
 }
 
 if (isset($USER['lang']) && !strstr($USER['lang'], '/') && file_exists('lang/' . $USER['lang'] . '.php')) {
@@ -383,8 +384,8 @@ if($CONFIG['lang'] != 'english' && $CONFIG['language_fallback']==1 ){
         require "include/langfallback.inc.php";
 }
 // See if the fav cookie is set else set it
-if (isset($HTTP_COOKIE_VARS[$CONFIG['cookie_name'] . '_fav'])) {
-    $FAVPICS = @unserialize(@base64_decode($HTTP_COOKIE_VARS[$CONFIG['cookie_name'] . '_fav']));
+if (isset($_COOKIE[$CONFIG['cookie_name'] . '_fav'])) {
+    $FAVPICS = @unserialize(@base64_decode($_COOKIE[$CONFIG['cookie_name'] . '_fav']));
 } else {
     $FAVPICS = array();
 }

@@ -876,7 +876,6 @@ function pageheader($section, $meta = '')
 // Function for writing a pagefooter
 function pagefooter()
 {
-    global $HTTP_GET_VARS, $HTTP_POST_VARS, $HTTP_SERVER_VARS;
     global $USER, $ALBUM_SET, $CONFIG, $time_start, $query_stats;
     global $template_footer;
 
@@ -920,7 +919,7 @@ EOT;
 
 function theme_main_menu1()
 {
-    global $CONFIG, $album, $actual_cat, $cat, $REFERER, $HTTP_SERVER_VARS;
+    global $CONFIG, $album, $actual_cat, $cat, $REFERER;
     global $lang_main_menu, $template_main_menu1;
 
     static $main_menu = '';
@@ -1011,7 +1010,7 @@ function theme_main_menu1()
 
 function theme_main_menu2()
 {
-    global $CONFIG, $album, $actual_cat, $cat, $REFERER, $HTTP_SERVER_VARS;
+    global $CONFIG, $album, $actual_cat, $cat, $REFERER;
     global $lang_main_menu, $template_main_menu2;
 
     static $main_menu = '';
@@ -1525,7 +1524,7 @@ function theme_no_img_to_display($album_name)
 
 function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, $film_strip)
 {
-    global $HTTP_COOKIE_VARS, $CONFIG;
+    global $CONFIG;
 
     starttable();
     echo $nav_menu;
@@ -1542,7 +1541,7 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, 
     echo $votes;
     endtable();
 
-    $picinfo = isset($HTTP_COOKIE_VARS['picinfo']) ? $HTTP_COOKIE_VARS['picinfo'] : ($CONFIG['display_pic_info'] ? 'block' : 'none');
+    $picinfo = isset($_COOKIE['picinfo']) ? $_COOKIE['picinfo'] : ($CONFIG['display_pic_info'] ? 'block' : 'none');
     echo "<div id=\"picinfo\" style=\"display: $picinfo;\">\n";
     starttable();
     echo $pic_info;

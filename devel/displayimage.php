@@ -54,7 +54,7 @@ EOT;
 // Prints the image-navigation menu
 function html_img_nav_menu()
 {
-    global $CONFIG, $HTTP_SERVER_VARS, $HTTP_GET_VARS, $CURRENT_PIC_DATA, $PHP_SELF, $meta_nav ;
+    global $CONFIG, $CURRENT_PIC_DATA, $PHP_SELF, $meta_nav ;
     global $album, $cat, $pos, $pic_count, $lang_img_nav_bar, $lang_text_dir, $template_img_navbar;
 
     $cat_link = is_numeric($album) ? '' : '&amp;cat=' . $cat;
@@ -121,7 +121,7 @@ function html_img_nav_menu()
 // Displays a picture
 function html_picture()
 {
-    global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $USER, $HTTP_COOKIE_VARS;
+    global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $USER;
     global $album, $comment_date_fmt, $template_display_picture;
     global $lang_display_image_php, $lang_picinfo;
 
@@ -131,7 +131,7 @@ function html_picture()
         $USER['liv'] = array();
     }
     // Add 1 to hit counter
-    if ($album != "lasthits" && !in_array($pid, $USER['liv']) && isset($HTTP_COOKIE_VARS[$CONFIG['cookie_name'] . '_data'])) {
+    if ($album != "lasthits" && !in_array($pid, $USER['liv']) && isset($_COOKIE[$CONFIG['cookie_name'] . '_data'])) {
         add_hit($pid);
         if (count($USER['liv']) > 4) array_shift($USER['liv']);
         array_push($USER['liv'], $pid);
@@ -437,7 +437,7 @@ function html_comments($pid)
 // Display the full size image
 function display_fullsize_pic()
 {
-    global $CONFIG, $HTTP_GET_VARS, $THEME_DIR, $ALBUM_SET;
+    global $CONFIG, $THEME_DIR, $ALBUM_SET;
     global $lang_errors, $lang_fullsize_popup, $lang_charset;
 
     if (function_exists('theme_display_fullsize_pic')) {
@@ -465,15 +465,15 @@ adjust_popup();
   <table cellspacing="2" cellpadding="0" style="border: 1px solid #000000; background-color: #FFFFFF;">
    <td>
 <?php
-    if (isset($HTTP_GET_VARS['picfile'])) {
+    if (isset($_GET['picfile'])) {
         if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
-        $picfile = $HTTP_GET_VARS['picfile'];
+        $picfile = $_GET['picfile'];
         $picname = $CONFIG['fullpath'] . $picfile;
         $imagesize = @getimagesize($picname);
         echo "<a href=\"javascript: window.close()\"><img src=\"" . path2url($picname) . "\" $imagesize[3] class=\"image\" border=\"0\" alt=\"\" title=\"$picfile\n" . $lang_fullsize_popup['click_to_close'] . "\"/></a><br />\n";
-    } elseif (isset($HTTP_GET_VARS['pid'])) {
-        $pid = (int)$HTTP_GET_VARS['pid'];
+    } elseif (isset($_GET['pid'])) {
+        $pid = (int)$_GET['pid'];
         $sql = "SELECT * " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='$pid' $ALBUM_SET";
         $result = cpg_db_query($sql);
 
@@ -497,7 +497,7 @@ adjust_popup();
 
 function slideshow()
 {
-    global $CONFIG, $HTTP_GET_VARS, $lang_display_image_php, $template_display_picture;
+    global $CONFIG, $lang_display_image_php, $template_display_picture;
 
     if (function_exists('theme_slideshow')) {
         theme_slideshow();
@@ -554,9 +554,9 @@ function get_subcat_data($parent, $level)
  * Main code
  */
 
-$pos = isset($HTTP_GET_VARS['pos']) ? (int)$HTTP_GET_VARS['pos'] : 0;
-$cat = isset($HTTP_GET_VARS['cat']) ? (int)$HTTP_GET_VARS['cat'] : 0;
-$album = isset($HTTP_GET_VARS['album']) ? $HTTP_GET_VARS['album'] : '';
+$pos = isset($_GET['pos']) ? (int)$_GET['pos'] : 0;
+$cat = isset($_GET['cat']) ? (int)$_GET['cat'] : 0;
+$album = isset($_GET['album']) ? $_GET['album'] : '';
 // Build the album set if required
 if (!is_numeric($album) && $cat) { // Meta albums, we need to restrict the albums to the current category
     if ($cat < 0) {
@@ -592,7 +592,7 @@ if ($pos < 0) {
     for($pos = 0; $pic_data[$pos]['pid'] != $pid && $pos < $pic_count; $pos++);
     $pic_data = get_pic_data($album, $pic_count, $album_name, $pos, 1, false);
     $CURRENT_PIC_DATA = $pic_data[0];
-} elseif (isset($HTTP_GET_VARS['pos'])) {
+} elseif (isset($_GET['pos'])) {
     $pic_data = get_pic_data($album, $pic_count, $album_name, $pos, 1, false);
     if ($pic_count == 0) {
         cpg_die(INFORMATION, $lang_errors['no_img_to_display'], __FILE__, __LINE__);
@@ -620,14 +620,14 @@ if (isset($CURRENT_PIC_DATA)) {
     }
 }
 
-if (isset($HTTP_GET_VARS['fullsize'])) {
+if (isset($_GET['fullsize'])) {
     display_fullsize_pic();
     ob_end_flush();
-} elseif (isset($HTTP_GET_VARS['slideshow'])) {
+} elseif (isset($_GET['slideshow'])) {
     slideshow();
     ob_end_flush();
 } else {
-    if (!isset($HTTP_GET_VARS['pos'])) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+    if (!isset($_GET['pos'])) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
     $picture_title = $CURRENT_PIC_DATA['title'] ? $CURRENT_PIC_DATA['title'] : strtr(preg_replace("/(.+)\..*?\Z/", "\\1", htmlspecialchars($CURRENT_PIC_DATA['filename'])), "_", " ");
 
     $nav_menu = html_img_nav_menu();

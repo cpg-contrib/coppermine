@@ -40,11 +40,11 @@ define('RATEPIC_PHP', true);
 
 require('include/init.inc.php');
 // Check if required parameters are present
-if (!isset($HTTP_GET_VARS['pid'])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
+if (!isset($_GET['pid'])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
 
-$pic = (int)$HTTP_GET_VARS['pid'];
+$pic = (int)$_GET['pid'];
 // If user does not accept script's cookies, we don't accept the vote
-if (!isset($HTTP_COOKIE_VARS[$CONFIG['cookie_name'] . '_data'])) {
+if (!isset($_COOKIE[$CONFIG['cookie_name'] . '_data'])) {
     header('Location: displayimage.php?pos=' . (- $pid));
     exit;
 }

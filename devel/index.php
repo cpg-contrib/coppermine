@@ -201,7 +201,7 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
  **/
 function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
 {
-    global $HTTP_GET_VARS, $CONFIG, $ALBUM_SET, $CURRENT_CAT_NAME, $BREADCRUMB_TEXT, $STATS_IN_ALB_LIST, $FORBIDDEN_SET;
+    global $CONFIG, $ALBUM_SET, $CURRENT_CAT_NAME, $BREADCRUMB_TEXT, $STATS_IN_ALB_LIST, $FORBIDDEN_SET;
     global $HIDE_USER_CAT, $cpg_show_private_album;
     global $cat;
     global $lang_list_categories, $lang_errors;
@@ -557,7 +557,7 @@ function list_albums()
 */
 function list_cat_albums($cat = 0)
 {
-    global $CONFIG, $USER, $lastup_date_fmt, $HTTP_GET_VARS, $USER_DATA, $FORBIDDEN_SET, $FORBIDDEN_SET_DATA, $cpg_show_private_album;
+    global $CONFIG, $USER, $lastup_date_fmt, $USER_DATA, $FORBIDDEN_SET, $FORBIDDEN_SET_DATA, $cpg_show_private_album;
     global $lang_list_albums, $lang_errors;
 
     $PAGE = 1;
@@ -717,8 +717,8 @@ function list_cat_albums($cat = 0)
 /**
 * See if $page has been passed in GET
 */
-if (isset($HTTP_GET_VARS['page'])) {
-    $PAGE = max((int)$HTTP_GET_VARS['page'], 1);
+if (isset($_GET['page'])) {
+    $PAGE = max((int)$_GET['page'], 1);
     $USER['lap'] = $PAGE;
 } elseif (isset($USER['lap'])) {
     $PAGE = max((int)$USER['lap'], 1);
@@ -730,8 +730,8 @@ if (isset($HTTP_GET_VARS['page'])) {
 * See if $cat has been passed in GET
 */
 
-if (isset($HTTP_GET_VARS['cat'])) {
-    $cat = (int)$HTTP_GET_VARS['cat'];
+if (isset($_GET['cat'])) {
+    $cat = (int)$_GET['cat'];
 }
 // Gather data for categories
 $breadcrumb = '';

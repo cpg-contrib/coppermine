@@ -75,8 +75,8 @@ if ($use_bridgemgr == 0) { // the vars that are used when bridgemgr is disabled
 // Authenticate a user using cookies
 function udb_authenticate()
 {
-    global $HTTP_COOKIE_VARS, $USER_DATA, $UDB_DB_LINK_ID, $UDB_DB_NAME_PREFIX, $CONFIG;
-    global $HTTP_SERVER_VARS, $HTTP_X_FORWARDED_FOR, $HTTP_PROXY_USER, $REMOTE_ADDR;
+    global $USER_DATA, $UDB_DB_LINK_ID, $UDB_DB_NAME_PREFIX, $CONFIG;
+    global $HTTP_X_FORWARDED_FOR, $HTTP_PROXY_USER, $REMOTE_ADDR;
     // For error checking
     $CONFIG['TABLE_USERS'] = '**ERROR**';
     // Permissions for a default group
@@ -97,14 +97,14 @@ function udb_authenticate()
         'num_URI_upload' => 0,
         );
     // get first 50 chars
-    $HTTP_USER_AGENT = substr($HTTP_SERVER_VARS['HTTP_USER_AGENT'], 0, 50);
-    $REMOTE_ADDR = substr($HTTP_SERVER_VARS['REMOTE_ADDR'], 0, 50);
+    $HTTP_USER_AGENT = substr($_SERVER['HTTP_USER_AGENT'], 0, 50);
+    $REMOTE_ADDR = substr($_SERVER['REMOTE_ADDR'], 0, 50);
 
-    if (is_array($HTTP_COOKIE_VARS)) {
-        $sessionhash = isset($HTTP_COOKIE_VARS['sessionhash']) ? $HTTP_COOKIE_VARS['sessionhash'] : '';
-        $bbuserid = isset($HTTP_COOKIE_VARS['bbuserid']) ? $HTTP_COOKIE_VARS['bbuserid'] : 0;
-        $bbpassword = isset($HTTP_COOKIE_VARS['bbpassword']) ? $HTTP_COOKIE_VARS['bbpassword'] : '';
-        $bbalthash = isset($HTTP_COOKIE_VARS['bbalthash']) ? $HTTP_COOKIE_VARS['bbalthash'] : '';
+    if (is_array($_COOKIE)) {
+        $sessionhash = isset($_COOKIE['sessionhash']) ? $_COOKIE['sessionhash'] : '';
+        $bbuserid = isset($_COOKIE['bbuserid']) ? $_COOKIE['bbuserid'] : 0;
+        $bbpassword = isset($_COOKIE['bbpassword']) ? $_COOKIE['bbpassword'] : '';
+        $bbalthash = isset($_COOKIE['bbalthash']) ? $_COOKIE['bbalthash'] : '';
     }
 
     if ($bbuserid && $bbpassword) {

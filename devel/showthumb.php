@@ -108,6 +108,6 @@ function makethumbnail($src_file, $newSize, $method)
     }
 }
 
-makethumbnail($CONFIG['fullpath'] . $HTTP_GET_VARS['picfile'], $HTTP_GET_VARS['size'], $CONFIG['thumb_method']);
+makethumbnail($CONFIG['fullpath'] . $_GET['picfile'], $_GET['size'], $CONFIG['thumb_method']);
 
 ?>

@@ -31,10 +31,10 @@ $exifRawData = explode ("|",$exif_info);
 $exifCurrentData = explode ("|",$CONFIG['show_which_exif']);
 
 //If the form is submitted to save the data
-if (isset($HTTP_POST_VARS['save'])) {
+if (isset($_POST['save'])) {
   $str = "";
   foreach ($exifRawData as $val) {
-    if (in_array($val, $HTTP_POST_VARS['exif_tags'])) {
+    if (in_array($val, $_POST['exif_tags'])) {
       $str .= "1|";
     } else {
       $str .= "0|";

@@ -21,22 +21,22 @@ define('RATEPIC_PHP', true);
 
 require('include/init.inc.php');
 // Check if required parameters are present
-if (!isset($HTTP_GET_VARS['pic']) || !isset($HTTP_GET_VARS['rate'])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
+if (!isset($_GET['pic']) || !isset($_GET['rate'])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
 
-$pic = (int)$HTTP_GET_VARS['pic'];
-$rate = (int)$HTTP_GET_VARS['rate'];
+$pic = (int)$_GET['pic'];
+$rate = (int)$_GET['rate'];
 
 $rate = min($rate, 5);
 $rate = max($rate, 0);
 
 // If user does not accept script's cookies, we don't accept the vote
-if (!isset($HTTP_COOKIE_VARS[$CONFIG['cookie_name'] . '_data'])) {
+if (!isset($_COOKIE[$CONFIG['cookie_name'] . '_data'])) {
     header('Location: displayimage.php?pos=' . (- $pic));
     exit;
 }
 
 // If referer is not displayimage.php we don't accept the vote
-if (!eregi("displayimage",$HTTP_SERVER_VARS["HTTP_REFERER"])){
+if (!eregi("displayimage",$_SERVER["HTTP_REFERER"])){
     header('Location: displayimage.php?pos=' . (- $pic));
     exit;
 }

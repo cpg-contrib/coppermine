@@ -708,38 +708,38 @@ $maximum_width = $CONFIG['thumb_width'];
 
 // First, we test for the variable $degrees to determine script action.
 
-if (!isset($HTTP_POST_VARS['degrees'])) {
+if (!isset($_POST['degrees'])) {
 
         // Display initial form.
 
         // First, we must capture all the data sent to us by upload.php.
 
-        $event    = $HTTP_POST_VARS['event'];
-        $album    = (int)$HTTP_POST_VARS['album'];
-        $title    = $HTTP_POST_VARS['title'];
-        $caption  = $HTTP_POST_VARS['caption'];
-        $keywords = $HTTP_POST_VARS['keywords'];
-        $user1    = $HTTP_POST_VARS['user1'];
-        $user2    = $HTTP_POST_VARS['user2'];
-        $user3    = $HTTP_POST_VARS['user3'];
-        $user4    = $HTTP_POST_VARS['user4'];
+        $event    = $_POST['event'];
+        $album    = (int)$_POST['album'];
+        $title    = $_POST['title'];
+        $caption  = $_POST['caption'];
+        $keywords = $_POST['keywords'];
+        $user1    = $_POST['user1'];
+        $user2    = $_POST['user2'];
+        $user3    = $_POST['user3'];
+        $user4    = $_POST['user4'];
 
         // First things first. Let's analyze the image file.
 
         // We already have the file size in bytes and  the temporary name in the file
         // upload global array.
 
-        // The file size is $HTTP_POST_FILES['userpicture']['size'].
+        // The file size is $_FILES['userpicture']['size'].
 
-        $file_size = $HTTP_POST_FILES['userpicture']['size'];
+        $file_size = $_FILES['userpicture']['size'];
 
-        // The temporary name is $HTTP_POST_FILES['userpicture']['tmp_name'].
+        // The temporary name is $_FILES['userpicture']['tmp_name'].
 
-        $temporary_name = $HTTP_POST_FILES['userpicture']['tmp_name'];
+        $temporary_name = $_FILES['userpicture']['tmp_name'];
 
-        // The file name is $HTTP_POST_FILES['userpicture']['name'].
+        // The file name is $_FILES['userpicture']['name'].
 
-        $file_name = $HTTP_POST_FILES['userpicture']['name'];
+        $file_name = $_FILES['userpicture']['name'];
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -848,19 +848,19 @@ if (!isset($HTTP_POST_VARS['degrees'])) {
 
         // First, we must capture all the data sent to us by the initial form.
 
-        $degrees  = $HTTP_POST_VARS['degrees'];
-        $event    = $HTTP_POST_VARS['event'];
-        $path_to_primary_image = $HTTP_POST_VARS['transitory_image_path'];
-        $path_to_preview_image = $HTTP_POST_VARS['preview_image_path'];
-        $transitory_file_name = $HTTP_POST_VARS['file_name'];
-        $album    = (int)$HTTP_POST_VARS['album'];
-        $title    = $HTTP_POST_VARS['title'];
-        $caption  = $HTTP_POST_VARS['caption'];
-        $keywords = $HTTP_POST_VARS['keywords'];
-        $user1    = $HTTP_POST_VARS['user1'];
-        $user2    = $HTTP_POST_VARS['user2'];
-        $user3    = $HTTP_POST_VARS['user3'];
-        $user4    = $HTTP_POST_VARS['user4'];
+        $degrees  = $_POST['degrees'];
+        $event    = $_POST['event'];
+        $path_to_primary_image = $_POST['transitory_image_path'];
+        $path_to_preview_image = $_POST['preview_image_path'];
+        $transitory_file_name = $_POST['file_name'];
+        $album    = (int)$_POST['album'];
+        $title    = $_POST['title'];
+        $caption  = $_POST['caption'];
+        $keywords = $_POST['keywords'];
+        $user1    = $_POST['user1'];
+        $user2    = $_POST['user2'];
+        $user3    = $_POST['user3'];
+        $user4    = $_POST['user4'];
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
