@@ -219,7 +219,7 @@ ALTER TABLE `CPG_pictures` ADD `lasthit_ip` TINYTEXT ;
 CREATE TABLE `CPG_favpics` (
 `user_id` INT( 11 ) NOT NULL ,
 `user_favpics` TEXT NOT NULL ,
-PRIMARY KEY ( `user_id` ) 
+PRIMARY KEY ( `user_id` )
 ) COMMENT = 'Stores the server side favourites';
 
 
@@ -262,3 +262,5 @@ INSERT INTO CPG_config VALUES ('time_offset', '0');
 ALTER TABLE `CPG_users` CHANGE `user_profile6` `user_profile6` TEXT NOT NULL;
 
 ALTER TABLE `CPG_albums` ADD `alb_password` varchar(32) default '';
+
+INSERT INTO CPG_config VALUES ('ban_private_ip', '0');

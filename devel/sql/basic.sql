@@ -117,6 +117,8 @@ INSERT INTO CPG_config VALUES ('media_autostart', '1');
 
 INSERT INTO CPG_config VALUES ('time_offset', '0');
 
+INSERT INTO CPG_config VALUES ('ban_private_ip', '0');
+
 
 #
 # Dumping data for table `CPG_filetypes`

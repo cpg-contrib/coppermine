@@ -353,10 +353,10 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
   'error_ban_id' => 'Invalid ban ID!',
   'error_admin_ban' => 'You cannnot ban yourself!',
   'error_server_ban' => 'You were going to ban your own server? Tsk tsk, cannot do that...',
-  'error_ip_forbidden' => 'You cannnot ban this IP - it is non-routable!',
+  'error_ip_forbidden' => 'You cannnot ban this IP - it is non-routable (private) anyway!<br />If you want to allow banning for private IPs, change this in your <a href="config.php">Config</a> (only makes sense when Coppermine runs on a LAN).', //cpg1.4.0
   'lookup_ip' => 'Lookup an IP address',
   'submit' => 'go!',
-  'select_date' => 'select date',
+  'select_date' => 'select date', //cpg1.4.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -544,6 +544,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Enable debug mode', 'debug_mode', 9),
   array('Display notices in debug mode', 'debug_notice', 1),
   array('Logging mode <a href="#notice3" class="clickable_option">***</a>', 'log_mode', 11), //cpg1.4.0
+  array('Allow banning of non-routable (private) IP addresses', 'ban_private_ip', 1),  //cpg1.4.0
 
   '<br /><div align="left"><a name="notice1"></a>(*) This settings mustn\'t be changed if you already have files in your database.<br />
   <a name="notice2"></a>(**) When changing this setting, only the files that are added from that point on are affected, so it is advisable that this setting must not be changed if there are already files in the gallery. You can, however, apply the changes to the existing files with the &quot;<a href="util.php">admin tools</a> (resize pictures)&quot; utility from the admin menu.<br />

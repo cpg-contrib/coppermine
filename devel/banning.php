@@ -65,7 +65,7 @@ EOHEAD;
                                                 <input type="text" class="textinput" size="15" name="edit_ban_ip_addr" value="{$row['ip_addr']}">
                                         </td>
                                                 <td class="tableb" valign="middle">
-                                                <input type="text" class="listbox_lang" size="20" name="edit_ban_expires" value="$expiry" readonly="readonly" onclick="return getCalendar(document.banlist$row_counter.edit_ban_expires);" style="cursor:pointer">
+                                                <input type="text" class="listbox_lang" size="20" name="edit_ban_expires" value="$expiry" readonly="readonly" onclick="return getCalendar(document.banlist$row_counter.edit_ban_expires);" style="cursor:pointer" title="{$lang_banning_php['select_date']}" />
                                         </td>
                                         <td class="tableb" valign="middle">
                                                                 <input type="submit" class="button" name="edit_ban" value="{$lang_banning_php['edit_ban']}">
@@ -116,7 +116,7 @@ if (count($HTTP_POST_VARS) > 0) {
             for ($i = 224; $i <= 255; $i++) {
             if (strpos($ip_to_check,$i.'.') == 2){$ip_is_illegal++;}
             }
-            if ($ip_is_illegal != 0) {
+            if ($ip_is_illegal != 0 && $CONFIG['ban_private_ip'] == 0) {
             cpg_die(ERROR, $lang_banning_php['error_ip_forbidden'], __FILE__, __LINE__);
             }
         } else {
@@ -285,7 +285,7 @@ echo <<<EOT
                                                 <input type="text" class="textinput" name="add_ban_ip_addr" value="" size="15" maxlength="15" />
                                         </td>
                                                 <td class="tableb" valign="middle">
-                                                <input type="text" class="listbox_lang"  name="add_ban_expires" value="" size="20" readonly="readonly" onclick="return getCalendar(document.list.add_ban_expires);" style="cursor:pointer" />
+                                                <input type="text" class="listbox_lang"  name="add_ban_expires" value="" size="20" readonly="readonly" onclick="return getCalendar(document.list.add_ban_expires);" style="cursor:pointer" title="{$lang_banning_php['select_date']}" />
                                         </td>
                                         <td class="tableb" valign="top">
                                                                 <input type="submit" class="button" name="add_ban" value="{$lang_banning_php['add_ban']}" />

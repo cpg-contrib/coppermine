@@ -136,3 +136,4 @@ Added 'media_autostart' to lang_config_data - 4 July 2004, Chris
 Added Password protected albums - 6th July 2004, Tarique
 Changed hard coded english in delete.php and upload.php to lang file, user contribution u3uk, 6 July 2004, Casper
 Fixed expiration bug in banning.php, added calendar.php to select date - 6 July 2004, GauGau
+Added admin option to allow banning of private IPs  - 6 July 2004, GauGau
