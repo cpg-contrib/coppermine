@@ -471,7 +471,7 @@ function display_fullsize_pic()
 <link rel="stylesheet" href="<?php echo $THEME_DIR ?>style.css" />
 <script type="text/javascript" src="scripts.js"></script>
 </head>
-<body scroll="auto" marginwidth="0" marginheight="0">
+<body class="tableb" scroll="auto" marginwidth="0" marginheight="0">
 <script language="JavaScript" type="text/JavaScript">
 adjust_popup();
 </script>

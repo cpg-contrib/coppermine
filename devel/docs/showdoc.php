@@ -100,12 +100,12 @@ if ($string == '' && $header == '') {
 */
 
 if ($add_stylesheet != '') {
-    $string = "<html>\n<head>\n<title>Help</title>\n" . '<link rel="stylesheet" href="../themes/'.$add_stylesheet.'/style.css" />' . "\n</head>\n<body>\n<div style=\"padding: 5px;\">\n" . $string;
+    $string = "<html>\n<head>\n<title>Help</title>\n" . '<link rel="stylesheet" href="../themes/'.$add_stylesheet.'/style.css" />' . "\n</head>\n<body class=\"tableb\">\n<div style=\"padding: 5px;\">\n" . $string;
     $string .= $close_link."\n</div>\n</body>\n</html>";
 }
 
 if ($header != '') {
-$string = "<html>\n<head>\n<title>".$header."</title>\n" . '<link rel="stylesheet" href="../themes/'.$add_stylesheet.'/style.css" />' . "\n</head>\n<body>\n<h1>" . $header . "</h1>\n<div style=\"padding: 5px;\">\n" . $text . "\n".$close_link."\n</div>\n</body>\n</html>";
+$string = "<html>\n<head>\n<title>".$header."</title>\n" . '<link rel="stylesheet" href="../themes/'.$add_stylesheet.'/style.css" />' . "\n</head>\n<body class=\"tableb\">\n<h1>" . $header . "</h1>\n<div style=\"padding: 5px;\">\n" . $text . "\n".$close_link."\n</div>\n</body>\n</html>";
 }
 
 print $string;
