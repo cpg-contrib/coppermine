@@ -272,19 +272,19 @@ function html_picinfo()
         if (isset($exif['ExposureTime'])) $info[$lang_picinfo['Exposure time']] = $exif['ExposureTime'];
         if (isset($exif['FocalLength'])) $info[$lang_picinfo['Focal length']] = $exif['FocalLength'];
         if (@strlen(trim($exif['Comment'])) > 0 ) {
-		$info[$lang_picinfo['Comment']] = trim($exif['Comment']);
-	}
-    } 
-    
+                $info[$lang_picinfo['Comment']] = trim($exif['Comment']);
+        }
+    }
+
     if ($CONFIG['read_iptc_data']) $iptc = get_IPTC($path_to_pic);
 
     if (isset($iptc) && is_array($iptc)) {
         if (isset($iptc['Title'])) $info[$lang_picinfo['iptcTitle']] = trim($iptc['Title']);
-	if (isset($iptc['Copyright'])) $info[$lang_picinfo['iptcCopyright']] = trim($iptc['Copyright']);
-	if (isset($iptc['Keywords'])) $info[$lang_picinfo['iptcKeywords']] = trim(implode(" ",$iptc['Keywords']));
-	if (isset($iptc['Category'])) $info[$lang_picinfo['iptcCategory']] = trim($iptc['Category']);
-	if (isset($iptc['SubCategories'])) $info[$lang_picinfo['iptcSubCategories']] = trim(implode(" ",$iptc['SubCategories']));
-    } 
+        if (isset($iptc['Copyright'])) $info[$lang_picinfo['iptcCopyright']] = trim($iptc['Copyright']);
+        if (isset($iptc['Keywords'])) $info[$lang_picinfo['iptcKeywords']] = trim(implode(" ",$iptc['Keywords']));
+        if (isset($iptc['Category'])) $info[$lang_picinfo['iptcCategory']] = trim($iptc['Category']);
+        if (isset($iptc['SubCategories'])) $info[$lang_picinfo['iptcSubCategories']] = trim(implode(" ",$iptc['SubCategories']));
+    }
     // Create the absolute URL for display in info
     $info['URL'] = '<a href=' . $CONFIG["ecards_more_pic_target"] . '/' . basename($_SERVER['PHP_SELF']) . "?pos=-$CURRENT_PIC_DATA[pid]" . ' >' . $CONFIG["ecards_more_pic_target"] . '/' . basename($_SERVER['PHP_SELF']) . "?pos=-$CURRENT_PIC_DATA[pid]" . '</a>';
     // with subdomains the variable is $_SERVER["SERVER_NAME"] does not return the right value instead of using a new config variable I reused $CONFIG["ecards_more_pic_target"] no trailing slash in the configure
@@ -402,10 +402,6 @@ function display_fullsize_pic()
 <title><?php echo $CONFIG['gallery_name'] ?>: <?php echo $lang_fullsize_popup['click_to_close'];
     ?></title>
 <meta http-equiv="content-type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'] ?>" />
-<?php if ($CONFIG['disable_popup_rightclick'] == 1) {
-        print '<meta http-equiv="imagetoolbar" content="no" />';
-    }
-    ?>
 <link rel="stylesheet" href="<?php echo $THEME_DIR ?>style.css" />
 <script type="text/javascript" src="scripts.js"></script>
 </head>
@@ -416,26 +412,7 @@ function display_fullsize_pic()
 <script language="JavaScript" type="text/JavaScript">
 adjust_popup();
 </script>
-<?php if ($CONFIG['disable_popup_rightclick'] == 1) {
-        print <<<EOT
-<script language="JavaScript" type="text/javascript">
-<!--
-document.oncontextmenu=new Function("return false")
 
-//if IE4+
-document.onselectstart=new Function ("return false")
-
-//if NS6
-if (window.sidebar){
-document.onmousedown=disableselect
-document.onclick=reEnable
-}
--->
-</script>
-EOT;
-    }
-
-    ?>
 <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="2">
  <td align="center" valign="middle">
   <table cellspacing="2" cellpadding="0" style="border: 1px solid #000000; background-color: #FFFFFF;">

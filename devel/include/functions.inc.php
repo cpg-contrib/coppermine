@@ -293,6 +293,14 @@ function bb_decode($text)
         $text = str_replace("[i]", '<i>', $text);
         $text = str_replace("[/i]", '</i>', $text);
 
+        // colours
+        $text = preg_replace("/\[color=(\#[0-9A-F]{6}|[a-z]+)\]/", '<span style="color:$1">', $text);
+        $text = str_replace("[/color]", '</span>', $text);
+
+        // [i] and [/i] for italicizing text.
+        //$text = str_replace("[i:$uid]", $bbcode_tpl['i_open'], $text);
+        //$text = str_replace("[/i:$uid]", $bbcode_tpl['i_close'], $text);
+
         if (!count($bbcode_tpl)) {
                 // We do URLs in several different ways..
                 $bbcode_tpl['url']  = '<span class="bblink"><a href="{URL}" target="_blank">{DESCRIPTION}</a></span>';
@@ -512,8 +520,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         } else {
                                 $user_link = $row['msg_author'];
                         }
-			$msg_body = strlen($row['msg_body']) > 50 ? @substr($row['msg_body'],0,50)."...": $row['msg_body'];
-			if ($CONFIG['enable_smilies']) $msg_body = process_smilies($msg_body);
+                        $msg_body = strlen($row['msg_body']) > 50 ? @substr($row['msg_body'],0,50)."...": $row['msg_body'];
+                        if ($CONFIG['enable_smilies']) $msg_body = process_smilies($msg_body);
                         $caption = '<span class="thumb_title">'.$user_link.'</span>'.'<span class="thumb_caption">'.localised_date($row['msg_date'], $lastcom_date_fmt).'</span>'.'<span class="thumb_caption">'.$msg_body.'</span>';
                         $rowset[$key]['caption_text'] = $caption;
                 }
