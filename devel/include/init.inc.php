@@ -18,7 +18,7 @@
 // ------------------------------------------------------------------------- //
 
 define('COPPERMINE_VERSION', '1.4.0');
-define('COPPERMINE_STATUS', 'alpha');
+define('COPPERMINE_VERSION_STATUS', 'alpha');
 
 // User database integration
 // Uncomment the applicable line if you want to use it
