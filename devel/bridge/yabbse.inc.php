@@ -159,11 +159,11 @@ function udb_authenticate()
         } else {
             $USER_DATA = mysql_fetch_array($result);
         }
-        
-   		$USER_DATA['has_admin_access']=0;
-		$USER_DATA['can_see_all_albums'] =0;
-		$USER_DATA['groups'] = array(YS_GUEST_GROUP);
-        
+
+                   $USER_DATA['has_admin_access']=0;
+                $USER_DATA['can_see_all_albums'] =0;
+                $USER_DATA['groups'] = array(YS_GUEST_GROUP);
+
         define('USER_ID', 0);
         define('USER_NAME', 'Anonymous');
         define('USER_GROUP_SET', '(' . YS_GUEST_GROUP . ')');
@@ -206,9 +206,9 @@ function udb_authenticate()
             $USER_DATA['group_name'] = mysql_escape_string($USER_DATA['group_name']);
         }
 
-		$USER_DATA['has_admin_access']= ($settings[7]== YS_ADMIN_GROUP);
-		$USER_DATA['can_see_all_albums'] = $USER_DATA['has_admin_access'];
-		$USER_DATA['groups'] = array($USER_DATA['group_id']);
+                $USER_DATA['has_admin_access']= ($settings[7]== YS_ADMIN_GROUP);
+                $USER_DATA['can_see_all_albums'] = $USER_DATA['has_admin_access'];
+                $USER_DATA['groups'] = array($USER_DATA['group_id']);
 
         define('USER_ID', $ID_MEMBER);
         define('USER_NAME', $realname);
@@ -293,7 +293,7 @@ function udb_logout_page()
 // Edit users
 function udb_edit_users()
 {
-    $target = 'index.php';
+    $target = 'index.php?board=;action=mlall';
     udb_redirect($target);
 }
 // Get user information
@@ -479,13 +479,13 @@ function udb_util_filloptions()
         }
 
         // Initialize $merged_array
-        $merged_array = array();    
+        $merged_array = array();
 
         // Count the number of albums returned.
         $end = count($public_result);
 
         // Cylce through the User albums.
-        for($i=0;$i<$end;$i++) {        
+        for($i=0;$i<$end;$i++) {
 
             //Create a new array sow we may sort the final results.
             $merged_array[$i]['id'] = $public_result[$i]['aid'];
@@ -498,12 +498,12 @@ function udb_util_filloptions()
             if (isset($merged_array[$i]['username_category'])) {
                 $merged_array[$i]['username_category'] = (($vRes['name']) ? '(' . $vRes['name'] . ') ' : '').$merged_array[$i]['username_category'];
             } else {
-                $merged_array[$i]['username_category'] = (($vRes['name']) ? '(' . $vRes['name'] . ') ' : '');   
+                $merged_array[$i]['username_category'] = (($vRes['name']) ? '(' . $vRes['name'] . ') ' : '');
             }
 
         }
 
-        // We transpose and divide the matrix into columns to prepare it for use in array_multisort(). 
+        // We transpose and divide the matrix into columns to prepare it for use in array_multisort().
         foreach ($merged_array as $key => $row) {
            $aid[$key] = $row['id'];
            $title[$key] = $row['album_name'];
@@ -523,7 +523,7 @@ function udb_util_filloptions()
         }
 
         // Query for list of user IDs and names
-    
+
         $user_album_ids_and_names = db_query("SELECT (ID_MEMBER + ".FIRST_USER_CAT.") as id, CONCAT('(', realName, ') ') as name FROM $usertbl ORDER BY name ASC",$UDB_DB_LINK_ID);
 
         if (mysql_num_rows($user_album_ids_and_names)) {
@@ -536,7 +536,7 @@ function udb_util_filloptions()
 
         // Initialize $udb_i as a counter.
         if (count($merged_array)) {
-            $udb_i = count($merged_array); 
+            $udb_i = count($merged_array);
         } else {
             $udb_i = 0;
         }
@@ -560,13 +560,13 @@ function udb_util_filloptions()
         foreach ($merged_array as $menu_item) {
 
             echo "<option value=\"" . $menu_item['id'] . "\">" . (isset($menu_item['username_category']) ? $menu_item['username_category'] : '') . $menu_item['album_name'] . "</option>\n";
-   
+
         }
 
         // Close list, etc.
         print '</select> (3)';
         print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="button" /> (4)';
-        print '</form>'; 
+        print '</form>';
 
     }
 
