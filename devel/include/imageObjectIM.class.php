@@ -84,9 +84,8 @@ class imageObject{
 				* By Aditya Mooley <aditya@sanisoft.com>
 				*/ 
 				if (eregi("win",$_ENV['OS'])) {
-				    $imgFile = str_replace("'","" ,$imgFile );
+				    $imgFile = str_replace("'","\"" ,$imgFile );
 					 $cmd = "\"".str_replace("\\","/", $CONFIG['impath'])."convert\" -quality {$this->quality} {$CONFIG['im_options']} -crop {$new_w}x{$new_h}+{$clip_left}+{$clip_top} ".str_replace("\\","/" ,$imgFile )." ".str_replace("\\","/" ,$imgFile );
-					 echo "$cmd";
 					 exec ("\"$cmd\"", $output, $retval);
 				} else {
 				    $cmd = "{$CONFIG['impath']}convert -quality {$this->quality} {$CONFIG['im_options']} -crop '{$new_w}x{$new_h} +{$clip_left} +{$clip_top}' $imgFile $imgFile";
@@ -117,7 +116,7 @@ class imageObject{
 				*/ 
 				
 				if (eregi("win",$_ENV['OS'])) {
-				    $imgFile = str_replace("'","" ,$imgFile );
+				    $imgFile = str_replace("'","\"" ,$imgFile );
 					 $cmd = "\"".str_replace("\\","/", $CONFIG['impath'])."convert\" -quality {$this->quality} {$CONFIG['im_options']} -rotate $angle ".str_replace("\\","/" ,$imgFile )." ".str_replace("\\","/" ,$imgFile );
 					 exec ("\"$cmd\"", $output, $retval);
 				} else {
@@ -148,7 +147,7 @@ class imageObject{
 				* By Aditya Mooley <aditya@sanisoft.com>
 				*/ 
 				if (eregi("win",$_ENV['OS'])) {
-				    $imgFile = str_replace("'","" ,$imgFile );
+				    $imgFile = str_replace("'","\"" ,$imgFile );
 					 $cmd = "\"".str_replace("\\","/", $CONFIG['impath'])."convert\" -quality {$this->quality} {$CONFIG['im_options']} -geometry {$new_w}x{$new_h} ".str_replace("\\","/" ,$imgFile )." ".str_replace("\\","/" ,$imgFile );
 					 exec ("\"$cmd\"", $output, $retval);
 				} else {
