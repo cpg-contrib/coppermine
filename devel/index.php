@@ -2,10 +2,10 @@
 // ------------------------------------------------------------------------- //
 //  Coppermine Photo Gallery                                                 //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Grégory DEMAR <gdemar@wanadoo.fr>               //
+//  Copyright (C) 2002,2003  Grï¿½ory DEMAR <gdemar@wanadoo.fr>               //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
+//  Based on PHPhotoalbum by Henning Stverud <henning@stoverud.com>         //
 //  http://www.stoverud.com/PHPhotoalbum/                                    //
 // ------------------------------------------------------------------------- //
 //  Hacked by Tarique Sani <tarique@sanisoft.com>                            //
@@ -394,7 +394,7 @@ function list_albums()
 				}
 				$image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
 				$alb_list[$alb_idx]['thumb_pic'] = "<img src=\"" . get_pic_url($picture, 'thumb') ."\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
-			} else {
+			} elseif ($CONFIG['show_private']){
 				$image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
 				$alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/private.jpg\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
 			}
@@ -404,15 +404,25 @@ function list_albums()
 		}
 
 		// Prepare everything
-		$last_upload_date = $count ? localised_date($alb_stat['last_upload'], $lastup_date_fmt) : '';
-		$alb_list[$alb_idx]['aid']            = $alb_thumb['aid'];
-		$alb_list[$alb_idx]['album_title']    = $alb_thumb['title'];
-		$alb_list[$alb_idx]['album_desc']     = bb_decode($alb_thumb['description']);
-		$alb_list[$alb_idx]['pic_count']      = $count;
-		$alb_list[$alb_idx]['last_upl']       = $last_upload_date;
-		$alb_list[$alb_idx]['album_info']     = sprintf($lang_list_albums['n_pictures'], $count).($count ? sprintf($lang_list_albums['last_added'], $last_upload_date) : "" );
-
-		$alb_list[$alb_idx]['album_adm_menu'] = (GALLERY_ADMIN_MODE || (USER_ADMIN_MODE && $cat == USER_ID + FIRST_USER_CAT)) ? html_albummenu($alb_thumb['aid']) : '';
+		if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || $visibility == $USER_DATA['group_id']) {
+			$last_upload_date = $count ? localised_date($alb_stat['last_upload'], $lastup_date_fmt) : '';
+			$alb_list[$alb_idx]['aid']            = $alb_thumb['aid'];
+			$alb_list[$alb_idx]['album_title']    = $alb_thumb['title'];
+			$alb_list[$alb_idx]['album_desc']     = bb_decode($alb_thumb['description']);
+			$alb_list[$alb_idx]['pic_count']      = $count;
+			$alb_list[$alb_idx]['last_upl']       = $last_upload_date;
+			$alb_list[$alb_idx]['album_info']     = sprintf($lang_list_albums['n_pictures'], $count).($count ? sprintf($lang_list_albums['last_added'], $last_upload_date) : "" );
+			$alb_list[$alb_idx]['album_adm_menu'] = (GALLERY_ADMIN_MODE || (USER_ADMIN_MODE && $cat == USER_ID + FIRST_USER_CAT)) ? html_albummenu($alb_thumb['aid']) : '';
+		} elseif ($CONFIG['show_private']) { // uncomment this else block to show private album description
+			$last_upload_date = $count ? localised_date($alb_stat['last_upload'], $lastup_date_fmt) : '';
+			$alb_list[$alb_idx]['aid']            = $alb_thumb['aid'];
+			$alb_list[$alb_idx]['album_title']    = $alb_thumb['title'];
+			$alb_list[$alb_idx]['album_desc']     = bb_decode($alb_thumb['description']);
+			$alb_list[$alb_idx]['pic_count']      = $count;
+			$alb_list[$alb_idx]['last_upl']       = $last_upload_date;
+			$alb_list[$alb_idx]['album_info']     = sprintf($lang_list_albums['n_pictures'], $count).($count ? sprintf($lang_list_albums['last_added'], $last_upload_date) : "" );
+			$alb_list[$alb_idx]['album_adm_menu'] = (GALLERY_ADMIN_MODE || (USER_ADMIN_MODE && $cat == USER_ID + FIRST_USER_CAT)) ? html_albummenu($alb_thumb['aid']) : '';
+		}			
 	}
 
 	theme_display_album_list($alb_list, $nbAlb, $cat, $PAGE, $totalPages);
