@@ -424,8 +424,8 @@ function get_private_album_set()
         if (GALLERY_ADMIN_MODE) return;
         global $CONFIG, $ALBUM_SET, $USER_DATA, $FORBIDDEN_SET;
 
-	if ($USER_DATA['can_see_all_albums']) return;
-	
+        if ($USER_DATA['can_see_all_albums']) return;
+
         $result = db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE visibility != '0' AND visibility !='".(FIRST_USER_CAT + USER_ID)."' AND visibility NOT IN ".USER_GROUP_SET);
         if ((mysql_num_rows($result))) {
                 $set ='';
@@ -620,7 +620,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 mysql_free_result($result);
 
                 if ($set_caption) foreach ($rowset as $key => $row){
-			$user_link = ($CONFIG['display_uploader'] && $row['owner_id'] && $row['owner_name']) ? '<span class="thumb_title"><a href ="profile.php?uid='.$row['owner_id'].'">'.$row['owner_name'].'</a></span>' : '';
+                        $user_link = ($CONFIG['display_uploader'] && $row['owner_id'] && $row['owner_name']) ? '<span class="thumb_title"><a href ="profile.php?uid='.$row['owner_id'].'">'.$row['owner_name'].'</a></span>' : '';
                         $caption = $user_link.'<span class="thumb_caption">'.localised_date($row['ctime'], $lastup_date_fmt).'</span>';
                         $rowset[$key]['caption_text'] = $caption;
                 }
@@ -737,9 +737,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $ALBUM_SET ORDER BY mtime DESC $limit");
                 $rowset = db_fetch_rowset($result);
                 mysql_free_result($result);
-				
+
                 if ($set_caption) foreach ($rowset as $key => $row){
-                        $caption = "<span class=\"thumb_caption\">".localised_date($row['mtime'], $lasthit_date_fmt)."<br/>".$row['hits']."<br/>".$row['lasthit_ip'].'</span>';						
+                        $caption = "<span class=\"thumb_caption\">".localised_date($row['mtime'], $lasthit_date_fmt)."<br/>".$row['hits']."<br/>".$row['lasthit_ip'].'</span>';
                         $rowset[$key]['caption_text'] = $caption;
                 }
                 return $rowset;
@@ -1217,31 +1217,31 @@ function get_pic_url(&$pic_row, $mode)
                 }
                 // Use default thumbs
                 if (is_null($filepathname)) {
-                       	// Check for default theme- and global-level thumbs
-                       	$thumb_paths[] = $THEME_DIR.'/images/';                 // Used for custom theme thumbs
-                       	$thumb_paths[] = 'images/';                             // Default Coppermine thumbs
-                       	foreach ($thumb_paths as $default_thumb_path) {
-                       	        if (is_dir($default_thumb_path)) {
-                               	        foreach ($thumb_extensions as $extension) {
-                                       	        // Check for extension-specific thumbs
-                                       	        if (file_exists($default_thumb_path."thumb_{$mime_content['extension']}".$extension)) {
-                                       	                $filepathname = $default_thumb_path."thumb_{$mime_content['extension']}".$extension;
-                                       	                break 2;
-                                       	        }
+                               // Check for default theme- and global-level thumbs
+                               $thumb_paths[] = $THEME_DIR.'/images/';                 // Used for custom theme thumbs
+                               $thumb_paths[] = 'images/';                             // Default Coppermine thumbs
+                               foreach ($thumb_paths as $default_thumb_path) {
+                                       if (is_dir($default_thumb_path)) {
+                                               foreach ($thumb_extensions as $extension) {
+                                                       // Check for extension-specific thumbs
+                                                       if (file_exists($default_thumb_path."thumb_{$mime_content['extension']}".$extension)) {
+                                                               $filepathname = $default_thumb_path."thumb_{$mime_content['extension']}".$extension;
+                                                               break 2;
+                                                       }
                                         }
-                               	        foreach ($thumb_extensions as $extension) {
-                                       	        // Check for media-specific thumbs (movie,document,audio)
-                                       	        if (file_exists($default_thumb_path."thumb_{$mime_content['content']}".$extension)) {
-                                       	                $filepathname = $default_thumb_path."thumb_{$mime_content['content']}".$extension;
-                                       	                break 2;
-                                       	        }
-                               	        }
-                       	        }
-                       	}
+                                               foreach ($thumb_extensions as $extension) {
+                                                       // Check for media-specific thumbs (movie,document,audio)
+                                                       if (file_exists($default_thumb_path."thumb_{$mime_content['content']}".$extension)) {
+                                                               $filepathname = $default_thumb_path."thumb_{$mime_content['content']}".$extension;
+                                                               break 2;
+                                                       }
+                                               }
+                                       }
+                               }
                 }
                 return path2url($filepathname);
         }
-        
+
         return $url_prefix[$pic_row['url_prefix']]. path2url($pic_row['filepath']. $pic_prefix[$mode]. $pic_row['filename']);
 }
 
@@ -1252,11 +1252,11 @@ function& cpg_get_default_lang_var($language_var_name,$overide_language = null) 
                 if (isset($CONFIG['default_lang'])) {
                         $language = $CONFIG['default_lang'];
                 } else {
-                       	global $$language_var_name;
-                       	return $$language_var_name;
+                               global $$language_var_name;
+                               return $$language_var_name;
                 }
         } else {
-               	$language = $overide_language;
+                       $language = $overide_language;
         }
         include('lang/'.$language.'.php');
         return $$language_var_name;
@@ -1276,11 +1276,11 @@ function& cpg_lang_var($varname,$index=null) {
                 } elseif (is_null($index)) {
                         return $lang_var;
                 } else {
-                       	return $lang_var[$index];
+                               return $lang_var[$index];
                 }
         } else {
-               	include('lang/english.php');
-               	return $lang_var;
+                       include('lang/english.php');
+                       return $lang_var;
         }
 }
 
@@ -1581,6 +1581,7 @@ $lang_language_data['italian'] = array('Italian','Italiano','it');
 $lang_language_data['japanese'] = array('Japanese','&#26085;&#26412;&#35486;','jp');
 $lang_language_data['korean'] = array('Korean','&#54620;&#44397;&#50612;','kr');
 $lang_language_data['latvian'] = array('Latvian','Latvian','lv');
+$lang_language_data['malay'] = array('Malay','Bahasa Melayu','my');
 $lang_language_data['norwegian'] = array('Norwegian','Norsk','no');
 $lang_language_data['polish'] = array('Polish','Polski','pl');
 $lang_language_data['portuguese'] = array('Portuguese [Portugal]','Portugu&ecirc;s','pt');
