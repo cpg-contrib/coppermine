@@ -1,4 +1,4 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.2.0                                            //
 // ------------------------------------------------------------------------- //
@@ -13,15 +13,14 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- // 
+// ------------------------------------------------------------------------- //
 starttable("100%", "Welcome");
 
 ?>
 <tr><td class="tableb" >
 This is for any content block - just a test - Edit the file "anycontent.php" to change what is shown here
-</tr></td>
+</td></tr>
 <?php
 endtable();
 
 ?>
-
