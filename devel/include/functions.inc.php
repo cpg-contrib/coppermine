@@ -179,6 +179,23 @@ function cpg_db_fetch_rowset($result)
         return $rowset;
 }
 
+/**
+ * cpg_db_fetch_row()
+ *
+ * Fetch row in an array
+ *
+ * @param $result
+ * @return
+ **/
+
+function cpg_db_fetch_row($result)
+{
+
+        $row = mysql_fetch_array($result);
+
+        return $row;
+}
+
 /**************************************************************************
    Utilities functions
  **************************************************************************/
