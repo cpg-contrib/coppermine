@@ -125,7 +125,7 @@ switch ($event) {
             $USER['name'] = $HTTP_POST_VARS['msg_author'];
             $redirect = "displayimage.php?pos=" . (- $pid);
             if ($CONFIG['email_comment_notification']) {
-                $mail_body = $msg_body . "\n\r ".$lang_db_input_php['email_comment_body'] . " " . $CONFIG['ecards_more_pic_target'] . "/" . $redirect;
+                $mail_body = $msg_body . "\n\r ".$lang_db_input_php['email_comment_body'] . " " . $CONFIG['ecards_more_pic_target'] . $redirect;
                 cpg_mail($CONFIG['gallery_admin_email'], $lang_db_input_php['email_comment_subject'], $mail_body);
             }
             pageheader($lang_db_input_php['com_added'], "<META http-equiv=\"refresh\" content=\"1;url=$redirect\">");
@@ -137,7 +137,7 @@ switch ($event) {
             $insert = db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip) VALUES ('$pid', '" . addslashes(USER_NAME) . "', '$msg_body', NOW(), '', '" . USER_ID . "', '$raw_ip', '$hdr_ip')");
             $redirect = "displayimage.php?pos=" . (- $pid);
             if ($CONFIG['email_comment_notification']) {
-                $mail_body = $msg_body . "\n\r ".$lang_db_input_php['email_comment_body'] . " " . $CONFIG['ecards_more_pic_target'] . "/" . $redirect;
+                $mail_body = $msg_body . "\n\r ".$lang_db_input_php['email_comment_body'] . " " . $CONFIG['ecards_more_pic_target'] . $redirect;
                 cpg_mail($CONFIG['gallery_admin_email'], $lang_db_input_php['email_comment_subject'], $mail_body);
             }
             $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
