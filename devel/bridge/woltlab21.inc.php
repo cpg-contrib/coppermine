@@ -2,7 +2,7 @@
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -14,8 +14,6 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-// $Id$
-// ------------------------------------------------------------------------- //
 //  Woltlab Burning Board 2.1 Integration for Coppermine                     //
 // ------------------------------------------------------------------------- //
 //  Modify the values below according to your Board installation             //
@@ -24,23 +22,39 @@
 // (see http://coppermine.sourceforge.net/oldboard/viewtopic.php?t=2547      //
 //  for details)                                                             //
 // ------------------------------------------------------------------------- //
+// Updated by Mr. S                                                          //
+// http://coppermine.sourceforge.net/board/index.php?topic=5559.0            //
+// ------------------------------------------------------------------------- //
+// $Id$
+// ------------------------------------------------------------------------- //
 
-// database configuration
-define('WBB_DB_NAME','wbb2');   // The name of the database used by the board
-define('WBB_BD_HOST','localhost');   // The name of the database server
-define('WBB_DB_USERNAME','root');   // The username to use to connect to the database
-define('WBB_DB_PASSWORD','');      // The password to use to connect to the database
+// In this example there are 2 subdirectories
+// WBB: http://yoursite_name.com/wbb2/
+// CPG: http://yoursite_name.com/cpg/
+// Setup path to your Woltlab Board directory to change this
 
 // The web path to your Woltlab Board directory
-// In this example http://yoursite_name.com/wbb2/
-define('WBB_WEB_PATH','/wbb2/');
+define('WBB_WEB_PATH','../wbb2/');
+
+// database configuration
+require_once(WBB_WEB_PATH."acp/lib/config.inc.php");
+require_once(WBB_WEB_PATH."acp/lib/options.inc.php");
+define('WBB_DB_NAME',$sqldb);
+define('WBB_BD_HOST',$sqlhost);
+define('WBB_DB_USERNAME',$sqluser);
+define('WBB_DB_PASSWORD',$sqlpassword);
+
+// cookies configuration
+define('WBB_COOKIE_HASH',$cookieprefix."cookiehash");
+define('WBB_COOKIE_USERID',$cookieprefix."userid");
+define('WBB_COOKIE_USERPW',$cookieprefix."userpassword");
 
 // ------------------------------------------------------------------------- //
 //  Nothing to edit below this line
 // ------------------------------------------------------------------------- //
 
 // Prefix and names for the database tables
-define('WBB_TABLE_PREFIX','bb1_');         // Leave empty, not supported by vBulletin 2.3
+define('WBB_TABLE_PREFIX','bb'.$n.'_');    // Leave empty, not supported by vBulletin 2.3
 define('WBB_USER_TABLE', 'users');      // The members table
 define('WBB_SESSION_TABLE', 'sessions');   // The sessions table
 define('WBB_GROUP_TABLE', 'groups');   // The groups table
@@ -101,9 +115,9 @@ function udb_authenticate()
    $HTTP_USER_AGENT=htmlspecialchars($HTTP_USER_AGENT);
 
    if ( is_array($_COOKIE) ) {
-      $sessionhash = isset($_COOKIE['cookiehash']) ? $_COOKIE['cookiehash'] : '';
-      $bbuserid = isset($_COOKIE['wbb2_userid']) ? $_COOKIE['wbb_userid'] : 0;
-      $bbpassword = isset($_COOKIE['wbb2_userpassword']) ? $_COOKIE['wbb_userpassword'] : '';
+      $sessionhash = isset($_COOKIE[WBB_COOKIE_HASH]) ? $_COOKIE[WBB_COOKIE_HASH] : '';
+      $bbuserid = isset($_COOKIE[WBB_COOKIE_USERID]) ? $_COOKIE[WBB_COOKIE_USERID] : 0;
+      $bbpassword = isset($_COOKIE[WBB_COOKIE_USERPW]) ? $_COOKIE[WBB_COOKIE_USERPW] : '';
    }
 
    if ($bbuserid && $bbpassword) {
@@ -116,7 +130,7 @@ function udb_authenticate()
       // validate it:
       $sql =  "SELECT * ".
             "FROM ".$UDB_DB_NAME_PREFIX.WBB_TABLE_PREFIX.WBB_SESSION_TABLE." ".
-            "WHERE hash = '".addslashes($sessionhash)."' ".
+            "WHERE sessionhash = '".addslashes($sessionhash)."' ".
             " AND ipaddress = '".addslashes($REMOTE_ADDR)."' ".
             " AND useragent = '".addslashes($HTTP_USER_AGENT)."'";
 
