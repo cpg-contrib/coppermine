@@ -32,7 +32,7 @@ pageheader($lang_search_php[0]);
 
 if (!GALLERY_ADMIN_MODE) die('Access denied');
 
-global $albumtbl, $picturetbl, $categorytbl, $usertbl;
+global $albumtbl, $picturetbl, $categorytbl, $usertbl, $lang_util_php;
 $albumtbl = $CONFIG['TABLE_PREFIX'] . 'albums';
 $picturetbl = $CONFIG['TABLE_PREFIX'] . 'pictures';
 $categorytbl = $CONFIG['TABLE_PREFIX'] . 'categories';
@@ -53,7 +53,7 @@ function filenametotitle($delete)
 {
     $albumid = $_POST['albumid'];
     $parsemode = $_POST['parsemode'];
-    global $picturetbl;
+    global $picturetbl, $lang_util_php;
 
     $query = "SELECT * FROM $picturetbl WHERE aid = '$albumid'";
     $result = MYSQL_QUERY($query);
@@ -93,7 +93,7 @@ function filenametotitle($delete)
             $newtitle = '';
         } 
 
-        print $lang_util_php['file'] . ': $filename ' . $lang_util_php['title_set_to'] . ': $newtitle<br />';
+        print $lang_util_php['file'] . ': '.$filename.' ' . $lang_util_php['title_set_to'] . ':'. $newtitle.'<br />';
         my_flush();
 
         $query = "UPDATE $picturetbl SET title='$newtitle' WHERE pid='$pid' ";
@@ -105,7 +105,7 @@ function filenametotitle($delete)
 
 function filloptions()
 {
-    global $albumtbl, $picturetbl, $categorytbl, $usertbl;
+    global $albumtbl, $picturetbl, $categorytbl, $usertbl, $lang_util_php;
 
     $query = "SELECT aid, category, IF(user_name IS NOT NULL, CONCAT('(', user_name, ') ',title), CONCAT(' - ', title)) AS title " . "FROM $albumtbl AS a " . "LEFT JOIN $usertbl AS u ON category = (" . FIRST_USER_CAT . " + user_id) " . "ORDER BY category, title";
     $result = db_query($query); 
@@ -127,7 +127,7 @@ function filloptions()
 
 function updatethumbs()
 {
-    global $picturetbl, $CONFIG;
+    global $picturetbl, $CONFIG, $lang_util_php;
     $phpself = $_SERVER['PHP_SELF'];
     $albumid = $_POST['albumid'];
     $updatetype = $_POST['updatetype'];
@@ -158,7 +158,7 @@ function updatethumbs()
             $thumb = $CONFIG['fullpath'] . mysql_result($result, $i, "filepath") . $CONFIG['thumb_pfx'] . mysql_result($result, $i, "filename");
 
             if (resize_image($image, $thumb, $CONFIG['thumb_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use'])) {
-                print $thumb . $lang_util_php['updated_succesfully'] . '!<br />';
+                print $thumb .' '. $lang_util_php['updated_succesfully'] . '!<br />';
                 my_flush();
             } else {
                 print $lang_util_php['error_create'] . ':$thumb<br />';
@@ -203,7 +203,7 @@ function updatethumbs()
 
 function deleteorig()
 {
-    global $picturetbl, $CONFIG;
+    global $picturetbl, $CONFIG, $lang_util_php;
     $albumid = $_POST['albumid'];
 
     $query = "SELECT * FROM $picturetbl WHERE aid = '$albumid'";
