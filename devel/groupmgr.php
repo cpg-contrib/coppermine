@@ -107,7 +107,7 @@ EOT;
                    $selected = '';
                }
 
-	       echo "<option value=\"3\" $selected >{$lang_groupmgr_php['upload_form_config_values'][3]}</option>";
+	       echo "<option value=\"3\" $selected >{$lang_groupmgr_php['upload_form_config_values'][4]}</option>";
 
                continue;        
 
