@@ -152,6 +152,33 @@ class cpgNumericAlbumData extends cpgAlbumData{
             $rowset[$key]['owner_link'] = $ownerLink;
           }
         }
+        /*if ($set_caption) foreach ($rowset as $key => $row){
+
+                $caption = "<span class=\"thumb_title\">";
+                $caption .= ($rowset[$key]['title']||$rowset[$key]['hits']) ? $rowset[$key]['title'] : '';
+
+        if ($CONFIG['views_in_thumbview']){
+            if ($rowset[$key]['title']){
+                            $caption .= "&nbsp;&ndash;&nbsp;";
+            }
+            $caption .= sprintf($lang_get_pic_data['n_views'], $rowset[$key]['hits']);
+        }
+        $caption .= "</span>";
+        if ($CONFIG['caption_in_thumbview']){
+                        $caption .= $rowset[$key]['caption'] ? "<span class=\"thumb_caption\">".bb_decode(($rowset[$key]['caption']))."</span>" : '';
+                    }
+                    if ($CONFIG['display_comment_count']) {
+                            $comments_nr = count_pic_comments($row['pid']);
+                            if ($comments_nr > 0) $caption .= "<span class=\"thumb_num_comments\">".sprintf($lang_get_pic_data['n_comments'], $comments_nr )."</span>";
+                    }
+
+                    if ($CONFIG['display_uploader']){
+                            $caption .= '<span class="thumb_title"><a href ="profile.php?uid='.$rowset[$key]['owner_id'].'">'.$rowset[$key]['owner_name'].'</a></span>';
+                    }
+
+                    $rowset[$key]['caption_text'] = $caption;
+
+            }*/
 
         $rowset = CPGPluginAPI::filter('thumb_caption_regular',$rowset);
 

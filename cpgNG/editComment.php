@@ -84,5 +84,5 @@ $t->assign("lang_display_comments", $lang_display_comments);
 $t->assign("CONTENT", $t->fetch("2bornot2b/commom/editComment.html"));
 $t->assign("PAGE_TITLE", $CONFIG["gallery_name"]);
 $t->assign("CHARSET", $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset']);
-$t->display($CONFIG['theme']."/popup.html");
+$t->display("2bornot2b/popup.html");
 ?>

@@ -219,6 +219,6 @@ $t->assign("my_cat_id", FIRST_USER_CAT + USER_ID);
 /**
  * Display the common html file
  */
-$t->display ($CONFIG['theme']."/main.html");
+$t->display ("2bornot2b/main.html");
 
 ?>

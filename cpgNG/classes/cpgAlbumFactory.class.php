@@ -10,7 +10,7 @@ class cpgAlbumFactory {
      * If the album is numeric, return the object of cpgAlbumData
      */
     if (is_numeric($album)) {
-      
+      //echo "HERE: ";
       require('cpgNumericAlbumData.class.php');
 
       return new cpgNumericAlbumData;
