@@ -827,9 +827,6 @@ function pagefooter()
         echo "POST :<pre>";
         print_r($HTTP_POST_VARS);
         echo "</pre></td></tr><td class=\"tableb\" >";
-        echo "POST :<pre>";
-        print_r($CONFIG);
-        echo "</pre></td></tr><td class=\"tableb\" align=\"center\">";
         echo <<<EOT
                 Page generated in <b>$time</b> seconds - <b>$query_count</b> queries in <b>$total_query_time</b> seconds - Album set : $ALBUM_SET
 EOT;
