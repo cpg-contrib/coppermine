@@ -1684,9 +1684,7 @@ function& get_pic_url(&$pic_row, $mode,$system_pic = false)
         $pic_row['url'] = $filepathname;
         $pic_row['mode'] = $mode;
 
-        if (defined('DISPLAYIMAGE_PHP') && ($mode == 'fullsize' || $mode == 'normal')) {
-            $pic_row = CPGPluginAPI::filter('file_data',$pic_row);
-        } elseif ($mode == 'thumb') {
+        if ($mode == 'thumb') {
             $pic_row = CPGPluginAPI::filter('thumb_data',$pic_row);
         }
 
