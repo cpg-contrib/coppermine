@@ -1599,6 +1599,7 @@ $lang_language_data['arabic'] = array('Arabic','&#1575;&#1604;&#1593;&#1585;&#15
 $lang_language_data['bosnian'] = array('Bosnian','Bosanski','ba');
 $lang_language_data['brazilian_portuguese'] = array('Portuguese [Brazilian]','Portugu&ecirc;s Brasileiro','br');
 $lang_language_data['bulgarian'] = array('Bulgarian','&#1041;&#1098;&#1083;&#1075;&#1072;&#1088;&#1089;&#1082;&#1080;','bg');
+$lang_language_data['catalan'] = array('Catalan','Catal&agrave;','ct');
 $lang_language_data['chinese_big5'] = array('Chinese-Big5','&#21488;&#28771;','tw');
 $lang_language_data['chinese_gb'] = array('Chinese-GB2312','&#20013;&#22269;','cn');
 $lang_language_data['croatian'] = array('Croatian','Hrvatski','hr');
