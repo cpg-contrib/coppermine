@@ -447,17 +447,18 @@ function list_albums()
         $album_set .= $value['aid'] . ', ';
     }
     $album_set = '(' . substr($album_set, 0, -2) . ')';
-
+    
     //This query will fetch album stats and keyword for the albums
-    $sql = "SELECT p.aid, count(p.pid) as pic_count, max(p.pid) as last_pid, max(p.ctime) as last_upload, a.keyword " .
-            "FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a " .
-            "WHERE p.aid IN $album_set AND
-             p.aid = a.aid AND
-            p.approved = 'YES' " . "GROUP BY p.aid";
+    $sql = "SELECT a.aid, count( p.pid )  AS pic_count, max( p.pid )  AS last_pid, max( p.ctime )  AS last_upload, a.keyword" .
+            " FROM {$CONFIG['TABLE_ALBUMS']} AS a " .
+	    " LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON a.aid = p.aid AND p.approved =  'YES' ".
+            "WHERE a.aid IN $album_set" . "GROUP BY p.aid";
+	    	    
     $alb_stats_q = cpg_db_query($sql);
     $alb_stats = cpg_db_fetch_rowset($alb_stats_q);
     mysql_free_result($alb_stats_q);
-
+    
+    
     foreach($alb_stats as $key => $value) {
         $cross_ref[$value['aid']] = &$alb_stats[$key];
         if ($CONFIG['link_pic_count'] == 1) {
