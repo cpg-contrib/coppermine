@@ -20,7 +20,6 @@
 $Id$
 */
 
-
 // Check if standalone is installed in a portal like phpNuke (added by DJMaze)
 $DIR=preg_split("/[\/\\\]/",dirname($_SERVER['PATH_TRANSLATED']));
 if ($DIR[count($DIR)-2] == "modules") {
