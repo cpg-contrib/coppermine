@@ -60,7 +60,7 @@ $comment_date_fmt =  '%d %B %Y %I:%M %p';
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
 
 $lang_meta_album_names = array(
-        'random' => 'Gambar Acak',
+        'random' => 'Foto Acak',
         'lastup' => 'Kiriman Terakhir',
         'lastalb'=> 'Album Terakhir Diupdate ', //new in cpg1.2.0
         'lastcom' => 'Komentar Terakhir',
@@ -68,7 +68,7 @@ $lang_meta_album_names = array(
         'toprated' => 'Nilai Tertingi',
         'lasthits' => 'Terakhir Dilihat',
         'search' => 'Hasil Pencarian', //new in cpg1.2.0
-        'favpics'=> 'Gambar Favorit' //new in cpg1.2.0
+        'favpics'=> 'Foto Favorit' //new in cpg1.2.0
 );
 
 $lang_errors = array(
@@ -79,7 +79,7 @@ $lang_errors = array(
         'quota_exceeded' => 'Kuota disk terlampaui<br /><br />Anda memiliki kuota ruangan sebesar [quota]K, foto-foto anda telah menggunakan ruangan sebanyak [space]K, menambahkan foto ini akan menyebabkan anda melampaui kuota.',
         'gd_file_type_err' => 'Jika menggunakan GD library tipe image yang dibolehkan hanya JPEG dan PNG.',
         'invalid_image' => 'Image yang anda upload rusak atau tidak bisa ditangani oleh GD library',
-        'resize_failed' => 'Gagal membuat thumbnail atau memperkecil gambar.',
+        'resize_failed' => 'Gagal membuat thumbnail atau memperkecil image.',
         'no_img_to_display' => 'Tidak ada image untuk ditampilkan',
         'non_exist_cat' => 'Kategori yang dimaksud tidak ditemukan',
         'orphan_cat' => 'Kategori memiliki induk yang tidak ditemukan, jalankan pengaturan kategori untuk memperbaiki masalah ini.',
@@ -169,9 +169,9 @@ $lang_img_nav_bar = array(
         'slideshow_title' => 'Slideshow',
         'ecard_title' => 'Kirimkan foto ini sebagai e-card',
         'ecard_disabled' => 'e-card nonaktif',
-        'ecard_disabled_msg' => 'Anda tidak memiliki izin untuk mengirim e-Card',
+        'ecard_disabled_msg' => 'Anda tidak memiliki izin untuk mengirim e-card',
         'prev_title' => 'Lihat foto sebelumnya',
-        'next_title' => 'Lihat foto sekanjutnya',
+        'next_title' => 'Lihat foto selanjutnya',
         'pic_pos' => 'Foto %s/%s',
 );
 
@@ -208,7 +208,7 @@ $lang_cpg_die = array(
 $lang_display_thumbnails = array(
         'filename' => 'Nama file : ',
         'filesize' => 'Besar file : ',
-        'dimensions' => 'Ukuran : ',
+        'dimensions' => 'Dimensi : ',
         'date_added' => 'Tanggal upload : '
 );
 
@@ -304,7 +304,7 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
         'unknown_cat' => 'Kategori yang dimasud tidak ditemukan !',
         'usergal_cat_ro' => 'Kategori Galeri User tidak boleh dihapus !',
         'manage_cat' => 'Pengaturan kategori',
-        'confirm_delete' => 'Anda yakin mau mengHAPUS kategori ini ?',
+        'confirm_delete' => 'Anda yakin mau meng-HAPUS kategori ini ?',
         'category' => 'Kategori',
         'operations' => 'Operasi',
         'move_into' => 'Pindahkan',
@@ -341,11 +341,13 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Email admin galeri', 'gallery_admin_email', 0),
         array('Target untuk link \'Lihat fito lain\' dalam e-card', 'ecards_more_pic_target', 0),
         array('Bahasa', 'lang', 5),
+        //array('Aktifkan pemilihan bahasa', 'lang_select_enable', 8 ), 
         array('Theme', 'theme', 6),
+        //array('Aktifkan pemilihan theme', 'theme_select_enable', 8),
 
         'Tampilan daftar album',
         array('Lebar tabel utama (piksel atau %)', 'main_table_width', 0),
-        array('Jumlah level kategori yang ditanpilkan', 'subcat_level', 0),
+        array('Jumlah level kategori yang ditampilkan', 'subcat_level', 0),
         array('Jumlah album yang ditampilkan', 'albums_per_page', 0),
         array('Jumlah kolom di daftar album', 'album_list_cols', 0),
         array('Ukuran thumbnail dalam piksel', 'alb_list_thumb_size', 0),
@@ -361,12 +363,12 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Urutan foto default', 'default_sort_order', 3),
         array('Jumlah suara minimal bagi foto untuk tampil di daftar \'nilai tertinggi\'', 'min_votes_for_rating', 0),
 
-        'Tampilan gambar &amp; setting komentar',
+        'Tampilan foto &amp; setting komentar',
         array('Lebar table tampilan foto (piksel atau %)', 'picture_table_width', 0),
         array('Informasi foto secara default tampak', 'display_pic_info', 1),
         array('Saring kata-kata buruk dalam komentar', 'filter_bad_words', 1),
         array('Izinkan smilies dalam komentar', 'enable_smilies', 1),
-        array('Panjang maksimum keterangan gambar', 'max_img_desc_length', 0),
+        array('Panjang maksimum keterangan foto', 'max_img_desc_length', 0),
         array('Jumlah karakter makimum dalam kata', 'max_com_wlength', 0),
         array('Jumlah baris maksimum dalam komentar', 'max_com_lines', 0),
         array('Panjang maksimum komentar', 'max_com_size', 0),
@@ -374,13 +376,13 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Jumlah item dalam film strip', 'max_film_strip_items', 0), //new in cpg1.2.0
 
         'Setting foto dan thumbnail',
-        array('Kualitas files JPEG', 'jpeg_qual', 0),
+        array('Kualitas file JPEG', 'jpeg_qual', 0),
         array('Dimensi thumbnail maksimum <b>*</b>', 'thumb_width', 0), //new in cpg1.2.0
-        array('Gunakan dimensi ( lebar atau tinggi atau perbandingan maksimum untuk thumbnail )<b>*</b>', //new in cpg1.2.0 'thumb_use', 7),
+        array('Gunakan dimensi ( lebar atau tinggi atau perbandingan maksimum untuk thumbnail )<b>*</b>', 'thumb_use', 7),  //new in cpg1.2.0 
         array('Buat foto antara','make_intermediate',1),
         array('Lebar atau tinggi maksimum foto antara <b>*</b>', 'picture_width', 0),
         array('Besar maksimum foto yang diupload (KB)', 'max_upl_size', 0),
-        array(' Lebar atau tinggi maksimum foto yang diupload (piksel)', 'max_upl_width_height', 0),
+        array('Lebar atau tinggi maksimum foto yang diupload (piksel)', 'max_upl_width_height', 0),
 
         'Setting user',
         array('Izinkan pendaftaran user baru', 'allow_user_registration', 1),
@@ -409,10 +411,10 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Prefiks untuk thumbnail <b>*</b>', 'thumb_pfx', 0),
         array('Mode default untuk direktori', 'default_dir_mode', 0),
         array('Mode default untuk foto', 'default_file_mode', 0),
-        array('Nonaktifkan klik-kanan  pada pop-up ukuran penuh (JavaScript - no foolproof method)', 'disable_popup_rightclick', 1), //new in cpg1.2.0
+        array('Nonaktifkan klik-kanan pada pop-up ukuran penuh (JavaScript - no foolproof method)', 'disable_popup_rightclick', 1), //new in cpg1.2.0
         array('Nonaktifkan klik-kanan pada semua halaman &quot;regular&quot; (JavaScript - no foolproof method)', 'disable_gallery_rightclick', 1), //new in cpg1.2.0
 
-        'Setting Cookie &amp; Charset ',
+        'Setting Cookie &amp; Karakter Set ',
         array('Nama cookie yang digunakan oleh skrip', 'cookie_name', 0),
         array('Path cookie yang digunakan oleh skrip', 'cookie_path', 0),
         array('Encoding Karakter', 'charset', 4),
@@ -421,7 +423,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Aktifkan mode debug', 'debug_mode', 1),
 
         '<br /><div align="center">(*) Field yang ditandai dengan * tidak boleh diubah jika telah ada foto dalam galeri</div><br />'
-));
+);
 
 // ------------------------------------------------------------------------- //
 // File db_input.php
@@ -434,7 +436,7 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
         'no_udp_needed' => 'Tidak perlu update.',
         'alb_updated' => 'Album telah diupdate',
         'unknown_album' => 'Album yang dimaksud tidak ditemukan atau anda tidak memiliki izin untuk mengupload ke dalam album ini',
-        'no_pic_uploaded' => 'Tidak ada foto yang diupload !<br /><br />Jika anda yakin telah memilih gambar untuk diupload, periksa lagi apakah server mengizinkan upload...',
+        'no_pic_uploaded' => 'Tidak ada foto yang diupload !<br /><br />Jika anda yakin telah memilih foto untuk diupload, periksa lagi apakah server mengizinkan upload...',
         'err_mkdir' => 'Gagal membuat direktori %s !',
         'dest_dir_ro' => 'Direktori tujuan %s tidak bisa ditulisi oleh skrip !',
         'err_move' => 'Gagal memindahkan %s ke %s !',
@@ -602,7 +604,7 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
         'del_groups' => 'Hapus grup yang dipilih',
         'confirm_del' => 'Peringatan, jika anda menghapus grup, user yang merupakan anggota grup ini akan dipindahkan ke dalam grup \'Registered\' !\n\nAnda ingin melanjutkan ?',
         'title' => 'Pengaturan grup',
-        'approval_1' => 'Setujui Upl. Umum (1)',
+        'approval_1' => 'Setujui Upl. umum (1)',
         'approval_2' => ' Setujui Upl. pribadi (2)',
         'note1' => '<b>(1)</b> Upload ke dalam album publik memerlukan persetujuan admin',
         'note2' => '<b>(2)</b> Upload ke dalam album pribadi user memerlukan persetujuan admin',
@@ -620,7 +622,7 @@ $lang_index_php = array(
 );
 
 $lang_album_admin_menu = array(
-        'confirm_delete' => 'Anda yakin mau mengHAPUS album ini ? \\nSeluruh foto dan komentar akan ikut terhapus.',
+        'confirm_delete' => 'Anda yakin mau meng-HAPUS album ini ? \\nSeluruh foto dan komentar akan ikut terhapus.',
         'delete' => 'HAPUS',
         'modify' => 'PROPERTI',
         'edit_pics' => 'UBAH FOTO',
