@@ -120,6 +120,7 @@ pageheader($lang_db_ecard_php['title']);
 $formTarget = cpgGetUrlVars('count');
 print '<form method="post" name="ecardselect" action="'.$formTarget.'" onSubmit="return defaultagree(this)">';
 ?>
+
 <script language="javascript" type="text/javascript">
 <!--
 function checkAll(field)
