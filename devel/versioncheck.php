@@ -192,15 +192,30 @@ echo <<< EOT
 <style type="text/css">
 .green {
         font-weight: bold;
-        color: green;
+        color: #CFCFCF;
+        border: 1px solid #CFCFCF;
+        background-color:green;
+        margin: 0px;
+        padding: 0px;
+        text-align: center;
 }
 .red {
         font-weight: bold;
-        color: red;
+        color: white;
+        border: 1px solid #CFCFCF;
+        background-color:red;
+        margin: 0px;
+        padding: 0px;
+        text-align: center;
 }
 .yellow {
         font-weight: bold;
-        color:#FFBE00;
+        color: black;
+        border: 1px solid #CFCFCF;
+        background-color:#FFBE00;
+        margin: 0px;
+        padding: 0px;
+        text-align: center;
 }
 </style>
 EOT;
