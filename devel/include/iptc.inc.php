@@ -21,8 +21,8 @@ function get_IPTC($filename) {
         $IPTC_data=array();
         $size = GetImageSize ($filename, $info);
         if (isset($info["APP13"])) {
-        $iptc = iptcparse($info["APP13"]);
-        if (is_array($iptc)) {
+            $iptc = iptcparse($info["APP13"]);
+            if (is_array($iptc)) {
                 $IPTC_data=array(        "Title"                        =>         $iptc["2#005"][0],        # Max 65 octets, non-repeatable, alphanumeric
                                         "Urgency"                =>         $iptc["2#010"][0],        # Max 1 octet, non-repeatable, numeric, 1 - High, 8 - Low
                                         "Category"                =>         $iptc["2#015"][0],        # Max 3 octets, non-repeatable, alpha
@@ -44,9 +44,12 @@ function get_IPTC($filename) {
                                         "Copyright"                =>         $iptc["2#116"][0],        # Max 128 octets, non-repeatable, alphanumeric
                                         "Caption"                =>         $iptc["2#120"][0],        # Max 2000 octets, non-repeatable, alphanumeric
                                         "CaptionWriter"                =>         $iptc["2#122"][0]        # Max 32 octets, non-repeatable, alphanumeric
-                                );
-                $IPTC_data=filter_content($IPTC_data);
+                );
+                foreach ($IPTC_data as $key=>$data) {
+                   $IPTC_data[$key] = str_replace("'","''",$data); //sanitize data against sql injection
                 }
+                $IPTC_data=filter_content($IPTC_data);   //run the data against the bad word list
+            }
         }
 return $IPTC_data;
 }
