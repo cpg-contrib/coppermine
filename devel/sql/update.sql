@@ -65,7 +65,7 @@ INSERT INTO CPG_filetypes VALUES ('asx', 'video/x-ms-asx', 'movie', 'WMP');
 INSERT INTO CPG_filetypes VALUES ('mpg', 'video/mpeg', 'movie', 'WMP');
 INSERT INTO CPG_filetypes VALUES ('mpeg', 'video/mpeg', 'movie', 'WMP');
 INSERT INTO CPG_filetypes VALUES ('wmv', 'video/x-ms-wmv', 'movie', 'WMP');
-INSERT INTO CPG_filetypes VALUES ('swf', 'application/x-shockwave-flash', 'movie');
+INSERT INTO CPG_filetypes VALUES ('swf', 'application/x-shockwave-flash', 'movie', 'SWF');
 INSERT INTO CPG_filetypes VALUES ('avi', 'video/avi', 'movie', 'WMP');
 INSERT INTO CPG_filetypes VALUES ('mov', 'video/quicktime', 'movie', 'QT');
 INSERT INTO CPG_config VALUES ('allowed_mov_types', 'ALL');
