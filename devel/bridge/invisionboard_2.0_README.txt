@@ -1,0 +1,61 @@
++--------------------------------------------------------------------------
+|   Coppermine 1.3.1 + Invision Board 2.0 Bridge
+|   ============================================
+|   by Tony Bontragar
+|   2004 b6gm6n
+|   http://www.x7x7x7.com
+|   ============================================
+|   Email: b6gm6n@x7x7x7.com
+|   Big shout to Timothy Yung (CTiga) for the login-redirect hack
++--------------------------------------------------------------------------
+|
+|   > Installation Instructions
+|   
+|   > Files : login.php - invisionboard.inc.php - read.txt
+|
++--------------------------------------------------------------------------
+
+This will intergrate your Invision v2.0 user database with coppermine 1.3.1
+
+just upload 'invisionboard.inc.php' to your coppermine bridge dir (set the variables in this file)
+then upload 'login.php' to your invision 'sources' dir (this has CTiga's hack installed for the redirect)
+
+INSTRUCTIONS FOR USE
+====================
+
++--------------------------------------------------------------------------------------
+>>> REMEMBER to remove the '//' from the line below in your /coppermine/includes/init.php
+
+//define('UDB_INTEGRATION', 'invisionboard');
++--------------------------------------------------------------------------------------
+
+In the 'invisionboard.inc.php' file edit the variables that are shown below
+(remember to use the SAME cookie prefix for IB and CPM)
+
+========================================================================================
+// database configuration
+define('IB_DB_NAME', 'database_iv20'); // The name of the database used by the board
+define('IB_BD_HOST', 'localhost'); // The name of the database server
+define('IB_DB_USERNAME', 'myusername'); // The username to use to connect to the database
+define('IB_DB_PASSWORD', 'mypassword'); // The password to use to connect to the database
+
+// The web path to your Invision Board directory
+// In this example '/ivboard/'
+define('IB_WEB_PATH', '/forums/invision/20/');
+// ------------------------------------------------------------------------- //
+// You can keep the default values below if your installation is standard
+// ------------------------------------------------------------------------- //
+// The prefix for the Invision Board cookies
+define('IB_COOKIE_PREFIX', 'x7iv2'); // The prefix used for board cookies
+========================================================================================
+
+
+That should be it, remember also to setup coppermine correctly (COOKIE PREFIX SAME AS IB ... i did warn you :)
+If it fails (it should'nt) try deleting your cookies...
+...and your done! (hopefully) ;)
+
+NOTE : some of you may experience an infinite loop when using the login hack, to solve this configure your firewall to allow referrers (especially yours!)
+
+-b6gm6n 2K4
+
++--------------------------------------------------------------------------
