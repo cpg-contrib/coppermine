@@ -2303,7 +2303,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
                     include_once('include/mailer.inc.php');
     
                     // Send the message.
-                    cpg_mail($CONFIG['gallery_admin_email'], sprintf($lang_db_input_php['notify_admin_email_subject'], $CONFIG['gallery_name']), sprintf($lang_db_input_php['notify_admin_email_body'], USER_NAME,  $CONFIG['ecards_more_pic_target'].'/editpics.php?mode=upload_approval' ));
+                    cpg_mail($CONFIG['gallery_admin_email'], sprintf($lang_db_input_php['notify_admin_email_subject'], $CONFIG['gallery_name']), sprintf($lang_db_input_php['notify_admin_email_body'], USER_NAME,  $CONFIG['ecards_more_pic_target']. (substr( $CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') .'editpics.php?mode=upload_approval' ));
                 }
                 cpg_send_upload_notification();
             }
