@@ -142,7 +142,7 @@ function html_picture()
         $pic_title .= $CURRENT_PIC_DATA['caption'] . "\n";
     }
     if ($CURRENT_PIC_DATA['keywords'] != '') {
-        $pic_title .= "Abgebildet: " . $CURRENT_PIC_DATA['keywords'];
+        $pic_title .= $lang_picinfo['Keywords'] . ": " . $CURRENT_PIC_DATA['keywords'];
     } // added by gaugau
     if (isset($image_size['reduced'])) {
         $winsizeX = $CURRENT_PIC_DATA['pwidth'] + 16;
