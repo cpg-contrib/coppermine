@@ -23,7 +23,7 @@ define('CONFIG_PHP', true);
 require('include/init.inc.php');
 require('include/sql_parse.php');
 
-//if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
 function form_label($text)
 {
