@@ -1,8 +1,8 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.3.1                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -14,9 +14,8 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-/*
-$Id$
-*/
+// CVS version: $Id$
+// ------------------------------------------------------------------------- //
 
 define('IN_COPPERMINE', true);
 define('EDITPICS_PHP', true);
@@ -27,8 +26,6 @@ if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['acces
 
 if (isset($_REQUEST['id'])) {
         $pid = (int)$_REQUEST['id'];
-} elseif (isset($_REQUEST['pid'])) {
-        $pid = (int)$_REQUEST['pid'];
 } else {
         $pid = -1;
 }
@@ -40,9 +37,25 @@ pageheader($title);
 
 function process_post_data()
 {
-        global $CONFIG, $pid, $lang_errors;
-        
-		foreach ($_POST as $name=>$value) $$name = $value;
+        global $HTTP_POST_VARS, $CONFIG;
+        global $lang_errors;
+
+                $pid          = (int)$HTTP_POST_VARS['id'];
+                $aid          = (int)$HTTP_POST_VARS['aid'];
+                $pwidth       = (int)$HTTP_POST_VARS['pwidth'];
+                $pheight      = (int)$HTTP_POST_VARS['pheight'];
+                $title        = $HTTP_POST_VARS['title'];
+                $caption      = $HTTP_POST_VARS['caption'];
+                $keywords     = $HTTP_POST_VARS['keywords'];
+                $user1        = $HTTP_POST_VARS['user1'];
+                $user2        = $HTTP_POST_VARS['user2'];
+                $user3        = $HTTP_POST_VARS['user3'];
+                $user4        = $HTTP_POST_VARS['user4'];
+
+                $read_exif    = isset($HTTP_POST_VARS['read_exif']);
+                $reset_vcount = isset($HTTP_POST_VARS['reset_vcount']);
+                $reset_votes  = isset($HTTP_POST_VARS['reset_votes']);
+                $del_comments = isset($HTTP_POST_VARS['del_comments']) || $delete;
 
                 $query = "SELECT category, filepath, filename FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND pid='$pid'";
                 $result = db_query($query);
@@ -60,18 +73,18 @@ function process_post_data()
                         $update .= ", pwidth = ".$pwidth;
                         $update .= ", pheight = ".$pheight;
                 }
-                if (isset($title)) $update .= ", title = '".addslashes($title)."'";
-                if (isset($caption)) $update .= ", caption = '".addslashes($caption)."'";
-                if (isset($keywords)) $update .= ", keywords = '".addslashes($keywords)."'";
-                if (isset($user1)) $update .= ", user1 = '".addslashes($user1)."'";
-                if (isset($user2)) $update .= ", user2 = '".addslashes($user2)."'";
-                if (isset($user3)) $update .= ", user3 = '".addslashes($user3)."'";
-                if (isset($user4)) $update .= ", user4 = '".addslashes($user4)."'";
+                $update .= ", title = '".addslashes($title)."'";
+                $update .= ", caption = '".addslashes($caption)."'";
+                $update .= ", keywords = '".addslashes($keywords)."'";
+                $update .= ", user1 = '".addslashes($user1)."'";
+                $update .= ", user2 = '".addslashes($user2)."'";
+                $update .= ", user3 = '".addslashes($user3)."'";
+                $update .= ", user4 = '".addslashes($user4)."'";
 
-                if (isset($reset_vcount)) $update .= ", hits = '0'";
-                if (isset($reset_votes)) $update .= ", pic_rating = '0', votes = '0'";
+                if ($reset_vcount) $update .= ", hits = '0'";
+                if ($reset_votes) $update .= ", pic_rating = '0', votes = '0'";
 
-                if (isset($del_comments)) {
+                if ($del_comments) {
                         $query = "DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid'";
                         $result =db_query($query);
 
@@ -107,39 +120,38 @@ function form_alb_list_box()
         $sel_album = $CURRENT_PIC['aid'];
 
         echo <<<EOT
-        <tr>
-            <td class="tableb" style="white-space: nowrap;">
-                        {$lang_editpics_php['album']}
-        </td>
-        <td class="tableb" valign="top">
-                <select name="aid" class="listbox">
+		<tr>
+			<td class="tableb" style="white-space: nowrap;">
+				{$lang_editpics_php['album']}
+        	</td>
+        	<td class="tableb" valign="top">
+				<select name="aid" class="listbox">
 
 EOT;
-                foreach($public_albums_list as $album) { 
-        echo '              <option value="' . $album['aid'] . '"' . ($album['aid'] == $sel_album ? ' selected="selected"' : '') . '>' . $album['cat_title'] . "</option>\n"; 
+                foreach($public_albums_list as $album) {
+        echo '              <option value="' . $album['aid'] . '"' . ($album['aid'] == $sel_album ? ' selected="selected"' : '') . '>' . $album['cat_title'] . "</option>\n";
     }
                 foreach($user_albums_list as $album){
                         echo '                        <option value="'.$album['aid'].'"'.($album['aid'] == $sel_album ? ' selected="selected"' : '').'>* '.$album['title'] . "</option>\n";
                 }
         echo <<<EOT
-                        </select>
-                </td>
-        </tr>
+				</select>
+			</td>
+		</tr>
 
 EOT;
 }
 
-if (isset($_POST['submitDescription'])) process_post_data();
+if (isset($HTTP_POST_VARS['submitDescription'])) process_post_data();
 
 $result = db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = '$pid'");
 $CURRENT_PIC = mysql_fetch_array($result);
-mysql_free_result($result);v
+mysql_free_result($result);
 
 if (!(GALLERY_ADMIN_MODE || $CURRENT_PIC['owner_id'] == USER_ID)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
-
 $thumb_url = get_pic_url($CURRENT_PIC, 'thumb');
-$thumb_link = 'displayimage.php?&amp;pos='.(-$CURRENT_PIC['pid']);
+$thumb_link = 'displayimage.php?pos='.(-$CURRENT_PIC['pid']);
 $filename = htmlspecialchars($CURRENT_PIC['filename']);
 
 $THUMB_ROWSPAN=5;
@@ -170,9 +182,10 @@ function textCounter(field, maxlimit) {
         field.value = field.value.substring(0, maxlimit);
 }
 </script>
-<form method="post" action="editOnePic.php" name="mainform">
-<input type="hidden" name="pid" value="$pid" />
+<form method="post" action="editOnePic.php">
+<input type="hidden" name="id" value="{$CURRENT_PIC['pid']}" />
 EOT;
+
 starttable("100%", $lang_editpics_php['desc'], 3);
 
 //$pic_info = sprintf($lang_editpics_php['pic_info_str'], $CURRENT_PIC['pwidth'], $CURRENT_PIC['pheight'], ($CURRENT_PIC['filesize'] >> 10), $CURRENT_PIC['hits'], $CURRENT_PIC['votes']);
@@ -184,124 +197,121 @@ if (!is_movie($CURRENT_PIC['filename'])) {
 }
 
 if (defined('UPLOAD_APPROVAL_MODE')) {
-        if($CURRENT_PIC['owner_name']){
+        if ($CURRENT_PIC['owner_name']){
                 $pic_info .= ' - <a href ="profile.php?uid='.$CURRENT_PIC['owner_id'].'" target="_blank">'.$CURRENT_PIC['owner_name'].'</a>';
         }
 }
 
 print <<<EOT
-<tr>
-	<td>
-		<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintableb">
-			<tr>
-				<td class="tableh2" colspan="3">
-					<b>$filename</b>
-				</td>
-			</tr>
-			<tr>
-				<td class="tableb" style="white-space: nowrap;">
-					{$lang_editpics_php['pic_info']}
-				</td>
-				<td class="tableb">
-					$pic_info
-				</td>
+        <tr>
+			<td class="tableh2" colspan="3">
+				<b>$filename</b>
+			</td>
+        </tr>
+        <tr>
+			<td class="tableb" style="white-space: nowrap;">
+				{$lang_editpics_php['pic_info']}
+			</td>
+			<td class="tableb">
+				$pic_info
+			</td>
 				<td class="tableb" align="center" rowspan="$THUMB_ROWSPAN">
-					<a href="$thumb_link"><img src="$thumb_url" class="image" border="0" alt="" /></a><br />
-				</td>
-			</tr>
+				<a href="$thumb_link"><img src="$thumb_url" class="image" border="0" alt="{$CURRENT_PIC['title']}"/></a><br />
+            </td>
+        </tr>
 EOT;
 
 form_alb_list_box();
 
 print <<<EOT
-        	<tr>
-            	<td class="tableb" style="white-space: nowrap;">
-                	{$lang_editpics_php['title']}
-        		</td>
-        		<td width="100%" class="tableb" valign="top">
-                	<input type="text" style="width: 100%" name="title" maxlength="255" value="{$CURRENT_PIC['title']}" class="textinput" />
-                </td>
-        	</tr>
-        	<tr>
-                <td class="tableb" valign="top" style="white-space: nowrap;">
-                        {$lang_editpics_php['desc']}
-                </td>
-                <td class="tableb" valign="top">
-                        <textarea name="caption" rows="5" cols="40" class="textinput" style="width: 100%;" onkeydown="textCounter(this, {$CONFIG['max_img_desc_length']});" onkeyup="textCounter(this, {$CONFIG['max_img_desc_length']});">{$CURRENT_PIC['caption']}</textarea>
-                </td>
-        	</tr>
-        	<tr>
-            	<td class="tableb" style="white-space: nowrap;">
-                	{$lang_editpics_php['keywords']}
-        		</td>
-        		<td width="100%" class="tableb" valign="top">
-                	<input type="text" style="width: 100%" name="keywords" maxlength="255" value="{$CURRENT_PIC['keywords']}" class="textinput" />
-                </td>
-        	</tr>
+        <tr>
+			<td class="tableb" style="white-space: nowrap;">
+			{$lang_editpics_php['title']}
+        	</td>
+        	<td width="100%" class="tableb" valign="top">
+				<input type="text" style="width: 100%" name="title" maxlength="255" value="{$CURRENT_PIC['title']}" class="textinput" />
+			</td>
+        </tr>
+EOT;
+echo <<<EOT
+        <tr>
+			<td class="tableb" valign="top" style="white-space: nowrap;">
+				{$lang_editpics_php['desc']}
+			</td>
+			<td class="tableb" valign="top">
+				<textarea name="caption" rows="5" cols="40" class="textinput" style="width: 100%;" onkeydown="textCounter(this, {$CONFIG['max_img_desc_length']});" onkeyup="textCounter(this, {$CONFIG['max_img_desc_length']});">{$CURRENT_PIC['caption']}</textarea>
+			</td>
+        </tr>
+        <tr>
+			<td class="tableb" style="white-space: nowrap;">
+				{$lang_editpics_php['keywords']}
+        	</td>
+        	<td width="100%" class="tableb" valign="top">
+				<input type="text" style="width: 100%" name="keywords" maxlength="255" value="{$CURRENT_PIC['keywords']}" class="textinput" />
+			</td>
+        </tr>
+
 EOT;
 if ($CONFIG['user_field1_name'] != ''){
 echo <<<EOT
-        	<tr>
-            	<td class="tableb" style="white-space: nowrap;">
-                	{$CONFIG['user_field1_name']}
-        		</td>
-        		<td width="100%" class="tableb" valign="top">
-                	<input type="text" style="width: 100%" name="user1" maxlength="255" value="{$CURRENT_PIC['user1']}" class="textinput" />
-                </td>
-        	</tr>
+        <tr>
+            <td class="tableb" style="white-space: nowrap;">
+                {$CONFIG['user_field1_name']}
+        	</td>
+        	<td width="100%" class="tableb" valign="top">
+				<input type="text" style="width: 100%" name="user1" maxlength="255" value="{$CURRENT_PIC['user1']}" class="textinput" />
+			</td>
+        </tr>
 EOT;
 }
 if ($CONFIG['user_field2_name'] != ''){
 echo <<<EOT
-        	<tr>
-            	<td class="tableb" style="white-space: nowrap;">
-                	{$CONFIG['user_field2_name']}
-        		</td>
-        		<td width="100%" class="tableb" valign="top">
-                	<input type="text" style="width: 100%" name="user2" maxlength="255" value="{$CURRENT_PIC['user2']}" class="textinput" />
-                </td>
-        	</tr>
+        <tr>
+            <td class="tableb" style="white-space: nowrap;">
+                {$CONFIG['user_field2_name']}
+        	</td>
+        	<td width="100%" class="tableb" valign="top">
+                <input type="text" style="width: 100%" name="user2" maxlength="255" value="{$CURRENT_PIC['user2']}" class="textinput" />
+			</td>
+        </tr>
 EOT;
 }if ($CONFIG['user_field3_name'] != ''){
 echo <<<EOT
-        	<tr>
-            	<td class="tableb" style="white-space: nowrap;">
-                	{$CONFIG['user_field3_name']}
-        		</td>
-        		<td width="100%" class="tableb" valign="top">
-                	<input type="text" style="width: 100%" name="user3" maxlength="255" value="{$CURRENT_PIC['user3']}" class="textinput" />
-                </td>
-        	</tr>
+        <tr>
+            <td class="tableb" style="white-space: nowrap;">
+                {$CONFIG['user_field3_name']}
+        	</td>
+        	<td width="100%" class="tableb" valign="top">
+                <input type="text" style="width: 100%" name="user3" maxlength="255" value="{$CURRENT_PIC['user3']}" class="textinput" />
+			</td>
+        </tr>
 EOT;
 }if ($CONFIG['user_field4_name'] != ''){
 echo <<<EOT
-        	<tr>
-            	<td class="tableb" style="white-space: nowrap;">
-                	{$CONFIG['user_field4_name']}
-        		</td>
-        		<td width="100%" class="tableb" valign="top">
-                	<input type="text" style="width: 100%" name="user4" maxlength="255" value="{$CURRENT_PIC['user4']}" class="textinput" />
-                </td>
-        	</tr>
+        <tr>
+            <td class="tableb" style="white-space: nowrap;">
+                {$CONFIG['user_field4_name']}
+        	</td>
+        	<td width="100%" class="tableb" valign="top">
+                <input type="text" style="width: 100%" name="user4" maxlength="255" value="{$CURRENT_PIC['user4']}" class="textinput" />
+			</td>
+        </tr>
 EOT;
 }
 print <<<EOT
-        	<tr>
-                <td class="tableb" colspan="3" align="center">
-					<b><input type="checkbox" name="read_exif" value="1" class="checkbox" />{$lang_editpics_php['read_exif']}</b>&nbsp;
-					<b><input type="checkbox" name="reset_vcount" value="1" class="checkbox" />{$lang_editpics_php['reset_view_count']}</b>&nbsp;
-					<b><input type="checkbox" name="reset_votes" value="1" class="checkbox" />{$lang_editpics_php['reset_votes']}</b>&nbsp;
-					<b><input type="checkbox" name="del_comments" value="1" class="checkbox" />{$lang_editpics_php['del_comm']}</b>&nbsp;
-                </td>
-        	</tr>
-        	<tr>
-                <td colspan="3" align="center" class="tablef">
-					<input type="submit" value="{$lang_editpics_php['apply']}" name="submitDescription" class="button" />
-               </td> 
-        	</tr>
-		</table>
-	</td>
-</tr>
+        <tr>
+			<td class="tableb" colspan="3" align="center">
+				<b><input type="checkbox" name="read_exif" value="1" class="checkbox" />{$lang_editpics_php['read_exif']}</b>&nbsp;
+				<b><input type="checkbox" name="reset_vcount" value="1" class="checkbox" />{$lang_editpics_php['reset_view_count']}</b>&nbsp;
+				<b><input type="checkbox" name="reset_votes" value="1" class="checkbox" />{$lang_editpics_php['reset_votes']}</b>&nbsp;
+				<b><input type="checkbox" name="del_comments" value="1" class="checkbox" />{$lang_editpics_php['del_comm']}</b>&nbsp;
+			</td>
+        </tr>
+        <tr>
+			<td colspan="3" align="center" class="tablef">
+				<input type="submit" value="{$lang_editpics_php['apply']}" name="submitDescription" class="button" />
+			</td>               
+        </tr>
 EOT;
 
 endtable();
