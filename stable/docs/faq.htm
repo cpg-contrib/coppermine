@@ -703,14 +703,22 @@ will become<br />
 <p>edit<br /><tt class="code">login.php</tt><br />and search for<br />
 <tt class="code">pageheader($lang_login_php[&#39;login&#39;],&quot;&lt;META http-equiv=\&quot;refresh\&quot; content=\&quot;3;url=$referer\&quot;&gt;&quot;);</tt><br />
 <br />and add <b>before</b> it<br />
-<tt class="code">$referer = &#39;index.php?cat=&#39;.(FIRST_USER_CAT+$USER_DATA[&#39;user_id&#39;]); </tt><br /><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="registeredUsersOnly"></a>
+<tt class="code">$referer = &#39;index.php?cat=&#39;.(FIRST_USER_CAT+$USER_DATA[&#39;user_id&#39;]); </tt><br /><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div>
+<hr /><a name="registeredUsersOnly"></a>
 <h3>How can I <b>prevent unregistered user</b> from viewing the gallery?</h3>
-<p>edit<br /><tt class="code">displayimage.php</tt><br />and search for<br />
-<pre>/**************************************************************************
-* Local functions definition
-**************************************************************************/</pre>
-<br />and add <b>before</b> it<br />
-<tt class="code">if (!USER_ID) cpg_die(ERROR, &#39;You need to register to access this page&#39;, __FILE__, __LINE__);</tt><br /><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="displayUploaderName"></a>
+<p>edit<br /><tt class="code">displayimage.php</tt> and <tt class="code">index.php</tt> and <tt class="code">search.php</tt> and <tt class="code">thumbnails.php</tt><br />and search for<br />
+<pre>require('include/init.inc.php');</pre>
+<br />and add <b>after</b> it<br />
+<pre>if (USER_ID){
+
+} else {
+{
+   $redirect = $redirect . "login.php";
+   header("Location: $redirect");
+
+   exit();
+	}
+}</pre><br /><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="displayUploaderName"></a>
 <h3>How can I <b>display the name of the uploader</b> with the picture info?</h3>
 <p><b>Warning</b>: this is quite a complicated hack for a newbie to perform!<br />Edit displayimage.php and search for:<br />
 <tt class="code">   $info[$lang_picinfo[&#39;Filename&#39;]]   = htmlspecialchars($CURRENT_PIC_DATA[&#39;filename&#39;]);</tt><br />add after it:<br />
