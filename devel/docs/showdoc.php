@@ -30,8 +30,10 @@ $remove_to_top = $_REQUEST['top'];
 $add_stylesheet = $_REQUEST['css'];
 
 
-// todo: harden against expolits: check the requested vars
-//...
+// harden against expolits: check the requested vars, replace illegal chars
+$file = stripslashes($file);
+$forbidden_chars = array("..", "/", "%", "<", ">", "$", "'", '"');
+$file = str_replace($forbidden_chars, '', $file);
 
 ob_start();
 include($file);
