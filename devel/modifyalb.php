@@ -46,6 +46,7 @@ $data = array($lang_modifyalb_php['general_settings'],
     array($lang_modifyalb_php['alb_thumb'], 'thumb', 4),
     $lang_modifyalb_php['alb_perm'],
     array($lang_modifyalb_php['can_view'], 'visibility', 5),
+	array($lang_modifyalb_php['alb_password'], 'password', 6),
     array($lang_modifyalb_php['can_upload'].$notice1, 'uploads', 1),
     array($lang_modifyalb_php['can_post_comments'].$notice1, 'comments', 1),
     array($lang_modifyalb_php['can_rate'].$notice1, 'votes', 1),
@@ -259,6 +260,23 @@ EOT;
 EOT;
 }
 
+function form_password($text, $name)
+{
+  global $ALBUM_DATA;
+  $value = $ALBUM_DATA[$name];
+  
+  echo <<<EOT
+        <tr>
+          <td width="40%" class="tableb">
+              $text
+          </td>
+          <td width="60%" class="tableb" valign="top">
+            <input type="password" name="$name" value="$value" class="textinput" maxlength="32" size="34">
+          </td>
+        </tr>
+EOT;
+}
+
 function form_visibility($text, $name)
 {
     global $CONFIG, $USER_DATA, $ALBUM_DATA, $lang_modifyalb_php;
@@ -337,6 +355,9 @@ function create_form(&$data)
                     break;
                 case 5 :
                     form_visibility($element[0], $element[1]);
+                    break;
+                case 6:
+                    form_password($element[0],$element[1]);
                     break;
                 default:
                     cpg_die(CRITICAL_ERROR, 'Invalid action for form creation', __FILE__, __LINE__);
@@ -450,5 +471,4 @@ EOT;
 endtable();
 pagefooter();
 ob_end_flush();
-
 ?>

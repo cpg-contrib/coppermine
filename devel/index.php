@@ -373,7 +373,7 @@ function list_users()
 // List all albums
 function list_albums()
 {
-    global $CONFIG, $USER, $USER_DATA, $PAGE, $lastup_date_fmt, $FORBIDDEN_SET;
+    global $CONFIG, $USER, $USER_DATA, $PAGE, $lastup_date_fmt, $FORBIDDEN_SET, $FORBIDDEN_SET_DATA;
     global $cat;
     global $lang_list_albums, $lang_errors, $cpg_show_private_album;
 
@@ -438,7 +438,8 @@ function list_albums()
         } 
         // Inserts a thumbnail if the album contains 1 or more images
         $visibility = $alb_thumb['visibility'];
-        if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || in_array($visibility, $USER_DATA['groups']) || $USER_DATA['can_see_all_albums'] || $CONFIG['allow_private_albums'] == 0) {
+		        
+		if (!in_array($aid,$FORBIDDEN_SET_DATA) || $CONFIG['allow_private_albums'] == 0) {
             if ($count > 0) {
                 if ($alb_thumb['filename']) {
                     $picture = &$alb_thumb;
@@ -467,7 +468,7 @@ function list_albums()
             $alb_list[$alb_idx]['thumb_pic'] = '<img src="' . $cpg_privatepic_data['thumb'] . '" ' . $cpg_privatepic_data['whole'] . ' class="image" border="0" />';
         } 
         // Prepare everything
-        if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || in_array($visibility, $USER_DATA['groups']) || $USER_DATA['can_see_all_albums'] || $CONFIG['allow_private_albums'] == 0) {
+        if (!in_array($aid,$FORBIDDEN_SET_DATA) || $CONFIG['allow_private_albums'] == 0) {
             $last_upload_date = $count ? localised_date($alb_stat['last_upload'], $lastup_date_fmt) : '';
             $alb_list[$alb_idx]['aid'] = $alb_thumb['aid'];
             $alb_list[$alb_idx]['album_title'] = $alb_thumb['title'];
@@ -537,13 +538,6 @@ function list_cat_albums($cat = 0)
     $upper_limit = min($nbAlb, $PAGE * $alb_per_page);
     $limit = "LIMIT " . $lower_limit . "," . ($upper_limit - $lower_limit);
 
-    /**
-    * $sql = "SELECT a.aid, a.title, a.description, visibility, filepath, ".
-    * "filename, url_prefix, pwidth, pheight ".
-    * "FROM {$CONFIG['TABLE_ALBUMS']} as a ".
-    * "LEFT JOIN {$CONFIG['TABLE_PICTURES']} as p ON thumb=pid ".
-    * "WHERE category = $cat ORDER BY a.pos ".$limit;
-    */
     $sql = 'SELECT a.aid, a.title, a.description, visibility, filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE category=' . $cat . $album_filter . ' ORDER BY a.pos ' . $limit;
 
     $alb_thumbs_q = db_query($sql);
@@ -579,7 +573,7 @@ function list_cat_albums($cat = 0)
         } 
         // Inserts a thumbnail if the album contains 1 or more images
         $visibility = $alb_thumb['visibility'];
-        if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || in_array($visibility, $USER_DATA['groups']) || $USER_DATA['can_see_all_albums'] || $CONFIG['allow_private_albums'] == 0) { // test for visibility
+		if (!in_array($aid,$FORBIDDEN_SET_DATA) || $CONFIG['allow_private_albums'] == 0) { //test for visibility
             if ($count > 0) { // Inserts a thumbnail if the album contains 1 or more images
                 if ($alb_thumb['filename']) {
                     $picture = &$alb_thumb;
@@ -606,7 +600,7 @@ function list_cat_albums($cat = 0)
             $alb_list[$alb_idx]['thumb_pic'] = '<img src="' . $cpg_privatepic_data['thumb'] . '" ' . $cpg_privatepic_data['whole'] . ' class="image" border="0" />';
         } 
         // Prepare everything
-        if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || in_array($visibility, $USER_DATA['groups']) || $USER_DATA['can_see_all_albums'] || $CONFIG['allow_private_albums'] == 0) {
+		if (!in_array($aid,$FORBIDDEN_SET_DATA) || $CONFIG['allow_private_albums'] == 0) {
             $last_upload_date = $count ? localised_date($alb_stat['last_upload'], $lastup_date_fmt) : '';
             $alb_list[$alb_idx]['aid'] = $alb_thumb['aid'];
             $alb_list[$alb_idx]['album_title'] = $alb_thumb['title'];

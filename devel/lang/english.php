@@ -175,6 +175,10 @@ $lang_thumb_view = array(
   'download_zip' => 'Download as Zip file',
   'pic_on_page' => '%d files on %d page(s)',
   'user_on_page' => '%d users on %d page(s)',
+  'enter_alb_pass' => 'Enter Album Password',
+  'invalid_pass' => 'Invalid Password',
+  'pass' => 'Password',
+  'submit' => 'Submit'
 );
 
 $lang_img_nav_bar = array(
@@ -924,6 +928,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'err_no_alb_to_modify' => 'No album you can modify in the database.',
   'update' => 'Update album',
   'notice1' => '(*) depending on %sgroups%s settings', //(do not translate %s!)
+  'alb_password' => 'Album password(if you want the album to be password protected)',
 );
 
 // ------------------------------------------------------------------------- //

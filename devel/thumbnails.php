@@ -133,7 +133,82 @@ if ($breadcrumb) {
     theme_display_cat_list($breadcrumb, $cat_data, '');
 }
 
-display_thumbnails($album, (isset($cat) ? $cat : 0), $page, $CONFIG['thumbcols'], $CONFIG['thumbrows'], true);
+//Function to draw the password box
+function form_albpw()
+{
+    global $HTTP_POST_VARS, $lang_thumb_view;
+    $login_falied = 
+	  starttable('-1', $lang_thumb_view['enter_alb_pass'], 2);
+      if (isset($HTTP_POST_VARS['validate_album'])) {
+          $login_failed = "<tr><td class='tableh2' colspan='2' align='center'>
+		               <font color='red' size='1'>{$lang_thumb_view['invalid_pass']}</font></td></tr>
+					 ";
+      }
+	  echo <<<EOT
+			$login_failed
+			<tr>
+              <form method="post" action="">
+              <input type="hidden" name="validate_album" value="validate_album"/>
+              <td class="tableb" width="40%">{$lang_thumb_view['pass']}: </td>
+              <td class="tableb" width="60%"><input type="password" class="textinput" name="password" /></td>
+             </tr>
+             <tr>
+              <td class="tablef" colspan="2" align="center"><input type="submit" class="button" name="submit" value={$lang_thumb_view['submit']} />
+              </form>
+            </tr>
+EOT;
+      endtable();
+}
+
+$valid = false; //flag to test whether the album is validated.
+if ($CONFIG['allow_private_albums'] == 0) {
+    $valid = true;
+} elseif (isset($HTTP_POST_VARS['validate_album'])) {
+  $password = $HTTP_POST_VARS['password'];
+  $sql = "SELECT aid FROM ".$CONFIG['TABLE_ALBUMS']." WHERE alb_password='$password' AND aid='$album'";
+  $result = db_query($sql);
+  if (mysql_num_rows($result)) {
+    if (!empty($HTTP_COOKIE_VARS[$CONFIG['cookie_name'].'_albpw'])) {
+      $albpw = unserialize($HTTP_COOKIE_VARS[$CONFIG['cookie_name'].'_albpw']);
+    }
+    $albpw[$album] = md5($password);
+    $alb_cookie_str = serialize($albpw);
+    setcookie($CONFIG['cookie_name']."_albpw",$alb_cookie_str);
+    get_private_album_set($album);
+    $valid = true;
+  } else {
+    //Invalid password
+    $valid = false;
+  }
+} else {
+$sql = "SELECT aid FROM ".$CONFIG['TABLE_ALBUMS']." WHERE aid='$album' AND alb_password != ''";
+$result = db_query($sql);
+if (mysql_num_rows($result)) {
+  // This album has a password. 
+  //Check whether the cookie is set for the current albums password
+  if (!empty($HTTP_COOKIE_VARS[$CONFIG['cookie_name'].'_albpw'])) {
+    $alb_pw = unserialize($HTTP_COOKIE_VARS[$CONFIG['cookie_name'].'_albpw']);
+    //Check whether the alubm id in the cookie is same as that of the album id send by get
+    if (isset($alb_pw[$album])) {
+    $sql = "SELECT aid FROM ".$CONFIG['TABLE_ALBUMS']." WHERE MD5(alb_password)='{$alb_pw[$album]}' AND aid='{$album}'";
+    $result = db_query($sql);
+    if (mysql_num_rows($result)) {
+      $valid = true; //The album password is correct. Show the album details.
+      get_private_album_set();
+  }
+    }
+  }
+} else {
+  // Album with no password. Might be a private or normal album. Just set valid as true.
+  $valid = true;
+}
+}
+if (!$valid) {
+  form_albpw();
+} else {
+  display_thumbnails($album, (isset($cat) ? $cat : 0), $page, $CONFIG['thumbcols'], $CONFIG['thumbrows'], true);
+}
+
 pagefooter();
 ob_end_flush();
 ?>

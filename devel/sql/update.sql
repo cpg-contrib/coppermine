@@ -260,3 +260,5 @@ INSERT INTO CPG_config VALUES ('language_fallback', '0');
 INSERT INTO CPG_config VALUES ('time_offset', '0');
 
 ALTER TABLE `CPG_users` CHANGE `user_profile6` `user_profile6` TEXT NOT NULL;
+
+ALTER TABLE `CPG_albums` ADD `alb_password` varchar(32) default '';
