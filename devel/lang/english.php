@@ -1437,6 +1437,41 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
 );
 
 // ------------------------------------------------------------------------- //
+// File versioncheck.php                                                     // cpg 1.4.0
+// ------------------------------------------------------------------------- //
+
+if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
+  'title' => 'Versioncheck',
+  'online_repository_unable' => 'Unable to connect to online repository',
+  'online_repository_noconnect' => 'Coppermine was unable to connect to the online repository. This can have two reasons:',
+  'online_repository_reason1' => 'the coppermine online repository is currently down - check if you can browse this page: %s - if you can\'t access this page, try again later.',
+  'online_repository_reason2' => 'PHP on your webserver is configured with %s turned off (by default, it\'s turned on). If the server is yours to administer, turn this option on in <i>php.ini</i>. If you\'re webhosted, you will probably have to live with the fact that you can\'t compare your files to the online repository. This page will then only display the file versions that came with your distribution - updates will not be displayed.',
+  'online_repository_to_local' => 'The script is defaulting to the local copy of the version-files now. The data may be inacurate if you have upgraded Coppermine and you haven\'t uploaded all files. Changes to the files after the release won\'t be taken into account as well.',
+  'local_repository_unable' => 'Unable to connect to the repository on your server',
+  'local_repository_explanation' => 'Coppermine was unable to connect to the repository file %s on your webserver. This probably means that you haven\'t uploaded the repository file to your webserver. Do so now and then try to run this page once more (hit refresh).<br />If the script still fails, your webhost might have disabled parts of <a href="http://www.php.net/manual/en/ref.filesystem.php">PHP\'s filesystem functions</a> completely. In this case, you simply won\'t be able to use this tool at all, sorry.',
+  'coppermine_version_header' => 'Installed Coppermine version',
+  'coppermine_version_info' => 'You have currently installed: %s',
+  'coppermine_version_explanation' => 'If you think this is entirely wrong and you\'re supposed to be running a higher version of Coppermine, you probably haven\'t uploaded the most recent version of the file <i>include/init.inc.php</i>',
+  'version_comparison' => 'Version comparison',
+  'file' => 'file',
+  'coppermine_version' => 'cpg version',
+  'file_version' => 'file version',
+  'writable' => 'writable',
+  'help_file_not_exist_optional1' => 'file/folder does not exist',
+  'help_file_not_exist_optional2' => 'The file/folder %s has not been found on your server. Although it is optional you should upload it (using your FTP client) to your webserver if you are experiencing problems.',
+  'help_file_not_exist_mandatory1' => 'file/folder does not exist',
+  'help_file_not_exist_mandatory2' => 'The file/folder %s has not been found on your server, although it is mandatory. Upload the file to your webserver (using your FTP client).',
+  'help_no_local_version1' => 'No local file version',
+  'help_no_local_version2' => 'The script was unable to extract a local file version - your file is either outdated or you have modified it, removing the header information on the way. Updating the file is recommended.',
+  'help_local_version_outdated1' => 'Local version outdated',
+  'help_local_version_outdated2' => 'Your version of this file seems to be from an older version of Coppermine (you probably upgraded). Make sure to update this file as well.',
+  'help_local_version_na1' => 'Unable to extract cvs version info',
+  'help_local_version_na2' => 'The script could not determine what cvs version the file on your webserver is. You should upload the file from your package.',
+  'help_local_version_dev1' => 'Development version',
+  'help_local_version_dev2' => 'The file on your webserver seems to be newer than your Coppermine version. You are either using a development file (you should only do so if you know what you are doing), or you have upgraded your Coppermine install and not uploaded include/init.inc.php',
+);
+
+// ------------------------------------------------------------------------- //
 // File view_log.php - OK
 // ------------------------------------------------------------------------- //
 
