@@ -324,7 +324,7 @@ EOT;
    }
    echo $lb;
    echo <<<EOT
-               </select>
+   </select>
          </td>
       </tr>
       <tr>
@@ -333,11 +333,7 @@ EOT;
                 <tr>
                <td><a href="javascript:Moveup_Option();"><img src="images/move_up.gif" width="26" height="21" border="0"></a><a href="javascript:Movedown_Option();"><img src="images/move_down.gif" width="26" height="21" border="0"></a>
                </td>
-<!-- Joe Ernst
-I commented this out because I can't get it to work.
-               <td align="center" style="background-color: #D4D0C8; width: 80px; height: 21px; border-top: 1px solid White; border-left: 1px solid White; border-right: 1px solid #808080; border-bottom: 1px solid #808080;"><a href="javascript:Picture_Delete();" style="color: Black; font-weight: bold;"><?php echo $lang_picmgr_php['delete'] ?></a>
-               </td>
--->
+<!-- Joe Ernst: I commented this out because I can't get it to work. -->
                <td align="center" style="width: 1px;"><img src="images/spacer.gif" width="1" alt=""><br>
                </td>
             </tr>
