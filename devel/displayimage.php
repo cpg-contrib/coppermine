@@ -463,7 +463,7 @@ function display_fullsize_pic()
     }
 
     ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
 <title><?php echo $CONFIG['gallery_name'] ?>: <?php echo $lang_fullsize_popup['click_to_close'];
@@ -499,7 +499,7 @@ adjust_popup();
         $row = mysql_fetch_array($result);
         $pic_url = get_pic_url($row, 'fullsize');
         $geom = 'width="' . $row['pwidth'] . '" height="' . $row['pheight'] . '"';
-        echo "<a href=\"javascript: window.close()\"><img src=\"" . $pic_url . "\" $geom class=\"image\" border=\"0\" alt=\"\" title=\"" . htmlspecialchars($row['filename']) . "\n" . $lang_fullsize_popup['click_to_close'] . "\" /></a><br />\n";
+               echo "<a href=\"javascript: window.close()\"><img src=\"" . $pic_url . "\" $geom class=\"image\" border=\"0\" alt=\"\" title=\"" . htmlspecialchars($row['filename']) . "\n" . $lang_fullsize_popup['click_to_close'] . "\" /></a><br />\n";
     }
 
     ?>
