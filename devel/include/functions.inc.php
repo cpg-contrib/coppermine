@@ -2677,7 +2677,8 @@ function cpg_get_webroot_path() {
 
     // let's eliminate all those vars that don't contain the filename (and replace the funny notation from windows machines)
     foreach($path_from_serverroot as $key) {
-        $key = str_replace('\\\\', '/', $key); // replace the windows notation
+        $key = str_replace('\\', '/', $key); // replace the windows notation
+        $key = str_replace('//', '/', $key); // replace duplicate forwardslashes
         if(strstr($key, $filename) != FALSE) { // eliminate all that don't contain the filename
             $path_from_serverroot2[] = $key;
         }
