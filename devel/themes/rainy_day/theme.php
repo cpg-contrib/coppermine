@@ -14,7 +14,7 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-
+define('THEME_HAS_RATING_GRAPHICS', 1);
 // HTML template for main menu
 $template_main_menu1 = <<<EOT
                 <span class="topmenu">
@@ -652,12 +652,12 @@ $template_image_rating = <<<EOT
                 <td colspan="6" class="tableh2_compact"><b>{TITLE}</b> {VOTES}</td>
         </tr>
         <tr>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE0}" title="{RUBBISH}"><img src="images/rating0.gif" alt="{RUBBISH}" border="0" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE1}" title="{POOR}"><img src="images/rating1.gif" alt="{POOR}" border="0" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE2}" title="{FAIR}"><img src="images/rating2.gif" alt="{FAIR}" border="0" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE3}" title="{GOOD}"><img src="images/rating3.gif" alt="{GOOD}" border="0" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE4}" title="{EXCELLENT}"><img src="images/rating4.gif" alt="{EXCELLENT}" border="0" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE5}" title="{GREAT}"><img src="images/rating5.gif" alt="{GREAT}" border="0" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE0}" title="{RUBBISH}"><img src="themes/rainy_day/images/rating0.gif" alt="{RUBBISH}" border="0" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE1}" title="{POOR}"><img src="themes/rainy_day/images/rating1.gif" alt="{POOR}" border="0" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE2}" title="{FAIR}"><img src="themes/rainy_day/images/rating2.gif" alt="{FAIR}" border="0" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE3}" title="{GOOD}"><img src="themes/rainy_day/images/rating3.gif" alt="{GOOD}" border="0" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE4}" title="{EXCELLENT}"><img src="themes/rainy_day/images/rating4.gif" alt="{EXCELLENT}" border="0" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE5}" title="{GREAT}"><img src="themes/rainy_day/images/rating5.gif" alt="{GREAT}" border="0" /><br /></a></td>
         </tr>
 
 EOT;
