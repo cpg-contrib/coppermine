@@ -14,18 +14,36 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-/*
-$Id$
+/**
+* Coppermine Photo Gallery 1.3.0 thumbnails.php
+*
+* This file generates the data of thumbnails for all the albums and metalbums,
+* the actual display is handled by the display_thumbnails and then in-turn 
+* theme_display_thumbnail function
+*
+* @copyright  2002,2003 Gregory DEMAR, Coppermine Dev Team
+* @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
+* @package Coppermine
+* @version $Id$
 */
 
+/**
+* @ignore
+*/
 define('IN_COPPERMINE', true);
+
 define('THUMBNAILS_PHP', true);
+
+/**
+* @ignore
+*/
 define('INDEX_PHP', true);
 
 require('include/init.inc.php');
+
 if ($CONFIG['enable_smilies']) include("include/smilies.inc.php");
 
-function get_subcat_data($parent, &$album_set_array, $level)
+function thumb_get_subcat_data($parent, &$album_set_array, $level)
 {
     global $CONFIG;
 
@@ -39,7 +57,7 @@ function get_subcat_data($parent, &$album_set_array, $level)
                 $album_set_array[] = $row['aid'];
             } // while
         }
-        if ($level > 1) get_subcat_data($subcat['cid'], $album_set_array, $level -1);
+        if ($level > 1) thumb_get_subcat_data($subcat['cid'], $album_set_array, $level -1);
     }
 }
 
@@ -50,6 +68,7 @@ function get_subcat_data($parent, &$album_set_array, $level)
 if (isset($HTTP_GET_VARS['sort'])) $USER['sort'] = $HTTP_GET_VARS['sort'];
 if (isset($HTTP_GET_VARS['cat'])) $cat = (int)$HTTP_GET_VARS['cat'];
 if (isset($HTTP_GET_VARS['uid'])) $USER['uid'] = (int)$HTTP_GET_VARS['uid'];
+
 if (isset($HTTP_GET_VARS['search'])) {
     $USER['search'] = $HTTP_GET_VARS['search'];
     if (isset($HTTP_GET_VARS['type']) && $HTTP_GET_VARS['type'] == 'full') {
@@ -113,7 +132,7 @@ if (is_numeric($album)) {
             $row = mysql_fetch_array($result);
             $CURRENT_CAT_NAME = $row['name'];
         }
-        get_subcat_data($cat, $album_set_array, $CONFIG['subcat_level']);
+        thumb_get_subcat_data($cat, $album_set_array, $CONFIG['subcat_level']);
         // Treat the album set
         if (count($album_set_array)) {
             $set = '';
@@ -133,7 +152,9 @@ if ($breadcrumb) {
     theme_display_cat_list($breadcrumb, $cat_data, '');
 }
 
-//Function to draw the password box
+/**
+* Function to draw the password box if the album is password protected
+*/
 function form_albpw()
 {
     global $HTTP_POST_VARS, $lang_thumb_view;

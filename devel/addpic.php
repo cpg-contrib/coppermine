@@ -26,7 +26,11 @@
 * @version $Id$
 */
 
+/**
+* @ignore
+*/
 define('IN_COPPERMINE', true);
+
 define('ADDPIC_PHP', true);
 
 require('include/init.inc.php');

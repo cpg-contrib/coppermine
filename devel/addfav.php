@@ -27,7 +27,13 @@
 * @version $Id$
 */
 
+/**
+* @ignore
+*/
 define('IN_COPPERMINE', true);
+/**
+* @ignore
+*/
 define('RATEPIC_PHP', true);
 
 require('include/init.inc.php');

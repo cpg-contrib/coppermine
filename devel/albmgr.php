@@ -14,18 +14,32 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-/*
-$Id$
+
+/**
+* Coppermine Photo Gallery 1.3.0 albmgr.php
+*
+* This file is the which allows creation of new Albumbs and editing the names of albums,
+* this is not the file which allows you to set album properties,
+* also see documentation for this file's {@relativelink ../_albmgr.php.php Free Standing Code}
+*
+* @copyright  2002,2003 Gregory DEMAR, Coppermine Dev Team
+* @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
+* @package Coppermine
+* @version $Id$
 */
 
+/**
+* @ignore
+*/
 define('IN_COPPERMINE', true);
+
 define('ALBMGR_PHP', true);
 
 require('include/init.inc.php');
 
 if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
-function get_subcat_data($parent, $ident = '')
+function alb_get_subcat_data($parent, $ident = '')
 {
     global $CONFIG, $CAT_LIST;
 
@@ -34,7 +48,7 @@ function get_subcat_data($parent, $ident = '')
         $rowset = db_fetch_rowset($result);
         foreach ($rowset as $subcat) {
             $CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
-            get_subcat_data($subcat['cid'], $ident . '&nbsp;&nbsp;&nbsp;');
+            alb_get_subcat_data($subcat['cid'], $ident . '&nbsp;&nbsp;&nbsp;');
         }
     }
 }
@@ -342,7 +356,7 @@ if (GALLERY_ADMIN_MODE) {
     $CAT_LIST = array();
     $CAT_LIST[] = array(FIRST_USER_CAT + USER_ID, $lang_albmgr_php['my_gallery']);
     $CAT_LIST[] = array(0, $lang_albmgr_php['no_category']);
-    get_subcat_data(0, '');
+    alb_get_subcat_data(0, '');
 
     echo <<<EOT
                 <tr>
