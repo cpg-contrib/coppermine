@@ -1749,7 +1749,7 @@ $return = '
 1.4.0|reviewcom.php|1.4.0|1.14|mandatory|r@
 1.4.0|scripts.js|1.4.0|1.7|mandatory|r@
 1.4.0|search.php|1.4.0|1.7|mandatory|r@
-1.4.0|searchnew.php|1.4.0|1.36|mandatory|r@
+1.4.0|searchnew.php|1.4.0|1.37|mandatory|r@
 1.4.0|showthumb.php|1.4.0|1.8|mandatory|r@
 1.4.0|thumbnails.php|1.4.0|1.20|mandatory|r@
 1.4.0|update.php|1.4.0|1.16|mandatory|r@
@@ -1790,6 +1790,7 @@ $return = '
 1.4.0|include/archive.php|1.4.0|1.3|mandatory|r@
 1.4.0|include/config.inc.php|||mandatory|r@
 1.4.0|include/crop.inc.php|1.4.0|1.11|mandatory|r@
+1.4.0|include/debugger.inc.php|1.4.0|1.1|mandatory|r@
 1.4.0|include/exif.php|1.4.0|1.3|mandatory|r@
 1.4.0|include/exif_php.inc.php|1.4.0|1.13|mandatory|r@
 1.4.0|include/exifReader.inc.php|1.4.0|1.5|mandatory|r@
@@ -1797,7 +1798,7 @@ $return = '
 1.4.0|include/imageObjectGD.class.php|1.4.0|1.6|mandatory|r@
 1.4.0|include/imageObjectIM.class.php|1.4.0|1.6|mandatory|r@
 1.4.0|include/index.html|||mandatory|r@
-1.4.0|include/init.inc.php|1.4.0|1.67|mandatory|r@
+1.4.0|include/init.inc.php|1.4.0|1.68|mandatory|r@
 1.4.0|include/iptc.inc.php|1.4.0|1.6|mandatory|r@
 1.4.0|include/keyword.inc.php|1.4.0|1.2|mandatory|r@
 1.4.0|include/langfallback.inc.php|1.4.0|1.8|mandatory|r@
@@ -1806,7 +1807,7 @@ $return = '
 1.4.0|include/media.functions.inc.php|1.4.0|1.8|mandatory|r@
 1.4.0|include/picmgmt.inc.php|1.4.0|1.25|mandatory|r@
 1.4.0|include/plugin_api.inc.php|1.4.0|1.10|mandatory|r@
-1.4.0|include/search.inc.php|1.4.0|1.9|mandatory|r@
+1.4.0|include/search.inc.php|1.4.0|1.10|mandatory|r@
 1.4.0|include/select_lang.inc.php|1.4.0|1.7|mandatory|r@
 1.4.0|include/slideshow.inc.php|1.4.0|1.10|mandatory|r@
 1.4.0|include/smilies.inc.php|1.4.0|1.10|mandatory|r@
