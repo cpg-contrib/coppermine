@@ -19,49 +19,82 @@
 // This theme has all CORE items that are available                          //
 // ------------------------------------------------------------------------- //
 
+// The following terms can be defined in theme.php
+// ('THEME_HAS_RATING_GRAPHICS', 1) : The location for the ratings graphics will
+//    be directed to the themes images folder.
+//    RUBBISH   : images/rating0.gif
+//    POOR      : images/rating1.gif
+//    FAIR      : images/rating2.gif
+//    GOOD      : images/rating3.gif
+//    EXCELLENT : images/rating4.gif
+//    GREAT     : images/rating5.gif
+//('THEME_HAS_NAVBAR_GRAPHICS', 1); : The location for the navbar graphics will
+//    be directed to the themes images folder.
+//    Back to thumbnails   : images/thumbnails.gif
+//    Picture Information  : images/info.gif
+//    Slideshow            : images/slideshow.gif
+//    Report to admin      : images/report.gif
+//    Ecard                : images/ecard.gif
+//    Previous             : images/prev.gif
+//    Next                 : images/next.gif
+// ('THEME_HAS_FILM_STRIP_GRAPHICS', 1) : The location for the film strip graphics will
+//    be directed to the themes images folder.
+//    tile on the top      : images/tile1.gif
+//    tile on the bottom   : images/tile2.gif
+
+
+// HTML template for main menu spacer first
+$template_main_menu_spacer_first = '';
+
+// HTML template for main menu spacer
+$template_main_menu_spacer = '::';
+
+// HTML template for main menu spacer last
+$template_main_menu_spacer_last = '';
+
 // HTML template for main menu
 $template_main_menu = <<<EOT
                 <span class="topmenu">
 <!-- BEGIN album_list -->
-                        <a href="{ALB_LIST_TGT}" title="{ALB_LIST_TITLE}">{ALB_LIST_LNK}</a> ::
+                {SPACER_FIRST}<a href="{ALB_LIST_TGT}" title="{ALB_LIST_TITLE}">{ALB_LIST_LNK}</a> {SPACER}
 <!-- END album_list -->
 <!-- BEGIN my_gallery -->
-                        <a href="{MY_GAL_TGT}" title="{MY_GAL_TITLE}">{MY_GAL_LNK}</a> ::
+                        <a href="{MY_GAL_TGT}" title="{MY_GAL_TITLE}">{MY_GAL_LNK}</a> {SPACER}
 <!-- END my_gallery -->
 <!-- BEGIN allow_memberlist -->
-                        <a href="{MEMBERLIST_TGT}" title="{MEMBERLIST_TITLE}">{MEMBERLIST_LNK}</a>  ::
+                        <a href="{MEMBERLIST_TGT}" title="{MEMBERLIST_TITLE}">{MEMBERLIST_LNK}</a>  {SPACER}
 <!-- END allow_memberlist -->
 <!-- BEGIN my_profile -->
-                        <a href="{MY_PROF_TGT}" title="{MY_PROF_TITLE}">{MY_PROF_LNK}</a> ::
+                        <a href="{MY_PROF_TGT}" title="{MY_PROF_TITLE}">{MY_PROF_LNK}</a> {SPACER}
 <!-- END my_profile -->
 <!-- BEGIN faq -->
-                        <a href="{FAQ_TGT}" title="{FAQ_TITLE}">{FAQ_LNK}</a> ::
+                        <a href="{FAQ_TGT}" title="{FAQ_TITLE}">{FAQ_LNK}</a> {SPACER}
 <!-- END faq -->
 <!-- BEGIN enter_admin_mode -->
-                        <a href="{ADM_MODE_TGT}" title="{ADM_MODE_TITLE}">{ADM_MODE_LNK}</a> ::
+                        <a href="{ADM_MODE_TGT}" title="{ADM_MODE_TITLE}">{ADM_MODE_LNK}</a> {SPACER}
 <!-- END enter_admin_mode -->
 <!-- BEGIN leave_admin_mode -->
-                        <a href="{USR_MODE_TGT}" title="{USR_MODE_TITLE}">{USR_MODE_LNK}</a> ::
+                        <a href="{USR_MODE_TGT}" title="{USR_MODE_TITLE}">{USR_MODE_LNK}</a> {SPACER}
 <!-- END leave_admin_mode -->
 <!-- BEGIN upload_pic -->
-                        <a href="{UPL_PIC_TGT}" title="{UPL_PIC_TITLE}">{UPL_PIC_LNK}</a> ::
+                        <a href="{UPL_PIC_TGT}" title="{UPL_PIC_TITLE}">{UPL_PIC_LNK}</a> {SPACER}
 <!-- END upload_pic -->
 <!-- BEGIN register -->
-                        <a href="{REGISTER_TGT}" title="{REGISTER_TITLE}">{REGISTER_LNK}</a> ::
+                        <a href="{REGISTER_TGT}" title="{REGISTER_TITLE}">{REGISTER_LNK}</a> {SPACER}
 <!-- END register -->
 <!-- BEGIN login -->
-                        <a href="{LOGIN_TGT}" title="{LOGIN_TITLE}">{LOGIN_LNK}</a>
+                        <a href="{LOGIN_TGT}" title="{LOGIN_TITLE}">{LOGIN_LNK}</a> {SPACER_LAST}
 <!-- END login -->
 <!-- BEGIN logout -->
-                        <a href="{LOGOUT_TGT}" title="{LOGOUT_TITLE}">{LOGOUT_LNK}</a>
+                        <a href="{LOGOUT_TGT}" title="{LOGOUT_TITLE}">{LOGOUT_LNK}</a> {SPACER_LAST}
 <!-- END logout -->
                         <br />
-                        <a href="{LASTUP_TGT}" title="{LASTUP_TITLE}">{LASTUP_LNK}</a> ::
-                        <a href="{LASTCOM_TGT}" title="{LASTCOM_TITLE}">{LASTCOM_LNK}</a> ::
-                        <a href="{TOPN_TGT}" title="{TOPN_TITLE}">{TOPN_LNK}</a> ::
-                        <a href="{TOPRATED_TGT}" title="{TOPRATED_TITLE}">{TOPRATED_LNK}</a> ::
-                        <a href="{FAV_TGT}" title="{FAV_TITLE}">{FAV_LNK}</a> ::
-                        <a href="{SEARCH_TGT}" title="{SEARCH_TITLE}">{SEARCH_LNK}</a>
+          {SPACER_FIRST}<a href="{LASTUP_TGT}" title="{LASTUP_TITLE}">{LASTUP_LNK}</a> {SPACER}
+                        <a href="{LASTCOM_TGT}" title="{LASTCOM_TITLE}">{LASTCOM_LNK}</a> {SPACER}
+                        <a href="{TOPN_TGT}" title="{TOPN_TITLE}">{TOPN_LNK}</a> {SPACER}
+                        <a href="{TOPRATED_TGT}" title="{TOPRATED_TITLE}">{TOPRATED_LNK}</a> {SPACER}
+                        <a href="{FAV_TGT}" title="{FAV_TITLE}">{FAV_LNK}</a> {SPACER}
+                        <a href="{SEARCH_TGT}" title="{SEARCH_TITLE}">{SEARCH_LNK}</a> {SPACER_LAST}
                 </span>
 EOT;
 // HTML template for gallery admin menu
@@ -123,10 +156,9 @@ $template_cat_list = <<<EOT
                 <td class="tableb" align="center">{ALB_COUNT}</td>
                 <td class="tableb" align="center">{PIC_COUNT}</td>
         </tr>
-     <!--if (isset(CAT_ALBUMS)){-->
-          <tr>
+        <tr>
             <td class="tableb" colspan="3">{CAT_ALBUMS}</td>
-      </tr><!--};-->
+        </tr>
 <!-- END catrow -->
 <!-- BEGIN footer -->
         <tr>
@@ -134,7 +166,7 @@ $template_cat_list = <<<EOT
         </tr>
 <!-- END footer -->
 <!-- BEGIN spacer -->
-        <img src="images/spacer.gif" width="1" height="17" border="" alt="" /><br />
+        <img src="images/spacer.gif" width="1" height="7" border="" alt="" /><br />
 <!-- END spacer -->
 
 EOT;
@@ -215,7 +247,7 @@ $template_album_list = <<<EOT
         </tr>
         <tr>
                 <td width="100%" valign="top" class="tableb_compact">
-                        &nbsp;
+                    <div class="thumbnails" style="background-color:transparent"><img src="images/spacer.gif" width="1" height="{SPACER}" border="0" class="image" style="border:0;margin-top:1;margin-bottom:0" alt="" /></div>
                 </td>
         </tr>
         </table>
@@ -240,7 +272,7 @@ $template_album_list = <<<EOT
         </tr>
 <!-- END tabs -->
 <!-- BEGIN spacer -->
-        <img src="images/spacer.gif" width="1" height="17" border="" alt="" /><br />
+        <img src="images/spacer.gif" width="1" height="7" border="" alt="" /><br />
 <!-- END spacer -->
 
 EOT;
@@ -248,7 +280,7 @@ EOT;
 $template_film_strip = <<<EOT
 
         <tr>
-         <td valign="top" style="background-image: url(themes/classic/images/tile.gif);" align="center" height='30'>&nbsp;</td>
+         <td valign="top" style="background-image: url({TILE1});" align="center" height='30'>&nbsp;</td>
         </tr>
         <tr>
         <td valign="bottom" class="thumbnails" align="center">
@@ -256,7 +288,7 @@ $template_film_strip = <<<EOT
         </td>
         </tr>
         <tr>
-         <td valign="top" style="background-image: url(themes/classic/images/tile.gif);" align="center" height='30'>&nbsp;</td>
+         <td valign="top" style="background-image: url({TILE2});" align="center" height='30'>&nbsp;</td>
         </tr>
 <!-- BEGIN thumb_cell -->
                                         <a href="{LINK_TGT}">{THUMB}</a>&nbsp;
@@ -311,7 +343,7 @@ $template_album_list_cat = <<<EOT
 <!-- END c_album_cell -->
 <!-- BEGIN c_empty_cell -->
         <td width="{COL_WIDTH}%" valign="top">
-        <table width="100%" cellspacing="0" cellpadding="0">
+        <table width="100%" cellspacing="0" cellpadding="0" >
         <tr>
                 <td height="1" valign="top" class="tableh2">
                         <b>&nbsp;</b>
@@ -323,8 +355,8 @@ $template_album_list_cat = <<<EOT
                 </td>
         </tr>
         <tr>
-                <td width="100%" valign="top" class="tableb_compact">
-                        &nbsp;
+                <td width="100%" valign="top" class="tableb_compact" >
+                      <div class="thumbnails" style="background-color:transparent"><img src="images/spacer.gif" width="1" height="{SPACER}" border="0" class="image" style="border:0;margin-top:1;margin-bottom:0" alt="" /></div>
                 </td>
         </tr>
         </table>
@@ -349,7 +381,7 @@ $template_album_list_cat = <<<EOT
         </tr>
 <!-- END c_tabs -->
 <!-- BEGIN c_spacer -->
-        <img src="images/spacer.gif" width="1" height="17" border="" alt="" /><br />
+        <img src="images/spacer.gif" width="1" height="7" border="" alt="" /><br />
 <!-- END c_spacer -->
 
 EOT;
@@ -380,9 +412,9 @@ $template_thumb_view_title_row = <<<EOT
                                 <td class="sortorder_cell">
                                         <table cellpadding="0" cellspacing="0">
                                         <tr>
-                                <td class="sortorder_options">{TITLE}</td>
-                                <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=ta" title="{SORT_TA}">&nbsp;+&nbsp;</a></span></td>
-                                <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=td" title="{SORT_TD}">&nbsp;-&nbsp;</a></span></td>
+                                                <td class="sortorder_options">{TITLE}</td>
+                                                <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=ta" title="{SORT_TA}">&nbsp;+&nbsp;</a></span></td>
+                                                <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=td" title="{SORT_TD}">&nbsp;-&nbsp;</a></span></td>
                                         </tr>
                                         <tr>
                                                 <td class="sortorder_options">{NAME}</td>
@@ -395,11 +427,10 @@ $template_thumb_view_title_row = <<<EOT
                                                 <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=dd" title="{SORT_DD}">&nbsp;-&nbsp;</a></span></td>
                                         </tr>
                                         <tr>
-                                            <td class="sortorder_options">{POSITION}</td>
-                                            <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=pa" title="{SORT_PA}">&nbsp;+&nbsp;</a></span></td>
-                                            <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=pd" title="{SORT_PD}">&nbsp;-&nbsp;</a></span></td>
+                                                <td class="sortorder_options">{POSITION}</td>
+                                                <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=pa" title="{SORT_PA}">&nbsp;+&nbsp;</a></span></td>
+                                                <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=pd" title="{SORT_PD}">&nbsp;-&nbsp;</a></span></td>
                                         </tr>
-
                                         </table>
                                 </td>
                         </tr>
@@ -469,7 +500,7 @@ $template_thumbnail_view = <<<EOT
         </tr>
 <!-- END tabs -->
 <!-- BEGIN spacer -->
-        <img src="images/spacer.gif" width="1" height="17" border="" alt="" /><br />
+        <img src="images/spacer.gif" width="1" height="7" border="" alt="" /><br />
 <!-- END spacer -->
 
 EOT;
@@ -481,7 +512,7 @@ $template_no_img_to_display = <<<EOT
                 </td>
         </tr>
 <!-- BEGIN spacer -->
-        <img src="images/spacer.gif" width="1" height="17" border="" alt="" /><br />
+        <img src="images/spacer.gif" width="1" height="7" border="" alt="" /><br />
 <!-- END spacer -->
 
 EOT;
@@ -506,32 +537,32 @@ $template_img_navbar = <<<EOT
 
         <tr>
                 <td align="center" valign="middle" class="navmenu" width="48px">
-                        <a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="images/folder.gif" width="16px" height="16px" align="middle" border="0px" alt="{THUMB_TITLE}" /></a>
+                        <a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="{LOCATION}images/thumbnails.gif" align="middle" border="0px" alt="{THUMB_TITLE}" /></a>
                 </td>
                 <td align="center" valign="middle" class="navmenu" width="48px">
-                        <a href="javascript:;" onclick="blocking('picinfo','yes', 'block'); return false;" title="{PIC_INFO_TITLE}"><img src="images/info.gif" width="16px" height="16px" border="0px" align="middle" alt="{PIC_INFO_TITLE}" /></a>
+                        <a href="javascript:;" class="navmenu_pic" onclick="blocking('picinfo','yes', 'block'); return false;" title="{PIC_INFO_TITLE}"><img src="{LOCATION}images/info.gif" border="0px" align="middle" alt="{PIC_INFO_TITLE}" /></a>
                 </td>
                 <td align="center" valign="middle" class="navmenu" width="48px">
-                        <a href="{SLIDESHOW_TGT}" title="{SLIDESHOW_TITLE}"><img src="images/slideshow.gif" width="16px" height="16px" border="0px" align="middle" alt="{SLIDESHOW_TITLE}" /></a>
+                        <a href="{SLIDESHOW_TGT}" class="navmenu_pic" title="{SLIDESHOW_TITLE}"><img src="{LOCATION}images/slideshow.gif" border="0px" align="middle" alt="{SLIDESHOW_TITLE}" /></a>
                 </td>
                 <td align="center" valign="middle" class="navmenu" width="100%">
                         {PIC_POS}
                 </td>
 <!-- BEGIN report_file_button -->
                 <td align="center" valign="middle" class="navmenu" width="48px">
-                        <a href="{REPORT_TGT}" title="{REPORT_TITLE}"><img src="images/report.gif" width="16" height="16" border="0" align="middle" alt="{REPORT_TITLE}" /></a>
+                        <a href="{REPORT_TGT}" class="navmenu_pic" title="{REPORT_TITLE}"><img src="{LOCATION}images/report.gif" border="0" align="middle" alt="{REPORT_TITLE}" /></a>
                 </td>
 <!-- END report_file_button -->
 <!-- BEGIN ecard_button -->
                 <td align="center" valign="middle" class="navmenu" width="48px">
-                        <a href="{ECARD_TGT}" title="{ECARD_TITLE}"><img src="images/ecard.gif" width="16px" height="16px" border="0px" align="middle" alt="{ECARD_TITLE}" /></a>
+                        <a href="{ECARD_TGT}" class="navmenu_pic" title="{ECARD_TITLE}"><img src="{LOCATION}images/ecard.gif"  border="0px" align="middle" alt="{ECARD_TITLE}" /></a>
                 </td>
 <!-- END ecard_button -->
                 <td align="center" valign="middle" class="navmenu" width="48px">
-                        <a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="images/prev.gif" width="16px" height="16px" border="0px" align="middle" alt="{PREV_TITLE}" /></a>
+                        <a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="{LOCATION}images/prev.gif"  border="0px" align="middle" alt="{PREV_TITLE}" /></a>
                 </td>
                 <td align="center" valign="middle" class="navmenu" width="48px">
-                        <a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="images/next.gif" width="16px" height="16px" border="0px" align="middle" alt="{NEXT_TITLE}" /></a>
+                        <a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="{LOCATION}images/next.gif"  border="0px" align="middle" alt="{NEXT_TITLE}" /></a>
                 </td>
         </tr>
 
@@ -592,12 +623,12 @@ $template_image_rating = <<<EOT
                 <td colspan="6" class="tableh2_compact"><b>{TITLE}</b> {VOTES}</td>
         </tr>
         <tr>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE0}" title="{RUBBISH}"><img src="images/rating0.gif" alt="{RUBBISH}" border="0px" alt="" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE1}" title="{POOR}"><img src="images/rating1.gif" alt="{POOR}" border="0px" alt="" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE2}" title="{FAIR}"><img src="images/rating2.gif" alt="{FAIR}" border="0px" alt="" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE3}" title="{GOOD}"><img src="images/rating3.gif" alt="{GOOD}" border="0px" alt="" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE4}" title="{EXCELLENT}"><img src="images/rating4.gif" alt="{EXCELLENT}" border="0px" alt="" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE5}" title="{GREAT}"><img src="images/rating5.gif" alt="{GREAT}" border="0px" alt="" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE0}" title="{RUBBISH}"><img src="{LOCATION}images/rating0.gif" alt="{RUBBISH}" border="0px" alt="" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE1}" title="{POOR}"><img src="{LOCATION}images/rating1.gif" alt="{POOR}" border="0px" alt="" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE2}" title="{FAIR}"><img src="{LOCATION}images/rating2.gif" alt="{FAIR}" border="0px" alt="" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE3}" title="{GOOD}"><img src="{LOCATION}images/rating3.gif" alt="{GOOD}" border="0px" alt="" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE4}" title="{EXCELLENT}"><img src="{LOCATION}images/rating4.gif" alt="{EXCELLENT}" border="0px" alt="" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE5}" title="{GREAT}"><img src="{LOCATION}images/rating5.gif" alt="{GREAT}" border="0px" alt="" /><br /></a></td>
         </tr>
 </table>
 EOT;
@@ -923,7 +954,7 @@ function pageheader($section, $meta = '')
     global $CONFIG, $THEME_DIR;
     global $template_header, $lang_charset, $lang_text_dir;
 
-        $custom_header = cpg_get_custom_include($CONFIG['custom_header_path']);
+    $custom_header = cpg_get_custom_include($CONFIG['custom_header_path']);
 
     header('P3P: CP="CAO DSP COR CURa ADMa DEVa OUR IND PHY ONL UNI COM NAV INT DEM PRE"');
     user_save_profile();
@@ -996,7 +1027,8 @@ EOT;
 function theme_main_menu()
 {
     global $AUTHORIZED, $CONFIG, $album, $actual_cat, $cat, $REFERER;
-    global $lang_main_menu, $template_main_menu;
+    global $lang_main_menu, $template_main_menu, $template_main_menu_spacer_first;
+    global $template_main_menu_spacer, $template_main_menu_spacer_last;
 
     static $main_menu = '';
 
@@ -1100,6 +1132,9 @@ function theme_main_menu()
         '{SEARCH_TGT}' => "search.php",
         '{SEARCH_TITLE}' => $lang_main_menu['search_title'],
         '{SEARCH_LNK}' => $lang_main_menu['search_lnk'],
+        '{SPACER_FIRST}' => $template_main_menu_spacer_first,
+        '{SPACER}' => $template_main_menu_spacer,
+        '{SPACER_LAST}' => $template_main_menu_spacer_last,
         );
 
     $main_menu = template_eval($template_main_menu, $param);
@@ -1304,7 +1339,9 @@ function theme_display_album_list(&$alb_list, $nbAlb, $cat, $page, $total_pages)
         }
     }
 
-    $params = array('{COL_WIDTH}' => $column_width);
+    $params = array('{COL_WIDTH}' => $column_width,
+          '{SPACER}' => $thumb_cell_width
+          );
     $empty_cell = template_eval($empty_cell, $params);
 
     while ($count++ % $columns != 0) {
@@ -1386,7 +1423,9 @@ function theme_display_album_list_cat(&$alb_list, $nbAlb, $cat, $page, $total_pa
         }
     }
 
-    $params = array('{COL_WIDTH}' => $column_width);
+    $params = array('{COL_WIDTH}' => $column_width,
+          '{SPACER}' => $thumb_cell_width
+          );
     $empty_cell = template_eval($empty_cell, $params);
 
     while ($count++ % $columns != 0) {
@@ -1536,7 +1575,7 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
 // Added to display flim_strip
 function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $pos, $sort_options, $mode = 'thumb')
 {
-    global $CONFIG;
+    global $CONFIG, $THEME_DIR;
     global $template_film_strip, $lang_film_strip;
 
     static $template = '';
@@ -1576,9 +1615,19 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
         }
         $thumb_strip .= template_eval($thumb_cell, $params);
     }
+    
+    if (defined('THEME_HAS_FILM_STRIP_GRAPHICS')) {
+                $tile1 = $THEME_DIR . 'images/tile1.gif';
+                $tile2 = $THEME_DIR . 'images/tile2.gif';
+    } else {
+        $tile1=$tile2= 'images/tile.gif';
+    }
 
     $params = array('{THUMB_STRIP}' => $thumb_strip,
-        '{COLS}' => $i);
+        '{COLS}' => $i,
+        '{TILE1}' => $tile1,
+        '{TILE2}' => $tile2,
+        );
 
     ob_start();
     starttable($CONFIG['picture_table_width']);
@@ -1767,10 +1816,9 @@ function theme_html_picture()
     return template_eval($template_display_picture, $params);
 }
 
-
 function theme_html_img_nav_menu()
 {
-    global $CONFIG, $CURRENT_PIC_DATA, $meta_nav ; //$PHP_SELF,
+    global $CONFIG, $CURRENT_PIC_DATA, $meta_nav, $THEME_DIR ; //$PHP_SELF,
     global $album, $cat, $pos, $pic_count, $lang_img_nav_bar, $lang_text_dir, $template_img_navbar;
 
     $cat_link = is_numeric($album) ? '' : '&amp;cat=' . $cat;
@@ -1824,6 +1872,12 @@ function theme_html_img_nav_menu()
     $slideshow_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pid=$pid&amp;slideshow=".$CONFIG['slideshow_interval'];
 
     $pic_pos = sprintf($lang_img_nav_bar['pic_pos'], $human_pos, $pic_count);
+    
+    if (defined('THEME_HAS_NAVBAR_GRAPHICS')) {
+            $location= $THEME_DIR;
+        } else {
+            $location= '';
+        }
 
     $params = array('{THUMB_TGT}' => $thumb_tgt,
         '{THUMB_TITLE}' => $lang_img_nav_bar['thumb_title'],
@@ -1841,6 +1895,7 @@ function theme_html_img_nav_menu()
         '{NEXT_IMAGE}' => ($lang_text_dir=='ltr') ? 'next' : 'prev',
         '{REPORT_TGT}' => $report_tgt,
         '{REPORT_TITLE}' => $lang_img_nav_bar['report_title'],
+        '{LOCATION}' => $location,
         );
 
     return template_eval($template_img_navbar, $params);
@@ -1848,13 +1903,19 @@ function theme_html_img_nav_menu()
 
 function theme_html_rating_box()
 {
-    global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA;
+    global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $THEME_DIR;
     global $template_image_rating, $lang_rate_pic;
 
     if (!(USER_CAN_RATE_PICTURES && $CURRENT_ALBUM_DATA['votes'] == 'YES')) return '';
 
     $votes = $CURRENT_PIC_DATA['votes'] ? sprintf($lang_rate_pic['rating'], round($CURRENT_PIC_DATA['pic_rating'] / 2000, 1), $CURRENT_PIC_DATA['votes']) : $lang_rate_pic['no_votes'];
     $pid = $CURRENT_PIC_DATA['pid'];
+
+    if (defined('THEME_HAS_RATING_GRAPHICS')) {
+        $location= $THEME_DIR;
+    } else {
+        $location= '';
+    }
 
     $params = array('{TITLE}' => $lang_rate_pic['rate_this_pic'],
         '{VOTES}' => $votes,
@@ -1871,6 +1932,7 @@ function theme_html_rating_box()
         '{EXCELLENT}' => $lang_rate_pic['excellent'],
         '{GREAT}' => $lang_rate_pic['great'],
         '{WIDTH}' => $CONFIG['picture_table_width'],
+        '{LOCATION}' => $location,        //theme dir or default images directory
         );
 
     return template_eval($template_image_rating, $params);
@@ -2081,5 +2143,5 @@ function theme_display_fullsize_pic()
   </body>
 </html>
 <?php
-}
+}  
 ?>
