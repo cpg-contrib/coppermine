@@ -31,6 +31,7 @@ this resulted in the character count not being respected at all.
 With the new code, the long urls don't affect the display of the hyperlinked word.
 However, I can't figure out how to make the code respect the max comment word length and max comment length.
 Formatted and unformatted words that are longer than the allowed setting do not get truncated. -Thu */
+
 function check_comment(&$str)
 {
     global $CONFIG, $lang_bad_words, $queries;
@@ -42,7 +43,7 @@ function check_comment(&$str)
 
                 $stripped_str = strip_tags($str);
     if (strlen($stripped_str) > $CONFIG['max_com_size']) $stripped_str = substr($stripped_str, 0, ($CONFIG['max_com_size'] -3)) . '...';
-    $stripped_str = preg_replace($ercp, '(...)', $stripped_str);
+    $str = preg_replace($ercp, '(...)', $stripped_str);
 }
 
 if (!isset($_GET['event']) && !isset($_POST['event'])) {
