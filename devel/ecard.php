@@ -26,8 +26,12 @@ require('include/smilies.inc.php');
 require('include/mailer.inc.php');
 
 if (!USER_CAN_SEND_ECARDS) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+
+//print_r(get_defined_constants());
+
 // cheap cookie fix
-if ((!USER) && ($_COOKIE['cookiename']!=0)) setcookie('ecard',1);
+if ((!USER_ID) && ($_COOKIE['ecard']!=0)) setcookie('ecard',1);
+
 function get_post_var($name, $default = '')
 {
     global $HTTP_POST_VARS;
@@ -107,18 +111,17 @@ if (count($HTTP_POST_VARS) > 0 && $valid_sender_email && $valid_recipient_email)
         $message .= "Sent by from IP" .$_SERVER["REMOTE_HOST"]." at ".gmstrftime("%A,  %B,%V,%Y %I:%M %p ", time())." [GMT]";
     $subject = sprintf($lang_ecard_php['ecard_title'], $sender_name);
     //cheap cookie fix
-        if ((!USER_ID)||($_COOKIE['cookiename']==1))
-        {
+    if ((USER_ID)||($_COOKIE['ecard']==1)){
         $result = cpg_mail($recipient_email, $subject, $message, 'text/html', $sender_name, $sender_email);
         //write ecard log
         if ($CONFIG['log_ecards'] == 1) {
           $result = db_query("INSERT INTO {$CONFIG['TABLE_ECARDS']} (sender_name, sender_email, recipient_name, recipient_email, link, date, sender_ip) VALUES ('$sender_name', '$sender_email', '$recipient_name', '$recipient_email',   '$encoded_data', '$tempTime', '{$_SERVER["REMOTE_ADDR"]}')");
           }
-        } else {
+    } else {
                 cpg_die(ERROR, $lang_ecard_php['send_failed']);
                 // cpg_die(ERROR, $lang_ecard_php['cookie_required']);
     }
-        if (!USER) setcookie('ecard',1);
+    if (!USER_ID) setcookie('ecard',1);
     if (!USER_ID) {
         $USER['name'] = $sender_name;
         $USER['email'] = $sender_email;
@@ -127,8 +130,8 @@ if (count($HTTP_POST_VARS) > 0 && $valid_sender_email && $valid_recipient_email)
     if ($result) {
         pageheader($lang_ecard_php['title'], "<META http-equiv=\"refresh\" content=\"3;url=displayimage.php?album=$album&pos=$pos\">");
         //cheap cookie fix
-                if (!USER) setcookie('ecard',0);
-    msg_box($lang_cpg_die[INFORMATION], $lang_ecard_php['send_success'], $lang_continue, "displayimage.php?album=$album&pos=$pos");
+        if (!USER_ID) setcookie('ecard',0);
+        msg_box($lang_cpg_die[INFORMATION], $lang_ecard_php['send_success'], $lang_continue, "displayimage.php?album=$album&pos=$pos");
         pagefooter();
         ob_end_flush();
         exit;
