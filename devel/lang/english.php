@@ -54,6 +54,7 @@ $lastup_date_fmt = '%B %d, %Y';
 $register_date_fmt = '%B %d, %Y';
 $lasthit_date_fmt = '%B %d, %Y at %I:%M %p'; //cpg1.3.0
 $comment_date_fmt =  '%B %d, %Y at %I:%M %p'; //cpg1.3.0
+$log_date_fmt = '%B %d, %Y at %I:%M %p'; //cpg 1.4.0
 
 // For the word censor
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
@@ -390,6 +391,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Gallery is offline', 'offline', 1),
   array('Log ecards', 'log_ecards', 1),
   array('Allow ZIP-download of favorites', 'enable_zipdownload', 1),
+  array('Timezone difference relative to GMT','time_offset',0),
 
   'Language, Themes &amp; Charset settings',
   array('Language', 'lang', 5),
