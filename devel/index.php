@@ -92,8 +92,9 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
                 } else {
                     $HIDE_USER_CAT = 1;
                 }
-            } else {
-                $result = db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = {$subcat['cid']}".$album_filter);
+            } else {			  
+				$unaliased_album_filter = str_replace('a.','',$album_filter);
+                $result = db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = {$subcat['cid']}".$unaliased_album_filter);
                 $album_count = mysql_num_rows($result);
                 while ($row = mysql_fetch_array($result)) {
                     $album_set_array[] = $row['aid'];
