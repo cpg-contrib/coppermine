@@ -27,38 +27,38 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
 
 function form_label($text)
 {
-	global $lang_config_php;
-	global $sn1,$sn2,$sn3;
-	
-	static $cmi = 0;
-	static $open = false;
-					
-	if ($sn1) echo '<tr><td colspan ="2"><a name="notice1"></a>'.$lang_config_php['notice1'].'</td></tr>';
-	if ($sn2) echo '<tr><td colspan ="2"><a name="notice2"></a>'.$lang_config_php['notice2'].'</td></tr>'; 
-	if ($sn3) echo '<tr><td colspan ="2"><a name="notice3"></a>'.$lang_config_php['notice3'].'</td></tr>'; 
-	
-	$sn1 = $sn2 = $sn3 = 0;
-	
-	if ($open){
-	echo <<< EOT
-				</table>
-			</td>
-		</tr>
+        global $lang_config_php;
+        global $sn1,$sn2,$sn3;
+
+        static $cmi = 0;
+        static $open = false;
+
+        if ($sn1) echo '<tr><td colspan ="2"><a name="notice1"></a>'.$lang_config_php['notice1'].'</td></tr>';
+        if ($sn2) echo '<tr><td colspan ="2"><a name="notice2"></a>'.$lang_config_php['notice2'].'</td></tr>';
+        if ($sn3) echo '<tr><td colspan ="2"><a name="notice3"></a>'.$lang_config_php['notice3'].'</td></tr>';
+
+        $sn1 = $sn2 = $sn3 = 0;
+
+        if ($open){
+        echo <<< EOT
+                                </table>
+                        </td>
+                </tr>
 EOT;
-	}
-	echo <<< EOT
-		<tr>
-			<td class="tableh2" colspan="2" onclick="show_section('section{$cmi}')">
-				<img src="/images/descending.gif" alt="click section name to expand" /> <b>$text</b>
-			</td>	
-		</tr>
-		<tr>
-			<td>
-				<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable" id="section{$cmi}">
+        }
+        echo <<< EOT
+                <tr>
+                        <td class="tableh2" colspan="2" onclick="show_section('section{$cmi}')">
+                                <span style="cursor:hand"><img src="images/descending.gif" border="0" width="9" height="9" alt="" title="{$lang_config_php['click_expand']}" /> <b>$text</b></span>
+                        </td>
+                </tr>
+                <tr>
+                        <td>
+                                <table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable" id="section{$cmi}">
 EOT;
 
-	$open = true;
-	$cmi++;
+        $open = true;
+        $cmi++;
 }
 
 function form_input($text, $name, $help = '')
@@ -70,16 +70,16 @@ function form_input($text, $name, $help = '')
 
 
     echo <<<EOT
-		<tr>
-			<td width="60%" class="tableb">
-				$text
-			</td>
-        	<td width="40%" class="tableb" valign="top">
-            	<input type="text" class="textinput" style="width: 100%" name="$name" value="$value" />
-			</td>
-			<td class="tableb" width="10%">
-				$help
-			</td>
+                <tr>
+                        <td width="60%" class="tableb">
+                                $text
+                        </td>
+                <td width="40%" class="tableb" valign="top">
+                    <input type="text" class="textinput" style="width: 100%" name="$name" value="$value" />
+                        </td>
+                        <td class="tableb" width="10%">
+                                $help
+                        </td>
         </tr>
 
 EOT;
@@ -97,17 +97,17 @@ function form_yes_no($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-			<td class="tableb" width="60%">
-				$text
-			</td>
-        	<td class="tableb" valign="top" width="50%">
-				<input type="radio" id="{$name}1" name="$name" value="1" $yes_selected /><label for="{$name}1" class="clickable_option">$lang_yes</label>
-				&nbsp;&nbsp;
-				<input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
-			</td>
-			<td class="tableb" width="10%">
-				$help
-			</td>
+                        <td class="tableb" width="60%">
+                                $text
+                        </td>
+                <td class="tableb" valign="top" width="50%">
+                                <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected /><label for="{$name}1" class="clickable_option">$lang_yes</label>
+                                &nbsp;&nbsp;
+                                <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
+                        </td>
+                        <td class="tableb" width="10%">
+                                $help
+                        </td>
         </tr>
 
 EOT;
@@ -127,19 +127,19 @@ function form_img_pkg($text, $name, $help = '')
     echo <<<EOT
         <tr>
             <td class="tableb" width="60%">
-				$text
-        	</td>
-        	<td class="tableb" valign="top" width="50%">
-				<select name="$name" class="listbox">
-					<option value="im" $im_selected>Image Magick</option>
-					<option value="gd1" $gd1_selected>GD version 1.x</option>
-					<option value="gd2" $gd2_selected>GD version 2.x</option>
-				</select>
-			</td>
-			<td class="tableb" width="10%">
-			$help
-			</td>
-		</tr>
+                                $text
+                </td>
+                <td class="tableb" valign="top" width="50%">
+                                <select name="$name" class="listbox">
+                                        <option value="im" $im_selected>Image Magick</option>
+                                        <option value="gd1" $gd1_selected>GD version 1.x</option>
+                                        <option value="gd2" $gd2_selected>GD version 2.x</option>
+                                </select>
+                        </td>
+                        <td class="tableb" width="10%">
+                        $help
+                        </td>
+                </tr>
 
 EOT;
 }
@@ -147,7 +147,7 @@ EOT;
 function form_sort_order($text, $name, $help = '')
 {
     global $CONFIG, $lang_config_php;
-    
+
     $help = cpg_display_help($help);
 
     $value = $CONFIG[$name];
@@ -184,7 +184,7 @@ EOT;
 function form_charset($text, $name, $help = '')
 {
     global $CONFIG;
-    
+
     $help = cpg_display_help($help);
 
     $charsets = array('Default' => 'language file',
@@ -235,7 +235,7 @@ EOT;
 function form_language($text, $name, $help = '')
 {
     global $CONFIG;
-   
+
     $help = cpg_display_help($help);
     $value = strtolower($CONFIG[$name]);
     $lang_dir = 'lang/';
@@ -318,8 +318,8 @@ EOT;
 function form_scale($text, $name, $help = '')
 {
    global $CONFIG, $lang_config_php ;
-   
-   	$help = cpg_display_help($help);
+
+           $help = cpg_display_help($help);
 
     $value = $CONFIG[$name];
     $any_selected = ($value == 'max') ? 'selected="selected"' : '';
@@ -391,18 +391,18 @@ function form_lang_debug($text, $name, $help = '')
     echo <<<EOT
         <tr>
             <td class="tableb" width="50%">
-				$text
-        	</td>
-        	<td class="tableb" valign="top" width="50%">
-				<input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
-				&nbsp;&nbsp;
-				<input type="radio" id="{$name}1" name="$name" value="1" $yes_1_selected /><label for="{$name}1" class="clickable_option">$lang_yes:{$lang_config_php['debug_everyone']}</label>
-				&nbsp;&nbsp;
-				<input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">$lang_yes:{$lang_config_php['debug_admin']}</label>
-        	</td>
-        	<td class="tableb" width="10%">
-        		$help
-        	</td>
+                                $text
+                </td>
+                <td class="tableb" valign="top" width="50%">
+                                <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
+                                &nbsp;&nbsp;
+                                <input type="radio" id="{$name}1" name="$name" value="1" $yes_1_selected /><label for="{$name}1" class="clickable_option">$lang_yes:{$lang_config_php['debug_everyone']}</label>
+                                &nbsp;&nbsp;
+                                <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">$lang_yes:{$lang_config_php['debug_admin']}</label>
+                </td>
+                <td class="tableb" width="10%">
+                        $help
+                </td>
         </tr>
 
 EOT;
@@ -503,14 +503,14 @@ EOT;
 
 function create_form(&$data)
 {
-	global $sn1, $sn2, $sn3;
-	
+        global $sn1, $sn2, $sn3;
+
     foreach($data as $element) {
         if ((is_array($element))) {
-        	$element[3] = (isset($element[3])) ? $element[3] : '';
-        	$sn1 = max($sn1,(strpos($element[0],'<a href="#notice1"')));
-        	$sn2 = max($sn2,(strpos($element[0],'<a href="#notice2"')));
-        	$sn3 = max($sn3,(strpos($element[0],'<a href="#notice3"')));
+                $element[3] = (isset($element[3])) ? $element[3] : '';
+                $sn1 = max($sn1,(strpos($element[0],'<a href="#notice1"')));
+                $sn2 = max($sn2,(strpos($element[0],'<a href="#notice2"')));
+                $sn3 = max($sn3,(strpos($element[0],'<a href="#notice3"')));
             switch ($element[2]) {
                 case 0 :
                     form_input($element[0], $element[1], $element[3]);
@@ -557,9 +557,9 @@ function create_form(&$data)
                     break;
                 default:
                     die('Invalid action');
-            } // switch     
+            } // switch
         } else {
-        	form_label($element);
+                form_label($element);
         }
     }
 }
@@ -639,32 +639,32 @@ $signature = 'Coppermine Photo Gallery ' . COPPERMINE_VERSION . ' ('. COPPERMINE
 
 ?>
 <script type="text/javascript">
-	onload = hideall;
+        onload = hideall;
 </script>
 <?
 echo "<form action=\"$PHP_SELF\" method=\"post\">";
 starttable('100%', "{$lang_config_php['title']} - $signature", 3);
 create_form($lang_config_data);
 
-	if ($sn1) echo '<tr><td colspan ="2"><a name="notice1"></a>'.$lang_config_php['notice1'].'</td></tr>';
-	if ($sn2) echo '<tr><td colspan ="2"><a name="notice2"></a>'.$lang_config_php['notice2'].'</td></tr>'; 
-	if ($sn3) echo '<tr><td colspan ="2"><a name="notice3"></a>'.$lang_config_php['notice3'].'</td></tr>'; 
-	
+        if ($sn1) echo '<tr><td colspan ="2"><a name="notice1"></a>'.$lang_config_php['notice1'].'</td></tr>';
+        if ($sn2) echo '<tr><td colspan ="2"><a name="notice2"></a>'.$lang_config_php['notice2'].'</td></tr>';
+        if ($sn3) echo '<tr><td colspan ="2"><a name="notice3"></a>'.$lang_config_php['notice3'].'</td></tr>';
+
 echo '</table></td></tr>';
 
 echo <<<EOT
-		<tr>
-			<td align="left">
-				<a href="javascript:expand();">Expand all</a>
-			</td>
-		</tr>
-		<tr>
+                <tr>
+                        <td align="left">
+                                <a href="javascript:expand();">{$lang_config_php['expand_all']}</a>
+                        </td>
+                </tr>
+                <tr>
             <td colspan="3" align="center">
-				<input type="submit" class="button" name="update_config" value="{$lang_config_php['save_cfg']}" />
-				&nbsp;&nbsp;
-				<input type="submit" class="button" name="restore_config" value="{$lang_config_php['restore_cfg']}" />
-			</td>
-		</tr>
+                                <input type="submit" class="button" name="update_config" value="{$lang_config_php['save_cfg']}" />
+                                &nbsp;&nbsp;
+                                <input type="submit" class="button" name="restore_config" value="{$lang_config_php['restore_cfg']}" />
+                        </td>
+                </tr>
 EOT;
 endtable();
 echo '</form>';
