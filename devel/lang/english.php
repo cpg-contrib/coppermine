@@ -701,6 +701,7 @@ $lang_picinfo = array(
   'File Size' => 'File Size',
   'Dimensions' => 'Dimensions',
   'Displayed' => 'Displayed',
+  'URL' => 'URL',
   'Make' => 'Make',
   'Model' => 'Model',
   'DateTime' => 'Date Time',
@@ -818,7 +819,7 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
 // ------------------------------------------------------------------------- //
 
 if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
-  'pic_info' => 'File&nbsp;info',
+  'pic_info' => 'File info',
   'album' => 'Album',
   'title' => 'Title',
   'desc' => 'Description',
