@@ -1091,7 +1091,7 @@ function cpg_get_system_thumb_list($search_folder = 'images/')
 {
         global $CONFIG;
         static $thumbs = array();
-        
+
         $folder = 'images/';
 
         $thumb_pfx =& $CONFIG['thumb_pfx'];
@@ -1390,6 +1390,9 @@ tempval.select()
         $mySqlVersion = cpg_phpinfo_mysql_version();
         if (strcmp('3.23.23', $mySqlVersion) == 1) {$version_comment = ' - your mySQL version isn\'t good enough! Minimum requirements: 3.23.23';}
         echo 'mySQL version: ' . $mySqlVersion . $version_comment;
+        echo $debug_underline;
+        echo 'Coppermine version: ';
+        echo COPPERMINE_VERSION;
         echo $debug_separate;
         error_reporting  (E_ERROR | E_WARNING | E_PARSE);
         echo cpg_phpinfo_mod_output('gd','text');
