@@ -613,6 +613,7 @@ $lang_picinfo = array(
         'Displayed' => 'Getoond',
         'Camera' => 'Camera',
         'Date taken' => 'Opnamedatum',
+		'ISO'=>'ISO',
         'Aperture' => 'Opening',
         'Exposure time' => 'Sluitertijd',
         'Focal length' => 'Brandpuntsafstand',
