@@ -94,7 +94,7 @@ $lang_errors = array(
   'action_failed' => 'Action failed.  Coppermine is unable to process your request.',
   'no_zip' => 'The necessary libraries to process ZIP files are not available.  Please contact your Coppermine administrator.',
   'zip_type' => 'You do not have permission to upload ZIP files.',
-  'database_query' => 'There was an error while processing a database query',
+  'database_query' => 'There was an error while processing a database query', //cpg 1.4.0
 );
 
 $lang_bbcode_help_title = 'bbcode help';

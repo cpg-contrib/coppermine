@@ -2459,5 +2459,4 @@ function cpg_get_webroot_path() {
 
     return $return;
 }
-
 ?>
