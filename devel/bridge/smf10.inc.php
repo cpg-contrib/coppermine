@@ -141,7 +141,7 @@ class cpg_udb extends core_udb {
 		global $user_settings;
 		
 		if (!$user_settings){
-            return false
+            return false;
 		}
 
 		return array($user_settings['ID_MEMBER'], $user_settings['passwd']);
