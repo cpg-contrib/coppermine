@@ -613,7 +613,6 @@ $lang_picinfo = array(
         'Displayed' => 'عدد مرات المشاهدة',
         'Camera' => 'آلة التصوير',
         'Date taken' => 'تاريخ التقاط الصورة',
-		'ISO'=>'ISO',
         'Aperture' => 'العدسة ',
         'Exposure time' => 'وقت التّعرّض ',
         'Focal length' => 'البعد البؤريّ ',
