@@ -174,7 +174,6 @@ EOT;
 function getfoldercontent($folder, &$dir_array, &$pic_array, &$expic_array)
 {
     global $CONFIG;
-
     $dir = opendir($CONFIG['fullpath'] . $folder);
     while ($file = readdir($dir)) {
         if (is_dir($CONFIG['fullpath'] . $folder . $file)) {
@@ -195,9 +194,9 @@ function getfoldercontent($folder, &$dir_array, &$pic_array, &$expic_array)
 function display_dir_tree($folder, $ident)
 {
     global $CONFIG, $PHP_SELF, $lang_search_new_php;
-
     $dir_path = $CONFIG['fullpath'] . $folder;
-
+	
+		
     if (!is_readable($dir_path)) return;
 
     $dir = opendir($dir_path);
@@ -281,6 +280,7 @@ function getallalbumsindb(&$album_array)
  */
 function scandir($dir, &$expic_array)
 {
+	$dir = str_replace(".","" ,$dir);
     static $dir_id = 0;
     static $count = 0;
     static $pic_id = 0;

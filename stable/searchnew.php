@@ -281,6 +281,7 @@ function getallalbumsindb(&$album_array)
  */
 function scandir($dir, &$expic_array)
 {
+	$dir = str_replace(".","" ,$dir);
     static $dir_id = 0;
     static $count = 0;
     static $pic_id = 0;
