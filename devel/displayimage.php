@@ -476,11 +476,38 @@ function display_fullsize_pic()
     global $CONFIG, $THEME_DIR, $ALBUM_SET;
     global $lang_errors, $lang_fullsize_popup, $lang_charset;
 
-    if (function_exists('theme_display_fullsize_pic')) {
-        theme_display_fullsize_pic();
+    if (isset($_GET['picfile'])) 
+    {
+        if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+
+    $picfile = $_GET['picfile'];
+    $picname = $CONFIG['fullpath'] . $picfile;
+    $imagesize = @getimagesize($picname);
+    $imagedata = array('name' => $picfile, 'path' => path2url($picname), 'geometry' => $imagesize[3]);
+    } 
+    elseif (isset($_GET['pid'])) 
+    {
+    $pid = (int)$_GET['pid'];
+    $sql = "SELECT * " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='$pid' $ALBUM_SET";
+    $result = cpg_db_query($sql);
+
+    if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+
+    $row = mysql_fetch_array($result);
+    $pic_url = get_pic_url($row, 'fullsize');
+    $geom = 'width="' . $row['pwidth'] . '" height="' . $row['pheight'] . '"';
+    $imagedata = array('name' => $row['filename'], 'path' => $pic_url, 'geometry' => $geom);
+    }
+    
+    //------->If the theme function exists, we call it
+    // WARNING! this is a new syntax for this function /chtito
+    if (function_exists('theme_display_fullsize_picc')) 
+    {
+        theme_display_fullsize_pic($imagelink);
         return;
     }
 
+    //----->Otherwise, we generate this ugly html code ;)
     ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -500,28 +527,16 @@ adjust_popup();
  <td align="center" valign="middle">
   <table cellspacing="2" cellpadding="0" style="border: 1px solid #000000; background-color: #FFFFFF;">
    <td>
-<?php
-    if (isset($_GET['picfile'])) {
-        if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
-
-        $picfile = $_GET['picfile'];
-        $picname = $CONFIG['fullpath'] . $picfile;
-        $imagesize = @getimagesize($picname);
-        echo "<a href=\"javascript: window.close()\"><img src=\"" . path2url($picname) . "\" $imagesize[3] class=\"image\" border=\"0\" alt=\"\" title=\"$picfile\n" . $lang_fullsize_popup['click_to_close'] . "\" /></a><br />\n";
-    } elseif (isset($_GET['pid'])) {
-        $pid = (int)$_GET['pid'];
-        $sql = "SELECT * " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='$pid' $ALBUM_SET";
-        $result = cpg_db_query($sql);
-
-        if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
-
-        $row = mysql_fetch_array($result);
-        $pic_url = get_pic_url($row, 'fullsize');
-        $geom = 'width="' . $row['pwidth'] . '" height="' . $row['pheight'] . '"';
-               echo "<a href=\"javascript: window.close()\"><img src=\"" . $pic_url . "\" $geom class=\"image\" border=\"0\" alt=\"\" title=\"" . htmlspecialchars($row['filename']) . "\n" . $lang_fullsize_popup['click_to_close'] . "\" /></a><br />\n";
-    }
-
-    ?>
+<?php     echo  '<a href="javascript: window.close()"><img src="' 
+    . htmlspecialchars($imagedata['path']) . '" ' 
+    . $imagedata['geometry'] 
+    . ' class="image"  alt="'
+    . htmlspecialchars($imagedata['name'])
+    . '" title="' 
+    . htmlspecialchars($imagedata['name']) 
+    . "\n" . $lang_fullsize_popup['click_to_close'] 
+    . '" /></a><br />' ."\n";
+ ?>
    </td>
   </table>
  </td>
