@@ -228,7 +228,7 @@ function update_thumbs()
         $albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
         $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
 
-        $updatetype = $_POST['update_thumbs'];
+        $updatetype = $_POST['updatetype'];
         $numpics = $_POST['numpics'];
         $startpic = (isset($_POST['startpic'])) ? $_POST['startpic'] : 0;
 
