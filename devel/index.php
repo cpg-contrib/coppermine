@@ -57,7 +57,14 @@ function html_albummenu($id)
 
 function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident = '')
 {
-    global $CONFIG, $HIDE_USER_CAT;
+    global $CONFIG, $HIDE_USER_CAT, $FORBIDDEN_SET;
+
+    $album_filter='';
+    $pic_filter='';
+    if (!empty($FORBIDDEN_SET)) {
+        $album_filter = ' and '.str_replace('p.','',$FORBIDDEN_SET);
+        $pic_filter = ' and '.str_replace('p.',$CONFIG['TABLE_PICTURES'].'.',$FORBIDDEN_SET);
+    }
 
     $result = db_query("SELECT cid, name, description, thumb FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent'  ORDER BY pos");
 
@@ -85,19 +92,21 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
                     $HIDE_USER_CAT = 1;
                 }
             } else {
-                $result = db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = {$subcat['cid']}");
+                $result = db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = {$subcat['cid']}".$album_filter);
                 $album_count = mysql_num_rows($result);
                 while ($row = mysql_fetch_array($result)) {
                     $album_set_array[] = $row['aid'];
                 } // while
                 mysql_free_result($result);
 
-                $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND category = {$subcat['cid']}");
+                $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND category = {$subcat['cid']}".$pic_filter);
                 $nbEnr = mysql_fetch_array($result);
                 mysql_free_result($result);
                 $pic_count = $nbEnr[0];
-            if ($subcat['thumb']>0) {
-                    $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='{$subcat['thumb']}'";
+                if ($subcat['thumb']>0) {
+                    $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight ".
+                        "FROM {$CONFIG['TABLE_PICTURES']} ".
+                        "WHERE pid='{$subcat['thumb']}'".$pic_filter;
                     $result = db_query($sql);
                     if (mysql_num_rows($result)) {
                         $picture = mysql_fetch_array($result);
@@ -109,16 +118,16 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
                                 $picture['pheight'] = $image_info[1];
                         }
                         $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
-                        $user_thumb = "<img src=\"" . get_pic_url($picture, 'thumb') . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"\">";
+                        $user_thumb = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"\">";
                         $user_thumb = "<a href=\"index.php?cat={$subcat['cid']}\">".$user_thumb."</a>";
                     }
-            }else{
-            $user_thumb ="";
-        }
+                }else{
+                    $user_thumb ="";
+                }
                 $subcat['name'] = $subcat['name'];
                 $subcat['description'] = preg_replace("/<br.*?>[\r\n]*/i", '<br />' . $ident , bb_decode($subcat['description']));
                 $link = "<a href=\"index.php?cat={$subcat['cid']}\">{$subcat['name']}</a>";
-        $user_thumb = $ident.$user_thumb;
+                $user_thumb = $ident.$user_thumb;
                 if ($pic_count == 0 && $album_count == 0) {
                     $cat_data[] = array($link, $subcat['description'],'cat_thumb' =>$user_thumb);
                 } else {
@@ -139,28 +148,40 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
 // List all categories
 function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
 {
-    global $HTTP_GET_VARS, $CONFIG, $ALBUM_SET, $CURRENT_CAT_NAME, $BREADCRUMB_TEXT, $STATS_IN_ALB_LIST;
+    global $HTTP_GET_VARS, $CONFIG, $ALBUM_SET, $CURRENT_CAT_NAME, $BREADCRUMB_TEXT, $STATS_IN_ALB_LIST, $FORBIDDEN_SET;
     global $HIDE_USER_CAT;
     global $cat;
     global $lang_list_categories, $lang_errors;
+
     // Build the breadcrumb
     breadcrumb($cat, $breadcrumb, $BREADCRUMB_TEXT);
     // Build the category list
     $cat_data = array();
     $album_set_array = array();
     get_subcat_data($cat, $cat_data, $album_set_array, $CONFIG['subcat_level']);
+
+    $album_filter='';
+    $pic_filter='';
+    $cat = (int) $cat;
+    if (!empty($FORBIDDEN_SET)) {
+        $album_filter = ' and '.str_replace('p.','',$FORBIDDEN_SET);
+        $pic_filter = ' and '.$FORBIDDEN_SET;
+    }
+
     // Add the albums in the current category to the album set
-    if ($cat) {
+    //if ($cat) {
         if ($cat == USER_GAL_CAT) {
-            $result = db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category >= " . FIRST_USER_CAT);
+            $result = db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category >= " . FIRST_USER_CAT.$album_filter);
         } else {
-            $result = db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = '$cat'");
-        } while ($row = mysql_fetch_array($result)) {
+            $sql = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = '$cat'".$album_filter;
+            $result = db_query($sql);
+        }
+        while ($row = mysql_fetch_array($result)) {
             $album_set_array[] = $row['aid'];
         } // while
         mysql_free_result($result);
-    }
-    if (count($album_set_array) && $cat) {
+    //}
+    if (count($album_set_array)) {
         $set = '';
         foreach ($album_set_array as $album) $set .= $album . ',';
         $set = substr($set, 0, -1);
@@ -172,27 +193,45 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
     }
     // Gather gallery statistics
     if ($cat == 0) {
-        $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_ALBUMS']} WHERE 1");
+        $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_ALBUMS']} WHERE category>0".$album_filter);
         $nbEnr = mysql_fetch_array($result);
         $album_count = $nbEnr[0];
         mysql_free_result($result);
 
-        $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE 1");
+        $sql = "SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} as p ".
+                'LEFT JOIN '.$CONFIG['TABLE_ALBUMS'].' as a '.
+                'ON a.aid=p.aid '.
+                'WHERE a.category>0'.$pic_filter;
+        //die($sql);
+        $result = db_query($sql);
         $nbEnr = mysql_fetch_array($result);
         $picture_count = $nbEnr[0];
         mysql_free_result($result);
 
-        $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_COMMENTS']} WHERE 1");
+        $sql = "SELECT count(*) FROM {$CONFIG['TABLE_COMMENTS']} as c ".
+                'LEFT JOIN '.$CONFIG['TABLE_PICTURES'].' as p,'.$CONFIG['TABLE_ALBUMS'].' as a '.
+                'ON c.pid=p.pid and a.aid=p.aid '.
+                'WHERE a.category>0'.$pic_filter;
+                //die($sql);
+        $result = db_query($sql);
         $nbEnr = mysql_fetch_array($result);
         $comment_count = $nbEnr[0];
         mysql_free_result($result);
 
+        $sql = "SELECT count(*) FROM {$CONFIG['TABLE_CATEGORIES']} ".
+                'LEFT JOIN '.$CONFIG['TABLE_ALBUMS'].' '.
+                'ON '.$CONFIG['TABLE_CATEGORIES'].'.cid = '.$CONFIG['TABLE_ALBUMS'].'.category '.
+                'WHERE 1 '.$album_filter;
         $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_CATEGORIES']} WHERE 1");
         $nbEnr = mysql_fetch_array($result);
         $cat_count = $nbEnr[0] - $HIDE_USER_CAT;
         mysql_free_result($result);
 
-        $result = db_query("SELECT sum(hits) FROM {$CONFIG['TABLE_PICTURES']} WHERE 1");
+        $sql = "SELECT sum(hits) FROM {$CONFIG['TABLE_PICTURES']} as p ".
+                'LEFT JOIN '.$CONFIG['TABLE_ALBUMS'].' as a '.
+                'ON p.aid=a.aid '.
+                'WHERE a.category>0'.$pic_filter;
+        $result = db_query($sql);
         $nbEnr = mysql_fetch_array($result);
         $hit_count = (int)$nbEnr[0];
         mysql_free_result($result);
@@ -326,14 +365,23 @@ function list_users()
 // List all albums
 function list_albums()
 {
-    global $CONFIG, $USER, $USER_DATA, $PAGE, $lastup_date_fmt;
+    global $CONFIG, $USER, $USER_DATA, $PAGE, $lastup_date_fmt,$FORBIDDEN_SET;
     global $cat;
     global $lang_list_albums, $lang_errors;
 
     $alb_per_page = $CONFIG['albums_per_page'];
     $maxTab = $CONFIG['max_tabs'];
 
-    $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = '$cat'");
+    $album_filter='';
+    $pic_filter='';
+    $pic_subquery='';
+    if (!empty($FORBIDDEN_SET)) {
+        $album_filter = ' and '.str_replace('p.','',$FORBIDDEN_SET);
+        $pic_filter = ' and '.$FORBIDDEN_SET;
+        $pic_subquery = ' AND a.aid = (SELECT aid FROM '.$CONFIG['TABLE_ALBUMS'].' as p WHERE '.$pic_filter.')';
+    }
+
+    $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = '$cat'".$album_filter);
     $nbEnr = mysql_fetch_array($result);
     $nbAlb = $nbEnr[0];
     mysql_free_result($result);
@@ -347,7 +395,15 @@ function list_albums()
     $upper_limit = min($nbAlb, $PAGE * $alb_per_page);
     $limit = "LIMIT " . $lower_limit . "," . ($upper_limit - $lower_limit);
 
-    $sql = "SELECT a.aid, a.title, a.description, visibility, filepath, " . "        filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_ALBUMS']} as a " . "LEFT JOIN {$CONFIG['TABLE_PICTURES']} as p ON thumb=pid " . "WHERE category = '$cat' ORDER BY pos " . "$limit";
+    $sql = 'SELECT a.aid, a.title, a.description, visibility, filepath, '.
+           'filename, url_prefix, pwidth, pheight '.
+           'FROM '.$CONFIG['TABLE_PICTURES'].' as p '.
+           'LEFT JOIN '.$CONFIG['TABLE_ALBUMS'].' as a '.
+           ' ON a.aid=p.aid '.
+           'WHERE category='.$cat.$pic_filter.
+           ' ORDER BY a.pos '.
+           $limit;
+
     $alb_thumbs_q = db_query($sql);
     $alb_thumbs = db_fetch_rowset($alb_thumbs_q);
     mysql_free_result($alb_thumbs_q);
@@ -359,7 +415,10 @@ function list_albums()
     }
     $album_set = '(' . substr($album_set, 0, -2) . ')';
 
-    $sql = "SELECT aid, count(pid) as pic_count, max(pid) as last_pid, max(ctime) as last_upload " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE aid IN $album_set AND approved = 'YES' " . "GROUP BY aid";
+    $sql = "SELECT aid, count(pid) as pic_count, max(pid) as last_pid, max(ctime) as last_upload ".
+           "FROM {$CONFIG['TABLE_PICTURES']} ".
+           "WHERE aid IN $album_set AND approved = 'YES' ".
+           "GROUP BY aid";
     $alb_stats_q = db_query($sql);
     $alb_stats = db_fetch_rowset($alb_stats_q);
     mysql_free_result($alb_stats_q);
@@ -387,7 +446,9 @@ function list_albums()
                 if ($alb_thumb['filename']) {
                     $picture = &$alb_thumb;
                 } else {
-                    $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='{$alb_stat['last_pid']}'";
+                    $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight ".
+                           "FROM {$CONFIG['TABLE_PICTURES']} ".
+                           "WHERE pid='{$alb_stat['last_pid']}'";
                     $result = db_query($sql);
                     $picture = mysql_fetch_array($result);
                     mysql_free_result($result);
@@ -443,7 +504,7 @@ function list_albums()
 // Redone for a cleaner approach
 function list_cat_albums($cat = 0)
 {
-    global $CONFIG, $USER, $lastup_date_fmt, $HTTP_GET_VARS, $USER_DATA;
+    global $CONFIG, $USER, $lastup_date_fmt, $HTTP_GET_VARS, $USER_DATA, $FORBIDDEN_SET;
     global $lang_list_albums, $lang_errors;
     $PAGE = 1;
     if ($cat == 0) {
@@ -453,7 +514,14 @@ function list_cat_albums($cat = 0)
     $alb_per_page = $CONFIG['albums_per_page'];
     $maxTab = $CONFIG['max_tabs'];
 
-    $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = '$cat'");
+    $album_filter='';
+    $pic_filter='';
+    if (!empty($FORBIDDEN_SET)) {
+        $album_filter = ' and '.str_replace('p.','',$FORBIDDEN_SET);
+        $pic_filter = ' and '.$FORBIDDEN_SET;
+    }
+
+    $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = '$cat'".$album_filter);
     $nbEnr = mysql_fetch_array($result);
     $nbAlb = $nbEnr[0];
     mysql_free_result($result);
@@ -463,13 +531,27 @@ function list_cat_albums($cat = 0)
     }
 
     $totalPages = ceil($nbAlb / $alb_per_page);
-
+    
     if ($PAGE > $totalPages) $PAGE = 1;
     $lower_limit = ($PAGE-1) * $alb_per_page;
     $upper_limit = min($nbAlb, $PAGE * $alb_per_page);
     $limit = "LIMIT " . $lower_limit . "," . ($upper_limit - $lower_limit);
 
-    $sql = "SELECT a.aid, a.title, a.description, visibility, filepath, " . "                filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_ALBUMS']} as a " . "LEFT JOIN {$CONFIG['TABLE_PICTURES']} as p ON thumb=pid " . "WHERE category = '$cat' ORDER BY pos " . "$limit";
+    /*
+    $sql = "SELECT a.aid, a.title, a.description, visibility, filepath, ".
+           "filename, url_prefix, pwidth, pheight ".
+           "FROM {$CONFIG['TABLE_ALBUMS']} as a ".
+           "LEFT JOIN {$CONFIG['TABLE_PICTURES']} as p ON thumb=pid ".
+           "WHERE category = $cat ORDER BY pos ".$limit;
+    */
+    $sql = 'SELECT a.aid, a.title, a.description, visibility, filepath, '.
+           'filename, url_prefix, pwidth, pheight '.
+           'FROM '.$CONFIG['TABLE_PICTURES'].' as p '.
+           'LEFT JOIN '.$CONFIG['TABLE_ALBUMS'].' as a '.
+           ' ON a.aid=p.aid '.
+           'WHERE category='.$cat.$pic_filter.
+           ' ORDER BY a.pos '.
+           $limit;
     $alb_thumbs_q = db_query($sql);
     $alb_thumbs = db_fetch_rowset($alb_thumbs_q);
     mysql_free_result($alb_thumbs_q);
@@ -481,7 +563,10 @@ function list_cat_albums($cat = 0)
     }
     $album_set = '(' . substr($album_set, 0, -2) . ')';
 
-    $sql = "SELECT aid, count(pid) as pic_count, max(pid) as last_pid, max(ctime) as last_upload " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE aid IN $album_set AND approved = 'YES' " . "GROUP BY aid";
+    $sql = "SELECT aid, count(pid) as pic_count, max(pid) as last_pid, max(ctime) as last_upload ".
+           "FROM {$CONFIG['TABLE_PICTURES']} ".
+           "WHERE aid IN $album_set AND approved = 'YES' ".
+           "GROUP BY aid";
     $alb_stats_q = db_query($sql);
     $alb_stats = db_fetch_rowset($alb_stats_q);
     mysql_free_result($alb_stats_q);
