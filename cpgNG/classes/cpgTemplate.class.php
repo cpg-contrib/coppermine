@@ -86,7 +86,7 @@ class cpgTemplate extends Smarty{
   function fetchHTML($fileName)
   {
     global $CONFIG;
-    if (file_exists($CONFIG["theme"]."/".$fileName)) {
+    if (file_exists("templates/".$CONFIG["theme"]."/".$fileName)) {
       return $this->fetch($CONFIG["theme"]."/".$fileName);
     } else {
       return $this->fetch($fileName);
