@@ -21,7 +21,7 @@ $lang_translation_info = array(
 'lang_name_native' => 'Eesti', 
 'lang_country_code' => 'ee', 
 'trans_name'=> 'Meelis Rüütli', //the name of the translator - can be a nickname
-'trans_name2'=> 'Vallo Jõeorg', //the name of the translator - can be a nickname
+'trans_name2'=> 'Vallo Jõeorg, Alar Annist', //the name of the translator - can be a nickname
 'trans_email2' => 'vallo@infonet.ee', //translator's email address (optional)
 'trans_website2' => 'http://pontu.infonet.ee', //translator's website (optional)
 'trans_date' => '2003-10-19', //the date the translation was created / last modified
@@ -81,7 +81,7 @@ $lang_errors = array(
         'no_img_to_display' => 'Pole ühtegi pilti.',
         'non_exist_cat' => 'Valitud kategooria puudub.',
         'orphan_cat' => 'Kategoorial puudub vanem, kasuta kategooria-haldurit probleemi lahendamiseks.',
-        'directory_ro' => 'Kataloogil \'%s\' puudub kirjutamisõigus, üilte ei saa kustutada.',
+        'directory_ro' => 'Kataloogil \'%s\' puudub kirjutamisõigus, pilte ei saa kustutada.',
         'non_exist_comment' => 'Valitud kommentaar puudub.',
         'pic_in_invalid_album' => 'Pilt asub olematus albumis (%s)!?', 
         'banned' => 'Sul on hetkel keelatud selle albumi kasutamine.', 
@@ -93,7 +93,7 @@ $lang_errors = array(
 // ------------------------------------------------------------------------- //
 
 $lang_main_menu = array(
-        'alb_list_title' => 'Mine albumite loetellu',
+        'alb_list_title' => 'Mine albumite loetelu',
         'alb_list_lnk' => 'Albumite loetelu',
         'my_gal_title' => 'Mine minu personaalsesse galeriisse',
         'my_gal_lnk' => 'Minu Galerii',
@@ -165,7 +165,7 @@ $lang_img_nav_bar = array(
         'pic_info_title' => 'Näita/peida pildi info',
         'slideshow_title' => 'Slaidiesitus',
         'ecard_title' => 'Saada see pilt e-kaardina',
-        'ecard_disabled' => 'e-kaartid on keelatud',
+        'ecard_disabled' => 'e-kaardid on keelatud',
         'ecard_disabled_msg' => 'Teil pole õigust saata e-kaarte',
         'prev_title' => 'Vaata eelmist pilti',
         'next_title' => 'Vaata järgmist pilti',
@@ -212,7 +212,7 @@ $lang_display_thumbnails = array(
 $lang_get_pic_data = array(
         'n_comments' => '%s kommentaari',
         'n_views' => '%s kord(a)',
-        'n_votes' => '(%s hööl(t))',
+        'n_votes' => '(%s hääl(t))',
 );
 
 // ------------------------------------------------------------------------- //
@@ -238,16 +238,16 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
         'Smile' => 'Rõõmus',
         'Sad' => 'Kurb',
         'Surprised' => 'Üllatunud',
-        'Shocked' => 'Vapustaud',
-        'Confused' => 'Hammeldunud',
+        'Shocked' => 'Vapustatud',
+        'Confused' => 'Hämmeldunud',
         'Cool' => 'Lahe',
         'Laughing' => 'Naerev',
-        'Mad' => 'Hull',
+        'Mad' => 'Vihane',
         'Razz' => 'Razz',
-        'Embarassed' => 'Häbistatud',
+        'Embarassed' => 'Piinlik',
         'Crying or Very sad' => 'Nuttev või väga kurb',
-        'Evil or Very Mad' => 'Õel või Päris hull',
-        'Twisted Evil' => 'Eelarvamuslik õel',
+        'Evil or Very Mad' => 'Tige või väga vihane',
+        'Twisted Evil' => 'Õelusepundar',
         'Rolling Eyes' => 'Silmi pööritav',
         'Wink' => 'Silmapilgutus',
         'Idea' => 'Idee',
@@ -297,7 +297,7 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
-        'miss_param' => 'Puuduvad parameetrid \'%s\'tooimingut ei tehtud !',
+        'miss_param' => 'Puuduvad parameetrid \'%s\'toimingut ei tehtud !',
         'unknown_cat' => 'Valitud kategooria puudub andmebaasis',
         'usergal_cat_ro' => 'Kasutaja galeriisid ei saa kustutada !',
         'manage_cat' => 'Halda kategooriaid',
@@ -337,18 +337,18 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
 if (defined('CONFIG_PHP')) $lang_config_data = array(
         'Üldised seaded',
         array('Galerii nimi', 'gallery_name', 0),
-        array('Galrii kirjeldus', 'gallery_description', 0),
+        array('Galerii kirjeldus', 'gallery_description', 0),
         array('Galerii administraatorile epost', 'gallery_admin_email', 0),
         array('Sihtaadress \'Vaata veel pilte\' link e-kaartidel', 'ecards_more_pic_target', 0),
         array('Keel', 'lang', 5),
-        array('Teema', 'theme', 6),
+        array('Kujundus', 'theme', 6),
 
         'Albumite loetelu vaade',
         array('Peatabeli laius (pixelites või %)', 'main_table_width', 0),
         array('Number kategooria tasandeid kuvamiseks', 'subcat_level', 0),
         array('Number albumeid kuvamiseks', 'albums_per_page', 0),
         array('Number veergusid albumi loeteluks', 'album_list_cols', 0),
-        array('pisipildi suurus pixelites', 'alb_list_thumb_size', 0),
+        array('Pisipildi suurus pixelites', 'alb_list_thumb_size', 0),
         array('Pealehe sisu', 'main_page_layout', 0),
         array('Näita esimese taseme albumite pisipilte kategooriates','first_level',1), 
 
@@ -357,14 +357,14 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Ridade arv pisipiltide lehel', 'thumbrows', 0),
         array('Maksimaalne lahtrite arv kuvamiseks', 'max_tabs', 0),
         array('Kuva pildi selgitus (lisaks tiitlile) pisipildi all', 'caption_in_thumbview', 1),
-        array('Kuva kommentaaraide arv  pisipildi all', 'display_comment_count', 1),
+        array('Kuva kommentaaride arv pisipildi all', 'display_comment_count', 1),
         array('Vaikejärjestus piltidele', 'default_sort_order', 3),
-        array('Minimaalne häälte arv pildi sattumiseks \'Edetabel\' nimekirja', 'min_votes_for_rating', 0),
+        array('Minimaalne häälte arv pildi sattumiseks \'Edetabeli\' nimekirja', 'min_votes_for_rating', 0),
 
         'Pildivaade &amp; Kommentaaride seaded',
         array('Tabeli laius pildi kuvamiseks (pixelites või %)', 'picture_table_width', 0),
         array('Pildi info on vaikimisi nähtav', 'display_pic_info', 1),
-        array('Filtreeri pahad sõnad kommentaarides', 'filter_bad_words', 1),
+        array('Filtreeri ropud sõnad kommentaarides', 'filter_bad_words', 1),
         array('Luba smile\'isi kommentaarides', 'enable_smilies', 1),
         array('Maksimaalne pildikirjelduse pikkus', 'max_img_desc_length', 0),
         array('Maksimaalne tähtede arv sõnas', 'max_com_wlength', 0),
@@ -376,7 +376,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         'Piltide ja pisipiltide seaded',
         array('JPEG failide kvaliteet', 'jpeg_qual', 0),
         array('Pisipildi max laius või kõrgus <b>*</b>', 'thumb_width', 0), 
-        array('Kasuta mõõte (kõrgus või laius või Max aspect pisipiltide jaoks )<b>*</b>',  'thumb_use', 7),
+        array('Kasuta mõõte (kõrgus või laius või Max aspekt pisipiltide jaoks )<b>*</b>',  'thumb_use', 7),
         array('Loo keskmised pildid','make_intermediate',1),
         array('Keskmiste piltide laius või kõrgus <b>*</b>', 'picture_width', 0),
         array('Salvestatud piltide max suurus (KB)', 'max_upl_size', 0),
@@ -398,10 +398,10 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 			  array('Faili nimes keelatud tähemärgid', 'forbiden_fname_char',0),
 				array('Lubatud failitüübid salvestatavatele piltidele', 'allowed_file_extensions',0),
 				array('Piltide suurusemuutmise meetod','thumb_method',2),
-				array('ImageMagick\'u \'konvertimise\' abiprogrammi tee (näiteks /usr/bin/X11/)', 'impath', 0),
+				array('ImageMagick\'u \'convert\' abiprogrammi tee (näiteks /usr/bin/X11/)', 'impath', 0),
 				array('Lubatud pilditüübid (ainult ImageMagick\'u jaoks)', 'allowed_img_types',0),
 				array('Käsurea parameetrid ImageMagick\'ule', 'im_options', 0),
-				array('Lugeda EXIF andmed JPEG failides', 'read_exif_data', 1),
+				array('Loe EXIF andmeid JPEG failides', 'read_exif_data', 1),
 				array('Albumi kataloog <b>*</b>', 'fullpath', 0),
 				array('Kasutajapiltide kataloog <b>*</b>', 'userpics', 0),
 				array('Eesliide keskmistele piltidele <b>*</b>', 'normal_pfx', 0),
@@ -521,9 +521,9 @@ $lang_picinfo = array(
 
 $lang_display_comments = array(
         'OK' => 'OK',
-        'edit_title' => 'Muuda komentaari',
+        'edit_title' => 'Muuda kommentaari',
         'confirm_delete' => 'Oled kindel, et tahad seda kommentaari kustutada ?',
-        'add_your_comment' => 'Lisa komentaar',
+        'add_your_comment' => 'Lisa kommentaar',
         'name'=>'Nimi', 
         'comment'=>'Kommentaar', 
         'your_name' => 'Sinu nimi', 
@@ -719,9 +719,9 @@ Kuigi saidi {SITE_NAME} administraatorid püüavad eemaldada või muuta mistahes ül
 <br />
 Sa nõustud mitte postitama sõimu, roppusi, rõvedusi, laimu, solvanguid, ähvardusi, soolisi- ega muid märkusi ja kommentaare ning materjale, mis oleksid vastuolus kehtivate seadustega. Sa nõustud et webmaster, administraator ja saidi {SITE_NAME} vahekohtunikud omavad õigust kustutada või parandada mistahes sisu kuidas ja millal neile sobib. Kasutajana sa nõustud, et kogu sinu ülal sisestatud info salvestatakse andmebaasi. Kuigi seda infot ei avaldata kolmandatele isikutele ilma sinu nõusolekuta, ei saa webmaster ja administraator võtta endale vastutust  häkkimiskatsete eest, mis võivad andmed ohtu seada.<br />
 <br />
-See sait kasutab präänikuid slavestamaks infot sinu lokaalses arvutis. Need präänikud on mõeldud ainult tõstmaks sinu vaatamise rõõmu. Eposti aadressi kasutatakse ainult kinnitamaks sinu registreerumise detaile ja parooli.<br />
+See sait kasutab präänikuid salvestamaks infot sinu lokaalses arvutis. Need präänikud on mõeldud ainult tõstmaks sinu vaatamise rõõmu. Eposti aadressi kasutatakse ainult kinnitamaks sinu registreerumise detaile ja parooli.<br />
 <br />
-Kilkates 'Olen nõus' allpool, nõustud sa nende nõuete ja tingimustega.
+Klikates 'Olen nõus' allpool, nõustud sa nende nõuete ja tingimustega.
 EOT;
 
 $lang_register_php = array(
@@ -729,8 +729,8 @@ $lang_register_php = array(
 			'term_cond' => 'Terminid ja tingimused',
 			'i_agree' => 'Olen nõus',
 			'submit' => 'Saada registreerimine',
-			'err_user_exists' => 'Sinu siseatud kasutajanimi juba olemas, palun vali muu',
-			'err_password_mismatch' => 'Kaks parooli ei lange kokku, palun sisesta nad uuesti',
+			'err_user_exists' => 'Sinu sisendatud kasutajanimi on juba olemas, palun vali muu',
+			'err_password_mismatch' => 'Kaks parooli ei lange kokku, palun sisesta uuesti',
 			'err_uname_short' => 'Kasutajanimi peab olema vähemalt 2 tähte',
 			'err_password_short' => 'Parool peab olema vähemalt 2 tähte',
 			'err_uname_pass_diff' => 'Kasutajanimi peab paroolist erinema',
@@ -750,7 +750,7 @@ $lang_register_php = array(
 			'error' => 'VIGA',
 			'confirm_email_subject' => '%s - Registreerumise kinnitus',
 			'information' => 'Informatsioon',
-			'failed_sending_email' => 'Reigistreerumise kinnituse e-posti ei saa saata !',
+			'failed_sending_email' => 'Registreerumise kinnituse e-posti ei saa saata !',
 			'thank_you' => 'Täname Teid registreerumast.<br /><br />E-post infoga, kuidas oma kontot aktiveerida, saadeti sinu antud e-posti aadressile.',
 			'acct_created' => 'Sinu konto on loodud ja nüüd sa võid sisse logida oma kasutajanime ja parooliga',
 			'acct_active' => 'Sinu konto on nüüd aktiveeritud ja sa võid sisse logida oma kasutajanime ja parooliga',
@@ -902,7 +902,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   						'disku_a' => 'Ketta kasutus kasvavalt',
 							'disku_d' => 'Ketta kasutus kahanevalt',
 							'sort_by' => 'Sordi kasutajaid',
-							'err_no_users' => 'Kasutajate tabel tühi !',
+							'err_no_users' => 'Kasutajate tabel on tühi !',
 							'err_edit_self' => 'Sa võid muuta oma profiili, kasuta \'Minu profiil\' linki selleks',
 							'edit' => 'MUUDA',
 							'delete' => 'KUSTUTA',
@@ -938,7 +938,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 if (defined('UTIL_PHP')) $lang_util_php = array(
         'title' => 'Pildisuuruse muutmine', 
         'what_it_does' => 'Mida see teeb', 
-        'what_update_titles' => 'uuendab failist pealkirju', 
+        'what_update_titles' => 'Uuendab failide pealkirju', 
         'what_delete_title' => 'Kustutab pealkirju', 
         'what_rebuild' => 'Genereerib uued pisipildid ja muudetud suurusega pildid', 
         'what_delete_originals' => 'Kustutab orginaalsuurusega pildid, asendades need uue suurusega piltidega', 
@@ -968,7 +968,7 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
         'update_pic' => 'Ainult muudetud suurusega pildid', 
         'update_both' => 'Mõlemad, pisipildid ja muudetud suurusga pildid', 
         'update_number' => 'Töödeldud piltide arv kliki kohta', 
-        'update_option' => '(Sea see valik väiksemaks kui tekkib probleem ajalimiidiga (timeout))', 
+        'update_option' => '(Sea see valik väiksemaks kui tekib probleem ajalimiidiga (timeout))', 
         'filename_title' => 'Failinimi &rArr; Pildi pealkiri', 
         'filename_how' => 'Kuidas tuleks failinime muuta', 
         'filename_remove' => 'Eemalda .jpg lõpp ja asenda _ (alakriipsud) tühikutega', 
@@ -983,3 +983,4 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
 );
 
 ?>
+
