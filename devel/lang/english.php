@@ -1015,6 +1015,7 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
   'greetings' => 'Heading',
   'message' => 'Message',
   'ecards_footer' => 'Sent by %s from IP %s at %s (Gallery time)',
+  'preview' => 'Preview of the ecard',
 );
 
 // ------------------------------------------------------------------------- //

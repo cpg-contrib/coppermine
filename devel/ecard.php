@@ -128,8 +128,14 @@ if (count($_POST) > 0 && $valid_sender_email && $valid_recipient_email) {
     }
 
     if ($result) {
-        pageheader($lang_ecard_php['title'], "<META http-equiv=\"refresh\" content=\"3;url=displayimage.php?album=$album&pos=$pos\">");
+        pageheader($lang_ecard_php['title']);
         msg_box($lang_cpg_die[INFORMATION], $lang_ecard_php['send_success'], $lang_continue, "displayimage.php?album=$album&pos=$pos");
+				echo '<br />';
+				starttable('100%', $lang_ecard_php['preview']);
+				echo '<tr><td>';
+				echo template_eval($template_ecard, $params);
+				echo '</td></tr>';
+				endtable();
         pagefooter();
         ob_end_flush();
         exit;
