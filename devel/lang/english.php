@@ -56,7 +56,8 @@ $lang_meta_album_names = array(
         'topn' => 'Most viewed',
         'toprated' => 'Top rated',
         'lasthits' => 'Last viewed',
-        'search' => 'Search results'
+        'search' => 'Search results',
+	'favpics'=> 'Favourite Pictures'
 );
 
 $lang_errors = array(
@@ -496,8 +497,9 @@ $lang_picinfo = array(
         'Exposure time' => 'Exposure time',
         'Focal length' => 'Focal length',
         'Comment' => 'Comment',
-        'addFav'=>'Add to Fav',
-        'addFavPhrase'=>'Favourites'
+	'addFav'=>'Add to Fav',
+	'addFavPhrase'=>'Favourites',
+	'remFav'=>'Remove from Fav',
 );
 
 $lang_display_comments = array(
