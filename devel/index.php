@@ -432,6 +432,7 @@ function list_cat_albums($cat = 0, $buffer = true)
     global $lang_list_albums, $lang_errors;
 
     if ($cat == 0 && $buffer) return '';
+    if ($cat == "") $cat = 0;
 
     $alb_per_page = $CONFIG['albums_per_page'];
     $maxTab = $CONFIG['max_tabs'];
@@ -565,7 +566,6 @@ function list_cat_albums($cat = 0, $buffer = true)
  */
 
 if (isset($_GET['page'])) $PAGE = max((int)$_GET['page'], 1);
-else $PAGE = 1;
 /*
 if (isset($HTTP_GET_VARS['page'])) {
     $PAGE = max((int)$HTTP_GET_VARS['page'], 1);
