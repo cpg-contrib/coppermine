@@ -203,7 +203,12 @@ ALTER TABLE `CPG_users` CHANGE user_lang user_group_list varchar(255) NOT NULL d
 ALTER TABLE `CPG_pictures` ADD `lasthit_ip` TINYTEXT ;
 
 #
-# Store favpics in DB
+# Table structure for table `CPG_favpics`
 #
 
-ALTER TABLE `CPG_users` ADD `user_favpics` TEXT ;
+CREATE TABLE `CPG_favpics` (
+`user_id` INT( 11 ) NOT NULL ,
+`user_favpics` TEXT NOT NULL ,
+PRIMARY KEY ( `user_id` ) 
+) COMMENT = 'Stores the server side favourites';
+

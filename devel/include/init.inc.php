@@ -234,6 +234,7 @@ $CONFIG['TABLE_EXIF']                = $CONFIG['TABLE_PREFIX']."exif";
 $CONFIG['TABLE_FILETYPES']          = $CONFIG['TABLE_PREFIX']."filetypes";
 $CONFIG['TABLE_ECARDS']          = $CONFIG['TABLE_PREFIX']."ecards";
 $CONFIG['TABLE_TEMPDATA']        = $CONFIG['TABLE_PREFIX']."temp_data";
+$CONFIG['TABLE_FAVPICS']        = $CONFIG['TABLE_PREFIX']."favpics";
 
 // User DB system
 if (defined('UDB_INTEGRATION')) require 'bridge/' . UDB_INTEGRATION . '.inc.php';
@@ -362,7 +363,7 @@ if (isset($HTTP_COOKIE_VARS[$CONFIG['cookie_name'] . '_fav'])) {
 
 // If the person is logged in get favs from DB those in the DB have precedence 
 if (USER_ID > 0){	
-	$sql = "SELECT user_favpics FROM {$CONFIG['TABLE_USERS']} WHERE user_id = ".USER_ID;	
+	$sql = "SELECT user_favpics FROM {$CONFIG['TABLE_FAVPICS']} WHERE user_id = ".USER_ID;	
 	$results = db_query($sql);	
 	$row = mysql_fetch_array($results);
 	if (!empty($row['user_favpics'])){

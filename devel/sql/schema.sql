@@ -163,7 +163,6 @@ CREATE TABLE CPG_users (
   user_interests varchar(255) NOT NULL default '',
   user_occupation varchar(255) NOT NULL default '',
   user_actkey varchar(32) NOT NULL default '',
-  user_favpics text ,
   PRIMARY KEY  (user_id),
   UNIQUE KEY user_name (user_name)
 ) TYPE=MyISAM;
@@ -245,3 +244,13 @@ CREATE TABLE IF NOT EXISTS `CPG_temp_data` (
 `timestamp` INT( 11 ) UNSIGNED NOT NULL ,
 PRIMARY KEY ( `unique_ID` ) 
 ) TYPE = MYISAM COMMENT = 'Holds temporary file data for multiple file uploads';
+
+#
+# Table structure for table `CPG_favpics`
+#
+
+CREATE TABLE `CPG_favpics` (
+`user_id` INT( 11 ) NOT NULL ,
+`user_favpics` TEXT NOT NULL ,
+PRIMARY KEY ( `user_id` ) 
+) COMMENT = 'Stores the server side favourites';
