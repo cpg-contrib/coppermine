@@ -358,3 +358,34 @@ INSERT INTO CPG_bridge VALUES ('recovery_logon_timestamp', '');
 
 
 INSERT INTO CPG_config VALUES ('bridge_enable', '0');
+
+#
+# Table structure for table 'CPG_vote_stats
+#
+CREATE TABLE CPG_vote_stats (
+  `sid` int(11) NOT NULL auto_increment,
+  `pid` varchar(100) NOT NULL default '',
+  `rating` smallint(6) NOT NULL default '0',
+  `ip` varchar(20) NOT NULL default '',
+  `sdate` bigint(20) NOT NULL default '0',
+  `referer` text NOT NULL,
+  `browser` varchar(255) NOT NULL default '',
+  `os` varchar(50) NOT NULL default '',
+  PRIMARY KEY  (`sid`)
+) ENGINE=MyISAM;
+
+INSERT INTO CPG_config VALUES ('vote_details', '0');
+
+CREATE TABLE CPG_hit_stats (
+  `sid` int(11) NOT NULL auto_increment,
+  `pid` varchar(100) NOT NULL default '',
+  `ip` varchar(20) NOT NULL default '',
+  `search_phrase` varchar(255) NOT NULL default '',
+  `sdate` bigint(20) NOT NULL default '0',
+  `referer` text NOT NULL,
+  `browser` varchar(255) NOT NULL default '',
+  `os` varchar(50) NOT NULL default '',
+  PRIMARY KEY  (`sid`)
+) ENGINE=MyISAM;
+
+INSERT INTO CPG_config VALUES ('hit_details', '0');
