@@ -72,6 +72,47 @@ $result = cpg_db_query($sql);
 $sql = "INSERT INTO {$CONFIG['TABLE_VOTES']} " . "VALUES ('$pic', '$user_md5_id', '$curr_time')";
 $result = cpg_db_query($sql);
 
+/**
+ * Code to record the details of hits for the picture if the option is set in CONFIG
+ */
+if ($CONFIG['vote_details']) {
+// Get the details of user browser, IP, OS, etc
+$os = "Unknown";
+if(eregi("Linux",$_SERVER["HTTP_USER_AGENT"])) {
+    $os = "Linux";
+} else if(eregi("Windows NT 5.0",$_SERVER["HTTP_USER_AGENT"])) {
+    $os = "Windows 2000";
+} else if(eregi("win98|Windows 98",$_SERVER["HTTP_USER_AGENT"])) {
+    $os = "Windows 98";
+}
+
+$browser = $_SERVER["HTTP_USER_AGENT"];
+if(eregi("MSIE",$browser)) {
+    if(eregi("MSIE 5.5",$browser)) {
+        $browser = "Microsoft Internet Explorer 5.5";
+    } else if(eregi("MSIE 6.0",$browser)) {
+        $browser = "Microsoft Internet Explorer 6.0";
+    }
+} else if(eregi("Mozilla Firebird",$browser)) {
+    $browser = "Mozilla Firebird";
+} else if(eregi("netscape",$browser)) {
+    $browser = "Netscape";
+}
+$time = time();
+
+// Insert the record in database
+$query = "INSERT INTO {$CONFIG['TABLE_VOTE_STATS']}
+                  SET
+                    pid = $pic,
+                    rating = $rate,
+                    Ip   = '$_SERVER[REMOTE_ADDR]',
+                    sdate = '$time',
+                    referer = '$_SERVER[HTTP_REFERER]',
+                    browser = '$browser',
+                    os = '$os'";
+cpg_db_query($query);
+}
+
 $location = "displayimage.php?pos=" . (- $pic);
 $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
 header($header_location . $location);
