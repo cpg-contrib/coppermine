@@ -252,3 +252,4 @@ Modified bridging processes (usermgr *can* work with all bridge files) - 26 Janu
 Added HTML necessary for user customizable media players - 26 January 2005, Chris
 Bug fixes - 26 January 2005, Chris
 Added documentation link to admin menu - 27 January 2005, GauGau
+Added display of the uploader under all thumbs when set in config (even random/lastviewed/lastupdated) - 30 January 2005, Donnoman
