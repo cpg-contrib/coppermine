@@ -14,10 +14,8 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-/*
-$Id$
-*/
-
+// $Id$
+// ------------------------------------------------------------------------- //
 
 // info about translators and translated language
 $lang_translation_info = array( 
@@ -27,7 +25,7 @@ $lang_translation_info = array(
 'trans_name'=> 'Ron Bos', //the name of the translator - can be a nickname 
 'trans_email' => 'ron@ronbos.nl', //translator's email address (optional) 
 'trans_website' => 'http://www.ronbos.nl/', //translator's website (optional) 
-'trans_date' => '2004-3-20', //the date the translation was created / last modified 
+'trans_date' => '2004-4-12', //the date the translation was created / last modified 
 ); 
 
 $lang_charset = 'iso-8859-1';
@@ -92,12 +90,12 @@ $lang_errors = array(
         'offline_title' => 'Offline',
         'offline_text' => 'Galerij is op dit moment offline - controleer later nog eens',
         'ecards_empty' => 'Er zijn op dit moment geen e-cards records aanwezig om te tonen. Controleer dat je e-card logging hebt aangezet in coppermine config!',
-        'action_failed' => 'Actie mislukt.  Coppermine kan je verzoek in afhandelen.',
+        'action_failed' => 'Actie mislukt.  Coppermine kan je verzoek niet afhandelen.',
         'no_zip' => 'De benodigde bibliotheken om ZIP files te verwerken zijn niet beschikbaar.  Neem contact op met je Coppermine beheerder.',
         'zip_type' => 'Je hebt geen toestemming om ZIP bestanden te uploaden.'
 );
 
-$lang_bbcode_help = 'De volgende codes kunnen van pas komen: <li>[b]<b>Bold</b>[/b]</li> <li>[i]<i>Italic</i>[/i]</li> <li>[url=http://yoursite.com/]Url Text[/url]</li> <li>[email]user@domain.com[/email]</li>';
+$lang_bbcode_help = 'De volgende codes kunnen van pas komen: <li>[b]<b>Bold</b>[/b]</li> <li>[i]<i>Italic</i>[/i]</li> <li>[url=http://Jouwsite.nl/]Url Text[/url]</li> <li>[email]user@domain.nl[/email]</li>';
 
 // ------------------------------------------------------------------------- //
 // File theme.php
@@ -186,7 +184,7 @@ $lang_img_nav_bar = array(
         'ecard_disabled_msg' => 'Je hebt geen toestemming een e-card te versturen',
         'prev_title' => 'Bekijk voorgaand bestand',
         'next_title' => 'Bekijk volgend bestand',
-        'pic_pos' => 'BESTAND %s / %s',
+        'pic_pos' => 'Bestand %s / %s',
 );
 
 $lang_rate_pic = array(
@@ -248,7 +246,6 @@ $lang_theme_selection = array(
         'reset_theme' => 'Standaard thema',
         'choose_theme' => 'Kies een thema',
 );
-
 
 // ------------------------------------------------------------------------- //
 // File include/init.inc.php
@@ -484,8 +481,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Aanzetten debug-modus', 'debug_mode', 1),
         array('Toon resultaten in debug mode', 'debug_notice', 1), //cpg1.3.0
 
-        '<br /><div align="left"><a name="notice1"></a>(*) Deze instellingen mogen niet veranderd worden indien je al foto\'s in je database hebt.<br />
-        <a name="notice2"></a>(**) Indien deze instelling gewijzigd worden, worden alleen de bestanden die na dit punt toegevoegd worden beïnvloed, dus het is aan te raden dat deze instelling niet wordt aangepast als er al bestanden in de galerij zitten. Je kan echter, deze aanpassingen op bestaande bestanden uitvoeren met de &quot;<a href="util.php">beheer tools</a> (aanpassen grootte foto\'s)&quot; utility uit het beheer tool menu.</div><br />'
+        '<br /><div align="left"><a name="notice1"></a>(*) Deze instellingen mogen niet veranderd worden indien je al bestanden in je database hebt.<br />
+        <a name="notice2"></a>(**) Indien deze instelling gewijzigd wordt, worden alleen de bestanden die na dit punt toegevoegd worden beïnvloed, dus het is aan te raden dat deze instelling niet wordt aangepast als er al bestanden in de galerij zitten. Je kan echter, deze aanpassingen op bestaande bestanden uitvoeren met de &quot;<a href="util.php">beheer tools</a> (aanpassen grootte foto\'s)&quot; utility uit het beheer tool menu.</div><br />'
 );
 
 // ------------------------------------------------------------------------- //
@@ -527,7 +524,7 @@ if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
 
 if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
         'empty_name_or_com' => 'Je moet je naam en commentaar ingeven.',
-        'com_added' => 'je commentaar is toegevoegd.',
+        'com_added' => 'Je commentaar is toegevoegd.',
         'alb_need_title' => 'Je moet een naam geven aan het album !',
         'no_udp_needed' => 'Geen aanpassing nodig.',
         'alb_updated' => 'Het album is aangepast.',
@@ -600,7 +597,7 @@ $lang_display_image_php = array(
         'views' => '%s keer',
         'slideshow' => 'Diashow',
         'stop_slideshow' => 'STOP DIASHOW',
-        'view_fs' => 'Klik om de foto op originele grootte te bekijken',
+        'view_fs' => 'Klik op de foto om originele grootte te bekijken',
         'edit_pic' => 'Wijzig omschrijving',
         'crop_pic' => 'Snijden en Draaien',
 );
@@ -718,12 +715,12 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
         array('Hoe kan ik registreren?', 'Ga naar &quot;Registreer&quot; en vul de vereiste velden in (en als je wilt de optionele).<br />Als de beheerder e-mail notificatie aan heeft gezet ,zal je nadat je de informatie hebt opgestuurd, een e-mail bevestiging ontvangen op het adres dat je hebt opgegeven tijdens het registreren, met daarin instructies hoe je je lidmaatschap moet activeren. Je lidmaatschap moet geactiveerd zijn om in te kunnen loggen.', 'allow_user_registration', '1'),
         array('Hoe log ik in?', 'Ga naar &quot;Login&quot;, geef je gebruikersnaam en wachtwoord en selecteer &quot;Herinner Mij&quot; zodat je weer ingelogd wordt op de site als je terugkeert nadat je het verlaten hebt.<br /><b>BELANGRIJK: Cookies moeten toegelaten zijn en de cookie van deze site mag niet verwijderd zijn om &quot;Herinner Mij&quot; te kunnen gebruiken.</b>', 'offline', 0),
         array('Waarom kan ik niet inloggen?', 'Heb je geregistreerd en de link beantwoord die je toegezonden is via e-mail?. De link zal je account activeren. Voor andere inlog problemen neem contact op met de beheerder van deze site.', 'offline', 0),
-        array('Wat als ik mijn wachtwoord vergeet ben?', 'Indien deze site de &quot;Wachtwoord vergeten&quot; link heeft, gebruik het dan. Anders dan dit, neem contact op met de beheerder van deze site voor een nieuw wachtwoord.', 'offline', 0),
+        array('Wat als ik mijn wachtwoord vergeten ben?', 'Indien deze site de &quot;Wachtwoord vergeten&quot; link heeft, gebruik het dan. Anders dan dit, neem contact op met de beheerder van deze site voor een nieuw wachtwoord.', 'offline', 0),
         //array('Wat als ik mijn email adres verander?', 'Eenvoudig inloggen en verander je e-mail adres via &quot;Profiel&quot;', 'offline', 0),
-        array('Hoe bewaar ik een foto naar &quot;Mijn Favorieten&quot;?', 'Klik op een foto en klik dan op de &quot;foto info&quot; link (<img src="images/info.gif" width="16" height="16" border="0" alt="Foto informatie" />); scroll naar onder naar de foto informatie zet en klik &quot;Toev Favorieten&quot;.<br />De beheerder kan de &quot;foto informatie&quot; standaard aan hebben staan.<br />BELANGRIJK: Cookies moeten toegelaten zijn en de cookie van deze site mag niet verwijderd zijn.', 'offline', 0),
+        array('Hoe bewaar ik een foto naar &quot;Mijn Favorieten&quot;?', 'Klik op een foto en klik dan op de &quot;foto info&quot; link (<img src="images/info.gif" width="16" height="16" border="0" alt="Foto informatie" />); scroll naar beneden, naar de foto informatie en klik &quot;Toev Favorieten&quot;.<br />De beheerder kan de &quot;foto informatie&quot; standaard aan hebben staan.<br />BELANGRIJK: Cookies moeten toegelaten zijn en de cookie van deze site mag niet verwijderd zijn.', 'offline', 0),
         array('Hoe beoordeel ik een foto?', 'Klik op een thumbnail en ga naar onderen en kies een beoordeling.', 'offline', 0),
         array('Hoe plaats ik een commentaar voor een foto?', 'klik op een thumbnail en ga naar onderen en plaats een commentaar.', 'offline', 0),
-        array('Hoe upload ik een foto?', 'Ga naar &quot;Upload Foto &quot;en selecteer het album waar je naar toe wilt uploaden, klik &quot;Bladeren&quot; en vind de foto om te uploaden en klik &quot;open&quot; (voeg als je wilt een titel en beschrijving toe) en klik &quot;Zend&quot;', 'allow_private_albums', 0),
+        array('Hoe upload ik een foto?', 'Ga naar &quot;Upload Foto &quot;en selecteer het album waar je naar toe wilt uploaden, klik &quot;Browse&quot; en vind de foto om te uploaden en klik &quot;open&quot; (voeg als je wilt een titel en beschrijving toe) en klik &quot;Zend&quot;', 'allow_private_albums', 0),
         array('Waar opload ik een foto naar toe?', 'Je zult in staat zijn een foto te uploaden naar één van je albums in &quot;Mijn Galerij&quot;. De beheerder kan je ook toestaan om te uploaden naar één of meer albums in de hoofd galerij.', 'allow_private_albums', 0),
         array('Welke type en grootte van een foto kan ik uploaden?', 'De grootte en type (jpg,gif,..etc.) is aan de beheerder.', 'offline', 0),
         array('Wat is &quot;Mijn Galerij&quot;?', '&quot;Mijn Galerij&quot; is een persoonlijke galerij waar de gebruiker naar kan uploaden en beheren.', 'allow_private_albums', 0),
@@ -731,10 +728,10 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
         array('Hoe pas ik aan en beperk ik gebruikers van het zien van mijn albums?', 'Je moet reeds in &quot;Admin-Modus&quot; zijn<br />Ga naar &quot;Pas mijn albums aan&quot;. Op de &quot;Aanpassen Album&quot; bar, kies het album dat je wilt aanpassen.<br />Hier kan je de naam, omschrijving, thumbnail, het bekijken beperken en commentaar/beoordeling permissie aanpassen.<br />Klik &quot;Aanpassen Album&quot;.', 'allow_private_albums', 0),
         array('Hoe kan ik gebruiker galerijen bekijken van andere gebruikers?', 'Ga naar &quot;Album Lijst&quot; en kies &quot;Gebruiker Galerijen&quot;.', 'allow_private_albums', 0),
         array('Wat zijn cookies?', 'Cookies zijn tekstbestanden met data die van een website gezonden en op je computer geplaatst worden.<br />Cookies laten een gebruiker gewoonlijk toe een site te verlaten en weer terug te keren zonder weer in te loggen en andere verschillende zaken.', 'offline', 0),
-        array('Waar kan ik dit programma krijgen voor mijn site?', 'Coppermine is een vrije Multimedia Galerij, uitgegeven onder GNU GPL. Het zit vol met mogelijk en is geschikt gemaakt voor verschillende platformen. Bezoek de <a href="http://coppermine.sf.net/">Coppermine Home Page</a> om meer te weten te komen of het te downloaden.', 'offline', 0),
+        array('Waar kan ik dit programma krijgen voor mijn site?', 'Coppermine is een vrije Multimedia Galerij, uitgegeven onder GNU GPL. Het zit vol met mogelijkheden en is geschikt gemaakt voor verschillende platformen. Bezoek de <a href="http://coppermine.sf.net/">Coppermine Home Page</a> om meer te weten te komen of het te downloaden.', 'offline', 0),
 
         'Navigeren binnen de Site',
-        array('Wat is &quot;Album Lijst&quot;?', 'Dit toont je de complete galerij met een link naar iedere categorie. Thumbnails kunnen een link zijn naar een catagorie.', 'offline', 0),
+        array('Wat is &quot;Album Lijst&quot;?', 'Dit toont je de complete galerij met een link naar iedere categorie. Thumbnails kunnen een link zijn naar een categorie.', 'offline', 0),
         array('Wat is &quot;Mijn Galerij&quot;?', 'Deze functie laat een gebruiker de mogelijkheid hun eigen galerij te creëren en hier albums aan toe te voegen, te verwijderen of aan te passen als mede er naar te uploaden.', 'allow_private_albums', 0),
         array('Wat is het verschil tussen &quot;Admin-Modus&quot; en &quot;Gebruiker-Modus&quot;?', 'Deze functie, indien in admin-modus, laat de gebruiker toe zijn eigen galerij aan te passen (alsmede van anderen indien de beheerder dit toegelaten heeft).', 'allow_private_albums', 0),
         array('Wat is &quot;Upload bestand&quot;?', 'Deze functie laat de gebruiker toe een bestand te uploaden (grootte en type is bepaald door de site beheerder) naar een galerij geselecteerd door jou of de beheerder.', 'allow_private_albums', 0),
@@ -780,7 +777,7 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
         'apply' => 'Pas wijzigingen toe',
         'create_new_group' => 'Creëer nieuwe groep',
         'del_groups' => 'Verwijder geselecteerde groep(en)',
-        'confirm_del' => 'Waarschuwing, indien je een groep verwijderd, kunnen gebruikers die behoorden tot deze groep niet meer inloggen !\n\nWil je doorgaan ?',
+        'confirm_del' => 'Waarschuwing, indien je een groep verwijderd, worden gebruikers die tot deze groep behoorden verplaatst naar de \'Geregistreerd\'groep!\n\nWil je doorgaan ?',
         'title' => 'Beheer gebruikergroepen',
         'approval_1' => 'Pub. Upl. toestemming (1)',
         'approval_2' => 'Priv. Upl. toestemming (2)',
@@ -821,7 +818,7 @@ $lang_list_categories = array(
 
 $lang_list_users = array(
         'user_list' => 'Gebruikers lijst',
-        'no_user_gal' => 'Er zijn geen gebruikers die toestemming hebben om albums te hebben.',
+        'no_user_gal' => 'Er zijn geen gebruikers galerijen.',
         'n_albums' => '%s album(s)',
         'n_pics' => '%s bestand(en)'
 );
@@ -882,9 +879,9 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
         'alb_thumb' => 'Album thumbnail',
         'alb_perm' => 'Permissies voor dit album',
         'can_view' => 'Album kan bekeken worden door',
-        'can_upload' => 'Bezoekers kunnen foto\'s uploaden',
+        'can_upload' => 'Bezoekers kunnen bestanden uploaden',
         'can_post_comments' => 'Bezoekers kunnen commentaar posten',
-        'can_rate' => 'Gebruiker kan foto\'s beoordelen',
+        'can_rate' => 'Gebruiker kan bestanden beoordelen',
         'user_gal' => 'Gebruiker galerij',
         'no_cat' => '* geen categorie *',
         'alb_empty' => 'Album is leeg',
@@ -905,7 +902,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
         'already_rated' => 'Sorry, maar je hebt dit bestand al beoordeeld',
         'rate_ok' => 'Je stem is geaccepteerd',
-        'forbidden' => 'Je kan je eigen foto\'s niet beoordelen.',
+        'forbidden' => 'Je kan je eigen bestanden niet beoordelen.',
 );
 
 // ------------------------------------------------------------------------- //
@@ -915,7 +912,7 @@ if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
-De beheerder van {SITE_NAME} zal proberen elk aanstootgevend materiaal zo snel als mogelijk te verwijderen. Het is echter onmogelijk elk materiaal te bekijken. Daarom ga je akkoord dat alle postings die op deze site gemaakt worden de gezichtspunten en opinies zijn van de auteur en niet van de beheerder of webmaster (behalve hun eigen postings) en deze zullen daarom niet aansprakelijk gesteld worden.<br />
+De beheerder van {SITE_NAME} zal proberen elk aanstootgevend materiaal zo snel als mogelijk te verwijderen. Het is echter onmogelijk elk materiaal te bekijken. Daarom ga je akkoord dat alle postings die op deze site gedaan worden de gezichtspunten en opinies zijn van de auteur en niet van de beheerder of webmaster (behalve hun eigen postings) en deze zullen daarom niet aansprakelijk gesteld worden.<br />
 <br />
 Je gaat er mee akkoord geen aanstootgevende, obscene, vulgaire, hatelijke, bedreigende, sexueel-getinte of elk ander materiaal dat elke van toepassing zijnde wet overtreedt, op deze site te plaatsen. Je gaat er mee akkoord dat de webmaster, beheerder en  moderators van {SITE_NAME} het recht hebben elke inhoud te verwijderen en of te wijzigen wanneer zij dat nodig vinden. Als gebruiker ga je er mee akkoord dat alle data die je hebt verstrekt in een database worden bewaard. Terwijl deze informatie niet openbaar gemaakt wordt aan een derde partij zonder jouw toestemming, ga je akkoord met het feit dat de webmaster en de beheerder niet verantwoordelijk gehouden kunnen worden voor elke hack poging, dat kan lijden tot het openbaar worden van de database.<br />
 <br />
@@ -1014,7 +1011,7 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCH_PHP')) $lang_search_php = array(
-        0 => 'Doorzoek de foto collectie'
+        0 => 'Doorzoek de bestand collectie'
 );
 
 // ------------------------------------------------------------------------- //
@@ -1030,8 +1027,8 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
         'warning' => 'Waarschuwing',
         'change_perm' => 'Het script kan niet schrijven in deze map, je moet zijn mode veranderen naar 755 of 777 voordat je probeert het bestand toe te voegen !',
         'target_album' => '<b>Plaats bestanden van &quot;</b>%s<b>&quot; in </b>%s',
-        'folder' => 'Folder',
-        'image' => 'Foto',
+        'folder' => 'Map',
+        'image' => 'Bestand',
         'album' => 'Album',
         'result' => 'Resultaat',
 	  'dir_ro' => 'Niet beschrijfbaar. ',
@@ -1039,7 +1036,7 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
         'insert' => 'Toevoegen van nieuwe bestanden aan galerij',
         'list_new_pic' => 'Lijst van nieuwe bestanden',
         'insert_selected' => 'Invoegen van geselecteerde bestanden',
-        'no_pic_found' => 'Er zijn GEEN bestand gevonden',
+        'no_pic_found' => 'Er is GEEN bestand gevonden',
         'be_patient' => 'Heb geduld, het script heeft tijd nodig om de bestanden toe te voegen',
         'no_album' => 'geen album geselecteerd', 
         'notes' =>  '<ul>'.
@@ -1096,18 +1093,18 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
         'cust_instr_1' => 'Je mag een aangepast aantal van bestands en URI upload boxen hebben. Echter, je mag niet meer selecteren dan de limieten afgebeeld hieronder.',
         'cust_instr_2' => 'BOX Nummer aanvraag',
         'cust_instr_3' => 'Bestand upload boxen: %s',
-        'cust_instr_4' => 'URI/URL upload boxen %s',
+        'cust_instr_4' => 'URI/URL upload boxen: %s',
 	  'cust_instr_5' => 'URI/URL upload boxen:', //cpg1.3.0
-  	  'cust_instr_6' => 'Bestands upload boxen:', //cpg1.3.0
+  	  'cust_instr_6' => 'Bestand upload boxen:', //cpg1.3.0
 	  'cust_instr_7' => 'Geef het aantal voor ieder type upload boxen dat je wenst op dit moment.  Dan klik \'Doorgaan\'. ', //cpg1.3.0
         'reg_instr_1' => 'Ongeldige actie voor aanmaken formulier:',
-        'reg_instr_2' => 'Nu mag je je bestanden uploaden gebruikmakend van onderstaande boxen. De grootte van bestanden van je client naar de server mogen elk niet de %s KB niet overschrijden. ZIP bestanden in het \'Bestand Upload\' en \'URI/URL Upload\' gebied blijven gecomprimeerd.' ,
+        'reg_instr_2' => 'Nu kan je je bestanden uploaden gebruikmakend van onderstaande boxen. De grootte van bestanden van je client naar de server mogen elk niet de %s KB overschrijden. ZIP bestanden in het \'Bestand Upload\' en \'URI/URL Upload\' gebied blijven gecomprimeerd.' ,
         'reg_instr_3' => 'Indien je de gezipte bestanden of archieven gecomprimeerd wilt hebben, moet je de uploadbox gebruiken in het \'Decompress ZIP upload\' gebied',
-        'reg_instr_4' => 'Als je de URI/URL upload sectie gebruikt, geef het pad naar het bestand als dit : http://www.mysite.com/images/example.jpg',
+        'reg_instr_4' => 'Als je de URI/URL upload sectie gebruikt, geef het pad naar het bestand zoals dit : http://www.mysite.com/images/example.jpg',
         'reg_instr_5' => 'Als je het formulier voltooid hebt, klik \'Doorgaan\'.',
         'reg_instr_6' => 'Decomprimeerbare ZIP Uploads',
-	  'reg_instr_7' => 'Bestands Uploads:', //cpg1.3.0
- 	  'reg_instr_8' => 'URI/URL Uploads:', //cpg1.3.0
+	  'reg_instr_7' => 'Bestands Upload:', //cpg1.3.0
+ 	  'reg_instr_8' => 'URI/URL Upload:', //cpg1.3.0
   	  'error_report' => 'Fout Rapport', //cpg1.3.0
 	  'error_instr' => 'De volgende uploads hebben een fout ervaren:', //cpg1.3.0
 	  'file_name_url' => 'Bestands naam/URL', //cpg1.3.0
@@ -1127,7 +1124,7 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
 	  'pixel_allowance' => 'Pixel toestemming overschreden.', //cpg1.3.0
 	  'incorrect_prefix' => 'Ongeldige URI/URL prefix', //cpg1.3.0
 	  'could_not_open_URI' => 'Kon URI niet openen.', //cpg1.3.0
-	  'unsafe_URI' => 'Veilighed niet verifieerbaar.', //cpg1.3.0
+	  'unsafe_URI' => 'Veiligheid niet verifieerbaar.', //cpg1.3.0
 	  'meta_data_failure' => 'Meta data fout', //cpg1.3.0
 	  'http_401' => '401 Niet geauthoriseerd', //cpg1.3.0
 	  'http_402' => '402 Betaling vereist', //cpg1.3.0
@@ -1163,7 +1160,6 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
         'process_complete' => 'Je hebt succesvol alle bestanden geplaatst.'
 );
 
-
 // ------------------------------------------------------------------------- //
 // File usermgr.php
 // ------------------------------------------------------------------------- //
@@ -1176,8 +1172,8 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
         'group_d' => 'Groep aflopend',
         'reg_a' => 'Registratie datum oplopend',
         'reg_d' => 'Registratie datum aflopend',
-        'pic_a' => 'Aantal foto\'s oplopend',
-        'pic_d' => 'Aantal foto\'s aflopend',
+        'pic_a' => 'Aantal bestanden oplopend',
+        'pic_d' => 'Aantal bestanden aflopend',
         'disku_a' => 'Disk gebruik oplopend',
         'disku_d' => 'Disk gebruik aflopend',
         'lv_a' => 'Laatste bezoek oplopend',
@@ -1273,8 +1269,6 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
 	  'phpinfo' => 'Toon phpinfo', //cpg1.3.0
 	  'update_db' => 'Aanpassen database', //cpg1.3.0
 	  'update_db_explanation' => 'Als je coppermine bestanden vervangen hebt, een modificatie toegevoegd hebt of ge-upgrade bent van een voorgaande versie van coppermine, draai dan de database aanpassing eenmalig. Dit zal de nodige tabellen aanmaken en/of config waarden in je coppermine database aanpassen.', //cpg1.3.0
-
 );
-
 
 ?>
