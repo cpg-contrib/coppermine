@@ -411,14 +411,13 @@ open-source photo gallery!</p>
 
 <p>If you already have installed version 1.0 and you want to transfer your albums to version 1.2 proceed in the following way:</p>
 <ul>
-  <li> Install version 1.3 normally in a directory different from the one where you installed v 1.0. Note that in order to use the upgrade script, <b>tables for version 1.0 and 1.3 must be stored in the same database</b>.</li>
-  <li>Copy the &quot;<b>albums</b>&quot; directory of version 1.0 into the directory where you installed version 1.3</li>
+  <li> Install version 1.3.3 normally in a directory different from the one where you installed v 1.0. Note that in order to use the upgrade script, <b>tables for version 1.0 and 1.3.2 must be stored in the same database</b>.</li>
+  <li>Copy the &quot;<b>albums</b>&quot; directory of version 1.0 into the directory where you installed version 1.3.2</li>
   <li>The upgrade script assumes that you used the &quot;<b>CPG_</b>&quot; prefix for tables (default value) when you installed version 1.0, if this is not the case, edit upgrade-1.0-to-1.2.php and edit the $prefix10 variable.</li>
-  <li>Login to your 1.3 Gallery, enter the admin mode</li>
+  <li>Login to your 1.3.2 Gallery, enter the admin mode</li>
   <li>Call the upgrade script, http://yousitename/coppermine_dir/upgrade-1.0-to-1.2.php</li>
-  <li><b>The upgrade from 1.0 to 1.3 is a two-step process.</b> You must click the link which comes up on the bottom of the page to complete the upgrade!.</li>
-        <li><b>Delete upgrade-1.0-to-1.2.php from your server</b>.</li>
-  <li>If you get an error, go to Coppermine 1.2 config page, enable <a href="#debug_mode">debug mode</a>, try to call the upgrade script again and check what errors you get.</li>
+  <li><b>The upgrade from 1.0 to 1.3.2 is a two-step process.</b> You must click the link which comes up on the bottom of the page to complete the upgrade!.</li>
+        <li><b>Delete upgrade-1.0-to-1.2.php from your server</b>. <li>If you get an error, go to Coppermine 1.3.2 config page, enable <a href="#debug_mode">debug mode</a>, try to call the upgrade script again and check what errors you get.</li>
 </ul>
 <p> <b>This upgrade process leaves your v1.0 gallery untouched </b></p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
