@@ -846,14 +846,14 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                                 $rowset = array();
                 if (count($FAVPICS)>0){
                         $favs = implode(",",$FAVPICS);
-                        $result = db_query("SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND pid IN ($favs)");
+                        $result = db_query("SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND pid IN ($favs) $ALBUM_SET");
                         $nbEnr = mysql_fetch_array($result);
                         $count = $nbEnr[0];
                         mysql_free_result($result);
 
                         $select_columns = '*';
 
-                        $result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES'AND pid IN ($favs) $limit");
+                        $result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES'AND pid IN ($favs) $ALBUM_SET $limit");
                         $rowset = db_fetch_rowset($result);
 
                         mysql_free_result($result);
