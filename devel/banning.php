@@ -23,7 +23,7 @@ require('include/sql_parse.php');
 
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
-if (defined('UDB_INTEGRATION')) cpg_die(ERROR, $lang_errors['not_with_udb'], __FILE__, __LINE__);
+//if (defined('UDB_INTEGRATION')) cpg_die(ERROR, $lang_errors['not_with_udb'], __FILE__, __LINE__);
 
 function create_banlist()
 {
@@ -48,7 +48,7 @@ EOHEAD;
 				$username = '';
 			}
 			if ($row['expiry']) {
-				$expiry =  strftime ('%c', $row['expiry']);
+				$expiry =  strftime ('%H:%M:%S %d %b %Y %Z', $row['expiry']);
 			} else {
 				$expiry = '';
 			}

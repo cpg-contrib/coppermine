@@ -109,6 +109,7 @@ $template_gallery_admin_menu = <<<EOT
                                 <td class="admin_menu"><a href="catmgr.php" title="">{CATEGORIES_LNK}</a></td>
                                 <td class="admin_menu"><a href="usermgr.php" title="">{USERS_LNK}</a></td>
                                 <td class="admin_menu"><a href="groupmgr.php" title="">{GROUPS_LNK}</a></td>
+                                <td class="admin_menu"><a href="banning.php" title="">{BAN_LNK}</a></td>
                                 <td class="admin_menu"><a href="reviewcom.php" title="">{COMMENTS_LNK}</a></td>
                                 <td class="admin_menu"><a href="searchnew.php" title="">{SEARCHNEW_LNK}</a></td>
                                 <td class="admin_menu"><a href="util.php" title="">{UTIL_LNK}</a></td>
@@ -1100,6 +1101,7 @@ function theme_admin_mode_menu()
                         '{SEARCHNEW_LNK}' => $lang_gallery_admin_menu['searchnew_lnk'],
                         '{MY_PROF_LNK}' => $lang_user_admin_menu['my_prof_lnk'],
                         '{UTIL_LNK}' => $lang_gallery_admin_menu['util_lnk'],
+                        '{BAN_LNK}' => $lang_gallery_admin_menu['ban_lnk'],
                 );
 
                 $html = template_eval($template_gallery_admin_menu, $param);
