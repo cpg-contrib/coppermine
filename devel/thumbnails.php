@@ -68,7 +68,7 @@ $lang_meta_album_names['lastupby'] = $lang_meta_album_names['lastup'];
 $lang_meta_album_names['lastcomby'] = $lang_meta_album_names['lastcom'];
 
 if (is_numeric($album)) {
-    $result = db_query("SELECT category, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
+    $result = db_query("SELECT category, title, aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
     if (mysql_num_rows($result) > 0) {
         $CURRENT_ALBUM_DATA = mysql_fetch_array($result);
         $actual_cat = $CURRENT_ALBUM_DATA['category'];
@@ -77,7 +77,7 @@ if (is_numeric($album)) {
     } 
 } elseif (isset($cat) && $cat) { // Meta albums, we need to restrict the albums to the current category
     if ($cat < 0) {
-        $result = db_query("SELECT category, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='" . (- $cat) . "'");
+        $result = db_query("SELECT category, title, aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='" . (- $cat) . "'");
         if (mysql_num_rows($result) > 0) {
             $CURRENT_ALBUM_DATA = mysql_fetch_array($result);
             $actual_cat = $CURRENT_ALBUM_DATA['category'];
@@ -127,5 +127,4 @@ if ($breadcrumb) {
 display_thumbnails($album, (isset($cat) ? $cat : 0), $page, $CONFIG['thumbcols'], $CONFIG['thumbrows'], true);
 pagefooter();
 ob_end_flush();
-
 ?>

@@ -558,7 +558,7 @@ if ($pos < 0) {
 }
 // Retrieve data for the current album
 if (isset($CURRENT_PIC_DATA)) {
-    $result = db_query("SELECT title, comments, votes, category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='{$CURRENT_PIC_DATA['aid']}' LIMIT 1");
+    $result = db_query("SELECT title, comments, votes, category, aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='{$CURRENT_PIC_DATA['aid']}' LIMIT 1");
     if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, sprintf($lang_errors['pic_in_invalid_album'], $CURRENT_PIC_DATA['aid']), __FILE__, __LINE__);
     $CURRENT_ALBUM_DATA = mysql_fetch_array($result);
 

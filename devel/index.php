@@ -550,8 +550,8 @@ $elements = preg_split("|/|", $CONFIG['main_page_layout'], -1, PREG_SPLIT_NO_EMP
 foreach ($elements as $element) {
     if (preg_match("/(\w+),*(\d+)*/", $element, $matches)) switch ($matches[1]) {
             case 'breadcrumb': 
-                // Added breadcrumb as a separate listable blcok from config
-                if ($breadcrumb != '' || count($cat_data) > 0) theme_display_breadcrumb($breadcrumb, $cat_data);
+                // Added breadcrumb as a separate listable block from config
+                if (($breadcrumb != '' || count($cat_data) > 0) && $cat !=0 ) theme_display_breadcrumb($breadcrumb, $cat_data);
                 break;
 
             case 'catlist':

@@ -919,7 +919,7 @@ function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
 {
         global $album, $lang_errors, $lang_list_categories;
         global $CONFIG,$CURRENT_ALBUM_DATA, $CURRENT_CAT_NAME;
-        if ($cat != 0) {
+        if ($cat != 0) { //Categories other than 0 need to be selected
                 $breadcrumb_array = array();
                 if ($cat >= FIRST_USER_CAT) {
                         $user_name = get_username($cat - FIRST_USER_CAT);
@@ -956,15 +956,17 @@ function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
                         $breadcrumb .= ' > ' . $link;
                         $BREADCRUMB_TEXT .= ' > ' . $category[1];
                 }
-
-                //Add Link for album if $album is set
-                if (is_numeric($album)){
-                        $link = "<a href=thumbnails.php?album=$album>".$CURRENT_ALBUM_DATA['title']."</a>";
-                        $breadcrumb .= ' > ' . $link;
-                        $BREADCRUMB_TEXT .= ' > ' . $CURRENT_ALBUM_DATA['title'];
-                }
-
-           }
+        
+	}else{ //Dont bother just add the Home link  to breadcrumb
+                $breadcrumb = '<a href=index.php>'.$lang_list_categories['home'].'</a>';
+                $BREADCRUMB_TEXT = $lang_list_categories['home'];
+	}
+	//Add Link for album if aid is set
+	if (isset($CURRENT_ALBUM_DATA['aid'])){
+		$link = "<a href=thumbnails.php?album=".$CURRENT_ALBUM_DATA['aid'].">".$CURRENT_ALBUM_DATA['title']."</a>";
+		$breadcrumb .= ' > ' . $link;
+		$BREADCRUMB_TEXT .= ' > ' . $CURRENT_ALBUM_DATA['title'];
+	}
 }
 
 
