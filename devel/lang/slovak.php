@@ -14,9 +14,6 @@
 //  the Free Software Foundation; either version 2 of the License, or        //
 //  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
-// From czech language file translated by Martin Petriska zin@centrum.sk
-// Czech original updated by Michal Ambroz <rebus@seznam.cz>                     //
-// ------------------------------------------------------------------------- //
 // CVS version: $Id$
 // ------------------------------------------------------------------------- //
 
@@ -26,7 +23,7 @@ $lang_translation_info = array(
 'lang_name_english' => 'Slovak',  
 'lang_name_native' => 'Slovensky', 
 'lang_country_code' => 'sk', 
-'trans_name'=> 'Zin', //the name of the translator - can be a nickname
+'trans_name'=> 'Zin (Martin Petriska)', //the name of the translator - can be a nickname
 'trans_email' => 'zin@centrum.sk', //translator's email address (optional)
 'trans_website' => 'http://zin.blog.sk', //translator's website (optional)
 'trans_date' => '2004-11-04', //the date the translation was created / last modified
