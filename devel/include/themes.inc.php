@@ -51,13 +51,6 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}         //{THEMES
 //  ('THEME_IS_XHTML10_TRANSITIONAL',1) : If theme is defined as XHTML10_TRANSITIONAL the VANITY footer will be enabled
 //    if the theme has a {VANITY} token in its template.html. Don't enable this if you have modified the code! See the
 //    docs/theme.html documentation for validation methodology.
-//  ('THEME_HAS_VANITY_GRAPHICS',1) : "Powered By","Valid XHTML","Valid CSS". The location for the vanity graphics
-//    will be directed to the themes images folder.  Vanity graphics will only be shown for themes that have
-//    "THEME_IS_XHTML10_TRANSITIONAL" defined.
-//    Powered By PHP   : images/powered-php.gif
-//    Powered By MySQL : images/powered-mysql.gif
-//    Valid XHTML      : images/valid-xhtml10.gif
-//    Valid CSS        : images/valid-css.gif
 
 // Creates buttons from a template using an array of tokens
 // this function is used in this file it needs to be declared before being called.
