@@ -80,7 +80,7 @@ INSERT INTO CPG_config VALUES ('show_private', '0');
 INSERT INTO CPG_config VALUES ('first_level', '1');
 INSERT INTO CPG_config VALUES ('display_film_strip', '1');
 INSERT INTO CPG_config VALUES ('max_film_strip_items', '5');
-INSERT INTO CPG_config VALUES ('thumb_use', 'ht');
+INSERT INTO CPG_config VALUES ('thumb_use', 'any');
 INSERT INTO CPG_config VALUES ('comment_email_notification', '0');
 #INSERT INTO CPG_config VALUES ('disable_popup_rightclick', '0');
 #INSERT INTO CPG_config VALUES ('disable_gallery_rightclick', '0');
@@ -111,7 +111,7 @@ INSERT INTO CPG_config VALUES ('slideshow_interval', '5000');
 
 INSERT INTO CPG_filetypes VALUES ('jpg', 'image/jpg', 'image');
 INSERT INTO CPG_filetypes VALUES ('jpeg', 'image/jpeg', 'image');
-INSERT INTO CPG_filetypes VALUES ('jpe', 'image/jpg', 'image');
+INSERT INTO CPG_filetypes VALUES ('jpe', 'image/jpe', 'image');
 INSERT INTO CPG_filetypes VALUES ('gif', 'image/gif', 'image');
 INSERT INTO CPG_filetypes VALUES ('png', 'image/png', 'image');
 INSERT INTO CPG_filetypes VALUES ('bmp', 'image/bmp', 'image');
@@ -138,7 +138,7 @@ INSERT INTO CPG_filetypes VALUES ('wma', 'audio/x-ms-wma', 'audio');
 INSERT INTO CPG_filetypes VALUES ('wav', 'audio/wav', 'audio');
 INSERT INTO CPG_filetypes VALUES ('ogg', 'audio/ogg', 'audio');
 
-INSERT INTO CPG_filetypes VALUES ('psd', 'image/psd', 'document');
+INSERT INTO CPG_filetypes VALUES ('psd', 'image/psd', 'image');
 INSERT INTO CPG_filetypes VALUES ('ram', 'audio/x-pn-realaudio', 'document');
 INSERT INTO CPG_filetypes VALUES ('ra', 'audio/x-realaudio', 'document');
 INSERT INTO CPG_filetypes VALUES ('rm', 'audio/x-realmedia', 'document');
