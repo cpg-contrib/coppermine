@@ -760,7 +760,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
                 }
 
-				$rowset = CPGPluginAPI::filter('thumb_caption_regular',$rowset);
+        $rowset = CPGPluginAPI::filter('thumb_caption_regular',$rowset);
                 
                 return $rowset;
         }
@@ -1302,7 +1302,64 @@ function add_hit($pid)
 {
         global $CONFIG, $raw_ip;
         cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET hits=hits+1, lasthit_ip='$raw_ip' WHERE pid='$pid'");
+        
+        /**
+         * Code to record the details of hits for the picture, if the option is set in CONFIG
+         */
+        if ($CONFIG['hit_details']) {
+        // Get the details of user browser, IP, OS, etc
+        $os = "Unknown";
+        if(eregi("Linux",$_SERVER["HTTP_USER_AGENT"])) {
+            $os = "Linux";
+        } else if(eregi("Windows NT 5.0",$_SERVER["HTTP_USER_AGENT"])) {
+            $os = "Windows 2000";
+        } else if(eregi("win98|Windows 98",$_SERVER["HTTP_USER_AGENT"])) {
+            $os = "Windows 98";
+        } else if(eregi("Windows NT 5.1",$_SERVER["HTTP_USER_AGENT"])) {
+            $os = "Windows XP";
+        } else if(eregi("Windows",$_SERVER["HTTP_USER_AGENT"])) {
+            $os = "Windows";
+        }
+        
+        $browser = $_SERVER["HTTP_USER_AGENT"];
+        if(eregi("MSIE",$browser)) {
+            if(eregi("MSIE 5.5",$browser)) {
+                $browser = "Microsoft Internet Explorer 5.5";
+            } else if(eregi("MSIE 6.0",$browser)) {
+                $browser = "Microsoft Internet Explorer 6.0";
+            }
+        } else if(eregi("Mozilla Firebird",$browser)) {
+            $browser = "Mozilla Firebird";
+        } else if(eregi("netscape",$browser)) {
+            $browser = "Netscape";
+        } else if(eregi("Firefox",$browser)) {
+            $browser = "Firefox";
+        }
+        
+        //Code to get the search string if the referrer is any of the following
+        $search_engines = array('google', 'lycos', 'yahoo');
 
+        foreach ($search_engines as $engine) {
+          if ( is_referer_search_engine($engine)) {
+            $query_terms = get_search_query_terms($engine);
+            break;
+          }
+        }
+        
+        $time = time();
+        
+        // Insert the record in database
+        $query = "INSERT INTO {$CONFIG['TABLE_HIT_STATS']}
+                          SET
+                            pid = $pid,
+                            search_phrase = '$query_term',
+                            Ip   = '$_SERVER[REMOTE_ADDR]',
+                            sdate = '$time',
+                            referer='$_SERVER[HTTP_REFERER]',
+                            browser = '$browser',
+                            os = '$os'";
+        cpg_db_query($query);
+     }
 }
 
 /**
@@ -2493,4 +2550,68 @@ function cpg_get_webroot_path() {
 
     return $return;
 }
+
+/**
+ * Function to get the search string if the picture is viewed from google, lucos or yahoo search engine
+ */
+
+function get_search_query_terms($engine = 'google') {
+  global $s, $s_array;
+  $referer = urldecode($_SERVER[HTTP_REFERER]);
+  $query_array = array();
+  switch ($engine) {
+    case 'google':
+      // Google query parsing code adapted from Dean Allen's
+      // Google Hilite 0.3. http://textism.com
+      $query_terms = preg_replace('/^.*q=([^&]+)&?.*$/i','$1', $referer);
+      $query_terms = preg_replace('/\'|"/', '', $query_terms);
+      $query_array = preg_split ("/[\s,\+\.]+/", $query_terms);
+      break;
+  
+    case 'lycos':
+      $query_terms = preg_replace('/^.*query=([^&]+)&?.*$/i','$1', $referer);
+      $query_terms = preg_replace('/\'|"/', '', $query_terms);
+      $query_array = preg_split ("/[\s,\+\.]+/", $query_terms);
+      break;
+  
+    case 'yahoo':
+      $query_terms = preg_replace('/^.*p=([^&]+)&?.*$/i','$1', $referer);
+      $query_terms = preg_replace('/\'|"/', '', $query_terms);
+      $query_array = preg_split ("/[\s,\+\.]+/", $query_terms);
+      break;
+  }
+  return $query_array;
+}
+
+
+function is_referer_search_engine($engine = 'google') {
+  //$siteurl = get_settings('home');
+  $referer = urldecode($_SERVER['HTTP_REFERER']);
+    //echo "referer is: $referer<br />";
+  if ( ! $engine ) {
+    return 0;
+  }
+
+  switch ($engine) {
+  case 'google':
+    if (preg_match('|^http://(www)?\.?google.*|i', $referer)) {
+      return 1;
+    }
+    break;
+
+    case 'lycos':
+    if (preg_match('|^http://search\.lycos.*|i', $referer)) {
+      return 1;
+    }
+        break;
+
+    case 'yahoo':
+    if (preg_match('|^http://search\.yahoo.*|i', $referer)) {
+      return 1;
+    }
+    break;
+  }
+  return 0;
+}
+
 ?>
