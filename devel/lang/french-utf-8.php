@@ -1,6 +1,6 @@
 ﻿<?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.2.1                                            //
 // ------------------------------------------------------------------------- //
 // Copyright (C) 2002,2003 Gregory DEMAR                                     //
 //  http://www.chezgreg.net/coppermine/                                      //
@@ -233,7 +233,7 @@ $lang_get_pic_data = array(
 
 $lang_cpg_debug_output = array(
   'debug_info' => 'Infos de dÃ©buggage', //cpg1.3.0
-  'select_all' => 'TOut sÃ©lectionner', //cpg1.3.0
+  'select_all' => 'Tout sÃ©lectionner', //cpg1.3.0
   'copy_and_paste_instructions' => 'Si vous souhaitez soumettre une demande d\'assistance dans le forum de support de Coppermine, copier/collez ces informations de dÃ©buggage dans avec votre message. Assuez-vous de remplacer tous les mots de passe, mÃªme codÃ©s, par \'***\' avant de poster votre message.', //cpg1.3.0
   'phpinfo' => 'display phpinfo', //cpg1.3.0
 );
@@ -485,6 +485,41 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   '<br /><div align="left"><a name="notice1"></a>(*) Ce paramÃ¨tre ne doit pas Ãªtre modifiÃ© si des images sont dÃ©jÃ  prÃ©sentes dans la Base de donnÃ©es.<br />
   <a name="notice2"></a>(**) Lorsque vous modifiez ce paramÃ¨tre, seuls les nouveaux fichiers seront affectÃ©s. Il est donc conseillÃ© de ne pas modifier ce paramÃ¨tre si des images sont dÃ©jÃ  prÃ©sentes dans la Base de donnÃ©es. Vous pouvez toutefois appliquer ce paramÃ¨tre aux fichiers existants avec <a href="util.php">l\'utilitaire appropriÃ©</a> (option Redimensionner les images) accessible depuis le menu d\'administration.</div><br />', //cpg1.3.0
 );
+
+// -------------------------------------------------------------------------
+//
+// File db_ecard.php //cpg1.3.0
+// -------------------------------------------------------------------------
+//
+
+if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
+  'title' => 'Cartes envoyÃ©es', //cpg1.3.0
+  'ecard_sender' => 'ExpÃ©diteur', //cpg1.3.0
+  'ecard_recipient' => 'Destinataire', //cpg1.3.0
+  'ecard_date' => 'Date', //cpg1.3.0
+  'ecard_display' => 'Afficher les cartes', //cpg1.3.0
+  'ecard_name' => 'Nom', //cpg1.3.0
+  'ecard_email' => 'E-mail', //cpg1.3.0
+  'ecard_ip' => 'IP #', //cpg1.3.0
+  'ecard_ascending' => 'ascendant', //cpg1.3.0
+  'ecard_descending' => 'descendant', //cpg1.3.0
+  'ecard_sorted' => 'triÃ©es', //cpg1.3.0
+  'ecard_by_date' => 'par date', //cpg1.3.0
+  'ecard_by_sender_name' => 'par nom d\'expÃ©diteur', //cpg1.3.0
+  'ecard_by_sender_email' => 'par adresse d\'expÃ©diteur', //cpg1.3.0
+  'ecard_by_sender_ip' => 'par adresse IP d\'expÃ©diteur', //cpg1.3.0
+  'ecard_by_recipient_name' => 'par nom de destinataire', //cpg1.3.0
+  'ecard_by_recipient_email' => 'par adresse de destinataire', //cpg1.3.0
+  'ecard_number' => 'Affichage des enregistrements %s Ã  %s parmi %s', //cpg1.3.0
+  'ecard_goto_page' => 'Aller Ã  la page', //cpg1.3.0
+  'ecard_records_per_page' => 'enregistrements par page', //cpg1.3.0
+  'check_all' => 'Tout cocher', //cpg1.3.0
+  'uncheck_all' => 'Tout dÃ©cocher', //cpg1.3.0
+  'ecards_delete_selected' => 'Supprimer les cartes sÃ©lectionnÃ©es', //cpg1.3.0
+  'ecards_delete_confirm' => 'Etes-vous certain de vouloir supprimer ces enregistrements ? Merci de cocher la case !', //cpg1.3.0
+  'ecards_delete_sure' => 'Je suis certain', //cpg1.3.0
+);
+
 // ------------------------------------------------------------------------- //
 // File db_input.php
 // ------------------------------------------------------------------------- //

@@ -126,7 +126,7 @@ $lang_main_menu = array(
   'fav_lnk' => 'Mes favoris',
   'memberlist_title' => 'Afficher la liste des membres', //cpg1.3.0
   'memberlist_lnk' => 'Liste des membres', //cpg1.3.0
-  'faq_title' => 'Questions fréquemment posées à propos de \';Coppermine\';', //cpg1.3.0
+  'faq_title' => 'Questions fréquemment posées à propos de &quot;Coppermine&quot;', //cpg1.3.0
   'faq_lnk' => 'FAQ', //cpg1.3.0
 );
 
@@ -382,14 +382,14 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Loguer les envois de cartes électroniques', 'log_ecards', 1), //cpg1.3.0
   array('Autoriser le téléchargement ZIP des photos dans les Favoris', 'enable_zipdownload', 1), //cpg1.3.0
 
-  'Paramètres de langues, themes et caractères',
+  'Paramètres de langues, themes &amp; caractères',
   array('Langue par défaut', 'lang', 5),
   array('Theme par défaut', 'theme', 6),
   array('Afficher la liste des langues', 'language_list', 8), //cpg1.3.0
   array('Afficher le drapeau des langues', 'language_flags', 8), //cpg1.3.0
-  array('Afficher \'-Par défaut -\'; dans la sélection des langues', 'language_reset', 1), //cpg1.3.0
+  array('Afficher &quot;- Par défaut -&quot; dans la sélection des langues', 'language_reset', 1), //cpg1.3.0
   array('Afficher la liste des thèmes', 'theme_list', 8), //cpg1.3.0
-  array('Afficher \'- Par défaut -\'; dans la liste des thèmes', 'theme_reset', 1), //cpg1.3.0
+  array('Afficher &quot;- Par défaut -&quot; dans la liste des thèmes', 'theme_reset', 1), //cpg1.3.0
   array('Afficher les FAQ', 'display_faq', 1), //cpg1.3.0
   array('Afficher l\'aide bbcode', 'show_bbcode_help', 1), //cpg1.3.0
   array('Encodage des caractères', 'charset', 4), //cpg1.3.0
@@ -413,7 +413,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Classement par défaut des images', 'default_sort_order', 3),
   array('Nombre minimum de votes nécessaires pour qu\'une image apparaisse dans la liste des images les mieux notées', 'min_votes_for_rating', 0),
 
-  'Affichage des images et paramètres des commentaires',
+  'Affichage des images &amp; paramètres des commentaires',
   array('Largeur du tableau pour l\'affichage des images (pixels ou %)', 'picture_table_width', 0),
   array('Les informations relatives à l\'image sont affichées par défaut', 'display_pic_info', 1),
   array('Filtrer les gros mots dans les commentaires', 'filter_bad_words', 1),
@@ -431,7 +431,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   'Paramètres des images et vignettes',
   array('Qualité pour les fichiers JPG', 'jpeg_qual', 0),
   array('Dimension maximale pour les vignettes <b>*</b>', 'thumb_width', 0),
-  array('Utiliser la dimension (largeur ou hauteur ou aspect max pour la vignette)<b>*</b>', 'thumb_use', 7),
+  array('Utiliser la dimension (largeur ou hauteur ou aspect max pour la vignette)<b>**</b>', 'thumb_use', 7),
   array('Créer des images intermédiaires','make_intermediate',1),
   array('Largeur ou hauteur maximale pour une image intermédiaire <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0),
   array('Poids maximal des images à uploader (Ko)', 'max_upl_size', 0),
@@ -473,7 +473,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Nom du champ 3', 'user_field3_name', 0),
   array('Nom du champ 4', 'user_field4_name', 0),
 
-  'Cookies et paramètres d\'encodage des caractères',
+  'Cookies &amp; paramètres d\'encodage des caractères',
   array('Nom du cookie utilisé par le script (si vous utilisez l\'intégration avec un forum, vérifiez que les cookies sont différents)', 'cookie_name', 0),
   array('Chemin du cookie utilisé par le script', 'cookie_path', 0),
 
@@ -714,34 +714,34 @@ if (defined('FAQ_PHP')) $lang_faq_php = array(
 if (defined('FAQ_PHP')) $lang_faq_data = array(
   '<br>FAQ générales<br>', //cpg1.3.0
   array('Pourquoi dois-je m\'inscrire ?', 'L\'inscription peut être imposée ou non par l\'administrateur. Elle offre des fonctionnalités supplémentaires telles que la possibilité d\'uploader des images, d\'avoir une liste de Favoris, de noter les images, de poster des commentaires etc...', 'allow_user_registration', '0'), //cpg1.3.0
-  array('Comment puis-je m\'inscrire ?', 'Allez sur \';Inscription\'; et renseignez les informations requises (éventuellement les informations optionnelles, si vous le souhaitez).<br />Si l\'administrateur a demandé une confirmation par mail, vous recevrez un message à l\'adresse que vous aurez renseignée dans le formulaire d\'inscription. Ce message vous induiqera la marche à suivre pour valider votre inscription. Votre inscription doit être validée avant que vous ne puissiez vous indentifier.', 'allow_user_registration', '1'), //cpg1.3.0
-  array('Comment m\'identifier ?', 'Allez sur \';S\'identifier\';, saisissez votre pseudo et votre mot de passe. Cochez \';Se souvenir de moi\'; afin d\'être automatiquement reconnecté lorsque vous reviendrez sur le site.<br /><b>IMPORTANT : Vous devez autoriser les cookies et le cookie ne doit pas être effacé pour que cette option fonctionne.</b>', 'offline', 0), //cpg1.3.0
+  array('Comment puis-je m\'inscrire ?', 'Allez sur &quot;Inscription&quot; et renseignez les informations requises (éventuellement les informations optionnelles, si vous le souhaitez).<br />Si l\'administrateur a demandé une confirmation par mail, vous recevrez un message à l\'adresse que vous aurez renseignée dans le formulaire d\'inscription. Ce message vous induiqera la marche à suivre pour valider votre inscription. Votre inscription doit être validée avant que vous ne puissiez vous indentifier.', 'allow_user_registration', '1'), //cpg1.3.0
+  array('Comment m\'identifier ?', 'Allez sur &quot;S\'identifier&quot;, saisissez votre pseudo et votre mot de passe. Cochez &quot;Se souvenir de moi&quot; afin d\'être automatiquement reconnecté lorsque vous reviendrez sur le site.<br /><b>IMPORTANT : Vous devez autoriser les cookies et le cookie ne doit pas être effacé pour que cette option fonctionne.</b>', 'offline', 0), //cpg1.3.0
   array('Pourquoi ne puis-je pas m\'identifier ?', 'Vérifiez que vous vous êtes bien inscrit et que vous avez cliqué sur le lien de validation indiqué dans le mail de confirmation que vous devez avoir reçu. Pour tout autre problème, contactez l\'administrateur du site.', 'offline', 0), //cpg1.3.0
-  array('Et si j\'oublie mon mot de passe ?', 'Si le site possède un lien \';J\'ai oublié mon mot de passe !\';, utilisez-le. Dans le cas contraire, contactez l\'administrateur qui vous créera un nouveau mot de passe.', 'offline', 0), //cpg1.3.0
-  //array('Que dois-je faire si je change d\'adresse e-mail ?', 'Identifiez-vous et changez votre adresse de messagerie dans le menu \';Mon profil\';', 'offline', 0), //cpg1.3.0
-  array('Comment sauvegarder une photo dans \';Mes Favoris\'; ?', 'Cliquez sur une image. Si les informations de cette image ne sont pas indiquées au bas de celle-ci, cliquez sur le lien \';Afficher/cacher les informations de l\'image\'; (<img src="images/info.gif" width="16" height="16" border="0" alt="Afficher/cacher les informations de l\'image" />); Cliquez ensuite sur le lien \';Ajouter aux favoris\';.<br /><br />IMPORTANT : Vous devez autoriser les cookies et le cookie ne doit pas être effacé pour que cette option fonctionne.', 'offline', 0), //cpg1.3.0
+  array('Et si j\'oublie mon mot de passe ?', 'Si le site possède un lien &quot;J\'ai oublié mon mot de passe !&quot;, utilisez-le. Dans le cas contraire, contactez l\'administrateur qui vous créera un nouveau mot de passe.', 'offline', 0), //cpg1.3.0
+  //array('Que dois-je faire si je change d\'adresse e-mail ?', 'Identifiez-vous et changez votre adresse de messagerie dans le menu &quot;Mon profil&quot;', 'offline', 0), //cpg1.3.0
+  array('Comment sauvegarder une photo dans &quot;Mes Favoris&quot; ?', 'Cliquez sur une image. Si les informations de cette image ne sont pas indiquées au bas de celle-ci, cliquez sur le lien &quot;Afficher/cacher les informations de l\'image&quot; (<img src="images/info.gif" width="16" height="16" border="0" alt="Afficher/cacher les informations de l\'image" />); Cliquez ensuite sur le lien &quot;Ajouter aux favoris&quot;.<br /><br />IMPORTANT : Vous devez autoriser les cookies et le cookie ne doit pas être effacé pour que cette option fonctionne.', 'offline', 0), //cpg1.3.0
   array('Comment noter une photo ?', 'Cliquez sur une image et cliquez sur la note que vous souhaitez lui attribuer, au-dessous de l\'image', 'offline', 0), //cpg1.3.0
-  array('Comment poster un commentaire sur une photo ?', 'Cliquez sur une image et tapez votre commentaire au-dessous de l\'image, sous la ligne \';Ajoutez votre commentaire\';.', 'offline', 0), //cpg1.3.0
-  array('Comment uploader une photo ?', 'Cliquez sur \';Uploader une image\'; et sélectionnez l\'album dans lequel vous souhaitez qu\'elle apparaisse. Cliquez sur \';Parcourir\'; pour sélectionner le fichier à transférer. Complétez ensuite les champs facultatifs si vous le désirez. Enfin, validez par \';Mettre une photo en ligne\';', 'allow_private_albums', 0), //cpg1.3.0
-  array('Où puis-je uploader mes photos ?', 'Vous pourrez uploader vos photos dans l\'un de vos albums dans \';Ma galerie\';. L\'administrateur peut aussi vous avoir autorisé à uploader des photos dans un ou plusieurs albums dans la galerie principale.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Comment poster un commentaire sur une photo ?', 'Cliquez sur une image et tapez votre commentaire au-dessous de l\'image, sous la ligne &quot;Ajoutez votre commentaire&quot;.', 'offline', 0), //cpg1.3.0
+  array('Comment uploader une photo ?', 'Cliquez sur &quot;Uploader une image&quot; et sélectionnez l\'album dans lequel vous souhaitez qu\'elle apparaisse. Cliquez sur &quot;Parcourir&quot; pour sélectionner le fichier à transférer. Complétez ensuite les champs facultatifs si vous le désirez. Enfin, validez par &quot;Mettre une photo en ligne&quot;', 'allow_private_albums', 0), //cpg1.3.0
+  array('Où puis-je uploader mes photos ?', 'Vous pourrez uploader vos photos dans l\'un de vos albums dans &quot;Ma galerie&quot;. L\'administrateur peut aussi vous avoir autorisé à uploader des photos dans un ou plusieurs albums dans la galerie principale.', 'allow_private_albums', 0), //cpg1.3.0
   array('Quels types et tailles d\'images puis-je uploader ?', 'La taille et le type (jpg,gif,..etc.) est défini par l\'administrateur. Vous pouvez lui en demander la liste.', 'offline', 0), //cpg1.3.0
-  array('Que signifie \';Ma galerie\'; ?', '\';Ma galerie\'; est une galerie personnelle dans laquelle les utilisateurs peuvent uploader et organiser leurs photos.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Comment puis-je créer, renommer ou supprimer des albums dans \';Ma Galerie\'; ?', 'Vous devez auparavant entrer dans le \';Mode admin.\';<br/>Cliquez ensuite sur \';Créer / classer mes Albums\';puis cliquez sur \';Nouveau\';. Remplacez \';New Album\'; à votre convenance.<br />Vous pouvez aussi renommer vos albums dans votre galerie.<br />Cliquez ensuite sur \';Appliquer les Modifications\';.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Comment puis-je modifier ou restreindre l\'accès à mes albums ?', 'Vous devez auparavant entrer dans le \';Mode admin.\';<br />Cliquez ensuite sur \';Modifier mes albums\';. Dans la zone \';Mettre l\'album à jour\'; sélectionnez l\'album que vous souhaitez modifier.<br />Vous pouvez modifier le nom, la description, la vignette, restreindre l\'accès, les options concernant les notes et les commentaires.<br />Cliquez sur \';Mettre l\'album à jour\';. pour valider', 'allow_private_albums', 0), //cpg1.3.0
-  array('Comment puis-je voir les albums des autres utilisateurs ?', 'Allez sur \';Liste des albums\'; et choisissez \';Galeries utilisateurs\';.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Que signifie &quot;Ma galerie&quot; ?', '&quot;Ma galerie&quot; est une galerie personnelle dans laquelle les utilisateurs peuvent uploader et organiser leurs photos.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Comment puis-je créer, renommer ou supprimer des albums dans &quot;Ma Galerie&quot; ?', 'Vous devez auparavant entrer dans le &quot;Mode admin.&quot;<br/>Cliquez ensuite sur &quot;Créer / classer mes Albums&quot;puis cliquez sur &quot;Nouveau&quot;. Remplacez &quot;New Album&quot; à votre convenance.<br />Vous pouvez aussi renommer vos albums dans votre galerie.<br />Cliquez ensuite sur &quot;Appliquer les Modifications&quot;.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Comment puis-je modifier ou restreindre l\'accès à mes albums ?', 'Vous devez auparavant entrer dans le &quot;Mode admin.&quot;<br />Cliquez ensuite sur &quot;Modifier mes albums&quot;. Dans la zone &quot;Mettre l\'album à jour&quot; sélectionnez l\'album que vous souhaitez modifier.<br />Vous pouvez modifier le nom, la description, la vignette, restreindre l\'accès, les options concernant les notes et les commentaires.<br />Cliquez sur &quot;Mettre l\'album à jour&quot;. pour valider', 'allow_private_albums', 0), //cpg1.3.0
+  array('Comment puis-je voir les albums des autres utilisateurs ?', 'Allez sur &quot;Liste des albums&quot; et choisissez &quot;Galeries utilisateurs&quot;.', 'allow_private_albums', 0), //cpg1.3.0
   array('Que sont les cookies ?', 'Les cookies sont des fichiers texte contenant des paramètres du site et de votre pseudo. Ces cookies sont stockées dans votre ordinateur.<br />Ils vous apportent la possibilité d\'entrer et sortir du site sans avoir à vous identifier, ainsi que d\'autres facilités.', 'offline', 0), //cpg1.3.0
   array('Où puis-je me procurer cette galerie pour mon site ?', 'Coppermine est une Galerie multimédia gratuite, sous licence GNU GPL. Elle comprend de nombreuses fonctions avancées et est portée sur plusieurs plateformes. Visitez le site <a href="http://coppermine.sf.net/" target="_blank">Page principale Coppermine</a> pour en savoir plus et procéder à son téléchargement.', 'offline', 0), //cpg1.3.0
 
   '<br>Navigation dans le site<br>', //cpg1.3.0
-  array('Qu\'est-ce-que \';Liste des albums\'; ?', 'Cela vous redirigera vers la galerie principale avec un lien vers chaque catégorie. Ces liens peuvent être sous forme de vignettes.', 'offline', 0), //cpg1.3.0
-  array('Qu\'est-ce-que \';Ma galerie\'; ?', 'Cette fonctionnalité vous permet de créer vos propres albums et d\'y uploader et gérer vos photos.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Quelle est la différence entre le \';Mode admin.\'; et le \';Mode utilisateur\'; ?', 'Le \';Mode admin.\'; vous permet de modifier vos albums ainsi que tous les albums pour lesquels vous aurez été habilité par l\'administrateur.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Qu\'est-ce-que \';Uploader une image\'; ?', 'Cette fonctionnalité vous permet d\'uploader des photos (dont la taille et le type sont définis par l\'administrateur) dans les galeries et albums pour lesquels vous aurez été habilité par l\'administrateur.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Qu\'est-ce-que \';Derniers ajouts\'; ?', 'Cette fonctionnalité vous montre les dernières photos uploadées sur le site.', 'offline', 0), //cpg1.3.0
-  array('Qu\'est-ce-que \';Commentaires\'; ?', 'Cette fonctionnalité vous montre les derniers commentaires postés par les utilisateurs du site.', 'offline', 0), //cpg1.3.0
-  array('Qu\'est-ce-que \';Les plus populaires\'; ?', 'Cette fonctionnalité vous montre les photos les plus vues par les visiteurs, identifiés ou anonymes.', 'offline', 0), //cpg1.3.0
-  array('Qu\'est-ce-que \';Les mieux notées\'; ?', 'Cette fonctionnalité vous montre les photos, triées par leur note moyenne. Par exemples : <br />- Si 5 utilisateurs donnent chacun la note 3 (<img src="images/rating3.gif" width="65" height="14" border="0" alt="" />), la photo obtient la note moyenne de 3 (<img src="images/rating3.gif" width="65" height="14" border="0" alt="" />).<br />- Si 5 utilisateurs donnent les notes 1, 2, 3, 4 et 5, la photo obtient une moyenne de 3 également (<img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> ).<br />Les notes vont de <img src="images/rating5.gif" width="65" height="14" border="0"/> (meilleure) to <img src="images/rating0.gif" width="65" height="14" border="0" /> (moins bonne).', 'offline', 0), //cpg1.3.0
-  array('Qu\'est-ce-que \';Mes favoris\'; ?', 'Cette fonctionnalité vous permet de stocker une ou plusieurs photos dans le cookie qui est stocké dans votre ordinateur.', 'offline', 0), //cpg1.3.0
+  array('Qu\'est-ce-que &quot;Liste des albums&quot; ?', 'Cela vous redirigera vers la galerie principale avec un lien vers chaque catégorie. Ces liens peuvent être sous forme de vignettes.', 'offline', 0), //cpg1.3.0
+  array('Qu\'est-ce-que &quot;Ma galerie&quot; ?', 'Cette fonctionnalité vous permet de créer vos propres albums et d\'y uploader et gérer vos photos.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Quelle est la différence entre le &quot;Mode admin.&quot; et le &quot;Mode utilisateur&quot; ?', 'Le &quot;Mode admin.&quot; vous permet de modifier vos albums ainsi que tous les albums pour lesquels vous aurez été habilité par l\'administrateur.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Qu\'est-ce-que &quot;Uploader une image&quot; ?', 'Cette fonctionnalité vous permet d\'uploader des photos (dont la taille et le type sont définis par l\'administrateur) dans les galeries et albums pour lesquels vous aurez été habilité par l\'administrateur.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Qu\'est-ce-que &quot;Derniers ajouts&quot; ?', 'Cette fonctionnalité vous montre les dernières photos uploadées sur le site.', 'offline', 0), //cpg1.3.0
+  array('Qu\'est-ce-que &quot;Commentaires&quot; ?', 'Cette fonctionnalité vous montre les derniers commentaires postés par les utilisateurs du site.', 'offline', 0), //cpg1.3.0
+  array('Qu\'est-ce-que &quot;Les plus populaires&quot; ?', 'Cette fonctionnalité vous montre les photos les plus vues par les visiteurs, identifiés ou anonymes.', 'offline', 0), //cpg1.3.0
+  array('Qu\'est-ce-que &quot;Les mieux notées&quot; ?', 'Cette fonctionnalité vous montre les photos, triées par leur note moyenne. Par exemples : <br />- Si 5 utilisateurs donnent chacun la note 3 (<img src="images/rating3.gif" width="65" height="14" border="0" alt="" />), la photo obtient la note moyenne de 3 (<img src="images/rating3.gif" width="65" height="14" border="0" alt="" />).<br />- Si 5 utilisateurs donnent les notes 1, 2, 3, 4 et 5, la photo obtient une moyenne de 3 également (<img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> ).<br />Les notes vont de <img src="images/rating5.gif" width="65" height="14" border="0"/> (meilleure) to <img src="images/rating0.gif" width="65" height="14" border="0" /> (moins bonne).', 'offline', 0), //cpg1.3.0
+  array('Qu\'est-ce-que &quot;Mes favoris&quot; ?', 'Cette fonctionnalité vous permet de stocker une ou plusieurs photos dans le cookie qui est stocké dans votre ordinateur.', 'offline', 0), //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -908,27 +908,27 @@ if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
 );
 
 // ------------------------------------------------------------------------- //
-// File register.php et profile.php
+// File register.php & profile.php
 // ------------------------------------------------------------------------- //
 
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
-      Bien que les administrateurs de {SITE_NAME} fassent en sorte de supprimer ou modifier toute donnée à caractère répréhensible le plus rapidement possible, il est impossible de scruter systématiquement l'intégralité des contenus. Vous êtes par conséquent conscient que tous les posts effectués sur ce site expriment les points de vue et opinions de leurs auteurs et non ceux des administrateurs ou du webmaster (sauf, évidemment dans le cas des posts effectués par ces derniers), qui ne pourront par conséquent pas être considérés comme responsables.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Bien que les administrateurs de {SITE_NAME} fassent en sorte de supprimer ou modifier toute donnée à caractère répréhensible le plus rapidement possible, il est impossible de scruter systématiquement l'intégralité des contenus. Vous êtes par conséquent conscient que tous les posts effectués sur ce site expriment les points de vue et opinions de leurs auteurs et non ceux des administrateurs ou du webmaster (sauf, évidemment dans le cas des posts effectués par ces derniers), qui ne pourront par conséquent pas être considérés comme responsables.
 <br />
-      Vous acceptez de ne poster aucune donnée à caractère injurieux, obscène, vulgaire, diffamatoire, menaçant, sexuel ou tout autre contenu susceptible de violer la loi. Vous acceptez que le webmaster et les modérateurs de {SITE_NAME} aient le droit de supprimer ou modifier n'importe quel contenu, si cela leur semble opportun.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Vous acceptez de ne poster aucune donnée à caractère injurieux, obscène, vulgaire, diffamatoire, menaçant, sexuel ou tout autre contenu susceptible de violer la loi. Vous acceptez que le webmaster et les modérateurs de {SITE_NAME} aient le droit de supprimer ou modifier n'importe quel contenu, si cela leur semble opportun.
 <br />
-      Le droit à l'image est la prérogative reconnue à toute personne de s'opposer, à certaines conditions, à ce que des tiers non autorisés reproduisent et, a fortiori, diffusent son image. Ainsi, pour toute publication de photos montrant des personnes reconnaissables, vous devez, en tant qu'exposant, être en possession d'une autorisation de publication. L'autorisation doit être expresse et suffisamment précise quant aux modalités de diffusion. Vous devez, en tant qu'exposant, pouvoir rapporter la preuve de cet accord exprès à toute personne qui en ferait la demande. L'absence d'autorisation engage directement votre unique responsabilité.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Le droit à l'image est la prérogative reconnue à toute personne de s'opposer, à certaines conditions, à ce que des tiers non autorisés reproduisent et, a fortiori, diffusent son image. Ainsi, pour toute publication de photos montrant des personnes reconnaissables, vous devez, en tant qu'exposant, être en possession d'une autorisation de publication. L'autorisation doit être expresse et suffisamment précise quant aux modalités de diffusion. Vous devez, en tant qu'exposant, pouvoir rapporter la preuve de cet accord exprès à toute personne qui en ferait la demande. L'absence d'autorisation engage directement votre unique responsabilité.
 <br />
-      Les droits d'auteur permettent à leur titulaire d'être le seul à produire ou reproduire son oeuvre, à la présenter au public, à la publier ou à pouvoir octroyer ce droit à quelqu'un d'autre. Ainsi, pour publier des photos, vous devez en être l'auteur ou être en possession d'une autorisation de publication fournie par l'auteur. Vous devez, en tant qu'exposant, pouvoir rapporter la preuve de cette autorisation à toute personne qui en ferait la demande. L'absence d'autorisation engage directement votre unique responsabilité.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Les droits d'auteur permettent à leur titulaire d'être le seul à produire ou reproduire son oeuvre, à la présenter au public, à la publier ou à pouvoir octroyer ce droit à quelqu'un d'autre. Ainsi, pour publier des photos, vous devez en être l'auteur ou être en possession d'une autorisation de publication fournie par l'auteur. Vous devez, en tant qu'exposant, pouvoir rapporter la preuve de cette autorisation à toute personne qui en ferait la demande. L'absence d'autorisation engage directement votre unique responsabilité.
 <br />
-      Selon le Code de la Propriété Intellectuelle du 1er juillet 1992 qui regroupe les lois relatives à la propriété intellectuelle, notamment la loi du 11 mars 1957 et la loi du 3 juillet 1985, le droit d'auteur protège les oeuvres sans l'accomplissement de formalités. D'autre part, afin d'éviter que d'éventuels liens puissent être faits vers vos photos à partir de sites dont nous ne pouvons contrôler le contenu, les noms de fichiers de vos photos pourront être modifiés à tout instant et sans préavis.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Selon le Code de la Propriété Intellectuelle du 1er juillet 1992 qui regroupe les lois relatives à la propriété intellectuelle, notamment la loi du 11 mars 1957 et la loi du 3 juillet 1985, le droit d'auteur protège les oeuvres sans l'accomplissement de formalités. D'autre part, afin d'éviter que d'éventuels liens puissent être faits vers vos photos à partir de sites dont nous ne pouvons contrôler le contenu, les noms de fichiers de vos photos pourront être modifiés à tout instant et sans préavis.
 <br />
-      En tant qu'utilisateur, vous acceptez que toutes les informations entrées plus haut et toutes les photographies que vous publiez soient stockées dans une base de données. Bien que ces informations et photographies ne soient pas communiquées à des tiers sans votre consentement, le webmaster et les administrateurs ne peuvent en aucun cas être tenus pour responsables dans le cas de tentatives de hack qui pourraient compromettre les données ou permettre l'accès ou l'utilisation illicite de vos photographies.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  En tant qu'utilisateur, vous acceptez que toutes les informations entrées plus haut et toutes les photographies que vous publiez soient stockées dans une base de données. Bien que ces informations et photographies ne soient pas communiquées à des tiers sans votre consentement, le webmaster et les administrateurs ne peuvent en aucun cas être tenus pour responsables dans le cas de tentatives de hack qui pourraient compromettre les données ou permettre l'accès ou l'utilisation illicite de vos photographies.
 <br />
-      Ce site utilise des cookies pour stocker des informations sur votre ordinateur. Ces cookies ne servent qu'à améliorer votre navigation sur ce site. Votre adresse e-mail ne sera utilisée que pour confirmer les données de votre inscription ainsi que votre mot de passe.<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Ce site utilise des cookies pour stocker des informations sur votre ordinateur. Ces cookies ne servent qu'à améliorer votre navigation sur ce site. Votre adresse e-mail ne sera utilisée que pour confirmer les données de votre inscription ainsi que votre mot de passe.<br />
 <br />
-      En cliquant sur 'J'accepte' ci-dessous, vous acceptez de vous soumettre à ces conditions ainsi qu'à toutes leurs éventuelles mises à jour.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  En cliquant sur 'J'accepte' ci-dessous, vous acceptez de vous soumettre à ces conditions ainsi qu'à toutes leurs éventuelles mises à jour.
 EOT;
 
 $lang_register_php = array(
@@ -1035,7 +1035,7 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'need_one_album' => 'Vous avez besoin d\'au moins un album pour effectuer cette opération',
   'warning' => 'Avertissement',
   'change_perm' => 'le script ne peut pas écrire dans ce répertoire, vous devez changer ses permissions à 755 ou 777 avant d\'essayer d\'ajouter les photos !',
-  'target_album' => '<b>Mettre les photos de \';</b>%s<b>\'; dans </b>%s',
+  'target_album' => '<b>Mettre les photos de &quot;</b>%s<b>&quot; dans </b>%s',
   'folder' => 'Répertoire',
   'image' => 'Image',
   'album' => 'Album',
