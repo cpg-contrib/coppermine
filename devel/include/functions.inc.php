@@ -773,29 +773,30 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         case 'favpics': // Favourite Pictures	        
                 
                 $album_name = $lang_meta_album_names['favpics'];
-		$favs = implode(",",$FAVPICS);
-                $result = db_query("SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND pid IN ($favs)");
-                $nbEnr = mysql_fetch_array($result);
-                $count = $nbEnr[0];
-                mysql_free_result($result);
+		if (count($FAVPICS)>0){
+			$favs = implode(",",$FAVPICS);	
+			$result = db_query("SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND pid IN ($favs)");
+			$nbEnr = mysql_fetch_array($result);
+			$count = $nbEnr[0];
+			mysql_free_result($result);
 
-                $select_columns = '*';
+			$select_columns = '*';
 
-                $result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES'AND pid IN ($favs) $limit");
-                $rowset = db_fetch_rowset($result);
-		
-                mysql_free_result($result);
+			$result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES'AND pid IN ($favs) $limit");
+			$rowset = db_fetch_rowset($result);
 
-                if ($set_caption) foreach ($rowset as $key => $row){
-                        $caption = $rowset[$key]['title'] ? "<span class=\"thumb_caption\">".($rowset[$key]['title'])."</span>" : '';
-                        $rowset[$key]['caption_text'] = $caption;
-                }		
-		
+			mysql_free_result($result);
+
+			if ($set_caption) foreach ($rowset as $key => $row){
+				$caption = $rowset[$key]['title'] ? "<span class=\"thumb_caption\">".($rowset[$key]['title'])."</span>" : '';
+				$rowset[$key]['caption_text'] = $caption;
+			}		
+		}		
 		return $rowset;
 		break;
 
 	default : // Invalid meta album
-		cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+	cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
 	}
 } // End of get_pic_data
 
