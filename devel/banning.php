@@ -44,7 +44,7 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
  **/
 function create_banlist()
 {
-    global $CONFIG, $PHP_SELF, $lang_banning_php, $album_date_fmt;
+    global $CONFIG, $lang_banning_php, $album_date_fmt; //$PHP_SELF, 
 
     $result = cpg_db_query ("SELECT * FROM {$CONFIG['TABLE_BANNED']} WHERE brute_force=0");
     $count = mysql_num_rows($result);
@@ -73,7 +73,7 @@ EOHEAD;
             }
             echo <<<EOROW
                                         <tr>
-                                               <form action="$PHP_SELF" method="post" name="banlist$row_counter">
+                                               <form action="{$_SERVER['PHP_SELF']}" method="post" name="banlist$row_counter">
                                                      <td width="20%" class="tableb" valign="middle">
                                                              <input type="hidden" name="ban_id" value="{$row['ban_id']}">
                                                 <input type="text" class="textinput" style="width: 100%" name="edit_ban_user_name" value="$username">
@@ -294,7 +294,7 @@ echo <<<EOT
                                         </tr>
 
                                         <tr>
-                                               <form action="$PHP_SELF" method="post" name="list">
+                                               <form action="{$_SERVER['PHP_SELF']}" method="post" name="list">
                                                      <td class="tableb" valign="middle">
                                                 <input type="text" class="textinput" style="width: 100%" name="add_ban_user_name" value="">
                                         </td>

@@ -68,7 +68,7 @@ $change_password_form_param = array(
 
 function make_form($form_param, $form_data)
 {
-    global $CONFIG, $PHP_SELF;
+    global $CONFIG; //, $PHP_SELF;
     global $lang_register_php;
 
     foreach ($form_param as $element) switch ($element[0]) {
@@ -219,7 +219,7 @@ if (isset($_POST['change_password']) && USER_ID && !defined('UDB_INTEGRATION')) 
     setcookie($CONFIG['cookie_name'] . '_pass', md5($_POST['new_pass']), time() + 86400, $CONFIG['cookie_path']);
 
     $title = sprintf($lang_register_php['x_s_profile'], USER_NAME);
-    $redirect = $PHP_SELF . "?op=edit_profile";
+    $redirect = $_SERVER['PHP_SELF'] . "?op=edit_profile";
     pageheader($title, "<META http-equiv=\"refresh\" content=\"3;url=$redirect\">");
     msg_box($lang_info, $lang_register_php['pass_chg_success'], $lang_continue, $redirect);
     pagefooter();
@@ -271,7 +271,7 @@ switch ($op) {
         pageheader($title);
         starttable(-1, $title, 2);
         echo <<<EOT
-    <form method="post" action="$PHP_SELF">
+    <form method="post" action="{$_SERVER['PHP_SELF']}">
 
 EOT;
         make_form($edit_profile_form_param, $form_data);
@@ -298,7 +298,7 @@ EOT;
         pageheader($title);
         starttable(-1, $title, 2);
         echo <<<EOT
-    <form method="post" action="$PHP_SELF">
+    <form method="post" action="{$_SERVER['PHP_SELF']}">
 
 EOT;
         make_form($change_password_form_param, '');

@@ -54,7 +54,7 @@ EOT;
 // Prints the image-navigation menu
 function html_img_nav_menu()
 {
-    global $CONFIG, $CURRENT_PIC_DATA, $PHP_SELF, $meta_nav ;
+    global $CONFIG, $CURRENT_PIC_DATA, $meta_nav ; //$PHP_SELF, 
     global $album, $cat, $pos, $pic_count, $lang_img_nav_bar, $lang_text_dir, $template_img_navbar;
 
     $cat_link = is_numeric($album) ? '' : '&amp;cat=' . $cat;
@@ -65,7 +65,7 @@ function html_img_nav_menu()
 
     if ($pos > 0) {
         $prev = $pos - 1;
-        $prev_tgt = "$PHP_SELF?album=$album$cat_link&amp;pos=$prev";
+        $prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$prev";
         $prev_title = $lang_img_nav_bar['prev_title'];
                 $meta_nav .= "<LINK rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />
                 ";
@@ -75,7 +75,7 @@ function html_img_nav_menu()
     }
     if ($pos < ($pic_count -1)) {
         $next = $pos + 1;
-        $next_tgt = "$PHP_SELF?album=$album$cat_link&amp;pos=$next";
+        $next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$next";
         $next_title = $lang_img_nav_bar['next_title'];
                 $meta_nav .= "<LINK rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>
                 ";
@@ -96,7 +96,7 @@ function html_img_nav_menu()
         $meta_nav .= "<LINK rel=\"up\" href=\"$thumb_tgt\" title=\"".$lang_img_nav_bar['thumb_title']."\"/>
         ";
 
-    $slideshow_tgt = "$PHP_SELF?album=$album$cat_link&amp;pid=$pid&amp;slideshow=".$CONFIG['slideshow_interval'];
+    $slideshow_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pid=$pid&amp;slideshow=".$CONFIG['slideshow_interval'];
 
     $pic_pos = sprintf($lang_img_nav_bar['pic_pos'], $human_pos, $pic_count);
 

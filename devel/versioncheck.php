@@ -172,7 +172,7 @@ if ($USER['theme']) {
 if (file_exists('images/help.gif') == true) { $help_icon = '<img src="images/help.gif" width="13" height="11" border="0" alt="" title="'.$lang_versioncheck_php['help'].'" />';
 } else { $help_icon = '<span style="background-color:#FFFAD3;color:#000000;font-weight:bold;border:1px solid black;font-size:8pt;margin:0px;padding:0px" title="'.$lang_versioncheck_php['help'].'"> ? </span>';
 }
-$help_html = "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('".$PHP_SELF."?pop=1&css=" . $help_theme . "&" . $reference . "','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=" . $width . ",height=" . $height . "')\" style=\"cursor:help;text-decoration:none\">".$help_icon."</a>";
+$help_html = "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('".$_SERVER['PHP_SELF']."?pop=1&css=" . $help_theme . "&" . $reference . "','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=" . $width . ",height=" . $height . "')\" style=\"cursor:help;text-decoration:none\">".$help_icon."</a>";
 return $help_html;
 }
 }
@@ -247,7 +247,7 @@ EOT;
 }
 
 // step x: display the options
-$form_output = '<form name="versioncheck_options" action="'.$PHP_SELF.'" method="get">';
+$form_output = '<form name="versioncheck_options" action="'.$_SERVER['PHP_SELF'].'" method="get">';
 $form_output .= '<tr>';
 $form_output .= '<td colspan="'.$number_of_columns.'" class="tableh2"><h2>'.$lang_versioncheck_php['options'].'</h2></td>';
 $form_output .= '</tr>';
@@ -321,7 +321,7 @@ $form_output .= '<input type="hidden" name="changes" value="1" />';
 $form_output .= '<input type="submit" name="submit" value="'.$lang_versioncheck_php['submit'].'" class="button" />';
 $form_output .= '</td>';
 $form_output .= '<td class="tablef" align="center">';
-$form_output .= '&nbsp;<input type="button" name="reset" value="'.$lang_versioncheck_php['reset_to_defaults'].'" class="button" onclick="location.href=\''.$PHP_SELF.'\'" />';
+$form_output .= '&nbsp;<input type="button" name="reset" value="'.$lang_versioncheck_php['reset_to_defaults'].'" class="button" onclick="location.href=\''.$_SERVER['PHP_SELF'].'\'" />';
 $form_output .= '</td>';
 $form_output .= '</tr>';
 $form_output .= '</table>';
@@ -535,8 +535,8 @@ pagefooter();
 ////////////////////////////////// functions ///////////////////////////////
 
 function cpg_get_coppermine_path() {
-global $PHP_SELF;
-$return = str_replace('/', '',strrchr(str_replace('/'.str_replace('/', '',strrchr($PHP_SELF, '/')), '', $PHP_SELF),'/'));
+//global $PHP_SELF;
+$return = str_replace('/', '',strrchr(str_replace('/'.str_replace('/', '',strrchr($_SERVER['PHP_SELF'], '/')), '', $_SERVER['PHP_SELF']),'/'));
 return $return;
 }
 

@@ -239,7 +239,7 @@ function getfoldercontent($folder, &$dir_array, &$pic_array, &$expic_array)
 
 function display_dir_tree($folder, $ident)
 {
-    global $CONFIG, $PHP_SELF, $lang_search_new_php;
+    global $CONFIG, $lang_search_new_php; //$PHP_SELF, 
     $dir_path = $CONFIG['fullpath'] . $folder;
 
 
@@ -261,7 +261,7 @@ function display_dir_tree($folder, $ident)
             echo <<<EOT
                         <tr>
                                 <td class="tableb">
-                                        $ident<img src="images/folder.gif" border="0" alt="" />&nbsp;<a href= "$PHP_SELF?startdir=$start_target">$file</a>$warnings
+                                        $ident<img src="images/folder.gif" border="0" alt="" />&nbsp;<a href= "{$_SERVER['PHP_SELF']}?startdir=$start_target">$file</a>$warnings
                                 </td>
                         </tr>
 EOT;
@@ -441,7 +441,7 @@ EOT;
     $help = '&nbsp;'.cpg_display_help('f=index.htm&as=ftp&ae=ftp_end&top=1#ftp_select_file', '500', '400');
     starttable("100%");
     echo <<<EOT
-        <form method="post" action="$PHP_SELF?insert=1" name="selectPics">
+        <form method="post" action="{$_SERVER['PHP_SELF']}?insert=1" name="selectPics">
         <tr>
                 <td colspan="3" class="tableh1"><h2>{$lang_search_new_php['list_new_pic']}$help</h2></td>
         </tr>

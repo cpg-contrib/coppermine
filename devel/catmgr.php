@@ -85,11 +85,11 @@ function update_cat_order()
 
 function cat_list_box($highlight = 0, $curr_cat, $on_change_refresh = true)
 {
-    global $CAT_LIST, $PHP_SELF,$lang_albmgr_php;
+    global $CAT_LIST, $lang_albmgr_php; //$PHP_SELF,
 
     if ($on_change_refresh) {
         $lb = <<< EOT
-                        <select onChange="if(this.options[this.selectedIndex].value) window.location.href='$PHP_SELF?op=setparent&cid=$curr_cat&parent='+this.options[this.selectedIndex].value;"  name="parent" class="listbox">
+                        <select onChange="if(this.options[this.selectedIndex].value) window.location.href='{$_SERVER['PHP_SELF']}?op=setparent&cid=$curr_cat&parent='+this.options[this.selectedIndex].value;"  name="parent" class="listbox">
 
 EOT;
     } else {
@@ -187,7 +187,7 @@ EOT;
 
 function display_cat_list()
 {
-    global $CAT_LIST, $PHP_SELF, $CONFIG;
+    global $CAT_LIST, $CONFIG; //$PHP_SELF, 
 
     $CAT_LIST3 = $CAT_LIST;
 
@@ -196,24 +196,24 @@ function display_cat_list()
         echo '                <td class="tableb" width="80%"><b>' . $category['name'] . '</b></td>' . "\n";
 
         if ($category['pos'] > 0 && $CONFIG['categories_alpha_sort'] != 1) {
-            echo '                <td class="tableb" width="4%"><a href="' . $PHP_SELF . '?op=move&cid1=' . $category['cid'] . '&pos1=' . ($category['pos']-1) . '&cid2=' . $category['prev'] . '&pos2=' . ($category['pos']) . '">' . '<img src="images/up.gif"  border="0" alt="" />' . '</a></td>' . "\n";
+            echo '                <td class="tableb" width="4%"><a href="' . $_SERVER['PHP_SELF'] . '?op=move&cid1=' . $category['cid'] . '&pos1=' . ($category['pos']-1) . '&cid2=' . $category['prev'] . '&pos2=' . ($category['pos']) . '">' . '<img src="images/up.gif"  border="0" alt="" />' . '</a></td>' . "\n";
         } else {
             echo '                <td class="tableb" width="4%">' . '&nbsp;' . '</td>' . "\n";
         }
 
         if ($category['pos'] < $category['cat_count']-1  && $CONFIG['categories_alpha_sort'] != 1) {
-            echo '                <td class="tableb" width="4%"><a href="' . $PHP_SELF . '?op=move&cid1=' . $category['cid'] . '&pos1=' . ($category['pos'] + 1) . '&cid2=' . $category['next'] . '&pos2=' . ($category['pos']) . '">' . '<img src="images/down.gif"  border="0" alt="" />' . '</a></td>' . "\n";
+            echo '                <td class="tableb" width="4%"><a href="' . $_SERVER['PHP_SELF'] . '?op=move&cid1=' . $category['cid'] . '&pos1=' . ($category['pos'] + 1) . '&cid2=' . $category['next'] . '&pos2=' . ($category['pos']) . '">' . '<img src="images/down.gif"  border="0" alt="" />' . '</a></td>' . "\n";
         } else {
             echo '                <td class="tableb" width="4%">' . '&nbsp;' . '</td>' . "\n";
         }
 
         if ($category['cid'] != 1) {
-            echo '                <td class="tableb" width="4%"><a href="' . $PHP_SELF . '?op=deletecat&cid=' . $category['cid'] . '" onClick="return confirmDel(\'' . addslashes(str_replace('&nbsp;', '', $category['name'])) . '\')">' . '<img src="images/delete.gif"  border="0" alt="" />' . '</a></td>' . "\n";
+            echo '                <td class="tableb" width="4%"><a href="' . $_SERVER['PHP_SELF'] . '?op=deletecat&cid=' . $category['cid'] . '" onClick="return confirmDel(\'' . addslashes(str_replace('&nbsp;', '', $category['name'])) . '\')">' . '<img src="images/delete.gif"  border="0" alt="" />' . '</a></td>' . "\n";
         } else {
             echo '                <td class="tableb" width="4%">' . '&nbsp;' . '</td>' . "\n";
         }
 
-        echo '                <td class="tableb" width="4%">' . '<a href="' . $PHP_SELF . '?op=editcat&cid=' . $category['cid'] . '">' . '<img src="images/edit.gif" border="0" alt="" />' . '</a></td>' . "\n";
+        echo '                <td class="tableb" width="4%">' . '<a href="' . $_SERVER['PHP_SELF'] . '?op=editcat&cid=' . $category['cid'] . '">' . '<img src="images/edit.gif" border="0" alt="" />' . '</a></td>' . "\n";
         echo '                <td class="tableb" width="4%">' . "\n" . cat_list_box($category['parent'], $category['cid']) . "\n" . '</td>' . "\n";
         echo "        </tr>\n";
     }
@@ -377,7 +377,7 @@ echo <<<EOT
                 <td colspan="4" class="tableh1" align="center"><b><span class="statlink">{$lang_catmgr_php['operations']}</span></b></td>
                 <td class="tableh1" align="center"><b><span class="statlink">{$lang_catmgr_php['move_into']}</span></b></td>
         </tr>
-        <form method="get" action="$PHP_SELF">
+        <form method="get" action="{$_SERVER['PHP_SELF']}">
 
 EOT;
 
@@ -404,7 +404,7 @@ echo <<<EOT
         -->
         </script>
 
-<form name="catsortconfig" action="$PHP_SELF" method="post">
+<form name="catsortconfig" action="{$_SERVER['PHP_SELF']}" method="post">
         <tr>
             <td class="tablef" colspan="6">
                         {$lang_catmgr_php['categories_alpha_sort']}
@@ -427,7 +427,7 @@ $lb = cat_list_box($current_category['parent'], $current_category['cid'], false)
 $op = $current_category['cid'] ? 'updatecat' : 'createcat';
 if ($CONFIG['show_bbcode_help']) {$description_help .= '&nbsp;'. cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&t='.urlencode(base64_encode(serialize($lang_bbcode_help))),400,180);}
 echo <<<EOT
-        <form method="post" action="$PHP_SELF?op=$op">
+        <form method="post" action="{$_SERVER['PHP_SELF']}?op=$op">
         <input type="hidden" name="cid" value ="{$current_category['cid']}">
         <tr>
             <td width="40%" class="tableb">

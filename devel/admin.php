@@ -771,7 +771,8 @@ if (count($_POST) > 0) {
         $sql_count = count($sql_query);
         for($i = 0; $i < $sql_count; $i++) if (strpos($sql_query[$i],'config VALUES') || strpos($sql_query[$i],'filetypes VALUES')) cpg_db_query($sql_query[$i]);
         pageheader($lang_admin_php['title']);
-            msg_box($lang_admin_php['info'], $lang_admin_php['restore_success'], $lang_continue, $PHP_SELF);
+            //msg_box($lang_admin_php['info'], $lang_admin_php['restore_success'], $lang_continue, $PHP_SELF);
+            msg_box($lang_admin_php['info'], $lang_admin_php['restore_success'], $lang_continue, $_SERVER['PHP_SELF']);
     }
         pagefooter();
         exit;
@@ -786,7 +787,8 @@ $signature = 'Coppermine Photo Gallery ' . COPPERMINE_VERSION . ' ('. COPPERMINE
         onload = hideall;
 </script>
 <?
-echo "<form action=\"$PHP_SELF\" method=\"post\">";
+//echo "<form action=\"$PHP_SELF\" method=\"post\">";
+echo "<form action=\"".$_SERVER['PHP_SELF']."\" method=\"post\">";
 starttable('100%', "{$lang_admin_php['title']} - $signature", 3);
 echo <<<EOT
     <tr>

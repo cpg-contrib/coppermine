@@ -260,7 +260,7 @@ function html_cat_list()
 // Display information on how to use/install the wizard client
 function display_instructions()
 {
-    global $PHP_SELF;
+    //global $PHP_SELF;
 
     ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -350,7 +350,7 @@ Coppermine.</p>
 </ul>
 <h2>How to install on client side</h2>
 <ul>
-  <li>Right click on <a href="<?php echo $PHP_SELF ?>?cmd=send_reg">this link</a>. Select &quot;save
+  <li>Right click on <a href="<?php echo $_SERVER['PHP_SELF'] ?>?cmd=send_reg">this link</a>. Select &quot;save
    target as..&quot;. Save the file on your hard drive. When saving the file, check that the proposed
    file name is <b>cpg_###.reg</b> (the ### represents a numerical timestamp). Change it to that name if necessary (leave the numbers). When downloaded, double click on the
    file in order to register your server with the web publishing wizard.</li>
@@ -374,7 +374,7 @@ Coppermine.</p>
   the script so you can't know if the upload failed or succeeded until you check your gallery.</li>
   <li>If the upload fails, enable &quot;Debug mode&quot; on the Coppermine admin page,
   try with one single picture and check error messages in the
-  <a href="<?php echo dirname($PHP_SELF) . '/' . LOGFILE ?>"><?php echo LOGFILE ?></a> file
+  <a href="<?php echo dirname($_SERVER['PHP_SELF']) . '/' . LOGFILE ?>"><?php echo LOGFILE ?></a> file
   that is located in Coppermine directory on your server.</li>
   <li>In order to avoid that the gallery be <i>flooded</i> by pictures uploaded through the wizard,
   only the <b>gallery admins</b> and <b>users that can have their own albums</b> can use this feature.</li>
@@ -481,7 +481,7 @@ input {
 function output_footer()
 {
     global $WIZARD_BUTTONS, $ONBACK_SCRIPT, $ONNEXT_SCRIPT;
-    global $PHP_SELF, $CONFIG;
+    global $CONFIG; //$PHP_SELF, 
 
     ?>
 
@@ -510,7 +510,7 @@ function startUpload() {
 
         for (i = 0; i < files.length; i++) {
                 var postTag = xml.createNode(1, 'post', '');
-                postTag.setAttribute('href', '<?php echo 'http://' . $_SERVER['HTTP_HOST'] . $PHP_SELF . '?cmd=add_picture'?>&album=' + selform.album.value);
+                postTag.setAttribute('href', '<?php echo 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'] . '?cmd=add_picture'?>&album=' + selform.album.value);
                 postTag.setAttribute('name', 'userpicture');
 
                 var dataTag = xml.createNode(1, 'formdata', '');
@@ -524,7 +524,7 @@ function startUpload() {
         var uploadTag = xml.createNode(1, 'uploadinfo', '');
         uploadTag.setAttribute('friendlyname', '<?php echo javascript_string($CONFIG['gallery_name'])?>');
         var htmluiTag = xml.createNode(1, 'htmlui', '');
-        htmluiTag.text = '<?php echo 'http://' . $_SERVER['HTTP_HOST'] . dirname($PHP_SELF) . '/'?>';
+        htmluiTag.text = '<?php echo 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/'?>';
         uploadTag.appendChild(htmluiTag);
 
         xml.documentElement.appendChild(uploadTag);
@@ -563,7 +563,7 @@ function window.onload() {
 // Send the file needed to register the service under Windows XP
 function send_reg_file()
 {
-    global $CONFIG, $PHP_SELF;
+    global $CONFIG; //, $PHP_SELF;
 
     header("Content-Type: application/octet-stream");
     $time_stamp = time();
@@ -575,7 +575,7 @@ function send_reg_file()
         $lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\PublishingWizard\Providers\\'. $CONFIG['gallery_name'] .']';
     $lines[] = '"displayname"="' . $CONFIG['gallery_name'] . '"';
     $lines[] = '"description"="' . $CONFIG['gallery_description'] . '"';
-    $lines[] = '"href"="' . "http://" . $_SERVER['HTTP_HOST'] . $PHP_SELF . '?cmd=publish"';
+    $lines[] = '"href"="' . "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'] . '?cmd=publish"';
     $lines[] = '"icon"="' . "http://" . $_SERVER['HTTP_HOST'] . '/favicon.ico"';
     print join("\r\n", $lines);
     print "\r\n";
@@ -585,7 +585,7 @@ function send_reg_file()
 // Display the login page
 function form_login()
 {
-    global $PHP_SELF;
+    //global $PHP_SELF;
     global $ONNEXT_SCRIPT, $ONBACK_SCRIPT, $WIZARD_BUTTONS;
     global $template_login;
     global $lang_login_php, $lang_xp_publish_php;
@@ -599,7 +599,7 @@ function form_login()
         return;
     }
 
-    $params = array('{POST_ACTION}' => $PHP_SELF . '?cmd=publish',
+    $params = array('{POST_ACTION}' => $_SERVER['PHP_SELF'] . '?cmd=publish',
         '{ENTER_LOGIN_PSWD}' => $lang_login_php['enter_login_pswd'],
         '{USERNAME}' => $lang_login_php['username'],
         '{PASSWORD}' => $lang_login_php['password'],
@@ -615,7 +615,7 @@ function form_login()
 // Process login information
 function process_login()
 {
-    global $CONFIG, $PHP_SELF, $USER;
+    global $CONFIG, $USER; //$PHP_SELF, 
     global $ONNEXT_SCRIPT, $ONBACK_SCRIPT, $WIZARD_BUTTONS;
     global $template_login_success, $template_login_failure;
     global $lang_login_php;
@@ -631,13 +631,13 @@ function process_login()
         user_save_profile();
 
         $params = array('{WELCOME}' => sprintf($lang_login_php['welcome'], USER_NAME),
-            '{POST_ACTION}' => $PHP_SELF . '?cmd=publish',
+            '{POST_ACTION}' => $_SERVER['PHP_SELF'] . '?cmd=publish',
             );
 
         echo template_eval($template_login_success, $params);
     } else {
         $params = array('{ERROR}' => $lang_login_php['err_login'],
-            '{POST_ACTION}' => $PHP_SELF . '?cmd=publish',
+            '{POST_ACTION}' => $_SERVER['PHP_SELF'] . '?cmd=publish',
             );
 
         echo template_eval($template_login_failure, $params);
@@ -651,7 +651,7 @@ function process_login()
 // Display the form that allows to choose/create the destination album
 function form_publish()
 {
-    global $CONFIG, $CAT_LIST, $PHP_SELF;
+    global $CONFIG, $CAT_LIST; //, $PHP_SELF;
     global $ONNEXT_SCRIPT, $ONBACK_SCRIPT, $WIZARD_BUTTONS;
     global $template_select_album;
     global $lang_xp_publish_php;
@@ -682,7 +682,7 @@ function form_publish()
             '{ALBUM}' => $lang_xp_publish_php['album'],
             '{CATEGORY}' => $lang_xp_publish_php['category'],
             '{SELECT_CATEGORY}' => $html_cat_list,
-            '{POST_ACTION}' => $PHP_SELF . '?cmd=create_album',
+            '{POST_ACTION}' => $_SERVER['PHP_SELF'] . '?cmd=create_album',
             );
 
         echo template_eval($template_select_album, $params);
@@ -702,7 +702,7 @@ function form_publish()
             '{CATEGORY}' => $lang_xp_publish_php['category'],
             '{SELECT_CATEGORY}' => $html_cat_list,
             '{CREATE_NEW}' => $lang_xp_publish_php['create_new'],
-            '{POST_ACTION}' => $PHP_SELF . '?cmd=create_album',
+            '{POST_ACTION}' => $_SERVER['PHP_SELF'] . '?cmd=create_album',
             );
 
         echo template_eval($template_select_album, $params);

@@ -49,7 +49,7 @@ foreach($lang_files as $index => $file) {
     echo <<<EOT
                 <tr>
                         <td class="tableb">
-                                <img src="images/folder.gif" alt="">&nbsp;<a href="$PHP_SELF?get=$index">$file</a>
+                                <img src="images/folder.gif" alt="">&nbsp;<a href="{$_SERVER['PHP_SELF']}?get=$index">$file</a>
                         </td>
                 </tr>
 EOT;

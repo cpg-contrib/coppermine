@@ -59,7 +59,7 @@ function updateParent() {
 <script language="JavaScript" type="text/JavaScript">
 adjust_popup();
 </script>
-<form name="childform" id="childform" method="get" action="<?php print $PHP_SELF; ?>" onsubmit="return updateParent();">
+<form name="childform" id="childform" method="get" action="<?php print $_SERVER['PHP_SELF']; ?>" onsubmit="return updateParent();">
 
 <?php
 starttable(-2,$lang_minibrowser_php['select_directory'],2);
@@ -119,7 +119,7 @@ if (($_REQUEST['folder'] != '' || $_REQUEST['startfolder'] != '') && ($folder !=
     print '</td>';
     print '<td class="tableb">';
     print '<img src="images/spacer.gif" width="16" height="16" border="0" alt="" align="left">';
-    print '<a href="'.$PHP_SELF.'?folder='.rawurlencode($uplink).'&parentform='.rawurlencode($parentform).'&formelementname='.rawurlencode($formelementname).'">';
+    print '<a href="'.$_SERVER['PHP_SELF'].'?folder='.rawurlencode($uplink).'&parentform='.rawurlencode($parentform).'&formelementname='.rawurlencode($formelementname).'">';
     print '.. '.$lang_minibrowser_php['up'];
     print '</a>';
     print '</td>';
@@ -136,7 +136,7 @@ if (is_array($foldername)) {
             print '<input type="radio" name="cf1" value="'.$folder.rtrim($key, '/').'/" class="radio" onclick="document.childform.cf2.value=\''.$folder.$key.'\'" />';
             print '</td>';
             print '<td class="tableb">';
-            print '<a href="'.$PHP_SELF.'?folder='.rawurlencode('/'.ltrim($folder, '/').$key.'/').'&parentform='.rawurlencode($parentform).'&formelementname='.rawurlencode($formelementname).'">';
+            print '<a href="'.$_SERVER['PHP_SELF'].'?folder='.rawurlencode('/'.ltrim($folder, '/').$key.'/').'&parentform='.rawurlencode($parentform).'&formelementname='.rawurlencode($formelementname).'">';
             print '<img src="images/folder.gif" width="16" height="16" border="0" alt="" title="folder" />';
             print $key;
             print '</a>';

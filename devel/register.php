@@ -28,12 +28,12 @@ if (defined('UDB_INTEGRATION')) udb_register_page();
 // Display the disclaimer
 function display_disclaimer()
 {
-    global $CONFIG, $PHP_SELF;
+    global $CONFIG; //, $PHP_SELF;
     global $lang_register_disclamer, $lang_register_php;
 
     starttable(-1, $lang_register_php['term_cond']);
     echo <<<EOT
-        <form method="post" action="$PHP_SELF">
+        <form method="post" action="{$_SERVER['PHP_SELF']}">
         <tr>
                 <td class="tableb" style="padding: 10px;">
 
@@ -56,12 +56,12 @@ EOT;
 
 function input_user_info($errors = '')
 {
-    global $CONFIG, $PHP_SELF;
+    global $CONFIG; //, $PHP_SELF;
     global $lang_register_php;
 
     starttable(-1, $lang_register_php['enter_info'], 2);
     echo <<<EOT
-        <form method="post" action="$PHP_SELF">
+        <form method="post" action="{$_SERVER['PHP_SELF']}">
 
 EOT;
 
@@ -186,7 +186,7 @@ function get_post_var($var)
 
 function check_user_info(&$error)
 {
-    global $CONFIG, $PHP_SELF;
+    global $CONFIG; //, $PHP_SELF;
     global $lang_register_php, $lang_register_confirm_email, $lang_continue;
 
     $user_name = trim(get_post_var('username'));

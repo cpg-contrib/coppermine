@@ -159,8 +159,8 @@ if (get_magic_quotes_gpc()) {
 }
 // Initialise the $CONFIG array and some other variables
 $CONFIG = array();
-$PHP_SELF = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : $_SERVER['SCRIPT_NAME'];
-$REFERER = urlencode($PHP_SELF . (isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING'] ? '?' . $_SERVER['QUERY_STRING'] : ''));
+//$PHP_SELF = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : $_SERVER['SCRIPT_NAME'];
+$REFERER = urlencode($_SERVER['PHP_SELF'] . (isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING'] ? '?' . $_SERVER['QUERY_STRING'] : ''));
 $ALBUM_SET = '';
 $FORBIDDEN_SET = '';
 $FORBIDDEN_SET_DATA = array();

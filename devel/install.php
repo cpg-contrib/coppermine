@@ -428,8 +428,8 @@ function create_tables()
 {
     global $errors, $DFLT;
 
-    $PHP_SELF = $_SERVER['PHP_SELF'];
-    $gallery_dir = strtr(dirname($PHP_SELF), '\\', '/');
+    //$PHP_SELF = $_SERVER['PHP_SELF'];
+    $gallery_dir = strtr(dirname($_SERVER['PHP_SELF']), '\\', '/');
     $gallery_url_prefix = 'http://' . $_SERVER['HTTP_HOST'] . $gallery_dir . (substr($gallery_dir, -1) == '/' ? '' : '/');
 
     $db_schema = "{$DFLT['sql_d']}/schema.sql";

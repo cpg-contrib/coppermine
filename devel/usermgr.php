@@ -55,7 +55,7 @@ function show_memberlist()
 
 function list_users($search = '')
 {
-    global $CONFIG, $PHP_SELF;
+    global $CONFIG; //, $PHP_SELF;
     global $lang_usermgr_php, $lang_byte_units, $register_date_fmt;
     global $lim_user;
 
@@ -80,7 +80,7 @@ function list_users($search = '')
         'tab_header' => '',
         'tab_trailer' => '',
         'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%d</b></td>',
-        'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="' . $PHP_SELF . '?page=%d&sort=' . $sort . '"<b>%d</b></a></td>' . "\n"
+        'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="' . $_SERVER['PHP_SELF'] . '?page=%d&sort=' . $sort . '"<b>%d</b></a></td>' . "\n"
         );
 
     $result = cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_USERS']} WHERE 1");
@@ -163,7 +163,7 @@ EOT;
                 <td class="tableb">{$user['group_name']}</td>
                 <td class="tableb">{$user['user_regdate']}</td>
                 <td class="tableb">{$user['user_lastvisit']}</td>
-                <td class="tableb" align="center"><div class="admin_menu"><a href="$PHP_SELF?op=edit&user_id={$user['user_id']}">{$lang_usermgr_php['edit']}</a></div></td>
+                <td class="tableb" align="center"><div class="admin_menu"><a href="{$_SERVER['PHP_SELF']}?op=edit&user_id={$user['user_id']}">{$lang_usermgr_php['edit']}</a></div></td>
                 <td class="tableb"  align="center"><div class="admin_menu"><a href="delete.php?id={$user['user_id']}&what=user"  onclick="return confirm('{$lang_usermgr_php['confirm_del']}');">{$lang_usermgr_php['delete']}</a></div></td>
                 <td class="tableb" align="center">{$user['pic_count']}</td>
                 <td class="tableb" align="right">{$user['disk_usage']}&nbsp;{$lang_byte_units[1]}</td>
@@ -189,7 +189,7 @@ EOT;
     } // while
     mysql_free_result($result);
 
-    $lb = "<select name=\"album_listbox\" class=\"listbox\" onChange=\"if(this.options[this.selectedIndex].value) window.location.href='$PHP_SELF?page=$page&sort='+this.options[this.selectedIndex].value;\">\n";
+    $lb = "<select name=\"album_listbox\" class=\"listbox\" onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$_SERVER['PHP_SELF']}?page=$page&sort='+this.options[this.selectedIndex].value;\">\n";
     foreach($sort_codes as $key => $value) {
         $selected = ($key == $sort) ? "SELECTED" : "";
         $lb .= "        <option value=\"" . $key . "\" $selected>" . $lang_usermgr_php[$key] . "</option>\n";
@@ -204,13 +204,13 @@ EOT;
                 <table cellpadding="0" cellspacing="0">
                 <tr>
                         <td align="left">
-                            <form method="post" action="$PHP_SELF">
+                            <form method="post" action="{$_SERVER['PHP_SELF']}">
                                 <input type="text" name="username" class="textinput" />
                                 <input type="submit" name="user_search" value="{$lang_usermgr_php['search']}" class="button" />
                             </form>
                         </td>
                         <td><img src="images/spacer.gif" width="50" height="1" alt="" /></td>
-                        <td><form method="post" action="$PHP_SELF?op=new_user"><input type="submit" value="{$lang_usermgr_php['create_new_user']}" class="button" /></form></td>
+                        <td><form method="post" action="{$_SERVER['PHP_SELF']}?op=new_user"><input type="submit" value="{$lang_usermgr_php['create_new_user']}" class="button" /></form></td>
                         <td><img src="images/spacer.gif" width="50" height="1" alt="" /></td>
                         <td><b>{$lang_usermgr_php['sort_by']}</b></td>
                         <td><img src="images/spacer.gif" width="10" height="1" alt="" /></td>
@@ -241,7 +241,7 @@ EOT;
 
 function edit_user($user_id)
 {
-    global $CONFIG, $PHP_SELF;
+    global $CONFIG; //, $PHP_SELF;
     global $lang_usermgr_php, $lang_yes, $lang_no;
 
     $form_data = array(
@@ -266,7 +266,7 @@ function edit_user($user_id)
 
     starttable(500, $lang_usermgr_php['modify_user'], 2);
     echo <<<EOT
-        <form method="post" action="$PHP_SELF?op=update&user_id=$user_id">
+        <form method="post" action="{$_SERVER['PHP_SELF']}?op=update&user_id=$user_id">
 
 EOT;
 
@@ -402,7 +402,7 @@ EOT;
 
 function update_user($user_id)
 {
-    global $CONFIG, $PHP_SELF;
+    global $CONFIG; //, $PHP_SELF;
     global $lang_usermgr_php, $lang_register_php;
 
     $user_name = addslashes(trim($_POST['user_name']));

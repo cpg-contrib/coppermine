@@ -416,7 +416,7 @@ function create_form(&$data)
 
 function alb_list_box()
 {
-    global $CONFIG, $album, $PHP_SELF;
+    global $CONFIG, $album; //, $PHP_SELF;
 
     if (GALLERY_ADMIN_MODE) {
         $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < '" . FIRST_USER_CAT . "' ORDER BY title");
@@ -438,7 +438,7 @@ function alb_list_box()
     }
 
     if (count($rowset)) {
-        $lb = "<select name=\"album_listbox\" class=\"listbox\" onChange=\"if(this.options[this.selectedIndex].value) window.location.href='$PHP_SELF?album='+this.options[this.selectedIndex].value;\">\n";
+        $lb = "<select name=\"album_listbox\" class=\"listbox\" onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$_SERVER['PHP_SELF']}?album='+this.options[this.selectedIndex].value;\">\n";
         foreach ($rowset as $row) {
             $selected = ($row['aid'] == $album) ? "SELECTED" : "";
             $lb .= "        <option value=\"" . $row['aid'] . "\" $selected>" . $row['title'] . "</option>\n";

@@ -43,8 +43,8 @@ if (!$comment_count) cpg_die(INFORMATION , $lang_reviewcom_php['no_comment'], __
 
 $start = isset($_GET['start']) ? (int)$_GET['start'] : 0;
 $count = isset($_GET['count']) ? $_GET['count'] : 25;
-$next_target = $PHP_SELF . '?start=' . ($start + $count) . '&count=' . $count;
-$prev_target = $PHP_SELF . '?start=' . max(0, $start - $count) . '&count=' . $count;
+$next_target = $_SERVER['PHP_SELF'] . '?start=' . ($start + $count) . '&count=' . $count;
+$prev_target = $_SERVER['PHP_SELF'] . '?start=' . max(0, $start - $count) . '&count=' . $count;
 $s50 = $count == 50 ? 'selected' : '';
 $s75 = $count == 75 ? 'selected' : '';
 $s100 = $count == 100 ? 'selected' : '';
@@ -93,7 +93,7 @@ function selectAll(d,box) {
 -->
 </script>
 
-    <form action="$PHP_SELF?start=$start&count=$count" method="post" name="editForm">
+    <form action="{$_SERVER['PHP_SELF']}?start=$start&count=$count" method="post" name="editForm">
 
 EOT;
 
@@ -118,7 +118,7 @@ echo <<<EOT
                         $prev_link
                         $next_link
                         <b>{$lang_reviewcom_php['n_comm_disp']}</b>
-                        <select onChange="if(this.options[this.selectedIndex].value) window.location.href='$PHP_SELF?start=$start&count='+this.options[this.selectedIndex].value;"  name="count" class="listbox">
+                        <select onChange="if(this.options[this.selectedIndex].value) window.location.href='{$_SERVER['PHP_SELF']}?start=$start&count='+this.options[this.selectedIndex].value;"  name="count" class="listbox">
                                 <option value="25">25</option>
                                 <option value="50" $s50>50</option>
                                 <option value="75" $s75>75</option>

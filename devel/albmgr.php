@@ -369,7 +369,7 @@ if (GALLERY_ADMIN_MODE) {
                 <tr>
                         <td>
                                 <b>{$lang_albmgr_php['select_category']}</b>
-                                <select onChange="if(this.options[this.selectedIndex].value) window.location.href='$PHP_SELF?cat='+this.options[this.selectedIndex].value;"  name="cat" class="listbox">
+                                <select onChange="if(this.options[this.selectedIndex].value) window.location.href='{$_SERVER['PHP_SELF']}?cat='+this.options[this.selectedIndex].value;"  name="cat" class="listbox">
 EOT;
     foreach($CAT_LIST as $category) {
         echo '                                <option value="' . $category[0] . '"' . ($cat == $category[0] ? ' selected': '') . ">" . $category[1] . "</option>\n";

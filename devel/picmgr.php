@@ -298,7 +298,7 @@ echo <<<EOT
       <tr>
          <td>
             <b>{$lang_picmgr_php['select_album']}</b>
-            <select onChange="if(this.options[this.selectedIndex].value) window.location.href='$PHP_SELF?aid='+this.options[this.selectedIndex].value;"  name="aid" class="listbox">
+            <select onChange="if(this.options[this.selectedIndex].value) window.location.href='{$_SERVER['PHP_SELF']}?aid='+this.options[this.selectedIndex].value;"  name="aid" class="listbox">
 EOT;
 foreach($ALBUM_LIST as $album){
    echo '            <option value="'.$album[0].'"'.($aid == $album[0] ? ' selected': '').">".$album[1]."</option>\n";

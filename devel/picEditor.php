@@ -514,7 +514,7 @@ if ($_GET['id']){
     <style>
     #lefttopdiv{
     position:absolute;
-    background-image:url(<?php echo $PHP_SELF?>?img=left);
+    background-image:url(<?php echo $_SERVER['PHP_SELF']?>?img=left);
     left:0px;
     top:100px;
     height:25px;
@@ -525,7 +525,7 @@ if ($_GET['id']){
     }
     #rightbottomdiv{
     position:absolute;
-    background-image:url(<?php echo $PHP_SELF?>?img=right);
+    background-image:url(<?php echo $_SERVER['PHP_SELF']?>?img=right);
     left:0px;
     top:225px;
     height:25px;

@@ -409,8 +409,8 @@ if (count($_POST)) process_post_data();
 
 $start = isset($_GET['start']) ? (int)$_GET['start'] : 0;
 $count = isset($_GET['count']) ? (int)$_GET['count'] : 25;
-$next_target = $PHP_SELF.'?album='.$album_id.'&start='.($start+$count).'&count='.$count.((UPLOAD_APPROVAL_MODE==1)?"&mode=upload_approval":"");
-$prev_target = $PHP_SELF.'?album='.$album_id.'&start='.max(0,$start-$count).'&count='.$count.((UPLOAD_APPROVAL_MODE==1)?"&mode=upload_approval":"");
+$next_target = $_SERVER['PHP_SELF'].'?album='.$album_id.'&start='.($start+$count).'&count='.$count.((UPLOAD_APPROVAL_MODE==1)?"&mode=upload_approval":"");
+$prev_target = $_SERVER['PHP_SELF'].'?album='.$album_id.'&start='.max(0,$start-$count).'&count='.$count.((UPLOAD_APPROVAL_MODE==1)?"&mode=upload_approval":"");
 $s50 = $count == 50 ? 'selected' : '';
 $s75 = $count == 75 ? 'selected' : '';
 $s100 = $count == 100 ? 'selected' : '';
@@ -451,7 +451,7 @@ if (UPLOAD_APPROVAL_MODE) {
                         "ORDER BY pid ".
                         "LIMIT $start, $count";
         $result = cpg_db_query($sql);
-        $form_target = $PHP_SELF.'?mode=upload_approval&start='.$start.'&count='.$count;
+        $form_target = $_SERVER['PHP_SELF'].'?mode=upload_approval&start='.$start.'&count='.$count;
         $title = $lang_editpics_php['upl_approval'];
         $help = '';
 } else {
@@ -461,7 +461,7 @@ if (UPLOAD_APPROVAL_MODE) {
         mysql_free_result($result);
 
     $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = '$album_id' ORDER BY filename LIMIT $start, $count");
-        $form_target = $PHP_SELF.'?album='.$album_id.'&start='.$start.'&count='.$count;
+        $form_target = $_SERVER['PHP_SELF'].'?album='.$album_id.'&start='.$start.'&count='.$count;
         $title = $lang_editpics_php['edit_pics'];
         $help = '&nbsp;'.cpg_display_help('f=index.htm&as=edit_pics&ae=edit_pics_end&top=1', '800', '500');
 }
@@ -517,7 +517,7 @@ echo <<<EOT
                         $prev_link
                         $next_link
                         <b>{$lang_editpics_php['n_of_pic_to_disp']}</b>
-                        <select onChange="if(this.options[this.selectedIndex].value) window.location.href='$PHP_SELF?album=$album_id$mode&start=$start&count='+this.options[this.selectedIndex].value;"  name="count" class="listbox">
+                        <select onChange="if(this.options[this.selectedIndex].value) window.location.href='{$_SERVER['PHP_SELF']}?album=$album_id$mode&start=$start&count='+this.options[this.selectedIndex].value;"  name="count" class="listbox">
                                 <option value="25">25</option>
                                 <option value="50" $s50>50</option>
                                 <option value="75" $s75>75</option>

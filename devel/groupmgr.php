@@ -250,7 +250,7 @@ $help_permissions = '&nbsp;'.cpg_display_help('f=index.htm&as=group_cp_permissio
 $help_personal = '&nbsp;'.cpg_display_help('f=index.htm&as=group_cp_personal&ae=group_cp_personal_end&top=1', '400', '150');
 $help_upload_method = '&nbsp;'.cpg_display_help('f=index.htm&as=group_cp_upload_method&ae=group_cp_upload_method_end&top=1', '700', '400');
 echo <<<EOT
-        <form method="post" action="$PHP_SELF" name="groupmanager">
+        <form method="post" action="{$_SERVER['PHP_SELF']}" name="groupmanager">
         <tr>
                 <td class="tableh1"><!--<input type="checkbox" name="allbox" onclick="selectall()" value="" class="checkbox" />--></td>
                 <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['group_name']}</span></b>$help_group</td>

@@ -1848,7 +1848,7 @@ function cpg_debug_output()
 
         $debug_underline = '&#0010;------------------&#0010;';
         $debug_separate = '&#0010;==========================&#0010;';
-        echo '<form name="debug" action="'.$PHP_SELF.'">';
+        echo '<form name="debug" action="'.$_SERVER['PHP_SELF'].'">';
         starttable('100%', $lang_cpg_debug_output['debug_info'],2);
         echo '<tr><td align="center" valign="middle" class="tableh2">';
         echo '<script language="javascript" type="text/javascript">
@@ -2249,7 +2249,7 @@ switch ($parameter) {
        $return = 'not yet implemented';
        break;
    default:
-       $return.= $lineBreak . '<form name="cpgChooseLanguage" action="' . $PHP_SELF . '" method="get" style="margin-top:0px;margin-bottom:0px;margin-left:0px;margin-right:0px;display:inline">' . $lineBreak;
+       $return.= $lineBreak . '<form name="cpgChooseLanguage" action="' . $_SERVER['PHP_SELF'] . '" method="get" style="margin-top:0px;margin-bottom:0px;margin-left:0px;margin-right:0px;display:inline">' . $lineBreak;
        $return.= '<select name="cpgLanguageSelect" class="listbox_lang" onchange="if (this.options[this.selectedIndex].value) window.location.href=\'' . $cpgChangeUrl . '\' + this.options[this.selectedIndex].value;">' . $lineBreak;
        $return.='<option selected="selected">' . $lang_language_selection['choose_language'] . '</option>' . $lineBreak;
        foreach ($lang_array as $language) {
@@ -2322,7 +2322,7 @@ switch ($parameter) {
        $return = 'not yet implemented';
        break;
    default:
-       $return.= $lineBreak . '<form name="cpgChooseTheme" action="' . $PHP_SELF . '" method="get" style="margin-top:0px;margin-bottom:0px;margin-left:0px;margin-right:0px;display:inline">' . $lineBreak;
+       $return.= $lineBreak . '<form name="cpgChooseTheme" action="' . $_SERVER['PHP_SELF'] . '" method="get" style="margin-top:0px;margin-bottom:0px;margin-left:0px;margin-right:0px;display:inline">' . $lineBreak;
        $return.= '<select name="cpgThemeSelect" class="listbox_lang" onchange="if (this.options[this.selectedIndex].value) window.location.href=\'' . $cpgCurrentTheme . '\' + this.options[this.selectedIndex].value;">' . $lineBreak;
        $return.='<option selected="selected">' . $lang_theme_selection['choose_theme'] . '</option>';
        foreach ($theme_array as $theme) {
@@ -2427,7 +2427,7 @@ return $BRIDGE;
 }
 
 function cpg_get_webroot_path() {
-    global $PHP_SELF;
+    //global $PHP_SELF;
     // get the webroot folder out of a given PHP_SELF of any coppermine page
 
     // what we have: we can say for sure where we are right now: $PHP_SELF (if the server doesn't even have it, there will be problems everywhere anyway)
@@ -2443,10 +2443,10 @@ function cpg_get_webroot_path() {
     //$path_from_serverroot[] = '/foo/bar/public_html/coppermine/testpath.php';
 
     // we should be able to tell the current script's filename by removing everything before and including the last slash in $PHP_SELF
-    $filename = ltrim(strrchr($PHP_SELF, '/'), '/');
+    $filename = ltrim(strrchr($_SERVER['PHP_SELF'], '/'), '/');
     //print 'filename:'.$filename;
     //print "<hr />\n";
-    //print '$PHP_SELF:'.$PHP_SELF;
+    //print '$PHP_SELF:'.$_SERVER['PHP_SELF'];
     //print "<hr />\n";
 
     // let's eliminate all those vars that don't contain the filename (and replace the funny notation from windows machines)
@@ -2465,7 +2465,7 @@ function cpg_get_webroot_path() {
         $counter = 0;
         foreach($path_from_serverroot3 as $key) {
             // easiest possible solution: $PHP_SELF is contained in the array - if yes, we're lucky (in fact we could have done this before, but I was going to leave room for other checks to be inserted before this one)
-            if(strstr($key, $PHP_SELF) != FALSE) { // eliminate all that don't contain $PHP_SELF
+            if(strstr($key, $_SERVER['PHP_SELF']) != FALSE) { // eliminate all that don't contain $PHP_SELF
                 $path_from_serverroot4[] = $key;
                 $counter++;
             }
@@ -2484,7 +2484,7 @@ function cpg_get_webroot_path() {
     }
 
     // strip the content from $PHP_SELF from the $return var and we should (hopefully) have the absolute path to the webroot
-    $return = str_replace($PHP_SELF, '', $return);
+    $return = str_replace($_SERVER['PHP_SELF'], '', $return);
 
     // the return var should at least contain a slash - if it doesn't, add it (although this is more or less wishfull thinking)
     if ($return == '') {
