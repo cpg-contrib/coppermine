@@ -194,7 +194,7 @@ switch ($event) {
         $password = $_POST['alb_password'];
         $password_hint = addslashes(trim($_POST['alb_password_hint']));
         $visibility = !empty($password) ? FIRST_USER_CAT + USER_ID : $visibility;
-        
+
         $SUBALB_LIST=array();
         get_subalb_list($aid); // now we need to get all the aid's that need new cats: all the children of the current alb.
         if (!$title) cpg_die(ERROR, $lang_db_input_php['alb_need_title'], __FILE__, __LINE__);
@@ -206,7 +206,7 @@ switch ($event) {
             } //need else error here
             $oldParent = $row['parent'];
             $oldCategory = $row['category'];
-            
+
             if ( $oldParent!= $parent || $row['category'] != $category) { // then set all of the sub albums to the same category as the parent.
                $result = cpg_db_query("SELECT aid, category, parent FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid = $parent"); // have to get the parents category
                if (mysql_num_rows($result) > 0) {
@@ -223,7 +223,7 @@ switch ($event) {
 
                if (count($SUBALB_LIST)>0) {  // global populated by get_subalb_list
                    $subalbs=implode(",",$SUBALB_LIST);
-                   $query = "UPDATE {$CONFIG['TABLE_ALBUMS']} SET category = $category WHERE aid in ($subalbs)";
+                   $query = "UPDATE {$CONFIG['TABLE_ALBUMS']} SET category = '$category' WHERE aid in ($subalbs)";
                    $update = cpg_db_query($query);
                }
             }
