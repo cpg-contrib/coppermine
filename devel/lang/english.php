@@ -742,7 +742,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Notify admin of user upload awaiting approval', 'upl_notify_admin_email', 1, 'f=index.htm&amp;as=admin_approval_notify&amp;ae=admin_approval_notify_end'), //cpg 1.4
   array('Allow logged in users to view memberlist', 'allow_memberlist', 1, 'f=index.htm&amp;as=admin_user_memberlist&amp;ae=admin_user_memberlist_end'), //cpg 1.4
   array('Allow users to change their email address in profile', 'allow_email_change', 1, 'f=index.htm&amp;as=admin_user_allow_email_change&amp;ae=admin_user_allow_email_change_end'), //cpg1.4
-  array('Allow users to retain control over their pics in public galleries', 'users_can_edit_pics', 1), //cpg1.4
+  array('Allow users to retain control over their pics in public galleries', 'users_can_edit_pics', 1, 'f=index.htm&amp;as=admin_user_editpics_public_start&amp;ae=admin_user_editpics_public_end'), //cpg1.4
   array('Number of failed login attempts until temporary ban (to avoid brute force attacks)', 'login_threshold', 0, 'f=index.htm&amp;as=admin_user_login_start&amp;ae=admin_user_login_end'), //cpg1.4
   array('Duration of a temporary ban after failed logins', 'login_expiry', 0, 'f=index.htm&amp;as=admin_user_login_start&amp;ae=admin_user_login_end'), //cpg1.4
 
@@ -763,8 +763,8 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Field 4 name', 'user_field4_name', 0),
 
   'Cookies settings',
-  array('Name of the cookie used by the script (when using bbs integration, make sure it differs from the bbs\'s cookie name)', 'cookie_name', 0),
-  array('Path of the cookie used by the script', 'cookie_path', 0, 'f=index.htm&amp;as=admin_cookie_path&amp;ae=admin_cookie_path_end'), //cpg 1.4
+  array('Cookie name', 'cookie_name', 0, 'f=index.htm&amp;as=admin_cookie_name&amp;ae=admin_cookie_name_end'), //cpg 1.4
+  array('Cookie path', 'cookie_path', 0, 'f=index.htm&amp;as=admin_cookie_path&amp;ae=admin_cookie_path_end'), //cpg 1.4
 
   'Email settings  (usually nothing has to be changed here; leave all fields blank when not sure)', //cpg 1.4
   array('SMTP Host (when left blank, sendmail will be used)', 'smtp_host', 0, 'f=index.htm&amp;as=admin_email&amp;ae=admin_email_end'), //cpg 1.4
@@ -2028,17 +2028,21 @@ if (defined('VIEWLOG_PHP')) $lang_viewlog_php = array(
 );
 
 // ------------------------------------------------------------------------- //
-// File voteDetails.php //cpg 1.4
+// File stat_details.php //cpg 1.4
 // ------------------------------------------------------------------------- //
 
-if (defined('VOTEDETAILS_PHP')) $lang_votedetails_php = array(
+if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
   'title' => 'Vote Details', //cpg 1.4
   'stats' => 'Vote Statistics', //cpg 1.4
   'date' => 'Date', //cpg 1.4
   'rating' => 'Rating', //cpg 1.4
   'referer' => 'Referer', //cpg 1.4
   'browser' => 'Browser', //cpg 1.4
-  'os' => 'Operating System' //cpg 1.4
+  'os' => 'Operating System', //cpg 1.4
+  'ip' => 'IP', // cpg1.4
+  'sort_by_xxx' => 'Sort by %s', // cpg1.4
+  'ascending' => 'ascending', // cpg1.4
+  'descending' => 'descending', // cpg1.4
 );
 
 // ------------------------------------------------------------------------- //
