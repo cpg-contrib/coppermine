@@ -201,6 +201,12 @@ switch ($event) {
         $user2 = addslashes($HTTP_POST_VARS['user2']);
         $user3 = addslashes($HTTP_POST_VARS['user3']);
         $user4 = addslashes($HTTP_POST_VARS['user4']);
+
+	// Added for rotation integration.
+
+	$path_to_transitory_image = $HTTP_POST_VARS['transitory_image_path'];
+	$transitory_file_name = $HTTP_POST_VARS['file_name'];
+
         // Check if the album id provided is valid
         if (!GALLERY_ADMIN_MODE) {
             $result = db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album' and (uploads = 'YES' OR category = '" . (USER_ID + FIRST_USER_CAT) . "')");
@@ -216,7 +222,8 @@ switch ($event) {
             $category = $row['category'];
         }
         // Test if the filename of the temporary uploaded picture is empty
-        if ($HTTP_POST_FILES['userpicture']['tmp_name'] == '') cpg_die(ERROR, $lang_db_input_php['no_pic_uploaded'], __FILE__, __LINE__);
+	//Commented out for rotation integration.
+        //if ($HTTP_POST_FILES['userpicture']['tmp_name'] == '') cpg_die(ERROR, $lang_db_input_php['no_pic_uploaded'], __FILE__, __LINE__);
         // Pictures are moved in a directory named 10000 + USER_ID
         if (USER_ID && !defined('SILLY_SAFE_MODE')) {
             $filepath = $CONFIG['userpics'] . (USER_ID + FIRST_USER_CAT);
@@ -241,8 +248,9 @@ switch ($event) {
         $matches = array();
         $forbidden_chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>'));
         // Check that the file uploaded has a valid extension
-        if (get_magic_quotes_gpc()) $HTTP_POST_FILES['userpicture']['name'] = stripslashes($HTTP_POST_FILES['userpicture']['name']);
-        $picture_name = strtr($HTTP_POST_FILES['userpicture']['name'], $forbidden_chars, str_repeat('_', strlen($CONFIG['forbiden_fname_char'])));
+	// Replaced $HTTP_POST_FILES['userpicture']['name'] with $transitory_file_name in security check for rotation integration. 
+        if (get_magic_quotes_gpc()) $transitory_file_name = stripslashes($transitory_file_name);
+        $picture_name = strtr($transitory_file_name, $forbidden_chars, str_repeat('_', strlen($CONFIG['forbiden_fname_char'])));
         if (!preg_match("/(.+)\.(.*?)\Z/", $picture_name, $matches)) {
             $matches[1] = 'invalid_fname';
             $matches[2] = 'xxx';
@@ -258,8 +266,13 @@ switch ($event) {
         }
         $uploaded_pic = $dest_dir . $picture_name;
         // Move the picture into its final location
-        if (!move_uploaded_file($HTTP_POST_FILES['userpicture']['tmp_name'], $uploaded_pic))
+	// Changed !move_uploaded_file($HTTP_POST_FILES['userpicture']['tmp_name'], $uploaded_pic) to !copy($path_to_transitory_image, $uploaded_pic) for rotation integration.
+        if (!copy($path_to_transitory_image, $uploaded_pic))
             cpg_die(CRITICAL_ERROR, sprintf($lang_db_input_php['err_move'], $picture_name, $dest_dir), __FILE__, __LINE__, true);
+
+	// Delete the transitory picture (Rotation integration.)
+	@unlink($path_to_transitory_image);
+
         // Change file permission
         chmod($uploaded_pic, octdec($CONFIG['default_file_mode']));
         // Get picture information
