@@ -348,11 +348,16 @@ bblink a:hover {
         font-family: Arial, Helvetica, sans-serif;
         font-size: 85%;
         border: 1px solid #005D8C;
+        background-color:#EFEFEF;
         background-image : url(images/button_bg.gif);
         background-position : bottom;
         color: #000000;
         margin-top: 0px;
         margin-bottom: 0px;
+        padding-top:2px;
+        padding-bottom:2px;
+        padding-left:1px;
+        padding-right:1px;
         text-align: center;
 }
 
