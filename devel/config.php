@@ -500,6 +500,35 @@ function form_plugin_yes_no($text, $name, $help = '')
 EOT;
 }
 
+function form_exif_yes_no($text, $name, $help = '')
+{
+    global $CONFIG, $lang_yes, $lang_no,$lang_config_php;
+    $help = cpg_display_help($help);
+
+
+    $value = $CONFIG[$name];
+    $yes_selected = $value ? 'checked="checked"' : '';
+    $no_selected = !$value ? 'checked="checked"' : '';
+
+    echo <<<EOT
+        <tr>
+            <td class="tableb" width="50%">
+                        $text
+        </td>
+        <td class="tableb" valign="top" width="50%">
+                        <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected /><label for="{$name}1" class="clickable_option">$lang_yes</label>
+                        &nbsp;&nbsp;
+                        <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
+                        ( <a href="exifmgr.php">{$lang_config_php['manage_exif']}</a> )
+                </td>
+                <td class="tableb" width="10%">
+                $help
+                </td>
+        </tr>
+
+EOT;
+}
+
 
 function create_form(&$data)
 {
@@ -554,6 +583,9 @@ function create_form(&$data)
                     break;
                 case 12 :
                     form_plugin_yes_no($element[0], $element[1], $element[3]);
+                    break;
+                case 13 :
+                    form_exif_yes_no($element[0], $element[1], $element[3]);
                     break;
                 default:
                     die('Invalid action');
