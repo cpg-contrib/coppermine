@@ -77,6 +77,8 @@ function hidden_input($name, $value) {
 // and the number of iterations.
 function text_box_input($text, $name, $max_length, $iterations) {
 
+    global $CONFIG;
+
     $ordinal = '';
 
     if (($text == '') and ($iterations == '')) {
@@ -235,6 +237,8 @@ EOT;
 // 3 => text area input
 // 4 => hidden input
 function create_form(&$data) {
+
+    global $CONFIG;
 
     // Cycle through the elements in the data array.
     foreach($data as $element) {
@@ -887,12 +891,24 @@ if (!isset($_REQUEST['control'])) {
         array($lang_upload_php['pic_title'], 'title', 0, 255, 1),
         array($captionLabel, 'caption', 3, $CONFIG['max_img_desc_length']),
         array($lang_upload_php['keywords'], 'keywords', 0, 255, 1),
-        array($CONFIG['user_field1_name'], 'user1', 0, 255),
-        array($CONFIG['user_field2_name'], 'user2', 0, 255),
-        array($CONFIG['user_field3_name'], 'user3', 0, 255),
-        array($CONFIG['user_field4_name'], 'user4', 0, 255),
         array('event', 'picture', 4)
         );
+
+        if(!empty($CONFIG['user_field1_name'])) {
+            $form_array[] = array($CONFIG['user_field1_name'], 'user1', 0, 255, 1);
+        }
+
+        if(!empty($CONFIG['user_field2_name'])) {
+            $form_array[] = array($CONFIG['user_field2_name'], 'user2', 0, 255, 1);
+        }
+
+        if(!empty($CONFIG['user_field3_name'])) {
+            $form_array[] = array($CONFIG['user_field3_name'], 'user3', 0, 255, 1);
+        }
+
+        if(!empty($CONFIG['user_field4_name'])) {
+            $form_array[] = array($CONFIG['user_field4_name'], 'user4', 0, 255, 1);
+        }
 
     } else {
 
@@ -2419,13 +2435,27 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
     array($lang_upload_php['pic_title'], 'title', 0, 255, 1),
     array($captionLabel, 'caption', 3, $CONFIG['max_img_desc_length']),
     array($lang_upload_php['keywords'], 'keywords', 0, 255, 1),
-    array($CONFIG['user_field1_name'], 'user1', 0, 255),
-    array($CONFIG['user_field2_name'], 'user2', 0, 255),
-    array($CONFIG['user_field3_name'], 'user3', 0, 255),
-    array($CONFIG['user_field4_name'], 'user4', 0, 255),
     array('control', 'phase_2', 4),
     array('unique_ID', $_POST['unique_ID'], 4),
     );
+
+    // Check for user defined fields.
+    if(!empty($CONFIG['user_field1_name'])) {
+        $form_array[] = array($CONFIG['user_field1_name'], 'user1', 0, 255, 1);
+    }
+
+    if(!empty($CONFIG['user_field2_name'])) {
+        $form_array[] = array($CONFIG['user_field2_name'], 'user2', 0, 255, 1);
+    }
+
+    if(!empty($CONFIG['user_field3_name'])) {
+        $form_array[] = array($CONFIG['user_field3_name'], 'user3', 0, 255, 1);
+    }
+
+    if(!empty($CONFIG['user_field4_name'])) {
+        $form_array[] = array($CONFIG['user_field4_name'], 'user4', 0, 255, 1);
+    }
+
 
     // Check for movies and audio, and create width and height boxes if true.
     if((is_movie($file_set[1])) or (is_audio($file_set[1]))) {
