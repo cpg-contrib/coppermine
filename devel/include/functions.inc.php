@@ -195,9 +195,9 @@ function cpg_db_query($query, $link_id = 0)
         $query_start = cpgGetMicroTime();
 
         if ($link_id) {
-				$result = mysql_query($query, $link_id);
+                                $result = mysql_query($query, $link_id);
         } else {
-				$result = mysql_query($query); //, $CONFIG['LINK_ID']);
+                                $result = mysql_query($query); //, $CONFIG['LINK_ID']);
         }
         $query_end = cpgGetMicroTime();
         if (isset($CONFIG['debug_mode']) && (($CONFIG['debug_mode']==1) || ($CONFIG['debug_mode']==2) )) {
@@ -372,17 +372,17 @@ function localised_date($timestamp = -1, $datefmt)
  **/
 function localised_timestamp($timestamp = -1)
 {
-	global $CONFIG;
-	
-	if ($timestamp == -1) {
+        global $CONFIG;
+
+        if ($timestamp == -1) {
         $timestamp = time();
     }
 
     $diff_to_GMT = date("O") / 100;
 
     $timestamp += ($CONFIG['time_offset'] - $diff_to_GMT) * 3600;
-	
-	return $timestamp;
+
+        return $timestamp;
 }
 
 // Function to create correct URLs for image name with space or exotic characters
@@ -733,7 +733,7 @@ function get_private_album_set($aid_str="")
         if (GALLERY_ADMIN_MODE) return;
 
         global $CONFIG, $ALBUM_SET, $USER_DATA, $FORBIDDEN_SET, $FORBIDDEN_SET_DATA;
-        
+
         $FORBIDDEN_SET_DATA = array();
 
         if ($USER_DATA['can_see_all_albums']) return;
@@ -793,7 +793,7 @@ function build_caption(&$rowset,$must_have=array())
     global $CONFIG, $THEME_DIR;
     global $album_date_fmt, $lastcom_date_fmt, $lastup_date_fmt, $lasthit_date_fmt, $cat;
     global $lang_get_pic_data, $lang_meta_album_names, $lang_errors;
-    
+
     foreach ($rowset as $key => $row) {
         $caption='';
         if ($CONFIG['display_filename']) {
@@ -817,7 +817,7 @@ function build_caption(&$rowset,$must_have=array())
         if ($CONFIG['display_uploader'] && !in_array($row['owner_id'],$CONFIG['ADMIN_USERS']) || ($CONFIG['display_admin_uploader'] && in_array($row['owner_id'],$CONFIG['ADMIN_USERS']))) {
             $caption .= ($row['owner_id'] && $row['owner_name']) ? '<span class="thumb_title"><a href ="profile.php?uid='.$row['owner_id'].'">'.$row['owner_name'].'</a></span>' : '';
         }
-        
+
         if (in_array('msg_date',$must_have)) {
             $caption .= '<span class="thumb_caption">'.localised_date($row['msg_date'], $lastcom_date_fmt).'</span>';
         }
@@ -896,7 +896,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         } else {
             $forbidden_set_string = '';
         }
-            
+
         // Keyword
         if (!empty($CURRENT_ALBUM_KEYWORD)){
                 $keyword = "OR (keywords like '%$CURRENT_ALBUM_KEYWORD%' $forbidden_set_string )";
@@ -1002,7 +1002,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
                 mysql_free_result($result);
-                
+
                 $select_columns = '*'; //allows building any data into any thumbnail caption
                 if($select_columns == '*'){
                         $select_columns = 'p.*';
@@ -1081,7 +1081,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 mysql_free_result($result);
 
                 if ($set_caption) build_caption($rowset,array('ctime'));
-                
+
                 $rowset = CPGPluginAPI::filter('thumb_caption_lastupby',$rowset);
 
                 return $rowset;
@@ -1138,7 +1138,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 mysql_free_result($result);
 
                 if ($set_caption) build_caption($rowset,array('pic_rating'));
-                
+
                 $rowset = CPGPluginAPI::filter('thumb_caption_toprated',$rowset);
 
                 return $rowset;
@@ -1158,7 +1158,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
                 //if($select_columns != '*') $select_columns .= ', UNIX_TIMESTAMP(mtime) as mtime, aid, hits, lasthit_ip, owner_id, owner_name';
                 $select_columns = '*'; //allows building any data into any thumbnail caption
-                
+
                 $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' and hits > 0 $META_ALBUM_SET ORDER BY mtime DESC $limit";
                 $result = cpg_db_query($query);
                 $rowset = cpg_db_fetch_rowset($result);
@@ -1211,7 +1211,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $rowset[-$row['pid']] = $row;
                 }
                 mysql_free_result($result);
-                
+
                 if ($set_caption) build_caption($rowset);
 
                 $rowset = CPGPluginAPI::filter('thumb_caption_random',$rowset);
@@ -1261,7 +1261,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 mysql_free_result($result);
 
                 if ($set_caption) build_caption($rowset,array('ctime'));
-                
+
                 $rowset = CPGPluginAPI::filter('thumb_caption_lastalb',$rowset);
 
                 return $rowset;
@@ -1680,7 +1680,7 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
                                 $row['pwidth'] = $image_info[0];
                                 $row['pheight'] = $image_info[1];
                         }
-                        
+
                         $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
 
                         $thumb_list[$i]['pos'] = $key < 0 ? $key : $i - 1 + $lower_limit;
@@ -2667,20 +2667,14 @@ function cpg_get_webroot_path() {
 
     // let's make those into an array:
     $path_from_serverroot[] = $_SERVER["SCRIPT_FILENAME"];
-    $path_from_serverroot[] = $_SERVER["PATH_TRANSLATED"];
+    if (isset($_SERVER["PATH_TRANSLATED"])) {
+       $path_from_serverroot[] = $_SERVER["PATH_TRANSLATED"];
+    }
     $path_from_serverroot[] = $HTTP_SERVER_VARS["SCRIPT_FILENAME"];
     $path_from_serverroot[] = $HTTP_SERVER_VARS["PATH_TRANSLATED"];
-    // for debugging: add some vars that actually don't exist, just to test the script
-    //$path_from_serverroot[] = '/foo/bar/coppermine/';
-    //$path_from_serverroot[] = '';
-    //$path_from_serverroot[] = '/foo/bar/public_html/coppermine/testpath.php';
 
     // we should be able to tell the current script's filename by removing everything before and including the last slash in $PHP_SELF
     $filename = ltrim(strrchr($_SERVER['PHP_SELF'], '/'), '/');
-    //print 'filename:'.$filename;
-    //print "<hr />\n";
-    //print '$PHP_SELF:'.$_SERVER['PHP_SELF'];
-    //print "<hr />\n";
 
     // let's eliminate all those vars that don't contain the filename (and replace the funny notation from windows machines)
     foreach($path_from_serverroot as $key) {

@@ -25,21 +25,58 @@ require('include/init.inc.php');
 
 // set/define some vars
 $scriptfilename = 'minibrowser.php';
-if (isset($_REQUEST['folder'])) {$folder = rawurldecode($_REQUEST['folder']);} else { $folder = '';}
-if (isset($_REQUEST['startfolder'])) {$startfolder = rawurldecode($_REQUEST['startfolder']);} else { $startfolder = '';}
-//if ($folder == '' && $startfolder != '' && is_dir($folder) != false) {
+
+if (isset($_REQUEST['folder'])) {
+    $folder = rawurldecode($_REQUEST['folder']);
+} else {
+    $folder = '';
+}
+
+if (isset($_REQUEST['startfolder'])) {
+    $startfolder = rawurldecode($_REQUEST['startfolder']);
+} else {
+    $startfolder = '';
+}
+
 if ($folder == '' && $startfolder != '') {
     $folder = $startfolder;
 }
-if (isset($_REQUEST['parentform'])) {$parentform = rawurldecode($_REQUEST['parentform']);} else { $parentform = '';}
-if (isset($_REQUEST['formelementname'])) {$formelementname = rawurldecode($_REQUEST['formelementname']);} else { $formelementname = '';}
+
+if (isset($_REQUEST['parentform'])) {
+    $parentform = rawurldecode($_REQUEST['parentform']);
+} else {
+    $parentform = '';
+}
+
+if (isset($_REQUEST['formelementname'])) {
+    $formelementname = rawurldecode($_REQUEST['formelementname']);
+} else {
+    $formelementname = '';
+}
+
 if (isset($_REQUEST['hidefolders'])) {
     $hidefolders = rawurldecode($_REQUEST['hidefolders']);
     $hiddenfolders = explode(',', $hidefolders);
 }
-if (isset($_REQUEST['linktarget'])) {$linktarget = rawurldecode($_REQUEST['linktarget']);} else { $linktarget = '';}
-if (isset($_REQUEST['searchnew_php'])) {$searchnew_php = rawurldecode($_REQUEST['searchnew_php']);} else { $searchnew_php = '0';}
-if (isset($_REQUEST['radio'])) {$radio = rawurldecode($_REQUEST['radio']);} else { $radio = '';}
+
+if (isset($_REQUEST['linktarget'])) {
+    $linktarget = rawurldecode($_REQUEST['linktarget']);
+} else {
+    $linktarget = '';
+}
+
+if (isset($_REQUEST['searchnew_php'])) {
+    $searchnew_php = rawurldecode($_REQUEST['searchnew_php']);
+} else {
+    $searchnew_php = '0';
+}
+
+if (isset($_REQUEST['radio'])) {
+    $radio = rawurldecode($_REQUEST['radio']);
+} else {
+    $radio = '';
+}
+
 $newline = "\n";
 
 ?>
@@ -47,8 +84,7 @@ $newline = "\n";
 
 <html>
 <head>
-<title><?php echo $CONFIG['gallery_name'] ?>: <?php echo $lang_fullsize_popup['click_to_close'];
-    ?></title>
+<title><?php echo $CONFIG['gallery_name'] .': '. $lang_minibrowser_php['click_to_close'];  ?></title>
 <meta http-equiv="content-type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'] ?>" />
 <link rel="stylesheet" href="<?php echo $THEME_DIR ?>style.css" />
 <script type="text/javascript" src="scripts.js"></script>
@@ -79,7 +115,7 @@ adjust_popup();
 
 <?php
 //print $_SERVER["REQUEST_URI"];
-starttable(-2,$lang_minibrowser_php['select_directory'],2);
+starttable(-2, $lang_minibrowser_php['select_directory'], 2);
 if (!GALLERY_ADMIN_MODE) { cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__); }
 
 
@@ -148,7 +184,7 @@ print '</tr>'.$newline;
 
 
 // display the "up" link if we're not already in the root folder
-if (($_REQUEST['folder'] != '' || $_REQUEST['startfolder'] != '') && ($folder != '' && $folder!= '/')) {
+if ((!empty($_REQUEST['folder']) || !empty($_REQUEST['startfolder'])) && ($folder != '' && $folder!= '/')) {
     $uplink = rtrim($folder, '/');
     $remove = strrchr ($uplink,'/');
     //print 'uplink:'.$uplink.'<br>';

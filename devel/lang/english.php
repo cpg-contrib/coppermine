@@ -1343,6 +1343,8 @@ if (defined('MINIBROWSER_PHP')) $lang_minibrowser_php = array(
   'submit' => 'OK', //cpg 1.4
   'up' => 'up one level', //cpg 1.4
   'current_path' => 'current path', //cpg 1.4
+  'select_directory' => 'please select a directory', //cpg 1.4
+  'click_to_close' => 'Click image to close this window',
 );
 
 // ------------------------------------------------------------------------- //
