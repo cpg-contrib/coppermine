@@ -564,7 +564,7 @@ echo <<<EOT
             $album_lb
             </td>
         </tr>
-        <form method="post" name="modifyalbum" action="db_input.php">
+        <form method="post" name="modifyalbum" action="db_inputNew.php">
         <input type="hidden" name="event" value="album_update">
         <input type="hidden" name="aid" value="$album">
 
@@ -615,7 +615,7 @@ if (GALLERY_ADMIN_MODE) {
 
     echo <<<EOT
     <br />
-    <form action="db_input.php" method="post" name="reset_views_form" onSubmit="return defaultagree(this)">
+    <form action="db_inputNew.php" method="post" name="reset_views_form" onSubmit="return defaultagree(this)">
     <input type="hidden" name="event" value="album_reset">
     <input type="hidden" name="aid" value="$album">
 EOT;
