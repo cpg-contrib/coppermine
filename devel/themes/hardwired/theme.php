@@ -22,10 +22,12 @@
 // ------------------------------------------------------------------------- //
 define('THEME_HAS_RATING_GRAPHICS', 1);
 define('THEME_HAS_NAVBAR_GRAPHICS', 1);
+define('THEME_HAS_NO_SYS_MENU_BUTTONS', 1);
+define('THEME_HAS_NO_SUB_MENU_BUTTONS', 1);
 define('THEME_IS_XHTML10_TRANSITIONAL',1);  // Remove this if you edit this template until
                                             // you have validated it. See docs/theme.htm.
 
-// HTML template for main menu
+// HTML template for sys menu
 $template_sys_menu = <<<EOT
 
                         <table border="0" cellpadding="0" cellspacing="0">
@@ -58,7 +60,7 @@ $template_sys_menu = <<<EOT
                                         <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
                                         <td><img name="buttonleft" src="themes/hardwired/images/buttonleftfaq.gif" width="17" height="25" border="0" alt="" /></td>
                                         <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
-                        <a href="{FAQ_TGT}" title="{FAQ_TITLE}">{FAQ_LNK}</a>
+                                        <a href="{FAQ_TGT}" title="{FAQ_TITLE}">{FAQ_LNK}</a>
                                         </td>
                                         <td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /></td>
 <!-- END faq -->
@@ -114,6 +116,7 @@ $template_sys_menu = <<<EOT
                         </table>
 
 EOT;
+// HTML template for sub menu
 $template_sub_menu = <<<EOT
 
                         <table border="0" cellpadding="0" cellspacing="0">
