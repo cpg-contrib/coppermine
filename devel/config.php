@@ -32,16 +32,19 @@ function form_label($text)
                 <td class="tableh2" colspan="2">
                         <b>$text</b>
                 </td>
+                <td class="tableh2">
+                </td>
         </tr>
 
 EOT;
 }
 
-function form_input($text, $name)
+function form_input($text, $name, $help = '')
 {
     global $CONFIG;
 
     $value = $CONFIG[$name];
+    $help = cpg_display_help($help);
 
     echo <<<EOT
         <tr>
@@ -51,14 +54,18 @@ function form_input($text, $name)
         <td width="40%" class="tableb" valign="top">
                 <input type="text" class="textinput" style="width: 100%" name="$name" value="$value">
                 </td>
+                <td class="tableb">
+                $help
+                </td>
         </tr>
 
 EOT;
 }
 
-function form_yes_no($text, $name)
+function form_yes_no($text, $name, $help = '')
 {
     global $CONFIG, $lang_yes, $lang_no;
+    $help = cpg_display_help($help);
 
     $value = $CONFIG[$name];
     $yes_selected = $value ? 'checked="checked"' : '';
@@ -74,14 +81,18 @@ function form_yes_no($text, $name)
                         &nbsp;&nbsp;
                         <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
                 </td>
+                <td class="tableb">
+                $help
+                </td>
         </tr>
 
 EOT;
 }
 
-function form_img_pkg($text, $name)
+function form_img_pkg($text, $name, $help = '')
 {
     global $CONFIG;
+    $help = cpg_display_help($help);
 
     $value = $CONFIG[$name];
     $im_selected = ($value == 'im') ? 'selected' : '';
@@ -100,14 +111,18 @@ function form_img_pkg($text, $name)
                                 <option value="gd2" $gd2_selected>GD version 2.x</option>
                         </select>
                 </td>
+                <td class="tableb">
+                $help
+                </td>
         </tr>
 
 EOT;
 }
 
-function form_sort_order($text, $name)
+function form_sort_order($text, $name, $help = '')
 {
     global $CONFIG, $lang_config_php;
+    $help = cpg_display_help($help);
 
     $value = $CONFIG[$name];
     $ta_selected = ($value == 'ta') ? 'selected' : '';
@@ -132,14 +147,18 @@ function form_sort_order($text, $name)
                                 <option value="dd" $dd_selected>{$lang_config_php['date_d']}</option>
                         </select>
                 </td>
+                <td class="tableb">
+                $help
+                </td>
         </tr>
 
 EOT;
 }
 
-function form_charset($text, $name)
+function form_charset($text, $name, $help = '')
 {
     global $CONFIG;
+    $help = cpg_display_help($help);
 
     $charsets = array('Default' => 'language file',
         'Arabic' => 'iso-8859-6',
@@ -178,14 +197,18 @@ EOT;
     echo <<<EOT
                         </select>
                 </td>
+                <td class="tableb">
+                $help
+                </td>
         </tr>
 
 EOT;
 }
 
-function form_language($text, $name)
+function form_language($text, $name, $help = '')
 {
     global $CONFIG;
+    $help = cpg_display_help($help);
 
     $value = strtolower($CONFIG[$name]);
     $lang_dir = 'lang/';
@@ -215,14 +238,18 @@ EOT;
     echo <<<EOT
                         </select>
                 </td>
+                <td class="tableb">
+                $help
+                </td>
         </tr>
 
 EOT;
 }
 
-function form_theme($text, $name)
+function form_theme($text, $name, $help = '')
 {
     global $CONFIG;
+    $help = cpg_display_help($help);
 
     $value = $CONFIG[$name];
     $theme_dir = 'themes/';
@@ -252,14 +279,18 @@ EOT;
     echo <<<EOT
                         </select>
                 </td>
+                <td class="tableb">
+                $help
+                </td>
         </tr>
 
 EOT;
 }
 // Added for allowing user to select which aspect of thumbnails to scale
-function form_scale($text, $name)
+function form_scale($text, $name, $help = '')
 {
    global $CONFIG, $lang_config_php ;
+   $help = cpg_display_help($help);
 
     $value = $CONFIG[$name];
     $any_selected = ($value == 'max') ? 'selected' : '';
@@ -278,14 +309,18 @@ function form_scale($text, $name)
                                 <option value="wd" $wd_selected>{$lang_config_php['th_wd']}</option>
                         </select>
                 </td>
+                <td class="tableb">
+                $help
+                </td>
         </tr>
 
 EOT;
 }
 
-function form_lang_theme($text, $name)
+function form_lang_theme($text, $name, $help = '')
 {
     global $CONFIG, $lang_yes, $lang_no, $lang_config_php;
+    $help = cpg_display_help($help);
 
     $value = $CONFIG[$name];
     $no_selected = ($value == '0') ? 'checked="checked"' : '';
@@ -304,14 +339,18 @@ function form_lang_theme($text, $name)
                         &nbsp;&nbsp;
                         <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">$lang_yes:{$lang_config_php['label']}+{$lang_config_php['item']}</label>
         </td>
+        <td class="tableb">
+        $help
+        </td>
         </tr>
 
 EOT;
 }
 
-function form_lang_debug($text, $name)
+function form_lang_debug($text, $name, $help = '')
 {
     global $CONFIG, $lang_yes, $lang_no, $lang_config_php;
+    $help = cpg_display_help($help);
 
     $value = $CONFIG[$name];
     $no_selected = ($value == '0') ? 'checked="checked"' : '';
@@ -330,14 +369,18 @@ function form_lang_debug($text, $name)
                         &nbsp;&nbsp;
                         <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">$lang_yes:{$lang_config_php['debug_admin']}</label>
         </td>
+        <td class="tableb">
+        $help
+        </td>
         </tr>
 
 EOT;
 }
 
-function form_number_dropdown($text, $name)
+function form_number_dropdown($text, $name, $help = '')
 {
    global $CONFIG, $lang_config_php ;
+   $help = cpg_display_help($help);
 
     echo <<<EOT
         <tr>
@@ -355,13 +398,17 @@ EOT;
      echo <<<EOT
      </select>
                 </td>
+                <td class="tableb">
+                $help
+                </td>
         </tr>
 EOT;
 }
 
-function form_lang_logmode($text, $name)
+function form_lang_logmode($text, $name, $help = '')
 {
     global $CONFIG, $lang_config_php;
+    $help = cpg_display_help($help);
 
     $value = $CONFIG[$name];
     $off_selected = ($value == '0') ? 'checked="checked"' : '';
@@ -382,15 +429,19 @@ function form_lang_logmode($text, $name)
                         &nbsp;&nbsp;
                         ( <a href="viewlog.php">{$lang_config_php['view_logs']}</a> )
         </td>
+        <td class="tableb">
+        $help
+        </td>
         </tr>
 
 EOT;
 }
 
 
-function form_plugin_yes_no($text, $name)
+function form_plugin_yes_no($text, $name, $help = '')
 {
     global $CONFIG, $lang_yes, $lang_no,$lang_config_php;
+    $help = cpg_display_help($help);
 
     $value = $CONFIG[$name];
     $yes_selected = $value ? 'checked="checked"' : '';
@@ -407,6 +458,9 @@ function form_plugin_yes_no($text, $name)
                         <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
                         ( <a href="pluginmgr.php">{$lang_config_php['manage_plugins']}</a> )
                 </td>
+                <td class="tableb">
+                $help
+                </td>
         </tr>
 
 EOT;
@@ -419,47 +473,47 @@ function create_form(&$data)
         if ((is_array($element))) {
             switch ($element[2]) {
                 case 0 :
-                    form_input($element[0], $element[1]);
+                    form_input($element[0], $element[1], $element[3]);
                     break;
                 case 1 :
-                    form_yes_no($element[0], $element[1]);
+                    form_yes_no($element[0], $element[1], $element[3]);
                     break;
                 case 2 :
-                    form_img_pkg($element[0], $element[1]);
+                    form_img_pkg($element[0], $element[1], $element[3]);
                     break;
                 case 3 :
-                    form_sort_order($element[0], $element[1]);
+                    form_sort_order($element[0], $element[1], $element[3]);
                     break;
                 case 4 :
-                    form_charset($element[0], $element[1]);
+                    form_charset($element[0], $element[1], $element[3]);
                     break;
                 case 5 :
-                    form_language($element[0], $element[1]);
+                    form_language($element[0], $element[1], $element[3]);
                     break;
                 case 6 :
-                    form_theme($element[0], $element[1]);
+                    form_theme($element[0], $element[1], $element[3]);
                     break;
                 // Thumbnail scaling
                 case 7 :
-                    form_scale($element[0], $element[1]);
+                    form_scale($element[0], $element[1], $element[3]);
                     break;
                 // Language + Theme selection
                 case 8 :
-                    form_lang_theme($element[0], $element[1]);
+                    form_lang_theme($element[0], $element[1], $element[3]);
                     break;
                 // debug mode selection
                 case 9 :
-                    form_lang_debug($element[0], $element[1]);
+                    form_lang_debug($element[0], $element[1], $element[3]);
                     break;
                 // tabbed display fix
                 case 10 :
-                    form_number_dropdown($element[0], $element[1]);
+                    form_number_dropdown($element[0], $element[1], $element[3]);
                     break;
                 case 11 :
-                    form_lang_logmode($element[0], $element[1]);
+                    form_lang_logmode($element[0], $element[1], $element[3]);
                     break;
                 case 12 :
-                    form_plugin_yes_no($element[0], $element[1]);
+                    form_plugin_yes_no($element[0], $element[1], $element[3]);
                     break;
                 default:
                     die('Invalid action');
@@ -482,7 +536,7 @@ if (count($HTTP_POST_VARS) > 0) {
             'thumbrows',
             // Show filmstrip
             'max_film_strip_items');
-        
+
         // Code to rename system thumbs in images folder
         $old_thumb_pfx =& $CONFIG['thumb_pfx'];
 
@@ -505,16 +559,16 @@ if (count($HTTP_POST_VARS) > 0) {
                 if ((!isset($HTTP_POST_VARS[$element[1]]))) cpg_die(CRITICAL_ERROR, "Missing config value for '{$element[1]}'", __FILE__, __LINE__);
                 $value = addslashes($HTTP_POST_VARS[$element[1]]);
                 if ($CONFIG[$element[1]] !== stripslashes($value))
-             	{
-                	db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = '{$element[1]}'");
-                	if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
-                        	log_write('CONFIG UPDATE SQL: '.
-                                  	"UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = '{$element[1]}'\n".
-                                  	'TIME: '.date("F j, Y, g:i a")."\n".
-                                  	'USER: '.$USER_DATA['user_name'],
-                                  	CPG_DATABASE_LOG
-                                  	);
-                	}
+                     {
+                        db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = '{$element[1]}'");
+                        if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
+                                log_write('CONFIG UPDATE SQL: '.
+                                          "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = '{$element[1]}'\n".
+                                          'TIME: '.date("F j, Y, g:i a")."\n".
+                                          'USER: '.$USER_DATA['user_name'],
+                                          CPG_DATABASE_LOG
+                                          );
+                        }
                 }
             }
         }
@@ -543,7 +597,7 @@ pageheader($lang_config_php['title']);
 
 $signature = 'Coppermine Photo Gallery ' . COPPERMINE_VERSION . ' ('. COPPERMINE_VERSION_STATUS . ')';
 
-starttable('100%', "{$lang_config_php['title']} - $signature", 2);
+starttable('100%', "{$lang_config_php['title']} - $signature", 3);
 echo <<<EOT
         <form action="$PHP_SELF" method="post">
 
@@ -555,6 +609,8 @@ echo <<<EOT
                         <input type="submit" class="button" name="update_config" value="{$lang_config_php['save_cfg']}">
                         &nbsp;&nbsp;
                         <input type="submit" class="button" name="restore_config" value="{$lang_config_php['restore_cfg']}">
+                </td>
+                <td class="tablef">
                 </td>
         </form>
         </tr>

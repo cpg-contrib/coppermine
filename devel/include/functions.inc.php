@@ -381,7 +381,7 @@ function load_template()
         } else die("<b>Coppermine critical error</b>:<br />Unable to load template file ".TEMPLATE_FILE."!</b>");
 
         $template = fread(fopen($template_file, 'r'), filesize($template_file));
-        
+
         $template = CPGPluginAPI::filter('template_html',$template);
 
         $gallery_pos = strpos($template, '{LANGUAGE_SELECT_FLAGS}');
@@ -397,7 +397,7 @@ function load_template()
 
         $template_header = substr($template, 0, $gallery_pos);
         $template_header = str_replace('{META}','{META}'.CPGPluginAPI::filter('page_meta',''),$template_header);
-        
+
         // Filter gallery header and footer
         $template_header .= CPGPluginAPI::filter('gallery_header','');
         $template_footer = CPGPluginAPI::filter('gallery_footer','').substr($template, $gallery_pos);
@@ -433,12 +433,12 @@ function template_extract_block(&$template, $block_name, $subst='')
 function get_private_album_set($aid_str="")
 {
         if (GALLERY_ADMIN_MODE) return;
-		
+
         global $CONFIG, $ALBUM_SET, $USER_DATA, $FORBIDDEN_SET, $HTTP_COOKIE_VARS, $FORBIDDEN_SET_DATA;
-		
+
         if ($USER_DATA['can_see_all_albums']) return;
-		
-		//Stuff for Album level passwords
+
+                //Stuff for Album level passwords
         if (isset($HTTP_COOKIE_VARS[$CONFIG['cookie_name']."_albpw"]) && empty($aid_str)) {
           $alb_pw = unserialize($HTTP_COOKIE_VARS[$CONFIG['cookie_name']."_albpw"]);
           $aid_str = implode(",",array_keys($alb_pw));
@@ -457,13 +457,13 @@ function get_private_album_set($aid_str="")
             $aid_str = "";
           }
         }
-        
+
         $sql = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE visibility != '0' AND visibility !='".(FIRST_USER_CAT + USER_ID)."' AND visibility NOT IN ".USER_GROUP_SET;
         if (!empty($aid_str)) {
           $sql .= " AND aid NOT IN ($aid_str)";
-		}        
-        
-		$result = db_query($sql);
+                }
+
+                $result = db_query($sql);
         if ((mysql_num_rows($result))) {
                 $set ='';
             while($album=mysql_fetch_array($result)){
@@ -472,11 +472,11 @@ function get_private_album_set($aid_str="")
             } // while
                 $FORBIDDEN_SET = "p.aid NOT IN (".substr($set, 0, -1).') ';
                 $ALBUM_SET = 'AND aid NOT IN ('.substr($set, 0, -1).') ';
-        }else{		
-		  $FORBIDDEN_SET_DATA = array();
+        }else{
+                  $FORBIDDEN_SET_DATA = array();
           $FORBIDDEN_SET = "";
           $ALBUM_SET = "";
-		}
+                }
         mysql_free_result($result);
 }
 
@@ -1863,5 +1863,15 @@ function cpg_alert_dev_version() {
         return $return;
 }
 
+function cpg_display_help($reference = 'f=index.htm', $width = '600', $height = '350') {
+global $CONFIG, $USER;
+if ($reference == '' || $CONFIG['enable_help'] != '1') {return; }
+$help_theme = $CONFIG['theme'];
+if ($USER['theme']) {
+    $help_theme = $USER['theme'];
+}
+$help_html = "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('docs/showdoc.php?" . $reference . "&css=" . $help_theme . "','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=" . $width . ",height=" . $height . "')\" style=\"cursor:help\"><img src=\"images/help.gif\" width=\"13\" height=\"11\" border=\"0\" alt=\"\" title=\"\" /></a>"; 
+return $help_html;
+}
 
 ?>

@@ -433,27 +433,28 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
   'General settings',
-  array('Gallery name', 'gallery_name', 0),
-  array('Gallery description', 'gallery_description', 0),
-  array('Gallery administrator email', 'gallery_admin_email', 0),
-  array('URL of your coppermine gallery folder (no \'index.php\' or similar at the end)', 'ecards_more_pic_target', 0),
-  array('Gallery is offline', 'offline', 1),
-  array('Log ecards', 'log_ecards', 1),
-  array('Allow ZIP-download of favorites', 'enable_zipdownload', 1),
-  array('Timezone difference relative to GMT','time_offset',0),
+  array('Gallery name', 'gallery_name', 0, 'f=index.htm&as=config_general_name&ae=config_general_name_end'),
+  array('Gallery description', 'gallery_description', 0, 'f=index.htm&as=config_general_description&ae=config_general_description_end'),
+  array('Gallery administrator email', 'gallery_admin_email', 0, 'f=index.htm&as=config_general_email&ae=config_general_email_end'),
+  array('URL of your coppermine gallery folder (no \'index.php\' or similar at the end)', 'ecards_more_pic_target', 0, 'f=index.htm&as=config_general_coppermine-url&ae=config_general_coppermine-url_end'),
+  array('Gallery is offline', 'offline', 1, 'f=index.htm&as=config_general_offline&ae=config_general_offline_end'),
+  array('Log ecards', 'log_ecards', 1, 'f=index.htm&as=config_general_log_ecards&ae=config_general_log_ecards_end'),
+  array('Allow ZIP-download of favorites', 'enable_zipdownload', 1, 'f=index.htm&as=config_general_zip-download&ae=config_general_zip-download_end'),
+  array('Timezone difference relative to GMT','time_offset',0, 'f=index.htm&as=config_general_time-offset&ae=config_general_time-offset_end&top=1'),
+  array('Enable help-icons','enable_help',1, 'f=index.htm&as=config_general_help&ae=config_general_help_end'),
 
   'Language, Themes &amp; Charset settings',
-  array('Language', 'lang', 5),
-  array('Fallback to English if translated phrase not found?', 'language_fallback', 1),
-  array('Theme', 'theme', 6),
-  array('Display language list', 'language_list', 1),
-  array('Display language flags', 'language_flags', 8),
-  array('Display &quot;reset&quot; in language selection', 'language_reset', 1),
-  array('Display theme list', 'theme_list', 1),
-  array('Display &quot;reset&quot; in theme selection', 'theme_reset', 1),
-  array('Display FAQ', 'display_faq', 1),
-  array('Display bbcode help', 'show_bbcode_help', 1),
-  array('Character encoding', 'charset', 4),
+  array('Language', 'lang', 5, 'f=index.htm&as=config_language_language&ae=config_language_language_end'),
+  array('Fallback to English if translated phrase not found?', 'language_fallback', 1, 'f=index.htm&as=config_language_fallback&ae=config_language_fallback_end'),
+  array('Theme', 'theme', 6, 'f=index.htm&as=config_language_theme&ae=config_language_theme_end'),
+  array('Display language list', 'language_list', 1, 'f=index.htm&as=config_language_list&ae=config_language_list_end'),
+  array('Display language flags', 'language_flags', 8, 'f=index.htm&as=config_language_flags&ae=config_language_flags_end&top=1'),
+  array('Display &quot;reset&quot; in language selection', 'language_reset', 1, 'f=index.htm&as=config_language_reset&ae=config_language_reset_end&top=1'),
+  array('Display theme list', 'theme_list', 1, 'f=index.htm&as=config_language_theme_list&ae=config_language_theme_list_end'),
+  array('Display &quot;reset&quot; in theme selection', 'theme_reset', 1, 'f=index.htm&as=config_language_theme_reset&ae=config_language_theme_reset_end'),
+  array('Display FAQ', 'display_faq', 1, 'f=index.htm&as=config_language_faq&ae=config_language_faq_end'),
+  array('Display bbcode help', 'show_bbcode_help', 1, 'f=index.htm&as=config_language_bbcode&ae=config_language_bbcode_end&top=1'),
+  array('Character encoding', 'charset', 4, 'f=index.htm&as=config_language_charset&ae=config_language_charset_end'),
 
   'Album list view',
   array('Width of the main table (pixels or %)', 'main_table_width', 0),
@@ -461,7 +462,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Number of albums to display', 'albums_per_page', 0),
   array('Number of columns for the album list', 'album_list_cols', 0),
   array('Size of thumbnails in pixels', 'alb_list_thumb_size', 0),
-  array('The content of the main page', 'main_page_layout', 0),
+  array('The content of the main page', 'main_page_layout', 0, 'f=index.htm&as=config_album_list_content&ae=config_album_list_content_end'),
   array('Show first level album thumbnails in categories','first_level',1),
 
   'Thumbnail view',
@@ -492,8 +493,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 
   'Files and thumbnails settings',
   array('Quality for JPEG files', 'jpeg_qual', 0),
-  array('Max dimension of a thumbnail <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0),
-  array('Use dimension ( width or height or Max aspect for thumbnail )<b>**</b>', 'thumb_use', 7),
+  array('Max dimension of a thumbnail <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0, 'f=index.htm&as=config_picture_thumbnail_max-dimension&ae=config_picture_thumbnail_max-dimension_end'),
+  array('Use dimension ( width or height or Max aspect for thumbnail )<b>**</b>', 'thumb_use', 7, 'f=index.htm&as=config_picture_thumbnail_use-dimension&ae=config_picture_thumbnail_use-dimension_end'),
   array('Create intermediate pictures','make_intermediate',1),
   array('Max width or height of an intermediate picture/video <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0),
   array('Max size for uploaded files (KB)', 'max_upl_size', 0),
@@ -504,7 +505,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Characters forbidden in filenames', 'forbiden_fname_char',0),
   //array('Accepted file extensions for uploaded pictures', 'allowed_file_extensions',0),
   array('Allowed image types', 'allowed_img_types',0),
-  array('Allowed movie types', 'allowed_mov_types',0),
+  array('Allowed movie types', 'allowed_mov_types',0, 'f=index.htm&as=config_thumbs_advanced_movie&ae=config_thumbs_advanced_movie_end'),
   array('Allowed audio types', 'allowed_snd_types',0),
   array('Allowed document types', 'allowed_doc_types',0),
   array('Method for resizing images','thumb_method',2),
@@ -550,19 +551,19 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 
   'Cookies settings',
   array('Name of the cookie used by the script (when using bbs integration, make sure it differs from the bbs\'s cookie name)', 'cookie_name', 0),
-  array('Path of the cookie used by the script', 'cookie_path', 0),
+  array('Path of the cookie used by the script', 'cookie_path', 0, 'f=index.htm&as=config_cookie_path&ae=config_cookie_path_end'),
 
   'Email settings  (usually nothing has to be changed here; leave all fields blank when not sure)',
-  array('SMTP Host', 'smtp_host', 0),
+  array('SMTP Host (when left blank, <a href="http://www.sendmail.org/">sendmail</a> will be used)', 'smtp_host', 0),
   array('SMTP Username', 'smtp_username', 0),
   array('SMTP Password', 'smtp_password', 0),
 
   'Miscellaneous settings',
-  array('Enable debug mode', 'debug_mode', 9),
+  array('Enable debug mode', 'debug_mode', 9, 'f=index.htm&as=debug_mode&ae=debug_mode_end'),
   array('Display notices in debug mode', 'debug_notice', 1),
-  array('Enable plugins', 'enable_plugins', 12),  //cpg1.4.0
-  array('Logging mode <a href="#notice3" class="clickable_option">***</a>', 'log_mode', 11), //cpg1.4.0
-  array('Allow banning of non-routable (private) IP addresses', 'ban_private_ip', 1),  //cpg1.4.0
+  array('Enable plugins', 'enable_plugins', 12, 'f=index.htm&as=config_misc_enable-plugins&ae=config_misc_enable-plugins_end'),  //cpg1.4.0
+  array('Logging mode <a href="#notice3" class="clickable_option">***</a>', 'log_mode', 11, 'f=index.htm&as=config_misc_logging&ae=config_misc_logging_end'), //cpg1.4.0
+  array('Allow banning of non-routable (private) IP addresses', 'ban_private_ip', 1,  'f=index.htm&as=config_misc_private-ip&ae=config_misc_private-ip_end'), //cpg1.4.0
 
   '<br /><div align="left"><a name="notice1"></a>(*) This settings mustn\'t be changed if you already have files in your database.<br />
   <a name="notice2"></a>(**) When changing this setting, only the files that are added from that point on are affected, so it is advisable that this setting must not be changed if there are already files in the gallery. You can, however, apply the changes to the existing files with the &quot;<a href="util.php">admin tools</a> (resize pictures)&quot; utility from the admin menu.<br />

@@ -142,3 +142,4 @@ Added various changes for plugin API - 8 July 2004, Chris
 Added flashing approval button if pics require admin approval - 9 July 2004, GauGau
 Replaced mailer functions to send both plain-text and html-enabled emails - 11 July, GauGau
 Added links to album properties, parent category and thumbnail view in editpics.php - 13 July 2004, GauGau
+Added online help (help-icon that can refer to parts of documentation) - 14 July 2004, GauGau

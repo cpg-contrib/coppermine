@@ -348,10 +348,10 @@ function confirmDel(catName)
 EOT;
 
 starttable('100%');
-
+$help = cpg_display_help('f=index.htm&as=cat_cp&ae=albmgr&top=1', '1000', '600');
 echo <<<EOT
         <tr>
-                <td class="tableh1"><b><span class="statlink">{$lang_catmgr_php['category']}</span></b></td>
+                <td class="tableh1"><b><span class="statlink">{$lang_catmgr_php['category']}</span></b>&nbsp;$help</td>
                 <td colspan="4" class="tableh1" align="center"><b><span class="statlink">{$lang_catmgr_php['operations']}</span></b></td>
                 <td class="tableh1" align="center"><b><span class="statlink">{$lang_catmgr_php['move_into']}</span></b></td>
         </tr>
