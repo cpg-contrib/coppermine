@@ -2,7 +2,7 @@
 // ------------------------------------------------------------------------- //
 //  Coppermine Photo Gallery                                                 //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Gr&eacute;gory DEMAR <gdemar@wanadoo.fr>               //
+//  Copyright (C) 2002,2003  Grégory DEMAR <gdemar@wanadoo.fr>               //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
 //  Based on PHPhotoalbum by Henning Stoverud <henning@stoverud.com>         //
@@ -32,15 +32,15 @@ $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 $lang_byte_units = array('Bytes', 'KB', 'MB');
 
 // Day of weeks and months
-$lang_day_of_week = array('H&eacute;tfõ', 'Kedd', 'Szer', 'Cs&uuml;t', 'P&eacute;n', 'Szo', 'Vas');
-$lang_month = array('Jan', 'Feb', 'M&aacute;r', '&Aacute;pr', 'M&aacute;j', 'J&uacute;n', 'J&uacute;l', 'Aug', 'Szept', 'Okt', 'Nov', 'Dec');
+$lang_day_of_week = array('Hétfõ', 'Kedd', 'Szer', 'Csüt', 'Pén', 'Szo', 'Vas');
+$lang_month = array('Jan', 'Feb', 'Már', 'Ápr', 'Máj', 'Jún', 'Júl', 'Aug', 'Szept', 'Okt', 'Nov', 'Dec');
 
 // Some common strings
 $lang_yes = 'Igen';
 $lang_no  = 'Nem';
 $lang_back = 'VISSZA';
-$lang_continue = 'TOV&Aacute;BB';
-$lang_info = 'Inform&aacute;ci&oacute;';
+$lang_continue = 'TOVÁBB';
+$lang_info = 'Információ';
 $lang_error = 'Hiba';
 
 // The various date formats
@@ -56,34 +56,34 @@ $comment_date_fmt =  '%Y %B %d %I:%M %p';
 $lang_bad_words = array('basz*', 'segg*', 'fasz*', 'kurva*', 'picsa', 'geci');
 
 $lang_meta_album_names = array(
-        'random' => 'V&eacute;letlen k&eacute;plista',
-        'lastup' => 'Friss felt&ouml;lt&eacute;sek',
-        'lastalb'=> 'Utolj&aacute;ra m&oacute;dos&iacute;tott albumok',
-        'lastcom' => 'Friss hozz&aacute;sz&oacute;l&aacute;sok',
-        'topn' => 'Legt&ouml;bbsz&ouml;r n&eacute;zett',
-        'toprated' => 'Legt&ouml;bb szavazat',
-        'lasthits' => 'Utolj&aacute;ra n&eacute;zett',
-        'search' => 'Keres&eacute;s eredm&eacute;nye',
-        'favpics'=> 'Kedvenc k&eacute;peim'
+        'random' => 'Véletlen képlista',
+        'lastup' => 'Friss feltöltések',
+        'lastalb'=> 'Utoljára módosított albumok',
+        'lastcom' => 'Friss hozzászólások',
+        'topn' => 'Legtöbbször nézett',
+        'toprated' => 'Legtöbb szavazat',
+        'lasthits' => 'Utoljára nézett',
+        'search' => 'Keresés eredménye',
+        'favpics'=> 'Kedvenc képeim'
 );
 
 $lang_errors = array(
-        'access_denied' => 'Nincs jogosults&aacute;ga ennek az oldalnak a megtekint&eacute;s&eacute;hez.',
-        'perm_denied' => 'Nincs jogosults&aacute;ga ennek a m&ucirc;veletnek az elv&eacute;gz&eacute;s&eacute;hez.',
-        'param_missing' => 'Szkript h&iacute;v&aacute;s a sz&uuml;ks&eacute;ge param&eacute;ter(ek) megad&aacute;sa n&eacute;lk&uuml;l.',
-        'non_exist_ap' => 'A kijel&ouml;lt album / k&eacute;p nem tal&aacute;lhat&oacute;!',
-        'quota_exceeded' => 'Diszk kv&oacute;ta t&uacute;ll&eacute;pve<br /><br />Az &Ouml;n diszkkv&oacute;t&aacute;ja [quota]K, k&eacute;pei &aacute;ltal jelenleg elfoglalt t&aacute;rhely [space]K, ennek a k&eacute;pnek a felt&ouml;lt&eacute;s&eacute;vel t&uacute;ll&eacute;pn&eacute; a kv&oacute;t&aacute;j&aacute;t.',
-        'gd_file_type_err' => 'GD k&ouml;nyvt&aacute;r haszn&aacute;lata eset&eacute;n csak JPEG &eacute;s PNG t&iacute;pusok megengedettek.',
-        'invalid_image' => 'A felt&ouml;lt&ouml;tt k&eacute;p s&eacute;r&uuml;lt, vagy a GD k&ouml;nyvt&aacute;r &aacute;ltal nem kezelhetõ',
-        'resize_failed' => 'Nem siker&uuml;lt az ikoniz&aacute;lt vagy &aacute;rm&eacute;retezett k&eacute;pek gener&aacute;l&aacute;sa.',
-        'no_img_to_display' => 'Nincs megjelen&iacute;thetõ k&eacute;p',
-        'non_exist_cat' => 'A kijel&ouml;lt kateg&oacute;ria nem l&eacute;tezik',
-        'orphan_cat' => 'A kateg&oacute;ria sz&uuml;lõkateg&oacute;ri&aacute;ja nem l&eacute;tezik, futtasd a kateg&oacute;riamenedzsert a probl&eacute;ma kik&uuml;sz&ouml;b&ouml;l&eacute;s&eacute;re.',
-        'directory_ro' => 'A \'%s\' k&ouml;nyvt&aacute;r nem &iacute;rhat&oacute;, a k&eacute;peket nem lehet t&ouml;r&ouml;lni',
-        'non_exist_comment' => 'A kijel&ouml;lt hozz&aacute;sz&oacute;l&aacute;s nem l&eacute;tezik.',
-        'pic_in_invalid_album' => 'K&eacute;p nem l&eacute;tezo albumban (%s)!?',
-        'banned' => 'Jelenleg ki vagy tiltva a weblap haszn&aacute;lat&aacute;b&oacute;l.',
-        'not_with_udb' => 'Ez a funkci&oacute; le van tiltva a Coppermine-ban, mivel a f&oacute;rum sw r&eacute;sze. A k&eacute;rt funkci&oacute;t vagy nem t&aacute;mogatja a jelen konfigur&aacute;ci&oacute;, vagy a f&oacute;rum sw kezeli.',
+        'access_denied' => 'Nincs jogosultsága ennek az oldalnak a megtekintéséhez.',
+        'perm_denied' => 'Nincs jogosultsága ennek a mûveletnek az elvégzéséhez.',
+        'param_missing' => 'Szkript hívás a szüksége paraméter(ek) megadása nélkül.',
+        'non_exist_ap' => 'A kijelölt album / kép nem található!',
+        'quota_exceeded' => 'Diszk kvóta túllépve<br /><br />Az Ön diszkkvótája [quota]K, képei által jelenleg elfoglalt tárhely [space]K, ennek a képnek a feltöltésével túllépné a kvótáját.',
+        'gd_file_type_err' => 'GD könyvtár használata esetén csak JPEG és PNG típusok megengedettek.',
+        'invalid_image' => 'A feltöltött kép sérült, vagy a GD könyvtár által nem kezelhetõ',
+        'resize_failed' => 'Nem sikerült az ikonizált vagy árméretezett képek generálása.',
+        'no_img_to_display' => 'Nincs megjeleníthetõ kép',
+        'non_exist_cat' => 'A kijelölt kategória nem létezik',
+        'orphan_cat' => 'A kategória szülõkategóriája nem létezik, futtasd a kategóriamenedzsert a probléma kiküszöbölésére.',
+        'directory_ro' => 'A \'%s\' könyvtár nem írható, a képeket nem lehet törölni',
+        'non_exist_comment' => 'A kijelölt hozzászólás nem létezik.',
+        'pic_in_invalid_album' => 'Kép nem létezo albumban (%s)!?',
+        'banned' => 'Jelenleg ki vagy tiltva a weblap használatából.',
+        'not_with_udb' => 'Ez a funkció le van tiltva a Coppermine-ban, mivel a fórum sw része. A kért funkciót vagy nem támogatja a jelen konfiguráció, vagy a fórum sw kezeli.',
 );
 
 // ------------------------------------------------------------------------- //
@@ -91,53 +91,53 @@ $lang_errors = array(
 // ------------------------------------------------------------------------- //
 
 $lang_main_menu = array(
-        'alb_list_title' => 'Ugr&aacute;s az albumlist&aacute;ra',
+        'alb_list_title' => 'Ugrás az albumlistára',
         'alb_list_lnk' => 'Albumlista',
-        'my_gal_title' => 'Ugr&aacute;s a szem&eacute;lyes k&eacute;pt&aacute;rra',
-        'my_gal_lnk' => '&Eacute;n k&eacute;pt&aacute;ram',
-        'my_prof_lnk' => '&Eacute;n profilom',
-        'adm_mode_title' => 'V&aacute;lt&aacute;s adminisztr&aacute;tor m&oacute;dra',
-        'adm_mode_lnk' => 'Adminisztr&aacute;tor m&oacute;d',
-        'usr_mode_title' => 'V&aacute;lt&aacute;s felhaszn&aacute;l&oacute; m&oacute;dra',
-        'usr_mode_lnk' => 'Felhaszn&aacute;l&oacute; m&oacute;d',
-        'upload_pic_title' => 'K&eacute;p felt&ouml;lt&eacute;s az albumba',
-        'upload_pic_lnk' => 'K&eacute;p felt&ouml;lt&eacute;se',
-        'register_title' => 'Felhaszn&aacute;l&oacute; hozz&aacute;ad&aacute;sa',
-        'register_lnk' => 'Regisztr&aacute;ci&oacute;',
-        'login_lnk' => 'Bejelentkez&eacute;s',
-        'logout_lnk' => 'Kijelentkez&eacute;s',
-        'lastup_lnk' => 'Friss felt&ouml;lt&eacute;sek',
-        'lastcom_lnk' => 'Friss hozz&aacute;sz&oacute;l&aacute;sok',
-        'topn_lnk' => 'Legt&ouml;bbsz&ouml;r n&eacute;zett',
-        'toprated_lnk' => 'Legt&ouml;bb szavazat',
-        'search_lnk' => 'Keres&eacute;s',
+        'my_gal_title' => 'Ugrás a személyes képtárra',
+        'my_gal_lnk' => 'Én képtáram',
+        'my_prof_lnk' => 'Én profilom',
+        'adm_mode_title' => 'Váltás adminisztrátor módra',
+        'adm_mode_lnk' => 'Adminisztrátor mód',
+        'usr_mode_title' => 'Váltás felhasználó módra',
+        'usr_mode_lnk' => 'Felhasználó mód',
+        'upload_pic_title' => 'Kép feltöltés az albumba',
+        'upload_pic_lnk' => 'Kép feltöltése',
+        'register_title' => 'Felhasználó hozzáadása',
+        'register_lnk' => 'Regisztráció',
+        'login_lnk' => 'Bejelentkezés',
+        'logout_lnk' => 'Kijelentkezés',
+        'lastup_lnk' => 'Friss feltöltések',
+        'lastcom_lnk' => 'Friss hozzászólások',
+        'topn_lnk' => 'Legtöbbször nézett',
+        'toprated_lnk' => 'Legtöbb szavazat',
+        'search_lnk' => 'Keresés',
         'fav_lnk' => 'Kedvencek',
 );
 
 
 $lang_gallery_admin_menu = array(
-        'upl_app_lnk' => 'Felt&ouml;lt&eacute;s j&oacute;v&aacute;hagy&aacute;s',
-        'config_lnk' => 'Konfigur&aacute;ci&oacute;',
+        'upl_app_lnk' => 'Feltöltés jóváhagyás',
+        'config_lnk' => 'Konfiguráció',
         'albums_lnk' => 'Albumok',
-        'categories_lnk' => 'Kateg&oacute;ri&aacute;k',
-        'users_lnk' => 'Felhaszn&aacute;l&oacute;k',
+        'categories_lnk' => 'Kategóriák',
+        'users_lnk' => 'Felhasználók',
         'groups_lnk' => 'Csoportok',
-        'comments_lnk' => 'Hozz&aacute;sz&oacute;l&aacute;sok',
-        'searchnew_lnk' => 'K&ouml;tegelt felt&ouml;lt&eacute;s',
-        'util_lnk' => 'K&eacute;pek &aacute;tm&eacute;retez&eacute;se',
-        'ban_lnk' => 'Ban Users',
+        'comments_lnk' => 'Hozzászólások',
+        'searchnew_lnk' => 'Kötegelt feltöltés',
+        'util_lnk' => 'Képek átméretezése',
+        'ban_lnk' => 'Felhasználók kitiltása',
 );
 
 $lang_user_admin_menu = array(
-        'albmgr_lnk' => 'Szem&eacute;lyes albumok szerkeszt&eacute;se',
-        'modifyalb_lnk' => 'Szem&eacute;lyes albumok tulajdons&aacute;gai',
-        'my_prof_lnk' => '&Eacute;n profilom',
+        'albmgr_lnk' => 'Személyes albumok szerkesztése',
+        'modifyalb_lnk' => 'Személyes albumok tulajdonságai',
+        'my_prof_lnk' => 'Én profilom',
 );
 
 $lang_cat_list = array(
-        'category' => 'Kateg&oacute;ria',
+        'category' => 'Kategória',
         'albums' => 'Albumok',
-        'pictures' => 'K&eacute;pek',
+        'pictures' => 'Képek',
 );
 
 $lang_album_list = array(
@@ -145,40 +145,40 @@ $lang_album_list = array(
 );
 
 $lang_thumb_view = array(
-        'date' => 'D&Aacute;TUM',
-        'name' => 'N&Eacute;V',
-        'title' => 'K&eacute;p c&iacute;m',
-        'sort_da' => 'D&aacute;tum szerinti sorrendez&eacute;s, n&ouml;vekvõ',
-        'sort_dd' => 'D&aacute;tum szerinti sorrendez&eacute;s, cs&ouml;kkenõ',
-        'sort_na' => 'N&eacute;v szerinti sorrendez&eacute;s, n&ouml;vekvõ',
-        'sort_nd' => 'N&eacute;v szerinti sorrendez&eacute;s, cs&ouml;kkenõ',
-        'sort_ta' => 'Sorrendez&eacute;s c&iacute;m szerint - n&ouml;vekvo',
-        'sort_td' => 'Sorrendez&eacute;s c&iacute;m szerint - cs&ouml;kkeno',
-        'pic_on_page' => '%d k&eacute;p %d oldalon',
-        'user_on_page' => '%d felhaszn&aacute;l&oacute; %d oldalon'
+        'date' => 'DÁTUM',
+        'name' => 'NÉV',
+        'title' => 'Kép cím',
+        'sort_da' => 'Dátum szerinti sorrendezés, növekvõ',
+        'sort_dd' => 'Dátum szerinti sorrendezés, csökkenõ',
+        'sort_na' => 'Név szerinti sorrendezés, növekvõ',
+        'sort_nd' => 'Név szerinti sorrendezés, csökkenõ',
+        'sort_ta' => 'Sorrendezés cím szerint - növekvo',
+        'sort_td' => 'Sorrendezés cím szerint - csökkeno',
+        'pic_on_page' => '%d kép %d oldalon',
+        'user_on_page' => '%d felhasználó %d oldalon'
 );
 
 $lang_img_nav_bar = array(
-        'thumb_title' => 'Vissza az ikonos elrendez&eacute;sre',
-        'pic_info_title' => 'K&eacute;p inform&aacute;ci&oacute; megtekint&eacute;se / elrejt&eacute;se',
-        'slideshow_title' => 'Diavet&iacute;t&eacute;s',
-        'ecard_title' => 'K&eacute;p elk&uuml;ld&eacute;se e-k&eacute;peslapk&eacute;nt',
-        'ecard_disabled' => 'e-k&eacute;peslapok k&uuml;ld&eacute;se nem enged&eacute;lyezett',
-        'ecard_disabled_msg' => 'Nincs jogosults&aacute;ga e-k&eacute;peslap k&uuml;ld&eacute;s&eacute;re',
-        'prev_title' => 'Elõzõ k&eacute;p',
-        'next_title' => 'K&ouml;vetkezõ k&eacute;p',
-        'pic_pos' => 'K&Eacute;P %s/%s',
+        'thumb_title' => 'Vissza az ikonos elrendezésre',
+        'pic_info_title' => 'Kép információ megtekintése / elrejtése',
+        'slideshow_title' => 'Diavetítés',
+        'ecard_title' => 'Kép elküldése e-képeslapként',
+        'ecard_disabled' => 'e-képeslapok küldése nem engedélyezett',
+        'ecard_disabled_msg' => 'Nincs jogosultsága e-képeslap küldésére',
+        'prev_title' => 'Elõzõ kép',
+        'next_title' => 'Következõ kép',
+        'pic_pos' => 'KÉP %s/%s',
 );
 
 $lang_rate_pic = array(
-        'rate_this_pic' => 'K&eacute;p oszt&aacute;lyoz&aacute;sa ',
-        'no_votes' => '(M&eacute;g nincs oszt&aacute;lyozva)',
-        'rating' => '(jelenlegi oszt&aacute;lyzat: %s, %s szavazattal)',
+        'rate_this_pic' => 'Kép osztályozása ',
+        'no_votes' => '(Még nincs osztályozva)',
+        'rating' => '(jelenlegi osztályzat: %s, %s szavazattal)',
         'rubbish' => 'Vacak',
         'poor' => 'Gyenge',
         'fair' => 'Megfelelõ',
-        'good' => 'J&oacute;',
-        'excellent' => 'Kit&ucirc;nõ',
+        'good' => 'Jó',
+        'excellent' => 'Kitûnõ',
         'great' => 'Szuper',
 );
 
@@ -193,14 +193,14 @@ $lang_rate_pic = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('BANNING_PHP')) $lang_banning_php = array(
-                'title' => 'Tiltott felhaszn&aacute;l&oacute;k',
-                'user_name' => 'Felhaszn&aacute;l&oacute;n&eacute;v',
-                'ip_address' => 'IP c&iacute;m',
-                'expiry' => 'Lej&aacute;rat (&aacute;lland&oacute; eset&eacute;n &uuml;res marad)',
-                'edit_ban' => 'M&oacute;dos&iacute;t&aacute;sok t&aacute;rol&aacute;sa',
-                'delete_ban' => 'T&ouml;rl&eacute;s',
-                'add_new' => '&Uacute;j tilt&aacute;s hozz&aacute;ad&aacute;sa',
-                'add_ban' => 'Hozz&aacute;ad&aacute;s',
+                'title' => 'Tiltott felhasználók',
+                'user_name' => 'Felhasználónév',
+                'ip_address' => 'IP cím',
+                'expiry' => 'Lejárat (állandó esetén üres marad)',
+                'edit_ban' => 'Módosítások tárolása',
+                'delete_ban' => 'Törlés',
+                'add_new' => 'Új tiltás hozzáadása',
+                'add_ban' => 'Hozzáadás',
 );
 
 // ------------------------------------------------------------------------- //
@@ -211,20 +211,20 @@ $lang_cpg_die = array(
         INFORMATION => $lang_info,
         ERROR => $lang_error,
         CRITICAL_ERROR => 'Kritikus hiba',
-        'file' => 'F&aacute;jl: ',
+        'file' => 'Fájl: ',
         'line' => 'Sor: ',
 );
 
 $lang_display_thumbnails = array(
-        'filename' => 'F&aacute;jln&eacute;v : ',
-        'filesize' => 'F&aacute;jlm&eacute;ret : ',
-        'dimensions' => 'M&eacute;retek : ',
-        'date_added' => 'Felt&ouml;lt&eacute;s d&aacute;tuma : '
+        'filename' => 'Fájlnév : ',
+        'filesize' => 'Fájlméret : ',
+        'dimensions' => 'Méretek : ',
+        'date_added' => 'Feltöltés dátuma : '
 );
 
 $lang_get_pic_data = array(
-        'n_comments' => '%s komment&aacute;r',
-        'n_views' => '%s megtekint&eacute;s',
+        'n_comments' => '%s kommentár',
+        'n_views' => '%s megtekintés',
         'n_votes' => '(%s szavazat)'
 );
 
@@ -245,28 +245,28 @@ $lang_get_pic_data = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
-        'Exclamation' => 'Felki&aacute;lt&aacute;s',
-        'Question' => 'K&eacute;rd&eacute;s',
+        'Exclamation' => 'Felkiáltás',
+        'Question' => 'Kérdés',
         'Very Happy' => 'Nagyon boldog',
         'Smile' => 'Mosolyog',
-        'Sad' => 'Azomor&uacute;',
+        'Sad' => 'Azomorú',
         'Surprised' => 'Meglepett',
         'Shocked' => 'Sokkolt',
         'Confused' => 'Zavarodott',
         'Cool' => 'Higgadt',
         'Laughing' => 'Nevet',
-        'Mad' => 'Õr&uuml;lt',
-        'Razz' => 'G&uacute;nyos',
-        'Embarassed' => 'K&iacute;nos',
-        'Crying or Very sad' => 'Kiav&aacute;l / nagyon szomor&uacute;',
-        'Evil or Very Mad' => 'Gonosz vagy õr&uuml;lt',
+        'Mad' => 'Õrült',
+        'Razz' => 'Gúnyos',
+        'Embarassed' => 'Kínos',
+        'Crying or Very sad' => 'Kiavál / nagyon szomorú',
+        'Evil or Very Mad' => 'Gonosz vagy õrült',
         'Twisted Evil' => 'Torz gonosz',
-        'Rolling Eyes' => 'Gurul&oacute; szemek',
+        'Rolling Eyes' => 'Guruló szemek',
         'Wink' => 'Kacsint',
-        'Idea' => '&Ouml;tlet',
-        'Arrow' => 'Ny&iacute;l',
+        'Idea' => 'Ötlet',
+        'Arrow' => 'Nyíl',
         'Neutral' => 'Semleges',
-        'Mr. Green' => 'Mr. Z&ouml;ld',
+        'Mr. Green' => 'Mr. Zöld',
 );
 
 // ------------------------------------------------------------------------- //
@@ -280,8 +280,8 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ADMIN_PHP')) $lang_admin_php = array(
-        0 => 'Kil&eacute;p&eacute;s adminisztr&aacute;tor m&oacute;db&oacute;l...',
-        1 => 'V&aacute;lt&aacute;s adminisztr&aacute;tor m&oacute;dra...',
+        0 => 'Kilépés adminisztrátor módból...',
+        1 => 'Váltás adminisztrátor módra...',
 );
 
 // ------------------------------------------------------------------------- //
@@ -290,19 +290,19 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
 
 if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
         'alb_need_name' => 'Albumokat el kell nevezni!',
-        'confirm_modifs' => 'Biztos v&eacute;gre akarod hajtani ezt a m&oacute;dos&iacute;t&aacute;st?',
-        'no_change' => 'Semmit nem v&aacute;ltoztatt&aacute;l!',
-        'new_album' => '&Uacute;j album',
-        'confirm_delete1' => 'Biztos t&ouml;rl&ouml;d az albumot?',
-        'confirm_delete2' => '\nA tartalmazott &ouml;sszes k&eacute;p &eacute;s hozz&aacute;sz&oacute;l&aacute;s t&ouml;rlõdik!',
-        'select_first' => 'Elõsz&ouml;r v&aacute;lassz albumot',
+        'confirm_modifs' => 'Biztos végre akarod hajtani ezt a módosítást?',
+        'no_change' => 'Semmit nem változtattál!',
+        'new_album' => 'Új album',
+        'confirm_delete1' => 'Biztos törlöd az albumot?',
+        'confirm_delete2' => '\nA tartalmazott összes kép és hozzászólás törlõdik!',
+        'select_first' => 'Elõször válassz albumot',
         'alb_mrg' => 'Albummenedzser',
         'my_gallery' => '* My gallery *',
         'no_category' => '* No category *',
-        'delete' => 'T&ouml;rl&eacute;s',
-        'new' => '&Uacute;j',
-        'apply_modifs' => 'M&oacute;dos&iacute;t&aacute;sok v&eacute;grehajt&aacute;sa',
-        'select_category' => 'V&aacute;lassz kateg&oacute;ri&aacute;t',
+        'delete' => 'Törlés',
+        'new' => 'Új',
+        'apply_modifs' => 'Módosítások végrehajtása',
+        'select_category' => 'Válassz kategóriát',
 );
 
 // ------------------------------------------------------------------------- //
@@ -310,18 +310,18 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
-        'miss_param' => 'A \'%s\' m&ucirc;velethez sz&uuml;ks&eacute;ges param&eacute;terek hi&aacute;nyoznak!',
-        'unknown_cat' => 'Nincs az adatb&aacute;zisban a kijel&ouml;lt kateg&oacute;ria ',
-        'usergal_cat_ro' => 'A szem&eacute;lyes k&eacute;pt&aacute;rak nem t&ouml;r&ouml;lhetõk!',
-        'manage_cat' => 'Kateg&oacute;ri&aacute;k menedzsel&eacute;se',
-        'confirm_delete' => 'Biztosan t&ouml;rl&ouml;d ezt a kateg&oacute;ri&aacute;t',
-        'category' => 'Kateg&oacute;ria',
-        'operations' => 'M&ucirc;veletek',
-        'move_into' => 'Mozgat&aacute;s a k&ouml;vetkezõbe',
-        'update_create' => 'Kateg&oacute;ria l&eacute;trehoz&aacute;s / m&oacute;dos&iacute;t&aacute;s',
-        'parent_cat' => 'Sz&uuml;lõ kateg&oacute;ria',
-        'cat_title' => 'Kateg&oacute;ria megnevez&eacute;s',
-        'cat_desc' => 'Kateg&oacute;ria le&iacute;r&aacute;sa'
+        'miss_param' => 'A \'%s\' mûvelethez szükséges paraméterek hiányoznak!',
+        'unknown_cat' => 'Nincs az adatbázisban a kijelölt kategória ',
+        'usergal_cat_ro' => 'A személyes képtárak nem törölhetõk!',
+        'manage_cat' => 'Kategóriák menedzselése',
+        'confirm_delete' => 'Biztosan törlöd ezt a kategóriát',
+        'category' => 'Kategória',
+        'operations' => 'Mûveletek',
+        'move_into' => 'Mozgatás a következõbe',
+        'update_create' => 'Kategória létrehozás / módosítás',
+        'parent_cat' => 'Szülõ kategória',
+        'cat_title' => 'Kategória megnevezés',
+        'cat_desc' => 'Kategória leírása'
 );
 
 // ------------------------------------------------------------------------- //
@@ -329,109 +329,109 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('CONFIG_PHP')) $lang_config_php = array(
-        'title' => 'Konfigur&aacute;ci&oacute;',
-        'restore_cfg' => 'Gy&aacute;ri be&aacute;ll&iacute;t&aacute;sok',
-        'save_cfg' => 'Konfigur&aacute;ci&oacute; t&aacute;rol&aacute;sa',
-        'notes' => 'Megjegyz&eacute;sek',
-        'info' => 'Inform&aacute;ci&oacute;',
-        'upd_success' => 'Coppermine konfigur&aacute;ci&oacute; friss&iacute;tve',
-        'restore_success' => 'Coppermine gy&aacute;ri be&aacute;ll&iacute;t&aacute;s vissza&aacute;ll&iacute;tva',
-        'name_a' => 'N&eacute;v - n&ouml;vekvõ',
-        'name_d' => 'N&eacute;v - cs&ouml;kkenõ',
-        'title_a' => 'C&iacute;m szerint - n&ouml;vekvo',
-        'title_d' => 'C&iacute;m szerint – cs&ouml;kkeno',
-        'date_a' => 'D&aacute;tum n&ouml;vekvõ',
-        'date_d' => 'D&aacute;tum cs&ouml;kkenõ'
+        'title' => 'Konfiguráció',
+        'restore_cfg' => 'Gyári beállítások',
+        'save_cfg' => 'Konfiguráció tárolása',
+        'notes' => 'Megjegyzések',
+        'info' => 'Információ',
+        'upd_success' => 'Coppermine konfiguráció frissítve',
+        'restore_success' => 'Coppermine gyári beállítás visszaállítva',
+        'name_a' => 'Név - növekvõ',
+        'name_d' => 'Név - csökkenõ',
+        'title_a' => 'Cím szerint - növekvo',
+        'title_d' => 'Cím szerint - csökkeno',
+        'date_a' => 'Dátum növekvõ',
+        'date_d' => 'Dátum csökkenõ'
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
-        '&Aacute;ltal&aacute;nos be&aacute;ll&iacute;t&aacute;sok',
-        array('K&eacute;pt&aacute;r neve', 'gallery_name', 0),
-        array('K&eacute;pt&aacute;r le&iacute;r&aacute;sa', 'gallery_description', 0),
-        array('K&eacute;pt&aacute;r adminisztr&aacute;tor email c&iacute;me', 'gallery_admin_email', 0),
-        array('Az e-k&eacute;peslapok  \'Tov&aacute;bbi k&eacute;pek\' linkj&eacute;hez tartoz&oacute; webc&iacute;m', 'ecards_more_pic_target', 0),
-        array('Nyelv megad&aacute;sa', 'lang', 5),
-        array('Megjelen&iacute;t&eacute;si t&eacute;ma', 'theme', 6),
+        'Általános beállítások',
+        array('Képtár neve', 'gallery_name', 0),
+        array('Képtár leírása', 'gallery_description', 0),
+        array('Képtár adminisztrátor email címe', 'gallery_admin_email', 0),
+        array('Az e-képeslapok  \'További képek\' linkjéhez tartozó webcím', 'ecards_more_pic_target', 0),
+        array('Nyelv megadása', 'lang', 5),
+        array('Megjelenítési téma', 'theme', 6),
 
 
-        'Albumlista n&eacute;zet',
-        array('Fõt&aacute;bl&aacute;zat sz&eacute;less&eacute;ge (pixel vagy %)', 'main_table_width', 0),
-        array('Kateg&oacute;ri&aacute;k megjelen&iacute;tendõ sz&aacute;ma', 'subcat_level', 0),
-        array('Oldalank&eacute;nt megjelen&iacute;tendõ albumok sz&aacute;ma', 'albums_per_page', 0),
-        array('Albumlista oszlopainak sz&aacute;ma', 'album_list_cols', 0),
-        array('Ikonok m&eacute;rete pixelben', 'alb_list_thumb_size', 0),
+        'Albumlista nézet',
+        array('Fõtáblázat szélessége (pixel vagy %)', 'main_table_width', 0),
+        array('Kategóriák megjelenítendõ száma', 'subcat_level', 0),
+        array('Oldalanként megjelenítendõ albumok száma', 'albums_per_page', 0),
+        array('Albumlista oszlopainak száma', 'album_list_cols', 0),
+        array('Ikonok mérete pixelben', 'alb_list_thumb_size', 0),
         array('A fõoldal tartalma', 'main_page_layout', 0),
-        array('Elso szintu albumok ikonok megjelen&iacute;t&eacute;se a kateg&oacute;ri&aacute;kban','first_level',1),
+        array('Elso szintu albumok ikonok megjelenítése a kategóriákban','first_level',1),
 
-        'Ikonlista n&eacute;zet',
-        array('Oszlopok sz&aacute;ma az ikonlist&aacute;ban', 'thumbcols', 0),
-        array('Sorok sz&aacute;ma az ikonlist&aacute;ban', 'thumbrows', 0),
-        array('Megjelen&iacute;tendõ tab- f&uuml;lek maxim&aacute;lis sz&aacute;ma', 'max_tabs', 0),
-        array('K&eacute;p le&iacute;r&aacute;s megjelen&iacute;t&eacute;s (a k&eacute;p c&iacute;m&eacute;n fel&uuml;l) az ikonok alatt', 'caption_in_thumbview', 1),
-        array('Az ikon alatt megjelenjen -e a hozz&aacute;sz&oacute;l&aacute;sok sz&aacute;ma', 'display_comment_count', 1),
-        array('K&eacute;pek alap&eacute;rtelmezett sorrendje', 'default_sort_order', 3),
-        array('Szavazatok minimuma a \'legt&ouml;bbsz&ouml;r n&eacute;zett\' list&aacute;ra val&oacute; felker&uuml;l&eacute;shez', 'min_votes_for_rating', 0),
+        'Ikonlista nézet',
+        array('Oszlopok száma az ikonlistában', 'thumbcols', 0),
+        array('Sorok száma az ikonlistában', 'thumbrows', 0),
+        array('Megjelenítendõ tab- fülek maximális száma', 'max_tabs', 0),
+        array('Kép leírás megjelenítés (a kép címén felül) az ikonok alatt', 'caption_in_thumbview', 1),
+        array('Az ikon alatt megjelenjen -e a hozzászólások száma', 'display_comment_count', 1),
+        array('Képek alapértelmezett sorrendje', 'default_sort_order', 3),
+        array('Szavazatok minimuma a \'legtöbbször nézett\' listára való felkerüléshez', 'min_votes_for_rating', 0),
 
-        'K&eacute;p-n&eacute;zet &eacute;s hozz&aacute;sz&oacute;l&aacute;s be&aacute;ll&iacute;t&aacute;sok',
-        array('A k&eacute;p-n&eacute;zethez tartoz&oacute; t&aacute;bl&aacute;zat sz&eacute;less&eacute;ge (pixel vagy %)', 'picture_table_width', 0),
-        array('K&eacute;pinform&aacute;ci&oacute;k l&aacute;that&oacute;k alap&eacute;rtelmez&eacute;sben', 'display_pic_info', 1),
-        array('Tr&aacute;g&aacute;r szavak kisz&ucirc;r&eacute;se a hozz&aacute;sz&oacute;l&aacute;sokb&oacute;l', 'filter_bad_words', 1),
-        array('Hangulatkarakterek enged&eacute;lyez&eacute;se a hozz&aacute;sz&oacute;l&aacute;sokban', 'enable_smilies', 1),
-        array('A k&eacute;ple&iacute;r&aacute;s maxim&aacute;lis hossza', 'max_img_desc_length', 0),
-        array('Maxim&aacute;lis karaktersz&aacute;m szavank&eacute;nt', 'max_com_wlength', 0),
-        array('Sorok maxim&aacute;lis sz&aacute;ma hozz&aacute;sz&oacute;l&aacute;sonk&eacute;nt', 'max_com_lines', 0),
-        array('Hozz&aacute;sz&oacute;l&aacute;sok maxim&aacute;lis hossza', 'max_com_size', 0),
-        array('Filmcs&iacute;k megjelen&iacute;t&eacute;se', 'display_film_strip', 1),
-        array('K&eacute;pkock&aacute;k sz&aacute;ma a filmcs&iacute;kban', 'max_film_strip_items', 0),
+        'Kép-nézet és hozzászólás beállítások',
+        array('A kép-nézethez tartozó táblázat szélessége (pixel vagy %)', 'picture_table_width', 0),
+        array('Képinformációk láthatók alapértelmezésben', 'display_pic_info', 1),
+        array('Trágár szavak kiszûrése a hozzászólásokból', 'filter_bad_words', 1),
+        array('Hangulatkarakterek engedélyezése a hozzászólásokban', 'enable_smilies', 1),
+        array('A képleírás maximális hossza', 'max_img_desc_length', 0),
+        array('Maximális karakterszám szavanként', 'max_com_wlength', 0),
+        array('Sorok maximális száma hozzászólásonként', 'max_com_lines', 0),
+        array('Hozzászólások maximális hossza', 'max_com_size', 0),
+        array('Filmcsík megjelenítése', 'display_film_strip', 1),
+        array('Képkockák száma a filmcsíkban', 'max_film_strip_items', 0),
 
-        'Pictures and thumbnails settings',
-        array('Quality for JPEG files', 'jpeg_qual', 0),
-        array('Max dimension of a thumbnail <b>*</b>', 'thumb_width', 0),
-        array('Use dimension ( width or height or Max aspect for thumbnail )<b>*</b>', 'thumb_use', 7),
-        array('Create intermediate pictures','make_intermediate',1),
-        array('Max width or height of an intermediate picture <b>*</b>', 'picture_width', 0),
-        array('Max size for uploaded pictures (KB)', 'max_upl_size', 0),
-        array('Max width or height for uploaded pictures (pixels)', 'max_upl_width_height', 0),
+        'Kép- és ikonbeállítások',
+        array('JPEG fájlok minõsége', 'jpeg_qual', 0),
+        array('Ikonok maximális mérete <b>*</b>', 'thumb_width', 0),
+        array('Méretek használata (ikonok szélessége, magassága, vagy maximális mérete)<b>*</b>', 'thumb_use', 7),
+        array('Közbensõ méretû kép generálása','make_intermediate',1),
+        array('Közbensõ méretû képmaximális szélessége ésmagassága <b>*</b>', 'picture_width', 0),
+        array('Feltöltött képfájlok maximális mérete (KB)', 'max_upl_size', 0),
+        array('Feltöltött képek maximális szélessége és magassága (pixel)', 'max_upl_width_height', 0),
 
-        'Felhaszn&aacute;l&oacute; be&aacute;ll&iacute;t&aacute;sok',
-        array('&Uacute;j felhaszn&aacute;l&oacute;k regisztr&aacute;lhatnak', 'allow_user_registration', 1),
-        array('Regisztr&aacute;ci&oacute; email nyugt&aacute;hoz k&ouml;t&ouml;tt', 'reg_requires_valid_email', 1),
-        array('K&eacute;t felhaszn&aacute;l&oacute;nak lehet azonos email c&iacute;me', 'allow_duplicate_emails_addr', 1),
-        array('Felhaszn&aacute;l&oacute;knak lehetnek priv&aacute;t albumai', 'allow_private_albums', 1),
+         'Felhasználó beállítások',
+        array('Új felhasználók regisztrálhatnak', 'allow_user_registration', 1),
+        array('Regisztráció email nyugtához kötött', 'reg_requires_valid_email', 1),
+        array('Két felhasználónak lehet azonos email címe', 'allow_duplicate_emails_addr', 1),
+        array('Felhasználóknak lehetnek privát albumai', 'allow_private_albums', 1),
 
-        'Saj&aacute;t mezõk a k&eacute;pek le&iacute;r&aacute;s&aacute;hoz (hagyd &uuml;resen, ha nem haszn&aacute;lod)',
-        array('1. mezõn&eacute;v', 'user_field1_name', 0),
-        array('2. mezõn&eacute;v', 'user_field2_name', 0),
-        array('3. mezõn&eacute;v', 'user_field3_name', 0),
-        array('4. mezõn&eacute;v', 'user_field4_name', 0),
+        'Saját mezõk a képek leírásához (hagyd üresen, ha nem használod)',
+        array('1. mezõnév', 'user_field1_name', 0),
+        array('2. mezõnév', 'user_field2_name', 0),
+        array('3. mezõnév', 'user_field3_name', 0),
+        array('4. mezõnév', 'user_field4_name', 0),
 
-        'K&eacute;pek &eacute;s ikonok k&uuml;l&ouml;nleges be&aacute;ll&iacute;t&aacute;sai',
-        array('Priv&aacute;t album ikon megjelen&iacute;t&eacute;se be nem jelentkezett felhaszn&aacute;l&oacute; eset&eacute;n','show_private',1),
-        array('F&aacute;jln&eacute;vben tiltott karakterek', 'forbiden_fname_char',0),
-        array('F&aacute;jlnevek megengedett kiterjeszt&eacute;sei', 'allowed_file_extensions',0),
-        array('K&eacute;pek &aacute;tm&eacute;retez&eacute;s&eacute;hez haszn&aacute;lt m&oacute;dszer','thumb_method',2),
-        array('ImageMagick \'convert\' programj&aacute;hoz vezetõ &uacute;tvonal  (pld. /usr/bin/X11/)', 'impath', 0),
-        array('Megengedett k&eacute;pfajt&aacute;k (csak ImageMagick eset&eacute;ben)', 'allowed_img_types',0),
-        array('Parancssor opci&oacute;k ImageMagick-hoz', 'im_options', 0),
-        array('EXIF adatok olvas&aacute;sa  JPEG f&aacute;jlokban', 'read_exif_data', 1),
-        array('Album el&eacute;r&eacute;si &uacute;tvonala <b>*</b>', 'fullpath', 0),
-        array('Felhaszn&aacute;l&oacute;i k&eacute;pek el&eacute;r&eacute;si &uacute;tvonala <b>*</b>', 'userpics', 0),
-        array('K&ouml;z&eacute;pm&eacute;retezett k&eacute;pek elõtagja <b>*</b>', 'normal_pfx', 0),
-        array('Ikonf&aacute;jlok elõtagja <b>*</b>', 'thumb_pfx', 0),
-        array('K&ouml;nyvt&aacute;rak alap&eacute;rtelmezett jogosults&aacute;g be&aacute;ll&iacute;t&aacute;sa', 'default_dir_mode', 0),
-        array('K&eacute;pek alap&eacute;rtelmezett jogosults&aacute;g be&aacute;ll&iacute;t&aacute;sa', 'default_file_mode', 0),
-        array('Jobb eg&eacute;rklikk tilt&aacute;s teljes m&eacute;retu ablakn&aacute;l (JavaScript – nem h&uuml;lyes&eacute;gv&eacute;dett elj&aacute;r&aacute;s)', 'disable_popup_rightclick', 1),
-        array('Jobb eg&eacute;rklikk tilt&aacute;s minden „norm&aacute;lis” oldalakn&aacute;l (JavaScript - nem h&uuml;lyes&eacute;gv&eacute;dett elj&aacute;r&aacute;s)', 'disable_gallery_rightclick', 1),
+        'Képek és ikonok különleges beállításai',
+        array('Privát album ikon megjelenítése be nem jelentkezett felhasználó esetén','show_private',1),
+        array('Fájlnévben tiltott karakterek', 'forbiden_fname_char',0),
+        array('Fájlnevek megengedett kiterjesztései', 'allowed_file_extensions',0),
+        array('Képek átméretezéséhez használt módszer','thumb_method',2),
+        array('ImageMagick \'convert\' programjához vezetõ útvonal  (pld. /usr/bin/X11/)', 'impath', 0),
+        array('Megengedett képfajták (csak ImageMagick esetében)', 'allowed_img_types',0),
+        array('Parancssor opciók ImageMagick-hoz', 'im_options', 0),
+        array('EXIF adatok olvasása  JPEG fájlokban', 'read_exif_data', 1),
+        array('Album elérési útvonala <b>*</b>', 'fullpath', 0),
+        array('Felhasználói képek elérési útvonala <b>*</b>', 'userpics', 0),
+        array('Középméretezett képek elõtagja <b>*</b>', 'normal_pfx', 0),
+        array('Ikonfájlok elõtagja <b>*</b>', 'thumb_pfx', 0),
+        array('Könyvtárak alapértelmezett jogosultság beállítása', 'default_dir_mode', 0),
+        array('Képek alapértelmezett jogosultság beállítása', 'default_file_mode', 0),
+        array('Jobb egérklikk tiltás teljes méretu ablaknál (JavaScript - nem hülyeségvédett eljárás)', 'disable_popup_rightclick', 1),
+        array('Jobb egérklikk tiltás minden "normális" oldalaknál (JavaScript - nem hülyeségvédett eljárás)', 'disable_gallery_rightclick', 1),
 
-        'Cooky &eacute;s karakterk&eacute;szlet be&aacute;ll&iacute;t&aacute;sok',
-        array('A szkript &aacute;ltal haszn&aacute;lt cookyn&eacute;v', 'cookie_name', 0),
-        array('A szkript &aacute;ltal haszn&aacute;lt cooky &uacute;tvonala', 'cookie_path', 0),
-        array('Karakter k&oacute;dol&aacute;s', 'charset', 4),
+        'Cooky és karakterkészlet beállítások',
+        array('A szkript által használt cookynév', 'cookie_name', 0),
+        array('A szkript által használt cooky útvonala', 'cookie_path', 0),
+        array('Karakter kódolás', 'charset', 4),
 
-        'Egy&eacute;b be&aacute;ll&iacute;t&aacute;sok',
-        array('Debug m&oacute;d enged&eacute;lyez&eacute;se', 'debug_mode', 1),
+        'Egyéb beállítások',
+        array('Debug mód engedélyezése', 'debug_mode', 1),
 
-        '<br /><div align="center">(*) * -gal jel&ouml;lt mezõket nem szabad megv&aacute;ltoztatni, ha m&aacute;r nem &uuml;res a k&eacute;pt&aacute;r</div><br />'
+        '<br /><div align="center">(*) * -gal jelölt mezõket nem szabad megváltoztatni, ha már nem üres a képtár</div><br />'
 );
 
 // ------------------------------------------------------------------------- //
@@ -439,30 +439,30 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
-        'empty_name_or_com' => 'Meg kell adnia a nev&eacute;t &eacute;s egy hozz&aacute;sz&oacute;l&aacute;st',
-        'com_added' => 'Hozz&aacute;sz&oacute;l&aacute;s&aacute;t r&ouml;gz&iacute;tett&uuml;k',
+        'empty_name_or_com' => 'Meg kell adnia a nevét és egy hozzászólást',
+        'com_added' => 'Hozzászólását rögzítettük',
         'alb_need_title' => 'Adjon nevet az albumnak!',
-        'no_udp_needed' => 'Nincs mit m&oacute;dos&iacute;tani.',
-        'alb_updated' => 'Az album m&oacute;dos&iacute;t&aacute;sa megt&ouml;rt&eacute;nt',
-        'unknown_album' => 'A kiv&aacute;lasztott album nem l&eacute;tezik, vagy nincs felt&ouml;lt&eacute;si jogosults&aacute;ga az albumhoz',
-        'no_pic_uploaded' => 'Nem t&ouml;rt&eacute;nt felt&ouml;lt&eacute;s!<br /><br />Ha t&eacute;nyleg kijel&ouml;lt felt&ouml;lt&eacute;sre k&eacute;pet, ellenõrizze, hogy a szerveren megengedett -e a felt&ouml;lt&eacute;s...',
-        'err_mkdir' => 'Nem siker&ouml;lt a k&ouml;nyvt&aacute;r l&eacute;trehoz&aacute;sa %s !',
-        'dest_dir_ro' => 'A szkript nem &iacute;rhat a %s c&eacute;lk&ouml;nyvt&aacute;rba!',
-        'err_move' => 'Nem mozgathat&oacute; %s %s -be!',
-        'err_fsize_too_large' => 'A felt&ouml;lt&ouml;tt k&eacute;p m&eacute;rete t&uacute;l nagy (maximum megengedett: %s x %s)!',
-        'err_imgsize_too_large' => 'A felt&ouml;lt&ouml;tt f&aacute;jl m&eacute;rete t&uacute;l nagy (maximum megengedett: %s KB) !',
-        'err_invalid_img' => 'A felt&ouml;lt&ouml;tt f&aacute;jl nem egy &eacute;rv&eacute;nyes k&eacute;pform&aacute;tum !',
-        'allowed_img_types' => 'Csak %s k&eacute;p felt&ouml;lt&eacute;se megengedett.',
-        'err_insert_pic' => 'A \'%s\' k&eacute;p nem adhat&oacute; hozz&aacute; az albumhoz ',
-        'upload_success' => 'A k&eacute;p felt&ouml;lt&eacute;se sikeres volt<br /><br />J&oacute;v&aacute;hagy&aacute;s ut&aacute;n l&aacute;that&oacute; lesz.',
-        'info' => 'Inform&aacute;ci&oacute;',
-        'com_added' => 'Komment&aacute;r hozz&aacute;ad&aacute;sa megt&ouml;rt&eacute;nt',
-        'alb_updated' => 'Album m&oacute;dos&iacute;tva',
-        'err_comment_empty' => 'Nem adott meg komment&aacute;rt !',
-        'err_invalid_fext' => 'Csak a k&ouml;vetkezõ kiterjeszt&eacute;s&ucirc; f&aacute;jlok megengedettek: <br /><br />%s.',
-        'no_flood' => '&Ouml;n m&aacute;r hozz&aacute;sz&oacute;lt a k&eacute;phez.<br /><br />Szerkessze az elõzõ hozz&aacute;sz&oacute;l&aacute;s&aacute;t, ha sz&uuml;ks&eacute;ges',
-        'redirect_msg' => '&Aacute;tir&aacute;ny&iacute;t&aacute;s folyamatban.<br /><br /><br />Nyomja meg a \'CONTINUE\'-t, ha a k&eacute;p nem friss&uuml;l automatikusan',
-        'upl_success' => 'K&eacute;pe sikeresen hozz&aacute;ad&aacute;sra ker&uuml;lt',
+        'no_udp_needed' => 'Nincs mit módosítani.',
+        'alb_updated' => 'Az album módosítása megtörtént',
+        'unknown_album' => 'A kiválasztott album nem létezik, vagy nincs feltöltési jogosultsága az albumhoz',
+        'no_pic_uploaded' => 'Nem történt feltöltés!<br /><br />Ha tényleg kijelölt feltöltésre képet, ellenõrizze, hogy a szerveren megengedett -e a feltöltés...',
+        'err_mkdir' => 'Nem sikerölt a könyvtár létrehozása %s !',
+        'dest_dir_ro' => 'A szkript nem írhat a %s célkönyvtárba!',
+        'err_move' => 'Nem mozgatható %s %s -be!',
+        'err_fsize_too_large' => 'A feltöltött kép mérete túl nagy (maximum megengedett: %s x %s)!',
+        'err_imgsize_too_large' => 'A feltöltött fájl mérete túl nagy (maximum megengedett: %s KB) !',
+        'err_invalid_img' => 'A feltöltött fájl nem egy érvényes képformátum !',
+        'allowed_img_types' => 'Csak %s kép feltöltése megengedett.',
+        'err_insert_pic' => 'A \'%s\' kép nem adható hozzá az albumhoz ',
+        'upload_success' => 'A kép feltöltése sikeres volt<br /><br />Jóváhagyás után látható lesz.',
+        'info' => 'Információ',
+        'com_added' => 'Kommentár hozzáadása megtörtént',
+        'alb_updated' => 'Album módosítva',
+        'err_comment_empty' => 'Nem adott meg kommentárt !',
+        'err_invalid_fext' => 'Csak a következõ kiterjesztésû fájlok megengedettek: <br /><br />%s.',
+        'no_flood' => 'Ön már hozzászólt a képhez.<br /><br />Szerkessze az elõzõ hozzászólását, ha szükséges',
+        'redirect_msg' => 'Átirányítás folyamatban.<br /><br /><br />Nyomja meg a \'CONTINUE\'-t, ha a kép nem frissül automatikusan',
+        'upl_success' => 'Képe sikeresen hozzáadásra került',
 );
 
 // ------------------------------------------------------------------------- //
@@ -470,24 +470,24 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DELETE_PHP')) $lang_delete_php = array(
-        'caption' => 'K&eacute;pal&aacute;&iacute;r&aacute;s',
-        'fs_pic' => 'teljes m&eacute;ret&ucirc; k&eacute;p',
-        'del_success' => 't&ouml;rl&eacute;s sikeres',
-        'ns_pic' => 'norm&aacute;l m&eacute;ret&ucirc; k&eacute;p',
-        'err_del' => 'nem lehet t&ouml;r&ouml;lni',
+        'caption' => 'Képaláírás',
+        'fs_pic' => 'teljes méretû kép',
+        'del_success' => 'törlés sikeres',
+        'ns_pic' => 'normál méretû kép',
+        'err_del' => 'nem lehet törölni',
         'thumb_pic' => 'ikon',
-        'comment' => 'megjegyz&eacute;s',
-        'im_in_alb' => 'k&eacute;p az albumban',
-        'alb_del_success' => 'Album \'%s\' t&ouml;r&ouml;lve',
+        'comment' => 'megjegyzés',
+        'im_in_alb' => 'kép az albumban',
+        'alb_del_success' => 'Album \'%s\' törölve',
         'alb_mgr' => 'Albummenedzser',
-        'err_invalid_data' => '&Eacute;rv&eacute;nytelen adat a k&ouml;vetkezõben \'%s\'',
-        'create_alb' => 'Album gener&aacute;l&aacute;sa \'%s\'',
-        'update_alb' => 'Album m&oacute;dos&iacute;t&aacute;s \'%s\' n&eacute;v: \'%s\' index: \'%s\'',
-        'del_pic' => 'K&eacute;p t&ouml;rl&eacute;se',
-        'del_alb' => 'Album t&ouml;rl&eacute;se',
-        'del_user' => 'Felhaszn&aacute;l&oacute; t&ouml;rl&eacute;se',
-        'err_unknown_user' => 'A kijel&ouml;lt felhaszn&aacute;l&oacute; nem l&eacute;tezik !',
-        'comment_deleted' => 'A megjegyz&eacute;st sikeresen t&ouml;r&ouml;lt&uuml;k',
+        'err_invalid_data' => 'Érvénytelen adat a következõben \'%s\'',
+        'create_alb' => 'Album generálása \'%s\'',
+        'update_alb' => 'Album módosítás \'%s\' név: \'%s\' index: \'%s\'',
+        'del_pic' => 'Kép törlése',
+        'del_alb' => 'Album törlése',
+        'del_user' => 'Felhasználó törlése',
+        'err_unknown_user' => 'A kijelölt felhasználó nem létezik !',
+        'comment_deleted' => 'A megjegyzést sikeresen töröltük',
 );
 
 // ------------------------------------------------------------------------- //
@@ -503,47 +503,47 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 if (defined('DISPLAYIMAGE_PHP')){
 
 $lang_display_image_php = array(
-        'confirm_del' => 'Biztosan t&ouml;r&ouml;lni akarja ezt a k&eacute;pet? \\nA hozz&aacute;sz&oacute;l&aacute;sok is t&ouml;rlõdnek.',
-        'del_pic' => 'A K&Eacute;P T&Ouml;RL&Eacute;SE',
+        'confirm_del' => 'Biztosan törölni akarja ezt a képet? \\nA hozzászólások is törlõdnek.',
+        'del_pic' => 'A KÉP TÖRLÉSE',
         'size' => '%s x %s pixel',
         'views' => '%s',
-        'slideshow' => 'Diavet&iacute;t&eacute;s',
-        'stop_slideshow' => 'DIAVET&Iacute;T&Eacute;S V&Eacute;GE',
-        'view_fs' => 'Teljes m&eacute;ret&ucirc; k&eacute;p megtekint&eacute;se',
+        'slideshow' => 'Diavetítés',
+        'stop_slideshow' => 'DIAVETíTÉS VÉGE',
+        'view_fs' => 'Teljes méretû kép megtekintése',
 );
 
 $lang_picinfo = array(
-        'title' =>'K&eacute;p inform&aacute;ci&oacute;',
-        'Filename' => 'F&aacute;jln&eacute;v',
-        'Album name' => 'Album n&eacute;v',
-        'Rating' => 'Oszt&aacute;lyoz&aacute;s (%s szavazat)',
+        'title' =>'Kép információ',
+        'Filename' => 'Fájlnév',
+        'Album name' => 'Album név',
+        'Rating' => 'Osztályozás (%s szavazat)',
         'Keywords' => 'Kulcsszavak',
-        'File Size' => 'F&aacute;jlm&eacute;ret',
-        'Dimensions' => 'M&eacute;retek',
-        'Displayed' => 'Megtekint&eacute;sek sz&aacute;ma',
+        'File Size' => 'Fájlméret',
+        'Dimensions' => 'Méretek',
+        'Displayed' => 'Megtekintések száma',
         'Camera' => 'Kamera',
-        'Date taken' => 'Felv&eacute;tel d&aacute;tuma',
-        'Aperture' => 'Apert&uacute;ra',
-        'Exposure time' => 'Expoz&iacute;ci&oacute; idõpontja',
-        'Focal length' => 'F&oacute;kuszt&aacute;vols&aacute;g',
-        'Comment' => 'Megjegyz&eacute;s',
-        'addFav'=>'Hozz&aacute;ad&aacute;s a kedvencekhez',
+        'Date taken' => 'Felvétel dátuma',
+        'Aperture' => 'Apertúra',
+        'Exposure time' => 'Expozíció idõpontja',
+        'Focal length' => 'Fókusztávolság',
+        'Comment' => 'Megjegyzés',
+        'addFav'=>'Hozzáadás a kedvencekhez',
         'addFavPhrase'=>'Kedvencek',
-        'remFav'=>'Kiv&eacute;tel kedvencekbol',
+        'remFav'=>'Kivétel kedvencekbol',
 );
 
 $lang_display_comments = array(
         'OK' => 'OK',
-        'edit_title' => 'Hozz&aacute;sz&oacute;l&aacute;s szerkeszt&eacute;se',
-        'confirm_delete' => 'Biztos t&ouml;r&ouml;lni k&iacute;v&aacute;nja a hozz&aacute;sz&oacute;l&aacute;st?',
-        'add_your_comment' => 'Hozz&aacute;sz&oacute;l&aacute;s hozz&aacute;f&ucirc;z&eacute;se',
-        'name'=>'N&eacute;v',
-        'comment'=>'Megjegyz&eacute;s',
+        'edit_title' => 'Hozzászólás szerkesztése',
+        'confirm_delete' => 'Biztos törölni kívánja a hozzászólást?',
+        'add_your_comment' => 'Hozzászólás hozzáfûzése',
+        'name'=>'Név',
+        'comment'=>'Megjegyzés',
         'your_name' => 'Anon',
 );
 
 $lang_fullsize_popup = array(
-        'click_to_close' => 'Klikkelj a k&eacute;pre az ablak bez&aacute;r&aacute;s&aacute;hoz',
+        'click_to_close' => 'Klikkelj a képre az ablak bezárásához',
 );
 
 }
@@ -553,21 +553,21 @@ $lang_fullsize_popup = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array(
-        'title' => 'E-k&eacute;peslap k&uuml;ld&eacute;se',
-        'invalid_email' => '<b>Figyelmeztet&eacute;s</b> : &eacute;rv&eacute;nytelen e-mail c&iacute;m!',
-        'ecard_title' => 'Egy e-k&eacute;peslap %s -t&oacute;l &Ouml;nnek',
-        'view_ecard' => 'Ha az e-k&eacute;peslap nem jelenik meg helyesen, klikkelj a k&ouml;vetkezõ linkre',
-        'view_more_pics' => 'Klikkelj erre a linkre tov&aacute;bbi k&eacute;pek megtekint&eacute;s&eacute;hez!',
-        'send_success' => 'E-k&eacute;peslapj&aacute;t tov&aacute;bb&iacute;tottuk',
-        'send_failed' => 'Sajn&aacute;lom, de a szerver nem tud e-k&eacute;peslapot k&uuml;ldeni...',
-        'from' => 'Felad&oacute;',
+        'title' => 'E-képeslap küldése',
+        'invalid_email' => '<b>Figyelmeztetés</b> : érvénytelen e-mail cím!',
+        'ecard_title' => 'Egy e-képeslap %s -tól Önnek',
+        'view_ecard' => 'Ha az e-képeslap nem jelenik meg helyesen, klikkelj a következõ linkre',
+        'view_more_pics' => 'Klikkelj erre a linkre további képek megtekintéséhez!',
+        'send_success' => 'E-képeslapját továbbítottuk',
+        'send_failed' => 'Sajnálom, de a szerver nem tud e-képeslapot küldeni...',
+        'from' => 'Feladó',
         'your_name' => 'Neve',
-        'your_email' => 'E-mail c&iacute;me',
-        'to' => 'C&iacute;mzett',
-        'rcpt_name' => 'C&iacute;mzett neve',
-        'rcpt_email' => 'C&iacute;mzett e-mail c&iacute;me',
-        'greetings' => '&Uuml;dv&ouml;zlet',
-        'message' => '&Uuml;zenet',
+        'your_email' => 'E-mail címe',
+        'to' => 'Címzett',
+        'rcpt_name' => 'Címzett neve',
+        'rcpt_email' => 'Címzett e-mail címe',
+        'greetings' => 'Üdvözlet',
+        'message' => 'Üzenet',
 );
 
 // ------------------------------------------------------------------------- //
@@ -575,25 +575,25 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
 // ------------------------------------------------------------------------- //
 
 if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
-        'pic_info' => 'K&eacute;p inform&aacute;ci&oacute;',
+        'pic_info' => 'Kép információ',
         'album' => 'Album',
-        'title' => 'C&iacute;m',
-        'desc' => 'Le&iacute;r&aacute;s',
+        'title' => 'Cím',
+        'desc' => 'Leírás',
         'keywords' => 'Kulcsszavak',
-        'pic_info_str' => '%sx%s - %sKB - %s megtekint&eacute;s - %s szavazat',
-        'approve' => 'K&eacute;p j&oacute;v&aacute;hagy&aacute;sa',
-        'postpone_app' => 'J&oacute;v&aacute;hagy&aacute;s k&eacute;sõbb',
-        'del_pic' => 'K&eacute;p t&ouml;rl&eacute;s',
-        'reset_view_count' => 'N&eacute;zetts&eacute;gsz&aacute;ml&aacute;l&oacute; null&aacute;z&aacute;sa',
-        'reset_votes' => 'Szavazatsz&aacute;ml&aacute;l&oacute; alaphelyzetbe',
-        'del_comm' => 'Hozz&aacute;sz&oacute;l&aacute;sok t&ouml;rl&eacute;se',
-        'upl_approval' => 'Felt&ouml;lt&eacute;s j&oacute;v&aacute;hagy&aacute;s',
-        'edit_pics' => 'K&eacute;pek rendez&eacute;se',
-        'see_next' => 'K&ouml;vetkezõ k&eacute;p',
-        'see_prev' => 'Elõzõ k&eacute;p',
-        'n_pic' => '%s k&eacute;p',
-        'n_of_pic_to_disp' => 'K&eacute;p / oldal',
-        'apply' => 'M&oacute;dos&iacute;t&aacute;sok v&eacute;grehajt&aacute;sa'
+        'pic_info_str' => '%sx%s - %sKB - %s megtekintés - %s szavazat',
+        'approve' => 'Kép jóváhagyása',
+        'postpone_app' => 'Jóváhagyás késõbb',
+        'del_pic' => 'Kép törlés',
+        'reset_view_count' => 'Nézettségszámláló nullázása',
+        'reset_votes' => 'Szavazatszámláló alaphelyzetbe',
+        'del_comm' => 'Hozzászólások törlése',
+        'upl_approval' => 'Feltöltés jóváhagyás',
+        'edit_pics' => 'Képek rendezése',
+        'see_next' => 'Következõ kép',
+        'see_prev' => 'Elõzõ kép',
+        'n_pic' => '%s kép',
+        'n_of_pic_to_disp' => 'Kép / oldal',
+        'apply' => 'Módosítások végrehajtása'
 );
 
 // ------------------------------------------------------------------------- //
@@ -601,23 +601,23 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
-        'group_name' => 'Csoport megnevez&eacute;se',
-        'disk_quota' => 'Diszk kv&oacute;ta',
-        'can_rate' => 'Oszt&aacute;lyozhat k&eacute;peket',
-        'can_send_ecards' => 'K&uuml;ldhet e-k&eacute;peslapot',
-        'can_post_com' => 'Hozz&aacute;sz&oacute;l&aacute;st k&uuml;ldhet',
-        'can_upload' => 'Felt&ouml;lthet k&eacute;peket',
-        'can_have_gallery' => 'Lehet szem&eacute;lyes k&eacute;pt&aacute;ra',
-        'apply' => 'M&oacute;dos&iacute;t&aacute;sok v&eacute;grehajt&aacute;sa',
-        'create_new_group' => '&Uacute;j csoport l&eacute;trehoz&aacute;sa',
-        'del_groups' => 'Kijel&ouml;lt csoport(ok) t&ouml;rl&eacute;se ',
-        'confirm_del' => 'Figyelmeztet&eacute;s, ha t&ouml;r&ouml;l egy csoportot, a hozz&aacute; tartoz&oacute; felhaszn&aacute;l&oacute;k &aacute;thelyezõdnek a \'Registered\' csoportba !\n\nFolytatja ?',
-        'title' => 'Felhaszn&aacute;l&oacute;csoportok menedzsel&eacute;se',
-        'approval_1' => 'Nyilv&aacute;nos felt&ouml;lt&eacute;s j&oacute;v&aacute;hagy&aacute;s (1)',
-        'approval_2' => 'Priv&aacute;t felt&ouml;lt&eacute;s j&oacute;v&aacute;hagy&aacute;s (2)',
-        'note1' => '<b>(1)</b> A nyilv&aacute;nos albumba t&ouml;rt&eacute;nõ felt&ouml;lt&eacute;s adminisztr&aacute;tori j&oacute;v&aacute;hagy&aacute;st ig&eacute;nyel',
-        'note2' => '<b>(2)</b> A felhaszn&aacute;l&oacute; album&aacute;ba t&ouml;rt&eacute;nõ felt&ouml;lt&eacute;s adminisztr&aacute;tori j&oacute;v&aacute;hagy&aacute;st ig&eacute;nyel',
-        'notes' => 'Megjegyz&eacute;sek'
+        'group_name' => 'Csoport megnevezése',
+        'disk_quota' => 'Diszk kvóta',
+        'can_rate' => 'Osztályozhat képeket',
+        'can_send_ecards' => 'Küldhet e-képeslapot',
+        'can_post_com' => 'Hozzászólást küldhet',
+        'can_upload' => 'Feltölthet képeket',
+        'can_have_gallery' => 'Lehet személyes képtára',
+        'apply' => 'Módosítások végrehajtása',
+        'create_new_group' => 'Új csoport létrehozása',
+        'del_groups' => 'Kijelölt csoport(ok) törlése ',
+        'confirm_del' => 'Figyelmeztetés, ha töröl egy csoportot, a hozzá tartozó felhasználók áthelyezõdnek a \'Registered\' csoportba !\n\nFolytatja ?',
+        'title' => 'Felhasználócsoportok menedzselése',
+        'approval_1' => 'Nyilvános feltöltés jóváhagyás (1)',
+        'approval_2' => 'Privát feltöltés jóváhagyás (2)',
+        'note1' => '<b>(1)</b> A nyilvános albumba történõ feltöltés adminisztrátori jóváhagyást igényel',
+        'note2' => '<b>(2)</b> A felhasználó albumába történõ feltöltés adminisztrátori jóváhagyást igényel',
+        'notes' => 'Megjegyzések'
 );
 
 // ------------------------------------------------------------------------- //
@@ -627,34 +627,34 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
 if (defined('INDEX_PHP')){
 
 $lang_index_php = array(
-        'welcome' => '&Uuml;dv&ouml;z&ouml;llek!'
+        'welcome' => 'Üdvözöllek!'
 );
 
 $lang_album_admin_menu = array(
-        'confirm_delete' => 'Biztos t&ouml;r&ouml;lni akarod az albumot? \\nMinden k&eacute;p &eacute;s hozz&aacute;sz&oacute;l&aacute;s is t&ouml;rlõdik!',
-        'delete' => 'T&Ouml;RL&Eacute;S',
-        'modify' => 'TULAJDONS&Aacute;GOK',
-        'edit_pics' => 'SZERKESZT&Eacute;S',
+        'confirm_delete' => 'Biztos törölni akarod az albumot? \\nMinden kép és hozzászólás is törlõdik!',
+        'delete' => 'TÖRLÉS',
+        'modify' => 'TULAJDONSÁGOK',
+        'edit_pics' => 'SZERKESZTÉS',
 );
 
 $lang_list_categories = array(
         'home' => 'Home',
-        'stat1' => '<b>[pictures]</b> k&eacute;p <b>[albums]</b> albumban &eacute;s <b>[cat]</b> kateg&oacute;ri&aacute;ban <b>[comments]</b> hozz&aacute;sz&oacute;l&aacute;ssal, megtekint&eacute;sek sz&aacute;ma: <b>[views]</b>',
-        'stat2' => '<b>[pictures]</b> k&eacute;p <b>[albums]</b> albumban, megtekint&eacute;sek sz&aacute;ma: <b>[views]</b>',
-        'xx_s_gallery' => '%s k&eacute;pt&aacute;ra',
-        'stat3' => '<b>[pictures]</b> k&eacute;p <b>[albums]</b> albumban <b>[comments]</b> hozz&aacute;sz&oacute;l&aacute;ssal, megtekint&eacute;sek sz&aacute;ma: <b>[views]</b>'
+        'stat1' => '<b>[pictures]</b> kép <b>[albums]</b> albumban és <b>[cat]</b> kategóriában <b>[comments]</b> hozzászólással, megtekintések száma: <b>[views]</b>',
+        'stat2' => '<b>[pictures]</b> kép <b>[albums]</b> albumban, megtekintések száma: <b>[views]</b>',
+        'xx_s_gallery' => '%s képtára',
+        'stat3' => '<b>[pictures]</b> kép <b>[albums]</b> albumban <b>[comments]</b> hozzászólással, megtekintések száma: <b>[views]</b>'
 );
 
 $lang_list_users = array(
-        'user_list' => 'Felhaszn&aacute;l&oacute;k list&aacute;ja',
-        'no_user_gal' => 'Nincs felhaszn&aacute;l&oacute; a k&eacute;pt&aacute;rban',
+        'user_list' => 'Felhasználók listája',
+        'no_user_gal' => 'Nincs felhasználó a képtárban',
         'n_albums' => '%s album(ok)',
-        'n_pics' => '%s k&eacute;p(ek)'
+        'n_pics' => '%s kép(ek)'
 );
 
 $lang_list_albums = array(
-        'n_pictures' => '%s k&eacute;p',
-        'last_added' => ', utols&oacute; felt&ouml;lt&eacute;s: %s'
+        'n_pictures' => '%s kép',
+        'last_added' => ', utolsó feltöltés: %s'
 );
 
 }
@@ -664,14 +664,14 @@ $lang_list_albums = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('LOGIN_PHP')) $lang_login_php = array(
-        'login' => 'Bejelentkez&eacute;s',
-        'enter_login_pswd' => 'Adja meg felhaszn&aacute;l&oacute;nev&eacute;t &eacute;s jelszav&aacute;t a bejelentkez&eacute;shez',
-        'username' => 'Felhaszn&aacute;l&oacute;n&eacute;v',
-        'password' => 'Jelsz&oacute;',
-        'remember_me' => 'Jelsz&oacute; t&aacute;rol&aacute;sa',
-        'welcome' => '&Uuml;dv&ouml;z&ouml;llek %s ...',
-        'err_login' => '*** A bejelentkez&eacute;s sikertelen, pr&oacute;b&aacute;lja &uacute;jra ***',
-        'err_already_logged_in' => 'M&aacute;r bejelentkezett!',
+        'login' => 'Bejelentkezés',
+        'enter_login_pswd' => 'Adja meg felhasználónevét és jelszavát a bejelentkezéshez',
+        'username' => 'Felhasználónév',
+        'password' => 'Jelszó',
+        'remember_me' => 'Jelszó tárolása',
+        'welcome' => 'Üdvözöllek %s ...',
+        'err_login' => '*** A bejelentkezés sikertelen, próbálja újra ***',
+        'err_already_logged_in' => 'Már bejelentkezett!',
 );
 
 // ------------------------------------------------------------------------- //
@@ -679,8 +679,8 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('LOGOUT_PHP')) $lang_logout_php = array(
-        'logout' => 'Kijelentkez&eacute;s',
-        'bye' => 'Viszontl&aacute;t&aacute;sra %s ...',
+        'logout' => 'Kijelentkezés',
+        'bye' => 'Viszontlátásra %s ...',
         'err_not_loged_in' => 'Nincs bejelentkezve!',
 );
 
@@ -689,27 +689,27 @@ if (defined('LOGOUT_PHP')) $lang_logout_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
-        'upd_alb_n' => 'Album m&oacute;dos&iacute;t&aacute;sa %s',
-        'general_settings' => '&Aacute;ltal&aacute;nos be&aacute;ll&iacute;t&aacute;sok',
-        'alb_title' => 'Album c&iacute;m',
-        'alb_cat' => 'Album kateg&oacute;ria',
-        'alb_desc' => 'Album le&iacute;r&aacute;s',
+        'upd_alb_n' => 'Album módosítása %s',
+        'general_settings' => 'Általános beállítások',
+        'alb_title' => 'Album cím',
+        'alb_cat' => 'Album kategória',
+        'alb_desc' => 'Album leírás',
         'alb_thumb' => 'Album ikon',
-        'alb_perm' => 'Album jogosults&aacute;gok',
-        'can_view' => 'Albumoz l&aacute;thatja: ',
-        'can_upload' => 'L&aacute;togat&oacute;k felt&ouml;lthetnek k&eacute;pet',
-        'can_post_comments' => 'L&aacute;togat&oacute;k k&uuml;ldhetnek hozz&aacute;sz&oacute;l&aacute;sokat',
-        'can_rate' => 'L&aacute;togat&oacute;k oszt&aacute;lyozhatj&aacute;k a k&eacute;peket',
-        'user_gal' => 'Felhaszn&aacute;l&oacute;i k&eacute;pt&aacute;r',
+        'alb_perm' => 'Album jogosultságok',
+        'can_view' => 'Albumoz láthatja: ',
+        'can_upload' => 'Látogatók feltölthetnek képet',
+        'can_post_comments' => 'Látogatók küldhetnek hozzászólásokat',
+        'can_rate' => 'Látogatók osztályozhatják a képeket',
+        'user_gal' => 'Felhasználói képtár',
         'no_cat' => '* No category *',
-        'alb_empty' => 'Album &uuml;res',
-        'last_uploaded' => 'Utolj&aacute;ra felt&ouml;lt&ouml;tt',
-        'public_alb' => 'Mindenki (nyilv&aacute;nos album)',
-        'me_only' => 'Csak &eacute;n',
+        'alb_empty' => 'Album üres',
+        'last_uploaded' => 'Utoljára feltöltött',
+        'public_alb' => 'Mindenki (nyilvános album)',
+        'me_only' => 'Csak én',
         'owner_only' => 'Csak a (%s) album tulajdonosa',
         'groupp_only' => 'Csak a \'%s\' csoport tagjai',
-        'err_no_alb_to_modify' => 'Nincs m&oacute;dos&iacute;that&oacute; album az adatb&aacute;zisban.',
-        'update' => 'Album m&oacute;dos&iacute;t&aacute;sa'
+        'err_no_alb_to_modify' => 'Nincs módosítható album az adatbázisban.',
+        'update' => 'Album módosítása'
 );
 
 // ------------------------------------------------------------------------- //
@@ -717,8 +717,8 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
-        'already_rated' => 'Sajn&aacute;lom, de &Ouml;n m&aacute;r oszt&aacute;lyozta ezt a k&eacute;pet',
-        'rate_ok' => 'Oszt&aacute;lyzat&aacute;t elfogadtuk',
+        'already_rated' => 'Sajnálom, de Ön már osztályozta ezt a képet',
+        'rate_ok' => 'Osztályzatát elfogadtuk',
 );
 
 // ------------------------------------------------------------------------- //
@@ -728,77 +728,77 @@ if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
-B&aacute;r a {SITE_NAME} adminisztr&aacute;tora mindent elk&ouml;vet, hogy amilyen gyorsan csak lehet, szerkesszen vagy t&ouml;r&ouml;lj&ouml;n minden kifog&aacute;solhat&oacute; dokumentumot, lehetetlen minden k&uuml;ldem&eacute;ny ellenõrz&eacute;se. K&eacute;rj&uuml;k ez&eacute;rt meg&eacute;rt&eacute;s&eacute;t, hogy minden erre a weblapra c&iacute;mzett k&uuml;ldem&eacute;ny annak szerzõje n&eacute;zet&eacute;t &eacute;s v&eacute;lem&eacute;ny&eacute;t fejezi ki, &eacute;s nem az adminisztr&aacute;tor&eacute;t, illetve webmester&eacute;t (kiv&eacute;ve az &aacute;ltaluk post&aacute;zott k&uuml;ldem&eacute;nyeket). Enn&eacute;l fogva nem tudunk &eacute;rt&uuml;k felelõss&eacute;get v&aacute;llalni.<br />
+Bár a {SITE_NAME} adminisztrátora mindent elkövet, hogy amilyen gyorsan csak lehet, szerkesszen vagy töröljön minden kifogásolható dokumentumot, lehetetlen minden küldemény ellenõrzése. Kérjük ezért megértését, hogy minden erre a weblapra címzett küldemény annak szerzõje nézetét és véleményét fejezi ki, és nem az adminisztrátorét, illetve webmesterét (kivéve az általuk postázott küldeményeket). Ennél fogva nem tudunk értük felelõsséget vállalni.<br />
 <br />
-Elfogadja, hogy nem post&aacute;z semmilyen s&eacute;rtõ, obszc&eacute;n, vulg&aacute;ris, r&aacute;galmaz&oacute;, gy&ucirc;l&ouml;lk&ouml;dõ, fenyegetõ, szexu&aacute;lis tartalm&uacute;, vagy b&aacute;rmilyen m&aacute;s olyan tartalm&uacute; anyagot, amely &eacute;rv&eacute;nyes t&ouml;rv&eacute;nyt s&eacute;rt. Elfogadja, hogy a {SITE_NAME} webmester&eacute;nek, adminisztr&aacute;tor&aacute;nak, vagy moder&aacute;tor&aacute;nak b&aacute;rmikor jog&aacute;ban &aacute;ll b&aacute;rmilyen tartalmat sz&uuml;ks&eacute;g eset&eacute;n t&ouml;r&ouml;lni, vagy szerkeszteni. Mint felhaszn&aacute;l&oacute; egyet&eacute;rt a k&ouml;z&ouml;lt inform&aacute;ci&oacute;k adatb&aacute;zisban t&ouml;rt&eacute;nõ t&aacute;rol&aacute;s&aacute;hoz. B&aacute;r a webmester, illetve adminisztr&aacute;tor nem adja ki harmadik feleknek ezeket az inform&aacute;ci&oacute;kat az &Ouml;n hozz&aacute;j&aacute;rul&aacute;sa n&eacute;lk&uuml;l, nem tehetõ felelõss&eacute; semmilyen olyan hekker k&iacute;s&eacute;rlet&eacute;rt, melyek az adatok kompromitt&aacute;l&aacute;s&aacute;hoz vezet.<br />
+Elfogadja, hogy nem postáz semmilyen sértõ, obszcén, vulgáris, rágalmazó, gyûlölködõ, fenyegetõ, szexuális tartalmú, vagy bármilyen más olyan tartalmú anyagot, amely érvényes törvényt sért. Elfogadja, hogy a {SITE_NAME} webmesterének, adminisztrátorának, vagy moderátorának bármikor jogában áll bármilyen tartalmat szükség esetén törölni, vagy szerkeszteni. Mint felhasználó egyetért a közölt információk adatbázisban történõ tárolásához. Bár a webmester, illetve adminisztrátor nem adja ki harmadik feleknek ezeket az információkat az Ön hozzájárulása nélkül, nem tehetõ felelõssé semmilyen olyan hekker kísérletért, melyek az adatok kompromittálásához vezet.<br />
 <br />
-Ez a weblap cooky form&aacute;j&aacute;ban inform&aacute;ci&oacute;t t&aacute;rol a sz&aacute;m&iacute;t&oacute;g&eacute;p&eacute;n. Ezek a cooky-k csak azt a c&eacute;lt szolg&aacute;lj&aacute;k, hogy fokozz&aacute;k a n&eacute;zhetõs&eacute;gi &eacute;lm&eacute;nyt. Az email c&iacute;m csak az &Ouml;n regisztr&aacute;ci&oacute;s adatainak &eacute;s jelszav&aacute;nak nyugt&aacute;z&aacute;s&aacute;ra szolg&aacute;l.<br />
+Ez a weblap cooky formájában információt tárol a számítógépén. Ezek a cooky-k csak azt a célt szolgálják, hogy fokozzák a nézhetõségi élményt. Az email cím csak az Ön regisztrációs adatainak és jelszavának nyugtázására szolgál.<br />
 <br />
-Az 'Egyet&eacute;rtek'-re klikkelve &Ouml;n elfogadja ezeket felt&eacute;teleket.
+Az 'Egyetértek'-re klikkelve Ön elfogadja ezeket feltételeket.
 EOT;
 
 $lang_register_php = array(
-        'page_title' => 'Felhaszn&aacute;l&oacute; regisztr&aacute;ci&oacute;',
-        'term_cond' => 'Regisztr&aacute;ci&oacute;s felt&eacute;telek',
-        'i_agree' => 'Egyet&eacute;rtek',
-        'submit' => 'Regisztr&aacute;l&aacute;s',
-        'err_user_exists' => 'A megadott felhaszn&aacute;l&oacute;n&eacute;v m&aacute;r l&eacute;tezik, adjon meg m&aacute;sikat',
-        'err_password_mismatch' => 'A k&eacute;t jelsz&oacute; nem egyezik, adja meg &uacute;jra',
-        'err_uname_short' => 'A felhaszn&aacute;l&oacute;n&eacute;v legal&aacute;bb 2 karakter hossz&uacute; kell, hogy legyen',
-        'err_password_short' => 'A jelsz&oacute; legal&aacute;bb 2 karakter hossz&uacute; kell, hogy legyen',
-        'err_uname_pass_diff' => 'A felhaszn&aacute;l&oacute;n&eacute;vnek &eacute;s a jelsz&oacute;nak k&uuml;l&ouml;nb&ouml;znie kell',
-        'err_invalid_email' => '&Eacute;rv&eacute;nytelen email c&iacute;m',
-        'err_duplicate_email' => 'Egy m&aacute;sik felhaszn&aacute;l&oacute; m&aacute;r regisztr&aacute;lt ezzel az email c&iacute;mmel',
-        'enter_info' => 'Regisztr&aacute;ci&oacute;s inform&aacute;ci&oacute;k megad&aacute;sa',
-        'required_info' => 'K&ouml;telezõ adat',
-        'optional_info' => 'Opcion&aacute;lis adat',
-        'username' => 'Felhaszn&aacute;l&oacute;n&eacute;v',
-        'password' => 'Jelsz&oacute;',
-        'password_again' => 'Jelsz&oacute; m&eacute;g egyszer',
+        'page_title' => 'Felhasználó regisztráció',
+        'term_cond' => 'Regisztrációs feltételek',
+        'i_agree' => 'Egyetértek',
+        'submit' => 'Regisztrálás',
+        'err_user_exists' => 'A megadott felhasználónév már létezik, adjon meg másikat',
+        'err_password_mismatch' => 'A két jelszó nem egyezik, adja meg újra',
+        'err_uname_short' => 'A felhasználónév legalább 2 karakter hosszú kell, hogy legyen',
+        'err_password_short' => 'A jelszó legalább 2 karakter hosszú kell, hogy legyen',
+        'err_uname_pass_diff' => 'A felhasználónévnek és a jelszónak különböznie kell',
+        'err_invalid_email' => 'Érvénytelen email cím',
+        'err_duplicate_email' => 'Egy másik felhasználó már regisztrált ezzel az email címmel',
+        'enter_info' => 'Regisztrációs információk megadása',
+        'required_info' => 'Kötelezõ adat',
+        'optional_info' => 'Opcionális adat',
+        'username' => 'Felhasználónév',
+        'password' => 'Jelszó',
+        'password_again' => 'Jelszó még egyszer',
         'email' => 'Email',
-        'location' => 'Lok&aacute;ci&oacute;',
-        'interests' => '&Eacute;rdeklõd&eacute;si k&ouml;r',
+        'location' => 'Tartózkodási hely',
+        'interests' => 'Érdeklõdési kör',
         'website' => 'Honlap',
-        'occupation' => 'Foglalkoz&aacute;s',
+        'occupation' => 'Foglalkozás',
         'error' => 'HIBA',
-        'confirm_email_subject' => '%s - Regisztr&aacute;ci&oacute; nyugt&aacute;z&aacute;sa',
-        'information' => 'Inform&aacute;ci&oacute;',
-        'failed_sending_email' => 'A regisztr&aacute;ci&oacute;s nyugta emailt nem siker&uuml;lt elk&uuml;ldeni !',
-        'thank_you' => 'K&ouml;sz&ouml;nj&uuml;k, hogy regisztr&aacute;lt.<br /><br />K&uuml;ldt&uuml;nk egy emailt a megadott emailc&iacute;mre amiben megadtuk, hogy hogyan aktiv&aacute;lhatja felhaszn&aacute;l&oacute;i hozz&aacute;f&eacute;r&eacute;s&eacute;t.',
-        'acct_created' => 'Felhaszn&aacute;l&oacute;i hozz&aacute;f&eacute;r&eacute;s&eacute;t l&eacute;trehoztuk &eacute;s bejelentkezhet a felhaszn&aacute;l&oacute;nev&eacute;vel &eacute;s jelszav&aacute;val',
-        'acct_active' => 'Felhaszn&aacute;l&oacute;i hozz&aacute;f&eacute;r&eacute;s&eacute;t aktiv&aacute;ltuk &eacute;s bejelentkezhet a felhaszn&aacute;l&oacute;nev&eacute;vel &eacute;s jelszav&aacute;val',
-        'acct_already_act' => 'Felhaszn&aacute;l&oacute;i hozz&aacute;f&eacute;r&eacute;se m&aacute;r akt&iacute;v !',
-        'acct_act_failed' => 'Ezt a felhaszn&aacute;l&oacute;i hozz&aacute;f&eacute;r&eacute;st nem lehet aktiv&aacute;lni !',
-        'err_unk_user' => 'A kiv&aacute;lasztott felhaszn&aacute;l&oacute; nem l&eacute;tezik !',
+        'confirm_email_subject' => '%s - Regisztráció nyugtázása',
+        'information' => 'Információ',
+        'failed_sending_email' => 'A regisztrációs nyugta emailt nem sikerült elküldeni !',
+        'thank_you' => 'Köszönjük, hogy regisztrált.<br /><br />Küldtünk egy emailt a megadott emailcímre amiben megadtuk, hogy hogyan aktiválhatja felhasználói hozzáférését.',
+        'acct_created' => 'Felhasználói hozzáférését létrehoztuk és bejelentkezhet a felhasználónevével és jelszavával',
+        'acct_active' => 'Felhasználói hozzáférését aktiváltuk és bejelentkezhet a felhasználónevével és jelszavával',
+        'acct_already_act' => 'Felhasználói hozzáférése már aktív !',
+        'acct_act_failed' => 'Ezt a felhasználói hozzáférést nem lehet aktiválni !',
+        'err_unk_user' => 'A kiválasztott felhasználó nem létezik !',
         'x_s_profile' => '%s profilja',
         'group' => 'Csoport',
         'reg_date' => 'Csatlakozott',
-        'disk_usage' => 'T&aacute;rfelhaszn&aacute;l&aacute;sa',
-        'change_pass' => 'Jelsz&oacute; megv&aacute;ltoztat&aacute;sa',
-        'current_pass' => 'Jelenlegi jelsz&oacute;',
-        'new_pass' => '&Uacute;j jelsz&oacute;',
-        'new_pass_again' => '&Uacute;j jelsz&oacute; m&eacute;g egyszer',
-        'err_curr_pass' => 'Jelenlegi jelsz&oacute; hib&aacute;s',
-        'apply_modif' => 'M&oacute;dos&iacute;t&aacute;sok v&eacute;grehajt&aacute;sa',
-        'change_pass' => 'Jelsz&oacute; megv&aacute;ltoztat&aacute;sa',
-        'update_success' => 'Profilj&aacute;t aktualiz&aacute;ltuk',
-        'pass_chg_success' => 'Jelszav&aacute;t megv&aacute;ltoztattuk',
-        'pass_chg_error' => 'Jelszav&aacute;t nem v&aacute;ltoztattuk meg',
+        'disk_usage' => 'Tárfelhasználása',
+        'change_pass' => 'Jelszó megváltoztatása',
+        'current_pass' => 'Jelenlegi jelszó',
+        'new_pass' => 'Új jelszó',
+        'new_pass_again' => 'Új jelszó még egyszer',
+        'err_curr_pass' => 'Jelenlegi jelszó hibás',
+        'apply_modif' => 'Módosítások végrehajtása',
+        'change_pass' => 'Jelszó megváltoztatása',
+        'update_success' => 'Profilját aktualizáltuk',
+        'pass_chg_success' => 'Jelszavát megváltoztattuk',
+        'pass_chg_error' => 'Jelszavát nem változtattuk meg',
 );
 
 $lang_register_confirm_email = <<<EOT
-K&ouml;sz&ouml;nj&uuml;k, hogy regisztr&aacute;lt '{SITE_NAME}' weblapunkon
+Köszönjük, hogy regisztrált '{SITE_NAME}' weblapunkon
 
-Felhaszn&aacute;l&oacute;neve : "{USER_NAME}"
+Felhasználóneve : "{USER_NAME}"
 Jelszava : "{PASSWORD}"
 
-Felhazn&aacute;l&oacute;i hozz&aacute;f&eacute;r&eacute;se aktiv&aacute;l&aacute;s&aacute;hoz az al&aacute;bbi linkre kell klikkelnie.
+Felhaználói hozzáférése aktiválásához az alábbi linkre kell klikkelnie.
 
 {ACT_LINK}
 
-&Uuml;dv&ouml;zlettel,
+Üdvözlettel,
 
-A '{SITE_NAME}' adminisztr&aacute;tora
+A '{SITE_NAME}' adminisztrátora
 
 EOT;
 
@@ -809,13 +809,13 @@ EOT;
 // ------------------------------------------------------------------------- //
 
 if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
-        'title' => 'Hozz&aacute;sz&oacute;l&aacute;sok megtekint&eacute;se',
-        'no_comment' => 'Nincs hozz&aacute;sz&oacute;l&aacute;s',
-        'n_comm_del' => '%s hozz&aacute;sz&oacute;l&aacute;s(ok) t&ouml;r&ouml;lve',
-        'n_comm_disp' => 'Megjelen&iacute;tendõ hozz&aacute;sz&oacute;l&aacute;sok sz&aacute;ma',
+        'title' => 'Hozzászólások megtekintése',
+        'no_comment' => 'Nincs hozzászólás',
+        'n_comm_del' => '%s hozzászólás(ok) törölve',
+        'n_comm_disp' => 'Megjelenítendõ hozzászólások száma',
         'see_prev' => 'Elõzõ',
-        'see_next' => 'K&ouml;vetkezõ',
-        'del_comm' => 'Kijel&ouml;lt hozz&aacute;sz&oacute;l&aacute;sok t&ouml;r&ouml;lve',
+        'see_next' => 'Következõ',
+        'del_comm' => 'Kijelölt hozzászólások törölve',
 );
 
 
@@ -824,7 +824,7 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCH_PHP')) $lang_search_php = array(
-        0 => 'Keres&eacute;s a k&eacute;pt&aacute;rban',
+        0 => 'Keresés a képtárban',
 );
 
 // ------------------------------------------------------------------------- //
@@ -832,31 +832,31 @@ if (defined('SEARCH_PHP')) $lang_search_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
-        'page_title' => '&Uacute;j k&eacute;p keres&eacute;se',
-        'select_dir' => 'K&ouml;nyvt&aacute;r v&aacute;laszt&aacute;sa',
-        'select_dir_msg' => 'Ez a funkci&oacute; lehetõv&eacute; teszi egy k&ouml;teg - FTP-vel a szerverre m&aacute;solt - k&eacute;p hozz&aacute;ad&aacute;s&aacute;t a k&eacute;pt&aacute;rhoz.<br /><br />V&aacute;laszd ki a k&ouml;nyvt&aacute;rat, ahonnan hozz&aacute; akarsz adni a k&eacute;pt&aacute;rhoz k&eacute;peket',
-        'no_pic_to_add' => 'Nincs hozz&aacute;adhat&oacute; k&eacute;p',
-        'need_one_album' => 'Ehhez a funkci&oacute;hoz legal&aacute;bb egy albumnak l&eacute;teznie kell',
-        'warning' => 'Figyelmeztet&eacute;s',
-        'change_perm' => 'a szkript nem tud &iacute;rni ebbe a k&ouml;nyvt&aacute;rba, 755-rõl 777-re kell cser&eacute;lned a jogosults&aacute;g&aacute;t mielõtt hozz&aacute;adsz k&eacute;peket !',
-        'target_album' => '<b>Adja hozz&aacute; a </b>"%s"<b> k&ouml;nyvt&aacute;rb&oacute;l a k&eacute;peket a </b>%s albumhoz',
-        'folder' => 'K&ouml;nyvt&aacute;r',
-        'image' => 'K&eacute;p',
+        'page_title' => 'Új kép keresése',
+        'select_dir' => 'Könyvtár választása',
+        'select_dir_msg' => 'Ez a funkció lehetõvé teszi egy köteg - FTP-vel a szerverre másolt - kép hozzáadását a képtárhoz.<br /><br />Válaszd ki a könyvtárat, ahonnan hozzá akarsz adni a képtárhoz képeket',
+        'no_pic_to_add' => 'Nincs hozzáadható kép',
+        'need_one_album' => 'Ehhez a funkcióhoz legalább egy albumnak léteznie kell',
+        'warning' => 'Figyelmeztetés',
+        'change_perm' => 'a szkript nem tud írni ebbe a könyvtárba, 755-rõl 777-re kell cserélned a jogosultságát mielõtt hozzáadsz képeket !',
+        'target_album' => '<b>Adja hozzá a </b>"%s"<b> könyvtárból a képeket a </b>%s albumhoz',
+        'folder' => 'Könyvtár',
+        'image' => 'Kép',
         'album' => 'Album',
-        'result' => 'Eredm&eacute;ny',
-        'dir_ro' => 'Nem &iacute;rhat&oacute;. ',
-        'dir_cant_read' => 'Nem olvashat&oacute;. ',
-        'insert' => '&Uacute;j k&eacute;pek hozz&aacute;ad&aacute;sa a k&eacute;pt&aacute;rhoz',
-        'list_new_pic' => '&Uacute;j k&eacute;pek felsorol&aacute;sa',
-        'insert_selected' => 'Kijel&ouml;lt k&eacute;pek hozz&aacute;ad&aacute;sa',
-        'no_pic_found' => 'Nincs &uacute;j k&eacute;p',
-        'be_patient' => 'Legyen t&uuml;relemmel, a szkriptnek idõ kell a k&eacute;pek hozz&aacute;ad&aacute;s&aacute;hoz',
+        'result' => 'Eredmény',
+        'dir_ro' => 'Nem írható. ',
+        'dir_cant_read' => 'Nem olvasható. ',
+        'insert' => 'Új képek hozzáadása a képtárhoz',
+        'list_new_pic' => 'Új képek felsorolása',
+        'insert_selected' => 'Kijelölt képek hozzáadása',
+        'no_pic_found' => 'Nincs új kép',
+        'be_patient' => 'Legyen türelemmel, a szkriptnek idõ kell a képek hozzáadásához',
         'notes' =>  '<ul>'.
-                                '<li><b>OK</b> : azt jelenti, hogy a k&eacute;p hozz&aacute;ad&aacute;sa sikeres volt'.
-                                '<li><b>DP</b> : azt jelenti, hogy a k&eacute;p m&aacute;r az adatb&aacute;zisban volt'.
-                                '<li><b>PB</b> : azt jelenti, hogy a k&eacute;p nem volt hozz&aacute;adhat&oacute;, ellenõrizze a konfigur&aacute;ci&oacute;t &eacute;s a k&eacute;peket tartalmaz&oacute; k&ouml;nyvt&aacute;rak jogosults&aacute;gait '.
-                                '<li>Ha az OK, DP, PB \'jelek\' nem l&aacute;that&oacute;k, klikkeljen a hib&aacute;s k&eacute;pre a PHP hiba&uuml;zenet&eacute;nek megjelen&iacute;t&eacute;s&eacute;hez'.
-                                '<li>Ha a browser leidõz&iacute;tett, nyomja meg a friss&iacute;t&eacute;s gombot'.
+                                '<li><b>OK</b> : azt jelenti, hogy a kép hozzáadása sikeres volt'.
+                                '<li><b>DP</b> : azt jelenti, hogy a kép már az adatbázisban volt'.
+                                '<li><b>PB</b> : azt jelenti, hogy a kép nem volt hozzáadható, ellenõrizze a konfigurációt és a képeket tartalmazó könyvtárak jogosultságait '.
+                                '<li>Ha az OK, DP, PB \'jelek\' nem láthatók, klikkeljen a hibás képre a PHP hibaüzenetének megjelenítéséhez'.
+                                '<li>Ha a browser leidõzített, nyomja meg a frissítés gombot'.
                                 '</ul>',
 );
 
@@ -873,14 +873,14 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UPLOAD_PHP')) $lang_upload_php = array(
-        'title' => 'K&eacute;p felt&ouml;lt&eacute;se',
-        'max_fsize' => 'Maximum megengedett f&aacute;jlm&eacute;ret %s KB',
+        'title' => 'Kép feltöltése',
+        'max_fsize' => 'Maximum megengedett fájlméret %s KB',
         'album' => 'Album',
-        'picture' => 'K&eacute;p',
-        'pic_title' => 'K&eacute;p c&iacute;me',
-        'description' => 'K&eacute;p le&iacute;r&aacute;sa',
-        'keywords' => 'Kulcsszavak (sz&oacute;k&ouml;z&ouml;kkel elv&aacute;lasztva)',
-        'err_no_alb_uploadables' => 'Nincs album, ahova enged&eacute;lyezett a felt&ouml;lt&eacute;se',
+        'picture' => 'Kép',
+        'pic_title' => 'Kép címe',
+        'description' => 'Kép leírása',
+        'keywords' => 'Kulcsszavak (szóközökkel elválasztva)',
+        'err_no_alb_uploadables' => 'Nincs album, ahova engedélyezett a feltöltése',
 );
 
 // ------------------------------------------------------------------------- //
@@ -888,45 +888,45 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
-        'title' => 'Felhaszn&aacute;l&oacute;k menedzsel&eacute;se',
-        'name_a' => 'N&eacute;v n&ouml;vekvõ',
-        'name_d' => 'N&eacute;v cs&ouml;kkenõ',
-        'group_a' => 'Csoport n&ouml;vekvõ',
-        'group_d' => 'Csoport cs&ouml;kkenõ',
-        'reg_a' => 'Reg. d&aacute;tum n&ouml;vekvõ',
-        'reg_d' => 'Reg. d&aacute;tum cs&ouml;kkenõ',
-        'pic_a' => 'K&eacute;psz&aacute;m n&ouml;vekvõ',
-        'pic_d' => 'K&eacute;psz&aacute;m cs&ouml;kkenõ',
-        'disku_a' => 'Diszkfelhaszn&aacute;l&aacute;s n&ouml;vekvõ',
-        'disku_d' => 'Diszkfelhaszn&aacute;l&aacute;s cs&ouml;kkenõ',
-        'sort_by' => 'Felhaszn&aacute;l&oacute;k sorrendez&eacute;se',
-        'err_no_users' => 'Nincs felhaszn&aacute;l&oacute; !',
-        'err_edit_self' => 'Nem szerkesztheti a saj&aacute;t profilj&aacute;t, haszn&aacute;lja az \'&Eacute;n profilom\' men&uuml;pontot',
+        'title' => 'Felhasználók menedzselése',
+        'name_a' => 'Név növekvõ',
+        'name_d' => 'Név csökkenõ',
+        'group_a' => 'Csoport növekvõ',
+        'group_d' => 'Csoport csökkenõ',
+        'reg_a' => 'Reg. dátum növekvõ',
+        'reg_d' => 'Reg. dátum csökkenõ',
+        'pic_a' => 'Képszám növekvõ',
+        'pic_d' => 'Képszám csökkenõ',
+        'disku_a' => 'Diszkfelhasználás növekvõ',
+        'disku_d' => 'Diszkfelhasználás csökkenõ',
+        'sort_by' => 'Felhasználók sorrendezése',
+        'err_no_users' => 'Nincs felhasználó !',
+        'err_edit_self' => 'Nem szerkesztheti a saját profilját, használja az \'Én profilom\' menüpontot',
         'edit' => 'SZERKESZT',
-        'delete' => 'T&Ouml;R&Ouml;L',
-        'name' => 'Felhaszn&aacute;l&oacute;n&eacute;v',
+        'delete' => 'TÖRÖL',
+        'name' => 'Felhasználónév',
         'group' => 'Csoport',
-        'inactive' => 'Inakt&iacute;v',
-        'operations' => 'M&ucirc;veletek',
-        'pictures' => 'K&eacute;pek',
-        'disk_space' => 'Felhaszn&aacute;lt t&aacute;rhely / kv&oacute;ta',
-        'registered_on' => 'Regisztr&aacute;lva',
-        'u_user_on_p_pages' => '%d felhaszn&aacute;l&oacute; %d oldalon',
-        'confirm_del' => 'Bizt&ouml;s t&ouml;r&ouml;lni k&iacute;v&aacute;nja a felhaszn&aacute;l&oacute;t? \\nMinden k&eacute;pe &eacute;s albuma is t&ouml;rlõdni fog.',
+        'inactive' => 'Inaktív',
+        'operations' => 'Mûveletek',
+        'pictures' => 'Képek',
+        'disk_space' => 'Felhasznált tárhely / kvóta',
+        'registered_on' => 'Regisztrálva',
+        'u_user_on_p_pages' => '%d felhasználó %d oldalon',
+        'confirm_del' => 'Biztös törölni kívánja a felhasználót? \\nMinden képe és albuma is törlõdni fog.',
         'mail' => 'MAIL',
-        'err_unknown_user' => 'A kijel&ouml;lt felhaszn&aacute;l&oacute; nem l&eacute;tezik !',
-        'modify_user' => 'Felhaszn&aacute;l&oacute; m&oacute;dos&iacute;t&aacute;sa',
-        'notes' => 'Megjegyz&eacute;sek',
-        'note_list' => '<li>Ha nem k&iacute;v&aacute;nja megv&aacute;ltoztatni az aktu&aacute;lis jelsz&oacute;t, hagyja a "jelsz&oacute;" mezõt &uuml;resen',
-        'password' => 'Jelsz&oacute;',
-        'user_active' => 'Felhaszn&aacute;l&oacute; akt&iacute;v',
-        'user_group' => 'Felhaszn&aacute;l&oacute; csoport',
-        'user_email' => 'Felhaszn&aacute;l&oacute; email c&iacute;me',
-        'user_web_site' => 'Felhaszn&aacute;l&oacute; honlapja',
-        'create_new_user' => '&Uacute;j felhaszn&aacute;l&oacute; l&eacute;trehoz&aacute;sa',
-        'user_location' => 'Felhaszn&aacute;l&oacute; lok&aacute;ci&oacute;ja',
-        'user_interests' => 'Felhaszn&aacute;l&oacute; &eacute;rdeklõd&eacute;si k&ouml;re',
-        'user_occupation' => 'Felhaszn&aacute;l&oacute; foglalkoz&aacute;sa',
+        'err_unknown_user' => 'A kijelölt felhasználó nem létezik !',
+        'modify_user' => 'Felhasználó módosítása',
+        'notes' => 'Megjegyzések',
+        'note_list' => '<li>Ha nem kívánja megváltoztatni az aktuális jelszót, hagyja a "jelszó" mezõt üresen',
+        'password' => 'Jelszó',
+        'user_active' => 'Felhasználó aktív',
+        'user_group' => 'Felhasználó csoport',
+        'user_email' => 'Felhasználó email címe',
+        'user_web_site' => 'Felhasználó honlapja',
+        'create_new_user' => 'Új felhasználó létrehozása',
+        'user_location' => 'Felhasználó lokációja',
+        'user_interests' => 'Felhasználó érdeklõdési köre',
+        'user_occupation' => 'Felhasználó foglalkozása',
 );
 
 // ------------------------------------------------------------------------- //
@@ -934,50 +934,50 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UTIL_PHP')) $lang_util_php = array(
-        'title' => 'K&eacute;pek &aacute;tm&eacute;retez&eacute;se',
-        'what_it_does' => 'Mi t&ouml;rt&eacute;njen',
-        'what_update_titles' => 'C&iacute;mek aktualiz&aacute;l&aacute;sa f&aacute;jlnevekbol',
-        'what_delete_title' => 'C&iacute;mek t&ouml;rl&eacute;se',
-        'what_rebuild' => 'Ikonok &eacute;s &aacute;tm&eacute;retezett k&eacute;pek &uacute;jragener&aacute;l&aacute;sa',
-        'what_delete_originals' => 'Eredeti k&eacute;pek fel&uuml;l&iacute;r&aacute;sa az &aacute;tm&eacute;retezettekkel',
-        'file' => 'F&aacute;jl',
-        'title_set_to' => 'c&iacute;m be&aacute;ll&iacute;t&aacute;sa ..',
-        'submit_form' => '&eacute;rv&eacute;nyes&iacute;t&eacute;s',
-        'updated_succesfully' => 'sikeres m&oacute;dos&iacute;t&aacute;s',
-        'error_create' => 'HIBA a gener&aacute;l&aacute;s sor&aacute;n',
-        'continue' => 'T&ouml;bb k&eacute;p feldolgoz&aacute;sa',
-        'main_success' => 'A % f&aacute;jlok felhaszn&aacute;l&aacute;sa elsodleges k&eacute;pk&eacute;nt sikeres volt',
-        'error_rename' => '%s &aacute;tnevez&eacute;se sor&aacute;n %s –ra HIBA',
-        'error_not_found' => 'A % f&aacute;jlok nem tal&aacute;lhat&oacute;k',
+        'title' => 'Képek átméretezése',
+        'what_it_does' => 'Mi történjen',
+        'what_update_titles' => 'Címek aktualizálása fájlnevekbol',
+        'what_delete_title' => 'Címek törlése',
+        'what_rebuild' => 'Ikonok és átméretezett képek újragenerálása',
+        'what_delete_originals' => 'Eredeti képek felülírása az átméretezettekkel',
+        'file' => 'Fájl',
+        'title_set_to' => 'cím beállítása ..',
+        'submit_form' => 'érvényesítés',
+        'updated_succesfully' => 'sikeres módosítás',
+        'error_create' => 'HIBA a generálás során',
+        'continue' => 'Több kép feldolgozása',
+        'main_success' => 'A % fájlok felhasználása elsodleges képként sikeres volt',
+        'error_rename' => '%s átnevezése során %s -ra HIBA',
+        'error_not_found' => 'A % fájlok nem találhatók',
         'back' => 'vissza a fooldalra',
-        'thumbs_wait' => 'Ikonok &eacute;s/vagy &aacute;tm&eacute;retezett k&eacute;pek aktualiz&aacute;l&aacute;sa, k&eacute;rem v&aacute;rjon…',
-        'thumbs_continue_wait' => 'Ikonok &eacute;s/vagy &aacute;tm&eacute;retezett k&eacute;pek aktualiz&aacute;l&aacute;s&aacute;nak folytat&aacute;sa...',
-        'titles_wait' => 'C&iacute;mek aktualiz&aacute;l&aacute;sa, k&eacute;rem v&aacute;rjon...',
-        'delete_wait' => 'C&iacute;mek t&ouml;rl&eacute;se, k&eacute;rem v&aacute;rjon...',
-        'replace_wait' => 'Eredeti k&eacute;pek fel&uuml;l&iacute;r&aacute;sa az &aacute;tm&eacute;retezettekkel, k&eacute;rem v&aacute;rjon..',
-        'instruction' => 'Gyors utas&iacute;t&aacute;sok',
-        'instruction_action' => 'Muvelet kiv&aacute;laszt&aacute;sa',
-        'instruction_parameter' => 'Param&eacute;terek be&aacute;ll&iacute;t&aacute;sa',
-        'instruction_album' => 'Album kiv&aacute;laszt&aacute;sa',
+        'thumbs_wait' => 'Ikonok és/vagy átméretezett képek aktualizálása, kérem várjon...',
+        'thumbs_continue_wait' => 'Ikonok és/vagy átméretezett képek aktualizálásának folytatása...',
+        'titles_wait' => 'Címek aktualizálása, kérem várjon...',
+        'delete_wait' => 'Címek törlése, kérem várjon...',
+        'replace_wait' => 'Eredeti képek felülírása az átméretezettekkel, kérem várjon..',
+        'instruction' => 'Gyors utasítások',
+        'instruction_action' => 'Muvelet kiválasztása',
+        'instruction_parameter' => 'Paraméterek beállítása',
+        'instruction_album' => 'Album kiválasztása',
         'instruction_press' => 'Nyomj %-t',
-        'update' => 'Ikonok &eacute;s/vagy &aacute;tm&eacute;retezett f&eacute;nyk&eacute;pek aktualiz&aacute;l&aacute;sa',
-        'update_what' => 'Mit kell aktualiz&aacute;lni',
+        'update' => 'Ikonok és/vagy átméretezett fényképek aktualizálása',
+        'update_what' => 'Mit kell aktualizálni',
         'update_thumb' => 'Csak ikonokat',
-        'update_pic' => 'Csak &aacute;tm&eacute;retezett k&eacute;peket',
-        'update_both' => 'Ikonokat &eacute;s &aacute;tm&eacute;retezett k&eacute;peket is',
-        'update_number' => 'Klikk&eacute;l&eacute;senk&eacute;nt feldolgozand&oacute; k&eacute;pek sz&aacute;ma',
-        'update_option' => '(Pr&oacute;b&aacute;ld cs&ouml;kkenteni ezt az &eacute;rt&eacute;ket, ha leidoz&iacute;t&eacute;si probl&eacute;m&aacute;t &eacute;szlelsz)',
-        'filename_title' => 'F&aacute;jln&eacute;v ? K&eacute;p c&iacute;m',
-        'filename_how' => 'Hogy legyen m&oacute;dos&iacute;tva a f&aacute;jln&eacute;v',
-        'filename_remove' => 'A jpg v&eacute;gzod&eacute;s t&ouml;rl&eacute;se &eacute;s _ (alulvon&aacute;s) helyettes&iacute;t&eacute;se sz&oacute;k&ouml;zzel',
-        'filename_euro' => '2003_11_23_13_20_20.jpg &aacute;tnevez&eacute;se 23/11/2003 13:20-ra',
-        'filename_us' => '2003_11_23_13_20_20.jpg &aacute;tnevez&eacute;se 11/23/2003 13:20-ra',
-        'filename_time' => '2003_11_23_13_20_20.jpg &aacute;tnevez&eacute;se 13:20ra',
-        'delete' => 'K&eacute;p c&iacute;mek vagy eredeti m&eacute;retu k&eacute;pek t&ouml;rl&eacute;se',
-        'delete_title' => 'K&eacute;p c&iacute;mek t&ouml;rl&eacute;se',
-        'delete_original' => 'Eredeti m&eacute;retu k&eacute;pek t&ouml;rl&eacute;se',
-        'delete_replace' => 'Eredeti k&eacute;pek fel&uuml;l&iacute;r&aacute;sa &aacute;tm&eacute;retezettel',
-        'select_album' => 'Album kiv&aacute;laszt&aacute;sa',
+        'update_pic' => 'Csak átméretezett képeket',
+        'update_both' => 'Ikonokat és átméretezett képeket is',
+        'update_number' => 'Klikkélésenként feldolgozandó képek száma',
+        'update_option' => '(Próbáld csökkenteni ezt az értéket, ha leidozítési problémát észlelsz)',
+        'filename_title' => 'Fájlnév ? Kép cím',
+        'filename_how' => 'Hogy legyen módosítva a fájlnév',
+        'filename_remove' => 'A jpg végzodés törlése és _ (alulvonás) helyettesítése szóközzel',
+        'filename_euro' => '2003_11_23_13_20_20.jpg átnevezése 23/11/2003 13:20-ra',
+        'filename_us' => '2003_11_23_13_20_20.jpg átnevezése 11/23/2003 13:20-ra',
+        'filename_time' => '2003_11_23_13_20_20.jpg átnevezése 13:20ra',
+        'delete' => 'Kép címek vagy eredeti méretu képek törlése',
+        'delete_title' => 'Kép címek törlése',
+        'delete_original' => 'Eredeti méretu képek törlése',
+        'delete_replace' => 'Eredeti képek felülírása átméretezettel',
+        'select_album' => 'Album kiválasztása',
 );
 
 ?>

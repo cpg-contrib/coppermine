@@ -23,9 +23,12 @@ $lang_translation_info = array(
 'lang_name_english' => 'Italian',  //the name of your language in English, e.g. 'Greek' or 'Spanish'
 'lang_name_native' => 'Italiano', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espa&ntilde;ol'
 'lang_country_code' => 'it', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es'
-'trans_name'=> '(Completed by) Sesto Avolio', //the name of the translator - can be a nickname
-'trans_email' => 'webmaster@eolica.net', //translator's email address (optional)
-'trans_website' => 'http://www.eolica.net/', //translator's website (optional)
+'trans_name'=> 'ralf57', //the name of the translator - can be a nickname
+'trans_email' => 'greatkingrat@katamail.com', //translator's email address (optional)
+'trans_website' => 'http://www.madeinbanzi.it/', //translator's website (optional)
+'trans_name2'=> '(Completed by) Sesto Avolio', //the name of the translator - can be a nickname
+'trans_email2' => 'webmaster@eolica.net', //translator's email address (optional)
+'trans_website2' => 'http://www.eolica.net/', //translator's website (optional)
 'trans_date' => '2003-10-04', //the date the translation was created / last modified
 );
 
