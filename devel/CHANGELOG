@@ -167,3 +167,4 @@ Added option to select all checkboxes when editing files in an album - 12 August
 Added clickable keyword search and keyword manager - 12 August 2004, GauGau
 Silenced CHMOD command to avoid issues on servers not supporting the command - 13 August 2004, GauGau
 Added advanced sorting hack (sort by position, picture manager) - 13 August 2004, GauGau
+Added version check routine for easier upgrades - 16 August 2004, GauGau
