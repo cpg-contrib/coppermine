@@ -261,3 +261,7 @@ INSERT INTO CPG_bridge VALUES ('recovery_logon_failures', '0');
 INSERT INTO CPG_bridge VALUES ('recovery_logon_timestamp', '');
 
 INSERT INTO CPG_config VALUES ('language_fallback', '1');
+
+INSERT INTO CPG_config VALUES ('vote_details', '0');
+
+INSERT INTO CPG_config VALUES ('hit_details', '0');
