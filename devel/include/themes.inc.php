@@ -732,7 +732,7 @@ EOT;
 // HTML template for the display of comments
 if (!isset($template_image_comments))  //{THEMES}
 $template_image_comments = <<<EOT
-<table align="center" width="90%" cellspacing="1" cellpadding="0" class="maintable">
+<table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
 
         <tr>
                 <td>
@@ -2342,6 +2342,7 @@ function theme_html_comments($pid)
             '{HDR_IP}' => $row['msg_hdr_ip'],
             '{RAW_IP}' => $row['msg_raw_ip'],
             '{REPORT_COMMENT_TITLE}' => &$lang_display_comments['report_comment_title'],
+            '{WIDTH}' => $CONFIG['picture_table_width']
             );
 
         $html .= template_eval($template, $params);
