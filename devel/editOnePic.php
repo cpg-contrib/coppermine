@@ -58,7 +58,7 @@ function process_post_data()
                 $del_comments = isset($HTTP_POST_VARS['del_comments']) || $delete;
 
                 $query = "SELECT category, filepath, filename FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND pid='$pid'";
-                $result = db_query($query);
+                $result = cpg_db_query($query);
                 if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
                 $pic = mysql_fetch_array($result);
                 mysql_free_result($result);
@@ -86,11 +86,11 @@ function process_post_data()
 
                 if ($del_comments) {
                         $query = "DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid'";
-                        $result =db_query($query);
+                        $result =cpg_db_query($query);
 
                 } else {
                         $query = "UPDATE {$CONFIG['TABLE_PICTURES']} SET $update WHERE pid='$pid' LIMIT 1";
-                        $result = db_query($query);
+                        $result = cpg_db_query($query);
                 }
 
 }
@@ -100,7 +100,7 @@ function get_user_albums($user_id)
         global $CONFIG, $USER_ALBUMS_ARRAY, $user_albums_list;
 
         if (!isset($USER_ALBUMS_ARRAY[$user_id])) {
-                $user_albums = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='".(FIRST_USER_CAT + $user_id)."' ORDER BY title");
+                $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='".(FIRST_USER_CAT + $user_id)."' ORDER BY title");
                 if (mysql_num_rows($user_albums)) {
                     $user_albums_list=db_fetch_rowset($user_albums);
                 } else {
@@ -150,7 +150,7 @@ EOT;
 
 if (isset($HTTP_POST_VARS['submitDescription'])) process_post_data();
 
-$result = db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = '$pid'");
+$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = '$pid'");
 $CURRENT_PIC = mysql_fetch_array($result);
 mysql_free_result($result);
 
@@ -168,9 +168,9 @@ if ($CONFIG['user_field4_name'] != '') $THUMB_ROWSPAN++;
 
 
 if (GALLERY_ADMIN_MODE) {
-    $public_albums = db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']}, {$CONFIG['TABLE_CATEGORIES']} WHERE category < '" . FIRST_USER_CAT . "' AND (category = 0 OR category = cid) ORDER BY cat_title");
+    $public_albums = cpg_db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']}, {$CONFIG['TABLE_CATEGORIES']} WHERE category < '" . FIRST_USER_CAT . "' AND (category = 0 OR category = cid) ORDER BY cat_title");
         if (mysql_num_rows($public_albums)) {
-            $public_albums_list=db_fetch_rowset($public_albums);
+            $public_albums_list=cpg_db_fetch_rowset($public_albums);
         } else {
                 $public_albums_list = array();
         }
