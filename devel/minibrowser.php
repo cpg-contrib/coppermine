@@ -38,7 +38,9 @@ if (isset($_REQUEST['hidefolders'])) {
 }
 if (isset($_REQUEST['linktarget'])) {$linktarget = rawurldecode($_REQUEST['linktarget']);} else { $linktarget = '';}
 if (isset($_REQUEST['searchnew_php'])) {$searchnew_php = rawurldecode($_REQUEST['searchnew_php']);} else { $searchnew_php = '0';}
-//print $folder.'<hr>';
+if (isset($_REQUEST['radio'])) {$radio = rawurldecode($_REQUEST['radio']);} else { $radio = '';}
+$newline = "\n";
+
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -104,20 +106,21 @@ while($file = readdir($dir)){
 closedir($dir);
 
 // print the folder we're in
-print '<tr>';
-print '<td class="tableh2">';
-print '<input type="radio" name="cf1" value="'.$folder.rtrim($key, '/').'/" class="radio"  checked="checked" />';
-print '</td>';
-print '<td class="tableh2">';
-print '<input type="text" name="cf2" size="50" value="/'.ltrim($folder, '/').'" disabled="disabled" class="tableh2_compact">&nbsp;';
-if ($linktarget != '') {
-    print '<a href="'.$linktarget.'?startdir='.rtrim(str_replace($_REQUEST['limitfolder'], '',$folder), '/').'" class="admin_menu" target="_parent">'.$lang_minibrowser_php['submit'].'</a>';
-} else {
-    print '<input type="submit" name="submit" value="'.$lang_minibrowser_php['submit'].'" class="button" />';
+print '<tr>'.$newline;
+print '<td class="tableh2">'.$newline;
+if ($radio != 0) {
+    print '<input type="radio" name="cf1" value="'.$folder.rtrim($key, '/').'/" class="radio"  checked="checked" />'.$newline;
 }
-print '</a>';
-print '</td>';
-print "</tr>\n";
+print '</td>'.$newline;
+print '<td class="tableh2">'.$newline;
+print '<input type="text" name="cf2" size="50" value="/'.ltrim($folder, '/').'" disabled="disabled" class="tableh2_compact">&nbsp;'.$newline;
+if ($linktarget != '') {
+    print '<a href="'.$linktarget.'?startdir='.rtrim(str_replace($_REQUEST['limitfolder'], '',$folder), '/').'" class="admin_menu" target="_parent">'.$lang_minibrowser_php['submit'].'</a>'.$newline;
+} else {
+    print '<input type="submit" name="submit" value="'.$lang_minibrowser_php['submit'].'" class="button" />'.$newline;
+}
+print '</td>'.$newline;
+print '</tr>'.$newline;
 
 
 // display the "up" link if we're not already in the root folder
@@ -133,17 +136,17 @@ if (($_REQUEST['folder'] != '' || $_REQUEST['startfolder'] != '') && ($folder !=
     }
     //print 'uplink:'.$uplink.'<br>';
     if ($_REQUEST['limitfolder'] != $folder) {
-        print '<tr>';
-        print '<td class="tableb">';
+        print '<tr>'.$newline;
+        print '<td class="tableb">'.$newline;
         print '&nbsp;';
-        print '</td>';
-        print '<td class="tableb">';
-        print '<img src="images/spacer.gif" width="16" height="16" border="0" alt="" align="left">';
-        print '<a href="'.$_SERVER['PHP_SELF'].'?folder='.rawurlencode($uplink).'&parentform='.rawurlencode($parentform).'&formelementname='.rawurlencode($formelementname).'&no_popup='.$_REQUEST['no_popup'].'&limitfolder='.$_REQUEST['limitfolder'].'&hidefolders='.$_REQUEST['hidefolders'].'&linktarget='.$_REQUEST['linktarget'].'">';
+        print '</td>'.$newline;
+        print '<td class="tableb">'.$newline;
+        print '<img src="images/spacer.gif" width="16" height="16" border="0" alt="" align="left">'.$newline;
+        print '<a href="'.$_SERVER['PHP_SELF'].'?folder='.rawurlencode($uplink).'&parentform='.rawurlencode($parentform).'&formelementname='.rawurlencode($formelementname).'&no_popup='.$_REQUEST['no_popup'].'&limitfolder='.$_REQUEST['limitfolder'].'&hidefolders='.$_REQUEST['hidefolders'].'&linktarget='.$_REQUEST['linktarget'].'">'.$newline;
         print '.. '.$lang_minibrowser_php['up'];
-        print '</a>';
-        print '</td>';
-        print "</tr>\n";
+        print '</a>'.$newline;
+        print '</td>'.$newline;
+        print '</tr>'.$newline;
     }
 }
 
@@ -152,17 +155,19 @@ if (is_array($foldername)) {
     natcasesort ($foldername);
     foreach($foldername as $key) {
         if ($key != '.' && $key != '..') {
-            print '<tr>';
-            print '<td class="tableb">';
-            print '<input type="radio" name="cf1" value="'.$folder.rtrim($key, '/').'/" class="radio" onclick="document.childform.cf2.value=\''.$folder.$key.'\'" />';
-            print '</td>';
-            print '<td class="tableb">';
-            print '<a href="'.$_SERVER['PHP_SELF'].'?folder='.rawurlencode('/'.ltrim($folder, '/').$key.'/').'&parentform='.rawurlencode($parentform).'&formelementname='.rawurlencode($formelementname).'&no_popup='.$_REQUEST['no_popup'].'&limitfolder='.$_REQUEST['limitfolder'].'&hidefolders='.$_REQUEST['hidefolders'].'&linktarget='.$_REQUEST['linktarget'].'">';
-            print '<img src="images/folder.gif" width="16" height="16" border="0" alt="" title="folder" />';
-            print $key;
-            print '</a>';
-            print '</td>';
-            print "</tr>\n";
+            print '<tr>'.$newline;
+            print '<td class="tableb">'.$newline;
+            if ($radio != 0) {
+                print '<input type="radio" name="cf1" value="'.$folder.rtrim($key, '/').'/" class="radio" onclick="document.childform.cf2.value=\''.$folder.$key.'\'" />'.$newline;
+            }
+            print '</td>'.$newline;
+            print '<td class="tableb">'.$newline;
+            print '<a href="'.$_SERVER['PHP_SELF'].'?folder='.rawurlencode('/'.ltrim($folder, '/').$key.'/').'&parentform='.rawurlencode($parentform).'&formelementname='.rawurlencode($formelementname).'&no_popup='.$_REQUEST['no_popup'].'&limitfolder='.$_REQUEST['limitfolder'].'&hidefolders='.$_REQUEST['hidefolders'].'&linktarget='.$_REQUEST['linktarget'].'">'.$newline;
+            print '<img src="images/folder.gif" width="16" height="16" border="0" alt="" title="folder" />'.$newline;
+            print $key.$newline;
+            print '</a>'.$newline;
+            print '</td>'.$newline;
+            print '</tr>'.$newline;
         }
     }
 }
@@ -170,25 +175,25 @@ if (is_array($foldername)) {
 if (is_array($filename)) {
     natcasesort ($filename);
     foreach($filename as $key) {
-        print '<tr>';
-        print '<td class="tableb">';
+        print '<tr>'.$newline;
+        print '<td class="tableb">'.$newline;
         print '&nbsp;';
-        print '</td>';
-        print '<td class="tableb">';
-        print '<img src="images/spacer.gif" width="10" height="15" border="0" alt="" align="left">';
-        print $key;
-        print '</td>';
-        print "</tr>\n";
+        print '</td>'.$newline;
+        print '<td class="tableb">'.$newline;
+        print '<img src="images/spacer.gif" width="10" height="15" border="0" alt="" align="left">'.$newline;
+        print $key.$newline;
+        print '</td>'.$newline;
+        print '</tr>'.$newline;
     }
 }
 print '                        <input type="hidden" name="parentform" value="'.$parentform.'">'."\n";
 print '                        <input type="hidden" name="formelementname" value="'.$formelementname.'">'."\n";
 if ($searchnew_php == 1 && $dirCounter == 0) {
-print '<tr>';
-print '<td class="tablef" colspan="2">';
-print $lang_search_new_php['no_folders'];
-print '</td>';
-print '</tr>';
+print '<tr>'.$newline;
+print '<td class="tablef" colspan="2">'.$newline;
+print $lang_search_new_php['no_folders'].$newline;
+print '</td>'.$newline;
+print '</tr>'.$newline;
 }
 endtable();
 // print '<div align="center"><a href="#" class="admin_menu" onclick="window.close();">'.$lang_minibrowser_php['close'].'</a></div>';
