@@ -99,7 +99,7 @@ function html_install_success($notes)
 {
     global $DFLT;
 //Coppermine is now upgraded and ready to roll.
-    $loginaddress = "<a href=\"login.php?referer=".$_SERVER['PHP_SELF'].'">';
+    $loginaddress = '<a href="login.php?referer=charsetmgr.php">';
     ?>
 <h2>Upgrade completed</h2>
 

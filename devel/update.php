@@ -127,7 +127,7 @@ function test_sql_connection()
     }
 }
 // ------------------------- HTML OUTPUT FUNCTIONS ------------------------- //
-
+// Moved to include/update.inc.php -- chtito
 
 // ------------------------- SQL QUERIES TO CREATE TABLES ------------------ //
 function update_tables()
@@ -162,6 +162,7 @@ function update_tables()
     }
     echo "</table>";
 }
+
 // --------------------------------- MAIN CODE ----------------------------- //
 // The defaults values
 $table_prefix = $_POST['table_prefix'];

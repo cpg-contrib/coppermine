@@ -214,3 +214,14 @@ p.warning, div.warning
 {
     text-align: center;
 }
+
+fieldset
+{
+    width: 90ex;
+    margin: 5px auto;
+}
+
+fieldset form
+{
+    margin: auto 10px;
+}

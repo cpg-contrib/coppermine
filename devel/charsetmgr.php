@@ -37,14 +37,14 @@ function form_charset($optionvalue, $selected)
                       'Central European' => 'iso-8859-2',
                       'Chinese Simplified' => 'euc-cn',
                       'Chinese Traditional' => 'big5',
-                      'Cyrillic' => 'koi8-r',
+                      'Cyrillic' => 'windows-1251', //'koi8-r',
                       'Greek' => 'iso-8859-7',
                       'Hebrew' => 'iso-8859-8-i',
                       'Icelandic' => 'x-mac-icelandic',
                       'Japanese' => 'euc-jp',
                       'Korean' => 'euc-kr',
                       'Maltese' => 'iso-8859-3',
-                      'Thai' => 'windows-874 ',
+                      'Thai' => 'windows-874',
                       'Turkish' => 'iso-8859-9',
                       'Unicode' => 'utf-8',
                       'Vietnamese' => 'windows-1258',
@@ -120,7 +120,7 @@ function charset_convert($table_name, $column_name, $index_name, $charsetin, $ch
     
 }
 
-// Carries out the conversion in all the necessary fields
+// Either checks or carries out the conversion in all the necessary fields
 function register_changes()
 {
     global $CONFIG;
@@ -159,13 +159,15 @@ function register_changes()
             //echo $charsetin . " " .$charsetout;
             if (!$doconvert)
             {
-                $title = "Checking conversion from $charsetin to $charsetout";
+                $windowtitle = "Charset Manager - 2/3 - Check";
+                $title = "2/3 - Checking conversion from <b>$charsetin</b> to <b>$charsetout</b>";
             }
             else if ($doconvert)
             {
-                $title = "Converting from $charsetin to $charsetout";
+                $windowtitle = "Charset Manager - 3/3 - Conversion";
+                $title = "3/3 - Converting from <b>$charsetin</b> to <b>$charsetout</b>";
             }
-            html_header($title, $charsetout);
+            html_header($windowtitle, $charsetout);
             html_logo();
             echo "<h1>$title</h1>";
             echo '<table border="1" class="charsetchecktable" cellpadding="3" cellspacing="0"  style="margin:auto;">';
@@ -239,7 +241,9 @@ else
 
     
 
-pageheader("Charset Manager");
+html_header("Charset Manager - 1/3 - Start");
+html_logo();
+echo '<h1>1/3 - Charset Manager Start</h1>';
 
 if (!function_exists('iconv'))
 {
@@ -249,6 +253,7 @@ if (!function_exists('iconv'))
 
 if ($languagefilecfg)
 {
+    /*
     echo <<<EOT
         <p class="warning">You are using the language default encoding. It means that:</p>
     <ol>
@@ -256,6 +261,7 @@ if ($languagefilecfg)
         <li>The default choice of the left menu <b>might not be the right one</b>. Change it if it seems unappropriate.</li>
         </ol>
 EOT;
+     */
     
 }
 
@@ -268,10 +274,11 @@ if ($thecharset == 'utf-8')
 echo <<<EOT
 <ul>
 <li><b>You should not change the value of the second menu (utf-8) unless you know what you are doing!</b></li>
-<li>Clicking on check will just allow you to check if the conversion is possible.
+<li>Clicking on check will just allow you to check if the conversion is possible. The database will be left unchanged.
 </ul>
 EOT;
 
+echo "<fieldset><legend>Charset Converter</legend>";
 echo "<form action=\"".$_SERVER['PHP_SELF']."\" method=\"post\">";
 echo "Convert from ";
 form_charset('charset_in', $thecharset);
@@ -282,9 +289,10 @@ echo <<<EOT
 
 EOT;
 echo "</form>";
+echo "</fieldset>";
 
 
 
 ob_end_flush();
-pagefooter();
+html_footer();
 ?>
