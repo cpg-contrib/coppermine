@@ -1553,29 +1553,29 @@ $return=<<<EOT
 <li><a href="$backToDefaultTheme">back to default theme</a></li>
 </ul>
 </td>
-<td class="bgy" valign="bottom"><img src="themes/styleguide/images/albmgr.php.gif" width="11" height="50" border="0" alt="" /></td>
-<td class="bgr" valign="bottom"><img src="themes/styleguide/images/banning.php.gif" width="11" height="55" border="0" alt="" /></td>
-<td class="bgr" valign="bottom"><img src="themes/styleguide/images/catmgr.php.gif" width="12" height="83" border="0" alt="" /></td>
-<td class="bgr" valign="bottom"><img src="themes/styleguide/images/config.php.gif" width="11" height="46" border="0" alt="" /></td>
-<td class="bgy" valign="bottom"><img src="themes/styleguide/images/delete.php.gif" width="11" height="47" border="0" alt="" /></td>
-<td class="bgg" valign="bottom"><img src="themes/styleguide/images/displayimage.php.gif" width="12" height="76" border="0" alt="" /></td>
-<td class="bgg" valign="bottom"><img src="themes/styleguide/images/ecard.php.gif" width="11" height="44" border="0" alt="" /></td>
-<td class="bgy" valign="bottom"><img src="themes/styleguide/images/editpics.php.gif" width="11" height="53" border="0" alt="" /></td>
-<td class="bgg" valign="bottom"><img src="themes/styleguide/images/forgot_passwd.php.gif" width="11" height="83" border="0" alt="" /></td>
-<td class="bgr" valign="bottom"><img src="themes/styleguide/images/groupmgr.php.gif" width="12" height="62" border="0" alt="" /></td>
-<td class="bgg" valign="bottom"><img src="themes/styleguide/images/index.php.gif" width="11" height="41" border="0" alt="" /></td>
-<td class="bgg" valign="bottom"><img src="themes/styleguide/images/login.php.gif" width="11" height="41" border="0" alt="" /></td>
-<td class="bgy" valign="bottom"><img src="themes/styleguide/images/logout.php.gif" width="12" height="47" border="0" alt="" /></td>
-<td class="bgy" valign="bottom"><img src="themes/styleguide/images/modifyalb.php.gif" width="11" height="62" border="0" alt="" /></td>
-<td class="bgy" valign="bottom"><img src="themes/styleguide/images/profile.php.gif" width="11" height="47" border="0" alt="" /></td>
-<td class="bgr" valign="bottom"><img src="themes/styleguide/images/reviewcom.php.gif" width="12" height="66" border="0" alt="" /></td>
-<td class="bgg" valign="bottom"><img src="themes/styleguide/images/search.php.gif" width="11" height="48" border="0" alt="" /></td>
-<td class="bgr" valign="bottom"><img src="themes/styleguide/images/searchnew.php.gif" width="11" height="66" border="0" alt="" /></td>
-<td class="bgg" valign="bottom"><img src="themes/styleguide/images/thumbnails.php.gif" width="11" height="68" border="0" alt="" /></td>
-<td class="bgg" valign="bottom"><img src="themes/styleguide/images/upload.php.gif" width="12" height="49" border="0" alt="" /></td>
-<td class="bgr" valign="bottom"><img src="themes/styleguide/images/usermgr.php.gif" width="11" height="56" border="0" alt="" /></td>
-<td class="bgr" valign="bottom"><img src="themes/styleguide/images/util.php.gif" width="11" height="34" border="0" alt="" />
-<td class="bgr" valign="bottom"><img src="themes/styleguide/images/db_ecard.php.gif" width="11" height="56" border="0" alt="" />
+<td class="bgy" valign="bottom"><img src="themes/styleguide/images/albmgr_php.gif" width="11" height="50" border="0" alt="" /></td>
+<td class="bgr" valign="bottom"><img src="themes/styleguide/images/banning_php.gif" width="11" height="55" border="0" alt="" /></td>
+<td class="bgr" valign="bottom"><img src="themes/styleguide/images/catmgr_php.gif" width="12" height="83" border="0" alt="" /></td>
+<td class="bgr" valign="bottom"><img src="themes/styleguide/images/config_php.gif" width="11" height="46" border="0" alt="" /></td>
+<td class="bgy" valign="bottom"><img src="themes/styleguide/images/delete_php.gif" width="11" height="47" border="0" alt="" /></td>
+<td class="bgg" valign="bottom"><img src="themes/styleguide/images/displayimage_php.gif" width="12" height="76" border="0" alt="" /></td>
+<td class="bgg" valign="bottom"><img src="themes/styleguide/images/ecard_php.gif" width="11" height="44" border="0" alt="" /></td>
+<td class="bgy" valign="bottom"><img src="themes/styleguide/images/editpics_php.gif" width="11" height="53" border="0" alt="" /></td>
+<td class="bgg" valign="bottom"><img src="themes/styleguide/images/forgot_passwd_php.gif" width="11" height="83" border="0" alt="" /></td>
+<td class="bgr" valign="bottom"><img src="themes/styleguide/images/groupmgr_php.gif" width="12" height="62" border="0" alt="" /></td>
+<td class="bgg" valign="bottom"><img src="themes/styleguide/images/index_php.gif" width="11" height="41" border="0" alt="" /></td>
+<td class="bgg" valign="bottom"><img src="themes/styleguide/images/login_php.gif" width="11" height="41" border="0" alt="" /></td>
+<td class="bgy" valign="bottom"><img src="themes/styleguide/images/logout_php.gif" width="12" height="47" border="0" alt="" /></td>
+<td class="bgy" valign="bottom"><img src="themes/styleguide/images/modifyalb_php.gif" width="11" height="62" border="0" alt="" /></td>
+<td class="bgy" valign="bottom"><img src="themes/styleguide/images/profile_php.gif" width="11" height="47" border="0" alt="" /></td>
+<td class="bgr" valign="bottom"><img src="themes/styleguide/images/reviewcom_php.gif" width="12" height="66" border="0" alt="" /></td>
+<td class="bgg" valign="bottom"><img src="themes/styleguide/images/search_php.gif" width="11" height="48" border="0" alt="" /></td>
+<td class="bgr" valign="bottom"><img src="themes/styleguide/images/searchnew_php.gif" width="11" height="66" border="0" alt="" /></td>
+<td class="bgg" valign="bottom"><img src="themes/styleguide/images/thumbnails_php.gif" width="11" height="68" border="0" alt="" /></td>
+<td class="bgg" valign="bottom"><img src="themes/styleguide/images/upload_php.gif" width="12" height="49" border="0" alt="" /></td>
+<td class="bgr" valign="bottom"><img src="themes/styleguide/images/usermgr_php.gif" width="11" height="56" border="0" alt="" /></td>
+<td class="bgr" valign="bottom"><img src="themes/styleguide/images/util_php.gif" width="11" height="34" border="0" alt="" />
+<td class="bgr" valign="bottom"><img src="themes/styleguide/images/db_ecard_php.gif" width="11" height="56" border="0" alt="" />
 </tr>
 <tr><td class="bgsm"><a href="$highlightUrl=admin_menu" onmouseover="return makeTrue(domTT_activate(this, event, 'caption', 'admin_menu', 'content', 'Controls the admin menu buttons.<br />The row of admin fuction buttons across the top of the gallery in admin mode. If you allow users to login, they will have an admin mode as well (user admin mode), so you better configure this to look nicely!',   'trail', true));">admin_menu</a></td><td class="bgsm">A</td><td class="bgsm">A</td><td class="bgsm">A</td><td class="bgsm">A</td><td class="bgsm">A</td><td class="bgsm">A</td><td class="bgsm">A</td><td class="bgsm">A</td><td class="bgsm">A</td><td class="bgsm">A</td><td class="bgsm">A</td><td class="bgsm">&nbsp;</td><td class="bgsm">A</td><td class="bgsm">A</td><td class="bgsm">A</td><td class="bgsm">A</td><td class="bgsm">A</td><td class="bgsm">A</td><td class="bgsm">A</td><td class="bgsm">A</td><td class="bgsm">A</td><td class="bgsm">A</td><td class="bgsm">A</td></tr>
 <tr><td class="bgsm"><a href="$highlightUrl=admin_menu_thumb" onmouseover="return makeTrue(domTT_activate(this, event, 'caption', 'admin_menu_thumb', 'content', 'Only available on delete.php, visible for a short instance. This class will vanish in future versions, as it is not needed any longer.',   'trail', true));">admin_menu_thumb</a></td><td class="bgsm">&nbsp;</td><td class="bgsm">&nbsp;</td><td class="bgsm">&nbsp;</td><td class="bgsm">&nbsp;</td><td class="bgsm">X</td><td class="bgsm">&nbsp;</td><td class="bgsm">&nbsp;</td><td class="bgsm">&nbsp;</td><td class="bgsm">&nbsp;</td><td class="bgsm">&nbsp;</td><td class="bgsm">&nbsp;</td><td class="bgsm">&nbsp;</td><td class="bgsm">&nbsp;</td><td class="bgsm">&nbsp;</td><td class="bgsm">&nbsp;</td><td class="bgsm">&nbsp;</td><td class="bgsm">&nbsp;</td><td class="bgsm">&nbsp;</td><td class="bgsm">&nbsp;</td><td class="bgsm">&nbsp;</td><td class="bgsm">&nbsp;</td><td class="bgsm">&nbsp;</td><td class="bgsm">&nbsp;</td></tr>
