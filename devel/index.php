@@ -428,7 +428,7 @@ function list_albums()
 // Redone for a cleaner approach: DJMaze
 function list_cat_albums($cat = 0, $buffer = true)
 {
-    global $CONFIG, $USER, $PAGE, $lastup_date_fmt, $HTTP_GET_VARS, $USER_DATA, $cat;
+    global $CONFIG, $USER, $PAGE, $lastup_date_fmt, $HTTP_GET_VARS, $USER_DATA;
     global $lang_list_albums, $lang_errors;
 
     if ($cat == 0 && $buffer) return '';
@@ -578,7 +578,8 @@ if (isset($HTTP_GET_VARS['page'])) {
 */
 if (isset($HTTP_GET_VARS['cat'])) {
     $cat = (int)$HTTP_GET_VARS['cat'];
-} 
+}
+else $cat = 0;
 // Gather data for categories
 $breadcrumb = '';
 $cat_data = array();
