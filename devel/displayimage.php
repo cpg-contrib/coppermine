@@ -184,9 +184,9 @@ function html_picture()
             $pic_html = "<img src=\"" . $picture_url . "\" {$image_size['geom']} class=\"image\" border=\"0\" /><br />\n";
         }
     elseif ($mime_content['content']=='movie')
-            $pic_html = "<object {$image_size['geom']}><param name=\"movie\" value=\"". $picture_url . "\"><embed {$image_size['geom']} src=\"". $picture_url . "\"></embed></object>\n";
+            $pic_html = "<object {$image_size['geom']}><param name=\"movie\" value=\"". $picture_url . "\"><embed {$image_size['geom']} src=\"". $picture_url . "\"></embed></object><br />\n";
     elseif ($mime_content['content']=='audio')
-            $pic_html = "<object {$image_size['geom']}><param name=\"movie\" value=\"". $picture_url . "\"><embed {$image_size['geom']} src=\"". $picture_url . "\"></embed></object>\n";
+            $pic_html = "<object {$image_size['geom']}><param name=\"movie\" value=\"". $picture_url . "\"><embed {$image_size['geom']} src=\"". $picture_url . "\"></embed></object><br />\n";
     elseif ($mime_content['content']=='document') {
         $pic_html = "<a href=\"{$picture_url}\" target=\"_blank\" class=\"document_link\"><img src=\"images/thumb_$extension.jpg\" border=\"0\" class=\"image\" /></a>\n";
     }
