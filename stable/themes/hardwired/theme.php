@@ -49,7 +49,7 @@ $template_main_menu1 = <<<EOT
 <!-- END my_profile -->
 <!-- BEGIN faq -->
                                         <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-                                        <td><img name="buttonleft" src="themes/hardwired/images/buttonleftfaq.gif" width="17" height="25" border="0" id="buttonleft" alt="" /></td>
+                                        <td><img name="buttonleft" src="themes/hardwired/images/buttonleft.gif" width="17" height="25" border="0" id="buttonleft" alt="" /></td>
                                         <td background="themes/hardwired/images/buttoncenter.gif">
                         <a href="{FAQ_TGT}" title="{FAQ_TITLE}">{FAQ_LNK}</a>
                                         </td>
