@@ -35,7 +35,7 @@ if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
 $notice1 = ' *';
 
 $captionLabel = $lang_modifyalb_php['alb_desc'];
-if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&t='.urlencode(base64_encode(serialize($lang_bbcode_help))),400,180);}
+if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&t='.urlencode(base64_encode(serialize($lang_bbcode_help))),450,250);}
 $data = array($lang_modifyalb_php['general_settings'],
     array($lang_modifyalb_php['alb_title'], 'title', 0),
     array($lang_modifyalb_php['alb_cat'], 'category', 2),
