@@ -300,3 +300,13 @@ CREATE TABLE CPG_dict (
   keyword varchar(60) NOT NULL default '',
   PRIMARY KEY  (keyId)
 ) TYPE=MyISAM  COMMENT = 'Holds the keyword dictionary';
+
+
+#
+# Table structure for table `CPG_bridge`
+#
+
+CREATE TABLE CPG_bridge (
+  name varchar(40) NOT NULL default '0',
+  value varchar(255) NOT NULL default ''
+) TYPE=MyISAM;

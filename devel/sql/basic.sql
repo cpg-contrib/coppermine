@@ -224,3 +224,39 @@ INSERT INTO CPG_categories VALUES (1, 0, 'User galleries', 'This category contai
 INSERT INTO CPG_config VALUES ('show_which_exif', '|0|0|0|0|0|0|0|0|1|0|1|1|0|0|0|0|0|0|0|0|0|0|0|1|0|0|0|1|0|0|0|1|1|0|0|0|0|1|0|0|0|1|0|0|1|1|0|0|0|0|0|1|0|1|1');
 INSERT INTO CPG_config VALUES ('alb_desc_thumb', '1');
 INSERT INTO CPG_config VALUES ('link_pic_count', '0');
+
+INSERT INTO CPG_config VALUES ('bridge_enable', '0');
+
+#
+# Data for table `CPG_bridge`
+# Used for bridging by user interface
+#
+
+INSERT INTO CPG_bridge VALUES ('short_name', '');
+INSERT INTO CPG_bridge VALUES ('license_number', '');
+INSERT INTO CPG_bridge VALUES ('db_database_name', '');
+INSERT INTO CPG_bridge VALUES ('db_hostname', '');
+INSERT INTO CPG_bridge VALUES ('db_username', '');
+INSERT INTO CPG_bridge VALUES ('db_password', '');
+INSERT INTO CPG_bridge VALUES ('full_forum_url', '');
+INSERT INTO CPG_bridge VALUES ('relative_path_of_forum_from_webroot', '');
+INSERT INTO CPG_bridge VALUES ('relative_path_to_config_file', '');
+INSERT INTO CPG_bridge VALUES ('logout_flag', '');
+INSERT INTO CPG_bridge VALUES ('use_post_based_groups', '');
+INSERT INTO CPG_bridge VALUES ('cookie_prefix', '');
+INSERT INTO CPG_bridge VALUES ('table_prefix', '');
+INSERT INTO CPG_bridge VALUES ('user_table', '');
+INSERT INTO CPG_bridge VALUES ('session_table', '');
+INSERT INTO CPG_bridge VALUES ('group_table', '');
+INSERT INTO CPG_bridge VALUES ('group_relation_table', '');
+INSERT INTO CPG_bridge VALUES ('group_mapping_table', '');
+INSERT INTO CPG_bridge VALUES ('validating_group', '');
+INSERT INTO CPG_bridge VALUES ('guest_group', '');
+INSERT INTO CPG_bridge VALUES ('member_group', '');
+INSERT INTO CPG_bridge VALUES ('admin_group', '');
+INSERT INTO CPG_bridge VALUES ('banned_group', '');
+INSERT INTO CPG_bridge VALUES ('global_moderators_group', '');
+INSERT INTO CPG_bridge VALUES ('recovery_logon_failures', '0');
+INSERT INTO CPG_bridge VALUES ('recovery_logon_timestamp', '');
+
+
