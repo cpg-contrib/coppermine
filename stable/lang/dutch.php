@@ -27,7 +27,7 @@ $lang_translation_info = array(
 'trans_name'=> 'Ron Bos', //the name of the translator - can be a nickname 
 'trans_email' => 'ron@ronbos.nl', //translator's email address (optional) 
 'trans_website' => 'http://www.ronbos.nl/', //translator's website (optional) 
-'trans_date' => '2003-10-5', //the date the translation was created / last modified 
+'trans_date' => '2003-10-31', //the date the translation was created / last modified 
 ); 
 
 $lang_charset = 'iso-8859-1';
@@ -38,7 +38,7 @@ $lang_byte_units = array('Bytes', 'KB', 'MB');
 
 // Day of weeks and months
 $lang_day_of_week = array('zon', 'maa', 'din', 'woe', 'don', 'vri', 'zat');
-$lang_month = array('jan', 'feb', 'mar', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec');
+$lang_month = array('jan', 'feb', 'mrt', 'apr', 'mei', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec');
 
 $lang_yes = 'Ja';
 $lang_no  = 'Nee';
@@ -75,15 +75,15 @@ $lang_errors = array(
         'access_denied' => 'Je hebt geen toestemming om deze pagina te bezoeken.',
         'perm_denied' => 'Je hebt geen toestemming om deze handeling uit te voeren.',
         'param_missing' => 'Script aangeroepen zonder de vereiste parameters.',
-        'non_exist_ap' => 'Geselecteerde album/foto bestaat niet !',
-        'quota_exceeded' => 'Diskquota overschreden<br /><br />Je hebt een quota van [quota]K, je foto\'s gebruiken nu [space]K, het toevoegen van deze foto zorgt er voor dat je je quota overschrijdt.',
+        'non_exist_ap' => 'Geselecteerde album/foto bestaat niet!',
+        'quota_exceeded' => 'Diskquotum overschreden<br /><br />Je hebt een quotum van [quota]K, je foto\'s gebruiken nu [space]K, het toevoegen van deze foto zorgt er voor dat je je quotum overschrijdt.',
         'gd_file_type_err' => 'Indien je de GD image library gebruikt zijn alleen JPEG en PNG toegestaan.',
-        'invalid_image' => 'De foto welke je hebt geupload is corrupt of kan niet behandeld worden door de GD library',
-        'resize_failed' => 'Niet in staat de thumbnail of de aangepaste foto afmeting te maken.',
-        'no_img_to_display' => 'Geen foto om te tonen',
-        'non_exist_cat' => 'De geselecteerde categorie bestaat niet',
+        'invalid_image' => 'De foto die je hebt geupload is corrupt of kan niet behandeld worden door de GD library.',
+        'resize_failed' => 'Niet in staat de thumbnail of de afmetingen van de foto aan te passen.',
+        'no_img_to_display' => 'Geen foto om te tonen.',
+        'non_exist_cat' => 'De geselecteerde categorie bestaat niet.',
         'orphan_cat' => 'De categorie heeft een niet bestaande ouder, start de categorie manager om het probleem te herstellen.',
-        'directory_ro' => 'Map \'%s\' is niet beschrijfbaar, foto kan niet verwijderd worden',
+        'directory_ro' => 'Map \'%s\' is niet beschrijfbaar, foto kan niet verwijderd worden.',
         'non_exist_comment' => 'Het geselecteerde commentaar is niet aanwezig.',
         'pic_in_invalid_album' => 'Foto is in een niet bestaand album (%s)!?', 
         'banned' => 'Je bent op dit moment uitgesloten van het gebruik van deze site.', 
@@ -127,9 +127,8 @@ $lang_gallery_admin_menu = array(
         'groups_lnk' => 'Groepen',
         'comments_lnk' => 'Commentaren',
         'searchnew_lnk' => 'Batch toevoegen foto\'s',
-        'util_lnk' => 'Grootte aanpassen foto\'s', 
-        'ban_lnk' => 'Ban Gebruiker', //new in cpg1.2.0
-
+        'util_lnk' => 'Afmetingen aanpassen foto\'s', 
+        'ban_lnk' => 'Verban gebruiker', //new in cpg1.2.0
 );
 
 $lang_user_admin_menu = array(
@@ -165,11 +164,11 @@ $lang_thumb_view = array(
 
 
 $lang_img_nav_bar = array(
-        'thumb_title' => 'terug naar de thumbnail pagina',
+        'thumb_title' => 'Terug naar de thumbnail pagina',
         'pic_info_title' => 'Toon/verberg foto informatie',
         'slideshow_title' => 'Diashow',
         'ecard_title' => 'Stuur deze foto als een e-card',
-        'ecard_disabled' => 'e-cards zijn uitgeschakeld',
+        'ecard_disabled' => 'E-cards zijn uitgeschakeld',
         'ecard_disabled_msg' => 'Je hebt geen toestemming een e-card te versturen',
         'prev_title' => 'Bekijk voorgaande foto',
         'next_title' => 'Bekijk volgende foto',
@@ -201,7 +200,7 @@ $lang_rate_pic = array(
 $lang_cpg_die = array(
         INFORMATION => $lang_info,
         ERROR => $lang_error,
-        CRITICAL_ERROR => 'Kritische fout',
+        CRITICAL_ERROR => 'Kritieke fout',
         'file' => 'Bestand: ',
         'line' => 'Regel: ',
 );
@@ -242,7 +241,7 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
         'Smile' => 'Glimlach',
         'Sad' => 'Triest',
         'Surprised' => 'Verbaasd',
-        'Shocked' => 'Geshokeerd',
+        'Shocked' => 'Geshockeerd',
         'Confused' => 'Verward',
         'Cool' => 'Cool',
         'Laughing' => 'Lachen',
@@ -286,8 +285,8 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
         'no_change' => 'Je hebt geen enkele wijziging gedaan !',
         'new_album' => 'Nieuw album',
         'confirm_delete1' => 'Weet je het zeker dat je dit album wilt verwijderen ?',
-        'confirm_delete2' => '\nAlle fotos en commentaren zullen verloren gaan !',
-        'select_first' => 'Selecteer eerst een album',
+        'confirm_delete2' => '\nAlle foto\\\'s en commentaren zullen verloren gaan !',
+        'select_first' => 'Selecteer eerst een album.',
         'alb_mrg' => 'Album Manager',
         'my_gallery' => '* Mijn galerij *',
         'no_category' => '* Geen categorie *',
@@ -335,30 +334,30 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'title_d' => 'Titel afloopend', 
         'date_a' => 'Datum oplopend',
         'date_d' => 'Datum aflopend',
-        'th_any' => 'Max Aspect',
-        'th_ht' => 'Height',
-        'th_wd' => 'Width',
+        'th_any' => 'Max verhouding',
+        'th_ht' => 'Hoogte',
+        'th_wd' => 'Breedte'
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
         'Algemene instellingen',
         array('galerij naam', 'gallery_name', 0),
         array('galerij omschrijving', 'gallery_description', 0),
-        array('E-mailadres galerij administrator', 'gallery_admin_email', 0),
-        array('Het doel adres van de \'Zie meer foto\'s\' link in e-cards', 'ecards_more_pic_target', 0),
+        array('E-mailadres van galerij-administrator', 'gallery_admin_email', 0),
+        array('Het doel adres van de "Zie meer foto\'s" link in e-cards', 'ecards_more_pic_target', 0),
         array('Taal', 'lang', 5),
         array('Thema', 'theme', 6),
 
-        'Albumlijst uiterlijk',
+        'Uiterlijk albumlijst',
         array('Breedte van de hoofd tabel (pixels of %)', 'main_table_width', 0),
-        array('Aantal niveaus te tonen categorieën', 'subcat_level', 0),
+        array('Aantal te tonen categorie niveaus', 'subcat_level', 0),
         array('Aantal te tonen albums', 'albums_per_page', 0),
         array('Aantal kolommen voor de album lijst', 'album_list_cols', 0),
         array('Grootte van de thumbnails in pixels', 'alb_list_thumb_size', 0),
         array('De inhoud van de hoofd pagina', 'main_page_layout', 0),
         array('Laat eerste niveau album thumbnails zien in categorieën','first_level',1), 
 
-        'Thumbnail uiterlijk',
+        'Uiterlijk thumbnail',
         array('Aantal kolommen op de thumbnail pagina', 'thumbcols', 0),
         array('Aantal regels op de thumbnail pagina', 'thumbrows', 0),
         array('Maximaal aantal te tonen tabs', 'max_tabs', 0),
@@ -367,11 +366,11 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Standaard sorteer volgorde voor foto\'s','default_sort_order', 3),
         array('Minimum aantal stemmen op foto\'s voordat ze in de \'best-gewaardeerd\' lijst verschijnen', 'min_votes_for_rating', 0),
 
-        'Foto uiterlijk/Commentaar instellingen',
+        'Uiterlijk foto &amp; Commentaar instellingen',
         array('Breedte van de tabel om foto\'s te tonen (pixels of %)', 'picture_table_width', 0),
         array('Foto informatie is standaard zichtbaar', 'display_pic_info', 1),
         array('Filter slechte woorden in commentaren', 'filter_bad_words', 1),
-        array('Sta smilies toe in commentaren', 'enable_smilies', 1),
+        array('Sta emoticons toe in commentaren', 'enable_smilies', 1),
         array('Maximale lengte van fotobeschrijving', 'max_img_desc_length', 0),
         array('Maximale aantal tekens in een woord', 'max_com_wlength', 0),
         array('Maximale aantal regels in een commentaar', 'max_com_lines', 0),
@@ -382,11 +381,11 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 
         'Foto en thumbnail instellingen',
         array('Kwaliteit voor JPEG bestanden', 'jpeg_qual', 0),
-        array('Maximale breedte of hoogte van een thumbnail *', 'thumb_width', 0),
-        array('Max afmeting van een thumbnail <b>*</b>', 'thumb_width', 0), 
-        array('gebruik afmeting  (breedte of hoogte verhouding van thumbnail) <b>*</b>', 'thumb_use', 7), 
+        array('Maximale breedte of hoogte van een thumbnail <b>*</b>', 'thumb_width', 0),
+        array('Maximale afmeting van een thumbnail <b>*</b>', 'thumb_width', 0), 
+        array('Gebruik afmeting  (breedte of hoogte verhouding van thumbnail) <b>*</b>', 'thumb_use', 7), 
         array('Creëer tussen foto\'s','make_intermediate',1),
-        array('Maximale breedte of hoogte van tussen foto\'s *', 'picture_width', 0),
+        array('Maximale breedte of hoogte van tussen foto\'s <b>*</b>', 'picture_width', 0),
         array('Maximale grootte van upload foto\'s (KB)', 'max_upl_size', 0),
         array('Maximale breedte en hoogte van upload foto\'s (pixels)', 'max_upl_width_height', 0),
 
@@ -408,24 +407,25 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Verboden tekens in bestandsnamen', 'forbiden_fname_char',0),
         array('Toegestane bestandstype (alleen geldig voor ImageMagick)', 'allowed_img_types',0),
         array('Geaccepteerde bestandsextensies voor upload foto\'s', 'allowed_file_extensions',0),
-        array('Command line opties voor ImageMagick', 'im_options', 0),
-        array('Methode van aanpassen grootte foto\'s','thumb_method',2),
+        array('Methode van aanpassen afmetingen van foto\'s','thumb_method',2),
         array('Pad naar ImageMagick \'convert\' utility (voorbeeld /usr/bin/X11/)', 'impath', 0),
+        array('Command line opties voor ImageMagick', 'im_options', 0),
         array('Lees EXIF data in JPEG bestanden', 'read_exif_data', 1),
-        array('De album map *', 'fullpath', 0),
-        array('De map voor gebruikers foto\'s *', 'userpics', 0),
-        array('De prefix voor tussen foto\'s *', 'normal_pfx', 0),
-        array('De prefix voor thumbnails *', 'thumb_pfx', 0),
+        array('De album map <b>*</b>', 'fullpath', 0),
+        array('De map voor gebruikers foto\'s <b>*</b>', 'userpics', 0),
+        array('De prefix voor tussen foto\'s <b>*</b>', 'normal_pfx', 0),
+        array('De prefix voor thumbnails <b>*</b>', 'thumb_pfx', 0),
         array('Standaard modus voor mappen', 'default_dir_mode', 0),
+        array('Standaard modus voor foto\'s', 'default_file_mode', 0),
 
-        'Cookies/Tekenset instellingen',
+        'Cookies &amp; Tekenset instellingen',
         array('Naam van de cookie, gebruikt door het script', 'cookie_name', 0),
         array('Pad van de cookie, gebruikt door het script', 'cookie_path', 0),
         array('Teken encoding', 'charset', 4),
 
         'Overige instellingen',
-        array('Aanzetten debug modus', 'debug_mode', 1),
-        '<br /><div align="center">(*) velden gemarkeerd met * mogen niet veranderd worden als je al fotos in je galerie hebt</div><br />'
+        array('Aanzetten debug-modus', 'debug_mode', 1),
+        '<br /><div align="center">(*) velden gemarkeerd met * mogen niet veranderd worden als je al foto\'s in je galerij hebt</div><br />'
 
 );
 
@@ -435,30 +435,30 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 
 
 if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
-        'empty_name_or_com' => 'Je moet je naam en commentaar ingeven',
-        'com_added' => 'je commentaar is toegevoegd',
-        'alb_need_title' => 'je moet een naam geven aan het album !',
+        'empty_name_or_com' => 'Je moet je naam en commentaar ingeven.',
+        'com_added' => 'je commentaar is toegevoegd.',
+        'alb_need_title' => 'Je moet een naam geven aan het album !',
         'no_udp_needed' => 'Geen aanpassing nodig.',
-        'alb_updated' => 'Het album is aangepast',
-        'unknown_album' => 'Geselecteerde album bestaat niet of je hebt geen toestemming naar dit album te uploaden',
+        'alb_updated' => 'Het album is aangepast.',
+        'unknown_album' => 'Geselecteerde album bestaat niet of je hebt geen toestemming naar dit album te uploaden.',
         'no_pic_uploaded' => 'Er is geen foto geupload !<br /><br />Indien je echt een foto geselecteerd hebt om te uploaden, controleer of de server bestands upload toestaat...',
         'err_mkdir' => 'Creëeren van map %s niet gelukt !',
         'dest_dir_ro' => 'Doel map %s is niet beschrijfbaar door het script !',
         'err_move' => 'Onmogelijk %s te verplaatsen naar %s !',
         'err_fsize_too_large' => 'De door jou opgeladen foto is te groot (maximum toegelaten is %s x %s) !',
         'err_imgsize_too_large' => 'Het door jou opgeladen bestand is te groot (maximum toegestaan is %s KB) !',
-        'err_invalid_img' => 'Het bestand dat je opgeladen hebt is niet een geldig fotobestand !',
+        'err_invalid_img' => 'Het bestand dat je opgeladen hebt is geen geldig fotobestand !',
         'allowed_img_types' => 'Je kan aleen %s foto\'s uploaden.',
-        'err_insert_pic' => 'De foto \'%s\' kan niet ingevoegd worden in het album ',
+        'err_insert_pic' => 'De foto \'%s\' kan niet ingevoegd worden in het album.',
         'upload_success' => 'Je foto is succesvol geladen<br /><br />Het wordt zichtbaar als de admin het goedgekeurd heeft.',
         'info' => 'Informatie',
-        'com_added' => 'Commentaar toegevoegd',
-        'alb_updated' => 'Album aangepast',
+        'com_added' => 'Commentaar toegevoegd.',
+        'alb_updated' => 'Album aangepast.',
         'err_comment_empty' => 'Je commentaar is leeg !',
         'err_invalid_fext' => 'Alleen bestanden met de volgende extentie worden geaccepteerd : <br /><br />%s.',
-        'no_flood' => 'Sorry maar je bent de auteur van het laatste commentaar gepost voor deze foto<br /><br />Wijzig het commentaar dat je toegevoegd hebt',
+        'no_flood' => 'Sorry maar je bent de auteur van het laatste geposte commentaar voor deze foto<br /><br />Wijzig het commentaar dat je toegevoegd hebt',
         'redirect_msg' => 'je wordt doorgestuurd.<br /><br /><br />Klik \'Doorgaan\' indien de pagina niet automatisch ververst wordt',
-        'upl_success' => 'Je foto is succesvol toegevoegd',
+        'upl_success' => 'Je foto is succesvol toegevoegd.',
 );
 
 // ------------------------------------------------------------------------- //
@@ -518,24 +518,24 @@ $lang_picinfo = array(
         'Dimensions' => 'Afmetingen',
         'Displayed' => 'Getoond',
         'Camera' => 'Camera',
-        'Date taken' => 'opnamedatum',
+        'Date taken' => 'Opnamedatum',
         'Aperture' => 'Opening',
         'Exposure time' => 'Sluitertijd',
         'Focal length' => 'Brandpuntsafstand',
         'Comment' => 'Commentaar', 
-        'addFav'=>'Voeg toe aan Fav', 
+        'addFav'=>'Voeg toe aan Favorieten', 
         'addFavPhrase'=>'Favoriet', 
-        'remFav'=>'Verwijder van Fav', 
+        'remFav'=>'Verwijder uit Favorieten', 
 );
 
 $lang_display_comments = array(
         'OK' => 'OK',
-        'edit_title' => 'Wijzig dit commentaar',
+        'edit_title' => 'Wijzig dit commentaar.',
         'confirm_delete' => 'Weet je het zeker dat je dit commentaar wilt verwijderen ?',
-        'add_your_comment' => 'Voeg je commentaar toe',
+        'add_your_comment' => 'Voeg je commentaar toe.',
         'name'=>'Naam', 
         'comment'=>'Commentaar', 
-        'your_name' => 'Anon', 
+        'your_name' => 'Je naam', 
 );
 
 $lang_fullsize_popup = array( 
@@ -551,10 +551,10 @@ $lang_fullsize_popup = array(
 if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array(
         'title' => 'Stuur een e-card',
         'invalid_email' => '<b>Waarschuwing</b> : ongeldig e-mail adres !',
-        'ecard_title' => 'Een e-card van %s voor jou',
-        'view_ecard' => 'Indien de e-card niet juist getoond wordt, klik dan deze link',
+        'ecard_title' => 'Een e-card van %s voor jou.',
+        'view_ecard' => 'Indien de e-card niet juist getoond wordt, klik dan op deze link.',
         'view_more_pics' => 'Klik op deze link om meer foto\'s te bekijken !',
-        'send_success' => 'Je e-card is verzonden',
+        'send_success' => 'Je e-card is verzonden.',
         'send_failed' => 'Sorry, maar de server kan je e-card niet verzenden...',
         'from' => 'Van',
         'your_name' => 'Jouw naam',
@@ -576,14 +576,14 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
         'title' => 'Titel',
         'desc' => 'Beschrijving',
         'keywords' => 'Sleutelwoorden',
-        'pic_info_str' => '%sx%s - %sKB - %s bekeken - %s stemmen',
+        'pic_info_str' => '%s&times;%s - %sKB - %s bekeken - %s stemmen',
         'approve' => 'Laat foto toe',
         'postpone_app' => 'Stel toelating uit',
         'del_pic' => 'Verwijder foto',
         'reset_view_count' => 'Reset bekeken teller',
         'reset_votes' => 'Reset stemmen',
         'del_comm' => 'verwijder commentaar',
-        'upl_approval' => 'Opload toestemming',
+        'upl_approval' => 'Upload toestemming',
         'edit_pics' => 'Wijzig foto\'s',
         'see_next' => 'Bekijk volgende foto\'s',
         'see_prev' => 'Bekijk vorige foto\'s',
@@ -598,7 +598,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 
 if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
         'group_name' => 'Groepsnaam',
-        'disk_quota' => 'Diskquota',
+        'disk_quota' => 'Diskquotum',
         'can_rate' => 'Kan foto\'s beoordelen ',
         'can_send_ecards' => 'Kan e-cards zenden',
         'can_post_com' => 'Kan commentaar posten',
@@ -609,8 +609,8 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
         'del_groups' => 'Verwijder geselecteerde groep(en)',
         'confirm_del' => 'Waarschuwing, indien je een groep verwijderd, kunnen gebruikers die behoorden tot deze groep niet meer inloggen !\n\nWil je doorgaan ?',
         'title' => 'Beheer gebruikersgroepen',
-        'approval_1' => 'Pub. Opl. toestemming (1)',
-        'approval_2' => 'Priv. Opl. toestemming (2)',
+        'approval_1' => 'Pub. Upl. toestemming (1)',
+        'approval_2' => 'Priv. Upl. toestemming (2)',
         'note1' => '<b>(1)</b> upload in een publiek album benodigd toesteming van de admin',
         'note2' => '<b>(2)</b> upload in een album welke behoort aan een gebruiker benodigd toestemming van de admin',
         'notes' => 'Notities'
@@ -627,9 +627,9 @@ $lang_index_php = array(
 );
 
 $lang_album_admin_menu = array(
-        'confirm_delete' => 'Weet je het zeker dat je dit album wilt VERWIJDEREN ? \\nAlle foto\'s en commentaren worden ook verwijderd.',
-        'delete' => 'Verw',
-        'modify' => 'Eig',
+        'confirm_delete' => 'Weet je het zeker dat je dit album wilt VERWIJDEREN ? \\nAlle foto\\\'s en commentaren worden ook verwijderd.',
+        'delete' => 'Verwijder',
+        'modify' => 'Eigenschappen',
         'edit_pics' => 'Wijzig foto\'s',
 );
 
@@ -643,7 +643,7 @@ $lang_list_categories = array(
 
 $lang_list_users = array(
         'user_list' => 'Gebruikers lijst',
-        'no_user_gal' => 'Er zijn geen gebruikers die toestemming hebben om albums te hebben',
+        'no_user_gal' => 'Er zijn geen gebruikers die toestemming hebben om albums te hebben.',
         'n_albums' => '%s album(s)',
         'n_pics' => '%s foto(\'s)'
 );
@@ -675,7 +675,7 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('LOGOUT_PHP')) $lang_logout_php = array(
-        'logout' => 'uitloggen',
+        'logout' => 'Uitloggen',
         'bye' => 'Tot ziens %s ...',
         'err_not_loged_in' => 'Je bent niet ingelogd !',
 );
@@ -688,7 +688,7 @@ if (defined('LOGOUT_PHP')) $lang_logout_php = array(
 
 if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
         'upd_alb_n' => 'Pas album %s aan',
-        'general_settings' => 'Algemene instelligen',
+        'general_settings' => 'Algemene instellingen',
         'alb_title' => 'Album titel',
         'alb_cat' => 'Album categorie',
         'alb_desc' => 'Album omschrijving',
@@ -698,7 +698,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
         'can_upload' => 'Bezoekers kunnen foto\'s uploaden',
         'can_post_comments' => 'Bezoekers kunnen commentaar posten',
         'can_rate' => 'Gebruiker kan foto\'s beoordelen',
-        'user_gal' => 'Gebruiker Galerij',
+        'user_gal' => 'Gebruiker galerij',
         'no_cat' => '* geen categorie *',
         'alb_empty' => 'Album is leeg',
         'last_uploaded' => 'Laatste upload',
@@ -727,9 +727,9 @@ if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
-De administrator van {SITE_NAME} zal proberen elk aanstootgevend materiaal zo snel als mogelijk te verwijderen. Het is echter onmogelijk elk materiaal te bekijken. Daarom ga je akkoord dat alle postings die op deze site gemaakt worden de gezichtspunten en opinies zijn van de auteur en niet van de administrators of webmaster (behalve hun eigen posting) en deze zullen daarom niet aansprakelijk gesteld worden.<br />
+De beheerder van {SITE_NAME} zal proberen elk aanstootgevend materiaal zo snel als mogelijk te verwijderen. Het is echter onmogelijk elk materiaal te bekijken. Daarom ga je akkoord dat alle postings die op deze site gemaakt worden de gezichtspunten en opinies zijn van de auteur en niet van de beheerder of webmaster (behalve hun eigen postings) en deze zullen daarom niet aansprakelijk gesteld worden.<br />
 <br />
-Je gaat er mee akkoord geen aanstootgevende, obscene, vulgaire, hatelijke, bedreigende, sexueel-getinte of elk ander materiaal dat elke van toepassing zijnde wet overtreedt op deze site te plaatsen. Je gaat er mee akkoord dat de webmaster, administrator en  moderators van {SITE_NAME} het recht hebben elke inhoud te verwijderen en of te wijzigen wanneer zij dat nodig vinden. Als gebruiker ga je er mee akkoord dat alle data die je hebt verstrekt in een database worden bewaard. Terwijl deze informatie niet openbaar gemaakt wordt aan een derde partij zonder jouw toestemming, ga je akkoord met het feit dat de webmaster en de administrator niet verantwoordelijk gehouden kunnen worden voor elke hack poging, dat kan lijden tot het openbaar worden van de database.<br />
+Je gaat er mee akkoord geen aanstootgevende, obscene, vulgaire, hatelijke, bedreigende, sexueel-getinte of elk ander materiaal dat elke van toepassing zijnde wet overtreedt, op deze site te plaatsen. Je gaat er mee akkoord dat de webmaster, beheerder en  moderators van {SITE_NAME} het recht hebben elke inhoud te verwijderen en of te wijzigen wanneer zij dat nodig vinden. Als gebruiker ga je er mee akkoord dat alle data die je hebt verstrekt in een database worden bewaard. Terwijl deze informatie niet openbaar gemaakt wordt aan een derde partij zonder jouw toestemming, ga je akkoord met het feit dat de webmaster en de beheerder niet verantwoordelijk gehouden kunnen worden voor elke hack poging, dat kan lijden tot het openbaar worden van de database.<br />
 <br />
 Deze site gebruikt cookies om informatie te bewaren op je lokale computer. Deze cookies dienen er voor jouw kijk plezier te verhogen. Het e-mail adres wordt alleen gebruikt om jouw registratie details en wachtwoord te bevestigen.<br />
 <br />
@@ -771,7 +771,7 @@ $lang_register_php = array(
         'err_unk_user' => 'Geselecteerde gebruiker bestaat niet !',
         'x_s_profile' => '%s\'s profiel',
         'group' => 'Groep',
-        'reg_date' => 'Toegetreden',
+        'reg_date' => 'Aangemeld',
         'disk_usage' => 'Disk gebruik',
         'change_pass' => 'Verander wachtwoord',
         'current_pass' => 'Huidig wachtwoord',
@@ -816,7 +816,7 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
         'n_comm_disp' => 'Aantal te tonen commentaren',
         'see_prev' => 'Bekijk voorgaande',
         'see_next' => 'Bekijk volgende',
-        'del_comm' => 'verwijder geselecteerde commentaar',
+        'del_comm' => 'Verwijder geselecteerde commentaar',
 );
 
 
@@ -873,13 +873,13 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 // ------------------------------------------------------------------------- // 
 
 if (defined('BANNING_PHP')) $lang_banning_php = array( 
-                'title' => 'Ban Gebruikers', 
+                'title' => 'Verban gebruikers', 
                 'user_name' => 'Gebruikersnaam', 
                 'ip_address' => 'IP-adres', 
                 'expiry' => 'Verloopt (blank is permanent)', 
                 'edit_ban' => 'Bewaar veranderingen', 
                 'delete_ban' => 'Verwijder', 
-                'add_new' => 'Voeg nieuwe Ban toe', 
+                'add_new' => 'Voeg nieuwe verbanning toe', 
                 'add_ban' => 'Toevoegen', 
 ); 
 
@@ -903,15 +903,15 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
-        'title' => 'Beheer gebruikers',
+        'title' => 'Gebruikers beheer',
         'name_a' => 'Naam oplopend',
         'name_d' => 'Naam aflopend',
         'group_a' => 'Groep oplopend',
         'group_d' => 'Groep aflopend',
-        'reg_a' => 'Reg datum oplopend',
-        'reg_d' => 'Reg datum aflopend',
-        'pic_a' => 'Aant foto\'s oplopend',
-        'pic_d' => 'Aant foto\'s aflopend',
+        'reg_a' => 'Registratie datum oplopend',
+        'reg_d' => 'Registratie datum aflopend',
+        'pic_a' => 'Aantal foto\'s oplopend',
+        'pic_d' => 'Aantal foto\'s aflopend',
         'disku_a' => 'Disk gebruik oplopend',
         'disku_d' => 'Disk gebruik aflopend',
         'sort_by' => 'Sorteer gebruikers op',
@@ -927,7 +927,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
         'disk_space' => 'Disk ruimte',
         'registered_on' => 'Geregistreerd op',
         'u_user_on_p_pages' => '%d gebruikers op %d pagina(s)',
-        'confirm_del' => 'Weet je het zeker dat je deze gebruiker wilt VERWIJDEREN ? \\nAl zijn fotos en albums worden ook verwijderd.',
+        'confirm_del' => 'Weet je het zeker dat je deze gebruiker wilt VERWIJDEREN ? \\nAl zijn foto\\\'s en albums worden ook verwijderd.',
         'mail' => 'MAIL',
         'err_unknown_user' => 'Geselecteerde gebruiker bestaat niet !',
         'modify_user' => 'Wijzig gebruiker',
@@ -951,14 +951,14 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 // ------------------------------------------------------------------------- // 
 
 if (defined('UTIL_PHP')) $lang_util_php = array( 
-        'title' => 'Aanpassen grootte foto\'s', 
-        'what_it_does' => 'Wat doet het', 
-        'what_update_titles' => 'Past titels aan van bestandsnamen', 
+        'title' => 'Aanpassen afmetingen foto\'s', 
+        'what_it_does' => 'Wat doet deze tool', 
+        'what_update_titles' => 'Creëert titels uit bestandsnamen', 
         'what_delete_title' => 'Verwijdert titels', 
-        'what_rebuild' => 'Herbouwt thumbnails en past grootte aan van foto\'s', 
-        'what_delete_originals' => 'Verwijdert de originele maat foto\'s en vervangt deze met de aangepaste maat versie', 
+        'what_rebuild' => 'Herbouwt thumbnails en past afmetingen aan van foto\'s', 
+        'what_delete_originals' => 'Verwijdert de originele foto\'s en vervangt deze met de aangepaste afmetingen versie', 
         'file' => 'Bestand', 
-        'title_set_to' => 'titel gezet naar', 
+        'title_set_to' => 'titel aangepast naar', 
         'submit_form' => 'Doorvoeren', 
         'updated_succesfully' => 'aanpassing succesvol', 
         'error_create' => 'FOUT bij aanmaken', 
@@ -967,17 +967,17 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
         'error_rename' => 'Fout bij hernoemen van %s naar %s', 
         'error_not_found' => 'Het bestand %s is niet gevonden', 
         'back' => 'terug naar begin', 
-        'thumbs_wait' => 'Aanpassen van thumbnails en/of grootte van foto\'s, even geduld...', 
-        'thumbs_continue_wait' => 'Doorgaan met aanpassen van thumbnails en/of grootte van foto\'s...', 
+        'thumbs_wait' => 'Aanpassen van thumbnails en/of afmetingen van foto\'s, even geduld...', 
+        'thumbs_continue_wait' => 'Doorgaan met aanpassen van thumbnails en/of afmetingen van foto\'s...', 
         'titles_wait' => 'Aanpassen titels, even geduld...', 
         'delete_wait' => 'Verwijderen titels, even geduld...', 
-        'replace_wait' => 'Verwijderen van originele en vervangen door aangepaste grootte van foto\'s, even geduld..', 
+        'replace_wait' => 'Verwijderen van originele en vervangen door aangepaste afmetingen van foto\'s, even geduld..', 
         'instruction' => 'Snelle instructies', 
         'instruction_action' => 'Selecteer actie', 
         'instruction_parameter' => 'Zet parameters', 
         'instruction_album' => 'Selecteer album', 
         'instruction_press' => 'Klik %s', 
-        'update' => 'Aanpassen thumbs en/of grootte foto\'s', 
+        'update' => 'Aanpassen thumbs en/of afmetingen foto\'s', 
         'update_what' => 'Wat moet er aangepast worden', 
         'update_thumb' => 'Alleen thumbnails', 
         'update_pic' => 'Alleen aangepaste foto\'s', 
@@ -992,8 +992,8 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
         'filename_time' => 'Verander 2003_11_23_13_20_20.jpg naar 13:20', 
         'delete' => 'Verwijder foto titel of originele grootte van foto\'s', 
         'delete_title' => 'Verwijder foto titel', 
-        'delete_original' => 'Verwijder originele grootte foto\'s', 
-        'delete_replace' => 'Verwijder de originele foto\'s en vervang deze door de in grootte aangepast versies', 
+        'delete_original' => 'Verwijder originele foto\'s', 
+        'delete_replace' => 'Verwijder de originele foto\'s en vervang deze door de in afmeting aangepast versies', 
         'select_album' => 'Selecteer album', 
 );
 ?>
