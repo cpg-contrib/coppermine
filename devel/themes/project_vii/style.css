@@ -17,7 +17,6 @@ table {
 h1{
         font-weight: normal;
         font-size: 28px;
-        font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
         text-decoration: none;
         padding-left : 20px;
         color: #FFFFFF;
@@ -25,7 +24,6 @@ h1{
 }
 
 h2 {
-        font-family: Arial, Helvetica, sans-serif;
         background-image : url(images/box_left_icon.gif);
         background-repeat : no-repeat;
         background-position : left;
@@ -36,7 +34,6 @@ h2 {
 
 h3 {
         font-weight: bold;
-        font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
         font-size: 14px;
         padding-left : 20px;
         color: #646464;
@@ -44,7 +41,6 @@ h3 {
 }
 
 p {
-        font-family: Arial, Helvetica, sans-serif;
         font-size: 100%;
         margin: 2px 0px;
 }
@@ -134,7 +130,6 @@ li {
 }
 
 .textinput {
-        font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
         font-size: 100%;
         border: 1px solid #666666;
         padding-right: 3px;
@@ -142,14 +137,12 @@ li {
 }
 
 .listbox {
-        font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
         font-size: 100%;
         border: 1px solid #666666;
         vertical-align : middle;
 }
 
 .button {
-        font-family: Arial, Helvetica, sans-serif;
         font-size: 100%;
         border: 1px solid #666666;
         background-image : url(images/button_bg.gif);
@@ -157,7 +150,6 @@ li {
 }
 
 .comment_button {
-        font-family: Arial, Helvetica, sans-serif;
         font-size: 100%;
         border: 1px solid #666666;
         background-image : url(images/button_bg.gif);
@@ -167,13 +159,11 @@ li {
 }
 
 .radio {
-        font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
         font-size: 100%;
         vertical-align : middle;
 }
 
 .checkbox {
-        font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
         font-size: 100%;
         vertical-align : middle;
 }
@@ -205,7 +195,6 @@ bblink a:hover {
 }
 
 .tableh1 {
-        font-family:  Verdana, Geneva, Arial, sans-serif;
         background : #BDBDBD ;
         color: #FFFFFF;
         padding-top: 3px;
@@ -215,7 +204,6 @@ bblink a:hover {
 }
 
 .tableh1_compact {
-        font-family:  Verdana, Geneva, Arial, sans-serif;
         background : #BDBDBD ;
         color: #FFFFFF;
         padding-top: 2px;
@@ -225,7 +213,6 @@ bblink a:hover {
 }
 
 .tableh2 {
-        font-family:  Verdana, Geneva, Arial, sans-serif;
         background: #E6E6E6 ;
         color : #000000;
         padding-top: 3px;
@@ -235,7 +222,6 @@ bblink a:hover {
 }
 
 .tableh2_compact {
-        font-family:  Verdana, Geneva, Arial, sans-serif;
         background: #E6E6E6 ;
         color : #000000;
         padding-top: 2px;
@@ -341,7 +327,6 @@ bblink a:hover {
 }
 
 .sortorder_options {
-        font-family: Verdana, Arial, Helvetica, sans-serif;
         background : #BDBDBD ;
         color: #FFFFFF;
         padding: 0px;
@@ -352,7 +337,6 @@ bblink a:hover {
 }
 
 .navmenu {
-        font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
         color: #FFFFFF;
         font-weight: bold;
         background : #BDBDBD ;
@@ -384,7 +368,6 @@ bblink a:hover {
 }
 
 .admin_menu_thumb {
-        font-family: Arial, Helvetica, sans-serif;
         font-size: 90%;
         border: 1px solid #666666;
         background-image : url(images/button_bg.gif);
@@ -414,7 +397,6 @@ bblink a:hover {
 }
 
 .admin_menu {
-        font-family: Arial, Helvetica, sans-serif;
         font-size: 90%;
         border: 1px solid #666666;
         background-image : url(images/button_bg.gif);
@@ -512,7 +494,6 @@ td #admin_menu_anim {
 }
 
 .catlink {
-        font-family:  Verdana, Geneva, Arial, sans-serif;
         display: block;
         margin-bottom: 2px;
 }
@@ -528,7 +509,6 @@ td #admin_menu_anim {
 }
 
 .topmenu {
-        font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
         line-height : 130%;
         font-size : 110%;
 }
@@ -587,6 +567,5 @@ td #admin_menu_anim {
         background-color: #FAFAFA;
         border: 1px solid #FAFAFA;
         font-size: 80%;
-        font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
         vertical-align : middle;
 }
