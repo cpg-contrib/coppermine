@@ -111,6 +111,7 @@ Changed 'cpg130_filetypes' to 'CPG_filetypes', 14 June 2004, Chris
 Fixed bug in index.php of not showing user gallery thumbnails, 15 June 2004, tarique
 Fixed album visibility issue - 16 June 2004, Chris
 Fixed 'install not working' - 16 June 2004, Chris
-Added valid XHTML 1.0 transitional output to displayimage, 17th June 2004 tarique
+Added valid XHTML 1.0 transitional output to displayimage, 17th June 2004, tarique
 Updated Server side favorite to be in separate table, 17th June 2004 tarique
 Added config settable profile fields, 19th June 2004, casper
+Added keyword Inserter, 20th June 2004, tarique
