@@ -15,19 +15,34 @@
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
 /**
-* $Id$
+* Coppermine Photo Gallery 1.3.0 index.php
+*
+* This file is the main display for categories and album it also displays thumbnails
+*
+* @copyright  2002,2003 Gregory DEMAR, Coppermine Dev Team
+* @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
+* @package Coppermine
+* @version $Id$
 */
+
 // Check if standalone is installed in a portal like phpNuke (added by DJMaze)
 $DIR = preg_split("/[\/\\\]/", dirname($_SERVER['PATH_TRANSLATED']));
 if ($DIR[count($DIR)-2] == "modules") {
     echo "<html><body><h1>ERROR</h1>You installed the standalone Coppermine into your Nuke portal.<br>" . "Please download and install a CPG Port: <a href=\"http://sourceforge.net/project/showfiles.php?group_id=89658\">CPG for PostNuke OR CPG for PHPnuke</a></body></html>";
     die();
 } // end check
+/**
+* Unless this is true most things wont work - protection against direct execution of inc files
+*/
 define('IN_COPPERMINE', true);
+/**
+* Sets the flag for lang file
+*/
 define('INDEX_PHP', true);
 
 require('include/init.inc.php');
 if ($CONFIG['enable_smilies']) include("include/smilies.inc.php");
+
 /**
 * Local functions definition
 */
@@ -67,12 +82,12 @@ function html_albummenu($id)
  * 
  * Get the data about the sub categories which are going to be shown on the index page, this function is called recursively 
  * 
- * @param integer $parent
- * @param array $cat_data
+ * @param integer $parent Parent Category
+ * @param array $cat_data 
  * @param array $album_set_array
- * @param integer $level
- * @param string $ident
- * @return Does not return anything
+ * @param integer $level Level being displayed
+ * @param string $ident String to use as indentation for Categories
+ * @return void
  **/
 function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident = '')
 {
@@ -170,10 +185,10 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
  * 
  *  List all categories
  * 
- * @param $breadcrumb
- * @param $cat_data
- * @param $statistics
- * @return 
+ * @param string $breadcrumb
+ * @param array $cat_data
+ * @param string $statistics
+ * @return void
  **/
 function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
 {
@@ -286,6 +301,11 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
     } 
 } 
 
+/**
+* list_users()
+*
+* Get a list of users galleries 
+*/
 function list_users()
 {
     global $CONFIG, $PAGE, $FORBIDDEN_SET;
@@ -370,7 +390,12 @@ function list_users()
     } 
     theme_display_thumbnails($user_list, $user_count, '', '', 1, $PAGE, $totalPages, false, true, 'user');
 } 
-// List all albums
+
+/**
+* list_albums()
+*
+* Get a list of albums 
+*/
 function list_albums()
 {
     global $CONFIG, $USER, $USER_DATA, $PAGE, $lastup_date_fmt, $FORBIDDEN_SET, $FORBIDDEN_SET_DATA;
@@ -493,10 +518,12 @@ function list_albums()
 } 
 
 /**
+* list_cat_albums()
+*
+* This has been added to list the albums in a category, used for showing first level albumslargely a repetition of code elsewhere
+* Redone for a cleaner approach
+* @param integer $cat Category id for which albums are needed
 */
-// List category albums
-// This has been added to list the category albums largely a repetition of code elsewhere
-// Redone for a cleaner approach
 function list_cat_albums($cat = 0)
 {
     global $CONFIG, $USER, $lastup_date_fmt, $HTTP_GET_VARS, $USER_DATA, $FORBIDDEN_SET, $FORBIDDEN_SET_DATA, $cpg_show_private_album;
@@ -627,11 +654,9 @@ function list_cat_albums($cat = 0)
     return $cat_albums;
 } 
 
-/**
-*/
-/**
-* Main code
-*/
+//
+// Main code
+//
 
 if (isset($HTTP_GET_VARS['page'])) {
     $PAGE = max((int)$HTTP_GET_VARS['page'], 1);
@@ -657,8 +682,10 @@ get_cat_list($breadcrumb, $cat_data, $statistics);
 pageheader($BREADCRUMB_TEXT ? $BREADCRUMB_TEXT : $lang_index_php['welcome']);
 
 $elements = preg_split("|/|", $CONFIG['main_page_layout'], -1, PREG_SPLIT_NO_EMPTY);
+
 foreach ($elements as $element) {
-    if (preg_match("/(\w+),*(\d+)*/", $element, $matches)) switch ($matches[1]) {
+    if (preg_match("/(\w+),*(\d+)*/", $element, $matches)){ 
+	  switch ($matches[1]) {
             case 'breadcrumb': 
                 // Added breadcrumb as a separate listable block from config
                 if (($breadcrumb != '' || count($cat_data) > 0) && $cat != 0) theme_display_breadcrumb($breadcrumb, $cat_data);
@@ -666,7 +693,9 @@ foreach ($elements as $element) {
 
             case 'catlist':
                 if ($breadcrumb != '' || count($cat_data) > 0) theme_display_cat_list($breadcrumb, $cat_data, $statistics);
-                if (isset($cat) && $cat == USER_GAL_CAT) list_users();
+                if (isset($cat) && $cat == USER_GAL_CAT) {
+					list_users();
+				}
                 flush();
                 break;
 
@@ -714,8 +743,8 @@ foreach ($elements as $element) {
                     include('anycontent.php');
                     $anycontent = CPGPluginAPI::filter('anycontent',ob_get_contents());
                     ob_end_clean();
-                    echo ($anycontent);
-                }
+					echo ($anycontent);
+                }				
                 flush();
                 break;
             case 'plugin':
@@ -735,7 +764,8 @@ foreach ($elements as $element) {
                 }
                 break;
         }
-    } 
+      } 
+   }
 
     pagefooter();
     ob_end_flush(); 
@@ -749,5 +779,4 @@ foreach ($elements as $element) {
         $result = db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET randpos = ROUND(RAND()*$granularity) WHERE 1");
         $result = db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '" . time() . "' WHERE name = 'randpos_interval'");
     } 
-
     ?>
