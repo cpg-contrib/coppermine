@@ -1,0 +1,133 @@
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1" colspan="2">Upload file</td>
+  </tr>
+  <script language="javascript" type="text/javascript">
+  {literal}
+    function textCounter(field, maxlimit) {
+      if (field.value.length > maxlimit) // if too long...trim it!
+      field.value = field.value.substring(0, maxlimit);
+    }
+
+  var counter = 0;
+
+  function moreFields()
+  {
+    counter++;
+    var newFields = document.getElementById('readroot').cloneNode(true);
+    //alert (newFields);
+    newFields.id = '';
+    newFields.style.display = 'block';
+    var newField = newFields.childNodes;
+    //alert (newField.length);
+    for (var i=0;i<newField.length;i++)
+    {
+      var theName = newField[i].name
+      //alert ("NAME OUT: "+newField[i]);
+      if (theName) {
+        //alert ("NAME: "+theName);
+        newField[i].name = theName + counter;
+      }
+    }
+    var insertHere = document.getElementById('writeroot');
+    insertHere.parentNode.insertBefore(newFields,insertHere);
+  }
+
+  window.onload = moreFields;
+  {/literal}
+  </script>
+
+  <tr>
+    <td colspan="2">Now you may upload your files using the upload boxes below. The size of files uploaded from your client to the server should not exceed 1024 KB each. ZIP files uploaded in the 'File Upload' and 'URI/URL Upload' sections will remain compressed.<br /><br />When using the URI/URL upload section, please enter the path to the file like so: http://www.mysite.com/images/example.jpg<br /><br />When you have completed the form, please click 'Continue'.
+    </td>
+  </tr>
+  <tr>
+    <td class="tableh2" colspan="2">
+      <b>File Uploads:</b>
+    </td>
+  </tr>
+  <tr>
+    <TD>
+    <div id="readroot" style="display: none">
+      <table align="center" width="100%" cellspacing="0" cellpadding="0" class="maintable">
+      <tr>
+        <TD colspan="2" class="tableb">
+          <input type="button" value="Remove Block" style="font-size: 10px" onClick=" this.parentNode.parentNode.parentNode.parentNode.removeChild(this.parentNode.parentNode.parentNode);">
+        </TD>
+      </tr>
+
+      <tr>
+        <td class="tableb">Album: </td>
+        <TD class="tableb" valign="top">
+          {assign var="alb_cat" value=""}
+          <select name="album[]" class="listbox">
+            <option value="">{$lang_upload_php.select_album}</option>
+            {foreach from=$listArray item=item key=key}
+              {if $item.cat ne $alb_cat}
+                {if $alb_cat}</optgroup>{/if}
+                <optgroup label="{$item.cat}">
+                  {$item.cat}
+                  {assign var="alb_cat" value=$item.cat}
+              {/if}
+                <option value="{$item.aid}" {if $item.aid eq $sel_album}selected{/if}>{$item.title}</option>
+            {/foreach}
+            {if $alb_cat}</optgroup>{/if}
+          </select>
+        </TD>
+      </tr>
+      <TR>
+        <TD class="tableb">File: </td><td class="tableb" valign="top"><input type="file" name="userpicture[]" size="40" class="listbox"></td>
+      </TR>
+      <tr>
+        <td width="40%" class="tableb">File title: </td>
+        <td width="60%" class="tableb" valign="top">
+          <input type="text" style="width: 100%" name="title[]" id="title" maxlength="255" value="" class="textinput">
+        </td>
+      </tr>
+      <tr>
+        <td class="tableb" valign="top">
+          File description&nbsp;<a href="javascript:;" onclick="MM_openBrWindow('docs/showdoc.php?css=2bornot2b&f=index.html&base=64&h=czoxMToiYmJjb2RlIGhlbHAiOw%3D%3D&t=czo1NTc6IllvdSBjYW4gYWRkIGNsaWNrYWJsZSBsaW5rcyBhbmQgc29tZSBmb3JtYXRpbmcgdG8gdGhpcyBmaWVsZCBieSB1c2luZyBiYmNvZGUgdGFnczogPGxpPltiXUJvbGRbL2JdID0mZ3Q7IDxiPkJvbGQ8L2I%2BPC9saT48bGk%2BW2ldSXRhbGljWy9pXSA9Jmd0OyA8aT5JdGFsaWM8L2k%2BPC9saT48bGk%2BW3VybD1odHRwOi8veW91cnNpdGUuY29tL11VcmwgVGV4dFsvdXJsXSA9Jmd0OyA8YSBocmVmPSJodHRwOi8veW91cnNpdGUuY29tIj5VcmwgVGV4dDwvYT48L2xpPjxsaT5bZW1haWxddXNlckBkb21haW4uY29tWy9lbWFpbF0gPSZndDsgPGEgaHJlZj0ibWFpbHRvOnVzZXJAZG9tYWluLmNvbSI%2BdXNlckBkb21haW4uY29tPC9hPjwvbGk%2BPGxpPltjb2xvcj1yZWRdc29tZSB0ZXh0Wy9jb2xvcl0gPSZndDsgPHNwYW4gc3R5bGU9ImNvbG9yOnJlZCI%2Bc29tZSB0ZXh0PC9zcGFuPjwvbGk%2BPGxpPltpbWddaHR0cDovL2NvcHBlcm1pbmUuc2YubmV0L2RlbW8vaW1hZ2VzL3JlZC5naWZbL2ltZ10gPT4gPGltZyBzcmM9ImltYWdlcy9yZWQuZ2lmIiBib3JkZXI9IjAiIGFsdD0iIiAvPjwvbGk%2BIjs%3D','94197181641c9217f17812','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=450,height=250')" style="cursor:help"><img src="images/help.gif" width="13" height="11" border="0" alt="" title="" /></a>
+        </td>
+        <td class="tableb" valign="top">
+          <textarea name="caption[]" rows="5" cols="40" wrap="virtual"  class="textinput" style="width: 100%;" onKeyDown="textCounter(this, 512);" onKeyUp="textCounter(this, 512);"></textarea>
+        </td>
+      </tr>
+      <tr>
+        <td width="40%" class="tableb">
+          Keywords (separate with spaces)<br /><a href="#" onClick="return MM_openBrWindow('keyword_select.php','selectKey','width=250, height=400, scrollbars=yes,toolbar=no,status=yes,resizable=yes')">Insert from list</a>
+        </td>
+        <td width="60%" class="tableb" valign="top">
+          <input type="text" style="width: 100%" name="keywords[]" id="keywords" maxlength="255" value="" class="textinput">
+        </td>
+    </tr>
+    {if $userFields|@count gt 0}
+    {foreach key=key item=item from=$userFields}
+    <tr>
+      <td width="40%" class="tableb">{$item}: </td>
+      <td width="60%" class="tableb" valign="top">
+        <input type="text" style="width: 100%" name="user{$key}[]" maxlength="255" value="" class="textinput">
+      </td>
+    </tr>
+    {/foreach}
+    {/if}
+  </table>
+  </div>
+  </TD>
+  </tr>
+  <tr>
+    <td>
+      <form method="post" action="uploadNew.php" ENCTYPE="multipart/form-data">
+      <span id="writeroot"></span>
+      <input type="hidden" name="event" value="picture">
+        <tr>
+          <td colspan="2" align="center" class="tablef">
+            <input type="button" value="Add more" onClick="moreFields()">
+            <input type="submit" name="continue" value="CONTINUE">
+          </td>
+        </tr>
+      </form>
+    </td>
+  </tr>
+</table>
+<!-- End standard table -->
