@@ -29,11 +29,7 @@ if (!USER_ID && $CONFIG['allow_unlogged_access'] == 0) {
 
 pageheader($lang_search_php['title']);
 echo <<< EOT
-<script language="javascript" type="text/javascript">
-<!--
-document.searchcpg.search.focus();
--->
-</script>
+
 <form method="post" action="thumbnails.php" name="searchcpg">
 EOT;
 
@@ -118,3 +114,9 @@ if ($CONFIG['clickable_keyword_search'] != 0) {
 pagefooter();
 ob_end_flush();
 ?>
+
+<script language="javascript" type="text/javascript">
+<!--
+document.searchcpg.search.focus();
+-->
+</script>
