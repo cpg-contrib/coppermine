@@ -50,7 +50,7 @@ $lang_error = 'Erreur';
 // See http://www.php.net/manual/en/function.strftime.php to define the variable below
 $album_date_fmt =  '%B %d, %Y';
 $lastcom_date_fmt =  '%m/%d/%y Ã  %H:%M';
-$lastup_date_fmt = '%B %d, %Y';
+$lastup_date_fmt = '%d %B %Y';
 $register_date_fmt = '%B %d, %Y';
 $lasthit_date_fmt = '%B %d, %Y Ã  %I:%M %p';
 $comment_date_fmt =  '%B %d, %Y Ã  %I:%M %p';
@@ -170,7 +170,7 @@ $lang_thumb_view = array(
   'sort_nd' => 'Classement descendant par nom',
   'sort_ta' => 'Classement ascendant par titre',
   'sort_td' => 'Classement descendant par titre',
-  'download_zip' => 'Uploader un fichier ZIP', //cpg1.3.0
+  'download_zip' => 'Télécharger un fichier ZIP', //cpg1.3.0
   'pic_on_page' => '%d photos sur %d page(s)',
   'user_on_page' => '%d utilisateurs sur %d page(s)'
 );
