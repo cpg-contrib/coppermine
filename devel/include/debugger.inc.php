@@ -44,7 +44,14 @@ class cpg_debugger {
             $this->report = false;
             $this->old_display_level = ini_set('display_errors', 1);
             $this->old_error_logging = ini_set('log_errors', 0);
-            $this->old_handler = set_error_handler(array(&$this, 'handler'));
+
+            $phpver = explode('.', phpversion());
+            $phpver = "$phpver[0]$phpver[1]";
+            if ($phpver < 43) {
+                $this->old_handler = set_error_handler('cpg_error_handler');
+            } else {
+                $this->old_handler = set_error_handler(array(&$this, 'handler'));
+            }
 //            $this->old_error_log = ini_set('error_log', $this->logfile);
             $this->active = true;
         }
@@ -103,6 +110,10 @@ class cpg_debugger {
         // error_log($err, 1, 'operator@example.com'); //message is sent by email to the address in the destination
         // error_log($err, 3, $this->logfile); //message is appended to the file destination.
     }
+}
+
+function cpg_error_handler($errno, $errmsg, $filename, $linenum, $vars='') {
+    $cpgdebugger->handler($errno, $errmsg, $filename, $linenum, $vars);
 }
 
 error_reporting(E_ALL);
