@@ -39,6 +39,6 @@
   } else {
     cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
   }
-  $t->assign("CONTENT", $t->fetch("2bornot2b/commom/displayFullSizeImage.html"));
-  $t->display("2bornot2b/popup.html");
+  $t->assign("CONTENT", $t->fetch("2bornot2b/common/displayFullSizeImage.html"));
+  $t->display("2bornot2b/common/popup.html");
 ?>
