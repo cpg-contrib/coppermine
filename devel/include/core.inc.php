@@ -17,7 +17,7 @@
 // $Id$                //
 // ------------------------------------------------------------------------- //
 // All lines that should NOT be IN themes/classic/theme.php          //{CORE}//
-// should end in "//{CORE}" so that they can be easily stripped      //{CORE}//     
+// should end in "//{CORE}" so that they can be easily stripped      //{CORE}//
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}       //{CORE}//
 
 // The following terms can be defined in theme.php
@@ -109,15 +109,19 @@ $template_gallery_admin_menu = <<<EOT
                 <div align="center">
                 <table cellpadding="0" cellspacing="1">
                         <tr>
-                                <td class="admin_menu"{APPROVAL_ID}><a href="editpics.php?mode=upload_approval" title="{UPL_APP_TITLE}">{UPL_APP_LNK}</a></td>
+<!-- BEGIN admin_approval -->
+                                <td class="admin_menu" id="admin_menu_anim"><a href="editpics.php?mode=upload_approval" title="{UPL_APP_TITLE}">{UPL_APP_LNK}</a></td>
+<!-- END admin_approval -->
                                 <td class="admin_menu"><a href="admin.php" title="{ADMIN_TITLE}">{ADMIN_LNK}</a></td>
-                                <td class="admin_menu"><a href="albmgr.php{CATL}" title="{ALBUMS_TITLE}">{ALBUMS_LNK}</a></td>
                                 <td class="admin_menu"><a href="catmgr.php" title="{CATEGORIES_TITLE}">{CATEGORIES_LNK}</a></td>
-                                <td class="admin_menu"><a href="usermgr.php" title="{USERS_TITLE}">{USERS_LNK}</a></td>
+                                <td class="admin_menu"><a href="albmgr.php{CATL}" title="{ALBUMS_TITLE}">{ALBUMS_LNK}</a></td>
                                 <td class="admin_menu"><a href="groupmgr.php" title="{GROUPS_TITLE}">{GROUPS_LNK}</a></td>
+                                <td class="admin_menu"><a href="usermgr.php" title="{USERS_TITLE}">{USERS_LNK}</a></td>
                                 <td class="admin_menu"><a href="banning.php" title="{BAN_TITLE}">{BAN_LNK}</a></td>
-                                <td class="admin_menu"><a href="db_ecard.php" title="{DB_ECARD_TITLE}">{DB_ECARD_LNK}</a></td>
                                 <td class="admin_menu"><a href="reviewcom.php" title="{COMMENTS_TITLE}">{COMMENTS_LNK}</a></td>
+<!-- BEGIN log_ecards -->
+                                <td class="admin_menu"><a href="db_ecard.php" title="{DB_ECARD_TITLE}">{DB_ECARD_LNK}</a></td>
+<!-- END log_ecards -->
                                 <td class="admin_menu"><a href="picmgr.php" title="{PICTURES_TITLE}">{PICTURES_LNK}</a></td>
                                 <td class="admin_menu"><a href="searchnew.php" title="{SEARCHNEW_TITLE}">{SEARCHNEW_LNK}</a></td>
                                 <td class="admin_menu"><a href="util.php" title="{UTIL_TITLE}">{UTIL_LNK}</a></td>
@@ -674,7 +678,7 @@ $template_image_comments = <<<EOT
 <!-- BEGIN report_comment_button -->
                                         <a href="{REPORT_COMMENT_TGT}" title="{REPORT_COMMENT_TITLE}"><img src="images/report.gif" width="16px" height="16px" border="0px" align="middle" alt="{REPORT_COMMENT_TITLE}" /></a>
 <!-- END report_comment_button -->
-                                
+
 
 <!-- BEGIN buttons -->
                                         <a href="javascript:;" onclick="blocking('cbody{MSG_ID}','', 'block'); blocking('cedit{MSG_ID}','', 'block'); return false;" title="{EDIT_TITLE}"><img src="images/edit.gif" border="0px" align="middle" /></a>
@@ -1186,8 +1190,17 @@ function theme_admin_mode_menu()
     global $cat;
     global $lang_gallery_admin_menu, $lang_user_admin_menu;
     global $template_gallery_admin_menu, $template_user_admin_menu;
+    global $CONFIG;
 
     $cat_l = isset($cat) ? "?cat=$cat" : '';
+
+    if ($CONFIG['log_ecards'] == 0) {
+        template_extract_block($template_gallery_admin_menu, 'log_ecards');
+    }
+
+    if (cpg_get_pending_approvals() == 0) {
+         template_extract_block($template_gallery_admin_menu, 'admin_approval');
+    }
 
     if (GALLERY_ADMIN_MODE) {
         $param = array('{CATL}' => $cat_l,
@@ -1218,11 +1231,6 @@ function theme_admin_mode_menu()
             '{PICTURES_TITLE}' => $lang_gallery_admin_menu['pictures_title'],
             '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
             );
-     if (cpg_get_pending_approvals() != 0) {
-         $param['{APPROVAL_ID}'] = ' id="admin_menu_anim"';
-     } else {
-         $param['{APPROVAL_ID}'] = '';
-     }
 
         $html = template_eval($template_gallery_admin_menu, $param);
         $html.= cpg_alert_dev_version();
@@ -1667,7 +1675,7 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
         }
         $thumb_strip .= template_eval($thumb_cell, $params);
     }
-    
+
     if (defined('THEME_HAS_FILM_STRIP_GRAPHICS')) {
                 $tile1 = $THEME_DIR . 'images/tile1.gif';
                 $tile2 = $THEME_DIR . 'images/tile2.gif';
@@ -1743,8 +1751,8 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, 
     echo "</div>\n";
 
     echo "<div id=\"comments\">\n";
-	echo $comments;
-	echo "</div>\n";
+        echo $comments;
+        echo "</div>\n";
 
 }
 }  //{CORE}
@@ -1934,7 +1942,7 @@ function theme_html_img_nav_menu()
     $slideshow_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pid=$pid&amp;slideshow=".$CONFIG['slideshow_interval'];
 
     $pic_pos = sprintf($lang_img_nav_bar['pic_pos'], $human_pos, $pic_count);
-    
+
     if (defined('THEME_HAS_NAVBAR_GRAPHICS')) {
             $location= $THEME_DIR;
         } else {
@@ -1949,7 +1957,7 @@ function theme_html_img_nav_menu()
         '{PIC_POS}' => $pic_pos,
         '{ECARD_TGT}' => $ecard_tgt,
         '{ECARD_TITLE}' => $ecard_title,
-		    '{PREV_TGT}' => $prev_tgt,
+                    '{PREV_TGT}' => $prev_tgt,
         '{PREV_TITLE}' => $prev_title,
         '{NEXT_TGT}' => $next_tgt,
         '{NEXT_TITLE}' => $next_title,
@@ -2072,7 +2080,7 @@ function theme_html_comments($pid)
             '{HDR_IP}' => $row['msg_hdr_ip'],
             '{RAW_IP}' => $row['msg_raw_ip'],
             '{REPORT_COMMENT_TGT}' => $report_comment_tgt,
-			'{REPORT_COMMENT_TITLE}' => &$lang_display_comments['report_comment_title'],
+                        '{REPORT_COMMENT_TITLE}' => &$lang_display_comments['report_comment_title'],
             );
 
         $html .= template_eval($template, $params);
@@ -2149,7 +2157,7 @@ function theme_display_fullsize_pic()
     global $CONFIG, $THEME_DIR, $ALBUM_SET;
     global $lang_errors, $lang_fullsize_popup, $lang_charset;
 
-    if (isset($_GET['picfile'])) 
+    if (isset($_GET['picfile']))
     {
         if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
@@ -2157,8 +2165,8 @@ function theme_display_fullsize_pic()
     $picname = $CONFIG['fullpath'] . $picfile;
     $imagesize = @getimagesize($picname);
     $imagedata = array('name' => $picfile, 'path' => path2url($picname), 'geometry' => $imagesize[3]);
-    } 
-    elseif (isset($_GET['pid'])) 
+    }
+    elseif (isset($_GET['pid']))
     {
     $pid = (int)$_GET['pid'];
     $sql = "SELECT * " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='$pid' $ALBUM_SET";
@@ -2171,7 +2179,7 @@ function theme_display_fullsize_pic()
     $geom = 'width="' . $row['pwidth'] . '" height="' . $row['pheight'] . '"';
     $imagedata = array('name' => $row['filename'], 'path' => $pic_url, 'geometry' => $geom);
     }
-    
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
@@ -2185,7 +2193,7 @@ function theme_display_fullsize_pic()
   img { margin:0; padding:0; border:0; }
   #content { margin:0 auto; padding:0; border:0; }
   table { border:0; height:100%; width:100%; border-collapse:collapse}
-  td { 	vertical-align: middle; text-align:center; }
+  td {         vertical-align: middle; text-align:center; }
   </style>
   </head>
   <body>
@@ -2194,7 +2202,7 @@ function theme_display_fullsize_pic()
     </script>
     <table>
       <tr>
-    	<td>
+            <td>
           <div id="content">
               <?php     echo  '<a href="javascript: window.close()"><img src="'
                 . htmlspecialchars($imagedata['path']) . '" '
@@ -2213,6 +2221,6 @@ function theme_display_fullsize_pic()
   </body>
 </html>
 <?php
-}  
+}
 }  //{CORE}
 ?>
