@@ -29,9 +29,6 @@ if (!USER_CAN_SEND_ECARDS) cpg_die(ERROR, $lang_errors['access_denied'], __FILE_
 
 //print_r(get_defined_constants());
 
-// cheap cookie fix
-if ((!USER_ID) && ($_COOKIE['ecard']!=0)) setcookie('ecard',1);
-
 function get_post_var($name, $default = '')
 {
     global $HTTP_POST_VARS;
@@ -44,7 +41,13 @@ $album = $HTTP_GET_VARS['album'];
 $pos = (int)$HTTP_GET_VARS['pos'];
 
 $sender_name = get_post_var('sender_name', USER_ID ? USER_NAME : (isset($USER['name']) ? $USER['name'] : ''));
-$sender_email = get_post_var('sender_email', USER_ID ? $USER_DATA['user_email'] : (isset($USER['email']) ? $USER['email'] : ''));
+if (USER_ID){
+$sender_email = $USER_DATA['user_email'];
+$sender_box = $sender_email;
+} else { 
+$sender_email = get_post_var('sender_email',$USER['email'] ? $USER['email'] : '');
+$sender_box = "<input type=\"text\" class=\"textinput\" value=\"$sender_email\" name=\"sender_email\" style=\"WIDTH: 100%;\">";
+}
 $recipient_name = get_post_var('recipient_name');
 $recipient_email = get_post_var('recipient_email');
 $greetings = get_post_var('greetings');
@@ -106,22 +109,18 @@ if (count($HTTP_POST_VARS) > 0 && $valid_sender_email && $valid_recipient_email)
         '{VIEW_MORE_LNK}' => $lang_ecard_php['view_more_pics'],
         );
 
-    $message = template_eval($template_ecard, $params);
+    	$message = template_eval($template_ecard, $params);
         $tempTime = time();
         $message .= "Sent by from IP" .$_SERVER["REMOTE_HOST"]." at ".gmstrftime("%A,  %B,%V,%Y %I:%M %p ", time())." [GMT]";
-    $subject = sprintf($lang_ecard_php['ecard_title'], $sender_name);
-    //cheap cookie fix
-    if ((USER_ID)||($_COOKIE['ecard']==1)){
-        $result = cpg_mail($recipient_email, $subject, $message, 'text/html', $sender_name, $sender_email);
+    	$subject = sprintf($lang_ecard_php['ecard_title'], $sender_name);
+
+    	$result = cpg_mail($recipient_email, $subject, $message, 'text/html', $sender_name, $sender_email);
+
         //write ecard log
         if ($CONFIG['log_ecards'] == 1) {
-          $result = db_query("INSERT INTO {$CONFIG['TABLE_ECARDS']} (sender_name, sender_email, recipient_name, recipient_email, link, date, sender_ip) VALUES ('$sender_name', '$sender_email', '$recipient_name', '$recipient_email',   '$encoded_data', '$tempTime', '{$_SERVER["REMOTE_ADDR"]}')");
+          $result_log = db_query("INSERT INTO {$CONFIG['TABLE_ECARDS']} (sender_name, sender_email, recipient_name, recipient_email, link, date, sender_ip) VALUES ('$sender_name', '$sender_email', '$recipient_name', '$recipient_email',   '$encoded_data', '$tempTime', '{$_SERVER["REMOTE_ADDR"]}')");
           }
-    } else {
-                cpg_die(ERROR, $lang_ecard_php['send_failed'], __FILE__, __LINE__);
-                // cpg_die(ERROR, $lang_ecard_php['cookie_required'], __FILE__, __LINE__);
-    }
-    if (!USER_ID) setcookie('ecard',1);
+
     if (!USER_ID) {
         $USER['name'] = $sender_name;
         $USER['email'] = $sender_email;
@@ -129,8 +128,6 @@ if (count($HTTP_POST_VARS) > 0 && $valid_sender_email && $valid_recipient_email)
 
     if ($result) {
         pageheader($lang_ecard_php['title'], "<META http-equiv=\"refresh\" content=\"3;url=displayimage.php?album=$album&pos=$pos\">");
-        //cheap cookie fix
-        if (!USER_ID) setcookie('ecard',0);
         msg_box($lang_cpg_die[INFORMATION], $lang_ecard_php['send_success'], $lang_continue, "displayimage.php?album=$album&pos=$pos");
         pagefooter();
         ob_end_flush();
@@ -164,8 +161,8 @@ echo <<<EOT
                         {$lang_ecard_php['your_email']}<br />
                 </td>
                 <td valign="top" class="tableb" width="60%">
-                        <input type="text" class="textinput" name="sender_email"  value="$sender_email" style="WIDTH: 100%;"><br />
-                        $sender_email_warning
+                        {$sender_box}
+                        {$sender_email_warning}
                 </td>
         </tr>
         <tr>
