@@ -25,7 +25,6 @@ $defpicnum = 45;
 define('IN_COPPERMINE', true);
 define('UTIL_PHP', true);
 
-require("include/config.inc.php");
 require('include/init.inc.php');
 require('include/picmgmt.inc.php');
 
