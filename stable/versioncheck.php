@@ -1523,7 +1523,7 @@ $return = '
 1.3.2|upload.php|1.3.2|1.9|mandatory|r@
 1.3.2|usermgr.php|1.3.2|1.6|mandatory|r@
 1.3.2|util.php|1.3.2|1.8|mandatory|r@
-1.3.2|versioncheck.php|1.4.0|1.5|optional|r@
+1.3.2|versioncheck.php|1.4.0|1.4|optional|r@
 1.3.2|xp_publish.php|1.3.2|1.5|mandatory|r@
 1.3.2|zipdownload.php|1.3.2|1.3|mandatory|r@
 1.3.2|albums|||mandatory|w@
