@@ -54,7 +54,7 @@ EOT;
 // Prints the image-navigation menu
 function html_img_nav_menu()
 {
-    global $CONFIG, $CURRENT_PIC_DATA, $meta_nav ; //$PHP_SELF, 
+    global $CONFIG, $CURRENT_PIC_DATA, $meta_nav ; //$PHP_SELF,
     global $album, $cat, $pos, $pic_count, $lang_img_nav_bar, $lang_text_dir, $template_img_navbar;
 
     $cat_link = is_numeric($album) ? '' : '&amp;cat=' . $cat;
@@ -299,8 +299,8 @@ function html_picinfo()
           $width = 418;
           $height = 232;
         }
-        
-        $detailsLink = $CONFIG['vote_details'] ? '(<a href="#" onclick="MM_openBrWindow(\'voteDetails.php?pid='.$CURRENT_PIC_DATA['pid'].'\',\'\',\'resizable=no,width='.$width.',height='.$height.',top=50,left=50,scrollbars=yes\'); return false;">'.$lang_picinfo['details'].'</a>)' : '';
+
+        $detailsLink = $CONFIG['vote_details'] ? ' (<a href="#" onclick="MM_openBrWindow(\'voteDetails.php?pid='.$CURRENT_PIC_DATA['pid'].'\',\'\',\'resizable=no,width='.$width.',height='.$height.',top=50,left=50,scrollbars=yes\'); return false;">'.$lang_picinfo['details'].'</a>)' : '';
         $info[sprintf($lang_picinfo['Rating'], $CURRENT_PIC_DATA['votes'])] = '<img src="' . $prefix . 'images/rating' . round($CURRENT_PIC_DATA['pic_rating'] / 2000) . '.gif" align="middle" alt="" />'.$detailsLink;
     }
 
@@ -320,7 +320,7 @@ function html_picinfo()
     $info[$lang_picinfo['File Size']] = '<span dir="ltr">' . $info[$lang_picinfo['File Size']] . '</span>';
     $info[$lang_picinfo['Date Added']] = localised_date($CURRENT_PIC_DATA['ctime'],$lastup_date_fmt);
     $info[$lang_picinfo['Dimensions']] = sprintf($lang_display_image_php['size'], $CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight']);
-    $detailsLink = ($CURRENT_PIC_DATA['hits'] && $CONFIG['vote_details'] && GALLERY_ADMIN_MODE) ? '(<a href="#" onclick="MM_openBrWindow(\'hitDetails.php?pid='.$CURRENT_PIC_DATA['pid'].'\',\'\',\'resizable=no,width=978,height=504,top=50,left=50,scrollbars=yes\'); return false;">'.$lang_picinfo['details'].'</a>)' : '';
+    $detailsLink = ($CURRENT_PIC_DATA['hits'] && $CONFIG['vote_details'] && GALLERY_ADMIN_MODE) ? ' (<a href="#" onclick="MM_openBrWindow(\'hitDetails.php?pid='.$CURRENT_PIC_DATA['pid'].'\',\'\',\'resizable=no,width=978,height=504,top=50,left=50,scrollbars=yes\'); return false;">'.$lang_picinfo['details'].'</a>)' : '';
     $info[$lang_picinfo['Displayed']] = sprintf($lang_display_image_php['views'], $CURRENT_PIC_DATA['hits']);
     $info[$lang_picinfo['Displayed']] .= $detailsLink;
 
@@ -610,7 +610,7 @@ if ($pos < 0 || $pid > 0) {
     for($pos = 0; $pic_data[$pos]['pid'] != $pid && $pos < $pic_count; $pos++);
     $pic_data = get_pic_data($album, $pic_count, $album_name, $pos, 1, false);
     $CURRENT_PIC_DATA = $pic_data[0];
-    
+
 } elseif (isset($_GET['pos'])) {
     $pic_data = get_pic_data($album, $pic_count, $album_name, $pos, 1, false);
     if ($pic_count == 0) {
