@@ -102,6 +102,7 @@ $lang_main_menu = array(
         'topn_lnk' => 'Most viewed',
         'toprated_lnk' => 'Top rated',
         'search_lnk' => 'Search',
+		'fav_lnk' => 'Favorites',
 );
 
 $lang_gallery_admin_menu = array(
