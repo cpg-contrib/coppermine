@@ -1649,7 +1649,7 @@ $cssClassDef = array(
 'catlink a' => ' text-decoration: underline; color: #000000; ',
 'catlink a:hover' => ' color: #000000; text-decoration: underline; ',
 'checkbox' => ' font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 100%; vertical-align : middle; ',
-'clickable_option' => ' border-bottom : 1px dotted blue; cursor : hand; ',
+'clickable_option' => ' cursor : hand; ',
 'comment_button' => ' font-family: Arial, Helvetica, sans-serif; font-size: 85%; border: 1px solid #005D8C; background-image : url(images/button_bg.gif); background-position : bottom; padding-left: 3px; padding-right: 3px; ',
 'comment_date{ color : #5F5F5F; font-size : 90%; vertical-align : middle; ',
 'debug_text' => ' border: #BDBEBD; background-color: #EFEFEF; width : 100%; margin : 0px; ',
