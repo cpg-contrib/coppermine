@@ -80,7 +80,7 @@ function db_query($query, $link_id = 0)
                 $result = mysql_query($query);
         }
         $query_end = getmicrotime();
-        if (isset($CONFIG['debug_mode']) && ($CONFIG['debug_mode']==1)) {
+        if (isset($CONFIG['debug_mode']) && (($CONFIG['debug_mode']==1) || ($CONFIG['debug_mode']==2) )) {
                 $query_stats[] = $query_end - $query_start;
                 $queries[] = $query;
         }
@@ -298,7 +298,7 @@ function bb_decode($text)
         // colours
         $text = preg_replace("/\[color=(\#[0-9A-F]{6}|[a-z]+)\]/", '<span style="color:$1">', $text);
         $text = str_replace("[/color]", '</span>', $text);
-	
+
         // [i] and [/i] for italicizing text.
         //$text = str_replace("[i:$uid]", $bbcode_tpl['i_open'], $text);
         //$text = str_replace("[/i:$uid]", $bbcode_tpl['i_close'], $text);
@@ -307,7 +307,7 @@ function bb_decode($text)
                 // We do URLs in several different ways..
                 $bbcode_tpl['url']  = '<span class="bblink"><a href="{URL}" target="_blank">{DESCRIPTION}</a></span>';
                 $bbcode_tpl['email']= '<span class="bblink"><a href="mailto:{EMAIL}">{EMAIL}</a></span>';
-		
+
                 $bbcode_tpl['url1'] = str_replace('{URL}', '\\1\\2', $bbcode_tpl['url']);
                 $bbcode_tpl['url1'] = str_replace('{DESCRIPTION}', '\\1\\2', $bbcode_tpl['url1']);
 
@@ -341,14 +341,14 @@ function bb_decode($text)
                 // [email]user@domain.tld[/email] code..
                 $patterns[5] = "#\[email\]([a-z0-9\-_.]+?@[\w\-]+\.([\w\-\.]+\.)?[\w]+)\[/email\]#si";
                 $replacements[5] = $bbcode_tpl['email'];
-				                
-		// [img]xxxx://www.phpbb.com[/img] code..
+
+                // [img]xxxx://www.phpbb.com[/img] code..
                 $bbcode_tpl['img']  = '<img src="{URL}" >';
-		$bbcode_tpl['img']  = str_replace('{URL}', '\\1\\2', $bbcode_tpl['img']);
-		
-		$patterns[6] = "#\[img\]([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/img\]#si";
+                $bbcode_tpl['img']  = str_replace('{URL}', '\\1\\2', $bbcode_tpl['img']);
+
+                $patterns[6] = "#\[img\]([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/img\]#si";
                 $replacements[6] = $bbcode_tpl['img'];
-		
+
         }
 
         $text = preg_replace($patterns, $replacements, $text);
@@ -432,8 +432,8 @@ function get_private_album_set()
 
 // Retrieve the data for a picture or a set of picture
 function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $set_caption = true)
-{	
-	global $USER, $CONFIG, $ALBUM_SET, $CURRENT_CAT_NAME, $CURRENT_ALBUM_KEYWORD, $HTTP_GET_VARS, $HTML_SUBST, $THEME_DIR, $FAVPICS;
+{
+        global $USER, $CONFIG, $ALBUM_SET, $CURRENT_CAT_NAME, $CURRENT_ALBUM_KEYWORD, $HTTP_GET_VARS, $HTML_SUBST, $THEME_DIR, $FAVPICS;
         global $album_date_fmt, $lastcom_date_fmt, $lastup_date_fmt, $lasthit_date_fmt;
         global $lang_get_pic_data, $lang_meta_album_names, $lang_errors;
 
@@ -448,21 +448,21 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         } else {
             $select_columns = 'pid, filepath, filename, url_prefix, filesize, pwidth, pheight, ctime, aid';
         }
-	
-	// Keyword
-	if (!empty($CURRENT_ALBUM_KEYWORD)){
-		$keyword = "OR keywords like '%$CURRENT_ALBUM_KEYWORD%'";	
-	}
-		
+
+        // Keyword
+        if (!empty($CURRENT_ALBUM_KEYWORD)){
+                $keyword = "OR keywords like '%$CURRENT_ALBUM_KEYWORD%'";
+        }
+
         // Regular albums
         if ((is_numeric($album))) {
                 $album_name_keyword = get_album_name($album);
-		$album_name = $album_name_keyword['title'];
-		$album_keyword = $album_name_keyword['keyword'];		
-		
-		if (!empty($album_keyword)){
-			$keyword = "OR keywords like '%$album_keyword%'";	
-		}
+                $album_name = $album_name_keyword['title'];
+                $album_keyword = $album_name_keyword['keyword'];
+
+                if (!empty($album_keyword)){
+                        $keyword = "OR keywords like '%$album_keyword%'";
+                }
 
                 $approved = GALLERY_ADMIN_MODE ? '' : 'AND approved=\'YES\'';
 
@@ -509,9 +509,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 } else {
                         $album_name = $lang_meta_album_names['lastcom'];
                 }
-                $query = "SELECT COUNT(*) from {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']}  WHERE approved = 'YES' AND {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid $keyword $ALBUM_SET";		
-		$result = db_query($query);
-		
+                $query = "SELECT COUNT(*) from {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']}  WHERE approved = 'YES' AND {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid $keyword $ALBUM_SET";
+                $result = db_query($query);
+
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
                 mysql_free_result($result);
@@ -521,11 +521,11 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 } else {
                         $select_columns = str_replace('pid', 'c.pid', $select_columns).', msg_id, author_id, msg_author, UNIX_TIMESTAMP(msg_date) as msg_date, msg_body, aid';
                 }
-		
-		$TMP_SET = str_replace($CONFIG['TABLE_PICTURES'],'p',$ALBUM_SET); 
+
+                $TMP_SET = str_replace($CONFIG['TABLE_PICTURES'],'p',$ALBUM_SET);
                 $result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_COMMENTS']} as c, {$CONFIG['TABLE_PICTURES']} as p WHERE approved = 'YES' AND c.pid = p.pid $keyword $TMP_SET ORDER by msg_id DESC $limit");
-			
-		
+
+
                 $rowset = db_fetch_rowset($result);
                 mysql_free_result($result);
 
@@ -659,8 +659,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 } else {
                         $album_name = $lang_meta_album_names['topn'];
                 }
-		$query ="SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND hits > 0  $ALBUM_SET $keyword";		
-		
+                $query ="SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND hits > 0  $ALBUM_SET $keyword";
+
                 $result = db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
@@ -1034,8 +1034,8 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
         $thumb_per_page = $thumbcols * $thumbrows;
         $lower_limit = ($page-1) * $thumb_per_page;
 
-        $pic_data = get_pic_data($album, $thumb_count, $album_name, $lower_limit, $thumb_per_page);		
-	
+        $pic_data = get_pic_data($album, $thumb_count, $album_name, $lower_limit, $thumb_per_page);
+
         $total_pages = ceil($thumb_count / $thumb_per_page);
 
         $i = 0;
@@ -1137,7 +1137,7 @@ function display_film_strip($album, $cat, $pos)
                         $p=($p < 0 ? 0 : $p);
                         $thumb_list[$i]['pos'] = $key < 0 ? $key : $p;
                         $mime_content = get_type($row['filename']);
-			
+
                         $extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
 
                         if ($mime_content['content']=='image') {

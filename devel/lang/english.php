@@ -363,6 +363,8 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'th_wd' => 'Width',
         'label' => 'label',
         'item' => 'item',
+        'debug_everyone' => 'Everyone',
+        'debug_admin' => 'Admin only',
         );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
@@ -477,7 +479,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Path of the cookie used by the script', 'cookie_path', 0),
 
         'Miscellaneous settings',
-        array('Enable debug mode', 'debug_mode', 1),
+        array('Enable debug mode', 'debug_mode', 9),
 
         '<br /><div align="left"><a name="notice1"></a>(*) This settings mustn\'t be changed if you already have pictures in your database.<br />
         <a name="notice2"></a>(**) When changing this setting, only the files that are added from that point on are affected, so it is advisable that this setting must not be changed if there are already files in the gallery. You can, however, apply the changes to the existing files with the &quot;<a href="util.php">admin tools</a> (resize pictures)&quot; utility from the admin menu.</div><br />'

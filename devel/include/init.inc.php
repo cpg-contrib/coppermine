@@ -14,7 +14,7 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-define('COPPERMINE_VERSION', '1.3.x - devel');
+define('COPPERMINE_VERSION', '1.3.0 - devel');
 // User database integration
 // Uncomment the applicable line if you want to use it
 // define('UDB_INTEGRATION', 'phpbb');
@@ -143,12 +143,12 @@ while ($row = mysql_fetch_array($results)) {
     $CONFIG[$row['name']] = $row['value'];
 } // while
 mysql_free_result($results);
-// Set error logging level
-if ($CONFIG['debug_mode']) {
-    error_reporting (E_ALL);
-} else {
-    error_reporting (E_ALL ^ E_NOTICE);
-}
+// Set error logging level (set further down to enable checking admin login)
+//if ($CONFIG['debug_mode']) {
+//    error_reporting (E_ALL);
+//} else {
+//    error_reporting (E_ALL ^ E_NOTICE);
+//}
 
 require 'include/media.functions.inc.php';
 
@@ -205,6 +205,14 @@ if (defined('UDB_INTEGRATION')) {
 $USER['am'] = isset($USER['am']) ? (int)$USER['am'] : 0;
 define('GALLERY_ADMIN_MODE', USER_IS_ADMIN && $USER['am']);
 define('USER_ADMIN_MODE', USER_ID && USER_CAN_CREATE_ALBUMS && $USER['am'] && !GALLERY_ADMIN_MODE);
+// Set error logging level
+if ($CONFIG['debug_mode']==1 || ($CONFIG['debug_mode']==2 && GALLERY_ADMIN_MODE )) {
+    error_reporting (E_ALL);
+} else {
+    error_reporting (E_ALL ^ E_NOTICE);
+}
+
+
 // Process theme selection if present in URI or in user profile
 if (!empty($HTTP_GET_VARS['theme'])) {
     $USER['theme'] = $HTTP_GET_VARS['theme'];

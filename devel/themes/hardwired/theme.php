@@ -887,7 +887,7 @@ function pagefooter()
     global $HTTP_GET_VARS, $HTTP_POST_VARS, $HTTP_SERVER_VARS;
     global $USER, $ALBUM_SET, $CONFIG, $time_start, $query_stats;
     global $template_footer;
-    if ($CONFIG['debug_mode']) {
+    if ($CONFIG['debug_mode']==1 || ($CONFIG['debug_mode']==2 && GALLERY_ADMIN_MODE)) {
     cpg_debug_output();
     }
     echo $template_footer;
