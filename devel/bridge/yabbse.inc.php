@@ -14,7 +14,26 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-// YaBB SE 1.5.4 Integration for Coppermine
+// As a special exception, the copyright holders of Coppermine Photo Gallery //
+// give you permission to link Coppermine Photo Gallery with independent     //
+// modules that communicate with YaBB SE Forum solely through this           //
+// 'bridge file' interface, regardless of the license terms of YaBB SE, and  //
+// to copy and distribute the resulting combined work under terms of your    //
+// choice, provided that every copy of the combined work is accompanied by a //
+// complete copy of the source code of Coppermine Photo Gallery (the version //
+// of Coppermine Photo Gallery used to produce the combined work), being     //
+// distributed under the terms of the GNU General Public License plus this   //
+// exception.  An independent module is a module which is not derived from   //
+// or based on Coppermine Photo Gallery.                                     //
+//                                                                           //
+// Note that people who make modified versions of Coppermine Photo Gallery   //
+// are not obligated to grant this special exception for their modified      //
+// versions; it is their choice whether to do so.  The GNU General Public    //
+// License gives permission to release a modified version without this       //
+// exception; this exception also makes it possible to release a modified    //
+// version which carries forward this exception.                             //
+// ------------------------------------------------------------------------- //
+// YaBB SE 1.5.4 Integration for Coppermine                                  //
 
 
 // ------------------------------------------------------------------------- //
