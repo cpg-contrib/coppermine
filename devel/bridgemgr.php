@@ -576,6 +576,33 @@ if (isset($_POST[\'redir\'])){
   'create_redir_file_action' => 'display,write',
 );
 
+$default_bridge_data['punbb12'] = array(
+  'full_name' => 'PunBB v1.2',
+  'short_name' => 'punbb12',
+  'support_url' => 'http://www.punbb.org/',
+  'full_forum_url_default' => 'http://www.yoursite.com/punbb',
+  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
+  'relative_path_of_forum_from_webroot_default' => '',
+  'relative_path_of_forum_from_webroot_used' => '',
+  'relative_path_to_config_file_default' => '../punbb/',
+  'relative_path_to_config_file_used' => 'lookfor,config.php',
+  'create_redir_file_content' => '&lt;?php
+if (isset($_POST[\'redir\'])){
+        echo \'&lt;html&gt;
+                  &lt;body onload="document.redir.submit();"&gt;
+                      &lt;form name="redir" method="post" action="\'.$_POST[\'redir\'].\'"&gt;
+                      &lt;/form&gt;
+                  &lt;/body&gt;
+              &lt;/html&gt;\';
+} else {
+        header("Location: {COPPERMINE_URL}");
+}
+?&gt;
+  ',
+  'create_redir_file_location' => '{BBS_LOCATION}/redir.php',
+  'create_redir_file_action' => 'display,write',
+);
+
 $default_bridge_data['smf'] = array(
   'full_name' => 'Simple Machines (SMF)',
   'short_name' => 'smf',
