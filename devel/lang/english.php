@@ -233,10 +233,10 @@ $lang_cpg_die = array(
 );
 
 $lang_display_thumbnails = array(
-  'filename' => 'Filename : ',
-  'filesize' => 'Filesize : ',
-  'dimensions' => 'Dimensions : ',
-  'date_added' => 'Date added : ',
+  'filename' => 'Filename=',
+  'filesize' => 'Filesize=',
+  'dimensions' => 'Dimensions=',
+  'date_added' => 'Date added=',
 );
 
 $lang_get_pic_data = array(
