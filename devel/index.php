@@ -369,11 +369,8 @@ function list_albums()
         } 
         // Inserts a thumbnail if the album contains 1 or more images
         $visibility = $alb_thumb['visibility'];
-        if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || $visibility == $USER_DATA['group_id'] || $USER_DATA['group_id'] == 1) {
+        if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || $visibility == $USER_DATA['group_id'] || $USER_DATA['group_id'] == 1 || $CONFIG['allow_private_albums']==0 ) {
             if ($count > 0) {
-// Maze       if ($count > 0) {
-//            $visibility = $alb_thumb['visibility'];
-//            if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || strstr(USER_GROUP_SET, $visibility)) {
                 if ($alb_thumb['filename']) {
                     $picture = &$alb_thumb;
                 } else {
@@ -385,20 +382,18 @@ function list_albums()
                 $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
                 $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"" . get_pic_url($picture, 'thumb') . "\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
             } else { // Inserts an empty thumbnail if the album contains 0 images
-// Maze           } elseif ($CONFIG['show_private']) {
                 $image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
-// Maze                $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/private.jpg\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
+
                 $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/nopic.jpg\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
             }
-// Maze       } else {
+
         } elseif ($CONFIG['show_private']) {
             $image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
             $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/private.jpg\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
-// Maze            $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/nopic.jpg\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
+
         } 
         // Prepare everything
         if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || $visibility == $USER_DATA['group_id'] || $USER_DATA['group_id'] == 1) {
-// Maze        if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || $visibility == $USER_DATA['group_id']) {
             $last_upload_date = $count ? localised_date($alb_stat['last_upload'], $lastup_date_fmt) : '';
             $alb_list[$alb_idx]['aid'] = $alb_thumb['aid'];
             $alb_list[$alb_idx]['album_title'] = $alb_thumb['title'];
@@ -489,8 +484,7 @@ function list_cat_albums($cat = 0)
         } 
         // Inserts a thumbnail if the album contains 1 or more images
         $visibility = $alb_thumb['visibility'];
-        if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || $visibility == $USER_DATA['group_id'] || $USER_DATA['group_id'] == 1) { // test for visibility
-// Maze        if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || $visibility == $USER_DATA['group_id']) { // test for visibility
+        if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || $visibility == $USER_DATA['group_id'] || $USER_DATA['group_id'] == 1 || $CONFIG['allow_private_albums']==0 ) { // test for visibility
             if ($count > 0) { // Inserts a thumbnail if the album contains 1 or more images
                 if ($alb_thumb['filename']) {
                     $picture = &$alb_thumb;
@@ -512,7 +506,6 @@ function list_cat_albums($cat = 0)
         } 
         // Prepare everything
         if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || $visibility == $USER_DATA['group_id'] || $USER_DATA['group_id'] == 1) {
-// Maze        if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || $visibility == $USER_DATA['group_id']) {
             $last_upload_date = $count ? localised_date($alb_stat['last_upload'], $lastup_date_fmt) : '';
             $alb_list[$alb_idx]['aid'] = $alb_thumb['aid'];
             $alb_list[$alb_idx]['album_title'] = $alb_thumb['title'];
