@@ -1,57 +1,56 @@
 <?php
-// ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.4.1                                            //
-// ------------------------------------------------------------------------- //
-// Copyright (C) 2002-2004 Gregory DEMAR                                     //
-// http://www.chezgreg.net/coppermine/                                       //
-// ------------------------------------------------------------------------- //
-// Updated by the Coppermine Dev Team                                        //
-// (http://coppermine.sf.net/team/)                                          //
-// see /docs/credits.html for details                                        //
-// ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- //
-// $Id$
-// ------------------------------------------------------------------------- //
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2005 Coppermine Dev Team
+  v1.1 originaly written by Gregory DEMAR
 
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  ********************************************
+  Coppermine version: 1.4.1
+  $Source$
+  $Revision$
+  $Author$
+  $Date$
+**********************************************/
 
 // Custom mail function
 function cpg_mail($to, $subject, $msg_body = '', $type = 'text/plain', $sender_name = '', $sender_email = '', $msg_body_plaintext = '')
 {
     global $CONFIG;
     global $lang_charset;
-   	
-	// makeshift plaintext if not set
-	if (!$msg_body_plaintext){
-		$msg_body_plaintext = strip_tags($msg_body);
-	}
-	
-	// send mails to ALL admins - not bridged only
+
+        // makeshift plaintext if not set
+        if (!$msg_body_plaintext){
+                $msg_body_plaintext = strip_tags($msg_body);
+        }
+
+        // send mails to ALL admins - not bridged only
     if ($to == 'admin'){
-    	if (!defined('UDB_INTEGRATION')) {
-    		$to = array($CONFIG['gallery_admin_email']);
-    		$result = cpg_db_query("SELECT user_email FROM {$CONFIG['TABLE_USERS']} WHERE user_group = 1");
-    		while($row = mysql_fetch_assoc($result)) {
-    			if (isset($row['user_email'])) $to[] = $row['user_email'];
-    		}
-    		$to = array_unique($to);
-    	} else {
-    		$to = array($CONFIG['gallery_admin_email']);
-    	}
-	} else {
-		$to = array($to);
-	}
-	
+            if (!defined('UDB_INTEGRATION')) {
+                    $to = array($CONFIG['gallery_admin_email']);
+                    $result = cpg_db_query("SELECT user_email FROM {$CONFIG['TABLE_USERS']} WHERE user_group = 1");
+                    while($row = mysql_fetch_assoc($result)) {
+                            if (isset($row['user_email'])) $to[] = $row['user_email'];
+                    }
+                    $to = array_unique($to);
+            } else {
+                    $to = array($CONFIG['gallery_admin_email']);
+            }
+        } else {
+                $to = array($to);
+        }
+
     if ($sender_name == '') { $sender_name = $CONFIG['gallery_name']; }
     if ($sender_email == '') { $sender_email = $CONFIG['gallery_admin_email']; }
 
     $charset = $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'];
 
     $mail = new htmlMimeMail();
-	$mail->setHtmlEncoding('8bit');
+        $mail->setHtmlEncoding('8bit');
     $mail->setTextCharset($charset);
     $mail->setHtmlCharset($charset);
     $mail->setHtml($msg_body, $msg_body_plaintext, './');

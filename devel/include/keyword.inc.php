@@ -1,20 +1,21 @@
 <?php
-// ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.4.1                                            //
-// ------------------------------------------------------------------------- //
-// Copyright (C) 2002-2004 Gregory DEMAR                                     //
-// http://www.chezgreg.net/coppermine/                                       //
-// ------------------------------------------------------------------------- //
-// Updated by the Coppermine Dev Team                                        //
-// see /docs/credits.html for details                                        //
-// ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- //
-// $Id$
-// ------------------------------------------------------------------------- //
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2005 Coppermine Dev Team
+  v1.1 originaly written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  ********************************************
+  Coppermine version: 1.4.1
+  $Source$
+  $Revision$
+  $Author$
+  $Date$
+**********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
@@ -48,7 +49,7 @@ echo '<tr><td class="tableb">' ;
 for ($i = 0; $i < $count; $i++) {
   if ($keywords_array[$i]) {     // Eliminates Null Keywords
     echo "<a href=\"thumbnails.php?album=search&search=$keywords_array[$i]\">$keywords_array[$i]</a>";
-    if ($i<$count-1) {		     // Eliminates Trailing Pipe after last keyword
+    if ($i<$count-1) {                     // Eliminates Trailing Pipe after last keyword
       echo " | ";
     }
   }

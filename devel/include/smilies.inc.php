@@ -1,20 +1,22 @@
 <?php
-// ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.4.1                                            //
-// ------------------------------------------------------------------------- //
-// Copyright (C) 2002-2004 Gregory DEMAR                                     //
-// http://www.chezgreg.net/coppermine/                                       //
-// ------------------------------------------------------------------------- //
-// Updated by the Coppermine Dev Team                                        //
-// (http://coppermine.sf.net/team/)                                          //
-// see /docs/credits.html for details                                        //
-// ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- //
-// $Id$
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2005 Coppermine Dev Team
+  v1.1 originaly written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  ********************************************
+  Coppermine version: 1.4.1
+  $Source$
+  $Revision$
+  $Author$
+  $Date$
+**********************************************/
+
 // ------------------------------------------------------------------------- //
 // CODE IN THIS MODULE IS TAKEN FROM phpBB                                   //
 // ------------------------------------------------------------------------- //
@@ -133,25 +135,25 @@ function generate_smilies($form = 'post', $field = 'message')
     global $THEME_DIR;
     $smilies = get_smilies_table2();
     $paths = array($THEME_DIR.'/smiles/','images/smiles/');
-    
+
     if (function_exists('theme_generate_smilies'))
     {
         $html = theme_generate_smilies($smilies, $form);
     }
     else
     {
-    
+
         $html = '<table width="100%" border="0" cellspacing="0" cellpadding="0">' . "\n" . '        <tr align="center" valign="middle">' . "\n";
-    
+
         foreach($smilies as $smiley) {
             $smile_path = (file_exists($paths[0].$smiley[1]))?($paths[0]):($paths[1]);
             $caption = $smiley[2] . " " . $smiley[0];
             $html .= '                <td width="5%"><img src="images/smiles/' . $smiley[1] . '" alt="' . $caption . '" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title="' . $caption . '" onclick="javascript:emoticon_' . $form . '(\'' . $smiley[0] . '\')"></td>' . "\n";
         }
-    
+
         $html .= '        </tr>' . "\n" . '</table>' . "\n";
     }
-    
+
     $html .= <<<EOT
 
 <script language="JavaScript" type="text/javascript">

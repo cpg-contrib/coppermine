@@ -1,21 +1,21 @@
 <?php
-// ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.4.1                                            //
-// ------------------------------------------------------------------------- //
-// Copyright (C) 2002-2004 Gregory DEMAR                                     //
-// http://www.chezgreg.net/coppermine/                                       //
-// ------------------------------------------------------------------------- //
-// Updated by the Coppermine Dev Team                                        //
-// (http://coppermine.sf.net/team/)                                          //
-// see /docs/credits.html for details                                        //
-// ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- //
-// $Id$
-// ------------------------------------------------------------------------- //
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2005 Coppermine Dev Team
+  v1.1 originaly written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  ********************************************
+  Coppermine version: 1.4.1
+  $Source$
+  $Revision$
+  $Author$
+  $Date$
+**********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
@@ -33,16 +33,16 @@ $mb_charset = stristr($multibyte_charset, $charset);
 
 $search_string = str_replace('*', '%', addslashes($search_string));
 $search_string = preg_replace('/&.*;/i', '', $search_string);
-	
+
 if (!$mb_charset)
-	$search_string = preg_replace('/[^0-9a-z %]/i', '', $search_string);
+        $search_string = preg_replace('/[^0-9a-z %]/i', '', $search_string);
 
 if (!isset($USER['search']['params'])){
-	$USER['search']['params']['title'] = $USER['search']['params']['caption'] = $USER['search']['params']['keywords'] = 1;
+        $USER['search']['params']['title'] = $USER['search']['params']['caption'] = $USER['search']['params']['keywords'] = 1;
 }
 
-if (isset($_GET['album']) && $_GET['album'] == 'search') 
-	$_POST = $USER['search'];
+if (isset($_GET['album']) && $_GET['album'] == 'search')
+        $_POST = $USER['search'];
 
 
 $type = $_POST['type'] ? " {$_POST['type']} " : " OR ";
@@ -50,44 +50,44 @@ $type = $_POST['type'] ? " {$_POST['type']} " : " OR ";
 $_POST['params']['pic_hdr_ip']  = $_POST['params']['pic_raw_ip'];
 
 if ($search_string && isset($_POST['params'])) {
-	$sql = "SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE ";
-	$split_search = explode(' ', $search_string);
-	$sections = array();
-	
-	foreach($split_search as $word) {
-		
-		$fields = array();
-		
-		foreach ($_POST['params'] as $param => $value)
-			$fields[] = "$param LIKE '%$word%'";
-		
-		$sections[] = '(' . implode(' OR ', $fields) . ')';
-	}
-	
-	$sql .= implode($type, $sections);
+        $sql = "SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE ";
+        $split_search = explode(' ', $search_string);
+        $sections = array();
 
-	$sql .= $_POST['newer_than'] ? ' AND ctime > UNIX_TIMESTAMP() - '.($_POST['newer_than'] * 60*60*24) : '';
-	$sql .= $_POST['older_than'] ? ' AND ctime < UNIX_TIMESTAMP() - '.($_POST['older_than'] * 60*60*24) : '';
-	$sql .=  " $ALBUM_SET";
-	
-	$temp = str_replace('SELECT *', 'SELECT COUNT(*)', $sql);
-	$result = cpg_db_query($temp);
-	$row = mysql_fetch_row($result);
-	$count = $row[0];
-	
-	$sql .= " ORDER BY $sort_order $limit";
-	$result = cpg_db_query($sql);
-	$rowset = cpg_db_fetch_rowset($result);
-	mysql_free_result($result);
-	
-	if ($set_caption) {
-		foreach ($rowset as $key => $row) {
-			$caption = $rowset[$key]['title'] ? "<span class=\"thumb_title\">" . $rowset[$key]['title'] . "</span>" : '';
-			if ($CONFIG['caption_in_thumbview']) {
-				$caption .= $rowset[$key]['caption'] ? "<span class=\"thumb_caption\">" . bb_decode($rowset[$key]['caption']) . "</span>" : '';
-			}
-			$rowset[$key]['caption_text'] = $caption;
-		}
-	}
+        foreach($split_search as $word) {
+
+                $fields = array();
+
+                foreach ($_POST['params'] as $param => $value)
+                        $fields[] = "$param LIKE '%$word%'";
+
+                $sections[] = '(' . implode(' OR ', $fields) . ')';
+        }
+
+        $sql .= implode($type, $sections);
+
+        $sql .= $_POST['newer_than'] ? ' AND ctime > UNIX_TIMESTAMP() - '.($_POST['newer_than'] * 60*60*24) : '';
+        $sql .= $_POST['older_than'] ? ' AND ctime < UNIX_TIMESTAMP() - '.($_POST['older_than'] * 60*60*24) : '';
+        $sql .=  " $ALBUM_SET";
+
+        $temp = str_replace('SELECT *', 'SELECT COUNT(*)', $sql);
+        $result = cpg_db_query($temp);
+        $row = mysql_fetch_row($result);
+        $count = $row[0];
+
+        $sql .= " ORDER BY $sort_order $limit";
+        $result = cpg_db_query($sql);
+        $rowset = cpg_db_fetch_rowset($result);
+        mysql_free_result($result);
+
+        if ($set_caption) {
+                foreach ($rowset as $key => $row) {
+                        $caption = $rowset[$key]['title'] ? "<span class=\"thumb_title\">" . $rowset[$key]['title'] . "</span>" : '';
+                        if ($CONFIG['caption_in_thumbview']) {
+                                $caption .= $rowset[$key]['caption'] ? "<span class=\"thumb_caption\">" . bb_decode($rowset[$key]['caption']) . "</span>" : '';
+                        }
+                        $rowset[$key]['caption_text'] = $caption;
+                }
+        }
 }
 ?> 

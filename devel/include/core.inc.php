@@ -1,20 +1,22 @@
 <?php
-// ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.4.1                                            //
-// ------------------------------------------------------------------------- //
-// Copyright (C) 2002-2004 Gregory DEMAR                                     //
-// http://www.chezgreg.net/coppermine/                                       //
-// ------------------------------------------------------------------------- //
-// Updated by the Coppermine Dev Team                                        //
-// (http://coppermine.sf.net/team/)                                          //
-// see /docs/credits.html for details                                        //
-// ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- //
-// $Id$                //
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2005 Coppermine Dev Team
+  v1.1 originaly written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  ********************************************
+  Coppermine version: 1.4.1
+  $Source$
+  $Revision$
+  $Author$
+  $Date$
+**********************************************/
+
 // ------------------------------------------------------------------------- //
 // All lines that should NOT be IN themes/classic/theme.php          //{CORE}//
 // should end in "//{CORE}" so that they can be easily stripped      //{CORE}//
@@ -147,7 +149,7 @@ if (!defined('THEME_HAS_NO_SUB_MENU_BUTTONS')) {
   // HTML template for template sub_menu buttons
   if (!isset($template_sub_menu_button))  //{CORE}
   $template_sub_menu_button= $template_sys_menu_button;
-  
+
   // HTML template for template sub_menu buttons
   if (!isset($sub_menu_buttons)) { //{CORE}
     // {HREF_LNK}{HREF_TITLE}{HREF_TGT}{BLOCK_ID}{SPACER}
@@ -1233,7 +1235,7 @@ function theme_main_menu($which)
         '{FAQ_TITLE}' => $lang_main_menu['faq_title'],
         '{FAQ_LNK}' => $lang_main_menu['faq_lnk'],
         );
-        
+
         $main_menu = template_eval($template_sys_menu, $param);
   } else {
     $param = array(
