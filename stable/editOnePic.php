@@ -150,6 +150,9 @@ $result = db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = '$pid'
 $CURRENT_PIC = mysql_fetch_array($result);
 mysql_free_result($result);
 
+if (!(GALLERY_ADMIN_MODE || $CURRENT_PIC['owner_id'] == USER_ID)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+
+
 $thumb_url = get_pic_url($CURRENT_PIC, 'thumb');
 $thumb_link = 'displayimage.php?&pos='.(-$CURRENT_PIC['pid']);
 $filename = htmlspecialchars($CURRENT_PIC['filename']);
