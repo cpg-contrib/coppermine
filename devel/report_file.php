@@ -96,7 +96,7 @@ if (count($_POST) > 0 && $valid_sender_email) {
         );
 
     $encoded_data = urlencode(base64_encode(serialize($data)));
-	
+
     $params = array('{LANG_DIR}' => $lang_text_dir,
         '{TITLE}' => sprintf($lang_report_php['report_title'], $sender_name),
         '{CHARSET}' => $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'],
@@ -185,7 +185,7 @@ echo <<<EOT
         </tr>
 
                 <tr>
-                <td class="tableh2" colspan="3"><b>{$lang_report_php['refers_to']};</b></td>
+                <td class="tableh2" colspan="3"><b>{$lang_report_php['refers_to']}:</b></td>
         </tr>
         <tr>
                 <td class="tableb" colspan="3">
