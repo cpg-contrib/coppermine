@@ -426,17 +426,28 @@ function html_footer()
 // ------------------------- SQL QUERIES TO CREATE TABLES ------------------ //
 function create_tables()
 {
-    global $errors;
+    global $errors, $DFLT;
 
     $PHP_SELF = $_SERVER['PHP_SELF'];
     $gallery_dir = strtr(dirname($PHP_SELF), '\\', '/');
     $gallery_url_prefix = 'http://' . $_SERVER['HTTP_HOST'] . $gallery_dir . (substr($gallery_dir, -1) == '/' ? '' : '/');
 
-    $db_schema = 'sql/schema.sql';
-    $sql_query = fread(fopen($db_schema, 'r'), filesize($db_schema));
-
-    $db_basic = 'sql/basic.sql';
-    $sql_query .= fread(fopen($db_basic, 'r'), filesize($db_basic));
+    $db_schema = "{$DFLT['sql_d']}/schema.sql";
+    $db_basic = "{$DFLT['sql_d']}/basic.sql";
+    
+    if (($sch_open = fopen($db_schema, 'r')) === FALSE){
+    	$errors .= "<hr /><br />The file '$db_schema' could not be found. Check that you have uploaded all Coppermine files to your server<br /><br />";
+    	return;
+    } else {
+    	$sql_query = fread($sch_open, filesize($db_schema));	
+		if (($bas_open = fopen($db_basic, 'r')) === FALSE){
+			$errors .= "<hr /><br />The file '$db_basic' could not be found. Check that you have uploaded all Coppermine files to your server<br /><br />";    
+    		return;
+    	} else {
+    		$sql_query .= fread($bas_open, filesize($db_basic));
+    	}
+    }
+    
     // Insert the admin account
     $sql_query .= "INSERT INTO CPG_users (user_id, user_group, user_active, user_name, user_password, user_lastvisit, user_regdate, user_group_list, user_email, user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6, user_actkey ) VALUES (1, 1, 'YES', '{$_POST['admin_username']}', '{$_POST['admin_password']}', NOW(), NOW(), '', '{$_POST['admin_email']}', '', '', '', '', '', '', '');\n";
     // Set configuration values for image package
@@ -457,7 +468,7 @@ function create_tables()
 
     foreach($sql_query as $q) {
         if (! mysql_query($q)) {
-            $errors .= "mySQL Error: " . mysql_error() . "on query '$q'<br /><br />";
+            $errors .= "mySQL Error: " . mysql_error() . " on query '$q'<br /><br />";
             return;
         }
     }
@@ -550,6 +561,7 @@ if ($_GET['test_gd1']) { // GD1 test
     if (file_exists($DFLT['lck_f'])) {
         html_installer_locked();
     } elseif (count($_POST)) {
+    	test_fs();
         test_sql_connection();
         test_admin_login();
         write_config_file();
