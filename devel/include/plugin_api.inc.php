@@ -402,7 +402,7 @@ class CPGPluginAPI {
         $priority = (is_null($data['priority'])) ? (0) : ($data['priority']+1);
 
         // Grab the plugin's credits
-        include_once ('./plugins/'.$path.'/credits.php');
+        include_once ('./plugins/'.$path.'/configuration.php');
 
         // Create a generic plugin object
         $thisplugin = new CPGPlugin(
