@@ -45,7 +45,7 @@ if (isset($_GET['album']) && $_GET['album'] == 'search')
 	$_POST = $USER['search'];
 
 
-$type = " {$_POST['type']} ";
+$type = $_POST['type'] ? " {$_POST['type']} " : " OR ";
 
 $_POST['params']['pic_hdr_ip']  = $_POST['params']['pic_raw_ip'];
 
