@@ -141,11 +141,11 @@ EOT;
                 echo $tr_start.$td_start.$lang_groupmgr_php['approval'].$td_end;
             }
             if ($group['group_id'] == 3 && $CONFIG['allow_unlogged_access'] == 0) {
-                $disabled_yes = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
-                $disabled_no = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
+                $disabled_yes = 'disabled="disabled"';
+                $disabled_no = 'disabled="disabled"';
             } elseif ($group['group_id'] == 4) {
-                $disabled_yes = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
-                $disabled_no = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
+                $disabled_yes = 'disabled="disabled"';
+                $disabled_no = 'disabled="disabled"';
             } else {
                 $disabled_yes = '';
                 $disabled_no = '';
