@@ -28,139 +28,188 @@
 <p>The script also supports multiple languages and has a theme system. It uses PHP, a MySQL database and the GD library (version 1.x or 2.x) or ImageMagick to make the thumbnails. An install script makes the installation fast and simple.</p>
 
       <a name="top"></a>
+<div id="toc">
       <h1>Table of contents</h1>
-      <ul class="content">
-        <li class="content"><a href="#testVersion" class="menu1">0. Beta (Testing) version</a></li>
-        <li class="content"><a href="#what" class="menu1">1. What is required</a></li>
-        <li class="content"><a href="#installation" class="menu1">2. Installation and setup</a></li>
-        <ul style="margin-top:0px;margin-bottom:0px;list-style-type:none">
-          <li class="content"><a href="#how" class="menu2">2.1 How To Install The Script</a></li>
-          <li class="content"><a href="#getting" class="menu2">2.2 Getting Started</a></li>
-          <li class="content"><a href="#xp" class="menu2">2.3 Using Windows XP Web Publishing Wizard with Coppermine</a></li>
-          <li class="content"><a href="#creating" class="menu2">2.4 Creating or upgrading your own themes</a></li>
-          <li class="content"><a href="#safe" class="menu2">2.5 Safe mode issues</a></li>
-          <li class="content"><a href="#smtp" class="menu2">2.6 Using SMTP to send emails</a></li>
-        </ul>
-        <li class="content"><a href="#upgrade" class="menu1">3. Upgrading</a></li>
-        <ul class="content">
-          <li class="content"><a href="#10" class="menu2">3.1 Upgrading from version 1.0</a></li>
-          <li class="content"><a href="#11" class="menu2">3.2 Upgrading from releases of version 1.1</a></li>
-          <li class="content"><a href="#12" class="menu2">3.3 Upgrading from cpg1.2.0rc2 or cpg1.2.0final to version cpg1.2.1</a></li>
-          <li class="content"><a href="#13" class="menu2">3.4 Upgrading from cpg1.2.0 (or better) to version cpg1.4.1</a></li>
-          <li class="content"><a href="#versioncheck" class="menu2">3.5 The version check tool</a>
-          <ul class="content">
-            <li class="content"><a href="#versioncheck_description_start">3.5.1 What it does</a></li>
-            <li class="content"><a href="#versioncheck_options_start">3.5.2 Options</a></li>
-            <li class="content"><a href="#versioncheck_comparison_start">3.5.3 Version comparison</a></li>
-          </ul>
-          </li>
-        </ul>
-        <li class="content"><a href="#administration" class="menu1">4. Configuration &amp; Administration</a></li>
-        <ul class="content">
-          <li class="content"><a href="#cat_alb_pic" class="menu2">4.1 Categories, albums and files</a></li>
-          <li class="content"><a href="#admin_user_mode" class="menu2">4.2 Admin mode &amp; User mode</a></li>
-          <li class="content"><a href="#group_cp" class="menu2">4.3 The group control panel</a></li>
-          <li class="content"><a href="#user_cp" class="menu2">4.4 The user control panel</a></li>
-          <ul class="content">
-            <li class="content"><a href="#user_cp_page">4.4.1 Page controls</a></li>
-            <li class="content"><a href="#user_cp_search">4.4.2 Searching for user(s)</a></li>
-            <li class="content"><a href="#user_cp_new">4.4.3 Creating new users</a></li>
-          </ul>
-          <li class="content"><a href="#cat_cp" class="menu2">4.5 The category control panel</a></li>
-          <li class="content"><a href="#albmgr" class="menu2">4.6 The album manager</a>
-          <ul class="content">
-            <li class="content"><a href="#albmgr_create">4.6.1 Creating albums</a></li>
-            <li class="content"><a href="#albmgr_rename">4.6.2 Renaming albums</a></li>
-            <li class="content"><a href="#albmgr_order">4.6.3 Changing the album order</a></li>
-            <li class="content"><a href="#albmgr_delete">4.6.4 Deleting albums</a></li>
-          </ul>
-          </li>
-          <li class="content"><a href="#modif_alb_pics" class="menu2">4.7 Modifying album/files</a></li>
-          <li class="content"><a href="#album_prop" class="menu2">4.8 Album properties</a></li>
-            <ul class="content">
-            <li class="content"><a href="#album_prop_reset_start">4.8.1 Reset album properties</a></li>
-            </ul>
-          <li class="content"><a href="#edit_pics" class="menu2">4.9 Editing files</a></li>
-            <ul class="content">
-            <li class="content"><a href="#edit_vids">4.9.1 Editing videos</a></li>
-            <li class="content"><a href="#cust_thmb">4.9.2 Custom thumbnails</a></li>
-            </ul>
-          <li class="content"><a href="#bbcode" class="menu2">4.10 Using bbcode to insert links and format in descriptions</a></li>
-          <li class="content"><a href="#batch_add_pics" class="menu2">4.11 Uploading pics by FTP / Batch-Add Pictures</a></li>
-          <li class="content"><a href="#admin" class="menu2">4.12 The gallery configuration page</a></li>
-            <ul class="content">
-            <li class="content"><a href="#admin_general">4.12.1 General settings</a></li>
-            <li class="content"><a href="#admin_language">4.12.2 Language, Themes &amp; Charset settings</a></li>
-            <li class="content"><a href="#admin_album_list">4.12.3 Album list view</a></li>
-            <li class="content"><a href="#admin_thumbnail_view">4.12.4 Thumbnail view</a></li>
-            <li class="content"><a href="#admin_image_comment">4.12.5 Image view</a></li>
-            <li class="content"><a href="#admin_comment_start">4.12.6 Comment settings</a></li>
-            <li class="content"><a href="#admin_picture_thumbnail">4.12.7 File and thumbnail settings</a></li>
-            <li class="content"><a href="#admin_picture_thumb_advanced">4.12.8 Files and thumbnails advanced settings</a></li>
-            <li class="content"><a href="#admin_user">4.12.9 User settings</a></li>
-            <li class="content"><a href="#admin_movie">4.12.10 Movie Playback Settings</a></li>
-            <li class="content"><a href="#admin_custom">4.12.11 Custom fields for user profile</a></li>
-            <li class="content"><a href="#admin_custom_image">4.12.12 Custom fields for image description</a></li>
-            <li class="content"><a href="#admin_cookie">4.12.13 Cookie settings</a></li>
-            <li class="content"><a href="#admin_email">4.12.14 Email settings</a></li>
-            <li class="content"><a href="#admin_logging">4.12.15 Logging &amp; statistics</a></li>
-            <li class="content"><a href="#admin_misc">4.12.16 Miscellaneous settings</a></li>
-            </ul>
-          </ul>
-        <li class="content"><a href="#integrating" class="menu1">5. Integrating the script with your bulletin board</a>
-            <ul class="content">
-               <li class="content"><a href="#integrating_bridge_start" class="menu2">5.1 Available bridge files</a></li>
-               <li class="content"><a href="#integrating_prerequisites_start" class="menu2">5.2 Pre-requistes</a>
-                   <ul class="content">
-                       <li class="content"><a href="#integrating_cookie_start">5.2.1 Authentification by cookie</a></li>
-                       <li class="content"><a href="#integrating_standalone_start">5.2.2 Standalone version first</a></li>
-                       <li class="content"><a href="#integrating_users_start">5.2.3 Coppermine users, groups and pics uploaded by users are lost when integrating</a></li>
-                       <li class="content"><a href="#integrating_backup_start">5.2.4 Backup</a></li>
-                       <li class="content"><a href="#integrating_database_start">5.2.5 Keep Coppermine and bbs tables in the same database</a></li>
-                   </ul>
-               </li>
-               <li class="content"><a href="#integrating_steps_start" class="menu2">5.3 Integration steps</a>
-                   <ul class="content">
-                     <li class="content"><a href="#bridge_manager_start">5.3.1 Using the bridge manager</a>
-                       <ul class="content">
-                         <li class="content"><a href="#bridge_manager_app_start">5.3.1.1 choose application to bridge coppermine with</a></li>
-                         <li class="content"><a href="#bridge_manager_path_start">5.3.1.2 path(s) used by your BBS app</a></li>
-                         <li class="content"><a href="#bridge_manager_dbcon_start">5.3.1.3 database connection</a></li>
-                         <li class="content"><a href="#bridge_manager_dbtable_start">5.3.1.4 database tables</a></li>
-                         <li class="content"><a href="#bridge_manager_group_start">5.3.1.5 BBS groups</a></li>
-                         <li class="content"><a href="#bridge_manager_specific_start">5.3.1.6 BBS-specific settings</a></li>
-                         <li class="content"><a href="#bridge_manager_enable_start">5.3.1.7 enable/disable BBS integration</a></li>
-                       </ul>
-                     </li>
-                     <li class="content"><a href="#bridge_manager_recover_start">5.3.2 Recover from failed bridging</a></li>
-                     <li class="content"><a href="#integration_manual_start">5.3.3 Manual integration</a>
-                       <ul class="content">
-                           <li class="content"><a href="#integrating_steps_settings_start">5.3.3.1 Check your bbs settings</a></li>
-                           <li class="content"><a href="#integrating_steps_bridge_start">5.3.3.2 Edit your bridge file</a></li>
-                           <li class="content"><a href="#integrating_steps_init_start">5.3.3.3 Enable bbs integration</a></li>
-                       </ul>
-                     <li class="content"><a href="#integrating_steps_special_start">5.3.4 Special steps depending on the bbs you use</a>
-                           <ul class="content">
-                               <li class="content"><a href="#integrating_steps_special_phpbb_start">5.3.4.1 For phpBB only</a></li>
-                               <li class="content"><a href="#integrating_steps_special_punbb_start">5.3.4.2 For PunBB only</a></li>
-                           </ul>
-                     </li>
-                       <li class="content"><a href="#integrating_steps_upload_start">5.3.5 Upload the modified files</a></li>
-                       <li class="content"><a href="#integrating_steps_sync_start">5.3.6 Synchronsising the bbs groups with Coppermine's groups</a></li>
-                   </ul>
-               </li>
-            </ul>
-        </li>
-        <li class="content"><a href="#translating" class="menu1">6. Translating Coppermine into other languages</a></li>
-        <li class="content"><a href="#known_issues" class="menu1">7. Known Issues</a></li>
-        <li class="content"><a href="#credits" class="menu1">8. Credits</li>
-        <ul class="content">
-          <li class="content"><a href="#developers" class="menu2">8.1 Coppermine team</a></li>
-          <li class="content"><a href="#contributors" class="menu2">8.2 Contributors</a></li>
-          <li class="content"><a href="#codebase" class="menu2">8.3 Code used in Coppermine</a></li>
-          <li class="content"><a href="#copyright" class="menu2">8.4 License</a> (Copyright &amp; disclaimer)</li>
-        </ul>
-      </ul>
+      <ul class="level1">
+        <li class="level1"><a href="testing.php#testVersion" class="menu1">0. Beta (Testing) version</a></li>
+			</ul>
+<ul class="level1">
+	<li class="level1"><a href="#what" class="menu1">1. What is required</a></li>
+</ul>
+<ul class="level1">
+
+	<li class="level1"><a href="#installation" class="menu1">2. Installation and setup</a></li>
+</ul>
+	<ul class="level2">
+		<li class="level2"><a href="#how" class="menu2">2.1 How To Install The Script</a></li>
+		<li class="level2"><a href="#getting" class="menu2">2.2 Getting Started</a></li>
+		<li class="level2"><a href="#xp" class="menu2">2.3 Using Windows XP Web Publishing Wizard with Coppermine</a></li>
+		<li class="level2"><a href="#creating" class="menu2">2.4 Creating or upgrading your own themes</a></li>
+
+		<li class="level2"><a href="#safe" class="menu2">2.5 Safe mode issues</a></li>
+		<li class="level2"><a href="#smtp" class="menu2">2.6 Using SMTP to send emails</a></li>
+	</ul>
+<ul class="level1">
+	<li class="level1"><a href="#upgrade" class="menu1">3. Upgrading</a></li>
+</ul>
+	<ul class="level2">
+		<li class="level2"><a href="#10" class="menu2">3.1 Upgrading from version 1.0</a></li>
+
+		<li class="level2"><a href="#11" class="menu2">3.2 Upgrading from releases of version 1.1</a></li>
+		<li class="level2"><a href="#12" class="menu2">3.3 Upgrading from cpg1.2.0rc2 or cpg1.2.0final to version cpg1.2.1</a></li>
+		<li class="level2"><a href="#13" class="menu2">3.4 Upgrading from cpg1.2.0 (or better) to version cpg1.4.1</a></li>
+		<li class="level2"><a href="#versioncheck" class="menu2">3.5 The version check tool</a></li>
+	</ul>
+		<ul class="level3">
+			<li class="level3"><a href="#versioncheck_description_start">3.5.1 What it does</a></li>
+
+			<li class="level3"><a href="#versioncheck_options_start">3.5.2 Options</a></li>
+			<li class="level3"><a href="#versioncheck_comparison_start">3.5.3 Version comparison</a></li>
+		</ul>
+<ul class="level1">
+	<li class="level1"><a href="#administration" class="menu1">4. Configuration &amp; Administration</a></li>
+</ul>
+	<ul class="level2">
+
+		<li class="level2"><a href="#cat_alb_pic" class="menu2">4.1 Categories, albums and files</a></li>
+		<li class="level2"><a href="#admin_user_mode" class="menu2">4.2 Admin mode &amp; User mode</a></li>
+		<li class="level2"><a href="#group_cp" class="menu2">4.3 The group control panel</a></li>
+		<li class="level2"><a href="#user_cp" class="menu2">4.4 The user control panel</a></li>
+	</ul>
+		<ul class="level3">
+
+			<li class="level3"><a href="#user_cp_page">4.4.1 Page controls</a></li>
+			<li class="level3"><a href="#user_cp_search">4.4.2 Searching for user(s)</a></li>
+			<li class="level3"><a href="#user_cp_new">4.4.3 Creating new users</a></li>
+		</ul>
+	<ul class="level2">
+		<li class="level2"><a href="#cat_cp" class="menu2">4.5 The category control panel</a></li>
+		<li class="level2"><a href="#albmgr" class="menu2">4.6 The album manager</a></li>
+
+	</ul>
+		<ul class="level3">
+			<li class="level3"><a href="#albmgr_create">4.6.1 Creating albums</a></li>
+			<li class="level3"><a href="#albmgr_rename">4.6.2 Renaming albums</a></li>
+			<li class="level3"><a href="#albmgr_order">4.6.3 Changing the album order</a></li>
+			<li class="level3"><a href="#albmgr_delete">4.6.4 Deleting albums</a></li>
+		</ul>
+
+	<ul class="level2">
+		<li class="level2"><a href="#modif_alb_pics" class="menu2">4.7 Modifying album/files</a></li>
+		<li class="level2"><a href="#album_prop" class="menu2">4.8 Album properties</a></li>
+	</ul>
+		<ul class="level3">
+			<li class="level3"><a href="#album_prop_reset_start">4.8.1 Reset album properties</a></li>
+		</ul>
+
+	<ul class="level2">
+		<li class="level2"><a href="#edit_pics" class="menu2">4.9 Editing files</a></li>
+	</ul>
+		<ul class="level3">
+			<li class="level3"><a href="#edit_vids">4.9.1 Editing videos</a></li>
+			<li class="level3"><a href="#cust_thmb">4.9.2 Custom thumbnails</a></li>
+		</ul>
+
+	<ul class="level2">
+		<li class="level2"><a href="#bbcode" class="menu2">4.10 Using bbcode to insert links and format in descriptions</a></li>
+		<li class="level2"><a href="#batch_add_pics" class="menu2">4.11 Uploading pics by FTP / Batch-Add Pictures</a></li>
+		<li class="level2"><a href="#admin" class="menu2">4.12 The gallery configuration page</a></li>
+	</ul>
+		<ul class="level3">
+			<li class="level3"><a href="#admin_general">4.12.1 General settings</a></li>
+
+			<li class="level3"><a href="#admin_language">4.12.2 Language, Themes &amp; Charset settings</a></li>
+			<li class="level3"><a href="#admin_album_list">4.12.3 Album list view</a></li>
+			<li class="level3"><a href="#admin_thumbnail_view">4.12.4 Thumbnail view</a></li>
+			<li class="level3"><a href="#admin_image_comment">4.12.5 Image view</a></li>
+			<li class="level3"><a href="#admin_comment_start">4.12.6 Comment settings</a></li>
+
+			<li class="level3"><a href="#admin_picture_thumbnail">4.12.7 File and thumbnail settings</a></li>
+			<li class="level3"><a href="#admin_picture_thumb_advanced">4.12.8 Files and thumbnails advanced settings</a></li>
+			<li class="level3"><a href="#admin_user">4.12.9 User settings</a></li>
+			<li class="level3"><a href="#admin_movie">4.12.10 Movie Playback Settings</a></li>
+			<li class="level3"><a href="#admin_custom">4.12.11 Custom fields for user profile</a></li>
+			<li class="level3"><a href="#admin_custom_image">4.12.12 Custom fields for image description</a></li>
+
+			<li class="level3"><a href="#admin_cookie">4.12.13 Cookie settings</a></li>
+			<li class="level3"><a href="#admin_email">4.12.14 Email settings</a></li>
+			<li class="level3"><a href="#admin_logging">4.12.15 Logging &amp; statistics</a></li>
+			<li class="level3"><a href="#admin_misc">4.12.16 Miscellaneous settings</a></li>
+		</ul>
+<ul class="level1">
+
+	<li class="level1"><a href="#integrating" class="menu1">5. Integrating the script with your bulletin board</a></li>
+</ul>
+	<ul class="level2">
+		 <li class="level2"><a href="#integrating_bridge_start" class="menu2">5.1 Available bridge files</a></li>
+		 <li class="level2"><a href="#integrating_prerequisites_start" class="menu2">5.2 Pre-requistes</a></li>
+	</ul>
+		<ul class="level3">
+			 <li class="level3"><a href="#integrating_cookie_start">5.2.1 Authentication by cookie</a></li>
+
+			 <li class="level3"><a href="#integrating_standalone_start">5.2.2 Standalone version first</a></li>
+			 <li class="level3"><a href="#integrating_users_start">5.2.3 Coppermine users, groups and pics uploaded by users are lost when integrating</a></li>
+			 <li class="level3"><a href="#integrating_backup_start">5.2.4 Backup</a></li>
+			 <li class="level3"><a href="#integrating_database_start">5.2.5 Keep Coppermine and bbs tables in the same database</a></li>
+		</ul>
+	<ul class="level2">
+		 <li class="level2"><a href="#integrating_steps_start" class="menu2">5.3 Integration steps</a></li>
+
+	</ul>
+		<ul class="level3">
+			<li class="level3"><a href="#bridge_manager_start">5.3.1 Using the bridge manager</a></li>
+		</ul>
+			 <ul class="level4">
+				 <li class="level4"><a href="#bridge_manager_app_start">5.3.1.1 choose application to bridge coppermine with</a></li>
+				 <li class="level4"><a href="#bridge_manager_path_start">5.3.1.2 path(s) used by your BBS app</a></li>
+
+				 <li class="level4"><a href="#bridge_manager_dbcon_start">5.3.1.3 database connection</a></li>
+				 <li class="level4"><a href="#bridge_manager_dbtable_start">5.3.1.4 database tables</a></li>
+				 <li class="level4"><a href="#bridge_manager_group_start">5.3.1.5 BBS groups</a></li>
+				 <li class="level4"><a href="#bridge_manager_specific_start">5.3.1.6 BBS-specific settings</a></li>
+				 <li class="level4"><a href="#bridge_manager_enable_start">5.3.1.7 enable/disable BBS integration</a></li>
+			 </ul>
+
+		 <ul class="level3">
+				 <li class="level3"><a href="#bridge_manager_recover_start">5.3.2 Recover from failed bridging</a></li>
+				 <li class="level3"><a href="#integration_manual_start">5.3.3 Manual integration</a></li>
+		 </ul>
+			 <ul class="level4">
+					 <li class="level4"><a href="#integrating_steps_settings_start">5.3.3.1 Check your bbs settings</a></li>
+					 <li class="level4"><a href="#integrating_steps_bridge_start">5.3.3.2 Edit your bridge file</a></li>
+
+					 <li class="level4"><a href="#integrating_steps_init_start">5.3.3.3 Enable bbs integration</a></li>
+			 </ul>
+		 <ul class="level3">
+				 <li class="level3"><a href="#integrating_steps_special_start">5.3.4 Special steps depending on the bbs you use</a></li>
+		 </ul>
+			 <ul class="level4">
+					 <li class="level4"><a href="#integrating_steps_special_phpbb_start">5.3.4.1 For phpBB only</a></li>
+
+					 <li class="level4"><a href="#integrating_steps_special_punbb_start">5.3.4.2 For PunBB only</a></li>
+			 </ul>
+		 <ul class="level3">
+				 <li class="level3"><a href="#integrating_steps_upload_start">5.3.5 Upload the modified files</a></li>
+				 <li class="level3"><a href="#integrating_steps_sync_start">5.3.6 Synchronising the bbs groups with Coppermine's groups</a></li>
+		 </ul>
+<ul class="level1">
+	<li class="level1"><a href="#translating" class="menu1">6. Translating Coppermine into other languages</a></li>
+
+</ul>
+<ul class="level1">
+	<li class="level1"><a href="#known_issues" class="menu1">7. Known Issues</a></li>
+</ul>
+<ul class="level1">
+	<li class="level1"><a href="#credits" class="menu1">8. Credits</a></li>
+</ul>
+	<ul class="level2">
+		<li class="level2"><a href="#developers" class="menu2">8.1 Coppermine team</a></li>
+		<li class="level2"><a href="#contributors" class="menu2">8.2 Contributors</a></li>
+
+		<li class="level2"><a href="#codebase" class="menu2">8.3 Code used in Coppermine</a></li>
+		<li class="level2"><a href="#copyright" class="menu2">8.4 License</a> (Copyright &amp; disclaimer)</li>
+	</ul>
+</div><!-- end toc -->
       <hr />
 
 <a name="testVersion"></a>
@@ -1482,7 +1531,7 @@ You can toggle this option on the <a href="#batch_add_pics">batch-add</a> page a
 <h2>5.2 Pre-requistes</h2>
 
 <a name="integrating_cookie_start"></a>
-<h3>5.2.1 Authentification by cookie</h3>
+<h3>5.2.1 Authentication by cookie</h3>
 <p>The login integration uses your bulletin board cookies, therefore it won't work if your board cookies are not visible by Coppermine. So unless you are an expert, keep things simple and install Coppermine and your bulletin board on the same domain. Examples :</p>
 <table border="0" cellspacing="5" cellpadding="5" class="border1">
 <tr>
@@ -1636,7 +1685,7 @@ Should the groups from the BBS that are defined by the number of posts be taken 
 
 <a name="bridge_manager_recover_start"></a>
 <h3>5.3.2 Recover from failed bridging</h3>
-<p>If you have provided improper settings using the bridge manager, your integration might fail, resulting (in the worst case) in a stituation where bridging is enabled, but you can not log in as admin to switch it off again (e.g. if you provided improper cookie settings that stops authentification to work). For this situation a recovery setting was built into the bridge manager: if you are not logged in as coppermine admin (in fact: not logged in at all) and you access the URL of your bridge manager (http://yourdomain.tld/your_coppermine_folder/bridgemgr.php) by entering it manually into the address bar of your browser, you are prompted to enter your admin account details - use the admin account you used to install coppermine with in the first place (the standalone admin account). This will not log you in, but switch integration off, so you can fix improper bridging settings then. To avoid others trying to guess your admin account details, there's a login treshold that rises every time you enter wrong credentials, so enter your admin account details with care.</p>
+<p>If you have provided improper settings using the bridge manager, your integration might fail, resulting (in the worst case) in a stituation where bridging is enabled, but you can not log in as admin to switch it off again (e.g. if you provided improper cookie settings that stops authentication from working). For this situation a recovery setting was built into the bridge manager: if you are not logged in as coppermine admin (in fact: not logged in at all) and you access the URL of your bridge manager (http://yourdomain.tld/your_coppermine_folder/bridgemgr.php) by entering it manually into the address bar of your browser, you are prompted to enter your admin account details - use the admin account you used to install coppermine with in the first place (the standalone admin account). This will not log you in, but switch integration off, so you can fix improper bridging settings then. To avoid others trying to guess your admin account details, there's a login treshold that rises every time you enter wrong credentials, so enter your admin account details with care.</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="bridge_manager_recover_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
@@ -1752,7 +1801,7 @@ if (isset($_POST['redir'])){
 <a name="integrating_steps_upload_end"></a>
 
 <a name="integrating_steps_sync_start"></a>
-<h3>5.3.6 Synchronsising the bbs groups with Coppermine's groups</h3>
+<h3>5.3.6 Synchronising the bbs groups with Coppermine's groups</h3>
 <p>Login using the admin account of your board. Go to the gallery, enter admin mode and click on the &quot;Groups&quot; button. This will synchronize Coppermine groups with those of your board. The permission you will see for each group will be completely messy, so take some time to set them properly.</p>
 <p>Each time you add or delete a group in your board you will need to do the operation above in order to keep the synchronisation of the groups.</p>
 <p>When you will try to login / logout or manage users from Coppermine, you will be redirected to the corresponding page of your bulletin board. Once the login or logout is performed you won't be redirected automatically to the gallery because your board does not have any function for that. It's up to you to add a link on your board to get you back to the gallery.</p>
