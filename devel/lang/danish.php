@@ -8,6 +8,8 @@
 //  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
 //  http://www.stoverud.com/PHPhotoalbum/                                    //
 // ------------------------------------------------------------------------- //
+//  Translated by David Holm (wormie@alberg.dk)                              //
+// ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
 //  the Free Software Foundation; either version 2 of the License, or        //
@@ -47,12 +49,15 @@ $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clit
 $lang_meta_album_names = array(
 	'random' => 'Tilfældige billeder',
 	'lastup' => 'Sidste tilføjelser',
+        'lastalb'=> 'Sidst opdaterede album',
 	'lastcom' => 'Sidste komentarer',
 	'topn' => 'Mest viste',
 	'toprated' => 'Top karakter',
 	'lasthits' => 'Sidst viste',
-	'search' => 'Søge resultat'
+	'search' => 'Søge resultat',
+	'favpics'=> 'Favorit billeder'
 );
+
 
 $lang_errors = array(
 	'access_denied' => 'Du har ikke tilladelse til at se denne side.',
@@ -96,6 +101,7 @@ $lang_main_menu = array(
 	'topn_lnk' => 'Mest viste',
 	'toprated_lnk' => 'Top karakter',
 	'search_lnk' => 'Søg',
+	'fav_lnk'=>'Foretrukne'
 );
 
 $lang_gallery_admin_menu = array(
@@ -127,13 +133,17 @@ $lang_album_list = array(
 
 $lang_thumb_view = array(
 	'date' => 'DATO',
-	'name' => 'NAVN',
-	'sort_da' => 'Sorteret i stigende dato rækkefølge',
-	'sort_dd' => 'Sortret i faldende dato rækkefølge',
-	'sort_na' => 'Sorteret alfabetisk stigende reækkefølge',
-	'sort_nd' => 'Sorteret alfabetisk faldende reækkefølge',
+        //Sort by filename and title
+	'name' => 'FILNAVN',
+        'title' => 'TITEL',
+	'sort_da' => 'Sorteret stigende efter dato',
+	'sort_dd' => 'Sorteret faldende efter dato',
+	'sort_na' => 'Sorteret stigende efter navn',
+	'sort_nd' => 'Sorteret faldende efter navn',
+        'sort_ta' => 'Sorteret stigende efter titel',
+        'sort_td' => 'Sorteret faldende efter titel',
 	'pic_on_page' => '%d billeder på %d side(r)',
-	'user_on_page' => '%d bruger på %d side(r)'
+	'user_on_page' => '%d brugere på %d side(r)'
 );
 
 $lang_img_nav_bar = array(
@@ -156,7 +166,7 @@ $lang_rate_pic = array(
 	'poor' => 'Ringe',
 	'fair' => 'Rimeligt',
 	'good' => 'Godt',
-	'excellent' => 'Ret så godt',
+	'excellent' => 'Rigtig godt',
 	'great' => 'Fantastisk',
 );
 
@@ -186,7 +196,7 @@ $lang_display_thumbnails = array(
 );
 
 $lang_get_pic_data = array(
-	'n_comments' => '%s kommentar',
+	'n_comments' => '%s kommentarer',
 	'n_views' => '%s visninger',
 	'n_votes' => '(%s stemmer)'
 );
@@ -244,7 +254,7 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 
 if (defined('ADMIN_PHP')) $lang_admin_php = array(
 	0 => 'Forlader admin mode...',
-	1 => 'kommer ind i admin mode...',
+	1 => 'Logger ind som admin...',
 );
 
 // ------------------------------------------------------------------------- //
@@ -265,7 +275,7 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 	'delete' => 'Slet',
 	'new' => 'Ny',
 	'apply_modifs' => 'Godkend rettelser',
-	'select_category' => 'Select category',
+	'select_category' => 'Vælg kategori',
 );
 
 // ------------------------------------------------------------------------- //
@@ -298,9 +308,11 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
 	'notes' => 'Noter',
 	'info' => 'Information',
 	'upd_success' => 'Coppermine ckonfigurationen er opdateret',
-	'restore_success' => 'Coppermine standart konfigurationen genskabt',
+	'restore_success' => 'Coppermine standard konfigurationen genskabt',
 	'name_a' => 'Navn stigende',
 	'name_d' => 'Navn faldende',
+        'title_a' => 'Titel stigende',
+        'title_d' => 'Titel faldende',
 	'date_a' => 'Dato stigende',
 	'date_d' => 'Date faldende'
 );
@@ -321,6 +333,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Antal af kolonner for albumliste', 'album_list_cols', 0),
 	array('Størrelse af minibilleder i pixels', 'alb_list_thumb_size', 0),
 	array('Indholdet af hovedsiden', 'main_page_layout', 0),
+            array('Vis øverste album niveaus minibilleder i kategorier','first_level',1),
 
 	'Minibillede visning',
 	array('Antal kolonner på minnibillede siden', 'thumbcols', 0),
@@ -328,32 +341,35 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Max antal minibilleder pr side', 'max_tabs', 0),
 	array('Vis billedeoverskriften (i tilføjelse til titel) nedenfor minibillede', 'caption_in_thumbview', 1),
 	array('Vis antal af kommentarer nedenfor minibilledet', 'display_comment_count', 1),
-	array('Standart sorterng af billedreækkefølgen', 'default_sort_order', 3),
+	array('Standard sorterng af billedreækkefølgen', 'default_sort_order', 3),
 	array('Min antal stemmer for billede før visning i \'top karakter\' listen', 'min_votes_for_rating', 0),
 
 	'Billedevisning &amp; Kommentar indstillinger',
 	array('Bredde for tabellen til visning af billeder (pixels eller %)', 'picture_table_width', 0),
-	array('Billede information er synlig som standart', 'display_pic_info', 1),
-	array('Filtrer bandet ord i kommentar', 'filter_bad_words', 1),
-	array('Tillad smiles i kommentar', 'enable_smilies', 1),
+	array('Billede information er synlig som standard', 'display_pic_info', 1),
+	array('Filtrer bande ord i kommentarer', 'filter_bad_words', 1),
+	array('Tillad smilies i kommentarer', 'enable_smilies', 1),
 	array('Max længde for billedebeskrivelse', 'max_img_desc_length', 0),
-	array('Max længe på helt ord', 'max_com_wlength', 0),
-	array('Max linjer i en kommentar', 'max_com_lines', 0),
+	array('Max længde på et ord', 'max_com_wlength', 0),
+	array('Max antal linjer i en kommentar', 'max_com_lines', 0),
 	array('Maximum længde på en kommentar', 'max_com_size', 0),
+        array('Vis film rulle', 'display_film_strip', 1),
+        array('Antal emner i film rulle', 'max_film_strip_items', 0),
 
-	'Billede og minnibillede indstillinger',
+	'Billede og minibillede indstillinger',
 	array('Kvalitet for JPEG billeder', 'jpeg_qual', 0),
-	array('Max bredde eller højde på minibilleder <b>*</b>', 'thumb_width', 0),
+	array('Max dimension på minibilleder <b>*</b>', 'thumb_width', 0),
+        array('Brug dimension ( bredde, højde eller maximum af de to til minibilleder )<b>*</b>', 'thumb_use', 7),
 	array('Opret mellemliggende bolleder','make_intermediate',1),
 	array('Max bredde eller højde for et mellemliggende billede <b>*</b>', 'picture_width', 0),
 	array('Max størrelse for uploadet billeder (KB)', 'max_upl_size', 0),
 	array('Max bredde eller højde for uploadet billeder (pixels)', 'max_upl_width_height', 0),
 
 	'Bruger indstillinger',
-	array('Tillad nye bruger registreringer', 'allow_user_registration', 1),
-	array('Ved bruger registration forlanges e-mail godkendelse', 'reg_requires_valid_email', 1),
-	array('Tillad 2 bruger at have samme e-mail', 'allow_duplicate_emails_addr', 1),
-	array('Bruger kan have private albums', 'allow_private_albums', 1),
+	array('Tillad registrering af nye brugere', 'allow_user_registration', 1),
+	array('Forlang e-mail godkendelse ved registrering', 'reg_requires_valid_email', 1),
+	array('Tillad 2 brugere at have samme e-mail adresse', 'allow_duplicate_emails_addr', 1),
+	array('Brugere kan have private albums', 'allow_private_albums', 1),
 
 	'specialfremstillet fælter ved billede beskrivelse (lad det forblive blanke, hvis det ikke skal bruges)',
 	array('Felt 1 navn', 'user_field1_name', 0),
@@ -362,8 +378,9 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Felt 4 navn', 'user_field4_name', 0),
 
 	'Advanceret billede og minibillede indstillinger',
+        array('Vis ikon for private album for anononyme brugere','show_private',1),
 	array('Forbudte karakterer i filnavne', 'forbiden_fname_char',0),
-	array('Aksepter fil udvidelse for uploadet billeder', 'allowed_file_extensions',0),
+	array('Accepterede fil udvidelser for uploadede billeder', 'allowed_file_extensions',0),
 	array('Metode for skabelsen af billede størrelsen','thumb_method',2),
 	array('Sti til ImageMagick \'konveter\' værktøj (eksempel /usr/bin/X11/)', 'impath', 0),
 	array('Tillad billedetyper (kun gangbar ved brug af ImageMagick)', 'allowed_img_types',0),
@@ -373,8 +390,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Mappen for bruger billeder <b>*</b>', 'userpics', 0),
 	array('foranstillet navn på mellembilleder <b>*</b>', 'normal_pfx', 0),
 	array('foranstillet navn på minibilleder <b>*</b>', 'thumb_pfx', 0),
-	array('Standart tilstand på mapper', 'default_dir_mode', 0),
-	array('stndart tilstand på billeder', 'default_file_mode', 0),
+	array('Standard tilstand på mapper', 'default_dir_mode', 0),
+	array('standard tilstand på billeder', 'default_file_mode', 0),
 
 	'Cookies &amp; tegn-kodnings indstillinger',
 	array('Navnet på den cookie brugt af dette system', 'cookie_name', 0),
@@ -479,15 +496,24 @@ $lang_picinfo = array(
 	'Aperture' => 'Blænderåbning',
 	'Exposure time' => 'Eksponeringstid ',
 	'Focal length' => 'Brændvidde',
-	'Comment' => 'Kommentar'
+	'Comment' => 'Kommentar',
+	'addFav'=>'Føj til foretrukne',
+	'addFavPhrase'=>'Foretrukne',
+	'remFav'=>'Fjern fra foretrukne',
 );
 
 $lang_display_comments = array(
 	'OK' => 'OK',
 	'edit_title' => 'Ret denne kommentar',
-	'confirm_delete' => 'Erdu sikker på du vil slette denn kommentar ?',
+	'confirm_delete' => 'Er du sikker på at du vil slette denn kommentar ?',
 	'add_your_comment' => 'Tilføj din kommentar',
-	'your_name' => 'Dit navn',
+        'name'=>'Navn',
+        'comment'=>'Kommentar',
+	'your_name' => 'Anononym',
+);
+
+$lang_fullsize_popup = array(
+        'click_to_close' => 'Klik på billedet for at lukke dette vindue',
 );
 
 }
@@ -591,7 +617,7 @@ $lang_list_categories = array(
 
 $lang_list_users = array(
 	'user_list' => 'Bruger liste',
-	'no_user_gal' => 'Der er ingen bruger der har tilladelse til at have albums',
+	'no_user_gal' => 'Der er ingen bruger gallerier',
 	'n_albums' => '%s album(s)',
 	'n_pics' => '%s billede(r)'
 );
@@ -841,7 +867,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 	'pic_d' => 'Billede tæller faldende',
 	'disku_a' => 'Disk behandling stigende',
 	'disku_d' => 'Disk behandling faldende',
-	'sort_by' => 'Sorteret af bruger',
+	'sort_by' => 'Sorteret brugere efter',
 	'err_no_users' => 'Bruger tabel er tom !',
 	'err_edit_self' => 'Du kan ikke rette i egen profil, brug \'Min profil\' link til dette formål',
 	'edit' => 'RET',
