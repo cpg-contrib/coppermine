@@ -1761,6 +1761,9 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
    'albums_no_category' => 'Albums with no category', //cpg1.4. //album pulldown mod, added by frogfoot
   'personal_albums' => '* Personal albums', //cpg1.4 //album pulldown mod, added by frogfoot
   'select_album' => 'Select album', //cpg1.4 //album pulldown mod, added by frogfoot
+  'close' => 'Close', // cpg1.4
+  'no_keywords' => 'Sorry, no keywords available!', // cpg1.4
+  'regenerate_dictionary' => 'Regenerate Dictionary', // cpg1.4
 );
 
 // ------------------------------------------------------------------------- //
