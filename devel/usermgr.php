@@ -199,13 +199,18 @@ EOT;
     if (!$lim_user) {
      echo <<<EOT
         <tr>
-                
+
                 <td colspan="9"  class="tablef">
                 <table cellpadding="0" cellspacing="0">
                 <tr>
-                		<td align="left"><form method="post" action="$PHP_SELF"><input type="text" name="username" class="textinput"> <input type="submit" name="user_search" value="{$lang_usermgr_php['search']}" class="button"></form></td>
+                        <td align="left">
+                            <form method="post" action="$PHP_SELF">
+                                <input type="text" name="username" class="textinput" />
+                                <input type="submit" name="user_search" value="{$lang_usermgr_php['search']}" class="button" />
+                            </form>
+                        </td>
                         <td><img src="images/spacer.gif" width="50" height="1" alt="" /></td>
-                        <td><form method="post" action="$PHP_SELF?op=new_user"><input type="submit" value="{$lang_usermgr_php['create_new_user']}" class="button"></form></td>
+                        <td><form method="post" action="$PHP_SELF?op=new_user"><input type="submit" value="{$lang_usermgr_php['create_new_user']}" class="button" /></form></td>
                         <td><img src="images/spacer.gif" width="50" height="1" alt="" /></td>
                         <td><b>{$lang_usermgr_php['sort_by']}</b></td>
                         <td><img src="images/spacer.gif" width="10" height="1" alt="" /></td>
@@ -213,7 +218,7 @@ EOT;
                 </tr>
                 </table>
                 </td>
-                
+
         </tr>
 EOT;
     }
@@ -274,7 +279,7 @@ EOT;
                         {$element[2]}
         </td>
         <td width="60%" class="tableb" valign="top">
-                <input type="text" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="{$user_data[$element[1]]}" class="textinput">
+                <input type="text" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="{$user_data[$element[1]]}" class="textinput" />
                 </td>
         </tr>
 
@@ -306,7 +311,7 @@ EOT;
                         {$element[2]}
         </td>
         <td width="60%" class="tableb" valign="top">
-                <input type="input" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="" class="textinput">
+                <input type="input" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="" class="textinput" />
                 </td>
         </tr>
 
@@ -355,7 +360,7 @@ EOT;
             foreach($group_list as $group) {
                 echo '                        <option value="' . $group['group_id'] . '"' . ($group['group_id'] == $sel_group ? ' selected' : '') . '>' . $group['group_name'] . "</option>\n";
                 $checked = strpos(' ' . $user_group_list, ',' . $group['group_id'] . ',') ? 'checked' : '';
-                $group_cb .= '<input name="group_list[]" type="checkbox" value="' . $group['group_id'] . '" ' . $checked . '>' . $group['group_name'] . "<br />\n";
+                $group_cb .= '<input name="group_list[]" type="checkbox" value="' . $group['group_id'] . '" ' . $checked . ' />' . $group['group_name'] . "<br />\n";
             }
             echo <<<EOT
                         </select><br />
@@ -385,7 +390,7 @@ EOT;
         </tr>
         <tr>
                 <td colspan="2" align="center" class="tablef">
-                        <input type="submit" value="{$lang_usermgr_php['modify_user']}" class="button">
+                        <input type="submit" value="{$lang_usermgr_php['modify_user']}" class="button" />
                 </td>
                 </form>
         </tr>
@@ -483,9 +488,9 @@ switch ($op) {
 
         pageheader($lang_usermgr_php['title']);
         if (isset($_POST['username'])){
-        	$name = $_POST['username'];
-        	$wildcards = array("*" => "%", "?" => "_");
-			$search = strtr("WHERE user_name LIKE '$name' ", $wildcards);
+                $name = $_POST['username'];
+                $wildcards = array("*" => "%", "?" => "_");
+                        $search = strtr("WHERE user_name LIKE '$name' ", $wildcards);
         }
         list_users($search);
         pagefooter();
