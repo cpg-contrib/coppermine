@@ -126,12 +126,12 @@ function form_alb_list_box()
                 </td>
                 <td class="tableb" valign="top">
                                 <select name="aid" class="listbox">
-                                
+EOT;
 	if (count($public_albums_list) + count($user_albums_list) == 0){
 		echo "<option value=\"{$CURRENT_PIC['aid']}\" selected>{$title}</option>";
 	}
 
-EOT;
+
                 foreach($public_albums_list as $album) {
         echo '              <option value="' . $album['aid'] . '"' . ($album['aid'] == $sel_album ? ' selected="selected"' : '') . '>' . $album['cat_title'] . "</option>\n";
     }
