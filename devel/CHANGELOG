@@ -276,3 +276,4 @@ Fixed display of IP address in last viewed to be dependent on 'GALLERY_ADMIN_MOD
 Fixed display of bb_code'ed comments being displayed raw in thumbnail captions, now is bb_decoded then strip_tagged - March 8 2005, Donnoman
 Removed styleguide theme from package (available in coppermine download section instead), usage is deprecated - 9 March 2005, GauGau
 Added thai language file (user contribution) - 22 March 2005, GauGau
+Added persian (farsi) language file (user contribution) - 22 March 2005, GauGau
