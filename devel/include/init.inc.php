@@ -21,6 +21,7 @@ define('COPPERMINE_VERSION', '1.1.1 - Devel');
 // define('UDB_INTEGRATION', 'phpbb');
 // define('UDB_INTEGRATION', 'invisionboard');
 // define('UDB_INTEGRATION', 'vbulletin');
+// define('UDB_INTEGRATION', 'yabbse');
 
 if ( !defined('IN_COPPERMINE') ) die('Not in Coppermine...');
 
