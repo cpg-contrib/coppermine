@@ -308,7 +308,7 @@ if (isset($_GET['fullsize'])) {
     if ($album != 'search') {
         $film_strip = display_film_strip($album, (isset($cat) ? $cat : 0), $pos, true);
     }
-    CPGPluginAPI::action('displayimage_pre_display_image',null);
+    CPGPluginAPI::action('post_breadcrumb',null);
     theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, $film_strip);
     pagefooter();
     ob_end_flush();
