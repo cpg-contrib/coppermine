@@ -16,7 +16,7 @@
 // ------------------------------------------------------------------------- //
 // $Id$
 // ------------------------------------------------------------------------- //
-// This theme has all CORE items that are available                          //
+// This theme has had redundant CORE items removed                           //
 // ------------------------------------------------------------------------- //
 
 
@@ -93,27 +93,6 @@ $template_main_menu2 = <<<EOT
                                 </tr>
                         </table>
 EOT;
-// HTML template for gallery admin menu
-
-// HTML template for user admin menu
-
-
-// HTML template for the album list
-
-
-// HTML template for title row of the fav thumbnail view (album title + download)
-
-// HTML template for filmstrip display
-
-// HTML template for the thumbnail view when there is no picture to show
-
-// HTML template for the image navigation bar
-
-// HTML template for intermediate image display
-
-// HTML template for the image rating box
-
-// HTML template for the display of comments
 
 
 
@@ -140,25 +119,6 @@ function pageheader($section, $meta = '')
         );
 
     echo template_eval($template_header, $template_vars);
-}
-// Function for writing a pagefooter
-function pagefooter()
-{
-    global $HTTP_GET_VARS, $HTTP_POST_VARS, $HTTP_SERVER_VARS;
-    global $USER, $USER_DATA, $ALBUM_SET, $CONFIG, $time_start, $query_stats, $queries;;
-    global $template_footer;
-
-    $custom_footer = cpg_get_custom_include($CONFIG['custom_footer_path']);
-
-    if ($CONFIG['debug_mode']==1 || ($CONFIG['debug_mode']==2 && GALLERY_ADMIN_MODE)) {
-    cpg_debug_output();
-    }
-
-    $template_vars = array(
-        '{CUSTOM_FOOTER}' => $custom_footer,
-    );
-
-    echo template_eval($template_footer, $template_vars);
 }
 
 
