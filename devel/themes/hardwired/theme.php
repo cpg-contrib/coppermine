@@ -225,7 +225,7 @@ $template_cat_list = <<<EOT
         </tr>
 <!-- END footer -->
 <!-- BEGIN spacer -->
-        <img src="images/spacer.gif" width="1" height="17" /><br />
+        <img src="images/spacer.gif" width="1" height="17" alt="" /><br />
 <!-- END spacer -->
 EOT;
 // HTML template for the breadcrumb
@@ -268,17 +268,16 @@ $template_album_list = <<<EOT
         </tr>
         <tr>
                 <td colspan="3">
-                        <img src="images/spacer.gif" width="1" height="1"><br />
+                        <img src="images/spacer.gif" width="1" height="1" alt="" /><br />
                 </td>
         </tr>
         <tr height="100%">
                 <td align="center" height="100%" valign="middle" class="thumbnails">
-                        <img src="images/spacer.gif" width="{THUMB_CELL_WIDTH}" height="1" class="image" style="margin-top: 0px;
- margin-bottom: 0px; border: none;"><br />
+                        <img src="images/spacer.gif" width="{THUMB_CELL_WIDTH}" height="1" class="image" style="margin-top: 0px; margin-bottom: 0px; border: none;" alt="" /><br />
                         <a href="{ALB_LINK_TGT}" class="albums">{ALB_LINK_PIC}<br /></a>
                 </td>
                 <td height="100%">
-                        <img src="images/spacer.gif" width="1" height="1">
+                        <img src="images/spacer.gif" width="1" height="1" alt="" />
                 </td>
                 <td width="100%" height="100%" valign="top" class="tableb_compact">
                         {ADMIN_MENU}
@@ -299,7 +298,7 @@ $template_album_list = <<<EOT
         </tr>
         <tr>
                 <td>
-                        <img src="images/spacer.gif" width="1" height="1"><br />
+                        <img src="images/spacer.gif" width="1" height="1" alt="" /><br />
                 </td>
         </tr>
         <tr height="100%">
@@ -329,7 +328,7 @@ $template_album_list = <<<EOT
         </tr>
 <!-- END tabs -->
 <!-- BEGIN spacer -->
-        <img src="images/spacer.gif" width="1" height="17" /><br />
+        <img src="images/spacer.gif" width="1" height="17" alt="" /><br />
 <!-- END spacer -->
 
 EOT;
@@ -378,17 +377,16 @@ $template_album_list_cat = <<<EOT
         </tr>
         <tr>
                 <td colspan="3">
-                        <img src="images/spacer.gif" width="1" height="1"><br />
+                        <img src="images/spacer.gif" width="1" height="1" alt="" /><br />
                 </td>
         </tr>
         <tr height="100%">
                 <td align="center" height="100%" valign="middle" class="thumbnails">
-                        <img src="images/spacer.gif" width="{THUMB_CELL_WIDTH}" height="1" class="image" style="margin-top: 0px;
- margin-bottom: 0px; border: none;"><br />
+                        <img src="images/spacer.gif" width="{THUMB_CELL_WIDTH}" height="1" class="image" style="margin-top: 0px; margin-bottom: 0px; border: none;" alt="" /><br />
                         <a href="{ALB_LINK_TGT}" class="albums">{ALB_LINK_PIC}<br /></a>
                 </td>
                 <td height="100%">
-                        <img src="images/spacer.gif" width="1" height="1">
+                        <img src="images/spacer.gif" width="1" height="1" alt="" />
                 </td>
                 <td width="100%" height="100%" valign="top" class="tableb_compact">
                         {ADMIN_MENU}
@@ -409,7 +407,7 @@ $template_album_list_cat = <<<EOT
         </tr>
         <tr>
                 <td>
-                        <img src="images/spacer.gif" width="1" height="1"><br />
+                        <img src="images/spacer.gif" width="1" height="1" alt="" /><br />
                 </td>
         </tr>
         <tr height="100%">
@@ -439,7 +437,7 @@ $template_album_list_cat = <<<EOT
         </tr>
 <!-- END c_tabs -->
 <!-- BEGIN c_spacer -->
-        <img src="images/spacer.gif" width="1" height="17" /><br />
+        <img src="images/spacer.gif" width="1" height="17" alt="" /><br />
 <!-- END c_spacer -->
 
 EOT;
@@ -466,7 +464,7 @@ $template_thumb_view_title_row = <<<EOT
                         <table width="98%" cellpadding="0" cellspacing="0">
                         <tr>
                                 <td width="100%" class="statlink"><h2 style="background-image : none; padding-left : 0px;">{ALBUM_NAME}</h2></td>
-                                <td><img src="images/spacer.gif" width="1"></td>
+                                <td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>
                                 <td class="sortorder_cell">
                                         <table height="100%" cellpadding="0" cellspacing="0">
                                         <tr>
@@ -498,7 +496,7 @@ $template_fav_thumb_view_title_row = <<<EOT
                         <table width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                                 <td width="100%" class="statlink"><h2>{ALBUM_NAME}</h2></td>
-                                <td><img src="images/spacer.gif" width="1"></td>
+                                <td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>
                                 <td class="sortorder_cell">
                                         <table height="100%" cellpadding="0" cellspacing="0">
                                                 <tr>
@@ -553,7 +551,7 @@ $template_thumbnail_view = <<<EOT
         </tr>
 <!-- END tabs -->
 <!-- BEGIN spacer -->
-        <img src="images/spacer.gif" width="1" height="17" /><br />
+        <img src="images/spacer.gif" width="1" height="17" alt="" /><br />
 <!-- END spacer -->
 
 EOT;
@@ -565,7 +563,7 @@ $template_no_img_to_display = <<<EOT
                 </td>
         </tr>
 <!-- BEGIN spacer -->
-        <img src="images/spacer.gif" width="1" height="17" /><br />
+        <img src="images/spacer.gif" width="1" height="17" alt="" /><br />
 <!-- END spacer -->
 
 EOT;
@@ -697,11 +695,11 @@ $template_image_comments = <<<EOT
                                 <table width="100%" cellpadding="0" cellspacing="0">
 
                                                 <form name="f{MSG_ID}" method="POST" action="db_input.php">
-                                                <input type="hidden" name="event" value="comment_update">
-                                                <input type="hidden" name="msg_id" value="{MSG_ID}">
+                                                <input type="hidden" name="event" value="comment_update" />
+                                                <input type="hidden" name="msg_id" value="{MSG_ID}" />
                                                 <tr>
                                                 <td>
-                                                   <input type=text name=msg_author value="{MSG_AUTHOR}" class="textinput" size=10>
+                                                   <input type="text" name="msg_author" value="{MSG_AUTHOR}" class="textinput" size="10" />
                                                 </td>
                                                 </tr>
                                                 <tr>
@@ -711,12 +709,12 @@ $template_image_comments = <<<EOT
                                                 <td class="tableb_compact">
                                                 </td>
                                                 <td>
-                                                        <input type="submit" class="comment_button" name="submit" value="{OK}">
+                                                        <input type="submit" class="comment_button" name="submit" value="{OK}" />
                                                 </td>
                                                 </form>
                                         </tr>
                                         <tr>
-                                                <td colspan="3"><img src="images/spacer.gif" width="1" height="2" /><br /></td>
+                                                <td colspan="3"><img src="images/spacer.gif" width="1" height="2" alt="" /><br /></td>
                                         </tr>
                                 </table>
                                 {SMILIES}
@@ -725,10 +723,10 @@ $template_image_comments = <<<EOT
                                 <table width="100%" cellpadding="0" cellspacing="0">
                                         <tr>
                                                 <form name="f{MSG_ID}" method="POST" action="db_input.php">
-                                                <input type="hidden" name="event" value="comment_update">
-                                                <input type="hidden" name="msg_id" value="{MSG_ID}">
+                                                <input type="hidden" name="event" value="comment_update" />
+                                                <input type="hidden" name="msg_id" value="{MSG_ID}" />
                                                                                                                                                                                                 <td>
-                                                <input type=text name=msg_author value="{MSG_AUTHOR}" class="textinput" size=10>
+                                                <input type="text" name="msg_author" value="{MSG_AUTHOR}" class="textinput" size="10" />
                                                 </td>
                                         </tr>
                                         <tr>
@@ -738,12 +736,12 @@ $template_image_comments = <<<EOT
                                                 <td class="tableb_compact">
                                                 </td>
                                                 <td>
-                                                        <input type="submit" class="comment_button" name="submit" value="{OK}">
+                                                        <input type="submit" class="comment_button" name="submit" value="{OK}" />
                                                 </td>
                                                 </form>
                                         </tr>
                                         <tr>
-                                                <td colspan="3"><img src="images/spacer.gif" width="1" height="2" /><br /></td>
+                                                <td colspan="3"><img src="images/spacer.gif" width="1" height="2" alt="" /><br /></td>
                                         </tr>
                                 </table>
 <!-- END edit_box_no_smilies -->
@@ -761,8 +759,8 @@ $template_add_your_comment = <<<EOT
                 <form method="post" name="post" action="db_input.php">
                 <td colspan="3">
                         <table width="100%" cellpadding="0" cellspacing="0">
-                                <input type="hidden" name="event" value="comment">
-                                <input type="hidden" name="pid" value="{PIC_ID}">
+                                <input type="hidden" name="event" value="comment" />
+                                <input type="hidden" name="pid" value="{PIC_ID}" />
 <!-- BEGIN user_name_input -->
                                 <td class="tableb_compact">
                                         {NAME}
@@ -775,13 +773,13 @@ $template_add_your_comment = <<<EOT
                                 <td class="tableb_compact">
                                 {COMMENT} </td>
                                 <td width="100%" class="tableb_compact">
-                                <input type="text" class="textinput" id="message" name="msg_body" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" maxlength="{MAX_COM_LENGTH}" style="width: 100%;">                                        <!-- END input_box_smilies -->
+                                <input type="text" class="textinput" id="message" name="msg_body" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" maxlength="{MAX_COM_LENGTH}" style="width: 100%;" />                                        <!-- END input_box_smilies -->
 <!-- BEGIN input_box_no_smilies -->
-                                <input type="text" class="textinput" id="message" name="msg_body"  maxlength="{MAX_COM_LENGTH}" style="width: 100%;">
+                                <input type="text" class="textinput" id="message" name="msg_body"  maxlength="{MAX_COM_LENGTH}" style="width: 100%;" />
 <!-- END input_box_no_smilies -->
                                 </td>
                                 <td class="tableb_compact">
-                                <input type="submit" class="comment_button" name="submit" value="{OK}">
+                                <input type="submit" class="comment_button" name="submit" value="{OK}" />
                                 </td>
                         </table>
                 </td>
@@ -887,8 +885,8 @@ EOT;
 $template_tab_display = array('left_text' => '<td width="100%%" align="left" valign="middle" class="tableh1_compact" style="white-space: nowrap"><b>{LEFT_TEXT}</b></td>' . "\n",
     'tab_header' => '',
     'tab_trailer' => '',
-    'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1"></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%d</b></td>',
-    'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1"></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"<b>%d</b></a></td>' . "\n"
+    'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%d</b></td>',
+    'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"<b>%d</b></a></td>' . "\n"
     );
 function pageheader($section, $meta = '')
 {
