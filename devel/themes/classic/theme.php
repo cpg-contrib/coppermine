@@ -1372,7 +1372,7 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                     );
             } else {
                 $params = array('{CELL_WIDTH}' => $cell_width,
-                    '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&pos={$thumb['pos']}",
+                    '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&pos={$thumb['pos']}&pid={$thumb['pid']}",
                     '{THUMB}' => $thumb['image'],
                     '{CAPTION}' => $thumb['caption'],
                     '{ADMIN_MENU}' => $thumb['admin_menu']

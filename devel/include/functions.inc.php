@@ -738,8 +738,10 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $caption .= ($rowset[$key]['title']||$rowset[$key]['hits']) ? $rowset[$key]['title'] : '';
 
             if ($CONFIG['views_in_thumbview']){
-               if ($rowset[$key]['title']){$caption .= "&nbsp;&ndash;&nbsp;";}
-            $caption .= sprintf($lang_get_pic_data['n_views'], $rowset[$key]['hits']);
+               if ($rowset[$key]['title']){
+	       		$caption .= "&nbsp;&ndash;&nbsp;";
+	       }
+               $caption .= sprintf($lang_get_pic_data['n_views'], $rowset[$key]['hits']);
             }
             $caption .= "</span>";
             if ($CONFIG['caption_in_thumbview']){
@@ -1406,8 +1408,8 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
         $lower_limit = ($page-1) * $thumb_per_page;
 
         $pic_data = get_pic_data($album, $thumb_count, $album_name, $lower_limit, $thumb_per_page);
-
-        $total_pages = ceil($thumb_count / $thumb_per_page);
+        
+	$total_pages = ceil($thumb_count / $thumb_per_page);
 
         $i = 0;
         if (count($pic_data) > 0) {
@@ -1429,6 +1431,7 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
                         $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
 
                         $thumb_list[$i]['pos'] = $key < 0 ? $key : $i - 1 + $lower_limit;
+			$thumb_list[$i]['pid'] = $row['pid'];;
                         $thumb_list[$i]['image'] = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\"/>";
                         $thumb_list[$i]['caption'] = $row['caption_text'];
                         $thumb_list[$i]['admin_menu'] = '';

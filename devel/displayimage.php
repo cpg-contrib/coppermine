@@ -555,6 +555,13 @@ function get_subcat_data($parent, $level)
  */
 
 $pos = isset($_GET['pos']) ? (int)$_GET['pos'] : 0;
+
+/**
+ * Hack added by tarique to prevent incorrect picture being seen on last view or last uploaded
+ */
+
+$pid = isset($_GET['pid']) ? (int)$_GET['pid'] : 0;
+
 $cat = isset($_GET['cat']) ? (int)$_GET['cat'] : 0;
 $album = isset($_GET['album']) ? $_GET['album'] : '';
 // Build the album set if required
@@ -582,8 +589,8 @@ if (!is_numeric($album) && $cat) { // Meta albums, we need to restrict the album
     }
 }
 // Retrieve data for the current picture
-if ($pos < 0) {
-    $pid = - $pos;
+if ($pos < 0 || $pid > 0) {
+    $pid = ($pos < 0) ? -$pos : $pid;
     $result = cpg_db_query("SELECT aid from {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' $ALBUM_SET LIMIT 1");
     if (mysql_num_rows($result) == 0) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
     $row = mysql_fetch_array($result);
@@ -592,6 +599,7 @@ if ($pos < 0) {
     for($pos = 0; $pic_data[$pos]['pid'] != $pid && $pos < $pic_count; $pos++);
     $pic_data = get_pic_data($album, $pic_count, $album_name, $pos, 1, false);
     $CURRENT_PIC_DATA = $pic_data[0];
+    
 } elseif (isset($_GET['pos'])) {
     $pic_data = get_pic_data($album, $pic_count, $album_name, $pos, 1, false);
     if ($pic_count == 0) {
