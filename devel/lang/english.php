@@ -248,6 +248,7 @@ $lang_cpg_debug_output = array(
   'select_all' => 'Select All',
   'copy_and_paste_instructions' => 'If you\'re going to request help on the coppermine support board, copy-and-paste this debug output into your posting when requested, along with the error message you get (if any). Make sure to replace any passwords from the query with *** before posting.',
   'phpinfo' => 'display phpinfo',
+  'notices' => 'Notices',
 );
 
 $lang_language_selection = array(

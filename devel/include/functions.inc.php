@@ -761,7 +761,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 }
 
         $rowset = CPGPluginAPI::filter('thumb_caption_regular',$rowset);
-                
+
                 return $rowset;
         }
 
@@ -810,9 +810,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $caption = '<span class="thumb_title">'.$user_link.'</span>'.'<span class="thumb_caption">'.localised_date($row['msg_date'], $lastcom_date_fmt).'</span>'.'<span class="thumb_caption">'.$msg_body.'</span>';
                         $rowset[$key]['caption_text'] = $caption;
                 }
-                
+
                 $rowset = CPGPluginAPI::filter('thumb_caption_lastcom',$rowset);
-                
+
                 return $rowset;
                 break;
 
@@ -857,9 +857,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $caption = '<span class="thumb_title">'.$user_link.'</span>'.'<span class="thumb_caption">'.localised_date($row['msg_date'], $lastcom_date_fmt).'</span>'.'<span class="thumb_caption">'.$row['msg_body'].'</span>';
                         $rowset[$key]['caption_text'] = $caption;
                 }
-                
+
                 $rowset = CPGPluginAPI::filter('thumb_caption_lastcomby',$rowset);
-                
+
                 return $rowset;
                 break;
 
@@ -889,9 +889,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $caption = $user_link.'<span class="thumb_caption">'.localised_date($row['ctime'], $lastup_date_fmt).'</span>';
                         $rowset[$key]['caption_text'] = $caption;
                 }
-                
+
                 $rowset = CPGPluginAPI::filter('thumb_caption_lastup',$rowset);
-                
+
                 return $rowset;
                 break;
 
@@ -932,9 +932,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $caption = $user_link.'<span class="thumb_caption">'.localised_date($row['ctime'], $lastup_date_fmt).'</span>';
                         $rowset[$key]['caption_text'] = $caption;
                 }
-                
+
                 $rowset = CPGPluginAPI::filter('thumb_caption_lastupby',$rowset);
-                
+
                 return $rowset;
                 break;
 
@@ -964,9 +964,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $caption = "<span class=\"thumb_caption\">".sprintf($lang_get_pic_data['n_views'], $row['hits']).'</span>';
                         $rowset[$key]['caption_text'] = $caption;
                 }
-                
+
                 $rowset = CPGPluginAPI::filter('thumb_caption_topn',$rowset);
-                
+
                 return $rowset;
                 break;
 
@@ -998,9 +998,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $caption = "<span class=\"thumb_caption\">".'<img src="'.$prefix.'images/rating'.round($row['pic_rating']/2000).'.gif" alt=""/>'.'<br />'.sprintf($lang_get_pic_data['n_votes'], $row['votes']).'</span>';
                         $rowset[$key]['caption_text'] = $caption;
                 }
-                
+
                 $rowset = CPGPluginAPI::filter('thumb_caption_toprated',$rowset);
-                
+
                 return $rowset;
                 break;
 
@@ -1027,9 +1027,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $caption = "<span class=\"thumb_caption\">".localised_date($row['mtime'], $lasthit_date_fmt)."<br/>".$row['hits']."<br/>".$row['lasthit_ip'].'</span>';
                         $rowset[$key]['caption_text'] = $caption;
                 }
-                
+
                 $rowset = CPGPluginAPI::filter('thumb_caption_lasthits',$rowset);
-                
+
                 return $rowset;
                 break;
 
@@ -1074,7 +1074,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $rowset[-$row['pid']] = $row;
                 }
                 mysql_free_result($result);
-                
+
                 $rowset = CPGPluginAPI::filter('thumb_caption_random',$rowset);
 
                 return $rowset;
@@ -1101,9 +1101,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 }
 
                 include 'include/search.inc.php';
-                
+
                 $rowset = CPGPluginAPI::filter('thumb_caption_search',$rowset);
-                
+
                 return $rowset;
                 break;
 
@@ -1132,9 +1132,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $caption = "<span class=\"thumb_caption\">".$row['title']." - ".localised_date($row['ctime'], $lastup_date_fmt).'</span>';
                         $rowset[$key]['caption_text'] = $caption;
                 }
-                
+
                 $rowset = CPGPluginAPI::filter('thumb_caption_lastalb',$rowset);
-                
+
                 return $rowset;
                 break;
 
@@ -1163,9 +1163,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                                 $rowset[$key]['caption_text'] = $caption;
                         }
                 }
-                
+
                 $rowset = CPGPluginAPI::filter('thumb_caption_favpics',$rowset);
-                
+
                 return $rowset;
                 break;
 
@@ -1302,7 +1302,7 @@ function add_hit($pid)
 {
         global $CONFIG, $raw_ip;
         cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET hits=hits+1, lasthit_ip='$raw_ip' WHERE pid='$pid'");
-        
+
         /**
          * Code to record the details of hits for the picture, if the option is set in CONFIG
          */
@@ -1320,7 +1320,7 @@ function add_hit($pid)
         } else if(eregi("Windows",$_SERVER["HTTP_USER_AGENT"])) {
             $os = "Windows";
         }
-        
+
         $browser = $_SERVER["HTTP_USER_AGENT"];
         if(eregi("MSIE",$browser)) {
             if(eregi("MSIE 5.5",$browser)) {
@@ -1335,7 +1335,7 @@ function add_hit($pid)
         } else if(eregi("Firefox",$browser)) {
             $browser = "Firefox";
         }
-        
+
         //Code to get the search string if the referrer is any of the following
         $search_engines = array('google', 'lycos', 'yahoo');
 
@@ -1345,9 +1345,9 @@ function add_hit($pid)
             break;
           }
         }
-        
+
         $time = time();
-        
+
         // Insert the record in database
         $query = "INSERT INTO {$CONFIG['TABLE_HIT_STATS']}
                           SET
@@ -1907,7 +1907,7 @@ function cpg_debug_output()
         $debug_separate = '&#0010;==========================&#0010;';
         echo '<form name="debug" action="'.$_SERVER['PHP_SELF'].'">';
         starttable('100%', $lang_cpg_debug_output['debug_info'],2);
-        echo '<tr><td align="center" valign="middle" class="tableh2">';
+        echo '<tr><td align="center" valign="middle" class="tableh2" width="100">';
         echo '<script language="javascript" type="text/javascript">
 <!--
 
@@ -1919,7 +1919,7 @@ tempval.select()
 //-->
 </script>';
         echo '
-        <div class="admin_menu"><a href="javascript:HighlightAll(\'debug.debugtext\')" class="adm_menu">' . $lang_cpg_debug_output['select_all'] . '</a></div>';
+        <a href="javascript:HighlightAll(\'debug.debugtext\')" class="admin_menu">' . $lang_cpg_debug_output['select_all'] . '</a>';
         echo '</td><td align="left" valign="middle" class="tableh2">';
         if (GALLERY_ADMIN_MODE){echo '<span class="album_stat">('.$lang_cpg_debug_output['copy_and_paste_instructions'].')</span>';}
         echo '</td></tr>';
@@ -2013,28 +2013,31 @@ EOT;
         echo "</td>";
         echo "</tr>";
         if (GALLERY_ADMIN_MODE){
-          echo "<tr><td class=\"tableb\" colspan=\"2\">";
+          echo "<tr><td class=\"tablef\" colspan=\"2\">";
           echo "<a href=\"phpinfo.php\" class=\"admin_menu\">".$lang_cpg_debug_output['phpinfo']."</a>";
 //          error_reporting  (E_ERROR | E_WARNING | E_PARSE); // New maze's error report system
           echo "</td></tr>";
         }
-        endtable();
-        echo "</form>";
 
         // Maze's new error report system
         global $cpgdebugger;
         $report = $cpgdebugger->stop();
-        if (is_array($report)) {
-            starttable('100%', $lang_cpg_debug_output['debug_info'],2);
-            echo '<tr><td>';
+        if (is_array($report) && $CONFIG['debug_notice']!= 0) {
+            echo '<tr><td class="tableh1" colspan="2">';
+            echo '<b>';
+            echo $lang_cpg_debug_output['notices'];
+            echo '</b>';
+            echo '</td></tr>';
+            echo '<tr><td class="tableb" colspan="2">';
             foreach($report AS $file => $errors) {
                 echo '<b>'.substr($file, $strstart).'</b><ul>';
                 foreach($errors AS $error) { echo "<li>$error</li>"; }
                 echo '</ul>';
             }
             echo '</td></tr>';
-            endtable();
         }
+        endtable();
+        echo "</form>";
 
 }
 
@@ -2583,13 +2586,13 @@ function get_search_query_terms($engine = 'google') {
       $query_terms = preg_replace('/\'|"/', '', $query_terms);
       $query_array = preg_split ("/[\s,\+\.]+/", $query_terms);
       break;
-  
+
     case 'lycos':
       $query_terms = preg_replace('/^.*query=([^&]+)&?.*$/i','$1', $referer);
       $query_terms = preg_replace('/\'|"/', '', $query_terms);
       $query_array = preg_split ("/[\s,\+\.]+/", $query_terms);
       break;
-  
+
     case 'yahoo':
       $query_terms = preg_replace('/^.*p=([^&]+)&?.*$/i','$1', $referer);
       $query_terms = preg_replace('/\'|"/', '', $query_terms);
