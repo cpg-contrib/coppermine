@@ -17,13 +17,7 @@ INSERT INTO CPG_config VALUES ('read_iptc_data', '0');
 
 INSERT INTO CPG_config VALUES ('disable_popup_rightclick', '0');
 INSERT INTO CPG_config VALUES ('disable_gallery_rightclick', '0');
-INSERT INTO CPG_config VALUES ('nice_titles', '0');
-INSERT INTO CPG_config VALUES ('user_table_prefix','nuke_');
-INSERT INTO CPG_config VALUES ('advanced_debug_mode', '0');
-INSERT INTO CPG_config VALUES ('doc_root', '');
-INSERT INTO CPG_config VALUES ('installed_folder', 'html');
-INSERT INTO CPG_config VALUES ('read_iptc_data', '0');
-INSERT INTO CPG_config VALUES ('module_name', 'coppermine');
+#gtroll wil implement
 INSERT INTO CPG_config VALUES ('picinfo_display_filename', '1');
 INSERT INTO CPG_config VALUES ('picinfo_display_album_name', '1');
 INSERT INTO CPG_config VALUES ('picinfo_display_file_size', '1');
@@ -32,7 +26,7 @@ INSERT INTO CPG_config VALUES ('picinfo_display_count_displayed', '1');
 INSERT INTO CPG_config VALUES ('picinfo_display_URL', '1');
 INSERT INTO CPG_config VALUES ('picinfo_display_URL_bookmark', '1');
 INSERT INTO CPG_config VALUES ('picinfo_display_favorites', 1');
-# is this for registration?
+
 INSERT INTO CPG_config VALUES ('reg_notify_admin_email', '0');
 INSERT INTO CPG_config VALUES ('disable_comment_flood_protect', '0');
 
