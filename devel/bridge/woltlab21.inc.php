@@ -33,12 +33,13 @@
 // CPG: http://yoursite_name.com/cpg/
 // Setup path to your Woltlab Board directory to change this
 
-// The web path to your Woltlab Board directory
-define('WBB_WEB_PATH','../wbb2/');
+// The paths to your Woltlab Board directory
+define('RELATIVE_WBB_PATH','../wbb2/');
+define('WBB_WEB_PATH','http://yoursite_name.com/wbb2/');
 
 // database configuration
-require_once(WBB_WEB_PATH."acp/lib/config.inc.php");
-require_once(WBB_WEB_PATH."acp/lib/options.inc.php");
+require_once(RELATIVE_WBB_PATH."acp/lib/config.inc.php");
+require_once(RELATIVE_WBB_PATH."acp/lib/options.inc.php");
 define('WBB_DB_NAME',$sqldb);
 define('WBB_BD_HOST',$sqlhost);
 define('WBB_DB_USERNAME',$sqluser);
@@ -267,7 +268,7 @@ function udb_get_user_id($username)
 // Redirect
 function udb_redirect($target)
 {
-    header('Location: http://' . $_SERVER['HTTP_HOST'] . WBB_WEB_PATH . $target);
+    header('Location: ' . WBB_WEB_PATH . $target);
     exit;
 }
 
