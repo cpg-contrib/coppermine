@@ -29,22 +29,31 @@ $edit_profile_form_param = array(
     array('text', 'group', $lang_register_php['group']),
     array('text', 'email', $lang_register_php['email']),
     array('text', 'disk_usage', $lang_register_php['disk_usage']),
-    array('input', 'location', $lang_register_php['location'], 255),
-    array('input', 'interests', $lang_register_php['interests'], 255),
-    array('input', 'website', $lang_register_php['website'], 255),
-    array('input', 'occupation', $lang_register_php['occupation'], 255),
+	array('input', 'user_profile1', $CONFIG['user_profile1_name'], 255),
+	array('input', 'user_profile2', $CONFIG['user_profile2_name'], 255),
+	array('input', 'user_profile3', $CONFIG['user_profile3_name'], 255),
+	array('input', 'user_profile4', $CONFIG['user_profile4_name'], 255),
+	array('input', 'user_profile5', $CONFIG['user_profile5_name'], 255),
+	array('input', 'user_profile6', $CONFIG['user_profile6_name'], 255),
     );
 
+	
+	// profile mod test
 $display_profile_form_param = array(
     array('text', 'username', $lang_register_php['username']),
     array('text', 'reg_date', $lang_register_php['reg_date']),
     array('text', 'group', $lang_register_php['group']),
-    array('text', 'location', $lang_register_php['location']),
-    array('text', 'interests', $lang_register_php['interests']),
-    array('text', 'website', $lang_register_php['website']),
-    array('text', 'occupation', $lang_register_php['occupation']),
+	array('text', 'user_profile1', $CONFIG['user_profile1_name']),
+    array('text', 'user_profile2', $CONFIG['user_profile2_name']),
+    array('text', 'user_profile3', $CONFIG['user_profile3_name']),
+    array('text', 'user_profile4', $CONFIG['user_profile4_name']),
+	array('text', 'user_profile5', $CONFIG['user_profile5_name']),
+	array('text', 'user_profile6', $CONFIG['user_profile6_name']),
     array('thumb', 'user_thumb'),
     );
+	
+
+	
 
 $change_password_form_param = array(
     array('password', 'current_pass', $lang_register_php['current_pass'], 25),
@@ -147,12 +156,17 @@ $uid = isset($HTTP_GET_VARS['uid']) ? (int)$HTTP_GET_VARS['uid'] : -1;
 if (isset($HTTP_POST_VARS['change_pass'])) $op = 'change_pass';
 
 if (isset($HTTP_POST_VARS['change_profile']) && USER_ID && !defined('UDB_INTEGRATION')) {
-    $location = get_post_var('location');
-    $interests = get_post_var('interests');
-    $website = get_post_var('website');
-    $occupation = get_post_var('occupation');
 
-    $sql = "UPDATE {$CONFIG['TABLE_USERS']} SET " . "user_location = '$location', " . "user_interests = '$interests', " . "user_website = '$website', " . "user_occupation = '$occupation' " . "WHERE user_id = '" . USER_ID . "'";
+	$profile1 = addslashes($HTTP_POST_VARS['user_profile1']);
+	$profile2 = addslashes($HTTP_POST_VARS['user_profile2']);
+	$profile3 = addslashes($HTTP_POST_VARS['user_profile3']);
+	$profile4 = addslashes($HTTP_POST_VARS['user_profile4']);
+	$profile5 = addslashes($HTTP_POST_VARS['user_profile5']);
+	$profile6 = addslashes($HTTP_POST_VARS['user_profile6']);
+
+    $sql = "UPDATE {$CONFIG['TABLE_USERS']} SET " . "user_profile1 = '$profile1', " . "user_profile2 = '$profile2', " . "user_profile3 = '$profile3', " . "user_profile4 = '$profile4', " . "user_profile5 = '$profile5', " . "user_profile6 = '$profile6' " . "WHERE user_id = '" . USER_ID . "'";
+
+
 
     $result = db_query($sql);
 
@@ -196,7 +210,7 @@ switch ($op) {
 
         if (defined('UDB_INTEGRATION')) udb_edit_profile(USER_ID);
 
-        $sql = "SELECT user_name, user_email, user_group, UNIX_TIMESTAMP(user_regdate) as user_regdate, group_name, " . "user_location, user_interests, user_website, user_occupation, user_group_list, " . "COUNT(pid) as pic_count, ROUND(SUM(total_filesize)/1024) as disk_usage, group_quota " . "FROM {$CONFIG['TABLE_USERS']} AS u " . "INNER JOIN {$CONFIG['TABLE_USERGROUPS']} AS g ON user_group = group_id " . "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.owner_id = u.user_id " . "WHERE user_id ='" . USER_ID . "' " . "GROUP BY user_id ";
+        $sql = "SELECT user_name, user_email, user_group, UNIX_TIMESTAMP(user_regdate) as user_regdate, group_name, " . "user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6, user_group_list, " . "COUNT(pid) as pic_count, ROUND(SUM(total_filesize)/1024) as disk_usage, group_quota " . "FROM {$CONFIG['TABLE_USERS']} AS u " . "INNER JOIN {$CONFIG['TABLE_USERGROUPS']} AS g ON user_group = group_id " . "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.owner_id = u.user_id " . "WHERE user_id ='" . USER_ID . "' " . "GROUP BY user_id ";
 
         $result = db_query($sql);
 
@@ -221,10 +235,12 @@ switch ($op) {
             'email' => $user_data['user_email'],
             'disk_usage' => $user_data['disk_usage'] .
             ($user_data['group_quota'] ? '/' . $user_data['group_quota'] : '') . '&nbsp;' . $lang_byte_units[1],
-            'location' => $user_data['user_location'],
-            'interests' => $user_data['user_interests'],
-            'website' => $user_data['user_website'],
-            'occupation' => $user_data['user_occupation'],
+			'user_profile1' => $user_data['user_profile1'],
+			'user_profile2' => $user_data['user_profile2'],
+			'user_profile3' => $user_data['user_profile3'],
+			'user_profile4' => $user_data['user_profile4'],
+			'user_profile5' => $user_data['user_profile5'],
+			'user_profile6' => $user_data['user_profile6'],
             );
 
         $title = sprintf($lang_register_php['x_s_profile'], USER_NAME);
@@ -281,7 +297,7 @@ EOT;
         if (defined('UDB_INTEGRATION')) {
             $user_data = udb_get_user_infos($uid);
         } else {
-            $sql = "SELECT user_name, user_email, UNIX_TIMESTAMP(user_regdate) as user_regdate, group_name, " . "user_location, user_interests, user_website, user_occupation " . "FROM {$CONFIG['TABLE_USERS']} AS u " . "INNER JOIN {$CONFIG['TABLE_USERGROUPS']} AS g ON user_group = group_id " . "WHERE user_id ='$uid'";
+            $sql = "SELECT user_name, user_email, UNIX_TIMESTAMP(user_regdate) as user_regdate, group_name, " . "user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6 " . "FROM {$CONFIG['TABLE_USERS']} AS u " . "INNER JOIN {$CONFIG['TABLE_USERGROUPS']} AS g ON user_group = group_id " . "WHERE user_id ='$uid'";
 
             $result = db_query($sql);
 
@@ -361,10 +377,12 @@ EOT;
         $form_data = array('username' => $user_data['user_name'],
             'reg_date' => localised_date($user_data['user_regdate'], $register_date_fmt),
             'group' => $user_data['group_name'],
-            'location' => $user_data['user_location'],
-            'interests' => $user_data['user_interests'],
-            'website' => make_clickable($user_data['user_website']),
-            'occupation' => $user_data['user_occupation'],
+			'user_profile1' => $user_data['user_profile1'],
+			'user_profile2' => $user_data['user_profile2'],
+			'user_profile3' => $user_data['user_profile3'],
+			'user_profile4' => $user_data['user_profile4'],
+			'user_profile5' => $user_data['user_profile5'],
+			'user_profile6' => $user_data['user_profile6'],
             'user_thumb' => $quick_jump,
             );
 

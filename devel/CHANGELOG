@@ -113,3 +113,4 @@ Fixed album visibility issue - 16 June 2004, Chris
 Fixed 'install not working' - 16 June 2004, Chris
 Added valid XHTML 1.0 transitional output to displayimage, 17th June 2004 tarique
 Updated Server side favorite to be in separate table, 17th June 2004 tarique
+Added config settable profile fields, 19th June 2004, casper

@@ -429,7 +429,7 @@ function create_tables()
     $db_basic = 'sql/basic.sql';
     $sql_query .= fread(fopen($db_basic, 'r'), filesize($db_basic));
     // Insert the admin account
-    $sql_query .= "INSERT INTO CPG_users (user_id, user_group, user_active, user_name, user_password, user_lastvisit, user_regdate, user_group_list, user_email, user_website, user_location, user_interests, user_occupation, user_actkey ) VALUES (1, 1, 'YES', '" . $HTTP_POST_VARS['admin_username'] . "', '" . $HTTP_POST_VARS['admin_password'] . "', NOW(), NOW(), '', '', '', '', '', '', '');\n";
+    $sql_query .= "INSERT INTO CPG_users (user_id, user_group, user_active, user_name, user_password, user_lastvisit, user_regdate, user_group_list, user_email, user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6, user_actkey ) VALUES (1, 1, 'YES', '" . $HTTP_POST_VARS['admin_username'] . "', '" . $HTTP_POST_VARS['admin_password'] . "', NOW(), NOW(), '', '', '', '', '', '', '', '', '');\n";
     // Set configuration values for image package
     $sql_query .= "REPLACE INTO CPG_config VALUES ('thumb_method', '" . $HTTP_POST_VARS['thumb_method'] . "');\n";
     $sql_query .= "REPLACE INTO CPG_config VALUES ('impath', '" . $HTTP_POST_VARS['impath'] . "');\n";

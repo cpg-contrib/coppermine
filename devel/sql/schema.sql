@@ -158,11 +158,14 @@ CREATE TABLE CPG_users (
   user_regdate datetime NOT NULL default '0000-00-00 00:00:00',
   user_group_list varchar(255) NOT NULL default '',
   user_email varchar(255) NOT NULL default '',
-  user_website varchar(255) NOT NULL default '',
-  user_location varchar(255) NOT NULL default '',
-  user_interests varchar(255) NOT NULL default '',
-  user_occupation varchar(255) NOT NULL default '',
+  user_profile1 varchar(255) NOT NULL default '',
+  user_profile2 varchar(255) NOT NULL default '',
+  user_profile3 varchar(255) NOT NULL default '',
+  user_profile4 varchar(255) NOT NULL default '',
+  user_profile5 varchar(255) NOT NULL default '',
+  user_profile6 varchar(255) NOT NULL default '',
   user_actkey varchar(32) NOT NULL default '',
+
   PRIMARY KEY  (user_id),
   UNIQUE KEY user_name (user_name)
 ) TYPE=MyISAM;

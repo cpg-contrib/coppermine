@@ -74,10 +74,12 @@ EOT;
         array('password', 'password_verification', $lang_register_php['password_again'], 25),
         array('input', 'email', $lang_register_php['email'], 255),
         array('label', $lang_register_php['optional_info']),
-        array('input', 'location', $lang_register_php['location'], 255),
-        array('input', 'interests', $lang_register_php['interests'], 255),
-        array('input', 'website', $lang_register_php['website'], 255),
-        array('input', 'occupation', $lang_register_php['occupation'], 255),
+		array('input', 'user_profile1', $CONFIG['user_profile1_name'], 255),
+		array('input', 'user_profile2', $CONFIG['user_profile2_name'], 255),
+		array('input', 'user_profile3', $CONFIG['user_profile3_name'], 255),
+		array('input', 'user_profile4', $CONFIG['user_profile4_name'], 255),
+		array('input', 'user_profile5', $CONFIG['user_profile5_name'], 255),
+		array('input', 'user_profile6', $CONFIG['user_profile6_name'], 255)
         );
 
     foreach ($form_data as $element) switch ($element[0]) {
@@ -173,11 +175,12 @@ function check_user_info(&$error)
     $password = trim(get_post_var('password'));
     $password_again = trim(get_post_var('password_verification'));
     $email = trim(get_post_var('email'));
-
-    $location = addslashes(get_post_var('location'));
-    $interests = addslashes(get_post_var('interests'));
-    $website = addslashes(get_post_var('website'));
-    $occupation = addslashes(get_post_var('occupation'));
+	$profile1 = addslashes(get_post_var('user_profile1'));
+	$profile2 = addslashes(get_post_var('user_profile2'));
+	$profile3 = addslashes(get_post_var('user_profile3'));
+	$profile4 = addslashes(get_post_var('user_profile4'));
+	$profile5 = addslashes(get_post_var('user_profile5'));
+	$profile6 = addslashes(get_post_var('user_profile6'));
 
     $sql = "SELECT user_id " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_name = '" . addslashes($user_name) . "'";
     $result = db_query($sql);
@@ -220,7 +223,7 @@ function check_user_info(&$error)
         $act_key = '';
     }
 
-    $sql = "INSERT INTO {$CONFIG['TABLE_USERS']} " . "(user_regdate, user_active, user_actkey, user_name, user_password, user_email, user_location, user_interests, user_website, user_occupation) " . "VALUES (NOW(), '$active', '$act_key', '" . addslashes($user_name) . "', '" . addslashes($password) . "', '" . addslashes($email) . "', '$location', '$interests', '$website', '$occupation' )";
+    $sql = "INSERT INTO {$CONFIG['TABLE_USERS']} " . "(user_regdate, user_active, user_actkey, user_name, user_password, user_email, user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6) " . "VALUES (NOW(), '$active', '$act_key', '" . addslashes($user_name) . "', '" . addslashes($password) . "', '" . addslashes($email) . "', '$profile1', '$profile2', '$profile3', '$profile4', '$profile5', '$profile6')";
     $result = db_query($sql);
 
     if ($CONFIG['reg_requires_valid_email']) {

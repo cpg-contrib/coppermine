@@ -468,6 +468,15 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Notify admin of user upload awaiting approval', 'upl_notify_admin_email', 1), //cpg1.3.0
   array('Allow logged in users to view memberlist', 'allow_memberlist', 1), //cpg1.3.0
 
+// custom profile fields, (casper) 1.4 devel
+  'Custom fields for user profile (leave blank if unused)',
+  array('Profile1 name', 'user_profile1_name', 0),
+  array('Profile2 name', 'user_profile2_name', 0),
+  array('Profile3 name', 'user_profile3_name', 0),
+  array('Profile4 name', 'user_profile4_name', 0),
+  array('Profile5 name', 'user_profile5_name', 0),
+  array('Profile6 name', 'user_profile6_name', 0),
+  
   'Custom fields for image description (leave blank if unused)',
   array('Field 1 name', 'user_field1_name', 0),
   array('Field 2 name', 'user_field2_name', 0),
@@ -1209,6 +1218,12 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'user_location' => 'User location',
   'user_interests' => 'User interests',
   'user_occupation' => 'User occupation',
+  'user_profile1' => '$user_profile1',
+  'user_profile2' => '$user_profile2',
+  'user_profile3' => '$user_profile3',
+  'user_profile4' => '$user_profile4',
+  'user_profile5' => '$user_profile5',
+  'user_profile6' => '$user_profile6',
   'latest_upload' => 'Recent uploads', //cpg1.3.0
   'never' => 'never', //cpg1.3.0
 );

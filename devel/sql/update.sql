@@ -222,3 +222,24 @@ CREATE TABLE CPG_dict (
   keyword varchar(60) NOT NULL default '',
   PRIMARY KEY  (keyId)
 ) TYPE=MyISAM  COMMENT = 'Holds the keyword dictionary';
+
+#
+# Add config profile rows
+#
+
+ALTER TABLE `CPG_users` CHANGE `user_location`  `user_profile1` VARCHAR(255);
+ALTER TABLE `CPG_users` CHANGE `user_interests` `user_profile2` VARCHAR(255);
+ALTER TABLE `CPG_users` CHANGE `user_website` `user_profile3` VARCHAR(255);
+ALTER TABLE `CPG_users` CHANGE `user_occupation` `user_profile4` VARCHAR(255);
+
+ALTER TABLE `CPG_users` ADD `user_profile5` varchar(255) default '' NOT NULL;
+ALTER TABLE `CPG_users` ADD `user_profile6` varchar(255) default '' NOT NULL;
+
+
+
+INSERT INTO CPG_config VALUES ('user_profile1_name', '$lang_register_php['location']');
+INSERT INTO CPG_config VALUES ('user_profile2_name', '$lang_register_php['interests']');
+INSERT INTO CPG_config VALUES ('user_profile3_name', '$lang_register_php['website']');
+INSERT INTO CPG_config VALUES ('user_profile4_name', '$lang_register_php['occupation']');
+INSERT INTO CPG_config VALUES ('user_profile5_name', '');
+INSERT INTO CPG_config VALUES ('user_profile6_name', '');

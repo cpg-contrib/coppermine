@@ -239,10 +239,12 @@ function edit_user($user_id)
         array('yesno', 'user_active', $lang_usermgr_php['user_active']),
         array('group_list', 'user_group', $lang_usermgr_php['user_group']),
         array('input', 'user_email', $lang_usermgr_php['user_email'], 255),
-        array('input', 'user_location', $lang_usermgr_php['user_location'], 255),
-        array('input', 'user_interests', $lang_usermgr_php['user_interests'], 255),
-        array('input', 'user_website', $lang_usermgr_php['user_web_site'], 255),
-        array('input', 'user_occupation', $lang_usermgr_php['user_occupation'], 255)
+		array('input', 'user_profile1', $CONFIG['user_profile1_name'], 255),
+		array('input', 'user_profile2', $CONFIG['user_profile2_name'], 255),
+		array('input', 'user_profile3', $CONFIG['user_profile3_name'], 255),
+		array('input', 'user_profile4', $CONFIG['user_profile4_name'], 255),
+		array('input', 'user_profile5', $CONFIG['user_profile5_name'], 255),
+		array('input', 'user_profile6', $CONFIG['user_profile6_name'], 255)
         );
 
     $sql = "SELECT * FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$user_id'";
@@ -377,10 +379,12 @@ function update_user($user_id)
     $user_name = addslashes(trim($HTTP_POST_VARS['user_name']));
     $user_password = addslashes(trim($HTTP_POST_VARS['user_password']));
     $user_email = addslashes(trim($HTTP_POST_VARS['user_email']));
-    $user_location = addslashes($HTTP_POST_VARS['user_location']);
-    $user_interests = addslashes($HTTP_POST_VARS['user_interests']);
-    $user_website = addslashes($HTTP_POST_VARS['user_website']);
-    $user_occupation = addslashes($HTTP_POST_VARS['user_occupation']);
+	$profile1 = addslashes($HTTP_POST_VARS['user_profile1']);
+	$profile2 = addslashes($HTTP_POST_VARS['user_profile2']);
+	$profile3 = addslashes($HTTP_POST_VARS['user_profile3']);
+	$profile4 = addslashes($HTTP_POST_VARS['user_profile4']);
+	$profile5 = addslashes($HTTP_POST_VARS['user_profile5']);
+	$profile6 = addslashes($HTTP_POST_VARS['user_profile6']);
     $user_active = $HTTP_POST_VARS['user_active'];
     $user_group = $HTTP_POST_VARS['user_group'];
     $group_list = isset($HTTP_POST_VARS['group_list']) ? $HTTP_POST_VARS['group_list'] : '';
@@ -405,7 +409,7 @@ function update_user($user_id)
         $user_group_list = '';
     }
 
-    $sql_update = "UPDATE {$CONFIG['TABLE_USERS']} " . "SET " . "user_name           = '$user_name', " . "user_email          = '$user_email', " . "user_active    = '$user_active', " . "user_group           = '$user_group', " . "user_location  = '$user_location', " . "user_interests = '$user_interests', " . "user_website          = '$user_website', " . "user_occupation= '$user_occupation', " . "user_group_list      = '$user_group_list'";
+    $sql_update = "UPDATE {$CONFIG['TABLE_USERS']} " . "SET " . "user_name           = '$user_name', " . "user_email          = '$user_email', " . "user_active    = '$user_active', " . "user_group           = '$user_group', " . "user_profile1 = '$profile1', " . "user_profile2 = '$profile2', " . "user_profile3 = '$profile3', " . "user_profile4 = '$profile4', " . "user_profile5 = '$profile5', " . "user_profile6 = '$profile6', " . "user_group_list      = '$user_group_list'";
     if (strlen($user_password)) $sql_update .= ", user_password = '$user_password'";
     $sql_update .= " WHERE user_id = '$user_id'";
 
