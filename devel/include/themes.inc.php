@@ -631,7 +631,7 @@ if (!isset($template_img_navbar))  //{THEMES}
 $template_img_navbar = <<<EOT
 
         <tr>
-                <a name="top_display_media"><td align="center" valign="middle" class="navmenu" width="48px"></a>
+                <td align="center" valign="middle" class="navmenu" width="48px">
                         <a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="{LOCATION}images/thumbnails.gif" align="middle" border="0px" alt="{THUMB_TITLE}" /></a>
                 </td>
                 <td align="center" valign="middle" class="navmenu" width="48px">
@@ -1136,7 +1136,7 @@ $template_tab_display = array('left_text' => '<td width="100%%" align="left" val
     'tab_trailer' => '',
     'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%d</b></td>',
     'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"><b>%d</b></a></td>' . "\n"
-    );
+);
 
 // Template used for Vanity Footer
 if (!isset($template_vanity))  //{THEMES}
@@ -2148,22 +2148,34 @@ function theme_html_img_nav_menu()
     $page = ceil(($pos + 1) / ($CONFIG['thumbrows'] * $CONFIG['thumbcols']));
     $pid = $CURRENT_PIC_DATA['pid'];
 
+    $start = 0;
+	$start_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$start";
+	$start_title = $lang_img_nav_bar['go_album_start'];
+	$meta_nav .= "<link rel=\"start\" href=\"$start_tgt\" title=\"$start_title\" />
+	";
+	$end = $pic_count - 1;
+	$end_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$end";
+	$end_title = $lang_img_nav_bar['go_album_end'];
+	$meta_nav .= "<link rel=\"last\" href=\"$end_tgt\" title=\"$end_title\" />
+	";
+		
     if ($pos > 0) {
         $prev = $pos - 1;
         $prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$prev";
         $prev_title = $lang_img_nav_bar['prev_title'];
-                $meta_nav .= "<link rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />
-                ";
+				$meta_nav .= "<link rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />
+				";
     } else {
         $prev_tgt = "javascript:;";
         $prev_title = "";
     }
+		
     if ($pos < ($pic_count -1)) {
         $next = $pos + 1;
         $next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$next";
         $next_title = $lang_img_nav_bar['next_title'];
-                $meta_nav .= "<link rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>
-                ";
+				$meta_nav .= "<link rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>
+				";
     } else {
         $next_tgt = "javascript:;";
         $next_title = "";
