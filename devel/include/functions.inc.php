@@ -347,7 +347,7 @@ function bb_decode($text)
                 $replacements[5] = $bbcode_tpl['email'];
 
                 // [img]xxxx://www.phpbb.com[/img] code..
-                $bbcode_tpl['img']  = '<img src="{URL}" >';
+                $bbcode_tpl['img']  = '<img src="{URL}" />';
                 $bbcode_tpl['img']  = str_replace('{URL}', '\\1\\2', $bbcode_tpl['img']);
 
                 $patterns[6] = "#\[img\]([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/img\]#si";
@@ -721,7 +721,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         } else {
                             $prefix= '';
                         }
-                        $caption = "<span class=\"thumb_caption\">".'<img src="'.$prefix.'images/rating'.round($row['pic_rating']/2000).'.gif" align="absmiddle"/>'.'<br />'.sprintf($lang_get_pic_data['n_votes'], $row['votes']).'</span>';
+                        $caption = "<span class=\"thumb_caption\">".'<img src="'.$prefix.'images/rating'.round($row['pic_rating']/2000).'.gif" alt=""/>'.'<br />'.sprintf($lang_get_pic_data['n_votes'], $row['votes']).'</span>';
                         $rowset[$key]['caption_text'] = $caption;
                 }
                 return $rowset;
@@ -1036,7 +1036,7 @@ function compute_img_size($width, $height, $max)
         $image_size['height'] = ceil($height / $ratio);
         $image_size['whole'] = 'width="'.$image_size['width'].'" height="'.$image_size['height'].'"';
         if($thumb_use=='ht') {
-          $image_size['geom'] = '" height="'.$image_size['height'].'"';
+          $image_size['geom'] = ' height="'.$image_size['height'].'"';
         } elseif($thumb_use=='wd') {
           $image_size['geom'] = 'width="'.$image_size['width'].'"';
         } else {
@@ -1081,7 +1081,7 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
                         $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
 
                         $thumb_list[$i]['pos'] = $key < 0 ? $key : $i - 1 + $lower_limit;
-                        $thumb_list[$i]['image'] = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\">";
+                        $thumb_list[$i]['image'] = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\"/>";
                         $thumb_list[$i]['caption'] = $row['caption_text'];
                         $thumb_list[$i]['admin_menu'] = '';
                         $thumb_list[$i]['aid'] = $row['aid'];
@@ -1155,7 +1155,7 @@ function display_film_strip($album, $cat, $pos)
                         $p=$i - 1 + $lower_limit;
                         $p=($p < 0 ? 0 : $p);
                         $thumb_list[$i]['pos'] = $key < 0 ? $key : $p;
-                        $thumb_list[$i]['image'] = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\">";
+                        $thumb_list[$i]['image'] = "<img src=\"" . $pic_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\"/>";
                         $thumb_list[$i]['caption'] = $row['caption_text'];
                         $thumb_list[$i]['admin_menu'] = '';
 
