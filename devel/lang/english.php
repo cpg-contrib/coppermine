@@ -738,6 +738,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Allow unlogged users (guest or anonymous) access', 'allow_unlogged_access', 1, 'f=index.htm&amp;as=admin_allow_unlogged_access&amp;ae=admin_allow_unlogged_access_end'), //cpg1.4
   array('User registration requires email verification', 'reg_requires_valid_email', 1, 'f=index.htm&amp;as=admin_registration_verify&amp;ae=admin_registration_verify_end'), //cpg1.4
   array('Notify admin of user registration by email', 'reg_notify_admin_email', 1, 'f=index.htm&amp;as=admin_registration_notify&amp;ae=admin_registration_notify_end'), //cpg1.4
+  array('Admin activation of registrations', 'admin_activation', 1, 'f=index.htm&amp;as=admin_activation&amp;ae=admin_activation_end'),  //cpg1.4  
   array('Allow two users to have the same email address', 'allow_duplicate_emails_addr', 1, 'f=index.htm&amp;as=admin_allow_duplicate_emails_addr&amp;ae=admin_allow_duplicate_emails_addr_end'), //cpg1.4
   array('Notify admin of user upload awaiting approval', 'upl_notify_admin_email', 1, 'f=index.htm&amp;as=admin_approval_notify&amp;ae=admin_approval_notify_end'), //cpg1.4
   array('Allow logged in users to view memberlist', 'allow_memberlist', 1, 'f=index.htm&amp;as=admin_user_memberlist&amp;ae=admin_user_memberlist_end'), //cpg1.4
@@ -786,7 +787,6 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Path to custom header include', 'custom_header_path', 0, 'f=index.htm&amp;as=admin_misc_include_path_start&amp;ae=admin_misc_include_path_end'), //cpg1.4
   array('Path to custom footer include', 'custom_footer_path', 0, 'f=index.htm&amp;as=admin_misc_include_path_start&amp;ae=admin_misc_include_path_end'), //cpg1.4
   array('Enable Report to Admin', 'report_post', 1, 'f=index.htm&amp;as=admin_misc_enable_report&amp;ae=admin_misc_enable_report_end'),  //cpg1.4
-  array('Admin activation of registrations', 'admin_activation', 1, 'f=index.htm&amp;as=admin_activation&amp;ae=admin_activation_end'),  //cpg1.4
 );
 
 // ------------------------------------------------------------------------- //
