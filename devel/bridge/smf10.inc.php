@@ -66,6 +66,7 @@ class cpg_udb extends core_udb {
 		$this->field = array(
 			'username' => 'memberName', // name of 'username' field in users table
 			'user_id' => 'ID_MEMBER', // name of 'id' field in users table
+			'password' => 'passwd', // name of the password field in the users table
 			'email' => 'emailAddress', // name of 'email' field in users table
 			'regdate' => 'dateRegistered', // name of 'registered' field in users table
 			'lastvisit' => 'UNIX_TIMESTAMP(lastLogin)', // last time user logged in
@@ -130,7 +131,7 @@ class cpg_udb extends core_udb {
 		{
 			$udb_groups[$row[$this->field['grouptbl_group_id']]+100] = ucfirst(strtolower($row[$this->field['grouptbl_group_name']]));
 		}
-		//var_dump($udb_groups);
+
 		return $udb_groups;
 	}
 	
@@ -139,21 +140,17 @@ class cpg_udb extends core_udb {
 	{
 		global $user_settings;
 		
-		/*
 		if (!$user_settings){
-			$user_settings[$this->field['user_id']] = 0;
-			$user_settings[$this->field['username']] = 'Guest';
-			$user_settings[$this->field['usertbl_group_id']] = $this->guestgroup;
+            return false
 		}
-		*/
-		
-		return $user_settings;
+
+		return array($user_settings['ID_MEMBER'], $user_settings['passwd']);
 	}
 	
 	// definition of how to extract an id and password hash from a cookie
 	function cookie_extraction()
 	{
-		return false; //array(0, ''); //unused
+		return false; //unused
 	}
 	
 	// definition of actions required to convert a password from user database form to cookie form
