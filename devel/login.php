@@ -96,7 +96,7 @@ echo <<< EOT
                   <tr>
                     <form action="login.php?referer=$referer" method="post" name="loginbox">
                         <td class="tableb" width="40%">{$lang_login_php['username']}</td>
-                        <td class="tableb" width="60%"><input type="text" class="textinput" name="username" style="width: 100%"></td>
+                        <td class="tableb" width="60%"><input type="text" class="textinput" name="username" style="width: 100%" /></td>
                         <script language="javascript" type="text/javascript">
                         <!--
                         document.loginbox.username.focus();
@@ -105,7 +105,7 @@ echo <<< EOT
                   </tr>
                   <tr>
                           <td class="tableb">{$lang_login_php['password']}</td>
-                        <td class="tableb"><input type="password" class="textinput" name="password" style="width: 100%"></td>
+                        <td class="tableb"><input type="password" class="textinput" name="password" style="width: 100%" /></td>
                   </tr>
                   <tr>
                     <td colspan="2" align="center" class="tableb">{$lang_login_php['remember_me']} <input name="remember_me" type="checkbox" class="checkbox" value="1"></td>
