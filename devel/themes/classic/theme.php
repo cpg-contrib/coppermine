@@ -535,25 +535,25 @@ $template_display_picture = <<<EOT
                                 <tr>
                                         <td align="center">
                                                 {IMAGE}
-                                            
+
                                         </td>
                                 </tr>
                         </table>
-		</td></tr>
-		<tr><td>
-						<table width="100%" cellspacing="2px" cellpadding="0px" class="tableb">
+                </td></tr>
+                <tr><td>
+                                                <table width="100%" cellspacing="2px" cellpadding="0px" class="tableb">
                                 <tr>
                                         <td align="center">
-                                       
+
                                                 {ADMIN_MENU}
                                         </td>
                                 </tr>
                         </table>
-						
-						
-						
-						
-						
+
+
+
+
+
 <!-- BEGIN img_desc -->
                         <table cellpadding="0px" cellspacing="0px" class="tableb" width="100%">
 <!-- BEGIN title -->
@@ -850,8 +850,8 @@ function pageheader($section, $meta = '')
 {
     global $CONFIG, $THEME_DIR;
     global $template_header, $lang_charset, $lang_text_dir;
-	
-	$custom_header = cpg_get_custom_include($CONFIG['custom_header_path']);
+
+        $custom_header = cpg_get_custom_include($CONFIG['custom_header_path']);
 
     header('P3P: CP="CAO DSP COR CURa ADMa DEVa OUR IND PHY ONL UNI COM NAV INT DEM PRE"');
     user_save_profile();
@@ -864,7 +864,7 @@ function pageheader($section, $meta = '')
         '{GAL_DESCRIPTION}' => $CONFIG['gallery_description'],
         '{MAIN_MENU}' => theme_main_menu(),
         '{ADMIN_MENU}' => theme_admin_mode_menu(),
-		'{CUSTOM_HEADER}' => $custom_header,
+                '{CUSTOM_HEADER}' => $custom_header,
         );
 
     echo template_eval($template_header, $template_vars);
@@ -876,13 +876,13 @@ function pagefooter()
     global $USER, $USER_DATA, $ALBUM_SET, $CONFIG, $time_start, $query_stats, $queries;;
     global $template_footer;
 
-	$custom_footer = cpg_get_custom_include($CONFIG['custom_footer_path']);
-	
+        $custom_footer = cpg_get_custom_include($CONFIG['custom_footer_path']);
+
     if ($CONFIG['debug_mode']==1 || ($CONFIG['debug_mode']==2 && GALLERY_ADMIN_MODE)) {
     cpg_debug_output();
     }
 
-	$template_vars = array(
+        $template_vars = array(
         '{CUSTOM_FOOTER}' => $custom_footer,
     );
 
@@ -942,15 +942,15 @@ function theme_main_menu()
         template_extract_block($template_main_menu, 'my_profile');
     }
 
-    if (GALLERY_ADMIN_MODE || USER_ADMIN_MODE) {
-        template_extract_block($template_main_menu, 'enter_admin_mode');
-    } elseif (USER_CAN_CREATE_ALBUMS || USER_IS_ADMIN) {
-        template_extract_block($template_main_menu, 'leave_admin_mode');
-    }
-
-    if (!USER_CAN_CREATE_ALBUMS && !USER_IS_ADMIN) {
+    if (!USER_IS_ADMIN) {
         template_extract_block($template_main_menu, 'enter_admin_mode');
         template_extract_block($template_main_menu, 'leave_admin_mode');
+    } else {
+        if (GALLERY_ADMIN_MODE) {
+            template_extract_block($template_main_menu, 'enter_admin_mode');
+        } else {
+            template_extract_block($template_main_menu, 'leave_admin_mode');
+        }
     }
 
     if (!USER_CAN_CREATE_ALBUMS) {
@@ -1059,7 +1059,7 @@ function theme_admin_mode_menu()
         $param = array('{ALBMGR_LNK}' => $lang_user_admin_menu['albmgr_lnk'],
             '{MODIFYALB_LNK}' => $lang_user_admin_menu['modifyalb_lnk'],
             '{MY_PROF_LNK}' => $lang_user_admin_menu['my_prof_lnk'],
-			'{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
+                        '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
             );
 
         $html = template_eval($template_user_admin_menu, $param);
@@ -1118,10 +1118,10 @@ function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
         $params = array('{STATISTICS}' => $statistics);
         echo template_eval($template, $params);
     }
-    
+
 
     if (count($cat_data) > 0)
-	  endtable();
+          endtable();
         echo template_extract_block($template_cat_list, 'spacer');
 }
 
@@ -1139,7 +1139,7 @@ function theme_display_breadcrumb($breadcrumb, &$cat_data)
             );
         echo template_eval($template, $params);
     }
-	endtable();
+        endtable();
 }
 
 function theme_display_album_list(&$alb_list, $nbAlb, $cat, $page, $total_pages)
@@ -1522,9 +1522,9 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, 
     if ($CONFIG['display_film_strip'] == 1) {
         echo $film_strip;
     }
-  
+
     echo $votes;
- 
+
     $picinfo = isset($_COOKIE['picinfo']) ? $_COOKIE['picinfo'] : ($CONFIG['display_pic_info'] ? 'block' : 'none');
     echo "<div id=\"picinfo\" style=\"display: $picinfo;\">\n";
     starttable();
@@ -1532,9 +1532,9 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, 
     endtable();
     echo "</div>\n";
 
-    
+
     echo $comments;
-    
+
 }
 
 function theme_html_picinfo(&$info)

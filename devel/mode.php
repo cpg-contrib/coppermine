@@ -33,7 +33,7 @@ define('MODE_PHP', true);
 
 require('include/init.inc.php');
 
-if (!USER_CAN_CREATE_ALBUMS && !USER_IS_ADMIN) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+if (!USER_IS_ADMIN) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
 if (!isset($_GET['admin_mode']) || !isset($_GET['referer'])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
 

@@ -914,15 +914,15 @@ function theme_main_menu()
         template_extract_block($template_main_menu, 'my_profile');
     }
 
-    if (GALLERY_ADMIN_MODE || USER_ADMIN_MODE) {
-        template_extract_block($template_main_menu, 'enter_admin_mode');
-    } elseif (USER_CAN_CREATE_ALBUMS || USER_IS_ADMIN) {
-        template_extract_block($template_main_menu, 'leave_admin_mode');
-    }
-
-    if (!USER_CAN_CREATE_ALBUMS && !USER_IS_ADMIN) {
+    if (!USER_IS_ADMIN) {
         template_extract_block($template_main_menu, 'enter_admin_mode');
         template_extract_block($template_main_menu, 'leave_admin_mode');
+    } else {
+        if (GALLERY_ADMIN_MODE) {
+            template_extract_block($template_main_menu, 'enter_admin_mode');
+        } else {
+            template_extract_block($template_main_menu, 'leave_admin_mode');
+        }
     }
 
     if (!USER_CAN_CREATE_ALBUMS) {
