@@ -156,18 +156,18 @@ EOT;
 
 // The function to create the album list drop down.
 function form_alb_list_box($text, $name) {
-//Vodovnik.com modified this code to allow display of Categories besides album names
+// frogfoot re-wrote this function to present the list in categorized, sorted and nicely formatted order
 
-    // Pull the $CONFIG array and the GET array into the function.
-    global $CONFIG, $HTTP_GET_VARS;
+    // Pull the $CONFIG array and the GET array into the function
+    global $CONFIG, $HTTP_GET_VARS, $lang_upload_php;
 
-    // Also pull the album lists into the function.
+    // Also pull the album lists into the function
     global $user_albums_list, $public_albums_list;
 
     // Check to see if an album has been preselected by URL addition. If so, make $sel_album the album number. Otherwise, make $sel_album 0.
     $sel_album = isset($HTTP_GET_VARS['album']) ? $HTTP_GET_VARS['album'] : 0;
 
-    // Create the opening of the drop down box.
+    // Create the opening of the drop down box
     echo <<<EOT
     <tr>
         <td class="tableb">
@@ -178,47 +178,57 @@ function form_alb_list_box($text, $name) {
 
 EOT;
 
-    //Cylce through the User albums.
+    // Reset counter
+    $list_count = 0;
+
+    // Cycle through the User albums
     foreach($user_albums_list as $album) {
 
-        // Set $album_id to the actual album ID.
-        $album_id = $album['aid'];
-
-        //Query the database to determine the category the album belongs to.
-        $vQuery = "SELECT category FROM " . $CONFIG['TABLE_ALBUMS'] . " WHERE aid='" . $album_id . "'";
-        $vRes = mysql_query($vQuery);
-        $vRes = mysql_fetch_array($vRes);
-
-        // Query the database to get the category name.
-        $vQuery = "SELECT name FROM " . $CONFIG['TABLE_CATEGORIES'] . " WHERE cid='" . $vRes['category'] . "'";
-        $vRes = mysql_query($vQuery);
-        $vRes = mysql_fetch_array($vRes);
-
-        // Create the option for the drop down list.
-        echo '                <option value="' . $album['aid'] . '"' . ($album['aid'] == $sel_album ? ' selected' : '') . '>' . (($vRes['name']) ? '(' . $vRes['name'] . ') ' : '') . $album['title'] . "</option>\n";
+        // Add to multi-dim array for later sorting
+        $listArray[$list_count][cat] = $lang_upload_php['personal_albums'];
+        $listArray[$list_count][aid] = $album['aid'];
+        $listArray[$list_count][title] = $album['title'];
+        $list_count++;
     }
 
-    //Cycle through the public albums.
+    // Cycle through the public albums
     foreach($public_albums_list as $album) {
 
-        // Set $album_id to the actual album ID.
+        // Set $album_id to the actual album ID
         $album_id = $album['aid'];
 
-        //Query the database to determine the category the album belongs to.
-        $vQuery = "SELECT category FROM " . $CONFIG['TABLE_ALBUMS'] . " WHERE aid='" . $album_id . "'";
+        // Get the category name
+        $vQuery = "SELECT cat.name FROM " . $CONFIG['TABLE_CATEGORIES'] . " cat, " . $CONFIG['TABLE_ALBUMS'] . " alb WHERE alb.aid='" . $album_id . "' AND cat.cid=alb.category";
         $vRes = mysql_query($vQuery);
         $vRes = mysql_fetch_array($vRes);
 
-        // Query the database to get the category name.
-        $vQuery = "SELECT name FROM " . $CONFIG['TABLE_CATEGORIES'] . " WHERE cid='" . $vRes['category'] . "'";
-        $vRes = mysql_query($vQuery);
-        $vRes = mysql_fetch_array($vRes);
-
-        // Create the option for the drop down list.
-        echo '                <option value="' . $album['aid'] . '"' . ($album['aid'] == $sel_album ? ' selected' : '') . '>' . (($vRes['name']) ? '(' . $vRes['name'] . ') ' : '') . $album['title'] . "</option>\n";
+        // Add to multi-dim array for sorting later
+        if ($vRes['name']) {
+            $listArray[$list_count][cat] = $vRes['name'];
+        } else {
+            $listArray[$list_count][cat] = $lang_upload_php['albums_no_category'];
+        }
+        $listArray[$list_count][aid] = $album['aid'];
+        $listArray[$list_count][title] = $album['title'];
+        $list_count++;
     }
 
-    // Close the drop down.
+    // Sort the pulldown options by category and album name
+    $listArray = array_csort($listArray,'cat','title');
+
+    // Finally, print out the nicely sorted and formatted drop down list
+    $alb_cat = '';
+    foreach ($listArray as $val) {
+        if ($val[cat] != $alb_cat) {
+if ($alb_cat) echo "                </optgroup>\n";
+            echo '                <optgroup label="' . $val[cat] . '">' . "\n";
+            $alb_cat = $val[cat];
+        }
+        echo '                <option value="' . $val[aid] . '"' . ($val[aid] == $sel_album ? ' selected' : '') . '>   ' . $val[title] . "</option>\n";
+    }
+    if ($alb_cat) echo "                </optgroup>\n";
+
+    // Close the drop down
     echo <<<EOT
             </select>
         </td>
@@ -226,6 +236,7 @@ EOT;
 
 EOT;
 }
+
 
 // The create form function. Takes the $data array as its object.
 //

@@ -37,37 +37,69 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
  * @param string $id the name of the listbox
  * @return the HTML code
  */
-function albumselect($id = "album")
-{
+ 
+ 
+ function albumselect($id = "album") {
+// frogfoot re-wrote this function to present the list in categorized, sorted and nicely formatted order
+
     global $CONFIG, $lang_search_new_php;
     static $select = "";
 
+    // Reset counter
+    $list_count = 0;
+
     if ($select == "") {
-        $result = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0 ORDER BY title");
-        $rowset = db_fetch_rowset($result);
+        $result = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0");
+        while ($row = mysql_fetch_array($result)) {
+            // Add to multi-dim array for later sorting
+            $listArray[$list_count][cat] = $lang_search_new_php['albums_no_category'];
+            $listArray[$list_count][aid] = $row['aid'];
+            $listArray[$list_count][title] = $row['title'];
+            $list_count++;
+        }
         mysql_free_result($result);
 
-        $result = db_query("SELECT DISTINCT a.aid as aid, a.title as title, c.name as cname FROM {$CONFIG['TABLE_ALBUMS']} as a, {$CONFIG['TABLE_CATEGORIES']} as c WHERE a.category = c.cid AND a.category < '" . FIRST_USER_CAT . "' ORDER BY cname,title");
+        $result = db_query("SELECT DISTINCT a.aid as aid, a.title as title, c.name as cname FROM {$CONFIG['TABLE_ALBUMS']} as a, {$CONFIG['TABLE_CATEGORIES']} as c WHERE a.category = c.cid AND a.category < '" . FIRST_USER_CAT . "'");
         while ($row = mysql_fetch_array($result)) {
-            $row['title'] = $row['cname'] . " - " . $row['title'];
-            $rowset[] = $row;
+            // Add to multi-dim array for later sorting
+            $listArray[$list_count][cat] = $row['cname'];
+            $listArray[$list_count][aid] = $row['aid'];
+            $listArray[$list_count][title] = $row['title'];
+            $list_count++;
         }
         mysql_free_result($result);
 
         if (defined('UDB_INTEGRATION')) {
             $sql = udb_get_admin_album_list();
         } else {
-            $sql = "SELECT aid, CONCAT('(', user_name, ') ', title) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id) " . "ORDER BY title";
+            $sql = "SELECT aid, CONCAT('(', user_name, ') ', title) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id)";
         }
         $result = db_query($sql);
-        while ($row = mysql_fetch_array($result)) $rowset[] = $row;
+        while ($row = mysql_fetch_array($result)) {
+            // Add to multi-dim array for later sorting
+            $listArray[$list_count][cat] = $lang_search_new_php['personal_albums'];
+            $listArray[$list_count][aid] = $row['aid'];
+            $listArray[$list_count][title] = $row['title'];
+            $list_count++;
+        }
         mysql_free_result($result);
 
-        $select = '<option value="0">' . $lang_search_new_php['select_album'] . '</option>\n';
+        $select = '<option value="0">' . $lang_search_new_php['select_album'] . "</option>\n";
 
-        foreach ($rowset as $row) {
-            $select .= "<option value=\"" . $row["aid"] . "\">" . $row["title"] . "</option>\n";
+        // Sort the pulldown options by category and album name
+        $listArray = array_csort($listArray,'cat','title');
+
+        // Create the nicely sorted and formatted drop down list
+        $alb_cat = '';
+        foreach ($listArray as $val) {
+            if ($val[cat] != $alb_cat) {
+          if ($alb_cat) $select .= "</optgroup>\n";
+                $select .= '<optgroup label="' . $val[cat] . '">' . "\n";
+                $alb_cat = $val[cat];
+            }
+            $select .= '<option value="' . $val[aid] . '"' . ($val[aid] == $sel_album ? ' selected' : '') . '>   ' . $val[title] . "</option>\n";
         }
+        if ($alb_cat) $select .= "</optgroup>\n";
     }
 
     return "\n<select name=\"$id\" class=\"listbox\">\n$select</select>\n";
