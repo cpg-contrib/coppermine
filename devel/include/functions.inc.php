@@ -1197,27 +1197,66 @@ function get_pic_url(&$pic_row, $mode)
         }
 
         $mime_content = get_type($pic_row['filename']);
+        $filepathname = null;
 
         // Code to handle custom thumbnails
         // If fullsize or normal mode use regular file
         if ($mime_content['content'] != 'image' && $mode!= 'thumb') {
                 $mode = 'fullsize';
         } elseif ($mime_content['content'] != 'image' && $mode == 'thumb') {
+                $thumb_extensions = Array('.gif','.png','.jpg');
+                // Check for user-level custom thumbnails
                 // Create custom thumb path and erase extension using filename; Erase filename's extension
-                $custom_thumb_path = str_replace('.'.$mime_content['extension'],'',$url_prefix[$pic_row['url_prefix']].$pic_row['filepath'].$pic_prefix[$mode].$pic_row['filename']);
-                // Test for gif thumb
-                if (file_exists($custom_thumb_path.'.gif')) {
-                        $filepathname = $custom_thumb_path.'.gif';
-                // Test for jpeg thumb
-                } elseif (file_exists($custom_thumb_path.'.png')) {
-                        $filepathname = $custom_thumb_path.'.png';
-                // Test for png thumb
-                } elseif (file_exists($custom_thumb_path.'.jpg')) {
-                        $filepathname = $custom_thumb_path.'.jpg';
+                $custom_thumb_path = str_replace('.'.$mime_content['extension'],'',$url_prefix[$pic_row['url_prefix']].$pic_row['filepath'].$pic_prefix[$mode]);
+                // Check for file-specific thumbs
+                foreach ($thumb_extensions as $extension) {
+                        if (file_exists($custom_thumb_path.$pic_row['filename'].$extension)) {
+                                $filepathname = $custom_thumb_path.$pic_row['filename'].$extension;
+                                break;
+                        }
+                }
+                // Check for extension-specific thumbs
+                if (is_null($filepathname)) {
+                        foreach ($thumb_extensions as $extension) {
+                                if (file_exists($custom_thumb_path.$mime_content['extension'].$extension)) {
+                                        $filepathname = $custom_thumb_path.$mime_content['extension'].$extension;
+                                        break;
+                                }
+                        }
+                }
+                // Check for content-specific thumbs
+                if (is_null($filepathname)) {
+                        foreach ($thumb_extensions as $extension) {
+                                if (file_exists($custom_thumb_path.$mime_content['content'].$extension)) {
+                                        $filepathname = $custom_thumb_path.$mime_content['content'].$extension;
+                                        break;
+                                }
+                        }
+                }
                 // Use default thumbs
-                } else {
-                        $extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
-                       	$filepathname = 'images/thumb_'.$extension.'.jpg';
+                if (is_null($filepathname)) {
+                       	// Check for default theme- and global-level thumbs
+                       	$thumb_paths[] = 'themes/'.$CONFIG['theme'].'/images/'; // Used for custom theme thumbs
+                       	$thumb_paths[] = 'images/';                             // Default Coppermine thumbs
+                       	$thumb_extensions = Array('.gif','.png','.jpg');
+                       	foreach ($thumb_paths as $default_thumb_path) {
+                       	        if (is_dir($default_thumb_path)) {
+                               	        foreach ($thumb_extensions as $extension) {
+                                       	        // Check for extension-specific thumbs
+                                       	        if (file_exists($default_thumb_path."thumb_{$mime_content['extension']}".$extension)) {
+                                       	                $filepathname = $default_thumb_path."thumb_{$mime_content['extension']}".$extension;
+                                       	                break 2;
+                                       	        }
+                                        }
+                               	        foreach ($thumb_extensions as $extension) {
+                                       	        // Check for media-specific thumbs (movie,document,audio)
+                                       	        if (file_exists($default_thumb_path."thumb_{$mime_content['content']}".$extension)) {
+                                       	                $filepathname = $default_thumb_path."thumb_{$mime_content['content']}".$extension;
+                                       	                break 2;
+                                       	        }
+                               	        }
+                       	        }
+                       	}
                 }
                 return path2url($filepathname);
         }
