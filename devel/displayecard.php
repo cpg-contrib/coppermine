@@ -25,11 +25,19 @@ require('include/smilies.inc.php');
 if (!isset($HTTP_GET_VARS['data'])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
 
 $data = array();
-$data = @unserialize(@base64_decode($HTTP_GET_VARS['data']));
+$data = @unserialize(@base64_decode($_GET['data']));
 
-if (!is_array($data)) {
-    cpg_die(CRITICAL_ERROR, $lang_displayecard_php['invalid_data'], __FILE__, __LINE__);
+// attempt to obtain full link from db if ecard logging enabled and min 12 chars of data is provided and only 1 match
+if ((!is_array($data)) && $CONFIG['log_ecards'] && (strlen($_GET['data']) > 12)) {
+	$result = db_query("SELECT link FROM {$CONFIG['TABLE_ECARDS']} WHERE link LIKE '{$_GET['data']}%'");
+	if (mysql_num_rows($result) === 1) {
+		$row = mysql_fetch_assoc($result);
+		$data = @unserialize(@base64_decode($row['link']));
+	}
 }
+
+if (is_array($data)) {
+
 // Remove HTML tags as we can't trust what we receive
 foreach($data as $key => $value) $data[$key] = strtr($value, $HTML_SUBST);
 // Load template parameters
@@ -49,6 +57,8 @@ $params = array('{LANG_DIR}' => $lang_text_dir,
     );
 // Parse template
 echo template_eval($template_ecard, $params);
-ob_end_flush();
 
+} else {
+	cpg_die(CRITICAL_ERROR, $lang_displayecard_php['invalid_data'], __FILE__, __LINE__);
+}
 ?>
