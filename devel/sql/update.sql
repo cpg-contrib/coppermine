@@ -1,5 +1,3 @@
-# $Id$
-
 #
 # Table structure for table `CPG_filetypes`
 #
@@ -17,6 +15,7 @@ INSERT INTO CPG_filetypes VALUES ('png', 'image/png', 'image');
 INSERT INTO CPG_filetypes VALUES ('psd', 'image/psd', 'image');
 INSERT INTO CPG_filetypes VALUES ('bmp', 'image/bmp', 'image');
 INSERT INTO CPG_filetypes VALUES ('tiff', 'image/tiff', 'image');
+INSERT INTO CPG_filetypes VALUES ('tif', 'image/tif', 'image');
 INSERT INTO CPG_filetypes VALUES ('jpc', 'image/jpc', 'image');
 INSERT INTO CPG_filetypes VALUES ('jp2', 'image/jp2', 'image');
 INSERT INTO CPG_filetypes VALUES ('jpx', 'image/jpx', 'image');
