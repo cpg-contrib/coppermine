@@ -1261,15 +1261,15 @@ function get_pic_url(&$pic_row, $mode)
                                        if (is_dir($default_thumb_path)) {
                                                foreach ($thumb_extensions as $extension) {
                                                        // Check for extension-specific thumbs
-                                                       if (file_exists($default_thumb_path."thumb_{$mime_content['extension']}".$extension)) {
-                                                               $filepathname = $default_thumb_path."thumb_{$mime_content['extension']}".$extension;
+                                                       if (file_exists($default_thumb_path.$CONFIG['thumb_pfx'].$mime_content['extension'].$extension)) {
+                                                               $filepathname = $default_thumb_path.$CONFIG['thumb_pfx'].$mime_content['extension'].$extension;
                                                                break 2;
                                                        }
                                         }
                                                foreach ($thumb_extensions as $extension) {
                                                        // Check for media-specific thumbs (movie,document,audio)
-                                                       if (file_exists($default_thumb_path."thumb_{$mime_content['content']}".$extension)) {
-                                                               $filepathname = $default_thumb_path."thumb_{$mime_content['content']}".$extension;
+                                                       if (file_exists($default_thumb_path.$CONFIG['thumb_pfx'].$mime_content['content'].$extension)) {
+                                                               $filepathname = $default_thumb_path.$CONFIG['thumb_pfx'].$mime_content['content'].$extension;
                                                                break 2;
                                                        }
                                                }
