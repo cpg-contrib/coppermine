@@ -1018,7 +1018,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
                 if($select_columns != '*') $select_columns .= ', UNIX_TIMESTAMP(mtime) as mtime, aid, hits, lasthit_ip';
 
-                $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $ALBUM_SET ORDER BY mtime DESC $limit";
+                $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' and hits > 0 $ALBUM_SET ORDER BY mtime DESC $limit";
                 $result = cpg_db_query($query);
                 $rowset = cpg_db_fetch_rowset($result);
                 mysql_free_result($result);
