@@ -43,39 +43,48 @@ class CPGPluginAPI {
     function load() {
         global $CONFIG,$thisplugin,$USER_DATA,$CPG_PLUGINS,$lang_plugin_api;
 
+        // Get the installed plugins from the database and sort them by execution priority
+        $sql = 'select * from '.$CONFIG['TABLE_PLUGINS'].' order by priority asc;';
+        $result = db_query($sql);
+
+        // Exit if no plugins are installed
+        if (mysql_num_rows($result) == 0) {
+            return;
+        }
+
         // Register page_end action for shutdown
         register_shutdown_function('cpg_action_page_end');
 
         // Register plugin_sleep action for shutdown
         register_shutdown_function(array('CPGPluginAPI','sleep'));
 
-        // Get the installed plugins from the database and sort them by execution priority
-        $sql = 'select * from '.$CONFIG['TABLE_PLUGINS'].' order by priority asc;';
-        $result = db_query($sql);
-
-        // Exit if no plugins are installed
-        if (mysql_num_rows($result)==0) {
-            return;
-        }
-
         // Get the plugin properties from the database
         while ($plugin = mysql_fetch_assoc($result)) {
 
             // Load the plugin into the current scope
-            $thisplugin = CPGPluginAPI::wakeup($plugin);
+            $plugin_obj = CPGPluginAPI::wakeup($plugin);
+
 
             // Copy the plugin to the global scope
-            $CPG_PLUGINS[$plugin['plugin_id']] = $thisplugin;
-
+            $CPG_PLUGINS[$plugin['plugin_id']] = $plugin_obj;
+            
+            // Reference the plugin with the local scope
+            $thisplugin =& $CPG_PLUGINS[$plugin['plugin_id']];
+            
             // Check if plugin has a wakeup action
-            if (!CPGPluginAPI::action('plugin_wakeup',true)) {
+            if (!($thisplugin->awake = CPGPluginAPI::action('plugin_wakeup',true))) {
 
                 if ($CONFIG['log_mode']) {
                     log_write("Couldn't wake plugin '".$thisplugin->name."' at ".date("F j, Y, g:i a"),CPG_GLOBAL_LOG);
                 }
 
                 // Die if plugin's wakeup action failed
-                cpg_die(CRITICAL_ERROR, "Couldn't wake plugin '{$thisplugin->name}'",__FILE__,__LINE__);
+                // cpg_die(CRITICAL_ERROR, "Couldn't wake plugin '{$thisplugin->name}'",__FILE__,__LINE__);
+                $thisplugin->filters = array();
+                $thisplugin->actions = array();
+                if (!isset($thisplugin->error['desc']) || is_null($thisplugin->error['desc'])) {
+                    $thisplugin->error['desc'] = "Couldn't wake plugin '{$thisplugin->name}'";
+                }
             }
         }
         mysql_free_result($result);
@@ -144,7 +153,7 @@ class CPGPluginAPI {
             $plugin_function = @$thisplugin->filters[$key];
 
             // Skip this plugin; the key isn't set
-            if (!isset($plugin_function)) {
+            if (!isset($plugin_function) || (!$thisplugin->awake)) {
                  continue;
             }
             
@@ -188,7 +197,7 @@ class CPGPluginAPI {
             $plugin_function = @$thisplugin->actions[$key];
 
             // Skip this plugin; the key isn't set
-            if (!isset($plugin_function)) {
+            if (!isset($plugin_function) || ($key != 'plugin_wakeup' && !$thisplugin->awake)) {
                  continue;
             }
 
@@ -302,16 +311,17 @@ class CPGPluginAPI {
                                           'path' => $path
                                          )
                                     );
-
-        // Copy it to the global scope
-        $CPG_PLUGINS['new'] =& $thisplugin;
+        $thisplugin->awake = true;
 
         // Grab plugin's code
         require_once ('./plugins/'.$path.'/codebase.php');
 
+        // Copy it to the global scope
+        $CPG_PLUGINS['new'] = $thisplugin;
+        
         // If the plugin has an install action, execute it
         $installed = CPGPluginAPI::action('plugin_install',true,CPG_EXEC_NEW);
-        
+
         // If $installed is boolean then plugin was installed; Return true
         if (is_bool($installed) && $installed) {
             $sql = 'insert into '.$CONFIG['TABLE_PLUGINS'].' '.
@@ -394,6 +404,8 @@ class CPGPluginAPI {
 class CPGPlugin {
     var $actions = array();
     var $filters = array();
+    var $awake = false;
+    var $error = array();
 
     /**
      * CPGPlugin()
