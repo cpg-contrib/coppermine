@@ -301,7 +301,7 @@ $template_album_list = <<<EOT
         </tr>
         <tr>
                 <td width="100%" valign="top" class="tableb_compact">
-                    <div class="thumbnails" style="background-color:transparent"><img src="images/spacer.gif" width="1px" height="{SPACER}" border="0" class="image" style="border:0;margin-top:1px;margin-bottom:0" alt="" /></div>
+                    <div class="thumbnails" style="background-color:transparent"><img src="images/spacer.gif" width="1" height="{SPACER}" border="0" class="image" style="border:0;margin-top:1;margin-bottom:0" alt="" /></div>
                 </td>
         </tr>
         </table>
@@ -338,16 +338,22 @@ $template_film_strip = <<<EOT
         </tr>
         <tr>
         <td valign="bottom" class="thumbnails" align="center">
-          {THUMB_STRIP}
+          <table width="100%" cellspacing="0" cellpadding="0">
+              <tr>
+                 {THUMB_STRIP}
+              </tr>
+          </table>
         </td>
         </tr>
         <tr>
          <td valign="top" style="background-image: url({TILE2});" align="center" height='30'>&nbsp;</td>
         </tr>
 <!-- BEGIN thumb_cell -->
+                <td>
                                         <a href="{LINK_TGT}">{THUMB}</a>&nbsp;
                                         {CAPTION}
                                         {ADMIN_MENU}
+                </td>
 <!-- END thumb_cell -->
 <!-- BEGIN empty_cell -->
                 <td valign="top" align="center" >&nbsp;</td>
@@ -410,7 +416,7 @@ $template_album_list_cat = <<<EOT
         </tr>
         <tr>
                 <td width="100%" valign="top" class="tableb_compact" >
-                      <div class="thumbnails" style="background-color:transparent"><img src="images/spacer.gif" width="1px" height="{SPACER}" border="0" class="image" style="border:0;margin-top:1px;margin-bottom:0" alt="" /></div>
+                      <div class="thumbnails" style="background-color:transparent"><img src="images/spacer.gif" width="1" height="{SPACER}" border="0" class="image" style="border:0;margin-top:1;margin-bottom:0" alt="" /></div>
                 </td>
         </tr>
         </table>
@@ -677,12 +683,12 @@ $template_image_rating = <<<EOT
                 <td colspan="6" class="tableh2_compact"><b>{TITLE}</b> {VOTES}</td>
         </tr>
         <tr>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE0}" title="{RUBBISH}"><img src="{LOCATION}images/rating0.gif" alt="{RUBBISH}" border="0px" alt="" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE1}" title="{POOR}"><img src="{LOCATION}images/rating1.gif" alt="{POOR}" border="0px" alt="" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE2}" title="{FAIR}"><img src="{LOCATION}images/rating2.gif" alt="{FAIR}" border="0px" alt="" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE3}" title="{GOOD}"><img src="{LOCATION}images/rating3.gif" alt="{GOOD}" border="0px" alt="" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE4}" title="{EXCELLENT}"><img src="{LOCATION}images/rating4.gif" alt="{EXCELLENT}" border="0px" alt="" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE5}" title="{GREAT}"><img src="{LOCATION}images/rating5.gif" alt="{GREAT}" border="0px" alt="" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE0}" title="{RUBBISH}"><img src="{LOCATION}images/rating0.gif" border="0px" alt="{RUBBISH}" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE1}" title="{POOR}"><img src="{LOCATION}images/rating1.gif" border="0px" alt="{POOR}" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE2}" title="{FAIR}"><img src="{LOCATION}images/rating2.gif" border="0px" alt="{FAIR}" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE3}" title="{GOOD}"><img src="{LOCATION}images/rating3.gif" border="0px" alt="{GOOD}" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE4}" title="{EXCELLENT}"><img src="{LOCATION}images/rating4.gif" border="0px" alt="{EXCELLENT}" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE5}" title="{GREAT}"><img src="{LOCATION}images/rating5.gif" border="0px" alt="{GREAT}" /><br /></a></td>
         </tr>
 </table>
 EOT;
@@ -704,7 +710,7 @@ $template_image_comments = <<<EOT
 
                                 <td class="tableh2_compact" align="right" width="100%">
 <!-- BEGIN report_comment_button -->
-                                        <a href="{REPORT_COMMENT_TGT}" title="{REPORT_COMMENT_TITLE}"><img src="images/report.gif" width="16px" height="16px" border="0px" align="middle" alt="{REPORT_COMMENT_TITLE}" /></a>
+     <a href="report_file.php?pid={PID}&msg_id={MSG_ID}&what=comment" title="{REPORT_COMMENT_TITLE}"><img src="images/report.gif" width="16px" height="16px" border="0px" align="middle" alt="{REPORT_COMMENT_TITLE}" /></a>
 <!-- END report_comment_button -->
 
 
@@ -789,7 +795,7 @@ if ($CONFIG['show_bbcode_help']) {$captionLabel = '&nbsp;'. cpg_display_help('f=
 $template_add_your_comment = <<<EOT
 <table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
         <tr>
-                <td width="100%" class="tableh2_compact"><b>{ADD_YOUR_COMMENT}</b>$captionLabel</td>
+                <td width="100%" class="tableh2_compact"><b>{ADD_YOUR_COMMENT}</b></td>
         </tr>
         <tr>
                 <form method="post" name="post" action="db_input.php">
@@ -895,10 +901,16 @@ $template_ecard = <<<EOT
       <table border="0px" cellspacing="0px" cellpadding="10px" bgcolor="#ffffff">
         <tr>
           <td valign="top">
-           <img src="{PIC_URL}" border="1px" alt="" /><br />
+           <a href="{VIEW_MORE_TGT}/displayimage.php?pos=-{PID}">
+                                         <img src="{PIC_URL}" border="1px" alt="" /></a>
+                                         <br />
+                                         <div align="center">
+                                                 <h2>{PIC_TITLE}</h2>
+                                         </div>
+
           </td>
-          <td valign="top" width="200px">
-            <div align="right"><img src="{URL_PREFIX}images/stamp.gif" alt="" border="0px" alt="" /></div>
+          <td valign="top" width="300px">
+            <div align="right"><img src="{URL_PREFIX}images/stamp.gif" border="0px" alt="" /></div>
             <br />
             <b><font face="arial" color="#000000" size="4">{GREETINGS}</font></b>
             <br />
@@ -910,6 +922,11 @@ $template_ecard = <<<EOT
             (<a href="mailto:{SENDER_EMAIL}"><font face="arial" color="#000000" size="2">{SENDER_EMAIL}</font></a>)
           </td>
         </tr>
+                <tr>
+                        <td colspan="2">
+                                {PIC_CAPTION}
+                        </td>
+                </tr>
       </table>
     </td>
   </tr>
@@ -927,8 +944,9 @@ $template_ecard_plaintext = <<<EOT
 {VIEW_ECARD_LNK_PLAINTEXT}:
 {VIEW_ECARD_TGT}
 
-
 {GREETINGS}
+
+
 {PLAINTEXT_MESSAGE}
 
 {SENDER_NAME} ({SENDER_EMAIL})
@@ -959,11 +977,12 @@ $template_report = <<<EOT
           </td>
           <td valign="top" width="200px">
             <b><font face="arial" color="#000000" size="4">{SUBJECT}</font></b>
-            <br />{REASON}
             <br />
+                                                <br />
+                                                {REASON}
+            <p>
             <font face="arial" color="#000000" size="2">{MESSAGE}</font>
-            <br />
-            <br />
+            </p>
             <font face="arial" color="#000000" size="2">{SENDER_NAME}</font>
             (<a href="mailto:{SENDER_EMAIL}"><font face="arial" color="#000000" size="2">{SENDER_EMAIL}</font></a>)
           </td>
@@ -987,6 +1006,9 @@ $template_report_plaintext = <<<EOT
 
 
 {SUBJECT}
+
+{REASON}
+
 {PLAINTEXT_MESSAGE}
 
 {SENDER_NAME} ({SENDER_EMAIL})
@@ -1006,15 +1028,11 @@ $template_tab_display = array('left_text' => '<td width="100%" align="left" vali
 
 // Template used for Vanity Footer
 $template_vanity = <<<EOT
-<div id="vanity" style="text-align: center; padding-bottom: 1ex;">
-  <table cellspacing="0" cellpadding="3" border="0" align="center" width="100%">
-    <tr>
-      <td><a href="http://www.mysql.com/" target="_blank"><img src="{LOCATION}images/powered-mysql.gif" alt="Powered by MySQL"  border="0" /></a></td>
-      <td><a href="http://www.php.net/" target="_blank"><img src="{LOCATION}images/powered-php.gif" alt="Powered by PHP" border="0" /></a></td>
-      <td><a href="http://validator.w3.org/check/referer" target="_blank"><img src="{LOCATION}images/valid-xhtml10.gif" alt="Valid XHTML 1.0!" border="0" /></a></td>
-      <td><a href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank"><img src="{LOCATION}images/valid-css.gif" alt="Valid CSS!" border="0" /></a></td>
-    </tr>
-  </table>
+<div id="vanity">
+      <a id="v_php" href="http://www.php.net/" target="_blank"></a>
+      <a id="v_mysql" href="http://www.mysql.com/" target="_blank"></a>
+      <a id="v_xhtml" href="http://validator.w3.org/check/referer" target="_blank"></a>
+      <a id="v_css" href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank"></a>
 </div>
 EOT;
 
@@ -1025,15 +1043,12 @@ function pageheader($section, $meta = '')
 
     $custom_header = cpg_get_custom_include($CONFIG['custom_header_path']);
 
-    $thecharset = $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'];
-
     header('P3P: CP="CAO DSP COR CURa ADMa DEVa OUR IND PHY ONL UNI COM NAV INT DEM PRE"');
-    header("Content-Type: text/html; charset=$thecharset");
     user_save_profile();
 
     $template_vars = array('{LANG_DIR}' => $lang_text_dir,
         '{TITLE}' => $CONFIG['gallery_name'] . ' - ' . $section,
-        '{CHARSET}' => $thecharset,
+        '{CHARSET}' => $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'],
         '{META}' => $meta,
         '{GAL_NAME}' => $CONFIG['gallery_name'],
         '{GAL_DESCRIPTION}' => $CONFIG['gallery_description'],
@@ -1102,14 +1117,17 @@ function theme_main_menu($which)
     global $AUTHORIZED, $CONFIG, $album, $actual_cat, $cat, $REFERER;
     global $lang_main_menu, $template_sys_menu, $template_sub_menu;
 
-    //static $main_menu = '';                  // what did I just disable? Donnoman
-    $main_menu = '';
-    // if ($main_menu != '') return $main_menu;   // what did I just disable? Donnoman
+
+    static $sys_menu = '', $sub_menu = '';
+    if ($$which != '') {
+        return $$which;
+    }
 
     $album_l = isset($album) ? "?album=$album" : '';
     $cat_l = (isset($actual_cat))? "?cat=$actual_cat" : (isset($cat) ? "?cat=$cat" : '');
     $cat_l2 = isset($cat) ? "&amp;cat=$cat" : '';
     $my_gallery_id = FIRST_USER_CAT + USER_ID;
+
   if ($which == 'sys_menu' ) {
     if (USER_ID) {
         template_extract_block($template_sys_menu, 'login');
@@ -1186,7 +1204,7 @@ function theme_main_menu($which)
         '{FAQ_LNK}' => $lang_main_menu['faq_lnk'],
         );
 
-        $main_menu = template_eval($template_sys_menu, $param);
+        $sys_menu = template_eval($template_sys_menu, $param);
   } else {
     $param = array(
         '{ALB_LIST_TGT}' => "index.php$cat_l",
@@ -1211,10 +1229,10 @@ function theme_main_menu($which)
         '{SEARCH_TITLE}' => $lang_main_menu['search_title'],
         '{SEARCH_LNK}' => $lang_main_menu['search_lnk'],
         );
-    $main_menu = template_eval($template_sub_menu, $param);
+    $sub_menu = template_eval($template_sub_menu, $param);
   }
 
-    return $main_menu;
+    return $$which;
 }
 
 function theme_admin_mode_menu()
@@ -1226,72 +1244,79 @@ function theme_admin_mode_menu()
 
     $cat_l = isset($cat) ? "?cat=$cat" : '';
 
-    if ($CONFIG['log_ecards'] == 0) {
-        template_extract_block($template_gallery_admin_menu, 'log_ecards');
-    }
+    static $admin_menu = '';
 
-    if (cpg_get_pending_approvals() == 0) {
-         template_extract_block($template_gallery_admin_menu, 'admin_approval');
-    }
-
-    if (GALLERY_ADMIN_MODE) {
-        // do the docs exist on the webserver?
-        if (file_exists('docs/index.htm') == true) {
-            $documentation_href = 'docs/index.htm';
-        } else {
-            $documentation_href = 'http://coppermine.sf.net/docs/cpg14/index.php';
+    // Populate the admin menu only if empty to avoid template errors
+    if ($admin_menu == '') {
+        if ($CONFIG['log_ecards'] == 0) {
+            template_extract_block($template_gallery_admin_menu, 'log_ecards');
         }
-        $param = array('{CATL}' => $cat_l,
-            '{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_title'],
-            '{UPL_APP_LNK}' => $lang_gallery_admin_menu['upl_app_lnk'],
-            '{ADMIN_TITLE}' => $lang_gallery_admin_menu['admin_title'],
-            '{ADMIN_LNK}' => $lang_gallery_admin_menu['admin_lnk'],
-            '{ALBUMS_TITLE}' => $lang_gallery_admin_menu['albums_title'],
-            '{ALBUMS_LNK}' => $lang_gallery_admin_menu['albums_lnk'],
-            '{CATEGORIES_TITLE}' => $lang_gallery_admin_menu['categories_title'],
-            '{CATEGORIES_LNK}' => $lang_gallery_admin_menu['categories_lnk'],
-            '{USERS_TITLE}' => $lang_gallery_admin_menu['users_title'],
-            '{USERS_LNK}' => $lang_gallery_admin_menu['users_lnk'],
-            '{GROUPS_TITLE}' => $lang_gallery_admin_menu['groups_title'],
-            '{GROUPS_LNK}' => $lang_gallery_admin_menu['groups_lnk'],
-            '{COMMENTS_TITLE}' => $lang_gallery_admin_menu['comments_title'],
-            '{COMMENTS_LNK}' => $lang_gallery_admin_menu['comments_lnk'],
-            '{SEARCHNEW_TITLE}' => $lang_gallery_admin_menu['searchnew_title'],
-            '{SEARCHNEW_LNK}' => $lang_gallery_admin_menu['searchnew_lnk'],
-            '{MY_PROF_TITLE}' => $lang_user_admin_menu['my_prof_title'],
-            '{MY_PROF_LNK}' => $lang_user_admin_menu['my_prof_lnk'],
-            '{UTIL_TITLE}' => $lang_gallery_admin_menu['util_title'],
-            '{UTIL_LNK}' => $lang_gallery_admin_menu['util_lnk'],
-            '{BAN_TITLE}' => $lang_gallery_admin_menu['ban_title'],
-            '{BAN_LNK}' => $lang_gallery_admin_menu['ban_lnk'],
-            '{DB_ECARD_TITLE}' => $lang_gallery_admin_menu['db_ecard_title'],
-            '{DB_ECARD_LNK}' => $lang_gallery_admin_menu['db_ecard_lnk'],
-            '{PICTURES_TITLE}' => $lang_gallery_admin_menu['pictures_title'],
-            '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
-            '{DOCUMENTATION_HREF}' => $documentation_href,
-            '{DOCUMENTATION_TITLE}' => $lang_gallery_admin_menu['documentation_lnk'],
-            '{DOCUMENTATION_LNK}' => $lang_gallery_admin_menu['documentation_lnk'],
-            );
 
-        $html = template_eval($template_gallery_admin_menu, $param);
-        $html.= cpg_alert_dev_version();
-    } elseif (USER_ADMIN_MODE) {
-        $param = array('{ALBMGR_TITLE}' => $lang_user_admin_menu['albmgr_title'],
-            '{ALBMGR_LNK}' => $lang_user_admin_menu['albmgr_lnk'],
-            '{MODIFYALB_TITLE}' => $lang_user_admin_menu['modifyalb_title'],
-            '{MODIFYALB_LNK}' => $lang_user_admin_menu['modifyalb_lnk'],
-            '{MY_PROF_TITLE}' => $lang_user_admin_menu['my_prof_title'],
-            '{MY_PROF_LNK}' => $lang_user_admin_menu['my_prof_lnk'],
-            '{PICTURES_TITLE}' => $lang_gallery_admin_menu['pictures_title'],
-            '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
-            );
+        if (cpg_get_pending_approvals() == 0) {
+             template_extract_block($template_gallery_admin_menu, 'admin_approval');
+        }
 
-        $html = template_eval($template_user_admin_menu, $param);
-    } else {
-        $html = '';
+        if (GALLERY_ADMIN_MODE) {
+            // do the docs exist on the webserver?
+            if (file_exists('docs/index.htm') == true) {
+                $documentation_href = 'docs/index.htm';
+            } else {
+                $documentation_href = 'http://coppermine.sf.net/docs/cpg14/index.php';
+            }
+            $param = array('{CATL}' => $cat_l,
+                '{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_title'],
+                '{UPL_APP_LNK}' => $lang_gallery_admin_menu['upl_app_lnk'],
+                '{ADMIN_TITLE}' => $lang_gallery_admin_menu['admin_title'],
+                '{ADMIN_LNK}' => $lang_gallery_admin_menu['admin_lnk'],
+                '{ALBUMS_TITLE}' => $lang_gallery_admin_menu['albums_title'],
+                '{ALBUMS_LNK}' => $lang_gallery_admin_menu['albums_lnk'],
+                '{CATEGORIES_TITLE}' => $lang_gallery_admin_menu['categories_title'],
+                '{CATEGORIES_LNK}' => $lang_gallery_admin_menu['categories_lnk'],
+                '{USERS_TITLE}' => $lang_gallery_admin_menu['users_title'],
+                '{USERS_LNK}' => $lang_gallery_admin_menu['users_lnk'],
+                '{GROUPS_TITLE}' => $lang_gallery_admin_menu['groups_title'],
+                '{GROUPS_LNK}' => $lang_gallery_admin_menu['groups_lnk'],
+                '{COMMENTS_TITLE}' => $lang_gallery_admin_menu['comments_title'],
+                '{COMMENTS_LNK}' => $lang_gallery_admin_menu['comments_lnk'],
+                '{SEARCHNEW_TITLE}' => $lang_gallery_admin_menu['searchnew_title'],
+                '{SEARCHNEW_LNK}' => $lang_gallery_admin_menu['searchnew_lnk'],
+                '{MY_PROF_TITLE}' => $lang_user_admin_menu['my_prof_title'],
+                '{MY_PROF_LNK}' => $lang_user_admin_menu['my_prof_lnk'],
+                '{UTIL_TITLE}' => $lang_gallery_admin_menu['util_title'],
+                '{UTIL_LNK}' => $lang_gallery_admin_menu['util_lnk'],
+                '{BAN_TITLE}' => $lang_gallery_admin_menu['ban_title'],
+                '{BAN_LNK}' => $lang_gallery_admin_menu['ban_lnk'],
+                '{DB_ECARD_TITLE}' => $lang_gallery_admin_menu['db_ecard_title'],
+                '{DB_ECARD_LNK}' => $lang_gallery_admin_menu['db_ecard_lnk'],
+                '{PICTURES_TITLE}' => $lang_gallery_admin_menu['pictures_title'],
+                '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
+                '{DOCUMENTATION_HREF}' => $documentation_href,
+                '{DOCUMENTATION_TITLE}' => $lang_gallery_admin_menu['documentation_lnk'],
+                '{DOCUMENTATION_LNK}' => $lang_gallery_admin_menu['documentation_lnk'],
+                );
+
+            $html = template_eval($template_gallery_admin_menu, $param);
+            $html.= cpg_alert_dev_version();
+        } elseif (USER_ADMIN_MODE) {
+            $param = array('{ALBMGR_TITLE}' => $lang_user_admin_menu['albmgr_title'],
+                '{ALBMGR_LNK}' => $lang_user_admin_menu['albmgr_lnk'],
+                '{MODIFYALB_TITLE}' => $lang_user_admin_menu['modifyalb_title'],
+                '{MODIFYALB_LNK}' => $lang_user_admin_menu['modifyalb_lnk'],
+                '{MY_PROF_TITLE}' => $lang_user_admin_menu['my_prof_title'],
+                '{MY_PROF_LNK}' => $lang_user_admin_menu['my_prof_lnk'],
+                '{PICTURES_TITLE}' => $lang_gallery_admin_menu['pictures_title'],
+                '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
+                );
+
+            $html = template_eval($template_user_admin_menu, $param);
+        } else {
+            $html = '';
+        }
+
+        $admin_menu = $html;
     }
 
-    return $html;
+    return $admin_menu;
 }
 
 function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
@@ -1691,7 +1716,7 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
             $params = array('{CELL_WIDTH}' => $cell_width,
                 '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}",
                 '{THUMB}' => $thumb['image'],
-                '{CAPTION}' => '',
+                '{CAPTION}' => $thumb['caption'],
                 '{ADMIN_MENU}' => ''
                 );
         } else {
@@ -1802,6 +1827,7 @@ function theme_html_picture()
     global $lang_display_image_php, $lang_picinfo;
 
     $pid = $CURRENT_PIC_DATA['pid'];
+    $pic_title = '';
 
     if (!isset($USER['liv']) || !is_array($USER['liv'])) {
         $USER['liv'] = array();
@@ -1844,7 +1870,7 @@ function theme_html_picture()
         }
     }
 
-    $CURRENT_PIC_DATA['menu'] = ((USER_ADMIN_MODE && $CURRENT_ALBUM_DATA['category'] == FIRST_USER_CAT + USER_ID) || ($CONFIG['users_can_edit_pics'] && $CURRENT_PIC_DATA['owner_id'] == USER_ID && USER_ID != 0) || GALLERY_ADMIN_MODE) ? html_picture_menu($pid) : '';
+    $CURRENT_PIC_DATA['menu'] = html_picture_menu(); //((USER_ADMIN_MODE && $CURRENT_ALBUM_DATA['category'] == FIRST_USER_CAT + USER_ID) || ($CONFIG['users_can_edit_pics'] && $CURRENT_PIC_DATA['owner_id'] == USER_ID && USER_ID != 0) || GALLERY_ADMIN_MODE) ? html_picture_menu($pid) : '';
 
     if ($CONFIG['make_intermediate'] && $condition ) {
         $picture_url = get_pic_url($CURRENT_PIC_DATA, 'normal');
@@ -1857,10 +1883,18 @@ function theme_html_picture()
     $pic_title = '';
     $mime_content = cpg_get_type($CURRENT_PIC_DATA['filename']);
 
-    if ($CURRENT_PIC_DATA['pwidth']==0 || $CURRENT_PIC_DATA['pheight']==0) {
-        $image_size['geom']='';
-        $image_size['whole'] = '';
-    } elseif ($mime_content['content']=='movie' || $mime_content['content']=='audio') {
+
+    if ($mime_content['content']=='movie' || $mime_content['content']=='audio') {
+
+        if ($CURRENT_PIC_DATA['pwidth']==0 || $CURRENT_PIC_DATA['pheight']==0) {
+            $CURRENT_PIC_DATA['pwidth']  = 320; // Default width
+
+            // Set default height; if file is a movie
+            if ($mime_content['content']=='movie') {
+                $CURRENT_PIC_DATA['pheight'] = 240; // Default height
+            }
+        }
+
         $ctrl_offset['mov']=15;
         $ctrl_offset['wmv']=45;
         $ctrl_offset['swf']=0;
@@ -1885,8 +1919,51 @@ function theme_html_picture()
         $pic_thumb_url = get_pic_url($CURRENT_PIC_DATA,'thumb');
         $pic_html = "<a href=\"{$picture_url}\" target=\"_blank\" class=\"document_link\"><img src=\"".$pic_thumb_url."\" border=\"0\" class=\"image\" /></a>\n<br />";
     } else {
-                   $autostart = ($CONFIG['mv_autostart']) ? ('true'):('false');
-            $pic_html = "<object {$image_size['whole']}><param name=\"autostart\" value=\"$autostart\"><param name=\"src\" value=\"". $picture_url . "\"><embed {$image_size['whole']} src=\"". $picture_url . "\" autostart=\"$autostart\"></embed></object><br />\n";
+        $autostart = ($CONFIG['media_autostart']) ? ('true'):('false');
+
+        $players['WMP'] = array('id' => 'MediaPlayer',
+                                'clsid' => 'classid="clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6" ',
+                                'codebase' => 'codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5,1,52,701" ',
+                                'mime' => 'type="application/x-mplayer2" ',
+                               );
+        $players['RMP'] = array('id' => 'RealPlayer',
+                                'clsid' => 'classid="clsid:CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA" ',
+                                'codebase' => '',
+                                'mime' => 'type="audio/x-pn-realaudio-plugin" '
+                               );
+        $players['QT']  = array('id' => 'QuickTime',
+                                'clsid' => 'classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" ',
+                                'codebase' => 'codebase="http://www.apple.com/qtactivex/qtplugin.cab" ',
+                                'mime' => 'type="video/x-quicktime" '
+                               );
+        $players['SWF'] = array('id' => 'SWFlash',
+                                'clsid' => ' classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" ',
+                                'codebase' => 'codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" ',
+                                'mime' => 'type="application/x-shockwave-flash" '
+                               );
+        $players['UNK'] = array('id' => 'DefaultPlayer',
+                                'clsid' => '',
+                                'codebase' => '',
+                                'mime' => ''
+                               );
+
+        if (isset($_COOKIE[$CONFIG['cookie_name'].'_'.$mime_content['extension'].'player'])) {
+            $user_player = $_COOKIE[$CONFIG['cookie_name'].'_'.$mime_content['extension'].'player'];
+        } else {
+            $user_player = $mime_content['player'];
+        }
+
+                // There isn't a player selected or user wants client-side control
+        if (!$user_player) {
+            $user_player = 'UNK';
+        }
+
+        $player = $players[$user_player];
+
+        $pic_html  = '<object id="'.$player['id'].'" '.$player['classid'].$player['codebase'].$player['mime'].$image_size['whole'].'>';
+        $pic_html .= "<param name=\"autostart\" value=\"$autostart\"><param name=\"src\" value=\"". $picture_url . "\">";
+        $pic_html .= "<embed {$image_size['whole']} src=\"". $picture_url . "\" autostart=\"$autostart\" type=\"".$player['mime']."\"></embed>";
+        $pic_html .= "</object><br />\n";
     }
 
     $CURRENT_PIC_DATA['html'] = $pic_html;
@@ -1948,7 +2025,7 @@ function theme_html_img_nav_menu()
 
                 //report to moderator buttons
     if (($CONFIG['report_post']==1) && (USER_CAN_SEND_ECARDS)) {
-                                $report_tgt = "report_file.php?album=$album$cat_link&amp;pid=$pid&amp;pos=$pos";
+        $report_tgt = "report_file.php?album=$album$cat_link&amp;pid=$pid&amp;pos=$pos";
     } else { // remove button if report toggle is off
         template_extract_block($template_img_navbar, 'report_file_button');
 
@@ -2036,9 +2113,7 @@ function theme_html_comments($pid)
     $html = '';
 
 //report to moderator buttons
-    if (($CONFIG['report_post']==1) && (USER_CAN_SEND_ECARDS)) {
-                                $report_comment_tgt = "report_file.php?album=$album$cat_link&amp;pid=$pid&amp;pos=$pos&amp;what=comment";
-    } else { // remove buttons if report toggle is off
+    if (!(($CONFIG['report_post']==1) && (USER_CAN_SEND_ECARDS))) {
         template_extract_block($template_image_comments, 'report_comment_button');
     }
 
@@ -2060,7 +2135,7 @@ function theme_html_comments($pid)
     } else {
         $comment_sort_order = 'ASC';
     }
-    $result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid' ORDER BY msg_id $comment_sort_order");
+    $result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip, pid FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid' ORDER BY msg_id $comment_sort_order");
 
     while ($row = mysql_fetch_array($result)) {
         $user_can_edit = (GALLERY_ADMIN_MODE) || (USER_ID && USER_ID == $row['author_id'] && USER_CAN_POST_COMMENTS) || (!USER_ID && USER_CAN_POST_COMMENTS && ($USER['ID'] == $row['author_md5_id']));
@@ -2085,6 +2160,7 @@ function theme_html_comments($pid)
 
         $params = array('{MSG_AUTHOR}' => $row['msg_author'],
             '{MSG_ID}' => $row['msg_id'],
+            '{PID}' => $row['pid'],
             '{EDIT_TITLE}' => &$lang_display_comments['edit_title'],
             '{CONFIRM_DELETE}' => &$lang_display_comments['confirm_delete'],
             '{MSG_DATE}' => localised_date($row['msg_date'], $comment_date_fmt),
@@ -2094,8 +2170,7 @@ function theme_html_comments($pid)
             '{SMILIES}' => $smilies,
             '{HDR_IP}' => $row['msg_hdr_ip'],
             '{RAW_IP}' => $row['msg_raw_ip'],
-            '{REPORT_COMMENT_TGT}' => $report_comment_tgt,
-                        '{REPORT_COMMENT_TITLE}' => &$lang_display_comments['report_comment_title'],
+            '{REPORT_COMMENT_TITLE}' => &$lang_display_comments['report_comment_title'],
             );
 
         $html .= template_eval($template, $params);
