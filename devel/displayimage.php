@@ -290,13 +290,15 @@ function html_comments($pid)
         }
 
         $tmpl_comments_buttons = template_extract_block($template_image_comments, 'buttons', '{BUTTONS}');
+        $tmpl_comments_ipinfo = template_extract_block($template_image_comments, 'ipinfo', '{IPINFO}');
 
-        $result = db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid' ORDER BY msg_id ASC");
+        $result = db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid' ORDER BY msg_id ASC");
 
         while ($row = mysql_fetch_array($result)) {
                 $user_can_edit = (GALLERY_ADMIN_MODE) || (USER_ID && USER_ID == $row['author_id'] && USER_CAN_POST_COMMENTS) || (!USER_ID && USER_CAN_POST_COMMENTS && ($USER['ID'] == $row['author_md5_id']));
                 $comment_buttons = $user_can_edit ? $tmpl_comments_buttons : '';
                 $comment_edit_box = $user_can_edit ? $tmpl_comment_edit_box : '';
+                $comment_ipinfo=($row['msg_raw_ip'] && GALLERY_ADMIN_MODE)?$tmpl_comments_ipinfo : '';
 
                 if ($CONFIG['enable_smilies']) {
                         $comment_body = process_smilies(make_clickable($row['msg_body']));
@@ -305,10 +307,11 @@ function html_comments($pid)
                         $comment_body = make_clickable($row['msg_body']);
                         $smilies = '';
                 }
-
+				
                 $params = array(
                         '{EDIT}' => &$comment_edit_box,
                         '{BUTTONS}' => &$comment_buttons,
+                        '{IPINFO}' => &$comment_ipinfo
                 );
 
                 $template = template_eval($template_image_comments, $params);
@@ -323,6 +326,8 @@ function html_comments($pid)
                         '{MSG_BODY_RAW}' => $row['msg_body'],
                         '{OK}' => &$lang_display_comments['OK'],
                         '{SMILIES}'=> $smilies,
+                        '{HDR_IP}'=> $row['msg_hdr_ip'],
+                        '{RAW_IP}'=> $row['msg_raw_ip'],
                 );
 
                 $html .= template_eval($template, $params);

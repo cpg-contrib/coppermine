@@ -1035,7 +1035,9 @@ $template_image_comments = <<<EOT
 				<td class="tableh2_compact" nowrap>
 
 					<b>{MSG_AUTHOR}</b>
-
+<!-- BEGIN ipinfo -->
+										 ({HDR_IP} [{RAW_IP}])
+<!-- END ipinfo -->             
 				</td>
 
 				<td class="tableh2_compact" align="right" width="100%">
