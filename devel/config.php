@@ -462,12 +462,12 @@ if (count($HTTP_POST_VARS) > 0) {
             if ((is_array($element))) {
                 if ((!isset($HTTP_POST_VARS[$element[1]]))) cpg_die(CRITICAL_ERROR, "Missing config value for '{$element[1]}'", __FILE__, __LINE__);
                 $value = addslashes($HTTP_POST_VARS[$element[1]]);
-                if ($CONFIG[$element[1]] !== $value)
+                if ($CONFIG[$element[1]] !== stripslashes($value))
              	{
-                	db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET  value = '$value' WHERE name = '{$element[1]}'");
+                	db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = '{$element[1]}'");
                 	if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
                         	log_write('CONFIG UPDATE SQL: '.
-                                  	"UPDATE {$CONFIG['TABLE_CONFIG']} SET  value = '$value' WHERE name = '{$element[1]}'\n".
+                                  	"UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = '{$element[1]}'\n".
                                   	'TIME: '.date("F j, Y, g:i a")."\n".
                                   	'USER: '.$USER_DATA['user_name'],
                                   	CPG_DATABASE_LOG
