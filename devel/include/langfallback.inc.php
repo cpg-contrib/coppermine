@@ -115,21 +115,21 @@ if (defined('SMILIES_PHP')) {
 }
 
 // ------------------------------------------------------------------------- //
-// File mode.php
-// ------------------------------------------------------------------------- //
-
-if (defined('MODE_PHP')) {
-  $lang_mode_php_en = cpg_get_default_lang_var('lang_mode_php','english');
-  $lang_mode_php = array_merge($lang_mode_php_en, $lang_mode_php);
-}
-
-// ------------------------------------------------------------------------- //
 // File albmgr.php
 // ------------------------------------------------------------------------- //
 
 if (defined('ALBMGR_PHP')) {
   $lang_albmgr_php_en = cpg_get_default_lang_var('lang_albmgr_php','english');
   $lang_albmgr_php = array_merge($lang_albmgr_php_en, $lang_albmgr_php);
+}
+
+// ------------------------------------------------------------------------- //
+// File banning.php
+// ------------------------------------------------------------------------- //
+
+if (defined('BANNING_PHP')) {
+  $lang_banning_php_en = cpg_get_default_lang_var('lang_banning_php','english');
+  $lang_banning_php = array_merge($lang_banning_php_en, $lang_banning_php);
 }
 
 // ------------------------------------------------------------------------- //
@@ -302,6 +302,24 @@ if (defined('LOGOUT_PHP')) {
 }
 
 // ------------------------------------------------------------------------- //
+// File mode.php
+// ------------------------------------------------------------------------- //
+
+if (defined('MODE_PHP')) {
+  $lang_mode_php_en = cpg_get_default_lang_var('lang_mode_php','english');
+  $lang_mode_php = array_merge($lang_mode_php_en, $lang_mode_php);
+}
+
+// ------------------------------------------------------------------------- //
+// File modifyalb.php
+// ------------------------------------------------------------------------- //
+
+if (defined('MODIFYALB_PHP')) {
+  $lang_modifyalb_php_en = cpg_get_default_lang_var('lang_modifyalb_php','english');
+  $lang_modifyalb_php = array_merge($lang_modifyalb_php_en, $lang_modifyalb_php);
+}
+
+// ------------------------------------------------------------------------- //
 // File phpinfo.php //cpg1.3.0
 // ------------------------------------------------------------------------- //
 
@@ -323,15 +341,6 @@ $lang_plugin_api_en  = cpg_get_default_lang_var('lang_plugin_api','english');
 $lang_plugin_api  = array_merge($lang_plugin_api_en, $lang_plugin_api);
 
 // ------------------------------------------------------------------------- //
-// File modifyalb.php
-// ------------------------------------------------------------------------- //
-
-if (defined('MODIFYALB_PHP')) {
-  $lang_modifyalb_php_en = cpg_get_default_lang_var('lang_modifyalb_php','english');
-  $lang_modifyalb_php = array_merge($lang_modifyalb_php_en, $lang_modifyalb_php);
-}
-
-// ------------------------------------------------------------------------- //
 // File ratepic.php
 // ------------------------------------------------------------------------- //
 
@@ -343,6 +352,15 @@ if (defined('RATEPIC_PHP')) {
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
   $lang_register_php_en = cpg_get_default_lang_var('lang_register_php','english');
   $lang_register_php = array_merge($lang_register_php_en, $lang_register_php);
+}
+
+// ------------------------------------------------------------------------- //
+// File report_file.php
+// ------------------------------------------------------------------------- //
+
+if (defined('REPORT_FILE_PHP') || defined('DISPLAYREPORT_PHP')) {
+  $lang_report_php_en = cpg_get_default_lang_var('lang_report_php','english');
+  $lang_report_php = array_merge($lang_report_php_en, $lang_report_php);
 }
 
 // ------------------------------------------------------------------------- //
@@ -361,6 +379,8 @@ if (defined('REVIEWCOM_PHP')) {
 if (defined('SEARCH_PHP')) {
   $lang_search_php_en = cpg_get_default_lang_var('lang_search_php','english');
   $lang_search_php = array_merge($lang_search_php_en, $lang_search_php);
+  $lang_adv_opts_en = cpg_get_default_lang_var('lang_adv_opts','english');
+  $lang_adv_opts = array_merge($lang_adv_opts_en, $lang_adv_opts);
 }
 
 // ------------------------------------------------------------------------- //
@@ -370,15 +390,6 @@ if (defined('SEARCH_PHP')) {
 if (defined('SEARCHNEW_PHP')) {
   $lang_search_new_php_en = cpg_get_default_lang_var('lang_search_new_php','english');
   $lang_search_new_php = array_merge($lang_search_new_php_en, $lang_search_new_php);
-}
-
-// ------------------------------------------------------------------------- //
-// File banning.php
-// ------------------------------------------------------------------------- //
-
-if (defined('BANNING_PHP')) {
-  $lang_banning_php_en = cpg_get_default_lang_var('lang_banning_php','english');
-  $lang_banning_php = array_merge($lang_banning_php_en, $lang_banning_php);
 }
 
 // ------------------------------------------------------------------------- //
