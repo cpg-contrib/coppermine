@@ -458,7 +458,6 @@ function& spring_cleaning($directory_path, $cache_time = 86400, $exclusion_list 
     // Don't forget to close the directory.
     closedir($directory_handle);
     return $deleted_list;
-	}
 }
 
 // The create_record function. Takes the encoded string. Returns the unique record ID.
