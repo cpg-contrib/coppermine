@@ -686,7 +686,7 @@ EOT;
 $template_add_your_comment = <<<EOT
 
         <tr>
-                <td class="tableh2_compact"><b>{ADD_YOUR_COMMENT}</b></td>
+                <td width="100%" class="tableh2_compact"><b>{ADD_YOUR_COMMENT}</b></td>
         </tr>
         <tr>
                 <form method="post" name="post" action="db_input.php">
@@ -1524,16 +1524,21 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, 
     }
 
     echo $votes;
-
+	
+	echo $comments;
+	
+	
     $picinfo = isset($_COOKIE['picinfo']) ? $_COOKIE['picinfo'] : ($CONFIG['display_pic_info'] ? 'block' : 'none');
     echo "<div id=\"picinfo\" style=\"display: $picinfo;\">\n";
     starttable();
     echo $pic_info;
     endtable();
-    echo "</div>\n";
+	echo "</div>\n";
+    
+	
+    
 
-
-    echo $comments;
+	
 
 }
 
@@ -1544,7 +1549,7 @@ function theme_html_picinfo(&$info)
     $html = '';
 
     $html .= "        <tr><td colspan=\"2\" class=\"tableh2_compact\"><b>{$lang_picinfo['title']}</b></td></tr>\n";
-    $template = "        <tr><td align=\"left\" class=\"tableb_compact\" valign=\"top\" >%s:</td><td align=\"left\" class=\"tableb_compact\">%s</td></tr>\n";
+    $template = "        <tr><td class=\"tableb_compact\" valign=\"top\" >%s:</td><td class=\"tableb_compact\">%s</td></tr>\n";
     foreach ($info as $key => $value) $html .= sprintf($template, $key, $value);
 
     return $html;
