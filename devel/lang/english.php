@@ -66,7 +66,7 @@ $lang_meta_album_names = array(
         'toprated' => 'Top rated',
         'lasthits' => 'Last viewed',
         'search' => 'Search results', //new in cpg1.2.0
-        'favpics'=> 'Favourite Pictures' //new in cpg1.2.0
+        'favpics'=> 'Favorite Pictures' //new in cpg1.2.0
 );
 
 $lang_errors = array(
@@ -124,7 +124,7 @@ $lang_gallery_admin_menu = array(
         'categories_lnk' => 'Categories',
         'users_lnk' => 'Users',
         'groups_lnk' => 'Groups',
-        'comments_lnk' => 'Comments',
+        'comments_lnk' => 'Review Comments',
         'searchnew_lnk' => 'Batch add pictures',
         'util_lnk' => 'Resize pictures', //new in cpg1.2.0
         'ban_lnk' => 'Ban Users', //new in cpg1.2.0
@@ -343,9 +343,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Gallery administrator email', 'gallery_admin_email', 0),
         array('Target address for the \'See more pictures\' link in e-cards', 'ecards_more_pic_target', 0),
         array('Language', 'lang', 5),
-        //array('enable language selection', 'lang_select_enable', 8 ), 
         array('Theme', 'theme', 6),
-        //array('enable theme selection', 'theme_select_enable', 8),
 
         'Album list view',
         array('Width of the main table (pixels or %)', 'main_table_width', 0),
