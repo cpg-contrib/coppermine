@@ -1510,6 +1510,9 @@ $lang_util_php = array(
   'delete_intermediate' => 'Delete intermediate pictures', //cpg 1.4.0
   'delete_intermediate_explanation' => 'This will delete intermediate (normal) pictures.<br />Use this to free up disk space if you have disabled \'Make intermediate pics\' in config after adding pictures.', //cpg 1.4.0
   'delete_replace' => 'Deletes the original images replacing them with the sized versions',
+  'titles_deleted' => 'All titles in specified album removed',
+  'deleting_intermediates' => 'Deleting intermediate images, please wait...',
+  'searching_orphans' => 'Searching for orphans, please wait...',
   'select_album' => 'Select album',
   'delete_orphans' => 'Delete comments on missing files', //cpg 1.4.0
   'delete_orphans_explanation' => 'This will identify and allow you to delete any comments associated with files no longer in the gallery.<br />Checks all albums.', //cpg 1.4.0
@@ -1527,7 +1530,9 @@ $lang_util_php = array(
   'update_db' => 'Update database',
   'update_db_explanation' => 'If you have replaced coppermine files, added a modification or upgraded from a previous version of coppermine, make sure to run the database update once. This will create the necessary tables and/or config values in your coppermine database.',
   'view_log' => 'View log files', //cpg 1.4.0
-  'view_log_explanation' => '', //cpg 1.4.0
+  'view_log_explanation' => 'Coppermine can keep track of various actions users perform. You can browse those logs if you have enabled logging in <a href="config.php">coppermine config</a>.', //cpg 1.4.0
+  'versioncheck' => 'Check versions', //cpg 1.4.0
+  'versioncheck_explanation' => 'Check your file versions to find out if you have replaced all files after an upgrade, or if coppermine source files have been updated after the release of a package.', //cpg 1.4.0
 );
 }
 
