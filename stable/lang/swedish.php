@@ -810,7 +810,7 @@ $lang_album_admin_menu = array(
 
 $lang_list_categories = array(
   'home' => 'Hem',
-  'stat1' => '<b>[pictures]</b> objekt i<b>[albums]</b> album och <b>[cat]</b> kategorier med <b>[comments]</b> kommentarer visade <b>[views]</b> gånger', //cpg1.3.0
+  'stat1' => '<b>[pictures]</b> objekt i <b>[albums]</b> album och <b>[cat]</b> kategorier med <b>[comments]</b> kommentarer visade <b>[views]</b> gånger', //cpg1.3.0
   'stat2' => '<b>[pictures]</b> objekt i <b>[albums]</b> album visade <b>[views]</b> gånger', //cpg1.3.0
   'xx_s_gallery' => '%ss galleri',
   'stat3' => '<b>[pictures]</b> objekt i <b>[albums]</b> album med <b>[comments]</b> kommentarer visade <b>[views]</b> gånger', //cpg1.3.0
