@@ -156,6 +156,15 @@ if (defined('ADMIN_PHP')) {
 }
 
 // ------------------------------------------------------------------------- //
+// File calendar.php
+// ------------------------------------------------------------------------- //
+
+if (defined('CALENDAR_PHP')) {
+  $lang_calendar_php_en = cpg_get_default_lang_var('lang_calendar_php','english');
+  $lang_calendar_php = array_merge($lang_calendar_php_en, $lang_calendar_php);
+}
+
+// ------------------------------------------------------------------------- //
 // File db_ecard.php //cpg1.3.0
 // ------------------------------------------------------------------------- //
 
