@@ -29,6 +29,13 @@ function test_fs()
 {
     global $errors, $DFLT;
     // No Filesystem Updates yet
+    
+    // If plugins folder doesn't exist create it
+    if (!is_dir('./plugins')) {
+        $mask = umask(0);
+        mkdir('./plugins',0777);
+        umask($mask);
+    }
 }
 
 function update_system_thumbs()
