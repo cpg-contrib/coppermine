@@ -39,7 +39,16 @@ EOT;
         $installed_count++;
         require('./plugins/'.$thisplugin->path.'/credits.php');
 
-            $safename = addslashes(str_replace('&nbsp;', '', $name));
+        $safename = addslashes(str_replace('&nbsp;', '', $name));
+        $extra = (isset($install_info)) ? ($install_info):(null);
+
+        if (sizeof($thisplugin->error) > 0) {
+            $error = $thisplugin->error['desc'];
+            $extra = '<tr><td class="tableb" width="100%" colspan="2">'.
+                     '<b>Error:</b> <span style="color:red;">'.$error.'</span>'.
+                     '</td></tr>'.$extra;
+        }
+
 
         echo <<<EOT
         <tr>
@@ -50,8 +59,9 @@ EOT;
                         <td class="tableb" width="50%"><b>{$lang_pluginmgr_php['author']}</b> $author</td>
                     </tr>
                     <tr>
-                        <td class="tableb" colspan="2" width="100%"><b>{$lang_pluginmgr_php['desc']}</b> <i>$description</i></td>
+                        <td class="tableb" colspan="2" width="100%"><b>{$lang_pluginmgr_php['desc']}</b> $description</td>
                     </tr>
+                    $extra
                 </table>
             </td>
 EOT;
@@ -124,7 +134,8 @@ EOT;
             require('./plugins/'.$path.'/credits.php');
 
             $safename = addslashes(str_replace('&nbsp;', '', $name));
-
+            $extra = (isset($extra_info)) ? ($extra_info):(null);
+            
             echo <<<EOT
             <tr>
             <td width="90%">
@@ -134,8 +145,9 @@ EOT;
                         <td class="tableb" width="50%"><b>{$lang_pluginmgr_php['author']}</b> $author</td>
                     </tr>
                     <tr>
-                        <td class="tableb" colspan="2" width="100%"><b>{$lang_pluginmgr_php['desc']}</b> <i>$description</i></td>
+                        <td class="tableb" colspan="2" width="100%"><b>{$lang_pluginmgr_php['desc']}</b> $description</td>
                     </tr>
+                    $extra
                 </table>
             </td>
             <td class="tableb" width="5%" align="center" valign="middle">
@@ -180,19 +192,29 @@ function deldir($dir) {
   return false;
 }
 
+
+/**
+ * Main code
+ */
+
+
+/**
+ * Plugin manager events
+ *
+ * Executes manager events
+ */
+
 $op = @$_GET['op'];
-
-
 switch ($op) {
     case 'uninstall':
         $plugin_id = $_GET['p'];
-        if (!is_int($_GET['p'])) {
+        if (!is_numeric($_GET['p'])) {
             $plugin_id = CPGPluginAPI::installed($plugin_id);
         }
         CPGPluginAPI::uninstall($plugin_id);
         break;
     case 'install':
-        $installed = CPGPluginAPI::install($HTTP_GET_VARS['p']);
+        $installed = CPGPluginAPI::install($_GET['p']);
         break;
     case 'delete':
         $path = $_GET['p'];
@@ -255,7 +277,6 @@ switch ($op) {
             unlink('./plugins/receive/'.$file['name']);
         }
         break;
-
 }
 
 pageheader($lang_pluginmgr_php['pmgr']);
@@ -273,6 +294,11 @@ function confirmDel(text)
 }
 </script>
 EOT;
+
+
+/**
+ * Display the manager page or execute plugin_configure action
+ */
 
 // Plugin isn't being configured; Display the plugin list
 if ($op != 'install' || (is_bool($installed) && $installed)) {
@@ -309,5 +335,4 @@ echo "<br />\n";
 
 pagefooter();
 ob_end_flush();
-
 ?>
