@@ -28,7 +28,7 @@ $data = array();
 $data = @unserialize(@base64_decode($HTTP_GET_VARS['data']));
 
 if (!is_array($data)) {
-    cpg_die(CRITICAL_ERROR, 'Sorry but e-card data have been corrupted by your mail client', __FILE__, __LINE__);
+    cpg_die(CRITICAL_ERROR, $lang_displayecard_php['invalid_data'], __FILE__, __LINE__);
 }
 // Remove HTML tags as we can't trust what we receive
 foreach($data as $key => $value) $data[$key] = strtr($value, $HTML_SUBST);

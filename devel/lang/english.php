@@ -700,7 +700,12 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 // File displayecard.php
 // ------------------------------------------------------------------------- //
 
-// Void
+if (defined('DISPLAYECARD_PHP')) {
+
+$lang_displayecard_php = array(
+  'invalid_data' => 'The data for the ecard you are trying to access has been corrupted by your mail client. Check the link is complete.'
+);
+}
 
 // ------------------------------------------------------------------------- //
 // File displayimage.php
