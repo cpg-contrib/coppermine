@@ -374,6 +374,7 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('CALENDAR_PHP')) $lang_calendar_php = array(
+  'title' => 'Calendar',
   'close' => 'close',
   'clear_date' => 'clear date',
 );

@@ -82,7 +82,7 @@ $template_gallery_admin_menu = <<<EOT
                 <div align="center">
                 <table cellpadding="0" cellspacing="1">
                         <tr>
-                                <td class="admin_menu"><a href="editpics.php?mode=upload_approval" title="">{UPL_APP_LNK}</a></td>
+                                <td class="admin_menu" id="{APPROVAL_ID}"><a href="editpics.php?mode=upload_approval" title="">{UPL_APP_LNK}</a></td>
                                 <td class="admin_menu"><a href="config.php" title="">{CONFIG_LNK}</a></td>
                                 <td class="admin_menu"><a href="albmgr.php{CATL}" title="">{ALBUMS_LNK}</a></td>
                                 <td class="admin_menu"><a href="catmgr.php" title="">{CATEGORIES_LNK}</a></td>
@@ -1004,7 +1004,10 @@ function theme_admin_mode_menu()
             '{BAN_LNK}' => $lang_gallery_admin_menu['ban_lnk'],
             '{DB_ECARD_LNK}' => $lang_gallery_admin_menu['db_ecard_lnk'],
             );
-
+     if (cpg_get_pending_approvals() != 0) {
+         $param['{APPROVAL_ID}'] = 'admin_menu_anim';
+     }
+     
         $html = template_eval($template_gallery_admin_menu, $param);
         $html.= cpg_alert_dev_version();
     } elseif (USER_ADMIN_MODE) {

@@ -452,6 +452,10 @@ a:hover {
         text-decoration: underline;
 }
 
+td #admin_menu_anim {
+        background-image : url(images/button_bg_anim.gif);
+}
+
 .comment_date{
         font-size: 90%;
         vertical-align : middle;

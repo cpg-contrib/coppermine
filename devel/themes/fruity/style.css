@@ -395,6 +395,10 @@ a:hover.yebg {
         background: #FFA600;
 }
 
+td #admin_menu_anim {
+        background-image : url(images/button_bg_anim.gif);
+}
+
 .comment_date{
         color : #5F5F5F;
         font-size : 10px;

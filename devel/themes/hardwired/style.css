@@ -354,7 +354,7 @@ bblink a:hover {
         font-size: 85%;
         border: 1px solid #404750;
         background-color : #5D6674;
-        color:#cccccc;
+        color:#CCCCCC;
         margin-top: 0px;
         margin-bottom: 0px;
         text-align: center;
@@ -374,6 +374,10 @@ bblink a:hover {
 .admin_menu a:hover {
         color: #CCCCCC;
         text-decoration: underline;
+}
+
+td #admin_menu_anim {
+        background-image : url(images/button_bg_anim.gif);
 }
 
 .comment_date{

@@ -961,6 +961,17 @@ function get_userid($username)
         }
 }
 
+// get number of pending approvals
+function cpg_get_pending_approvals()
+{
+    global $CONFIG;
+    $result = db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'NO'");
+    if (mysql_num_rows($result) == 0) return 0;
+    $row = mysql_fetch_array($result);
+    mysql_free_result($result);
+    return $row[0];
+}
+
 // Return the total number of comments for a certain picture
 function count_pic_comments($pid, $skip=0)
 {
