@@ -97,10 +97,12 @@ if (count($HTTP_POST_VARS) > 0 && $valid_sender_email && $valid_recipient_email)
         '{CHARSET}' => $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'],
         '{VIEW_ECARD_TGT}' => "{$gallery_url_prefix}displayecard.php?data=$encoded_data",
         '{VIEW_ECARD_LNK}' => $lang_ecard_php['view_ecard'],
+        '{VIEW_ECARD_LNK_PLAINTEXT}' => $lang_ecard_php['view_ecard_plaintext'],
         '{PIC_URL}' => $n_picname,
         '{URL_PREFIX}' => $gallery_url_prefix,
         '{GREETINGS}' => $greetings,
         '{MESSAGE}' => $msg_content,
+        '{PLAINTEXT_MESSAGE}' => $message,
         '{SENDER_EMAIL}' => $sender_email,
         '{SENDER_NAME}' => $sender_name,
         '{VIEW_MORE_TGT}' => $CONFIG['ecards_more_pic_target'],
@@ -108,12 +110,13 @@ if (count($HTTP_POST_VARS) > 0 && $valid_sender_email && $valid_recipient_email)
         );
 
             $message = template_eval($template_ecard, $params);
+            $plaintext_message = template_eval($template_ecard_plaintext, $params);
+
         $tempTime = time();
-        //$message .= "Sent by $sender_name from IP {$_SERVER['REMOTE_ADDR']} at ".gmstrftime("%A,  %B,%V,%Y %I:%M %p ", time())." [GMT]";
         $message .= sprintf($lang_db_ecard_php['ecards_footer'], $sender_name, $_SERVER['REMOTE_ADDR'], gmstrftime("%A,  %B,%V,%Y %I:%M %p ", time()));
             $subject = sprintf($lang_ecard_php['ecard_title'], $sender_name);
 
-            $result = cpg_mail($recipient_email, $subject, $message, 'text/html', $sender_name, $sender_email);
+            $result = cpg_mail($recipient_email, $subject, $message, 'text/html', $sender_name, $sender_email, $plaintext_message);
 
         //write ecard log
         if ($CONFIG['log_ecards'] == 1) {

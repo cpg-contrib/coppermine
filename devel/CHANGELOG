@@ -140,3 +140,4 @@ Added admin option to allow banning of private IPs  - 6 July 2004, GauGau
 Moved SMTP settings from include/mailer.inc.php to coppermine config - 8 July 2004, GauGau
 Added various changes for plugin API - 8 July 2004, Chris
 Added flashing approval button if pics require admin approval - 9 July 2004, GauGau
+Replaced mailer functions to send both plain-text and html-enabled emails - 11 July, GauGau

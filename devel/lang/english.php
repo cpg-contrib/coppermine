@@ -49,11 +49,11 @@ $lang_error = 'Error';
 // The various date formats
 // See http://www.php.net/manual/en/function.strftime.php to define the variable below
 $album_date_fmt =    '%B %d, %Y';
-$lastcom_date_fmt =  '%m/%d/%y at %H:%M'; //cpg1.3.0
+$lastcom_date_fmt =  '%m/%d/%y at %H:%M';
 $lastup_date_fmt = '%B %d, %Y';
 $register_date_fmt = '%B %d, %Y';
-$lasthit_date_fmt = '%B %d, %Y at %I:%M %p'; //cpg1.3.0
-$comment_date_fmt =  '%B %d, %Y at %I:%M %p'; //cpg1.3.0
+$lasthit_date_fmt = '%B %d, %Y at %I:%M %p';
+$comment_date_fmt =  '%B %d, %Y at %I:%M %p';
 $log_date_fmt = '%B %d, %Y at %I:%M %p'; //cpg 1.4.0
 
 // For the word censor
@@ -96,7 +96,7 @@ $lang_errors = array(
   'zip_type' => 'You do not have permission to upload ZIP files.',
 );
 
-$lang_bbcode_help = 'Following codes might be useful: <li>[b]<b>Bold</b>[/b]</li> <li>[i]<i>Italic</i>[/i]</li> <li>[url=http://yoursite.com/]Url Text[/url]</li> <li>[email]user@domain.com[/email]</li>'; //cpg1.3.0
+$lang_bbcode_help = 'Following codes might be useful: <li>[b]<b>Bold</b>[/b]</li> <li>[i]<i>Italic</i>[/i]</li> <li>[url=http://yoursite.com/]Url Text[/url]</li> <li>[email]user@domain.com[/email]</li>';
 
 // ------------------------------------------------------------------------- //
 // File theme.php
@@ -187,7 +187,7 @@ $lang_img_nav_bar = array(
   'slideshow_title' => 'Slideshow',
   'ecard_title' => 'Send this file as an e-card',
   'ecard_disabled' => 'e-cards are disabled',
-  'ecard_disabled_msg' => 'You don\'t have permission to send ecards', //js-alert //cpg1.3.0
+  'ecard_disabled_msg' => 'You don\'t have permission to send ecards', //js-alert
   'prev_title' => 'See previous file',
   'next_title' => 'See next file',
   'pic_pos' => 'FILE %s/%s',
@@ -571,7 +571,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 );
 
 // ------------------------------------------------------------------------- //
-// File db_ecard.php //cpg1.3.0
+// File db_ecard.php
 // ------------------------------------------------------------------------- //
 
 if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
@@ -677,7 +677,7 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 if (defined('DISPLAYIMAGE_PHP')){
 
 $lang_display_image_php = array(
-  'confirm_del' => 'Are you sure you want to DELETE this file ? \\nComments will also be deleted.', //js-alert //cpg1.3.0
+  'confirm_del' => 'Are you sure you want to DELETE this file ? \\nComments will also be deleted.', //js-alert
   'del_pic' => 'DELETE THIS FILE',
   'size' => '%s x %s pixels',
   'views' => '%s times',
@@ -740,6 +740,7 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
   'ecard_title' => 'An e-card from %s for you',
   'error_not_image' => 'Only images can be sent as an ecard.',
   'view_ecard' => 'If the e-card does not display correctly, click this link',
+  'view_ecard_plaintext' => 'To view the ecard, copy and paste this url into your browser\'s address bar:', //cpg1.4.0
   'view_more_pics' => 'Click this link to view more pictures !',
   'send_success' => 'Your ecard was sent',
   'send_failed' => 'Sorry but the server can\'t send your e-card...',
@@ -749,7 +750,7 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
   'to' => 'To',
   'rcpt_name' => 'Recipient name',
   'rcpt_email' => 'Recipient email address',
-  'greetings' => 'Greetings',
+  'greetings' => 'Heading',
   'message' => 'Message',
 );
 
@@ -782,11 +783,11 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'preview' => 'Preview',
   'save' => 'Save picture',
   'save_thumb' =>'Save as thumbnail',
-  'sel_on_img' =>'The selection has to be entirely on the image!', //js-alert //cpg1.3.0
+  'sel_on_img' =>'The selection has to be entirely on the image!', //js-alert
 );
 
 // ------------------------------------------------------------------------- //
-// File faq.php //cpg1.3.0
+// File faq.php
 // ------------------------------------------------------------------------- //
 
 if (defined('FAQ_PHP')) $lang_faq_php = array(
@@ -831,7 +832,7 @@ array('How do I upload a file?', 'Go to &quot;Upload&quot;and select the album t
 
 
 // ------------------------------------------------------------------------- //
-// File forgot_passwd.php //cpg1.3.0
+// File forgot_passwd.php
 // ------------------------------------------------------------------------- //
 
 if (defined('FORGOT_PASSWD_PHP')) $lang_forgot_passwd_php = array(
@@ -864,7 +865,7 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
   'apply' => 'Apply modifications',
   'create_new_group' => 'Create new group',
   'del_groups' => 'Delete selected group(s)',
-  'confirm_del' => 'Warning, when you delete a group, users that belong to this group will be transferred to the \'Registered\' group !\n\nDo you want to proceed ?', //js-alert //cpg1.3.0
+  'confirm_del' => 'Warning, when you delete a group, users that belong to this group will be transferred to the \'Registered\' group !\n\nDo you want to proceed ?', //js-alert
   'title' => 'Manage user groups',
   'approval_1' => 'Pub. Upl. approval (1)',
   'approval_2' => 'Priv. Upl. approval (2)',
@@ -889,7 +890,7 @@ $lang_index_php = array(
 );
 
 $lang_album_admin_menu = array(
-  'confirm_delete' => 'Are you sure you want to DELETE this album ? \\nAll files and comments will also be deleted.', //js-alert //cpg1.3.0
+  'confirm_delete' => 'Are you sure you want to DELETE this album ? \\nAll files and comments will also be deleted.', //js-alert
   'delete' => 'DELETE',
   'modify' => 'PROPERTIES',
   'edit_pics' => 'EDIT FILES',
@@ -944,7 +945,7 @@ if (defined('LOGOUT_PHP')) $lang_logout_php = array(
 );
 
 // ------------------------------------------------------------------------- //
-// File phpinfo.php //cpg1.3.0
+// File phpinfo.php
 // ------------------------------------------------------------------------- //
 
 if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
@@ -1154,7 +1155,7 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'insert_selected' => 'Insert selected files',
   'no_pic_found' => 'No new file was found',
   'be_patient' => 'Please be patient, the script needs time to add the files',
-  'no_album' => 'no album selected',  //cpg1.3.0
+  'no_album' => 'no album selected',
   'notes' =>  '<ul>'.
                           '<li><b>OK</b> : means that the file was succesfully added'.
                           '<li><b>DP</b> : means that the file is a duplicate and is already in the database'.
@@ -1286,7 +1287,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'registered_on' => 'Registered on',
   'last_visit' => 'Last Visit',
   'u_user_on_p_pages' => '%d users on %d page(s)',
-  'confirm_del' => 'Are you sure you want to DELETE this user ? \\nAll his files and albums will also be deleted.', //js-alert //cpg1.3.0
+  'confirm_del' => 'Are you sure you want to DELETE this user ? \\nAll his files and albums will also be deleted.', //js-alert
   'mail' => 'MAIL',
   'err_unknown_user' => 'Selected user does not exist !',
   'modify_user' => 'Modify user',
