@@ -36,18 +36,18 @@ $tasks =  array(
         'update_thumbs' => array('update_thumbs', $lang_util_php['update'],'
 
                 <b>'.$lang_util_php['update_what'].' (2):</b><br />
-                <input type="radio" name="updatetype" value="0" class="nobg" /><label class="labelradio">'.$lang_util_php['update_thumb'].'</label><br />
-                <input type="radio" name="updatetype" value="1" class="nobg" /><label class="labelradio">'.$lang_util_php['update_pic'].'</label><br />
-                <input type="radio" name="updatetype" value="2" checked="checked" class="nobg" /><label class="labelradio">'.$lang_util_php['update_both'].'</label><br />'.$lang_util_php['update_number'].'
+                <input type="radio" name="updatetype" id="updatetype1" value="0" class="nobg" /><label for="updatetype1" class="clickable_option">'.$lang_util_php['update_thumb'].'</label><br />
+                <input type="radio" name="updatetype" id="updatetype2" value="1" class="nobg" /><label for="updatetype2" class="clickable_option">'.$lang_util_php['update_pic'].'</label><br />
+                <input type="radio" name="updatetype" id="updatetype3" value="2" checked="checked" class="nobg" /><label for="updatetype3" class="clickable_option">'.$lang_util_php['update_both'].'</label><br />'.$lang_util_php['update_number'].'
                 <input type="text" name="numpics" value="'.$defpicnum.'" size="5" class="textinput" /><br />'.$lang_util_php['update_option'].'<br /><br />'),
 
         'filename_to_title' => array('filename_to_title', $lang_util_php['filename_title'],'
 
                 <b>'.$lang_util_php['filename_how'].' (2):</b><br />
-        <input type="radio" name="parsemode" value="0" checked="checked" class="nobg" /><label class="labelradio">' . $lang_util_php['filename_remove'] . '</label><br />
-                <input type="radio" name="parsemode" value="1" class="nobg" /><label class="labelradio">'.$lang_util_php['filename_euro'].'</label><br />
-                <input type="radio" name="parsemode" value="2" class="nobg" /><label class="labelradio">'.$lang_util_php['filename_us'].'</label><br />
-                <input type="radio" name="parsemode" value="3" class="nobg" /><label class="labelradio">'.$lang_util_php['filename_time'].'</label><br /><br />'),
+        <input type="radio" name="parsemode" id="parsemode1" value="0" checked="checked" class="nobg" /><label for="parsemode1" class="clickable_option">' . $lang_util_php['filename_remove'] . '</label><br />
+                <input type="radio" name="parsemode" id="parsemode2" value="1" class="nobg" /><label for="parsemode2" class="clickable_option">'.$lang_util_php['filename_euro'].'</label><br />
+                <input type="radio" name="parsemode" id="parsemode3" value="2" class="nobg" /><label for="parsemode3" class="clickable_option">'.$lang_util_php['filename_us'].'</label><br />
+                <input type="radio" name="parsemode" id="parsemode4" value="3" class="nobg" /><label for="parsemode4" class="clickable_option">'.$lang_util_php['filename_time'].'</label><br /><br />'),
 
         'del_titles' => array('del_titles', $lang_util_php['delete_title'], $lang_util_php['delete_title_explanation']),
 
@@ -63,11 +63,13 @@ $tasks =  array(
 
         'reset_views' => array('reset_views', $lang_util_php['reset_views'], $lang_util_php['reset_views_explanation']),
 
-        'php_info' => array('', '<a href="phpinfo.php">' . $lang_util_php['phpinfo'] . '</a>', $lang_util_php['phpinfo_explanation']),
+        'php_info' => array('', '<a href="phpinfo.php" class="statlink">' . $lang_util_php['phpinfo'] . '</a>', $lang_util_php['phpinfo_explanation']),
 
-        'upd_db' => array('', '<a href="update.php">' . $lang_util_php['update_db'].'</a>',$lang_util_php['update_db_explanation']),
+        'upd_db' => array('', '<a href="update.php" class="statlink">' . $lang_util_php['update_db'].'</a>',$lang_util_php['update_db_explanation']),
 
-        'view_log' => array('', '<a href="viewlog.php">' . $lang_util_php['view_log'] . '</a>', $lang_util_php['view_log_explanation']),
+        'view_log' => array('', '<a href="viewlog.php" class="statlink">' . $lang_util_php['view_log'] . '</a>', $lang_util_php['view_log_explanation']),
+
+        'versioncheck' => array('', '<a href="versioncheck.php" class="statlink">' . $lang_util_php['versioncheck'] . '</a>', $lang_util_php['versioncheck_explanation']),
 
         );
 
@@ -107,7 +109,7 @@ if (array_key_exists($action, $tasks)){
             list($name, $title, $options) = $task;
 
                 if ($name){
-                    starttable('100%', "<input type=\"radio\" name=\"action\" value=\"$name\" checked=\"checked\" class=\"nobg\" /><label class=\"labelradio\">$title</label> (1)");
+                    starttable('100%', "<input type=\"radio\" name=\"action\" value=\"$name\" id=\"$name\" checked=\"checked\" class=\"nobg\" /><label for=\"$name\" class=\"clickable_option\" >$title</label> (1)");
                 } else {
                           starttable('100%', $title);
                 }
@@ -142,7 +144,7 @@ function del_titles()
         echo "<h2>{$lang_util_php['delete_wait']}</h2>";
         $query = db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET title = '' $albstr");
         if ($query) {
-                echo "All titles in specified album removed<br />";
+                echo $lang_util_php['titles_deleted']."<br />";
         }
 }
 
@@ -327,7 +329,7 @@ function del_norm()
         $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
         $result = db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr");
         $num = mysql_num_rows($result);
-        echo "<h2>Deleting intermediate images, please wait..</h2>";
+        echo "<h2>".$lang_util_php['deleting_intermediates']."</h2>";
 
         while ($row = mysql_fetch_assoc($result)){
 
@@ -358,7 +360,7 @@ function del_orphans()
         global $CONFIG, $lang_util_php;
 
         $count = 0;
-        echo "<h2>Searching for orphans, please wait...</h2><br />";
+        echo "<h2>".$lang_util_php['searching_orphans']."</h2><br />";
         my_flush();
 
         if (isset($_GET['single'])){
