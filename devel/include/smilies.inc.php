@@ -130,6 +130,7 @@ function process_smilies($message, $url_prefix = '')
 
 function generate_smilies($form = 'post', $field = 'message')
 {
+    global $THEME_DIR;
     $smilies = get_smilies_table2();
     $paths = array($THEME_DIR.'/smiles/','images/smiles/');
 
