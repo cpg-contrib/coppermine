@@ -1206,7 +1206,10 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
         'delete' => 'Delete',
         'delete_all' => 'Delete all',
         'comment' => 'Comment: ',
-        'nonexist' => 'attached to non existant file # '
+        'nonexist' => 'attached to non existant file # ',
+        'phpinfo' => 'Display phpinfo',
+        'update_db' => 'Update database',
+        'update_db_explanation' => 'If you have replaced coppermine files, added a modification or upgraded from a previous version of coppermine, make sure to run the database update once. This will create the necessary tables and/or config values in your coppermine database.',
 );
 
 

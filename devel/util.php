@@ -256,51 +256,51 @@ function deleteorig()
 
 function deleteorphans()
 {
-	global $picturetbl, $CONFIG, $lang_util_php;
-	$phpself = $_SERVER['PHP_SELF'];
-	$del = $_POST['del'];
-	$single = $_POST['single'];
-	$count = 0; 
+        global $picturetbl, $CONFIG, $lang_util_php;
+        $phpself = $_SERVER['PHP_SELF'];
+        $del = $_POST['del'];
+        $single = $_POST['single'];
+        $count = 0;
 
-	if ($single) {
-	  $delone = db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id=$single") or die ("failed to delete msgs - " . mysql_error());
-	}
-	
-	$result = db_query("SELECT pid,msg_id,msg_body FROM {$CONFIG['TABLE_COMMENTS']} WHERE 1");
+        if ($single) {
+          $delone = db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id=$single") or die ("failed to delete msgs - " . mysql_error());
+        }
 
-	while ($row = mysql_fetch_array($result)) {
-		$pid = $row['pid'];
-		$msg_id = $row['msg_id'];
-		$msg_body = $row['msg_body'];
-		$result2 = db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE pid=$pid");
-		if (!mysql_num_rows($result2)) {
-			if ($del == "all")
-			{
-			$Deletions = db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id=$msg_id") or die ("failed to delete msgs - " . mysql_error());			
-			} else {
-				$count++;
-				?>
-			        <form action=<?php echo $phpself;?> method="post">
-			        <input type="hidden" name="action" value="delorphans" />
-			        <input type="hidden" name="single" value="<?php echo $msg_id; ?>" />
-			        <?php echo $lang_util_php['comment'].' "'.$msg_body.'" '.$lang_util_php['nonexist'].' '.$pid; ?>
-			        <input type="submit" value="<?php print $lang_util_php['delete'];?>" class="submit" /></form>
-			 	<?php
-			}
-		}
-        
-	}
+        $result = db_query("SELECT pid,msg_id,msg_body FROM {$CONFIG['TABLE_COMMENTS']} WHERE 1");
 
-	echo '<br>'.$count.' '.$lang_util_php['orphan_comment'].'<br><br>';
-	if ($count>=1) {
-	?>
+        while ($row = mysql_fetch_array($result)) {
+                $pid = $row['pid'];
+                $msg_id = $row['msg_id'];
+                $msg_body = $row['msg_body'];
+                $result2 = db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE pid=$pid");
+                if (!mysql_num_rows($result2)) {
+                        if ($del == "all")
+                        {
+                        $Deletions = db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id=$msg_id") or die ("failed to delete msgs - " . mysql_error());
+                        } else {
+                                $count++;
+                                ?>
+                                <form action=<?php echo $phpself;?> method="post">
+                                <input type="hidden" name="action" value="delorphans" />
+                                <input type="hidden" name="single" value="<?php echo $msg_id; ?>" />
+                                <?php echo $lang_util_php['comment'].' "'.$msg_body.'" '.$lang_util_php['nonexist'].' '.$pid; ?>
+                                <input type="submit" value="<?php print $lang_util_php['delete'];?>" class="submit" /></form>
+                                 <?php
+                        }
+                }
+
+        }
+
+        echo '<br>'.$count.' '.$lang_util_php['orphan_comment'].'<br><br>';
+        if ($count>=1) {
+        ?>
         <form action=<?php echo $phpself;?> method="post">
         <input type="hidden" name="action" value="delorphans" />
         <input type="hidden" name="del" value="all" />
         Delete all orphans?
         <input type="submit" value="<?php print $lang_util_php['delete_all'];?>" class="submit" /></form>
- 	<?php
-	}
+         <?php
+        }
 }
 
 
@@ -425,7 +425,18 @@ if ($action == 'thumbs') {
 
     starttable('100%', '<input type="radio" name="action" value="delnorm" id="delnorm" class="nobg" /><label for="delnorm" accesskey="e" class="labelradio">' . $lang_util_php['delete_original'] . '</label> (1)');
     endtable();
-    print '<br />&nbsp;<br />';
+    print '<br />';
+
+    starttable('100%', '<a href="phpinfo.php">' . $lang_util_php['phpinfo'] . '</a> (1)');
+    endtable();
+    print '<br />';
+
+    starttable('100%', '<a href="update.php">' . $lang_util_php['update_db'] . '</a> (1)');
+    print '<tr><td>'.$lang_util_php['update_db_explanation'].'</td></tr>';
+    endtable();
+    print '<br />';
+
+    print '&nbsp;<br />';
 
     print '<h2>'.$lang_util_php['select_album'].'</h2>';
 
