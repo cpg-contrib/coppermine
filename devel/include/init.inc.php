@@ -109,7 +109,7 @@ function cpgGetMicroTime()
 }
 $cpg_time_start = cpgGetMicroTime();
 // Do some cleanup in GET, POST and cookie data and un-register global vars
-$HTML_SUBST = array('"' => '&quot;', '<' => '&lt;', '>' => '&gt;');
+$HTML_SUBST = array('&' => '&amp;', '"' => '&quot;', '<' => '&lt;', '>' => '&gt;');
 if (get_magic_quotes_gpc()) {
     if (is_array($_POST)) {
         foreach ($_POST as $key => $value) {
