@@ -933,7 +933,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 mysql_free_result($result);
 
                 if ($set_caption) foreach ($rowset as $key => $row){
-                        $user_link = ($CONFIG['display_uploader'] && $row['owner_id'] && $row['owner_name']) ? '<span class="thumb_title"><a href ="profile.php?uid='.$row['owner_id'].'">'.$row['owner_name'].'</a></span>' : '';
+                        $user_link = ($CONFIG['display_uploader'] && $row['owner_id'] && $row['owner_name'] && !($CONFIG['hide_admin_uploader'] && in_array($row['owner_id'],$CONFIG['ADMIN_USERS']))) ? '<span class="thumb_title"><a href ="profile.php?uid='.$row['owner_id'].'">'.$row['owner_name'].'</a></span>' : '';
                         $caption = $user_link.'<span class="thumb_caption">'.localised_date($row['ctime'], $lastup_date_fmt).'</span>';
                         $rowset[$key]['caption_text'] = $caption;
                 }
@@ -1009,7 +1009,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 mysql_free_result($result);
 
                 if ($set_caption) foreach ($rowset as $key => $row){
-                        $user_link = ($CONFIG['display_uploader'] && $row['owner_id'] && $row['owner_name']) ? '<span class="thumb_title"><a href ="profile.php?uid='.$row['owner_id'].'">'.$row['owner_name'].'</a></span>' : '';
+                        $user_link = ($CONFIG['display_uploader'] && $row['owner_id'] && $row['owner_name'] && !($CONFIG['hide_admin_uploader'] && in_array($row['owner_id'],$CONFIG['ADMIN_USERS']))) ? '<span class="thumb_title"><a href ="profile.php?uid='.$row['owner_id'].'">'.$row['owner_name'].'</a></span>' : '';
                         $caption = $user_link . "<span class=\"thumb_caption\">".sprintf($lang_get_pic_data['n_views'], $row['hits']).'</span>';
                         $rowset[$key]['caption_text'] = $caption;
                 }
@@ -1044,7 +1044,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         } else {
                             $prefix= '';
                         }
-                        $user_link = ($CONFIG['display_uploader'] && $row['owner_id'] && $row['owner_name']) ? '<span class="thumb_title"><a href ="profile.php?uid='.$row['owner_id'].'">'.$row['owner_name'].'</a></span>' : '';
+                        $user_link = ($CONFIG['display_uploader'] && $row['owner_id'] && $row['owner_name'] && !($CONFIG['hide_admin_uploader'] && in_array($row['owner_id'],$CONFIG['ADMIN_USERS']))) ? '<span class="thumb_title"><a href ="profile.php?uid='.$row['owner_id'].'">'.$row['owner_name'].'</a></span>' : '';
                         $caption = $user_link . "<span class=\"thumb_caption\">".'<img src="'.$prefix.'images/rating'.round($row['pic_rating']/2000).'.gif" alt=""/>'.'<br />'.sprintf($lang_get_pic_data['n_votes'], $row['votes']).'</span>';
                         $rowset[$key]['caption_text'] = $caption;
                 }
@@ -1074,7 +1074,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 mysql_free_result($result);
 
                 if ($set_caption) foreach ($rowset as $key => $row){
-                        $user_link = ($CONFIG['display_uploader'] && $row['owner_id'] && $row['owner_name']) ? '<span class="thumb_title"><a href ="profile.php?uid='.$row['owner_id'].'">'.$row['owner_name'].'</a></span>' : '';
+                        $user_link = ($CONFIG['display_uploader'] && $row['owner_id'] && $row['owner_name'] && !($CONFIG['hide_admin_uploader'] && in_array($row['owner_id'],$CONFIG['ADMIN_USERS']))) ? '<span class="thumb_title"><a href ="profile.php?uid='.$row['owner_id'].'">'.$row['owner_name'].'</a></span>' : '';
                         $caption = $user_link . "<span class=\"thumb_caption\">".localised_date($row['mtime'], $lasthit_date_fmt)."<br/>".$row['hits']."<br/>".$row['lasthit_ip'].'</span>';
                         $rowset[$key]['caption_text'] = $caption;
                 }
@@ -1121,7 +1121,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
                 $rowset = array();
                 while($row = mysql_fetch_array($result)){
-                        $user_link = ($CONFIG['display_uploader'] && $row['owner_id'] && $row['owner_name']) ? '<span class="thumb_title"><a href ="profile.php?uid='.$row['owner_id'].'">'.$row['owner_name'].'</a></span>' : '';
+                        $user_link = ($CONFIG['display_uploader'] && $row['owner_id'] && $row['owner_name'] && !($CONFIG['hide_admin_uploader'] && in_array($row['owner_id'],$CONFIG['ADMIN_USERS']))) ? '<span class="thumb_title"><a href ="profile.php?uid='.$row['owner_id'].'">'.$row['owner_name'].'</a></span>' : '';
                         $row['caption_text'] = $user_link;
                         $rowset[-$row['pid']] = $row;
                 }
@@ -1174,7 +1174,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 mysql_free_result($result);
 
                 if ($set_caption) foreach ($rowset as $key => $row){
-                        $user_link = ($CONFIG['display_uploader'] && $row['owner_id'] && $row['owner_name']) ? '<span class="thumb_title"><a href ="profile.php?uid='.$row['owner_id'].'">'.$row['owner_name'].'</a></span>' : '';
+                        $user_link = ($CONFIG['display_uploader'] && $row['owner_id'] && $row['owner_name'] && !($CONFIG['hide_admin_uploader'] && in_array($row['owner_id'],$CONFIG['ADMIN_USERS']))) ? '<span class="thumb_title"><a href ="profile.php?uid='.$row['owner_id'].'">'.$row['owner_name'].'</a></span>' : '';
                         $caption = $user_link . "<span class=\"thumb_caption\">".$row['title']." - ".localised_date($row['ctime'], $lastup_date_fmt).'</span>';
                         $rowset[$key]['caption_text'] = $caption;
                 }
@@ -1205,7 +1205,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         mysql_free_result($result);
 
                         if ($set_caption) foreach ($rowset as $key => $row){
-                                $user_link = ($CONFIG['display_uploader'] && $rowset[$key]['owner_id'] && $rowset[$key]['owner_name']) ? '<span class="thumb_title"><a href ="profile.php?uid='.$rowset[$key]['owner_id'].'">'.$rowset[$key]['owner_name'].'</a></span>' : '';
+                                $user_link = ($CONFIG['display_uploader'] && $rowset[$key]['owner_id'] && $rowset[$key]['owner_name'] && !($CONFIG['hide_admin_uploader'] && in_array($rowset[$key]['owner_id'],$CONFIG['ADMIN_USERS']))) ? '<span class="thumb_title"><a href ="profile.php?uid='.$rowset[$key]['owner_id'].'">'.$rowset[$key]['owner_name'].'</a></span>' : '';
                                 $caption = $rowset[$key]['title'] ? "<span class=\"thumb_caption\">".($rowset[$key]['title'])."</span>" : '';
                                 $rowset[$key]['caption_text'] = $user_link . $caption;
                         }

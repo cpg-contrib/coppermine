@@ -117,6 +117,7 @@ INSERT INTO CPG_config VALUES ('reg_notify_admin_email', '0');
 INSERT INTO CPG_config VALUES ('disable_comment_flood_protect', '0');
 INSERT INTO CPG_config VALUES ('upl_notify_admin_email', '0');
 INSERT INTO CPG_config VALUES ('display_uploader', '0');
+INSERT INTO CPG_config VALUES ('hide_admin_uploader','0');
 
 INSERT INTO CPG_config VALUES ('language_list', '0');
 INSERT INTO CPG_config VALUES ('language_flags', '0');
@@ -274,4 +275,4 @@ INSERT INTO CPG_config VALUES ('browse_batch_add', '1');
 INSERT INTO CPG_config VALUES ('custom_header_path', '');
 INSERT INTO CPG_config VALUES ('custom_footer_path', '');
 INSERT INTO CPG_config VALUES ('comments_sort_descending', '0');
-INSERT INTO CPG_config VALUES ('report_post', '0');
+INSERT INTO CPG_config VALUES ('report_post', '0');  <f></f>
