@@ -8,29 +8,29 @@
  * @author Abbas <abbas@sanisoft.com>
  * @version $Id$
  */
- 
+
 /**
  * Include the base class file
- */ 
+ */
 require_once ("cpgAlbumData.class.php");
 
 /**
  * Include the exif file
- */ 
+ */
 require_once ("include/exif_php.inc.php");
 
 /**
  * Include the iptc file
- */ 
+ */
 require_once ("include/iptc.inc.php");
 
 /**
  * Include the media file
- */ 
+ */
 require_once ("include/media.functions.inc.php");
 
 class cpgDisplayImageData extends cpgAlbumData {
-  
+
   /**
    * Get the picture data
    *
@@ -117,7 +117,7 @@ class cpgDisplayImageData extends cpgAlbumData {
                 return $row;
         }
   }
-  
+
   /**
    * Get the html related data for the picture
    *
@@ -176,7 +176,8 @@ class cpgDisplayImageData extends cpgAlbumData {
     if ($mime_content['content']=='image') {
       if (isset($image_size['reduced'])) {
         $picData["winsizeX"] = $picData['pwidth'] + 16;
-        $picData["winsizeY"] = $picData['pheight'] + 16;
+        //The height of the window needs to be large as we have added a 'Close' link in popup.html
+        $picData["winsizeY"] = $picData['pheight'] + 90;
       }
     } elseif ($mime_content['content']=='document') {
       $picData["pic_thumb_url"] = $this->__getPicUrl($picData,'thumb');
@@ -240,7 +241,7 @@ class cpgDisplayImageData extends cpgAlbumData {
    * Get the picture information
    *
    * @return array $picInfo
-   */  
+   */
   function getPicInfo()
   {
     global $CONFIG, $THEME_DIR, $FAVPICS;
