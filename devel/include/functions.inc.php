@@ -649,9 +649,9 @@ function get_private_album_set($aid_str="")
                 $ALBUM_SET = 'AND aid NOT IN ('.substr($set, 0, -1).') ';
         }else{
                   $FORBIDDEN_SET_DATA = array();
-          $FORBIDDEN_SET = "";
-          $ALBUM_SET = "";
-                }
+                  $FORBIDDEN_SET = "";
+                  $ALBUM_SET = "";
+        }
         mysql_free_result($result);
 }
 
@@ -671,7 +671,7 @@ function get_private_album_set($aid_str="")
 
 function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $set_caption = true)
 {
-        global $USER, $CONFIG, $ALBUM_SET, $CURRENT_CAT_NAME, $CURRENT_ALBUM_KEYWORD, $HTTP_GET_VARS, $HTML_SUBST, $THEME_DIR, $FAVPICS;
+        global $USER, $CONFIG, $ALBUM_SET, $CURRENT_CAT_NAME, $CURRENT_ALBUM_KEYWORD, $HTTP_GET_VARS, $HTML_SUBST, $THEME_DIR, $FAVPICS, $FORBIDDEN_SET_DATA;
         global $album_date_fmt, $lastcom_date_fmt, $lastup_date_fmt, $lasthit_date_fmt, $cat;
         global $lang_get_pic_data, $lang_meta_album_names, $lang_errors;
 
@@ -696,9 +696,12 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             $select_columns = 'pid, filepath, filename, url_prefix, filesize, pwidth, pheight, ctime, aid';
         }
 
+		if(count($FORBIDDEN_SET_DATA) > 0 ){
+			$forbidden_set_string =" AND aid NOT IN (".implode(",", $FORBIDDEN_SET_DATA).")";
+		}
         // Keyword
-        if (!empty($CURRENT_ALBUM_KEYWORD)){
-                $keyword = "OR keywords like '%$CURRENT_ALBUM_KEYWORD%'";
+        if (!empty($CURRENT_ALBUM_KEYWORD)){				
+                $keyword = "OR (keywords like '%$CURRENT_ALBUM_KEYWORD%' $forbidden_set_string )";
         } else $keyword = '';
 
         // Regular albums
@@ -708,8 +711,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $album_keyword = $album_name_keyword['keyword'];
 
                 if (!empty($album_keyword)){
-                        $keyword = "OR keywords like '%$album_keyword%'";
-                }
+                        $keyword = "OR (keywords like '%$album_keyword%' $forbidden_set_string )";
+                }else $keyword = '';
 
                 $approved = GALLERY_ADMIN_MODE ? '' : 'AND approved=\'YES\'';
 
@@ -720,7 +723,10 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
                 if($select_columns != '*') $select_columns .= ', title, caption,hits,owner_id,owner_name';
 
-                $result = db_query("SELECT $select_columns from {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' $keyword $approved $ALBUM_SET ORDER BY $sort_order $limit");
+				$query = "SELECT $select_columns from {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' $keyword $approved $ALBUM_SET ORDER BY $sort_order $limit";
+				
+                $result = db_query($query);
+				
                 $rowset = db_fetch_rowset($result);
                 mysql_free_result($result);
                 // Set picture caption
@@ -2297,11 +2303,40 @@ global $CONFIG, $USER;
 if ($reference == '' || $CONFIG['enable_help'] == '0') {return; }
 if ($CONFIG['enable_help'] == '2' && GALLERY_ADMIN_MODE == false) {return; }
 $help_theme = $CONFIG['theme'];
-if ($USER['theme']) {
+if (isset($USER['theme'])) {
     $help_theme = $USER['theme'];
 }
 $help_html = "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('docs/showdoc.php?css=" . $help_theme . "&" . $reference . "','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=" . $width . ",height=" . $height . "')\" style=\"cursor:help\"><img src=\"images/help.gif\" width=\"13\" height=\"11\" border=\"0\" alt=\"\" title=\"\" /></a>";
 return $help_html;
 }
+
+/**
+* Multi-dim array sort, with ability to sort by two and more dimensions
+* Coded by Ichier2003, available at php.net
+* syntax:
+* $array = array_csort($array [, 'col1' [, SORT_FLAG [, SORT_FLAG]]]...);
+**/
+function array_csort() {
+   $args = func_get_args();
+   $marray = array_shift($args);
+
+   $msortline = "return(array_multisort(";
+   foreach ($args as $arg) {
+       $i++;
+       if (is_string($arg)) {
+           foreach ($marray as $row) {
+               $sortarr[$i][] = $row[$arg];
+           }
+       } else {
+           $sortarr[$i] = $arg;
+       }
+       $msortline .= "\$sortarr[".$i."],";
+   }
+   $msortline .= "\$marray));";
+
+   eval($msortline);
+   return $marray;
+}
+
 
 ?>

@@ -1298,6 +1298,8 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'check_all' => 'Check All',
   'uncheck_all' => 'Uncheck All',
   'no_folders' => 'There are no folders inside the "albums" folder yet. Make sure to create at least one custom folder within "albums" folder and ftp-upload your files there. You mustn\'t upload to the "userpics" nor "edit" folders, they are reserved for http uploads and internal purposes.', //cpg1.4.0
+   'albums_no_category' => 'Albums with no category', //cpg1.4.0, album pulldown mod, added by frogfoot
+  'personal_albums' => '* Personal albums', //cpg1.4.0, album pulldown mod, added by frogfoot
 );
 
 
@@ -1383,6 +1385,8 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'place_instr_1' => 'Please place the files in albums at this time.  You may also enter relevant information about each file now.',
   'place_instr_2' => 'More files need placement. Please click \'Continue\'.',
   'process_complete' => 'You have successfully placed all the files.',
+   'albums_no_category' => 'Albums with no category', //cpg1.4.0, album pulldown mod, added by frogfoot
+  'personal_albums' => '* Personal albums', //cpg1.4.0, album pulldown mod, added by frogfoot
 );
 
 // ------------------------------------------------------------------------- //
