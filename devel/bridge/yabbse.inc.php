@@ -14,20 +14,16 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-
 // YaBB SE 1.5.4 Integration for Coppermine
 
-// (c) Jack, 2003
 
-// Based on vBulletin Integration
-
-// ------------------------------------------------------------------------- //
-// ------------------------------------------------------------------------- //
 // ------------------------------------------------------------------------- //
 // Modify the value below according to your Board installation
 // ------------------------------------------------------------------------- //
+
 // Set this to the location of your Settings file
 require_once("../yabbse/Settings.php");
+
 // ------------------------------------------------------------------------- //
 // Nothing to edit below this line
 // ------------------------------------------------------------------------- //
