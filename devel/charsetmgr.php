@@ -37,7 +37,8 @@ function form_charset($optionvalue, $selected)
                       'Central European' => 'iso-8859-2',
                       'Chinese Simplified' => 'euc-cn',
                       'Chinese Traditional' => 'big5',
-                      'Cyrillic' => 'windows-1251', //'koi8-r',
+                      'Cyrillic (windows-1251)' => 'windows-1251',
+                      'Cyrillic (koi8-r)' => 'koi8-r',
                       'Greek' => 'iso-8859-7',
                       'Hebrew' => 'iso-8859-8-i',
                       'Icelandic' => 'x-mac-icelandic',
@@ -118,6 +119,11 @@ function charset_convert($table_name, $column_name, $index_name, $charsetin, $ch
     return $conversion_possible;
      
     
+}
+
+function set_charset($newcharset)
+{
+    cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value='$newcharset' WHERE name='charset'");
 }
 
 // Either checks or carries out the conversion in all the necessary fields
@@ -201,9 +207,8 @@ echo '<div class="input"><input type="submit" class="button" name="convert" valu
             }
             if ($doconvert)
             {
-                cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value='$charsetout' WHERE name='charset'");
-                // the following warning has been removed, because unnecessary, i think -- chtito
-                // <li>You may have to go to the <a href="admin.php">configuration page</a> and choose your language <b>with a utf-8 extension</b></li>
+                // the script has succeeded (hopefully): we change the charset accordingly in the database
+                set_charset($charsetout);
 
                 echo <<<EOT
                     <div class="warning">
@@ -231,6 +236,8 @@ if ($CONFIG['charset'] == 'language file')
 {
     $thecharset = $lang_charset;
     $languagefilecfg = 1;
+    // we set the charset once and for all (better than 'language file')
+    set_charset($thecharset);
 }
 else
 {
@@ -245,9 +252,10 @@ html_header("Charset Manager - 1/3 - Start");
 html_logo();
 echo '<h1>1/3 - Charset Manager Start</h1>';
 
-if (!function_exists('iconv'))
+// We test whether the converting function is available
+if (!function_exists('iconvs'))
 {
-    echo "<p class=\"warning\">The <a href=\"http://www.php.net/iconv\">iconv</a> function is not available. <b>You cannot use this script.</b></p>";
+    echo '<p class="warning">The <a href="http://www.php.net/iconv">iconv</a> function is not available. <b>You cannot use this script.</b> Coppermine will now run in English. You may install iconv and start this script again. You should now <a href="index.html">proceed to the main page</a>.</p>';
 }
 
 
