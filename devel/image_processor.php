@@ -77,7 +77,7 @@ switch ($method) {
 		$output = array();
 
 		//Check the IM path for the final slash.
-		if (($path[strlen($CONFIG['impath']) - 1] == '/') or (empty($CONFIG['impath']))) {
+		if ($path[strlen($CONFIG['impath']) - 1] == '/') {
         		$trailing_slash = "";
     		} else {
         		$trailing_slash = "/";
@@ -493,7 +493,7 @@ imagedestroy($destination_image_handle);
 
 
 	//Check the IM path for the final slash.
-	if (($path[strlen($CONFIG['impath']) - 1] == '/') or (empty($CONFIG['impath']))) {
+	if ($path[strlen($CONFIG['impath']) - 1] == '/') {
         	$trailing_slash = "";
     	} else {
         	$trailing_slash = "/";
