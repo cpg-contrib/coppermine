@@ -175,7 +175,7 @@ $template_album_list_cat = <<<EOT
         <table width="100%" height="100%" cellspacing="0" cellpadding="0">
         <tr>
                 <td colspan="3" height="1" valign="top" class="tableh2">
-                        <b>{ALBUM_TITLE}</b>
+                        <a href="{ALB_LINK_TGT}" class="alblink"><b>{ALBUM_TITLE}</b></a>
                 </td>
         </tr>
         <tr>
@@ -261,7 +261,7 @@ $template_album_list = <<<EOT
         <table width="100%" height="100%" cellspacing="0" cellpadding="0">
         <tr>
                 <td colspan="3" height="1" valign="top" class="tableh2">
-                        <b>{ALBUM_TITLE}</b>
+                        <a href="{ALB_LINK_TGT}" class="alblink"><b>{ALBUM_TITLE}</b></a>
                 </td>
         </tr>
         <tr>
