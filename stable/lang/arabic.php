@@ -613,6 +613,7 @@ $lang_picinfo = array(
         'Displayed' => 'ฺฯฯ ใัวส วแใิวๅฯษ',
         'Camera' => 'ยแษ วแสีๆํั',
         'Date taken' => 'สวัํฮ วแสÞวุ วแีๆัษ',
+		'ISO'=>'ISO',
         'Aperture' => 'วแฺฯำษ ',
         'Exposure time' => 'ๆÞส วแส๘ฺั๘ึ ',
         'Focal length' => 'วแศฺฯ วแศฤัํ๘ ',

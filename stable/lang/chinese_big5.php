@@ -612,6 +612,7 @@ $lang_picinfo = array(
   'Displayed' => '顯示',
   'Camera' => '相機',
   'Date taken' => '拍攝日期',
+  'ISO'=>'ISO',
   'Aperture' => '光圈',
   'Exposure time' => '曝光時間',
   'Focal length' => '焦距',

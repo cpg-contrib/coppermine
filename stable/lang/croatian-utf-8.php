@@ -613,6 +613,7 @@ $lang_picinfo = array(
   'Displayed' => 'Prikazano',
   'Camera' => 'Kamera',
   'Date taken' => 'Datum snimanja',
+  'ISO'=>'ISO',
   'Aperture' => 'Otvor',
   'Exposure time' => 'Vrijeme ekspozicije',
   'Focal length' => 'ÂŽariÂšna duÂžina',

@@ -614,6 +614,7 @@ $lang_picinfo = array(
   'Displayed' => 'Affichées',
   'Camera' => 'Appareil photos',
   'Date taken' => 'Date de la prise de vue',
+  'ISO'=>'ISO',
   'Aperture' => 'Ouverture',
   'Exposure time' => 'Temps d\'exposition',
   'Focal length' => 'Focale',

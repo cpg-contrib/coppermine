@@ -613,6 +613,7 @@ $lang_picinfo = array(
   'Displayed' => 'Показан',
   'Camera' => 'Камера',
   'Date taken' => 'Дата на заснемане',
+  'ISO'=>'ISO',
   'Aperture' => 'Апертура',
   'Exposure time' => 'Експозиционно време',
   'Focal length' => 'Фокусно разстояние',

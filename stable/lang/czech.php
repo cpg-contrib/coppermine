@@ -627,6 +627,7 @@ $lang_picinfo = array(
     'Displayed' => 'Zobrazeno',
     'Camera' => 'Fotoaparát',
     'Date taken' => 'Datum poøízení snímku',
+	'ISO'=>'ISO',
     'Aperture' => 'Clona',
     'Exposure time' => 'Expozièní èas',
     'Focal length' => 'Ohnisková vzdálenost',
