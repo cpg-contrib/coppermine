@@ -209,7 +209,7 @@ function form_charset($text, $name, $help = '')
 
     $help = cpg_display_help($help);
 
-    $charsets = array('Default' => 'language file',
+    $charsets = array('Default (not recommended)' => 'language file',
         'Arabic' => 'iso-8859-6',
         'Baltic' => 'iso-8859-4',
         'Central European' => 'iso-8859-2',
@@ -224,7 +224,7 @@ function form_charset($text, $name, $help = '')
         'Maltese' => 'iso-8859-3',
         'Thai' => 'windows-874 ',
         'Turkish' => 'iso-8859-9',
-        'Unicode' => 'utf-8',
+        'Unicode (recommended)' => 'utf-8',
         'Vietnamese' => 'windows-1258',
         'Western' => 'iso-8859-1'
         );
