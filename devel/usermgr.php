@@ -689,7 +689,7 @@ EOT;
                         </select><br />
                         $group_cb
                         <br />
-                        <a href="usermgr.php?op=groups_alb_access">{$lang_usermgr_php['groups_alb_access']}</a>
+                        <a href="usermgr.php?op=groups_alb_access" class="admin_menu">{$lang_usermgr_php['groups_alb_access']}</a>
 
           </td>
         </tr>
