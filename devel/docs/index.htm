@@ -161,10 +161,10 @@ a.navbar:hover {
 <a name="how"></a>
 <h2>2.1 How to install the script</h2>
 <ul>
-  <li>Unpack the archive preserving the directory structure</li>
-  <li>Uploads all files onto your webserver</li>
-  <li>CHMOD the folders albums and include to 755 (or 777, depending on your server config)</li>
-  <li>Run the install script on your server (http://your_server/coppermine_dir/install.php)
+  <li><b>Unpack the archive preserving the directory structure</b><br />(you can rename the coppermine folder, but not the files or folders within).</li>
+  <li><b>Uploads all files onto your webserver</b></li>
+  <li><b>CHMOD the folders <i>albums</i> and <i>include</i> to 755 (or 777, depending on your server config)</b> - this step is really important, don't skip it!<br />There are a lot of tutorials for beginners how to use chmod available: <a href="http://www.google.com/search?q=chmod+tutorial">search chmod tutorials with google</a>. If you're on a windows server, you'll have to set permissions accordingly as well.</li>
+  <li><b>Run the install script on your server</b> (http://your_server/coppermine_dir/install.php)
     and follow the instructions</li>
 </ul>
 <p><a class="back" href="#top">Back to top</a></p>
@@ -242,6 +242,7 @@ a.navbar:hover {
   by the script. You can also edit them. When making modifications to these templates,
   don't touch the lines with <i>&lt;!-- BEGIN xxx --&gt;</i> and <i>&lt;!-- END
   xxx --&gt;</i>.</p>
+<p>If you're not sure how to create your own theme, you could also have a look at the download section of the coppermine homepage: there are tons of <a href="http://sourceforge.net/project/showfiles.php?group_id=89658&package_id=98541">user-contributed themes</a> available for download that can be previewed on the <a href="http://coppermine.sourceforge.net/demo/">coppermine demo page</a>.</p>
 <p><a class="back" href="#top">Back to top</a></p>
 
 <a name="safe"></a>
@@ -759,6 +760,10 @@ a.navbar:hover {
       <p>If a user is a member of a group that can have its own gallery and this
       option is turned on then this user will have the permission to hide some
       of this albums to other users.</p>
+      <h4>Notify admin of user upload awaiting approval</h4>
+      <p>When enabled, the gallery admin receives an email notification of all pics that wait for his approval (depends on the approval settings in &quot;<a href="#group_cp">groups</a>&quot;). The email is sent to the address specified in &quot;<a href="#config_general">General settings</a>&quot;.<br />This option is only recommended with low or medium traffic (if users only upload every now and then).</p>
+      <h4>Allow logged in users to view memberlist</h4>
+      <p>When enabled, an additional menu item &quot;Memberlist&quot; is being displayed in the coppermine main menu if a user is logged in, to let him see a list of all users, with stats on their last visits, uploads and quota usage.<br />This is a new feature in cpg1.3.0 (user contribution by <a href="#contributors">Jason</a>) - it's available as <a href="http://sourceforge.net/project/showfiles.php?group_id=89658&package_id=98542">mod</a> (not in the regular coppermine package) for older versions than cpg1.3.0.</p>
       <p><a class="back" href="#top">Back to
       top</a></p>
 
@@ -797,7 +802,7 @@ top</a></p>
 <a name="integrating"></a>
 <h1>5. Integrating the script with your bulletin board</h1>
 <p>Coppermine can be integrated with the following bulletin boards (eg. Coppermine
-  and your bulletin board will share the same user database)</p>
+  and your bulletin board will share the same user database).</p>
 <ul>
   <li>phpBB 2</li>
   <li>Invision Power Board</li>
@@ -812,6 +817,7 @@ top</a></p>
   <li>Bulletin board:<a href="javascript:;">http://yourdomain.com/board/</a></li>
   <li>Coppermine:<a href="javascript:;">http://yourdomain.com/gallery/</a></li>
 </ul>
+<p>To avoid confusion, make sure to set up both coppermine and your bbs as standalone first. Make sure they both run correctly without integration.</p>
 <p>If you are using phpBB 2, go to the admin control panel and check that &quot;Cookie
   domain&quot; corresponds to your domain, &quot;Cookie name&quot; is &quot;phpbb2mysql&quot;
   and &quot;Cookie path&quot; is &quot;/&quot;.</p>
@@ -1016,6 +1022,10 @@ define('PHPBB_WEB_PATH','/phpBB2/');</pre>
 <tr>
   <td><a href="http://coppermine.sourceforge.net/board/profile.php?mode=viewprofile&u=94">EZ</a></td>
   <td>Eyal has done bug hunting, support and code improvements</td>
+</tr>
+<tr>
+  <td><a href="http://coppermine.sourceforge.net/board/profile.php?mode=viewprofile&u=378">Jason Kawaja</a></td>
+  <td>Jason did the <a href="http://coppermine.sourceforge.net/board/viewtopic.php?t=1985">memberlist hack</a></td>
 </tr>
 </table>
 
