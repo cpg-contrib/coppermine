@@ -1630,7 +1630,7 @@ $lang_language_data['spanish'] = array('Spanish','Espa&ntilde;ol','es');
 $lang_language_data['swedish'] = array('Swedish','Svenska','se');
 $lang_language_data['thai'] = array('Thai','&#3652;&#3607;&#3618;','th');
 $lang_language_data['turkish'] = array('Turkish','T&uuml;rk&ccedil;e','tr');
-$lang_language_data['vietnamese'] = array('Vietnamese','','vn');
+$lang_language_data['vietnamese'] = array('Vietnamese','Tieng Viet','vn');
 
 // get list of available languages
   $value = strtolower($CONFIG['lang']);
