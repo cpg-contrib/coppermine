@@ -150,7 +150,23 @@ function udb_authenticate()
             if (($quota && $row['gq'] > $quota) || !$row['gq']) $USER_DATA['group_quota'] = $row['gq'];
 
             $form_number = $row['ufc'];
-            if($form_number > $USER_DATA['upload_form_config']) $USER_DATA['upload_form_config'] = $form_number; 
+            if(($USER_DATA['upload_form_config'] == 0) and ($form_number > $USER_DATA['upload_form_config'])) {
+
+                $USER_DATA['upload_form_config'] = $form_number; 
+
+            } elseif (($USER_DATA['upload_form_config'] == 1) and (($form_number == 2) or ($form_number == 3))) {
+
+                $USER_DATA['upload_form_config'] = 3; 
+
+            } elseif (($USER_DATA['upload_form_config'] == 2) and (($form_number == 1) or ($form_number == 3))) {
+
+                $USER_DATA['upload_form_config'] = 3; 
+
+            } elseif ($USER_DATA['upload_form_config'] == 3) {
+
+                $USER_DATA['upload_form_config'] = 3; 
+
+            }
 
             $fbox_number = $row['nfu'];
             if($fbox_number  > $USER_DATA['num_file_upload']) $USER_DATA['num_file_upload'] = $fbox_number; 
