@@ -170,7 +170,7 @@ Added advanced sorting hack (sort by position, picture manager) - 13 August 2004
 Added version check routine for easier upgrades - 16 August 2004, GauGau
 Added facility to disable config settings that are irrelevent with bridged installs - 20th August, Nibbler
 Added alt tags to some images for xhtml compliance - 31 August 2004, GauGau
-Changed bbcode help to display help icon instad of full text - 31 August 2004, GauGau
+Changed bbcode help to display help icon instead of full text - 31 August 2004, GauGau
 Added option to sort categories by name instead of position - 31 August 2004, GauGau
 Added section to album properties where the admin can reset views, votes and files - 03 August 2004, GauGau
 Added Turkish language file (user contrib) - 05 September 2004, GauGau
@@ -224,3 +224,4 @@ Added "advanced album dropdown" to "sort my pics" (picmgr.php) - 16 December 200
 Changed script.js to recognize IE6 and FF in compliance mode for pop-up resize - 19 December 2004, Donnoman
 Changed full size pic pop-up to be XHTML 1.0 Transitional Compliant - 19 December 2004, Donnoman
 Fixed pipe separator display when no keywords existed on the search page - 19 December 2004, Donnoman
+Enable BBcode for comments and ecards - 20 December 2004, TranzNDance
