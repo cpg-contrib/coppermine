@@ -136,7 +136,7 @@ class imageObject{
 
                   $dst_img = $this->createImage($size, $size);
                   imagecopy($dst_img, $this->imgRes, 0, 0, 0, 0, $width, $height);
-                  $dst_img = imagerotate($dst_img, $angle, 0);
+                  $dst_img = @imagerotate($dst_img, $angle, 0);
                   $this->imgRes = $dst_img;
                   $dst_img = $this->createImage($height, $width);
 
