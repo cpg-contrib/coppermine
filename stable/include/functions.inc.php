@@ -1635,6 +1635,7 @@ $lang_language_data['thai'] = array('Thai','&#3652;&#3607;&#3618;','th');
 $lang_language_data['turkish'] = array('Turkish','T&uuml;rk&ccedil;e','tr');
 $lang_language_data['uighur'] = array('Uighur','Uighur','cn-xj');
 $lang_language_data['vietnamese'] = array('Vietnamese','Tieng Viet','vn');
+$lang_language_data['welsh'] = array('Welsh','Cymraeg','gb-cm');
 
 // get list of available languages
   $value = strtolower($CONFIG['lang']);
