@@ -289,14 +289,15 @@ EOT;
             $user_data = mysql_fetch_array($result);
             mysql_free_result($result);
         }
-        $query = "SELECT count(*), MAX(pid) FROM {$CONFIG['TABLE_PICTURES']} AS p WHERE owner_id = '$uid' AND approved = 'YES'".((!empty($FORBIDDEN_SET))?"AND $FORBIDDEN_SET":" ");
+        if ($FORBIDDEN_SET != "") $FORBIDDEN_SET = "AND $FORBIDDEN_SET";
+        $query = "SELECT count(*), MAX(pid) FROM {$CONFIG['TABLE_PICTURES']} AS p WHERE owner_id = '$uid' AND approved = 'YES' $FORBIDDEN_SET");
         $result = db_query($query);
         $nbEnr = mysql_fetch_array($result);
         $picture_count = $nbEnr[0];
         $thumb_pid = $nbEnr[1];
         mysql_free_result($result);
 
-        $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_ALBUMS']} AS p WHERE category = '" . (FIRST_USER_CAT + $uid) . "'".((!empty($FORBIDDEN_SET))?"AND $FORBIDDEN_SET":" "));
+        $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_ALBUMS']} AS p WHERE category = '" . (FIRST_USER_CAT + $uid) . "' $FORBIDDEN_SET");
         $nbEnr = mysql_fetch_array($result);
         $album_count = $nbEnr[0];
         mysql_free_result($result);

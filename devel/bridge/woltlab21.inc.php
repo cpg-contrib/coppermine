@@ -291,6 +291,7 @@ function udb_list_users_query(&$user_count)
 {
    global $CONFIG, $FORBIDDEN_SET;
 
+    if ($FORBIDDEN_SET != "") $FORBIDDEN_SET = "AND $FORBIDDEN_SET";
    $sql =  "SELECT (category - ".FIRST_USER_CAT.") as user_id,".
          "      '???' as user_name,".
          "      COUNT(DISTINCT a.aid) as alb_count,".
