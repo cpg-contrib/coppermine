@@ -302,3 +302,8 @@ INSERT INTO CPG_config VALUES ('show_which_exif', '|0|0|0|0|0|0|0|0|1|0|1|1|0|0|
 INSERT INTO CPG_config VALUES ('alb_desc_thumb', '1');
 
 ALTER TABLE `CPG_albums` ADD `alb_password_hint` TEXT ;
+
+INSERT INTO CPG_config VALUES ('categories_alpha_sort', '0');
+ALTER TABLE `CPG_banned` ADD `brute_force` TINYINT( 5 ) DEFAULT '0' NOT NULL ;
+INSERT INTO CPG_config VALUES ('login_treshold', '5');
+INSERT INTO CPG_config VALUES ('login_expiry', '10');

@@ -182,7 +182,7 @@ EOT;
 
 function display_cat_list()
 {
-    global $CAT_LIST, $PHP_SELF;
+    global $CAT_LIST, $PHP_SELF, $CONFIG;
 
     $CAT_LIST3 = $CAT_LIST;
 
@@ -190,13 +190,13 @@ function display_cat_list()
         echo "        <tr>\n";
         echo '                <td class="tableb" width="80%"><b>' . $category['name'] . '</b></td>' . "\n";
 
-        if ($category['pos'] > 0) {
+        if ($category['pos'] > 0 && $CONFIG['categories_alpha_sort'] != 1) {
             echo '                <td class="tableb" width="4%"><a href="' . $PHP_SELF . '?op=move&cid1=' . $category['cid'] . '&pos1=' . ($category['pos']-1) . '&cid2=' . $category['prev'] . '&pos2=' . ($category['pos']) . '">' . '<img src="images/up.gif"  border="0">' . '</a></td>' . "\n";
         } else {
             echo '                <td class="tableb" width="4%">' . '&nbsp;' . '</td>' . "\n";
         }
 
-        if ($category['pos'] < $category['cat_count']-1) {
+        if ($category['pos'] < $category['cat_count']-1  && $CONFIG['categories_alpha_sort'] != 1) {
             echo '                <td class="tableb" width="4%"><a href="' . $PHP_SELF . '?op=move&cid1=' . $category['cid'] . '&pos1=' . ($category['pos'] + 1) . '&cid2=' . $category['next'] . '&pos2=' . ($category['pos']) . '">' . '<img src="images/down.gif"  border="0">' . '</a></td>' . "\n";
         } else {
             echo '                <td class="tableb" width="4%">' . '&nbsp;' . '</td>' . "\n";
@@ -231,6 +231,23 @@ function verify_children($parent, $cid)
     }
         return false;
 }
+
+
+if (isset($HTTP_POST_VARS['update_config'])) {
+    $value = $HTTP_POST_VARS['categories_alpha_sort'];
+            db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'categories_alpha_sort'");
+            $CONFIG['categories_alpha_sort'] = $value;
+            if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
+                    log_write('CONFIG UPDATE SQL: '.
+                              "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'categories_alpha_sort'\n".
+                              'TIME: '.date("F j, Y, g:i a")."\n".
+                              'USER: '.$USER_DATA['user_name'],
+                              CPG_DATABASE_LOG
+                              );
+            }
+
+}
+
 
 $op = isset($HTTP_GET_VARS['op']) ? $HTTP_GET_VARS['op'] : '';
 $current_category = array('cid' => '0', 'name' => '', 'parent' => '0', 'description' => '');
@@ -364,6 +381,36 @@ echo <<<EOT
 
 EOT;
 
+
+
+// configure sort category alphabetically
+    $yes_selected = $CONFIG['categories_alpha_sort'] ? 'checked="checked"' : '';
+    $no_selected = !$CONFIG['categories_alpha_sort'] ? 'checked="checked"' : '';
+
+echo <<<EOT
+        <script type="text/javascript">
+        <!--
+        function checkFormSubmit()
+        {
+        document.catsortconfig.submit()
+        }
+        -->
+        </script>
+
+<form name="catsortconfig" action="$PHP_SELF" method="post">
+        <tr>
+            <td class="tablef" colspan="6">
+                        {$lang_catmgr_php['categories_alpha_sort']}
+                        &nbsp;&nbsp;
+                        <input type="radio" id="categories_alpha_sort1" name="categories_alpha_sort" value="1"  onclick="checkFormSubmit()" $yes_selected /><label for="categories_alpha_sort1" class="clickable_option">$lang_yes</label>
+                        &nbsp;&nbsp;
+                        <input type="radio" id="categories_alpha_sort0" name="categories_alpha_sort" value="0"  onclick="checkFormSubmit()" $no_selected /><label for="categories_alpha_sort0" class="clickable_option">$lang_no</label>
+                        &nbsp;&nbsp;
+                        <input type="hidden" name="update_config" value="{$lang_catmgr_php['save_cfg']}" class="button" />
+                </td>
+        </tr>
+        </form>
+EOT;
 endtable();
 
 echo "<br />\n";

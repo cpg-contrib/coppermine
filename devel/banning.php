@@ -46,7 +46,7 @@ function create_banlist()
 {
     global $CONFIG, $PHP_SELF, $lang_banning_php, $album_date_fmt;
 
-    $result = db_query ("SELECT * FROM {$CONFIG['TABLE_BANNED']}");
+    $result = db_query ("SELECT * FROM {$CONFIG['TABLE_BANNED']} WHERE brute_force=0");
     $count = mysql_num_rows($result);
     if ($count > 0) {
         echo <<<EOHEAD

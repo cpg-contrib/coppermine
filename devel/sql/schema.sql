@@ -210,6 +210,7 @@ CREATE TABLE CPG_banned (
         user_id int(11) DEFAULT NULL,
         ip_addr tinytext DEFAULT NULL,
         expiry datetime DEFAULT NULL,
+        brute_force tinyint(5) NOT NULL default '0',
         PRIMARY KEY  (ban_id)
 ) TYPE=MyISAM;
 #---------------------------------------------------------

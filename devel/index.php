@@ -104,8 +104,8 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
         $album_filter = ' and ' . str_replace('p.', 'a.', $FORBIDDEN_SET);
         $pic_filter = ' and ' . str_replace('p.', $CONFIG['TABLE_PICTURES'] . '.', $FORBIDDEN_SET);
     }
-
-    $result = db_query("SELECT cid, name, description, thumb FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent'  ORDER BY pos");
+    if ($CONFIG['categories_alpha_sort'] == 1) {$cat_sort_order = 'name';}else{$cat_sort_order = 'pos';}
+    $result = db_query("SELECT cid, name, description, thumb FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent'  ORDER BY $cat_sort_order");
 
     if (mysql_num_rows($result) > 0) {
         $rowset = db_fetch_rowset($result);

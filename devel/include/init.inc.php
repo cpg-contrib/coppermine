@@ -425,7 +425,7 @@ $now = time();
 db_query("DELETE FROM {$CONFIG['TABLE_BANNED']} WHERE expiry < $now");
 // Check if the user is banned
 $user_id = USER_ID;
-$result = db_query("SELECT * FROM {$CONFIG['TABLE_BANNED']} WHERE ip_addr='$raw_ip' OR ip_addr='$hdr_ip' OR user_id=$user_id");
+$result = db_query("SELECT * FROM {$CONFIG['TABLE_BANNED']} WHERE (ip_addr='$raw_ip' OR ip_addr='$hdr_ip' OR user_id=$user_id) AND brute_force=0");
 if (mysql_num_rows($result)) {
     pageheader($lang_error);
     msg_box($lang_info, $lang_errors['banned']);

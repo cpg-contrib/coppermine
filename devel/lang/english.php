@@ -397,6 +397,8 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
   'cat_title' => 'Category title',
   'cat_thumb' => 'Category thumbnail',
   'cat_desc' => 'Category description',
+  'categories_alpha_sort' => 'Sort categories alphabetically (instead of custom sort order)', //cpg1.4.0
+  'save_cfg' => 'Save configuration', //cpg1.4.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -470,6 +472,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Size of thumbnails in pixels', 'alb_list_thumb_size', 0),
   array('The content of the main page', 'main_page_layout', 0, 'f=index.htm&as=config_album_list_content&ae=config_album_list_content_end'),
   array('Show first level album thumbnails in categories','first_level',1),
+  array('Sort categories alphabetically (instead of custom sort order)','categories_alpha_sort',1),
 
   'Thumbnail view',
   array('Number of columns on thumbnail page', 'thumbcols', 0),
@@ -540,6 +543,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Notify admin of user upload awaiting approval', 'upl_notify_admin_email', 1),
   array('Allow logged in users to view memberlist', 'allow_memberlist', 1),
   array('Allow users to change their email address in profile', 'allow_email_change', 1, 'f=index.htm&as=config_user_allow_email_change&ae=config_user_allow_email_change_end'), //cpg1.4.0
+  array('Number of failed login attemps untill temporary ban (to avoid brute force attacks)', 'login_treshold', 0, 'f=index.htm&as=config_user_login_start&ae=config_user_login_end'), //cpg1.4.0
+  array('Duration of a temporary ban after failed logins', 'login_expiry', 0, 'f=index.htm&as=config_user_login_start&ae=config_user_login_end'), //cpg1.4.0
 
 // custom profile fields, (casper) 1.4 devel
   'Custom fields for user profile (leave blank if unused).

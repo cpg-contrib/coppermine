@@ -142,6 +142,22 @@ INSERT INTO CPG_config VALUES ('enable_plugins', '1');
 
 INSERT INTO CPG_config VALUES ('enable_help', '2');
 
+INSERT INTO CPG_config VALUES ('categories_alpha_sort', '0');
+
+INSERT INTO CPG_config VALUES ('login_treshold', '5');
+INSERT INTO CPG_config VALUES ('login_expiry', '10');
+
+
+CREATE TABLE CPG_plugins (
+  plugin_id int(10) unsigned NOT NULL auto_increment,
+  name varchar(64) NOT NULL default '',
+  path varchar(128) NOT NULL default '',
+  priority int(10) unsigned NOT NULL default '0',
+  PRIMARY KEY  (plugin_id),
+  UNIQUE KEY name (name),
+  UNIQUE KEY path (path)
+) TYPE=MyISAM COMMENT='Stores the plugins';
+
 INSERT INTO CPG_config VALUES ('allow_email_change', '0');
 
 #
