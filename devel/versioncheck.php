@@ -1,20 +1,21 @@
 <?php
-// ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.4.1                                            //
-// ------------------------------------------------------------------------- //
-// Copyright (C) 2002-2004 Gregory DEMAR                                     //
-// http://www.chezgreg.net/coppermine/                                       //
-// ------------------------------------------------------------------------- //
-// Updated by the Coppermine Dev Team                                        //
-// see /docs/credits.html for details                                        //
-// ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- //
-// $Id$
-// ------------------------------------------------------------------------- //
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2005 Coppermine Dev Team
+  v1.1 originaly written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  ********************************************
+  Coppermine version: 1.4.1
+  $Source$
+  $Revision$
+  $Author$
+  $Date$
+**********************************************/
 
 define('IN_COPPERMINE', true);
 define('VERSIONCHECK_PHP', true);
@@ -575,22 +576,42 @@ function cpg_get_fileversion($folder  = '',$file = '') {
     $handle = @fopen($folder.$file, 'r');
     $blob = @fread($handle, filesize($folder.$file));
     @fclose($handle);
-    $cvs_string = '$'.'I'.'d'.':';
+    $cvs_string1 = '$'.'I'.'d'.':';
+    $cvs_string2 = '$'.'Revision'.':';
+    $cpg_version_determination = 'Coppermine' . ' ' . 'version:';
 
     $blob = str_replace('<?php','',$blob);
-    $return['cpg_version'] = substr($blob,strpos($blob, 'Coppermine Photo Gallery'));
+
+    // Determine the cpg version
+    $return['cpg_version'] = substr($blob,strpos($blob, $cpg_version_determination));
     $return['cpg_version'] = substr($return['cpg_version'],0,strpos($return['cpg_version'], '//'));
-    $return['cpg_version'] = trim(str_replace('Coppermine Photo Gallery', '', $return['cpg_version']));
+    $return['cpg_version'] = trim(str_replace($cpg_version_determination, '', $return['cpg_version']));
+    $return['cpg_version'] = trim(substr($return['cpg_version'], 0, strpos($return['cpg_version'], '$')));
     if (strlen($return['cpg_version']) > 5) {$return['cpg_version']='n/a';}
 
-    $return['cvs_version'] = substr($blob,strpos($blob, $cvs_string));
-    $return['cvs_version'] = substr($return['cvs_version'],0,strpos($return['cvs_version'], 'Exp'));
-    $return['cvs_version'] = str_replace($cvs_string, '', $return['cvs_version']);
-    // get rid of the filename inside the string
-    $return['cvs_version'] = trim(str_replace($file.',v ', '',$return['cvs_version']));
-    $return['cvs_version'] = str_replace('v ', '', $return['cvs_version']);
-    //if ($file=='picmgmt.inc.php' || $file=='index.php') {print $folder.$file.':'.$return['cvs_version'].'<br>';}
-    $return['cvs_version'] = trim(str_replace(strstr($return['cvs_version'], ' '), '', $return['cvs_version']));
+    // Fallback to the "old" cpg version determination method if no result (for compatibility with older versions)
+    if ($return['cpg_version'] == '') {
+      $return['cpg_version'] = substr($blob,strpos($blob, 'Coppermine Photo Gallery'));
+      $return['cpg_version'] = substr($return['cpg_version'],0,strpos($return['cpg_version'], '//'));
+      $return['cpg_version'] = trim(str_replace('Coppermine Photo Gallery', '', $return['cpg_version']));
+      if (strlen($return['cpg_version']) > 5) {$return['cpg_version']='n/a';}
+    }
+
+    // Determine file (cvs) revision
+    $return['cvs_version'] = str_replace($cvs_string2, '', substr($blob,strpos($blob, $cvs_string2),25));
+    $return['cvs_version'] = trim(substr($return['cvs_version'], 0, strpos($return['cvs_version'], '$')));
+
+    // Fallback to the "old" revision determination method if no result (for compatibility with older versions)
+    if ($return['cvs_version'] == '' || !is_numeric($return['cvs_version'])) {
+      $return['cvs_version'] = substr($blob,strpos($blob, $cvs_string1));
+      $return['cvs_version'] = substr($return['cvs_version'],0,strpos($return['cvs_version'], 'Exp'));
+      $return['cvs_version'] = str_replace($cvs_string1, '', $return['cvs_version']);
+      // get rid of the filename inside the string
+      $return['cvs_version'] = trim(str_replace($file.',v ', '',$return['cvs_version']));
+      $return['cvs_version'] = str_replace('v ', '', $return['cvs_version']);
+      //if ($file=='picmgmt.inc.php' || $file=='index.php') {print $folder.$file.':'.$return['cvs_version'].'<br>';}
+      $return['cvs_version'] = trim(str_replace(strstr($return['cvs_version'], ' '), '', $return['cvs_version']));
+    }
     if (strlen($return['cvs_version']) > 5) {$return['cvs_version']='n/a';}
 
     if (file_exists($folder.$file)) {
