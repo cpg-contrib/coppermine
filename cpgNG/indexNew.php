@@ -56,7 +56,7 @@ $CONTENT = "";
 $cpg_show_private_album = $CONFIG['allow_private_albums'] ? $CONFIG['show_private'] : true;
 
 $albumData = new cpgAlbumData();
-$indexData = new cpgIndexData($cat, $PAGE);
+$indexData = new cpgIndexData($cat,'',$PAGE);
 
 $t = new cpgTemplate();
 
@@ -88,7 +88,7 @@ $t->assign('my_cat_id', FIRST_USER_CAT + USER_ID);
 $t->assign('PAGE_TITLE', $lang_index_php['welcome']);
 $t->assign('GALLERY_DESCRIPTION', $CONFIG['gallery_name']);
 $t->assign('USER_NAME', USER_NAME);
-$t->assign('my_cat_id', FIRST_USER_CAT + USER_ID);
+// $t->assign('my_cat_id', FIRST_USER_CAT + USER_ID);  // Removed by Donnoman, appears to be a duplicate
 
 if (!USER_ID) {
   $t->assign('loggedin', 0);

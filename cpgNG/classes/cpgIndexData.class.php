@@ -8,6 +8,7 @@ class cpgIndexData {
   var $albList = array();
   var $usrList = array();
   var $statistics;
+  var $album;
   var $cat;
   var $page;
   var $totalPages = array();
@@ -18,13 +19,32 @@ class cpgIndexData {
   /**
    * Constructor
    */
-  function cpgIndexData($cat, $page)
+  function cpgIndexData($cat,$album,$page)
   {
     $this->cat = (int)$cat;
+    $this->album = $album;
     $this->page = $page;
     $this->db = cpgDB::getInstance();
   }
-
+  
+  /**
+   * updateCatByAlb()
+   *
+   * This function sets the active category to that of a specific album
+   *
+   * @param integer $id ID of the album from which the category should be set.
+   */
+  function updateCatByAlb($id)
+  {
+      global $CONFIG;
+      $query = "SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid = '" . $id . "'";
+      $this->db->query($query);
+      $nbEnr = $this->db->fetchRow();
+      if ($nbEnr[0]) {
+          $this->cat = $nbEnr['category'];
+      }
+  }
+  
   /**
    * __htmlAlbummenu()
    *
@@ -299,8 +319,8 @@ class cpgIndexData {
         $pic_filter = ' and ' . $FORBIDDEN_SET;
     }
 
-    $sql = "SELECT count(aid) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category = '$cat'" . $album_filter;
-
+    $where = "category = '".$cat."' and a.parent = '0'";
+    $sql = "SELECT count(aid) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE " . $where . $album_filter;
     $this->db->query($sql);
     $nbEnr = $this->db->fetchRow();
     $nbAlb = $nbEnr[0];
@@ -317,7 +337,7 @@ class cpgIndexData {
     $upper_limit = min($nbAlb, $PAGE * $alb_per_page);
     $limit = "LIMIT " . $lower_limit . "," . ($upper_limit - $lower_limit);
 
-    $sql = 'SELECT a.aid, a.title, a.description, visibility, filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE category=' . $cat . $album_filter . ' ORDER BY a.pos ' . $limit;
+    $sql = 'SELECT a.aid, a.title, a.description, visibility, filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE ' . $where . $album_filter . ' ORDER BY a.pos ' . $limit;
 
     $this->db->query($sql);
     $alb_thumbs = $this->db->fetchRowSet();
@@ -444,13 +464,15 @@ class cpgIndexData {
           $album_filter = ' and ' . str_replace('p.', 'a.', $FORBIDDEN_SET);
           $pic_filter = ' and ' . $FORBIDDEN_SET;
       }
-
-      $sql = "SELECT count(*) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category = '".$this->cat."'" . $album_filter;
-
+      if ($this->album) {
+          $where = "a.parent ='". $this->album ."' ";
+      } else {
+          $where = "category = '".$this->cat."' and a.parent ='0' ";
+      }
+      $sql = "SELECT count(*) FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE ". $where . $album_filter;
       $this->db->query($sql);
       $nbEnr = $this->db->fetchRow();      
       $nbAlb = $nbEnr[0];
-
       if (!$nbAlb) return;
 
       $this->totalPages['albums'] = ceil($nbAlb / $alb_per_page);
@@ -463,7 +485,7 @@ class cpgIndexData {
       $upper_limit = min($nbAlb, $this->page * $alb_per_page);
       $limit = "LIMIT " . $lower_limit . "," . ($upper_limit - $lower_limit);
 
-      $sql = 'SELECT a.aid, a.title, a.description, category, visibility, filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE category=' . $this->cat . $album_filter . ' ORDER BY a.pos ' . $limit;
+      $sql = 'SELECT a.aid, a.title, a.description, category, visibility, filepath, ' . 'filename, url_prefix, pwidth, pheight ' . 'FROM ' . $CONFIG['TABLE_ALBUMS'] . ' as a ' . 'LEFT JOIN ' . $CONFIG['TABLE_PICTURES'] . ' as p ' . 'ON a.thumb=p.pid ' . 'WHERE ' . $where . $album_filter . ' ORDER BY a.pos ' . $limit;
 
       $this->db->query($sql);
       $alb_thumbs = $this->db->fetchRowSet();      

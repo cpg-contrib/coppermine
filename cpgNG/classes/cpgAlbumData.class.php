@@ -179,34 +179,58 @@ class cpgAlbumData {
    */
   function getBreadcrumbData ($albumName, $albumid=0, $cat=0)
   {
-    global $CONFIG, $lang_errors, $cat;
+    global $CONFIG, $lang_errors,$cat; //$cat is being passed, should this be removed?
     $breadcrumb_array = array();
+    $breadcrumb_alb_array = array();
     $breadcrumb = array();
+    $breadcrumb_alb = array();
     $db = cpgDB::getInstance();
     
     if (!empty($albumName)) {
-      $query = "SELECT aid, title, category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid = '$albumName'";
+      $query = "SELECT aid, title, category, parent FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid = '$albumName'";
       $db->query($query);
-      
+
       if ($db->nf() == 0) {
         cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap']);
       }
 
       $row = $db->fetchRow();
-      //$breadcrumb_array[] = array($albumName, $row["title"]);
 
-      if ($row['category'] == 0) {
-        $breadcrumb[0]['link'] = "thumbnails.php?album={$row['aid']}";
-        $breadcrumb[0]['title'] = $row['title'];
-        return $breadcrumb;
+      $query = "SELECT aid, title, parent FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid = '".$row['aid']."'";
+      $db->query($query);
+      if ($db->nf() == 0) {
+        cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_alb'], __FILE__, __LINE__);
       }
-      $albLink = "thumbnailsNew.php?album={$row['aid']}";
-      $albTitle = $row['title'];
+      $row_alb = $db->fetchRow();
+      $breadcrumb_alb_array[] = array($row_alb['aid'], $row_alb['title']);
+//      $CURRENT_ALB_TITLE = $row['title'];
+
+      while($row_alb['parent']){
+        $query = "SELECT aid, title, parent FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid = '{$row_alb['parent']}'";
+        $db->query($query);
+        if ($db->nf() == 0) {
+          cpg_die(CRITICAL_ERROR, $lang_errors['orphan_alb'], __FILE__, __LINE__);
+        }
+        $row_alb = $db->fetchRow();
+        $breadcrumb_alb_array[] = array($row_alb['aid'], $row_alb['title']);
+      } // while
+      
+      $breadcrumb_alb_array = array_reverse($breadcrumb_alb_array);
+      $i = 0;
+      foreach ($breadcrumb_alb_array as $album) {
+          $breadcrumb_alb[$i]['link'] = "thumbnailsNew.php?album={$album[0]}";
+          $breadcrumb_alb[$i]['title'] = $album[1];
+          $i++;
+      }
+      
+      if ($row['category'] == 0) {
+        return $breadcrumb_alb;
+      }
     } else {
       /**
        * Category is set, breadcrumb will be displayed on index page
        */
-      $row['category'] = $cat;
+      $row['category'] = $cat; // this doesn't make sense to me why is it overwriting the data from the query
     }
     if ($row['category'] >= FIRST_USER_CAT) {
       $cat = $row['category'];
@@ -242,6 +266,7 @@ class cpgAlbumData {
 
     $breadcrumb_array = array_reverse($breadcrumb_array);
 
+
     /**
      * Loop counter
      */
@@ -251,12 +276,7 @@ class cpgAlbumData {
       $breadcrumb[$i]['title'] = $category[1];
       $i++;
     }
-    if (!empty($albLink)) {
-      $i++;
-      $breadcrumb[$i]['link'] = $albLink;
-      $breadcrumb[$i]['title'] = $albTitle;
-    }
-    return $breadcrumb;
+    return array_merge($breadcrumb,$breadcrumb_alb);
   }
 
   /**
