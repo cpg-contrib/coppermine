@@ -30,7 +30,7 @@
 
 // Check if standalone is installed in a portal like phpNuke (added by DJMaze)
 if (is_dir('../../modules')) {
-    die("<html><body><h1>ERROR</h1>You installed the standalone Coppermine into your Nuke portal.<br>" . "Please download and install a CPG Port: <a href=\"http://sourceforge.net/project/showfiles.php?group_id=89658\">CPG for PostNuke OR CPG for PHPnuke</a></body></html>");
+    die("<html><body><h1>ERROR</h1>You installed the standalone Coppermine into your Nuke portal.<br />" . "This version can only be used as standalone.</body></html>");
 } // end check
 
 /**
