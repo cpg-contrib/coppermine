@@ -156,7 +156,7 @@ li {
   <li>[email]<a href="javascript:;">user@domain.tld</a>[/email]</li>
 </ul>
 <h2>Using Windows XP Web Publishing Wizard with Coppermine</h2>
-<p>If you are using Windows XP, you can use its builtin web publishing wizard
+<p>If you are using Windows XP, you can use its built-in web publishing wizard
   to upload your photos to your gallery.</p>
 <p>Once you have properly installed the script on your server, call the xp_publish.php
   file from your web browser (<a href="javascript: ;">http://your_site.com/coppermine_dir/xp_publish.php</a>).</p>
@@ -225,8 +225,9 @@ li {
   If you don't need a username and password to connect to your SMTP server, just
   leave them blank.</p>
 <p></p>
+
 <h2>Upgrading from version 1.0</h2>
-<p>If you already have installed version 1.0 and you want to transfer your albums
+<!--<p>If you already have installed version 1.0 and you want to transfer your albums
   to version 1.1 proceed in the following way:</p>
 <ul>
   <li> Install version 1.1 normally in a directory different from the one where
@@ -246,12 +247,26 @@ li {
     If you get an error, go to Coppermine 1.1 config page, enable debug mode,
     try to call the upgrade script again and check what errors you get.</li>
 </ul>
-<p> <b>This upgrade process leave your v1.0 gallery untouched </b></p>
-<h2>Upgrading from a previous release of version 1.1</h2>
-<p>Unpack the archive, delete the file <b>config.inc.php</b> that may possibly
+<p> <b>This upgrade process leave your v1.0 gallery untouched </b></p>-->
+
+<h2>Upgrading from releases of version 1.1</h2>
+<!--<p>Unpack the archive, delete the file <b>config.inc.php</b> that may possibly
   exist in the <b>&quot;include&quot;</b> directory and the file <b>install.php</b>
   (you don't need to run the install script when doing an upgrade). Upload the
-  new files to your server overwriting the existing ones</p>
+  new files to your server overwriting the existing ones</p>-->
+	<ul>
+		<li>Backup your include/config.inc.php file and your "albums" directoy.</li>
+		<li>Unpack the archive</li>
+		<li>If the file <b>config.inc.php</b> exists in the <b>&quot;include&quot;</b> directory, delete it.</li>
+		<li>If the file <b>install.php</b> exists in the root directory, delete it.</li>
+		<li><b>Except for the "albums" directory</b>, upload all of the new files and directories making sure not to overwrite the include/config.inc.php file or the albums directory.</li>
+		<li>Call the upgrade script http://yousitename/coppermine_dir/upgrade.php</li>
+		<li>Your upgrade should be complete.</li>
+	</ul>
+  
+	
+	
+	
 <h2>Integrating the script with your bulletin board</h2>
 <p>Coppermine can be integrated with the following bulletin boards (eg. Coppermine
   and your bulletin board will share the same user database)</p>
