@@ -597,7 +597,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('URL of your coppermine gallery folder (no \'index.php\' or similar at the end)', 'ecards_more_pic_target', 0, 'f=index.htm&as=admin_general_coppermine-url&ae=admin_general_coppermine-url_end'),
   array('Gallery is offline', 'offline', 1, 'f=index.htm&as=admin_general_offline&ae=admin_general_offline_end'),
   array('Allow ZIP-download of favorites', 'enable_zipdownload', 1, 'f=index.htm&as=admin_general_zip-download&ae=admin_general_zip-download_end'),
-  array('Timezone difference relative to GMT','time_offset',0, 'f=index.htm&as=admin_general_time-offset&ae=admin_general_time-offset_end&top=1'),
+  array('Timezone difference relative to GMT (current time: ' . localised_date(-1, $comment_date_fmt) . ')','time_offset',0, 'f=index.htm&as=admin_general_time-offset&ae=admin_general_time-offset_end&top=1'),
   array('Enable help-icons (help available in English only)','enable_help',9, 'f=index.htm&as=admin_general_help&ae=admin_general_help_end'),
   array('Enable clickable keywords in search','clickable_keyword_search',14),
   array('Show number of linked files','link_pic_count',1),
@@ -699,7 +699,8 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Notify admin of user upload awaiting approval', 'upl_notify_admin_email', 1, 'f=index.htm&as=admin_approval_notify&ae=admin_approval_notify_end'),
   array('Allow logged in users to view memberlist', 'allow_memberlist', 1, 'f=index.htm&as=admin_user_memberlist&ae=admin_user_memberlist_end'),
   array('Allow users to change their email address in profile', 'allow_email_change', 1, 'f=index.htm&as=admin_user_allow_email_change&ae=admin_user_allow_email_change_end'), //cpg1.4.0
-  array('Number of failed login attemps untill temporary ban (to avoid brute force attacks)', 'login_threshold', 0, 'f=index.htm&as=admin_user_login_start&ae=admin_user_login_end'), //cpg1.4.0
+  array('Allow users to retain control over their pics in public galleries', 'users_can_edit_pics', 1), //cpg1.4.0
+  array('Number of failed login attempts until temporary ban (to avoid brute force attacks)', 'login_threshold', 0, 'f=index.htm&as=admin_user_login_start&ae=admin_user_login_end'), //cpg1.4.0
   array('Duration of a temporary ban after failed logins', 'login_expiry', 0, 'f=index.htm&as=admin_user_login_start&ae=admin_user_login_end'), //cpg1.4.0
 
 // custom profile fields, (casper) 1.4 devel
@@ -886,7 +887,7 @@ $lang_display_image_php = array(
   'slideshow' => 'Slideshow',
   'stop_slideshow' => 'STOP SLIDESHOW',
   'view_fs' => 'Click to view full size image',
-  'edit_pic' => 'Edit description',
+  'edit_pic' => 'Edit file information', //cpg1.4.0 - altered wording
   'crop_pic' => 'Crop and Rotate',
 );
 
@@ -1056,6 +1057,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'pic_info' => 'File info',
   'album' => 'Album',
   'title' => 'Title',
+  'filename' => 'Filename', //cpg1.4.0    
   'desc' => 'Description',
   'keywords' => 'Keywords',
   'pic_info_str' => '%s &times; %s - %s KB - %s views - %s votes',
@@ -1082,6 +1084,11 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'parent_category' =>'Parent category', //cpg1.4.0
   'thumbnail_view' =>'Thumbnail view', //cpg1.4.0
   'select_unselect' =>'select/unselect all', //cpg1.4.0
+  'file_exists' => "Destination file '%s' already exists.", //cpg1.4.0
+  'rename_failed' => "Failed to rename '%s' to '%s'.", //cpg1.4.0
+  'src_file_missing' => "Source file '%s' is missing.", // cpg 1.4.0
+  'mime_conv' => "Cannot convert file from '%s' to '%s'",//cpg1.4.0
+  'forb_ext' => 'Forbidden file extension.',//cpg1.4.0
 );
 
 // ------------------------------------------------------------------------- //
