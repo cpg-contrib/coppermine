@@ -249,6 +249,9 @@ while ($row = mysql_fetch_array($results)) {
 } // while
 mysql_free_result($results);
 
+// Reference 'site_url' to 'ecards_more_pic_target'
+$CONFIG['site_url'] =& $CONFIG['ecards_more_pic_target'];
+
 require('include/plugin_api.inc.php');
 if ($CONFIG['enable_plugins'] == 1) {
     CPGPluginAPI::load();
