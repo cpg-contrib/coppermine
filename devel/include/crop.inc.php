@@ -172,7 +172,7 @@ echo <<<EOT
 </table>
 
 <div id="cropDiv">
-  <table width="100%" border="1" cellpadding="0" cellspacing="0" bordercolor="#000000">
+  <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border:1px solid #000000">
 <tr>
       <td><img src="images/spacer.gif"></td>
     </tr>
