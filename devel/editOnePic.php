@@ -102,7 +102,7 @@ function get_user_albums($user_id)
         if (!isset($USER_ALBUMS_ARRAY[$user_id])) {
                 $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='".(FIRST_USER_CAT + $user_id)."' ORDER BY title");
                 if (mysql_num_rows($user_albums)) {
-                    $user_albums_list=db_fetch_rowset($user_albums);
+                    $user_albums_list=cpg_db_fetch_rowset($user_albums);
                 } else {
                         $user_albums_list = array();
                 }
