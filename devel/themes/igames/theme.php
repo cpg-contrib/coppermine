@@ -1678,4 +1678,424 @@ function theme_html_picinfo(&$info)
     return $html;
 }
 
+// Displays a picture
+function theme_html_picture()
+{
+    global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $USER;
+    global $album, $comment_date_fmt, $template_display_picture;
+    global $lang_display_image_php, $lang_picinfo;
+
+    $pid = $CURRENT_PIC_DATA['pid'];
+
+    if (!isset($USER['liv']) || !is_array($USER['liv'])) {
+        $USER['liv'] = array();
+    }
+    // Add 1 to hit counter
+    if (!USER_IS_ADMIN && $album != "lasthits" && !in_array($pid, $USER['liv']) && isset($_COOKIE[$CONFIG['cookie_name'] . '_data'])) {
+        add_hit($pid);
+        if (count($USER['liv']) > 4) array_shift($USER['liv']);
+        array_push($USER['liv'], $pid);
+    }
+
+    if($CONFIG['thumb_use']=='ht' && $CURRENT_PIC_DATA['pheight'] > $CONFIG['picture_width'] ){ // The wierd comparision is because only picture_width is stored
+      $condition = true;
+    }elseif($CONFIG['thumb_use']=='wd' && $CURRENT_PIC_DATA['pwidth'] > $CONFIG['picture_width']){
+      $condition = true;
+    }elseif($CONFIG['thumb_use']=='any' && max($CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight']) > $CONFIG['picture_width']){
+      $condition = true;
+    }else{
+     $condition = false;
+    }
+
+    if ($CURRENT_PIC_DATA['title'] != '') {
+        $pic_title .= $CURRENT_PIC_DATA['title'] . "\n";
+    }
+    if ($CURRENT_PIC_DATA['caption'] != '') {
+        $pic_title .= $CURRENT_PIC_DATA['caption'] . "\n";
+    }
+    if ($CURRENT_PIC_DATA['keywords'] != '') {
+        $pic_title .= $lang_picinfo['Keywords'] . ": " . $CURRENT_PIC_DATA['keywords'];
+    }
+
+    if (!$CURRENT_PIC_DATA['title'] && !$CURRENT_PIC_DATA['caption']) {
+        template_extract_block($template_display_picture, 'img_desc');
+    } else {
+        if (!$CURRENT_PIC_DATA['title']) {
+            template_extract_block($template_display_picture, 'title');
+        }
+        if (!$CURRENT_PIC_DATA['caption']) {
+            template_extract_block($template_display_picture, 'caption');
+        }
+    }
+
+    $CURRENT_PIC_DATA['menu'] = ((USER_ADMIN_MODE && $CURRENT_ALBUM_DATA['category'] == FIRST_USER_CAT + USER_ID) || ($CONFIG['users_can_edit_pics'] && $CURRENT_PIC_DATA['owner_id'] == USER_ID && USER_ID != 0) || GALLERY_ADMIN_MODE) ? html_picture_menu($pid) : '';
+
+    if ($CONFIG['make_intermediate'] && $condition ) {
+        $picture_url = get_pic_url($CURRENT_PIC_DATA, 'normal');
+    } else {
+        $picture_url = get_pic_url($CURRENT_PIC_DATA, 'fullsize');
+    }
+
+    $image_size = compute_img_size($CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight'], $CONFIG['picture_width']);
+
+    $pic_title = '';
+    $mime_content = cpg_get_type($CURRENT_PIC_DATA['filename']);
+
+    if ($CURRENT_PIC_DATA['pwidth']==0 || $CURRENT_PIC_DATA['pheight']==0) {
+        $image_size['geom']='';
+        $image_size['whole'] = '';
+    } elseif ($mime_content['content']=='movie' || $mime_content['content']=='audio') {
+        $ctrl_offset['mov']=15;
+        $ctrl_offset['wmv']=45;
+        $ctrl_offset['swf']=0;
+        $ctrl_offset['rm']=0;
+        $ctrl_offset_default=45;
+        $ctrl_height = (isset($ctrl_offset[$mime_content['extension']]))?($ctrl_offset[$mime_content['extension']]):$ctrl_offset_default;
+        $image_size['whole']='width="'.$CURRENT_PIC_DATA['pwidth'].'" height="'.($CURRENT_PIC_DATA['pheight']+$ctrl_height).'"';
+    }
+
+    if ($mime_content['content']=='image') {
+        if (isset($image_size['reduced'])) {
+            $winsizeX = $CURRENT_PIC_DATA['pwidth'] + 16;
+            $winsizeY = $CURRENT_PIC_DATA['pheight'] + 16;
+            $pic_html = "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('displayimage.php?pid=$pid&amp;fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=yes,status=yes,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
+            $pic_title = $lang_display_image_php['view_fs'] . "\n==============\n" . $pic_title;
+            $pic_html .= "<img src=\"" . $picture_url . "\" class=\"image\" border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
+            $pic_html .= "</a>\n";
+        } else {
+            $pic_html = "<img src=\"" . $picture_url . "\" {$image_size['geom']} class=\"image\" border=\"0\" alt=\"\" /><br />\n";
+        }
+    } elseif ($mime_content['content']=='document') {
+        $pic_thumb_url = get_pic_url($CURRENT_PIC_DATA,'thumb');
+        $pic_html = "<a href=\"{$picture_url}\" target=\"_blank\" class=\"document_link\"><img src=\"".$pic_thumb_url."\" border=\"0\" class=\"image\" /></a>\n<br />";
+    } else {
+                   $autostart = ($CONFIG['mv_autostart']) ? ('true'):('false');
+            $pic_html = "<object {$image_size['whole']}><param name=\"autostart\" value=\"$autostart\"><param name=\"src\" value=\"". $picture_url . "\"><embed {$image_size['whole']} src=\"". $picture_url . "\" autostart=\"$autostart\"></embed></object><br />\n";
+    }
+
+    $CURRENT_PIC_DATA['html'] = $pic_html;
+    $CURRENT_PIC_DATA['header'] = '';
+    $CURRENT_PIC_DATA['footer'] = '';
+
+    $CURRENT_PIC_DATA = CPGPluginAPI::filter('file_data',$CURRENT_PIC_DATA);
+
+    $params = array('{CELL_HEIGHT}' => '100',
+        '{IMAGE}' => $CURRENT_PIC_DATA['header'].$CURRENT_PIC_DATA['html'].$CURRENT_PIC_DATA['footer'],
+        '{ADMIN_MENU}' => $CURRENT_PIC_DATA['menu'],
+        '{TITLE}' => $CURRENT_PIC_DATA['title'],
+        '{CAPTION}' => bb_decode($CURRENT_PIC_DATA['caption']),
+        );
+
+    return template_eval($template_display_picture, $params);
+}
+
+
+function theme_html_img_nav_menu()
+{
+    global $CONFIG, $CURRENT_PIC_DATA, $meta_nav ; //$PHP_SELF,
+    global $album, $cat, $pos, $pic_count, $lang_img_nav_bar, $lang_text_dir, $template_img_navbar;
+
+    $cat_link = is_numeric($album) ? '' : '&amp;cat=' . $cat;
+
+    $human_pos = $pos + 1;
+    $page = ceil(($pos + 1) / ($CONFIG['thumbrows'] * $CONFIG['thumbcols']));
+    $pid = $CURRENT_PIC_DATA['pid'];
+
+    if ($pos > 0) {
+        $prev = $pos - 1;
+        $prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$prev";
+        $prev_title = $lang_img_nav_bar['prev_title'];
+                $meta_nav .= "<link rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />
+                ";
+    } else {
+        $prev_tgt = "javascript:;";
+        $prev_title = "";
+    }
+    if ($pos < ($pic_count -1)) {
+        $next = $pos + 1;
+        $next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$next";
+        $next_title = $lang_img_nav_bar['next_title'];
+                $meta_nav .= "<link rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>
+                ";
+    } else {
+        $next_tgt = "javascript:;";
+        $next_title = "";
+    }
+
+    if (USER_CAN_SEND_ECARDS) {
+        $ecard_tgt = "ecard.php?album=$album$cat_link&amp;pid=$pid&amp;pos=$pos";
+        $ecard_title = $lang_img_nav_bar['ecard_title'];
+    } else {
+        template_extract_block($template_img_navbar, 'ecard_button'); // added to remove button if cannot send ecard
+        /*$ecard_tgt = "javascript:alert('" . addslashes($lang_img_nav_bar['ecard_disabled_msg']) . "');";
+        $ecard_title = $lang_img_nav_bar['ecard_disabled'];*/
+    }
+
+                //report to moderator buttons
+    if (($CONFIG['report_post']==1) && (USER_CAN_SEND_ECARDS)) {
+                                $report_tgt = "report_file.php?album=$album$cat_link&amp;pid=$pid&amp;pos=$pos";
+    } else { // remove button if report toggle is off
+        template_extract_block($template_img_navbar, 'report_file_button');
+
+    }
+
+                    $thumb_tgt = "thumbnails.php?album=$album$cat_link&amp;page=$page";
+        $meta_nav .= "<link rel=\"up\" href=\"$thumb_tgt\" title=\"".$lang_img_nav_bar['thumb_title']."\"/>
+        ";
+
+    $slideshow_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pid=$pid&amp;slideshow=".$CONFIG['slideshow_interval'];
+
+    $pic_pos = sprintf($lang_img_nav_bar['pic_pos'], $human_pos, $pic_count);
+
+    $params = array('{THUMB_TGT}' => $thumb_tgt,
+        '{THUMB_TITLE}' => $lang_img_nav_bar['thumb_title'],
+        '{PIC_INFO_TITLE}' => $lang_img_nav_bar['pic_info_title'],
+        '{SLIDESHOW_TGT}' => $slideshow_tgt,
+        '{SLIDESHOW_TITLE}' => $lang_img_nav_bar['slideshow_title'],
+        '{PIC_POS}' => $pic_pos,
+        '{ECARD_TGT}' => $ecard_tgt,
+        '{ECARD_TITLE}' => $ecard_title,
+		'{PREV_TGT}' => $prev_tgt,
+        '{PREV_TITLE}' => $prev_title,
+        '{NEXT_TGT}' => $next_tgt,
+        '{NEXT_TITLE}' => $next_title,
+        '{PREV_IMAGE}' => ($lang_text_dir=='ltr') ? 'prev' : 'next',
+        '{NEXT_IMAGE}' => ($lang_text_dir=='ltr') ? 'next' : 'prev',
+        '{REPORT_TGT}' => $report_tgt,
+        '{REPORT_TITLE}' => $lang_img_nav_bar['report_title'],
+        );
+
+    return template_eval($template_img_navbar, $params);
+}
+
+function theme_html_rating_box()
+{
+    global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA;
+    global $template_image_rating, $lang_rate_pic;
+
+    if (!(USER_CAN_RATE_PICTURES && $CURRENT_ALBUM_DATA['votes'] == 'YES')) return '';
+
+    $votes = $CURRENT_PIC_DATA['votes'] ? sprintf($lang_rate_pic['rating'], round($CURRENT_PIC_DATA['pic_rating'] / 2000, 1), $CURRENT_PIC_DATA['votes']) : $lang_rate_pic['no_votes'];
+    $pid = $CURRENT_PIC_DATA['pid'];
+
+    $params = array('{TITLE}' => $lang_rate_pic['rate_this_pic'],
+        '{VOTES}' => $votes,
+        '{RATE0}' => "ratepic.php?pic=$pid&amp;rate=0",
+        '{RATE1}' => "ratepic.php?pic=$pid&amp;rate=1",
+        '{RATE2}' => "ratepic.php?pic=$pid&amp;rate=2",
+        '{RATE3}' => "ratepic.php?pic=$pid&amp;rate=3",
+        '{RATE4}' => "ratepic.php?pic=$pid&amp;rate=4",
+        '{RATE5}' => "ratepic.php?pic=$pid&amp;rate=5",
+        '{RUBBISH}' => $lang_rate_pic['rubbish'],
+        '{POOR}' => $lang_rate_pic['poor'],
+        '{FAIR}' => $lang_rate_pic['fair'],
+        '{GOOD}' => $lang_rate_pic['good'],
+        '{EXCELLENT}' => $lang_rate_pic['excellent'],
+        '{GREAT}' => $lang_rate_pic['great'],
+        );
+
+    return template_eval($template_image_rating, $params);
+}
+
+// Displays comments for a specific picture
+function theme_html_comments($pid)
+{
+    global $CONFIG, $USER, $CURRENT_ALBUM_DATA, $comment_date_fmt, $HTML_SUBST;
+    global $template_image_comments, $template_add_your_comment, $lang_display_comments;
+
+    $html = '';
+
+//report to moderator buttons
+    if (($CONFIG['report_post']==1) && (USER_CAN_SEND_ECARDS)) {
+                                $report_comment_tgt = "report_file.php?album=$album$cat_link&amp;pid=$pid&amp;pos=$pos&amp;what=comment";
+    } else { // remove buttons if report toggle is off
+        template_extract_block($template_image_comments, 'report_comment_button');
+    }
+
+    if (!$CONFIG['enable_smilies']) {
+        $tmpl_comment_edit_box = template_extract_block($template_image_comments, 'edit_box_no_smilies', '{EDIT}');
+        template_extract_block($template_image_comments, 'edit_box_smilies');
+        template_extract_block($template_add_your_comment, 'input_box_smilies');
+    } else {
+        $tmpl_comment_edit_box = template_extract_block($template_image_comments, 'edit_box_smilies', '{EDIT}');
+        template_extract_block($template_image_comments, 'edit_box_no_smilies');
+        template_extract_block($template_add_your_comment, 'input_box_no_smilies');
+    }
+
+    $tmpl_comments_buttons = template_extract_block($template_image_comments, 'buttons', '{BUTTONS}');
+    $tmpl_comments_ipinfo = template_extract_block($template_image_comments, 'ipinfo', '{IPINFO}');
+
+    if ($CONFIG['comments_sort_descending'] == 1) {
+        $comment_sort_order = 'DESC';
+    } else {
+        $comment_sort_order = 'ASC';
+    }
+    $result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid' ORDER BY msg_id $comment_sort_order");
+
+    while ($row = mysql_fetch_array($result)) {
+        $user_can_edit = (GALLERY_ADMIN_MODE) || (USER_ID && USER_ID == $row['author_id'] && USER_CAN_POST_COMMENTS) || (!USER_ID && USER_CAN_POST_COMMENTS && ($USER['ID'] == $row['author_md5_id']));
+        $comment_buttons = $user_can_edit ? $tmpl_comments_buttons : '';
+        $comment_edit_box = $user_can_edit ? $tmpl_comment_edit_box : '';
+        $comment_ipinfo = ($row['msg_raw_ip'] && GALLERY_ADMIN_MODE)?$tmpl_comments_ipinfo : '';
+
+        if ($CONFIG['enable_smilies']) {
+            $comment_body = process_smilies(make_clickable($row['msg_body']));
+            $smilies = generate_smilies("f{$row['msg_id']}", 'msg_body');
+        } else {
+            $comment_body = make_clickable($row['msg_body']);
+            $smilies = '';
+        }
+
+        $params = array('{EDIT}' => &$comment_edit_box,
+            '{BUTTONS}' => &$comment_buttons,
+            '{IPINFO}' => &$comment_ipinfo
+            );
+
+        $template = template_eval($template_image_comments, $params);
+
+        $params = array('{MSG_AUTHOR}' => $row['msg_author'],
+            '{MSG_ID}' => $row['msg_id'],
+            '{EDIT_TITLE}' => &$lang_display_comments['edit_title'],
+            '{CONFIRM_DELETE}' => &$lang_display_comments['confirm_delete'],
+            '{MSG_DATE}' => localised_date($row['msg_date'], $comment_date_fmt),
+            '{MSG_BODY}' => &$comment_body,
+            '{MSG_BODY_RAW}' => $row['msg_body'],
+            '{OK}' => &$lang_display_comments['OK'],
+            '{SMILIES}' => $smilies,
+            '{HDR_IP}' => $row['msg_hdr_ip'],
+            '{RAW_IP}' => $row['msg_raw_ip'],
+            '{REPORT_COMMENT_TGT}' => $report_comment_tgt,
+			'{REPORT_COMMENT_TITLE}' => &$lang_display_comments['report_comment_title'],
+            );
+
+        $html .= template_eval($template, $params);
+    }
+
+    if (USER_CAN_POST_COMMENTS && $CURRENT_ALBUM_DATA['comments'] == 'YES') {
+        if (USER_ID) {
+            $user_name_input = '<input type="hidden" name="msg_author" value="' . USER_NAME . '" />';
+            template_extract_block($template_add_your_comment, 'user_name_input', $user_name_input);
+            $user_name = '';
+        } else {
+            $user_name = isset($USER['name']) ? '"' . strtr($USER['name'], $HTML_SUBST) . '"' : '"' . $lang_display_comments['your_name'] . '" onclick="javascript:this.value=\'\';"';
+        }
+
+        $params = array('{ADD_YOUR_COMMENT}' => $lang_display_comments['add_your_comment'],
+            // Modified Name and comment field
+            '{NAME}' => $lang_display_comments['name'],
+            '{COMMENT}' => $lang_display_comments['comment'],
+            '{PIC_ID}' => $pid,
+            '{USER_NAME}' => $user_name,
+            '{MAX_COM_LENGTH}' => $CONFIG['max_com_size'],
+            '{OK}' => $lang_display_comments['OK'],
+            '{SMILIES}' => '',
+            );
+
+        if ($CONFIG['enable_smilies']) $params['{SMILIES}'] = generate_smilies();
+
+        $html .= template_eval($template_add_your_comment, $params);
+    }
+
+    return $html;
+}
+
+function theme_slideshow()
+{
+    global $CONFIG, $lang_display_image_php, $template_display_picture;
+
+    pageheader($lang_display_image_php['slideshow']);
+
+    include "include/slideshow.inc.php";
+
+    $start_slideshow = '<script language="JavaScript" type="text/JavaScript">runSlideShow()</script>';
+    template_extract_block($template_display_picture, 'img_desc', $start_slideshow);
+
+    $params = array('{CELL_HEIGHT}' => $CONFIG['picture_width'] + 100,
+        '{IMAGE}' => '<img src="' . $start_img . '" name="SlideShow" class="image" /><br />',
+        '{ADMIN_MENU}' => '',
+        );
+
+    starttable();
+    echo template_eval($template_display_picture, $params);
+    endtable();
+    starttable();
+    echo <<<EOT
+        <tr>
+                <td align="center" class="navmenu" style="white-space: nowrap;">
+                        <a href="javascript:endSlideShow()" class="navmenu">{$lang_display_image_php['stop_slideshow']}</a>
+                </td>
+        </tr>
+
+EOT;
+    endtable();
+    pagefooter();
+}
+
+// Display the full size image
+function theme_display_fullsize_pic()
+{
+    global $CONFIG, $THEME_DIR, $ALBUM_SET;
+    global $lang_errors, $lang_fullsize_popup, $lang_charset;
+
+    if (isset($_GET['picfile'])) 
+    {
+        if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+
+    $picfile = $_GET['picfile'];
+    $picname = $CONFIG['fullpath'] . $picfile;
+    $imagesize = @getimagesize($picname);
+    $imagedata = array('name' => $picfile, 'path' => path2url($picname), 'geometry' => $imagesize[3]);
+    } 
+    elseif (isset($_GET['pid'])) 
+    {
+    $pid = (int)$_GET['pid'];
+    $sql = "SELECT * " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='$pid' $ALBUM_SET";
+    $result = cpg_db_query($sql);
+
+    if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+
+    $row = mysql_fetch_array($result);
+    $pic_url = get_pic_url($row, 'fullsize');
+    $geom = 'width="' . $row['pwidth'] . '" height="' . $row['pheight'] . '"';
+    $imagedata = array('name' => $row['filename'], 'path' => $pic_url, 'geometry' => $geom);
+    }
+    
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title><?php echo $CONFIG['gallery_name'] ?>: <?php echo $lang_fullsize_popup['click_to_close'];
+    ?></title>
+<meta http-equiv="content-type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'] ?>" />
+<link rel="stylesheet" href="<?php echo $THEME_DIR ?>style.css" />
+<script type="text/javascript" src="scripts.js"></script>
+</head>
+<body class="tableb" scroll="auto" marginwidth="0" marginheight="0">
+<script language="JavaScript" type="text/JavaScript">
+adjust_popup();
+</script>
+
+<table width="100%" border="0" cellpadding="0" cellspacing="2">
+ <td align="center" valign="middle">
+  <table cellspacing="2" cellpadding="0" style="border: 1px solid #000000; background-color: #FFFFFF;">
+   <td>
+<?php     echo  '<a href="javascript: window.close()"><img src="' 
+    . htmlspecialchars($imagedata['path']) . '" ' 
+    . $imagedata['geometry'] 
+    . ' class="image"  alt="'
+    . htmlspecialchars($imagedata['name'])
+    . '" title="' 
+    . htmlspecialchars($imagedata['name']) 
+    . "\n" . $lang_fullsize_popup['click_to_close'] 
+    . '" /></a><br />' ."\n";
+ ?>
+   </td>
+  </table>
+ </td>
+</table>
+</body>
+</html>
+<?php
+}
+
 ?>
