@@ -379,16 +379,16 @@ function alb_list_box()
 
 if (!isset($HTTP_GET_VARS['album'])) {
     if (GALLERY_ADMIN_MODE) {
-        $results = mysql_query("SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE 1 LIMIT 1");
+        $results = db_query("SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE 1 LIMIT 1");
     } else {
-        $results = mysql_query("SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = " . (FIRST_USER_CAT + USER_ID) . " LIMIT 1");
+        $results = db_query("SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = " . (FIRST_USER_CAT + USER_ID) . " LIMIT 1");
     }
     if (mysql_num_rows($results) == 0) cpg_die(ERROR, $lang_modifyalb_php['err_no_alb_to_modify'], __FILE__, __LINE__);
     $ALBUM_DATA = mysql_fetch_array($results);
     $album = $ALBUM_DATA['aid'];
 } else {
     $album = (int)$HTTP_GET_VARS['album'];
-    $results = mysql_query("SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
+    $results = db_query("SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
     if (!mysql_num_rows($results)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
     $ALBUM_DATA = mysql_fetch_array($results);
 }

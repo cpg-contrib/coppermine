@@ -274,7 +274,7 @@ function getallalbumsindb(&$album_array)
     global $CONFIG;
 
     $sql = "SELECT aid, title " . "FROM {$CONFIG['TABLE_ALBUMS']} " . "WHERE 1";
-    $result = mysql_query($sql);
+    $result = db_query($sql);
 
     while ($row = mysql_fetch_array($result)) {
         $album_array[$row['aid']] = $row['title'];

@@ -34,7 +34,7 @@ function update_system_thumbs()
 {
     global $CONFIG;
 
-    $results = mysql_query("SELECT * FROM ".$CONFIG['TABLE_PREFIX']."config;");
+    $results = db_query("SELECT * FROM ".$CONFIG['TABLE_PREFIX']."config;");
     while ($row = mysql_fetch_array($results)) {
         $CONFIG[$row['name']] = $row['value'];
     } // while
@@ -254,7 +254,7 @@ function update_tables()
 
     foreach($sql_query as $q) {
         echo "<tr><td class='tableb'>$q</td>";
-        if (mysql_query($q)) {
+        if (db_query($q)) {
             echo "<td class='updatesOK'>OK</td>";
         } else {
             echo "<td class='updatesFail'>Already Done</td>";

@@ -187,12 +187,12 @@ EOT;
 
         //Query the database to determine the category the album belongs to.
         $vQuery = "SELECT category FROM " . $CONFIG['TABLE_ALBUMS'] . " WHERE aid='" . $album_id . "'";
-        $vRes = mysql_query($vQuery);
+        $vRes = db_query($vQuery);
         $vRes = mysql_fetch_array($vRes);
 
         // Query the database to get the category name.
         $vQuery = "SELECT name FROM " . $CONFIG['TABLE_CATEGORIES'] . " WHERE cid='" . $vRes['category'] . "'";
-        $vRes = mysql_query($vQuery);
+        $vRes = db_query($vQuery);
         $vRes = mysql_fetch_array($vRes);
 
         // Create the option for the drop down list.
@@ -207,12 +207,12 @@ EOT;
 
         //Query the database to determine the category the album belongs to.
         $vQuery = "SELECT category FROM " . $CONFIG['TABLE_ALBUMS'] . " WHERE aid='" . $album_id . "'";
-        $vRes = mysql_query($vQuery);
+        $vRes = db_query($vQuery);
         $vRes = mysql_fetch_array($vRes);
 
         // Query the database to get the category name.
         $vQuery = "SELECT name FROM " . $CONFIG['TABLE_CATEGORIES'] . " WHERE cid='" . $vRes['category'] . "'";
-        $vRes = mysql_query($vQuery);
+        $vRes = db_query($vQuery);
         $vRes = mysql_fetch_array($vRes);
 
         // Create the option for the drop down list.
@@ -471,7 +471,7 @@ function create_record($encoded_string) {
     $generic_array = array();
 
     // Get all IDs from the table.
-    $result = mysql_query("SELECT unique_ID FROM {$CONFIG['TABLE_TEMPDATA']}");
+    $result = db_query("SELECT unique_ID FROM {$CONFIG['TABLE_TEMPDATA']}");
 
     // Create unique ID array.
     if (mysql_num_rows($result)) {
@@ -506,7 +506,7 @@ function create_record($encoded_string) {
     $timestamp = time();
 
     // Insert the new record.
-    $result = mysql_query("INSERT INTO {$CONFIG['TABLE_TEMPDATA']} VALUES ('$unique_ID', '$encoded_string', '$timestamp')");
+    $result = db_query("INSERT INTO {$CONFIG['TABLE_TEMPDATA']} VALUES ('$unique_ID', '$encoded_string', '$timestamp')");
 
     // Return the unique ID if insertion was successful. Otherwise, return false.
     if ($result) {
@@ -528,7 +528,7 @@ function update_record($unique_ID, $encoded_string) {
     global $CONFIG;
 
     // Update record.
-    $result = mysql_query("UPDATE {$CONFIG['TABLE_TEMPDATA']} SET encoded_string = '$encoded_string' WHERE unique_ID = '$unique_ID'");
+    $result = db_query("UPDATE {$CONFIG['TABLE_TEMPDATA']} SET encoded_string = '$encoded_string' WHERE unique_ID = '$unique_ID'");
 
     // Return true if successful.
     if ($result) {
@@ -550,7 +550,7 @@ function delete_record($unique_ID) {
     global $CONFIG;
 
     // Delete record.
-    $result = mysql_query("DELETE FROM {$CONFIG['TABLE_TEMPDATA']} WHERE unique_ID = '$unique_ID'");
+    $result = db_query("DELETE FROM {$CONFIG['TABLE_TEMPDATA']} WHERE unique_ID = '$unique_ID'");
 
     // Return true if successful.
     if ($result) {
@@ -572,7 +572,7 @@ function retrieve_record($unique_ID) {
     global $CONFIG;
 
     // Retrieve record.
-    $result = mysql_query("SELECT encoded_string FROM {$CONFIG['TABLE_TEMPDATA']} WHERE unique_ID = '$unique_ID'");
+    $result = db_query("SELECT encoded_string FROM {$CONFIG['TABLE_TEMPDATA']} WHERE unique_ID = '$unique_ID'");
 
     // Return string if successful.
     if (mysql_num_rows($result)) {
@@ -611,7 +611,7 @@ function clean_table() {
     $comparative_timestamp = time() - 3600;
 
     // Delete record.
-    $result = mysql_query("DELETE FROM {$CONFIG['TABLE_TEMPDATA']} WHERE timestamp < $comparative_timestamp");
+    $result = db_query("DELETE FROM {$CONFIG['TABLE_TEMPDATA']} WHERE timestamp < $comparative_timestamp");
 
     // Return true if successful.
     if ($result) {
@@ -820,9 +820,9 @@ if ((CUSTOMIZE_UPLOAD_FORM) and (!isset($_REQUEST['file_upload_request'])) and (
 // Get public and private albums, and set maximum individual file size.
 
 if (GALLERY_ADMIN_MODE) {
-    $public_albums = mysql_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
+    $public_albums = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
 } else {
-    $public_albums = mysql_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " AND uploads='YES' ORDER BY title");
+    $public_albums = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " AND uploads='YES' ORDER BY title");
 }
 if (mysql_num_rows($public_albums)) {
     $public_albums_list = db_fetch_rowset($public_albums);
@@ -831,7 +831,7 @@ if (mysql_num_rows($public_albums)) {
 }
 
 if (USER_ID) {
-    $user_albums = mysql_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' ORDER BY title");
+    $user_albums = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' ORDER BY title");
     if (mysql_num_rows($user_albums)) {
         $user_albums_list = db_fetch_rowset($user_albums);
     } else {

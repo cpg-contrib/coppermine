@@ -205,7 +205,7 @@ function html_album_list(&$alb_count)
     global $CONFIG;
 
     if (USER_IS_ADMIN) {
-        $public_albums = mysql_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
+        $public_albums = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
         if (mysql_num_rows($public_albums)) {
             $public_albums_list = db_fetch_rowset($public_albums);
         } else {
@@ -216,7 +216,7 @@ function html_album_list(&$alb_count)
     }
 
     if (USER_ID) {
-        $user_albums = mysql_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' ORDER BY title");
+        $user_albums = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' ORDER BY title");
         if (mysql_num_rows($user_albums)) {
             $user_albums_list = db_fetch_rowset($user_albums);
         } else {

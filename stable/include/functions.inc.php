@@ -74,9 +74,9 @@ function db_query($query, $link_id = 0)
 
         $query_start = cpgGetMicroTime();
         if (($link_id)) {
-            $result = mysql_query($query, $link_id);
+            $result = db_query($query, $link_id);
         } else {
-                $result = mysql_query($query);
+                $result = db_query($query);
         }
         $query_end = cpgGetMicroTime();
         if (isset($CONFIG['debug_mode']) && (($CONFIG['debug_mode']==1) || ($CONFIG['debug_mode']==2) )) {
@@ -1516,7 +1516,7 @@ function cpg_phpinfo_mod_output($search,$output_type)
 
 function cpg_phpinfo_mysql_version()
 {
-    $result = mysql_query("SELECT VERSION() as version");
+    $result = db_query("SELECT VERSION() as version");
     $row = mysql_fetch_row($result);
     return $row[0];
 }

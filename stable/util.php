@@ -59,7 +59,7 @@ function filenametotitle($delete)
     global $picturetbl, $lang_util_php;
 
     $query = "SELECT * FROM $picturetbl WHERE aid = '$albumid'";
-    $result = MYSQL_QUERY($query);
+    $result = db_query($query);
     $num = mysql_numrows($result);
 
     $i = 0;
@@ -100,7 +100,7 @@ function filenametotitle($delete)
         my_flush();
 
         $query = "UPDATE $picturetbl SET title='$newtitle' WHERE pid='$pid' ";
-        MYSQL_QUERY($query);
+        db_query($query);
 
         ++$i;
     }
@@ -139,7 +139,7 @@ function updatethumbs()
     $startpic = $_POST['startpic'];
 
     $query = "SELECT * FROM $picturetbl WHERE aid = '$albumid'";
-    $result = MYSQL_QUERY($query);
+    $result = db_query($query);
     $totalpics = mysql_numrows($result);
 
     if ($startpic == 0) {
@@ -210,7 +210,7 @@ function deleteorig()
     $albumid = $_POST['albumid'];
 
     $query = "SELECT * FROM $picturetbl WHERE aid = '$albumid'";
-    $result = MYSQL_QUERY($query);
+    $result = db_query($query);
     $num = mysql_numrows($result);
 
     $i = 0;
@@ -229,16 +229,16 @@ function deleteorig()
                 $total_filesize = $image_filesize + filesize($thumb);
 
                 $query = "UPDATE $picturetbl SET filesize='$image_filesize' WHERE pid='$pid' ";
-                MYSQL_QUERY($query);
+                db_query($query);
 
                 $query = "UPDATE $picturetbl SET total_filesize='$total_filesize' WHERE pid='$pid' ";
-                MYSQL_QUERY($query);
+                db_query($query);
 
                 $query = "UPDATE $picturetbl SET pwidth='{$imagesize[0]}' WHERE pid='$pid' ";
-                MYSQL_QUERY($query);
+                db_query($query);
 
                 $query = "UPDATE $picturetbl SET pheight='{$imagesize[1]}' WHERE pid='$pid' ";
-                MYSQL_QUERY($query);
+                db_query($query);
                 printf($lang_util_php['main_success'], $normal);
                 print '!<br>';
             } else {
