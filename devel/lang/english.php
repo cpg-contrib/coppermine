@@ -1294,6 +1294,7 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'no_pic_found' => 'No new file was found',
   'be_patient' => 'Please be patient, the script needs time to add the files',
   'no_album' => 'no album selected',
+  'result_icon' => 'click for details or to reload',  //cpg1.4.0
   'notes' =>  '<ul>'.
                           '<li><b>OK</b> : means that the file was succesfully added'.
                           '<li><b>DP</b> : means that the file is a duplicate and is already in the database'.
