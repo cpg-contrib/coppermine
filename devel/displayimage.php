@@ -147,23 +147,6 @@ function html_picture()
      $condition = false;
     }
 
-
-
-    if ($CONFIG['make_intermediate'] && $condition ) {
-        $picture_url = get_pic_url($CURRENT_PIC_DATA, 'normal');
-    } else {
-        $picture_url = get_pic_url($CURRENT_PIC_DATA, 'fullsize');
-    }
-    $pic_thumb_url = get_pic_url($CURRENT_PIC_DATA,'thumb');
-
-    $picture_menu = ((USER_ADMIN_MODE && $CURRENT_ALBUM_DATA['category'] == FIRST_USER_CAT + USER_ID) || GALLERY_ADMIN_MODE) ? html_picture_menu($pid) : '';
-
-    $image_size = compute_img_size($CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight'], $CONFIG['picture_width']);
-
-    $pic_title = '';
-    $mime_content = get_type($CURRENT_PIC_DATA['filename']);
-
-
     if ($CURRENT_PIC_DATA['title'] != '') {
         $pic_title .= $CURRENT_PIC_DATA['title'] . "\n";
     }
@@ -173,6 +156,30 @@ function html_picture()
     if ($CURRENT_PIC_DATA['keywords'] != '') {
         $pic_title .= $lang_picinfo['Keywords'] . ": " . $CURRENT_PIC_DATA['keywords'];
     }
+
+    if (!$CURRENT_PIC_DATA['title'] && !$CURRENT_PIC_DATA['caption']) {
+        template_extract_block($template_display_picture, 'img_desc');
+    } else {
+        if (!$CURRENT_PIC_DATA['title']) {
+            template_extract_block($template_display_picture, 'title');
+        }
+        if (!$CURRENT_PIC_DATA['caption']) {
+            template_extract_block($template_display_picture, 'caption');
+        }
+    }
+
+    $CURRENT_PIC_DATA['menu'] = ((USER_ADMIN_MODE && $CURRENT_ALBUM_DATA['category'] == FIRST_USER_CAT + USER_ID) || GALLERY_ADMIN_MODE) ? html_picture_menu($pid) : '';
+
+    if ($CONFIG['make_intermediate'] && $condition ) {
+        $picture_url = get_pic_url($CURRENT_PIC_DATA, 'normal');
+    } else {
+        $picture_url = get_pic_url($CURRENT_PIC_DATA, 'fullsize');
+    }
+
+    $image_size = compute_img_size($CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight'], $CONFIG['picture_width']);
+
+    $pic_title = '';
+    $mime_content = get_type($CURRENT_PIC_DATA['filename']);
 
     if ($CURRENT_PIC_DATA['pwidth']==0 || $CURRENT_PIC_DATA['pheight']==0) {
         $image_size['geom']='';
@@ -199,26 +206,22 @@ function html_picture()
             $pic_html = "<img src=\"" . $picture_url . "\" {$image_size['geom']} class=\"image\" border=\"0\" alt=\"\" /><br />\n";
         }
     } elseif ($mime_content['content']=='document') {
+        $pic_thumb_url = get_pic_url($CURRENT_PIC_DATA,'thumb');
         $pic_html = "<a href=\"{$picture_url}\" target=\"_blank\" class=\"document_link\"><img src=\"".$pic_thumb_url."\" border=\"0\" class=\"image\" /></a>\n<br />";
     } else {
-           	$autostart = ($CONFIG['mv_autostart'])? ('true'):('false');
+           	$autostart = ($CONFIG['mv_autostart']) ? ('true'):('false');
             $pic_html = "<object {$image_size['whole']}><param name=\"autostart\" value=\"$autostart\"><param name=\"src\" value=\"". $picture_url . "\"><embed {$image_size['whole']} src=\"". $picture_url . "\" autostart=\"$autostart\"></embed></object><br />\n";
     }
 
-    if (!$CURRENT_PIC_DATA['title'] && !$CURRENT_PIC_DATA['caption']) {
-        template_extract_block($template_display_picture, 'img_desc');
-    } else {
-        if (!$CURRENT_PIC_DATA['title']) {
-            template_extract_block($template_display_picture, 'title');
-        }
-        if (!$CURRENT_PIC_DATA['caption']) {
-            template_extract_block($template_display_picture, 'caption');
-        }
-    }
+    $CURRENT_PIC_DATA['html'] = $pic_html;
+    $CURRENT_PIC_DATA['header'] = '';
+    $CURRENT_PIC_DATA['footer'] = '';
+
+    CPGPluginAPI::filter('file_data',$CURRENT_PIC_DATA);
 
     $params = array('{CELL_HEIGHT}' => '100',
-        '{IMAGE}' => $pic_html,
-        '{ADMIN_MENU}' => $picture_menu,
+        '{IMAGE}' => $CURRENT_PIC_DATA['header'].$CURRENT_PIC_DATA['html'].$CURRENT_PIC_DATA['footer'],
+        '{ADMIN_MENU}' => $CURRENT_PIC_DATA['menu'],
         '{TITLE}' => $CURRENT_PIC_DATA['title'],
         '{CAPTION}' => bb_decode($CURRENT_PIC_DATA['caption']),
         );
@@ -335,6 +338,11 @@ function html_picinfo()
     } else {
         $info[$lang_picinfo['addFavPhrase']] = "<a href=\"addfav.php?pid=" . $CURRENT_PIC_DATA['pid'] . "\" >" . $lang_picinfo['remFav'] . '</a>';
     }
+
+    /**
+     * Filter file information
+     */
+    $info = CPGPluginAPI::filter('file_info',$info);
 
     return theme_html_picinfo($info);
 }
