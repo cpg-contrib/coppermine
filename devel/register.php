@@ -267,7 +267,7 @@ function check_user_info(&$error)
     // email notification to admin
         if ($CONFIG['reg_notify_admin_email'])
         {
-        cpg_mail($CONFIG['gallery_admin_email'], sprintf($lang_register_php['notify_admin_email_subject'], $CONFIG['gallery_name']), sprintf($lang_register_php['notify_admin_email_body'], $user_name));
+        cpg_mail('admin', sprintf($lang_register_php['notify_admin_email_subject'], $CONFIG['gallery_name']), sprintf($lang_register_php['notify_admin_email_body'], $user_name));
         }
 
     return true;
