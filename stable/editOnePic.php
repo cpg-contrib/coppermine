@@ -1,6 +1,6 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.1                                            //
+// Coppermine Photo Gallery 1.3.2                                            //
 // ------------------------------------------------------------------------- //
 // Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
@@ -120,12 +120,12 @@ function form_alb_list_box()
         $sel_album = $CURRENT_PIC['aid'];
 
         echo <<<EOT
-		<tr>
-			<td class="tableb" style="white-space: nowrap;">
-				{$lang_editpics_php['album']}
-        	</td>
-        	<td class="tableb" valign="top">
-				<select name="aid" class="listbox">
+                <tr>
+                        <td class="tableb" style="white-space: nowrap;">
+                                {$lang_editpics_php['album']}
+                </td>
+                <td class="tableb" valign="top">
+                                <select name="aid" class="listbox">
 
 EOT;
                 foreach($public_albums_list as $album) {
@@ -135,9 +135,9 @@ EOT;
                         echo '                        <option value="'.$album['aid'].'"'.($album['aid'] == $sel_album ? ' selected="selected"' : '').'>* '.$album['title'] . "</option>\n";
                 }
         echo <<<EOT
-				</select>
-			</td>
-		</tr>
+                                </select>
+                        </td>
+                </tr>
 
 EOT;
 }
@@ -204,19 +204,19 @@ if (defined('UPLOAD_APPROVAL_MODE')) {
 
 print <<<EOT
         <tr>
-			<td class="tableh2" colspan="3">
-				<b>$filename</b>
-			</td>
+                        <td class="tableh2" colspan="3">
+                                <b>$filename</b>
+                        </td>
         </tr>
         <tr>
-			<td class="tableb" style="white-space: nowrap;">
-				{$lang_editpics_php['pic_info']}
-			</td>
-			<td class="tableb">
-				$pic_info
-			</td>
-				<td class="tableb" align="center" rowspan="$THUMB_ROWSPAN">
-				<a href="$thumb_link"><img src="$thumb_url" class="image" border="0" alt="{$CURRENT_PIC['title']}"/></a><br />
+                        <td class="tableb" style="white-space: nowrap;">
+                                {$lang_editpics_php['pic_info']}
+                        </td>
+                        <td class="tableb">
+                                $pic_info
+                        </td>
+                                <td class="tableb" align="center" rowspan="$THUMB_ROWSPAN">
+                                <a href="$thumb_link"><img src="$thumb_url" class="image" border="0" alt="{$CURRENT_PIC['title']}"/></a><br />
             </td>
         </tr>
 EOT;
@@ -225,30 +225,30 @@ form_alb_list_box();
 
 print <<<EOT
         <tr>
-			<td class="tableb" style="white-space: nowrap;">
-			{$lang_editpics_php['title']}
-        	</td>
-        	<td width="100%" class="tableb" valign="top">
-				<input type="text" style="width: 100%" name="title" maxlength="255" value="{$CURRENT_PIC['title']}" class="textinput" />
-			</td>
+                        <td class="tableb" style="white-space: nowrap;">
+                        {$lang_editpics_php['title']}
+                </td>
+                <td width="100%" class="tableb" valign="top">
+                                <input type="text" style="width: 100%" name="title" maxlength="255" value="{$CURRENT_PIC['title']}" class="textinput" />
+                        </td>
         </tr>
 EOT;
 echo <<<EOT
         <tr>
-			<td class="tableb" valign="top" style="white-space: nowrap;">
-				{$lang_editpics_php['desc']}
-			</td>
-			<td class="tableb" valign="top">
-				<textarea name="caption" rows="5" cols="40" class="textinput" style="width: 100%;" onkeydown="textCounter(this, {$CONFIG['max_img_desc_length']});" onkeyup="textCounter(this, {$CONFIG['max_img_desc_length']});">{$CURRENT_PIC['caption']}</textarea>
-			</td>
+                        <td class="tableb" valign="top" style="white-space: nowrap;">
+                                {$lang_editpics_php['desc']}
+                        </td>
+                        <td class="tableb" valign="top">
+                                <textarea name="caption" rows="5" cols="40" class="textinput" style="width: 100%;" onkeydown="textCounter(this, {$CONFIG['max_img_desc_length']});" onkeyup="textCounter(this, {$CONFIG['max_img_desc_length']});">{$CURRENT_PIC['caption']}</textarea>
+                        </td>
         </tr>
         <tr>
-			<td class="tableb" style="white-space: nowrap;">
-				{$lang_editpics_php['keywords']}
-        	</td>
-        	<td width="100%" class="tableb" valign="top">
-				<input type="text" style="width: 100%" name="keywords" maxlength="255" value="{$CURRENT_PIC['keywords']}" class="textinput" />
-			</td>
+                        <td class="tableb" style="white-space: nowrap;">
+                                {$lang_editpics_php['keywords']}
+                </td>
+                <td width="100%" class="tableb" valign="top">
+                                <input type="text" style="width: 100%" name="keywords" maxlength="255" value="{$CURRENT_PIC['keywords']}" class="textinput" />
+                        </td>
         </tr>
 
 EOT;
@@ -257,10 +257,10 @@ echo <<<EOT
         <tr>
             <td class="tableb" style="white-space: nowrap;">
                 {$CONFIG['user_field1_name']}
-        	</td>
-        	<td width="100%" class="tableb" valign="top">
-				<input type="text" style="width: 100%" name="user1" maxlength="255" value="{$CURRENT_PIC['user1']}" class="textinput" />
-			</td>
+                </td>
+                <td width="100%" class="tableb" valign="top">
+                                <input type="text" style="width: 100%" name="user1" maxlength="255" value="{$CURRENT_PIC['user1']}" class="textinput" />
+                        </td>
         </tr>
 EOT;
 }
@@ -269,10 +269,10 @@ echo <<<EOT
         <tr>
             <td class="tableb" style="white-space: nowrap;">
                 {$CONFIG['user_field2_name']}
-        	</td>
-        	<td width="100%" class="tableb" valign="top">
+                </td>
+                <td width="100%" class="tableb" valign="top">
                 <input type="text" style="width: 100%" name="user2" maxlength="255" value="{$CURRENT_PIC['user2']}" class="textinput" />
-			</td>
+                        </td>
         </tr>
 EOT;
 }if ($CONFIG['user_field3_name'] != ''){
@@ -280,10 +280,10 @@ echo <<<EOT
         <tr>
             <td class="tableb" style="white-space: nowrap;">
                 {$CONFIG['user_field3_name']}
-        	</td>
-        	<td width="100%" class="tableb" valign="top">
+                </td>
+                <td width="100%" class="tableb" valign="top">
                 <input type="text" style="width: 100%" name="user3" maxlength="255" value="{$CURRENT_PIC['user3']}" class="textinput" />
-			</td>
+                        </td>
         </tr>
 EOT;
 }if ($CONFIG['user_field4_name'] != ''){
@@ -291,26 +291,26 @@ echo <<<EOT
         <tr>
             <td class="tableb" style="white-space: nowrap;">
                 {$CONFIG['user_field4_name']}
-        	</td>
-        	<td width="100%" class="tableb" valign="top">
+                </td>
+                <td width="100%" class="tableb" valign="top">
                 <input type="text" style="width: 100%" name="user4" maxlength="255" value="{$CURRENT_PIC['user4']}" class="textinput" />
-			</td>
+                        </td>
         </tr>
 EOT;
 }
 print <<<EOT
         <tr>
-			<td class="tableb" colspan="3" align="center">
-				<b><input type="checkbox" name="read_exif" value="1" class="checkbox" />{$lang_editpics_php['read_exif']}</b>&nbsp;
-				<b><input type="checkbox" name="reset_vcount" value="1" class="checkbox" />{$lang_editpics_php['reset_view_count']}</b>&nbsp;
-				<b><input type="checkbox" name="reset_votes" value="1" class="checkbox" />{$lang_editpics_php['reset_votes']}</b>&nbsp;
-				<b><input type="checkbox" name="del_comments" value="1" class="checkbox" />{$lang_editpics_php['del_comm']}</b>&nbsp;
-			</td>
+                        <td class="tableb" colspan="3" align="center">
+                                <b><input type="checkbox" name="read_exif" value="1" class="checkbox" />{$lang_editpics_php['read_exif']}</b>&nbsp;
+                                <b><input type="checkbox" name="reset_vcount" value="1" class="checkbox" />{$lang_editpics_php['reset_view_count']}</b>&nbsp;
+                                <b><input type="checkbox" name="reset_votes" value="1" class="checkbox" />{$lang_editpics_php['reset_votes']}</b>&nbsp;
+                                <b><input type="checkbox" name="del_comments" value="1" class="checkbox" />{$lang_editpics_php['del_comm']}</b>&nbsp;
+                        </td>
         </tr>
         <tr>
-			<td colspan="3" align="center" class="tablef">
-				<input type="submit" value="{$lang_editpics_php['apply']}" name="submitDescription" class="button" />
-			</td>               
+                        <td colspan="3" align="center" class="tablef">
+                                <input type="submit" value="{$lang_editpics_php['apply']}" name="submitDescription" class="button" />
+                        </td>
         </tr>
 EOT;
 
