@@ -112,12 +112,12 @@ $template_cat_list = <<<EOT
 <!-- END header -->
 <!-- BEGIN catrow_noalb -->
         <tr>
-                <td class="tableh2" colspan="3"><table width="100%" border="0"><tr><td width="20%" align="left">{CAT_THUMB}</td><td width="80%" align="left"><span class="catlink"><b>{CAT_TITLE}</b></span>{CAT_DESC}</td></tr></table></td>
+                <td class="tableh2" colspan="3"><table border="0"><tr><td align="left">{CAT_THUMB}</td><td align="left"><span class="catlink"><b>{CAT_TITLE}</b></span>{CAT_DESC}</td></tr></table></td>
         </tr>
 <!-- END catrow_noalb -->
 <!-- BEGIN catrow -->
         <tr>
-                <td class="tableb"><table width="100%" border="0"><tr><td align="left" width="20%">{CAT_THUMB}</td><td width="80%" align="left"><span class="catlink"><b>{CAT_TITLE}</b></span>{CAT_DESC}</td></tr></table></td>
+                <td class="tableb" align="left"><table border="0"><tr><td>{CAT_THUMB}</td><td><span class="catlink"><b>{CAT_TITLE}</b></span>{CAT_DESC}</td></tr></table></td>
                 <td class="tableb" align="center">{ALB_COUNT}</td>
                 <td class="tableb" align="center">{PIC_COUNT}</td>
         </tr>
