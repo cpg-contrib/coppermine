@@ -200,6 +200,7 @@ if ($_GET['id']){
 
 ?>
 <html>
+<meta http-equiv="imagetoolbar" content="no" />
 <head>
     <title><?php echo $lang_editpics_php['crop_title'] ?></title>
     <?php if($imgObj){?>
