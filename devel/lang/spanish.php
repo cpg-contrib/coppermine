@@ -18,7 +18,7 @@
 // info about translators and translated language
 $lang_translation_info = array(
 'lang_name_english' => 'Spanish',  
-'lang_name_native' => 'Espa&ntilde;ol',
+'lang_name_native' => 'Español',
 'lang_country_code' => 'es', 
 'trans_name'=> 'Daniel Villoldo (Grumpywolf)', //the name of the translator - can be a nickname
 'trans_email' => 'daniel@grumpywolf.net', //translator's email address (optional)
@@ -714,7 +714,7 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   array('¿Cómo puedo hacer login (validarme)?', 'Pulsa en &quot;Login&quot;, rellena tu nombre de usuario y contraseña, y marca &quot;Recordarme&quot; con ello consigues estar validado la próxima vez que nos visites.<br /><b>IMPORTANTE: Las cookies deben estar activadas en el navegador y la cookie de este sitio no debe ser borrada si quieres que funcione la opción &quot;Recordarme&quot;.</b>', 'offline', 0), //cpg1.3.0
   array('¿Porqué no puedo hacer login?', '¿Te has registrado y pulsado en el enlace del email de confirmación que se te envió?. Esto debería haber activado tu cuenta. Si no es así, contacta con el administrador del sistema.', 'offline', 0), //cpg1.3.0
   array('¿Qué pasa si olvido mi contraseña?', 'Si la web tiene opción de &quot;He olvidado mi contraseña&quot; tendrás que acceder a la recuperación de la misma. Si no, deberás contactar con el administrador para que te cree una nueva contraseña.', 'offline', 0), //cpg1.3.0
-  array('¿Qué pasa si he cambiado mi dirección de email?', 'Simplemente haz login y cambia tu dirección de email desde &quot;Mi Perfil&quot;', 'offline', 0), //cpg1.3.0
+  //array('¿Qué pasa si he cambiado mi dirección de email?', 'Simplemente haz login y cambia tu dirección de email desde &quot;Mi Perfil&quot;', 'offline', 0), //cpg1.3.0
   array('¿Cómo puedo guardar una imagen en &quot;Mis Favoritos&quot;?', 'Pulsa primero en la imagen y luego el icono de &quot;mostrar información de fichero&quot; (<img src="images/info.gif" width="16" height="16" border="0" alt="Mostrar información de fichero" />); baja hasta donde ha aparecido dicha información y pulsa en &quot;Añadir a Favoritos&quot;.<br />El administrador podría tener activado &quot;mostrar información de fichero&quot; por defecto.<br />IMPORTANTE: Las cookies deben estar activadas en el navegador y la cookie de esta web no debe ser borrada.', 'offline', 0), //cpg1.3.0
   array('¿Cómo puedo valorar una imagen?', 'Pulsa en el thumbnail de la imagen, mira debajo de ella y elige la puntuación.', 'offline', 0), //cpg1.3.0
   array('¿Cómo puedo enviar un comentario a una imagen?', 'Pulsa en el thumbnail de la imagen y mira debajo de ella. Ahí puedes insertar tu comentario.', 'offline', 0), //cpg1.3.0
