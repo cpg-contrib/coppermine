@@ -254,6 +254,25 @@ function confirmDel()
 {
     return confirm("{$lang_groupmgr_php['confirm_del']}");
 }
+
+function selectAll(d,box) {
+  var f = document.groupmanager;
+  for (i = 0; i < f.length; i++) {
+    //alert (f[i].name.indexOf(box));
+    if (f[i].type == "checkbox" && f[i].name.indexOf(box) >= 0) {
+      if (d.checked) {
+        f[i].checked = true;
+      } else {
+        f[i].checked = false;
+      }
+    }
+  }
+  if (d.name == "checkAll") {
+      document.getElementsByName('checkAll2')[0].checked = document.getElementsByName('checkAll')[0].checked;
+  } else {
+      document.getElementsByName('checkAll')[0].checked = document.getElementsByName('checkAll2')[0].checked;
+  }
+}
 </script>
 
 
@@ -267,7 +286,7 @@ $help_upload_method = '&nbsp;'.cpg_display_help('f=index.htm&as=group_cp_upload_
 echo <<<EOT
         <form method="post" action="{$_SERVER['PHP_SELF']}" name="groupmanager">
         <tr>
-                <td class="tableh1"><!--<input type="checkbox" name="allbox" onclick="selectall()" value="" class="checkbox" />--></td>
+                <td class="tableh1"><input type="checkbox" name="checkAll" onClick="selectAll(this,'delete_group');" class="checkbox" title="$lang_check_uncheck_all" /></td>
                 <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['group_name']}</span></b>$help_group</td>
                 <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['permissions']}</span></b>$help_permissions</td>
                 <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['public_albums']}</span></b></td>
@@ -310,7 +329,8 @@ EOT;
 } else {
     echo <<<EOT
         <tr>
-            <td colspan="14" align="center" class="tablef">
+            <td class="tablef"><input type="checkbox" name="checkAll2" onClick="selectAll(this,'delete_group');" class="checkbox" title="$lang_check_uncheck_all" /></td>
+            <td colspan="13" align="center" class="tablef">
                         <input type="submit" name="apply_modifs" value="{$lang_groupmgr_php['apply']}" class="button">&nbsp;&nbsp;&nbsp;
                         <input type="submit" name="new_group" value="{$lang_groupmgr_php['create_new_group']}" class="button">&nbsp;&nbsp;&nbsp;
                         <input type="submit" name="del_sel" value="{$lang_groupmgr_php['del_groups']}" onClick="return confirmDel()" class="button">

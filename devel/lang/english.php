@@ -45,6 +45,7 @@ $lang_back = 'BACK';
 $lang_continue = 'CONTINUE';
 $lang_info = 'Information';
 $lang_error = 'Error';
+$lang_check_uncheck_all = 'check/uncheck all'; // cpg1.4.0
 
 // The various date formats
 // See http://www.php.net/manual/en/function.strftime.php to define the variable below
@@ -1414,7 +1415,6 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
   'see_prev' => 'See previous',
   'see_next' => 'See next',
   'del_comm' => 'Delete selected comments',
-  'check_all' => 'check/uncheck all', // cpg1.4.0
 );
 
 
@@ -1622,8 +1622,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'search_submit' => 'Go!', // cpg1.4.0
   'search_result' => 'Search results for: ', // cpg1.4.0
   'search_help_title' => 'Searching for users', // cpg1.4.0
-  'search_help_text' => 'You can use the wildcards <tt class="debug_text">*</tt> (any string) and <tt class="debug_text">?</tt> (any single character).<br />Example: searching for <tt class="debug_text">j*</tt> will return both <tt class="debug_text">Jack</tt> and <tt class="debug_text">Jill</tt>', // cpg1.4.0
-  'check_all' => 'check/uncheck all', // cpg1.4.0
+  'search_help_text' => 'You can use the wildcards <tt class="debug_text">*</tt> (any string) and <tt class="debug_text">?</tt> (any single character) or even <tt class="debug_text">%expression%</tt>.<br />Example: searching for <tt class="debug_text">j*</tt> will return both <tt class="debug_text">Jack</tt> and <tt class="debug_text">Jill</tt>', // cpg1.4.0
   'alert_no_selection' => 'You have to select a user first!', // cpg1.4.0 //js-alert
 );
 
