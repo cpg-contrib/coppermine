@@ -117,6 +117,8 @@ INSERT INTO CPG_config VALUES ('slideshow_interval', '5000');
 
 INSERT INTO CPG_config VALUES ('log_mode', '0');
 
+INSERT INTO CPG_config VALUES ('media_autostart', '1');
+
 
 # Modify structure for category thumb
 ALTER TABLE `CPG_categories` ADD `thumb` INT NOT NULL AFTER `parent` ;
@@ -191,11 +193,12 @@ PRIMARY KEY ( `unique_ID` )
 UPDATE `CPG_config` SET value='classic' WHERE (name='theme' AND value='default');
 DELETE FROM `CPG_filetypes` WHERE mime='text/html';
 
+
 #
 # Finally remove all user_lang references - Jack
 #
 
-ALTER TABLE `CPG_users` CHANGE user_lang user_group_list varchar(255) NOT NULL default ''; 
+ALTER TABLE `CPG_users` CHANGE user_lang user_group_list varchar(255) NOT NULL default '';
 
 #
 # Fix usermgr timing out with 1k+ users -Omni

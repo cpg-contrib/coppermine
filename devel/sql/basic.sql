@@ -113,6 +113,7 @@ INSERT INTO CPG_config VALUES ('enable_zipdownload', '1');
 INSERT INTO CPG_config VALUES ('slideshow_interval', '5000');
 
 INSERT INTO CPG_config VALUES ('log_mode', '0');
+INSERT INTO CPG_config VALUES ('media_autostart', '1');
 
 INSERT INTO CPG_config VALUES ('time_offset', '0');
 
