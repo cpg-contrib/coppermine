@@ -537,6 +537,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Allow two users to have the same email address', 'allow_duplicate_emails_addr', 1),
   array('Notify admin of user upload awaiting approval', 'upl_notify_admin_email', 1),
   array('Allow logged in users to view memberlist', 'allow_memberlist', 1),
+  array('Allow users to change their email address in profile', 'allow_email_change', 1, 'f=index.htm&as=config_user_allow_email_change&ae=config_user_allow_email_change_end'), //cpg1.4.0
 
 // custom profile fields, (casper) 1.4 devel
   'Custom fields for user profile (leave blank if unused).
@@ -559,7 +560,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Path of the cookie used by the script', 'cookie_path', 0, 'f=index.htm&as=config_cookie_path&ae=config_cookie_path_end'),
 
   'Email settings  (usually nothing has to be changed here; leave all fields blank when not sure)',
-  array('SMTP Host (when left blank, <a href="http://www.sendmail.org/">sendmail</a> will be used)', 'smtp_host', 0),
+  array('SMTP Host (when left blank, sendmail will be used)', 'smtp_host', 0),
   array('SMTP Username', 'smtp_username', 0),
   array('SMTP Password', 'smtp_password', 0),
 

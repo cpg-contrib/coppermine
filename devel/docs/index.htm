@@ -776,6 +776,8 @@ If your browser times out, hit the reload button.
       <a name="config_general_time-offset_end"></a>
       <a name="config_general_help"></a><h4>Enable help-icons</h4>
       <p>Enable display of the help icons in various places within coppermine admin pages. When enabled, make sure you have uploaded the docs folder into your coppermine folder on your webserver.<br />
+      If you choose to set this to &quot;Yes: everyone&quot;, logged in users will see the help icon in some places as well, e.g. when creating a user gallery.<br />
+      As the help text is based on the documentation that comes with coppermine, it is available in English only. If the native language of your users is not English, it is advisable to set this option to &quot;Yes: admin only&quot; to avoid confusion among your users.<br />
       <img src="pics/cpg10.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
       <img src="pics/cpg110.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
       <img src="pics/cpg111.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
@@ -1294,6 +1296,18 @@ If your browser times out, hit the reload button.
       <img src="pics/cpg13x.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_ok.gif" width="18" height="20" border="0" alt="">
 <img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
       <img src="pics/cpg140.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_ok.gif" width="18" height="20" border="0" alt=""></p>
+      <a name="config_user_allow_email_change"></a><h4>Allow users to change their email address in profile</h4>
+      <p>This option has impact on the user's profile page, it toggles wether the user can change his/her own email address.<br />Use this option wisely, as the old email address of a user is not recorded: if you let users change their email address, they might change it to a non-existing email address (e.g. after uploading some pics that break your gallery's rules) - you would have no chance of tracking this user.<br />
+      This option will only be taken into account if you use Coppermine as a standalone application; if you run Coppermine integrated with a bbs, this option will simply not be taken into account, as the user profile from your bbs will be used to manage your user's profile.<br />
+      <img src="pics/cpg10.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg110.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg111.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg120.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg121.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg13x.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt="">
+<img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg140.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_ok.gif" width="18" height="20" border="0" alt=""></p>
+      <a name="config_user_allow_email_change_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
       <a name="config_custom"></a>

@@ -38,6 +38,10 @@ $edit_profile_form_param = array(
     );
 
 
+if ($CONFIG['allow_email_change'] == 1) {
+  $edit_profile_form_param[3][0]='input';
+}
+
         // profile mod test
 $display_profile_form_param = array(
     array('text', 'username', $lang_register_php['username']),

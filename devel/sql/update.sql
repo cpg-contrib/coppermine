@@ -281,3 +281,5 @@ CREATE TABLE CPG_plugins (
 ) TYPE=MyISAM COMMENT='Stores the plugins';
 
 INSERT INTO CPG_config VALUES ('enable_help', '2');
+
+INSERT INTO CPG_config VALUES ('allow_email_change', '0');

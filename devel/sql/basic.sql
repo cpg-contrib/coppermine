@@ -127,6 +127,8 @@ INSERT INTO CPG_config VALUES ('enable_plugins', '1');
 
 INSERT INTO CPG_config VALUES ('enable_help', '2');
 
+INSERT INTO CPG_config VALUES ('allow_email_change', '0');
+
 #
 # Dumping data for table `CPG_filetypes`
 #
