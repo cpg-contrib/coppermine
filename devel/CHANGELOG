@@ -20,3 +20,5 @@ Moved hardcoded text from util.php to language file - 27th September 2003, GauGa
 updated dutch.php and greek.php (minor bugfixes by original translators) - 30th September 2003, GauGau
 Added 'no right-click' admin option (I know this is childish but has been requested often), db update necessary (see update.sql) - 30th September 2003, GauGau
 IP Logging now on picture uploads - 30th September 2003, Jack
+fixed improper html tags in hardwired theme - 1st October, GauGau
+added version info to html output (above </body>) for easier support - 1st October, GauGau
