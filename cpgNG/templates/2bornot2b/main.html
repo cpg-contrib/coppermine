@@ -83,9 +83,72 @@
 <!-- CONTENT -->
 {$CONTENT}
 <img src="images/spacer.gif" width="1" height="17" alt="" /><br />
-<p style="color:white; text-align: center;">Syndicate this page with <a href="rss.php?album=1">RSS1.0</a></p><div class="footer" align="center" style="padding-top: 10px;">Powered by <a href="http://coppermine.sourceforge.net/" title="Coppermine Photo Gallery" rel="external">Coppermine Photo Gallery</a></div></div>
+{if $showDebug eq 1}
+<form name="debug" action="/cpg/index.php">
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1" colspan="2">{$lang_cpg_debug_output.debug_info}</td>
+  </tr>
+  <tr>
+    <td align="center" valign="middle" class="tableh2" width="100">
+      <script language="javascript" type="text/javascript">
+      {literal}
+      <!--
+        function HighlightAll(theField) {
+        var tempval=eval("document."+theField)
+        tempval.focus()
+        tempval.select()
+        }
+      //-br->
+      {/literal}
+      </script>
+      <a href="javascript:HighlightAll('debug.debugtext')" class="admin_menu">{$lang_cpg_debug_output.select_all}</a>
+    </td><td align="left" valign="middle" class="tableh2">
+      {if $GALLERY_ADMIN_MODE}
+      <span class="album_stat">
+        {$lang_cpg_debug_output.copy_and_paste_instructions}
+      </span>
+      {/if}
+    </td>
+  </tr>
+  <tr>
+    <td class="tableb" colspan="2">
+      <textarea  rows="10" cols="60" class="debug_text" name="debugtext">
+      USER:
+      {foreach item=item key=key from=$USER}
+        [{$key}] => {$item}
+      {/foreach}
+      USER DATA:
+      {foreach item=item key=key from=$USER_DATA}
+        [{$key}] => {$item}
+      {/foreach}
+      GET:
+      {foreach item=item key=key from=$smarty.get}
+        [{$key}] => {$item}
+      {/foreach}
+      Queries:
+      {foreach item=item key=key from=$queries}
+        [{$key}] => {$item}
+      {/foreach}
+      WARINGS &amp; NOTICES:
+      {foreach item=item key=key from=$report}
+        [{$key}] =>
+        {foreach item=i key=k from=$item}
+          [{$k}] => {$i}
+        {/foreach}
+      {/foreach}
+      </textarea>
+    </td>
+  </tr>
+</table>
+{/if}
+<p style="color:white; text-align: center;">Syndicate this page with <a href="rss.php?album=1">RSS1.0</a></p>
+<div class="footer" align="center" style="padding-top: 10px;">
+Powered by <a href="http://coppermine.sourceforge.net/" title="Coppermine Photo Gallery" rel="external">Coppermine Photo Gallery</a>
+</div>
+</div>
 </div>
 <!--Coppermine Photo Gallery Next Generation (alpha)-->
 </body>
-
 </html>
