@@ -853,7 +853,7 @@ $max_file_size = $CONFIG['max_upl_size'] << 10;
 if (!isset($_REQUEST['control'])) {
 
     // Do some cleanup in the edit directory.
-    spring_cleaning('./albums/edit',3600);
+    spring_cleaning("./{$CONFIG['fullpath']}edit",3600);
 
     // Do some cleaning in the temp data table.
     clean_table();
@@ -1186,7 +1186,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                 $seed = substr(md5(microtime().getmypid()), 0, 8);
 
                 // Assemble the file path.
-                $path_to_image = './albums/edit/'. $prefix . $seed . '.' . $suffix;
+                $path_to_image = "./{$CONFIG['fullpath']}edit/". $prefix . $seed . '.' . $suffix;
 
             } while (file_exists($path_to_image));
 
@@ -1615,7 +1615,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                 $seed = substr(md5(microtime().getmypid()), 0, 8);
 
                 // Assemble the file path.
-                $path_to_image = './albums/edit/'. $prefix . $seed . '.' . $suffix;
+                $path_to_image = "./{$CONFIG['fullpath']}/edit/". $prefix . $seed . '.' . $suffix;
 
             } while (file_exists($path_to_image));
 
@@ -2220,7 +2220,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
         $uploaded_pic = $dest_dir . $picture_name;
 
         // Form path to temporary image.
-        $path_to_image = './albums/edit/'.$file_set[1];
+        $path_to_image = "./{$CONFIG['fullpath']}edit/".$file_set[1];
 
         // Move the picture into its final location
         if (rename($path_to_image, $uploaded_pic)) {
@@ -2369,7 +2369,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
     // Create preview image.
 
     // Create path to image.
-    $path_to_image = './albums/edit/'.$file_set[1];
+    $path_to_image = "./{$CONFIG['fullpath']}edit/".$file_set[1];
 
     // Create the preview function.
 
@@ -2392,7 +2392,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
             $seed = substr(md5(microtime().getmypid()), 0, 8);
 
             // Assemble the file path.
-            $path_to_preview = './albums/edit/preview_' . $seed . '.' . $extension;
+            $path_to_preview = "./{$CONFIG['fullpath']}edit/preview_" . $seed . '.' . $extension;
 
         } while (file_exists($path_to_preview));
 
