@@ -1,18 +1,19 @@
-<?php
+<?php 
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery                                                 //
+// Coppermine Photo Gallery 1.2.0                                            //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Grégory DEMAR <gdemar@wanadoo.fr>               //
-//  http://www.chezgreg.net/coppermine/                                      //
+// Copyright (C) 2002,2003 Gregory DEMAR <gdemar@wanadoo.fr>                 //
+// http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
-//  http://www.stoverud.com/PHPhotoalbum/                                    //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-// ------------------------------------------------------------------------- //
+// This program is free software; you can redistribute it and/or modify      //
+// it under the terms of the GNU General Public License as published by      //
+// the Free Software Foundation; either version 2 of the License, or         //
+// (at your option) any later version.                                       //
+// ------------------------------------------------------------------------- // 
 
 define('IN_COPPERMINE', true);
 define('ALBMGR_PHP', true);
@@ -21,21 +22,22 @@ require('include/init.inc.php');
 
 if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
-function get_subcat_data($parent, $ident='')
+function get_subcat_data($parent, $ident = '')
 {
     global $CONFIG, $CAT_LIST;
 
-	$result = db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent' AND cid != 1 ORDER BY pos");
-	if (mysql_num_rows($result) > 0){
-		$rowset = db_fetch_rowset($result);
-		foreach ($rowset as $subcat){
-			$CAT_LIST[]=array($subcat['cid'], $ident.$subcat['name']);
-			get_subcat_data($subcat['cid'], $ident.'&nbsp;&nbsp;&nbsp;');
-		}
-	}
-}
+    $result = db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent' AND cid != 1 ORDER BY pos");
+    if (mysql_num_rows($result) > 0) {
+        $rowset = db_fetch_rowset($result);
+        foreach ($rowset as $subcat) {
+            $CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
+            get_subcat_data($subcat['cid'], $ident . '&nbsp;&nbsp;&nbsp;');
+        } 
+    } 
+} 
 
 pageheader($lang_albmgr_php['alb_mrg']);
+
 ?>
 
 <script language="javascript">
@@ -306,23 +308,25 @@ pageheader($lang_albmgr_php['alb_mrg']);
 -->
 </script>
 
-<?php starttable("100%", $lang_albmgr_php['alb_mrg'], 1); ?>
+<?php starttable("100%", $lang_albmgr_php['alb_mrg'], 1);
+?>
 <tr>
 <?php
-	$cat = isset($HTTP_GET_VARS['cat']) ? ($HTTP_GET_VARS['cat']) : 0;
-	if ($cat == 1) $cat = 0;
+$cat = isset($HTTP_GET_VARS['cat']) ? ($HTTP_GET_VARS['cat']) : 0;
+if ($cat == 1) $cat = 0;
 
-	if (GALLERY_ADMIN_MODE) {
-		$result = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $cat ORDER BY pos ASC");
-	} elseif (USER_ADMIN_MODE) {
-		$result = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = ".(USER_ID + FIRST_USER_CAT)." ORDER BY pos ASC");
-	} else cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
-	$rowset = db_fetch_rowset($result);
-	$i=100;
-	$sort_order = '';
-	if (count ($rowset) > 0) foreach ($rowset as $album){
-		$sort_order .= $album['aid'].'@'.($i++).',';
-	}
+if (GALLERY_ADMIN_MODE) {
+    $result = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $cat ORDER BY pos ASC");
+} elseif (USER_ADMIN_MODE) {
+    $result = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = " . (USER_ID + FIRST_USER_CAT) . " ORDER BY pos ASC");
+} else cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
+$rowset = db_fetch_rowset($result);
+$i = 100;
+$sort_order = '';
+if (count ($rowset) > 0) foreach ($rowset as $album) {
+    $sort_order .= $album['aid'] . '@' . ($i++) . ',';
+} 
+
 ?>
 	<form name="album_menu" method="post" action="delete.php?what=albmgr" onSubmit="return CheckAlbumForm(this);">
 	<input type="hidden" name="delete_album" value="">
@@ -332,41 +336,41 @@ pageheader($lang_albmgr_php['alb_mrg']);
 		<table width="300" border="0" cellspacing="0" cellpadding="0">
 <?php
 if (GALLERY_ADMIN_MODE) {
+    $CAT_LIST = array();
+    $CAT_LIST[] = array(FIRST_USER_CAT + USER_ID, $lang_albmgr_php['my_gallery']);
+    $CAT_LIST[] = array(0, $lang_albmgr_php['no_category']);
+    get_subcat_data(0, '');
 
-$CAT_LIST = array();
-$CAT_LIST[] = array(FIRST_USER_CAT + USER_ID, $lang_albmgr_php['my_gallery']);
-$CAT_LIST[] = array(0, $lang_albmgr_php['no_category']);
-get_subcat_data(0,'');
-
-echo <<<EOT
+    echo <<<EOT
 		<tr>
 			<td>
 				<b>{$lang_albmgr_php['select_category']}</b>
 				<select onChange="if(this.options[this.selectedIndex].value) window.location.href='$PHP_SELF?cat='+this.options[this.selectedIndex].value;"  name="cat" class="listbox">
 EOT;
-foreach($CAT_LIST as $category){
-	echo '				<option value="'.$category[0].'"'.($cat == $category[0] ? ' selected': '').">".$category[1]."</option>\n";
-}
-echo <<<EOT
+    foreach($CAT_LIST as $category) {
+        echo '				<option value="' . $category[0] . '"' . ($cat == $category[0] ? ' selected': '') . ">" . $category[1] . "</option>\n";
+    } 
+    echo <<<EOT
 				</select>
 				<br /><br />
 			</td>
 		</tr>
 
 EOT;
-}
+} 
 
 ?>
 		<tr>
 			<td>
-				<select id="to" name="to[]" size="<?php echo min(max(count ($rowset)+3,15), 40) ?>" multiple onChange="Album_Select(this.selectedIndex);" class="listbox" style="width: 300px">
+				<select id="to" name="to[]" size="<?php echo min(max(count ($rowset) + 3, 15), 40) ?>" multiple onChange="Album_Select(this.selectedIndex);" class="listbox" style="width: 300px">
 <?php
-	$i=100;
-	$lb = '';
-	if (count ($rowset) > 0) foreach ($rowset as $album){
-			$lb .= '					<option value="album_no=' . $album['aid'] .',album_nm=\'' . $album['title'] .'\',album_sort=' .($i++). ',action=0">' . stripslashes($album['title']) . "</option>\n";
-	}
-	echo $lb;
+$i = 100;
+$lb = '';
+if (count ($rowset) > 0) foreach ($rowset as $album) {
+    $lb .= '					<option value="album_no=' . $album['aid'] . ',album_nm=\'' . $album['title'] . '\',album_sort=' . ($i++) . ',action=0">' . stripslashes($album['title']) . "</option>\n";
+} 
+echo $lb;
+
 ?>
 				</select>
 			</td>
@@ -404,7 +408,8 @@ EOT;
 	</form>
 </tr>
 <?php
-	endtable();
-	pagefooter();
-	ob_end_flush();
+endtable();
+pagefooter();
+ob_end_flush();
+
 ?>

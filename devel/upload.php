@@ -1,18 +1,19 @@
-<?php
+<?php 
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery                                                 //
+// Coppermine Photo Gallery 1.2.0                                            //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Grégory DEMAR <gdemar@wanadoo.fr>               //
-//  http://www.chezgreg.net/coppermine/                                      //
+// Copyright (C) 2002,2003 Gregory DEMAR <gdemar@wanadoo.fr>                 //
+// http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
-//  http://www.stoverud.com/PHPhotoalbum/                                    //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-// ------------------------------------------------------------------------- //
+// This program is free software; you can redistribute it and/or modify      //
+// it under the terms of the GNU General Public License as published by      //
+// the Free Software Foundation; either version 2 of the License, or         //
+// (at your option) any later version.                                       //
+// ------------------------------------------------------------------------- // 
 
 define('IN_COPPERMINE', true);
 define('UPLOAD_PHP', true);
@@ -21,28 +22,27 @@ require('include/init.inc.php');
 
 if (!USER_CAN_UPLOAD_PICTURES) {
     cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
-}
-
+} 
 // Type 0 => input
-//      1 => file input
-//      2 => album list
+// 1 => file input
+// 2 => album list
 $data = array(
-	sprintf($lang_upload_php['max_fsize'], $CONFIG['max_upl_size']),
-	array($lang_upload_php['album'], 'album', 2),
-	array($lang_upload_php['picture'], 'userpicture', 1),
-	array($lang_upload_php['pic_title'], 'title', 0, 255),
-	array($lang_upload_php['caption'], 'caption', 3, 50),
-	array($lang_upload_php['description'], 'description', 3, $CONFIG['max_img_desc_length']),
-	array($lang_upload_php['keywords'], 'keywords', 0, 255),
-	array($CONFIG['user_field1_name'], 'user1', 0, 255),
-	array($CONFIG['user_field2_name'], 'user2', 0, 255),
-	array($CONFIG['user_field3_name'], 'user3', 0, 255),
-	array($CONFIG['user_field4_name'], 'user4', 0, 255)
-);
+    sprintf($lang_upload_php['max_fsize'], $CONFIG['max_upl_size']),
+    array($lang_upload_php['album'], 'album', 2),
+    array($lang_upload_php['picture'], 'userpicture', 1),
+    array($lang_upload_php['pic_title'], 'title', 0, 255),
+    array($lang_upload_php['caption'], 'caption', 3, 50),
+    array($lang_upload_php['description'], 'description', 3, $CONFIG['max_img_desc_length']),
+    array($lang_upload_php['keywords'], 'keywords', 0, 255),
+    array($CONFIG['user_field1_name'], 'user1', 0, 255),
+    array($CONFIG['user_field2_name'], 'user2', 0, 255),
+    array($CONFIG['user_field3_name'], 'user3', 0, 255),
+    array($CONFIG['user_field4_name'], 'user4', 0, 255)
+    );
 
 function form_label($text)
 {
-	echo <<<EOT
+    echo <<<EOT
 	<tr>
 		<td class="tableh2" colspan="2">
 			<b>$text</b>
@@ -50,16 +50,16 @@ function form_label($text)
 	</tr>
 
 EOT;
-}
+} 
 
 function form_input($text, $name, $max_length)
 {
-	if ($text == ''){
-		echo "	<input type=\"hidden\" name=\"$name\" value=\"\">\n";
-		return;
-	}
+    if ($text == '') {
+        echo "	<input type=\"hidden\" name=\"$name\" value=\"\">\n";
+        return;
+    } 
 
-	echo <<<EOT
+    echo <<<EOT
 	<tr>
     	<td width="40%" class="tableb">
 			$text
@@ -70,15 +70,15 @@ function form_input($text, $name, $max_length)
 	</tr>
 
 EOT;
-}
+} 
 
 function form_file_input($text, $name)
 {
-	global $CONFIG;
+    global $CONFIG;
 
-	$max_file_size = $CONFIG['max_upl_size']<<10;
+    $max_file_size = $CONFIG['max_upl_size'] << 10;
 
-	echo <<<EOT
+    echo <<<EOT
 	<tr>
     	<td class="tableb">
 			$text
@@ -90,16 +90,16 @@ function form_file_input($text, $name)
 	</tr>
 
 EOT;
-}
+} 
 
 function form_alb_list_box($text, $name)
 {
-	global $CONFIG, $HTTP_GET_VARS;
-	global $user_albums_list, $public_albums_list;
+    global $CONFIG, $HTTP_GET_VARS;
+    global $user_albums_list, $public_albums_list;
 
-	$sel_album = isset($HTTP_GET_VARS['album']) ? $HTTP_GET_VARS['album'] : 0;
+    $sel_album = isset($HTTP_GET_VARS['album']) ? $HTTP_GET_VARS['album'] : 0;
 
-	echo <<<EOT
+    echo <<<EOT
 	<tr>
     	<td class="tableb">
 			$text
@@ -108,27 +108,27 @@ function form_alb_list_box($text, $name)
         	<select name="$name" class="listbox">
 
 EOT;
-		foreach($user_albums_list as $album){
-			echo '        		<option value="'.$album['aid'].'"'.($album['aid'] == $sel_album ? ' selected' : '').'>* '.$album['title'] . "</option>\n";
-		}
-		foreach($public_albums_list as $album){
-			echo '        		<option value="'.$album['aid'].'"'.($album['aid'] == $sel_album ? ' selected' : '').'>'.$album['title'] . "</option>\n";
-		}
-	echo <<<EOT
+    foreach($user_albums_list as $album) {
+        echo '        		<option value="' . $album['aid'] . '"' . ($album['aid'] == $sel_album ? ' selected' : '') . '>* ' . $album['title'] . "</option>\n";
+    } 
+    foreach($public_albums_list as $album) {
+        echo '        		<option value="' . $album['aid'] . '"' . ($album['aid'] == $sel_album ? ' selected' : '') . '>' . $album['title'] . "</option>\n";
+    } 
+    echo <<<EOT
 			</select>
 		</td>
 	</tr>
 
 EOT;
-}
+} 
 
 function form_textarea($text, $name, $max_length)
 {
-	global $ALBUM_DATA;
+    global $ALBUM_DATA;
 
-	$value = $ALBUM_DATA[$name];
+    $value = $ALBUM_DATA[$name];
 
-	echo <<<EOT
+    echo <<<EOT
 	<tr>
 		<td class="tableb" valign="top">
 			$text
@@ -138,60 +138,59 @@ function form_textarea($text, $name, $max_length)
 		</td>
 	</tr>
 EOT;
-}
+} 
 
 function create_form(&$data)
 {
-	foreach($data as $element){
-		if ((is_array($element))) {
-		    switch($element[2]){
-		    	case 0 :
-		    		form_input($element[0], $element[1], $element[3]);
-		    		break;
-		    	case 1 :
-		    		form_file_input($element[0], $element[1]);
-		    		break;
-		    	case 2 :
-		    		form_alb_list_box($element[0], $element[1]);
-		    		break;
-		    	case 3 :
-		    		form_textarea($element[0], $element[1], $element[3]);
-		    		break;
-		    	default:
-					cpg_die(ERROR, 'Invalid action for form creation', __FILE__, __LINE__);
-		    } // switch
-		} else {
-			form_label($element);
-		}
-	}
-}
-
+    foreach($data as $element) {
+        if ((is_array($element))) {
+            switch ($element[2]) {
+                case 0 :
+                    form_input($element[0], $element[1], $element[3]);
+                    break;
+                case 1 :
+                    form_file_input($element[0], $element[1]);
+                    break;
+                case 2 :
+                    form_alb_list_box($element[0], $element[1]);
+                    break;
+                case 3 :
+                    form_textarea($element[0], $element[1], $element[3]);
+                    break;
+                default:
+                    cpg_die(ERROR, 'Invalid action for form creation', __FILE__, __LINE__);
+            } // switch
+        } else {
+            form_label($element);
+        } 
+    } 
+} 
 
 if (GALLERY_ADMIN_MODE) {
-    $public_albums = mysql_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < ".FIRST_USER_CAT." ORDER BY title");
+    $public_albums = mysql_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
 } else {
-	$public_albums = mysql_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < ".FIRST_USER_CAT." AND uploads='YES' ORDER BY title");
-}
+    $public_albums = mysql_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " AND uploads='YES' ORDER BY title");
+} 
 if (mysql_num_rows($public_albums)) {
-    $public_albums_list=db_fetch_rowset($public_albums);
+    $public_albums_list = db_fetch_rowset($public_albums);
 } else {
-	$public_albums_list = array();
-}
+    $public_albums_list = array();
+} 
 
 if (USER_ID) {
-	$user_albums = mysql_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='".(FIRST_USER_CAT + USER_ID)."' ORDER BY title");
-	if (mysql_num_rows($user_albums)) {
-	    $user_albums_list=db_fetch_rowset($user_albums);
-	} else {
-		$user_albums_list = array();
-	}
+    $user_albums = mysql_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' ORDER BY title");
+    if (mysql_num_rows($user_albums)) {
+        $user_albums_list = db_fetch_rowset($user_albums);
+    } else {
+        $user_albums_list = array();
+    } 
 } else {
-	$user_albums_list = array();
-}
+    $user_albums_list = array();
+} 
 
 if (!count($public_albums_list) && !count($user_albums_list)) {
     cpg_die (ERROR, $lang_upload_php['err_no_alb_uploadables'], __FILE__, __LINE__);
-}
+} 
 
 pageheader($lang_upload_php['title']);
 starttable("100%", $lang_upload_php['title'], 2);
@@ -221,4 +220,5 @@ EOT;
 endtable();
 pagefooter();
 ob_end_flush();
+
 ?>
