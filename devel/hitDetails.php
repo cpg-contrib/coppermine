@@ -27,7 +27,8 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
  */
  $pid = $_GET['pid'] ? (int)$_GET['pid'] : 0;
 
- $html_header =  <<<EOT
+ echo  <<<EOT
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="ltr">
 <head>
 <title>Coppermine Photo Gallery - {$lang_hitdetails_php['title']}</title>
@@ -45,21 +46,58 @@ EOT;
 $query = "SELECT * FROM {$CONFIG['TABLE_HIT_STATS']} WHERE pid=$pid ORDER BY sdate";
 $result = cpg_db_query($query);
 
-$str = '<br /><table width="100%" align="center" cellpadding="0" cellspacing="2" style="border: 1px solid #000000; background-color: #FFFFFF;"><tr><td colspan="7" class="tableh1" align="center">'.$lang_hitdetails_php['title'].'</td></tr>';
-$str .= '<tr class="tableb"><td>'.$lang_hitdetails_php['date'].'</td><td>IP</td><td>'.$lang_hitdetails_php['search_phrase'].'</td><td>'.$lang_hitdetails_php['referer'].'</td><td>'.$lang_hitdetails_php['browser'].'</td><td>'.$lang_hitdetails_php['os'].'</td></tr>';
+starttable('100%', $lang_hitdetails_php['title'], 7);
+echo <<<EOT
+        <tr>
+            <td class="tableh2">
+                {$lang_hitdetails_php['date']}
+            </td>
+            <td class="tableh2">
+                IP
+            </td>
+            <td class="tableh2">
+                {$lang_hitdetails_php['search_phrase']}
+            </td>
+            <td class="tableh2">
+                {$lang_hitdetails_php['referer']}
+            </td>
+            <td class="tableh2">
+                {$lang_hitdetails_php['browser']}
+            </td>
+            <td class="tableh2">
+                {$lang_hitdetails_php['os']}
+            </td>
+        </tr>
+EOT;
 if (mysql_num_rows($result) > 0) {
-  while ($row = mysql_fetch_array($result)) {
-    $search_phrase = !empty($row['search_phrase']) ? $row['search_phrase'] : 'N / A';
-    $str .= '<tr class="tableh2"><td>'.date('m-d-Y H:i:s', $row['sdate']).'</td><td>'.$row['ip'].'</td><td>'.$search_phrase.'</td> <td>'.$row['referer'].'</td><td>'.$row['browser'].'</td><td>'.$row['os'].'</td></tr>';
-  }
+    while ($row = mysql_fetch_array($result)) {
+        $search_phrase = !empty($row['search_phrase']) ? $row['search_phrase'] : 'N / A';
+        $hitdate = date('Y-m-d H:i:s', $row['sdate']);
+        echo <<<EOT
+        <tr>
+            <td class="tableb">
+                $hitdate
+            </td>
+            <td class="tableb">
+                {$row['ip']}
+            </td>
+            <td class="tableb">
+                $search_phrase
+            </td>
+            <td class="tableb">
+                {$row['referer']}
+            </td>
+            <td class="tableb">
+                {$row['browser']}
+            </td>
+            <td class="tableb">
+                {$row['os']}
+            </td>
+        </tr>
+EOT;
+    }
 }
-$str .= "</table>";
-
-$html_footer = <<<EOT
+endtable();
+?>
 </body>
 </html>
-EOT;
-echo $html_header;
-echo $str;
-pagefooter();
-?>

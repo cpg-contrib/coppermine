@@ -31,53 +31,103 @@ require('include/init.inc.php');
 
 $rateArr = array();
 
-$html_header =  <<<EOT
+print  <<<EOT
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="ltr">
 <head>
-<title>Coppermine Photo Gallery - {$lang_votedetails_php['title']}</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<meta http-equiv="Pragma" content="no-cache" />
-<link rel="stylesheet" href="themes/{$CONFIG['theme']}/style.css" />
-<script type="text/javascript" src="scripts.js"></script>
+    <title>Coppermine Photo Gallery - {$lang_votedetails_php['title']}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <link rel="stylesheet" href="themes/{$CONFIG['theme']}/style.css" />
+    <script type="text/javascript" src="scripts.js"></script>
 </head>
 <body>
-<table width="75%" align="center" cellpadding="0" cellspacing="2" style="border: 1px solid #000000; background-color: #FFFFFF;"><tr><td colspan="2" class="tableh1" align="center">{$lang_votedetails_php["stats"]}</td></tr>
 EOT;
 
-//starttable("100%", $lang_votedetails_php['stats'], 2);
+starttable("100%", $lang_votedetails_php['stats'], 2);
 
- while ($row = mysql_fetch_array($result)) {
-   $voteArr[$row['rating']] = $row['totalVotes'];
- }
-for ($i=0; $i<6;$i++){
-  $voteArr[$i] = isset($voteArr[$i]) ? $voteArr[$i] : 0;
-  $str .= '<tr class="tableh2"><td width="20%"><img src="images/rating'.$i.'.gif" /></td><td><img src="images/vote.jpg" width="'.$voteArr[$i]*10 .'" height="15" border="0" />'.$voteArr[$i].'</td></tr>';
+while ($row = mysql_fetch_array($result)) {
+      $voteArr[$row['rating']] = $row['totalVotes'];
 }
-//endtable();
-$str .= "</table>";
+    for ($i=0; $i<6;$i++){
+        $voteArr[$i] = isset($voteArr[$i]) ? $voteArr[$i] : 0;
+        $width = $voteArr[$i]*10;
+        echo <<<EOT
+        <tr class="tableh2">
+            <td width="20%">
+                <img src="images/rating$i.gif" />
+            </td>
+            <td>
+                <img src="images/vote.jpg" width="$width" height="15" border="0" alt="" />
+                {$voteArr[$i]}
+            </td>
+        </tr>
+EOT;
+    }
+endtable();
+
+print "<br />\n";
 
 /**
  * Fetch the vote details like IP, referer if the user is ADMIN
  */
 if (GALLERY_ADMIN_MODE) {
-$query = "SELECT * FROM {$CONFIG['TABLE_VOTE_STATS']} WHERE pid=$pid ORDER BY sdate";
-$result = cpg_db_query($query);
-//starttable("100%", $lang_votedetails_php['title'], 6);
-$str .= '<br /><table width="100%" align="center" cellpadding="0" cellspacing="2" style="border: 1px solid #000000; background-color: #FFFFFF;"><tr><td colspan="6" class="tableh1" align="center">'.$lang_votedetails_php['title'].'</td></tr>';
-$str .= '<tr class="tableb"><td>'.$lang_votedetails_php['date'].'</td><td>IP</td><td>'.$lang_votedetails_php['rating'].'</td><td>'.$lang_votedetails_php['referer'].'</td><td>'.$lang_votedetails_php['browser'].'</td><td>'.$lang_votedetails_php['os'].'</td></tr>';
-if (mysql_num_rows($result) > 0) {
-  while ($row = mysql_fetch_array($result)) {
-    $str .= '<tr class="tableh2"><td>'.date('m-d-Y H:i:s', $row['sdate']).'</td><td>'.$row['ip']. '</td><td>'.$row['rating'].'</td><td>'.$row['referer'].'</td><td>'.$row['browser'].'</td><td>'.$row['os'].'</td></tr>';
-  }
+    $query = "SELECT * FROM {$CONFIG['TABLE_VOTE_STATS']} WHERE pid=$pid ORDER BY sdate";
+    $result = cpg_db_query($query);
+    starttable("100%", $lang_votedetails_php['title'], 6);
+    echo <<<EOT
+        <tr>
+            <td class="tableh2">
+                {$lang_votedetails_php['date']}
+            </td>
+            <td class="tableh2">
+                IP
+            </td>
+            <td class="tableh2">
+                {$lang_votedetails_php['rating']}
+            </td class="tableh2">
+            <td class="tableh2">
+                {$lang_votedetails_php['referer']}
+            </td>
+            <td class="tableh2">
+                {$lang_votedetails_php['browser']}
+            </td>
+            <td class="tableh2">
+                {$lang_votedetails_php['os']}
+            </td>
+        </tr>
+EOT;
+    if (mysql_num_rows($result) > 0) {
+        while ($row = mysql_fetch_array($result)) {
+        $votedate = date('Y-m-d H:i:s', $row['sdate']);
+        echo <<<EOT
+        <tr>
+            <td class="tableb">
+                $votedate
+            </td>
+            <td class="tableb">
+                {$row['ip']}
+            </td>
+            <td class="tableb">
+                {$row['rating']}
+            </td>
+            <td class="tableb">
+                {$row['referer']}
+            </td>
+            <td class="tableb">
+                {$row['browser']}
+            </td>
+            <td class="tableb">
+                {$row['os']}
+            </td>
+        </tr>
+EOT;
+        }
+    }
+endtable();
 }
-$str .= "</table>";
-}
-$html_footer = <<<EOT
+
+
+?>
 </body>
 </html>
-EOT;
-echo $html_header;
-echo $str;
-//echo $html_footer;
-pagefooter();
-?>
