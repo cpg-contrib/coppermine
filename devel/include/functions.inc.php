@@ -454,8 +454,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 mysql_free_result($result);
                 // Set picture caption
                 if ($set_caption) foreach ($rowset as $key => $row){
-                        
-			$caption = ($rowset[$key]['title']||$rowset[$key]['hits']) ? "<span class=\"thumb_title\">".$rowset[$key]['title'].(($rowset[$key]['title'])?"&nbsp;&ndash;&nbsp;":"").sprintf($lang_get_pic_data['n_views'], $rowset[$key]['hits'])."</span>" : '';
+
+                        $caption = ($rowset[$key]['title']||$rowset[$key]['hits']) ? "<span class=\"thumb_title\">".$rowset[$key]['title'].(($rowset[$key]['title'])?"&nbsp;&ndash;&nbsp;":"").sprintf($lang_get_pic_data['n_views'], $rowset[$key]['hits'])."</span>" : '';
 
                         if ($CONFIG['caption_in_thumbview']){
                            $caption .= $rowset[$key]['caption'] ? "<span class=\"thumb_caption\">".bb_decode(($rowset[$key]['caption']))."</span>" : '';
@@ -1253,15 +1253,16 @@ function cpg_phpinfo_mod($search)
     phpinfo(INFO_MODULES);
     $string = ob_get_contents();
     $module = $string;
+    $delimiter = '#cpgdelimiter#';
     ob_end_clean();
     // find out the first occurence of "<h2" and throw the superfluos stuff away
     $string = strstr($string, 'module_' . $search);
     $string = eregi_replace('</table>(.*)', '', $string);
     $string = strstr($string, '<tr>');
     $string = str_replace('</td>', '|', $string);
-    $string = str_replace('</tr>', '', $string);
+    $string = str_replace('</tr>', $delimiter, $string);
     $string = chop(strip_tags($string));
-    $pieces = explode("", $string);
+    $pieces = explode($delimiter, $string);
     foreach($pieces as $key => $val) {
         $bits[$key] = explode("|", $val);
     }
@@ -1327,6 +1328,7 @@ function cpg_phpinfo_conf($search)
     // this could be done much better with regexpr - anyone who wants to change it: go ahead
     $string ='';
     $pieces = '';
+    $delimiter = '#cpgdelimiter#';
     $bits = '';
     ob_start();
     phpinfo(INFO_CONFIGURATION);
@@ -1335,9 +1337,9 @@ function cpg_phpinfo_conf($search)
     // find out the first occurence of "</tr" and throw the superfluos stuff in front of it away
     $string = strchr($string, '</tr>');
     $string = str_replace('</td>', '|', $string);
-    $string = str_replace('</tr>', '', $string);
+    $string = str_replace('</tr>', $delimiter, $string);
     $string = chop(strip_tags($string));
-    $pieces = explode("", $string);
+    $pieces = explode($delimiter, $string);
     foreach($pieces as $val) {
         $bits = explode("|", $val);
         if (strchr($bits[0], $search)) {
