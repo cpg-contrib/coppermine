@@ -50,7 +50,7 @@ if($CONFIG['read_iptc_data'] ){
 
 function html_picture_menu()
 {
-    global $lang_display_image_php, $CURRENT_PIC_DATA, $CONFIG;
+    global $lang_display_image_php, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $CONFIG;
 	
     $mime_content = cpg_get_type($CURRENT_PIC_DATA['filename']);
     $picmenu = '';
