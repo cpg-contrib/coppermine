@@ -207,11 +207,11 @@ CREATE TABLE CPG_exif (
 # Table structure for table `CPG_filetypes`
 #
 
-CREATE TABLE CPG_filetypes (
+CREATE TABLE IF NOT EXISTS CPG_filetypes (
   extension char(7) NOT NULL default '',
   mime char(30) default NULL,
   content char(15) default NULL,
-  KEY extension (extension)
+  PRIMARY KEY (extension)
 ) TYPE=MyISAM COMMENT='Used to store the file extensions';
 
 
