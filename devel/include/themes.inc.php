@@ -1161,7 +1161,7 @@ function pageheader($section, $meta = '')
     user_save_profile();
 
     $template_vars = array('{LANG_DIR}' => $lang_text_dir,
-        '{TITLE}' => $CONFIG['gallery_name'] . ' - ' . $section,
+        '{TITLE}' => $CONFIG['gallery_name'] . ' - ' . strip_tags(bb_decode($section)),
         '{CHARSET}' => $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'],
         '{META}' => $meta,
         '{GAL_NAME}' => $CONFIG['gallery_name'],
@@ -2128,7 +2128,7 @@ function theme_html_picture()
     $params = array('{CELL_HEIGHT}' => '100',
         '{IMAGE}' => $CURRENT_PIC_DATA['header'].$CURRENT_PIC_DATA['html'].$CURRENT_PIC_DATA['footer'],
         '{ADMIN_MENU}' => $CURRENT_PIC_DATA['menu'],
-        '{TITLE}' => $CURRENT_PIC_DATA['title'],
+        '{TITLE}' => bb_decode($CURRENT_PIC_DATA['title']),
         '{CAPTION}' => bb_decode($CURRENT_PIC_DATA['caption']),
         );
 
