@@ -79,7 +79,9 @@ foreach ($pic_data as $picture) {
         $i++;
     }
 }
-
+if (!$i) {
+  echo "Pic[0] = 'images/thumb_document.jpg'\n";
+  }
 ?>
 
 var t
