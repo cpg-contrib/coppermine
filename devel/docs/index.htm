@@ -49,6 +49,7 @@ A.navbar:hover {
 .back {
 	MARGIN-TOP: 10px; FONT-SIZE: 10px; MARGIN-BOTTOM: 10px
 }
+.important { color: red }
 </STYLE>
 </HEAD>
 <BODY><!-- *** Pixel Blue Rave theme *** -->
@@ -57,6 +58,7 @@ background=manual_1-filer/tablebg.gif border=0>
   <TBODY>
   <TR>
     <TD>
+			<P><img src="../images/coppermine_logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery">
       <H1>Coppermine online documentation<A id=top name=top></A></H1>
       <UL>
         <LI><a href="#cat_alb_pic">Categories, albums and pictures</a></LI>
@@ -74,7 +76,7 @@ background=manual_1-filer/tablebg.gif border=0>
 
       <H1>Categories, albums and pictures<A id=cat_alb_pic 
       name=cat_alb_pic></A></H1>
-      <P>The script works in the following way :</P>
+      <P>The Coppermine Photo Gallery (CPG) works in the following way:</P>
       <UL>
         <LI>Pictures are stored in albums</LI>
         <LI>Albums are organised in categories</LI>
@@ -101,7 +103,7 @@ background=manual_1-filer/tablebg.gif border=0>
       of the screen.</P>
       <P>When you are in admin mode, you can administer your gallery and the 
       following menu bar appears :</P>
-      <P><IMG src="pics/admin_mode_bar.gif" border="1" /></P>
+      <P><IMG src="pics/admin_mode_bar.GIF" border="1" /></P>
       <P>When you are in user mode you are just a regular user and can't access 
       the admin pages.</P>
       <P><a class="back" href="#top">Back to 
@@ -109,7 +111,7 @@ background=manual_1-filer/tablebg.gif border=0>
       <HR>
 
       <H1>The group control panel<A id=group_cp name=group_cp></A></H1>
-      <P><IMG src="pics/group_cp.gif" border="1" /></P>
+      <P><IMG src="pics/group_cp.GIF" border="1" /></P>
       <P>This is where you define what members of a group can and can't do.</P>
       <P>The disk quota applies only for groups where "Can have a personal" 
       gallery has been set to "YES". Only pictures uploaded by a user in his 
@@ -133,7 +135,7 @@ background=manual_1-filer/tablebg.gif border=0>
       <HR>
 
       <H1>The categories control panel<A id=cat_cp name=cat_cp></A></H1>
-      <P><IMG src="pics/category_cp.gif" border="1" /></P>
+      <P><IMG src="pics/category_cp.GIF" border="1" /></P>
       <P>This is where you can edit your categories.</P>
       <UL>
         <LI>The <IMG height=16 src="pics/edit.gif" width=16> button 
@@ -161,7 +163,7 @@ background=manual_1-filer/tablebg.gif border=0>
       <P>When you are in admin mode there is a menu displayed next to each 
       album</P>
       <P></P>
-      <P><IMG src="pics/album_menu.gif" border="1" /></P>
+      <P><IMG src="pics/album_menu.GIF" border="1" /></P>
       <P><B>Delete</B> allows you to delete the album and all pictures it 
       contains.</P>
       <P><B>Properties</B> allows you to modify the name, description and 
@@ -173,7 +175,7 @@ background=manual_1-filer/tablebg.gif border=0>
       <HR>
 
       <H1>Album properties<A id=album_prop name=album_prop></A></H1>
-      <P><IMG src="pics/edit_album.gif" border="1" /></P>
+      <P><IMG src="pics/edit_album.GIF" border="1" /></P>
       <P>The "Album category" drop down list allows you to move an album between 
       categories. If you set this to "* No category *" then the album will be 
       displayed on your main page.</P>
@@ -200,7 +202,7 @@ background=manual_1-filer/tablebg.gif border=0>
       <HR>
 
       <H1>Editing pictures<A id=edit_pics name=edit_pics></A></H1>
-      <P><IMG src="pics/edit_picture.gif" border="1" /></P>
+      <P><IMG src="pics/edit_picture.GIF" border="1" /></P>
       <P>This is where you can modify the title description, keywords and custom 
       fields (if they are used) of a picture.</P>
       <P>Use the album drop down menu to move a picture to another album.</P>
@@ -277,6 +279,11 @@ background=manual_1-filer/tablebg.gif border=0>
         <LI>'<B>lastcom</B>': last comments </LI></UL>
       <P></P>
       <P>The <B>,2</B> means 2 rows of thumbnails.</P>
+			
+			<H3>Show first level album thumbnails in categories</H3>
+			<P>Use this setting to choose between showing or not showing thumbnails from 
+			the first album in the categories.</P>
+			
       <H2>Thumbnail view</H2>
       <H3>Number of columns on thumbnail page</H3>
       <P>Default value is 4 this means that each row will show 4 thumbnails.</P>
@@ -286,10 +293,19 @@ background=manual_1-filer/tablebg.gif border=0>
       <P>When the thumbnails spread over multiple pages, tabs are displayed at 
       the bottom of the page. This value define how many tabs will be 
       displayed.</P>
+			<h3>Display picture caption (in addition to title) below the thumbnail </h3>
+			<P>Toggles whether the picture caption is displayed 
+			below each thumbnail while user is in thumbnail view.</P>
+			<h3>Display number of comments below the thumbnail</h3> 
+			<P>Toggles the display of the number of comments for below each thumbnail.</P>
+			<h3>Default sort order for pictures </h3>
+			<P>This option determines if you wish to have the picture caption displayed 
+			below each thumbnail while user is in thumbnail view.</P>
       <H3>Minimum number of votes for a picture to appear in the 'top-rated' 
       list</H3>
-      <P>If a picture has received less than "this value" votes, it will not be 
-      displayed on the "top-rated" page.</P>
+			Used to determine how many votes a picture must receive before appearing as
+			&quot;top-rated.&quot;  If a picture has received less than "this value"
+			votes, it will not be displayed on the "top-rated" page.</P>
       <H2>Image view &amp; Comment settings</H2>
       <H3>Width of the table for picture display (pixels or %)</H3>
       <P>The width of the table used to display the intermediate picture.</P>
@@ -309,14 +325,24 @@ background=manual_1-filer/tablebg.gif border=0>
       <P>Prevent a comment for containing too many new line char.</P>
       <H3>Maximum length of a comment</H3>
       <P>Maximum number of characters that a comment may contain.</P>
+			<h3>Show film strip</h3>
+			<P>Toggles display of a "film strip" showing thumbnails of prior 
+			and following photos in the album.</P>
+			<h3>Number of items in film strip</h3>
+			Set the number of thumbnails to display in film strip.
       <H2>Picture and thumbnail settings</H2>
       <H3>Quality for JPEG files</H3>
       <P>The quality used for JPEG compression when the script resizes an image. 
       Value can range from 0 (worst) to 100 (best). This value can be set to 75 
       when using ImageMagick.</P>
-      <H3>Max width or height of a thumbnail</H3>
-      <P>With the default value thumbnails will fit inside a box of 100x100 
-      pixels.</P>
+			<h3>Max dimension of a thumbnail</h3>
+			<P>Sets the maximum size in pixels for the specified dimension for thumbnails.
+			<div class="important">This setting must not be changed if there are already 
+			photos in the gallery.</div></P>
+			<h3>Use dimension ( width or height or Max aspect for thumbnail )</h3>
+			<P>Sets the dimension for which the maximum pixel size should apply to.
+			<div class="important">This setting must not be changed if there are already 
+			photos in the gallery.</div></P> 
       <H3>Create intermediate pictures</H3>
       <P>By default, whenever you upload a picture, the script creates a 
       thumbnail of the picture (picture name with a thumb_ prefix) plus an 
@@ -333,6 +359,7 @@ background=manual_1-filer/tablebg.gif border=0>
       <P>Limit the dimensions of the pictures that are uploaded. Resizing large 
       pictures requires a lot of memory and consumes CPU.</P>
       <H2>User settings</H2>
+			
       <H3>Allow new user registrations</H3>
       <P>Define whether new users can self-register or not.</P>
       <H3>User registration requires email verification</H3>
@@ -352,6 +379,8 @@ background=manual_1-filer/tablebg.gif border=0>
       <P>These fields are displayed within the "picture information" area. They 
       will appear only if you give them a name.</P>
       <H2>Pictures and thumbnails advanced settings</H2>
+			<h3>Show private album Icon to unlogged user </h3>
+			<P>Toggles the display of the private album icon to unlogged users.</P>
       <H3>Characters forbidden in filenames</H3>
       <P>When the filename of a picture that is uploaded contains one of these 
       characters, it will be replaced with an underscore.</P>
@@ -406,6 +435,10 @@ background=manual_1-filer/tablebg.gif border=0>
       <P>The same remarks as above apply.</P>
       <P>When you upload pictures by FTP, store them in a subdirectory of the 
       "album directory" and not inside the "directory for user pictures". </P>
+			<h3>The prefix for intermediate pictures</h3>
+			<P>This prefix is added to the file name of created pictures.</P>
+			<h3>The prefix for thumbnails</h3>
+			<P>This prefix is added to the file name of created intermediate thumbnails.</P>
       <H3>Default mode for directories</H3>
       <P>If during the installation, the installer complained about directory 
       not having the right permissions set this to <B>0777</B> else you won't be 
@@ -414,6 +447,10 @@ background=manual_1-filer/tablebg.gif border=0>
       <H3>Default mode for pictures</H3>
       <P>If during the installation, the installer complained about directories 
       not having the right permissions set this to <B>0666</B>.</P>
+			<h3>Disable right-click on full-size pop-up</h3>
+			<P>CPG will attempt to block contextual menus on full-size photo pages.</P>
+			<h3>Disable right-click on all "regular" pages</h3>  
+			<P>CPG will attempt to block contextual menus on all pages.</P>
       <H2>Cookies &amp; Charset settings</H2>
       <H3>Name of the cookie used by the script</H3>
       <P>Default value is "cpg11d". Even if you have multiple instances of the 
@@ -429,6 +466,19 @@ background=manual_1-filer/tablebg.gif border=0>
       (utf-8)". See the discussion in the "<B>language</B>" section of this 
       page.</P>
       <P><a class="back" href="#top">Back to 
-      top</a></P></TD></TR></TBODY></TABLE>
+      top</a></P>
+			<h2>Miscellaneous settings</h2>
+			<h3>Enable debug mode</h3>
+			<P>CPG will show error messages which are normally suppressed.  This is 
+			helpful in troubleshooting problems with your gallery or when asking 
+			for help on the <a ref="http://coppermine.sf.net" target="new.Window">
+			CPG Support Forums</a>.
+			<P><a class="back" href="#top">Back to 
+      top</a></P
+
+			
+			
+			
+			</TD></TR></TBODY></TABLE>
 </BODY></HTML>
 
