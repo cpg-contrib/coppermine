@@ -269,7 +269,7 @@ function getallalbumsindb(&$album_array)
 }
 
 /**
- * scandir()
+ * CPGscandir() //renamed because php5 has same function as scandir()
  *
  * recursive function that scan a directory, create the HTML code for each
  * picture and add new pictures in an array
@@ -279,7 +279,7 @@ function getallalbumsindb(&$album_array)
  * @param  $newpic_array the array that contains new pictures found
  * @return
  */
-function scandir($dir, &$expic_array)
+function CPGscandir($dir, &$expic_array)
 {
         $dir = str_replace(".","" ,$dir);
     static $dir_id = 0;
@@ -303,7 +303,7 @@ function scandir($dir, &$expic_array)
     if (count($dir_array) > 0) {
         foreach ($dir_array as $directory) {
             if (substr($directory,0,1) != ".") // added do not show folders with dots: gaugau 03-11-02
-            scandir($dir . $directory . '/', $expic_array);
+            CPGscandir($dir . $directory . '/', $expic_array);
         }
     }
     return $count;
@@ -394,7 +394,7 @@ EOT;
     // added below table, JavaScript and additional check/uncheck options: gaugau 03-11-02
 
     getallpicindb($expic_array, $HTTP_GET_VARS['startdir']);
-    if (scandir($HTTP_GET_VARS['startdir'] . '/', $expic_array)) {
+    if (CPGscandir($HTTP_GET_VARS['startdir'] . '/', $expic_array)) {
 
         echo <<<EOT
         <tr>
