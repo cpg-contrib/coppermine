@@ -738,8 +738,8 @@ $template_image_comments = <<<EOT
                 <td>
                         <table width="100%" cellpadding="0px" cellspacing="0px">
                            <tr>
-                                <a name="comment{MSG_ID}"><td class="tableh2_compact" nowrap="nowrap"></a>
-                                        <b>{MSG_AUTHOR}</b>
+                                <td class="tableh2_compact" nowrap="nowrap">
+                                        <b>{MSG_AUTHOR}</b><a name="comment{MSG_ID}">&nbsp;</a>
 <!-- BEGIN ipinfo -->
                                                                                  ({HDR_IP} [{RAW_IP}])
 <!-- END ipinfo -->
@@ -748,7 +748,7 @@ $template_image_comments = <<<EOT
 
                                 <td class="tableh2_compact" align="right" width="100%">
 <!-- BEGIN report_comment_button -->
-     <a href="report_file.php?pid={PID}&msg_id={MSG_ID}&what=comment" title="{REPORT_COMMENT_TITLE}"><img src="images/report.gif" width="16px" height="16px" border="0px" align="middle" alt="{REPORT_COMMENT_TITLE}" /></a>
+     <a href="report_file.php?pid={PID}&amp;msg_id={MSG_ID}&amp;what=comment" title="{REPORT_COMMENT_TITLE}"><img src="images/report.gif" width="16px" height="16px" border="0px" align="middle" alt="{REPORT_COMMENT_TITLE}" /></a>
 <!-- END report_comment_button -->
 
 
@@ -836,11 +836,9 @@ $template_add_your_comment = <<<EOT
                 <td width="100%" class="tableh2_compact"><b>{ADD_YOUR_COMMENT}</b></td>
         </tr>
         <tr>
-                <form method="post" name="post" action="db_input.php">
                 <td colspan="3">
+                <form method="post" name="post" action="db_input.php">
                         <table width="100%" cellpadding="0px" cellspacing="0px">
-                                <input type="hidden" name="event" value="comment" />
-                                <input type="hidden" name="pid" value="{PIC_ID}" />
 <!-- BEGIN user_name_input -->
                                 <tr><td class="tableb_compact">
                                         {NAME}
@@ -859,11 +857,13 @@ $template_add_your_comment = <<<EOT
 <!-- END input_box_no_smilies -->
                                 </td>
                                 <td class="tableb_compact">
+                                <input type="hidden" name="event" value="comment" />
+                                <input type="hidden" name="pid" value="{PIC_ID}" />
                                 <input type="submit" class="comment_button" name="submit" value="{OK}" />
                                 </td></tr>
                         </table>
-                </td>
                 </form>
+                </td>
         </tr>
 <!-- BEGIN smilies -->
         <tr>
@@ -2353,7 +2353,7 @@ function theme_html_comments($pid)
             template_extract_block($template_add_your_comment, 'user_name_input', $user_name_input);
             $user_name = '';
         } else {
-            $user_name = isset($USER['name']) ? '"' . strtr($USER['name'], $HTML_SUBST) . '"' : '"' . $lang_display_comments['your_name'] . '" onclick="javascript:this.value=\'\';"';
+            $user_name = isset($USER['name']) ? '"' . strtr($USER['name'], $HTML_SUBST) . '"' : $lang_display_comments['your_name'] . '" onclick="javascript:this.value=\'\';';
         }
 
         $params = array('{ADD_YOUR_COMMENT}' => $lang_display_comments['add_your_comment'],
