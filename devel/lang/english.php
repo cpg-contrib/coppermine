@@ -1111,6 +1111,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'preview' => 'Preview',
   'save' => 'Save picture',
   'save_thumb' =>'Save as thumbnail',
+  'gallery_icon' => 'Make this my icon', //cpg1.4.0
   'sel_on_img' =>'The selection has to be entirely on the image!', //js-alert
   'album_properties' =>'Album properties', //cpg1.4.0
   'parent_category' =>'Parent category', //cpg1.4.0
