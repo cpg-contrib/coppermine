@@ -126,7 +126,7 @@ switch ($event) {
             $redirect = "displayimage.php?pos=" . (- $pid);
             if ($CONFIG['email_comment_notification']) {
                 $mail_body = $msg_body . "\n\r ".$lang_db_input_php['email_comment_body'] . " " . $CONFIG['ecards_more_pic_target'].(substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/').$redirect;
-                cpg_mail('admin', $lang_db_input_php['email_comment_subject'], $mail_body);
+                cpg_mail('admin', $lang_db_input_php['email_comment_subject'], make_clickable($mail_body));
             }
             pageheader($lang_db_input_php['com_added'], "<META http-equiv=\"refresh\" content=\"1;url=$redirect\">");
             msg_box($lang_db_input_php['info'], $lang_db_input_php['com_added'], $lang_continue, $redirect);
@@ -138,7 +138,7 @@ switch ($event) {
             $redirect = "displayimage.php?pos=" . (- $pid);
             if ($CONFIG['email_comment_notification']) {
                 $mail_body = $msg_body . "\n\r ".$lang_db_input_php['email_comment_body'] . " " . $CONFIG['ecards_more_pic_target'] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') . $redirect;
-                cpg_mail('admin', $lang_db_input_php['email_comment_subject'], $mail_body);
+                cpg_mail('admin', $lang_db_input_php['email_comment_subject'], make_clickable($mail_body));
             }
             $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
             header($header_location . $redirect);
