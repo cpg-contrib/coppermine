@@ -417,7 +417,7 @@ function spring_cleaning($directory_path) {
     while (!(($file = readdir($directory_handle)) === false)) {
 
             // Avoid deleting the index page of the directory.
-            if ($file == 'index.html') {
+            if ($file == 'index.html' || $file != "." || $file != "..") {
 
                 // This is the index file, so we move on.
                 continue;
