@@ -22,6 +22,7 @@
              <a href="thumbnailsNew.php?album={$indexData->albList[element].aid}" class="albums">{$indexData->albList[element].thumb_pic}</a>
             </td>
             <td width="100%" valign="top" class="tableb_compact">
+            <!-- debug: GMODE {$GALLERY_ADMIN_MODE} UMODE {$USER_ADMIN_MODE} CAT {$cat} MY_CAT_ID {$my_cat_id} -->
               {if $GALLERY_ADMIN_MODE || ($USER_ADMIN_MODE && $cat eq $my_cat_id)}
               <table border="0" cellpadding="0" cellspacing="1">
                 <tr>
@@ -29,7 +30,7 @@
                     <a href="delete.php?id={$indexData->albList[element].aid}&amp;what=album" class="adm_menu" onclick="return  confirm('{$lang_album_admin_menu.confirm_delete}');">{$lang_album_admin_menu.delete}</a>
                   </td>
                   <td align="center" valign="middle" class="admin_menu">
-                    <a href="modifyalb.php?album={$indexData->albList[element].aid}" class="adm_menu">{$lang_album_admin_menu.modify}</a>
+                    <a href="modifyalbnew.php?album={$indexData->albList[element].aid}" class="adm_menu">{$lang_album_admin_menu.modify}</a>
                   </td>
                   <td align="center" valign="middle" class="admin_menu">
                     <a href="editpics.php?album={$indexData->albList[element].aid}" class="adm_menu">{$lang_album_admin_menu.edit_pics}</a>
@@ -87,4 +88,3 @@
 </table>
 <!-- Album list Ends-->
 {/if}
-<img src="images/spacer.gif" width="1" height="17" alt=" " /><br />
