@@ -200,3 +200,4 @@ Changed edit dirctory creation from 666 to 777 in picmgmt.inc.php - 22 October 2
 Added language support for xp_publish.php - 26 October 2004, Casper
 Added "change secondary group" for multiple users (usermgr.php) - 27 October 2004, GauGau
 Added option to delete all files and comments when deleting users - 28 October 2004, GauGau
+Added custom header and footer include option - 02 November 2004, GauGau

@@ -913,39 +913,52 @@ $template_tab_display = array('left_text' => '<td width="100%%" align="left" val
     'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%d</b></td>',
     'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"<b>%d</b></a></td>' . "\n"
     );
+
 function pageheader($section, $meta = '')
 {
     global $CONFIG, $THEME_DIR;
     global $template_header, $lang_charset, $lang_text_dir;
 
-    $charset = ($CONFIG['charset'] == 'language file') ? $lang_charset : $CONFIG['charset'];
+    $custom_header = cpg_get_custom_include($CONFIG['custom_header_path']);
 
     header('P3P: CP="CAO DSP COR CURa ADMa DEVa OUR IND PHY ONL UNI COM NAV INT DEM PRE"');
-    header("Content-Type: text/html; charset=$charset");
     user_save_profile();
 
     $template_vars = array('{LANG_DIR}' => $lang_text_dir,
         '{TITLE}' => $CONFIG['gallery_name'] . ' - ' . $section,
-        '{CHARSET}' => $charset,
+        '{CHARSET}' => $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'],
         '{META}' => $meta,
         '{GAL_NAME}' => $CONFIG['gallery_name'],
         '{GAL_DESCRIPTION}' => $CONFIG['gallery_description'],
         '{MAIN_MENU1}' => theme_main_menu1(),
         '{MAIN_MENU2}' => theme_main_menu2(),
-        '{ADMIN_MENU}' => theme_admin_mode_menu()
+        '{ADMIN_MENU}' => theme_admin_mode_menu(),
+        '{CUSTOM_HEADER}' => $custom_header,
         );
+
     echo template_eval($template_header, $template_vars);
 }
 // Function for writing a pagefooter
 function pagefooter()
 {
-    global $USER, $ALBUM_SET, $CONFIG, $cpg_time_start, $query_stats;
+    global $HTTP_GET_VARS, $HTTP_POST_VARS, $HTTP_SERVER_VARS;
+    global $USER, $USER_DATA, $ALBUM_SET, $CONFIG, $time_start, $query_stats, $queries;;
     global $template_footer;
+
+    $custom_footer = cpg_get_custom_include($CONFIG['custom_footer_path']);
+
     if ($CONFIG['debug_mode']==1 || ($CONFIG['debug_mode']==2 && GALLERY_ADMIN_MODE)) {
     cpg_debug_output();
     }
-    echo $template_footer;
+
+    $template_vars = array(
+        '{CUSTOM_FOOTER}' => $custom_footer,
+    );
+
+    echo template_eval($template_footer, $template_vars);
 }
+
+
 // Function to start a 'standard' table
 function starttable($width = '-1', $title = '', $title_colspan = '1')
 {
