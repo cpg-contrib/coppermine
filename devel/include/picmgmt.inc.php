@@ -221,7 +221,10 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use)
                 $ERROR = $lang_errors['invalid_image'];
                 return false;
             }
-            $dst_img = imagecreatetruecolor($destWidth, $destHeight);
+            if ($imginfo[2] == GIS_GIF)
+              $dst_img = imagecreate($destWidth, $destHeight);
+            else
+              $dst_img = imagecreatetruecolor($destWidth, $destHeight);
             imagecopyresampled($dst_img, $src_img, 0, 0, 0, 0, $destWidth, (int)$destHeight, $srcWidth, $srcHeight);
             imagejpeg($dst_img, $dest_file, $CONFIG['jpeg_qual']);
             imagedestroy($src_img);

@@ -88,7 +88,10 @@ function makethumbnail($src_file, $newSize, $method)
                 $src_img = imagecreatefromjpeg($src_file);
             else
                 $src_img = imagecreatefrompng($src_file);
-            $dst_img = imagecreatetruecolor($destWidth, $destHeight);
+            if ($imginfo[2] == GIS_GIF)
+              $dst_img = imagecreate($destWidth, $destHeight);
+            else
+              $dst_img = imagecreatetruecolor($destWidth, $destHeight);
             imagecopyresampled($dst_img, $src_img, 0, 0, 0, 0, $destWidth, (int)$destHeight, $srcWidth, $srcHeight);
             header("Content-type: image/jpeg");
             imagejpeg($dst_img);
