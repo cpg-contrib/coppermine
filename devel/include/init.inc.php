@@ -216,7 +216,7 @@ while ($row = mysql_fetch_array($results)) {
 mysql_free_result($results);
 
 // Retrieve Array of Admin Users (used for hiding admin usernames on thumbnails)
-$results = cpg_db_query("SELECT user_id FROM {$CONFIG['TABLE_USERS']} WHERE user_group in (" . implode(',',$CONFIG['ADMIN_GROUPS']).')');
+$results = cpg_db_query("SELECT {$cpg_udb->field['user_id']} FROM $cpg_udb->usertable WHERE {$cpg_udb->field['usertbl_group_id']} in (" . implode(',',$CONFIG['ADMIN_GROUPS']).')');
 $CONFIG['ADMIN_USERS']=array();
 while ($row = mysql_fetch_array($results)) {
     $CONFIG['ADMIN_USERS'][] = $row['user_id'];
