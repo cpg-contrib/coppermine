@@ -107,6 +107,7 @@ while($file = readdir($dir)){
 }
 closedir($dir);
 
+
 // print the folder we're in
 print '<tr>'.$newline;
 print '<td class="tableh2">'.$newline;
@@ -117,7 +118,28 @@ print '</td>'.$newline;
 print '<td class="tableh2">'.$newline;
 print '<input type="text" name="cf2" size="50px" value="/'.ltrim($folder, '/').'" disabled="disabled" class="tableh2_compact">&nbsp;'.$newline;
 if ($linktarget != '') {
-    print '<a href="'.$linktarget.'?startdir='.rtrim(str_replace($_REQUEST['limitfolder'], '',$folder), '/').'" class="admin_menu" target="_parent">'.$lang_minibrowser_php['submit'].'</a>'.$newline;
+    // determine if we should display a submit button start
+    // get the allowed extensions
+    $filetypes = array();
+    $result = cpg_db_query("SELECT extension FROM {$CONFIG['TABLE_FILETYPES']}");
+    //print mysql_num_rows($result);
+    while($row = mysql_fetch_row($result)) {
+        $filetypes[] = $row[0];
+    }
+    mysql_free_result($result);
+    $filetypes = array_unique($filetypes);
+    // loop through the $filename array, get the extensions and check if at least one allowed ending is there
+    $allowed_file_counter = 0;
+    if (is_array($filename)) {
+        foreach ($filename as $value) {
+          if(in_array(ltrim(strrchr($value,'.'),'.'), $filetypes)) {
+              $allowed_file_counter++;
+          } // end if in_array
+        } // end foreach
+    } // end is_array
+    if ($allowed_file_counter!=0) {
+        print '<a href="'.$linktarget.'?startdir='.rtrim(str_replace($_REQUEST['limitfolder'], '',$folder), '/').'" class="admin_menu" target="_parent">'.$lang_minibrowser_php['submit'].'</a>'.$newline;
+    } // determine if we should display a submit button end
 } else {
     print '<input type="submit" name="submit" value="'.$lang_minibrowser_php['submit'].'" class="button" />'.$newline;
 }
