@@ -72,7 +72,7 @@ class cpgDisplayImageData extends cpgAlbumData {
                   return;
                 }
 
-                $row = cpg_db_fetch_row($result);
+                $row = cpg_db_fetch_rowset($result);
 
                 mysql_free_result($result);
 
