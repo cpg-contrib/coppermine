@@ -17,12 +17,12 @@
 // info about translators and translated language 
 $lang_translation_info = array( 
 'lang_name_english' => 'Portuguese (Brazilian)',  //the name of your language in English, e.g. 'Greek' or 'Spanish' 
-'lang_name_native' => 'Portuguese (Brasilian)', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espa&ntilde;ol' 
+'lang_name_native' => 'Português (Brasileiro)', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espa&ntilde;ol' 
 'lang_country_code' => 'br', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es' 
-'trans_name'=> '?', //the name of the translator - can be a nickname 
-'trans_email' => '', //translator's email address (optional) 
+'trans_name'=> 'Steve.H', //the name of the translator - can be a nickname 
+'trans_email' => 'steve.spam@terra.com.br', //translator's email address (optional) 
 'trans_website' => '', //translator's website (optional) 
-'trans_date' => '2003-10-07', //the date the translation was created / last modified 
+'trans_date' => '2003-12-10', //the date the translation was created / last modified 
 ); 
 
 $lang_charset = 'iso-8859-1';
@@ -45,44 +45,44 @@ $lang_error = 'Erro';
 
 // The various date formats
 // See http://www.php.net/manual/en/function.strftime.php to define the variable below
-$album_date_fmt =    '%B %d, %Y';
-$lastcom_date_fmt =  '%m/%d/%y at %H:%M';
-$lastup_date_fmt = '%B %d, %Y';
-$register_date_fmt = '%B %d, %Y';
-$lasthit_date_fmt = '%B %d, %Y at %I:%M %p';
-$comment_date_fmt =  '%B %d, %Y at %I:%M %p';
+$album_date_fmt =    '%d de %B de %Y';
+$lastcom_date_fmt =  '%d/%m/%y às %H:%M';
+$lastup_date_fmt = '%d/%m/%y';
+$register_date_fmt = '%d de %B de %Y';
+$lasthit_date_fmt = '%d de %B de %Y às %I:%M %p';
+$comment_date_fmt =  '%d de %B de %Y às %R';
 
 // For the word censor
-$lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
+$lang_bad_words = array('fudid*', 'viado*', 'veado*', 'put*', 'buceta', 'rola', 'filh* d* puta', 'vadia', 'biscate', 'cú', 'cuzinh*', 'caralho', 'piranha', 'vagabunda', 'fanculo', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
 
 $lang_meta_album_names = array(
-	'random' => 'Imagens Randômicas',
-	'lastup' => 'Últimas Adições',
-	'lastcom' => 'Últimos Comentários',
-	'topn' => 'Mais Visualizados',
-	'toprated' => 'Topo de Linha',
-	'lasthits' => 'Últimos Visualizados',
-	'search' => 'Resultado da Pesquisa',
-        'favpics'=> 'Favourite Pictures', //new in cpg1.2.0
+	'random' => 'Fotos Aleatórias - Selecionadas automaticamente pelo servidor, mudam a cada visualização.',
+	'lastup' => 'Últimas Atualizações - As fotos mais recentes.',
+	'lastcom' => 'Comentários das fotos.',
+	'topn' => 'As fotos mais visualizadas.',
+	'toprated' => 'Ranking das fotos - Votos/Qualificações.',
+	'lasthits' => 'Últimas fotos visualizadas.',
+	'search' => 'Resultado(s) da Pesquisa',
+    'favpics'=> 'As fotos favoritas.', //new in cpg1.2.0
 );
 
 $lang_errors = array(
-	'access_denied' => 'Você não tem permissão para visualizar este recurso.',
-	'perm_denied' => 'Você não tem permissão para executar esta operação.',
-	'param_missing' => 'Script não consegue estabelecer um parâmetro estabelecido.',
-	'non_exist_ap' => 'O álbum ou figura que voccê selecionau não foi encontrado !',
-	'quota_exceeded' => 'A quota de espaço para armazenamento excedeu<br /><br />Você possui [quota]KB de espaço, suas imagens atualmente utilizam [space]KB, adicionar este arquivo irá estourar sua cota permitida.',
-	'gd_file_type_err' => 'estamos usando uma sistema que só permite imagens JPEG e PNG.',
-	'invalid_image' => 'A imagem que você enviou está corrompida ou não pode ser interpretada por GD library',
+	'access_denied' => 'Você não tem permissão para visualizar esta página!',
+	'perm_denied' => 'Você não tem permissão para executar esta operação!',
+	'param_missing' => 'O Script foi executado sem os parâmetros necessários.',
+	'non_exist_ap' => 'O álbum ou foto que voccê selecinou não foi encontrado!',
+	'quota_exceeded' => 'O seu limite (QUOTA) de espaço é insuficiente.<br /><br />Você possui [quota]KB de espaço, suas fotos utilizam atualmente [space]KB, adicionar esta foto irá exceder o seu limite.',
+	'gd_file_type_err' => 'O GD library (script) só permite o envio de fotos com extensão .JPEG e .PNG!',
+	'invalid_image' => 'A imagem que você enviou está corrompida ou não pôde ser interpretada por GD library.',
 	'resize_failed' => 'Impossível criar miniatura ou redimensionar a imagem.',
-	'no_img_to_display' => 'Sem imagens para mostrar',
-	'non_exist_cat' => 'A categoria selecionada não existe',
+	'no_img_to_display' => 'Sem imagem(ns) para mostrar.',
+	'non_exist_cat' => 'A categoria selecionada não existe!',
 	'orphan_cat' => 'A category has a non-existing parent, runs the category manager to correct the problem.',
-	'directory_ro' => 'Directory \'%s\' is not writable, pictures can\'t be deleted',
-	'non_exist_comment' => 'O comentário selecionado não existe.',
-	'pic_in_invalid_album' => 'Imagem em um album inexistente (%s)!?',
-        'banned' => 'You are currently banned from using this site.',  //new in cpg1.2.0
-        'not_with_udb' => 'This function is disabled in Coppermine because it is integrated with forum software. Either what you are trying to do is not supported in this configuration, or the function should be handled by the forum software.',  //new in cpg1.2.0
+	'directory_ro' => 'O diretório \'%s\' está protegido, a(s) foto(s) não pode(m) ser deletada(s)!',
+	'non_exist_comment' => 'O comentário selecionado não existe!',
+	'pic_in_invalid_album' => 'Imagem em um álbum inexistente (%s)!?',
+    'banned' => 'Você foi BANDIDO(A) deste Site!',  //new in cpg1.2.0
+    'not_with_udb' => 'This function is disabled in Coppermine because it is integrated with forum software. Either what you are trying to do is not supported in this configuration, or the function should be handled by the forum software.',  //new in cpg1.2.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -90,8 +90,8 @@ $lang_errors = array(
 // ------------------------------------------------------------------------- //
 
 $lang_main_menu = array(
-	'alb_list_title' => 'Ir para a lista de álbus',
-	'alb_list_lnk' => 'Lista de álbuns',
+	'alb_list_title' => 'Ir para a lista dos álbuns',
+	'alb_list_lnk' => 'Lista dos Álbuns',
 	'my_gal_title' => 'Ir para minha galeria pessoal',
 	'my_gal_lnk' => 'Minha Galeria',
 	'my_prof_lnk' => 'Meus dados',
@@ -102,15 +102,15 @@ $lang_main_menu = array(
 	'upload_pic_title' => 'Enviar imagem para o álbum',
 	'upload_pic_lnk' => 'Enviar imagem',
 	'register_title' => 'Criar uma conta',
-	'register_lnk' => 'Registar',
+	'register_lnk' => 'Registar-se',
 	'login_lnk' => 'Login',
 	'logout_lnk' => 'Logout',
 	'lastup_lnk' => 'Últimos envios',
 	'lastcom_lnk' => 'Últimos comentários',
-	'topn_lnk' => 'Mais Visualizados',
-	'toprated_lnk' => 'Topo de linha',
+	'topn_lnk' => 'Mais visualizados',
+	'toprated_lnk' => 'Mais votadas',
 	'search_lnk' => 'Pesquisar',
-        'fav_lnk' => 'My Favorites', //new in cpg1.2.0
+    'fav_lnk' => 'Fotos Favoritas', //new in cpg1.2.0
 );
 
 $lang_gallery_admin_menu = array(
@@ -121,13 +121,13 @@ $lang_gallery_admin_menu = array(
 	'users_lnk' => 'Usuários',
 	'groups_lnk' => 'Grupos',
 	'comments_lnk' => 'Comentários',
-	'searchnew_lnk' => 'Envio em massa',
-        'util_lnk' => 'Resize pictures',  //new in cpg1.2.0
-        'ban_lnk' => 'Ban Users',  //new in cpg1.2.0
+	'searchnew_lnk' => 'Enviar fotos',
+    'util_lnk' => 'Redimensionar fotos',  //new in cpg1.2.0
+    'ban_lnk' => 'Banir usuário(s)',  //new in cpg1.2.0
 );
 
 $lang_user_admin_menu = array(
-	'albmgr_lnk' => 'Criar / ordnar meus álbuns',
+	'albmgr_lnk' => 'Criar / ordenar meus álbuns',
 	'modifyalb_lnk' => 'Modificar meus álbuns',
 	'my_prof_lnk' => 'Meus Dados',
 );
@@ -135,50 +135,49 @@ $lang_user_admin_menu = array(
 $lang_cat_list = array(
 	'category' => 'Categoria',
 	'albums' => 'Álbuns',
-	'pictures' => 'Imagens',
+	'pictures' => 'Fotos',
 );
 
 $lang_album_list = array(
-	'album_on_page' => '%d álbuns na(s) %d página(s)'
+	'album_on_page' => 'Existem %d álbuns, mostrados em %d páginas'
 );
 
 $lang_thumb_view = array(
-	'date' => 'DATA',
-        //Sort by filename and title
-        'name' => 'NOME', //new in cpg1.2.0
-        'title' => 'TITLE', //new in cpg1.2.0
-	'sort_da' => 'Mostar por data ascendente',
-	'sort_dd' => 'Mostar por data descendente',
-	'sort_na' => 'Mostar por nome ascendente',
-	'sort_nd' => 'Mostar por nome descendente',
-        'sort_ta' => 'Sort by title ascending',  //new in cpg1.2.0
-        'sort_td' => 'Sort by title descending',  //new in cpg1.2.0
-	'pic_on_page' => '%d imagens na(s) %d pagina(s)',
+	'date' => 'DATA', //Sort by filename and title
+    'name' => 'NOME', //new in cpg1.2.0
+    'title' => 'TÍTUTLO', //new in cpg1.2.0
+	'sort_da' => 'Mostar por data ascendente (0-9)',
+	'sort_dd' => 'Mostar por data descendente (9-0)',
+	'sort_na' => 'Mostar por nome ascendente (A-Z)',
+	'sort_nd' => 'Mostar por nome descendente (Z-A)',
+    'sort_ta' => 'Mostrar por título ascendente (A-Z)',  //new in cpg1.2.0
+    'sort_td' => 'Mostrar por título descendente (Z-A)',  //new in cpg1.2.0
+	'pic_on_page' => '%d fotos, mostradas em %d páginas',
 	'user_on_page' => '%d usuários na(s) %d página(s)'
 );
 
 $lang_img_nav_bar = array(
 	'thumb_title' => 'Retornar para a página de miniaturas',
 	'pic_info_title' => 'Mostar/esconder informações da imagem',
-	'slideshow_title' => 'Show de Slides',
-	'ecard_title' => 'enviar esta imagem como e-card',
-	'ecard_disabled' => 'e-cards estão desabilitados',
-	'ecard_disabled_msg' => 'Você não possui permissão para enviar e-cards',
-	'prev_title' => 'Ver imagem anterior',
-	'next_title' => 'Ver próxima imagem',
-	'pic_pos' => 'IMAGEM %s/%s',
+	'slideshow_title' => 'Slideshow - Iniciar',
+	'ecard_title' => 'Envie esta foto como E-Card',
+	'ecard_disabled' => 'O envio de E-cards está desabilitado.',
+	'ecard_disabled_msg' => 'Você não possui permissão para enviar E-cards!',
+	'prev_title' => 'foto anterior',
+	'next_title' => 'próxima foto',
+	'pic_pos' => 'FOTO - %s/%s',
 );
 
 $lang_rate_pic = array(
-	'rate_this_pic' => 'Qualifique esta imagem ',
-	'no_votes' => '(Nenhum voto)',
-	'rating' => '(Corrente qualificação : %s / 5 dos %s votos)',
-	'rubbish' => 'Ruim',
-	'poor' => 'Pobre',
-	'fair' => 'Justo',
-	'good' => 'Bom',
-	'excellent' => 'Excelente',
-	'great' => 'Espetacular',
+	'rate_this_pic' => 'Vote/Qualifique esta foto',
+	'no_votes' => '(seja a primeira pessoa a votar).',
+	'rating' => '(Qualificação atual : %s / 5 dos %s votos)',
+	'rubbish' => 'Péssima!',
+	'poor' => 'Ruim!',
+	'fair' => 'Razoável',
+	'good' => 'Muito Boa',
+	'excellent' => 'Excelente!',
+	'great' => 'Espetacular!',
 );
 
 // ------------------------------------------------------------------------- //
@@ -200,10 +199,10 @@ $lang_cpg_die = array(
 );
 
 $lang_display_thumbnails = array(
-	'filename' => 'Arquivo : ',
-	'filesize' => 'Tamanho : ',
-	'dimensions' => 'Dimensões : ',
-	'date_added' => 'Data Envio : '
+	'filename' => 'Arquivo: ',
+	'filesize' => 'Tamanho: ',
+	'dimensions' => 'Dimensões: ',
+	'date_added' => 'Enviada: '
 );
 
 $lang_get_pic_data = array(
@@ -230,24 +229,24 @@ $lang_get_pic_data = array(
 
 if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 	'Exclamation' => 'Exclamação',
-	'Question' => 'Questão',
+	'Question' => 'Dúvida',
 	'Very Happy' => 'Muito Feliz',
 	'Smile' => 'Sorriso',
 	'Sad' => 'Triste',
 	'Surprised' => 'Surpreso',
 	'Shocked' => 'Chocado',
 	'Confused' => 'Confuso',
-	'Cool' => 'Cool',
-	'Laughing' => 'Risonho',
+	'Cool' => 'legal',
+	'Laughing' => 'Sorridente',
 	'Mad' => 'Louco',
 	'Razz' => 'Razz',
-	'Embarassed' => 'Embaraçado',
+	'Embarassed' => 'Envergonhado',
 	'Crying or Very sad' => 'Muito triste',
-	'Evil or Very Mad' => 'Muito máu',
-	'Twisted Evil' => 'Twisted Evil',
+	'Evil or Very Mad' => 'Malvado',
+	'Twisted Evil' => 'Muito Malvado',
 	'Rolling Eyes' => 'Rolando os olhos',
 	'Wink' => 'Piscando',
-	'Idea' => 'Ideia',
+	'Idea' => 'Idéia',
 	'Arrow' => 'Seta',
 	'Neutral' => 'Neutro',
 	'Mr. Green' => 'Mr. Green',
@@ -274,8 +273,8 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
 
 if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 	'alb_need_name' => 'Álbuns precisam ter um nome !',
-	'confirm_modifs' => 'Tem certeza que deseja realizar as modificaçõs ?',
-	'no_change' => 'Você não fêz nenhuma mudança  !',
+	'confirm_modifs' => 'Tem certeza que deseja realizar as modificações ?',
+	'no_change' => 'Você não fez nenhuma mudança  !',
 	'new_album' => 'Novo álbum',
 	'confirm_delete1' => 'Tem certeza de querer remover este álbum ?',
 	'confirm_delete2' => '\nTodas as imagens e comentários serão perdidos !',
@@ -314,21 +313,21 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
 
 if (defined('CONFIG_PHP')) $lang_config_php = array(
 	'title' => 'Configuração',
-	'restore_cfg' => 'Restaurar configuração de fábrica',
-	'save_cfg' => 'Salvar nova configuração',
-	'notes' => 'Notas',
-	'info' => 'Informação',
-	'upd_success' => 'Configuração do catálogo atualizada',
-	'restore_success' => 'Configuração de fábrica restaurada',
-	'name_a' => 'Nome ascendente',
-	'name_d' => 'Nome descendente',
-        'title_a' => 'Title ascending',  //new in cpg1.2.0
-        'title_d' => 'Title descending',  //new in cpg1.2.0
+	'restore_cfg' => 'Restaurar configurações originais.',
+	'save_cfg' => 'Salvar nova configuração.',
+	'notes' => 'Anotações.',
+	'info' => 'Informação.',
+	'upd_success' => 'Configuração do catálogo atualizada.',
+	'restore_success' => 'Configuração original restaurada!',
+	'name_a' => 'Nome ascendente.',
+	'name_d' => 'Nome descendente.',
+    'title_a' => 'Titúlo ascendente.',  //new in cpg1.2.0
+    'title_d' => 'Título descendente.',  //new in cpg1.2.0
 	'date_a' => 'Data Ascendente',
 	'date_d' => 'Data descendente',
-        'th_any' => 'Max Aspect',
-        'th_ht' => 'Height',
-        'th_wd' => 'Width',
+    'th_any' => 'Max Aspect',
+    'th_ht' => 'Altura',
+    'th_wd' => 'Largura',
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
@@ -423,14 +422,14 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
-	'empty_name_or_com' => 'Você precisa definir um nome para o comentário',
-	'com_added' => 'sua conta foi criada',
-	'alb_need_title' => 'Você deve definir um nome para o álbum !',
+	'empty_name_or_com' => 'Você não preencheu o seu nome!',
+	'com_added' => 'Sua conta foi criada!',
+	'alb_need_title' => 'Você deve definir um nome para o álbum!',
 	'no_udp_needed' => 'Atualização não necessária.',
-	'alb_updated' => 'O álbum foi atualizado',
+	'alb_updated' => 'O álbum foi atualizado!',
 	'unknown_album' => 'O álbum selecionado não existe ou você não tem permissão para enviar imagens para ele',
-	'no_pic_uploaded' => 'Nenhuma imagem enviada !<br /><br />Se você realmente selecionaou ima imagem para enviar, verifique se o servidor permite envios...',
-	'err_mkdir' => 'Falha ao criar diretório %s !',
+	'no_pic_uploaded' => 'Nenhuma imagem enviada !<br /><br />Se você realmente selecionaou uma imagem para enviar, verifique se o servidor permite envios.',
+	'err_mkdir' => 'Falha ao criar o diretório %s !',
 	'dest_dir_ro' => 'Diretório de destino %s não pode ser gravado pelo script !',
 	'err_move' => 'Impossível mover %s para %s !',
 	'err_fsize_too_large' => 'A imagem que você está tentando enviar é muito grande (máximo permitido %s x %s) !',
@@ -440,9 +439,9 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 	'err_insert_pic' => 'A imagem \'%s\' não pode ser inserida no álbum ',
 	'upload_success' => 'Sua imagem foi enviada com sucesso<br /><br />Porém só será visível após a aprovação do Administrador.',
 	'info' => 'Informação',
-	'com_added' => 'Comentário adicionado',
+	'com_added' => 'Comentário adicionado com sucesso!',
 	'alb_updated' => 'Álbum atualizado',
-	'err_comment_empty' => 'Seu comentário está vazio !',
+	'err_comment_empty' => 'Seu comentário está vazio!',
 	'err_invalid_fext' => 'Somente os arquivos com as seguines extenções são permitidos : <br /><br />%s.',
 	'no_flood' => 'Desculpe mas você é o último autor a enviar um comentário<br /><br />Edite o comentário se deseja alterá-lo',
 	'redirect_msg' => 'Você está sendo redirecionado.<br /><br /><br />Clique \'CONTINUE\' se a página não se atualizar automaticamente',
@@ -454,7 +453,7 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DELETE_PHP')) $lang_delete_php = array(
-	'caption' => 'Sob-Título',
+	'caption' => 'Sub-Título',
 	'fs_pic' => 'tamanho total da imagem',
 	'del_success' => 'removido com sucesso',
 	'ns_pic' => 'tamanho normal da imagem',
@@ -487,47 +486,47 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 if (defined('DISPLAYIMAGE_PHP')){
 
 $lang_display_image_php = array(
-	'confirm_del' => 'Tem certeza de EXCLUIR  esta imagem ? \\nComentários vinculados também serão excluídos.',
-	'del_pic' => 'DELETE THIS PICTURE',
+	'confirm_del' => 'Tem certeza que deseja EXCLUIR  esta imagem ? \\nComentários vinculados também serão excluídos.',
+	'del_pic' => 'DELETAR ESTA FOTO',
 	'size' => '%s x %s pixels',
 	'views' => '%s vezes',
 	'slideshow' => 'Slideshow',
 	'stop_slideshow' => 'PARAR SLIDESHOW',
-	'view_fs' => 'Clique para ver a ampliação da imagem',
+	'view_fs' => 'Clique aqui para ampliar a foto.',
 );
 
 $lang_picinfo = array(
-	'title' =>'INFORMAÇÕES DA IMAGEM',
-	'Filename' => 'Nome',
-	'Album name' => 'Álbum',
+	'title' =>'INFORMAÇÕES SOBRE ESTA FOTO',
+	'Filename' => 'Nome do arquivo',
+	'Album name' => 'Álbum em que se encontra',
 	'Rating' => 'Classificação (%s votos)',
 	'Keywords' => 'Palavras-chave',
-	'File Size' => 'Tamanho do arquivo',
-	'Dimensions' => 'Dimensões',
-	'Displayed' => 'Mostrado',
-	'Camera' => 'Camera',
-	'Date taken' => 'Data',
-	'Aperture' => 'Abertura',
-	'Exposure time' => 'Tempo de exposição',
-	'Focal length' => 'Largura focal',
-	'Comment' => 'Comentário',
-        'addFav' => 'Add to Fav',  //new in cpg1.2.0
-        'addFavPhrase' => 'Favourites',  //new in cpg1.2.0
-        'remFav' => 'Remove from Fav',  //new in cpg1.2.0
+	'File Size' => 'Tamanho da foto (Kbytes)',
+	'Dimensions' => 'Dimensões (tamanho)',
+	'Displayed' => 'Esta foto já foi visualizada',
+	'Camera' => 'Camera:',
+	'Date taken' => 'Data da foto:',
+	'Aperture' => 'Abertura:',
+	'Exposure time' => 'Tempo de exposição:',
+	'Focal length' => 'Largura focal:',
+	'Comment' => 'Comentários:',
+    'addFav' => 'Adicionar à Favoritas',  //new in cpg1.2.0
+    'addFavPhrase' => 'Favoritas',  //new in cpg1.2.0
+    'remFav' => 'Remover das Favoritas',  //new in cpg1.2.0
 );
 
 $lang_display_comments = array(
-	'OK' => 'OK',
-	'edit_title' => 'Editar este comentário',
-	'confirm_delete' => 'Tem certeza de REMOVER este comentário ?',
-	'add_your_comment' => 'Adicione seu comentário',
-        'name'=>'Name',  //new in cpg1.2.0
-        'comment'=>'Comment',  //new in cpg1.2.0
+	'OK' => 'Adicionar',
+	'edit_title' => 'Editar este comentário.',
+	'confirm_delete' => 'Tem certeza que deseja REMOVER este comentário?',
+	'add_your_comment' => 'Adicione o seu comentário',
+    'name'=>'Nome',  //new in cpg1.2.0
+    'comment'=>'Comentário',  //new in cpg1.2.0
 	'your_name' => 'Seu nome',
 );
 
 $lang_fullsize_popup = array( 
-        'click_to_close' => 'Click image to close this window',  //new in cpg1.2.0
+        'click_to_close' => 'Clique sobre a foto para fechar esta janela.',  //new in cpg1.2.0
 );
 
 }
@@ -537,20 +536,20 @@ $lang_fullsize_popup = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array(
-	'title' => 'Send an e-card',
-	'invalid_email' => '<b>Warning</b> : endereço eletrônico inválido !',
-	'ecard_title' => 'Há um e-card %s para você',
-	'view_ecard' => 'Se não estiver aparecendo normalmente clique neste link',
-	'view_more_pics' => 'Clique aqui para ver mais imagens !',
-	'send_success' => 'Seu e-card foi enviado',
-	'send_failed' => 'Desculpe, mas o servidor não pode enviar seu e-card...',
+	'title' => 'Enviar um E-card.',
+	'invalid_email' => '<b>Aviso</b> : endereço eletrônico (e-mail) inválido!',
+	'ecard_title' => 'E-Card do %s para você',
+	'view_ecard' => 'Clique aqui caso você não esteja conseguindo visualizar a foto.',
+	'view_more_pics' => 'Clique aqui para ver mais fotos!',
+	'send_success' => 'Seu E-card foi enviado com sucesso!',
+	'send_failed' => 'Desculpe, mas o servidor não pôde enviar seu E-card.',
 	'from' => 'Remetente',
-	'your_name' => 'Seu nome',
-	'your_email' => 'Seu e-amil',
+	'your_name' => 'Seu nome:',
+	'your_email' => 'Seu e-mail:',
 	'to' => 'Para',
-	'rcpt_name' => 'Destinatário',
-	'rcpt_email' => 'E-mail do destinatário',
-	'greetings' => 'Saudações',
+	'rcpt_name' => 'Destinatário:',
+	'rcpt_email' => 'E-mail do destinatário:',
+	'greetings' => 'Assunto:',
 	'message' => 'Mensagem',
 );
 
@@ -565,18 +564,18 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 	'desc' => 'Descrição',
 	'keywords' => 'Palavras-chave',
 	'pic_info_str' => '%sx%s - %sKB - %s views - %s votes',
-	'approve' => 'Aprovar imagem',
+	'approve' => 'Aprovar fotos',
 	'postpone_app' => 'Postpone approval',
 	'del_pic' => 'Apagar imagem',
 	'reset_view_count' => 'Zerar contador',
 	'reset_votes' => 'Zerar votos',
 	'del_comm' => 'Excluir comentários',
 	'upl_approval' => 'Aprovar envio',
-	'edit_pics' => 'Editar imagens',
-	'see_next' => 'Ver próximas imagens',
-	'see_prev' => 'Ver imagens anteriores',
+	'edit_pics' => 'Editar fotos',
+	'see_next' => 'Ver próximas fotos',
+	'see_prev' => 'Ver fotos anteriores',
 	'n_pic' => '%s imagens',
-	'n_of_pic_to_disp' => 'Número de imagens a mostrar',
+	'n_of_pic_to_disp' => 'Número de fotos a mostrar',
 	'apply' => 'Aplicar modificações'
 );
 
@@ -599,9 +598,9 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
 	'title' => 'Gerenciar grupos',
 	'approval_1' => 'Aprovação pública (1)',
 	'approval_2' => 'Aaprovação privada (2)',
-	'note1' => '<b>(1)</b> Envios para um álbum público requerem aprovação do administrador',
+	'note1' => '<b>(1)</b> Envios para um álbum público requerer aprovação do administrador',
 	'note2' => '<b>(2)</b> Envios requerem aprovação do administrador',
-	'notes' => 'Notas'
+	'notes' => 'Anotações'
 );
 
 // ------------------------------------------------------------------------- //
@@ -611,7 +610,7 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
 if (defined('INDEX_PHP')){
 
 $lang_index_php = array(
-	'welcome' => 'Welcome !'
+	'welcome' => 'Bem-vindo(a)!'
 );
 
 $lang_album_admin_menu = array(
@@ -623,10 +622,10 @@ $lang_album_admin_menu = array(
 
 $lang_list_categories = array(
 	'home' => 'Home',
-	'stat1' => '<b>[pictures]</b> imagens em <b>[albums]</b> álbuns e <b>[cat]</b> categorias com <b>[comments]</b> comentários vistos <b>[views]</b> vezes',
+	'stat1' => '<b>Statísticas:</b> Existem <b>[pictures]</b> fotos, <b>[albums]</b> álbuns e <b>[cat]</b> categorias com <b>[comments]</b> comentários, totalizando <b>[views]</b> visualizações.',
 	'stat2' => '<b>[pictures]</b> imagens em <b>[albums]</b> álbuns vistos <b>[views]</b> vezes',
 	'xx_s_gallery' => '%s\'s Galeria',
-	'stat3' => '<b>[pictures]</b> imagens em <b>[albums]</b> álbuns com <b>[comments]</b> comentários vistos <b>[views]</b> vezes'
+	'stat3' => '<b>[pictures]</b> fotos <b>[albums]</b> álbuns <b>[comments]</b> comentários <b>[views]</b> visualizações'
 );
 
 $lang_list_users = array(
@@ -637,8 +636,8 @@ $lang_list_users = array(
 );
 
 $lang_list_albums = array(
-	'n_pictures' => '%s imagem',
-	'last_added' => ', último adicionado em %s'
+	'n_pictures' => 'Possui %s fotos',
+	'last_added' => ', atualizado em %s'
 );
 
 }
@@ -649,13 +648,13 @@ $lang_list_albums = array(
 
 if (defined('LOGIN_PHP')) $lang_login_php = array(
 	'login' => 'Login',
-	'enter_login_pswd' => 'Insira seu nome de usuário e senha para entrar',
+	'enter_login_pswd' => 'Insira seu nome de usuário e senha para entrar.',
 	'username' => 'Usuário',
 	'password' => 'Senha',
-	'remember_me' => 'Lembar',
-	'welcome' => 'Bem Vindo(a) %s ...',
-	'err_login' => '*** Impossível entar. Verifique os dados fornecidos e tente de novo ***',
-	'err_already_logged_in' => 'Você está agora dentro de nosso sistema ! (Logged)',
+	'remember_me' => 'Lembrar',
+	'welcome' => 'Bem-Vindo(a) %s !',
+	'err_login' => '*** ERRO na Autenticação! Verifique os dados fornecidos e tente novamente! ***',
+	'err_already_logged_in' => 'Você já está Logado.',
 );
 
 // ------------------------------------------------------------------------- //
@@ -664,8 +663,8 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
 
 if (defined('LOGOUT_PHP')) $lang_logout_php = array(
 	'logout' => 'Logout',
-	'bye' => 'Bye bye %s ...',
-	'err_not_loged_in' => 'Você está fora de nosso sistema (logout) !',
+	'bye' => 'LOGOUT Efetuado com sucesso, até logo %s .',
+	'err_not_loged_in' => 'Você nem está Logado!',
 );
 
 // ------------------------------------------------------------------------- //
@@ -701,8 +700,8 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
-	'already_rated' => 'Desculpe, mas você ja avaliou esta imagem',
-	'rate_ok' => 'Seu voto foi aceito',
+	'already_rated' => 'Você já votou nesta foto! (Apenas 1 voto por foto).',
+	'rate_ok' => 'Seu voto foi registrado!',
 );
 
 // ------------------------------------------------------------------------- //
@@ -712,49 +711,50 @@ if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
-While the administrators of {SITE_NAME} will attempt to remove or edit any generally objectionable material as quickly as possible, it is impossible to review every post. Therefore you acknowledge that all posts made to this site express the views and opinions of the author and not the administrators or webmaster (except for posts by these people) and hence will not be held liable.<br />
+
+Mesmo com todo o esforço e atenção dos administradores/webmasters do { SITE_NAME } para eliminarem ou editarem qualquer tipo de material desagradável o mais rápido possível, é impossivel verificar todos os envios realizados. Em razão disto, todo o conteúdo do { SITE_NAME } são de total responsabilidade de seus autores (quem enviou) e não dos administradores/webmasters (salvo se enviados por eles mesmos).
 <br />
-You agree not to post any abusive, obscene, vulgar, slanderous, hateful, threatening, sexually-orientated or any other material that may violate any applicable laws. You agree that the webmaster, administrator and moderators of {SITE_NAME} have the right to remove or edit any content at any time should they see fit. As a user you agree to any information you have entered above being stored in a database. While this information will not be disclosed to any third party without your consent the webmaster and administrator cannot be held responsible for any hacking attempt that may lead to the data being compromised.<br />
+Você concorda não adicionar/enviar nenhum tipo de material abusivo, obsceno, vulgar, escandaloso, ameaçador, pornográfico e/ou de orientação sexual, ou qualquer outro tipo de material punível por Lei. Concorda que os administradores/webmasters do { SITE_NAME } têm o direito de eliminar, alterar ou corrigir qualquer conteúdo à qualquer momento, caso considerem o mesmo abusivo. Como usuário, concorda que todas as suas infmorações serão armazenadas em uma base de dados, a qual não será negociada, trocada ou fornecida à terceiros sob hipótese alguma. Os administradores/webmasters deste site, não são responsáveis por eventuais falhas/ataques do sistema que venham a ocasionar qualquer tipo de perda.
 <br />
-This site uses cookies to store information on your local computer. These cookies serve only to improve your viewing pleasure. The email address is used only for confirming your registration details and password.<br />
+Este site utiliza cookies para armazenar informações em seu processador, estes cookies servem para melhorar a sua navegação. O seu endereço de e-mail será utilizado apenas para confirmação de dados como Nome de Usuário e Senha. Você deverá utilizar o { SITE_NAME } como um privilégio e não como um direito.
 <br />
-By clicking 'I agree' below you agree to be bound by these conditions.
+Ao optar por 'EU ACEITO' você estará concordando com todos os termos acima citados.
 EOT;
 
 $lang_register_php = array(
 	'page_title' => 'REGISTRO DE USUÁRIO',
 	'term_cond' => 'Termos e condições',
-	'i_agree' => 'Eu Aceito',
+	'i_agree' => 'EU ACEITO',
 	'submit' => 'enviar registro',
-	'err_user_exists' => 'Este nome de usuário já existe, por favor crie outro',
-	'err_password_mismatch' => 'As duas senhas digitadas não conferem. Digite com cuidado novamente',
-	'err_uname_short' => 'Nome de usuário precisa ter no mínimo 2 caracteres',
-	'err_password_short' => 'sua senha tem que ter no mínimo 2 caracteres',
-	'err_uname_pass_diff' => 'Nome de usuário e senha devem ser diferentes',
-	'err_invalid_email' => 'Endereço de e-mail inválido',
-	'err_duplicate_email' => 'Já existe outro usuário registrado com este e-mail',
+	'err_user_exists' => 'Usuário já existente, escolha outro usuário.',
+	'err_password_mismatch' => 'As senhas digitas não conferem. Confira-as novamente.',
+	'err_uname_short' => 'O nome de usuário deve conter no mínimo 2 caracteres!',
+	'err_password_short' => 'Sua senha deve conter no mínimo 2 caracteres!',
+	'err_uname_pass_diff' => 'O nome de usuário e senha devem ser DIFERENTES!',
+	'err_invalid_email' => 'E-Mail Inválido!',
+	'err_duplicate_email' => 'O e-mail informado já está sendo utilizado! Informe outro E-Mail.',
 	'enter_info' => 'Entre com as informações de registro',
-	'required_info' => 'Informação requerida',
-	'optional_info' => 'Informação opcional',
+	'required_info' => 'Informação Obrigatória.',
+	'optional_info' => 'Informação Opcional.',
 	'username' => 'Usuário',
 	'password' => 'Senha',
 	'password_again' => 'Repita a senha',
 	'email' => 'E-mail',
 	'location' => 'Endereço',
 	'interests' => 'Interesses',
-	'website' => 'Home page',
+	'website' => 'Home-page',
 	'occupation' => 'Profissão',
 	'error' => 'ERRO',
 	'confirm_email_subject' => '%s - CONFIRMAÇÃO DE REGISTRO',
 	'information' => 'Informação',
 	'failed_sending_email' => 'O e-mail de confirmação de registro não pôde ser enviado !',
 	'thank_you' => 'Obrigado pr se registrar.<br /><br />As informações para finalizar seu registro foram enviadas para seu e-mail. Verifique agora ou aguarde uns instantes.',
-	'acct_created' => 'Sua conta foi criada. Para acessar o catálogo você deve fornecer seu nome de usuário e sua senha',
+	'acct_created' => 'Sua conta foi criada. Para acessar meu álbum virtual você deve fornecer seu nome de usuário e sua senha',
 	'acct_active' => 'Sua conta já está ativa. Entre com seu nome de usuário e senha para acessar os dados do catálogo',
-	'acct_already_act' => 'Sua conta já está ativa !',
-	'acct_act_failed' => 'Esta conta não está ativa ainda !',
+	'acct_already_act' => 'Sua conta já está ativada!',
+	'acct_act_failed' => 'Esta conta não foi ativada ainda, cheque o seu e-mail primeiro!',
 	'err_unk_user' => 'Usuário selecionado não existe !',
-	'x_s_profile' => '%s\'s profile',
+	'x_s_profile' => '%s\'s perfil',
 	'group' => 'Grupo',
 	'reg_date' => 'PArticipante',
 	'disk_usage' => 'Uso do disco',
@@ -771,19 +771,23 @@ $lang_register_php = array(
 );
 
 $lang_register_confirm_email = <<<EOT
-Thank you for registering at {SITE_NAME}
+Obrigado por registrar-se no {SITE_NAME}
 
-Seu nome de usuário é : "{USER_NAME}"
+Guarde este e-mail para futura referências.
+
+Seu usuário é : "{USER_NAME}"
 Sua senha é : "{PASSWORD}"
 
-Clique no link abaixo ou copie e cole no seu Browser para acessar nosso catálogo
+Clique no link abaixo ou copie e cole no seu Navegador para acessar o meu álbum virtual.
 
 {ACT_LINK}
 
-Obrigado pela inscrição,
+Seja bem-vindo(a) e divirta-se!
 
-O Administrador
+Administrador
 {SITE_NAME}
+
+Atenção: Este é um e-mail automático, por favor, NÃO RESPONDA.
 
 EOT;
 
@@ -795,12 +799,12 @@ EOT;
 
 if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
 	'title' => 'Revisar comentários',
-	'no_comment' => 'Não há comentários para revisar',
+	'no_comment' => 'Não há comentários para se revisar',
 	'n_comm_del' => '%s comentário(s) removido',
 	'n_comm_disp' => 'Número de comentários ',
 	'see_prev' => 'Ver anterior',
 	'see_next' => 'Ver próximo',
-	'del_comm' => 'Excluir comentários selecionados',
+	'del_comm' => 'Excluir os comentários selecionados',
 );
 
 
@@ -809,7 +813,7 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCH_PHP')) $lang_search_php = array(
-	0 => 'Pesquisar na coleção de imagens',
+	0 => 'Pesquisar na coleção de fotos',
 );
 
 // ------------------------------------------------------------------------- //
@@ -821,7 +825,7 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 	'select_dir' => 'Selecionar diretório',
 	'select_dir_msg' => 'Esta função lhe permite enviar diversas imagens ao mesmo tempo.<br /><br />Selecione o diretório das imagens',
 	'no_pic_to_add' => 'Não há imagens para enviar',
-	'need_one_album' => 'Você precisater pelo menus um álbum para usar esta função',
+	'need_one_album' => 'Você precisa ter pelo menos um álbum para usar esta função',
 	'warning' => 'CUIDADO',
 	'change_perm' => 'O script não pode gravar neste diretório que deve possuir permissão 755 ou 777 !',
 	'target_album' => '<b>Colocar imagens do &quot;</b>%s<b>&quot; em </b>%s',
@@ -831,17 +835,17 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 	'result' => 'Resultado',
 	'dir_ro' => 'Não gravável. ',
 	'dir_cant_read' => 'Não pode ser lido. ',
-	'insert' => 'Adicionando novas imagens à galeria',
-	'list_new_pic' => 'Lista das novas imagens',
-	'insert_selected' => 'Inserir imagens selecionadas',
-	'no_pic_found' => 'Não há imagens novas',
-	'be_patient' => 'Por favoe tenha paciência. O sistema nescessita de tempo para enviar suas imagens',
+	'insert' => 'Adicionando novas fotos à galeria',
+	'list_new_pic' => 'Lista das novas fotos',
+	'insert_selected' => 'Inserir fotos selecionadas',
+	'no_pic_found' => 'Não há novas foto',
+	'be_patient' => 'Agurade, isto pode levar alguns instantes',
 	'notes' =>  '<ul>'.
-				'<li><b>OK</b> : Significa que foi enviado com sucesso'.
-				'<li><b>DP</b> : Significa que existe uma duplicata na base de datos'.
-				'<li><b>PB</b> : significa que não pôde ser enviado. Verifique suas permissões e corretos endereços.'.
+				'<li><b>OK</b> : Significa que a foto foi enviada com sucesso'.
+				'<li><b>DP</b> : Significa que a foto já existe (o mesmo nome de arquivo)'.
+				'<li><b>PB</b> : significa que a foto não pôde ser enviada. Verifique suas permissões.'.
 				'<li>Se o OK, DP, PB \'signs\' não aparecem, clique na imagem com problema para receber a mensagem do erro'.
-				'<li>Se receber mensagem de expiração, acione reload'.
+				'<li>Se você receber a mensagem TIMEOUT, recarrege/reload a página'.
 				'</ul>',
 );
 
@@ -858,14 +862,14 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 // ------------------------------------------------------------------------- // 
 
 if (defined('BANNING_PHP')) $lang_banning_php = array( 
-                'title' => 'Ban Users', 
-                'user_name' => 'User Name', 
-                'ip_address' => 'IP Address', 
-                'expiry' => 'Expires (blank is permanent)', 
-                'edit_ban' => 'Save Changes', 
-                'delete_ban' => 'Delete', 
-                'add_new' => 'Add New Ban', 
-                'add_ban' => 'Add', 
+                'title' => 'Banir usuário(s)', 
+                'user_name' => 'Username', 
+                'ip_address' => 'Endereço IP', 
+                'expiry' => 'Temporário (deixado em branco será considerado BAN Permanente)', 
+                'edit_ban' => 'Salvar', 
+                'delete_ban' => 'Apagar', 
+                'add_new' => 'Adicionar um novo BAN', 
+                'add_ban' => 'Adicionar', 
 ); 
 
 // ------------------------------------------------------------------------- //
@@ -873,14 +877,14 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UPLOAD_PHP')) $lang_upload_php = array(
-	'title' => 'envio de imagem',
-	'max_fsize' => 'Tamanho máximo permitido %s KB',
+	'title' => 'Envio de Foto',
+	'max_fsize' => 'Tamanho máximo da foto permitido: %s KB',
 	'album' => 'Álbum',
 	'picture' => 'Imagem',
 	'pic_title' => 'Título',
 	'description' => 'Descrição',
-	'keywords' => 'Palavras-chave (separar somente com espaços)',
-	'err_no_alb_uploadables' => 'desculpe. Você não está autorizado a enviar para este álbum',
+	'keywords' => 'Palavras-chave (separar somente por espaços)',
+	'err_no_alb_uploadables' => 'Desculpe, mas você não está autorizado(a) a enviar fotos para este álbum',
 );
 
 // ------------------------------------------------------------------------- //
@@ -910,14 +914,14 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 	'operations' => 'Operações',
 	'pictures' => 'Imagens',
 	'disk_space' => 'Espaço usado / Quota',
-	'registered_on' => 'Registrado on',
+	'registered_on' => 'Registrado em',
 	'u_user_on_p_pages' => '%d usuários em %d página(s)',
 	'confirm_del' => 'Tem certeza que quer EXCLUIR este usuário ? \\nTodas as imagens e álbuns dele serão removidas.',
 	'mail' => 'MAIL',
 	'err_unknown_user' => 'Usuário selecionado não existe !',
 	'modify_user' => 'Modificar usuário',
 	'notes' => 'Notas',
-	'note_list' => '<li>Se você não quer alterar sua senha, deixe o campo em branco',
+	'note_list' => '<li>Se você não deseja alterar sua senha, deixe o campo em branco',
 	'password' => 'Senha',
 	'user_active' => 'Usuário é ativo',
 	'user_group' => 'GBrupo de usuários',
