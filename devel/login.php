@@ -1,4 +1,4 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.2.0                                            //
 // ------------------------------------------------------------------------- //
@@ -13,7 +13,7 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- // 
+// ------------------------------------------------------------------------- //
 
 define('IN_COPPERMINE', true);
 define('LOGIN_PHP', true);
@@ -36,7 +36,7 @@ if (isset($HTTP_POST_VARS['submitted'])) {
             $cookie_life_time = 86400 * 30;
         } else {
             $cookie_life_time = 86400;
-        } 
+        }
         setcookie($CONFIG['cookie_name'] . '_uid', $USER_DATA['user_id'], time() + $cookie_life_time, $CONFIG['cookie_path']);
         setcookie($CONFIG['cookie_name'] . '_pass', md5($HTTP_POST_VARS['password']), time() + $cookie_life_time, $CONFIG['cookie_path']);
 
@@ -46,49 +46,54 @@ if (isset($HTTP_POST_VARS['submitted'])) {
         exit;
     } else {
         $login_failed = <<<EOT
-		  <tr>
-		  	<td colspan="2" align="center" class="tableh2">
-			<font size="1" color="red"><b>{$lang_login_php['err_login']}<b></font>
-			</td>
-		  </tr>
+                  <tr>
+                          <td colspan="2" align="center" class="tableh2">
+                        <font size="1" color="red"><b>{$lang_login_php['err_login']}<b></font>
+                        </td>
+                  </tr>
 
 EOT;
-    } 
-} 
+    }
+}
 
 if (!isset($HTTP_COOKIE_VARS[$CONFIG['cookie_name'] . '_data'])) {
     $cookie_warning = <<<EOT
-		  <tr>
-		  	<td colspan="2" align="center" class="tableh2">
-			<font size="1" color="red"><b>Warning your browser does not accept script's cookies<b></font>
-			</td>
-		  </tr>
+                  <tr>
+                          <td colspan="2" align="center" class="tableh2">
+                        <font size="1" color="red"><b>Warning your browser does not accept script's cookies<b></font>
+                        </td>
+                  </tr>
 
 EOT;
-} 
+}
 
 pageheader($lang_login_php['login']);
 $referer = urlencode($referer);
 starttable('-1', $lang_login_php['enter_login_pswd'], 2);
 echo <<< EOT
-		  $login_failed
-		  $cookie_warning
-		  <tr>
-		    <form action="login.php?referer=$referer" method="post">
-			<td class="tableb" width="40%">{$lang_login_php['username']}</td>
-			<td class="tableb" width="60%"><input type="text" class="textinput" name="username" style="width: 100%"></td>
-		  </tr>
-		  <tr>
-		  	<td class="tableb">{$lang_login_php['password']}</td>
-			<td class="tableb"><input type="password" class="textinput" name="password" style="width: 100%"></td>
-		  </tr>
-		  <tr>
-		    <td colspan="2" align="center" class="tableb">{$lang_login_php['remember_me']} <input name="remember_me" type="checkbox" class="checkbox" value="1"></td>
-		  </tr>
-		  <tr>
-		    <td colspan="2" align="center" class="tablef"><input name="submitted" type="submit" class="button" value="{$lang_login_php['login']}"></td>
-		    </form>
-		  </tr>
+                  $login_failed
+                  $cookie_warning
+                  <tr>
+                    <form action="login.php?referer=$referer" method="post" name="loginbox">
+                        <td class="tableb" width="40%">{$lang_login_php['username']}</td>
+                        <td class="tableb" width="60%"><input type="text" class="textinput" name="username" style="width: 100%"></td>
+                        <script language="javascript" type="text/javascript">
+                        <!--
+                        document.loginbox.username.focus();
+                        -->
+                        </script>
+                  </tr>
+                  <tr>
+                          <td class="tableb">{$lang_login_php['password']}</td>
+                        <td class="tableb"><input type="password" class="textinput" name="password" style="width: 100%"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" align="center" class="tableb">{$lang_login_php['remember_me']} <input name="remember_me" type="checkbox" class="checkbox" value="1"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" align="center" class="tablef"><input name="submitted" type="submit" class="button" value="{$lang_login_php['login']}"></td>
+                    </form>
+                  </tr>
 
 EOT;
 
