@@ -134,18 +134,18 @@ Edit style.css, go to the very end of the file and add this code:
 Edit template.html and find a place anywhere between <tt class="code">&lt;body&gt;</tt> and <tt class="code">&lt;/body&gt;</tt> where you want the selectors to appear. Add <tt class="code">{LANGUAGE_SELECT_LIST}</tt> for the language selection dropdown, <tt class="code">{LANGUAGE_SELECT_FLAGS}</tt> for the language-by-flag selector and <tt class="code">{THEME_SELECT_LIST}</tt> for the theme selection dropdown.</li>
 <li>Find a place where the memberlist list should appear in your coppermine navigation. It's recommended to do this even if you're not planning to actually use the feature, since it can be enable/disabled at any time in Coppermine config.<br />
 Edit theme.php and find
-<pre><!-- END my_gallery --></pre>
+<pre>&lt;!-- END my_gallery --&gt;</pre>
 and add after it
-<pre><!-- BEGIN allow_memberlist -->
+<pre>&lt;!-- BEGIN allow_memberlist --&gt;
                 &lt;a href="{MEMBERLIST_TGT}" title="{MEMBERLIST_TITLE}"&gt;{MEMBERLIST_LNK}&lt;/a&gt;  ::
-<!-- END allow_memberlist --></pre>. You may have to adopt the html that is usually wrapped around your menu items for the memberlist menu item as well.</li>
+&lt;!-- END allow_memberlist --&gt;</pre>. You may have to adopt the html that is usually wrapped around your menu items for the memberlist menu item as well.</li>
 <li>Find a place where the user FAQ should appear in your coppermine navigation. It's recommended to do this even if you're not planning to actually use the feature, since it can be enable/disabled at any time in Coppermine config.<br />
 Edit theme.php and find
-<pre><!-- END my_profile --></pre>
+<pre>&lt;!-- END my_profile --&gt;</pre>
 and add after it
-<pre><!-- BEGIN faq -->
+<pre>&lt;!-- BEGIN faq --&gt;
                     &lt;a href="{FAQ_TGT}" title="{FAQ_TITLE}"&gt;{FAQ_LNK}&lt;/a&gt; ::
-<!-- END faq --></pre>. You may have to adopt the html that is usually wrapped around your menu items for the user faq menu item as well.</li>
+&lt;!-- END faq --&gt;</pre>. You may have to adopt the html that is usually wrapped around your menu items for the user faq menu item as well.</li>
 <li>Find a place where the Ecards-Log should appear in your admin menu.<br />
 Edit theme.php and find
 <pre>&lt;td class="admin_menu"&gt;&lt;a href="banning.php" title=""&gt;{BAN_LNK}&lt;/a&gt;&lt;/td&gt;</pre> Add after it
@@ -159,7 +159,7 @@ Edit theme.php and find
 </li>
 <li>Correct the missing link to tile.gif in the fimstrip display:<br />
 Edit theme.php and find<br />
-<tt class="code">&lt;td valign="top" background='themes/igames/images/tile.gif' align="center" height='30'&gt;&amp;nbsp;&lt;/td&gt;</tt>.<br />
+<pre>&lt;td valign="top" background='themes/igames/images/tile.gif' align="center" height='30'&gt;&amp;nbsp;&lt;/td&gt;</pre>.<br />
 Replace <tt class="code">igames</tt> in this line with the name of your theme. This line exists twice in your theme.php - you'll have to change both times the reference from <tt class="code">igames</tt> to <tt class="code">your_theme</tt>.
 </li>
 <li>Copy the file <i>tile.gif</i> from any theme that comes with coppermine (e.g. <i>themes/default/images/tile.gif</i>) into them images-folder of your own custom theme (e.g. <i>themes/your_theme/images/</i>)</li>
