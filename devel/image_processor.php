@@ -473,7 +473,17 @@ if ($method == "gd2") {
 
 // Resize the image
 
-imagecopyresampled($destination_image_handle, $image_handle, 0, 0, 0, 0, $new_width, $new_height, $source_image_width, $source_image_height);
+if ($method == "gd2") {
+
+	//Use the higher quality function imagecopyresampled.
+	imagecopyresampled($destination_image_handle, $image_handle, 0, 0, 0, 0, $new_width, $new_height, $source_image_width, $source_image_height);
+
+} elseif ($method == "gd1") {
+
+	//Use the lower quality imagecopyresized. 
+	imagecopyresized($destination_image_handle, $image_handle, 0, 0, 0, 0, $new_width, $new_height, $source_image_width, $source_image_height);
+
+}
 
 //Destroy $image_handle
 imagedestroy($image_handle);
