@@ -25,8 +25,8 @@ comes with Coppermine.  Take a look at where you extracted the zip file to.  The
 folder called docs – all the documentation is in there.  If you are doing an upgrade from
 an older version of Coppermine, you need to read the docs for directions.
 
-This is a stand alone version – if you are looking for something that integrates with PHP-
-Nuke, you should visit http://www.nukephotogallery.com or http://www.cpgnuke.com.
+This is a stand-alone version – if you are looking for something that integrates with PHP-
+Nuke, you should visit http://www.cpgnuke.com.
 
 Ok, so you don’t want to take the time to read the documentation.  Well, this guide will
 get you started with the basics.  Let’s jump into it, shall we?
@@ -34,7 +34,7 @@ get you started with the basics.  Let’s jump into it, shall we?
 Question:  Does my webserver support Coppermine?
 
 Answer:  You need to have a webserver (Apache 2.0.50 recommended), PHP 4.1.0 or
-newer (4.3.8 recommended, 5.xx not recommended at this time), and MySQL 3.23.23 or
+newer (4.3.10 recommended, 5.xx not recommended at this time), and MySQL 3.23.23 or
 newer (4.0.20 recommended).  You also need either GD 1.xx or 2.xx (2.xx
 recommended) or ImageMagick installed.  GD normally comes bundled with PHP;
 ImageMagick must be installed by your webhost.
@@ -61,13 +61,14 @@ Answer:  You need to change permissions on a few directories before you can do
 anything else.  Using your FTP program or website Control Panel, change permissions on
 the include, albums, albums/userpics, and albums/edit directories to 777.  You should
 also create a new directory in albums that you will FTP your images/files to (call it
-uploads) and set it’s permissions to 777 also.
+uploads) and set its permissions to 777 also. Some server set-ups will not work with 
+chmod 777. Instead, use 755.
 
 Question:  I changed the permissions.  What’s next?
 
 Answer:  You need to create a MySQL database.  Using your website Control Panel or a
 tool like phpMyAdmin, create a MySQL database.  Write down the database name, the
-username and password – you’ll need it in a minute.  If you already have a database
+username and password – you’ll need them in a minute.  If you already have a database
 you’re using for a BBS or something else, that’s ok.  You can use that database for
 Coppermine, too.  If you have a BBS and plan on connecting it to Coppermine, you need
 to share the database anyway.
@@ -112,7 +113,7 @@ it available.  If you plan on using ImageMagick you should’ve already put in the
 the binaries (make sure it ends with a trailing slash).  Do you want your members to have
 private albums?  If you do, make sure to set “Users can have private albums” to Yes.
 
-- User settings:  If you plan on letting people register and upload pictures, make sure you
+- User settings:  If you plan to let people register and upload pictures, make sure you
 set “Allow new user registrations” to Yes.
 
 - You also need to take a peek at the groups settings.  Coppermine comes with four
@@ -121,7 +122,7 @@ This is where you can give permission to send e-cards, upload files, etc.  This 
 where you set the maximum allowed disk space for each group (disk quota).  It’s set to
 1024kb by default.
 
-Question:  I think everything is set right.  Can I upload pictures yet?
+Question:  I think everything is set correctly. Can I upload pictures yet?
 
 Answer:  No.  First you need to create an album to put them in.  In the same row as the
 Admin link, you’ll see a link called Albums.  Click on it and you are taken to a screen
