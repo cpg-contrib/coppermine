@@ -193,7 +193,7 @@ elseif (isset($_POST['preview'])) {
 //pageheader($lang_ecard_php['title']);
 
 //ecard form
-if ($CONFIG['show_bbcode_help']) {$captionLabel = '&nbsp;'. cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,230);}
+if ($CONFIG['show_bbcode_help']) {$captionLabel = '&nbsp;'. cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
 starttable("100%", $lang_ecard_php['title'], 3);
 
 echo <<<EOT

@@ -36,7 +36,7 @@ $notice1 = ' *';
 $help = '&nbsp;'.cpg_display_help('f=index.htm&as=album_prop_visitor_start&ae=album_prop_visitor_end&top=1', '400', '200');
 
 $captionLabel = $lang_modifyalb_php['alb_desc'];
-if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&t='.urlencode(base64_encode(serialize($lang_bbcode_help))),450,250);}
+if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
 $data = array($lang_modifyalb_php['general_settings'],
     array($lang_modifyalb_php['alb_title'], 'title', 0),
     array($lang_modifyalb_php['alb_cat'], 'category', 2),
