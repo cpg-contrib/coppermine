@@ -14,6 +14,7 @@ CREATE TABLE IF NOT EXISTS CPG_filetypes (
 ALTER TABLE `cpg130_filetypes` DROP INDEX `EXTENSION`, ADD PRIMARY KEY ( `extension` );
 
 INSERT INTO CPG_filetypes VALUES ('jpg', 'image/jpg', 'image');
+INSERT INTO CPG_filetypes VALUES ('jpeg', 'image/jpeg', 'image');
 INSERT INTO CPG_filetypes VALUES ('jpe', 'image/jpe', 'image');
 INSERT INTO CPG_filetypes VALUES ('gif', 'image/gif', 'image');
 INSERT INTO CPG_filetypes VALUES ('png', 'image/png', 'image');
