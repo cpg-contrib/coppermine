@@ -819,7 +819,7 @@ switch ($op) {
 				$group = mysql_fetch_array($result);
 
 				if (!mysql_num_rows($result)) {
-					pageheader(sprintf($lang_usermgr_php['group_no_access'], $group_name));
+					pageheader($lang_usermgr_php['group_no_access']);
 					msg_box($lang_usermgr_php['notice'], $lang_usermgr_php['group_no_access']);
 				} else {
 						mysql_free_result($result);
