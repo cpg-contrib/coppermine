@@ -2,7 +2,7 @@
 // ------------------------------------------------------------------------- //
 //  Coppermine Photo Gallery                                                 //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Gregory DEMAR                                   //
+//  Copyright (C) 2002-2004  Gregory DEMAR                                   //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
 //  Based on PHPhotoalbum by Henning Stverud <henning@stoverud.com>          //
@@ -17,10 +17,8 @@
 //  the Free Software Foundation; either version 2 of the License, or        //
 //  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
-
-/*
-$Id$
-*/
+// $Id$
+// ------------------------------------------------------------------------- //
 
 /**************************************************************************
    Function for managing cookie saved user profile

@@ -2,7 +2,7 @@
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -17,7 +17,8 @@
 // $Id$
 // ------------------------------------------------------------------------- //
 
-define('COPPERMINE_VERSION', '1.3.0 - devel');
+define('COPPERMINE_VERSION', '1.4.0 - devel');
+define('COPPERMINE_STATUS', 'alpha');
 
 // User database integration
 // Uncomment the applicable line if you want to use it
@@ -44,72 +45,72 @@ $queries = array();
 // Perform database queries to calculate user's privileges based on group membership
 function cpgGetUserData($pri_group, $groups, $default_group_id = 3)
 {
-	
-	//Parameters :
-	//		$pri_group (scalar) : 	Group ID number of the user's 'main' group. This is the group that will be
-	//											the user's profile display. ($USER_DATA['group_id'])
-	//
-	//		$groups (array) :			List of group ids of all the groups that the user is a member of. IF this list
-	//											does not include the $pri_group, it will be added.
-	//
-	//		$default_group_id (scalar) : 	The group used as a fall-back if no valid group ids are specified.
-	//													If this group also does not exist then CPG will abort with a critical
-	//													error.
-	//
-	// Returns an array containing most of the data to put into in $USER_DATA.
-	
-	global $CONFIG;
 
-	foreach ($groups as $key => $val)
-		if (!is_numeric($val))
-			unset ($groups[$key]);
-	if (!in_array($pri_group, $groups)) array_push($groups, $pri_group);
-    		
-	$result = db_query("SELECT MAX(group_quota) as disk_max, MIN(group_quota) as disk_min, " .
-			"MAX(can_rate_pictures) as can_rate_pictures, MAX(can_send_ecards) as can_send_ecards, " .
-			"MAX(upload_form_config) as ufc_max, MIN(upload_form_config) as ufc_min, " .
-			"MAX(custom_user_upload) as custom_user_upload, MAX(num_file_upload) as num_file_upload, " .
-			"MAX(num_URI_upload) as num_URI_upload, " .
-			"MAX(can_post_comments) as can_post_comments, MAX(can_upload_pictures) as can_upload_pictures, " .
-			"MAX(can_create_albums) as can_create_albums, " .
-			"MAX(has_admin_access) as has_admin_access, " .
-			"MIN(pub_upl_need_approval) as pub_upl_need_approval, MIN( priv_upl_need_approval) as  priv_upl_need_approval ".
-			"FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id in (" .  implode(",", $groups). ")");
+        //Parameters :
+        //                $pri_group (scalar) :         Group ID number of the user's 'main' group. This is the group that will be
+        //                                                                                        the user's profile display. ($USER_DATA['group_id'])
+        //
+        //                $groups (array) :                        List of group ids of all the groups that the user is a member of. IF this list
+        //                                                                                        does not include the $pri_group, it will be added.
+        //
+        //                $default_group_id (scalar) :         The group used as a fall-back if no valid group ids are specified.
+        //                                                                                                        If this group also does not exist then CPG will abort with a critical
+        //                                                                                                        error.
+        //
+        // Returns an array containing most of the data to put into in $USER_DATA.
 
-	if (mysql_num_rows($result)) {
-		$USER_DATA = mysql_fetch_assoc($result);
-		$result = db_query("SELECT group_name FROM  {$CONFIG['TABLE_USERGROUPS']} WHERE group_id= " . $pri_group);
-		$temp_arr = mysql_fetch_assoc($result);
-		$USER_DATA["group_name"] = $temp_arr["group_name"];
-	} else {
-		$result = db_query("SELECT * FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = $default_group_id");
-       	if (!mysql_num_rows($resultt)) die('<b>Coppermine critical error</b>:<br />The group table does not contain the Anonymous group !');
-       		$USER_DATA = mysql_fetch_assoc($result);
-		}
-	mysql_free_result($result);
+        global $CONFIG;
 
-	if ( $USER_DATA['ufc_max'] == $USER_DATA['ufc_min'] ) {
-		$USER_DATA["upload_form_config"] = $USER_DATA['ufc_min'];
-	} elseif ($USER_DATA['ufc_min'] == 0) {
-		$USER_DATA["upload_form_config"] = $USER_DATA['ufc_max'];
-	} elseif ((($USER_DATA['ufc_max'] == 2) or ($USER_DATA['ufc_max'] == 3)) and ($USER_DATA['ufc_min'] == 1)) { 
-		$USER_DATA["upload_form_config"] = 3;
-	} elseif (($USER_DATA['ufc_max'] == 3) and ($USER_DATA['ufc_min'] == 2)) { 
-		$USER_DATA["upload_form_config"] = 3;
-	} else {
-		$USER_DATA["upload_form_config"] = 0;
-	}
-	$USER_DATA["group_quota"] = ($USER_DATA["disk_min"])?$USER_DATA["disk_max"]:0;
-	
-	$USER_DATA['can_see_all_albums'] = $USER_DATA['has_admin_access'];
-	
-	$USER_DATA["group_id"] = $pri_group;
-	$USER_DATA['groups'] = $groups;
-	
-	if (get_magic_quotes_gpc() == 0)
-			$USER_DATA['group_name'] = mysql_escape_string($USER_DATA['group_name']);
+        foreach ($groups as $key => $val)
+                if (!is_numeric($val))
+                        unset ($groups[$key]);
+        if (!in_array($pri_group, $groups)) array_push($groups, $pri_group);
 
-	return($USER_DATA);
+        $result = db_query("SELECT MAX(group_quota) as disk_max, MIN(group_quota) as disk_min, " .
+                        "MAX(can_rate_pictures) as can_rate_pictures, MAX(can_send_ecards) as can_send_ecards, " .
+                        "MAX(upload_form_config) as ufc_max, MIN(upload_form_config) as ufc_min, " .
+                        "MAX(custom_user_upload) as custom_user_upload, MAX(num_file_upload) as num_file_upload, " .
+                        "MAX(num_URI_upload) as num_URI_upload, " .
+                        "MAX(can_post_comments) as can_post_comments, MAX(can_upload_pictures) as can_upload_pictures, " .
+                        "MAX(can_create_albums) as can_create_albums, " .
+                        "MAX(has_admin_access) as has_admin_access, " .
+                        "MIN(pub_upl_need_approval) as pub_upl_need_approval, MIN( priv_upl_need_approval) as  priv_upl_need_approval ".
+                        "FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id in (" .  implode(",", $groups). ")");
+
+        if (mysql_num_rows($result)) {
+                $USER_DATA = mysql_fetch_assoc($result);
+                $result = db_query("SELECT group_name FROM  {$CONFIG['TABLE_USERGROUPS']} WHERE group_id= " . $pri_group);
+                $temp_arr = mysql_fetch_assoc($result);
+                $USER_DATA["group_name"] = $temp_arr["group_name"];
+        } else {
+                $result = db_query("SELECT * FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = $default_group_id");
+               if (!mysql_num_rows($resultt)) die('<b>Coppermine critical error</b>:<br />The group table does not contain the Anonymous group !');
+                       $USER_DATA = mysql_fetch_assoc($result);
+                }
+        mysql_free_result($result);
+
+        if ( $USER_DATA['ufc_max'] == $USER_DATA['ufc_min'] ) {
+                $USER_DATA["upload_form_config"] = $USER_DATA['ufc_min'];
+        } elseif ($USER_DATA['ufc_min'] == 0) {
+                $USER_DATA["upload_form_config"] = $USER_DATA['ufc_max'];
+        } elseif ((($USER_DATA['ufc_max'] == 2) or ($USER_DATA['ufc_max'] == 3)) and ($USER_DATA['ufc_min'] == 1)) {
+                $USER_DATA["upload_form_config"] = 3;
+        } elseif (($USER_DATA['ufc_max'] == 3) and ($USER_DATA['ufc_min'] == 2)) {
+                $USER_DATA["upload_form_config"] = 3;
+        } else {
+                $USER_DATA["upload_form_config"] = 0;
+        }
+        $USER_DATA["group_quota"] = ($USER_DATA["disk_min"])?$USER_DATA["disk_max"]:0;
+
+        $USER_DATA['can_see_all_albums'] = $USER_DATA['has_admin_access'];
+
+        $USER_DATA["group_id"] = $pri_group;
+        $USER_DATA['groups'] = $groups;
+
+        if (get_magic_quotes_gpc() == 0)
+                        $USER_DATA['group_name'] = mysql_escape_string($USER_DATA['group_name']);
+
+        return($USER_DATA);
 }
 
 
@@ -142,7 +143,7 @@ if (get_magic_quotes_gpc()) {
             if (!is_array($value))
                 $HTTP_COOKIE_VARS[$key] = stripslashes($value);
             if (isset($$key)) unset($$key);
-	}
+        }
     }
 } else {
     if (is_array($HTTP_POST_VARS)) {
@@ -277,7 +278,7 @@ if (defined('UDB_INTEGRATION')) {
         //unset($USER_DATA['user_password']);
         $USER_DATA['user_password'] = '********';
 
-		$USER_DATA = $USER_DATA + cpgGetUserData($USER_DATA['user_group'], explode(',', $USER_DATA['user_group_list']));
+                $USER_DATA = $USER_DATA + cpgGetUserData($USER_DATA['user_group'], explode(',', $USER_DATA['user_group_list']));
 
         define('USER_ID', (int)$USER_DATA['user_id']);
         define('USER_NAME', $USER_DATA['user_name']);
@@ -371,16 +372,16 @@ if (isset($HTTP_COOKIE_VARS[$CONFIG['cookie_name'] . '_fav'])) {
     $FAVPICS = array();
 }
 
-// If the person is logged in get favs from DB those in the DB have precedence 
-if (USER_ID > 0){	
-	$sql = "SELECT user_favpics FROM {$CONFIG['TABLE_FAVPICS']} WHERE user_id = ".USER_ID;	
-	$results = db_query($sql);	
-	$row = mysql_fetch_array($results);
-	if (!empty($row['user_favpics'])){
-        	$FAVPICS = @unserialize(@base64_decode($row['user_favpics']));	
-	}else{
-		$FAVPICS = array();
-	}	
+// If the person is logged in get favs from DB those in the DB have precedence
+if (USER_ID > 0){
+        $sql = "SELECT user_favpics FROM {$CONFIG['TABLE_FAVPICS']} WHERE user_id = ".USER_ID;
+        $results = db_query($sql);
+        $row = mysql_fetch_array($results);
+        if (!empty($row['user_favpics'])){
+                $FAVPICS = @unserialize(@base64_decode($row['user_favpics']));
+        }else{
+                $FAVPICS = array();
+        }
 }
 
 
