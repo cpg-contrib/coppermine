@@ -27,6 +27,7 @@ define('COPPERMINE_VERSION', '1.3.2');
 // define('UDB_INTEGRATION', 'yabbse');
 // define('UDB_INTEGRATION', 'smf');
 // define('UDB_INTEGRATION', 'woltlab21');
+// define('UDB_INTEGRATION', 'punbb');
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 // Start output buffering
 ob_start();
