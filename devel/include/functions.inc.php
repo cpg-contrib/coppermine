@@ -780,6 +780,76 @@ function get_private_album_set($aid_str="")
         mysql_free_result($result);
 }
 
+// Generate the thumbnail caption based on admin preference and thumbnail page requirements
+
+/**
+ * build_caption()
+ *
+ * @param array $rowset by reference
+ * @param array $must_have
+ **/
+function build_caption(&$rowset,$must_have=array())
+{
+    global $CONFIG, $THEME_DIR;
+    global $album_date_fmt, $lastcom_date_fmt, $lastup_date_fmt, $lasthit_date_fmt, $cat;
+    global $lang_get_pic_data, $lang_meta_album_names, $lang_errors;
+    
+    foreach ($rowset as $key => $row) {
+        $caption='';
+        if ($CONFIG['display_filename']) {
+          $caption .='<span class="thumb_filename">' . $row['filename'] . '</span>';
+        }
+
+        $caption .= ($row['title']) ? '<span class="thumb_title">' . $row['title'] . '</span>' : '';
+
+        if ($CONFIG['views_in_thumbview'] || in_array('hits',$must_have)) {
+            $caption .= '<span class="thumb_title">' . sprintf($lang_get_pic_data['n_views'], $row['hits']).'</span>';
+        }
+        if ($CONFIG['caption_in_thumbview']){
+            $caption .= $row['caption'] ? "<span class=\"thumb_caption\">".bb_decode(($row['caption']))."</span>" : '';
+        }
+        if ($CONFIG['display_comment_count']) {
+            $comments_nr = count_pic_comments($row['pid']);
+            if ($comments_nr > 0) {
+                $caption .= "<span class=\"thumb_num_comments\">".sprintf($lang_get_pic_data['n_comments'], $comments_nr )."</span>";
+            }
+        }
+        if ($CONFIG['display_uploader'] && !in_array($row['owner_id'],$CONFIG['ADMIN_USERS']) || ($CONFIG['display_admin_uploader'] && in_array($row['owner_id'],$CONFIG['ADMIN_USERS']))) {
+            $caption .= ($row['owner_id'] && $row['owner_name']) ? '<span class="thumb_title"><a href ="profile.php?uid='.$row['owner_id'].'">'.$row['owner_name'].'</a></span>' : '';
+        }
+        
+        if (in_array('msg_date',$must_have)) {
+            $caption .= '<span class="thumb_caption">'.localised_date($row['msg_date'], $lastcom_date_fmt).'</span>';
+        }
+        if (in_array('msg_body',$must_have)) {
+            $msg_body = strlen($row['msg_body']) > 50 ? @substr($row['msg_body'],0,50)."...": $row['msg_body'];
+            if ($CONFIG['enable_smilies']) $msg_body = process_smilies($msg_body);
+            if ($row['author_id']) {
+                $caption .= '<span class="thumb_caption"><a href ="profile.php?uid='.$row['author_id'].'">'.$row['msg_author'].'</a>: '.$msg_body.'</span>';
+            } else {
+                    $caption .= '<span class="thumb_title">'.$row['msg_author'].': '.$msg_body.'</span>';
+            }
+        }
+        if (in_array('ctime',$must_have)) {
+            $caption .= '<span class="thumb_caption">'.localised_date($row['ctime'], $lastup_date_fmt).'</span>';
+        }
+        if (in_array('pic_rating',$must_have)) {
+            if (defined('THEME_HAS_RATING_GRAPHICS')) {
+                $prefix= $THEME_DIR;
+            } else {
+                $prefix= '';
+            }
+            $caption .= "<span class=\"thumb_caption\">".'<img src="'.$prefix.'images/rating'.round($row['pic_rating']/2000).'.gif" alt=""/>'.'<br />'.sprintf($lang_get_pic_data['n_votes'], $row['votes']).'</span>';
+        }
+        if (in_array('mtime',$must_have)) {
+                $caption .= "<span class=\"thumb_caption\">".localised_date($row['mtime'], $lasthit_date_fmt)."<br/>".$row['lasthit_ip'].'</span>';
+        }
+
+        $rowset[$key]['caption_text'] = $caption;
+    }
+    $rowset = CPGPluginAPI::filter('thumb_caption',$rowset);
+}
+
 // Retrieve the data for a picture or a set of picture
 
 /**
@@ -860,33 +930,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $rowset = cpg_db_fetch_rowset($result);
                 mysql_free_result($result);
                 // Set picture caption
-                if ($set_caption) foreach ($rowset as $key => $row){
+                if ($set_caption) build_caption($rowset);
 
-                        $caption = "<span class=\"thumb_title\">";
-                        $caption .= ($rowset[$key]['title']||$rowset[$key]['hits']) ? $rowset[$key]['title'] : '';
-
-            if ($CONFIG['views_in_thumbview']){
-               if ($rowset[$key]['title']){
-                               $caption .= "&nbsp;&ndash;&nbsp;";
-               }
-               $caption .= sprintf($lang_get_pic_data['n_views'], $rowset[$key]['hits']);
-            }
-            $caption .= "</span>";
-            if ($CONFIG['caption_in_thumbview']){
-                           $caption .= $rowset[$key]['caption'] ? "<span class=\"thumb_caption\">".bb_decode(($rowset[$key]['caption']))."</span>" : '';
-                        }
-                        if ($CONFIG['display_comment_count']) {
-                                $comments_nr = count_pic_comments($row['pid']);
-                                if ($comments_nr > 0) $caption .= "<span class=\"thumb_num_comments\">".sprintf($lang_get_pic_data['n_comments'], $comments_nr )."</span>";
-                        }
-
-                        if ($CONFIG['display_uploader']){
-                                $caption .= '<span class="thumb_title"><a href ="profile.php?uid='.$rowset[$key]['owner_id'].'">'.$rowset[$key]['owner_name'].'</a></span>';
-                        }
-
-                        $rowset[$key]['caption_text'] = $caption;
-
-                }
 
         $rowset = CPGPluginAPI::filter('thumb_caption_regular',$rowset);
 
@@ -916,9 +961,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
                 mysql_free_result($result);
-
+                $select_columns = '*'; //allows building any data into any thumbnail caption
                 if($select_columns == '*'){
-                  $select_columns = 'p.*';
+                  $select_columns = 'p.*, msg_id, author_id, msg_author, UNIX_TIMESTAMP(msg_date) as msg_date, msg_body, aid';
                 } else {
                   $select_columns = str_replace('pid', 'c.pid', $select_columns).', msg_id, author_id, msg_author, UNIX_TIMESTAMP(msg_date) as msg_date, msg_body, aid';
                 }
@@ -931,17 +976,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $rowset = cpg_db_fetch_rowset($result);
                 mysql_free_result($result);
 
-                if ($set_caption) foreach ($rowset as $key => $row){
-                        if ($row['author_id']) {
-                            $user_link = '<a href ="profile.php?uid='.$row['author_id'].'">'.$row['msg_author'].'</a>';
-                        } else {
-                                $user_link = $row['msg_author'];
-                        }
-                        $msg_body = strlen($row['msg_body']) > 50 ? @substr($row['msg_body'],0,50)."...": $row['msg_body'];
-                        if ($CONFIG['enable_smilies']) $msg_body = process_smilies($msg_body);
-                        $caption = '<span class="thumb_title">'.$user_link.'</span>'.'<span class="thumb_caption">'.localised_date($row['msg_date'], $lastcom_date_fmt).'</span>'.'<span class="thumb_caption">'.$msg_body.'</span>';
-                        $rowset[$key]['caption_text'] = $caption;
-                }
+                if ($set_caption) build_caption($rowset,array('msg_body','msg_date'));
 
                 $rowset = CPGPluginAPI::filter('thumb_caption_lastcom',$rowset);
 
@@ -967,7 +1002,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
                 mysql_free_result($result);
-
+                
+                $select_columns = '*'; //allows building any data into any thumbnail caption
                 if($select_columns == '*'){
                         $select_columns = 'p.*';
                 } else {
@@ -979,16 +1015,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $rowset = cpg_db_fetch_rowset($result);
                 mysql_free_result($result);
 
-                if ($set_caption) foreach ($rowset as $key => $row){
-                        if ($row['author_id']) {
-                            $user_link = '<a href ="profile.php?uid='.$row['author_id'].'">'.$row['msg_author'].'</a>';
-                        } else {
-                                $user_link = $row['msg_author'];
-                        }
-
-                        $caption = '<span class="thumb_title">'.$user_link.'</span>'.'<span class="thumb_caption">'.localised_date($row['msg_date'], $lastcom_date_fmt).'</span>'.'<span class="thumb_caption">'.$row['msg_body'].'</span>';
-                        $rowset[$key]['caption_text'] = $caption;
-                }
+                if ($set_caption) build_caption($rowset,array('msg_body','msg_date'));
 
                 $rowset = CPGPluginAPI::filter('thumb_caption_lastcomby',$rowset);
 
@@ -1008,19 +1035,16 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $count = $nbEnr[0];
                 mysql_free_result($result);
 
-                if($select_columns != '*' ) $select_columns .= ',title, caption, owner_id, owner_name, aid';
 
+                //if($select_columns != '*' ) $select_columns .= ',title, caption, owner_id, owner_name, aid';
+                $select_columns = '*'; //allows building any data into any thumbnail caption
                 $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $META_ALBUM_SET ORDER BY pid DESC $limit";
                 $result = cpg_db_query($query);
 
                 $rowset = cpg_db_fetch_rowset($result);
                 mysql_free_result($result);
 
-                if ($set_caption) foreach ($rowset as $key => $row){
-                        $user_link = (($row['owner_id'] && $row['owner_name']) && ($CONFIG['display_uploader'] && !in_array($row['owner_id'],$CONFIG['ADMIN_USERS'])) || ($CONFIG['display_admin_uploader'] && in_array($row['owner_id'],$CONFIG['ADMIN_USERS']))) ? '<span class="thumb_title"><a href ="profile.php?uid='.$row['owner_id'].'">'.$row['owner_name'].'</a></span>' : '';
-                        $caption = $user_link.'<span class="thumb_caption">'.localised_date($row['ctime'], $lastup_date_fmt).'</span>';
-                        $rowset[$key]['caption_text'] = $caption;
-                }
+                if ($set_caption) build_caption($rowset,array('ctime'));
 
                 $rowset = CPGPluginAPI::filter('thumb_caption_lastup',$rowset);
 
@@ -1047,7 +1071,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $count = $nbEnr[0];
                 mysql_free_result($result);
 
-                if($select_columns != '*' ) $select_columns .= ', owner_id, owner_name, aid';
+                //if($select_columns != '*' ) $select_columns .= ', owner_id, owner_name, aid';
+                $select_columns = '*'; //allows building any data into any thumbnail caption
 
                 $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND owner_id = '$uid' $META_ALBUM_SET ORDER BY pid DESC $limit";
                 $result = cpg_db_query($query);
@@ -1055,16 +1080,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $rowset = cpg_db_fetch_rowset($result);
                 mysql_free_result($result);
 
-                if ($set_caption) foreach ($rowset as $key => $row){
-                        if ($row['owner_id'] && $row['owner_name']) {
-                            $user_link = '<span class="thumb_title"><a href ="profile.php?uid='.$row['owner_id'].'">'.$row['owner_name'].'</a></span>';
-                        } else {
-                                $user_link = '';
-                        }
-                        $caption = $user_link.'<span class="thumb_caption">'.localised_date($row['ctime'], $lastup_date_fmt).'</span>';
-                        $rowset[$key]['caption_text'] = $caption;
-                }
-
+                if ($set_caption) build_caption($rowset,array('ctime'));
+                
                 $rowset = CPGPluginAPI::filter('thumb_caption_lastupby',$rowset);
 
                 return $rowset;
@@ -1084,7 +1101,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $count = $nbEnr[0];
                 mysql_free_result($result);
 
-                if($select_columns != '*') $select_columns .= ', hits, aid, filename, owner_id, owner_name';
+                //if($select_columns != '*') $select_columns .= ', hits, aid, filename, owner_id, owner_name';
+                $select_columns = '*'; //allows building any data into any thumbnail caption
 
                 $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES'AND hits > 0 $META_ALBUM_SET $keyword ORDER BY hits DESC, filename  $limit";
                 $result = cpg_db_query($query);
@@ -1092,11 +1110,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $rowset = cpg_db_fetch_rowset($result);
                 mysql_free_result($result);
 
-                if ($set_caption) foreach ($rowset as $key => $row){
-                        $user_link = (($row['owner_id'] && $row['owner_name']) && ($CONFIG['display_uploader'] && !in_array($row['owner_id'],$CONFIG['ADMIN_USERS'])) || ($CONFIG['display_admin_uploader'] && in_array($row['owner_id'],$CONFIG['ADMIN_USERS']))) ? '<span class="thumb_title"><a href ="profile.php?uid='.$row['owner_id'].'">'.$row['owner_name'].'</a></span>' : '';
-                        $caption = $user_link . "<span class=\"thumb_caption\">".sprintf($lang_get_pic_data['n_views'], $row['hits']).'</span>';
-                        $rowset[$key]['caption_text'] = $caption;
-                }
+                if ($set_caption) build_caption($rowset,array('hits'));
 
                 $rowset = CPGPluginAPI::filter('thumb_caption_topn',$rowset);
 
@@ -1115,24 +1129,16 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $count = $nbEnr[0];
                 mysql_free_result($result);
 
-                if($select_columns != '*') $select_columns .= ', pic_rating, votes, aid, owner_id, owner_name';
+                //if($select_columns != '*') $select_columns .= ', pic_rating, votes, aid, owner_id, owner_name';
+                $select_columns = '*'; //allows building any data into any thumbnail caption
 
                 $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND votes >= '{$CONFIG['min_votes_for_rating']}' $META_ALBUM_SET ORDER BY pic_rating DESC, votes DESC $limit";
                 $result = cpg_db_query($query);
                 $rowset = cpg_db_fetch_rowset($result);
                 mysql_free_result($result);
 
-                if ($set_caption) foreach ($rowset as $key => $row){
-                        if (defined('THEME_HAS_RATING_GRAPHICS')) {
-                            $prefix= $THEME_DIR;
-                        } else {
-                            $prefix= '';
-                        }
-                        $user_link = (($row['owner_id'] && $row['owner_name']) && ($CONFIG['display_uploader'] && !in_array($row['owner_id'],$CONFIG['ADMIN_USERS'])) || ($CONFIG['display_admin_uploader'] && in_array($row['owner_id'],$CONFIG['ADMIN_USERS']))) ? '<span class="thumb_title"><a href ="profile.php?uid='.$row['owner_id'].'">'.$row['owner_name'].'</a></span>' : '';
-                        $caption = $user_link . "<span class=\"thumb_caption\">".'<img src="'.$prefix.'images/rating'.round($row['pic_rating']/2000).'.gif" alt=""/>'.'<br />'.sprintf($lang_get_pic_data['n_votes'], $row['votes']).'</span>';
-                        $rowset[$key]['caption_text'] = $caption;
-                }
-
+                if ($set_caption) build_caption($rowset,array('pic_rating'));
+                
                 $rowset = CPGPluginAPI::filter('thumb_caption_toprated',$rowset);
 
                 return $rowset;
@@ -1150,18 +1156,15 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $count = $nbEnr[0];
                 mysql_free_result($result);
 
-                if($select_columns != '*') $select_columns .= ', UNIX_TIMESTAMP(mtime) as mtime, aid, hits, lasthit_ip, owner_id, owner_name';
-
+                //if($select_columns != '*') $select_columns .= ', UNIX_TIMESTAMP(mtime) as mtime, aid, hits, lasthit_ip, owner_id, owner_name';
+                $select_columns = '*'; //allows building any data into any thumbnail caption
+                
                 $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' and hits > 0 $META_ALBUM_SET ORDER BY mtime DESC $limit";
                 $result = cpg_db_query($query);
                 $rowset = cpg_db_fetch_rowset($result);
                 mysql_free_result($result);
 
-                if ($set_caption) foreach ($rowset as $key => $row){
-                        $user_link = (($row['owner_id'] && $row['owner_name']) && ($CONFIG['display_uploader'] && !in_array($row['owner_id'],$CONFIG['ADMIN_USERS'])) || ($CONFIG['display_admin_uploader'] && in_array($row['owner_id'],$CONFIG['ADMIN_USERS']))) ? '<span class="thumb_title"><a href ="profile.php?uid='.$row['owner_id'].'">'.$row['owner_name'].'</a></span>' : '';
-                        $caption = $user_link . "<span class=\"thumb_caption\">".localised_date($row['mtime'], $lasthit_date_fmt)."<br/>".$row['hits']."<br/>".$row['lasthit_ip'].'</span>';
-                        $rowset[$key]['caption_text'] = $caption;
-                }
+                if ($set_caption) build_caption($rowset,array('mtime','hits'));
 
                 $rowset = CPGPluginAPI::filter('thumb_caption_lasthits',$rowset);
 
@@ -1169,9 +1172,6 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 break;
 
         case 'random': // Random pictures
-//trigger_error("meta album set: $META_ALBUM_SET",E_USER_NOTICE);
-//trigger_error("album set: $ALBUM_SET",E_USER_NOTICE);
-
                 if ($META_ALBUM_SET && $CURRENT_CAT_NAME) {
                         $album_name = $lang_meta_album_names['random'].' - '. $CURRENT_CAT_NAME;
                 } else {
@@ -1184,8 +1184,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $pic_count = $nbEnr[0];
                 mysql_free_result($result);
 
-                if($select_columns != '*') $select_columns .= ', aid, owner_id, owner_name';
-
+                //if($select_columns != '*') $select_columns .= ', aid, owner_id, owner_name';
+                $select_columns = '*'; //allows building any data into any thumbnail caption
                 // if we have more than 1000 pictures, we limit the number of picture returned
                 // by the SELECT statement as ORDER BY RAND() is time consuming
                                 /* Commented out due to image not found bug
@@ -1208,11 +1208,11 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
                 $rowset = array();
                 while($row = mysql_fetch_array($result)){
-                        $user_link = (($row['owner_id'] && $row['owner_name']) && ($CONFIG['display_uploader'] && !in_array($row['owner_id'],$CONFIG['ADMIN_USERS'])) || ($CONFIG['display_admin_uploader'] && in_array($row['owner_id'],$CONFIG['ADMIN_USERS']))) ? '<span class="thumb_title"><a href ="profile.php?uid='.$row['owner_id'].'">'.$row['owner_name'].'</a></span>' : '';
-                        $row['caption_text'] = $user_link;
                         $rowset[-$row['pid']] = $row;
                 }
                 mysql_free_result($result);
+                
+                if ($set_caption) build_caption($rowset);
 
                 $rowset = CPGPluginAPI::filter('thumb_caption_random',$rowset);
 
@@ -1260,12 +1260,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $rowset = cpg_db_fetch_rowset($result);
                 mysql_free_result($result);
 
-                if ($set_caption) foreach ($rowset as $key => $row){
-                        $user_link = (($row['owner_id'] && $row['owner_name']) && ($CONFIG['display_uploader'] && !in_array($row['owner_id'],$CONFIG['ADMIN_USERS'])) || ($CONFIG['display_admin_uploader'] && in_array($row['owner_id'],$CONFIG['ADMIN_USERS']))) ? '<span class="thumb_title"><a href ="profile.php?uid='.$row['owner_id'].'">'.$row['owner_name'].'</a></span>' : '';
-                        $caption = $user_link . "<span class=\"thumb_caption\">".$row['title']." - ".localised_date($row['ctime'], $lastup_date_fmt).'</span>';
-                        $rowset[$key]['caption_text'] = $caption;
-                }
-
+                if ($set_caption) build_caption($rowset,array('ctime'));
+                
                 $rowset = CPGPluginAPI::filter('thumb_caption_lastalb',$rowset);
 
                 return $rowset;
@@ -1291,11 +1287,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
                         mysql_free_result($result);
 
-                        if ($set_caption) foreach ($rowset as $key => $row){
-                                $user_link = (($rowset[$key]['owner_id'] && $rowset[$key]['owner_name']) && ($CONFIG['display_uploader'] && !in_array($rowset[$key]['owner_id'],$CONFIG['ADMIN_USERS'])) || ($CONFIG['display_admin_uploader'] && in_array($rowset[$key]['owner_id'],$CONFIG['ADMIN_USERS']))) ? '<span class="thumb_title"><a href ="profile.php?uid='.$rowset[$key]['owner_id'].'">'.$rowset[$key]['owner_name'].'</a></span>' : '';
-                                $caption = $rowset[$key]['title'] ? "<span class=\"thumb_caption\">".($rowset[$key]['title'])."</span>" : '';
-                                $rowset[$key]['caption_text'] = $user_link . $caption;
-                        }
+                        if ($set_caption) build_caption($rowset,array('ctime'));
                 }
 
                 $rowset = CPGPluginAPI::filter('thumb_caption_favpics',$rowset);
@@ -1689,8 +1681,6 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
                                 $row['pheight'] = $image_info[1];
                         }
                         
-                        $row['caption_text'] = ($CONFIG['display_filename']) ? '<span class="thumb_filename">' . $row['filename'] . '</span>' . $row['caption_text'] : $row['caption_text'];
-
                         $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
 
                         $thumb_list[$i]['pos'] = $key < 0 ? $key : $i - 1 + $lower_limit;
