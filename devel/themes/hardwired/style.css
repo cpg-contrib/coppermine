@@ -290,6 +290,8 @@ bblink a:hover {
         font-weight: bold;
         background : #49525D ;
         border-style: none;
+        vertical-align: middle;
+        text-align: center;
 }
 
 .navmenu img {

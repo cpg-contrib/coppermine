@@ -306,6 +306,8 @@ a:hover.yebg {
         font-weight: bold;
         background : #6BBE10 ;
         border-style: none;
+        vertical-align: middle;
+        text-align: center;
 }
 
 .navmenu img {

@@ -350,6 +350,8 @@ bblink a:hover {
         font-weight: bold;
         background : #BDBDBD ;
         border-style: none;
+        vertical-align: middle;
+        text-align: center;
 }
 
 .navmenu img {
