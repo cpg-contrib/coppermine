@@ -332,9 +332,9 @@ function html_picinfo()
     // with subdomains the variable is $_SERVER["SERVER_NAME"] does not return the right value instead of using a new config variable I reused $CONFIG["ecards_more_pic_target"] no trailing slash in the configure
     // Create the add to fav link
     if (!in_array($CURRENT_PIC_DATA['pid'], $FAVPICS)) {
-        $info[$lang_picinfo['addFavPhrase']] = "<a href=addfav.php?pid=" . $CURRENT_PIC_DATA['pid'] . " >" . $lang_picinfo['addFav'] . '</a>';
+        $info[$lang_picinfo['addFavPhrase']] = "<a href=\"addfav.php?pid=" . $CURRENT_PIC_DATA['pid'] . "\">" . $lang_picinfo['addFav'] . '</a>';
     } else {
-        $info[$lang_picinfo['addFavPhrase']] = "<a href=addfav.php?pid=" . $CURRENT_PIC_DATA['pid'] . " >" . $lang_picinfo['remFav'] . '</a>';
+        $info[$lang_picinfo['addFavPhrase']] = "<a href=\"addfav.php?pid=" . $CURRENT_PIC_DATA['pid'] . "\">" . $lang_picinfo['remFav'] . '</a>';
     }
 
     return theme_html_picinfo($info);

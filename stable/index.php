@@ -84,7 +84,7 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
                 $pic_count = $nbEnr[0];
 
                 $subcat['description'] = preg_replace("/<br.*?>[\r\n]*/i", '<br />' . $ident , bb_decode($subcat['description']));
-                $link = $ident . "<a href=index.php?cat={$subcat['cid']}>{$subcat['name']}</a>";
+                $link = $ident . "<a href=\"index.php?cat={$subcat['cid']}\">{$subcat['name']}</a>";
                 if ($album_count) {
                     $cat_data[] = array($link, $ident . $subcat['description'], $album_count, $pic_count);
                     $HIDE_USER_CAT = 0;
@@ -130,7 +130,7 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
                 $link = "<a href=\"index.php?cat={$subcat['cid']}\">{$subcat['name']}</a>";
                 $user_thumb = $ident.$user_thumb;
                 if ($pic_count == 0 && $album_count == 0) {
-					$user_thumb = $ident;
+                                        $user_thumb = $ident;
                     $cat_data[] = array($link, $subcat['description'],'cat_thumb' =>$user_thumb);
                 } else {
                     // Check if you need to show subcat_level
