@@ -21,7 +21,6 @@ define('IN_COPPERMINE', true);
 define('REPORT_FILE_PHP', true);
 
 require('include/init.inc.php');
-require('include/smilies.inc.php');
 require('include/mailer.inc.php');
 
 if ((!$CONFIG['report_post']==1) || (!USER_CAN_SEND_ECARDS)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
@@ -89,7 +88,7 @@ if (count($_POST) > 0 && $valid_sender_email) {
 				$reason .= "<li>no reason was selected</li>\n";
 		}
 
-    $msg_content = nl2br(process_smilies($message, $gallery_url_prefix));
+    $msg_content = nl2br($message);
 
     $data = array(
         'sn' => $_POST['sender_name'],
