@@ -121,7 +121,6 @@ INSERT INTO CPG_config VALUES ('first_level', '1');
 INSERT INTO CPG_config VALUES ('display_film_strip', '1');
 INSERT INTO CPG_config VALUES ('display_film_strip_filename', '0');
 INSERT INTO CPG_config VALUES ('max_film_strip_items', '5');
-INSERT INTO CPG_config VALUES ('comment_email_notification', '0');
 INSERT INTO CPG_config VALUES ('read_iptc_data', '0');
 INSERT INTO CPG_config VALUES ('display_uploader', '0');
 INSERT INTO CPG_config VALUES ('display_admin_uploader','0');
@@ -450,7 +449,7 @@ INSERT INTO CPG_config VALUES ('allow_unlogged_access', '1');
 INSERT INTO CPG_config VALUES ('home_target', 'index.php');
 
 DELETE FROM CPG_config WHERE `name` = 'comment_email_notification';
-DELETE FROM CPG_CONFIG WHERE `name` = 'hide_admin_uploader';
+DELETE FROM CPG_config WHERE `name` = 'hide_admin_uploader';
 
 INSERT INTO CPG_config VALUES ('custom_lnk_name', '');
 INSERT INTO CPG_config VALUES ('custom_lnk_url', '');
