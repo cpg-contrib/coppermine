@@ -66,6 +66,7 @@ table {
 body {
         font-size : 12px;
         margin: 0px;
+        padding:0px;
 }
 
 h1{
@@ -116,66 +117,62 @@ li {
         list-style-type: disc;
 }
 
+.top_panel {
+		background-image: url(images/top_panel_r1_c4.jpg);
+		background-repeat : repeat-x;
+		border-collapse:collapse;
+		margin: 0;
+		padding: 0;
+}
+
 .top_panel_left {
-        white-space: nowrap;
 		background-image: url(images/top_panel_r1_c1.jpg);
 		background-repeat : no-repeat;
-		padding-top : 0;
-        padding-bottom : 0;	
-
+		background-position: top left;
+		margin: 0;
+		padding: 0;
 }
 
 .top_panel_right {
-        white-space: nowrap;
 		background-image: url(images/top_panel_r1_c2.jpg);
 		background-repeat : no-repeat;
-		padding-top : 0;
-        padding-bottom : 0;	
-
+		background-position: top right;
+		margin: 0;
+		padding: 0;
 }
 		
-.top_panel td {
-        white-space: nowrap;
-		padding-top : 0;
-        padding-bottom : 0;	
-}
+
 
 .top_panel_btm {
        
-		background: #4A4A4A;
-		background-image: url(images/top_panel_r2_c3.jpg);
-		background-repeat : no-repeat;
-		background-position:right;
-		padding-top : 0;
-        padding-bottom : 0;	
+		    background: #4A4A4A;
+		    background-image: url(images/top_panel_r2_c3.jpg);
+		    background-repeat : no-repeat;
+		    background-position:right;
+		    padding-top : 0;
+            padding-bottom : 0;
 
 }
 
-.top_panel_bgd {
-      
-		background: #4A4A4A;
-		background-image: url(images/top_panel_r2_c2.jpg);
-		padding-top : 0;
-        padding-bottom : 0;	
-
+.top_menu_left_bttn {
+        white-space:nowrap;
 }
-
 .top_menu_left_bttn a {
-		background: #4A4A4A;
+       	background: #4A4A4A;
         background-image : url(images/left_menu_button.gif);
         background-repeat : no-repeat;
         background-position : left;
         padding-left : 12px;
         padding-right : 6px;
-		padding-top :3px;
+   		padding-top :3px;
         padding-bottom : 0;	
-        position: relative;
         display: block;
         height : 35px;
         line-height : 35px;
         text-decoration: none;
         color: #C6B78E;
         font-size: 14px;
+
 }
 
 .top_menu_left_bttn a:hover {
@@ -185,6 +182,11 @@ li {
         background-repeat : no-repeat;
         text-decoration: none;
         color: #F0AF00;
+
+}
+
+.top_menu_right_bttn {
+        white-space:nowrap;
 }
 
 .top_menu_right_bttn a {
@@ -196,7 +198,6 @@ li {
         padding-left : 6px;
 	    padding-top : 3px;
         padding-bottom : 0;	
-        position: relative;
         display: block;
         height : 35px;
         line-height : 35px;
@@ -214,6 +215,9 @@ li {
         color: #F0AF00;
 }
 
+.top_menu_bttn {
+  white-space:nowrap;
+}
 .top_menu_bttn a {
 		background: #4A4A4A;
         background-image : url(images/menu_button.gif);
@@ -222,7 +226,6 @@ li {
         padding-right : 6px;
 		padding-top : 3px;
         padding-bottom : 0;	
-        position: relative;
         display: block;
         height : 35px;
         line-height : 35px;
@@ -640,8 +643,31 @@ td #admin_menu_anim {
         vertical-align : middle;
 }
 
-.blank_image {
-/* Margin should = .image (margin+border-width) */
-        border:0;
-        margin: 3px;
+#SELECT_LISTS {
+        width: 300px;
+        height: 50px;
+        text-align:right;
+        float: right;
+}
+
+
+#SUB_MENU {
+	    background-image: url(images/top_panel_r2_c2.jpg);
+        background-position: left;
+        padding-left: 20px;
+}
+#SYS_MENU {
+        position:relative;
+        width:800px;
+        height:30px;
+        left: 35px;
+        top: 5px;
+        margin:-10px;
+        padding:0;
+        z-index:1;
+        visibility: hidden;
+}
+
+#SELECT_FLAGS {
+        text-align: center;
 }
