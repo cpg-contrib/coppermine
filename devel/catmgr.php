@@ -281,8 +281,13 @@ switch ($op) {
         $thumb = (int)$HTTP_POST_VARS['thumb'];
         $name = trim($HTTP_POST_VARS['name']) ? addslashes($HTTP_POST_VARS['name']) : '&lt;???&gt;';
         $description = addslashes($HTTP_POST_VARS['description']);
-
-        db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent', name='$name', description='$description', thumb='$thumb' WHERE cid = '$cid' LIMIT 1");
+		$children=array();	
+		verify_children($cid, $cid);
+		if (!in_array($parent, $children)){
+        	db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent', name='$name', description='$description', thumb='$thumb' WHERE cid = '$cid' LIMIT 1");
+		}else{
+			db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET name='$name', description='$description', thumb='$thumb' WHERE cid = '$cid' LIMIT 1");
+		}
         break;
 
     case 'createcat':
