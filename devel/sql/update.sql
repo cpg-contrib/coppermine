@@ -99,8 +99,9 @@ INSERT INTO CPG_config VALUES ('theme_reset', '1');
 INSERT INTO CPG_config VALUES ('offline', '0');
 
 INSERT INTO CPG_config VALUES ('allow_memberlist', '0');
-
+INSERT INTO CPG_config VALUES ('display_faq', '0');
 INSERT INTO CPG_config VALUES ('views_in_thumbview', '1');
+
 
 
 # Modify structure for category thumb

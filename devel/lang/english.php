@@ -118,9 +118,8 @@ $lang_main_menu = array(
         'fav_lnk' => 'My Favorites',
         'memberlist_title' => 'Show Memberlist',
         'memberlist_lnk' => 'Memberlist',
-
-
-
+        'faq_title' => 'Frequently Asked Questions on the picture gallery &quot;Coppermine&quot;',
+        'faq_lnk' => 'FAQ',
 );
 
 $lang_gallery_admin_menu = array(
@@ -375,6 +374,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Display &quot;reset&quot; in language selection', 'language_reset', 1),
         array('Display theme list', 'theme_list', 8),
         array('Display &quot;reset&quot; in theme selection', 'theme_reset', 1),
+        array('Display FAQ', 'display_faq', 1),
         array('Character encoding', 'charset', 4),
 
         'Album list view',
@@ -642,6 +642,53 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
         'save_thumb' =>'Save as thumbnail',
         'sel_on_img' =>'The selection has to be entirely on the image!'
 );
+
+
+// ------------------------------------------------------------------------- //
+// File faq.php
+// ------------------------------------------------------------------------- //
+
+if (defined('FAQ_PHP')) $lang_faq_php = array(
+        'faq' => 'Frequently Asked Questions',
+        'toc' => 'Table of contents',
+        'question' => 'Question: ',
+        'answer' => 'Answer: ',
+);
+
+if (defined('FAQ_PHP')) $lang_faq_data = array(
+        'General FAQ',
+        array('Why do I need to register?', 'Registration may or may not be required from the administrator. Registration gives a member additional features such as uploading, having a favorite list, rating pictures and posting comments etc.', 'allow_user_registration', '0'),
+        array('How do I register?', 'Go to &quot;Register&quot; and fill out the required fields (and the optional ones if you want to).<br />If the Administrator has Email Activation enabled ,then after submitting your information you should recieve an email message at the address that you have submitted while registering, giving you instructions on how to activate your membership. Your membership must be activated in order for you to login.', 'allow_user_registration', '1'),
+        array('How Do I login?', 'Go to &quot;Login&quot;, submit your username and password and check &quot;Remember Me&quot; so you will be logged in on the site if you should leave it.<br /><b>IMPORTANT:Cookies must be enabled and the cookie from this site must not be deleted in order to use &quot;Remember Me&quot;.</b>', 'offline', 0),
+        array('Why can I not login?', 'Did you register and replied to the link that was sent to you via email?. The link will activate your account. For other login probelms contact the site administrator.', 'offline', 0),
+        array('What if I forgot my password?', 'If this site has a &quot;Forgot password&quot; link then use it. Other than that contact the site administrator for a new password.', 'offline', 0),
+        array('What if I changed my email address?', 'Just simply login and change yor email address through &quot;Profile&quot;', 'offline', 0),
+        array('How do I save a picture to &quot;My Favorites&quot;?', 'Click on a picture and click on the &quot;picture info&quot; link (<img src="images/info.gif" width="16" height="16" border="0" alt="Picture information" />); scroll down to the picture information set and click &quot;Add to fav&quot;.<br />The administrator may have the &quot;picture information&quot; on by default.<br />IMPORTANT:Cookies must be enabled and the cookie from this site must not be deleted.', 'offline', 0),
+        array('How do I rate a picture?', 'Click on a thumbnailed picture and go to the bottom and choose a rating.', 'offline', 0),
+        array('How do I post a comment for a picture?', 'Click on a thumbnailed picture and go to the bottom and post a comment.', 'offline', 0),
+        array('How do I upload a picture?', 'Go to &quot;Upload Picture&quot;and select the album that you want to upload to,click &quot;Browse&quot; and find the picture to upload and click &quot;open&quot; (add a title and decription if you want to) and click &quot;Submit&quot;', 'allow_private_albums', 0),
+        array('Where do I upload a picture to?', 'You will be able to upload a picture to one of your albums in &quot;My Gallery&quot;. The Administrator may also allow you to upload a picture to one or more of the albums in the Main Gallery.', 'allow_private_albums', 0),
+        array('What type and size of a picture can I upload?', 'The size and type (jpg,gif,..etc.) is up to the administrator.', 'offline', 0),
+        array('What is &quot;My Gallery&quot;?', '&quot;My Gallery&quot; is a personal gallery that the user can upload to and manage.', 'allow_private_albums', 0),
+        array('How do I create,rename or delete an album in &quot;My Gallery&quot;?', 'You should already be in &quot;Admin-Mode&quot;<br />Go to &quot;Create/Order My Albums&quot;and click &quot;New&quot;. Change &quot;New Album&quot; to your desired name.<br />You can also rename any of the albums in your gallery.<br />Click &quot;Apply Modifications&quot;.', 'allow_private_albums', 0),
+        array('How can I modify and restrict users from viewing my albums?', 'You should already be in &quot;Admin. Mode&quot;<br />Go to &quot;Modify My Albums. On the &quot;Update Album&quot; bar, select the album that you want to modify.<br />Here, you can change the name, description, thumbnail picture, restrict viewing and comment/rating permissions.<br />Click &quot;Update Album&quot;.', 'allow_private_albums', 0),
+        array('How can I view other users galleries?', 'Go to &quot;Album List&quot; and select &quot;User Galleries&quot;.', 'allow_private_albums', 0),
+        array('What are cookies?', 'Cookies are a plain text pice of data that is sent from a website and is put on to your computer.<br />Cookies usually allow a user to leave and return to the site without having to login again and other various chores.', 'offline', 0),
+        array('Where can I get this program for my site?', 'Visit the <a href="http://coppermine.sf.net/">Coppermine Home Page</a>', 'offline', 0),
+
+
+        'Navigating the Site',
+        array('What\'s &quot;Album List&quot;?', 'This will show you the entire gallery with a link to each catagory. Thumbnails may be a link to the catagory.', 'offline', 0),
+        array('What\'s &quot;My Gallery&quot;?', 'This feature lets a user create their own gallery and add,delete or modify albums as well as upload to them.', 'allow_private_albums', 0),
+        array('What\'s the difference between &quot;Admin Mode&quot; and &quot;User Mode&quot;?', 'This feature, when in admin-mode, allows a user to modify their gallery (as well as others if allowed by the administrator).', 'allow_private_albums', 0),
+        array('What\'s &quot;Upload Picture&quot;?', 'This feature allows a user to upload a picture (size and type is set by the site administrator) to a gallery selected by either you or the administrator.', 'allow_private_albums', 0),
+        array('What\'s &quot;Last Uploads&quot;?', 'This feature shows the last uploads uploaded to the site.', 'offline', 0),
+        array('What\'s &quot;Last Comments&quot;?', 'This feature shows the last comments along with the picture posted by users.', 'offline', 0),
+        array('What\'s &quot;Most Viewed&quot;?', 'This feature shows the most viewed pictures by all users (whether logged in or not).', 'offline', 0),
+        array('What\'s &quot;Top Rated&quot;?', 'This feature shows the top rated pictures rated by the users, showing the average rating (e.g: five users each gave a <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />: the picture would have an average rating of <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> ;Five users rated the picture from 1 to 5 (1,2,3,4,5) would result in an average <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> .)<br />The ratings go from <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> (best) to <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" /> (worst).', 'offline', 0),
+        array('What\'s &quot;My Favorites&quot;?', 'This feature will let a user store a favorite picture in the cookie that was sent to your computer.', 'offline', 0),
+);
+
 
 // ------------------------------------------------------------------------- //
 // File forgot_passwd.php

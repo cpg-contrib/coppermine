@@ -37,6 +37,9 @@ $template_main_menu = <<<EOT
 <!-- BEGIN my_profile -->
                         <a href="{MY_PROF_TGT}">{MY_PROF_LNK}</a>
 <!-- END my_profile -->
+<!-- BEGIN faq -->
+                        <a href="{FAQ_TGT}" title="{FAQ_TITLE}">{FAQ_LNK}</a>
+<!-- END faq -->
 <!-- BEGIN enter_admin_mode -->
                         <a href="{ADM_MODE_TGT}" title="{ADM_MODE_TITLE}">{ADM_MODE_LNK}</a>
 <!-- END enter_admin_mode -->
@@ -885,6 +888,10 @@ function theme_main_menu()
         template_extract_block($template_main_menu, 'allow_memberlist');
     }
 
+    if (!$CONFIG['display_faq']) {
+        template_extract_block($template_main_menu, 'faq');
+    }
+
 
     $param = array('{ALB_LIST_TGT}' => "index.php$cat_l",
         '{ALB_LIST_TITLE}' => $lang_main_menu['alb_list_title'],
@@ -897,6 +904,9 @@ function theme_main_menu()
         '{MEMBERLIST_LNK}' => $lang_main_menu['memberlist_lnk'],
         '{MY_PROF_TGT}' => "profile.php?op=edit_profile",
         '{MY_PROF_LNK}' => $lang_main_menu['my_prof_lnk'],
+        '{FAQ_TGT}' => "faq.php",
+        '{FAQ_TITLE}' => $lang_main_menu['faq_title'],
+        '{FAQ_LNK}' => $lang_main_menu['faq_lnk'],
         '{ADM_MODE_TGT}' => "admin.php?admin_mode=1&referer=$REFERER",
         '{ADM_MODE_TITLE}' => $lang_main_menu['adm_mode_title'],
         '{ADM_MODE_LNK}' => $lang_main_menu['adm_mode_lnk'],

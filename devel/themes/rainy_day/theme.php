@@ -44,6 +44,15 @@ $template_main_menu1 = <<<EOT
                                         </td>
                                         <td><img name="button1_r1_c3" src="themes/rainy_day/images/button1_r1_c3.gif" width="5" height="25" border="0" id="button1_r1_c3" alt="" /></td>
 <!-- END my_profile -->
+<!-- BEGIN faq -->
+                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
+                                        <td><img name="button1_r1_c1" src="themes/rainy_day/images/button1_r1_c1.gif" width="5" height="25" border="0" id="button1_r1_c1" alt="" /></td>
+                                        <td background="themes/rainy_day/images/button1_r1_c2.gif">
+
+                        <a href="{FAQ_TGT}" title="{FAQ_TITLE}">{FAQ_LNK}</a>
+                                        </td>
+                                        <td><img name="button1_r1_c3" src="themes/rainy_day/images/button1_r1_c3.gif" width="5" height="25" border="0" id="button1_r1_c3" alt="" /></td>
+<!-- END faq -->
 <!-- BEGIN enter_admin_mode -->
                                         <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
                                         <td><img name="button1_r1_c1" src="themes/rainy_day/images/button1_r1_c1.gif" width="5" height="25" border="0" id="button1_r1_c1" alt="" /></td>
@@ -977,6 +986,10 @@ function theme_main_menu1()
         template_extract_block($template_main_menu, 'allow_memberlist');
     }
 
+    if (!$CONFIG['display_faq']) {
+        template_extract_block($template_main_menu, 'faq');
+    }
+
     $param = array('{MY_GAL_TGT}' => "index.php?cat=$my_gallery_id",
         '{MY_GAL_TITLE}' => $lang_main_menu['my_gal_title'],
         '{MY_GAL_LNK}' => $lang_main_menu['my_gal_lnk'],
@@ -985,6 +998,9 @@ function theme_main_menu1()
         '{MEMBERLIST_LNK}' => $lang_main_menu['memberlist_lnk'],
         '{MY_PROF_TGT}' => "profile.php?op=edit_profile",
         '{MY_PROF_LNK}' => $lang_main_menu['my_prof_lnk'],
+        '{FAQ_TGT}' => "faq.php",
+        '{FAQ_TITLE}' => $lang_main_menu['faq_title'],
+        '{FAQ_LNK}' => $lang_main_menu['faq_lnk'],
         '{ADM_MODE_TGT}' => "admin.php?admin_mode=1&referer=$REFERER",
         '{ADM_MODE_TITLE}' => $lang_main_menu['adm_mode_title'],
         '{ADM_MODE_LNK}' => $lang_main_menu['adm_mode_lnk'],

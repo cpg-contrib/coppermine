@@ -22,35 +22,39 @@ $template_main_menu = <<<EOT
                 <span class="topmenu">
 <!-- BEGIN album_list -->
                         <a href="{ALB_LIST_TGT}" title="{ALB_LIST_TITLE}">{ALB_LIST_LNK}</a>
-                        <img src="themes/water_drop/images/orange_carret.gif" />
+                        <img src="themes/water_drop/images/orange_carret.gif" width="8" height="8" border="0" alt="" />
 <!-- END album_list -->
 <!-- BEGIN my_gallery -->
                         <a href="{MY_GAL_TGT}" title="{MY_GAL_TITLE}">{MY_GAL_LNK}</a>
-                        <img src="themes/water_drop/images/orange_carret.gif" />
+                        <img src="themes/water_drop/images/orange_carret.gif" width="8" height="8" border="0" alt="" />
 <!-- END my_gallery -->
 <!-- BEGIN allow_memberlist -->
                         <a href="{MEMBERLIST_TGT}" title="{MEMBERLIST_TITLE}">{MEMBERLIST_LNK}</a>
-                        <img src="themes/water_drop/images/orange_carret.gif" />
+                        <img src="themes/water_drop/images/orange_carret.gif" width="8" height="8" border="0" alt="" />
 <!-- END allow_memberlist -->
 <!-- BEGIN my_profile -->
                         <a href="{MY_PROF_TGT}">{MY_PROF_LNK}</a>
-                        <img src="themes/water_drop/images/orange_carret.gif" />
+                        <img src="themes/water_drop/images/orange_carret.gif" width="8" height="8" border="0" alt="" />
 <!-- END my_profile -->
+<!-- BEGIN faq -->
+                        <a href="{FAQ_TGT}" title="{FAQ_TITLE}">{FAQ_LNK}</a>
+                        <img src="themes/water_drop/images/orange_carret.gif" width="8" height="8" border="0" alt="" />
+<!-- END faq -->
 <!-- BEGIN enter_admin_mode -->
                         <a href="{ADM_MODE_TGT}" title="{ADM_MODE_TITLE}">{ADM_MODE_LNK}</a>
-                        <img src="themes/water_drop/images/orange_carret.gif" />
+                        <img src="themes/water_drop/images/orange_carret.gif" width="8" height="8" border="0" alt="" />
 <!-- END enter_admin_mode -->
 <!-- BEGIN leave_admin_mode -->
                         <a href="{USR_MODE_TGT}" title="{USR_MODE_TITLE}">{USR_MODE_LNK}</a>
-                        <img src="themes/water_drop/images/orange_carret.gif" />
+                        <img src="themes/water_drop/images/orange_carret.gif" width="8" height="8" border="0" alt="" />
 <!-- END leave_admin_mode -->
 <!-- BEGIN upload_pic -->
                         <a href="{UPL_PIC_TGT}" title="{UPL_PIC_TITLE}">{UPL_PIC_LNK}</a>
-                        <img src="themes/water_drop/images/orange_carret.gif" />
+                        <img src="themes/water_drop/images/orange_carret.gif" width="8" height="8" border="0" alt="" />
 <!-- END upload_pic -->
 <!-- BEGIN register -->
                         <a href="{REGISTER_TGT}" title="{REGISTER_TITLE}">{REGISTER_LNK}</a>
-                        <img src="themes/water_drop/images/orange_carret.gif" />
+                        <img src="themes/water_drop/images/orange_carret.gif" width="8" height="8" border="0" alt="" />
 <!-- END register -->
 <!-- BEGIN login -->
                         <a href="{LOGIN_TGT}">{LOGIN_LNK}</a>
@@ -60,15 +64,15 @@ $template_main_menu = <<<EOT
 <!-- END logout -->
                         <br />
                         <a href="{LASTUP_TGT}">{LASTUP_LNK}</a>
-                        <img src="themes/water_drop/images/orange_carret.gif" />
+                        <img src="themes/water_drop/images/orange_carret.gif" width="8" height="8" border="0" alt="" />
                         <a href="{LASTCOM_TGT}">{LASTCOM_LNK}</a>
-                        <img src="themes/water_drop/images/orange_carret.gif" />
+                        <img src="themes/water_drop/images/orange_carret.gif" width="8" height="8" border="0" alt="" />
                         <a href="{TOPN_TGT}">{TOPN_LNK}</a>
-                        <img src="themes/water_drop/images/orange_carret.gif" />
+                        <img src="themes/water_drop/images/orange_carret.gif" width="8" height="8" border="0" alt="" />
                         <a href="{TOPRATED_TGT}">{TOPRATED_LNK}</a>
-                        <img src="themes/water_drop/images/orange_carret.gif" />
+                        <img src="themes/water_drop/images/orange_carret.gif" width="8" height="8" border="0" alt="" />
                                                 <a href="{FAV_TGT}">{FAV_LNK}</a>
-                                                <img src="themes/water_drop/images/orange_carret.gif" />
+                                                <img src="themes/water_drop/images/orange_carret.gif" width="8" height="8" border="0" alt="" />
                         <a href="{SEARCH_TGT}">{SEARCH_LNK}</a>
                 </span>
 EOT;
@@ -903,6 +907,10 @@ function theme_main_menu()
         template_extract_block($template_main_menu, 'allow_memberlist');
     }
 
+    if (!$CONFIG['display_faq']) {
+        template_extract_block($template_main_menu, 'faq');
+    }
+
 
     $param = array('{ALB_LIST_TGT}' => "index.php$cat_l",
         '{ALB_LIST_TITLE}' => $lang_main_menu['alb_list_title'],
@@ -915,6 +923,9 @@ function theme_main_menu()
         '{MEMBERLIST_LNK}' => $lang_main_menu['memberlist_lnk'],
         '{MY_PROF_TGT}' => "profile.php?op=edit_profile",
         '{MY_PROF_LNK}' => $lang_main_menu['my_prof_lnk'],
+        '{FAQ_TGT}' => "faq.php",
+        '{FAQ_TITLE}' => $lang_main_menu['faq_title'],
+        '{FAQ_LNK}' => $lang_main_menu['faq_lnk'],
         '{ADM_MODE_TGT}' => "admin.php?admin_mode=1&referer=$REFERER",
         '{ADM_MODE_TITLE}' => $lang_main_menu['adm_mode_title'],
         '{ADM_MODE_LNK}' => $lang_main_menu['adm_mode_lnk'],
