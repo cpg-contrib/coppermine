@@ -22,11 +22,12 @@ if (!isset($MAIN_CFG['imaging']['type'])) {
     $MAIN_CFG['imaging']['impath'] = $CONFIG['impath'];
     $MAIN_CFG['imaging']['pbmpath'] = $CONFIG['impath'];
 }
+if (!defined('CAN_MOD_INI')) define('CAN_MOD_INI', !ereg('ini_set', ini_get('disable_functions')));
 switch ($MAIN_CFG['imaging']['type']) {
     case 'im'     : require('includes/imaging/im.inc'); break;
     case 'netpbm' : require('includes/imaging/netpbm.inc'); break;
     case 'gd1' :
-    case 'gd2'    :
+    case 'gd2' :
         if (extension_loaded('gd')) {
             require('includes/imaging/gd2.inc');
         } else {
@@ -63,8 +64,7 @@ function image_type_to_mime_type($imagetype) {
 }
 
 // http://php.net/image_type_to_extension
-if(!function_exists('image_type_to_extension'))
-{
+if(!function_exists('image_type_to_extension')) {
 function image_type_to_extension($imagetype, $include_dot=true) {
     $dot = $include_dot ? '.' : '';
     switch($imagetype) {

@@ -44,9 +44,11 @@ class Graphic {
     if (!$imginfo) return -1;
     if (!$src_img) { return -2; }
 
+    if (!isset($dest_info[2])) { $dest_info[2] = $imginfo[2]; }
+    if ($dest_info[2] == IMAGETYPE_GIF && !function_exists('imagegif')) { $dest_info[2] = IMAGETYPE_PNG; }
     $resize = ($dest_info[0] != $imginfo[0] || $dest_info[1] != $imginfo[1]);
     if ($resize) {
-        if (function_exists('imagecreatetruecolor')) {
+        if ($dest_info[2] != IMAGETYPE_GIF && function_exists('imagecreatetruecolor')) {
             $dst_img = imagecreatetruecolor($dest_info[0], $dest_info[1]);
             imagecopyresampled($dst_img, $src_img, 0, 0, 0, 0, $dest_info[0], $dest_info[1], $imginfo[0], $imginfo[1]);
         } else {
@@ -60,8 +62,6 @@ class Graphic {
         $dst_img =& $src_img;
     }
 
-    if (!isset($dest_info[2])) { $dest_info[2] = $imginfo[2]; }
-    if ($dest_info[2] == IMAGETYPE_GIF && !function_exists('imagegif')) { $dest_info[2] = IMAGETYPE_PNG; }
     if ($dest_file == '') {
         header('Content-type: '.image_type_to_mime_type($dest_info[2]));
     } else {
