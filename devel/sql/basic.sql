@@ -40,7 +40,7 @@ INSERT INTO CPG_config VALUES ('fullpath', 'albums/');
 INSERT INTO CPG_config VALUES ('gallery_admin_email', 'you@somewhere.com');
 INSERT INTO CPG_config VALUES ('gallery_description', 'Your online photo album');
 INSERT INTO CPG_config VALUES ('gallery_name', 'Coppermine Photo Gallery');
-INSERT INTO CPG_config VALUES ('im_options', '-antialias');
+INSERT INTO CPG_config VALUES ('im_options', '-antialias -strip');
 INSERT INTO CPG_config VALUES ('impath', '');
 INSERT INTO CPG_config VALUES ('jpeg_qual', '80');
 INSERT INTO CPG_config VALUES ('keep_votes_time', '30');
