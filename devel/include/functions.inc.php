@@ -1822,7 +1822,7 @@ function display_film_strip($album, $cat, $pos)
                $lower_limit=$new_pos-$ihf;
              }
           }
-          elseif($new_pos < $hf ) { $lower_limit=0; }
+          elseif($new_pos <= $hf ) { $lower_limit=0; }
         }
 
         $pic_data=array_slice($pic_data,$lower_limit,$max_item);
