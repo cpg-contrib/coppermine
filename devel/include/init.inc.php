@@ -339,10 +339,14 @@ if (!empty($HTTP_GET_VARS['lang'])) {
 }
 
 if (isset($USER['lang']) && !strstr($USER['lang'], '/') && file_exists('lang/' . $USER['lang'] . '.php')) {
+    $CONFIG['default_lang'] = $CONFIG['lang'];          // Save default language
     $CONFIG['lang'] = strtr($USER['lang'], '$/\\:*?"\'<>|`', '____________');
 } elseif ($CONFIG['charset'] == 'utf-8') {
     include('include/select_lang.inc.php');
-    if (file_exists('lang/' . $USER['lang'] . '.php')) $CONFIG['lang'] = $USER['lang'];
+    if (file_exists('lang/' . $USER['lang'] . '.php')) {
+        $CONFIG['default_lang'] = $CONFIG['lang'];      // Save default language
+        $CONFIG['lang'] = $USER['lang'];
+    }
 } else {
     unset($USER['lang']);
 }
