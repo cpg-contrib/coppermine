@@ -370,6 +370,10 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
   'item' => 'item', //cpg1.3.0
   'debug_everyone' => 'Everyone', //cpg1.3.0
   'debug_admin' => 'Admin only', //cpg1.3.0
+  'no_logs'=> 'Off', //cpg1.4.0
+  'log_normal'=> 'Normal', //cpg1.4.0
+  'log_all' => 'All', //cpg1.4.0
+  'view_logs' => 'View Logs', //cpg1.4.0
         );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
@@ -490,9 +494,12 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   'Miscellaneous settings',
   array('Enable debug mode', 'debug_mode', 9), //cpg1.3.0
   array('Display notices in debug mode', 'debug_notice', 1), //cpg1.3.0
+  array('Logging mode <a href="#notice3" class="clickable_option">***</a>', 'log_mode', 11), //cpg1.4.0
 
   '<br /><div align="left"><a name="notice1"></a>(*) This settings mustn\'t be changed if you already have files in your database.<br />
-  <a name="notice2"></a>(**) When changing this setting, only the files that are added from that point on are affected, so it is advisable that this setting must not be changed if there are already files in the gallery. You can, however, apply the changes to the existing files with the &quot;<a href="util.php">admin tools</a> (resize pictures)&quot; utility from the admin menu.</div><br />', //cpg1.3.0
+  <a name="notice2"></a>(**) When changing this setting, only the files that are added from that point on are affected, so it is advisable that this setting must not be changed if there are already files in the gallery. You can, however, apply the changes to the existing files with the &quot;<a href="util.php">admin tools</a> (resize pictures)&quot; utility from the admin menu.<br />
+  <a name="notice2"></a>(***) All log files are written in english.
+  </div><br />', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
