@@ -113,6 +113,7 @@ class cpg_debugger {
 }
 
 function cpg_error_handler($errno, $errmsg, $filename, $linenum, $vars='') {
+    global $cpgdebugger;
     $cpgdebugger->handler($errno, $errmsg, $filename, $linenum, $vars);
 }
 
