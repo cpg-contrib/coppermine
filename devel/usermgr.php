@@ -162,8 +162,8 @@ EOT;
                 <td class="tableb" align="center"><div class="admin_menu"><a href="$PHP_SELF?op=edit&user_id={$user['user_id']}">{$lang_usermgr_php['edit']}</a></div></td>
                 <td class="tableb"  align="center"><div class="admin_menu"><a href="delete.php?id={$user['user_id']}&what=user"  onclick="return confirm('{$lang_usermgr_php['confirm_del']}');">{$lang_usermgr_php['delete']}</a></div></td>
                 <td class="tableb" align="center">{$user['pic_count']}</td>
-                <td class="tableb" align="right">{$user['disk_usage']} {$lang_byte_units[1]}</td>
-                <td class="tableb" align="right">{$user['group_quota']} {$lang_byte_units[1]}</td>
+                <td class="tableb" align="right">{$user['disk_usage']}&nbsp;{$lang_byte_units[1]}</td>
+                <td class="tableb" align="right">{$user['group_quota']}&nbsp;{$lang_byte_units[1]}</td>
         </tr>
 
 EOT;
@@ -175,8 +175,8 @@ EOT;
                 <td class="tableb">{$user['user_regdate']}</td>
                 <td class="tableb">{$user['user_lastvisit']}</td>
                 <td class="tableb" align="center">{$user['pic_count']}</td>
-                <td class="tableb" align="right">{$user['disk_usage']} {$lang_byte_units[1]}</td>
-                <td class="tableb" align="right">{$user['group_quota']} {$lang_byte_units[1]}</td>
+                <td class="tableb" align="right">{$user['disk_usage']}&nbsp;{$lang_byte_units[1]}</td>
+                <td class="tableb" align="right">{$user['group_quota']}&nbsp;{$lang_byte_units[1]}</td>
         </tr>
 
 EOT;
