@@ -79,7 +79,7 @@ function& getloglist($folder)
     $dir = opendir($folder);
     while (($file = readdir($dir))!==false) {
         if (is_file($folder . $file) && $file != 'log_header.inc.php') {
-                $file_array[] = array('filename'=>$file,'logname'=>str_replace('.log.php','',$file));
+                $file_array[] = array('filename'=>$file,'logname'=>str_replace('.log.php','',$file),'filesize'=>filesize($folder . $file) >> 10);
         }
     }
     closedir($dir);

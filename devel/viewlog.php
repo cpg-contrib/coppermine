@@ -33,6 +33,7 @@ function display_log_list()
                                 <tr>
                                         <td class="tableb">
                                                 <img src="images/folder.gif" alt="" />&nbsp;<a href= "$PHP_SELF?log={$log['logname']}">{$log['logname']}</a>
+                                                &nbsp;&nbsp;&nbsp; ( <i>{$log['filesize']} KB</i> )
                                         </td>
                                 </tr>
 EOT;
