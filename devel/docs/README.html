@@ -78,7 +78,7 @@ li {
 
 <body>
 <h1><img src="../images/coppermine_logo.png" width="300" height="75" /></h1>
-<h1>Coppermine Photo Gallery v1.2.0 - RC2</h1>
+<h1>Coppermine Photo Gallery v1.3.0 - dev</h1>
 <p>Coppermine Photo Gallery is a picture gallery script. Users can upload pictures
   with a web browser (thumbnails are created on the fly), rate pictures, add comments
   and send e-cards. The admins can manage the galleries and batch add pictures
@@ -100,6 +100,7 @@ li {
 <a href="#smtp">Using SMTP to send emails</a><br />
 <a href="#10">Upgrading from version 1.0</a><br />
 <a href="#11">Upgrading from releases of version 1.1</a><br />
+<a href="#12">Upgrading from cpg1.2.0rc2 to version cpg1.2.0final</a><br />
 <a href="#integrating">Integrating the script with your bulletin board</a><br />
 <a href="#translating">Translating Coppermine into other languages</a><br />
 <a href="#credits">Credits
@@ -119,6 +120,7 @@ li {
 <ul>
   <li>Unpack the archive preserving the directory structure</li>
   <li>Uploads all files onto your webserver</li>
+  <li>CHMOD the folders albums and include to 755 (or 777, depending on your server config)</li>
   <li>Run the install script on your server (http://your_server/coppermine_dir/install.php)
     and follow the instructions</li>
 </ul>
@@ -286,6 +288,17 @@ li {
                 <li>Call the upgrade script http://yousitename/coppermine_dir/update.php</li>
                 <li>Your upgrade should be complete.</li>
         </ul>
+
+<a name="12"></a>
+<h2>Upgrading from cpg1.2.0rc2 to version cpg1.2.0final</h2>
+        <ul>
+                <li>Backup your include/config.inc.php file and your "albums" directoy.</li>
+                <li>Unpack the archive</li>
+                <li>If the file <b>install.php</b> exists in the root directory, delete it.</li>
+                <li><b>Except for the "albums" directory</b>, upload all of the new files and directories making sure not to overwrite the include/config.inc.php file or the albums directory.</li>
+                <li>No database update necessary, you're ready to roll</li>
+        </ul>
+
 <a name="integrating"></a>
 <h2>Integrating the script with your bulletin board</h2>
 <p>Coppermine can be integrated with the following bulletin boards (eg. Coppermine
@@ -324,7 +337,8 @@ li {
 // Uncomment the applicable line if you want to use it
 // define('UDB_INTEGRATION', 'phpbb');
 // define('UDB_INTEGRATION', 'invisionboard');
-// define('UDB_INTEGRATION', 'vbulletin');</pre>
+// define('UDB_INTEGRATION', 'vbulletin');
+// define('UDB_INTEGRATION', 'yabbse');</pre>
 <p>Un-comment the line that corresponds to the bulletin board you use (eg. remove
   the &quot;//&quot; that are at the beginning of the line)</p>
 <pre>define('UDB_INTEGRATION', 'phpbb');</pre>
