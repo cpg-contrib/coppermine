@@ -187,7 +187,8 @@ function getfoldercontent($folder, &$dir_array, &$pic_array, &$expic_array)
                 }
                 if(is_file($CONFIG['fullpath'].$folder.$file)) {
                         if(strncmp($file, $CONFIG['thumb_pfx'], strlen($CONFIG['thumb_pfx'])) != 0
-                                &&  strncmp($file, $CONFIG['normal_pfx'], strlen($CONFIG['normal_pfx'])) != 0)
+                                &&  strncmp($file, $CONFIG['normal_pfx'], strlen($CONFIG['normal_pfx'])) != 0
+								&& $file != 'index.html')
                                 $pic_array[] = $file;
                 }
         }
