@@ -104,7 +104,7 @@ function test_im()
         } else {
             $output = array();
             $tst_image = "{$DFLT['alb_d']}/{$DFLT['upl_d']}/im.gif";
-            exec ("{$_POST['impath']}convert images/nopic.jpg $tst_image", $output, $result);
+            exec ("{$_POST['impath']}convert images/coppermine_logo.png $tst_image", $output, $result);
             $size = getimagesize($tst_image);
             unlink($tst_image);
             $im_installed = ($size[2] == 1);
