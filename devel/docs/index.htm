@@ -74,6 +74,11 @@ a.navbar:hover {
         color: #ffffff; text-decoration: none
 }
 
+a.external {
+        background: transparent url('pics/link.gif') 100% 50% no-repeat;
+        padding-right: 10px;
+}
+
 .back {
         margin-top: 10px; font-size: 10px; margin-bottom: 10px
 }
@@ -680,7 +685,7 @@ open-source photo gallery!</p>
       <img src="pics/cpg121.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
       <img src="pics/cpg130.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_ok.gif" width="18" height="20" border="0" alt=""></p>
       <h4>Allow ZIP-download of favorites</h4>
-      <p>When enabled, the user can download the files put into the favorites in a zip-file from the &quot;My favorites&quot; page.<br />
+      <p>When enabled, the user can download the files put into the favorites in a zip-file from the &quot;My favorites&quot; page. This option requires zlib to be installed on your server (run <a href="http://www.php.net/phpinfo" class="external">phpinfo</a> to check if this library exists on your server).<br />
       <img src="pics/cpg10.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
       <img src="pics/cpg110.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
       <img src="pics/cpg111.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
@@ -1247,6 +1252,7 @@ exit;
         <li>User upload settings breaks table-width display in groups manager. This feature has been added recently before the release of this version; the broken layout will be released in the final.</li>
         <li>There are <a href="http://coppermine.sourceforge.net/board/viewtopic.php?t=4793">known issues</a> with the vbulletin bridge files that will affect users who are not members of the &quot;Registered User&quot; group</li>
         <li>Only a few <a href="http://coppermine.sourceforge.net/board/viewtopic.php?t=4623">language files</a> have been sent back, so there's not many languages to test with.</li>
+        <li>&quot;Download favorites as zip&quot; only works if the zlib library is installed on the server</li>
 </ul>
 <p><a class="back" href="#top">Back to top</a></p>
 <hr />
