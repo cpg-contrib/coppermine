@@ -30,6 +30,69 @@ function test_fs()
     global $errors, $DFLT;
     // No Filesystem Updates yet
 }
+
+function update_system_thumbs()
+{
+    global $CONFIG;
+
+    $results = mysql_query("SELECT * FROM ".$CONFIG['TABLE_PREFIX']."config;");
+    while ($row = mysql_fetch_array($results)) {
+        $CONFIG[$row['name']] = $row['value'];
+    } // while
+    mysql_free_result($results);
+
+    // Code to rename system thumbs in images folder (except nopic.jpg and private.jpg)
+    $old_thumb_pfx = 'thumb_';
+
+    if ($old_thumb_pfx != $CONFIG['thumb_pfx']) {
+        $folders = array('images/', $THEME_DIR.'images/');
+        foreach ($folders as $folder) {
+            $thumbs = cpg_get_system_thumb_list($folder);
+            foreach ($thumbs as $thumb) {
+                @rename($folder.$thumb['filename'],
+                        $folder.str_replace($old_thumb_pfx,$CONFIG['thumb_pfx'],$thumb['filename']));
+            }
+        }
+    }
+}
+
+/**
+ * Return an array containing the system thumbs in a directory
+ */
+function cpg_get_system_thumb_list($search_folder = 'images/')
+{
+        global $CONFIG;
+        static $thumbs = array();
+        
+        $folder = 'images/';
+
+        $thumb_pfx =& $CONFIG['thumb_pfx'];
+        // If thumb array is empty get list from coppermine 'images' folder
+        if ((count($thumbs) == 0) && ($folder == $search_folder)) {
+                $dir = opendir($folder);
+                while (($file = readdir($dir))!==false) {
+                        if (is_file($folder . $file) && strpos($file,$thumb_pfx) === 0) {
+                                // Store filenames in an array
+                                $thumbs[] = array('filename' => $file);
+                        }
+                }
+                closedir($dir);
+                return $thumbs;
+        } elseif ($folder == $search_folder) {
+                // Search folder is the same as coppermine images folder; just return the array
+                return $thumbs;
+        } else {
+                // Search folder is the different; check for files in the given folder
+                $results = array();
+                foreach ($thumbs as $thumb) {
+                        if (is_file($search_folder.$thumb['filename'])) {
+                                $results[] = array('filename' => $thumb['filename']);
+                        }
+                }
+                return $results;
+        }
+}
+
 // ----------------------------- TEST FUNCTIONS ---------------------------- //
 function test_sql_connection()
 {
@@ -220,14 +283,17 @@ if ($errors != '')
     html_prereq_errors($errors);
 else {
     test_sql_connection();
-    if ($errors == '')
+    if ($errors == '') {
         update_tables();
-    else
+        update_system_thumbs();
+    } else {
         html_error($errors);
-    if ($errors == '')
+    }
+    if ($errors == '') {
         html_install_success($notes);
-    else
+    } else {
         html_error($errors);
+    }
 }
 
 html_footer();
