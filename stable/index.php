@@ -331,6 +331,11 @@ function list_users()
         $user_album_count = $user['alb_count'];
 
         if ($user_pic_count) {
+			
+			if ($CONFIG['show_private']){
+				$image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
+				$user_thumb = "<img src=\"images/private.jpg\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
+			} else {
             $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='$user_thumb_pid'";
             $result = db_query($sql);
             if (mysql_num_rows($result)) {
@@ -346,7 +351,7 @@ function list_users()
                     $user_thumb = "<img src=\"" . get_pic_url($picture, 'thumb') . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"\">";
             }
         }
-
+		}
         $albums_txt = sprintf($lang_list_users['n_albums'], $user_album_count);
         $pictures_txt = sprintf($lang_list_users['n_pics'], $user_pic_count);
 
