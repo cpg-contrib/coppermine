@@ -599,6 +599,37 @@ function form_disabled($text, $name, $help = '')
 EOT;
 }
 
+function form_auto_resize($text, $name, $help = '')
+{
+    global $CONFIG, $lang_yes, $lang_no, $lang_config_php;
+    $help = cpg_display_help($help);
+
+
+    $value = $CONFIG[$name];
+    $no_selected = ($value == '0') ? 'checked="checked"' : '';
+    $yes_1_selected = ($value == '1') ? 'checked="checked"' : '';
+    $yes_2_selected = ($value == '2') ? 'checked="checked"' : '';
+
+    echo <<<EOT
+        <tr>
+            <td class="tableb" width="50%">
+                                $text
+                </td>
+                <td class="tableb" valign="top" width="50%">
+                                <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
+                                &nbsp;&nbsp;
+                                <input type="radio" id="{$name}1" name="$name" value="1" $yes_1_selected /><label for="{$name}1" class="clickable_option">$lang_yes:{$lang_config_php['auto_resize_everyone']}</label>
+                                &nbsp;&nbsp;
+                                <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">$lang_yes:{$lang_config_php['auto_resize_user']}</label>
+                </td>
+                <td class="tableb" width="10%">
+                        $help
+                </td>
+        </tr>
+
+EOT;
+}
+
 function create_form(&$data)
 {
         global $sn1, $sn2, $sn3, $options_to_disable;
@@ -660,8 +691,11 @@ function create_form(&$data)
                 case 14 :
                     form_keywords_yes_no($element[0], $element[1], $element[3]);
                     break;
-				case 15 :
+				            case 15 :
                     form_disabled($element[0], $element[1], $element[3]);
+                    break;
+                case 16 :
+                    form_auto_resize($element[0], $element[1], $element[3]);
                     break;
                 default:
                     die('Invalid action');

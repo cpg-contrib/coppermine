@@ -19,8 +19,6 @@
 
 // Add a picture to an album
 function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $caption = '', $keywords = '', $user1 = '', $user2 = '', $user3 = '', $user4 = '', $category = 0, $raw_ip = '', $hdr_ip = '')
-
-
 {
     global $CONFIG, $ERROR, $USER_DATA, $PIC_NEED_APPROVAL;
     global $lang_errors;
@@ -32,11 +30,16 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
     if (!is_known_filetype($image)) {
         return false;
     } elseif (is_image($filename)) {
+        $imagesize = getimagesize($image);
+        if ($CONFIG['auto_resize']==1 && max($imagesize[0], $imagesize[1]) > $CONFIG['max_upl_width_height'])
+        {
+          resize_image($image, $image, $CONFIG['max_upl_width_height'], $CONFIG['thumb_method'], $imagesize[0] > $CONFIG['max_upl_width_height'] ? 'wd' : 'ht');
+          $imagesize = getimagesize($image);
+        }
         if (!file_exists($thumb)) {
             if (!resize_image($image, $thumb, $CONFIG['thumb_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use']))
                 return false;
         }
-        $imagesize = getimagesize($image);
         if (max($imagesize[0], $imagesize[1]) > $CONFIG['picture_width'] && $CONFIG['make_intermediate'] && !file_exists($normal)) {
             if (!resize_image($image, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use']))
                 return false;

@@ -458,6 +458,8 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
   'notice2' => '(**) When changing this setting, only the files that are added from that point on are affected, so it is advisable that this setting must not be changed if there are already files in the gallery. You can, however, apply the changes to the existing files with the &quot;<a href="util.php">admin tools</a> (resize pictures)&quot; utility from the admin menu.', //cpg1.4.0 - (relocated)
   'notice3' => '(***) All log files are written in english.', //cpg1.4.0 - (relocated)
   'bbs_disabled' => 'Function disabled when using bb integration',
+  'auto_resize_everyone' => 'Everyone',
+  'auto_resize_user' => 'User only',
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
@@ -532,6 +534,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Max width or height of an intermediate picture/video <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0),
   array('Max size for uploaded files (KB)', 'max_upl_size', 0),
   array('Max width or height for uploaded pictures/videos (pixels)', 'max_upl_width_height', 0),
+  array('Auto resize images that are larger than max width or height', 'auto_resize', 16, 'f=index.htm&as=config_picture_thumbnail_auto-resize&ae=config_picture_thumbnail_auto-resize_end'),
 
   'Files and thumbnails advanced settings',
   array('Albums can be private (Note: if you switch from \'yes\' to \'no\' any current private albums will become public)', 'allow_private_albums', 1),

@@ -872,8 +872,15 @@ function process_picture()
 
         // Check that picture size (in pixels) is lower than the maximum allowed
         if (max($imginfo[0], $imginfo[1]) > $CONFIG['max_upl_width_height']) {
-            @unlink($uploaded_pic);
-            simple_die(ERROR, sprintf($lang_db_input_php['err_fsize_too_large'], $CONFIG['max_upl_width_height'], $CONFIG['max_upl_width_height']), __FILE__, __LINE__);
+            if ($CONFIG['auto_resize']==1)
+            {
+              resize_image($uploaded_pic, $uploaded_pic, $CONFIG['max_upl_width_height'], $CONFIG['thumb_method'], $imginfo[0] > $CONFIG['max_upl_width_height'] ? 'wd' : 'ht');
+            }
+            else
+            {
+              @unlink($uploaded_pic);
+              simple_die(ERROR, sprintf($lang_db_input_php['err_fsize_too_large'], $CONFIG['max_upl_width_height'], $CONFIG['max_upl_width_height']), __FILE__, __LINE__);
+            }
         }
 
     }

@@ -349,8 +349,15 @@ switch ($event) {
                 //cpg_die(ERROR, sprintf($lang_db_input_php['allowed_img_types'], $CONFIG['allowed_img_types']), __FILE__, __LINE__);
             // Check that picture size (in pixels) is lower than the maximum allowed
             } elseif (max($imginfo[0], $imginfo[1]) > $CONFIG['max_upl_width_height']) {
+              if ($CONFIG['auto_resize']==2)
+              {
+                resize_image($uploaded_pic, $uploaded_pic, $CONFIG['max_upl_width_height'], $CONFIG['thumb_method'], $imginfo[0] > $CONFIG['max_upl_width_height'] ? 'wd' : 'ht');
+              }
+              else
+              {
                 @unlink($uploaded_pic);
                 cpg_die(ERROR, sprintf($lang_db_input_php['err_fsize_too_large'], $CONFIG['max_upl_width_height'], $CONFIG['max_upl_width_height']), __FILE__, __LINE__);
+              }
             } // Image is ok
         }
 

@@ -1251,6 +1251,12 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
 
                 // Check that picture size (in pixels) is lower than the maximum allowed. If not, delete it.
                 } elseif (max($imginfo[0], $imginfo[1]) > $CONFIG['max_upl_width_height']) {
+                  if ($CONFIG['auto_resize']==1)
+                  {
+                    resize_image($uploaded_pic, $uploaded_pic, $CONFIG['max_upl_width_height'], $CONFIG['thumb_method'], $imginfo[0] > $CONFIG['max_upl_width_height'] ? 'wd' : 'ht');
+                  }
+                  else
+                  {
                     @unlink($path_to_image);
 
                     // The file upload has failed -- the image dimensions exceed the allowed amount.
@@ -1258,6 +1264,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
 
                     // There is no need for further tests or action, so skip the remainder of the iteration.
                     continue;
+                  }
                 }
 
             // Image is ok
