@@ -482,7 +482,11 @@ switch ($op) {
         db_query("DELETE FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '' LIMIT 1");
 
         pageheader($lang_usermgr_php['title']);
-        $search = (isset($_POST['username'])) ? "WHERE user_name LIKE '%{$_POST['username']}%' " : "";
+        if (isset($_POST['username'])){
+        	$name = $_POST['username'];
+        	$wildcards = array("*" => "%", "?" => "_");
+			$search = strtr("WHERE user_name LIKE '$name' ", $wildcards);
+        }
         list_users($search);
         pagefooter();
         ob_end_flush();
