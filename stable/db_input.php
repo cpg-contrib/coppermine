@@ -97,6 +97,7 @@ switch ($event) {
         if (!(USER_CAN_POST_COMMENTS)) cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
         check_comment($HTTP_POST_VARS['msg_body']);
+		check_comment($HTTP_POST_VARS['msg_author']);
         $msg_author = addslashes(trim($HTTP_POST_VARS['msg_author']));
         $msg_body = addslashes(trim($HTTP_POST_VARS['msg_body']));
         $pid = (int)$HTTP_POST_VARS['pid'];
