@@ -123,20 +123,14 @@ a.external {
                         <p><img src="../images/coppermine_logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery">
 <h1>Coppermine Photo Gallery v1.4.dev: Documentation and Manual</h1>
 <h1>About Coppermine</h1>
-<p>Coppermine Photo Gallery is a picture gallery script. Users can upload pictures
-  with a web browser (thumbnails are created on the fly), rate pictures, add comments
-  and send e-cards. The admins can manage the galleries and batch add pictures
-  that have been uploaded on the server by FTP. Support for multimedia files has been added recently.</p>
-<p>Images are stored in albums and albums can be grouped by categories. The script
-  supports multiple users and each user can possibly have its own set of albums.</p>
-<p>The script also supports multiple languages and has a theme system. It uses
-  PHP, a MySQL database and the GD library (version 1.x or 2.x) or ImageMagick
-  to make the thumbnails. An install script makes the installation fast and simple.</p>
+<p>Coppermine Photo Gallery is a picture gallery script. Users can upload pictures with a web browser (thumbnails are created on the fly), rate pictures, add comments and send e-cards. The admins can manage the galleries and batch add pictures that have been uploaded on the server by FTP. Support for multimedia files has been added recently.</p>
+<p>Images are stored in albums and albums can be grouped by categories. The script supports multiple users and each user can possibly have its own set of albums.</p>
+<p>The script also supports multiple languages and has a theme system. It uses PHP, a MySQL database and the GD library (version 1.x or 2.x) or ImageMagick to make the thumbnails. An install script makes the installation fast and simple.</p>
 
       <a name="top"></a>
       <h1>Table of contents</h1>
       <ul class="content">
-        <!--<li class="content"><a href="#testVersion" class="menu1">0. Beta (Testing) version</a></li>-->
+        <li class="content"><a href="#testVersion" class="menu1">0. Beta (Testing) version</a></li>
         <li class="content"><a href="#what" class="menu1">1. What is required</a></li>
         <li class="content"><a href="#installation" class="menu1">2. Installation and setup</a></li>
         <ul style="margin-top:0px;margin-bottom:0px;list-style-type:none">
@@ -152,7 +146,7 @@ a.external {
           <li class="content"><a href="#10" class="menu2">3.1 Upgrading from version 1.0</a></li>
           <li class="content"><a href="#11" class="menu2">3.2 Upgrading from releases of version 1.1</a></li>
           <li class="content"><a href="#12" class="menu2">3.3 Upgrading from cpg1.2.0rc2 or cpg1.2.0final to version cpg1.2.1</a></li>
-          <li class="content"><a href="#13" class="menu2">3.4 Upgrading from cpg1.2.0 (or better) to version cpg1.3.0</a></li>
+          <li class="content"><a href="#13" class="menu2">3.4 Upgrading from cpg1.2.0 (or better) to version cpg1.4.0</a></li>
           <li class="content"><a href="#versioncheck" class="menu2">3.5 The version check tool</a>
           <ul class="content">
             <li class="content"><a href="#versioncheck_description_start">3.5.1 What it does</a></li>
@@ -242,25 +236,18 @@ a.external {
         </ul>
       </ul>
       <hr />
-<!--
+
 <a name="testVersion"></a>
 <h1>0. Beta (Testing) version</h1>
 <p>Dear Tester,<br />&nbsp;<br />
-Thank you for taking the time to test Coppermine Photo Gallery.
-Please be rough on the program so that we can track down and
-eliminate bugs from our public release of version 1.3.<br />
-Please understand that this is still beta software that is meant to be used for testing purposes and not for production, so there is no support for cpg1.3.0beta yet.</p>
+Thank you for taking the time to test Coppermine Photo Gallery. Please be rough on the program so that we can track down and eliminate bugs from our public release of version 1.4.<br />
+Please understand that this is still beta software that is meant to be used for testing purposes and not for production, so there is no support for cpg1.4.0 yet.</p>
 
-<p>While testing CPG 1.3, please make certain to note any odd behavior you
-encounter.  This could include typographical errors, misleading instructions,
-or any other out-right error.  If you encounter a major error, please switch
-the debug mode to &quot;on&quot; in the configuration panel and copy the text in the
-debug window.  This will greatly aid the development team in hunting down the
-problem.</p>
+<p>While testing CPG 1.4, please make certain to note any odd behavior you encounter.  This could include typographical errors, misleading instructions, or any other out-right error.  If you encounter a major error, please switch the debug mode to &quot;on&quot; in the configuration panel and copy the text in the debug window.  This will greatly aid the development team in hunting down the problem.</p>
 
 <p><b>Areas to be particularly mindful of:</b></p>
 <ul>
-<li>Please test every facet of CPG, from the installation on to every feature available (and in as many themes as possible).</li>
+<li>Please test every facet of CPG, from the installation on to every feature available (and in as many themes and languages as possible).</li>
 <li>If you have the ability to test GD, GD2 and ImageMagick, please test all of them.</li>
 <li>Please attempt to use multiple types of graphics such as JPEG, PNG and GIF (for IM users).</li>
 </ul>
@@ -280,16 +267,13 @@ problem.</p>
 <li>Fresh install or upgrade (if yes, from which version of cpg)</li>
 </ul>
 
-<p>Your test results will not merely be used to fix problems but will also be used
-to tout the compatibility of CPG with multiple browsers and OS's.  That is why
-this information is important EVEN IF YOU FIND NOTHING WRONG.</p>
+<p>Your test results will not merely be used to fix problems but will also be used to tout the compatibility of CPG with multiple browsers and OS's.  That is why this information is important EVEN IF YOU FIND NOTHING WRONG.</p>
 
-<p>Thanks for your participation and your time in making CPG the premiere
-open-source photo gallery!</p>
+<p>Thanks for your participation and your time in making CPG the premiere open-source photo gallery!</p>
 
 <p>Coppermine Development Team</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
--->
+
 
 
 <a name="what"></a>
@@ -297,9 +281,9 @@ open-source photo gallery!</p>
 <ul>
   <li>A web server that supports PHP (the script should work with any version
     &gt;= 4.1.0)</li>
-  <li>A MySQL database</li>
-  <li>PHP compiled with the support for the GD library or the ImageMagick &quot;convert&quot;
-    utility in order to make thumbnails and reduced size images</li>
+  <li>A MySQL database<br />
+  You need at least version 3.23.23 or better (4.x recommended). Your mySQL user needs permissions to perform CREATE, ALTER, SELECT, UPDATE, DELETE (most user have this permissions when webhosted; if you don't have them, you won't be able to use any pre-made scripts at all).</li>
+  <li>PHP (version 4.1.0 or better), either compiled with the support for the GD library or permission to use the exec() function for the ImageMagick &quot;convert&quot; utility in order to make thumbnails and reduced size images.</li>
 </ul>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
@@ -453,7 +437,7 @@ open-source photo gallery!</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="13"></a>
-<h2>3.4 Upgrading from cpg1.2.0rc2 or cpg1.2.0, cpg1.2.1 or cpg1.3.0beta to version cpg1.3.0</h2>
+<h2>3.4 Upgrading from cpg1.2.x or cpg1.3.x  to version cpg1.4.0</h2>
     <ul>
                 <li>First, make a backup (dump) of your database.</li>
         <li>Backup your include/config.inc.php file, your anycontent.php file and your &quot;albums&quot; directoy.</li>
