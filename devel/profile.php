@@ -45,12 +45,13 @@ $display_profile_form_param = array(
     array('text', 'username', $lang_register_php['username']),
     array('text', 'reg_date', $lang_register_php['reg_date']),
     array('text', 'group', $lang_register_php['group']),
-        array('text', 'user_profile1', $CONFIG['user_profile1_name']),
+    array('text', 'user_profile1', $CONFIG['user_profile1_name']),
     array('text', 'user_profile2', $CONFIG['user_profile2_name']),
     array('text', 'user_profile3', $CONFIG['user_profile3_name']),
     array('text', 'user_profile4', $CONFIG['user_profile4_name']),
-        array('text', 'user_profile5', $CONFIG['user_profile5_name']),
-        array('text', 'user_profile6', $CONFIG['user_profile6_name']),
+    array('text', 'user_profile5', $CONFIG['user_profile5_name']),
+    array('text', 'user_profile6', $CONFIG['user_profile6_name']),
+    array('text', 'pic_count', $lang_register_php['pic_count']),
     array('thumb', 'user_thumb'),
     );
 
@@ -344,6 +345,10 @@ EOT;
         $lastcom_id = $nbEnr[1];
         mysql_free_result($result);
 
+        $result = db_query("SELECT pid FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_name = '$user_data[user_name]'");
+        $pic_count = mysql_num_rows($result);
+        mysql_free_result($result);
+
         $lastcom = '';
         if ($comment_count) {
             $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight, msg_author, UNIX_TIMESTAMP(msg_date) as msg_date, msg_body " . "FROM {$CONFIG['TABLE_COMMENTS']} AS c, {$CONFIG['TABLE_PICTURES']} AS p " . "WHERE msg_id='" . $lastcom_id . "' AND c.pid = p.pid";
@@ -405,7 +410,8 @@ EOT;
                         'user_profile4' => $user_data['user_profile4'],
                         'user_profile5' => $user_data['user_profile5'],
                         'user_profile6' => bb_decode($user_data['user_profile6']),
-            'user_thumb' => $quick_jump,
+                        'user_thumb' => $quick_jump,
+                        'pic_count' => $pic_count,
             );
 
         $title = sprintf($lang_register_php['x_s_profile'], $user_data['user_name']);

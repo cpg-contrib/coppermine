@@ -1155,6 +1155,7 @@ $lang_register_php = array(
   'last_uploads' => 'Last uploads by',
   'last_comments' => 'Last comments made by',
   'notify_admin_email_body' => 'A new user with the username "%s" has registered in your gallery',
+  'pic_count' => 'Files uploaded', // cpg1.4.0
 );
 
 $lang_register_confirm_email = <<<EOT
