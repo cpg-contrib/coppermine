@@ -583,31 +583,31 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
 
 if (defined('ADMIN_PHP')) $lang_admin_data = array(
   'General settings',
-  array('Gallery name', 'gallery_name', 0, 'f=index.htm&as=config_general_name&ae=config_general_name_end'),
-  array('Gallery description', 'gallery_description', 0, 'f=index.htm&as=config_general_description&ae=config_general_description_end'),
-  array('Gallery administrator email', 'gallery_admin_email', 0, 'f=index.htm&as=config_general_email&ae=config_general_email_end'),
-  array('URL of your coppermine gallery folder (no \'index.php\' or similar at the end)', 'ecards_more_pic_target', 0, 'f=index.htm&as=config_general_coppermine-url&ae=config_general_coppermine-url_end'),
-  array('Gallery is offline', 'offline', 1, 'f=index.htm&as=config_general_offline&ae=config_general_offline_end'),
-  array('Log ecards', 'log_ecards', 1, 'f=index.htm&as=config_general_log_ecards&ae=config_general_log_ecards_end'),
-  array('Allow ZIP-download of favorites', 'enable_zipdownload', 1, 'f=index.htm&as=config_general_zip-download&ae=config_general_zip-download_end'),
-  array('Timezone difference relative to GMT','time_offset',0, 'f=index.htm&as=config_general_time-offset&ae=config_general_time-offset_end&top=1'),
-  array('Enable help-icons (help available in English only)','enable_help',9, 'f=index.htm&as=config_general_help&ae=config_general_help_end'),
+  array('Gallery name', 'gallery_name', 0, 'f=index.htm&as=admin_general_name&ae=admin_general_name_end'),
+  array('Gallery description', 'gallery_description', 0, 'f=index.htm&as=admin_general_description&ae=admin_general_description_end'),
+  array('Gallery administrator email', 'gallery_admin_email', 0, 'f=index.htm&as=admin_general_email&ae=admin_general_email_end'),
+  array('URL of your coppermine gallery folder (no \'index.php\' or similar at the end)', 'ecards_more_pic_target', 0, 'f=index.htm&as=admin_general_coppermine-url&ae=admin_general_coppermine-url_end'),
+  array('Gallery is offline', 'offline', 1, 'f=index.htm&as=admin_general_offline&ae=admin_general_offline_end'),
+  array('Log ecards', 'log_ecards', 1, 'f=index.htm&as=admin_general_log_ecards&ae=admin_general_log_ecards_end'),
+  array('Allow ZIP-download of favorites', 'enable_zipdownload', 1, 'f=index.htm&as=admin_general_zip-download&ae=admin_general_zip-download_end'),
+  array('Timezone difference relative to GMT','time_offset',0, 'f=index.htm&as=admin_general_time-offset&ae=admin_general_time-offset_end&top=1'),
+  array('Enable help-icons (help available in English only)','enable_help',9, 'f=index.htm&as=admin_general_help&ae=admin_general_help_end'),
   array('Enable clickable keywords in search','clickable_keyword_search',14),
   array('Show number of linked files','link_pic_count',1),
 
   'Language, Themes &amp; Charset settings',
-  array('Language', 'lang', 5, 'f=index.htm&as=config_language_language&ae=config_language_language_end'),
-  array('Fallback to English if translated phrase not found?', 'language_fallback', 1, 'f=index.htm&as=config_language_fallback&ae=config_language_fallback_end'),
-  array('Theme', 'theme', 6, 'f=index.htm&as=config_language_theme&ae=config_language_theme_end'),
-  array('Display language list', 'language_list', 1, 'f=index.htm&as=config_language_list&ae=config_language_list_end'),
-  array('Display language flags', 'language_flags', 8, 'f=index.htm&as=config_language_flags&ae=config_language_flags_end&top=1'),
-  array('Display &quot;reset&quot; in language selection', 'language_reset', 1, 'f=index.htm&as=config_language_reset&ae=config_language_reset_end&top=1'),
-  array('Display theme list', 'theme_list', 1, 'f=index.htm&as=config_language_theme_list&ae=config_language_theme_list_end'),
-  array('Display &quot;reset&quot; in theme selection', 'theme_reset', 1, 'f=index.htm&as=config_language_theme_reset&ae=config_language_theme_reset_end'),
-  array('Display FAQ', 'display_faq', 1, 'f=index.htm&as=config_language_faq&ae=config_language_faq_end'),
-  array('Display bbcode help', 'show_bbcode_help', 1, 'f=index.htm&as=config_language_bbcode&ae=config_language_bbcode_end&top=1'),
+  array('Language', 'lang', 5, 'f=index.htm&as=admin_language_language&ae=admin_language_language_end'),
+  array('Fallback to English if translated phrase not found?', 'language_fallback', 1, 'f=index.htm&as=admin_language_fallback&ae=admin_language_fallback_end'),
+  array('Theme', 'theme', 6, 'f=index.htm&as=admin_language_theme&ae=admin_language_theme_end'),
+  array('Display language list', 'language_list', 1, 'f=index.htm&as=admin_language_list&ae=admin_language_list_end'),
+  array('Display language flags', 'language_flags', 8, 'f=index.htm&as=admin_language_flags&ae=admin_language_flags_end&top=1'),
+  array('Display &quot;reset&quot; in language selection', 'language_reset', 1, 'f=index.htm&as=admin_language_reset&ae=admin_language_reset_end&top=1'),
+  array('Display theme list', 'theme_list', 1, 'f=index.htm&as=admin_language_theme_list&ae=admin_language_theme_list_end'),
+  array('Display &quot;reset&quot; in theme selection', 'theme_reset', 1, 'f=index.htm&as=admin_language_theme_reset&ae=admin_language_theme_reset_end'),
+  array('Display FAQ', 'display_faq', 1, 'f=index.htm&as=admin_language_faq&ae=admin_language_faq_end'),
+  array('Display bbcode help', 'show_bbcode_help', 1, 'f=index.htm&as=admin_language_bbcode&ae=admin_language_bbcode_end&top=1'),
   array('Display previous/next on tabbed pages', 'previous_next_tab', 1),
-  array('Character encoding', 'charset', 4, 'f=index.htm&as=config_language_charset&ae=config_language_charset_end'),
+  array('Character encoding', 'charset', 4, 'f=index.htm&as=admin_language_charset&ae=admin_language_charset_end'),
 
   'Album list view',
   array('Width of the main table (pixels or %)', 'main_table_width', 0),
@@ -615,7 +615,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Number of albums to display', 'albums_per_page', 0),
   array('Number of columns for the album list', 'album_list_cols', 0),
   array('Size of thumbnails in pixels', 'alb_list_thumb_size', 0),
-  array('The content of the main page', 'main_page_layout', 0, 'f=index.htm&as=config_album_list_content&ae=config_album_list_content_end'),
+  array('The content of the main page', 'main_page_layout', 0, 'f=index.htm&as=admin_album_list_content&ae=admin_album_list_content_end'),
   array('Show first level album thumbnails in categories','first_level',1),
   array('Sort categories alphabetically (instead of custom sort order)','categories_alpha_sort',1),
 
@@ -648,13 +648,13 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
 
   'Files and thumbnails settings',
   array('Quality for JPEG files', 'jpeg_qual', 0),
-  array('Max dimension of a thumbnail <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0, 'f=index.htm&as=config_picture_thumbnail_max-dimension&ae=config_picture_thumbnail_max-dimension_end'),
-  array('Use dimension ( width or height or Max aspect for thumbnail ) <a href="#notice2" class="clickable_option">**</a>', 'thumb_use', 7, 'f=index.htm&as=config_picture_thumbnail_use-dimension&ae=config_picture_thumbnail_use-dimension_end'),
+  array('Max dimension of a thumbnail <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0, 'f=index.htm&as=admin_picture_thumbnail_max-dimension&ae=admin_picture_thumbnail_max-dimension_end'),
+  array('Use dimension ( width or height or Max aspect for thumbnail ) <a href="#notice2" class="clickable_option">**</a>', 'thumb_use', 7, 'f=index.htm&as=admin_picture_thumbnail_use-dimension&ae=admin_picture_thumbnail_use-dimension_end'),
   array('Create intermediate pictures','make_intermediate',1),
   array('Max width or height of an intermediate picture/video <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0),
   array('Max size for uploaded files (KB)', 'max_upl_size', 0),
   array('Max width or height for uploaded pictures/videos (pixels)', 'max_upl_width_height', 0),
-  array('Auto resize images that are larger than max width or height', 'auto_resize', 16, 'f=index.htm&as=config_picture_thumbnail_auto-resize&ae=config_picture_thumbnail_auto-resize_end'),
+  array('Auto resize images that are larger than max width or height', 'auto_resize', 16, 'f=index.htm&as=admin_picture_thumbnail_auto-resize&ae=admin_picture_thumbnail_auto-resize_end'),
 
   'Files and thumbnails advanced settings',
   array('Albums can be private (Note: if you switch from \'yes\' to \'no\' any current private albums will become public)', 'allow_private_albums', 1),
@@ -662,7 +662,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Characters forbidden in filenames', 'forbiden_fname_char',0),
   //array('Accepted file extensions for uploaded pictures', 'allowed_file_extensions',0),
   array('Allowed image types', 'allowed_img_types',0),
-  array('Allowed movie types', 'allowed_mov_types',0, 'f=index.htm&as=config_thumbs_advanced_movie&ae=config_thumbs_advanced_movie_end'),
+  array('Allowed movie types', 'allowed_mov_types',0, 'f=index.htm&as=admin_thumbs_advanced_movie&ae=admin_thumbs_advanced_movie_end'),
   array('Allowed audio types', 'allowed_snd_types',0),
   array('Allowed document types', 'allowed_doc_types',0),
   array('Method for resizing images','thumb_method',2),
@@ -688,9 +688,9 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Allow two users to have the same email address', 'allow_duplicate_emails_addr', 1),
   array('Notify admin of user upload awaiting approval', 'upl_notify_admin_email', 1),
   array('Allow logged in users to view memberlist', 'allow_memberlist', 1),
-  array('Allow users to change their email address in profile', 'allow_email_change', 1, 'f=index.htm&as=config_user_allow_email_change&ae=config_user_allow_email_change_end'), //cpg1.4.0
-  array('Number of failed login attemps untill temporary ban (to avoid brute force attacks)', 'login_threshold', 0, 'f=index.htm&as=config_user_login_start&ae=config_user_login_end'), //cpg1.4.0
-  array('Duration of a temporary ban after failed logins', 'login_expiry', 0, 'f=index.htm&as=config_user_login_start&ae=config_user_login_end'), //cpg1.4.0
+  array('Allow users to change their email address in profile', 'allow_email_change', 1, 'f=index.htm&as=admin_user_allow_email_change&ae=admin_user_allow_email_change_end'), //cpg1.4.0
+  array('Number of failed login attemps untill temporary ban (to avoid brute force attacks)', 'login_threshold', 0, 'f=index.htm&as=admin_user_login_start&ae=admin_user_login_end'), //cpg1.4.0
+  array('Duration of a temporary ban after failed logins', 'login_expiry', 0, 'f=index.htm&as=admin_user_login_start&ae=admin_user_login_end'), //cpg1.4.0
 
 // custom profile fields, (casper) 1.4 devel
   'Custom fields for user profile (leave blank if unused).
@@ -710,19 +710,19 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
 
   'Cookies settings',
   array('Name of the cookie used by the script (when using bbs integration, make sure it differs from the bbs\'s cookie name)', 'cookie_name', 0),
-  array('Path of the cookie used by the script', 'cookie_path', 0, 'f=index.htm&as=config_cookie_path&ae=config_cookie_path_end'),
+  array('Path of the cookie used by the script', 'cookie_path', 0, 'f=index.htm&as=admin_cookie_path&ae=admin_cookie_path_end'),
 
   'Email settings  (usually nothing has to be changed here; leave all fields blank when not sure)',
-  array('SMTP Host (when left blank, sendmail will be used)', 'smtp_host', 0, 'f=index.htm&as=config_email&ae=config_email_end'),
+  array('SMTP Host (when left blank, sendmail will be used)', 'smtp_host', 0, 'f=index.htm&as=admin_email&ae=admin_email_end'),
   array('SMTP Username', 'smtp_username', 0),
   array('SMTP Password', 'smtp_password', 0),
 
   'Miscellaneous settings',
   array('Enable debug mode', 'debug_mode', 9, 'f=index.htm&as=debug_mode&ae=debug_mode_end'),
-  array('Display notices in debug mode', 'debug_notice', 1, 'f=index.htm&as=config_misc_debug_notices&ae=config_misc_debug_notices_end'),
-  array('Enable plugins', 'enable_plugins', 12, 'f=index.htm&as=config_misc_enable-plugins&ae=config_misc_enable-plugins_end'),  //cpg1.4.0
-  array('Logging mode <a href="#notice3" class="clickable_option">***</a>', 'log_mode', 11, 'f=index.htm&as=config_misc_logging&ae=config_misc_logging_end'), //cpg1.4.0
-  array('Allow banning of non-routable (private) IP addresses', 'ban_private_ip', 1,  'f=index.htm&as=config_misc_private-ip&ae=config_misc_private-ip_end'), //cpg1.4.0
+  array('Display notices in debug mode', 'debug_notice', 1, 'f=index.htm&as=admin_misc_debug_notices&ae=admin_misc_debug_notices_end'),
+  array('Enable plugins', 'enable_plugins', 12, 'f=index.htm&as=admin_misc_enable-plugins&ae=admin_misc_enable-plugins_end'),  //cpg1.4.0
+  array('Logging mode <a href="#notice3" class="clickable_option">***</a>', 'log_mode', 11, 'f=index.htm&as=admin_misc_logging&ae=admin_misc_logging_end'), //cpg1.4.0
+  array('Allow banning of non-routable (private) IP addresses', 'ban_private_ip', 1,  'f=index.htm&as=admin_misc_private-ip&ae=admin_misc_private-ip_end'), //cpg1.4.0
 );
 
 // ------------------------------------------------------------------------- //
