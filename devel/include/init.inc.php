@@ -74,7 +74,7 @@ function cpgGetUserData($pri_group, $groups, $default_group_id = 3)
                 $USER_DATA["group_name"] = $temp_arr["group_name"];
         } else {
                 $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = $default_group_id");
-               if (!mysql_num_rows($resultt)) die('<b>Coppermine critical error</b>:<br />The group table does not contain the Anonymous group !');
+               if (!mysql_num_rows($result)) die('<b>Coppermine critical error</b>:<br />The group table does not contain the Anonymous group !');
                        $USER_DATA = mysql_fetch_assoc($result);
                 }
         mysql_free_result($result);

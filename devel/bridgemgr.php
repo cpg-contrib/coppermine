@@ -354,7 +354,7 @@ return $return;
 ///////////// function defintions end /////////////////////////////
 
 
-if (GALLERY_ADMIN_MODE) { // gallery admin mode --- start
+if (TRUE) { // gallery admin mode --- start
 
 // define the var array
 $default_bridge_data['invisionboard'] = array(
@@ -488,6 +488,44 @@ $default_bridge_data['phpbb'] = array(
   'logout_flag_default' => '1',
   'logout_flag_used' => 'radio,1,0',
   'cookie_prefix_default' => 'phpbb2mysql',
+  'cookie_prefix_used' => 'cookie,not_empty',
+  'table_prefix_default' => 'phpbb_',
+  'table_prefix_used' => 'mandatory,not_empty',
+  'user_table_default' => 'users',
+  'user_table_used' => 'mandatory,not_empty',
+  'session_table_default' => 'sessions',
+  'session_table_used' => 'mandatory,not_empty',
+  'group_table_default' => 'groups',
+  'group_table_used' => 'mandatory,not_empty',
+  'group_mapping_table_default' => 'user_group',
+  'group_mapping_table_used' => 'mandatory,not_empty',
+  'use_standard_groups_default' => '1',
+  'use_standard_groups_used' => 'mandatory,not_empty',
+  'guest_group_default' => '3',
+  'guest_group_used' => 'optional',
+  'member_group_default' => '2',
+  'member_group_used' => 'optional',
+  'admin_group_default' => '1',
+  'admin_group_used' => 'optional',
+  'banned_group_default' => '4',
+  'banned_group_used' => 'optional',
+);
+
+$default_bridge_data['phpbb22'] = array(
+  'full_name' => 'phpBB 2.2',
+  'short_name' => 'phpbb 2.2',
+  'support_url' => 'http://www.phpbb.com/',
+  'db_database_name_default' => 'phpBB',
+  'db_database_name_used' => 'mandatory,not_empty',
+  'db_hostname_default' => 'localhost',
+  'db_hostname_used' => 'mandatory,not_empty',
+  'db_username_default' => '',
+  'db_username_used' => 'mandatory,not_empty',
+  'db_password_default' => '',
+  'db_password_used' => 'password',
+  'relative_path_of_forum_from_webroot_default' => '/phpBB2/',
+  'relative_path_of_forum_from_webroot_used' => 'mandatory,not_empty,trailing_slash',
+  'cookie_prefix_default' => 'phpbb22',
   'cookie_prefix_used' => 'cookie,not_empty',
   'table_prefix_default' => 'phpbb_',
   'table_prefix_used' => 'mandatory,not_empty',
