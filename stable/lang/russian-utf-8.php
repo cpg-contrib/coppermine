@@ -1,12 +1,13 @@
 ﻿<?php
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery v1.2.0                                          //
+// Coppermine Photo Gallery 1.2.1                                            //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002  Grégory DEMAR <gdemar@wanadoo.fr>                    //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
-//  http://www.stoverud.com/PHPhotoalbum/                                    //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -16,9 +17,9 @@
 
 // info about translators and translated language 
 $lang_translation_info = array( 
-'lang_name_english' => 'Russian',  //the name of your language in English, e.g. 'Greek' or 'Spanish' 
-'lang_name_native' => 'Ðóññêèé', //the name of your language in your mother tongue (for non-latin alphabets, use unicode) 
-'lang_country_code' => 'ru', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es' 
+'lang_name_english' => 'Russian',  
+'lang_name_native' => 'Ðóññêèé', 
+'lang_country_code' => 'ru', 
 'trans_name'=> 'Ejik', //the name of the translator - can be a nickname 
 'trans_email' => 'ejik@rbcmail.ru', //translator's email address (optional) 
 'trans_website' => 'http://counterstrike.ru', //translator's website (optional) 
@@ -124,8 +125,8 @@ $lang_gallery_admin_menu = array(
 	'groups_lnk' => 'Ãðóïïû',
 	'comments_lnk' => 'Êîììåíòàðèè',
 	'searchnew_lnk' => 'Àâòî äîáàâëåíèå',
-        'util_lnk' => 'Èçìåíèòü ðàçìåð', //new in cpg1.2.0
-        'ban_lnk' => 'Áàí ïîëüçîâàòåëåé',//new in cpg1.2.0
+        'util_lnk' => 'Èçìåíèòü ðàçìåð', 
+        'ban_lnk' => 'Áàí ïîëüçîâàòåëåé',
 );
 
 $lang_user_admin_menu = array(
@@ -147,14 +148,14 @@ $lang_album_list = array(
 $lang_thumb_view = array(
 	'date' => 'Äàòà',
         //Sort by filename and title
-        'name' => 'Èìÿ ôàèëà', //new in cpg1.2.0
-        'title' => 'Íàçâàíèå',//new in cpg1.2.0
+        'name' => 'Èìÿ ôàèëà', 
+        'title' => 'Íàçâàíèå',
 	'sort_da' => 'Ñîðò. ïî äàòå [âîçðàñòàíèå]',
 	'sort_dd' => 'Ñîðò. ïî äàòå [óáûâàíèå]',
 	'sort_na' => 'Ñîðò. ïî èìåíè [âîçðàñòàíèå]',
 	'sort_nd' => 'Ñîðò. ïî èìåíè [óáûâàíèå]',
         'sort_ta' => 'Ñîðò. ïî íàçâàíèþ [âîçâðàñòàíèå]', 
-        'sort_td' => 'Ñîðò. ïî íàçâàíèþ [óáûâàíèå]',  //new in cpg1.2.0
+        'sort_td' => 'Ñîðò. ïî íàçâàíèþ [óáûâàíèå]',  
 	'pic_on_page' => '%d ôîòî íà %d ñòðàíèöå(àõ)',
 	'user_on_page' => '%d ïîëüçîâàòåëåé íà %d ñòðàíèöå(àõ)'
 );
@@ -348,7 +349,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Êîëè÷åñòâî êîëîíîê äëÿ ñïèñêà àëüáîìîâ', 'album_list_cols', 0),
 	array('Ðàçìåð ýñêèçîâ â ïèêñåëàõ', 'alb_list_thumb_size', 0),
 	array('Ñîäåðæèìîå ãëàâíîé ñòðàíèöû', 'main_page_layout', 0),
-        array('Ïîêàçàòü ñíà÷àëà ïåðâûé óðîâåíü ýêñèçà â êàòåãîðèÿõ','first_level',1),  //new in cpg1.2.0
+        array('Ïîêàçàòü ñíà÷àëà ïåðâûé óðîâåíü ýêñèçà â êàòåãîðèÿõ','first_level',1),  
 
 	'Ïðîñìîòð ýñêèçîâ',
 	array('Êîëè÷åñòâî êîëîíîê íà ñòðàíèöå ñ ýñêèçàìè', 'thumbcols', 0),
@@ -374,7 +375,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	'Íàñòðîéêè ôîòî è ýñêèçîâ',
 	array('Êà÷åñòâî äëÿ JPEG ôàéëîâ', 'jpeg_qual', 0),
 	array('Ìàêñ. äëèíà èëè âûñîòà ýñêèçà <b>*</b>', 'thumb_width', 0),
-        array('Èñïîëüçîâàòü ðàçìåð ( äëèííà èëè âûñîòà èëè ìàêñèìàëüíàÿ ñòîðîíà ýêñèçà )<b>*</b>', 'thumb_use', 7),  //new in cpg1.2.0
+        array('Èñïîëüçîâàòü ðàçìåð ( äëèííà èëè âûñîòà èëè ìàêñèìàëüíàÿ ñòîðîíà ýêñèçà )<b>*</b>', 'thumb_use', 7),  
 	array('Ñîçäàâàòü ïðîìåæóòî÷íîå ôîòî','make_intermediate',1),
 	array('Ìàêñ. äëèíà èëè âûñîòà ïðîìåæóòî÷íîãî ôîòî <b>*</b>', 'picture_width', 0),
 	array('Ìàêñ. ðàçìåð äëÿ äîáàâëÿåìûõ ôîòî (Ká)', 'max_upl_size', 0),
@@ -393,7 +394,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Èìÿ Ïîëÿ 4', 'user_field4_name', 0),
 
 	'Ðàñøèðåííûå íàñòðîéêè ôîòî è ýñêèçîâ',
-        array('Ïîêàçàòü ñîáñòâåííûé àëüáîì íåçàðåãèñòðèðîâàííîìó ïîëüçîâàòåëþ','show_private',1),  //new in cpg1.2.0
+        array('Ïîêàçàòü ñîáñòâåííûé àëüáîì íåçàðåãèñòðèðîâàííîìó ïîëüçîâàòåëþ','show_private',1),  
 	array('Ñèìâîëû, çàïðåùåííûå â èìåíàõ ôàéëîâ', 'forbiden_fname_char',0),
 	array('Äîáàâëÿòü ôîòî ñ ðàñøèðåíèÿìè:', 'allowed_file_extensions',0),
 	array('Ìåòîä èçìåíåíèÿ ðàçìåðà ôîòî','thumb_method',2),
@@ -513,7 +514,7 @@ $lang_picinfo = array(
         'Comment' => 'Êîìåíòàðèé', 
         'addFav' => 'Äîáàâèòü â èçáðàííûå', 
         'addFavPhrase' => 'Èçáðàííûå', 
-        'remFav' => 'Óäàëèòü èç èçáðàííûõ',  //new in cpg1.2.0
+        'remFav' => 'Óäàëèòü èç èçáðàííûõ',  
 );
 
 $lang_display_comments = array(
@@ -527,7 +528,7 @@ $lang_display_comments = array(
 );
 
 $lang_fullsize_popup = array( 
-        'click_to_close' => 'Íàæìèòå íà êàðòèíêó, ÷òîáû çàêðûòü îêíî',  //new in cpg1.2.0
+        'click_to_close' => 'Íàæìèòå íà êàðòèíêó, ÷òîáû çàêðûòü îêíî',  
 );
 
 }

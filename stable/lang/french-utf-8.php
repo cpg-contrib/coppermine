@@ -1,16 +1,13 @@
 ﻿<?php
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery                                                 //
+// Coppermine Photo Gallery 1.2.1                                            //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Gregory DEMAR <gdemar@wanadoo.fr>               //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Stoverud <henning@stoverud.com>         //
-//  http://www.stoverud.com/PHPhotoalbum/                                    //
-// ------------------------------------------------------------------------- //
-//  Hacked by Tarique Sani <tarique@sanisoft.com> and Girsh Nair             //
-//  <girish@sanisoft.com> see http://www.sanisoft.com/cpg/README.txt for     //
-//  details                                                                  //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -20,9 +17,9 @@
 
 // info about translators and translated language
 $lang_translation_info = array(
-'lang_name_english' => 'French',  //the name of your language in English, e.g. 'Greek' or 'Spanish'
-'lang_name_native' => 'Français', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espa&ntilde;ol'
-'lang_country_code' => 'fr', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es'
+'lang_name_english' => 'French',  
+'lang_name_native' => 'Français', 
+'lang_country_code' => 'fr', 
 'trans_name'=> 'mels', //the name of the translator - can be a nickname
 'trans_email' => 'mels@wanadoo.fr', //translator's email address (optional)
 'trans_website' => 'http://www.everlasting-star.net/', //translator's website (optional)
@@ -62,13 +59,13 @@ $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clit
 $lang_meta_album_names = array(
         'random' => 'Images au hasard',
         'lastup' => 'Derniers ajouts',
-        'lastalb'=> 'Derniers albums mis en ligne', //new in cpg1.2.0
+        'lastalb'=> 'Derniers albums mis en ligne', 
         'lastcom' => 'Derniers commentaires',
         'topn' => 'Les plus populaires',
         'toprated' => 'Les mieux notées',
         'lasthits' => 'Les dernières vues',
-        'search' => 'Résultats de la recherche', //new in cpg1.2.0
-        'favpics'=> 'Photos préférées' //new in cpg1.2.0
+        'search' => 'Résultats de la recherche', 
+        'favpics'=> 'Photos préférées' 
 );
 
 $lang_errors = array(
@@ -85,9 +82,9 @@ $lang_errors = array(
         'orphan_cat' => 'Une catégorie a un parent inexistant, utilisez le gestionnaire de catégories afin de remédier au problème.',
         'directory_ro' => 'Le réperetoire \'%s\' n\'est pas inscriptible : les images ne peuvent être supprimées.',
         'non_exist_comment' => 'Le commentaire sélectionné n\'existe pas.',
-        'pic_in_invalid_album' => 'L\'image se trouve dans un album qui n\'existe pas (%s)!?', //new in cpg1.2.0
-        'banned' => 'Vous êtes pour l\'instant banni de ce site.', //new in cpg1.2.0
-        'not_with_udb' => 'TCette fonction est désactivée dans Coppermine parce que la gallerie est intégrée à un forum. Soit l\'action que vous essayez d\'effectuer n\'est pas disponible dans cette configuration, soit vous devez l\'effectuer à partir du forum auquel vous avez intégré la galerie.', //new in cpg1.2.0
+        'pic_in_invalid_album' => 'L\'image se trouve dans un album qui n\'existe pas (%s)!?', 
+        'banned' => 'Vous êtes pour l\'instant banni de ce site.', 
+        'not_with_udb' => 'TCette fonction est désactivée dans Coppermine parce que la gallerie est intégrée à un forum. Soit l\'action que vous essayez d\'effectuer n\'est pas disponible dans cette configuration, soit vous devez l\'effectuer à partir du forum auquel vous avez intégré la galerie.', 
 );
 
 // ------------------------------------------------------------------------- //
@@ -115,7 +112,7 @@ $lang_main_menu = array(
         'topn_lnk' => 'Images les plus populaires',
         'toprated_lnk' => 'Images les mieux notées',
         'search_lnk' => 'Rechercher',
-        'fav_lnk' => 'Mes favoris', //new in cpg1.2.0
+        'fav_lnk' => 'Mes favoris', 
 
 );
 
@@ -128,8 +125,8 @@ $lang_gallery_admin_menu = array(
         'groups_lnk' => 'Groupes',
         'comments_lnk' => 'Commentaires',
         'searchnew_lnk' => 'FTP =>',
-        'util_lnk' => 'Redimensionner les images', //new in cpg1.2.0
-        'ban_lnk' => 'Bannir des utilisateurs', //new in cpg1.2.0
+        'util_lnk' => 'Redimensionner les images', 
+        'ban_lnk' => 'Bannir des utilisateurs', 
 );
 
 $lang_user_admin_menu = array(
@@ -151,14 +148,14 @@ $lang_album_list = array(
 $lang_thumb_view = array(
         'date' => 'DATE',
         //Sort by filename and title
-        'name' => 'NOM DU FICHIER', //new in cpg1.2.0
-        'title' => 'TITRE', //new in cpg1.2.0
+        'name' => 'NOM DU FICHIER', 
+        'title' => 'TITRE', 
         'sort_da' => 'Classer par date ascendantes',
         'sort_dd' => 'Classer par date descendantes',
         'sort_na' => 'Classer par nom ascendants',
         'sort_nd' => 'Classer par nom descendants',
-        'sort_ta' => 'Classer par titre ascendants', //new in cpg1.2.0
-        'sort_td' => 'Classer par titre descendants', //new in cpg1.2.0
+        'sort_ta' => 'Classer par titre ascendants', 
+        'sort_td' => 'Classer par titre descendants', 
         'pic_on_page' => '%d photos sur %d page(s)',
         'user_on_page' => '%d utilisateurs sur %d page(s)'
 );
@@ -328,8 +325,8 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'restore_success' => 'La configuration d\'origine de Coppermine a été restaurée',
         'name_a' => 'Nom ascendant',
         'name_d' => 'Nom descendant',
-        'title_a' => 'Titre ascendand', //new in cpg1.2.0
-        'title_d' => 'Titre descendant', //new in cpg1.2.0
+        'title_a' => 'Titre ascendand', 
+        'title_d' => 'Titre descendant', 
         'date_a' => 'Date ascendante',
         'date_d' => 'Date descendante',
         'th_any' => 'Max Aspect',
@@ -353,7 +350,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Nombre de colonnes pour la liste des albums', 'album_list_cols', 0),
         array('Taille des vignettes en pixels', 'alb_list_thumb_size', 0),
         array('Le contenu de la page principale', 'main_page_layout', 0),
-        array('Afficher les vignettes de l\'album du premier niveau avec la catégorie','first_level',1), //new in cpg1.2.0
+        array('Afficher les vignettes de l\'album du premier niveau avec la catégorie','first_level',1), 
 
         'Affichage des vignettes',
         array('Nombre de colonnes sur la page des vignettes', 'thumbcols', 0),
@@ -373,13 +370,13 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Nombre maximal de lettres pour un mot', 'max_com_wlength', 0),
         array('Nombre maximal de lignes pour un commentaire', 'max_com_lines', 0),
         array('Longueur maximale d\'un commentaire', 'max_com_size', 0),
-        array('Afficher le négatif', 'display_film_strip', 1), //new in cpg1.2.0
-        array('Nombre d\'images par négatif', 'max_film_strip_items', 0), //new in cpg1.2.0
+        array('Afficher le négatif', 'display_film_strip', 1), 
+        array('Nombre d\'images par négatif', 'max_film_strip_items', 0), 
 
         'Paramètres des images et vignettes',
         array('Qualité pour les fichiers JPG', 'jpeg_qual', 0),
-        array('Dimension maximale pour les vignettes <b>*</b>', 'thumb_width', 0), //new in cpg1.2.0
-        array('Utiliser la dimension ( largeur ou hauteur ou aspect max pour la vignette)<b>*</b>', 'thumb_use', 7), //new in cpg1.2.0
+        array('Dimension maximale pour les vignettes <b>*</b>', 'thumb_width', 0), 
+        array('Utiliser la dimension ( largeur ou hauteur ou aspect max pour la vignette)<b>*</b>', 'thumb_use', 7), 
         array('Créer des images intermédiaires','make_intermediate',1),
         array('Largeur ou hauteur maximale pour une image intermédiaire <b>*</b>', 'picture_width', 0),
         array('Poids max des images à uploader (Ko)', 'max_upl_size', 0),
@@ -398,7 +395,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Nom du champ 4', 'user_field4_name', 0),
 
         'Paramètres avancés des images et vignettes',
-        array('Afficher l\'icône des albums privés aux utilisateurs non indentifiés','show_private',1), //new in cpg1.2.0
+        array('Afficher l\'icône des albums privés aux utilisateurs non indentifiés','show_private',1), 
         array('Caratères interdits dans les noms de fichiers', 'forbiden_fname_char',0),
         array('Extensions de fichiers acceptées pour les images à uploader', 'allowed_file_extensions',0),
         array('Méthode utilisée pour redimensionner les images','thumb_method',2),
@@ -516,9 +513,9 @@ $lang_picinfo = array(
         'Exposure time' => 'Temps d\'exposition',
         'Focal length' => 'Focale',
         'Comment' => 'Commentaires',
-        'addFav'=>'Ajouter aux favoris', //new in cpg1.2.0
-        'addFavPhrase'=>'Favoris', //new in cpg1.2.0
-        'remFav'=>'Supprimer des favoris', //new in cpg1.2.0
+        'addFav'=>'Ajouter aux favoris', 
+        'addFavPhrase'=>'Favoris', 
+        'remFav'=>'Supprimer des favoris', 
 );
 
 $lang_display_comments = array(
@@ -526,13 +523,13 @@ $lang_display_comments = array(
         'edit_title' => 'Modifier ce commentaire',
         'confirm_delete' => 'Voulez vous vraiment supprimer ce commentaire?',
         'add_your_comment' => 'Ajoutez votre commentaire',
-        'name'=>'Nom', //new in cpg1.2.0
-        'comment'=>'Commentaire', //new in cpg1.2.0
-        'your_name' => 'Anonyme', //new in cpg1.2.0
+        'name'=>'Nom', 
+        'comment'=>'Commentaire', 
+        'your_name' => 'Anonyme', 
 );
 
 $lang_fullsize_popup = array(
-        'click_to_close' => 'Cliquez sur l\'image pour fermer la fenêtre', //new in cpg1.2.0
+        'click_to_close' => 'Cliquez sur l\'image pour fermer la fenêtre', 
 );
 
 }
@@ -862,14 +859,14 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('BANNING_PHP')) $lang_banning_php = array(
-                'title' => 'Bannir des utilisateurs', //new in cpg1.2.0
-                'user_name' => 'Nom d\'utilisateur', //new in cpg1.2.0
-                'ip_address' => 'Adresse IP', //new in cpg1.2.0
-                'expiry' => 'Expire (champs vide signifie que le ban est indéfini)', //new in cpg1.2.0
-                'edit_ban' => 'Sauvegarder les changements', //new in cpg1.2.0
-                'delete_ban' => 'Supprimer', //new in cpg1.2.0
-                'add_new' => 'Ajouter un nouveau ban', //new in cpg1.2.0
-                'add_ban' => 'Ajouter', //new in cpg1.2.0
+                'title' => 'Bannir des utilisateurs', 
+                'user_name' => 'Nom d\'utilisateur', 
+                'ip_address' => 'Adresse IP', 
+                'expiry' => 'Expire (champs vide signifie que le ban est indéfini)', 
+                'edit_ban' => 'Sauvegarder les changements', 
+                'delete_ban' => 'Supprimer', 
+                'add_new' => 'Ajouter un nouveau ban', 
+                'add_ban' => 'Ajouter', 
 );
 
 // ------------------------------------------------------------------------- //
@@ -938,49 +935,49 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UTIL_PHP')) $lang_util_php = array(
-        'title' => 'Redimensionner les photos', //new in cpg1.2.0
-        'what_it_does' => 'Fonctionnalités', //new in cpg1.2.0
-        'what_update_titles' => 'Met à jour les titres à partir des noms de fichier', //new in cpg1.2.0
-        'what_delete_title' => 'Supprime les titres', //new in cpg1.2.0
-        'what_rebuild' => 'Regénère les vignettes et les photos redimensionnées', //new in cpg1.2.0
-        'what_delete_originals' => 'Supprime les photos originales et les remplace par leur version redimensionnée', //new in cpg1.2.0
-        'file' => 'Fichier', //new in cpg1.2.0
-        'title_set_to' => 'titre changé en', //new in cpg1.2.0
-        'submit_form' => 'valider', //new in cpg1.2.0
-        'updated_succesfully' => 'modifié avec succès', //new in cpg1.2.0
-        'error_create' => 'ERREUR lors de la création', //new in cpg1.2.0
-        'continue' => 'Continuer avec plus d\'images', //new in cpg1.2.0
-        'main_success' => 'Le fichier %s est maintenant utilisé comme image principale', //new in cpg1.2.0
-        'error_rename' => 'Erreur lors du changement du nom de %s à %s', //new in cpg1.2.0
-        'error_not_found' => 'Le fichier %s n\'a pas été trouvé', //new in cpg1.2.0
-        'back' => 'retour à la page principale', //new in cpg1.2.0
-        'thumbs_wait' => 'Mise à jour des vignettes et/ou images redimensionnées, merci de patienter...', //new in cpg1.2.0
-        'thumbs_continue_wait' => 'Continuer la mise à jour des vignettes et/ou des images redimensionnées...', //new in cpg1.2.0
-        'titles_wait' => 'Mise à jour des titres, merci de patienter...', //new in cpg1.2.0
-        'delete_wait' => 'Suppression des titres, merci de patienter...', //new in cpg1.2.0
-        'replace_wait' => 'Suppression des originaux et remplacement de ces derniers par les images redimensionnées, merci de patienter...', //new in cpg1.2.0
-        'instruction' => 'Instructions rapides', //new in cpg1.2.0
-        'instruction_action' => 'Selectionnez une action', //new in cpg1.2.0
-        'instruction_parameter' => 'Définissez les paramètres', //new in cpg1.2.0
-        'instruction_album' => 'Sélectionnez un album', //new in cpg1.2.0
-        'instruction_press' => 'Appuyez sur %s', //new in cpg1.2.0
-        'update' => 'Mettre à jour les vignettes et/ou les photos redimensionnées', //new in cpg1.2.0
-        'update_what' => 'Ce qui doit être mis à jour', //new in cpg1.2.0
-        'update_thumb' => 'Seulement les vignettes', //new in cpg1.2.0
-        'update_pic' => 'Seulement les photos redimensionnées', //new in cpg1.2.0
-        'update_both' => 'Les vignettes et les images redimensionnées', //new in cpg1.2.0
-        'update_number' => 'Nombre d\'images traitées par clic', //new in cpg1.2.0
-        'update_option' => '(essayez de réduire cette valeur si vous avez des problèmes de timeout)', //new in cpg1.2.0
-        'filename_title' => 'Nom du fichier / Titre de l\'image', //new in cpg1.2.0
-        'filename_how' => 'Comment le nom du fichier doit-il être modifié ?', //new in cpg1.2.0
-        'filename_remove' => 'Supprimer la fin .jpg et remplacer _ (underscore) par des espaces', //new in cpg1.2.0
-        'filename_euro' => 'Changer 2003_11_23_13_20_20.jpg en 23/11/2003 13:20', //new in cpg1.2.0
-        'filename_us' => 'Changer 2003_11_23_13_20_20.jpg en 11/23/2003 13:20', //new in cpg1.2.0
-        'filename_time' => 'Changer 2003_11_23_13_20_20.jpg en 13:20', //new in cpg1.2.0
-        'delete' => 'Supprimer le titre des photos ou les photos dans leur taille d\'origine', //new in cpg1.2.0
-        'delete_title' => 'Supprimer le titre des photos', //new in cpg1.2.0
-        'delete_original' => 'Supprimer les photos dans leur taille d\'origine', //new in cpg1.2.0
-        'delete_replace' => 'Supprime les images originales en les remplaçant par les versions redimensionnées', //new in cpg1.2.0
-        'select_album' => 'Selectionner un album', //new in cpg1.2.0
+        'title' => 'Redimensionner les photos', 
+        'what_it_does' => 'Fonctionnalités', 
+        'what_update_titles' => 'Met à jour les titres à partir des noms de fichier', 
+        'what_delete_title' => 'Supprime les titres', 
+        'what_rebuild' => 'Regénère les vignettes et les photos redimensionnées', 
+        'what_delete_originals' => 'Supprime les photos originales et les remplace par leur version redimensionnée', 
+        'file' => 'Fichier', 
+        'title_set_to' => 'titre changé en', 
+        'submit_form' => 'valider', 
+        'updated_succesfully' => 'modifié avec succès', 
+        'error_create' => 'ERREUR lors de la création', 
+        'continue' => 'Continuer avec plus d\'images', 
+        'main_success' => 'Le fichier %s est maintenant utilisé comme image principale', 
+        'error_rename' => 'Erreur lors du changement du nom de %s à %s', 
+        'error_not_found' => 'Le fichier %s n\'a pas été trouvé', 
+        'back' => 'retour à la page principale', 
+        'thumbs_wait' => 'Mise à jour des vignettes et/ou images redimensionnées, merci de patienter...', 
+        'thumbs_continue_wait' => 'Continuer la mise à jour des vignettes et/ou des images redimensionnées...', 
+        'titles_wait' => 'Mise à jour des titres, merci de patienter...', 
+        'delete_wait' => 'Suppression des titres, merci de patienter...', 
+        'replace_wait' => 'Suppression des originaux et remplacement de ces derniers par les images redimensionnées, merci de patienter...', 
+        'instruction' => 'Instructions rapides', 
+        'instruction_action' => 'Selectionnez une action', 
+        'instruction_parameter' => 'Définissez les paramètres', 
+        'instruction_album' => 'Sélectionnez un album', 
+        'instruction_press' => 'Appuyez sur %s', 
+        'update' => 'Mettre à jour les vignettes et/ou les photos redimensionnées', 
+        'update_what' => 'Ce qui doit être mis à jour', 
+        'update_thumb' => 'Seulement les vignettes', 
+        'update_pic' => 'Seulement les photos redimensionnées', 
+        'update_both' => 'Les vignettes et les images redimensionnées', 
+        'update_number' => 'Nombre d\'images traitées par clic', 
+        'update_option' => '(essayez de réduire cette valeur si vous avez des problèmes de timeout)', 
+        'filename_title' => 'Nom du fichier / Titre de l\'image', 
+        'filename_how' => 'Comment le nom du fichier doit-il être modifié ?', 
+        'filename_remove' => 'Supprimer la fin .jpg et remplacer _ (underscore) par des espaces', 
+        'filename_euro' => 'Changer 2003_11_23_13_20_20.jpg en 23/11/2003 13:20', 
+        'filename_us' => 'Changer 2003_11_23_13_20_20.jpg en 11/23/2003 13:20', 
+        'filename_time' => 'Changer 2003_11_23_13_20_20.jpg en 13:20', 
+        'delete' => 'Supprimer le titre des photos ou les photos dans leur taille d\'origine', 
+        'delete_title' => 'Supprimer le titre des photos', 
+        'delete_original' => 'Supprimer les photos dans leur taille d\'origine', 
+        'delete_replace' => 'Supprime les images originales en les remplaçant par les versions redimensionnées', 
+        'select_album' => 'Selectionner un album', 
 );
 ?>

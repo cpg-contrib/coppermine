@@ -1,26 +1,25 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.2.0                                            //
+// Coppermine Photo Gallery 1.2.1                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR <gdemar@wanadoo.fr>                 //
-// http://www.chezgreg.net/coppermine/                                       //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+//  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
 // (http://coppermine.sf.net/team/)                                          //
 // see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
+//  This program is free software; you can redistribute it and/or modify     //
+//  it under the terms of the GNU General Public License as published by     //
+//  the Free Software Foundation; either version 2 of the License, or        //
+//  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
-// to all devs: stop overwriting this file!
 
-// info about translators and translated language
+
 $lang_translation_info = array(
-'lang_name_english' => 'Chinese(GB2312)',  //the name of your language in English, e.g. 'Greek' or 'Spanish'
-'lang_name_native' => '中文(简体)', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. 'Ελληνικ?' or 'Espanol'
-'lang_country_code' => 'cn', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es'
+'lang_name_english' => 'Chinese(GB2312)', 
+'lang_name_native' => '中文(简体)',
+'lang_country_code' => 'cn', 
 'trans_name'=> 'hotsnow', //the name of the translator - can be a nickname
 'trans_email' => 'webmaster@qilu.tv', //translator's email address (optional)
 'trans_website' => 'http://bbs.qilu.tv/', //translator's website (optional)
@@ -354,7 +353,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('图集列表的列数', 'album_list_cols', 0),
 	array('显示缩图的大小(pixels)', 'alb_list_thumb_size', 0),
 	array('主页内容', 'main_page_layout', 0),
-	array('在类别中显示第一层图集的缩图','first_level',1), //new in cpg1.2.0
+	array('在类别中显示第一层图集的缩图','first_level',1), 
 
 	'缩图设定',
 	array('缩图页列数', 'thumbcols', 0),

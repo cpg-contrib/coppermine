@@ -1,12 +1,13 @@
 <?php
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery                                                 //
+// Coppermine Photo Gallery 1.2.1                                            //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Grégory DEMAR <gdemar@wanadoo.fr>               //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Stoverud <henning@stoverud.com>         //
-//  http://www.stoverud.com/PHPhotoalbum/                                    //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -16,9 +17,9 @@
 
 // info about translators and translated language
 $lang_translation_info = array(
-'lang_name_english' => 'Hungarian',  //the name of your language in English, e.g. 'Greek' or 'Spanish'
-'lang_name_native' => 'Magyar', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '????????' or 'Español'
-'lang_country_code' => 'hu', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es'
+'lang_name_english' => 'Hungarian',  
+'lang_name_native' => 'Magyar', 
+'lang_country_code' => 'hu', 
 'trans_name'=> 'Peter Ardo', //the name of the translator - can be a nickname
 'trans_email' => 'petardo@freemail.hu', //translator's email address (optional)
 'trans_website' => '', //translator's website (optional)

@@ -1,16 +1,13 @@
 <?php
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery                                                 //
+// Coppermine Photo Gallery 1.2.1                                            //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Grégory DEMAR <gdemar@wanadoo.fr>               //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
-//  http://www.stoverud.com/PHPhotoalbum/                                    //
-// ------------------------------------------------------------------------- //
-//  Hacked by Tarique Sani <tarique@sanisoft.com> and Girsh Nair             //
-//  <girish@sanisoft.com> see http://www.sanisoft.com/cpg/README.txt for     //
-//  details                                                                  //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -20,9 +17,9 @@
 
 // info about translators and translated language
 $lang_translation_info = array(
-'lang_name_english' => 'Indonesian',  //the name of your language in English, e.g. 'Greek' or 'Spanish'
-'lang_name_native' => 'Bahasa Indonesia', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espa&ntilde;ol'
-'lang_country_code' => 'id', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es'
+'lang_name_english' => 'Indonesian',  
+'lang_name_native' => 'Bahasa Indonesia', 
+'lang_country_code' => 'id', 
 'trans_name'=> 'sengsara', //the name of the translator - can be a nickname
 'trans_email' => 'sengsara@batamweb.net', //translator's email address (optional)
 'trans_website' => 'http://batamweb.net/', //translator's website (optional)
@@ -62,13 +59,13 @@ $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clit
 $lang_meta_album_names = array(
         'random' => 'Foto Acak',
         'lastup' => 'Kiriman Terakhir',
-        'lastalb'=> 'Album Terakhir Diupdate ', //new in cpg1.2.0
+        'lastalb'=> 'Album Terakhir Diupdate ', 
         'lastcom' => 'Komentar Terakhir',
         'topn' => 'Terbanyak Dilihat',
         'toprated' => 'Nilai Tertingi',
         'lasthits' => 'Terakhir Dilihat',
-        'search' => 'Hasil Pencarian', //new in cpg1.2.0
-        'favpics'=> 'Foto Favorit' //new in cpg1.2.0
+        'search' => 'Hasil Pencarian', 
+        'favpics'=> 'Foto Favorit' 
 );
 
 $lang_errors = array(
@@ -85,9 +82,9 @@ $lang_errors = array(
         'orphan_cat' => 'Kategori memiliki induk yang tidak ditemukan, jalankan pengaturan kategori untuk memperbaiki masalah ini.',
         'directory_ro' => 'Direktori \'%s\' tidak bissa ditulisi, foto tidak bisa dihapus',
         'non_exist_comment' => 'Komentar yang dinaksud tidak ditemukan.',
-        'pic_in_invalid_album' => 'Foto berada dalam album yang tidak ditemukan (%s)!?', //new in cpg1.2.0
-        'banned' => 'Anda telah di-banned dari situs ini.', //new in cpg1.2.0
-        'not_with_udb' => 'Fungsi ini tidak digunakan lagi dalam Coppermine sebab telah terintegrasi kedalam forum. Mungkin hal yang ingin anda lakukan tidak disupport oleh konfigurasi ini, atau fungsi tersebut seharusnya ditangani oleh software forum.', //new in cpg1.2.0
+        'pic_in_invalid_album' => 'Foto berada dalam album yang tidak ditemukan (%s)!?', 
+        'banned' => 'Anda telah di-banned dari situs ini.', 
+        'not_with_udb' => 'Fungsi ini tidak digunakan lagi dalam Coppermine sebab telah terintegrasi kedalam forum. Mungkin hal yang ingin anda lakukan tidak disupport oleh konfigurasi ini, atau fungsi tersebut seharusnya ditangani oleh software forum.', 
 );
 
 // ------------------------------------------------------------------------- //
@@ -115,7 +112,7 @@ $lang_main_menu = array(
         'topn_lnk' => 'Terbanyak Dilihat',
         'toprated_lnk' => 'Nilai Tertinggi',
         'search_lnk' => 'Pencarian',
-        'fav_lnk' => 'Favoritku', //new in cpg1.2.0
+        'fav_lnk' => 'Favoritku', 
 
 );
 
@@ -128,8 +125,8 @@ $lang_gallery_admin_menu = array(
         'groups_lnk' => 'Grup',
         'comments_lnk' => 'Komentar',
         'searchnew_lnk' => 'Tambahkan foto (batch)',
-        'util_lnk' => 'Ubah ukuran foto', //new in cpg1.2.0
-        'ban_lnk' => 'Ban User', //new in cpg1.2.0
+        'util_lnk' => 'Ubah ukuran foto', 
+        'ban_lnk' => 'Ban User', 
 );
 
 $lang_user_admin_menu = array(
@@ -151,14 +148,14 @@ $lang_album_list = array(
 $lang_thumb_view = array(
         'date' => 'TANGGAL',
         //Sort by filename and title
-        'name' => 'NAMA FILE', //new in cpg1.2.0
-        'title' => 'JUDUL', //new in cpg1.2.0
+        'name' => 'NAMA FILE', 
+        'title' => 'JUDUL', 
         'sort_da' => 'Urutkan mendaki menurut tanggal',
         'sort_dd' => 'Urutkan menurun menurut tanggal',
         'sort_na' => 'Urutkan mendaki menurut nama',
         'sort_nd' => 'Urutkan menurun menurut nama',
-        'sort_ta' => 'Urutkan mendaki menurut judul', //new in cpg1.2.0
-        'sort_td' => 'Urutkan menurun menurut judul', //new in cpg1.2.0
+        'sort_ta' => 'Urutkan mendaki menurut judul', 
+        'sort_td' => 'Urutkan menurun menurut judul', 
         'pic_on_page' => '%d foto pada %d halaman',
         'user_on_page' => '%d user pada %d halaman'
 );
@@ -328,8 +325,8 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'restore_success' => 'Konfigurasi Coppermine telah dikembalikan ke default',
         'name_a' => 'Nama mendaki',
         'name_d' => 'Nama menurun',
-        'title_a' => 'Judul mendaki', //new in cpg1.2.0
-        'title_d' => 'Judul menurun', //new in cpg1.2.0
+        'title_a' => 'Judul mendaki', 
+        'title_d' => 'Judul menurun', 
         'date_a' => 'Tanggal mendaki',
         'date_d' => 'Tanggal menurun',
         'th_any' => 'Max Aspect',
@@ -355,7 +352,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Jumlah kolom di daftar album', 'album_list_cols', 0),
         array('Ukuran thumbnail dalam piksel', 'alb_list_thumb_size', 0),
         array('Tampilan halaman utama', 'main_page_layout', 0),
-        array('Tampilkan thumbnail album level pertama dalam kategori','first_level',1), //new in cpg1.2.0
+        array('Tampilkan thumbnail album level pertama dalam kategori','first_level',1), 
 
         'Tampilan thumbnail',
         array('Jumlah kolom di halaman thumbnail', 'thumbcols', 0),
@@ -375,13 +372,13 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Jumlah karakter makimum dalam kata', 'max_com_wlength', 0),
         array('Jumlah baris maksimum dalam komentar', 'max_com_lines', 0),
         array('Panjang maksimum komentar', 'max_com_size', 0),
-        array('Tampilkan film strip', 'display_film_strip', 1), //new in cpg1.2.0
-        array('Jumlah item dalam film strip', 'max_film_strip_items', 0), //new in cpg1.2.0
+        array('Tampilkan film strip', 'display_film_strip', 1), 
+        array('Jumlah item dalam film strip', 'max_film_strip_items', 0), 
 
         'Setting foto dan thumbnail',
         array('Kualitas file JPEG', 'jpeg_qual', 0),
-        array('Dimensi thumbnail maksimum <b>*</b>', 'thumb_width', 0), //new in cpg1.2.0
-        array('Gunakan dimensi ( lebar atau tinggi atau perbandingan maksimum untuk thumbnail )<b>*</b>', 'thumb_use', 7),  //new in cpg1.2.0 
+        array('Dimensi thumbnail maksimum <b>*</b>', 'thumb_width', 0), 
+        array('Gunakan dimensi ( lebar atau tinggi atau perbandingan maksimum untuk thumbnail )<b>*</b>', 'thumb_use', 7),   
         array('Buat foto antara','make_intermediate',1),
         array('Lebar atau tinggi maksimum foto antara <b>*</b>', 'picture_width', 0),
         array('Besar maksimum foto yang diupload (KB)', 'max_upl_size', 0),
@@ -400,7 +397,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Nama field 4', 'user_field4_name', 0),
 
         'Setting tambahan foto dan thumbnail',
-        array('Tampilkan ikon album pribadi untuk user yang tidak login','show_private',1), //new in cpg1.2.0
+        array('Tampilkan ikon album pribadi untuk user yang tidak login','show_private',1), 
         array('Karakter yang tidak diizinkan dalam nama file', 'forbiden_fname_char',0),
         array('Ekstensi file yang diizinkan untuk foto yang diupload', 'allowed_file_extensions',0),
         array('Metode pengubah ukuran image','thumb_method',2),
@@ -519,9 +516,9 @@ $lang_picinfo = array(
         'Exposure time' => 'Waktu bukaan',
         'Focal length' => 'Panjang fokus',
         'Comment' => 'Komentar',
-        'addFav'=>'Tambahkan ke Fav', //new in cpg1.2.0
-        'addFavPhrase'=>'Favorit', //new in cpg1.2.0
-        'remFav'=>'Hapus dari Fav', //new in cpg1.2.0
+        'addFav'=>'Tambahkan ke Fav', 
+        'addFavPhrase'=>'Favorit', 
+        'remFav'=>'Hapus dari Fav', 
 );
 
 $lang_display_comments = array(
@@ -529,13 +526,13 @@ $lang_display_comments = array(
         'edit_title' => 'Ubah komentar ini',
         'confirm_delete' => 'Anda yakin mau menghapus komentar ini ?',
         'add_your_comment' => 'Tambah komentar',
-        'name'=>'Nama', //new in cpg1.2.0
-        'comment'=>'Komentar', //new in cpg1.2.0
-        'your_name' => 'Anon', //new in cpg1.2.0
+        'name'=>'Nama', 
+        'comment'=>'Komentar', 
+        'your_name' => 'Anon', 
 );
 
 $lang_fullsize_popup = array(
-        'click_to_close' => 'Klik image unuk menutup jendela ini', //new in cpg1.2.0
+        'click_to_close' => 'Klik image unuk menutup jendela ini', 
 );
 
 }
@@ -864,14 +861,14 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('BANNING_PHP')) $lang_banning_php = array(
-                'title' => 'Ban User', //new in cpg1.2.0
-                'user_name' => 'User Name', //new in cpg1.2.0
-                'ip_address' => 'IP Address', //new in cpg1.2.0
-                'expiry' => 'Berakhir (kosong berarti selamanya)', //new in cpg1.2.0
-                'edit_ban' => 'Simpan Perubahan', //new in cpg1.2.0
-                'delete_ban' => 'Hapus', //new in cpg1.2.0
-                'add_new' => 'Tambahkan banned baru', //new in cpg1.2.0
-                'add_ban' => 'Tambahkan', //new in cpg1.2.0
+                'title' => 'Ban User', 
+                'user_name' => 'User Name', 
+                'ip_address' => 'IP Address', 
+                'expiry' => 'Berakhir (kosong berarti selamanya)', 
+                'edit_ban' => 'Simpan Perubahan', 
+                'delete_ban' => 'Hapus', 
+                'add_new' => 'Tambahkan banned baru', 
+                'add_ban' => 'Tambahkan', 
 );
 
 // ------------------------------------------------------------------------- //
@@ -940,50 +937,50 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UTIL_PHP')) $lang_util_php = array(
-        'title' => 'Ubah dimensi foto', //new in cpg1.2.0
-        'what_it_does' => 'Kegunaannya', //new in cpg1.2.0
-        'what_update_titles' => 'Update judul dari nama file', //new in cpg1.2.0
-        'what_delete_title' => 'Hapus judul', //new in cpg1.2.0
-        'what_rebuild' => 'Buat kembali thumbnail dan ubah dimensi foto', //new in cpg1.2.0
-        'what_delete_originals' => 'Menghapus foto lama yang talah diubah dimansinya dan menggantinya dengan foto baru yang telah diubah dimensinya', //new in cpg1.2.0
-        'file' => 'File', //new in cpg1.2.0
-        'title_set_to' => 'judul ubah ke', //new in cpg1.2.0
-        'submit_form' => 'kirim', //new in cpg1.2.0
-        'updated_succesfully' => 'berhasil diupdate', //new in cpg1.2.0
-        'error_create' => 'ERROR membuat', //new in cpg1.2.0
-        'continue' => 'Proses image lain', //new in cpg1.2.0
-        'main_success' => 'File %s telah berhasil digunakan sebagai foto utama', //new in cpg1.2.0
-        'error_rename' => 'Error mengubah nama %s ke %s', //new in cpg1.2.0
-        'error_not_found' => 'File %s tidak ditemukan', //new in cpg1.2.0
-        'back' => 'kembali', //new in cpg1.2.0
-        'thumbs_wait' => 'Sedang mengupdate thumbnail dan/atau mengubah dimensi image, tunggu sejenak...', //new in cpg1.2.0
-        'thumbs_continue_wait' => 'Lanjutkan mengupdate thumbnail dan/atau mengubah dimensi image...', //new in cpg1.2.0
-        'titles_wait' => 'Sedang mengupdate judul, tunggu sejenak...', //new in cpg1.2.0
-        'delete_wait' => 'Sedang menghapus judul, tunggu sejenak...', //new in cpg1.2.0
-        'replace_wait' => 'Sedang menghapus yang original dan menggantinya dengan image yang telah diubah dimensinya, tunggu sejenak..', //new in cpg1.2.0
-        'instruction' => 'Instruksi cepat', //new in cpg1.2.0
-        'instruction_action' => 'Pilih fungsi', //new in cpg1.2.0
-        'instruction_parameter' => 'Set parameter', //new in cpg1.2.0
-        'instruction_album' => 'Pilih album', //new in cpg1.2.0
-        'instruction_press' => 'Tekan %s', //new in cpg1.2.0
-        'update' => 'Update thumbnail dan/atau ubah dimensi foto', //new in cpg1.2.0
-        'update_what' => 'Apa yang harus diupdate', //new in cpg1.2.0
-        'update_thumb' => 'Thumbnail saja', //new in cpg1.2.0
-        'update_pic' => 'Ubah dimensi fota saja', //new in cpg1.2.0
-        'update_both' => 'Thumbnail dan ubah ukuran foto', //new in cpg1.2.0
-        'update_number' => 'Jumlah image yang diproses per klik', //new in cpg1.2.0
-        'update_option' => '(Coba set dengan nilai yang lebih kecil jika anda mengalami masalah timeout browser)', //new in cpg1.2.0
-        'filename_title' => 'Nama File &rArr; Judul foto', //new in cpg1.2.0
-        'filename_how' => 'Bagaimana nama file akan diubah', //new in cpg1.2.0
-        'filename_remove' => 'Hapus akhiran .jpg dan ganti _ (underscore) dengan spasi', //new in cpg1.2.0
-        'filename_euro' => 'Ubah 2003_11_23_13_20_20.jpg ke 23/11/2003 13:20', //new in cpg1.2.0
-        'filename_us' => 'Ubah 2003_11_23_13_20_20.jpg ke 11/23/2003 13:20', //new in cpg1.2.0
-        'filename_time' => 'Ubah 2003_11_23_13_20_20.jpg ke 13:20', //new in cpg1.2.0
-        'delete' => 'Hapus judul foto atau image yang tela diubah dimensinya', //new in cpg1.2.0
-        'delete_title' => 'Hapus judul foto', //new in cpg1.2.0
-        'delete_original' => 'Hapus foto yang telah diubah dimensinya', //new in cpg1.2.0
-        'delete_replace' => 'Hapus image original ganti dengan image yang telah diubah dimensinya', //new in cpg1.2.0
-        'select_album' => 'Pilih album', //new in cpg1.2.0
+        'title' => 'Ubah dimensi foto', 
+        'what_it_does' => 'Kegunaannya', 
+        'what_update_titles' => 'Update judul dari nama file', 
+        'what_delete_title' => 'Hapus judul', 
+        'what_rebuild' => 'Buat kembali thumbnail dan ubah dimensi foto', 
+        'what_delete_originals' => 'Menghapus foto lama yang talah diubah dimansinya dan menggantinya dengan foto baru yang telah diubah dimensinya', 
+        'file' => 'File', 
+        'title_set_to' => 'judul ubah ke', 
+        'submit_form' => 'kirim', 
+        'updated_succesfully' => 'berhasil diupdate', 
+        'error_create' => 'ERROR membuat', 
+        'continue' => 'Proses image lain', 
+        'main_success' => 'File %s telah berhasil digunakan sebagai foto utama', 
+        'error_rename' => 'Error mengubah nama %s ke %s', 
+        'error_not_found' => 'File %s tidak ditemukan', 
+        'back' => 'kembali', 
+        'thumbs_wait' => 'Sedang mengupdate thumbnail dan/atau mengubah dimensi image, tunggu sejenak...', 
+        'thumbs_continue_wait' => 'Lanjutkan mengupdate thumbnail dan/atau mengubah dimensi image...', 
+        'titles_wait' => 'Sedang mengupdate judul, tunggu sejenak...', 
+        'delete_wait' => 'Sedang menghapus judul, tunggu sejenak...', 
+        'replace_wait' => 'Sedang menghapus yang original dan menggantinya dengan image yang telah diubah dimensinya, tunggu sejenak..', 
+        'instruction' => 'Instruksi cepat', 
+        'instruction_action' => 'Pilih fungsi', 
+        'instruction_parameter' => 'Set parameter', 
+        'instruction_album' => 'Pilih album', 
+        'instruction_press' => 'Tekan %s', 
+        'update' => 'Update thumbnail dan/atau ubah dimensi foto', 
+        'update_what' => 'Apa yang harus diupdate', 
+        'update_thumb' => 'Thumbnail saja', 
+        'update_pic' => 'Ubah dimensi fota saja', 
+        'update_both' => 'Thumbnail dan ubah ukuran foto', 
+        'update_number' => 'Jumlah image yang diproses per klik', 
+        'update_option' => '(Coba set dengan nilai yang lebih kecil jika anda mengalami masalah timeout browser)', 
+        'filename_title' => 'Nama File &rArr; Judul foto', 
+        'filename_how' => 'Bagaimana nama file akan diubah', 
+        'filename_remove' => 'Hapus akhiran .jpg dan ganti _ (underscore) dengan spasi', 
+        'filename_euro' => 'Ubah 2003_11_23_13_20_20.jpg ke 23/11/2003 13:20', 
+        'filename_us' => 'Ubah 2003_11_23_13_20_20.jpg ke 11/23/2003 13:20', 
+        'filename_time' => 'Ubah 2003_11_23_13_20_20.jpg ke 13:20', 
+        'delete' => 'Hapus judul foto atau image yang tela diubah dimensinya', 
+        'delete_title' => 'Hapus judul foto', 
+        'delete_original' => 'Hapus foto yang telah diubah dimensinya', 
+        'delete_replace' => 'Hapus image original ganti dengan image yang telah diubah dimensinya', 
+        'select_album' => 'Pilih album', 
 );
 
 ?>

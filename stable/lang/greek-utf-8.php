@@ -1,28 +1,25 @@
 ﻿<?php
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery                                                 //
+// Coppermine Photo Gallery 1.2.1                                            //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Grégory DEMAR <gdemar@wanadoo.fr>               //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
-//  http://www.stoverud.com/PHPhotoalbum/                                    //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
 //  the Free Software Foundation; either version 2 of the License, or        //
 //  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
-//  Greek language by lykman, ÅëëçíéêÞ ìåôÜöñáóç áðü Ëõêïýñãï Ì., ver. 1.0   //
-// You can mail me for errors or suggestions about GReek, lykman@freemail.gr //
-// Ãéá ôõ÷üí ëÜèç Þ ðñïôÜóåéò óôá ÅëëçíéêÜ, óôåßëôå mail, lykman@freemail.gr //
-// ------------------------------------------------------------------------- //
 
 // info about translators and translated language 
 $lang_translation_info = array( 
-'lang_name_english' => 'Greek',  //the name of your language in English, e.g. 'Greek' or 'Spanish' 
-'lang_name_native' => '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Español' 
-'lang_country_code' => 'GR', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es' 
+'lang_name_english' => 'Greek',  
+'lang_name_native' => '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;', 
+'lang_country_code' => 'gr', 
 'trans_name'=> 'lykman', //the name of the translator - can be a nickname 
 'trans_email' => 'lykman@freemail.gr', //translator's email address (optional) 
 'trans_website' => 'http://www.lykman.com', //translator's website (optional) 

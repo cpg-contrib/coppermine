@@ -1,17 +1,13 @@
-﻿<?PHP
-
+﻿<?php
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery                                                 //
+// Coppermine Photo Gallery 1.2.1                                            //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Gregory DEMAR <gdemar@wanadoo.fr>               //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Stverud <henning@stoverud.com>         //
-//  http://www.stoverud.com/PHPhotoalbum/                                    //
-// ------------------------------------------------------------------------- //
-//  Hacked by Tarique Sani <tarique@sanisoft.com> and Girsh Nair             //
-//  <girish@sanisoft.com> see http://www.sanisoft.com/cpg/README.txt for     //
-//  details                                                                  //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -21,9 +17,9 @@
 
 // info about translators and translated language 
 $lang_translation_info = array( 
-'lang_name_english' => 'Dutch',  //the name of your language in English, e.g. 'Greek' or 'Spanish' 
-'lang_name_native' => 'Nederlands', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '????????' or 'Español' 
-'lang_country_code' => 'nl', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es' 
+'lang_name_english' => 'Dutch',  
+'lang_name_native' => 'Nederlands', 
+'lang_country_code' => 'nl', 
 'trans_name'=> 'Ron Bos', //the name of the translator - can be a nickname 
 'trans_email' => 'ron@ronbos.nl', //translator's email address (optional) 
 'trans_website' => 'http://www.ronbos.nl/', //translator's website (optional) 
@@ -128,7 +124,7 @@ $lang_gallery_admin_menu = array(
         'comments_lnk' => 'Commentaren',
         'searchnew_lnk' => 'Batch toevoegen foto\'s',
         'util_lnk' => 'Afmetingen aanpassen foto\'s', 
-        'ban_lnk' => 'Verban gebruiker', //new in cpg1.2.0
+        'ban_lnk' => 'Verban gebruiker', 
 );
 
 $lang_user_admin_menu = array(

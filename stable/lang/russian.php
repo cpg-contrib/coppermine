@@ -1,12 +1,13 @@
 <?php
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery v1.2.0                                          //
+// Coppermine Photo Gallery 1.2.1                                            //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002  Grйgory DEMAR <gdemar@wanadoo.fr>                    //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Stшverud <henning@stoverud.com>         //
-//  http://www.stoverud.com/PHPhotoalbum/                                    //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -16,9 +17,9 @@
 
 // info about translators and translated language 
 $lang_translation_info = array( 
-'lang_name_english' => 'Russian',  //the name of your language in English, e.g. 'Greek' or 'Spanish' 
-'lang_name_native' => 'Русский', //the name of your language in your mother tongue (for non-latin alphabets, use unicode) 
-'lang_country_code' => 'ru', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es' 
+'lang_name_english' => 'Russian',  
+'lang_name_native' => 'Русский', 
+'lang_country_code' => 'ru', 
 'trans_name'=> 'Ejik', //the name of the translator - can be a nickname 
 'trans_email' => 'ejik@rbcmail.ru', //translator's email address (optional) 
 'trans_website' => 'http://counterstrike.ru', //translator's website (optional) 
@@ -124,8 +125,8 @@ $lang_gallery_admin_menu = array(
 	'groups_lnk' => 'Группы',
 	'comments_lnk' => 'Комментарии',
 	'searchnew_lnk' => 'Авто добавление',
-        'util_lnk' => 'Изменить размер', //new in cpg1.2.0
-        'ban_lnk' => 'Бан пользователей',//new in cpg1.2.0
+        'util_lnk' => 'Изменить размер', 
+        'ban_lnk' => 'Бан пользователей',
 );
 
 $lang_user_admin_menu = array(
@@ -147,14 +148,14 @@ $lang_album_list = array(
 $lang_thumb_view = array(
 	'date' => 'Дата',
         //Sort by filename and title
-        'name' => 'Имя фаила', //new in cpg1.2.0
-        'title' => 'Название',//new in cpg1.2.0
+        'name' => 'Имя фаила', 
+        'title' => 'Название',
 	'sort_da' => 'Сорт. по дате [возрастание]',
 	'sort_dd' => 'Сорт. по дате [убывание]',
 	'sort_na' => 'Сорт. по имени [возрастание]',
 	'sort_nd' => 'Сорт. по имени [убывание]',
         'sort_ta' => 'Сорт. по названию [возврастание]', 
-        'sort_td' => 'Сорт. по названию [убывание]',  //new in cpg1.2.0
+        'sort_td' => 'Сорт. по названию [убывание]',  
 	'pic_on_page' => '%d фото на %d странице(ах)',
 	'user_on_page' => '%d пользователей на %d странице(ах)'
 );
@@ -348,7 +349,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Количество колонок для списка альбомов', 'album_list_cols', 0),
 	array('Размер эскизов в пикселах', 'alb_list_thumb_size', 0),
 	array('Содержимое главной страницы', 'main_page_layout', 0),
-        array('Показать сначала первый уровень эксиза в категориях','first_level',1),  //new in cpg1.2.0
+        array('Показать сначала первый уровень эксиза в категориях','first_level',1),  
 
 	'Просмотр эскизов',
 	array('Количество колонок на странице с эскизами', 'thumbcols', 0),
@@ -374,7 +375,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	'Настройки фото и эскизов',
 	array('Качество для JPEG файлов', 'jpeg_qual', 0),
 	array('Макс. длина или высота эскиза <b>*</b>', 'thumb_width', 0),
-        array('Использовать размер ( длинна или высота или максимальная сторона эксиза )<b>*</b>', 'thumb_use', 7),  //new in cpg1.2.0
+        array('Использовать размер ( длинна или высота или максимальная сторона эксиза )<b>*</b>', 'thumb_use', 7),  
 	array('Создавать промежуточное фото','make_intermediate',1),
 	array('Макс. длина или высота промежуточного фото <b>*</b>', 'picture_width', 0),
 	array('Макс. размер для добавляемых фото (Kб)', 'max_upl_size', 0),
@@ -393,7 +394,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Имя Поля 4', 'user_field4_name', 0),
 
 	'Расширенные настройки фото и эскизов',
-        array('Показать собственный альбом незарегистрированному пользователю','show_private',1),  //new in cpg1.2.0
+        array('Показать собственный альбом незарегистрированному пользователю','show_private',1),  
 	array('Символы, запрещенные в именах файлов', 'forbiden_fname_char',0),
 	array('Добавлять фото с расширениями:', 'allowed_file_extensions',0),
 	array('Метод изменения размера фото','thumb_method',2),
@@ -513,7 +514,7 @@ $lang_picinfo = array(
         'Comment' => 'Коментарий', 
         'addFav' => 'Добавить в избранные', 
         'addFavPhrase' => 'Избранные', 
-        'remFav' => 'Удалить из избранных',  //new in cpg1.2.0
+        'remFav' => 'Удалить из избранных',  
 );
 
 $lang_display_comments = array(
@@ -527,7 +528,7 @@ $lang_display_comments = array(
 );
 
 $lang_fullsize_popup = array( 
-        'click_to_close' => 'Нажмите на картинку, чтобы закрыть окно',  //new in cpg1.2.0
+        'click_to_close' => 'Нажмите на картинку, чтобы закрыть окно',  
 );
 
 }

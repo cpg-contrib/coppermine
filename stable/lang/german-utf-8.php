@@ -1,28 +1,25 @@
 ﻿<?php
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery v1.1 Devel                                      //
+// Coppermine Photo Gallery 1.2.1                                            //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002  Gregory DEMAR <gdemar@wanadoo.fr>                    //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
-//  http://www.stoverud.com/PHPhotoalbum/                                    //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
 //  the Free Software Foundation; either version 2 of the License, or        //
 //  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
-//  Hacked by Tarique Sani <tarique@sanisoft.com> and Girsh Nair             //
-//  <girish@sanisoft.com> see http://www.sanisoft.com/cpg/README.txt for     //
-//  details                                                                  //
-// ------------------------------------------------------------------------- //
 
 // info about translators and translated language
 $lang_translation_info = array(
-'lang_name_english' => 'German',  //the name of your language in English, e.g. 'Greek' or 'Spanish'
-'lang_name_native' => 'Deutsch', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espa&ntilde;ol'
-'lang_country_code' => 'de', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es'
+'lang_name_english' => 'German',  
+'lang_name_native' => 'Deutsch', 
+'lang_country_code' => 'de', 
 'trans_name'=> 'GauGau', //the name of the translator - can be a nickname
 'trans_email' => 'mail@gaugau.de', //translator's email address (optional)
 'trans_website' => 'http://gaugau.de/', //translator's website (optional)
@@ -68,7 +65,7 @@ $lang_meta_album_names = array(
         'toprated' => 'am besten bewertet',
         'lasthits' => 'zuletzt angesehen',
         'search' => 'Suchergebnisse',
-        'favpics'=> 'Favourite Pictures' //new in cpg1.2.0
+        'favpics'=> 'Favourite Pictures' 
 );
 
 $lang_errors = array(
@@ -86,8 +83,8 @@ $lang_errors = array(
         'directory_ro' => 'Das Verzeichnis \'%s\' ist nicht beschreibbar, die Bilder können nicht gelöscht werden',
         'non_exist_comment' => 'Der gewählte Kommentar existiert nicht.',
         'pic_in_invalid_album' => 'Das Bild befindet sich in einem nicht-existierenden Album (%s)!?',
-        'banned' => 'Du bist zur Zeit von dieser Seite verbannt.',  //new in cpg1.2.0
-        'not_with_udb' => 'Diese Funktion ist innerhalb Coppermine deaktiviert, weil Sie in die Forums-Software integriert ist. Entweder wird das, was Du gerade zu tun versucht hast in dieser Konfiguration nicht unterstützt oder die Funktion sollte von der Forums-Software übernommen werden.',  //new in cpg1.2.0
+        'banned' => 'Du bist zur Zeit von dieser Seite verbannt.',  
+        'not_with_udb' => 'Diese Funktion ist innerhalb Coppermine deaktiviert, weil Sie in die Forums-Software integriert ist. Entweder wird das, was Du gerade zu tun versucht hast in dieser Konfiguration nicht unterstützt oder die Funktion sollte von der Forums-Software übernommen werden.',  
 );
 
 // ------------------------------------------------------------------------- //
@@ -115,7 +112,7 @@ $lang_main_menu = array(
         'topn_lnk' => 'am meisten angesehen',
         'toprated_lnk' => 'am besten bewertet',
         'search_lnk' => 'Suche',
-        'fav_lnk' => 'Meine Favoriten', //new in cpg1.2.0
+        'fav_lnk' => 'Meine Favoriten', 
         );
 
 $lang_gallery_admin_menu = array(
@@ -127,8 +124,8 @@ $lang_gallery_admin_menu = array(
         'groups_lnk' => 'Gruppen',
         'comments_lnk' => 'Kommentare',
         'searchnew_lnk' => 'Batch-hinzufügen',
-        'util_lnk' => 'Grösse ändern', //new in cpg1.2.0
-        'ban_lnk' => 'Benutzer verbannen', //new in cpg1.2.0
+        'util_lnk' => 'Grösse ändern', 
+        'ban_lnk' => 'Benutzer verbannen', 
 );
 
 $lang_user_admin_menu = array(
@@ -355,7 +352,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Anzahl Spalten in Album-Liste', 'album_list_cols', 0),
         array('Thumbnail-Grösse in Pixel', 'alb_list_thumb_size', 0),
         array('Inhalt der Hauptseite', 'main_page_layout', 0),
-        array('Erste Ebene der Thumbnails der Alben auch in Kategorien anzeigen','first_level',1), //new in cpg1.2.0
+        array('Erste Ebene der Thumbnails der Alben auch in Kategorien anzeigen','first_level',1), 
 
         'Ansicht Thumbnail',
         array('Spaltenzahl auf Thumbnail-Seite', 'thumbcols', 0),
@@ -380,7 +377,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 
         'Bild- und Thumbnail-Einstellungen',
         array('Qualität für JPEG-Dateien', 'jpeg_qual', 0),
-        array('Welche Dimension soll genutzt werden für Thumbnails ( Breite oder Höhe oder das, was jeweils grösser ist)<b>*</b>', 'thumb_use', 7),    //new in cpg1.2.0
+        array('Welche Dimension soll genutzt werden für Thumbnails ( Breite oder Höhe oder das, was jeweils grösser ist)<b>*</b>', 'thumb_use', 7),    
         array('Maximale Höhe oder Breite von Thumbnails <b>*</b>', 'thumb_width', 0),
         array('Bilder in Zwischengröße erzeugen','make_intermediate',1),
         array('Maximale Breite oder Höhe von Bildern in Zwischengröße <b>*</b>', 'picture_width', 0),
@@ -520,9 +517,9 @@ $lang_picinfo = array(
         'Exposure time' => 'Belichtungszeit',
         'Focal length' => 'Brennweite',
         'Comment' => 'Kommentar',
-        'addFav'=>'zu Favoriten hinzufügen', //new in cpg1.2.0
-        'addFavPhrase'=>'Favoriten', //new in cpg1.2.0
-        'remFav'=>'aus Favoriten entfernen', //new in cpg1.2.0
+        'addFav'=>'zu Favoriten hinzufügen', 
+        'addFavPhrase'=>'Favoriten', 
+        'remFav'=>'aus Favoriten entfernen', 
 );
 
 $lang_display_comments = array(

@@ -1,16 +1,13 @@
 ﻿<?php
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery                                                 //
+// Coppermine Photo Gallery 1.2.1                                            //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Gregory DEMAR <gdemar@wanadoo.fr>               //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Stoverud <henning@stoverud.com>         //
-//  http://www.stoverud.com/PHPhotoalbum/                                    //
-// ------------------------------------------------------------------------- //
-//  Hacked by Tarique Sani <tarique@sanisoft.com> and Girsh Nair             //
-//  <girish@sanisoft.com> see http://www.sanisoft.com/cpg/README.txt for     //
-//  details                                                                  //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -20,9 +17,9 @@
 
 // info about translators and translated language
 $lang_translation_info = array(
-'lang_name_english' => 'Estonian',  //the name of your language in English, e.g. 'Greek' or 'Spanish'
-'lang_name_native' => 'Eesti', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espa&ntilde;ol'
-'lang_country_code' => 'ee', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es'
+'lang_name_english' => 'Estonian',  
+'lang_name_native' => 'Eesti', 
+'lang_country_code' => 'ee', 
 'trans_name'=> 'Meelis Rüütli', //the name of the translator - can be a nickname
 'trans_name2'=> 'Vallo Jõeorg', //the name of the translator - can be a nickname
 'trans_email2' => 'vallo@infonet.ee', //translator's email address (optional)
@@ -63,13 +60,13 @@ $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clit
 $lang_meta_album_names = array(
         'random' => 'Juhuslikud pildid',
         'lastup' => 'Viimati lisatud',
-        'lastalb'=> 'Viimati lisatud album', //new in cpg1.2.0
+        'lastalb'=> 'Viimati lisatud album', 
         'lastcom' => 'Viimati kommenteeritud',
         'topn' => 'Enim vaadatud',
         'toprated' => 'Edetabel',
         'lasthits' => 'Viimati vaadatud',
-        'search' => 'Otsingu tulemused', //new in cpg1.2.0
-        'favpics'=> 'Eelistatud pildid' //new in cpg1.2.0
+        'search' => 'Otsingu tulemused', 
+        'favpics'=> 'Eelistatud pildid' 
 );
 
 $lang_errors = array(
@@ -86,9 +83,9 @@ $lang_errors = array(
         'orphan_cat' => 'Kategoorial puudub vanem, kasuta kategooria-haldurit probleemi lahendamiseks.',
         'directory_ro' => 'Kataloogil \'%s\' puudub kirjutamisõigus, üilte ei saa kustutada.',
         'non_exist_comment' => 'Valitud kommentaar puudub.',
-        'pic_in_invalid_album' => 'Pilt asub olematus albumis (%s)!?', //new in cpg1.2.0
-        'banned' => 'Sul on hetkel keelatud selle albumi kasutamine.', //new in cpg1.2.0
-        'not_with_udb' => 'See funktsioon on keelatud, kuna album on integreeritud foorumiga. Ehk tegevus mida Sa üritad ei ole toetatud antud konfiguratsioonis või tuleks teha kasutades foorumi tarkvara.', //new in cpg1.2.0
+        'pic_in_invalid_album' => 'Pilt asub olematus albumis (%s)!?', 
+        'banned' => 'Sul on hetkel keelatud selle albumi kasutamine.', 
+        'not_with_udb' => 'See funktsioon on keelatud, kuna album on integreeritud foorumiga. Ehk tegevus mida Sa üritad ei ole toetatud antud konfiguratsioonis või tuleks teha kasutades foorumi tarkvara.', 
 );
 
 // ------------------------------------------------------------------------- //
@@ -116,7 +113,7 @@ $lang_main_menu = array(
         'topn_lnk' => 'Enim vaadatud',
         'toprated_lnk' => 'Edetabel',
         'search_lnk' => 'Otsing',
-        'fav_lnk' => 'Minu eelistused', //new in cpg1.2.0
+        'fav_lnk' => 'Minu eelistused', 
 );
 
 $lang_gallery_admin_menu = array(
@@ -128,8 +125,8 @@ $lang_gallery_admin_menu = array(
         'groups_lnk' => 'Grupid',
         'comments_lnk' => 'Kommentaarid',
         'searchnew_lnk' => 'Lisa üles laetud pilte',
-        'util_lnk' => 'Muuda piltide suurust', //new in cpg1.2.0
-        'ban_lnk' => 'Blokeeri kasutajaid', //new in cpg1.2.0
+        'util_lnk' => 'Muuda piltide suurust', 
+        'ban_lnk' => 'Blokeeri kasutajaid', 
 );
 
 $lang_user_admin_menu = array(
@@ -151,14 +148,14 @@ $lang_album_list = array(
 $lang_thumb_view = array(
         'date' => 'KUUPÄEV',
         //Sort by filename and title
-        'name' => 'FAILI NIMI', //new in cpg1.2.0
-        'title' => 'PEALKIRI', //new in cpg1.2.0
+        'name' => 'FAILI NIMI', 
+        'title' => 'PEALKIRI', 
         'sort_da' => 'Järjesta kuupäeva järgi kasvavalt',
         'sort_dd' => 'Järjesta kuupäeva järgi kahanevalt',
         'sort_na' => 'Järjesta nime järgi kasvavalt',
         'sort_nd' => 'Järjesta nime järgi kahanevalt',
-        'sort_ta' => 'Järjesta pealkirja järgi kasvavalt', //new in cpg1.2.0
-        'sort_td' => 'Järjesta pealkirja järgi kahanevalt', //new in cpg1.2.0
+        'sort_ta' => 'Järjesta pealkirja järgi kasvavalt', 
+        'sort_td' => 'Järjesta pealkirja järgi kahanevalt', 
         'pic_on_page' => '%d pilti on %d-el lehel',
         'user_on_page' => '%d kasutajat on %d-el lehel'
 );
@@ -328,8 +325,8 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'restore_success' => 'Vaikekonfiguratsioon taastatud',
         'name_a' => 'Nimed kasvavalt',
         'name_d' => 'Nimed kahanevalt',
-        'title_a' => 'Pealkirjad kasvavalt', //new in cpg1.2.0
-        'title_d' => 'Pealkirjad kahanevalt', //new in cpg1.2.0
+        'title_a' => 'Pealkirjad kasvavalt', 
+        'title_d' => 'Pealkirjad kahanevalt', 
         'date_a' => 'Kuupäev kasvavalt',
         'date_d' => 'Kuupäev kahanevalt',,
         'th_any' => 'Max Aspect',
@@ -353,7 +350,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Number veergusid albumi loeteluks', 'album_list_cols', 0),
         array('pisipildi suurus pixelites', 'alb_list_thumb_size', 0),
         array('Pealehe sisu', 'main_page_layout', 0),
-        array('Näita esimese taseme albumite pisipilte kategooriates','first_level',1), //new in cpg1.2.0
+        array('Näita esimese taseme albumite pisipilte kategooriates','first_level',1), 
 
         'Pisipiltide vaade',
         array('Veergude arv pisipiltide lehel', 'thumbcols', 0),
@@ -373,13 +370,13 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Maksimaalne tähtede arv sõnas', 'max_com_wlength', 0),
         array('Maksimaalne ridade arv kommentaaris', 'max_com_lines', 0),
         array('Maksimaalne kommentaari pikkus', 'max_com_size', 0),
-        array('Näita filmilinti', 'display_film_strip', 1), //new in cpg1.2.0
-        array('Kaadrite arv filmilindil', 'max_film_strip_items', 0), //new in cpg1.2.0
+        array('Näita filmilinti', 'display_film_strip', 1), 
+        array('Kaadrite arv filmilindil', 'max_film_strip_items', 0), 
 
         'Piltide ja pisipiltide seaded',
         array('JPEG failide kvaliteet', 'jpeg_qual', 0),
-        array('Pisipildi max laius või kõrgus <b>*</b>', 'thumb_width', 0), //new in cpg1.2.0
-        array('Kasuta mõõte (kõrgus või laius või Max aspect pisipiltide jaoks )<b>*</b>',  'thumb_use', 7),//new in cpg1.2.0
+        array('Pisipildi max laius või kõrgus <b>*</b>', 'thumb_width', 0), 
+        array('Kasuta mõõte (kõrgus või laius või Max aspect pisipiltide jaoks )<b>*</b>',  'thumb_use', 7),
         array('Loo keskmised pildid','make_intermediate',1),
         array('Keskmiste piltide laius või kõrgus <b>*</b>', 'picture_width', 0),
         array('Salvestatud piltide max suurus (KB)', 'max_upl_size', 0),
@@ -517,9 +514,9 @@ $lang_picinfo = array(
         'Exposure time' => 'Säriaeg',
         'Focal length' => 'Fookus kaugus',
         'Comment' => 'Kommentaar',
-        'addFav'=>'Lisa eelistustele', //new in cpg1.2.0
-        'addFavPhrase'=>'Eelistused', //new in cpg1.2.0
-        'remFav'=>'Eemalda eelistustest', //new in cpg1.2.0
+        'addFav'=>'Lisa eelistustele', 
+        'addFavPhrase'=>'Eelistused', 
+        'remFav'=>'Eemalda eelistustest', 
 );
 
 $lang_display_comments = array(
@@ -527,13 +524,13 @@ $lang_display_comments = array(
         'edit_title' => 'Muuda komentaari',
         'confirm_delete' => 'Oled kindel, et tahad seda kommentaari kustutada ?',
         'add_your_comment' => 'Lisa komentaar',
-        'name'=>'Nimi', //new in cpg1.2.0
-        'comment'=>'Kommentaar', //new in cpg1.2.0
-        'your_name' => 'Sinu nimi', //new in cpg1.2.0
+        'name'=>'Nimi', 
+        'comment'=>'Kommentaar', 
+        'your_name' => 'Sinu nimi', 
 );
 
 $lang_fullsize_popup = array(
-        'click_to_close' => 'Akna sulgemiseks klõpsa pildil', //new in cpg1.2.0
+        'click_to_close' => 'Akna sulgemiseks klõpsa pildil', 
 );
 
 }
@@ -863,14 +860,14 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('BANNING_PHP')) $lang_banning_php = array(
-                'title' => 'Kasutaja blokeerimine', //new in cpg1.2.0
-                'user_name' => 'Kasutajanimi', //new in cpg1.2.0
-                'ip_address' => 'IP aadress', //new in cpg1.2.0
-                'expiry' => 'Aegumine (tühi on jääv)', //new in cpg1.2.0
-                'edit_ban' => 'Salvesta muutused', //new in cpg1.2.0
-                'delete_ban' => 'Kustusta', //new in cpg1.2.0
-                'add_new' => 'Lisa uus blokeering', //new in cpg1.2.0
-                'add_ban' => 'Lisa', //new in cpg1.2.0
+                'title' => 'Kasutaja blokeerimine', 
+                'user_name' => 'Kasutajanimi', 
+                'ip_address' => 'IP aadress', 
+                'expiry' => 'Aegumine (tühi on jääv)', 
+                'edit_ban' => 'Salvesta muutused', 
+                'delete_ban' => 'Kustusta', 
+                'add_new' => 'Lisa uus blokeering', 
+                'add_ban' => 'Lisa', 
 );
 
 // ------------------------------------------------------------------------- //
@@ -939,50 +936,50 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UTIL_PHP')) $lang_util_php = array(
-        'title' => 'Pildisuuruse muutmine', //new in cpg1.2.0
-        'what_it_does' => 'Mida see teeb', //new in cpg1.2.0
-        'what_update_titles' => 'uuendab failist pealkirju', //new in cpg1.2.0
-        'what_delete_title' => 'Kustutab pealkirju', //new in cpg1.2.0
-        'what_rebuild' => 'Genereerib uued pisipildid ja muudetud suurusega pildid', //new in cpg1.2.0
-        'what_delete_originals' => 'Kustutab orginaalsuurusega pildid, asendades need uue suurusega piltidega', //new in cpg1.2.0
-        'file' => 'Fail', //new in cpg1.2.0
-        'title_set_to' => 'pealkiri muudetud ', //new in cpg1.2.0
-        'submit_form' => 'sisesta', //new in cpg1.2.0
-        'updated_succesfully' => 'uuendatud edukalt', //new in cpg1.2.0
-        'error_create' => 'VIGA tekitamisel', //new in cpg1.2.0
-        'continue' => 'Process more images', //new in cpg1.2.0
-        'main_success' => 'Fail %s was successfully used as main picture', //new in cpg1.2.0
-        'error_rename' => ' %s ümbernimetamine %s ebaõnnestus', //new in cpg1.2.0
-        'error_not_found' => 'Faili %s ei leitud', //new in cpg1.2.0
-        'back' => 'Tagasi pealehele', //new in cpg1.2.0
-        'thumbs_wait' => 'Uuendan pisipilte ja/või muudetud suurusega pilte, palun oota...', //new in cpg1.2.0
-        'thumbs_continue_wait' => 'Jätkan pisipiltidde ja/või muudetud suurusega piltide uuendamist...', //new in cpg1.2.0
-        'titles_wait' => 'Uuendan pealkirju, palun oota...', //new in cpg1.2.0
-        'delete_wait' => 'Kustutan pealkirju, palun oota...', //new in cpg1.2.0
-        'replace_wait' => 'Kustutan orginaalid ja asendan muudetud suurusega piltidega, palun oota ...', //new in cpg1.2.0
-        'instruction' => 'Lühijuhend', //new in cpg1.2.0
-        'instruction_action' => 'Vali tegevus', //new in cpg1.2.0
-        'instruction_parameter' => 'Sea parameetrid', //new in cpg1.2.0
-        'instruction_album' => 'Vali album', //new in cpg1.2.0
-        'instruction_press' => 'Vajuta %s', //new in cpg1.2.0
-        'update' => 'Uuenda pisipildid ja/või muudetud suurusega fotod', //new in cpg1.2.0
-        'update_what' => 'Mida tuleks uuendada', //new in cpg1.2.0
-        'update_thumb' => 'Ainult pisipildid', //new in cpg1.2.0
-        'update_pic' => 'Ainult muudetud suurusega pildid', //new in cpg1.2.0
-        'update_both' => 'Mõlemad, pisipildid ja muudetud suurusga pildid', //new in cpg1.2.0
-        'update_number' => 'Töödeldud piltide arv kliki kohta', //new in cpg1.2.0
-        'update_option' => '(Sea see valik väiksemaks kui tekkib probleem ajalimiidiga (timeout))', //new in cpg1.2.0
-        'filename_title' => 'Failinimi &rArr; Pildi pealkiri', //new in cpg1.2.0
-        'filename_how' => 'Kuidas tuleks failinime muuta', //new in cpg1.2.0
-        'filename_remove' => 'Eemalda .jpg lõpp ja asenda _ (alakriipsud) tühikutega', //new in cpg1.2.0
-        'filename_euro' => 'Muuda 2003_11_23_13_20_20.jpg to 23/11/2003 13:20', //new in cpg1.2.0
-        'filename_us' => 'Muuda 2003_11_23_13_20_20.jpg to 11/23/2003 13:20', //new in cpg1.2.0
-        'filename_time' => 'Muuda 2003_11_23_13_20_20.jpg to 13:20', //new in cpg1.2.0
-        'delete' => 'Pildi pealkirjade või orginaalsuurusega piltide kustutamine', //new in cpg1.2.0
-        'delete_title' => 'Kustuta pildi pealkirjad', //new in cpg1.2.0
-        'delete_original' => 'Kustusta orginaalsuurusega fotod', //new in cpg1.2.0
-        'delete_replace' => 'Kustuta orginaalsuurusega fotod asendades need muudetud suurusega piltidega', //new in cpg1.2.0
-        'select_album' => 'Vali album', //new in cpg1.2.0
+        'title' => 'Pildisuuruse muutmine', 
+        'what_it_does' => 'Mida see teeb', 
+        'what_update_titles' => 'uuendab failist pealkirju', 
+        'what_delete_title' => 'Kustutab pealkirju', 
+        'what_rebuild' => 'Genereerib uued pisipildid ja muudetud suurusega pildid', 
+        'what_delete_originals' => 'Kustutab orginaalsuurusega pildid, asendades need uue suurusega piltidega', 
+        'file' => 'Fail', 
+        'title_set_to' => 'pealkiri muudetud ', 
+        'submit_form' => 'sisesta', 
+        'updated_succesfully' => 'uuendatud edukalt', 
+        'error_create' => 'VIGA tekitamisel', 
+        'continue' => 'Process more images', 
+        'main_success' => 'Fail %s was successfully used as main picture', 
+        'error_rename' => ' %s ümbernimetamine %s ebaõnnestus', 
+        'error_not_found' => 'Faili %s ei leitud', 
+        'back' => 'Tagasi pealehele', 
+        'thumbs_wait' => 'Uuendan pisipilte ja/või muudetud suurusega pilte, palun oota...', 
+        'thumbs_continue_wait' => 'Jätkan pisipiltidde ja/või muudetud suurusega piltide uuendamist...', 
+        'titles_wait' => 'Uuendan pealkirju, palun oota...', 
+        'delete_wait' => 'Kustutan pealkirju, palun oota...', 
+        'replace_wait' => 'Kustutan orginaalid ja asendan muudetud suurusega piltidega, palun oota ...', 
+        'instruction' => 'Lühijuhend', 
+        'instruction_action' => 'Vali tegevus', 
+        'instruction_parameter' => 'Sea parameetrid', 
+        'instruction_album' => 'Vali album', 
+        'instruction_press' => 'Vajuta %s', 
+        'update' => 'Uuenda pisipildid ja/või muudetud suurusega fotod', 
+        'update_what' => 'Mida tuleks uuendada', 
+        'update_thumb' => 'Ainult pisipildid', 
+        'update_pic' => 'Ainult muudetud suurusega pildid', 
+        'update_both' => 'Mõlemad, pisipildid ja muudetud suurusga pildid', 
+        'update_number' => 'Töödeldud piltide arv kliki kohta', 
+        'update_option' => '(Sea see valik väiksemaks kui tekkib probleem ajalimiidiga (timeout))', 
+        'filename_title' => 'Failinimi &rArr; Pildi pealkiri', 
+        'filename_how' => 'Kuidas tuleks failinime muuta', 
+        'filename_remove' => 'Eemalda .jpg lõpp ja asenda _ (alakriipsud) tühikutega', 
+        'filename_euro' => 'Muuda 2003_11_23_13_20_20.jpg to 23/11/2003 13:20', 
+        'filename_us' => 'Muuda 2003_11_23_13_20_20.jpg to 11/23/2003 13:20', 
+        'filename_time' => 'Muuda 2003_11_23_13_20_20.jpg to 13:20', 
+        'delete' => 'Pildi pealkirjade või orginaalsuurusega piltide kustutamine', 
+        'delete_title' => 'Kustuta pildi pealkirjad', 
+        'delete_original' => 'Kustusta orginaalsuurusega fotod', 
+        'delete_replace' => 'Kustuta orginaalsuurusega fotod asendades need muudetud suurusega piltidega', 
+        'select_album' => 'Vali album', 
 );
 
 ?>

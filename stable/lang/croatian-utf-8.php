@@ -1,12 +1,13 @@
 ﻿<?php
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery                                                 //
+// Coppermine Photo Gallery 1.2.1                                            //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Grégory DEMAR <gdemar@wanadoo.fr>               //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
-//  http://www.stoverud.com/PHPhotoalbum/                                    //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -16,9 +17,9 @@
 
 // info about translators and translated language 
 $lang_translation_info = array( 
-'lang_name_english' => 'Croatian',  //the name of your language in English, e.g. 'Greek' or 'Spanish' 
-'lang_name_native' => 'Hrvatski', //the name of your language in your mother tongue
-'lang_country_code' => 'hr', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es' 
+'lang_name_english' => 'Croatian',  
+'lang_name_native' => 'Hrvatski', 
+'lang_country_code' => 'hr', 
 'trans_name'=> 'Webfrater', //the name of the translator - can be a nickname 
 'trans_email' => 'veritas@veritas.com.hr', //translator's email address (optional) 
 'trans_website' => 'http://www.veritas.com.hr/', //translator's website (optional) 
@@ -348,7 +349,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Broj stupaca za listu albuma', 'album_list_cols', 0),
 	array('Velièina slièice u pikselima', 'alb_list_thumb_size', 0),
 	array('Sadržaj naslovne stranice', 'main_page_layout', 0),
-        array('Show first level album thumbnails in categories','first_level',1),  //new in cpg1.2.0
+        array('Show first level album thumbnails in categories','first_level',1),  
 
 	'Thumbnail view',
 	array('Broj stupaca na stranici sa slièicama', 'thumbcols', 0),

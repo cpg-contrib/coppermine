@@ -1,26 +1,25 @@
 ﻿<?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.2.0                                            //
+// Coppermine Photo Gallery 1.2.1                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR <gdemar@wanadoo.fr>                 //
-// http://www.chezgreg.net/coppermine/                                       //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+//  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
 // (http://coppermine.sf.net/team/)                                          //
 // see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
+//  This program is free software; you can redistribute it and/or modify     //
+//  it under the terms of the GNU General Public License as published by     //
+//  the Free Software Foundation; either version 2 of the License, or        //
+//  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
-// to all devs: stop overwriting this file!
 
 // info about translators and translated language
 $lang_translation_info = array(
-'lang_name_english' => 'VietNamese',  //the name of your language in English, e.g. 'Greek' or 'Spanish'
-'lang_name_native' => 'tiếng Việt', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espa&ntilde;ol'
-'lang_country_code' => 'vn', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es'
+'lang_name_english' => 'VietNamese',  
+'lang_name_native' => 'tiếng Việt', 
+'lang_country_code' => 'vn', 
 'trans_name'=> 'Hữu Từ', //the name of the translator - can be a nickname
 'trans_email' => 'cutu9@yahoo.com', //translator's email address (optional)
 'trans_website' => 'http://www.u2u.us', //translator's website (optional)
@@ -60,13 +59,13 @@ $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clit
 $lang_meta_album_names = array(
         'random' => 'Hình ngẫu nhiên',
         'lastup' => 'Hình mới thêm vào',
-        'lastalb'=> 'Album vừa cập nhật', //new in cpg1.2.0
+        'lastalb'=> 'Album vừa cập nhật', 
         'lastcom' => 'Nhận xét cuối',
         'topn' => 'Xem nhiều',
         'toprated' => 'Đánh giá cao',
         'lasthits' => 'Xem lần cuối',
-        'search' => 'Kết quả tìm thấy', //new in cpg1.2.0
-        'favpics'=> 'Yêu thích' //new in cpg1.2.0
+        'search' => 'Kết quả tìm thấy', 
+        'favpics'=> 'Yêu thích' 
 );
 
 $lang_errors = array(
@@ -83,9 +82,9 @@ $lang_errors = array(
         'orphan_cat' => 'Phân loại bạn chọn không có Phân loại gôc, vào phần quản lý Phân loại để chỉnh lại.',
         'directory_ro' => 'Đừơng dẫn \'%s\' không thể thực thi, hình không thể xoá',
         'non_exist_comment' => 'Nhận xét bạn chọn không tồn tại.',
-        'pic_in_invalid_album' => 'PHình nằm trong Album không tồn tại (%s)!?', //new in cpg1.2.0
-        'banned' => 'Bạn đang bị cấm tham gia site này.', //new in cpg1.2.0
-        'not_with_udb' => 'Chức năng này không đựơc phép sử dụng vì nó tương tác với forum. Bạn hãy cấu hình lại hoặc chỉnh trong chức năng của forum', //new in cpg1.2.0
+        'pic_in_invalid_album' => 'PHình nằm trong Album không tồn tại (%s)!?', 
+        'banned' => 'Bạn đang bị cấm tham gia site này.', 
+        'not_with_udb' => 'Chức năng này không đựơc phép sử dụng vì nó tương tác với forum. Bạn hãy cấu hình lại hoặc chỉnh trong chức năng của forum', 
 );
 
 // ------------------------------------------------------------------------- //
@@ -113,7 +112,7 @@ $lang_main_menu = array(
         'topn_lnk' => 'Xem nhiều',
         'toprated_lnk' => 'Đánh giá cao',
         'search_lnk' => 'Tìm',
-        'fav_lnk' => 'Yêu thích', //new in cpg1.2.0
+        'fav_lnk' => 'Yêu thích', 
 
 );
 
@@ -126,8 +125,8 @@ $lang_gallery_admin_menu = array(
         'groups_lnk' => 'Nhóm',
         'comments_lnk' => 'Nhận xét',
         'searchnew_lnk' => 'Đừơng dẫn và Hình',
-        'util_lnk' => 'chỉnh kích cỡ', //new in cpg1.2.0
-        'ban_lnk' => 'Cấm tham gia', //new in cpg1.2.0
+        'util_lnk' => 'chỉnh kích cỡ', 
+        'ban_lnk' => 'Cấm tham gia', 
 );
 
 $lang_user_admin_menu = array(
@@ -149,14 +148,14 @@ $lang_album_list = array(
 $lang_thumb_view = array(
         'date' => 'DATE',
         //Sort by filename and title
-        'name' => 'FILE NAME', //new in cpg1.2.0
-        'title' => 'TITLE', //new in cpg1.2.0
+        'name' => 'FILE NAME', 
+        'title' => 'TITLE', 
         'sort_da' => 'Sắp xếp tăng dần',
         'sort_dd' => 'Sắp xếp giảm dần',
         'sort_na' => 'Sắp xếp tăng ',
         'sort_nd' => 'Sắp xếp giảm dần',
-        'sort_ta' => 'Sắp xếp tăng dần', //new in cpg1.2.0
-        'sort_td' => 'Sắp xếp giảm dần', //new in cpg1.2.0
+        'sort_ta' => 'Sắp xếp tăng dần', 
+        'sort_td' => 'Sắp xếp giảm dần', 
         'pic_on_page' => '%d hình trên %d trang',
         'user_on_page' => '%d hình trên %d trang'
 );
@@ -326,13 +325,13 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'restore_success' => 'Đã trở lại mặc định !',
         'name_a' => 'Tên tăng dần',
         'name_d' => 'Tên giảm dần',
-        'title_a' => 'Tựa đề tăng dần', //new in cpg1.2.0
-        'title_d' => 'Tựa đề giảm dần', //new in cpg1.2.0
+        'title_a' => 'Tựa đề tăng dần', 
+        'title_d' => 'Tựa đề giảm dần', 
         'date_a' => 'Ngày tăng dần',
         'date_d' => 'Ngày giảm dầ',
-        'th_any' => 'Max Aspect', //new in cpg1.2.0
-        'th_ht' => 'Height', //new in cpg1.2.0
-        'th_wd' => 'Width', //new in cpg1.2.0
+        'th_any' => 'Max Aspect', 
+        'th_ht' => 'Height', 
+        'th_wd' => 'Width', 
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
@@ -353,7 +352,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Số cột của 1 Album', 'album_list_cols', 0),
         array('Kích thứơc 1 ThumbNails', 'alb_list_thumb_size', 0),
         array('Nội dung của trang chính', 'main_page_layout', 0),
-        array('Hiển thị Album đầu tiên dạng thumbnails trong Phân loại','first_level',1), //new in cpg1.2.0
+        array('Hiển thị Album đầu tiên dạng thumbnails trong Phân loại','first_level',1), 
 
         'Xem dạng Thumbnail',
         array('Số cột Thumbnail 1 trang', 'thumbcols', 0),
@@ -373,13 +372,13 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Tối đa ký tự trong 1 từ', 'max_com_wlength', 0),
         array('Tối đa số dòng trong lời nhận xét', 'max_com_lines', 0),
         array('Tối đa 1 lời nhận xét', 'max_com_size', 0),
-        array('Hiển thị như là hình 1 phim', 'display_film_strip', 1), //new in cpg1.2.0
-        array('Số hình ', 'max_film_strip_items', 0), //new in cpg1.2.0
+        array('Hiển thị như là hình 1 phim', 'display_film_strip', 1), 
+        array('Số hình ', 'max_film_strip_items', 0), 
 
         'Hình và Thumnail',
         array('Chất lượng JPEG files', 'jpeg_qual', 0),
-        array('Kích thứơc cao nhất 1 thumnail <b>*</b>', 'thumb_width', 0), //new in cpg1.2.0
-        array('Kích thứơc bề ngoài Thumnail<b>*</b>', 'thumb_use', 7),    //new in cpg1.2.0
+        array('Kích thứơc cao nhất 1 thumnail <b>*</b>', 'thumb_width', 0), 
+        array('Kích thứơc bề ngoài Thumnail<b>*</b>', 'thumb_use', 7),    
         array('Tạo hình trung gian','make_intermediate',1),
         array('Tối đa chiều rộng hay cao 1 hình trung gian<b>*</b>', 'picture_width', 0),
         array('Dung lựơng tối đa 1 tấm hình đựơc tải lên(KB)', 'max_upl_size', 0),
@@ -398,7 +397,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Phần 4 tên', 'user_field4_name', 0),
 
         'Chỉnh sửa chi tiết hơn Hình và Thumnail',
-        array('Hiển thị Album riêng cho ngừơi chưa đăng nhập ?','show_private',1), //new in cpg1.2.0
+        array('Hiển thị Album riêng cho ngừơi chưa đăng nhập ?','show_private',1), 
         array('Ký tự bị ngăn cấm', 'forbiden_fname_char',0),
         array('Chấp nhận cho file mở rộng khi tải hình lên?', 'allowed_file_extensions',0),
         array('Phương thức chỉnh sửa kích thứơc hình','thumb_method',2),
@@ -517,9 +516,9 @@ $lang_picinfo = array(
         'Exposure time' => 'Exposure time',
         'Focal length' => 'Focal length',
         'Comment' => 'Nhận xét',
-        'addFav'=>'Thêm vào phần yêu thích', //new in cpg1.2.0
-        'addFavPhrase'=>'Yêu thích', //new in cpg1.2.0
-        'remFav'=>'Xoá khỏi phần yêu thích', //new in cpg1.2.0
+        'addFav'=>'Thêm vào phần yêu thích', 
+        'addFavPhrase'=>'Yêu thích', 
+        'remFav'=>'Xoá khỏi phần yêu thích', 
 );
 
 $lang_display_comments = array(
@@ -527,13 +526,13 @@ $lang_display_comments = array(
         'edit_title' => 'Sửa lời nhận xét này',
         'confirm_delete' => 'Có chắc là muốn xoá nhận xét này không  ?',
         'add_your_comment' => 'Thêm nhận xét vào',
-        'name'=>'Tên', //new in cpg1.2.0
-        'comment'=>'Nhận xét', //new in cpg1.2.0
-        'your_name' => 'nặc danh', //new in cpg1.2.0
+        'name'=>'Tên', 
+        'comment'=>'Nhận xét', 
+        'your_name' => 'nặc danh', 
 );
 
 $lang_fullsize_popup = array(
-        'click_to_close' => 'Click vào hình để đóng cửa sổ này', //new in cpg1.2.0
+        'click_to_close' => 'Click vào hình để đóng cửa sổ này', 
 );
 
 }
@@ -862,14 +861,14 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('BANNING_PHP')) $lang_banning_php = array(
-                'title' => 'Cấm sử dụng', //new in cpg1.2.0
-                'user_name' => 'Tên tài khoản', //new in cpg1.2.0
-                'ip_address' => 'Điịa chỉ IP', //new in cpg1.2.0
-                'expiry' => 'Hết hạn', //new in cpg1.2.0
-                'edit_ban' => 'Cập nhật thay đổi', //new in cpg1.2.0
-                'delete_ban' => 'Xoá', //new in cpg1.2.0
-                'add_new' => 'Cấm sử dụng mới', //new in cpg1.2.0
-                'add_ban' => 'Thêm vào', //new in cpg1.2.0
+                'title' => 'Cấm sử dụng', 
+                'user_name' => 'Tên tài khoản', 
+                'ip_address' => 'Điịa chỉ IP', 
+                'expiry' => 'Hết hạn', 
+                'edit_ban' => 'Cập nhật thay đổi', 
+                'delete_ban' => 'Xoá', 
+                'add_new' => 'Cấm sử dụng mới', 
+                'add_ban' => 'Thêm vào', 
 );
 
 // ------------------------------------------------------------------------- //
@@ -937,50 +936,50 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UTIL_PHP')) $lang_util_php = array(
-        'title' => 'Chỉnh kích cỡ hình', //new in cpg1.2.0
-        'what_it_does' => 'Nó là cái gì', //new in cpg1.2.0
-        'what_update_titles' => 'Sửa tự đề từ tên file tải lên', //new in cpg1.2.0
-        'what_delete_title' => 'Xoá tựa đề', //new in cpg1.2.0
-        'what_rebuild' => 'Chỉnh lại thumbnail và kích cỡ hình', //new in cpg1.2.0
-        'what_delete_originals' => 'Xoá dung lựơng cũ và thay thế với dung lương mới ', //new in cpg1.2.0
-        'file' => 'File', //new in cpg1.2.0
-        'title_set_to' => 'đặt tên cho', //new in cpg1.2.0
-        'submit_form' => 'Gửi đi', //new in cpg1.2.0
-        'updated_succesfully' => 'Cập nhật thành công', //new in cpg1.2.0
-        'error_create' => 'LỖI !', //new in cpg1.2.0
-        'continue' => 'xử lý thêm hình', //new in cpg1.2.0
-        'main_success' => 'File %s đựơc dùng như hình chính', //new in cpg1.2.0
-        'error_rename' => 'Lỗi trong khoảng  %s đến %s', //new in cpg1.2.0
-        'error_not_found' => 'File %s không tìm thấy', //new in cpg1.2.0
-        'back' => 'Trở về trang chính', //new in cpg1.2.0
-        'thumbs_wait' => 'Đang chỉnh sửa, vui lòng chờ ...', //new in cpg1.2.0
-        'thumbs_continue_wait' => 'Tiếp tục chỉnh sửa ...', //new in cpg1.2.0
-        'titles_wait' => 'Sửa tên, vui lòng chờ ...', //new in cpg1.2.0
-        'delete_wait' => 'Xoá tên,  vui lòng chờ ...', //new in cpg1.2.0
-        'replace_wait' => 'Sửa, xoá dung lựơng cũ, thay với dung lương mới, vui lòng chờ ...', //new in cpg1.2.0
-        'instruction' => 'Tài liệu nhanh', //new in cpg1.2.0
-        'instruction_action' => 'Chọn hoạt động', //new in cpg1.2.0
-        'instruction_parameter' => 'Chọn thông số', //new in cpg1.2.0
-        'instruction_album' => 'chọn album', //new in cpg1.2.0
-        'instruction_press' => 'Nhấn %s', //new in cpg1.2.0
-        'update' => 'Đang xử lý', //new in cpg1.2.0
-        'update_what' => 'Cái gì cần cập nhật', //new in cpg1.2.0
-        'update_thumb' => 'Chỉthumbnails', //new in cpg1.2.0
-        'update_pic' => 'Chỉ chỉnh dung lượng hình', //new in cpg1.2.0
-        'update_both' => 'Cả thumbnails và dung lượng hình', //new in cpg1.2.0
-        'update_number' => 'Số lần thực thi sau mỗi lần click', //new in cpg1.2.0
-        'update_option' => '(giảm nó xuống nếu bạn gặp vấn đề về timeout)', //new in cpg1.2.0
-        'filename_title' => 'Tên file &rArr; Tựa đề hình', //new in cpg1.2.0
-        'filename_how' => 'Làm sao để đổi tên file', //new in cpg1.2.0
-        'filename_remove' => 'xoá file .jpg và thay thế  _ với  khoảng trống', //new in cpg1.2.0
-        'filename_euro' => 'Thay 2003_11_23_13_20_20.jpg bằng 23/11/2003 13:20', //new in cpg1.2.0
-        'filename_us' => 'Thay 2003_11_23_13_20_20.jpg bằng 11/23/2003 13:20', //new in cpg1.2.0
-        'filename_time' => 'Thay 2003_11_23_13_20_20.jpg thành 13:20', //new in cpg1.2.0
-        'delete' => 'Thay tên hình hoặc dung lượng của hình', //new in cpg1.2.0
-        'delete_title' => 'Xoá tên hình', //new in cpg1.2.0
-        'delete_original' => 'Xoá dung lượng hình', //new in cpg1.2.0
-        'delete_replace' => 'Xoá dung lượng cũ của hình và thay thế với cái mới', //new in cpg1.2.0
-        'select_album' => 'Chọn album', //new in cpg1.2.0
+        'title' => 'Chỉnh kích cỡ hình', 
+        'what_it_does' => 'Nó là cái gì', 
+        'what_update_titles' => 'Sửa tự đề từ tên file tải lên', 
+        'what_delete_title' => 'Xoá tựa đề', 
+        'what_rebuild' => 'Chỉnh lại thumbnail và kích cỡ hình', 
+        'what_delete_originals' => 'Xoá dung lựơng cũ và thay thế với dung lương mới ', 
+        'file' => 'File', 
+        'title_set_to' => 'đặt tên cho', 
+        'submit_form' => 'Gửi đi', 
+        'updated_succesfully' => 'Cập nhật thành công', 
+        'error_create' => 'LỖI !', 
+        'continue' => 'xử lý thêm hình', 
+        'main_success' => 'File %s đựơc dùng như hình chính', 
+        'error_rename' => 'Lỗi trong khoảng  %s đến %s', 
+        'error_not_found' => 'File %s không tìm thấy', 
+        'back' => 'Trở về trang chính', 
+        'thumbs_wait' => 'Đang chỉnh sửa, vui lòng chờ ...', 
+        'thumbs_continue_wait' => 'Tiếp tục chỉnh sửa ...', 
+        'titles_wait' => 'Sửa tên, vui lòng chờ ...', 
+        'delete_wait' => 'Xoá tên,  vui lòng chờ ...', 
+        'replace_wait' => 'Sửa, xoá dung lựơng cũ, thay với dung lương mới, vui lòng chờ ...', 
+        'instruction' => 'Tài liệu nhanh', 
+        'instruction_action' => 'Chọn hoạt động', 
+        'instruction_parameter' => 'Chọn thông số', 
+        'instruction_album' => 'chọn album', 
+        'instruction_press' => 'Nhấn %s', 
+        'update' => 'Đang xử lý', 
+        'update_what' => 'Cái gì cần cập nhật', 
+        'update_thumb' => 'Chỉthumbnails', 
+        'update_pic' => 'Chỉ chỉnh dung lượng hình', 
+        'update_both' => 'Cả thumbnails và dung lượng hình', 
+        'update_number' => 'Số lần thực thi sau mỗi lần click', 
+        'update_option' => '(giảm nó xuống nếu bạn gặp vấn đề về timeout)', 
+        'filename_title' => 'Tên file &rArr; Tựa đề hình', 
+        'filename_how' => 'Làm sao để đổi tên file', 
+        'filename_remove' => 'xoá file .jpg và thay thế  _ với  khoảng trống', 
+        'filename_euro' => 'Thay 2003_11_23_13_20_20.jpg bằng 23/11/2003 13:20', 
+        'filename_us' => 'Thay 2003_11_23_13_20_20.jpg bằng 11/23/2003 13:20', 
+        'filename_time' => 'Thay 2003_11_23_13_20_20.jpg thành 13:20', 
+        'delete' => 'Thay tên hình hoặc dung lượng của hình', 
+        'delete_title' => 'Xoá tên hình', 
+        'delete_original' => 'Xoá dung lượng hình', 
+        'delete_replace' => 'Xoá dung lượng cũ của hình và thay thế với cái mới', 
+        'select_album' => 'Chọn album', 
 );
 
 ?>

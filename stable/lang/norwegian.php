@@ -1,16 +1,13 @@
 <?php
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery                                                 //
+// Coppermine Photo Gallery 1.2.1                                            //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Gregory DEMAR <gdemar@wanadoo.fr>               //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Stverud <henning@stoverud.com>         //
-//  http://www.stoverud.com/PHPhotoalbum/                                    //
-// ------------------------------------------------------------------------- //
-//  Hacked by Tarique Sani <tarique@sanisoft.com> and Girsh Nair             //
-//  <girish@sanisoft.com> see http://www.sanisoft.com/cpg/README.txt for     //
-//  details                                                                  //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -19,9 +16,9 @@
 // ------------------------------------------------------------------------- //
 
 $lang_translation_info = array( 
-'lang_name_english' => 'Norwegian',  //the name of your language in English, e.g. 'Greek' or 'Spanish' 
-'lang_name_native' => 'Norwegian', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Español' 
-'lang_country_code' => 'no', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es' 
+'lang_name_english' => 'Norwegian',  
+'lang_name_native' => 'Norwegian', 
+'lang_country_code' => 'no', 
 'trans_name'=> 'Øyvind Nondal', //the name of the translator - can be a nickname 
 'trans_email' => 'oyvindnondal@hotmail.com', //translator's email address (optional) 
 'trans_website' => 'http://home.no.net/asellus/dev/', //translator's website (optional) 
@@ -67,7 +64,7 @@ $lang_meta_album_names = array(
         'toprated' => 'Beste karakter', 
         'lasthits' => 'Siste visninger', 
         'search' => 'Søkeresultat', 
-        'favpics'=> 'Favoritter'//new in cpg1.2.0
+        'favpics'=> 'Favoritter'
 ); 
 
 $lang_errors = array(
@@ -114,8 +111,8 @@ $lang_main_menu = array(
 	'topn_lnk' => 'Mest viste',
 	'toprated_lnk' => 'Beste karakter',
 	'search_lnk' => 'Søk',
-	'fav_lnk' => 'Mine favoritter', //new in cpg1.2.0
-        'ban_lnk' => 'Ban Users', //new in cpg1.2.0
+	'fav_lnk' => 'Mine favoritter', 
+        'ban_lnk' => 'Ban Users', 
 );
 
 $lang_gallery_admin_menu = array(

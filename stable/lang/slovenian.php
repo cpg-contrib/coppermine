@@ -1,16 +1,13 @@
 <?php
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery                                                 //
+// Coppermine Photo Gallery 1.2.1                                            //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Gregory DEMAR <gdemar@wanadoo.fr>               //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Stoverud <henning@stoverud.com>         //
-//  http://www.stoverud.com/PHPhotoalbum/                                    //
-// ------------------------------------------------------------------------- //
-//  Hacked by Tarique Sani <tarique@sanisoft.com> and Girsh Nair             //
-//  <girish@sanisoft.com> see http://www.sanisoft.com/cpg/README.txt for     //
-//  details                                                                  //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -20,9 +17,9 @@
 
 // info about translators and translated language
 $lang_translation_info = array(
-'lang_name_english' => 'Slovenian',  //the name of your language in English, e.g. 'Greek' or 'Spanish'
-'lang_name_native' => 'Slovenšèina', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espa&ntilde;ol'
-'lang_country_code' => 'si', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es'
+'lang_name_english' => 'Slovenian',  
+'lang_name_native' => 'Slovenšèina', 
+'lang_country_code' => 'si', 
 'trans_name'=> 's55hh', //the name of the translator - can be a nickname
 'trans_email' => 's55hh.jani@siol.net', //translator's email address (optional)
 'trans_website' => 'http://slovhf.net/', //translator's website (optional)
@@ -62,13 +59,13 @@ $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clit
 $lang_meta_album_names = array(
         'random' => 'Nakljuène slike',
         'lastup' => 'Zadnje dodane slike',
-        'lastalb'=> 'Zadnji dodani albumi', //new in cpg1.2.0
+        'lastalb'=> 'Zadnji dodani albumi', 
         'lastcom' => 'Zadnji komentarji',
         'topn' => 'Najveè ogledov',
         'toprated' => 'Naj ocene',
         'lasthits' => 'Zadnji ogledi',
-        'search' => 'Rezultati iskanja', //new in cpg1.2.0
-        'favpics'=> 'Priljubljene slike' //new in cpg1.2.0
+        'search' => 'Rezultati iskanja', 
+        'favpics'=> 'Priljubljene slike' 
 );
 
 $lang_errors = array(
@@ -85,9 +82,9 @@ $lang_errors = array(
         'orphan_cat' => 'Kategorija ima doloèeno neobstojeèo nadrejeno kategorijo. Popravi napako v nastavitvah.',
         'directory_ro' => 'Direktorij \'%s\' ne dopušèa pisanja, slik ni možno pobrisati',
         'non_exist_comment' => 'Izbrani komentar ne obstaja.',
-        'pic_in_invalid_album' => 'Slika je v neobstojeèem albumu (%s)!?', //new in cpg1.2.0
-        'banned' => 'Trenutno imaš prepoved dostopa do teh strani.', //new in cpg1.2.0
-        'not_with_udb' => 'Ta ukaz je onemogoèen, ker je premaknjen v forum. Ali to kar želiš narediti ni omogoèeno v nastavitvah ali pa je predvideno za izvedbo v forumu.', //new in cpg1.2.0
+        'pic_in_invalid_album' => 'Slika je v neobstojeèem albumu (%s)!?', 
+        'banned' => 'Trenutno imaš prepoved dostopa do teh strani.', 
+        'not_with_udb' => 'Ta ukaz je onemogoèen, ker je premaknjen v forum. Ali to kar želiš narediti ni omogoèeno v nastavitvah ali pa je predvideno za izvedbo v forumu.', 
 );
 
 // ------------------------------------------------------------------------- //
@@ -115,7 +112,7 @@ $lang_main_menu = array(
         'topn_lnk' => 'Najveè ogledov',
         'toprated_lnk' => 'Najbolj ocenjeno',
         'search_lnk' => 'Iskanje',
-        'fav_lnk' => 'Moji favoriti', //new in cpg1.2.0
+        'fav_lnk' => 'Moji favoriti', 
 
 );
 
@@ -128,8 +125,8 @@ $lang_gallery_admin_menu = array(
         'groups_lnk' => 'Skupine',
         'comments_lnk' => 'Komentarji',
         'searchnew_lnk' => 'Najdi nove slike',
-        'util_lnk' => 'Spremeni velikost slike', //new in cpg1.2.0
-        'ban_lnk' => 'Zavrni uporabnika', //new in cpg1.2.0
+        'util_lnk' => 'Spremeni velikost slike', 
+        'ban_lnk' => 'Zavrni uporabnika', 
 );
 
 $lang_user_admin_menu = array(
@@ -151,14 +148,14 @@ $lang_album_list = array(
 $lang_thumb_view = array(
         'date' => 'Datum',
         //Sort by filename and title
-        'name' => 'Datoteka', //new in cpg1.2.0
-        'title' => 'Naziv', //new in cpg1.2.0
+        'name' => 'Datoteka', 
+        'title' => 'Naziv', 
         'sort_da' => 'Sortiraj po datumu narašèujoèe',
         'sort_dd' => 'Sortiraj po datumu padajoèe',
         'sort_na' => 'Sortiraj po imenu datoteke narašèujoèe',
         'sort_nd' => 'Sortiraj po imenu datoteke padajoèe',
-        'sort_ta' => 'Sortiraj po nazivu narašèujoèe', //new in cpg1.2.0
-        'sort_td' => 'Sortiraj po nazivu padajoèe', //new in cpg1.2.0
+        'sort_ta' => 'Sortiraj po nazivu narašèujoèe', 
+        'sort_td' => 'Sortiraj po nazivu padajoèe', 
         'pic_on_page' => 'Št. slik:%d (št. strani:%d)',
         'user_on_page' => 'Št. uporabnikov:%d (št. strani:%d)'
 );
@@ -328,8 +325,8 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'restore_success' => 'Povrnjene so bile osnovne nastavitve galerije',
         'name_a' => 'Naziv narašèujoèe',
         'name_d' => 'Naziv padajoèe',
-        'title_a' => 'Naslov narašèujoèe', //new in cpg1.2.0
-        'title_d' => 'Naslov padajoèe', //new in cpg1.2.0
+        'title_a' => 'Naslov narašèujoèe', 
+        'title_d' => 'Naslov padajoèe', 
         'date_a' => 'Datum narašèujoèe',
         'date_d' => 'Datum padajoèe',
         'th_any' => 'Max Aspect',
@@ -355,7 +352,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Število kolon za prikaz albumov', 'album_list_cols', 0),
         array('Velikost ikon v pixlih', 'alb_list_thumb_size', 0),
         array('Vsebina na glavni strani', 'main_page_layout', 0),
-        array('Prikaz ikon albumov za prvi nivo kategorij','first_level',1), //new in cpg1.2.0
+        array('Prikaz ikon albumov za prvi nivo kategorij','first_level',1), 
 
         'Prikaz ikon',
         array('Število kolon na strani z ikonami', 'thumbcols', 0),
@@ -375,13 +372,13 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Max. število zankov v besedi', 'max_com_wlength', 0),
         array('Max. število vrstic komentarja', 'max_com_lines', 0),
         array('Max. velikost komentarja', 'max_com_size', 0),
-        array('Prikaži filmski trak z ikonami', 'display_film_strip', 1), //new in cpg1.2.0
-        array('Št. ikon na traku', 'max_film_strip_items', 0), //new in cpg1.2.0
+        array('Prikaži filmski trak z ikonami', 'display_film_strip', 1), 
+        array('Št. ikon na traku', 'max_film_strip_items', 0), 
 
         'Nastavitve slik in ikon',
         array('Kvaliteta za JPEG datoteke', 'jpeg_qual', 0),
-        array('Max. velikost za ikone <b>*</b>', 'thumb_width', 0), //new in cpg1.2.0
-        array('Velikost uporabi za širino ali višino ali razmerje ikone <b>*</b>', 'thumb_use', 7),    //new in cpg1.2.0
+        array('Max. velikost za ikone <b>*</b>', 'thumb_width', 0), 
+        array('Velikost uporabi za širino ali višino ali razmerje ikone <b>*</b>', 'thumb_use', 7),    
         array('Ustvari vmesne slike','make_intermediate',1),
         array('Max. širina ali višina vmesnih slik <b>*</b>', 'picture_width', 0),
         array('Max. velikost datotek/slik (kB)', 'max_upl_size', 0),
@@ -400,7 +397,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Polje 4', 'user_field4_name', 0),
 
         'Dodatne nastavitve za slike in ikone',
-        array('Prikaži ikone privatnih albumov neprijavljenim uporabnikom','show_private',1), //new in cpg1.2.0
+        array('Prikaži ikone privatnih albumov neprijavljenim uporabnikom','show_private',1), 
         array('Prepovedani znaki v imenih datotek', 'forbiden_fname_char',0),
         array('Dovoljene vrste datotek za dodajanje slik', 'allowed_file_extensions',0),
         array('Naèin kreiranja ikon','thumb_method',2),
@@ -550,9 +547,9 @@ $lang_picinfo = array(
         'Exposure time' => 'Èas',
         'Focal length' => 'Gorišèna razdalja',
         'Comment' => 'Komentar',
-        'addFav'=>'Dodaj med priljubljene', //new in cpg1.2.0
-        'addFavPhrase'=>'Priljubljene', //new in cpg1.2.0
-        'remFav'=>'Odstrani iz priljubljenih', //new in cpg1.2.0
+        'addFav'=>'Dodaj med priljubljene', 
+        'addFavPhrase'=>'Priljubljene', 
+        'remFav'=>'Odstrani iz priljubljenih', 
 );
 
 $lang_display_comments = array(
@@ -560,13 +557,13 @@ $lang_display_comments = array(
         'edit_title' => 'Uredi komentar',
         'confirm_delete' => 'Res želiš pobrisati komentar?',
         'add_your_comment' => 'Dodaj komentar',
-        'name'=>'Ime', //new in cpg1.2.0
-        'comment'=>'Komentar', //new in cpg1.2.0
-        'your_name' => 'Anonimnež', //new in cpg1.2.0
+        'name'=>'Ime', 
+        'comment'=>'Komentar', 
+        'your_name' => 'Anonimnež', 
 );
 
 $lang_fullsize_popup = array(
-        'click_to_close' => 'Klikni sliko, da zapreš to okno', //new in cpg1.2.0
+        'click_to_close' => 'Klikni sliko, da zapreš to okno', 
 );
 
 }
@@ -896,14 +893,14 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('BANNING_PHP')) $lang_banning_php = array(
-                'title' => 'Zavrni uporabnika', //new in cpg1.2.0
-                'user_name' => 'Uporabniško ime', //new in cpg1.2.0
-                'ip_address' => 'IP naslov', //new in cpg1.2.0
-                'expiry' => 'Poteèe (za trajno - pusti prazno)', //new in cpg1.2.0
-                'edit_ban' => 'Shrani spremembe', //new in cpg1.2.0
-                'delete_ban' => 'Pobriši', //new in cpg1.2.0
-                'add_new' => 'Dodaj novo prepoved', //new in cpg1.2.0
-                'add_ban' => 'Dodaj', //new in cpg1.2.0
+                'title' => 'Zavrni uporabnika', 
+                'user_name' => 'Uporabniško ime', 
+                'ip_address' => 'IP naslov', 
+                'expiry' => 'Poteèe (za trajno - pusti prazno)', 
+                'edit_ban' => 'Shrani spremembe', 
+                'delete_ban' => 'Pobriši', 
+                'add_new' => 'Dodaj novo prepoved', 
+                'add_ban' => 'Dodaj', 
 );
 
 // ------------------------------------------------------------------------- //
@@ -972,50 +969,50 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UTIL_PHP')) $lang_util_php = array(
-        'title' => 'Spremeni velikost slik', //new in cpg1.2.0
-        'what_it_does' => 'Kaj to pomeni', //new in cpg1.2.0
-        'what_update_titles' => 'Kreira imena slik iz imena datotek', //new in cpg1.2.0
-        'what_delete_title' => 'Brisanje imen', //new in cpg1.2.0
-        'what_rebuild' => 'Ponastavi ikone in spremeni velikost slik', //new in cpg1.2.0
-        'what_delete_originals' => 'Pobriše originalne slike in jih nadomesti z novimi', //new in cpg1.2.0
-        'file' => 'Datoteka', //new in cpg1.2.0
-        'title_set_to' => 'naslov spremenjen v', //new in cpg1.2.0
-        'submit_form' => 'pošlji', //new in cpg1.2.0
-        'updated_succesfully' => 'uspešno posodobljeno', //new in cpg1.2.0
-        'error_create' => 'NAPAKA pri kreiranju', //new in cpg1.2.0
-        'continue' => 'Nadaljuj na naslednjih slikah', //new in cpg1.2.0
-        'main_success' => 'Datoteka %s je bila uporabljena za originalno sliko', //new in cpg1.2.0
-        'error_rename' => 'Napaka pri preimenovanju %s v %s', //new in cpg1.2.0
-        'error_not_found' => 'Ne najdem datoteke %s', //new in cpg1.2.0
-        'back' => 'nazaj na glavno stran', //new in cpg1.2.0
-        'thumbs_wait' => 'Poteka posodabljanje ikon in/ali spreminjanje slik, prosim poèakaj...', //new in cpg1.2.0
-        'thumbs_continue_wait' => 'Nadaljujem s posodabljanjem ikon in/ali slik, prosim poèakaj...', //new in cpg1.2.0
-        'titles_wait' => 'Posodabljanje naslovov, prosim poèakaj...', //new in cpg1.2.0
-        'delete_wait' => 'Brisanje naslovov, prosim poèakaj...', //new in cpg1.2.0
-        'replace_wait' => 'Brisanje originalnih slik in nadomešèanje s spremenjenimi, prosim poèakaj..', //new in cpg1.2.0
-        'instruction' => 'Kratka navodila', //new in cpg1.2.0
-        'instruction_action' => 'Izberi ukaz', //new in cpg1.2.0
-        'instruction_parameter' => 'Nastavi parametre', //new in cpg1.2.0
-        'instruction_album' => 'Izberi album', //new in cpg1.2.0
-        'instruction_press' => 'Pritisni %s', //new in cpg1.2.0
-        'update' => 'Posodobi ikone in/ali spremeni velikost slik', //new in cpg1.2.0
-        'update_what' => 'Kaj naj posodobim', //new in cpg1.2.0
-        'update_thumb' => 'Samo ikone', //new in cpg1.2.0
-        'update_pic' => 'Samo spremenjene slike', //new in cpg1.2.0
-        'update_both' => 'Ikone in spremenjene slike', //new in cpg1.2.0
-        'update_number' => 'Število slik za spreminjanje za vsak klik', //new in cpg1.2.0
-        'update_option' => '(Poskusi z manjšo vrednostjo, èe pride do poteka èasa med izvajanjem opracije)', //new in cpg1.2.0
-        'filename_title' => 'Ime datoteke &rArr; Ime slike', //new in cpg1.2.0
-        'filename_how' => 'Kako naj pretvorim ime datoteke', //new in cpg1.2.0
-        'filename_remove' => 'Odstrani konènico .jpg in nadomesti _ (podèrtaj) s presledki', //new in cpg1.2.0
-        'filename_euro' => 'Spremeni 2003_11_23_13_20_20.jpg v 23/11/2003 13:20', //new in cpg1.2.0
-        'filename_us' => 'Spremeni 2003_11_23_13_20_20.jpg v 11/23/2003 13:20', //new in cpg1.2.0
-        'filename_time' => 'Spremeni 2003_11_23_13_20_20.jpg v 13:20', //new in cpg1.2.0
-        'delete' => 'Pobriši naslove slik ali originalne slike', //new in cpg1.2.0
-        'delete_title' => 'Pobriši naslove slik', //new in cpg1.2.0
-        'delete_original' => 'Pobriši originalne slike', //new in cpg1.2.0
-        'delete_replace' => 'Pobriši originalne slike, nadomesti jih s spremenjenimi (po velikosti)', //new in cpg1.2.0
-        'select_album' => 'Izberi album', //new in cpg1.2.0
+        'title' => 'Spremeni velikost slik', 
+        'what_it_does' => 'Kaj to pomeni', 
+        'what_update_titles' => 'Kreira imena slik iz imena datotek', 
+        'what_delete_title' => 'Brisanje imen', 
+        'what_rebuild' => 'Ponastavi ikone in spremeni velikost slik', 
+        'what_delete_originals' => 'Pobriše originalne slike in jih nadomesti z novimi', 
+        'file' => 'Datoteka', 
+        'title_set_to' => 'naslov spremenjen v', 
+        'submit_form' => 'pošlji', 
+        'updated_succesfully' => 'uspešno posodobljeno', 
+        'error_create' => 'NAPAKA pri kreiranju', 
+        'continue' => 'Nadaljuj na naslednjih slikah', 
+        'main_success' => 'Datoteka %s je bila uporabljena za originalno sliko', 
+        'error_rename' => 'Napaka pri preimenovanju %s v %s', 
+        'error_not_found' => 'Ne najdem datoteke %s', 
+        'back' => 'nazaj na glavno stran', 
+        'thumbs_wait' => 'Poteka posodabljanje ikon in/ali spreminjanje slik, prosim poèakaj...', 
+        'thumbs_continue_wait' => 'Nadaljujem s posodabljanjem ikon in/ali slik, prosim poèakaj...', 
+        'titles_wait' => 'Posodabljanje naslovov, prosim poèakaj...', 
+        'delete_wait' => 'Brisanje naslovov, prosim poèakaj...', 
+        'replace_wait' => 'Brisanje originalnih slik in nadomešèanje s spremenjenimi, prosim poèakaj..', 
+        'instruction' => 'Kratka navodila', 
+        'instruction_action' => 'Izberi ukaz', 
+        'instruction_parameter' => 'Nastavi parametre', 
+        'instruction_album' => 'Izberi album', 
+        'instruction_press' => 'Pritisni %s', 
+        'update' => 'Posodobi ikone in/ali spremeni velikost slik', 
+        'update_what' => 'Kaj naj posodobim', 
+        'update_thumb' => 'Samo ikone', 
+        'update_pic' => 'Samo spremenjene slike', 
+        'update_both' => 'Ikone in spremenjene slike', 
+        'update_number' => 'Število slik za spreminjanje za vsak klik', 
+        'update_option' => '(Poskusi z manjšo vrednostjo, èe pride do poteka èasa med izvajanjem opracije)', 
+        'filename_title' => 'Ime datoteke &rArr; Ime slike', 
+        'filename_how' => 'Kako naj pretvorim ime datoteke', 
+        'filename_remove' => 'Odstrani konènico .jpg in nadomesti _ (podèrtaj) s presledki', 
+        'filename_euro' => 'Spremeni 2003_11_23_13_20_20.jpg v 23/11/2003 13:20', 
+        'filename_us' => 'Spremeni 2003_11_23_13_20_20.jpg v 11/23/2003 13:20', 
+        'filename_time' => 'Spremeni 2003_11_23_13_20_20.jpg v 13:20', 
+        'delete' => 'Pobriši naslove slik ali originalne slike', 
+        'delete_title' => 'Pobriši naslove slik', 
+        'delete_original' => 'Pobriši originalne slike', 
+        'delete_replace' => 'Pobriši originalne slike, nadomesti jih s spremenjenimi (po velikosti)', 
+        'select_album' => 'Izberi album', 
 );
 
 ?>

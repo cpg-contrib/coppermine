@@ -1,8 +1,8 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.2.0                                            //
+// Coppermine Photo Gallery 1.2.1                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR <gdemar@wanadoo.fr>                 //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -17,9 +17,9 @@
 
 // info about translators and translated language
 $lang_translation_info = array(
-'lang_name_english' => 'Arabic',  //the name of your language in English, e.g. 'Greek' or 'Spanish'
-'lang_name_native' => '⁄—»Ì', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espa&ntilde;ol'
-'lang_country_code' => 'ar', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es'
+'lang_name_english' => 'Arabic',  
+'lang_name_native' => '⁄—»Ì', 
+'lang_country_code' => 'ar', 
 'trans_name'=> 'Waheed Alsayer', //the name of the translator - can be a nickname
 'trans_email' => 'waheed@shamayel.com', //translator's email address (optional)
 'trans_website' => 'http://www.shamayel.com/', //translator's website (optional)
@@ -65,7 +65,7 @@ $lang_meta_album_names = array(
 	'toprated' => '«⁄·«Â«  ﬁÌÌ„«',
 	'lasthits' => '¬Œ— „« ‘ÊÂœ',
 	'search' => '‰ «∆Ã «·»Õ‹À',
-        'favpics'=> '«·’Ê— «·„›÷·…' //new in cpg1.2.0
+        'favpics'=> '«·’Ê— «·„›÷·…' 
 );
 
 $lang_errors = array(

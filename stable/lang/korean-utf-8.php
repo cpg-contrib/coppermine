@@ -1,16 +1,13 @@
 ﻿<?php
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery                                                 //
+// Coppermine Photo Gallery 1.2.1                                            //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Gregory DEMAR <gdemar@wanadoo.fr>               //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Stoverud <henning@stoverud.com>         //
-//  http://www.stoverud.com/PHPhotoalbum/                                    //
-// ------------------------------------------------------------------------- //
-//  Hacked by Tarique Sani <tarique@sanisoft.com> and Girsh Nair             //
-//  <girish@sanisoft.com> see http://www.sanisoft.com/cpg/README.txt for     //
-//  details                                                                  //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -20,9 +17,9 @@
 
 // info about translators and translated language
 $lang_translation_info = array(
-'lang_name_english' => 'Korean',  //the name of your language in English, e.g. 'Greek' or 'Spanish'
-'lang_name_native' => 'ÇÑ±¹¾î', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espa&ntilde;ol'
-'lang_country_code' => 'kr', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es'
+'lang_name_english' => 'Korean',  
+'lang_name_native' => 'ÇÑ±¹¾î', 
+'lang_country_code' => 'kr', 
 'trans_name'=> 'mle21', //the name of the translator - can be a nickname
 'trans_email' => 'mle21@netian.com', //translator's email address (optional)
 'trans_website' => '', //translator's website (optional)
@@ -62,13 +59,13 @@ $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clit
 $lang_meta_album_names = array(
 	'random' => 'Æ÷Åä´º½º °¶·¯¸®',
         'lastup' => 'ÃÖ±Ù ÀÌ¹ÌÁö',
-        'lastalb'=> 'ÃÖ±Ù ¼öÁ¤µÈ ¾Ù¹ü', //new in cpg1.2.0
+        'lastalb'=> 'ÃÖ±Ù ¼öÁ¤µÈ ¾Ù¹ü', 
         'lastcom' => 'ÃÖ±Ù ÄÚ¸àÆ®',
         'topn' => 'ÃÖ´Ù Á¶È¸',
         'toprated' => 'ÃÖ°í ÆòÁ¡',
         'lasthits' => '¸¶Áö¸· Á¶È¸',
-        'search' => '°Ë»ö °á°ú', //new in cpg1.2.0
-        'favpics'=> '¼±È£ »çÁø' //new in cpg1.2.0
+        'search' => '°Ë»ö °á°ú', 
+        'favpics'=> '¼±È£ »çÁø' 
 );
 
 $lang_errors = array(
@@ -85,9 +82,9 @@ $lang_errors = array(
         'orphan_cat' => '»óÀ§ Ä«Å×°í¸®°¡ Á¸ÀçÇÏÁö¾Ê½À´Ï´Ù. °ü¸®ÀÚ¿¡°Ô ¹®ÀÇÇÏ¼¼¿ä.',
         'directory_ro' => 'Æú´õ \'%s\' ¿¡ ¾²±â¸¦ ÇÒ ¼ö ¾ø½À´Ï´Ù. »çÁøÀ» Áö¿ï ¼ö ¾ø½À´Ï´Ù.',
         'non_exist_comment' => '¼±ÅÃÇÑ ÄÚ¸àÆ®´Â Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.',
-        'pic_in_invalid_album' => 'Á¸ÀçÇÏÁö¾Ê´Â ¾Ù¹üÀÌ¹ÌÁö(%s)!?', //new in cpg1.2.0
-        'banned' => '±ÍÇÏ´Â Áö±Ý ÀÌ»çÀÌÆ®ÀÇ »ç¿ë±ÝÁöÀÚ¸í´Ü¿¡ ÀÖ½À´Ï´Ù.', //new in cpg1.2.0
-        'not_with_udb' => 'ÀÌ±â´ÉÀ» ÄíÆÛ¸¶ÀÎ¿¡¼­ »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù. ÀÌ±â´ÉÀº Æ÷·³¼ÒÇÁÆ®¿þ¾î¿¡ Æ÷ÇÔÀÌ µÇ¾î ÀÖ±â ¶§¹®ÀÔ´Ï´Ù.', //new in cpg1.2.0
+        'pic_in_invalid_album' => 'Á¸ÀçÇÏÁö¾Ê´Â ¾Ù¹üÀÌ¹ÌÁö(%s)!?', 
+        'banned' => '±ÍÇÏ´Â Áö±Ý ÀÌ»çÀÌÆ®ÀÇ »ç¿ë±ÝÁöÀÚ¸í´Ü¿¡ ÀÖ½À´Ï´Ù.', 
+        'not_with_udb' => 'ÀÌ±â´ÉÀ» ÄíÆÛ¸¶ÀÎ¿¡¼­ »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù. ÀÌ±â´ÉÀº Æ÷·³¼ÒÇÁÆ®¿þ¾î¿¡ Æ÷ÇÔÀÌ µÇ¾î ÀÖ±â ¶§¹®ÀÔ´Ï´Ù.', 
 );
 
 // ------------------------------------------------------------------------- //
@@ -115,7 +112,7 @@ $lang_main_menu = array(
         'topn_lnk' => 'ÃÖ´ÙÁ¶È¸',
         'toprated_lnk' => 'ÃÖ°íÆòÁ¡',
         'search_lnk' => '°Ë»ö',
-        'fav_lnk' => 'Áñ°ÜÃ£±â', //new in cpg1.2.0
+        'fav_lnk' => 'Áñ°ÜÃ£±â', 
 
 );
 
@@ -128,8 +125,8 @@ $lang_gallery_admin_menu = array(
         'groups_lnk' => '±×·ì°ü¸®',
         'comments_lnk' => 'ÄÚ¸àÆ®°ü¸®',
         'searchnew_lnk' => 'FTP¾÷·ÎµåÆÄÀÏ¿¬°á',
-        'util_lnk' => 'ÀÌ¹ÌÁöÅ©±â ¼öÁ¤', //new in cpg1.2.0
-        'ban_lnk' => '»ç¿ë±ÝÁöÀÚ', //new in cpg1.2.0
+        'util_lnk' => 'ÀÌ¹ÌÁöÅ©±â ¼öÁ¤', 
+        'ban_lnk' => '»ç¿ë±ÝÁöÀÚ', 
 );
 
 $lang_user_admin_menu = array(
@@ -151,14 +148,14 @@ $lang_album_list = array(
 $lang_thumb_view = array(
         'date' => 'ÀÏÀÚ',
         //Sort by filename and title
-        'name' => 'ÆÄÀÏÀÌ¸§', //new in cpg1.2.0
-        'title' => 'Á¦¸ñ', //new in cpg1.2.0
+        'name' => 'ÆÄÀÏÀÌ¸§', 
+        'title' => 'Á¦¸ñ', 
         'sort_da' => 'ÀÏÀÚ¼ø ¼øÂ÷¹è¿­',
         'sort_dd' => 'ÀÏÀÚ¼ø ¿ªÂ÷¹è¿­',
         'sort_na' => 'ÀÌ¸§¼ø ¼øÂ÷¹è¿­',
         'sort_nd' => 'ÀÌ¸§¼ø ¿ªÂ÷¹è¿­',
-        'sort_ta' => 'Á¦¸ñ¼ø ¼øÂ÷¹è¿­', //new in cpg1.2.0
-        'sort_td' => 'Á¦¸ñ¼ø ¿ªÂ÷¹è¿­', //new in cpg1.2.0
+        'sort_ta' => 'Á¦¸ñ¼ø ¼øÂ÷¹è¿­', 
+        'sort_td' => 'Á¦¸ñ¼ø ¿ªÂ÷¹è¿­', 
         'pic_on_page' => '»çÁø: %d  ÆäÀÌÁö: %d',
         'user_on_page' => '»ç¿ëÀÚ: %d  ÆäÀÌÁö: %d'
 );
@@ -328,8 +325,8 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'restore_success' => '±âº»¼³Á¤À¸·Î º¯°æµÇ¾ú½À´Ï´Ù',
         'name_a' => 'ÀÌ¸§¼ø ¼øÂ÷¹è¿­',
         'name_d' => 'ÀÌ¸§¼ø ¿ªÂ÷¹è¿­',
-        'title_a' => 'Á¦¸ñ¼ø ¼øÂ÷¹è¿­', //new in cpg1.2.0
-        'title_d' => 'Á¦¸ñ¼ø ¿ªÂ÷¹è¿­', //new in cpg1.2.0
+        'title_a' => 'Á¦¸ñ¼ø ¼øÂ÷¹è¿­', 
+        'title_d' => 'Á¦¸ñ¼ø ¿ªÂ÷¹è¿­', 
         'date_a' => 'ÀÏÀÚ¼ø ¼øÂ÷¹è¿­',
         'date_d' => 'ÀÏÀÚ¼ø ¿ªÂ÷¹è¿­',
         'th_any' => 'Max Aspect',
@@ -353,7 +350,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('¾Ù¹üÀÇ ¼¼·Î ¿­', 'album_list_cols', 0),
         array('½æ³×ÀÏ Å©±â(pixels)', 'alb_list_thumb_size', 0),
         array('¸ÞÀÎÆäÀÌÁö¿¡ ºÒ·¯¿Ã ÄÁÅÙÆ®', 'main_page_layout', 0),
-        array('Ä«Å×°í¸®ÀÇ 1Â÷·¹º§ ¾Ù¹ü½æ³×ÀÏ º¸±â','first_level',1), //new in cpg1.2.0
+        array('Ä«Å×°í¸®ÀÇ 1Â÷·¹º§ ¾Ù¹ü½æ³×ÀÏ º¸±â','first_level',1), 
 
         '½æ³×ÀÏ¸ñ·Ï ¼³Á¤',
         array('½æ³×ÀÏ ÄÃ·³¼ö', 'thumbcols', 0),
@@ -373,13 +370,13 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('´Ü¾î¹®ÀÚ ±æÀÌ(¶ç¿ö¾²±â¾øÀÌ)', 'max_com_wlength', 0),
 	array('ÄÚ¸àÆ® ¶óÀÎ Á¦ÇÑ', 'max_com_lines', 0),
 	array('ÄÚ¸àÆ® ÃÊ´ë ¹®ÀÚ¼ö', 'max_com_size', 0),
-        array('ÇÊ¸§½ºÆ®¸³ º¸±â', 'display_film_strip', 1), //new in cpg1.2.0
-        array('ÇÊ¸§½ºÆ®¸³ÀÇ Ç×¸ñ°¹¼ö', 'max_film_strip_items', 0), //new in cpg1.2.0
+        array('ÇÊ¸§½ºÆ®¸³ º¸±â', 'display_film_strip', 1), 
+        array('ÇÊ¸§½ºÆ®¸³ÀÇ Ç×¸ñ°¹¼ö', 'max_film_strip_items', 0), 
 
         'ÀÌ¹ÌÁö ¹× ½æ³×ÀÏ ¼³Á¤',
         array('JPEG Ä÷¸®Æ¼', 'jpeg_qual', 0),
-        array('½æ³×ÀÏ °¡·Î,¼¼·Î ÃÖ´ë<b>*</b>', 'thumb_width', 0), //new in cpg1.2.0
-        array('µð¸àÁÔ»ç¿ë (°¡·Î È¤Àº ¼¼·Î È¤Àº ½æ³×ÀÏÀÇ ÃÖ´ë¸ð¾ç)<b>*</b>', 'thumb_use', 7), //new in cpg1.2.0
+        array('½æ³×ÀÏ °¡·Î,¼¼·Î ÃÖ´ë<b>*</b>', 'thumb_width', 0), 
+        array('µð¸àÁÔ»ç¿ë (°¡·Î È¤Àº ¼¼·Î È¤Àº ½æ³×ÀÏÀÇ ÃÖ´ë¸ð¾ç)<b>*</b>', 'thumb_use', 7), 
         array('ÀÌ¹ÌÁö º¸±â¿¡ »õ·Î¿î ÆÄÀÏ»ý¼º','make_intermediate',1),
 	array('»õ·Î »ý¼ºµÉ ÆÄÀÏÀÇ ÃÖ´ëÅ©±â(Æø)<b>*</b>', 'picture_width', 0),
         array('¾÷·Îµå ÀÌ¹ÌÁö ÃÖ´ë¿ë·® (KB)', 'max_upl_size', 0),
@@ -398,7 +395,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Field 4 name', 'user_field4_name', 0),
 
         'ÀÌ¹ÌÁö¿Í ½æ³×ÀÏ °í±Þ¼³Á¤',
-        array('·Î±×ÀÎ µÇÁö ¾ÊÀº »ç¿ëÀÚ¿¡°Ô °³ÀÏ¾Ù¹ü ¾ÆÀÌÄÜ º¸¿©ÁÖ±â','show_private',1), //new in cpg1.2.0
+        array('·Î±×ÀÎ µÇÁö ¾ÊÀº »ç¿ëÀÚ¿¡°Ô °³ÀÏ¾Ù¹ü ¾ÆÀÌÄÜ º¸¿©ÁÖ±â','show_private',1), 
         array('ÆÄÀÏ ÀÌ¸§¿¡ »ç¿ë±ÝÁöÇÒ ¹®ÀÚ', 'forbiden_fname_char',0),
         array('Çã¿ëÇÒ ÀÌ¹ÌÁöÆÄÀÏ È®ÀåÀÚ', 'allowed_file_extensions',0),
         array('ÀÌ¹ÌÁö Å©±âÁ¶Àý ¹æ¹ý','thumb_method',2),
@@ -517,9 +514,9 @@ $lang_picinfo = array(
         'Exposure time' => 'Exposure time',
         'Focal length' => 'Focal length',
         'Comment' => 'ÄÚ¸àÆ®',
-        'addFav'=>'Áñ°ÜÃ£±â¿¡ Ãß°¡', //new in cpg1.2.0
-        'addFavPhrase'=>'Áñ°ÜÃ£±â', //new in cpg1.2.0
-        'remFav'=>'Áñ°ÜÃ£±â¿¡¼­ »èÁ¦', //new in cpg1.2.0
+        'addFav'=>'Áñ°ÜÃ£±â¿¡ Ãß°¡', 
+        'addFavPhrase'=>'Áñ°ÜÃ£±â', 
+        'remFav'=>'Áñ°ÜÃ£±â¿¡¼­ »èÁ¦', 
 );
 
 $lang_display_comments = array(
@@ -527,13 +524,13 @@ $lang_display_comments = array(
         'edit_title' => 'ÄÚ¸àÆ® ¼öÁ¤',
         'confirm_delete' => 'ÄÚ¸àÆ®¸¦ »èÁ¦ÇÏ½Ã°Ú½À´Ï±î ?',
         'add_your_comment' => 'ÄÚ¸àÆ® µî·Ï',
-        'name'=>'ÀÌ¸§', //new in cpg1.2.0
-        'comment'=>'ÄÚ¸àÆ®', //new in cpg1.2.0
-        'your_name' => 'ÀÏÁö¸Å', //new in cpg1.2.0
+        'name'=>'ÀÌ¸§', 
+        'comment'=>'ÄÚ¸àÆ®', 
+        'your_name' => 'ÀÏÁö¸Å', 
 );
 
 $lang_fullsize_popup = array(
-        'click_to_close' => 'È­¸é´Ý±â:ÀÌ¹ÌÁö¿¡ Å¬¸¯', //new in cpg1.2.0
+        'click_to_close' => 'È­¸é´Ý±â:ÀÌ¹ÌÁö¿¡ Å¬¸¯', 
 );
 
 }
@@ -864,14 +861,14 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('BANNING_PHP')) $lang_banning_php = array(
-                'title' => '»ç¿ë±ÝÁöÀÚ', //new in cpg1.2.0
-                'user_name' => '»ç¿ëÀÚÀÌ¸§', //new in cpg1.2.0
-                'ip_address' => 'IP ÁÖ¼Ò', //new in cpg1.2.0
-                'expiry' => 'À¯È¿±â°£ (ºóÄ­Àº ¿µ±¸)', //new in cpg1.2.0
-                'edit_ban' => 'º¯°æ»çÇ× ÀúÀå', //new in cpg1.2.0
-                'delete_ban' => '»èÁ¦', //new in cpg1.2.0
-                'add_new' => '»ç¿ë±ÝÁöÀÚ Ãß°¡', //new in cpg1.2.0
-                'add_ban' => 'Ãß°¡', //new in cpg1.2.0
+                'title' => '»ç¿ë±ÝÁöÀÚ', 
+                'user_name' => '»ç¿ëÀÚÀÌ¸§', 
+                'ip_address' => 'IP ÁÖ¼Ò', 
+                'expiry' => 'À¯È¿±â°£ (ºóÄ­Àº ¿µ±¸)', 
+                'edit_ban' => 'º¯°æ»çÇ× ÀúÀå', 
+                'delete_ban' => '»èÁ¦', 
+                'add_new' => '»ç¿ë±ÝÁöÀÚ Ãß°¡', 
+                'add_ban' => 'Ãß°¡', 
 );
 
 // ------------------------------------------------------------------------- //
@@ -940,50 +937,50 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UTIL_PHP')) $lang_util_php = array(
-        'title' => 'ÀÌ¹ÌÁöÅ©±â¼öÁ¤', //new in cpg1.2.0
-        'what_it_does' => 'What it does', //new in cpg1.2.0
-        'what_update_titles' => 'ÆÄÀÏÀÌ¸§À¸·Î Á¦¸ñ¼öÁ¤', //new in cpg1.2.0
-        'what_delete_title' => 'Á¦¸ñ»èÁ¦', //new in cpg1.2.0
-        'what_rebuild' => '½æ³×ÀÏ ÀçÀÛ¼º°ú ÀÌ¹ÌÁöÅ©±âº¯°æ', //new in cpg1.2.0
-        'what_delete_originals' => 'Deletes original sized photos replacing them with the sized version', //new in cpg1.2.0
-        'file' => 'ÆÄÀÏ', //new in cpg1.2.0
-        'title_set_to' => 'Á¦¸ñÀ» ', //new in cpg1.2.0
-        'submit_form' => 'Á¦Ãâ', //new in cpg1.2.0
-        'updated_succesfully' => 'º¯°æ ¼º°ø', //new in cpg1.2.0
-        'error_create' => '¿À·ù¹ß»ý', //new in cpg1.2.0
-        'continue' => 'Process more images', //new in cpg1.2.0
-        'main_success' => 'The file %s was successfully used as main picture', //new in cpg1.2.0
-        'error_rename' => '%s À» %s' ·Î ÀÌ¸§ º¯°æÁß ¿À·ù¹ß»ý', //new in cpg1.2.0
-        'error_not_found' => 'ÆÄÀÏ %s À» Ã£À»¼ö ¾ø½À´Ï´Ù.', //new in cpg1.2.0
-        'back' => '¸ÞÀÎÀ¸·Î', //new in cpg1.2.0
-        'thumbs_wait' => '½æ³×ÀÏ°ú Å©±â°¡ ¼öÁ¤µÈ ÀÌ¹ÌÁö¸¦ º¯°æÇÏ°í ÀÖ½À´Ï´Ù, ±â´Ù¸®¼¼¿ä...', //new in cpg1.2.0
-        'thumbs_continue_wait' => '½æ³×ÀÏ È¤Àº ¸®»çÀÌÁî ÀÌ¹ÌÁö¸¦ ¼öÁ¤ÇÏ°í ÀÖ½À´Ï´Ù...', //new in cpg1.2.0
-        'titles_wait' => 'Á¦¸ñ¼öÁ¤Áß, ±â´Ù¸®¼¼¿ä...', //new in cpg1.2.0
-        'delete_wait' => 'Á¦¸ñ»èÁ¦Áß, ±â´Ù¸®¼¼¿ä...', //new in cpg1.2.0
-        'replace_wait' => '¿ø·¡ÀÌ¹ÌÁö »èÁ¦ÈÄ ¸®»çÀÌÁöµÈ ÀÌ¹ÌÁö·Î ´ëÃ¼Áß, ±â´Ù¸®¼¼¿ä..', //new in cpg1.2.0
-        'instruction' => 'Quick instructions', //new in cpg1.2.0
-        'instruction_action' => 'Select action', //new in cpg1.2.0
-        'instruction_parameter' => 'º¯¼ö ¼³Á¤', //new in cpg1.2.0
-        'instruction_album' => '¾Ù¹ü¼±ÅÃ', //new in cpg1.2.0
-        'instruction_press' => 'Press %s', //new in cpg1.2.0
-        'update' => '½æ³×ÀÏ È¤Àº ¸®»çÀÌÁîµÈ ÀÌ¹ÌÁö ¼öÁ¤', //new in cpg1.2.0
-        'update_what' => 'What should be updated', //new in cpg1.2.0
-        'update_thumb' => '½æ³×ÀÏ¸¸', //new in cpg1.2.0
-        'update_pic' => 'Å©±â¼öÁ¤µÈ ÀÌ¹ÌÁö¸¸', //new in cpg1.2.0
-        'update_both' => '½æ³×ÀÏ°ú Å©±â¼öÁ¤µÈ ÀÌ¹ÌÁö', //new in cpg1.2.0
-        'update_number' => 'Number of processed images per click', //new in cpg1.2.0
-        'update_option' => '(½Ã°£°æ°ú¹®Á¦°¡ ¹ß»ýÇÏ¸é ÀÌ ¿É¼ÇÀ» ³·°Ô ¼³Á¤ÇÏ¼¼¿ä)', //new in cpg1.2.0
-        'filename_title' => 'ÆÄÀÏÀÌ¸§ &rArr; ÀÌ¹ÌÁö Á¦¸ñ', //new in cpg1.2.0
-        'filename_how' => 'How should the filename be modified', //new in cpg1.2.0
-        'filename_remove' => 'Remove the .jpg ending and replace _ (underscore) with spaces', //new in cpg1.2.0
-        'filename_euro' => 'Change 2003_11_23_13_20_20.jpg to 23/11/2003 13:20', //new in cpg1.2.0
-        'filename_us' => 'Change 2003_11_23_13_20_20.jpg to 11/23/2003 13:20', //new in cpg1.2.0
-        'filename_time' => 'Change 2003_11_23_13_20_20.jpg to 13:20', //new in cpg1.2.0
-        'delete' => 'ÀÌ¹ÌÁöÁ¦¸ñ È¤Àº ¿ø·¡ÀÌ¹ÌÁö »èÁ¦', //new in cpg1.2.0
-        'delete_title' => 'ÀÌ¹ÌÁöÁ¦¸ñ »èÁ¦', //new in cpg1.2.0
-        'delete_original' => '¿ø·¡ÀÌ¹ÌÁö »èÁ¦', //new in cpg1.2.0
-        'delete_replace' => '¿ø·¡ÀÌ¹ÌÁö »èÁ¦ÈÄ ¸®»çÀÌÁî ÀÌ¹ÌÁö·Î ´ëÃ¼', //new in cpg1.2.0
-        'select_album' => '¾Ù¹ü ¼±ÅÃ', //new in cpg1.2.0
+        'title' => 'ÀÌ¹ÌÁöÅ©±â¼öÁ¤', 
+        'what_it_does' => 'What it does', 
+        'what_update_titles' => 'ÆÄÀÏÀÌ¸§À¸·Î Á¦¸ñ¼öÁ¤', 
+        'what_delete_title' => 'Á¦¸ñ»èÁ¦', 
+        'what_rebuild' => '½æ³×ÀÏ ÀçÀÛ¼º°ú ÀÌ¹ÌÁöÅ©±âº¯°æ', 
+        'what_delete_originals' => 'Deletes original sized photos replacing them with the sized version', 
+        'file' => 'ÆÄÀÏ', 
+        'title_set_to' => 'Á¦¸ñÀ» ', 
+        'submit_form' => 'Á¦Ãâ', 
+        'updated_succesfully' => 'º¯°æ ¼º°ø', 
+        'error_create' => '¿À·ù¹ß»ý', 
+        'continue' => 'Process more images', 
+        'main_success' => 'The file %s was successfully used as main picture', 
+        'error_rename' => '%s À» %s' ·Î ÀÌ¸§ º¯°æÁß ¿À·ù¹ß»ý', 
+        'error_not_found' => 'ÆÄÀÏ %s À» Ã£À»¼ö ¾ø½À´Ï´Ù.', 
+        'back' => '¸ÞÀÎÀ¸·Î', 
+        'thumbs_wait' => '½æ³×ÀÏ°ú Å©±â°¡ ¼öÁ¤µÈ ÀÌ¹ÌÁö¸¦ º¯°æÇÏ°í ÀÖ½À´Ï´Ù, ±â´Ù¸®¼¼¿ä...', 
+        'thumbs_continue_wait' => '½æ³×ÀÏ È¤Àº ¸®»çÀÌÁî ÀÌ¹ÌÁö¸¦ ¼öÁ¤ÇÏ°í ÀÖ½À´Ï´Ù...', 
+        'titles_wait' => 'Á¦¸ñ¼öÁ¤Áß, ±â´Ù¸®¼¼¿ä...', 
+        'delete_wait' => 'Á¦¸ñ»èÁ¦Áß, ±â´Ù¸®¼¼¿ä...', 
+        'replace_wait' => '¿ø·¡ÀÌ¹ÌÁö »èÁ¦ÈÄ ¸®»çÀÌÁöµÈ ÀÌ¹ÌÁö·Î ´ëÃ¼Áß, ±â´Ù¸®¼¼¿ä..', 
+        'instruction' => 'Quick instructions', 
+        'instruction_action' => 'Select action', 
+        'instruction_parameter' => 'º¯¼ö ¼³Á¤', 
+        'instruction_album' => '¾Ù¹ü¼±ÅÃ', 
+        'instruction_press' => 'Press %s', 
+        'update' => '½æ³×ÀÏ È¤Àº ¸®»çÀÌÁîµÈ ÀÌ¹ÌÁö ¼öÁ¤', 
+        'update_what' => 'What should be updated', 
+        'update_thumb' => '½æ³×ÀÏ¸¸', 
+        'update_pic' => 'Å©±â¼öÁ¤µÈ ÀÌ¹ÌÁö¸¸', 
+        'update_both' => '½æ³×ÀÏ°ú Å©±â¼öÁ¤µÈ ÀÌ¹ÌÁö', 
+        'update_number' => 'Number of processed images per click', 
+        'update_option' => '(½Ã°£°æ°ú¹®Á¦°¡ ¹ß»ýÇÏ¸é ÀÌ ¿É¼ÇÀ» ³·°Ô ¼³Á¤ÇÏ¼¼¿ä)', 
+        'filename_title' => 'ÆÄÀÏÀÌ¸§ &rArr; ÀÌ¹ÌÁö Á¦¸ñ', 
+        'filename_how' => 'How should the filename be modified', 
+        'filename_remove' => 'Remove the .jpg ending and replace _ (underscore) with spaces', 
+        'filename_euro' => 'Change 2003_11_23_13_20_20.jpg to 23/11/2003 13:20', 
+        'filename_us' => 'Change 2003_11_23_13_20_20.jpg to 11/23/2003 13:20', 
+        'filename_time' => 'Change 2003_11_23_13_20_20.jpg to 13:20', 
+        'delete' => 'ÀÌ¹ÌÁöÁ¦¸ñ È¤Àº ¿ø·¡ÀÌ¹ÌÁö »èÁ¦', 
+        'delete_title' => 'ÀÌ¹ÌÁöÁ¦¸ñ »èÁ¦', 
+        'delete_original' => '¿ø·¡ÀÌ¹ÌÁö »èÁ¦', 
+        'delete_replace' => '¿ø·¡ÀÌ¹ÌÁö »èÁ¦ÈÄ ¸®»çÀÌÁî ÀÌ¹ÌÁö·Î ´ëÃ¼', 
+        'select_album' => '¾Ù¹ü ¼±ÅÃ', 
 );
 
 ?>

@@ -1,26 +1,26 @@
 ﻿<?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.2.0                                            //
+// Coppermine Photo Gallery 1.2.1                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR <gdemar@wanadoo.fr>                 //
-// http://www.chezgreg.net/coppermine/                                       //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+//  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
 // (http://coppermine.sf.net/team/)                                          //
 // see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
+//  This program is free software; you can redistribute it and/or modify     //
+//  it under the terms of the GNU General Public License as published by     //
+//  the Free Software Foundation; either version 2 of the License, or        //
+//  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- // 
 
 
 // info about translators and translated language
 $lang_translation_info = array(
-'lang_name_english' => 'Czech',  //the name of your language in English, e.g. 'Greek' or 'Spanish'
-'lang_name_native' => '&#x10C;esky', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espan~ol'
-'lang_country_code' => 'cz', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es'
+'lang_name_english' => 'Czech',  
+'lang_name_native' => '&#x10C;esky', 
+'lang_country_code' => 'cz', 
 'trans_name'=> 'Michal Soukup aka migon', //the name of the translator - can be a nickname
 'trans_email' => 'migon@boule.cz', //translator's email address (optional)
 'trans_website' => 'http://www.boule.cz/', //translator's website (optional)

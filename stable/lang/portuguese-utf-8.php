@@ -1,12 +1,13 @@
 ﻿<?php
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery                                                 //
+// Coppermine Photo Gallery 1.2.1                                            //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Gregory DEMAR <gdemar@wanadoo.fr>               //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Stoverud <henning@stoverud.com>         //
-//  http://www.stoverud.com/PHPhotoalbum/                                    //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -16,9 +17,9 @@
 
 // info about translators and translated language 
 $lang_translation_info = array( 
-'lang_name_english' => 'Portuguese',  //the name of your language in English, e.g. 'Greek' or 'Spanish' 
-'lang_name_native' => 'Portugu&ecirc;s', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espa&ntilde;ol' 
-'lang_country_code' => 'pt', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es' 
+'lang_name_english' => 'Portuguese',  
+'lang_name_native' => 'Portugu&ecirc;s', 
+'lang_country_code' => 'pt', 
 'trans_name'=> 'Luis Rebelo (lineartube)', //the name of the translator - can be a nickname 
 'trans_email' => 'coppermine@luisrebelo.net', //translator's email address (optional) 
 'trans_website' => 'http://www.luisrebelo.net/', //translator's website (optional) 
@@ -63,7 +64,7 @@ $lang_meta_album_names = array(
 	'toprated' => 'Melhor Classificadas',
 	'lasthits' => 'Últimas vistas',
 	'search' => 'Resultado da procura',
-    'favpics'=> 'Fotos favoritas', //new in cpg1.2.0
+    'favpics'=> 'Fotos favoritas', 
 );
 
 $lang_errors = array(
@@ -81,8 +82,8 @@ $lang_errors = array(
 	'directory_ro' => 'O directório \'%s\' não tem permissões de escrita, e por isso as fotos não podem ser apagadas.',
 	'non_exist_comment' => 'O comentário seleccionado não existe.',
 	'pic_in_invalid_album' => 'Â¿Â¡A foto está num album que não existe (%s)!?',
-    'banned' => 'Você encontra-se banido de utilizar este website.',  //new in cpg1.2.0
-    'not_with_udb' => 'esta função está desactivada no Coppermine porque está integrada no software do forum. Ou o que está a tentar fazer não é suportado nesta configuração ou a função deveria ser lidada pelo o software do forum.',  //new in cpg1.2.0
+    'banned' => 'Você encontra-se banido de utilizar este website.',  
+    'not_with_udb' => 'esta função está desactivada no Coppermine porque está integrada no software do forum. Ou o que está a tentar fazer não é suportado nesta configuração ou a função deveria ser lidada pelo o software do forum.',  
 );
 
 // ------------------------------------------------------------------------- //
@@ -110,7 +111,7 @@ $lang_main_menu = array(
 	'topn_lnk' => 'Mais vistas',
 	'toprated_lnk' => 'Melhor Classificadas',
 	'search_lnk' => 'Procurar',
-    'fav_lnk' => 'Favoritas', //new in cpg1.2.0
+    'fav_lnk' => 'Favoritas', 
 );
 
 $lang_gallery_admin_menu = array(
@@ -122,8 +123,8 @@ $lang_gallery_admin_menu = array(
 	'groups_lnk' => 'Grupos',
 	'comments_lnk' => 'Comentários',
 	'searchnew_lnk' => 'Adicionar fotos (em série)',
-    'util_lnk' => 'Redimensionar imagens',  //new in cpg1.2.0
-    'ban_lnk' => 'Banir utilizadores',  //new in cpg1.2.0
+    'util_lnk' => 'Redimensionar imagens',  
+    'ban_lnk' => 'Banir utilizadores',  
 );
 
 $lang_user_admin_menu = array(
@@ -145,14 +146,14 @@ $lang_album_list = array(
 $lang_thumb_view = array(
 	'date' => 'DATA',
     //Sort by filename and title
-    'name' => 'NOME', //new in cpg1.2.0
-    'title' => 'TÍTULO', //new in cpg1.2.0
+    'name' => 'NOME', 
+    'title' => 'TÍTULO', 
 	'sort_da' => 'Ordenado por data ascendente',
 	'sort_dd' => 'Ordenado por data descendente',
 	'sort_na' => 'Ordenado por nome ascendente',
 	'sort_nd' => 'Ordenado por nome descendente',
-    'sort_ta' => 'Ordenado por título ascendente',  //new in cpg1.2.0
-    'sort_td' => 'Ordenado por título descendente',  //new in cpg1.2.0
+    'sort_ta' => 'Ordenado por título ascendente',  
+    'sort_td' => 'Ordenado por título descendente',  
 	'pic_on_page' => '%d foto(s) na(s) %d página(s)',
 	'user_on_page' => '%d utilizadore(s) na(s) %d página(s)'
 );
@@ -322,8 +323,8 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
 	'restore_success' => 'Valores por defeito da Coppermine restaurados',
 	'name_a' => 'Ascendente por nome',
 	'name_d' => 'Descendente por nome',
-    'title_a' => 'Ascendente por título',  //new in cpg1.2.0
-    'title_d' => 'Descendente por título',  //new in cpg1.2.0
+    'title_a' => 'Ascendente por título',  
+    'title_d' => 'Descendente por título',  
 	'date_a' => 'Ascendente por data',
 	'date_d' => 'Descendente por data',
         'th_any' => 'Max Aspect',
@@ -347,7 +348,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Número de colunas na lista de álbuns', 'album_list_cols', 0),
 	array('Tamanho dos thumbnails em pixeis', 'alb_list_thumb_size', 0),
 	array('Conteúdo da página principal', 'main_page_layout', 0),
-    array('Mostrar thumbnails de primeiro nível nas categorias','first_level',1),  //new in cpg1.2.0
+    array('Mostrar thumbnails de primeiro nível nas categorias','first_level',1),  
 
 	'Aspecto da vista de Thumbnails',
 	array('Número de colunas na página de thumbnails', 'thumbcols', 0),
@@ -367,13 +368,13 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Número máximo de caracteres numa palavra', 'max_com_wlength', 0),
 	array('Número máximo de linhas num comentário', 'max_com_lines', 0),
 	array('Tamanho máximo de um comentário', 'max_com_size', 0),
-    array('Mostrar película de filme', 'display_film_strip', 1),  //new in cpg1.2.0
+    array('Mostrar película de filme', 'display_film_strip', 1),  
     array('número de items na película de filme', 'max_film_strip_items', 0), 
 
 	'Configuração das fotos e thumbnails',
 	array('Qualidade dos ficheros JPEG <b>*</b>', 'jpeg_qual', 0),
-    array('Dimensão máxima de um thumbnail <b>*</b>', 'thumb_width', 0),  //new in cpg1.2.0
-    array('Usar dimensão ( largura, altura ou aspecto máximo para o thumbnail )', 'thumb_use', 7),  //new in cpg1.2.0
+    array('Dimensão máxima de um thumbnail <b>*</b>', 'thumb_width', 0),  
+    array('Usar dimensão ( largura, altura ou aspecto máximo para o thumbnail )', 'thumb_use', 7),  
 	array('Criar fotos de tamanho intermédio','make_intermediate',1),
 	array('Largura máxima das fotos de tamanho intermédio <b>*</b>', 'picture_width', 0),
 	array('Tamanho máximo das fotos de utilizadores por upload (KB)', 'max_upl_size', 0),
@@ -392,7 +393,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Nome do campo 4', 'user_field4_name', 0),
 
 	'Configuração avançada de fotos e thumbnails',
-    array('Mostrar icon de album privado ao utilzador não-registado','show_private',1),  //new in cpg1.2.0
+    array('Mostrar icon de album privado ao utilzador não-registado','show_private',1),  
 	array('Caracteres proíbidos nos nomes das fotos', 'forbiden_fname_char',0),
 	array('Extenções de ficheiros admitidas nos uploads', 'allowed_file_extensions',0),
 	array('Método para organização das fotos','thumb_method',2),
@@ -511,9 +512,9 @@ $lang_picinfo = array(
 	'Exposure time' => 'Tempo de exposição',
 	'Focal length' => 'Distância Focal ',
 	'Comment' => 'Comentário',
-    'addFav' => 'Adicionar aos favoritos',  //new in cpg1.2.0
-    'addFavPhrase' => 'Favoritos',  //new in cpg1.2.0
-    'remFav' => 'Remover dos favoritos',  //new in cpg1.2.0
+    'addFav' => 'Adicionar aos favoritos',  
+    'addFavPhrase' => 'Favoritos',  
+    'remFav' => 'Remover dos favoritos',  
 );
 
 $lang_display_comments = array(
@@ -521,13 +522,13 @@ $lang_display_comments = array(
 	'edit_title' => 'Editar o comentário',
 	'confirm_delete' => 'Tem a certeza que quer apagar o comentário?',
 	'add_your_comment' => 'Adicionar um comentário',
-    'name'=>'Nome',  //new in cpg1.2.0
-    'comment'=>'Comentário',  //new in cpg1.2.0
+    'name'=>'Nome',  
+    'comment'=>'Comentário',  
 	'your_name' => 'Nome',
 );
 
 $lang_fullsize_popup = array( 
-   'click_to_close' => 'Clique na imagem para fechar a janela',  //new in cpg1.2.0
+   'click_to_close' => 'Clique na imagem para fechar a janela',  
 );
 
 }
@@ -854,7 +855,7 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 
 
 // ------------------------------------------------------------------------- // 
-// File banning.php  //new in cpg1.2.0
+// File banning.php  
 // ------------------------------------------------------------------------- // 
 
 if (defined('BANNING_PHP')) $lang_banning_php = array( 
@@ -930,7 +931,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 );
 
 // ------------------------------------------------------------------------- // 
-// File util.php  //new in cpg1.2.0
+// File util.php  
 // ------------------------------------------------------------------------- // 
 
 if (defined('UTIL_PHP')) $lang_util_php = array( 

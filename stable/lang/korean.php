@@ -1,16 +1,13 @@
 <?php
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery                                                 //
+// Coppermine Photo Gallery 1.2.1                                            //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Gregory DEMAR <gdemar@wanadoo.fr>               //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Stoverud <henning@stoverud.com>         //
-//  http://www.stoverud.com/PHPhotoalbum/                                    //
-// ------------------------------------------------------------------------- //
-//  Hacked by Tarique Sani <tarique@sanisoft.com> and Girsh Nair             //
-//  <girish@sanisoft.com> see http://www.sanisoft.com/cpg/README.txt for     //
-//  details                                                                  //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -20,9 +17,9 @@
 
 // info about translators and translated language
 $lang_translation_info = array(
-'lang_name_english' => 'Korean',  //the name of your language in English, e.g. 'Greek' or 'Spanish'
-'lang_name_native' => '한국어', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espa&ntilde;ol'
-'lang_country_code' => 'kr', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es'
+'lang_name_english' => 'Korean',  
+'lang_name_native' => '한국어', 
+'lang_country_code' => 'kr', 
 'trans_name'=> 'mle21', //the name of the translator - can be a nickname
 'trans_email' => 'mle21@netian.com', //translator's email address (optional)
 'trans_website' => '', //translator's website (optional)
@@ -62,13 +59,13 @@ $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clit
 $lang_meta_album_names = array(
 	'random' => '포토뉴스 갤러리',
         'lastup' => '최근 이미지',
-        'lastalb'=> '최근 수정된 앨범', //new in cpg1.2.0
+        'lastalb'=> '최근 수정된 앨범', 
         'lastcom' => '최근 코멘트',
         'topn' => '최다 조회',
         'toprated' => '최고 평점',
         'lasthits' => '마지막 조회',
-        'search' => '검색 결과', //new in cpg1.2.0
-        'favpics'=> '선호 사진' //new in cpg1.2.0
+        'search' => '검색 결과', 
+        'favpics'=> '선호 사진' 
 );
 
 $lang_errors = array(
@@ -85,9 +82,9 @@ $lang_errors = array(
         'orphan_cat' => '상위 카테고리가 존재하지않습니다. 관리자에게 문의하세요.',
         'directory_ro' => '폴더 \'%s\' 에 쓰기를 할 수 없습니다. 사진을 지울 수 없습니다.',
         'non_exist_comment' => '선택한 코멘트는 존재하지 않습니다.',
-        'pic_in_invalid_album' => '존재하지않는 앨범이미지(%s)!?', //new in cpg1.2.0
-        'banned' => '귀하는 지금 이사이트의 사용금지자명단에 있습니다.', //new in cpg1.2.0
-        'not_with_udb' => '이기능을 쿠퍼마인에서 사용할 수 없습니다. 이기능은 포럼소프트웨어에 포함이 되어 있기 때문입니다.', //new in cpg1.2.0
+        'pic_in_invalid_album' => '존재하지않는 앨범이미지(%s)!?', 
+        'banned' => '귀하는 지금 이사이트의 사용금지자명단에 있습니다.', 
+        'not_with_udb' => '이기능을 쿠퍼마인에서 사용할 수 없습니다. 이기능은 포럼소프트웨어에 포함이 되어 있기 때문입니다.', 
 );
 
 // ------------------------------------------------------------------------- //
@@ -115,7 +112,7 @@ $lang_main_menu = array(
         'topn_lnk' => '최다조회',
         'toprated_lnk' => '최고평점',
         'search_lnk' => '검색',
-        'fav_lnk' => '즐겨찾기', //new in cpg1.2.0
+        'fav_lnk' => '즐겨찾기', 
 
 );
 
@@ -128,8 +125,8 @@ $lang_gallery_admin_menu = array(
         'groups_lnk' => '그룹관리',
         'comments_lnk' => '코멘트관리',
         'searchnew_lnk' => 'FTP업로드파일연결',
-        'util_lnk' => '이미지크기 수정', //new in cpg1.2.0
-        'ban_lnk' => '사용금지자', //new in cpg1.2.0
+        'util_lnk' => '이미지크기 수정', 
+        'ban_lnk' => '사용금지자', 
 );
 
 $lang_user_admin_menu = array(
@@ -151,14 +148,14 @@ $lang_album_list = array(
 $lang_thumb_view = array(
         'date' => '일자',
         //Sort by filename and title
-        'name' => '파일이름', //new in cpg1.2.0
-        'title' => '제목', //new in cpg1.2.0
+        'name' => '파일이름', 
+        'title' => '제목', 
         'sort_da' => '일자순 순차배열',
         'sort_dd' => '일자순 역차배열',
         'sort_na' => '이름순 순차배열',
         'sort_nd' => '이름순 역차배열',
-        'sort_ta' => '제목순 순차배열', //new in cpg1.2.0
-        'sort_td' => '제목순 역차배열', //new in cpg1.2.0
+        'sort_ta' => '제목순 순차배열', 
+        'sort_td' => '제목순 역차배열', 
         'pic_on_page' => '사진: %d  페이지: %d',
         'user_on_page' => '사용자: %d  페이지: %d'
 );
@@ -328,8 +325,8 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'restore_success' => '기본설정으로 변경되었습니다',
         'name_a' => '이름순 순차배열',
         'name_d' => '이름순 역차배열',
-        'title_a' => '제목순 순차배열', //new in cpg1.2.0
-        'title_d' => '제목순 역차배열', //new in cpg1.2.0
+        'title_a' => '제목순 순차배열', 
+        'title_d' => '제목순 역차배열', 
         'date_a' => '일자순 순차배열',
         'date_d' => '일자순 역차배열',
         'th_any' => 'Max Aspect',
@@ -353,7 +350,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('앨범의 세로 열', 'album_list_cols', 0),
         array('썸네일 크기(pixels)', 'alb_list_thumb_size', 0),
         array('메인페이지에 불러올 컨텐트', 'main_page_layout', 0),
-        array('카테고리의 1차레벨 앨범썸네일 보기','first_level',1), //new in cpg1.2.0
+        array('카테고리의 1차레벨 앨범썸네일 보기','first_level',1), 
 
         '썸네일목록 설정',
         array('썸네일 컬럼수', 'thumbcols', 0),
@@ -373,13 +370,13 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('단어문자 길이(띄워쓰기없이)', 'max_com_wlength', 0),
 	array('코멘트 라인 제한', 'max_com_lines', 0),
 	array('코멘트 초대 문자수', 'max_com_size', 0),
-        array('필름스트립 보기', 'display_film_strip', 1), //new in cpg1.2.0
-        array('필름스트립의 항목갯수', 'max_film_strip_items', 0), //new in cpg1.2.0
+        array('필름스트립 보기', 'display_film_strip', 1), 
+        array('필름스트립의 항목갯수', 'max_film_strip_items', 0), 
 
         '이미지 및 썸네일 설정',
         array('JPEG 퀄리티', 'jpeg_qual', 0),
-        array('썸네일 가로,세로 최대<b>*</b>', 'thumb_width', 0), //new in cpg1.2.0
-        array('디멘죤사용 (가로 혹은 세로 혹은 썸네일의 최대모양)<b>*</b>', 'thumb_use', 7), //new in cpg1.2.0
+        array('썸네일 가로,세로 최대<b>*</b>', 'thumb_width', 0), 
+        array('디멘죤사용 (가로 혹은 세로 혹은 썸네일의 최대모양)<b>*</b>', 'thumb_use', 7), 
         array('이미지 보기에 새로운 파일생성','make_intermediate',1),
 	array('새로 생성될 파일의 최대크기(폭)<b>*</b>', 'picture_width', 0),
         array('업로드 이미지 최대용량 (KB)', 'max_upl_size', 0),
@@ -398,7 +395,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Field 4 name', 'user_field4_name', 0),
 
         '이미지와 썸네일 고급설정',
-        array('로그인 되지 않은 사용자에게 개일앨범 아이콘 보여주기','show_private',1), //new in cpg1.2.0
+        array('로그인 되지 않은 사용자에게 개일앨범 아이콘 보여주기','show_private',1), 
         array('파일 이름에 사용금지할 문자', 'forbiden_fname_char',0),
         array('허용할 이미지파일 확장자', 'allowed_file_extensions',0),
         array('이미지 크기조절 방법','thumb_method',2),
@@ -517,9 +514,9 @@ $lang_picinfo = array(
         'Exposure time' => 'Exposure time',
         'Focal length' => 'Focal length',
         'Comment' => '코멘트',
-        'addFav'=>'즐겨찾기에 추가', //new in cpg1.2.0
-        'addFavPhrase'=>'즐겨찾기', //new in cpg1.2.0
-        'remFav'=>'즐겨찾기에서 삭제', //new in cpg1.2.0
+        'addFav'=>'즐겨찾기에 추가', 
+        'addFavPhrase'=>'즐겨찾기', 
+        'remFav'=>'즐겨찾기에서 삭제', 
 );
 
 $lang_display_comments = array(
@@ -527,13 +524,13 @@ $lang_display_comments = array(
         'edit_title' => '코멘트 수정',
         'confirm_delete' => '코멘트를 삭제하시겠습니까 ?',
         'add_your_comment' => '코멘트 등록',
-        'name'=>'이름', //new in cpg1.2.0
-        'comment'=>'코멘트', //new in cpg1.2.0
-        'your_name' => '일지매', //new in cpg1.2.0
+        'name'=>'이름', 
+        'comment'=>'코멘트', 
+        'your_name' => '일지매', 
 );
 
 $lang_fullsize_popup = array(
-        'click_to_close' => '화면닫기:이미지에 클릭', //new in cpg1.2.0
+        'click_to_close' => '화면닫기:이미지에 클릭', 
 );
 
 }
@@ -864,14 +861,14 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('BANNING_PHP')) $lang_banning_php = array(
-                'title' => '사용금지자', //new in cpg1.2.0
-                'user_name' => '사용자이름', //new in cpg1.2.0
-                'ip_address' => 'IP 주소', //new in cpg1.2.0
-                'expiry' => '유효기간 (빈칸은 영구)', //new in cpg1.2.0
-                'edit_ban' => '변경사항 저장', //new in cpg1.2.0
-                'delete_ban' => '삭제', //new in cpg1.2.0
-                'add_new' => '사용금지자 추가', //new in cpg1.2.0
-                'add_ban' => '추가', //new in cpg1.2.0
+                'title' => '사용금지자', 
+                'user_name' => '사용자이름', 
+                'ip_address' => 'IP 주소', 
+                'expiry' => '유효기간 (빈칸은 영구)', 
+                'edit_ban' => '변경사항 저장', 
+                'delete_ban' => '삭제', 
+                'add_new' => '사용금지자 추가', 
+                'add_ban' => '추가', 
 );
 
 // ------------------------------------------------------------------------- //
@@ -940,50 +937,50 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UTIL_PHP')) $lang_util_php = array(
-        'title' => '이미지크기수정', //new in cpg1.2.0
-        'what_it_does' => 'What it does', //new in cpg1.2.0
-        'what_update_titles' => '파일이름으로 제목수정', //new in cpg1.2.0
-        'what_delete_title' => '제목삭제', //new in cpg1.2.0
-        'what_rebuild' => '썸네일 재작성과 이미지크기변경', //new in cpg1.2.0
-        'what_delete_originals' => 'Deletes original sized photos replacing them with the sized version', //new in cpg1.2.0
-        'file' => '파일', //new in cpg1.2.0
-        'title_set_to' => '제목을 ', //new in cpg1.2.0
-        'submit_form' => '제출', //new in cpg1.2.0
-        'updated_succesfully' => '변경 성공', //new in cpg1.2.0
-        'error_create' => '오류발생', //new in cpg1.2.0
-        'continue' => 'Process more images', //new in cpg1.2.0
-        'main_success' => 'The file %s was successfully used as main picture', //new in cpg1.2.0
-        'error_rename' => '%s 을 %s' 로 이름 변경중 오류발생', //new in cpg1.2.0
-        'error_not_found' => '파일 %s 을 찾을수 없습니다.', //new in cpg1.2.0
-        'back' => '메인으로', //new in cpg1.2.0
-        'thumbs_wait' => '썸네일과 크기가 수정된 이미지를 변경하고 있습니다, 기다리세요...', //new in cpg1.2.0
-        'thumbs_continue_wait' => '썸네일 혹은 리사이즈 이미지를 수정하고 있습니다...', //new in cpg1.2.0
-        'titles_wait' => '제목수정중, 기다리세요...', //new in cpg1.2.0
-        'delete_wait' => '제목삭제중, 기다리세요...', //new in cpg1.2.0
-        'replace_wait' => '원래이미지 삭제후 리사이지된 이미지로 대체중, 기다리세요..', //new in cpg1.2.0
-        'instruction' => 'Quick instructions', //new in cpg1.2.0
-        'instruction_action' => 'Select action', //new in cpg1.2.0
-        'instruction_parameter' => '변수 설정', //new in cpg1.2.0
-        'instruction_album' => '앨범선택', //new in cpg1.2.0
-        'instruction_press' => 'Press %s', //new in cpg1.2.0
-        'update' => '썸네일 혹은 리사이즈된 이미지 수정', //new in cpg1.2.0
-        'update_what' => 'What should be updated', //new in cpg1.2.0
-        'update_thumb' => '썸네일만', //new in cpg1.2.0
-        'update_pic' => '크기수정된 이미지만', //new in cpg1.2.0
-        'update_both' => '썸네일과 크기수정된 이미지', //new in cpg1.2.0
-        'update_number' => 'Number of processed images per click', //new in cpg1.2.0
-        'update_option' => '(시간경과문제가 발생하면 이 옵션을 낮게 설정하세요)', //new in cpg1.2.0
-        'filename_title' => '파일이름 &rArr; 이미지 제목', //new in cpg1.2.0
-        'filename_how' => 'How should the filename be modified', //new in cpg1.2.0
-        'filename_remove' => 'Remove the .jpg ending and replace _ (underscore) with spaces', //new in cpg1.2.0
-        'filename_euro' => 'Change 2003_11_23_13_20_20.jpg to 23/11/2003 13:20', //new in cpg1.2.0
-        'filename_us' => 'Change 2003_11_23_13_20_20.jpg to 11/23/2003 13:20', //new in cpg1.2.0
-        'filename_time' => 'Change 2003_11_23_13_20_20.jpg to 13:20', //new in cpg1.2.0
-        'delete' => '이미지제목 혹은 원래이미지 삭제', //new in cpg1.2.0
-        'delete_title' => '이미지제목 삭제', //new in cpg1.2.0
-        'delete_original' => '원래이미지 삭제', //new in cpg1.2.0
-        'delete_replace' => '원래이미지 삭제후 리사이즈 이미지로 대체', //new in cpg1.2.0
-        'select_album' => '앨범 선택', //new in cpg1.2.0
+        'title' => '이미지크기수정', 
+        'what_it_does' => 'What it does', 
+        'what_update_titles' => '파일이름으로 제목수정', 
+        'what_delete_title' => '제목삭제', 
+        'what_rebuild' => '썸네일 재작성과 이미지크기변경', 
+        'what_delete_originals' => 'Deletes original sized photos replacing them with the sized version', 
+        'file' => '파일', 
+        'title_set_to' => '제목을 ', 
+        'submit_form' => '제출', 
+        'updated_succesfully' => '변경 성공', 
+        'error_create' => '오류발생', 
+        'continue' => 'Process more images', 
+        'main_success' => 'The file %s was successfully used as main picture', 
+        'error_rename' => '%s 을 %s' 로 이름 변경중 오류발생', 
+        'error_not_found' => '파일 %s 을 찾을수 없습니다.', 
+        'back' => '메인으로', 
+        'thumbs_wait' => '썸네일과 크기가 수정된 이미지를 변경하고 있습니다, 기다리세요...', 
+        'thumbs_continue_wait' => '썸네일 혹은 리사이즈 이미지를 수정하고 있습니다...', 
+        'titles_wait' => '제목수정중, 기다리세요...', 
+        'delete_wait' => '제목삭제중, 기다리세요...', 
+        'replace_wait' => '원래이미지 삭제후 리사이지된 이미지로 대체중, 기다리세요..', 
+        'instruction' => 'Quick instructions', 
+        'instruction_action' => 'Select action', 
+        'instruction_parameter' => '변수 설정', 
+        'instruction_album' => '앨범선택', 
+        'instruction_press' => 'Press %s', 
+        'update' => '썸네일 혹은 리사이즈된 이미지 수정', 
+        'update_what' => 'What should be updated', 
+        'update_thumb' => '썸네일만', 
+        'update_pic' => '크기수정된 이미지만', 
+        'update_both' => '썸네일과 크기수정된 이미지', 
+        'update_number' => 'Number of processed images per click', 
+        'update_option' => '(시간경과문제가 발생하면 이 옵션을 낮게 설정하세요)', 
+        'filename_title' => '파일이름 &rArr; 이미지 제목', 
+        'filename_how' => 'How should the filename be modified', 
+        'filename_remove' => 'Remove the .jpg ending and replace _ (underscore) with spaces', 
+        'filename_euro' => 'Change 2003_11_23_13_20_20.jpg to 23/11/2003 13:20', 
+        'filename_us' => 'Change 2003_11_23_13_20_20.jpg to 11/23/2003 13:20', 
+        'filename_time' => 'Change 2003_11_23_13_20_20.jpg to 13:20', 
+        'delete' => '이미지제목 혹은 원래이미지 삭제', 
+        'delete_title' => '이미지제목 삭제', 
+        'delete_original' => '원래이미지 삭제', 
+        'delete_replace' => '원래이미지 삭제후 리사이즈 이미지로 대체', 
+        'select_album' => '앨범 선택', 
 );
 
 ?>

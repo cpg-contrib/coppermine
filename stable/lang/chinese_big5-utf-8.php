@@ -1,26 +1,25 @@
-<?php
+﻿<?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.2.0                                            //
+// Coppermine Photo Gallery 1.2.1                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR <gdemar@wanadoo.fr>                 //
-// http://www.chezgreg.net/coppermine/                                       //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+//  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
 // (http://coppermine.sf.net/team/)                                          //
 // see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
+//  This program is free software; you can redistribute it and/or modify     //
+//  it under the terms of the GNU General Public License as published by     //
+//  the Free Software Foundation; either version 2 of the License, or        //
+//  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
-// to all devs: stop overwriting this file!
 
-// info about translators and translated language
+
 $lang_translation_info = array( 
-'lang_name_english' => 'Chinese Tranditional BIG5',  //the name of your language in English, e.g. 'Greek' or 'Spanish' 
-'lang_name_native' => '中文繁體', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. 'Ελληνικ?' or 'Espanol' 
-'lang_country_code' => 'cn', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es' 
+'lang_name_english' => 'Chinese Tranditional BIG5',  
+'lang_name_native' => '中文繁體', 
+'lang_country_code' => 'cn', 
 'trans_name'=> 'Fatman', //the name of the translator - can be a nickname 
 'trans_email' => 'fatman_li@yahoo.com.hk', //translator's email address (optional) 
 'trans_website' => '', //translator's website (optional) 
@@ -83,9 +82,9 @@ $lang_errors = array(
         'orphan_cat' => '這個子類別存於一個不存在的父類別, 請先至類別管理修正這個問題.',
         'directory_ro' => '目錄 \'%s\' 無法寫入, 導致圖片無法刪除',
         'non_exist_comment' => '所選擇的意見並不存在.',
-        'pic_in_invalid_album' => '此圖片存於不存在的相簿 (%s)!?', //new in cpg1.2.0
-        'banned' => '你被禁止使用本站.', //new in cpg1.2.0
-        'not_with_udb' => '由於本相簿已和論壇程式整合, 此功能停止使用. 可能是現時設定不支援, 或已由論壇處理.', //new in cpg1.2.0
+        'pic_in_invalid_album' => '此圖片存於不存在的相簿 (%s)!?', 
+        'banned' => '你被禁止使用本站.', 
+        'not_with_udb' => '由於本相簿已和論壇程式整合, 此功能停止使用. 可能是現時設定不支援, 或已由論壇處理.', 
 );
 
 // ------------------------------------------------------------------------- //
@@ -113,7 +112,7 @@ $lang_main_menu = array(
         'topn_lnk' => '熱門圖片',
         'toprated_lnk' => '最高評分',
         'search_lnk' => '搜尋',
-        'fav_lnk' => '我的最愛', //new in cpg1.2.0
+        'fav_lnk' => '我的最愛', 
 
 );
 
@@ -126,8 +125,8 @@ $lang_gallery_admin_menu = array(
         'groups_lnk' => '群組',
         'comments_lnk' => '意見',
         'searchnew_lnk' => '整批加入圖片',
-        'util_lnk' => '調整圖片尺寸', //new in cpg1.2.0
-        'ban_lnk' => '停權用戶', //new in cpg1.2.0
+        'util_lnk' => '調整圖片尺寸', 
+        'ban_lnk' => '停權用戶', 
 );
 
 $lang_user_admin_menu = array(
@@ -149,14 +148,14 @@ $lang_album_list = array(
 $lang_thumb_view = array(
         'date' => '日期',
         //Sort by filename and title
-        'name' => '檔名', //new in cpg1.2.0
-        'title' => '標題', //new in cpg1.2.0
+        'name' => '檔名', 
+        'title' => '標題', 
         'sort_da' => '排序依日期 由遠至近',
         'sort_dd' => '排序依日期 由近至遠',
         'sort_na' => '排序依名稱 由小至大',
         'sort_nd' => '排序依名稱 由大至小',
-        'sort_ta' => '排序依標題 由小至大', //new in cpg1.2.0
-        'sort_td' => '排序依標題 由大至小', //new in cpg1.2.0
+        'sort_ta' => '排序依標題 由小至大', 
+        'sort_td' => '排序依標題 由大至小', 
         'pic_on_page' => '%d 圖片在 %d 頁',
         'user_on_page' => '%d 用戶在 %d 頁'
 );
@@ -326,8 +325,8 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'restore_success' => '原始設定已回復',
         'name_a' => '排序依名稱 由小至大',
         'name_d' => '排序依名稱 由大至小',
-        'title_a' => '排序依標題 由小至大', //new in cpg1.2.0
-        'title_d' => '排序依標題 由大至小', //new in cpg1.2.0
+        'title_a' => '排序依標題 由小至大', 
+        'title_d' => '排序依標題 由大至小', 
         'date_a' => '排序依日期 由遠至近',
         'date_d' => '排序依日期 由近至遠'
 );
@@ -350,7 +349,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('相簿目錄頁相簿欄數', 'album_list_cols', 0),
         array('縮圖像素', 'alb_list_thumb_size', 0),
         array('主頁的內容', 'main_page_layout', 0),
-        array('顯示分類中第一層的相簿縮圖','first_level',1), //new in cpg1.2.0
+        array('顯示分類中第一層的相簿縮圖','first_level',1), 
 
         '縮圖顯示',
         array('縮圖頁欄數', 'thumbcols', 0),
@@ -370,13 +369,13 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('描述內容的最大字數', 'max_com_wlength', 0),
         array('意見的最大行數', 'max_com_lines', 0),
         array('意見的最大長度', 'max_com_size', 0),
-        array('顯示圖片預覽列', 'display_film_strip', 1), //new in cpg1.2.0
-        array('圖片預覽列的圖片數', 'max_film_strip_items', 0), //new in cpg1.2.0
+        array('顯示圖片預覽列', 'display_film_strip', 1), 
+        array('圖片預覽列的圖片數', 'max_film_strip_items', 0), 
 
         '圖片及縮圖設定',
         array('JPEG 格式品質', 'jpeg_qual', 0),
-        array('縮圖最大尺寸 <b>*</b>', 'thumb_width', 0), //new in cpg1.2.0
-        array('使用尺寸 ( 寬、高或縮圖最大邊長 )<b>*</b>', 'thumb_use', 7),    //new in cpg1.2.0
+        array('縮圖最大尺寸 <b>*</b>', 'thumb_width', 0), 
+        array('使用尺寸 ( 寬、高或縮圖最大邊長 )<b>*</b>', 'thumb_use', 7),    
         array('建立中級圖片','make_intermediate',1),
         array('中級圖片最大尺寸 <b>*</b>', 'picture_width', 0),
         array('上傳圖檔的最大限制 (KB)', 'max_upl_size', 0),
@@ -395,7 +394,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('欄位 4 名稱', 'user_field4_name', 0),
 
         '圖片和縮圖的進階設定',
-        array('顯示私人相簿圖示給末登入用戶','show_private',1), //new in cpg1.2.0
+        array('顯示私人相簿圖示給末登入用戶','show_private',1), 
         array('檔案名稱不接受的字符', 'forbiden_fname_char',0),
         array('上傳圖檔可接受的副檔名', 'allowed_file_extensions',0),
         array('建立縮圖的方法','thumb_method',2),
@@ -409,8 +408,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('縮圖檔的前置字元 <b>*</b>', 'thumb_pfx', 0),
         array('放置圖檔目錄的預設權限', 'default_dir_mode', 0),
         array('上傳圖片的預設權限', 'default_file_mode', 0),
-        array('防止在彈出視窗用滑鼠右鍵 (JavaScript - 簡單保護)', 'disable_popup_rightclick', 1), //new in cpg1.2.0
-        array('防止在一般視窗用滑鼠右鍵 (JavaScript - 簡單保護)', 'disable_gallery_rightclick', 1), //new in cpg1.2.0
+        array('防止在彈出視窗用滑鼠右鍵 (JavaScript - 簡單保護)', 'disable_popup_rightclick', 1), 
+        array('防止在一般視窗用滑鼠右鍵 (JavaScript - 簡單保護)', 'disable_gallery_rightclick', 1), 
 
         'Cookies &amp; 編碼設定',
         array('使用的 cookie 名稱', 'cookie_name', 0),
@@ -516,9 +515,9 @@ $lang_picinfo = array(
         'Exposure time' => '曝光時間',
         'Focal length' => '焦距',
         'Comment' => '意見',
-        'addFav'=>'加到我的最愛', //new in cpg1.2.0
-        'addFavPhrase'=>'我的最愛', //new in cpg1.2.0
-        'remFav'=>'從我的最愛移除', //new in cpg1.2.0
+        'addFav'=>'加到我的最愛', 
+        'addFavPhrase'=>'我的最愛', 
+        'remFav'=>'從我的最愛移除', 
 );
 
 $lang_display_comments = array(
@@ -526,13 +525,13 @@ $lang_display_comments = array(
         'edit_title' => '編輯此意見',
         'confirm_delete' => '確定要刪除此意見 ?',
         'add_your_comment' => '加入你的意見',
-        'name'=>'名稱', //new in cpg1.2.0
-        'comment'=>'意見', //new in cpg1.2.0
-        'your_name' => '匿名', //new in cpg1.2.0
+        'name'=>'名稱', 
+        'comment'=>'意見', 
+        'your_name' => '匿名', 
 );
 
 $lang_fullsize_popup = array(
-        'click_to_close' => '點選圖片以關閉視窗', //new in cpg1.2.0
+        'click_to_close' => '點選圖片以關閉視窗', 
 );
 
 }
@@ -862,14 +861,14 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('BANNING_PHP')) $lang_banning_php = array(
-                'title' => '停權用戶', //new in cpg1.2.0
-                'user_name' => '用戶名稱', //new in cpg1.2.0
-                'ip_address' => 'IP位址', //new in cpg1.2.0
-                'expiry' => '期限（空白代表永久停權）', //new in cpg1.2.0
-                'edit_ban' => '儲存修改', //new in cpg1.2.0
-                'delete_ban' => '刪除', //new in cpg1.2.0
-                'add_new' => '新增停權用戶', //new in cpg1.2.0
-                'add_ban' => '新增', //new in cpg1.2.0
+                'title' => '停權用戶', 
+                'user_name' => '用戶名稱', 
+                'ip_address' => 'IP位址', 
+                'expiry' => '期限（空白代表永久停權）', 
+                'edit_ban' => '儲存修改', 
+                'delete_ban' => '刪除', 
+                'add_new' => '新增停權用戶', 
+                'add_ban' => '新增', 
 );
 
 // ------------------------------------------------------------------------- //
@@ -938,50 +937,50 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UTIL_PHP')) $lang_util_php = array(
-        'title' => '調整圖片尺寸', //new in cpg1.2.0
-        'what_it_does' => '這是做甚麼', //new in cpg1.2.0
-        'what_update_titles' => '以檔名更新標題', //new in cpg1.2.0
-        'what_delete_title' => '刪除標題', //new in cpg1.2.0
-        'what_rebuild' => '重新建立縮圖及調整尺寸', //new in cpg1.2.0
-        'what_delete_originals' => '刪除原始尺寸的圖片並以調整過尺寸的取代', //new in cpg1.2.0
-        'file' => '檔案', //new in cpg1.2.0
-        'title_set_to' => '標題已設成', //new in cpg1.2.0
-        'submit_form' => '送出', //new in cpg1.2.0
-        'updated_succesfully' => '更新完成', //new in cpg1.2.0
-        'error_create' => '新增錯誤中', //new in cpg1.2.0
-        'continue' => '處理更多圖片', //new in cpg1.2.0
-        'main_success' => '檔案 %s 已設為主圖', //new in cpg1.2.0
-        'error_rename' => '錯誤 %s 改名為 %s', //new in cpg1.2.0
-        'error_not_found' => '找不到檔案 %s ', //new in cpg1.2.0
-        'back' => '回主頁', //new in cpg1.2.0
-        'thumbs_wait' => '正在更新縮圖及(或)調整圖片尺寸, 請稍候...', //new in cpg1.2.0
-        'thumbs_continue_wait' => '繼續更新縮圖及(或)調整圖片尺寸...', //new in cpg1.2.0
-        'titles_wait' => '標題更新中, 請稍候...', //new in cpg1.2.0
-        'delete_wait' => '刪除標題中, 請稍候...', //new in cpg1.2.0
-        'replace_wait' => '正以調整尺寸的圖片取代原始尺寸圖片中, 請稍候..', //new in cpg1.2.0
-        'instruction' => '簡易操作說明', //new in cpg1.2.0
-        'instruction_action' => '請選擇操作', //new in cpg1.2.0
-        'instruction_parameter' => '設定參數', //new in cpg1.2.0
-        'instruction_album' => '選擇相簿', //new in cpg1.2.0
-        'instruction_press' => '請按 %s', //new in cpg1.2.0
-        'update' => '更新縮圖及(或)調整尺寸的圖片', //new in cpg1.2.0
-        'update_what' => '甚麼要更新', //new in cpg1.2.0
-        'update_thumb' => '只有縮圖', //new in cpg1.2.0
-        'update_pic' => '只有調整尺寸的圖片', //new in cpg1.2.0
-        'update_both' => '縮圖及調整尺寸的圖片', //new in cpg1.2.0
-        'update_number' => '每點選一次要處理的圖片數目', //new in cpg1.2.0
-        'update_option' => '(如果您遇到操作程序逾時的問題，請試著降低此設定)', //new in cpg1.2.0
-        'filename_title' => '檔名 &rArr; 圖片標題', //new in cpg1.2.0
-        'filename_how' => '如何修改檔名', //new in cpg1.2.0
-        'filename_remove' => '刪除 .jpg 並將 _ (底線) 用空格取代', //new in cpg1.2.0
-        'filename_euro' => '將 2003_11_23_13_20_20.jpg 改為 23/11/2003 13:20', //new in cpg1.2.0
-        'filename_us' => '將 2003_11_23_13_20_20.jpg 改為 11/23/2003 13:20', //new in cpg1.2.0
-        'filename_time' => '將 2003_11_23_13_20_20.jpg 改為 13:20', //new in cpg1.2.0
-        'delete' => '刪除圖片標題或原始尺寸的圖片', //new in cpg1.2.0
-        'delete_title' => '刪除圖片標題', //new in cpg1.2.0
-        'delete_original' => '刪除原始尺寸的圖片', //new in cpg1.2.0
-        'delete_replace' => '刪除原始尺寸的圖片並以調整尺寸的圖片取代', //new in cpg1.2.0
-        'select_album' => '選擇相簿', //new in cpg1.2.0
+        'title' => '調整圖片尺寸', 
+        'what_it_does' => '這是做甚麼', 
+        'what_update_titles' => '以檔名更新標題', 
+        'what_delete_title' => '刪除標題', 
+        'what_rebuild' => '重新建立縮圖及調整尺寸', 
+        'what_delete_originals' => '刪除原始尺寸的圖片並以調整過尺寸的取代', 
+        'file' => '檔案', 
+        'title_set_to' => '標題已設成', 
+        'submit_form' => '送出', 
+        'updated_succesfully' => '更新完成', 
+        'error_create' => '新增錯誤中', 
+        'continue' => '處理更多圖片', 
+        'main_success' => '檔案 %s 已設為主圖', 
+        'error_rename' => '錯誤 %s 改名為 %s', 
+        'error_not_found' => '找不到檔案 %s ', 
+        'back' => '回主頁', 
+        'thumbs_wait' => '正在更新縮圖及(或)調整圖片尺寸, 請稍候...', 
+        'thumbs_continue_wait' => '繼續更新縮圖及(或)調整圖片尺寸...', 
+        'titles_wait' => '標題更新中, 請稍候...', 
+        'delete_wait' => '刪除標題中, 請稍候...', 
+        'replace_wait' => '正以調整尺寸的圖片取代原始尺寸圖片中, 請稍候..', 
+        'instruction' => '簡易操作說明', 
+        'instruction_action' => '請選擇操作', 
+        'instruction_parameter' => '設定參數', 
+        'instruction_album' => '選擇相簿', 
+        'instruction_press' => '請按 %s', 
+        'update' => '更新縮圖及(或)調整尺寸的圖片', 
+        'update_what' => '甚麼要更新', 
+        'update_thumb' => '只有縮圖', 
+        'update_pic' => '只有調整尺寸的圖片', 
+        'update_both' => '縮圖及調整尺寸的圖片', 
+        'update_number' => '每點選一次要處理的圖片數目', 
+        'update_option' => '(如果您遇到操作程序逾時的問題，請試著降低此設定)', 
+        'filename_title' => '檔名 &rArr; 圖片標題', 
+        'filename_how' => '如何修改檔名', 
+        'filename_remove' => '刪除 .jpg 並將 _ (底線) 用空格取代', 
+        'filename_euro' => '將 2003_11_23_13_20_20.jpg 改為 23/11/2003 13:20', 
+        'filename_us' => '將 2003_11_23_13_20_20.jpg 改為 11/23/2003 13:20', 
+        'filename_time' => '將 2003_11_23_13_20_20.jpg 改為 13:20', 
+        'delete' => '刪除圖片標題或原始尺寸的圖片', 
+        'delete_title' => '刪除圖片標題', 
+        'delete_original' => '刪除原始尺寸的圖片', 
+        'delete_replace' => '刪除原始尺寸的圖片並以調整尺寸的圖片取代', 
+        'select_album' => '選擇相簿', 
 );
 
 ?>

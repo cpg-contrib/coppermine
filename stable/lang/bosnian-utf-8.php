@@ -1,12 +1,13 @@
 ﻿<?php
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery                                                 //
+// Coppermine Photo Gallery 1.2.1                                            //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Grégory DEMAR <gdemar@wanadoo.fr>               //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
-//  http://www.stoverud.com/PHPhotoalbum/                                    //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -16,9 +17,9 @@
 
 // info about translators and translated language 
 $lang_translation_info = array( 
-'lang_name_english' => 'Bosnian',  //the name of your language in English, e.g. 'Greek' or 'Spanish' 
-'lang_name_native' => 'Bosanski', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espa&ntilde;ol' 
-'lang_country_code' => 'gb', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es' 
+'lang_name_english' => 'Bosnian',  
+'lang_name_native' => 'Bosanski', 
+'lang_country_code' => 'gb', 
 'trans_name'=> 'Kakanj.net', //the name of the translator - can be a nickname 
 'trans_email' => 'info@kakanj.net', //translator's email address (optional) 
 'trans_website' => 'http://Kakanj.net/', //translator's website (optional) 
@@ -63,7 +64,7 @@ $lang_meta_album_names = array(
 	'toprated' => 'Visoko rangirano',
 	'lasthits' => 'Posljednje pogledano',
 	'search' => 'Rezultati pretrage',
-        'favpics'=> 'Favourite Pictures', //new in cpg1.2.0
+        'favpics'=> 'Favourite Pictures', 
 );
 
 $lang_errors = array(
@@ -81,8 +82,8 @@ $lang_errors = array(
 	'directory_ro' => 'Direktoriju \'%s\' nije dodjeljen status writable, slike ne mogu biti izbrisane',
 	'non_exist_comment' => 'Izabrani komentar ne postoji.',
 	'pic_in_invalid_album' => 'Slika je u nepostojeæem albumu (%s)!?',
-        'banned' => 'You are currently banned from using this site.',  //new in cpg1.2.0
-        'not_with_udb' => 'This function is disabled in Coppermine because it is integrated with forum software. Either what you are trying to do is not supported in this configuration, or the function should be handled by the forum software.',  //new in cpg1.2.0
+        'banned' => 'You are currently banned from using this site.',  
+        'not_with_udb' => 'This function is disabled in Coppermine because it is integrated with forum software. Either what you are trying to do is not supported in this configuration, or the function should be handled by the forum software.',  
 );
 
 // ------------------------------------------------------------------------- //
@@ -110,7 +111,7 @@ $lang_main_menu = array(
 	'topn_lnk' => 'Najgledanije',
 	'toprated_lnk' => 'Visoko rangirano',
 	'search_lnk' => 'Pretraga',
-        'fav_lnk' => 'My Favorites', //new in cpg1.2.0
+        'fav_lnk' => 'My Favorites', 
 );
 
 $lang_gallery_admin_menu = array(
@@ -122,8 +123,8 @@ $lang_gallery_admin_menu = array(
 	'groups_lnk' => 'Grupe',
 	'comments_lnk' => 'Komentari',
 	'searchnew_lnk' => 'Prebacivanje',
-        'util_lnk' => 'Resize pictures',  //new in cpg1.2.0
-        'ban_lnk' => 'Ban Users',  //new in cpg1.2.0
+        'util_lnk' => 'Resize pictures',  
+        'ban_lnk' => 'Ban Users',  
 );
 
 $lang_user_admin_menu = array(
@@ -145,14 +146,14 @@ $lang_album_list = array(
 $lang_thumb_view = array(
 	'date' => 'DATUM',
         //Sort by filename and title
-        'name' => 'NAZIV', //new in cpg1.2.0
-        'title' => 'TITLE', //new in cpg1.2.0
+        'name' => 'NAZIV', 
+        'title' => 'TITLE', 
 	'sort_da' => 'Poredaj po datumu novije',
 	'sort_dd' => 'Poredaj po datumu starije',
 	'sort_na' => 'Poredaj po nazivu novije',
 	'sort_nd' => 'Poredaj po nazivu starije',
-        'sort_ta' => 'Sort by title ascending',  //new in cpg1.2.0
-        'sort_td' => 'Sort by title descending',  //new in cpg1.2.0
+        'sort_ta' => 'Sort by title ascending',  
+        'sort_td' => 'Sort by title descending',  
 	'pic_on_page' => '%d slika na %d stranici',
 	'user_on_page' => '%d korisnika na %d stranici'
 );
@@ -322,8 +323,8 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
 	'restore_success' => 'Osnova konfiguracija je vraæena',
 	'name_a' => 'Naziv novije',
 	'name_d' => 'Naziv starije',
-        'title_a' => 'Title ascending',  //new in cpg1.2.0
-        'title_d' => 'Title descending',  //new in cpg1.2.0
+        'title_a' => 'Title ascending',  
+        'title_d' => 'Title descending',  
 	'date_a' => 'Datum novije',
 	'date_d' => 'Datum starije',
         'th_any' => 'Max Aspect',
@@ -347,7 +348,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Broj kolona za listu albuma', 'album_list_cols', 0),
 	array('Velièina slièice u pikselima', 'alb_list_thumb_size', 0),
 	array('Sadržaj naslovne stranice', 'main_page_layout', 0),
-        array('Show first level album thumbnails in categories','first_level',1),  //new in cpg1.2.0
+        array('Show first level album thumbnails in categories','first_level',1),  
 
 	'Thumbnail view',
 	array('Number of columns on thumbnail page', 'thumbcols', 0),
@@ -367,13 +368,13 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Max number of characters in a word', 'max_com_wlength', 0),
 	array('Max number of lines in a comment', 'max_com_lines', 0),
 	array('Maximum length of a comment', 'max_com_size', 0),
-        array('Show film strip', 'display_film_strip', 1),  //new in cpg1.2.0
+        array('Show film strip', 'display_film_strip', 1),  
         array('Number of items in film strip', 'max_film_strip_items', 0), 
 
 	'Pictures and thumbnails settings',
 	array('Quality for JPEG files', 'jpeg_qual', 0),
-        array('Max dimension of a thumbnail <b>*</b>', 'thumb_width', 0),  //new in cpg1.2.0
-        array('Use dimension ( width or height or Max aspect for thumbnail )<b>*</b>', 'thumb_use', 7),  //new in cpg1.2.0
+        array('Max dimension of a thumbnail <b>*</b>', 'thumb_width', 0),  
+        array('Use dimension ( width or height or Max aspect for thumbnail )<b>*</b>', 'thumb_use', 7),  
 	array('Create intermediate pictures','make_intermediate',1),
 	array('Max width or height of an intermediate picture <b>*</b>', 'picture_width', 0),
 	array('Max size for uploaded pictures (KB)', 'max_upl_size', 0),
@@ -392,7 +393,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Field 4 name', 'user_field4_name', 0),
 
 	'Pictures and thumbnails advanced settings',
-        array('Show private album Icon to unlogged user','show_private',1),  //new in cpg1.2.0
+        array('Show private album Icon to unlogged user','show_private',1),  
 	array('Characters forbidden in filenames', 'forbiden_fname_char',0),
 	array('Accepted file extensions for uploaded pictures', 'allowed_file_extensions',0),
 	array('Method for resizing images','thumb_method',2),
@@ -511,9 +512,9 @@ $lang_picinfo = array(
 	'Exposure time' => 'Vrijeme izlaganja',
 	'Focal length' => 'Odstojanje od centra',
 	'Comment' => 'Komentar',
-        'addFav' => 'Add to Fav',  //new in cpg1.2.0
-        'addFavPhrase' => 'Favourites',  //new in cpg1.2.0
-        'remFav'=>'Remove from Fav',  //new in cpg1.2.0
+        'addFav' => 'Add to Fav',  
+        'addFavPhrase' => 'Favourites',  
+        'remFav'=>'Remove from Fav',  
 );
 
 $lang_display_comments = array(
@@ -521,13 +522,13 @@ $lang_display_comments = array(
 	'edit_title' => 'Prepravi ovaj komentar',
 	'confirm_delete' => 'Sigurni ste da želite izbrisati ovaj komentar ?',
 	'add_your_comment' => 'Dodajte svoj komentar',
-        'name'=>'Name',  //new in cpg1.2.0
-        'comment'=>'Comment',  //new in cpg1.2.0
+        'name'=>'Name',  
+        'comment'=>'Comment',  
 	'your_name' => 'Vaše ime',
 );
 
 $lang_fullsize_popup = array( 
-        'click_to_close' => 'Click image to close this window',  //new in cpg1.2.0
+        'click_to_close' => 'Click image to close this window',  
 ); 
 
 }
@@ -852,7 +853,7 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 // Void
 
 // ------------------------------------------------------------------------- // 
-// File banning.php  //new in cpg1.2.0
+// File banning.php  
 // ------------------------------------------------------------------------- // 
 
 if (defined('BANNING_PHP')) $lang_banning_php = array( 
@@ -929,7 +930,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 );
 
 // ------------------------------------------------------------------------- // 
-// File util.php  //new in cpg1.2.0
+// File util.php  
 // ------------------------------------------------------------------------- // 
 
 if (defined('UTIL_PHP')) $lang_util_php = array( 

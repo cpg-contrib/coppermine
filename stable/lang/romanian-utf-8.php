@@ -1,16 +1,13 @@
-﻿<?php 
+﻿<?php
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery                                                 //
+// Coppermine Photo Gallery 1.2.1                                            //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Gregory DEMAR <gdemar@wanadoo.fr>               //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Stoverud <henning@stoverud.com>         //
-//  http://www.stoverud.com/PHPhotoalbum/                                    //
-// ------------------------------------------------------------------------- //
-//  Hacked by Tarique Sani <tarique@sanisoft.com> and Girsh Nair             //
-//  <girish@sanisoft.com> see http://www.sanisoft.com/cpg/README.txt for     //
-//  details                                                                  //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -20,9 +17,9 @@
 
 // info about translators and translated language
 $lang_translation_info = array(
-'lang_name_english' => 'Romanian',  //the name of your language in English, e.g. 'Greek' or 'Spanish'
-'lang_name_native' => 'Romana', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espa&ntilde;ol'
-'lang_country_code' => 'ro', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es'
+'lang_name_english' => 'Romanian',  
+'lang_name_native' => 'Romana', 
+'lang_country_code' => 'ro', 
 'trans_name'=> 'Silviu Vulcan', //the name of the translator - can be a nickname
 'trans_email' => 'openphoto@miv.directnet.ro', //translator's email address (optional)
 'trans_website' => 'http://openphoto.binary-pulse.org/', //translator's website (optional)
@@ -62,13 +59,13 @@ $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clit
 $lang_meta_album_names = array(
         'random' => 'Imagini aleatoare',
         'lastup' => 'Ultimele adaugate',
-        'lastalb'=> 'Ultimele albume modificate', //new in cpg1.2.0
+        'lastalb'=> 'Ultimele albume modificate', 
         'lastcom' => 'Ultimele comentarii',
         'topn' => 'Cele mai vizitate',
         'toprated' => 'Cele mai apreciate',
         'lasthits' => 'Ultimele vizitate',
-        'search' => 'Rezultatele cautarii', //new in cpg1.2.0
-        'favpics'=> 'Imaginile favorite' //new in cpg1.2.0
+        'search' => 'Rezultatele cautarii', 
+        'favpics'=> 'Imaginile favorite' 
 );
 
 $lang_errors = array(
@@ -85,9 +82,9 @@ $lang_errors = array(
         'orphan_cat' => 'O categorie are parintele inexistent, rulati managerul de categorii pentru a corecta problema.',
         'directory_ro' => 'Directorul \'%s\' nu poate fi scris, imaginile nu pot fi sters',
         'non_exist_comment' => 'Comentariul selectat nu exista.',
-        'pic_in_invalid_album' => 'Imaginea este intr-un album inexistent (%s)!?', //new in cpg1.2.0
-        'banned' => 'Sunteti exclus de pe aceasta pagina web.', //new in cpg1.2.0
-        'not_with_udb' => 'Aceasta functie este blocata in Coppermine deoarece este integrata cu programul ce ruleaza forumul. Ce incercati sa faceti ori nu este suportat in aceasta configuratie, ori functia trebuie executata de programul ce ruleaza forumul.', //new in cpg1.2.0
+        'pic_in_invalid_album' => 'Imaginea este intr-un album inexistent (%s)!?', 
+        'banned' => 'Sunteti exclus de pe aceasta pagina web.', 
+        'not_with_udb' => 'Aceasta functie este blocata in Coppermine deoarece este integrata cu programul ce ruleaza forumul. Ce incercati sa faceti ori nu este suportat in aceasta configuratie, ori functia trebuie executata de programul ce ruleaza forumul.', 
 );
 
 // ------------------------------------------------------------------------- //
@@ -115,7 +112,7 @@ $lang_main_menu = array(
         'topn_lnk' => 'Cele mai vizitate',
         'toprated_lnk' => 'Cele mai apreciate',
         'search_lnk' => 'Cautare',
-        'fav_lnk' => 'Favoritele mele', //new in cpg1.2.0
+        'fav_lnk' => 'Favoritele mele', 
 
 );
 
@@ -128,8 +125,8 @@ $lang_gallery_admin_menu = array(
         'groups_lnk' => 'Grupuri',
         'comments_lnk' => 'Comentarii',
         'searchnew_lnk' => 'Adaugati imagini in mod \'batch\'',
-        'util_lnk' => 'Redimensionati imaginile', //new in cpg1.2.0
-        'ban_lnk' => 'Banati utilizatori', //new in cpg1.2.0
+        'util_lnk' => 'Redimensionati imaginile', 
+        'ban_lnk' => 'Banati utilizatori', 
 );
 
 $lang_user_admin_menu = array(
@@ -151,14 +148,14 @@ $lang_album_list = array(
 $lang_thumb_view = array(
         'date' => 'DATA',
         //Sort by filename and title
-        'name' => 'NUMELE FISIERULUI', //new in cpg1.2.0
-        'title' => 'TITLU', //new in cpg1.2.0
+        'name' => 'NUMELE FISIERULUI', 
+        'title' => 'TITLU', 
         'sort_da' => 'Sortare dupa data, ascendent',
         'sort_dd' => 'Sortare dupa data, descendent',
         'sort_na' => 'Sortare dupa nume, ascendent',
         'sort_nd' => 'Sortare dupa nume, ascendent',
-        'sort_ta' => 'Sortare dupa titlu, ascendent', //new in cpg1.2.0
-        'sort_td' => 'Sortare dupa titlu, ascendent', //new in cpg1.2.0
+        'sort_ta' => 'Sortare dupa titlu, ascendent', 
+        'sort_td' => 'Sortare dupa titlu, ascendent', 
         'pic_on_page' => '%d imagini pe %d pagini',
         'user_on_page' => '%d utilizatori pe %d pagini'
 );
@@ -328,8 +325,8 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'restore_success' => 'Configuratia Coppermine predefinita a fost restabilita',
         'name_a' => 'Nume ascendent',
         'name_d' => 'Nume descendent',
-        'title_a' => 'Titlu ascendent', //new in cpg1.2.0
-        'title_d' => 'Titlu descendent', //new in cpg1.2.0
+        'title_a' => 'Titlu ascendent', 
+        'title_d' => 'Titlu descendent', 
         'date_a' => 'Data ascendenta',
         'date_d' => 'Data descendenta',
         'th_any' => 'Max Aspect',
@@ -353,7 +350,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Numarul de coloane in lista de albume', 'album_list_cols', 0),
         array('Dimensiunea pictogramelor in pixeli', 'alb_list_thumb_size', 0),
         array('Continutul paginii principale', 'main_page_layout', 0),
-        array('Afiseaza pictogramele albumelor din primul nivel in categorii','first_level',1), //new in cpg1.2.0
+        array('Afiseaza pictogramele albumelor din primul nivel in categorii','first_level',1), 
 
         'Pictograme',
         array('Numarul de coloane pe pagina cu pictograme', 'thumbcols', 0),
@@ -373,13 +370,13 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Numarul maxim de caractere intr-un cuvant', 'max_com_wlength', 0),
         array('Numarul maxim de linii intr-un comentariu', 'max_com_lines', 0),
         array('Lungimea maxima a unui comentariu', 'max_com_size', 0),
-        array('Afiseaza rama film', 'display_film_strip', 1), //new in cpg1.2.0
-        array('Numarul de obiecte in rama film', 'max_film_strip_items', 0), //new in cpg1.2.0
+        array('Afiseaza rama film', 'display_film_strip', 1), 
+        array('Numarul de obiecte in rama film', 'max_film_strip_items', 0), 
 
         'Setari pentru imagini si pictograme',
         array('Calitatea fisierelor JPEG', 'jpeg_qual', 0),
-        array('Dimensiunea maxima a unei pictograme <b>*</b>', 'thumb_width', 0), //new in cpg1.2.0
-        array('Utilizati dimensiunea ( latime sau inaltime sau aspectul Maxim pentru pictograma )<b>*</b>',  'thumb_use', 7),//new in cpg1.2.0
+        array('Dimensiunea maxima a unei pictograme <b>*</b>', 'thumb_width', 0), 
+        array('Utilizati dimensiunea ( latime sau inaltime sau aspectul Maxim pentru pictograma )<b>*</b>',  'thumb_use', 7),
         array('Creaza imagini intermediare','make_intermediate',1),
         array('Latimea sau inaltimea maxima a unei imagini intermediare <b>*</b>', 'picture_width', 0),
         array('Dimensiunea maxima a unei imagini (KB)', 'max_upl_size', 0),
@@ -398,7 +395,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Numele campului 4', 'user_field4_name', 0),
 
         'Setari avansate pentru imagini si pictograme',
-        array('Afiseaza Icoana privat utilizatorilor neinregistrati','show_private',1), //new in cpg1.2.0
+        array('Afiseaza Icoana privat utilizatorilor neinregistrati','show_private',1), 
         array('Caractere interzise in numele de fisiere', 'forbiden_fname_char',0),
         array('Extensii acceptate pentru fisierele incarcate', 'allowed_file_extensions',0),
         array('Metoda de redimensionare a imaginilor','thumb_method',2),
@@ -517,9 +514,9 @@ $lang_picinfo = array(
         'Exposure time' => 'Timp de expunere',
         'Focal length' => 'Focala',
         'Comment' => 'Comentariu',
-        'addFav'=>'Adauga in Favorite', //new in cpg1.2.0
-        'addFavPhrase'=>'Favorite', //new in cpg1.2.0
-        'remFav'=>'Sterge din Favorite', //new in cpg1.2.0
+        'addFav'=>'Adauga in Favorite', 
+        'addFavPhrase'=>'Favorite', 
+        'remFav'=>'Sterge din Favorite', 
 );
 
 $lang_display_comments = array(
@@ -527,13 +524,13 @@ $lang_display_comments = array(
         'edit_title' => 'Editeaza acest comentariu',
         'confirm_delete' => 'Sunteti sigur ca doriti sa stergeti acest comentariu ?',
         'add_your_comment' => 'Adaugati comentariul dvs.',
-        'name'=>'Nume', //new in cpg1.2.0
-        'comment'=>'Comentariu', //new in cpg1.2.0
-        'your_name' => 'Anonim', //new in cpg1.2.0
+        'name'=>'Nume', 
+        'comment'=>'Comentariu', 
+        'your_name' => 'Anonim', 
 );
 
 $lang_fullsize_popup = array(
-        'click_to_close' => 'Click pe imagine pentru a inchide fereastra', //new in cpg1.2.0
+        'click_to_close' => 'Click pe imagine pentru a inchide fereastra', 
 );
 
 }
@@ -863,14 +860,14 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('BANNING_PHP')) $lang_banning_php = array(
-                'title' => 'Banati utilizatori', //new in cpg1.2.0
-                'user_name' => 'Nume utilizator', //new in cpg1.2.0
-                'ip_address' => 'Adresa IP', //new in cpg1.2.0
-                'expiry' => 'Expira (gol este permanent)', //new in cpg1.2.0
-                'edit_ban' => 'Salveaza modificarile', //new in cpg1.2.0
-                'delete_ban' => 'Sterge', //new in cpg1.2.0
-                'add_new' => 'Adauga un nou Ban', //new in cpg1.2.0
-                'add_ban' => 'Adauga', //new in cpg1.2.0
+                'title' => 'Banati utilizatori', 
+                'user_name' => 'Nume utilizator', 
+                'ip_address' => 'Adresa IP', 
+                'expiry' => 'Expira (gol este permanent)', 
+                'edit_ban' => 'Salveaza modificarile', 
+                'delete_ban' => 'Sterge', 
+                'add_new' => 'Adauga un nou Ban', 
+                'add_ban' => 'Adauga', 
 );
 
 // ------------------------------------------------------------------------- //
@@ -939,50 +936,50 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UTIL_PHP')) $lang_util_php = array(
-        'title' => 'Redimensioneaza imagini', //new in cpg1.2.0
-        'what_it_does' => 'Ce face', //new in cpg1.2.0
-        'what_update_titles' => 'Modifica titlurile dupa numele fisier', //new in cpg1.2.0
-        'what_delete_title' => 'Sterge titlurile', //new in cpg1.2.0
-        'what_rebuild' => 'Reconstruieste pictogramele si imaginile intermediare', //new in cpg1.2.0
-        'what_delete_originals' => 'Sterge imaginile dimensionate initial, inlocuindu-le cu versiunea dimensionata', //new in cpg1.2.0
-        'file' => 'Fisier', //new in cpg1.2.0
-        'title_set_to' => 'titlu setat ca', //new in cpg1.2.0
-        'submit_form' => 'trimite', //new in cpg1.2.0
-        'updated_succesfully' => 'modificata cu succes', //new in cpg1.2.0
-        'error_create' => 'ERROARE creeare', //new in cpg1.2.0
-        'continue' => 'Proceseaza mai multe imagini', //new in cpg1.2.0
-        'main_success' => 'Fisierul %s a fost folosit cu succes ca imagine principala', //new in cpg1.2.0
-        'error_rename' => 'Erroare redenumire %s cu %s', //new in cpg1.2.0
-        'error_not_found' => 'Fisierul %s nu a fost gasit', //new in cpg1.2.0
-        'back' => 'inapoi la principal', //new in cpg1.2.0
-        'thumbs_wait' => 'Modificare pictograme si/sau imagini intermediare, va rugam asteptati...', //new in cpg1.2.0
-        'thumbs_continue_wait' => 'Continua sa modifica pictograme si/sau imaginile intermediare...', //new in cpg1.2.0
-        'titles_wait' => 'Modifica titluri, va rugam asteptati...', //new in cpg1.2.0
-        'delete_wait' => 'Stergere titluri, va rugam asteptati...', //new in cpg1.2.0
-        'replace_wait' => 'Sterge originalele si le modifica cu versiunile redimensionate, va rugam asteptati...', //new in cpg1.2.0
-        'instruction' => 'Instructiuni rapide', //new in cpg1.2.0
-        'instruction_action' => 'Selecteaza o actiune', //new in cpg1.2.0
-        'instruction_parameter' => 'Seteaza parametrii', //new in cpg1.2.0
-        'instruction_album' => 'Selecteaza album', //new in cpg1.2.0
-        'instruction_press' => 'Apasa %s', //new in cpg1.2.0
-        'update' => 'Modifica pictograme si/sau imagini intermediare', //new in cpg1.2.0
-        'update_what' => 'Ce trebuie modificat', //new in cpg1.2.0
-        'update_thumb' => 'Doar pictograme', //new in cpg1.2.0
-        'update_pic' => 'Doar imaginile intermediare', //new in cpg1.2.0
-        'update_both' => 'Amandoua', //new in cpg1.2.0
-        'update_number' => 'Numarul de imagini procesate per click', //new in cpg1.2.0
-        'update_option' => '(Incercati o setare mai mica daca experimentati timeout-uri)', //new in cpg1.2.0
-        'filename_title' => 'Nume fisier &rArr; Titlu imagine', //new in cpg1.2.0
-        'filename_how' => 'Cum trebuie modificat titlul', //new in cpg1.2.0
-        'filename_remove' => 'Elimina .jpg din final si inlocuieste _ (liniuta de subliniere) cu spatii', //new in cpg1.2.0
-        'filename_euro' => 'Schimba 2003_11_23_13_20_20.jpg cu 23/11/2003 13:20', //new in cpg1.2.0
-        'filename_us' => 'Schimba 2003_11_23_13_20_20.jpg cu 11/23/2003 13:20', //new in cpg1.2.0
-        'filename_time' => 'Schimba 2003_11_23_13_20_20.jpg cu 13:20', //new in cpg1.2.0
-        'delete' => 'Sterge titlurile sau imaginile originale', //new in cpg1.2.0
-        'delete_title' => 'Sterge titlurile imaginilor', //new in cpg1.2.0
-        'delete_original' => 'Sterge imaginile originale', //new in cpg1.2.0
-        'delete_replace' => 'Sterge originalele, inlocuindu-le cu versiunile dimensionata', //new in cpg1.2.0
-        'select_album' => 'Selecteaza album', //new in cpg1.2.0
+        'title' => 'Redimensioneaza imagini', 
+        'what_it_does' => 'Ce face', 
+        'what_update_titles' => 'Modifica titlurile dupa numele fisier', 
+        'what_delete_title' => 'Sterge titlurile', 
+        'what_rebuild' => 'Reconstruieste pictogramele si imaginile intermediare', 
+        'what_delete_originals' => 'Sterge imaginile dimensionate initial, inlocuindu-le cu versiunea dimensionata', 
+        'file' => 'Fisier', 
+        'title_set_to' => 'titlu setat ca', 
+        'submit_form' => 'trimite', 
+        'updated_succesfully' => 'modificata cu succes', 
+        'error_create' => 'ERROARE creeare', 
+        'continue' => 'Proceseaza mai multe imagini', 
+        'main_success' => 'Fisierul %s a fost folosit cu succes ca imagine principala', 
+        'error_rename' => 'Erroare redenumire %s cu %s', 
+        'error_not_found' => 'Fisierul %s nu a fost gasit', 
+        'back' => 'inapoi la principal', 
+        'thumbs_wait' => 'Modificare pictograme si/sau imagini intermediare, va rugam asteptati...', 
+        'thumbs_continue_wait' => 'Continua sa modifica pictograme si/sau imaginile intermediare...', 
+        'titles_wait' => 'Modifica titluri, va rugam asteptati...', 
+        'delete_wait' => 'Stergere titluri, va rugam asteptati...', 
+        'replace_wait' => 'Sterge originalele si le modifica cu versiunile redimensionate, va rugam asteptati...', 
+        'instruction' => 'Instructiuni rapide', 
+        'instruction_action' => 'Selecteaza o actiune', 
+        'instruction_parameter' => 'Seteaza parametrii', 
+        'instruction_album' => 'Selecteaza album', 
+        'instruction_press' => 'Apasa %s', 
+        'update' => 'Modifica pictograme si/sau imagini intermediare', 
+        'update_what' => 'Ce trebuie modificat', 
+        'update_thumb' => 'Doar pictograme', 
+        'update_pic' => 'Doar imaginile intermediare', 
+        'update_both' => 'Amandoua', 
+        'update_number' => 'Numarul de imagini procesate per click', 
+        'update_option' => '(Incercati o setare mai mica daca experimentati timeout-uri)', 
+        'filename_title' => 'Nume fisier &rArr; Titlu imagine', 
+        'filename_how' => 'Cum trebuie modificat titlul', 
+        'filename_remove' => 'Elimina .jpg din final si inlocuieste _ (liniuta de subliniere) cu spatii', 
+        'filename_euro' => 'Schimba 2003_11_23_13_20_20.jpg cu 23/11/2003 13:20', 
+        'filename_us' => 'Schimba 2003_11_23_13_20_20.jpg cu 11/23/2003 13:20', 
+        'filename_time' => 'Schimba 2003_11_23_13_20_20.jpg cu 13:20', 
+        'delete' => 'Sterge titlurile sau imaginile originale', 
+        'delete_title' => 'Sterge titlurile imaginilor', 
+        'delete_original' => 'Sterge imaginile originale', 
+        'delete_replace' => 'Sterge originalele, inlocuindu-le cu versiunile dimensionata', 
+        'select_album' => 'Selecteaza album', 
 );
 
 ?>

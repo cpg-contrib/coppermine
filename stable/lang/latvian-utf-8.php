@@ -1,16 +1,13 @@
 ﻿<?php
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery                                                 //
+// Coppermine Photo Gallery 1.2.1                                            //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Gregory DEMAR <gdemar@wanadoo.fr>               //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Stoverud <henning@stoverud.com>         //
-//  http://www.stoverud.com/PHPhotoalbum/                                    //
-// ------------------------------------------------------------------------- //
-//  Hacked by Tarique Sani <tarique@sanisoft.com> and Girsh Nair             //
-//  <girish@sanisoft.com> see http://www.sanisoft.com/cpg/README.txt for     //
-//  details                                                                  //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -20,9 +17,9 @@
 
 // info about translators and translated language
 $lang_translation_info = array(
-'lang_name_english' => 'Latvian',  //the name of your language in English, e.g. 'Greek' or 'Spanish'
-'lang_name_native' => 'Latviski', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espa&ntilde;ol'
-'lang_country_code' => 'lv', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es'
+'lang_name_english' => 'Latvian',  
+'lang_name_native' => 'Latviski', 
+'lang_country_code' => 'lv', 
 'trans_name'=> 'Kaspars Priedols', //the name of the translator - can be a nickname
 'trans_email' => 'house@tvertne.nu', //translator's email address (optional)
 'trans_website' => 'http://foto.tvertne.nu/', //translator's website (optional)
@@ -62,13 +59,13 @@ $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clit
 $lang_meta_album_names = array(
     'random' => 'Izlases veida attçli',
     'lastup' => 'Jaunâkie papildinâjumi',
-    'lastalb'=> 'Pçdçjie atjaunotie albumi', //new in cpg1.2.0
+    'lastalb'=> 'Pçdçjie atjaunotie albumi', 
     'lastcom' => 'Jaunâkie komentâri',
     'topn' => 'Skatîtâkie',
     'toprated' => 'Vispopulârâkie',
     'lasthits' => 'Pçdçjie skatîtie',
-    'search' => 'Meklçðanas rezultâti', //new in cpg1.2.0
-    'favpics'=> 'Attçlu favorîti' //new in cpg1.2.0
+    'search' => 'Meklçðanas rezultâti', 
+    'favpics'=> 'Attçlu favorîti' 
 );
 
 $lang_errors = array(
@@ -85,9 +82,9 @@ $lang_errors = array(
     'orphan_cat' => 'Ðai apakðsadaïai nav sadaïas, kam tâ piederçtu, lûdzu izmanto sadaïu menedþeri, lai atrisinâtu problçmu.',
     'directory_ro' => 'Direktorijâ \'%s\' nav atïauts rakstît, tâpçc attçlus nav iespçjams izdzçst.',
     'non_exist_comment' => 'Izvçlçtais komentârs neeksistç.',
-    'pic_in_invalid_album' => 'Attçls atrodas neeksistçjoðâ albumâ (%s)!?', //new in cpg1.2.0
-    'banned' => 'Pieeja foto galerijai aizliegta.', //new in cpg1.2.0
-    'not_with_udb' => 'Ðî iespçja ir atslçgta, jo tai jâbût integrçtai kopâ ar foruma programmatûru. Trûkst attiecîgâs konfigurâcijas, vai nepiecieðams uzinstalçt forumu.', //new in cpg1.2.0
+    'pic_in_invalid_album' => 'Attçls atrodas neeksistçjoðâ albumâ (%s)!?', 
+    'banned' => 'Pieeja foto galerijai aizliegta.', 
+    'not_with_udb' => 'Ðî iespçja ir atslçgta, jo tai jâbût integrçtai kopâ ar foruma programmatûru. Trûkst attiecîgâs konfigurâcijas, vai nepiecieðams uzinstalçt forumu.', 
 );
 
 // ------------------------------------------------------------------------- //
@@ -115,7 +112,7 @@ $lang_main_menu = array(
     'topn_lnk' => 'Skatîtâkie attçli',
     'toprated_lnk' => 'Vispopulârâkie',
     'search_lnk' => 'Meklçt',
-    'fav_lnk' => 'Favorîti', //new in cpg1.2.0
+    'fav_lnk' => 'Favorîti', 
 
 );
 
@@ -128,8 +125,8 @@ $lang_gallery_admin_menu = array(
     'groups_lnk' => 'Grupas',
     'comments_lnk' => 'Komentâri',
     'searchnew_lnk' => 'Attçlu grupas...',
-    'util_lnk' => 'Mainît attçla izmçrus', //new in cpg1.2.0
-    'ban_lnk' => 'Aiziegt piekïuvi', //new in cpg1.2.0
+    'util_lnk' => 'Mainît attçla izmçrus', 
+    'ban_lnk' => 'Aiziegt piekïuvi', 
 );
 
 $lang_user_admin_menu = array(
@@ -151,13 +148,13 @@ $lang_album_list = array(
 $lang_thumb_view = array(
     'date' => 'LAIKS',
     //Sort by filename and title
-    'name' => 'NOSAUKUMS', //new in cpg1.2.0
-    'title' => 'VIRSRAKSTS', //new in cpg1.2.0
+    'name' => 'NOSAUKUMS', 
+    'title' => 'VIRSRAKSTS', 
     'sort_da' => 'pçc datuma augoði',
     'sort_dd' => 'pçc datuma dilstoði',
     'sort_na' => 'pçc nosaukuma augoði',
     'sort_nd' => 'pçc nosaukuma dilstoði',
-    'sort_ta' => 'pçc virsraksta augoði', //new in cpg1.2.0
+    'sort_ta' => 'pçc virsraksta augoði', 
     'pic_on_page' => '%d attçls(-i) %d lapâ(s)',
     'user_on_page' => '%d lietotâjs(-i) %d lapâ(s)'
 );
@@ -327,8 +324,8 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
     'restore_success' => 'Coppermine noklusçtâ konfigurâcija uzstâdîta',
     'name_a' => 'Nosaukums augoði',
     'name_d' => 'Nosaukums dilstoði',
-    'title_a' => 'Virsraksts augoði', //new in cpg1.2.0
-    'title_d' => 'Virsraksts dilstoði', //new in cpg1.2.0
+    'title_a' => 'Virsraksts augoði', 
+    'title_d' => 'Virsraksts dilstoði', 
     'date_a' => 'Datums augoði',
     'date_d' => 'Datums dilstoði',
         'th_any' => 'Max Aspect',
@@ -352,7 +349,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
     array('Cik kolonnâs atspoguïot albûmus', 'album_list_cols', 0),
     array('Cik lieli pikseïos bûs mazie attçli', 'alb_list_thumb_size', 0),
     array('Galvenâs lapas saturs', 'main_page_layout', 0),
-    array('Râdît pirmâ lîmeòa mazos attçlus pa sadaïâm','first_level',1), //new in cpg1.2.0
+    array('Râdît pirmâ lîmeòa mazos attçlus pa sadaïâm','first_level',1), 
 
     'Mazo attçlu skatîjums',
     array('Cik kolonnâs râdît mazos attçlus', 'thumbcols', 0),
@@ -372,13 +369,13 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
     array('Max simbolu skaits vienâ vârdâ', 'max_com_wlength', 0),
     array('Max rindu skaits komentârâ', 'max_com_lines', 0),
     array('Max komentâra garums', 'max_com_size', 0),
-    array('Filmas skatîjums', 'display_film_strip', 1), //new in cpg1.2.0
-    array('Attçlu skaits filmas skatîjumâ', 'max_film_strip_items', 0), //new in cpg1.2.0
+    array('Filmas skatîjums', 'display_film_strip', 1), 
+    array('Attçlu skaits filmas skatîjumâ', 'max_film_strip_items', 0), 
 
     'Lielo un mazo attçlu kvalitâte',
     array('JPEG failu kvalitâte', 'jpeg_qual', 0),
     array('Max mazâ attçla platums vai augstums <b>*</b>', 'thumb_width', 0),
-    array('Izmantojamie izmçri ( platums vai augstums )<b>*</b>', 'thumb_use', 7), //new in cpg1.2.0
+    array('Izmantojamie izmçri ( platums vai augstums )<b>*</b>', 'thumb_use', 7), 
     array('Izveidot arî \'starpattçlus\'','make_intermediate',1),
     array('Max \'starpattçla\' platums vai augstums <b>*</b>', 'picture_width', 0),
     array('Max uzliktâ attçla lielums (KB)', 'max_upl_size', 0),
@@ -397,7 +394,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
     array('Lauka 4 nosaukums', 'user_field4_name', 0),
 
     'Lielo un mazo attçlu îpaðie uzstâdîjumi',
-    array('Râdît personîgâ albuma ikonu anonîmajiem apmeklçtâjiem','show_private',1), //new in cpg1.2.0
+    array('Râdît personîgâ albuma ikonu anonîmajiem apmeklçtâjiem','show_private',1), 
     array('Kâdi simboli aizliegti failu nosaukumos', 'forbiden_fname_char',0),
     array('Uzliekamo attçlu atïautie failu paplaðinâjumi', 'allowed_file_extensions',0),
     array('Attçlu izmçru mainîðanas metodes','thumb_method',2),
@@ -516,9 +513,9 @@ $lang_picinfo = array(
     'Exposure time' => 'Ekspozîcijas laiks',
     'Focal length' => 'Fokuss',
     'Comment' => 'Komentâri',
-    'addFav'=>'Uz favorîtiem', //new in cpg1.2.0
-    'addFavPhrase'=>'Favorîti', //new in cpg1.2.0
-    'remFav'=>'Dzçst no favorîtiem', //new in cpg1.2.0
+    'addFav'=>'Uz favorîtiem', 
+    'addFavPhrase'=>'Favorîti', 
+    'remFav'=>'Dzçst no favorîtiem', 
 );
 
 $lang_display_comments = array(
@@ -526,13 +523,13 @@ $lang_display_comments = array(
     'edit_title' => 'Modificçt komentâru',
     'confirm_delete' => 'Tieðâm DZÇST ðo komentâru?',
     'add_your_comment' => 'Pievienot komentâru',
-    'name'=>'Vârds', //new in cpg1.2.0
-    'comment'=>'Komentârs', //new in cpg1.2.0
-    'your_name' => 'Anonîms', //new in cpg1.2.0
+    'name'=>'Vârds', 
+    'comment'=>'Komentârs', 
+    'your_name' => 'Anonîms', 
 );
 
 $lang_fullsize_popup = array(
-        'click_to_close' => 'Uzklikðíini uz attçla, lai aizvçrtu ðo logu', //new in cpg1.2.0
+        'click_to_close' => 'Uzklikðíini uz attçla, lai aizvçrtu ðo logu', 
 );
 
 }
@@ -863,14 +860,14 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('BANNING_PHP')) $lang_banning_php = array(
-                'title' => 'Aizliegt pieeju', //new in cpg1.2.0
-                'user_name' => 'Lietotâjs', //new in cpg1.2.0
-                'ip_address' => 'IP adrese', //new in cpg1.2.0
-                'expiry' => 'Darbojas lîdz (tukðs nozîmç - bezgalîgi)', //new in cpg1.2.0
-                'edit_ban' => 'Saglabât', //new in cpg1.2.0
-                'delete_ban' => 'Dzçst', //new in cpg1.2.0
-                'add_new' => 'Jauns ieraksts', //new in cpg1.2.0
-                'add_ban' => 'Pievienot', //new in cpg1.2.0
+                'title' => 'Aizliegt pieeju', 
+                'user_name' => 'Lietotâjs', 
+                'ip_address' => 'IP adrese', 
+                'expiry' => 'Darbojas lîdz (tukðs nozîmç - bezgalîgi)', 
+                'edit_ban' => 'Saglabât', 
+                'delete_ban' => 'Dzçst', 
+                'add_new' => 'Jauns ieraksts', 
+                'add_ban' => 'Pievienot', 
 );
 
 // ------------------------------------------------------------------------- //
@@ -939,50 +936,50 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UTIL_PHP')) $lang_util_php = array(
-        'title' => 'Attçlu zimçri', //new in cpg1.2.0
-        'what_it_does' => 'Funkcijas', //new in cpg1.2.0
-        'what_update_titles' => 'Virsraksti tiek òemti no failu nosaukumiem', //new in cpg1.2.0
-        'what_delete_title' => 'Dzçst virsrakstus', //new in cpg1.2.0
-        'what_rebuild' => 'Pârveidot attçlus', //new in cpg1.2.0
-        'what_delete_originals' => 'Dzçst oriìinâlos attçlus un nomainît tos ar samazinâtajiem/palielinâtajiem', //new in cpg1.2.0
-        'file' => 'Fails', //new in cpg1.2.0
-        'title_set_to' => 'virsraksts', //new in cpg1.2.0
-        'submit_form' => 'Apstiprinât', //new in cpg1.2.0
-        'updated_succesfully' => 'Veiksmîgi izmanîts', //new in cpg1.2.0
-        'error_create' => 'Kïûda', //new in cpg1.2.0
-        'continue' => 'Turpinât ar citiem attçliem', //new in cpg1.2.0
-        'main_success' => 'Fails %s tiek izmantots kâ galvenais attçls', //new in cpg1.2.0
-        'error_rename' => 'Kïûda %s pârsaucot par %s', //new in cpg1.2.0
-        'error_not_found' => 'Fails %s nav atrasts', //new in cpg1.2.0
-        'back' => 'Atgriezties', //new in cpg1.2.0
-        'thumbs_wait' => 'Notiek mazo un normâlo attçlu modificçðana, lûdzu uzgaidi...', //new in cpg1.2.0
-        'thumbs_continue_wait' => 'Turpinam modificçt mazos un normâlos attçlus...', //new in cpg1.2.0
-        'titles_wait' => 'Norit sparîga virsrakstu modificçðana, uzgaidi...', //new in cpg1.2.0
-        'delete_wait' => 'Dzçðu virsrakstus, lûdzu uzgaidi...', //new in cpg1.2.0
-        'replace_wait' => 'Dzçðu oriìinâlus, nomainot tos ar modificçtajiem attçliem, lûdzu uzgaidi...', //new in cpg1.2.0
-        'instruction' => 'Ieteikumi', //new in cpg1.2.0
-        'instruction_action' => 'Izvçlies darbîbu', //new in cpg1.2.0
-        'instruction_parameter' => 'Uzliec parametrus', //new in cpg1.2.0
-        'instruction_album' => 'Izvçlies albumu', //new in cpg1.2.0
-        'instruction_press' => 'Nospied %s', //new in cpg1.2.0
-        'update' => 'Modificç mazos un/vai normâlos attçlus', //new in cpg1.2.0
-        'update_what' => 'Kas jâmodificç', //new in cpg1.2.0
-        'update_thumb' => 'Tikai mazos attçlus', //new in cpg1.2.0
-        'update_pic' => 'Tikai modificçtos attçlus', //new in cpg1.2.0
-        'update_both' => 'Gan mazie, gan normâlie attçli', //new in cpg1.2.0
-        'update_number' => 'Cik attçlus var modificçt ar vienu klikðíi', //new in cpg1.2.0
-        'update_option' => '(Ðo parametru samazini, ja ir problçmas ar modificçðanu)', //new in cpg1.2.0
-        'filename_title' => 'Faila nosaukums &rArr; Attçla virsraksts', //new in cpg1.2.0
-        'filename_how' => 'Kâ modificçt attçlu', //new in cpg1.2.0
-        'filename_remove' => 'Dzçst .jpg paplaðinâjumu un _ nomainît ar atstarpi', //new in cpg1.2.0
-        'filename_euro' => 'Konvertçt 2003_11_23_13_20_20.jpg uz 23/11/2003 13:20', //new in cpg1.2.0
-        'filename_us' => 'Konevertçt 2003_11_23_13_20_20.jpg uz 11/23/2003 13:20', //new in cpg1.2.0
-        'filename_time' => 'Konvertçt 2003_11_23_13_20_20.jpg uz 13:20', //new in cpg1.2.0
-        'delete' => 'Attçlu virsrakstu un attçlu dzçðana', //new in cpg1.2.0
-        'delete_title' => 'Dzçst attçlu virsrakstus', //new in cpg1.2.0
-        'delete_original' => 'Dzçst oriìinâlus', //new in cpg1.2.0
-        'delete_replace' => 'Dzçst oriìinâlus aizstâjot tos ar modificçtajiem attçliem', //new in cpg1.2.0
-        'select_album' => 'Izvçlies albumu', //new in cpg1.2.0
+        'title' => 'Attçlu zimçri', 
+        'what_it_does' => 'Funkcijas', 
+        'what_update_titles' => 'Virsraksti tiek òemti no failu nosaukumiem', 
+        'what_delete_title' => 'Dzçst virsrakstus', 
+        'what_rebuild' => 'Pârveidot attçlus', 
+        'what_delete_originals' => 'Dzçst oriìinâlos attçlus un nomainît tos ar samazinâtajiem/palielinâtajiem', 
+        'file' => 'Fails', 
+        'title_set_to' => 'virsraksts', 
+        'submit_form' => 'Apstiprinât', 
+        'updated_succesfully' => 'Veiksmîgi izmanîts', 
+        'error_create' => 'Kïûda', 
+        'continue' => 'Turpinât ar citiem attçliem', 
+        'main_success' => 'Fails %s tiek izmantots kâ galvenais attçls', 
+        'error_rename' => 'Kïûda %s pârsaucot par %s', 
+        'error_not_found' => 'Fails %s nav atrasts', 
+        'back' => 'Atgriezties', 
+        'thumbs_wait' => 'Notiek mazo un normâlo attçlu modificçðana, lûdzu uzgaidi...', 
+        'thumbs_continue_wait' => 'Turpinam modificçt mazos un normâlos attçlus...', 
+        'titles_wait' => 'Norit sparîga virsrakstu modificçðana, uzgaidi...', 
+        'delete_wait' => 'Dzçðu virsrakstus, lûdzu uzgaidi...', 
+        'replace_wait' => 'Dzçðu oriìinâlus, nomainot tos ar modificçtajiem attçliem, lûdzu uzgaidi...', 
+        'instruction' => 'Ieteikumi', 
+        'instruction_action' => 'Izvçlies darbîbu', 
+        'instruction_parameter' => 'Uzliec parametrus', 
+        'instruction_album' => 'Izvçlies albumu', 
+        'instruction_press' => 'Nospied %s', 
+        'update' => 'Modificç mazos un/vai normâlos attçlus', 
+        'update_what' => 'Kas jâmodificç', 
+        'update_thumb' => 'Tikai mazos attçlus', 
+        'update_pic' => 'Tikai modificçtos attçlus', 
+        'update_both' => 'Gan mazie, gan normâlie attçli', 
+        'update_number' => 'Cik attçlus var modificçt ar vienu klikðíi', 
+        'update_option' => '(Ðo parametru samazini, ja ir problçmas ar modificçðanu)', 
+        'filename_title' => 'Faila nosaukums &rArr; Attçla virsraksts', 
+        'filename_how' => 'Kâ modificçt attçlu', 
+        'filename_remove' => 'Dzçst .jpg paplaðinâjumu un _ nomainît ar atstarpi', 
+        'filename_euro' => 'Konvertçt 2003_11_23_13_20_20.jpg uz 23/11/2003 13:20', 
+        'filename_us' => 'Konevertçt 2003_11_23_13_20_20.jpg uz 11/23/2003 13:20', 
+        'filename_time' => 'Konvertçt 2003_11_23_13_20_20.jpg uz 13:20', 
+        'delete' => 'Attçlu virsrakstu un attçlu dzçðana', 
+        'delete_title' => 'Dzçst attçlu virsrakstus', 
+        'delete_original' => 'Dzçst oriìinâlus', 
+        'delete_replace' => 'Dzçst oriìinâlus aizstâjot tos ar modificçtajiem attçliem', 
+        'select_album' => 'Izvçlies albumu', 
 );
 
 ?>

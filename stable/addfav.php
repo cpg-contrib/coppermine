@@ -1,8 +1,8 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.2.0                                            //
+// Coppermine Photo Gallery 1.2.1                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR <gdemar@wanadoo.fr>                 //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -13,7 +13,7 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- // 
+// ------------------------------------------------------------------------- //
 define('IN_COPPERMINE', true);
 define('RATEPIC_PHP', true);
 
@@ -26,14 +26,14 @@ $pic = (int)$HTTP_GET_VARS['pid'];
 if (!isset($HTTP_COOKIE_VARS[$CONFIG['cookie_name'] . '_data'])) {
     header('Location: displayimage.php?pos=' . (- $pid));
     exit;
-} 
+}
 // See if this picture is already present in the array
 if (!in_array($pic, $FAVPICS)) {
     $FAVPICS[] = $pic;
 } else {
     $key = array_search($pic, $FAVPICS);
     unset ($FAVPICS[$key]);
-} 
+}
 
 $data = base64_encode(serialize($FAVPICS));
 setcookie($CONFIG['cookie_name'] . '_fav', $data, time() + 86400 * 30, $CONFIG['cookie_path']);

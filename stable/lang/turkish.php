@@ -1,28 +1,25 @@
 <?php
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery v1.1 Beta 2                                     //
+// Coppermine Photo Gallery 1.2.1                                            //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Gr&eacute;gory DEMAR <gdemar@wanadoo.fr>               //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
-//  http://www.stoverud.com/PHPhotoalbum/                                    //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
 //  the Free Software Foundation; either version 2 of the License, or        //
 //  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
-//  Translation by Mustafa Tolga YILMAZ <mtolgay@yahoo.com>                  //
-//  http://deermaker.cjb.net/                                                //
-//  Translation Version 1.0 Alpha 2                                          //
-// ------------------------------------------------------------------------- //
 
 // info about translators and translated language 
 $lang_translation_info = array( 
-'lang_name_english' => 'Turkish',  //the name of your language in English, e.g. 'Greek' or 'Spanish' 
-'lang_name_native' => 'Türkçe', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Español' 
-'lang_country_code' => 'tr', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es' 
+'lang_name_english' => 'Turkish', 
+'lang_name_native' => 'Türkçe', 
+'lang_country_code' => 'tr', 
 'trans_name'=> 'Mustafa Tolga YILMAZ', //the name of the translator - can be a nickname 
 'trans_email' => 'mtolgay@yahoo.com', //translator's email address (optional) 
 'trans_website' => 'http://www.fiat.web.tr/', //translator's website (optional) 
