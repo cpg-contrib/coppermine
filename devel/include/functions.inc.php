@@ -738,14 +738,14 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $count = $nbEnr[0];
                 mysql_free_result($result);
 
-                if($select_columns != '*') $select_columns .= ', UNIX_TIMESTAMP(mtime) as mtime, aid';
+                if($select_columns != '*') $select_columns .= ', UNIX_TIMESTAMP(mtime) as mtime, aid, hits, lasthit_ip';
 
                 $result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $ALBUM_SET ORDER BY mtime DESC $limit");
                 $rowset = db_fetch_rowset($result);
                 mysql_free_result($result);
-
+				
                 if ($set_caption) foreach ($rowset as $key => $row){
-                        $caption = "<span class=\"thumb_caption\">".localised_date($row['mtime'], $lasthit_date_fmt).'</span>';
+                        $caption = "<span class=\"thumb_caption\">".localised_date($row['mtime'], $lasthit_date_fmt)."<br/>".$row['hits']."<br/>".$row['lasthit_ip'].'</span>';						
                         $rowset[$key]['caption_text'] = $caption;
                 }
                 return $rowset;
@@ -947,9 +947,9 @@ function count_pic_comments($pid, $skip=0)
 // Add 1 everytime a picture is viewed.
 function add_hit($pid)
 {
-        global $CONFIG;
+        global $CONFIG, $raw_ip;
+        db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET hits=hits+1, lasthit_ip='$raw_ip' WHERE pid='$pid'");
 
-        db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET hits=hits+1 WHERE pid='$pid'");
 }
 
 
