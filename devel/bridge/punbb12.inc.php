@@ -52,6 +52,7 @@ define('PUNBB_DB_USERNAME', $db_username); // The username to use to connect to 
 define('PUNBB_DB_PASSWORD', $db_password); // The password to use to connect to the database
 define('PUNBB_TABLE_PREFIX', $db_prefix); // The prefix used for the DB tables
 define('PUNBB_WEB_PATH', $path); // The prefix used for the DB tables
+define('PUNBB_USER_TABLE', 'users'); // The members table
 
 // Group definitions
 define('PUNBB_ADMIN_GROUP', 1);
@@ -68,7 +69,7 @@ function udb_authenticate()
     $CONFIG['TABLE_USERS'] = '**ERROR**';
     	
 	// We assume it's a guest
-	$cookie = array('username' => 'Guest', 'password_hash' => 'Guest');
+	$cookie = array('id' => 0, 'password_hash' => '');
 	$USER_DATA['groups'] = array();
 
 	// If a cookie is set, we get the username and password hash from it
@@ -78,7 +79,7 @@ function udb_authenticate()
 	if ($cookie['id'])
 	{
 		// Check if there's a user with the username and password hash from the cookie
-		$result = cpg_db_query("SELECT id, username, password, group_id FROM ".$UDB_DB_NAME_PREFIX.PUNBB_TABLE_PREFIX."users AS u INNER JOIN ".$UDB_DB_NAME_PREFIX.PUNBB_TABLE_PREFIX."groups AS g ON u.group_id=g.g_id WHERE id='".$cookie['id']."'", $UDB_DB_LINK_ID);
+		$result = cpg_db_query("SELECT id, username, password, group_id FROM ".$UDB_DB_NAME_PREFIX.PUNBB_TABLE_PREFIX.PUNBB_USER_TABLE." AS u INNER JOIN ".$UDB_DB_NAME_PREFIX.PUNBB_TABLE_PREFIX."groups AS g ON u.group_id=g.g_id WHERE id='".$cookie['id']."'", $UDB_DB_LINK_ID);
 		$pun_user = mysql_fetch_assoc($result);
 		mysql_free_result($result);
 	}
@@ -326,7 +327,7 @@ function udb_util_filloptions()
 {
     global $albumtbl, $picturetbl, $categorytbl, $lang_util_php, $CONFIG, $UDB_DB_NAME_PREFIX, $UDB_DB_LINK_ID;
 
-    $usertbl = $UDB_DB_NAME_PREFIX . PUNBB_TABLE_PREFIX .'users';
+    $usertbl = $UDB_DB_NAME_PREFIX . PUNBB_TABLE_PREFIX . PUNBB_USER_TABLE;
 
     if (UDB_CAN_JOIN_TABLES) {
 
