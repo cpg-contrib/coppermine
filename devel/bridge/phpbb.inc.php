@@ -28,8 +28,14 @@ define('PHPBB_DB_USERNAME', 'root'); // The username to use to connect to the da
 define('PHPBB_DB_PASSWORD', ''); // The password to use to connect to the database
 
 // The web path to your phpBB directory
-// In this example http://yoursite_name.com/phpBB2/
+// If your URL to your board is for example 'http://yoursite_name.com/phpBB2/',
+// you'll have to set the below var to '/phpBB2/'.
 define('PHPBB_WEB_PATH', '/phpBB2/');
+// Logout Flag
+// the value of this boolean constant depends on your phpBB version:
+// If your version of phpBB is 2.0.4 or lower - change the value to FALSE;
+// if your version of phpBB is 2.0.5 or newer - leave it as TRUE
+define('PHPBB_LOGOUT_GET', TRUE);
 // ------------------------------------------------------------------------- //
 // You can keep the default values below if your instalation is standard
 // ------------------------------------------------------------------------- //
@@ -197,21 +203,26 @@ function udb_register_page()
     $target = 'profile.php?mode=register';
     udb_redirect($target);
 }
+// HTML code for login/logout redirection
+DEFINE("REDIR1",'<html><body onload="document.redir.submit();"><form name="redir" method="post" action="');
+DEFINE("REDIR2",'"><input type="hidden" name="redirect" value="cpg_redir.php" /></form></body></html>');
+DEFINE('LOGIN_REDIR', 'login.php?redirect=cpg_redir.php');
+DEFINE('LOGOUT_FLAG', '&logout=true');
 // Login
 function udb_login_page()
 {
-    global $CONFIG;
-
-    $target = 'login.php';
-    udb_redirect($target);
+    udb_redirect(LOGIN_REDIR);
 }
 // Logout
 function udb_logout_page()
 {
-    global $CONFIG;
+   if (PHPBB_LOGOUT_GET) {
 
-    $target = 'login.php?logout=true';
-    udb_redirect($target);
+       udb_redirect(LOGIN_REDIR.LOGOUT_FLAG);
+   } else {
+       echo(REDIR1.PHPBB_WEB_PATH.LOGIN_REDIR.LOGOUT_FLAG.REDIR2);
+      exit();
+   }
 }
 // Edit users
 function udb_edit_users()

@@ -88,8 +88,8 @@ a.navbar:hover {
       <a id="top" name="top"></a>
       <h1>Table of contents</h1>
       <ul class="content">
-        <li class="content"><a href="#what">1. What is required</a></li>
-        <li class="content"><a href="#installation">2. Installation and setup</a></li>
+        <li class="content"><a href="#what"><b>1. What is required</b></a></li>
+        <li class="content"><a href="#installation"><b>2. Installation and setup</b></a></li>
         <ul style="margin-top:0px;margin-bottom:0px;list-style-type:none">
           <li class="content"><a href="#how">2.1 How To Install The Script</a></li>
           <li class="content"><a href="#getting">2.2 Getting Started</a></li>
@@ -98,13 +98,13 @@ a.navbar:hover {
           <li class="content"><a href="#safe">2.5 Safe mode issues</a></li>
           <li class="content"><a href="#smtp">2.6 Using SMTP to send emails</a></li>
         </ul>
-        <li class="content"><a href="#upgrade">3. Upgrading</a></li>
+        <li class="content"><a href="#upgrade"><b>3. Upgrading</b></a></li>
         <ul class="content">
           <li class="content"><a href="#10">3.1 Upgrading from version 1.0</a></li>
           <li class="content"><a href="#11">3.2 Upgrading from releases of version 1.1</a></li>
           <li class="content"><a href="#12">3.3 Upgrading from cpg1.2.0rc2 or cpg1.2.0final to version cpg1.2.1</a></li>
         </ul>
-        <li class="content"><a href="#administration">4. Configuration &amp; Administration</a></li>
+        <li class="content"><a href="#administration"><b>4. Configuration &amp; Administration</b></a></li>
         <ul class="content">
           <li class="content"><a href="#cat_alb_pic">4.1 Categories, albums and pictures</a></li>
           <li class="content"><a href="#admin_user_mode">4.2 Admin mode &amp; User mode</a></li>
@@ -129,10 +129,10 @@ a.navbar:hover {
             <li class="content"><a href="#config_misc">4.9.11 Miscellaneous settings</a></li>
             </ul>
           </ul>
-        <li class="content"><a href="#integrating">5. Integrating the script with your bulletin board</a></li>
-        <li class="content"><a href="#translating">6. Translating Coppermine into other languages</a></li>
-        <li class="content"><a href="#known_issues">7. Known Issues</a></li>
-        <li class="content"><a href="#credits">8. Credits</li>
+        <li class="content"><a href="#integrating"><b>5. Integrating the script with your bulletin board</b></a></li>
+        <li class="content"><a href="#translating"><b>6. Translating Coppermine into other languages</b></a></li>
+        <li class="content"><a href="#known_issues"><b>7. Known Issues</b></a></li>
+        <li class="content"><a href="#credits"><b>8. Credits</b></li>
         <ul class="content">
           <li class="content"><a href="#developers">8.1 Developers</a></li>
           <li class="content"><a href="#contributors">8.2 Contributors</a></li>
@@ -191,7 +191,7 @@ a.navbar:hover {
 </ul>
 <p>The same apply to <b>picture rating</b> and <b>comment posting</b>.</p>
 <p>If you have installed the script succesfully but are having trouble getting
-  it working properly you can enable the &quot;<b>debug mode</b>&quot; on the
+  it working properly you can enable the &quot;<b><a href="#debug_mode">debug mode</a></b>&quot; on the
   <b>config page</b>. In this mode, the script outputs most of the warning/error
   messages produced by PHP in addition to some debug information. This can provide
   valuable information to understand what is wrong.</p>
@@ -295,7 +295,7 @@ a.navbar:hover {
   <li>Call the upgrade script, http://yousitename/coppermine_dir/upgrade-1.0-to-1.2.php</li>
   <li><b>The upgrade from 1.0 to 1.2 is a two-step process.</b> You must click the link which comes up on the bottom of the page to complete the upgrade!.</li>
         <li><b>Delete upgrade-1.0-to-1.2.php from your server</b>.
-  <li>If you get an error, go to Coppermine 1.2 config page, enable debug mode,
+  <li>If you get an error, go to Coppermine 1.2 config page, enable <a href="#debug_mode">debug mode</a>,
     try to call the upgrade script again and check what errors you get.</li>
 </ul>
 <p> <b>This upgrade process leaves your v1.0 gallery untouched </b></p>
@@ -375,6 +375,13 @@ a.navbar:hover {
       <li><b>Batch add Pictures</b><br /><a href="#batch_add_pics">Batch-add pictures</a> to the coppermine database that have been uploaded by FTP.</li>
       <li><b>Resize Pictures</b><br />Collection of utilities to resize, rename or delete full-size pictures, intermediate pictures and thumbnails</li>
       <li><b>My profile</b><br />Edit your own user profile</li>
+      </ul>
+      <p>There's an admin mode and user mode for &quot;regular&quot; users as well - the user admin has these options:</p>
+      <ul>
+      <li><b>Create / order my albums</b><br />similar to album manager in admin mode, the user can create albums within his user gallery</li>
+      <li><b>Modify my albums</b><br />The user can edit album title and description (similar to &quot;<a href="#album_prop">album properties</a>&quot; for the admin, but the user can't move his albums to other categories)</li>
+      <li><b>My profile</b><br />The user can edit his profile (changing passwords, edit location, interests, home page and occupation properties, view quota usage). If you're using bbs integration, the &quot;My profile&quot; link will send the user to the bbs's profile page. </li>
+
       </ul>
       <p><a class="back" href="#top">Back to
       top</a></p>
@@ -816,11 +823,12 @@ a.navbar:hover {
 
       <a name="config_misc"></a>
       <h3>4.9.11 Miscellaneous settings</h3>
-      <h4>Enable debug mode</h4>
+      <a name="debug_mode"></a><h4>Enable debug mode</h4>
       <p>CPG will show error messages which are normally suppressed.  This is
       helpful in troubleshooting problems with your gallery or when asking
-      for help on the <a ref="http://coppermine.sf.net/board/" target="_blank">
-      CPG Support Forums</a>.
+      for help on the <a ref="http://coppermine.sf.net/board/">
+      CPG Support Forums</a>. Turn this feature off if you don't experience problems.<br />
+      Turn it on (option &quot;Everyone&quot;) if you are requesting help on the <a ref="http://coppermine.sf.net/board/">coppermine support board</a>, so the supporters can have a look at the debug output as well. Choose the option &quot;Admin only&quot; when trouble-shooting on your own - debug output will be only visible when you're logged in as admin, regular users or guests won't see the debug output.</p>
       <p><a class="back" href="#top">Back to
 top</a></p>
 
@@ -854,6 +862,7 @@ top</a></p>
   Domain&quot; corresponds to your domain and that &quot;Path to save cookies&quot;
   is &quot;/&quot;</p>
 <p>It is also recommended that you use the same database for your board and Coppermine.</p>
+<p><span class="important">Important</span>: the cookie names of your bbs and coppermine must <b>not</b> be the same - they <b>must</b> differ!</p>
 <p>You will also need to perform the following operations after having unpacked
   the archive on your harddrive and before uploading the files to your webserver
   :</p>
@@ -879,15 +888,33 @@ define('PHPBB_DB_USERNAME','root');  // The username to use to connect to the   
 define('PHPBB_DB_PASSWORD','');      // The password to use to connect to the database
 
 // The web path to your phpBB directory
-// In this example http://yoursite_name.com/phpBB2/
-define('PHPBB_WEB_PATH','/phpBB2/');</pre>
+// If your URL to your board is for example 'http://yoursite_name.com/phpBB2/',
+// you'll have to set the below var to '/phpBB2/'.
+define('PHPBB_WEB_PATH', '/phpBB2/');
+// Logout Flag
+// the value of this boolean constant depends on your phpBB version:
+// If your version of phpBB is 2.0.4 or lower - change the value to FALSE;
+// if your version of phpBB is 2.0.5 or newer - leave it as TRUE
+define('PHPBB_LOGOUT_GET', TRUE);</pre>
 <p>Modify them according to the configuration of your board and save the file.</p>
-<p>Upload all files onto your webserver and run the install script. Note that
-  the admin username and password you enter during the installation will be ignored
-  by the script. To login as an admin, you will need to use the admin username
-  and password of your board.</p>
-<p>Once you have completed the installation, login using the admin account of
-  your board. Go to the gallery, enter admin mode and click on the &quot;Groups&quot;
+<br />
+<table border="0" cellspacing="0" cellpadding="10" style="border: #999999 1px solid;"><tr><td style="background-color:#DEE3E7"><span class="important">Important</span>: if you use phpBB, you'll have to do this additional step, those who run any other bbs won't have to do this:</td></tr><tr><td>
+Create a new file named <b>cpg_redir.php</b> in your <b>phpBB directory</b>, and paste the following code into the file:
+<pre>&lt;?php
+$cpg_host=$_SERVER['HTTP_HOST'];
+$cpg_path='/gallery';
+header("Location: http://".$cpg_host.$cpg_path);
+exit;
+?&gt;</pre>
+<span class="important">Important</span> - before you save the file, you must ensure that:
+<ul>
+<li><b>$cpg_path</b> - contains the the path in which Coppermine is installed </li>
+<li><b>$cpg_host</b> - contains the domain pointer to Coppermine. If Coppermine and phpBB are installed on the same server and domain (the "normal" case), you should leave the default value. Otherwise you should provide a string constant which contains the domain where Coppermine is installed (for example: '<i>www.my-other-domain.com</i>').</li>
+<li>If you change both variables make sure that either $cpg_host contains a trailing slash or $cpg_path contains a leading slash. In other words, the concatenation of the two variables must result in a correct path such as <i>www.my-other-domain.com<span class="important">/</span>my_gallery_dir</i></li>
+</ul>
+</td></tr></table>
+<p>Upload all files onto your webserver. Visit your coppermine gallery in your browser. To login as an admin, you will need to use the admin username and password of your board.</p>
+<p>Login using the admin account of your board. Go to the gallery, enter admin mode and click on the &quot;Groups&quot;
   button. This will synchronize Coppermine groups with those of your board. The
   permission you will see for each group will be completely messy, so take some
   time to set them properly.</p>
@@ -921,7 +948,7 @@ define('PHPBB_WEB_PATH','/phpBB2/');</pre>
         <li>Some drop down menus (particularly in configuration page) and other small text items are only available in English. (Language issue)</li>
         <li>There have been requests for the configuration page to have multiple submit buttons instead of one single button at the bottom of the page. (Usability issue)</li>
         <li>Odd behavior if "Back" button is used during installation. (Installation issue)</li>
-        <li>Various error messages while in debug mode. (Does not affect main CPG app)</li>
+        <li>Various error messages (especially notices) while in debug mode. (Does not affect main CPG app)</li>
         <li>Administrators can ban themselves making it necessary to fix directly in dB. (Usability issue.)</li>
 </ul>
 <p><a class="back" href="#top">Back to top</a></p>
@@ -977,7 +1004,7 @@ define('PHPBB_WEB_PATH','/phpBB2/');</pre>
         <td>Hyperion</td>
         <td><a href="http://coppermine.sourceforge.net/board/profile.php?mode=viewprofile&u=125">hyperion01</a></td>
         <td>Developer</td>
-        <td>retired</td>
+        <td>active</td>
 </tr>
 <tr>
         <td>John Asendorf</td>
@@ -1026,6 +1053,12 @@ define('PHPBB_WEB_PATH','/phpBB2/');</pre>
         <td><a href="http://coppermine.sourceforge.net/board/profile.php?mode=viewprofile&u=259">Greg</a></td>
         <td>Developer</td>
         <td>retired</td>
+</tr>
+<tr>
+        <td>Christopher Brown-Floyd</td>
+        <td><a href="http://coppermine.sourceforge.net/board/profile.php?mode=viewprofile&u=1874">omniscientdeveloper</a></td>
+        <td>Developer</td>
+        <td>active</td>
 </tr>
 </table>
 
