@@ -706,6 +706,13 @@ $signature = 'Coppermine Photo Gallery ' . COPPERMINE_VERSION . ' ('. COPPERMINE
 <?
 echo "<form action=\"$PHP_SELF\" method=\"post\">";
 starttable('100%', "{$lang_config_php['title']} - $signature", 3);
+echo <<<EOT
+    <tr>
+        <td class="tableh2" colspan="3">
+            <a href="javascript:expand();">{$lang_config_php['expand_all']}</a>
+        </td>
+    </tr>
+EOT;
 create_form($lang_config_data);
 
         if ($sn1) echo '<tr><td colspan ="2"><a name="notice1"></a>'.$lang_config_php['notice1'].'</td></tr>';
@@ -716,15 +723,19 @@ echo '</table></td></tr>';
 
 echo <<<EOT
                 <tr>
-                        <td align="left">
-                                <a href="javascript:expand();">{$lang_config_php['expand_all']}</a>
-                        </td>
-                </tr>
-                <tr>
-            <td colspan="3" align="center">
-                                <input type="submit" class="button" name="update_config" value="{$lang_config_php['save_cfg']}" />
+                        <td align="left" class="tableh2">
+                            <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                                <tr>
+                                    <td width="33%">
+                                        <a href="javascript:expand();">{$lang_config_php['expand_all']}</a>
+                                    </td>
+                                    <td width="67%" align="center">
+                                        <input type="submit" class="button" name="update_config" value="{$lang_config_php['save_cfg']}" />
                                 &nbsp;&nbsp;
-                                <input type="submit" class="button" name="restore_config" value="{$lang_config_php['restore_cfg']}" />
+                                    <input type="submit" class="button" name="restore_config" value="{$lang_config_php['restore_cfg']}" />
+                                    </td>
+                                </tr>
+                            </table>
                         </td>
                 </tr>
 EOT;
