@@ -23,10 +23,10 @@ $lang_translation_info = array(
 'lang_name_english' => 'French',  //the name of your language in English, e.g. 'Greek' or 'Spanish'
 'lang_name_native' => 'Français', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espa&ntilde;ol'
 'lang_country_code' => 'fr', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es'
-'trans_name'=> 'mels', //the name of the translator - can be a nickname
-'trans_email' => 'mels@wanadoo.fr', //translator's email address (optional)
-'trans_website' => 'http://www.everlasting-star.net/', //translator's website (optional)
-'trans_date' => '2003-10-09', //the date the translation was created / last modified
+'trans_name'=> 'mels - Modifications by Rod', //the name of the translator - can be a nickname
+'trans_email' => 'mels@wanadoo.fr - rod@fantasya.net', //translator's email address (optional)
+'trans_website' => 'http://www.everlasting-star.net/ - http://www.sortons.net/photos/', //translator's website (optional)
+'trans_date' => '2003-10-15', //the date the translation was created / last modified
 );
 
 $lang_charset = 'ISO-8859-1';
@@ -153,12 +153,12 @@ $lang_thumb_view = array(
         //Sort by filename and title
         'name' => 'NOM DU FICHIER', //new in cpg1.2.0
         'title' => 'TITRE', //new in cpg1.2.0
-        'sort_da' => 'Classer par date ascendantes',
-        'sort_dd' => 'Classer par date descendantes',
-        'sort_na' => 'Classer par nom ascendants',
-        'sort_nd' => 'Classer par nom descendants',
-        'sort_ta' => 'Classer par titre ascendants', //new in cpg1.2.0
-        'sort_td' => 'Classer par titre descendants', //new in cpg1.2.0
+        'sort_da' => 'Classer par date ascendante',
+        'sort_dd' => 'Classer par date descendante',
+        'sort_na' => 'Classer par nom ascendant',
+        'sort_nd' => 'Classer par nom descendant',
+        'sort_ta' => 'Classer par titre ascendant', //new in cpg1.2.0
+        'sort_td' => 'Classer par titre descendant', //new in cpg1.2.0
         'pic_on_page' => '%d photos sur %d page(s)',
         'user_on_page' => '%d utilisateurs sur %d page(s)'
 );
@@ -281,7 +281,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
 if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
         'alb_need_name' => 'Les albums doivent avoir un nom !',
         'confirm_modifs' => 'Voulez-vous vraiment effectuer ces modifications ?',
-        'no_change' => 'Vous n\'avez effectué aucun changement !',
+        'no_change' => 'Vous n\\\'avez effectué aucun changement !',
         'new_album' => 'Nouvel album',
         'confirm_delete1' => 'Voulez vous vraiment supprimer cet album ?',
         'confirm_delete2' => '\nToutes les images et tous les commentaires seront perdus !',
@@ -320,15 +320,15 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
 
 if (defined('CONFIG_PHP')) $lang_config_php = array(
         'title' => 'Configuration',
-        'restore_cfg' => 'Restorer les paramètres d\'origine',
-        'save_cfg' => 'Sauvergarder la nouvelle configuration',
+        'restore_cfg' => 'Restaurer les paramètres d\'origine',
+        'save_cfg' => 'Sauvegarder la nouvelle configuration',
         'notes' => 'Notes',
         'info' => 'Information',
         'upd_success' => 'La configuration de Coppermine a été mise à jour',
         'restore_success' => 'La configuration d\'origine de Coppermine a été restaurée',
         'name_a' => 'Nom ascendant',
         'name_d' => 'Nom descendant',
-        'title_a' => 'Titre ascendand', //new in cpg1.2.0
+        'title_a' => 'Titre ascendant', //new in cpg1.2.0
         'title_d' => 'Titre descendant', //new in cpg1.2.0
         'date_a' => 'Date ascendante',
         'date_d' => 'Date descendante'
@@ -344,10 +344,10 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Thème', 'theme', 6),
 
         'Affichage de la liste des albums',
-        array('Largeur du talbeau principal (pixels ou %)', 'main_table_width', 0),
+        array('Largeur du tableau principal (pixels ou %)', 'main_table_width', 0),
         array('Nombre de niveaux de catégories à afficher', 'subcat_level', 0),
         array('Nombre d\'albums à afficher', 'albums_per_page', 0),
-        array('Number de colonnes pour la liste des albums', 'album_list_cols', 0),
+        array('Nombre de colonnes pour la liste des albums', 'album_list_cols', 0),
         array('Taille des vignettes en pixels', 'alb_list_thumb_size', 0),
         array('Le contenu de la page principale', 'main_page_layout', 0),
         array('Afficher les vignettes de l\'album du premier niveau avec la catégorie','first_level',1), //new in cpg1.2.0
@@ -359,7 +359,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Afficher la légende de l\'image (en plus de son titre) sous la vignette', 'caption_in_thumbview', 1),
         array('Afficher le nombre de commentaires sous les vignettes', 'display_comment_count', 1),
         array('Classement par défaut des images', 'default_sort_order', 3),
-        array('Nombre minimum de votes nécessaires pour qu\'une image apparaissent dans la liste des images les mieux notées', 'min_votes_for_rating', 0),
+        array('Nombre minimum de votes nécessaires pour qu\'une image apparaisse dans la liste des images les mieux notées', 'min_votes_for_rating', 0),
 
         'Affichage des images &amp; paramètres des commentaires',
         array('Largeur du tableau pour l\'affichage des images (pixels ou %)', 'picture_table_width', 0),
@@ -380,19 +380,19 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Créer des images intermédiaires','make_intermediate',1),
         array('Largeur ou hauteur maximale pour une image intermédiaire <b>*</b>', 'picture_width', 0),
         array('Poids maximale des images à uploader (Ko)', 'max_upl_size', 0),
-        array('Longueur ou hauteur maximale pour les images uploadées (en pixels)', 'max_upl_width_height', 0),
+        array('Longueur ou hauteur maximal pour les images uploadées (en pixels)', 'max_upl_width_height', 0),
 
         'Paramètres Utilisateurs',
         array('Autoriser de nouvelles inscriptions', 'allow_user_registration', 1),
-        array('L\'inscription d\'un nouvel utilisateur doit être validé', 'reg_requires_valid_email', 1),
+        array('L\'inscription d\'un nouvel utilisateur doit être validée', 'reg_requires_valid_email', 1),
         array('Autoriser deux utilisateurs à avoir le même e-mail', 'allow_duplicate_emails_addr', 1),
         array('Les utilisateurs peuvent avoir un album personnel', 'allow_private_albums', 1),
 
         'Champs libres pour les descriptions d\'images (à laisser tel quel si vous n\'utilisez pas cette fonction)',
-        array('Field 1 name', 'user_field1_name', 0),
-        array('Field 2 name', 'user_field2_name', 0),
-        array('Field 3 name', 'user_field3_name', 0),
-        array('Field 4 name', 'user_field4_name', 0),
+        array('Nom du champ 1 name', 'user_field1_name', 0),
+        array('Nom du champ 2 name', 'user_field2_name', 0),
+        array('Nom du champ 3 name', 'user_field3_name', 0),
+        array('Nom du champ 4 name', 'user_field4_name', 0),
 
         'Paramètres avancés des images et vignettes',
         array('Afficher l\'icône des albums privés aux utilisateurs non indentifiés','show_private',1), //new in cpg1.2.0
