@@ -7,7 +7,7 @@ $Id$
    Hex 5F5F5F = RBG  95,  95,  95 = light black
    Hex BDBEBD = RBG 189, 190, 189 = dark grey
    Hex D1D7DC = RBG 209, 215, 220 = medium grey
-   Hex F7F7F7 = RBG 247, 247, 247 = light grey
+   Hex CCCCCC = RBG 204, 204, 204 = medium grey
    Hex EFEFEF = RBG 239, 239, 239 = dark white
    Hex FFFFFF = RBG 255, 255, 255 = white
    Hex 005D8C = RBG   0,  93, 140 = dark blue
@@ -18,7 +18,7 @@ $Id$
 body {
         font-family : Verdana, Arial, Helvetica, sans-serif;
         font-size: 12px;
-        background : #F7F7F7 ;
+        background : #CCCCCC;
         color : Black;
         margin: 0px;
 }
