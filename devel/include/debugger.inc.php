@@ -42,9 +42,10 @@ class cpg_debugger {
     function start() {
         if (!$this->active) {
             $this->report = false;
-            $this->old_display_level = ini_set('display_errors', 1);
-            $this->old_error_logging = ini_set('log_errors', 0);
-
+            if (CAN_MOD_INI) {
+                $this->old_display_level = ini_set('display_errors', 1);
+                $this->old_error_logging = ini_set('log_errors', 0);
+            }
             $phpver = explode('.', phpversion());
             $phpver = "$phpver[0]$phpver[1]";
             if ($phpver < 43) {
@@ -56,6 +57,7 @@ class cpg_debugger {
                 error_reporting(E_ALL ^ E_NOTICE);
             }
 //            $this->old_error_log = ini_set('error_log', $this->logfile);
+            $this->error_level = E_ALL;
             $this->active = true;
         }
     }
@@ -66,9 +68,11 @@ class cpg_debugger {
             if (!is_bool($this->old_handler) && $this->old_handler) {
                 set_error_handler($this->old_handler);
             }
-            ini_set('display_errors', $this->old_display_level);
-            ini_set('log_errors', $this->old_error_logging);
-//            ini_set('error_log', $this->old_error_log);
+            if (CAN_MOD_INI) {
+                ini_set('display_errors', $this->old_display_level);
+                ini_set('log_errors', $this->old_error_logging);
+//                ini_set('error_log', $this->old_error_log);
+            }
             $this->active = false;
             return $this->report;
         }
@@ -77,8 +81,6 @@ class cpg_debugger {
     // user defined error handling function
     function handler($errno, $errmsg, $filename, $linenum, $vars='')
     {
-        global $CONFIG;
-        $CONFIG['error_level'] = E_ALL;
         $filename = substr($filename, $this->basepath_len);
         $errortype = array (
 //            E_ERROR           => 'Error',
@@ -106,7 +108,7 @@ class cpg_debugger {
         }
 
         // set of errors for which a var trace will be saved
-        if ($errno & $CONFIG['error_level']) {
+        if ($errno & $this->error_level) {
             $this->report[$filename][] = $errortype[$errno]." line $linenum: ".$errmsg;
         }
 
@@ -121,8 +123,8 @@ function cpg_error_handler($errno, $errmsg, $filename, $linenum, $vars='') {
     global $cpgdebugger;
     $cpgdebugger->handler($errno, $errmsg, $filename, $linenum, $vars);
 }
+define('CAN_MOD_INI', !ereg('ini_set', ini_get('disable_functions')));
 
 error_reporting(E_ALL);
 $cpgdebugger =& new cpg_debugger();
 $cpgdebugger->start();
-
