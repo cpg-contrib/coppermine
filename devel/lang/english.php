@@ -1286,6 +1286,18 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
   'phpinfo' => 'Display phpinfo', //cpg1.3.0
   'update_db' => 'Update database', //cpg1.3.0
   'update_db_explanation' => 'If you have replaced coppermine files, added a modification or upgraded from a previous version of coppermine, make sure to run the database update once. This will create the necessary tables and/or config values in your coppermine database.', //cpg1.3.0
+  'view_log' => 'View log files', //cpg 1.4.0
+);
+
+// ------------------------------------------------------------------------- //
+// File view_log.php - OK
+// ------------------------------------------------------------------------- //
+
+if (defined('VIEWLOG_PHP')) $lang_viewlog_php = array(
+  'delete_all' => 'Delete All Logs',
+  'delete_this' => 'Delete This Log',
+  'view_logs' => 'View Logs',
+  'no_logs' => 'No logs created.',
 );
 
 ?>
