@@ -238,4 +238,5 @@ Changed default theme from "classic" to "core" - 1 January 2005, GauGau
 Added a update.in.php file for a couple of functions common with charsetmgr
 Some cosmetic changes in installer.css
 Added charsetmgr.php to convert the encoding of the whole database - 01 Jan 2005, chtito
-Made utf-8 the default encoding for new installs; added a "not recommended" warnin for the 'language file' encoding - 02 Jan 2005, chtito
+Made utf-8 the default encoding for new installs; added a "not recommended" warnin for the 'language file' encoding
+Link to the charset manager added to update.php - 02 Jan 2005, chtito

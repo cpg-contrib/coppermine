@@ -24,6 +24,7 @@ error_reporting (E_ALL ^ E_NOTICE);
 require ('include/sql_parse.php');
 require ('include/config.inc.php');
 require ('include/update.inc.php');
+
 // ---------------------------- TEST PREREQUIRED --------------------------- //
 function test_fs()
 {
@@ -127,34 +128,6 @@ function test_sql_connection()
 }
 // ------------------------- HTML OUTPUT FUNCTIONS ------------------------- //
 
-function html_prereq_errors($error_msg)
-{
-
-    ?>
-      <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
-       <tr>
-            <form action="install.php">
-        <td class="tableh1" colspan="2"><h2>Welcome to Coppermine installation</h2>
-        </td>
-       </tr>
-       <tr>
-        <td class="tableh2" colspan="2" align="center"><span class="error">&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;ERROR&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</span>
-        </td>
-       </tr>
-       <tr>
-        <td class="tableb" colspan="2"> Before you continue with the Coppermine upgrade, there are some problems that need to be fixed.<br /><br /><b><?php echo $error_msg ?></b>Once you are done, hit the "Try again" button.<br />
-        </td>
-       </tr>
-       <tr>
-        <td colspan="2" align="center"><br />
-                <input type="submit" value="Try again !"><br /><br />
-        </td>
-                </form>
-       </tr>
-      </table>
-<?php
-}
-
 
 // ------------------------- SQL QUERIES TO CREATE TABLES ------------------ //
 function update_tables()
@@ -174,11 +147,10 @@ function update_tables()
     $sql_query = split_sql_file($sql_query, ';');
 
     ?>
+        <h2>Performing Database Updates<h2>
         <table class="maintable">
-    <tr>
-      <th colspan=2 class="tableh1">Performing Database Updates</th>
-    </tr>
- <?php
+
+    <?php
 
     foreach($sql_query as $q) {
         echo "<tr><td class='tableb'>$q</td>";
@@ -188,6 +160,7 @@ function update_tables()
             echo "<td class='updatesFail'>Already Done</td>";
         }
     }
+    echo "</table>";
 }
 // --------------------------------- MAIN CODE ----------------------------- //
 // The defaults values
