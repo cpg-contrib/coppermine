@@ -193,6 +193,7 @@ elseif (isset($_POST['preview'])) {
 //pageheader($lang_ecard_php['title']);
 
 //ecard form
+if ($CONFIG['show_bbcode_help']) {$captionLabel = '&nbsp;'. cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,230);}
 starttable("100%", $lang_ecard_php['title'], 3);
 
 echo <<<EOT
@@ -249,7 +250,7 @@ echo <<<EOT
                 </td>
         </tr>
         <tr>
-                <td class="tableh2" colspan="3"><b>{$lang_ecard_php['message']}</b></td>
+                <td class="tableh2" colspan="3"><b>{$lang_ecard_php['message']}$captionLabel</b></td>
         </tr>
         <tr>
                 <td class="tableb" colspan="3" valign="top"><br />
