@@ -192,25 +192,6 @@ $lang_rate_pic = array(
 // void
 
 // ------------------------------------------------------------------------- //
-// File forgot_passwd.php
-// ------------------------------------------------------------------------- //
-
-if (defined('FORGOT_PASSWD_PHP')) $lang_forgot_passwd_php = array(
-        'forgot_passwd' => 'Password reminder',
-        'err_already_logged_in' => 'You are already logged in !',
-        'enter_username_email' => 'Enter your username or email address',
-        'submit' => 'go',
-        'failed_sending_email' => 'The password reminder email can\'t be send !',
-        'email_sent' => 'An email with your username and password was sent to %s',
-        'err_unk_user' => 'Selected user does not exist!',
-        'passwd_reminder_subject' => '%s - Password reminder',
-        'passwd_reminder_body' => 'You have requested to be reminded on your login data:
-Username: %s
-Password: %s
-Click %s to log in.',
-);
-
-// ------------------------------------------------------------------------- //
 // File include/functions.inc.php
 // ------------------------------------------------------------------------- //
 
@@ -379,7 +360,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Maximum number of tabs to display', 'max_tabs', 0),
         array('Display picture caption (in addition to title) below the thumbnail', 'caption_in_thumbview', 1),
         array('Display number of comments below the thumbnail', 'display_comment_count', 1),
-        array('Display uploader name below the thumbnail', 'display_uploader', 1),	
+        array('Display uploader name below the thumbnail', 'display_uploader', 1),
         array('Default sort order for pictures', 'default_sort_order', 3),
         array('Minimum number of votes for a picture to appear in the \'top-rated\' list', 'min_votes_for_rating', 0),
 
@@ -526,7 +507,7 @@ $lang_display_image_php = array(
         'stop_slideshow' => 'STOP SLIDESHOW',
         'view_fs' => 'Click to view full size image',
         'edit_pic' => 'Edit description',
-	'crop_pic' => 'Crop and Rotate',
+        'crop_pic' => 'Crop and Rotate',
 );
 
 $lang_picinfo = array(
@@ -625,6 +606,25 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 );
 
 // ------------------------------------------------------------------------- //
+// File forgot_passwd.php
+// ------------------------------------------------------------------------- //
+
+if (defined('FORGOT_PASSWD_PHP')) $lang_forgot_passwd_php = array(
+        'forgot_passwd' => 'Password reminder',
+        'err_already_logged_in' => 'You are already logged in !',
+        'enter_username_email' => 'Enter your username or email address',
+        'submit' => 'go',
+        'failed_sending_email' => 'The password reminder email can\'t be send !',
+        'email_sent' => 'An email with your username and password was sent to %s',
+        'err_unk_user' => 'Selected user does not exist!',
+        'passwd_reminder_subject' => '%s - Password reminder',
+        'passwd_reminder_body' => 'You have requested to be reminded on your login data:
+Username: %s
+Password: %s
+Click %s to log in.',
+);
+
+// ------------------------------------------------------------------------- //
 // File groupmgr.php
 // ------------------------------------------------------------------------- //
 
@@ -700,6 +700,7 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
         'welcome' => 'Welcome %s ...',
         'err_login' => '*** Couldn\'t log in. Try again ***',
         'err_already_logged_in' => 'You are already logged in !',
+        'forgot_password_link' => 'I forgot my password',
 );
 
 // ------------------------------------------------------------------------- //
@@ -881,6 +882,7 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
         'list_new_pic' => 'List of new pictures',
         'insert_selected' => 'Insert selected pictures',
         'no_pic_found' => 'No new picture was found',
+        'no_album' => 'no album selected', //re-introduced by gaugau 03-11-17: the var has been in the code, but apparently the translation was deleted by accident
         'be_patient' => 'Please be patient, the script needs time to add the pictures',
         'notes' =>  '<ul>'.
                                 '<li><b>OK</b> : means that the picture was succesfully added</li>'.
