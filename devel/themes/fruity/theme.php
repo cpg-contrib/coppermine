@@ -615,6 +615,9 @@ $template_image_comments = <<<EOT
                                                 <form name="f{MSG_ID}" method="POST" action="db_input.php">
                                                 <input type="hidden" name="event" value="comment_update">
                                                 <input type="hidden" name="msg_id" value="{MSG_ID}">
+<td>
+                                                <input type=text name=msg_author value={MSG_AUTHOR} class="textinput" size="25">
+                                                </td>
                                                 <td width="100%">
                                                         <textarea cols="40" rows="2" class="textinput" name="msg_body" onselect="storeCaret_f{MSG_ID}(this);" onclick="storeCaret_f{MSG_ID}(this);" onkeyup="storeCaret_f{MSG_ID}(this);" style="width: 100%;">{MSG_BODY_RAW}</textarea>
                                                 </td>
@@ -638,7 +641,7 @@ $template_image_comments = <<<EOT
                                                 <input type="hidden" name="event" value="comment_update">
                                                 <input type="hidden" name="msg_id" value="{MSG_ID}">
                                                                                                                                                                                                 <td>
-                                                <input type=text name=msg_author value={MSG_AUTHOR} class="textinput" size=10>
+                                                <input type=text name=msg_author value={MSG_AUTHOR} class="textinput" size="25">
                                                 </td>
                                         </tr>
                                         <tr>
