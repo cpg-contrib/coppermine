@@ -61,6 +61,6 @@ db_query($sql);
 echo "Album table upgraded<br />";
 echo "<br />First step of upgrade completed!<br />";
 
-echo "<a href="update . php">Click Here</a> to complete the 1.2 upgrade.</P>";
+echo "<a href='update.php'>Click Here</a> to complete the 1.2 upgrade.</P>";
 
 ?>
