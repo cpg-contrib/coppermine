@@ -22,6 +22,8 @@
 // want to use the bridge manager integration by setting $use_bridgemgr = 0; //
 // ------------------------------------------------------------------------- //
 
+if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
+
 // Switch that allows overriding the bridge manager with hard-coded values
 $use_bridgemgr = 1;
 

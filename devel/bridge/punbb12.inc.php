@@ -22,6 +22,8 @@
 // want to use the bridge manager integration by setting $use_bridgemgr = 0; //
 // ------------------------------------------------------------------------- //
 
+if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
+
 // Switch that allows overriding the bridge manager with hard-coded values
 $use_bridgemgr = 1;
 
@@ -63,74 +65,74 @@ define('PUNBB_MEMBERS_GROUP', 4);
 function udb_authenticate()
 {
     global $USER_DATA, $CONFIG, $UDB_DB_LINK_ID, $UDB_DB_NAME_PREFIX;
-	global $cookie_name, $cookie_seed;
- 
+        global $cookie_name, $cookie_seed;
+
     // For error checking
     $CONFIG['TABLE_USERS'] = '**ERROR**';
-    	
-	// We assume it's a guest
-	$cookie = array('id' => 0, 'password_hash' => '');
-	$USER_DATA['groups'] = array();
 
-	// If a cookie is set, we get the username and password hash from it
-	if (isset($_COOKIE[$cookie_name]))
-		list($cookie['id'], $cookie['password_hash']) = unserialize($_COOKIE[$cookie_name]);
+        // We assume it's a guest
+        $cookie = array('id' => 0, 'password_hash' => '');
+        $USER_DATA['groups'] = array();
 
-	if ($cookie['id'])
-	{
-		// Check if there's a user with the username and password hash from the cookie
-		$result = cpg_db_query("SELECT id, username, password, group_id FROM ".$UDB_DB_NAME_PREFIX.PUNBB_TABLE_PREFIX.PUNBB_USER_TABLE." AS u INNER JOIN ".$UDB_DB_NAME_PREFIX.PUNBB_TABLE_PREFIX."groups AS g ON u.group_id=g.g_id WHERE id='".$cookie['id']."'", $UDB_DB_LINK_ID);
-		$pun_user = mysql_fetch_assoc($result);
-		mysql_free_result($result);
-	}
-	
-	// If user authorisation failed
-	if (!isset($pun_user['id']) || md5($cookie_seed.$pun_user['password']) != $cookie['password_hash'])
-	{
-		$USER_DATA['user_id'] = 0;
-		$USER_DATA['user_name'] = 'Guest';		
-		$USER_DATA['groups'][0] = PUNBB_GUEST_GROUP;
-		$USER_DATA['group_quota'] = 1;
-		$USER_DATA['can_rate_pictures'] = 0;
-		$USER_DATA['can_send_ecards'] = 0;
-		$USER_DATA['can_post_comments'] = 0;
-		$USER_DATA['can_upload_pictures'] = 0;
-		$USER_DATA['can_create_albums'] = 0;
-		$USER_DATA['pub_upl_need_approval'] = 1;
-		$USER_DATA['priv_upl_need_approval'] = 1;
-		$USER_DATA['upload_form_config'] = 0;
-		$USER_DATA['num_file_upload'] = 0; 
-		$USER_DATA['num_URI_upload'] = 0;
-		$USER_DATA['custom_user_upload'] = 0;
-	} else {
-		$USER_DATA['user_id'] = $pun_user['id'];
-		$USER_DATA['user_name'] = $pun_user['username'];
-		$USER_DATA['groups'][0] = $pun_user['group_id'];
-	}
-	
-	$user_group_set = '(' . implode(',', $USER_DATA['groups']) . ')';
+        // If a cookie is set, we get the username and password hash from it
+        if (isset($_COOKIE[$cookie_name]))
+                list($cookie['id'], $cookie['password_hash']) = unserialize($_COOKIE[$cookie_name]);
 
-	$USER_DATA = array_merge($USER_DATA, cpgGetUserData($USER_DATA['groups'][0], $USER_DATA['groups'], PUNBB_GUEST_GROUP));
-	
-	$USER_DATA['has_admin_access'] = (($USER_DATA['groups'][0] == PUNBB_ADMIN_GROUP) || (($USER_DATA['groups'][0] == PUNBB_MOD_GROUP) && MOD_IS_ADMIN)) ? 1 : 0;
-	$USER_DATA['can_see_all_albums'] = $USER_DATA['has_admin_access'];
-	
-	define('USER_ID', $USER_DATA['user_id']);
-	define('USER_NAME', $USER_DATA['user_name']);
-	define('USER_GROUP', $USER_DATA['group_name']);
-	define('USER_GROUP_SET', $user_group_set);
-	define('USER_IS_ADMIN', $USER_DATA['has_admin_access']);
-	define('USER_CAN_SEND_ECARDS', (int)$USER_DATA['can_send_ecards']);
-	define('USER_CAN_RATE_PICTURES', (int)$USER_DATA['can_rate_pictures']);
-	define('USER_CAN_POST_COMMENTS', (int)$USER_DATA['can_post_comments']);
-	define('USER_CAN_UPLOAD_PICTURES', (int)$USER_DATA['can_upload_pictures']);
-	define('USER_CAN_CREATE_ALBUMS', (int)$USER_DATA['can_create_albums']);
-	define('USER_UPLOAD_FORM', (int)$USER_DATA['upload_form_config']);
-	define('CUSTOMIZE_UPLOAD_FORM', (int)$USER_DATA['custom_user_upload']);
-	define('NUM_FILE_BOXES', (int)$USER_DATA['num_file_upload']);
-	define('NUM_URI_BOXES', (int)$USER_DATA['num_URI_upload']);
+        if ($cookie['id'])
+        {
+                // Check if there's a user with the username and password hash from the cookie
+                $result = cpg_db_query("SELECT id, username, password, group_id FROM ".$UDB_DB_NAME_PREFIX.PUNBB_TABLE_PREFIX.PUNBB_USER_TABLE." AS u INNER JOIN ".$UDB_DB_NAME_PREFIX.PUNBB_TABLE_PREFIX."groups AS g ON u.group_id=g.g_id WHERE id='".$cookie['id']."'", $UDB_DB_LINK_ID);
+                $pun_user = mysql_fetch_assoc($result);
+                mysql_free_result($result);
+        }
 
-	//print_r($USER_DATA);
+        // If user authorisation failed
+        if (!isset($pun_user['id']) || md5($cookie_seed.$pun_user['password']) != $cookie['password_hash'])
+        {
+                $USER_DATA['user_id'] = 0;
+                $USER_DATA['user_name'] = 'Guest';
+                $USER_DATA['groups'][0] = PUNBB_GUEST_GROUP;
+                $USER_DATA['group_quota'] = 1;
+                $USER_DATA['can_rate_pictures'] = 0;
+                $USER_DATA['can_send_ecards'] = 0;
+                $USER_DATA['can_post_comments'] = 0;
+                $USER_DATA['can_upload_pictures'] = 0;
+                $USER_DATA['can_create_albums'] = 0;
+                $USER_DATA['pub_upl_need_approval'] = 1;
+                $USER_DATA['priv_upl_need_approval'] = 1;
+                $USER_DATA['upload_form_config'] = 0;
+                $USER_DATA['num_file_upload'] = 0;
+                $USER_DATA['num_URI_upload'] = 0;
+                $USER_DATA['custom_user_upload'] = 0;
+        } else {
+                $USER_DATA['user_id'] = $pun_user['id'];
+                $USER_DATA['user_name'] = $pun_user['username'];
+                $USER_DATA['groups'][0] = $pun_user['group_id'];
+        }
+
+        $user_group_set = '(' . implode(',', $USER_DATA['groups']) . ')';
+
+        $USER_DATA = array_merge($USER_DATA, cpgGetUserData($USER_DATA['groups'][0], $USER_DATA['groups'], PUNBB_GUEST_GROUP));
+
+        $USER_DATA['has_admin_access'] = (($USER_DATA['groups'][0] == PUNBB_ADMIN_GROUP) || (($USER_DATA['groups'][0] == PUNBB_MOD_GROUP) && MOD_IS_ADMIN)) ? 1 : 0;
+        $USER_DATA['can_see_all_albums'] = $USER_DATA['has_admin_access'];
+
+        define('USER_ID', $USER_DATA['user_id']);
+        define('USER_NAME', $USER_DATA['user_name']);
+        define('USER_GROUP', $USER_DATA['group_name']);
+        define('USER_GROUP_SET', $user_group_set);
+        define('USER_IS_ADMIN', $USER_DATA['has_admin_access']);
+        define('USER_CAN_SEND_ECARDS', (int)$USER_DATA['can_send_ecards']);
+        define('USER_CAN_RATE_PICTURES', (int)$USER_DATA['can_rate_pictures']);
+        define('USER_CAN_POST_COMMENTS', (int)$USER_DATA['can_post_comments']);
+        define('USER_CAN_UPLOAD_PICTURES', (int)$USER_DATA['can_upload_pictures']);
+        define('USER_CAN_CREATE_ALBUMS', (int)$USER_DATA['can_create_albums']);
+        define('USER_UPLOAD_FORM', (int)$USER_DATA['upload_form_config']);
+        define('CUSTOMIZE_UPLOAD_FORM', (int)$USER_DATA['custom_user_upload']);
+        define('NUM_FILE_BOXES', (int)$USER_DATA['num_file_upload']);
+        define('NUM_URI_BOXES', (int)$USER_DATA['num_URI_upload']);
+
+        //print_r($USER_DATA);
 }
 
 // Retrieve the name of a user
@@ -186,18 +188,18 @@ function udb_register_page()
 // Login
 function udb_login_page()
 {
-	global $path;
-	
-	echo '<html><body onload="document.redir.submit();"><form name="redir" method="post" action="'.$path.'/redir.php"><input type="hidden" name="redir" value="login.php" /></form></body></html>';
-	exit;
+        global $path;
+
+        echo '<html><body onload="document.redir.submit();"><form name="redir" method="post" action="'.$path.'/redir.php"><input type="hidden" name="redir" value="login.php" /></form></body></html>';
+        exit;
 }
 // Logout
 function udb_logout_page()
 {
-	global $path;
+        global $path;
 
-	echo '<html><body onload="document.redir.submit();"><form name="redir" method="post" action="'.$path.'/redir.php"><input type="hidden" name="redir" value="login.php?action=out&id='.USER_ID.'" /></form></body></html>';
-	exit;
+        echo '<html><body onload="document.redir.submit();"><form name="redir" method="post" action="'.$path.'/redir.php"><input type="hidden" name="redir" value="login.php?action=out&id='.USER_ID.'" /></form></body></html>';
+        exit;
 }
 // Edit users
 function udb_edit_users()
@@ -208,7 +210,7 @@ function udb_edit_users()
 // Get user information
 function udb_get_user_infos($uid)
 {
-	global $UDB_DB_NAME_PREFIX, $UDB_DB_LINK_ID, $lang_register_php;
+        global $UDB_DB_NAME_PREFIX, $UDB_DB_LINK_ID, $lang_register_php;
 
     $sql = "SELECT username AS user_name, email AS user_email, registered AS user_regdate, location AS user_location, url AS user_website FROM " . $UDB_DB_NAME_PREFIX . PUNBB_TABLE_PREFIX . PUNBB_USER_TABLE . " WHERE id = '$uid'";
     $result = cpg_db_query($sql, $UDB_DB_LINK_ID);
@@ -277,8 +279,8 @@ function udb_synchronize_groups()
     global $CONFIG ;
 
     $PUNBB_groups = array(
-    	PUNBB_GUEST_GROUP => 'Guests',
-    	PUNBB_MEMBERS_GROUP => 'Members',
+            PUNBB_GUEST_GROUP => 'Guests',
+            PUNBB_MEMBERS_GROUP => 'Members',
         PUNBB_ADMIN_GROUP => 'Administrators',
         PUNBB_MOD_GROUP => 'Moderators'
         );
@@ -333,8 +335,8 @@ function udb_util_filloptions()
 
         $query = "SELECT aid, category, IF(username IS NOT NULL, CONCAT('(', username, ') ', a.title), CONCAT(' - ', a.title)) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "LEFT JOIN $usertbl AS u ON category = (" . FIRST_USER_CAT . " + id) " . "ORDER BY category, title";
         $result = cpg_db_query($query, $UDB_DB_LINK_ID);
-		
-		echo '&nbsp;&nbsp;&nbsp;&nbsp;<select size="1" name="albumid" class="listbox"><option value="0">All Albums</option>';
+
+                echo '&nbsp;&nbsp;&nbsp;&nbsp;<select size="1" name="albumid" class="listbox"><option value="0">All Albums</option>';
 
         while ($row = mysql_fetch_array($result)) {
             $sql = "SELECT name FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = " . $row["category"];
@@ -436,7 +438,7 @@ function udb_util_filloptions()
         }
 
         // The user albums and public albums have been merged into one list. Print the dropdown.
-		echo '&nbsp;&nbsp;&nbsp;&nbsp;<select size="1" name="albumid" class="listbox"><option value="0">All Albums</option>';
+                echo '&nbsp;&nbsp;&nbsp;&nbsp;<select size="1" name="albumid" class="listbox"><option value="0">All Albums</option>';
 
         foreach ($merged_array as $menu_item) {
 

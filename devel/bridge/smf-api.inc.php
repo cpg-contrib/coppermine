@@ -47,6 +47,8 @@
 // want to use the bridge manager integration by setting $use_bridgemgr = 0; //
 // ------------------------------------------------------------------------- //
 
+if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
+
 // Switch that allows overriding the bridge manager with hard-coded values
 $use_bridgemgr = 0;
 
@@ -58,7 +60,7 @@ if ($use_bridgemgr == 0) { // the vars that are used when bridgemgr is disabled
     // Comment this out if you want to default user's group to 'Registered'
     // rather than using Post Count based groups.
     define('USE_POST_GROUPS', 1);
-    
+
     $smf_action = 'coppermine';
 
 // ------------------------------------------------------------------------- //
@@ -128,9 +130,9 @@ function udb_authenticate()
     global $password, $username, $pwseed, $settings, $ID_MEMBER, $realname, $txt, $smf_user_info;
     global $smf_action;
 
-	$authenticated = smf_authenticateUser();
-	smf_logOnline($smf_action);
-	smf_loadSession();
+        $authenticated = smf_authenticateUser();
+        smf_logOnline($smf_action);
+        smf_loadSession();
 
     // For error checking
     $CONFIG['TABLE_USERS'] = '**ERROR**';
@@ -244,31 +246,31 @@ function udb_register_page()
 // Login
 function udb_login_page()
 {
-	
-	global $smf_user_info, $_GET, $_POST, $lang_login_php, $raw_ip, $hdr_ip, $CONFIG;
-	
-	$referer = $_GET['referer'] ? $_GET['referer'] : 'index.php';
-	
-	if (isset($_POST['submitted'])) {
-		if (isset($_POST['remember_me'])) {
-    		$cookie_life_time = 86400 * 30;
-		} else {
-    		$cookie_life_time = 86400;
-		}	
-    	smf_setLoginCookie($cookie_life_time, addslashes($_POST['username']), addslashes($_POST['password']), 0);
 
-	   	$authenticated = smf_authenticateUser();
+        global $smf_user_info, $_GET, $_POST, $lang_login_php, $raw_ip, $hdr_ip, $CONFIG;
 
-	    if ($authenticated) {
-			smf_logOnline($smf_action);
-			smf_loadSession();
+        $referer = $_GET['referer'] ? $_GET['referer'] : 'index.php';
 
-	        pageheader($lang_login_php['login'], "<META http-equiv=\"refresh\" content=\"3;url=$referer\">");
-	        msg_box($lang_login_php['login'], sprintf($lang_login_php['welcome'], $smf_user_info['user_name']), $lang_continue, $referer);
-	        pagefooter();
-	        exit;
-	    } else {
-			log_write("Failed login attempt with Username: {$_POST['username']} Password: {$_POST['password']} from IP {$_SERVER['REMOTE_ADDR']} on " . localised_date(-1,$log_date_fmt),CPG_SECURITY_LOG);
+        if (isset($_POST['submitted'])) {
+                if (isset($_POST['remember_me'])) {
+                    $cookie_life_time = 86400 * 30;
+                } else {
+                    $cookie_life_time = 86400;
+                }
+            smf_setLoginCookie($cookie_life_time, addslashes($_POST['username']), addslashes($_POST['password']), 0);
+
+                   $authenticated = smf_authenticateUser();
+
+            if ($authenticated) {
+                        smf_logOnline($smf_action);
+                        smf_loadSession();
+
+                pageheader($lang_login_php['login'], "<META http-equiv=\"refresh\" content=\"3;url=$referer\">");
+                msg_box($lang_login_php['login'], sprintf($lang_login_php['welcome'], $smf_user_info['user_name']), $lang_continue, $referer);
+                pagefooter();
+                exit;
+            } else {
+                        log_write("Failed login attempt with Username: {$_POST['username']} Password: {$_POST['password']} from IP {$_SERVER['REMOTE_ADDR']} on " . localised_date(-1,$log_date_fmt),CPG_SECURITY_LOG);
 
         $login_failed = <<<EOT
                   <tr>

@@ -22,6 +22,8 @@
 // want to use the bridge manager integration by setting $use_bridgemgr = 0; //
 // ------------------------------------------------------------------------- //
 
+if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
+
 // Switch that allows overriding the bridge manager with hard-coded values
 $use_bridgemgr = 1;
 
@@ -74,7 +76,7 @@ if ($use_bridgemgr == 0) { // the vars that are used when bridgemgr is disabled
     define('PHPBB_GROUP_TABLE', $BRIDGE['group_table']); // The groups table
     define('PHPBB_UGROUP_TABLE', $BRIDGE['group_mapping_table']); // The group/user table
 }
-	
+
 // Group definitions (shouldn't be edited unless you know what you're doing!)
     if ($use_bridgemgr != 0 && $BRIDGE['use_standard_groups'] == 0) {
     define('PHPBB_ADMIN_GROUP', $BRIDGE['admin_group']);
@@ -130,14 +132,14 @@ function udb_authenticate()
     1 = guest
     2 = unapproved
     3 = unapproved coppa
-	4 = regged users
-	5 = regged coppa
-	6 = super mods
-	7 = admin
-	8 = bots
-    
-	*/
-	
+        4 = regged users
+        5 = regged coppa
+        6 = super mods
+        7 = admin
+        8 = bots
+
+        */
+
     // If autologin was not selected, we need to use the sessions table
     if ($cookie_uid && !$cookie_pass && isset($_COOKIE[PHPBB_COOKIE_PREFIX . '_sid'])) {
         $session_id = addslashes($_COOKIE[PHPBB_COOKIE_PREFIX . '_sid']);
@@ -151,7 +153,7 @@ function udb_authenticate()
     if (mysql_num_rows($result)) {
 
         $USER_DATA = mysql_fetch_array($result);
-        
+
         mysql_free_result($result);
 
         $USER_DATA['groups'] = array();
@@ -161,11 +163,11 @@ function udb_authenticate()
         } else {
             define('USER_ID', (int)$USER_DATA['user_id']);
         }
-        
-		define('USER_NAME', $USER_DATA['user_name']);
-		
 
-		
+                define('USER_NAME', $USER_DATA['user_name']);
+
+
+
         // Define the basic groups
         if ($USER_DATA['group_id'] == 1) {
 
@@ -203,9 +205,9 @@ function udb_authenticate()
         $USER_DATA['num_URI_upload'] = 0;
         $USER_DATA['custom_user_upload'] = 0;
 
-		//mysql_select_db($CONFIG['dbname']);
-		cpg_db_connect();
-		
+                //mysql_select_db($CONFIG['dbname']);
+                cpg_db_connect();
+
         $USER_DATA = array_merge($USER_DATA, cpgGetUserData($USER_DATA['groups'][0], $USER_DATA['groups'], PHPBB_GUEST_GROUP));
 
         define('USER_GROUP', '');
@@ -296,8 +298,8 @@ function udb_login_page()
 // Logout
 function udb_logout_page()
 {
-	udb_redirect('ucp.php?mode=logout&redirect=cpg_redir.php');
-	exit;
+        udb_redirect('ucp.php?mode=logout&redirect=cpg_redir.php');
+        exit;
 }
 // Edit users
 function udb_edit_users()

@@ -17,6 +17,8 @@
 // $Id$
 // ------------------------------------------------------------------------- //
 
+if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
+
 // Add an install action
 $thisplugin->add_action('plugin_install','sample_install');
 
