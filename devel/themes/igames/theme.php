@@ -400,10 +400,10 @@ $template_fav_thumb_view_title_row = <<<EOT
                                 <td><img src="images/spacer.gif" width="1"></td>
                                 <td class="sortorder_cell">
                                         <table height="100%" cellpadding="0" cellspacing="0">
-						<tr>                              
-							<td class="sortorder_options"><span class="statlink"><a href="zipdownload.php">{DOWNLOAD_ZIP}</a></span></td>                                
-						</tr>
-						</table>
+                                                <tr>
+                                                        <td class="sortorder_options"><span class="statlink"><a href="zipdownload.php">{DOWNLOAD_ZIP}</a></span></td>
+                                                </tr>
+                                                </table>
                                 </td>
                         </tr>
                         </table>
@@ -456,7 +456,7 @@ $template_thumbnail_view = <<<EOT
 <!-- END spacer -->
 
 EOT;
-// HTML template for thumbnails display
+// HTML template for filmstrip display
 $template_film_strip = <<<EOT
 
         <tr>
@@ -1332,13 +1332,13 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
         $title = template_eval($template_thumb_view_title_row, $param);
     } else if ($aid == 'favpics') { //Lots of stuff can be added here later
        $param = array('{ALBUM_NAME}' => $album_name,
-       		      '{DOWNLOAD_ZIP}'=>$lang_thumb_view['download_zip']
-       			);
-       $title = template_eval($template_fav_thumb_view_title_row, $param);       
+                             '{DOWNLOAD_ZIP}'=>$lang_thumb_view['download_zip']
+                               );
+       $title = template_eval($template_fav_thumb_view_title_row, $param);
     } else {
         $title = $album_name;
     }
-    
+
     if ($mode == 'thumb') {
         starttable('100%', $title, $thumbcols);
     } else {
