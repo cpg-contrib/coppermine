@@ -465,9 +465,9 @@ the main page of the script.</p>
   <li><b>Upload approval</b><br />See all pics that await approval by the admin (depending on the settings in the &quot;<a href="#group_cp">groups</a>&quot; control panel)</li>
   <li><b>Config</b><br />Configure the overall look of your gallery and the settings using the &quot;<a href="#admin">Config</a>&quot; button in the admin menu (note: you can not access the configuration by manually entering the url of the config file)</li>
   <li><b>Categories</b><br />Create/edit/delete <a href="#cat_cp">categories</a></li>
-  <li><b>Albums</b><br />Create/edit/delete <a href="#albums_cp">albums</a></li>
+  <li><b>Albums</b><br />Create/edit/delete <a href="#albmgr">albums</a></li>
   <li><b>Groups</b><br />Create/edit/delete <a href="#group_cp">groups</a></li>
-  <li><b>Users</b><br />Create/edit/delete <a href="#users_cp">users</a></li>
+  <li><b>Users</b><br />Create/edit/delete <a href="#user_cp">users</a></li>
   <li><b>Ban Users</b><br />Ban users based on hostname or IP address. Make sure not to ban yourself! Use this feature with extreme care, since most users don't have static IP addresses, this feature should only be used if you really know what you're doing.<br />
   <span class="small">[cpg1.3.0 or better required]</span>
   </li>
@@ -1307,7 +1307,7 @@ With this setting you specify the number of failed logins after that the IP addr
 <a name="admin_user_login_threshold_end"></a>
 <a name="admin_user_login_expiry_start"></a>
 <h4>Duration of a temporary ban after failed logins</h4>
-<p>This value specifies the duration of the temporary ban (in minutes) after the number of failed logins specified with <a href="admin_user_login_threshold_start">Number of failed login attemps untill temporary ban</a>.</p>
+<p>This value specifies the duration of the temporary ban (in minutes) after the number of failed logins specified with <a href="#admin_user_login_threshold_start">Number of failed login attemps untill temporary ban</a>.</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_user_login_expiry_end"></a>
 <a name="admin_user_login_end"></a>
@@ -1338,7 +1338,6 @@ With this setting you specify the number of failed logins after that the IP addr
 <p>If you have broken your gallery by modifying this value, use phpMyAdmin to edit the xxxx_config table in your database and restore the default value. </p>
 <p>When using bbs integration into Coppermine, make sure to use <b>different</b> cookie names for coppermine and your bbs! The paths in both applications have to be set so coppermine is able to read both. Usually the default value &quot;<tt class="code">/</tt>&quot; should be set as path both for coppermine install and the BBS app you bridge with.</p>
 <a name="admin_cookie_path_end"></a>
-<a name="admin_cookie"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="admin_email"></a>
@@ -1409,8 +1408,8 @@ All log files are written in english</p>
 <a name="admin_misc"></a>
 <h3>4.12.16 Miscellaneous settings</h3>
 <a name="debug_mode"></a><h4>Enable debug mode</h4>
-<p>CPG will show error messages which are normally suppressed.  This is helpful in troubleshooting problems with your gallery or when asking      for help on the <a href="http://coppermine.sf.net/board/">CPG Support Forums</a>. Turn this feature off if you don't experience problems.<br />
-Turn it on (option &quot;Everyone&quot;) if you are requesting help on the <a href="http://coppermine.sf.net/board/">coppermine support board</a>, so the supporters can have a look at the debug output as well. Choose the option &quot;Admin only&quot; when trouble-shooting on your own - debug output will be only visible when you're logged in as admin, regular users or guests won't see the debug output.</p>
+<p>CPG will show error messages which are normally suppressed.  This is helpful in troubleshooting problems with your gallery or when asking      for help on the <a href="http://coppermine.sourceforge.net/board/">CPG Support Forums</a>. Turn this feature off if you don't experience problems.<br />
+Turn it on (option &quot;Everyone&quot;) if you are requesting help on the <a href="http://coppermine.sourceforge.net/board/">coppermine support board</a>, so the supporters can have a look at the debug output as well. Choose the option &quot;Admin only&quot; when trouble-shooting on your own - debug output will be only visible when you're logged in as admin, regular users or guests won't see the debug output.</p>
 <a name="admin_misc_debug_notices"></a><h4>Display notices in debug mode</h4>
 <p>May be helpfull to trouble-shoot problems with your coppermine install - only recommended if you know a little PHP and you can understand the additional error messages this option shows. This option only applies if debug mode is enabled.</p>
 <a name="admin_misc_debug_notices_end"></a>
@@ -1634,7 +1633,7 @@ Should the groups from the BBS that are defined by the number of posts be taken 
 <h3>5.3.2 Recover from failed bridging</h3>
 <p>If you have provided improper settings using the bridge manager, your integration might fail, resulting (in the worst case) in a stituation where bridging is enabled, but you can not log in as admin to switch it off again (e.g. if you provided improper cookie settings that stops authentification to work). For this situation a recovery setting was built into the bridge manager: if you are not logged in as coppermine admin (in fact: not logged in at all) and you access the URL of your bridge manager (http://yourdomain.tld/your_coppermine_folder/bridgemgr.php) by entering it manually into the address bar of your browser, you are prompted to enter your admin account details - use the admin account you used to install coppermine with in the first place (the standalone admin account). This will not log you in, but switch integration off, so you can fix improper bridging settings then. To avoid others trying to guess your admin account details, there's a login treshold that rises every time you enter wrong credentials, so enter your admin account details with care.</p>
 <p class="small">[cpg1.4.0 or better required]</p>
-<a name="bridge_manager_recover_start"></a>
+<a name="bridge_manager_recover_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="integration_manual_start"></a>
@@ -1989,7 +1988,7 @@ if (isset($_POST['redir'])){
 </p>
 <p><b>PHPMailer</b><br />
   Author: <a href="http://sourceforge.net/project/memberlist.php?group_id=26031">PHPMailer Team</a><br />
-  URL: <a href="http://phpmailer.sf.net">http://phpmailer.sf.net</a><br />
+  URL: <a href="http://phpmailer.sourceforge.net/">http://phpmailer.sourceforge.net/</a><br />
 </p>
 <p><b>PHP Calendar Class Version 1.4</b><br />
   Author: David Wilkinson<br />
@@ -2003,7 +2002,7 @@ if (isset($_POST['redir'])){
 <p>This application is opensource software released under the <a href="http://www.gnu.org/copyleft/gpl.html">GPL</a>.
 </p>
 <p>Because the program is licensed free of charge, there is no warranty for the program, to the extent permitted by applicable law. Except when otherwise stated in writing the copyright holders and/or other parties provide the program &quot;as is&quot; without warranty of any kind, either expressed or implied, including, but not limited to, the implied warranties of merchantability and fitness for a particular purpose. The entire risk as to the quality and performance of the program is with you. Should the program prove defective, you assume the cost of all necessary servicing, repair or correction. </p>
-<p>Coppermine Photo Gallery is Copyright &copy; 2002 - 2004 <a href="http://www.chezgreg.net/coppermine/">Gr&eacute;gory  DEMAR</a> and the Coppermine Dev Team, All Rights Reserved.<br />
+<p>Coppermine Photo Gallery is Copyright &copy; 2002 - 2004 Gr&eacute;gory  DEMAR and the Coppermine Dev Team, All Rights Reserved.<br />
 </p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
