@@ -81,6 +81,8 @@ function form_input($text, $name, $help = '')
 
     $value = $CONFIG[$name];
     $help = cpg_display_help($help);
+    
+    $type = ($name == 'smtp_password') ? 'password' : 'text'; 
 
 
     echo <<<EOT
@@ -89,7 +91,7 @@ function form_input($text, $name, $help = '')
                                 $text
                         </td>
                 <td width="40%" class="tableb" valign="top">
-                    <input type="text" class="textinput" style="width: 100%" name="$name" value="$value"/>
+                    <input type="$type" class="textinput" style="width: 100%" name="$name" value="$value"/>
                         </td>
                         <td class="tableb" width="10%">
                                 $help
@@ -382,12 +384,12 @@ function form_lang_theme($text, $name, $help = '')
             <td class="tableb" width="50%">
                         $text
         </td>
-        <td class="tableb" valign="top" width="50%">
-                        <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
-                        &nbsp;&nbsp;
+        <td class="tableb" valign="top" width="50%">          
                         <input type="radio" id="{$name}1" name="$name" value="1" $yes_1_selected /><label for="{$name}1" class="clickable_option">$lang_yes:{$lang_config_php['item']}</label>
                         &nbsp;&nbsp;
                         <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">$lang_yes:{$lang_config_php['label']}+{$lang_config_php['item']}</label>
+        				&nbsp;&nbsp;
+        				<input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
         </td>
         <td class="tableb" width="10%">
         $help
@@ -414,11 +416,12 @@ function form_lang_debug($text, $name, $help = '')
                                 $text
                 </td>
                 <td class="tableb" valign="top" width="50%">
-                                <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
-                                &nbsp;&nbsp;
                                 <input type="radio" id="{$name}1" name="$name" value="1" $yes_1_selected /><label for="{$name}1" class="clickable_option">$lang_yes:{$lang_config_php['debug_everyone']}</label>
                                 &nbsp;&nbsp;
                                 <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">$lang_yes:{$lang_config_php['debug_admin']}</label>
+                				&nbsp;&nbsp;
+                				<input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
+                                
                 </td>
                 <td class="tableb" width="10%">
                         $help
@@ -474,11 +477,11 @@ function form_lang_logmode($text, $name, $help = '')
                         $text
         </td>
         <td class="tableb" valign="top" width="50%">
-                        <input type="radio" id="{$name}0" name="$name" value="0" $off_selected /><label for="{$name}0" class="clickable_option">{$lang_config_php['no_logs']}</label>
-                        &nbsp;&nbsp;
-                        <input type="radio" id="{$name}1" name="$name" value="1" $normal_selected /><label for="{$name}1" class="clickable_option">{$lang_config_php['log_normal']}</label>
+                         <input type="radio" id="{$name}1" name="$name" value="1" $normal_selected /><label for="{$name}1" class="clickable_option">{$lang_config_php['log_normal']}</label>
                         &nbsp;&nbsp;
                         <input type="radio" id="{$name}2" name="$name" value="2" $all_selected /><label for="{$name}2" class="clickable_option">{$lang_config_php['log_all']}</label>
+                        &nbsp;&nbsp;
+                        <input type="radio" id="{$name}0" name="$name" value="0" $off_selected /><label for="{$name}0" class="clickable_option">{$lang_config_php['no_logs']}</label>
                         &nbsp;&nbsp;
                         ( <a href="viewlog.php">{$lang_config_php['view_logs']}</a> )
         </td>
