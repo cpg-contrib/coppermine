@@ -125,4 +125,11 @@ Added check to searchnew.php for "no subfolders within albums" - - 25 June 2004,
 Added some Site Navigation elements using <LINK rel='' - 25 June 2004, Tarique
 Added Latvian language files (user contrib) - 30 June 2004, GauGau
 Added Czech language files (user contrib) - 30 June 2004, GauGau
+Fixed "> 1k users --> very slow" bug - 1 July 2004, Chris
+Added 'thumb_pfx' to system thumbs - 3 July 2004, Chris
+Added 'thumb_nopic.jpg' and 'thumb_private.jpg' to images folder - 3 July 2004, Chris
 Added warning in docs to backup anycontent when upgrading, 4 July 2004, Casper
+Fixed 'system thumbs not renaming on config change' - 4 July 2004, Chris
+Added 'if' block for unlink operations in update.php - 4 July 2004, Chris
+Added 'media-autostart' to config values - 4 July 2004, Chris
+Added 'media_autostart' to lang_config_data - 4 July 2004, Chris
