@@ -113,7 +113,7 @@ if (count($HTTP_POST_VARS) > 0 && $valid_sender_email && $valid_recipient_email)
             $plaintext_message = template_eval($template_ecard_plaintext, $params);
 
         $tempTime = time();
-        $message .= sprintf($lang_db_ecard_php['ecards_footer'], $sender_name, $_SERVER['REMOTE_ADDR'], gmstrftime("%A,  %B,%V,%Y %I:%M %p ", time()));
+        $message .= sprintf($lang_ecard_php['ecards_footer'], $sender_name, $_SERVER['REMOTE_ADDR'], localised_date(-1,$comment_date_fmt));
             $subject = sprintf($lang_ecard_php['ecard_title'], $sender_name);
 
             $result = cpg_mail($recipient_email, $subject, $message, 'text/html', $sender_name, $sender_email, $plaintext_message);
