@@ -63,4 +63,5 @@ Added a faster EXIF Reader class - 7th January 2004, Tarique
 Added a new crop and rotate editor - 7th January 2004, Tarique
 Added RSS Feed Add On - 9th January 2004, Tarique
 Added admin option "show views under thumbnail" - 29th January 2004, GauGau
-Added category name to dropdown in upload.php (user contrib by the Burrek)  - 17th February 2004, GauGau
+Added category name to dropdown in upload.php (user contrib by the Burrek) - 17th February 2004, GauGau
+Added memberlist hack by jason - 17th February 2004, GauGau

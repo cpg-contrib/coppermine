@@ -28,6 +28,14 @@ $template_main_menu1 = <<<EOT
                                         </td>
                                         <td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0" id="buttonright" alt="" /></td>
 <!-- END my_gallery -->
+<!-- BEGIN allow_memberlist -->
+                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
+                                        <td><img name="buttonleft" src="themes/hardwired/images/buttonleft.gif" width="17" height="25" border="0" id="buttonleft" alt="" /></td>
+                                        <td background="themes/hardwired/images/buttoncenter.gif">
+                                                <a href="{MEMBERLIST_TGT}" title="{MEMBERLIST_TITLE}">{MEMBERLIST_LNK}</a>
+                                        </td>
+                                        <td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0" id="buttonright" alt="" /></td>
+<!-- END allow_memberlist -->
 <!-- BEGIN my_profile -->
                                         <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
                                         <td><img name="buttonleft" src="themes/hardwired/images/buttonleft.gif" width="17" height="25" border="0" id="buttonleft" alt="" /></td>
@@ -940,9 +948,17 @@ function theme_main_menu1()
     if (USER_ID || !$CONFIG['allow_user_registration']) {
         template_extract_block($template_main_menu, 'register');
     }
+
+    if (!USER_ID || !$CONFIG['allow_memberlist']) {
+        template_extract_block($template_main_menu, 'allow_memberlist');
+    }
+
     $param = array('{MY_GAL_TGT}' => "index.php?cat=$my_gallery_id",
         '{MY_GAL_TITLE}' => $lang_main_menu['my_gal_title'],
         '{MY_GAL_LNK}' => $lang_main_menu['my_gal_lnk'],
+        '{MEMBERLIST_TGT}' => "usermgr.php",
+        '{MEMBERLIST_TITLE}' => $lang_main_menu['memberlist_title'],
+        '{MEMBERLIST_LNK}' => $lang_main_menu['memberlist_lnk'],
         '{MY_PROF_TGT}' => "profile.php?op=edit_profile",
         '{MY_PROF_LNK}' => $lang_main_menu['my_prof_lnk'],
         '{ADM_MODE_TGT}' => "admin.php?admin_mode=1&referer=$REFERER",

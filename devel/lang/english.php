@@ -116,6 +116,10 @@ $lang_main_menu = array(
         'toprated_lnk' => 'Top rated',
         'search_lnk' => 'Search',
         'fav_lnk' => 'My Favorites',
+        'memberlist_title' => 'Show Memberlist',
+        'memberlist_lnk' => 'Memberlist',
+
+
 
 );
 
@@ -443,6 +447,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Allow two users to have the same email address', 'allow_duplicate_emails_addr', 1),
         array('Users can have private albums', 'allow_private_albums', 1),
         array('Notify admin of user upload awaiting approval', 'upl_notify_admin_email', 1),
+        array('Allow logged in users to view memberlist', 'allow_memberlist', 1),
 
         'Custom fields for image description (leave blank if unused)',
         array('Field 1 name', 'user_field1_name', 0),
@@ -985,6 +990,8 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
         'pic_d' => 'Pic count descending',
         'disku_a' => 'Disk usage ascending',
         'disku_d' => 'Disk usage descending',
+        'lv_a' => 'Last visit ascending',
+        'lv_d' => 'Last visit descending',
         'sort_by' => 'Sort users by',
         'err_no_users' => 'User table is empty !',
         'err_edit_self' => 'You can\'t edit your own profile, use the \'My profile\' link for that',
@@ -997,6 +1004,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
         'pictures' => 'Pictures',
         'disk_space' => 'Space used / Quota',
         'registered_on' => 'Registered on',
+        'last_visit' => 'Last Visit',
         'u_user_on_p_pages' => '%d users on %d page(s)',
         'confirm_del' => 'Are you sure you want to DELETE this user ? \\nAll his pictures and albums will also be deleted.',
         'mail' => 'MAIL',
@@ -1013,6 +1021,8 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
         'user_location' => 'User location',
         'user_interests' => 'User interests',
         'user_occupation' => 'User occupation',
+        'latest_upload' => 'Recent uploads',
+        'never' => 'never',
 );
 
 // ------------------------------------------------------------------------- //

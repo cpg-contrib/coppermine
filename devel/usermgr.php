@@ -1,4 +1,4 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
@@ -13,7 +13,7 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- // 
+// ------------------------------------------------------------------------- //
 
 define('IN_COPPERMINE', true);
 define('USERMGR_PHP', true);
@@ -23,12 +23,41 @@ require('include/init.inc.php');
 
 if (defined('UDB_INTEGRATION')) udb_edit_users();
 
-if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+if (USER_ID !='') {
+ if (GALLERY_ADMIN_MODE) {
+  $lim_user = 0;
+ }
+ elseif ($CONFIG['allow_memberlist']) {
+  $lim_user = 1;
+  show_memberlist;
+ }
+ else {
+  $lim_user = 2;
+  cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+ }
+}
+else {
+ $lim_user = 3;
+ cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+}
+
+function show_memberlist()
+{
+        db_query("DELETE FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '' LIMIT 1");
+        pageheader($lang_usermgr_php['title']);
+        list_users();
+        pagefooter();
+        ob_end_flush();
+}
+
+
 
 function list_users()
 {
     global $CONFIG, $PHP_SELF, $HTTP_GET_VARS;
     global $lang_usermgr_php, $lang_byte_units, $register_date_fmt;
+    global $lim_user;
+
 
     $sort_codes = array('name_a' => 'user_name ASC',
         'name_d' => 'user_name DESC',
@@ -40,6 +69,8 @@ function list_users()
         'pic_d' => 'pic_count DESC',
         'disku_a' => 'disk_usage ASC',
         'disku_d' => 'disk_usage DESC',
+        'lv_a' => 'user_lastvisit ASC',
+        'lv_d' => 'user_lastvisit DESC',
         );
 
     $sort = (!isset($HTTP_GET_VARS['sort']) || !isset($sort_codes[$HTTP_GET_VARS['sort']])) ? 'reg_d' : $HTTP_GET_VARS['sort'];
@@ -63,89 +94,136 @@ function list_users()
     $lower_limit = ($page-1) * $user_per_page;
     $total_pages = ceil($user_count / $user_per_page);
 
-    $sql = "SELECT user_id, user_name, user_email, UNIX_TIMESTAMP(user_regdate) as user_regdate, group_name, user_active, " . "COUNT(pid) as pic_count, ROUND(SUM(total_filesize)/1024) as disk_usage, group_quota " . "FROM {$CONFIG['TABLE_USERS']} AS u " . "INNER JOIN {$CONFIG['TABLE_USERGROUPS']} AS g ON user_group = group_id " . "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.owner_id = u.user_id " . "GROUP BY user_id " . "ORDER BY " . $sort_codes[$sort] . " " . "LIMIT $lower_limit, $user_per_page";
+$sql = "SELECT user_id, user_name, user_email, UNIX_TIMESTAMP(user_regdate) as user_regdate, UNIX_TIMESTAMP(user_lastvisit) as user_lastvisit, group_name, user_active, " . "COUNT(pid) as pic_count, ROUND(SUM(total_filesize)/1024) as disk_usage, group_quota " . "FROM {$CONFIG['TABLE_USERS']} AS u " . "INNER JOIN {$CONFIG['TABLE_USERGROUPS']} AS g ON user_group = group_id " . "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.owner_id = u.user_id " . "GROUP BY user_id " . "ORDER BY " . $sort_codes[$sort] . " " . "LIMIT $lower_limit, $user_per_page";
+
 
     $result = db_query($sql);
 
     $tabs = create_tabs($user_count, $page, $total_pages, $tab_tmpl);
 
     starttable('100%');
-    echo <<< EOT
+    if (!$lim_user) {
+     echo <<< EOT
 
-	<tr>
-		<td class="tableh1"><b><span class="statlink">{$lang_usermgr_php['name']}</span></b></td>
-		<td class="tableh1"><b><span class="statlink">{$lang_usermgr_php['group']}</span></b></td>
-		<td class="tableh1"><b><span class="statlink">{$lang_usermgr_php['registered_on']}</span></b></td>
-		<td class="tableh1" colspan="2" align="center"><b><span class="statlink">{$lang_usermgr_php['operations']}</span></b></td>
-		<td class="tableh1" align="center"><b><span class="statlink">{$lang_usermgr_php['pictures']}</span></b></td>
-		<td class="tableh1" colspan="2" align="center"><b><span class="statlink">{$lang_usermgr_php['disk_space']}</span></b></td>
-	</tr>
+        <tr>
+                <td class="tableh1"><b><span class="statlink">{$lang_usermgr_php['name']}</span></b></td>
+                <td class="tableh1"><b><span class="statlink">{$lang_usermgr_php['group']}</span></b></td>
+                <td class="tableh1"><b><span class="statlink">{$lang_usermgr_php['registered_on']}</span></b></td>
+                <td class="tableh1"><b><span class="statlink">{$lang_usermgr_php['last_visit']}</span></b></td>
+                <td class="tableh1" colspan="2" align="center"><b><span class="statlink">{$lang_usermgr_php['operations']}</span></b></td>
+                <td class="tableh1" align="center"><b><span class="statlink">{$lang_usermgr_php['pictures']}</span></b></td>
+                <td class="tableh1" colspan="2" align="center"><b><span class="statlink">{$lang_usermgr_php['disk_space']}</span></b></td>
+        </tr>
 EOT;
+    }
+    else {
+     echo <<< EOT
+
+        <tr>
+                <td class="tableh1"><b><span class="statlink">{$lang_usermgr_php['name']}</span></b></td>
+                <td class="tableh1"><b><span class="statlink">{$lang_usermgr_php['group']}</span></b></td>
+                <td class="tableh1"><b><span class="statlink">{$lang_usermgr_php['registered_on']}</span></b></td>
+                <td class="tableh1"><b><span class="statlink">{$lang_usermgr_php['last_visit']}</span></b></td>
+                <td class="tableh1" align="center"><b><span class="statlink">{$lang_usermgr_php['pictures']}</span></b></td>
+                <td class="tableh1" colspan="2" align="center"><b><span class="statlink">{$lang_usermgr_php['disk_space']}</span></b></td>
+        </tr>
+EOT;
+    }
+
 
     while ($user = mysql_fetch_array($result)) {
         if ($user['user_active'] == 'NO') $user['group_name'] = '<i>' . $lang_usermgr_php['inactive'] . '</i>';
         $user['user_regdate'] = localised_date($user['user_regdate'], $register_date_fmt);
-        if ($user['pic_count']) {
-            $usr_link_start = '<a href="thumbnails.php?album=lastupby&uid=' . $user['user_id'] . '" target="_blank">';
-            $usr_link_end = '</a>';
-        } else {
-            $usr_link_start = '';
-            $usr_link_end = '';
-        } 
+        if ($user['user_lastvisit']) {
+            $user['user_lastvisit'] = localised_date($user['user_lastvisit'], $register_date_fmt);
+        }
+        else {
+            $user['user_lastvisit'] = $lang_usermgr_php['never'];
+        }
 
-        echo <<< EOT
-	<tr>
-		<td class="tableb">$usr_link_start{$user['user_name']}$usr_link_end</td>
-		<td class="tableb">{$user['group_name']}</td>
-		<td class="tableb">{$user['user_regdate']}</td>
-		<td class="tableb" align="center"><div class="admin_menu"><a href="$PHP_SELF?op=edit&user_id={$user['user_id']}">{$lang_usermgr_php['edit']}</a></div></td>
-		<td class="tableb"  align="center"><div class="admin_menu"><a href="delete.php?id={$user['user_id']}&what=user"  onclick="return confirm('{$lang_usermgr_php['confirm_del']}');">{$lang_usermgr_php['delete']}</a></div></td>
-		<td class="tableb" align="center">{$user['pic_count']}</td>
-		<td class="tableb" align="right">{$user['disk_usage']} {$lang_byte_units[1]}</td>
-		<td class="tableb" align="right">{$user['group_quota']} {$lang_byte_units[1]}</td>
-	</tr>
+        $usr_link = '<a href="profile.php?uid=' . $user['user_id'] . '">' . $user['user_name'];
+        if ($user['pic_count']) {
+            $usr_link .= '</a> (<a href="thumbnails.php?album=lastupby&uid=' . $user['user_id'] . '">' . $lang_usermgr_php['latest_upload'] . '</a>)';
+        } else {
+            $usr_link .= '</a>';
+        }
+
+
+        if (!$lim_user) {
+         echo <<< EOT
+        <tr>
+                <td class="tableb">$usr_link</td>
+                <td class="tableb">{$user['group_name']}</td>
+                <td class="tableb">{$user['user_regdate']}</td>
+                <td class="tableb">{$user['user_lastvisit']}</td>
+                <td class="tableb" align="center"><div class="admin_menu"><a href="$PHP_SELF?op=edit&user_id={$user['user_id']}">{$lang_usermgr_php['edit']}</a></div></td>
+                <td class="tableb"  align="center"><div class="admin_menu"><a href="delete.php?id={$user['user_id']}&what=user"  onclick="return confirm('{$lang_usermgr_php['confirm_del']}');">{$lang_usermgr_php['delete']}</a></div></td>
+                <td class="tableb" align="center">{$user['pic_count']}</td>
+                <td class="tableb" align="right">{$user['disk_usage']} {$lang_byte_units[1]}</td>
+                <td class="tableb" align="right">{$user['group_quota']} {$lang_byte_units[1]}</td>
+        </tr>
 
 EOT;
+        } else {
+                  echo <<< EOT
+        <tr>
+                <td class="tableb">$usr_link</td>
+                <td class="tableb">{$user['group_name']}</td>
+                <td class="tableb">{$user['user_regdate']}</td>
+                <td class="tableb">{$user['user_lastvisit']}</td>
+                <td class="tableb" align="center">{$user['pic_count']}</td>
+                <td class="tableb" align="right">{$user['disk_usage']} {$lang_byte_units[1]}</td>
+                <td class="tableb" align="right">{$user['group_quota']} {$lang_byte_units[1]}</td>
+        </tr>
+
+EOT;
+        }
+
     } // while
     mysql_free_result($result);
 
     $lb = "<select name=\"album_listbox\" class=\"listbox\" onChange=\"if(this.options[this.selectedIndex].value) window.location.href='$PHP_SELF?page=$page&sort='+this.options[this.selectedIndex].value;\">\n";
     foreach($sort_codes as $key => $value) {
         $selected = ($key == $sort) ? "SELECTED" : "";
-        $lb .= "	<option value=\"" . $key . "\" $selected>" . $lang_usermgr_php[$key] . "</option>\n";
-    } 
+        $lb .= "        <option value=\"" . $key . "\" $selected>" . $lang_usermgr_php[$key] . "</option>\n";
+    }
     $lb .= "</select>\n";
 
+    if (!$lim_user) {
+     echo <<<EOT
+        <tr>
+                <form method="post" action="$PHP_SELF?op=new_user">
+                <td colspan="9" align="center" class="tablef">
+                <table cellpadding="0" cellspacing="0">
+                <tr>
+                        <td><input type="submit" value="{$lang_usermgr_php['create_new_user']}" class="button"></td>
+                        <td><img src="images/spacer.gif" width="50" height="1" alt="" /></td>
+                        <td><b>{$lang_usermgr_php['sort_by']}</b></td>
+                        <td><img src="images/spacer.gif" width="10" height="1" alt="" /></td>
+                        <td>$lb</td>
+                </tr>
+                </table>
+                </td>
+                </form>
+        </tr>
+EOT;
+    }
     echo <<<EOT
-	<tr>
-		<form method="post" action="$PHP_SELF?op=new_user">
-		<td colspan="8" align="center" class="tablef">
-		<table cellpadding="0" cellspacing="0">
-		<tr>
-			<td><input type="submit" value="{$lang_usermgr_php['create_new_user']}" class="button"></td>
-			<td><img src="images/spacer.gif" width="50" height="1" alt="" /></td>
-			<td><b>{$lang_usermgr_php['sort_by']}</b></td>
-			<td><img src="images/spacer.gif" width="10" height="1" alt="" /></td>
-			<td>$lb</td>
-		</tr>
-		</table>
-		</td>
-		</form>
-	</tr>
-	<tr>
-		<td colspan="8" style="padding: 0px;">
-			<table width="100%" cellspacing="0" cellpadding="0">
-				<tr>
-					$tabs
-				</tr>
-			</table>
-		</td>
-	</tr>
+        <tr>
+                <td colspan="9" style="padding: 0px;">
+                        <table width="100%" cellspacing="0" cellpadding="0">
+                                <tr>
+                                        $tabs
+                                </tr>
+                        </table>
+                </td>
+        </tr>
 
 EOT;
 
+
     endtable();
-} 
+}
 
 function edit_user($user_id)
 {
@@ -172,7 +250,7 @@ function edit_user($user_id)
 
     starttable(500, $lang_usermgr_php['modify_user'], 2);
     echo <<<EOT
-	<form method="post" action="$PHP_SELF?op=update&user_id=$user_id">
+        <form method="post" action="$PHP_SELF?op=update&user_id=$user_id">
 
 EOT;
 
@@ -180,28 +258,28 @@ EOT;
         case 'input' :
             $user_data[$element[1]] = $user_data[$element[1]];
             echo <<<EOT
-	<tr>
-    	<td width="40%" class="tableb">
-			{$element[2]}
+        <tr>
+            <td width="40%" class="tableb">
+                        {$element[2]}
         </td>
         <td width="60%" class="tableb" valign="top">
-        	<input type="text" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="{$user_data[$element[1]]}" class="textinput">
-		</td>
-	</tr>
+                <input type="text" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="{$user_data[$element[1]]}" class="textinput">
+                </td>
+        </tr>
 
 EOT;
             break;
 
         case 'password' :
             echo <<<EOT
-	<tr>
-    	<td width="40%" class="tableb">
-			{$element[2]}
+        <tr>
+            <td width="40%" class="tableb">
+                        {$element[2]}
         </td>
         <td width="60%" class="tableb" valign="top">
-        	<input type="input" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="" class="textinput">
-		</td>
-	</tr>
+                <input type="input" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="" class="textinput">
+                </td>
+        </tr>
 
 EOT;
             break;
@@ -211,17 +289,17 @@ EOT;
             $yes_selected = ($value == 'YES') ? 'selected' : '';
             $no_selected = ($value == 'NO') ? 'selected' : '';
             echo <<< EOT
-	<tr>
-    	<td class="tableb">
-			{$element[2]}
+        <tr>
+            <td class="tableb">
+                        {$element[2]}
         </td>
-		<td class="tableb">
-			<select name="{$element[1]}" class="listbox">
-				<option value="YES" $yes_selected>$lang_yes</option>
-				<option value="NO" $no_selected>$lang_no</option>
-			</select>
-		</td>
-	</tr>
+                <td class="tableb">
+                        <select name="{$element[1]}" class="listbox">
+                                <option value="YES" $yes_selected>$lang_yes</option>
+                                <option value="NO" $no_selected>$lang_no</option>
+                        </select>
+                </td>
+        </tr>
 
 EOT;
             break;
@@ -236,57 +314,57 @@ EOT;
             $user_group_list = ($user_data['user_lang'] == '') ? ',' . $sel_group . ',' : ',' . $user_data['user_lang'] . ',' . $sel_group . ',';
 
             echo <<<EOT
-	<tr>
-    	<td class="tableb">
-			{$element[2]}
+        <tr>
+            <td class="tableb">
+                        {$element[2]}
         </td>
         <td class="tableb" valign="top">
-        	<select name="{$element[1]}" class="listbox">
+                <select name="{$element[1]}" class="listbox">
 
 EOT;
             $group_cb = '';
             foreach($group_list as $group) {
-                echo '        		<option value="' . $group['group_id'] . '"' . ($group['group_id'] == $sel_group ? ' selected' : '') . '>' . $group['group_name'] . "</option>\n";
+                echo '                        <option value="' . $group['group_id'] . '"' . ($group['group_id'] == $sel_group ? ' selected' : '') . '>' . $group['group_name'] . "</option>\n";
                 $checked = strpos(' ' . $user_group_list, ',' . $group['group_id'] . ',') ? 'checked' : '';
                 $group_cb .= '<input name="group_list[]" type="checkbox" value="' . $group['group_id'] . '" ' . $checked . '>' . $group['group_name'] . "<br />\n";
-            } 
+            }
             echo <<<EOT
-			</select><br />
-			$group_cb
-		</td>
-	</tr>
+                        </select><br />
+                        $group_cb
+                </td>
+        </tr>
 
 EOT;
             break;
 
         default:
             cpg_die(CRITICAL_ERROR, 'Invalid action for form creation ' . $element[0], __FILE__, __LINE__);
-    } 
+    }
 
     echo <<<EOT
-	<tr>
-		<td colspan="2" class="tableh2">
-			<b>{$lang_usermgr_php['notes']}</b>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2" class="tableb">
-			<ul>
-			{$lang_usermgr_php['note_list']}
-			</ul>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2" align="center" class="tablef">
-			<input type="submit" value="{$lang_usermgr_php['modify_user']}" class="button">
-		</td>
-		</form>
-	</tr>
+        <tr>
+                <td colspan="2" class="tableh2">
+                        <b>{$lang_usermgr_php['notes']}</b>
+                </td>
+        </tr>
+        <tr>
+                <td colspan="2" class="tableb">
+                        <ul>
+                        {$lang_usermgr_php['note_list']}
+                        </ul>
+                </td>
+        </tr>
+        <tr>
+                <td colspan="2" align="center" class="tablef">
+                        <input type="submit" value="{$lang_usermgr_php['modify_user']}" class="button">
+                </td>
+                </form>
+        </tr>
 
 EOT;
 
     endtable();
-} 
+}
 
 function update_user($user_id)
 {
@@ -310,7 +388,7 @@ function update_user($user_id)
     if (mysql_num_rows($result)) {
         cpg_die(ERROR, $lang_register_php['err_user_exists'], __FILE__, __LINE__);
         return false;
-    } 
+    }
     mysql_free_result($result);
 
     if (strlen($user_name) < 2) cpg_die(ERROR, $lang_register_php['err_uname_short'], __FILE__, __LINE__);
@@ -322,14 +400,14 @@ function update_user($user_id)
         $user_group_list = substr($user_group_list, 0, -1);
     } else {
         $user_group_list = '';
-    } 
+    }
 
-    $sql_update = "UPDATE {$CONFIG['TABLE_USERS']} " . "SET " . "user_name 	  = '$user_name', " . "user_email	  = '$user_email', " . "user_active    = '$user_active', " . "user_group 	  = '$user_group', " . "user_location  = '$user_location', " . "user_interests = '$user_interests', " . "user_website	  = '$user_website', " . "user_occupation= '$user_occupation', " . "user_lang      = '$user_group_list'";
+    $sql_update = "UPDATE {$CONFIG['TABLE_USERS']} " . "SET " . "user_name           = '$user_name', " . "user_email          = '$user_email', " . "user_active    = '$user_active', " . "user_group           = '$user_group', " . "user_location  = '$user_location', " . "user_interests = '$user_interests', " . "user_website          = '$user_website', " . "user_occupation= '$user_occupation', " . "user_lang      = '$user_group_list'";
     if (strlen($user_password)) $sql_update .= ", user_password = '$user_password'";
     $sql_update .= " WHERE user_id = '$user_id'";
 
     db_query($sql_update);
-} 
+}
 
 $op = isset($HTTP_GET_VARS['op']) ? $HTTP_GET_VARS['op'] : '';
 
@@ -377,6 +455,6 @@ switch ($op) {
         pagefooter();
         ob_end_flush();
         break;
-} 
+}
 
 ?>

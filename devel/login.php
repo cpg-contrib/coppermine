@@ -30,6 +30,7 @@ $cookie_warning = '';
 
 if (isset($HTTP_POST_VARS['submitted'])) {
     $results = db_query("SELECT user_id, user_name, user_password FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '" . addslashes($HTTP_POST_VARS['username']) . "' AND BINARY user_password = '" . addslashes($HTTP_POST_VARS['password']) . "' AND user_active = 'YES'");
+    $lastvisit = db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_lastvisit = NOW() WHERE user_name = '" . addslashes($HTTP_POST_VARS['username']) . "' AND BINARY user_password = '" . addslashes($HTTP_POST_VARS['password']) . "' AND user_active = 'YES'");
     if (mysql_num_rows($results)) {
         $USER_DATA = mysql_fetch_array($results);
         if (isset($HTTP_POST_VARS['remember_me'])) {

@@ -24,6 +24,9 @@ $template_main_menu1 = <<<EOT
 <!-- BEGIN my_gallery -->
                                                 <a href="{MY_GAL_TGT}" title="{MY_GAL_TITLE}">{MY_GAL_LNK}</a> |
 <!-- END my_gallery -->
+<!-- BEGIN allow_memberlist -->
+                                                <a href="{MEMBERLIST_TGT}" title="{MEMBERLIST_TITLE}">{MEMBERLIST_LNK}</a> |
+<!-- END allow_memberlist -->
 <!-- BEGIN my_profile -->
                                                 <a href="{MY_PROF_TGT}">{MY_PROF_LNK}</a> |
 <!-- END my_profile -->
@@ -945,9 +948,17 @@ function theme_main_menu1()
         template_extract_block($template_main_menu, 'register');
     }
 
+    if (!USER_ID || !$CONFIG['allow_memberlist']) {
+        template_extract_block($template_main_menu, 'allow_memberlist');
+    }
+
+
     $param = array('{MY_GAL_TGT}' => "index.php?cat=$my_gallery_id",
         '{MY_GAL_TITLE}' => $lang_main_menu['my_gal_title'],
         '{MY_GAL_LNK}' => $lang_main_menu['my_gal_lnk'],
+        '{MEMBERLIST_TGT}' => "usermgr.php",
+        '{MEMBERLIST_TITLE}' => $lang_main_menu['memberlist_title'],
+        '{MEMBERLIST_LNK}' => $lang_main_menu['memberlist_lnk'],
         '{MY_PROF_TGT}' => "profile.php?op=edit_profile",
         '{MY_PROF_LNK}' => $lang_main_menu['my_prof_lnk'],
         '{ADM_MODE_TGT}' => "admin.php?admin_mode=1&referer=$REFERER",
