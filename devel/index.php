@@ -630,6 +630,13 @@ foreach ($elements as $element){
 		display_thumbnails('lastcom', $cat, 1, $CONFIG['thumbcols'], max(1,$matches[2]), false);
 		flush();
 		break;
+		
+		case 'anycontent':
+		if($cat==0){
+			include('anycontent.php');
+		}
+		flush();
+		break;
 	}
 }
 
