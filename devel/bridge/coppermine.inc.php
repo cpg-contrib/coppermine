@@ -43,7 +43,7 @@ class cpg_udb extends core_udb {
 		}
 		
 		// A hash that's a little specific to the client's configuration
-		$this->client_id = md5($_SERVER['HTTP_USER_AGENT'].$_SERVER['HTTP_PROTOCOL']);
+		$this->client_id = md5($_SERVER['HTTP_USER_AGENT'].$_SERVER['HTTP_PROTOCOL'].$CONFIG['TABLE_PREFIX']);
 
 		$this->multigroups = 0;
 
@@ -122,8 +122,8 @@ class cpg_udb extends core_udb {
 		$results = cpg_db_query($sql);
 
         // If exists update lastvisit value, session, and login
-		if ($results) {
-			
+		if (mysql_num_rows($results)) {
+
             // Update lastvisit value
             $sql =  "UPDATE {$this->usertable} SET user_lastvisit = NOW() ";
 			$sql .= "WHERE user_name = '$username' AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
@@ -159,7 +159,7 @@ class cpg_udb extends core_udb {
 
         // Revert authenticated session to a guest session
         $session_id = $this->session_id.$this->client_id;
-        $sql  = "update {$this->sessionstable} set user_id = 0, remember=false where session_id=md5('$session_id');";
+        $sql  = "update {$this->sessionstable} set user_id = 0, remember=0 where session_id=md5('$session_id');";
         cpg_db_query($sql, $this->link_id);
     }
 
@@ -187,13 +187,7 @@ class cpg_udb extends core_udb {
 	// definition of actions required to convert a password from user database form to cookie form
 	function udb_hash_db($password)
 	{
-		global $CONFIG;
-
-		if ($CONFIG['enable_encrypted_passwords']) {
-			return $password;
-		} else {
-			return md5($password);
-		}
+		return $password;
 	}
 
 
@@ -219,7 +213,7 @@ class cpg_udb extends core_udb {
         $session_life_time = time()-CPG_HOUR;
 
         // Delete old sessions
-        $sql = "delete from {$this->sessionstable} where time<$session_life_time and remember=false;";
+        $sql = "delete from {$this->sessionstable} where time<$session_life_time and remember=0;";
         cpg_db_query($sql, $this->link_id);
 
         // Delete stale 'remember me' sessions
@@ -290,7 +284,7 @@ class cpg_udb extends core_udb {
         $session_id = $this->session_id.$this->client_id;
 
         $sql =  'insert into '.$this->sessionstable.' (session_id, user_id, time, remember) values ';
-        $sql .= '("'.md5($session_id).'", 0, "'.time().'", false);';
+        $sql .= '("'.md5($session_id).'", 0, "'.time().'", 0);';
 
 		// insert the guest session
         cpg_db_query($sql, $this->link_id);
