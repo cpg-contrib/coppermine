@@ -38,7 +38,7 @@ INSERT INTO CPG_config VALUES ('theme_reset', '1');
 
 
 # Modify structure for category thumb
-# ALTER TABLE `CPG_categories` ADD `thumb` INT NOT NULL AFTER `parent` ;
+ALTER TABLE `CPG_categories` ADD `thumb` INT NOT NULL AFTER `parent` ;
 
 
 #
