@@ -74,9 +74,9 @@ function db_query($query, $link_id = 0)
 
         $query_start = cpgGetMicroTime();
         if (($link_id)) {
-            $result = db_query($query, $link_id);
+            $result = mysql_query($query, $link_id);
         } else {
-                $result = db_query($query);
+                $result = mysql_query($query);
         }
         $query_end = cpgGetMicroTime();
         if (isset($CONFIG['debug_mode']) && (($CONFIG['debug_mode']==1) || ($CONFIG['debug_mode']==2) )) {
