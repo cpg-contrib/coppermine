@@ -62,5 +62,24 @@ class cpgTemplate extends Smarty{
 
     return $this->fetch($CONFIG["theme"]."/common/index.html");
   }
+
+  function display($fileName)
+  {
+    global $USER, $USER_DATA, $ALBUM_SET, $CONFIG, $cpg_time_start, $query_stats, $queries, $lang_cpg_debug_output, $cpgdebugger;
+    /**
+     * If debug is ON, assign the debug data to smarty
+     */
+    if (isset($CONFIG['debug_mode']) && (($CONFIG['debug_mode']==1) || ($CONFIG['debug_mode']==2) )) {
+      $this->assign("showDebug", 1);
+      $this->assign("queries", $queries);
+      $this->assign("USER", $USER);
+      $this->assign("USER_DATA", $USER_DATA);
+      $this->assign("lang_cpg_debug_output", $lang_cpg_debug_output);
+      $this->assign("report", $cpgdebugger->stop());
+    } else {
+      $this->assign("showDebug", 0);
+    }
+    parent::display($fileName);
+  }
 }
 ?>
