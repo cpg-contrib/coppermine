@@ -1760,10 +1760,10 @@ $return = '
 1.4.0|upload.php|1.4.0|1.59|mandatory|r@
 1.4.0|usermgr.php|1.4.0|1.29|mandatory|r@
 1.4.0|util.php|1.4.0|1.23|mandatory|r@
-1.4.0|versioncheck.php|1.4.0|1.36|mandatory|r@
+1.4.0|versioncheck.php|1.4.0|1.37|mandatory|r@
 1.4.0|viewlog.php|1.4.0|1.8|mandatory|r@
 1.4.0|voteDetails.php|1.4.0|1.1|mandatory|r@
-1.4.0|xp_publish.php|1.4.0|1.24|mandatory|r@
+1.4.0|xp_publish.php|1.4.0|1.23|mandatory|r@
 1.4.0|zipdownload.php|1.4.0|1.8|mandatory|r@
 1.4.0|albums|||mandatory|w@
 1.4.0|albums/index.html||1.2|mandatory|w@
