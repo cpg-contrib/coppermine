@@ -57,7 +57,9 @@ $i=0;
         mysql_free_result($result2);
         flush();
     }
-echo "<br/>New keywords found = ".$i;
+echo "<p>New keywords found = ".$i;
+echo '<br/>* = new keyword';
+echo '<br/>% = existing keyword</p>';
 mysql_free_result($result);
 ?>
 <br/>
