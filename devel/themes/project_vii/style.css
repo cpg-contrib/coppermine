@@ -559,7 +559,7 @@ td #admin_menu_anim {
 }
 
 .clickable_option {
-        cursor : hand;
+        cursor : default;
 }
 
 .listbox_lang {
@@ -568,4 +568,29 @@ td #admin_menu_anim {
         border: 1px solid #FAFAFA;
         font-size: 80%;
         vertical-align : middle;
+}
+#SUB_MENU {
+        width:100%;
+        padding: 0 20px;
+}
+
+#SYS_MENU {
+        position:relative;
+        bottom:3px;
+        display: block;
+        width:800px;
+        height:10px;
+        padding: 0px;
+        z-index:1;
+        visibility: hidden;
+}
+
+#SELECT_LISTS,#SELECT_FLAGS,#GALLERY {
+    padding: 0 20px;
+    text-align: center;
+}
+
+#CUSTOM_FOOTER,#CUSTOM_HEADER {
+    margin:0;
+    padding:0;
 }
