@@ -58,6 +58,10 @@ function test_fs()
     } elseif (! is_writable("{$DFLT['alb_d']}/{$DFLT['edit_d']}")) {
         $errors .= "<hr /><br />The '{$DFLT['edit_d']}' directory (located in the 'albums' directory on your server) should be writable in order to allow pictures upload. Use your FTP program to change its mode to 777.<br /><br />";
     }
+    // sql directory must exist
+    if (! is_dir("{$DFLT['sql_d']}")) {
+        $errors .= "<hr /><br />A subdirectory called '{$DFLT['sql_d']}' should normally exist in the directory where you uploaded Coppermine. The installer can't find this directory. Check that you have uploaded all Coppermine files to your server.<br /><br />";
+    }
 }
 // ----------------------------- TEST FUNCTIONS ---------------------------- //
 function test_sql_connection()
@@ -512,7 +516,8 @@ $DFLT = array('cfg_d' => 'include', // The config file dir
     'cfg_f' => 'include/config.inc.php', // The config file name
     'alb_d' => 'albums', // The album dir
     'upl_d' => 'userpics', // The uploaded pic dir
-    'edit_d' => 'edit'
+    'edit_d' => 'edit',
+    'sql_d' => 'sql'
     );
 
 $errors = '';
