@@ -1,18 +1,21 @@
 <?php
-// ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.2                                            //
-// ------------------------------------------------------------------------- //
-// Copyright (C) 2002-2004 Gregory DEMAR                                     //
-// http://www.chezgreg.net/coppermine/                                       //
-// ------------------------------------------------------------------------- //
-// Updated by the Coppermine Dev Team                                        //
-// (http://coppermine.sf.net/team/)                                          //
-// see /docs/credits.html for details                                        //
-// ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2005 Coppermine Dev Team
+  v1.1 originally written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  ********************************************
+  Coppermine version: 1.4.1
+  $Source$
+  $Revision$
+  $Author$
+  $Date$
+**********************************************/
 // ------------------------------------------------------------------------- //
 // CVS version: $Id$
 // ------------------------------------------------------------------------- //
@@ -22,7 +25,7 @@ $lang_translation_info = array(
   'lang_name_english' => 'Estonian',
   'lang_name_native' => 'Eesti',
   'lang_country_code' => 'ee',
-  'trans_name'=> 'Meelis Ristjõe',
+  'trans_name'=> 'Meelis RistjÃµe',
   'trans_email' => 'meelis@hullumajand.com',
   'trans_website' => 'http://hullumajand.com',
   'trans_date' => '2004-09-06',
@@ -35,15 +38,15 @@ $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 $lang_byte_units = array('Baiti', 'KB', 'MB');
 
 // Day of weeks and months
-$lang_day_of_week = array('Pühapäev', 'Esmaspäev', 'Teisipäev', 'Kolmapäev', 'Neljapäev', 'Reede', 'Laupäev');
-$lang_month = array('Jaanuar', 'Veebruar', 'Märts', 'Aprill', 'Mai', 'Juuni', 'Juuli', 'August', 'September', 'Oktoober', 'November', 'Detsember');
+$lang_day_of_week = array('PÃ¼hapÃ¤ev', 'EsmaspÃ¤ev', 'TeisipÃ¤ev', 'KolmapÃ¤ev', 'NeljapÃ¤ev', 'Reede', 'LaupÃ¤ev');
+$lang_month = array('Jaanuar', 'Veebruar', 'MÃ¤rts', 'Aprill', 'Mai', 'Juuni', 'Juuli', 'August', 'September', 'Oktoober', 'November', 'Detsember');
 
 
 // Some common strings
 $lang_yes = 'Jah';
 $lang_no  = 'Ei';
 $lang_back = 'TAGASI';
-$lang_continue = 'JÄTKA';
+$lang_continue = 'JÃ„TKA';
 $lang_info = 'Informatsioon';
 $lang_error = 'Viga';
 
@@ -72,31 +75,31 @@ $lang_meta_album_names = array(
 );
 
 $lang_errors = array(
-  'access_denied' => 'Teil pole õigusi sellele lehele pääsuks',
-  'perm_denied' => 'Teil pole õigust toimingu tegemiseks',
-  'param_missing' => 'Skripti käivitamiseks puuduvad vajalikud parameetrid.',
-  'non_exist_ap' => 'Valitud pilt või album puudub!', //cpg1.3.0
-  'quota_exceeded' => 'Lubatud kettakasutus ületatud<br /><br />Teil on lubatud kasutada [quota]K kettaruumi, Teie pildid võtavad hetkel [space]K  ruumi, selle pildi lisamisel võib lubatud maht olla ületatud.', //cpg1.3.0
-  'gd_file_type_err' => 'GD teegi puhul on lubatud ainult JPEG ja PNG tüüpi pildid.',
-  'invalid_image' => 'Pilt on vigane või seda pole võimalik käsitleda GD teegi poolt.',
-  'resize_failed' => 'Ei suuda luua pisipilti või vähendada pildi suurust.',
-  'no_img_to_display' => 'Pole ühtegi pilti.',
+  'access_denied' => 'Teil pole Ãµigusi sellele lehele pÃ¤Ã¤suks',
+  'perm_denied' => 'Teil pole Ãµigust toimingu tegemiseks',
+  'param_missing' => 'Skripti kÃ¤ivitamiseks puuduvad vajalikud parameetrid.',
+  'non_exist_ap' => 'Valitud pilt vÃµi album puudub!', //cpg1.3.0
+  'quota_exceeded' => 'Lubatud kettakasutus Ã¼letatud<br /><br />Teil on lubatud kasutada [quota]K kettaruumi, Teie pildid vÃµtavad hetkel [space]K  ruumi, selle pildi lisamisel vÃµib lubatud maht olla Ã¼letatud.', //cpg1.3.0
+  'gd_file_type_err' => 'GD teegi puhul on lubatud ainult JPEG ja PNG tÃ¼Ã¼pi pildid.',
+  'invalid_image' => 'Pilt on vigane vÃµi seda pole vÃµimalik kÃ¤sitleda GD teegi poolt.',
+  'resize_failed' => 'Ei suuda luua pisipilti vÃµi vÃ¤hendada pildi suurust.',
+  'no_img_to_display' => 'Pole Ã¼htegi pilti.',
   'non_exist_cat' => 'Valitud kategooria puudub.',
   'orphan_cat' => 'Kategoorial puudub vanem, kasuta kategooria-haldurit probleemi lahendamiseks.', //cpg1.3.0
-  'directory_ro' => 'Kataloogil \'%s\' puudub kirjutamisõigus, üilte ei saa kustutada.', //cpg1.3.0
+  'directory_ro' => 'Kataloogil \'%s\' puudub kirjutamisÃµigus, Ã¼ilte ei saa kustutada.', //cpg1.3.0
   'non_exist_comment' => 'Valitud kommentaar puudub.',
   'pic_in_invalid_album' => 'Pilt asub olematus albumis (%s)!?', //cpg1.3.0
   'banned' => 'Sul on hetkel keelatud selle albumi kasutamine.',
-  'not_with_udb' => 'See funktsioon on keelatud, kuna album on integreeritud foorumiga. Ehk tegevus mida Sa üritad ei ole toetatud antud konfiguratsioonis või tuleks teha kasutades foorumi tarkvara.',
+  'not_with_udb' => 'See funktsioon on keelatud, kuna album on integreeritud foorumiga. Ehk tegevus mida Sa Ã¼ritad ei ole toetatud antud konfiguratsioonis vÃµi tuleks teha kasutades foorumi tarkvara.',
   'offline_title' => 'Mitte aktiivne', //cpg1.3.0
   'offline_text' => 'Album ei ole hetkel aktiivne - vaata hiljem uuesti', //cpg1.3.0
-  'ecards_empty' => 'Ei ole postkaartide koopiaid mida näidata. Kontrolli gonfiguratsiooni!', //cpg1.3.0
-  'action_failed' => 'Käsuviga.  Pildialbum ei saa teostada antud käsku.', //cpg1.3.0
-  'no_zip' => 'ZIP failid pole saadaval.  Palun võta ühendust oma Pildialbumi administraatoriga.', //cpg1.3.0
-  'zip_type' => 'Sul puudub õigus ZIP failide ülesse laadimiseks.', //cpg1.3.0
+  'ecards_empty' => 'Ei ole postkaartide koopiaid mida nÃ¤idata. Kontrolli gonfiguratsiooni!', //cpg1.3.0
+  'action_failed' => 'KÃ¤suviga.  Pildialbum ei saa teostada antud kÃ¤sku.', //cpg1.3.0
+  'no_zip' => 'ZIP failid pole saadaval.  Palun vÃµta Ã¼hendust oma Pildialbumi administraatoriga.', //cpg1.3.0
+  'zip_type' => 'Sul puudub Ãµigus ZIP failide Ã¼lesse laadimiseks.', //cpg1.3.0
 );
 
-$lang_bbcode_help = 'Järgnevad koodid võivad olla vajalikud: <li>[b]<b>Bold</b>[/b]</li> <li>[i]<i>Italic</i>[/i]</li> <li>[url=http://www.sinuaadress.ee/]Url Text[/url]</li> <li>[email]sinunimi@kuskohas.ee[/email]</li>'; //cpg1.3.0
+$lang_bbcode_help = 'JÃ¤rgnevad koodid vÃµivad olla vajalikud: <li>[b]<b>Bold</b>[/b]</li> <li>[i]<i>Italic</i>[/i]</li> <li>[url=http://www.sinuaadress.ee/]Url Text[/url]</li> <li>[email]sinunimi@kuskohas.ee[/email]</li>'; //cpg1.3.0
 
 // ------------------------------------------------------------------------- //
 // File theme.php
@@ -108,25 +111,25 @@ $lang_main_menu = array(
   'my_gal_title' => 'Mine minu personaalsesse galeriisse',
   'my_gal_lnk' => 'Minu galerii',
   'my_prof_lnk' => 'Minu Profiil',
-  'adm_mode_title' => 'Lülitu admin olekusse',
+  'adm_mode_title' => 'LÃ¼litu admin olekusse',
   'adm_mode_lnk' => 'Admin olek',
-  'usr_mode_title' => 'Lülitu kasutaja olekusse',
+  'usr_mode_title' => 'LÃ¼litu kasutaja olekusse',
   'usr_mode_lnk' => 'Kasutaja olek',
   'upload_pic_title' => 'Lisa fail/e albumisse',
   'upload_pic_lnk' => 'Lisa fail/e albumisse',
   'register_title' => 'Registreeru',
   'register_lnk' => 'Registreeri',
   'login_lnk' => 'Sisene',
-  'logout_lnk' => 'Välju',
+  'logout_lnk' => 'VÃ¤lju',
   'lastup_lnk' => 'Viimati lisatud',
   'lastcom_lnk' => 'Viimased kommentaarid',
   'topn_lnk' => 'Enim vaadatud',
   'toprated_lnk' => 'Edetabel',
   'search_lnk' => 'Otsing',
   'fav_lnk' => 'Minu eelistused',
-  'memberlist_title' => 'Näita kasutajate lehte', //cpg1.3.0
+  'memberlist_title' => 'NÃ¤ita kasutajate lehte', //cpg1.3.0
   'memberlist_lnk' => 'Kasutajate leht', //cpg1.3.0
-  'faq_title' => 'Korduma kippuvad küsimused &quot;Pildialbum&quot;', //cpg1.3.0
+  'faq_title' => 'Korduma kippuvad kÃ¼simused &quot;Pildialbum&quot;', //cpg1.3.0
   'faq_lnk' => 'KKK', //cpg1.3.0
 );
 
@@ -138,10 +141,10 @@ $lang_gallery_admin_menu = array(
   'users_lnk' => 'Kasutajad',
   'groups_lnk' => 'Grupid',
   'comments_lnk' => 'Kommentaarid',
-  'searchnew_lnk' => 'Lisa üleslaetud pilte',
+  'searchnew_lnk' => 'Lisa Ã¼leslaetud pilte',
   'util_lnk' => 'Failide suuruse muutmine',
   'ban_lnk' => 'Blokeeri kasutajaid',
-  'db_ecard_lnk' => 'Näita postkaarte', //cpg1.3.0
+  'db_ecard_lnk' => 'NÃ¤ita postkaarte', //cpg1.3.0
 );
 
 $lang_user_admin_menu = array(
@@ -161,16 +164,16 @@ $lang_album_list = array(
 );
 
 $lang_thumb_view = array(
-  'date' => 'KUUPÄEV',
+  'date' => 'KUUPÃ„EV',
   //Sort by filename and title
   'name' => 'FAILI NIMI',
   'title' => 'PEALKIRI',
-  'sort_da' => 'Järjesta kuupäeva järgi kasvavalt',
-  'sort_dd' => 'Järjesta kuupäeva järgi kahanevalt',
-  'sort_na' => 'Järjesta nime järgi kasvavalt',
-  'sort_nd' => 'Järjesta nime järgi kahanevalt',
-  'sort_ta' => 'Järjesta pealkirja järgi kasvavalt',
-  'sort_td' => 'Järjesta pealkirja järgi kahanevalt',
+  'sort_da' => 'JÃ¤rjesta kuupÃ¤eva jÃ¤rgi kasvavalt',
+  'sort_dd' => 'JÃ¤rjesta kuupÃ¤eva jÃ¤rgi kahanevalt',
+  'sort_na' => 'JÃ¤rjesta nime jÃ¤rgi kasvavalt',
+  'sort_nd' => 'JÃ¤rjesta nime jÃ¤rgi kahanevalt',
+  'sort_ta' => 'JÃ¤rjesta pealkirja jÃ¤rgi kasvavalt',
+  'sort_td' => 'JÃ¤rjesta pealkirja jÃ¤rgi kahanevalt',
   'download_zip' => 'Lae alla ZIP failina', //cpg1.3.0
   'pic_on_page' => '%d pilti on %d-el lehel',
   'user_on_page' => '%d kasutajat on %d-el lehel', //cpg1.3.0
@@ -178,25 +181,25 @@ $lang_thumb_view = array(
 
 $lang_img_nav_bar = array(
   'thumb_title' => 'Tagasi pisipiltide lehele',
-  'pic_info_title' => 'Näita/peida pildi info', //cpg1.3.0
+  'pic_info_title' => 'NÃ¤ita/peida pildi info', //cpg1.3.0
   'slideshow_title' => 'Slaidiesitus',
   'ecard_title' => 'Saada see pilt e-kaardina', //cpg1.3.0
   'ecard_disabled' => 'e-kaartid on keelatud',
-  'ecard_disabled_msg' => 'Teil pole õigust saata e-kaarte', //js-alert //cpg1.3.0
+  'ecard_disabled_msg' => 'Teil pole Ãµigust saata e-kaarte', //js-alert //cpg1.3.0
   'prev_title' => 'Vaata eelmist pilti', //cpg1.3.0
-  'next_title' => 'Vaata järgmist pilti', //cpg1.3.0
+  'next_title' => 'Vaata jÃ¤rgmist pilti', //cpg1.3.0
   'pic_pos' => 'FAIL %s/%s', //cpg1.3.0
 );
 
 $lang_rate_pic = array(
   'rate_this_pic' => 'Hinda seda pilti ', //cpg1.3.0
   'no_votes' => '(Veel hindamata)',
-  'rating' => '(Hetke hinne : %s / 5-st %s häälega)',
-  'rubbish' => 'Kõlbmatu',
+  'rating' => '(Hetke hinne : %s / 5-st %s hÃ¤Ã¤lega)',
+  'rubbish' => 'KÃµlbmatu',
   'poor' => 'Kasin',
   'fair' => 'Keskmine',
   'good' => 'Hea',
-  'excellent' => 'Suurepärane',
+  'excellent' => 'SuurepÃ¤rane',
   'great' => 'Fantastiline',
 );
 
@@ -221,21 +224,21 @@ $lang_cpg_die = array(
 $lang_display_thumbnails = array(
   'filename' => 'Failinimi : ',
   'filesize' => 'Failisuurus : ',
-  'dimensions' => 'Mõõtmed : ',
-  'date_added' => 'Lisamise kuupäev : ', //cpg1.3.0
+  'dimensions' => 'MÃµÃµtmed : ',
+  'date_added' => 'Lisamise kuupÃ¤ev : ', //cpg1.3.0
 );
 
 $lang_get_pic_data = array(
   'n_comments' => '%s kommentaari',
   'n_views' => '%s kord(a)',
-  'n_votes' => '(%s hääl(t))',
+  'n_votes' => '(%s hÃ¤Ã¤l(t))',
 );
 
 $lang_cpg_debug_output = array(
   'debug_info' => 'Parandusmoodi info', //cpg1.3.0
-  'select_all' => 'Märgi kõik', //cpg1.3.0
+  'select_all' => 'MÃ¤rgi kÃµik', //cpg1.3.0
   'copy_and_paste_instructions' => 'Kui kasutad pildialbumi abi siis kopeeri veateade postitusesse. Paroolid asenda kindlasti postituses (***) ennem postitamist.', //cpg1.3.0
-  'phpinfo' => 'näita php infot', //cpg1.3.0
+  'phpinfo' => 'nÃ¤ita php infot', //cpg1.3.0
 );
 
 $lang_language_selection = array(
@@ -265,23 +268,23 @@ $lang_theme_selection = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
-  'Exclamation' => 'Hüüatus',
-  'Question' => 'Küsimus',
-  'Very Happy' => 'Väga õnnelik',
-  'Smile' => 'Rõõmus',
+  'Exclamation' => 'HÃ¼Ã¼atus',
+  'Question' => 'KÃ¼simus',
+  'Very Happy' => 'VÃ¤ga Ãµnnelik',
+  'Smile' => 'RÃµÃµmus',
   'Sad' => 'Kurb',
-  'Surprised' => 'Üllatunud',
+  'Surprised' => 'Ãœllatunud',
   'Shocked' => 'Vapustaud',
   'Confused' => 'Hammeldunud',
   'Cool' => 'Lahe',
   'Laughing' => 'Naerev',
   'Mad' => 'Hull',
   'Razz' => 'Razz',
-  'Embarassed' => 'Häbistatud',
-  'Crying or Very sad' => 'Nuttev või väga kurb',
-  'Evil or Very Mad' => 'Õel või Päris hull',
-  'Twisted Evil' => 'Eelarvamuslik õel',
-  'Rolling Eyes' => 'Silmi pööritav',
+  'Embarassed' => 'HÃ¤bistatud',
+  'Crying or Very sad' => 'Nuttev vÃµi vÃ¤ga kurb',
+  'Evil or Very Mad' => 'Ã•el vÃµi PÃ¤ris hull',
+  'Twisted Evil' => 'Eelarvamuslik Ãµel',
+  'Rolling Eyes' => 'Silmi pÃ¶Ã¶ritav',
   'Wink' => 'Silmapilgutus',
   'Idea' => 'Idee',
   'Arrow' => 'Nool',
@@ -314,7 +317,7 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
   'no_change' => 'Sa ei muutnud midagi !', //js-alert
   'new_album' => 'Uus album',
   'confirm_delete1' => 'Kindel, et tahad albumit kustutada ?', //js-alert
-  'confirm_delete2' => '\nKõik siin sisalduvad pildid ja kommentaarid lähevad kaduma !', //js-alert
+  'confirm_delete2' => '\nKÃµik siin sisalduvad pildid ja kommentaarid lÃ¤hevad kaduma !', //js-alert
   'select_first' => 'Vali enne album', //js-alert
   'alb_mrg' => 'Albumi-haldur',
   'my_gallery' => '* Minu galerii *',
@@ -353,7 +356,7 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
   'title' => 'Konfiguratsioon',
   'restore_cfg' => 'Taasta tehase vaikeseaded',
   'save_cfg' => 'Salvesta uus konfiguratsioon',
-  'notes' => 'Märkused',
+  'notes' => 'MÃ¤rkused',
   'info' => 'Informatsioon',
   'upd_success' => 'Konfiguratsioon uuendatud',
   'restore_success' => 'Vaikekonfiguratsioon taastatud',
@@ -361,19 +364,19 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
   'name_d' => 'Nimed kahanevalt',
   'title_a' => 'Pealkirjad kasvavalt',
   'title_d' => 'Pealkirjad kahanevalt',
-  'date_a' => 'Kuupäev kasvavalt',
-  'date_d' => 'Kuupäev kahanevalt',
+  'date_a' => 'KuupÃ¤ev kasvavalt',
+  'date_d' => 'KuupÃ¤ev kahanevalt',
   'th_any' => 'Max Aspect',
   'th_ht' => 'Height',
   'th_wd' => 'Width',
   'label' => 'kiri', //cpg1.3.0
   'item' => 'lipp', //cpg1.3.0
-  'debug_everyone' => 'Igaüks', //cpg1.3.0
+  'debug_everyone' => 'IgaÃ¼ks', //cpg1.3.0
   'debug_admin' => 'Administraator ainult', //cpg1.3.0
         );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
-  'Üldised seaded',
+  'Ãœldised seaded',
   array('Galerii nimi', 'gallery_name', 0),
   array('Galerii kirjeldus', 'gallery_description', 0),
   array('Galerii administraatori e-post',  'gallery_admin_email', 0),
@@ -382,26 +385,26 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Salvesta postkaarte', 'log_ecards', 1), //cpg1.3.0
   array('Aktsepteeri ZIP failide allalaadimine minu eelistustesse', 'enable_zipdownload', 1), //cpg1.3.0
 
-  'Keelte, taustade ja märgistiku seaded',
+  'Keelte, taustade ja mÃ¤rgistiku seaded',
   array('Keel', 'lang', 5),
   array('Taust', 'theme', 6),
-  array('Näita keelte menüüd', 'language_list', 1), //cpg1.3.0
-  array('Näita lippe', 'language_flags', 8), //cpg1.3.0
-  array('Näita &quot;Taasta algkeel&quot; nuppu lippude juures', 'language_reset', 1), //cpg1.3.0
-  array('Näita taustade menüüd', 'theme_list', 1), //cpg1.3.0
-  array('Näita &quot;Algeline tagataust&quot; kirja tagataustade menüüs', 'theme_reset', 1), //cpg1.3.0
-  array('Näita KKK', 'display_faq', 1), //cpg1.3.0
-  array('Näita bbkoodi abi', 'show_bbcode_help', 1), //cpg1.3.0
-  array('Tähekodeering', 'charset', 4), //cpg1.3.0
+  array('NÃ¤ita keelte menÃ¼Ã¼d', 'language_list', 1), //cpg1.3.0
+  array('NÃ¤ita lippe', 'language_flags', 8), //cpg1.3.0
+  array('NÃ¤ita &quot;Taasta algkeel&quot; nuppu lippude juures', 'language_reset', 1), //cpg1.3.0
+  array('NÃ¤ita taustade menÃ¼Ã¼d', 'theme_list', 1), //cpg1.3.0
+  array('NÃ¤ita &quot;Algeline tagataust&quot; kirja tagataustade menÃ¼Ã¼s', 'theme_reset', 1), //cpg1.3.0
+  array('NÃ¤ita KKK', 'display_faq', 1), //cpg1.3.0
+  array('NÃ¤ita bbkoodi abi', 'show_bbcode_help', 1), //cpg1.3.0
+  array('TÃ¤hekodeering', 'charset', 4), //cpg1.3.0
 
   'Albumite loetelu vaade ',
-  array('Peatabeli laius (pikslites või %)', 'main_table_width', 0),
+  array('Peatabeli laius (pikslites vÃµi %)', 'main_table_width', 0),
   array('Number kategooria tasandeid kuvamiseks ', 'subcat_level', 0),
   array('Number albumeid kuvamiseks', 'albums_per_page', 0),
   array('Number veergusid albumi loeteluks', 'album_list_cols', 0),
   array('Pisipiltide suurus pikslites', 'alb_list_thumb_size', 0),
   array('Pealehe sisu', 'main_page_layout', 0),
-  array('Näita esimese taseme albumite pisipilte kategooriates ','first_level',1),
+  array('NÃ¤ita esimese taseme albumite pisipilte kategooriates ','first_level',1),
 
   'Pisipiltide vaade',
   array('Veergude arv pisipiltide lehel ', 'thumbcols', 0),
@@ -411,45 +414,45 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Kuva vaatamiste arv pisipildi all ', 'views_in_thumbview', 1), //cpg1.3.0
   array('Kuva kommentaaraide arv pisipildi all ', 'display_comment_count', 1),
   array('Kuva pildi lisaja nimi pildi juures', 'display_uploader', 1), //cpg1.3.0
-  array('Järjesta pildid', 'default_sort_order', 3), //cpg1.3.0
-  array('Minimaalne häälte arv pildi sattumiseks  \'Edetabel\' lehele', 'min_votes_for_rating', 0), //cpg1.3.0
+  array('JÃ¤rjesta pildid', 'default_sort_order', 3), //cpg1.3.0
+  array('Minimaalne hÃ¤Ã¤lte arv pildi sattumiseks  \'Edetabel\' lehele', 'min_votes_for_rating', 0), //cpg1.3.0
 
   'Pildivaate ja kommentaaride seaded',
-  array('Tabeli laius pildi kuvamiseks (pikslites või %) ', 'picture_table_width', 0), //cpg1.3.0
-  array('Pildi info on vaikimisi nähtav', 'display_pic_info', 1), //cpg1.3.0
-  array('Filtreeri pahad sõnad kommentaarides ', 'filter_bad_words', 1),
+  array('Tabeli laius pildi kuvamiseks (pikslites vÃµi %) ', 'picture_table_width', 0), //cpg1.3.0
+  array('Pildi info on vaikimisi nÃ¤htav', 'display_pic_info', 1), //cpg1.3.0
+  array('Filtreeri pahad sÃµnad kommentaarides ', 'filter_bad_words', 1),
   array('Luba kasutada smaile kommentaarides ', 'enable_smilies', 1),
-  array('Luba ühel ja samal kasutajal mitu korda järjest kommenteerida ühte ja sama pilti', 'disable_comment_flood_protect', 1), //cpg1.3.0
+  array('Luba Ã¼hel ja samal kasutajal mitu korda jÃ¤rjest kommenteerida Ã¼hte ja sama pilti', 'disable_comment_flood_protect', 1), //cpg1.3.0
   array('Maksimaalne pildikirjelduse pikkus ', 'max_img_desc_length', 0),
-  array('Maksimaalne tähtede arv sõnas', 'max_com_wlength', 0),
+  array('Maksimaalne tÃ¤htede arv sÃµnas', 'max_com_wlength', 0),
   array('Maksimaalne ridade arv kommentaaris ', 'max_com_lines', 0),
   array('Maksimaalne kommentaari pikkus ', 'max_com_size', 0),
-  array('Näita filmilinti', 'display_film_strip', 1),
+  array('NÃ¤ita filmilinti', 'display_film_strip', 1),
   array('Kaadrite arv filmilindil', 'max_film_strip_items', 0),
   array('Teavita administraatorit kommentaaridest e-maili teel', 'email_comment_notification', 1), //cpg1.3.0
   array('Slaidesituse interval millisekundites (1 sekund = 1000 millisekundit)', 'slideshow_interval', 0), //cpg1.3.0
 
   'Failide ja pisipiltide seaded', //cpg1.3.0
   array('JPEG failide kvaliteet', 'jpeg_qual', 0),
-  array('Pisipildi max laius või kõrgus <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0), //cpg1.3.0
-  array('Kasuta mõõte (kõrgus või laius või maksimum pisipiltide jaoks ) <b>**</b>', 'thumb_use', 7),
+  array('Pisipildi max laius vÃµi kÃµrgus <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0), //cpg1.3.0
+  array('Kasuta mÃµÃµte (kÃµrgus vÃµi laius vÃµi maksimum pisipiltide jaoks ) <b>**</b>', 'thumb_use', 7),
   array('Loo keskmised pildid ','make_intermediate',1),
-  array('Maksimaalne kõrgus või laius keskmiste suurusega piltidele/videodele <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0), //cpg1.3.0
-  array('Üleslaetavate failide maksimaalne suurus (KB)', 'max_upl_size', 0), //cpg1.3.0
-  array('Maksimaalne kõrgus või laius üleslaetavate piltide/videode puhul pikslites', 'max_upl_width_height', 0), //cpg1.3.0
+  array('Maksimaalne kÃµrgus vÃµi laius keskmiste suurusega piltidele/videodele <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0), //cpg1.3.0
+  array('Ãœleslaetavate failide maksimaalne suurus (KB)', 'max_upl_size', 0), //cpg1.3.0
+  array('Maksimaalne kÃµrgus vÃµi laius Ã¼leslaetavate piltide/videode puhul pikslites', 'max_upl_width_height', 0), //cpg1.3.0
 
-  'Failide ja pisipiltide täpsemad seaded', //cpg1.3.0
+  'Failide ja pisipiltide tÃ¤psemad seaded', //cpg1.3.0
   array('Kuva privaatalbumi ikooni mitte sisseloginud kasutaja juures','show_private',1), //cpg1.3.0
-  array('Faili nimes keelatud tähemärgid ', 'forbiden_fname_char',0), //cpg1.3.0
+  array('Faili nimes keelatud tÃ¤hemÃ¤rgid ', 'forbiden_fname_char',0), //cpg1.3.0
   //array('Accepted file extensions for uploaded pictures', 'allowed_file_extensions',0), //cpg1.3.0
-  array('Aktsepteeritavad piltide failide tüübid', 'allowed_img_types',0), //cpg1.3.0
-  array('Aktsepteeritavad videode failide tüübid', 'allowed_mov_types',0), //cpg1.3.0
-  array('Aktsepteeritavad audio failide tüübid', 'allowed_snd_types',0), //cpg1.3.0
-  array('Aktsepteeritavad dokumentide failide tüübid', 'allowed_doc_types',0), //cpg1.3.0
+  array('Aktsepteeritavad piltide failide tÃ¼Ã¼bid', 'allowed_img_types',0), //cpg1.3.0
+  array('Aktsepteeritavad videode failide tÃ¼Ã¼bid', 'allowed_mov_types',0), //cpg1.3.0
+  array('Aktsepteeritavad audio failide tÃ¼Ã¼bid', 'allowed_snd_types',0), //cpg1.3.0
+  array('Aktsepteeritavad dokumentide failide tÃ¼Ã¼bid', 'allowed_doc_types',0), //cpg1.3.0
   array('Piltide suurusemuutmise meetod','thumb_method',2), //cpg1.3.0
-  array('ImageMagick\'u \'konvertimise\' abiprogrammi tee (näiteks /usr/bin/X11/)', 'impath', 0), //cpg1.3.0
+  array('ImageMagick\'u \'konvertimise\' abiprogrammi tee (nÃ¤iteks /usr/bin/X11/)', 'impath', 0), //cpg1.3.0
   //array('Allowed image types (only valid for ImageMagick)', 'allowed_img_types',0), //cpg1.3.0
-  array('Käsurea parameetrid ImageMagick', 'im_options', 0), //cpg1.3.0
+  array('KÃ¤surea parameetrid ImageMagick', 'im_options', 0), //cpg1.3.0
   array('Lugeda EXIF andmed JPEG failides ', 'read_exif_data', 1), //cpg1.3.0
   array('Lugeda IPTC andmed JPEG failides', 'read_iptc_data', 1), //cpg1.3.0
   array('Albumi kataloog <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0), //cpg1.3.0
@@ -461,29 +464,29 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 
   'Kasutaja seaded',
   array('Aktsepteeri uute kasutajate registreerimist', 'allow_user_registration', 1),
-  array('Kasutaja registreerimine nõuab e-posti-kinnitust', 'reg_requires_valid_email', 1),
+  array('Kasutaja registreerimine nÃµuab e-posti-kinnitust', 'reg_requires_valid_email', 1),
   array('Teavita administraatorit uue kasutaja registreerimisest e-maili teel', 'reg_notify_admin_email', 1), //cpg1.3.0
-  array('Luba kahel kasutajal ühte-sama e-posti aadressi ', 'allow_duplicate_emails_addr', 1),
-  array('Kasutajatel võib olla privaat-albumid  (PS: Kui lülitad \'Jah\' pealt \'Ei\' peale siis privaat albumid muutuvad avalikuks)', 'allow_private_albums', 1), //cpg1.3.0
-  array('Teavita administraatorit kasutajatepoolt üleslaetud piltide lisamise kinnituse ootamisest', 'upl_notify_admin_email', 1), //cpg1.3.0
-  array('Luba sisseloginud kasutajatel näha kasutajate nimekirja', 'allow_memberlist', 1), //cpg1.3.0
+  array('Luba kahel kasutajal Ã¼hte-sama e-posti aadressi ', 'allow_duplicate_emails_addr', 1),
+  array('Kasutajatel vÃµib olla privaat-albumid  (PS: Kui lÃ¼litad \'Jah\' pealt \'Ei\' peale siis privaat albumid muutuvad avalikuks)', 'allow_private_albums', 1), //cpg1.3.0
+  array('Teavita administraatorit kasutajatepoolt Ã¼leslaetud piltide lisamise kinnituse ootamisest', 'upl_notify_admin_email', 1), //cpg1.3.0
+  array('Luba sisseloginud kasutajatel nÃ¤ha kasutajate nimekirja', 'allow_memberlist', 1), //cpg1.3.0
 
-  'Kohandatavad väljad pildi kirjelduseks (jäta tühjaks kui ei kasuta)',
-  array('Välja 1 nimi', 'user_field1_name', 0),
-  array('Välja 2 nimi', 'user_field2_name', 0),
-  array('Välja 3 nimi', 'user_field3_name', 0),
-  array('Välja 4 nimi', 'user_field4_name', 0),
+  'Kohandatavad vÃ¤ljad pildi kirjelduseks (jÃ¤ta tÃ¼hjaks kui ei kasuta)',
+  array('VÃ¤lja 1 nimi', 'user_field1_name', 0),
+  array('VÃ¤lja 2 nimi', 'user_field2_name', 0),
+  array('VÃ¤lja 3 nimi', 'user_field3_name', 0),
+  array('VÃ¤lja 4 nimi', 'user_field4_name', 0),
 
-  'Präänikute seaded',
-  array('Skripti poolt kasutatava prääniku nimi', 'cookie_name', 0),
-  array('Skripti poolt kasutatava prääniku failitee ', 'cookie_path', 0),
+  'PrÃ¤Ã¤nikute seaded',
+  array('Skripti poolt kasutatava prÃ¤Ã¤niku nimi', 'cookie_name', 0),
+  array('Skripti poolt kasutatava prÃ¤Ã¤niku failitee ', 'cookie_path', 0),
 
   'Muud seaded',
-  array('Võimalda parandusmoodulit', 'debug_mode', 9), //cpg1.3.0
-  array('Tähelepanekud parandusmoodulis', 'debug_notice', 1), //cpg1.3.0
+  array('VÃµimalda parandusmoodulit', 'debug_mode', 9), //cpg1.3.0
+  array('TÃ¤helepanekud parandusmoodulis', 'debug_notice', 1), //cpg1.3.0
 
   '<br /><div align="left"><a name="notice1"></a>(*) Neid seadeid ei tohi muuta kui sul on juba failid andmebaasis.<br />
-  <a name="notice2"></a>(**) Kui muudad neid seadeid siis muudatused tulevad ainult nende failidega mis sa pärast selle seade muutmist lisad. Ära muuda neid seadeid kui albumis on juba faile. Sa saad muuta olemasolevaid faile &quot;<a href="util.php">Failide suuruse muutmine</a> &quot; administraatori menüüst.</div><br />', //cpg1.3.0
+  <a name="notice2"></a>(**) Kui muudad neid seadeid siis muudatused tulevad ainult nende failidega mis sa pÃ¤rast selle seade muutmist lisad. Ã„ra muuda neid seadeid kui albumis on juba faile. Sa saad muuta olemasolevaid faile &quot;<a href="util.php">Failide suuruse muutmine</a> &quot; administraatori menÃ¼Ã¼st.</div><br />', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -494,26 +497,26 @@ if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
   'title' => 'Saadetud e-kaardid', //cpg1.3.0
   'ecard_sender' => 'Saatja', //cpg1.3.0
   'ecard_recipient' => 'Saaja', //cpg1.3.0
-  'ecard_date' => 'Kuupäev', //cpg1.3.0
-  'ecard_display' => 'Näita postkaarti', //cpg1.3.0
+  'ecard_date' => 'KuupÃ¤ev', //cpg1.3.0
+  'ecard_display' => 'NÃ¤ita postkaarti', //cpg1.3.0
   'ecard_name' => 'Nimi', //cpg1.3.0
   'ecard_email' => 'E-mail', //cpg1.3.0
   'ecard_ip' => 'IP #', //cpg1.3.0
-  'ecard_ascending' => 'ülalt-alla järjekorras', //cpg1.3.0
-  'ecard_descending' => 'alt-üles järjekorras', //cpg1.3.0
+  'ecard_ascending' => 'Ã¼lalt-alla jÃ¤rjekorras', //cpg1.3.0
+  'ecard_descending' => 'alt-Ã¼les jÃ¤rjekorras', //cpg1.3.0
   'ecard_sorted' => 'Sorteeritud', //cpg1.3.0
-  'ecard_by_date' => 'kuupäeva järgi', //cpg1.3.0
-  'ecard_by_sender_name' => 'saatja nime järgi', //cpg1.3.0
-  'ecard_by_sender_email' => 'saatja e-maili järgi', //cpg1.3.0
-  'ecard_by_sender_ip' => 'saatja IP aadressi järgi', //cpg1.3.0
-  'ecard_by_recipient_name' => 'saaja nime järgi', //cpg1.3.0
-  'ecard_by_recipient_email' => 'saaja e-maili järgi', //cpg1.3.0
+  'ecard_by_date' => 'kuupÃ¤eva jÃ¤rgi', //cpg1.3.0
+  'ecard_by_sender_name' => 'saatja nime jÃ¤rgi', //cpg1.3.0
+  'ecard_by_sender_email' => 'saatja e-maili jÃ¤rgi', //cpg1.3.0
+  'ecard_by_sender_ip' => 'saatja IP aadressi jÃ¤rgi', //cpg1.3.0
+  'ecard_by_recipient_name' => 'saaja nime jÃ¤rgi', //cpg1.3.0
+  'ecard_by_recipient_email' => 'saaja e-maili jÃ¤rgi', //cpg1.3.0
   'ecard_number' => 'Salvestatuid postkaarte %s lk. %s -st %s', //cpg1.3.0
   'ecard_goto_page' => 'mine lehele', //cpg1.3.0
-  'ecard_records_per_page' => 'Kuva salvestusi leheküljel', //cpg1.3.0
-  'check_all' => 'Märgista kõik', //cpg1.3.0
-  'uncheck_all' => 'Eemalda märgistused', //cpg1.3.0
-  'ecards_delete_selected' => 'Kustuta märgistatud postkaardid', //cpg1.3.0
+  'ecard_records_per_page' => 'Kuva salvestusi lehekÃ¼ljel', //cpg1.3.0
+  'check_all' => 'MÃ¤rgista kÃµik', //cpg1.3.0
+  'uncheck_all' => 'Eemalda mÃ¤rgistused', //cpg1.3.0
+  'ecards_delete_selected' => 'Kustuta mÃ¤rgistatud postkaardid', //cpg1.3.0
   'ecards_delete_confirm' => 'Kas oled kindel et tahad kustutada salvestatud postkaardid? Tick the checkbox!', //cpg1.3.0
   'ecards_delete_sure' => 'Olen kindel', //cpg1.3.0
 );
@@ -529,26 +532,26 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
   'alb_need_title' => 'Sinult oodatakse pealkirja albumile !',
   'no_udp_needed' => 'Uuendust pole vaja.',
   'alb_updated' => 'Album on uuendatud',
-  'unknown_album' => 'Valitud album puudub või sul pole õigusi salvestada sellesse albumisse',
-  'no_pic_uploaded' => 'Ei ole märgitud faili ülesselaadimiseks !<br /><br />Kui sa tõesti märkisid faili ülesselaadimiseks, siis kontrolli kas server lubab faile ülesse laadida...', //cpg1.3.0
+  'unknown_album' => 'Valitud album puudub vÃµi sul pole Ãµigusi salvestada sellesse albumisse',
+  'no_pic_uploaded' => 'Ei ole mÃ¤rgitud faili Ã¼lesselaadimiseks !<br /><br />Kui sa tÃµesti mÃ¤rkisid faili Ã¼lesselaadimiseks, siis kontrolli kas server lubab faile Ã¼lesse laadida...', //cpg1.3.0
   'err_mkdir' => 'Viga kataloogi %s loomisel !',
-  'dest_dir_ro' => 'Sihtkataloog %s pole skripti poolt kirjutamisõiguslik !',
-  'err_move' => 'Võimatu liigutada %s -> %s !',
+  'dest_dir_ro' => 'Sihtkataloog %s pole skripti poolt kirjutamisÃµiguslik !',
+  'err_move' => 'VÃµimatu liigutada %s -> %s !',
   'err_fsize_too_large' => 'Sinu poolt salvestatava pildi suurus liiga suur (maksimum lubatud %s x %s) !', //cpg1.3.0
   'err_imgsize_too_large' => 'Sinu poolt salvestatava faili suurus liiga suur (maksimum lubatud %s KB) !',
-  'err_invalid_img' => 'Üleslaetav fail pole kehtiv pildifail !',
-  'allowed_img_types' => 'Sa võid salvestada ainult %s pilti.',
+  'err_invalid_img' => 'Ãœleslaetav fail pole kehtiv pildifail !',
+  'allowed_img_types' => 'Sa vÃµid salvestada ainult %s pilti.',
   'err_insert_pic' => 'Pilti  \'%s\' ei saa lisada albumisse ', //cpg1.3.0
-  'upload_success' => 'Sinu pilt salvestati edukalt<br /><br />See saab nähtavaks pärast admini heakskiitu.', //cpg1.3.0
+  'upload_success' => 'Sinu pilt salvestati edukalt<br /><br />See saab nÃ¤htavaks pÃ¤rast admini heakskiitu.', //cpg1.3.0
   'notify_admin_email_subject' => '%s - Salvestatud fail', //cpg1.3.0
-  'notify_admin_email_body' => 'Pilt on üleslaetud %s see vajab sinu heakskiitu. Vaata %s', //cpg1.3.0
+  'notify_admin_email_body' => 'Pilt on Ã¼leslaetud %s see vajab sinu heakskiitu. Vaata %s', //cpg1.3.0
   'info' => 'Informatsioon',
   'com_added' => 'Kommentaar lisatud',
   'alb_updated' => 'Album uuendatud',
-  'err_comment_empty' => 'Sinu kommentaar on tühi !',
-  'err_invalid_fext' => 'Ainult järgmised failitüübid aksepteeritakse : <br /><br />%s.',
+  'err_comment_empty' => 'Sinu kommentaar on tÃ¼hi !',
+  'err_invalid_fext' => 'Ainult jÃ¤rgmised failitÃ¼Ã¼bid aksepteeritakse : <br /><br />%s.',
   'no_flood' => 'Vabandust, aga sa oled juba selle pildile viimati lisatud kommentaari autor<br /><br />Paranda oma lisatud kommentaari kui soovid seda muuta', //cpg1.3.0
-  'redirect_msg' => 'Sind suunatakse ümber.<br /><br /><br />Klikka \'JÄTKA\' kui lehekülg automaatselt ei uuene',
+  'redirect_msg' => 'Sind suunatakse Ã¼mber.<br /><br /><br />Klikka \'JÃ„TKA\' kui lehekÃ¼lg automaatselt ei uuene',
   'upl_success' => 'Sinu pilt edukalt lisatud', //cpg1.3.0
   'email_comment_subject' => 'Kommentaar lisatud pildialbumis', //cpg1.3.0
   'email_comment_body' => 'Keegi lisas kommentaari pildialbumis. Vaata seda', //cpg1.3.0
@@ -560,7 +563,7 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 
 if (defined('DELETE_PHP')) $lang_delete_php = array(
   'caption' => 'Selgitus',
-  'fs_pic' => 'Täis suuruses pilt',
+  'fs_pic' => 'TÃ¤is suuruses pilt',
   'del_success' => 'edukalt kustutatud',
   'ns_pic' => 'normaal suuruses pilt',
   'err_del' => 'ei saa kustutada',
@@ -598,7 +601,7 @@ $lang_display_image_php = array(
   'views' => '%s korda',
   'slideshow' => 'Slaidivaade',
   'stop_slideshow' => 'PEATA SLAIDIVAADE',
-  'view_fs' => 'Klikka vaatamaks täissuuruses pilti',
+  'view_fs' => 'Klikka vaatamaks tÃ¤issuuruses pilti',
   'edit_pic' => 'MUUDA KIRJELDUST', //cpg1.3.0
   'crop_pic' => 'REDIGEERI', //cpg1.3.0
 );
@@ -608,15 +611,15 @@ $lang_picinfo = array(
   'Filename' => 'Faili nimi',
   'Album name' => 'Albumi nimi',
   'Rating' => 'Reiting (%s votes)',
-  'Keywords' => 'Märksõnad',
+  'Keywords' => 'MÃ¤rksÃµnad',
   'File Size' => 'Faili suurus',
-  'Dimensions' => 'Mõõdud',
+  'Dimensions' => 'MÃµÃµdud',
   'Displayed' => 'Kuvatud',
   'Camera' => 'Kaamera',
-  'Date taken' => 'Ülesvõtte kuupäev',
+  'Date taken' => 'ÃœlesvÃµtte kuupÃ¤ev',
   'ISO'=>'ISO',
   'Aperture' => 'Ava',
-  'Exposure time' => 'Säriaeg',
+  'Exposure time' => 'SÃ¤riaeg',
   'Focal length' => 'Fookus kaugus',
   'Comment' => 'Kommentaar',
   'addFav'=>'Lisa eelistustesse', //cpg1.3.0
@@ -624,7 +627,7 @@ $lang_picinfo = array(
   'remFav'=>'Eemalda eelistustest', //cpg1.3.0
   'iptcTitle'=>'IPTC Pealkiri', //cpg1.3.0
   'iptcCopyright'=>'IPTC Copyright', //cpg1.3.0
-  'iptcKeywords'=>'IPTC Võtmesõnad', //cpg1.3.0
+  'iptcKeywords'=>'IPTC VÃµtmesÃµnad', //cpg1.3.0
   'iptcCategory'=>'IPTC Kategooria', //cpg1.3.0
   'iptcSubCategories'=>'IPTC Alam Kategooriad', //cpg1.3.0
 );
@@ -640,7 +643,7 @@ $lang_display_comments = array(
 );
 
 $lang_fullsize_popup = array(
-  'click_to_close' => 'Akna sulgemiseks klõpsa pildil',
+  'click_to_close' => 'Akna sulgemiseks klÃµpsa pildil',
 );
 
 }
@@ -654,10 +657,10 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
   'invalid_email' => '<b>Hoiatus</b> : Vigane e-posti aadress !',
   'ecard_title' => 'Sulle on e-kaart %s\' lt',
   'error_not_image' => 'Ainult pilte saab saata e-kaardina.', //cpg1.3.0
-  'view_ecard' => 'Kui e-kaarti ei kuvata korrektselt, klõpsake lingil',
-  'view_more_pics' => 'Rohkemate piltide vaatamiseks klõpsake lingil !',
+  'view_ecard' => 'Kui e-kaarti ei kuvata korrektselt, klÃµpsake lingil',
+  'view_more_pics' => 'Rohkemate piltide vaatamiseks klÃµpsake lingil !',
   'send_success' => 'Sinu e-kaart on saadetud',
-  'send_failed' => 'Vabandust, kuid serveril ei õnnestu Sinu e-kaardi saatmine...',
+  'send_failed' => 'Vabandust, kuid serveril ei Ãµnnestu Sinu e-kaardi saatmine...',
   'from' => 'Kellelt',
   'your_name' => 'Sinu Nimi',
   'your_email' => 'Sinu e-posti aadress',
@@ -665,7 +668,7 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
   'rcpt_name' => 'Aadressaadi nimi',
   'rcpt_email' => 'Aadressaadi e-posti aadress',
   'greetings' => 'Tervitused',
-  'message' => 'Sõnum',
+  'message' => 'SÃµnum',
 );
 
 // ------------------------------------------------------------------------- //
@@ -677,18 +680,18 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'album' => 'Album',
   'title' => 'Pealkiri',
   'desc' => 'Kirjeldus',
-  'keywords' => 'Märksõnad',
-  'pic_info_str' => '%sx%s - %sKB - %s vaadet - %s häält',
+  'keywords' => 'MÃ¤rksÃµnad',
+  'pic_info_str' => '%sx%s - %sKB - %s vaadet - %s hÃ¤Ã¤lt',
   'approve' => 'Kinnita pilt', //cpg1.3.0
-  'postpone_app' => 'Lükka kinnitus edasi',
+  'postpone_app' => 'LÃ¼kka kinnitus edasi',
   'del_pic' => 'Kustuta pilt', //cpg1.3.0
   'read_exif' => 'Loe EXIF infot uuesti', //cpg1.3.0
   'reset_view_count' => 'Nulli vaadete loendur',
-  'reset_votes' => 'Nulli hääled',
+  'reset_votes' => 'Nulli hÃ¤Ã¤led',
   'del_comm' => 'Kustuta kommendaarid',
   'upl_approval' => 'Salvestuse kinnitus',
   'edit_pics' => 'Redigeeri faile', //cpg1.3.0
-  'see_next' => 'Vaata järgmist faili', //cpg1.3.0
+  'see_next' => 'Vaata jÃ¤rgmist faili', //cpg1.3.0
   'see_prev' => 'Vaata eelmist faili', //cpg1.3.0
   'n_pic' => '%s faile', //cpg1.3.0
   'n_of_pic_to_disp' => 'Failide arv kuvamiseks', //cpg1.3.0
@@ -705,42 +708,42 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('FAQ_PHP')) $lang_faq_php = array(
-  'faq' => 'Korduma kippuvad küsimused', //cpg1.3.0
-  'toc' => 'Küsimuste tabel', //cpg1.3.0
-  'question' => 'Küsimus: ', //cpg1.3.0
+  'faq' => 'Korduma kippuvad kÃ¼simused', //cpg1.3.0
+  'toc' => 'KÃ¼simuste tabel', //cpg1.3.0
+  'question' => 'KÃ¼simus: ', //cpg1.3.0
   'answer' => 'Vastus: ', //cpg1.3.0
 );
 
 if (defined('FAQ_PHP')) $lang_faq_data = array(
-  'Peamised küsimused', //cpg1.3.0
-  array('Milleks on vajalik registreerimine?', 'Registreerimine võib olla vajalik ja samas mitte, kõik oleneb administraatorist et mis ta lubab lehel teha. Registreerimine annab kasutajale võimaluse faile ülesse laadida, omada privaat albumeid, omada eelistuste lehte, hinnata pilte, näeb teisi kasutajaid ja saab saata postkaarte.', 'offline', '1'), //cpg1.3.0
-  array('Kuidas registreeruda?', 'Vajuta &quot;Registreeri&quot; ja täida vajalikud väljad (kui soovid siis ka mitte vajalikud info väljad).<br />Kui administraator nõuab registreerumisel e-posti kinnitust siis peale väljade täitmist saadetakse sulle e-maili sinupoolt kirjutatud aadressile mille sa registreerimisel sisestasid. Sealt leiad edasised juhendid kuidas aktiveerida oma konto. Konto tuleb aktiveerida selleks et saaksid sisse logida. Jälgi et meili aadress oleks õige! Mitte @hotmail.ee ja @hot.com', 'offline', '1'), //cpg1.3.0
-  array('Kuidas sisse logida?', 'Vajuta &quot;Sisene&quot;, sisesta oma kasutajanimi ja parool ja soovikorral pane linnuke kasti  &quot;Jäta mind meelde&quot; ja oledki sees.<br /><b>NB!: Präänikud peavad olema teie arvutis lubatud ja neid ei tohi ära kustutada kui tahate kasutada &quot;Jäta mind meelde&quot; kastikest.</b>', 'offline', 0), //cpg1.3.0
-  array('Miks ma sisse ei saa?', 'Kas sa sisestasid õige e-maili aadressi? Kas sa registreerusid ja klikkisid sellele lingile mis sulle e-mailiga tuli? See link aktiveerib sinu konto. Teiste probleemidega pöördu administraatori poole.', 'offline', 0), //cpg1.3.0
-  array('Kaotasin oma parooli?', 'Vajuta &quot;Sisene&quot; ja kui näed seal linki &quot;Unustasin parooli&quot; siis kasuta seda. Teiste probleemidega pöördu administraatori poole uue parooli saamiseks.', 'offline', 0), //cpg1.3.0
+  'Peamised kÃ¼simused', //cpg1.3.0
+  array('Milleks on vajalik registreerimine?', 'Registreerimine vÃµib olla vajalik ja samas mitte, kÃµik oleneb administraatorist et mis ta lubab lehel teha. Registreerimine annab kasutajale vÃµimaluse faile Ã¼lesse laadida, omada privaat albumeid, omada eelistuste lehte, hinnata pilte, nÃ¤eb teisi kasutajaid ja saab saata postkaarte.', 'offline', '1'), //cpg1.3.0
+  array('Kuidas registreeruda?', 'Vajuta &quot;Registreeri&quot; ja tÃ¤ida vajalikud vÃ¤ljad (kui soovid siis ka mitte vajalikud info vÃ¤ljad).<br />Kui administraator nÃµuab registreerumisel e-posti kinnitust siis peale vÃ¤ljade tÃ¤itmist saadetakse sulle e-maili sinupoolt kirjutatud aadressile mille sa registreerimisel sisestasid. Sealt leiad edasised juhendid kuidas aktiveerida oma konto. Konto tuleb aktiveerida selleks et saaksid sisse logida. JÃ¤lgi et meili aadress oleks Ãµige! Mitte @hotmail.ee ja @hot.com', 'offline', '1'), //cpg1.3.0
+  array('Kuidas sisse logida?', 'Vajuta &quot;Sisene&quot;, sisesta oma kasutajanimi ja parool ja soovikorral pane linnuke kasti  &quot;JÃ¤ta mind meelde&quot; ja oledki sees.<br /><b>NB!: PrÃ¤Ã¤nikud peavad olema teie arvutis lubatud ja neid ei tohi Ã¤ra kustutada kui tahate kasutada &quot;JÃ¤ta mind meelde&quot; kastikest.</b>', 'offline', 0), //cpg1.3.0
+  array('Miks ma sisse ei saa?', 'Kas sa sisestasid Ãµige e-maili aadressi? Kas sa registreerusid ja klikkisid sellele lingile mis sulle e-mailiga tuli? See link aktiveerib sinu konto. Teiste probleemidega pÃ¶Ã¶rdu administraatori poole.', 'offline', 0), //cpg1.3.0
+  array('Kaotasin oma parooli?', 'Vajuta &quot;Sisene&quot; ja kui nÃ¤ed seal linki &quot;Unustasin parooli&quot; siis kasuta seda. Teiste probleemidega pÃ¶Ã¶rdu administraatori poole uue parooli saamiseks.', 'offline', 0), //cpg1.3.0
   array('Kuidas muuta e-maili aadressi?', 'Seda ei saa kahjuks ise muuta. Meili aadressi saab muuta ainult administraator. ', 'offline', 0), //cpg1.3.0
-  array('Kuidas salvestada pilte &quot;Minu eelistused&quot; alla?', 'Vajuta pisipildile ning siis vajuta &quot;Näita/peida pildi info&quot; (<img src="images/info.gif" width="16" height="16" border="0" alt="Näita/peida pildi info" />); ja siis liigu lehel alla kuni näed pildi infot. Vajuta &quot;Lisa eelistustesse&quot;.<br />Võimalik et administraator pole andnud luba piltide lisamiseks &quot;Minu eelistused&quot; alla.<br /><b>NB!: Präänikud peavad olema teie arvutis lubatud ja neid ei tohi ära kustutada kui tahate kasutada &quot;Minu eelistused&quot; .', 'offline', 0), //cpg1.3.0
+  array('Kuidas salvestada pilte &quot;Minu eelistused&quot; alla?', 'Vajuta pisipildile ning siis vajuta &quot;NÃ¤ita/peida pildi info&quot; (<img src="images/info.gif" width="16" height="16" border="0" alt="NÃ¤ita/peida pildi info" />); ja siis liigu lehel alla kuni nÃ¤ed pildi infot. Vajuta &quot;Lisa eelistustesse&quot;.<br />VÃµimalik et administraator pole andnud luba piltide lisamiseks &quot;Minu eelistused&quot; alla.<br /><b>NB!: PrÃ¤Ã¤nikud peavad olema teie arvutis lubatud ja neid ei tohi Ã¤ra kustutada kui tahate kasutada &quot;Minu eelistused&quot; .', 'offline', 0), //cpg1.3.0
   array('Kuidas hinnata pilti / faili?', 'Vajuta pisipildile, liigu alla ja hinda pilti / faili.', 'offline', 0), //cpg1.3.0
   array('Kuidas kommenteerida pilti?', 'Vajuta pisipildile, liigu alla ja sealt sisesta oma kommentaar.', 'offline', 0), //cpg1.3.0
-  array('Kuidas lisada faile?', 'Faile saavad lisada registreeritud kasutajad kui administraator on selleks loa andnud. Alustuseks sisene lehele oma kasutajanime ja parooliga. Vajuta &quot;Lisa fail/e albumisse&quot; sealt vali album millesse tahad oma pilte panna, edasi vajuta &quot;Browse&quot; ning vali oma arvutist välja failid mida tahad saata ja vajuta &quot;open&quot; (võid lisada pealkirja ja kirjelduse juurde kui soovid) ja vajuta &quot;Submit&quot;. ', 'offline', 0), //cpg1.3.0
-  array('Kuhu mu lisatud pildid lähevad?', 'Sul on võimalik lisada oma pilte oma albumisse &quot;Minu galerii&quot;. Administraator võib sulle ka anda loa piltide lisamiseks pea albumisse.', 'offline', 0), //cpg1.3.0
-  array('Mis tüüpi ja kui suuri faile saan ma ülesse laadida?', 'Faili suurus / tüüp (jpg, png, etc.) sõltub administraatori seadetest.', 'offline', 0), //cpg1.3.0
-  array('Mis on &quot;Minu galerii&quot;?', '&quot;Minu galerii&quot; on sinu isiklik galerii kuhu saad pilte ja faile ülesse laadida ja mida sa saad redigeerida.', 'offline', 0), //cpg1.3.0
-  array('Kuidas teha, ümbernimetada või kustutada albumit &quot;Minu galerii&quot; alt?', 'Sa pead olema admin olekus sees &quot;Admin olek&quot;<br />Vajuta &quot;Loo / telli albumeid&quot;. Uue tegemiseks vajuta &quot;Uus&quot;. Muutmiseks vajuta olemasolevale albumile ja muuda nimi. Kustutamiseks vali album ja vajuta &quot;Kustuta&quot;. Muudastute salvestamiseks vajuta nupule &quot;Omista muudatused&quot;.', 'offline', 0), //cpg1.3.0
-  array('Kuidas ma saan muuta oma albumit avalikuks ja privaatseks?', 'Sa pead olema admin olekus sees &quot;Admin olek&quot;.<br />Vajuta &quot;Redigeeri albumeid&quot; ja sealt vali kes võivad sinu albumeid vaadata. Siin saad sa ka muuta teisi oma albumi seadeid.', 'offline', 0), //cpg1.3.0
+  array('Kuidas lisada faile?', 'Faile saavad lisada registreeritud kasutajad kui administraator on selleks loa andnud. Alustuseks sisene lehele oma kasutajanime ja parooliga. Vajuta &quot;Lisa fail/e albumisse&quot; sealt vali album millesse tahad oma pilte panna, edasi vajuta &quot;Browse&quot; ning vali oma arvutist vÃ¤lja failid mida tahad saata ja vajuta &quot;open&quot; (vÃµid lisada pealkirja ja kirjelduse juurde kui soovid) ja vajuta &quot;Submit&quot;. ', 'offline', 0), //cpg1.3.0
+  array('Kuhu mu lisatud pildid lÃ¤hevad?', 'Sul on vÃµimalik lisada oma pilte oma albumisse &quot;Minu galerii&quot;. Administraator vÃµib sulle ka anda loa piltide lisamiseks pea albumisse.', 'offline', 0), //cpg1.3.0
+  array('Mis tÃ¼Ã¼pi ja kui suuri faile saan ma Ã¼lesse laadida?', 'Faili suurus / tÃ¼Ã¼p (jpg, png, etc.) sÃµltub administraatori seadetest.', 'offline', 0), //cpg1.3.0
+  array('Mis on &quot;Minu galerii&quot;?', '&quot;Minu galerii&quot; on sinu isiklik galerii kuhu saad pilte ja faile Ã¼lesse laadida ja mida sa saad redigeerida.', 'offline', 0), //cpg1.3.0
+  array('Kuidas teha, Ã¼mbernimetada vÃµi kustutada albumit &quot;Minu galerii&quot; alt?', 'Sa pead olema admin olekus sees &quot;Admin olek&quot;<br />Vajuta &quot;Loo / telli albumeid&quot;. Uue tegemiseks vajuta &quot;Uus&quot;. Muutmiseks vajuta olemasolevale albumile ja muuda nimi. Kustutamiseks vali album ja vajuta &quot;Kustuta&quot;. Muudastute salvestamiseks vajuta nupule &quot;Omista muudatused&quot;.', 'offline', 0), //cpg1.3.0
+  array('Kuidas ma saan muuta oma albumit avalikuks ja privaatseks?', 'Sa pead olema admin olekus sees &quot;Admin olek&quot;.<br />Vajuta &quot;Redigeeri albumeid&quot; ja sealt vali kes vÃµivad sinu albumeid vaadata. Siin saad sa ka muuta teisi oma albumi seadeid.', 'offline', 0), //cpg1.3.0
   array('Kuidas / kuskohast ma saan vaadata teiste kasutajate galeriisid?', 'Mine pealehele ja sealt vaata &quot;Kasutajaate galeriid&quot;.', 'offline', 0), //cpg1.3.0
-  array('Mis on präänikud?', 'Präänikud on väiksed tekstifailid mis sisaldavad veebilehelt saadetud infot sinu arvutis.<br />Präänikud lubavad tavaliselt veebilehele sisseloginul kasutajal hiljem ilma sisselogimatta veebilehele tagasi tulla.', 'offline', 0), //cpg1.3.0
-  array('Kuskohast ma saaksin selle programmi oma lehele?', 'Coppermine on tasuta Multimeedia Galerii, külasta nende kodulehekülge <a href="http://coppermine.sf.net/">Coppermine Home Page</a>', 'offline', 0), //cpg1.3.0
+  array('Mis on prÃ¤Ã¤nikud?', 'PrÃ¤Ã¤nikud on vÃ¤iksed tekstifailid mis sisaldavad veebilehelt saadetud infot sinu arvutis.<br />PrÃ¤Ã¤nikud lubavad tavaliselt veebilehele sisseloginul kasutajal hiljem ilma sisselogimatta veebilehele tagasi tulla.', 'offline', 0), //cpg1.3.0
+  array('Kuskohast ma saaksin selle programmi oma lehele?', 'Coppermine on tasuta Multimeedia Galerii, kÃ¼lasta nende kodulehekÃ¼lge <a href="http://coppermine.sf.net/">Coppermine Home Page</a>', 'offline', 0), //cpg1.3.0
 
   'Navigeerimis nupud', //cpg1.3.0
-  array('Mis on &quot;Albumite loetelu&quot;?', 'Sealt leiad kõik pildid.', 'offline', 0), //cpg1.3.0
+  array('Mis on &quot;Albumite loetelu&quot;?', 'Sealt leiad kÃµik pildid.', 'offline', 0), //cpg1.3.0
   array('Mis on &quot;Minu galerii&quot;?', 'Sealt leiad oma lisatud pildid / failid.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Mis neil vahet on kas &quot;Admin olek&quot; või &quot;Kasutaja olek&quot;?', 'Admin olekus saad muuta albumi seadeid ja kasutaja olekus näed lehte nii nagu näevad seda lehe mitte registreeritud külastajad.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Mis neil vahet on kas &quot;Admin olek&quot; vÃµi &quot;Kasutaja olek&quot;?', 'Admin olekus saad muuta albumi seadeid ja kasutaja olekus nÃ¤ed lehte nii nagu nÃ¤evad seda lehe mitte registreeritud kÃ¼lastajad.', 'allow_private_albums', 0), //cpg1.3.0
   array('Mis on &quot;Lisa fail/e albumisse&quot;?', 'Siit saad oma albumisse lisada faile ja pilte.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Mis on &quot;Viimati lisatud&quot;?', 'Näed viimati lisatuid pilte.', 'offline', 0), //cpg1.3.0
-  array('Mis on &quot;Viimased kommentaarid&quot;?', 'Näed viimati lisatuid kommentaare.', 'offline', 0), //cpg1.3.0
-  array('Mis on &quot;Enim vaadatud&quot;?', 'Näed enimvaadatuid pilte / faile.', 'offline', 0), //cpg1.3.0
-  array('Mis on &quot;Edetabel&quot;?', 'Siit näed kasutajatepoolt enim hinnatuid pilte / faile.', 'offline', 0), //cpg1.3.0
+  array('Mis on &quot;Viimati lisatud&quot;?', 'NÃ¤ed viimati lisatuid pilte.', 'offline', 0), //cpg1.3.0
+  array('Mis on &quot;Viimased kommentaarid&quot;?', 'NÃ¤ed viimati lisatuid kommentaare.', 'offline', 0), //cpg1.3.0
+  array('Mis on &quot;Enim vaadatud&quot;?', 'NÃ¤ed enimvaadatuid pilte / faile.', 'offline', 0), //cpg1.3.0
+  array('Mis on &quot;Edetabel&quot;?', 'Siit nÃ¤ed kasutajatepoolt enim hinnatuid pilte / faile.', 'offline', 0), //cpg1.3.0
   array('Mis on &quot;Minu eelistused&quot;?', 'Sinna saad paigutada oma lemmik pildid / failid.', 'offline', 0), //cpg1.3.0
 );
 
@@ -752,7 +755,7 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
 if (defined('FORGOT_PASSWD_PHP')) $lang_forgot_passwd_php = array(
   'forgot_passwd' => 'Unustasin parooli', //cpg1.3.0
   'err_already_logged_in' => 'Sa oled juba sisse logitud !', //cpg1.3.0
-  'enter_username_email' => 'Sisesta oma kasutajanimi või e-maili aadress', //cpg1.3.0
+  'enter_username_email' => 'Sisesta oma kasutajanimi vÃµi e-maili aadress', //cpg1.3.0
   'submit' => 'Valmis', //cpg1.3.0
   'failed_sending_email' => 'Unustatud parooli ei saadetud !', //cpg1.3.0
   'email_sent' => 'E-mail sinu kasutajanime ja parooliga on saadetud %s', //cpg1.3.0
@@ -771,26 +774,26 @@ Vajuta %s sisenemiseks.', //cpg1.3.0
 if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
   'group_name' => 'Grupi nimi',
   'disk_quota' => 'Ketta kvoot',
-  'can_rate' => 'Võib hinnata pilte', //cpg1.3.0
-  'can_send_ecards' => 'Võib saata e-kaarte',
-  'can_post_com' => 'Võib kommenteerida',
-  'can_upload' => 'Võib üles laadida faile', //cpg1.3.0
-  'can_have_gallery' => 'Võib luua isikliku galerii',
+  'can_rate' => 'VÃµib hinnata pilte', //cpg1.3.0
+  'can_send_ecards' => 'VÃµib saata e-kaarte',
+  'can_post_com' => 'VÃµib kommenteerida',
+  'can_upload' => 'VÃµib Ã¼les laadida faile', //cpg1.3.0
+  'can_have_gallery' => 'VÃµib luua isikliku galerii',
   'apply' => 'Omista muudatused',
   'create_new_group' => 'Loo uus grupp',
-  'del_groups' => 'Kustuta märgitud grupp(id)',
-  'confirm_del' => 'Hoiatus, kui sa kustutad grupi, siis kustutava grupi kasutajad kantakse \'Registereeritud\' gruppi !\n\nTahad sa jätkata ?', //js-alert //cpg1.3.0
+  'del_groups' => 'Kustuta mÃ¤rgitud grupp(id)',
+  'confirm_del' => 'Hoiatus, kui sa kustutad grupi, siis kustutava grupi kasutajad kantakse \'Registereeritud\' gruppi !\n\nTahad sa jÃ¤tkata ?', //js-alert //cpg1.3.0
   'title' => 'Manage user groups',
   'approval_1' => 'Av. salv. kinnitus (1)',
   'approval_2' => 'Isik. salv. kinnitus (2)',
-  'upload_form_config' => 'Üleslaadimise võimalised', //cpg1.3.0
+  'upload_form_config' => 'Ãœleslaadimise vÃµimalised', //cpg1.3.0
   'upload_form_config_values' => array( 'Single file uploads only', 'Multiple file uploads only', 'URI uploads only', 'ZIP upload only', 'File-URI', 'File-ZIP', 'URI-ZIP', 'File-URI-ZIP'), //cpg1.3.0
-  'custom_user_upload'=>'Võib muuta üleslaadimis kastikeste arvu?', //cpg1.3.0
-  'num_file_upload'=>'Täpne üleslaadimis kastikeste arv', //cpg1.3.0
-  'num_URI_upload'=>'Täpne üleslaadimis (ridade) kastikeste arv', //cpg1.3.0
+  'custom_user_upload'=>'VÃµib muuta Ã¼leslaadimis kastikeste arvu?', //cpg1.3.0
+  'num_file_upload'=>'TÃ¤pne Ã¼leslaadimis kastikeste arv', //cpg1.3.0
+  'num_URI_upload'=>'TÃ¤pne Ã¼leslaadimis (ridade) kastikeste arv', //cpg1.3.0
   'note1' => '<b>(1)</b> Salvestused avalikku albumisse vajavad admini kinnitust',
   'note2' => '<b>(2)</b> Salvestused kasutaja albumisse vajavad admini kinnitust ',
-  'notes' => 'Märkused',
+  'notes' => 'MÃ¤rkused',
 );
 
 // ------------------------------------------------------------------------- //
@@ -804,7 +807,7 @@ $lang_index_php = array(
 );
 
 $lang_album_admin_menu = array(
-  'confirm_delete' => 'Oled kindel, et tahad seda albumit KUSTUDADA ? \\nKõik pildid ja kommentaarid kustutakse samuti.', //js-alert //cpg1.3.0
+  'confirm_delete' => 'Oled kindel, et tahad seda albumit KUSTUDADA ? \\nKÃµik pildid ja kommentaarid kustutakse samuti.', //js-alert //cpg1.3.0
   'delete' => 'KUSTUTA',
   'modify' => 'OMADUSED',
   'edit_pics' => 'REDIGEERI PILTE', //cpg1.3.0
@@ -841,7 +844,7 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
   'enter_login_pswd' => 'Sisenemiseks sisesta kasutajanimi ja parool',
   'username' => 'Kasutajanimi',
   'password' => 'Parool',
-  'remember_me' => 'Jäta mind meelde',
+  'remember_me' => 'JÃ¤ta mind meelde',
   'welcome' => 'Teretulemast %s ...',
   'err_login' => '*** Ei saanud sisse logida. Proovi uuesti ***',
   'err_already_logged_in' => 'Sa oled juba sisse logitud !',
@@ -853,7 +856,7 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('LOGOUT_PHP')) $lang_logout_php = array(
-  'logout' => 'Välju',
+  'logout' => 'VÃ¤lju',
   'bye' => 'Head aega, %s ...',
   'err_not_loged_in' => 'Sa pole sisse logitud !',
 );
@@ -865,7 +868,7 @@ if (defined('LOGOUT_PHP')) $lang_logout_php = array(
 if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
   'php_info' => 'PHP info', //cpg1.3.0
   'explanation' => 'See on genereeritud PHP-funktsioon <a href="http://www.php.net/phpinfo">phpinfo()</a>', //cpg1.3.0
-  'no_link' => 'Kui teised näevad seda on turvaauk. Sa näed seda ainult siis kui oled administraatorina sisse loginud. Sellele lehele ei pääse ligi lingina.', //cpg1.3.0
+  'no_link' => 'Kui teised nÃ¤evad seda on turvaauk. Sa nÃ¤ed seda ainult siis kui oled administraatorina sisse loginud. Sellele lehele ei pÃ¤Ã¤se ligi lingina.', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -874,25 +877,25 @@ if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
 
 if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'upd_alb_n' => 'Uuenda album %s',
-  'general_settings' => 'Üldised seaded',
+  'general_settings' => 'Ãœldised seaded',
   'alb_title' => 'Albumi pealkiri',
   'alb_cat' => 'Albumi kategooria',
   'alb_desc' => 'Albumi kirjeldus',
   'alb_thumb' => 'Albumi pisipilt',
-  'alb_perm' => 'Õigused sellele albumile',
-  'can_view' => 'Albumit võivad vaadata',
-  'can_upload' => 'Külastajad võivad salvestada pilte',
-  'can_post_comments' => 'Külastajad võivad kommenteerida',
-  'can_rate' => 'Külastajad võivad hinnata pilte',
+  'alb_perm' => 'Ã•igused sellele albumile',
+  'can_view' => 'Albumit vÃµivad vaadata',
+  'can_upload' => 'KÃ¼lastajad vÃµivad salvestada pilte',
+  'can_post_comments' => 'KÃ¼lastajad vÃµivad kommenteerida',
+  'can_rate' => 'KÃ¼lastajad vÃµivad hinnata pilte',
   'user_gal' => 'Kasutaja Galerii',
   'no_cat' => '* Kategooriata *',
-  'alb_empty' => 'Album on tühi',
+  'alb_empty' => 'Album on tÃ¼hi',
   'last_uploaded' => 'Viimati lisatud',
-  'public_alb' => 'Igaüks (avalik album)',
+  'public_alb' => 'IgaÃ¼ks (avalik album)',
   'me_only' => 'Ainult mina',
   'owner_only' => 'Albumi omanik (%s) ainult',
   'groupp_only' => 'Grupi \'%s\' liikmed',
-  'err_no_alb_to_modify' => 'Ühtegi albumit sa ei saa muuta andmebaasis.',
+  'err_no_alb_to_modify' => 'Ãœhtegi albumit sa ei saa muuta andmebaasis.',
   'update' => 'Uuenda album', //cpg1.3.0
   'notice1' => '(*) olenevalt %sgruppide%s seadetest', //cpg1.3.0 (do not translate %s!)
 );
@@ -903,7 +906,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 
 if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
   'already_rated' => 'Vabandust, aga sa oled juba seda faili hinnanud', //cpg1.3.0
-  'rate_ok' => 'Sinu hääl on vastu võetud',
+  'rate_ok' => 'Sinu hÃ¤Ã¤l on vastu vÃµetud',
   'forbidden' => 'Sa ei saa hinnata oma faile.', //cpg1.3.0
 );
 
@@ -914,24 +917,24 @@ if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
-Kuigi saidi {SITE_NAME} administraatorid püüavad eemaldada või muuta mistahes üldiselt pahaks-pandavad materjalid niipea kui võimalik, pole võimalik nendegi poolt kohe näha iga postitust. Seetõttu pead tunnistama, et kõik postitused, mis siia kiirväljaandesse tehakse (pildid, kommentaarid, arvamused) teiste autorite poolt, nende eest administraatorid ja webmasterid ei saa vastutada (väljaarvatud nende endi postitused).<br />
+Kuigi saidi {SITE_NAME} administraatorid pÃ¼Ã¼avad eemaldada vÃµi muuta mistahes Ã¼ldiselt pahaks-pandavad materjalid niipea kui vÃµimalik, pole vÃµimalik nendegi poolt kohe nÃ¤ha iga postitust. SeetÃµttu pead tunnistama, et kÃµik postitused, mis siia kiirvÃ¤ljaandesse tehakse (pildid, kommentaarid, arvamused) teiste autorite poolt, nende eest administraatorid ja webmasterid ei saa vastutada (vÃ¤ljaarvatud nende endi postitused).<br />
 <br />
-Sa nõustud mitte postitama sõimu, roppusi, rõvedusi, laimu, solvanguid, ähvardusi, soolisi- ega muid märkusi ja kommentaare ning materjale, mis oleksid vastuolus kehtivate seadustega. Sa nõustud et webmaster, administraator ja saidi {SITE_NAME} vahekohtunikud omavad õigust kustutada või parandada mistahes sisu kuidas ja millal neile sobib. Kasutajana sa nõustud, et kogu sinu ülal sisestatud info salvestatakse andmebaasi. Kuigi seda infot ei avaldata kolmandatele isikutele ilma sinu nõusolekuta, ei saa webmaster ja administraator võtta endale vastutust  häkkimiskatsete eest, mis võivad andmed ohtu seada.<br />
+Sa nÃµustud mitte postitama sÃµimu, roppusi, rÃµvedusi, laimu, solvanguid, Ã¤hvardusi, soolisi- ega muid mÃ¤rkusi ja kommentaare ning materjale, mis oleksid vastuolus kehtivate seadustega. Sa nÃµustud et webmaster, administraator ja saidi {SITE_NAME} vahekohtunikud omavad Ãµigust kustutada vÃµi parandada mistahes sisu kuidas ja millal neile sobib. Kasutajana sa nÃµustud, et kogu sinu Ã¼lal sisestatud info salvestatakse andmebaasi. Kuigi seda infot ei avaldata kolmandatele isikutele ilma sinu nÃµusolekuta, ei saa webmaster ja administraator vÃµtta endale vastutust  hÃ¤kkimiskatsete eest, mis vÃµivad andmed ohtu seada.<br />
 <br />
-See sait kasutab präänikuid slavestamaks infot sinu lokaalses arvutis. Need präänikud on mõeldud ainult tõstmaks sinu vaatamise rõõmu. Eposti aadressi kasutatakse ainult kinnitamaks sinu registreerumise detaile ja parooli.<br />
+See sait kasutab prÃ¤Ã¤nikuid slavestamaks infot sinu lokaalses arvutis. Need prÃ¤Ã¤nikud on mÃµeldud ainult tÃµstmaks sinu vaatamise rÃµÃµmu. Eposti aadressi kasutatakse ainult kinnitamaks sinu registreerumise detaile ja parooli.<br />
 <br />
-Kilkates 'Olen nõus' allpool, nõustud sa nende nõuete ja tingimustega.
+Kilkates 'Olen nÃµus' allpool, nÃµustud sa nende nÃµuete ja tingimustega.
 EOT;
 
 $lang_register_php = array(
   'page_title' => 'User registration',
   'term_cond' => 'Terms and conditions',
-  'i_agree' => 'Olen nõus',
+  'i_agree' => 'Olen nÃµus',
   'submit' => 'Saada registreerimine',
   'err_user_exists' => 'Sinu siseatud kasutajanimi juba olemas, palun vali muu',
   'err_password_mismatch' => 'Kaks parooli ei lange kokku, palun sisesta nad uuesti',
-  'err_uname_short' => 'Kasutajanimi peab olema vähemalt 2 tähemärki',
-  'err_password_short' => 'Parool peab olema vähemalt 2 tähemärki',
+  'err_uname_short' => 'Kasutajanimi peab olema vÃ¤hemalt 2 tÃ¤hemÃ¤rki',
+  'err_password_short' => 'Parool peab olema vÃ¤hemalt 2 tÃ¤hemÃ¤rki',
   'err_uname_pass_diff' => 'Kasutajanimi peab paroolist erinema',
   'err_invalid_email' => 'Vigane e-posti aadress',
   'err_duplicate_email' => 'Keegi on juba registreerunud sinu sisestatud e-posti aadressiga',
@@ -949,10 +952,10 @@ $lang_register_php = array(
   'error' => 'VIGA',
   'confirm_email_subject' => '%s - Registreerumise kinnitus.',
   'information' => 'Informatsioon',
-  'failed_sending_email' => 'Registreerumise kinnitust ei õnnestunud saata !',
-  'thank_you' => 'Täname Teid registreerumast.<br /><br />E-post infoga, kuidas oma kontot aktiveerida, saadeti sinu antud e-posti aadressile.',
-  'acct_created' => 'Sinu konto on loodud ja nüüd sa võid sisse logida oma kasutajanime ja parooliga',
-  'acct_active' => 'Sinu konto on nüüd aktiveeritud ja sa võid sisse logida oma kasutajanime ja parooliga',
+  'failed_sending_email' => 'Registreerumise kinnitust ei Ãµnnestunud saata !',
+  'thank_you' => 'TÃ¤name Teid registreerumast.<br /><br />E-post infoga, kuidas oma kontot aktiveerida, saadeti sinu antud e-posti aadressile.',
+  'acct_created' => 'Sinu konto on loodud ja nÃ¼Ã¼d sa vÃµid sisse logida oma kasutajanime ja parooliga',
+  'acct_active' => 'Sinu konto on nÃ¼Ã¼d aktiveeritud ja sa vÃµid sisse logida oma kasutajanime ja parooliga',
   'acct_already_act' => 'Sinu konto on juba aktiivne !',
   'acct_act_failed' => 'Seda kontot ei saa aktiveerida !',
   'err_unk_user' => 'Valitud kasutaja puudub !',
@@ -975,13 +978,13 @@ $lang_register_php = array(
 );
 
 $lang_register_confirm_email = <<<EOT
-Täname et registreerusid {SITE_NAME}
+TÃ¤name et registreerusid {SITE_NAME}
 
 Sinu kasutajanimi on : "{USER_NAME}"
 Sinu parool on : "{PASSWORD}"
 
 Konto aktiveerimiseks vajuta all olevale lingile
-või kopeeri ja kleebi see oma browseri aadressi reale.
+vÃµi kopeeri ja kleebi see oma browseri aadressi reale.
 
 {ACT_LINK}
 
@@ -998,12 +1001,12 @@ EOT;
 // ------------------------------------------------------------------------- //
 
 if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
-  'title' => 'Kommentaaride ülevaade',
-  'no_comment' => 'Siin pole ühtegi kommentaari üle vaadata',
+  'title' => 'Kommentaaride Ã¼levaade',
+  'no_comment' => 'Siin pole Ã¼htegi kommentaari Ã¼le vaadata',
   'n_comm_del' => '%s kommentaar(i) kustutatud',
   'n_comm_disp' => 'Kommentaaride arv kuvamiseks',
   'see_prev' => 'Vaata eelmist',
-  'see_next' => 'Vaata järgmist',
+  'see_next' => 'Vaata jÃ¤rgmist',
   'del_comm' => 'Kustuta valitud kommentaarid',
 );
 
@@ -1025,9 +1028,9 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'select_dir' => 'Vali kataloog',
   'select_dir_msg' => 'See funktsioon lubab sul lisada kogumiku faile, mis sa oled salvestanud oma serverisse FTP\'ga.<br /><br />Vali kataloog kuhu sa oma failid oled salvestanud', //cpg1.3.0
   'no_pic_to_add' => 'Siin pole faile lisamiseks', //cpg1.3.0
-  'need_one_album' => 'Sa vajad vähemalt ühte albumit selle funktsiooni kasutamiseks',
+  'need_one_album' => 'Sa vajad vÃ¤hemalt Ã¼hte albumit selle funktsiooni kasutamiseks',
   'warning' => 'Hoiatus',
-  'change_perm' => 'see skript ei saa kirjutada sellesse kataloogi, sa pead muutma selle õigusi (mood 755 või 777) enne kui üritad uuesti lisada faile !', //cpg1.3.0
+  'change_perm' => 'see skript ei saa kirjutada sellesse kataloogi, sa pead muutma selle Ãµigusi (mood 755 vÃµi 777) enne kui Ã¼ritad uuesti lisada faile !', //cpg1.3.0
   'target_album' => '<b>Pane &quot;</b>%s<b>&quot; failid albumisse </b>%s', //cpg1.3.0
   'folder' => 'Kaust',
   'image' => 'fail',
@@ -1042,16 +1045,16 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'be_patient' => 'Palun ole kannatlik, skript vajab failide lisamiseks aega', //cpg1.3.0
   'no_album' => 'Pole albumit valitud',  //cpg1.3.0
   'notes' =>  '<ul>'.
-                          '<li><b>OK</b> : tähendab, et fail lisati edukalt'.
-                          '<li><b>DP</b> : tähendab, et fail on dublikaat ja sisaldub juba andmebaasis'.
-                          '<li><b>PB</b> : tähendab, et faili ei saa lisada, kontrolli oma seadeid ja kataloogi õigusi kus su failid asuvad'.
-                          '<li><b>NA</b> : tähendab, et sa ei oma valitud albumit kuhu su failid peaksid minema, vajuta \'<a href="javascript:history.back(1)">tagasi</a>\' ja vali mõni album. Kui sa ei oma / pole albumit siis <a href="albmgr.php">tekita omale album</a></li>'.
-                          '<li>Kui OK, DP, PB \'ei ilmu, klikka katkenud failil nägemaks mistahes PHP poolt antud veateadet'.
+                          '<li><b>OK</b> : tÃ¤hendab, et fail lisati edukalt'.
+                          '<li><b>DP</b> : tÃ¤hendab, et fail on dublikaat ja sisaldub juba andmebaasis'.
+                          '<li><b>PB</b> : tÃ¤hendab, et faili ei saa lisada, kontrolli oma seadeid ja kataloogi Ãµigusi kus su failid asuvad'.
+                          '<li><b>NA</b> : tÃ¤hendab, et sa ei oma valitud albumit kuhu su failid peaksid minema, vajuta \'<a href="javascript:history.back(1)">tagasi</a>\' ja vali mÃµni album. Kui sa ei oma / pole albumit siis <a href="albmgr.php">tekita omale album</a></li>'.
+                          '<li>Kui OK, DP, PB \'ei ilmu, klikka katkenud failil nÃ¤gemaks mistahes PHP poolt antud veateadet'.
                           '<li>Kui su sirvijal on \'timeout\', vajuta Refresh nuppu'.
                           '</ul>', //cpg1.3.0
   'select_album' => 'vali album', //cpg1.3.0
-  'check_all' => 'Märgi kõik', //cpg1.3.0
-  'uncheck_all' => 'Eemalda märgistused', //cpg1.3.0
+  'check_all' => 'MÃ¤rgi kÃµik', //cpg1.3.0
+  'uncheck_all' => 'Eemalda mÃ¤rgistused', //cpg1.3.0
 );
 
 
@@ -1069,18 +1072,18 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
   'title' => 'Kasutajate Blokeerimine',
   'user_name' => 'Kasutaja nimi',
   'ip_address' => 'IP Aadress',
-  'expiry' => 'Blokeeritud kuni (vajuta tühjale kastile)',
+  'expiry' => 'Blokeeritud kuni (vajuta tÃ¼hjale kastile)',
   'edit_ban' => 'Salvesta muudatus',
   'delete_ban' => 'Kustuta',
   'add_new' => 'Blokeeri uus kasutaja',
   'add_ban' => 'lisa',
   'error_user' => 'Ei leia kasutajat', //cpg1.3.0
-  'error_specify' => 'Pead sisestama kasutajanime või IP aadressi', //cpg1.3.0
+  'error_specify' => 'Pead sisestama kasutajanime vÃµi IP aadressi', //cpg1.3.0
   'error_ban_id' => 'Vigane ID!', //cpg1.3.0
   'error_admin_ban' => 'Sa ei saa ennast blokeerida!', //cpg1.3.0
   'error_server_ban' => 'Mis sa teed? Tahad blokeerida oma serverit? Sa ei saa seda kahjuks teha...', //cpg1.3.0
-  'error_ip_forbidden' => 'Sa ei saa blokeerida seda IP-d See pole kättesaadav!', //cpg1.3.0
-  'lookup_ip' => 'Vaata järgi IP aadress', //cpg1.3.0
+  'error_ip_forbidden' => 'Sa ei saa blokeerida seda IP-d See pole kÃ¤ttesaadav!', //cpg1.3.0
+  'lookup_ip' => 'Vaata jÃ¤rgi IP aadress', //cpg1.3.0
   'submit' => 'Vaata!', //cpg1.3.0
 );
 
@@ -1091,33 +1094,33 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
 if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'title' => 'Salvesta faile', //cpg1.3.0
   'custom_title' => 'Sisesta fail/e ', //cpg1.3.0
-  'cust_instr_1' => 'Sa võid sisestada lahtritesse numbreid 1-10 Olenevalt sellest mitu faili tahad korraga ülesse saata. Maksimum on 10. Üks rida on ühe faili lisamiseks.', //cpg1.3.0
+  'cust_instr_1' => 'Sa vÃµid sisestada lahtritesse numbreid 1-10 Olenevalt sellest mitu faili tahad korraga Ã¼lesse saata. Maksimum on 10. Ãœks rida on Ã¼he faili lisamiseks.', //cpg1.3.0
   'cust_instr_2' => 'Sisesta number', //cpg1.3.0
   'cust_instr_3' => 'Faili saatmise lahtreid: %s', //cpg1.3.0
   'cust_instr_4' => 'URI/URL saatmise lahtreid: %s', //cpg1.3.0
-  'cust_instr_5' => 'URI/URL üleslaadimise väljad:', //cpg1.3.0
-  'cust_instr_6' => 'Faili üleslaadimise väljad:', //cpg1.3.0
-  'cust_instr_7' => 'Sisesta soovitud arv lahtrisse.  Ja siis vaajuta \'JÄTKA\'. ', //cpg1.3.0
+  'cust_instr_5' => 'URI/URL Ã¼leslaadimise vÃ¤ljad:', //cpg1.3.0
+  'cust_instr_6' => 'Faili Ã¼leslaadimise vÃ¤ljad:', //cpg1.3.0
+  'cust_instr_7' => 'Sisesta soovitud arv lahtrisse.  Ja siis vaajuta \'JÃ„TKA\'. ', //cpg1.3.0
   'reg_instr_1' => 'Vigane tegevus.', //cpg1.3.0
-  'reg_instr_2' => 'Nüüd saad üles laadida faile, kasutades allolevaid välju. Faili suurus ei tohi ületada %s KB. ', //cpg1.3.0
-  'reg_instr_3' => 'Kokkupakitud failide üleslaadimiseks kasuta selleks ettenähtud välju.', //cpg1.3.0
-  'reg_instr_4' => 'Kui kasutad URI/URL üleslaadimise välju, sisesta aadress sellisel kujul: http://www.mysite.com/images/example.jpg', //cpg1.3.0
-  'reg_instr_5' => 'Kui oled väljad täitnud vajuta \'JÄTKA\'.', //cpg1.3.0
-  'reg_instr_6' => 'Kokkupakitud failide üleslaadimine:', //cpg1.3.0
-  'reg_instr_7' => 'Failide üleslaadimine:', //cpg1.3.0
-  'reg_instr_8' => 'URI/URL üleslaadimine:', //cpg1.3.0
+  'reg_instr_2' => 'NÃ¼Ã¼d saad Ã¼les laadida faile, kasutades allolevaid vÃ¤lju. Faili suurus ei tohi Ã¼letada %s KB. ', //cpg1.3.0
+  'reg_instr_3' => 'Kokkupakitud failide Ã¼leslaadimiseks kasuta selleks ettenÃ¤htud vÃ¤lju.', //cpg1.3.0
+  'reg_instr_4' => 'Kui kasutad URI/URL Ã¼leslaadimise vÃ¤lju, sisesta aadress sellisel kujul: http://www.mysite.com/images/example.jpg', //cpg1.3.0
+  'reg_instr_5' => 'Kui oled vÃ¤ljad tÃ¤itnud vajuta \'JÃ„TKA\'.', //cpg1.3.0
+  'reg_instr_6' => 'Kokkupakitud failide Ã¼leslaadimine:', //cpg1.3.0
+  'reg_instr_7' => 'Failide Ã¼leslaadimine:', //cpg1.3.0
+  'reg_instr_8' => 'URI/URL Ã¼leslaadimine:', //cpg1.3.0
   'error_report' => 'Vigade raport', //cpg1.3.0
-  'error_instr' => 'Järgnevad üleslaadimised olid vigased:', //cpg1.3.0
+  'error_instr' => 'JÃ¤rgnevad Ã¼leslaadimised olid vigased:', //cpg1.3.0
   'file_name_url' => 'Faili Nimi/URL', //cpg1.3.0
   'error_message' => 'Vea tekst', //cpg1.3.0
-  'no_post' => 'File pole üleslaetud POST meetodiga.', //cpg1.3.0
+  'no_post' => 'File pole Ã¼leslaetud POST meetodiga.', //cpg1.3.0
   'forb_ext' => 'keelatud faililaiend.', //cpg1.3.0
   'exc_php_ini' => 'Faili suurus suurem kui lubatud php.ini-s.', //cpg1.3.0
   'exc_file_size' => 'Faili suurus suurem kui galerii konfiguratsioonis lubatud!.', //cpg1.3.0
-  'partial_upload' => 'Ainult poolikult üleslaetud', //cpg1.3.0
-  'no_upload' => 'Midagi ei laetud ülesse', //cpg1.3.0
+  'partial_upload' => 'Ainult poolikult Ã¼leslaetud', //cpg1.3.0
+  'no_upload' => 'Midagi ei laetud Ã¼lesse', //cpg1.3.0
   'unknown_code' => 'Arusaamatu PHP viga.', //cpg1.3.0
-  'no_temp_name' => 'Üleslaadimist ei toimu - pole ajutist nime.', //cpg1.3.0
+  'no_temp_name' => 'Ãœleslaadimist ei toimu - pole ajutist nime.', //cpg1.3.0
   'no_file_size' => 'Pole andmeid/vigased failid', //cpg1.3.0
   'impossible' => 'Ei saa liigutada.', //cpg1.3.0
   'not_image' => 'Pole pildiformaat/vigased failid', //cpg1.3.0
@@ -1132,9 +1135,9 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'http_403' => '403 Keelatud', //cpg1.3.0
   'http_404' => '404 Saiti ei leitud', //cpg1.3.0
   'http_500' => '500 Serveri sisene viga', //cpg1.3.0
-  'http_503' => '503 Teenus kättesaadamatu', //cpg1.3.0
-  'MIME_extraction_failure' => 'MIME tüüpi ei suudeta tuvastada.', //cpg1.3.0
-  'MIME_type_unknown' => 'Tundmatu MIME tüüp', //cpg1.3.0
+  'http_503' => '503 Teenus kÃ¤ttesaadamatu', //cpg1.3.0
+  'MIME_extraction_failure' => 'MIME tÃ¼Ã¼pi ei suudeta tuvastada.', //cpg1.3.0
+  'MIME_type_unknown' => 'Tundmatu MIME tÃ¼Ã¼p', //cpg1.3.0
   'cant_create_write' => 'Ei saa faili serverisse kirjutada.', //cpg1.3.0
   'not_writable' => 'Ei saa faili serverisse kirjutada.', //cpg1.3.0
   'cant_read_URI' => 'Ei suuda URI/URL-i lugeda', //cpg1.3.0
@@ -1142,23 +1145,23 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'cant_write_write_file' => 'Ei saa avada URI-i faili kirjutamiseks.', //cpg1.3.0
   'cant_unzip' => 'Ei saa lahti pakkida.', //cpg1.3.0
   'unknown' => 'Tundmatu viga', //cpg1.3.0
-  'succ' => 'Õnnestunud üleslaadimised', //cpg1.3.0
-  'success' => '%s Fail/li edukalt üleslaetud.', //cpg1.3.0
-  'add' => 'Vajuta \'JÄTKA\' et lisada faile albumitesse.', //cpg1.3.0
-  'failure' => 'ülessaatmine ebaõnnestus', //cpg1.3.0
+  'succ' => 'Ã•nnestunud Ã¼leslaadimised', //cpg1.3.0
+  'success' => '%s Fail/li edukalt Ã¼leslaetud.', //cpg1.3.0
+  'add' => 'Vajuta \'JÃ„TKA\' et lisada faile albumitesse.', //cpg1.3.0
+  'failure' => 'Ã¼lessaatmine ebaÃµnnestus', //cpg1.3.0
   'f_info' => 'Faili informatsioon', //cpg1.3.0
   'no_place' => 'Eelnevat faili ei saa albumisse lisada.', //cpg1.3.0
-  'yes_place' => 'Järgev fail edukalt lisatud albumisse.', //cpg1.3.0
+  'yes_place' => 'JÃ¤rgev fail edukalt lisatud albumisse.', //cpg1.3.0
   'max_fsize' => 'maksimaalne lubatud failisuurus on %s KB',
   'album' => 'Album',
   'picture' => 'File', //cpg1.3.0
   'pic_title' => 'File pealkiri', //cpg1.3.0
   'description' => 'Filei kirjeldus', //cpg1.3.0
-  'keywords' => 'Tähemargid (eralda komadega)',
-  'err_no_alb_uploadables' => 'Puudub album, kuhu sul on lubatud üleslaadida', //cpg1.3.0
+  'keywords' => 'TÃ¤hemargid (eralda komadega)',
+  'err_no_alb_uploadables' => 'Puudub album, kuhu sul on lubatud Ã¼leslaadida', //cpg1.3.0
   'place_instr_1' => 'Lisa failid albumitesse. Sa saad lisada informatsiooni failide kohta praegu.', //cpg1.3.0
-  'place_instr_2' => 'Veel faile on vaja lisada albumitesse. Palun vajuta \'JÄTKA\'.', //cpg1.3.0
-  'process_complete' => 'Kõik failid edukalt lisatud.', //cpg1.3.0
+  'place_instr_2' => 'Veel faile on vaja lisada albumitesse. Palun vajuta \'JÃ„TKA\'.', //cpg1.3.0
+  'process_complete' => 'KÃµik failid edukalt lisatud.', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -1171,8 +1174,8 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'name_d' => 'Nimed kahanevalt',
   'group_a' => 'Grupid kasvavalt',
   'group_d' => 'Grupid kahanevalt',
-  'reg_a' => 'Reg kuupäev kasvavalt',
-  'reg_d' => 'Reg kuupäev kahanevalt',
+  'reg_a' => 'Reg kuupÃ¤ev kasvavalt',
+  'reg_d' => 'Reg kuupÃ¤ev kahanevalt',
   'pic_a' => 'Failide arv kasvavalt',
   'pic_d' => 'Failide arv kahanevalt',
   'disku_a' => 'Kvoodi ruum kasvavalt',
@@ -1180,8 +1183,8 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'lv_a' => 'Viimane visiit kasvavalt', //cpg1.3.0
   'lv_d' => 'Viimane visiit kahanevalt', //cpg1.3.0
   'sort_by' => 'Sordi kasutajaid',
-  'err_no_users' => 'Kasutajate tabel tühi !',
-  'err_edit_self' => 'Sa võid muuta oma profiili, kasuta \'Minu profiil\' linki selleks',
+  'err_no_users' => 'Kasutajate tabel tÃ¼hi !',
+  'err_edit_self' => 'Sa vÃµid muuta oma profiili, kasuta \'Minu profiil\' linki selleks',
   'edit' => 'MUUDA',
   'delete' => 'KUSTUTA',
   'name' => 'Kasutajanimi',
@@ -1191,19 +1194,19 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'pictures' => 'Failid', //cpg1.3.0
   'disk_space' => 'Kasutatud ketta kvooti',
   'registered_on' => 'Registreerus',
-  'last_visit' => 'Viimati külastas', //cpg1.3.0
+  'last_visit' => 'Viimati kÃ¼lastas', //cpg1.3.0
   'u_user_on_p_pages' => '%d kasutajat %d-el lehel',
-  'confirm_del' => 'Oled kindel, et tahad selle kasutaja KUSTUTADA ? \\nKõik tema pildid ja albumid kustutatakse samuti.', //js-alert //cpg1.3.0
+  'confirm_del' => 'Oled kindel, et tahad selle kasutaja KUSTUTADA ? \\nKÃµik tema pildid ja albumid kustutatakse samuti.', //js-alert //cpg1.3.0
   'mail' => 'POST',
   'err_unknown_user' => 'Valitud kasutajat pole !',
   'modify_user' => 'Muuda kasutaja',
-  'notes' => 'Märkused',
-  'note_list' => '<li>Kui sa ei taha muuta kasutuselolevat parooli, jäta "parool" väli tühjaks',
+  'notes' => 'MÃ¤rkused',
+  'note_list' => '<li>Kui sa ei taha muuta kasutuselolevat parooli, jÃ¤ta "parool" vÃ¤li tÃ¼hjaks',
   'password' => 'Parool',
   'user_active' => 'Kasutaja aktiivne',
   'user_group' => 'Kasutaja grupp',
   'user_email' => 'Kasutaja e-post',
-  'user_web_site' => 'Kasutaja kodulehekülg',
+  'user_web_site' => 'Kasutaja kodulehekÃ¼lg',
   'create_new_user' => 'Loo uus kasutaja',
   'user_location' => 'Kasutaja elukoht',
   'user_interests' => 'Kasutaja Rate.ee aadress',
@@ -1234,7 +1237,7 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
   'error_not_found' => '% faili ei leitud',
   'back' => 'tagasi',
   'thumbs_wait' => 'Pisipiltide ja uue suurusega piltide uuendamine, palun oota...',
-  'thumbs_continue_wait' => 'Pisipiltide ja uue suurusega piltide uuendamise jätkamine',
+  'thumbs_continue_wait' => 'Pisipiltide ja uue suurusega piltide uuendamise jÃ¤tkamine',
   'titles_wait' => 'Uuendan pealkirju, palun oota...',
   'delete_wait' => 'Kustutan pealkirju, palun oota...',
   'replace_wait' => 'Kustutan originaalpilte ja asendan neid uue suurusega piltidega, palun oota..',
@@ -1243,16 +1246,16 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
   'instruction_parameter' => 'Pane parameetrid paika',
   'instruction_album' => 'Vali album',
   'instruction_press' => 'Vajuta %',
-  'update' => 'Uuenda Pisipilte ja/või uue suurusega pilte',
+  'update' => 'Uuenda Pisipilte ja/vÃµi uue suurusega pilte',
   'update_what' => 'Mida peaks uuendama',
   'update_thumb' => 'ainult pisipildid',
   'update_pic' => 'ainult uue suurusega failid',
-  'update_both' => 'mõlemad',
-  'update_number' => 'Ühe klikiga uuendatud piltide arv',
-  'update_option' => '(Pane see number väiksemaks, kui sul saad timeouti)',
+  'update_both' => 'mÃµlemad',
+  'update_number' => 'Ãœhe klikiga uuendatud piltide arv',
+  'update_option' => '(Pane see number vÃ¤iksemaks, kui sul saad timeouti)',
   'filename_title' => 'Failinimi &rArr; Faili nimi', //cpg1.3.0
   'filename_how' => 'Kuidas peaks failinime muutma',
-  'filename_remove' => 'Eemalda .jpg lõpust ja asenda _ (alakriips) tühikuga',
+  'filename_remove' => 'Eemalda .jpg lÃµpust ja asenda _ (alakriips) tÃ¼hikuga',
   'filename_euro' => 'Muuda 2003_11_23_13_20_20.jpg to 23/11/2003 13:20',
   'filename_us' => 'Muuda 2003_11_23_13_20_20.jpg to 11/23/2003 13:20',
   'filename_time' => 'Muuda 2003_11_23_13_20_20.jpg to 13:20',
@@ -1261,13 +1264,13 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
   'delete_original' => 'Kustuta originaalsuurusega failid',
   'delete_replace' => 'Kustutab originaalfailid ja asendab need muudetus suurusega failidega',
   'select_album' => 'Vali album',
-  'delete_orphans' => 'Kustuta mingid kommentaarid (toimib kõikides albumites)', //cpg1.3.0
+  'delete_orphans' => 'Kustuta mingid kommentaarid (toimib kÃµikides albumites)', //cpg1.3.0
   'orphan_comment' => 'Leitud imelikud kommentaarid', //cpg1.3.0
   'delete' => 'Kustuta', //cpg1.3.0
-  'delete_all' => 'Kustuta kõik', //cpg1.3.0
+  'delete_all' => 'Kustuta kÃµik', //cpg1.3.0
   'comment' => 'Kommentaar: ', //cpg1.3.0
   'nonexist' => 'Lisa mitteeksisteerivale failile # ', //cpg1.3.0
-  'phpinfo' => 'Näita phpinfo-t', //cpg1.3.0
+  'phpinfo' => 'NÃ¤ita phpinfo-t', //cpg1.3.0
   'update_db' => 'Uuenda andmebaasi', //cpg1.3.0
   'update_db_explanation' => 'Kui sa midagi uuendad, siis uuenda andmebaasi, muidu asi ei toimi.', //cpg1.3.0
 );

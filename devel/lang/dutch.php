@@ -1,20 +1,21 @@
 <?php
-// ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.2                                            //
-// ------------------------------------------------------------------------- //
-// Copyright (C) 2002-2004 Gregory DEMAR                                     //
-// http://www.chezgreg.net/coppermine/                                       //
-// ------------------------------------------------------------------------- //
-// Updated by the Coppermine Dev Team                                        //
-// (http://coppermine.sf.net/team/)                                          //
-// see /docs/credits.html for details                                        //
-// ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- //
-// ENCODING CHECK; SHOULD BE YEN BETA MU: ¥ ß µ
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2005 Coppermine Dev Team
+  v1.1 originally written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  ********************************************
+  Coppermine version: 1.4.1
+  $Source$
+  $Revision$
+  $Author$
+  $Date$
+**********************************************/
 // ------------------------------------------------------------------------- //
 // CVS version: $Id$
 // ------------------------------------------------------------------------- //
@@ -88,7 +89,7 @@ $lang_errors = array(
         'non_exist_comment' => 'Het geselecteerde commentaar is niet aanwezig.',
         'pic_in_invalid_album' => 'Bestand is in een niet bestaand album (%s)!?', 
         'banned' => 'Je bent op dit moment uitgesloten van het gebruik van deze site.', 
-        'not_with_udb' => 'Deze functie is uitgeschakeld in Coppermine omdat het geïntegreerd is met forumsoftware. Wat je tracht te doen is, of wordt niet ondersteund in deze configuratie, of de functie zal afgehandeld moeten worden door de forumsoftware.', 
+        'not_with_udb' => 'Deze functie is uitgeschakeld in Coppermine omdat het geÃ¯ntegreerd is met forumsoftware. Wat je tracht te doen is, of wordt niet ondersteund in deze configuratie, of de functie zal afgehandeld moeten worden door de forumsoftware.', 
         'offline_title' => 'Offline',
         'offline_text' => 'Galerij is op dit moment offline - controleer later nog eens',
         'ecards_empty' => 'Er zijn op dit moment geen e-cardrecords aanwezig om te laten zien. Controleer of je e-card logging hebt aangezet in de Coppermine-configuratie!',
@@ -115,7 +116,7 @@ $lang_main_menu = array(
         'usr_mode_lnk' => 'Gebruiker-modus',
         'upload_pic_title' => 'Upload een bestand in een album',
         'upload_pic_lnk' => 'Upload bestand',
-        'register_title' => 'Creëer een account',
+        'register_title' => 'CreÃ«er een account',
         'register_lnk' => 'Registreer',
         'login_lnk' => 'Inloggen',
         'logout_lnk' => 'Uitloggen',
@@ -135,7 +136,7 @@ $lang_gallery_admin_menu = array(
         'upl_app_lnk' => 'Upload-toestemming',
         'config_lnk' => 'Instellingen',
         'albums_lnk' => 'Albums',
-        'categories_lnk' => 'Categorieën',
+        'categories_lnk' => 'CategorieÃ«n',
         'users_lnk' => 'Gebruikers',
         'groups_lnk' => 'Groepen',
         'comments_lnk' => 'Bekijk commentaren',
@@ -146,7 +147,7 @@ $lang_gallery_admin_menu = array(
 );
 
 $lang_user_admin_menu = array(
-        'albmgr_lnk' => 'Creëer/sorteer albums',
+        'albmgr_lnk' => 'CreÃ«er/sorteer albums',
         'modifyalb_lnk' => 'Wijzig mijn albums',
         'my_prof_lnk' => 'Mijn profiel',
 );
@@ -334,12 +335,12 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
         'miss_param' => 'Vereiste parameters voor \'%s\'bewerking niet gegeven !',
         'unknown_cat' => 'Geselecteerde categorie bestaat niet in database',
         'usergal_cat_ro' => 'Gebruikersgalerijen-categorie kan niet verwijderd worden !',
-        'manage_cat' => 'Beheer categorieën',
+        'manage_cat' => 'Beheer categorieÃ«n',
         'confirm_delete' => 'Weet je zeker dat je deze categorie wilt VERWIJDEREN',
         'category' => 'Categorie',
         'operations' => 'Bewerkingen',
         'move_into' => 'Verplaats naar',
-        'update_create' => 'Aanpassen/Creëer categorie',
+        'update_create' => 'Aanpassen/CreÃ«er categorie',
         'parent_cat' => 'Ouder categorie',
         'cat_title' => 'Categorie titel',
         'cat_thumb' => 'Categorie verkleinde afbeelding', //cpg1.3.0
@@ -402,7 +403,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Aantal kolommen voor de albumlijst', 'album_list_cols', 0),
         array('Grootte van de verkleinde afbeeldingen in pixels', 'alb_list_thumb_size', 0),
         array('De inhoud van de hoofdpagina', 'main_page_layout', 0),
-        array('Laat eerste albumniveau verkleinde afbeeldingen zien in categorieën','first_level',1), 
+        array('Laat eerste albumniveau verkleinde afbeeldingen zien in categorieÃ«n','first_level',1), 
 
         'Uiterlijk verkleinde afbeelding',
         array('Aantal kolommen op de verkleinde afbeeldingenpagina', 'thumbcols', 0),
@@ -420,7 +421,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Bestandsinformatie is standaard zichtbaar', 'display_pic_info', 1),
         array('Filter slechte woorden in commentaren', 'filter_bad_words', 1),
         array('Sta emoticons toe in commentaren', 'enable_smilies', 1),
-        array('Laat meerdere opeenvolgende commentaren toe op één foto van dezelfde gebruiker (schakel flood protection uit)', 'disable_comment_flood_protect', 1),
+        array('Laat meerdere opeenvolgende commentaren toe op Ã©Ã©n foto van dezelfde gebruiker (schakel flood protection uit)', 'disable_comment_flood_protect', 1),
         array('Maximale lengte van omschrijving afbeelding', 'max_img_desc_length', 0),
         array('Maximale aantal lettertekens in een woord', 'max_com_wlength', 0),
         array('Maximale aantal regels in een commentaar', 'max_com_lines', 0),
@@ -434,13 +435,13 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Kwaliteit voor JPEG-bestanden', 'jpeg_qual', 0),
         array('Maximale breedte of hoogte van een verkleinde afbeelding <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0),
         array('Gebruik afmeting ( Breedte of hoogte of maximale verhouding voor verkleinde afbeelding )<b>**</b>', 'thumb_use', 7),
-        array('Creëer tussenliggende foto\'s','make_intermediate',1),
+        array('CreÃ«er tussenliggende foto\'s','make_intermediate',1),
         array('Maximale breedte of hoogte van tussenliggende foto\'s /video <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0),
         array('Maximale grootte van uploadbestanden (KB)', 'max_upl_size', 0),
         array('Maximale breedte en hoogte van uploadfoto\'s /videos (pixels)', 'max_upl_width_height', 0),
 
         'Geavanceerde bestanden- en verkleinde afbeeldingen-instellingen',
-        array('Laat privé albumicoon zien aan niet-ingelogde gebruiker','show_private',1), 
+        array('Laat privÃ© albumicoon zien aan niet-ingelogde gebruiker','show_private',1), 
         array('Verboden lettertekens in bestandsnamen', 'forbiden_fname_char',0),
         //array('Toegelaten bestandsextensies voor geuploade afbeeldingen', 'allowed_file_extensions',0),
         array('Toegestane fototypes', 'allowed_img_types',0),
@@ -465,7 +466,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Gebruikersregistratie vereist e-mailverificatie', 'reg_requires_valid_email', 1),
         array('Bericht de beheerder over gebruikersregistratie per e-mail', 'reg_notify_admin_email', 1),
         array('Laat toe dat twee gebruikers hetzelfde e-mailadres hebben', 'allow_duplicate_emails_addr', 1),
-        array('Gebruikers kunnen privé-albums hebben, (Aantekening: Indien je verandert van \'Ja\' naar \'Nee\' wordt elke privé-album publiek)', 'allow_private_albums', 1),
+        array('Gebruikers kunnen privÃ©-albums hebben, (Aantekening: Indien je verandert van \'Ja\' naar \'Nee\' wordt elke privÃ©-album publiek)', 'allow_private_albums', 1),
         array('Bericht de beheerder over gebruikersupload, wachtend op toestemming', 'upl_notify_admin_email', 1),
         array('Laat ingelogde gebruiker toe om gebruikerslijst te zien', 'allow_memberlist', 1),
 
@@ -484,7 +485,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Laat resultaten in foutenverwijderings-modus zien', 'debug_notice', 1), //cpg1.3.0
 
         '<br /><div align="left"><a name="notice1"></a>(*) Deze instellingen mogen niet veranderd worden indien je al bestanden in je database hebt.<br />
-        <a name="notice2"></a>(**) Indien deze instelling gewijzigd wordt, worden alleen de bestanden die na dit punt toegevoegd worden, beïnvloed. Dus het is aan te raden dat deze instelling niet wordt aangepast als er al bestanden in de galerij aanwezig zijn. Je kunt echter, deze aanpassingen op bestaande bestanden uitvoeren met het &quot;<a href="util.php">beheerdersgereedschap</a> (aanpassen grootte foto\'s)&quot; hulpmiddel uit het beheerdersgereedschap-menu.</div><br />'
+        <a name="notice2"></a>(**) Indien deze instelling gewijzigd wordt, worden alleen de bestanden die na dit punt toegevoegd worden, beÃ¯nvloed. Dus het is aan te raden dat deze instelling niet wordt aangepast als er al bestanden in de galerij aanwezig zijn. Je kunt echter, deze aanpassingen op bestaande bestanden uitvoeren met het &quot;<a href="util.php">beheerdersgereedschap</a> (aanpassen grootte foto\'s)&quot; hulpmiddel uit het beheerdersgereedschap-menu.</div><br />'
 );
 
 // ------------------------------------------------------------------------- //
@@ -532,7 +533,7 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
         'alb_updated' => 'Het album is aangepast.',
         'unknown_album' => 'Geselecteerde album bestaat niet of je hebt geen toestemming naar dit album te uploaden.',
         'no_pic_uploaded' => 'Er is geen bestand geupload !<br /><br />Indien je echt een bestand geselecteerd hebt om te uploaden, controleer of de server bestands-upload toestaat...',
-        'err_mkdir' => 'Creëren van map %s niet gelukt !',
+        'err_mkdir' => 'CreÃ«ren van map %s niet gelukt !',
         'dest_dir_ro' => 'Bestemmingsmap %s is niet beschrijfbaar door het script !',
         'err_move' => 'Onmogelijk %s te verplaatsen naar %s !',
         'err_fsize_too_large' => 'Het door jou geuploade bestand is te groot (maximum toegelaten is %s x %s) !',
@@ -571,7 +572,7 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
         'alb_del_success' => 'Album \'%s\' verwijderd',
         'alb_mgr' => 'Album Manager',
         'err_invalid_data' => 'Ongeldige data ontvangen in \'%s\'',
-        'create_alb' => 'creëeren album \'%s\'',
+        'create_alb' => 'creÃ«eren album \'%s\'',
         'update_alb' => 'Aanpassen album \'%s\' met titel \'%s\' en index \'%s\'',
         'del_pic' => 'Verwijder bestand',
         'del_alb' => 'Verwijder album',
@@ -626,7 +627,7 @@ $lang_picinfo = array(
         'iptcCopyright'=>'IPTC-copyright',
         'iptcKeywords'=>'IPTC-sleutelwoorden',
         'iptcCategory'=>'IPTC-categorie',
-        'iptcSubCategories'=>'IPTC-subcategorieën',
+        'iptcSubCategories'=>'IPTC-subcategorieÃ«n',
 );
 
 $lang_display_comments = array(
@@ -678,7 +679,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
         'title' => 'Titel',
         'desc' => 'Omschrijving',
         'keywords' => 'Sleutelwoorden',
-        'pic_info_str' => '%s×%s - %sKB - %s bekeken - %s stemmen',
+        'pic_info_str' => '%sÃ—%s - %sKB - %s bekeken - %s stemmen',
         'approve' => 'Laat bestand toe',
         'postpone_app' => 'Stel toelating uit',
         'del_pic' => 'Verwijder bestand',
@@ -723,10 +724,10 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
         array('Hoe beoordeel ik een bestand?', 'Klik op een verkleinde afbeelding en ga naar de onderzijde van de pagina en kies een beoordeling.', 'offline', 0),
         array('Hoe plaats ik een commentaar voor een foto?', 'Klik op een verkleinde afbeelding en ga naar de onderzijde van de pagina en plaats een commentaar.', 'offline', 0),
         array('Hoe upload ik een bestand?', 'Ga naar &quot;Upload bestand&quot; en selecteer het album waar je je bestand naar wilt uploaden, klik op &quot;Browse&quot; en ga naar het bestand dat je wilt uploaden en klik op &quot;open&quot; (voeg als je wilt een titel en beschrijving toe) en klik op &quot;Verzend&quot;', 'allow_private_albums', 0),
-        array('Waar upload ik een foto naar toe?', 'Je zult in staat zijn een foto te uploaden naar één van je albums in &quot;Mijn Galerij&quot;. De beheerder kan je ook toestaan om te uploaden naar één of meer albums in de hoofdgalerij.', 'allow_private_albums', 0),
+        array('Waar upload ik een foto naar toe?', 'Je zult in staat zijn een foto te uploaden naar Ã©Ã©n van je albums in &quot;Mijn Galerij&quot;. De beheerder kan je ook toestaan om te uploaden naar Ã©Ã©n of meer albums in de hoofdgalerij.', 'allow_private_albums', 0),
         array('Welk bestandstype en grootte kan ik uploaden?', 'De grootte en het bestandstype (jpg,gif,..etc.) worden bepaald door de beheerder.', 'offline', 0),
         array('Wat is &quot;Mijn Galerij&quot;?', '&quot;Mijn Galerij&quot; is een persoonlijke galerij waar de gebruiker bestanden naar kan uploaden en deze kan beheren.', 'allow_private_albums', 0),
-        array('Hoe creëer, hernoem en verwijder ik een album in &quot;Mijn Galerij&quot;?', 'Je moet eerst in &quot;Beheerder-modus&quot; zijn<br />Ga vervolgens naar &quot;Creëer/Sorteer mijn albums&quot; en klik &quot;Nieuw&quot;. Verander &quot;Nieuw Album&quot; naar de door jou gewenste naam.<br />Je kunt ook elk ander album in je galerij hernoemen.<br />Klik &quot;Pas aanpassingen toe&quot;.', 'allow_private_albums', 0),
+        array('Hoe creÃ«er, hernoem en verwijder ik een album in &quot;Mijn Galerij&quot;?', 'Je moet eerst in &quot;Beheerder-modus&quot; zijn<br />Ga vervolgens naar &quot;CreÃ«er/Sorteer mijn albums&quot; en klik &quot;Nieuw&quot;. Verander &quot;Nieuw Album&quot; naar de door jou gewenste naam.<br />Je kunt ook elk ander album in je galerij hernoemen.<br />Klik &quot;Pas aanpassingen toe&quot;.', 'allow_private_albums', 0),
         array('Hoe pas ik aan en beperk ik gebruikers in het bekijken van mijn albums?', 'Je moet eerst in &quot;Beheerder-modus&quot; zijn<br />Ga vervolgens naar &quot;Pas mijn albums aan&quot;. Op de &quot;Aanpassen Album&quot; bar, kies het album dat je wilt aanpassen.<br />Hier kun je de naam, de omschrijving, de verkleinde afbeelding, de beperking in het bekijken en commentaar/beoordelingspermissie aanpassen.<br />Klik op &quot;Aanpassen album&quot;.', 'allow_private_albums', 0),
         array('Hoe kan ik gebruikersgalerijen bekijken van andere gebruikers?', 'Ga naar &quot;Albumlijst&quot; en kies &quot;Gebruikersgalerijen&quot;.', 'allow_private_albums', 0),
         array('Wat zijn cookies?', 'Cookies zijn tekstbestanden met data die door een website worden verzonden en op je computer worden geplaatst.<br />Cookies laten een gebruiker gewoonlijk toe een site te verlaten en weer terug te keren zonder weer opnieuw te hoeven in te loggen en andere verschillende zaken.', 'offline', 0),
@@ -734,7 +735,7 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
 
         'Navigeren binnen de site',
         array('Wat is &quot;Albumlijst&quot;?', 'Deze optie toont je de complete galerij met een link naar iedere categorie. Verkleinde afbeeldingen kunnen ook een link zijn naar een categorie.', 'offline', 0),
-        array('Wat is &quot;Mijn Galerij&quot;?', 'Deze optie laat een gebruiker de mogelijkheid zijn of haar eigen galerij te creëren en hier albums aan toe te voegen, te verwijderen of aan te passen en eveneens bestanden naar te uploaden.', 'allow_private_albums', 0),
+        array('Wat is &quot;Mijn Galerij&quot;?', 'Deze optie laat een gebruiker de mogelijkheid zijn of haar eigen galerij te creÃ«ren en hier albums aan toe te voegen, te verwijderen of aan te passen en eveneens bestanden naar te uploaden.', 'allow_private_albums', 0),
         array('Wat is het verschil tussen &quot;Beheerder-modus&quot; en &quot;Gebruiker-modus&quot;?', 'Deze optie, wanneer deze is ingesteld op Beheerder-modus, stelt de gebruiker in staat zijn eigen galerij aan te passen (en eveneens die van anderen indien de beheerder dit toegelaten heeft).', 'allow_private_albums', 0),
         array('Wat is &quot;Upload bestand&quot;?', 'Deze optie stelt de gebruiker in staat een bestand te uploaden (grootte en type wordt bepaald door de beheerder van de site) naar een door jou of de door de beheerder geselecteerde galerij.', 'allow_private_albums', 0),
         array('Wat is &quot;Laatste uploads&quot;?', 'Deze optie toont de laatste uploads die naar de site zijn gezonden.', 'offline', 0),
@@ -777,7 +778,7 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
         'can_upload' => 'Kan bestanden uploaden',
         'can_have_gallery' => 'Kan een persoonlijke galerij hebben',
         'apply' => 'Pas wijzigingen toe',
-        'create_new_group' => 'Creëer nieuwe groep',
+        'create_new_group' => 'CreÃ«er nieuwe groep',
         'del_groups' => 'Verwijder geselecteerde groep(en)',
         'confirm_del' => 'Waarschuwing: indien je een groep verwijderd, worden de gebruikers die tot deze groep behoorden, verplaatst naar de \'Geregistreerd\'groep!\n\nWil je doorgaan ?',
         'title' => 'Beheer gebruikersgroepen',
@@ -812,7 +813,7 @@ $lang_album_admin_menu = array(
 
 $lang_list_categories = array(
         'home' => 'Home',
-        'stat1' => '<b>[pictures]</b> bestanden in <b>[albums]</b> albums en <b>[cat]</b> categorieën met <b>[comments]</b> commentaren en <b>[views]</b> keer bekeken',
+        'stat1' => '<b>[pictures]</b> bestanden in <b>[albums]</b> albums en <b>[cat]</b> categorieÃ«n met <b>[comments]</b> commentaren en <b>[views]</b> keer bekeken',
         'stat2' => '<b>[pictures]</b> bestanden in <b>[albums]</b> albums en <b>[views]</b> keer bekeken',
         'xx_s_gallery' => '%s\'s Galerij',
         'stat3' => '<b>[pictures]</b> bestanden in <b>[albums]</b> albums met <b>[comments]</b> commentaren en <b>[views]</b> keer bekeken'
@@ -951,7 +952,7 @@ $lang_register_php = array(
         'information' => 'Informatie',
         'failed_sending_email' => 'De registratiebevestiging kan niet verzonden worden !',
         'thank_you' => 'Dank je voor het registreren.<br /><br />Een e-mail met informatie over hoe je je account dient te activeren, is verzonden naar het adres dat je opgegeven hebt.',
-        'acct_created' => 'Je account is gecreëerd en je kunt nu inloggen met je gebruikersnaam en wachtwoord',
+        'acct_created' => 'Je account is gecreÃ«erd en je kunt nu inloggen met je gebruikersnaam en wachtwoord',
         'acct_active' => 'Je account is nu actief en je kunt inloggen met je gebruikersnaam en wachtwoord',
         'acct_already_act' => 'Je account is al actief !',
         'acct_act_failed' => 'Dit account kan niet geactiveerd worden !',
@@ -1045,7 +1046,7 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
                                 '<li><b>OK</b> : betekent dat het bestand met succes is toegevoegd'.
                                 '<li><b>DP</b> : betekent dat het bestand dubbel is en zich al in de database bevindt'.
                                 '<li><b>PB</b> : betekent dat het bestand niet toegevoegd kon worden. Controleer je configuratie en de permissies van mappen waar de bestanden zich bevinden'.
-                                '<li><b>NA</b> : betekent dat je geen album geselecteerd hebt waar de bestanden in moeten, klik \'<a href="javascript:history.back(1)">Terug</a>\' en selecteer een album. Als je geen album hebt, <a href="albmgr.php">creëer er dan éérst een</a></li>'.
+                                '<li><b>NA</b> : betekent dat je geen album geselecteerd hebt waar de bestanden in moeten, klik \'<a href="javascript:history.back(1)">Terug</a>\' en selecteer een album. Als je geen album hebt, <a href="albmgr.php">creÃ«er er dan Ã©Ã©rst een</a></li>'.
                                 '<li>Als de OK, DP, PB \'tekens\' niet verschijnen klik dan op het verbroken bestand om te kijken of er een PHP-foutbericht gegeven wordt'.
                                 '<li>Indien je browser een time-out bericht geeft, klik dan op de herlaad-knop'.
                                 '</ul>',
@@ -1136,7 +1137,7 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
 	  'http_503' => '503 Service niet beschikbaar', //cpg1.3.0
 	  'MIME_extraction_failure' => 'MIME kon niet bepaald worden.', //cpg1.3.0
 	  'MIME_type_unknown' => 'Onbekend MIME-type', //cpg1.3.0
-	  'cant_create_write' => 'Kan schrijfbestand niet creëeren.', //cpg1.3.0
+	  'cant_create_write' => 'Kan schrijfbestand niet creÃ«eren.', //cpg1.3.0
 	  'not_writable' => 'Kan niet naar schrijfbestand schrijven.', //cpg1.3.0
 	  'cant_read_URI' => 'Kan URI/URL niet lezen', //cpg1.3.0
 	  'cant_open_write_file' => 'Kan URI-schrijfbestand niet openen.', //cpg1.3.0
@@ -1205,7 +1206,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
         'user_group' => 'Gebruikersgroep',
         'user_email' => 'E-mail van gebruiker',
         'user_web_site' => 'Website van gebruiker',
-        'create_new_user'=> 'Creëer nieuwe gebruiker',
+        'create_new_user'=> 'CreÃ«er nieuwe gebruiker',
         'user_location' => 'Locatie van gebruiker',
         'user_interests' => 'Interesse van gebruiker',
         'user_occupation'  => 'Beroep van gebruiker',
@@ -1220,7 +1221,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 if (defined('UTIL_PHP')) $lang_util_php = array(
         'title' => 'Beheerdergereedschap (Aanpassen afmetingen foto\'s)', 
         'what_it_does' => 'Wat doet dit gereedschap', 
-        'what_update_titles' => 'Creëert titels uit bestandsnamen', 
+        'what_update_titles' => 'CreÃ«ert titels uit bestandsnamen', 
         'what_delete_title' => 'Verwijdert titels', 
         'what_rebuild' => 'Construeert opnieuw verkleinde afbeeldingen en past afmetingen aan van foto\'s', 
         'what_delete_originals' => 'Verwijdert de originele foto\'s en vervangt deze door de aangepaste afmetingenversie', 

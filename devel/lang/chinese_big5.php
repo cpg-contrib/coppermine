@@ -1,18 +1,21 @@
 <?php
-// ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.2                                            //
-// ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
-// http://www.chezgreg.net/coppermine/                                       //
-// ------------------------------------------------------------------------- //
-// Updated by the Coppermine Dev Team                                        //
-// (http://coppermine.sf.net/team/)                                          //
-// see /docs/credits.html for details                                        //
-// ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
+/*************************
+Coppermine Photo Gallery
+************************
+Copyright (c) 2003-2005 Coppermine Dev Team
+v1.1 originally written by Gregory DEMAR
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+********************************************
+Coppermine version: 1.4.1
+$Source$
+$Revision$
+$Author$
+$Date$
+**********************************************/
 // ------------------------------------------------------------------------- //
 // $Id$
 // ------------------------------------------------------------------------- //
@@ -20,7 +23,7 @@
 // info about translators and translated language
 $lang_translation_info = array(
   'lang_name_english' => 'Chinese Tranditional BIG5',
-  'lang_name_native' => '¤¤¤åÁcÅéBIG5',
+  'lang_name_native' => 'ä¸­æ–‡ç¹é«”BIG5',
   'lang_country_code' => 'tw',
   'trans_name'=> 'CapriSkye and monkey',
   'trans_email' => 'admin@capriskye.com',
@@ -28,23 +31,23 @@ $lang_translation_info = array(
   'trans_date' => '2004-09-28',
 );
 
-$lang_charset = 'BIG5';
+$lang_charset = 'big5';
 $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 
 // shortcuts for Byte, Kilo, Mega
 $lang_byte_units = array('Bytes', 'KB', 'MB');
 
 // Day of weeks and months
-$lang_day_of_week = array('¬P´Á¤é', '¬P´Á¤@', '¬P´Á¤G', '¬P´Á¤T', '¬P´Á¥|', '¬P´Á¤­', '¬P´Á¤»');
-$lang_month = array('¤@¤ë', '¤G¤ë', '¤T¤ë', '¥|¤ë', '¤­¤ë', '¤»¤ë', '¤C¤ë', '¤K¤ë', '¤E¤ë', '¤Q¤ë', '¤Q¤@¤ë', '¤Q¤G¤ë');
+$lang_day_of_week = array('æ˜ŸæœŸæ—¥', 'æ˜ŸæœŸä¸€', 'æ˜ŸæœŸäºŒ', 'æ˜ŸæœŸä¸‰', 'æ˜ŸæœŸå››', 'æ˜ŸæœŸäº”', 'æ˜ŸæœŸå…­');
+$lang_month = array('ä¸€æœˆ', 'äºŒæœˆ', 'ä¸‰æœˆ', 'å››æœˆ', 'äº”æœˆ', 'å…­æœˆ', 'ä¸ƒæœˆ', 'å…«æœˆ', 'ä¹æœˆ', 'åæœˆ', 'åä¸€æœˆ', 'åäºŒæœˆ');
 
 // Some common strings
-$lang_yes = '¬O';
-$lang_no  = '§_';
-$lang_back = 'ªğ¦^';
-$lang_continue = 'Ä~Äò';
-$lang_info = '°T®§';
-$lang_error = '¿ù»~';
+$lang_yes = 'æ˜¯';
+$lang_no  = 'å¦';
+$lang_back = 'è¿”å›';
+$lang_continue = 'ç¹¼çºŒ';
+$lang_info = 'è¨Šæ¯';
+$lang_error = 'éŒ¯èª¤';
 
 // The various date formats
 // See http://www.php.net/manual/en/function.strftime.php to define the variable below
@@ -59,144 +62,144 @@ $comment_date_fmt =  '%B %d, %Y at %I:%M %p'; //cpg1.3.0
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
 
 $lang_meta_album_names = array(
-  'random' => 'ÀH¾÷¹Ï¤ù', //cpg1.3.0
-  'lastup' => '³Ì·s¤W¶Ç',
-  'lastalb'=> '³Ìªñ§ó·s',
-  'lastcom' => '³Ì·s¯d¨¥',
-  'topn' => '¼öªù¹Ï¤ù',
-  'toprated' => '³Ì°ªµû¤À',
-  'lasthits' => '³ÌªñÅã¥Ü',
-  'search' => '·j´Mµ²ªG',
-  'favpics'=> '³Ì·R¹Ï¤ù', //cpg1.3.0
+  'random' => 'éš¨æ©Ÿåœ–ç‰‡', //cpg1.3.0
+  'lastup' => 'æœ€æ–°ä¸Šå‚³',
+  'lastalb'=> 'æœ€è¿‘æ›´æ–°',
+  'lastcom' => 'æœ€æ–°ç•™è¨€',
+  'topn' => 'ç†±é–€åœ–ç‰‡',
+  'toprated' => 'æœ€é«˜è©•åˆ†',
+  'lasthits' => 'æœ€è¿‘é¡¯ç¤º',
+  'search' => 'æœå°‹çµæœ',
+  'favpics'=> 'æœ€æ„›åœ–ç‰‡', //cpg1.3.0
 );
 
 $lang_errors = array(
-  'access_denied' => '§A¨S¦³¨Ï¥Î¥»­¶ªºÅv­­.',
-  'perm_denied' => '§A¨S¦³Åv­­°õ¦æ¦¹°Ê§@.',
-  'param_missing' => 'µ{¦¡³Q©I¥s¦Ó¨S¦³»İ­nªº°Ñ¼Æ.',
-  'non_exist_ap' => '©Ò¿ï¾Üªº ¬ÛÃ¯/¹Ï¤ù ¤£¦s¦b !', //cpg1.3.0
-  'quota_exceeded' => '¶W¹LºÏºĞ°tÃB<br /><br />§Aªº°tÃB¦³ [quota]K, ¤w¨Ï¥Îªº¦³ [space]K, ¥[¤J¦¹¹Ï¤ù·|¶W¹L¾Ö¦³ªº°tÃB.', //cpg1.3.0
-  'gd_file_type_err' => '·í¨Ï¥Î GD ¹Ï¹³µ{¦¡®w¥u®e³\ JPEG / PNG ¹ÏÀÉ.',
-  'invalid_image' => '§A¤W¶ÇªºÀÉ®×¤v¸g·lÃa, ©Î¬O GD ¹Ï¹³µ{¦¡®w¤£¯à³B²z',
-  'resize_failed' => 'µLªk«Ø¥ßÁY¹Ï©ÎÅÜ§ó¹ÏÀÉ¤Ø¤o.',
-  'no_img_to_display' => '¨S¦³¹Ï¤ù¥i¥HÅã¥Ü.',
-  'non_exist_cat' => '©Ò¿ï¾ÜªºÃş§O¨Ã¤£¦s¦b.',
-  'orphan_cat' => '³o­Ó¤lÃş§O¦s©ó¤@­Ó¤£¦s¦bªº¥ÀÃş§O, ½Ğ¥ı¦ÜÃş§OºŞ²z­×¥¿³o­Ó°İÃD.', //cpg1.3.0
-  'directory_ro' => '¥Ø¿ı \'%s\' µLªk¼g¤J, ¾É­PµLªk§R°£¹Ï¤ù', //cpg1.3.0
-  'non_exist_comment' => '©Ò¿ï¾Üªº¯d¨¥¨Ã¤£¦s¦b.',
-  'pic_in_invalid_album' => '¦¹¹Ï¤ù¦s©ó¤£¦s¦bªº¬ÛÃ¯ (%s)!?', //cpg1.3.0
-  'banned' => '±z¥Ø«e³Q¸T¤î¨Ï¥Î¥»¯¸.',
-  'not_with_udb' => '¥Ñ©ó¥»¬ÛÃ¯¤w©M½×¾Âµ{¦¡¾ã¦X, ¦¹¥\¯à¤w°±¤î¨Ï¥Î. ¥i¯à¬O¥Ø«e³]©w¤£¤ä´©¦¹¥\¯à, ©Î¤w¥Ñ½×¾Â³B²z.', 
-  'offline_title' => 'Â÷½u', //cpg1.3.0
-  'offline_text' => '¬ÛÃ¯¥Ø«e¬OÂ÷½uª¬ºA - ½Ğµy«á¦A¸Õ', //cpg1.3.0
-  'ecards_empty' => '¥Ø«e¨S¦³¹q¤l¥d¤ùªº¬ö¿ı¥iÅã¥Ü. ½ĞÀË¬d¬ÛÃ¯³]©w¤¤¬O§_±Ò¥Î¬ö¿ı¹q¤l¥d¤ù¥\¯à!', //cpg1.3.0
-  'action_failed' => '°Ê§@¥¢±Ñ.  Coppermine µLªk°õ¦æ±zªº­n¨D.', //cpg1.3.0
-  'no_zip' => 'µLªk°õ¦æZIPÀ£ÁYÀÉ.  ½ĞÁpµ¸±zªº¬ÛÃ¯ºŞ²z­û.', //cpg1.3.0
-  'zip_type' => '±z¨S¦³¤W¶ÇZIPÀ£ÁYÀÉªºÅv­­.', //cpg1.3.0
+  'access_denied' => 'ä½ æ²’æœ‰ä½¿ç”¨æœ¬é çš„æ¬Šé™.',
+  'perm_denied' => 'ä½ æ²’æœ‰æ¬Šé™åŸ·è¡Œæ­¤å‹•ä½œ.',
+  'param_missing' => 'ç¨‹å¼è¢«å‘¼å«è€Œæ²’æœ‰éœ€è¦çš„åƒæ•¸.',
+  'non_exist_ap' => 'æ‰€é¸æ“‡çš„ ç›¸ç°¿/åœ–ç‰‡ ä¸å­˜åœ¨ !', //cpg1.3.0
+  'quota_exceeded' => 'è¶…éç£ç¢Ÿé…é¡<br /><br />ä½ çš„é…é¡æœ‰ [quota]K, å·²ä½¿ç”¨çš„æœ‰ [space]K, åŠ å…¥æ­¤åœ–ç‰‡æœƒè¶…éæ“æœ‰çš„é…é¡.', //cpg1.3.0
+  'gd_file_type_err' => 'ç•¶ä½¿ç”¨ GD åœ–åƒç¨‹å¼åº«åªå®¹è¨± JPEG / PNG åœ–æª”.',
+  'invalid_image' => 'ä½ ä¸Šå‚³çš„æª”æ¡ˆå·±ç¶“æå£, æˆ–æ˜¯ GD åœ–åƒç¨‹å¼åº«ä¸èƒ½è™•ç†',
+  'resize_failed' => 'ç„¡æ³•å»ºç«‹ç¸®åœ–æˆ–è®Šæ›´åœ–æª”å°ºå¯¸.',
+  'no_img_to_display' => 'æ²’æœ‰åœ–ç‰‡å¯ä»¥é¡¯ç¤º.',
+  'non_exist_cat' => 'æ‰€é¸æ“‡çš„é¡åˆ¥ä¸¦ä¸å­˜åœ¨.',
+  'orphan_cat' => 'é€™å€‹å­é¡åˆ¥å­˜æ–¼ä¸€å€‹ä¸å­˜åœ¨çš„æ¯é¡åˆ¥, è«‹å…ˆè‡³é¡åˆ¥ç®¡ç†ä¿®æ­£é€™å€‹å•é¡Œ.', //cpg1.3.0
+  'directory_ro' => 'ç›®éŒ„ \'%s\' ç„¡æ³•å¯«å…¥, å°è‡´ç„¡æ³•åˆªé™¤åœ–ç‰‡', //cpg1.3.0
+  'non_exist_comment' => 'æ‰€é¸æ“‡çš„ç•™è¨€ä¸¦ä¸å­˜åœ¨.',
+  'pic_in_invalid_album' => 'æ­¤åœ–ç‰‡å­˜æ–¼ä¸å­˜åœ¨çš„ç›¸ç°¿ (%s)!?', //cpg1.3.0
+  'banned' => 'æ‚¨ç›®å‰è¢«ç¦æ­¢ä½¿ç”¨æœ¬ç«™.',
+  'not_with_udb' => 'ç”±æ–¼æœ¬ç›¸ç°¿å·²å’Œè«–å£‡ç¨‹å¼æ•´åˆ, æ­¤åŠŸèƒ½å·²åœæ­¢ä½¿ç”¨. å¯èƒ½æ˜¯ç›®å‰è¨­å®šä¸æ”¯æ´æ­¤åŠŸèƒ½, æˆ–å·²ç”±è«–å£‡è™•ç†.', 
+  'offline_title' => 'é›¢ç·š', //cpg1.3.0
+  'offline_text' => 'ç›¸ç°¿ç›®å‰æ˜¯é›¢ç·šç‹€æ…‹ - è«‹ç¨å¾Œå†è©¦', //cpg1.3.0
+  'ecards_empty' => 'ç›®å‰æ²’æœ‰é›»å­å¡ç‰‡çš„ç´€éŒ„å¯é¡¯ç¤º. è«‹æª¢æŸ¥ç›¸ç°¿è¨­å®šä¸­æ˜¯å¦å•Ÿç”¨ç´€éŒ„é›»å­å¡ç‰‡åŠŸèƒ½!', //cpg1.3.0
+  'action_failed' => 'å‹•ä½œå¤±æ•—.  Coppermine ç„¡æ³•åŸ·è¡Œæ‚¨çš„è¦æ±‚.', //cpg1.3.0
+  'no_zip' => 'ç„¡æ³•åŸ·è¡ŒZIPå£“ç¸®æª”.  è«‹è¯çµ¡æ‚¨çš„ç›¸ç°¿ç®¡ç†å“¡.', //cpg1.3.0
+  'zip_type' => 'æ‚¨æ²’æœ‰ä¸Šå‚³ZIPå£“ç¸®æª”çš„æ¬Šé™.', //cpg1.3.0
 );
 
-$lang_bbcode_help = '°Ñ¦Ò½s½X: <li>[b]<b>Bold</b>[/b]</li> <li>[i]<i>Italic</i>[/i]</li> <li>[url=http://yoursite.com/]Url Text[/url]</li> <li>[email]user@domain.com[/email]</li>'; //cpg1.3.0
+$lang_bbcode_help = 'åƒè€ƒç·¨ç¢¼: <li>[b]<b>Bold</b>[/b]</li> <li>[i]<i>Italic</i>[/i]</li> <li>[url=http://yoursite.com/]Url Text[/url]</li> <li>[email]user@domain.com[/email]</li>'; //cpg1.3.0
 
 // ------------------------------------------------------------------------- //
 // File theme.php
 // ------------------------------------------------------------------------- //
 //
 $lang_main_menu = array(
-  'alb_list_title' => 'ªğ¦^¬ÛÃ¯¥Ø¿ı',
-  'alb_list_lnk' => '¬ÛÃ¯¥Ø¿ı',
-  'my_gal_title' => 'ªğ¦^§Úªº¬ÛÃ¯',
-  'my_gal_lnk' => '§Úªº¬ÛÃ¯',
-  'my_prof_lnk' => '§Úªº­Ó¤H¸ê®Æ',
-  'adm_mode_title' => 'Âà¬°ºŞ²z¼Ò¦¡',
-  'adm_mode_lnk' => 'ºŞ²z¼Ò¦¡',
-  'usr_mode_title' => 'Âà¬°·|­û¼Ò¦¡',
-  'usr_mode_lnk' => '·|­û¼Ò¦¡',
-  'upload_pic_title' => '¤W¶Ç¹Ï¤ù¦Ü¬ÛÃ¯', //cpg1.3.0
-  'upload_pic_lnk' => '¤W¶Ç¹Ï¤ù', //cpg1.3.0
-  'register_title' => '«Ø¥ß·|­û±b¸¹',
-  'register_lnk' => 'µù¥U',
-  'login_lnk' => 'µn¤J',
-  'logout_lnk' => 'µn¥X',
-  'lastup_lnk' => '³Ì·s¤W¶Ç',
-  'lastcom_lnk' => '³Ì·s¯d¨¥',
-  'topn_lnk' => '¼öªù¹Ï¤ù',
-  'toprated_lnk' => '³Ì°ªµû¤À',
-  'search_lnk' => '·j´M',
-  'fav_lnk' => '§Úªº³Ì·R',
-  'memberlist_title' => 'Åã¥Ü·|­û¦W³æ', //cpg1.3.0
-  'memberlist_lnk' => '·|­û¦W³æ', //cpg1.3.0
-  'faq_title' => '&quot;Coppermine&quot; ¬ÛÃ¯ªº±`¨£°İÃD¸Ñµª', //cpg1.3.0
-  'faq_lnk' => '±`¨£°İÃD¸Ñµª', //cpg1.3.0
+  'alb_list_title' => 'è¿”å›ç›¸ç°¿ç›®éŒ„',
+  'alb_list_lnk' => 'ç›¸ç°¿ç›®éŒ„',
+  'my_gal_title' => 'è¿”å›æˆ‘çš„ç›¸ç°¿',
+  'my_gal_lnk' => 'æˆ‘çš„ç›¸ç°¿',
+  'my_prof_lnk' => 'æˆ‘çš„å€‹äººè³‡æ–™',
+  'adm_mode_title' => 'è½‰ç‚ºç®¡ç†æ¨¡å¼',
+  'adm_mode_lnk' => 'ç®¡ç†æ¨¡å¼',
+  'usr_mode_title' => 'è½‰ç‚ºæœƒå“¡æ¨¡å¼',
+  'usr_mode_lnk' => 'æœƒå“¡æ¨¡å¼',
+  'upload_pic_title' => 'ä¸Šå‚³åœ–ç‰‡è‡³ç›¸ç°¿', //cpg1.3.0
+  'upload_pic_lnk' => 'ä¸Šå‚³åœ–ç‰‡', //cpg1.3.0
+  'register_title' => 'å»ºç«‹æœƒå“¡å¸³è™Ÿ',
+  'register_lnk' => 'è¨»å†Š',
+  'login_lnk' => 'ç™»å…¥',
+  'logout_lnk' => 'ç™»å‡º',
+  'lastup_lnk' => 'æœ€æ–°ä¸Šå‚³',
+  'lastcom_lnk' => 'æœ€æ–°ç•™è¨€',
+  'topn_lnk' => 'ç†±é–€åœ–ç‰‡',
+  'toprated_lnk' => 'æœ€é«˜è©•åˆ†',
+  'search_lnk' => 'æœå°‹',
+  'fav_lnk' => 'æˆ‘çš„æœ€æ„›',
+  'memberlist_title' => 'é¡¯ç¤ºæœƒå“¡åå–®', //cpg1.3.0
+  'memberlist_lnk' => 'æœƒå“¡åå–®', //cpg1.3.0
+  'faq_title' => '&quot;Coppermine&quot; ç›¸ç°¿çš„å¸¸è¦‹å•é¡Œè§£ç­”', //cpg1.3.0
+  'faq_lnk' => 'å¸¸è¦‹å•é¡Œè§£ç­”', //cpg1.3.0
 );
 
 $lang_gallery_admin_menu = array(
-  'upl_app_lnk' => '®Ö­ã¤W¶Ç',
-  'config_lnk' => '³]©w',
-  'albums_lnk' => '¬ÛÃ¯',
-  'categories_lnk' => 'Ãş§O',
-  'users_lnk' => '·|­û',
-  'groups_lnk' => '¸s²Õ',
-  'comments_lnk' => 'Æ[¬İ¯d¨¥', //cpg1.3.0
-  'searchnew_lnk' => '¾ã§å¥[¤J¹Ï¤ù', //cpg1.3.0
-  'util_lnk' => 'ºŞ²z¤u¨ã', //cpg1.3.0
-  'ban_lnk' => 'ªı¾×·|­û',
-  'db_ecard_lnk' => 'Åã¥Ü¹q¤l¥d¤ù', //cpg1.3.0
+  'upl_app_lnk' => 'æ ¸å‡†ä¸Šå‚³',
+  'config_lnk' => 'è¨­å®š',
+  'albums_lnk' => 'ç›¸ç°¿',
+  'categories_lnk' => 'é¡åˆ¥',
+  'users_lnk' => 'æœƒå“¡',
+  'groups_lnk' => 'ç¾¤çµ„',
+  'comments_lnk' => 'è§€çœ‹ç•™è¨€', //cpg1.3.0
+  'searchnew_lnk' => 'æ•´æ‰¹åŠ å…¥åœ–ç‰‡', //cpg1.3.0
+  'util_lnk' => 'ç®¡ç†å·¥å…·', //cpg1.3.0
+  'ban_lnk' => 'é˜»æ“‹æœƒå“¡',
+  'db_ecard_lnk' => 'é¡¯ç¤ºé›»å­å¡ç‰‡', //cpg1.3.0
 );
 
 $lang_user_admin_menu = array(
-  'albmgr_lnk' => '«Ø¥ß/±Æ§Ç §Úªº¬ÛÃ¯',
-  'modifyalb_lnk' => '½s¿è§Úªº¬ÛÃ¯',
-  'my_prof_lnk' => '§Úªº­Ó¤H¸ê®Æ',
+  'albmgr_lnk' => 'å»ºç«‹/æ’åº æˆ‘çš„ç›¸ç°¿',
+  'modifyalb_lnk' => 'ç·¨è¼¯æˆ‘çš„ç›¸ç°¿',
+  'my_prof_lnk' => 'æˆ‘çš„å€‹äººè³‡æ–™',
 );
 
 $lang_cat_list = array(
-  'category' => 'Ãş§O',
-  'albums' => '¬ÛÃ¯',
-  'pictures' => '¹Ï¤ù', //cpg1.3.0
+  'category' => 'é¡åˆ¥',
+  'albums' => 'ç›¸ç°¿',
+  'pictures' => 'åœ–ç‰‡', //cpg1.3.0
 );
 
 $lang_album_list = array(
-  'album_on_page' => '%d ­Ó¬ÛÃ¯¦b %d ­¶',
+  'album_on_page' => '%d å€‹ç›¸ç°¿åœ¨ %d é ',
 );
 
 $lang_thumb_view = array(
-  'date' => '¤é´Á',
+  'date' => 'æ—¥æœŸ',
   //Sort by filename and title
-  'name' => 'ÀÉ¦W',
-  'title' => '¼ĞÃD',
-  'sort_da' => '¨Ì¤é´Á±Æ§Ç ¥Ñ»·¦Üªñ',
-  'sort_dd' => '¨Ì¤é´Á±Æ§Ç ¥Ñªñ¦Ü»·',
-  'sort_na' => '¨Ì¦WºÙ±Æ§Ç ¥Ñ¤p¦Ü¤j',
-  'sort_nd' => '¨Ì¦WºÙ±Æ§Ç ¥Ñ¤j¦Ü¤p',
-  'sort_ta' => '¨Ì¼ĞÃD±Æ§Ç ¥Ñ¤p¦Ü¤j',
-  'sort_td' => '¨Ì¼ĞÃD±Æ§Ç ¥Ñ¤j¦Ü¤p',
-  'download_zip' => '¤U¸ü¦¨ Zip ÀÉ', //cpg1.3.0
-  'pic_on_page' => '%d ±i¹Ï¤ù¦b %d ­¶',
-  'user_on_page' => '%d ¦W·|­û¦b %d ­¶', //cpg1.3.0
+  'name' => 'æª”å',
+  'title' => 'æ¨™é¡Œ',
+  'sort_da' => 'ä¾æ—¥æœŸæ’åº ç”±é è‡³è¿‘',
+  'sort_dd' => 'ä¾æ—¥æœŸæ’åº ç”±è¿‘è‡³é ',
+  'sort_na' => 'ä¾åç¨±æ’åº ç”±å°è‡³å¤§',
+  'sort_nd' => 'ä¾åç¨±æ’åº ç”±å¤§è‡³å°',
+  'sort_ta' => 'ä¾æ¨™é¡Œæ’åº ç”±å°è‡³å¤§',
+  'sort_td' => 'ä¾æ¨™é¡Œæ’åº ç”±å¤§è‡³å°',
+  'download_zip' => 'ä¸‹è¼‰æˆ Zip æª”', //cpg1.3.0
+  'pic_on_page' => '%d å¼µåœ–ç‰‡åœ¨ %d é ',
+  'user_on_page' => '%d åæœƒå“¡åœ¨ %d é ', //cpg1.3.0
 );
 
 $lang_img_nav_bar = array(
-  'thumb_title' => 'ªğ¦^ÁY¹Ï­¶',
-  'pic_info_title' => 'Åã¥Ü/ÁôÂÃ ¹Ï¤ù¸ê°T', //cpg1.3.0
-  'slideshow_title' => '³sÄò¼½©ñ',
-  'ecard_title' => '§â¹Ï¤ù¥H¹q¤l¥d¤ù±H¥X', //cpg1.3.0
-  'ecard_disabled' => '¹q¤l¥d¤ù¥\¯à¥Ø«e°±¥Î',
-  'ecard_disabled_msg' => '±z¨S¦³±H¹q¤l¥d¤ùªºÅv­­', //js-alert //cpg1.3.0
-  'prev_title' => 'Åã¥Ü«e¤@±i¹Ï¤ù', //cpg1.3.0
-  'next_title' => 'Åã¥Ü¤U¤@±i¹Ï¤ù', //cpg1.3.0
-  'pic_pos' => '¹Ï¤ù %s/%s', //cpg1.3.0
+  'thumb_title' => 'è¿”å›ç¸®åœ–é ',
+  'pic_info_title' => 'é¡¯ç¤º/éš±è— åœ–ç‰‡è³‡è¨Š', //cpg1.3.0
+  'slideshow_title' => 'é€£çºŒæ’­æ”¾',
+  'ecard_title' => 'æŠŠåœ–ç‰‡ä»¥é›»å­å¡ç‰‡å¯„å‡º', //cpg1.3.0
+  'ecard_disabled' => 'é›»å­å¡ç‰‡åŠŸèƒ½ç›®å‰åœç”¨',
+  'ecard_disabled_msg' => 'æ‚¨æ²’æœ‰å¯„é›»å­å¡ç‰‡çš„æ¬Šé™', //js-alert //cpg1.3.0
+  'prev_title' => 'é¡¯ç¤ºå‰ä¸€å¼µåœ–ç‰‡', //cpg1.3.0
+  'next_title' => 'é¡¯ç¤ºä¸‹ä¸€å¼µåœ–ç‰‡', //cpg1.3.0
+  'pic_pos' => 'åœ–ç‰‡ %s/%s', //cpg1.3.0
 );
 
 $lang_rate_pic = array(
-  'rate_this_pic' => '¹ï¹Ï¤ùµû¤À', //cpg1.3.0
-  'no_votes' => '(ÁÙ¨S¦³¤Hµû¤À)',
-  'rating' => '(¥Ø«e±o¤À : %s / 5 ©ó %s ­Óµû¤À)',
-  'rubbish' => '©ü­Ë ¤£¬İ¤]½}',
-  'poor' => '¦³ÂI®t«l',
-  'fair' => '´¶´¶³q³q',
-  'good' => '«Ü¦n',
-  'excellent' => '«D±`¥X¦â',
-  'great' => '¥s§Ú²Ä¤@¦W',
+  'rate_this_pic' => 'å°åœ–ç‰‡è©•åˆ†', //cpg1.3.0
+  'no_votes' => '(é‚„æ²’æœ‰äººè©•åˆ†)',
+  'rating' => '(ç›®å‰å¾—åˆ† : %s / 5 æ–¼ %s å€‹è©•åˆ†)',
+  'rubbish' => 'æ˜å€’ ä¸çœ‹ä¹Ÿç½·',
+  'poor' => 'æœ‰é»å·®å‹',
+  'fair' => 'æ™®æ™®é€šé€š',
+  'good' => 'å¾ˆå¥½',
+  'excellent' => 'éå¸¸å‡ºè‰²',
+  'great' => 'å«æˆ‘ç¬¬ä¸€å',
 );
 
 // ------------------------------------------------------------------------- //
@@ -212,39 +215,39 @@ $lang_rate_pic = array(
 $lang_cpg_die = array(
   INFORMATION => $lang_info,
   ERROR => $lang_error,
-  CRITICAL_ERROR => 'ºò«æ¿ù»~',
-  'file' => 'ÀÉ®×: ',
-  'line' => '¦æ¼Æ: ',
+  CRITICAL_ERROR => 'ç·Šæ€¥éŒ¯èª¤',
+  'file' => 'æª”æ¡ˆ: ',
+  'line' => 'è¡Œæ•¸: ',
 );
 
 $lang_display_thumbnails = array(
-  'filename' => 'ÀÉ®×¦WºÙ: ',
-  'filesize' => 'ÀÉ®×¤j¤p: ',
-  'dimensions' => '¹Ï¤ù¤Ø¤o: ',
-  'date_added' => '¥[¤J¤é´Á: ', //cpg1.3.0
+  'filename' => 'æª”æ¡ˆåç¨±: ',
+  'filesize' => 'æª”æ¡ˆå¤§å°: ',
+  'dimensions' => 'åœ–ç‰‡å°ºå¯¸: ',
+  'date_added' => 'åŠ å…¥æ—¥æœŸ: ', //cpg1.3.0
 );
 
 $lang_get_pic_data = array(
-  'n_comments' => '%s ­Ó¯d¨¥',
-  'n_views' => '%s ¦¸Æ[¬İ',
-  'n_votes' => '(%s ­Óµû¤À)',
+  'n_comments' => '%s å€‹ç•™è¨€',
+  'n_views' => '%s æ¬¡è§€çœ‹',
+  'n_votes' => '(%s å€‹è©•åˆ†)',
 );
 
 $lang_cpg_debug_output = array(
-  'debug_info' => '°£¿ù°T®§', //cpg1.3.0
-  'select_all' => '¥ş¿ï', //cpg1.3.0
-  'copy_and_paste_instructions' => '¦pªG§A­n¦bCoppermine¤ä´©½×¾Â¤W­n¨D¨ó§U, ½Æ»s¨Ã¶K¤W³o­Ó°£¿ù°T®§¨ì§Aªºµoªí¤å³¹¤º. µoªí¤å³¹«e½Ğª`·N¥Î***¨Ó¨ú¥N±zªº±K½X.', //cpg1.3.0
-  'phpinfo' => 'Åã¥ÜPHP°T®§ (phpinfo)', //cpg1.3.0
+  'debug_info' => 'é™¤éŒ¯è¨Šæ¯', //cpg1.3.0
+  'select_all' => 'å…¨é¸', //cpg1.3.0
+  'copy_and_paste_instructions' => 'å¦‚æœä½ è¦åœ¨Coppermineæ”¯æ´è«–å£‡ä¸Šè¦æ±‚å”åŠ©, è¤‡è£½ä¸¦è²¼ä¸Šé€™å€‹é™¤éŒ¯è¨Šæ¯åˆ°ä½ çš„ç™¼è¡¨æ–‡ç« å…§. ç™¼è¡¨æ–‡ç« å‰è«‹æ³¨æ„ç”¨***ä¾†å–ä»£æ‚¨çš„å¯†ç¢¼.', //cpg1.3.0
+  'phpinfo' => 'é¡¯ç¤ºPHPè¨Šæ¯ (phpinfo)', //cpg1.3.0
 );
 
 $lang_language_selection = array(
-  'reset_language' => '¹w³]»y¨t', //cpg1.3.0
-  'choose_language' => '¿ï¾Ü§Aªº»y¨t', //cpg1.3.0
+  'reset_language' => 'é è¨­èªç³»', //cpg1.3.0
+  'choose_language' => 'é¸æ“‡ä½ çš„èªç³»', //cpg1.3.0
 );
 
 $lang_theme_selection = array(
-  'reset_theme' => '¹w³]§G´º', //cpg1.3.0
-  'choose_theme' => '¿ï¾Ü§G´º', //cpg1.3.0
+  'reset_theme' => 'é è¨­ä½ˆæ™¯', //cpg1.3.0
+  'choose_theme' => 'é¸æ“‡ä½ˆæ™¯', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -264,28 +267,28 @@ $lang_theme_selection = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
-  'Exclamation' => '·P¼Û',
-  'Question' => 'ºÃ°İ',
-  'Very Happy' => '«Ü°ª¿³',
-  'Smile' => '·L¯º',
-  'Sad' => '´d«s',
-  'Surprised' => 'Åå³Y',
-  'Shocked' => '¾_Åå',
-  'Confused' => '©ü­Ë',
-  'Cool' => '«Ü´Î',
-  'Laughing' => 'µo¯º',
-  'Mad' => 'µo¨g',
-  'Razz' => '¼J¯º',
-  'Embarassed' => 'Àª§¼',
-  'Crying or Very sad' => 'Àz­ú',
-  'Evil or Very Mad' => '´c¬r',
-  'Twisted Evil' => '¥j©Ç',
-  'Rolling Eyes' => '±ÛÂàªº²´·ú',
-  'Wink' => '¯w²´',
-  'Idea' => '¥D·N',
-  'Arrow' => '½bÀY',
-  'Neutral' => '¤¤¥ß',
-  'Mr. Green' => '®æªL¥ı¥Í',
+  'Exclamation' => 'æ„Ÿæ­',
+  'Question' => 'ç–‘å•',
+  'Very Happy' => 'å¾ˆé«˜èˆˆ',
+  'Smile' => 'å¾®ç¬‘',
+  'Sad' => 'æ‚²å“€',
+  'Surprised' => 'é©šè¨',
+  'Shocked' => 'éœ‡é©š',
+  'Confused' => 'æ˜å€’',
+  'Cool' => 'å¾ˆæ£’',
+  'Laughing' => 'ç™¼ç¬‘',
+  'Mad' => 'ç™¼ç‹‚',
+  'Razz' => 'å˜²ç¬‘',
+  'Embarassed' => 'å°·å°¬',
+  'Crying or Very sad' => 'åšå“­',
+  'Evil or Very Mad' => 'æƒ¡æ¯’',
+  'Twisted Evil' => 'å¤æ€ª',
+  'Rolling Eyes' => 'æ—‹è½‰çš„çœ¼ç›',
+  'Wink' => 'çœ¨çœ¼',
+  'Idea' => 'ä¸»æ„',
+  'Arrow' => 'ç®­é ­',
+  'Neutral' => 'ä¸­ç«‹',
+  'Mr. Green' => 'æ ¼æ—å…ˆç”Ÿ',
 );
 
 // ------------------------------------------------------------------------- //
@@ -299,8 +302,8 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ADMIN_PHP')) $lang_admin_php = array(
-  0 => '¥¿Â÷¶}ºŞ²z¼Ò¦¡...',
-  1 => '¥¿¶i¤JºŞ²z¼Ò¦¡...',
+  0 => 'æ­£é›¢é–‹ç®¡ç†æ¨¡å¼...',
+  1 => 'æ­£é€²å…¥ç®¡ç†æ¨¡å¼...',
 );
 
 // ------------------------------------------------------------------------- //
@@ -308,20 +311,20 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
-  'alb_need_name' => '±z»İ­nµ¹¬ÛÃ¯¤@­Ó¦WºÙ !', //js-alert
-  'confirm_modifs' => '½T©w­n°µ³o¨Ç­×§ï¶Ü ?', //js-alert
-  'no_change' => '±z¨S¦³°µ¥ô¦ó§ïÅÜ !', //js-alert
-  'new_album' => '·s¬ÛÃ¯',
-  'confirm_delete1' => '½T©w­n§R°£¦¹¬ÛÃ¯¶Ü ?', //js-alert
-  'confirm_delete2' => '\n©Ò¦³¹Ï¤ù¤Î¯d¨¥³£·|§R°£ !', //js-alert
-  'select_first' => '½Ğ¥ı¿ï¾Ü¤@­Ó¬ÛÃ¯', //js-alert
-  'alb_mrg' => '¬ÛÃ¯ºŞ²z­û',
-  'my_gallery' => '* §Úªº¬ÛÃ¯ *',
-  'no_category' => '* ¨S¦³Ãş§O *',
-  'delete' => '§R°£',
-  'new' => '·s¼W',
-  'apply_modifs' => '­×§ï',
-  'select_category' => '¿ï¾ÜÃş§O',
+  'alb_need_name' => 'æ‚¨éœ€è¦çµ¦ç›¸ç°¿ä¸€å€‹åç¨± !', //js-alert
+  'confirm_modifs' => 'ç¢ºå®šè¦åšé€™äº›ä¿®æ”¹å— ?', //js-alert
+  'no_change' => 'æ‚¨æ²’æœ‰åšä»»ä½•æ”¹è®Š !', //js-alert
+  'new_album' => 'æ–°ç›¸ç°¿',
+  'confirm_delete1' => 'ç¢ºå®šè¦åˆªé™¤æ­¤ç›¸ç°¿å— ?', //js-alert
+  'confirm_delete2' => '\næ‰€æœ‰åœ–ç‰‡åŠç•™è¨€éƒ½æœƒåˆªé™¤ !', //js-alert
+  'select_first' => 'è«‹å…ˆé¸æ“‡ä¸€å€‹ç›¸ç°¿', //js-alert
+  'alb_mrg' => 'ç›¸ç°¿ç®¡ç†å“¡',
+  'my_gallery' => '* æˆ‘çš„ç›¸ç°¿ *',
+  'no_category' => '* æ²’æœ‰é¡åˆ¥ *',
+  'delete' => 'åˆªé™¤',
+  'new' => 'æ–°å¢',
+  'apply_modifs' => 'ä¿®æ”¹',
+  'select_category' => 'é¸æ“‡é¡åˆ¥',
 );
 
 // ------------------------------------------------------------------------- //
@@ -329,19 +332,19 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
-  'miss_param' => '\'%s\'¾Ş§@©Ò»İ­nªº°Ñ¼Æ¨Ã¥¼´£¨Ñ !',
-  'unknown_cat' => '¸ê®Æ®w¸Ì¨S¦³±z©Ò¿ïªºÃş§O',
-  'usergal_cat_ro' => '·|­û¬ÛÃ¯Ãş§O¤£¯à§R°£ !',
-  'manage_cat' => 'Ãş§OºŞ²z',
-  'confirm_delete' => '½T©w­n§R°£¦¹Ãş§O¶Ü', //js-alert
-  'category' => 'Ãş§O',
-  'operations' => '¾Ş§@',
-  'move_into' => '²¾°Ê¨ì',
-  'update_create' => '§ó·s/«Ø¥ß Ãş§O',
-  'parent_cat' => '¥ÀÃş§O',
-  'cat_title' => 'Ãş§O¼ĞÃD',
-  'cat_thumb' => 'Ãş§OÁY¹Ï', //cpg1.3.0
-  'cat_desc' => 'Ãş§OÂ²¤¶',
+  'miss_param' => '\'%s\'æ“ä½œæ‰€éœ€è¦çš„åƒæ•¸ä¸¦æœªæä¾› !',
+  'unknown_cat' => 'è³‡æ–™åº«è£¡æ²’æœ‰æ‚¨æ‰€é¸çš„é¡åˆ¥',
+  'usergal_cat_ro' => 'æœƒå“¡ç›¸ç°¿é¡åˆ¥ä¸èƒ½åˆªé™¤ !',
+  'manage_cat' => 'é¡åˆ¥ç®¡ç†',
+  'confirm_delete' => 'ç¢ºå®šè¦åˆªé™¤æ­¤é¡åˆ¥å—', //js-alert
+  'category' => 'é¡åˆ¥',
+  'operations' => 'æ“ä½œ',
+  'move_into' => 'ç§»å‹•åˆ°',
+  'update_create' => 'æ›´æ–°/å»ºç«‹ é¡åˆ¥',
+  'parent_cat' => 'æ¯é¡åˆ¥',
+  'cat_title' => 'é¡åˆ¥æ¨™é¡Œ',
+  'cat_thumb' => 'é¡åˆ¥ç¸®åœ–', //cpg1.3.0
+  'cat_desc' => 'é¡åˆ¥ç°¡ä»‹',
 );
 
 // ------------------------------------------------------------------------- //
@@ -349,140 +352,140 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('CONFIG_PHP')) $lang_config_php = array(
-  'title' => '³]©w',
-  'restore_cfg' => '¦^´_­ì©l³]©w',
-  'save_cfg' => 'Àx¦s·s³]©w',
-  'notes' => 'ª`·N',
-  'info' => '°T®§',
-  'upd_success' => '³]©w¤w§ó·s',
-  'restore_success' => '­ì©l³]©w¤w¦^´_',
-  'name_a' => '±Æ§Ç¨Ì¦WºÙ ¥Ñ¤p¦Ü¤j',
-  'name_d' => '±Æ§Ç¨Ì¦WºÙ ¥Ñ¤j¦Ü¤p',
-  'title_a' => '±Æ§Ç¨Ì¼ĞÃD ¥Ñ¤p¦Ü¤j',
-  'title_d' => '±Æ§Ç¨Ì¼ĞÃD ¥Ñ¤j¦Ü¤p',
-  'date_a' => '±Æ§Ç¨Ì¤é´Á ¥Ñ»·¦Üªñ',
-  'date_d' => '±Æ§Ç¨Ì¤é´Á ¥Ñªñ¦Ü»·',
-  'th_any' => '³Ì¤j¥~Æ[',
-  'th_ht' => '°ª«×',
-  'th_wd' => '¼e«×',
-  'label' => '¼ĞÅÒ', //cpg1.3.0
-  'item' => '¶µ¥Ø', //cpg1.3.0
-  'debug_everyone' => '¥ô¦ó¤H', //cpg1.3.0
-  'debug_admin' => 'ºŞ²z­û±M¥Î', //cpg1.3.0
+  'title' => 'è¨­å®š',
+  'restore_cfg' => 'å›å¾©åŸå§‹è¨­å®š',
+  'save_cfg' => 'å„²å­˜æ–°è¨­å®š',
+  'notes' => 'æ³¨æ„',
+  'info' => 'è¨Šæ¯',
+  'upd_success' => 'è¨­å®šå·²æ›´æ–°',
+  'restore_success' => 'åŸå§‹è¨­å®šå·²å›å¾©',
+  'name_a' => 'æ’åºä¾åç¨± ç”±å°è‡³å¤§',
+  'name_d' => 'æ’åºä¾åç¨± ç”±å¤§è‡³å°',
+  'title_a' => 'æ’åºä¾æ¨™é¡Œ ç”±å°è‡³å¤§',
+  'title_d' => 'æ’åºä¾æ¨™é¡Œ ç”±å¤§è‡³å°',
+  'date_a' => 'æ’åºä¾æ—¥æœŸ ç”±é è‡³è¿‘',
+  'date_d' => 'æ’åºä¾æ—¥æœŸ ç”±è¿‘è‡³é ',
+  'th_any' => 'æœ€å¤§å¤–è§€',
+  'th_ht' => 'é«˜åº¦',
+  'th_wd' => 'å¯¬åº¦',
+  'label' => 'æ¨™ç±¤', //cpg1.3.0
+  'item' => 'é …ç›®', //cpg1.3.0
+  'debug_everyone' => 'ä»»ä½•äºº', //cpg1.3.0
+  'debug_admin' => 'ç®¡ç†å“¡å°ˆç”¨', //cpg1.3.0
         );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
-  '°ò¥»³]©w',
-  array('¬ÛÃ¯¦WºÙ', 'gallery_name', 0),
-  array('¬ÛÃ¯´y­z', 'gallery_description', 0),
-  array('¬ÛÃ¯ºŞ²z­ûªº¹q¤l¶l¥ó', 'gallery_admin_email', 0),
-  array('¦b¹q¤l¥d¤ù¤ºÅã¥Ü\'Æ[¬İ§ó¦h¹Ï¤ù\'ªº³sµ²', 'ecards_more_pic_target', 0),
-  array('¬ÛÃ¯¥Ø«eÂ÷½u¤¤', 'offline', 1), //cpg1.3.0
-  array('¬ö¿ı¹q¤l¥d¤ù', 'log_ecards', 1), //cpg1.3.0
-  array('¤¹³\±N³Ì·Rªº¹Ï¤ù¤U¸ü¦¨ZIPÀÉ', 'enable_zipdownload', 1), //cpg1.3.0
+  'åŸºæœ¬è¨­å®š',
+  array('ç›¸ç°¿åç¨±', 'gallery_name', 0),
+  array('ç›¸ç°¿æè¿°', 'gallery_description', 0),
+  array('ç›¸ç°¿ç®¡ç†å“¡çš„é›»å­éƒµä»¶', 'gallery_admin_email', 0),
+  array('åœ¨é›»å­å¡ç‰‡å…§é¡¯ç¤º\'è§€çœ‹æ›´å¤šåœ–ç‰‡\'çš„é€£çµ', 'ecards_more_pic_target', 0),
+  array('ç›¸ç°¿ç›®å‰é›¢ç·šä¸­', 'offline', 1), //cpg1.3.0
+  array('ç´€éŒ„é›»å­å¡ç‰‡', 'log_ecards', 1), //cpg1.3.0
+  array('å…è¨±å°‡æœ€æ„›çš„åœ–ç‰‡ä¸‹è¼‰æˆZIPæª”', 'enable_zipdownload', 1), //cpg1.3.0
 
-  '»y¨t, §G´º &amp; ¤å¦r½s½X³]©w',
-  array('»y¨t', 'lang', 5),
-  array('§G´º', 'theme', 6),
-  array('Åã¥Ü»y¨t¦Cªí', 'language_list', 8), //cpg1.3.0
-  array('Åã¥Ü»y¨t°êºX', 'language_flags', 8), //cpg1.3.0
-  array('¦b»y¨t¦Cªí¤ºÅã¥Ü &quot;­«³]&quot;', 'language_reset', 1), //cpg1.3.0
-  array('Åã¥Ü§G´º¦Cªí', 'theme_list', 8), //cpg1.3.0
-  array('¦b§G´º¦Cªí¤ºÅã¥Ü &quot;­«³]&quot;', 'theme_reset', 1), //cpg1.3.0
-  array('Åã¥Ü FAQ', 'display_faq', 1), //cpg1.3.0
-  array('Åã¥Ü bbcode Â²¤¶', 'show_bbcode_help', 1), //cpg1.3.0
-  array('¤å¦r½s½X', 'charset', 4), //cpg1.3.0
+  'èªç³», ä½ˆæ™¯ &amp; æ–‡å­—ç·¨ç¢¼è¨­å®š',
+  array('èªç³»', 'lang', 5),
+  array('ä½ˆæ™¯', 'theme', 6),
+  array('é¡¯ç¤ºèªç³»åˆ—è¡¨', 'language_list', 8), //cpg1.3.0
+  array('é¡¯ç¤ºèªç³»åœ‹æ——', 'language_flags', 8), //cpg1.3.0
+  array('åœ¨èªç³»åˆ—è¡¨å…§é¡¯ç¤º &quot;é‡è¨­&quot;', 'language_reset', 1), //cpg1.3.0
+  array('é¡¯ç¤ºä½ˆæ™¯åˆ—è¡¨', 'theme_list', 8), //cpg1.3.0
+  array('åœ¨ä½ˆæ™¯åˆ—è¡¨å…§é¡¯ç¤º &quot;é‡è¨­&quot;', 'theme_reset', 1), //cpg1.3.0
+  array('é¡¯ç¤º FAQ', 'display_faq', 1), //cpg1.3.0
+  array('é¡¯ç¤º bbcode ç°¡ä»‹', 'show_bbcode_help', 1), //cpg1.3.0
+  array('æ–‡å­—ç·¨ç¢¼', 'charset', 4), //cpg1.3.0
 
-  '¬ÛÃ¯¥Ø¿ıÅã¥Ü',
-  array('¥D­nªí®æ¼e«× (¹³¯À©Î %)', 'main_table_width', 0),
-  array('¦P¤@¼h¦¸ªº¤lÃş§OÅã¥Ü¼Æ¶q', 'subcat_level', 0),
-  array('¬ÛÃ¯Åã¥Ü¼Æ¶q', 'albums_per_page', 0),
-  array('¬ÛÃ¯¥Ø¿ı¤ºªº¬ÛÃ¯Äæ¼Æ', 'album_list_cols', 0),
-  array('ÁY¹Ï¹³¯À', 'alb_list_thumb_size', 0),
-  array('¥D­¶ªº¤º®e', 'main_page_layout', 0),
-  array('Åã¥Ü¤ÀÃş¤¤²Ä¤@¼hªº¬ÛÃ¯ÁY¹Ï','first_level',1),
+  'ç›¸ç°¿ç›®éŒ„é¡¯ç¤º',
+  array('ä¸»è¦è¡¨æ ¼å¯¬åº¦ (åƒç´ æˆ– %)', 'main_table_width', 0),
+  array('åŒä¸€å±¤æ¬¡çš„å­é¡åˆ¥é¡¯ç¤ºæ•¸é‡', 'subcat_level', 0),
+  array('ç›¸ç°¿é¡¯ç¤ºæ•¸é‡', 'albums_per_page', 0),
+  array('ç›¸ç°¿ç›®éŒ„å…§çš„ç›¸ç°¿æ¬„æ•¸', 'album_list_cols', 0),
+  array('ç¸®åœ–åƒç´ ', 'alb_list_thumb_size', 0),
+  array('ä¸»é çš„å…§å®¹', 'main_page_layout', 0),
+  array('é¡¯ç¤ºåˆ†é¡ä¸­ç¬¬ä¸€å±¤çš„ç›¸ç°¿ç¸®åœ–','first_level',1),
 
-  'ÁY¹ÏÅã¥Ü',
-  array('ÁY¹Ï­¶Äæ¼Æ', 'thumbcols', 0),
-  array('ÁY¹Ï­¶¦C¼Æ', 'thumbrows', 0),
-  array('ªí®æÅã¥Ü³Ì°ª­Ó¼Æ', 'max_tabs', 10), //cpg1.3.0
-  array('Åã¥Ü¹Ï¤ù»¡©ú©óÁY¹Ï¤U¤è (³s¼ĞÃD)', 'caption_in_thumbview', 1), //cpg1.3.0
-  array('Åã¥ÜÆ[¬İ¦¸¼Æ©óÁY¹Ï¤U¤è', 'views_in_thumbview', 1), //cpg1.3.0
-  array('Åã¥Ü¯d¨¥¼Æ©óÁY¹Ï¤U¤è', 'display_comment_count', 1),
-  array('Åã¥Ü¤W¶ÇªÌ¦WºÙ©óÁY¹Ï¤U¤è', 'display_uploader', 1), //cpg1.3.0
-  array('¹Ï¤ùªº¹w³]±Æ§Ç', 'default_sort_order', 3), //cpg1.3.0
-  array('\'¼öªù§ë²¼\'»İ­nªº³Ì¤Ö§ë²¼¼Æ', 'min_votes_for_rating', 0), //cpg1.3.0
+  'ç¸®åœ–é¡¯ç¤º',
+  array('ç¸®åœ–é æ¬„æ•¸', 'thumbcols', 0),
+  array('ç¸®åœ–é åˆ—æ•¸', 'thumbrows', 0),
+  array('è¡¨æ ¼é¡¯ç¤ºæœ€é«˜å€‹æ•¸', 'max_tabs', 10), //cpg1.3.0
+  array('é¡¯ç¤ºåœ–ç‰‡èªªæ˜æ–¼ç¸®åœ–ä¸‹æ–¹ (é€£æ¨™é¡Œ)', 'caption_in_thumbview', 1), //cpg1.3.0
+  array('é¡¯ç¤ºè§€çœ‹æ¬¡æ•¸æ–¼ç¸®åœ–ä¸‹æ–¹', 'views_in_thumbview', 1), //cpg1.3.0
+  array('é¡¯ç¤ºç•™è¨€æ•¸æ–¼ç¸®åœ–ä¸‹æ–¹', 'display_comment_count', 1),
+  array('é¡¯ç¤ºä¸Šå‚³è€…åç¨±æ–¼ç¸®åœ–ä¸‹æ–¹', 'display_uploader', 1), //cpg1.3.0
+  array('åœ–ç‰‡çš„é è¨­æ’åº', 'default_sort_order', 3), //cpg1.3.0
+  array('\'ç†±é–€æŠ•ç¥¨\'éœ€è¦çš„æœ€å°‘æŠ•ç¥¨æ•¸', 'min_votes_for_rating', 0), //cpg1.3.0
 
-  '¹Ï¤ùÅã¥Ü &amp; ¯d¨¥³]©w',
-  array('¹Ï¤ùÅã¥Üªºªí®æ¼e«× (¹³¯À©Î %)', 'picture_table_width', 0), //cpg1.3.0
-  array('¹Ï¤ù¸ê°Tªº¹w³]¬°Åã¥Ü', 'display_pic_info', 1), //cpg1.3.0
-  array('¯d¨¥¤º¹LÂo¤£¨}µü·J', 'filter_bad_words', 1),
-  array('¯d¨¥¥i¥H¨Ï¥Î¯ºÁy¹Ï¥Ü', 'enable_smilies', 1),
-  array('¤¹³\·|­û¦b¦P¤@±i¹Ï¤ù ³sÄòµoªí¯d¨¥(Ãö³¬Äé¤ô«OÅ@)', 'disable_comment_flood_protect', 1), //cpg1.3.0
-  array('¹Ï¤ùÂ²¤¶ªº³Ì¤jªø«×', 'max_img_desc_length', 0),
-  array('¤å¦rªº³Ì¤j¦r¼Æ', 'max_com_wlength', 0),
-  array('¯d¨¥ªº³Ì¤j¦æ¼Æ', 'max_com_lines', 0),
-  array('¯d¨¥ªº³Ì¤jªø«×', 'max_com_size', 0),
-  array('Åã¥Ü¹Ï¤ù¹wÄı¦C', 'display_film_strip', 1),
-  array('¹Ï¤ù¹wÄı¦Cªº¹Ï¤ù¼Æ', 'max_film_strip_items', 0),
-  array('¦³¯d¨¥®É¥Î¹q¤l¶l¥ó³qª¾ºŞ²z­û', 'email_comment_notification', 1), //cpg1.3.0
-  array('³sÄò¼·©ñ¶¡¹j®É¶¡ (²@¬í). 1 ¬í = 1000 ²@¬í', 'slideshow_interval', 0), //cpg1.3.0
+  'åœ–ç‰‡é¡¯ç¤º &amp; ç•™è¨€è¨­å®š',
+  array('åœ–ç‰‡é¡¯ç¤ºçš„è¡¨æ ¼å¯¬åº¦ (åƒç´ æˆ– %)', 'picture_table_width', 0), //cpg1.3.0
+  array('åœ–ç‰‡è³‡è¨Šçš„é è¨­ç‚ºé¡¯ç¤º', 'display_pic_info', 1), //cpg1.3.0
+  array('ç•™è¨€å…§éæ¿¾ä¸è‰¯è©å½™', 'filter_bad_words', 1),
+  array('ç•™è¨€å¯ä»¥ä½¿ç”¨ç¬‘è‡‰åœ–ç¤º', 'enable_smilies', 1),
+  array('å…è¨±æœƒå“¡åœ¨åŒä¸€å¼µåœ–ç‰‡ é€£çºŒç™¼è¡¨ç•™è¨€(é—œé–‰çŒæ°´ä¿è­·)', 'disable_comment_flood_protect', 1), //cpg1.3.0
+  array('åœ–ç‰‡ç°¡ä»‹çš„æœ€å¤§é•·åº¦', 'max_img_desc_length', 0),
+  array('æ–‡å­—çš„æœ€å¤§å­—æ•¸', 'max_com_wlength', 0),
+  array('ç•™è¨€çš„æœ€å¤§è¡Œæ•¸', 'max_com_lines', 0),
+  array('ç•™è¨€çš„æœ€å¤§é•·åº¦', 'max_com_size', 0),
+  array('é¡¯ç¤ºåœ–ç‰‡é è¦½åˆ—', 'display_film_strip', 1),
+  array('åœ–ç‰‡é è¦½åˆ—çš„åœ–ç‰‡æ•¸', 'max_film_strip_items', 0),
+  array('æœ‰ç•™è¨€æ™‚ç”¨é›»å­éƒµä»¶é€šçŸ¥ç®¡ç†å“¡', 'email_comment_notification', 1), //cpg1.3.0
+  array('é€£çºŒæ’¥æ”¾é–“éš”æ™‚é–“ (æ¯«ç§’). 1 ç§’ = 1000 æ¯«ç§’', 'slideshow_interval', 0), //cpg1.3.0
 
-  '¹Ï¤ù¤ÎÁY¹Ï³]©w', //cpg1.3.0
-  array('JPEG ®æ¦¡«~½è', 'jpeg_qual', 0),
-  array('ÁY¹Ï³Ì¤j¤Ø¤o <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0), //cpg1.3.0
-  array('¨Ï¥Î¤Ø¤o ( ¼e¡B°ª©ÎÁY¹Ï³Ì¤jÃäªø )<b>**</b>', 'thumb_use', 7),
-  array('«Ø¥ß¤¤¯Å¹Ï¤ù','make_intermediate',1),
-  array('¤¤¯Å¹Ï¤ù/¼v¤ù³Ì¤j¤Ø¤o <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0), //cpg1.3.0
-  array('¤W¶Ç¹ÏÀÉªº³Ì¤j­­¨î (KB)', 'max_upl_size', 0), //cpg1.3.0
-  array('¤W¶Ç¹Ï¤ù/¼v¤ùªº³Ì¤j¼e«×©Î³Ì°ª¤Ø¤o (¹³¯À)', 'max_upl_width_height', 0), //cpg1.3.0
+  'åœ–ç‰‡åŠç¸®åœ–è¨­å®š', //cpg1.3.0
+  array('JPEG æ ¼å¼å“è³ª', 'jpeg_qual', 0),
+  array('ç¸®åœ–æœ€å¤§å°ºå¯¸ <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0), //cpg1.3.0
+  array('ä½¿ç”¨å°ºå¯¸ ( å¯¬ã€é«˜æˆ–ç¸®åœ–æœ€å¤§é‚Šé•· )<b>**</b>', 'thumb_use', 7),
+  array('å»ºç«‹ä¸­ç´šåœ–ç‰‡','make_intermediate',1),
+  array('ä¸­ç´šåœ–ç‰‡/å½±ç‰‡æœ€å¤§å°ºå¯¸ <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0), //cpg1.3.0
+  array('ä¸Šå‚³åœ–æª”çš„æœ€å¤§é™åˆ¶ (KB)', 'max_upl_size', 0), //cpg1.3.0
+  array('ä¸Šå‚³åœ–ç‰‡/å½±ç‰‡çš„æœ€å¤§å¯¬åº¦æˆ–æœ€é«˜å°ºå¯¸ (åƒç´ )', 'max_upl_width_height', 0), //cpg1.3.0
 
-  '¹Ï¤ù©MÁY¹Ïªº¶i¶¥³]©w', //cpg1.3.0
-  array('Åã¥Ü¨p¤H¬ÛÃ¯¹Ï¤ùµ¹¥¼µn¤J·|­û','show_private',1), //cpg1.3.0
-  array('ÀÉ®×¦WºÙ¤£±µ¨üªº¦r²Å', 'forbiden_fname_char',0), //cpg1.3.0
-  //array('¤W¶Ç¹ÏÀÉ¥i±µ¨üªº°ÆÀÉ¦W', 'allowed_file_extensions',0), //cpg1.3.0
-  array('¤¹³\ªº¹Ï¤ùÀÉÃş«¬', 'allowed_img_types',0), //cpg1.3.0
-  array('¤¹³\ªº¼v¤ùÀÉÃş«¬', 'allowed_mov_types',0), //cpg1.3.0
-  array('¤¹³\ªºÁn­µÀÉÃş«¬', 'allowed_snd_types',0), //cpg1.3.0
-  array('¤¹³\ªº¤å¥óÀÉÃş«¬', 'allowed_doc_types',0), //cpg1.3.0
-  array('«Ø¥ßÁY¹Ïªº¤èªk','thumb_method',2), //cpg1.3.0
-  array('ImageMagick \'convert\' µ{¦¡ªº¸ô®| (¨Ò¦p /usr/bin/X11/)', 'impath', 0), //cpg1.3.0
-  //array('¥i±µ¨üªº¹ÏÀÉÃş«¬(¥u¹ï ImageMagick ¦³®Ä)', 'allowed_img_types',0), //cpg1.3.0
-  array('ImageMagick ªº©R¥O¦C¿ï¶µ', 'im_options', 0), //cpg1.3.0
-  array('Åª¨ú JPEG ÀÉ®×ªº EXIF ¸ê®Æ', 'read_exif_data', 1), //cpg1.3.0
-  array('Åª¨ú JPEG ÀÉ®×ªº IPTC ¸ê®Æ', 'read_iptc_data', 1), //cpg1.3.0
-  array('¬ÛÃ¯¸ô®| <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0), //cpg1.3.0
-  array('·|­û¹ÏÀÉ¸ô®| <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0), //cpg1.3.0
-  array('¤¤¯Å¹ÏÀÉªº«e¸m¦r¤¸ <a href="#notice1" class="clickable_option">*</a>', 'normal_pfx', 0), //cpg1.3.0
-  array('ÁY¹ÏÀÉªº«e¸m¦r¤¸ <a href="#notice1" class="clickable_option">*</a>', 'thumb_pfx', 0), //cpg1.3.0
-  array('©ñ¸m¹ÏÀÉ¥Ø¿ıªº¹w³]Åv­­', 'default_dir_mode', 0), //cpg1.3.0
-  array('¤W¶Ç¹Ï¤ùªº¹w³]Åv­­', 'default_file_mode', 0), //cpg1.3.0
+  'åœ–ç‰‡å’Œç¸®åœ–çš„é€²éšè¨­å®š', //cpg1.3.0
+  array('é¡¯ç¤ºç§äººç›¸ç°¿åœ–ç‰‡çµ¦æœªç™»å…¥æœƒå“¡','show_private',1), //cpg1.3.0
+  array('æª”æ¡ˆåç¨±ä¸æ¥å—çš„å­—ç¬¦', 'forbiden_fname_char',0), //cpg1.3.0
+  //array('ä¸Šå‚³åœ–æª”å¯æ¥å—çš„å‰¯æª”å', 'allowed_file_extensions',0), //cpg1.3.0
+  array('å…è¨±çš„åœ–ç‰‡æª”é¡å‹', 'allowed_img_types',0), //cpg1.3.0
+  array('å…è¨±çš„å½±ç‰‡æª”é¡å‹', 'allowed_mov_types',0), //cpg1.3.0
+  array('å…è¨±çš„è²éŸ³æª”é¡å‹', 'allowed_snd_types',0), //cpg1.3.0
+  array('å…è¨±çš„æ–‡ä»¶æª”é¡å‹', 'allowed_doc_types',0), //cpg1.3.0
+  array('å»ºç«‹ç¸®åœ–çš„æ–¹æ³•','thumb_method',2), //cpg1.3.0
+  array('ImageMagick \'convert\' ç¨‹å¼çš„è·¯å¾‘ (ä¾‹å¦‚ /usr/bin/X11/)', 'impath', 0), //cpg1.3.0
+  //array('å¯æ¥å—çš„åœ–æª”é¡å‹(åªå° ImageMagick æœ‰æ•ˆ)', 'allowed_img_types',0), //cpg1.3.0
+  array('ImageMagick çš„å‘½ä»¤åˆ—é¸é …', 'im_options', 0), //cpg1.3.0
+  array('è®€å– JPEG æª”æ¡ˆçš„ EXIF è³‡æ–™', 'read_exif_data', 1), //cpg1.3.0
+  array('è®€å– JPEG æª”æ¡ˆçš„ IPTC è³‡æ–™', 'read_iptc_data', 1), //cpg1.3.0
+  array('ç›¸ç°¿è·¯å¾‘ <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0), //cpg1.3.0
+  array('æœƒå“¡åœ–æª”è·¯å¾‘ <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0), //cpg1.3.0
+  array('ä¸­ç´šåœ–æª”çš„å‰ç½®å­—å…ƒ <a href="#notice1" class="clickable_option">*</a>', 'normal_pfx', 0), //cpg1.3.0
+  array('ç¸®åœ–æª”çš„å‰ç½®å­—å…ƒ <a href="#notice1" class="clickable_option">*</a>', 'thumb_pfx', 0), //cpg1.3.0
+  array('æ”¾ç½®åœ–æª”ç›®éŒ„çš„é è¨­æ¬Šé™', 'default_dir_mode', 0), //cpg1.3.0
+  array('ä¸Šå‚³åœ–ç‰‡çš„é è¨­æ¬Šé™', 'default_file_mode', 0), //cpg1.3.0
 
-  '·|­û³]©w',
-  array('¤¹³\·s·|­ûµù¥U', 'allow_user_registration', 1),
-  array('µù¥U»İ­n¹q¤l¶l¥óÅçÃÒ', 'reg_requires_valid_email', 1),
-  array('¦³¨Ï¥ÎªÌµù¥U®É¥Î¹q¤l¶l¥ó³qª¾ºŞ²z­û', 'reg_notify_admin_email', 1), //cpg1.3.0
-  array('¤¹³\¨â­Ó·|­û¨Ï¥Î¦P¤@­Ó¹q¤l¶l¥ó', 'allow_duplicate_emails_addr', 1),
-  array('·|­û¥i¥H¦³¨p¤Hªº¬ÛÃ¯ (ª`·N: ¦pªG§A¤Á´« ¬O¨ì§_ ¥ô¦ó¥Ø«e¨p¤H¬ÛÃ¯±NÅÜ¦¨¤½¶}¬ÛÃ¯)', 'allow_private_albums', 1), //cpg1.3.0
-  array('¦³·|­û¤W¶ÇÀÉ®×µ¥«İ®Ö­ã®É³qª¾ºŞ²z­û', 'upl_notify_admin_email', 1), //cpg1.3.0
-  array('¤¹³\µn¤Jªº·|­û¬d¬İ·|­û¦W³æ', 'allow_memberlist', 1), //cpg1.3.0
+  'æœƒå“¡è¨­å®š',
+  array('å…è¨±æ–°æœƒå“¡è¨»å†Š', 'allow_user_registration', 1),
+  array('è¨»å†Šéœ€è¦é›»å­éƒµä»¶é©—è­‰', 'reg_requires_valid_email', 1),
+  array('æœ‰ä½¿ç”¨è€…è¨»å†Šæ™‚ç”¨é›»å­éƒµä»¶é€šçŸ¥ç®¡ç†å“¡', 'reg_notify_admin_email', 1), //cpg1.3.0
+  array('å…è¨±å…©å€‹æœƒå“¡ä½¿ç”¨åŒä¸€å€‹é›»å­éƒµä»¶', 'allow_duplicate_emails_addr', 1),
+  array('æœƒå“¡å¯ä»¥æœ‰ç§äººçš„ç›¸ç°¿ (æ³¨æ„: å¦‚æœä½ åˆ‡æ› æ˜¯åˆ°å¦ ä»»ä½•ç›®å‰ç§äººç›¸ç°¿å°‡è®Šæˆå…¬é–‹ç›¸ç°¿)', 'allow_private_albums', 1), //cpg1.3.0
+  array('æœ‰æœƒå“¡ä¸Šå‚³æª”æ¡ˆç­‰å¾…æ ¸å‡†æ™‚é€šçŸ¥ç®¡ç†å“¡', 'upl_notify_admin_email', 1), //cpg1.3.0
+  array('å…è¨±ç™»å…¥çš„æœƒå“¡æŸ¥çœ‹æœƒå“¡åå–®', 'allow_memberlist', 1), //cpg1.3.0
 
-  '¼v¹³Â²¤¶ªº¦Û­qÄæ¦ì (¦pªG¤£¨Ï¥Î½Ğ¯d¤UªÅ¥Õ)',
-  array('Äæ¦ì 1 ªº¦WºÙ', 'user_field1_name', 0),
-  array('Äæ¦ì 2 ªº¦WºÙ', 'user_field2_name', 0),
-  array('Äæ¦ì 3 ªº¦WºÙ', 'user_field3_name', 0),
-  array('Äæ¦ì 4 ªº¦WºÙ', 'user_field4_name', 0),
+  'å½±åƒç°¡ä»‹çš„è‡ªè¨‚æ¬„ä½ (å¦‚æœä¸ä½¿ç”¨è«‹ç•™ä¸‹ç©ºç™½)',
+  array('æ¬„ä½ 1 çš„åç¨±', 'user_field1_name', 0),
+  array('æ¬„ä½ 2 çš„åç¨±', 'user_field2_name', 0),
+  array('æ¬„ä½ 3 çš„åç¨±', 'user_field3_name', 0),
+  array('æ¬„ä½ 4 çš„åç¨±', 'user_field4_name', 0),
 
-  'Cookies ³]©w',
-  array('¨Ï¥Îªº cookie ¦WºÙ (»P½×¾Âµ{¦¡¾ã¦X®É, ½T©w¥¦©M½×¾Âªºcookie¤£¦P)', 'cookie_name', 0),
-  array('¨Ï¥Îªº cookie ¸ô®|', 'cookie_path', 0),
+  'Cookies è¨­å®š',
+  array('ä½¿ç”¨çš„ cookie åç¨± (èˆ‡è«–å£‡ç¨‹å¼æ•´åˆæ™‚, ç¢ºå®šå®ƒå’Œè«–å£‡çš„cookieä¸åŒ)', 'cookie_name', 0),
+  array('ä½¿ç”¨çš„ cookie è·¯å¾‘', 'cookie_path', 0),
 
-  '¨ä¥L³]©w',
-  array('±Ò°Ê°£¿ù¼Ò¦¡', 'debug_mode', 9), //cpg1.3.0
-  array('¦b°£¿ù¼Ò¦¡®ÉÅã¥Ü´£¥Ü', 'debug_notice', 1), //cpg1.3.0
+  'å…¶ä»–è¨­å®š',
+  array('å•Ÿå‹•é™¤éŒ¯æ¨¡å¼', 'debug_mode', 9), //cpg1.3.0
+  array('åœ¨é™¤éŒ¯æ¨¡å¼æ™‚é¡¯ç¤ºæç¤º', 'debug_notice', 1), //cpg1.3.0
 
-  '<br /><div align="left"><a name="notice1"></a>(*) ­Y¬ÛÃ¯¤º¦³¹Ï¤ù, ¼Ğ¥Ü¦³ * ªºÄæ¦ìªí¥Ü¤£¥i§ó§ï.<br />
-  <a name="notice2"></a>(**) §ïÅÜ³o­Ó³]©w¥u¼vÅT¤w¸g¥[¤JªºÀÉ®×, ¦pªG¨º¨ÇÀÉ®×¤w¸g¦b¬ÛÃ¯¤º¤F,³o­Ó³]©w¤£¥²§ïÅÜ. µL½×¦p¦ó,§A¥i¥H±q ºŞ²z­û¥\¯à¿ï³æ¸Ì ½Õ¾ã¬J¦³ªºÀÉ®×,±q &quot;<a href="util.php">ºŞ²z¤u¨ã</a> (½Õ¾ã¹Ï¤ù¤Ø¤o)&quot; </div><br />', //cpg1.3.0
+  '<br /><div align="left"><a name="notice1"></a>(*) è‹¥ç›¸ç°¿å…§æœ‰åœ–ç‰‡, æ¨™ç¤ºæœ‰ * çš„æ¬„ä½è¡¨ç¤ºä¸å¯æ›´æ”¹.<br />
+  <a name="notice2"></a>(**) æ”¹è®Šé€™å€‹è¨­å®šåªå½±éŸ¿å·²ç¶“åŠ å…¥çš„æª”æ¡ˆ, å¦‚æœé‚£äº›æª”æ¡ˆå·²ç¶“åœ¨ç›¸ç°¿å…§äº†,é€™å€‹è¨­å®šä¸å¿…æ”¹è®Š. ç„¡è«–å¦‚ä½•,ä½ å¯ä»¥å¾ ç®¡ç†å“¡åŠŸèƒ½é¸å–®è£¡ èª¿æ•´æ—¢æœ‰çš„æª”æ¡ˆ,å¾ &quot;<a href="util.php">ç®¡ç†å·¥å…·</a> (èª¿æ•´åœ–ç‰‡å°ºå¯¸)&quot; </div><br />', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -490,31 +493,31 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
-  'title' => '±H¥X¹q¤l¥d¤ù', //cpg1.3.0
-  'ecard_sender' => '±H¥óªÌ', //cpg1.3.0
-  'ecard_recipient' => '¦¬¥óªÌ', //cpg1.3.0
-  'ecard_date' => '¤é´Á', //cpg1.3.0
-  'ecard_display' => 'Åã¥Ü¹q¤l¥d¤ù', //cpg1.3.0
-  'ecard_name' => '¦WºÙ', //cpg1.3.0
-  'ecard_email' => '¹q¤l¶l¥ó', //cpg1.3.0
+  'title' => 'å¯„å‡ºé›»å­å¡ç‰‡', //cpg1.3.0
+  'ecard_sender' => 'å¯„ä»¶è€…', //cpg1.3.0
+  'ecard_recipient' => 'æ”¶ä»¶è€…', //cpg1.3.0
+  'ecard_date' => 'æ—¥æœŸ', //cpg1.3.0
+  'ecard_display' => 'é¡¯ç¤ºé›»å­å¡ç‰‡', //cpg1.3.0
+  'ecard_name' => 'åç¨±', //cpg1.3.0
+  'ecard_email' => 'é›»å­éƒµä»¶', //cpg1.3.0
   'ecard_ip' => 'IP #', //cpg1.3.0
-  'ecard_ascending' => '¤É¾­', //cpg1.3.0
-  'ecard_descending' => '­°¾­', //cpg1.3.0
-  'ecard_sorted' => '±Æ§Ç', //cpg1.3.0
-  'ecard_by_date' => '¨Ì¤é´Á', //cpg1.3.0
-  'ecard_by_sender_name' => '¨Ì±H¥óªÌ¦WºÙ', //cpg1.3.0
-  'ecard_by_sender_email' => '¨Ì±H¥óªÌ¶l¥ó', //cpg1.3.0
-  'ecard_by_sender_ip' => '¨Ì±H¥óªÌªº IP ¦ì§}', //cpg1.3.0
-  'ecard_by_recipient_name' => '¨Ì¦¬¥óªÌ¦WºÙ', //cpg1.3.0
-  'ecard_by_recipient_email' => '¨Ì¦¬¥óªÌ¶l¥ó', //cpg1.3.0
-  'ecard_number' => 'Åã¥Ü¬ö¿ı %s ¨ì %s ¦b %s', //cpg1.3.0
-  'ecard_goto_page' => '¨ì­¶¦¸', //cpg1.3.0
-  'ecard_records_per_page' => '­¶¦¸¬ö¿ı', //cpg1.3.0
-  'check_all' => '¥ş¿ï', //cpg1.3.0
-  'uncheck_all' => '³£¤£¿ï', //cpg1.3.0
-  'ecards_delete_selected' => '§R°£¿ï¨úªº¥d¤ù', //cpg1.3.0
-  'ecards_delete_confirm' => '§A½T©w­n§R°£¬ö¿ı? ½ĞÂI¿ï!', //cpg1.3.0
-  'ecards_delete_sure' => '§Ú½T©w', //cpg1.3.0
+  'ecard_ascending' => 'å‡å†ª', //cpg1.3.0
+  'ecard_descending' => 'é™å†ª', //cpg1.3.0
+  'ecard_sorted' => 'æ’åº', //cpg1.3.0
+  'ecard_by_date' => 'ä¾æ—¥æœŸ', //cpg1.3.0
+  'ecard_by_sender_name' => 'ä¾å¯„ä»¶è€…åç¨±', //cpg1.3.0
+  'ecard_by_sender_email' => 'ä¾å¯„ä»¶è€…éƒµä»¶', //cpg1.3.0
+  'ecard_by_sender_ip' => 'ä¾å¯„ä»¶è€…çš„ IP ä½å€', //cpg1.3.0
+  'ecard_by_recipient_name' => 'ä¾æ”¶ä»¶è€…åç¨±', //cpg1.3.0
+  'ecard_by_recipient_email' => 'ä¾æ”¶ä»¶è€…éƒµä»¶', //cpg1.3.0
+  'ecard_number' => 'é¡¯ç¤ºç´€éŒ„ %s åˆ° %s åœ¨ %s', //cpg1.3.0
+  'ecard_goto_page' => 'åˆ°é æ¬¡', //cpg1.3.0
+  'ecard_records_per_page' => 'é æ¬¡ç´€éŒ„', //cpg1.3.0
+  'check_all' => 'å…¨é¸', //cpg1.3.0
+  'uncheck_all' => 'éƒ½ä¸é¸', //cpg1.3.0
+  'ecards_delete_selected' => 'åˆªé™¤é¸å–çš„å¡ç‰‡', //cpg1.3.0
+  'ecards_delete_confirm' => 'ä½ ç¢ºå®šè¦åˆªé™¤ç´€éŒ„? è«‹é»é¸!', //cpg1.3.0
+  'ecards_delete_sure' => 'æˆ‘ç¢ºå®š', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -522,34 +525,34 @@ if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
-  'empty_name_or_com' => '½Ğ¿é¤J±zªº¦W¦r©M¯d¨¥',
-  'com_added' => '±zªº¯d¨¥¤w¸g¥[¤J',
-  'alb_need_title' => '±z¥²¶·¬°¬ÛÃ¯´£¨Ñ¤@­Ó¼ĞÃD !',
-  'no_udp_needed' => '¨S¦³§ó·sªº¥²­n',
-  'alb_updated' => '¬ÛÃ¯¤w¸g§ó·s',
-  'unknown_album' => '©Ò¿ï¾Üªº¬ÛÃ¯¤£¦s¦b©Î±z¨S¦³Åv­­¤W¶ÇÀÉ®×¨ì¦¹¬ÛÃ¯',
-  'no_pic_uploaded' => '¨S¦³ÀÉ®×³Q¤W¶Ç !<br /><br />¦pªG±z½T©w¦³¿ï¾ÜÀÉ®×¤W¶Ç, ½ĞÀË¬d¦øªA¾¹¬O§_¤¹³\¤W¶ÇÀÉ®×...', //cpg1.3.0
-  'err_mkdir' => 'µLªk«Ø¥ß¥Ø¿ı %s !',
-  'dest_dir_ro' => '¥Ø¿ı %s µLªk¼g¤J !',
-  'err_move' => 'µLªk²¾°Ê %s ¨ì %s !',
-  'err_fsize_too_large' => '±z¤W¶Çªº¹Ï¤ù¤Ó¤j (¤£¯à¶W¹L %s x %s) !', //cpg1.3.0
-  'err_imgsize_too_large' => '±z¤W¶Çªº¹ÏÀÉ¤Ó¤j (¤£¯à¶W¹L %s KB) !',
-  'err_invalid_img' => '¤W¶ÇªºÀÉ®×¨Ã¤£¬O®e³\ªº¹Ï¤ù®æ¦¡ !',
-  'allowed_img_types' => '±z¥u¥i¥H¤W¶Ç %s ±i¹Ï¤ù.',
-  'err_insert_pic' => 'ÀÉ®× \'%s\' µLªk¥[¤J¦¹¬ÛÃ¯ ', //cpg1.3.0
-  'upload_success' => 'ÀÉ®×¤W¶Ç§¹¦¨!<br /><br />·íºŞ²zªÌ®Ö­ã«á´N¥i¥H¬İ¨ìÀÉ®×¤F.', //cpg1.3.0
-  'notify_admin_email_subject' => '%s - ¤W¶ÇÀÉ®×³qª¾', //cpg1.3.0
-  'notify_admin_email_body' => '%s¦³¤W¶ÇÀÉ®× »İ­n§Aªº®Ö­ã. ½Ğ¬d¾\ %s', //cpg1.3.0
-  'info' => '°T®§',
-  'com_added' => '¯d¨¥¤w¥[¤J',
-  'alb_updated' => '¬ÛÃ¯¤w¸g§ó·s',
-  'err_comment_empty' => '¯d¨¥¬OªÅªº !',
-  'err_invalid_fext' => '¥u¦³¤U¦Cªº°ÆÀÉ¦W¤~¤¹³\¤W¶Ç : <br /><br />%s.',
-  'no_flood' => '©êºp, ¦¹¹Ï¤ù³Ì«á¤@­Ó¯d¨¥¬O±z´£¨Ñ<br /><br />±z¥u¥i¥H­×§ï±zªº¯d¨¥', //cpg1.3.0
-  'redirect_msg' => '­¶­±Âà²¾¤¤.<br /><br /><br />«ö \'Ä~Äò\' ¦pªG­¶­±¨S¦³¦Û°Ê¨ê·s',
-  'upl_success' => '¤w¸g¥[¤J±zªº¹Ï¤ù', //cpg1.3.0
-  'email_comment_subject' => '¤w¸g¦³¯d¨¥µoªí¦bºô¸ô¬ÛÃ¯', //cpg1.3.0
-  'email_comment_body' => '¤w¸g¦³¯d¨¥µoªí¦b±zªº¬ÛÃ¯. ½Ğ¬d¾\'', //cpg1.3.0
+  'empty_name_or_com' => 'è«‹è¼¸å…¥æ‚¨çš„åå­—å’Œç•™è¨€',
+  'com_added' => 'æ‚¨çš„ç•™è¨€å·²ç¶“åŠ å…¥',
+  'alb_need_title' => 'æ‚¨å¿…é ˆç‚ºç›¸ç°¿æä¾›ä¸€å€‹æ¨™é¡Œ !',
+  'no_udp_needed' => 'æ²’æœ‰æ›´æ–°çš„å¿…è¦',
+  'alb_updated' => 'ç›¸ç°¿å·²ç¶“æ›´æ–°',
+  'unknown_album' => 'æ‰€é¸æ“‡çš„ç›¸ç°¿ä¸å­˜åœ¨æˆ–æ‚¨æ²’æœ‰æ¬Šé™ä¸Šå‚³æª”æ¡ˆåˆ°æ­¤ç›¸ç°¿',
+  'no_pic_uploaded' => 'æ²’æœ‰æª”æ¡ˆè¢«ä¸Šå‚³ !<br /><br />å¦‚æœæ‚¨ç¢ºå®šæœ‰é¸æ“‡æª”æ¡ˆä¸Šå‚³, è«‹æª¢æŸ¥ä¼ºæœå™¨æ˜¯å¦å…è¨±ä¸Šå‚³æª”æ¡ˆ...', //cpg1.3.0
+  'err_mkdir' => 'ç„¡æ³•å»ºç«‹ç›®éŒ„ %s !',
+  'dest_dir_ro' => 'ç›®éŒ„ %s ç„¡æ³•å¯«å…¥ !',
+  'err_move' => 'ç„¡æ³•ç§»å‹• %s åˆ° %s !',
+  'err_fsize_too_large' => 'æ‚¨ä¸Šå‚³çš„åœ–ç‰‡å¤ªå¤§ (ä¸èƒ½è¶…é %s x %s) !', //cpg1.3.0
+  'err_imgsize_too_large' => 'æ‚¨ä¸Šå‚³çš„åœ–æª”å¤ªå¤§ (ä¸èƒ½è¶…é %s KB) !',
+  'err_invalid_img' => 'ä¸Šå‚³çš„æª”æ¡ˆä¸¦ä¸æ˜¯å®¹è¨±çš„åœ–ç‰‡æ ¼å¼ !',
+  'allowed_img_types' => 'æ‚¨åªå¯ä»¥ä¸Šå‚³ %s å¼µåœ–ç‰‡.',
+  'err_insert_pic' => 'æª”æ¡ˆ \'%s\' ç„¡æ³•åŠ å…¥æ­¤ç›¸ç°¿ ', //cpg1.3.0
+  'upload_success' => 'æª”æ¡ˆä¸Šå‚³å®Œæˆ!<br /><br />ç•¶ç®¡ç†è€…æ ¸å‡†å¾Œå°±å¯ä»¥çœ‹åˆ°æª”æ¡ˆäº†.', //cpg1.3.0
+  'notify_admin_email_subject' => '%s - ä¸Šå‚³æª”æ¡ˆé€šçŸ¥', //cpg1.3.0
+  'notify_admin_email_body' => '%sæœ‰ä¸Šå‚³æª”æ¡ˆ éœ€è¦ä½ çš„æ ¸å‡†. è«‹æŸ¥é–± %s', //cpg1.3.0
+  'info' => 'è¨Šæ¯',
+  'com_added' => 'ç•™è¨€å·²åŠ å…¥',
+  'alb_updated' => 'ç›¸ç°¿å·²ç¶“æ›´æ–°',
+  'err_comment_empty' => 'ç•™è¨€æ˜¯ç©ºçš„ !',
+  'err_invalid_fext' => 'åªæœ‰ä¸‹åˆ—çš„å‰¯æª”åæ‰å…è¨±ä¸Šå‚³ : <br /><br />%s.',
+  'no_flood' => 'æŠ±æ­‰, æ­¤åœ–ç‰‡æœ€å¾Œä¸€å€‹ç•™è¨€æ˜¯æ‚¨æä¾›<br /><br />æ‚¨åªå¯ä»¥ä¿®æ”¹æ‚¨çš„ç•™è¨€', //cpg1.3.0
+  'redirect_msg' => 'é é¢è½‰ç§»ä¸­.<br /><br /><br />æŒ‰ \'ç¹¼çºŒ\' å¦‚æœé é¢æ²’æœ‰è‡ªå‹•åˆ·æ–°',
+  'upl_success' => 'å·²ç¶“åŠ å…¥æ‚¨çš„åœ–ç‰‡', //cpg1.3.0
+  'email_comment_subject' => 'å·²ç¶“æœ‰ç•™è¨€ç™¼è¡¨åœ¨ç¶²è·¯ç›¸ç°¿', //cpg1.3.0
+  'email_comment_body' => 'å·²ç¶“æœ‰ç•™è¨€ç™¼è¡¨åœ¨æ‚¨çš„ç›¸ç°¿. è«‹æŸ¥é–±'', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -557,24 +560,24 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DELETE_PHP')) $lang_delete_php = array(
-  'caption' => '»¡©ú',
-  'fs_pic' => '­ì¹Ï',
-  'del_success' => '§¹¦¨§R°£',
-  'ns_pic' => '¼Ğ·Ç¤Ø¤o¹Ï¤ù',
-  'err_del' => 'µLªk§R°£',
-  'thumb_pic' => 'ÁY¹Ï',
-  'comment' => '¯d¨¥',
-  'im_in_alb' => '¬ÛÃ¯¤º¹Ï¤ù',
-  'alb_del_success' => '¬ÛÃ¯ \'%s\' ¤w§R°£',
-  'alb_mgr' => '¬ÛÃ¯ºŞ²z',
-  'err_invalid_data' => '±µ¦¬¨ì¤£¥¿½Tªº¸ê®Æ©ó \'%s\'',
-  'create_alb' => '«Ø¥ß¬ÛÃ¯ \'%s\'',
-  'update_alb' => '§ó·s¬ÛÃ¯ \'%s\' ¼ĞÃD¬° \'%s\' ¯Á¤Ş¬° \'%s\'',
-  'del_pic' => '§R°£¹Ï¤ù', //cpg1.3.0
-  'del_alb' => '§R°£¬ÛÃ¯',
-  'del_user' => '§R°£·|­û',
-  'err_unknown_user' => '©Ò¿ï¾Üªº·|­û¤£¦s¦b !',
-  'comment_deleted' => '¯d¨¥¤w§R°£',
+  'caption' => 'èªªæ˜',
+  'fs_pic' => 'åŸåœ–',
+  'del_success' => 'å®Œæˆåˆªé™¤',
+  'ns_pic' => 'æ¨™æº–å°ºå¯¸åœ–ç‰‡',
+  'err_del' => 'ç„¡æ³•åˆªé™¤',
+  'thumb_pic' => 'ç¸®åœ–',
+  'comment' => 'ç•™è¨€',
+  'im_in_alb' => 'ç›¸ç°¿å…§åœ–ç‰‡',
+  'alb_del_success' => 'ç›¸ç°¿ \'%s\' å·²åˆªé™¤',
+  'alb_mgr' => 'ç›¸ç°¿ç®¡ç†',
+  'err_invalid_data' => 'æ¥æ”¶åˆ°ä¸æ­£ç¢ºçš„è³‡æ–™æ–¼ \'%s\'',
+  'create_alb' => 'å»ºç«‹ç›¸ç°¿ \'%s\'',
+  'update_alb' => 'æ›´æ–°ç›¸ç°¿ \'%s\' æ¨™é¡Œç‚º \'%s\' ç´¢å¼•ç‚º \'%s\'',
+  'del_pic' => 'åˆªé™¤åœ–ç‰‡', //cpg1.3.0
+  'del_alb' => 'åˆªé™¤ç›¸ç°¿',
+  'del_user' => 'åˆªé™¤æœƒå“¡',
+  'err_unknown_user' => 'æ‰€é¸æ“‡çš„æœƒå“¡ä¸å­˜åœ¨ !',
+  'comment_deleted' => 'ç•™è¨€å·²åˆªé™¤',
 );
 
 // ------------------------------------------------------------------------- //
@@ -590,54 +593,54 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 if (defined('DISPLAYIMAGE_PHP')){
 
 $lang_display_image_php = array(
-  'confirm_del' => '½T©w­n§R°£¦¹¹Ï¤ù¶Ü ? \\n¯d¨¥¤]·|³Q§R°£.', //js-alert //cpg1.3.0
-  'del_pic' => '§R°£¦¹¹Ï¤ù', //cpg1.3.0
-  'size' => '%s x %s ¹³¯À',
-  'views' => '%s ¦¸',
-  'slideshow' => '³sÄò¼½©ñ',
-  'stop_slideshow' => '°±¤î¼½©ñ',
-  'view_fs' => 'ÂI¿ï¹Ï¤ù¥HÆ[¬İ­ì¹Ï',
-  'edit_pic' => '½s¿è»¡©ú', //cpg1.3.0
-  'crop_pic' => 'µô°Å»P±ÛÂà', //cpg1.3.0
+  'confirm_del' => 'ç¢ºå®šè¦åˆªé™¤æ­¤åœ–ç‰‡å— ? \\nç•™è¨€ä¹Ÿæœƒè¢«åˆªé™¤.', //js-alert //cpg1.3.0
+  'del_pic' => 'åˆªé™¤æ­¤åœ–ç‰‡', //cpg1.3.0
+  'size' => '%s x %s åƒç´ ',
+  'views' => '%s æ¬¡',
+  'slideshow' => 'é€£çºŒæ’­æ”¾',
+  'stop_slideshow' => 'åœæ­¢æ’­æ”¾',
+  'view_fs' => 'é»é¸åœ–ç‰‡ä»¥è§€çœ‹åŸåœ–',
+  'edit_pic' => 'ç·¨è¼¯èªªæ˜', //cpg1.3.0
+  'crop_pic' => 'è£å‰ªèˆ‡æ—‹è½‰', //cpg1.3.0
 );
 
 $lang_picinfo = array(
-  'title' =>'¹Ï¤ù¸ê°T', //cpg1.3.0
-  'Filename' => 'ÀÉ®×¦WºÙ',
-  'Album name' => '¬ÛÃ¯¦WºÙ',
-  'Rating' => 'µû¤À (%s ¦¸§ë²¼)',
-  'Keywords' => 'ÃöÁä¦r',
-  'File Size' => 'ÀÉ®×¤j¤p',
-  'Dimensions' => '¤Ø¤o',
-  'Displayed' => 'Åã¥Ü',
-  'Camera' => '¬Û¾÷',
-  'Date taken' => '©çÄá¤é´Á',
-  'Aperture' => '¥ú°é',
-  'Exposure time' => 'Ãn¥ú®É¶¡',
-  'Focal length' => 'µJ¶Z',
-  'Comment' => '¯d¨¥',
-  'addFav'=>'¥[¨ì§Úªº³Ì·R', //cpg1.3.0
-  'addFavPhrase'=>'§Úªº³Ì·R', //cpg1.3.0
-  'remFav'=>'±q§Úªº³Ì·R²¾°£', //cpg1.3.0
-  'iptcTitle'=>'IPTC ¼ĞÃD', //cpg1.3.0
-  'iptcCopyright'=>'IPTC ª©Åv', //cpg1.3.0
-  'iptcKeywords'=>'IPTC ÃöÁä¦r', //cpg1.3.0
-  'iptcCategory'=>'IPTC Ãş§O', //cpg1.3.0
-  'iptcSubCategories'=>'IPTC ¤lÃş§O', //cpg1.3.0
+  'title' =>'åœ–ç‰‡è³‡è¨Š', //cpg1.3.0
+  'Filename' => 'æª”æ¡ˆåç¨±',
+  'Album name' => 'ç›¸ç°¿åç¨±',
+  'Rating' => 'è©•åˆ† (%s æ¬¡æŠ•ç¥¨)',
+  'Keywords' => 'é—œéµå­—',
+  'File Size' => 'æª”æ¡ˆå¤§å°',
+  'Dimensions' => 'å°ºå¯¸',
+  'Displayed' => 'é¡¯ç¤º',
+  'Camera' => 'ç›¸æ©Ÿ',
+  'Date taken' => 'æ‹æ”æ—¥æœŸ',
+  'Aperture' => 'å…‰åœˆ',
+  'Exposure time' => 'æ›å…‰æ™‚é–“',
+  'Focal length' => 'ç„¦è·',
+  'Comment' => 'ç•™è¨€',
+  'addFav'=>'åŠ åˆ°æˆ‘çš„æœ€æ„›', //cpg1.3.0
+  'addFavPhrase'=>'æˆ‘çš„æœ€æ„›', //cpg1.3.0
+  'remFav'=>'å¾æˆ‘çš„æœ€æ„›ç§»é™¤', //cpg1.3.0
+  'iptcTitle'=>'IPTC æ¨™é¡Œ', //cpg1.3.0
+  'iptcCopyright'=>'IPTC ç‰ˆæ¬Š', //cpg1.3.0
+  'iptcKeywords'=>'IPTC é—œéµå­—', //cpg1.3.0
+  'iptcCategory'=>'IPTC é¡åˆ¥', //cpg1.3.0
+  'iptcSubCategories'=>'IPTC å­é¡åˆ¥', //cpg1.3.0
 );
 
 $lang_display_comments = array(
   'OK' => 'OK',
-  'edit_title' => '½s¿è¦¹¯d¨¥',
-  'confirm_delete' => '½T©w­n§R°£¦¹¯d¨¥ ?', //js-alert
-  'add_your_comment' => '¥[¤J§Aªº¯d¨¥',
-  'name'=>'¦WºÙ',
-  'comment'=>'¯d¨¥',
-  'your_name' => 'µL¦W¤ó',
+  'edit_title' => 'ç·¨è¼¯æ­¤ç•™è¨€',
+  'confirm_delete' => 'ç¢ºå®šè¦åˆªé™¤æ­¤ç•™è¨€ ?', //js-alert
+  'add_your_comment' => 'åŠ å…¥ä½ çš„ç•™è¨€',
+  'name'=>'åç¨±',
+  'comment'=>'ç•™è¨€',
+  'your_name' => 'ç„¡åæ°',
 );
 
 $lang_fullsize_popup = array(
-  'click_to_close' => 'ÂI¿ï¹Ï¤ù¨ÓÃö³¬µøµ¡',
+  'click_to_close' => 'é»é¸åœ–ç‰‡ä¾†é—œé–‰è¦–çª—',
 );
 
 }
@@ -647,22 +650,22 @@ $lang_fullsize_popup = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array(
-  'title' => '±H¥X ¹q¤l¥d¤ù',
-  'invalid_email' => '<b>Äµ§i</b> : ¤£¥¿½Tªº¹q¤l¶l¥ó¦a§} !',
-  'ecard_title' => '%s ±Hµ¹§A¤@±i¹q¤l¥d¤ù',
-  'error_not_image' => '¹q¤l¥d¤ù¥u¯à±H¥X¹Ï¤ù.', //cpg1.3.0
-  'view_ecard' => '¦pªG ¹q¤l¥d¤ù µLªk¥¿½TÅã¥Ü, ½Ğ«ö¦¹³sµ²',
-  'view_more_pics' => '«ö¦¹³sµ²¬İ§ó¦h¹Ï¤ù !',
-  'send_success' => '§Aªº ¹q¤l¥d¤ù ¤w±H¥X',
-  'send_failed' => '©êºp, ¥»¦øªA¾¹µLªk¬°§A±H¥X ¹q¤l¥d¤ù...',
-  'from' => '¥Ñ',
-  'your_name' => '§Aªº¦WºÙ',
-  'your_email' => '§Aªº¹q¤l¶l¥ó',
-  'to' => 'µ¹',
-  'rcpt_name' => '¦¬¥óªÌ¦WºÙ',
-  'rcpt_email' => '¦¬¥óªÌ¹q¤l¶l¥ó',
-  'greetings' => '¼ĞÃD',
-  'message' => '°T®§¤º®e',
+  'title' => 'å¯„å‡º é›»å­å¡ç‰‡',
+  'invalid_email' => '<b>è­¦å‘Š</b> : ä¸æ­£ç¢ºçš„é›»å­éƒµä»¶åœ°å€ !',
+  'ecard_title' => '%s å¯„çµ¦ä½ ä¸€å¼µé›»å­å¡ç‰‡',
+  'error_not_image' => 'é›»å­å¡ç‰‡åªèƒ½å¯„å‡ºåœ–ç‰‡.', //cpg1.3.0
+  'view_ecard' => 'å¦‚æœ é›»å­å¡ç‰‡ ç„¡æ³•æ­£ç¢ºé¡¯ç¤º, è«‹æŒ‰æ­¤é€£çµ',
+  'view_more_pics' => 'æŒ‰æ­¤é€£çµçœ‹æ›´å¤šåœ–ç‰‡ !',
+  'send_success' => 'ä½ çš„ é›»å­å¡ç‰‡ å·²å¯„å‡º',
+  'send_failed' => 'æŠ±æ­‰, æœ¬ä¼ºæœå™¨ç„¡æ³•ç‚ºä½ å¯„å‡º é›»å­å¡ç‰‡...',
+  'from' => 'ç”±',
+  'your_name' => 'ä½ çš„åç¨±',
+  'your_email' => 'ä½ çš„é›»å­éƒµä»¶',
+  'to' => 'çµ¦',
+  'rcpt_name' => 'æ”¶ä»¶è€…åç¨±',
+  'rcpt_email' => 'æ”¶ä»¶è€…é›»å­éƒµä»¶',
+  'greetings' => 'æ¨™é¡Œ',
+  'message' => 'è¨Šæ¯å…§å®¹',
 );
 
 // ------------------------------------------------------------------------- //
@@ -670,31 +673,31 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
 // ------------------------------------------------------------------------- //
 
 if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
-  'pic_info' => 'ÀÉ®×¸ê®Æ', //cpg1.3.0
-  'album' => '¬ÛÃ¯',
-  'title' => '¼ĞÃD',
-  'desc' => '´y­z',
-  'keywords' => 'ÃöÁä¦r',
-  'pic_info_str' => '%s &times; %s - %s KB - %s ¦¸Æ[¬İ - %s ¦¸µû¤À',
-  'approve' => '®Ö­ã¹Ï¤ù', //cpg1.3.0
-  'postpone_app' => '©µ¿ğ®Ö­ã',
-  'del_pic' => '§R°£¹Ï¤ù', //cpg1.3.0
-  'read_exif' => '¦A¦¸Åª¨ú EXIF ¸ê®Æ', //cpg1.3.0
-  'reset_view_count' => '­«³]Æ[¬İ­p¼Æ¾¹',
-  'reset_votes' => '­«³]µû¤À',
-  'del_comm' => '§R°£¯d¨¥',
-  'upl_approval' => '®Ö­ã¤W¶Ç',
-  'edit_pics' => '½s¿è¹Ï¤ù', //cpg1.3.0
-  'see_next' => 'Æ[¬İ¤U¤@±i¹Ï¤ù', //cpg1.3.0
-  'see_prev' => 'Æ[¬İ«e¤@±i¹Ï¤ù', //cpg1.3.0
-  'n_pic' => '%s ±i¹Ï¤ù', //cpg1.3.0
-  'n_of_pic_to_disp' => '¹Ï¤ùÅã¥Ü¼Æ¶q', //cpg1.3.0
-  'apply' => '­×§ï', //cpg1.3.0
-  'crop_title' => 'CPG ¹Ï¤ù½s¿è¾¹', //cpg1.3.0
-  'preview' => '¹wÄı', //cpg1.3.0
-  'save' => '¦sÀÉ', //cpg1.3.0
-  'save_thumb' =>'¦s¦¨ÁY¹Ï', //cpg1.3.0
-  'sel_on_img' =>'¿ï¾Üªº°Ï°ì¥²¶·¦b¹Ï¤ù½d³ò¤º!', //js-alert //cpg1.3.0
+  'pic_info' => 'æª”æ¡ˆè³‡æ–™', //cpg1.3.0
+  'album' => 'ç›¸ç°¿',
+  'title' => 'æ¨™é¡Œ',
+  'desc' => 'æè¿°',
+  'keywords' => 'é—œéµå­—',
+  'pic_info_str' => '%s &times; %s - %s KB - %s æ¬¡è§€çœ‹ - %s æ¬¡è©•åˆ†',
+  'approve' => 'æ ¸å‡†åœ–ç‰‡', //cpg1.3.0
+  'postpone_app' => 'å»¶é²æ ¸å‡†',
+  'del_pic' => 'åˆªé™¤åœ–ç‰‡', //cpg1.3.0
+  'read_exif' => 'å†æ¬¡è®€å– EXIF è³‡æ–™', //cpg1.3.0
+  'reset_view_count' => 'é‡è¨­è§€çœ‹è¨ˆæ•¸å™¨',
+  'reset_votes' => 'é‡è¨­è©•åˆ†',
+  'del_comm' => 'åˆªé™¤ç•™è¨€',
+  'upl_approval' => 'æ ¸å‡†ä¸Šå‚³',
+  'edit_pics' => 'ç·¨è¼¯åœ–ç‰‡', //cpg1.3.0
+  'see_next' => 'è§€çœ‹ä¸‹ä¸€å¼µåœ–ç‰‡', //cpg1.3.0
+  'see_prev' => 'è§€çœ‹å‰ä¸€å¼µåœ–ç‰‡', //cpg1.3.0
+  'n_pic' => '%s å¼µåœ–ç‰‡', //cpg1.3.0
+  'n_of_pic_to_disp' => 'åœ–ç‰‡é¡¯ç¤ºæ•¸é‡', //cpg1.3.0
+  'apply' => 'ä¿®æ”¹', //cpg1.3.0
+  'crop_title' => 'CPG åœ–ç‰‡ç·¨è¼¯å™¨', //cpg1.3.0
+  'preview' => 'é è¦½', //cpg1.3.0
+  'save' => 'å­˜æª”', //cpg1.3.0
+  'save_thumb' =>'å­˜æˆç¸®åœ–', //cpg1.3.0
+  'sel_on_img' =>'é¸æ“‡çš„å€åŸŸå¿…é ˆåœ¨åœ–ç‰‡ç¯„åœå…§!', //js-alert //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -702,43 +705,43 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('FAQ_PHP')) $lang_faq_php = array(
-  'faq' => '±`¨£°İÃD¸Ñµª', //cpg1.3.0
-  'toc' => '¥Ø¿ı', //cpg1.3.0
-  'question' => '°İÃD: ', //cpg1.3.0
-  'answer' => '¸Ñµª: ', //cpg1.3.0
+  'faq' => 'å¸¸è¦‹å•é¡Œè§£ç­”', //cpg1.3.0
+  'toc' => 'ç›®éŒ„', //cpg1.3.0
+  'question' => 'å•é¡Œ: ', //cpg1.3.0
+  'answer' => 'è§£ç­”: ', //cpg1.3.0
 );
 
 if (defined('FAQ_PHP')) $lang_faq_data = array(
-  '¤@¯ë©Ê°İÃD»P¸Ñµª', //cpg1.3.0
-  array('¬°¤°»ò­nµù¥U?', 'ºŞ²z­û¨M©w¨Ï¥ÎªÌ¬O§_»İ­nµù¥U. µù¥U¦¨¬°·|­û¥iÀò±oÃB¥~ªº¥\¯à,¦p ¤W¶ÇÀÉ®×,¦³ §Úªº³Ì·R¦Cªí, ¹ï¼v¹³µû¤À¤Îµoªí¯d¨¥ µ¥µ¥.', 'allow_user_registration', '0'), //cpg1.3.0
-  array('¦p¦óµù¥U?', '¨ì &quot;µù¥U&quot; ¥h¶ñ¼gÄæ¦ì¤ºªº¸ê®Æ (³¡¤ÀÄæ¦ì¬O¿ï¶ñªº).<br />¦pªGºŞ²z­û¶}±ÒEmail ±Ò¥Î¥\¯à ,¦b§A½T»{°e¥Xµù¥U¸ê®Æ«á §A·|¦¬¨ì¤@«Ê»{ÃÒ«H ±H¨ì§A©Ò¶ñ¼gªº«H½c¤º, ¸Ì­±·|»¡©ú¦p¦ó±Ò¥Î§Aªº·|­û¸ê®æ. ·|­ûµn¤J«e ¥²¶·¥ı§¹¦¨±Ò¥Î°Ê§@.', 'allow_user_registration', '1'), //cpg1.3.0
-  array('¦p¦óµn¤J?', '¨ì &quot;µn¤J&quot;, ¶ñ¤J§Aªº·|­û¦WºÙ¤Î±K½X ¥B¤Ä¿ï &quot;°O¦í§Ú&quot; ¤U¦¸§A¦A¨Óªº®É­Ô´N·|¦Û°Êµn¤J¤F.<br /><b>ª`·N:¦pªG§AÂI¿ï &quot;°O¦í§Ú Me&quot; ,Cookies ¥\¯à¥²¶·¶}±Ò,¥B¥»¯¸ªºcookie¦s¦b§Aªº¹q¸£¤¤..</b>', 'offline', 0), //cpg1.3.0
-  array('¬°¦óµLªkµn¤J?', '§A¤w¸gµù¥U¨Ã±Ò¥Î±b¸¹¤F¶Ü(¦^ÂĞ»{ÃÒ¶l¥óªº³sµ²)?. ¨º­Ó³sµ²±N·|±Ò¥Î§Aªº±b¸¹. ¨ä¥Lµn¤J°İÃD ½ĞÁpµ¸ºô¯¸ºŞ²z­û.', 'offline', 0), //cpg1.3.0
-  array('§Ñ°O±K½X¤F«ç»ò¿ì ?', '¦pªG³o­Óºô¯¸¦³ &quot;§Ñ°O±K½X¤F&quot; ªº³sµ²,´N«ö¥¦. ¤£µM´NÁpµ¸ºô¯¸ºŞ²z­û ½Ğ¥Lµ¹§A¤@­Ó·sªº±K½X.', 'offline', 0), //cpg1.3.0
-  array('§ÚªºemailÅÜ§ó¤F«ç»ò¿ì ?', '¥u­nµn¤J ¨Ã¥B¨ì &quot;§Úªº­Ó¤H¸ê®Æ&quot; ÅÜ§ó§Aªº¹q¤l¶l¥ó¦a§}´N¥i¥H¤F', 'offline', 0), //cpg1.3.0
-  array('¦p¦ó§â¹Ï¤ù¦s¨ì  &quot;§Úªº³Ì·R &quot;?', 'ÂI¿ï¹Ï¤ù¨Ã¥BÂI«ö &quot;¼v¹³¸ê°T&quot; ³sµ² (<img src="images/info.gif" width="16" height="16" border="0" alt="Picture information" />); ¦b¼v¹³¸ê°T³]©w¸Ì­±«ö &quot;¥[¤J§Úªº³Ì·R&quot;.<br />ºŞ²z­û¥i¯à¦³¹w³]&quot;¼v¹³¸ê°T; .<br />ª`·N:Cookies ¥\¯à¥²¶·¶}±Ò,¥B¥»¯¸ªºcookie¦s¦b§Aªº¹q¸£¤¤.', 'offline', 0), //cpg1.3.0
-  array('¦p¦ó¹ï¹Ï¤ùµû¤À ?', 'ÂI«ö¸Ó¼v¹³ÁY¹Ï,¦b¼v¹³©³¤U¥i¥HÂI¿ï§Aªºµû¤À.', 'offline', 0), //cpg1.3.0
-  array('¦p¦óµoªí¯d¨¥ ?', 'ÂI«ö¸Ó¼v¹³ÁY¹Ï,¦b¼v¹³©³¤U¥i¥Hµoªí¯d¨¥.', 'offline', 0), //cpg1.3.0
-  array('¦p¦ó¤W¶Ç¹Ï¤ù ?', '¨ì &quot;¤W¶Ç¹Ï¤ù&quot;¨Ã¿ï¾Ü§A­n¤W¶Ç¨ì­ş¤@­Ó¬ÛÃ¯,«ö &quot;ÂsÄı&quot; ¥BÂI¿ï­n¤W¶Çªº¹Ï¤ù «ö &quot;¶}±Ò&quot; (§A¥i¥H¥[¤J¼v¹³¼ĞÃD¤Î´y­z) µM«á«ö &quot;½T»{&quot;', 'allow_private_albums', 0), //cpg1.3.0
-  array('­n±q­ş¸Ì¤W¶Ç¹Ï¤ù ?', '§A¥i¥H¤W¶Ç¹Ï¤ù¦b &quot;§Úªº¬ÛÃ¯&quot;. ºŞ²z­û¥i¯à¤¹³\§A¤W¶Ç¹Ï¤ù¨ì¥D¬ÛÃ¯¤º.', 'allow_private_albums', 0), //cpg1.3.0
-  array('­şºØ®æ¦¡©Î¤j¤pªº¼v¹³¥i¥H¤W¶Ç?', '®æ¦¡¸ò¤j¤p (jpg,gif,..etc.) ®Ú¾ÚºŞ²z­ûªº³]©w.', 'offline', 0), //cpg1.3.0
-  array('¤°»ò¬O &quot;§Úªº¬ÛÃ¯&quot;?', '&quot;§Úªº¬ÛÃ¯&quot; ¬O­Ó¤Hªº¬ÛÃ¯,Åı·|­û¥i¥H¤W¶Ç¤ÎºŞ¸Ì¼v¹³.', 'allow_private_albums', 0), //cpg1.3.0
-  array('¦p¦ó·s¼W,­×§ï ©Î§R°£¬ÛÃ¯ ±q &quot;§Úªº¬ÛÃ¯&quot;?', '§A¥²¶·¦b &quot;ºŞ²z¼Ò¦¡&quot;<br />¨ì &quot;·s¼W/±Æ§Ç §Úªº¬ÛÃ¯&quot;«ö &quot;·s¼WNew&quot;. ÅÜ§ó &quot;·s¬ÛÃ¯&quot; ¨ì§A­nªº¦WºÙ.<br />§A¥i¥H¹ï§Aªº¨C¤@­Ó¬ÛÃ¯­«·s©R¦W.<br />«ö &quot;­×§ï;.', 'allow_private_albums', 0), //cpg1.3.0
-  array('§Ú­n¦p¦ó¸T¤î¨ä¥L·|­û¬İ§Úªº¬ÛÃ¯?', '§A¥²¶·¦b &quot;ºŞ²z¼Ò¦¡&quot;<br />¨ì &quot;ÅÜ§ó§Úªº¬ÛÃ¯. ¦b &quot;§ó·s¬ÛÃ¯&quot; Äæ¦ì, ¿ï¾Ü§A­nÅÜ§óªº¬ÛÃ¯.<br />¦b³o¸Ì, §A¥i¥HÅÜ§ó¬ÛÃ¯¦WºÙ ´y­z ÁY¹Ï ,¤Î­­¨îÆ[¬İ ¯d¨¥ µû¤À ªºÅv­­.<br />«ö &quot;§ó·s¬ÛÃ¯&quot;.', 'allow_private_albums', 0), //cpg1.3.0
-  array('¦p¦óÆ[¬İ¨ä¥L·|­ûªº¬ÛÃ¯?', '¨ì &quot;¬ÛÃ¯¥Ø¿ı&quot; ¿ï¾Ü &quot;·|­û¬ÛÃ¯&quot;.', 'allow_private_albums', 0), //cpg1.3.0
-  array('¤°»ò¬O cookies?', 'Cookies ¬Oºô¯¸©ñ¦b§A¹q¸£¤¤ªº¤å¦r¸ê®Æ.<br />Cookies ³q±`Åı¨Ï¥ÎªÌ¦A¦¸¦^¨ìºô¯¸®É¦Û°Êµn¤J ¨Ã°O¿ı¨ä¥L³]©w¸ê®Æ.', 'offline', 0), //cpg1.3.0
-  array('¦b­ş¸Ì¥i¥H¨ú±o³o­Ó¬ÛÃ¯µ{¦¡?', 'Coppermine ¬O°ò©óGNU GPLªº§K¶O¦h´CÅé¬ÛÃ¯. ¥¦¬O¥ş¥\¯àªº ¥B¤ä´©¤£¦Pªº¥­¥x. ½Ğ¨ì<a href="http://coppermine.sf.net/">Coppermine ªººô¯¸</a> ¨ú±o§ó¦hªº¸ê°T ©Î¬O¤U¸ü¥¦.', 'offline', 0), //cpg1.3.0
+  'ä¸€èˆ¬æ€§å•é¡Œèˆ‡è§£ç­”', //cpg1.3.0
+  array('ç‚ºä»€éº¼è¦è¨»å†Š?', 'ç®¡ç†å“¡æ±ºå®šä½¿ç”¨è€…æ˜¯å¦éœ€è¦è¨»å†Š. è¨»å†Šæˆç‚ºæœƒå“¡å¯ç²å¾—é¡å¤–çš„åŠŸèƒ½,å¦‚ ä¸Šå‚³æª”æ¡ˆ,æœ‰ æˆ‘çš„æœ€æ„›åˆ—è¡¨, å°å½±åƒè©•åˆ†åŠç™¼è¡¨ç•™è¨€ ç­‰ç­‰.', 'allow_user_registration', '0'), //cpg1.3.0
+  array('å¦‚ä½•è¨»å†Š?', 'åˆ° &quot;è¨»å†Š&quot; å»å¡«å¯«æ¬„ä½å…§çš„è³‡æ–™ (éƒ¨åˆ†æ¬„ä½æ˜¯é¸å¡«çš„).<br />å¦‚æœç®¡ç†å“¡é–‹å•ŸEmail å•Ÿç”¨åŠŸèƒ½ ,åœ¨ä½ ç¢ºèªé€å‡ºè¨»å†Šè³‡æ–™å¾Œ ä½ æœƒæ”¶åˆ°ä¸€å°èªè­‰ä¿¡ å¯„åˆ°ä½ æ‰€å¡«å¯«çš„ä¿¡ç®±å…§, è£¡é¢æœƒèªªæ˜å¦‚ä½•å•Ÿç”¨ä½ çš„æœƒå“¡è³‡æ ¼. æœƒå“¡ç™»å…¥å‰ å¿…é ˆå…ˆå®Œæˆå•Ÿç”¨å‹•ä½œ.', 'allow_user_registration', '1'), //cpg1.3.0
+  array('å¦‚ä½•ç™»å…¥?', 'åˆ° &quot;ç™»å…¥&quot;, å¡«å…¥ä½ çš„æœƒå“¡åç¨±åŠå¯†ç¢¼ ä¸”å‹¾é¸ &quot;è¨˜ä½æˆ‘&quot; ä¸‹æ¬¡ä½ å†ä¾†çš„æ™‚å€™å°±æœƒè‡ªå‹•ç™»å…¥äº†.<br /><b>æ³¨æ„:å¦‚æœä½ é»é¸ &quot;è¨˜ä½æˆ‘ Me&quot; ,Cookies åŠŸèƒ½å¿…é ˆé–‹å•Ÿ,ä¸”æœ¬ç«™çš„cookieå­˜åœ¨ä½ çš„é›»è…¦ä¸­..</b>', 'offline', 0), //cpg1.3.0
+  array('ç‚ºä½•ç„¡æ³•ç™»å…¥?', 'ä½ å·²ç¶“è¨»å†Šä¸¦å•Ÿç”¨å¸³è™Ÿäº†å—(å›è¦†èªè­‰éƒµä»¶çš„é€£çµ)?. é‚£å€‹é€£çµå°‡æœƒå•Ÿç”¨ä½ çš„å¸³è™Ÿ. å…¶ä»–ç™»å…¥å•é¡Œ è«‹è¯çµ¡ç¶²ç«™ç®¡ç†å“¡.', 'offline', 0), //cpg1.3.0
+  array('å¿˜è¨˜å¯†ç¢¼äº†æ€éº¼è¾¦ ?', 'å¦‚æœé€™å€‹ç¶²ç«™æœ‰ &quot;å¿˜è¨˜å¯†ç¢¼äº†&quot; çš„é€£çµ,å°±æŒ‰å®ƒ. ä¸ç„¶å°±è¯çµ¡ç¶²ç«™ç®¡ç†å“¡ è«‹ä»–çµ¦ä½ ä¸€å€‹æ–°çš„å¯†ç¢¼.', 'offline', 0), //cpg1.3.0
+  array('æˆ‘çš„emailè®Šæ›´äº†æ€éº¼è¾¦ ?', 'åªè¦ç™»å…¥ ä¸¦ä¸”åˆ° &quot;æˆ‘çš„å€‹äººè³‡æ–™&quot; è®Šæ›´ä½ çš„é›»å­éƒµä»¶åœ°å€å°±å¯ä»¥äº†', 'offline', 0), //cpg1.3.0
+  array('å¦‚ä½•æŠŠåœ–ç‰‡å­˜åˆ°  &quot;æˆ‘çš„æœ€æ„› &quot;?', 'é»é¸åœ–ç‰‡ä¸¦ä¸”é»æŒ‰ &quot;å½±åƒè³‡è¨Š&quot; é€£çµ (<img src="images/info.gif" width="16" height="16" border="0" alt="Picture information" />); åœ¨å½±åƒè³‡è¨Šè¨­å®šè£¡é¢æŒ‰ &quot;åŠ å…¥æˆ‘çš„æœ€æ„›&quot;.<br />ç®¡ç†å“¡å¯èƒ½æœ‰é è¨­&quot;å½±åƒè³‡è¨Š; .<br />æ³¨æ„:Cookies åŠŸèƒ½å¿…é ˆé–‹å•Ÿ,ä¸”æœ¬ç«™çš„cookieå­˜åœ¨ä½ çš„é›»è…¦ä¸­.', 'offline', 0), //cpg1.3.0
+  array('å¦‚ä½•å°åœ–ç‰‡è©•åˆ† ?', 'é»æŒ‰è©²å½±åƒç¸®åœ–,åœ¨å½±åƒåº•ä¸‹å¯ä»¥é»é¸ä½ çš„è©•åˆ†.', 'offline', 0), //cpg1.3.0
+  array('å¦‚ä½•ç™¼è¡¨ç•™è¨€ ?', 'é»æŒ‰è©²å½±åƒç¸®åœ–,åœ¨å½±åƒåº•ä¸‹å¯ä»¥ç™¼è¡¨ç•™è¨€.', 'offline', 0), //cpg1.3.0
+  array('å¦‚ä½•ä¸Šå‚³åœ–ç‰‡ ?', 'åˆ° &quot;ä¸Šå‚³åœ–ç‰‡&quot;ä¸¦é¸æ“‡ä½ è¦ä¸Šå‚³åˆ°å“ªä¸€å€‹ç›¸ç°¿,æŒ‰ &quot;ç€è¦½&quot; ä¸”é»é¸è¦ä¸Šå‚³çš„åœ–ç‰‡ æŒ‰ &quot;é–‹å•Ÿ&quot; (ä½ å¯ä»¥åŠ å…¥å½±åƒæ¨™é¡ŒåŠæè¿°) ç„¶å¾ŒæŒ‰ &quot;ç¢ºèª&quot;', 'allow_private_albums', 0), //cpg1.3.0
+  array('è¦å¾å“ªè£¡ä¸Šå‚³åœ–ç‰‡ ?', 'ä½ å¯ä»¥ä¸Šå‚³åœ–ç‰‡åœ¨ &quot;æˆ‘çš„ç›¸ç°¿&quot;. ç®¡ç†å“¡å¯èƒ½å…è¨±ä½ ä¸Šå‚³åœ–ç‰‡åˆ°ä¸»ç›¸ç°¿å…§.', 'allow_private_albums', 0), //cpg1.3.0
+  array('å“ªç¨®æ ¼å¼æˆ–å¤§å°çš„å½±åƒå¯ä»¥ä¸Šå‚³?', 'æ ¼å¼è·Ÿå¤§å° (jpg,gif,..etc.) æ ¹æ“šç®¡ç†å“¡çš„è¨­å®š.', 'offline', 0), //cpg1.3.0
+  array('ä»€éº¼æ˜¯ &quot;æˆ‘çš„ç›¸ç°¿&quot;?', '&quot;æˆ‘çš„ç›¸ç°¿&quot; æ˜¯å€‹äººçš„ç›¸ç°¿,è®“æœƒå“¡å¯ä»¥ä¸Šå‚³åŠç®¡è£¡å½±åƒ.', 'allow_private_albums', 0), //cpg1.3.0
+  array('å¦‚ä½•æ–°å¢,ä¿®æ”¹ æˆ–åˆªé™¤ç›¸ç°¿ å¾ &quot;æˆ‘çš„ç›¸ç°¿&quot;?', 'ä½ å¿…é ˆåœ¨ &quot;ç®¡ç†æ¨¡å¼&quot;<br />åˆ° &quot;æ–°å¢/æ’åº æˆ‘çš„ç›¸ç°¿&quot;æŒ‰ &quot;æ–°å¢New&quot;. è®Šæ›´ &quot;æ–°ç›¸ç°¿&quot; åˆ°ä½ è¦çš„åç¨±.<br />ä½ å¯ä»¥å°ä½ çš„æ¯ä¸€å€‹ç›¸ç°¿é‡æ–°å‘½å.<br />æŒ‰ &quot;ä¿®æ”¹;.', 'allow_private_albums', 0), //cpg1.3.0
+  array('æˆ‘è¦å¦‚ä½•ç¦æ­¢å…¶ä»–æœƒå“¡çœ‹æˆ‘çš„ç›¸ç°¿?', 'ä½ å¿…é ˆåœ¨ &quot;ç®¡ç†æ¨¡å¼&quot;<br />åˆ° &quot;è®Šæ›´æˆ‘çš„ç›¸ç°¿. åœ¨ &quot;æ›´æ–°ç›¸ç°¿&quot; æ¬„ä½, é¸æ“‡ä½ è¦è®Šæ›´çš„ç›¸ç°¿.<br />åœ¨é€™è£¡, ä½ å¯ä»¥è®Šæ›´ç›¸ç°¿åç¨± æè¿° ç¸®åœ– ,åŠé™åˆ¶è§€çœ‹ ç•™è¨€ è©•åˆ† çš„æ¬Šé™.<br />æŒ‰ &quot;æ›´æ–°ç›¸ç°¿&quot;.', 'allow_private_albums', 0), //cpg1.3.0
+  array('å¦‚ä½•è§€çœ‹å…¶ä»–æœƒå“¡çš„ç›¸ç°¿?', 'åˆ° &quot;ç›¸ç°¿ç›®éŒ„&quot; é¸æ“‡ &quot;æœƒå“¡ç›¸ç°¿&quot;.', 'allow_private_albums', 0), //cpg1.3.0
+  array('ä»€éº¼æ˜¯ cookies?', 'Cookies æ˜¯ç¶²ç«™æ”¾åœ¨ä½ é›»è…¦ä¸­çš„æ–‡å­—è³‡æ–™.<br />Cookies é€šå¸¸è®“ä½¿ç”¨è€…å†æ¬¡å›åˆ°ç¶²ç«™æ™‚è‡ªå‹•ç™»å…¥ ä¸¦è¨˜éŒ„å…¶ä»–è¨­å®šè³‡æ–™.', 'offline', 0), //cpg1.3.0
+  array('åœ¨å“ªè£¡å¯ä»¥å–å¾—é€™å€‹ç›¸ç°¿ç¨‹å¼?', 'Coppermine æ˜¯åŸºæ–¼GNU GPLçš„å…è²»å¤šåª’é«”ç›¸ç°¿. å®ƒæ˜¯å…¨åŠŸèƒ½çš„ ä¸”æ”¯æ´ä¸åŒçš„å¹³å°. è«‹åˆ°<a href="http://coppermine.sf.net/">Coppermine çš„ç¶²ç«™</a> å–å¾—æ›´å¤šçš„è³‡è¨Š æˆ–æ˜¯ä¸‹è¼‰å®ƒ.', 'offline', 0), //cpg1.3.0
 
-  'ºô¯¸¾É¤Ş', //cpg1.3.0
-  array('¤°»ò¬O &quot;¬ÛÃ¯¥Ø¿ı &quot;?', '³o±NÅã¥Ü¾ã­Ó¬ÛÃ¯ ¥]§t¨C¤@­Ó¤ÀÃş. ÁY¹Ï¥i¥H³sµ²¨ìÃş§O¤¤.', 'offline', 0), //cpg1.3.0
-  array('¤°»ò¬O &quot;§Úªº¬ÛÃ¯ &quot;?', '³o¶µ¥\¯àÅı·|­û«Ø¥ß¦Û¤vªº¬ÛÃ¯,¥i¼W¥[,§R°£,­×§ï¬ÛÃ¯. ¨Ã¥B¥i¤W¶ÇÀÉ®×¨ì¬ÛÃ¯¸Ì.', 'allow_private_albums', 0), //cpg1.3.0
-  array('¦³¤°»ò®t²§¦b &quot;ºŞ²z¼Ò¦¡&quot; ©M &quot;·|­û¼Ò¦¡&quot;?', '³o¶µ¥\¯à, ¦bºŞ²z¼Ò¦¡®É, ¤¹³\·|­û­×§ï¥L­Ì¦Û¤vªº¬ÛÃ¯ (¦pªGºŞ²z­û¤¹³\ªº¸Ü).', 'allow_private_albums', 0), //cpg1.3.0
-  array('¤°»ò¬O &quot;¤W¶Ç¹Ï¤ù &quot;?', '³o¶µ¥\¯à¤¹³\·|­û¤W¶Ç¼v¹³(ÀÉ®×¤j¤p¤Î®æ¦¡¨ÌºŞ²z­û³]©w) ¨ì«ü©wªº¬ÛÃ¯.', 'allow_private_albums', 0), //cpg1.3.0
-  array('¤°»ò¬O &quot;³Ì·s¤W¶Ç &quot;?', '³o¶µ¥\¯àÅã¥Ü³Ì·s¤W¶Ç¨ì¬ÛÃ¯ªºÀÉ®×.', 'offline', 0), //cpg1.3.0
-  array('¤°»ò¬O &quot;³Ì·s¯d¨¥ &quot;?', '³o¶µ¥\¯à·|­û¹ï¼v¹³µoªíªº³Ì·s¯d¨¥.', 'offline', 0), //cpg1.3.0
-  array('¤°»ò¬O &quot;¼öªù¹Ï¤ù &quot;?', '³o¶µ¥\¯àÅã¥Ü³QÆ[¬İ³Ì¦h¦¸ªº¼v¹³,¤£½×¬O·|­û©Î³X«È.', 'offline', 0), //cpg1.3.0
-  array('¤°»ò¬O &quot;³Ì°ªµû¤À &quot;?', '³o¶µ¥\¯àÅã¥Ü·|­ûµû¤À³Ì°ªªº¼v¹³, Åã¥Ü¥­§¡¤À¼Æ(¨Ò¦p: ¤­­Ó·|­û¦Uµ¹¤@­Óµû¤À <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />: ¼v¹³±N¦³¥­§¡µû¤À <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> ;¤­­Ó·|­ûµû¤À±q 1 ¨ì 5 (1,2,3,4,5) ¥­§¡µ²ªG±N¬O <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> .)<br />µû¤À±q <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> (³Ì¨Î) ¨ì <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" /> (³Ì®t).', 'offline', 0), //cpg1.3.0
-  array('¤°»ò¬O &quot;§Úªº³Ì·R &quot;?', '³o¶µ¥\¯àÅı·|­ûÀx¦s³ß·Rªº¼v¹³,»İ­n¦³cookie¸ê°T.', 'offline', 0), //cpg1.3.0
+  'ç¶²ç«™å°å¼•', //cpg1.3.0
+  array('ä»€éº¼æ˜¯ &quot;ç›¸ç°¿ç›®éŒ„ &quot;?', 'é€™å°‡é¡¯ç¤ºæ•´å€‹ç›¸ç°¿ åŒ…å«æ¯ä¸€å€‹åˆ†é¡. ç¸®åœ–å¯ä»¥é€£çµåˆ°é¡åˆ¥ä¸­.', 'offline', 0), //cpg1.3.0
+  array('ä»€éº¼æ˜¯ &quot;æˆ‘çš„ç›¸ç°¿ &quot;?', 'é€™é …åŠŸèƒ½è®“æœƒå“¡å»ºç«‹è‡ªå·±çš„ç›¸ç°¿,å¯å¢åŠ ,åˆªé™¤,ä¿®æ”¹ç›¸ç°¿. ä¸¦ä¸”å¯ä¸Šå‚³æª”æ¡ˆåˆ°ç›¸ç°¿è£¡.', 'allow_private_albums', 0), //cpg1.3.0
+  array('æœ‰ä»€éº¼å·®ç•°åœ¨ &quot;ç®¡ç†æ¨¡å¼&quot; å’Œ &quot;æœƒå“¡æ¨¡å¼&quot;?', 'é€™é …åŠŸèƒ½, åœ¨ç®¡ç†æ¨¡å¼æ™‚, å…è¨±æœƒå“¡ä¿®æ”¹ä»–å€‘è‡ªå·±çš„ç›¸ç°¿ (å¦‚æœç®¡ç†å“¡å…è¨±çš„è©±).', 'allow_private_albums', 0), //cpg1.3.0
+  array('ä»€éº¼æ˜¯ &quot;ä¸Šå‚³åœ–ç‰‡ &quot;?', 'é€™é …åŠŸèƒ½å…è¨±æœƒå“¡ä¸Šå‚³å½±åƒ(æª”æ¡ˆå¤§å°åŠæ ¼å¼ä¾ç®¡ç†å“¡è¨­å®š) åˆ°æŒ‡å®šçš„ç›¸ç°¿.', 'allow_private_albums', 0), //cpg1.3.0
+  array('ä»€éº¼æ˜¯ &quot;æœ€æ–°ä¸Šå‚³ &quot;?', 'é€™é …åŠŸèƒ½é¡¯ç¤ºæœ€æ–°ä¸Šå‚³åˆ°ç›¸ç°¿çš„æª”æ¡ˆ.', 'offline', 0), //cpg1.3.0
+  array('ä»€éº¼æ˜¯ &quot;æœ€æ–°ç•™è¨€ &quot;?', 'é€™é …åŠŸèƒ½æœƒå“¡å°å½±åƒç™¼è¡¨çš„æœ€æ–°ç•™è¨€.', 'offline', 0), //cpg1.3.0
+  array('ä»€éº¼æ˜¯ &quot;ç†±é–€åœ–ç‰‡ &quot;?', 'é€™é …åŠŸèƒ½é¡¯ç¤ºè¢«è§€çœ‹æœ€å¤šæ¬¡çš„å½±åƒ,ä¸è«–æ˜¯æœƒå“¡æˆ–è¨ªå®¢.', 'offline', 0), //cpg1.3.0
+  array('ä»€éº¼æ˜¯ &quot;æœ€é«˜è©•åˆ† &quot;?', 'é€™é …åŠŸèƒ½é¡¯ç¤ºæœƒå“¡è©•åˆ†æœ€é«˜çš„å½±åƒ, é¡¯ç¤ºå¹³å‡åˆ†æ•¸(ä¾‹å¦‚: äº”å€‹æœƒå“¡å„çµ¦ä¸€å€‹è©•åˆ† <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />: å½±åƒå°‡æœ‰å¹³å‡è©•åˆ† <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> ;äº”å€‹æœƒå“¡è©•åˆ†å¾ 1 åˆ° 5 (1,2,3,4,5) å¹³å‡çµæœå°‡æ˜¯ <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> .)<br />è©•åˆ†å¾ <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> (æœ€ä½³) åˆ° <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" /> (æœ€å·®).', 'offline', 0), //cpg1.3.0
+  array('ä»€éº¼æ˜¯ &quot;æˆ‘çš„æœ€æ„› &quot;?', 'é€™é …åŠŸèƒ½è®“æœƒå“¡å„²å­˜å–œæ„›çš„å½±åƒ,éœ€è¦æœ‰cookieè³‡è¨Š.', 'offline', 0), //cpg1.3.0
 );
 
 
@@ -747,18 +750,18 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('FORGOT_PASSWD_PHP')) $lang_forgot_passwd_php = array(
-  'forgot_passwd' => '§Ñ°O±K½X', //cpg1.3.0
-  'err_already_logged_in' => '§A¤w¸gµn¤J¤F!', //cpg1.3.0
-  'enter_username_email' => '¿é¤J§Aªº·|­û¦WºÙ©Î email ', //cpg1.3.0
-  'submit' => 'Ä~Äò', //cpg1.3.0
-  'failed_sending_email' => 'µLªk±H¥X±K½X´£¿ô¶l¥ó !', //cpg1.3.0
-  'email_sent' => '¤w¸g±N§Aªº·|­û¦WºÙ»P±K½X±H¨ì %s', //cpg1.3.0
-  'err_unk_user' => '¨S¦³³o­Ó·|­û!', //cpg1.3.0
-  'passwd_reminder_subject' => '%s - ±K½X´£¿ô', //cpg1.3.0
-  'passwd_reminder_body' => '±zªºµn¤J¸ê®Æ¦p¤U:
+  'forgot_passwd' => 'å¿˜è¨˜å¯†ç¢¼', //cpg1.3.0
+  'err_already_logged_in' => 'ä½ å·²ç¶“ç™»å…¥äº†!', //cpg1.3.0
+  'enter_username_email' => 'è¼¸å…¥ä½ çš„æœƒå“¡åç¨±æˆ– email ', //cpg1.3.0
+  'submit' => 'ç¹¼çºŒ', //cpg1.3.0
+  'failed_sending_email' => 'ç„¡æ³•å¯„å‡ºå¯†ç¢¼æé†’éƒµä»¶ !', //cpg1.3.0
+  'email_sent' => 'å·²ç¶“å°‡ä½ çš„æœƒå“¡åç¨±èˆ‡å¯†ç¢¼å¯„åˆ° %s', //cpg1.3.0
+  'err_unk_user' => 'æ²’æœ‰é€™å€‹æœƒå“¡!', //cpg1.3.0
+  'passwd_reminder_subject' => '%s - å¯†ç¢¼æé†’', //cpg1.3.0
+  'passwd_reminder_body' => 'æ‚¨çš„ç™»å…¥è³‡æ–™å¦‚ä¸‹:
 Username: %s
 Password: %s
-«ö %s µn¤J.', //cpg1.3.0
+æŒ‰ %s ç™»å…¥.', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -766,28 +769,28 @@ Password: %s
 // ------------------------------------------------------------------------- //
 
 if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
-  'group_name' => '¸s²Õ¦WºÙ',
-  'disk_quota' => 'ºÏºĞ°tÃB',
-  'can_rate' => '¤¹³\¹Ï¤ùµû¤À', //cpg1.3.0
-  'can_send_ecards' => '¤¹³\±H¥X¥d¤ù',
-  'can_post_com' => '¤¹³\¶K¥X¯d¨¥',
-  'can_upload' => '¤¹³\¤W¶ÇÀÉ®×', //cpg1.3.0
-  'can_have_gallery' => '¤¹³\¨p¤H¬ÛÃ¯',
-  'apply' => '­×§ï',
-  'create_new_group' => '«Ø¥ß·s¸s²Õ',
-  'del_groups' => '§R°£©Ò¿ï¾Üªº¸s²Õ',
-  'confirm_del' => 'Äµ§i, ·í§R°£¤F¤@­Ó¸s²Õ, Äİ©ó¸Ó¸s²Õªº¥Î¤á±N³QÂà²¾¦Ü \'Registered\' ¸s²Õ¤¤ !\n\nn½T©w­n§R°£¶Ü ?', //js-alert //cpg1.3.0
-  'title' => 'ºŞ²z·|­û¸s²Õ',
-  'approval_1' => '¤½¶}¬ÛÃ¯¤W¶Ç®Ö­ã (1)',
-  'approval_2' => '¨p¤H¬ÛÃ¯¤W¶Ç®Ö­ã (2)',
-  'upload_form_config' => '¤W¶Ç®æ¦¡³]©w', //cpg1.3.0
-  'upload_form_config_values' => array( '¤W¶Ç¤@­ÓÀÉ®×', '¦hÀÉ¤W¶Ç', '¥u¤W¶ÇURI ', '¥u¤W¶ÇZIP ', 'File-URI', 'File-ZIP', 'URI-ZIP', 'File-URI-ZIP'), //cpg1.3.0
-  'custom_user_upload'=>'·|­û¥i¥Îªº¤W¶Ç®Ø¼Æ¶q?', //cpg1.3.0
-  'num_file_upload'=>'³Ì¤j/¹ê»Ú ÀÉ®× ¤W¶Ç®Ø¼Æ¶q', //cpg1.3.0
-  'num_URI_upload'=>'³Ì¤j/¹ê»Ú URI ¤W¶Ç®Ø¼Æ¶q', //cpg1.3.0
-  'note1' => '<b>(1)</b> ¤W¶Ç¹Ï¤ù¦Ü¤½¶}¬ÛÃ¯»İºŞ²z­û®Ö­ã',
-  'note2' => '<b>(2)</b> ¤W¶Ç¹Ï¤ù¦Ü¨p¤H¬ÛÃ¯»İºŞ²z­û®Ö­ã',
-  'notes' => 'ª`·N',
+  'group_name' => 'ç¾¤çµ„åç¨±',
+  'disk_quota' => 'ç£ç¢Ÿé…é¡',
+  'can_rate' => 'å…è¨±åœ–ç‰‡è©•åˆ†', //cpg1.3.0
+  'can_send_ecards' => 'å…è¨±å¯„å‡ºå¡ç‰‡',
+  'can_post_com' => 'å…è¨±è²¼å‡ºç•™è¨€',
+  'can_upload' => 'å…è¨±ä¸Šå‚³æª”æ¡ˆ', //cpg1.3.0
+  'can_have_gallery' => 'å…è¨±ç§äººç›¸ç°¿',
+  'apply' => 'ä¿®æ”¹',
+  'create_new_group' => 'å»ºç«‹æ–°ç¾¤çµ„',
+  'del_groups' => 'åˆªé™¤æ‰€é¸æ“‡çš„ç¾¤çµ„',
+  'confirm_del' => 'è­¦å‘Š, ç•¶åˆªé™¤äº†ä¸€å€‹ç¾¤çµ„, å±¬æ–¼è©²ç¾¤çµ„çš„ç”¨æˆ¶å°‡è¢«è½‰ç§»è‡³ \'Registered\' ç¾¤çµ„ä¸­ !\n\nnç¢ºå®šè¦åˆªé™¤å— ?', //js-alert //cpg1.3.0
+  'title' => 'ç®¡ç†æœƒå“¡ç¾¤çµ„',
+  'approval_1' => 'å…¬é–‹ç›¸ç°¿ä¸Šå‚³æ ¸å‡† (1)',
+  'approval_2' => 'ç§äººç›¸ç°¿ä¸Šå‚³æ ¸å‡† (2)',
+  'upload_form_config' => 'ä¸Šå‚³æ ¼å¼è¨­å®š', //cpg1.3.0
+  'upload_form_config_values' => array( 'ä¸Šå‚³ä¸€å€‹æª”æ¡ˆ', 'å¤šæª”ä¸Šå‚³', 'åªä¸Šå‚³URI ', 'åªä¸Šå‚³ZIP ', 'File-URI', 'File-ZIP', 'URI-ZIP', 'File-URI-ZIP'), //cpg1.3.0
+  'custom_user_upload'=>'æœƒå“¡å¯ç”¨çš„ä¸Šå‚³æ¡†æ•¸é‡?', //cpg1.3.0
+  'num_file_upload'=>'æœ€å¤§/å¯¦éš› æª”æ¡ˆ ä¸Šå‚³æ¡†æ•¸é‡', //cpg1.3.0
+  'num_URI_upload'=>'æœ€å¤§/å¯¦éš› URI ä¸Šå‚³æ¡†æ•¸é‡', //cpg1.3.0
+  'note1' => '<b>(1)</b> ä¸Šå‚³åœ–ç‰‡è‡³å…¬é–‹ç›¸ç°¿éœ€ç®¡ç†å“¡æ ¸å‡†',
+  'note2' => '<b>(2)</b> ä¸Šå‚³åœ–ç‰‡è‡³ç§äººç›¸ç°¿éœ€ç®¡ç†å“¡æ ¸å‡†',
+  'notes' => 'æ³¨æ„',
 );
 
 // ------------------------------------------------------------------------- //
@@ -797,34 +800,34 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
 if (defined('INDEX_PHP')){
 
 $lang_index_php = array(
-  'welcome' => 'Åwªï !',
+  'welcome' => 'æ­¡è¿ !',
 );
 
 $lang_album_admin_menu = array(
-  'confirm_delete' => '½T©w­n§R°£³o¬ÛÃ¯ ? \\n©Ò¦³¹Ï¤ù¤Î¯d¨¥³£·|³Q§R°£.', //js-alert //cpg1.3.0
-  'delete' => '§R°£',
-  'modify' => 'Äİ©Ê',
-  'edit_pics' => '½s¿è', //cpg1.3.0
+  'confirm_delete' => 'ç¢ºå®šè¦åˆªé™¤é€™ç›¸ç°¿ ? \\næ‰€æœ‰åœ–ç‰‡åŠç•™è¨€éƒ½æœƒè¢«åˆªé™¤.', //js-alert //cpg1.3.0
+  'delete' => 'åˆªé™¤',
+  'modify' => 'å±¬æ€§',
+  'edit_pics' => 'ç·¨è¼¯', //cpg1.3.0
 );
 
 $lang_list_categories = array(
-  'home' => '¬ÛÃ¯­º­¶',
-  'stat1' => '<b>[pictures]</b> ±i¼v¹³©ó <b>[albums]</b> ­Ó¬ÛÃ¯¤Î <b>[cat]</b> ­ÓÃş§O, ¦³ <b>[comments]</b> ­Ó¯d¨¥, ³QÆ[¬İ <b>[views]</b> ¦¸', //cpg1.3.0
-  'stat2' => '<b>[pictures]</b> ±i¼v¹³©ó <b>[albums]</b> ­Ó¬ÛÃ¯, ³QÆ[¬İ <b>[views]</b> ¦¸', //cpg1.3.0
-  'xx_s_gallery' => '%s\'s ¬ÛÃ¯',
-  'stat3' => '<b>[pictures]</b> ±i¼v¹³©ó <b>[albums]</b> ­Ó¬ÛÃ¯, ¦³ <b>[comments]</b> ­Ó¯d¨¥, ³QÆ[¬İ <b>[views]</b> ¦¸', //cpg1.3.0
+  'home' => 'ç›¸ç°¿é¦–é ',
+  'stat1' => '<b>[pictures]</b> å¼µå½±åƒæ–¼ <b>[albums]</b> å€‹ç›¸ç°¿åŠ <b>[cat]</b> å€‹é¡åˆ¥, æœ‰ <b>[comments]</b> å€‹ç•™è¨€, è¢«è§€çœ‹ <b>[views]</b> æ¬¡', //cpg1.3.0
+  'stat2' => '<b>[pictures]</b> å¼µå½±åƒæ–¼ <b>[albums]</b> å€‹ç›¸ç°¿, è¢«è§€çœ‹ <b>[views]</b> æ¬¡', //cpg1.3.0
+  'xx_s_gallery' => '%s\'s ç›¸ç°¿',
+  'stat3' => '<b>[pictures]</b> å¼µå½±åƒæ–¼ <b>[albums]</b> å€‹ç›¸ç°¿, æœ‰ <b>[comments]</b> å€‹ç•™è¨€, è¢«è§€çœ‹ <b>[views]</b> æ¬¡', //cpg1.3.0
 );
 
 $lang_list_users = array(
-  'user_list' => '·|­û¦Cªí',
-  'no_user_gal' => 'ÁÙ¨S¦³·|­û¬ÛÃ¯',
-  'n_albums' => '%s ­Ó¬ÛÃ¯',
-  'n_pics' => '%s ±i¼v¹³', //cpg1.3.0
+  'user_list' => 'æœƒå“¡åˆ—è¡¨',
+  'no_user_gal' => 'é‚„æ²’æœ‰æœƒå“¡ç›¸ç°¿',
+  'n_albums' => '%s å€‹ç›¸ç°¿',
+  'n_pics' => '%s å¼µå½±åƒ', //cpg1.3.0
 );
 
 $lang_list_albums = array(
-  'n_pictures' => '%s ±i¼v¹³', //cpg1.3.0
-  'last_added' => ', ³Ì·s¼v¹³©ó %s',
+  'n_pictures' => '%s å¼µå½±åƒ', //cpg1.3.0
+  'last_added' => ', æœ€æ–°å½±åƒæ–¼ %s',
 );
 
 }
@@ -834,15 +837,15 @@ $lang_list_albums = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('LOGIN_PHP')) $lang_login_php = array(
-  'login' => 'µn¤J',
-  'enter_login_pswd' => '¿é¤J·|­û¦WºÙ©M±K½X',
-  'username' => '·|­û¦WºÙ',
-  'password' => '±K½X',
-  'remember_me' => '°O¦í§Ú',
-  'welcome' => 'Åwªï %s ...',
-  'err_login' => '*** µLªkµn¤J. ½Ğ­«¸Õ ***',
-  'err_already_logged_in' => '±z¤w¸gµn¤J !',
-  'forgot_password_link' => '§Ñ°O±K½X¤F', //cpg1.3.0
+  'login' => 'ç™»å…¥',
+  'enter_login_pswd' => 'è¼¸å…¥æœƒå“¡åç¨±å’Œå¯†ç¢¼',
+  'username' => 'æœƒå“¡åç¨±',
+  'password' => 'å¯†ç¢¼',
+  'remember_me' => 'è¨˜ä½æˆ‘',
+  'welcome' => 'æ­¡è¿ %s ...',
+  'err_login' => '*** ç„¡æ³•ç™»å…¥. è«‹é‡è©¦ ***',
+  'err_already_logged_in' => 'æ‚¨å·²ç¶“ç™»å…¥ !',
+  'forgot_password_link' => 'å¿˜è¨˜å¯†ç¢¼äº†', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -850,9 +853,9 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('LOGOUT_PHP')) $lang_logout_php = array(
-  'logout' => 'µn¥X',
-  'bye' => '¦A¨£ %s ...',
-  'err_not_loged_in' => '±zÁÙ¨S¦³µn¤J !',
+  'logout' => 'ç™»å‡º',
+  'bye' => 'å†è¦‹ %s ...',
+  'err_not_loged_in' => 'æ‚¨é‚„æ²’æœ‰ç™»å…¥ !',
 );
 
 // ------------------------------------------------------------------------- //
@@ -860,9 +863,9 @@ if (defined('LOGOUT_PHP')) $lang_logout_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
-  'php_info' => 'PHP ¸ê®Æ', //cpg1.3.0
-  'explanation' => '³o¬O¥Ñ PHP-function ²£¥Í <a href="http://www.php.net/phpinfo">phpinfo()</a>, Copermine ºI¨ú³¡¤À¤º®eÅã¥Ü.', //cpg1.3.0
-  'no_link' => 'Åı¨ä¥L¤H¬İ¨ì§Aªº phpinfo ·|¦³¦w¥ş¤Wªº­·ÀI, ³o´N¬O¬°¦ó ·í§A¥HºŞ²z­û¨­¤Àµn¤J®É¤~·|¬İ¨ì¦¹­¶ªº­ì¦]. §A¤£¯à±N¥»­¶ªº³sµ²µ¹¨ä¥L¤H¦]¬°·|Åã¥Ü¦s¨ú¿ù»~.', //cpg1.3.0
+  'php_info' => 'PHP è³‡æ–™', //cpg1.3.0
+  'explanation' => 'é€™æ˜¯ç”± PHP-function ç”¢ç”Ÿ <a href="http://www.php.net/phpinfo">phpinfo()</a>, Copermine æˆªå–éƒ¨åˆ†å…§å®¹é¡¯ç¤º.', //cpg1.3.0
+  'no_link' => 'è®“å…¶ä»–äººçœ‹åˆ°ä½ çš„ phpinfo æœƒæœ‰å®‰å…¨ä¸Šçš„é¢¨éšª, é€™å°±æ˜¯ç‚ºä½• ç•¶ä½ ä»¥ç®¡ç†å“¡èº«åˆ†ç™»å…¥æ™‚æ‰æœƒçœ‹åˆ°æ­¤é çš„åŸå› . ä½ ä¸èƒ½å°‡æœ¬é çš„é€£çµçµ¦å…¶ä»–äººå› ç‚ºæœƒé¡¯ç¤ºå­˜å–éŒ¯èª¤.', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -870,28 +873,28 @@ if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
-  'upd_alb_n' => '§ó·s¬ÛÃ¯ %s',
-  'general_settings' => '¤@¯ë³]©w',
-  'alb_title' => '¬ÛÃ¯¼ĞÃD',
-  'alb_cat' => '¬ÛÃ¯Ãş§O',
-  'alb_desc' => '¬ÛÃ¯´y­z',
-  'alb_thumb' => '¬ÛÃ¯ÁY¹Ï',
-  'alb_perm' => '¬ÛÃ¯Åv­­',
-  'can_view' => '¤¹³\Æ[¬İ¬ÛÃ¯ªº·|­û',
-  'can_upload' => '³X«È¥i¤W¶Ç¹Ï¤ù',
-  'can_post_comments' => '³X«È¥iµoªí¯d¨¥',
-  'can_rate' => '³X«È¥i¬°¹Ï¤ùµû¤À',
-  'user_gal' => '·|­û¬ÛÃ¯',
-  'no_cat' => '* ¨S¦³Ãş§O *',
-  'alb_empty' => '¬ÛÃ¯¬OªÅªº',
-  'last_uploaded' => '³Ìªñ¤W¶Ç',
-  'public_alb' => '¥ô¦ó¤H (¤½¶}¬ÛÃ¯)',
-  'me_only' => '¥u¦³§Ú',
-  'owner_only' => '¥u¦³¬ÛÃ¯¾Ö¦³¤H (%s) ',
-  'groupp_only' => ' \'%s\' ¸s²Õªº·|­û',
-  'err_no_alb_to_modify' => '¸ê®Æ®w¤º¨S¦³±z¥i­×§ïªº¬ÛÃ¯.',
-  'update' => '§ó·s¬ÛÃ¯', //cpg1.3.0
-  'notice1' => '(*) ®Ú¾Ú %s¸s²Õ%s ³]©w', //cpg1.3.0 (do not translate %s!)
+  'upd_alb_n' => 'æ›´æ–°ç›¸ç°¿ %s',
+  'general_settings' => 'ä¸€èˆ¬è¨­å®š',
+  'alb_title' => 'ç›¸ç°¿æ¨™é¡Œ',
+  'alb_cat' => 'ç›¸ç°¿é¡åˆ¥',
+  'alb_desc' => 'ç›¸ç°¿æè¿°',
+  'alb_thumb' => 'ç›¸ç°¿ç¸®åœ–',
+  'alb_perm' => 'ç›¸ç°¿æ¬Šé™',
+  'can_view' => 'å…è¨±è§€çœ‹ç›¸ç°¿çš„æœƒå“¡',
+  'can_upload' => 'è¨ªå®¢å¯ä¸Šå‚³åœ–ç‰‡',
+  'can_post_comments' => 'è¨ªå®¢å¯ç™¼è¡¨ç•™è¨€',
+  'can_rate' => 'è¨ªå®¢å¯ç‚ºåœ–ç‰‡è©•åˆ†',
+  'user_gal' => 'æœƒå“¡ç›¸ç°¿',
+  'no_cat' => '* æ²’æœ‰é¡åˆ¥ *',
+  'alb_empty' => 'ç›¸ç°¿æ˜¯ç©ºçš„',
+  'last_uploaded' => 'æœ€è¿‘ä¸Šå‚³',
+  'public_alb' => 'ä»»ä½•äºº (å…¬é–‹ç›¸ç°¿)',
+  'me_only' => 'åªæœ‰æˆ‘',
+  'owner_only' => 'åªæœ‰ç›¸ç°¿æ“æœ‰äºº (%s) ',
+  'groupp_only' => ' \'%s\' ç¾¤çµ„çš„æœƒå“¡',
+  'err_no_alb_to_modify' => 'è³‡æ–™åº«å…§æ²’æœ‰æ‚¨å¯ä¿®æ”¹çš„ç›¸ç°¿.',
+  'update' => 'æ›´æ–°ç›¸ç°¿', //cpg1.3.0
+  'notice1' => '(*) æ ¹æ“š %sç¾¤çµ„%s è¨­å®š', //cpg1.3.0 (do not translate %s!)
 );
 
 // ------------------------------------------------------------------------- //
@@ -899,9 +902,9 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
-  'already_rated' => '©êºp, ±z¤w¸g¬°¦¹¹Ï¤ùµû¤À', //cpg1.3.0
-  'rate_ok' => '±zªºµû¤À¤w¸g³Q±µ¨ü',
-  'forbidden' => '§A¤£¯à¹ï§A¦Û¤vªº¹Ï¤ùµû¤À.', //cpg1.3.0
+  'already_rated' => 'æŠ±æ­‰, æ‚¨å·²ç¶“ç‚ºæ­¤åœ–ç‰‡è©•åˆ†', //cpg1.3.0
+  'rate_ok' => 'æ‚¨çš„è©•åˆ†å·²ç¶“è¢«æ¥å—',
+  'forbidden' => 'ä½ ä¸èƒ½å°ä½ è‡ªå·±çš„åœ–ç‰‡è©•åˆ†.', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -911,80 +914,80 @@ if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
- {SITE_NAME} ªººŞ²z­û·|¾¨§Ö¾ã²z·|¤Ş°_¤Ï·Pªº¸ê®Æ, ¦ı§Ú­Ì¤£¥i¯à¼f¬d¨C¤@¥÷¤å¥ó. ¦]¦¹±z¥²»İ¦P·N©Ò¦³¤å¥ó¥u¬O¥Nªí§@ªÌªº¥ß³õ¤Î·N¨£, ¤£¥NªíºŞ²z¤H­ûªº¥ß³õ (°£¤F¥Ñ¥L­Ì¶K¥X) ¨Ã¤£­t¥ô¦óªk«ß³d¥ô.<br />
+ {SITE_NAME} çš„ç®¡ç†å“¡æœƒå„˜å¿«æ•´ç†æœƒå¼•èµ·åæ„Ÿçš„è³‡æ–™, ä½†æˆ‘å€‘ä¸å¯èƒ½å¯©æŸ¥æ¯ä¸€ä»½æ–‡ä»¶. å› æ­¤æ‚¨å¿…éœ€åŒæ„æ‰€æœ‰æ–‡ä»¶åªæ˜¯ä»£è¡¨ä½œè€…çš„ç«‹å ´åŠæ„è¦‹, ä¸ä»£è¡¨ç®¡ç†äººå“¡çš„ç«‹å ´ (é™¤äº†ç”±ä»–å€‘è²¼å‡º) ä¸¦ä¸è² ä»»ä½•æ³•å¾‹è²¬ä»».<br />
 <br />
-±z¥²»İ¦P·N¤£¥i±i¶K¥ô¦ó¦â±¡, ¼É¤O, ¤£¨}, ¤£¥¿·í, ¤£°·±d, §«®`°ê®a¦w¥ş, ©Î¥ô¦ó¥i¯à¹Hªkªº¤å¥ó.  {SITE_NAME} ¤H­û¦b¥ô¦ó®É­Ô³£¦³Åv¹LÂo¨Ã½s¿è±z±i¶Kªº¤º®e. ¨Ã¥B·|­û¯d¦b¥»¯¸¤ºªº¸ê®Æ¤w¦s¦b¸ê®Æ®w¤¤. ¥½¸g±zªº¦P·N, §Ú­Ì¤£·|±N±zªº¸ê®ÆÂàµ¹¨ä¥L¤H¨Ï¥Î, ¤£¹L§Ú­Ì¤£·|¬°¥ô¦ó¦]Àb«È¦æ¬°¦Ó¥~¬ªªº¸ê®Æ­t¥ô¦ó³d¥ô.<br />
+æ‚¨å¿…éœ€åŒæ„ä¸å¯å¼µè²¼ä»»ä½•è‰²æƒ…, æš´åŠ›, ä¸è‰¯, ä¸æ­£ç•¶, ä¸å¥åº·, å¦¨å®³åœ‹å®¶å®‰å…¨, æˆ–ä»»ä½•å¯èƒ½é•æ³•çš„æ–‡ä»¶.  {SITE_NAME} äººå“¡åœ¨ä»»ä½•æ™‚å€™éƒ½æœ‰æ¬Šéæ¿¾ä¸¦ç·¨è¼¯æ‚¨å¼µè²¼çš„å…§å®¹. ä¸¦ä¸”æœƒå“¡ç•™åœ¨æœ¬ç«™å…§çš„è³‡æ–™å·²å­˜åœ¨è³‡æ–™åº«ä¸­. æœ«ç¶“æ‚¨çš„åŒæ„, æˆ‘å€‘ä¸æœƒå°‡æ‚¨çš„è³‡æ–™è½‰çµ¦å…¶ä»–äººä½¿ç”¨, ä¸éæˆ‘å€‘ä¸æœƒç‚ºä»»ä½•å› é§­å®¢è¡Œç‚ºè€Œå¤–æ´©çš„è³‡æ–™è² ä»»ä½•è²¬ä»».<br />
 <br />
-¥»¯¸¨Ï¥Î cookies ¦b±zªº¹q¸£¤W¨ÓÀx¦s¸ê°T. ³o¼Ë¬O¤è«K±z§ó´r§ÖÂsÄı. ±zªº¹q¤l¶l¥ó¦a§}¥u¬OÅı§Ú­Ì»{ÃÒ±zªº¸ê®Æ¦Ó¤w.<br />
+æœ¬ç«™ä½¿ç”¨ cookies åœ¨æ‚¨çš„é›»è…¦ä¸Šä¾†å„²å­˜è³‡è¨Š. é€™æ¨£æ˜¯æ–¹ä¾¿æ‚¨æ›´æ„‰å¿«ç€è¦½. æ‚¨çš„é›»å­éƒµä»¶åœ°å€åªæ˜¯è®“æˆ‘å€‘èªè­‰æ‚¨çš„è³‡æ–™è€Œå·².<br />
 <br />
-«ö¤U '§Ú¦P·N' ¥Nªí±z¦P·N¥H¤W±ø´Ú.
+æŒ‰ä¸‹ 'æˆ‘åŒæ„' ä»£è¡¨æ‚¨åŒæ„ä»¥ä¸Šæ¢æ¬¾.
 EOT;
 
 $lang_register_php = array(
-  'page_title' => '·|­ûµù¥U',
-  'term_cond' => '±ø´Ú»P³W«h',
-  'i_agree' => '§Ú¦P·N',
-  'submit' => '½T»{µù¥U',
-  'err_user_exists' => '±z©Ò¶ñ¼gªº·|­û¦WºÙ¤w³Q¨ä¥L·|­û¨Ï¥Î, ½Ğ­«¿ï¤@­Ó',
-  'err_password_mismatch' => '¨â­Ó±K½X¤£¦X, ½Ğ­«¶ñ¤@¦¸',
-  'err_uname_short' => '·|­û¦WºÙ¦Ü¤Ö»İ 2 ­Ó¦r¤¸',
-  'err_password_short' => '±K½X¦Ü¤Ö»İ 2 ­Ó¦r¤¸',
-  'err_uname_pass_diff' => '·|­û¦WºÙ©M±K½X¤£¥i¥H¬Û¦P',
-  'err_invalid_email' => '¹q¤l¶l¥ó¤£¥¿½T',
-  'err_duplicate_email' => '³o­Ó¹q¤l¶l¥ó¤w¸g³Q¨ä¥L·|­û¨Ï¥Î',
-  'enter_info' => '¿é¤Jµù¥U¸ê®Æ',
-  'required_info' => '¥²¶ñªº¸ê®Æ',
-  'optional_info' => '¿ï¶ñªº¸ê®Æ',
-  'username' => '·|­û¦WºÙ',
-  'password' => '·|­û±K½X',
-  'password_again' => '½T»{±K½X',
-  'email' => '¹q¤l¶l¥ó',
-  'location' => '©~¦í¦a°Ï',
-  'interests' => '¿³½ì',
-  'website' => '­Ó¤Hºô¯¸',
-  'occupation' => 'Â¾·~',
-  'error' => '¿ù»~',
-  'confirm_email_subject' => '%s - µù¥U»{ÃÒ',
-  'information' => '°T®§',
-  'failed_sending_email' => '©Òµù¥Uªº¹q¤l¶l¥óµLªk±H¥X !',
-  'thank_you' => '·PÁÂ±zªºµù¥U.<br /><br />¤@«Ê§t¦³¦p¦ó±Ò¥Î±b¸¹ªº¹q¤l¶l¥ó±N·|°e¨ì±z©Ò´£¨Ñªº«H½c.',
-  'acct_created' => '±zªº±b¸¹¤w¸g«Ø¥ß, ²{¦b±z¥i¥Hµn¤J',
-  'acct_active' => '±zªº±b¸¹¤w¸g±Ò¥Î, ²{¦b±z¥i¥Hµn¤J',
-  'acct_already_act' => '±zªº±b¸¹¤w¸g±Ò¥Î !',
-  'acct_act_failed' => '¦¹±b¸¹µLªk±Ò¥Î !',
-  'err_unk_user' => '©Ò¿ï¾Üªº·|­û¨Ã¤£¦s¦b !',
-  'x_s_profile' => '%s\'ªº­Ó¤H¸ê®Æ',
-  'group' => '¸s²Õ',
-  'reg_date' => '¥[¤J¤é´Á',
-  'disk_usage' => 'ºÏºĞ¨Ï¥Î¶q',
-  'change_pass' => '­×§ï±K½X',
-  'current_pass' => '¥Ø«eªº±K½X',
-  'new_pass' => '·s±K½X',
-  'new_pass_again' => '½T»{·s±K½X',
-  'err_curr_pass' => '¥Ø«eªº±K½X¤£¥¿½T',
-  'apply_modif' => '­×§ï',
-  'change_pass' => '­×§ï±K½X',
-  'update_success' => '§Aªº­Ó¤H¸ê®Æ¤w¸g§ó·s',
-  'pass_chg_success' => '§Aªº±K½X¤w¸g­×§ï',
-  'pass_chg_error' => '§Aªº±K½X¨S¦³­×§ï',
-  'notify_admin_email_subject' => '%s - µù¥U³qª¾', //cpg1.3.0
-  'notify_admin_email_body' => '¦³¤@­Ó·s·|­û¦WºÙ "%s" ¤w¸g¦b§Aªº¬ÛÃ¯µù¥U', //cpg1.3.0
+  'page_title' => 'æœƒå“¡è¨»å†Š',
+  'term_cond' => 'æ¢æ¬¾èˆ‡è¦å‰‡',
+  'i_agree' => 'æˆ‘åŒæ„',
+  'submit' => 'ç¢ºèªè¨»å†Š',
+  'err_user_exists' => 'æ‚¨æ‰€å¡«å¯«çš„æœƒå“¡åç¨±å·²è¢«å…¶ä»–æœƒå“¡ä½¿ç”¨, è«‹é‡é¸ä¸€å€‹',
+  'err_password_mismatch' => 'å…©å€‹å¯†ç¢¼ä¸åˆ, è«‹é‡å¡«ä¸€æ¬¡',
+  'err_uname_short' => 'æœƒå“¡åç¨±è‡³å°‘éœ€ 2 å€‹å­—å…ƒ',
+  'err_password_short' => 'å¯†ç¢¼è‡³å°‘éœ€ 2 å€‹å­—å…ƒ',
+  'err_uname_pass_diff' => 'æœƒå“¡åç¨±å’Œå¯†ç¢¼ä¸å¯ä»¥ç›¸åŒ',
+  'err_invalid_email' => 'é›»å­éƒµä»¶ä¸æ­£ç¢º',
+  'err_duplicate_email' => 'é€™å€‹é›»å­éƒµä»¶å·²ç¶“è¢«å…¶ä»–æœƒå“¡ä½¿ç”¨',
+  'enter_info' => 'è¼¸å…¥è¨»å†Šè³‡æ–™',
+  'required_info' => 'å¿…å¡«çš„è³‡æ–™',
+  'optional_info' => 'é¸å¡«çš„è³‡æ–™',
+  'username' => 'æœƒå“¡åç¨±',
+  'password' => 'æœƒå“¡å¯†ç¢¼',
+  'password_again' => 'ç¢ºèªå¯†ç¢¼',
+  'email' => 'é›»å­éƒµä»¶',
+  'location' => 'å±…ä½åœ°å€',
+  'interests' => 'èˆˆè¶£',
+  'website' => 'å€‹äººç¶²ç«™',
+  'occupation' => 'è·æ¥­',
+  'error' => 'éŒ¯èª¤',
+  'confirm_email_subject' => '%s - è¨»å†Šèªè­‰',
+  'information' => 'è¨Šæ¯',
+  'failed_sending_email' => 'æ‰€è¨»å†Šçš„é›»å­éƒµä»¶ç„¡æ³•å¯„å‡º !',
+  'thank_you' => 'æ„Ÿè¬æ‚¨çš„è¨»å†Š.<br /><br />ä¸€å°å«æœ‰å¦‚ä½•å•Ÿç”¨å¸³è™Ÿçš„é›»å­éƒµä»¶å°‡æœƒé€åˆ°æ‚¨æ‰€æä¾›çš„ä¿¡ç®±.',
+  'acct_created' => 'æ‚¨çš„å¸³è™Ÿå·²ç¶“å»ºç«‹, ç¾åœ¨æ‚¨å¯ä»¥ç™»å…¥',
+  'acct_active' => 'æ‚¨çš„å¸³è™Ÿå·²ç¶“å•Ÿç”¨, ç¾åœ¨æ‚¨å¯ä»¥ç™»å…¥',
+  'acct_already_act' => 'æ‚¨çš„å¸³è™Ÿå·²ç¶“å•Ÿç”¨ !',
+  'acct_act_failed' => 'æ­¤å¸³è™Ÿç„¡æ³•å•Ÿç”¨ !',
+  'err_unk_user' => 'æ‰€é¸æ“‡çš„æœƒå“¡ä¸¦ä¸å­˜åœ¨ !',
+  'x_s_profile' => '%s\'çš„å€‹äººè³‡æ–™',
+  'group' => 'ç¾¤çµ„',
+  'reg_date' => 'åŠ å…¥æ—¥æœŸ',
+  'disk_usage' => 'ç£ç¢Ÿä½¿ç”¨é‡',
+  'change_pass' => 'ä¿®æ”¹å¯†ç¢¼',
+  'current_pass' => 'ç›®å‰çš„å¯†ç¢¼',
+  'new_pass' => 'æ–°å¯†ç¢¼',
+  'new_pass_again' => 'ç¢ºèªæ–°å¯†ç¢¼',
+  'err_curr_pass' => 'ç›®å‰çš„å¯†ç¢¼ä¸æ­£ç¢º',
+  'apply_modif' => 'ä¿®æ”¹',
+  'change_pass' => 'ä¿®æ”¹å¯†ç¢¼',
+  'update_success' => 'ä½ çš„å€‹äººè³‡æ–™å·²ç¶“æ›´æ–°',
+  'pass_chg_success' => 'ä½ çš„å¯†ç¢¼å·²ç¶“ä¿®æ”¹',
+  'pass_chg_error' => 'ä½ çš„å¯†ç¢¼æ²’æœ‰ä¿®æ”¹',
+  'notify_admin_email_subject' => '%s - è¨»å†Šé€šçŸ¥', //cpg1.3.0
+  'notify_admin_email_body' => 'æœ‰ä¸€å€‹æ–°æœƒå“¡åç¨± "%s" å·²ç¶“åœ¨ä½ çš„ç›¸ç°¿è¨»å†Š', //cpg1.3.0
 );
 
 $lang_register_confirm_email = <<<EOT
-·PÁÂ±z¦b {SITE_NAME} ªºµù¥U
+æ„Ÿè¬æ‚¨åœ¨ {SITE_NAME} çš„è¨»å†Š
 
-±zªº·|­û¦WºÙ : "{USER_NAME}"
-±zªº±K½X : "{PASSWORD}"
+æ‚¨çš„æœƒå“¡åç¨± : "{USER_NAME}"
+æ‚¨çš„å¯†ç¢¼ : "{PASSWORD}"
 
-½Ğ±z«ö¤U­±ªº³sµ²¥H±Ò°Ê±zªº±b¸¹
-©ÎªÌ§â¦¹³sµ²¶K¨ìÂsÄı¾¹¤W.
+è«‹æ‚¨æŒ‰ä¸‹é¢çš„é€£çµä»¥å•Ÿå‹•æ‚¨çš„å¸³è™Ÿ
+æˆ–è€…æŠŠæ­¤é€£çµè²¼åˆ°ç€è¦½å™¨ä¸Š.
 
 {ACT_LINK}
 
-Åwªï§A(©p),
+æ­¡è¿ä½ (å¦³),
 
-{SITE_NAME} ºŞ²z¤p²Õ
+{SITE_NAME} ç®¡ç†å°çµ„
 
 EOT;
 
@@ -995,13 +998,13 @@ EOT;
 // ------------------------------------------------------------------------- //
 
 if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
-  'title' => 'Æ[¬İ¯d¨¥',
-  'no_comment' => 'ÁÙ¨S¦³¯d¨¥¥i¥HÆ[¬İ',
-  'n_comm_del' => '%s ­Ó¯d¨¥¤w§R°£',
-  'n_comm_disp' => 'Åã¥Üªº¯d¨¥¼Æ¶q',
-  'see_prev' => '¬İ«e¤@­Ó',
-  'see_next' => '¬İ¤U¤@­Ó',
-  'del_comm' => '§R°£©Ò¿ïªº¯d¨¥',
+  'title' => 'è§€çœ‹ç•™è¨€',
+  'no_comment' => 'é‚„æ²’æœ‰ç•™è¨€å¯ä»¥è§€çœ‹',
+  'n_comm_del' => '%s å€‹ç•™è¨€å·²åˆªé™¤',
+  'n_comm_disp' => 'é¡¯ç¤ºçš„ç•™è¨€æ•¸é‡',
+  'see_prev' => 'çœ‹å‰ä¸€å€‹',
+  'see_next' => 'çœ‹ä¸‹ä¸€å€‹',
+  'del_comm' => 'åˆªé™¤æ‰€é¸çš„ç•™è¨€',
 );
 
 
@@ -1010,7 +1013,7 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCH_PHP')) $lang_search_php = array(
-  0 => '·j´M¹Ï¤ù¤º®e',
+  0 => 'æœå°‹åœ–ç‰‡å…§å®¹',
 );
 
 // ------------------------------------------------------------------------- //
@@ -1018,37 +1021,37 @@ if (defined('SEARCH_PHP')) $lang_search_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
-  'page_title' => '·j´M·s¹Ï¤ù', //cpg1.3.0
-  'select_dir' => '¿ï¾Ü¥Ø¿ı',
-  'select_dir_msg' => '¥»¥\¯à¥i¥HÅı§A¥Î FTP ¤W¶Ç¾ã§å¹Ï¤ù.<br /><br />½Ğ¿ï¾Ü§A¤w¤W¶Ç¹Ï¤ùªº¥Ø¿ı', //cpg1.3.0
-  'no_pic_to_add' => '¨S¦³¹Ï¤ù¥i¥H¥[¤J', //cpg1.3.0
-  'need_one_album' => '¨Ï¥Î¦¹¥\¯à¥²»İ¦Ü¤Ö­n¦³¤@­Ó¬ÛÃ¯',
-  'warning' => 'Äµ§i',
-  'change_perm' => 'µ{¦¡µLªk¼g¤J³o­Ó¥Ø¿ı, ½Ğ­×§ïÅv­­¦Ü 755 ©Î 777 «á¦A¸Õ¤@¦¸ !', //cpg1.3.0
-  'target_album' => '<b>§â¹Ï¤ù¥Ñ &quot;</b>%s<b>&quot; ©ñ¨ì </b>%s', //cpg1.3.0
-  'folder' => '¸ê®Æ§¨',
-  'image' => '¹Ï¤ù',
-  'album' => '¬ÛÃ¯',
-  'result' => 'µ²ªG',
-  'dir_ro' => 'µLªk¼g¤J. ',
-  'dir_cant_read' => 'µLªkÅª¨ú. ',
-  'insert' => '·s¼W¹Ï¤ù¦Ü¬ÛÃ¯', //cpg1.3.0
-  'list_new_pic' => '·s¹Ï¤ù¦Cªí', //cpg1.3.0
-  'insert_selected' => '¥[¤J©Ò¿ï¾Üªº¹Ï¤ù', //cpg1.3.0
-  'no_pic_found' => '¨S¦³§ä¨ì·s¹Ï¤ù', //cpg1.3.0
-  'be_patient' => '½Ğ­@¤ßµ¥­Ô, µ{¦¡»İ­n¤@ÂI®É¶¡¨Ó¥[¤J©Ò¿ï¹Ï¤ù', //cpg1.3.0
-  'no_album' => '¨S¦³¿ï¾Üªº¬ÛÃ¯',  //cpg1.3.0
+  'page_title' => 'æœå°‹æ–°åœ–ç‰‡', //cpg1.3.0
+  'select_dir' => 'é¸æ“‡ç›®éŒ„',
+  'select_dir_msg' => 'æœ¬åŠŸèƒ½å¯ä»¥è®“ä½ ç”¨ FTP ä¸Šå‚³æ•´æ‰¹åœ–ç‰‡.<br /><br />è«‹é¸æ“‡ä½ å·²ä¸Šå‚³åœ–ç‰‡çš„ç›®éŒ„', //cpg1.3.0
+  'no_pic_to_add' => 'æ²’æœ‰åœ–ç‰‡å¯ä»¥åŠ å…¥', //cpg1.3.0
+  'need_one_album' => 'ä½¿ç”¨æ­¤åŠŸèƒ½å¿…éœ€è‡³å°‘è¦æœ‰ä¸€å€‹ç›¸ç°¿',
+  'warning' => 'è­¦å‘Š',
+  'change_perm' => 'ç¨‹å¼ç„¡æ³•å¯«å…¥é€™å€‹ç›®éŒ„, è«‹ä¿®æ”¹æ¬Šé™è‡³ 755 æˆ– 777 å¾Œå†è©¦ä¸€æ¬¡ !', //cpg1.3.0
+  'target_album' => '<b>æŠŠåœ–ç‰‡ç”± &quot;</b>%s<b>&quot; æ”¾åˆ° </b>%s', //cpg1.3.0
+  'folder' => 'è³‡æ–™å¤¾',
+  'image' => 'åœ–ç‰‡',
+  'album' => 'ç›¸ç°¿',
+  'result' => 'çµæœ',
+  'dir_ro' => 'ç„¡æ³•å¯«å…¥. ',
+  'dir_cant_read' => 'ç„¡æ³•è®€å–. ',
+  'insert' => 'æ–°å¢åœ–ç‰‡è‡³ç›¸ç°¿', //cpg1.3.0
+  'list_new_pic' => 'æ–°åœ–ç‰‡åˆ—è¡¨', //cpg1.3.0
+  'insert_selected' => 'åŠ å…¥æ‰€é¸æ“‡çš„åœ–ç‰‡', //cpg1.3.0
+  'no_pic_found' => 'æ²’æœ‰æ‰¾åˆ°æ–°åœ–ç‰‡', //cpg1.3.0
+  'be_patient' => 'è«‹è€å¿ƒç­‰å€™, ç¨‹å¼éœ€è¦ä¸€é»æ™‚é–“ä¾†åŠ å…¥æ‰€é¸åœ–ç‰‡', //cpg1.3.0
+  'no_album' => 'æ²’æœ‰é¸æ“‡çš„ç›¸ç°¿',  //cpg1.3.0
   'notes' =>  '<ul>'.
-                          '<li><b>OK</b> : ªí¥Ü¹Ï¤ù¤w¦¨¥\³Q¥[¤J'.
-                          '<li><b>DP</b> : ªí¥Ü¹Ï¤ù­«ÂĞ©Î¤w¦s¦b¸ê®Æ®w'.
-                          '<li><b>PB</b> : ªí¥Ü¹Ï¤ùµLªk¥[¤J, ½ĞÀË¬d³]©w©Î¹Ï¤ù¦s©ñ¥Ø¿ıªºÅv­­'.
-                          '<li><b>NA</b> : ªí¥Ü§AÁÙ¨S¦³¿ï¾Ü¹Ï¤ùªº¬ÛÃ¯, «ö \'<a href="javascript:history.back(1)">ªğ¦^</a>\' ¨Ã¿ï¾Ü¬ÛÃ¯. ¦pªG§A¨S¦³¬ÛÃ¯ <a href="albmgr.php">½Ğ¥ı«Ø¥ß¤@­Ó</a></li>'.
-                          '<li>¦pªG OK, DP, PB \'²Å¸¹\' ¨S¦³Åã¥Ü½Ğ«öÃa±¼ªº¹Ï¤ù¬d¬İ PHP Åã¥Üªº¿ù»~°T®§'.
-                          '<li>¦pªGÂsÄı¾¹¹O®É, ½Ğ«ö­«·s¾ã²z'.
+                          '<li><b>OK</b> : è¡¨ç¤ºåœ–ç‰‡å·²æˆåŠŸè¢«åŠ å…¥'.
+                          '<li><b>DP</b> : è¡¨ç¤ºåœ–ç‰‡é‡è¦†æˆ–å·²å­˜åœ¨è³‡æ–™åº«'.
+                          '<li><b>PB</b> : è¡¨ç¤ºåœ–ç‰‡ç„¡æ³•åŠ å…¥, è«‹æª¢æŸ¥è¨­å®šæˆ–åœ–ç‰‡å­˜æ”¾ç›®éŒ„çš„æ¬Šé™'.
+                          '<li><b>NA</b> : è¡¨ç¤ºä½ é‚„æ²’æœ‰é¸æ“‡åœ–ç‰‡çš„ç›¸ç°¿, æŒ‰ \'<a href="javascript:history.back(1)">è¿”å›</a>\' ä¸¦é¸æ“‡ç›¸ç°¿. å¦‚æœä½ æ²’æœ‰ç›¸ç°¿ <a href="albmgr.php">è«‹å…ˆå»ºç«‹ä¸€å€‹</a></li>'.
+                          '<li>å¦‚æœ OK, DP, PB \'ç¬¦è™Ÿ\' æ²’æœ‰é¡¯ç¤ºè«‹æŒ‰å£æ‰çš„åœ–ç‰‡æŸ¥çœ‹ PHP é¡¯ç¤ºçš„éŒ¯èª¤è¨Šæ¯'.
+                          '<li>å¦‚æœç€è¦½å™¨é€¾æ™‚, è«‹æŒ‰é‡æ–°æ•´ç†'.
                           '</ul>', //cpg1.3.0
-  'select_album' => '¿ï¾Ü¬ÛÃ¯', //cpg1.3.0
-  'check_all' => '¥ş¿ï', //cpg1.3.0
-  'uncheck_all' => '³£¤£¿ï', //cpg1.3.0
+  'select_album' => 'é¸æ“‡ç›¸ç°¿', //cpg1.3.0
+  'check_all' => 'å…¨é¸', //cpg1.3.0
+  'uncheck_all' => 'éƒ½ä¸é¸', //cpg1.3.0
 );
 
 
@@ -1063,22 +1066,22 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('BANNING_PHP')) $lang_banning_php = array(
-  'title' => 'ªı¾×·|­û',
-  'user_name' => '·|­û¦WºÙ',
-  'ip_address' => 'IP¦ì§}',
-  'expiry' => '´Á­­¡]ªÅ¥Õ¥Nªí¥Ã¤[°±Åv¡^',
-  'edit_ban' => 'Àx¦s­×§ï',
-  'delete_ban' => '§R°£',
-  'add_new' => '·s¼Wªı¾×·|­û',
-  'add_ban' => '·s¼W',
-  'error_user' => '§ä¤£¨ì¸Ó·|­ûªº¦WºÙ!§A¨S¥´¿ù§a.. ', //cpg1.3.0
-  'error_specify' => '§A»İ­n¨ãÅé«ü©ú·|­û¦WºÙ©ÎIP¦ì§}', //cpg1.3.0
-  'error_ban_id' => 'µL®Äªº ID!', //cpg1.3.0
-  'error_admin_ban' => '§O¾x¤F §AµLªk±N¦Û¤v°±Åv!', //cpg1.3.0
-  'error_server_ban' => '§A­n±N¦Û¤vªº¦øªA¾¹°±Åv? «u..¤£­n¦A­AÄ_¤F...', //cpg1.3.0
-  'error_ip_forbidden' => '§AµLªk¸T¤î³o­Ó IP - ¥¦¬O non-routable!', //cpg1.3.0
-  'lookup_ip' => '¬d¬İ IP ¦ì§}', //cpg1.3.0
-  'submit' => '°õ¦æ!', //cpg1.3.0
+  'title' => 'é˜»æ“‹æœƒå“¡',
+  'user_name' => 'æœƒå“¡åç¨±',
+  'ip_address' => 'IPä½å€',
+  'expiry' => 'æœŸé™ï¼ˆç©ºç™½ä»£è¡¨æ°¸ä¹…åœæ¬Šï¼‰',
+  'edit_ban' => 'å„²å­˜ä¿®æ”¹',
+  'delete_ban' => 'åˆªé™¤',
+  'add_new' => 'æ–°å¢é˜»æ“‹æœƒå“¡',
+  'add_ban' => 'æ–°å¢',
+  'error_user' => 'æ‰¾ä¸åˆ°è©²æœƒå“¡çš„åç¨±!ä½ æ²’æ‰“éŒ¯å§.. ', //cpg1.3.0
+  'error_specify' => 'ä½ éœ€è¦å…·é«”æŒ‡æ˜æœƒå“¡åç¨±æˆ–IPä½å€', //cpg1.3.0
+  'error_ban_id' => 'ç„¡æ•ˆçš„ ID!', //cpg1.3.0
+  'error_admin_ban' => 'åˆ¥é¬§äº† ä½ ç„¡æ³•å°‡è‡ªå·±åœæ¬Š!', //cpg1.3.0
+  'error_server_ban' => 'ä½ è¦å°‡è‡ªå·±çš„ä¼ºæœå™¨åœæ¬Š? å“..ä¸è¦å†è€å¯¶äº†...', //cpg1.3.0
+  'error_ip_forbidden' => 'ä½ ç„¡æ³•ç¦æ­¢é€™å€‹ IP - å®ƒæ˜¯ non-routable!', //cpg1.3.0
+  'lookup_ip' => 'æŸ¥çœ‹ IP ä½å€', //cpg1.3.0
+  'submit' => 'åŸ·è¡Œ!', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -1086,76 +1089,76 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UPLOAD_PHP')) $lang_upload_php = array(
-  'title' => '¤W¶ÇÀÉ®×', //cpg1.3.0
-  'custom_title' => '¤W¶Ç¿ï¶µªí', //cpg1.3.0
-  'cust_instr_1' => '§A¥i¥H±q¤U¦C ¿ï¾Ü¤@­Ó¤W¶Ç®Ø ¶i¦æ¤W¶Ç.', //cpg1.3.0
-  'cust_instr_2' => '¿ï¾Ü¤W¶Ç®Ø¸¹', //cpg1.3.0
-  'cust_instr_3' => 'ÀÉ®×¤W¶Ç®Ø: %s', //cpg1.3.0
-  'cust_instr_4' => 'URI/URL ¤W¶Ç®Ø: %s', //cpg1.3.0
-  'cust_instr_5' => 'URI/URL ¤W¶Ç®Ø:', //cpg1.3.0
-  'cust_instr_6' => 'ÀÉ®×¤W¶Ç®Ø:', //cpg1.3.0
-  'cust_instr_7' => '½Ğ¿é¤J±z¥Ø«e»İ­nªº ¨C¤@ºØ¤W¶Ç®Øªº¼Æ¶q. µM«á«ö \'Ä~Äò\'. ', //cpg1.3.0
-  'reg_instr_1' => 'µL®Äªº¿ï¶µªí°Ê§@.', //cpg1.3.0
-  'reg_instr_2' => '²{¦b §A¥i¥H¥Î¥H¤Uªº¤W¶Ç®Ø ¤W¶Ç§AªºÀÉ®×. ¨C¤@­Ó¤W¶ÇÀÉ®×ªº¤j¤p¤£¥i¥H¶W¹L %s KB . ZIP ÀÉ®×¤W¶Ç¦b \'ÀÉ®×¤W¶Ç\' and \'URI/URL ¤W¶Ç\' °Ï .', //cpg1.3.0
-  'reg_instr_3' => '¦pªG§A­n¤W¶ÇÀ£ÁYÀÉ©Î­n¸ÑÀ£ÁY, ¥²¶·¨Ï¥ÎÀÉ®×¤W¶Ç®Ø \'¸ÑÀ£ÁYZIP ¤W¶Ç\' °Ï.', //cpg1.3.0
-  'reg_instr_4' => '¦pªG¿ï¾Ü¥H URI/URL ¤W¶Ç, ½Ğ¿é¤JÀÉ®×³sµ²¸ô®| ¦p: http://www.mysite.com/images/example.jpg', //cpg1.3.0
-  'reg_instr_5' => '§¹¦¨¿ï¶µªí«á,½Ğ«ö \'Ä~Äò\'.', //cpg1.3.0
-  'reg_instr_6' => '¸ÑÀ£ÁYZIP ¤W¶Ç:', //cpg1.3.0
-  'reg_instr_7' => 'ÀÉ®× ¤W¶Ç:', //cpg1.3.0
-  'reg_instr_8' => 'URI/URL ¤W¶Ç:', //cpg1.3.0
-  'error_report' => '¿ù»~³ø§i', //cpg1.3.0
-  'error_instr' => '¤U¦C¤W¶Ç¹J¨ì¿ù»~:', //cpg1.3.0
-  'file_name_url' => 'ÀÉ®× ¦WºÙ/URL', //cpg1.3.0
-  'error_message' => '¿ù»~°T®§', //cpg1.3.0
-  'no_post' => 'ÀÉ®×¨S¦³³Q¤W¶Ç.', //cpg1.3.0
-  'forb_ext' => '¤£¤¹³\ªº°ÆÀÉ¦W.', //cpg1.3.0
-  'exc_php_ini' => 'ÀÉ®×¶W¹Lphp.ini¤¹³\ªº¤j¤p.', //cpg1.3.0
-  'exc_file_size' => 'ÀÉ®×¶W¹LCPG¤¹³\ªº¤j¤p.', //cpg1.3.0
-  'partial_upload' => '¥u¦³³¡¤À¤W¶Ç.', //cpg1.3.0
-  'no_upload' => '¨S¦³¤W¶Ç.', //cpg1.3.0
-  'unknown_code' => '¥¼ª¾ªº PHP ¤W¶Ç¿ù»~½X.', //cpg1.3.0
-  'no_temp_name' => '¨S¦³¤W¶Ç - µL¼È¦sÀÉ¦W.', //cpg1.3.0
-  'no_file_size' => '¨S¦³¤º®e', //cpg1.3.0
-  'impossible' => 'µLªk¶ÇÀÉ.', //cpg1.3.0
-  'not_image' => '³o¤£¬O¼Ğ·Ç¼v¹³ÀÉ', //cpg1.3.0
-  'not_GD' => '³o¤£¬O GD °ÆÀÉ¦W.', //cpg1.3.0
-  'pixel_allowance' => '¼v¹³¤Ø¤o¤Ó¤j¤F.', //cpg1.3.0
-  'incorrect_prefix' => '¤£¥¿½Tªº URI/URL «eºó', //cpg1.3.0
-  'could_not_open_URI' => 'µLªk¶}±ÒURI.', //cpg1.3.0
-  'unsafe_URI' => '¦w¥ş©Ê¥¼³Q»{ÃÒ.', //cpg1.3.0
-  'meta_data_failure' => 'Âà´«¸ê®Æ¥¢±Ñ', //cpg1.3.0
-  'http_401' => '401 ¥¼³Q±ÂÅvÂsÄı', //cpg1.3.0
-  'http_402' => '402 ¦¹³B»İ¥I¶OÂsÄı', //cpg1.3.0
-  'http_403' => '403 ¥Ø«e¦¹³BÃö³¬¸T¤îÂsÄı', //cpg1.3.0
-  'http_404' => '404 ¦øªA¾¹¨S¦³¦^À³', //cpg1.3.0
-  'http_500' => '500 ¤º³¡¦øªA¾¹¿ù»~', //cpg1.3.0
-  'http_503' => '503 ¦øªA¾¹µ¥«İ¹L¤[ °±¤îªA°È', //cpg1.3.0
-  'MIME_extraction_failure' => 'µLªk½T»{ MIME.', //cpg1.3.0
-  'MIME_type_unknown' => '¥¼ª¾ªº MIME type', //cpg1.3.0
-  'cant_create_write' => 'µLªk·s¼W¼g¤JÀÉ®×.', //cpg1.3.0
-  'not_writable' => 'µLªk¼g¤J.', //cpg1.3.0
-  'cant_read_URI' => 'µLªkÅª¨ú URI/URL', //cpg1.3.0
-  'cant_open_write_file' => 'µLªk¶}±ÒURI .', //cpg1.3.0
-  'cant_write_write_file' => 'µLªk¼g¤JURI .', //cpg1.3.0
-  'cant_unzip' => 'µLªk¸ÑÀ£ÁY.', //cpg1.3.0
-  'unknown' => '¥¼ª¾ªº¿ù»~', //cpg1.3.0
-  'succ' => '¦¨¥\¤W¶Ç', //cpg1.3.0
-  'success' => '%s ¤W¶Ç¤w¸g§¹¦¨.', //cpg1.3.0
-  'add' => '½Ğ«ö \'Ä~Äò\' ¼W¥[ÀÉ®×¨ì¬ÛÃ¯.', //cpg1.3.0
-  'failure' => '¤W¶Ç¥¢±Ñ', //cpg1.3.0
-  'f_info' => 'ÀÉ®×¸ê°T', //cpg1.3.0
-  'no_place' => '¥ı«eªºÀÉ®×µLªk³Q°t¸m.', //cpg1.3.0
-  'yes_place' => '¥ı«eªºÀÉ®×¤w¸g°t¸m§¹¦¨.', //cpg1.3.0
-  'max_fsize' => '³Ì¤j¤¹³\ÀÉ®×¤j¤p¬O %s KB',
-  'album' => '¬ÛÃ¯',
-  'picture' => '¹Ï¤ù', //cpg1.3.0
-  'pic_title' => '¹Ï¤ù¼ĞÃD', //cpg1.3.0
-  'description' => '¹Ï¤ù´y­z', //cpg1.3.0
-  'keywords' => 'ÃöÁä¦r (¥HªÅ®æ°Ï¹j)',
-  'err_no_alb_uploadables' => '¥Ø«e©|¥¼¦³¬ÛÃ¯¥i¥H¤W¶Ç¹Ï¤ù', //cpg1.3.0
-  'place_instr_1' => '²{¦b ½Ğ±N¹Ï¤ù©ñ¨ì¬ÛÃ¯.  §A²{¦b¥i¥H¿é¤J³o­ÓÀÉ®×ªº¬ÛÃö¸ê°T.', //cpg1.3.0
-  'place_instr_2' => '§ó¦hªº¹Ï¤ù»İ­n°t¸m. ½Ğ«ö \'Ä~Äò\'.', //cpg1.3.0
-  'process_complete' => '®¥³ß  §A¤w¸g¦¨¥\ªº±N¥ş³¡ÀÉ®×¤W¶Ç¤F.', //cpg1.3.0
+  'title' => 'ä¸Šå‚³æª”æ¡ˆ', //cpg1.3.0
+  'custom_title' => 'ä¸Šå‚³é¸é …è¡¨', //cpg1.3.0
+  'cust_instr_1' => 'ä½ å¯ä»¥å¾ä¸‹åˆ— é¸æ“‡ä¸€å€‹ä¸Šå‚³æ¡† é€²è¡Œä¸Šå‚³.', //cpg1.3.0
+  'cust_instr_2' => 'é¸æ“‡ä¸Šå‚³æ¡†è™Ÿ', //cpg1.3.0
+  'cust_instr_3' => 'æª”æ¡ˆä¸Šå‚³æ¡†: %s', //cpg1.3.0
+  'cust_instr_4' => 'URI/URL ä¸Šå‚³æ¡†: %s', //cpg1.3.0
+  'cust_instr_5' => 'URI/URL ä¸Šå‚³æ¡†:', //cpg1.3.0
+  'cust_instr_6' => 'æª”æ¡ˆä¸Šå‚³æ¡†:', //cpg1.3.0
+  'cust_instr_7' => 'è«‹è¼¸å…¥æ‚¨ç›®å‰éœ€è¦çš„ æ¯ä¸€ç¨®ä¸Šå‚³æ¡†çš„æ•¸é‡. ç„¶å¾ŒæŒ‰ \'ç¹¼çºŒ\'. ', //cpg1.3.0
+  'reg_instr_1' => 'ç„¡æ•ˆçš„é¸é …è¡¨å‹•ä½œ.', //cpg1.3.0
+  'reg_instr_2' => 'ç¾åœ¨ ä½ å¯ä»¥ç”¨ä»¥ä¸‹çš„ä¸Šå‚³æ¡† ä¸Šå‚³ä½ çš„æª”æ¡ˆ. æ¯ä¸€å€‹ä¸Šå‚³æª”æ¡ˆçš„å¤§å°ä¸å¯ä»¥è¶…é %s KB . ZIP æª”æ¡ˆä¸Šå‚³åœ¨ \'æª”æ¡ˆä¸Šå‚³\' and \'URI/URL ä¸Šå‚³\' å€ .', //cpg1.3.0
+  'reg_instr_3' => 'å¦‚æœä½ è¦ä¸Šå‚³å£“ç¸®æª”æˆ–è¦è§£å£“ç¸®, å¿…é ˆä½¿ç”¨æª”æ¡ˆä¸Šå‚³æ¡† \'è§£å£“ç¸®ZIP ä¸Šå‚³\' å€.', //cpg1.3.0
+  'reg_instr_4' => 'å¦‚æœé¸æ“‡ä»¥ URI/URL ä¸Šå‚³, è«‹è¼¸å…¥æª”æ¡ˆé€£çµè·¯å¾‘ å¦‚: http://www.mysite.com/images/example.jpg', //cpg1.3.0
+  'reg_instr_5' => 'å®Œæˆé¸é …è¡¨å¾Œ,è«‹æŒ‰ \'ç¹¼çºŒ\'.', //cpg1.3.0
+  'reg_instr_6' => 'è§£å£“ç¸®ZIP ä¸Šå‚³:', //cpg1.3.0
+  'reg_instr_7' => 'æª”æ¡ˆ ä¸Šå‚³:', //cpg1.3.0
+  'reg_instr_8' => 'URI/URL ä¸Šå‚³:', //cpg1.3.0
+  'error_report' => 'éŒ¯èª¤å ±å‘Š', //cpg1.3.0
+  'error_instr' => 'ä¸‹åˆ—ä¸Šå‚³é‡åˆ°éŒ¯èª¤:', //cpg1.3.0
+  'file_name_url' => 'æª”æ¡ˆ åç¨±/URL', //cpg1.3.0
+  'error_message' => 'éŒ¯èª¤è¨Šæ¯', //cpg1.3.0
+  'no_post' => 'æª”æ¡ˆæ²’æœ‰è¢«ä¸Šå‚³.', //cpg1.3.0
+  'forb_ext' => 'ä¸å…è¨±çš„å‰¯æª”å.', //cpg1.3.0
+  'exc_php_ini' => 'æª”æ¡ˆè¶…éphp.iniå…è¨±çš„å¤§å°.', //cpg1.3.0
+  'exc_file_size' => 'æª”æ¡ˆè¶…éCPGå…è¨±çš„å¤§å°.', //cpg1.3.0
+  'partial_upload' => 'åªæœ‰éƒ¨åˆ†ä¸Šå‚³.', //cpg1.3.0
+  'no_upload' => 'æ²’æœ‰ä¸Šå‚³.', //cpg1.3.0
+  'unknown_code' => 'æœªçŸ¥çš„ PHP ä¸Šå‚³éŒ¯èª¤ç¢¼.', //cpg1.3.0
+  'no_temp_name' => 'æ²’æœ‰ä¸Šå‚³ - ç„¡æš«å­˜æª”å.', //cpg1.3.0
+  'no_file_size' => 'æ²’æœ‰å…§å®¹', //cpg1.3.0
+  'impossible' => 'ç„¡æ³•å‚³æª”.', //cpg1.3.0
+  'not_image' => 'é€™ä¸æ˜¯æ¨™æº–å½±åƒæª”', //cpg1.3.0
+  'not_GD' => 'é€™ä¸æ˜¯ GD å‰¯æª”å.', //cpg1.3.0
+  'pixel_allowance' => 'å½±åƒå°ºå¯¸å¤ªå¤§äº†.', //cpg1.3.0
+  'incorrect_prefix' => 'ä¸æ­£ç¢ºçš„ URI/URL å‰ç¶´', //cpg1.3.0
+  'could_not_open_URI' => 'ç„¡æ³•é–‹å•ŸURI.', //cpg1.3.0
+  'unsafe_URI' => 'å®‰å…¨æ€§æœªè¢«èªè­‰.', //cpg1.3.0
+  'meta_data_failure' => 'è½‰æ›è³‡æ–™å¤±æ•—', //cpg1.3.0
+  'http_401' => '401 æœªè¢«æˆæ¬Šç€è¦½', //cpg1.3.0
+  'http_402' => '402 æ­¤è™•éœ€ä»˜è²»ç€è¦½', //cpg1.3.0
+  'http_403' => '403 ç›®å‰æ­¤è™•é—œé–‰ç¦æ­¢ç€è¦½', //cpg1.3.0
+  'http_404' => '404 ä¼ºæœå™¨æ²’æœ‰å›æ‡‰', //cpg1.3.0
+  'http_500' => '500 å…§éƒ¨ä¼ºæœå™¨éŒ¯èª¤', //cpg1.3.0
+  'http_503' => '503 ä¼ºæœå™¨ç­‰å¾…éä¹… åœæ­¢æœå‹™', //cpg1.3.0
+  'MIME_extraction_failure' => 'ç„¡æ³•ç¢ºèª MIME.', //cpg1.3.0
+  'MIME_type_unknown' => 'æœªçŸ¥çš„ MIME type', //cpg1.3.0
+  'cant_create_write' => 'ç„¡æ³•æ–°å¢å¯«å…¥æª”æ¡ˆ.', //cpg1.3.0
+  'not_writable' => 'ç„¡æ³•å¯«å…¥.', //cpg1.3.0
+  'cant_read_URI' => 'ç„¡æ³•è®€å– URI/URL', //cpg1.3.0
+  'cant_open_write_file' => 'ç„¡æ³•é–‹å•ŸURI .', //cpg1.3.0
+  'cant_write_write_file' => 'ç„¡æ³•å¯«å…¥URI .', //cpg1.3.0
+  'cant_unzip' => 'ç„¡æ³•è§£å£“ç¸®.', //cpg1.3.0
+  'unknown' => 'æœªçŸ¥çš„éŒ¯èª¤', //cpg1.3.0
+  'succ' => 'æˆåŠŸä¸Šå‚³', //cpg1.3.0
+  'success' => '%s ä¸Šå‚³å·²ç¶“å®Œæˆ.', //cpg1.3.0
+  'add' => 'è«‹æŒ‰ \'ç¹¼çºŒ\' å¢åŠ æª”æ¡ˆåˆ°ç›¸ç°¿.', //cpg1.3.0
+  'failure' => 'ä¸Šå‚³å¤±æ•—', //cpg1.3.0
+  'f_info' => 'æª”æ¡ˆè³‡è¨Š', //cpg1.3.0
+  'no_place' => 'å…ˆå‰çš„æª”æ¡ˆç„¡æ³•è¢«é…ç½®.', //cpg1.3.0
+  'yes_place' => 'å…ˆå‰çš„æª”æ¡ˆå·²ç¶“é…ç½®å®Œæˆ.', //cpg1.3.0
+  'max_fsize' => 'æœ€å¤§å…è¨±æª”æ¡ˆå¤§å°æ˜¯ %s KB',
+  'album' => 'ç›¸ç°¿',
+  'picture' => 'åœ–ç‰‡', //cpg1.3.0
+  'pic_title' => 'åœ–ç‰‡æ¨™é¡Œ', //cpg1.3.0
+  'description' => 'åœ–ç‰‡æè¿°', //cpg1.3.0
+  'keywords' => 'é—œéµå­— (ä»¥ç©ºæ ¼å€éš”)',
+  'err_no_alb_uploadables' => 'ç›®å‰å°šæœªæœ‰ç›¸ç°¿å¯ä»¥ä¸Šå‚³åœ–ç‰‡', //cpg1.3.0
+  'place_instr_1' => 'ç¾åœ¨ è«‹å°‡åœ–ç‰‡æ”¾åˆ°ç›¸ç°¿.  ä½ ç¾åœ¨å¯ä»¥è¼¸å…¥é€™å€‹æª”æ¡ˆçš„ç›¸é—œè³‡è¨Š.', //cpg1.3.0
+  'place_instr_2' => 'æ›´å¤šçš„åœ–ç‰‡éœ€è¦é…ç½®. è«‹æŒ‰ \'ç¹¼çºŒ\'.', //cpg1.3.0
+  'process_complete' => 'æ­å–œ  ä½ å·²ç¶“æˆåŠŸçš„å°‡å…¨éƒ¨æª”æ¡ˆä¸Šå‚³äº†.', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -1163,50 +1166,50 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
-  'title' => '·|­ûºŞ²z',
-  'name_a' => '¦WºÙ ¥Ñ¤p¦Ü¤j',
-  'name_d' => '¦WºÙ ¥Ñ¤j¦Ü¤p',
-  'group_a' => '¸s²Õ ¥Ñ¤p¦Ü¤j',
-  'group_d' => '¸s²Õ ¥Ñ¤j¦Ü¤p',
-  'reg_a' => 'µù¥U¤é´Á ¥Ñ»·¦Üªñ',
-  'reg_d' => 'µù¥U¤é´Á ¥Ñªñ¦Ü»·',
-  'pic_a' => '¹Ï¤ù¼Æ ¥Ñ¤p¦Ü¤j',
-  'pic_d' => '¹Ï¤ù¼Æ ¥Ñ¤j¦Ü¤p',
-  'disku_a' => 'ºÏºĞ¥Î¶q ¥Ñ¤p¦Ü¤j',
-  'disku_d' => 'ºÏºĞ¥Î¶q ¥Ñ¤j¦Ü¤p',
-  'lv_a' => '³Ìªñ¨Ó³X ¥Ñªñ¦Ü»·', //cpg1.3.0
-  'lv_d' => '³Ìªñ¨Ó³X ¥Ñ»·¦Üªñ', //cpg1.3.0
-  'sort_by' => '·|­û±Æ§Ç¨Ì',
-  'err_no_users' => '·|­û¸ê®Æªí¬OªÅªº !',
-  'err_edit_self' => '±zµLªk½s¿è±zªº­Ó¤H¸ê®Æ, ½Ğ§Q¥Î \'§Úªº­Ó¤H¸ê®Æ\' ¨Ó½s¿è',
-  'edit' => '½s¿è',
-  'delete' => '§R°£',
-  'name' => '·|­û¦WºÙ',
-  'group' => '¸s²Õ',
-  'inactive' => '¥¼±Ò°Ê',
-  'operations' => '¾Ş§@',
-  'pictures' => '¹Ï¤ù', //cpg1.3.0
-  'disk_space' => 'ºÏºĞ ¥Î¶q / ­­ÃB',
-  'registered_on' => 'µù¥U¤é',
-  'last_visit' => '³Ìªñ¨Ó³X', //cpg1.3.0
-  'u_user_on_p_pages' => '%d ­Ó·|­û©ó %d ­¶',
-  'confirm_del' => '½T©w­n§R°£³o­Ó·|­û¶Ü? \\n©Ò¦³¥Lªº¬ÛÃ¯¤Î¹Ï¤ù³£·|³Q§R°£.', //js-alert //cpg1.3.0
-  'mail' => '¹q¤l¶l¥ó',
-  'err_unknown_user' => '©Ò¿ï¾Üªº·|­û¨Ã¤£¦s¦b !',
-  'modify_user' => '½s¿è·|­û',
-  'notes' => 'ª`·N',
-  'note_list' => '<li>¦pªG¤£·Q§ïÅÜ¥Ø«eªº±K½X, ½Ğ±N "±K½X" ¦ì¯d¤UªÅ¥Õ',
-  'password' => '±K½X',
-  'user_active' => '·|­û¤w±Ò°Ê',
-  'user_group' => '·|­û¸s²Õ',
-  'user_email' => '·|­û¹q¤l¶l¥ó',
-  'user_web_site' => '·|­ûºô§}',
-  'create_new_user' => '«Ø¥ß·s·|­û',
-  'user_location' => '·|­û¦a°Ï',
-  'user_interests' => '·|­û¿³½ì',
-  'user_occupation' => '·|­ûÂ¾·~',
-  'latest_upload' => '³Ì·s¤W¶Ç', //cpg1.3.0
-  'never' => '±q¥¼¦³', //cpg1.3.0
+  'title' => 'æœƒå“¡ç®¡ç†',
+  'name_a' => 'åç¨± ç”±å°è‡³å¤§',
+  'name_d' => 'åç¨± ç”±å¤§è‡³å°',
+  'group_a' => 'ç¾¤çµ„ ç”±å°è‡³å¤§',
+  'group_d' => 'ç¾¤çµ„ ç”±å¤§è‡³å°',
+  'reg_a' => 'è¨»å†Šæ—¥æœŸ ç”±é è‡³è¿‘',
+  'reg_d' => 'è¨»å†Šæ—¥æœŸ ç”±è¿‘è‡³é ',
+  'pic_a' => 'åœ–ç‰‡æ•¸ ç”±å°è‡³å¤§',
+  'pic_d' => 'åœ–ç‰‡æ•¸ ç”±å¤§è‡³å°',
+  'disku_a' => 'ç£ç¢Ÿç”¨é‡ ç”±å°è‡³å¤§',
+  'disku_d' => 'ç£ç¢Ÿç”¨é‡ ç”±å¤§è‡³å°',
+  'lv_a' => 'æœ€è¿‘ä¾†è¨ª ç”±è¿‘è‡³é ', //cpg1.3.0
+  'lv_d' => 'æœ€è¿‘ä¾†è¨ª ç”±é è‡³è¿‘', //cpg1.3.0
+  'sort_by' => 'æœƒå“¡æ’åºä¾',
+  'err_no_users' => 'æœƒå“¡è³‡æ–™è¡¨æ˜¯ç©ºçš„ !',
+  'err_edit_self' => 'æ‚¨ç„¡æ³•ç·¨è¼¯æ‚¨çš„å€‹äººè³‡æ–™, è«‹åˆ©ç”¨ \'æˆ‘çš„å€‹äººè³‡æ–™\' ä¾†ç·¨è¼¯',
+  'edit' => 'ç·¨è¼¯',
+  'delete' => 'åˆªé™¤',
+  'name' => 'æœƒå“¡åç¨±',
+  'group' => 'ç¾¤çµ„',
+  'inactive' => 'æœªå•Ÿå‹•',
+  'operations' => 'æ“ä½œ',
+  'pictures' => 'åœ–ç‰‡', //cpg1.3.0
+  'disk_space' => 'ç£ç¢Ÿ ç”¨é‡ / é™é¡',
+  'registered_on' => 'è¨»å†Šæ—¥',
+  'last_visit' => 'æœ€è¿‘ä¾†è¨ª', //cpg1.3.0
+  'u_user_on_p_pages' => '%d å€‹æœƒå“¡æ–¼ %d é ',
+  'confirm_del' => 'ç¢ºå®šè¦åˆªé™¤é€™å€‹æœƒå“¡å—? \\næ‰€æœ‰ä»–çš„ç›¸ç°¿åŠåœ–ç‰‡éƒ½æœƒè¢«åˆªé™¤.', //js-alert //cpg1.3.0
+  'mail' => 'é›»å­éƒµä»¶',
+  'err_unknown_user' => 'æ‰€é¸æ“‡çš„æœƒå“¡ä¸¦ä¸å­˜åœ¨ !',
+  'modify_user' => 'ç·¨è¼¯æœƒå“¡',
+  'notes' => 'æ³¨æ„',
+  'note_list' => '<li>å¦‚æœä¸æƒ³æ”¹è®Šç›®å‰çš„å¯†ç¢¼, è«‹å°‡ "å¯†ç¢¼" ä½ç•™ä¸‹ç©ºç™½',
+  'password' => 'å¯†ç¢¼',
+  'user_active' => 'æœƒå“¡å·²å•Ÿå‹•',
+  'user_group' => 'æœƒå“¡ç¾¤çµ„',
+  'user_email' => 'æœƒå“¡é›»å­éƒµä»¶',
+  'user_web_site' => 'æœƒå“¡ç¶²å€',
+  'create_new_user' => 'å»ºç«‹æ–°æœƒå“¡',
+  'user_location' => 'æœƒå“¡åœ°å€',
+  'user_interests' => 'æœƒå“¡èˆˆè¶£',
+  'user_occupation' => 'æœƒå“¡è·æ¥­',
+  'latest_upload' => 'æœ€æ–°ä¸Šå‚³', //cpg1.3.0
+  'never' => 'å¾æœªæœ‰', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -1214,59 +1217,59 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UTIL_PHP')) $lang_util_php = array(
-  'title' => 'ºŞ²z­û¤u¨ã (½Õ¾ã¹Ï¤ù¤j¤p)', //cpg1.3.0
-  'what_it_does' => '¥\¯à',
-  'what_update_titles' => '±qÀÉ®×¦WºÙ§ó·s¹Ï¤ù¼ĞÃD',
-  'what_delete_title' => '§R°£¼ĞÃD',
-  'what_rebuild' => '­««ØÁY¹Ï¤Î½Õ¾ã¹Ï¤ù¤j¤p',
-  'what_delete_originals' => '­«·s½Õ¾ã«áªº¹Ï¤ù±N ¨ú¥N­ì¦³ªº¹Ï¤ù',
-  'file' => 'ÀÉ®×',
-  'title_set_to' => '¼ĞÃDÅÜ§ó¬°',
-  'submit_form' => '½T»{',
-  'updated_succesfully' => '§ó·s ¤w¸g§¹¦¨',
-  'error_create' => '²£¥Í¿ù»~',
-  'continue' => 'Ä~Äò°õ¦æ¨ä¥Lªº¼v¹³',
-  'main_success' => 'ÀÉ®× %s ¤w³]¬°¥D¹Ï',  //cpg1.3.0
-  'error_rename' => '¿ù»~ %s §ï¦W¬° %s', 
-  'error_not_found' => '§ä¤£¨ìÀÉ®× %s ',
-  'back' => '¦^¥D­¶',
-  'thumbs_wait' => '§ó·sÁY¹Ï ¥B/©Î ½Õ¾ã¼v¹³¤Ø¤o, ½Ğµy«İ...',
-  'thumbs_continue_wait' => 'Ä~Äò §ó·sÁY¹Ï ¥B/©Î ½Õ¾ã¼v¹³¤Ø¤o...',
-  'titles_wait' => '§ó·s¼ĞÃD, ½Ğµy«İ...',
-  'delete_wait' => '§R°£¼ĞÃD, ½Ğµy«İ...',
-  'replace_wait' => '­«·s½Õ¾ã«áªº¹Ï¤ù±N ¨ú¥N­ì¦³ªº¹Ï¤ù¤¤, ½Ğµy«İ...',
-  'instruction' => 'Â²©ö¾Ş§@»¡©ú',
-  'instruction_action' => '½Ğ¿ï¾Ü¾Ş§@',
-  'instruction_parameter' => '³]©w°Ñ¼Æ',
-  'instruction_album' => '¿ï¾Ü¬ÛÃ¯',
-  'instruction_press' => '½Ğ«ö %s',
-  'update' => '§ó·sÁY¹Ï ¥B/©Î ½Õ¾ã¹Ï¤ù¤j¤p',
-  'update_what' => '­n§ó·s¤°»ò',
-  'update_thumb' => '¥u¦³ÁY¹Ï',
-  'update_pic' => '¥u½Õ¾ã¹Ï¤ù¤j¤p',
-  'update_both' => '§ó·sÁY¹Ï¥B½Õ¾ã¹Ï¤ù¤Ø¤o',
-  'update_number' => '¨CÂI¿ï¤@¦¸­n³B²zªº¹Ï¤ù¼Æ¥Ø',
-  'update_option' => '(¦pªG±z¹J¨ì¾Ş§@µ{§Ç¹O®Éªº°İÃD¡A½Ğ¸ÕµÛ­°§C¦¹³]©w)',
-  'filename_title' => 'ÀÉ®×¦WºÙ &rArr; ¹Ï¤ù¼ĞÃD', //cpg1.3.0
-  'filename_how' => '¦p¦ó­×§ïÀÉ¦W', 
-  'filename_remove' => '§R°£ .jpg ¨Ã±N _ (©³½u) ¥ÎªÅ®æ¨ú¥N', 
-  'filename_euro' => '±N 2003_11_23_13_20_20.jpg §ï¬° 23/11/2003 13:20', 
-  'filename_us' => '±N 2003_11_23_13_20_20.jpg §ï¬° 11/23/2003 13:20', 
-  'filename_time' => '±N 2003_11_23_13_20_20.jpg §ï¬° 13:20', 
-  'delete' => '§R°£¹Ï¤ù¼ĞÃD©Î­ì©l¤Ø¤oªº¹Ï¤ù', //cpg1.3.0
-  'delete_title' => '§R°£¹Ï¤ù¼ĞÃD', //cpg1.3.0
-  'delete_original' => '§R°£­ì©l¤Ø¤oªº¹Ï¤ù',
-  'delete_replace' => '§R°£­ì©l¤Ø¤oªº¹Ï¤ù¨Ã¥H½Õ¾ã¤Ø¤oªº¹Ï¤ù¨ú¥N',
-  'select_album' => '¿ï¾Ü¬ÛÃ¯',
-  'delete_orphans' => '§R°£¹s´²ªº¯d¨¥(¹ï¥ş³¡ªº¬ÛÃ¯)', //cpg1.3.0
-  'orphan_comment' => 'µo²{¹s´²ªº¯d¨¥', //cpg1.3.0
-  'delete' => '§R°£', //cpg1.3.0
-  'delete_all' => '¥ş³¡§R°£', //cpg1.3.0
-  'comment' => '¯d¨¥: ', //cpg1.3.0
-  'nonexist' => '­nªş¥[ªºÀÉ®×¤£¦s¦b # ', //cpg1.3.0
-  'phpinfo' => 'Åã¥Ü phpinfo ¸ê®Æ', //cpg1.3.0
-  'update_db' => '§ó·s¸ê®Æ®w', //cpg1.3.0
-  'update_db_explanation' => '¦pªG©p¦³§ó·s CPG ÀÉ®×, ¥[¤J­×§ï©Î¥Ñ¥H«eªºª©¥»¤É¯Å, ½Ğ½T©w°õ¦æ¤@¦¸¸ê®Æ®w§ó·s. ³o±N·|¦b CPG ¸ê®Æ®w·s¼W¥²­nªº¸ê®Æªí ¤Î/©Î ³]©w­È.', //cpg1.3.0
+  'title' => 'ç®¡ç†å“¡å·¥å…· (èª¿æ•´åœ–ç‰‡å¤§å°)', //cpg1.3.0
+  'what_it_does' => 'åŠŸèƒ½',
+  'what_update_titles' => 'å¾æª”æ¡ˆåç¨±æ›´æ–°åœ–ç‰‡æ¨™é¡Œ',
+  'what_delete_title' => 'åˆªé™¤æ¨™é¡Œ',
+  'what_rebuild' => 'é‡å»ºç¸®åœ–åŠèª¿æ•´åœ–ç‰‡å¤§å°',
+  'what_delete_originals' => 'é‡æ–°èª¿æ•´å¾Œçš„åœ–ç‰‡å°‡ å–ä»£åŸæœ‰çš„åœ–ç‰‡',
+  'file' => 'æª”æ¡ˆ',
+  'title_set_to' => 'æ¨™é¡Œè®Šæ›´ç‚º',
+  'submit_form' => 'ç¢ºèª',
+  'updated_succesfully' => 'æ›´æ–° å·²ç¶“å®Œæˆ',
+  'error_create' => 'ç”¢ç”ŸéŒ¯èª¤',
+  'continue' => 'ç¹¼çºŒåŸ·è¡Œå…¶ä»–çš„å½±åƒ',
+  'main_success' => 'æª”æ¡ˆ %s å·²è¨­ç‚ºä¸»åœ–',  //cpg1.3.0
+  'error_rename' => 'éŒ¯èª¤ %s æ”¹åç‚º %s', 
+  'error_not_found' => 'æ‰¾ä¸åˆ°æª”æ¡ˆ %s ',
+  'back' => 'å›ä¸»é ',
+  'thumbs_wait' => 'æ›´æ–°ç¸®åœ– ä¸”/æˆ– èª¿æ•´å½±åƒå°ºå¯¸, è«‹ç¨å¾…...',
+  'thumbs_continue_wait' => 'ç¹¼çºŒ æ›´æ–°ç¸®åœ– ä¸”/æˆ– èª¿æ•´å½±åƒå°ºå¯¸...',
+  'titles_wait' => 'æ›´æ–°æ¨™é¡Œ, è«‹ç¨å¾…...',
+  'delete_wait' => 'åˆªé™¤æ¨™é¡Œ, è«‹ç¨å¾…...',
+  'replace_wait' => 'é‡æ–°èª¿æ•´å¾Œçš„åœ–ç‰‡å°‡ å–ä»£åŸæœ‰çš„åœ–ç‰‡ä¸­, è«‹ç¨å¾…...',
+  'instruction' => 'ç°¡æ˜“æ“ä½œèªªæ˜',
+  'instruction_action' => 'è«‹é¸æ“‡æ“ä½œ',
+  'instruction_parameter' => 'è¨­å®šåƒæ•¸',
+  'instruction_album' => 'é¸æ“‡ç›¸ç°¿',
+  'instruction_press' => 'è«‹æŒ‰ %s',
+  'update' => 'æ›´æ–°ç¸®åœ– ä¸”/æˆ– èª¿æ•´åœ–ç‰‡å¤§å°',
+  'update_what' => 'è¦æ›´æ–°ä»€éº¼',
+  'update_thumb' => 'åªæœ‰ç¸®åœ–',
+  'update_pic' => 'åªèª¿æ•´åœ–ç‰‡å¤§å°',
+  'update_both' => 'æ›´æ–°ç¸®åœ–ä¸”èª¿æ•´åœ–ç‰‡å°ºå¯¸',
+  'update_number' => 'æ¯é»é¸ä¸€æ¬¡è¦è™•ç†çš„åœ–ç‰‡æ•¸ç›®',
+  'update_option' => '(å¦‚æœæ‚¨é‡åˆ°æ“ä½œç¨‹åºé€¾æ™‚çš„å•é¡Œï¼Œè«‹è©¦è‘—é™ä½æ­¤è¨­å®š)',
+  'filename_title' => 'æª”æ¡ˆåç¨± &rArr; åœ–ç‰‡æ¨™é¡Œ', //cpg1.3.0
+  'filename_how' => 'å¦‚ä½•ä¿®æ”¹æª”å', 
+  'filename_remove' => 'åˆªé™¤ .jpg ä¸¦å°‡ _ (åº•ç·š) ç”¨ç©ºæ ¼å–ä»£', 
+  'filename_euro' => 'å°‡ 2003_11_23_13_20_20.jpg æ”¹ç‚º 23/11/2003 13:20', 
+  'filename_us' => 'å°‡ 2003_11_23_13_20_20.jpg æ”¹ç‚º 11/23/2003 13:20', 
+  'filename_time' => 'å°‡ 2003_11_23_13_20_20.jpg æ”¹ç‚º 13:20', 
+  'delete' => 'åˆªé™¤åœ–ç‰‡æ¨™é¡Œæˆ–åŸå§‹å°ºå¯¸çš„åœ–ç‰‡', //cpg1.3.0
+  'delete_title' => 'åˆªé™¤åœ–ç‰‡æ¨™é¡Œ', //cpg1.3.0
+  'delete_original' => 'åˆªé™¤åŸå§‹å°ºå¯¸çš„åœ–ç‰‡',
+  'delete_replace' => 'åˆªé™¤åŸå§‹å°ºå¯¸çš„åœ–ç‰‡ä¸¦ä»¥èª¿æ•´å°ºå¯¸çš„åœ–ç‰‡å–ä»£',
+  'select_album' => 'é¸æ“‡ç›¸ç°¿',
+  'delete_orphans' => 'åˆªé™¤é›¶æ•£çš„ç•™è¨€(å°å…¨éƒ¨çš„ç›¸ç°¿)', //cpg1.3.0
+  'orphan_comment' => 'ç™¼ç¾é›¶æ•£çš„ç•™è¨€', //cpg1.3.0
+  'delete' => 'åˆªé™¤', //cpg1.3.0
+  'delete_all' => 'å…¨éƒ¨åˆªé™¤', //cpg1.3.0
+  'comment' => 'ç•™è¨€: ', //cpg1.3.0
+  'nonexist' => 'è¦é™„åŠ çš„æª”æ¡ˆä¸å­˜åœ¨ # ', //cpg1.3.0
+  'phpinfo' => 'é¡¯ç¤º phpinfo è³‡æ–™', //cpg1.3.0
+  'update_db' => 'æ›´æ–°è³‡æ–™åº«', //cpg1.3.0
+  'update_db_explanation' => 'å¦‚æœå¦³æœ‰æ›´æ–° CPG æª”æ¡ˆ, åŠ å…¥ä¿®æ”¹æˆ–ç”±ä»¥å‰çš„ç‰ˆæœ¬å‡ç´š, è«‹ç¢ºå®šåŸ·è¡Œä¸€æ¬¡è³‡æ–™åº«æ›´æ–°. é€™å°‡æœƒåœ¨ CPG è³‡æ–™åº«æ–°å¢å¿…è¦çš„è³‡æ–™è¡¨ åŠ/æˆ– è¨­å®šå€¼.', //cpg1.3.0
 );
 
 ?>

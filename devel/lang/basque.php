@@ -1,6 +1,21 @@
 <?php
+/*************************
+Coppermine Photo Gallery
+************************
+Copyright (c) 2003-2005 Coppermine Dev Team
+v1.1 originally written by Gregory DEMAR
 
-// ENCODING CHECK; SHOULD BE YEN BETA MU: ¥ ß µ
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+********************************************
+Coppermine version: 1.4.1
+$Source$
+$Revision$
+$Author$
+$Date$
+**********************************************/
 
 // info about translators and translated language
 $lang_translation_info = array(
@@ -425,14 +440,14 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	'Miniatura eta fitxategien konfigurazio aurretatua', //cpg1.3.0
 	array('Alta eman gabeko erabiltzaileei bilduma pribatuen ikonoa erakutsi','show_private',1), //cpg1.3.0
 	array('Fitxategi izenburuetan debekatutako karaktereak', 'forbiden_fname_char',0), //cpg1.3.0
-	//array('Extensiones admitidas al aÃ±adir archivos', 'allowed_file_extensions',0), //cpg1.3.0
+	//array('Extensiones admitidas al aÃƒÂ±adir archivos', 'allowed_file_extensions',0), //cpg1.3.0
  	array('Onartzen diren irudi motak', 'allowed_img_types',0), //cpg1.3.0
 	array('Onartzen diren bideo motak', 'allowed_mov_types',0), //cpg1.3.0
 	array('Onartzen diren soinu fitxategi motak', 'allowed_snd_types',0), //cpg1.3.0
 	array('Onartzen diren dukumentu motak', 'allowed_doc_types',0), //cpg1.3.0
 	array('Irudiak berreskalatzeko metodoa','thumb_method',2), //cpg1.3.0
 	array('ImageMagicken \'convert\' tresnarako bidea (/usr/bin/X11/ adibidez)', 'impath', 0), //cpg1.3.0
-	//array('Tipos de archivo admitidos (solo vÃ¡lidos con ImageMagick)', 'allowed_img_types',0), //cpg1.3.0
+	//array('Tipos de archivo admitidos (solo vÃƒÂ¡lidos con ImageMagick)', 'allowed_img_types',0), //cpg1.3.0
 	array('ImageMagickentzako komandoak', 'im_options', 0), //cpg1.3.0
 	array('EXIF datuak irakurri JPEG fitxategietan', 'read_exif_data', 1), //cpg1.3.0
 	array('IPTC datuak irakurri JPEG fitxategietan', 'read_iptc_data', 1), //cpg1.3.0

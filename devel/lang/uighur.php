@@ -1,18 +1,21 @@
 <?php
-// ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.2                                            //
-// ------------------------------------------------------------------------- //
-// Copyright (C) 2002-2004 Gregory DEMAR                                     //
-// http://www.chezgreg.net/coppermine/                                       //
-// ------------------------------------------------------------------------- //
-// Updated by the Coppermine Dev Team                                        //
-// (http://coppermine.sf.net/team/)                                          //
-// see /docs/credits.html for details                                        //
-// ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2005 Coppermine Dev Team
+  v1.1 originally written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  ********************************************
+  Coppermine version: 1.4.1
+  $Source$
+  $Revision$
+  $Author$
+  $Date$
+**********************************************/
 // ------------------------------------------------------------------------- //
 // CVS version: $Id$
 // ------------------------------------------------------------------------- //
@@ -35,8 +38,8 @@ $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 $lang_byte_units = array('Bytes', 'KB', 'MB');
 
 // Day of weeks and months
-$lang_day_of_week = array('Yek', 'Dü', 'Sey', 'Char', 'Pey', 'Jüme', 'Shem');
-$lang_month = array('Yanwar', ' Féwral', 'Mart', 'April', 'May', 'Iyun', 'Iyul', 'Awghust', 'Séntebir', 'öktebir', 'Noyabir', 'Dékabir');
+$lang_day_of_week = array('Yek', 'DÃ¼', 'Sey', 'Char', 'Pey', 'JÃ¼me', 'Shem');
+$lang_month = array('Yanwar', ' FÃ©wral', 'Mart', 'April', 'May', 'Iyun', 'Iyul', 'Awghust', 'SÃ©ntebir', 'Ã¶ktebir', 'Noyabir', 'DÃ©kabir');
 
 // Some common strings
 $lang_yes = 'Hee';
@@ -59,40 +62,40 @@ $comment_date_fmt =  '%B %d, %Y at %I:%M %p'; //cpg1.3.0
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
 
 $lang_meta_album_names = array(
-  'random' => 'Random Höjjet', //cpg1.3.0
-  'lastup' => 'Yéngi Yükler',
-  'lastalb'=> 'Yéngi özgermiler',
-  'lastcom' => 'Yéngi Sözler',
-  'topn' => 'köp körülgen',
-  'toprated' => 'köp nomurluq',
-  'lasthits' => 'Yéngi körülgini',
+  'random' => 'Random HÃ¶jjet', //cpg1.3.0
+  'lastup' => 'YÃ©ngi YÃ¼kler',
+  'lastalb'=> 'YÃ©ngi Ã¶zgermiler',
+  'lastcom' => 'YÃ©ngi SÃ¶zler',
+  'topn' => 'kÃ¶p kÃ¶rÃ¼lgen',
+  'toprated' => 'kÃ¶p nomurluq',
+  'lasthits' => 'YÃ©ngi kÃ¶rÃ¼lgini',
   'search' => 'Izdesh',
-  'favpics'=> 'Könglümdikidek resim', //cpg1.3.0
+  'favpics'=> 'KÃ¶nglÃ¼mdikidek resim', //cpg1.3.0
 );
 
 $lang_errors = array(
   'access_denied' => 'Bu betning ziyaret hoqqoqingiz yoq.',
   'perm_denied' => 'Bu paaliyitingiz cheklinidu.',
-  'param_missing' => 'Bu sizge bilazm paramétir.',
-  'non_exist_ap' => 'Tallighan albüm/höjjet Yoq!', //cpg1.3.0
-  'quota_exceeded' => 'Teqsim chektin ashti<br /><br />Teqsimingiz[quota]K, Ishletkiningiz[space]K, Bu höjjet bilen teqsim chektin ashidu.', //cpg1.3.0
+  'param_missing' => 'Bu sizge bilazm paramÃ©tir.',
+  'non_exist_ap' => 'Tallighan albÃ¼m/hÃ¶jjet Yoq!', //cpg1.3.0
+  'quota_exceeded' => 'Teqsim chektin ashti<br /><br />Teqsimingiz[quota]K, Ishletkiningiz[space]K, Bu hÃ¶jjet bilen teqsim chektin ashidu.', //cpg1.3.0
   'gd_file_type_err' => 'Ishletken GD ambiringiz JPEG bilen PNG la qollaydu.',
-  'invalid_image' => 'Yükingiz buzulghan yaki GD ambar bir terep qilalmaydu.',
-  'resize_failed' => 'Kichiklitilme yaki özgertilme élip baralmidim.',
-  'no_img_to_display' => 'Körünme Höjjet yoq',
-  'non_exist_cat' => 'Tallanma Tür yoq',
-  'orphan_cat' => 'Tallanma türi xata, Tür tallashtin özgertiwéling!', //cpg1.3.0
-  'directory_ro' => 'Münderije \'%s\'  xatirlenmidi, netijide höjjetni öchürelmeysiz.', //cpg1.3.0
-  'non_exist_comment' => 'Siz tallighan Söz yoq.',
-  'pic_in_invalid_album' => 'Höjjet Mewhüm albümda (%s)!?', //cpg1.3.0
-  'banned' => 'Siz békitimiz cheklidi.',
-  'not_with_udb' => 'Albüm münber bilen birikturulgen, Bu iqtidar toxtitildi. Tengshek qollimaydu yaki münber bir terep qiliwatidu.',
+  'invalid_image' => 'YÃ¼kingiz buzulghan yaki GD ambar bir terep qilalmaydu.',
+  'resize_failed' => 'Kichiklitilme yaki Ã¶zgertilme Ã©lip baralmidim.',
+  'no_img_to_display' => 'KÃ¶rÃ¼nme HÃ¶jjet yoq',
+  'non_exist_cat' => 'Tallanma TÃ¼r yoq',
+  'orphan_cat' => 'Tallanma tÃ¼ri xata, TÃ¼r tallashtin Ã¶zgertiwÃ©ling!', //cpg1.3.0
+  'directory_ro' => 'MÃ¼nderije \'%s\'  xatirlenmidi, netijide hÃ¶jjetni Ã¶chÃ¼relmeysiz.', //cpg1.3.0
+  'non_exist_comment' => 'Siz tallighan SÃ¶z yoq.',
+  'pic_in_invalid_album' => 'HÃ¶jjet MewhÃ¼m albÃ¼mda (%s)!?', //cpg1.3.0
+  'banned' => 'Siz bÃ©kitimiz cheklidi.',
+  'not_with_udb' => 'AlbÃ¼m mÃ¼nber bilen birikturulgen, Bu iqtidar toxtitildi. Tengshek qollimaydu yaki mÃ¼nber bir terep qiliwatidu.',
   'offline_title' => 'Biliniye', //cpg1.3.0
   'offline_text' => 'Gallery Biliniyede - Sel turup sinang', //cpg1.3.0
   'ecards_empty' => 'Tor kartisi yoq. Tengshekte tor kartisi ijramiken!', //cpg1.3.0
   'action_failed' => 'Paaliyet tamam.  Coppermine teliwingizni orundiyalmaydu.', //cpg1.3.0
-  'no_zip' => 'Höjjetni ZIP liyalmaysiz.  Albüm Atamani bilen alaqilishing.', //cpg1.3.0
-  'zip_type' => 'ZIP höjjetni yükleshke biijazet.', //cpg1.3.0
+  'no_zip' => 'HÃ¶jjetni ZIP liyalmaysiz.  AlbÃ¼m Atamani bilen alaqilishing.', //cpg1.3.0
+  'zip_type' => 'ZIP hÃ¶jjetni yÃ¼kleshke biijazet.', //cpg1.3.0
 );
 
 $lang_bbcode_help = 'Paydilinish kodi: <li>[b]<b>Bold</b>[/b]</li> <li>[i]<i>Italic</i>[/i]</li> <li>[url=http://yoursite.com/]Url Text[/url]</li> <li>[email]user@domain.com[/email]</li>'; //cpg1.3.0
@@ -102,27 +105,27 @@ $lang_bbcode_help = 'Paydilinish kodi: <li>[b]<b>Bold</b>[/b]</li> <li>[i]<i>Ita
 // ------------------------------------------------------------------------- //
 
 $lang_main_menu = array(
-  'alb_list_title' => 'Albüm sehipisi qaytish',
-  'alb_list_lnk' => 'Albüm sehipisi',
-  'my_gal_title' => 'Albümimgha qaytimen',
-  'my_gal_lnk' => 'Albümim',
+  'alb_list_title' => 'AlbÃ¼m sehipisi qaytish',
+  'alb_list_lnk' => 'AlbÃ¼m sehipisi',
+  'my_gal_title' => 'AlbÃ¼mimgha qaytimen',
+  'my_gal_lnk' => 'AlbÃ¼mim',
   'my_prof_lnk' => 'Arxipim',
   'adm_mode_title' => 'Admingha aylinish',
-  'adm_mode_lnk' => 'Admin Könümi',
-  'usr_mode_title' => 'Qollanchi könümige aylinish',
-  'usr_mode_lnk' => 'Qollanchi könümi',
-  'upload_pic_title' => 'Albomgha höjjet yüklesh', //cpg1.3.0
-  'upload_pic_lnk' => 'Höjjet yüklesh', //cpg1.3.0
+  'adm_mode_lnk' => 'Admin KÃ¶nÃ¼mi',
+  'usr_mode_title' => 'Qollanchi kÃ¶nÃ¼mige aylinish',
+  'usr_mode_lnk' => 'Qollanchi kÃ¶nÃ¼mi',
+  'upload_pic_title' => 'Albomgha hÃ¶jjet yÃ¼klesh', //cpg1.3.0
+  'upload_pic_lnk' => 'HÃ¶jjet yÃ¼klesh', //cpg1.3.0
   'register_title' => 'Qollanchi qoshush',
   'register_lnk' => 'Tizimlitish',
   'login_lnk' => 'Kiring',
   'logout_lnk' => 'Chiqing',
-  'lastup_lnk' => 'Yéngi Yük',
-  'lastcom_lnk' => 'Yéngi Söz',
-  'topn_lnk' => 'Köp körüm',
+  'lastup_lnk' => 'YÃ©ngi YÃ¼k',
+  'lastcom_lnk' => 'YÃ©ngi SÃ¶z',
+  'topn_lnk' => 'KÃ¶p kÃ¶rÃ¼m',
   'toprated_lnk' => 'Yoquri Nomur',
   'search_lnk' => 'Izde',
-  'fav_lnk' => 'Könglümdikisi',
+  'fav_lnk' => 'KÃ¶nglÃ¼mdikisi',
   'memberlist_title' => 'Qollanchi tizimliki', //cpg1.3.0
   'memberlist_lnk' => 'Qollanchilar', //cpg1.3.0
   'faq_title' => 'Galleryning Daimliq soaligha jawap &quot;Coppermine&quot;', //cpg1.3.0
@@ -130,67 +133,67 @@ $lang_main_menu = array(
 );
 
 $lang_gallery_admin_menu = array(
-  'upl_app_lnk' => 'Bap Yüklesh',
+  'upl_app_lnk' => 'Bap YÃ¼klesh',
   'config_lnk' => 'Tengshesh',
-  'albums_lnk' => 'Albümlar',
-  'categories_lnk' => 'Katégoriyiler',
+  'albums_lnk' => 'AlbÃ¼mlar',
+  'categories_lnk' => 'KatÃ©goriyiler',
   'users_lnk' => 'Qollanchilar',
   'groups_lnk' => 'Grouplar',
   'comments_lnk' => 'Pikirler', //cpg1.3.0
-  'searchnew_lnk' => 'Höjjetber', //cpg1.3.0
+  'searchnew_lnk' => 'HÃ¶jjetber', //cpg1.3.0
   'util_lnk' => 'Ataman Arxipi', //cpg1.3.0
   'ban_lnk' => 'Cheklen`genler',
-  'db_ecard_lnk' => 'Atrétkilar', //cpg1.3.0
+  'db_ecard_lnk' => 'AtrÃ©tkilar', //cpg1.3.0
 );
 
 $lang_user_admin_menu = array(
-  'albmgr_lnk' => 'Albümimni/Qurush ',
-  'modifyalb_lnk' => 'Albümimni Tehrirlesh',
+  'albmgr_lnk' => 'AlbÃ¼mimni/Qurush ',
+  'modifyalb_lnk' => 'AlbÃ¼mimni Tehrirlesh',
   'my_prof_lnk' => 'Arxipim',
 );
 
 $lang_cat_list = array(
-  'category' => 'Türler',
-  'albums' => 'Albümlar',
-  'pictures' => 'Höjjet', //cpg1.3.0
+  'category' => 'TÃ¼rler',
+  'albums' => 'AlbÃ¼mlar',
+  'pictures' => 'HÃ¶jjet', //cpg1.3.0
 );
 
 $lang_album_list = array(
-  'album_on_page' => '%d albüm  %d bet(liri)',
+  'album_on_page' => '%d albÃ¼m  %d bet(liri)',
 );
 
 $lang_thumb_view = array(
   'date' => 'DATE',
   //Sort by filename and title
-  'name' => 'Höjjet nami',
+  'name' => 'HÃ¶jjet nami',
   'title' => 'Tambet',
-  'sort_da' => 'WAqt tertipi Yéqindin yiraqqa',
-  'sort_dd' => 'WAqt tertipi yiraqtin yéqin`gha',
+  'sort_da' => 'WAqt tertipi YÃ©qindin yiraqqa',
+  'sort_dd' => 'WAqt tertipi yiraqtin yÃ©qin`gha',
   'sort_na' => 'Nam Kichiktin chonggha',
   'sort_nd' => 'Nam Chongdin kichikke',
-  'sort_ta' => 'Téma Kichiktin chonggha',
-  'sort_td' => 'Téma Chongdin kichikke',
-  'download_zip' => 'Zip Höjjitide yüklesh', //cpg1.3.0
-  'pic_on_page' => '%d Höjjet %d Bet(liri)',
+  'sort_ta' => 'TÃ©ma Kichiktin chonggha',
+  'sort_td' => 'TÃ©ma Chongdin kichikke',
+  'download_zip' => 'Zip HÃ¶jjitide yÃ¼klesh', //cpg1.3.0
+  'pic_on_page' => '%d HÃ¶jjet %d Bet(liri)',
   'user_on_page' => '%d Qollanchi %d Bet(liri)', //cpg1.3.0
 );
 
 $lang_img_nav_bar = array(
-  'thumb_title' => 'Kichiklitilgen resim bétige qayting.',
-  'pic_info_title' => 'Körünsün/Yoshurun höjjet information', //cpg1.3.0
-  'slideshow_title' => 'Ret-ret körünsun',
-  'ecard_title' => 'Resim é-card qilip yollansun.', //cpg1.3.0
-  'ecard_disabled' => 'é-cards iqtidari toxtitilghan.',
-  'ecard_disabled_msg' => 'Sizge é-cards ni ewertish hoquqi bérilmidi.', //js-alert //cpg1.3.0
-  'prev_title' => 'Aldinqi höjjet', //cpg1.3.0
-  'next_title' => 'Kéyinki höjjet', //cpg1.3.0
-  'pic_pos' => 'Höjjet %s/%s', //cpg1.3.0
+  'thumb_title' => 'Kichiklitilgen resim bÃ©tige qayting.',
+  'pic_info_title' => 'KÃ¶rÃ¼nsÃ¼n/Yoshurun hÃ¶jjet information', //cpg1.3.0
+  'slideshow_title' => 'Ret-ret kÃ¶rÃ¼nsun',
+  'ecard_title' => 'Resim Ã©-card qilip yollansun.', //cpg1.3.0
+  'ecard_disabled' => 'Ã©-cards iqtidari toxtitilghan.',
+  'ecard_disabled_msg' => 'Sizge Ã©-cards ni ewertish hoquqi bÃ©rilmidi.', //js-alert //cpg1.3.0
+  'prev_title' => 'Aldinqi hÃ¶jjet', //cpg1.3.0
+  'next_title' => 'KÃ©yinki hÃ¶jjet', //cpg1.3.0
+  'pic_pos' => 'HÃ¶jjet %s/%s', //cpg1.3.0
 );
 
 $lang_rate_pic = array(
-  'rate_this_pic' => 'Höjjetni bahalang ', //cpg1.3.0
+  'rate_this_pic' => 'HÃ¶jjetni bahalang ', //cpg1.3.0
   'no_votes' => '(Hichkim bahalimidi)',
-  'rating' => '(Érishken nomuri : %s / 5 We %s nomur)',
+  'rating' => '(Ã‰rishken nomuri : %s / 5 We %s nomur)',
   'rubbish' => 'Nacharken',
   'poor' => 'Sel nacharken',
   'fair' => 'Adettikidekla',
@@ -213,20 +216,20 @@ $lang_cpg_die = array(
   INFORMATION => $lang_info,
   ERROR => $lang_error,
   CRITICAL_ERROR => 'Jiddiy xataliq',
-  'file' => 'Höjjet: ',
+  'file' => 'HÃ¶jjet: ',
   'line' => 'Qur sani: ',
 );
 
 $lang_display_thumbnails = array(
-  'filename' => 'Höjjet nami : ',
-  'filesize' => 'Höjjet hejimi : ',
+  'filename' => 'HÃ¶jjet nami : ',
+  'filesize' => 'HÃ¶jjet hejimi : ',
   'dimensions' => 'Keng_tarliqi : ',
-  'date_added' => 'Ay_kün qoshush : ', //cpg1.3.0
+  'date_added' => 'Ay_kÃ¼n qoshush : ', //cpg1.3.0
 );
 
 $lang_get_pic_data = array(
   'n_comments' => '%s Pikir',
-  'n_views' => '%s Qétim Körüldi',
+  'n_views' => '%s QÃ©tim KÃ¶rÃ¼ldi',
   'n_votes' => '(%s Nomur)',
 );
 
@@ -243,8 +246,8 @@ $lang_language_selection = array(
 );
 
 $lang_theme_selection = array(
-  'reset_theme' => 'Ataman tambétini tallang', //cpg1.3.0
-  'choose_theme' => 'Tambéti tallang', //cpg1.3.0
+  'reset_theme' => 'Ataman tambÃ©tini tallang', //cpg1.3.0
+  'choose_theme' => 'TambÃ©ti tallang', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -267,20 +270,20 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
   'Exclamation' => 'Exclamation',
   'Question' => 'Question',
   'Very Happy' => 'Bek xushhal',
-  'Smile' => 'Külümsiresh',
+  'Smile' => 'KÃ¼lÃ¼msiresh',
   'Sad' => 'Azaplinish',
-  'Surprised' => 'Heyran qélish',
+  'Surprised' => 'Heyran qÃ©lish',
   'Shocked' => 'Soghuq',
-  'Confused' => 'Aylinip kétey',
+  'Confused' => 'Aylinip kÃ©tey',
   'Cool' => 'Epsus',
-  'Laughing' => 'Külkilik',
+  'Laughing' => 'KÃ¼lkilik',
   'Mad' => 'Sarang',
   'Razz' => 'Mesxire',
   'Embarassed' => 'Embarassed',
   'Crying or Very sad' => 'Crying or Very sad',
   'Evil or Very Mad' => 'Zeherxende',
   'Twisted Evil' => 'Ghelite',
-  'Rolling Eyes' => 'Közini aylandurush',
+  'Rolling Eyes' => 'KÃ¶zini aylandurush',
   'Wink' => 'Aliyish',
   'Idea' => 'Diqqet',
   'Arrow' => 'Arrow',
@@ -299,8 +302,8 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ADMIN_PHP')) $lang_admin_php = array(
-  0 => 'Bashqurush bölikidin ayrilish...',
-  1 => 'Bashqurush bölikige qedem...',
+  0 => 'Bashqurush bÃ¶likidin ayrilish...',
+  1 => 'Bashqurush bÃ¶likige qedem...',
 );
 
 // ------------------------------------------------------------------------- //
@@ -308,20 +311,20 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
-  'alb_need_name' => 'Albümgha nam béring !', //js-alert
-  'confirm_modifs' => 'Choqum özgertemsiz ?', //js-alert
-  'no_change' => 'Siz héchnimini özgertmidingiz !', //js-alert
-  'new_album' => 'Yéngi albüm',
-  'confirm_delete1' => 'Rastinla bu albümni öchürwetmekchimu?', //js-alert
-  'confirm_delete2' => '\n Barliq höjjet we Sözler öchüp kétidu !', //js-alert
-  'select_first' => 'Albüm tallang', //js-alert
+  'alb_need_name' => 'AlbÃ¼mgha nam bÃ©ring !', //js-alert
+  'confirm_modifs' => 'Choqum Ã¶zgertemsiz ?', //js-alert
+  'no_change' => 'Siz hÃ©chnimini Ã¶zgertmidingiz !', //js-alert
+  'new_album' => 'YÃ©ngi albÃ¼m',
+  'confirm_delete1' => 'Rastinla bu albÃ¼mni Ã¶chÃ¼rwetmekchimu?', //js-alert
+  'confirm_delete2' => '\n Barliq hÃ¶jjet we SÃ¶zler Ã¶chÃ¼p kÃ©tidu !', //js-alert
+  'select_first' => 'AlbÃ¼m tallang', //js-alert
   'alb_mrg' => 'Album Bashqurghuchisi',
-  'my_gallery' => '* Méning galleryim *',
-  'no_category' => '* Katégoriye yoq *',
-  'delete' => 'Öcher',
+  'my_gallery' => '* MÃ©ning galleryim *',
+  'no_category' => '* KatÃ©goriye yoq *',
+  'delete' => 'Ã–cher',
   'new' => 'Qoshush',
-  'apply_modifs' => 'Tüzitish',
-  'select_category' => 'Katégoriyeni Tallash',
+  'apply_modifs' => 'TÃ¼zitish',
+  'select_category' => 'KatÃ©goriyeni Tallash',
 );
 
 // ------------------------------------------------------------------------- //
@@ -329,19 +332,19 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
-  'miss_param' => 'Meshghulatqa kéreklik \'%s\'miqdar teminlenmidi !',
-  'unknown_cat' => 'Tallighan Katégoriye san ambirida yoq',
-  'usergal_cat_ro' => 'Qollanchi galleries Katégoriyisidin öchürüshke bolmaydu !',
-  'manage_cat' => 'Katégoriye bashqurush',
-  'confirm_delete' => 'Bu Katégoriyeni rastinla öchüremsiz', //js-alert
-  'category' => 'Katégoriye',
+  'miss_param' => 'Meshghulatqa kÃ©reklik \'%s\'miqdar teminlenmidi !',
+  'unknown_cat' => 'Tallighan KatÃ©goriye san ambirida yoq',
+  'usergal_cat_ro' => 'Qollanchi galleries KatÃ©goriyisidin Ã¶chÃ¼rÃ¼shke bolmaydu !',
+  'manage_cat' => 'KatÃ©goriye bashqurush',
+  'confirm_delete' => 'Bu KatÃ©goriyeni rastinla Ã¶chÃ¼remsiz', //js-alert
+  'category' => 'KatÃ©goriye',
   'operations' => 'Meshghulat',
-  'move_into' => 'gh yötkesh',
-  'update_create' => 'Katégoriyeni Yéngilash/Qurush ',
-  'parent_cat' => 'Ata Katégoriye',
-  'cat_title' => 'Katégoriye munderijisi',
-  'cat_thumb' => 'Katégoriye kichiklitilme süriti', //cpg1.3.0
-  'cat_desc' => 'Katégoriye izahati',
+  'move_into' => 'gh yÃ¶tkesh',
+  'update_create' => 'KatÃ©goriyeni YÃ©ngilash/Qurush ',
+  'parent_cat' => 'Ata KatÃ©goriye',
+  'cat_title' => 'KatÃ©goriye munderijisi',
+  'cat_thumb' => 'KatÃ©goriye kichiklitilme sÃ¼riti', //cpg1.3.0
+  'cat_desc' => 'KatÃ©goriye izahati',
 );
 
 // ------------------------------------------------------------------------- //
@@ -354,120 +357,120 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
   'save_cfg' => 'Tengshekni saqlash',
   'notes' => 'Diqqet',
   'info' => 'Uchur',
-  'upd_success' => 'Tengshek yéngilandi',
-  'restore_success' => 'Tengshek eslige keltürildi',
+  'upd_success' => 'Tengshek yÃ©ngilandi',
+  'restore_success' => 'Tengshek eslige keltÃ¼rildi',
   'name_a' => 'Nam kichiktin chonggha',
   'name_d' => 'Nam chongdin kichikke',
   'title_a' => 'Tambet kichiktin chonggha',
   'title_d' => 'Tambet chongdin kichikke',
   'date_a' => 'Waqt yeqindin yiraqqa',
-  'date_d' => 'Waqt yiraqtin yéqin`gha',
-  'th_any' => 'Eng chong körüm',
+  'date_d' => 'Waqt yiraqtin yÃ©qin`gha',
+  'th_any' => 'Eng chong kÃ¶rÃ¼m',
   'th_ht' => 'Igizliki',
   'th_wd' => 'Kengliki',
   'label' => 'Munderije', //cpg1.3.0
-  'item' => 'Tür', //cpg1.3.0
+  'item' => 'TÃ¼r', //cpg1.3.0
   'debug_everyone' => 'Herbir', //cpg1.3.0
-  'debug_admin' => 'Atamanchün', //cpg1.3.0
+  'debug_admin' => 'AtamanchÃ¼n', //cpg1.3.0
         );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
   'Asasi tengshek',
-  array('Albüm nami', 'gallery_name', 0),
-  array('Albüm izahati', 'gallery_description', 0),
-  array('Albüm atamani émaili', 'gallery_admin_email', 0),
-  array('Adréslar ichide \'Téximu köp resim\' e-cards ulinishi', 'ecards_more_pic_target', 0),
-  array('Albüm liniyesiz', 'offline', 1), //cpg1.3.0
-  array('Écardlar Tizimi', 'log_ecards', 1), //cpg1.3.0
+  array('AlbÃ¼m nami', 'gallery_name', 0),
+  array('AlbÃ¼m izahati', 'gallery_description', 0),
+  array('AlbÃ¼m atamani Ã©maili', 'gallery_admin_email', 0),
+  array('AdrÃ©slar ichide \'TÃ©ximu kÃ¶p resim\' e-cards ulinishi', 'ecards_more_pic_target', 0),
+  array('AlbÃ¼m liniyesiz', 'offline', 1), //cpg1.3.0
+  array('Ã‰cardlar Tizimi', 'log_ecards', 1), //cpg1.3.0
   array('Yaqturghanni ZIP-qilip saqliyalisun', 'enable_zipdownload', 1), //cpg1.3.0
 
-  'Tiltüri, Tambetler &amp; Til reqemlik tengshiki',
-  array('Tiltüri', 'lang', 5),
+  'TiltÃ¼ri, Tambetler &amp; Til reqemlik tengshiki',
+  array('TiltÃ¼ri', 'lang', 5),
   array('Tambet', 'theme', 6),
-  array('Til tallishi körünsun', 'language_list', 1), //cpg1.3.0
-  array('Til tughi körünsun', 'language_flags', 8), //cpg1.3.0
-  array('Körünüsh &quot;Qayata tengshesh&quot; Tambet tengshesh ichide', 'language_reset', 1), //cpg1.3.0
+  array('Til tallishi kÃ¶rÃ¼nsun', 'language_list', 1), //cpg1.3.0
+  array('Til tughi kÃ¶rÃ¼nsun', 'language_flags', 8), //cpg1.3.0
+  array('KÃ¶rÃ¼nÃ¼sh &quot;Qayata tengshesh&quot; Tambet tengshesh ichide', 'language_reset', 1), //cpg1.3.0
   array('Tambet Munderijisi', 'theme_list', 1), //cpg1.3.0
-  array('Körünüsh &quot;Qayta tengshesh&quot; Tambet tengshesh ichide', 'theme_reset', 1), //cpg1.3.0
-  array('Soal_jawab körünüsh', 'display_faq', 1), //cpg1.3.0
-  array('bbcode Yardimi körünüsh', 'show_bbcode_help', 1), //cpg1.3.0
+  array('KÃ¶rÃ¼nÃ¼sh &quot;Qayta tengshesh&quot; Tambet tengshesh ichide', 'theme_reset', 1), //cpg1.3.0
+  array('Soal_jawab kÃ¶rÃ¼nÃ¼sh', 'display_faq', 1), //cpg1.3.0
+  array('bbcode Yardimi kÃ¶rÃ¼nÃ¼sh', 'show_bbcode_help', 1), //cpg1.3.0
   array('Xet kodi', 'charset', 4), //cpg1.3.0
 
-  'Albüm Körünishi',
-  array('Asasliq jedwel kengliki (süzükliki or %)', 'main_table_width', 0),
-  array('Tür körsitish sani', 'subcat_level', 0),
-  array('Albüm sani', 'albums_per_page', 0),
-  array('Albüm munderijisi qur sani', 'album_list_cols', 0),
-  array('Kichiklitilgen höjjetning Süzükliki', 'alb_list_thumb_size', 0),
+  'AlbÃ¼m KÃ¶rÃ¼nishi',
+  array('Asasliq jedwel kengliki (sÃ¼zÃ¼kliki or %)', 'main_table_width', 0),
+  array('TÃ¼r kÃ¶rsitish sani', 'subcat_level', 0),
+  array('AlbÃ¼m sani', 'albums_per_page', 0),
+  array('AlbÃ¼m munderijisi qur sani', 'album_list_cols', 0),
+  array('Kichiklitilgen hÃ¶jjetning SÃ¼zÃ¼kliki', 'alb_list_thumb_size', 0),
   array('Bash bet mezmuni', 'main_page_layout', 0),
-  array('albüm kichiklitilme bash béti','first_level',1),
+  array('albÃ¼m kichiklitilme bash bÃ©ti','first_level',1),
 
-  'Kichiklitip körsitish',
-  array('Kichik körsitish qur sani', 'thumbcols', 0),
-  array('Kichik körsitish tik qur sani', 'thumbrows', 0),
-  array('Jedwel körinish eng chong sani', 'max_tabs', 10), //cpg1.3.0
-  array('Höjjet chüshenchisi, kichik körsitish astida (Qoshumche Téma)', 'caption_in_thumbview', 1), //cpg1.3.0
-  array('Körüm sani kichiklitilmining astida körülidu', 'views_in_thumbview', 1), //cpg1.3.0
-  array('Söz sani kichiklitilmining astida körülidu', 'display_comment_count', 1),
-  array('Yük ismi kichiklitilmining astida körülidu', 'display_uploader', 1), //cpg1.3.0
-  array('Höjjet körüm sani tertipi', 'default_sort_order', 3), //cpg1.3.0
-  array('höjjetke qizghin tashlan`ghan bélet\'lazmliq eng az bélet sani', 'min_votes_for_rating', 0), //cpg1.3.0
+  'Kichiklitip kÃ¶rsitish',
+  array('Kichik kÃ¶rsitish qur sani', 'thumbcols', 0),
+  array('Kichik kÃ¶rsitish tik qur sani', 'thumbrows', 0),
+  array('Jedwel kÃ¶rinish eng chong sani', 'max_tabs', 10), //cpg1.3.0
+  array('HÃ¶jjet chÃ¼shenchisi, kichik kÃ¶rsitish astida (Qoshumche TÃ©ma)', 'caption_in_thumbview', 1), //cpg1.3.0
+  array('KÃ¶rÃ¼m sani kichiklitilmining astida kÃ¶rÃ¼lidu', 'views_in_thumbview', 1), //cpg1.3.0
+  array('SÃ¶z sani kichiklitilmining astida kÃ¶rÃ¼lidu', 'display_comment_count', 1),
+  array('YÃ¼k ismi kichiklitilmining astida kÃ¶rÃ¼lidu', 'display_uploader', 1), //cpg1.3.0
+  array('HÃ¶jjet kÃ¶rÃ¼m sani tertipi', 'default_sort_order', 3), //cpg1.3.0
+  array('hÃ¶jjetke qizghin tashlan`ghan bÃ©let\'lazmliq eng az bÃ©let sani', 'min_votes_for_rating', 0), //cpg1.3.0
 
-  'Resim körünüsh &amp; Söz Tengshiki',
-  array('Resim körinidighan jedwelning kengliki (Süzükliki or %)', 'picture_table_width', 0), //cpg1.3.0
-  array('Höjjet uchurini aldin körsitish', 'display_pic_info', 1), //cpg1.3.0
-  array('Sözlerdin  chiqirwétish.', 'filter_bad_words', 1),
-  array('Söz bergende sinlarni ishlitish', 'enable_smilies', 1),
-  array('Bir höjjetke birqanche söz bérelisun (qoghdunush izini Taqash)', 'disable_comment_flood_protect', 1), //cpg1.3.0
+  'Resim kÃ¶rÃ¼nÃ¼sh &amp; SÃ¶z Tengshiki',
+  array('Resim kÃ¶rinidighan jedwelning kengliki (SÃ¼zÃ¼kliki or %)', 'picture_table_width', 0), //cpg1.3.0
+  array('HÃ¶jjet uchurini aldin kÃ¶rsitish', 'display_pic_info', 1), //cpg1.3.0
+  array('SÃ¶zlerdin  chiqirwÃ©tish.', 'filter_bad_words', 1),
+  array('SÃ¶z bergende sinlarni ishlitish', 'enable_smilies', 1),
+  array('Bir hÃ¶jjetke birqanche sÃ¶z bÃ©relisun (qoghdunush izini Taqash)', 'disable_comment_flood_protect', 1), //cpg1.3.0
   array('Resim izahatining uzunliqi', 'max_img_desc_length', 0),
-  array('izahatning xet chéki sani', 'max_com_wlength', 0),
-  array('izahatning qur chéki sani', 'max_com_lines', 0),
+  array('izahatning xet chÃ©ki sani', 'max_com_wlength', 0),
+  array('izahatning qur chÃ©ki sani', 'max_com_lines', 0),
   array('izahatning uzunliqi', 'max_com_size', 0),
-  array('Resimche körünüsh qur sani', 'display_film_strip', 1),
+  array('Resimche kÃ¶rÃ¼nÃ¼sh qur sani', 'display_film_strip', 1),
   array('ziyaret qurdiki resim sani', 'max_film_strip_items', 0),
-  array('Söz berse ataman`gha Émail arqiliq uqturulsun', 'email_comment_notification', 1), //cpg1.3.0
-  array('Üzülmey körünüshi milliseconds (1 second = 1000 milliseconds)', 'slideshow_interval', 0), //cpg1.3.0
+  array('SÃ¶z berse ataman`gha Ã‰mail arqiliq uqturulsun', 'email_comment_notification', 1), //cpg1.3.0
+  array('ÃœzÃ¼lmey kÃ¶rÃ¼nÃ¼shi milliseconds (1 second = 1000 milliseconds)', 'slideshow_interval', 0), //cpg1.3.0
 
-  'Höjjet kichiklitilme tengshigi', //cpg1.3.0
-  array('JPEG Höjjitining süpiti', 'jpeg_qual', 0),
-  array('Kichiklitilme chéki <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0), //cpg1.3.0
-  array('Ishlitish chéki ( kengliki, igizliki yaki kichiklitilme chéki)<b>**</b>', 'thumb_use', 7),
+  'HÃ¶jjet kichiklitilme tengshigi', //cpg1.3.0
+  array('JPEG HÃ¶jjitining sÃ¼piti', 'jpeg_qual', 0),
+  array('Kichiklitilme chÃ©ki <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0), //cpg1.3.0
+  array('Ishlitish chÃ©ki ( kengliki, igizliki yaki kichiklitilme chÃ©ki)<b>**</b>', 'thumb_use', 7),
   array('Ara derijilik resim qurush','make_intermediate',1),
-  array('Ara derije resim we sinning chéki<a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0), //cpg1.3.0
-  array('Yüklenme höjjetning hejimi (KB)', 'max_upl_size', 0), //cpg1.3.0
-  array('Yüklenme resim we sinning igizlik yaki kenglik chéki (pixels)', 'max_upl_width_height', 0), //cpg1.3.0
+  array('Ara derije resim we sinning chÃ©ki<a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0), //cpg1.3.0
+  array('YÃ¼klenme hÃ¶jjetning hejimi (KB)', 'max_upl_size', 0), //cpg1.3.0
+  array('YÃ¼klenme resim we sinning igizlik yaki kenglik chÃ©ki (pixels)', 'max_upl_width_height', 0), //cpg1.3.0
 
-  'Höjjet bilen resimchening kirgüzme qimmet tengshiki', //cpg1.3.0
-  array('Qollanchi höjjitini méhmangha körsütüsh','show_private',1), //cpg1.3.0
+  'HÃ¶jjet bilen resimchening kirgÃ¼zme qimmet tengshiki', //cpg1.3.0
+  array('Qollanchi hÃ¶jjitini mÃ©hmangha kÃ¶rsÃ¼tÃ¼sh','show_private',1), //cpg1.3.0
   array('Qobul qilinmaydighan arxip nam belgiliri', 'forbiden_fname_char',0), //cpg1.3.0
-  //array('Yüklenme resim qobullaydighan qoshumche nam', 'allowed_file_extensions',0), //cpg1.3.0
+  //array('YÃ¼klenme resim qobullaydighan qoshumche nam', 'allowed_file_extensions',0), //cpg1.3.0
   array('Qobul resim shekli', 'allowed_img_types',0), //cpg1.3.0
   array('Qobul sin shekli', 'allowed_mov_types',0), //cpg1.3.0
   array('Qobul awaz shekli', 'allowed_snd_types',0), //cpg1.3.0
-  array('Qobul höjjet shekli', 'allowed_doc_types',0), //cpg1.3.0
+  array('Qobul hÃ¶jjet shekli', 'allowed_doc_types',0), //cpg1.3.0
   array('Resimche qurush usuli','thumb_method',2), //cpg1.3.0
   array('Path to ImageMagick \'convert\' ulinish yoli (mesilen /usr/bin/X11/)', 'impath', 0), //cpg1.3.0
   //array('Qobul resim shekli (peqet ImageMagick la ishleydu)', 'allowed_img_types',0), //cpg1.3.0
   array('ImageMagick ning buyruq tallanmiliri', 'im_options', 0), //cpg1.3.0
-  array('JPEG ning EXIF matériyalini oqush', 'read_exif_data', 1), //cpg1.3.0
-  array('JPEG ning IPTC matériyalini oqush', 'read_iptc_data', 1), //cpg1.3.0
-  array('Albüm yoli <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0), //cpg1.3.0
-  array('Qollanchi höjjet yoli <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0), //cpg1.3.0
+  array('JPEG ning EXIF matÃ©riyalini oqush', 'read_exif_data', 1), //cpg1.3.0
+  array('JPEG ning IPTC matÃ©riyalini oqush', 'read_iptc_data', 1), //cpg1.3.0
+  array('AlbÃ¼m yoli <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0), //cpg1.3.0
+  array('Qollanchi hÃ¶jjet yoli <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0), //cpg1.3.0
   array('Ara resimning prefix li <a href="#notice1" class="clickable_option">*</a>', 'normal_pfx', 0), //cpg1.3.0
   array('Kichiklitilme resimning prefix li <a href="#notice1" class="clickable_option">*</a>', 'thumb_pfx', 0), //cpg1.3.0
-  array('Resim munderijisi belgilime chéki', 'default_dir_mode', 0), //cpg1.3.0
-  array('Yük resim belgilime chéki', 'default_file_mode', 0), //cpg1.3.0
+  array('Resim munderijisi belgilime chÃ©ki', 'default_dir_mode', 0), //cpg1.3.0
+  array('YÃ¼k resim belgilime chÃ©ki', 'default_file_mode', 0), //cpg1.3.0
 
-  'Qollanchi chéki',
-  array('Yéngi eza qobullinidu', 'allow_user_registration', 1),
-  array('Émail arqiliq tizim testiqlinidu', 'reg_requires_valid_email', 1),
-  array('ishletküchi tizimlatsa Ataman`gha Émail ewertilsun', 'reg_notify_admin_email', 1), //cpg1.3.0
-  array('Ikki qollanchi bir émail ishletse bolidu', 'allow_duplicate_emails_addr', 1),
-  array('Qollanchiningmu albümi bolsun (Diqqet: Eger hee din yaqqa almashtursingiz Qollanchi albümi ammiwiliship qalidu)', 'allow_private_albums', 1), //cpg1.3.0
-  array('Qollanchi yük testiqi ataman`gha uqturulsun', 'upl_notify_admin_email', 1), //cpg1.3.0
-  array('Ezalar qollanchi tizimini körelisun', 'allow_memberlist', 1), //cpg1.3.0
+  'Qollanchi chÃ©ki',
+  array('YÃ©ngi eza qobullinidu', 'allow_user_registration', 1),
+  array('Ã‰mail arqiliq tizim testiqlinidu', 'reg_requires_valid_email', 1),
+  array('ishletkÃ¼chi tizimlatsa Ataman`gha Ã‰mail ewertilsun', 'reg_notify_admin_email', 1), //cpg1.3.0
+  array('Ikki qollanchi bir Ã©mail ishletse bolidu', 'allow_duplicate_emails_addr', 1),
+  array('Qollanchiningmu albÃ¼mi bolsun (Diqqet: Eger hee din yaqqa almashtursingiz Qollanchi albÃ¼mi ammiwiliship qalidu)', 'allow_private_albums', 1), //cpg1.3.0
+  array('Qollanchi yÃ¼k testiqi ataman`gha uqturulsun', 'upl_notify_admin_email', 1), //cpg1.3.0
+  array('Ezalar qollanchi tizimini kÃ¶relisun', 'allow_memberlist', 1), //cpg1.3.0
 
-  'Süret izahati öz quri (ishletmisingiz bosh qalsun)',
+  'SÃ¼ret izahati Ã¶z quri (ishletmisingiz bosh qalsun)',
   array('Qur 1 nami', 'user_field1_name', 0),
   array('Qur 2 nami', 'user_field2_name', 0),
   array('Qur 3 nami', 'user_field3_name', 0),
@@ -479,10 +482,10 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 
   'Bashqa tengshek',
   array('Xataliq shekli qozghutulsun', 'debug_mode', 9), //cpg1.3.0
-  array('Xataliq shekli körünme uchuri', 'debug_notice', 1), //cpg1.3.0
+  array('Xataliq shekli kÃ¶rÃ¼nme uchuri', 'debug_notice', 1), //cpg1.3.0
 
-  '<br /><div align="left"><a name="notice1"></a>(*) Bu höjjet san ambirida alla burun bar.<br />
-  <a name="notice2"></a>(**) özgertilme bar arxipqila ishleydu, Qandaqla bolmisun ataman iqtidaridin arxipni tengshisingiz &quot;<a href="util.php">ataman qorali</a> da(Resim chong_kichiklikini tengshesh)&quot; </div><br />', //cpg1.3.0
+  '<br /><div align="left"><a name="notice1"></a>(*) Bu hÃ¶jjet san ambirida alla burun bar.<br />
+  <a name="notice2"></a>(**) Ã¶zgertilme bar arxipqila ishleydu, Qandaqla bolmisun ataman iqtidaridin arxipni tengshisingiz &quot;<a href="util.php">ataman qorali</a> da(Resim chong_kichiklikini tengshesh)&quot; </div><br />', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -490,30 +493,30 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
-  'title' => 'É kartisi yollash', //cpg1.3.0
-  'ecard_sender' => 'Bergüchi', //cpg1.3.0
-  'ecard_recipient' => 'Bérilgüchi', //cpg1.3.0
+  'title' => 'Ã‰ kartisi yollash', //cpg1.3.0
+  'ecard_sender' => 'BergÃ¼chi', //cpg1.3.0
+  'ecard_recipient' => 'BÃ©rilgÃ¼chi', //cpg1.3.0
   'ecard_date' => 'Waqt', //cpg1.3.0
-  'ecard_display' => 'ékard körünüsh', //cpg1.3.0
+  'ecard_display' => 'Ã©kard kÃ¶rÃ¼nÃ¼sh', //cpg1.3.0
   'ecard_name' => 'Nami', //cpg1.3.0
-  'ecard_email' => 'Émail', //cpg1.3.0
+  'ecard_email' => 'Ã‰mail', //cpg1.3.0
   'ecard_ip' => 'IP #', //cpg1.3.0
   'ecard_ascending' => 'ashurush', //cpg1.3.0
-  'ecard_descending' => 'kémeytish', //cpg1.3.0
+  'ecard_descending' => 'kÃ©meytish', //cpg1.3.0
   'ecard_sorted' => 'tertip', //cpg1.3.0
   'ecard_by_date' => 'Bergen Waqt', //cpg1.3.0
   'ecard_by_sender_name' => 'Bergen Yollanchi nami\'s name', //cpg1.3.0
-  'ecard_by_sender_email' => 'Berguchi\'s émail', //cpg1.3.0
-  'ecard_by_sender_ip' => 'Berguchi\'s IP adrési', //cpg1.3.0
-  'ecard_by_recipient_name' => 'Bérilgüchi\'s nami', //cpg1.3.0
-  'ecard_by_recipient_email' => 'Bérilgüchi\'s émail', //cpg1.3.0
-  'ecard_number' => 'Kör xatire %s din %s gha %s', //cpg1.3.0
+  'ecard_by_sender_email' => 'Berguchi\'s Ã©mail', //cpg1.3.0
+  'ecard_by_sender_ip' => 'Berguchi\'s IP adrÃ©si', //cpg1.3.0
+  'ecard_by_recipient_name' => 'BÃ©rilgÃ¼chi\'s nami', //cpg1.3.0
+  'ecard_by_recipient_email' => 'BÃ©rilgÃ¼chi\'s Ã©mail', //cpg1.3.0
+  'ecard_number' => 'KÃ¶r xatire %s din %s gha %s', //cpg1.3.0
   'ecard_goto_page' => 'Betke baridu', //cpg1.3.0
-  'ecard_records_per_page' => 'Bet qétim sani', //cpg1.3.0
+  'ecard_records_per_page' => 'Bet qÃ©tim sani', //cpg1.3.0
   'check_all' => 'Hemmini tallash', //cpg1.3.0
   'uncheck_all' => 'Tallimasliq', //cpg1.3.0
-  'ecards_delete_selected' => 'Tallan`ghanni öchürüsh', //cpg1.3.0
-  'ecards_delete_confirm' => 'Rastinla xatirini öchermekchimu? Emise tallang!', //cpg1.3.0
+  'ecards_delete_selected' => 'Tallan`ghanni Ã¶chÃ¼rÃ¼sh', //cpg1.3.0
+  'ecards_delete_confirm' => 'Rastinla xatirini Ã¶chermekchimu? Emise tallang!', //cpg1.3.0
   'ecards_delete_sure' => 'Muqimlidim', //cpg1.3.0
 );
 
@@ -523,34 +526,34 @@ if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
-  'empty_name_or_com' => 'Nam we Sözni yézing',
-  'com_added' => 'Sözingiz xatirlendi',
-  'alb_need_title' => 'Siz albüm üchün Téma béring !',
-  'no_udp_needed' => 'Yéngilash bihajet.',
-  'alb_updated' => 'Albüm yéngilinip bolghan',
-  'unknown_album' => 'Tallighan albüm yoq yaki siz cheklimige uchurdingiz.',
-  'no_pic_uploaded' => 'Höjjet yüklenmidi !<br /><br />Yük bermek bolsingiz, yükleshke ijazet barmu yoq tekshürüp biling...', //cpg1.3.0
+  'empty_name_or_com' => 'Nam we SÃ¶zni yÃ©zing',
+  'com_added' => 'SÃ¶zingiz xatirlendi',
+  'alb_need_title' => 'Siz albÃ¼m Ã¼chÃ¼n TÃ©ma bÃ©ring !',
+  'no_udp_needed' => 'YÃ©ngilash bihajet.',
+  'alb_updated' => 'AlbÃ¼m yÃ©ngilinip bolghan',
+  'unknown_album' => 'Tallighan albÃ¼m yoq yaki siz cheklimige uchurdingiz.',
+  'no_pic_uploaded' => 'HÃ¶jjet yÃ¼klenmidi !<br /><br />YÃ¼k bermek bolsingiz, yÃ¼kleshke ijazet barmu yoq tekshÃ¼rÃ¼p biling...', //cpg1.3.0
   'err_mkdir' => 'Munderije qurghili bolmidi %s !',
-  'dest_dir_ro' => 'Munderije %s Xatirige yézilmidi !',
-  'err_move' => 'ge %s Yötkilelmidi %s !',
-  'err_fsize_too_large' => 'Yük resimi chong ( %s x %s din ashmisun) !', //cpg1.3.0
-  'err_imgsize_too_large' => 'Höjjet hejimi chong ( %s KB din ashmisun) !',
-  'err_invalid_img' => 'Siz yükligen höjjet sheklini qollimaymiz !',
+  'dest_dir_ro' => 'Munderije %s Xatirige yÃ©zilmidi !',
+  'err_move' => 'ge %s YÃ¶tkilelmidi %s !',
+  'err_fsize_too_large' => 'YÃ¼k resimi chong ( %s x %s din ashmisun) !', //cpg1.3.0
+  'err_imgsize_too_large' => 'HÃ¶jjet hejimi chong ( %s KB din ashmisun) !',
+  'err_invalid_img' => 'Siz yÃ¼kligen hÃ¶jjet sheklini qollimaymiz !',
   'allowed_img_types' => 'Siz peqet %s Resim yolliyalaysiz.',
-  'err_insert_pic' => 'Höjjet \'%s\' Albümgha yüklinelmeydu ', //cpg1.3.0
-  'upload_success' => 'Höjjetni yüklesh tamam.<br /><br />Ataman testiqidin kéyin Yüklimingizni köreleysiz.', //cpg1.3.0
-  'notify_admin_email_subject' => '%s - Yüklenme uqturishi', //cpg1.3.0
-  'notify_admin_email_body' => ' %s Yollanma yük bar testiqingizni kütmekte. Körüp béqing. %s', //cpg1.3.0
+  'err_insert_pic' => 'HÃ¶jjet \'%s\' AlbÃ¼mgha yÃ¼klinelmeydu ', //cpg1.3.0
+  'upload_success' => 'HÃ¶jjetni yÃ¼klesh tamam.<br /><br />Ataman testiqidin kÃ©yin YÃ¼klimingizni kÃ¶releysiz.', //cpg1.3.0
+  'notify_admin_email_subject' => '%s - YÃ¼klenme uqturishi', //cpg1.3.0
+  'notify_admin_email_body' => ' %s Yollanma yÃ¼k bar testiqingizni kÃ¼tmekte. KÃ¶rÃ¼p bÃ©qing. %s', //cpg1.3.0
   'info' => 'Uchur',
-  'com_added' => 'Sözingiz qoshuldi',
-  'alb_updated' => 'Albüm Yéngilandi',
-  'err_comment_empty' => 'Sözber quruq !',
-  'err_invalid_fext' => 'Töwendiki qoshumche namnila qollaydu : <br /><br />%s.',
-  'no_flood' => 'Kechürüng Eng axirqi söz sizning<br /><br />Tehrirliwalsingiz bolidu.', //cpg1.3.0
-  'redirect_msg' => 'Bet yötkiliwatidu.<br /><br /><br />Chéking \'Dawami\' Eger bet özligidin chötkilanmisa',
-  'upl_success' => 'Höjjitingiz saqlandi', //cpg1.3.0
-  'email_comment_subject' => 'Siz Coppermine Photo Galleryge pikir sözi bérip bolghan', //cpg1.3.0
-  'email_comment_body' => 'Galleryingizge kishiler söz qaldurdi. Körüng', //cpg1.3.0
+  'com_added' => 'SÃ¶zingiz qoshuldi',
+  'alb_updated' => 'AlbÃ¼m YÃ©ngilandi',
+  'err_comment_empty' => 'SÃ¶zber quruq !',
+  'err_invalid_fext' => 'TÃ¶wendiki qoshumche namnila qollaydu : <br /><br />%s.',
+  'no_flood' => 'KechÃ¼rÃ¼ng Eng axirqi sÃ¶z sizning<br /><br />Tehrirliwalsingiz bolidu.', //cpg1.3.0
+  'redirect_msg' => 'Bet yÃ¶tkiliwatidu.<br /><br /><br />ChÃ©king \'Dawami\' Eger bet Ã¶zligidin chÃ¶tkilanmisa',
+  'upl_success' => 'HÃ¶jjitingiz saqlandi', //cpg1.3.0
+  'email_comment_subject' => 'Siz Coppermine Photo Galleryge pikir sÃ¶zi bÃ©rip bolghan', //cpg1.3.0
+  'email_comment_body' => 'Galleryingizge kishiler sÃ¶z qaldurdi. KÃ¶rÃ¼ng', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -560,22 +563,22 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 if (defined('DELETE_PHP')) $lang_delete_php = array(
   'caption' => 'Izah',
   'fs_pic' => 'Esli resim',
-  'del_success' => 'Pakiz öchürüldi',
+  'del_success' => 'Pakiz Ã¶chÃ¼rÃ¼ldi',
   'ns_pic' => 'normal hejimdiki resim',
-  'err_del' => 'öchürelmiduq',
+  'err_del' => 'Ã¶chÃ¼relmiduq',
   'thumb_pic' => 'Resimche',
-  'comment' => 'Sözber',
-  'im_in_alb' => 'Albümdiki resim',
-  'alb_del_success' => 'Albüm \'%s\' öchürüsh',
-  'alb_mgr' => 'Albüm Atamani',
-  'err_invalid_data' => 'Natoghra Tapshuruwélinma \'%s\'',
-  'create_alb' => 'Albüm qurush \'%s\'',
-  'update_alb' => 'Albüm yéngilandi \'%s\' Témisi \'%s\' Bash béti \'%s\'',
-  'del_pic' => 'Höjjetni öchürüsh', //cpg1.3.0
-  'del_alb' => 'Albümni öchürüsh',
-  'del_user' => 'Qollanchini öchürüsh',
+  'comment' => 'SÃ¶zber',
+  'im_in_alb' => 'AlbÃ¼mdiki resim',
+  'alb_del_success' => 'AlbÃ¼m \'%s\' Ã¶chÃ¼rÃ¼sh',
+  'alb_mgr' => 'AlbÃ¼m Atamani',
+  'err_invalid_data' => 'Natoghra TapshuruwÃ©linma \'%s\'',
+  'create_alb' => 'AlbÃ¼m qurush \'%s\'',
+  'update_alb' => 'AlbÃ¼m yÃ©ngilandi \'%s\' TÃ©misi \'%s\' Bash bÃ©ti \'%s\'',
+  'del_pic' => 'HÃ¶jjetni Ã¶chÃ¼rÃ¼sh', //cpg1.3.0
+  'del_alb' => 'AlbÃ¼mni Ã¶chÃ¼rÃ¼sh',
+  'del_user' => 'Qollanchini Ã¶chÃ¼rÃ¼sh',
   'err_unknown_user' => 'Tallan`ghan qollanchi yoq !',
-  'comment_deleted' => 'Sözler öchürüldi',
+  'comment_deleted' => 'SÃ¶zler Ã¶chÃ¼rÃ¼ldi',
 );
 
 // ------------------------------------------------------------------------- //
@@ -591,55 +594,55 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 if (defined('DISPLAYIMAGE_PHP')){
 
 $lang_display_image_php = array(
-  'confirm_del' => 'Bu höjjetni rastinla öchiremsiz? \\nComments will also be deleted.', //js-alert //cpg1.3.0
-  'del_pic' => 'Bu resim öchürüsh', //cpg1.3.0
+  'confirm_del' => 'Bu hÃ¶jjetni rastinla Ã¶chiremsiz? \\nComments will also be deleted.', //js-alert //cpg1.3.0
+  'del_pic' => 'Bu resim Ã¶chÃ¼rÃ¼sh', //cpg1.3.0
   'size' => '%s x %s pixels',
-  'views' => '%s Qétim',
-  'slideshow' => 'Ulanma körünüsh',
+  'views' => '%s QÃ©tim',
+  'slideshow' => 'Ulanma kÃ¶rÃ¼nÃ¼sh',
   'stop_slideshow' => 'Qoyulushni toxtitish',
-  'view_fs' => 'chékip resimning esli halitini körüng',
-  'edit_pic' => 'Chüshenchini tehrirlesh', //cpg1.3.0
-  'crop_pic' => 'Késish we Aylandurush', //cpg1.3.0
+  'view_fs' => 'chÃ©kip resimning esli halitini kÃ¶rÃ¼ng',
+  'edit_pic' => 'ChÃ¼shenchini tehrirlesh', //cpg1.3.0
+  'crop_pic' => 'KÃ©sish we Aylandurush', //cpg1.3.0
 );
 
 $lang_picinfo = array(
-  'title' =>'Höjjet uchuri', //cpg1.3.0
-  'Filename' => 'Höjjet nami',
-  'Album name' => 'Albüm nami',
-  'Rating' => 'Nomur qoyush (%s chi bélet)',
-  'Keywords' => 'halqiliq söz',
-  'File Size' => 'Höjjet hejimi',
+  'title' =>'HÃ¶jjet uchuri', //cpg1.3.0
+  'Filename' => 'HÃ¶jjet nami',
+  'Album name' => 'AlbÃ¼m nami',
+  'Rating' => 'Nomur qoyush (%s chi bÃ©let)',
+  'Keywords' => 'halqiliq sÃ¶z',
+  'File Size' => 'HÃ¶jjet hejimi',
   'Dimensions' => 'Chong_kichikliki',
-  'Displayed' => 'körünüsh',
-  'Camera' => 'Kaméra',
+  'Displayed' => 'kÃ¶rÃ¼nÃ¼sh',
+  'Camera' => 'KamÃ©ra',
   'Date taken' => 'Tartilghan waqt',
   'ISO'=>'ISO',
-  'Aperture' => 'Köz halqisi',
+  'Aperture' => 'KÃ¶z halqisi',
   'Exposure time' => 'Exposure waqti',
   'Focal length' => 'Fokusni yighmaq',
-  'Comment' => 'Sözber',
-  'addFav'=>'Könglümdikisige saqlash', //cpg1.3.0
-  'addFavPhrase'=>'Könglümdikisi', //cpg1.3.0
-  'remFav'=>'Könglümdikisidin yötkesh', //cpg1.3.0
-  'iptcTitle'=>'IPTC Téma', //cpg1.3.0
+  'Comment' => 'SÃ¶zber',
+  'addFav'=>'KÃ¶nglÃ¼mdikisige saqlash', //cpg1.3.0
+  'addFavPhrase'=>'KÃ¶nglÃ¼mdikisi', //cpg1.3.0
+  'remFav'=>'KÃ¶nglÃ¼mdikisidin yÃ¶tkesh', //cpg1.3.0
+  'iptcTitle'=>'IPTC TÃ©ma', //cpg1.3.0
   'iptcCopyright'=>'IPTC Neshir hoquqi', //cpg1.3.0
-  'iptcKeywords'=>'IPTC Halqiliq söz', //cpg1.3.0
-  'iptcCategory'=>'IPTC Katégoriye', //cpg1.3.0
-  'iptcSubCategories'=>'IPTC Tarmaq Katégoriye', //cpg1.3.0
+  'iptcKeywords'=>'IPTC Halqiliq sÃ¶z', //cpg1.3.0
+  'iptcCategory'=>'IPTC KatÃ©goriye', //cpg1.3.0
+  'iptcSubCategories'=>'IPTC Tarmaq KatÃ©goriye', //cpg1.3.0
 );
 
 $lang_display_comments = array(
   'OK' => 'Qobul',
   'edit_title' => 'Bu yazmini tehrirlesh',
-  'confirm_delete' => 'Bu yazmini rastinla öchürwétemsiz ?', //js-alert
-  'add_your_comment' => 'Söz qaldurung',
+  'confirm_delete' => 'Bu yazmini rastinla Ã¶chÃ¼rwÃ©temsiz ?', //js-alert
+  'add_your_comment' => 'SÃ¶z qaldurung',
   'name'=>'Nam',
-  'comment'=>'Sözber',
-  'your_name' => 'Sözleng',
+  'comment'=>'SÃ¶zber',
+  'your_name' => 'SÃ¶zleng',
 );
 
 $lang_fullsize_popup = array(
-  'click_to_close' => 'Resimni chékip köznekni taqang',
+  'click_to_close' => 'Resimni chÃ©kip kÃ¶znekni taqang',
 );
 
 }
@@ -649,22 +652,22 @@ $lang_fullsize_popup = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array(
-  'title' => 'É_kardni ewertish',
-  'invalid_email' => '<b>Agahlandurush</b> : inawetsiz émail !',
-  'ecard_title' => 'Bu Ékard %s Din kelgen',
-  'error_not_image' => 'É_kartimiz peqetla resimnila yollaydu.', //cpg1.3.0
-  'view_ecard' => 'É_card normal körünmise, Bu ulanmini chéking',
-  'view_more_pics' => 'Bu chékip téximu köp resimlerni körüng !',
-  'send_success' => 'É_cartingiz yollandi',
-  'send_failed' => 'Kechürüng! mulamitérimiz É-car yollashqa amalsiz...',
+  'title' => 'Ã‰_kardni ewertish',
+  'invalid_email' => '<b>Agahlandurush</b> : inawetsiz Ã©mail !',
+  'ecard_title' => 'Bu Ã‰kard %s Din kelgen',
+  'error_not_image' => 'Ã‰_kartimiz peqetla resimnila yollaydu.', //cpg1.3.0
+  'view_ecard' => 'Ã‰_card normal kÃ¶rÃ¼nmise, Bu ulanmini chÃ©king',
+  'view_more_pics' => 'Bu chÃ©kip tÃ©ximu kÃ¶p resimlerni kÃ¶rÃ¼ng !',
+  'send_success' => 'Ã‰_cartingiz yollandi',
+  'send_failed' => 'KechÃ¼rÃ¼ng! mulamitÃ©rimiz Ã‰-car yollashqa amalsiz...',
   'from' => 'Yollighuchi',
   'your_name' => 'Namingiz',
-  'your_email' => 'Émail adrésisingiz',
+  'your_email' => 'Ã‰mail adrÃ©sisingiz',
   'to' => 'Yollan`ghuchi',
   'rcpt_name' => 'Dostingizning nami',
-  'rcpt_email' => 'Dostingizning Émail adrési',
-  'greetings' => 'Salam témisi',
-  'message' => 'Salam sözi',
+  'rcpt_email' => 'Dostingizning Ã‰mail adrÃ©si',
+  'greetings' => 'Salam tÃ©misi',
+  'message' => 'Salam sÃ¶zi',
 );
 
 // ------------------------------------------------------------------------- //
@@ -673,25 +676,25 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
 
 if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'pic_info' => 'File info', //cpg1.3.0
-  'album' => 'Albüm',
-  'title' => 'Téma',
+  'album' => 'AlbÃ¼m',
+  'title' => 'TÃ©ma',
   'desc' => 'Izahat',
-  'keywords' => 'Halqiliq söz',
-  'pic_info_str' => '%s &times; %s - %s KB - %s Körüldi - %s Bahalandi',
-  'approve' => 'Höjjetni tekshürüp-bahalash', //cpg1.3.0
-  'postpone_app' => 'Tekshürüp bahalash uzartildi',
-  'del_pic' => 'Höjjetni öchürüsh', //cpg1.3.0
+  'keywords' => 'Halqiliq sÃ¶z',
+  'pic_info_str' => '%s &times; %s - %s KB - %s KÃ¶rÃ¼ldi - %s Bahalandi',
+  'approve' => 'HÃ¶jjetni tekshÃ¼rÃ¼p-bahalash', //cpg1.3.0
+  'postpone_app' => 'TekshÃ¼rÃ¼p bahalash uzartildi',
+  'del_pic' => 'HÃ¶jjetni Ã¶chÃ¼rÃ¼sh', //cpg1.3.0
   'read_exif' => 'Yene EXIF uchurini oqush', //cpg1.3.0
   'reset_view_count' => 'Sanaqni qayta tengshesh',
   'reset_votes' => 'Bahani qayta tengshesh',
-  'del_comm' => 'Sözni öchürwétish',
-  'upl_approval' => 'Bahalan`ghanni yüklesh',
-  'edit_pics' => 'Höjjetni tehrirlesh', //cpg1.3.0
-  'see_next' => 'Kéyinki höjjet', //cpg1.3.0
-  'see_prev' => 'Aldinqi höjjet', //cpg1.3.0
-  'n_pic' => '%s Höjjet', //cpg1.3.0
-  'n_of_pic_to_disp' => 'Höjjet körinish sani', //cpg1.3.0
-  'apply' => 'özgertish', //cpg1.3.0
+  'del_comm' => 'SÃ¶zni Ã¶chÃ¼rwÃ©tish',
+  'upl_approval' => 'Bahalan`ghanni yÃ¼klesh',
+  'edit_pics' => 'HÃ¶jjetni tehrirlesh', //cpg1.3.0
+  'see_next' => 'KÃ©yinki hÃ¶jjet', //cpg1.3.0
+  'see_prev' => 'Aldinqi hÃ¶jjet', //cpg1.3.0
+  'n_pic' => '%s HÃ¶jjet', //cpg1.3.0
+  'n_of_pic_to_disp' => 'HÃ¶jjet kÃ¶rinish sani', //cpg1.3.0
+  'apply' => 'Ã¶zgertish', //cpg1.3.0
   'crop_title' => 'Coppermine Resim tehriri', //cpg1.3.0
   'preview' => 'Ziyaret', //cpg1.3.0
   'save' => 'Saqlash', //cpg1.3.0
@@ -705,40 +708,40 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 
 if (defined('FAQ_PHP')) $lang_faq_php = array(
   'faq' => 'Daimliq soal_jawablar', //cpg1.3.0
-  'toc' => 'Münderije', //cpg1.3.0
+  'toc' => 'MÃ¼nderije', //cpg1.3.0
   'question' => 'Soal: ', //cpg1.3.0
   'answer' => 'Jawap: ', //cpg1.3.0
 );
 
 if (defined('FAQ_PHP')) $lang_faq_data = array(
   'Adettiki soal_jawap', //cpg1.3.0
-  array('Nime üchün tizimlinimiz?', 'Ataman qollanchilarni testiqlaydu. Tizimlansingiz nurghun iqtidarlardin behriman bolisiz, mesilen: Yüklesh, Könglümdikisi, Höjjetlerge baha béreleysiz yaki söz qalduralaysiz qatarliqlar.', 'allow_user_registration', '1'), //cpg1.3.0
-  array('Qandaq tizimlinimen?', '&quot; Tizimlinishni &quot; Chékip, katekchilerni toldurimiz (Tallap toldurimiz).<br />Eger, Ataman Émail aktiplashni qozghatqan bolsa, Aktiplinish toldurma uchuringizni tapshurwalisiz, sehipimizge kirishtin burun choqum aktiplinishingiz kérek.', 'allow_user_registration', '1'), //cpg1.3.0
-  array('Qandaq kirimen?', ' &quot; Kirish &quot;, ni chékip Nam we Im(parol)ni toldurisiz &quot;Méni unutmang &quot; Tallap qoysingiz kélerki kirishingiz aptumatik orunlinidu.<br /><b>Diqqet: Kompingizning Cookies iqtidari ochuq bolsun. cookie ponkitimiz kompingizgha saqlaydu.</b>', 'offline', 0), //cpg1.3.0
-  array('Nechün kirelmeymen?', 'Tizimlinipmu kirelmigen bolsingiz qaytip émailingizgha qarang. (aktiplandingizmu yoq) Qaldi ishlar bolsa béket atamanidin sorang.', 'offline', 0), //cpg1.3.0
-  array('Imni untuptimen?', 'Eger bu tor bette &quot;Im(parol) untulsa &quot; ni chéking. Bolmisa ataman`gha éyting sizge yéngidin Im(parol) ewertip bersun.', 'offline', 0), //cpg1.3.0
-  //array('Émailim özgerdi ne qilay?', 'Kirgenla bolsingiz &quot;Arxipingizdin özgertiwalsingizla bolghini;', 'offline', 0), //cpg1.3.0
-  array('Resimlerni Qandaq &quot;könglümdikisi&quot; ge Qoshimen?', 'Awal resimni chékip Tallaysiz (<img src="images/info.gif" width="16" height="16" border="0" alt="Picture information" />);  mushu belgini chékisiz, bet astida  &quot;könglümdikisi &quot; dégen xetni chékip saqliwalimiz.<br />Ataman choqum bu iqtidarni tengshep qoyghan bolishi kérek.<br />Diqqet: Kompingizning Cookies iqtidari ochuq bolsun. cookie ponkitimiz kompingizgha saqlaydu.', 'offline', 0), //cpg1.3.0
-  array('Höjjetni Qandaq bahalaymiz?', 'Kichiklitilmining astidiki bahalarni tallang.', 'offline', 0), //cpg1.3.0
-  array('Qandaq pikir bérimiz?', 'Kichiklitilmining astidiki Sözberge yazsingiz bolidu.', 'offline', 0), //cpg1.3.0
-  array('Höjjetni qandaq yükleymiz?', ' &quot;Höjjet yüklesh &quot;ni chékip. Albümni tallap bolup &quot??/ziyaret&quot arqiliq yükleymiz, Andin, izah we Höjjet namini toldurup yollisaqla boldi.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Höjjetni qandaq Yükleymiz?', ' &quot;Méning albümim&quot;. Arqiliq yükleysiz. eskertish: Ataman bu iqtidarni aktiplighan bolishi kérek.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Yüklenmining hejimi, höjjet shekli qandaq bolidu?', 'Hejim, höjjet sheklini Ataman belgileydu. (mesilen: jpg, png, etc...wav, rm, xx.Kb qatarliqlar) .', 'offline', 0), //cpg1.3.0
-  array('&quot;Albümim&quot;dégen nime?', 'özingizning yüki hem bashqurush ijazet rayoningizdur.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Yüklesh, özgertish, öchürüsh qandaq élip bérilidu;?', ' awal bu chéking &quot;Qollanchi kirish&quot; ni <br /> Andin, &quo;Albüm qurush&quot; ni chékip albüm qurup &quot;Albüm yüklesh &quot;ni chékip yüklep we  &quot;tehrirlesh &quot;ni chékip özgertsingiz bolidu.', 'allow_private_albums', 0), //cpg1.3.0
-  array('cookies nime?', 'Cookie ni ponkitimiz kompingizgha saqlaydu, meqset siz kéler qétim ziyaret qilghanda tizimlanmisingizmu aptumatik tizimlinisiz.<br />Cookies ni cheklep qoysingiz bu iqtidardin behriman bolalmaysiz.', 'offline', 0), //cpg1.3.0
-  array('Siz bu ponkit programmisini nedin yükliwalghan?', 'Coppermine GNU GPL ni asas qilghan heqsiz Multimedia Gallery. yaqtursingiz <a href="http://coppermine.sf.net/">Coppermine Ana bétini</a> ziyaret qilip yükliwéling. Andin www.newruz.com teminligen Uyghur terjime til höjjitini ishletsingiz bolidu.', 'offline', 0), //cpg1.3.0
+  array('Nime Ã¼chÃ¼n tizimlinimiz?', 'Ataman qollanchilarni testiqlaydu. Tizimlansingiz nurghun iqtidarlardin behriman bolisiz, mesilen: YÃ¼klesh, KÃ¶nglÃ¼mdikisi, HÃ¶jjetlerge baha bÃ©releysiz yaki sÃ¶z qalduralaysiz qatarliqlar.', 'allow_user_registration', '1'), //cpg1.3.0
+  array('Qandaq tizimlinimen?', '&quot; Tizimlinishni &quot; ChÃ©kip, katekchilerni toldurimiz (Tallap toldurimiz).<br />Eger, Ataman Ã‰mail aktiplashni qozghatqan bolsa, Aktiplinish toldurma uchuringizni tapshurwalisiz, sehipimizge kirishtin burun choqum aktiplinishingiz kÃ©rek.', 'allow_user_registration', '1'), //cpg1.3.0
+  array('Qandaq kirimen?', ' &quot; Kirish &quot;, ni chÃ©kip Nam we Im(parol)ni toldurisiz &quot;MÃ©ni unutmang &quot; Tallap qoysingiz kÃ©lerki kirishingiz aptumatik orunlinidu.<br /><b>Diqqet: Kompingizning Cookies iqtidari ochuq bolsun. cookie ponkitimiz kompingizgha saqlaydu.</b>', 'offline', 0), //cpg1.3.0
+  array('NechÃ¼n kirelmeymen?', 'Tizimlinipmu kirelmigen bolsingiz qaytip Ã©mailingizgha qarang. (aktiplandingizmu yoq) Qaldi ishlar bolsa bÃ©ket atamanidin sorang.', 'offline', 0), //cpg1.3.0
+  array('Imni untuptimen?', 'Eger bu tor bette &quot;Im(parol) untulsa &quot; ni chÃ©king. Bolmisa ataman`gha Ã©yting sizge yÃ©ngidin Im(parol) ewertip bersun.', 'offline', 0), //cpg1.3.0
+  //array('Ã‰mailim Ã¶zgerdi ne qilay?', 'Kirgenla bolsingiz &quot;Arxipingizdin Ã¶zgertiwalsingizla bolghini;', 'offline', 0), //cpg1.3.0
+  array('Resimlerni Qandaq &quot;kÃ¶nglÃ¼mdikisi&quot; ge Qoshimen?', 'Awal resimni chÃ©kip Tallaysiz (<img src="images/info.gif" width="16" height="16" border="0" alt="Picture information" />);  mushu belgini chÃ©kisiz, bet astida  &quot;kÃ¶nglÃ¼mdikisi &quot; dÃ©gen xetni chÃ©kip saqliwalimiz.<br />Ataman choqum bu iqtidarni tengshep qoyghan bolishi kÃ©rek.<br />Diqqet: Kompingizning Cookies iqtidari ochuq bolsun. cookie ponkitimiz kompingizgha saqlaydu.', 'offline', 0), //cpg1.3.0
+  array('HÃ¶jjetni Qandaq bahalaymiz?', 'Kichiklitilmining astidiki bahalarni tallang.', 'offline', 0), //cpg1.3.0
+  array('Qandaq pikir bÃ©rimiz?', 'Kichiklitilmining astidiki SÃ¶zberge yazsingiz bolidu.', 'offline', 0), //cpg1.3.0
+  array('HÃ¶jjetni qandaq yÃ¼kleymiz?', ' &quot;HÃ¶jjet yÃ¼klesh &quot;ni chÃ©kip. AlbÃ¼mni tallap bolup &quot??/ziyaret&quot arqiliq yÃ¼kleymiz, Andin, izah we HÃ¶jjet namini toldurup yollisaqla boldi.', 'allow_private_albums', 0), //cpg1.3.0
+  array('HÃ¶jjetni qandaq YÃ¼kleymiz?', ' &quot;MÃ©ning albÃ¼mim&quot;. Arqiliq yÃ¼kleysiz. eskertish: Ataman bu iqtidarni aktiplighan bolishi kÃ©rek.', 'allow_private_albums', 0), //cpg1.3.0
+  array('YÃ¼klenmining hejimi, hÃ¶jjet shekli qandaq bolidu?', 'Hejim, hÃ¶jjet sheklini Ataman belgileydu. (mesilen: jpg, png, etc...wav, rm, xx.Kb qatarliqlar) .', 'offline', 0), //cpg1.3.0
+  array('&quot;AlbÃ¼mim&quot;dÃ©gen nime?', 'Ã¶zingizning yÃ¼ki hem bashqurush ijazet rayoningizdur.', 'allow_private_albums', 0), //cpg1.3.0
+  array('YÃ¼klesh, Ã¶zgertish, Ã¶chÃ¼rÃ¼sh qandaq Ã©lip bÃ©rilidu;?', ' awal bu chÃ©king &quot;Qollanchi kirish&quot; ni <br /> Andin, &quo;AlbÃ¼m qurush&quot; ni chÃ©kip albÃ¼m qurup &quot;AlbÃ¼m yÃ¼klesh &quot;ni chÃ©kip yÃ¼klep we  &quot;tehrirlesh &quot;ni chÃ©kip Ã¶zgertsingiz bolidu.', 'allow_private_albums', 0), //cpg1.3.0
+  array('cookies nime?', 'Cookie ni ponkitimiz kompingizgha saqlaydu, meqset siz kÃ©ler qÃ©tim ziyaret qilghanda tizimlanmisingizmu aptumatik tizimlinisiz.<br />Cookies ni cheklep qoysingiz bu iqtidardin behriman bolalmaysiz.', 'offline', 0), //cpg1.3.0
+  array('Siz bu ponkit programmisini nedin yÃ¼kliwalghan?', 'Coppermine GNU GPL ni asas qilghan heqsiz Multimedia Gallery. yaqtursingiz <a href="http://coppermine.sf.net/">Coppermine Ana bÃ©tini</a> ziyaret qilip yÃ¼kliwÃ©ling. Andin www.newruz.com teminligen Uyghur terjime til hÃ¶jjitini ishletsingiz bolidu.', 'offline', 0), //cpg1.3.0
 
-  'Tor béket yétekchisi', //cpg1.3.0
-  array('&quot;Albüm sehipisi&quot; dégen nime?', 'Barliq albümlar, katigoriyeler, kichiklitilmiler bar bash betni körsitidu..', 'offline', 0), //cpg1.3.0
-  array('&quot;Albümim&quot; dégen nime?', 'Qollanchilar üchün qurulghan, yük qoshush, tehrirlesh, öchürsh rayonidur.(Elwette ataman ruxsiti bolishi kérek.)', 'allow_private_albums', 0), //cpg1.3.0
-  array('&quot;Bashqurush shekli we Qollanchi shekli&quot; Qandaq ayrilidu?', 'Qollanchi shekli ziyaritingiz üchün, Bashqurush shekli tehrirlesh, öchürüsh, Yük qoshishingiz üchün ajritildi. (Elwette, Atamanning ruxsiti bolishi shert.)', 'allow_private_albums', 0), //cpg1.3.0
-  array('&quot;Yüklesh&quot; dégen nime?', 'Höjjet yollishingizni körsitidu. (Elwette, hejimini, höjjer sheklini ataman belgileydu.)', 'allow_private_albums', 0), //cpg1.3.0
-  array('&quot;Eng yéngi yük&quot; dégen nime?', 'Siz we bashqilar yollighan eng yéngi höjjetlerni körsitidu.', 'offline', 0), //cpg1.3.0
-  array('&quot;Eng yéngi söz&quot; dégen nime?', 'Békettiki höjjetlerge bérilgen eng yéngi pikir yazmilarni körsitidu.', 'offline', 0), //cpg1.3.0
-  array('&quot;Köp  Körülme &quot; dégen nime?', 'Ezalar bolsun yaki Méhmanlar bolsun chékilish sani yoquri höjjetlerni körsitidu. ', 'offline', 0), //cpg1.3.0
-  array('&quot;Yoquri baha &quot; dégen nime?', 'Érishken yoquri nomurni körsitidu. (Mesilen: Besh qollanchi <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> ni Berse, Netijisi <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />Bolidu; Besh qollanchi 1 din 5 kiche (1,2,3,4,5) Nomur berse, Netijisi<img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> Bolidu .)<br />Netijisi <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> (e`la) din <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" /> (Nachar)gha Tizilidu.', 'offline', 0), //cpg1.3.0
-  array('&quot;Könglümdikisi &quot; dégen nime?', 'Siz yaqturup tallighan höjjetlerni körsitidu. cookie ni lazimlaydu.', 'offline', 0), //cpg1.3.0
+  'Tor bÃ©ket yÃ©tekchisi', //cpg1.3.0
+  array('&quot;AlbÃ¼m sehipisi&quot; dÃ©gen nime?', 'Barliq albÃ¼mlar, katigoriyeler, kichiklitilmiler bar bash betni kÃ¶rsitidu..', 'offline', 0), //cpg1.3.0
+  array('&quot;AlbÃ¼mim&quot; dÃ©gen nime?', 'Qollanchilar Ã¼chÃ¼n qurulghan, yÃ¼k qoshush, tehrirlesh, Ã¶chÃ¼rsh rayonidur.(Elwette ataman ruxsiti bolishi kÃ©rek.)', 'allow_private_albums', 0), //cpg1.3.0
+  array('&quot;Bashqurush shekli we Qollanchi shekli&quot; Qandaq ayrilidu?', 'Qollanchi shekli ziyaritingiz Ã¼chÃ¼n, Bashqurush shekli tehrirlesh, Ã¶chÃ¼rÃ¼sh, YÃ¼k qoshishingiz Ã¼chÃ¼n ajritildi. (Elwette, Atamanning ruxsiti bolishi shert.)', 'allow_private_albums', 0), //cpg1.3.0
+  array('&quot;YÃ¼klesh&quot; dÃ©gen nime?', 'HÃ¶jjet yollishingizni kÃ¶rsitidu. (Elwette, hejimini, hÃ¶jjer sheklini ataman belgileydu.)', 'allow_private_albums', 0), //cpg1.3.0
+  array('&quot;Eng yÃ©ngi yÃ¼k&quot; dÃ©gen nime?', 'Siz we bashqilar yollighan eng yÃ©ngi hÃ¶jjetlerni kÃ¶rsitidu.', 'offline', 0), //cpg1.3.0
+  array('&quot;Eng yÃ©ngi sÃ¶z&quot; dÃ©gen nime?', 'BÃ©kettiki hÃ¶jjetlerge bÃ©rilgen eng yÃ©ngi pikir yazmilarni kÃ¶rsitidu.', 'offline', 0), //cpg1.3.0
+  array('&quot;KÃ¶p  KÃ¶rÃ¼lme &quot; dÃ©gen nime?', 'Ezalar bolsun yaki MÃ©hmanlar bolsun chÃ©kilish sani yoquri hÃ¶jjetlerni kÃ¶rsitidu. ', 'offline', 0), //cpg1.3.0
+  array('&quot;Yoquri baha &quot; dÃ©gen nime?', 'Ã‰rishken yoquri nomurni kÃ¶rsitidu. (Mesilen: Besh qollanchi <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> ni Berse, Netijisi <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />Bolidu; Besh qollanchi 1 din 5 kiche (1,2,3,4,5) Nomur berse, Netijisi<img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> Bolidu .)<br />Netijisi <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> (e`la) din <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" /> (Nachar)gha Tizilidu.', 'offline', 0), //cpg1.3.0
+  array('&quot;KÃ¶nglÃ¼mdikisi &quot; dÃ©gen nime?', 'Siz yaqturup tallighan hÃ¶jjetlerni kÃ¶rsitidu. cookie ni lazimlaydu.', 'offline', 0), //cpg1.3.0
 );
 
 
@@ -747,18 +750,18 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('FORGOT_PASSWD_PHP')) $lang_forgot_passwd_php = array(
-  'forgot_passwd' => 'Im(parol)ni üntüptimen', //cpg1.3.0
+  'forgot_passwd' => 'Im(parol)ni Ã¼ntÃ¼ptimen', //cpg1.3.0
   'err_already_logged_in' => 'Siz kirip bolghan !', //cpg1.3.0
-  'enter_username_email' => 'Qollanchi nami yaki Émail adrésini toldurung', //cpg1.3.0
+  'enter_username_email' => 'Qollanchi nami yaki Ã‰mail adrÃ©sini toldurung', //cpg1.3.0
   'submit' => 'Muqimlash', //cpg1.3.0
-  'failed_sending_email' => 'Im(parol) teminlen`gen émalni ewertishke amalsizmiz !', //cpg1.3.0
-  'email_sent' => 'Nam we Imingizni %sge éwertip bolundi', //cpg1.3.0
+  'failed_sending_email' => 'Im(parol) teminlen`gen Ã©malni ewertishke amalsizmiz !', //cpg1.3.0
+  'email_sent' => 'Nam we Imingizni %sge Ã©wertip bolundi', //cpg1.3.0
   'err_unk_user' => 'Bu qollanchi yoq!', //cpg1.3.0
-  'passwd_reminder_subject' => '%s – Im(parol) Eskertishi', //cpg1.3.0
-  'passwd_reminder_body' => 'Kirgüzgen uchuringiz mundaq:
+  'passwd_reminder_subject' => '%s Â– Im(parol) Eskertishi', //cpg1.3.0
+  'passwd_reminder_body' => 'KirgÃ¼zgen uchuringiz mundaq:
 Username: %s
 Password: %s
-Chékip %s gha kirish.', //cpg1.3.0
+ChÃ©kip %s gha kirish.', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -768,25 +771,25 @@ Chékip %s gha kirish.', //cpg1.3.0
 if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
   'group_name' => 'Group nami',
   'disk_quota' => 'Disk hejimi',
-  'can_rate' => 'Höjjetke baha qoshalisun', //cpg1.3.0
-  'can_send_ecards' => 'Écards yolliyalisun',
-  'can_post_com' => 'Söz bérelisun',
-  'can_upload' => 'Höjjet yolliyalisun', //cpg1.3.0
-  'can_have_gallery' => 'Xususiy albüm bar bolsun',
-  'apply' => 'Özgertish',
-  'create_new_group' => 'Yéngi group qurush',
-  'del_groups' => 'Tallan`ghan group(lar) ni öchürüsh',
-  'confirm_del' => 'Diqqet, group öchersingiz, grouptiki Qollanchi \'Registered\' Groupqa barsun !\n\n Rastinla öcherdingizmu ?', //js-alert //cpg1.3.0
+  'can_rate' => 'HÃ¶jjetke baha qoshalisun', //cpg1.3.0
+  'can_send_ecards' => 'Ã‰cards yolliyalisun',
+  'can_post_com' => 'SÃ¶z bÃ©relisun',
+  'can_upload' => 'HÃ¶jjet yolliyalisun', //cpg1.3.0
+  'can_have_gallery' => 'Xususiy albÃ¼m bar bolsun',
+  'apply' => 'Ã–zgertish',
+  'create_new_group' => 'YÃ©ngi group qurush',
+  'del_groups' => 'Tallan`ghan group(lar) ni Ã¶chÃ¼rÃ¼sh',
+  'confirm_del' => 'Diqqet, group Ã¶chersingiz, grouptiki Qollanchi \'Registered\' Groupqa barsun !\n\n Rastinla Ã¶cherdingizmu ?', //js-alert //cpg1.3.0
   'title' => 'Ataman groupisi',
-  'approval_1' => 'Ammiwi albümni testiqlash (1)',
-  'approval_2' => 'xususiy albümni testiqlash (2)',
-  'upload_form_config' => 'Yük shekillirini tengshesh', //cpg1.3.0
-  'upload_form_config_values' => array( 'Bir höjjetni yüklesh', 'Köp höjjetni yüklesh', 'URI nila yüklesh', 'ZIP nila yüklesh', 'File-URI', 'File-ZIP', 'URI-ZIP', 'File-URI-ZIP'), //cpg1.3.0
-  'custom_user_upload'=>'Qollanchilar yüklime somka sani?', //cpg1.3.0
-  'num_file_upload'=>'Eng köp/Yük Höjjet somka sani', //cpg1.3.0
-  'num_URI_upload'=>'Eng köp/Yük URI Höjjet somka sani', //cpg1.3.0
-  'note1' => '<b>(1)</b> Ammiwiy albüm yüklimisini ataman testiqlaydu',
-  'note2' => '<b>(2)</b> Xususiy albüm yüklimisini ataman testiqlaydu',
+  'approval_1' => 'Ammiwi albÃ¼mni testiqlash (1)',
+  'approval_2' => 'xususiy albÃ¼mni testiqlash (2)',
+  'upload_form_config' => 'YÃ¼k shekillirini tengshesh', //cpg1.3.0
+  'upload_form_config_values' => array( 'Bir hÃ¶jjetni yÃ¼klesh', 'KÃ¶p hÃ¶jjetni yÃ¼klesh', 'URI nila yÃ¼klesh', 'ZIP nila yÃ¼klesh', 'File-URI', 'File-ZIP', 'URI-ZIP', 'File-URI-ZIP'), //cpg1.3.0
+  'custom_user_upload'=>'Qollanchilar yÃ¼klime somka sani?', //cpg1.3.0
+  'num_file_upload'=>'Eng kÃ¶p/YÃ¼k HÃ¶jjet somka sani', //cpg1.3.0
+  'num_URI_upload'=>'Eng kÃ¶p/YÃ¼k URI HÃ¶jjet somka sani', //cpg1.3.0
+  'note1' => '<b>(1)</b> Ammiwiy albÃ¼m yÃ¼klimisini ataman testiqlaydu',
+  'note2' => '<b>(2)</b> Xususiy albÃ¼m yÃ¼klimisini ataman testiqlaydu',
   'notes' => 'Diqqet',
 );
 
@@ -801,30 +804,30 @@ $lang_index_php = array(
 );
 
 $lang_album_admin_menu = array(
-  'confirm_delete' => 'Bu albümni rastinla öchüremsiz ? \\n Barliq resim we Sözler öchüp kétidu.', //js-alert //cpg1.3.0
-  'delete' => 'Öchürüsh',
-  'modify' => 'Xarektér',
+  'confirm_delete' => 'Bu albÃ¼mni rastinla Ã¶chÃ¼remsiz ? \\n Barliq resim we SÃ¶zler Ã¶chÃ¼p kÃ©tidu.', //js-alert //cpg1.3.0
+  'delete' => 'Ã–chÃ¼rÃ¼sh',
+  'modify' => 'XarektÃ©r',
   'edit_pics' => 'Tehrirlesh', //cpg1.3.0
 );
 
 $lang_list_categories = array(
   'home' => 'Ana bet',
-  'stat1' => '<b>[pictures]</b> Höjjetler <b>[albums]</b> Albümde we<b>[cat]</b> Katigoriyede, <b>[comments]</b> Jawap söz <b>[views]</b> Körüm(ziyaret xatirisi) bar.', //cpg1.3.0
-  'stat2' => '<b>[pictures]</b> Höjjetler <b>[albums]</b> Albümde we<b>[views]</b> Jawap söz bar.', //cpg1.3.0
+  'stat1' => '<b>[pictures]</b> HÃ¶jjetler <b>[albums]</b> AlbÃ¼mde we<b>[cat]</b> Katigoriyede, <b>[comments]</b> Jawap sÃ¶z <b>[views]</b> KÃ¶rÃ¼m(ziyaret xatirisi) bar.', //cpg1.3.0
+  'stat2' => '<b>[pictures]</b> HÃ¶jjetler <b>[albums]</b> AlbÃ¼mde we<b>[views]</b> Jawap sÃ¶z bar.', //cpg1.3.0
   'xx_s_gallery' => '%s\'s Gallery',
-  'stat3' => '<b>[pictures]</b> Höjjetler <b>[albums]</b> Albümda we <b>[comments]</b> Jawap söz <b>[views]</b> Körüm(ziyaret xatirisi) bar.', //cpg1.3.0
+  'stat3' => '<b>[pictures]</b> HÃ¶jjetler <b>[albums]</b> AlbÃ¼mda we <b>[comments]</b> Jawap sÃ¶z <b>[views]</b> KÃ¶rÃ¼m(ziyaret xatirisi) bar.', //cpg1.3.0
 );
 
 $lang_list_users = array(
   'user_list' => 'Qollanchi tizimi',
-  'no_user_gal' => 'Qollanchi albümi yoq',
-  'n_albums' => '%s Albüm(lar)',
-  'n_pics' => '%s Höjjet(ler)', //cpg1.3.0
+  'no_user_gal' => 'Qollanchi albÃ¼mi yoq',
+  'n_albums' => '%s AlbÃ¼m(lar)',
+  'n_pics' => '%s HÃ¶jjet(ler)', //cpg1.3.0
 );
 
 $lang_list_albums = array(
-  'n_pictures' => '%s Höjjet', //cpg1.3.0
-  'last_added' => ', Eng yéngisi %s',
+  'n_pictures' => '%s HÃ¶jjet', //cpg1.3.0
+  'last_added' => ', Eng yÃ©ngisi %s',
 );
 
 }
@@ -838,7 +841,7 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
   'enter_login_pswd' => 'Nam we Im(parol)ni toldurung',
   'username' => 'Nam',
   'password' => 'Im(parol)',
-  'remember_me' => 'Méni unutmang',
+  'remember_me' => 'MÃ©ni unutmang',
   'welcome' => 'Merhaba %s ...',
   'err_login' => '*** Kirelmidingiz Qayta sinang***',
   'err_already_logged_in' => 'Ow! siz kirip bolghan!',
@@ -852,7 +855,7 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
 if (defined('LOGOUT_PHP')) $lang_logout_php = array(
   'logout' => 'Chiqe',
   'bye' => 'Xeyr_xosh %s ...',
-  'err_not_loged_in' => 'Siz téxi kirmidingiz !',
+  'err_not_loged_in' => 'Siz tÃ©xi kirmidingiz !',
 );
 
 // ------------------------------------------------------------------------- //
@@ -861,8 +864,8 @@ if (defined('LOGOUT_PHP')) $lang_logout_php = array(
 
 if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
   'php_info' => 'PHP uchuri', //cpg1.3.0
-  'explanation' => 'Buni PHP-function keltürüp chiqarghan <a href="http://www.php.net/phpinfo">phpinfo()</a>, Copermine azqisim uchurlirini körsitish.', //cpg1.3.0
-  'no_link' => 'Bashqilar phpinfo yingizni körse bixeterlik xataliqi körilidu, Ataman bolup kirishingizdiki sewebmu shu. Bu ulunushni bashqilargha dep bermeng, bolmisa saqlash xataliqi körilidu.', //cpg1.3.0
+  'explanation' => 'Buni PHP-function keltÃ¼rÃ¼p chiqarghan <a href="http://www.php.net/phpinfo">phpinfo()</a>, Copermine azqisim uchurlirini kÃ¶rsitish.', //cpg1.3.0
+  'no_link' => 'Bashqilar phpinfo yingizni kÃ¶rse bixeterlik xataliqi kÃ¶rilidu, Ataman bolup kirishingizdiki sewebmu shu. Bu ulunushni bashqilargha dep bermeng, bolmisa saqlash xataliqi kÃ¶rilidu.', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -872,25 +875,25 @@ if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
 if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'upd_alb_n' => 'Update album %s',
   'general_settings' => 'General settings',
-  'alb_title' => 'Albüm Munderijisi',
-  'alb_cat' => 'Albüm katégoriyisi',
-  'alb_desc' => 'Albüm izahati',
-  'alb_thumb' => 'Albüm ülgisi',
-  'alb_perm' => 'Albüm cheklimisi',
-  'can_view' => 'Albümni köreleysiz',
-  'can_upload' => 'Höjjet yükliyeleysiz',
-  'can_post_comments' => 'Pikir béreleysiz',
-  'can_rate' => 'Höjjetke nomur béreleysiz',
-  'user_gal' => 'Qollanchi albümi',
-  'no_cat' => '* Albüm türi *',
-  'alb_empty' => 'Albüm quruq',
-  'last_uploaded' => 'Yéqinqi yük',
-  'public_alb' => 'Hemmige (Ammiwi albüm)',
+  'alb_title' => 'AlbÃ¼m Munderijisi',
+  'alb_cat' => 'AlbÃ¼m katÃ©goriyisi',
+  'alb_desc' => 'AlbÃ¼m izahati',
+  'alb_thumb' => 'AlbÃ¼m Ã¼lgisi',
+  'alb_perm' => 'AlbÃ¼m cheklimisi',
+  'can_view' => 'AlbÃ¼mni kÃ¶releysiz',
+  'can_upload' => 'HÃ¶jjet yÃ¼kliyeleysiz',
+  'can_post_comments' => 'Pikir bÃ©releysiz',
+  'can_rate' => 'HÃ¶jjetke nomur bÃ©releysiz',
+  'user_gal' => 'Qollanchi albÃ¼mi',
+  'no_cat' => '* AlbÃ¼m tÃ¼ri *',
+  'alb_empty' => 'AlbÃ¼m quruq',
+  'last_uploaded' => 'YÃ©qinqi yÃ¼k',
+  'public_alb' => 'Hemmige (Ammiwi albÃ¼m)',
   'me_only' => 'Peqet menla',
-  'owner_only' => 'Albüm igisigila (%s) tewe',
+  'owner_only' => 'AlbÃ¼m igisigila (%s) tewe',
   'groupp_only' => 'Qollanchilar \'%s\' grouplar',
-  'err_no_alb_to_modify' => 'Albümingizda höjjet yoq.',
-  'update' => 'Albümni yéngilash', //cpg1.3.0
+  'err_no_alb_to_modify' => 'AlbÃ¼mingizda hÃ¶jjet yoq.',
+  'update' => 'AlbÃ¼mni yÃ©ngilash', //cpg1.3.0
   'notice1' => '(*) groupqa %s asasen%s Tengshesh', //cpg1.3.0 (do not translate %s!)
 );
 
@@ -899,9 +902,9 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
-  'already_rated' => 'Kechürisiz! siz bu höjjetke nomur bérip bolghan.', //cpg1.3.0
+  'already_rated' => 'KechÃ¼risiz! siz bu hÃ¶jjetke nomur bÃ©rip bolghan.', //cpg1.3.0
   'rate_ok' => 'Nomuringiz qobullandi',
-  'forbidden' => 'Özingizning höjjitige nomur bérelmeysiz.', //cpg1.3.0
+  'forbidden' => 'Ã–zingizning hÃ¶jjitige nomur bÃ©relmeysiz.', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -911,14 +914,14 @@ if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
- {SITE_NAME} ning Atamani, Adette namuwapiq höjjetlerni retlep tursimu, Biraq, Barliq höjjetlerni waqtida körüp bolishi mumkin emes. Shunga, Yüklimining mesuliyiti yollighuchighila tewe bolup, Atamanning (Ataman yükligen höjjetler buningdin sirtida) meydanini bildürmeydu hem qanuniy mesuliyetni öz üstige alalmaydu.
+ {SITE_NAME} ning Atamani, Adette namuwapiq hÃ¶jjetlerni retlep tursimu, Biraq, Barliq hÃ¶jjetlerni waqtida kÃ¶rÃ¼p bolishi mumkin emes. Shunga, YÃ¼klimining mesuliyiti yollighuchighila tewe bolup, Atamanning (Ataman yÃ¼kligen hÃ¶jjetler buningdin sirtida) meydanini bildÃ¼rmeydu hem qanuniy mesuliyetni Ã¶z Ã¼stige alalmaydu.
 <br />
 <br />
-Siz choqum eza bolghandin kéyin, bashqilarning shexsiyitige yatidighan, Zorawanliq, Shehwaniliq, Dinniy esebiylikni, Xurapatliqni terghip qilidighan qanungha xilap bolghan herqandaq höjjetni yollimasliqqa qoshulishingiz shert. Siz {SITE_NAME} ning Atamani herqandaq waqtta höjjetlerni tehrirlishige yaki öchürüshige yol qoyisiz. Yüklimingiz sanliq ambarda saqlinidu, Sizning ruxsitingizsiz biz héch kishige ötünmeymiz. Shunisi, Hachkérliq qilmishi bilen oghurlunup kétilse mesuliyetni ustimizge alalmaymiz.  <br />
+Siz choqum eza bolghandin kÃ©yin, bashqilarning shexsiyitige yatidighan, Zorawanliq, Shehwaniliq, Dinniy esebiylikni, Xurapatliqni terghip qilidighan qanungha xilap bolghan herqandaq hÃ¶jjetni yollimasliqqa qoshulishingiz shert. Siz {SITE_NAME} ning Atamani herqandaq waqtta hÃ¶jjetlerni tehrirlishige yaki Ã¶chÃ¼rÃ¼shige yol qoyisiz. YÃ¼klimingiz sanliq ambarda saqlinidu, Sizning ruxsitingizsiz biz hÃ©ch kishige Ã¶tÃ¼nmeymiz. Shunisi, HachkÃ©rliq qilmishi bilen oghurlunup kÃ©tilse mesuliyetni ustimizge alalmaymiz.  <br />
 <br />
-Békitimiz "cookiesa" arqiliq kompingizgha uchur saqlap yene ziyaret qilishingizni asanlashturidu. Émailingiz peqetla tizim arxipingizni (parolingizni) aktiplash üchünla ishlitilidu. <br />
+BÃ©kitimiz "cookiesa" arqiliq kompingizgha uchur saqlap yene ziyaret qilishingizni asanlashturidu. Ã‰mailingiz peqetla tizim arxipingizni (parolingizni) aktiplash Ã¼chÃ¼nla ishlitilidu. <br />
 <br />
-'Qoshulimen' ni chékish arqiliq shertlirimizge könüng.
+'Qoshulimen' ni chÃ©kish arqiliq shertlirimizge kÃ¶nÃ¼ng.
 EOT;
 
 $lang_register_php = array(
@@ -926,59 +929,59 @@ $lang_register_php = array(
   'term_cond' => 'Shertler',
   'i_agree' => 'Qoshulimen',
   'submit' => 'Tizimlinimen',
-  'err_user_exists' => 'Kechürisiz, Bu nam qollinip bolun`ghan, bashqa Namni qollunung',
-  'err_password_mismatch' => 'Ikki im(parol) oxshash bolmidi, qayta yézing',
+  'err_user_exists' => 'KechÃ¼risiz, Bu nam qollinip bolun`ghan, bashqa Namni qollunung',
+  'err_password_mismatch' => 'Ikki im(parol) oxshash bolmidi, qayta yÃ©zing',
   'err_uname_short' => 'Namingiz ikki herptin kam bolmisun.',
   'err_password_short' => 'Im(parol) ikki herptin kam bolmisun.',
   'err_uname_pass_diff' => 'Im(parol) we Nam oxshash bolmisun.',
-  'err_invalid_email' => 'Émail adrési xata.',
-  'err_duplicate_email' => 'Bu émail ishlitilip bolun`ghan.',
+  'err_invalid_email' => 'Ã‰mail adrÃ©si xata.',
+  'err_duplicate_email' => 'Bu Ã©mail ishlitilip bolun`ghan.',
   'enter_info' => 'Tizimlitish uchurini toldurung',
   'required_info' => 'Choqum toldurung',
   'optional_info' => 'Toldurmisingizmu bolidu',
   'username' => 'Namingiz',
   'password' => 'Im(parol)',
-  'password_again' => 'Im(parol)ni qayta yézing',
-  'email' => 'Émail',
+  'password_again' => 'Im(parol)ni qayta yÃ©zing',
+  'email' => 'Ã‰mail',
   'location' => 'Orningiz',
   'interests' => 'Qiziqishingiz',
-  'website' => 'Tor bétinigiz',
+  'website' => 'Tor bÃ©tinigiz',
   'occupation' => 'Kespingiz',
   'error' => 'Xataliq',
-  'confirm_email_subject' => '%s - Höjjet Yüklime uqturushi',
+  'confirm_email_subject' => '%s - HÃ¶jjet YÃ¼klime uqturushi',
   'information' => 'Uchur',
-  'failed_sending_email' => 'Tizimlan`ghan émail adrési ewertelmeydu !',
-  'thank_you' => 'Tizimlatqiningizgha teshekkür.<br /><br />Hésapingizni aktiplash uchuri émalingizgha yollandi.',
-  'acct_created' => 'Hésapingiz quruldi, kirsinigz bolidu.',
-  'acct_active' => 'Hésapingiz qozghitildi, kirsingiz bolidu.',
-  'acct_already_act' => 'Hésapingiz qozghitildi!',
-  'acct_act_failed' => 'Hésapingiz qozghilishqa amalsiz!',
-  'err_unk_user' => 'Siz tallighan Qollanchi mewjüt emes !',
+  'failed_sending_email' => 'Tizimlan`ghan Ã©mail adrÃ©si ewertelmeydu !',
+  'thank_you' => 'Tizimlatqiningizgha teshekkÃ¼r.<br /><br />HÃ©sapingizni aktiplash uchuri Ã©malingizgha yollandi.',
+  'acct_created' => 'HÃ©sapingiz quruldi, kirsinigz bolidu.',
+  'acct_active' => 'HÃ©sapingiz qozghitildi, kirsingiz bolidu.',
+  'acct_already_act' => 'HÃ©sapingiz qozghitildi!',
+  'acct_act_failed' => 'HÃ©sapingiz qozghilishqa amalsiz!',
+  'err_unk_user' => 'Siz tallighan Qollanchi mewjÃ¼t emes !',
   'x_s_profile' => '%s\'s ning arxipi',
   'group' => 'Group',
   'reg_date' => 'Eza bolung',
   'disk_usage' => 'Disk Hejimi',
-  'change_pass' => ' IM(parol) özgertish ',
+  'change_pass' => ' IM(parol) Ã¶zgertish ',
   'current_pass' => 'Esli IM(parol)',
-  'new_pass' => 'Yéngi IM(parol)',
-  'new_pass_again' => 'Yéngi Im(parol)ni muqimlang',
+  'new_pass' => 'YÃ©ngi IM(parol)',
+  'new_pass_again' => 'YÃ©ngi Im(parol)ni muqimlang',
   'err_curr_pass' => 'Esli IM(parol) xata',
-  'apply_modif' => 'Özgertish',
-  'change_pass' => 'IM(parol)ni özgertish',
-  'update_success' => 'Arxipingiz yéngilandi',
-  'pass_chg_success' => 'IM(parol) özgerdi',
-  'pass_chg_error' => 'IM(parol) özgermidi',
+  'apply_modif' => 'Ã–zgertish',
+  'change_pass' => 'IM(parol)ni Ã¶zgertish',
+  'update_success' => 'Arxipingiz yÃ©ngilandi',
+  'pass_chg_success' => 'IM(parol) Ã¶zgerdi',
+  'pass_chg_error' => 'IM(parol) Ã¶zgermidi',
   'notify_admin_email_subject' => '%s - Tizimlitish uqturushi', //cpg1.3.0
-  'notify_admin_email_body' => 'Yene bir yéngi eza nami"%s" galleryge tizimlandi', //cpg1.3.0
+  'notify_admin_email_body' => 'Yene bir yÃ©ngi eza nami"%s" galleryge tizimlandi', //cpg1.3.0
 );
 
 $lang_register_confirm_email = <<<EOT
-{SITE_NAME} ge tizimlatqiningizgha köp teshekkür
+{SITE_NAME} ge tizimlatqiningizgha kÃ¶p teshekkÃ¼r
 
 Qollanchi namingiz : "{USER_NAME}"
 IM(parol)ingiz : "{PASSWORD}"
 
-Töwendiki ulanmini chékip Hésapingizni qozghutung yaki ulanmini E ulanmisigha chaplang.
+TÃ¶wendiki ulanmini chÃ©kip HÃ©sapingizni qozghutung yaki ulanmini E ulanmisigha chaplang.
 or copy and paste it in your web browser.
 
 {ACT_LINK}
@@ -996,13 +999,13 @@ EOT;
 // ------------------------------------------------------------------------- //
 
 if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
-  'title' => 'Pikir körüsh',
-  'no_comment' => 'Téxi Söz yoq',
-  'n_comm_del' => '%s Pikir öchürüldi',
+  'title' => 'Pikir kÃ¶rÃ¼sh',
+  'no_comment' => 'TÃ©xi SÃ¶z yoq',
+  'n_comm_del' => '%s Pikir Ã¶chÃ¼rÃ¼ldi',
   'n_comm_disp' => 'Pikir ziyaret sani',
   'see_prev' => 'Aldinqisi',
-  'see_next' => 'Kéyinkisi',
-  'del_comm' => 'Tallan`ghan sözni öchürüng',
+  'see_next' => 'KÃ©yinkisi',
+  'del_comm' => 'Tallan`ghan sÃ¶zni Ã¶chÃ¼rÃ¼ng',
 );
 
 
@@ -1011,7 +1014,7 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCH_PHP')) $lang_search_php = array(
-  0 => 'Albümdin izdesh',
+  0 => 'AlbÃ¼mdin izdesh',
 );
 
 // ------------------------------------------------------------------------- //
@@ -1019,35 +1022,35 @@ if (defined('SEARCH_PHP')) $lang_search_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
-  'page_title' => 'Yéngidin höjjet izdesh', //cpg1.3.0
-  'select_dir' => 'Münderijini tallash',
-  'select_dir_msg' => 'Bu iqtida sizning FTP arqiliq top höjjet yolishinigzni qollaydu.<br /><br />Yollimaqchi bolghan top höjjet münderijisini tallang', //cpg1.3.0
-  'no_pic_to_add' => 'Qoshulidighan höjjet yoqken', //cpg1.3.0
-  'need_one_album' => 'Bu iqtidarni ishlitishchün azkem bir albüm bolsun.',
+  'page_title' => 'YÃ©ngidin hÃ¶jjet izdesh', //cpg1.3.0
+  'select_dir' => 'MÃ¼nderijini tallash',
+  'select_dir_msg' => 'Bu iqtida sizning FTP arqiliq top hÃ¶jjet yolishinigzni qollaydu.<br /><br />Yollimaqchi bolghan top hÃ¶jjet mÃ¼nderijisini tallang', //cpg1.3.0
+  'no_pic_to_add' => 'Qoshulidighan hÃ¶jjet yoqken', //cpg1.3.0
+  'need_one_album' => 'Bu iqtidarni ishlitishchÃ¼n azkem bir albÃ¼m bolsun.',
   'warning' => 'agahlandurush',
-  'change_perm' => 'Münderije qurulmisa, CMOD qimmitini 775 yaki 777 qilip tengshep körüng!', //cpg1.3.0
-  'target_album' => '<b>Höjjetni &quot;</b>%s<b>&quot; ge yollang </b>%s', //cpg1.3.0
+  'change_perm' => 'MÃ¼nderije qurulmisa, CMOD qimmitini 775 yaki 777 qilip tengshep kÃ¶rÃ¼ng!', //cpg1.3.0
+  'target_album' => '<b>HÃ¶jjetni &quot;</b>%s<b>&quot; ge yollang </b>%s', //cpg1.3.0
   'folder' => 'Somka',
-  'image' => 'Höjjet',
-  'album' => 'Albüm',
+  'image' => 'HÃ¶jjet',
+  'album' => 'AlbÃ¼m',
   'result' => 'Netije',
-  'dir_ro' => 'Yüklenmidi. ',
+  'dir_ro' => 'YÃ¼klenmidi. ',
   'dir_cant_read' => 'Oqulmidi. ',
-  'insert' => 'galleryge yéngi höjjet qoshush', //cpg1.3.0
-  'list_new_pic' => 'Yéngi höjjetler', //cpg1.3.0
-  'insert_selected' => 'Tallighan höjjetni qoshung', //cpg1.3.0
-  'no_pic_found' => 'Yéngi höjjet tépilmidi', //cpg1.3.0
-  'be_patient' => 'Saqlang, Höjjetni yükleshke azraq waqt kétidu.', //cpg1.3.0
-  'no_album' => 'Albüm tallanmidi',  //cpg1.3.0
+  'insert' => 'galleryge yÃ©ngi hÃ¶jjet qoshush', //cpg1.3.0
+  'list_new_pic' => 'YÃ©ngi hÃ¶jjetler', //cpg1.3.0
+  'insert_selected' => 'Tallighan hÃ¶jjetni qoshung', //cpg1.3.0
+  'no_pic_found' => 'YÃ©ngi hÃ¶jjet tÃ©pilmidi', //cpg1.3.0
+  'be_patient' => 'Saqlang, HÃ¶jjetni yÃ¼kleshke azraq waqt kÃ©tidu.', //cpg1.3.0
+  'no_album' => 'AlbÃ¼m tallanmidi',  //cpg1.3.0
   'notes' =>  '<ul>'.
-                          '<li><b>OK</b> : Höjjet muwapiqiyetlik yüklendi'.
-                          '<li><b>DP</b> : Höjjet qaytilan`ghan yaki ambarda bar'.
-                          '<li><b>PB</b> : Höjjet Yüklenmeyse, tengshekni yaki munderije cheklimisini tekshürüp körüng.'.
-                          '<li><b>NA</b> : Höjjet albümini tallimapsiz, Muqimlash \'<a href="javascript:history.back(1)">Qaytish</a>\' Albümni tallang. Albümingiz bolmisa <a href="albmgr.php">Albüm qurung</a></li>'.
-                          '<li>Eger OK, DP, PB \'Belgiler\' Höjjet körünmise PHP körsetken xataliq uchurini tekshürüng.'.
-                          '<li>Eger torkez(browser/???)ning waqti ötse qaytidin retleng.'.
+                          '<li><b>OK</b> : HÃ¶jjet muwapiqiyetlik yÃ¼klendi'.
+                          '<li><b>DP</b> : HÃ¶jjet qaytilan`ghan yaki ambarda bar'.
+                          '<li><b>PB</b> : HÃ¶jjet YÃ¼klenmeyse, tengshekni yaki munderije cheklimisini tekshÃ¼rÃ¼p kÃ¶rÃ¼ng.'.
+                          '<li><b>NA</b> : HÃ¶jjet albÃ¼mini tallimapsiz, Muqimlash \'<a href="javascript:history.back(1)">Qaytish</a>\' AlbÃ¼mni tallang. AlbÃ¼mingiz bolmisa <a href="albmgr.php">AlbÃ¼m qurung</a></li>'.
+                          '<li>Eger OK, DP, PB \'Belgiler\' HÃ¶jjet kÃ¶rÃ¼nmise PHP kÃ¶rsetken xataliq uchurini tekshÃ¼rÃ¼ng.'.
+                          '<li>Eger torkez(browser/???)ning waqti Ã¶tse qaytidin retleng.'.
                           '</ul>', //cpg1.3.0
-  'select_album' => 'Albümni tallang', //cpg1.3.0
+  'select_album' => 'AlbÃ¼mni tallang', //cpg1.3.0
   'check_all' => 'Hemmini tallang', //cpg1.3.0
   'uncheck_all' => 'Hemmini tallimang', //cpg1.3.0
 );
@@ -1066,19 +1069,19 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 if (defined('BANNING_PHP')) $lang_banning_php = array(
   'title' => 'Cheklen`gen Qollanchi',
   'user_name' => 'Qollanchi Nami',
-  'ip_address' => 'IP Adrési',
-  'expiry' => 'Chéki (Bosh qalsa menggülüktur)',
-  'edit_ban' => 'özgirishni saqlash',
-  'delete_ban' => 'Öchürüsh',
+  'ip_address' => 'IP AdrÃ©si',
+  'expiry' => 'ChÃ©ki (Bosh qalsa menggÃ¼lÃ¼ktur)',
+  'edit_ban' => 'Ã¶zgirishni saqlash',
+  'delete_ban' => 'Ã–chÃ¼rÃ¼sh',
   'add_new' => 'Cheklen`gen Qollanchi Qoshush',
   'add_ban' => 'Qoshush',
   'error_user' => 'Bundaq qolanchi yoq', //cpg1.3.0
-  'error_specify' => 'Qollanchi namini we IP adrésini kirgüzüng', //cpg1.3.0
+  'error_specify' => 'Qollanchi namini we IP adrÃ©sini kirgÃ¼zÃ¼ng', //cpg1.3.0
   'error_ban_id' => 'Xata ID!', //cpg1.3.0
-  'error_admin_ban' => 'Özingizni cheklimekchimu!', //cpg1.3.0
-  'error_server_ban' => 'Özingizning Mulazimétirini cheklimekchimu? boldi...boldi.. axmaqliq qilmang!', //cpg1.3.0
-  'error_ip_forbidden' => 'Bu IP ni chekliyelmeysiz- chünki u, non-routable!', //cpg1.3.0
-  'lookup_ip' => 'IP adrésini tekshürüsh', //cpg1.3.0
+  'error_admin_ban' => 'Ã–zingizni cheklimekchimu!', //cpg1.3.0
+  'error_server_ban' => 'Ã–zingizning MulazimÃ©tirini cheklimekchimu? boldi...boldi.. axmaqliq qilmang!', //cpg1.3.0
+  'error_ip_forbidden' => 'Bu IP ni chekliyelmeysiz- chÃ¼nki u, non-routable!', //cpg1.3.0
+  'lookup_ip' => 'IP adrÃ©sini tekshÃ¼rÃ¼sh', //cpg1.3.0
   'submit' => 'Ijra!', //cpg1.3.0
 );
 
@@ -1087,51 +1090,51 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UPLOAD_PHP')) $lang_upload_php = array(
-  'title' => 'Höjjet yüklesh', //cpg1.3.0
-  'custom_title' => 'Yüklesh tallanma jediwili', //cpg1.3.0
-  'cust_instr_1' => 'Töwendikilerdin Yük somkisini tallap yükleng.', //cpg1.3.0
+  'title' => 'HÃ¶jjet yÃ¼klesh', //cpg1.3.0
+  'custom_title' => 'YÃ¼klesh tallanma jediwili', //cpg1.3.0
+  'cust_instr_1' => 'TÃ¶wendikilerdin YÃ¼k somkisini tallap yÃ¼kleng.', //cpg1.3.0
   'cust_instr_2' => 'Tallanma somka nomuri', //cpg1.3.0
-  'cust_instr_3' => 'Höjjet yüklesh somkisi: %s', //cpg1.3.0
-  'cust_instr_4' => 'URI/URL Yük somkisi: %s', //cpg1.3.0
-  'cust_instr_5' => 'URI/URL Yük somkisi:', //cpg1.3.0
-  'cust_instr_6' => 'Höjjet Yük somkisi:', //cpg1.3.0
-  'cust_instr_7' => 'Lazmliq Yük somkisining sanini yézip chéking \'Dawami\'. ', //cpg1.3.0
+  'cust_instr_3' => 'HÃ¶jjet yÃ¼klesh somkisi: %s', //cpg1.3.0
+  'cust_instr_4' => 'URI/URL YÃ¼k somkisi: %s', //cpg1.3.0
+  'cust_instr_5' => 'URI/URL YÃ¼k somkisi:', //cpg1.3.0
+  'cust_instr_6' => 'HÃ¶jjet YÃ¼k somkisi:', //cpg1.3.0
+  'cust_instr_7' => 'Lazmliq YÃ¼k somkisining sanini yÃ©zip chÃ©king \'Dawami\'. ', //cpg1.3.0
   'reg_instr_1' => 'Inawetsiz paaliyet.', //cpg1.3.0
-  'reg_instr_2' => 'Höjjetlerni "töwendiki yük somkisi arqiliq yollisingiz bolidu. Yük hejimi %s KB etrapida. ZIP Höjjet yollinidu \'Höjjet yollash\' we \'URI/URL Yollash\' arqiliq baridu.', //cpg1.3.0
-  'reg_instr_3' => 'Eger zipliq yaki zipsiz höjjetlerni choqum Höjjet yollash arqiliq yükleng \'ZIPsiz Höjjet yüklesh\' arqiliq Yüklinidu.', //cpg1.3.0
-  'reg_instr_4' => 'Eger URI/URL Yükini tallisingiz, Höjjet ulinishini tallang Mesilen: http://www.mysite.com/images/example.jpg', //cpg1.3.0
-  'reg_instr_5' => 'Tallap bolghandin kéyin, Chéking \'dawami\'.', //cpg1.3.0
-  'reg_instr_6' => 'Yéshilme ZIP yüklesh:', //cpg1.3.0
-  'reg_instr_7' => 'Höjjet yüklesh:', //cpg1.3.0
-  'reg_instr_8' => 'URI/URL Yüki:', //cpg1.3.0
+  'reg_instr_2' => 'HÃ¶jjetlerni "tÃ¶wendiki yÃ¼k somkisi arqiliq yollisingiz bolidu. YÃ¼k hejimi %s KB etrapida. ZIP HÃ¶jjet yollinidu \'HÃ¶jjet yollash\' we \'URI/URL Yollash\' arqiliq baridu.', //cpg1.3.0
+  'reg_instr_3' => 'Eger zipliq yaki zipsiz hÃ¶jjetlerni choqum HÃ¶jjet yollash arqiliq yÃ¼kleng \'ZIPsiz HÃ¶jjet yÃ¼klesh\' arqiliq YÃ¼klinidu.', //cpg1.3.0
+  'reg_instr_4' => 'Eger URI/URL YÃ¼kini tallisingiz, HÃ¶jjet ulinishini tallang Mesilen: http://www.mysite.com/images/example.jpg', //cpg1.3.0
+  'reg_instr_5' => 'Tallap bolghandin kÃ©yin, ChÃ©king \'dawami\'.', //cpg1.3.0
+  'reg_instr_6' => 'YÃ©shilme ZIP yÃ¼klesh:', //cpg1.3.0
+  'reg_instr_7' => 'HÃ¶jjet yÃ¼klesh:', //cpg1.3.0
+  'reg_instr_8' => 'URI/URL YÃ¼ki:', //cpg1.3.0
   'error_report' => 'Xata doklat', //cpg1.3.0
-  'error_instr' => 'Töwendikiler uchurghan xataliqlar:', //cpg1.3.0
-  'file_name_url' => 'Höjjet ismi/URL', //cpg1.3.0
+  'error_instr' => 'TÃ¶wendikiler uchurghan xataliqlar:', //cpg1.3.0
+  'file_name_url' => 'HÃ¶jjet ismi/URL', //cpg1.3.0
   'error_message' => 'Xata uchur', //cpg1.3.0
-  'no_post' => 'Höjjet yüklenmidi.', //cpg1.3.0
+  'no_post' => 'HÃ¶jjet yÃ¼klenmidi.', //cpg1.3.0
   'forb_ext' => 'Biruxset qoshumche nam.', //cpg1.3.0
-  'exc_php_ini' => 'Höjjet php.ini cheklimisidin éship ketti.', //cpg1.3.0
-  'exc_file_size' => 'Höjjet CPG cheklimisidin éship ketti.', //cpg1.3.0
-  'partial_upload' => 'Bir qismila yüklendi.', //cpg1.3.0
-  'no_upload' => 'Yüklenmidi.', //cpg1.3.0
+  'exc_php_ini' => 'HÃ¶jjet php.ini cheklimisidin Ã©ship ketti.', //cpg1.3.0
+  'exc_file_size' => 'HÃ¶jjet CPG cheklimisidin Ã©ship ketti.', //cpg1.3.0
+  'partial_upload' => 'Bir qismila yÃ¼klendi.', //cpg1.3.0
+  'no_upload' => 'YÃ¼klenmidi.', //cpg1.3.0
   'unknown_code' => 'Biligsiz PHP xata code.', //cpg1.3.0
-  'no_temp_name' => 'Yüklenmidi - temp nam yoq.', //cpg1.3.0
+  'no_temp_name' => 'YÃ¼klenmidi - temp nam yoq.', //cpg1.3.0
   'no_file_size' => 'Mezmun yoq/Corrupted', //cpg1.3.0
   'impossible' => 'Arxipqa yollanmidi.', //cpg1.3.0
-  'not_image' => 'Bu ölchemsiz téma', //cpg1.3.0
+  'not_image' => 'Bu Ã¶lchemsiz tÃ©ma', //cpg1.3.0
   'not_GD' => 'Bu GD ning yandash nami emes.', //cpg1.3.0
   'pixel_allowance' => 'Bek chong bolup ketti.', //cpg1.3.0
   'incorrect_prefix' => 'URI/URL xata, prefix', //cpg1.3.0
   'could_not_open_URI' => 'URI Qozghulushqa amalsiz.', //cpg1.3.0
   'unsafe_URI' => 'Bixeterlik testiqlanmidi.', //cpg1.3.0
-  'meta_data_failure' => 'Höjjetni aylandurush muwapiqiyetsiz', //cpg1.3.0
+  'meta_data_failure' => 'HÃ¶jjetni aylandurush muwapiqiyetsiz', //cpg1.3.0
   'http_401' => '401 Ziyaret tosulghan', //cpg1.3.0
   'http_402' => '402 Pulgha ziyaret qilisiz', //cpg1.3.0
   'http_403' => '403 Ziyaret cheklengen', //cpg1.3.0
-  'http_404' => '404 Mualzimétirdin jawab yoq', //cpg1.3.0
-  'http_500' => '500 Mulazimétirdiki chataq', //cpg1.3.0
-  'http_503' => '503 Mulazimétir uzaq saqlighach mulazimet toxtitildi.', //cpg1.3.0
-  'MIME_extraction_failure' => 'MIME Tekshürüp testiqlanmidi.', //cpg1.3.0
+  'http_404' => '404 MualzimÃ©tirdin jawab yoq', //cpg1.3.0
+  'http_500' => '500 MulazimÃ©tirdiki chataq', //cpg1.3.0
+  'http_503' => '503 MulazimÃ©tir uzaq saqlighach mulazimet toxtitildi.', //cpg1.3.0
+  'MIME_extraction_failure' => 'MIME TekshÃ¼rÃ¼p testiqlanmidi.', //cpg1.3.0
   'MIME_type_unknown' => 'Bilgili bolmas MIME type', //cpg1.3.0
   'cant_create_write' => 'Yazma arxipni qoshqili bolmidi.', //cpg1.3.0
   'not_writable' => 'Yazghili bolmidi.', //cpg1.3.0
@@ -1139,24 +1142,24 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'cant_open_write_file' => 'URI Qozghatqili bolmidi.', //cpg1.3.0
   'cant_write_write_file' => 'URI ni xatirligili bolmidi.', //cpg1.3.0
   'cant_unzip' => 'Muwapiqiyetsiz unzip.', //cpg1.3.0
-  'unknown' => 'Chüshiniksiz xataliq', //cpg1.3.0
-  'succ' => 'Yüklendi', //cpg1.3.0
-  'success' => '%s Yüklinip bolun`ghan.', //cpg1.3.0
-  'add' => 'Chéking \'Dawamlashturung\' Höjjet arxipini albümgha qoshush.', //cpg1.3.0
-  'failure' => 'Yüklenmidi', //cpg1.3.0
-  'f_info' => 'Höjjet uchuri', //cpg1.3.0
-  'no_place' => 'Yüklime arxipqa saqlanmidi.', //cpg1.3.0
-  'yes_place' => 'Yüklime arxipta saqlandi.', //cpg1.3.0
+  'unknown' => 'ChÃ¼shiniksiz xataliq', //cpg1.3.0
+  'succ' => 'YÃ¼klendi', //cpg1.3.0
+  'success' => '%s YÃ¼klinip bolun`ghan.', //cpg1.3.0
+  'add' => 'ChÃ©king \'Dawamlashturung\' HÃ¶jjet arxipini albÃ¼mgha qoshush.', //cpg1.3.0
+  'failure' => 'YÃ¼klenmidi', //cpg1.3.0
+  'f_info' => 'HÃ¶jjet uchuri', //cpg1.3.0
+  'no_place' => 'YÃ¼klime arxipqa saqlanmidi.', //cpg1.3.0
+  'yes_place' => 'YÃ¼klime arxipta saqlandi.', //cpg1.3.0
   'max_fsize' => 'Arxipning eng chong ruxset hejimi is %s KB',
-  'album' => 'Albüm',
-  'picture' => 'Höjjet', //cpg1.3.0
-  'pic_title' => 'Höjjet témisi', //cpg1.3.0
-  'description' => 'Höjjet izahati', //cpg1.3.0
-  'keywords' => 'Halqiliq söz (Bosh orun)',
-  'err_no_alb_uploadables' => 'Siz yollighudek albüm yoq', //cpg1.3.0
-  'place_instr_1' => 'Höjjetlerni albümgha chaplang.  Siz hazir bu arxipning munasiwetlik uchurlirini kirgüzsingiz bolidu.', //cpg1.3.0
-  'place_instr_2' => 'Köpligen höjjetler Seplinishni kütüwatidu. Chéking \'Dawamlashturung\'.', //cpg1.3.0
-  'process_complete' => 'Qutluq! Hemme höjjetni muwapiqiyetlik yüklep boldingiz.', //cpg1.3.0
+  'album' => 'AlbÃ¼m',
+  'picture' => 'HÃ¶jjet', //cpg1.3.0
+  'pic_title' => 'HÃ¶jjet tÃ©misi', //cpg1.3.0
+  'description' => 'HÃ¶jjet izahati', //cpg1.3.0
+  'keywords' => 'Halqiliq sÃ¶z (Bosh orun)',
+  'err_no_alb_uploadables' => 'Siz yollighudek albÃ¼m yoq', //cpg1.3.0
+  'place_instr_1' => 'HÃ¶jjetlerni albÃ¼mgha chaplang.  Siz hazir bu arxipning munasiwetlik uchurlirini kirgÃ¼zsingiz bolidu.', //cpg1.3.0
+  'place_instr_2' => 'KÃ¶pligen hÃ¶jjetler Seplinishni kÃ¼tÃ¼watidu. ChÃ©king \'Dawamlashturung\'.', //cpg1.3.0
+  'process_complete' => 'Qutluq! Hemme hÃ¶jjetni muwapiqiyetlik yÃ¼klep boldingiz.', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -1169,44 +1172,44 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'name_d' => 'Nami chongdin kichikke',
   'group_a' => 'Group kichiktin chonggha',
   'group_d' => 'Group chongdin kichikke',
-  'reg_a' => 'Tizim waqti yéqindin yiraqqa',
-  'reg_d' => 'Tizim waqti yiraqtin yéqin`gha',
-  'pic_a' => 'Höjjet sani azdin köpke',
-  'pic_d' => 'Höjjet sani köptin azgha',
+  'reg_a' => 'Tizim waqti yÃ©qindin yiraqqa',
+  'reg_d' => 'Tizim waqti yiraqtin yÃ©qin`gha',
+  'pic_a' => 'HÃ¶jjet sani azdin kÃ¶pke',
+  'pic_d' => 'HÃ¶jjet sani kÃ¶ptin azgha',
   'disku_a' => 'Hejimi kichiktin chonggha',
   'disku_d' => 'Hejimi chongdin kichikke',
-  'lv_a' => 'Qollanchi ziyariti yéqindin yiraqqa', //cpg1.3.0
-  'lv_d' => ' Qollanchi ziyariti yiraqtin yéqin`gha', //cpg1.3.0
-  'sort_by' => '`Qollanchi réti ',
-  'err_no_users' => 'Ezalar matiryal béti quruq !',
-  'err_edit_self' => 'özingizni arxipini özgertelmeysiz \'profilingizgha\' kélip özgerting',
+  'lv_a' => 'Qollanchi ziyariti yÃ©qindin yiraqqa', //cpg1.3.0
+  'lv_d' => ' Qollanchi ziyariti yiraqtin yÃ©qin`gha', //cpg1.3.0
+  'sort_by' => '`Qollanchi rÃ©ti ',
+  'err_no_users' => 'Ezalar matiryal bÃ©ti quruq !',
+  'err_edit_self' => 'Ã¶zingizni arxipini Ã¶zgertelmeysiz \'profilingizgha\' kÃ©lip Ã¶zgerting',
   'edit' => 'Tehrir',
-  'delete' => 'öcher',
+  'delete' => 'Ã¶cher',
   'name' => 'Qollanchi nami',
   'group' => 'Group',
   'inactive' => 'Qozghalmighan',
   'operations' => 'Herketlen',
-  'pictures' => 'Höjjet', //cpg1.3.0
-  'disk_space' => 'Hejimi/ Chéki',
+  'pictures' => 'HÃ¶jjet', //cpg1.3.0
+  'disk_space' => 'Hejimi/ ChÃ©ki',
   'registered_on' => 'Tizimlatqan waqit',
-  'last_visit' => 'Yéngi ziyaret', //cpg1.3.0
+  'last_visit' => 'YÃ©ngi ziyaret', //cpg1.3.0
   'u_user_on_p_pages' => '%d Qollanchi %d bet',
-  'confirm_del' => 'Bu qollanchini rastla öchiremsiz? \\nBarliq höjjetlirimu öchüp kétidu.', //js-alert //cpg1.3.0
-  'mail' => 'Émail',
-  'err_unknown_user' => 'Siz tallighan Qollanchi mewjüt emes!',
+  'confirm_del' => 'Bu qollanchini rastla Ã¶chiremsiz? \\nBarliq hÃ¶jjetlirimu Ã¶chÃ¼p kÃ©tidu.', //js-alert //cpg1.3.0
+  'mail' => 'Ã‰mail',
+  'err_unknown_user' => 'Siz tallighan Qollanchi mewjÃ¼t emes!',
   'modify_user' => 'Qollanchi Tehrirlesh',
   'notes' => 'Diqqet',
-  'note_list' => '<li>Im(parol)ni özgertmisingiz, "Im(parol)" ornini bosh qaldurung.',
+  'note_list' => '<li>Im(parol)ni Ã¶zgertmisingiz, "Im(parol)" ornini bosh qaldurung.',
   'password' => 'Im(parol)',
   'user_active' => 'Qollanchini aktiplash',
   'user_group' => 'Qollanchi group',
-  'user_email' => 'Qollanchi émail',
-  'user_web_site' => 'Qollanchi tor béti',
-  'create_new_user' => 'Yéngi eza qoshush',
+  'user_email' => 'Qollanchi Ã©mail',
+  'user_web_site' => 'Qollanchi tor bÃ©ti',
+  'create_new_user' => 'YÃ©ngi eza qoshush',
   'user_location' => 'Qollanchi yurti',
   'user_interests' => 'Qollanchi qiziqishi',
   'user_occupation' => 'Qollanchi kespi',
-  'latest_upload' => 'Yéngi yük', //cpg1.3.0
+  'latest_upload' => 'YÃ©ngi yÃ¼k', //cpg1.3.0
   'never' => 'Yoq', //cpg1.3.0
 );
 
@@ -1217,57 +1220,57 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 if (defined('UTIL_PHP')) $lang_util_php = array(
   'title' => 'Ataman qorali (Resim chong_kichiklikini tengshesh)', //cpg1.3.0
   'what_it_does' => 'Iqtidar',
-  'what_update_titles' => 'Arxiptiki ismidin resim arxipini özgertish.',
-  'what_delete_title' => 'Témini öchürüsh',
-  'what_rebuild' => 'Qaytidin kichiklitilme we resim chong kichiklikini békitish.',
+  'what_update_titles' => 'Arxiptiki ismidin resim arxipini Ã¶zgertish.',
+  'what_delete_title' => 'TÃ©mini Ã¶chÃ¼rÃ¼sh',
+  'what_rebuild' => 'Qaytidin kichiklitilme we resim chong kichiklikini bÃ©kitish.',
   'what_delete_originals' => 'Qayta tengshelgen resim esli resimning ornini alsun.',
-  'file' => 'Höjjet',
-  'title_set_to' => 'Témini özgertish',
+  'file' => 'HÃ¶jjet',
+  'title_set_to' => 'TÃ©mini Ã¶zgertish',
   'submit_form' => 'Muqimlash',
-  'updated_succesfully' => 'Yéngilandi',
-  'error_create' => 'Xataliq körüldi',
+  'updated_succesfully' => 'YÃ©ngilandi',
+  'error_create' => 'Xataliq kÃ¶rÃ¼ldi',
   'continue' => 'Bashqa resimlerni ijralash',
-  'main_success' => 'Bu Höjjet %s Bash resim qilindi', //cpg1.3.0
-  'error_rename' => 'Xataliq %s ismini  %s gha özgertimiz',
-  'error_not_found' => 'Bu höjjet %s Tépilmidi',
+  'main_success' => 'Bu HÃ¶jjet %s Bash resim qilindi', //cpg1.3.0
+  'error_rename' => 'Xataliq %s ismini  %s gha Ã¶zgertimiz',
+  'error_not_found' => 'Bu hÃ¶jjet %s TÃ©pilmidi',
   'back' => 'Bash betke qaytish',
-  'thumbs_wait' => 'Kichiklitilmini dawamliq yéngilash yaki resim chong kichiklikini tengshash boliwatidu, Sel saqlang...',
+  'thumbs_wait' => 'Kichiklitilmini dawamliq yÃ©ngilash yaki resim chong kichiklikini tengshash boliwatidu, Sel saqlang...',
   'thumbs_continue_wait' => 'Continuing to update thumbnails and/or resized images...',
-  'titles_wait' => 'Témini yéngilawatidu, Sel saqlang...',
-  'delete_wait' => 'Témini öchürüwatidu, Sel saqlang...',
+  'titles_wait' => 'TÃ©mini yÃ©ngilawatidu, Sel saqlang...',
+  'delete_wait' => 'TÃ©mini Ã¶chÃ¼rÃ¼watidu, Sel saqlang...',
   'replace_wait' => 'Tengshelgen resim esli resimning ornigha almishiwatidu, sel saqlang..',
-  'instruction' => 'Addiy paaliyet chüshendürilishi',
+  'instruction' => 'Addiy paaliyet chÃ¼shendÃ¼rilishi',
   'instruction_action' => 'Paaliyetni tallash',
   'instruction_parameter' => 'parameterni tallash',
-  'instruction_album' => 'Albümni tallang',
-  'instruction_press' => 'chéking %s',
-  'update' => 'Kichiktilmini yaki resim chong_kichiklikini yéngilash',
-  'update_what' => 'Nimini yéngilaysiz',
-  'update_thumb' => 'Peqet kichiklitilminila élish',
+  'instruction_album' => 'AlbÃ¼mni tallang',
+  'instruction_press' => 'chÃ©king %s',
+  'update' => 'Kichiktilmini yaki resim chong_kichiklikini yÃ©ngilash',
+  'update_what' => 'Nimini yÃ©ngilaysiz',
+  'update_thumb' => 'Peqet kichiklitilminila Ã©lish',
   'update_pic' => 'Peqet Resim chong_kichiklikini tengshesh.',
-  'update_both' => 'Kichiklitilme resim hem ölchimini yéngilash.',
-  'update_number' => 'Her chékilgende resim sanini belgilesh',
-  'update_option' => '(Eger programma ijrasida mesile körülse, Tengshekni töwenliting.)',
-  'filename_title' => 'Höjjet nami &rArr; Höjjet ', //cpg1.3.0
-  'filename_how' => 'Höjjet nami qandaq özgertilidu.',
-  'filename_remove' => 'Esli .jpg öchürülüp _ (underscore) gha özgertilidu.',
-  'filename_euro' => 'Bu 2003_11_23_13_20_20.jpg gha özgertilidu 23/11/2003 13:20',
-  'filename_us' => 'Bu 2003_11_23_13_20_20.jpg gha özgertilidu 11/23/2003 13:20',
-  'filename_time' => 'Bu 2003_11_23_13_20_20.jpg gha özgertilidu 13:20',
-  'delete' => 'Höjjet münderijisi yaki ölchimini öchürüsh', //cpg1.3.0
-  'delete_title' => 'Höjjet munderijisini öchürüsh.', //cpg1.3.0
-  'delete_original' => 'Esli ölchemdiki resimni öchürüsh',
-  'delete_replace' => 'Eslidiki ölchem öchürülüp yéngi ölchem qollinilsun.',
-  'select_album' => 'Albüm tallash',
-  'delete_orphans' => 'Parche_purat Sözlerni öchürüsh(Hemme albümdiki)', //cpg1.3.0
-  'orphan_comment' => 'Parche_purat Sözler bayqaldi.', //cpg1.3.0
-  'delete' => 'öcher', //cpg1.3.0
-  'delete_all' => 'Hemmini öcher', //cpg1.3.0
-  'comment' => 'Söz qaldurung: ', //cpg1.3.0
+  'update_both' => 'Kichiklitilme resim hem Ã¶lchimini yÃ©ngilash.',
+  'update_number' => 'Her chÃ©kilgende resim sanini belgilesh',
+  'update_option' => '(Eger programma ijrasida mesile kÃ¶rÃ¼lse, Tengshekni tÃ¶wenliting.)',
+  'filename_title' => 'HÃ¶jjet nami &rArr; HÃ¶jjet ', //cpg1.3.0
+  'filename_how' => 'HÃ¶jjet nami qandaq Ã¶zgertilidu.',
+  'filename_remove' => 'Esli .jpg Ã¶chÃ¼rÃ¼lÃ¼p _ (underscore) gha Ã¶zgertilidu.',
+  'filename_euro' => 'Bu 2003_11_23_13_20_20.jpg gha Ã¶zgertilidu 23/11/2003 13:20',
+  'filename_us' => 'Bu 2003_11_23_13_20_20.jpg gha Ã¶zgertilidu 11/23/2003 13:20',
+  'filename_time' => 'Bu 2003_11_23_13_20_20.jpg gha Ã¶zgertilidu 13:20',
+  'delete' => 'HÃ¶jjet mÃ¼nderijisi yaki Ã¶lchimini Ã¶chÃ¼rÃ¼sh', //cpg1.3.0
+  'delete_title' => 'HÃ¶jjet munderijisini Ã¶chÃ¼rÃ¼sh.', //cpg1.3.0
+  'delete_original' => 'Esli Ã¶lchemdiki resimni Ã¶chÃ¼rÃ¼sh',
+  'delete_replace' => 'Eslidiki Ã¶lchem Ã¶chÃ¼rÃ¼lÃ¼p yÃ©ngi Ã¶lchem qollinilsun.',
+  'select_album' => 'AlbÃ¼m tallash',
+  'delete_orphans' => 'Parche_purat SÃ¶zlerni Ã¶chÃ¼rÃ¼sh(Hemme albÃ¼mdiki)', //cpg1.3.0
+  'orphan_comment' => 'Parche_purat SÃ¶zler bayqaldi.', //cpg1.3.0
+  'delete' => 'Ã¶cher', //cpg1.3.0
+  'delete_all' => 'Hemmini Ã¶cher', //cpg1.3.0
+  'comment' => 'SÃ¶z qaldurung: ', //cpg1.3.0
   'nonexist' => 'Qoshumche qoshulma yoq # ', //cpg1.3.0
-  'phpinfo' => 'php uchurini körsitish', //cpg1.3.0
-  'update_db' => 'San ambirini yéngilash', //cpg1.3.0
-  'update_db_explanation' => 'coppermine ning arxipini yéngilimaq bolsingiz, özgertish yaki neshirini yéngilimaq bolsingiz, Matiryal ambirini yéngilashni ijra qiling. shundila coppermine ning matiryal ambirigha yéngidin jedwel qoshulidu. yaki Tengshilidu.', //cpg1.3.0
+  'phpinfo' => 'php uchurini kÃ¶rsitish', //cpg1.3.0
+  'update_db' => 'San ambirini yÃ©ngilash', //cpg1.3.0
+  'update_db_explanation' => 'coppermine ning arxipini yÃ©ngilimaq bolsingiz, Ã¶zgertish yaki neshirini yÃ©ngilimaq bolsingiz, Matiryal ambirini yÃ©ngilashni ijra qiling. shundila coppermine ning matiryal ambirigha yÃ©ngidin jedwel qoshulidu. yaki Tengshilidu.', //cpg1.3.0
 );
 
 ?>

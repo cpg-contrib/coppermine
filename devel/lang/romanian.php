@@ -1,26 +1,29 @@
 <?php
-// ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.4.0                                            //
-// ------------------------------------------------------------------------- //
-// Copyright (C) 2002-2004 Gregory DEMAR                                     //
-// http://www.chezgreg.net/coppermine/                                       //
-// ------------------------------------------------------------------------- //
-// Updated by the Coppermine Dev Team                                        //
-// (http://coppermine.sf.net/team/)                                          //
-// see /docs/credits.html for details                                        //
-// ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2005 Coppermine Dev Team
+  v1.1 originally written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  ********************************************
+  Coppermine version: 1.4.1
+  $Source$
+  $Revision$
+  $Author$
+  $Date$
+**********************************************/
 // ------------------------------------------------------------------------- //
 // $Id$
 // ------------------------------------------------------------------------- //
 
-// informaşii despre traducere ºi traducãtor
+// informaÅ£ii despre traducere ÅŸi traducÄƒtor
 $lang_translation_info = array(
         'lang_name_english' => 'Romanian',
-        'lang_name_native' => 'Românã',
+        'lang_name_native' => 'RomÃ¢nÄƒ',
         'lang_country_code' => 'ro',
         'trans_name'=> 'Adrian Stan',
         'trans_email' => 'adi.stan@gmail.com',
@@ -31,19 +34,19 @@ $lang_translation_info = array(
 $lang_charset = 'iso-8859-2';
 $lang_text_dir = 'ltr'; // ('ltr' stanga la dreapta, 'rtl' dreapta la stanga)
 
-// prescurtãri pentru Byte, Kilo, Mega
+// prescurtÄƒri pentru Byte, Kilo, Mega
 $lang_byte_units = array('Bytes', 'KB', 'MB');
 
-// zilele sãptãmânii ºi ale lunii
-$lang_day_of_week = array('Du', 'Lu', 'Ma', 'Mi', 'Joi', 'Vi', 'Sâ');
+// zilele sÄƒptÄƒmÃ¢nii ÅŸi ale lunii
+$lang_day_of_week = array('Du', 'Lu', 'Ma', 'Mi', 'Joi', 'Vi', 'SÃ¢');
 $lang_month = array('Ian', 'Feb', 'Mar', 'Apr', 'Mai', 'Iun', 'Iul', 'Aug', 'Sep', 'Oct', 'Noi', 'Dec');
 
 // Comune
 $lang_yes = 'Da';
 $lang_no  = 'Nu';
-$lang_back = 'Înapoi';
-$lang_continue = 'Continuã';
-$lang_info = 'Informaşii';
+$lang_back = 'Ãnapoi';
+$lang_continue = 'ContinuÄƒ';
+$lang_info = 'InformaÅ£ii';
 $lang_error = 'Eroare';
 
 // Data
@@ -55,46 +58,46 @@ $lasthit_date_fmt = '%d %B %Y la %H:%M';
 $comment_date_fmt =  '%d %B %Y la %H:%M';
 
 // Cenzor cuvinte
-$lang_bad_words = array('*fuck*', 'tâmpit', 'tampit', 'cretin', 'idiot', 'muie',  'pizda', 'pizdã', 'pula', 'pulã', 'sugi', 'coaie', 'cur', 'buci', 'cacat', 'cãcat', 'caca', 'pewla', 'fut', 'futai', 'jepat');
+$lang_bad_words = array('*fuck*', 'tÃ¢mpit', 'tampit', 'cretin', 'idiot', 'muie',  'pizda', 'pizdÄƒ', 'pula', 'pulÄƒ', 'sugi', 'coaie', 'cur', 'buci', 'cacat', 'cÄƒcat', 'caca', 'pewla', 'fut', 'futai', 'jepat');
 
 $lang_meta_album_names = array(
         'random' => 'Imagini aleatoare',
-        'lastup' => 'Ultimele adãugate',
+        'lastup' => 'Ultimele adÄƒugate',
         'lastalb'=> 'Ultimele albume modificate',
         'lastcom' => 'Ultimele comentarii',
         'topn' => 'Cele mai vizitate',
         'toprated' => 'Cele mai votate',
         'lasthits' => 'Ultimele vizitate',
-        'search' => 'Rezultatele cãutãrii',
+        'search' => 'Rezultatele cÄƒutÄƒrii',
         'favpics'=> 'Imaginile favorite'
 );
 
 $lang_errors = array(
-        'access_denied' => 'Nu aveşi dreptul sã accesaşi aceasta paginã.',
-        'perm_denied' => 'Nu aveşi dreptul sã efectuaşi aceastã operaşie',
-        'param_missing' => 'Scriptul a fost rulat fãrã parametrul/parametrii necesari.',
-        'non_exist_ap' => 'Albumul/imaginea selectatã nu existã!',
-        'quota_exceeded' => 'Cota dumneavoastrã a fost depaºitã<br /><br />Aveşi o cotã pe disc de [quota]K, pozele dumneavoastrã ocupã acum [space]K, adãugând aceastã imagine veşi depãºi aceastã cotã.',
-        'gd_file_type_err' => 'Când folosişi biblioteca GD tipurile de fiºiere ce le puteşi utiliza sunt doar JPEG ºi PNG.',
-        'invalid_image' => 'Imaginea înregistratã de dumneavoastrã este coruptã sau nu poate fi prelucratã de biblioteca GD',
-        'resize_failed' => 'Nu s-a putut crea pictograma sau imaginea redusã.',
-        'no_img_to_display' => 'Nici o imagine încãrcatã',
-        'non_exist_cat' => 'Categoria selectatã nu existã',
-        'orphan_cat' => 'O categorie are pãrintele inexistent, rulaşi managerul de categorii pentru a corecta problema.',
-        'directory_ro' => 'Directorul \'%s\' nu poate fi scris, imaginile nu pot fi ºterse',
-        'non_exist_comment' => 'Comentariul selectat nu existã.',
-        'pic_in_invalid_album' => 'Imaginea este într-un album inexistent (%s)!?',
-        'banned' => 'Sunteşi exclus de pe aceastã pagina web.',
-        'not_with_udb' => 'Aceasta funcşie este blocatã deoarece este integratã cu programul ce ruleaza forumul. Ce încercaşi sã faceşi ori nu este suportat în aceastã configuraşie, ori funcşia trebuie executatã de programul ce ruleaza forumul.',
+        'access_denied' => 'Nu aveÅ£i dreptul sÄƒ accesaÅ£i aceasta paginÄƒ.',
+        'perm_denied' => 'Nu aveÅ£i dreptul sÄƒ efectuaÅ£i aceastÄƒ operaÅ£ie',
+        'param_missing' => 'Scriptul a fost rulat fÄƒrÄƒ parametrul/parametrii necesari.',
+        'non_exist_ap' => 'Albumul/imaginea selectatÄƒ nu existÄƒ!',
+        'quota_exceeded' => 'Cota dumneavoastrÄƒ a fost depaÅŸitÄƒ<br /><br />AveÅ£i o cotÄƒ pe disc de [quota]K, pozele dumneavoastrÄƒ ocupÄƒ acum [space]K, adÄƒugÃ¢nd aceastÄƒ imagine veÅ£i depÄƒÅŸi aceastÄƒ cotÄƒ.',
+        'gd_file_type_err' => 'CÃ¢nd folosiÅ£i biblioteca GD tipurile de fiÅŸiere ce le puteÅ£i utiliza sunt doar JPEG ÅŸi PNG.',
+        'invalid_image' => 'Imaginea Ã®nregistratÄƒ de dumneavoastrÄƒ este coruptÄƒ sau nu poate fi prelucratÄƒ de biblioteca GD',
+        'resize_failed' => 'Nu s-a putut crea pictograma sau imaginea redusÄƒ.',
+        'no_img_to_display' => 'Nici o imagine Ã®ncÄƒrcatÄƒ',
+        'non_exist_cat' => 'Categoria selectatÄƒ nu existÄƒ',
+        'orphan_cat' => 'O categorie are pÄƒrintele inexistent, rulaÅ£i managerul de categorii pentru a corecta problema.',
+        'directory_ro' => 'Directorul \'%s\' nu poate fi scris, imaginile nu pot fi ÅŸterse',
+        'non_exist_comment' => 'Comentariul selectat nu existÄƒ.',
+        'pic_in_invalid_album' => 'Imaginea este Ã®ntr-un album inexistent (%s)!?',
+        'banned' => 'SunteÅ£i exclus de pe aceastÄƒ pagina web.',
+        'not_with_udb' => 'Aceasta funcÅ£ie este blocatÄƒ deoarece este integratÄƒ cu programul ce ruleaza forumul. Ce Ã®ncercaÅ£i sÄƒ faceÅ£i ori nu este suportat Ã®n aceastÄƒ configuraÅ£ie, ori funcÅ£ia trebuie executatÄƒ de programul ce ruleaza forumul.',
         'offline_title' => 'Offline',
-        'offline_text' => 'Galeria este opritã, vã rugãm sã revenişi peste câteva minute.',
-        'ecards_empty' => 'Nu sunt vederi electonice de vizualizat. Verificaşi dacã aveşi opşiunea pentru vederi electronice activatã.',
-        'action_failed' => 'Acşiune eºuatã. Nu se poate procesa cererea dumneavoastrã.',
-        'no_zip' => 'Librãria pentru fiºiere ZIP nu existã.',
-        'zip_type' => 'Nu aveşi dreptul sã încãrcaşi fiºiere ZIP.',
+        'offline_text' => 'Galeria este opritÄƒ, vÄƒ rugÄƒm sÄƒ reveniÅ£i peste cÃ¢teva minute.',
+        'ecards_empty' => 'Nu sunt vederi electonice de vizualizat. VerificaÅ£i dacÄƒ aveÅ£i opÅ£iunea pentru vederi electronice activatÄƒ.',
+        'action_failed' => 'AcÅ£iune eÅŸuatÄƒ. Nu se poate procesa cererea dumneavoastrÄƒ.',
+        'no_zip' => 'LibrÄƒria pentru fiÅŸiere ZIP nu existÄƒ.',
+        'zip_type' => 'Nu aveÅ£i dreptul sÄƒ Ã®ncÄƒrcaÅ£i fiÅŸiere ZIP.',
 );
 
-$lang_bbcode_help = 'Urmãtoarele coduri vã pot fi utile: <li>[b]<b>Bold</b>[/b]</li> <li>[i]<i>Italic</i>[/i]</li> <li>[url=http://site.ro/]Url Text[/url]</li> <li>[email]user@site.ro[/email]</li>';
+$lang_bbcode_help = 'UrmÄƒtoarele coduri vÄƒ pot fi utile: <li>[b]<b>Bold</b>[/b]</li> <li>[i]<i>Italic</i>[/i]</li> <li>[url=http://site.ro/]Url Text[/url]</li> <li>[email]user@site.ro[/email]</li>';
 
 // ------------------------------------------------------------------------- //
 // theme.php
@@ -106,45 +109,45 @@ $lang_main_menu = array(
         'my_gal_title' => 'Galeria mea',
         'my_gal_lnk' => 'Galeria mea',
         'my_prof_lnk' => 'Profilul meu',
-        'adm_mode_title' => 'Schimbaşi în modul admin',
+        'adm_mode_title' => 'SchimbaÅ£i Ã®n modul admin',
         'adm_mode_lnk' => 'Mod admin',
-        'usr_mode_title' => 'Schimbaşi în modul utilizator',
+        'usr_mode_title' => 'SchimbaÅ£i Ã®n modul utilizator',
         'usr_mode_lnk' => 'Mod utilizator',
-        'upload_pic_title' => 'Încãrcaşi imagine',
-        'upload_pic_lnk' => 'Încãrcaşi imagine',
-        'register_title' => 'Creaşi un cont',
-        'register_lnk' => 'Înregistrare',
+        'upload_pic_title' => 'ÃncÄƒrcaÅ£i imagine',
+        'upload_pic_lnk' => 'ÃncÄƒrcaÅ£i imagine',
+        'register_title' => 'CreaÅ£i un cont',
+        'register_lnk' => 'Ãnregistrare',
         'login_lnk' => 'Login',
         'logout_lnk' => 'Logout',
         'lastup_lnk' => 'Ultimele imagini',
         'lastcom_lnk' => 'Ultimele comentarii',
         'topn_lnk' => 'Top vizite',
-        'toprated_lnk' => 'Top votãri',
-        'search_lnk' => 'Cãutare',
+        'toprated_lnk' => 'Top votÄƒri',
+        'search_lnk' => 'CÄƒutare',
         'fav_lnk' => 'Favoritele mele',
         'memberlist_title' => 'Lista membrilor', //cpg1.3.0
         'memberlist_lnk' => 'Membrii', //cpg1.3.0
-        'faq_title' => 'Întrebãri frecvente', //cpg1.3.0
+        'faq_title' => 'ÃntrebÄƒri frecvente', //cpg1.3.0
         'faq_lnk' => 'FAQ', //cpg1.3.0
 );
 
 $lang_gallery_admin_menu = array(
-        'upl_app_lnk' => 'Aprobare înregistrãri',
+        'upl_app_lnk' => 'Aprobare Ã®nregistrÄƒri',
         'config_lnk' => 'Configurare',
         'albums_lnk' => 'Albume',
         'categories_lnk' => 'Categorii',
         'users_lnk' => 'Utilizatori',
         'groups_lnk' => 'Grupuri',
         'comments_lnk' => 'Comentarii',
-        'searchnew_lnk' => 'Adãugaşi imagini FTP',
-        'util_lnk' => 'Redimensionaşi imagini',
-        'ban_lnk' => 'Banaşi utilizatori',
-        'db_ecard_lnk' => 'Aratã vederi electronice', //cpg1.3.0
+        'searchnew_lnk' => 'AdÄƒugaÅ£i imagini FTP',
+        'util_lnk' => 'RedimensionaÅ£i imagini',
+        'ban_lnk' => 'BanaÅ£i utilizatori',
+        'db_ecard_lnk' => 'AratÄƒ vederi electronice', //cpg1.3.0
 );
 
 $lang_user_admin_menu = array(
-        'albmgr_lnk' => 'Creaşi/ordonaşi albumele mele',
-        'modifyalb_lnk' => 'Modificaşi albumele mele',
+        'albmgr_lnk' => 'CreaÅ£i/ordonaÅ£i albumele mele',
+        'modifyalb_lnk' => 'ModificaÅ£i albumele mele',
         'my_prof_lnk' => 'Profilul meu',
 );
 
@@ -161,41 +164,41 @@ $lang_album_list = array(
 $lang_thumb_view = array(
         'date' => 'Data',
         //Sort by filename and title
-        'name' => 'Numele fiºierului',
+        'name' => 'Numele fiÅŸierului',
         'title' => 'Titlul',
-        'sort_da' => 'Sortare dupa datã, ascendent',
-        'sort_dd' => 'Sortare dupa datã, descendent',
+        'sort_da' => 'Sortare dupa datÄƒ, ascendent',
+        'sort_dd' => 'Sortare dupa datÄƒ, descendent',
         'sort_na' => 'Sortare dupa nume, ascendent',
         'sort_nd' => 'Sortare dupa nume, ascendent',
         'sort_ta' => 'Sortare dupa titlu, ascendent',
         'sort_td' => 'Sortare dupa titlu, ascendent',
-        'download_zip' => 'Descarcã ca fiºier ZIP',
+        'download_zip' => 'DescarcÄƒ ca fiÅŸier ZIP',
         'pic_on_page' => '%d imagini pe %d pagini',
         'user_on_page' => '%d utilizatori pe %d pagini'
 );
 
 $lang_img_nav_bar = array(
-        'thumb_title' => 'Înapoi la pagina cu pictograme',
-        'pic_info_title' => 'Afiºare/Ascundere informaşii despre imagine',
+        'thumb_title' => 'Ãnapoi la pagina cu pictograme',
+        'pic_info_title' => 'AfiÅŸare/Ascundere informaÅ£ii despre imagine',
         'slideshow_title' => 'Diaporama',
-        'ecard_title' => 'Trimiteşi aceastã imagine ca vedere electronicã',
+        'ecard_title' => 'TrimiteÅ£i aceastÄƒ imagine ca vedere electronicÄƒ',
         'ecard_disabled' => 'Vederile electronice sunt dezactivate',
-        'ecard_disabled_msg' => 'Nu aveşi permisiunea sã trimiteşi vederi electronice',
-        'prev_title' => 'Vizualizaşi imaginea precedentã',
-        'next_title' => 'Vizualizaşi imaginea urmãtoare',
+        'ecard_disabled_msg' => 'Nu aveÅ£i permisiunea sÄƒ trimiteÅ£i vederi electronice',
+        'prev_title' => 'VizualizaÅ£i imaginea precedentÄƒ',
+        'next_title' => 'VizualizaÅ£i imaginea urmÄƒtoare',
         'pic_pos' => 'Imaginea %s/%s',
 );
 
 $lang_rate_pic = array(
-        'rate_this_pic' => 'Voteazã aceastã imagine ',
-        'no_votes' => '(Nici un vot încã)',
-        'rating' => '(votarea curentã : %s / 5 cu %s voturi)',
-        'rubbish' => 'Nereuºitã',
-        'poor' => 'Slabã',
-        'fair' => 'Acceptabilã',
-        'good' => 'Bunã',
-        'excellent' => 'Excelentã',
-        'great' => 'Nemaipomenitã',
+        'rate_this_pic' => 'VoteazÄƒ aceastÄƒ imagine ',
+        'no_votes' => '(Nici un vot Ã®ncÄƒ)',
+        'rating' => '(votarea curentÄƒ : %s / 5 cu %s voturi)',
+        'rubbish' => 'NereuÅŸitÄƒ',
+        'poor' => 'SlabÄƒ',
+        'fair' => 'AcceptabilÄƒ',
+        'good' => 'BunÄƒ',
+        'excellent' => 'ExcelentÄƒ',
+        'great' => 'NemaipomenitÄƒ',
 );
 
 // ------------------------------------------------------------------------- //
@@ -211,39 +214,39 @@ $lang_rate_pic = array(
 $lang_cpg_die = array(
         INFORMATION => $lang_info,
         ERROR => $lang_error,
-        CRITICAL_ERROR => 'Eroare criticã',
-        'file' => 'Fiºier: ',
+        CRITICAL_ERROR => 'Eroare criticÄƒ',
+        'file' => 'FiÅŸier: ',
         'line' => 'Linia: ',
 );
 
 $lang_display_thumbnails = array(
-        'filename' => 'Nume fiºier : ',
-        'filesize' => 'Mãrime fiºier : ',
+        'filename' => 'Nume fiÅŸier : ',
+        'filesize' => 'MÄƒrime fiÅŸier : ',
         'dimensions' => 'Dimensiuni : ',
-        'date_added' => 'Data adãugãrii : ',
+        'date_added' => 'Data adÄƒugÄƒrii : ',
 );
 
 $lang_get_pic_data = array(
         'n_comments' => '%s comentarii',
-        'n_views' => '%s vizitãri',
+        'n_views' => '%s vizitÄƒri',
         'n_votes' => '(%s voturi)'
 );
 
 $lang_cpg_debug_output = array(
   'debug_info' => 'Debug Info', //cpg1.3.0
-  'select_all' => 'Selecteazã tot', //cpg1.3.0
-  'copy_and_paste_instructions' => 'Dacã dorişi sã ne cereşi ajutorul, copiaşi ºi trimiteşi aceastã eroare în comentariul dumneavostrã. Asiguraşi-vã cã înlocuişi orice parolã din mesajul dumneavostrã cu *** înainte de a trimite.', //cpg1.3.0
-  'phpinfo' => 'Aratã phpinfo', //cpg1.3.0
+  'select_all' => 'SelecteazÄƒ tot', //cpg1.3.0
+  'copy_and_paste_instructions' => 'DacÄƒ doriÅ£i sÄƒ ne cereÅ£i ajutorul, copiaÅ£i ÅŸi trimiteÅ£i aceastÄƒ eroare Ã®n comentariul dumneavostrÄƒ. AsiguraÅ£i-vÄƒ cÄƒ Ã®nlocuiÅ£i orice parolÄƒ din mesajul dumneavostrÄƒ cu *** Ã®nainte de a trimite.', //cpg1.3.0
+  'phpinfo' => 'AratÄƒ phpinfo', //cpg1.3.0
 );
 
 $lang_language_selection = array(
-  'reset_language' => 'Limba predefinitã', //cpg1.3.0
-  'choose_language' => 'Alegeşi limba', //cpg1.3.0
+  'reset_language' => 'Limba predefinitÄƒ', //cpg1.3.0
+  'choose_language' => 'AlegeÅ£i limba', //cpg1.3.0
 );
 
 $lang_theme_selection = array(
-  'reset_theme' => 'Tema predefinitã', //cpg1.3.0
-  'choose_theme' => 'Alegeşi tema', //cpg1.3.0
+  'reset_theme' => 'Tema predefinitÄƒ', //cpg1.3.0
+  'choose_theme' => 'AlegeÅ£i tema', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -264,25 +267,25 @@ $lang_theme_selection = array(
 
 if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
         'Exclamation' => 'Exclamare',
-        'Question' => 'Întrebare',
+        'Question' => 'Ãntrebare',
         'Very Happy' => 'Foarte bucuros',
-        'Smile' => 'Zâmbeºte',
-        'Sad' => 'Supãrat',
+        'Smile' => 'ZÃ¢mbeÅŸte',
+        'Sad' => 'SupÄƒrat',
         'Surprised' => 'Surprins',
-        'Shocked' => 'ªocat',
+        'Shocked' => 'Åocat',
         'Confused' => 'Confuz',
         'Cool' => 'Cool',
-        'Laughing' => 'Râzând',
+        'Laughing' => 'RÃ¢zÃ¢nd',
         'Mad' => 'Nervos',
         'Razz' => 'Razz',
-        'Embarassed' => 'Stânjenit',
-        'Crying or Very sad' => 'Plângând sau foarte supãrat',
-        'Evil or Very Mad' => 'Rãu sau foarte supãrat',
-        'Twisted Evil' => 'Foarte rãu',
+        'Embarassed' => 'StÃ¢njenit',
+        'Crying or Very sad' => 'PlÃ¢ngÃ¢nd sau foarte supÄƒrat',
+        'Evil or Very Mad' => 'RÄƒu sau foarte supÄƒrat',
+        'Twisted Evil' => 'Foarte rÄƒu',
         'Rolling Eyes' => 'Rostogolind ochii',
-        'Wink' => 'Clipeºte',
+        'Wink' => 'ClipeÅŸte',
         'Idea' => 'Idee',
-        'Arrow' => 'Sãgeatã',
+        'Arrow' => 'SÄƒgeatÄƒ',
         'Neutral' => 'Neutru',
         'Mr. Green' => 'Dl. Verde',
 );
@@ -298,8 +301,8 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ADMIN_PHP')) $lang_admin_php = array(
-        0 => 'Pãrãseºte modul administrator...',
-        1 => 'Intrã în modul administrator...',
+        0 => 'PÄƒrÄƒseÅŸte modul administrator...',
+        1 => 'IntrÄƒ Ã®n modul administrator...',
 );
 
 // ------------------------------------------------------------------------- //
@@ -307,20 +310,20 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
-        'alb_need_name' => 'Albumele trebuie sã aibã un nume!',
-        'confirm_modifs' => 'Sunteşi sigur cã vreşi sã faceşi aceste modificãri?',
-        'no_change' => 'Nu aşi fãcut nici o modificare!',
+        'alb_need_name' => 'Albumele trebuie sÄƒ aibÄƒ un nume!',
+        'confirm_modifs' => 'SunteÅ£i sigur cÄƒ vreÅ£i sÄƒ faceÅ£i aceste modificÄƒri?',
+        'no_change' => 'Nu aÅ£i fÄƒcut nici o modificare!',
         'new_album' => 'Album nou',
-        'confirm_delete1' => 'Sunteşi sigur cã vreşi sa ºtergeşi acest album?',
-        'confirm_delete2' => '\nToate imaginile ºi comentariile conşinute vor fi pierdute!',
-        'select_first' => 'Selectaşi un album înainte',
+        'confirm_delete1' => 'SunteÅ£i sigur cÄƒ vreÅ£i sa ÅŸtergeÅ£i acest album?',
+        'confirm_delete2' => '\nToate imaginile ÅŸi comentariile conÅ£inute vor fi pierdute!',
+        'select_first' => 'SelectaÅ£i un album Ã®nainte',
         'alb_mrg' => 'Managerul de albume',
         'my_gallery' => '* Galeria mea *',
         'no_category' => '* Nici o categorie *',
-        'delete' => 'ªterge',
+        'delete' => 'Återge',
         'new' => 'Nou',
-        'apply_modifs' => 'Efectuaşi modificãrile',
-        'select_category' => 'Selectaşi o categorie',
+        'apply_modifs' => 'EfectuaÅ£i modificÄƒrile',
+        'select_category' => 'SelectaÅ£i o categorie',
 );
 
 // ------------------------------------------------------------------------- //
@@ -328,16 +331,16 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
-        'miss_param' => 'Parametrii necesari pentru operaşia \'%s\' nu au fost stabilişi!',
-        'unknown_cat' => 'Categoria selectatã nu existã în baza de date',
-        'usergal_cat_ro' => 'Categoria Galeria Utilizatorului nu poate fi ºtearsã!',
-        'manage_cat' => 'Administraşi categoriile',
-        'confirm_delete' => 'Sunteşi sigur cã dorişi sã ºtergeşi aceastã categorie?',
+        'miss_param' => 'Parametrii necesari pentru operaÅ£ia \'%s\' nu au fost stabiliÅ£i!',
+        'unknown_cat' => 'Categoria selectatÄƒ nu existÄƒ Ã®n baza de date',
+        'usergal_cat_ro' => 'Categoria Galeria Utilizatorului nu poate fi ÅŸtearsÄƒ!',
+        'manage_cat' => 'AdministraÅ£i categoriile',
+        'confirm_delete' => 'SunteÅ£i sigur cÄƒ doriÅ£i sÄƒ ÅŸtergeÅ£i aceastÄƒ categorie?',
         'category' => 'Categorie',
-        'operations' => 'Operaşii',
-        'move_into' => 'Mutaşi în',
-        'update_create' => 'Modificaşi/Creaşi o categorie',
-        'parent_cat' => 'Categoria pãrinte',
+        'operations' => 'OperaÅ£ii',
+        'move_into' => 'MutaÅ£i Ã®n',
+        'update_create' => 'ModificaÅ£i/CreaÅ£i o categorie',
+        'parent_cat' => 'Categoria pÄƒrinte',
         'cat_title' => 'Titlul categoriei',
         'cat_thumb' => 'Categoria pictogramei', //cpg1.3.0
         'cat_desc' => 'Descrierea categoriei'
@@ -349,107 +352,107 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
 
 if (defined('CONFIG_PHP')) $lang_config_php = array(
         'title' => 'Configurare',
-        'restore_cfg' => 'Revenişi la setãrile predefinite',
-        'save_cfg' => 'Salvaşi noua configuraşie',
+        'restore_cfg' => 'ReveniÅ£i la setÄƒrile predefinite',
+        'save_cfg' => 'SalvaÅ£i noua configuraÅ£ie',
         'notes' => 'Note',
-        'info' => 'Informaşii',
-        'upd_success' => 'Configuraşia a fost modificatã',
-        'restore_success' => 'Configuraşia predefinitã a fost restabilitã',
+        'info' => 'InformaÅ£ii',
+        'upd_success' => 'ConfiguraÅ£ia a fost modificatÄƒ',
+        'restore_success' => 'ConfiguraÅ£ia predefinitÄƒ a fost restabilitÄƒ',
         'name_a' => 'Nume ascendent',
         'name_d' => 'Nume descendent',
         'title_a' => 'Titlu ascendent',
         'title_d' => 'Titlu descendent',
-        'date_a' => 'Datã ascendentã',
-        'date_d' => 'Datã descendentã',
+        'date_a' => 'DatÄƒ ascendentÄƒ',
+        'date_d' => 'DatÄƒ descendentÄƒ',
         'th_any' => 'Aspect maxim',
-        'th_ht' => 'Înãlşime',
-        'th_wd' => 'Lãşime',
-        'label' => 'etichetã', //cpg1.3.0
+        'th_ht' => 'ÃnÄƒlÅ£ime',
+        'th_wd' => 'LÄƒÅ£ime',
+        'label' => 'etichetÄƒ', //cpg1.3.0
         'item' => 'articol', //cpg1.3.0
         'debug_everyone' => 'Oricine', //cpg1.3.0
         'debug_admin' => 'Doar administratorul', //cpg1.3.0
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
-        'Setãri generale',
+        'SetÄƒri generale',
         array('Numele galeriei', 'gallery_name', 0),
         array('Descrierea galeriei', 'gallery_description', 0),
         array('Adresa e-mail a administratorului', 'gallery_admin_email', 0),
-        array('Adresa pentru conexiunea \'Mai multe imagini la\' în vederile electronice', 'ecards_more_pic_target', 0),
-        array('Galerie opritã', 'offline', 1), //cpg1.3.0
+        array('Adresa pentru conexiunea \'Mai multe imagini la\' Ã®n vederile electronice', 'ecards_more_pic_target', 0),
+        array('Galerie opritÄƒ', 'offline', 1), //cpg1.3.0
         array('Log vederi electronice', 'log_ecards', 1), //cpg1.3.0
-        array('Permite descãrcarea favoritelor ca fiºier ZIP', 'enable_zipdownload', 1), //cpg1.3.0
+        array('Permite descÄƒrcarea favoritelor ca fiÅŸier ZIP', 'enable_zipdownload', 1), //cpg1.3.0
 
-        'Limba, Teme &amp; Setãri caractere',
+        'Limba, Teme &amp; SetÄƒri caractere',
         array('Limba', 'lang', 5),
         array('Tema', 'theme', 6),
-        array('Aratã lista limbilor', 'language_list', 1), //cpg1.3.0
-        array('Aratã steagurile limbilor', 'language_flags', 8), //cpg1.3.0
-        array('Aratã opşiunea &quot;reseteazã&quot; în secşiunea limbilor', 'language_reset', 1), //cpg1.3.0
-        array('Aratã lista temelor', 'theme_list', 1), //cpg1.3.0
-        array('Aratã opşiunea &quot;reseteazã&quot; în secşiunea temelor', 'theme_reset', 1), //cpg1.3.0
-        array('Aratã FAQ', 'display_faq', 1), //cpg1.3.0
-        array('Aratã ajutor bbcode', 'show_bbcode_help', 1), //cpg1.3.0
+        array('AratÄƒ lista limbilor', 'language_list', 1), //cpg1.3.0
+        array('AratÄƒ steagurile limbilor', 'language_flags', 8), //cpg1.3.0
+        array('AratÄƒ opÅ£iunea &quot;reseteazÄƒ&quot; Ã®n secÅ£iunea limbilor', 'language_reset', 1), //cpg1.3.0
+        array('AratÄƒ lista temelor', 'theme_list', 1), //cpg1.3.0
+        array('AratÄƒ opÅ£iunea &quot;reseteazÄƒ&quot; Ã®n secÅ£iunea temelor', 'theme_reset', 1), //cpg1.3.0
+        array('AratÄƒ FAQ', 'display_faq', 1), //cpg1.3.0
+        array('AratÄƒ ajutor bbcode', 'show_bbcode_help', 1), //cpg1.3.0
         array('Caracter', 'charset', 4), //cpg1.3.0
 
         'Lista cu albume',
-        array('Lãşimea tabelului principal (pixeli sau %)', 'main_table_width', 0),
-        array('Numãrul de nivele de categorii care sã fie afiºate', 'subcat_level', 0),
-        array('Numãrul albumelor ce vor fi afiºate', 'albums_per_page', 0),
-        array('Numãrul de coloane în lista de albume', 'album_list_cols', 0),
-        array('Dimensiunea pictogramelor în pixeli', 'alb_list_thumb_size', 0),
-        array('Conşinutul paginii principale', 'main_page_layout', 0),
-        array('Afiºeazã pictogramele albumelor din primul nivel în categorii','first_level',1),
+        array('LÄƒÅ£imea tabelului principal (pixeli sau %)', 'main_table_width', 0),
+        array('NumÄƒrul de nivele de categorii care sÄƒ fie afiÅŸate', 'subcat_level', 0),
+        array('NumÄƒrul albumelor ce vor fi afiÅŸate', 'albums_per_page', 0),
+        array('NumÄƒrul de coloane Ã®n lista de albume', 'album_list_cols', 0),
+        array('Dimensiunea pictogramelor Ã®n pixeli', 'alb_list_thumb_size', 0),
+        array('ConÅ£inutul paginii principale', 'main_page_layout', 0),
+        array('AfiÅŸeazÄƒ pictogramele albumelor din primul nivel Ã®n categorii','first_level',1),
 
         'Pictograme',
-        array('Numãrul de coloane pe pagina cu pictograme', 'thumbcols', 0),
-        array('Numãrul de rânduri pe pagina cu pictograme', 'thumbrows', 0),
-        array('Numarul maxim de taburi ce vor fi afiºate', 'max_tabs', 0),
-        array('Afiºeazã descrierea imaginii (pe lângã titlu) sub pictogramã', 'caption_in_thumbview', 1),
-        array('Afiºeazã numãrul de vizualizari sub pictogramã', 'views_in_thumbview', 1), //cpg1.3.0
-        array('Afiºeazã numãrul de comentarii sub pictogramã', 'display_comment_count', 1),
-        array('Afiºeazã numele utilizatorului sub pictogramã', 'display_uploader', 1), //cpg1.3.0
-        array('Ordinea de sortare a imaginilor predefinitã', 'default_sort_order', 3),
-        array('Numãrul minim de voturi pentru ca o imagine sã aparã în lista \'Cele mai votate\' ', 'min_votes_for_rating', 0),
+        array('NumÄƒrul de coloane pe pagina cu pictograme', 'thumbcols', 0),
+        array('NumÄƒrul de rÃ¢nduri pe pagina cu pictograme', 'thumbrows', 0),
+        array('Numarul maxim de taburi ce vor fi afiÅŸate', 'max_tabs', 0),
+        array('AfiÅŸeazÄƒ descrierea imaginii (pe lÃ¢ngÄƒ titlu) sub pictogramÄƒ', 'caption_in_thumbview', 1),
+        array('AfiÅŸeazÄƒ numÄƒrul de vizualizari sub pictogramÄƒ', 'views_in_thumbview', 1), //cpg1.3.0
+        array('AfiÅŸeazÄƒ numÄƒrul de comentarii sub pictogramÄƒ', 'display_comment_count', 1),
+        array('AfiÅŸeazÄƒ numele utilizatorului sub pictogramÄƒ', 'display_uploader', 1), //cpg1.3.0
+        array('Ordinea de sortare a imaginilor predefinitÄƒ', 'default_sort_order', 3),
+        array('NumÄƒrul minim de voturi pentru ca o imagine sÄƒ aparÄƒ Ã®n lista \'Cele mai votate\' ', 'min_votes_for_rating', 0),
 
-        'Afiºarea imaginii &amp; setãrile comentariilor',
-        array('Lãşimea tabelului pentru afiºarea imaginii (pixeli sau %)', 'picture_table_width', 0),
-        array('Informaşiile despre imagine sunt vizibile în mod predefinit', 'display_pic_info', 1),
-        array('Filtraşi cuvintele urâte în comentarii', 'filter_bad_words', 1),
-        array('Activeazã zâmbetele în comentarii', 'enable_smilies', 1),
-        array('Permite comentarii consecutive de la acelaºi utilizator', 'disable_comment_flood_protect', 1), //cpg1.3.0
-        array('Lungimea maximã a descrierii imaginii', 'max_img_desc_length', 0),
-        array('Numãrul maxim de caractere într-un cuvânt', 'max_com_wlength', 0),
-        array('Numãrul maxim de linii într-un comentariu', 'max_com_lines', 0),
-        array('Lungimea maximã a unui comentariu', 'max_com_size', 0),
-        array('Afiºeazã rama film', 'display_film_strip', 1),
-        array('Numãrul de obiecte în rama film', 'max_film_strip_items', 0),
-        array('Notificã administratorul despre comentarii prin email', 'email_comment_notification', 1), //cpg1.3.0
-        array('Intervalul diaporamei în milisecunde (1 secundã = 1000 milisecunde)', 'slideshow_interval', 0), //cpg1.3.0
+        'AfiÅŸarea imaginii &amp; setÄƒrile comentariilor',
+        array('LÄƒÅ£imea tabelului pentru afiÅŸarea imaginii (pixeli sau %)', 'picture_table_width', 0),
+        array('InformaÅ£iile despre imagine sunt vizibile Ã®n mod predefinit', 'display_pic_info', 1),
+        array('FiltraÅ£i cuvintele urÃ¢te Ã®n comentarii', 'filter_bad_words', 1),
+        array('ActiveazÄƒ zÃ¢mbetele Ã®n comentarii', 'enable_smilies', 1),
+        array('Permite comentarii consecutive de la acelaÅŸi utilizator', 'disable_comment_flood_protect', 1), //cpg1.3.0
+        array('Lungimea maximÄƒ a descrierii imaginii', 'max_img_desc_length', 0),
+        array('NumÄƒrul maxim de caractere Ã®ntr-un cuvÃ¢nt', 'max_com_wlength', 0),
+        array('NumÄƒrul maxim de linii Ã®ntr-un comentariu', 'max_com_lines', 0),
+        array('Lungimea maximÄƒ a unui comentariu', 'max_com_size', 0),
+        array('AfiÅŸeazÄƒ rama film', 'display_film_strip', 1),
+        array('NumÄƒrul de obiecte Ã®n rama film', 'max_film_strip_items', 0),
+        array('NotificÄƒ administratorul despre comentarii prin email', 'email_comment_notification', 1), //cpg1.3.0
+        array('Intervalul diaporamei Ã®n milisecunde (1 secundÄƒ = 1000 milisecunde)', 'slideshow_interval', 0), //cpg1.3.0
 
-        'Setãri pentru imagini ºi pictograme',
-        array('Calitatea fiºierelor JPEG', 'jpeg_qual', 0),
-        array('Dimensiunea maximã a unei pictograme <a href="#notice2"  class="clickable_option">**</a>', 'thumb_width', 0), //cpg1.3.0
-        array('Utilizaşi dimensiunea (lãşime sau înãlşime sau aspectul maxim pentru pictogramã )<b>**</b>', 'thumb_use', 7),
-        array('Creazã imagini intermediare','make_intermediate',1),
-        array('Lãşimea sau înãlşimea maximã a unei imagini intermediare <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0), //cpg1.3.0
-        array('Dimensiunea maximã a unei imagini (KB)', 'max_upl_size', 0),
-        array('Lãşimeã sau înãlşimea maximã a imaginilor încãrcate (pixeli)', 'max_upl_width_height', 0),
+        'SetÄƒri pentru imagini ÅŸi pictograme',
+        array('Calitatea fiÅŸierelor JPEG', 'jpeg_qual', 0),
+        array('Dimensiunea maximÄƒ a unei pictograme <a href="#notice2"  class="clickable_option">**</a>', 'thumb_width', 0), //cpg1.3.0
+        array('UtilizaÅ£i dimensiunea (lÄƒÅ£ime sau Ã®nÄƒlÅ£ime sau aspectul maxim pentru pictogramÄƒ )<b>**</b>', 'thumb_use', 7),
+        array('CreazÄƒ imagini intermediare','make_intermediate',1),
+        array('LÄƒÅ£imea sau Ã®nÄƒlÅ£imea maximÄƒ a unei imagini intermediare <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0), //cpg1.3.0
+        array('Dimensiunea maximÄƒ a unei imagini (KB)', 'max_upl_size', 0),
+        array('LÄƒÅ£imeÄƒ sau Ã®nÄƒlÅ£imea maximÄƒ a imaginilor Ã®ncÄƒrcate (pixeli)', 'max_upl_width_height', 0),
 
-        'Setãri avansate pentru imagini si pictograme', //cpg1.3.0
-        array('Afiºeazã icoana Privat utilizatorilor neînregistraşi','show_private',1), //cpg1.3.0
-        array('Caractere interzise în numele de fiºiere', 'forbiden_fname_char',0), //cpg1.3.0
-        array('Extensii acceptate pentru fiºierele încãrcate', 'allowed_file_extensions',0), //cpg1.3.0
+        'SetÄƒri avansate pentru imagini si pictograme', //cpg1.3.0
+        array('AfiÅŸeazÄƒ icoana Privat utilizatorilor neÃ®nregistraÅ£i','show_private',1), //cpg1.3.0
+        array('Caractere interzise Ã®n numele de fiÅŸiere', 'forbiden_fname_char',0), //cpg1.3.0
+        array('Extensii acceptate pentru fiÅŸierele Ã®ncÄƒrcate', 'allowed_file_extensions',0), //cpg1.3.0
         array('Tipuri de imagini permise', 'allowed_img_types',0), //cpg1.3.0
         array('Tipuri de video permise', 'allowed_mov_types',0), //cpg1.3.0
         array('Tipuri de audio permise', 'allowed_snd_types',0), //cpg1.3.0
         array('Tipuri de documente permise', 'allowed_doc_types',0), //cpg1.3.0
         array('Metoda de redimensionare a imaginilor','thumb_method',2), //cpg1.3.0
-        array('Calea cãtre utilitarul \'convert\' al lui ImageMagick)', 'impath', 0), //cpg1.3.0
+        array('Calea cÄƒtre utilitarul \'convert\' al lui ImageMagick)', 'impath', 0), //cpg1.3.0
         array('Tipuri de imagini permise (valid doar pentru ImageMagick)', 'allowed_img_types',0), //cpg1.3.0
-        array('Opşiuni în linie de comandã pentru ImageMagick', 'im_options', 0), //cpg1.3.0
-        array('Citeºte informaşiile EXIF din fiºierele JPEG', 'read_exif_data', 1), //cpg1.3.0
-        array('Citeºte informaşiile IPTC din fiºierele JPEG', 'read_iptc_data', 1), //cpg1.3.0
+        array('OpÅ£iuni Ã®n linie de comandÄƒ pentru ImageMagick', 'im_options', 0), //cpg1.3.0
+        array('CiteÅŸte informaÅ£iile EXIF din fiÅŸierele JPEG', 'read_exif_data', 1), //cpg1.3.0
+        array('CiteÅŸte informaÅ£iile IPTC din fiÅŸierele JPEG', 'read_iptc_data', 1), //cpg1.3.0
         array('Directorul cu albume <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0), //cpg1.3.0
         array('Directorul pentru imaginile utilizatorilor <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0), //cpg1.3.0
         array('Prefixul pentru imaginile intermediare <a href="#notice1" class="clickable_option">*</a>', 'normal_pfx', 0), //cpg1.3.0
@@ -457,30 +460,30 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Modul predefinit al directoarelor', 'default_dir_mode', 0), //cpg1.3.0
         array('Modul predefinit al imaginilor', 'default_file_mode', 0), //cpg1.3.0
 
-        'Setãri pentru utilizatori',
-        array('Permiteşi înregistrarea de noi utilizatori', 'allow_user_registration', 1),
-        array('Înregistrarea utilizatorilor necesitã înregistrarea prin e-mail', 'reg_requires_valid_email', 1),
-        array('Notificã administratorul de înregistrarea utilizatorilor prin email', 'reg_notify_admin_email', 1), //cpg1.3.0
-        array('Permite ca doi utilizatori sã poatã avea aceeaºi adresa e-mail', 'allow_duplicate_emails_addr', 1),
-        array('Utilizatorii pot avea albume private (Notã: dacã treceşi de la \'da\' la \'nu\' toate albumele personale curente vor deveni publice)', 'allow_private_albums', 1), //cpg1.3.0
-        array('Notificã administratorul de aºteptarea aprobãrii încarcãrii imaginilor', 'upl_notify_admin_email', 1), //cpg1.3.0
-        array('Permite utilizatorilor înregistraşi sã vadã lista membrilor', 'allow_memberlist', 1), //cpg1.3.0
+        'SetÄƒri pentru utilizatori',
+        array('PermiteÅ£i Ã®nregistrarea de noi utilizatori', 'allow_user_registration', 1),
+        array('Ãnregistrarea utilizatorilor necesitÄƒ Ã®nregistrarea prin e-mail', 'reg_requires_valid_email', 1),
+        array('NotificÄƒ administratorul de Ã®nregistrarea utilizatorilor prin email', 'reg_notify_admin_email', 1), //cpg1.3.0
+        array('Permite ca doi utilizatori sÄƒ poatÄƒ avea aceeaÅŸi adresa e-mail', 'allow_duplicate_emails_addr', 1),
+        array('Utilizatorii pot avea albume private (NotÄƒ: dacÄƒ treceÅ£i de la \'da\' la \'nu\' toate albumele personale curente vor deveni publice)', 'allow_private_albums', 1), //cpg1.3.0
+        array('NotificÄƒ administratorul de aÅŸteptarea aprobÄƒrii Ã®ncarcÄƒrii imaginilor', 'upl_notify_admin_email', 1), //cpg1.3.0
+        array('Permite utilizatorilor Ã®nregistraÅ£i sÄƒ vadÄƒ lista membrilor', 'allow_memberlist', 1), //cpg1.3.0
 
-        'Descrierea câmpurilor adişionale (lãsaşi necompletat dacã nu le utilizaşi)',
-        array('Numele câmpului 1', 'user_field1_name', 0),
-        array('Numele câmpului 2', 'user_field2_name', 0),
-        array('Numele câmpului 3', 'user_field3_name', 0),
-        array('Numele câmpului 4', 'user_field4_name', 0),
+        'Descrierea cÃ¢mpurilor adiÅ£ionale (lÄƒsaÅ£i necompletat dacÄƒ nu le utilizaÅ£i)',
+        array('Numele cÃ¢mpului 1', 'user_field1_name', 0),
+        array('Numele cÃ¢mpului 2', 'user_field2_name', 0),
+        array('Numele cÃ¢mpului 3', 'user_field3_name', 0),
+        array('Numele cÃ¢mpului 4', 'user_field4_name', 0),
 
-        'Setãri cookie-uri',
+        'SetÄƒri cookie-uri',
         array('Numele cookie-ului utilizat de script', 'cookie_name', 0),
         array('Calea cookie-ului utilizat de script', 'cookie_path', 0),
 
-        'Setãri',
-        array('Activeazã modul debug', 'debug_mode', 9), //cpg1.3.0
-        array('Aratã note în modul debug', 'debug_notice', 1), //cpg1.3.0
-         '<br /><div align="left"><a name="notice1"></a>(*) Câmpurile marcate cu * nu trebuie modificate dacã aveşi deja imagini în galeria dvs.<br />
-        <a name="notice2"></a>(**) Când schimbaşi setarea aceasta, doar fiºierele introduse dupã acest moment vor fi afectate, ºi de aceea nu este recomandat sã efectuaşi aceste modificãri dacã sunt imagini în galerie. Puteşi efectua modificãrile ºi asupra fiºierelor existente cu &quot;<a href="util.php">utilitar administrator</a>&quot; utilitar din menu-ul administratorului.</div><br />', //cpg1.3.0
+        'SetÄƒri',
+        array('ActiveazÄƒ modul debug', 'debug_mode', 9), //cpg1.3.0
+        array('AratÄƒ note Ã®n modul debug', 'debug_notice', 1), //cpg1.3.0
+         '<br /><div align="left"><a name="notice1"></a>(*) CÃ¢mpurile marcate cu * nu trebuie modificate dacÄƒ aveÅ£i deja imagini Ã®n galeria dvs.<br />
+        <a name="notice2"></a>(**) CÃ¢nd schimbaÅ£i setarea aceasta, doar fiÅŸierele introduse dupÄƒ acest moment vor fi afectate, ÅŸi de aceea nu este recomandat sÄƒ efectuaÅ£i aceste modificÄƒri dacÄƒ sunt imagini Ã®n galerie. PuteÅ£i efectua modificÄƒrile ÅŸi asupra fiÅŸierelor existente cu &quot;<a href="util.php">utilitar administrator</a>&quot; utilitar din menu-ul administratorului.</div><br />', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -492,26 +495,26 @@ if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
   'ecard_sender' => 'Expeditor', //cpg1.3.0
   'ecard_recipient' => 'Destinatar', //cpg1.3.0
   'ecard_date' => 'Data', //cpg1.3.0
-  'ecard_display' => 'Aratã vederea', //cpg1.3.0
+  'ecard_display' => 'AratÄƒ vederea', //cpg1.3.0
   'ecard_name' => 'Nume', //cpg1.3.0
   'ecard_email' => 'email', //cpg1.3.0
   'ecard_ip' => 'IP #', //cpg1.3.0
-  'ecard_ascending' => 'crescãtor', //cpg1.3.0
-  'ecard_descending' => 'descrescãtor', //cpg1.3.0
+  'ecard_ascending' => 'crescÄƒtor', //cpg1.3.0
+  'ecard_descending' => 'descrescÄƒtor', //cpg1.3.0
   'ecard_sorted' => 'Sortare', //cpg1.3.0
-  'ecard_by_date' => 'dupã datã', //cpg1.3.0
-  'ecard_by_sender_name' => 'dupã numele expeditorului', //cpg1.3.0
-  'ecard_by_sender_email' => 'dupã email-ul expeditorului', //cpg1.3.0
-  'ecard_by_sender_ip' => 'dupã IP-ul expeditorului', //cpg1.3.0
-  'ecard_by_recipient_name' => 'dupã numele destinatarului', //cpg1.3.0
-  'ecard_by_recipient_email' => 'dupã email-ul destinatarului', //cpg1.3.0
-  'ecard_number' => 'aratã înregistrãri %s to %s of %s', //cpg1.3.0
+  'ecard_by_date' => 'dupÄƒ datÄƒ', //cpg1.3.0
+  'ecard_by_sender_name' => 'dupÄƒ numele expeditorului', //cpg1.3.0
+  'ecard_by_sender_email' => 'dupÄƒ email-ul expeditorului', //cpg1.3.0
+  'ecard_by_sender_ip' => 'dupÄƒ IP-ul expeditorului', //cpg1.3.0
+  'ecard_by_recipient_name' => 'dupÄƒ numele destinatarului', //cpg1.3.0
+  'ecard_by_recipient_email' => 'dupÄƒ email-ul destinatarului', //cpg1.3.0
+  'ecard_number' => 'aratÄƒ Ã®nregistrÄƒri %s to %s of %s', //cpg1.3.0
   'ecard_goto_page' => 'mergi la pagina', //cpg1.3.0
-  'ecard_records_per_page' => 'Înregistrãri pe paginã', //cpg1.3.0
-  'check_all' => 'Selecteazã tot', //cpg1.3.0
-  'uncheck_all' => 'Deselecteazã tot', //cpg1.3.0
-  'ecards_delete_selected' => 'ªterge vederile selectate', //cpg1.3.0
-  'ecards_delete_confirm' => 'Sunteşi sigur cã vreşi sã ºtergeşi înregistrãrile? Marcaşi în casuşã!', //cpg1.3.0
+  'ecard_records_per_page' => 'ÃnregistrÄƒri pe paginÄƒ', //cpg1.3.0
+  'check_all' => 'SelecteazÄƒ tot', //cpg1.3.0
+  'uncheck_all' => 'DeselecteazÄƒ tot', //cpg1.3.0
+  'ecards_delete_selected' => 'Återge vederile selectate', //cpg1.3.0
+  'ecards_delete_confirm' => 'SunteÅ£i sigur cÄƒ vreÅ£i sÄƒ ÅŸtergeÅ£i Ã®nregistrÄƒrile? MarcaÅ£i Ã®n casuÅ£Äƒ!', //cpg1.3.0
   'ecards_delete_sure' => 'Sunt sigur', //cpg1.3.0
 );
 
@@ -521,32 +524,32 @@ if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
-        'empty_name_or_com' => 'Trebuie sã introduceşi numele dvs. ºi un comentariu',
-        'com_added' => 'Comentariul dvs. a fost adãugat',
-        'alb_need_title' => 'Trebuie sã furnizaşi un titlu pentru album!',
-        'no_udp_needed' => 'Nici o modificare necesarã.',
+        'empty_name_or_com' => 'Trebuie sÄƒ introduceÅ£i numele dvs. ÅŸi un comentariu',
+        'com_added' => 'Comentariul dvs. a fost adÄƒugat',
+        'alb_need_title' => 'Trebuie sÄƒ furnizaÅ£i un titlu pentru album!',
+        'no_udp_needed' => 'Nici o modificare necesarÄƒ.',
         'alb_updated' => 'Albumul a fost modificat',
-        'unknown_album' => 'Albumul selectat nu existã sau nu aveşi permisiunea sã încãrcaşi în acest album',
-        'no_pic_uploaded' => 'Nici o imagine nu a fost încãrcatã!<br /><br />Dacã aşi selectat o imagine, verificaşi dacã serverul permite încãrcãri.',
-        'err_mkdir' => 'Eroare în crearea directorului %s!',
-        'dest_dir_ro' => 'Directorul destinaşie %s nu poate fi scris de cãtre script!',
-        'err_move' => 'Imposibil de deplasat %s în %s!',
+        'unknown_album' => 'Albumul selectat nu existÄƒ sau nu aveÅ£i permisiunea sÄƒ Ã®ncÄƒrcaÅ£i Ã®n acest album',
+        'no_pic_uploaded' => 'Nici o imagine nu a fost Ã®ncÄƒrcatÄƒ!<br /><br />DacÄƒ aÅ£i selectat o imagine, verificaÅ£i dacÄƒ serverul permite Ã®ncÄƒrcÄƒri.',
+        'err_mkdir' => 'Eroare Ã®n crearea directorului %s!',
+        'dest_dir_ro' => 'Directorul destinaÅ£ie %s nu poate fi scris de cÄƒtre script!',
+        'err_move' => 'Imposibil de deplasat %s Ã®n %s!',
         'err_fsize_too_large' => 'Dimensiunea imaginii este prea mare (maximul permis este %s x %s)!',
-        'err_imgsize_too_large' => 'Mãrimea fiºierului încãrcat este prea mare (maximul permis este %s KB)!',
-        'err_invalid_img' => 'Fiºerul încãrcat nu este o imagine validã!',
-        'allowed_img_types' => 'Puteşi încãrca doar %s imagini.',
-        'err_insert_pic' => 'Imaginea \'%s\' nu poate fi inseratã în album ',
-        'upload_success' => 'Imaginea dvs. a fost încãrcatã cu succes<br /><br />Va fi vizibilã dupã aprobarea unui administrator.',
-        'info' => 'Informaşii',
-        'com_added' => 'Comentariu adãugat',
+        'err_imgsize_too_large' => 'MÄƒrimea fiÅŸierului Ã®ncÄƒrcat este prea mare (maximul permis este %s KB)!',
+        'err_invalid_img' => 'FiÅŸerul Ã®ncÄƒrcat nu este o imagine validÄƒ!',
+        'allowed_img_types' => 'PuteÅ£i Ã®ncÄƒrca doar %s imagini.',
+        'err_insert_pic' => 'Imaginea \'%s\' nu poate fi inseratÄƒ Ã®n album ',
+        'upload_success' => 'Imaginea dvs. a fost Ã®ncÄƒrcatÄƒ cu succes<br /><br />Va fi vizibilÄƒ dupÄƒ aprobarea unui administrator.',
+        'info' => 'InformaÅ£ii',
+        'com_added' => 'Comentariu adÄƒugat',
         'alb_updated' => 'Album modificat',
         'err_comment_empty' => 'Comentariul dvs. este gol!',
-        'err_invalid_fext' => 'Doar fiºierele cu urmãtoarele extensii sunt permise : <br /><br />%s.',
-        'no_flood' => 'Ne pare rãu dar sunteşi deja autorul ultimului comentariu postat pentru aceastã imagine<br /><br />Editaşi comentariul postat dacã dorişi sã-l modificaşi',
-        'redirect_msg' => 'Sunteşi redirectat.<br /><br /><br />Apãsaşi pe \'Continuare\' dacã pagina nu se încarcã automat',
-        'upl_success' => 'Imaginea dvs. a fost adãugatã cu succes',
+        'err_invalid_fext' => 'Doar fiÅŸierele cu urmÄƒtoarele extensii sunt permise : <br /><br />%s.',
+        'no_flood' => 'Ne pare rÄƒu dar sunteÅ£i deja autorul ultimului comentariu postat pentru aceastÄƒ imagine<br /><br />EditaÅ£i comentariul postat dacÄƒ doriÅ£i sÄƒ-l modificaÅ£i',
+        'redirect_msg' => 'SunteÅ£i redirectat.<br /><br /><br />ApÄƒsaÅ£i pe \'Continuare\' dacÄƒ pagina nu se Ã®ncarcÄƒ automat',
+        'upl_success' => 'Imaginea dvs. a fost adÄƒugatÄƒ cu succes',
         'email_comment_subject' => 'Comentariu din galeria foto', //cpg1.3.0
-        'email_comment_body' => 'Cineva a postat un comentariu în galeria foto. Îl puteşi vedea la', //cpg1.3.0
+        'email_comment_body' => 'Cineva a postat un comentariu Ã®n galeria foto. Ãl puteÅ£i vedea la', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -556,22 +559,22 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 if (defined('DELETE_PHP')) $lang_delete_php = array(
         'caption' => 'Descriere',
         'fs_pic' => 'imaginea la dimensiuni maxime',
-        'del_success' => 'ºtearsã cu succes',
+        'del_success' => 'ÅŸtearsÄƒ cu succes',
         'ns_pic' => 'imaginea de dimensiuni normale',
-        'err_del' => 'nu poate fi ºtearsã',
+        'err_del' => 'nu poate fi ÅŸtearsÄƒ',
         'thumb_pic' => 'pictograma',
         'comment' => 'comentariul',
-        'im_in_alb' => 'imaginea în album',
-        'alb_del_success' => 'Albumul \'%s\' a fost ºters',
+        'im_in_alb' => 'imaginea Ã®n album',
+        'alb_del_success' => 'Albumul \'%s\' a fost ÅŸters',
         'alb_mgr' => 'Managerul de albume',
-        'err_invalid_data' => 'Date nevalide primite în \'%s\'',
+        'err_invalid_data' => 'Date nevalide primite Ã®n \'%s\'',
         'create_alb' => 'Creare album \'%s\'',
-        'update_alb' => 'Modificare album \'%s\' cu titlul \'%s\' ºi indexul \'%s\'',
-        'del_pic' => 'ªterge imaginea',
-        'del_alb' => 'ªterge albumul',
-        'del_user' => 'ªterge utilizatorul',
-        'err_unknown_user' => 'Utilizatorul selectat nu existã!',
-        'comment_deleted' => 'Comentariul a fost ºters cu succes',
+        'update_alb' => 'Modificare album \'%s\' cu titlul \'%s\' ÅŸi indexul \'%s\'',
+        'del_pic' => 'Återge imaginea',
+        'del_alb' => 'Återge albumul',
+        'del_user' => 'Återge utilizatorul',
+        'err_unknown_user' => 'Utilizatorul selectat nu existÄƒ!',
+        'comment_deleted' => 'Comentariul a fost ÅŸters cu succes',
 );
 
 // ------------------------------------------------------------------------- //
@@ -587,26 +590,26 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 if (defined('DISPLAYIMAGE_PHP')){
 
 $lang_display_image_php = array(
-        'confirm_del' => 'Sunteşi sigur cã dorişi sã ºtergeşi aceastã imagine? \\nComentariile vor fi de asemenea ºterse.', //js-alert
-        'del_pic' => 'ªterge aceastã imagine',
+        'confirm_del' => 'SunteÅ£i sigur cÄƒ doriÅ£i sÄƒ ÅŸtergeÅ£i aceastÄƒ imagine? \\nComentariile vor fi de asemenea ÅŸterse.', //js-alert
+        'del_pic' => 'Återge aceastÄƒ imagine',
         'size' => '%s x %s pixeli',
         'views' => '%s ori',
         'slideshow' => 'Diaporama',
-        'stop_slideshow' => 'Opreºte diaporama',
-        'view_fs' => 'Apãsaşi pentru a vedea imaginea la dimensiuni originale',
-          'edit_pic' => 'Editeazã descrierea', //cpg1.3.0
-          'crop_pic' => 'Taie ºi roteºte', //cpg1.3.0
+        'stop_slideshow' => 'OpreÅŸte diaporama',
+        'view_fs' => 'ApÄƒsaÅ£i pentru a vedea imaginea la dimensiuni originale',
+          'edit_pic' => 'EditeazÄƒ descrierea', //cpg1.3.0
+          'crop_pic' => 'Taie ÅŸi roteÅŸte', //cpg1.3.0
 );
 
 $lang_picinfo = array(
-        'title' =>'Informaşii despre imagine',
-        'Filename' => 'Nume fiºier',
+        'title' =>'InformaÅ£ii despre imagine',
+        'Filename' => 'Nume fiÅŸier',
         'Album name' => 'Nume album',
         'Rating' => 'Votare (%s voturi)',
         'Keywords' => 'Cuvinte cheie',
-        'File Size' => 'Dimensiune fiºier',
+        'File Size' => 'Dimensiune fiÅŸier',
         'Dimensions' => 'Dimensiune imagine',
-        'Displayed' => 'Afiºatã',
+        'Displayed' => 'AfiÅŸatÄƒ',
         'Camera' => 'Camera',
         'Date taken' => 'Data fotografierii',
          'ISO'=>'ISO',
@@ -614,9 +617,9 @@ $lang_picinfo = array(
         'Exposure time' => 'Timp de expunere',
         'Focal length' => 'Focala',
         'Comment' => 'Comentariul',
-        'addFav'=>'Adaugã în Favorite',
+        'addFav'=>'AdaugÄƒ Ã®n Favorite',
         'addFavPhrase'=>'Favorite',
-        'remFav'=>'ªterge din Favorite',
+        'remFav'=>'Återge din Favorite',
         'iptcTitle'=>'IPTC Titlu', //cpg1.3.0
         'iptcCopyright'=>'IPTC Copyright', //cpg1.3.0
         'iptcKeywords'=>'IPTC Cuvinte cheie', //cpg1.3.0
@@ -626,16 +629,16 @@ $lang_picinfo = array(
 
 $lang_display_comments = array(
         'OK' => 'OK',
-        'edit_title' => 'Editeazã acest comentariu',
-        'confirm_delete' => 'Sunteşi sigur cã dorişi sã ºtergeşi acest comentariu?',
-        'add_your_comment' => 'Adãugaşi comentariul dvs.',
+        'edit_title' => 'EditeazÄƒ acest comentariu',
+        'confirm_delete' => 'SunteÅ£i sigur cÄƒ doriÅ£i sÄƒ ÅŸtergeÅ£i acest comentariu?',
+        'add_your_comment' => 'AdÄƒugaÅ£i comentariul dvs.',
         'name'=>'Nume',
         'comment'=>'Comentariu',
         'your_name' => 'Numele dvs.',
 );
 
 $lang_fullsize_popup = array(
-        'click_to_close' => 'Apãsaşi pe imagine pentru a închide fereastra',
+        'click_to_close' => 'ApÄƒsaÅ£i pe imagine pentru a Ã®nchide fereastra',
 );
 
 }
@@ -645,20 +648,20 @@ $lang_fullsize_popup = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array(
-        'title' => 'Trimite o vedere electronicã',
-        'invalid_email' => '<b>Atenşie</b> : adresa email este incorectã!',
-        'ecard_title' => 'O vedere electronicã de la %s',
-        'view_ecard' => 'Dacã vederea nu este afiºatã corect, apãsaşi pe aceasta legãturã',
-        'view_more_pics' => 'Apãsaşi aici pentru a vedea mai multe imagini!',
-        'send_success' => 'Vederea dvs. a fost trimisã',
-        'send_failed' => 'Ne pare rãu dar serverul nu poate trimite vederea dvs...',
+        'title' => 'Trimite o vedere electronicÄƒ',
+        'invalid_email' => '<b>AtenÅ£ie</b> : adresa email este incorectÄƒ!',
+        'ecard_title' => 'O vedere electronicÄƒ de la %s',
+        'view_ecard' => 'DacÄƒ vederea nu este afiÅŸatÄƒ corect, apÄƒsaÅ£i pe aceasta legÄƒturÄƒ',
+        'view_more_pics' => 'ApÄƒsaÅ£i aici pentru a vedea mai multe imagini!',
+        'send_success' => 'Vederea dvs. a fost trimisÄƒ',
+        'send_failed' => 'Ne pare rÄƒu dar serverul nu poate trimite vederea dvs...',
         'from' => 'De la',
         'your_name' => 'Numele dvs.',
         'your_email' => 'Adresa dvs. de email',
-        'to' => 'Cãtre',
+        'to' => 'CÄƒtre',
         'rcpt_name' => 'Numele expeditorului',
         'rcpt_email' => 'Adresa de email a destinatarului',
-        'greetings' => 'Salutãri',
+        'greetings' => 'SalutÄƒri',
         'message' => 'Mesaj',
 );
 
@@ -673,25 +676,25 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
         'desc' => 'Descriere',
         'keywords' => 'Cuvinte cheie',
         'pic_info_str' => '%sx%s - %sKB - %s afisari - %s voturi',
-        'approve' => 'Aprobã imaginea',
-        'postpone_app' => 'Amânã aprobarea',
-        'del_pic' => 'ªterge imaginea',
-        'read_exif' => 'Citeºte EXIF din nou', //cpg1.3.0
-        'reset_view_count' => 'Reseteazã contorul de afiºãri',
-        'reset_votes' => 'Reseteazã voturile',
-        'del_comm' => 'ªterge comentariile',
-        'upl_approval' => 'Aprobare încãrcãri',
-        'edit_pics' => 'Editeazã imagini',
-        'see_next' => 'Aratã imaginile urmãtoare',
-        'see_prev' => 'Aratã imaginile precedente',
+        'approve' => 'AprobÄƒ imaginea',
+        'postpone_app' => 'AmÃ¢nÄƒ aprobarea',
+        'del_pic' => 'Återge imaginea',
+        'read_exif' => 'CiteÅŸte EXIF din nou', //cpg1.3.0
+        'reset_view_count' => 'ReseteazÄƒ contorul de afiÅŸÄƒri',
+        'reset_votes' => 'ReseteazÄƒ voturile',
+        'del_comm' => 'Återge comentariile',
+        'upl_approval' => 'Aprobare Ã®ncÄƒrcÄƒri',
+        'edit_pics' => 'EditeazÄƒ imagini',
+        'see_next' => 'AratÄƒ imaginile urmÄƒtoare',
+        'see_prev' => 'AratÄƒ imaginile precedente',
         'n_pic' => '%s imagini',
-        'n_of_pic_to_disp' => 'Numãrul de imagini care sã fie afiºate',
-        'apply' => 'Executã modificãrile',
+        'n_of_pic_to_disp' => 'NumÄƒrul de imagini care sÄƒ fie afiÅŸate',
+        'apply' => 'ExecutÄƒ modificÄƒrile',
         'crop_title' => 'Editor imagini', //cpg1.3.0
         'preview' => 'Previzualizare', //cpg1.3.0
         'save' => 'Salvare imagine', //cpg1.3.0
-        'save_thumb' =>'Salveazã ca pictogramã', //cpg1.3.0
-        'sel_on_img' =>'Selecşia este cât întreaga imagine!', //js-alert //cpg1.3.0
+        'save_thumb' =>'SalveazÄƒ ca pictogramÄƒ', //cpg1.3.0
+        'sel_on_img' =>'SelecÅ£ia este cÃ¢t Ã®ntreaga imagine!', //js-alert //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -699,43 +702,43 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('FAQ_PHP')) $lang_faq_php = array(
-  'faq' => 'Întrebãri frecvente', //cpg1.3.0
+  'faq' => 'ÃntrebÄƒri frecvente', //cpg1.3.0
   'toc' => 'Cuprins', //cpg1.3.0
-  'question' => 'Întrebare: ', //cpg1.3.0
-  'answer' => 'Rãspuns: ', //cpg1.3.0
+  'question' => 'Ãntrebare: ', //cpg1.3.0
+  'answer' => 'RÄƒspuns: ', //cpg1.3.0
 );
 
 if (defined('FAQ_PHP')) $lang_faq_data = array(
-  'Întrebãri frecvente', //cpg1.3.0
-  array('De ce trebuie sã mã înregistrez?', 'Înregistrarea poate sau nu sã fie cerutã de cãtre administrator. Înregistrarea permite accesul la opşiuni suplimentare, cum ar fi încãrcarea de imagini, existenşa favoritelor, posibilitatea comentariilor sau a notãrii imaginilor.', 'allow_user_registration', '0'), //cpg1.3.0
-  array('Cum mã pot înregistra?', 'Apãsaşi pe &quot;Înregistrare&quot; ºi completaşi toate câmpurile obligatorii (ºi cele opşionale dacã dorişi).<br />Dacã administratorul are activarea prin email selectatã, dupã ce aşi introdus datele trebuie sã primişi un email la adresa specificatã de dv., în care gãsişi detalii despre modul de activare al contului. Contul trebuie activat înainte de a vã loga.', 'allow_user_registration', '1'), //cpg1.3.0
-  array('Cum mã loghez?', 'Apãsaşi &quot;Login&quot;, introduceşi numele ºi parola ºi selectaşi &quot;Memoreazã-mã&quot; dacã dorişi sã intraşi pe paginã în viitor deja logat.<br /><b>IMPORTANT:Cooki-urile trebuie activate ºi nu trebuie sã le ºtergeşi dacã dorişi activã opşiunea &quot;Memoreazã-mã&quot;.</b>', 'offline', 0), //cpg1.3.0
-  array('De ce nu mã pot loga?', 'Aşi apãsat pe link-ul din email-ul de înregistrare?. Acest link vã activeazã contul. Pentru alte probleme legate de logare, vã rugãm sã contactaşi administratorul.', 'offline', 0), //cpg1.3.0
-  array('Ce se întâmplã dacã am uitat parola?', 'Dacã pagina are activatã &quot;Reamintirea parolei&quot; apãsaşi pe link. Dacã acest link nu este disponibil, va trebui sã contactaşi administratorul.', 'offline', 0), //cpg1.3.0
-  //array('Ce se întâmplã dacã îmi schimb email-ul?', 'Logaşi-vã ºi schimbaşi adresa de email în &quot;Profil&quot;', 'offline', 0), //cpg1.3.0
-  array('Cum salvez imaginile din &quot;Favorite&quot;?', 'Apãsaşi pe imagine ºi apoi pe &quot;imagine info&quot; link (<img src="images/info.gif" width="16" height="16" border="0" alt="Informaşii imagine" />); cãutaşi în informaşii ºi apãsaşi &quot;Pune în favorite&quot;.<br />Administratorul trebuie sã lase &quot;informaşii imagine&quot; active în mod predefinit.<br />IMPORTANT:Cooki-urile trebuie activate ºi nu trebuie sã le ºtergeşi.', 'offline', 0), //cpg1.3.0
-  array('Cum notez o imagine?', 'Apãsaşi pe pictogramã ºi mergeşi în jos pentru a o putea nota.', 'offline', 0), //cpg1.3.0
-  array('Cum comentez o imagine?', 'Apãsaşi pe pictogramã ºi mergeşi în jos pentru a o putea comenta.', 'offline', 0), //cpg1.3.0
-array('Cum încarc o imagine?', 'Apãsaşi &quot;Încarcã imagine&quot; ºi selectaşi albumul, apãsaşi &quot;Browse&quot; ºi gãsişi imaginea care dorişi sã o încãrcaşi, apãsaşi &quot;open&quot; (scrieşi un tilu ºi o descriere dacã dorişi) ºi apãsaşi &quot;Submit&quot;', 'allow_private_albums', 0), //cpg1.3.0
-  array('Unde pot încãrca o imagine?', 'Puteşi încãrca o imagine în albumul/ele din &quot;Galeria mea&quot;. Administratorul poate permite sau nu sã încãrcaşi imagini ºi în galeria principalã.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Ce tip ºi ce mãrime pot sã aibã imaginile pe care pot sã le încarc?', 'Tipul ºi mãrimea (jpg, png, etc.) sunt stabilite de administrator.', 'offline', 0), //cpg1.3.0
-  array('Ce este &quot;Galeria mea&quot;?', '&quot;Galeria mea&quot; este o galerie personalã pe care puteşi sã o folosişi ºi administraşi.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Cum pot crea, redenumi sau ºterge albume din &quot;galeria mea&quot;?', 'Trebuie sã fişi în modul &quot;Mod admin&quot;<br />Mergeşi la &quot;Creaşi/ordonaşi albumele mele&quot; ºi apãsaşi &quot;Nou&quot;. Schimbaşi &quot;Album nou&quot; cu numele dorit.<br />Puteşi de asemenea sã redenumişi orice album din galeria dvs.<br />Apãsaşi &quot;Efectuaşi modificãrile&quot;.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Cum restricşionez ºi cum modific ce utilizatori pot vedea Galeria mea?', 'Trebuie sã fişi în modul &quot;Mod admin&quot;<br />Mergeeşi la &quot;Modificã albumele mele&quot;. Mergeşi la &quot;Modificã album&quot; ºi selectaşi albumul dorit.<br />Aici puteşi schimba numele, descrierea, pictograma, restricşiona vederea imaginilor ºi a notãrii/comentãrii acestora.<br />Apãsaşi &quot;Modificã album&quot;.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Cum pot vedea galeriile altor utilizatori?', 'Mergeşi la &quot;Lista albumelor&quot; ºi selectaşi &quot;galerii utilizatori&quot;.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Ce sunt cooki-urile?', 'Cooki-urile sunt date în mod text care sunt trimise de pagina web ºi stocate pe calculator.<br />Cooki+urile în mod normal permit utilizatorului sã iasã ºi sã intre în pagina fãrã a mai trebui sã se logheze.', 'offline', 0), //cpg1.3.0
-  array('De unde pot descãrca acest program pentru pagina mea?', 'Coppermine este o galerie multimedia, apãrutã sub licenşa GNU GPL. Are o multitudine de opşiuni ºi merge pe multe tipuri de sisteme. Visitaşi <a href="http://coppermine.sf.net/">Coppermine Home Page</a> pentru a afla mai multe ºi pentru a descãrca.', 'offline', 0), //cpg1.3.0
+  'ÃntrebÄƒri frecvente', //cpg1.3.0
+  array('De ce trebuie sÄƒ mÄƒ Ã®nregistrez?', 'Ãnregistrarea poate sau nu sÄƒ fie cerutÄƒ de cÄƒtre administrator. Ãnregistrarea permite accesul la opÅ£iuni suplimentare, cum ar fi Ã®ncÄƒrcarea de imagini, existenÅ£a favoritelor, posibilitatea comentariilor sau a notÄƒrii imaginilor.', 'allow_user_registration', '0'), //cpg1.3.0
+  array('Cum mÄƒ pot Ã®nregistra?', 'ApÄƒsaÅ£i pe &quot;Ãnregistrare&quot; ÅŸi completaÅ£i toate cÃ¢mpurile obligatorii (ÅŸi cele opÅ£ionale dacÄƒ doriÅ£i).<br />DacÄƒ administratorul are activarea prin email selectatÄƒ, dupÄƒ ce aÅ£i introdus datele trebuie sÄƒ primiÅ£i un email la adresa specificatÄƒ de dv., Ã®n care gÄƒsiÅ£i detalii despre modul de activare al contului. Contul trebuie activat Ã®nainte de a vÄƒ loga.', 'allow_user_registration', '1'), //cpg1.3.0
+  array('Cum mÄƒ loghez?', 'ApÄƒsaÅ£i &quot;Login&quot;, introduceÅ£i numele ÅŸi parola ÅŸi selectaÅ£i &quot;MemoreazÄƒ-mÄƒ&quot; dacÄƒ doriÅ£i sÄƒ intraÅ£i pe paginÄƒ Ã®n viitor deja logat.<br /><b>IMPORTANT:Cooki-urile trebuie activate ÅŸi nu trebuie sÄƒ le ÅŸtergeÅ£i dacÄƒ doriÅ£i activÄƒ opÅ£iunea &quot;MemoreazÄƒ-mÄƒ&quot;.</b>', 'offline', 0), //cpg1.3.0
+  array('De ce nu mÄƒ pot loga?', 'AÅ£i apÄƒsat pe link-ul din email-ul de Ã®nregistrare?. Acest link vÄƒ activeazÄƒ contul. Pentru alte probleme legate de logare, vÄƒ rugÄƒm sÄƒ contactaÅ£i administratorul.', 'offline', 0), //cpg1.3.0
+  array('Ce se Ã®ntÃ¢mplÄƒ dacÄƒ am uitat parola?', 'DacÄƒ pagina are activatÄƒ &quot;Reamintirea parolei&quot; apÄƒsaÅ£i pe link. DacÄƒ acest link nu este disponibil, va trebui sÄƒ contactaÅ£i administratorul.', 'offline', 0), //cpg1.3.0
+  //array('Ce se Ã®ntÃ¢mplÄƒ dacÄƒ Ã®mi schimb email-ul?', 'LogaÅ£i-vÄƒ ÅŸi schimbaÅ£i adresa de email Ã®n &quot;Profil&quot;', 'offline', 0), //cpg1.3.0
+  array('Cum salvez imaginile din &quot;Favorite&quot;?', 'ApÄƒsaÅ£i pe imagine ÅŸi apoi pe &quot;imagine info&quot; link (<img src="images/info.gif" width="16" height="16" border="0" alt="InformaÅ£ii imagine" />); cÄƒutaÅ£i Ã®n informaÅ£ii ÅŸi apÄƒsaÅ£i &quot;Pune Ã®n favorite&quot;.<br />Administratorul trebuie sÄƒ lase &quot;informaÅ£ii imagine&quot; active Ã®n mod predefinit.<br />IMPORTANT:Cooki-urile trebuie activate ÅŸi nu trebuie sÄƒ le ÅŸtergeÅ£i.', 'offline', 0), //cpg1.3.0
+  array('Cum notez o imagine?', 'ApÄƒsaÅ£i pe pictogramÄƒ ÅŸi mergeÅ£i Ã®n jos pentru a o putea nota.', 'offline', 0), //cpg1.3.0
+  array('Cum comentez o imagine?', 'ApÄƒsaÅ£i pe pictogramÄƒ ÅŸi mergeÅ£i Ã®n jos pentru a o putea comenta.', 'offline', 0), //cpg1.3.0
+array('Cum Ã®ncarc o imagine?', 'ApÄƒsaÅ£i &quot;ÃncarcÄƒ imagine&quot; ÅŸi selectaÅ£i albumul, apÄƒsaÅ£i &quot;Browse&quot; ÅŸi gÄƒsiÅ£i imaginea care doriÅ£i sÄƒ o Ã®ncÄƒrcaÅ£i, apÄƒsaÅ£i &quot;open&quot; (scrieÅ£i un tilu ÅŸi o descriere dacÄƒ doriÅ£i) ÅŸi apÄƒsaÅ£i &quot;Submit&quot;', 'allow_private_albums', 0), //cpg1.3.0
+  array('Unde pot Ã®ncÄƒrca o imagine?', 'PuteÅ£i Ã®ncÄƒrca o imagine Ã®n albumul/ele din &quot;Galeria mea&quot;. Administratorul poate permite sau nu sÄƒ Ã®ncÄƒrcaÅ£i imagini ÅŸi Ã®n galeria principalÄƒ.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Ce tip ÅŸi ce mÄƒrime pot sÄƒ aibÄƒ imaginile pe care pot sÄƒ le Ã®ncarc?', 'Tipul ÅŸi mÄƒrimea (jpg, png, etc.) sunt stabilite de administrator.', 'offline', 0), //cpg1.3.0
+  array('Ce este &quot;Galeria mea&quot;?', '&quot;Galeria mea&quot; este o galerie personalÄƒ pe care puteÅ£i sÄƒ o folosiÅ£i ÅŸi administraÅ£i.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Cum pot crea, redenumi sau ÅŸterge albume din &quot;galeria mea&quot;?', 'Trebuie sÄƒ fiÅ£i Ã®n modul &quot;Mod admin&quot;<br />MergeÅ£i la &quot;CreaÅ£i/ordonaÅ£i albumele mele&quot; ÅŸi apÄƒsaÅ£i &quot;Nou&quot;. SchimbaÅ£i &quot;Album nou&quot; cu numele dorit.<br />PuteÅ£i de asemenea sÄƒ redenumiÅ£i orice album din galeria dvs.<br />ApÄƒsaÅ£i &quot;EfectuaÅ£i modificÄƒrile&quot;.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Cum restricÅ£ionez ÅŸi cum modific ce utilizatori pot vedea Galeria mea?', 'Trebuie sÄƒ fiÅ£i Ã®n modul &quot;Mod admin&quot;<br />MergeeÅ£i la &quot;ModificÄƒ albumele mele&quot;. MergeÅ£i la &quot;ModificÄƒ album&quot; ÅŸi selectaÅ£i albumul dorit.<br />Aici puteÅ£i schimba numele, descrierea, pictograma, restricÅ£iona vederea imaginilor ÅŸi a notÄƒrii/comentÄƒrii acestora.<br />ApÄƒsaÅ£i &quot;ModificÄƒ album&quot;.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Cum pot vedea galeriile altor utilizatori?', 'MergeÅ£i la &quot;Lista albumelor&quot; ÅŸi selectaÅ£i &quot;galerii utilizatori&quot;.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Ce sunt cooki-urile?', 'Cooki-urile sunt date Ã®n mod text care sunt trimise de pagina web ÅŸi stocate pe calculator.<br />Cooki+urile Ã®n mod normal permit utilizatorului sÄƒ iasÄƒ ÅŸi sÄƒ intre Ã®n pagina fÄƒrÄƒ a mai trebui sÄƒ se logheze.', 'offline', 0), //cpg1.3.0
+  array('De unde pot descÄƒrca acest program pentru pagina mea?', 'Coppermine este o galerie multimedia, apÄƒrutÄƒ sub licenÅ£a GNU GPL. Are o multitudine de opÅ£iuni ÅŸi merge pe multe tipuri de sisteme. VisitaÅ£i <a href="http://coppermine.sf.net/">Coppermine Home Page</a> pentru a afla mai multe ÅŸi pentru a descÄƒrca.', 'offline', 0), //cpg1.3.0
 
   'Navigare prin site', //cpg1.3.0
-  array('Ce este &quot;Lista albumelor&quot;?', 'Aceasta vã va arãta categoria unde vã aflaşi, cu un link cãtre alte album. Dacã nu sunteşi într-o categorie, vã va arãta întreaga galerie ºi link+uri cãtre fiecare categorie. Pictogramele pot fi un link cãtre categorie.', 'offline', 0), //cpg1.3.0
-  array('Ce este &quot;galeria mea&quot;?', 'Aceasta permite utilizatorului sã îºi creeze propria galerie, sã punã/ºteargã/modifice albumele.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Care este diferenşa între &quot;Modul admin&quot; ºi &quot;Modul utilizator&quot;?', 'Modul admin permite utilizatorului sã modifice galeria personalã.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Ce este &quot;Încarcã imagine&quot;?', 'Permite utilizatorului sã încarce o imagine (dimensiunea ºi tipul sunt setate de administrator) în galerie.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Ce sunt &quot;Ultimele încãrcãri&quot;?', 'Vã aratã ultimele imagini încãrcate în paginã.', 'offline', 0), //cpg1.3.0
-  array('Ce sunt &quot;Ultimele comentarii&quot;?', 'Vã aratã ultimele comentarii ºi pentru ce imagine din paginã.', 'offline', 0), //cpg1.3.0
-  array('Ce sunt &quot;Ultimele vizitate&quot;?', 'Vã aratã ultimele imagini vizionate, indiferent dacã utilizatorul este logat sau nu.', 'offline', 0), //cpg1.3.0
-  array('Ce sunt &quot;Cele mai votate&quot;?', 'Vã aratã cele mai votate imagini (ex: cinci utilizatori voteazã <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />: imaginea trebuie sã aibã un vot de <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> ;Cinci utilizatori voteazãd de la 1 la 5 (1,2,3,4,5) ºi rezultatul <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> .)<br />votul poate fi de la <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> (nemaipomenit) to <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" /> (prost).', 'offline', 0), //cpg1.3.0
-  array('Ce sunt &quot;Favorite&quot;?', 'permite stocarea unei imagini favorite într-un cookie ce este tirmis cãtre calculatorul dvs.', 'offline', 0), //cpg1.3.0
+  array('Ce este &quot;Lista albumelor&quot;?', 'Aceasta vÄƒ va arÄƒta categoria unde vÄƒ aflaÅ£i, cu un link cÄƒtre alte album. DacÄƒ nu sunteÅ£i Ã®ntr-o categorie, vÄƒ va arÄƒta Ã®ntreaga galerie ÅŸi link+uri cÄƒtre fiecare categorie. Pictogramele pot fi un link cÄƒtre categorie.', 'offline', 0), //cpg1.3.0
+  array('Ce este &quot;galeria mea&quot;?', 'Aceasta permite utilizatorului sÄƒ Ã®ÅŸi creeze propria galerie, sÄƒ punÄƒ/ÅŸteargÄƒ/modifice albumele.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Care este diferenÅ£a Ã®ntre &quot;Modul admin&quot; ÅŸi &quot;Modul utilizator&quot;?', 'Modul admin permite utilizatorului sÄƒ modifice galeria personalÄƒ.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Ce este &quot;ÃncarcÄƒ imagine&quot;?', 'Permite utilizatorului sÄƒ Ã®ncarce o imagine (dimensiunea ÅŸi tipul sunt setate de administrator) Ã®n galerie.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Ce sunt &quot;Ultimele Ã®ncÄƒrcÄƒri&quot;?', 'VÄƒ aratÄƒ ultimele imagini Ã®ncÄƒrcate Ã®n paginÄƒ.', 'offline', 0), //cpg1.3.0
+  array('Ce sunt &quot;Ultimele comentarii&quot;?', 'VÄƒ aratÄƒ ultimele comentarii ÅŸi pentru ce imagine din paginÄƒ.', 'offline', 0), //cpg1.3.0
+  array('Ce sunt &quot;Ultimele vizitate&quot;?', 'VÄƒ aratÄƒ ultimele imagini vizionate, indiferent dacÄƒ utilizatorul este logat sau nu.', 'offline', 0), //cpg1.3.0
+  array('Ce sunt &quot;Cele mai votate&quot;?', 'VÄƒ aratÄƒ cele mai votate imagini (ex: cinci utilizatori voteazÄƒ <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />: imaginea trebuie sÄƒ aibÄƒ un vot de <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> ;Cinci utilizatori voteazÄƒd de la 1 la 5 (1,2,3,4,5) ÅŸi rezultatul <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> .)<br />votul poate fi de la <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> (nemaipomenit) to <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" /> (prost).', 'offline', 0), //cpg1.3.0
+  array('Ce sunt &quot;Favorite&quot;?', 'permite stocarea unei imagini favorite Ã®ntr-un cookie ce este tirmis cÄƒtre calculatorul dvs.', 'offline', 0), //cpg1.3.0
 );
 
 
@@ -745,17 +748,17 @@ array('Cum încarc o imagine?', 'Apãsaşi &quot;Încarcã imagine&quot; ºi selectaşi
 
 if (defined('FORGOT_PASSWD_PHP')) $lang_forgot_passwd_php = array(
   'forgot_passwd' => 'Reamintirea parolei', //cpg1.3.0
-  'err_already_logged_in' => 'Sunteşi deja logat!', //cpg1.3.0
-  'enter_username_email' => 'Introduceşi numele sau adresa de email', //cpg1.3.0
+  'err_already_logged_in' => 'SunteÅ£i deja logat!', //cpg1.3.0
+  'enter_username_email' => 'IntroduceÅ£i numele sau adresa de email', //cpg1.3.0
   'submit' => 'go', //cpg1.3.0
   'failed_sending_email' => 'Email-ul cu parola nu poate fi trimis!', //cpg1.3.0
-  'email_sent' => 'Un email cu numele ºi parola a fost trimis la %s', //cpg1.3.0
+  'email_sent' => 'Un email cu numele ÅŸi parola a fost trimis la %s', //cpg1.3.0
   'err_unk_user' => 'Utilizator inexistent!', //cpg1.3.0
   'passwd_reminder_subject' => '%s - Reamintirea parolei', //cpg1.3.0
-  'passwd_reminder_body' => 'Aşi cerut sã vã fie reamintitã parola:
+  'passwd_reminder_body' => 'AÅ£i cerut sÄƒ vÄƒ fie reamintitÄƒ parola:
 Utilizator: %s
-Parolã: %s
-Apasaşi %s pentru a intra.', //cpg1.3.0
+ParolÄƒ: %s
+ApasaÅ£i %s pentru a intra.', //cpg1.3.0
 );
 
 
@@ -769,22 +772,22 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
         'can_rate' => 'Poate vota imaginile',
         'can_send_ecards' => 'Poate trimite vederi',
         'can_post_com' => 'Poate posta comentarii',
-        'can_upload' => 'Poate încãrca imagini',
-        'can_have_gallery' => 'Poate avea o galerie personalã',
-        'apply' => 'Executã modificãrile',
-        'create_new_group' => 'Creazã un grup nou',
-        'del_groups' => 'ªterge grupul/grupurile selectat(e)',
-        'confirm_del' => 'Atenşie, când ºtergeşi un grup, utilizatorii aparşinând acestui grup vor fi transferaşi în grupul \'Înregistraşi\' !\n\nSunteşi sigur cã dorişi sã continuaşi ?',
-        'title' => 'Administreazã grupurile de utilizatori',
-        'approval_1' => 'Aprobare Înreg. Pub. (1)',
-        'approval_2' => 'Aprobare Înreg. Priv. (2)',
-        'upload_form_config' => 'Încarcã din configuraşie', //cpg1.3.0
-        'upload_form_config_values' => array( 'Doar o imagine de încãrcat', 'Mai multe imagini de încãrcat', 'Doar URL de încãrcat', 'Doar ZIP de încãrcat', 'Imagine-URL', 'Imagine-ZIP', 'URL-ZIP', 'Imagine-URL-ZIP'), //cpg1.3.0
-        'custom_user_upload'=>'Utilizatorul îºi poate seta numãrul de cãsuşe?', //cpg1.3.0
-        'num_file_upload'=>'Maxim/exact numãr de imagini de încãrcat', //cpg1.3.0
-        'num_URI_upload'=>'Maxim/exact numãr de URL de încãrcat', //cpg1.3.0
-        'note1' => '<b>(1)</b> Încãrcarea într-un album public necesitã aprobarea administratorului',
-        'note2' => '<b>(2)</b> Încãrcarea într-un album aparşinând utilizatorului necesitã aprobarea administratorului',
+        'can_upload' => 'Poate Ã®ncÄƒrca imagini',
+        'can_have_gallery' => 'Poate avea o galerie personalÄƒ',
+        'apply' => 'ExecutÄƒ modificÄƒrile',
+        'create_new_group' => 'CreazÄƒ un grup nou',
+        'del_groups' => 'Återge grupul/grupurile selectat(e)',
+        'confirm_del' => 'AtenÅ£ie, cÃ¢nd ÅŸtergeÅ£i un grup, utilizatorii aparÅ£inÃ¢nd acestui grup vor fi transferaÅ£i Ã®n grupul \'ÃnregistraÅ£i\' !\n\nSunteÅ£i sigur cÄƒ doriÅ£i sÄƒ continuaÅ£i ?',
+        'title' => 'AdministreazÄƒ grupurile de utilizatori',
+        'approval_1' => 'Aprobare Ãnreg. Pub. (1)',
+        'approval_2' => 'Aprobare Ãnreg. Priv. (2)',
+        'upload_form_config' => 'ÃncarcÄƒ din configuraÅ£ie', //cpg1.3.0
+        'upload_form_config_values' => array( 'Doar o imagine de Ã®ncÄƒrcat', 'Mai multe imagini de Ã®ncÄƒrcat', 'Doar URL de Ã®ncÄƒrcat', 'Doar ZIP de Ã®ncÄƒrcat', 'Imagine-URL', 'Imagine-ZIP', 'URL-ZIP', 'Imagine-URL-ZIP'), //cpg1.3.0
+        'custom_user_upload'=>'Utilizatorul Ã®ÅŸi poate seta numÄƒrul de cÄƒsuÅ£e?', //cpg1.3.0
+        'num_file_upload'=>'Maxim/exact numÄƒr de imagini de Ã®ncÄƒrcat', //cpg1.3.0
+        'num_URI_upload'=>'Maxim/exact numÄƒr de URL de Ã®ncÄƒrcat', //cpg1.3.0
+        'note1' => '<b>(1)</b> ÃncÄƒrcarea Ã®ntr-un album public necesitÄƒ aprobarea administratorului',
+        'note2' => '<b>(2)</b> ÃncÄƒrcarea Ã®ntr-un album aparÅ£inÃ¢nd utilizatorului necesitÄƒ aprobarea administratorului',
         'notes' => 'Note'
 );
 
@@ -795,34 +798,34 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
 if (defined('INDEX_PHP')){
 
 $lang_index_php = array(
-        'welcome' => 'Bine aşi venit!'
+        'welcome' => 'Bine aÅ£i venit!'
 );
 
 $lang_album_admin_menu = array(
-        'confirm_delete' => 'Sunteşi sigur cã dorişi sã ºtergeşi acest album? \\nToate imaginile ºi comentariile conşinute vor fi de asemenea ºterse.',
-        'delete' => 'ªterge',
-        'modify' => 'Proprietãşi',
+        'confirm_delete' => 'SunteÅ£i sigur cÄƒ doriÅ£i sÄƒ ÅŸtergeÅ£i acest album? \\nToate imaginile ÅŸi comentariile conÅ£inute vor fi de asemenea ÅŸterse.',
+        'delete' => 'Återge',
+        'modify' => 'ProprietÄƒÅ£i',
         'edit_pics' => 'Editare imagini',
 );
 
 $lang_list_categories = array(
-        'home' => 'Pagina principalã',
-        'stat1' => '<b>[pictures]</b> imagini în <b>[albums]</b> albume ºi <b>[cat]</b> categorii cu <b>[comments]</b> comentarii afiºate de <b>[views]</b> ori',
-        'stat2' => '<b>[pictures]</b> imagini în <b>[albums]</b> albume afiºate de <b>[views]</b> ori',
+        'home' => 'Pagina principalÄƒ',
+        'stat1' => '<b>[pictures]</b> imagini Ã®n <b>[albums]</b> albume ÅŸi <b>[cat]</b> categorii cu <b>[comments]</b> comentarii afiÅŸate de <b>[views]</b> ori',
+        'stat2' => '<b>[pictures]</b> imagini Ã®n <b>[albums]</b> albume afiÅŸate de <b>[views]</b> ori',
         'xx_s_gallery' => 'Galeria %s\'s',
-        'stat3' => '<b>[pictures]</b> imagini în <b>[albums]</b> albume cu <b>[comments]</b> comentarii afiºate de <b>[views]</b> ori'
+        'stat3' => '<b>[pictures]</b> imagini Ã®n <b>[albums]</b> albume cu <b>[comments]</b> comentarii afiÅŸate de <b>[views]</b> ori'
 );
 
 $lang_list_users = array(
         'user_list' => 'Lista utilizatorilor',
-        'no_user_gal' => 'Nu existã galerii utilizator',
+        'no_user_gal' => 'Nu existÄƒ galerii utilizator',
         'n_albums' => '%s album(e)',
         'n_pics' => '%s imagini'
 );
 
 $lang_list_albums = array(
         'n_pictures' => '%s imagini',
-        'last_added' => ', ultima adãugatã la %s'
+        'last_added' => ', ultima adÄƒugatÄƒ la %s'
 );
 
 }
@@ -833,13 +836,13 @@ $lang_list_albums = array(
 
 if (defined('LOGIN_PHP')) $lang_login_php = array(
         'login' => 'Login',
-        'enter_login_pswd' => 'Introduceşi contul ºi parola pentru a vã loga',
+        'enter_login_pswd' => 'IntroduceÅ£i contul ÅŸi parola pentru a vÄƒ loga',
         'username' => 'Utilizator',
         'password' => 'Parola',
-        'remember_me' => 'Memoreazã-mã',
-        'welcome' => 'Bine aşi venit %s ...',
-        'err_login' => '*** Nu aşi putut fi logat. Încercaşi din nou ***',
-        'err_already_logged_in' => 'Sunteşi deja logat !',
+        'remember_me' => 'MemoreazÄƒ-mÄƒ',
+        'welcome' => 'Bine aÅ£i venit %s ...',
+        'err_login' => '*** Nu aÅ£i putut fi logat. ÃncercaÅ£i din nou ***',
+        'err_already_logged_in' => 'SunteÅ£i deja logat !',
         'forgot_password_link' => 'Reamintirea parolei', //cpg1.3.0
 );
 
@@ -850,7 +853,7 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
 if (defined('LOGOUT_PHP')) $lang_logout_php = array(
         'logout' => 'Logout',
         'bye' => 'La revedere %s ...',
-        'err_not_loged_in' => 'Nu sunteşi logat!',
+        'err_not_loged_in' => 'Nu sunteÅ£i logat!',
 );
 
 // ------------------------------------------------------------------------- //
@@ -860,7 +863,7 @@ if (defined('LOGOUT_PHP')) $lang_logout_php = array(
 if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
   'php_info' => 'PHP info', //cpg1.3.0
   'explanation' => 'Acesta este rezultatul generat de PHP <a href="http://www.php.net/phpinfo">phpinfo()</a>', //cpg1.3.0
-  'no_link' => 'Lãsând pe alşii sã vadã php info nu este recomandat, de aceea aceastã paginã este vizibilã doar pentru administrator. Nu puteşi posta o legaturã directã cãtre aceastã pagina, accesul nu va fi permis.', //cpg1.3.0
+  'no_link' => 'LÄƒsÃ¢nd pe alÅ£ii sÄƒ vadÄƒ php info nu este recomandat, de aceea aceastÄƒ paginÄƒ este vizibilÄƒ doar pentru administrator. Nu puteÅ£i posta o legaturÄƒ directÄƒ cÄƒtre aceastÄƒ pagina, accesul nu va fi permis.', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -868,28 +871,28 @@ if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
-        'upd_alb_n' => 'Modificã album %s',
-        'general_settings' => 'Setãri generale',
+        'upd_alb_n' => 'ModificÄƒ album %s',
+        'general_settings' => 'SetÄƒri generale',
         'alb_title' => 'Titlul albumului',
         'alb_cat' => 'Categoria albumului',
         'alb_desc' => 'Descrierea albumului',
         'alb_thumb' => 'Pictograma albumului',
         'alb_perm' => 'Permisiile acestui album',
-        'can_view' => 'Albumul poate fi vãzut de',
-        'can_upload' => 'Vizitatorii pot încãrca imagini',
+        'can_view' => 'Albumul poate fi vÄƒzut de',
+        'can_upload' => 'Vizitatorii pot Ã®ncÄƒrca imagini',
         'can_post_comments' => 'Vizitatorii pot posta comentarii',
         'can_rate' => 'Vizitatorii pot nota imaginile',
         'user_gal' => 'Galeria utilizatorului',
         'no_cat' => '* Nici o categorie *',
         'alb_empty' => 'Albumul este gol',
-        'last_uploaded' => 'Ultimele încãrcate',
-        'public_alb' => 'Toatã lumea (album public)',
+        'last_uploaded' => 'Ultimele Ã®ncÄƒrcate',
+        'public_alb' => 'ToatÄƒ lumea (album public)',
         'me_only' => 'Doar eu',
         'owner_only' => 'Proprietarul albumul doar (%s)',
         'groupp_only' => 'Membrii grupului \'%s\'',
-        'err_no_alb_to_modify' => 'Nici un album pe care sã îl puteşi modifica în baza de date.',
-        'update' => 'Modifcã album',
-        'notice1' => '(*) depinde de setãrile %sgroups%s', //cpg1.3.0 (do not translate %s!)
+        'err_no_alb_to_modify' => 'Nici un album pe care sÄƒ Ã®l puteÅ£i modifica Ã®n baza de date.',
+        'update' => 'ModifcÄƒ album',
+        'notice1' => '(*) depinde de setÄƒrile %sgroups%s', //cpg1.3.0 (do not translate %s!)
 );
 
 // ------------------------------------------------------------------------- //
@@ -897,9 +900,9 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
-        'already_rated' => 'Ne pare rãu, dar aşi votat deja aceastã imagine',
+        'already_rated' => 'Ne pare rÄƒu, dar aÅ£i votat deja aceastÄƒ imagine',
         'rate_ok' => 'Votul dvs. ',
-        'forbidden' => 'Nu vã puteşi vota propria imagine.', //cpg1.3.0
+        'forbidden' => 'Nu vÄƒ puteÅ£i vota propria imagine.', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -909,79 +912,79 @@ if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
-Deºi administratorii paginii {SITE_NAME} vor încerca sã ºteargã sau sã editeze orice material nepermis sau obscen cât de repede cu putinşã, este imposibil sã fie verificat fiecare mesaj sau comentariu. De aceea sunteşi de acord ca toate mesajele postate pe aceastã paginã exprimã opiniile autorului ºi nu ale administratorilor (exceptând mesajele transmise de ei) ºi deci nu pot fi traºi la rãspundere.<br />
+DeÅŸi administratorii paginii {SITE_NAME} vor Ã®ncerca sÄƒ ÅŸteargÄƒ sau sÄƒ editeze orice material nepermis sau obscen cÃ¢t de repede cu putinÅ£Äƒ, este imposibil sÄƒ fie verificat fiecare mesaj sau comentariu. De aceea sunteÅ£i de acord ca toate mesajele postate pe aceastÄƒ paginÄƒ exprimÄƒ opiniile autorului ÅŸi nu ale administratorilor (exceptÃ¢nd mesajele transmise de ei) ÅŸi deci nu pot fi traÅŸi la rÄƒspundere.<br />
 <br />
-Sunteşi de acord sã nu postaşi nici o imagine sau un mesaj obscen, vulgar, ameninşãtor, sau orice alt mesaj ce încalcã legile. Sunteşi de acord ca administratorul ºi moderatorii paginii {SITE_NAME} au dreptul sã modifice sau sã ºteargã orice conşinut oricând considerã ei necesar. Ca utilizator sunteşi de acord ca orice informaşie introdusã sã fie stocatã într-o bazã de date. Deºi aceastã informaşie NU va fi oferitã unei terşe pãrşi administratorii nu pot fi fãcuşi responsabili în cazul unei accesãri forşate, ilegale a bazei de date ce ar duce la compromiterea acesteia. <br />
+SunteÅ£i de acord sÄƒ nu postaÅ£i nici o imagine sau un mesaj obscen, vulgar, ameninÅ£Äƒtor, sau orice alt mesaj ce Ã®ncalcÄƒ legile. SunteÅ£i de acord ca administratorul ÅŸi moderatorii paginii {SITE_NAME} au dreptul sÄƒ modifice sau sÄƒ ÅŸteargÄƒ orice conÅ£inut oricÃ¢nd considerÄƒ ei necesar. Ca utilizator sunteÅ£i de acord ca orice informaÅ£ie introdusÄƒ sÄƒ fie stocatÄƒ Ã®ntr-o bazÄƒ de date. DeÅŸi aceastÄƒ informaÅ£ie NU va fi oferitÄƒ unei terÅ£e pÄƒrÅ£i administratorii nu pot fi fÄƒcuÅ£i responsabili Ã®n cazul unei accesÄƒri forÅ£ate, ilegale a bazei de date ce ar duce la compromiterea acesteia. <br />
 <br />
-Acestã paginã foloseºte cookie-uri pentru a stoca informaşie pe computerul dvs. Acestea servesc doar la buna funcşionare a paginii web. Adresa dvs. e-mail este folositã doar pentru a verifica parola pentru procesul de înregistrare ºi pentru a primi informaşii directe din paginã. <br />
+AcestÄƒ paginÄƒ foloseÅŸte cookie-uri pentru a stoca informaÅ£ie pe computerul dvs. Acestea servesc doar la buna funcÅ£ionare a paginii web. Adresa dvs. e-mail este folositÄƒ doar pentru a verifica parola pentru procesul de Ã®nregistrare ÅŸi pentru a primi informaÅ£ii directe din paginÄƒ. <br />
 <br />
-Drepturile de autor asupra imaginilor din galerie aparşin exclusiv autorilor. Orice modificare/copiere se va face doar având consimşãmântul acestora!<br /><br />
-Apãsând pe butonul 'Sunt de acord' de mai jos sunteşi de acord sã respectaşi ºi acceptaşi condişiile de mai sus.
+Drepturile de autor asupra imaginilor din galerie aparÅ£in exclusiv autorilor. Orice modificare/copiere se va face doar avÃ¢nd consimÅ£ÄƒmÃ¢ntul acestora!<br /><br />
+ApÄƒsÃ¢nd pe butonul 'Sunt de acord' de mai jos sunteÅ£i de acord sÄƒ respectaÅ£i ÅŸi acceptaÅ£i condiÅ£iile de mai sus.
 EOT;
 
 $lang_register_php = array(
-        'page_title' => 'Înregistrare utilizator',
-        'term_cond' => 'Termeni si condişii',
+        'page_title' => 'Ãnregistrare utilizator',
+        'term_cond' => 'Termeni si condiÅ£ii',
         'i_agree' => 'Sunt de acord',
-        'submit' => 'Trimite înregistrarea',
-        'err_user_exists' => 'Numele utilizator ales existã deja, vã rugãm sã alegeşi alt nume',
-        'err_password_mismatch' => 'Cele douã parole nu sunt identice, vã rugãm sã le reintroduceşi',
-        'err_uname_short' => 'Numele utilizator trebuie sã aibã minim 3 caractere',
-        'err_password_short' => 'Parola trebuie sã aibã minim 5 caractere',
-        'err_uname_pass_diff' => 'Numele utilizator ºi parola trebuie sã fie diferite',
-        'err_invalid_email' => 'Adresa e-mail este incorectã',
-        'err_duplicate_email' => 'Alt utilizator este înregistrat deja cu aceasta adresã e-mail',
-        'enter_info' => 'Introduceşi datele pentru înregistrare',
-        'required_info' => 'Informaşii necesare',
-        'optional_info' => 'Informaşii opşionale',
+        'submit' => 'Trimite Ã®nregistrarea',
+        'err_user_exists' => 'Numele utilizator ales existÄƒ deja, vÄƒ rugÄƒm sÄƒ alegeÅ£i alt nume',
+        'err_password_mismatch' => 'Cele douÄƒ parole nu sunt identice, vÄƒ rugÄƒm sÄƒ le reintroduceÅ£i',
+        'err_uname_short' => 'Numele utilizator trebuie sÄƒ aibÄƒ minim 3 caractere',
+        'err_password_short' => 'Parola trebuie sÄƒ aibÄƒ minim 5 caractere',
+        'err_uname_pass_diff' => 'Numele utilizator ÅŸi parola trebuie sÄƒ fie diferite',
+        'err_invalid_email' => 'Adresa e-mail este incorectÄƒ',
+        'err_duplicate_email' => 'Alt utilizator este Ã®nregistrat deja cu aceasta adresÄƒ e-mail',
+        'enter_info' => 'IntroduceÅ£i datele pentru Ã®nregistrare',
+        'required_info' => 'InformaÅ£ii necesare',
+        'optional_info' => 'InformaÅ£ii opÅ£ionale',
         'username' => 'Utilizator',
         'password' => 'Parola',
-        'password_again' => 'Confirmaşi parola',
+        'password_again' => 'ConfirmaÅ£i parola',
         'email' => 'Email',
-        'location' => 'Locaşie',
+        'location' => 'LocaÅ£ie',
         'interests' => 'Interese',
         'website' => 'Pagina web',
-        'occupation' => 'Ocupaşie',
+        'occupation' => 'OcupaÅ£ie',
         'error' => 'Eroare',
-        'confirm_email_subject' => '%s - Confirmarea înregistrãrii',
-        'information' => 'Informaşii',
-        'failed_sending_email' => 'Mesajul de confirmare a înregistrãrii nu poate fi trimis!',
-        'thank_you' => 'Vã mulşumim pentru cã v-aşi înregistrat.<br /><br />Un email conşinând informaşii despre cum sã activaşi contul dvs. a fost trimis la adresa email specificatã.',
-        'acct_created' => 'Contul dvs. a fost creat ºi vã puteti loga introducând user-ul ºi parola dvs.',
-        'acct_active' => 'Contul dvs. este acum activ ºi va puteşi loga introducând user-ul ºi parola dvs.',
+        'confirm_email_subject' => '%s - Confirmarea Ã®nregistrÄƒrii',
+        'information' => 'InformaÅ£ii',
+        'failed_sending_email' => 'Mesajul de confirmare a Ã®nregistrÄƒrii nu poate fi trimis!',
+        'thank_you' => 'VÄƒ mulÅ£umim pentru cÄƒ v-aÅ£i Ã®nregistrat.<br /><br />Un email conÅ£inÃ¢nd informaÅ£ii despre cum sÄƒ activaÅ£i contul dvs. a fost trimis la adresa email specificatÄƒ.',
+        'acct_created' => 'Contul dvs. a fost creat ÅŸi vÄƒ puteti loga introducÃ¢nd user-ul ÅŸi parola dvs.',
+        'acct_active' => 'Contul dvs. este acum activ ÅŸi va puteÅ£i loga introducÃ¢nd user-ul ÅŸi parola dvs.',
         'acct_already_act' => 'Contul dvs. este deja activ!',
         'acct_act_failed' => 'Acest cont nu poate fi activat!',
-        'err_unk_user' => 'Utilizatorul selectat nu existã!',
+        'err_unk_user' => 'Utilizatorul selectat nu existÄƒ!',
         'x_s_profile' => 'Profilul lui %s',
         'group' => 'Grup',
-        'reg_date' => 'Înregistrat la',
+        'reg_date' => 'Ãnregistrat la',
         'disk_usage' => 'Utilizare disc',
-        'change_pass' => 'Schimbare parolã',
-        'current_pass' => 'Parola curentã',
-        'new_pass' => 'Parolã nouã',
-        'new_pass_again' => 'Reintroduceşi parola nouã',
-        'err_curr_pass' => 'Parola curentã este incorectã',
-        'apply_modif' => 'Executã modificarile',
-        'change_pass' => 'Schimbã parola mea',
+        'change_pass' => 'Schimbare parolÄƒ',
+        'current_pass' => 'Parola curentÄƒ',
+        'new_pass' => 'ParolÄƒ nouÄƒ',
+        'new_pass_again' => 'ReintroduceÅ£i parola nouÄƒ',
+        'err_curr_pass' => 'Parola curentÄƒ este incorectÄƒ',
+        'apply_modif' => 'ExecutÄƒ modificarile',
+        'change_pass' => 'SchimbÄƒ parola mea',
         'update_success' => 'Profilul dumneavoastra a fost modificat',
-        'pass_chg_success' => 'Parola dumneavoastrã a fost schimbatã',
-        'pass_chg_error' => 'Parola dumneavoastrã nu a fost schimbatã',
-        'notify_admin_email_subject' => '%s - Notificare înregistrare', //cpg1.3.0
-        'notify_admin_email_body' => 'Un nou utilizator "%s" în galerie', //cpg1.3.0
+        'pass_chg_success' => 'Parola dumneavoastrÄƒ a fost schimbatÄƒ',
+        'pass_chg_error' => 'Parola dumneavoastrÄƒ nu a fost schimbatÄƒ',
+        'notify_admin_email_subject' => '%s - Notificare Ã®nregistrare', //cpg1.3.0
+        'notify_admin_email_body' => 'Un nou utilizator "%s" Ã®n galerie', //cpg1.3.0
 );
 
 $lang_register_confirm_email = <<<EOT
-Vã mulşumim cã v-aşi înregistrat la {SITE_NAME}
+VÄƒ mulÅ£umim cÄƒ v-aÅ£i Ã®nregistrat la {SITE_NAME}
 
 Contul dvs. este : "{USER_NAME}"
 Parola dvs. este : "{PASSWORD}"
 
-Pentru a activa contul dvs., vã rugãm sã apãsaşi pe legãtura de mai jos
-sau sã o copiaşi si duceşi în navigatorul dvs. de internet.
+Pentru a activa contul dvs., vÄƒ rugÄƒm sÄƒ apÄƒsaÅ£i pe legÄƒtura de mai jos
+sau sÄƒ o copiaÅ£i si duceÅ£i Ã®n navigatorul dvs. de internet.
 
 {ACT_LINK}
 
-Cu stimã,
+Cu stimÄƒ,
 
 {SITE_NAME}
 
@@ -995,12 +998,12 @@ EOT;
 
 if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
         'title' => 'Revizuire comentarii',
-        'no_comment' => 'Nu existã comentarii care sã fie revizuite',
-        'n_comm_del' => '%s comentarii ºterse',
-        'n_comm_disp' => 'Numãrul de comentarii de afiºat',
-        'see_prev' => 'Afiºeazã precedentul',
-        'see_next' => 'Afiºeazã urmãtorul',
-        'del_comm' => 'ªterge comentariile selectate',
+        'no_comment' => 'Nu existÄƒ comentarii care sÄƒ fie revizuite',
+        'n_comm_del' => '%s comentarii ÅŸterse',
+        'n_comm_disp' => 'NumÄƒrul de comentarii de afiÅŸat',
+        'see_prev' => 'AfiÅŸeazÄƒ precedentul',
+        'see_next' => 'AfiÅŸeazÄƒ urmÄƒtorul',
+        'del_comm' => 'Återge comentariile selectate',
 );
 
 // ------------------------------------------------------------------------- //
@@ -1008,7 +1011,7 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCH_PHP')) $lang_search_php = array(
-        0 => 'Cautã în colecşia de imagini',
+        0 => 'CautÄƒ Ã®n colecÅ£ia de imagini',
 );
 
 // ------------------------------------------------------------------------- //
@@ -1016,36 +1019,36 @@ if (defined('SEARCH_PHP')) $lang_search_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
-        'page_title' => 'Cautã imagini noi',
-        'select_dir' => 'Selecteazã directorul',
-        'select_dir_msg' => 'Aceastã funcşie vã permite sã adãugaşi mai multe imagini o datã, imagini încãrcate de dvs. pe server prin FTP.<br /><br />Selectaşi directorul unde aşi încãrcat imaginile',
-        'no_pic_to_add' => 'Nu existã nici o imagine de adãugat',
-        'need_one_album' => 'Aveşi nevoie de cel puşin un album pentru a folosi aceastã funcşie',
-        'warning' => 'Atenşie',
-        'change_perm' => 'scriptul nu poate scrie în acest director, trebuie sã schimbaşi modul la 755 sau 777 înainte de a încerca sã adãugaşi imaginile!',
-        'target_album' => '<b>Pune imaginile din &quot;</b>%s<b>&quot; în </b>%s',
+        'page_title' => 'CautÄƒ imagini noi',
+        'select_dir' => 'SelecteazÄƒ directorul',
+        'select_dir_msg' => 'AceastÄƒ funcÅ£ie vÄƒ permite sÄƒ adÄƒugaÅ£i mai multe imagini o datÄƒ, imagini Ã®ncÄƒrcate de dvs. pe server prin FTP.<br /><br />SelectaÅ£i directorul unde aÅ£i Ã®ncÄƒrcat imaginile',
+        'no_pic_to_add' => 'Nu existÄƒ nici o imagine de adÄƒugat',
+        'need_one_album' => 'AveÅ£i nevoie de cel puÅ£in un album pentru a folosi aceastÄƒ funcÅ£ie',
+        'warning' => 'AtenÅ£ie',
+        'change_perm' => 'scriptul nu poate scrie Ã®n acest director, trebuie sÄƒ schimbaÅ£i modul la 755 sau 777 Ã®nainte de a Ã®ncerca sÄƒ adÄƒugaÅ£i imaginile!',
+        'target_album' => '<b>Pune imaginile din &quot;</b>%s<b>&quot; Ã®n </b>%s',
         'folder' => 'Director',
         'image' => 'Imagine',
         'album' => 'Album',
         'result' => 'Rezultat',
         'dir_ro' => 'Nu poate fi scris. ',
         'dir_cant_read' => 'Nu poate fi citit. ',
-        'insert' => 'Adaugã imagini noi în galerie',
+        'insert' => 'AdaugÄƒ imagini noi Ã®n galerie',
         'list_new_pic' => 'Lista noilor imagini',
-        'insert_selected' => 'Insereazã imaginile selectate',
-        'no_pic_found' => 'Nu a fost gasitã nici o imagine nouã',
-        'be_patient' => 'Vã rugam aºteptaşi, scriptul necesitã timp pentru a procesa imaginile',
+        'insert_selected' => 'InsereazÄƒ imaginile selectate',
+        'no_pic_found' => 'Nu a fost gasitÄƒ nici o imagine nouÄƒ',
+        'be_patient' => 'VÄƒ rugam aÅŸteptaÅ£i, scriptul necesitÄƒ timp pentru a procesa imaginile',
         'notes' =>  '<ul>'.
-                                '<li><b>OK</b> : înseamnã cã imaginea a fost adaugatã cu succes'.
-                                '<li><b>DP</b> : înseamnã cã imaginea este un duplicat ºi existã deja în baza de date'.
-                                '<li><b>PB</b> : înseamnã cã imaginea nu a putut fi adaugatã, verificaşi configuraşia ºi permisiile directoarelor unde imaginile sunt stocate'.
-                                '<li><b>NA</b> : înseamnã cã nu aşi selectat un album unde sã încãrcaşi imaginile, apãsaşi \'<a href="javascript:history.back(1)">înapoi</a>\' ºi selectaşi un album. Dacã nu aveşi un album <a href="albmgr.php">creaşi unul întâi</a>'.
-                                '<li>Dacã \'semnele\' OK, DP, PB nu apar, daşi click pe icoana de imagine defectã pentru a verifica mesajele de eroare produse de PHP'.
-                                '<li>Dacã navigatorul dvs. raporteazã \'timeout\', apãsaşi butonul de reîncãrcare a paginii'.
+                                '<li><b>OK</b> : Ã®nseamnÄƒ cÄƒ imaginea a fost adaugatÄƒ cu succes'.
+                                '<li><b>DP</b> : Ã®nseamnÄƒ cÄƒ imaginea este un duplicat ÅŸi existÄƒ deja Ã®n baza de date'.
+                                '<li><b>PB</b> : Ã®nseamnÄƒ cÄƒ imaginea nu a putut fi adaugatÄƒ, verificaÅ£i configuraÅ£ia ÅŸi permisiile directoarelor unde imaginile sunt stocate'.
+                                '<li><b>NA</b> : Ã®nseamnÄƒ cÄƒ nu aÅ£i selectat un album unde sÄƒ Ã®ncÄƒrcaÅ£i imaginile, apÄƒsaÅ£i \'<a href="javascript:history.back(1)">Ã®napoi</a>\' ÅŸi selectaÅ£i un album. DacÄƒ nu aveÅ£i un album <a href="albmgr.php">creaÅ£i unul Ã®ntÃ¢i</a>'.
+                                '<li>DacÄƒ \'semnele\' OK, DP, PB nu apar, daÅ£i click pe icoana de imagine defectÄƒ pentru a verifica mesajele de eroare produse de PHP'.
+                                '<li>DacÄƒ navigatorul dvs. raporteazÄƒ \'timeout\', apÄƒsaÅ£i butonul de reÃ®ncÄƒrcare a paginii'.
                                 '</ul>',
-                                'select_album' => 'Selecteazã album', //cpg1.3.0
-                                'check_all' => 'Selecteazã tot', //cpg1.3.0
-                                'uncheck_all' => 'Deselecteazã tot', //cpg1.3.0
+                                'select_album' => 'SelecteazÄƒ album', //cpg1.3.0
+                                'check_all' => 'SelecteazÄƒ tot', //cpg1.3.0
+                                'uncheck_all' => 'DeselecteazÄƒ tot', //cpg1.3.0
 );
 
 
@@ -1060,20 +1063,20 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('BANNING_PHP')) $lang_banning_php = array(
-                'title' => 'Banaşi utilizatori',
+                'title' => 'BanaÅ£i utilizatori',
                 'user_name' => 'Nume utilizator',
                 'ip_address' => 'Adresa IP',
-                'expiry' => 'Expirã (gol este permanent)',
-                'edit_ban' => 'Salveazã modificarile',
-                'delete_ban' => 'ªterge',
-                'add_new' => 'Adaugã un nou ban',
-                'add_ban' => 'Adaugã',
-                'error_user' => 'Nu gãsesc utilizatorul', //cpg1.3.0
-                'error_specify' => 'Trebuie sã specificaşi un nume sau o adresa IP', //cpg1.3.0
+                'expiry' => 'ExpirÄƒ (gol este permanent)',
+                'edit_ban' => 'SalveazÄƒ modificarile',
+                'delete_ban' => 'Återge',
+                'add_new' => 'AdaugÄƒ un nou ban',
+                'add_ban' => 'AdaugÄƒ',
+                'error_user' => 'Nu gÄƒsesc utilizatorul', //cpg1.3.0
+                'error_specify' => 'Trebuie sÄƒ specificaÅ£i un nume sau o adresa IP', //cpg1.3.0
                 'error_ban_id' => 'Ban ID invalid!', //cpg1.3.0
-                'error_admin_ban' => 'Nu puteşi bana propriul user!', //cpg1.3.0
-                'error_server_ban' => 'Nu puteşi bana propriul server!', //cpg1.3.0
-                'error_ip_forbidden' => 'Nu puteşi bana acest IP - nu este rutabil!', //cpg1.3.0
+                'error_admin_ban' => 'Nu puteÅ£i bana propriul user!', //cpg1.3.0
+                'error_server_ban' => 'Nu puteÅ£i bana propriul server!', //cpg1.3.0
+                'error_ip_forbidden' => 'Nu puteÅ£i bana acest IP - nu este rutabil!', //cpg1.3.0
                 'lookup_ip' => 'Lookup adresa IP', //cpg1.3.0
                 'submit' => 'da!', //cpg1.3.0
 );
@@ -1083,76 +1086,76 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UPLOAD_PHP')) $lang_upload_php = array(
-  'title' => 'Încarcã o imagine', //cpg1.3.0
+  'title' => 'ÃncarcÄƒ o imagine', //cpg1.3.0
   'custom_title' => 'Forma cerere', //cpg1.3.0
-  'cust_instr_1' => 'Trebuie sã selectaşi numãrul de cãsuşe de încãrcare, nu mai multe decât numãrul de mai jos.', //cpg1.3.0
-  'cust_instr_2' => 'Cerere numãr cãsuşe', //cpg1.3.0
-  'cust_instr_3' => 'cãsuşe încãrcat imagini: %s', //cpg1.3.0
-  'cust_instr_4' => 'cãsuşe încãrcat URL: %s', //cpg1.3.0
-  'cust_instr_5' => 'cãsuşe încãrcat URL:', //cpg1.3.0
-  'cust_instr_6' => 'cãsuşe încãrcat imagini:', //cpg1.3.0
-  'cust_instr_7' => 'Vã rugãm introduceşi numãrul de cãsuşe. Apoi apãsaşi \'Continuare\'. ', //cpg1.3.0
-  'reg_instr_1' => 'Acşiune invalidã pentru crearea formei.', //cpg1.3.0
-  'reg_instr_2' => 'Acum puteşi încãrca imaginile folosind cãsuşele de mai jos. Mãrimea imaginilor trimise cãtre server nu trebuie sã depãºeascã %s KB fiecare. Fiºierele ZIP încãrcate în \'Încãrcare imagini\' ºi \'Încãrcare URL\' vor ramâne comprimate.', //cpg1.3.0
-  'reg_instr_3' => 'Dacã dorişi ca fiºierele arhivate sã fie dezarhivate, trebuie sã folosişi cãsuşa \'Încãrcaşi ZIP decompresate\'.', //cpg1.3.0
-  'reg_instr_4' => 'Când folosişi încãrcare URL, vã rugãm sã folosişi întreaga cale: http://www.pagina.ro/imagini/exemplu.jpg', //cpg1.3.0
-  'reg_instr_5' => 'Când aşi completat formularul, vã rugãm apãsaşi \'Continuare\'.', //cpg1.3.0
-  'reg_instr_6' => 'Încãrcare ZIP decompresat:', //cpg1.3.0
-  'reg_instr_7' => 'Încãrcare imagini:', //cpg1.3.0
-  'reg_instr_8' => 'Încãrcare URL:', //cpg1.3.0
-  'error_report' => 'Raporteazã eroare', //cpg1.3.0
-  'error_instr' => 'Urmãtoarele încãrcãri au erori:', //cpg1.3.0
+  'cust_instr_1' => 'Trebuie sÄƒ selectaÅ£i numÄƒrul de cÄƒsuÅ£e de Ã®ncÄƒrcare, nu mai multe decÃ¢t numÄƒrul de mai jos.', //cpg1.3.0
+  'cust_instr_2' => 'Cerere numÄƒr cÄƒsuÅ£e', //cpg1.3.0
+  'cust_instr_3' => 'cÄƒsuÅ£e Ã®ncÄƒrcat imagini: %s', //cpg1.3.0
+  'cust_instr_4' => 'cÄƒsuÅ£e Ã®ncÄƒrcat URL: %s', //cpg1.3.0
+  'cust_instr_5' => 'cÄƒsuÅ£e Ã®ncÄƒrcat URL:', //cpg1.3.0
+  'cust_instr_6' => 'cÄƒsuÅ£e Ã®ncÄƒrcat imagini:', //cpg1.3.0
+  'cust_instr_7' => 'VÄƒ rugÄƒm introduceÅ£i numÄƒrul de cÄƒsuÅ£e. Apoi apÄƒsaÅ£i \'Continuare\'. ', //cpg1.3.0
+  'reg_instr_1' => 'AcÅ£iune invalidÄƒ pentru crearea formei.', //cpg1.3.0
+  'reg_instr_2' => 'Acum puteÅ£i Ã®ncÄƒrca imaginile folosind cÄƒsuÅ£ele de mai jos. MÄƒrimea imaginilor trimise cÄƒtre server nu trebuie sÄƒ depÄƒÅŸeascÄƒ %s KB fiecare. FiÅŸierele ZIP Ã®ncÄƒrcate Ã®n \'ÃncÄƒrcare imagini\' ÅŸi \'ÃncÄƒrcare URL\' vor ramÃ¢ne comprimate.', //cpg1.3.0
+  'reg_instr_3' => 'DacÄƒ doriÅ£i ca fiÅŸierele arhivate sÄƒ fie dezarhivate, trebuie sÄƒ folosiÅ£i cÄƒsuÅ£a \'ÃncÄƒrcaÅ£i ZIP decompresate\'.', //cpg1.3.0
+  'reg_instr_4' => 'CÃ¢nd folosiÅ£i Ã®ncÄƒrcare URL, vÄƒ rugÄƒm sÄƒ folosiÅ£i Ã®ntreaga cale: http://www.pagina.ro/imagini/exemplu.jpg', //cpg1.3.0
+  'reg_instr_5' => 'CÃ¢nd aÅ£i completat formularul, vÄƒ rugÄƒm apÄƒsaÅ£i \'Continuare\'.', //cpg1.3.0
+  'reg_instr_6' => 'ÃncÄƒrcare ZIP decompresat:', //cpg1.3.0
+  'reg_instr_7' => 'ÃncÄƒrcare imagini:', //cpg1.3.0
+  'reg_instr_8' => 'ÃncÄƒrcare URL:', //cpg1.3.0
+  'error_report' => 'RaporteazÄƒ eroare', //cpg1.3.0
+  'error_instr' => 'UrmÄƒtoarele Ã®ncÄƒrcÄƒri au erori:', //cpg1.3.0
   'file_name_url' => 'Imagine(i)/URL', //cpg1.3.0
   'error_message' => 'Mesaj eroare', //cpg1.3.0
-  'no_post' => 'Imaginea nu poate fi încãrcatã prin POST.', //cpg1.3.0
-  'forb_ext' => 'Extensia fiºierului nepermisã.', //cpg1.3.0
-  'exc_php_ini' => 'Mãrimea imaginii permisã în php.ini.', //cpg1.3.0
-  'exc_file_size' => 'Mãrimea imaginii permisã de galerie.', //cpg1.3.0
-  'partial_upload' => 'Încãrcare parşialã.', //cpg1.3.0
-  'no_upload' => 'Fãrã încãrcare.', //cpg1.3.0
-  'unknown_code' => 'Eroare PHP necunoscutã.', //cpg1.3.0
-  'no_temp_name' => 'Fãrã încãrcare - fãrã nume temporar.', //cpg1.3.0
-  'no_file_size' => 'Nu conşine date/corupt', //cpg1.3.0
+  'no_post' => 'Imaginea nu poate fi Ã®ncÄƒrcatÄƒ prin POST.', //cpg1.3.0
+  'forb_ext' => 'Extensia fiÅŸierului nepermisÄƒ.', //cpg1.3.0
+  'exc_php_ini' => 'MÄƒrimea imaginii permisÄƒ Ã®n php.ini.', //cpg1.3.0
+  'exc_file_size' => 'MÄƒrimea imaginii permisÄƒ de galerie.', //cpg1.3.0
+  'partial_upload' => 'ÃncÄƒrcare parÅ£ialÄƒ.', //cpg1.3.0
+  'no_upload' => 'FÄƒrÄƒ Ã®ncÄƒrcare.', //cpg1.3.0
+  'unknown_code' => 'Eroare PHP necunoscutÄƒ.', //cpg1.3.0
+  'no_temp_name' => 'FÄƒrÄƒ Ã®ncÄƒrcare - fÄƒrÄƒ nume temporar.', //cpg1.3.0
+  'no_file_size' => 'Nu conÅ£ine date/corupt', //cpg1.3.0
   'impossible' => 'Imposibil de mutat.', //cpg1.3.0
   'not_image' => 'Nu este imagine/corupt', //cpg1.3.0
-  'not_GD' => 'Nu are extensie corectã.', //cpg1.3.0
-  'pixel_allowance' => 'Numãr mare de pixeli .', //cpg1.3.0
+  'not_GD' => 'Nu are extensie corectÄƒ.', //cpg1.3.0
+  'pixel_allowance' => 'NumÄƒr mare de pixeli .', //cpg1.3.0
   'incorrect_prefix' => 'Prefix URL incorect', //cpg1.3.0
   'could_not_open_URI' => 'Nu pot deschide URL.', //cpg1.3.0
   'unsafe_URI' => 'URL neverificabil.', //cpg1.3.0
   'meta_data_failure' => 'Eroare Meta data', //cpg1.3.0
   'http_401' => '401 Neautorizat', //cpg1.3.0
-  'http_402' => '402 Necesitã plata', //cpg1.3.0
+  'http_402' => '402 NecesitÄƒ plata', //cpg1.3.0
   'http_403' => '403 Inaccesibil', //cpg1.3.0
-  'http_404' => '404 Negãsit', //cpg1.3.0
-  'http_500' => '500 Eroare internã', //cpg1.3.0
+  'http_404' => '404 NegÄƒsit', //cpg1.3.0
+  'http_500' => '500 Eroare internÄƒ', //cpg1.3.0
   'http_503' => '503 Serviciu indisponibil', //cpg1.3.0
   'MIME_extraction_failure' => 'MIME nu a putut fi extras.', //cpg1.3.0
   'MIME_type_unknown' => 'Tip MIME necunoscut', //cpg1.3.0
-  'cant_create_write' => 'Nu pot sã scriu.', //cpg1.3.0
-  'not_writable' => 'Nu pot sã scriu în imagine.', //cpg1.3.0
-  'cant_read_URI' => 'Nu pot sã citesc URL', //cpg1.3.0
+  'cant_create_write' => 'Nu pot sÄƒ scriu.', //cpg1.3.0
+  'not_writable' => 'Nu pot sÄƒ scriu Ã®n imagine.', //cpg1.3.0
+  'cant_read_URI' => 'Nu pot sÄƒ citesc URL', //cpg1.3.0
   'cant_open_write_file' => 'Nu pot deschide URL.', //cpg1.3.0
-  'cant_write_write_file' => 'Nu pot sã scriu URL.', //cpg1.3.0
+  'cant_write_write_file' => 'Nu pot sÄƒ scriu URL.', //cpg1.3.0
   'cant_unzip' => 'Nu pot dezarhiva.', //cpg1.3.0
-  'unknown' => 'Eroare necunoscutã', //cpg1.3.0
-  'succ' => 'Încãrcare reuºitã', //cpg1.3.0
-  'success' => '%s încãrcãri reuºite.', //cpg1.3.0
-  'add' => 'Vã rugãm apãsaşi \'Continuare\' pentru a adãuga imagini în album.', //cpg1.3.0
-  'failure' => 'Încãrcare eºuatã', //cpg1.3.0
-  'f_info' => 'Informaşii imagine', //cpg1.3.0
-  'no_place' => 'Precedenta imagine nu a putut fi încãrcatã.', //cpg1.3.0
-  'yes_place' => 'Precedenta imagine a putut fi încãrcatã.', //cpg1.3.0
-  'max_fsize' => 'Dimensiunea maximã a imaginii este de %s KB',
+  'unknown' => 'Eroare necunoscutÄƒ', //cpg1.3.0
+  'succ' => 'ÃncÄƒrcare reuÅŸitÄƒ', //cpg1.3.0
+  'success' => '%s Ã®ncÄƒrcÄƒri reuÅŸite.', //cpg1.3.0
+  'add' => 'VÄƒ rugÄƒm apÄƒsaÅ£i \'Continuare\' pentru a adÄƒuga imagini Ã®n album.', //cpg1.3.0
+  'failure' => 'ÃncÄƒrcare eÅŸuatÄƒ', //cpg1.3.0
+  'f_info' => 'InformaÅ£ii imagine', //cpg1.3.0
+  'no_place' => 'Precedenta imagine nu a putut fi Ã®ncÄƒrcatÄƒ.', //cpg1.3.0
+  'yes_place' => 'Precedenta imagine a putut fi Ã®ncÄƒrcatÄƒ.', //cpg1.3.0
+  'max_fsize' => 'Dimensiunea maximÄƒ a imaginii este de %s KB',
   'album' => 'Album',
   'picture' => 'Imagine', //cpg1.3.0
   'pic_title' => 'Titlul imaginii', //cpg1.3.0
   'description' => 'Descrierea imaginii', //cpg1.3.0
-  'keywords' => 'Cuvinte cheie (separate cu spaşiu)',
-  'err_no_alb_uploadables' => 'Ne pare rãu dar nu existã un album unde sã încãrcaşi imaginile', //cpg1.3.0
-  'place_instr_1' => 'Vã rugãm sã puneşi imaginile în albume în acest moment. Puteşi de asemenea adãuga informaşii despre fiecare imagine.', //cpg1.3.0
-  'place_instr_2' => 'Mai multe imagini necesitã plasare, vã rugãm apãsaşi \'Continuare\'.', //cpg1.3.0
-  'process_complete' => 'Aşi adãugat cu succes toate imaginile.', //cpg1.3.0
+  'keywords' => 'Cuvinte cheie (separate cu spaÅ£iu)',
+  'err_no_alb_uploadables' => 'Ne pare rÄƒu dar nu existÄƒ un album unde sÄƒ Ã®ncÄƒrcaÅ£i imaginile', //cpg1.3.0
+  'place_instr_1' => 'VÄƒ rugÄƒm sÄƒ puneÅ£i imaginile Ã®n albume Ã®n acest moment. PuteÅ£i de asemenea adÄƒuga informaÅ£ii despre fiecare imagine.', //cpg1.3.0
+  'place_instr_2' => 'Mai multe imagini necesitÄƒ plasare, vÄƒ rugÄƒm apÄƒsaÅ£i \'Continuare\'.', //cpg1.3.0
+  'process_complete' => 'AÅ£i adÄƒugat cu succes toate imaginile.', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -1165,43 +1168,43 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
         'name_d' => 'Nume descendent',
         'group_a' => 'Grup ascendent',
         'group_d' => 'Grup descendent',
-        'reg_a' => 'Data înregistrãrii ascendent',
-        'reg_d' => 'Data înregistrãrii descendent',
-        'pic_a' => 'Numãr imagini ascendent',
-        'pic_d' => 'Numãr imagini descendent',
-        'disku_a' => 'Utilizare spaşiu ascendent',
-        'disku_d' => 'Utilizare spaşiu descendent',
-        'sort_by' => 'Sorteazã utilizatorii dupã',
+        'reg_a' => 'Data Ã®nregistrÄƒrii ascendent',
+        'reg_d' => 'Data Ã®nregistrÄƒrii descendent',
+        'pic_a' => 'NumÄƒr imagini ascendent',
+        'pic_d' => 'NumÄƒr imagini descendent',
+        'disku_a' => 'Utilizare spaÅ£iu ascendent',
+        'disku_d' => 'Utilizare spaÅ£iu descendent',
+        'sort_by' => 'SorteazÄƒ utilizatorii dupÄƒ',
         'err_no_users' => 'Tabelul cu utilizatori este gol!',
-        'err_edit_self' => 'Nu puteşi edita propriul profil. Folosişi opşiunea \'Profilul meu\' pentru aceasta',
-        'edit' => 'Editeazã',
-        'delete' => 'ªterge',
+        'err_edit_self' => 'Nu puteÅ£i edita propriul profil. FolosiÅ£i opÅ£iunea \'Profilul meu\' pentru aceasta',
+        'edit' => 'EditeazÄƒ',
+        'delete' => 'Återge',
         'name' => 'Nume utilizator',
         'group' => 'Grup',
         'inactive' => 'Inactiv',
-        'operations' => 'Operaşii',
+        'operations' => 'OperaÅ£ii',
         'pictures' => 'Imagini',
-        'disk_space' => 'Spaşiu utilizat/Cota',
-        'registered_on' => 'Înregistrat la',
-        'last_visit' => 'Ultima vizitã', //cpg1.3.0
+        'disk_space' => 'SpaÅ£iu utilizat/Cota',
+        'registered_on' => 'Ãnregistrat la',
+        'last_visit' => 'Ultima vizitÄƒ', //cpg1.3.0
         'u_user_on_p_pages' => '%d utilizatori pe %d pagini',
-        'confirm_del' => 'Sunteşi sigur cã dorişi sã ºtergeşi acest utilizator ? \\nToate imaginile ºi albumele sale vor fi de asemenea ºterse',
-        'mail' => 'Poºta',
-        'err_unknown_user' => 'Utilizatorul selectat nu existã!',
-        'modify_user' => 'Modificã utilizatorul',
+        'confirm_del' => 'SunteÅ£i sigur cÄƒ doriÅ£i sÄƒ ÅŸtergeÅ£i acest utilizator ? \\nToate imaginile ÅŸi albumele sale vor fi de asemenea ÅŸterse',
+        'mail' => 'PoÅŸta',
+        'err_unknown_user' => 'Utilizatorul selectat nu existÄƒ!',
+        'modify_user' => 'ModificÄƒ utilizatorul',
         'notes' => 'Note',
-        'note_list' => '<li>Dacã nu dorişi sã schimbaşi parola, lãsaşi câmpurile "Parola" libere',
+        'note_list' => '<li>DacÄƒ nu doriÅ£i sÄƒ schimbaÅ£i parola, lÄƒsaÅ£i cÃ¢mpurile "Parola" libere',
         'password' => 'Parola',
         'user_active' => 'Utilizatorul este activ',
         'user_group' => 'Grup utilizatori',
         'user_email' => 'E-mail',
         'user_web_site' => 'Pagina web',
         'create_new_user' => 'Creaza utilizator nou',
-        'user_location' => 'Locaşie',
+        'user_location' => 'LocaÅ£ie',
         'user_interests' => 'Interese',
-        'user_occupation' => 'Ocupaşie',
-        'latest_upload' => 'Ultima încãrcare', //cpg1.3.0
-        'never' => 'niciodatã', //cpg1.3.0
+        'user_occupation' => 'OcupaÅ£ie',
+        'latest_upload' => 'Ultima Ã®ncÄƒrcare', //cpg1.3.0
+        'never' => 'niciodatÄƒ', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -1209,59 +1212,59 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UTIL_PHP')) $lang_util_php = array(
-        'title' => 'Redimensioneazã imagini',
+        'title' => 'RedimensioneazÄƒ imagini',
         'what_it_does' => 'Ce face',
-        'what_update_titles' => 'Modificã titlurile dupã numele fiºierului',
-        'what_delete_title' => 'ªterge titlurile',
-        'what_rebuild' => 'Reconstruieºte pictogramele ºi imaginile intermediare',
-        'what_delete_originals' => 'ªterge imaginile dimensionate inişial, înlocuindu-le cu versiunea dimensionatã',
-        'file' => 'Fiºier',
+        'what_update_titles' => 'ModificÄƒ titlurile dupÄƒ numele fiÅŸierului',
+        'what_delete_title' => 'Återge titlurile',
+        'what_rebuild' => 'ReconstruieÅŸte pictogramele ÅŸi imaginile intermediare',
+        'what_delete_originals' => 'Återge imaginile dimensionate iniÅ£ial, Ã®nlocuindu-le cu versiunea dimensionatÄƒ',
+        'file' => 'FiÅŸier',
         'title_set_to' => 'titlu setat ca',
         'submit_form' => 'trimite',
-        'updated_succesfully' => 'modificatã cu succes',
+        'updated_succesfully' => 'modificatÄƒ cu succes',
         'error_create' => 'Eroare creare',
-        'continue' => 'Proceseazã mai multe imagini',
-        'main_success' => 'Fiºierul %s a fost folosit cu succes ca imagine principalã',
+        'continue' => 'ProceseazÄƒ mai multe imagini',
+        'main_success' => 'FiÅŸierul %s a fost folosit cu succes ca imagine principalÄƒ',
         'error_rename' => 'Eroare redenumire %s cu %s',
-        'error_not_found' => 'Fiºierul %s nu a fost gãsit',
-        'back' => 'înapoi la principal',
-        'thumbs_wait' => 'Modificare pictograme ºi/sau imagini intermediare, vã rugãm asteptaşi...',
-        'thumbs_continue_wait' => 'Continuare modificare pictograme ºi/sau imagini intermediare...',
-        'titles_wait' => 'Modificare titluri, vã rugãm asteptaşi...',
-        'delete_wait' => 'ªtergere titluri, vã rugãm asteptaşi...',
-        'replace_wait' => 'ªtergere originale ºi modificare cu versiunile redimensionate, vã rugãm asteptaşi...',
-        'instruction' => 'Instrucşiuni rapide',
-        'instruction_action' => 'Selecteazã o acşiune',
-        'instruction_parameter' => 'Seteazã parametrii',
-        'instruction_album' => 'Selecteazã un album',
-        'instruction_press' => 'Apasã %s',
-        'update' => 'Modificã pictograme ºi/sau imagini intermediare',
+        'error_not_found' => 'FiÅŸierul %s nu a fost gÄƒsit',
+        'back' => 'Ã®napoi la principal',
+        'thumbs_wait' => 'Modificare pictograme ÅŸi/sau imagini intermediare, vÄƒ rugÄƒm asteptaÅ£i...',
+        'thumbs_continue_wait' => 'Continuare modificare pictograme ÅŸi/sau imagini intermediare...',
+        'titles_wait' => 'Modificare titluri, vÄƒ rugÄƒm asteptaÅ£i...',
+        'delete_wait' => 'Återgere titluri, vÄƒ rugÄƒm asteptaÅ£i...',
+        'replace_wait' => 'Återgere originale ÅŸi modificare cu versiunile redimensionate, vÄƒ rugÄƒm asteptaÅ£i...',
+        'instruction' => 'InstrucÅ£iuni rapide',
+        'instruction_action' => 'SelecteazÄƒ o acÅ£iune',
+        'instruction_parameter' => 'SeteazÄƒ parametrii',
+        'instruction_album' => 'SelecteazÄƒ un album',
+        'instruction_press' => 'ApasÄƒ %s',
+        'update' => 'ModificÄƒ pictograme ÅŸi/sau imagini intermediare',
         'update_what' => 'Ce trebuie modificat',
         'update_thumb' => 'Doar pictograme',
         'update_pic' => 'Doar imaginile intermediare',
-        'update_both' => 'Amândouã',
-        'update_number' => 'Numãrul de imagini procesate pentru o apãsare',
-        'update_option' => '(Încercaşi o setare mai micã dacã primişi timeout-uri)',
-        'filename_title' => 'Nume fiºier &rArr; Titlu imagine',
+        'update_both' => 'AmÃ¢ndouÄƒ',
+        'update_number' => 'NumÄƒrul de imagini procesate pentru o apÄƒsare',
+        'update_option' => '(ÃncercaÅ£i o setare mai micÄƒ dacÄƒ primiÅ£i timeout-uri)',
+        'filename_title' => 'Nume fiÅŸier &rArr; Titlu imagine',
         'filename_how' => 'Cum trebuie modificat titlul',
-        'filename_remove' => 'Eliminã .jpg din final ºi înlocuieºte _ (liniuşa de subliniere) cu spaşiu',
-        'filename_euro' => 'Schimbã 2003_11_23_13_20_20.jpg cu 23/11/2003 13:20',
-        'filename_us' => 'Schimbã 2003_11_23_13_20_20.jpg cu 11/23/2003 13:20',
-        'filename_time' => 'Schimbã 2003_11_23_13_20_20.jpg cu 13:20',
-        'delete' => 'ªterge titlurile sau imaginile originale',
-        'delete_title' => 'ªterge titlurile imaginilor',
-        'delete_original' => 'ªterge imaginile originale',
-        'delete_replace' => 'ªterge originalele, înlocuindu-le cu versiunile dimensionate',
-        'select_album' => 'Selecteazã album',
-        'delete_orphans' => 'ªterge comentarii orfane (în toate albumele)', //cpg1.3.0
+        'filename_remove' => 'EliminÄƒ .jpg din final ÅŸi Ã®nlocuieÅŸte _ (liniuÅ£a de subliniere) cu spaÅ£iu',
+        'filename_euro' => 'SchimbÄƒ 2003_11_23_13_20_20.jpg cu 23/11/2003 13:20',
+        'filename_us' => 'SchimbÄƒ 2003_11_23_13_20_20.jpg cu 11/23/2003 13:20',
+        'filename_time' => 'SchimbÄƒ 2003_11_23_13_20_20.jpg cu 13:20',
+        'delete' => 'Återge titlurile sau imaginile originale',
+        'delete_title' => 'Återge titlurile imaginilor',
+        'delete_original' => 'Återge imaginile originale',
+        'delete_replace' => 'Återge originalele, Ã®nlocuindu-le cu versiunile dimensionate',
+        'select_album' => 'SelecteazÄƒ album',
+        'delete_orphans' => 'Återge comentarii orfane (Ã®n toate albumele)', //cpg1.3.0
         'orphan_comment' => 'Comentarii orfane', //cpg1.3.0
-        'delete' => 'ªterge', //cpg1.3.0
-        'delete_all' => 'ªterge tot', //cpg1.3.0
+        'delete' => 'Återge', //cpg1.3.0
+        'delete_all' => 'Återge tot', //cpg1.3.0
         'comment' => 'Comentariu: ', //cpg1.3.0
-        'nonexist' => 'ataºat unei imagini inexistente # ', //cpg1.3.0
-        'phpinfo' => 'Aratã phpinfo', //cpg1.3.0
-        'update_db' => 'Actualizeazã baza de date', //cpg1.3.0
-        'update_db_explanation' => 'Dacã aşi modificat fiºierele galeriei sau aşi fãcut up-grade, actualizeaşi baza de date. Aceasta va salva tabelele necesare ºi configurãrile în baza de date a galeriei.', //cpg1.3.0
+        'nonexist' => 'ataÅŸat unei imagini inexistente # ', //cpg1.3.0
+        'phpinfo' => 'AratÄƒ phpinfo', //cpg1.3.0
+        'update_db' => 'ActualizeazÄƒ baza de date', //cpg1.3.0
+        'update_db_explanation' => 'DacÄƒ aÅ£i modificat fiÅŸierele galeriei sau aÅ£i fÄƒcut up-grade, actualizeaÅ£i baza de date. Aceasta va salva tabelele necesare ÅŸi configurÄƒrile Ã®n baza de date a galeriei.', //cpg1.3.0
 );
 
 ?>

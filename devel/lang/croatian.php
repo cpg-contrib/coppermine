@@ -1,18 +1,21 @@
 <?php
-// ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
-// ------------------------------------------------------------------------- //
-// Copyright (C) 2002-2004 Gregory DEMAR                                     //
-// http://www.chezgreg.net/coppermine/                                       //
-// ------------------------------------------------------------------------- //
-// Updated by the Coppermine Dev Team                                        //
-// (http://coppermine.sf.net/team/)                                          //
-// see /docs/credits.html for details                                        //
-// ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2005 Coppermine Dev Team
+  v1.1 originally written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  ********************************************
+  Coppermine version: 1.4.1
+  $Source$
+  $Revision$
+  $Author$
+  $Date$
+**********************************************/
 // ------------------------------------------------------------------------- //
 // $Id$
 // ------------------------------------------------------------------------- //
@@ -35,8 +38,8 @@ $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 $lang_byte_units = array('Bytes', 'KB', 'MB');
 
 // Day of weeks and months
-$lang_day_of_week = array('Ned', 'Pon', 'Uto', 'Sri', 'Èet', 'Pet', 'Sub');
-$lang_month = array('Sij', 'Velj', 'Ou', 'Tra', 'Svi', 'Lip', 'Srp', 'Kol', 'Ruj', 'Lis', 'Stu', 'Pro');
+$lang_day_of_week = array('Ned', 'Pon', 'Uto', 'Sri', 'ÄŒet', 'Pet', 'Sub');
+$lang_month = array('Sij', 'Velj', 'OÂu', 'Tra', 'Svi', 'Lip', 'Srp', 'Kol', 'Ruj', 'Lis', 'Stu', 'Pro');
 
 // Some common strings
 $lang_yes = 'Da';
@@ -44,7 +47,7 @@ $lang_no  = 'Ne';
 $lang_back = 'NATRAG';
 $lang_continue = 'NASTAVI';
 $lang_info = 'Informacija';
-$lang_error = 'Pogreška';
+$lang_error = 'PogreÂška';
 
 // The various date formats
 // See http://www.php.net/manual/en/function.strftime.php to define the variable below
@@ -72,27 +75,27 @@ $lang_meta_album_names = array(
 
 $lang_errors = array(
   'access_denied' => 'Nemate dozvolu pristupiti ovoj stranici.',
-  'perm_denied' => 'Nemate dozvolu izvršiti ovu radnju.',
+  'perm_denied' => 'Nemate dozvolu izvrÂšiti ovu radnju.',
   'param_missing' => 'Skripta pozvana bez potrebnih parametara.',
   'non_exist_ap' => 'Odabrani album/slika ne postoji', //cpg1.3.0
-  'quota_exceeded' => 'Premašena kvota diska<br /><br />Vaša kvota prostora je [quota]K, vaše slike trenutno zauzimaju [space]K, ako dodate ovu sliku premašit æete kvotu.', //cpg1.3.0
+  'quota_exceeded' => 'PremaÂšena kvota diska<br /><br />VaÂša kvota prostora je [quota]K, vaÂše slike trenutno zauzimaju [space]K, ako dodate ovu sliku premaÂšit Ä‡ete kvotu.', //cpg1.3.0
   'gd_file_type_err' => 'Kada koristite GD image library dozvoljeni tipovi slika su samo JPEG and PNG.',
-  'invalid_image' => 'Uploadana slika ima grešku ili ne moe biti obrağena od strane GD library',
-  'resize_failed' => 'Ne mogu napraviti thumbnail ili smanjiti velièinu slike.',
+  'invalid_image' => 'Uploadana slika ima greÂšku ili ne moÂe biti obraÄ‘ena od strane GD library',
+  'resize_failed' => 'Ne mogu napraviti thumbnail ili smanjiti veliÄinu slike.',
   'no_img_to_display' => 'Nema slike za prikaz',
   'non_exist_cat' => 'Odabrana kategorija ne postoji',
   'orphan_cat' => 'Kategorija nema direktorij, upotrijebite Category Manager kako biste ispravili problem!', //cpg1.3.0
   'directory_ro' => 'Direktorij \'%s\' nije dostupan, slike se ne mogu brisati', //cpg1.3.0
   'non_exist_comment' => 'Odabrani komentar ne postoji.',
-  'pic_in_invalid_album' => 'Slika se nalazi u nepostojeæem albumu!?', //cpg1.3.0
+  'pic_in_invalid_album' => 'Slika se nalazi u nepostojeÄ‡em albumu!?', //cpg1.3.0
   'banned' => 'Trenutno Vam je zabranjeno koristiti ove stranice.',
-  'not_with_udb' => 'Ova funkcija je onemoguæena u Coppermine-u jer je integrirana sa skriptom za forum. Ili ono što pokušavate napraviti nije podrano u ovoj konfiguraciji, ili funkciju treba izvršiti skripta za forum.',
+  'not_with_udb' => 'Ova funkcija je onemoguÄ‡ena u Coppermine-u jer je integrirana sa skriptom za forum. Ili ono Âšto pokuÂšavate napraviti nije podrÂano u ovoj konfiguraciji, ili funkciju treba izvrÂšiti skripta za forum.',
   'offline_title' => 'Offline', //cpg1.3.0
   'offline_text' => 'Galerija trenutno nije u funkciji - navratite uskoro', //cpg1.3.0
-  'ecards_empty' => 'Trenutno nema podataka o e-razglednicama. Provjerite da li ste omoguæili ovu funkciju u Coppermine konfiguraciji!', //cpg1.3.0
-  'action_failed' => 'Radnja nije uspjela.  Coppermine ne moe obaviti ovu radnju.', //cpg1.3.0
+  'ecards_empty' => 'Trenutno nema podataka o e-razglednicama. Provjerite da li ste omoguÄ‡ili ovu funkciju u Coppermine konfiguraciji!', //cpg1.3.0
+  'action_failed' => 'Radnja nije uspjela.  Coppermine ne moÂe obaviti ovu radnju.', //cpg1.3.0
   'no_zip' => 'Potrebne libraries za procesuiranje ZIP dokumenata ne postoje.  Molimo Vas, kontaktirajte administratora.', //cpg1.3.0
-  'zip_type' => 'Nemate dopuštenje za upload ZIP dokumenata.', //cpg1.3.0
+  'zip_type' => 'Nemate dopuÂštenje za upload ZIP dokumenata.', //cpg1.3.0
 );
 
 $lang_bbcode_help = 'Following codes might be useful: <li>[b]<b>Bold</b>[/b]</li> <li>[i]<i>Italic</i>[/i]</li> <li>[url=http://yoursite.com/]Url Text[/url]</li> <li>[email]user@domain.com[/email]</li>'; //cpg1.3.0
@@ -107,13 +110,13 @@ $lang_main_menu = array(
   'my_gal_title' => 'Idi u moju osobnu galeriju',
   'my_gal_lnk' => 'Moja galerija',
   'my_prof_lnk' => 'Moj profil',
-  'adm_mode_title' => 'Prijeği na admin mode',
+  'adm_mode_title' => 'PrijeÄ‘i na admin mode',
   'adm_mode_lnk' => 'Admin mode',
-  'usr_mode_title' => 'Prijeği na user mode',
+  'usr_mode_title' => 'PrijeÄ‘i na user mode',
   'usr_mode_lnk' => 'User mode',
   'upload_pic_title' => '(Upload) Prebaci dokument  u album', //cpg1.3.0
   'upload_pic_lnk' => 'Upload file', //cpg1.3.0
-  'register_title' => 'Kreiraj raèun',
+  'register_title' => 'Kreiraj raÄun',
   'register_lnk' => 'Registracija',
   'login_lnk' => 'Ulaz',
   'logout_lnk' => 'Izlaz',
@@ -123,9 +126,9 @@ $lang_main_menu = array(
   'toprated_lnk' => 'Najbolje ocijenjeno',
   'search_lnk' => 'Pretraga',
   'fav_lnk' => 'Omiljene slike',
-  'memberlist_title' => 'Pokai popis èlanova', //cpg1.3.0
-  'memberlist_lnk' => 'Popis èlanova', //cpg1.3.0
-  'faq_title' => 'Èesto postavljana pitanja o galeriji slika &quot;Coppermine&quot;', //cpg1.3.0
+  'memberlist_title' => 'PokaÂi popis Älanova', //cpg1.3.0
+  'memberlist_lnk' => 'Popis Älanova', //cpg1.3.0
+  'faq_title' => 'ÄŒesto postavljana pitanja o galeriji slika &quot;Coppermine&quot;', //cpg1.3.0
   'faq_lnk' => 'FAQ', //cpg1.3.0
 );
 
@@ -140,7 +143,7 @@ $lang_gallery_admin_menu = array(
   'searchnew_lnk' => 'Batch add files', //cpg1.3.0
   'util_lnk' => 'Admin alati', //cpg1.3.0
   'ban_lnk' => 'Zabrana korisnika',
-  'db_ecard_lnk' => 'Pokai e-razglednice', //cpg1.3.0
+  'db_ecard_lnk' => 'PokaÂi e-razglednice', //cpg1.3.0
 );
 
 $lang_user_admin_menu = array(
@@ -176,22 +179,22 @@ $lang_thumb_view = array(
 );
 
 $lang_img_nav_bar = array(
-  'thumb_title' => 'Vrati se na stranicu sa slièicama',
-  'pic_info_title' => 'Prikai/sakrij podatke o slici', //cpg1.3.0
+  'thumb_title' => 'Vrati se na stranicu sa sliÄicama',
+  'pic_info_title' => 'PrikaÂi/sakrij podatke o slici', //cpg1.3.0
   'slideshow_title' => 'Slideshow',
-  'ecard_title' => 'Pošalji ovu sliku kao e-razglednicu', //cpg1.3.0
-  'ecard_disabled' => 'e-razglednice nisu omoguæene',
-  'ecard_disabled_msg' => 'Nemate dopuštenje slati e-razglednice', //js-alert //cpg1.3.0
+  'ecard_title' => 'PoÂšalji ovu sliku kao e-razglednicu', //cpg1.3.0
+  'ecard_disabled' => 'e-razglednice nisu omoguÄ‡ene',
+  'ecard_disabled_msg' => 'Nemate dopuÂštenje slati e-razglednice', //js-alert //cpg1.3.0
   'prev_title' => 'Pogledaj prethodnu sliku', //cpg1.3.0
-  'next_title' => 'Pogledaj slijedeæu sliku', //cpg1.3.0
+  'next_title' => 'Pogledaj slijedeÄ‡u sliku', //cpg1.3.0
   'pic_pos' => 'SLIKA %s/%s', //cpg1.3.0
 );
 
 $lang_rate_pic = array(
   'rate_this_pic' => 'Ocijenite ovu sliku ', //cpg1.3.0
-  'no_votes' => '(Nije još ocijenjena)',
+  'no_votes' => '(Nije joÂš ocijenjena)',
   'rating' => '(Trenutna ocjena : %s / 5 s %s glasova)',
-  'rubbish' => 'Loše',
+  'rubbish' => 'LoÂše',
   'poor' => 'Slabo',
   'fair' => 'Pristojno',
   'good' => 'Dobro',
@@ -212,14 +215,14 @@ $lang_rate_pic = array(
 $lang_cpg_die = array(
   INFORMATION => $lang_info,
   ERROR => $lang_error,
-  CRITICAL_ERROR => 'Kritièna greška',
+  CRITICAL_ERROR => 'KritiÄna greÂška',
   'file' => 'Slika: ',
   'line' => 'Linija: ',
 );
 
 $lang_display_thumbnails = array(
   'filename' => 'Naziv slike : ',
-  'filesize' => 'Velièina slike : ',
+  'filesize' => 'VeliÄina slike : ',
   'dimensions' => 'Dimenzije : ',
   'date_added' => 'Dodana dana : ', //cpg1.3.0
 );
@@ -233,18 +236,18 @@ $lang_get_pic_data = array(
 $lang_cpg_debug_output = array(
   'debug_info' => 'Debug Info', //cpg1.3.0
   'select_all' => 'Odaberi sve', //cpg1.3.0
-  'copy_and_paste_instructions' => 'Ako elite zatraiti pomoæ na forumu, copy-and-paste ovaj debug kod u vaš post. Provjerite da li ste zamijenili sve zaporke u postu sa *** prije objavljivanja posta.', //cpg1.3.0
-  'phpinfo' => 'Pokai phpinfo', //cpg1.3.0
+  'copy_and_paste_instructions' => 'Ako Âelite zatraÂiti pomoÄ‡ na forumu, copy-and-paste ovaj debug kod u vaÂš post. Provjerite da li ste zamijenili sve zaporke u postu sa *** prije objavljivanja posta.', //cpg1.3.0
+  'phpinfo' => 'PokaÂi phpinfo', //cpg1.3.0
 );
 
 $lang_language_selection = array(
   'reset_language' => 'Defaultni jezik', //cpg1.3.0
-  'choose_language' => 'Odaberite Vaš jezik', //cpg1.3.0
+  'choose_language' => 'Odaberite VaÂš jezik', //cpg1.3.0
 );
 
 $lang_theme_selection = array(
-  'reset_theme' => 'Defaultni predloak', //cpg1.3.0
-  'choose_theme' => 'Odaberite predloak', //cpg1.3.0
+  'reset_theme' => 'Defaultni predloÂak', //cpg1.3.0
+  'choose_theme' => 'Odaberite predloÂak', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -264,23 +267,23 @@ $lang_theme_selection = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
-  'Exclamation' => 'Uskliènik',
+  'Exclamation' => 'UskliÄnik',
   'Question' => 'Upitnik',
   'Very Happy' => 'Jako sretan',
-  'Smile' => 'Smješak',
-  'Sad' => 'Tuan',
-  'Surprised' => 'Iznenağen',
-  'Shocked' => 'Šokiran',
+  'Smile' => 'SmjeÂšak',
+  'Sad' => 'TuÂan',
+  'Surprised' => 'IznenaÄ‘en',
+  'Shocked' => 'ÂŠokiran',
   'Confused' => 'Zbunjen',
   'Cool' => 'Zadovoljan',
   'Laughing' => 'Smije se',
   'Mad' => 'Lud',
   'Razz' => 'Razjaren',
-  'Embarassed' => 'Postiğen',
-  'Crying or Very sad' => 'Plaèe ili je jako tuan',
+  'Embarassed' => 'PostiÄ‘en',
+  'Crying or Very sad' => 'PlaÄe ili je jako tuÂan',
   'Evil or Very Mad' => 'Zao ili jako lud',
-  'Twisted Evil' => 'Izopaèeno zlo',
-  'Rolling Eyes' => 'Okreæe oèima',
+  'Twisted Evil' => 'IzopaÄeno zlo',
+  'Rolling Eyes' => 'OkreÄ‡e oÄima',
   'Wink' => 'Namiguje',
   'Idea' => 'Ima ideju',
   'Arrow' => 'Strjelica',
@@ -299,7 +302,7 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ADMIN_PHP')) $lang_admin_php = array(
-  0 => 'Napušta admin mode...',
+  0 => 'NapuÂšta admin mode...',
   1 => 'Ulazi u admin mode...',
 );
 
@@ -309,16 +312,16 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
 
 if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
   'alb_need_name' => 'Album mora imati ime !', //js-alert
-  'confirm_modifs' => 'Jeste li sigurni da elite uèiniti ove izmjene ?', //js-alert
-  'no_change' => 'Nište ništa izmijenili !', //js-alert
+  'confirm_modifs' => 'Jeste li sigurni da Âelite uÄiniti ove izmjene ?', //js-alert
+  'no_change' => 'NiÂšte niÂšta izmijenili !', //js-alert
   'new_album' => 'Novi album',
-  'confirm_delete1' => 'Jeste li sigurni da elite izbrisati ovaj album ?', //js-alert
-  'confirm_delete2' => '\nSve slike i komentari æe biti izbrisani !', //js-alert
+  'confirm_delete1' => 'Jeste li sigurni da Âelite izbrisati ovaj album ?', //js-alert
+  'confirm_delete2' => '\nSve slike i komentari Ä‡e biti izbrisani !', //js-alert
   'select_first' => 'Odaberite prvo album', //js-alert
   'alb_mrg' => 'Album Manager',
   'my_gallery' => '* Moja galerija *',
   'no_category' => '* Nema kategorije *',
-  'delete' => 'Izbriši',
+  'delete' => 'IzbriÂši',
   'new' => 'Novo',
   'apply_modifs' => 'Primijeni izmjene',
   'select_category' => 'Odaberi kategoriju',
@@ -331,13 +334,13 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
   'miss_param' => 'Nema parametara za \'%s\'operaciju !',
   'unknown_cat' => 'Odabrana kategorija ne postoji u bazi podataka',
-  'usergal_cat_ro' => 'Kategorija galerija korisnika se ne moe brisati !',
+  'usergal_cat_ro' => 'Kategorija galerija korisnika se ne moÂe brisati !',
   'manage_cat' => 'Obrada kategorija',
-  'confirm_delete' => 'Jeste li sigurni da elite IZBRISATI ovu kategoriju', //js-alert
+  'confirm_delete' => 'Jeste li sigurni da Âelite IZBRISATI ovu kategoriju', //js-alert
   'category' => 'Kategorija',
   'operations' => 'Operacije',
   'move_into' => 'Prebaci u',
-  'update_create' => 'Osvjei/kreiraj kategoriju',
+  'update_create' => 'OsvjeÂi/kreiraj kategoriju',
   'parent_cat' => 'Glavna kategorija',
   'cat_title' => 'Naziv kategorije',
   'cat_thumb' => 'Thumbnail kategorije', //cpg1.3.0
@@ -351,11 +354,11 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
 if (defined('CONFIG_PHP')) $lang_config_php = array(
   'title' => 'Konfiguracija',
   'restore_cfg' => 'Vrati defaultne vrijednosti',
-  'save_cfg' => 'Saèuvaj novu konfiguraciju',
-  'notes' => 'Bilješke',
+  'save_cfg' => 'SaÄuvaj novu konfiguraciju',
+  'notes' => 'BiljeÂške',
   'info' => 'Informacije',
-  'upd_success' => 'Coppermine konfiguracija je osvjeena',
-  'restore_success' => 'Coppermine default konfiguracija je vraæena',
+  'upd_success' => 'Coppermine konfiguracija je osvjeÂena',
+  'restore_success' => 'Coppermine default konfiguracija je vraÄ‡ena',
   'name_a' => 'Naziv uzlazno',
   'name_d' => 'Naziv silazno',
   'title_a' => 'Naslov uzlazno',
@@ -364,7 +367,7 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
   'date_d' => 'Datum silazno',
   'th_any' => 'Max Aspect',
   'th_ht' => 'Visina',
-  'th_wd' => 'Širina',
+  'th_wd' => 'ÂŠirina',
   'label' => 'label', //cpg1.3.0
   'item' => 'item', //cpg1.3.0
   'debug_everyone' => 'Svatko', //cpg1.3.0
@@ -383,76 +386,76 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 
   'Language, Themes &amp; Charset settings',
   array('Jezik', 'lang', 5),
-  array('Predloak', 'theme', 6),
-  array('Pokai popis jezika', 'language_list', 1), //cpg1.3.0
-  array('Pokai zastave jezika', 'language_flags', 8), //cpg1.3.0
-  array('Pokai &quot;reset&quot; u odabranom jeziku', 'language_reset', 1), //cpg1.3.0
-  array('Pokai popis predloaka', 'theme_list', 1), //cpg1.3.0
-  array('Pokai &quot;reset&quot; u odabiru predloaka', 'theme_reset', 1), //cpg1.3.0
-  array('Pokai FAQ', 'display_faq', 1), //cpg1.3.0
-  array('Pokai bbcode help', 'show_bbcode_help', 1), //cpg1.3.0
+  array('PredloÂak', 'theme', 6),
+  array('PokaÂi popis jezika', 'language_list', 1), //cpg1.3.0
+  array('PokaÂi zastave jezika', 'language_flags', 8), //cpg1.3.0
+  array('PokaÂi &quot;reset&quot; u odabranom jeziku', 'language_reset', 1), //cpg1.3.0
+  array('PokaÂi popis predloÂaka', 'theme_list', 1), //cpg1.3.0
+  array('PokaÂi &quot;reset&quot; u odabiru predloÂaka', 'theme_reset', 1), //cpg1.3.0
+  array('PokaÂi FAQ', 'display_faq', 1), //cpg1.3.0
+  array('PokaÂi bbcode help', 'show_bbcode_help', 1), //cpg1.3.0
   array('Character encoding', 'charset', 4), //cpg1.3.0
 
   'Album list view',
-  array('Širina glavne tablice (pixels or %)', 'main_table_width', 0),
+  array('ÂŠirina glavne tablice (pixels or %)', 'main_table_width', 0),
   array('Broj nivoa kategorija za prikaz', 'subcat_level', 0),
   array('Broj albuma za prikaz', 'albums_per_page', 0),
   array('Broj stupaca za popis albuma', 'album_list_cols', 0),
-  array('Velièina thumbnails-a u pikselima', 'alb_list_thumb_size', 0),
-  array('Sadraj glavne stranice', 'main_page_layout', 0),
-  array('Pokai thumbnails-e albuma prvog nivoa u kategorijama','first_level',1),
+  array('VeliÄina thumbnails-a u pikselima', 'alb_list_thumb_size', 0),
+  array('SadrÂaj glavne stranice', 'main_page_layout', 0),
+  array('PokaÂi thumbnails-e albuma prvog nivoa u kategorijama','first_level',1),
 
   'Thumbnail view',
   array('Broj stupaca na thumbnail stranici', 'thumbcols', 0),
   array('Broj redova na thumbnail stranici', 'thumbrows', 0),
   array('Maksimalan broja tabs za prikaz', 'max_tabs', 10), //cpg1.3.0
-  array('Prikai podatke (pored naslova) ispod thumbnail-a', 'caption_in_thumbview', 1), //cpg1.3.0
-  array('Prikai broj pregleda ispod thumbnail-a', 'views_in_thumbview', 1), //cpg1.3.0
-  array('Prikai broj komentara ispod thumbnail-a', 'display_comment_count', 1),
-  array('Prikai naziv uploada ispod thumbnail-a', 'display_uploader', 1), //cpg1.3.0
+  array('PrikaÂi podatke (pored naslova) ispod thumbnail-a', 'caption_in_thumbview', 1), //cpg1.3.0
+  array('PrikaÂi broj pregleda ispod thumbnail-a', 'views_in_thumbview', 1), //cpg1.3.0
+  array('PrikaÂi broj komentara ispod thumbnail-a', 'display_comment_count', 1),
+  array('PrikaÂi naziv uploada ispod thumbnail-a', 'display_uploader', 1), //cpg1.3.0
   array('Defaultni poredak za slike', 'default_sort_order', 3), //cpg1.3.0
   array('Minimalni broj glasova za sliku za prikaz u \'top-rated\' list', 'min_votes_for_rating', 0), //cpg1.3.0
 
   'Image view &amp; Comment settings',
-  array('Širina tablice za prikaz slika (pixels or %)', 'picture_table_width', 0), //cpg1.3.0
+  array('ÂŠirina tablice za prikaz slika (pixels or %)', 'picture_table_width', 0), //cpg1.3.0
   array('Podaci o slikama se vide po dafaultu', 'display_pic_info', 1), //cpg1.3.0
-  array('Filtriraj rune rijeèi u komentarima', 'filter_bad_words', 1),
+  array('Filtriraj ruÂne rijeÄi u komentarima', 'filter_bad_words', 1),
   array('Dopusti smilies u komentarima', 'enable_smilies', 1),
   array('Dopusti nekoliko  uzastopnih komentara o nekoj slici od istog korisnika (disable flood protection)', 'disable_comment_flood_protect', 1), //cpg1.3.0
-  array('Maksimalna duina opisa slike', 'max_img_desc_length', 0),
-  array('Maksimalni broj znakova u rijeèi', 'max_com_wlength', 0),
+  array('Maksimalna duÂina opisa slike', 'max_img_desc_length', 0),
+  array('Maksimalni broj znakova u rijeÄi', 'max_com_wlength', 0),
   array('Maksimalni broj redova u komentaru', 'max_com_lines', 0),
-  array('Maksimalna duina komentara', 'max_com_size', 0),
-  array('Pokai filmski strip', 'display_film_strip', 1),
+  array('Maksimalna duÂina komentara', 'max_com_size', 0),
+  array('PokaÂi filmski strip', 'display_film_strip', 1),
   array('Broj slika u film stripu', 'max_film_strip_items', 0),
   array('Obavijesti administratora o komentaru e-mailom', 'email_comment_notification', 1), //cpg1.3.0
   array('Slideshow pauza u milisekundama (1 second = 1000 milliseconds)', 'slideshow_interval', 0), //cpg1.3.0
 
   'Files and thumbnails settings', //cpg1.3.0
   array('Kvalitet JPEG dokumenata', 'jpeg_qual', 0),
-  array('Maksimalna velièina thumbnail-a <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0), //cpg1.3.0
-  array('Koristi velièinu ( width or height or Max aspect for thumbnail )<b>*</b>', 'thumb_use', 7),
+  array('Maksimalna veliÄina thumbnail-a <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0), //cpg1.3.0
+  array('Koristi veliÄinu ( width or height or Max aspect for thumbnail )<b>*</b>', 'thumb_use', 7),
   array('Kreiraj srednjevelike slike','make_intermediate',1),
-  array('Maksimalna širina ili visina srednjevelikih slika/videa <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0), //cpg1.3.0
-  array('Maksimalna velièina za uploadane dokumente (KB)', 'max_upl_size', 0), //cpg1.3.0
-  array('Maksimalna širina ili visina za uploadane slike/video (pixels)', 'max_upl_width_height', 0), //cpg1.3.0
+  array('Maksimalna Âširina ili visina srednjevelikih slika/videa <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0), //cpg1.3.0
+  array('Maksimalna veliÄina za uploadane dokumente (KB)', 'max_upl_size', 0), //cpg1.3.0
+  array('Maksimalna Âširina ili visina za uploadane slike/video (pixels)', 'max_upl_width_height', 0), //cpg1.3.0
 
   'Files and thumbnails advanced settings', //cpg1.3.0
-  array('Prikai ikonu privatnog albuma nelogiranom korisniku','show_private',1), //cpg1.3.0
+  array('PrikaÂi ikonu privatnog albuma nelogiranom korisniku','show_private',1), //cpg1.3.0
   array('Zaboravljeni znakovi u nazivima slika', 'forbiden_fname_char',0), //cpg1.3.0
-  //array('Dopuštene ekstenzije dokumenata za upload', 'allowed_file_extensions',0), //cpg1.3.0
-  array('Dopušteni tipovi slika', 'allowed_img_types',0), //cpg1.3.0
-  array('Dopušteni tipovi filmova', 'allowed_mov_types',0), //cpg1.3.0
-  array('Dopušteni audio tipovi', 'allowed_snd_types',0), //cpg1.3.0
-  array('Dopušteni tipovi dokumenata', 'allowed_doc_types',0), //cpg1.3.0
-  array('Naèin mijenjanja velièine slika','thumb_method',2), //cpg1.3.0
+  //array('DopuÂštene ekstenzije dokumenata za upload', 'allowed_file_extensions',0), //cpg1.3.0
+  array('DopuÂšteni tipovi slika', 'allowed_img_types',0), //cpg1.3.0
+  array('DopuÂšteni tipovi filmova', 'allowed_mov_types',0), //cpg1.3.0
+  array('DopuÂšteni audio tipovi', 'allowed_snd_types',0), //cpg1.3.0
+  array('DopuÂšteni tipovi dokumenata', 'allowed_doc_types',0), //cpg1.3.0
+  array('NaÄin mijenjanja veliÄine slika','thumb_method',2), //cpg1.3.0
   array('Put do ImageMagick \'convert\' utility (example /usr/bin/X11/)', 'impath', 0), //cpg1.3.0
-  //array('Dopušteni tipovi slika (vaeæi samo za ImageMagick)', 'allowed_img_types',0), //cpg1.3.0
+  //array('DopuÂšteni tipovi slika (vaÂeÄ‡i samo za ImageMagick)', 'allowed_img_types',0), //cpg1.3.0
   array('Komandne opcije za ImageMagick', 'im_options', 0), //cpg1.3.0
-  array('Proèitaj EXIF podatke kod JPEG dokumenata', 'read_exif_data', 1), //cpg1.3.0
-  array('Proèitaj IPTC podatke kod JPEG dokumenata', 'read_iptc_data', 1), //cpg1.3.0
+  array('ProÄitaj EXIF podatke kod JPEG dokumenata', 'read_exif_data', 1), //cpg1.3.0
+  array('ProÄitaj IPTC podatke kod JPEG dokumenata', 'read_iptc_data', 1), //cpg1.3.0
   array('Direktorij albuma <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0), //cpg1.3.0
-  array('Direktorij za korisnièke slike <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0), //cpg1.3.0
+  array('Direktorij za korisniÄke slike <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0), //cpg1.3.0
   array('Prefix za srednjevelike slike <a href="#notice1" class="clickable_option">*</a>', 'normal_pfx', 0), //cpg1.3.0
   array('Prefix za thumbnails-e <a href="#notice1" class="clickable_option">*</a>', 'thumb_pfx', 0), //cpg1.3.0
   array('Defaultni mode za direktorije', 'default_dir_mode', 0), //cpg1.3.0
@@ -464,7 +467,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Obavijesti administratora o registraciji e-mailom', 'reg_notify_admin_email', 1), //cpg1.3.0
   array('Dopusti da dva korisnika imaju istu e-mail adresu', 'allow_duplicate_emails_addr', 1),
   array('Korisnici mogu imati privatne albume (Note: if you switch from \'yes\' to \'no\' any current private albums will become public)', 'allow_private_albums', 1), //cpg1.3.0
-  array('Obavijesti administratora o davanju dopuštenja korisniku za upload', 'upl_notify_admin_email', 1), //cpg1.3.0
+  array('Obavijesti administratora o davanju dopuÂštenja korisniku za upload', 'upl_notify_admin_email', 1), //cpg1.3.0
   array('Dopusti logiranim korisnicima da vide popis korisnika', 'allow_memberlist', 1), //cpg1.3.0
 
   'Custom fields for image description (leave blank if unused)',
@@ -474,12 +477,12 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Polje 4 ime', 'user_field4_name', 0),
 
   'Cookies settings',
-  array('Naziv kolaèiæa kojeg koristi skripta (when using bbs integration, make sure it differs from the bbs\'s cookie name)', 'cookie_name', 0),
-  array('Put kolaèiæa kojeg koristi skripta', 'cookie_path', 0),
+  array('Naziv kolaÄiÄ‡a kojeg koristi skripta (when using bbs integration, make sure it differs from the bbs\'s cookie name)', 'cookie_name', 0),
+  array('Put kolaÄiÄ‡a kojeg koristi skripta', 'cookie_path', 0),
 
   'Miscellaneous settings',
-  array('Omoguæi debug mode', 'debug_mode', 9), //cpg1.3.0
-  array('Prikai obavijesti u debug modu', 'debug_notice', 1), //cpg1.3.0
+  array('OmoguÄ‡i debug mode', 'debug_mode', 9), //cpg1.3.0
+  array('PrikaÂi obavijesti u debug modu', 'debug_notice', 1), //cpg1.3.0
 
   '<br /><div align="left"><a name="notice1"></a>(*) This settings mustn\'t be changed if you already have pictures in your database.<br />
   <a name="notice2"></a>(**) When changing this setting, only the files that are added from that point on are affected, so it is advisable that this setting must not be changed if there are already files in the gallery. You can, however, apply the changes to the existing files with the &quot;<a href="util.php">admin tools</a> (resize pictures)&quot; utility from the admin menu.</div><br />', //cpg1.3.0
@@ -491,10 +494,10 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 
 if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
   'title' => 'Poslane e-razglednice', //cpg1.3.0
-  'ecard_sender' => 'Pošiljatelj', //cpg1.3.0
+  'ecard_sender' => 'PoÂšiljatelj', //cpg1.3.0
   'ecard_recipient' => 'Primatelj', //cpg1.3.0
   'ecard_date' => 'Datum', //cpg1.3.0
-  'ecard_display' => 'Prikai e-razglednicu', //cpg1.3.0
+  'ecard_display' => 'PrikaÂi e-razglednicu', //cpg1.3.0
   'ecard_name' => 'Ime', //cpg1.3.0
   'ecard_email' => 'E-mail', //cpg1.3.0
   'ecard_ip' => 'IP #', //cpg1.3.0
@@ -502,18 +505,18 @@ if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
   'ecard_descending' => 'silazno', //cpg1.3.0
   'ecard_sorted' => 'Sortirano', //cpg1.3.0
   'ecard_by_date' => 'po datumu', //cpg1.3.0
-  'ecard_by_sender_name' => 'po pošiljateljevu imenu', //cpg1.3.0
-  'ecard_by_sender_email' => 'po pošiljateljevoj e-mail adresi', //cpg1.3.0
-  'ecard_by_sender_ip' => 'po pošiljateljevoj IP adresi', //cpg1.3.0
+  'ecard_by_sender_name' => 'po poÂšiljateljevu imenu', //cpg1.3.0
+  'ecard_by_sender_email' => 'po poÂšiljateljevoj e-mail adresi', //cpg1.3.0
+  'ecard_by_sender_ip' => 'po poÂšiljateljevoj IP adresi', //cpg1.3.0
   'ecard_by_recipient_name' => 'po primateljevu imenu', //cpg1.3.0
   'ecard_by_recipient_email' => 'po primateljevoj e-mail adresi', //cpg1.3.0
-  'ecard_number' => 'prikai podatke %s to %s of %s', //cpg1.3.0
+  'ecard_number' => 'prikaÂi podatke %s to %s of %s', //cpg1.3.0
   'ecard_goto_page' => 'idi na stranicu', //cpg1.3.0
   'ecard_records_per_page' => 'Podaci po stranici', //cpg1.3.0
   'check_all' => 'Check All', //cpg1.3.0
   'uncheck_all' => 'Uncheck All', //cpg1.3.0
-  'ecards_delete_selected' => 'Izbriši odabrane e-razglednice', //cpg1.3.0
-  'ecards_delete_confirm' => 'Jeste li sigurni da elite izbrisati podatke? Oznaèite checkbox!', //cpg1.3.0
+  'ecards_delete_selected' => 'IzbriÂši odabrane e-razglednice', //cpg1.3.0
+  'ecards_delete_confirm' => 'Jeste li sigurni da Âelite izbrisati podatke? OznaÄite checkbox!', //cpg1.3.0
   'ecards_delete_sure' => 'Siguran/na sam', //cpg1.3.0
 );
 
@@ -524,33 +527,33 @@ if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
 
 if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
   'empty_name_or_com' => 'Trebate upisati svoje ime i komentar',
-  'com_added' => 'Vaš komentar je dodan',
+  'com_added' => 'VaÂš komentar je dodan',
   'alb_need_title' => 'Trebate napisati naziv albuma !',
-  'no_udp_needed' => 'Nije potrebno osvjeavanje.',
-  'alb_updated' => 'Album je osvjeen',
-  'unknown_album' => 'Odabrani album ne postoji ili nemate dopuštenje za upload u ovaj album',
+  'no_udp_needed' => 'Nije potrebno osvjeÂavanje.',
+  'alb_updated' => 'Album je osvjeÂen',
+  'unknown_album' => 'Odabrani album ne postoji ili nemate dopuÂštenje za upload u ovaj album',
   'no_pic_uploaded' => 'Nije uploadana slika !<br /><br />If you have really selected a file to upload, check that the server allows file uploads...', //cpg1.3.0
   'err_mkdir' => 'Nije kreiran direktorij %s !',
-  'dest_dir_ro' => 'U traeni direktorij %s se ne moe pisati po defaultu skripte !',
-  'err_move' => 'Nemoguæe premjestiti %s u %s !',
-  'err_fsize_too_large' => 'Velièina dokumenta kojeg ste uploadali je prevelika (maksimalna dopuštena je %s x %s) !', //cpg1.3.0
-  'err_imgsize_too_large' => 'Velièina dokumenta kojeg ste uploadali je prevelika (maksimalna došuštena je %s KB) !',
-  'err_invalid_img' => 'Dokument kojeg ste uploadali nije vaeæa slika !',
-  'allowed_img_types' => 'Moete uploadati samo %s slike.',
-  'err_insert_pic' => 'Dokument \'%s\' se ne moe dodati u album ', //cpg1.3.0
-  'upload_success' => 'Vaš dokument je uploadan uspješno<br /><br />Bit æe vidljiv nakon odobrenja administratora.', //cpg1.3.0
+  'dest_dir_ro' => 'U traÂeni direktorij %s se ne moÂe pisati po defaultu skripte !',
+  'err_move' => 'NemoguÄ‡e premjestiti %s u %s !',
+  'err_fsize_too_large' => 'VeliÄina dokumenta kojeg ste uploadali je prevelika (maksimalna dopuÂštena je %s x %s) !', //cpg1.3.0
+  'err_imgsize_too_large' => 'VeliÄina dokumenta kojeg ste uploadali je prevelika (maksimalna doÂšuÂštena je %s KB) !',
+  'err_invalid_img' => 'Dokument kojeg ste uploadali nije vaÂeÄ‡a slika !',
+  'allowed_img_types' => 'MoÂete uploadati samo %s slike.',
+  'err_insert_pic' => 'Dokument \'%s\' se ne moÂe dodati u album ', //cpg1.3.0
+  'upload_success' => 'VaÂš dokument je uploadan uspjeÂšno<br /><br />Bit Ä‡e vidljiv nakon odobrenja administratora.', //cpg1.3.0
   'notify_admin_email_subject' => '%s - Obavijest o uploadu', //cpg1.3.0
-  'notify_admin_email_body' => 'Uploada je slika %s koja treba Vaše odobrenje. Posjetite %s', //cpg1.3.0
+  'notify_admin_email_body' => 'Uploada je slika %s koja treba VaÂše odobrenje. Posjetite %s', //cpg1.3.0
   'info' => 'Informacije',
   'com_added' => 'Dodan komentar',
-  'alb_updated' => 'Album osvjeen',
-  'err_comment_empty' => 'Vaš komentar je prazan !',
-  'err_invalid_fext' => 'Prihvaæaju se samo dokumenti sa slijedeæim ekstenzijama : <br /><br />%s.',
-  'no_flood' => 'ao mi je, ali Vi ste veæ autor posljednjeg komentara za ovu sliku<br /><br />Uredite komentar kojeg ste napisali, ako ga elite izmijeniti', //cpg1.3.0
+  'alb_updated' => 'Album osvjeÂen',
+  'err_comment_empty' => 'VaÂš komentar je prazan !',
+  'err_invalid_fext' => 'PrihvaÄ‡aju se samo dokumenti sa slijedeÄ‡im ekstenzijama : <br /><br />%s.',
+  'no_flood' => 'Âao mi je, ali Vi ste veÄ‡ autor posljednjeg komentara za ovu sliku<br /><br />Uredite komentar kojeg ste napisali, ako ga Âelite izmijeniti', //cpg1.3.0
   'redirect_msg' => 'Preusmjereni ste.<br /><br /><br />Click \'CONTINUE\' if the page does not refresh automatically',
-  'upl_success' => 'Vaš dokument je uspješno dodan', //cpg1.3.0
+  'upl_success' => 'VaÂš dokument je uspjeÂšno dodan', //cpg1.3.0
   'email_comment_subject' => 'Komentar napisan u Coppermine Photo Gallery', //cpg1.3.0
-  'email_comment_body' => 'Netko je napisao komentar u Vašoj galeriji. See it at', //cpg1.3.0
+  'email_comment_body' => 'Netko je napisao komentar u VaÂšoj galeriji. See it at', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -559,23 +562,23 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 
 if (defined('DELETE_PHP')) $lang_delete_php = array(
   'caption' => 'Caption',
-  'fs_pic' => 'slika u punoj velièini',
-  'del_success' => 'uspješno izbrisano',
-  'ns_pic' => 'normalna velièina slike',
-  'err_del' => 'ne moe se izbrisati',
+  'fs_pic' => 'slika u punoj veliÄini',
+  'del_success' => 'uspjeÂšno izbrisano',
+  'ns_pic' => 'normalna veliÄina slike',
+  'err_del' => 'ne moÂe se izbrisati',
   'thumb_pic' => 'thumbnail',
   'comment' => 'komentar',
   'im_in_alb' => 'slika u albumu',
   'alb_del_success' => 'Album \'%s\' izbrisan',
   'alb_mgr' => 'Album Manager',
-  'err_invalid_data' => 'Pogrešni podaci u \'%s\'',
+  'err_invalid_data' => 'PogreÂšni podaci u \'%s\'',
   'create_alb' => 'Kreira album \'%s\'',
-  'update_alb' => 'Osvjeava album \'%s\' s naslovom \'%s\' i indexom \'%s\'',
-  'del_pic' => 'Briši dokument', //cpg1.3.0
-  'del_alb' => 'Briši album',
-  'del_user' => 'Briši korisnika',
+  'update_alb' => 'OsvjeÂava album \'%s\' s naslovom \'%s\' i indexom \'%s\'',
+  'del_pic' => 'BriÂši dokument', //cpg1.3.0
+  'del_alb' => 'BriÂši album',
+  'del_user' => 'BriÂši korisnika',
   'err_unknown_user' => 'Odabrani korisnik ne postoji !',
-  'comment_deleted' => 'Komentar je uspješno izbrisan',
+  'comment_deleted' => 'Komentar je uspjeÂšno izbrisan',
 );
 
 // ------------------------------------------------------------------------- //
@@ -591,13 +594,13 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 if (defined('DISPLAYIMAGE_PHP')){
 
 $lang_display_image_php = array(
-  'confirm_del' => 'Jeste li sigurni da elite IZBRISATI ovaj dokument ? \\nKomentari æe takoğer biti izbrisani.', //js-alert //cpg1.3.0
-  'del_pic' => 'IZBRIŠI OVAJ DOKUMENT', //cpg1.3.0
+  'confirm_del' => 'Jeste li sigurni da Âelite IZBRISATI ovaj dokument ? \\nKomentari Ä‡e takoÄ‘er biti izbrisani.', //js-alert //cpg1.3.0
+  'del_pic' => 'IZBRIÂŠI OVAJ DOKUMENT', //cpg1.3.0
   'size' => '%s x %s pixela',
   'views' => '%s puta',
   'slideshow' => 'Slideshow',
   'stop_slideshow' => 'ZAUSTAVI SLIDESHOW',
-  'view_fs' => 'Klikni za sliku u punoj velièini',
+  'view_fs' => 'Klikni za sliku u punoj veliÄini',
   'edit_pic' => 'Uredu opis', //cpg1.3.0
   'crop_pic' => 'Smanji i rotiraj', //cpg1.3.0
 );
@@ -607,22 +610,22 @@ $lang_picinfo = array(
   'Filename' => 'Naziv dokumenta',
   'Album name' => 'Naziv albuma',
   'Rating' => 'Ocjena (%s votes)',
-  'Keywords' => 'Kljuène rijeèi',
-  'File Size' => 'Velièina dokumenta',
+  'Keywords' => 'KljuÄne rijeÄi',
+  'File Size' => 'VeliÄina dokumenta',
   'Dimensions' => 'Dimenzije',
   'Displayed' => 'Prikazano',
   'Camera' => 'Kamera',
   'Date taken' => 'Datum snimanja',
   'Aperture' => 'Otvor',
   'Exposure time' => 'Vrijeme ekspozicije',
-  'Focal length' => 'arišna duina',
+  'Focal length' => 'ÂariÂšna duÂina',
   'Comment' => 'Komentar',
   'addFav'=>'Dodaj u Favorite', //cpg1.3.0
   'addFavPhrase'=>'Favoriti', //cpg1.3.0
-  'remFav'=>'Izbriši iz Favorita', //cpg1.3.0
+  'remFav'=>'IzbriÂši iz Favorita', //cpg1.3.0
   'iptcTitle'=>'IPTC Naslov', //cpg1.3.0
   'iptcCopyright'=>'IPTC Copyright', //cpg1.3.0
-  'iptcKeywords'=>'IPTC kljuène rijeèi', //cpg1.3.0
+  'iptcKeywords'=>'IPTC kljuÄne rijeÄi', //cpg1.3.0
   'iptcCategory'=>'IPTC kategorija', //cpg1.3.0
   'iptcSubCategories'=>'IPTC podkategorija', //cpg1.3.0
 );
@@ -630,11 +633,11 @@ $lang_picinfo = array(
 $lang_display_comments = array(
   'OK' => 'OK',
   'edit_title' => 'Uredi ovaj komentar',
-  'confirm_delete' => 'Jeste li sigurni da elite izbrisati ovaj komentar ?', //js-alert
-  'add_your_comment' => 'Dodajte Vaš komentar',
+  'confirm_delete' => 'Jeste li sigurni da Âelite izbrisati ovaj komentar ?', //js-alert
+  'add_your_comment' => 'Dodajte VaÂš komentar',
   'name'=>'Ime',
   'comment'=>'Komentar',
-  'your_name' => 'Vaše ime',
+  'your_name' => 'VaÂše ime',
 );
 
 $lang_fullsize_popup = array(
@@ -648,17 +651,17 @@ $lang_fullsize_popup = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array(
-  'title' => 'Pošalji e-razglednicu',
-  'invalid_email' => '<b>Upozorenje</b> : nevaeæa e-mail adresa !',
+  'title' => 'PoÂšalji e-razglednicu',
+  'invalid_email' => '<b>Upozorenje</b> : nevaÂeÄ‡a e-mail adresa !',
   'ecard_title' => 'E-razglednica od %s za Vas',
   'error_not_image' => 'Samo se slike mogu poslati kao e-razglednice.', //cpg1.3.0
-  'view_ecard' => 'Ako se e-razglednica ne prikae toèno, kliknite na ovaj link',
-  'view_more_pics' => 'Kliknite na ovaj link da biste vidjeli više slika !',
-  'send_success' => 'Vaša e-razglednica je poslana',
-  'send_failed' => 'ao nam je, ali server ne moe poslati Vašu razglednicu...',
+  'view_ecard' => 'Ako se e-razglednica ne prikaÂe toÄno, kliknite na ovaj link',
+  'view_more_pics' => 'Kliknite na ovaj link da biste vidjeli viÂše slika !',
+  'send_success' => 'VaÂša e-razglednica je poslana',
+  'send_failed' => 'Âao nam je, ali server ne moÂe poslati VaÂšu razglednicu...',
   'from' => 'Od',
-  'your_name' => 'Vaše ime',
-  'your_email' => 'Vaša e-mail adresa',
+  'your_name' => 'VaÂše ime',
+  'your_email' => 'VaÂša e-mail adresa',
   'to' => 'Za',
   'rcpt_name' => 'Ime primatelja',
   'rcpt_email' => 'E-mail adresa primatelja',
@@ -675,25 +678,25 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'album' => 'Album',
   'title' => 'Naziv',
   'desc' => 'Opis',
-  'keywords' => 'Kljuène rijeèi',
+  'keywords' => 'KljuÄne rijeÄi',
   'pic_info_str' => '%s &times; %s - %s KB - %s views - %s votes',
   'approve' => 'Potvrdi dokument', //cpg1.3.0
   'postpone_app' => 'Odgodi potvrdu',
-  'del_pic' => 'Izbriši dokument', //cpg1.3.0
-  'read_exif' => 'Proèitaj EXIF info ponovno', //cpg1.3.0
-  'reset_view_count' => 'Resetiraj brojaè posjeta',
+  'del_pic' => 'IzbriÂši dokument', //cpg1.3.0
+  'read_exif' => 'ProÄitaj EXIF info ponovno', //cpg1.3.0
+  'reset_view_count' => 'Resetiraj brojaÄ posjeta',
   'reset_votes' => 'Resetiraj glasove',
-  'del_comm' => 'Izbriši komentare',
+  'del_comm' => 'IzbriÂši komentare',
   'upl_approval' => 'Uploadaj potvrdu',
   'edit_pics' => 'Uredi dokumente', //cpg1.3.0
-  'see_next' => 'Pogledajte slijedeæe dokumente', //cpg1.3.0
+  'see_next' => 'Pogledajte slijedeÄ‡e dokumente', //cpg1.3.0
   'see_prev' => 'Pogledajte prethodne dokumente', //cpg1.3.0
   'n_pic' => '%s dokumenti', //cpg1.3.0
   'n_of_pic_to_disp' => 'Broj slika za prikaz', //cpg1.3.0
   'apply' => 'Primijeni izmjene', //cpg1.3.0
   'crop_title' => 'Coppermine Picture Editor', //cpg1.3.0
   'preview' => 'Pregled', //cpg1.3.0
-  'save' => 'Saèuvaj sliku', //cpg1.3.0
+  'save' => 'SaÄuvaj sliku', //cpg1.3.0
   'save_thumb' =>'Save kao thumbnail', //cpg1.3.0
   'sel_on_img' =>'Izbor treba biti na slici!', //js-alert //cpg1.3.0
 );
@@ -711,35 +714,35 @@ if (defined('FAQ_PHP')) $lang_faq_php = array(
 
 if (defined('FAQ_PHP')) $lang_faq_data = array(
   'General FAQ', //cpg1.3.0
-  array('Zašto se trebam registrirati?', 'Administrator moe, ali ne mora zahtijevati registraciju.Registracija èlanu omoguæuje dodatne moguænosti, kao uploadanje, posjedovanje liste favorita, moguænost ocjenjivanja slika, pisanja komentara, itd.', 'omoguæi registraciju korisnika', '0'), //cpg1.3.0
-  array('Kako se registrirati?', 'Odite na &quot;Registracija&quot; i ispunite potrebna polja (i opcionalna ako to elite).<br />Ako administrator ima e-mail aktivaciju , tada æete nakon slanja Vaših podataka primiti e-mail na adresu koju ste naveli prilikom registracije, u kojem su naputci o tome kako aktivirati Vaše èlanstvo. Morate aktivirati èlanstvo kako biste se mogli logirati.', 'allow_user_registration', '1'), //cpg1.3.0
-  array('Kako se logirati?', 'Odite na &quot;Login&quot;, unesite Vaše korisnièko ime i zaporku i kliknite na &quot;Upamti me&quot; tako æete biti logirani ia ako napustite stranice.<br /><b>VANO:Cookies moraju biti ukljuèeni i cookie s ovih stranica se ne smije izbrisati kako bi se mogla koristiti opcija &quot;Upamti me&quot;.</b>', 'offline', 0), //cpg1.3.0
-  array('Zašto se ne mogu logirati?', 'Jeste li se registrirali i odgovorili na link koji Vam je poslan u e-mail poruci?. Ovaj link aktivira Vaše èlanstvo. Za druge probleme u vezi logiranja kontaktirajte administratora.', 'offline', 0), //cpg1.3.0
-  array('Što ako sam zaboravio/la zaporku?', 'Ako ove stranice imaju &quot;Zaboravljena zaporka&quot; link onda ga upotrijebite. U drugim sluèajevima kontaktirajte administratora za novu zaporku.', 'offline', 0), //cpg1.3.0
-  array('Što ako sam promijenio e-mail adresu?', 'Jednostavno se logirajte i promijenite e-mail adresu u &quot;Profilu&quot;', 'offline', 0), //cpg1.3.0
-  array('Kako æu saèuvati sliku u  &quot;Moji favoriti&quot;?', 'Kliknite na sliku i kliknite na &quot;info o slici&quot; link (<img src="images/info.gif" width="16" height="16" border="0" alt="Picture information" />); odite na informacije o slici i kliknite &quot;Dodaj u favorite&quot;.<br />Administrator moe imati  &quot;informacije o slici&quot; po defaultu.<br />VANO:Cookies moraju biti ukljuèeni za ovu stranicu i ne smiju se izbrisati.', 'offline', 0), //cpg1.3.0
-  array('Kako æu ocijeniti sliku?', 'Kliknite na thumbnail slike i odite na dno, te odaberite ocjenu.', 'offline', 0), //cpg1.3.0
-  array('Kako æu napisati komentar za sliku?', 'Kliknite na thumbnail slike i odite na dno, te napišite komentar.', 'offline', 0), //cpg1.3.0
-  array('Kako æu uploadati sliku?', 'Odite na  &quot;Uploadaj sliku&quot;te odaberite album u kojeg elite uploadati,kliknite &quot;Browse&quot; i odaberite sliku za upload, kliknite &quot;open&quot; (dodajte naslov i opis ako elite) i kliknite &quot;Submit&quot;', 'allow_private_albums', 0), //cpg1.3.0
-  array('Gdje æu uploadati sliku?', 'Moæi æete uploadati sliku u jedan od Vaših albuma u &quot;Moja galerija&quot;. Administrator Vam moe dopustiti da uploadate jednu ili više slika u albume u glavnoj galeriji.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Koji tip i koju velièinu slika mogu uploadati?', 'Velièina i tip (jpg,gif,..itd.) ovose o administratoru.', 'offline', 0), //cpg1.3.0
-  array('Što je &quot;Moja galerija&quot;?', '&quot;Moja galerija&quot; je osobna galerija u koju korisnik moe uploadati svoje slike.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Kako æu kreirati, promijeniti naziv ili izbrisati album u  &quot;Moja galerija&quot;?', 'Morate biti u &quot;Admin-Modu&quot;<br />Odite &quot;Kreiraj/Poredaj moje albume&quot;i kliknite &quot;Novo&quot;. Promijeni &quot;Novi album&quot; u eljeno ime.<br />Takoğer moete preimenovati bilo koji album u Vašo galeriji.<br />Kliknite &quot;Primijeni promjene&quot;.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Kako mogu izmijeniti i onemoguæiti korisnike da gledaju moje albume?', 'Morate biti u &quot;Admin. Modu&quot;<br />Idite na &quot;Izmijeni moje albume. Na &quot;Osvjei album&quot; baru, odaberite album kojeg elite izmijeniti.<br />Ovdje moete promijeniti naziv, opis, thumbnail sliku, ogranièiti dopuštenje za pregledanje i komentiranje/ocjenjivanje.<br />Kliknite &quot;Osvjei album&quot;.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Kako mogu gledati albume drugih korisnika?', 'Odite na &quot;Popis albuma&quot; i odaberite &quot;Korisnièke galerije&quot;.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Što su kolaèiæi (cookies)?', 'Cookies su tekstualni podaci koji se šalju sa stranica i koji se postavljaju na Vaš kompjuter.<br />Cookies obièno dopuštaju korisniku da napusti neke stranice i da se kasnije na njih vrati bez ponovnog logiranja.', 'offline', 0), //cpg1.3.0
-  array('Gdje mogu nabaviti ovaj program za moje stranice?', 'Coppermine je besplatna multimedijalna galerija, ostvarena pod GNU GPL. Ima brojne moguænosti i moe se koristiti na razlièitim platformama. Posjetite <a href="http://coppermine.sf.net/">Coppermine Home Page</a> za više informacija ili za download.', 'offline', 0), //cpg1.3.0
+  array('ZaÂšto se trebam registrirati?', 'Administrator moÂe, ali ne mora zahtijevati registraciju.Registracija Älanu omoguÄ‡uje dodatne moguÄ‡nosti, kao uploadanje, posjedovanje liste favorita, moguÄ‡nost ocjenjivanja slika, pisanja komentara, itd.', 'omoguÄ‡i registraciju korisnika', '0'), //cpg1.3.0
+  array('Kako se registrirati?', 'Odite na &quot;Registracija&quot; i ispunite potrebna polja (i opcionalna ako to Âelite).<br />Ako administrator ima e-mail aktivaciju , tada Ä‡ete nakon slanja VaÂših podataka primiti e-mail na adresu koju ste naveli prilikom registracije, u kojem su naputci o tome kako aktivirati VaÂše Älanstvo. Morate aktivirati Älanstvo kako biste se mogli logirati.', 'allow_user_registration', '1'), //cpg1.3.0
+  array('Kako se logirati?', 'Odite na &quot;Login&quot;, unesite VaÂše korisniÄko ime i zaporku i kliknite na &quot;Upamti me&quot; tako Ä‡ete biti logirani ia ako napustite stranice.<br /><b>VAÂNO:Cookies moraju biti ukljuÄeni i cookie s ovih stranica se ne smije izbrisati kako bi se mogla koristiti opcija &quot;Upamti me&quot;.</b>', 'offline', 0), //cpg1.3.0
+  array('ZaÂšto se ne mogu logirati?', 'Jeste li se registrirali i odgovorili na link koji Vam je poslan u e-mail poruci?. Ovaj link aktivira VaÂše Älanstvo. Za druge probleme u vezi logiranja kontaktirajte administratora.', 'offline', 0), //cpg1.3.0
+  array('ÂŠto ako sam zaboravio/la zaporku?', 'Ako ove stranice imaju &quot;Zaboravljena zaporka&quot; link onda ga upotrijebite. U drugim sluÄajevima kontaktirajte administratora za novu zaporku.', 'offline', 0), //cpg1.3.0
+  array('ÂŠto ako sam promijenio e-mail adresu?', 'Jednostavno se logirajte i promijenite e-mail adresu u &quot;Profilu&quot;', 'offline', 0), //cpg1.3.0
+  array('Kako Ä‡u saÄuvati sliku u  &quot;Moji favoriti&quot;?', 'Kliknite na sliku i kliknite na &quot;info o slici&quot; link (<img src="images/info.gif" width="16" height="16" border="0" alt="Picture information" />); odite na informacije o slici i kliknite &quot;Dodaj u favorite&quot;.<br />Administrator moÂe imati  &quot;informacije o slici&quot; po defaultu.<br />VAÂNO:Cookies moraju biti ukljuÄeni za ovu stranicu i ne smiju se izbrisati.', 'offline', 0), //cpg1.3.0
+  array('Kako Ä‡u ocijeniti sliku?', 'Kliknite na thumbnail slike i odite na dno, te odaberite ocjenu.', 'offline', 0), //cpg1.3.0
+  array('Kako Ä‡u napisati komentar za sliku?', 'Kliknite na thumbnail slike i odite na dno, te napiÂšite komentar.', 'offline', 0), //cpg1.3.0
+  array('Kako Ä‡u uploadati sliku?', 'Odite na  &quot;Uploadaj sliku&quot;te odaberite album u kojeg Âelite uploadati,kliknite &quot;Browse&quot; i odaberite sliku za upload, kliknite &quot;open&quot; (dodajte naslov i opis ako Âelite) i kliknite &quot;Submit&quot;', 'allow_private_albums', 0), //cpg1.3.0
+  array('Gdje Ä‡u uploadati sliku?', 'MoÄ‡i Ä‡ete uploadati sliku u jedan od VaÂših albuma u &quot;Moja galerija&quot;. Administrator Vam moÂe dopustiti da uploadate jednu ili viÂše slika u albume u glavnoj galeriji.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Koji tip i koju veliÄinu slika mogu uploadati?', 'VeliÄina i tip (jpg,gif,..itd.) ovose o administratoru.', 'offline', 0), //cpg1.3.0
+  array('ÂŠto je &quot;Moja galerija&quot;?', '&quot;Moja galerija&quot; je osobna galerija u koju korisnik moÂe uploadati svoje slike.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Kako Ä‡u kreirati, promijeniti naziv ili izbrisati album u  &quot;Moja galerija&quot;?', 'Morate biti u &quot;Admin-Modu&quot;<br />Odite &quot;Kreiraj/Poredaj moje albume&quot;i kliknite &quot;Novo&quot;. Promijeni &quot;Novi album&quot; u Âeljeno ime.<br />TakoÄ‘er moÂete preimenovati bilo koji album u VaÂšo galeriji.<br />Kliknite &quot;Primijeni promjene&quot;.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Kako mogu izmijeniti i onemoguÄ‡iti korisnike da gledaju moje albume?', 'Morate biti u &quot;Admin. Modu&quot;<br />Idite na &quot;Izmijeni moje albume. Na &quot;OsvjeÂi album&quot; baru, odaberite album kojeg Âelite izmijeniti.<br />Ovdje moÂete promijeniti naziv, opis, thumbnail sliku, ograniÄiti dopuÂštenje za pregledanje i komentiranje/ocjenjivanje.<br />Kliknite &quot;OsvjeÂi album&quot;.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Kako mogu gledati albume drugih korisnika?', 'Odite na &quot;Popis albuma&quot; i odaberite &quot;KorisniÄke galerije&quot;.', 'allow_private_albums', 0), //cpg1.3.0
+  array('ÂŠto su kolaÄiÄ‡i (cookies)?', 'Cookies su tekstualni podaci koji se Âšalju sa stranica i koji se postavljaju na VaÂš kompjuter.<br />Cookies obiÄno dopuÂštaju korisniku da napusti neke stranice i da se kasnije na njih vrati bez ponovnog logiranja.', 'offline', 0), //cpg1.3.0
+  array('Gdje mogu nabaviti ovaj program za moje stranice?', 'Coppermine je besplatna multimedijalna galerija, ostvarena pod GNU GPL. Ima brojne moguÄ‡nosti i moÂe se koristiti na razliÄitim platformama. Posjetite <a href="http://coppermine.sf.net/">Coppermine Home Page</a> za viÂše informacija ili za download.', 'offline', 0), //cpg1.3.0
 
   'Navigating the Site', //cpg1.3.0
-  array('Što je &quot;Popis albuma&quot;?', 'On æe Vam pokazati cijelu galeriju s linkovima za svaku kategoriju. Thumbnail mugu biti link za kategorije.', 'offline', 0), //cpg1.3.0
-  array('Što je &quot;Moja galerija&quot;?', 'Ova omoguæuje korisnicima da otvaraju vlastite galerije i da dodaju/brišu ili mijenjaju albume kao i da u njih uploadju.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Što je razlika izmeğu &quot;Admin Moda&quot; i &quot;Korisnièkog Moda&quot;?', 'Kada ste u admin-modu, moete modificirati svoje galerije (kao i druge ako Vam to dopusti administrator).', 'allow_private_albums', 0), //cpg1.3.0
-  array('Što je &quot;Uploadaj sliku&quot;?', 'Ova moguænost dopušta korisniku da uploada sliku (velièinu i vrstu odreğuje administrator) u galeriju koju odabere ili korisnik ili administrator.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Što je &quot;Posljednje uploadano&quot;?', 'Ova rubrika pokazuje posljednje slike uploadane u galeriju.', 'offline', 0), //cpg1.3.0
-  array('Što je &quot;Posljednji komentari&quot;?', 'Ova rubrika pokazuje posljednje komentare uz slike koje su napisali korisnici.', 'offline', 0), //cpg1.3.0
-  array('Što je &quot;Najgledanije&quot;?', 'Ova rubrika pokazuje najgledanije slike od strane korisnika (bilo da su logirani ili ne).', 'offline', 0), //cpg1.3.0
-  array('Što je &quot;Najbolje ocijenjene&quot;?', 'Ova rubrika pokazuje najbolje ocijenjene slike od strane korisnika, te pokazuje prosjeènu ocjenu (e.g: five users each gave a <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />: the picture would have an average rating of <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> ;Five users rated the picture from 1 to 5 (1,2,3,4,5) would result in an average <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> .)<br />The ratings go from <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> (best) to <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" /> (worst).', 'offline', 0), //cpg1.3.0
-  array('Što je &quot;Moji favoriti&quot;?', 'Ova rubrika omoguæava korisnicima da saèuvaju omiljene slike u cookieju koji je poslan na kompjuter.', 'offline', 0), //cpg1.3.0
+  array('ÂŠto je &quot;Popis albuma&quot;?', 'On Ä‡e Vam pokazati cijelu galeriju s linkovima za svaku kategoriju. Thumbnail mugu biti link za kategorije.', 'offline', 0), //cpg1.3.0
+  array('ÂŠto je &quot;Moja galerija&quot;?', 'Ova omoguÄ‡uje korisnicima da otvaraju vlastite galerije i da dodaju/briÂšu ili mijenjaju albume kao i da u njih uploadju.', 'allow_private_albums', 0), //cpg1.3.0
+  array('ÂŠto je razlika izmeÄ‘u &quot;Admin Moda&quot; i &quot;KorisniÄkog Moda&quot;?', 'Kada ste u admin-modu, moÂete modificirati svoje galerije (kao i druge ako Vam to dopusti administrator).', 'allow_private_albums', 0), //cpg1.3.0
+  array('ÂŠto je &quot;Uploadaj sliku&quot;?', 'Ova moguÄ‡nost dopuÂšta korisniku da uploada sliku (veliÄinu i vrstu odreÄ‘uje administrator) u galeriju koju odabere ili korisnik ili administrator.', 'allow_private_albums', 0), //cpg1.3.0
+  array('ÂŠto je &quot;Posljednje uploadano&quot;?', 'Ova rubrika pokazuje posljednje slike uploadane u galeriju.', 'offline', 0), //cpg1.3.0
+  array('ÂŠto je &quot;Posljednji komentari&quot;?', 'Ova rubrika pokazuje posljednje komentare uz slike koje su napisali korisnici.', 'offline', 0), //cpg1.3.0
+  array('ÂŠto je &quot;Najgledanije&quot;?', 'Ova rubrika pokazuje najgledanije slike od strane korisnika (bilo da su logirani ili ne).', 'offline', 0), //cpg1.3.0
+  array('ÂŠto je &quot;Najbolje ocijenjene&quot;?', 'Ova rubrika pokazuje najbolje ocijenjene slike od strane korisnika, te pokazuje prosjeÄnu ocjenu (e.g: five users each gave a <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />: the picture would have an average rating of <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> ;Five users rated the picture from 1 to 5 (1,2,3,4,5) would result in an average <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> .)<br />The ratings go from <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> (best) to <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" /> (worst).', 'offline', 0), //cpg1.3.0
+  array('ÂŠto je &quot;Moji favoriti&quot;?', 'Ova rubrika omoguÄ‡ava korisnicima da saÄuvaju omiljene slike u cookieju koji je poslan na kompjuter.', 'offline', 0), //cpg1.3.0
 );
 
 
@@ -749,15 +752,15 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
 
 if (defined('FORGOT_PASSWD_PHP')) $lang_forgot_passwd_php = array(
   'forgot_passwd' => 'Podsjetnik za zaporku', //cpg1.3.0
-  'err_already_logged_in' => 'Veæ ste logirani !', //cpg1.3.0
-  'enter_username_email' => 'Unesite Vaše korisnièko ime i e-mail adresu', //cpg1.3.0
+  'err_already_logged_in' => 'VeÄ‡ ste logirani !', //cpg1.3.0
+  'enter_username_email' => 'Unesite VaÂše korisniÄko ime i e-mail adresu', //cpg1.3.0
   'submit' => 'go', //cpg1.3.0
-  'failed_sending_email' => 'E-mail podsjetnika za zaporku se ne moe poslati !', //cpg1.3.0
-  'email_sent' => 'E-mail sa Vašim korisnièkim imenom i zaporkom je poslan %s', //cpg1.3.0
+  'failed_sending_email' => 'E-mail podsjetnika za zaporku se ne moÂe poslati !', //cpg1.3.0
+  'email_sent' => 'E-mail sa VaÂšim korisniÄkim imenom i zaporkom je poslan %s', //cpg1.3.0
   'err_unk_user' => 'Odabrani korisnik ne postoji!', //cpg1.3.0
   'passwd_reminder_subject' => '%s - Podsjetnik za zaporku', //cpg1.3.0
-  'passwd_reminder_body' => 'Traili ste da Vas se obavijesti o login podacima:
-Korisnièko ime: %s
+  'passwd_reminder_body' => 'TraÂili ste da Vas se obavijesti o login podacima:
+KorisniÄko ime: %s
 Zaporka: %s
 Kliknite %s za login.', //cpg1.3.0
 );
@@ -769,23 +772,23 @@ Kliknite %s za login.', //cpg1.3.0
 if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
   'group_name' => 'Ime grupe',
   'disk_quota' => 'Disk quota',
-  'can_rate' => 'Moete ocijeniti slike', //cpg1.3.0
-  'can_send_ecards' => 'Moete poslati e-razglednice',
-  'can_post_com' => 'Moete pisati komentare',
-  'can_upload' => 'Moete uploadati slike', //cpg1.3.0
-  'can_have_gallery' => 'Moete imati osobnu galeriju',
+  'can_rate' => 'MoÂete ocijeniti slike', //cpg1.3.0
+  'can_send_ecards' => 'MoÂete poslati e-razglednice',
+  'can_post_com' => 'MoÂete pisati komentare',
+  'can_upload' => 'MoÂete uploadati slike', //cpg1.3.0
+  'can_have_gallery' => 'MoÂete imati osobnu galeriju',
   'apply' => 'Primijeni izmjene',
   'create_new_group' => 'Kreiraj novu grupu',
-  'del_groups' => 'Izbriši odabranu(e) grupU(e)',
-  'confirm_del' => 'Upozorenje, kada izbrišete grupukorisnici koji pripadaju toj grupi biti æe prebaèeni u \'Registrirani\' grupu !\n\nalite li nastaviti ?', //js-alert //cpg1.3.0
-  'title' => 'Uredite korisnièke grupe',
+  'del_groups' => 'IzbriÂši odabranu(e) grupU(e)',
+  'confirm_del' => 'Upozorenje, kada izbriÂšete grupukorisnici koji pripadaju toj grupi biti Ä‡e prebaÄeni u \'Registrirani\' grupu !\n\nÂalite li nastaviti ?', //js-alert //cpg1.3.0
+  'title' => 'Uredite korisniÄke grupe',
   'approval_1' => 'Pub. Upl. dozvola (1)',
   'approval_2' => 'Priv. Upl. dozvola (2)',
   'upload_form_config' => 'Upload form configuration', //cpg1.3.0
-  'upload_form_config_values' => array( 'Upload samo jedne slike', 'Upload samo više slika', 'samo URI upload', 'samo ZIP upload', 'File-URI', 'File-ZIP', 'URI-ZIP', 'File-URI-ZIP'), //cpg1.3.0
-  'custom_user_upload'=>'Moe li korisnik prilagoditi broj upload kuæica?', //cpg1.3.0
-  'num_file_upload'=>'Maksimalni/precizni broj kuæica za upload slika', //cpg1.3.0
-  'num_URI_upload'=>'Maksimalni/precizni broj kuæica za URI upload', //cpg1.3.0
+  'upload_form_config_values' => array( 'Upload samo jedne slike', 'Upload samo viÂše slika', 'samo URI upload', 'samo ZIP upload', 'File-URI', 'File-ZIP', 'URI-ZIP', 'File-URI-ZIP'), //cpg1.3.0
+  'custom_user_upload'=>'MoÂe li korisnik prilagoditi broj upload kuÄ‡ica?', //cpg1.3.0
+  'num_file_upload'=>'Maksimalni/precizni broj kuÄ‡ica za upload slika', //cpg1.3.0
+  'num_URI_upload'=>'Maksimalni/precizni broj kuÄ‡ica za URI upload', //cpg1.3.0
   'note1' => '<b>(1)</b> Za upload u javni album potrebna je dozvola administratora',
   'note2' => '<b>(2)</b> Za upload u album korisnika potrbna je dozvola administratora',
   'notes' => 'Notes',
@@ -798,12 +801,12 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
 if (defined('INDEX_PHP')){
 
 $lang_index_php = array(
-  'welcome' => 'Dobro došli !',
+  'welcome' => 'Dobro doÂšli !',
 );
 
 $lang_album_admin_menu = array(
-  'confirm_delete' => 'Jeste li sigurni da elite IZBRISATI ovaj album ? \\nSve slike i komentari æe takoğer biti izbrisani.', //js-alert //cpg1.3.0
-  'delete' => 'IZBRIŠPI',
+  'confirm_delete' => 'Jeste li sigurni da Âelite IZBRISATI ovaj album ? \\nSve slike i komentari Ä‡e takoÄ‘er biti izbrisani.', //js-alert //cpg1.3.0
+  'delete' => 'IZBRIÂŠPI',
   'modify' => 'KARAKTERISTIKE',
   'edit_pics' => 'UREDI SLIKE', //cpg1.3.0
 );
@@ -836,13 +839,13 @@ $lang_list_albums = array(
 
 if (defined('LOGIN_PHP')) $lang_login_php = array(
   'login' => 'Login',
-  'enter_login_pswd' => 'Unesite Vaše korisnièko ime i zaporku',
-  'username' => 'Korisnièko ime',
+  'enter_login_pswd' => 'Unesite VaÂše korisniÄko ime i zaporku',
+  'username' => 'KorisniÄko ime',
   'password' => 'Zaporka',
   'remember_me' => 'Upamti me',
-  'welcome' => 'Dobro došli %s ...',
-  'err_login' => '*** Neuspio login. Pokušajte ponovno ***',
-  'err_already_logged_in' => 'Veæ ste logirani !',
+  'welcome' => 'Dobro doÂšli %s ...',
+  'err_login' => '*** Neuspio login. PokuÂšajte ponovno ***',
+  'err_already_logged_in' => 'VeÄ‡ ste logirani !',
   'forgot_password_link' => 'Zaboravio(la) sam zaporku', //cpg1.3.0
 );
 
@@ -852,7 +855,7 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
 
 if (defined('LOGOUT_PHP')) $lang_logout_php = array(
   'logout' => 'Logout',
-  'bye' => 'Do viğenja %s ...',
+  'bye' => 'Do viÄ‘enja %s ...',
   'err_not_loged_in' => 'Niste logirani !',
 );
 
@@ -871,14 +874,14 @@ if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
-  'upd_alb_n' => 'Osvjei album(e) %s',
+  'upd_alb_n' => 'OsvjeÂi album(e) %s',
   'general_settings' => 'Generalne postavke',
   'alb_title' => 'Naziv albuma',
   'alb_cat' => 'Kategorija albuma',
   'alb_desc' => 'Opis albuma',
   'alb_thumb' => 'Thumbnail albuma',
   'alb_perm' => 'Dozvole za ovaj album',
-  'can_view' => 'Album moe(gu) vidjeti',
+  'can_view' => 'Album moÂe(gu) vidjeti',
   'can_upload' => 'Posjetitelji mogu uploadati slike',
   'can_post_comments' => 'Posjetitelji mogu pisati komentare',
   'can_rate' => 'Posjetitelji mogu ocjenjivati slike',
@@ -889,9 +892,9 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'public_alb' => 'Svatko (javni album)',
   'me_only' => 'Samo ja',
   'owner_only' => 'Vlasnik albuma (%s) samo',
-  'groupp_only' => 'Èlanovi \'%s\' grupe',
+  'groupp_only' => 'ÄŒlanovi \'%s\' grupe',
   'err_no_alb_to_modify' => 'Albumi se ne mogu mijenjati u bazi podataka.',
-  'update' => 'Osvjei album', //cpg1.3.0
+  'update' => 'OsvjeÂi album', //cpg1.3.0
   'notice1' => '(*) ovisi o  %sgroupnim%s postavkama', //cpg1.3.0 (do not translate %s!)
 );
 
@@ -900,9 +903,9 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
-  'already_rated' => 'ao nam je, ali veæ ste ocijenili ovu sliku', //cpg1.3.0
-  'rate_ok' => 'Vaša ocjena je prihvaæena',
-  'forbidden' => 'Ne moete ocijeniti Vaše vlastite slike.', //cpg1.3.0
+  'already_rated' => 'Âao nam je, ali veÄ‡ ste ocijenili ovu sliku', //cpg1.3.0
+  'rate_ok' => 'VaÂša ocjena je prihvaÄ‡ena',
+  'forbidden' => 'Ne moÂete ocijeniti VaÂše vlastite slike.', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -912,31 +915,31 @@ if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
-Iako æe administrator {IME_GALERIJE} brisati ili izmijeniti shvati neprihvatljivi materijal èim prije, nemoguæe je pregledati baš svaki komentar. Stoga, prihvaæate da stavovi objavljeni na ovim stranicama izraavaju poglede i mišljenja autora, a ne administratora ili webmastera (osim za njihove vlastite), te oni neæe biti odgovorni za iste.<br />
+Iako Ä‡e administrator {IME_GALERIJE} brisati ili izmijeniti shvati neprihvatljivi materijal Äim prije, nemoguÄ‡e je pregledati baÂš svaki komentar. Stoga, prihvaÄ‡ate da stavovi objavljeni na ovim stranicama izraÂavaju poglede i miÂšljenja autora, a ne administratora ili webmastera (osim za njihove vlastite), te oni neÄ‡e biti odgovorni za iste.<br />
 <br />
-Prihvaæate klauzulu da neæete objavljivati nikakav materijal koji je uvredljiv, opscen, vulgaran, prepun mrnje, prijetnji, ili bilo kakav drugi koji bi mogao povrijediti postojeæe zakone. Slaete se da webmaster, administrator i moderatori {IME_GALERIJE} imaju pravo ukloniti ili izmijeniti bilo koji sadraj u bilo koje vrijeme ako budu smatrali to potrebnim. Kao korisnik slaete se da sve informacije koje upišete bude spremljene u bazi podataka. Iako ove informacije neæe biti proslijeğene treæim strankama bez Vašeg dopuštenja, webmaster i administrator ne mogu biti odgovorni za bilo kakvo hackiranje, koje bi dovelo do kompromitiranja podataka.<br />
+PrihvaÄ‡ate klauzulu da neÄ‡ete objavljivati nikakav materijal koji je uvredljiv, opscen, vulgaran, prepun mrÂnje, prijetnji, ili bilo kakav drugi koji bi mogao povrijediti postojeÄ‡e zakone. SlaÂete se da webmaster, administrator i moderatori {IME_GALERIJE} imaju pravo ukloniti ili izmijeniti bilo koji sadrÂaj u bilo koje vrijeme ako budu smatrali to potrebnim. Kao korisnik slaÂete se da sve informacije koje upiÂšete bude spremljene u bazi podataka. Iako ove informacije neÄ‡e biti proslijeÄ‘ene treÄ‡im strankama bez VaÂšeg dopuÂštenja, webmaster i administrator ne mogu biti odgovorni za bilo kakvo hackiranje, koje bi dovelo do kompromitiranja podataka.<br />
 <br />
-Ove stranice koriste cookieje za pohranu informacija na Vaš kompjuter. Oni slue samo za Vaše jednostavnije gledanje ovih stranica. E-mail adresa koju ste naveli koristi se samo za potvrdu detalja Vaše registracije i zaporke.<br />
+Ove stranice koriste cookieje za pohranu informacija na VaÂš kompjuter. Oni sluÂe samo za VaÂše jednostavnije gledanje ovih stranica. E-mail adresa koju ste naveli koristi se samo za potvrdu detalja VaÂše registracije i zaporke.<br />
 <br />
-Kliknuvši na 'Slaem se' ispod, potvrğujete da se slaete sa gore navedenim uvjetima.
+KliknuvÂši na 'SlaÂem se' ispod, potvrÄ‘ujete da se slaÂete sa gore navedenim uvjetima.
 EOT;
 
 $lang_register_php = array(
   'page_title' => 'Registracija korisnika',
-  'term_cond' => 'Uvjeti korištenja',
-  'i_agree' => 'Slaem se',
+  'term_cond' => 'Uvjeti koriÂštenja',
+  'i_agree' => 'SlaÂem se',
   'submit' => 'Provedi registraciju',
-  'err_user_exists' => 'Korisnièko ime koje ste naveli veæ postoji, molimo Vas, odaberite drugo ime',
-  'err_password_mismatch' => 'Dvije zaporke se ne slau, molimo Vas unesite ih ponovno',
-  'err_uname_short' => 'Korisnièko ime mora imati makar dva znaka',
+  'err_user_exists' => 'KorisniÄko ime koje ste naveli veÄ‡ postoji, molimo Vas, odaberite drugo ime',
+  'err_password_mismatch' => 'Dvije zaporke se ne slaÂu, molimo Vas unesite ih ponovno',
+  'err_uname_short' => 'KorisniÄko ime mora imati makar dva znaka',
   'err_password_short' => 'Zaporka mora imati makar dva znaka',
-  'err_uname_pass_diff' => 'Korisnièko ime i zaporka moraju biti razlièiti',
-  'err_invalid_email' => 'E-mail adresa nije vaeæa',
-  'err_duplicate_email' => 'Drugi korisnik veæ je registriran s ovom e-mail adresom',
+  'err_uname_pass_diff' => 'KorisniÄko ime i zaporka moraju biti razliÄiti',
+  'err_invalid_email' => 'E-mail adresa nije vaÂeÄ‡a',
+  'err_duplicate_email' => 'Drugi korisnik veÄ‡ je registriran s ovom e-mail adresom',
   'enter_info' => 'Input registration information',
   'required_info' => 'Potrebne informacije',
   'optional_info' => 'Optional information',
-  'username' => 'Korisnièko ime',
+  'username' => 'KorisniÄko ime',
   'password' => 'Zaporka',
   'password_again' => 'Ponovno unesite zaporku',
   'email' => 'E-mail',
@@ -944,47 +947,47 @@ $lang_register_php = array(
   'interests' => 'Hobiji',
   'website' => 'Home page',
   'occupation' => 'Zanimanje',
-  'error' => 'POGREŠKA',
+  'error' => 'POGREÂŠKA',
   'confirm_email_subject' => '%s - Potvrda registracije',
   'information' => 'Informacije',
-  'failed_sending_email' => 'E-mail o potvrdi registracije se ne moe poslati !',
-  'thank_you' => 'Hvala na registraciji.<br /><br />E-mail sa informacijama o tome kako aktivirati Vaše èlanstvo poslan je na e-mail adresu koju ste naveli pri registraciji.',
-  'acct_created' => 'Vaš raèun je otvoren i sada se moete logirati s Vašim korisnièkim imenom i zaporkom',
-  'acct_active' => 'Vaš raèun je sada aktivan i i Vi se moete logirati sa Vašim korisnièkim imenom i zaporkom',
-  'acct_already_act' => 'Vaš raèun je veæ aktivan !',
-  'acct_act_failed' => 'Ovaj raèun se ne moe aktivirati !',
+  'failed_sending_email' => 'E-mail o potvrdi registracije se ne moÂe poslati !',
+  'thank_you' => 'Hvala na registraciji.<br /><br />E-mail sa informacijama o tome kako aktivirati VaÂše Älanstvo poslan je na e-mail adresu koju ste naveli pri registraciji.',
+  'acct_created' => 'VaÂš raÄun je otvoren i sada se moÂete logirati s VaÂšim korisniÄkim imenom i zaporkom',
+  'acct_active' => 'VaÂš raÄun je sada aktivan i i Vi se moÂete logirati sa VaÂšim korisniÄkim imenom i zaporkom',
+  'acct_already_act' => 'VaÂš raÄun je veÄ‡ aktivan !',
+  'acct_act_failed' => 'Ovaj raÄun se ne moÂe aktivirati !',
   'err_unk_user' => 'Odabrani korisnik ne postoji !',
   'x_s_profile' => '%s\' profil',
   'group' => 'Grupa',
   'reg_date' => 'Pristupio/la',
   'disk_usage' => 'Upotrebljivost diska',
   'change_pass' => 'Izmijeni zaporku',
-  'current_pass' => 'Sadašnja zaporka',
+  'current_pass' => 'SadaÂšnja zaporka',
   'new_pass' => 'Nova zaporka',
   'new_pass_again' => 'Nova zaporka ponovno',
-  'err_curr_pass' => 'Trenutna zaporka je netoèna',
+  'err_curr_pass' => 'Trenutna zaporka je netoÄna',
   'apply_modif' => 'Primijeni izmjene',
   'change_pass' => 'Promijeni moju zaporku',
-  'update_success' => 'Vaš profil je izmijenjen',
-  'pass_chg_success' => 'Vaša zaporka je promijenjena',
-  'pass_chg_error' => 'Vaša zaporka nije promijenjena',
+  'update_success' => 'VaÂš profil je izmijenjen',
+  'pass_chg_success' => 'VaÂša zaporka je promijenjena',
+  'pass_chg_error' => 'VaÂša zaporka nije promijenjena',
   'notify_admin_email_subject' => '%s - Obavijest o registraciji', //cpg1.3.0
-  'notify_admin_email_body' => 'Novi korisnik s korisnièkim imenom "%s" se upravo registrirao u Vašoj galeriji', //cpg1.3.0
+  'notify_admin_email_body' => 'Novi korisnik s korisniÄkim imenom "%s" se upravo registrirao u VaÂšoj galeriji', //cpg1.3.0
 );
 
 $lang_register_confirm_email = <<<EOT
 Hvala za registraciju u {IME_GALERIJE}
 
-Vaše korisnièko ime je : "{KORISNIÈKO_IME}"
-Vaša zaporka je : "{ZAPORKA}"
+VaÂše korisniÄko ime je : "{KORISNIÄŒKO_IME}"
+VaÂša zaporka je : "{ZAPORKA}"
 
-Da biste aktivirali Vaš raèun, trebate kliknuti na link ispod, ili ga kopirati u Vaš preglednik.
+Da biste aktivirali VaÂš raÄun, trebate kliknuti na link ispod, ili ga kopirati u VaÂš preglednik.
 
 {ACT_LINK}
 
-Srdaèan pozdrav,
+SrdaÄan pozdrav,
 
-Uredništvo {IME_GALERIJE}
+UredniÂštvo {IME_GALERIJE}
 
 EOT;
 
@@ -1000,8 +1003,8 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
   'n_comm_del' => '%s komentar(a) izbrisan(o)',
   'n_comm_disp' => 'Broj komentara za prikaz',
   'see_prev' => 'Pogledaj prethodno',
-  'see_next' => 'Pogledaj slijedeæe',
-  'del_comm' => 'Izbriši odabrane komentare',
+  'see_next' => 'Pogledaj slijedeÄ‡e',
+  'del_comm' => 'IzbriÂši odabrane komentare',
 );
 
 
@@ -1010,7 +1013,7 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCH_PHP')) $lang_search_php = array(
-  0 => 'Pretrai u zbirci slika',
+  0 => 'PretraÂi u zbirci slika',
 );
 
 // ------------------------------------------------------------------------- //
@@ -1018,36 +1021,36 @@ if (defined('SEARCH_PHP')) $lang_search_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
-  'page_title' => 'Pretrai nove slike', //cpg1.3.0
+  'page_title' => 'PretraÂi nove slike', //cpg1.3.0
   'select_dir' => 'Odaberi direktorij',
-  'select_dir_msg' => 'Ova funkcija Vam omoguæuje da dodate batch of file koju ste uploadali na Vaš server preko FTP-a.<br /><br />Select the directory where you have uploaded your files', //cpg1.3.0
+  'select_dir_msg' => 'Ova funkcija Vam omoguÄ‡uje da dodate batch of file koju ste uploadali na VaÂš server preko FTP-a.<br /><br />Select the directory where you have uploaded your files', //cpg1.3.0
   'no_pic_to_add' => 'Nema slike za dodati', //cpg1.3.0
-  'need_one_album' => 'Potreban Vam je bar jedan album za korištenje ove funkcije',
+  'need_one_album' => 'Potreban Vam je bar jedan album za koriÂštenje ove funkcije',
   'warning' => 'Upozorenje',
-  'change_perm' => 'skripta ne moe pisati u ovaj direktorij, trebate promijeniti mod na 755 ili 777 prije nego pokušate dodati slike !', //cpg1.3.0
+  'change_perm' => 'skripta ne moÂe pisati u ovaj direktorij, trebate promijeniti mod na 755 ili 777 prije nego pokuÂšate dodati slike !', //cpg1.3.0
   'target_album' => '<b>Stavi slike iz &quot;</b>%s<b>&quot; u </b>%s', //cpg1.3.0
   'folder' => 'Direktorij',
   'image' => 'Slika',
   'album' => 'Album',
   'result' => 'Resultat',
-  'dir_ro' => 'Ne moe se pisati. ',
-  'dir_cant_read' => 'Ne moe se èitati. ',
+  'dir_ro' => 'Ne moÂe se pisati. ',
+  'dir_cant_read' => 'Ne moÂe se Äitati. ',
   'insert' => 'Dodavanje novih slika u galeriju', //cpg1.3.0
   'list_new_pic' => 'Popis novih slika', //cpg1.3.0
   'insert_selected' => 'Unesi odabrane slike', //cpg1.3.0
-  'no_pic_found' => 'Nije pronağena niti jedna nova slika', //cpg1.3.0
+  'no_pic_found' => 'Nije pronaÄ‘ena niti jedna nova slika', //cpg1.3.0
   'be_patient' => 'Molimmo Vas da budete strpljivi, skripti je potrebno vremena za dodavanje slika', //cpg1.3.0
   'no_album' => 'nije odabran album',  //cpg1.3.0
   'notes' =>  '<ul>'.
-                          '<li><b>OK</b> : znaèi da je slika uspješno dodana'.
-                          '<li><b>DP</b> : znaèi da je slika duplikat i da se veæ nalazi u bazi podataka'.
-                          '<li><b>PB</b> : znaèi da se slika nije mogla dodati, provjerite Vaše postavke i dozvole za direktorije gdje su smještene slike'.
-                          '<li><b>NA</b> : znaèi da niste odabrali album u kojeg idu slike, kliknite na \'<a href="javascript:history.back(1)">back</a>\' i odaberite album. If you don\'t have an album <a href="albmgr.php">create one first</a></li>'.
-                          '<li>Ako se  OK, DP, PB \'znakovi\' ne pojave, kliknite na sliku za provjeru poruke o PHP grešci'.
+                          '<li><b>OK</b> : znaÄi da je slika uspjeÂšno dodana'.
+                          '<li><b>DP</b> : znaÄi da je slika duplikat i da se veÄ‡ nalazi u bazi podataka'.
+                          '<li><b>PB</b> : znaÄi da se slika nije mogla dodati, provjerite VaÂše postavke i dozvole za direktorije gdje su smjeÂštene slike'.
+                          '<li><b>NA</b> : znaÄi da niste odabrali album u kojeg idu slike, kliknite na \'<a href="javascript:history.back(1)">back</a>\' i odaberite album. If you don\'t have an album <a href="albmgr.php">create one first</a></li>'.
+                          '<li>Ako se  OK, DP, PB \'znakovi\' ne pojave, kliknite na sliku za provjeru poruke o PHP greÂšci'.
                           '<li>If your browser timeout, hit the reload button'.
                           '</ul>', //cpg1.3.0
   'select_album' => 'odaberi album', //cpg1.3.0
-  'check_all' => 'Obiljei sve', //cpg1.3.0
+  'check_all' => 'ObiljeÂi sve', //cpg1.3.0
   'uncheck_all' => 'deaktiviraj sve', //cpg1.3.0
 );
 
@@ -1064,19 +1067,19 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 
 if (defined('BANNING_PHP')) $lang_banning_php = array(
   'title' => 'Zabrana korisnika',
-  'user_name' => 'Korisnièko ime',
+  'user_name' => 'KorisniÄko ime',
   'ip_address' => 'IP Adresa',
-  'expiry' => 'Istièe (prazno znaèi stalno)',
-  'edit_ban' => 'Saèuvaj izmjene',
-  'delete_ban' => 'Izbriši',
+  'expiry' => 'IstiÄe (prazno znaÄi stalno)',
+  'edit_ban' => 'SaÄuvaj izmjene',
+  'delete_ban' => 'IzbriÂši',
   'add_new' => 'Dodaj novu zabranu',
   'add_ban' => 'Dodaj',
-  'error_user' => 'Ne mogu naæi korisnika', //cpg1.3.0
-  'error_specify' => 'Trebate odrediti ili korisnièko ime ili IP adresu', //cpg1.3.0
+  'error_user' => 'Ne mogu naÄ‡i korisnika', //cpg1.3.0
+  'error_specify' => 'Trebate odrediti ili korisniÄko ime ili IP adresu', //cpg1.3.0
   'error_ban_id' => 'Nepravilna zabrana ID-a!', //cpg1.3.0
-  'error_admin_ban' => 'Ne moete napraviti zabranu sebi!', //cpg1.3.0
-  'error_server_ban' => 'Jeste li htjeli zabraniti pristup vlastitom serveru? Tsk tsk, ne moete to uèiniti...', //cpg1.3.0
-  'error_ip_forbidden' => 'Ne moete zabrabiti pristup ovoj IP adresi - it is non-routable!', //cpg1.3.0
+  'error_admin_ban' => 'Ne moÂete napraviti zabranu sebi!', //cpg1.3.0
+  'error_server_ban' => 'Jeste li htjeli zabraniti pristup vlastitom serveru? Tsk tsk, ne moÂete to uÄiniti...', //cpg1.3.0
+  'error_ip_forbidden' => 'Ne moÂete zabrabiti pristup ovoj IP adresi - it is non-routable!', //cpg1.3.0
   'lookup_ip' => 'Pogledajte IP adresu', //cpg1.3.0
   'submit' => 'go!', //cpg1.3.0
 );
@@ -1087,75 +1090,75 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
 
 if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'title' => 'Upload file', //cpg1.3.0
-  'custom_title' => 'Prilagoğeni obrazac za zahtjev', //cpg1.3.0
-  'cust_instr_1' => 'Moete odabrati prilagoğeni broj kuæica za upload. Ali, ne moete odabrati više od ogranièenja naznaèenog ispod.', //cpg1.3.0
+  'custom_title' => 'PrilagoÄ‘eni obrazac za zahtjev', //cpg1.3.0
+  'cust_instr_1' => 'MoÂete odabrati prilagoÄ‘eni broj kuÄ‡ica za upload. Ali, ne moÂete odabrati viÂše od ograniÄenja naznaÄenog ispod.', //cpg1.3.0
   'cust_instr_2' => 'Box Number Requests', //cpg1.3.0
-  'cust_instr_3' => 'Kuæice za upload slika: %s', //cpg1.3.0
-  'cust_instr_4' => 'URI/URL upload kuæice: %s', //cpg1.3.0
-  'cust_instr_5' => 'URI/URL upload kuæice:', //cpg1.3.0
-  'cust_instr_6' => 'Upload kuæice za slike:', //cpg1.3.0
-  'cust_instr_7' => 'Molimo Vas, unesite broj svakog tipa kuæica za upload koje elite. Tada kliknite  \'Nastavi\'. ', //cpg1.3.0
+  'cust_instr_3' => 'KuÄ‡ice za upload slika: %s', //cpg1.3.0
+  'cust_instr_4' => 'URI/URL upload kuÄ‡ice: %s', //cpg1.3.0
+  'cust_instr_5' => 'URI/URL upload kuÄ‡ice:', //cpg1.3.0
+  'cust_instr_6' => 'Upload kuÄ‡ice za slike:', //cpg1.3.0
+  'cust_instr_7' => 'Molimo Vas, unesite broj svakog tipa kuÄ‡ica za upload koje Âelite. Tada kliknite  \'Nastavi\'. ', //cpg1.3.0
   'reg_instr_1' => 'Nevaljana radnja za stvaranje obrasca.', //cpg1.3.0
-  'reg_instr_2' => 'Sada moete uploadati Vaše slike koristeæi kuæice za upload ispod. Velièina uploadanih slika na server ne smije prijeæi %s KB svaka. ZIP slike uploadane u \'Upload slika\' i \'URI/URL Upload\' rubrike æe ostai compressed.', //cpg1.3.0
-  'reg_instr_3' => 'Ako elite dekompresirati zip slike ili arhiv, morate koristiti kuæicu za upload slika koja se nalazi \'Decompressive ZIP Upload\' rubrici.', //cpg1.3.0
+  'reg_instr_2' => 'Sada moÂete uploadati VaÂše slike koristeÄ‡i kuÄ‡ice za upload ispod. VeliÄina uploadanih slika na server ne smije prijeÄ‡i %s KB svaka. ZIP slike uploadane u \'Upload slika\' i \'URI/URL Upload\' rubrike Ä‡e ostai compressed.', //cpg1.3.0
+  'reg_instr_3' => 'Ako Âelite dekompresirati zip slike ili arhiv, morate koristiti kuÄ‡icu za upload slika koja se nalazi \'Decompressive ZIP Upload\' rubrici.', //cpg1.3.0
   'reg_instr_4' => 'Kada koristite URI/URL upload rubriku, unesite put do slike kao ovdje: http://www.mysite.com/images/example.jpg', //cpg1.3.0
   'reg_instr_5' => 'Kada kompletirate obrazac, kliknite na \'Nastavi\'.', //cpg1.3.0
   'reg_instr_6' => 'Upload decompressive ZIP:', //cpg1.3.0
   'reg_instr_7' => 'Upload slika:', //cpg1.3.0
   'reg_instr_8' => 'URI/URL Upload:', //cpg1.3.0
-  'error_report' => 'Poruka o grešci', //cpg1.3.0
-  'error_instr' => 'Slijedeæi uploadi imaju poteškoæe:', //cpg1.3.0
+  'error_report' => 'Poruka o greÂšci', //cpg1.3.0
+  'error_instr' => 'SlijedeÄ‡i uploadi imaju poteÂškoÄ‡e:', //cpg1.3.0
   'file_name_url' => 'Naziv slike/URL', //cpg1.3.0
-  'error_message' => 'Poruka o grešci', //cpg1.3.0
+  'error_message' => 'Poruka o greÂšci', //cpg1.3.0
   'no_post' => 'Sliku nije uploadao POST.', //cpg1.3.0
   'forb_ext' => 'Zabranjena ekstenzija slike.', //cpg1.3.0
-  'exc_php_ini' => 'Premašena dopuštena velièina slike u php.ini.', //cpg1.3.0
-  'exc_file_size' => 'Premašena velièina slike dozvoljena po CPG.', //cpg1.3.0
-  'partial_upload' => 'Samo djelomièan upload.', //cpg1.3.0
+  'exc_php_ini' => 'PremaÂšena dopuÂštena veliÄina slike u php.ini.', //cpg1.3.0
+  'exc_file_size' => 'PremaÂšena veliÄina slike dozvoljena po CPG.', //cpg1.3.0
+  'partial_upload' => 'Samo djelomiÄan upload.', //cpg1.3.0
   'no_upload' => 'Nije bilo uploada.', //cpg1.3.0
-  'unknown_code' => 'Nepoznata PHP upload greška.', //cpg1.3.0
+  'unknown_code' => 'Nepoznata PHP upload greÂška.', //cpg1.3.0
   'no_temp_name' => 'Nema uploada - Nema privremenog imena.', //cpg1.3.0
-  'no_file_size' => 'Ne sadri podatke/Ošteæena', //cpg1.3.0
-  'impossible' => 'Nemoguæe prebaciti.', //cpg1.3.0
-  'not_image' => 'Nije slika/ošteæeno', //cpg1.3.0
+  'no_file_size' => 'Ne sadrÂi podatke/OÂšteÄ‡ena', //cpg1.3.0
+  'impossible' => 'NemoguÄ‡e prebaciti.', //cpg1.3.0
+  'not_image' => 'Nije slika/oÂšteÄ‡eno', //cpg1.3.0
   'not_GD' => 'Nije GD ekstenzija.', //cpg1.3.0
-  'pixel_allowance' => 'Premašena dozvola pixela.', //cpg1.3.0
-  'incorrect_prefix' => 'Netoèan URI/URL prefiks', //cpg1.3.0
-  'could_not_open_URI' => 'Ne moe se otvoriti URI.', //cpg1.3.0
+  'pixel_allowance' => 'PremaÂšena dozvola pixela.', //cpg1.3.0
+  'incorrect_prefix' => 'NetoÄan URI/URL prefiks', //cpg1.3.0
+  'could_not_open_URI' => 'Ne moÂe se otvoriti URI.', //cpg1.3.0
   'unsafe_URI' => 'Sigurnost nije verificirana.', //cpg1.3.0
-  'meta_data_failure' => 'Meta data pogreška', //cpg1.3.0
+  'meta_data_failure' => 'Meta data pogreÂška', //cpg1.3.0
   'http_401' => '401 Neautorizirano', //cpg1.3.0
-  'http_402' => '402 Potrebno plaæanje', //cpg1.3.0
+  'http_402' => '402 Potrebno plaÄ‡anje', //cpg1.3.0
   'http_403' => '403 Zabranjeno', //cpg1.3.0
-  'http_404' => '404 Nije pronağeno', //cpg1.3.0
-  'http_500' => '500 Unutarnja server pogreška', //cpg1.3.0
+  'http_404' => '404 Nije pronaÄ‘eno', //cpg1.3.0
+  'http_500' => '500 Unutarnja server pogreÂška', //cpg1.3.0
   'http_503' => '503 Servis nedostupan', //cpg1.3.0
-  'MIME_extraction_failure' => 'MIME se ne moe odrediti.', //cpg1.3.0
+  'MIME_extraction_failure' => 'MIME se ne moÂe odrediti.', //cpg1.3.0
   'MIME_type_unknown' => 'Nepoznati MIME tip', //cpg1.3.0
-  'cant_create_write' => 'Ne moe se kreirati dokument za pisanje.', //cpg1.3.0
-  'not_writable' => 'Ne moe se pisati u dokument za pisanje.', //cpg1.3.0
-  'cant_read_URI' => 'Ne moe se proèitati URI/URL', //cpg1.3.0
-  'cant_open_write_file' => 'Ne moe se otvoriti URI dokument za pisanje.', //cpg1.3.0
-  'cant_write_write_file' => 'Ne moe se pisati u URI dokument za pisanje.', //cpg1.3.0
-  'cant_unzip' => 'Ne moe se izvršiti dekompresija.', //cpg1.3.0
-  'unknown' => 'Nepoznata pogreška', //cpg1.3.0
-  'succ' => 'Uspješni uploadi', //cpg1.3.0
-  'success' => '%s uploada je bilo uspješno.', //cpg1.3.0
+  'cant_create_write' => 'Ne moÂe se kreirati dokument za pisanje.', //cpg1.3.0
+  'not_writable' => 'Ne moÂe se pisati u dokument za pisanje.', //cpg1.3.0
+  'cant_read_URI' => 'Ne moÂe se proÄitati URI/URL', //cpg1.3.0
+  'cant_open_write_file' => 'Ne moÂe se otvoriti URI dokument za pisanje.', //cpg1.3.0
+  'cant_write_write_file' => 'Ne moÂe se pisati u URI dokument za pisanje.', //cpg1.3.0
+  'cant_unzip' => 'Ne moÂe se izvrÂšiti dekompresija.', //cpg1.3.0
+  'unknown' => 'Nepoznata pogreÂška', //cpg1.3.0
+  'succ' => 'UspjeÂšni uploadi', //cpg1.3.0
+  'success' => '%s uploada je bilo uspjeÂšno.', //cpg1.3.0
   'add' => 'Molimo Vas, kliknite na \'Nastavi\' dodavati slike u album.', //cpg1.3.0
-  'failure' => 'Upload pogreška', //cpg1.3.0
+  'failure' => 'Upload pogreÂška', //cpg1.3.0
   'f_info' => 'Informacije o dokumentu', //cpg1.3.0
   'no_place' => 'Prethodna slika se nije mogla smjestiti.', //cpg1.3.0
-  'yes_place' => 'Prethodna slika je smještena uspješno.', //cpg1.3.0
-  'max_fsize' => 'Maksimalna dopuštena velièina slika je  %s KB',
+  'yes_place' => 'Prethodna slika je smjeÂštena uspjeÂšno.', //cpg1.3.0
+  'max_fsize' => 'Maksimalna dopuÂštena veliÄina slika je  %s KB',
   'album' => 'Album',
   'picture' => 'Slika', //cpg1.3.0
   'pic_title' => 'Naslov slike', //cpg1.3.0
   'description' => 'Opis slike', //cpg1.3.0
-  'keywords' => 'Kljuène rijeèi (odvojene praznim mjestima)',
-  'err_no_alb_uploadables' => 'ao nam je, nema albuma u kojem Vam je dopušteno uploadati slike', //cpg1.3.0
-  'place_instr_1' => 'Molimo Vas, stavite slike u albume.  Moete takoğer unijeti informacije o svakoj slici.', //cpg1.3.0
-  'place_instr_2' => 'Treba smjestiti više slika. Molimo Vas, kliknite na  \'Nastavi\'.', //cpg1.3.0
-  'process_complete' => 'Uspješno ste smjestili sve slike.', //cpg1.3.0
+  'keywords' => 'KljuÄne rijeÄi (odvojene praznim mjestima)',
+  'err_no_alb_uploadables' => 'Âao nam je, nema albuma u kojem Vam je dopuÂšteno uploadati slike', //cpg1.3.0
+  'place_instr_1' => 'Molimo Vas, stavite slike u albume.  MoÂete takoÄ‘er unijeti informacije o svakoj slici.', //cpg1.3.0
+  'place_instr_2' => 'Treba smjestiti viÂše slika. Molimo Vas, kliknite na  \'Nastavi\'.', //cpg1.3.0
+  'process_complete' => 'UspjeÂšno ste smjestili sve slike.', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -1177,28 +1180,28 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'lv_a' => 'Posljednja posjeta uzlazno', //cpg1.3.0
   'lv_d' => 'Posljednja posjeta silazno', //cpg1.3.0
   'sort_by' => 'Poredaj korisnike po ',
-  'err_no_users' => 'Korisnièka tablica je prazna !',
-  'err_edit_self' => 'Ne moete mijenjati Vaš profil, upotrijebite You can\'t edit your own profile, use the \'Moj profil\' link za to',
+  'err_no_users' => 'KorisniÄka tablica je prazna !',
+  'err_edit_self' => 'Ne moÂete mijenjati VaÂš profil, upotrijebite You can\'t edit your own profile, use the \'Moj profil\' link za to',
   'edit' => 'UREDI',
-  'delete' => 'IZBRIŠI',
-  'name' => 'Korisnièko ime',
+  'delete' => 'IZBRIÂŠI',
+  'name' => 'KorisniÄko ime',
   'group' => 'Grupa',
   'inactive' => 'Neaktivan',
   'operations' => 'Operacije',
   'pictures' => 'Slike', //cpg1.3.0
-  'disk_space' => 'Iskorištenost prostora / Quota',
+  'disk_space' => 'IskoriÂštenost prostora / Quota',
   'registered_on' => 'Registriran(na) dana',
   'last_visit' => 'Posljednja posjeta', //cpg1.3.0
   'u_user_on_p_pages' => '%d korisnika na %d strane(a)',
-  'confirm_del' => 'Jeste li sigurni da elite IZBRISATI ovog korisnika ? \\nSve njegove slike i albumi æe takoğer biti izbrisani.', //js-alert //cpg1.3.0
+  'confirm_del' => 'Jeste li sigurni da Âelite IZBRISATI ovog korisnika ? \\nSve njegove slike i albumi Ä‡e takoÄ‘er biti izbrisani.', //js-alert //cpg1.3.0
   'mail' => 'MAIL',
   'err_unknown_user' => 'Odabrani korisnik ne postoji !',
   'modify_user' => 'Izmijeni korisnika',
-  'notes' => 'Bilješke',
-  'note_list' => '<li>Ako ne elite mijenjati trenutnu zaporku, ostavite polje za zaporku praznim',
+  'notes' => 'BiljeÂške',
+  'note_list' => '<li>Ako ne Âelite mijenjati trenutnu zaporku, ostavite polje za zaporku praznim',
   'password' => 'Zaporka',
   'user_active' => 'Korisnik je aktivan',
-  'user_group' => 'Korisnièka grupa',
+  'user_group' => 'KorisniÄka grupa',
   'user_email' => 'Korisnikov e-mail',
   'user_web_site' => 'Korisnikov web site',
   'create_new_user' => 'Kreiraj novog korisnika',
@@ -1215,58 +1218,58 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 
 if (defined('UTIL_PHP')) $lang_util_php = array(
   'title' => 'Admin utilities (Resize pictures)', //cpg1.3.0
-  'what_it_does' => 'Što to radi',
-  'what_update_titles' => 'Osveæava naslove iz imena slika',
-  'what_delete_title' => 'Briše naslove',
-  'what_rebuild' => 'Osvjeava thumbnaile i mijenja velièinu slika',
-  'what_delete_originals' => 'Briše originalne slike mijenjajuæi ih sa verzijom promijenjene velièine',
+  'what_it_does' => 'ÂŠto to radi',
+  'what_update_titles' => 'OsveÄ‡ava naslove iz imena slika',
+  'what_delete_title' => 'BriÂše naslove',
+  'what_rebuild' => 'OsvjeÂava thumbnaile i mijenja veliÄinu slika',
+  'what_delete_originals' => 'BriÂše originalne slike mijenjajuÄ‡i ih sa verzijom promijenjene veliÄine',
   'file' => 'Slika',
   'title_set_to' => 'naslov postavljen na',
   'submit_form' => 'provedi',
-  'updated_succesfully' => 'uspješno osvjeeno',
+  'updated_succesfully' => 'uspjeÂšno osvjeÂeno',
   'error_create' => 'ERROR creating',
-  'continue' => 'Procesuira više slika',
-  'main_success' => 'Slika %s je bila uspješno upotrijebljena kao glavna slika', //cpg1.3.0
-  'error_rename' => 'Greška mijenjanja imena %s u %s',
-  'error_not_found' => 'Slika %s nije pronağena',
+  'continue' => 'Procesuira viÂše slika',
+  'main_success' => 'Slika %s je bila uspjeÂšno upotrijebljena kao glavna slika', //cpg1.3.0
+  'error_rename' => 'GreÂška mijenjanja imena %s u %s',
+  'error_not_found' => 'Slika %s nije pronaÄ‘ena',
   'back' => 'natrag na glavno',
-  'thumbs_wait' => 'Osvjeava thumbnaile i/ili slike promijenjene velièine, molimo Vas, saèekajte...',
-  'thumbs_continue_wait' => 'Nastavlja osvjeavanje thumbnaila i/ili slika promijenjene velièine...',
-  'titles_wait' => 'Osvjeava naslove, saèekajte...',
-  'delete_wait' => 'Briše naslove, saèekajte...',
-  'replace_wait' => 'Briše originale i mijenja ih slikama promijenjene velièine, saèekajte..',
+  'thumbs_wait' => 'OsvjeÂava thumbnaile i/ili slike promijenjene veliÄine, molimo Vas, saÄekajte...',
+  'thumbs_continue_wait' => 'Nastavlja osvjeÂavanje thumbnaila i/ili slika promijenjene veliÄine...',
+  'titles_wait' => 'OsvjeÂava naslove, saÄekajte...',
+  'delete_wait' => 'BriÂše naslove, saÄekajte...',
+  'replace_wait' => 'BriÂše originale i mijenja ih slikama promijenjene veliÄine, saÄekajte..',
   'instruction' => 'Brze instrukcije',
   'instruction_action' => 'Odaberite radnju',
   'instruction_parameter' => 'Postavite parametre',
   'instruction_album' => 'Odaberite album',
   'instruction_press' => 'Press %s',
-  'update' => 'Osvjeava thumbe i/ili slike promijenjene velièine',
-  'update_what' => 'Što treba osvjeiti',
+  'update' => 'OsvjeÂava thumbe i/ili slike promijenjene veliÄine',
+  'update_what' => 'ÂŠto treba osvjeÂiti',
   'update_thumb' => 'SamoOnly thumbnaile',
-  'update_pic' => 'Samo slike promijenjene velièine',
-  'update_both' => 'I thumbnaile i slike promijenjene velièine',
+  'update_pic' => 'Samo slike promijenjene veliÄine',
+  'update_both' => 'I thumbnaile i slike promijenjene veliÄine',
   'update_number' => 'Broj procesuiranih slika po kliku',
-  'update_option' => '(Pokušajte postaviti ovu opciju s niim vrijednostima ako doğe do timeout problema)',
+  'update_option' => '(PokuÂšajte postaviti ovu opciju s niÂim vrijednostima ako doÄ‘e do timeout problema)',
   'filename_title' => 'Naziv slike &rArr; Naslov slike', //cpg1.3.0
   'filename_how' => 'Kako treba promijeniti naziv slike',
   'filename_remove' => 'Odstranite .jpg nastavak i zamijenite  _ (crta) praznim prostorom',
   'filename_euro' => 'Izmijeni 2003_11_23_13_20_20.jpg u 23/11/2003 13:20',
   'filename_us' => 'Izmijeni 2003_11_23_13_20_20.jpg u 11/23/2003 13:20',
   'filename_time' => 'Izmijeni 2003_11_23_13_20_20.jpg u 13:20',
-  'delete' => 'Izbriši tipove slika ili originalnu velièinu slika', //cpg1.3.0
-  'delete_title' => 'Izbriši naslove slika', //cpg1.3.0
-  'delete_original' => 'Izbriši originalnu velièinu slika',
-  'delete_replace' => 'Briše originalne slike mijenjajuæi ih slikama promijenjene velièine',
+  'delete' => 'IzbriÂši tipove slika ili originalnu veliÄinu slika', //cpg1.3.0
+  'delete_title' => 'IzbriÂši naslove slika', //cpg1.3.0
+  'delete_original' => 'IzbriÂši originalnu veliÄinu slika',
+  'delete_replace' => 'BriÂše originalne slike mijenjajuÄ‡i ih slikama promijenjene veliÄine',
   'select_album' => 'Odaberi album',
-  'delete_orphans' => 'Briše neprikladne komentare (works on all albums)', //cpg1.3.0
-  'orphan_comment' => 'pronağen neprikladan komentar', //cpg1.3.0
-  'delete' => 'Briši', //cpg1.3.0
-  'delete_all' => 'Briši sve', //cpg1.3.0
+  'delete_orphans' => 'BriÂše neprikladne komentare (works on all albums)', //cpg1.3.0
+  'orphan_comment' => 'pronaÄ‘en neprikladan komentar', //cpg1.3.0
+  'delete' => 'BriÂši', //cpg1.3.0
+  'delete_all' => 'BriÂši sve', //cpg1.3.0
   'comment' => 'Komentira: ', //cpg1.3.0
-  'nonexist' => 'prikaèeno na nepostojeæu sliku # ', //cpg1.3.0
+  'nonexist' => 'prikaÄeno na nepostojeÄ‡u sliku # ', //cpg1.3.0
   'phpinfo' => 'Prikazuje php info', //cpg1.3.0
-  'update_db' => 'Osvjei bazu podataka', //cpg1.3.0
-  'update_db_explanation' => 'Ako ste zamijenili Coppermine files, dodali ispravke ili osvjeili sa prethodne verzije Coppermine-a, pazite da osvjeite bazu padataka. Ovaj postupak æe kreirati potrebne tablice i/ili config vrijednosti u vašoj Coppermine bazi podataka.', //cpg1.3.0
+  'update_db' => 'OsvjeÂi bazu podataka', //cpg1.3.0
+  'update_db_explanation' => 'Ako ste zamijenili Coppermine files, dodali ispravke ili osvjeÂili sa prethodne verzije Coppermine-a, pazite da osvjeÂite bazu padataka. Ovaj postupak Ä‡e kreirati potrebne tablice i/ili config vrijednosti u vaÂšoj Coppermine bazi podataka.', //cpg1.3.0
 );
 
 ?>

@@ -1,31 +1,30 @@
 <?php
-// ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.2                                            //
-// ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
-//  http://www.chezgreg.net/coppermine/                                      //
-// ------------------------------------------------------------------------- //
-// Updated by the Coppermine Dev Team                                        //
-// (http://coppermine.sf.net/team/)                                          //
-// see /docs/credits.html for details                                        //
-// ------------------------------------------------------------------------- //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-// ------------------------------------------------------------------------- //
-// ENCODING CHECK; SHOULD BE YEN BETA MU: • ﬂ µ
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2005 Coppermine Dev Team
+  v1.1 originally written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  ********************************************
+  Coppermine version: 1.4.1
+  $Source$
+  $Revision$
+  $Author$
+  $Date$
+**********************************************/
 // ------------------------------------------------------------------------- //
 // CVS version: $Id$
 // ------------------------------------------------------------------------- //
 
 
-
-
 // info about translators and translated language
 $lang_translation_info = array(
 'lang_name_english' => 'Catalan',  
-'lang_name_native' => 'Catal‡',
+'lang_name_native' => 'Catal√†',
 'lang_country_code' => 'es', 
 'trans_name'=> 'simkin', //the name of the translator - can be a nickname
 'trans_email' => 'simkin@ono.com', //translator's email address (optional)
@@ -41,14 +40,14 @@ $lang_byte_units = array('Octets', 'Kb', 'Mb');
 
 // Day of weeks and months
 $lang_day_of_week = array('Dg', 'Dl', 'Dt', 'Dc', 'Dj', 'Dv', 'Ds');
-$lang_month = array('Gen', 'Febr', 'MarÁ', 'Abr', 'Maig', 'Juny', 'Jul', 'Ago', 'Set', 'Oct', 'Nov', 'Des');
+$lang_month = array('Gen', 'Febr', 'Mar√ß', 'Abr', 'Maig', 'Juny', 'Jul', 'Ago', 'Set', 'Oct', 'Nov', 'Des');
 
 // Some common strings
 $lang_yes = 'Si';
 $lang_no  = 'No';
 $lang_back = 'ARRERE';
 $lang_continue = 'CONTINUA';
-$lang_info = 'InformaciÛ';
+$lang_info = 'Informaci√≥';
 $lang_error = 'Error';
 
 // The various date formats
@@ -66,79 +65,79 @@ $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clit
 
 $lang_meta_album_names = array(
 	'random' => 'Fitxers aleatoris',
-	'lastup' => '⁄ltims fitxers',
-    'lastalb'=> '⁄ltims ‡lbums modificats',
-	'lastcom' => '⁄ltims comentaris',
-	'topn' => 'MÈs vists',
-	'toprated' => 'MÈs valorats',
-	'lasthits' => '⁄ltims vists',
+	'lastup' => '√öltims fitxers',
+    'lastalb'=> '√öltims √†lbums modificats',
+	'lastcom' => '√öltims comentaris',
+	'topn' => 'M√©s vists',
+	'toprated' => 'M√©s valorats',
+	'lasthits' => '√öltims vists',
 	'search' => 'Resultat de la recerca',
     'favpics'=> 'Favorits'
 );
 
 $lang_errors = array(
-	'access_denied' => 'No teniu permisos per a accedir a aquesta p‡gina.',
-	'perm_denied' => 'No te permisos per a realitzar aquesta operaciÛ.',
-	'param_missing' => 'Falten par‡metres requerits.',
-	'non_exist_ap' => 'L\'‡lbum/fitxer seleccionat no existeix!',
+	'access_denied' => 'No teniu permisos per a accedir a aquesta p√†gina.',
+	'perm_denied' => 'No te permisos per a realitzar aquesta operaci√≥.',
+	'param_missing' => 'Falten par√†metres requerits.',
+	'non_exist_ap' => 'L\'√†lbum/fitxer seleccionat no existeix!',
 	'quota_exceeded' => 'Quota de disc excedida<br /><br />Teniu una quota de disc de [quota]K, els seus fitxers ocupen actualment [space]K, i afegint aquest fitxer excedirieu la quota.',
 	'gd_file_type_err' => 'Quan s\'usa la llibreria d\'imatge GD solament estan permesos els tipus JPEG i PNG.',
-	'invalid_image' => 'La imatge que heu afegit est‡ corrupta o no pot ser tractada per la llibreria GD.',
+	'invalid_image' => 'La imatge que heu afegit est√† corrupta o no pot ser tractada per la llibreria GD.',
 	'resize_failed' => 'No es pot crear miniatura.',
 	'no_img_to_display' => 'No hi ha cap imatge per mostrar.',
 	'non_exist_cat' => 'La categoria seleccionada no existeix.',
-	'orphan_cat' => 'Una categoria no tÈ pare, executeu el gestor de categories per a corregir el problema.',
-	'directory_ro' => 'El directori \'%s\' no tÈ permisos d\'escriptura, el fitxers no poden ser esborrats.',
+	'orphan_cat' => 'Una categoria no t√© pare, executeu el gestor de categories per a corregir el problema.',
+	'directory_ro' => 'El directori \'%s\' no t√© permisos d\'escriptura, el fitxers no poden ser esborrats.',
 	'non_exist_comment' => 'El comentari seleccionat no existeix.',
-	'pic_in_invalid_album' => 'El fitxer est‡ en un ‡lbum que no existeix (%s)!?',
-    'banned' => 'Actualment est‡s expulsat de l\'˙s d\'aquesta web.',
-    'not_with_udb' => 'Aquesta funciÛ est‡ desactivada en Coppermine perquË est‡ integrada amb un programari de fÚrums. El que sigui que est‡ intentant fer no est‡ suportat per aquesta configuraciÛ, o la funciÛ hauria de ser gestionada pel programari de fÚrums.',
-	'offline_title' => 'Fora de lÌnia',
-	'offline_text' => 'La galeria est‡ actualment fora de lÌnia - torneu prompte!',
-	'ecards_empty' => 'Actualment no hi ha cap registre de postals per a mostrar. Comproveu que heu activat el registre de postals en la configuraciÛ de coppermine!',
-	'action_failed' => 'L\'acciÛ ha fallat. Coppermine no pot processar la vostra peticiÛ.',
-	'no_zip' => 'Les llibreries necess‡ries per a processar fitxers ZIP no sÛn disponibles. Per favor contacteu amb l\'administrador d\'aquesta galeria.',
-	'zip_type' => 'No teniu permÌs per a penjar fitxers ZIP.',
+	'pic_in_invalid_album' => 'El fitxer est√† en un √†lbum que no existeix (%s)!?',
+    'banned' => 'Actualment est√†s expulsat de l\'√∫s d\'aquesta web.',
+    'not_with_udb' => 'Aquesta funci√≥ est√† desactivada en Coppermine perqu√® est√† integrada amb un programari de f√≤rums. El que sigui que est√† intentant fer no est√† suportat per aquesta configuraci√≥, o la funci√≥ hauria de ser gestionada pel programari de f√≤rums.',
+	'offline_title' => 'Fora de l√≠nia',
+	'offline_text' => 'La galeria est√† actualment fora de l√≠nia - torneu prompte!',
+	'ecards_empty' => 'Actualment no hi ha cap registre de postals per a mostrar. Comproveu que heu activat el registre de postals en la configuraci√≥ de coppermine!',
+	'action_failed' => 'L\'acci√≥ ha fallat. Coppermine no pot processar la vostra petici√≥.',
+	'no_zip' => 'Les llibreries necess√†ries per a processar fitxers ZIP no s√≥n disponibles. Per favor contacteu amb l\'administrador d\'aquesta galeria.',
+	'zip_type' => 'No teniu perm√≠s per a penjar fitxers ZIP.',
 );
 
-$lang_bbcode_help = 'Els seg¸ents codis poden ser-vos d\'utilitat:<li>[b]<b>Negreta</b>[/b]</li> <li>[i]<i>Cursiva</i>[/i]</li> <li>[url=http://lavostraweb.com/]Nom de la web[/url]</li> <li>[email]usuari@domini.com[/email]</li>'; 
+$lang_bbcode_help = 'Els seg√ºents codis poden ser-vos d\'utilitat:<li>[b]<b>Negreta</b>[/b]</li> <li>[i]<i>Cursiva</i>[/i]</li> <li>[url=http://lavostraweb.com/]Nom de la web[/url]</li> <li>[email]usuari@domini.com[/email]</li>'; 
 
 // ------------------------------------------------------------------------- //
 // File theme.php
 // ------------------------------------------------------------------------- //
 
 $lang_main_menu = array(
-	'alb_list_title' => 'VÈs a la llista d\'‡lbums',
-	'alb_list_lnk' => 'Llista d\'¿lbums',
-	'my_gal_title' => 'VÈs a la meva galeria personal',
+	'alb_list_title' => 'V√©s a la llista d\'√†lbums',
+	'alb_list_lnk' => 'Llista d\'√Älbums',
+	'my_gal_title' => 'V√©s a la meva galeria personal',
 	'my_gal_lnk' => 'La meva galeria',
 	'my_prof_lnk' => 'El meu perfil d\'usuari',
 	'adm_mode_title' => 'Canvia a mode administrador',
 	'adm_mode_lnk' => 'Mode Admininstrador',
 	'usr_mode_title' => 'Canvia a mode usuari',
 	'usr_mode_lnk' => 'Mode Usuari',
-	'upload_pic_title' => 'Insereix un fitxer a un ‡lbum',
+	'upload_pic_title' => 'Insereix un fitxer a un √†lbum',
 	'upload_pic_lnk' => 'Insereix fitxer',
 	'register_title' => 'Crea un compte',
 	'register_lnk' => 'Registreu-vos',
 	'login_lnk' => 'Entreu',
 	'logout_lnk' => 'Sortiu',
-	'lastup_lnk' => '⁄ltims fitxers',
-	'lastcom_lnk' => '⁄ltims comentaris',
-	'topn_lnk' => 'MÈs vists',
-	'toprated_lnk' => 'MÈs valorats',
+	'lastup_lnk' => '√öltims fitxers',
+	'lastcom_lnk' => '√öltims comentaris',
+	'topn_lnk' => 'M√©s vists',
+	'toprated_lnk' => 'M√©s valorats',
 	'search_lnk' => 'Cercar',
 	'fav_lnk' => 'Els meus Favorits',
 	'memberlist_title' => 'Mostra llista d\'usuaris', 
 	'memberlist_lnk' => 'Llista d\'usuaris', 
-	'faq_title' => 'Preguntes mÈs freq¸ents sobre la galeria d\'imatges &quot;Coppermine&quot;',
+	'faq_title' => 'Preguntes m√©s freq√ºents sobre la galeria d\'imatges &quot;Coppermine&quot;',
 	'faq_lnk' => 'PMF', 
 );
 
 $lang_gallery_admin_menu = array(
 	'upl_app_lnk' => 'Aprova pujades',
-	'config_lnk' => 'ConfiguraciÛ',
-	'albums_lnk' => '¿lbums',
+	'config_lnk' => 'Configuraci√≥',
+	'albums_lnk' => '√Älbums',
 	'categories_lnk' => 'Categories',
 	'users_lnk' => 'Usuaris',
 	'groups_lnk' => 'Grups',
@@ -150,58 +149,58 @@ $lang_gallery_admin_menu = array(
 );
 
 $lang_user_admin_menu = array(
-	'albmgr_lnk' => 'Crea / ordena ‡lbums',
-	'modifyalb_lnk' => 'Modifica els meus ‡lbums',
+	'albmgr_lnk' => 'Crea / ordena √†lbums',
+	'modifyalb_lnk' => 'Modifica els meus √†lbums',
 	'my_prof_lnk' => 'El meu perfil',
 );
 
 $lang_cat_list = array(
 	'category' => 'Categoria',
-	'albums' => '¿lbums',
+	'albums' => '√Älbums',
 	'pictures' => 'Fitxers',
 );
 
 $lang_album_list = array(
-	'album_on_page' => '%d ‡lbums en %d p‡gina(s)'
+	'album_on_page' => '%d √†lbums en %d p√†gina(s)'
 );
 
 $lang_thumb_view = array(
 	'date' => 'DATA',
         //Sort by filename and title
 	'name' => 'NOM',
-    'title' => 'TÕTOL',
+    'title' => 'T√çTOL',
 	'sort_da' => 'Ordenat per data ascendent',
 	'sort_dd' => 'Ordenat per data descendent',
 	'sort_na' => 'Ordenat per nom ascendent',
 	'sort_nd' => 'Ordenat per nom descendent',
-    'sort_ta' => 'Ordenat per tÌtol ascendent',
-    'sort_td' => 'Ordenat per tÌtol descendent',
+    'sort_ta' => 'Ordenat per t√≠tol ascendent',
+    'sort_td' => 'Ordenat per t√≠tol descendent',
 	'download_zip' => 'Descarrega com fitxer ZIP', 
-	'pic_on_page' => '%d fitxers en %d p‡gina(s)',
-	'user_on_page' => '%d usuaris en %d p‡gina(s)'
+	'pic_on_page' => '%d fitxers en %d p√†gina(s)',
+	'user_on_page' => '%d usuaris en %d p√†gina(s)'
 );
 
 $lang_img_nav_bar = array(
-	'thumb_title' => 'Torna a l\'Ìndex de l\'‡lbum',
-	'pic_info_title' => 'Mostra/oculta informaciÛ del fitxer',
-	'slideshow_title' => 'ProjecciÛ de diapositives',
+	'thumb_title' => 'Torna a l\'√≠ndex de l\'√†lbum',
+	'pic_info_title' => 'Mostra/oculta informaci√≥ del fitxer',
+	'slideshow_title' => 'Projecci√≥ de diapositives',
 	'ecard_title' => 'Enviar aquesta fitxer a un amic/ga',
 	'ecard_disabled' => 'Enviament de postals deshabilitat',
 	'ecard_disabled_msg' => 'No teniu permisos per a enviar postals',
 	'prev_title' => 'Veure fitxer anterior',
-	'next_title' => 'Veure fitxer seg¸ent',
+	'next_title' => 'Veure fitxer seg√ºent',
 	'pic_pos' => 'FITXER %s/%s',
 );
 
 $lang_rate_pic = array(
 	'rate_this_pic' => 'Valora aquest fitxer ',
 	'no_votes' => '(No hi ha vots)',
-	'rating' => '(valoraciÛ actual : %s / 5 amb %s vots)',
+	'rating' => '(valoraci√≥ actual : %s / 5 amb %s vots)',
 	'rubbish' => 'Dolent',
 	'poor' => 'Regular',
 	'fair' => 'Normal',
 	'good' => 'Bo',
-	'excellent' => 'Excel∑lent',
+	'excellent' => 'Excel¬∑lent',
 	'great' => 'Genial',
 );
 
@@ -218,9 +217,9 @@ $lang_rate_pic = array(
 $lang_cpg_die = array(
 	INFORMATION => $lang_info,
 	ERROR => $lang_error,
-	CRITICAL_ERROR => 'Error crÌtic',
+	CRITICAL_ERROR => 'Error cr√≠tic',
 	'file' => 'Fitxer: ',
-	'line' => 'LÌnia: ',
+	'line' => 'L√≠nia: ',
 );
 
 $lang_display_thumbnails = array(
@@ -237,9 +236,9 @@ $lang_get_pic_data = array(
 );
 
 $lang_cpg_debug_output = array(
-  'debug_info' => 'DepuraciÛ', 
+  'debug_info' => 'Depuraci√≥', 
   'select_all' => 'Selecciona Tot', 
-  'copy_and_paste_instructions' => 'Si aneu a demanar ajuda al fÚrum de suport de coppermine, aleshores copieu i enganxeu la sortida de depuraciÛ al vostre missatge. Assegureu-vos de reemplaÁar qualsevol contrasenya de la consulta amb *** abans de penjar el missatge.', 
+  'copy_and_paste_instructions' => 'Si aneu a demanar ajuda al f√≤rum de suport de coppermine, aleshores copieu i enganxeu la sortida de depuraci√≥ al vostre missatge. Assegureu-vos de reempla√ßar qualsevol contrasenya de la consulta amb *** abans de penjar el missatge.', 
   'phpinfo' => 'mostra phpinfo', 
 );
 
@@ -249,8 +248,8 @@ $lang_language_selection = array(
 );
 
 $lang_theme_selection = array(
-  'reset_theme' => 'AparenÁa per defecte', 
-  'choose_theme' => 'Trieu aparenÁa', 
+  'reset_theme' => 'Aparen√ßa per defecte', 
+  'choose_theme' => 'Trieu aparen√ßa', 
 );
 
 // ------------------------------------------------------------------------- //
@@ -270,17 +269,17 @@ $lang_theme_selection = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
-	'Exclamation' => 'ExclamaciÛ',
+	'Exclamation' => 'Exclamaci√≥',
 	'Question' => 'Pregunta',
-	'Very Happy' => 'Molt FeliÁ',
+	'Very Happy' => 'Molt Feli√ß',
 	'Smile' => 'Somriure',
 	'Sad' => 'Trist',
-	'Surprised' => 'SorprËs',
+	'Surprised' => 'Sorpr√®s',
 	'Shocked' => 'Impressionat',
-	'Confused' => 'ConfÛs',
+	'Confused' => 'Conf√≥s',
 	'Cool' => 'Guai',
 	'Laughing' => 'Rient',
-	'Mad' => 'FuriÛs',
+	'Mad' => 'Furi√≥s',
 	'Razz' => 'Razz',
 	'Embarassed' => 'Avergonyit',
 	'Crying or Very sad' => 'Plorant o molt trist',
@@ -314,14 +313,14 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
-	'alb_need_name' => 'Els ‡lbums han de tenir un nom!',
+	'alb_need_name' => 'Els √†lbums han de tenir un nom!',
 	'confirm_modifs' => 'Esteu segur d\\\'aplicar aquestes modificacions?',
 	'no_change' => 'No s\\\'ha fet cap canvi!',
-	'new_album' => 'Nou ‡lbum',
-	'confirm_delete1' => 'Esteu segur de voler esborrar aquest ‡lbum?',
-	'confirm_delete2' => '\nTots els fitxers i comentaris que contÈ es perdran!',
-	'select_first' => 'Seleccioneu un ‡lbum primer',
-	'alb_mrg' => 'Gestor d\'¿lbums',
+	'new_album' => 'Nou √†lbum',
+	'confirm_delete1' => 'Esteu segur de voler esborrar aquest √†lbum?',
+	'confirm_delete2' => '\nTots els fitxers i comentaris que cont√© es perdran!',
+	'select_first' => 'Seleccioneu un √†lbum primer',
+	'alb_mrg' => 'Gestor d\'√Älbums',
 	'my_gallery' => '* La meva galeria *',
 	'no_category' => '* Sense categoria *',
 	'delete' => 'Esborra',
@@ -335,19 +334,19 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
-	'miss_param' => 'Els par‡metres requerits per a l\'operaciÛ: \'%s\' no han estat subministrats!',
+	'miss_param' => 'Els par√†metres requerits per a l\'operaci√≥: \'%s\' no han estat subministrats!',
 	'unknown_cat' => 'La categoria seleccionada no existeix a la base de dades',
 	'usergal_cat_ro' => 'La categoria de galeries d\'usuari no pot ser esborrada!',
 	'manage_cat' => 'Gestiona les categories',
-	'confirm_delete' => 'Esteu segur de voler ESBORRAR aquesta catagorÌa',
+	'confirm_delete' => 'Esteu segur de voler ESBORRAR aquesta catagor√≠a',
 	'category' => 'Categoria',
 	'operations' => 'Operacions',
 	'move_into' => 'Moure cap a',
 	'update_create' => 'Modifica/Crea categoria',
 	'parent_cat' => 'Categoria pare',
-	'cat_title' => 'TÌtol de la categoria',
+	'cat_title' => 'T√≠tol de la categoria',
 	'cat_thumb' => 'Miniatura de la categoria',
-	'cat_desc' => 'DescripciÛ de la categoria'
+	'cat_desc' => 'Descripci√≥ de la categoria'
 );
 
 // ------------------------------------------------------------------------- //
@@ -355,140 +354,140 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('CONFIG_PHP')) $lang_config_php = array(
-	'title' => 'ConfiguraciÛ',
+	'title' => 'Configuraci√≥',
 	'restore_cfg' => 'Restaura valors per defecte',
-	'save_cfg' => 'Desa la nova configuraciÛ',
+	'save_cfg' => 'Desa la nova configuraci√≥',
 	'notes' => 'Notes',
-	'info' => 'InformaciÛ',
-	'upd_success' => 'La configuraciÛ de Coppermine ha estat actualitzada',
+	'info' => 'Informaci√≥',
+	'upd_success' => 'La configuraci√≥ de Coppermine ha estat actualitzada',
 	'restore_success' => 'Valors per defecte de Coppermine restaurats',
 	'name_a' => 'Ascendent per nom',
 	'name_d' => 'Descendent per nom',
-    'title_a' => 'Ascendent per tÌtol',
-    'title_d' => 'Descendent per tÌtol',
+    'title_a' => 'Ascendent per t√≠tol',
+    'title_d' => 'Descendent per t√≠tol',
 	'date_a' => 'Ascendent per data',
 	'date_d' => 'Descendent per data',
-    'th_any' => 'M‡x. relaciÛ d\'aspecte',
-    'th_ht' => 'AlÁada',
+    'th_any' => 'M√†x. relaci√≥ d\'aspecte',
+    'th_ht' => 'Al√ßada',
     'th_wd' => 'Amplada',
     'label' => 'etiqueta', 
-	'item' => 'Ìtem', 
+	'item' => '√≠tem', 
 	'debug_everyone' => 'Tothom', 
-	'debug_admin' => 'NomÈs Admin', 
+	'debug_admin' => 'Nom√©s Admin', 
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
-	'Par‡metres Generals',
+	'Par√†metres Generals',
 	array('Nom de la galeria', 'gallery_name', 0),
-	array('DescripciÛ de la galeria', 'gallery_description', 0),
-	array('Correu electrÚnic de l\'administrador', 'gallery_admin_email', 0),
-	array('AdreÁa web associada a l\'enllaÁ  \'Veure mÈs imatges\' de les postals', 'ecards_more_pic_target', 0),
-	array('La galeria Ès fora de lÌnia', 'offline', 1), 
+	array('Descripci√≥ de la galeria', 'gallery_description', 0),
+	array('Correu electr√≤nic de l\'administrador', 'gallery_admin_email', 0),
+	array('Adre√ßa web associada a l\'enlla√ß  \'Veure m√©s imatges\' de les postals', 'ecards_more_pic_target', 0),
+	array('La galeria √©s fora de l√≠nia', 'offline', 1), 
 	array('Registre de postals', 'log_ecards', 1), 
 	array('Permetre descarregues de favorits en format ZIP', 'enable_zipdownload', 1), 
 
-	'Idioma, aparenÁa i par‡metres del joc de car‡cters',
+	'Idioma, aparen√ßa i par√†metres del joc de car√†cters',
 	array('Idioma', 'lang', 5),
-	array('AparenÁa', 'theme', 6),
+	array('Aparen√ßa', 'theme', 6),
 	array('Mostra llista d\'idiomes', 'language_list', 8), 
 	array('Mostra banderes d\'idiomes', 'language_flags', 8), 
-	array('Mostra &quot;reinicia&quot; en la selecciÛ d\'idiomes', 'language_reset', 1), 
+	array('Mostra &quot;reinicia&quot; en la selecci√≥ d\'idiomes', 'language_reset', 1), 
 	array('Mostra llista d\'aparences', 'theme_list', 8), 
-	array('Mostra &quot;reinicia&quot; en la selecciÛ d\'aparences', 'theme_reset', 1), 
+	array('Mostra &quot;reinicia&quot; en la selecci√≥ d\'aparences', 'theme_reset', 1), 
 	array('Mostra PMF', 'display_faq', 1), 
 	array('Mostra l\'ajuda per al bbcode', 'show_bbcode_help', 1), 
-	array('Joc de car‡cters', 'charset', 4), 
+	array('Joc de car√†cters', 'charset', 4), 
 
-	'Aspecte de la llista d\'‡lbums',
-	array('Ampl‡ria de la taula principal (pÌxels o %)', 'main_table_width', 0),
+	'Aspecte de la llista d\'√†lbums',
+	array('Ampl√†ria de la taula principal (p√≠xels o %)', 'main_table_width', 0),
 	array('Nombre de nivells de categories a mostrar', 'subcat_level', 0),
-	array('Nombre d\'‡lbums a mostrar', 'albums_per_page', 0),
-	array('Nombre de columnes a la llista d\'‡lbums', 'album_list_cols', 0),
-	array('Grand‡ria de les miniatures en pÌxels', 'alb_list_thumb_size', 0),
-	array('Contingut de la p‡gina principal', 'main_page_layout', 0),
-    array('Mostra miniatures d\'‡lbums de primer nivell en categories','first_level',1),
+	array('Nombre d\'√†lbums a mostrar', 'albums_per_page', 0),
+	array('Nombre de columnes a la llista d\'√†lbums', 'album_list_cols', 0),
+	array('Grand√†ria de les miniatures en p√≠xels', 'alb_list_thumb_size', 0),
+	array('Contingut de la p√†gina principal', 'main_page_layout', 0),
+    array('Mostra miniatures d\'√†lbums de primer nivell en categories','first_level',1),
 
-	'Aspecte de la visualitzaciÛ de miniatures',
-	array('Nombre de columnes a la p‡gina de miniatures', 'thumbcols', 0),
-	array('Nombre de files a la p‡gina de miniatures', 'thumbrows', 0),
-	array('Nombre m‡xim de pestanyes a mostrar', 'max_tabs', 0),
-	array('Mostra peu del fitxer (a mÈs del tÌtol) sota la miniatura', 'caption_in_thumbview', 1),
+	'Aspecte de la visualitzaci√≥ de miniatures',
+	array('Nombre de columnes a la p√†gina de miniatures', 'thumbcols', 0),
+	array('Nombre de files a la p√†gina de miniatures', 'thumbrows', 0),
+	array('Nombre m√†xim de pestanyes a mostrar', 'max_tabs', 0),
+	array('Mostra peu del fitxer (a m√©s del t√≠tol) sota la miniatura', 'caption_in_thumbview', 1),
 	array('Mostra el nombre de vegades vist sota la miniatura', 'views_in_thumbview', 1),
 	array('Mostra el nombre de comentaris sota la miniatura', 'display_comment_count', 1),
 	array('Mostra el nom de l\'usuari que va afegir el fitxer sota la miniatura', 'display_uploader', 1),
 	array('Ordre per defecte de les imatges', 'default_sort_order', 3),
-	array('MÌnim nombre de vots perquË una imatge aparegui a la llista de  \'MÈs Valorades\'', 'min_votes_for_rating', 0),
+	array('M√≠nim nombre de vots perqu√® una imatge aparegui a la llista de  \'M√©s Valorades\'', 'min_votes_for_rating', 0),
 
-	'VisualitzaciÛ d\'imatges i par‡metres dels comentaris',
-	array('Ampl‡ria de la taula on mostrar la imatge (pÌxels o %)', 'picture_table_width', 0),
-	array('InformaciÛ del fitxer visible per defecte', 'display_pic_info', 1),
+	'Visualitzaci√≥ d\'imatges i par√†metres dels comentaris',
+	array('Ampl√†ria de la taula on mostrar la imatge (p√≠xels o %)', 'picture_table_width', 0),
+	array('Informaci√≥ del fitxer visible per defecte', 'display_pic_info', 1),
 	array('Filtra paraules malsonants als comentaris', 'filter_bad_words', 1),
 	array('Permet emoticones als comentaris', 'enable_smilies', 1),
-	array('Permet diversos comentaris consecutius sobre un fitxer per part del mateix usuari (inhabilita la protecciÛ d\'acumulaciÛ)', 'disable_comment_flood_protect', 1),
-	array('M‡xima longitud per a la descripciÛ d\'un fitxer', 'max_img_desc_length', 0),
-	array('M‡xim nombre de car‡cters d\'una paraula', 'max_com_wlength', 0),
-	array('M‡xim nombre de lÌnies d\'un comentari', 'max_com_lines', 0),
-	array('M‡xima longitud d\'un comentari', 'max_com_size', 0),
-    array('Mostrar tira de pel∑lÌcula', 'display_film_strip', 1),
-    array('Nombre d\'objectes de la tira de pel∑lÌcula', 'max_film_strip_items', 0),
+	array('Permet diversos comentaris consecutius sobre un fitxer per part del mateix usuari (inhabilita la protecci√≥ d\'acumulaci√≥)', 'disable_comment_flood_protect', 1),
+	array('M√†xima longitud per a la descripci√≥ d\'un fitxer', 'max_img_desc_length', 0),
+	array('M√†xim nombre de car√†cters d\'una paraula', 'max_com_wlength', 0),
+	array('M√†xim nombre de l√≠nies d\'un comentari', 'max_com_lines', 0),
+	array('M√†xima longitud d\'un comentari', 'max_com_size', 0),
+    array('Mostrar tira de pel¬∑l√≠cula', 'display_film_strip', 1),
+    array('Nombre d\'objectes de la tira de pel¬∑l√≠cula', 'max_film_strip_items', 0),
     array('Notifica a l\'administrador sobre nous comentaris (per email)', 'email_comment_notification', 1),
-    array('Interval (en milisegons) per a la projecciÛ de diapositives (1 segon = 1000 milisegons)', 'slideshow_interval', 0),
+    array('Interval (en milisegons) per a la projecci√≥ de diapositives (1 segon = 1000 milisegons)', 'slideshow_interval', 0),
 
-	'Par‡metres dels fitxers i les miniatures',
+	'Par√†metres dels fitxers i les miniatures',
 	array('Qualitat per als fitxers JPEG', 'jpeg_qual', 0),
-	array('DimensiÛ m‡xima d\'una miniatura <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0),
-    array('Usa dimensiÛ ( ampl‡ria o alÁada o m‡xima relaciÛ per a les miniatures )<a href="#notice2" class="clickable_option">**</a>', 'thumb_use', 7),
-	array('Crea imatges de grand‡ria intermËdia','make_intermediate',1),
-	array('Ampl‡ria o alÁada m‡xima d\'una imatge/vÌdeo de grand‡ria intermËdia <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0),
-	array('Mida m‡xima per a fitxers penjats (KB)', 'max_upl_size', 0),
-	array('Ampl‡ria o alÁada m‡xima per a les imatges/vÌdeos penjats (pÌxels)', 'max_upl_width_height', 0),
+	array('Dimensi√≥ m√†xima d\'una miniatura <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0),
+    array('Usa dimensi√≥ ( ampl√†ria o al√ßada o m√†xima relaci√≥ per a les miniatures )<a href="#notice2" class="clickable_option">**</a>', 'thumb_use', 7),
+	array('Crea imatges de grand√†ria interm√®dia','make_intermediate',1),
+	array('Ampl√†ria o al√ßada m√†xima d\'una imatge/v√≠deo de grand√†ria interm√®dia <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0),
+	array('Mida m√†xima per a fitxers penjats (KB)', 'max_upl_size', 0),
+	array('Ampl√†ria o al√ßada m√†xima per a les imatges/v√≠deos penjats (p√≠xels)', 'max_upl_width_height', 0),
 
-	'Par‡metres avanÁats per a fitxers i miniatures', 
-	array('Mostra icona d\'‡lbum privat als usuaris no identificats','show_private',1), 
-	array('Car‡cters no permesos al nom dels fitxers', 'forbiden_fname_char',0), 
+	'Par√†metres avan√ßats per a fitxers i miniatures', 
+	array('Mostra icona d\'√†lbum privat als usuaris no identificats','show_private',1), 
+	array('Car√†cters no permesos al nom dels fitxers', 'forbiden_fname_char',0), 
 	//array('Extensions de fitxer permeses per a imatges penjades', 'allowed_file_extensions',0), 
 	array('Tipus d\'imatge permeses', 'allowed_img_types',0), 
-	array('Tipus de vÌdeo permesos', 'allowed_mov_types',0), 
-	array('Tipus d\'‡udio permesos', 'allowed_snd_types',0), 
+	array('Tipus de v√≠deo permesos', 'allowed_mov_types',0), 
+	array('Tipus d\'√†udio permesos', 'allowed_snd_types',0), 
 	array('Tipus de documents permesos', 'allowed_doc_types',0), 
-	array('MËtode per a redimensionar imatges','thumb_method',2), 
-	array('CamÌ a la utilitat \'convert\' de ImageMagick (p.ex. /usr/bin/X11/)', 'impath', 0), 
-	//array('Tipus d\'imatge permeses (nomÈs v‡lid per a ImageMagick)', 'allowed_img_types',0), 
-	array('Ordres de lÌnia per a ImageMagick', 'im_options', 0), 
+	array('M√®tode per a redimensionar imatges','thumb_method',2), 
+	array('Cam√≠ a la utilitat \'convert\' de ImageMagick (p.ex. /usr/bin/X11/)', 'impath', 0), 
+	//array('Tipus d\'imatge permeses (nom√©s v√†lid per a ImageMagick)', 'allowed_img_types',0), 
+	array('Ordres de l√≠nia per a ImageMagick', 'im_options', 0), 
 	array('Llegeix dades EXIF dels fitxers JPEG', 'read_exif_data', 1), 
 	array('Llegeix dades IPTC dels fitxers JPEG', 'read_iptc_data', 1), 
-	array('Directori dels ‡lbums <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0), 
+	array('Directori dels √†lbums <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0), 
 	array('Directori per als fitxers dels usuaris <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0), 
-	array('Prefixe per a les imatges intermËdies <a href="#notice1" class="clickable_option">*</a>', 'normal_pfx', 0), 
+	array('Prefixe per a les imatges interm√®dies <a href="#notice1" class="clickable_option">*</a>', 'normal_pfx', 0), 
 	array('Prefixe per a les miniatures <a href="#notice1" class="clickable_option">*</a>', 'thumb_pfx', 0), 
 	array('Mode per defecte per als directoris', 'default_dir_mode', 0), 
 	array('Mode per defecte per als fitxers', 'default_file_mode', 0), 
 
-	'Par‡metres d\'usuari',
+	'Par√†metres d\'usuari',
 	array('Permetre el registre de nous usuaris', 'allow_user_registration', 1),
-	array('Registre d\'usuaris requereix verificaciÛ per correu electrÚnic', 'reg_requires_valid_email', 1),
+	array('Registre d\'usuaris requereix verificaci√≥ per correu electr√≤nic', 'reg_requires_valid_email', 1),
 	array('Notifica a l\'administrador del registre d\'usuaris per email', 'reg_notify_admin_email', 1),
-	array('Permetre a dos usuaris tenir el mateix correu electrÚnic', 'allow_duplicate_emails_addr', 1),
-	array('Els usuaris poden tenir ‡lbums privats (Nota: si canvieu de \'si\' a \'no\' qualsevol ‡lbum privat actual esdevindr‡ p˙blic)', 'allow_private_albums', 1),
-	array('Notifica a l\'administrador de fitxers pujats esperant autoritzaciÛ', 'upl_notify_admin_email', 1),
+	array('Permetre a dos usuaris tenir el mateix correu electr√≤nic', 'allow_duplicate_emails_addr', 1),
+	array('Els usuaris poden tenir √†lbums privats (Nota: si canvieu de \'si\' a \'no\' qualsevol √†lbum privat actual esdevindr√† p√∫blic)', 'allow_private_albums', 1),
+	array('Notifica a l\'administrador de fitxers pujats esperant autoritzaci√≥', 'upl_notify_admin_email', 1),
 	array('Permet als usuaris identificats veure la llista d\'usuaris', 'allow_memberlist', 1),
 
-	'Camps extra per a descripciÛ d\'imatges (deixeu en blanc si no els useu)',
+	'Camps extra per a descripci√≥ d\'imatges (deixeu en blanc si no els useu)',
 	array('Nom del camp 1', 'user_field1_name', 0),
 	array('Nom del camp 2', 'user_field2_name', 0),
 	array('Nom del camp 3', 'user_field3_name', 0),
 	array('Nom del camp 4', 'user_field4_name', 0),
 
-	'ConfiguraciÛ de galetes (cookies)',
-	array('Nom de la galeta usada per coppermine (quan s\'usa la integraciÛ amb fÚrums, assegureu-vos que el nom sigui diferent del de la galeta del fÚrum)', 'cookie_name', 0),
-	array('CamÌ de la galeta usada per coppermine', 'cookie_path', 0),
+	'Configuraci√≥ de galetes (cookies)',
+	array('Nom de la galeta usada per coppermine (quan s\'usa la integraci√≥ amb f√≤rums, assegureu-vos que el nom sigui diferent del de la galeta del f√≤rum)', 'cookie_name', 0),
+	array('Cam√≠ de la galeta usada per coppermine', 'cookie_path', 0),
 
-	'Altres par‡metres',
-	array('Habilita mode de depuraciÛ', 'debug_mode', 9),
-	array('Mostra avisos en mode de depuraciÛ', 'debug_notice', 1),
+	'Altres par√†metres',
+	array('Habilita mode de depuraci√≥', 'debug_mode', 9),
+	array('Mostra avisos en mode de depuraci√≥', 'debug_notice', 1),
 
-  '<br /><div align="left"><a name="notice1"></a>(*) Aquests par‡metres no deuen ser canviats si ja teniu fitxers a la vostra base de dades.<br />
-  <a name="notice2"></a>(**) Si es canvia aquest par‡metre, nomÈs afectar‡ als fitxers afegits d\'ara en avant, per tant si ja hi ha fitxers a la galeria Ès recomanable que no es canvie aquest par‡metre. Podeu, tanmateix, fer efectius els canvis sobre les imatges existents amb les &quot;<a href="util.php">eines</a>&quot; de redimensiÛ d\'imatges del men˙ d\'administraciÛ.</div><br />',
+  '<br /><div align="left"><a name="notice1"></a>(*) Aquests par√†metres no deuen ser canviats si ja teniu fitxers a la vostra base de dades.<br />
+  <a name="notice2"></a>(**) Si es canvia aquest par√†metre, nom√©s afectar√† als fitxers afegits d\'ara en avant, per tant si ja hi ha fitxers a la galeria √©s recomanable que no es canvie aquest par√†metre. Podeu, tanmateix, fer efectius els canvis sobre les imatges existents amb les &quot;<a href="util.php">eines</a>&quot; de redimensi√≥ d\'imatges del men√∫ d\'administraci√≥.</div><br />',
 );
 
 // ------------------------------------------------------------------------- //
@@ -502,24 +501,24 @@ if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
   'ecard_date' => 'Data', 
   'ecard_display' => 'Mostra postal', 
   'ecard_name' => 'Nom', 
-  'ecard_email' => 'Correu electrÚnic', 
+  'ecard_email' => 'Correu electr√≤nic', 
   'ecard_ip' => 'IP #', 
   'ecard_ascending' => 'ascendent', 
   'ecard_descending' => 'descendent', 
   'ecard_sorted' => 'Ordre', 
   'ecard_by_date' => 'per data', 
   'ecard_by_sender_name' => 'per nom del remitent', 
-  'ecard_by_sender_email' => 'per correu electrÚnic del remitent', 
+  'ecard_by_sender_email' => 'per correu electr√≤nic del remitent', 
   'ecard_by_sender_ip' => 'per IP del remitent', 
   'ecard_by_recipient_name' => 'per nom del destinatari', 
-  'ecard_by_recipient_email' => 'per correu electrÚnic del destinatari', 
+  'ecard_by_recipient_email' => 'per correu electr√≤nic del destinatari', 
   'ecard_number' => 'mostrant registres %s al %s de %s', 
-  'ecard_goto_page' => 'vÈs a la p‡gina', 
-  'ecard_records_per_page' => 'Registres per p‡gina', 
+  'ecard_goto_page' => 'v√©s a la p√†gina', 
+  'ecard_records_per_page' => 'Registres per p√†gina', 
   'check_all' => 'Activar Tots', 
   'uncheck_all' => 'Desactivar Tots', 
   'ecards_delete_selected' => 'Esborra postals seleccionades', 
-  'ecards_delete_confirm' => 'Esteu segur de voler esborrar els registres? Marqueu el quadre de verificaciÛ!', 
+  'ecards_delete_confirm' => 'Esteu segur de voler esborrar els registres? Marqueu el quadre de verificaci√≥!', 
   'ecards_delete_sure' => 'Estic segur', 
 );
 
@@ -531,32 +530,32 @@ if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
 if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 	'empty_name_or_com' => 'Heu d\'introduir el vostre nom i un comentari',
 	'com_added' => 'El vostre comentari ha estat afegit',
-	'alb_need_title' => 'Heu d\'introduir un tÌtol per a l\'‡lbum!',
+	'alb_need_title' => 'Heu d\'introduir un t√≠tol per a l\'√†lbum!',
 	'no_udp_needed' => 'No es requereix cap canvi.',
-	'alb_updated' => 'L\'‡lbum ha estat actualitzat',
-	'unknown_album' => 'L\'‡lbum seleccionat no existeix o no teniu permisos per a afegir fitxers en aquest ‡lbum',
+	'alb_updated' => 'L\'√†lbum ha estat actualitzat',
+	'unknown_album' => 'L\'√†lbum seleccionat no existeix o no teniu permisos per a afegir fitxers en aquest √†lbum',
 	'no_pic_uploaded' => 'No s\'ha penjat cap fitxer!<br /><br />Si havieu seleccionat un fitxer per a afegir, comproveu que el servidor admet penjar fitxers...',
 	'err_mkdir' => 'No s\'ha pogut crear el directori %s!',
-	'dest_dir_ro' => 'El directori de destÌ %s no tÈ permisos d\'escriptura!',
+	'dest_dir_ro' => 'El directori de dest√≠ %s no t√© permisos d\'escriptura!',
 	'err_move' => 'Impossible moure %s a  %s !',
-	'err_fsize_too_large' => 'La mida del fitxer que heu penjat Ès massa gran (el m‡xim permËs Ès de %s x %s)',
-	'err_imgsize_too_large' => 'La mida del fitxer que heu penjat Ès massa gran (el m‡xim permËs Ès de %s KB)',
-	'err_invalid_img' => 'El fitxer que heu penjat no Ès una imatge v‡lida',
-	'allowed_img_types' => 'NomÈs podeu penjar %s imatges.',
-	'err_insert_pic' => 'El fitxer \'%s\' no es pot inserir a l\'‡lbum ',
-	'upload_success' => 'El vostre fitxer ha estat penjat amb Ëxit<br /><br />Ser‡ visible desprÈs de l\'aprovaciÛ dels administradors.',
-	'notify_admin_email_subject' => '%s - NotificaciÛ de fitxer penjat',
-	'notify_admin_email_body' => 'Una imatge que necessita la vostra aprovaciÛ ha estat penjada per %s. Visiteu %s',
-	'info' => 'InformaciÛ',
+	'err_fsize_too_large' => 'La mida del fitxer que heu penjat √©s massa gran (el m√†xim perm√®s √©s de %s x %s)',
+	'err_imgsize_too_large' => 'La mida del fitxer que heu penjat √©s massa gran (el m√†xim perm√®s √©s de %s KB)',
+	'err_invalid_img' => 'El fitxer que heu penjat no √©s una imatge v√†lida',
+	'allowed_img_types' => 'Nom√©s podeu penjar %s imatges.',
+	'err_insert_pic' => 'El fitxer \'%s\' no es pot inserir a l\'√†lbum ',
+	'upload_success' => 'El vostre fitxer ha estat penjat amb √®xit<br /><br />Ser√† visible despr√©s de l\'aprovaci√≥ dels administradors.',
+	'notify_admin_email_subject' => '%s - Notificaci√≥ de fitxer penjat',
+	'notify_admin_email_body' => 'Una imatge que necessita la vostra aprovaci√≥ ha estat penjada per %s. Visiteu %s',
+	'info' => 'Informaci√≥',
 	'com_added' => 'Comentari afegit',
-	'alb_updated' => '¿lbum actualitzat',
-	'err_comment_empty' => 'El vostre comentari est‡ buit!',
-	'err_invalid_fext' => 'NomÈs sÛn admesos fitxers amb les seg¸ents extensions : <br /><br />%s.',
-	'no_flood' => 'Perdoneu perÚ sou l\'autor/a de l\'˙ltim comentari introduÔt en aquest fitxer<br /><br />Podeu editar el comentari que heu posat si voleu modificar-lo',
-	'redirect_msg' => 'Esteu sent redirigit.<br /><br /><br />Premeu \'CONTINUAR\' si la p‡gina no es refresca autom‡ticament',
-	'upl_success' => 'El vostre fitxer ha estat afegit amb Ëxit',
+	'alb_updated' => '√Älbum actualitzat',
+	'err_comment_empty' => 'El vostre comentari est√† buit!',
+	'err_invalid_fext' => 'Nom√©s s√≥n admesos fitxers amb les seg√ºents extensions : <br /><br />%s.',
+	'no_flood' => 'Perdoneu per√≤ sou l\'autor/a de l\'√∫ltim comentari introdu√Øt en aquest fitxer<br /><br />Podeu editar el comentari que heu posat si voleu modificar-lo',
+	'redirect_msg' => 'Esteu sent redirigit.<br /><br /><br />Premeu \'CONTINUAR\' si la p√†gina no es refresca autom√†ticament',
+	'upl_success' => 'El vostre fitxer ha estat afegit amb √®xit',
 	'email_comment_subject' => 'Comentari enviat a la Galeria Coppermine',
-	'email_comment_body' => 'Alg˙ ha enviat un comentari a la vostra galeria. Vegeu-lo a',
+	'email_comment_body' => 'Alg√∫ ha enviat un comentari a la vostra galeria. Vegeu-lo a',
 );
 
 // ------------------------------------------------------------------------- //
@@ -566,19 +565,19 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 if (defined('DELETE_PHP')) $lang_delete_php = array(
 	'caption' => 'Peu',
 	'fs_pic' => 'imatge mida completa',
-	'del_success' => 'esborrat amb Ëxit',
+	'del_success' => 'esborrat amb √®xit',
 	'ns_pic' => 'imatge mida normal',
 	'err_del' => 'no pot ser esborrat',
 	'thumb_pic' => 'miniatura',
 	'comment' => 'comentari',
-	'im_in_alb' => 'imatges a l\'‡lbum',
-	'alb_del_success' => '¿lbum \'%s\' esborrat',
-	'alb_mgr' => 'Gestor d\'‡lbums',
-	'err_invalid_data' => 'Dades inv‡lides rebudes en \'%s\'',
-	'create_alb' => 'Creant ‡lbum \'%s\'',
-	'update_alb' => 'Actualitzant ‡lbum \'%s\' amb el tÌtol \'%s\' i l\'Ìndex \'%s\'',
+	'im_in_alb' => 'imatges a l\'√†lbum',
+	'alb_del_success' => '√Älbum \'%s\' esborrat',
+	'alb_mgr' => 'Gestor d\'√†lbums',
+	'err_invalid_data' => 'Dades inv√†lides rebudes en \'%s\'',
+	'create_alb' => 'Creant √†lbum \'%s\'',
+	'update_alb' => 'Actualitzant √†lbum \'%s\' amb el t√≠tol \'%s\' i l\'√≠ndex \'%s\'',
 	'del_pic' => 'Esborra imatge',
-	'del_alb' => 'Esborra ‡lbum',
+	'del_alb' => 'Esborra √†lbum',
 	'del_user' => 'Esborra usuari',
 	'err_unknown_user' => 'L\'usuari seleccionat no existeix!',
 	'comment_deleted' => 'El comentari ha estat esborrat',
@@ -597,36 +596,36 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 if (defined('DISPLAYIMAGE_PHP')){
 
 $lang_display_image_php = array(
-	'confirm_del' => 'Esteu segur de voler ESBORRAR aquest fitxer? \\nEls comentaris tambÈ seran esborrats.',
+	'confirm_del' => 'Esteu segur de voler ESBORRAR aquest fitxer? \\nEls comentaris tamb√© seran esborrats.',
 	'del_pic' => 'ESBORRA AQUESTA IMATGE',
-	'size' => '%s x %s pÌxels',
+	'size' => '%s x %s p√≠xels',
 	'views' => '%s vegades',
-	'slideshow' => 'ProjecciÛ de diapositives',
-	'stop_slideshow' => 'ATURA PROJECCI”',
-	'view_fs' => 'Premeu aquÌ per a veure la imatge a mida completa',
-	'edit_pic' => 'Edita descripciÛ',
-	'crop_pic' => 'EscapÁa i gira',
+	'slideshow' => 'Projecci√≥ de diapositives',
+	'stop_slideshow' => 'ATURA PROJECCI√ì',
+	'view_fs' => 'Premeu aqu√≠ per a veure la imatge a mida completa',
+	'edit_pic' => 'Edita descripci√≥',
+	'crop_pic' => 'Escap√ßa i gira',
 );
 
 $lang_picinfo = array(
-	'title' =>'InformaciÛ del fitxer',
+	'title' =>'Informaci√≥ del fitxer',
 	'Filename' => 'Nom del fitxer',
-	'Album name' => 'Nom de l\'‡lbum',
-	'Rating' => 'ValoraciÛ (%s vots)',
+	'Album name' => 'Nom de l\'√†lbum',
+	'Rating' => 'Valoraci√≥ (%s vots)',
 	'Keywords' => 'Paraules clau',
 	'File Size' => 'Mida del fitxer',
 	'Dimensions' => 'Dimensions',
 	'Displayed' => 'S\'ha vist',
-	'Camera' => 'C‡mera',
+	'Camera' => 'C√†mera',
 	'Date taken' => 'Data de la captura',
 	'Aperture' => 'Obertura',
-	'Exposure time' => 'Temps d\'exposiciÛ',
+	'Exposure time' => 'Temps d\'exposici√≥',
 	'Focal length' => 'Longitud del focus',
 	'Comment' => 'Comentari',
     'addFav' => 'Afegeix a Favorits',
     'addFavPhrase' => 'Favorits',
     'remFav' => 'Lleva de Favorits',
-	'iptcTitle'=>'TÌtol IPTC',
+	'iptcTitle'=>'T√≠tol IPTC',
 	'iptcCopyright'=>'Copyright IPTC',
 	'iptcKeywords'=>'Paraules clau IPTC',
 	'iptcCategory'=>'Categoria IPTC',
@@ -640,7 +639,7 @@ $lang_display_comments = array(
 	'add_your_comment' => 'Afegiu el vostre comentari',
     'name'=>'Nom',
     'comment'=>'Comentari',
-	'your_name' => 'AnÚnim',
+	'your_name' => 'An√≤nim',
 );
 
 $lang_fullsize_popup = array(
@@ -655,20 +654,20 @@ $lang_fullsize_popup = array(
 
 if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array(
 	'title' => 'Envieu una postal',
-	'invalid_email' => '<b>AtenciÛ</b>: adreÁa electrÚnica incorrecta!',
+	'invalid_email' => '<b>Atenci√≥</b>: adre√ßa electr√≤nica incorrecta!',
 	'ecard_title' => 'Una postal de %s per a tu',
-	'error_not_image' => 'NomÈs podeu enviar postals amb imatges.',
-	'view_ecard' => 'Si la imatge no es veu correctament, premeu en aquest enllaÁ',
-	'view_more_pics' => 'Premeu aquest enllaÁ per a veure mÈs imatges!',
+	'error_not_image' => 'Nom√©s podeu enviar postals amb imatges.',
+	'view_ecard' => 'Si la imatge no es veu correctament, premeu en aquest enlla√ß',
+	'view_more_pics' => 'Premeu aquest enlla√ß per a veure m√©s imatges!',
 	'send_success' => 'La postal ha estat enviada',
-	'send_failed' => 'Disculpeu perÚ el servidor no pot enviar la vostra postal...',
+	'send_failed' => 'Disculpeu per√≤ el servidor no pot enviar la vostra postal...',
 	'from' => 'De',
 	'your_name' => 'El vostre nom',
-	'your_email' => 'La vostra adreÁa electrÚnica',
+	'your_email' => 'La vostra adre√ßa electr√≤nica',
 	'to' => 'A',
 	'rcpt_name' => 'Nom del destinatari',
-	'rcpt_email' => 'AdreÁa electrÚnica del destinatari',
-	'greetings' => 'TÌtol del missatge',
+	'rcpt_email' => 'Adre√ßa electr√≤nica del destinatari',
+	'greetings' => 'T√≠tol del missatge',
 	'message' => 'Missatge',
 );
 
@@ -677,31 +676,31 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
 // ------------------------------------------------------------------------- //
 
 if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
-	'pic_info' => 'InformaciÛ',
-	'album' => '¿lbum',
-	'title' => 'TÌtol',
-	'desc' => 'DescripciÛ',
+	'pic_info' => 'Informaci√≥',
+	'album' => '√Älbum',
+	'title' => 'T√≠tol',
+	'desc' => 'Descripci√≥',
 	'keywords' => 'Paraules Clau',
 	'pic_info_str' => '%s &times; %s - %s KB - vist %s vegades - %s vots',
 	'approve' => 'Aprova el fitxer',
 	'postpone_app' => 'Posposa l\'aprovament',
 	'del_pic' => 'Esborra fitxer',
-	'read_exif' => 'Torna a llegir informaciÛ EXIF', 
+	'read_exif' => 'Torna a llegir informaci√≥ EXIF', 
 	'reset_view_count' => 'Posa a zero el comptador de visualitzacions',
 	'reset_votes' => 'Posar a zero els vots',
 	'del_comm' => 'Esborra comentaris',
 	'upl_approval' => 'Aprova fitxers penjats',
 	'edit_pics' => 'Edita fitxers',
-	'see_next' => 'Veure fitxers seg¸ents',
+	'see_next' => 'Veure fitxers seg√ºents',
 	'see_prev' => 'Veure fitxers anteriors',
 	'n_pic' => '%s fitxers',
 	'n_of_pic_to_disp' => 'Nombre de fitxers a mostrar',
 	'apply' => 'Aplica els canvis',
 	'crop_title' => 'Editor d\'Imatges de Coppermine',
-	'preview' => 'VisualitzaciÛ prËvia',
+	'preview' => 'Visualitzaci√≥ pr√®via',
 	'save' => 'Desa imatge',
 	'save_thumb' =>'Desa com miniatura',
-	'sel_on_img' =>'La selecciÛ ha d\\\'estar per complet en la imatge!', //js-alert 
+	'sel_on_img' =>'La selecci√≥ ha d\\\'estar per complet en la imatge!', //js-alert 
 );
 
 // ------------------------------------------------------------------------- //
@@ -709,7 +708,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('FAQ_PHP')) $lang_faq_php = array(
-  'faq' => 'Preguntes MÈs Freq¸ents', 
+  'faq' => 'Preguntes M√©s Freq√ºents', 
   'toc' => 'Taula de continguts', 
   'question' => 'Pregunta: ', 
   'answer' => 'Resposta: ', 
@@ -717,35 +716,35 @@ if (defined('FAQ_PHP')) $lang_faq_php = array(
 
 if (defined('FAQ_PHP')) $lang_faq_data = array(
   'PMF General',
-  array('PerquË deuria registrar-me?', 'El registre pot o no ser requerit per l\'administrador. El registre facilita caracterÌstiques addicionals tals com poder afegir fitxers, tenir una llista de favorits, puntuar imatges, afegir comentaris, enviar postals, etc.', 'allow_user_registration', '0'), 
-  array('Com puc registrar-me?', 'Premeu en &quot;Registreu-vos&quot; i empleneu tots els camps requerits (i els opcionals si voleu tambÈ).<br />Si l\'administrador tÈ activada la validaciÛ per correu electrÚnic, desprÈs de completar i enviar les dades rebreu un missatge en l\'adreÁa que heu indicat durant el registre, en el qual s\'explica com activar el vostre compte (sols prement un enllaÁ). Fins que no activeu el compte no podreu validar-vos com usuari registrat.', 'allow_user_registration', '1'),
-  array('Com puc entrar al sistema (fer login)?', 'Premeu en &quot;Entreu&quot;, empleneu el vostre nom d\'usuari i contrasenya, i marqueu &quot;Recordar-me&quot; amb aixÚ aconseguiu estar validat la prÚxima vegada que ens visiteu.<br /><b>IMPORTANT: Les galetes deuen estar activades en el navegador i la galeta d\'aquest lloc no deu ser esborrada si voleu que funcioni l\'opciÛ &quot;Recordar-me&quot;.</b>', 'offline', 0),
-  array('PerquË no puc entrar (fer login)?', 'Vos heu registrat i premut en l\'enllaÁ del correu electrÚnic de confirmaciÛ que vos va ser enviat? AixÚ deuria haver activat el vostre compte. Si no Ès aixÌ, contacteu amb l\'administrador del sistema.', 'offline', 0), 
-  array('QuË passa si oblido la meva contrasenya?', 'Si aquesta web tÈ una opciÛ &quot;Heu oblidat la vostra contrasenya&quot;, useu-la. Haureu d\'accedir a la recuperaciÛ de la mateixa. Si no, haureu de contactar amb l\'administrador perquË vos crei una nova contrasenya.', 'offline', 0), 
-  //array('QuË passa si he canviat la meva adreÁa de correu electrÚnic?', 'Simplement entreu al sistema (feu login) i canvieu la vostra adreÁa de correu electrÚnic des de &quot;El vostre Perfil&quot;', 'offline', 0),
-  array('Com puc guardar una imatge en &quot;Els meus favorits&quot;?', 'Premeu primer en la imatge i desprÈs la icona de &quot;Mostra informaciÛ del fitxer&quot; (<img src="images/info.gif" width="16" height="16" border="0" alt="Mostra informaciÛ del fitxer" />); baixeu fins on ha aparegut aquesta informaciÛ i premeu en &quot;Afegeix a Favorits&quot;.<br />L\'administrador podria tenir activada la opciÛ &quot;Mostra informaciÛ del fitxer&quot; per defecte.<br />IMPORTANT: Les galetes deuen estar activades en el navegador i la galeta d\'aquesta web no deu ser esborrada.', 'offline', 0), 
-  array('Com puc valorar una imatge?', 'Premeu en la miniatura de la imatge, mireu sota ella i elegiu la puntuaciÛ.', 'offline', 0), 
-  array('Com puc enviar un comentari d\'una imatge?', 'Premeu en la miniatura de la imatge i mireu sota ella. AquÌ podreu inserir el vostre comentari.', 'offline', 0), 
-array('Com puc afegir una imatge?', 'Premeu en &quot;Insereix fitxer&quot; i elegiu l\'‡lbum en el qual voleu afegir la imatge, premeu &quot;Navega&quot; i elegiu la imatge que voleu del vostre disc dur, premeu el botÛ &quot;Obri&quot; (afegiu tÌtol i descripciÛ si voleu), premeu finalment en &quot;Tramet&quot;', 'allow_private_albums', 0),
-  array('On puc afegir una imatge?', 'Podeu afegir una imatge a un dels vostres ‡lbums en &quot;La meva galeria&quot;. L\'Administrador pot haver permËs tambÈ l\'afegir imatges en un o mÈs dels ‡lbums de la Galeria principal.', 'allow_private_albums', 0),
-  array('Quins tipus i grand‡ries d\'imatges puc afegir?', 'Els tipus (jpg, png, etc.) i mides les decideix l\'administrador.', 'offline', 0), 
-  array('QuË Ès &quot;La meva galeria&quot;?', '&quot;La meva galeria&quot; Ès una galeria personal en la qual l\'usuari pot afegir nous fitxers, aixÌ com configurar-la.', 'allow_private_albums', 0), 
-  array('Com puc crear, tornar a anomenar o esborrar un ‡lbum en &quot;La meva galeria&quot;?', 'Heu d\'entrar al &quot;Mode Administrador&quot;<br />Premeu en &quot;Crea/Ordena els meus ‡lbums&quot; i premeu &quot;Nou&quot;. Canvieu &quot;Nou ¿lbum&quot; pel nom que vulgueu.<br />Podeu tambÈ tornar a anomenar qualsevol dels ‡lbums de la vostra galeria.<br />Premeu &quot;Aplica Modificacions&quot;.', 'allow_private_albums', 0), 
-  array('Com puc modificar i restringir a altres usuaris de veure els meus ‡lbums?', 'Heu d\'entrar al &quot;Mode Administrador&quot;<br />Premeu en &quot;Modificar els meus ‡lbums&quot;. Premeu en la barra &quot;Actualitza ¿lbum&quot;, elegiu l\'‡lbum que voleu canviar.<br />Des d\'aquÌ podeu canviar el nom, descripciÛ, miniatures de les imatges, i restringir qui pot veure o posar comentaris en l\'‡lbum.<br />Premeu &quot;Actualitza ¿lbum&quot;.', 'allow_private_albums', 0),
-  array('Com puc veure galeries d\'altres usuaris?', 'Premeu en &quot;Llista d\'¿lbums&quot; i seleccioneu &quot;Galeries dels Usuaris&quot;.', 'allow_private_albums', 0),
-  array('QuË sÛn les galetes?', 'Les galetes (cookies) sÛn uns petits textos que s\'envien des de la web i s\'emmagatzemen al vostre ordinador.<br />Normalment les galetes serveixen per a "recordar" a l\'usuari quan aquest torni de nou, i per a altres usos diversos.', 'offline', 0),
-  array('On puc aconseguir aquest programa per a posar-lo en la meva web?', 'Coppermine Ès una Galeria MultimËdia gratuÔta, publicada sota llicËncia GNU GPL. Est‡ repleta de caracterÌstiques i ha estat adaptada a distintes plataformes i sistemes de contingut. Visiteu la <a href="http://coppermine.sf.net/">p‡gina de Coppermine</a> per a saber mÈs i poder descarregar el programa.', 'offline', 0), 
+  array('Perqu√® deuria registrar-me?', 'El registre pot o no ser requerit per l\'administrador. El registre facilita caracter√≠stiques addicionals tals com poder afegir fitxers, tenir una llista de favorits, puntuar imatges, afegir comentaris, enviar postals, etc.', 'allow_user_registration', '0'), 
+  array('Com puc registrar-me?', 'Premeu en &quot;Registreu-vos&quot; i empleneu tots els camps requerits (i els opcionals si voleu tamb√©).<br />Si l\'administrador t√© activada la validaci√≥ per correu electr√≤nic, despr√©s de completar i enviar les dades rebreu un missatge en l\'adre√ßa que heu indicat durant el registre, en el qual s\'explica com activar el vostre compte (sols prement un enlla√ß). Fins que no activeu el compte no podreu validar-vos com usuari registrat.', 'allow_user_registration', '1'),
+  array('Com puc entrar al sistema (fer login)?', 'Premeu en &quot;Entreu&quot;, empleneu el vostre nom d\'usuari i contrasenya, i marqueu &quot;Recordar-me&quot; amb aix√≤ aconseguiu estar validat la pr√≤xima vegada que ens visiteu.<br /><b>IMPORTANT: Les galetes deuen estar activades en el navegador i la galeta d\'aquest lloc no deu ser esborrada si voleu que funcioni l\'opci√≥ &quot;Recordar-me&quot;.</b>', 'offline', 0),
+  array('Perqu√® no puc entrar (fer login)?', 'Vos heu registrat i premut en l\'enlla√ß del correu electr√≤nic de confirmaci√≥ que vos va ser enviat? Aix√≤ deuria haver activat el vostre compte. Si no √©s aix√≠, contacteu amb l\'administrador del sistema.', 'offline', 0), 
+  array('Qu√® passa si oblido la meva contrasenya?', 'Si aquesta web t√© una opci√≥ &quot;Heu oblidat la vostra contrasenya&quot;, useu-la. Haureu d\'accedir a la recuperaci√≥ de la mateixa. Si no, haureu de contactar amb l\'administrador perqu√® vos crei una nova contrasenya.', 'offline', 0), 
+  //array('Qu√® passa si he canviat la meva adre√ßa de correu electr√≤nic?', 'Simplement entreu al sistema (feu login) i canvieu la vostra adre√ßa de correu electr√≤nic des de &quot;El vostre Perfil&quot;', 'offline', 0),
+  array('Com puc guardar una imatge en &quot;Els meus favorits&quot;?', 'Premeu primer en la imatge i despr√©s la icona de &quot;Mostra informaci√≥ del fitxer&quot; (<img src="images/info.gif" width="16" height="16" border="0" alt="Mostra informaci√≥ del fitxer" />); baixeu fins on ha aparegut aquesta informaci√≥ i premeu en &quot;Afegeix a Favorits&quot;.<br />L\'administrador podria tenir activada la opci√≥ &quot;Mostra informaci√≥ del fitxer&quot; per defecte.<br />IMPORTANT: Les galetes deuen estar activades en el navegador i la galeta d\'aquesta web no deu ser esborrada.', 'offline', 0), 
+  array('Com puc valorar una imatge?', 'Premeu en la miniatura de la imatge, mireu sota ella i elegiu la puntuaci√≥.', 'offline', 0), 
+  array('Com puc enviar un comentari d\'una imatge?', 'Premeu en la miniatura de la imatge i mireu sota ella. Aqu√≠ podreu inserir el vostre comentari.', 'offline', 0), 
+array('Com puc afegir una imatge?', 'Premeu en &quot;Insereix fitxer&quot; i elegiu l\'√†lbum en el qual voleu afegir la imatge, premeu &quot;Navega&quot; i elegiu la imatge que voleu del vostre disc dur, premeu el bot√≥ &quot;Obri&quot; (afegiu t√≠tol i descripci√≥ si voleu), premeu finalment en &quot;Tramet&quot;', 'allow_private_albums', 0),
+  array('On puc afegir una imatge?', 'Podeu afegir una imatge a un dels vostres √†lbums en &quot;La meva galeria&quot;. L\'Administrador pot haver perm√®s tamb√© l\'afegir imatges en un o m√©s dels √†lbums de la Galeria principal.', 'allow_private_albums', 0),
+  array('Quins tipus i grand√†ries d\'imatges puc afegir?', 'Els tipus (jpg, png, etc.) i mides les decideix l\'administrador.', 'offline', 0), 
+  array('Qu√® √©s &quot;La meva galeria&quot;?', '&quot;La meva galeria&quot; √©s una galeria personal en la qual l\'usuari pot afegir nous fitxers, aix√≠ com configurar-la.', 'allow_private_albums', 0), 
+  array('Com puc crear, tornar a anomenar o esborrar un √†lbum en &quot;La meva galeria&quot;?', 'Heu d\'entrar al &quot;Mode Administrador&quot;<br />Premeu en &quot;Crea/Ordena els meus √†lbums&quot; i premeu &quot;Nou&quot;. Canvieu &quot;Nou √Älbum&quot; pel nom que vulgueu.<br />Podeu tamb√© tornar a anomenar qualsevol dels √†lbums de la vostra galeria.<br />Premeu &quot;Aplica Modificacions&quot;.', 'allow_private_albums', 0), 
+  array('Com puc modificar i restringir a altres usuaris de veure els meus √†lbums?', 'Heu d\'entrar al &quot;Mode Administrador&quot;<br />Premeu en &quot;Modificar els meus √†lbums&quot;. Premeu en la barra &quot;Actualitza √Älbum&quot;, elegiu l\'√†lbum que voleu canviar.<br />Des d\'aqu√≠ podeu canviar el nom, descripci√≥, miniatures de les imatges, i restringir qui pot veure o posar comentaris en l\'√†lbum.<br />Premeu &quot;Actualitza √Älbum&quot;.', 'allow_private_albums', 0),
+  array('Com puc veure galeries d\'altres usuaris?', 'Premeu en &quot;Llista d\'√Älbums&quot; i seleccioneu &quot;Galeries dels Usuaris&quot;.', 'allow_private_albums', 0),
+  array('Qu√® s√≥n les galetes?', 'Les galetes (cookies) s√≥n uns petits textos que s\'envien des de la web i s\'emmagatzemen al vostre ordinador.<br />Normalment les galetes serveixen per a "recordar" a l\'usuari quan aquest torni de nou, i per a altres usos diversos.', 'offline', 0),
+  array('On puc aconseguir aquest programa per a posar-lo en la meva web?', 'Coppermine √©s una Galeria Multim√®dia gratu√Øta, publicada sota llic√®ncia GNU GPL. Est√† repleta de caracter√≠stiques i ha estat adaptada a distintes plataformes i sistemes de contingut. Visiteu la <a href="http://coppermine.sf.net/">p√†gina de Coppermine</a> per a saber m√©s i poder descarregar el programa.', 'offline', 0), 
 
   'Navegant per la galeria',
-  array('QuË Ès la &quot;Llista d\'¿lbums&quot;?', 'Des d\'aquÌ podeu veure la galeria completa, amb un enllaÁ a cada categoria. Les miniatures poden ser enllaÁos directes a les categories.', 'offline', 0), 
-  array('QuË Ès &quot;La meva Galeria&quot;?', 'Aquesta caracterÌstica permet a l\'usuari crear la seva prÚpia galeria i afegir, esborrar o modificar ‡lbums aixÌ com afegir nous fitxers en ells.', 'allow_private_albums', 0), 
-  array('Quines sÛn les diferËncia entre &quot;Mode Administrador&quot; i &quot;Mode Usuari&quot;?', 'Quan s\'est‡ en mode administrador, l\'usuari pot modificar la seva galeria (aixÌ com unes altres si l\'hi ha permËs l\'administrador).', 'allow_private_albums', 0), 
-  array('QuË Ès &quot;Insereix Fitexer&quot;?', 'Aquesta caracterÌstica permet a l\'usuari afegir una imatge (mida i tipus definits per l\'administrador) en una galeria seleccionada per l\'usuari o bÈ per l\'administrador.', 'allow_private_albums', 0), 
-  array('QuË Ès &quot;⁄ltims fitexers&quot;?', 'Mostra els ˙ltims fitxers / imatges afegits a la galeria.', 'offline', 0), 
-  array('QuË Ès &quot;⁄ltims comentaris&quot;?', 'Mostra els ˙ltims comentaris afegits pels usuaris, juntament amb les imatges comentades.', 'offline', 0),
-  array('QuË Ès &quot;MÈs vists&quot;?', 'Mostra els fitxers mÈs vists per tots els usuaris (registrats i visitants).', 'offline', 0), 
-  array('QuË Ès &quot;MÈs valorats&quot;?', 'Mostra les imatges millor valorades pels usuaris, juntament amb la mitjana de puntuaciÛ (per exemple: cinc usuaris han donat un <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />: el fitxer tindr‡ una puntuaciÛ mitja de <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> ;si cinc usuaris han puntuat de 1 a 5 (1,2,3,4,5) la mitjana resultant ser‡ <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> .)<br />Les puntuacions van des de <img src="images/rating5.gif" width="65" height="14" border="0" alt="Excel∑lent" /> (excel∑lent) fins a <img src="images/rating0.gif" width="65" height="14" border="0" alt="Dolent" /> (dolent).', 'offline', 0),
-  array('QuË Ès &quot;Els meus favorits&quot;?', 'Aquesta caracterÌstica permet a un usuari guardar una imatge favorita en la galeta que Ès enviada al seu ordinador.', 'offline', 0),
+  array('Qu√® √©s la &quot;Llista d\'√Älbums&quot;?', 'Des d\'aqu√≠ podeu veure la galeria completa, amb un enlla√ß a cada categoria. Les miniatures poden ser enlla√ßos directes a les categories.', 'offline', 0), 
+  array('Qu√® √©s &quot;La meva Galeria&quot;?', 'Aquesta caracter√≠stica permet a l\'usuari crear la seva pr√≤pia galeria i afegir, esborrar o modificar √†lbums aix√≠ com afegir nous fitxers en ells.', 'allow_private_albums', 0), 
+  array('Quines s√≥n les difer√®ncia entre &quot;Mode Administrador&quot; i &quot;Mode Usuari&quot;?', 'Quan s\'est√† en mode administrador, l\'usuari pot modificar la seva galeria (aix√≠ com unes altres si l\'hi ha perm√®s l\'administrador).', 'allow_private_albums', 0), 
+  array('Qu√® √©s &quot;Insereix Fitexer&quot;?', 'Aquesta caracter√≠stica permet a l\'usuari afegir una imatge (mida i tipus definits per l\'administrador) en una galeria seleccionada per l\'usuari o b√© per l\'administrador.', 'allow_private_albums', 0), 
+  array('Qu√® √©s &quot;√öltims fitexers&quot;?', 'Mostra els √∫ltims fitxers / imatges afegits a la galeria.', 'offline', 0), 
+  array('Qu√® √©s &quot;√öltims comentaris&quot;?', 'Mostra els √∫ltims comentaris afegits pels usuaris, juntament amb les imatges comentades.', 'offline', 0),
+  array('Qu√® √©s &quot;M√©s vists&quot;?', 'Mostra els fitxers m√©s vists per tots els usuaris (registrats i visitants).', 'offline', 0), 
+  array('Qu√® √©s &quot;M√©s valorats&quot;?', 'Mostra les imatges millor valorades pels usuaris, juntament amb la mitjana de puntuaci√≥ (per exemple: cinc usuaris han donat un <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />: el fitxer tindr√† una puntuaci√≥ mitja de <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> ;si cinc usuaris han puntuat de 1 a 5 (1,2,3,4,5) la mitjana resultant ser√† <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> .)<br />Les puntuacions van des de <img src="images/rating5.gif" width="65" height="14" border="0" alt="Excel¬∑lent" /> (excel¬∑lent) fins a <img src="images/rating0.gif" width="65" height="14" border="0" alt="Dolent" /> (dolent).', 'offline', 0),
+  array('Qu√® √©s &quot;Els meus favorits&quot;?', 'Aquesta caracter√≠stica permet a un usuari guardar una imatge favorita en la galeta que √©s enviada al seu ordinador.', 'offline', 0),
 );
 
 
@@ -754,14 +753,14 @@ array('Com puc afegir una imatge?', 'Premeu en &quot;Insereix fitxer&quot; i ele
 // ------------------------------------------------------------------------- //
 
 if (defined('FORGOT_PASSWD_PHP')) $lang_forgot_passwd_php = array(
-  'forgot_passwd' => 'RecuperaciÛ de contrasenya',
+  'forgot_passwd' => 'Recuperaci√≥ de contrasenya',
   'err_already_logged_in' => 'Ja esteu identificat!',
-  'enter_username_email' => 'Inseriu el vostre nom d\'usuari o adreÁa de correu electrÚnic',
+  'enter_username_email' => 'Inseriu el vostre nom d\'usuari o adre√ßa de correu electr√≤nic',
   'submit' => 'endavant',
-  'failed_sending_email' => 'El correu de recuperaciÛ de contrasenya no pot ser enviat!',
-  'email_sent' => 'Un correu electrÚnic amb el vostre nom d\'usuari i contrasenya ha estat enviat a %s',
+  'failed_sending_email' => 'El correu de recuperaci√≥ de contrasenya no pot ser enviat!',
+  'email_sent' => 'Un correu electr√≤nic amb el vostre nom d\'usuari i contrasenya ha estat enviat a %s',
   'err_unk_user' => 'L\'usuari seleccionat no existeix!', 
-  'passwd_reminder_subject' => '%s - RecuperaciÛ de contrasenya',
+  'passwd_reminder_subject' => '%s - Recuperaci√≥ de contrasenya',
   'passwd_reminder_body' => 'Heu demanat que se vos recordin les vostres dades d\'entrada:
 Nom d\'usuari: %s
 Contrasenya: %s
@@ -783,17 +782,17 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
 	'apply' => 'Valida els canvis',
 	'create_new_group' => 'Crea nou grup',
 	'del_groups' => 'Esborra el(s) grup(s) seleccionat(s)',
-	'confirm_del' => 'AtenciÛ, quan esborreu un grup, els usuaris que pertanyen a aquest grup sÛn transferits al grup \'Registered\'!\n\nVoleu continuar?',
+	'confirm_del' => 'Atenci√≥, quan esborreu un grup, els usuaris que pertanyen a aquest grup s√≥n transferits al grup \'Registered\'!\n\nVoleu continuar?',
 	'title' => 'Configura grups d\'usuaris',
-	'approval_1' => 'AprovaciÛ fitxers penjats p˙blics (1)',
-	'approval_2' => 'AprovaciÛ fitxers penjats privats (2)',
-	'upload_form_config' => 'ConfiguraciÛ del formulari de pujada', 
-	'upload_form_config_values' => array( 'NomÈs pujades d\'un sol fitxer', 'NomÈs pujades de multiples fitxers', 'NomÈs pujades URI', 'NomÈs pujades ZIP', 'Fitxer-URI', 'Fitxer-ZIP', 'URI-ZIP', 'Fitxers-URI-ZIP'), 
+	'approval_1' => 'Aprovaci√≥ fitxers penjats p√∫blics (1)',
+	'approval_2' => 'Aprovaci√≥ fitxers penjats privats (2)',
+	'upload_form_config' => 'Configuraci√≥ del formulari de pujada', 
+	'upload_form_config_values' => array( 'Nom√©s pujades d\'un sol fitxer', 'Nom√©s pujades de multiples fitxers', 'Nom√©s pujades URI', 'Nom√©s pujades ZIP', 'Fitxer-URI', 'Fitxer-ZIP', 'URI-ZIP', 'Fitxers-URI-ZIP'), 
 	'custom_user_upload'=>'Pot l\'usuari personalitzar el nombre de caixes de pujada?', 
-	'num_file_upload'=>'Nombre m‡xim/exacte de caixes de pujada de fitxers', 
-	'num_URI_upload'=>'Nombre m‡xim/exacte de caixes de pujada URI', 
-	'note1' => '<b>(1)</b> Afegir fitxers en un ‡lbum p˙blic requerir‡ aprovaciÛ dels administradors',
-	'note2' => '<b>(2)</b> Afegir fitxers en un ‡lbum que pertany a l\'usuari requerir‡ aprovaciÛ dels administradors',
+	'num_file_upload'=>'Nombre m√†xim/exacte de caixes de pujada de fitxers', 
+	'num_URI_upload'=>'Nombre m√†xim/exacte de caixes de pujada URI', 
+	'note1' => '<b>(1)</b> Afegir fitxers en un √†lbum p√∫blic requerir√† aprovaci√≥ dels administradors',
+	'note2' => '<b>(2)</b> Afegir fitxers en un √†lbum que pertany a l\'usuari requerir√† aprovaci√≥ dels administradors',
 	'notes' => 'Notes'
 );
 
@@ -808,7 +807,7 @@ $lang_index_php = array(
 );
 
 $lang_album_admin_menu = array(
-	'confirm_delete' => 'Esteu segur de voler ESBORRAR aquest ‡lbum? \\nTotes les imatges i comentaris seran tambÈ esborrats.',
+	'confirm_delete' => 'Esteu segur de voler ESBORRAR aquest √†lbum? \\nTotes les imatges i comentaris seran tamb√© esborrats.',
 	'delete' => 'ESBORRA',
 	'modify' => 'MODIFICA',
 	'edit_pics' => 'EDITA IMATGES',
@@ -816,22 +815,22 @@ $lang_album_admin_menu = array(
 
 $lang_list_categories = array(
 	'home' => 'Inici',
-	'stat1' => '<b>[pictures]</b> fitxers en <b>[albums]</b> ‡lbums i <b>[cat]</b> categories amb <b>[comments]</b> comentaris, vists <b>[views]</b> vegades',
-	'stat2' => '<b>[pictures]</b> fitxers en <b>[albums]</b> ‡lbums, vists <b>[views]</b> vegades',
+	'stat1' => '<b>[pictures]</b> fitxers en <b>[albums]</b> √†lbums i <b>[cat]</b> categories amb <b>[comments]</b> comentaris, vists <b>[views]</b> vegades',
+	'stat2' => '<b>[pictures]</b> fitxers en <b>[albums]</b> √†lbums, vists <b>[views]</b> vegades',
 	'xx_s_gallery' => 'Galeria de %s',
-	'stat3' => '<b>[pictures]</b> fitxers en <b>[albums]</b> ‡lbums amb <b>[comments]</b> comentaris, vists <b>[views]</b> vegades'
+	'stat3' => '<b>[pictures]</b> fitxers en <b>[albums]</b> √†lbums amb <b>[comments]</b> comentaris, vists <b>[views]</b> vegades'
 );
 
 $lang_list_users = array(
 	'user_list' => 'Llista d\'usuaris',
-	'no_user_gal' => 'No existeixen usuaris amb permisos per a tenir ‡lbums',
-	'n_albums' => '%s ‡lbum(s)',
+	'no_user_gal' => 'No existeixen usuaris amb permisos per a tenir √†lbums',
+	'n_albums' => '%s √†lbum(s)',
 	'n_pics' => '%s fitxer(s)'
 );
 
 $lang_list_albums = array(
 	'n_pictures' => '%s fitxers',
-	'last_added' => ', ˙ltim afegit el %s'
+	'last_added' => ', √∫ltim afegit el %s'
 );
 
 }
@@ -859,7 +858,7 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
 if (defined('LOGOUT_PHP')) $lang_logout_php = array(
 	'logout' => 'Sortiu',
 	'bye' => 'Fins un altra, %s ...',
-	'err_not_loged_in' => 'No est‡s validat al sistema!',
+	'err_not_loged_in' => 'No est√†s validat al sistema!',
 );
 
 // ------------------------------------------------------------------------- //
@@ -868,8 +867,8 @@ if (defined('LOGOUT_PHP')) $lang_logout_php = array(
 
 if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
   'php_info' => 'PHP info', 
-  'explanation' => 'Aquesta Ès la sortida generada per la funciÛ PHP <a href="http://www.php.net/phpinfo">phpinfo()</a>, mostrada dintre de Copermine (retallant la sortida).', 
-  'no_link' => 'Deixar que altres vegin el vostre phpinfo pot ser arriscat, per aixÚ aquesta p‡gina nomÈs Ès visible quan esteu identificat com a administrador. No podeu enviar un enllaÁ a aqueta p‡gina per a terceres persones, se\'ls denegar‡ l\'accÈs.', 
+  'explanation' => 'Aquesta √©s la sortida generada per la funci√≥ PHP <a href="http://www.php.net/phpinfo">phpinfo()</a>, mostrada dintre de Copermine (retallant la sortida).', 
+  'no_link' => 'Deixar que altres vegin el vostre phpinfo pot ser arriscat, per aix√≤ aquesta p√†gina nom√©s √©s visible quan esteu identificat com a administrador. No podeu enviar un enlla√ß a aqueta p√†gina per a terceres persones, se\'ls denegar√† l\'acc√©s.', 
 );
 
 // ------------------------------------------------------------------------- //
@@ -877,28 +876,28 @@ if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
-	'upd_alb_n' => 'Modifica ‡lbum %s',
-	'general_settings' => 'Par‡metres generals',
-	'alb_title' => 'TÌtol de l\'‡lbum',
-	'alb_cat' => 'CategorÌa de l\'‡lbum',
-	'alb_desc' => 'DescripciÛ de l\'‡lbum',
-	'alb_thumb' => 'Miniatura de l\'‡lbum',
-	'alb_perm' => 'Permisos per a aquest ‡lbum',
-	'can_view' => 'Aquest ‡lbum pot ser vist per',
+	'upd_alb_n' => 'Modifica √†lbum %s',
+	'general_settings' => 'Par√†metres generals',
+	'alb_title' => 'T√≠tol de l\'√†lbum',
+	'alb_cat' => 'Categor√≠a de l\'√†lbum',
+	'alb_desc' => 'Descripci√≥ de l\'√†lbum',
+	'alb_thumb' => 'Miniatura de l\'√†lbum',
+	'alb_perm' => 'Permisos per a aquest √†lbum',
+	'can_view' => 'Aquest √†lbum pot ser vist per',
 	'can_upload' => 'Els visitants poden afegir imatges',
 	'can_post_comments' => 'Els visitants poden afegir comentaris',
 	'can_rate' => 'Els visitants poden valorar les imatges',
 	'user_gal' => 'Galeria d\'usuari',
 	'no_cat' => '* Sense categoria *',
-	'alb_empty' => 'L\'‡lbum est‡ buit',
-	'last_uploaded' => '⁄ltim afegit',
-	'public_alb' => 'Tothom (‡lbum p˙blic)',
-	'me_only' => 'NomÈs jo',
-	'owner_only' => 'NomÈs l\'amo de l\'‡lbum (%s)',
+	'alb_empty' => 'L\'√†lbum est√† buit',
+	'last_uploaded' => '√öltim afegit',
+	'public_alb' => 'Tothom (√†lbum p√∫blic)',
+	'me_only' => 'Nom√©s jo',
+	'owner_only' => 'Nom√©s l\'amo de l\'√†lbum (%s)',
 	'groupp_only' => 'Membres del grup \'%s\'',
-	'err_no_alb_to_modify' => 'No podeu modificar cap ‡lbum a la base de dades.',
-	'update' => 'Actualitza ‡lbum',
-	'notice1' => '(*) depenent dels par‡metres de %sgrups%s',
+	'err_no_alb_to_modify' => 'No podeu modificar cap √†lbum a la base de dades.',
+	'update' => 'Actualitza √†lbum',
+	'notice1' => '(*) depenent dels par√†metres de %sgrups%s',
 );
 
 // ------------------------------------------------------------------------- //
@@ -906,7 +905,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
-	'already_rated' => 'Perdoneu perÚ ja heu votat anteriorment per aquest fitxer',
+	'already_rated' => 'Perdoneu per√≤ ja heu votat anteriorment per aquest fitxer',
 	'rate_ok' => 'El vostre vot ha estat comptabilitzat',
 	'forbidden' => 'No podeu votar per els vostres propis fitxers.', 
 );
@@ -920,9 +919,9 @@ if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 $lang_register_disclamer = <<<EOT
 A pesar que els administradors de {SITENAME} intentaran eliminar o editar qualsevol material desagradable tan aviat com puguin, resulta impossible revisar tots els enviaments que es realitzen. Per tant heu de tenir en compte que tots els enviaments fets a aquesta web expressen el punt de vista i opinions dels seus autors i no el dels administradors o webmasters (excepte els afegits per ells mateixos).<br />
 <br />
-Esteu d'acord en no afegir cap material abusiu, obscË, vulgar, escandalÛs, odiÛs, amenaÁador, d'orientaciÛ sexual, o cap altre que pugui violar qualsevol llei aplicable. Esteu d'acord amb que el webmaster, l'administrador i els assessors de { SITENAME } tenen el dret de llevar o de corregir qualsevol contingut en qualsevol moment si el consideren necessari. Com usuari, accediu a que qualsevol informaciÛ que afegiu sigui emmagatzemada en una base de dades. Tan mateix, aquesta informaciÛ no ser‡ divulgada a tercers sense el seu consentiment. El webmaster i l'administrador no es poden fer responsables de cap intent de destrucciÛ de la base de dades que pugui conduir a la pËrdua de la mateixa.<br />
+Esteu d'acord en no afegir cap material abusiu, obsc√®, vulgar, escandal√≥s, odi√≥s, amena√ßador, d'orientaci√≥ sexual, o cap altre que pugui violar qualsevol llei aplicable. Esteu d'acord amb que el webmaster, l'administrador i els assessors de { SITENAME } tenen el dret de llevar o de corregir qualsevol contingut en qualsevol moment si el consideren necessari. Com usuari, accediu a que qualsevol informaci√≥ que afegiu sigui emmagatzemada en una base de dades. Tan mateix, aquesta informaci√≥ no ser√† divulgada a tercers sense el seu consentiment. El webmaster i l'administrador no es poden fer responsables de cap intent de destrucci√≥ de la base de dades que pugui conduir a la p√®rdua de la mateixa.<br />
 <br />
-Aquest lloc utilitza galetes per a emmagatzemar la informaciÛ al vostre ordinador. Aquestes galetes serveixen per a millorar la navegaciÛ d'aquest lloc. L'adreÁa de correu electrÚnic s'usa nomÈs per a confirmar els seus detalls i contrasenya de registre.<br />
+Aquest lloc utilitza galetes per a emmagatzemar la informaci√≥ al vostre ordinador. Aquestes galetes serveixen per a millorar la navegaci√≥ d'aquest lloc. L'adre√ßa de correu electr√≤nic s'usa nom√©s per a confirmar els seus detalls i contrasenya de registre.<br />
 <br />
 Prement <i>Estic d'acord</i> expresseu la vostra conformitat amb aquestes condicions.
 EOT;
@@ -931,60 +930,60 @@ $lang_register_php = array(
 	'page_title' => 'Registre de nou usuari',
 	'term_cond' => 'Termes i condicions',
 	'i_agree' => 'Estic d\'acord',
-	'submit' => 'Enviar sol∑licitud de registre',
+	'submit' => 'Enviar sol¬∑licitud de registre',
 	'err_user_exists' => 'El nom d\'usuari elegit ja existeix, per favor elegiu un altre diferent',
-	'err_password_mismatch' => 'Les dues contrassenyes no sÛn iguals, per favor torneu a introduir-les',
-	'err_uname_short' => 'El nom d\'usuari deu ser de 2 car‡cters de longitud com a mÌnim',
-	'err_password_short' => 'La contrassenya deu ser de 2 car‡cters de longitud com a mÌnim',
+	'err_password_mismatch' => 'Les dues contrassenyes no s√≥n iguals, per favor torneu a introduir-les',
+	'err_uname_short' => 'El nom d\'usuari deu ser de 2 car√†cters de longitud com a m√≠nim',
+	'err_password_short' => 'La contrassenya deu ser de 2 car√†cters de longitud com a m√≠nim',
 	'err_uname_pass_diff' => 'El nom d\'usuari i la contrassenya deuen ser diferents',
-	'err_invalid_email' => 'L\'adreÁa electrÚnica no Ès v‡lida',
-	'err_duplicate_email' => 'Un altre usuari s\'ha registrat anteriorment amb l\'adreÁa de correu electrÚnic subministrada',
-	'enter_info' => 'Introduiu la informaciÛ de registre',
-	'required_info' => 'InformaciÛ requerida',
-	'optional_info' => 'InformaciÛ opcional',
+	'err_invalid_email' => 'L\'adre√ßa electr√≤nica no √©s v√†lida',
+	'err_duplicate_email' => 'Un altre usuari s\'ha registrat anteriorment amb l\'adre√ßa de correu electr√≤nic subministrada',
+	'enter_info' => 'Introduiu la informaci√≥ de registre',
+	'required_info' => 'Informaci√≥ requerida',
+	'optional_info' => 'Informaci√≥ opcional',
 	'username' => 'Nom d\'usuari',
 	'password' => 'Contrasenya',
 	'password_again' => 'Reescriure contrasenya',
-	'email' => 'Correu electrÚnic',
-	'location' => 'UbicaciÛ',
+	'email' => 'Correu electr√≤nic',
+	'location' => 'Ubicaci√≥',
 	'interests' => 'Interessos',
-	'website' => 'P‡gina web',
-	'occupation' => 'OcupaciÛ',
+	'website' => 'P√†gina web',
+	'occupation' => 'Ocupaci√≥',
 	'error' => 'ERROR',
-	'confirm_email_subject' => '%s - ConfirmaciÛ de registre',
-	'information' => 'InformaciÛ',
-	'failed_sending_email' => 'El correu electrÚnic de confirmaciÛ de registre no pot ser enviat!',
-	'thank_you' => 'Gr‡cies per registrar-vos.<br /><br />Hem enviat un correu electrÚnic amb informaciÛ sobre l\'activaciÛ del vostre compte a l\'adreÁa de correu que ens heu facilitat.',
+	'confirm_email_subject' => '%s - Confirmaci√≥ de registre',
+	'information' => 'Informaci√≥',
+	'failed_sending_email' => 'El correu electr√≤nic de confirmaci√≥ de registre no pot ser enviat!',
+	'thank_you' => 'Gr√†cies per registrar-vos.<br /><br />Hem enviat un correu electr√≤nic amb informaci√≥ sobre l\'activaci√≥ del vostre compte a l\'adre√ßa de correu que ens heu facilitat.',
 	'acct_created' => 'El vostre compte d\'usuari ha estat creat i ara podeu accedir al sistema amb el vostre nom d\'usuari i contrasenya',
-	'acct_active' => 'El vostre compte d\'usuari ja est‡ activat i ara podeu accedir al sistema amb el vostre nom d\'usuari i contrasenya',
+	'acct_active' => 'El vostre compte d\'usuari ja est√† activat i ara podeu accedir al sistema amb el vostre nom d\'usuari i contrasenya',
 	'acct_already_act' => 'El vostre compte ja estava actiu!',
 	'acct_act_failed' => 'Aquest compte no pot ser activat!',
 	'err_unk_user' => 'L\'usuari seleccionat no existeix!',
 	'x_s_profile' => 'Perfil de %s',
 	'group' => 'Grup',
 	'reg_date' => 'Data d\'alta',
-	'disk_usage' => '⁄s de disc',
+	'disk_usage' => '√ös de disc',
 	'change_pass' => 'Canvia contrasenya',
 	'current_pass' => 'Contrasenya actual',
 	'new_pass' => 'Nova contrasenya',
 	'new_pass_again' => 'Reescriure nova contrasenya',
-	'err_curr_pass' => 'La contrasenya actual Ès incorrecta',
+	'err_curr_pass' => 'La contrasenya actual √©s incorrecta',
 	'apply_modif' => 'Desa els canvis',
 	'change_pass' => 'Canvia la meva contrasenya',
 	'update_success' => 'El vostre perfil ha estat actualitzat',
 	'pass_chg_success' => 'La vostra contrasenya ha estat canviada',
 	'pass_chg_error' => 'La vostra contrassenya no ha estat canviada',
-	'notify_admin_email_subject' => '%s - NotificaciÛ de registre',
+	'notify_admin_email_subject' => '%s - Notificaci√≥ de registre',
 	'notify_admin_email_body' => 'Un nou usuari amb el nom "%s" s\'ha registrat en la vostra galeria',
 );
 
 $lang_register_confirm_email = <<<EOT
-Gr‡cies per registrar-vos a {SITE_NAME}
+Gr√†cies per registrar-vos a {SITE_NAME}
 
-El vostre nom d'usuari Ès: "{USER_NAME}"
-La vostra contrassenya Ès: "{PASSWORD}"
+El vostre nom d'usuari √©s: "{USER_NAME}"
+La vostra contrassenya √©s: "{PASSWORD}"
 
-Per a acabar d'activar el vostre compte, heu de prÈmer sobre l'enllaÁ que
+Per a acabar d'activar el vostre compte, heu de pr√©mer sobre l'enlla√ß que
 apareix sota o copiar-lo i pegar-lo al vostre navegador d'Internet.
 
 {ACT_LINK}
@@ -1007,7 +1006,7 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
 	'n_comm_del' => '%s comentari(s) esborrat(s)',
 	'n_comm_disp' => 'Nombre de comentaris a mostrar',
 	'see_prev' => 'Veure l\'anterior',
-	'see_next' => 'Veure el seg¸ent',
+	'see_next' => 'Veure el seg√ºent',
 	'del_comm' => 'Esborra comentaris seleccionats',
 );
 
@@ -1027,15 +1026,15 @@ if (defined('SEARCH_PHP')) $lang_search_php = array(
 if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 	'page_title' => 'Cerca nous fitxers',
 	'select_dir' => 'Seleccioneu directori',
-	'select_dir_msg' => 'Aquesta funciÛ vos permet afegir de forma autom‡tica els fitxers que hageu pujat al vostre servidor mitjanÁant FTP.<br /><br />Seleccioneu el directori on heu pujat els vostres fitxers',
+	'select_dir_msg' => 'Aquesta funci√≥ vos permet afegir de forma autom√†tica els fitxers que hageu pujat al vostre servidor mitjan√ßant FTP.<br /><br />Seleccioneu el directori on heu pujat els vostres fitxers',
 	'no_pic_to_add' => 'No hi ha cap fitxer per a afegir',
-	'need_one_album' => 'Necessiteu almenys un ‡lbum per a utilitzar aquesta funciÛ',
-	'warning' => 'AtenciÛ',
+	'need_one_album' => 'Necessiteu almenys un √†lbum per a utilitzar aquesta funci√≥',
+	'warning' => 'Atenci√≥',
 	'change_perm' => 'Coppermine no pot escriure en aquest directori, necessiteu canviar els permisos a modes 755 o 777 abans d\'intentar-ho de nou!',
-	'target_album' => '<b>Col∑loca els fitxers del dierctori &quot;</b>%s<b>&quot; a l\'‡lbum </b>%s',
+	'target_album' => '<b>Col¬∑loca els fitxers del dierctori &quot;</b>%s<b>&quot; a l\'√†lbum </b>%s',
 	'folder' => 'Carpeta',
 	'image' => 'fitxer',
-	'album' => '¿lbum',
+	'album' => '√Älbum',
 	'result' => 'Resultat',
 	'dir_ro' => 'No es pot escriure. ',
 	'dir_cant_read' => 'No es pot llegir. ',
@@ -1044,16 +1043,16 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 	'insert_selected' => 'Afegeix els fitxers seleccionades',
 	'no_pic_found' => 'No s\'ha trobat cap fitxer nou',
 	'be_patient' => 'Per favor, sigueu pacient, Coppermine necessita temps per a afegir els fitxers',
-	'no_album' => 'Cap ‡lbum seleccionat', 
+	'no_album' => 'Cap √†lbum seleccionat', 
 	'notes' =>  '<ul>'.
 				'<li><b>OK</b> : significa que el fitxer ha estat afegit sense problemes'.
-				'<li><b>DP</b> : significa que el fitxer Ès un duplicat i ja existeix a la base de dades'.
-				'<li><b>PB</b> : significa que el fitxer no pot ser afegit, per favor comproveu la configaraciÛn i els permisos dels directoris on estan els fitxers'.
-				'<li><b>NA</b> : significa que no heu seleccionat un ‡lbum on posar els fitxers, premeu \'<a href="javascript:history.back(1)">arrere</a>\' i seleccioneu un ‡lbum. Si no teniu un ‡lbum <a href="albmgr.php">creeu-ne un primer</a></li>'.
-				'<li>Si les icones OK, DP, PB no apareixen, premeu sobre la icona d\'imatge no carregada per a veure l\'error produÔt per PHP'.
+				'<li><b>DP</b> : significa que el fitxer √©s un duplicat i ja existeix a la base de dades'.
+				'<li><b>PB</b> : significa que el fitxer no pot ser afegit, per favor comproveu la configaraci√≥n i els permisos dels directoris on estan els fitxers'.
+				'<li><b>NA</b> : significa que no heu seleccionat un √†lbum on posar els fitxers, premeu \'<a href="javascript:history.back(1)">arrere</a>\' i seleccioneu un √†lbum. Si no teniu un √†lbum <a href="albmgr.php">creeu-ne un primer</a></li>'.
+				'<li>Si les icones OK, DP, PB no apareixen, premeu sobre la icona d\'imatge no carregada per a veure l\'error produ√Øt per PHP'.
 				'<li>Si el navegador excedeix el temps d\'espera (timeout), premeu la icona d\'actualitzar'.
 				'</ul>', 
-	'select_album' => 'selecciona ‡lbum',
+	'select_album' => 'selecciona √†lbum',
 	'check_all' => 'Activa Tots',
 	'uncheck_all' => 'Desactiva Tots',
 );
@@ -1072,19 +1071,19 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 if (defined('BANNING_PHP')) $lang_banning_php = array(
 	'title' => 'Expulsa Usuaris',
 	'user_name' => 'Nom d\'Usuari',
-	'ip_address' => 'AdreÁa IP',
-	'expiry' => 'Caduca (en blanc Ès permanent)',
+	'ip_address' => 'Adre√ßa IP',
+	'expiry' => 'Caduca (en blanc √©s permanent)',
 	'edit_ban' => 'Desa Canvis',
 	'delete_ban' => 'Esborra',
-	'add_new' => 'Afegeix Nova ExpulsiÛ',
+	'add_new' => 'Afegeix Nova Expulsi√≥',
 	'add_ban' => 'Afegeix',
 	'error_user' => 'No es pot trobar l\'usuari',
-	'error_specify' => 'Necessiteu especificar o un nom d\'usuari o una adreÁa IP', 
-	'error_ban_id' => 'ID d\'expulsiÛ invalida!', 
+	'error_specify' => 'Necessiteu especificar o un nom d\'usuari o una adre√ßa IP', 
+	'error_ban_id' => 'ID d\'expulsi√≥ invalida!', 
 	'error_admin_ban' => 'No vos podeu expulsar a vosaltres mateixos!', 
-	'error_server_ban' => 'An‡veu a expulsar al vostre propi servidor? Tsk tsk, no podeu fer aixÚ...',
-	'error_ip_forbidden' => 'No podeu expulsar aquesta IP - no Ès pot encaminar (non-routable)!', 
-	'lookup_ip' => 'Cerca una adreÁa IP', 
+	'error_server_ban' => 'An√†veu a expulsar al vostre propi servidor? Tsk tsk, no podeu fer aix√≤...',
+	'error_ip_forbidden' => 'No podeu expulsar aquesta IP - no √©s pot encaminar (non-routable)!', 
+	'lookup_ip' => 'Cerca una adre√ßa IP', 
 	'submit' => 'endavant!',
 );
 
@@ -1094,46 +1093,46 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
 
 if (defined('UPLOAD_PHP')) $lang_upload_php = array(
 	'title' => 'Penja fitxer',
-	'custom_title' => 'Formulari de sol∑licitud personalitzat', 
-	'cust_instr_1' => 'Podeu seleccionar un nombre personalitzat de quadres de pujada. Tanmateix, no podeu seleccionar-ne mÈs dels lÌmits llistats a sota.', 
-	'cust_instr_2' => 'Nombre de quadres de sol∑licitud', 
+	'custom_title' => 'Formulari de sol¬∑licitud personalitzat', 
+	'cust_instr_1' => 'Podeu seleccionar un nombre personalitzat de quadres de pujada. Tanmateix, no podeu seleccionar-ne m√©s dels l√≠mits llistats a sota.', 
+	'cust_instr_2' => 'Nombre de quadres de sol¬∑licitud', 
 	'cust_instr_3' => 'Quadres de pujada de fitxer: %s', 
 	'cust_instr_4' => 'Quadres de pujada URI/URL: %s', 
 	'cust_instr_5' => 'Quadres de pujada URI/URL:', 
 	'cust_instr_6' => 'Quadres de pujada de fitxer:', 
 	'cust_instr_7' => 'Per favor inseriu el nombre de quadres de pujada de cada tipus que voleu actualment. Aleshores premeu \'Continua\'. ', 
-	'reg_instr_1' => 'AcciÛ invalida per a la creaciÛ del formulari.', 
+	'reg_instr_1' => 'Acci√≥ invalida per a la creaci√≥ del formulari.', 
 	'reg_instr_2' => 'Ara podeu penjar els vostres fitxers fent servir els quadres de pujada de sota. La mida dels fitxers pujats al servidor no deuria excedir de %s KB cadascun. Els fitxers ZIP penjats en les seccions \'Pujades de fitxers\' i \'Pujades URI/URL\' restaran comprimits.', 
-	'reg_instr_3' => 'Si voleu que el fitxer ZIP o arxiu sigui descomprimit, haureu d\'usar el quadre de pujada de fitxer proveÔt en l\'‡rea \'Pujada ZIP descomprimida\'.', 
-	'reg_instr_4' => 'Quan useu la secciÛ de pujada URI/URL, per favor inseriu el camÌ al fitxer d\'aquesta manera: http://www.paginaweb.com/imatges/exemple.jpg', 
+	'reg_instr_3' => 'Si voleu que el fitxer ZIP o arxiu sigui descomprimit, haureu d\'usar el quadre de pujada de fitxer prove√Øt en l\'√†rea \'Pujada ZIP descomprimida\'.', 
+	'reg_instr_4' => 'Quan useu la secci√≥ de pujada URI/URL, per favor inseriu el cam√≠ al fitxer d\'aquesta manera: http://www.paginaweb.com/imatges/exemple.jpg', 
 	'reg_instr_5' => 'Quan hageu completat el formulari, per favor premeu \'Continua\'.', 
 	'reg_instr_6' => 'Pujades ZIP descomprimides:', 
 	'reg_instr_7' => 'Pujades de fitxers:', 
 	'reg_instr_8' => 'Pujades URI/URL:', 
 	'error_report' => 'Informe d\'Error', 
-	'error_instr' => 'S\'han trobat erros a les seg¸ents pujades:', 
+	'error_instr' => 'S\'han trobat erros a les seg√ºents pujades:', 
 	'file_name_url' => 'Nom/URL del fitxer', 
 	'error_message' => 'Missatge d\'Error', 
 	'no_post' => 'Fitxer no pujat per POST.', 
-	'forb_ext' => 'ExtensiÛ de fitxer no permesa.', 
+	'forb_ext' => 'Extensi√≥ de fitxer no permesa.', 
 	'exc_php_ini' => 'Excedida la mida de fitxer permesa a php.ini.', 
 	'exc_file_size' => 'Excedida la mida de fitxer permesa per Coppermine.', 
-	'partial_upload' => 'NomÈs una pujada parcial.', 
-	'no_upload' => 'No s\'ha produÔt cap pujada.', 
+	'partial_upload' => 'Nom√©s una pujada parcial.', 
+	'no_upload' => 'No s\'ha produ√Øt cap pujada.', 
 	'unknown_code' => 'Codi d\'error de pujada de PHP desconegut.', 
 	'no_temp_name' => 'Cap pujada - Cap nom temporal.', 
-	'no_file_size' => 'No contÈ dades/Corrupte', 
+	'no_file_size' => 'No cont√© dades/Corrupte', 
 	'impossible' => 'Impossible moure.', 
-	'not_image' => 'No Ès una imatge/corrupte', 
-	'not_GD' => 'Not Ès una extensiÛ GD.', 
-	'pixel_allowance' => 'Excedida assignaciÛ de pÌxel.', 
+	'not_image' => 'No √©s una imatge/corrupte', 
+	'not_GD' => 'Not √©s una extensi√≥ GD.', 
+	'pixel_allowance' => 'Excedida assignaci√≥ de p√≠xel.', 
 	'incorrect_prefix' => 'Prefixe URI/URL incorrecte', 
 	'could_not_open_URI' => 'No s\'ha pogut obrir URI.', 
 	'unsafe_URI' => 'No es pot verificar la seguretat.', 
 	'meta_data_failure' => 'Fallada de dades Meta', 
 	'http_401' => '401 No autoritzat', 
 	'http_402' => '402 Requereix Pagament', 
-	'http_403' => '403 AccÈs Prohibit', 
+	'http_403' => '403 Acc√©s Prohibit', 
 	'http_404' => '404 No s\'ha trobat', 
 	'http_500' => '500 Error Intern del Servidor', 
 	'http_503' => '503 Servei No Disponible', 
@@ -1146,23 +1145,23 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
 	'cant_write_write_file' => 'No es pot escriure al fitxer d\'escriptura URI.', 
 	'cant_unzip' => 'No es pot descomprimir.', 
 	'unknown' => 'Error desconegut', 
-	'succ' => 'Pujades amb Ëxit', 
-	'success' => '%s pujades amb Ëxit.', 
-	'add' => 'Per favor premeu \'Continua\' per a afegir els fitxers als ‡lbums.', 
+	'succ' => 'Pujades amb √®xit', 
+	'success' => '%s pujades amb √®xit.', 
+	'add' => 'Per favor premeu \'Continua\' per a afegir els fitxers als √†lbums.', 
 	'failure' => 'Pujada Fallida', 
-	'f_info' => 'InformaciÛ del Fitxer', 
-	'no_place' => 'No s\'ha pogut col∑locar el fitxer anterior.', 
-	'yes_place' => 'S\'ha col∑locat amb Ëxit el fitxer anterior.', 
-	'max_fsize' => 'La m‡xima mida de fitxer permesa Ès de %s KB',
-	'album' => '¿lbum',
+	'f_info' => 'Informaci√≥ del Fitxer', 
+	'no_place' => 'No s\'ha pogut col¬∑locar el fitxer anterior.', 
+	'yes_place' => 'S\'ha col¬∑locat amb √®xit el fitxer anterior.', 
+	'max_fsize' => 'La m√†xima mida de fitxer permesa √©s de %s KB',
+	'album' => '√Älbum',
 	'picture' => 'Fitxer',
-	'pic_title' => 'TÌtol del fitxer',
-	'description' => 'DescripciÛ del fitxer',
+	'pic_title' => 'T√≠tol del fitxer',
+	'description' => 'Descripci√≥ del fitxer',
 	'keywords' => 'Paraules clau (separades per espais)',
-	'err_no_alb_uploadables' => 'Perdoneu perÚ no hi ha cap ‡lbum on estigui permËs inserir nous fitxers',
-	'place_instr_1' => 'Per favor col∑loqueu ara els fitxers als ‡lbums. Ara podeu inserir tambÈ informaciÛ d\'import‡ncia sobre cada fitxer.', 
-	'place_instr_2' => 'Hi ha mÈs fitxers per col∑locar. Per favor premeu \'Continua\'.', 
-	'process_complete' => 'Heu col∑locat amb Ëxit tots els fitxers.', 
+	'err_no_alb_uploadables' => 'Perdoneu per√≤ no hi ha cap √†lbum on estigui perm√®s inserir nous fitxers',
+	'place_instr_1' => 'Per favor col¬∑loqueu ara els fitxers als √†lbums. Ara podeu inserir tamb√© informaci√≥ d\'import√†ncia sobre cada fitxer.', 
+	'place_instr_2' => 'Hi ha m√©s fitxers per col¬∑locar. Per favor premeu \'Continua\'.', 
+	'process_complete' => 'Heu col¬∑locat amb √®xit tots els fitxers.', 
 );
 
 // ------------------------------------------------------------------------- //
@@ -1179,13 +1178,13 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 	'reg_d' => 'Descendent per data d\'alta',
 	'pic_a' => 'Ascendent per total de fitxers',
 	'pic_d' => 'Descendent per total de fitxers',
-	'disku_a' => 'Ascendent per ˙s de disc',
-	'disku_d' => 'Descendent per ˙s de disc',
-	'lv_a' => 'Ascendent per ˙ltima visita', 
-	'lv_d' => 'Descendent per ˙ltima visita', 
+	'disku_a' => 'Ascendent per √∫s de disc',
+	'disku_d' => 'Descendent per √∫s de disc',
+	'lv_a' => 'Ascendent per √∫ltima visita', 
+	'lv_d' => 'Descendent per √∫ltima visita', 
 	'sort_by' => 'Ordena usuaris per',
-	'err_no_users' => 'La taula d\'usuaris est‡ buida!',
-	'err_edit_self' => 'No podeu editar el vostre propi perfil, heu d\'usar l\'opciÛ \'El meu perfil d\'usuari\' per a aixÚ',
+	'err_no_users' => 'La taula d\'usuaris est√† buida!',
+	'err_edit_self' => 'No podeu editar el vostre propi perfil, heu d\'usar l\'opci√≥ \'El meu perfil d\'usuari\' per a aix√≤',
 	'edit' => 'EDITA',
 	'delete' => 'ESBORRA',
 	'name' => 'Nom d\'usuari',
@@ -1195,23 +1194,23 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 	'pictures' => 'Fitxers',
 	'disk_space' => 'Espai usat / Quota',
 	'registered_on' => 'Registrat el dia',
-	'last_visit' => '⁄ltima Visita', 
-	'u_user_on_p_pages' => '%d usuaris en %d p‡gina(s)',
-	'confirm_del' => 'Esteu segur de voler ESBORRAR aquest usuari? \\nTots els seus fitxers i ‡lbums seran esborrats tambÈ.',
+	'last_visit' => '√öltima Visita', 
+	'u_user_on_p_pages' => '%d usuaris en %d p√†gina(s)',
+	'confirm_del' => 'Esteu segur de voler ESBORRAR aquest usuari? \\nTots els seus fitxers i √†lbums seran esborrats tamb√©.',
 	'mail' => 'CORREU',
 	'err_unknown_user' => 'L\'usuari seleccionat no existeix!',
 	'modify_user' => 'Modifica usuari',
 	'notes' => 'Notes',
 	'note_list' => '<li>Si no voleu canviar la contrassenya actual, deixeu el camp "contrasenya" buit',
 	'password' => 'Contrasenya',
-	'user_active' => 'L\'usuari est‡ actiu',
+	'user_active' => 'L\'usuari est√† actiu',
 	'user_group' => 'Grup d\'usuaris',
-	'user_email' => 'Correu electrÚnic de l\'usuari',
-	'user_web_site' => 'P‡gina web de l\'usuari',
+	'user_email' => 'Correu electr√≤nic de l\'usuari',
+	'user_web_site' => 'P√†gina web de l\'usuari',
 	'create_new_user' => 'Crea nou usuari',
-	'user_location' => 'UbicaciÛ de l\'usuari',
+	'user_location' => 'Ubicaci√≥ de l\'usuari',
 	'user_interests' => 'Interessos de l\'usuari',
-	'user_occupation' => 'OcupaciÛ de l\'usuari',
+	'user_occupation' => 'Ocupaci√≥ de l\'usuari',
 	'latest_upload' => 'Pujades recents', 
 	'never' => 'mai', 
 );
@@ -1222,50 +1221,50 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 
 if (defined('UTIL_PHP')) $lang_util_php = array(
         'title' => 'Eines (redimensiona imatges)',
-        'what_it_does' => 'QuË fa',
+        'what_it_does' => 'Qu√® fa',
         'what_update_titles' => 'Actualitza els noms de fitxer',
-        'what_delete_title' => 'Esborra els tÌtols',
+        'what_delete_title' => 'Esborra els t√≠tols',
         'what_rebuild' => 'Torna a crear les miniatures i imatges redimensionades',
-        'what_delete_originals' => 'Esborra les imatges originals reemplaÁant-les amb les versions redimensionades',
+        'what_delete_originals' => 'Esborra les imatges originals reempla√ßant-les amb les versions redimensionades',
         'file' => 'Fitxer',
-        'title_set_to' => 'tÌtol a posar',
+        'title_set_to' => 't√≠tol a posar',
         'submit_form' => 'envia',
-        'updated_succesfully' => 'actualitzat amb Ëxit',
+        'updated_succesfully' => 'actualitzat amb √®xit',
         'error_create' => 'ERROR al crear',
-        'continue' => 'Processa mÈs imatges',
-        'main_success' => 'El fitxer %s ha estat usat com a fitxer principal amb Ëxit',
+        'continue' => 'Processa m√©s imatges',
+        'main_success' => 'El fitxer %s ha estat usat com a fitxer principal amb √®xit',
         'error_rename' => 'Error reanomenant %s a %s',
         'error_not_found' => 'No es troba el fitxer %s',
         'back' => 'torna a l\'inici',
         'thumbs_wait' => 'Actualitzant miniatures i/o imatges redimensionades, per favor espereu...',
-        'thumbs_continue_wait' => 'Continuant l\'actualitzaciÛ de miniatures i/o imatges redimensionades...',
-        'titles_wait' => 'Actualitzant tÌtols, per favor espereu...',
-        'delete_wait' => 'Esborrant tÌtols, per favor espereu...',
-        'replace_wait' => 'Esborrant originals i reemplaÁant-los amb les imatges redimensionades, per favor espereu...',
-        'instruction' => 'Instruccions r‡pides',
-        'instruction_action' => 'Seleciona acciÛ',
-        'instruction_parameter' => 'Posa par‡metres',
-        'instruction_album' => 'Selecciona ‡lbum',
+        'thumbs_continue_wait' => 'Continuant l\'actualitzaci√≥ de miniatures i/o imatges redimensionades...',
+        'titles_wait' => 'Actualitzant t√≠tols, per favor espereu...',
+        'delete_wait' => 'Esborrant t√≠tols, per favor espereu...',
+        'replace_wait' => 'Esborrant originals i reempla√ßant-los amb les imatges redimensionades, per favor espereu...',
+        'instruction' => 'Instruccions r√†pides',
+        'instruction_action' => 'Seleciona acci√≥',
+        'instruction_parameter' => 'Posa par√†metres',
+        'instruction_album' => 'Selecciona √†lbum',
         'instruction_press' => 'Premeu %s',
         'update' => 'Actualitza miniatures i/o imatges redimensionades',
-        'update_what' => 'QuË deu ser actualitzat',
-        'update_thumb' => 'NomÈs miniatures',
-        'update_pic' => 'NomÈs imatges redimensionades',
-        'update_both' => 'Miniatures i imatges redimensionades (ambdÛs)',
+        'update_what' => 'Qu√® deu ser actualitzat',
+        'update_thumb' => 'Nom√©s miniatures',
+        'update_pic' => 'Nom√©s imatges redimensionades',
+        'update_both' => 'Miniatures i imatges redimensionades (ambd√≥s)',
         'update_number' => 'Nombre d\'imatges processades per cada clic',
         'update_option' => '(Si experimenteu problemes de temps d\'espera (timeout) proveu a posar un nombre menor)',
-        'filename_title' => 'Fitxer &rArr; TÌtol de fitxer',
+        'filename_title' => 'Fitxer &rArr; T√≠tol de fitxer',
         'filename_how' => 'Com s\'hauria de modificar el nom del fitxer',
-        'filename_remove' => 'Lleva .jpg del final i reemplaÁa _ (barra baixa) amb espais',
+        'filename_remove' => 'Lleva .jpg del final i reempla√ßa _ (barra baixa) amb espais',
         'filename_euro' => 'Canvia 2003_11_23_13_20_20.jpg a 23/11/2003 13:20',
         'filename_us' => 'Canvia 2003_11_23_13_20_20.jpg a 11/23/2003 13:20',
         'filename_time' => 'Canvia 2003_11_23_13_20_20.jpg a 13:20',
-        'delete' => 'Esborra els tÌtols de fitxer o imatges de grand‡ria original',
-        'delete_title' => 'Esborrar tÌtols de fitxer',
-        'delete_original' => 'Esborra imatges de grand‡ria original',
-        'delete_replace' => 'Esborra les imatges originals, reemplaÁant-les amb unes altres de grand‡ria nova',
-        'select_album' => 'Selecciona ‡lbum',
-		'delete_orphans' => 'Esborra els comentaris orfes (funciona en tots els ‡lbums)', 
+        'delete' => 'Esborra els t√≠tols de fitxer o imatges de grand√†ria original',
+        'delete_title' => 'Esborrar t√≠tols de fitxer',
+        'delete_original' => 'Esborra imatges de grand√†ria original',
+        'delete_replace' => 'Esborra les imatges originals, reempla√ßant-les amb unes altres de grand√†ria nova',
+        'select_album' => 'Selecciona √†lbum',
+		'delete_orphans' => 'Esborra els comentaris orfes (funciona en tots els √†lbums)', 
 		'orphan_comment' => 'Trobats comentaris orfes', 
 		'delete' => 'Esborra', 
 		'delete_all' => 'Esborra tot', 
@@ -1273,7 +1272,7 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
 		'nonexist' => 'fitxer adjunt no existent # ', 
 		'phpinfo' => 'Mostra phpinfo', 
 		'update_db' => 'Actualitza base de dades', 
-		'update_db_explanation' => 'Si heu reemplaÁat fitxers de coppermine, afegit una modificaciÛ o actualitzat des d\'una versiÛ anterior de coppermine, assegureu-vos d\'executar l\'actualitzaciÛ (update) de la base de dades un cop. AixÚ crear‡ les taules necess‡ries i/o valors de configuraciÛ a la vostra base de dades de coppermine.', 
+		'update_db_explanation' => 'Si heu reempla√ßat fitxers de coppermine, afegit una modificaci√≥ o actualitzat des d\'una versi√≥ anterior de coppermine, assegureu-vos d\'executar l\'actualitzaci√≥ (update) de la base de dades un cop. Aix√≤ crear√† les taules necess√†ries i/o valors de configuraci√≥ a la vostra base de dades de coppermine.', 
 );
 
 ?>
