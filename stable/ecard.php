@@ -72,7 +72,19 @@ if (!$valid_recipient_email && count($HTTP_POST_VARS) > 0) $recipient_email_warn
 // Create and send the e-card
 if (count($HTTP_POST_VARS) > 0 && $valid_sender_email && $valid_recipient_email) {
     $gallery_url_prefix = $CONFIG['ecards_more_pic_target']. (substr($CONFIG['ecards_more_pic_target'], -1) == '/' ? '' : '/');
-    if ($CONFIG['make_intermediate'] && max($row['pwidth'], $row['pheight']) > $CONFIG['picture_width']) {
+	
+	
+	    if($CONFIG['thumb_use']=='ht' && $row['pheight'] > $CONFIG['picture_width'] ){ // The wierd comparision is because only picture_width is stored
+      $condition = true;
+    }elseif($CONFIG['thumb_use']=='wd' && $row['pwidth'] > $CONFIG['picture_width']){
+      $condition = true;
+    }elseif($CONFIG['thumb_use']=='any' && max($row['pwidth'], $row['pheight']) > $CONFIG['picture_width']){
+      $condition = true;
+    }else{
+     $condition = false;
+    }
+
+    if ($CONFIG['make_intermediate'] && $condition ) {
         $n_picname = get_pic_url($row, 'normal');
     } else {
         $n_picname = get_pic_url($row, 'fullsize');
