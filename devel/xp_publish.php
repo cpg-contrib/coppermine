@@ -793,7 +793,7 @@ function process_picture()
 
 
     // Test if the filename of the temporary uploaded picture is empty
-    if ($_POST['userpicture']['tmp_name'] == '') simple_die(ERROR, $lang_db_input_php['no_pic_uploaded'], __FILE__, __LINE__);
+    if ($_FILES['userpicture']['tmp_name'] == '') simple_die(ERROR, $lang_db_input_php['no_pic_uploaded'], __FILE__, __LINE__);
     // Create destination directory for pictures
     if (USER_ID && !defined('SILLY_SAFE_MODE')) {
         if (USER_IS_ADMIN && ($category != (USER_ID + FIRST_USER_CAT))) {
@@ -821,10 +821,10 @@ function process_picture()
 
     $matches = array();
 
-    if (get_magic_quotes_gpc()) $_POST['userpicture']['name'] = stripslashes($_POST['userpicture']['name']);
+    if (get_magic_quotes_gpc()) $_FILES['userpicture']['name'] = stripslashes($_FILES['userpicture']['name']);
     // Replace forbidden chars with underscores
     $forbidden_chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>'));
-    $picture_name = strtr($_POST['userpicture']['name'], $forbidden_chars, str_repeat('_', strlen($CONFIG['forbiden_fname_char'])));
+    $picture_name = strtr($_FILES['userpicture']['name'], $forbidden_chars, str_repeat('_', strlen($CONFIG['forbiden_fname_char'])));
     // Check that the file uploaded has a valid extension
     if (!preg_match("/(.+)\.(.*?)\Z/", $picture_name, $matches)) {
         $matches[1] = 'invalid_fname';
@@ -843,7 +843,7 @@ function process_picture()
     }
     $uploaded_pic = $dest_dir . $picture_name;
     // Move the picture into its final location
-    if (!move_uploaded_file($_POST['userpicture']['tmp_name'], $uploaded_pic))
+    if (!move_uploaded_file($_FILES['userpicture']['tmp_name'], $uploaded_pic))
         simple_die(CRITICAL_ERROR, sprintf($lang_db_input_php['err_move'], $picture_name, $dest_dir), __FILE__, __LINE__, true);
     // Change file permission
     chmod($uploaded_pic, octdec($CONFIG['default_file_mode']));
