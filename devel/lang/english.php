@@ -609,7 +609,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Display &quot;reset&quot; in theme selection', 'theme_reset', 1, 'f=index.htm&as=admin_language_theme_reset&ae=admin_language_theme_reset_end'),
   array('Display FAQ', 'display_faq', 1, 'f=index.htm&as=admin_language_faq&ae=admin_language_faq_end'),
   array('Display bbcode help', 'show_bbcode_help', 1, 'f=index.htm&as=admin_language_bbcode&ae=admin_language_bbcode_end&top=1'),
-  array('Display previous/next on tabbed pages', 'previous_next_tab', 1),
+  //array('Display previous/next on tabbed pages', 'previous_next_tab', 1),
   array('Character encoding', 'charset', 4, 'f=index.htm&as=admin_language_charset&ae=admin_language_charset_end'),
 
   'Album list view',
