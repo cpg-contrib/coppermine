@@ -268,3 +268,4 @@ Various bug fixes in UDB integration - 17 February 2005, Chris
 Added ability to filter blocks and include plugin files into Coppermine - 17 February 2005, Chris
 Added experimental code to create and use a separate "album set" for metalbums that is not limited to the configured category depth - 17 February 2005, Donnoman
 Added ability to see summaries of which albums different user groups have access to (prevents assigning users to groups with too much access) - 18 Februrary, TranzNDance
+Enabled smilies in reviewcom.php (Review Comments) for comments with smilies - 18 Februrary, TranzNDance

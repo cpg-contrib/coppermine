@@ -28,6 +28,8 @@ require('include/init.inc.php');
 
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 // Delete comments if form is posted
+include("include/smilies.inc.php");
+
 $nb_com_del = 0;
 if (isset($_POST['cid_array'])) {
     $cid_array = $_POST['cid_array'];
@@ -199,7 +201,7 @@ while ($row = mysql_fetch_array($result)) {
     $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['alb_list_thumb_size']);
     $thumb_link = 'displayimage.php?pos=' . - $row['pid'];
     $msg_date = localised_date($row['msg_date'], $comment_date_fmt);
-    $msg_body = bb_decode($row['msg_body']);
+    $msg_body = bb_decode(process_smilies($row['msg_body']));
     $rowcounter++;
     if ($rowcounter >=2 ) { //let the row colors alternate, for now they are the same
         $rowcounter = 0;
