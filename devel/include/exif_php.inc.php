@@ -58,7 +58,7 @@ function exif_parse_file($filename)
                 $exifParsed['DateTaken'] = $exif['DateTime'];
         }
 
-        if (isset($exif['Aperture'])){
+        if (isset($exif['fnumber'])){
                 $exifParsed['Aperture'] = $exif['fnumber'];
         }
 
