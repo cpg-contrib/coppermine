@@ -1,8 +1,8 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.4.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -14,12 +14,8 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-// Report all errors except E_NOTICE
-// This is the default value set in php.ini
-/*
-$Id$
-*/
-
+// $Id$
+// ------------------------------------------------------------------------- //
 
 // Check if standalone is installed in a portal like phpNuke (added by DJMaze)
 $DIR=preg_split("/[\/\\\]/",dirname($_SERVER['PATH_TRANSLATED']));
@@ -29,6 +25,8 @@ if ($DIR[count($DIR)-2] == "modules") {
     die();
 } // end check
 
+// Report all errors except E_NOTICE
+// This is the default value set in php.ini
 error_reporting (E_ALL ^ E_NOTICE);
 
 require('include/sql_parse.php');
@@ -345,7 +343,7 @@ function html_input_config($error_msg = '')
         <td width="40%" class="tableb"><b>MySQL table prefix</b><br />(default value is OK; do not use dots!)
         </td>
         <td width="60%" class="tableb" valign="top">
-                <input type='text' class='textinput' name='table_prefix' value='<?php echo ($HTTP_POST_VARS['table_prefix'] ? $HTTP_POST_VARS['table_prefix'] : 'cpg130_') ?>'>
+                <input type='text' class='textinput' name='table_prefix' value='<?php echo ($HTTP_POST_VARS['table_prefix'] ? $HTTP_POST_VARS['table_prefix'] : 'cpg140_') ?>'>
         </td>
        </tr>
        <tr>
