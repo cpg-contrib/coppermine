@@ -372,7 +372,7 @@ CREATE TABLE CPG_vote_stats (
   `browser` varchar(255) NOT NULL default '',
   `os` varchar(50) NOT NULL default '',
   PRIMARY KEY  (`sid`)
-) ENGINE=MyISAM;
+);
 
 INSERT INTO CPG_config VALUES ('vote_details', '0');
 
@@ -386,7 +386,7 @@ CREATE TABLE CPG_hit_stats (
   `browser` varchar(255) NOT NULL default '',
   `os` varchar(50) NOT NULL default '',
   PRIMARY KEY  (`sid`)
-) ENGINE=MyISAM;
+);
 
 INSERT INTO CPG_config VALUES ('hit_details', '0');
 
