@@ -2054,7 +2054,6 @@ function theme_html_img_nav_menu()
         '{REPORT_TGT}' => $report_tgt,
         '{REPORT_TITLE}' => $lang_img_nav_bar['report_title'],
         '{LOCATION}' => $location,
-        '{REPORT_COMMENT_TGT}' => $report_comment_tgt,
         );
 
     return template_eval($template_img_navbar, $params);
@@ -2167,7 +2166,6 @@ function theme_html_comments($pid)
             '{SMILIES}' => $smilies,
             '{HDR_IP}' => $row['msg_hdr_ip'],
             '{RAW_IP}' => $row['msg_raw_ip'],
-            '{REPORT_COMMENT_TGT}' => $report_comment_tgt,
             '{REPORT_COMMENT_TITLE}' => &$lang_display_comments['report_comment_title'],
             );
 
