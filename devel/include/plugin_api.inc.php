@@ -70,9 +70,9 @@ class CPGPluginAPI {
         // Get the plugin properties from the database
         while ($plugin = mysql_fetch_assoc($result)) {
 
-            // If config and codebase files aren't present, skip this plugin.
+            // If configuration and codebase files aren't present, skip this plugin.
             if (!file_exists('./plugins/'.$plugin['path'].'/codebase.php') &&
-                !file_exists('./plugins/'.$plugin['path'].'/config.php')) {
+                !file_exists('./plugins/'.$plugin['path'].'/configuration.php')) {
                 continue;
             }
 
@@ -385,9 +385,9 @@ class CPGPluginAPI {
             return true;
         }
 
-        // If the codebase and config.php file is missing return false
+        // If the codebase and configuration.php file is missing return false
         if (!file_exists('./plugins/'.$path.'/codebase.php') &&
-            !file_exists('./plugins/'.$path.'/config.php')) {
+            !file_exists('./plugins/'.$path.'/configuration.php')) {
             return false;
         }
 

@@ -50,7 +50,7 @@ EOT;
     $installed_count = 0;
     foreach ($CPG_PLUGINS as $thisplugin) {
         $installed_count++;
-        include('./plugins/'.$thisplugin->path.'/config.php');
+        include('./plugins/'.$thisplugin->path.'/configuration.php');
 
         $safename = addslashes(str_replace('&nbsp;', '', $name));
         $extra = (isset($install_info)) ? ($install_info):(null);
@@ -139,12 +139,12 @@ EOT;
     foreach ($available_plugins as $path) {
         if (($plugin_id = CPGPluginAPI::installed($path))===false) {
 
-            // If codebase.php and config.php don't exist, skip this folder
-            if (!(file_exists('./plugins/'.$path.'/codebase.php') && file_exists('./plugins/'.$path.'/config.php'))) {
+            // If codebase.php and configuration.php don't exist, skip this folder
+            if (!(file_exists('./plugins/'.$path.'/codebase.php') && file_exists('./plugins/'.$path.'/configuration.php'))) {
                 continue;
             }
 
-            include('./plugins/'.$path.'/config.php');
+            include('./plugins/'.$path.'/configuration.php');
 
             $safename = addslashes(str_replace('&nbsp;', '', $name));
             $extra = (isset($extra_info)) ? ($extra_info):(null);

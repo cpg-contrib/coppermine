@@ -321,20 +321,6 @@ function list_users()
     global $CONFIG, $PAGE, $FORBIDDEN_SET;
     global $lang_list_users, $lang_errors, $template_user_list_info_box, $cpg_show_private_album, $cpg_udb;
 
-    //if (defined('UDB_INTEGRATION')) {
-        //$result = $cpg_udb->list_users_query($user_count);
-    /*} else {
-        // $sql = "SELECT user_id," . "        user_name," . "        COUNT(DISTINCT a.aid) as alb_count," . "        COUNT(DISTINCT pid) as pic_count," . "        MAX(pid) as thumb_pid " . "FROM {$CONFIG['TABLE_USERS']} AS u " . "INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON category = " . FIRST_USER_CAT . " + user_id " . "INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid " . "WHERE approved = 'YES' " . "$FORBIDDEN_SET " . "GROUP BY user_id " . "ORDER BY user_name ";
-        // Fixed correct album count DJMaze
-        $sql = "SELECT user_id, " . "user_name, " . "COUNT(DISTINCT a.aid) as alb_count, " . "COUNT(DISTINCT pid) as pic_count, " . "MAX(galleryicon) as gallery_pid, MAX(pid) as thumb_pid " . "FROM {$CONFIG['TABLE_USERS']} AS u " . "INNER JOIN {$CONFIG['TABLE_ALBUMS']} AS a ON category = " . FIRST_USER_CAT . " + user_id " . "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON (p.aid = a.aid AND approved = 'YES') ";
-        if ($FORBIDDEN_SET != "" && !$cpg_show_private_album) $sql .= "WHERE $FORBIDDEN_SET or galleryicon>=0 ";
-        $sql .= "GROUP BY user_id " . "ORDER BY user_name";
-
-        $result = cpg_db_query($sql);
-
-        $user_count = mysql_num_rows($result);*/
-    //}
-
     $rowset = $cpg_udb->list_users_query($user_count);
 
     if (!$rowset) {
@@ -344,23 +330,6 @@ function list_users()
 
     $user_per_page = $CONFIG['thumbcols'] * $CONFIG['thumbrows'];
     $totalPages = ceil($user_count / $user_per_page);
-
-    /*
-    if ($PAGE > $totalPages) $PAGE = 1;
-    $lower_limit = ($PAGE-1) * $user_per_page;
-    $upper_limit = min($user_count, $PAGE * $user_per_page);
-    $row_count = $upper_limit - $lower_limit;
-    */
-
-    //if (defined('UDB_INTEGRATION')) {
-        //$rowset = $cpg_udb->list_users_retrieve_data($result, $lower_limit, $row_count);
-    /*} else {
-        $rowset = array();
-        $i = 0;
-        mysql_data_seek($result, $lower_limit);
-        while (($row = mysql_fetch_array($result)) && ($i++ < $row_count)) $rowset[] = $row;
-        mysql_free_result($result);*/
-    //}
 
     $user_list = array();
     foreach ($rowset as $user) {
@@ -390,11 +359,13 @@ function list_users()
         $albums_txt = sprintf($lang_list_users['n_albums'], $user_album_count);
         $pictures_txt = sprintf($lang_list_users['n_pics'], $user_pic_count);
 
-        $params = array('{USER_NAME}' => $user['user_name'],
+        $params = CPGPluginAPI::filter('user_caption_params', array('{USER_NAME}' => $user['user_name'],
             '{USER_ID}' => $user['user_id'],
             '{ALBUMS}' => $albums_txt,
             '{PICTURES}' => $pictures_txt,
-            );
+            )
+        );
+
         $caption = template_eval($template_user_list_info_box, $params);
 
         $user_list[] = array('cat' => FIRST_USER_CAT + $user['user_id'],
@@ -737,7 +708,7 @@ if (isset($_GET['file'])) {
     $path = './plugins/'.$file.'.php';
 
     // Don't include the codebase and credits files
-    if ($file != 'codebase' && $file != 'config' && file_exists($path)) {
+    if ($file != 'codebase' && $file != 'configuration' && file_exists($path)) {
 
         // Include the code from the plugin
         include_once($path);
