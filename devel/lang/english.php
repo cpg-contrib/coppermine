@@ -68,7 +68,7 @@ $lang_meta_album_names = array(
   'toprated' => 'Top rated',
   'lasthits' => 'Last viewed',
   'search' => 'Search results',
-  'favpics'=> 'Favourite Files',
+  'favpics'=> 'Favorite Files',
 );
 
 $lang_errors = array(
