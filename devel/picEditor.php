@@ -152,7 +152,8 @@ if ($_GET['id']){
    }//   newimage
 
    if(isset($_POST["save"])) {
-        $width=$imgObj->width;
+        
+		$width=$imgObj->width;
         $height=$imgObj->height;
 		$normal = $CONFIG['fullpath'] . $CURRENT_PIC['filepath'] . $CONFIG['normal_pfx'] . $CURRENT_PIC['filename'];
 		$thumbnail = $CONFIG['fullpath'] . $CURRENT_PIC['filepath'] . $CONFIG['thumb_pfx'] . $CURRENT_PIC['filename'];
@@ -188,7 +189,10 @@ if ($_GET['id']){
 
         $width=$imgObj->width;
         $height=$imgObj->height;
-
+		$normal = $CONFIG['fullpath'] . $CURRENT_PIC['filepath'] . $CONFIG['normal_pfx'] . $CURRENT_PIC['filename'];
+		$thumbnail = $CONFIG['fullpath'] . $CURRENT_PIC['filepath'] . $CONFIG['thumb_pfx'] . $CURRENT_PIC['filename'];		
+		$currentPic = $CONFIG['fullpath'] . $CURRENT_PIC['filepath'] . $CURRENT_PIC['filename'];
+		
         //Calculate the thumbnail dimensions
         if ($CONFIG['thumb_use'] == 'ht') {
                 $ratio = $height / $CONFIG['thumb_width'] ;
@@ -204,6 +208,16 @@ if ($_GET['id']){
         $newimage = $imgObj->filename;
 
         copy($img_dir.$newimage,$CONFIG['fullpath'].$CURRENT_PIC['filepath'].$CONFIG['thumb_pfx'].$CURRENT_PIC['filename'])   ;
+		
+        $total_filesize = filesize($currentPic) + (file_exists($normal) ? filesize($normal) : 0) + filesize($thumbnail);
+			   
+          //Update the image size in the DB
+          db_query("UPDATE {$CONFIG['TABLE_PICTURES']}
+                          SET pheight = $height,
+							total_filesize = $total_filesize
+                          WHERE pid = '$pid'");
+		
+		
         $message = "Thumbnail successfully saved - you can close this window now";
 
    }
