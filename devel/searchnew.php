@@ -2,7 +2,7 @@
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -14,9 +14,8 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-/*
-$Id$
-*/
+// $Id$
+// ------------------------------------------------------------------------- //
 
 define('IN_COPPERMINE', true);
 define('SEARCHNEW_PHP', true);
@@ -212,7 +211,7 @@ function display_dir_tree($folder, $ident)
     $dir = opendir($dir_path);
     while ($file = readdir($dir)) {
         //if (is_dir($CONFIG['fullpath'] . $folder . $file) && $file != "." && $file != "..") { // removed by following line for 'do not show folders with dots': gaugau 03-11-02
-        if (is_dir($CONFIG['fullpath'] . $folder . $file) && substr($file,0,1) != "." && $file != "userpics"  && $file != "edit" ) {
+        if (is_dir($CONFIG['fullpath'] . $folder . $file) && substr($file,0,1) != "." && strpos($file,"'") == FALSE && $file != "userpics"  && $file != "edit" ) {
             $start_target = $folder . $file;
             $dir_path = $CONFIG['fullpath'] . $folder . $file;
 
