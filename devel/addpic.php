@@ -14,8 +14,16 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-/*
-$Id$
+/**
+* Coppermine Photo Gallery 1.3.0 addpic.php
+* 
+* This file file gets called in the img src when you do batch add, there is nothing 
+* much to look here the grunt work is done by the function add_picture 
+* 
+* @copyright 2002,2003 Gregory DEMAR, Coppermine Dev Team
+* @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
+* @package Coppermine
+* @version $Id$
 */
 
 define('IN_COPPERMINE', true);
