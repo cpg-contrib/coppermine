@@ -184,8 +184,9 @@ if (isset($HTTP_POST_VARS['change_profile']) && USER_ID && !defined('UDB_INTEGRA
         $profile4 = addslashes($HTTP_POST_VARS['user_profile4']);
         $profile5 = addslashes($HTTP_POST_VARS['user_profile5']);
         $profile6 = addslashes($HTTP_POST_VARS['user_profile6']);
+        $email = addslashes($HTTP_POST_VARS['email']);
 
-    $sql = "UPDATE {$CONFIG['TABLE_USERS']} SET " . "user_profile1 = '$profile1', " . "user_profile2 = '$profile2', " . "user_profile3 = '$profile3', " . "user_profile4 = '$profile4', " . "user_profile5 = '$profile5', " . "user_profile6 = '$profile6' " . "WHERE user_id = '" . USER_ID . "'";
+    $sql = "UPDATE {$CONFIG['TABLE_USERS']} SET " . "user_profile1 = '$profile1', " . "user_profile2 = '$profile2', " . "user_profile3 = '$profile3', " . "user_profile4 = '$profile4', " . "user_profile5 = '$profile5', " . "user_profile6 = '$profile6', user_email = '$email' " . "WHERE user_id = '" . USER_ID . "'";
 
 
 
