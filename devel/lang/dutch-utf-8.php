@@ -432,7 +432,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         'Bestand en thumbnail instellingen',
         array('Kwaliteit voor JPEG bestanden', 'jpeg_qual', 0),
         array('Maximale breedte of hoogte van een thumbnail <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0),
-        array('Gebruik afmeting ( Breedte of hoogte of Maximale verhouding voor thumbnail )<b>*</b>', 'thumb_use', 7),
+        array('Gebruik afmeting ( Breedte of hoogte of Maximale verhouding voor thumbnail )<b>**</b>', 'thumb_use', 7),
         array('CreÃ«er tussen foto\'s','make_intermediate',1),
         array('Maximale breedte of hoogte van tussen foto\'s /video <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0),
         array('Maximale grootte van upload bestanden (KB)', 'max_upl_size', 0),

@@ -431,7 +431,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   'Paramètres des images et vignettes',
   array('Qualité pour les fichiers JPG', 'jpeg_qual', 0),
   array('Dimension maximale pour les vignettes <b>*</b>', 'thumb_width', 0),
-  array('Utiliser la dimension (largeur ou hauteur ou aspect max pour la vignette)<b>*</b>', 'thumb_use', 7),
+  array('Utiliser la dimension (largeur ou hauteur ou aspect max pour la vignette)<b>**</b>', 'thumb_use', 7),
   array('Créer des images intermédiaires','make_intermediate',1),
   array('Largeur ou hauteur maximale pour une image intermédiaire <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0),
   array('Poids maximal des images à uploader (Ko)', 'max_upl_size', 0),

@@ -432,7 +432,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   'Nastavitve slik in ikon', //cpg1.3.0
   array('Kvaliteta za JPEG datoteke', 'jpeg_qual', 0),
   array('Max. velikost za ikone <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0), //cpg1.3.0
-  array('Velikost uporabi za Âširino ali viÂšino ali razmerje ikone<b>*</b>', 'thumb_use', 7),
+  array('Velikost uporabi za Âširino ali viÂšino ali razmerje ikone<b>**</b>', 'thumb_use', 7),
   array('Ustvari vmesne slike','make_intermediate',1),
   array('Max. Âširina ali viÂšina vmesnih slik/videa <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0), //cpg1.3.0
   array('Max. velikost datotek/slik (kB)', 'max_upl_size', 0), //cpg1.3.0

@@ -432,7 +432,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   'Files and thumbnails settings', //cpg1.3.0
   array('Quality for JPEG files', 'jpeg_qual', 0),
   array('Max dimension of a thumbnail <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0), //cpg1.3.0
-  array('Use dimension ( width or height or Max aspect for thumbnail )<b>*</b>', 'thumb_use', 7),
+  array('Use dimension ( width or height or Max aspect for thumbnail )<b>**</b>', 'thumb_use', 7),
   array('Create intermediate pictures','make_intermediate',1),
   array('Max width or height of an intermediate picture/video <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0), //cpg1.3.0
   array('Max size for uploaded files (KB)', 'max_upl_size', 0), //cpg1.3.0

@@ -433,7 +433,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   'Bild/Datei- und Thumbnail-Einstellungen', //cpg1.3.0
   array('Qualität für JPEG-Dateien', 'jpeg_qual', 0),
   array('Maximalgrösse Thumbnail<a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0), //cpg1.3.0
-  array('Welche Dimension soll genutzt werden für Thumbnails ( Breite oder Höhe oder das, was jeweils grösser ist)<a href="#notice1" class="clickable_option">*</a>', 'thumb_use', 7),
+  array('Welche Dimension soll genutzt werden für Thumbnails ( Breite oder Höhe oder das, was jeweils grösser ist)<a href="#notice1" class="clickable_option">**</a>', 'thumb_use', 7),
   array('Bilder in Zwischengröße erzeugen','make_intermediate',1),
   array('Maximale Breite oder Höhe von Bildern/Videos in Zwischengröße <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0), //cpg1.3.0
   array('Maximalgröße für das Hochladen von Dateien (KB)', 'max_upl_size', 0), //cpg1.3.0

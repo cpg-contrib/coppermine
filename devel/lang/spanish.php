@@ -429,7 +429,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	'Configuración de archivos y thumbnails',
 	array('Calidad para los ficheros JPEG', 'jpeg_qual', 0),
 	array('Máxima anchura o altura de los thumbnail <b>*</b>', 'thumb_width', 0),
-	array('Usar dimensión ( anchura, altura o máximo para los thumbnail )<b>*</b>', 'thumb_use', 7),
+	array('Usar dimensión ( anchura, altura o máximo para los thumbnail )<b>**</b>', 'thumb_use', 7),
 	array('Crear imágenes de tamaño intermedio','make_intermediate',1),
 	array('Máxima anchura o altura de las imágenes de tamaño intermedio <b>*</b>', 'picture_width', 0),
 	array('Máximo tamaño de los ficheros añadidos por los usuarios (KB)', 'max_upl_size', 0),
