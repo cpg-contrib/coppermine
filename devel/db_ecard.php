@@ -25,9 +25,9 @@ global $CONFIG;
 require('include/init.inc.php');
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__, 'false');
 
-$sort = $_REQUEST["sort"];
-$start = $_REQUEST["start"];
-$count = $_REQUEST["count"];
+$sort = isset($_REQUEST['sort']) ? $_REQUEST['sort'] : '';
+$start = isset($_REQUEST['start']) ? $_REQUEST['start'] : '';
+$count = isset($_REQUEST['count']) ? $_REQUEST['count'] : '';
 //set default values
 $selectOptions = array(25,50,75,100);
 $sortBy = 'date';
@@ -39,7 +39,7 @@ if (!$count) {$countTo = $selectOptions[0];}else{$countTo=$count;}
 $tabOutput = '';
 
 //delete selected ecards
-if ($_REQUEST['eid']) {
+if (isset($_REQUEST['eid'])) {
   foreach ($_REQUEST['eid'] as $key) {
     //print $key;
     //print "<br>";
@@ -235,7 +235,7 @@ print "<tr>
 $tempClass = ' class="tableb"';
 while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
    print "\t<tr>\n";
-   print "<td".$tempClass." align=\"center\"><input type=\"Checkbox\" name=\"eid[]\" value=\"".$line['eid']."\" id=\"eidselector\" $checked class=\"checkbox\"></td>\n";
+   print "<td".$tempClass." align=\"center\"><input type=\"Checkbox\" name=\"eid[]\" value=\"".$line['eid']."\" id=\"eidselector\" class=\"checkbox\"></td>\n";
    print "<td".$tempClass."><b class=\"thumb_caption\">".$line['sender_name']."</b></td>\n";
    print "<td".$tempClass."><span class=\"thumb_caption\"><a href=\"mailto:".$line['sender_email']."\">".$line['sender_email']."</a></span></td>\n";
    print "<td".$tempClass."><span class=\"thumb_caption\"><a href=\"http://ws.arin.net/cgi-bin/whois.pl?queryinput=".$line['sender_ip']."\">".$line['sender_ip']."</a></span></td>\n";
