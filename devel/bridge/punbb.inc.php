@@ -1,6 +1,6 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.1                                            //
+// Coppermine Photo Gallery 1.4.0                                            //
 // ------------------------------------------------------------------------- //
 // Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
@@ -22,7 +22,7 @@
 // ------------------------------------------------------------------------- //
 
 // URL of your punbb
-$path = 'http://www.nibbler.lunarpages.com/punbb';
+$path = 'http://www.yoursite.com/punbb';
 
 // local path to your punbb config file
 require_once('../punbb/config.php');
@@ -201,7 +201,7 @@ function udb_get_user_infos($uid)
     global $UDB_DB_NAME_PREFIX, $UDB_DB_LINK_ID;
     global $lang_register_php;
 
-    $sql = "SELECT username AS user_name, email AS user_email, registered AS user_regdate, location AS user_location, user_interests, url AS user_website FROM " . $UDB_DB_NAME_PREFIX . PUNBB_TABLE_PREFIX . PUNBB_USER_TABLE . " WHERE id = '$uid'";
+    $sql = "SELECT username AS user_name, email AS user_email, registered AS user_regdate, location AS user_location, url AS user_website FROM " . $UDB_DB_NAME_PREFIX . PUNBB_TABLE_PREFIX . PUNBB_USER_TABLE . " WHERE id = '$uid'";
     $result = db_query($sql, $UDB_DB_LINK_ID);
     if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_register_php['err_unk_user'], __FILE__, __LINE__);
 
@@ -302,10 +302,10 @@ function udb_get_admin_album_list()
     global $CONFIG, $UDB_DB_NAME_PREFIX, $UDB_DB_LINK_ID, $FORBIDDEN_SET;
 
     if (UDB_CAN_JOIN_TABLES) {
-        $sql = "SELECT aid, CONCAT('(', username, ') ', title) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN " . $UDB_DB_NAME_PREFIX . PUNBB_TABLE_PREFIX . PUNBB_USER_TABLE . " AS u ON category = (" . FIRST_USER_CAT . " + id) " . "ORDER BY title";
+        $sql = "SELECT aid, CONCAT('(', username, ') ', a.title) AS cpg_title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN " . $UDB_DB_NAME_PREFIX . PUNBB_TABLE_PREFIX . PUNBB_USER_TABLE . " AS u ON category = (" . FIRST_USER_CAT . " + id) " . "ORDER BY cpg_title";
         return $sql;
     } else {
-        $sql = "SELECT aid, IF(category > " . FIRST_USER_CAT . ", CONCAT('* ', title), CONCAT(' ', title)) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} " . "ORDER BY title";
+        $sql = "SELECT aid, IF(category > " . FIRST_USER_CAT . ", CONCAT('* ', a.title), CONCAT(' ', title)) AS cpg_title " . "FROM {$CONFIG['TABLE_ALBUMS']} " . "ORDER BY cpg_title";
         return $sql;
     }
 }
@@ -339,7 +339,7 @@ function udb_util_filloptions()
 
         // Query for list of public albums
 
-        $public_albums = db_query("SELECT aid, title, category FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
+        $public_albums = db_query("SELECT aid, a.title AS cpg_title, category FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " ORDER BY cpg_title");
 
         if (mysql_num_rows($public_albums)) {
             $public_result = db_fetch_rowset($public_albums);
