@@ -298,7 +298,7 @@ function bb_decode($text)
         // colours
         $text = preg_replace("/\[color=(\#[0-9A-F]{6}|[a-z]+)\]/", '<span style="color:$1">', $text);
         $text = str_replace("[/color]", '</span>', $text);
-
+	
         // [i] and [/i] for italicizing text.
         //$text = str_replace("[i:$uid]", $bbcode_tpl['i_open'], $text);
         //$text = str_replace("[/i:$uid]", $bbcode_tpl['i_close'], $text);
@@ -307,7 +307,7 @@ function bb_decode($text)
                 // We do URLs in several different ways..
                 $bbcode_tpl['url']  = '<span class="bblink"><a href="{URL}" target="_blank">{DESCRIPTION}</a></span>';
                 $bbcode_tpl['email']= '<span class="bblink"><a href="mailto:{EMAIL}">{EMAIL}</a></span>';
-
+		
                 $bbcode_tpl['url1'] = str_replace('{URL}', '\\1\\2', $bbcode_tpl['url']);
                 $bbcode_tpl['url1'] = str_replace('{DESCRIPTION}', '\\1\\2', $bbcode_tpl['url1']);
 
@@ -341,6 +341,14 @@ function bb_decode($text)
                 // [email]user@domain.tld[/email] code..
                 $patterns[5] = "#\[email\]([a-z0-9\-_.]+?@[\w\-]+\.([\w\-\.]+\.)?[\w]+)\[/email\]#si";
                 $replacements[5] = $bbcode_tpl['email'];
+				                
+		// [img]xxxx://www.phpbb.com[/img] code..
+                $bbcode_tpl['img']  = '<img src="{URL}" >';
+		$bbcode_tpl['img']  = str_replace('{URL}', '\\1\\2', $bbcode_tpl['img']);
+		
+		$patterns[6] = "#\[img\]([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/img\]#si";
+                $replacements[6] = $bbcode_tpl['img'];
+		
         }
 
         $text = preg_replace($patterns, $replacements, $text);
@@ -424,8 +432,8 @@ function get_private_album_set()
 
 // Retrieve the data for a picture or a set of picture
 function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $set_caption = true)
-{
-        global $USER, $CONFIG, $ALBUM_SET, $CURRENT_CAT_NAME, $HTTP_GET_VARS, $HTML_SUBST, $THEME_DIR, $FAVPICS;
+{	
+	global $USER, $CONFIG, $ALBUM_SET, $CURRENT_CAT_NAME, $CURRENT_ALBUM_KEYWORD, $HTTP_GET_VARS, $HTML_SUBST, $THEME_DIR, $FAVPICS;
         global $album_date_fmt, $lastcom_date_fmt, $lastup_date_fmt, $lasthit_date_fmt;
         global $lang_get_pic_data, $lang_meta_album_names, $lang_errors;
 
@@ -440,32 +448,38 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         } else {
             $select_columns = 'pid, filepath, filename, url_prefix, filesize, pwidth, pheight, ctime, aid';
         }
-
+	
+	// Keyword
+	if (!empty($CURRENT_ALBUM_KEYWORD)){
+		$keyword = "OR keywords like '%$CURRENT_ALBUM_KEYWORD%'";	
+	}
+		
         // Regular albums
         if ((is_numeric($album))) {
-            $album_name = get_album_name($album);
+                $album_name_keyword = get_album_name($album);
+		$album_name = $album_name_keyword['title'];
+		$album_keyword = $album_name_keyword['keyword'];		
+		
+		if (!empty($album_keyword)){
+			$keyword = "OR keywords like '%$album_keyword%'";	
+		}
 
                 $approved = GALLERY_ADMIN_MODE ? '' : 'AND approved=\'YES\'';
 
-                $result = db_query("SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' $approved $ALBUM_SET");
+                $result = db_query("SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' $keyword $approved $ALBUM_SET");
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
                 mysql_free_result($result);
 
                 if($select_columns != '*') $select_columns .= ', title, caption,hits,owner_id,owner_name';
 
-                $result = db_query("SELECT $select_columns from {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' $approved $ALBUM_SET ORDER BY $sort_order $limit");
+                $result = db_query("SELECT $select_columns from {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' $keyword $approved $ALBUM_SET ORDER BY $sort_order $limit");
                 $rowset = db_fetch_rowset($result);
                 mysql_free_result($result);
                 // Set picture caption
                 if ($set_caption) foreach ($rowset as $key => $row){
 
-                        if ($rowset[$key]['title']||$rowset[$key]['hits']) {
-                          $caption = "<span class=\"thumb_title\">".$rowset[$key]['title'];
-                          if ($rowset[$key]['title'] && $CONFIG['views_in_thumbview']) {$caption.= '-';}
-                          if ($CONFIG['views_in_thumbview']) { $caption.= sprintf($lang_get_pic_data['n_views'], $rowset[$key]['hits']);}
-                          $caption.= "</span>";
-                        }
+                        $caption = ($rowset[$key]['title']||$rowset[$key]['hits']) ? "<span class=\"thumb_title\">".$rowset[$key]['title'].(($rowset[$key]['title'])?"&nbsp;&ndash;&nbsp;":"").sprintf($lang_get_pic_data['n_views'], $rowset[$key]['hits'])."</span>" : '';
 
                         if ($CONFIG['caption_in_thumbview']){
                            $caption .= $rowset[$key]['caption'] ? "<span class=\"thumb_caption\">".bb_decode(($rowset[$key]['caption']))."</span>" : '';
@@ -495,7 +509,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 } else {
                         $album_name = $lang_meta_album_names['lastcom'];
                 }
-                $result = db_query("SELECT COUNT(*) from {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']}  WHERE approved = 'YES' AND {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid $ALBUM_SET");
+                $query = "SELECT COUNT(*) from {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']}  WHERE approved = 'YES' AND {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid $keyword $ALBUM_SET";		
+		$result = db_query($query);
+		
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
                 mysql_free_result($result);
@@ -505,8 +521,11 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 } else {
                         $select_columns = str_replace('pid', 'c.pid', $select_columns).', msg_id, author_id, msg_author, UNIX_TIMESTAMP(msg_date) as msg_date, msg_body, aid';
                 }
-
-                $result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_COMMENTS']} as c, {$CONFIG['TABLE_PICTURES']} as p WHERE approved = 'YES' AND c.pid = p.pid $ALBUM_SET ORDER by msg_id DESC $limit");
+		
+		$TMP_SET = str_replace($CONFIG['TABLE_PICTURES'],'p',$ALBUM_SET); 
+                $result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_COMMENTS']} as c, {$CONFIG['TABLE_PICTURES']} as p WHERE approved = 'YES' AND c.pid = p.pid $keyword $TMP_SET ORDER by msg_id DESC $limit");
+			
+		
                 $rowset = db_fetch_rowset($result);
                 mysql_free_result($result);
 
@@ -577,7 +596,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $count = $nbEnr[0];
                 mysql_free_result($result);
 
-                if($select_columns != '*' ) $select_columns .= ', owner_id, owner_name, aid';
+                if($select_columns != '*' ) $select_columns .= ',title, caption, owner_id, owner_name, aid';
 
                 $result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $ALBUM_SET ORDER BY pid DESC $limit");
 
@@ -640,14 +659,16 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 } else {
                         $album_name = $lang_meta_album_names['topn'];
                 }
-                $result = db_query("SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND hits > 0  $ALBUM_SET");
+		$query ="SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND hits > 0  $ALBUM_SET $keyword";		
+		
+                $result = db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
                 mysql_free_result($result);
 
                 if($select_columns != '*') $select_columns .= ', hits, aid';
 
-                $result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES'AND hits > 0 $ALBUM_SET ORDER BY hits DESC $limit");
+                $result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES'AND hits > 0 $ALBUM_SET $keyword ORDER BY hits DESC $limit");
                 $rowset = db_fetch_rowset($result);
                 mysql_free_result($result);
 
@@ -671,7 +692,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
                 if($select_columns != '*') $select_columns .= ', pic_rating, votes, aid';
 
-                $result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND votes >= '{$CONFIG['min_votes_for_rating']}' $ALBUM_SET ORDER BY pic_rating DESC, votes DESC $limit");
+                $result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND votes >= '{$CONFIG['min_votes_for_rating']}' $ALBUM_SET ORDER BY ROUND((pic_rating+1)/2000) DESC, votes DESC $limit");
                 $rowset = db_fetch_rowset($result);
                 mysql_free_result($result);
 
@@ -839,11 +860,11 @@ function get_album_name($aid)
         global $CONFIG;
         global $lang_errors;
 
-        $result = db_query("SELECT title from {$CONFIG['TABLE_ALBUMS']} WHERE aid='$aid'");
+        $result = db_query("SELECT title,keyword from {$CONFIG['TABLE_ALBUMS']} WHERE aid='$aid'");
         $count = mysql_num_rows($result);
         if ($count > 0) {
                 $row = mysql_fetch_array($result);
-                return $row['title'];
+                return $row;
         } else {
                 cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
         }
@@ -1013,18 +1034,14 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
         $thumb_per_page = $thumbcols * $thumbrows;
         $lower_limit = ($page-1) * $thumb_per_page;
 
-        $pic_data = get_pic_data($album, $thumb_count, $album_name, $lower_limit, $thumb_per_page);
+        $pic_data = get_pic_data($album, $thumb_count, $album_name, $lower_limit, $thumb_per_page);		
+	
         $total_pages = ceil($thumb_count / $thumb_per_page);
 
         $i = 0;
         if (count($pic_data) > 0) {
                 foreach ($pic_data as $key => $row) {
                         $i++;
-
-                        if (!is_image($row['filename'])) {
-                                $row['pwidth'] = 100;
-                                $row['pheight'] = 100;
-                        }
 
                         $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
 
@@ -1042,6 +1059,7 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
                         } else {
                                 $thumb_list[$i]['image'] = "<img src=\"images/thumb_{$extension}.jpg\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\">";
                         }
+
                         $thumb_list[$i]['caption'] = $row['caption_text'];
                         $thumb_list[$i]['admin_menu'] = '';
                         $thumb_list[$i]['aid'] = $row['aid'];
@@ -1098,10 +1116,6 @@ function display_film_strip($album, $cat, $pos)
                         $hi =(($pos==($i + $lower_limit)) ? '1': '');
                         $i++;
 
-                        if (!is_image($row['filename'])) {
-                                $row['pwidth'] = 100;
-                                $row['pheight'] = 100;
-                        }
                         $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
 
                         $pic_title =$lang_display_thumbnails['filename'].$row['filename']."\n".
@@ -1113,6 +1127,7 @@ function display_film_strip($album, $cat, $pos)
                         $p=($p < 0 ? 0 : $p);
                         $thumb_list[$i]['pos'] = $key < 0 ? $key : $p;
                         $mime_content = get_type($row['filename']);
+			
                         $extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
 
                         if ($mime_content['content']=='image') {
@@ -1120,6 +1135,7 @@ function display_film_strip($album, $cat, $pos)
                         } else { // is movie/audio/document
                                 $thumb_list[$i]['image'] = "<img src=\"images/thumb_{$extension}.jpg\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\">";
                         }
+
                         $thumb_list[$i]['caption'] = $row['caption_text'];
                         $thumb_list[$i]['admin_menu'] = '';
 
@@ -1587,4 +1603,9 @@ switch ($parameter) {
 
 return $return;
 }
+
+
+
+
+
 ?>
