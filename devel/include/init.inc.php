@@ -235,6 +235,7 @@ $CONFIG['TABLE_FILETYPES']          = $CONFIG['TABLE_PREFIX']."filetypes";
 $CONFIG['TABLE_ECARDS']          = $CONFIG['TABLE_PREFIX']."ecards";
 $CONFIG['TABLE_TEMPDATA']        = $CONFIG['TABLE_PREFIX']."temp_data";
 
+
 // User DB system
 if (defined('UDB_INTEGRATION')) require 'bridge/' . UDB_INTEGRATION . '.inc.php';
 // Connect to database
@@ -318,6 +319,8 @@ if ($CONFIG['debug_notice']==1 && ($CONFIG['debug_mode']==1 || ($CONFIG['debug_m
 }
 
 
+define('CPG_USER_FOLDER',$CONFIG['fullpath'].$CONFIG['userpics'].(10000 + USER_ID));
+
 // Process theme selection if present in URI or in user profile
 if (!empty($HTTP_GET_VARS['theme'])) {
     $USER['theme'] = $HTTP_GET_VARS['theme'];
@@ -329,9 +332,20 @@ if (isset($USER['theme']) && !strstr($USER['theme'], '/') && is_dir('themes/' . 
     unset($USER['theme']);
 }
 
-if (!file_exists("themes/{$CONFIG['theme']}/theme.php")) $CONFIG['theme'] = 'default';
-require "themes/{$CONFIG['theme']}/theme.php";
-$THEME_DIR = "themes/{$CONFIG['theme']}/";
+// Set theme
+$THEME_DIR = 'themes';
+// Check for user-level 'theme' folder stored in user's folder
+if (!isset($USER['theme']) && is_dir(CPG_USER_FOLDER.'/theme/')) {
+        $THEME_DIR = CPG_USER_FOLDER.'/';
+        $CONFIG['theme'] = 'theme';
+// If no user-level theme use global themes
+} elseif (!is_dir("themes/{$CONFIG['theme']}/")) {
+        $CONFIG['theme'] = 'classic';
+}
+require ($THEME_DIR.'/'.$CONFIG['theme'].'/theme.php');
+$THEME_DIR .= '/'.$CONFIG['theme'].'/';
+
+
 // Process language selection if present in URI or in user profile or try
 // autodetection if default charset is utf-8
 if (!empty($HTTP_GET_VARS['lang'])) {

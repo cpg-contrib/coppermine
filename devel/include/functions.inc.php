@@ -383,6 +383,8 @@ function load_template()
         $template = str_replace('{LANGUAGE_SELECT_FLAGS}', languageSelect('flags') ,$template);
         $gallery_pos = strpos($template, '{LANGUAGE_SELECT_LIST}');
         $template = str_replace('{LANGUAGE_SELECT_LIST}', languageSelect('list') ,$template);
+        $gallery_pos = strpos($template, '{THEME_DIR}');
+        $template = str_replace('{THEME_DIR}', $THEME_DIR ,$template);
         $gallery_pos = strpos($template, '{THEME_SELECT_LIST}');
         $template = str_replace('{THEME_SELECT_LIST}', themeSelect('list') ,$template);
         $gallery_pos = strpos($template, $tmpl_loc['l']);
@@ -1179,7 +1181,7 @@ function display_film_strip($album, $cat, $pos)
 // Return the url for a picture, allows to have pictures spreaded over multiple servers
 function get_pic_url(&$pic_row, $mode)
 {
-        global $CONFIG;
+        global $CONFIG,$THEME_DIR;
 
         static $pic_prefix = array();
         static $url_prefix = array();
@@ -1236,7 +1238,7 @@ function get_pic_url(&$pic_row, $mode)
                 // Use default thumbs
                 if (is_null($filepathname)) {
                        	// Check for default theme- and global-level thumbs
-                       	$thumb_paths[] = 'themes/'.$CONFIG['theme'].'/images/'; // Used for custom theme thumbs
+                       	$thumb_paths[] = $THEME_DIR.'/images/';                 // Used for custom theme thumbs
                        	$thumb_paths[] = 'images/';                             // Default Coppermine thumbs
                        	$thumb_extensions = Array('.gif','.png','.jpg');
                        	foreach ($thumb_paths as $default_thumb_path) {
