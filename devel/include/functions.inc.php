@@ -985,7 +985,15 @@ function compute_img_size($width, $height, $max)
         $ratio = max($ratio, 1.0);
         $image_size['width'] = ceil($width / $ratio);
         $image_size['height'] = ceil($height / $ratio);
-        $image_size['geom'] = 'width="'.$image_size['width'].'" height="'.$image_size['height'].'"';
+        if($thumb_use=='ht') {          
+	  $image_size['geom'] = '" height="'.$image_size['height'].'"';
+        } elseif($thumb_use=='wd') {
+	  $image_size['geom'] = 'width="'.$image_size['width'].'"';	         
+        } else {
+          $image_size['geom'] = 'width="'.$image_size['width'].'" height="'.$image_size['height'].'"';
+        }
+	
+
 
         return $image_size;
 }
@@ -1033,7 +1041,11 @@ function display_film_strip($album, $cat, $pos)
         global $CONFIG, $AUTHORIZED, $HTTP_GET_VARS;
         global $album_date_fmt, $lang_display_thumbnails, $lang_errors, $lang_byte_units;
         $max_item=$CONFIG['max_film_strip_items'];
-        $thumb_per_page = $pos+$CONFIG['max_film_strip_items'];
+        //$thumb_per_page = $pos+$CONFIG['max_film_strip_items'];
+        $thumb_per_page = $max_item*2;
+        $l_limit = max(0,$pos-$CONFIG['max_film_strip_items']);
+        $new_pos=max(0,$pos-$l_limit);
+	
         $pic_data = get_pic_data($album, $thumb_count, $album_name, $l_limit, $thumb_per_page);
 
         if (count($pic_data) < $max_item ){
