@@ -28,7 +28,7 @@ $cpg_udb->synchronize_groups();
 
 function display_group_list()
 {
-    global $CONFIG;
+    global $CONFIG, $custom_group_counter;
     global $lang_groupmgr_php, $lang_byte_units, $lang_yes, $lang_no;
     $row_counter = 0;
     $table_start = '<table border="0" cellspacing="0" cellpadding="0">'."\n";
@@ -60,6 +60,7 @@ function display_group_list()
     }
 
     $field_list = array('can_rate_pictures', 'can_send_ecards', 'can_post_comments', 'can_upload_pictures', 'pub_upl_need_approval', 'can_create_albums', 'priv_upl_need_approval');
+    $custom_group_counter = 0;
 
     while ($group = mysql_fetch_array($result)) {
         $group['group_name'] = $group['group_name'];
@@ -68,6 +69,7 @@ function display_group_list()
 
 
         if ($group['group_id'] > 4 && UDB_INTEGRATION == 'coppermine') {
+            $custom_group_counter++;
             echo <<< EOT
         <tr>
                 <td class="$table_background" align="center" valign="top" style="padding-left: 1px; padding-right: 1px" >
@@ -112,7 +114,7 @@ EOT;
                         <br />
                         {$lang_groupmgr_php['disk_quota']}: <input type="text" name="group_quota_{$group['group_id']}" value="{$group['group_quota']}" size="5" class="textinput" $disabled /> {$lang_byte_units[1]}
                 <br /><a href="usermgr.php?op=group_alb_access&gid={$group['group_id']}">{$lang_groupmgr_php['group_assigned_album']}</a>
-								</td>
+                                                                </td>
                 <td class="$table_background" align="left" valign="top">
 EOT;
         foreach ($field_list as $field_name) {
@@ -381,7 +383,11 @@ EOT;
             <td colspan="13" align="center" class="tablef">
                         <input type="submit" name="apply_modifs" value="{$lang_groupmgr_php['apply']}" class="button">&nbsp;&nbsp;&nbsp;
                         <input type="submit" name="new_group" value="{$lang_groupmgr_php['create_new_group']}" class="button">&nbsp;&nbsp;&nbsp;
-                        <input type="submit" name="del_sel" value="{$lang_groupmgr_php['del_groups']}" onClick="return confirmDel()" class="button">
+EOT;
+    if($custom_group_counter > 0) {
+        print '                        <input type="submit" name="del_sel" value="'.$lang_groupmgr_php['del_groups'].'" onClick="return confirmDel()" class="button">';
+    }
+    echo <<<EOT
                 </td>
         </form>
         </tr>
