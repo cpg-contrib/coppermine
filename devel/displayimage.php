@@ -232,13 +232,18 @@ function html_picinfo()
                 $info[sprintf($lang_picinfo['Rating'], $CURRENT_PIC_DATA['votes'])] = '<img src="'.$prefix.'images/rating'.round($CURRENT_PIC_DATA['pic_rating']/2000).'.gif" align="absmiddle"/>';
         }
 
-        $info[$lang_picinfo['Keywords']]   = '<span class="alblink">'.preg_replace("/(\S+)/","<a href=\"thumbnails.php?album=search&search=\\1\">\\1</a>" , $CURRENT_PIC_DATA['keywords']).'</span>';
+        if ($CURRENT_PIC_DATA['keywords'] != ""){
+			$info[$lang_picinfo['Keywords']]   = '<span class="alblink">'.preg_replace("/(\S+)/","<a href=\"thumbnails.php?album=search&search=\\1\">\\1</a>" , $CURRENT_PIC_DATA['keywords']).'</span>';
+		}	
 
         for ($i =1; $i<= 4; $i++){
-                if ($CONFIG['user_field'.$i.'_name']) {
-                    $info[$CONFIG['user_field'.$i.'_name']] = make_clickable($CURRENT_PIC_DATA['user'.$i]);
-                }
-        }
+      		if ($CONFIG['user_field'.$i.'_name']) {
+          		if($CURRENT_PIC_DATA['user'.$i] != ""){
+            		$info[$CONFIG['user_field'.$i.'_name']] = make_clickable($CURRENT_PIC_DATA['user'.$i]);
+         		}
+      		}
+   		} 
+   
 
         $info[$lang_picinfo['File Size']]  = ($CURRENT_PIC_DATA['filesize'] > 10240 ? ($CURRENT_PIC_DATA['filesize'] >> 10).' '.$lang_byte_units[1] : $CURRENT_PIC_DATA['filesize'].' '.$lang_byte_units[0]);
         $info[$lang_picinfo['Dimensions']] = sprintf($lang_display_image_php['size'], $CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight']);
@@ -258,7 +263,8 @@ function html_picinfo()
         }
 
         //Create the absolute URL for display in info
-        $info['URL']='<a href=http://'.$_SERVER["SERVER_NAME"].$_SERVER["SCRIPT_NAME"]."?pos=-$CURRENT_PIC_DATA[pid]".' >http://'.$_SERVER["SERVER_NAME"].$_SERVER["SCRIPT_NAME"]."?pos=-$CURRENT_PIC_DATA[pid]".'</a>';
+        $info['URL']='<a href='.$CONFIG["ecards_more_pic_target"].$_SERVER["SCRIPT_NAME"]."?pos=-$CURRENT_PIC_DATA[pid]".' >'.$CONFIG["ecards_more_pic_target"].$_SERVER["SCRIPT_NAME"]."?pos=-$CURRENT_PIC_DATA[pid]".'</a>';
+		//with subdomains the variable is $_SERVER["SERVER_NAME"] does not return the right value instead of using a new config variable I reused $CONFIG["ecards_more_pic_target"] no trailing slash in the configure
 
         //Create the add to fav link
         if(!in_array($CURRENT_PIC_DATA['pid'],$FAVPICS)){
