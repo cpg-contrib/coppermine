@@ -518,7 +518,6 @@ function send_reg_file()
         header("Content-Disposition: attachment; filename=cpg_".$time_stamp.".reg");
 
     $lines[] = 'Windows Registry Editor Version 5.00';
-    $lines[] = '';
     //$lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\PublishingWizard\Providers\CopperminePhotoGallery]';
         $lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\PublishingWizard\Providers\\'. $CONFIG['gallery_name'] .']';
     $lines[] = '"displayname"="' . $CONFIG['gallery_name'] . '"';
