@@ -146,6 +146,7 @@ INSERT INTO CPG_filetypes VALUES ('txt', 'text/plain', 'document');
 INSERT INTO CPG_filetypes VALUES ('rtf', 'text/richtext', 'document');
 INSERT INTO CPG_filetypes VALUES ('pdf', 'application/pdf', 'document');
 INSERT INTO CPG_filetypes VALUES ('xls', 'application/excel', 'document');
+INSERT INTO CPG_filetypes VALUES ('pps', 'application/powerpoint', 'document');
 INSERT INTO CPG_filetypes VALUES ('ppt', 'application/powerpoint', 'document');
 INSERT INTO CPG_filetypes VALUES ('zip', 'application/zip', 'document');
 INSERT INTO CPG_filetypes VALUES ('rar', 'application/rar', 'document');
