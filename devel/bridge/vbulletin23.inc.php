@@ -361,26 +361,132 @@ function udb_get_admin_album_list()
 
 function udb_util_filloptions()
 {
-    global $albumtbl, $picturetbl, $categorytbl, $lang_util_php;
+    global $albumtbl, $picturetbl, $categorytbl, $lang_util_php, $CONFIG, $UDB_DB_NAME_PREFIX, $UDB_DB_LINK_ID;
 
     $usertbl = $UDB_DB_NAME_PREFIX.VB_TABLE_PREFIX.VB_USER_TABLE;
 
-    $query = "SELECT aid, category, IF(username IS NOT NULL, CONCAT('(', username, ') ',title), CONCAT(' - ', title)) AS title " . "FROM $albumtbl AS a " . "LEFT JOIN $usertbl AS u ON category = (" . FIRST_USER_CAT . " + userid) " . "ORDER BY category, title";
-    $result = db_query($query, $UDB_DB_LINK_ID);
-    // $num=mysql_numrows($result);
-    echo '<select size="1" name="albumid">';
+    if (UDB_CAN_JOIN_TABLES) {
 
-    while ($row = mysql_fetch_array($result)) {
-        $sql = "SELECT name FROM $categorytbl WHERE cid = " . $row["category"];
-        $result2 = db_query($sql);
-        $row2 = mysql_fetch_array($result2);
+        $query = "SELECT aid, category, IF(username IS NOT NULL, CONCAT('(', username, ') ', a.title), CONCAT(' - ', a.title)) AS title " . "FROM $albumtbl AS a " . "LEFT JOIN $usertbl AS u ON category = (" . FIRST_USER_CAT . " + userid) " . "ORDER BY category, title";
+        $result = db_query($query, $UDB_DB_LINK_ID);
+        // $num=mysql_numrows($result);
+        echo '<select size="1" name="albumid">';
 
-        print "<option value=\"" . $row["aid"] . "\">" . $row2["name"] . $row["title"] . "</option>\n";
+        while ($row = mysql_fetch_array($result)) {
+            $sql = "SELECT name FROM $categorytbl WHERE cid = " . $row["category"];
+            $result2 = db_query($sql);
+            $row2 = mysql_fetch_array($result2);
+
+            print "<option value=\"" . $row["aid"] . "\">" . $row2["name"] . $row["title"] . "</option>\n";
+        }
+
+        print '</select> (3)';
+        print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="submit" /> (4)';
+        print '</form>';
+
+    } else {
+
+        // Query for list of public albums
+
+        $public_albums = db_query("SELECT aid, title, category FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
+
+        if (mysql_num_rows($public_albums)) {
+            $public_result = db_fetch_rowset($public_albums);
+        } else {
+            $public_result = array();
+        }
+
+        // Initialize $merged_array
+        $merged_array = array();    
+
+        // Count the number of albums returned.
+        $end = count($public_result);
+
+        // Cylce through the User albums.
+        for($i=0;$i<$end;$i++) {        
+
+            //Create a new array sow we may sort the final results.
+            $merged_array[$i]['id'] = $public_result[$i]['aid'];
+            $merged_array[$i]['album_name'] = $public_result[$i]['title'];
+
+            // Query the database to get the category name.
+            $vQuery = "SELECT name, parent FROM " . $CONFIG['TABLE_CATEGORIES'] . " WHERE cid='" . $public_result[$i]['category'] . "'";
+            $vRes = mysql_query($vQuery);
+            $vRes = mysql_fetch_array($vRes);
+            if (isset($merged_array[$i]['username_category'])) {
+                $merged_array[$i]['username_category'] = (($vRes['name']) ? '(' . $vRes['name'] . ') ' : '').$merged_array[$i]['username_category'];
+            } else {
+                $merged_array[$i]['username_category'] = (($vRes['name']) ? '(' . $vRes['name'] . ') ' : '');   
+            }
+
+        }
+
+        // We transpose and divide the matrix into columns to prepare it for use in array_multisort(). 
+        foreach ($merged_array as $key => $row) {
+           $aid[$key] = $row['id'];
+           $title[$key] = $row['album_name'];
+           $album_lineage[$key] = $row['username_category'];
+        }
+
+        // We sort all columns in descending order and plug in $album_menu at the end so it is sorted by the common key.
+        array_multisort($album_lineage, SORT_ASC, $title, SORT_ASC, $aid, SORT_ASC, $merged_array);
+
+        // Query for list of user albums
+
+        $user_albums = db_query("SELECT aid, title, category FROM {$CONFIG['TABLE_ALBUMS']} WHERE category >= " . FIRST_USER_CAT . " ORDER BY aid");
+        if (mysql_num_rows($user_albums)) {
+            $user_albums_list = db_fetch_rowset($user_albums);
+        } else {
+            $user_albums_list = array();
+        }
+
+        // Query for list of user IDs and names
+    
+        $user_album_ids_and_names = db_query("SELECT (userid + ".FIRST_USER_CAT.") as id, CONCAT('(', username, ') ') as name FROM $usertbl ORDER BY name ASC",$UDB_DB_LINK_ID);
+
+        if (mysql_num_rows($user_album_ids_and_names)) {
+            $user_album_ids_and_names_list = db_fetch_rowset($user_album_ids_and_names);
+        } else {
+            $user_album_ids_and_names_list = array();
+        }
+
+        // Glue what we've got together.
+
+        // Initialize $udb_i as a counter.
+        if (count($merged_array)) {
+            $udb_i = count($merged_array); 
+        } else {
+            $udb_i = 0;
+        }
+
+        //Begin a set of nested loops to merge the various query results.
+        foreach ($user_albums_list as $aq) {
+            foreach ($user_album_ids_and_names_list as $uq) {
+                if ($aq['category'] == $uq['id']) {
+                    $merged_array[$udb_i]['id']= $aq['category'];
+                    $merged_array[$udb_i]['album_name']= $aq['title'];
+                    $merged_array[$udb_i]['username_category']= $uq['name'];
+                    $udb_i++;
+                }
+            }
+        }
+
+        // The user albums and public albums have been merged into one list. Print the dropdown.
+        echo '<select size="1" name="albumid">';
+
+        foreach ($merged_array as $menu_item) {
+
+            echo "<option value=\"" . $menu_item['id'] . "\">" . (isset($menu_item['username_category']) ? $menu_item['username_category'] : '') . $menu_item['album_name'] . "</option>\n";
+   
+        }
+
+        // Close list, etc.
+        print '</select> (3)';
+        print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="submit" /> (4)';
+        print '</form>'; 
+
     }
 
-    print '</select> (3)';
-    print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="submit" /> (4)';
-    print '</form>';
 }
 
 // ------------------------------------------------------------------------- //
