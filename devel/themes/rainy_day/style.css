@@ -476,3 +476,15 @@ bblink a:hover {
         padding-left: 10px;
         border-top : 1px solid #FFFFFF;
 }
+
+.debug_text {
+        border: #BDBEBD;
+        background-color: #EFEFEF;
+        width : 100%;
+        margin : 0px;
+}
+
+.clickable_option {
+        border-bottom : 1px dotted #758698;
+        cursor : hand;
+}

@@ -532,3 +532,15 @@ a:hover {
         padding-bottom: 6px;
         padding-left: 10px;
 }
+
+.debug_text {
+        border: #BDBEBD;
+        background-color: #EFEFEF;
+        width : 100%;
+        margin : 0px;
+}
+
+.clickable_option {
+        font-weight: bold;
+        cursor : hand;
+}

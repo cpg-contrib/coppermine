@@ -59,8 +59,8 @@ function form_yes_no($text, $name)
     global $CONFIG, $lang_yes, $lang_no;
 
     $value = $CONFIG[$name];
-    $yes_selected = $value ? 'selected' : '';
-    $no_selected = !$value ? 'selected' : '';
+    $yes_selected = $value ? 'checked="checked"' : '';
+    $no_selected = !$value ? 'checked="checked"' : '';
 
     echo <<<EOT
         <tr>
@@ -68,10 +68,9 @@ function form_yes_no($text, $name)
                         $text
         </td>
         <td class="tableb" valign="top">
-                        <select name="$name" class="listbox">
-                                <option value="1" $yes_selected>$lang_yes</option>
-                                <option value="0" $no_selected>$lang_no</option>
-                        </select>
+                        <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected /><label for="{$name}1" class="clickable_option">$lang_yes</label>
+                        &nbsp;&nbsp;
+                        <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
                 </td>
         </tr>
 
