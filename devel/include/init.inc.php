@@ -167,21 +167,7 @@ while ($row = mysql_fetch_array($results)) {
 } // while
 mysql_free_result($results);
 
-// Retrieve Array of Admin Groups (used for hiding admin usernames on thumbnails)
-$results = cpg_db_query("SELECT group_id FROM {$CONFIG['TABLE_USERGROUPS']} WHERE has_admin_access ");
-$CONFIG['ADMIN_GROUPS']=array();
-while ($row = mysql_fetch_array($results)) {
-    $CONFIG['ADMIN_GROUPS'][]= $row['group_id'];
-} // while
-mysql_free_result($results);
 
-// Retrieve Array of Admin Users (used for hiding admin usernames on thumbnails)
-$results = cpg_db_query("SELECT user_id FROM {$CONFIG['TABLE_USERS']} WHERE user_group in (" . implode(',',$CONFIG['ADMIN_GROUPS']).')');
-$CONFIG['ADMIN_USERS']=array();
-while ($row = mysql_fetch_array($results)) {
-    $CONFIG['ADMIN_USERS'][] = $row['user_id'];
-} // while
-mysql_free_result($results);
 
 // Reference 'site_url' to 'ecards_more_pic_target'
 $CONFIG['site_url'] =& $CONFIG['ecards_more_pic_target'];
@@ -220,6 +206,22 @@ define('UDB_INTEGRATION', $BRIDGE['short_name']);
 //if (!CPGPluginAPI::action('UDB_INTEGRATION',false,CPG_EXEC_FIRST) && defined('UDB_INTEGRATION')) {
     require_once 'bridge/' . UDB_INTEGRATION . '.inc.php';
 //}
+
+// Retrieve Array of Admin Groups (used for hiding admin usernames on thumbnails)
+$results = cpg_db_query("SELECT group_id FROM {$CONFIG['TABLE_USERGROUPS']} WHERE has_admin_access ");
+$CONFIG['ADMIN_GROUPS']=array();
+while ($row = mysql_fetch_array($results)) {
+    $CONFIG['ADMIN_GROUPS'][]= $row['group_id'];
+} // while
+mysql_free_result($results);
+
+// Retrieve Array of Admin Users (used for hiding admin usernames on thumbnails)
+$results = cpg_db_query("SELECT user_id FROM {$CONFIG['TABLE_USERS']} WHERE user_group in (" . implode(',',$CONFIG['ADMIN_GROUPS']).')');
+$CONFIG['ADMIN_USERS']=array();
+while ($row = mysql_fetch_array($results)) {
+    $CONFIG['ADMIN_USERS'][] = $row['user_id'];
+} // while
+mysql_free_result($results);
 
 // Start output buffering
 ob_start('cpg_filter_page_html');
