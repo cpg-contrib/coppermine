@@ -22,6 +22,10 @@ define('DISPLAYREPORT_PHP', true);
 require('include/init.inc.php');
 require('include/smilies.inc.php');
 
+if (!GALLERY_ADMIN_MODE) {
+    cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+}
+
 if (!isset($_GET['data'])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
 
 $data = array();
