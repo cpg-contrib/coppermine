@@ -390,7 +390,7 @@ function load_template()
 
         $template_header = substr($template, 0, $gallery_pos);
         $template_footer = substr($template, $gallery_pos);
-        $add_version_info = '<!--Coppermine Photo Gallery '.COPPERMINE_VERSION.'--></body>';
+        $add_version_info = "<!--Coppermine Photo Gallery ".COPPERMINE_VERSION." (".COPPERMINE_VERSION_STATUS.")-->\n</body>";
         $template_footer = ereg_replace("</body[^>]*>",$add_version_info,$template_footer);
 }
 
@@ -1713,8 +1713,22 @@ switch ($parameter) {
 return $return;
 }
 
-
-
+function cpg_alert_dev_version() {
+        global $lang_version_alert;
+        $return = '';
+        if (COPPERMINE_VERSION_STATUS != 'stable') {
+        ob_start();
+        starttable('100%', $lang_version_alert['version_alert']);
+        print '<tr><td class="tableb">';
+        print sprintf($lang_version_alert['no_stable_version'], COPPERMINE_VERSION, COPPERMINE_VERSION_STATUS);
+        print '</td></tr>';
+        endtable();
+        print '<br />';
+        $return = ob_get_contents();
+        ob_end_clean();
+        }
+        return $return;
+}
 
 
 ?>

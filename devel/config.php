@@ -497,7 +497,7 @@ if (count($HTTP_POST_VARS) > 0) {
 
 pageheader($lang_config_php['title']);
 
-$signature = 'Coppermine Photo Gallery ' . COPPERMINE_VERSION;
+$signature = 'Coppermine Photo Gallery ' . COPPERMINE_VERSION . ' ('. COPPERMINE_VERSION_STATUS . ')';
 
 starttable('100%', "{$lang_config_php['title']} - $signature", 2);
 echo <<<EOT

@@ -1,8 +1,8 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.4.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -1047,6 +1047,7 @@ function theme_admin_mode_menu()
             );
 
         $html = template_eval($template_gallery_admin_menu, $param);
+        $html.= cpg_alert_dev_version();
     } elseif (USER_ADMIN_MODE) {
         $param = array('{ALBMGR_LNK}' => $lang_user_admin_menu['albmgr_lnk'],
             '{MODIFYALB_LNK}' => $lang_user_admin_menu['modifyalb_lnk'],
