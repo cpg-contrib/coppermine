@@ -141,6 +141,7 @@ function udb_authenticate()
 
 	$authenticated = smf_authenticateUser();
 	smf_logOnline($smf_action);
+	smf_loadSession();
 
     // For error checking
     $CONFIG['TABLE_USERS'] = '**ERROR**';
