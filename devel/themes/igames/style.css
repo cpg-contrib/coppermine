@@ -1,6 +1,20 @@
-/*
-$Id$
-*/
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2005 Coppermine Dev Team
+  v1.1 originaly written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  ********************************************
+  Coppermine version: 1.4.1
+  $Source$
+  $Revision$
+  $Author$
+  $Date$
+**********************************************/
 
 /* Colors used in this style sheet:
     Hex 000000 = RBG   0,   0,   0 = black
@@ -118,38 +132,38 @@ li {
 }
 
 .top_panel {
-		background-image: url(images/top_panel_r1_c4.jpg);
-		background-repeat : repeat-x;
-		border-collapse:collapse;
-		margin: 0;
-		padding: 0;
+                background-image: url(images/top_panel_r1_c4.jpg);
+                background-repeat : repeat-x;
+                border-collapse:collapse;
+                margin: 0;
+                padding: 0;
 }
 
 .top_panel_left {
-		background-image: url(images/top_panel_r1_c1.jpg);
-		background-repeat : no-repeat;
-		background-position: top left;
-		margin: 0;
-		padding: 0;
+                background-image: url(images/top_panel_r1_c1.jpg);
+                background-repeat : no-repeat;
+                background-position: top left;
+                margin: 0;
+                padding: 0;
 }
 
 .top_panel_right {
-		background-image: url(images/top_panel_r1_c2.jpg);
-		background-repeat : no-repeat;
-		background-position: top right;
-		margin: 0;
-		padding: 0;
+                background-image: url(images/top_panel_r1_c2.jpg);
+                background-repeat : no-repeat;
+                background-position: top right;
+                margin: 0;
+                padding: 0;
 }
-		
+
 
 
 .top_panel_btm {
-       
-		    background: #4A4A4A;
-		    background-image: url(images/top_panel_r2_c3.jpg);
-		    background-repeat : no-repeat;
-		    background-position:right;
-		    padding-top : 0;
+
+                    background: #4A4A4A;
+                    background-image: url(images/top_panel_r2_c3.jpg);
+                    background-repeat : no-repeat;
+                    background-position:right;
+                    padding-top : 0;
             padding-bottom : 0;
 
 }
@@ -158,14 +172,14 @@ li {
         white-space:nowrap;
 }
 .top_menu_left_bttn a {
-       	background: #4A4A4A;
+               background: #4A4A4A;
         background-image : url(images/left_menu_button.gif);
         background-repeat : no-repeat;
         background-position : left;
         padding-left : 12px;
         padding-right : 6px;
-   		padding-top :3px;
-        padding-bottom : 0;	
+                   padding-top :3px;
+        padding-bottom : 0;
         display: block;
         height : 35px;
         line-height : 35px;
@@ -176,7 +190,7 @@ li {
 }
 
 .top_menu_left_bttn a:hover {
-		background: #4A4A4A;
+                background: #4A4A4A;
         background-image : url(images/left_menu_button_over.gif);
         background-position : left;
         background-repeat : no-repeat;
@@ -190,14 +204,14 @@ li {
 }
 
 .top_menu_right_bttn a {
-		background: #4A4A4A;
+                background: #4A4A4A;
         background-image : url(images/right_menu_button.gif);
         background-repeat : no-repeat;
         background-position : right;
         padding-right : 22px;
         padding-left : 6px;
-	    padding-top : 3px;
-        padding-bottom : 0;	
+            padding-top : 3px;
+        padding-bottom : 0;
         display: block;
         height : 35px;
         line-height : 35px;
@@ -207,7 +221,7 @@ li {
 }
 
 .top_menu_right_bttn a:hover {
-		background: #4A4A4A;
+                background: #4A4A4A;
         background-image : url(images/right_menu_button_over.gif);
         background-position : right;
         background-repeat : no-repeat;
@@ -219,13 +233,13 @@ li {
   white-space:nowrap;
 }
 .top_menu_bttn a {
-		background: #4A4A4A;
+                background: #4A4A4A;
         background-image : url(images/menu_button.gif);
         background-position : left;
         padding-left : 6px;
         padding-right : 6px;
-		padding-top : 3px;
-        padding-bottom : 0;	
+                padding-top : 3px;
+        padding-bottom : 0;
         display: block;
         height : 35px;
         line-height : 35px;
@@ -235,7 +249,7 @@ li {
 }
 
 .top_menu_bttn a:hover {
-		background: #4A4A4A;
+                background: #4A4A4A;
         background-image : url(images/menu_button_over.gif);
         text-decoration: none;
         color:         #F0AF00;
@@ -652,7 +666,7 @@ td #admin_menu_anim {
 
 
 #SUB_MENU {
-	    background-image: url(images/top_panel_r2_c2.jpg);
+            background-image: url(images/top_panel_r2_c2.jpg);
         background-position: left;
         padding-left: 20px;
 }
