@@ -722,12 +722,22 @@ If your browser times out, hit the reload button.
 
       <h3>4.9.2 Custom Thumbnails<a id="cust_thmb" name="cust_thmb"></a></h3>
       <p><img src="pics/cust_thmb.gif" border="1" /></p>
-      <p><b>Naming:</b><br />
-      <b style="color:red;">Thumbnails must have the same base name as the video.</b> Using the example in the screenshot, its thumbnails could be
+      <p><b>Order of thumbnails:</b><br />
+      <b style="color:red;">Thumbnails are selected in this order: user-defined, theme-defined, then global.</b> User-defined thumbnails are stored
+      in the folder where the file is located. Theme-defined thumbnails are stored in the themes 'images' folder. Global
+      thumbnails are stored within the 'images' folder of the Coppermine root. <b style="color:red;">Thumbnails can be either a 'gif', 'png', or 'jpg'.</b>
+      </p>
+      <p><b>Types of thumbnails:</b><br />
+      There are two types of thumbnails: file-specific and media-specific.</p>
+      <p><b style="color:red;">File-specific thumbnails must have the same base name as the file.</b> Using the example in the screenshot, its thumbnails could be
       'thumb_<b>thailand_waterfall</b>.gif', 'thumb_<b>thailand_waterfall</b>.png', or 'thumb_<b>thailand_waterfall</b>.jpg'
       , chosen in that order.
       </p>
-      <p>There are 2 ways to upload custom thumbnails:</p>
+      <p><b style="color:red;">The base name for media-specific thumbnails are 'thumb_movie', 'thumb_document', and 'thumb_audio'.</b>
+      Images use file-specific thumbnails by default.
+      </p>
+      <p><b>Uploading:</b><br />
+      There are 2 ways to upload custom thumbnails:</p>
       <p>
       1. Have an image already uploaded then upload a video via the upload page. (or vice versa) The video will share the thumbnail of the image.<br />
       </p><br /><br />
