@@ -1562,6 +1562,18 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
   'see_prev' => 'See previous',
   'see_next' => 'See next',
   'del_comm' => 'Delete selected comments',
+  'user_name' => 'Name', //cpg 1.4
+  'date' => 'Date', //cpg 1.4
+  'comment' => 'Comment', //cpg 1.4
+  'file' => 'File', //cpg 1.4
+  'name_a' => 'User name ascending', //cpg 1.4
+  'name_d' => 'User name descending', //cpg 1.4
+  'date_a' => 'Date ascending', //cpg 1.4
+  'date_d' => 'Date descending', //cpg 1.4
+  'comment_a' => 'Comment message ascending', //cpg 1.4
+  'comment_d' => 'Comment message descending', //cpg 1.4
+  'file_a' => 'File ascending', //cpg 1.4
+  'file_d' => 'File descending', //cpg 1.4
 );
 
 

@@ -17,6 +17,10 @@
   $Date$
 **********************************************/
 
+// added sort option and link to user profile
+// todo: file needs modification to work with bridged installs!
+// todo: search option.
+
 define('IN_COPPERMINE', true);
 define('REVIEWCOM_PHP', true);
 
@@ -63,7 +67,7 @@ if ($start > 0) {
 }
 
 pageheader($lang_reviewcom_php['title']);
-starttable('100%', $lang_reviewcom_php['title'], 3);
+
 echo <<<EOT
 <script type="text/javascript" language="javascript">
 <!--
@@ -98,11 +102,17 @@ function selectAll(d,box) {
 
 EOT;
 
+// make up the table header
+
+
+starttable('100%');
+
+
 if ($nb_com_del > 0) {
     $msg_txt = sprintf($lang_reviewcom_php['n_comm_del'], $nb_com_del);
     echo <<<EOT
         <tr>
-                <td class="tableh2" colspan="4" align="center">
+                <td class="tableh2" colspan="5" align="center">
                         <br /><b>$msg_txt</b><br /><br />
                 </td>
         </tr>
@@ -112,25 +122,72 @@ EOT;
 
 echo <<<EOT
         <tr>
-                <td class="tableh2">
-                        <input type="checkbox" name="checkAll" onClick="selectAll(this,'cid_array');" class="checkbox" title="$lang_check_uncheck_all" />
-                </td>
-                <td class="tableh2" colspan="3">
-                        $prev_link
-                        $next_link
-                        <b>{$lang_reviewcom_php['n_comm_disp']}</b>
-                        <select onChange="if(this.options[this.selectedIndex].value) window.location.href='{$_SERVER['PHP_SELF']}?start=$start&count='+this.options[this.selectedIndex].value;"  name="count" class="listbox">
-                                <option value="25">25</option>
-                                <option value="50" $s50>50</option>
-                                <option value="75" $s75>75</option>
-                                <option value="100" $s100>100</option>
-                        </select>
+                <td class="tableh1" colspan="5">
+                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                        <tr>
+                            <td class="tableh1">
+                                {$lang_reviewcom_php['title']}
+                            </td>
+                            <td class="tableh1" align="center">
+                                $prev_link
+                                $next_link
+                            </td>
+                            <td class="tableh1" align="right">
+                                {$lang_reviewcom_php['n_comm_disp']}
+                                <select onChange="if(this.options[this.selectedIndex].value) window.location.href='{$_SERVER['PHP_SELF']}?start=$start&count='+this.options[this.selectedIndex].value;"  name="count" class="listbox">
+                                        <option value="25">25</option>
+                                        <option value="50" $s50>50</option>
+                                        <option value="75" $s75>75</option>
+                                        <option value="100" $s100>100</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
                 </td>
         </tr>
 
 EOT;
 
-$result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, {$CONFIG['TABLE_COMMENTS']}.pid as pid, aid, filepath, filename, url_prefix, pwidth, pheight FROM {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']} WHERE {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid ORDER BY msg_id DESC LIMIT $start, $count");
+    echo <<<EOT
+        <tr>
+        <td class="tableh2" valign="middle" align="center">
+            <input type="checkbox" name="checkAll" onClick="selectAll(this,'cid_array');" class="checkbox" title="$lang_check_uncheck_all" />
+        </td>
+        <td class="tableh2" valign="top">{$lang_reviewcom_php['user_name']}
+        <a href="{$_SERVER['PHP_SELF']}?start=$start&count=$count&sort=name_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['name_a']}" /></a>
+        <a href="{$_SERVER['PHP_SELF']}?start=$start&count=$count&sort=name_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['name_d']}" /></a>
+        </td>
+        <td class="tableh2" valign="top">{$lang_reviewcom_php['date']}
+        <a href="{$_SERVER['PHP_SELF']}?start=$start&count=$count&sort=date_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['date_a']}" /></a>
+        <a href="{$_SERVER['PHP_SELF']}?start=$start&count=$count&sort=date_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['date_d']}" /></a>
+        </td>
+        <td class="tableh2" valign="top">{$lang_reviewcom_php['comment']}
+        <a href="{$_SERVER['PHP_SELF']}?start=$start&count=$count&sort=comment_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['comment_a']}" /></a>
+        <a href="{$_SERVER['PHP_SELF']}?start=$start&count=$count&sort=comment_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['comment_d']}" /></a>
+        </td>
+        <td class="tableh2" valign="top">{$lang_reviewcom_php['file']}
+        <a href="{$_SERVER['PHP_SELF']}?start=$start&count=$count&sort=file_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['file_a']}" /></a>
+        <a href="{$_SERVER['PHP_SELF']}?start=$start&count=$count&sort=file_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['file_d']}" /></a>
+        </td>
+        </tr>
+
+EOT;
+
+$sort_codes = array('name_a' => 'msg_author ASC',
+    'name_d' => 'msg_author DESC',
+    'date_a' => 'msg_id ASC',
+    'date_d' => 'msg_id DESC',
+    'comment_a' => 'msg_body ASC',
+    'comment_d' => 'msg_body DESC',
+    'file_a' => 'pid ASC',
+    'file_d' => 'pid DESC',
+);
+$sort = (!isset($_GET['sort']) || !isset($sort_codes[$_GET['sort']])) ? 'date_d' : $_GET['sort'];
+
+
+$result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, {$CONFIG['TABLE_COMMENTS']}.pid as pid, aid, filepath, filename, url_prefix, pwidth, pheight FROM {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']} WHERE {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid ORDER BY {$sort_codes[$sort]} LIMIT $start, $count");
+
+$rowcounter = 0;
 
 while ($row = mysql_fetch_array($result)) {
     $thumb_url =  get_pic_url($row, 'thumb');
@@ -143,26 +200,34 @@ while ($row = mysql_fetch_array($result)) {
     $thumb_link = 'displayimage.php?pos=' . - $row['pid'];
     $msg_date = localised_date($row['msg_date'], $comment_date_fmt);
     $msg_body = bb_decode($row['msg_body']);
+    $rowcounter++;
+    if ($rowcounter >=2 ) { //let the row colors alternate, for now they are the same
+        $rowcounter = 0;
+        $tableclass = 'tableb'; // change to "tableh2_compact" or similar for alternation
+    } else {
+        $tableclass = 'tableb';
+    }
+    // build a link to the author's profile if applicable
+    if ($row['author_id'] != 0) {
+        $profile_link_start = '<a href="profile.php?uid='.$row['author_id'].'">';
+        $profile_link_end = '</a>';
+    } else {
+        $profile_link_start = '';
+        $profile_link_end = '';
+    }
+    // output the table rows
     echo <<<EOT
         <tr>
-        <td class="tableb" rowspan="2">
+        <td class="$tableclass" valign="top" align="center">
             <input name="cid_array[]" id="check{$row['msg_id']}" type="checkbox" value="{$row['msg_id']}" />
         </td>
-        <td class="tableh2_compact" valign="top">
-                <table cellpadding="0" cellspacing="0" border ="0">
-                        <tr>
-                        <td><img src="images/spacer.gif" width="5" height="1" /><br/></td>
-                        <td><b>{$row['msg_author']}</b> - {$msg_date}</td>
-                        </tr>
-                </table>
-        </td>
-        <td class="tableh2_compact" align="center" rowspan="2">
-                        <a href="$thumb_link"><img src="$thumb_url" {$image_size['geom']} class="image" border="0" alt="" /><br /></a>
-        </td>
-        </tr>
-        <tr>
-        <td class="tableb" valign="top" width="100%">
+        <td class="$tableclass" valign="top">$profile_link_start{$row['msg_author']}$profile_link_end</td>
+        <td class="$tableclass" valign="top">{$msg_date}</td>
+        <td class="$tableclass" valign="top">
                         {$msg_body}
+        </td>
+        <td class="$tableclass" align="center">
+                        <a href="$thumb_link"><img src="$thumb_url" {$image_size['geom']} class="image" border="0" alt="" /></a>
         </td>
         </tr>
 
@@ -174,10 +239,10 @@ mysql_free_result($result);
 
 echo <<<EOT
         <tr>
-            <td class="tablef">
+            <td class="tablef" valign="middle" align="center">
                 <input type="checkbox" name="checkAll2" onClick="selectAll(this,'cid_array');" class="checkbox" title="$lang_check_uncheck_all" />
             </td>
-            <td colspan="3" align="center" class="tablef">
+            <td colspan="4" align="center" class="tablef">
                         <input type="submit" value="{$lang_reviewcom_php['del_comm']}" class="button" />
                 </td>
         </form>
