@@ -234,7 +234,7 @@ class cpg_udb extends core_udb {
             $result = cpg_db_query($sql);
 
             // If session exists...
-            if ($result) {
+            if (mysql_num_rows($result)) {
                 $row = mysql_fetch_assoc($result);
                 mysql_free_result($result);
 
@@ -266,6 +266,7 @@ class cpg_udb extends core_udb {
         
         // No session exists; create one
         } else {
+
             $this->create_session();
         }
 
@@ -319,9 +320,9 @@ class cpg_udb extends core_udb {
 	
 
 	// Gets user/guest count
-	function get_user_count() {
+	function get_session_users() {
 	   static $count = array();
-	   
+
 	   if (!$count) {
 
             // Get guest count
