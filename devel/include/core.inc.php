@@ -50,7 +50,8 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}       //{CORE}//
 //    if the theme has a {VANITY} token in its template.html. Don't enable this if you have modified the code! See the
 //    docs/theme.html documentation for validation methodology.
 //  ('THEME_HAS_VANITY_GRAPHICS',1) : "Powered By","Valid XHTML","Valid CSS". The location for the vanity graphics
-//    will be directed to the themes images folder.
+//    will be directed to the themes images folder.  Vanity graphics will only be shown for themes that have
+//    "THEME_IS_XHTML10_TRANSITIONAL" defined.
 //    Powered By PHP   : images/powered-php.gif
 //    Powered By MySQL : images/powered-mysql.gif
 //    Valid XHTML      : images/valid-xhtml10.gif
@@ -709,12 +710,12 @@ $template_image_rating = <<<EOT
                 <td colspan="6" class="tableh2_compact"><b>{TITLE}</b> {VOTES}</td>
         </tr>
         <tr>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE0}" title="{RUBBISH}"><img src="{LOCATION}images/rating0.gif" alt="{RUBBISH}" border="0px" alt="" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE1}" title="{POOR}"><img src="{LOCATION}images/rating1.gif" alt="{POOR}" border="0px" alt="" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE2}" title="{FAIR}"><img src="{LOCATION}images/rating2.gif" alt="{FAIR}" border="0px" alt="" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE3}" title="{GOOD}"><img src="{LOCATION}images/rating3.gif" alt="{GOOD}" border="0px" alt="" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE4}" title="{EXCELLENT}"><img src="{LOCATION}images/rating4.gif" alt="{EXCELLENT}" border="0px" alt="" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE5}" title="{GREAT}"><img src="{LOCATION}images/rating5.gif" alt="{GREAT}" border="0px" alt="" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE0}" title="{RUBBISH}"><img src="{LOCATION}images/rating0.gif" border="0px" alt="{RUBBISH}" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE1}" title="{POOR}"><img src="{LOCATION}images/rating1.gif" border="0px" alt="{POOR}" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE2}" title="{FAIR}"><img src="{LOCATION}images/rating2.gif" border="0px" alt="{FAIR}" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE3}" title="{GOOD}"><img src="{LOCATION}images/rating3.gif" border="0px" alt="{GOOD}" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE4}" title="{EXCELLENT}"><img src="{LOCATION}images/rating4.gif" border="0px" alt="{EXCELLENT}" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE5}" title="{GREAT}"><img src="{LOCATION}images/rating5.gif" border="0px" alt="{GREAT}" /><br /></a></td>
         </tr>
 </table>
 EOT;
