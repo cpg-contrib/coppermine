@@ -131,7 +131,7 @@ function udb_authenticate()
         $USER_DATA['priv_upl_need_approval'] = 1;
         $USER_DATA['upload_form_config'] = 0;
         $USER_DATA['num_file_upload'] = 0; 
-        $USER_DATA['num_URI_upoad'] = 0;
+        $USER_DATA['num_URI_upload'] = 0;
         $USER_DATA['custom_user_upload'] = 0; 
 
         $sql = "SELECT  group_quota as gq, " . "        can_rate_pictures as crp, " . "        can_send_ecards as cse, " . "        can_post_comments as cpc, " . "        can_upload_pictures as cup, " . "        can_create_albums as cca, " . "        pub_upl_need_approval as puna, " . "        priv_upl_need_approval as pruna, " . "        upload_form_config as ufc, " . "        custom_user_upload as cuu, " . "        num_file_upload as nfu, " . "        num_URI_upload as nuu " . "FROM {$CONFIG['TABLE_USERGROUPS']} " . "WHERE group_id IN " . $user_group_set;
