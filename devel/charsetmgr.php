@@ -152,11 +152,11 @@ function register_changes()
             //echo $charsetin . " " .$charsetout;
             if (!$doconvert)
             {
-                $title = "Checking conversion from <b>$charsetin</b> to <b>$charsetout</b>";
+                $title = "Checking conversion from $charsetin to $charsetout";
             }
             else if ($doconvert)
             {
-                $title = "Converting from <b>$charsetin</b> to <b>$charsetout</b>";
+                $title = "Converting from $charsetin to $charsetout";
             }
             html_header($title);
             html_logo();
