@@ -26,7 +26,8 @@ require('include/init.inc.php');
 $scriptfilename = 'minibrowser.php';
 if (isset($_REQUEST['folder'])) {$folder = rawurldecode($_REQUEST['folder']);} else { $folder = '';}
 if (isset($_REQUEST['startfolder'])) {$startfolder = rawurldecode($_REQUEST['startfolder']);} else { $startfolder = '';}
-if ($folder == '' && $startfolder != '' && is_dir($folder) != false) {
+//if ($folder == '' && $startfolder != '' && is_dir($folder) != false) {
+if ($folder == '' && $startfolder != '') {
     $folder = $startfolder;
 }
 if (isset($_REQUEST['parentform'])) {$parentform = rawurldecode($_REQUEST['parentform']);} else { $parentform = '';}
@@ -37,8 +38,7 @@ if (isset($_REQUEST['hidefolders'])) {
 }
 if (isset($_REQUEST['linktarget'])) {$linktarget = rawurldecode($_REQUEST['linktarget']);} else { $linktarget = '';}
 if (isset($_REQUEST['searchnew_php'])) {$searchnew_php = rawurldecode($_REQUEST['searchnew_php']);} else { $searchnew_php = '0';}
-
-
+//print $folder.'<hr>';
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
@@ -74,6 +74,7 @@ adjust_popup();
 <form name="childform" id="childform" method="get" action="<?php print $_SERVER['PHP_SELF']; ?>" onsubmit="return updateParent();">
 
 <?php
+//print $_SERVER["REQUEST_URI"];
 starttable(-2,$lang_minibrowser_php['select_directory'],2);
 if (!GALLERY_ADMIN_MODE) { cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__); }
 

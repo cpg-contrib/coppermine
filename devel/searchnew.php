@@ -524,7 +524,10 @@ EOT;
         }
     }
 
-    $iframe_startfolder = str_replace('searchnew.php', '', $_SERVER['PHP_SELF']).rtrim($CONFIG['fullpath'], '/').'/';
+
+    //$iframe_startfolder = rtrim(cpg_get_webroot_path(), '/');
+    $iframe_startfolder .= str_replace('searchnew.php', '', $_SERVER['PHP_SELF']).rtrim($CONFIG['fullpath'], '/').'/';
+    //print $iframe_startfolder;
     $iframe_hide = rawurlencode('.,..,edit,'.rtrim($CONFIG['userpics'], '/'));
     print '    <tr>'."\n";
     print '        <td class="tableb" align="center">'."\n";
