@@ -1033,11 +1033,7 @@ function display_film_strip($album, $cat, $pos)
         global $CONFIG, $AUTHORIZED, $HTTP_GET_VARS;
         global $album_date_fmt, $lang_display_thumbnails, $lang_errors, $lang_byte_units;
         $max_item=$CONFIG['max_film_strip_items'];
-        //$thumb_per_page = $pos+$CONFIG['max_film_strip_items'];
-        $thumb_per_page = $max_item*2;
-        $l_limit = max(0,$pos-$CONFIG['max_film_strip_items']);
-        $new_pos=max(0,$pos-$l_limit);
-
+        $thumb_per_page = $pos+$CONFIG['max_film_strip_items'];
         $pic_data = get_pic_data($album, $thumb_count, $album_name, $l_limit, $thumb_per_page);
 
         if (count($pic_data) < $max_item ){
