@@ -284,6 +284,15 @@ $lang_list_albums = array_merge($lang_list_albums_en, $lang_list_albums);
 }
 
 // ------------------------------------------------------------------------- //
+// File keywordmgr.php //cpg 1.4
+// ------------------------------------------------------------------------- //
+
+if (defined('KEYWORDMGR_PHP')) {
+  $lang_keywordmgr_php_en = cpg_get_default_lang_var('lang_keywordmgr_php','english');
+  $lang_keywordmgr_php = array_merge($lang_keywordmgr_php_en, $lang_keywordmgr_php);
+}
+
+// ------------------------------------------------------------------------- //
 // File login.php
 // ------------------------------------------------------------------------- //
 
