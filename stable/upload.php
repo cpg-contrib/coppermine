@@ -400,7 +400,10 @@ function get_and_convert_to_bytes ($ini_variable_name) {
 }
 
 // The function spring_cleaning is a garbage collection routine used to purge a directory of old files.
-function spring_cleaning($directory_path) {
+function& spring_cleaning($directory_path, $cache_time = 86400, $exclusion_list = array('index.html')) {
+
+    //Storage the deleted files
+    $deleted_list = array();
 
     //First we get the transitory directory handle.
     $directory_handle = opendir($directory_path);
@@ -417,14 +420,14 @@ function spring_cleaning($directory_path) {
     while (!(($file = readdir($directory_handle)) === false)) {
 
             // Avoid deleting the index page of the directory.
-            if ($file == 'index.html') {
+            if (in_array($file,$exclusion_list)) {
 
                 // This is the index file, so we move on.
                 continue;
 
             }
 
-            $dir_path = "".$directory_path."/".$file."";
+            $dir_path = $directory_path."/".$file;
 
             if (is_dir($dir_path)) {
 
@@ -434,18 +437,19 @@ function spring_cleaning($directory_path) {
             }
 
             // We find out when the file was last accessed.
-            $access_time = fileatime($dir_path);
+            $access_time = filemtime($dir_path); // fileatime() returned incorrect value on Windows
 
             // We find out the current time.
             $current_time = time();
 
-            // We calculate the the delete time. We will delete anything one hour old or older.
-            $delete_time = $current_time - 3600;
+            // We calculate the the delete time. We will delete anything older than $cache_time.
+            $delete_time = $current_time - $access_time;
 
             // Now we compare the two.
-            if ($access_time <= $delete_time) {
+            if ($delete_time >= $cache_time) {
 
                     // The file is old. We delete it.
+                    $deleted_list[] = $dir_path; // Store the name of the file getting deleted
                     unlink($dir_path);
             }
 
@@ -453,7 +457,8 @@ function spring_cleaning($directory_path) {
 
     // Don't forget to close the directory.
     closedir($directory_handle);
-
+    return $deleted_list;
+	}
 }
 
 // The create_record function. Takes the encoded string. Returns the unique record ID.
@@ -849,7 +854,7 @@ $max_file_size = $CONFIG['max_upl_size'] << 10;
 if (!isset($_REQUEST['control'])) {
 
     // Do some cleanup in the edit directory.
-    spring_cleaning('./albums/edit');
+    spring_cleaning('./albums/edit',3600);
 
     // Do some cleaning in the temp data table.
     clean_table();
