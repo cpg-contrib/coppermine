@@ -155,7 +155,7 @@ function db_error($the_error)
                 $the_error .= "\n\nmySQL error: ".mysql_error()."\n";
 
                 $out = "<br />There was an error while processing a database query.<br /><br/>
-                    <form name='mysql'><textarea rows=\"8\" cols=\"60\">".htmlspecialchars($the_error)."</textarea></form>";
+                    <form name=\"mysql\"><textarea rows=\"8\" cols=\"60\">".htmlspecialchars($the_error)."</textarea></form>";
 
             cpg_die(CRITICAL_ERROR, $out, __FILE__, __LINE__);
         }
@@ -696,11 +696,11 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
             $select_columns = 'pid, filepath, filename, url_prefix, filesize, pwidth, pheight, ctime, aid';
         }
 
-		if(count($FORBIDDEN_SET_DATA) > 0 ){
-			$forbidden_set_string =" AND aid NOT IN (".implode(",", $FORBIDDEN_SET_DATA).")";
-		}
+                if(count($FORBIDDEN_SET_DATA) > 0 ){
+                        $forbidden_set_string =" AND aid NOT IN (".implode(",", $FORBIDDEN_SET_DATA).")";
+                }
         // Keyword
-        if (!empty($CURRENT_ALBUM_KEYWORD)){				
+        if (!empty($CURRENT_ALBUM_KEYWORD)){
                 $keyword = "OR (keywords like '%$CURRENT_ALBUM_KEYWORD%' $forbidden_set_string )";
         } else $keyword = '';
 
@@ -723,10 +723,10 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
                 if($select_columns != '*') $select_columns .= ', title, caption,hits,owner_id,owner_name';
 
-				$query = "SELECT $select_columns from {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' $keyword $approved $ALBUM_SET ORDER BY $sort_order $limit";
-				
+                                $query = "SELECT $select_columns from {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' $keyword $approved $ALBUM_SET ORDER BY $sort_order $limit";
+
                 $result = db_query($query);
-				
+
                 $rowset = db_fetch_rowset($result);
                 mysql_free_result($result);
                 // Set picture caption
@@ -1788,7 +1788,7 @@ function cpg_debug_output()
 
         $debug_underline = '&#0010;------------------&#0010;';
         $debug_separate = '&#0010;==========================&#0010;';
-        echo '<form name="debug">';
+        echo '<form name="debug" action="'.$PHP_SELF.'">';
         starttable('100%', $lang_cpg_debug_output['debug_info'],2);
         echo '<tr><td align="center" valign="middle" class="tableh2">';
         echo '<script language="Javascript">
@@ -2176,7 +2176,7 @@ switch ($parameter) {
        $return = 'not yet implemented';
        break;
    default:
-       $return.= $lineBreak . '<form name="cpgChooseLanguage" action="' . $cpgChangeUrl . '" method="get" style="margin-top:0px;margin-bottom:0px;margin-left:0px;margin-right:0px;display:inline">' . $lineBreak;
+       $return.= $lineBreak . '<form name="cpgChooseLanguage" action="' . $PHP_SELF . '" method="get" style="margin-top:0px;margin-bottom:0px;margin-left:0px;margin-right:0px;display:inline">' . $lineBreak;
        $return.= '<select name="cpgLanguageSelect" class="listbox_lang" onchange="if (this.options[this.selectedIndex].value) window.location.href=\'' . $cpgChangeUrl . '\' + this.options[this.selectedIndex].value;">' . $lineBreak;
        $return.='<option selected="selected">' . $lang_language_selection['choose_language'] . '</option>' . $lineBreak;
        foreach ($lang_array as $language) {
@@ -2249,7 +2249,7 @@ switch ($parameter) {
        $return = 'not yet implemented';
        break;
    default:
-       $return.= $lineBreak . '<form name="cpgChooseTheme" action="' . $cpgCurrentTheme . '" method="get" style="margin-top:0px;margin-bottom:0px;margin-left:0px;margin-right:0px;display:inline">' . $lineBreak;
+       $return.= $lineBreak . '<form name="cpgChooseTheme" action="' . $PHP_SELF . '" method="get" style="margin-top:0px;margin-bottom:0px;margin-left:0px;margin-right:0px;display:inline">' . $lineBreak;
        $return.= '<select name="cpgThemeSelect" class="listbox_lang" onchange="if (this.options[this.selectedIndex].value) window.location.href=\'' . $cpgCurrentTheme . '\' + this.options[this.selectedIndex].value;">' . $lineBreak;
        $return.='<option selected="selected">' . $lang_theme_selection['choose_theme'] . '</option>';
        foreach ($theme_array as $theme) {
