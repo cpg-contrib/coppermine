@@ -1,24 +1,33 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.2.0                                            //
+//  Coppermine Photo Gallery                                                 //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR <gdemar@wanadoo.fr>                 //
-// http://www.chezgreg.net/coppermine/                                       //
+//  Copyright (C) 2002,2003  Grιgory DEMAR <gdemar@wanadoo.fr>               //
+//  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-// Updated by the Coppermine Dev Team                                        //
-// (http://coppermine.sf.net/team/)                                          //
-// see /docs/credits.html for details                                        //
+//  Based on PHPhotoalbum by Henning Stψverud <henning@stoverud.com>         //
+//  http://www.stoverud.com/PHPhotoalbum/                                    //
 // ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- // 
-
+//  This program is free software; you can redistribute it and/or modify     //
+//  it under the terms of the GNU General Public License as published by     //
+//  the Free Software Foundation; either version 2 of the License, or        //
+//  (at your option) any later version.                                      //
+// ------------------------------------------------------------------------- //
 //  Greek language by lykman, Ελληνική μετάφραση από Λυκούργο Μ., ver. 1.0   //
 // You can mail me for errors or suggestions about GReek, lykman@freemail.gr //
 // Για τυχόν λάθη ή προτάσεις στα Ελληνικά, στείλτε mail, lykman@freemail.gr //
 // ------------------------------------------------------------------------- //
+
+// info about translators and translated language 
+$lang_translation_info = array( 
+'lang_name_english' => 'Greek',  //the name of your language in English, e.g. 'Greek' or 'Spanish' 
+'lang_name_native' => '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espaρol' 
+'lang_country_code' => 'GR', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es' 
+'trans_name'=> 'lykman', //the name of the translator - can be a nickname 
+'trans_email' => 'lykman@freemail.gr', //translator's email address (optional) 
+'trans_website' => 'http://www.lykman.com', //translator's website (optional) 
+'trans_date' => '03-10-2003', //the date the translation was created / last modified 
+); 
 
 $lang_charset = 'iso-8859-7';
 $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
@@ -50,15 +59,17 @@ $comment_date_fmt =  '%B %d, %Y at %I:%M %p';
 // For the word censor
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
 
-$lang_meta_album_names = array(
-	'random' => 'Τυχαίες φωτογραφίες',
-	'lastup' => 'Τελευταίες προσθήκες',
-	'lastcom' => 'Τελευταία σχόλια',
-	'topn' => 'Περισσότερες εμφανίσεις',
-	'toprated' => 'Υψηλότερη βαθμολογία',
-	'lasthits' => 'Τελευταίες εμφανίσεις',
-	'search' => 'Αποτελέσματα αναζήτησης'
-);
+$lang_meta_album_names = array( 
+        'random' => 'Τυχαίες φωτογραφίες', 
+        'lastup' => 'Τελευταίες προσθήκες', 
+        'lastalb'=> 'Πρόσφατα ενημερωμένα άλμπουμ', 
+        'lastcom' => 'Τελευταία σχόλια', 
+        'topn' => 'Περισσότερες εμφανίσεις', 
+        'toprated' => 'Υψηλότερη βαθμολογία', 
+        'lasthits' => 'Τελευταίες εμφανίσεις', 
+        'search' => 'Αποτελέσματα αναζήτησης', 
+        'favpics'=> 'Αγαπημένες φωτογραφίες' 
+); 
 
 $lang_errors = array(
 	'access_denied' => 'Δεν επιτρέπετε η πρόσβαση σε αυτήν την σελίδα.',
@@ -74,8 +85,10 @@ $lang_errors = array(
 	'orphan_cat' => 'Η κατηγορία δεν έχει δημιουργό, εκτελεί τον category manager για να διορθώσει το πρόβλημα.',
 	'directory_ro' => 'Ο κατάλογος \'%s\' δεν είναι διαθέσιμος για τροποποίηση, οι φωτογραφίες δεν μπορούν να διαγραφούν',
 	'non_exist_comment' => 'Το επιλεγμένο σχόλιο δεν υπάρχει.',
-	'pic_in_invalid_album' => 'Η φωτογραφία είναι σε ένα μη υπαρκτό άλμπουμ (%s)!?'
-);
+        'pic_in_invalid_album' => 'Η φωτογραφία είναι σε ανύπαρκτο άλμπουμ (%s)!?', 
+        'banned' => 'Εχετε αποκλειστεί από αυτό το site.', 
+        'not_with_udb' => 'Αυτή η λειτουργία είναι απενεργοποιημένη στο Coppermine γιατί είναι αλληλεπιδραστική με το software του φόρουμ. Η αυτό που προσπαθείτε να κάνετε δεν υποστηρίζεται στην παρούσα διαμόρφωση, ή την λειτουργία θα πρέπει να την χειρίζεται το ίδιο το φόρουμ.', 
+); 
 
 // ------------------------------------------------------------------------- //
 // File theme.php
@@ -102,6 +115,7 @@ $lang_main_menu = array(
 	'topn_lnk' => 'Περισσότερες εμφανίσεις',
 	'toprated_lnk' => 'Υψηλότερη βαθμολογία',
 	'search_lnk' => 'Αναζήτηση',
+        'fav_lnk' => 'Τα αγαπημένα μου', 
 );
 
 $lang_gallery_admin_menu = array(
@@ -113,6 +127,8 @@ $lang_gallery_admin_menu = array(
 	'groups_lnk' => 'Ομάδες',
 	'comments_lnk' => 'Σχόλια',
 	'searchnew_lnk' => 'Προσθήκη πλήθους φωτογραφιών',
+        'util_lnk' => 'Αλλαγή μεγέθους φωτογραφιών', 
+        'ban_lnk' => 'Αποκλεισμός χρηστών', 
 );
 
 $lang_user_admin_menu = array(
@@ -133,11 +149,15 @@ $lang_album_list = array(
 
 $lang_thumb_view = array(
 	'date' => 'ΗΜ/ΝΙΑ',
-	'name' => 'ΟΝΟΜΑ',
+//Sort by filename and title 
+        'name' => 'ΟΝΟΜΑ ΑΡΧΕΙΟΥ', 
+        'title' => 'ΤΙΤΛΟΣ',
 	'sort_da' => 'Στοίχιση από παλαιότερη προς νεότερη ημερομηνία',
 	'sort_dd' => 'Στοίχιση από νεότερη προς παλαιότερη ημερομηνία',
 	'sort_na' => 'Στοίχιση αλφαβητικά αύξουσα',
 	'sort_nd' => 'Στοίχιση αλφαβητικά φθίνουσα',
+        'sort_ta' => 'Στοίχιση με τίτλο αύξουσα', 
+        'sort_td' => 'Στοίχιση με τίτλο φθίνουσα', 
 	'pic_on_page' => '%d φωτογραφία(ες) σε %d σελίδα(ες)',
 	'user_on_page' => '%d χρήστης(ες) σε %d σελίδα(ες)'
 );
@@ -308,7 +328,9 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
 	'name_a' => 'Αυξων όνομα',
 	'name_d' => 'Φθίνων όνομα',
 	'date_a' => 'Αυξουσα ημερομηνία',
-	'date_d' => 'Φθίνουσα ημερομηνία'
+	'date_d' => 'Φθίνουσα ημερομηνία',
+        'title_a' => 'Αύξων τίτλος', 
+        'title_d' => 'Φθίνων τίτλος', 
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
@@ -327,6 +349,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Πλήθος στηλών για την λίστα των άλμπουμ', 'album_list_cols', 0),
 	array('Μέγεθος των thumbnails σε πίξελ', 'alb_list_thumb_size', 0),
 	array('Περιεχόμενο της κεντρικής σελίδας', 'main_page_layout', 0),
+        array('Εμφάνιση πρώτου επιπέδου thumbnails του άλμπουμ στις κατηγορίες','first_level',1), 
 
 	'Εμφάνιση Thumbnail',
 	array('Πλήθος στηλών στην σελίδα των thumbnail', 'thumbcols', 0),
@@ -346,10 +369,13 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Mέγιστο πλήθος χαρακτήρων ανά λέξη', 'max_com_wlength', 0),
 	array('Mέγιστος αριθμός γραμμών ανά σχόλιο', 'max_com_lines', 0),
 	array('Mέγιστο μήκος σχολίου', 'max_com_size', 0),
+        array('Εμφάνιση film strip', 'display_film_strip', 1), 
+        array('Αριθμός αντικειμένων μέσα στο film strip', 'max_film_strip_items', 0), 
 
 	'Pυθμίσεις φωτογραφιών και thumbnails',
 	array('Ποιότητα των JPEG αρχείων', 'jpeg_qual', 0),
-	array('Mέγιστο πλάτος ή ύψος των thumbnail <b>*</b>', 'thumb_width', 0),
+        array('Μέγιστη διάσταση του thumbnail <b>*</b>', 'thumb_width', 0), 
+        array('Χρήση διάστασης ( πλάτος ή ύψος ή Μέγιστη αναλογία για το thumbnail )<b>*</b>', 'thumb_use', 7), 
 	array('Δημιουργία ενδιάμεσων φωτογραφιών','make_intermediate',1),
 	array('Mέγιστο πλάτος ή ύψος ενδιάμεσης φωτογραφίας <b>*</b>', 'picture_width', 0),
 	array('Mέγιστο μέγεθος για τις φωτογραφίες για προσθήκη (KB)', 'max_upl_size', 0),
@@ -368,6 +394,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Ονομα 4ου πεδίου', 'user_field4_name', 0),
 
 	'Εξιδεικευμένες ρυθμίσεις φωτογραφιών και thumbnails',
+        array('Εμφάνιση εικονιδίου ιδιωτικού άλμουμ στον επισκέπτη','show_private',1), 
 	array('Απαγορευμένοι χαρακτήρες σε όνομα αρχείου', 'forbiden_fname_char',0),
 	array('Δεκτές επεκτάσεις αρχείων για τις προστιθέμενες φωτογραφίες', 'allowed_file_extensions',0),
 	array('Mέθοδος για αλλαγή μεγέθους φωτογραφίας','thumb_method',2),
@@ -381,6 +408,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Πρόθεμα των thumbnails <b>*</b>', 'thumb_pfx', 0),
 	array('Προεγκαταστημένες ρυθμίσεις για καταλόγους', 'default_dir_mode', 0),
 	array('Προεγκαταστημένες ρυθμίσεις για φωτογραφίες', 'default_file_mode', 0),
+        array('Απενεργοποίηση δεξιού κλικ στο πλήρους μεγέθους pop-up (JavaScript - no foolproof method)', 'disable_popup_rightclick', 1), 
+        array('Απενεργοποίηση δεξιού κλικ σε όλες τις σελίδες (JavaScript - no foolproof method)', 'disable_gallery_rightclick', 1), 
 
 	'Ρυθμίσεις για τα Cookies &amp; και τις κωδικοποιήσεις χαρακτήρων',
 	array('Ονομα του cookie που χρησιμοποιεί το πρόγραμμα', 'cookie_name', 0),
@@ -485,10 +514,13 @@ $lang_picinfo = array(
 	'Aperture' => 'Διάφραγμα',
 	'Exposure time' => 'Χρόνος έκθεσης',
 	'Focal length' => 'Εστιακή απόσταση',
+        'Comment' => 'Σχόλιο', 
+        'addFav'=>'Προσθήκη στα Αγαπημένα', 
+        'addFavPhrase'=>'Αγαπημένα', 
+        'remFav'=>'Αφαίρεση από τα Αγαπημένα', 
 	'Flash' => 'Φλας',
 	'ISOSpeedRatings' => 'ISO',
 	'ExposureProgram' => 'Πρόγραμμα έκθεσης',
-	'Comment' => 'Σχόλιο'
 );
 
 $lang_display_comments = array(
@@ -496,8 +528,14 @@ $lang_display_comments = array(
 	'edit_title' => 'Μετατροπή σχόλιου',
 	'confirm_delete' => 'Είστε σίγουρος πως θέλετε να διαγράψετε αυτό το σχόλιο ?',
 	'add_your_comment' => 'Προσθήκη σχόλιου',
-	'your_name' => 'Το όνομα σας',
+        'name'=>'Ονομα', 
+        'comment'=>'Σχόλιο', 
+        'your_name' => 'Ανώνυμος', 
 );
+
+$lang_fullsize_popup = array( 
+        'click_to_close' => 'Πατήστε στην εικόνα για να κλείσετε αυτό το παράθυρο', 
+); 
 
 }
 
@@ -821,6 +859,22 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 
 // Void
 
+// ------------------------------------------------------------------------- // 
+// File banning.php 
+// ------------------------------------------------------------------------- // 
+
+if (defined('BANNING_PHP')) $lang_banning_php = array( 
+                'title' => 'Αποκλεισμός χρηστών', 
+                'user_name' => 'Ονομα χρήστη', 
+                'ip_address' => 'Διεύθυνση IP', 
+                'expiry' => 'Λήξη (να μείνει κενό εάν είναι μόνιμη)', 
+                'edit_ban' => 'Αποθήκευση αλλαγών', 
+                'delete_ban' => 'Διαγραφή', 
+                'add_new' => 'Προσθήκη χρήστη για αποκλεισμό', 
+                'add_ban' => 'Προσθήκη', 
+); 
+
+
 
 // ------------------------------------------------------------------------- //
 // File upload.php
@@ -882,4 +936,56 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 	'user_interests' => 'Ενδιαφέροντα χρήστη',
 	'user_occupation' => 'Επάγγελμα χρήστη',
 );
+
+// ------------------------------------------------------------------------- // 
+// File util.php 
+// ------------------------------------------------------------------------- // 
+
+if (defined('UTIL_PHP')) $lang_util_php = array( 
+        'title' => 'Αλλαγή μεγέθους φωτογραφιών', 
+        'what_it_does' => 'Τι κάνει...', 
+        'what_update_titles' => 'Ενημερώνει τίτλους από όνομα αρχείου', 
+        'what_delete_title' => 'Διαγράφει τίτλους', 
+        'what_rebuild' => 'Ξαναφτιάχνει τα thumbnails και τις φωτογραφίες αλλαγμένου μεγέθους', 
+        'what_delete_originals' => 'Διαγράφει τις φωτογραφίες με το αρχικό μέγεθος, αντικαθιστώντας τις με τις άλλες αλλαγμένου μεγέθους', 
+        'file' => 'Αρχείο', 
+        'title_set_to' => 'ο τίτλος να γίνει', 
+        'submit_form' => 'υποβολή', 
+        'updated_succesfully' => 'ενημερώθηκε επιτυχώς', 
+        'error_create' => 'ΛΑΘΟ‘κατα την δημιουργία', 
+        'continue' => 'Συνέχεια με επόμενες φωτό', 
+        'main_success' => 'Το αρχείο %s χρησιμοποιήθηκε επιτυχώς σαν η κυρίως φωτογραφία', 
+        'error_rename' => 'Λάθος κατά την μετονομασία από %s σε %s', 
+        'error_not_found' => 'Το αρχείο %s δεν βρέθηκε', 
+        'back' => 'πίσω στην κεντρική', 
+        'thumbs_wait' => 'Ενημέρωση των thumbnails ή/και των φωτογραφιών αλλαγμένου μεγέθους, παρακαλώ περιμένετε...', 
+        'thumbs_continue_wait' => 'Συνέχεια με την ενημέρωση των thumbnails ή/και των φωτογραφιών αλλαγμένου μεγέθους...', 
+        'titles_wait' => 'Ενημέρωση τίτλων, παρακαλώ περιμένετε...', 
+        'delete_wait' => 'Διαγραφή τιτλων, παρακαλώ περιμένετε...', 
+        'replace_wait' => 'Διαγραφή προτοτύπων και αντικατάσταση με τις φωτογραφίες αλλαγμένου μεγέθους, παρακαλώ περιμένετε...', 
+        'instruction' => 'Γρήγορες οδηγίες', 
+        'instruction_action' => 'Επιλογή λειτουργίας', 
+        'instruction_parameter' => 'Επιλογή παραμέτρων', 
+        'instruction_album' => 'Επιλογή αλμπουμ', 
+        'instruction_press' => 'Πατήστε %s', 
+        'update' => 'Ενημέρωση thumbs ή/και φωτογραφιών αλλαγμένου μεγέθους', 
+        'update_what' => 'Τι θα πρέπει να ενημερωθεί', 
+        'update_thumb' => 'Μόνο τα thumbnails', 
+        'update_pic' => 'Μόνο οι φωτογραφίες αλλαγμένου μεγέθους', 
+        'update_both' => 'Και τα thumbnails και οι φωτογραφίες αλλαγμένου μεγέθους', 
+        'update_number' => 'Πλήθος φωτογραφιών που επεξεργάστηκαν ανά κλικ', 
+        'update_option' => '(Δηλώστε αυτήν την επιλογή με αριθμό χαμηλότερο αν σας εμφανίζει timeout )', 
+        'filename_title' => 'Ονομα αρχείου ? Τίτλος Φωτογραφίας', 
+        'filename_how' => 'Πως θα πρεπει να μεταβληθεί ο τίτλος του αρχείου', 
+        'filename_remove' => 'Αφαίρεση της επέκτασης .jpg και αντικατάσταση με _ (κάτω παύλα) και κενά', 
+        'filename_euro' => 'Αλλαγή 2003_11_23_13_20_20.jpg σε 23/11/2003 13:20', 
+        'filename_us' => 'Αλλαγή 2003_11_23_13_20_20.jpg σε 11/23/2003 13:20', 
+        'filename_time' => 'Αλλαγή 2003_11_23_13_20_20.jpg σε 13:20', 
+        'delete' => 'Διαγραφή τίτλων φωτογραφιών ή φωτογραφιών αρχικού μεγέθους', 
+        'delete_title' => 'Διαγραφή τίτλων φωτογραφιών', 
+        'delete_original' => 'Διαγραφή φωτογραφιών αρχικού μεγέθους', 
+        'delete_replace' => 'Διαγραφή πρωτότυπων φωτογραφιών με αντικατάσταση τους από τις φωτογραφίες αλλαγμένου μεγέθους', 
+        'select_album' => 'Επιλογή άλμπουμ', 
+); 
+
 ?>
