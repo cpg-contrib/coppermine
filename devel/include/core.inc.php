@@ -1000,11 +1000,12 @@ $template_report = <<<EOT
           </td>
           <td valign="top" width="200px">
             <b><font face="arial" color="#000000" size="4">{SUBJECT}</font></b>
-            <br />{REASON}
             <br />
+						<br />
+						{REASON}
+            <p>
             <font face="arial" color="#000000" size="2">{MESSAGE}</font>
-            <br />
-            <br />
+            </p>
             <font face="arial" color="#000000" size="2">{SENDER_NAME}</font>
             (<a href="mailto:{SENDER_EMAIL}"><font face="arial" color="#000000" size="2">{SENDER_EMAIL}</font></a>)
           </td>
@@ -1029,6 +1030,9 @@ $template_report_plaintext = <<<EOT
 
 
 {SUBJECT}
+
+{REASON}
+
 {PLAINTEXT_MESSAGE}
 
 {SENDER_NAME} ({SENDER_EMAIL})
