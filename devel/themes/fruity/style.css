@@ -409,6 +409,15 @@ a:hover.yebg {
 .thumbnails {
         background: #E7F38C ;
         padding: 5px;
+        vertical-align: middle;
+        text-align: center;
+}
+
+.thumbnails_top {
+        background: #E7F38C ;
+        padding: 5px;
+        vertical-align: top;
+        text-align: center;
 }
 
 .footer {

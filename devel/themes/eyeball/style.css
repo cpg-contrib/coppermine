@@ -382,6 +382,14 @@ a:hover {
 
 .thumbnails {
         padding: 10px;
+        vertical-align: middle;
+        text-align: center;
+}
+
+.thumbnails_top {
+        padding: 10px;
+        vertical-align: top;
+        text-align: center;
 }
 
 .footer {

@@ -390,6 +390,15 @@ bblink a:hover {
 .thumbnails {
         background: #49525D ;
         padding: 5px;
+        vertical-align: middle;
+        text-align: center;
+}
+
+.thumbnails_top {
+        background: #49525D ;
+        padding: 5px;
+        vertical-align: top;
+        text-align: center;
 }
 
 .footer {

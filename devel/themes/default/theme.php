@@ -171,7 +171,7 @@ $template_album_list = <<<EOT
                 </td>
         </tr>
         <tr height="100%">
-                <td align="center" height="100%" valign="middle" class="thumbnails">
+                <td height="100%" class="thumbnails">
                         <img src="images/spacer.gif" width="{THUMB_CELL_WIDTH}" height="1" class="image" style="margin-top: 0px;
  margin-bottom: 0px; border: none;"><br />
                         <a href="{ALB_LINK_TGT}" class="albums">{ALB_LINK_PIC}<br /></a>
@@ -239,7 +239,7 @@ $template_film_strip = <<<EOT
          <td valign="top" background="themes/default/images/tile.gif" align="center" height="30">&nbsp;</td>
         </tr>
         <tr>
-        <td valign="bottom" class="thumbnails" align="center">
+        <td class="thumbnails">
           {THUMB_STRIP}
         </td>
         </tr>
@@ -281,7 +281,7 @@ $template_album_list_cat = <<<EOT
                 </td>
         </tr>
         <tr height="100%">
-                <td align="center" height="100%" valign="middle" class="thumbnails">
+                <td height="100%" class="thumbnails">
                         <img src="images/spacer.gif" width="{THUMB_CELL_WIDTH}" height="1" class="image" style="margin-top: 0px;
  margin-bottom: 0px; border: none;"><br />
                         <a href="{ALB_LINK_TGT}" class="albums">{ALB_LINK_PIC}<br /></a>
@@ -396,7 +396,7 @@ $template_thumbnail_view = <<<EOT
         <tr>
 <!-- END header -->
 <!-- BEGIN thumb_cell -->
-        <td valign="top" class="thumbnails" width ="{CELL_WIDTH}" align="center">
+        <td class="thumbnails_top" width ="{CELL_WIDTH}">
                 <table width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                                 <td align="center">
@@ -409,7 +409,7 @@ $template_thumbnail_view = <<<EOT
         </td>
 <!-- END thumb_cell -->
 <!-- BEGIN empty_cell -->
-                <td valign="top" class="thumbnails" align="center">&nbsp;</td>
+                <td class="thumbnails_top">&nbsp;</td>
 <!-- END empty_cell -->
 <!-- BEGIN row_separator -->
         </tr>
