@@ -416,7 +416,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 
   'Image view &amp; Comment settings',
   array('Width of the table for file display (pixels or %)', 'picture_table_width', 0), //cpg1.3.0
-  array('File information are visible by default', 'display_pic_info', 1), //cpg1.3.0
+  array('File information is visible by default', 'display_pic_info', 1), //cpg1.3.0
   array('Filter bad words in comments', 'filter_bad_words', 1),
   array('Allow smiles in comments', 'enable_smilies', 1),
   array('Allow several consecutive comments on one pic from the same user (disable flood protection)', 'disable_comment_flood_protect', 1), //cpg1.3.0
@@ -427,7 +427,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Show film strip', 'display_film_strip', 1),
   array('Number of items in film strip', 'max_film_strip_items', 0),
   array('Notify admin of comments by email', 'email_comment_notification', 1), //cpg1.3.0
-  array('Slideshow intervall in milliseconds (1 second = 1000 milliseconds)', 'slideshow_interval', 0), //cpg1.3.0
+  array('Slideshow interval in milliseconds (1 second = 1000 milliseconds)', 'slideshow_interval', 0), //cpg1.3.0
 
   'Files and thumbnails settings', //cpg1.3.0
   array('Quality for JPEG files', 'jpeg_qual', 0),
@@ -690,7 +690,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'see_next' => 'See next files', //cpg1.3.0
   'see_prev' => 'See previous files', //cpg1.3.0
   'n_pic' => '%s files', //cpg1.3.0
-  'n_of_pic_to_disp' => 'Number of file to display', //cpg1.3.0
+  'n_of_pic_to_disp' => 'Number of files to display', //cpg1.3.0
   'apply' => 'Apply modifications', //cpg1.3.0
   'crop_title' => 'Coppermine Picture Editor', //cpg1.3.0
   'preview' => 'Preview', //cpg1.3.0
@@ -712,31 +712,31 @@ if (defined('FAQ_PHP')) $lang_faq_php = array(
 
 if (defined('FAQ_PHP')) $lang_faq_data = array(
   'General FAQ', //cpg1.3.0
-  array('Why do I need to register?', 'Registration may or may not be required from the administrator. Registration gives a member additional features such as uploading, having a favorite list, rating pictures and posting comments etc.', 'allow_user_registration', '0'), //cpg1.3.0
+  array('Why do I need to register?', 'Registration may or may not be required by the administrator. Registration gives a member additional features such as uploading, having a favorite list, rating pictures and posting comments etc.', 'allow_user_registration', '0'), //cpg1.3.0
   array('How do I register?', 'Go to &quot;Register&quot; and fill out the required fields (and the optional ones if you want to).<br />If the Administrator has Email Activation enabled ,then after submitting your information you should recieve an email message at the address that you have submitted while registering, giving you instructions on how to activate your membership. Your membership must be activated in order for you to login.', 'allow_user_registration', '1'), //cpg1.3.0
   array('How Do I login?', 'Go to &quot;Login&quot;, submit your username and password and check &quot;Remember Me&quot; so you will be logged in on the site if you should leave it.<br /><b>IMPORTANT:Cookies must be enabled and the cookie from this site must not be deleted in order to use &quot;Remember Me&quot;.</b>', 'offline', 0), //cpg1.3.0
-  array('Why can I not login?', 'Did you register and replied to the link that was sent to you via email?. The link will activate your account. For other login probelms contact the site administrator.', 'offline', 0), //cpg1.3.0
+  array('Why can I not login?', 'Did you register and click the link that was sent to you via email?. The link will activate your account. For other login problems contact the site administrator.', 'offline', 0), //cpg1.3.0
   array('What if I forgot my password?', 'If this site has a &quot;Forgot password&quot; link then use it. Other than that contact the site administrator for a new password.', 'offline', 0), //cpg1.3.0
-  //array('What if I changed my email address?', 'Just simply login and change yor email address through &quot;Profile&quot;', 'offline', 0), //cpg1.3.0
+  //array('What if I changed my email address?', 'Just simply login and change your email address through &quot;Profile&quot;', 'offline', 0), //cpg1.3.0
   array('How do I save a picture to &quot;My Favorites&quot;?', 'Click on a picture and click on the &quot;picture info&quot; link (<img src="images/info.gif" width="16" height="16" border="0" alt="Picture information" />); scroll down to the picture information set and click &quot;Add to fav&quot;.<br />The administrator may have the &quot;picture information&quot; on by default.<br />IMPORTANT:Cookies must be enabled and the cookie from this site must not be deleted.', 'offline', 0), //cpg1.3.0
   array('How do I rate a picture?', 'Click on a thumbnailed picture and go to the bottom and choose a rating.', 'offline', 0), //cpg1.3.0
   array('How do I post a comment for a picture?', 'Click on a thumbnailed picture and go to the bottom and post a comment.', 'offline', 0), //cpg1.3.0
-  array('How do I upload a picture?', 'Go to &quot;Upload Picture&quot;and select the album that you want to upload to,click &quot;Browse&quot; and find the picture to upload and click &quot;open&quot; (add a title and decription if you want to) and click &quot;Submit&quot;', 'allow_private_albums', 0), //cpg1.3.0
+array('How do I upload a picture?', 'Go to &quot;Upload Picture&quot;and select the album that you want to upload to, click &quot;Browse&quot; and find the picture to upload and click &quot;open&quot; (add a title and description if you want to) and click &quot;Submit&quot;', 'allow_private_albums', 0), //cpg1.3.0
   array('Where do I upload a picture to?', 'You will be able to upload a picture to one of your albums in &quot;My Gallery&quot;. The Administrator may also allow you to upload a picture to one or more of the albums in the Main Gallery.', 'allow_private_albums', 0), //cpg1.3.0
   array('What type and size of a picture can I upload?', 'The size and type (jpg,gif,..etc.) is up to the administrator.', 'offline', 0), //cpg1.3.0
   array('What is &quot;My Gallery&quot;?', '&quot;My Gallery&quot; is a personal gallery that the user can upload to and manage.', 'allow_private_albums', 0), //cpg1.3.0
   array('How do I create,rename or delete an album in &quot;My Gallery&quot;?', 'You should already be in &quot;Admin-Mode&quot;<br />Go to &quot;Create/Order My Albums&quot;and click &quot;New&quot;. Change &quot;New Album&quot; to your desired name.<br />You can also rename any of the albums in your gallery.<br />Click &quot;Apply Modifications&quot;.', 'allow_private_albums', 0), //cpg1.3.0
   array('How can I modify and restrict users from viewing my albums?', 'You should already be in &quot;Admin. Mode&quot;<br />Go to &quot;Modify My Albums. On the &quot;Update Album&quot; bar, select the album that you want to modify.<br />Here, you can change the name, description, thumbnail picture, restrict viewing and comment/rating permissions.<br />Click &quot;Update Album&quot;.', 'allow_private_albums', 0), //cpg1.3.0
-  array('How can I view other users galleries?', 'Go to &quot;Album List&quot; and select &quot;User Galleries&quot;.', 'allow_private_albums', 0), //cpg1.3.0
-  array('What are cookies?', 'Cookies are a plain text pice of data that is sent from a website and is put on to your computer.<br />Cookies usually allow a user to leave and return to the site without having to login again and other various chores.', 'offline', 0), //cpg1.3.0
+  array('How can I view other users\' galleries?', 'Go to &quot;Album List&quot; and select &quot;User Galleries&quot;.', 'allow_private_albums', 0), //cpg1.3.0
+  array('What are cookies?', 'Cookies are a plain text piece of data that is sent from a website and is put on to your computer.<br />Cookies usually allow a user to leave and return to the site without having to login again and other various chores.', 'offline', 0), //cpg1.3.0
   array('Where can I get this program for my site?', 'Coppermine is a free Multimedia Gallery, released under GNU GPL. It is full of features and has been ported to various platforms. Visit the <a href="http://coppermine.sf.net/">Coppermine Home Page</a> to find out more or download it.', 'offline', 0), //cpg1.3.0
 
   'Navigating the Site', //cpg1.3.0
-  array('What\'s &quot;Album List&quot;?', 'This will show you the entire gallery with a link to each catagory. Thumbnails may be a link to the catagory.', 'offline', 0), //cpg1.3.0
+  array('What\'s &quot;Album List&quot;?', ''This will show you the entire category you are currently in, with a link to each album. If you are not in a category, it will show you the entire gallery with a link to each category. Thumbnails may be a link to the category.', 'offline', 0), //cpg1.3.0
   array('What\'s &quot;My Gallery&quot;?', 'This feature lets a user create their own gallery and add,delete or modify albums as well as upload to them.', 'allow_private_albums', 0), //cpg1.3.0
   array('What\'s the difference between &quot;Admin Mode&quot; and &quot;User Mode&quot;?', 'This feature, when in admin-mode, allows a user to modify their gallery (as well as others if allowed by the administrator).', 'allow_private_albums', 0), //cpg1.3.0
   array('What\'s &quot;Upload Picture&quot;?', 'This feature allows a user to upload a picture (size and type is set by the site administrator) to a gallery selected by either you or the administrator.', 'allow_private_albums', 0), //cpg1.3.0
-  array('What\'s &quot;Last Uploads&quot;?', 'This feature shows the last uploads uploaded to the site.', 'offline', 0), //cpg1.3.0
+  array('What\'s &quot;Last Uploads&quot;?', 'This feature shows the last uploads to the site.', 'offline', 0), //cpg1.3.0
   array('What\'s &quot;Last Comments&quot;?', 'This feature shows the last comments along with the picture posted by users.', 'offline', 0), //cpg1.3.0
   array('What\'s &quot;Most Viewed&quot;?', 'This feature shows the most viewed pictures by all users (whether logged in or not).', 'offline', 0), //cpg1.3.0
   array('What\'s &quot;Top Rated&quot;?', 'This feature shows the top rated pictures rated by the users, showing the average rating (e.g: five users each gave a <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />: the picture would have an average rating of <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> ;Five users rated the picture from 1 to 5 (1,2,3,4,5) would result in an average <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> .)<br />The ratings go from <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> (best) to <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" /> (worst).', 'offline', 0), //cpg1.3.0
@@ -753,11 +753,11 @@ if (defined('FORGOT_PASSWD_PHP')) $lang_forgot_passwd_php = array(
   'err_already_logged_in' => 'You are already logged in !', //cpg1.3.0
   'enter_username_email' => 'Enter your username or email address', //cpg1.3.0
   'submit' => 'go', //cpg1.3.0
-  'failed_sending_email' => 'The password reminder email can\'t be send !', //cpg1.3.0
+  'failed_sending_email' => 'The password reminder email can\'t be sent !', //cpg1.3.0
   'email_sent' => 'An email with your username and password was sent to %s', //cpg1.3.0
   'err_unk_user' => 'Selected user does not exist!', //cpg1.3.0
   'passwd_reminder_subject' => '%s - Password reminder', //cpg1.3.0
-  'passwd_reminder_body' => 'You have requested to be reminded on your login data:
+  'passwd_reminder_body' => 'You have requested to be reminded of your login data:
 Username: %s
 Password: %s
 Click %s to log in.', //cpg1.3.0
@@ -778,7 +778,7 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
   'apply' => 'Apply modifications',
   'create_new_group' => 'Create new group',
   'del_groups' => 'Delete selected group(s)',
-  'confirm_del' => 'Warning, when you delete a group, users that belong to this group will be transfered to the \'Registered\' group !\n\nDo you want to proceed ?', //js-alert //cpg1.3.0
+  'confirm_del' => 'Warning, when you delete a group, users that belong to this group will be transferred to the \'Registered\' group !\n\nDo you want to proceed ?', //js-alert //cpg1.3.0
   'title' => 'Manage user groups',
   'approval_1' => 'Pub. Upl. approval (1)',
   'approval_2' => 'Priv. Upl. approval (2)',
@@ -1022,7 +1022,7 @@ if (defined('SEARCH_PHP')) $lang_search_php = array(
 if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'page_title' => 'Search new files', //cpg1.3.0
   'select_dir' => 'Select directory',
-  'select_dir_msg' => 'This function allows you to add a batch of file that your have uploaded on your server by FTP.<br /><br />Select the directory where you have uploaded your files', //cpg1.3.0
+  'select_dir_msg' => 'This function allows you to add a batch of file that your have uploaded to your server by FTP.<br /><br />Select the directory where you have uploaded your files', //cpg1.3.0
   'no_pic_to_add' => 'There is no file to add', //cpg1.3.0
   'need_one_album' => 'You need at least one album to use this function',
   'warning' => 'Warning',
@@ -1046,7 +1046,7 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
                           '<li><b>PB</b> : means that the file could not be added, check your configuration and the permission of directories where the files are located'.
                           '<li><b>NA</b> : means that you haven\'t selected an album the files should go to, hit \'<a href="javascript:history.back(1)">back</a>\' and select an album. If you don\'t have an album <a href="albmgr.php">create one first</a></li>'.
                           '<li>If the OK, DP, PB \'signs\' does not appear click on the broken file to see any error message produced by PHP'.
-                          '<li>If your browser timeout, hit the reload button'.
+                          '<li>If your browser timeouts, hit the reload button'.
                           '</ul>', //cpg1.3.0
   'select_album' => 'select album', //cpg1.3.0
   'check_all' => 'Check All', //cpg1.3.0
@@ -1079,7 +1079,7 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
   'error_admin_ban' => 'You cannnot ban yourself!', //cpg1.3.0
   'error_server_ban' => 'You were going to ban your own server? Tsk tsk, cannot do that...', //cpg1.3.0
   'error_ip_forbidden' => 'You cannnot ban this IP - it is non-routable!', //cpg1.3.0
-  'lookup_ip' => 'Look up an IP address', //cpg1.3.0
+  'lookup_ip' => 'Lookup an IP address', //cpg1.3.0
   'submit' => 'go!', //cpg1.3.0
 );
 
