@@ -119,3 +119,5 @@ Fixed double slash '//' bug in upload notification email, in upload.php - 17th J
 Updated version info to cpg1.3.2
 Added PunBB integration support - 9th August, Nibbler
 Added version check routine for easier upgrades - 16 August 2004, GauGau
+Added Turkish language file (user contrib) - 05 September 2004, GauGau
+Added Catalan language file (user contrib) - 05 September 2004, GauGau
