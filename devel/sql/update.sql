@@ -104,6 +104,7 @@ INSERT INTO CPG_config VALUES ('views_in_thumbview', '1');
 INSERT INTO CPG_config VALUES ('show_bbcode_help', '1');
 INSERT INTO CPG_config VALUES ('log_ecards', '0');
 INSERT INTO CPG_config VALUES ('email_comment_notification', '0');
+INSERT INTO CPG_config VALUES ('enable_zipdownload', '1');
 
 
 # Modify structure for category thumb

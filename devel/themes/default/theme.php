@@ -1294,7 +1294,7 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
             '{SORT_DD}' => $lang_thumb_view['sort_dd'],
             );
         $title = template_eval($template_thumb_view_title_row, $param);
-    } else if ($aid == 'favpics') { //Lots of stuff can be added here later
+    } else if ($aid == 'favpics' && $CONFIG['enable_zipdownload'] == 1) { //Lots of stuff can be added here later
        $param = array('{ALBUM_NAME}' => $album_name,
                              '{DOWNLOAD_ZIP}'=>$lang_thumb_view['download_zip']
                                );

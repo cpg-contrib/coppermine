@@ -13,7 +13,7 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- // 
+// ------------------------------------------------------------------------- //
 // This script allows you to download your favpics as a zip, not linked      //
 // directly from anywhere as yet but works : Tarique <tarique@sanisoft.com   //
 //---------------------------------------------------------------------------//
@@ -23,24 +23,41 @@ define('INDEX_PHP', true);
 require('include/init.inc.php');
 include ( 'include/archive.php');
 
+if ($CONFIG['enable_zipdownload'] != 1) {
+//someone has entered the url manually, while the admin has disabled zipdownload
+pageheader($lang_error);
+starttable('-2', $lang_error);
+print <<<EOT
+<tr>
+        <td align="center" class="tableb">
+      {$lang_errors['perm_denied']}
+      </td>
+</tr>
+EOT;
+endtable();
+pagefooter();
+ob_end_flush();
+} else {
+// zipdownload allowed, go ahead...
+
 $filelist= array();
 
 if (count($FAVPICS)>0){
-	$favs = implode(",",$FAVPICS);
-	$result = db_query("SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND pid IN ($favs)");
-	$nbEnr = mysql_fetch_array($result);
-	$count = $nbEnr[0];
-	mysql_free_result($result);
+        $favs = implode(",",$FAVPICS);
+        $result = db_query("SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND pid IN ($favs)");
+        $nbEnr = mysql_fetch_array($result);
+        $count = $nbEnr[0];
+        mysql_free_result($result);
 
-	$select_columns = 'filepath,filename';
+        $select_columns = 'filepath,filename';
 
-	$result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES'AND pid IN ($favs) $limit");
-	$rowset = db_fetch_rowset($result);
-	foreach ($rowset as $key => $row){
-	
-		$filelist[] = $rowset[$key]['filepath'].$rowset[$key]['filename'];	
-		
-	}
+        $result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES'AND pid IN ($favs) $limit");
+        $rowset = db_fetch_rowset($result);
+        foreach ($rowset as $key => $row){
+
+                $filelist[] = $rowset[$key]['filepath'].$rowset[$key]['filename'];
+
+        }
 }
 
 $flags['storepath'] = 0;
@@ -51,5 +68,5 @@ $zip = new zipfile($cwd,$flags);
 $zip->addfiles($filelist);
 
 $zip->filedownload('pictures.zip');
-
+}
 ?>

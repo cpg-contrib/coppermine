@@ -97,6 +97,7 @@ INSERT INTO CPG_config VALUES ('display_faq', '0');
 INSERT INTO CPG_config VALUES ('show_bbcode_help', '1');
 INSERT INTO CPG_config VALUES ('log_ecards', '0');
 INSERT INTO CPG_config VALUES ('email_comment_notification', '0');
+INSERT INTO CPG_config VALUES ('enable_zipdownload', '1');
 
 #
 # Dumping data for table `CPG_filetypes`

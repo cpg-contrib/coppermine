@@ -379,6 +379,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Target address for the \'See more pictures\' link in e-cards', 'ecards_more_pic_target', 0),
         array('Gallery is offline', 'offline', 1),
         array('Log ecards', 'log_ecards', 1),
+        array('Allow ZIP-download of favorites', 'enable_zipdownload', 1),
 
         'Language, Themes &amp; Charset settings',
         array('Language', 'lang', 5),
