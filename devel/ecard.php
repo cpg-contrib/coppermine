@@ -104,7 +104,8 @@ if (count($HTTP_POST_VARS) > 0 && $valid_sender_email && $valid_recipient_email)
 	{
 	$result = cpg_mail($recipient_email, $subject, $message, 'text/html', $sender_name, $sender_email);
 	} else {
-		cpg_die(ERROR, $lang_ecard_php['send_failed'], __FILE__, __LINE__);
+		cpg_die(ERROR, $lang_ecard_php['send_failed']);
+		// cpg_die(ERROR, $lang_ecard_php['cookie_required']);
     }
 	if (!USER) setcookie('ecard',1);
     if (!USER_ID) {
