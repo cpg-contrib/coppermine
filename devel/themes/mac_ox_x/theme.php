@@ -33,14 +33,15 @@ EOT;
 // HTML template for template sys_menu spacer
 $template_sys_menu_spacer ="|";
 
-
+// HTML template for template sub_menu
+// special note: I left the java 'hide' off of the first and third buttons to help avoid trouble keeping sys_menu open. :Donnoman
 $template_sub_menu = <<<EOT
 <table cellpadding="0" cellspacing="0" border="0" width="100%">
 <tr>
     <td width="50%"></td>
     <td><img src="themes/mac_ox_x/images/menu_button_bg_left.gif" border="0" alt="" /><br /></td>
     <td style="background-image:url(themes/mac_ox_x/images/menu_button_bg_middle.gif);" valign="top">
-            <a href="index.php" onmouseover="MM_showHideLayers('SYS_MENU','','hide')"><img src="themes/mac_ox_x/images/home.gif" border="0" alt="" /><br /></a>
+            <a href="index.php"><img src="themes/mac_ox_x/images/home.gif" border="0" alt="" /><br /></a>
     </td>
     <td><img src="themes/mac_ox_x/images/menu_button_bg_right.gif" border="0" alt="" /><br /></td>
     <td><img src="themes/mac_ox_x/images/menu_button_bg_left.gif" border="0" alt="" /><br /></td>
@@ -50,7 +51,7 @@ $template_sub_menu = <<<EOT
     <td><img src="themes/mac_ox_x/images/menu_button_bg_right.gif" border="0" alt="" /><br /></td>
     <td><img src="themes/mac_ox_x/images/menu_button_bg_left.gif" border="0" alt="" /><br /></td>
     <td style="background-image:url(themes/mac_ox_x/images/menu_button_bg_middle.gif);" valign="top">
-            <a href="{ALB_LIST_TGT}" onmouseover="MM_showHideLayers('SYS_MENU','','hide')" title="{ALB_LIST_TITLE}">{ALB_LIST_LNK}</a>
+            <a href="{ALB_LIST_TGT}" title="{ALB_LIST_TITLE}">{ALB_LIST_LNK}</a>
     </td>
     <td><img src="themes/mac_ox_x/images/menu_button_bg_right.gif" border="0" alt="" /><br /></td>
     <td><img src="themes/mac_ox_x/images/menu_button_bg_left.gif" border="0" alt="" /><br /></td>
