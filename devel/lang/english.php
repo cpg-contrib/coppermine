@@ -999,7 +999,7 @@ $lang_fullsize_popup = array(
 
 if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array(
   'title' => 'Send an e-card',
-  'invalid_email' => '<b>Warning</b> : invalid email address !',
+  'invalid_email' => '<font color="red"><b>Warning</b></font>: invalid email address:',
   'ecard_title' => 'An e-card from %s for you',
   'error_not_image' => 'Only images can be sent as an ecard.',
   'view_ecard' => 'Alternate link if the e-card does not display correctly',
@@ -1017,6 +1017,9 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
   'message' => 'Message',
   'ecards_footer' => 'Sent by %s from IP %s at %s (Gallery time)',
   'preview' => 'Preview of the ecard',
+  'preview_button' => 'Preview',
+  'submit_button' => 'Send ecard',
+  'preview_view_ecard' => 'This will be the alternate link to the ecard once it gets generated. It won\'t work for previews.',
 );
 
 // ------------------------------------------------------------------------- //

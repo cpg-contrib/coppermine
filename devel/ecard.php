@@ -65,9 +65,14 @@ if (!is_image($row['filename'])) cpg_die(ERROR, $lang_ecard_php['error_not_image
 $valid_email_pattern = "^[_\.0-9a-z\-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,6}$";
 $valid_sender_email = eregi($valid_email_pattern, $sender_email);
 $valid_recipient_email = eregi($valid_email_pattern, $recipient_email);
-$invalid_email = '<font size="1">' . $lang_ecard_php['invalid_email'] . '</font>';
+$invalid_email = '<font size="1">' . $lang_ecard_php['invalid_email'] . ' (' . $recipient_email . ')</font>';
 if (!$valid_sender_email && count($_POST) > 0) $sender_email_warning = $invalid_email;
 if (!$valid_recipient_email && count($_POST) > 0) $recipient_email_warning = $invalid_email;
+
+pageheader($lang_ecard_php['title']);
+
+if (isset($_POST['submit'])) {
+
 // Create and send the e-card
 if (count($_POST) > 0 && $valid_sender_email && $valid_recipient_email) {
     $gallery_url_prefix = $CONFIG['ecards_more_pic_target']. (substr($CONFIG['ecards_more_pic_target'], -1) == '/' ? '' : '/');
@@ -108,14 +113,14 @@ if (count($_POST) > 0 && $valid_sender_email && $valid_recipient_email) {
         '{VIEW_MORE_LNK}' => $lang_ecard_php['view_more_pics'],
         );
 
-            $message = template_eval($template_ecard, $params);
-            $plaintext_message = template_eval($template_ecard_plaintext, $params);
+				$message = template_eval($template_ecard, $params);
+				$plaintext_message = template_eval($template_ecard_plaintext, $params);
 
         $tempTime = time();
         $message .= sprintf($lang_ecard_php['ecards_footer'], $sender_name, $_SERVER['REMOTE_ADDR'], localised_date(-1,$comment_date_fmt));
-            $subject = sprintf($lang_ecard_php['ecard_title'], $sender_name);
+				$subject = sprintf($lang_ecard_php['ecard_title'], $sender_name);
 
-            $result = cpg_mail($recipient_email, $subject, $message, 'text/html', $sender_name, $sender_email, $plaintext_message);
+				$result = cpg_mail($recipient_email, $subject, $message, 'text/html', $sender_name, $sender_email, $plaintext_message);
 
         //write ecard log
         if ($CONFIG['log_ecards'] == 1) {
@@ -128,7 +133,7 @@ if (count($_POST) > 0 && $valid_sender_email && $valid_recipient_email) {
     }
 
     if ($result) {
-        pageheader($lang_ecard_php['title']);
+        //pageheader($lang_ecard_php['title']);
         msg_box($lang_cpg_die[INFORMATION], $lang_ecard_php['send_success'], $lang_continue, "displayimage.php?album=$album&pos=$pos");
 				echo '<br />';
 				starttable('100%', $lang_ecard_php['preview']);
@@ -142,9 +147,52 @@ if (count($_POST) > 0 && $valid_sender_email && $valid_recipient_email) {
     } else {
         cpg_die(ERROR, $lang_ecard_php['send_failed'], __FILE__, __LINE__);
     }
-}
+	}
+}//submit
 
-pageheader($lang_ecard_php['title']);
+elseif (isset($_POST['preview'])) {
+
+    if ($CONFIG['make_intermediate'] && max($row['pwidth'], $row['pheight']) > $CONFIG['picture_width']) {
+        $n_picname = get_pic_url($row, 'normal');
+    } else {
+        $n_picname = get_pic_url($row, 'fullsize');
+    }
+    if (!stristr($n_picname, 'http:')) $n_picname = $gallery_url_prefix . $n_picname;
+    $msg_content = nl2br(process_smilies($message, $gallery_url_prefix));
+    $data = array(
+        'sn' => $_POST['sender_name'],
+        'se' => $sender_email,
+        'p' => $n_picname,
+        'g' => $greetings,
+        'm' => $message,
+        );
+
+    $params = array('{LANG_DIR}' => $lang_text_dir,
+        '{TITLE}' => sprintf($lang_ecard_php['ecard_title'], $sender_name),
+        '{CHARSET}' => $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'],
+        '{VIEW_ECARD_TGT}' => "{$gallery_url_prefix}displayecard.php?data=$encoded_data",
+        '{VIEW_ECARD_LNK}' => $lang_ecard_php['preview_view_ecard'],
+        '{PIC_URL}' => $n_picname,
+        '{URL_PREFIX}' => $gallery_url_prefix,
+        '{GREETINGS}' => $greetings,
+        '{MESSAGE}' => $msg_content,
+        '{SENDER_EMAIL}' => $sender_email,
+        '{SENDER_NAME}' => $sender_name,
+        '{VIEW_MORE_TGT}' => $CONFIG['ecards_more_pic_target'],
+        '{VIEW_MORE_LNK}' => $lang_ecard_php['view_more_pics'],
+        );
+
+				starttable('100%', $lang_ecard_php['preview']);
+				echo '<tr><td>';
+				echo template_eval($template_ecard, $params);
+				echo '</td></tr>';
+				endtable();
+				echo '<br />';
+}//preview
+
+//pageheader($lang_ecard_php['title']);
+
+//ecard form
 starttable("100%", $lang_ecard_php['title'], 3);
 
 echo <<<EOT
@@ -218,7 +266,9 @@ echo <<<EOT
         </tr>
         <tr>
                 <td colspan="3" align="center" class="tablef">
-                        <input type="submit" class="button" value="{$lang_ecard_php['title']}">
+                        <input type="submit" class="button" name="preview" title="preview" value="{$lang_ecard_php['preview_button']}">
+												&nbsp;&nbsp;
+                        <input type="submit" class="button" name="submit" title="submit" value="{$lang_ecard_php['submit_button']}">
                         </form>
                 </td>
         </tr>
