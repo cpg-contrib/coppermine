@@ -58,34 +58,34 @@ $comment_date_fmt =  '%B %d, %Y at %I:%M %p';
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
 
 $lang_meta_album_names = array(
-        'random' => 'Random pictures',
+        'random' => 'Random files',
         'lastup' => 'Last additions',
         'lastalb'=> 'Last updated albums',
         'lastcom' => 'Last comments',
         'topn' => 'Most viewed',
         'toprated' => 'Top rated',
         'lasthits' => 'Last viewed',
-        'search' => 'Search results',
-        'favpics'=> 'Favorite Pictures'
+        'search' => 'Search results', //new in cpg1.2.0
+        'favpics'=> 'Favourite Files' //new in cpg1.2.0
 );
 
 $lang_errors = array(
         'access_denied' => 'You don\'t have permission to access this page.',
         'perm_denied' => 'You don\'t have permission to perform this operation.',
         'param_missing' => 'Script called without the required parameter(s).',
-        'non_exist_ap' => 'The selected album/picture does not exist !',
-        'quota_exceeded' => 'Disk quota exceeded<br /><br />You have a space quota of [quota]K, your pictures currently use [space]K, adding this picture would make you exceed your quota.',
+        'non_exist_ap' => 'The selected album/file does not exist !',
+        'quota_exceeded' => 'Disk quota exceeded<br /><br />You have a space quota of [quota]K, your files currently use [space]K, adding this file would make you exceed your quota.',
         'gd_file_type_err' => 'When using the GD image library allowed image types are only JPEG and PNG.',
         'invalid_image' => 'The image you have uploaded is corrupted or can\'t be handled by the GD library',
         'resize_failed' => 'Unable to create thumbnail or reduced size image.',
         'no_img_to_display' => 'No image to display',
         'non_exist_cat' => 'The selected category does not exist',
         'orphan_cat' => 'A category has a non-existing parent, runs the category manager to correct the problem.',
-        'directory_ro' => 'Directory \'%s\' is not writable, pictures can\'t be deleted',
+        'directory_ro' => 'Directory \'%s\' is not writable, files can\'t be deleted',
         'non_exist_comment' => 'The selected comment does not exist.',
-        'pic_in_invalid_album' => 'Picture is in a non existant album (%s)!?',
-        'banned' => 'You are currently banned from using this site.',
-        'not_with_udb' => 'This function is disabled in Coppermine because it is integrated with forum software. Either what you are trying to do is not supported in this configuration, or the function should be handled by the forum software.',
+        'pic_in_invalid_album' => 'File is in a non existant album (%s)!?', //new in cpg1.2.0
+        'banned' => 'You are currently banned from using this site.', //new in cpg1.2.0
+        'not_with_udb' => 'This function is disabled in Coppermine because it is integrated with forum software. Either what you are trying to do is not supported in this configuration, or the function should be handled by the forum software.', //new in cpg1.2.0
         'offline_title' => 'Offline',
         'offline_text' => 'Gallery is currently offline - check back soon',
         'ecards_empty' => 'There are currently no ecard records to display. Check that you have enabled ecard logging in coppermine config!',
@@ -107,8 +107,8 @@ $lang_main_menu = array(
         'adm_mode_lnk' => 'Admin mode',
         'usr_mode_title' => 'Switch to user mode',
         'usr_mode_lnk' => 'User mode',
-        'upload_pic_title' => 'Upload a picture into an album',
-        'upload_pic_lnk' => 'Upload picture',
+        'upload_pic_title' => 'Upload a file into an album',
+        'upload_pic_lnk' => 'Upload file',
         'register_title' => 'Create an account',
         'register_lnk' => 'Register',
         'login_lnk' => 'Login',
@@ -135,7 +135,7 @@ $lang_gallery_admin_menu = array(
         'users_lnk' => 'Users',
         'groups_lnk' => 'Groups',
         'comments_lnk' => 'Review Comments',
-        'searchnew_lnk' => 'Batch add pictures',
+        'searchnew_lnk' => 'Batch add files',
         'util_lnk' => 'Admin Tools',
         'ban_lnk' => 'Ban Users',
         'db_ecard_lnk' => 'Display Ecards',
@@ -150,7 +150,7 @@ $lang_user_admin_menu = array(
 $lang_cat_list = array(
         'category' => 'Category',
         'albums' => 'Albums',
-        'pictures' => 'Pictures',
+        'pictures' => 'Files',
 );
 
 $lang_album_list = array(
@@ -168,24 +168,24 @@ $lang_thumb_view = array(
         'sort_nd' => 'Sort by name descending',
         'sort_ta' => 'Sort by title ascending',
         'sort_td' => 'Sort by title descending',
-        'pic_on_page' => '%d pictures on %d page(s)',
+        'pic_on_page' => '%d files on %d page(s)',
         'user_on_page' => '%d users on %d page(s)'
 );
 
 $lang_img_nav_bar = array(
         'thumb_title' => 'Return to the thumbnail page',
-        'pic_info_title' => 'Display/hide picture information',
+        'pic_info_title' => 'Display/hide file information',
         'slideshow_title' => 'Slideshow',
-        'ecard_title' => 'Send this picture as an e-card',
+        'ecard_title' => 'Send this file as an e-card',
         'ecard_disabled' => 'e-cards are disabled',
         'ecard_disabled_msg' => 'You don\'t have permission to send ecards',
-        'prev_title' => 'See previous picture',
-        'next_title' => 'See next picture',
-        'pic_pos' => 'PICTURE %s/%s',
+        'prev_title' => 'See previous file',
+        'next_title' => 'See next file',
+        'pic_pos' => 'FILE %s/%s',
 );
 
 $lang_rate_pic = array(
-        'rate_this_pic' => 'Rate this picture ',
+        'rate_this_pic' => 'Rate this file ',
         'no_votes' => '(No vote yet)',
         'rating' => '(current rating : %s / 5 with %s votes)',
         'rubbish' => 'Rubbish',
@@ -309,7 +309,7 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
         'no_change' => 'You did not make any change !',
         'new_album' => 'New album',
         'confirm_delete1' => 'Are you sure you want to delete this album ?',
-        'confirm_delete2' => '\nAll pictures and comments it contains will be lost !',
+        'confirm_delete2' => '\nAll files and comments it contains will be lost !',
         'select_first' => 'Select an album first',
         'alb_mrg' => 'Album Manager',
         'my_gallery' => '* My gallery *',
@@ -399,16 +399,16 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Number of columns on thumbnail page', 'thumbcols', 0),
         array('Number of rows on thumbnail page', 'thumbrows', 0),
         array('Maximum number of tabs to display', 'max_tabs', 0),
-        array('Display picture caption (in addition to title) below the thumbnail', 'caption_in_thumbview', 1),
+        array('Display file caption (in addition to title) below the thumbnail', 'caption_in_thumbview', 1),
         array('Display number of views below the thumbnail', 'views_in_thumbview', 1),
         array('Display number of comments below the thumbnail', 'display_comment_count', 1),
         array('Display uploader name below the thumbnail', 'display_uploader', 1),
-        array('Default sort order for pictures', 'default_sort_order', 3),
-        array('Minimum number of votes for a picture to appear in the \'top-rated\' list', 'min_votes_for_rating', 0),
+        array('Default sort order for files', 'default_sort_order', 3),
+        array('Minimum number of votes for a file to appear in the \'top-rated\' list', 'min_votes_for_rating', 0),
 
         'Image view &amp; Comment settings',
-        array('Width of the table for picture display (pixels or %)', 'picture_table_width', 0),
-        array('Picture information are visible by default', 'display_pic_info', 1),
+        array('Width of the table for file display (pixels or %)', 'picture_table_width', 0),
+        array('File information are visible by default', 'display_pic_info', 1),
         array('Filter bad words in comments', 'filter_bad_words', 1),
         array('Allow smiles in comments', 'enable_smilies', 1),
         array('Allow several consecutive comments on one pic from the same user (disable flood protection)', 'disable_comment_flood_protect', 1),
@@ -420,16 +420,28 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Number of items in film strip', 'max_film_strip_items', 0),
         array('Notify admin of comments by email', 'email_comment_notification', 1),
 
-        'Pictures and thumbnails settings',
+        'Files and thumbnails settings',
         array('Quality for JPEG files', 'jpeg_qual', 0),
         array('Max dimension of a thumbnail <b>*</b>', 'thumb_width', 0),
         array('Use dimension ( width or height or Max aspect for thumbnail )<b>*</b>', 'thumb_use', 7),
         array('Create intermediate pictures','make_intermediate',1),
-        array('Max width or height of an intermediate picture <b>*</b>', 'picture_width', 0),
-        array('Max size for uploaded pictures (KB)', 'max_upl_size', 0),
-        array('Max width or height for uploaded pictures (pixels)', 'max_upl_width_height', 0),
+        array('Max width or height of an intermediate picture/video <b>*</b>', 'picture_width', 0),
+        array('Max size for uploaded files (KB)', 'max_upl_size', 0),
+        array('Max width or height for uploaded pictures/videos (pixels)', 'max_upl_width_height', 0),
 
-        'Pictures and thumbnails advanced settings',
+        'User settings',
+        array('Allow new user registrations', 'allow_user_registration', 1),
+        array('User registration requires email verification', 'reg_requires_valid_email', 1),
+        array('Allow two users to have the same email address', 'allow_duplicate_emails_addr', 1),
+        array('Users can can have private albums', 'allow_private_albums', 1),
+
+        'Custom fields for image description (leave blank if unused)',
+        array('Field 1 name', 'user_field1_name', 0),
+        array('Field 2 name', 'user_field2_name', 0),
+        array('Field 3 name', 'user_field3_name', 0),
+        array('Field 4 name', 'user_field4_name', 0),
+
+        'Files and thumbnails advanced settings',
         array('Show private album Icon to unlogged user','show_private',1),
         array('Characters forbidden in filenames', 'forbiden_fname_char',0),
         //array('Accepted file extensions for uploaded pictures', 'allowed_file_extensions',0),
@@ -444,11 +456,11 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Read EXIF data in JPEG files', 'read_exif_data', 1),
         array('Read IPTC data in JPEG files', 'read_iptc_data', 1),
         array('The album directory <b>*</b>', 'fullpath', 0),
-        array('The directory for user pictures <b>*</b>', 'userpics', 0),
+        array('The directory for user files <b>*</b>', 'userpics', 0),
         array('The prefix for intermediate pictures <b>*</b>', 'normal_pfx', 0),
         array('The prefix for thumbnails <b>*</b>', 'thumb_pfx', 0),
         array('Default mode for directories', 'default_dir_mode', 0),
-        array('Default mode for pictures', 'default_file_mode', 0),
+        array('Default mode for files', 'default_file_mode', 0),
 
         'User settings',
         array('Allow new user registrations', 'allow_user_registration', 1),
@@ -473,7 +485,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         'Miscellaneous settings',
         array('Enable debug mode', 'debug_mode', 1),
 
-        '<br /><div align="center">(*) When changing this setting, only the pictures that are added from that point on are affected, so it is advisable that this setting must not be changed if there are already photos in the gallery. You can, however, apply the changes to the existing pictures with the &quot;admin tools (resize pictures)&quot; utility from the admin menu.</div><br />'
+        '<br /><div align="center">(*) When changing this setting, only the files that are added from that point on are affected, so it is advisable that this setting must not be changed if there are already files in the gallery. You can, however, apply the changes to the existing files with the &quot;admin tools (resize pictures)&quot; utility from the admin menu.</div><br />'
 );
 
 // ------------------------------------------------------------------------- //
@@ -520,16 +532,16 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
         'no_udp_needed' => 'No update needed.',
         'alb_updated' => 'The album was updated',
         'unknown_album' => 'Selected album does not exist or you don\'t have permission to upload in this album',
-        'no_pic_uploaded' => 'No picture was uploaded !<br /><br />If you have really selected a picture to upload, check that the server allows file uploads...',
+        'no_pic_uploaded' => 'No file was uploaded !<br /><br />If you have really selected a file to upload, check that the server allows file uploads...',
         'err_mkdir' => 'Failed to create directory %s !',
         'dest_dir_ro' => 'Destination directory %s is not writable by the script !',
         'err_move' => 'Impossible to move %s to %s !',
-        'err_fsize_too_large' => 'The size of picture you have uploaded is too large (maximum allowed is %s x %s) !',
+        'err_fsize_too_large' => 'The size of file you have uploaded is too large (maximum allowed is %s x %s) !',
         'err_imgsize_too_large' => 'The size of the file you have uploaded is too large (maximum allowed is %s KB) !',
         'err_invalid_img' => 'The file you have uploaded is not a valid image !',
         'allowed_img_types' => 'You can only upload %s images.',
-        'err_insert_pic' => 'The picture \'%s\' can\'t be inserted in the album ',
-        'upload_success' => 'Your picture was uploaded successfully<br /><br />It will be visible after admin approval.',
+        'err_insert_pic' => 'The file \'%s\' can\'t be inserted in the album ',
+        'upload_success' => 'Your file was uploaded successfully<br /><br />It will be visible after admin approval.',
         'notify_admin_email_subject' => '%s - Upload notification',
         'notify_admin_email_body' => 'A picture has been uploaded by %s that needs your approval. Visit %s',
         'info' => 'Information',
@@ -537,9 +549,9 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
         'alb_updated' => 'Album updated',
         'err_comment_empty' => 'Your comment is empty !',
         'err_invalid_fext' => 'Only files with the following extensions are accepted : <br /><br />%s.',
-        'no_flood' => 'Sorry but you are already the author of the last comment posted for this picture<br /><br />Edit the comment you have posted if you want to modify it',
+        'no_flood' => 'Sorry but you are already the author of the last comment posted for this file<br /><br />Edit the comment you have posted if you want to modify it',
         'redirect_msg' => 'You are being redirected.<br /><br /><br />Click \'CONTINUE\' if the page does not refresh automatically',
-        'upl_success' => 'Your picture was successfully added',
+        'upl_success' => 'Your file was successfully added',
         'email_comment_subject' => 'Comment posted on Coppermine Photo Gallery',
         'email_comment_body' => 'Someone has posted a comment on your gallery. See it at',
 );
@@ -562,7 +574,7 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
         'err_invalid_data' => 'Invalid data received in \'%s\'',
         'create_alb' => 'Creating album \'%s\'',
         'update_alb' => 'Updating album \'%s\' with title \'%s\' and index \'%s\'',
-        'del_pic' => 'Delete picture',
+        'del_pic' => 'Delete file',
         'del_alb' => 'Delete album',
         'del_user' => 'Delete user',
         'err_unknown_user' => 'The selected user does not exist !',
@@ -582,8 +594,8 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 if (defined('DISPLAYIMAGE_PHP')){
 
 $lang_display_image_php = array(
-        'confirm_del' => 'Are you sure you want to DELETE this picture ? \\nComments will also be deleted.',
-        'del_pic' => 'DELETE THIS PICTURE',
+        'confirm_del' => 'Are you sure you want to DELETE this file ? \\nComments will also be deleted.',
+        'del_pic' => 'DELETE THIS FILE',
         'size' => '%s x %s pixels',
         'views' => '%s times',
         'slideshow' => 'Slideshow',
@@ -594,7 +606,7 @@ $lang_display_image_php = array(
 );
 
 $lang_picinfo = array(
-        'title' =>'Picture information',
+        'title' =>'File information',
         'Filename' => 'Filename',
         'Album name' => 'Album name',
         'Rating' => 'Rating (%s votes)',
@@ -662,26 +674,26 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
 // ------------------------------------------------------------------------- //
 
 if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
-        'pic_info' => 'Picture&nbsp;info',
+        'pic_info' => 'File&nbsp;info',
         'album' => 'Album',
         'title' => 'Title',
         'desc' => 'Description',
         'keywords' => 'Keywords',
         'pic_info_str' => '%s &times; %s - %s KB - %s views - %s votes',
-        'approve' => 'Approve picture',
+        'approve' => 'Approve file',
         'postpone_app' => 'Postpone approval',
-        'del_pic' => 'Delete picture',
+        'del_pic' => 'Delete file',
         'read_exif' => 'Read EXIF info again',
         'reset_view_count' => 'Reset view counter',
         'reset_votes' => 'Reset votes',
         'del_comm' => 'Delete comments',
         'upl_approval' => 'Upload approval',
-        'edit_pics' => 'Edit pictures',
-        'see_next' => 'See next pictures',
-        'see_prev' => 'See previous pictures',
-        'n_pic' => '%s pictures',
-        'n_of_pic_to_disp' => 'Number of picture to display',
-        'apply' => 'Apply modifications',
+        'edit_pics' => 'Edit files',
+        'see_next' => 'See next files',
+        'see_prev' => 'See previous files',
+        'n_pic' => '%s files',
+        'n_of_pic_to_disp' => 'Number of file to display',
+        'apply' => 'Apply modifications'
         'crop_title' => 'Coppermine Picture Editor',
         'preview' => 'Preview',
         'save' => 'Save picture',
@@ -761,10 +773,10 @@ Click %s to log in.',
 if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
         'group_name' => 'Group name',
         'disk_quota' => 'Disk quota',
-        'can_rate' => 'Can rate pictures',
+        'can_rate' => 'Can rate files',
         'can_send_ecards' => 'Can send ecards',
         'can_post_com' => 'Can post comments',
-        'can_upload' => 'Can upload pictures',
+        'can_upload' => 'Can upload files',
         'can_have_gallery' => 'Can have a personal gallery',
         'apply' => 'Apply modifications',
         'create_new_group' => 'Create new group',
@@ -789,29 +801,29 @@ $lang_index_php = array(
 );
 
 $lang_album_admin_menu = array(
-        'confirm_delete' => 'Are you sure you want to DELETE this album ? \\nAll pictures and comments will also be deleted.',
+        'confirm_delete' => 'Are you sure you want to DELETE this album ? \\nAll files and comments will also be deleted.',
         'delete' => 'DELETE',
         'modify' => 'PROPERTIES',
-        'edit_pics' => 'EDIT PICS',
+        'edit_pics' => 'EDIT FILES',
 );
 
 $lang_list_categories = array(
         'home' => 'Home',
-        'stat1' => '<b>[pictures]</b> pictures in <b>[albums]</b> albums and <b>[cat]</b> categories with <b>[comments]</b> comments viewed <b>[views]</b> times',
-        'stat2' => '<b>[pictures]</b> pictures in <b>[albums]</b> albums viewed <b>[views]</b> times',
+        'stat1' => '<b>[pictures]</b> files in <b>[albums]</b> albums and <b>[cat]</b> categories with <b>[comments]</b> comments viewed <b>[views]</b> times',
+        'stat2' => '<b>[pictures]</b> files in <b>[albums]</b> albums viewed <b>[views]</b> times',
         'xx_s_gallery' => '%s\'s Gallery',
-        'stat3' => '<b>[pictures]</b> pictures in <b>[albums]</b> albums with <b>[comments]</b> comments viewed <b>[views]</b> times'
+        'stat3' => '<b>[pictures]</b> files in <b>[albums]</b> albums with <b>[comments]</b> comments viewed <b>[views]</b> times'
 );
 
 $lang_list_users = array(
         'user_list' => 'User list',
         'no_user_gal' => 'There are no user galleries',
         'n_albums' => '%s album(s)',
-        'n_pics' => '%s picture(s)'
+        'n_pics' => '%s file(s)'
 );
 
 $lang_list_albums = array(
-        'n_pictures' => '%s pictures',
+        'n_pictures' => '%s files',
         'last_added' => ', last one added on %s'
 );
 
@@ -876,7 +888,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
-        'already_rated' => 'Sorry but you have already rated this picture',
+        'already_rated' => 'Sorry but you have already rated this file',
         'rate_ok' => 'Your vote was accepted',
         'forbidden' => 'You can not rate your own pictures.',
 );
@@ -995,33 +1007,33 @@ if (defined('SEARCH_PHP')) $lang_search_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
-        'page_title' => 'Search new pictures',
+        'page_title' => 'Search new files',
         'select_dir' => 'Select directory',
-        'select_dir_msg' => 'This function allows you to add a batch of picture that your have uploaded on your server by FTP.<br /><br />Select the directory where you have uploaded your pictures.<br /><br />Do not use the folders &quot;userpics&quot; nor &quot;manipulation&quot; - they exclusively belong to coppermine and musn\'t be touched.', //changed by gaugau 03-11-02
-        'no_pic_to_add' => 'There is no picture to add',
+        'select_dir_msg' => 'This function allows you to add a batch of file that your have uploaded on your server by FTP.<br /><br />Select the directory where you have uploaded your files',
+        'no_pic_to_add' => 'There is no file to add',
         'need_one_album' => 'You need at least one album to use this function',
         'warning' => 'Warning',
-        'change_perm' => 'the script can\'t write in this directory, you need to change its mode to 755 or 777 before trying to add the pictures !',
-        'target_album' => '<b>Put pictures of &quot;</b>%s<b>&quot; into </b>%s',
+        'change_perm' => 'the script can\'t write in this directory, you need to change its mode to 755 or 777 before trying to add the files !',
+        'target_album' => '<b>Put files of &quot;</b>%s<b>&quot; into </b>%s',
         'folder' => 'Folder',
         'image' => 'Image',
         'album' => 'Album',
         'result' => 'Result',
         'dir_ro' => 'Not writable. ',
         'dir_cant_read' => 'Not readable. ',
-        'insert' => 'Adding new pictures to the gallery',
-        'list_new_pic' => 'List of new pictures',
-        'insert_selected' => 'Insert selected pictures',
-        'no_pic_found' => 'No new picture was found',
+        'insert' => 'Adding new files to the gallery',
+        'list_new_pic' => 'List of new files',
+        'insert_selected' => 'Insert selected files',
+        'no_pic_found' => 'No new file was found',
+        'be_patient' => 'Please be patient, the script needs time to add the files',
         'no_album' => 'no album selected', //re-introduced by gaugau 03-11-17: the var has been in the code, but apparently the translation was deleted by accident
-        'be_patient' => 'Please be patient, the script needs time to add the pictures',
         'notes' =>  '<ul>'.
-                                '<li><b>OK</b> : means that the picture was succesfully added</li>'.
-                                '<li><b>DP</b> : means that the picture is a duplicate and is already in the database</li>'.
-                                '<li><b>PB</b> : means that the picture could not be added, check your configuration and the permission of directories where the pictures are located</li>'.
-                                '<li><b>NA</b> : means that you haven\'t selected an album the pics should go to, hit \'<a href="javascript:history.back(1)">back</a>\' and select an album. If you don\'t have an album <a href="albmgr.php">create one first</a></li>'.
-                                '<li>If the OK, DP, PB \'signs\' does not appear click on the broken picture to see any error message produced by PHP</li>'.
-                                '<li>If your browser timeout, hit the reload button</li>'.
+                                '<li><b>OK</b> : means that the file was succesfully added'.
+                                '<li><b>DP</b> : means that the file is a duplicate and is already in the database'.
+                                '<li><b>PB</b> : means that the file could not be added, check your configuration and the permission of directories where the files are located'.
+                                '<li><b>NA</b> : means that you haven\'t selected an album the files should go to, hit \'<a href="javascript:history.back(1)">back</a>\' and select an album. If you don\'t have an album <a href="albmgr.php">create one first</a></li>'.
+                                '<li>If the OK, DP, PB \'signs\' does not appear click on the broken file to see any error message produced by PHP'.
+                                '<li>If your browser timeout, hit the reload button'.
                                 '</ul>',
         'select_album' => 'select album',
         'check_all' => 'Check All',
@@ -1057,14 +1069,14 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UPLOAD_PHP')) $lang_upload_php = array(
-        'title' => 'Upload picture',
+        'title' => 'Upload file',
         'max_fsize' => 'Maximum allowed file size is %s KB',
         'album' => 'Album',
-        'picture' => 'Picture',
-        'pic_title' => 'Picture title',
-        'description' => 'Picture description',
+        'picture' => 'File',
+        'pic_title' => 'File title',
+        'description' => 'File description',
         'keywords' => 'Keywords (separate with spaces)',
-        'err_no_alb_uploadables' => 'Sorry there is no album where you are allowed to upload pictures',
+        'err_no_alb_uploadables' => 'Sorry there is no album where you are allowed to upload files',
 );
 
 
@@ -1095,12 +1107,12 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
         'group' => 'Group',
         'inactive' => 'Inactive',
         'operations' => 'Operations',
-        'pictures' => 'Pictures',
+        'pictures' => 'Files',
         'disk_space' => 'Space used / Quota',
         'registered_on' => 'Registered on',
         'last_visit' => 'Last Visit',
         'u_user_on_p_pages' => '%d users on %d page(s)',
-        'confirm_del' => 'Are you sure you want to DELETE this user ? \\nAll his pictures and albums will also be deleted.',
+        'confirm_del' => 'Are you sure you want to DELETE this user ? \\nAll his files and albums will also be deleted.',
         'mail' => 'MAIL',
         'err_unknown_user' => 'Selected user does not exist !',
         'modify_user' => 'Modify user',
@@ -1136,7 +1148,7 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
         'updated_succesfully' => 'updated succesfully',
         'error_create' => 'ERROR creating',
         'continue' => 'Process more images',
-        'main_success' => 'The file %s was successfully used as main picture',
+        'main_success' => 'The file %s was successfully used as main file',
         'error_rename' => 'Error renaming %s to %s',
         'error_not_found' => 'The file %s was not found',
         'back' => 'back to main',
@@ -1157,14 +1169,14 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
         'update_both' => 'Both thumbnails and resized pictures',
         'update_number' => 'Number of processed images per click',
         'update_option' => '(Try setting this option lower if you experience timeout problems)',
-        'filename_title' => 'Filename &rArr; Picture title',
+        'filename_title' => 'Filename &rArr; File title',
         'filename_how' => 'How should the filename be modified',
         'filename_remove' => 'Remove the .jpg ending and replace _ (underscore) with spaces',
         'filename_euro' => 'Change 2003_11_23_13_20_20.jpg to 23/11/2003 13:20',
         'filename_us' => 'Change 2003_11_23_13_20_20.jpg to 11/23/2003 13:20',
         'filename_time' => 'Change 2003_11_23_13_20_20.jpg to 13:20',
-        'delete' => 'Delete picture titles or original size photos',
-        'delete_title' => 'Delete picture titles',
+        'delete' => 'Delete file titles or original size photos',
+        'delete_title' => 'Delete file titles',
         'delete_original' => 'Delete original size photos',
         'delete_replace' => 'Deletes the original images replacing them with the sized versions',
         'select_album' => 'Select album',
@@ -1173,7 +1185,7 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
         'delete' => 'Delete',
         'delete_all' => 'Delete all',
         'comment' => 'Comment: ',
-        'nonexist' => 'attached to non existant picture # '
+        'nonexist' => 'attached to non existant file # '
 );
 
 
