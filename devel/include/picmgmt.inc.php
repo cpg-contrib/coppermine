@@ -30,7 +30,7 @@ function add_picture($aid, $filepath, $filename, $title = '', $caption = '', $ke
             return false;
 
         if (max($imagesize[0], $imagesize[1]) > $CONFIG['picture_width'] && $CONFIG['make_intermediate'] && !file_exists($normal))
-            if (!resize_image($image, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method']))
+            if (!resize_image($image, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use']))
                 return false;
 
             $image_filesize = filesize($image);
@@ -87,7 +87,7 @@ function add_picture($aid, $filepath, $filename, $title = '', $caption = '', $ke
          * @param  $method the method used for image resizing
          * @return 'true' in case of success
          */
-        function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use = '')
+        function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use)
         {
             global $CONFIG, $ERROR;
             global $lang_errors;
