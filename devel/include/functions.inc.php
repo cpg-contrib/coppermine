@@ -2390,6 +2390,7 @@ return $BRIDGE;
 }
 
 function cpg_get_webroot_path() {
+    global $PHP_SELF;
     // get the webroot folder out of a given PHP_SELF of any coppermine page
 
     // what we have: we can say for sure where we are right now: $PHP_SELF (if the server doesn't even have it, there will be problems everywhere anyway)
@@ -2407,6 +2408,8 @@ function cpg_get_webroot_path() {
     // we should be able to tell the current script's filename by removing everything before and including the last slash in $PHP_SELF
     $filename = ltrim(strrchr($PHP_SELF, '/'), '/');
     //print 'filename:'.$filename;
+    //print "<hr />\n";
+    //print '$PHP_SELF:'.$PHP_SELF;
     //print "<hr />\n";
 
     // let's eliminate all those vars that don't contain the filename (and replace the funny notation from windows machines)
