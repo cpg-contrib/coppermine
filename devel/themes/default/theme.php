@@ -819,7 +819,7 @@ function pageheader($section, $meta = '')
 function pagefooter()
 {
         global $HTTP_GET_VARS, $HTTP_POST_VARS, $HTTP_SERVER_VARS;
-        global $USER, $ALBUM_SET, $CONFIG, $time_start, $query_stats, $queries;;
+        global $USER, $USER_DATA, $ALBUM_SET, $CONFIG, $time_start, $query_stats, $queries;;
         global $template_footer;
 
         if ($CONFIG['debug_mode']) {
@@ -841,6 +841,10 @@ function pagefooter()
                 print_r($USER);
                 echo "</pre></td></tr><td class=\"tableb\">";
                 echo "<tr><td class=\"tableb\">";
+                echo "USER DATA: <pre>";
+                print_r($USER_DATA);
+                echo "</pre></td></tr><td class=\"tableb\">";                
+		echo "<tr><td class=\"tableb\">";
                 echo "Queries: <pre>";
                 print_r($queries);
                 echo "</pre></td></tr><td class=\"tableb\">";
