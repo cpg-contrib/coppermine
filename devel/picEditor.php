@@ -154,6 +154,8 @@ if ($_GET['id']){
    if(isset($_POST["save"])) {
         $width=$imgObj->width;
         $height=$imgObj->height;
+		$normal = $CONFIG['fullpath'] . $CURRENT_PIC['filepath'] . $CONFIG['normal_pfx'] . $CURRENT_PIC['filename'];
+		$thumbnail = $CONFIG['fullpath'] . $CURRENT_PIC['filepath'] . $CONFIG['thumb_pfx'] . $CURRENT_PIC['filename'];
 		$filesize = @filesize($img_dir.$newimage);
 
           //Full image replace
@@ -163,16 +165,19 @@ if ($_GET['id']){
           // as using the object resizeImage will make the final display of image to be a thumbnail in the editor
 
           if ($CONFIG['make_intermediate']) {
-                resize_image($img_dir.$newimage, $CONFIG['fullpath'] . $CURRENT_PIC['filepath'] . $CONFIG['normal_pfx'] . $CURRENT_PIC['filename'], $CONFIG['picture_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use']);
+                resize_image($img_dir.$newimage, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use']);
           }
 
           //thumbnail resized and replace
-                resize_image($img_dir.$newimage, $CONFIG['fullpath'] . $CURRENT_PIC['filepath'] . $CONFIG['thumb_pfx'] . $CURRENT_PIC['filename'], $CONFIG['thumb_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use']);
+               resize_image($img_dir.$newimage, $thumbnail, $CONFIG['thumb_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use']);
+		       $total_filesize = $filesize + (file_exists($normal) ? filesize($normal) : 0) + filesize($thumbnail);
+			   
           //Update the image size in the DB
           db_query("UPDATE {$CONFIG['TABLE_PICTURES']}
                           SET pheight = $height,
                             pwidth = $width,
-							filesize = $filesize
+							filesize = $filesize,
+							total_filesize = $total_filesize
                           WHERE pid = '$pid'");
 
           $message = "Picture successfully saved - you can close this window now";
