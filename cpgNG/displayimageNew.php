@@ -1,36 +1,78 @@
 <?php
 /**
- * $ID$
+ * dislplayimageNew.php
+ *
+ * Script to display images.
+ *
+ * This script displays individual image. It also displays the pic info, filmstrip, comments, 
+ * and other related data. 
+ *
+ * @package cpgNG
+ * @author Abbas <abbas@sanisoft.com>
+ * @version $Id$
  */
 error_reporting(E_ALL);
+/**#@+
+ * Constant to prevent direct execution of config.inc.php
+ */
 define('IN_COPPERMINE', true);
 define('DISPLAYIMAGE_PHP', true);
 define('INDEX_PHP', true);
-//define('SMILIES_PHP', true);
+/**#@-*/
 
+/**
+ * Requires initialization file
+ */
 require('include/init.inc.php');
 
+/**#@+
+ * Include all the classes
+ */
 require_once('classes/cpgAlbumFactory.class.php');
 require_once('classes/cpgTemplate.class.php');
-
 require('classes/cpgDisplayImageData.class.php');
+/**#@-*/
 
-if ($CONFIG['enable_smilies']) include("include/smilies.inc.php");
+/**
+ * If smilies is enabled then include smilies.inc.php 
+ */
+if ($CONFIG['enable_smilies']) {
+  include("include/smilies.inc.php");
+}
+
 
 if (isset($_GET['aid'])) {
+  /**
+   * @var Integer 
+   * Variable to hold numeric album id
+   */
   $aid = (int)$_GET['aid'];
 }
+
 if (isset($_GET['pid'])) {
+  /**
+   * @var Integer 
+   * Variable to hold picture id
+   */
   $pid = (int)$_GET['pid'];
 } else {
   $pid = 0;
 }
+
 if (isset($_GET['albumName'])) {
+  /**
+   * @var String/Integer 
+   * Variable to hold albumName/ablbumId
+   */
   $album = $_GET['albumName'];
 } else {
   cpg_die(CRITICAL_ERROR, $lang_errors["param_missing"], __FILE__, __LINE__);
 }
 if (isset($_GET['pos'])) {
+  /**
+   * @var Integer 
+   * Variable to hold picture position
+   */
   $pos = (int)$_GET['pos'];
 } else {
   cpg_die(CRITICAL_ERROR, $lang_errors["param_missing"], __FILE__, __LINE__);
@@ -83,8 +125,8 @@ if (isset($_GET['pos'])) {
     }
 }
 
-if (empty($picData["pid"])) {
-  cpg_die(INFORMATION, $lang_errors['no_img_to_display'], __FILE__, __LINE__);
+if (!$picData["pid"]) {
+  cpg_die(INFORMATION, $lang_errors['no_img_to_display']);
 } elseif ($pid == 0) {
   $pid = $picData["pid"];
 }
@@ -98,7 +140,7 @@ if (isset($picData)) {
     $result = cpg_db_query($query);
     if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, sprintf($lang_errors['pic_in_invalid_album'], $picData['aid']), __FILE__, __LINE__);
     $CURRENT_ALBUM_DATA = mysql_fetch_array($result);
-    mysql_free_result();
+    mysql_free_result($result);
 }
 
 /**
@@ -187,16 +229,21 @@ $CONTENT = $t->getDisplayImageHTML($picData, $picCount, $pos, $thumbPage, $displ
 
 $pictureTitle = $picData['title'] ? $picData['title'] : strtr(preg_replace("/(.+)\..*?\Z/", "\\1", htmlspecialchars($picData['filename'])), "_", " ");
 
+/**#@+
+ * Assign to smarty
+ */
 $t->assign("breadcrumbHTML", $breadcrumbHTML);
 $t->assign("CONTENT", $CONTENT);
 $t->assign("PAGE_TITLE", $CONFIG["gallery_name"] . " - " . $album_name."/".$pictureTitle);
 $t->assign("GALLERY_DESCRIPTION", $CONFIG["gallery_description"]);
+/**#@-*/
 
-/**
- * Assign lang array's
+/**#@+
+ * Assign lang array to smarty
  */
 $t->assign("lang_main_menu", $lang_main_menu);
 $t->assign("lang_gallery_admin_menu", $lang_gallery_admin_menu);
+/**#@-*/
 
 /**
  * Assign user related data
@@ -205,10 +252,9 @@ if (!USER_ID) {
   $t->assign("login", 1);
 }
 
-/**
- * Assign user related data
+/**#@+
+ * Assign user related data to smarty
  */
-
 $t->assign("GALLERY_ADMIN_MODE", GALLERY_ADMIN_MODE);
 $t->assign("USER_ADMIN_MODE", USER_ADMIN_MODE);
 $t->assign("USER_CAN_CREATE_ALBUMS", USER_CAN_CREATE_ALBUMS);
@@ -218,10 +264,10 @@ $t->assign("REFERER", $REFERER);
 $t->assign("cat", $cat);
 $t->assign("USER_NAME", USER_NAME);
 $t->assign("my_cat_id", FIRST_USER_CAT + USER_ID);
+/**#@-*/
 
 /**
  * Display the common html file
  */
 $t->display ("2bornot2b/main.html");
-
 ?>

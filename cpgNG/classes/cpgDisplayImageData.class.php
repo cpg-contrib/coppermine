@@ -1,16 +1,52 @@
 <?php
 /**
- * $Id$
+ * cpgDisplayImageData.class.php
+ *
+ * Class for displaying the image on displayimageNew.php
+ *
+ * @package cpgNG
+ * @author Abbas <abbas@sanisoft.com>
+ * @version $Id$
  */
+ 
+/**
+ * Include the base class file
+ */ 
 require_once ("cpgAlbumData.class.php");
-require_once ("include/exif_php.inc.php");
-require_once ("include/iptc.inc.php");
-require_once ("include/media.functions.inc.php");
-class cpgDisplayImageData extends cpgAlbumData {
 
+/**
+ * Include the exif file
+ */ 
+require_once ("include/exif_php.inc.php");
+
+/**
+ * Include the iptc file
+ */ 
+require_once ("include/iptc.inc.php");
+
+/**
+ * Include the media file
+ */ 
+require_once ("include/media.functions.inc.php");
+
+class cpgDisplayImageData extends cpgAlbumData {
+  
+  /**
+   * Get the picture data
+   *
+   * @param string $album
+   * @param string $album_name
+   * @param integer $count
+   * @param integer $limit1
+   * @param integer $limit2
+   * @param integer $pid
+   * @param boolean $set_caption
+   * @return array $row
+   */
   function getPicData ($album, &$album_name, &$count, $limit1 = -1, $limit2 = -1, $pid, $set_caption = true)
   {
         global $CONFIG, $USER, $ALBUM_SET, $FORBIDDEN_SET_DATA;
+        $forbidden_set_string = "";
 
         if(count($FORBIDDEN_SET_DATA) > 0 ){
             $forbidden_set_string =" AND aid NOT IN (".implode(",", $FORBIDDEN_SET_DATA).")";
@@ -81,7 +117,12 @@ class cpgDisplayImageData extends cpgAlbumData {
                 return $row;
         }
   }
-
+  
+  /**
+   * Get the html related data for the picture
+   *
+   * @param array $picData
+   */
   function getPicHtmlData (&$picData)
   {
     global $CONFIG, $CURRENT_ALBUM_DATA, $USER;
@@ -149,9 +190,16 @@ class cpgDisplayImageData extends cpgAlbumData {
     $picData = CPGPluginAPI::filter('file_data',$picData);
   }
 
+  /**
+   * Get the picture comments
+   *
+   * @param integer $pid
+   * @return array $params
+   */
   function getPicComments($pid)
   {
     global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $USER, $comment_date_fmt;
+    $params = array();
 
     $query = "SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid' ORDER BY msg_id ASC";
 
@@ -188,6 +236,11 @@ class cpgDisplayImageData extends cpgAlbumData {
     }
   }
 
+  /**
+   * Get the picture information
+   *
+   * @return array $picInfo
+   */  
   function getPicInfo()
   {
     global $CONFIG, $THEME_DIR, $FAVPICS;
