@@ -61,6 +61,13 @@ if (get_magic_quotes_gpc()) {
             if (isset($$key)) unset($$key);
         }
     }
+    if (is_array($_REQUEST)) {
+        foreach ($_REQUEST as $key => $value) {
+            if (!is_array($value))
+                $_REQUEST[$key] = stripslashes($value);
+            if (isset($$key)) unset($$key);
+        }
+    }
 } else {
     if (is_array($_POST)) {
         foreach ($_POST as $key => $value) {
@@ -79,6 +86,13 @@ if (get_magic_quotes_gpc()) {
 
     if (is_array($_COOKIE)) {
         foreach ($_COOKIE as $key => $value) {
+            if (isset($$key)) unset($$key);
+        }
+    }
+    if (is_array($_REQUEST)) {
+        foreach ($_REQUEST as $key => $value) {
+            if (!is_array($value))
+                $_REQUEST[$key] = strtr($value, $HTML_SUBST);
             if (isset($$key)) unset($$key);
         }
     }
