@@ -16,4 +16,4 @@ Added Complete Queries to the debug output - 24th September 2003, Tarique
 Added Comment IP viewing - 24th September 2003, Jack
 Fixed Batch Update to force selection of an album & identify the category of an album - 25th September 2003, Jack
 Added Email notification on Comment - 25th September 2003, Tarique
-
+Moved hardcoded text from util.php to language file - 27th September 2003, GauGau

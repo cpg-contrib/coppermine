@@ -57,7 +57,7 @@ $lang_meta_album_names = array(
         'toprated' => 'Top rated',
         'lasthits' => 'Last viewed',
         'search' => 'Search results',
-	'favpics'=> 'Favourite Pictures'
+        'favpics'=> 'Favourite Pictures'
 );
 
 $lang_errors = array(
@@ -102,7 +102,6 @@ $lang_main_menu = array(
         'topn_lnk' => 'Most viewed',
         'toprated_lnk' => 'Top rated',
         'search_lnk' => 'Search',
-		'fav_lnk' => 'Favorites',
 );
 
 $lang_gallery_admin_menu = array(
@@ -114,7 +113,7 @@ $lang_gallery_admin_menu = array(
         'groups_lnk' => 'Groups',
         'comments_lnk' => 'Comments',
         'searchnew_lnk' => 'Batch add pictures',
-	'util_lnk' => 'Resize pictures'
+        'util_lnk' => 'Resize pictures',
 );
 
 $lang_user_admin_menu = array(
@@ -324,8 +323,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Gallery name', 'gallery_name', 0),
         array('Gallery description', 'gallery_description', 0),
         array('Gallery administrator email', 'gallery_admin_email', 0),
-	array('Email notification of comments, send at administrator email ', 'comment_email_notification', 1),
-        array('Server and directory of coppermine install<br>ie http://mysite.com/coppermine or http://mysite.com <b>no trailing slash</b>', 'ecards_more_pic_target', 0),
+        array('Target address for the \'See more pictures\' link in e-cards', 'ecards_more_pic_target', 0),
         array('Language', 'lang', 5),
         array('Theme', 'theme', 6),
 
@@ -336,7 +334,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Number of columns for the album list', 'album_list_cols', 0),
         array('Size of thumbnails in pixels', 'alb_list_thumb_size', 0),
         array('The content of the main page', 'main_page_layout', 0),
-        array('Show first level album thumbnails in categories','first_level',1),
+            array('Show first level album thumbnails in categories','first_level',1),
 
         'Thumbnail view',
         array('Number of columns on thumbnail page', 'thumbcols', 0),
@@ -436,7 +434,6 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
         'no_flood' => 'Sorry but you are already the author of the last comment posted for this picture<br /><br />Edit the comment you have posted if you want to modify it',
         'redirect_msg' => 'You are being redirected.<br /><br /><br />Click \'CONTINUE\' if the page does not refresh automatically',
         'upl_success' => 'Your picture was successfully added',
-	'email_comment_subject' =>'New comment added to picture'
 );
 
 // ------------------------------------------------------------------------- //
@@ -501,9 +498,9 @@ $lang_picinfo = array(
         'Exposure time' => 'Exposure time',
         'Focal length' => 'Focal length',
         'Comment' => 'Comment',
-	'addFav'=>'Add to Fav',
-	'addFavPhrase'=>'Favourites',
-	'remFav'=>'Remove from Fav',
+        'addFav'=>'Add to Fav',
+        'addFavPhrase'=>'Favourites',
+        'remFav'=>'Remove from Fav',
 );
 
 $lang_display_comments = array(
@@ -826,13 +823,10 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
         'insert_selected' => 'Insert selected pictures',
         'no_pic_found' => 'No new picture was found',
         'be_patient' => 'Please be patient, the script needs time to add the pictures',
-        'select_album' => 'Select an Album',
-        'no_album' => 'No Album Selected!',
         'notes' =>  '<ul>'.
                                 '<li><b>OK</b> : means that the picture was succesfully added'.
                                 '<li><b>DP</b> : means that the picture is a duplicate and is already in the database'.
                                 '<li><b>PB</b> : means that the picture could not be added, check your configuration and the permission of directories where the pictures are located'.
-                                '<li><b>NA</b> : means that you have not selected an album for this picture, click the back button to correct'.
                                 '<li>If the OK, DP, PB \'signs\' does not appear click on the broken picture to see any error message produced by PHP'.
                                 '<li>If your browser timeout, hit the reload button'.
                                 '</ul>',
@@ -856,8 +850,7 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
         'album' => 'Album',
         'picture' => 'Picture',
         'pic_title' => 'Picture title',
-        'caption' => 'Picture caption',
-		'description' => 'Picture description',
+        'description' => 'Picture description',
         'keywords' => 'Keywords (separate with spaces)',
         'err_no_alb_uploadables' => 'Sorry there is no album where you are allowed to upload pictures',
 );
@@ -907,4 +900,56 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
         'user_interests' => 'User interests',
         'user_occupation' => 'User occupation',
 );
+
+// ------------------------------------------------------------------------- //
+// File util.php
+// ------------------------------------------------------------------------- //
+
+if (defined('UTIL_PHP')) $lang_util_php = array(
+        'title' => 'Resize pictures',
+        'what_it_does' => 'What it does',
+        'what_update_titles' => 'Updates titles from filename',
+        'what_delete_title' => 'Deletes titles',
+        'what_rebuild' => 'Rebuilds thumbnails and resized photos',
+        'what_delete_originals' => 'Deletes original sized photos replacing them with the sized version',
+        'file' => 'File',
+        'title_set_to' => 'title set to',
+        'submit_form' => 'submit',
+        'updated_succesfully' => 'updated succesfully',
+        'error_create' => 'ERROR creating',
+        'continue' => 'Process more images',
+        'main_success' => 'The file %s was successfully used as main picture',
+        'error_rename' => 'Error renaming %s to %s',
+        'error_not_found' => 'The file %s was not found',
+        'back' => 'back to main',
+        'thumbs_wait' => 'Updating thumbnails and/or resized images, please wait...',
+        'thumbs_continue_wait' => 'Continuing to update thumbnails and/or resized images...',
+        'titles_wait' => 'Updating titles, please wait...',
+        'delete_wait' => 'Deleting titles, please wait...',
+        'replace_wait' => 'Deleting originals and replacing them with resized images, please wait..',
+        'instruction' => 'Quick instructions',
+        'instruction_action' => 'Select action',
+        'instruction_parameter' => 'Set parameters',
+        'instruction_album' => 'Select album',
+        'instruction_press' => 'Press %s',
+        'update' => 'Update thumbs and/or resized photos',
+        'update_what' => 'What should be updated',
+        'update_thumb' => 'Only thumbnails',
+        'update_pic' => 'Only resized pictures',
+        'update_both' => 'Both thumbnails and resized pictures',
+        'update_number' => 'Number of processed images per click',
+        'update_option' => '(Try setting this option lower if you experience timeout problems)',
+        'filename_title' => 'Filename &rArr; Picture title',
+        'filename_how' => 'How should the filename be modified',
+        'filename_remove' => 'Remove the .jpg ending and replace _ (underscore) with spaces',
+        'filename_euro' => 'Change 2003_11_23_13_20_20.jpg to 23/11/2003 13:20',
+        'filename_us' => 'Change 2003_11_23_13_20_20.jpg to 11/23/2003 13:20',
+        'filename_time' => 'Change 2003_11_23_13_20_20.jpg to 13:20',
+        'delete' => 'Delete picture titles or original size photos',
+        'delete_title' => 'Delete picture titles',
+        'delete_original' => 'Delete original size photos',
+        'delete_replace' => 'Deletes the original images replacing them with the sized versions',
+        'select_album' => 'Select album',
+);
+
 ?>
