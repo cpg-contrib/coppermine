@@ -36,14 +36,22 @@ function check_comment(&$str)
 {
     global $CONFIG, $lang_bad_words, $queries;
 
-    $ercp = array('/\S{' . ($CONFIG['max_com_wlength'] + 1) . ',}/i');
-    if ($CONFIG['filter_bad_words']) foreach($lang_bad_words as $word) {
-        $ercp[] = '/' . ($word[0] == '*' ? '': '\b') . str_replace('*', '', $word) . ($word[(strlen($word)-1)] == '*' ? '': '\b') . '/i';
+    if ($CONFIG['filter_bad_words']) {
+        $ercp = array();
+        foreach($lang_bad_words as $word) {
+            $ercp[] = '/' . ($word[0] == '*' ? '': '\b') . str_replace('*', '', $word) . ($word[(strlen($word)-1)] == '*' ? '': '\b') . '/i';
+        }
+        $str = preg_replace($ercp, '(...)', $str);
     }
 
-                $stripped_str = strip_tags($str);
-    if (strlen($stripped_str) > $CONFIG['max_com_size']) $stripped_str = substr($stripped_str, 0, ($CONFIG['max_com_size'] -3)) . '...';
-    $str = preg_replace($ercp, '(...)', $stripped_str);
+    $com_words=explode(' ',strip_tags(bb_decode($str)));
+    $replacements=array();
+    foreach($com_words as $key => $word) {
+       if (strlen($word) > $CONFIG['max_com_wlength'] ) {
+          $replacements[] = $word;
+       }
+    }
+    $str=str_replace($replacements,'(...)',$str);
 }
 
 if (!isset($_GET['event']) && !isset($_POST['event'])) {
