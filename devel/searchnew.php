@@ -47,7 +47,7 @@ function albumselect($id = "album")
         $rowset = db_fetch_rowset($result);
         mysql_free_result($result);
 
-        $result = db_query("SELECT DISTINCT a.aid as aid, a.title as title, c.name as cname FROM {$CONFIG['TABLE_ALBUMS']} as a, {$CONFIG['TABLE_CATEGORIES']} as c WHERE a.category = c.cid AND a.category < '" . FIRST_USER_CAT . "' ORDER BY title");
+        $result = db_query("SELECT DISTINCT a.aid as aid, a.title as title, c.name as cname FROM {$CONFIG['TABLE_ALBUMS']} as a, {$CONFIG['TABLE_CATEGORIES']} as c WHERE a.category = c.cid AND a.category < '" . FIRST_USER_CAT . "' ORDER BY cname,title");
         while ($row = mysql_fetch_array($result)) {
             $row['title'] = $row['cname'] . " - " . $row['title'];
             $rowset[] = $row;
