@@ -1,3 +1,17 @@
+{if $thumbList.thumbCount eq 0}
+<!-- Start standard table -->
+<table align="center" width="100%" cellspacing="0" cellpadding="0" class="maintable">
+  <tr>
+    <td class="tableh1" colspan="1">{$thumbList.albumName}</td>
+  </tr>
+  <tr>
+    <td class="tableb" height="200" align="center">
+      <font size="3"><b>{$lang_errors.no_img_to_display}</b></font>
+    </td>
+  </tr>
+</table>
+<!-- End standard table -->
+{else}
 <!-- Start standard table -->
 <table align="center" width="100%" cellspacing="0" cellpadding="0" class="maintable">
   <tr>
@@ -82,3 +96,4 @@
     </tr>
 </table>
 <!-- End standard table -->
+{/if}
