@@ -2,7 +2,7 @@
   Coppermine Photo Gallery
   ************************
   Copyright (c) 2003-2005 Coppermine Dev Team
-  v1.1 originaly written by Gregory DEMAR
+  v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -24,15 +24,18 @@ body {
         margin: 0px;
 }
 
+h1
+{
+    font-size: 24px;
+    font-weight: normal;
+    padding: 5px;
+}
+
 h2 {
-        font-family: Arial, Helvetica, sans-serif;
         font-size: 18px;
-        margin: 0px;
 }
 
 p {
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 12px;
         margin: 2px 0px;
 }
 
@@ -46,21 +49,15 @@ hr {
 }
 
 .textinput {
-        font-family: Verdana, Arial, Helvetica, sans-serif;
-        font-size: 12px;
         border: groove 1px;
         width: 100%;
 }
 
 .listbox {
-        font-family: Verdana, Arial, Helvetica, sans-serif;
-        font-size: 12px;
         border: groove 1px;
 }
 
 .button {
-        font-family: Verdana, Arial, Helvetica, sans-serif;
-        font-size: 12px;
         border: raised 1px;
 }
 
@@ -124,7 +121,48 @@ a:hover {
         margin: 2px;
 }
 
- .error {
+ .error, .bigwarning {
         color : Red;
         font-weight : bold;
+}
+
+img.logo
+{
+    background-color: #EFEFEF;
+    text-align: left;
+}
+
+.bigwarning, .warning, .failed 
+{
+    color: red;
+}
+
+p, div.warning
+{
+    margin: 10px; 
+    padding: 5px; 
+}
+
+table.maintable td
+{
+    padding: 2px;
+}
+
+p.warning, div.warning
+{
+    color: black;
+    font-size: 120%;
+    border: 1px solid black; 
+    background: #fdd;
+}
+    
+
+.check 
+{
+    color: blue;
+}
+
+.done 
+{
+    color: green;
 }
