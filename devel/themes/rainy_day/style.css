@@ -127,7 +127,8 @@ bblink a:hover {
 
 .maintable {
         border: 1px solid #DEDEDE;
-        background-color: #292E34;
+/*        background-color: #bdbebd; */
+        background-color:#c2c9d3;
         margin-top: 1px;
         margin-bottom: 1px;
 }
@@ -395,16 +396,16 @@ td #admin_menu_anim {
 
 .footer {
         font-size: 9px;
-        color: #FFFFFF;
+        color: #292e34;
 }
 
 .footer a {
         text-decoration: none;
-        color: #FFFFFF;
+        color: #758698;
 }
 
 .footer a:hover {
-        color: #FFFFFF;
+        color: black;
         text-decoration: underline;
 }
 
@@ -503,7 +504,7 @@ td #admin_menu_anim {
 }
 
 .clickable_option {
-        cursor : hand;
+        cursor : default;
 }
 
 .listbox_lang {
