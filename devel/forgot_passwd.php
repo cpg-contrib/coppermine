@@ -29,10 +29,12 @@ if (USER_ID) cpg_die(ERROR, $lang_forgot_passwd_php['err_already_logged_in'], __
 
 $lookup_failed = '';
 
-if ($_POST['email']) {
-	$emailaddress = $_POST['email'];
+if (isset($_POST['email'])) {
+	$emailaddress = addslashes($_POST['email']);
 	
-    $results = cpg_db_query("SELECT user_group,user_active,user_name, user_password, user_email  FROM {$CONFIG['TABLE_USERS']} WHERE user_email = '" . addslashes($_POST['username']) . "' AND user_active = 'YES'");
+	$sql = "SELECT user_group,user_active,user_name, user_password, user_email  FROM {$CONFIG['TABLE_USERS']} WHERE user_email = '$emailaddress' AND user_active = 'YES'";
+
+    $results = cpg_db_query($sql);
     if (mysql_num_rows($results))
         { // something has been found start
         $USER_DATA = mysql_fetch_array($results);
@@ -47,16 +49,16 @@ if ($_POST['email']) {
         }
 
 		$USER_DATA['user_password'] = $cpg_udb->make_password();
-        
+
 		// send the email
         if (!cpg_mail($USER_DATA['user_email'], sprintf($lang_forgot_passwd_php['passwd_reminder_subject'], $CONFIG['gallery_name']), sprintf($lang_forgot_passwd_php['passwd_reminder_body'], $USER_DATA['user_name'],$USER_DATA['user_password'],  $CONFIG['ecards_more_pic_target'].(substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') .'login.php' ))){
             cpg_die(CRITICAL_ERROR, $lang_forgot_passwd_php['failed_sending_email'], __FILE__, __LINE__);
         }
 
-		$sql =  "update {$cpg_udb->usertable} set ";
-		$sql .= "{$cpg_udb->field['password']}='".$cpg_udb->md5($USER_DATA['user_password'])."' ";
-		$sql .= "where {$cpg_udb->field['email']}='$email';";
-		cpg_db_query($sql);
+   		$sql =  "update {$cpg_udb->usertable} set ";
+   		$sql .= "{$cpg_udb->field['password']}='".md5($USER_DATA['user_password'])."' ";
+   		$sql .= "where {$cpg_udb->field['email']}='$email';";
+   		cpg_db_query($sql);
 
         // output the message
         pageheader($lang_forgot_passwd_php['forgot_passwd'], "<META http-equiv=\"refresh\" content=\"3;url=login.php\">");

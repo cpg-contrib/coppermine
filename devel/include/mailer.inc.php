@@ -30,7 +30,7 @@ function cpg_mail($to, $subject, $msg_body = '', $type = 'text/plain', $sender_n
 
         // send mails to ALL admins - not bridged only
     if ($to == 'admin'){
-            if (!defined('UDB_INTEGRATION')) {
+            if (UDB_INTEGRATION == 'coppermine') {
                     $to = array($CONFIG['gallery_admin_email']);
                     $result = cpg_db_query("SELECT user_email FROM {$CONFIG['TABLE_USERS']} WHERE user_group = 1");
                     while($row = mysql_fetch_assoc($result)) {
@@ -50,7 +50,7 @@ function cpg_mail($to, $subject, $msg_body = '', $type = 'text/plain', $sender_n
     $charset = $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'];
 
     $mail = new htmlMimeMail();
-        $mail->setHtmlEncoding('8bit');
+    $mail->setHtmlEncoding('8bit');
     $mail->setTextCharset($charset);
     $mail->setHtmlCharset($charset);
     $mail->setHtml($msg_body, $msg_body_plaintext, './');
