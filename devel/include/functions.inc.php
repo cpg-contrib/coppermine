@@ -2339,28 +2339,14 @@ $lang_language_data['vietnamese'] = array('Vietnamese','Tieng Viet','vn');
 
 // get list of available languages
   $value = strtolower($CONFIG['lang']);
-/*
-  // is utf-8 selected?
- if ($CONFIG['charset'] == 'utf-8') {
-     $cpg_charset = 'utf-8';
- } else {
-     $cpg_charset = '';
- }
- */
-$cpg_charset = $CONFIG['charset'];
 
-// extension for the custom encoding files: language-charset.php
-$charset_extension = '-'.$cpg_charset;
+
+
 
   $lang_dir = 'lang/';
   $dir = opendir($lang_dir);
-  while ($file = readdir($dir)) {
-      if (is_file($lang_dir . $file) && strtolower(substr($file, -4)) == '.php') {
-          if (($cpg_charset != 'utf-8' && strstr($file,$charset_extension) == true) || ($cpg_charset == 'utf-8' && strstr($file,$charset_extension) == false)) 
-          {
-              $lang_array[] = strtolower(substr($file, 0 , -4));
-          }
-      }
+  while ($file = readdir($dir)) {   
+     $lang_array[] = strtolower(substr($file, 0 , -4)); 
   }
   closedir($dir);
   natcasesort($lang_array);
