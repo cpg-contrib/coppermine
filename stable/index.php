@@ -101,7 +101,7 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
                 } // while
                 mysql_free_result($result);
 
-                $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND category = {$subcat['cid']}".$pic_filter);
+                $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} as p, {$CONFIG['TABLE_ALBUMS']} as a WHERE p.aid = a.aid AND category = {$subcat['cid']}".$album_filter);
                 $nbEnr = mysql_fetch_array($result);
                 mysql_free_result($result);
                 $pic_count = $nbEnr[0];
