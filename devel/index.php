@@ -163,6 +163,7 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
                 $link = "<a href=\"index.php?cat={$subcat['cid']}\">{$subcat['name']}</a>";
                 $user_thumb = $ident . $user_thumb;
                 if ($pic_count == 0 && $album_count == 0) {
+					$user_thumb = $ident;
                     $cat_data[] = array($link, $subcat['description'], 'cat_thumb' => $user_thumb);
                 } else {
                     // Check if you need to show subcat_level
@@ -175,7 +176,9 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
                 } 
             } 
 
-            if ($level > 1) get_subcat_data($subcat['cid'], $cat_data, $album_set_array, $level -1, $ident . "</td><td><img src=\"images/spacer.gif\" width=\"20\" height=\"1\"></td><td>");
+            if ($level > 1) {
+				get_subcat_data($subcat['cid'], $cat_data, $album_set_array, $level -1, $ident . "</td><td><img src=\"images/spacer.gif\" width=\"20\" height=\"1\"></td><td>");
+			}	
         } 
     } 
 } 
