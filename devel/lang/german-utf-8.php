@@ -17,9 +17,17 @@
 //  <girish@sanisoft.com> see http://www.sanisoft.com/cpg/README.txt for     //
 //  details                                                                  //
 // ------------------------------------------------------------------------- //
-//  Translation by Joachim Müller <mail@gaugau.de>                           //
-//  http://gaugau.de/                                                        //
-// ------------------------------------------------------------------------- //
+
+// info about translators and translated language
+$lang_translation_info = array(
+'lang_name_english' => 'German',  //the name of your language in English, e.g. 'Greek' or 'Spanish'
+'lang_name_native' => 'Deutsch', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espa&ntilde;ol'
+'lang_country_code' => 'de', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es'
+'trans_name'=> 'GauGau', //the name of the translator - can be a nickname
+'trans_email' => 'mail@gaugau.de', //translator's email address (optional)
+'trans_website' => 'http://gaugau.de/', //translator's website (optional)
+'trans_date' => '2003-10-07', //the date the translation was created / last modified
+);
 
 $lang_charset = 'iso-8859-1';
 $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
@@ -60,6 +68,7 @@ $lang_meta_album_names = array(
         'toprated' => 'am besten bewertet',
         'lasthits' => 'zuletzt angesehen',
         'search' => 'Suchergebnisse'
+        'favpics'=> 'Favourite Pictures' //new in cpg1.2.0
 );
 
 $lang_errors = array(
@@ -104,6 +113,7 @@ $lang_main_menu = array(
         'topn_lnk' => 'am meisten angesehen',
         'toprated_lnk' => 'am besten bewertet',
         'search_lnk' => 'Suche',
+        'fav_lnk' => 'My Favorites', //new in cpg1.2.0
         );
 
 $lang_gallery_admin_menu = array(
@@ -115,7 +125,8 @@ $lang_gallery_admin_menu = array(
         'groups_lnk' => 'Gruppen',
         'comments_lnk' => 'Kommentare',
         'searchnew_lnk' => 'Batch-hinzuf&uuml;gen',
-        'util_lnk' => 'Gr&ouml;sse &auml;ndern',
+        'util_lnk' => 'Gr&ouml;sse &auml;ndern', //new in cpg1.2.0
+        'ban_lnk' => 'Ban Users', //new in cpg1.2.0
 );
 
 $lang_user_admin_menu = array(
@@ -328,7 +339,9 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Galerie-Admin E-Mail', 'gallery_admin_email', 0),
         array('Ziel-Adresse f&uuml;r den  \'mehr Bilder ansehen\' Link in e-cards', 'ecards_more_pic_target', 0),
         array('Sprache', 'lang', 5),
+        array('Sprachauswahl aktivieren', 'lang_select_enable', 8),
         array('Design', 'theme', 6),
+        array('Theme-Auswahl durch Benutzer aktivieren', 'theme_select_enable', 8),
 
         'Ansicht Albumliste',
         array('Breite der Haupttabelle (in Pixel oder %)', 'main_table_width', 0),
@@ -337,7 +350,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Anzahl Spalten in Album-Liste', 'album_list_cols', 0),
         array('Thumbnail-Gr&ouml;sse in Pixel', 'alb_list_thumb_size', 0),
         array('Inhalt der Hauptseite', 'main_page_layout', 0),
-        array('Erste Ebene der Thumbnails der Alben auch in Kategorien anzeigen','first_level',1),
+        array('Erste Ebene der Thumbnails der Alben auch in Kategorien anzeigen','first_level',1), //new in cpg1.2.0
 
         'Ansicht Thumbnail',
         array('Spaltenzahl auf Thumbnail-Seite', 'thumbcols', 0),
@@ -357,6 +370,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Maximale Anzahl von Buchstaben in einem Wort', 'max_com_wlength', 0),
         array('Maximale Zeilenzahl eines Kommentars', 'max_com_lines', 0),
         array('Maximale L&auml;nge eines Kommentars', 'max_com_size', 0),
+        array('Mehrere Kommentare hintereinander von einem Benutzer zulassen', 'disable_flood', 1),
         array('Film-Streifen anzeigen', 'display_film_strip', 1),
         array('Anzahl Elemente in Film-Streifen', 'max_film_strip_items', 0),
 
@@ -395,6 +409,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Vorsilbe f&uuml;r Thumbnails <b>*</b>', 'thumb_pfx', 0),
         array('Standard-Modus f&uuml;r Verzeichnisse', 'default_dir_mode', 0),
         array('Standard-Modus f&uuml;r Bilder', 'default_file_mode', 0),
+        array('Rechts-Klick f&uuml; Bilder in voller Gr&ouml;sse deaktivieren (JavaScript - keine narrensichere Methode)', 'disable_popup_rightclick', 1),
+        array('Rechts-Klick f&uuml; gesamte Galerie deaktivieren (JavaScript - keine narrensichere Methode)', 'disable_gallery_rightclick', 1),
 
         'Cookies &amp; Zeichensatz-Einstellungen',
         array('Cookie-Name, der vom Skript verwendet wird', 'cookie_name', 0),
@@ -501,8 +517,9 @@ $lang_picinfo = array(
         'Exposure time' => 'Belichtungszeit',
         'Focal length' => 'Brennweite',
         'Comment' => 'Kommentar',
-        'addFav'=>'zu Favoriten hinzufügen',
-        'addFavPhrase'=>'Favoriten'
+        'addFav'=>'zu Favoriten hinzufügen', //new in cpg1.2.0
+        'addFavPhrase'=>'Favoriten', //new in cpg1.2.0
+        'remFav'=>'Remove from Fav', //new in cpg1.2.0
 );
 
 $lang_display_comments = array(
@@ -513,6 +530,10 @@ $lang_display_comments = array(
         'name'=>'Name',
         'comment'=>'Kommentar',
         'your_name' => 'Dein Name',
+);
+
+$lang_fullsize_popup = array(
+        'click_to_close' => 'Bild anklicken, um das Fenster zu schliessen!',
 );
 
 }
@@ -836,6 +857,20 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 
 // Void
 
+// ------------------------------------------------------------------------- // 
+// File banning.php 
+// ------------------------------------------------------------------------- // 
+
+if (defined('BANNING_PHP')) $lang_banning_php = array( 
+                'title' => 'Benutzer verbannen', 
+                'user_name' => 'Benutzername', 
+                'ip_address' => 'IP-Adresse', 
+                'expiry' => 'l&auml;ft ab (leer bedeutet &quot;f&uuml;r immer&quot;)', 
+                'edit_ban' => '&Auml;nderungen speichern', 
+                'delete_ban' => 'L&ouml;schen', 
+                'add_new' => 'Neuen Bann hinzuf&uuml;gen', 
+                'add_ban' => 'hinzuf&uuml;gen', 
+); 
 
 // ------------------------------------------------------------------------- //
 // File upload.php
@@ -897,5 +932,56 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
         'user_location' => 'Ort des Benutzers',
         'user_interests' => 'Hobbies des Benutzers',
         'user_occupation' => 'Beruf des Benutzers',
+);
+
+// ------------------------------------------------------------------------- //
+// File util.php
+// ------------------------------------------------------------------------- //
+
+if (defined('UTIL_PHP')) $lang_util_php = array(
+        'title' => 'Gr&ouml;sse &auml;ndern',
+        'what_it_does' => 'Was macht dieses Tool',
+        'what_update_titles' => 'Erzeugt Titel aus Dateinamen',
+        'what_delete_title' => 'L&ouml;scht Titel',
+        'what_rebuild' => 'Erneuert Thumbnails und Bilder in Zwischengr&ouml;sse gem&auml;&szlig; aktuellen EInstellungen',
+        'what_delete_originals' => 'L&ouml;scht Bilder in Original-Gr&ouml;sse und ersetzt sie mit Bildern in Zwischengr&ouml;sse',
+        'file' => 'Datei',
+        'title_set_to' => '&Auml;ndere Titel auf',
+        'submit_form' => 'los',
+        'updated_succesfully' => 'erfolgreich ge&auml;ndert',
+        'error_create' => 'FEHLER beim erzeugen von',
+        'continue' => 'Mehr Bilder durchlaufen',
+        'main_success' => 'Die Datei %s wurde erfolgreich als Hauptbild benutzt',
+        'error_rename' => 'Fehler beim Umbenennen von %s zu %s',
+        'error_not_found' => 'Die Datei %s wurde nicht gefunden',
+        'back' => 'zur&uuml;ck zur Auswahl',
+        'thumbs_wait' => 'Aktualisiere Thumbnails und/oder Bilder in Zwischengr&ouml;sse, bitte warten...',
+        'thumbs_continue_wait' => 'Fortfahren mit der Aktualisierung der Thumbnails und/oder Bilder in Zwischengr&ouml;sse...',
+        'titles_wait' => 'Aktualisiere &Uuml;berschriften, bitte warten...',
+        'delete_wait' => 'L&ouml;sche &Uuml;berschriften, bitte warten...',
+        'replace_wait' => 'L&ouml;sche Originale und ersetze sie mit Bilder in Zwischengr&ouml;sse, bitte warten..',
+        'instruction' => 'Kurzanleitung',
+        'instruction_action' => 'W&auml;hle Aktion',
+        'instruction_parameter' => 'W&auml;hle Parameter',
+        'instruction_album' => 'W&auml;hle Album',
+        'instruction_press' => 'Klicke %s',
+        'update' => 'Thumbnails und/oder Bilder in Zwischengr&ouml;sse aktualisieren',
+        'update_what' => 'Was soll aktualisiert werden',
+        'update_thumb' => 'Nur Thumbnails',
+        'update_pic' => 'Nur Bilder in Zwischengr&ouml;sse',
+        'update_both' => 'Sowohl Thumbnails als auch Bilder in Zwischengr&ouml;sse',
+        'update_number' => 'Anzahl der Bilder, die pro Klick aktualisiert werden sollen',
+        'update_option' => '(Verringere diesen Wert niedriger, wenn &quot;Time-Out&quot;-Probleme auftreten sollten)',
+        'filename_title' => 'Dateiname &rArr; Bild-&Uuml;berschrift',
+        'filename_how' => 'Wie soll der Dateiname modifiziert werden',
+        'filename_remove' => '&Uuml;bersetze die Engung .jpg und ersetze _ (Unterstrich) mit Leerzeichen',
+        'filename_euro' => '&Auml;ndere 2003_11_23_13_20_20.jpg zu 23/11/2003 13:20',
+        'filename_us' => '&Auml;ndere 2003_11_23_13_20_20.jpg zu 11/23/2003 13:20',
+        'filename_time' => '&Auml;ndere 2003_11_23_13_20_20.jpg zu 13:20',
+        'delete' => 'L&ouml;sche Bild-&Uuml;berschriften oder Bilder in Original-Gr&ouml;sse',
+        'delete_title' => 'Bild-&Uuml;berschriften l&ouml;schen',
+        'delete_original' => 'Bilder in Originalgr&ouml;sse l&ouml;schen',
+        'delete_replace' => 'L&ouml;sche die Original-Bilder und ersetze sie mit Bilder in Zwischengr&ouml;sse',
+        'select_album' => 'W&auml;hle Album',
 );
 ?>
