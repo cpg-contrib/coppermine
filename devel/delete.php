@@ -630,7 +630,8 @@ switch ($what) {
                             print '</b></td>';
                             print '<td class="tableb">';
                             // set this user's password
-                            cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_password = '{$_REQUEST['new_password']}' WHERE  user_id = '$key'");
+                            $new_password = addslashes($_REQUEST['new_password']);
+                            cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_password = '$new_password' WHERE  user_id = '$key'");
                             printf($lang_delete_php['password_reset'], '&laquo;'.$_REQUEST['new_password'].'&raquo;');
                             print '</b></td>';
                         }
@@ -668,7 +669,8 @@ switch ($what) {
                             print '</b></td>';
                             print '<td class="tableb">';
                             // set this user's group
-                            cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_group = '{$_REQUEST['group']}' WHERE  user_id = '$key'");
+                            $group=addslashes($_REQUEST['group']);
+                            cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_group = '$group' WHERE  user_id = '$key'");
                             printf($lang_delete_php['change_group_to_group'], '&laquo;'.$group_label[$user_data['user_group']].'&raquo;', '&laquo;'.$group_label[$_REQUEST['group']].'&raquo;');
                             print '</b></td>';
                         }
@@ -714,7 +716,7 @@ switch ($what) {
                             $user_group = explode(',', $user_data['user_group_list']);
                             natcasesort($user_group);
                             if (!in_array($_REQUEST['group'], $user_group)){
-                                $user_group[] =  $_REQUEST['group'];
+                                $user_group[] =  addslashes($_REQUEST['group']);
                             }
                             $group_output = '';
                             $new_group_query = '';
