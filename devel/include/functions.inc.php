@@ -1075,14 +1075,14 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
                                 $lang_display_thumbnails['date_added'].localised_date($row['ctime'], $album_date_fmt);
 
                         $thumb_list[$i]['pos'] = $key < 0 ? $key : $i - 1 + $lower_limit;
-                        $mime_content = get_type($row['filename']);
+                        /*$mime_content = get_type($row['filename']);
                         $extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
 
-                        if ($mime_content['content']=='image') {
+                        if ($mime_content['content']=='image') {*/
                                 $thumb_list[$i]['image'] = "<img src=\"" . get_pic_url($row, 'thumb') . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\">";
-                        } else {
+                        /*} else {
                                 $thumb_list[$i]['image'] = "<img src=\"images/thumb_{$extension}.jpg\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\">";
-                        }
+                        }*/
 
                         $thumb_list[$i]['caption'] = $row['caption_text'];
                         $thumb_list[$i]['admin_menu'] = '';
@@ -1155,15 +1155,15 @@ function display_film_strip($album, $cat, $pos)
                         $p=$i - 1 + $lower_limit;
                         $p=($p < 0 ? 0 : $p);
                         $thumb_list[$i]['pos'] = $key < 0 ? $key : $p;
-                        $mime_content = get_type($row['filename']);
+                        /*$mime_content = get_type($row['filename']);
 
                         $extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
 
-                        if ($mime_content['content']=='image') {
+                        if ($mime_content['content']=='image') {*/
                                 $thumb_list[$i]['image'] = "<img src=\"" . get_pic_url($row, 'thumb') . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\">";
-                        } else { // is movie/audio/document
+                        /*} else { // is movie/audio/document
                                 $thumb_list[$i]['image'] = "<img src=\"images/thumb_{$extension}.jpg\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\">";
-                        }
+                        }*/
                         $thumb_list[$i]['caption'] = $row['caption_text'];
                         $thumb_list[$i]['admin_menu'] = '';
 
@@ -1194,6 +1194,32 @@ function get_pic_url(&$pic_row, $mode)
                 );
         }
 
+        $mime_content = get_type($pic_row['filename']);
+
+        // Code to handle custom thumbnails
+        // If fullsize or normal mode use regular file
+        if ($mime_content['content'] != 'image' && $mode!= 'thumb') {
+                $mode = 'fullsize';
+        } elseif ($mime_content['content'] != 'image' && $mode == 'thumb') {
+                // Create custom thumb path and erase extension using filename; Erase filename's extension
+                $custom_thumb_path = str_replace('.'.$mime_content['extension'],'',$url_prefix[$pic_row['url_prefix']].$pic_row['filepath'].$pic_prefix[$mode].$pic_row['filename']);
+                // Test for gif thumb
+                if (file_exists($custom_thumb_path.'.gif')) {
+                        $filepathname = $custom_thumb_path.'.gif';
+                // Test for jpeg thumb
+                } elseif (file_exists($custom_thumb_path.'.png')) {
+                        $filepathname = $custom_thumb_path.'.png';
+                // Test for png thumb
+                } elseif (file_exists($custom_thumb_path.'.jpg')) {
+                        $filepathname = $custom_thumb_path.'.jpg';
+                // Use default thumbs
+                } else {
+                        $extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
+                       	$filepathname = 'images/thumb_'.$extension.'.jpg';
+                }
+                return path2url($filepathname);
+        }
+        
         return $url_prefix[$pic_row['url_prefix']]. path2url($pic_row['filepath']. $pic_prefix[$mode]. $pic_row['filename']);
 }
 
