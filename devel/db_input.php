@@ -166,7 +166,7 @@ switch ($event) {
         $uploads = $HTTP_POST_VARS['uploads'] == 'YES' ? 'YES' : 'NO';
         $comments = $HTTP_POST_VARS['comments'] == 'YES' ? 'YES' : 'NO';
         $votes = $HTTP_POST_VARS['votes'] == 'YES' ? 'YES' : 'NO';
-		$password = $HTTP_POST_VARS['password'];
+		$password = $HTTP_POST_VARS['alb_password'];
         $visibility = !empty($password) ? FIRST_USER_CAT + USER_ID : $visibility;
 
         if (!$title) cpg_die(ERROR, $lang_db_input_php['alb_need_title'], __FILE__, __LINE__);
