@@ -102,8 +102,20 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
                     if (mysql_num_rows($result)) {
                         $picture = mysql_fetch_array($result);
                         mysql_free_result($result);
+                        if (!is_image($picture['filename'])) {
+                           $picture['pwidth'] = 100;
+                           $picture['pheight'] = 100;
+                        }
                         $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
-                        $user_thumb = "<a href=\"index.php?cat={$subcat['cid']}\"><img src=\"" . get_pic_url($picture, 'thumb') . "\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" align=top /></a>";
+                        $mime_content = get_type($picture['filename']);
+                        $extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
+
+                        if ($mime_content['content']=='image') {
+                           $user_thumb = "<img src=\"" . get_pic_url($picture, 'thumb') . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"\">";
+                        } else {
+                           $user_thumb = "<img src=\"images/thumb_{$extension}.jpg\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"\">";
+                        }
+                        $user_thumb = "<a href=\"index.php?cat={$subcat['cid']}\">".$user_thumb."</a>";
                     }
             }else{
             $user_thumb ="";
@@ -289,9 +301,19 @@ function list_users()
             if (mysql_num_rows($result)) {
                 $picture = mysql_fetch_array($result);
                 mysql_free_result($result);
+                if (!is_image($picture['filename'])) {
+                    $picture['pwidth'] = 100;
+                    $picture['pheight'] = 100;
+                }
+                $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
+                $mime_content = get_type($picture['filename']);
+                $extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
 
-                $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['thumb_width']);
-                $user_thumb = "<img src=\"" . get_pic_url($picture, 'thumb') . "\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
+                if ($mime_content['content']=='image') {
+                    $user_thumb = "<img src=\"" . get_pic_url($picture, 'thumb') . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"\">";
+                } else {
+                    $user_thumb = "<img src=\"images/thumb_{$extension}.jpg\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"\">";
+                }
             }
         }
 
