@@ -550,7 +550,8 @@ function send_reg_file()
 
     $lines[] = 'Windows Registry Editor Version 5.00';
     $lines[] = '';
-    $lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\PublishingWizard\Providers\CopperminePhotoGallery]';
+    //$lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\PublishingWizard\Providers\CopperminePhotoGallery]';
+	$lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\PublishingWizard\Providers\\'. $CONFIG['gallery_name'] .']'; 
     $lines[] = '"displayname"="' . $CONFIG['gallery_name'] . '"';
     $lines[] = '"description"="' . $CONFIG['gallery_description'] . '"';
     $lines[] = '"href"="' . "http://" . $HTTP_SERVER_VARS['HTTP_HOST'] . $PHP_SELF . '?cmd=publish"';
