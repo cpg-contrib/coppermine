@@ -738,6 +738,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 		}
 		
 		include 'include/search.inc.php';
+                return $rowset;
+                break;
 
 	case 'lastalb': // Last albums to which uploads	        
                 if ($ALBUM_SET && $CURRENT_CAT_NAME) {
