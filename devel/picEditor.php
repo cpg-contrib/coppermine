@@ -54,9 +54,12 @@ function cornerright()
 }
 
 // image calls
-if ($_GET['img']=="left"){cornerleft();exit;}
-if ($_GET['img']=="right"){cornerright();exit;}
-
+if (isset($_GET['img'])) {
+  if ($_GET['img']=="left") {cornerleft();exit;}
+}
+if (isset($_GET['img'])) {
+  if ($_GET['img']=="right") {cornerright();exit;}
+} 
 
 
 define('IN_COPPERMINE', true);
@@ -619,7 +622,7 @@ if ($_GET['id']){
 
 <div id="imgdiv">
 <?php if ($imgObj){ ?>
-<IMG src="<?php echo $imgObj->directory.$imgObj->filename?>" <?php echo $imgObj->string; ?> align="absmiddle">
+<IMG src="<?php echo $imgObj->directory.$imgObj->filename?>?<?php echo rand(); ?>" <?php echo $imgObj->string; ?> align="absmiddle">
 <?php } ?>
 </div>
 
