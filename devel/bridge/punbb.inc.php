@@ -41,86 +41,97 @@ define('PUNBB_WEB_PATH', $path); // The prefix used for the DB tables
 define('PUNBB_USER_TABLE', 'users'); // The members table
 
 // Group definitions
-define('PUNBB_ADMIN_GROUP', 2);
-define('PUNBB_MEMBERS_GROUP', 1);
-define('PUNBB_GUEST_GROUP', -1);
+define('PUNBB_GUEST_GROUP', 3);
+define('PUNBB_MEMBERS_GROUP', 2);
+define('PUNBB_ADMIN_GROUP', 1);
 
 function udb_authenticate()
 {
     global $USER_DATA, $CONFIG, $cookie_name, $UDB_DB_LINK_ID, $UDB_DB_NAME_PREFIX;
+ 
     // For error checking
     $CONFIG['TABLE_USERS'] = '**ERROR**';
-
+    
     function unescape($str)
-        {
-                return (get_magic_quotes_gpc() == 1) ? stripslashes($str) : $str;
-        }
+	{
+		return (get_magic_quotes_gpc() == 1) ? stripslashes($str) : $str;
+	}
 
     // Retrieve cookie stored login information
-    if (isset($_COOKIE[$cookie_name]))
-        {
-                list($cookie['username'], $cookie['password_hash']) = unserialize(unescape($_COOKIE[$cookie_name]));
+    
+    // default user info
+	$USER_DATA['user_id'] = 0;
+	$USER_DATA['status'] = -1;
+	$USER_DATA['user_name'] = 'Guest';
+		
+	if (isset($_COOKIE[$cookie_name]))
+	{	
+		list($cookie['username'], $cookie['password_hash']) = unserialize(unescape($_COOKIE[$cookie_name]));
 
-                if (strcasecmp($cookie['username'], 'Guest'))
-                {
-                        $result = db_query("SELECT id AS user_id, username AS user_name, status FROM ". $UDB_DB_NAME_PREFIX . PUNBB_TABLE_PREFIX . PUNBB_USER_TABLE ." WHERE username='" . addslashes($cookie['username']). "' AND password='". addslashes($cookie['password_hash'])."'",$UDB_DB_LINK_ID);
+		if (strcasecmp($cookie['username'], 'Guest'))
+		{
+			$result = db_query("SELECT id AS user_id, username AS user_name, status FROM ". $UDB_DB_NAME_PREFIX . PUNBB_TABLE_PREFIX . PUNBB_USER_TABLE ." WHERE username='" . addslashes($cookie['username']). "' AND password='". addslashes($cookie['password_hash'])."'",$UDB_DB_LINK_ID);	
+			$USER_DATA = mysql_fetch_assoc($result);	
+		}
+	} 
 
-                        $USER_DATA = mysql_fetch_assoc($result);
+	$USER_DATA['groups'] = array();
 
-                } else {
-                        $USER_DATA['user_id'] = 1;
-                        $USER_DATA['status'] = -1;
-                        $USER_DATA['user_name'] = 'Guest';
-                }
-        } else {
-                $USER_DATA['user_id'] = 1;
-                $USER_DATA['status'] = -1;
-                $USER_DATA['user_name'] = 'Guest';
-        }
+	// Define the basic groups
+	        
+	switch ($USER_DATA['status']) {
+	       
+		case -1:
+			$USER_DATA['groups'][0] = PUNBB_GUEST_GROUP;
+			break;
+		case 0:
+			$USER_DATA['groups'][0] = PUNBB_MEMBERS_GROUP;
+			break;
+		case 2:
+			$USER_DATA['groups'][0] = PUNBB_ADMIN_GROUP;
+			break;       
+	}
+	
+	if ($USER_DATA['status'] == -1) {
+		define('USER_ID', 0);
+	} else {
+		define('USER_ID', (int)$USER_DATA['user_id']);
+	}
 
-                $USER_DATA['groups'] = array();
+	$user_group_set = '(' . implode(',', $USER_DATA['groups']) . ')';
 
-        if ($USER_DATA['user_id'] == "1") {
-            define('USER_ID', 0);
-        } else {
-            define('USER_ID', (int)$USER_DATA['user_id']);
-        }
+	// Default group data
+	$USER_DATA['group_quota'] = 1;
+	$USER_DATA['can_rate_pictures'] = 0;
+	$USER_DATA['can_send_ecards'] = 0;
+	$USER_DATA['can_post_comments'] = 0;
+	$USER_DATA['can_upload_pictures'] = 0;
+	$USER_DATA['can_create_albums'] = 0;
+	$USER_DATA['pub_upl_need_approval'] = 1;
+	$USER_DATA['priv_upl_need_approval'] = 1;
+	$USER_DATA['upload_form_config'] = 0;
+	$USER_DATA['num_file_upload'] = 0; 
+	$USER_DATA['num_URI_upload'] = 0;
+	$USER_DATA['custom_user_upload'] = 0;
 
-        define('USER_NAME', $USER_DATA['user_name']);
-
-                $USER_DATA['groups'][] = $USER_DATA['status'];
-
-        $user_group_set = '(' . implode(',', $USER_DATA['groups']) . ')';
-
-        // Default group data
-        $USER_DATA['group_quota'] = 1;
-        $USER_DATA['can_rate_pictures'] = 0;
-        $USER_DATA['can_send_ecards'] = 0;
-        $USER_DATA['can_post_comments'] = 0;
-        $USER_DATA['can_upload_pictures'] = 0;
-        $USER_DATA['can_create_albums'] = 0;
-        $USER_DATA['pub_upl_need_approval'] = 1;
-        $USER_DATA['priv_upl_need_approval'] = 1;
-        $USER_DATA['upload_form_config'] = 0;
-        $USER_DATA['num_file_upload'] = 0;
-        $USER_DATA['num_URI_upload'] = 0;
-        $USER_DATA['custom_user_upload'] = 0;
-
-                $USER_DATA = array_merge($USER_DATA, cpgGetUserData($USER_DATA['groups'][0], $USER_DATA['groups'], 2));
-
-        define('USER_GROUP', '');
-        define('USER_GROUP_SET', $user_group_set);
-        define('USER_IS_ADMIN', ($USER_DATA['status'] == 2));
-        define('USER_CAN_SEND_ECARDS', (int)$USER_DATA['can_send_ecards']);
-        define('USER_CAN_RATE_PICTURES', (int)$USER_DATA['can_rate_pictures']);
-        define('USER_CAN_POST_COMMENTS', (int)$USER_DATA['can_post_comments']);
-        define('USER_CAN_UPLOAD_PICTURES', (int)$USER_DATA['can_upload_pictures']);
-        define('USER_CAN_CREATE_ALBUMS', (int)$USER_DATA['can_create_albums']);
-        define('USER_UPLOAD_FORM', (int)$USER_DATA['upload_form_config']);
-        define('CUSTOMIZE_UPLOAD_FORM', (int)$USER_DATA['custom_user_upload']);
-        define('NUM_FILE_BOXES', (int)$USER_DATA['num_file_upload']);
-        define('NUM_URI_BOXES', (int)$USER_DATA['num_URI_upload']);
-
+	$USER_DATA = array_merge($USER_DATA, cpgGetUserData($USER_DATA['groups'][0], $USER_DATA['groups'], PUNBB_GUEST_GROUP));
+	
+	$USER_DATA['has_admin_access'] = ($USER_DATA['status'] == 2) ? 1 : 0;
+	$USER_DATA['can_see_all_albums'] = $USER_DATA['has_admin_access'];
+	
+	define('USER_NAME', $USER_DATA['user_name']);
+	define('USER_GROUP', $USER_DATA['group_name']);
+	define('USER_GROUP_SET', $user_group_set);
+	define('USER_IS_ADMIN', $USER_DATA['has_admin_access']);
+	define('USER_CAN_SEND_ECARDS', (int)$USER_DATA['can_send_ecards']);
+	define('USER_CAN_RATE_PICTURES', (int)$USER_DATA['can_rate_pictures']);
+	define('USER_CAN_POST_COMMENTS', (int)$USER_DATA['can_post_comments']);
+	define('USER_CAN_UPLOAD_PICTURES', (int)$USER_DATA['can_upload_pictures']);
+	define('USER_CAN_CREATE_ALBUMS', (int)$USER_DATA['can_create_albums']);
+	define('USER_UPLOAD_FORM', (int)$USER_DATA['upload_form_config']);
+	define('CUSTOMIZE_UPLOAD_FORM', (int)$USER_DATA['custom_user_upload']);
+	define('NUM_FILE_BOXES', (int)$USER_DATA['num_file_upload']);
+	define('NUM_URI_BOXES', (int)$USER_DATA['num_URI_upload']);
 }
 
 // Retrieve the name of a user
@@ -176,18 +187,18 @@ function udb_register_page()
 // Login
 function udb_login_page()
 {
-        global $path;
-
-        echo '<html><body onload="document.redir.submit();"><form name="redir" method="post" action="'.$path.'/redir.php"><input type="hidden" name="redir" value="login.php" /></form></body></html>';
-        exit;
+	global $path;
+	
+	echo '<html><body onload="document.redir.submit();"><form name="redir" method="post" action="'.$path.'/redir.php"><input type="hidden" name="redir" value="login.php" /></form></body></html>';
+	exit;
 }
 // Logout
 function udb_logout_page()
 {
-        global $path;
-
-        echo '<html><body onload="document.redir.submit();"><form name="redir" method="post" action="'.$path.'/redir.php"><input type="hidden" name="redir" value="login.php?action=out" /></form></body></html>';
-        exit;
+	global $path;
+	
+	echo '<html><body onload="document.redir.submit();"><form name="redir" method="post" action="'.$path.'/redir.php"><input type="hidden" name="redir" value="login.php?action=out" /></form></body></html>';
+	exit;
 }
 // Edit users
 function udb_edit_users()
@@ -198,8 +209,7 @@ function udb_edit_users()
 // Get user information
 function udb_get_user_infos($uid)
 {
-    global $UDB_DB_NAME_PREFIX, $UDB_DB_LINK_ID;
-    global $lang_register_php;
+	global $UDB_DB_NAME_PREFIX, $UDB_DB_LINK_ID, $lang_register_php;
 
     $sql = "SELECT username AS user_name, email AS user_email, registered AS user_regdate, location AS user_location, url AS user_website FROM " . $UDB_DB_NAME_PREFIX . PUNBB_TABLE_PREFIX . PUNBB_USER_TABLE . " WHERE id = '$uid'";
     $result = db_query($sql, $UDB_DB_LINK_ID);
@@ -211,12 +221,14 @@ function udb_get_user_infos($uid)
 
     return $user_data;
 }
+
 // Edit user profile
 function udb_edit_profile($uid)
 {
     $target = "/profile.php?id=$uid";
     udb_redirect($target);
 }
+
 // Query used to list users
 function udb_list_users_query(&$user_count)
 {
@@ -259,15 +271,16 @@ function udb_list_users_retrieve_data($result, $lower_limit, $count)
 
     return $rowset;
 }
+
 // Group table synchronisation
 function udb_synchronize_groups()
 {
     global $CONFIG ;
 
     $PUNBB_groups = array(
-            PUNBB_MEMBERS_GROUP => 'Members',
-            PUNBB_GUEST_GROUP => 'Guests',
-        PUNBB_ADMIN_GROUP => 'Admin'
+    	PUNBB_GUEST_GROUP => 'Guests',
+    	PUNBB_MEMBERS_GROUP => 'Members',
+        PUNBB_ADMIN_GROUP => 'Administrators'
         );
 
     $result = db_query("SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1");
@@ -318,13 +331,13 @@ function udb_util_filloptions()
 
     if (UDB_CAN_JOIN_TABLES) {
 
-        $query = "SELECT aid, category, IF(username IS NOT NULL, CONCAT('(', username, ') ', a.title), CONCAT(' - ', a.title)) AS title " . "FROM $albumtbl AS a " . "LEFT JOIN $usertbl AS u ON category = (" . FIRST_USER_CAT . " + id) " . "ORDER BY category, title";
+        $query = "SELECT aid, category, IF(username IS NOT NULL, CONCAT('(', username, ') ', a.title), CONCAT(' - ', a.title)) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "LEFT JOIN $usertbl AS u ON category = (" . FIRST_USER_CAT . " + id) " . "ORDER BY category, title";
         $result = db_query($query, $UDB_DB_LINK_ID);
         // $num=mysql_numrows($result);
         echo '<select size="1" name="albumid">';
 
         while ($row = mysql_fetch_array($result)) {
-            $sql = "SELECT name FROM $categorytbl WHERE cid = " . $row["category"];
+            $sql = "SELECT name FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = " . $row["category"];
             $result2 = db_query($sql);
             $row2 = mysql_fetch_array($result2);
 
@@ -449,8 +462,8 @@ $UDB_DB_LINK_ID = 0;
 $UDB_DB_NAME_PREFIX = PUNBB_DB_NAME ? '`' . PUNBB_DB_NAME . '`.' : '';
 if (!UDB_CAN_JOIN_TABLES) {
     $UDB_DB_LINK_ID = @mysql_connect(PUNBB_DB_HOST, PUNBB_DB_USERNAME, PUNBB_DB_PASSWORD);
-
-    if (!$UDB_DB_LINK_ID) die("<b>Coppermine critical error</b>:<br />Unable to connect to PUNBB database !<br /><br />MySQL said: <b>" . mysql_error() . "</b>");
+    
+    if (!$UDB_DB_LINK_ID) die("<b>Coppermine critical error</b>:<br />Unable to connect to PunBB database !<br /><br />MySQL said: <b>" . mysql_error() . "</b>");
     mysql_select_db (PUNBB_DB_NAME, $UDB_DB_LINK_ID);
 }
 ?>
