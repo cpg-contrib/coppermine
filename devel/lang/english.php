@@ -636,9 +636,9 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Enable clickable keywords in search','clickable_keyword_search',14), //cpg 1.4
   array('Show number of linked files','link_pic_count',1), //cpg 1.4
   array('Show the vanity block on themes that are defined as XHTML and CSS compliant','vanity_block',1, 'f=index.htm&amp;as=vanity_block&amp;ae=vanity_block_end'), //cpg 1.4
-  
-  
-  
+
+
+
   'Language, Themes &amp; Charset settings',
   array('Language', 'lang', 5, 'f=index.htm&amp;as=admin_language_language&amp;ae=admin_language_language_end'), //cpg 1.4
   array('Fallback to English if translated phrase not found?', 'language_fallback', 1, 'f=index.htm&amp;as=admin_language_fallback&amp;ae=admin_language_fallback_end'), //cpg 1.4
@@ -695,6 +695,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Maximum length of a comment', 'max_com_size', 0, 'f=index.htm&amp;as=admin_image_comment_length&amp;ae=admin_image_comment_length_end'), //cpg 1.4
   array('Notify admin of comments by email', 'email_comment_notification', 1, 'f=index.htm&amp;as=admin_image_comment_admin_notify&amp;ae=admin_image_comment_admin_notify_end'), //cpg 1.4
   array('Sort order of comments', 'comments_sort_descending', 17, 'f=index.htm&amp;as=admin_comment_sort_start&amp;ae=admin_comment_sort_end'), //cpg 1.4
+  array('Prefix for anonymous comments authors', 'comments_anon_pfx', 0, 'f=index.htm&amp;as=comments_anon_pfx&amp;ae=comments_anon_pfx_end'), //cpg 1.4
 
   'Files and thumbnails settings',
   array('Quality for JPEG files', 'jpeg_qual', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_jpeg_quality&amp;ae=admin_picture_thumbnail_jpeg_quality_end'), //cpg 1.4
@@ -853,6 +854,7 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
   'email_comment_subject' => 'Comment posted on Coppermine Photo Gallery',
   'email_comment_body' => 'Someone has posted a comment on your gallery. See it at',
   'album_not_selected' => 'Album not selected', //cpg 1.4
+  'com_author_error' => 'A registered user is using this nickname, login or use another one', //cpg 1.4
 );
 
 // ------------------------------------------------------------------------- //

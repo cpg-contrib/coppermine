@@ -130,7 +130,13 @@ switch ($event) {
         }
 
         if (!USER_ID) { // Anonymous users, we need to use META refresh to save the cookie
-            $insert = cpg_db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip) VALUES ('$pid', '$msg_author', '$msg_body', NOW(), '{$USER['ID']}', '0', '$raw_ip', '$hdr_ip')");
+            if (mysql_result(cpg_db_query("select count(user_id) from {$CONFIG['TABLE_USERS']} where UPPER(user_name) = UPPER('$msg_author')"),0,0))
+            {
+              cpg_die($lang_error, $lang_db_input_php['com_author_error'],__FILE__,__LINE__);
+          }
+
+            $insert = cpg_db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip) VALUES ('$pid', '{$CONFIG['comments_anon_pfx']}$msg_author', '$msg_body', NOW(), '{$USER['ID']}', '0', '$raw_ip', '$hdr_ip')");
+
             $USER['name'] = $_POST['msg_author'];
             $redirect = "displayimage.php?pos=" . (- $pid);
             if ($CONFIG['email_comment_notification']) {

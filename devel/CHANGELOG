@@ -263,4 +263,4 @@ Changed the reliance on having regular uploaders displayed in order to turn on o
 Added display filename under thumbnail based on admin configuration. - 09 February 2005, Donnoman
 Added display filename under thumbnail of the film strip based on admin configuration. - 09 February 2005, Donnoman
 Added admin configurable "home" button as first button in the sys_menu. - 11 February 2005, Donnoman
-
+Added "anonymous user posting comments can not disguise as registered user" hack (contributed by nol33t) - 15 February 2005, GauGau
