@@ -102,6 +102,8 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident=
 						//Check if you need to show subcat_level
 						if($level==$CONFIG['subcat_level']) {
 							$cat_albums=list_cat_albums($subcat['cid']);
+						} else {
+							$cat_albums='';
 						}
 						$cat_data[]=array($link, $ident.$subcat['description'], $album_count, $pic_count, 'cat_albums'=>$cat_albums);
 				}
