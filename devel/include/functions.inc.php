@@ -1399,9 +1399,14 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
         }
 }
 
-/**
+ /**
+ * cpg_get_system_thumb_list()
+ * 
  * Return an array containing the system thumbs in a directory
- */
+ 
+ * @param string $search_folder
+ * @return array
+ **/
 function cpg_get_system_thumb_list($search_folder = 'images/')
 {
         global $CONFIG;
@@ -1438,8 +1443,15 @@ function cpg_get_system_thumb_list($search_folder = 'images/')
 
 
 /**
+ * cpg_get_system_thumb()
+ *
  * Gets data for system thumbs
- */
+ * 
+ * @param string $filename
+ * @param integer $user
+ * @return array
+ **/
+ 
 function& cpg_get_system_thumb($filename,$user=10001)
 {
         global $CONFIG,$USER_DATA;
@@ -1469,7 +1481,17 @@ function& cpg_get_system_thumb($filename,$user=10001)
         return $picdata;
 }
 
-// Prints thumbnails of pictures in an album
+
+/**
+ * display_film_strip()
+ *
+ * gets data for thumbnails in an album for the film strip
+ * 
+ * @param integer $album
+ * @param integer $cat
+ * @param integer $pos
+ **/
+
 function display_film_strip($album, $cat, $pos)
 {
         global $CONFIG, $AUTHORIZED, $HTTP_GET_VARS;
@@ -1543,6 +1565,18 @@ function display_film_strip($album, $cat, $pos)
 }
 
 // Return the url for a picture, allows to have pictures spreaded over multiple servers
+
+/**
+ * get_pic_url()
+ * 
+ * Return the url for a picture
+ *
+ * @param array $pic_row
+ * @param string $mode
+ * @param boolean $system_pic
+ * @return string 
+ **/
+
 function get_pic_url(&$pic_row, $mode,$system_pic = false)
 {
         global $CONFIG,$THEME_DIR;
@@ -1641,7 +1675,16 @@ function get_pic_url(&$pic_row, $mode,$system_pic = false)
         return $url_prefix[$pic_row['url_prefix']]. path2url($pic_row['filepath']. $pic_prefix[$mode]. $pic_row['filename']);
 }
 
-// Return a variable from the default language file
+
+/**
+ * cpg_get_default_lang_var()
+ * 
+ * Return a variable from the default language file
+ *
+ * @param $language_var_name
+ * @param unknown $overide_language
+ * @return 
+ **/
 function& cpg_get_default_lang_var($language_var_name,$overide_language = null) {
         global $CONFIG;
         if (is_null($overide_language)) {
@@ -1660,6 +1703,15 @@ function& cpg_get_default_lang_var($language_var_name,$overide_language = null) 
 
 // Returns a variable from the current language file
 // If variable doesn't exists gets value from english lang file
+
+/**
+ * cpg_lang_var()
+ * 
+ * @param $varname
+ * @param unknown $index
+ * @return 
+ **/
+
 function& cpg_lang_var($varname,$index=null) {
         global $$varname;
 
@@ -1680,7 +1732,13 @@ function& cpg_lang_var($varname,$index=null) {
         }
 }
 
-//defined new debug_output function here in functions.inc.php instead of theme.php with different function names to avoid incompatibilities with users not updating their themes as required. Advanced info is only output if (GALLERY_ADMIN_MODE == TRUE)
+
+/**
+ * cpg_debug_output()
+ * 
+ * defined new debug_output function here in functions.inc.php instead of theme.php with different function names to avoid incompatibilities with users not updating their themes as required. Advanced info is only output if (GALLERY_ADMIN_MODE == TRUE)
+ *
+ **/
 
 function cpg_debug_output()
 {
