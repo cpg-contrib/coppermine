@@ -163,7 +163,7 @@ function detect_img_package()
     } else {
         $HTTP_POST_VARS['thumb_method'] = 'gd2';
         $no_img_package_detected = true;
-        $note .= "<hr /><br />Your installation of PHP does not seem to include the 'GD' graphic library extension and you have not indicated that you want to use ImageMagick. Coppermine has been configured to use GD2 because the automatic GD detection sometimes fail. If GD is installed on your system, the script should work else you will need to install ImageMagick.<br /><br />";
+        $notes .= "<hr /><br />Your installation of PHP does not seem to include the 'GD' graphic library extension and you have not indicated that you want to use ImageMagick. Coppermine has been configured to use GD2 because the automatic GD detection sometimes fail. If GD is installed on your system, the script should work else you will need to install ImageMagick.<br /><br />";
     }
 
     if (!$no_img_package_detected) $notes .= "<br /><br />Your server supports the following image package(s): " . ($im_installed ? ' ImageMagick (im),':'') . ($gd1_installed ? ' GD Library version 1.x (gd1),':'') . ($gd2_installed ? ' GD Library version 2.x (gd2),':'') . " the installer selected '" . $HTTP_POST_VARS['thumb_method'] . "'.";
@@ -447,7 +447,7 @@ function create_tables()
 
     foreach($sql_query as $q) {
         if (!mysql_query($q)) {
-            $errors .= "mySQL Error: " . mysql_error() . "<br /><br />";
+            $errors .= "mySQL Error: " . mysql_error() . "on query '$q'<br /><br />";
             return;
         }
     }
