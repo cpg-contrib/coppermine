@@ -1,16 +1,13 @@
 <?php
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery                                                 //
+// Coppermine Photo Gallery 1.2.0                                            //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  GrÈgory DEMAR <gdemar@wanadoo.fr>               //
+// Copyright (C) 2002,2003 Gregory DEMAR <gdemar@wanadoo.fr>                 //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning St¯verud <henning@stoverud.com>         //
-//  http://www.stoverud.com/PHPhotoalbum/                                    //
-// ------------------------------------------------------------------------- //
-//  Hacked by Tarique Sani <tarique@sanisoft.com> and Girsh Nair             //
-//  <girish@sanisoft.com> see http://www.sanisoft.com/cpg/README.txt for     //
-//  details                                                                  //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -67,7 +64,8 @@ $lang_meta_album_names = array(
 	'topn' => '«ﬂÀ—Â« „‘«Âœ…',
 	'toprated' => '«⁄·«Â«  ﬁÌÌ„«',
 	'lasthits' => '¬Œ— „« ‘ÊÂœ',
-	'search' => '‰ «∆Ã «·»Õ‹À'
+	'search' => '‰ «∆Ã «·»Õ‹À',
+        'favpics'=> '«·’Ê— «·„›÷·…' //new in cpg1.2.0
 );
 
 $lang_errors = array(
@@ -85,7 +83,7 @@ $lang_errors = array(
 	'directory_ro' => '«·œ·Ì· \'%s\' €Ì— ﬁ«»· ··ﬂ «»…, ·« «” ÿÌ⁄ «·€«¡ «·’Ê—…',
 	'non_exist_comment' => '«· ⁄·Ìﬁ «·„Œ «— €Ì— „ÊÃÊœ.',
 	'pic_in_invalid_album' => '«·’Ê—… €Ì— „ÊÃÊœ… ›Ì «·«·»Ê„ (%s)!?',
-        'banned' => 'You are currently banned from using this site.',
+        'banned' => '«‰  „„‰Ê⁄ „‰ «” ⁄„«· Â–« «·„Êﬁ⁄ «·¬‰.',
         'not_with_udb' => 'Â–Â «·„Ì“… „⁄ÿ·… ›Ì Coppermine ·√‰Â« „œ„ÊÃ… „⁄ «·„‰ œÏ. «„« „«  Êœ «·ﬁÌ«„ »Â €Ì— „œ⁄Ê„, √Ê «‰ »—‰«„Ã «·„‰ œÏ ÌﬁÊ„ »‰›” «·„Â„….',
 );
 
@@ -331,9 +329,9 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
 	'title_d' => ' ‰«“·Ì ⁄·Ï «·⁄‰Ê«‰',
         'date_a' => ' «—ÌŒ  ’«⁄œÌ',
         'date_d' => ' «—ÌŒ  ‰«“·Ì',
-        'th_any' => 'Max Aspect',
-        'th_ht' => 'Height',
-        'th_wd' => 'Width',
+        'th_any' => '«⁄·Ï „‰ŸÊ—',
+        'th_ht' => '«— ›«⁄',
+        'th_wd' => '⁄—÷',
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
@@ -569,7 +567,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 	'title' => '⁄‰Ê«‰ «·’Ê—…',
 	'desc' => '»Ì«‰ ⁄‰ «·’Ê—…',
 	'keywords' => '«·ﬂ·„«  «·—¯∆Ì”Ì¯… ',
-	'pic_info_str' => '%sx%s - %sﬂÌ·Ê»«Ì  - %s „‘«Âœ… - %s  ’ÊÌ « ',
+	'pic_info_str' => '%s &times; %s - %sﬂÌ·Ê»«Ì  - %s „‘«Âœ… - %s  ’ÊÌ « ',
 	'approve' => '«⁄ „œ «·’Ê—…',
 	'postpone_app' => ' √ÃÌ· «·„Ê«›ﬁ…',
 	'del_pic' => '«·€«¡ «·’Ê—…',
