@@ -77,8 +77,18 @@ class MyCalendar extends Calendar
     }
 }
 
-$month = $_REQUEST['month'];
-$year = $_REQUEST['year'];
+$today = getdate();
+
+$month = (int) $_REQUEST['month'];
+$year = (int) $_REQUEST['year'];
+
+if ($year == 0) {
+    $year = $today['year'];
+}
+
+if ($month == 0) {
+    $month = $today['mon'];
+}
 
 $cal = new MyCalendar;
 $cal->setMonthNames($lang_month);
