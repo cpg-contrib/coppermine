@@ -51,7 +51,7 @@ $forbidden_chars = array("..", "/", "%", "<", ">", "$", "'", '"');
 $file = str_replace($forbidden_chars, '', $file);
 
 ob_start();
-include($file);
+@include($file);
 $string = ob_get_contents();
 ob_end_clean();
 
