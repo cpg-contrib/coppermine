@@ -388,6 +388,8 @@ $replacement_header ='<meta http-equiv="imagetoolbar" content="no" />
         $template_header = ereg_replace("</head[^>]*>",$replacement_header,$template_header);
         }
         $template_footer = substr($template, $gallery_pos);
+        $add_version_info = '<!--Coppermine Photo Gallery '.COPPERMINE_VERSION.'-->\n</body>';
+        $template_footer = ereg_replace("</body[^>]*>",$add_version_info,$template_footer);
 }
 
 // Eval a template (substitute vars with values)
