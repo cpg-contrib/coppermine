@@ -58,7 +58,12 @@ if (GALLERY_ADMIN_MODE == true){
     echo '<a href="keywordmgr.php" class="admin_menu">Edit Keywords</a>';
     echo "</td></tr>" ;
   }
+} else {
+    echo '<tr><td class="tableb" align="center">';
+    echo $lang_search_php['keyword_msg'];
+    echo "</td></tr>" ;
 }
+
 endtable();
 ob_end_flush();
 ?>
