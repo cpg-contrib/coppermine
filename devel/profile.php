@@ -1,4 +1,4 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.2.0                                            //
 // ------------------------------------------------------------------------- //
@@ -13,7 +13,7 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- // 
+// ------------------------------------------------------------------------- //
 
 define('IN_COPPERMINE', true);
 define('PROFILE_PHP', true);
@@ -128,8 +128,8 @@ EOT;
 
         default:
             cpg_die(CRITICAL_ERROR, 'Invalid action for form creation ' . $element[0], __FILE__, __LINE__);
-    } 
-} 
+    }
+}
 
 function get_post_var($var)
 {
@@ -137,7 +137,7 @@ function get_post_var($var)
 
     if (!isset($HTTP_POST_VARS[$var])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'] . " ($var)", __FILE__, __LINE__);
     return addslashes(trim($HTTP_POST_VARS[$var]));
-} 
+}
 
 $op = isset($HTTP_GET_VARS['op']) ? $HTTP_GET_VARS['op'] : '';
 $uid = isset($HTTP_GET_VARS['uid']) ? (int)$HTTP_GET_VARS['uid'] : -1;
@@ -160,7 +160,7 @@ if (isset($HTTP_POST_VARS['change_profile']) && USER_ID && !defined('UDB_INTEGRA
     pagefooter();
     ob_end_flush();
     exit;
-} 
+}
 
 if (isset($HTTP_POST_VARS['change_password']) && USER_ID && !defined('UDB_INTEGRATION')) {
     $current_pass = get_post_var('current_pass');
@@ -184,7 +184,7 @@ if (isset($HTTP_POST_VARS['change_password']) && USER_ID && !defined('UDB_INTEGR
     pagefooter();
     ob_end_flush();
     exit;
-} 
+}
 
 switch ($op) {
     // ------------------------------------------------------------------------- //
@@ -207,17 +207,17 @@ switch ($op) {
             $result = db_query($sql);
             while ($row = mysql_fetch_array($result)) {
                 $group_list .= $row['group_name'] . ', ';
-            } 
+            }
             mysql_free_result($result);
             $group_list = '<br /><i>(' . substr($group_list, 0, -2) . ')</i>';
-        } 
+        }
 
         $form_data = array('username' => $user_data['user_name'],
             'reg_date' => localised_date($user_data['user_regdate'], $register_date_fmt),
             'group' => $user_data['group_name'] . $group_list,
             'email' => $user_data['user_email'],
             'disk_usage' => $user_data['disk_usage'] .
-            ($user_data['group_quota'] ? '/' . $user_data['group_quota'] : '') . ' ' . $lang_byte_units[1],
+            ($user_data['group_quota'] ? '/' . $user_data['group_quota'] : '') . '&nbsp;' . $lang_byte_units[1],
             'location' => $user_data['user_location'],
             'interests' => $user_data['user_interests'],
             'website' => $user_data['user_website'],
@@ -285,7 +285,7 @@ EOT;
             if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_register_php['err_unk_user'], __FILE__, __LINE__);
             $user_data = mysql_fetch_array($result);
             mysql_free_result($result);
-        } 
+        }
 
         $result = db_query("SELECT count(*), MAX(pid) FROM {$CONFIG['TABLE_PICTURES']} AS p WHERE owner_id = '$uid' AND approved = 'YES' AND $FORBIDDEN_SET");
         $nbEnr = mysql_fetch_array($result);
@@ -315,8 +315,8 @@ EOT;
                 $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
                 $lastcom = "<td width=\"50%\" valign=\"top\" align=\"center\"><a href=\"thumbnails.php?album=lastcomby&uid=" . $uid . "\"><img src=\"" . get_pic_url($row, 'thumb') . "\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" /></a><br />";
                 $lastcom .= "<span class=\"thumb_caption\"><b>" . $row['msg_author'] . '</b></span>' . "<span class=\"thumb_caption\">" . localised_date($row['msg_date'], $lastcom_date_fmt) . '</span>' . "<span class=\"thumb_caption\">" . $row['msg_body'] . '</span></td>';
-            } 
-        } 
+            }
+        }
 
         $user_thumb = '';
         if ($picture_count) {
@@ -328,8 +328,8 @@ EOT;
 
                 $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['thumb_width']);
                 $user_thumb = "<td width=\"50%\" valign=\"top\" align=\"center\"><a href=\"thumbnails.php?album=lastupby&uid=" . $uid . "\"><img src=\"" . get_pic_url($picture, 'thumb') . "\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" /></a></td>";
-            } 
-        } 
+            }
+        }
 
         $quick_jump = ($user_thumb . $lastcom) ? '<table width="100%" border="0" cellspasing="5"><tr>' . $user_thumb . $lastcom . '</tr></table>' : '';
 
@@ -351,6 +351,6 @@ EOT;
         pagefooter();
         ob_end_flush();
         break;
-} 
+}
 
 ?>
