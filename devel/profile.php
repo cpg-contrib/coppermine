@@ -21,6 +21,8 @@ define('PROFILE_PHP', true);
 
 require('include/init.inc.php');
 
+if (defined('UDB_INTEGRATION') AND function_exists('udb_view_profile')) udb_view_profile($_GET['uid']);
+
 $edit_profile_form_param = array(
     array('text', 'username', $lang_register_php['username']),
     array('text', 'reg_date', $lang_register_php['reg_date']),

@@ -320,6 +320,14 @@ function udb_edit_profile($uid)
     $target = 'profile.php?mode=editprofile';
     udb_redirect($target);
 }
+
+// View another user's profile
+function udb_view_profile($uid)
+{
+    $target = "profile.php?mode=viewprofile&u=$uid";
+    udb_redirect($target);
+}
+
 // Query used to list users
 function udb_list_users_query(&$user_count)
 {
