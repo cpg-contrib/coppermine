@@ -37,7 +37,7 @@ pageheader($title);
 function process_post_data()
 {
         global $CONFIG;
-        global $lang_errors;
+        global $lang_errors, $lang_editpics_php;
 
                 $pid          = (int)$_POST['id'];
                 $aid          = (int)$_POST['aid'];
@@ -56,16 +56,12 @@ function process_post_data()
                 $reset_votes  = isset($_POST['reset_votes']);
                 $del_comments = isset($_POST['del_comments']) || $delete;
 
-                $query = "SELECT category, filepath, filename FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND pid='$pid'";
-                $result = cpg_db_query($query);
+                $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a WHERE a.aid = p.aid AND pid = '$pid'");
                 if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
                 $pic = mysql_fetch_array($result);
                 mysql_free_result($result);
 
-                if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
-                        if ($pic['category'] != FIRST_USER_CAT + USER_ID) cpg_die(ERROR, $lang_errors['perm_denied']."<br />(picture category = {$pic['category']}/ $pid)", __FILE__, __LINE__);
-                        if (!isset($user_album_set[$aid])) cpg_die(ERROR, $lang_errors['perm_denied']."<br />(target album = $aid)", __FILE__, __LINE__);
-                }
+				if (!(GALLERY_ADMIN_MODE || $pic['category'] == FIRST_USER_CAT + USER_ID || ($CONFIG['users_can_edit_pics'] && $pic['owner_id'] == USER_ID))) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
                 $update  = "aid = '".$aid."'";
                 if (is_movie($pic['filename'])) {
@@ -91,7 +87,59 @@ function process_post_data()
                         $query = "UPDATE {$CONFIG['TABLE_PICTURES']} SET $update WHERE pid='$pid' LIMIT 1";
                         $result = cpg_db_query($query);
                 }
+				
+				// rename a file
+				if ($_POST['filename'] != $pic['filename'])
+				{
+					$forbidden_chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>'));
+					if($CONFIG['thumb_use']=='ht' && $pic['pheight'] > $CONFIG['picture_width'])
+					{
+						$condition = true;
+					} elseif ($CONFIG['thumb_use']=='wd' && $pic['pwidth'] > $CONFIG['picture_width']){
+						$condition = true;
+					} elseif ($CONFIG['thumb_use']=='any' && max($pic['pwidth'], $pic['pheight']) > $CONFIG['picture_width']){
+						$condition = true;
+					} else {
+						 $condition = false;
+					}
+	
+					if ($CONFIG['make_intermediate'] && $condition ) {
+						$prefices = array('fullsize', 'normal', 'thumb');
+					} else {
+						$prefices = array('fullsize', 'thumb');
+					}
+	
+					if (!is_image($pic['filename'])){
+						$prefices = array('fullsize');
+					}
+					
+					foreach ($prefices as $prefix)
+					{
+						$oldname = get_pic_url($pic, $prefix);
+						$filename = strtr($_POST['filename'], $forbidden_chars, str_repeat('_', strlen($CONFIG['forbiden_fname_char'])));
+						$newname = str_replace($pic['filename'], $filename, $oldname);
+						
+						$old_mime = cpg_get_type($oldname);
+						$new_mime = cpg_get_type($newname);
+						
+						if (($old_mime['mime'] != $new_mime['mime']) && isset($new_mime['mime']))
+							cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['mime_conv'], $old_mime['mime'], $new_mime['mime']), __FILE__, __LINE__);
+						
+						if (!is_known_filetype($newname))
+							cpg_die(CRITICAL_ERROR, $lang_editpics_php['forb_ext'], __FILE__, __LINE__);
+							
+						if (file_exists($newname))
+							cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['file_exists'], $newname), __FILE__, __LINE__);
+							
+						if (!file_exists($oldname))
+							cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['src_file_missing'], $oldname), __FILE__, __LINE__);
 
+						if (rename($oldname, $newname))
+						{
+							cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET filename = '$filename' WHERE pid = '$pid' LIMIT 1");
+						} else cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['rename_failed'], $oldname, $newname), __FILE__, __LINE__);
+					}
+				}
 }
 
 function get_user_albums($user_id)
@@ -125,11 +173,6 @@ function form_alb_list_box()
                 </td>
                 <td class="tableb" valign="top">
                                 <select name="aid" class="listbox">
-
-                if (count($public_albums_list) + count($user_albums_list) == 0){
-                        echo "<option value=\"{$CURRENT_PIC['aid']}\" selected>{$title}</option>";
-                }
-
 EOT;
                 foreach($public_albums_list as $album) {
         echo '              <option value="' . $album['aid'] . '"' . ($album['aid'] == $sel_album ? ' selected="selected"' : '') . '>' . $album['cat_title'] . "</option>\n";
@@ -147,11 +190,11 @@ EOT;
 
 if (isset($_POST['submitDescription'])) process_post_data();
 
-$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = '$pid'");
+$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a WHERE a.aid = p.aid AND pid = '$pid'");
 $CURRENT_PIC = mysql_fetch_array($result);
 mysql_free_result($result);
 
-if (!(GALLERY_ADMIN_MODE || $CURRENT_PIC['owner_id'] == USER_ID)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+if (!(GALLERY_ADMIN_MODE || $CURRENT_PIC['category'] == FIRST_USER_CAT + USER_ID || ($CONFIG['users_can_edit_pics'] && $CURRENT_PIC['owner_id'] == USER_ID))) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
 $thumb_url = get_pic_url($CURRENT_PIC, 'thumb');
 $thumb_link = 'displayimage.php?pos='.(-$CURRENT_PIC['pid']);
@@ -239,8 +282,16 @@ print <<<EOT
                                 <input type="text" style="width: 100%" name="title" maxlength="255" value="{$CURRENT_PIC['title']}" class="textinput" />
                         </td>
         </tr>
-EOT;
-echo <<<EOT
+
+        <tr>
+                        <td class="tableb" style="white-space: nowrap;">
+                        {$lang_editpics_php['filename']}
+                </td>
+                <td width="100%" class="tableb" valign="top">
+                                <input type="text" style="width: 100%" name="filename" maxlength="255" value="{$CURRENT_PIC['filename']}" class="textinput" />
+                        </td>
+        </tr>
+		
         <tr>
                         <td class="tableb" valign="top" style="white-space: nowrap;">
                                 {$lang_editpics_php['desc']}$captionLabel
