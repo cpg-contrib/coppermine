@@ -2018,7 +2018,7 @@ $return = '
 1.4.1|upload.php|1.4.1|1.61|mandatory|r@
 1.4.1|usermgr.php|1.4.1|1.30|mandatory|r@
 1.4.1|util.php|1.4.1|1.24|mandatory|r@
-1.4.1|versioncheck.php|1.4.1|1.42|mandatory|r@
+1.4.1|versioncheck.php|1.4.1|1.44|mandatory|r@
 1.4.1|viewlog.php|1.4.1|1.9|mandatory|r@
 1.4.1|voteDetails.php|1.4.1|1.2|mandatory|r@
 1.4.1|xp_publish.php|1.4.1|1.24|mandatory|r@
