@@ -48,7 +48,7 @@ function html_picture_menu($id)
     global $lang_display_image_php;
 
     return <<<EOT
-     <a href="#" onClick="return MM_openBrWindow('picEditor.php?id=$id','Crop_Picture','scrollbars=yes,toolbar=no,status=yes,resizable=yes')" class="admin_menu" >{$lang_display_image_php['crop_pic']}</a> <a href="editOnePic.php?id=$id&what=picture"  class="admin_menu">{$lang_display_image_php['edit_pic']}</a> <a href="delete.php?id=$id&what=picture"  class="admin_menu" onclick="return confirm('{$lang_display_image_php['confirm_del']}'); return false; ">{$lang_display_image_php['del_pic']}</a>
+     <a href="#" onClick="return MM_openBrWindow('picEditor.php?id=$id','Crop_Picture','scrollbars=yes,toolbar=no,status=yes,resizable=yes')" class="admin_menu" >{$lang_display_image_php['crop_pic']}</a> <a href="editOnePic.php?id=$id&amp;what=picture"  class="admin_menu">{$lang_display_image_php['edit_pic']}</a> <a href="delete.php?id=$id&amp;what=picture"  class="admin_menu" onclick="return confirm('{$lang_display_image_php['confirm_del']}'); return false; ">{$lang_display_image_php['del_pic']}</a>
 
 EOT;
 }
@@ -58,7 +58,7 @@ function html_img_nav_menu()
     global $CONFIG, $HTTP_SERVER_VARS, $HTTP_GET_VARS, $CURRENT_PIC_DATA, $PHP_SELF;
     global $album, $cat, $pos, $pic_count, $lang_img_nav_bar, $lang_text_dir, $template_img_navbar;
 
-    $cat_link = is_numeric($album) ? '' : '&cat=' . $cat;
+    $cat_link = is_numeric($album) ? '' : '&amp;cat=' . $cat;
 
     $human_pos = $pos + 1;
     $page = ceil(($pos + 1) / ($CONFIG['thumbrows'] * $CONFIG['thumbcols']));
@@ -66,7 +66,7 @@ function html_img_nav_menu()
 
     if ($pos > 0) {
         $prev = $pos - 1;
-        $prev_tgt = "$PHP_SELF?album=$album$cat_link&pos=$prev";
+        $prev_tgt = "$PHP_SELF?album=$album$cat_link&amp;pos=$prev";
         $prev_title = $lang_img_nav_bar['prev_title'];
     } else {
         $prev_tgt = "javascript:;";
@@ -74,7 +74,7 @@ function html_img_nav_menu()
     }
     if ($pos < ($pic_count -1)) {
         $next = $pos + 1;
-        $next_tgt = "$PHP_SELF?album=$album$cat_link&pos=$next";
+        $next_tgt = "$PHP_SELF?album=$album$cat_link&amp;pos=$next";
         $next_title = $lang_img_nav_bar['next_title'];
     } else {
         $next_tgt = "javascript:;";
@@ -82,16 +82,16 @@ function html_img_nav_menu()
     }
 
     if (USER_CAN_SEND_ECARDS) {
-        $ecard_tgt = "ecard.php?album=$album$cat_link&pid=$pid&pos=$pos";
+        $ecard_tgt = "ecard.php?album=$album$cat_link&amp;pid=$pid&amp;pos=$pos";
         $ecard_title = $lang_img_nav_bar['ecard_title'];
     } else {
         $ecard_tgt = "javascript:alert('" . addslashes($lang_img_nav_bar['ecard_disabled_msg']) . "');";
         $ecard_title = $lang_img_nav_bar['ecard_disabled'];
     }
 
-    $thumb_tgt = "thumbnails.php?album=$album$cat_link&page=$page";
+    $thumb_tgt = "thumbnails.php?album=$album$cat_link&amp;page=$page";
 
-    $slideshow_tgt = "$PHP_SELF?album=$album$cat_link&pid=$pid&slideshow=".$CONFIG['slideshow_interval'];
+    $slideshow_tgt = "$PHP_SELF?album=$album$cat_link&amp;pid=$pid&amp;slideshow=".$CONFIG['slideshow_interval'];
 
     $pic_pos = sprintf($lang_img_nav_bar['pic_pos'], $human_pos, $pic_count);
 
@@ -107,8 +107,8 @@ function html_img_nav_menu()
         '{PREV_TITLE}' => $prev_title,
         '{NEXT_TGT}' => $next_tgt,
         '{NEXT_TITLE}' => $next_title,
-        '{PREV_IMAGE}' => ($lang_text_dir=='LTR') ? 'prev' : 'next',
-        '{NEXT_IMAGE}' => ($lang_text_dir=='LTR') ? 'next' : 'prev',
+        '{PREV_IMAGE}' => ($lang_text_dir=='ltr') ? 'prev' : 'next',
+        '{NEXT_IMAGE}' => ($lang_text_dir=='ltr') ? 'next' : 'prev',
         );
 
     return template_eval($template_img_navbar, $params);
@@ -186,12 +186,12 @@ function html_picture()
         if (isset($image_size['reduced'])) {
             $winsizeX = $CURRENT_PIC_DATA['pwidth'] + 16;
             $winsizeY = $CURRENT_PIC_DATA['pheight'] + 16;
-            $pic_html = "<a href=\"javascript:;\" onClick=\"MM_openBrWindow('displayimage.php?pid=$pid&fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=yes,status=yes,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
+            $pic_html = "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('displayimage.php?pid=$pid&fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=yes,status=yes,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
             $pic_title = $lang_display_image_php['view_fs'] . "\n==============\n" . $pic_title; //added by gaugau
             $pic_html .= "<img src=\"" . $picture_url . "\" class=\"image\" border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
             $pic_html .= "</a>\n";
         } else {
-            $pic_html = "<img src=\"" . $picture_url . "\" {$image_size['geom']} class=\"image\" border=\"0\" /><br />\n";
+            $pic_html = "<img src=\"" . $picture_url . "\" {$image_size['geom']} class=\"image\" border=\"0\" alt=\"\" /><br />\n";
         }
     } elseif ($mime_content['content']=='document') {
         $pic_html = "<a href=\"{$picture_url}\" target=\"_blank\" class=\"document_link\"><img src=\"".$pic_thumb_url."\" border=\"0\" class=\"image\" /></a>\n<br />";
@@ -232,12 +232,12 @@ function html_rating_box()
 
     $params = array('{TITLE}' => $lang_rate_pic['rate_this_pic'],
         '{VOTES}' => $votes,
-        '{RATE0}' => "ratepic.php?pic=$pid&rate=0",
-        '{RATE1}' => "ratepic.php?pic=$pid&rate=1",
-        '{RATE2}' => "ratepic.php?pic=$pid&rate=2",
-        '{RATE3}' => "ratepic.php?pic=$pid&rate=3",
-        '{RATE4}' => "ratepic.php?pic=$pid&rate=4",
-        '{RATE5}' => "ratepic.php?pic=$pid&rate=5",
+        '{RATE0}' => "ratepic.php?pic=$pid&amp;rate=0",
+        '{RATE1}' => "ratepic.php?pic=$pid&amp;rate=1",
+        '{RATE2}' => "ratepic.php?pic=$pid&amp;rate=2",
+        '{RATE3}' => "ratepic.php?pic=$pid&amp;rate=3",
+        '{RATE4}' => "ratepic.php?pic=$pid&amp;rate=4",
+        '{RATE5}' => "ratepic.php?pic=$pid&amp;rate=5",
         '{RUBBISH}' => $lang_rate_pic['rubbish'],
         '{POOR}' => $lang_rate_pic['poor'],
         '{FAIR}' => $lang_rate_pic['fair'],
@@ -283,11 +283,11 @@ function html_picinfo()
         } else {
             $prefix = '';
         }
-        $info[sprintf($lang_picinfo['Rating'], $CURRENT_PIC_DATA['votes'])] = '<img src="' . $prefix . 'images/rating' . round($CURRENT_PIC_DATA['pic_rating'] / 2000) . '.gif" align="absmiddle"/>';
+        $info[sprintf($lang_picinfo['Rating'], $CURRENT_PIC_DATA['votes'])] = '<img src="' . $prefix . 'images/rating' . round($CURRENT_PIC_DATA['pic_rating'] / 2000) . '.gif" align="middle" alt="" />';
     }
 
     if ($CURRENT_PIC_DATA['keywords'] != "") {
-        $info[$lang_picinfo['Keywords']] = '<span class="alblink">' . preg_replace("/(\S+)/", "<a href=\"thumbnails.php?album=search&search=\\1\">\\1</a>" , $CURRENT_PIC_DATA['keywords']) . '</span>';
+        $info[$lang_picinfo['Keywords']] = '<span class="alblink">' . preg_replace("/(\S+)/", "<a href=\"thumbnails.php?album=search&amp;search=\\1\">\\1</a>" , $CURRENT_PIC_DATA['keywords']) . '</span>';
     }
 
     for ($i = 1; $i <= 4; $i++) {
@@ -299,7 +299,7 @@ function html_picinfo()
     }
 
     $info[$lang_picinfo['File Size']] = ($CURRENT_PIC_DATA['filesize'] > 10240 ? ($CURRENT_PIC_DATA['filesize'] >> 10) . '&nbsp;' . $lang_byte_units[1] : $CURRENT_PIC_DATA['filesize'] . '&nbsp;' . $lang_byte_units[0]);
-    $info[$lang_picinfo['File Size']] = '<span dir="LTR">' . $info[$lang_picinfo['File Size']] . '</span>';
+    $info[$lang_picinfo['File Size']] = '<span dir="ltr">' . $info[$lang_picinfo['File Size']] . '</span>';
     $info[$lang_picinfo['Dimensions']] = sprintf($lang_display_image_php['size'], $CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight']);
     $info[$lang_picinfo['Displayed']] = sprintf($lang_display_image_php['views'], $CURRENT_PIC_DATA['hits']);
 
@@ -329,13 +329,13 @@ function html_picinfo()
         if (isset($iptc['SubCategories'])) $info[$lang_picinfo['iptcSubCategories']] = trim(implode(" ",$iptc['SubCategories']));
     }
     // Create the absolute URL for display in info
-    $info['URL'] = '<a href=' . $CONFIG["ecards_more_pic_target"] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') .basename($_SERVER['PHP_SELF']) . "?pos=-$CURRENT_PIC_DATA[pid]" . ' >' . $CONFIG["ecards_more_pic_target"] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') . basename($_SERVER['PHP_SELF']) . "?pos=-$CURRENT_PIC_DATA[pid]" . '</a>';
+    $info['URL'] = '<a href="' . $CONFIG["ecards_more_pic_target"] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') .basename($_SERVER['PHP_SELF']) . "?pos=-$CURRENT_PIC_DATA[pid]" . '" >' . $CONFIG["ecards_more_pic_target"] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') . basename($_SERVER['PHP_SELF']) . "?pos=-$CURRENT_PIC_DATA[pid]" . '</a>';
     // with subdomains the variable is $_SERVER["SERVER_NAME"] does not return the right value instead of using a new config variable I reused $CONFIG["ecards_more_pic_target"] no trailing slash in the configure
     // Create the add to fav link
     if (!in_array($CURRENT_PIC_DATA['pid'], $FAVPICS)) {
-        $info[$lang_picinfo['addFavPhrase']] = "<a href=addfav.php?pid=" . $CURRENT_PIC_DATA['pid'] . " >" . $lang_picinfo['addFav'] . '</a>';
+        $info[$lang_picinfo['addFavPhrase']] = "<a href=\"addfav.php?pid=" . $CURRENT_PIC_DATA['pid'] . "\" >" . $lang_picinfo['addFav'] . '</a>';
     } else {
-        $info[$lang_picinfo['addFavPhrase']] = "<a href=addfav.php?pid=" . $CURRENT_PIC_DATA['pid'] . " >" . $lang_picinfo['remFav'] . '</a>';
+        $info[$lang_picinfo['addFavPhrase']] = "<a href=\"addfav.php?pid=" . $CURRENT_PIC_DATA['pid'] . "\" >" . $lang_picinfo['remFav'] . '</a>';
     }
 
     return theme_html_picinfo($info);
@@ -628,7 +628,7 @@ if (isset($HTTP_GET_VARS['fullsize'])) {
     $votes = html_rating_box();
     $pic_info = html_picinfo();
     $comments = html_comments($CURRENT_PIC_DATA['pid']);
-    if ($CURRENT_PIC_DATA['keywords']) { $meta_keywords = "<meta name=\"keywords\" content=\"".$CURRENT_PIC_DATA['keywords']."\">"; }
+    if ($CURRENT_PIC_DATA['keywords']) { $meta_keywords = "<meta name=\"keywords\" content=\"".$CURRENT_PIC_DATA['keywords']."\"/>"; }
 
     pageheader($album_name . '/' . $picture_title, $meta_keywords, false);
     // Display Breadcrumbs
