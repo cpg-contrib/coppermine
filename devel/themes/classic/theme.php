@@ -515,11 +515,11 @@ $template_img_navbar = <<<EOT
                 <td align="center" valign="middle" class="navmenu" width="100%">
                         {PIC_POS}
                 </td>
-<!-- BEGIN report_file_button --> 
+<!-- BEGIN report_file_button -->
                 <td align="center" valign="middle" class="navmenu" width="48px">
-                        <a href="{REPORT_TGT}">report</a>
+                        <a href="{REPORT_TGT}" title="{REPORT_TITLE}"><img src="images/report.gif" width="16" height="16" border="0" align="middle" alt="{REPORT_TITLE}" /></a>
                 </td>
-<!-- END report_file_button --> 
+<!-- END report_file_button -->
 <!-- BEGIN ecard_button -->
                 <td align="center" valign="middle" class="navmenu" width="48px">
                         <a href="{ECARD_TGT}" title="{ECARD_TITLE}"><img src="images/ecard.gif" width="16px" height="16px" border="0px" align="middle" alt="{ECARD_TITLE}" /></a>
@@ -616,8 +616,8 @@ $template_image_comments = <<<EOT
                                         <a href="report_file.php?msg_id={MSG_ID}&what=comment">report</a>
 <!-- END report_comment_button -->
                                 </td>
-								
-								
+
+
                                 <td class="tableh2_compact" align="right" width="100%">
 
 <!-- BEGIN buttons -->
@@ -738,7 +738,7 @@ $template_add_your_comment = <<<EOT
                         {SMILIES}
                 </td>
         </tr>
-</table>		
+</table>
 <!-- END smilies -->
 
 EOT;
@@ -1596,24 +1596,24 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, 
         echo $film_strip;
     }
 
-	
+
     echo $votes;
-   
-	
-	
+
+
+
     $picinfo = isset($_COOKIE['picinfo']) ? $_COOKIE['picinfo'] : ($CONFIG['display_pic_info'] ? 'block' : 'none');
     echo "<div id=\"picinfo\" style=\"display: $picinfo;\">\n";
     starttable();
     echo $pic_info;
     endtable();
-	echo "</div>\n";
-    
-	echo "<div id=\"comments\">\n";
-   	 
-	echo $comments;
-	
-	echo "</div>\n";
-	
+        echo "</div>\n";
+
+        echo "<div id=\"comments\">\n";
+
+        echo $comments;
+
+        echo "</div>\n";
+
 
 }
 

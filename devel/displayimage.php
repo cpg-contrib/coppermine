@@ -92,16 +92,16 @@ function html_img_nav_menu()
         /*$ecard_tgt = "javascript:alert('" . addslashes($lang_img_nav_bar['ecard_disabled_msg']) . "');";
         $ecard_title = $lang_img_nav_bar['ecard_disabled'];*/
     }
-		
-		//report to moderator buttons
+
+                //report to moderator buttons
     if ($CONFIG['report_post']==1) {
-				$report_tgt = "report_file.php?album=$album$cat_link&amp;pid=$pid&amp;pos=$pos";
+                                $report_tgt = "report_file.php?album=$album$cat_link&amp;pid=$pid&amp;pos=$pos";
     } else { // remove button if report toggle is off
-        template_extract_block($template_img_navbar, 'report_file_button'); 
-        
+        template_extract_block($template_img_navbar, 'report_file_button');
+
     }
-		
-		    $thumb_tgt = "thumbnails.php?album=$album$cat_link&amp;page=$page";
+
+                    $thumb_tgt = "thumbnails.php?album=$album$cat_link&amp;page=$page";
         $meta_nav .= "<link rel=\"up\" href=\"$thumb_tgt\" title=\"".$lang_img_nav_bar['thumb_title']."\"/>
         ";
 
@@ -117,13 +117,14 @@ function html_img_nav_menu()
         '{PIC_POS}' => $pic_pos,
         '{ECARD_TGT}' => $ecard_tgt,
         '{ECARD_TITLE}' => $ecard_title,
-				'{PREV_TGT}' => $prev_tgt,
+                                '{PREV_TGT}' => $prev_tgt,
         '{PREV_TITLE}' => $prev_title,
         '{NEXT_TGT}' => $next_tgt,
         '{NEXT_TITLE}' => $next_title,
         '{PREV_IMAGE}' => ($lang_text_dir=='ltr') ? 'prev' : 'next',
         '{NEXT_IMAGE}' => ($lang_text_dir=='ltr') ? 'next' : 'prev',
         '{REPORT_TGT}' => $report_tgt,
+        '{REPORT_TITLE}' => $lang_img_nav_bar['report_title'],
         );
 
     return template_eval($template_img_navbar, $params);
@@ -375,12 +376,12 @@ function html_comments($pid)
     global $template_image_comments, $template_add_your_comment, $lang_display_comments;
 
     $html = '';
-	
+
 //report to moderator buttons
     if ($CONFIG['report_post']==1) {
-				$report1_tgt = "report_file.php?album=$album$cat_link&amp;pid=$pid&amp;pos=$pos";
+                                $report1_tgt = "report_file.php?album=$album$cat_link&amp;pid=$pid&amp;pos=$pos";
     } else { // remove buttons if report toggle is off
-        template_extract_block($template_image_comments, 'report_comment_button'); 
+        template_extract_block($template_image_comments, 'report_comment_button');
     }
 
     if (!$CONFIG['enable_smilies']) {
@@ -435,7 +436,7 @@ function html_comments($pid)
             '{SMILIES}' => $smilies,
             '{HDR_IP}' => $row['msg_hdr_ip'],
             '{RAW_IP}' => $row['msg_raw_ip'],
-			'{REPORT1_TGT}' => $report1_tgt,
+                        '{REPORT1_TGT}' => $report1_tgt,
             );
 
         $html .= template_eval($template, $params);

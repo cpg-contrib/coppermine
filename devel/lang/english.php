@@ -200,6 +200,7 @@ $lang_img_nav_bar = array(
   'prev_title' => 'See previous file',
   'next_title' => 'See next file',
   'pic_pos' => 'FILE %s/%s',
+  'report_title' => 'Report this file to the administrator', // cpg1.4.0
 );
 
 $lang_rate_pic = array(
@@ -584,7 +585,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'auto_resize_everyone' => 'Everyone', //cpg1.4.0
   'auto_resize_user' => 'User only', //cpg1.4.0
   'ascending' => 'ascending', //cpg1.4.0
-  'descending' => 'descending', //cpg1.4.0  
+  'descending' => 'descending', //cpg1.4.0
 );
 
 if (defined('ADMIN_PHP')) $lang_admin_data = array(
