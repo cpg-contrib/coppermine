@@ -1,4 +1,4 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
@@ -13,7 +13,7 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- // 
+// ------------------------------------------------------------------------- //
 // Report all errors except E_NOTICE
 // This is the default value set in php.ini
 
@@ -31,26 +31,26 @@ require('include/sql_parse.php');
 // ---------------------------- TEST PREREQUIRED --------------------------- //
 function test_fs()
 {
-    global $errors, $DFLT; 
+    global $errors, $DFLT;
     // include must be writable to create config file
     if (! is_dir($DFLT['cfg_d'])) {
         $errors .= "<hr /><br />A subdirectory called '{$DFLT['cfg_d']}' should normally exist in the directory where you uploaded Coppermine. The installer can't find this directory. Check that you have uploaded all Coppermine files to your server.<br /><br />";
     } elseif (! is_writable($DFLT['cfg_d'])) {
         $errors .= "<hr /><br />The '{$DFLT['cfg_d']}' directory (located in the directory where you uploaded Coppermine) should be writable in order to save your configuration. Use your FTP program to change its mode to 777.<br /><br />";
-    } 
+    }
     // albums must be writable to upload pictures
     if (! is_dir($DFLT['alb_d'])) {
         $errors .= "<hr /><br />A subdirectory called '{$DFLT['alb_d']}' should normally exist in the directory where you uploaded Coppermine. The installer can't find this directory. Check that you have uploaded all Coppermine files to your server.<br /><br />";
     } elseif (! is_writable($DFLT['alb_d'])) {
         $errors .= "<hr /><br />The '{$DFLT['alb_d']}' directory (located in the directory where you uploaded Coppermine) should be writable in order to allow pictures upload. Use your FTP program to change its mode to 777.<br /><br />";
-    } 
+    }
     // userpics must be writable to upload pictures
     if (! is_dir("{$DFLT['alb_d']}/{$DFLT['upl_d']}")) {
         $errors .= "<hr /><br />A subdirectory called '{$DFLT['upl_d']}' should normally exist in the 'albums' directory. The installer can't find this directory. Check that you have uploaded all Coppermine files to your server.<br /><br />";
     } elseif (! is_writable("{$DFLT['alb_d']}/{$DFLT['upl_d']}")) {
         $errors .= "<hr /><br />The '{$DFLT['upl_d']}' directory (located in the 'albums' directory on your server) should be writable in order to allow pictures upload. Use your FTP program to change its mode to 777.<br /><br />";
-    } 
-} 
+    }
+}
 // ----------------------------- TEST FUNCTIONS ---------------------------- //
 function test_sql_connection()
 {
@@ -60,8 +60,8 @@ function test_sql_connection()
         $errors .= "<hr /><br />Could not create a mySQL connection, please check the SQL values entered<br /><br />MySQL error was : " . mysql_error() . "<br /><br />";
     } elseif (! mysql_select_db($HTTP_POST_VARS['dbname'], $connect_id)) {
         $errors .= "<hr /><br />mySQL could not locate a database called '{$HTTP_POST_VARS['dbname']}' please check the value entered for this<br /><br />";
-    } 
-} 
+    }
+}
 
 function test_admin_login()
 {
@@ -71,7 +71,7 @@ function test_admin_login()
         $errors .= "<hr /><br />It is much better for you to provide a 'username' and a 'password' for the admin.<br /><br />";
     if (!preg_match('/\A\w*\Z/', $HTTP_POST_VARS['admin_username']) || !preg_match('/\A\w*\Z/', $HTTP_POST_VARS['admin_password']))
         $errors .= "<hr /><br />Admin username and password must only contain alphanumeric characters.<br /><br />";
-} 
+}
 
 function test_im()
 {
@@ -105,12 +105,12 @@ function test_im()
                 $errors .= "The convert program said:<br /><pre>";
                 foreach($output as $line) $errors .= htmlspecialchars($line);
                 $errors .= "</pre><br /><br />";
-            } 
-        } 
-    } 
+            }
+        }
+    }
 
     return $im_installed;
-} 
+}
 // Test is safe_mode is misconfigured
 function test_silly_safe_mode()
 {
@@ -122,11 +122,11 @@ function test_silly_safe_mode()
     if (!$fd) {
         @rmdir(dirname($test_file));
         return true;
-    } 
+    }
     fclose($fd);
     @unlink($test_file);
     @rmdir(dirname($test_file));
-} 
+}
 // -------------------------- DETECTION FUNCTIONS -------------------------- //
 // What package is available for image manipulations
 function detect_img_package()
@@ -154,12 +154,12 @@ function detect_img_package()
         $HTTP_POST_VARS['thumb_method'] = 'gd2';
         $no_img_package_detected = true;
         $note .= "<hr /><br />Your installation of PHP does not seem to include the 'GD' graphic library extension and you have not indicated that you want to use ImageMagick. Coppermine has been configured to use GD2 because the automatic GD detection sometimes fail. If GD is installed on your system, the script should work else you will need to install ImageMagick.<br /><br />";
-    } 
+    }
 
     if (!$no_img_package_detected) $notes .= "<br /><br />Your server supports the following image package(s): " . ($im_installed ? ' ImageMagick (im),':'') . ($gd1_installed ? ' GD Library version 1.x (gd1),':'') . ($gd2_installed ? ' GD Library version 2.x (gd2),':'') . " the installer selected '" . $HTTP_POST_VARS['thumb_method'] . "'.";
     if ($HTTP_POST_VARS['thumb_method'] == 'gd1' || $HTTP_POST_VARS['thumb_method'] == 'gd2')
         $notes .= "<br /><br /><b>Important :</b> the GD graphic library supports only JPEG and PNG images. The script will not be able to create thumbnails for GIF images. If you want the script to create thumbnails for GIF images, you need to use ImageMagick.";
-} 
+}
 // ------------------------- HTML OUTPUT FUNCTIONS ------------------------- //
 function html_header()
 {
@@ -174,7 +174,7 @@ function html_header()
  <div align="center">
   <div style="width:600px;">
 <?php
-} 
+}
 
 function html_logo()
 {
@@ -187,7 +187,7 @@ function html_logo()
        </tr>
       </table>
 <?php
-} 
+}
 
 function html_installer_locked()
 {
@@ -216,7 +216,7 @@ function html_installer_locked()
        </tr>
       </table>
 <?php
-} 
+}
 
 function html_prereq_errors($error_msg)
 {
@@ -244,7 +244,7 @@ function html_prereq_errors($error_msg)
        </tr>
       </table>
 <?php
-} 
+}
 
 function html_input_config($error_msg = '')
 {
@@ -270,7 +270,7 @@ function html_input_config($error_msg = '')
         </td>
        </tr>
 <?php
-    } 
+    }
 
     ?>
        <tr>
@@ -332,10 +332,10 @@ function html_input_config($error_msg = '')
         </td>
        </tr>
        <tr>
-        <td width="40%" class="tableb"><b>MySQL table prefix</b><br />(default value is OK)
+        <td width="40%" class="tableb"><b>MySQL table prefix</b><br />(default value is OK; do not use dots!)
         </td>
         <td width="60%" class="tableb" valign="top">
-                <input type='text' class='textinput' name='table_prefix' value='<?php echo ($HTTP_POST_VARS['table_prefix'] ? $HTTP_POST_VARS['table_prefix'] : 'cpg11d_') ?>'>
+                <input type='text' class='textinput' name='table_prefix' value='<?php echo ($HTTP_POST_VARS['table_prefix'] ? $HTTP_POST_VARS['table_prefix'] : 'cpg130_') ?>'>
         </td>
        </tr>
        <tr>
@@ -364,7 +364,7 @@ function html_input_config($error_msg = '')
    <img src="install.php?test_gd1=1&reload=<?php echo uniqid('') ?>" alt="" width="1" height="1" border="0">
    <img src="install.php?test_gd2=1&reload=<?php echo uniqid('') ?>" alt="" width="1" height="1" border="0">
 <?php
-} 
+}
 
 function html_install_success($notes)
 {
@@ -391,7 +391,7 @@ function html_install_success($notes)
        </tr>
       </table>
 <?php
-} 
+}
 
 function html_footer()
 {
@@ -403,7 +403,7 @@ function html_footer()
 </html>
 <noscript><plaintext>
 <?php
-} 
+}
 // ------------------------- SQL QUERIES TO CREATE TABLES ------------------ //
 function create_tables()
 {
@@ -417,18 +417,18 @@ function create_tables()
     $sql_query = fread(fopen($db_schema, 'r'), filesize($db_schema));
 
     $db_basic = 'sql/basic.sql';
-    $sql_query .= fread(fopen($db_basic, 'r'), filesize($db_basic)); 
+    $sql_query .= fread(fopen($db_basic, 'r'), filesize($db_basic));
     // Insert the admin account
-    $sql_query .= "INSERT INTO CPG_users VALUES (1, 1, 'YES', '" . $HTTP_POST_VARS['admin_username'] . "', '" . $HTTP_POST_VARS['admin_password'] . "', NOW(), NOW(), '', '', '', '', '', '', '');\n"; 
+    $sql_query .= "INSERT INTO CPG_users VALUES (1, 1, 'YES', '" . $HTTP_POST_VARS['admin_username'] . "', '" . $HTTP_POST_VARS['admin_password'] . "', NOW(), NOW(), '', '', '', '', '', '', '');\n";
     // Set configuration values for image package
     $sql_query .= "REPLACE INTO CPG_config VALUES ('thumb_method', '" . $HTTP_POST_VARS['thumb_method'] . "');\n";
     $sql_query .= "REPLACE INTO CPG_config VALUES ('impath', '" . $HTTP_POST_VARS['impath'] . "');\n";
-    $sql_query .= "REPLACE INTO CPG_config VALUES ('ecards_more_pic_target', '" . $gallery_url_prefix . "');\n"; 
+    $sql_query .= "REPLACE INTO CPG_config VALUES ('ecards_more_pic_target', '" . $gallery_url_prefix . "');\n";
     // Test write permissions for main dir
     if (!is_writable('.')) {
         $sql_query .= "REPLACE INTO CPG_config VALUES ('default_dir_mode', '0777');\n";
         $sql_query .= "REPLACE INTO CPG_config VALUES ('default_file_mode', '0666');\n";
-    } 
+    }
     // Update table prefix
     $sql_query = preg_replace('/CPG_/', $HTTP_POST_VARS['table_prefix'], $sql_query);
 
@@ -439,9 +439,9 @@ function create_tables()
         if (! mysql_query($q)) {
             $errors .= "mySQL Error: " . mysql_error() . "<br /><br />";
             return;
-        } 
-    } 
-} 
+        }
+    }
+}
 // ---------------------- CONFIGURATION FILE TEMPLATE ---------------------- //
 function build_cfg_file()
 {
@@ -464,7 +464,7 @@ $silly_safe_mode
 \$CONFIG['TABLE_PREFIX'] =                "{$HTTP_POST_VARS['table_prefix']}";
 ?>
 EOT;
-} 
+}
 
 function write_config_file()
 {
@@ -480,8 +480,8 @@ function write_config_file()
         fclose($fd);
     } else {
         $errors .= "<hr /><br />Unable to write config file '{$DFLT['cfg_f']}'<br /><br />";
-    } 
-} 
+    }
+}
 
 function lock_install()
 {
@@ -492,8 +492,8 @@ function lock_install()
         fclose($fd);
     } else {
         $notes .= "<br /><br /><b>Warning :</b> the installer could not create the '{$DFLT['lck_f']}' file. In order to secure your installation, you need to delete the 'install.php' file from your server !<br /><br />";
-    } 
-} 
+    }
+}
 // --------------------------------- MAIN CODE ----------------------------- //
 // Disable magic_quotes_runtime if active to allow proper reading from .sql files.
 set_magic_quotes_runtime(0);
@@ -537,16 +537,16 @@ if ($HTTP_GET_VARS['test_gd1']) { // GD1 test
         else {
             lock_install();
             html_install_success($notes);
-        } 
+        }
     } else {
         test_fs();
         if ($errors != '')
             html_prereq_errors($errors);
         else {
             html_input_config();
-        } 
-    } 
+        }
+    }
     html_footer();
-} 
+}
 
 ?>
