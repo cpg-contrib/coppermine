@@ -95,3 +95,5 @@ Added height/width fields to editOnePic.php - 20 April 2004, Chris
 Fixed height/width fields in editpics.php - 20 April 2004, Chris
 Fixed 'missing controls' bug in displayimage.php - 20 April 2004, Chris
 Changed 'tiff', 'ram', and 'psd' doctypes to 'document' - 22 April 2004, Chris
+Updated miscellaneous documentation information - 24 April 2004, Chris
+Updated/Added new screenshot gifs - 24 April 2004, Chris
