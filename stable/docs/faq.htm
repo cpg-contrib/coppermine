@@ -168,7 +168,6 @@ For credits and copyrights, see <a href="index.htm#credits">Coppermine documenta
 </ul>
 <li><b>Add-ons / Modifications / Hacks</b></li>
 <ul class="nomargin">
-<li><a class="content" href="#letUserSelectTheme">How can I let users select their own <b>theme</b>?</a></li>
 <li><a class="content" href="#changeOrderEdit">How can I change the order of the pics when <b>editing</b> them?</a></li>
 <li><a class="content" href="#rightHandMenu">How can I create a menu that&#39;s shown on the <b>right side</b> of the gallery?</a></li>
 <li><a class="content" href="#jumpToPrivateAlbum">How can I send a user <b>directly to his private album</b> once he logs in?</a></li>
@@ -658,7 +657,6 @@ Greg</p></td></tr></table><br /></p><br /><div class="totop">[<a href="#top" cla
 
 <br />&nbsp;<br />
 <h2>Add-ons / Modifications / Hacks</h2><a name="letUserSelectTheme"></a>
-<h3>How can I let users select their own <b>theme</b>?</h3>
 <a name="changeOrderEdit"></a>
 <h3>How can I change the order of the pics when <b>editing</b> them?</h3>
 <p>By default, the pics are shown alphabetically when you edit them. To change the sorting order to &quot;by date&quot;, edit <tt class="code">editpics.php</tt> and change<br />
@@ -727,7 +725,7 @@ and replace it with:<br />
 <tt class="code">$lang_picinfo = array(</tt><br />
 and add after that:<br />
 <tt class="code">        &#39;Username&#39; => &#39;Username&#39;,</tt><br />
-Also you need to execute this query in MySQL (with a tool like <a href="http://www.phpmyadmin.net"><? external_link("11"); ?>phpMyAdmin</a>):<br />
+Also you need to execute this query in MySQL (with a tool like <a href="http://www.phpmyadmin.net">phpMyAdmin</a>):<br />
 <tt class="code">ALTER TABLE `cpg11d_pictures` ADD INDEX ( `owner_id` );</tt><br />
 (If your table_prefix is not cpg11d_ then you need to change it in the query)<br /><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="linksInCustomFields"></a>
 <h3>How do I enable clickable <b>links in custom user fields</b>?</h3>
