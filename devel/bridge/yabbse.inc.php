@@ -1,6 +1,6 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.4.0                                            //
 // ------------------------------------------------------------------------- //
 // Copyright (C) 2002,2003 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
@@ -13,6 +13,8 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
+// ------------------------------------------------------------------------- //
+// $Id$
 // ------------------------------------------------------------------------- //
 // As a special exception, the copyright holders of Coppermine Photo Gallery //
 // give you permission to link Coppermine Photo Gallery with independent     //
@@ -32,8 +34,6 @@
 // License gives permission to release a modified version without this       //
 // exception; this exception also makes it possible to release a modified    //
 // version which carries forward this exception.                             //
-// ------------------------------------------------------------------------- //
-// $Id$
 // ------------------------------------------------------------------------- //
 // YaBB SE 1.5.4 Integration for Coppermine                                  //
 // ------------------------------------------------------------------------- //

@@ -1,4 +1,21 @@
 <?php
+// ------------------------------------------------------------------------- //
+// Coppermine Photo Gallery 1.4.0                                            //
+// ------------------------------------------------------------------------- //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
+// http://www.chezgreg.net/coppermine/                                       //
+// ------------------------------------------------------------------------- //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
+// ------------------------------------------------------------------------- //
+// This program is free software; you can redistribute it and/or modify      //
+// it under the terms of the GNU General Public License as published by      //
+// the Free Software Foundation; either version 2 of the License, or         //
+// (at your option) any later version.                                       //
+// ------------------------------------------------------------------------- //
+// $Id$
+// ------------------------------------------------------------------------- //
 /*--------------------------------------------------
  | TAR/GZIP/ZIP ARCHIVE CLASSES
  | By Devin Doucette
@@ -415,9 +432,9 @@ class zipfile extends archive {
 
                 $crc32 = crc32($data);
                 $normlength = strlen($data);
-		if(function_exists('gzcompress') ){
-                	$data = gzcompress($data,$this->level);
-		}
+                if(function_exists('gzcompress') ){
+                        $data = gzcompress($data,$this->level);
+                }
                 $data = substr($data,2,strlen($data)-6);
                 $complength = strlen($data);
 

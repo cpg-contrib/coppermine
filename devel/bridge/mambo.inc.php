@@ -1,8 +1,8 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.4.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -18,8 +18,11 @@
 // ------------------------------------------------------------------------- //
 // Mambo Integration for Coppermine                                          //
 // ------------------------------------------------------------------------- //
+// $Id$
+// ------------------------------------------------------------------------- //
 // Modify the values below according to your Board installation              //
 // ------------------------------------------------------------------------- //
+
 
 // database configuration
 define('MOS_DB_NAME', 'database'); // The name of the database used by the board
@@ -85,7 +88,7 @@ function udb_authenticate()
         if (is_array($sessiondata)) {
             $cookie_uid = (isset($sessiondata['username'])) ? addslashes($sessiondata['username']) : 0;
             $cookie_pass = (isset($sessiondata['password'])) ? addslashes($sessiondata['password']) : '*';
-			//echo "User: ".$cookie_uid." Pass: ".$cookie_pass;
+                        //echo "User: ".$cookie_uid." Pass: ".$cookie_pass;
         } else {
             $cookie_uid = 0;
             $cookie_pass = '*';
@@ -100,7 +103,7 @@ function udb_authenticate()
         $USER_DATA = mysql_fetch_array($result);
         mysql_free_result($result);
 
-	$USER_DATA['groups'] = array();
+        $USER_DATA['groups'] = array();
 
         if($USER_DATA['user_id'] == "-1") {
             define('USER_ID', 0);
@@ -118,17 +121,17 @@ function udb_authenticate()
         } else {
 
             if ($USER_DATA['user_level'] == 1) {
-        	array_push($USER_DATA['groups'], MOS_ADMIN_GROUP);
+                array_push($USER_DATA['groups'], MOS_ADMIN_GROUP);
             }
             array_push($USER_DATA['groups'], MOS_MEMBERS_GROUP);
 
         }
-        
+
         // Retrieve the groups the user is a member of
         $sql = "SELECT (ug.group_id + 5) as group_id " . "FROM " . $UDB_DB_NAME_PREFIX . MOS_TABLE_PREFIX . MOS_UGROUPMAP_TABLE . " as ug " . "LEFT JOIN " . $UDB_DB_NAME_PREFIX . MOS_TABLE_PREFIX . MOS_UGROUP_TABLE . " as g ON ug.aro_id = g.aro_id " . "WHERE g.value = " . USER_ID . "";
         $result = db_query($sql, $UDB_DB_LINK_ID);
         while ($row = mysql_fetch_array($result)) {
-        	array_push($USER_DATA['groups'], $row['group_id']);
+                array_push($USER_DATA['groups'], $row['group_id']);
         }
         mysql_free_result($result);
 
@@ -143,11 +146,11 @@ function udb_authenticate()
         $USER_DATA['pub_upl_need_approval'] = 1;
         $USER_DATA['priv_upl_need_approval'] = 1;
         $USER_DATA['upload_form_config'] = 0;
-        $USER_DATA['num_file_upload'] = 0; 
+        $USER_DATA['num_file_upload'] = 0;
         $USER_DATA['num_URI_upload'] = 0;
-        $USER_DATA['custom_user_upload'] = 0; 
+        $USER_DATA['custom_user_upload'] = 0;
 
-	$USER_DATA = array_merge($USER_DATA, cpgGetUserData($USER_DATA['groups'][0], $USER_DATA['groups'], MOS_GUEST_GROUP));
+        $USER_DATA = array_merge($USER_DATA, cpgGetUserData($USER_DATA['groups'][0], $USER_DATA['groups'], MOS_GUEST_GROUP));
 
         define('USER_GROUP', '');
         define('USER_GROUP_SET', $user_group_set);

@@ -1,3 +1,21 @@
+// ------------------------------------------------------------------------- //
+// Coppermine Photo Gallery 1.4.0                                            //
+// ------------------------------------------------------------------------- //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
+// http://www.chezgreg.net/coppermine/                                       //
+// ------------------------------------------------------------------------- //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
+// ------------------------------------------------------------------------- //
+// This program is free software; you can redistribute it and/or modify      //
+// it under the terms of the GNU General Public License as published by      //
+// the Free Software Foundation; either version 2 of the License, or         //
+// (at your option) any later version.                                       //
+// ------------------------------------------------------------------------- //
+// $Id$
+// ------------------------------------------------------------------------- //
+
 function MM_openBrWindow(theURL,winName,features) { //v2.0
   window.open(theURL,winName,features);
 }
@@ -89,26 +107,26 @@ function show_section(e) {
 
 function expand()
 {
-	var Nodes = document.getElementsByTagName("table")
-	var max = Nodes.length
-	for(var i = 0;i < max;i++) {
-		var nodeObj = Nodes.item(i)
-		var str = nodeObj.id
-		if (str.match("section")) {		
-			nodeObj.style.display = 'block';
-		}
-	}
+        var Nodes = document.getElementsByTagName("table")
+        var max = Nodes.length
+        for(var i = 0;i < max;i++) {
+                var nodeObj = Nodes.item(i)
+                var str = nodeObj.id
+                if (str.match("section")) {
+                        nodeObj.style.display = 'block';
+                }
+        }
 }
 
 function hideall()
 {
-	var Nodes = document.getElementsByTagName("table")
-	var max = Nodes.length
-	for(var i = 0;i < max;i++) {
-		var nodeObj = Nodes.item(i)
-		var str = nodeObj.id
-		if (str.match("section")) {		
-			nodeObj.style.display = 'none';
-		}
-	}
+        var Nodes = document.getElementsByTagName("table")
+        var max = Nodes.length
+        for(var i = 0;i < max;i++) {
+                var nodeObj = Nodes.item(i)
+                var str = nodeObj.id
+                if (str.match("section")) {
+                        nodeObj.style.display = 'none';
+                }
+        }
 }

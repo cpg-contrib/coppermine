@@ -28,6 +28,21 @@ $remove_head = $_REQUEST['remove_head'];
 $remove_stylesheet = $_REQUEST['remove_stylesheet'];
 $remove_to_top = $_REQUEST['top'];
 $add_stylesheet = $_REQUEST['css'];
+$header = $_REQUEST['h'];
+$text = $_REQUEST['t'];
+$style = $_REQUEST['style'];
+$close = $_REQUEST['close'];
+$base = $_REQUEST['base'];
+
+if ($base != '') {
+// content of header and text have been base64-encoded - decode it now
+$header = @unserialize(@base64_decode($header));
+$text = @unserialize(@base64_decode($text));
+}
+
+if ($close != 1) {
+$close_link = '<br />&nbsp;<br /><div align="center"><a href="#" class="admin_menu" onclick="window.close();">close</a><br />&nbsp;</div>';
+}
 
 
 // harden against expolits: check the requested vars, replace illegal chars
@@ -79,7 +94,7 @@ if ($remove_to_top) {
 
 /* check for emtpy string
 // if the string is empty, invalid data have been submitted to the script, so the window should be closed
-if ($string == '') {
+if ($string == '' && $header == '') {
     $string = '    <script language="JavaScript" type="text/javascript">
     window.opener = self;
     window.close();
@@ -89,7 +104,11 @@ if ($string == '') {
 
 if ($add_stylesheet) {
     $string = "<html>\n<head>\n<title>Help</title>\n" . '<link rel="stylesheet" href="../themes/'.$add_stylesheet.'/style.css" />' . "\n</head>\n<body>\n" . $string;
-    $string .= "</body>\n</html>";
+    $string .= $close_link."\n</body>\n</html>";
+}
+
+if ($header) {
+$string = "<html>\n<head>\n<title>".$header."</title>\n" . '<link rel="stylesheet" href="../themes/'.$style.'/style.css" />' . "\n</head>\n<body>\n<h1>" . $header . "</h1>\n" . $text . "\n".$close_link."\n</body>\n</html>";
 }
 
 

@@ -1,6 +1,6 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.4.0                                            //
 // ------------------------------------------------------------------------- //
 // Copyright (C) 2002,2003 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
@@ -121,8 +121,8 @@ function udb_authenticate()
         }
 
         $USER_DATA = array_merge($USER_DATA, $USER_DATA2);
-		$USER_DATA['groups'] = array($USER_DATA['group_id']);
-		$USER_DATA['can_see_all_albums'] = ($USER_DATA['mgroup'] == VB_ADMIN_GROUP);
+                $USER_DATA['groups'] = array($USER_DATA['group_id']);
+                $USER_DATA['can_see_all_albums'] = ($USER_DATA['mgroup'] == VB_ADMIN_GROUP);
         define('USER_GROUP', $USER_DATA['group_name']);
         define('USER_GROUP_SET', '(' . $USER_DATA['group_id'] . ')');
         define('USER_IS_ADMIN', ($USER_DATA['mgroup'] == VB_ADMIN_GROUP));
@@ -143,10 +143,10 @@ function udb_authenticate()
         } else {
             $USER_DATA = mysql_fetch_array($result);
         }
-        
+
         $USER_DATA['groups'] = array(VB_GUEST_GROUP);
         $USER_DATA['can_see_all_albums'] =0;
-        
+
         define('USER_ID', 0);
         define('USER_NAME', 'Anonymous');
         define('USER_GROUP_SET', '(' . VB_GUEST_GROUP . ')');
@@ -398,13 +398,13 @@ function udb_util_filloptions()
         }
 
         // Initialize $merged_array
-        $merged_array = array();    
+        $merged_array = array();
 
         // Count the number of albums returned.
         $end = count($public_result);
 
         // Cylce through the User albums.
-        for($i=0;$i<$end;$i++) {        
+        for($i=0;$i<$end;$i++) {
 
             //Create a new array sow we may sort the final results.
             $merged_array[$i]['id'] = $public_result[$i]['aid'];
@@ -417,12 +417,12 @@ function udb_util_filloptions()
             if (isset($merged_array[$i]['username_category'])) {
                 $merged_array[$i]['username_category'] = (($vRes['name']) ? '(' . $vRes['name'] . ') ' : '').$merged_array[$i]['username_category'];
             } else {
-                $merged_array[$i]['username_category'] = (($vRes['name']) ? '(' . $vRes['name'] . ') ' : '');   
+                $merged_array[$i]['username_category'] = (($vRes['name']) ? '(' . $vRes['name'] . ') ' : '');
             }
 
         }
 
-        // We transpose and divide the matrix into columns to prepare it for use in array_multisort(). 
+        // We transpose and divide the matrix into columns to prepare it for use in array_multisort().
         foreach ($merged_array as $key => $row) {
            $aid[$key] = $row['id'];
            $title[$key] = $row['album_name'];
@@ -442,7 +442,7 @@ function udb_util_filloptions()
         }
 
         // Query for list of user IDs and names
-    
+
         $user_album_ids_and_names = db_query("SELECT (userid + ".FIRST_USER_CAT.") as id, CONCAT('(', username, ') ') as name FROM $usertbl ORDER BY name ASC",$UDB_DB_LINK_ID);
 
         if (mysql_num_rows($user_album_ids_and_names)) {
@@ -455,7 +455,7 @@ function udb_util_filloptions()
 
         // Initialize $udb_i as a counter.
         if (count($merged_array)) {
-            $udb_i = count($merged_array); 
+            $udb_i = count($merged_array);
         } else {
             $udb_i = 0;
         }
@@ -479,13 +479,13 @@ function udb_util_filloptions()
         foreach ($merged_array as $menu_item) {
 
             echo "<option value=\"" . $menu_item['id'] . "\">" . (isset($menu_item['username_category']) ? $menu_item['username_category'] : '') . $menu_item['album_name'] . "</option>\n";
-   
+
         }
 
         // Close list, etc.
         print '</select> (3)';
         print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="button" /> (4)';
-        print '</form>'; 
+        print '</form>';
 
     }
 

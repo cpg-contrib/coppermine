@@ -1,5 +1,7 @@
 <?php
 // ------------------------------------------------------------------------- //
+// Coppermine Photo Gallery 1.4.0                                            //
+// ------------------------------------------------------------------------- //
 //  Open Plugin API (OpenPAPI) for Coppermine Photo Gallery                  //
 // ------------------------------------------------------------------------- //
 //  Copyright (C) 2004  Christopher Brown-Floyd                              //
@@ -13,6 +15,8 @@
 //  it under the terms of the GNU General Public License as published by     //
 //  the Free Software Foundation; either version 2 of the License, or        //
 //  (at your option) any later version.                                      //
+// ------------------------------------------------------------------------- //
+// $Id$
 // ------------------------------------------------------------------------- //
 
 define('IN_COPPERMINE', true);
@@ -125,7 +129,7 @@ EOT;
 
     foreach ($available_plugins as $path) {
         if (($plugin_id = CPGPluginAPI::installed($path))===false) {
-            
+
             // If codebase.php and credits.php don't exist, skip this folder
             if (!(file_exists('./plugins/'.$path.'/codebase.php') && file_exists('./plugins/'.$path.'/credits.php'))) {
                 continue;
@@ -135,7 +139,7 @@ EOT;
 
             $safename = addslashes(str_replace('&nbsp;', '', $name));
             $extra = (isset($extra_info)) ? ($extra_info):(null);
-            
+
             echo <<<EOT
             <tr>
             <td width="90%">
@@ -172,19 +176,19 @@ EOT;
 // Delete a directory and its contents
 function deldir($dir) {
     $handle = opendir($dir);
-    
+
     // Remove all files
     while (false!==($FolderOrFile = readdir($handle))) {
         if($FolderOrFile != "." && $FolderOrFile != "..") {
             if(is_dir("$dir/$FolderOrFile")) {
-                deldir("$dir/$FolderOrFile"); 
+                deldir("$dir/$FolderOrFile");
             } else {
                 unlink("$dir/$FolderOrFile");
             }
         }
     }
     closedir($handle);
-    
+
     // If directory was removed return true
     if(rmdir($dir)) {
         return true;
@@ -225,7 +229,7 @@ switch ($op) {
     case 'moveu':
         $thisplugin = @$CPG_PLUGINS[$_GET['p']];
         if (isset($thisplugin) && ($priority = $thisplugin->priority) > 0) {
-            
+
             // Move the plugin above down
             $sql = 'update '.$CONFIG['TABLE_PLUGINS'].' set priority='.$priority.' where priority='.($priority-1).';';
             db_query($sql);
@@ -258,7 +262,7 @@ switch ($op) {
             if (strtolower($info['extension'] != 'zip')) {
                 cpg_die(CRITICAL_ERROR,$lang_pluginmgr_php['not_plugin_package'],__FILE__,__LINE__);
             }
-            
+
             if (!is_dir('./plugins/receive')) {
                 $mask = umask(0);
                 mkdir('./plugins/receive',0777);
@@ -270,7 +274,7 @@ switch ($op) {
             }
 
             require_once('./include/zip.lib.php');
-            
+
             $zip =& new Zip();
             $zip->Extract('./plugins/receive/'.$file['name'],'./plugins',array(-1));
 
@@ -308,7 +312,7 @@ if ((($op != 'install') && ($op != 'uninstall')) || (is_bool($installed) && $ins
         header('Location: pluginmgr.php');
     }
     display_plugin_list();
-    
+
 // Plugin is being configured; Execute 'plugin_configure' action
 } elseif ($op == 'install') {
 
