@@ -335,7 +335,7 @@ EOT;
             }
         }
 
-        $quick_jump = ($user_thumb . $lastcom) ? '<table width="100%" border="0" cellspasing="5"><tr>' . $user_thumb . $lastcom . '</tr></table>' : '';
+        $quick_jump = ($user_thumb . $lastcom) ? '<table width="100%" border="0" cellspacing="5"><tr>' . $user_thumb . $lastcom . '</tr></table>' : '';
 
         $form_data = array('username' => $user_data['user_name'],
             'reg_date' => localised_date($user_data['user_regdate'], $register_date_fmt),
