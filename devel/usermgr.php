@@ -262,7 +262,7 @@ EOT;
     foreach ($form_data as $element) switch ($element[0]) {
         case 'input' :
             $user_data[$element[1]] = $user_data[$element[1]];
-            echo <<<EOT
+            if ($element[2]) echo <<<EOT
         <tr>
             <td width="40%" class="tableb">
                         {$element[2]}

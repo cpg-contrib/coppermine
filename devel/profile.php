@@ -96,7 +96,7 @@ EOT;
         case 'input' :
             $value = $form_data[$element[1]];
 
-            echo <<<EOT
+        if ($element[2]) echo <<<EOT
     <tr>
         <td width="40%" class="tableb"  height="25">
             {$element[2]}
