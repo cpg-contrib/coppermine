@@ -40,7 +40,7 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
 
         if ($CONFIG['read_iptc_data']) {
            $iptc = get_IPTC($image);
-           if (is_array($iptc) && !title && !$caption && !$keywords) {  //if any of those 3 are filled out we don't want to override them, they may be blank on purpose.
+           if (is_array($iptc) && !$title && !$caption && !$keywords) {  //if any of those 3 are filled out we don't want to override them, they may be blank on purpose.
                $title = (isset($iptc['Title'])) ? $iptc['Title'] : $title;
                $caption = (isset($iptc['Caption'])) ? $iptc['Caption'] : $caption;
                $keywords = (isset($iptc['Keywords'])) ? implode(' ',$iptc['Keywords']) : $keywords;
