@@ -8,6 +8,8 @@
 //  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
 //  http://www.stoverud.com/PHPhotoalbum/                                    //
 // ------------------------------------------------------------------------- //
+//  Hacked by Tarique Sani <tarique@sanisoft.com>                            //
+// ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
 //  the Free Software Foundation; either version 2 of the License, or        //
@@ -16,10 +18,15 @@
 
 define('IN_COPPERMINE', true);
 define('DISPLAYIMAGE_PHP', true);
+define('INDEX_PHP', true);
 
 require('include/init.inc.php');
 
 if($CONFIG['enable_smilies']) include("include/smilies.inc.php");
+
+$breadcrumb = '';
+$breadcrumb_text = '';
+$cat_data = array();
 
 if($CONFIG['read_exif_data'] && function_exists('exif_read_data')){
 	include("include/exif_php.inc.php");
@@ -243,6 +250,9 @@ function html_picinfo()
 		if (isset($exif['Comment'])) $info[$lang_picinfo['Comment']] = $exif['Comment'];
 	}
 
+	//Create the absolute URL for display in info
+	$info['URL']='<a href=http://'.$_SERVER["SERVER_NAME"].$_SERVER["SCRIPT_NAME"]."?pos=-$CURRENT_PIC_DATA[pid]".' >http://'.$_SERVER["SERVER_NAME"].$_SERVER["SCRIPT_NAME"]."?pos=-$CURRENT_PIC_DATA[pid]".'</a>';
+
 	return theme_html_picinfo($info);
 }
 
@@ -315,6 +325,9 @@ function html_comments($pid)
 
 		$params = array(
 			'{ADD_YOUR_COMMENT}' => $lang_display_comments['add_your_comment'],
+			//Modified Name and comment field
+			'{NAME}'=>$lang_display_comments['name'],
+			'{COMMENT}'=>$lang_display_comments['comment'],
 			'{PIC_ID}' => $pid,
 			'{USER_NAME}' => $user_name,
 			'{MAX_COM_LENGTH}' => $CONFIG['max_com_size'],
@@ -512,6 +525,8 @@ if (isset($CURRENT_PIC_DATA)) {
     if (is_numeric($album)) {
 		$cat = - $album;
 		$actual_cat = $CURRENT_ALBUM_DATA['category'];
+		breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);
+		$cat = -$album;
 	} else {
 		$actual_cat = $CURRENT_ALBUM_DATA['category'];
 	}
@@ -535,7 +550,16 @@ if (isset($HTTP_GET_VARS['fullsize'])){
 	$comments = html_comments($CURRENT_PIC_DATA['pid']);
 
 	pageheader($album_name.'/'.$picture_title, '', false);
-	theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments);
+		//Display Breadcrumbs
+	if ($breadcrumb) {	
+		theme_display_breadcrumb($breadcrumb, $cat_data);
+	}        
+	
+	//Display Filmstrip if the album is not search
+	if($album!='search') {
+		$film_strip=display_film_strip($album, (isset($cat) ? $cat : 0), $pos, true);
+	}
+        theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments,$film_strip);
 	pagefooter();
 	ob_end_flush();
 }
