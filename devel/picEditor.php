@@ -57,11 +57,15 @@ function cornerright()
 if ($_GET['img']=="left"){cornerleft();exit;}
 if ($_GET['img']=="right"){cornerright();exit;}
 
+
+
 define('IN_COPPERMINE', true);
 define('EDITPICS_PHP', true);
-define('IMG_DIR','albums/edit/');
+
 require('include/init.inc.php');
 require('include/picmgmt.inc.php');
+
+define('IMG_DIR', $CONFIG['fullpath'].'edit/');
 
 if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
