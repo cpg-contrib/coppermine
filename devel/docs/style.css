@@ -183,6 +183,10 @@ ul {
 	padding-top: 0px
 }
 
+#toc a {
+	font-size: .9em;
+}
+
 #toc ul.level1 {
 	padding-right: 0px;
 	padding-left: 0px;
