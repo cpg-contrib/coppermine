@@ -370,30 +370,6 @@ function load_template()
         $template = str_replace($tmpl_loc['l'], $tmpl_loc['s'] ,$template);
 
         $template_header = substr($template, 0, $gallery_pos);
-        if ($CONFIG['disable_gallery_rightclick'] == 1)
-        {
-$replacement_body = <<<EOT
-<body onkeydown = "onKeyDown()">
-<script language="JavaScript" type="text/javascript">
-<!--
-document.oncontextmenu=new Function("return false")
-
-//if IE4+
-document.onselectstart=new Function ("return false")
-
-//if NS6
-if (window.sidebar){
-document.onmousedown=disableselect
-document.onclick=reEnable
-}
--->
-</script>
-EOT;
-$replacement_header ='<meta http-equiv="imagetoolbar" content="no" />
-</head>';
-        $template_header = ereg_replace("<body[^>]*>",$replacement_body,$template_header);
-        $template_header = ereg_replace("</head[^>]*>",$replacement_header,$template_header);
-        }
         $template_footer = substr($template, $gallery_pos);
         $add_version_info = '<!--Coppermine Photo Gallery '.COPPERMINE_VERSION.'--></body>';
         $template_footer = ereg_replace("</body[^>]*>",$add_version_info,$template_footer);
@@ -956,17 +932,17 @@ function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
                         $breadcrumb .= ' > ' . $link;
                         $BREADCRUMB_TEXT .= ' > ' . $category[1];
                 }
-        
-	}else{ //Dont bother just add the Home link  to breadcrumb
+
+        }else{ //Dont bother just add the Home link  to breadcrumb
                 $breadcrumb = '<a href=index.php>'.$lang_list_categories['home'].'</a>';
                 $BREADCRUMB_TEXT = $lang_list_categories['home'];
-	}
-	//Add Link for album if aid is set
-	if (isset($CURRENT_ALBUM_DATA['aid'])){
-		$link = "<a href=thumbnails.php?album=".$CURRENT_ALBUM_DATA['aid'].">".$CURRENT_ALBUM_DATA['title']."</a>";
-		$breadcrumb .= ' > ' . $link;
-		$BREADCRUMB_TEXT .= ' > ' . $CURRENT_ALBUM_DATA['title'];
-	}
+        }
+        //Add Link for album if aid is set
+        if (isset($CURRENT_ALBUM_DATA['aid'])){
+                $link = "<a href=thumbnails.php?album=".$CURRENT_ALBUM_DATA['aid'].">".$CURRENT_ALBUM_DATA['title']."</a>";
+                $breadcrumb .= ' > ' . $link;
+                $BREADCRUMB_TEXT .= ' > ' . $CURRENT_ALBUM_DATA['title'];
+        }
 }
 
 
@@ -995,14 +971,14 @@ function compute_img_size($width, $height, $max)
         $ratio = max($ratio, 1.0);
         $image_size['width'] = ceil($width / $ratio);
         $image_size['height'] = ceil($height / $ratio);
-        if($thumb_use=='ht') {          
-	  $image_size['geom'] = '" height="'.$image_size['height'].'"';
+        if($thumb_use=='ht') {
+          $image_size['geom'] = '" height="'.$image_size['height'].'"';
         } elseif($thumb_use=='wd') {
-	  $image_size['geom'] = 'width="'.$image_size['width'].'"';	         
+          $image_size['geom'] = 'width="'.$image_size['width'].'"';
         } else {
           $image_size['geom'] = 'width="'.$image_size['width'].'" height="'.$image_size['height'].'"';
         }
-	
+
 
 
         return $image_size;
@@ -1055,7 +1031,7 @@ function display_film_strip($album, $cat, $pos)
         $thumb_per_page = $max_item*2;
         $l_limit = max(0,$pos-$CONFIG['max_film_strip_items']);
         $new_pos=max(0,$pos-$l_limit);
-	
+
         $pic_data = get_pic_data($album, $thumb_count, $album_name, $l_limit, $thumb_per_page);
 
         if (count($pic_data) < $max_item ){
