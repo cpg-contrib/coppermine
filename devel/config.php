@@ -1,19 +1,19 @@
-<?php
+<?php 
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery                                                 //
+// Coppermine Photo Gallery 1.2.0                                            //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Gregory DEMAR <gdemar@wanadoo.fr>               //
-//  http://www.chezgreg.net/coppermine/                                      //
+// Copyright (C) 2002,2003 Gregory DEMAR <gdemar@wanadoo.fr>                 //
+// http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
-//  http://www.stoverud.com/PHPhotoalbum/                                    //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
-//  Hacked by Tarique Sani <tarique@sanisoft.com>                            //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-// ------------------------------------------------------------------------- //
+// This program is free software; you can redistribute it and/or modify      //
+// it under the terms of the GNU General Public License as published by      //
+// the Free Software Foundation; either version 2 of the License, or         //
+// (at your option) any later version.                                       //
+// ------------------------------------------------------------------------- // 
 
 define('IN_COPPERMINE', true);
 define('CONFIG_PHP', true);
@@ -25,7 +25,7 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
 
 function form_label($text)
 {
-        echo <<<EOT
+    echo <<<EOT
         <tr>
                 <td class="tableh2" colspan="2">
                         <b>$text</b>
@@ -33,15 +33,15 @@ function form_label($text)
         </tr>
 
 EOT;
-}
+} 
 
 function form_input($text, $name)
 {
-        global $CONFIG;
+    global $CONFIG;
 
-        $value = $CONFIG[$name];
+    $value = $CONFIG[$name];
 
-        echo <<<EOT
+    echo <<<EOT
         <tr>
             <td width="60%" class="tableb">
                         $text
@@ -52,17 +52,17 @@ function form_input($text, $name)
         </tr>
 
 EOT;
-}
+} 
 
 function form_yes_no($text, $name)
 {
-        global $CONFIG, $lang_yes, $lang_no;
+    global $CONFIG, $lang_yes, $lang_no;
 
-        $value = $CONFIG[$name];
-        $yes_selected = $value ? 'selected' : '';
-        $no_selected  = !$value ? 'selected' : '';
+    $value = $CONFIG[$name];
+    $yes_selected = $value ? 'selected' : '';
+    $no_selected = !$value ? 'selected' : '';
 
-        echo <<<EOT
+    echo <<<EOT
         <tr>
             <td class="tableb">
                         $text
@@ -76,18 +76,18 @@ function form_yes_no($text, $name)
         </tr>
 
 EOT;
-}
+} 
 
 function form_img_pkg($text, $name)
 {
-        global $CONFIG;
+    global $CONFIG;
 
-        $value = $CONFIG[$name];
-        $im_selected   = ($value == 'im')  ? 'selected' : '';
-        $gd1_selected  = ($value == 'gd1') ? 'selected' : '';
-        $gd2_selected  = ($value == 'gd2') ? 'selected' : '';
+    $value = $CONFIG[$name];
+    $im_selected = ($value == 'im') ? 'selected' : '';
+    $gd1_selected = ($value == 'gd1') ? 'selected' : '';
+    $gd2_selected = ($value == 'gd2') ? 'selected' : '';
 
-        echo <<<EOT
+    echo <<<EOT
         <tr>
             <td class="tableb">
                         $text
@@ -102,21 +102,21 @@ function form_img_pkg($text, $name)
         </tr>
 
 EOT;
-}
+} 
 
 function form_sort_order($text, $name)
 {
-        global $CONFIG, $lang_config_php;
+    global $CONFIG, $lang_config_php;
 
-        $value = $CONFIG[$name];
-        $ta_selected  = ($value == 'ta')  ? 'selected' : '';
-        $td_selected  = ($value == 'td') ? 'selected' : '';
-        $na_selected  = ($value == 'na')  ? 'selected' : '';
-        $nd_selected  = ($value == 'nd') ? 'selected' : '';
-        $da_selected  = ($value == 'da') ? 'selected' : '';
-        $dd_selected  = ($value == 'dd') ? 'selected' : '';
+    $value = $CONFIG[$name];
+    $ta_selected = ($value == 'ta') ? 'selected' : '';
+    $td_selected = ($value == 'td') ? 'selected' : '';
+    $na_selected = ($value == 'na') ? 'selected' : '';
+    $nd_selected = ($value == 'nd') ? 'selected' : '';
+    $da_selected = ($value == 'da') ? 'selected' : '';
+    $dd_selected = ($value == 'dd') ? 'selected' : '';
 
-        echo <<<EOT
+    echo <<<EOT
         <tr>
             <td class="tableb">
                         $text
@@ -134,36 +134,35 @@ function form_sort_order($text, $name)
         </tr>
 
 EOT;
-}
+} 
 
 function form_charset($text, $name)
 {
-        global $CONFIG;
+    global $CONFIG;
 
-        $charsets=array(
-                'Default' => 'language file',
-                'Arabic' => 'iso-8859-6',
-                'Baltic' => 'iso-8859-4',
-                'Central European' => 'iso-8859-2',
-                'Chinese Simplified' => 'euc-cn',
-                'Chinese Traditional' => 'big5',
-                'Cyrillic' => 'koi8-r',
-                'Greek' => 'iso-8859-7',
-                'Hebrew' => 'iso-8859-8-i',
-                'Icelandic' => 'x-mac-icelandic',
-                'Japanese' => 'euc-jp',
-                'Korean' => 'euc-kr',
-                'Maltese' => 'iso-8859-3',
-                'Thai' => 'windows-874 ',
-                'Turkish' => 'iso-8859-9',
-                'Unicode' => 'utf-8',
-                'Vietnamese' => 'windows-1258',
-                'Western' => 'iso-8859-1'
+    $charsets = array('Default' => 'language file',
+        'Arabic' => 'iso-8859-6',
+        'Baltic' => 'iso-8859-4',
+        'Central European' => 'iso-8859-2',
+        'Chinese Simplified' => 'euc-cn',
+        'Chinese Traditional' => 'big5',
+        'Cyrillic' => 'koi8-r',
+        'Greek' => 'iso-8859-7',
+        'Hebrew' => 'iso-8859-8-i',
+        'Icelandic' => 'x-mac-icelandic',
+        'Japanese' => 'euc-jp',
+        'Korean' => 'euc-kr',
+        'Maltese' => 'iso-8859-3',
+        'Thai' => 'windows-874 ',
+        'Turkish' => 'iso-8859-9',
+        'Unicode' => 'utf-8',
+        'Vietnamese' => 'windows-1258',
+        'Western' => 'iso-8859-1'
         );
 
-        $value = strtolower($CONFIG[$name]);
+    $value = strtolower($CONFIG[$name]);
 
-        echo <<<EOT
+    echo <<<EOT
         <tr>
             <td class="tableb">
                         $text
@@ -172,35 +171,35 @@ function form_charset($text, $name)
                         <select name="$name" class="listbox">
 
 EOT;
-        foreach ($charsets as $country => $charset){
-                echo "                                <option value=\"$charset\" ". ($value == $charset ? 'selected' : '').">$country ($charset)</option>\n";
-        }
-        echo <<<EOT
+    foreach ($charsets as $country => $charset) {
+        echo "                                <option value=\"$charset\" " . ($value == $charset ? 'selected' : '') . ">$country ($charset)</option>\n";
+    } 
+    echo <<<EOT
                         </select>
                 </td>
         </tr>
 
 EOT;
-}
+} 
 
 function form_language($text, $name)
 {
-        global $CONFIG;
+    global $CONFIG;
 
-        $value = strtolower($CONFIG[$name]);
-        $lang_dir = 'lang/';
+    $value = strtolower($CONFIG[$name]);
+    $lang_dir = 'lang/';
 
-        $dir = opendir($lang_dir);
-        while($file = readdir($dir)){
-                if(is_file($lang_dir.$file) && strtolower(substr($file, -4)) == '.php') {
-                        $lang_array[] = strtolower(substr($file,0 , -4));
-                }
-        }
-        closedir($dir);
+    $dir = opendir($lang_dir);
+    while ($file = readdir($dir)) {
+        if (is_file($lang_dir . $file) && strtolower(substr($file, -4)) == '.php') {
+            $lang_array[] = strtolower(substr($file, 0 , -4));
+        } 
+    } 
+    closedir($dir);
 
-        natcasesort($lang_array);
+    natcasesort($lang_array);
 
-        echo <<<EOT
+    echo <<<EOT
         <tr>
             <td class="tableb">
                         $text
@@ -209,35 +208,35 @@ function form_language($text, $name)
                         <select name="$name" class="listbox">
 
 EOT;
-        foreach ($lang_array as $language){
-                echo "                                <option value=\"$language\" ". ($value == $language ? 'selected' : '').">".ucfirst($language)."</option>\n";
-        }
-        echo <<<EOT
+    foreach ($lang_array as $language) {
+        echo "                                <option value=\"$language\" " . ($value == $language ? 'selected' : '') . ">" . ucfirst($language) . "</option>\n";
+    } 
+    echo <<<EOT
                         </select>
                 </td>
         </tr>
 
 EOT;
-}
+} 
 
 function form_theme($text, $name)
 {
-        global $CONFIG;
+    global $CONFIG;
 
-        $value = $CONFIG[$name];
-        $theme_dir = 'themes/';
+    $value = $CONFIG[$name];
+    $theme_dir = 'themes/';
 
-        $dir = opendir($theme_dir);
-        while($file = readdir($dir)){
-                if(is_dir($theme_dir.$file) && $file != "." && $file != "..") {
-                        $theme_array[] = $file;
-                }
-        }
-        closedir($dir);
+    $dir = opendir($theme_dir);
+    while ($file = readdir($dir)) {
+        if (is_dir($theme_dir . $file) && $file != "." && $file != "..") {
+            $theme_array[] = $file;
+        } 
+    } 
+    closedir($dir);
 
-        natcasesort($theme_array);
+    natcasesort($theme_array);
 
-        echo <<<EOT
+    echo <<<EOT
         <tr>
             <td class="tableb">
                         $text
@@ -246,28 +245,27 @@ function form_theme($text, $name)
                         <select name="$name" class="listbox">
 
 EOT;
-        foreach ($theme_array as $theme){
-                echo "                                <option value=\"$theme\" ". ($value == $theme ? 'selected' : '').">".strtr(ucfirst($theme),'_', ' ')."</option>\n";
-        }
-        echo <<<EOT
+    foreach ($theme_array as $theme) {
+        echo "                                <option value=\"$theme\" " . ($value == $theme ? 'selected' : '') . ">" . strtr(ucfirst($theme), '_', ' ') . "</option>\n";
+    } 
+    echo <<<EOT
                         </select>
                 </td>
         </tr>
 
 EOT;
-}
-
-//Added for allowing user to select which aspect of thumbnails to scale
+} 
+// Added for allowing user to select which aspect of thumbnails to scale
 function form_scale($text, $name)
 {
-        global $CONFIG;
+    global $CONFIG;
 
-        $value = $CONFIG[$name];
-        $any_selected   = ($value == 'max')  ? 'selected' : '';
-        $ht_selected  = ($value == 'ht') ? 'selected' : '';
-        $wd_selected  = ($value == 'wd') ? 'selected' : '';
+    $value = $CONFIG[$name];
+    $any_selected = ($value == 'max') ? 'selected' : '';
+    $ht_selected = ($value == 'ht') ? 'selected' : '';
+    $wd_selected = ($value == 'wd') ? 'selected' : '';
 
-        echo <<<EOT
+    echo <<<EOT
         <tr>
             <td class="tableb">
                         $text
@@ -282,99 +280,96 @@ function form_scale($text, $name)
         </tr>
 
 EOT;
-}
+} 
 
 function create_form(&$data)
 {
-        foreach($data as $element){
-                if ((is_array($element))) {
-                    switch($element[2]){
-                            case 0 :
-                                    form_input($element[0], $element[1]);
-                                    break;
-                            case 1 :
-                                    form_yes_no($element[0], $element[1]);
-                                    break;
-                            case 2 :
-                                    form_img_pkg($element[0], $element[1]);
-                                    break;
-                            case 3 :
-                                    form_sort_order($element[0], $element[1]);
-                                    break;
-                            case 4 :
-                                    form_charset($element[0], $element[1]);
-                                    break;
-                            case 5 :
-                                    form_language($element[0], $element[1]);
-                                    break;
-                            case 6 :
-                                    form_theme($element[0], $element[1]);
-                                    break;
-                                //Thumbnail scaling
-                                case 7 :
-                                        form_scale($element[0], $element[1]);
-                                        break;
-                            default:
-                                        die('Invalid action');
-                    } // switch
-                } else {
-                        form_label($element);
-                }
-        }
-}
-
+    foreach($data as $element) {
+        if ((is_array($element))) {
+            switch ($element[2]) {
+                case 0 :
+                    form_input($element[0], $element[1]);
+                    break;
+                case 1 :
+                    form_yes_no($element[0], $element[1]);
+                    break;
+                case 2 :
+                    form_img_pkg($element[0], $element[1]);
+                    break;
+                case 3 :
+                    form_sort_order($element[0], $element[1]);
+                    break;
+                case 4 :
+                    form_charset($element[0], $element[1]);
+                    break;
+                case 5 :
+                    form_language($element[0], $element[1]);
+                    break;
+                case 6 :
+                    form_theme($element[0], $element[1]);
+                    break; 
+                // Thumbnail scaling
+                case 7 :
+                    form_scale($element[0], $element[1]);
+                    break;
+                default:
+                    die('Invalid action');
+            } // switch
+        } else {
+            form_label($element);
+        } 
+    } 
+} 
 
 if (count($HTTP_POST_VARS) > 0) {
-
-        if (isset($HTTP_POST_VARS['update_config'])) {
-        $need_to_be_positive = array(
-                'albums_per_page',
-                'album_list_cols',
-                'max_tabs',
-                'picture_width',
-                'subcat_level',
-                'thumb_width',
-                'thumbcols',
-                'thumbrows',
-                //Show filmstrip
-                'max_film_strip_items');
+    if (isset($HTTP_POST_VARS['update_config'])) {
+        $need_to_be_positive = array('albums_per_page',
+            'album_list_cols',
+            'max_tabs',
+            'picture_width',
+            'subcat_level',
+            'thumb_width',
+            'thumbcols',
+            'thumbrows', 
+            // Show filmstrip
+            'max_film_strip_items');
 
         foreach ($need_to_be_positive as $parameter)
-                $HTTP_POST_VARS[$parameter] = max(1,(int)$HTTP_POST_VARS[$parameter]);
+        $HTTP_POST_VARS[$parameter] = max(1, (int)$HTTP_POST_VARS[$parameter]);
 
-        foreach($lang_config_data as $element){
-                if ((is_array($element))) {
-                        if ((!isset($HTTP_POST_VARS[$element[1]]))) cpg_die(CRITICAL_ERROR, "Missing config value for '{$element[1]}'", __FILE__, __LINE__);
-                        $value = addslashes($HTTP_POST_VARS[$element[1]]);
-                        db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET  value = '$value' WHERE name = '{$element[1]}'");
-                }
-        }
+        foreach($lang_config_data as $element) {
+            if ((is_array($element))) {
+                if ((!isset($HTTP_POST_VARS[$element[1]]))) cpg_die(CRITICAL_ERROR, "Missing config value for '{$element[1]}'", __FILE__, __LINE__);
+                $value = addslashes($HTTP_POST_VARS[$element[1]]);
+                db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET  value = '$value' WHERE name = '{$element[1]}'");
+            } 
+        } 
         pageheader($lang_config_php['title']);
-    msg_box($lang_config_php['info'], $lang_config_php['upd_success'], $lang_continue, 'index.php');
+        msg_box($lang_config_php['info'], $lang_config_php['upd_success'], $lang_continue, 'index.php');
         pagefooter();
         exit;
-        } elseif (isset($HTTP_POST_VARS['restore_config'])) {
-                $default_config = 'sql/restore_config.sql';
-                $sql_query = fread(fopen($default_config, 'r'), filesize($default_config));
-                $sql_query = preg_replace('/CPG_/', $CONFIG['TABLE_PREFIX'], $sql_query);
-                $sql_query = preg_replace('/INSERT /', 'REPLACE ', $sql_query);
+    } elseif (isset($HTTP_POST_VARS['restore_config'])) {
+        $default_config = 'sql/restore_config.sql';
+        $sql_query = fread(fopen($default_config, 'r'), filesize($default_config));
+        $sql_query = preg_replace('/CPG_/', $CONFIG['TABLE_PREFIX'], $sql_query);
+        $sql_query = preg_replace('/INSERT /', 'REPLACE ', $sql_query);
 
-                $sql_query = remove_remarks($sql_query);
-                $sql_query = split_sql_file($sql_query, ';');
+        $sql_query = remove_remarks($sql_query);
+        $sql_query = split_sql_file($sql_query, ';');
 
-                $sql_count = count($sql_query);
-                for($i = 0; $i < $sql_count; $i++) db_query($sql_query[$i]);
-        }
-        pageheader($lang_config_php['title']);
+        $sql_count = count($sql_query);
+        for($i = 0; $i < $sql_count; $i++) db_query($sql_query[$i]);
+    } 
+    pageheader($lang_config_php['title']);
     msg_box($lang_config_php['info'], $lang_config_php['restore_success'], $lang_continue, $PHP_SELF);
-        pagefooter();
-}
+    pagefooter();
+} 
 
 pageheader($lang_config_php['title']);
 
-$signature = 'Coppermine Photo Gallery '.COPPERMINE_VERSION;
+$signature = 'Coppermine Photo Gallery ' . COPPERMINE_VERSION;
 
-starttable('100%',"{$lang_config_php['title']} - $signature", 2);
+starttable('100%', "{$lang_config_php['title']} - $signature", 2);
 echo <<<EOT
         <form action="$PHP_SELF" method="post">
 
@@ -394,4 +389,5 @@ EOT;
 endtable();
 pagefooter();
 ob_end_flush();
+
 ?>
