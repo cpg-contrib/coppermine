@@ -1596,6 +1596,7 @@ if ($CONFIG['language_flags'] == 0 && $parameter == 'flags'){
 // get an array of english and native language names and flags
 // for now, use a static array definition here - this could later be made into a true database query
 $lang_language_data['arabic'] = array('Arabic','&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;','sa');
+$lang_language_data['basque'] = array('Basque','Euskera','baq');
 $lang_language_data['bosnian'] = array('Bosnian','Bosanski','ba');
 $lang_language_data['brazilian_portuguese'] = array('Portuguese [Brazilian]','Portugu&ecirc;s Brasileiro','br');
 $lang_language_data['bulgarian'] = array('Bulgarian','&#1041;&#1098;&#1083;&#1075;&#1072;&#1088;&#1089;&#1082;&#1080;','bg');
