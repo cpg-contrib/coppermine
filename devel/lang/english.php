@@ -93,7 +93,7 @@ $lang_errors = array(
   'not_with_udb' => 'This function is disabled in Coppermine because it is integrated with forum software. Either what you are trying to do is not supported in this configuration, or the function should be handled by the forum software.',
   'offline_title' => 'Offline',
   'offline_text' => 'Gallery is currently offline - check back soon',
-  'ecards_empty' => 'There are currently no ecard records to display.',
+  'ecards_empty' => 'There are currently no ecard records to display. Check that you have enabled ecard logging in coppermine config!',
   'action_failed' => 'Action failed.  Coppermine is unable to process your request.',
   'no_zip' => 'The necessary libraries to process ZIP files are not available.  Please contact your Coppermine administrator.',
   'zip_type' => 'You do not have permission to upload ZIP files.',
@@ -784,7 +784,8 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Browsable batch-add interface', 'browse_batch_add', 1, 'f=index.htm&amp;as=admin_misc_browsable_batch_add&amp;ae=admin_misc_browsable_batch_add_end'), //cpg1.4
   array('Path to custom header include', 'custom_header_path', 0, 'f=index.htm&amp;as=admin_misc_include_path_start&amp;ae=admin_misc_include_path_end'), //cpg1.4
   array('Path to custom footer include', 'custom_footer_path', 0, 'f=index.htm&amp;as=admin_misc_include_path_start&amp;ae=admin_misc_include_path_end'), //cpg1.4
-array('Enable Report to Admin', 'report_post', 1, 'f=index.htm&amp;as=admin_misc_enable_report&amp;ae=admin_misc_enable_report_end'),  //cpg1.4
+  array('Enable Report to Admin', 'report_post', 1, 'f=index.htm&amp;as=admin_misc_enable_report&amp;ae=admin_misc_enable_report_end'),  //cpg1.4
+  array('Admin activation of registrations', 'admin_activation', 1, 'f=index.htm&amp;as=admin_activation&amp;ae=admin_activation_end'),  //cpg1.4
 );
 
 // ------------------------------------------------------------------------- //
@@ -1532,8 +1533,7 @@ Thank you for registering at {SITE_NAME}
 Your username is : "{USER_NAME}"
 Your password is : "{PASSWORD}"
 
-In order to activate your account, you need to click on the link below
-or copy and paste it in your web browser.
+In order to activate your account, you need to click on the link below or copy and paste it in your web browser.
 
 <a href="{ACT_LINK}">{ACT_LINK}</a>
 
@@ -1546,8 +1546,7 @@ EOT;
 $lang_register_approve_email = <<<EOT
 A new user with the username "{USER_NAME}" has registered in your gallery.
 
-In order to activate the account, you need to click on the link below
-or copy and paste it in your web browser.
+In order to activate the account, you need to click on the link below or copy and paste it in your web browser.
 
 <a href="{ACT_LINK}">{ACT_LINK}</a>
 

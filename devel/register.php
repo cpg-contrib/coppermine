@@ -213,7 +213,7 @@ function check_user_info(&$error)
     global $CONFIG; //, $PHP_SELF;
     global $lang_register_php, $lang_register_confirm_email, $lang_continue, $lang_register_approve_email, $lang_register_activated_email, $lang_register_user_login;
                 //$CONFIG['admin_activation'] = FALSE;
-                $CONFIG['admin_activation'] = TRUE;
+                //$CONFIG['admin_activation'] = TRUE;
 
     $user_name = trim(get_post_var('username'));
     $password = trim(get_post_var('password'));
@@ -276,7 +276,7 @@ function check_user_info(&$error)
     $result = cpg_db_query($sql);
 
     if ($CONFIG['reg_requires_valid_email']) {
-        if (!$CONFIG['admin_activation']) { //user gets activation email
+        if (!$CONFIG['admin_activation']==1) { //user gets activation email
                                         $act_link = rtrim($CONFIG['site_url'], '/') . '/register.php?activate=' . $act_key;
                                         $template_vars = array(
                                                         '{SITE_NAME}' => $CONFIG['gallery_name'],
@@ -288,7 +288,7 @@ function check_user_info(&$error)
                                                         cpg_die(CRITICAL_ERROR, $lang_register_php['failed_sending_email'], __FILE__, __LINE__);
                                         }
                                 }
-        if ($CONFIG['admin_activation']) {
+        if ($CONFIG['admin_activation']==1) {
                                         msg_box($lang_register_php['information'], $lang_register_php['thank_you_admin_activation'], $lang_continue, 'index.php');
                                 } else {
                                         msg_box($lang_register_php['information'], $lang_register_php['thank_you'], $lang_continue, 'index.php');
@@ -299,7 +299,7 @@ function check_user_info(&$error)
 
     // email notification to admin
         if ($CONFIG['reg_notify_admin_email']) {
-                                        if ($CONFIG['admin_activation']) {
+                                        if ($CONFIG['admin_activation']==1) {
                                                         $act_link = rtrim($CONFIG['site_url'], '/') . '/register.php?activate=' . $act_key;
                                                         $template_vars = array(
                                                                         '{SITE_NAME}' => $CONFIG['gallery_name'],
@@ -325,7 +325,7 @@ if (isset($_POST['agree'])) {
     }
 } elseif (isset($_GET['activate'])) {
                 //$CONFIG['admin_activation'] = FALSE;
-                $CONFIG['admin_activation'] = TRUE;
+                //$CONFIG['admin_activation'] = TRUE;
 
     $act_key = addslashes(substr($_GET['activate'], 0 , 32));
     if (strlen($act_key) != 32) cpg_die(ERROR, $lang_register_php['acct_act_failed'], __FILE__, __LINE__);
@@ -346,7 +346,7 @@ if (isset($_POST['agree'])) {
     $sql = "UPDATE {$CONFIG['TABLE_USERS']} " . "SET user_active = 'YES' " . "WHERE user_actkey = '$act_key' " . "LIMIT 1";
     $result = cpg_db_query($sql);
 
-                if ($CONFIG['admin_activation']) { //after admin approves, user receives email notification
+                if ($CONFIG['admin_activation']==1) { //after admin approves, user receives email notification
                         msg_box($lang_register_php['information'], $lang_register_php['acct_active_admin_activation'], $lang_continue, 'index.php');
                         $site_link = $CONFIG['site_url'];
                         $template_vars = array(
