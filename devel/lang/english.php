@@ -918,7 +918,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'groupp_only' => 'Members of the \'%s\' group',
   'err_no_alb_to_modify' => 'No album you can modify in the database.',
   'update' => 'Update album',
-  'notice1' => '(*) depending on %sgroups%s settings', (do not translate %s!)
+  'notice1' => '(*) depending on %sgroups%s settings', //(do not translate %s!)
 );
 
 // ------------------------------------------------------------------------- //
@@ -1049,7 +1049,7 @@ if (defined('SEARCH_PHP')) $lang_search_php = array(
 if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'page_title' => 'Search new files',
   'select_dir' => 'Select directory',
-  'select_dir_msg' => 'This function allows you to add a batch of file that your have uploaded to your server by FTP.<br /><br />Select the directory where you have uploaded your files',
+  'select_dir_msg' => 'This function allows you to add a batch of file that your have uploaded to your server by FTP.<br /><br />Select the directory where you have uploaded your files.',
   'no_pic_to_add' => 'There is no file to add',
   'need_one_album' => 'You need at least one album to use this function',
   'warning' => 'Warning',
@@ -1078,6 +1078,7 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'select_album' => 'select album',
   'check_all' => 'Check All',
   'uncheck_all' => 'Uncheck All',
+  'no_folders' => 'There are no folders inside the "albums" folder yet. Make sure to create at least one custom folder within "albums" folder and ftp-upload your files there. You mustn\'t upload to the "userpics" nor "edit" folders, they are reserved for http uploads and internal purposes.', //cpg1.4.0
 );
 
 

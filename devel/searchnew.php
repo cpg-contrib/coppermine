@@ -1,6 +1,6 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.4.0                                            //
 // ------------------------------------------------------------------------- //
 // Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
@@ -214,8 +214,8 @@ function display_dir_tree($folder, $ident)
     if (!is_readable($dir_path)) return;
 
     $dir = opendir($dir_path);
+    static $dirCounter = 0;
     while ($file = readdir($dir)) {
-        //if (is_dir($CONFIG['fullpath'] . $folder . $file) && $file != "." && $file != "..") { // removed by following line for 'do not show folders with dots': gaugau 03-11-02
         if (is_dir($CONFIG['fullpath'] . $folder . $file) && substr($file,0,1) != "." && strpos($file,"'") == FALSE && $file != "userpics"  && $file != "edit" ) {
             $start_target = $folder . $file;
             $dir_path = $CONFIG['fullpath'] . $folder . $file;
@@ -233,10 +233,21 @@ function display_dir_tree($folder, $ident)
                                 </td>
                         </tr>
 EOT;
+            $dirCounter++;
             display_dir_tree($folder . $file . '/', $ident . '&nbsp;&nbsp;&nbsp;&nbsp;');
         }
     }
     closedir($dir);
+    if ($dirCounter == 0) {
+    echo '
+                        <tr>
+                                <td class="tableb">';
+    echo '                                   ' . $lang_search_new_php['no_folders'];
+    echo '
+                                    </td>
+                        </tr>';
+    }
+
 }
 
 /**
