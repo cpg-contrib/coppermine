@@ -16,7 +16,9 @@
 // ------------------------------------------------------------------------- //
 // $Id$
 // ------------------------------------------------------------------------- //
-if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
+// This theme has all CORE items that are available                          //
+// ------------------------------------------------------------------------- //
+
 // HTML template for main menu
 $template_main_menu = <<<EOT
                 <span class="topmenu">
@@ -605,7 +607,8 @@ $template_image_comments = <<<EOT
 
         <tr>
                 <td>
-                        <table width="100%" cellpadding="0px" cellspacing="0px"><tr>
+                        <table width="100%" cellpadding="0px" cellspacing="0px">
+                           <tr>
                                 <td class="tableh2_compact" nowrap="nowrap">
                                         <b>{MSG_AUTHOR}</b>
 <!-- BEGIN ipinfo -->
@@ -933,7 +936,7 @@ function pageheader($section, $meta = '')
         '{GAL_DESCRIPTION}' => $CONFIG['gallery_description'],
         '{MAIN_MENU}' => theme_main_menu(),
         '{ADMIN_MENU}' => theme_admin_mode_menu(),
-                '{CUSTOM_HEADER}' => $custom_header,
+        '{CUSTOM_HEADER}' => $custom_header,
         );
 
     echo template_eval($template_header, $template_vars);
@@ -945,13 +948,13 @@ function pagefooter()
     global $USER, $USER_DATA, $ALBUM_SET, $CONFIG, $time_start, $query_stats, $queries;;
     global $template_footer;
 
-        $custom_footer = cpg_get_custom_include($CONFIG['custom_footer_path']);
+    $custom_footer = cpg_get_custom_include($CONFIG['custom_footer_path']);
 
     if ($CONFIG['debug_mode']==1 || ($CONFIG['debug_mode']==2 && GALLERY_ADMIN_MODE)) {
     cpg_debug_output();
     }
 
-        $template_vars = array(
+    $template_vars = array(
         '{CUSTOM_FOOTER}' => $custom_footer,
     );
 
