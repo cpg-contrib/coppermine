@@ -228,3 +228,4 @@ Enable BBcode for comments and ecards - 20 December 2004, TranzNDance
 Changed full size pic pop-up to remove style.css and use embedded stylesheet to assure minimal padding - 23 December 2004, Donnoman
 Changed script.js to use a different method to catch IE and FF in DOCTYPE mode, accomodate vert scroll bar of IE - 23 December 2004, Donnoman
 Added _TITLE localizations where _LNK's had been re-used. - 23 December 2004, Donnoman
+Fixed {APPROVAL_ID} causing validation issues - 23 December 2004, Donnoman

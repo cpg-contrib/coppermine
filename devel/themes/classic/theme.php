@@ -68,7 +68,7 @@ $template_gallery_admin_menu = <<<EOT
                 <div align="center">
                 <table cellpadding="0" cellspacing="1">
                         <tr>
-                                <td class="admin_menu" id="{APPROVAL_ID}"><a href="editpics.php?mode=upload_approval" title="{UPL_APP_TITLE}">{UPL_APP_LNK}</a></td>
+                                <td class="admin_menu"{APPROVAL_ID}><a href="editpics.php?mode=upload_approval" title="{UPL_APP_TITLE}">{UPL_APP_LNK}</a></td>
                                 <td class="admin_menu"><a href="admin.php" title="{ADMIN_TITLE}">{ADMIN_LNK}</a></td>
                                 <td class="admin_menu"><a href="albmgr.php{CATL}" title="{ALBUMS_TITLE}">{ALBUMS_LNK}</a></td>
                                 <td class="admin_menu"><a href="catmgr.php" title="{CATEGORIES_TITLE}">{CATEGORIES_LNK}</a></td>
@@ -1141,7 +1141,9 @@ function theme_admin_mode_menu()
             '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
             );
      if (cpg_get_pending_approvals() != 0) {
-         $param['{APPROVAL_ID}'] = 'admin_menu_anim';
+         $param['{APPROVAL_ID}'] = ' id="admin_menu_anim"';
+     } else {
+         $param['{APPROVAL_ID}'] = '';
      }
 
         $html = template_eval($template_gallery_admin_menu, $param);
