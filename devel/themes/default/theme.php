@@ -115,9 +115,10 @@ $template_cat_list = <<<EOT
                 <td class="tableb" align="center">{ALB_COUNT}</td>
                 <td class="tableb" align="center">{PIC_COUNT}</td>
         </tr>
-      <tr>
+     <!--if (isset(CAT_ALBUMS)){-->
+	  <tr>
             <td class="tableb" colspan=3>{CAT_ALBUMS}</td>
-      </tr>
+      </tr><!--};-->
 <!-- END catrow -->
 <!-- BEGIN footer -->
         <tr>
@@ -1064,11 +1065,22 @@ function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
                                 '{CAT_DESC}' => $category[1]
                         );
                         echo template_eval($template_noabl, $params);
-                } else {
+                } 
+				if (isset($category['cat_albums'])&&($category['cat_albums']!='')){
                         $params = array(
                                 '{CAT_TITLE}' => $category[0],
                                 '{CAT_DESC}' => $category[1],
-                '{CAT_ALBUMS}'=>$category['cat_albums'],
+                                '{CAT_ALBUMS}'=>$category['cat_albums'],
+								'{ALB_COUNT}' => $category[2],
+                                '{PIC_COUNT}' => $category[3],
+                        );
+                        echo template_eval($template, $params);
+                }
+				else {
+                        $params = array(
+                                '{CAT_TITLE}' => $category[0],
+                                '{CAT_DESC}' => $category[1],
+                				'{CAT_ALBUMS}'=>'',
                                 '{ALB_COUNT}' => $category[2],
                                 '{PIC_COUNT}' => $category[3],
                         );
@@ -1195,12 +1207,12 @@ function theme_display_album_list_cat(&$alb_list,$nbAlb, $cat, $page, $total_pag
                 return;
         }
 
-        //$theme_alb_list_tab_tmpl = $template_tab_display;
+        $theme_alb_list_tab_tmpl = $template_tab_display;
 
-        //$theme_alb_list_tab_tmpl['left_text'] = strtr($theme_alb_list_tab_tmpl['left_text'],array('{LEFT_TEXT}' => $lang_album_list['album_on_page']));
-        //$theme_alb_list_tab_tmpl['inactive_tab'] = strtr($theme_alb_list_tab_tmpl['inactive_tab'],array('{LINK}' => 'index.php?cat='.$cat.'&page=%d'));
+        $theme_alb_list_tab_tmpl['left_text'] = strtr($theme_alb_list_tab_tmpl['left_text'],array('{LEFT_TEXT}' => $lang_album_list['album_on_page']));
+        $theme_alb_list_tab_tmpl['inactive_tab'] = strtr($theme_alb_list_tab_tmpl['inactive_tab'],array('{LINK}' => 'index.php?cat='.$cat.'&page=%d'));
 
-        //$tabs = create_tabs($nbAlb, $page, $total_pages, $theme_alb_list_tab_tmpl);
+        $tabs = create_tabs($nbAlb, $page, $total_pages, $theme_alb_list_tab_tmpl);
         //echo $template_album_list_cat;
         $template_album_list_cat1=$template_album_list_cat;
         $album_cell = template_extract_block($template_album_list_cat1, 'c_album_cell');
@@ -1419,8 +1431,7 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
 //                $spacer = template_extract_block($template, 'spacer');
         }
 
-        if ($header == '') {
-        }
+        //if ($header == '') {}
 
         $cat_link= is_numeric($aid) ? '' : '&cat='.$cat;
 
