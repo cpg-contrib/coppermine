@@ -1498,13 +1498,35 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
 // File search.php                                                           //
 // ------------------------------------------------------------------------- //
 
-if (defined('SEARCH_PHP')) $lang_search_php = array(
+
+if (defined('SEARCH_PHP')){
+	
+$lang_search_php = array(
   'title' => 'Search the file collection',
   'submit_search' => 'search', // cpg1.4
   'keyword_list_title' => 'Keyword list', // cpg1.4
   'keyword_msg' => 'The above list is not all inclusive. It does not include words from photo titles or descriptions. Try a full-text search.',  // cpg1.4
   'edit_keywords' => 'Edit keywords', // cpg1.4
+  'search in' => 'Search in:', 
+  'ip_address' => 'IP address',
+  'fields' => 'Fields',
+  'age' => 'Age',
+  'newer_than' => 'Newer than',
+  'older_than' => 'Older than',
+  'days' => 'days',
+  'all_words' => 'Match all words',
+  'any_words' => 'Match any words'  
 );
+
+$lang_adv_opts = array(
+  'title' => 'Title', 
+  'caption' => 'Caption',  
+  'keywords' => 'Keywords',  
+  'owner_name' => 'Owner name',  
+  'filename' => 'Filename',
+);  
+
+}
 
 // ------------------------------------------------------------------------- //
 // File searchnew.php

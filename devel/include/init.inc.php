@@ -230,7 +230,7 @@ $CONFIG['TABLE_BRIDGE']        = $CONFIG['TABLE_PREFIX']."bridge";
 $CONFIG['TABLE_VOTE_STATS']        = $CONFIG['TABLE_PREFIX']."vote_stats";
 $CONFIG['TABLE_HIT_STATS'] = $CONFIG['TABLE_PREFIX']."hit_stats";
 // Connect to database
-cpg_db_connect() || die("<b>Coppermine critical error</b>:<br />Unable to connect to database !<br /><br />MySQL said: <b>" . mysql_error() . "</b>");
+($CONFIG['LINK_ID'] = cpg_db_connect()) || die("<b>Coppermine critical error</b>:<br />Unable to connect to database !<br /><br />MySQL said: <b>" . mysql_error() . "</b>");
 // Retrieve DB stored configuration
 $results = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_CONFIG']}");
 while ($row = mysql_fetch_array($results)) {
@@ -275,6 +275,7 @@ ob_start('cpg_filter_page_html');
 
 // Parse cookie stored user profile
 user_get_profile();
+
 // Authenticate
 if (defined('UDB_INTEGRATION')) {
     udb_authenticate();

@@ -116,10 +116,11 @@ function cpg_db_query($query, $link_id = 0)
         global $CONFIG, $query_stats, $queries;
 
         $query_start = cpgGetMicroTime();
+				
         if (($link_id)) {
             $result = mysql_query($query, $link_id);
         } else {
-                $result = mysql_query($query);
+			$result = mysql_query($query, $CONFIG['LINK_ID']);
         }
         $query_end = cpgGetMicroTime();
         if (isset($CONFIG['debug_mode']) && (($CONFIG['debug_mode']==1) || ($CONFIG['debug_mode']==2) )) {
@@ -1096,19 +1097,12 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 break;
 
         case 'search': // Search results
-                if (isset($USER['search'])) {
-                        $search_string = $USER['search'];
+				if (isset($USER['search']['search'])) {
+					$search_string = $USER['search']['search'];
                 } else {
-                        $search_string = '';
+					$search_string = '';
                 }
-
-                if (substr($search_string, 0, 3) == '###') {
-                    $query_all = 1;
-                        $search_string = substr($search_string, 3);
-                } else {
-                    $query_all = 0;
-                }
-
+				
                 if ($ALBUM_SET && $CURRENT_CAT_NAME) {
                         $album_name = $lang_meta_album_names['search'].' - '. $CURRENT_CAT_NAME;
                 } else {
