@@ -467,6 +467,40 @@ Edit theme.php and find
 <pre>&lt;td class="tableb"&gt;&lt;span class="catlink"&gt;&lt;b&gt;{CAT_TITLE}&lt;/b&gt;&lt;/span&gt;{CAT_DESC}&lt;/td&gt;</pre>. Replace it with
 <pre>&lt;td class="tableb"&gt;&lt;table border=0 &gt;&lt;tr&gt;&lt;td&gt;{CAT_THUMB}&lt;/td&gt;&lt;td&gt;&lt;span class="catlink"&gt;&lt;b&gt;{CAT_TITLE}&lt;/b&gt;&lt;/span&gt;{CAT_DESC}&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;</pre>
 </li>
+<li>Add closing table to fix a bug:<br />
+Edit theme.php and find
+<pre>function theme_display_breadcrumb($breadcrumb, &$cat_data)
+{
+    /**
+     * ** added breadcrumb as a seperate element
+     */
+    global $template_breadcrumb, $lang_breadcrumb;
+
+    starttable('100%');
+    if ($breadcrumb) {
+        $template = template_extract_block($template_breadcrumb, 'breadcrumb');
+        $params = array('{BREADCRUMB}' => $breadcrumb
+            );
+        echo template_eval($template, $params);
+    }
+}</pre>. Replace it with
+<pre>function theme_display_breadcrumb($breadcrumb, &$cat_data)
+{
+    /**
+     * ** added breadcrumb as a seperate element
+     */
+    global $template_breadcrumb, $lang_breadcrumb;
+
+    starttable('100%');
+    if ($breadcrumb) {
+        $template = template_extract_block($template_breadcrumb, 'breadcrumb');
+        $params = array('{BREADCRUMB}' => $breadcrumb
+            );
+        echo template_eval($template, $params);
+    }
+    endtable();
+}</pre>
+</li>
 </ol>
 <p>Save all your open files and upload them to your webserver; test-drive both as admin and as "regular" user.</p>
 </body>
