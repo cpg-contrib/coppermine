@@ -42,66 +42,127 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}       //{CORE}//
 //    be directed to the themes images folder.
 //    tile on the top      : images/tile1.gif
 //    tile on the bottom   : images/tile2.gif
+//  ('THEME_HAS_NO_SYS_MENU_BUTTONS', 1) : When present the system won't attempt to replace {BUTTONS} in the SYS_MENU template
+//    The entire block needs to be present like in Coppermine 1.3 themes
+//  ('THEME_HAS_NO_SUB_MENU_BUTTONS', 1) When present the system won't attempt to replace {BUTTONS} in the SUB_MENU template
+//    The entire block needs to be present like in Coppermine 1.3 themes
+//  ('THEME_IS_XHTML10_TRANSITIONAL',1) : If theme is defined as XHTML10_TRANSITIONAL the VANITY footer will be enabled
+//    if the theme has a {VANITY} token in its template.html. Don't enable this if you have modified the code! See the
+//    docs/theme.html documentation for validation methodology.
+//  ('THEME_HAS_VANITY_GRAPHICS',1) : "Powered By","Valid XHTML","Valid CSS". The location for the vanity graphics
+//    will be directed to the themes images folder.
+//    Powered By PHP   : images/powered-php.gif
+//    Powered By MySQL : images/powered-mysql.gif
+//    Valid XHTML      : images/valid-xhtml10.gif
+//    Valid CSS        : images/valid-css.gif
+
+// Creates buttons from a template using an array of tokens
+// this function is used in this file it needs to be declared before being called.
+if (!function_exists('assemble_template_buttons')) {  //{CORE}
+function assemble_template_buttons($template_buttons,$buttons) {
+    $counter=0;
+    $output='';
+
+    foreach ($buttons as $button)  {
+      if (isset($button[4])) {
+         $spacer=$button[4];
+      } else {
+      $spacer='';
+      }
+
+        $params = array(
+            '{SPACER}'     => $spacer,
+            '{BLOCK_ID}'   => $button[3],
+            '{HREF_TGT}'   => $button[2],
+            '{HREF_TITLE}' => $button[1],
+            '{HREF_LNK}'   => $button[0]
+            );
+        $output.=template_eval($template_buttons, $params);
+    }
+    return $output;
+}
+}  //{CORE}
 
 
-// HTML template for main menu spacer first
-if (!isset($template_main_menu_spacer_first))  //{CORE}
-$template_main_menu_spacer_first = '';
+// Creates an array of tokens to be used with function assemble_template_buttons
+// this function is used in this file it needs to be declared before being called.
+if (!function_exists('addbutton')) {  //{CORE}
+function addbutton(&$menu,$href_lnk,$href_title,$href_tgt,$block_id,$spacer) {
+  $menu[]=array($href_lnk,$href_title,$href_tgt,$block_id,$spacer);
+}
+}  //{CORE}
 
-// HTML template for main menu spacer
-if (!isset($template_main_menu_spacer))  //{CORE}
-$template_main_menu_spacer = '::';
 
-// HTML template for main menu spacer last
-if (!isset($template_main_menu_spacer_last))  //{CORE}
-$template_main_menu_spacer_last = '';
-
-// HTML template for main menu
-if (!isset($template_main_menu))  //{CORE}
-$template_main_menu = <<<EOT
-                <span class="topmenu">
-<!-- BEGIN album_list -->
-                {SPACER_FIRST}<a href="{ALB_LIST_TGT}" title="{ALB_LIST_TITLE}">{ALB_LIST_LNK}</a> {SPACER}
-<!-- END album_list -->
-<!-- BEGIN my_gallery -->
-                        <a href="{MY_GAL_TGT}" title="{MY_GAL_TITLE}">{MY_GAL_LNK}</a> {SPACER}
-<!-- END my_gallery -->
-<!-- BEGIN allow_memberlist -->
-                        <a href="{MEMBERLIST_TGT}" title="{MEMBERLIST_TITLE}">{MEMBERLIST_LNK}</a>  {SPACER}
-<!-- END allow_memberlist -->
-<!-- BEGIN my_profile -->
-                        <a href="{MY_PROF_TGT}" title="{MY_PROF_TITLE}">{MY_PROF_LNK}</a> {SPACER}
-<!-- END my_profile -->
-<!-- BEGIN faq -->
-                        <a href="{FAQ_TGT}" title="{FAQ_TITLE}">{FAQ_LNK}</a> {SPACER}
-<!-- END faq -->
-<!-- BEGIN enter_admin_mode -->
-                        <a href="{ADM_MODE_TGT}" title="{ADM_MODE_TITLE}">{ADM_MODE_LNK}</a> {SPACER}
-<!-- END enter_admin_mode -->
-<!-- BEGIN leave_admin_mode -->
-                        <a href="{USR_MODE_TGT}" title="{USR_MODE_TITLE}">{USR_MODE_LNK}</a> {SPACER}
-<!-- END leave_admin_mode -->
-<!-- BEGIN upload_pic -->
-                        <a href="{UPL_PIC_TGT}" title="{UPL_PIC_TITLE}">{UPL_PIC_LNK}</a> {SPACER}
-<!-- END upload_pic -->
-<!-- BEGIN register -->
-                        <a href="{REGISTER_TGT}" title="{REGISTER_TITLE}">{REGISTER_LNK}</a> {SPACER}
-<!-- END register -->
-<!-- BEGIN login -->
-                        <a href="{LOGIN_TGT}" title="{LOGIN_TITLE}">{LOGIN_LNK}</a> {SPACER_LAST}
-<!-- END login -->
-<!-- BEGIN logout -->
-                        <a href="{LOGOUT_TGT}" title="{LOGOUT_TITLE}">{LOGOUT_LNK}</a> {SPACER_LAST}
-<!-- END logout -->
-                        <br />
-          {SPACER_FIRST}<a href="{LASTUP_TGT}" title="{LASTUP_TITLE}">{LASTUP_LNK}</a> {SPACER}
-                        <a href="{LASTCOM_TGT}" title="{LASTCOM_TITLE}">{LASTCOM_LNK}</a> {SPACER}
-                        <a href="{TOPN_TGT}" title="{TOPN_TITLE}">{TOPN_LNK}</a> {SPACER}
-                        <a href="{TOPRATED_TGT}" title="{TOPRATED_TITLE}">{TOPRATED_LNK}</a> {SPACER}
-                        <a href="{FAV_TGT}" title="{FAV_TITLE}">{FAV_LNK}</a> {SPACER}
-                        <a href="{SEARCH_TGT}" title="{SEARCH_TITLE}">{SEARCH_LNK}</a> {SPACER_LAST}
-                </span>
+// HTML template for sys_menu
+if (!isset($template_sys_menu))  //{CORE}
+$template_sys_menu = <<<EOT
+          {BUTTONS}
 EOT;
+
+// HTML template for sub_menu
+if (!isset($template_sub_menu))  //{CORE}
+$template_sub_menu = $template_sys_menu;
+
+if (!defined('THEME_HAS_NO_SYS_MENU_BUTTONS')) {
+
+  // HTML template for template sys_menu spacer
+  if (!isset($template_sys_menu_spacer))  //{CORE}
+  $template_sys_menu_spacer ="::";
+
+  // HTML template for template sys_menu buttons
+  if (!isset($template_sys_menu_button))  //{CORE}
+  $template_sys_menu_button = <<<EOT
+  <!-- BEGIN {BLOCK_ID} -->
+        <a href="{HREF_TGT}" title="{HREF_TITLE}">{HREF_LNK}</a> {SPACER}
+  <!-- END {BLOCK_ID} -->
+EOT;
+
+  // HTML template for template sys_menu buttons
+  if (!isset($sys_menu_buttons)) { //{CORE}
+    // {HREF_LNK}{HREF_TITLE}{HREF_TGT}{BLOCK_ID}{SPACER}
+    addbutton($sys_menu_buttons,'{MY_GAL_LNK}','{MY_GAL_TITLE}','{MY_GAL_TGT}','my_gallery',$template_sys_menu_spacer);
+    addbutton($sys_menu_buttons,'{MEMBERLIST_LNK}','{MEMBERLIST_TITLE}','{MEMBERLIST_TGT}','allow_memberlist',$template_sys_menu_spacer);
+    addbutton($sys_menu_buttons,'{MY_PROF_LNK}','{MY_PROF_TITLE}','{MY_PROF_TGT}','my_profile',$template_sys_menu_spacer);
+    addbutton($sys_menu_buttons,'{ADM_MODE_LNK}','{ADM_MODE_TITLE}','{ADM_MODE_TGT}','enter_admin_mode',$template_sys_menu_spacer);
+    addbutton($sys_menu_buttons,'{USR_MODE_LNK}','{USR_MODE_TITLE}','{USR_MODE_TGT}','leave_admin_mode',$template_sys_menu_spacer);
+    addbutton($sys_menu_buttons,'{UPL_PIC_LNK}','{UPL_PIC_TITLE}','{UPL_PIC_TGT}','upload_pic',$template_sys_menu_spacer);
+    addbutton($sys_menu_buttons,'{REGISTER_LNK}','{REGISTER_TITLE}','{REGISTER_TGT}','register',$template_sys_menu_spacer);
+    addbutton($sys_menu_buttons,'{FAQ_LNK}','{FAQ_TITLE}','{FAQ_TGT}','faq',$template_sys_menu_spacer);
+    addbutton($sys_menu_buttons,'{LOGIN_LNK}','{LOGIN_TITLE}','{LOGIN_TGT}','login','');
+    addbutton($sys_menu_buttons,'{LOGOUT_LNK}','{LOGOUT_TITLE}','{LOGOUT_TGT}','logout','');
+    // Login and Logout don't have a spacer as only one is shown, and either would be the last option.
+  } //{CORE}
+
+  $params = array('{BUTTONS}' => assemble_template_buttons($template_sys_menu_button,$sys_menu_buttons));
+  $template_sys_menu = template_eval($template_sys_menu,$params);
+}
+
+if (!defined('THEME_HAS_NO_SUB_MENU_BUTTONS')) {
+
+  // HTML template for template sub_menu spacer
+  if (!isset($template_sub_menu_spacer))  //{CORE}
+  $template_sub_menu_spacer = $template_sys_menu_spacer;
+
+  // HTML template for template sub_menu buttons
+  if (!isset($template_sub_menu_button))  //{CORE}
+  $template_sub_menu_button= $template_sys_menu_button;
+  
+  // HTML template for template sub_menu buttons
+  if (!isset($sub_menu_buttons)) { //{CORE}
+    // {HREF_LNK}{HREF_TITLE}{HREF_TGT}{BLOCK_ID}{SPACER}
+    addbutton($sub_menu_buttons,'{ALB_LIST_LNK}','{ALB_LIST_TITLE}','{ALB_LIST_TGT}','album_list',$template_sub_menu_spacer);
+    addbutton($sub_menu_buttons,'{LASTUP_LNK}','{LASTUP_TITLE}','{LASTUP_TGT}','lastup',$template_sub_menu_spacer);
+    addbutton($sub_menu_buttons,'{LASTCOM_LNK}','{LASTCOM_TITLE}','{LASTCOM_TGT}','lastcom',$template_sub_menu_spacer);
+    addbutton($sub_menu_buttons,'{TOPN_LNK}','{TOPN_TITLE}','{TOPN_TGT}','topn',$template_sub_menu_spacer);
+    addbutton($sub_menu_buttons,'{TOPRATED_LNK}','{TOPRATED_TITLE}','{TOPRATED_TGT}','toprated',$template_sub_menu_spacer);
+    addbutton($sub_menu_buttons,'{FAV_LNK}','{FAV_TITLE}','{FAV_TGT}','favpics',$template_sub_menu_spacer);
+    addbutton($sub_menu_buttons,'{SEARCH_LNK}','{SEARCH_TITLE}','{SEARCH_TGT}','search','');
+    } //{CORE}
+
+  $params = array('{BUTTONS}' => assemble_template_buttons($template_sub_menu_button,$sub_menu_buttons));
+  $template_sub_menu = template_eval($template_sub_menu,$params);
+}
+
 // HTML template for gallery admin menu
 if (!isset($template_gallery_admin_menu))  //{CORE}
 $template_gallery_admin_menu = <<<EOT
@@ -983,13 +1044,28 @@ $template_tab_display = array('left_text' => '<td width="100%%" align="left" val
     'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"><b>%d</b></a></td>' . "\n"
     );
 
+// Template used for Vanity Footer
+if (!isset($template_vanity))  //{CORE}
+$template_vanity = <<<EOT
+<div id="vanity" style="text-align: center; padding-bottom: 1ex;">
+  <table cellspacing="0" cellpadding="3" border="0" align="center" width="100%">
+    <tr>
+      <td><a href="http://www.mysql.com/" target="_blank"><img src="{LOCATION}images/powered-mysql.gif" alt="Powered by MySQL"  border="0" /></a></td>
+      <td><a href="http://www.php.net/" target="_blank"><img src="{LOCATION}images/powered-php.gif" alt="Powered by PHP" border="0" /></a></td>
+      <td><a href="http://validator.w3.org/check/referer" target="_blank"><img src="{LOCATION}images/valid-xhtml10.gif" alt="Valid XHTML 1.0!" border="0" /></a></td>
+      <td><a href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank"><img src="{LOCATION}images/valid-css.gif" alt="Valid CSS!" border="0" /></a></td>
+    </tr>
+  </table>
+</div>
+EOT;
+
 if (!function_exists('pageheader')) {  //{CORE}
 function pageheader($section, $meta = '')
 {
     global $CONFIG, $THEME_DIR;
     global $template_header, $lang_charset, $lang_text_dir;
 
-        $custom_header = cpg_get_custom_include($CONFIG['custom_header_path']);
+    $custom_header = cpg_get_custom_include($CONFIG['custom_header_path']);
 
     header('P3P: CP="CAO DSP COR CURa ADMa DEVa OUR IND PHY ONL UNI COM NAV INT DEM PRE"');
     user_save_profile();
@@ -1000,7 +1076,8 @@ function pageheader($section, $meta = '')
         '{META}' => $meta,
         '{GAL_NAME}' => $CONFIG['gallery_name'],
         '{GAL_DESCRIPTION}' => $CONFIG['gallery_description'],
-        '{MAIN_MENU}' => theme_main_menu(),
+        '{SYS_MENU}' => theme_main_menu('sys_menu'),
+        '{SUB_MENU}' => theme_main_menu('sub_menu'),
         '{ADMIN_MENU}' => theme_admin_mode_menu(),
         '{CUSTOM_HEADER}' => $custom_header,
         );
@@ -1024,6 +1101,7 @@ function pagefooter()
 
     $template_vars = array(
         '{CUSTOM_FOOTER}' => $custom_footer,
+        '{VANITY}' => defined('THEME_IS_XHTML10_TRANSITIONAL') ? theme_vanity() : '',
     );
 
     echo template_eval($template_footer, $template_vars);
@@ -1066,66 +1144,63 @@ EOT;
 }  //{CORE}
 
 if (!function_exists('theme_main_menu')) {  //{CORE}
-function theme_main_menu()
+function theme_main_menu($which)
 {
     global $AUTHORIZED, $CONFIG, $album, $actual_cat, $cat, $REFERER;
-    global $lang_main_menu, $template_main_menu, $template_main_menu_spacer_first;
-    global $template_main_menu_spacer, $template_main_menu_spacer_last;
+    global $lang_main_menu, $template_sys_menu, $template_sub_menu;
 
-    static $main_menu = '';
-
-    if ($main_menu != '') return $main_menu;
+    //static $main_menu = '';                  // what did I just disable? Donnoman
+    $main_menu = '';
+    // if ($main_menu != '') return $main_menu;   // what did I just disable? Donnoman
 
     $album_l = isset($album) ? "?album=$album" : '';
     $cat_l = (isset($actual_cat))? "?cat=$actual_cat" : (isset($cat) ? "?cat=$cat" : '');
     $cat_l2 = isset($cat) ? "&amp;cat=$cat" : '';
     $my_gallery_id = FIRST_USER_CAT + USER_ID;
-
+  if ($which == 'sys_menu' ) {
     if (USER_ID) {
-        template_extract_block($template_main_menu, 'login');
+        template_extract_block($template_sys_menu, 'login');
     } else {
-        template_extract_block($template_main_menu, 'logout');
-        template_extract_block($template_main_menu, 'my_profile');
+        template_extract_block($template_sys_menu, 'logout');
+        template_extract_block($template_sys_menu, 'my_profile');
     }
 
     if (!USER_IS_ADMIN) {
-        template_extract_block($template_main_menu, 'enter_admin_mode');
-        template_extract_block($template_main_menu, 'leave_admin_mode');
+        template_extract_block($template_sys_menu, 'enter_admin_mode');
+        template_extract_block($template_sys_menu, 'leave_admin_mode');
     } else {
         if (GALLERY_ADMIN_MODE) {
-            template_extract_block($template_main_menu, 'enter_admin_mode');
+            template_extract_block($template_sys_menu, 'enter_admin_mode');
         } else {
-            template_extract_block($template_main_menu, 'leave_admin_mode');
+            template_extract_block($template_sys_menu, 'leave_admin_mode');
         }
     }
 
     if (!USER_CAN_CREATE_ALBUMS) {
-        template_extract_block($template_main_menu, 'my_gallery');
+        template_extract_block($template_sys_menu, 'my_gallery');
     }
 
     if (USER_CAN_CREATE_ALBUMS) {
-        template_extract_block($template_main_menu, 'my_profile');
+        template_extract_block($template_sys_menu, 'my_profile');
     }
 
     if (!USER_CAN_UPLOAD_PICTURES) {
-        template_extract_block($template_main_menu, 'upload_pic');
+        template_extract_block($template_sys_menu, 'upload_pic');
     }
 
     if (USER_ID || !$CONFIG['allow_user_registration']) {
-        template_extract_block($template_main_menu, 'register');
+        template_extract_block($template_sys_menu, 'register');
     }
 
     if (!USER_ID || !$CONFIG['allow_memberlist']) {
-        template_extract_block($template_main_menu, 'allow_memberlist');
+        template_extract_block($template_sys_menu, 'allow_memberlist');
     }
 
     if (!$CONFIG['display_faq']) {
-        template_extract_block($template_main_menu, 'faq');
+        template_extract_block($template_sys_menu, 'faq');
     }
 
-    $param = array('{ALB_LIST_TGT}' => "index.php$cat_l",
-        '{ALB_LIST_TITLE}' => $lang_main_menu['alb_list_title'],
-        '{ALB_LIST_LNK}' => $lang_main_menu['alb_list_lnk'],
+    $param = array(
         '{MY_GAL_TGT}' => "index.php?cat=$my_gallery_id",
         '{MY_GAL_TITLE}' => $lang_main_menu['my_gal_title'],
         '{MY_GAL_LNK}' => $lang_main_menu['my_gal_lnk'],
@@ -1156,6 +1231,14 @@ function theme_main_menu()
         '{FAQ_TGT}' => "faq.php",
         '{FAQ_TITLE}' => $lang_main_menu['faq_title'],
         '{FAQ_LNK}' => $lang_main_menu['faq_lnk'],
+        );
+        
+        $main_menu = template_eval($template_sys_menu, $param);
+  } else {
+    $param = array(
+        '{ALB_LIST_TGT}' => "index.php$cat_l",
+        '{ALB_LIST_TITLE}' => $lang_main_menu['alb_list_title'],
+        '{ALB_LIST_LNK}' => $lang_main_menu['alb_list_lnk'],
         '{LASTUP_TGT}' => "thumbnails.php?album=lastup$cat_l2",
         '{LASTUP_TITLE}' => $lang_main_menu['lastup_title'],
         '{LASTUP_LNK}' => $lang_main_menu['lastup_lnk'],
@@ -1174,12 +1257,10 @@ function theme_main_menu()
         '{SEARCH_TGT}' => "search.php",
         '{SEARCH_TITLE}' => $lang_main_menu['search_title'],
         '{SEARCH_LNK}' => $lang_main_menu['search_lnk'],
-        '{SPACER_FIRST}' => $template_main_menu_spacer_first,
-        '{SPACER}' => $template_main_menu_spacer,
-        '{SPACER_LAST}' => $template_main_menu_spacer_last,
         );
+    $main_menu = template_eval($template_sub_menu, $param);
+  }
 
-    $main_menu = template_eval($template_main_menu, $param);
     return $main_menu;
 }
 }  //{CORE}
@@ -1957,7 +2038,7 @@ function theme_html_img_nav_menu()
         '{PIC_POS}' => $pic_pos,
         '{ECARD_TGT}' => $ecard_tgt,
         '{ECARD_TITLE}' => $ecard_title,
-                    '{PREV_TGT}' => $prev_tgt,
+        '{PREV_TGT}' => $prev_tgt,
         '{PREV_TITLE}' => $prev_title,
         '{NEXT_TGT}' => $next_tgt,
         '{NEXT_TITLE}' => $next_title,
@@ -2223,4 +2304,23 @@ function theme_display_fullsize_pic()
 <?php
 }
 }  //{CORE}
+
+
+if (!function_exists('theme_vanity')) {  //{CORE}
+function theme_vanity()
+{
+    global $CONFIG, $THEME_DIR, $template_vanity ;
+
+    if (defined('THEME_HAS_VANITY_GRAPHICS')) {
+            $location= $THEME_DIR;
+        } else {
+            $location= '';
+        }
+
+    $params = array('{LOCATION}' => $location);
+
+    return template_eval($template_vanity, $params);
+}
+} //{CORE}
+
 ?>
