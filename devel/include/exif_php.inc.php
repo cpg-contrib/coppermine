@@ -16,7 +16,7 @@
 // ------------------------------------------------------------------------- //
  
 define("EXIF_CACHE_FILE","exif.dat");
-require("include/exif.inc.php");
+require("include/exifReader.inc.php");
  
 function exif_parse_file($filename)
 {	global $CONFIG;
@@ -38,37 +38,36 @@ function exif_parse_file($filename)
 	}
 	
 	// No data in the table - read it from the image file
-	$exifObj = new phpExifRW($filename);
-        $exifObj->processFile();
+	$exifObj = new phpExifReader($filename);        
 	$exif = $exifObj->getImageInfo();
-		
+			
 	$exifParsed = array();
 	
-	$Make = isset($exif['Make']);
-	$Model = isset($exif['Model']);
+	$Make = isset($exif['make']);
+	$Model = isset($exif['model']);
 	
-	if (isset($exif['Make']) && isset($exif['Model'])){
-		$exifParsed['Camera'] = trim($exif['Make'])." - ".trim($exif['Model']);
+	if (isset($exif['make']) && isset($exif['model'])){
+		$exifParsed['Camera'] = trim($exif['make'])." - ".trim($exif['model']);
 	}
 		
-	if (isset($exif['ExposureDate'])){
-		$exifParsed['DateTaken'] = $exif['ExposureDate'];
+	if (isset($exif['DateTime'])){
+		$exifParsed['DateTaken'] = $exif['DateTime'];
 	}
 		
 	if (isset($exif['Aperture'])){
-		$exifParsed['Aperture'] = $exif['Aperture'];
+		$exifParsed['Aperture'] = $exif['fnumber'];
 	}
 		
-	if (isset($exif['ExposureTime'])){
-		$exifParsed['ExposureTime'] = $exif['ExposureTime'];
+	if (isset($exif['exposureTime'])){
+		$exifParsed['ExposureTime'] = $exif['exposureTime'];
 	}
 			
-	if (isset($exif['FocalLength'])){
-		$exifParsed['FocalLength'] = $exif['FocalLength'];
+	if (isset($exif['focalLength'])){
+		$exifParsed['FocalLength'] = $exif['focalLength'];
 	}
 			
-	if (isset($exif['comment'])){
-		$comment = $exif['comment'];
+	if (isset($exif['exifComment'])){
+		$comment = $exif['exifComment'];
 		$exifParsed['Comment'] = $comment; // eregi_replace("ASCII"," ", $comment);
 	}
 	
