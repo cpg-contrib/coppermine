@@ -812,7 +812,7 @@ $template_tab_display = array('left_text' => '<td width="100%%" align="left" val
     'tab_header' => '',
     'tab_trailer' => '',
     'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%d</b></td>',
-    'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"<b>%d</b></a></td>' . "\n"
+    'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1"></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"><b>%d</b></a></td>' . "\n"
     );
 
 function pageheader($section, $meta = '')

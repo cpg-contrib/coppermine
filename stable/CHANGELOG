@@ -129,3 +129,4 @@ Added overhauled Russian translation (user contribution) - 29 September 2004, Ga
 Added slovak translation (user contribution) - 06 November 2004, GauGau
 Added Basque language (user contribution) - 14 December 2004, GauGau
 Added Welsh language (user contribution) - 6 January 2004, GauGau
+Fixed 'inactive_tab' bug in theme.php (user contribution) - 5 February 2005, Donnoman
