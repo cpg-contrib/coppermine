@@ -193,6 +193,9 @@ $template_gallery_admin_menu = <<<EOT
                                 <td class="admin_menu"><a href="searchnew.php" title="{SEARCHNEW_TITLE}">{SEARCHNEW_LNK}</a></td>
                                 <td class="admin_menu"><a href="util.php" title="{UTIL_TITLE}">{UTIL_LNK}</a></td>
                                 <td class="admin_menu"><a href="profile.php?op=edit_profile" title="{MY_PROF_TITLE}">{MY_PROF_LNK}</a></td>
+<!-- BEGIN documentation -->
+                                <td class="admin_menu"><a href="{DOCUMENTATION_HREF}" title="{DOCUMENTATION_TITLE}" target="cpg_documentation">{DOCUMENTATION_LNK}</a></td>
+<!-- END documentation -->
                         </tr>
                 </table>
                 </div>

@@ -167,6 +167,9 @@ $template_gallery_admin_menu = <<<EOT
                                 <td class="admin_menu"><a href="searchnew.php" title="{SEARCHNEW_TITLE}">{SEARCHNEW_LNK}</a></td>
                                 <td class="admin_menu"><a href="util.php" title="{UTIL_TITLE}">{UTIL_LNK}</a></td>
                                 <td class="admin_menu"><a href="profile.php?op=edit_profile" title="{MY_PROF_TITLE}">{MY_PROF_LNK}</a></td>
+<!-- BEGIN documentation -->
+                                <td class="admin_menu"><a href="{DOCUMENTATION_HREF}" title="{DOCUMENTATION_TITLE}" target="cpg_documentation">{DOCUMENTATION_LNK}</a></td>
+<!-- END documentation -->
                         </tr>
                 </table>
                 </div>
@@ -1232,6 +1235,12 @@ function theme_admin_mode_menu()
     }
 
     if (GALLERY_ADMIN_MODE) {
+        // do the docs exist on the webserver?
+        if (file_exists('docs/index.htm') == true) {
+            $documentation_href = 'docs/index.htm';
+        } else {
+            $documentation_href = 'http://coppermine.sf.net/docs/cpg14/index.php';
+        }
         $param = array('{CATL}' => $cat_l,
             '{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_title'],
             '{UPL_APP_LNK}' => $lang_gallery_admin_menu['upl_app_lnk'],
@@ -1259,6 +1268,9 @@ function theme_admin_mode_menu()
             '{DB_ECARD_LNK}' => $lang_gallery_admin_menu['db_ecard_lnk'],
             '{PICTURES_TITLE}' => $lang_gallery_admin_menu['pictures_title'],
             '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
+            '{DOCUMENTATION_HREF}' => $documentation_href,
+            '{DOCUMENTATION_TITLE}' => $lang_gallery_admin_menu['documentation_lnk'],
+            '{DOCUMENTATION_LNK}' => $lang_gallery_admin_menu['documentation_lnk'],
             );
 
         $html = template_eval($template_gallery_admin_menu, $param);

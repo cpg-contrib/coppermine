@@ -172,6 +172,8 @@ $lang_gallery_admin_menu = array(
   'db_ecard_lnk' => 'Display Ecards',
   'pictures_title' => 'Sort my pictures', //cpg1.4
   'pictures_lnk' => 'Sort my pictures', // cpg1.4
+  'documentation_lnk' => 'Documentation', // cpg1.4
+  'documentation_title' => 'Coppermine manual', // cpg1.4
 );
 
 $lang_user_admin_menu = array(

@@ -183,6 +183,9 @@ $template_gallery_admin_menu = <<<EOT
                                 <td class="admin_menu"><a href="searchnew.php" title="{SEARCHNEW_TITLE}">{SEARCHNEW_LNK}</a></td>
                                 <td class="admin_menu"><a href="util.php" title="{UTIL_TITLE}">{UTIL_LNK}</a></td>
                                 <td class="admin_menu"><a href="profile.php?op=edit_profile" title="{MY_PROF_TITLE}">{MY_PROF_LNK}</a></td>
+<!-- BEGIN documentation -->
+                                <td class="admin_menu"><a href="{DOCUMENTATION_HREF}" title="{DOCUMENTATION_TITLE}" target="cpg_documentation">{DOCUMENTATION_LNK}</a></td>
+<!-- END documentation -->
                         </tr>
                 </table>
                 </div>
@@ -928,12 +931,12 @@ $template_ecard = <<<EOT
         <tr>
           <td valign="top">
            <a href="{VIEW_MORE_TGT}/displayimage.php?pos=-{PID}">
-					 <img src="{PIC_URL}" border="1px" alt="" /></a>
-					 <br />
-					 <div align="center">
-						 <h2>{PIC_TITLE}</h2>
-					 </div>
-					 
+                                         <img src="{PIC_URL}" border="1px" alt="" /></a>
+                                         <br />
+                                         <div align="center">
+                                                 <h2>{PIC_TITLE}</h2>
+                                         </div>
+
           </td>
           <td valign="top" width="300px">
             <div align="right"><img src="{URL_PREFIX}images/stamp.gif" border="0px" alt="" /></div>
@@ -948,11 +951,11 @@ $template_ecard = <<<EOT
             (<a href="mailto:{SENDER_EMAIL}"><font face="arial" color="#000000" size="2">{SENDER_EMAIL}</font></a>)
           </td>
         </tr>
-		<tr>
-			<td colspan="2">
-				{PIC_CAPTION}
-			</td>
-		</tr>
+                <tr>
+                        <td colspan="2">
+                                {PIC_CAPTION}
+                        </td>
+                </tr>
       </table>
     </td>
   </tr>
@@ -1006,8 +1009,8 @@ $template_report = <<<EOT
           <td valign="top" width="200px">
             <b><font face="arial" color="#000000" size="4">{SUBJECT}</font></b>
             <br />
-						<br />
-						{REASON}
+                                                <br />
+                                                {REASON}
             <p>
             <font face="arial" color="#000000" size="2">{MESSAGE}</font>
             </p>
@@ -1167,7 +1170,7 @@ function theme_main_menu($which)
     $cat_l = (isset($actual_cat))? "?cat=$actual_cat" : (isset($cat) ? "?cat=$cat" : '');
     $cat_l2 = isset($cat) ? "&amp;cat=$cat" : '';
     $my_gallery_id = FIRST_USER_CAT + USER_ID;
-    
+
   if ($which == 'sys_menu' ) {
     if (USER_ID) {
         template_extract_block($template_sys_menu, 'login');
@@ -1287,18 +1290,24 @@ function theme_admin_mode_menu()
     $cat_l = isset($cat) ? "?cat=$cat" : '';
 
     static $admin_menu = '';
-    
+
     // Populate the admin menu only if empty to avoid template errors
     if ($admin_menu == '') {
         if ($CONFIG['log_ecards'] == 0) {
             template_extract_block($template_gallery_admin_menu, 'log_ecards');
         }
-    
+
         if (cpg_get_pending_approvals() == 0) {
              template_extract_block($template_gallery_admin_menu, 'admin_approval');
         }
-    
+
         if (GALLERY_ADMIN_MODE) {
+            // do the docs exist on the webserver?
+            if (file_exists('docs/index.htm') == true) {
+                $documentation_href = 'docs/index.htm';
+            } else {
+                $documentation_href = 'http://coppermine.sf.net/docs/cpg14/index.php';
+            }
             $param = array('{CATL}' => $cat_l,
                 '{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_title'],
                 '{UPL_APP_LNK}' => $lang_gallery_admin_menu['upl_app_lnk'],
@@ -1326,8 +1335,11 @@ function theme_admin_mode_menu()
                 '{DB_ECARD_LNK}' => $lang_gallery_admin_menu['db_ecard_lnk'],
                 '{PICTURES_TITLE}' => $lang_gallery_admin_menu['pictures_title'],
                 '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
+                '{DOCUMENTATION_HREF}' => $documentation_href,
+                '{DOCUMENTATION_TITLE}' => $lang_gallery_admin_menu['documentation_lnk'],
+                '{DOCUMENTATION_LNK}' => $lang_gallery_admin_menu['documentation_lnk'],
                 );
-    
+
             $html = template_eval($template_gallery_admin_menu, $param);
             $html.= cpg_alert_dev_version();
         } elseif (USER_ADMIN_MODE) {
@@ -1340,7 +1352,7 @@ function theme_admin_mode_menu()
                 '{PICTURES_TITLE}' => $lang_gallery_admin_menu['pictures_title'],
                 '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
                 );
-    
+
             $html = template_eval($template_user_admin_menu, $param);
         } else {
             $html = '';
@@ -1934,7 +1946,7 @@ function theme_html_picture()
 
     $pic_title = '';
     $mime_content = cpg_get_type($CURRENT_PIC_DATA['filename']);
-    
+
 
     if ($mime_content['content']=='movie' || $mime_content['content']=='audio') {
 
@@ -1973,28 +1985,28 @@ function theme_html_picture()
     } else {
         $autostart = ($CONFIG['mv_autostart']) ? ('true'):('false');
 
-        $players['WMP'] = array('id' => 'MediaPlayer', 
+        $players['WMP'] = array('id' => 'MediaPlayer',
                                 'clsid' => 'classid="clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6" ',
                                 'codebase' => 'codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5,1,52,701" ',
                                 'mime' => 'type="application/x-mplayer2" ',
                                );
         $players['RMP'] = array('id' => 'RealPlayer',
                                 'clsid' => 'classid="clsid:CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA" ',
-                                'codebase' => '', 
+                                'codebase' => '',
                                 'mime' => 'type="audio/x-pn-realaudio-plugin" '
                                );
-        $players['QT']  = array('id' => 'QuickTime', 
+        $players['QT']  = array('id' => 'QuickTime',
                                 'clsid' => 'classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B" ',
                                 'codebase' => 'codebase="http://www.apple.com/qtactivex/qtplugin.cab" ',
                                 'mime' => 'type="video/x-quicktime" '
                                );
-        $players['SWF'] = array('id' => 'SWFlash', 
-                                'clsid' => ' classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" ', 
+        $players['SWF'] = array('id' => 'SWFlash',
+                                'clsid' => ' classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" ',
                                 'codebase' => 'codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,0,0" ',
                                 'mime' => 'type="application/x-shockwave-flash" '
                                );
-        $players['UNK'] = array('id' => 'DefaultPlayer', 
-                                'clsid' => '', 
+        $players['UNK'] = array('id' => 'DefaultPlayer',
+                                'clsid' => '',
                                 'codebase' => '',
                                 'mime' => ''
                                );
@@ -2005,7 +2017,7 @@ function theme_html_picture()
             $user_player = $mime_content['player'];
         }
 
-		// There isn't a player selected or user wants client-side control
+                // There isn't a player selected or user wants client-side control
         if (!$user_player) {
             $user_player = 'UNK';
         }
