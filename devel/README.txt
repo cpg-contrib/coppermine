@@ -1,0 +1,144 @@
+Coppermine Quick-Start Guide
+
+You’ve already downloaded the most recent version of Coppermine.  Now you’re 
+probably wondering how to install it.  For that, you need to read the documentation that 
+comes with Coppermine.  Take a look at where you extracted the zip file to.  There’s a 
+folder called docs – all the documentation is in there.  If you are doing an upgrade from 
+an older version of Coppermine, you need to read the docs for directions.
+
+This is a stand alone version – if you are looking for something that integrates with PHP-
+Nuke, you should visit http://www.nukephotogallery.com or http://www.cpgnuke.com.
+
+Ok, so you don’t want to take the time to read the documentation.  Well, this guide will 
+get you started with the basics.  Let’s jump into it, shall we?
+
+Question:  Does my webserver support Coppermine?
+
+Answer:  You need to have a webserver (Apache 2.0.50 recommended), PHP 4.1.0 or 
+newer (4.3.8 recommended, 5.xx not recommended at this time), and MySQL 3.23.23 or 
+newer (4.0.20 recommended).  You also need either GD 1.xx or 2.xx (2.xx 
+recommended) or ImageMagick installed.  GD normally comes bundled with PHP; 
+ImageMagick must be installed by your webhost.
+
+Question:  Where can I find out that stuff?
+
+Answer:  Ask your host, they’ll tell you.  You can also create a file called phpinfo.php 
+and upload it to your site.  Type www.yoursite.com/phpinfo.php and see what versions 
+you have.  Your host will tell you the location of ImageMagick, if it’s available.
+
+<?php
+phpinfo();
+?>
+
+Question:  Where do I put all these files?
+
+Answer:  You can put them in your root directory (not recommended) or upload the 
+directory to your website.  We recommend uploading the directory cpg140 (and all the 
+files contained within) to your webhost. 
+
+Question:  Ok, I uploaded everything to www.yoursite.com/coppermine.  Now what?
+
+Answer:  You need to change permissions on a few directories before you can do 
+anything else.  Using your FTP program or website Control Panel, change permissions on 
+the include, albums, albums/userpics, and albums/edit directories to 777.  You should 
+also create a new directory in albums that you will FTP your images/files to (call it 
+uploads) and set it’s permissions to 777 also.
+
+Question:  I changed the permissions.  What’s next?
+
+Answer:  You need to create a MySQL database.  Using your website Control Panel or a 
+tool like phpMyAdmin, create a MySQL database.  Write down the database name, the 
+username and password – you’ll need it in a minute.  If you already have a database 
+you’re using for a BBS or something else, that’s ok.  You can use that database for 
+Coppermine, too.  If you have a BBS and plan on connecting it to Coppermine, you need 
+to share the database anyway.
+
+Question:  My files are in place, permissions are set, and I have my MySQL database 
+information.  What’s the next step?
+
+Answer:  Now you have to run the Coppermine install.  Just go to 
+www.yousite.com/coppermine/install.php and fill in the information.
+
+Question:  There are error messages popping up?  What do I do?
+
+Answer:  First, read the documentation!  You should’ve done that already, you know.  
+There’s a good chance you’ll find the answers you need.  If not, go to 
+http://coppermine.sourceforge.net and check out the support boards.  Spend a while 
+looking around and searching for your problem.  There’s probably a solution for your 
+problem already posted.
+
+Question:  All right!  It’s installed and working!  Now what?
+
+Answer:  You need to look at the configuration of Coppermine to make sure it’s set up 
+the way you want it.  Log in as the admin (if the Admin link isn’t visible, you already are 
+logged in) and visit the Config section.  Here’s a few things you should look at:
+
+- General Settings: You should put in your site name and email address, and set your time 
+zone offset.
+
+- Language, Themes & Charset settings:  Choose your language.
+
+- Files and thumbnails settings:  Set the max size for uploaded files to whatever you’d 
+like.  The default is 1024kb.  You should also take a look at the max width or height for 
+uploaded pictures/videos – this will prevent your users from uploading images that are 
+larger than you want.  If you want Coppermine to automatically resize images that are 
+larger than what you’ve allowed, set auto resize images that are larger than max width or 
+height to either Yes: Everyone or Yes: User only.  Everyone means everybody, including 
+when the admin batch-adds pictures, and User means just your members when they 
+upload pictures.
+
+- Files and thumbnails advanced settings:  Make sure you have the correct image 
+manipulation software selected.  If you are using GD, you should select GD2 if you have 
+it available.  If you plan on using ImageMagick you should’ve already put in the path to 
+the binaries (make sure it ends with a trailing slash).  Do you want your members to have 
+private albums?  If you do, make sure to set “Users can have private albums” to Yes.
+
+- User settings:  If you plan on letting people register and upload pictures, make sure you 
+set “Allow new user registrations” to Yes.
+
+- You also need to take a peek at the groups settings.  Coppermine comes with four 
+groups by default: administrators, registered users, anonymous users, and banned users.  
+This is where you can give permission to send e-cards, upload files, etc.  This is also 
+where you set the maximum allowed disk space for each group (disk quota).  It’s set to 
+1024kb by default.
+
+Question:  I think everything is set right.  Can I upload pictures yet?
+
+Answer:  No.  First you need to create an album to put them in.  In the same row as the 
+Config link, you’ll see a link called Albums.  Click on it and you are taken to a screen 
+that allows you to create an album.  Click “New Album”, then rename it to whatever 
+you’d like.  Click “Apply changes” and presto!  You now have an album.
+
+Question:  I made an album, so now can I upload pictures?
+
+Answer:  Yes.  As the admin, you should use your FTP program to upload your pictures 
+to your website, then do a batch-add to put them into your Coppermine database.  Back at 
+the beginning of this guide I told you to create a directory in albums for just this purpose.  
+Let’s say you made one called “uploads”.  FTP your images to albums/uploads.  When 
+that’s done, click on batch-add.  Select uploads as the directory.  You are now presented 
+with a list of all the pictures you just uploaded.  By default Coppermine selects all of the 
+images.  Select the album to put them into, then click Go.  Viola, you now have pictures 
+to look at!
+
+Question:  Can I add a title to a picture?
+
+Answer:  Yes you can.  On the main Coppermine screen, when you are logged in as an 
+admin you’ll see a few options listed next to the album.  If you click on “edit files” you 
+can put all sorts of information for each picture.
+
+Question:  I can delete the original pictures now, right?  After all, they are in the 
+database.
+
+Answer:  Wrong!  Coppermine doesn’t actually put the pictures into the database.  It just 
+uses the database to remember where the pictures are stored on the webserver, what 
+album and category they belong to, and other information related to the pictures.  If you 
+delete the original picture, it will cause a bunch of errors.  If you want to delete the 
+original, read the documentation on what the Admin Tools are for.
+
+You are now successfully running Coppermine on your website!  Now take a few 
+minutes to read the documentation so you’ll know how to administer your gallery.  
+Coppermine is very powerful and can do a lot of stuff you probably didn’t even think of.  
+Experiment with it and have a good time!
+
+The Coppermine Dev Team
+http://coppermine.sourceforge.net
