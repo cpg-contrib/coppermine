@@ -134,7 +134,10 @@ if (count($HTTP_POST_VARS) > 0) {
         }
 
         if ($ban_expires < 0) $ban_expires = 'NULL';
-
+        // check if anything has been submit at all
+        if (!$HTTP_POST_VARS['add_ban_user_name'] && !$HTTP_POST_VARS['add_ban_ip_addr']) {
+          cpg_die(CRITICAL_ERROR, $lang_banning_php['error_specify'], __FILE__, __LINE__);
+          }
         if ($ban_uid || $ban_ip_addr) {
             db_query("INSERT INTO {$CONFIG['TABLE_BANNED']} (user_id, ip_addr, expiry) VALUES ($ban_uid, $ban_ip_addr, $ban_expires)");
         } else {
