@@ -2149,6 +2149,7 @@ $lang_language_data['indonesian'] = array('Indonesian','Bahasa Indonesia','id');
 $lang_language_data['italian'] = array('Italian','Italiano','it');
 $lang_language_data['japanese'] = array('Japanese','&#26085;&#26412;&#35486;','jp');
 $lang_language_data['korean'] = array('Korean','&#54620;&#44397;&#50612;','kr');
+$lang_language_data['kurdish'] = array('Kurdish','&#1603;&#1608;&#1585;&#1583;&#1740;','ku');
 $lang_language_data['latvian'] = array('Latvian','Latvian','lv');
 $lang_language_data['malay'] = array('Malay','Bahasa Melayu','my');
 $lang_language_data['norwegian'] = array('Norwegian','Norsk','no');
