@@ -107,14 +107,14 @@ while ($row = mysql_fetch_array($result)) {
         $row['pheight'] = 100;
     }
     $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['alb_list_thumb_size']);
-    $mime_content = get_type($row['filename']);
+    /*$mime_content = get_type($row['filename']);
     $extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
 
-    if ($mime_content['content']=='image') {
+    if ($mime_content['content']=='image') {*/
             $thumb_url = get_pic_url($row, 'thumb');
-    } else {
+    /*} else {
             $thumb_url = "images/thumb_{$extension}.jpg";
-    }
+    }*/
 
     $thumb_link = 'displayimage.php?pos=' . - $row['pid'];
     $msg_date = localised_date($row['msg_date'], $comment_date_fmt);

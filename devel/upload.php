@@ -1560,8 +1560,9 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                     $extension = 'gif';
 
                 } else {
-
+                    // Commented out; Duplicate of get_type() function in media.function.inc.php - Omni May 28, 2004
                     // We will try to get the extension from the database.
+                    /*
                     $MIME_result = db_query("SELECT extension FROM {$CONFIG['TABLE_FILETYPES']} WHERE mime='$URI_MIME_type'");
 
                     // Check to see if any results were returned.
@@ -1586,7 +1587,9 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
 
                         // Store the extension in $extension.
                         $extension = $extension_data['extension'];
-                    }
+                    }*/
+                    $mime_content = get_type($picture_name);
+                    $extension = $mime_content['extension'];
 
                 }
 

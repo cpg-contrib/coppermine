@@ -107,14 +107,14 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
                            $picture['pheight'] = 100;
                         }
                         $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
-                        $mime_content = get_type($picture['filename']);
+                        /*$mime_content = get_type($picture['filename']);
                         $extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
 
-                        if ($mime_content['content']=='image') {
+                        if ($mime_content['content']=='image') {*/
                            $user_thumb = "<img src=\"" . get_pic_url($picture, 'thumb') . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"\">";
-                        } else {
+                        /*} else {
                            $user_thumb = "<img src=\"images/thumb_{$extension}.jpg\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"\">";
-                        }
+                        }*/
                         $user_thumb = "<a href=\"index.php?cat={$subcat['cid']}\">".$user_thumb."</a>";
                     }
             }else{
@@ -306,14 +306,14 @@ function list_users()
                     $picture['pheight'] = 100;
                 }
                 $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
-                $mime_content = get_type($picture['filename']);
+                /*$mime_content = get_type($picture['filename']);
                 $extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
 
-                if ($mime_content['content']=='image') {
+                if ($mime_content['content']=='image') {*/
                     $user_thumb = "<img src=\"" . get_pic_url($picture, 'thumb') . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"\">";
-                } else {
+                /*} else {
                     $user_thumb = "<img src=\"images/thumb_{$extension}.jpg\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"\">";
-                }
+                }*/
             }
         }
 
@@ -408,14 +408,14 @@ function list_albums()
                     $picture['pheight'] = 100;
                 }
                 $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
-                $mime_content = get_type($picture['filename']);
+                /*$mime_content = get_type($picture['filename']);
                 $extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
 
-                if ($mime_content['content']=='image') {
+                if ($mime_content['content']=='image') {*/
                         $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"" . get_pic_url($picture, 'thumb') . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$picture['filename']}\">";
-                } else {
+                /*} else {
                         $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/thumb_{$extension}.jpg\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$picture['filename']}\">";
-                }
+                }*/
             } else { // Inserts an empty thumbnail if the album contains 0 images
                 $image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
 
@@ -534,14 +534,14 @@ function list_cat_albums($cat = 0)
                     $picture['pheight'] = 100;
                 }
                 $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
-                $mime_content = get_type($picture['filename']);
+                /*$mime_content = get_type($picture['filename']);
                 $extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
 
-                if ($mime_content['content']=='image') {
+                if ($mime_content['content']=='image') {*/
                         $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"" . get_pic_url($picture, 'thumb') . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$picture['filename']}\">";
-                } else {
+                /*} else {
                         $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/thumb_{$extension}.jpg\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$picture['filename']}\">";
-                }
+                }*/
             } else { // Inserts an empty thumbnail if the album contains 0 images
                 $image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
                 $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/nopic.jpg\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";

@@ -112,6 +112,7 @@ function picrow($picfile, $picid, $albid)
     $picname = $CONFIG['fullpath'] . $picfile;
     $pic_url = urlencode($picfile);
     $pic_fname = basename($picfile);
+    $pic_dirname = dirname($picname);
 
     $thumb_file = dirname($picname) . '/' . $CONFIG['thumb_pfx'] . $pic_fname;
     if (file_exists($thumb_file)) {
@@ -121,9 +122,13 @@ function picrow($picfile, $picid, $albid)
     } elseif (is_image($picname)) {
         $img = '<img src="showthumb.php?picfile=' . $pic_url . '&size=48" class="thumbnail" border="0">';
     } else {
-        $mime_content = get_type($picname);
-        $extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
-        $img = '<img src="images/thumb_'.$extension.'.jpg" class="thumbnail" width="48" border="0">';
+        $file['filepath'] = $pic_dirname.'/'; //substr($picname,0,strrpos($picname,'/'))
+        $file['filename'] = $pic_fname;
+        $filepathname = get_pic_url($file,'thumb');
+        //$mime_content = get_type($picname);
+        //$extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
+        //$img = '<img src="images/thumb_'.$extension.'.jpg" class="thumbnail" width="48" border="0">';
+        $img = '<img src="'.$filepathname.'" class="thumbnail" width="48" border="0">';
     }
 
     if (filesize($picname) && is_readable($picname)) {
