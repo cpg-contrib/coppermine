@@ -23,9 +23,9 @@ $lang_translation_info = array(
 'lang_name_native' => 'Latviski', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espa&ntilde;ol'
 'lang_country_code' => 'lv', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es'
 'trans_name'=> 'Kaspars Priedols', //the name of the translator - can be a nickname
-'trans_email' => 'house@tvertne.nu', //translator's email address (optional)
+'trans_email' => 'kaspars.priedols@gmail.com', //translator's email address (optional)
 'trans_website' => 'http://foto.tvertne.nu/', //translator's website (optional) //.lv ONLY
-'trans_date' => '2004-06-28', //the date the translation was created / last modified
+'trans_date' => '2004-11-06', //the date the translation was created / last modified
 );
 
 $lang_charset = 'ISO-8859-4';
