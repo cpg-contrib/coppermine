@@ -41,7 +41,6 @@ echo <<<EOT
 </javascript>
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="top.focus();">
 <a href="#" onClick="top.close();"><img src="cropAction.php?x=$x'&y=$y&h=$height&w=$width&id=$pid&asThumb=$asThumb&final=$final" border=0></a>
-<p align="Center">Hit Reload to see cropped Image if saved</p>
 </body>
 </html>
 EOT;
@@ -56,7 +55,10 @@ mysql_free_result($result);
 $workImage = $CONFIG['fullpath'].$CURRENT_PIC['filepath'].$CURRENT_PIC['filename'];
 
 if($HTTP_GET_VARS['asThumb']==1){
- 	$savePath = $CONFIG['fullpath'].$CURRENT_PIC['filepath'].$CONFIG['thumb_pfx'].$CURRENT_PIC['filename'];	
+ 	//Add the thumb prefix to filename
+	$savePath = $CONFIG['fullpath'].$CURRENT_PIC['filepath'].$CONFIG['thumb_pfx'].$CURRENT_PIC['filename'];	
+	
+	//Calculate the thumbnail dimensions
 	if ($CONFIG['thumb_use'] == 'ht') {
                 $ratio = $height / $CONFIG['thumb_width'] ;
         } elseif ($CONFIG['thumb_use'] == 'wd') {

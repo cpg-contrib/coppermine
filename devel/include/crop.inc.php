@@ -30,23 +30,23 @@ mysql_free_result($result);
 $pic_url = get_pic_url($CURRENT_PIC,'fullsize');
 
 
+
 echo <<<cropUIjs
 <script language="JavaScript" src="dhtmlLib.js"></script>
 <script language="JavaScript">
 <!--
+
 function libinit(){
 	obj=new lib_obj('cropDiv')
 	obj.dragdrop()
 	objImg =new lib_obj('imgDiv')
 	//alert (objImg.x + "-" + objImg.y);	
-	obj.moveIt(objImg.x,objImg.y)
-
-	
+	obj.moveIt(objImg.x,objImg.y)	
 }
 
 function cropCheck(crA){
+  //alert (obj.x + "-" + obj.y);
   if (((obj.x + obj.cr) <= ({$CURRENT_PIC['pwidth']}+objImg.x))&&((obj.y + obj.cb) <= ({$CURRENT_PIC['pheight']}+objImg.y))&&(obj.x > objImg.x)&&(obj.y > objImg.y)){
-    //alert (obj.x + "-" + obj.y);
     cropX = obj.x - objImg.x;
     cropY = obj.y - objImg.y;
     var url = 'cropAction.php?pop=1&x='+cropX+'&y='+cropY+'&h='+obj.cb+'&w='+obj.cr+'&id={$pid}' ;
@@ -54,16 +54,32 @@ function cropCheck(crA){
       window.open(url,'prevWin','width='+obj.cr+',height='+obj.cb);
     }else if(crA == 'final') {
       url = url+'&final=1';
-      window.open(url,'prevWin','width='+obj.cr+',height='+(obj.cb+100));
-      //location.href=url;
+      window.open(url,'prevWin','width='+obj.cr+',height='+(obj.cb));
     }else if(crA == 'asThumb') {
+    
+	thumb_use = "{$CONFIG['thumb_use']}"
+	thumb_width = {$CONFIG['thumb_width']}
+
+	if ( thumb_use== "ht") {
+		ratio = obj.cb / thumb_width ;
+	} else if (thumb_use == "wd") {
+		ratio = obj.cr / thumb_width ;
+	} else {
+		ratio = Math.max(obj.cb, obj.cr) / thumb_width ;
+	} 
+
+	ratio = Math.max(ratio, 1.0);
+	destWidth = (obj.cr / ratio);
+	destHeight = (obj.cb / ratio);
+	    
       url = url+'&asThumb=1';
-      window.open(url,'prevWin','width='+obj.cr+',height='+obj.cb);
+      window.open(url,'prevWin','width='+destWidth+',height='+destHeight);
+      }
     } else {
-    alert('{$lang_editpics_php['sel_on_img']}');
+     alert('{$lang_editpics_php['sel_on_img']}');
     }
   }
-}
+
 
 function stopZoom() {
   loop = false;
