@@ -18,6 +18,23 @@
 $Id: 
 */
 
+
+$lang_charset = cpg_lang_var("lang_charset");
+
+$lang_text_dir = cpg_lang_var("lang_text_dir");
+
+// Some common strings
+$lang_yes = cpg_lang_var("lang_yes");
+$lang_no  = cpg_lang_var("lang_no");
+$lang_back = cpg_lang_var("lang_back");
+$lang_continue = cpg_lang_var("lang_continue");
+$lang_info = cpg_lang_var("lang_info");
+$lang_error = cpg_lang_var("lang_error");
+
+$lang_bbcode_help = cpg_lang_var("lang_bbcode_help");
+
+$lang_register_confirm_email = cpg_lang_var("lang_register_confirm_email");
+
 // info about translators and translated language
 $lang_translation_info_en = cpg_get_default_lang_var('lang_translation_info','english');
 $lang_translation_info = array_merge($lang_translation_info_en, $lang_translation_info);
@@ -277,6 +294,18 @@ if (defined('PHPINFO_PHP')) {
   $lang_phpinfo_php_en = cpg_get_default_lang_var('lang_phpinfo_php','english');
   $lang_phpinfo_php = array_merge($lang_phpinfo_php_en, $lang_phpinfo_php);
 }
+
+// ------------------------------------------------------------------------- //
+// File pluginmgr.php
+// ------------------------------------------------------------------------- //
+
+if (defined('PLUGINMGR_PHP')){
+  $lang_pluginmgr_php_en  = cpg_get_default_lang_var('lang_pluginmgr_php','english');
+  $lang_pluginmgr_php  = array_merge($lang_pluginmgr_php_en, $lang_pluginmgr_php);
+}
+
+$lang_plugin_api_en  = cpg_get_default_lang_var('lang_plugin_api','english');
+$lang_plugin_api  = array_merge($lang_plugin_api_en, $lang_plugin_api);
 
 // ------------------------------------------------------------------------- //
 // File modifyalb.php
