@@ -2,7 +2,7 @@
 // ------------------------------------------------------------------------- //
 //  Coppermine Photo Gallery                                                 //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Gr�ory DEMAR <gdemar@wanadoo.fr>               //
+//  Copyright (C) 2002,2003  Gregory DEMAR <gdemar@wanadoo.fr>               //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
 //  Based on PHPhotoalbum by Henning Stverud <henning@stoverud.com>         //
@@ -51,7 +51,7 @@ $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clit
 $lang_meta_album_names = array(
         'random' => 'Random pictures',
         'lastup' => 'Last additions',
-	'lastalb'=> 'Last updated albums',
+        'lastalb'=> 'Last updated albums',
         'lastcom' => 'Last comments',
         'topn' => 'Most viewed',
         'toprated' => 'Top rated',
@@ -331,8 +331,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Number of albums to display', 'albums_per_page', 0),
         array('Number of columns for the album list', 'album_list_cols', 0),
         array('Size of thumbnails in pixels', 'alb_list_thumb_size', 0),
-        array('The content of the main page', 'main_page_layout', 0),	   
-	    array('Show first level album thumbnails in categories','first_level',1),
+        array('The content of the main page', 'main_page_layout', 0),
+            array('Show first level album thumbnails in categories','first_level',1),
 
         'Thumbnail view',
         array('Number of columns on thumbnail page', 'thumbcols', 0),
@@ -377,7 +377,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Field 4 name', 'user_field4_name', 0),
 
         'Pictures and thumbnails advanced settings',
-	array('Show private album Icon to unlogged user','show_private',1),
+        array('Show private album Icon to unlogged user','show_private',1),
         array('Characters forbidden in filenames', 'forbiden_fname_char',0),
         array('Accepted file extensions for uploaded pictures', 'allowed_file_extensions',0),
         array('Method for resizing images','thumb_method',2),
@@ -496,8 +496,8 @@ $lang_picinfo = array(
         'Exposure time' => 'Exposure time',
         'Focal length' => 'Focal length',
         'Comment' => 'Comment',
-	'addFav'=>'Add to Fav',
-	'addFavPhrase'=>'Favourites'
+        'addFav'=>'Add to Fav',
+        'addFavPhrase'=>'Favourites'
 );
 
 $lang_display_comments = array(
@@ -508,6 +508,10 @@ $lang_display_comments = array(
         'name'=>'Name',
         'comment'=>'Comment',
         'your_name' => 'Anon',
+);
+
+$lang_fullsize_popup = array(
+        'click_to_close' => 'Click image to close this window',
 );
 
 }
