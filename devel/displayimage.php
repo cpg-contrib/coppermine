@@ -179,7 +179,7 @@ function html_picture()
         }
     }
 
-    $CURRENT_PIC_DATA['menu'] = ((USER_ADMIN_MODE && $CURRENT_ALBUM_DATA['category'] == FIRST_USER_CAT + USER_ID) || ($CONFIG['users_can_edit_pics'] && $CURRENT_PIC_DATA['owner_id'] == USER_ID) || GALLERY_ADMIN_MODE) ? html_picture_menu($pid) : '';
+    $CURRENT_PIC_DATA['menu'] = ((USER_ADMIN_MODE && $CURRENT_ALBUM_DATA['category'] == FIRST_USER_CAT + USER_ID) || ($CONFIG['users_can_edit_pics'] && $CURRENT_PIC_DATA['owner_id'] == USER_ID && USER_ID != 0) || GALLERY_ADMIN_MODE) ? html_picture_menu($pid) : '';
 
     if ($CONFIG['make_intermediate'] && $condition ) {
         $picture_url = get_pic_url($CURRENT_PIC_DATA, 'normal');
