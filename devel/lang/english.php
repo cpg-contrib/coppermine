@@ -86,8 +86,8 @@ $lang_errors = array(
         'pic_in_invalid_album' => 'Picture is in a non existant album (%s)!?',
         'banned' => 'You are currently banned from using this site.',
         'not_with_udb' => 'This function is disabled in Coppermine because it is integrated with forum software. Either what you are trying to do is not supported in this configuration, or the function should be handled by the forum software.',
-	'offline_title' => 'Offline',
-	'offline_text' => 'Gallery is currently offline check back soon'
+        'offline_title' => 'Offline',
+        'offline_text' => 'Gallery is currently offline check back soon'
 );
 
 // ------------------------------------------------------------------------- //
@@ -362,7 +362,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Gallery description', 'gallery_description', 0),
         array('Gallery administrator email', 'gallery_admin_email', 0),
         array('Target address for the \'See more pictures\' link in e-cards', 'ecards_more_pic_target', 0),
-	array('Gallery is offline', 'offline', 1),
+        array('Gallery is offline', 'offline', 1),
         'Language, Themes &amp; Charset settings',
         array('Language', 'lang', 5),
         array('Theme', 'theme', 6),
@@ -429,14 +429,14 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('The prefix for intermediate pictures <b>*</b>', 'normal_pfx', 0),
         array('The prefix for thumbnails <b>*</b>', 'thumb_pfx', 0),
         array('Default mode for directories', 'default_dir_mode', 0),
-        array('Default mode for pictures', 'default_file_mode', 0),        
+        array('Default mode for pictures', 'default_file_mode', 0),
 
         'User settings',
         array('Allow new user registrations', 'allow_user_registration', 1),
         array('User registration requires email verification', 'reg_requires_valid_email', 1),
         array('Notify admin of user registration by email', 'reg_notify_admin_email', 1),
         array('Allow two users to have the same email address', 'allow_duplicate_emails_addr', 1),
-        array('Users can can have private albums', 'allow_private_albums', 1),
+        array('Users can have private albums', 'allow_private_albums', 1),
         array('Notify admin of user upload awaiting approval', 'upl_notify_admin_email', 1),
 
         'Custom fields for image description (leave blank if unused)',
