@@ -66,7 +66,7 @@ EOT;
         echo <<< EOT
                 <tr>
                         <td class="tableh2" colspan="3" onclick="show_section('section{$cmi}')">
-                                <span style="cursor:hand"><img src="images/descending.gif" border="0" width="9" height="9" alt="" title="{$lang_admin_php['click_expand']}" /> <b>$text</b></span>
+                                <span style="cursor:pointer"><img src="images/descending.gif" border="0" width="9" height="9" alt="" title="{$lang_admin_php['click_expand']}" /> <b>$text</b></span>
                         </td>
                 </tr>
                 <tr>
