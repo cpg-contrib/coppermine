@@ -103,23 +103,6 @@ EOT;
 
 // HTML template for the category list
 $template_cat_list = <<<EOT
-<!-- BEGIN breadcrumb -->
-        <tr>
-                <td colspan="3" class="tableh1"><span class="statlink"><b>{BREADCRUMB}</b></span></td>
-        </tr>
-<!-- END breadcrumb -->
-<!-- BEGIN breadcrumb_user_gal -->
-        <tr>
-                <td colspan="3" class="tableh1">
-                <table width="100%" cellpadding="0" cellspacing="0" border="0">
-                <tr>
-                        <td><span class="statlink"><b>{BREADCRUMB}</b></span></td>
-                        <td align="right"><span class="statlink"><b>{STATISTICS}</b></span></td>
-                </tr>
-                </table>
-                </td>
-        </tr>
-<!-- END breadcrumb_user_gal -->
 <!-- BEGIN header -->
         <tr>
                 <td class="tableh1" width="80%"><b>{CATEGORY}</b></td>
@@ -138,6 +121,10 @@ $template_cat_list = <<<EOT
                 <td class="tableb" align="center">{ALB_COUNT}</td>
                 <td class="tableb" align="center">{PIC_COUNT}</td>
         </tr>
+     <!--if (isset(CAT_ALBUMS)){-->
+          <tr>
+            <td class="tableb" colspan=3>{CAT_ALBUMS}</td>
+      </tr><!--};-->
 <!-- END catrow -->
 <!-- BEGIN footer -->
         <tr>
@@ -147,6 +134,28 @@ $template_cat_list = <<<EOT
 <!-- BEGIN spacer -->
         <img src="images/spacer.gif" width="1" height="17" alt="" /><br />
 <!-- END spacer -->
+
+EOT;
+
+//HTML template for the breadcrumb
+$template_breadcrumb = <<<EOT
+<!-- BEGIN breadcrumb -->
+        <tr>
+                <td colspan="3" class="tableh1"><span class="statlink"><b>{BREADCRUMB}</b></span></td>
+        </tr>
+<!-- END breadcrumb -->
+<!-- BEGIN breadcrumb_user_gal -->
+        <tr>
+                <td colspan="3" class="tableh1">
+                <table width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                        <td><span class="statlink"><b>{BREADCRUMB}</b></span></td>
+                        <td align="right"><span class="statlink"><b>{STATISTICS}</b></span></td>
+                </tr>
+                </table>
+                </td>
+        </tr>
+<!-- END breadcrumb_user_gal -->
 
 EOT;
 
@@ -932,24 +941,6 @@ function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
         global $template_cat_list, $lang_cat_list;
 
         starttable('100%');
-        if ($breadcrumb && count($cat_data)>0 || !$statistics) {
-
-                $template = template_extract_block($template_cat_list, 'breadcrumb');
-                $params = array(
-                        '{BREADCRUMB}' => $breadcrumb
-                );
-                echo template_eval($template, $params);
-
-        } elseif (count($cat_data) == 0 && $statistics) {
-
-                $template = template_extract_block($template_cat_list, 'breadcrumb_user_gal');
-                $params = array(
-                        '{BREADCRUMB}' => $breadcrumb,
-                        '{STATISTICS}' => $statistics,
-                );
-                echo template_eval($template, $params);
-
-        }
 
         if (count($cat_data)>0) {
                 $template = template_extract_block($template_cat_list, 'header');
@@ -970,10 +961,22 @@ function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
                                 '{CAT_DESC}' => $category[1]
                         );
                         echo template_eval($template_noabl, $params);
-                } else {
+                }
+                                elseif (isset($category['cat_albums'])&&($category['cat_albums']!='')){
                         $params = array(
                                 '{CAT_TITLE}' => $category[0],
                                 '{CAT_DESC}' => $category[1],
+                                '{CAT_ALBUMS}'=>$category['cat_albums'],
+                                                                '{ALB_COUNT}' => $category[2],
+                                '{PIC_COUNT}' => $category[3],
+                        );
+                        echo template_eval($template, $params);
+                }
+                                else {
+                        $params = array(
+                                '{CAT_TITLE}' => $category[0],
+                                '{CAT_DESC}' => $category[1],
+                                                '{CAT_ALBUMS}'=>'',
                                 '{ALB_COUNT}' => $category[2],
                                 '{PIC_COUNT}' => $category[3],
                         );
@@ -992,6 +995,21 @@ function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
                 echo template_extract_block($template_cat_list, 'spacer');
 }
 
+function theme_display_breadcrumb($breadcrumb,&$cat_data)
+{
+/*** added breadcrumb as a seperate element */
+        global $template_breadcrumb, $lang_breadcrumb;
+
+        starttable('100%');
+        if ($breadcrumb) {
+                $template = template_extract_block($template_breadcrumb, 'breadcrumb');
+                $params = array(
+                        '{BREADCRUMB}' => $breadcrumb
+                );
+                echo template_eval($template, $params);
+
+        }
+}
 
 function theme_display_album_list(&$alb_list,$nbAlb, $cat, $page, $total_pages)
 {
