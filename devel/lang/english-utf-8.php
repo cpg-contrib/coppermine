@@ -823,6 +823,7 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
 	'album' => 'Album',
 	'picture' => 'Picture',
 	'pic_title' => 'Picture title',
+	'caption' => 'Picture caption',
 	'description' => 'Picture description',
 	'keywords' => 'Keywords (separate with spaces)',
 	'err_no_alb_uploadables' => 'Sorry there is no album where you are allowed to upload pictures',
