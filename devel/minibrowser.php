@@ -168,7 +168,7 @@ if ($linktarget != '') {
     $allowed_file_counter = 0;
     if (is_array($filename)) {
         foreach ($filename as $value) {
-          if(in_array(ltrim(strrchr($value,'.'),'.'), $filetypes)) {
+          if(in_array(ltrim(strrchr(strtolower($value),'.'),'.'), $filetypes)) {
               $allowed_file_counter++;
           } // end if in_array
         } // end foreach
