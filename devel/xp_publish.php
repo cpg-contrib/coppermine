@@ -541,7 +541,7 @@ function form_login()
     global $lang_login_php, $lang_xp_publish_php;
 
 
-    if (defined('UDB_INTEGRATION')) {
+    if (UDB_INTEGRATION != 'coppermine') {
         echo '<p>' . $lang_xp_publish_php['need_login'] . '</p>';
         $ONNEXT_SCRIPT = '';
         $ONBACK_SCRIPT = 'window.external.FinalBack();';
@@ -570,13 +570,8 @@ function process_login()
     global $template_login_success, $template_login_failure;
     global $lang_login_php;
 
-    $results = cpg_db_query("SELECT user_id, user_name, user_password FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '" . addslashes($_POST['username']) . "' AND BINARY user_password = '" . addslashes($_POST['password']) . "' AND user_active = 'YES'");
-    if (mysql_num_rows($results)) {
+    if ( $USER_DATA = $cpg_udb->login(addslashes($_POST['username']), addslashes($_POST['password'])) ) {
         $USER_DATA = mysql_fetch_array($results);
-
-        $cookie_life_time = 86400;
-        setcookie($CONFIG['cookie_name'] . '_uid', $USER_DATA['user_id'], time() + $cookie_life_time, $CONFIG['cookie_path']);
-        setcookie($CONFIG['cookie_name'] . '_pass', md5($_POST['password']), time() + $cookie_life_time, $CONFIG['cookie_path']);
         $USER['am'] = 1;
         user_save_profile();
 
@@ -728,18 +723,18 @@ function process_picture()
         $category = $row['category'];
     }
 
-     // Get position
-     $result = cpg_db_query("SELECT position FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' order by position desc");
-     if (mysql_num_rows($result) == 0) {
+    // Get position
+    $result = cpg_db_query("SELECT position FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' order by position desc");
+    if (mysql_num_rows($result) == 0) {
              $position = 100;
-     } else {
+    } else {
              $row = mysql_fetch_array($result);
              mysql_free_result($result);
                      if ($row['position']) {
                      $position = $row['position'];
                              $position++;
-                     }
-             }
+					 }
+    }
 
 
     // Test if the filename of the temporary uploaded picture is empty

@@ -41,7 +41,7 @@ class core_udb {
 			}
 		}
 	}
-
+	
 	function authenticate()
 	{
 		global $USER_DATA;
@@ -587,6 +587,21 @@ class core_udb {
 			print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="submit" /> (4)';
 			print '</form>';
 		}
+	}
+
+	// Taken from Mambo (com_registration.php)
+	function make_password(){
+		$makepass="";
+		$salt = "abchefghjkmnpqrstuvwxyz0123456789";
+		srand((double)microtime()*1000000);
+		$i = 0;
+		while ($i <= 7) {
+			$num = rand() % 33;
+			$tmp = substr($salt, $num, 1);
+			$makepass = $makepass . $tmp;
+			$i++;
+		}
+		return ($makepass);
 	}
 
 	function session_extraction() {

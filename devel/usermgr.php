@@ -652,12 +652,12 @@ function update_user($user_id)
     $user_name = addslashes(trim($_POST['user_name']));
     $user_password = addslashes(trim($_POST['user_password']));
     $user_email = addslashes(trim($_POST['user_email']));
-        $profile1 = addslashes($_POST['user_profile1']);
-        $profile2 = addslashes($_POST['user_profile2']);
-        $profile3 = addslashes($_POST['user_profile3']);
-        $profile4 = addslashes($_POST['user_profile4']);
-        $profile5 = addslashes($_POST['user_profile5']);
-        $profile6 = addslashes($_POST['user_profile6']);
+    $profile1 = addslashes($_POST['user_profile1']);
+    $profile2 = addslashes($_POST['user_profile2']);
+    $profile3 = addslashes($_POST['user_profile3']);
+    $profile4 = addslashes($_POST['user_profile4']);
+    $profile5 = addslashes($_POST['user_profile5']);
+    $profile6 = addslashes($_POST['user_profile6']);
     $user_active = $_POST['user_active'];
     $user_group = $_POST['user_group'];
     $group_list = isset($_POST['group_list']) ? $_POST['group_list'] : '';
@@ -682,8 +682,20 @@ function update_user($user_id)
         $user_group_list = '';
     }
 
-    $sql_update = "UPDATE {$CONFIG['TABLE_USERS']} " . "SET " . "user_name           = '$user_name', " . "user_email          = '$user_email', " . "user_active    = '$user_active', " . "user_group           = '$user_group', " . "user_profile1 = '$profile1', " . "user_profile2 = '$profile2', " . "user_profile3 = '$profile3', " . "user_profile4 = '$profile4', " . "user_profile5 = '$profile5', " . "user_profile6 = '$profile6', " . "user_group_list      = '$user_group_list'";
-    if (strlen($user_password)) $sql_update .= ", user_password = '$user_password'";
+    $sql_update = "UPDATE {$CONFIG['TABLE_USERS']} SET " .
+                  "user_name = '$user_name', " . 
+				  "user_email = '$user_email', " . 
+				  "user_active = '$user_active', " . 
+				  "user_group = '$user_group', " . 
+				  "user_profile1 = '$profile1', " . 
+				  "user_profile2 = '$profile2', " . 
+				  "user_profile3 = '$profile3', " . 
+				  "user_profile4 = '$profile4', " . 
+				  "user_profile5 = '$profile5', " . 
+				  "user_profile6 = '$profile6', " . 
+				  "user_group_list = '$user_group_list'";
+				  
+    if (strlen($user_password)) $sql_update .= ", user_password = '".($CONFIG['enable_encrypted_passwords'])?md5($user_password):$user_password."'";
     $sql_update .= " WHERE user_id = '$user_id'";
 
     cpg_db_query($sql_update);

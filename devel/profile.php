@@ -214,9 +214,13 @@ if (isset($_POST['change_password']) && USER_ID && UDB_INTEGRATION == 'coppermin
     if (strlen($new_pass) < 2) cpg_die(ERROR, $lang_register_php['err_password_short'], __FILE__, __LINE__);
     if ($new_pass != $new_pass_again) cpg_die(ERROR, $lang_register_php['err_password_mismatch'], __FILE__, __LINE__);
 
+	if ($CONFIG['enable_encrypted_passwords']) {
+		$new_pass = md5($new_pass);
+	}
+
     $sql = "UPDATE {$cpg_udb->usertable} SET " .
            $cpg_udb->field['password']." = '$new_pass' " .
-           "WHERE {$cpg_udb->field['user_id']} = '" . USER_ID . "' AND BINARY {$cpg->udb->['password']} = '$current_pass'";
+           "WHERE {$cpg_udb->field['user_id']} = '" . USER_ID . "' AND BINARY {$cpg_udb->field['password']} = '$current_pass'";
 
     $result = cpg_db_query($sql);
     if (!mysql_affected_rows()) cpg_die(ERROR, $lang_register_php['pass_chg_error'], __FILE__, __LINE__);

@@ -768,6 +768,11 @@ function create_form(&$data)
                 case 17 :
                     form_asc_desc($element[0], $element[1], $element[3]);
                     break;
+                case 18 :
+					if (!$CONFIG['enable_encrypted_passwords'] && UDB_INTEGRATION=='coppermine') {
+						form_yes_no($element[0], $element[1], $element[3]);
+					}
+					break;
                 default:
                     die('Invalid action');
             } // switch
@@ -814,6 +819,9 @@ if (count($_POST) > 0) {
                 if ($CONFIG[$element[1]] !== stripslashes($value))
                      {
                         cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = '{$element[1]}'");
+						if ($element[1]=='enable_encrypted_passwords' && $value) {
+							cpg_db_query("update {$CONFIG['TABLE_USERS']} set user_password=md5(user_password);");
+						}
                         if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
                                 log_write('CONFIG UPDATE SQL: '.
                                           "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = '{$element[1]}'\n".

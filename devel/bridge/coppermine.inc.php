@@ -95,7 +95,54 @@ class cpg_udb extends core_udb {
 		// Connect to db
 		$this->connect($CONFIG['LINK_ID']);
 	}
+	
+	function login( $username = null, $password = null, $remember = false ) {
+		global $CONFIG;
+		
+		if ($CONFIG['enable_encrypted_passwords']) {
+			$encpassword = md5($password);
+		} else {
+			$encpassword = $password;
+		}
+		
+		$sql =  "SELECT user_id, user_name, user_password FROM {$this->usertable} WHERE ";
+		$sql .= "user_name = '$username' AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
 
+		$results = cpg_db_query($sql);
+		
+		if ($results) {
+			$sql =  "UPDATE {$this->usertable} SET user_lastvisit = NOW() ";
+			$sql .= "WHERE user_name = '$username' AND BINARY user_password = '$encpassword' AND user_active = 'YES'";
+			
+			$lastvisit = cpg_db_query($sql);
+
+			$USER_DATA = mysql_fetch_array($results);
+			mysql_free_result($results);
+
+			if ($remember) {
+				$cookie_life_time = 86400 * 30;
+			} else {
+				$cookie_life_time = 86400;
+			}
+	
+			setcookie($CONFIG['cookie_name'] . '_uid', $USER_DATA['user_id'], time() + $cookie_life_time, $CONFIG['cookie_path']);
+			setcookie($CONFIG['cookie_name'] . '_pass', md5($password), time() + $cookie_life_time, $CONFIG['cookie_path']);
+			
+			return $USER_DATA;
+		} else {
+
+			return false;
+		}
+	}
+	
+	function logout() {
+	    global $CONFIG;
+
+        setcookie($CONFIG['cookie_name'] . '_pass', '', time()-86400, $CONFIG['cookie_path']);
+        setcookie($CONFIG['cookie_name'] . '_uid', '', time()-86400, $CONFIG['cookie_path']);
+    }
+	
+	
 	// Get groups of which user is member
 	function get_groups($row)
 	{
@@ -136,7 +183,13 @@ class cpg_udb extends core_udb {
 	// definition of actions required to convert a password from user database form to cookie form
 	function udb_hash_db($password)
 	{
-		return md5($password);
+		global $CONFIG;
+		
+		if ($CONFIG['enable_encrypted_passwords']) {
+			return $password;
+		} else {
+			return md5($password);
+		}
 	}
 
 	/*
@@ -172,9 +225,10 @@ class cpg_udb extends core_udb {
 	function login_page()
 	{	}
 
-	function logout_page()
-	{	}
-	
+	function logout_page() {
+	    $this->logout();
+    }
+
 	function synchronize_groups()
 	{   }
 }
