@@ -590,7 +590,7 @@ EOT;
 $template_display_picture = <<<EOT
         <tr>
                 <td align="center" class="tableb" height="{CELL_HEIGHT}" style="white-space: nowrap; padding: 0px;">
-                        <table cellspacing="2" cellpadding="0" style="border: 1px solid #000000; background-color: #5B5B5B; margin-top: 30px; margin-bottom: 30px;">
+                        <table cellspacing="2" cellpadding="0" class="imageborder">
                                 <tr>
                                         <td>
                                                 {IMAGE}

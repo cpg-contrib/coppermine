@@ -48,6 +48,13 @@ body { background-color: #000000; }
 
 .image { border: 1px solid #FFFFFF; }
 
+.imageborder {
+    border: 1px solid #000000;
+    background-color: #FFFFFF;
+    margin-top: 14px;
+    margin-bottom: 10px;
+    }
+
 .maintable, .maintableb { background-color: #000000; }
 
 .img_caption_table th, .img_caption_table td { border-top : 1px solid #000000; }

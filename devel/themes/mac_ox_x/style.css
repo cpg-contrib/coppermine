@@ -46,6 +46,8 @@ body { background-color: #FAFAFA; }
 
 .image { border: 1px solid #000000; }
 
+.imageborder { border: 1px solid #000000; background-color: #FFFFFF; margin-top: 30px; margin-bottom: 30px; }
+
 .maintable, .maintableb { background-color: #7F7F7F; }
 
 .img_caption_table th, .img_caption_table td { border-top : 1px solid #7F7F7F; }

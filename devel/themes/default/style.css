@@ -368,6 +368,13 @@ bblink a:hover {
         margin: 2px;
 }
 
+.imageborder {
+        border: 1px solid #000000;
+        background-color: #FFFFFF;
+        margin-top: 30px;
+        margin-bottom: 30px;
+}
+
 .thumbnails {
         background: #EFEFEF ;
         padding: 5px;

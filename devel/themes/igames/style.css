@@ -22,6 +22,7 @@ body { background-color: #4A4A4A; }
 /* Borders for input controls */
 .textinput, .listbox, .button, .comment_button, .admin_menu, .admin_menu_thumb  {        border: 1px solid #666666; }
 .image { border: 1px solid #000000; }
+.imageborder { border: 1px solid #000000; background-color:#000000; margin-top: 30px; margin-bottom: 30px; }
 .image1 { border: 1px solid #ff0000; }
 
 .maintable, .maintablea, .maintableb {        background-color: #222222; }
