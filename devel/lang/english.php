@@ -325,7 +325,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Gallery description', 'gallery_description', 0),
         array('Gallery administrator email', 'gallery_admin_email', 0),
 	array('Email notification of comments, send at administrator email ', 'comment_email_notification', 1),
-        array('Target address for the \'See more pictures\' link in e-cards', 'ecards_more_pic_target', 0),
+        array('Server and directory of coppermine install<br>ie http://mysite.com/coppermine or http://mysite.com <b>no trailing slash</b>', 'ecards_more_pic_target', 0),
         array('Language', 'lang', 5),
         array('Theme', 'theme', 6),
 
