@@ -78,19 +78,12 @@ function adjust_popup()
         window.moveTo((screen.availWidth-w)/2, (screen.availHeight-h)/2);
 }
 
-
-
-
-
-
-
-
-
-
 ///////////////////////////////////
+// disable right-click start///////
 function clickIE4(){
 if (event.button==2){
-//alert(message);
+// uncomment below line to display a message
+// alert(message);
 return false;
 }
 }
@@ -98,6 +91,7 @@ return false;
 function clickNS4(e){
 if (document.layers||document.getElementById&&!document.all){
 if (e.which==2||e.which==3){
+// uncomment below line to display a message
 //alert(message);
 return false;
 }
@@ -111,20 +105,8 @@ document.onmousedown=clickNS4;
 else if (document.all&&!document.getElementById){
 document.onmousedown=clickIE4;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+// disable right-click end/////////
+///////////////////////////////////
 
 function disableselect(e){
 return false
@@ -134,12 +116,8 @@ function reEnable(){
 return true
 }
 
-
-
-
-
-
-
+///////////////////////////////////
+// disable new window start////////
 function onKeyDown() {
  // current pressed key
  var pressedKey = String.fromCharCode(event.keyCode).toLowerCase();
@@ -149,7 +127,10 @@ function onKeyDown() {
                         event.keyCode == "104")) {
    // disable key press porcessing
    event.returnValue = false;
-   //alert if required using alert("Cant use Ctrl + n")
+   //uncomment below line to display a message
+   //alert("Cant use Ctrl + n");
  }
 
 } // onKeyDown
+// disable new window end//////////
+///////////////////////////////////
