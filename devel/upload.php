@@ -2295,11 +2295,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
                 cpg_send_upload_notification();
                 function cpg_send_upload_notification() {
                     global $CONFIG;
-                    if (isset($CONFIG['default_lang'])) {
-                        $language = $CONFIG['default_lang'];
-                    } else {
-                        $language = $CONFIG['lang'];
-                    }
+                    $lang_db_input_php = cpg_get_default_lang('lang_db_input_php');
                     include('lang/'.$language.'.php');
                     // Get the mail files.
                     include_once('include/mailer.inc.php');
