@@ -23,7 +23,7 @@ define('COPPERMINE_VERSION_STATUS', 'alpha');
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 
 // Store all reported errors in the $cpgdebugger
-require_once('include/debugger.inc');
+require_once('include/debugger.inc.php');
 
 set_magic_quotes_runtime(0);
 // used for timing purpose

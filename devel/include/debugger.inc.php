@@ -1,22 +1,22 @@
 <?php
-/*********************************************
-  CPG-NUKE: Advanced Content Management System
-  ********************************************
-  Copyright (c) 2004 by CPG-Nuke Dev Team
-  http://www.cpgnuke.com
+// ------------------------------------------------------------------------- //
+// Coppermine Photo Gallery 1.4.0                                            //
+// ------------------------------------------------------------------------- //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
+// http://www.chezgreg.net/coppermine/                                       //
+// ------------------------------------------------------------------------- //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
+// ------------------------------------------------------------------------- //
+// This program is free software; you can redistribute it and/or modify      //
+// it under the terms of the GNU General Public License as published by      //
+// the Free Software Foundation; either version 2 of the License, or         //
+// (at your option) any later version.                                       //
+// ------------------------------------------------------------------------- //
+// $Id$
+// ------------------------------------------------------------------------- //
 
-  CPG-Nuke is released under the terms and conditions
-  of the GNU GPL version 2 or any later version
-
-  This file slightly modified to work with the
-  standalone Coppermine http://coppermine.sourceforge.net
-
-  $Source$
-  $Revision$
-  $Author$
-  $Date$
-
-***********************************************************************/
 if (!defined('E_STRICT')) {
     define('E_STRICT', 2048); // PHP 5
 }
