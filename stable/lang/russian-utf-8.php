@@ -17,12 +17,12 @@
 // info about translators and translated language 
 $lang_translation_info = array( 
 'lang_name_english' => 'Russian',  //the name of your language in English, e.g. 'Greek' or 'Spanish' 
-'lang_name_native' => '', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espa&ntilde;ol' 
+'lang_name_native' => 'Ðóññêèé', //the name of your language in your mother tongue (for non-latin alphabets, use unicode) 
 'lang_country_code' => 'ru', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es' 
-'trans_name'=> '?', //the name of the translator - can be a nickname 
-'trans_email' => '', //translator's email address (optional) 
-'trans_website' => '', //translator's website (optional) 
-'trans_date' => '2003-10-07', //the date the translation was created / last modified 
+'trans_name'=> 'Ejik', //the name of the translator - can be a nickname 
+'trans_email' => 'ejik@rbcmail.ru', //translator's email address (optional) 
+'trans_website' => 'http://counterstrike.ru', //translator's website (optional) 
+'trans_date' => '2003-11-03', //the date the translation was created / last modified 
 ); 
 
 $lang_charset = 'windows-1251';
@@ -55,15 +55,16 @@ $comment_date_fmt =  '%B %d, %Y at %I:%M %p';
 // For the word censor
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
 
-$lang_meta_album_names = array(
-	'random' => 'Êàðòèíêà íà õàëÿâó',
-	'lastup' => 'Ïîñëåäíèå ïîïîëíåíèÿ',
-	'lastcom' => 'Ïîñëåäíèå êîììåíòàðèè',
-	'topn' => 'Ñàìûå ïîïóëÿðíûå',
-	'toprated' => 'Ëó÷øèå ïî ðåéòèíãó',
-	'lasthits' => 'Ïîñëåäíèå ïîêàçû',
-	'search' => 'Ðåçóëüòàòû ïîèñêà',
-        'favpics'=> 'Favourite Pictures', //new in cpg1.2.0
+$lang_meta_album_names = array( 
+        'random' => 'Ñëó÷àéíûå ôîòî', 
+        'lastup' => 'Ïîñëåäíèé äîáàâëåíèÿ', 
+        'lastalb'=> 'Ïîñëåäíåå îáíîâëåíèå àëüáîìà', 
+        'lastcom' => 'Ïîñëåäíèå êîììåíòàðèè', 
+        'topn' => '×àñòî ïðîñìàòðèâàåìûå', 
+        'toprated' => 'Ëó÷øèå ïî ðåéòèíãó', 
+        'lasthits' => 'Ïîñëåäíèå ïðîñìîòðåííûå', 
+        'search' => 'Ðåçóëüòàòû ïîèñêà', 
+        'favpics'=> 'Èçáðàííûå',
 );
 
 $lang_errors = array(
@@ -80,9 +81,9 @@ $lang_errors = array(
 	'orphan_cat' => 'A category has a non-existing parent, runs the category manager to correct the problem.',
 	'directory_ro' => 'Directory \'%s\' is not writable, pictures can\'t be deleted',
 	'non_exist_comment' => 'The selected comment does not exist.',
-	'pic_in_invalid_album' => 'Picture is in a non existant album (%s)!?',
-        'banned' => 'You are currently banned from using this site.',  //new in cpg1.2.0
-        'not_with_udb' => 'This function is disabled in Coppermine because it is integrated with forum software. Either what you are trying to do is not supported in this configuration, or the function should be handled by the forum software.',  //new in cpg1.2.0
+	'pic_in_invalid_album' => 'Ôîòî íàõîäèòñÿ â íåñóùåñòâóþùåì àëüáîìå (%s)!?', 
+        'banned' => 'Âû çàáàíåíû íà ýòîì ñàéòå.', 
+        'not_with_udb' => 'Ýòà ôóíêöèÿ âûêëþ÷åíà â Coppermine, ïîòîìó÷òî îáúåäèíåíà ñ ôîðóìîì. Èëè òî, ÷òî âû ïûòàåòåñü ñäåëàòü, íå ïîääåðæèâàåòñÿ â ýòîé êîíôèãóðàöèè, èëè ýòà ôóíêöèÿ äîëæíû áûòü îáðàáîòàíà ôîðóìîì.', 
 );
 
 // ------------------------------------------------------------------------- //
@@ -110,7 +111,7 @@ $lang_main_menu = array(
 	'topn_lnk' => 'Ñàìûå ïîïóëÿðíûå',
 	'toprated_lnk' => 'Ëó÷øèå ïî ðåéòèíãó',
 	'search_lnk' => 'Ïîèñê',
-        'fav_lnk' => 'My Favorites', //new in cpg1.2.0
+        'fav_lnk' => 'Èçáðàííûå', 
 );
 
 $lang_gallery_admin_menu = array(
@@ -122,8 +123,8 @@ $lang_gallery_admin_menu = array(
 	'groups_lnk' => 'Groups',
 	'comments_lnk' => 'Comments',
 	'searchnew_lnk' => 'Batch add pictures',
-        'util_lnk' => 'Resize pictures',  //new in cpg1.2.0
-        'ban_lnk' => 'Ban Users',  //new in cpg1.2.0
+        'util_lnk' => 'Èçìåíèòü ðàçìåð', //new in cpg1.2.0
+        'ban_lnk' => 'Áàí ïîëüçîâàòåëåé',//new in cpg1.2.0
 );
 
 $lang_user_admin_menu = array(
@@ -145,14 +146,14 @@ $lang_album_list = array(
 $lang_thumb_view = array(
 	'date' => 'Äàòà',
         //Sort by filename and title
-        'name' => 'Èìÿ', //new in cpg1.2.0
-        'title' => 'TITLE', //new in cpg1.2.0
+        'name' => 'Èìÿ ôàèëà', //new in cpg1.2.0
+        'title' => 'Íàçâàíèåå',//new in cpg1.2.0
 	'sort_da' => 'Sort by date ascending',
 	'sort_dd' => 'Sort by date descending',
 	'sort_na' => 'Sort by name ascending',
 	'sort_nd' => 'Sort by name descending',
-        'sort_ta' => 'Sort by title ascending',  //new in cpg1.2.0
-        'sort_td' => 'Sort by title descending',  //new in cpg1.2.0
+        'sort_ta' => 'Ñîðò. ïî íàçâàíèþ [âîçâðàñòàíèå]', 
+        'sort_td' => 'Ñîðò. ïî íàçâàíèþ [óáûâàíèå]',  //new in cpg1.2.0
 	'pic_on_page' => '%d pictures on %d page(s)',
 	'user_on_page' => '%d users on %d page(s)'
 );
@@ -321,8 +322,8 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
 	'restore_success' => 'Coppermine default configuration restored',
 	'name_a' => 'Name ascending',
 	'name_d' => 'Name descending',
-        'title_a' => 'Title ascending',  //new in cpg1.2.0
-        'title_d' => 'Title descending',  //new in cpg1.2.0
+        'title_a' => 'Íàçâàíèå ïî âîçâðàñòàíèþ', 
+        'title_d' => 'Íàçâàíèå ïî óûâàíèþ',
 	'date_a' => 'Date ascending',
 	'date_d' => 'Date descending',
         'th_any' => 'Max Aspect',
@@ -346,7 +347,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Number of columns for the album list', 'album_list_cols', 0),
 	array('Size of thumbnails in pixels', 'alb_list_thumb_size', 0),
 	array('The content of the main page', 'main_page_layout', 0),
-        array('Show first level album thumbnails in categories','first_level',1),  //new in cpg1.2.0
+        array('Ïîêàçàòü ñíà÷àëà ïåðâûé óðîâåíü ýêñèçà â êàòåãîðèÿõ','first_level',1),  //new in cpg1.2.0
 
 	'Thumbnail view',
 	array('Number of columns on thumbnail page', 'thumbcols', 0),
@@ -366,13 +367,13 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Max number of characters in a word', 'max_com_wlength', 0),
 	array('Max number of lines in a comment', 'max_com_lines', 0),
 	array('Maximum length of a comment', 'max_com_size', 0),
-        array('Show film strip', 'display_film_strip', 1),  //new in cpg1.2.0
-        array('Number of items in film strip', 'max_film_strip_items', 0), 
+        array('Ïîêàçûâàòü ëåíòó êàðòèíîê', 'display_film_strip', 1), 
+        array('Êîëè÷åñòâî êàðòèíîê â ëåíòå', 'max_film_strip_items', 0), 
 
 	'Pictures and thumbnails settings',
 	array('Quality for JPEG files', 'jpeg_qual', 0),
-        array('Max dimension of a thumbnail <b>*</b>', 'thumb_width', 0),  //new in cpg1.2.0
-        array('Use dimension ( width or height or Max aspect for thumbnail )<b>*</b>', 'thumb_use', 7),  //new in cpg1.2.0
+        array('Ìàêñèìàëüíûé ðàçìåð ýêñèçà <b>*</b>', 'thumb_width', 0), 
+        array('Èñïîëüçîâàòü ðàçìåð ( äëèííà èëè âûñîòà èëè ìàêñèìàëüíàÿ ñòîðîíà ýêñèçà )<b>*</b>', 'thumb_use', 7),  //new in cpg1.2.0
 	array('Create intermediate pictures','make_intermediate',1),
 	array('Max width or height of an intermediate picture <b>*</b>', 'picture_width', 0),
 	array('Max size for uploaded pictures (KB)', 'max_upl_size', 0),
@@ -391,7 +392,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Field 4 name', 'user_field4_name', 0),
 
 	'Pictures and thumbnails advanced settings',
-        array('Show private album Icon to unlogged user','show_private',1),  //new in cpg1.2.0
+        array('Ïîêàçàòü ñîáñòâåííûé àëüáîì íåçàðåãèñòðèðîâàííîìó ïîëüçîâàòåëþ','show_private',1),  //new in cpg1.2.0
 	array('Characters forbidden in filenames', 'forbiden_fname_char',0),
 	array('Accepted file extensions for uploaded pictures', 'allowed_file_extensions',0),
 	array('Method for resizing images','thumb_method',2),
@@ -508,10 +509,10 @@ $lang_picinfo = array(
 	'Aperture' => 'Aperture',
 	'Exposure time' => 'Exposure time',
 	'Focal length' => 'Focal length',
-	'Comment' => 'Comment',
-        'addFav' => 'Add to Fav',  //new in cpg1.2.0
-        'addFavPhrase' => 'Favourites',  //new in cpg1.2.0
-        'remFav' => 'Remove from Fav',  //new in cpg1.2.0
+        'Comment' => 'Êîìåíòàðèé', 
+        'addFav' => 'Äîáàâèòü â èçáðàííûå', 
+        'addFavPhrase' => 'Èçáðàííûå', 
+        'remFav' => 'Óäàëèòü èç èçáðàííûõ',  //new in cpg1.2.0
 );
 
 $lang_display_comments = array(
@@ -519,13 +520,13 @@ $lang_display_comments = array(
 	'edit_title' => 'Îòðåäàêòèðîâàòü',
 	'confirm_delete' => 'Òî÷íî óäàëèòü ?',
 	'add_your_comment' => 'Ïðîêîììåíòèðîâàòü',
-        'name'=>'Name',  //new in cpg1.2.0
-        'comment'=>'Comment',  //new in cpg1.2.0
-	'your_name' => 'Âàøå èìÿ',
+        'name' => 'Èìÿ', 
+        'comment' => 'Êîììåíòàðèé', 
+        'your_name' => 'Àíîíèìíî',
 );
 
 $lang_fullsize_popup = array( 
-        'click_to_close' => 'Click image to close this window',  //new in cpg1.2.0
+        'click_to_close' => 'Íàæìèòå íà êàðòèíêó, ÷òîáû çàêðûòü îêíî',  //new in cpg1.2.0
 );
 
 }
@@ -846,18 +847,18 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 
 
 // ------------------------------------------------------------------------- // 
-// File banning.php  //new in cpg1.2.0
+// File banning.php 
 // ------------------------------------------------------------------------- // 
 
 if (defined('BANNING_PHP')) $lang_banning_php = array( 
-                'title' => 'Ban Users', 
-                'user_name' => 'User Name', 
-                'ip_address' => 'IP Address', 
-                'expiry' => 'Expires (blank is permanent)', 
-                'edit_ban' => 'Save Changes', 
-                'delete_ban' => 'Delete', 
-                'add_new' => 'Add New Ban', 
-                'add_ban' => 'Add', 
+                'title' => 'Áàí ïîëüçîâàòåëåé', 
+                'user_name' => 'Âàøå èìÿ', 
+                'ip_address' => 'IP àäðåññ', 
+                'expiry' => 'Èñòåêàåò (åñëè ïóñòî - íåâñåãäà)', 
+                'edit_ban' => 'Ñîõðàíèòü èçìåíåíèÿ', 
+                'delete_ban' => 'Óäàëèòü', 
+                'add_new' => 'Äîáàâèòü íîâûé áàí', 
+                'add_ban' => 'Äîáàâèòü', 
 ); 
 
 // ------------------------------------------------------------------------- //
@@ -972,5 +973,56 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
         'delete_replace' => 'Deletes the original images replacing them with the sized versions', 
         'select_album' => 'Select album', 
 ); 
+
+// ------------------------------------------------------------------------- // 
+// File util.php 
+// ------------------------------------------------------------------------- // 
+
+if (defined('UTIL_PHP')) $lang_util_php = array( 
+        'title' => 'Èçìåíèòü ðàçìåð', 
+        'what_it_does' => '×òî ýòî äåëàåò', 
+        'what_update_titles' => 'Îáíîâèòü íàçâàíèå èç èìåíè ôàèëà', 
+        'what_delete_title' => 'Óäàëèòü íàçâàíèÿ', 
+        'what_rebuild' => 'Ïåðåñòðîèòü ýêñèçû è èçìåíèòü ðàçìåð ôîòî', 
+        'what_delete_originals' => 'Çàìåíà îðèãèíàëüíûõ ôîòî, ôîòêàìè ñ èçìåíåííûì ðàçìåðîì', 
+        'file' => 'Ôàèë', 
+        'title_set_to' => 'óñòàíîâëåíî íàçâàíèå â', 
+        'submit_form' => 'îòïðàâèòü', 
+        'updated_succesfully' => 'îáíîâëåíèå ïðîøëî óñïåøíî', 
+        'error_create' => 'ÎØÈÁÊÀ ñîçäàíèÿ', 
+        'continue' => 'Â ïðîöåññå ìíîãî êàðòèíîê', 
+        'main_success' => 'Ôàèë %s óñïåøíî èñïîëüçîâàëñÿ êàê ãëàâíàÿ êàðòèíêà', 
+        'error_rename' => 'Îøèáêà ïåðåìåíîâàíèÿ %s â %s', 
+        'error_not_found' => 'Ôàèë %s íå íàéäåí', 
+        'back' => 'íàçàä íà ãëàâíóþ', 
+        'thumbs_wait' => 'Îáíîâëåíèå ýêñèçîâ è/èëè èçìåíåíèÿ ðàçìåðîâ êàðòèíêè, ïîæàëóéñòà ïîäîæäèòå...', 
+        'thumbs_continue_wait' => 'Ïðîáîëæåíèå îáíîâëåíèÿ ýêñèçà è/èëè èçìåíåíèÿ ðàçìåðîâ êàðòèíêè...', 
+        'titles_wait' => 'Îáíîâëåíèå çàãîëîâêîâ, ïîæàëóéñòà ïîäîæäèòå...', 
+        'delete_wait' => 'Êäàëåíèå çàãîëîâêîâ, ïîæàëóéñòà ïîäîæäèòå...', 
+        'replace_wait' => 'Óäàëåíèå îðèãèíàëüíûõ è çàìåíà èçìåíåííûìè êàðòèíêàìè, ïîæàëóéñòà ïîäîæäèòå..', 
+        'instruction' => 'Áûñòðûå èíñòðóêöèè', 
+        'instruction_action' => 'Âûáåðèòå äåéñòâèå', 
+        'instruction_parameter' => 'Óñòàíîâèòü ïàðàìåòðû', 
+        'instruction_album' => 'Âûáðàòü àëüáîì, 
+        'instruction_press' => 'Íàæìèòå %s', 
+        'update' => 'Îáíîâëåíèå ýêñèçîâ è/èëè ðàçìåðîâ ôîòî', 
+        'update_what' => '×òî äîëæíî áûòü îáíîâëåíî', 
+        'update_thumb' => 'Òîëüêî ýêñèçû', 
+        'update_pic' => 'Òîëüêî èçìåíåíèå ðàçìåðîâ', 
+        'update_both' => 'Ýêñèçû è èçìåíåíèÿ ðàçìåðîâ', 
+        'update_number' => '×èñëî îáðàáîòàííûõ èçîáðàæåíèé', 
+        'update_option' => '(Ïîïðîáóéòå íàñòðîèòü îïöèþ íèæå, åñëè ó âàñ ïðîáëåìû ñ timeout)', 
+        'filename_title' => 'Èìÿ ôàèëà ? Íàçâàíèå êàðòèíêè', 
+        'filename_how' => 'Êàê äîëæíî áûòü èçìåíåíî èìÿ ôàèëà', 
+        'filename_remove' => 'Óäàëèòü â êîíöå .jpg è çàìåíèòü _ (ïîä÷åðêèâàíèå) ñ ïðîáåëàìè', 
+        'filename_euro' => 'Èçìåíèòü 2003_11_23_13_20_20.jpg íà 23/11/2003 13:20', 
+        'filename_us' => 'Èçìåíèòü 2003_11_23_13_20_20.jpg íà 11/23/2003 13:20', 
+        'filename_time' => 'Èçìåíèòü 2003_11_23_13_20_20.jpg íà 13:20', 
+        'delete' => 'Óäàëèòü íàçâàíèå êàðòèíêè è îðèãèíàëüíûé ðàçìåð ôîòî', 
+        'delete_title' => 'Óäàëèòü íàçâàíèå êàðòèíêè', 
+        'delete_original' => 'Óäàëèòü îðèãèíàëüíûé ðàçìåð êàðòèíêè', 
+        'delete_replace' => 'Çàìåíà îðèãèíàëüíûõ ôîòî, ôîòêàìè ñ èçìåíåííûì ðàçìåðîì', 
+        'select_album' => 'Âûáðàòü àëüáîì', 
+);
 
 ?>

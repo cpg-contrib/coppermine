@@ -17,12 +17,12 @@
 // info about translators and translated language 
 $lang_translation_info = array( 
 'lang_name_english' => 'Russian',  //the name of your language in English, e.g. 'Greek' or 'Spanish' 
-'lang_name_native' => '', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espa&ntilde;ol' 
+'lang_name_native' => 'Русский', //the name of your language in your mother tongue (for non-latin alphabets, use unicode) 
 'lang_country_code' => 'ru', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es' 
-'trans_name'=> '?', //the name of the translator - can be a nickname 
-'trans_email' => '', //translator's email address (optional) 
-'trans_website' => '', //translator's website (optional) 
-'trans_date' => '2003-10-07', //the date the translation was created / last modified 
+'trans_name'=> 'Ejik', //the name of the translator - can be a nickname 
+'trans_email' => 'ejik@rbcmail.ru', //translator's email address (optional) 
+'trans_website' => 'http://counterstrike.ru', //translator's website (optional) 
+'trans_date' => '2003-11-03', //the date the translation was created / last modified 
 ); 
 
 $lang_charset = 'windows-1251';
@@ -55,15 +55,16 @@ $comment_date_fmt =  '%B %d, %Y at %I:%M %p';
 // For the word censor
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
 
-$lang_meta_album_names = array(
-	'random' => 'Картинка на халяву',
-	'lastup' => 'Последние пополнения',
-	'lastcom' => 'Последние комментарии',
-	'topn' => 'Самые популярные',
-	'toprated' => 'Лучшие по рейтингу',
-	'lasthits' => 'Последние показы',
-	'search' => 'Результаты поиска',
-        'favpics'=> 'Favourite Pictures', //new in cpg1.2.0
+$lang_meta_album_names = array( 
+        'random' => 'Случайные фото', 
+        'lastup' => 'Последний добавления', 
+        'lastalb'=> 'Последнее обновление альбома', 
+        'lastcom' => 'Последние комментарии', 
+        'topn' => 'Часто просматриваемые', 
+        'toprated' => 'Лучшие по рейтингу', 
+        'lasthits' => 'Последние просмотренные', 
+        'search' => 'Результаты поиска', 
+        'favpics'=> 'Избранные',
 );
 
 $lang_errors = array(
@@ -80,9 +81,9 @@ $lang_errors = array(
 	'orphan_cat' => 'A category has a non-existing parent, runs the category manager to correct the problem.',
 	'directory_ro' => 'Directory \'%s\' is not writable, pictures can\'t be deleted',
 	'non_exist_comment' => 'The selected comment does not exist.',
-	'pic_in_invalid_album' => 'Picture is in a non existant album (%s)!?',
-        'banned' => 'You are currently banned from using this site.',  //new in cpg1.2.0
-        'not_with_udb' => 'This function is disabled in Coppermine because it is integrated with forum software. Either what you are trying to do is not supported in this configuration, or the function should be handled by the forum software.',  //new in cpg1.2.0
+	'pic_in_invalid_album' => 'Фото находится в несуществующем альбоме (%s)!?', 
+        'banned' => 'Вы забанены на этом сайте.', 
+        'not_with_udb' => 'Эта функция выключена в Coppermine, потомучто объединена с форумом. Или то, что вы пытаетесь сделать, не поддерживается в этой конфигурации, или эта функция должны быть обработана форумом.', 
 );
 
 // ------------------------------------------------------------------------- //
@@ -110,7 +111,7 @@ $lang_main_menu = array(
 	'topn_lnk' => 'Самые популярные',
 	'toprated_lnk' => 'Лучшие по рейтингу',
 	'search_lnk' => 'Поиск',
-        'fav_lnk' => 'My Favorites', //new in cpg1.2.0
+        'fav_lnk' => 'Избранные', 
 );
 
 $lang_gallery_admin_menu = array(
@@ -122,8 +123,8 @@ $lang_gallery_admin_menu = array(
 	'groups_lnk' => 'Groups',
 	'comments_lnk' => 'Comments',
 	'searchnew_lnk' => 'Batch add pictures',
-        'util_lnk' => 'Resize pictures',  //new in cpg1.2.0
-        'ban_lnk' => 'Ban Users',  //new in cpg1.2.0
+        'util_lnk' => 'Изменить размер', //new in cpg1.2.0
+        'ban_lnk' => 'Бан пользователей',//new in cpg1.2.0
 );
 
 $lang_user_admin_menu = array(
@@ -145,14 +146,14 @@ $lang_album_list = array(
 $lang_thumb_view = array(
 	'date' => 'Дата',
         //Sort by filename and title
-        'name' => 'Имя', //new in cpg1.2.0
-        'title' => 'TITLE', //new in cpg1.2.0
+        'name' => 'Имя фаила', //new in cpg1.2.0
+        'title' => 'Названиее',//new in cpg1.2.0
 	'sort_da' => 'Sort by date ascending',
 	'sort_dd' => 'Sort by date descending',
 	'sort_na' => 'Sort by name ascending',
 	'sort_nd' => 'Sort by name descending',
-        'sort_ta' => 'Sort by title ascending',  //new in cpg1.2.0
-        'sort_td' => 'Sort by title descending',  //new in cpg1.2.0
+        'sort_ta' => 'Сорт. по названию [возврастание]', 
+        'sort_td' => 'Сорт. по названию [убывание]',  //new in cpg1.2.0
 	'pic_on_page' => '%d pictures on %d page(s)',
 	'user_on_page' => '%d users on %d page(s)'
 );
@@ -321,8 +322,8 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
 	'restore_success' => 'Coppermine default configuration restored',
 	'name_a' => 'Name ascending',
 	'name_d' => 'Name descending',
-        'title_a' => 'Title ascending',  //new in cpg1.2.0
-        'title_d' => 'Title descending',  //new in cpg1.2.0
+        'title_a' => 'Название по возврастанию', 
+        'title_d' => 'Название по уыванию',
 	'date_a' => 'Date ascending',
 	'date_d' => 'Date descending',
         'th_any' => 'Max Aspect',
@@ -346,7 +347,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Number of columns for the album list', 'album_list_cols', 0),
 	array('Size of thumbnails in pixels', 'alb_list_thumb_size', 0),
 	array('The content of the main page', 'main_page_layout', 0),
-        array('Show first level album thumbnails in categories','first_level',1),  //new in cpg1.2.0
+        array('Показать сначала первый уровень эксиза в категориях','first_level',1),  //new in cpg1.2.0
 
 	'Thumbnail view',
 	array('Number of columns on thumbnail page', 'thumbcols', 0),
@@ -366,13 +367,13 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Max number of characters in a word', 'max_com_wlength', 0),
 	array('Max number of lines in a comment', 'max_com_lines', 0),
 	array('Maximum length of a comment', 'max_com_size', 0),
-        array('Show film strip', 'display_film_strip', 1),  //new in cpg1.2.0
-        array('Number of items in film strip', 'max_film_strip_items', 0), 
+        array('Показывать ленту картинок', 'display_film_strip', 1), 
+        array('Количество картинок в ленте', 'max_film_strip_items', 0), 
 
 	'Pictures and thumbnails settings',
 	array('Quality for JPEG files', 'jpeg_qual', 0),
-        array('Max dimension of a thumbnail <b>*</b>', 'thumb_width', 0),  //new in cpg1.2.0
-        array('Use dimension ( width or height or Max aspect for thumbnail )<b>*</b>', 'thumb_use', 7),  //new in cpg1.2.0
+        array('Максимальный размер эксиза <b>*</b>', 'thumb_width', 0), 
+        array('Использовать размер ( длинна или высота или максимальная сторона эксиза )<b>*</b>', 'thumb_use', 7),  //new in cpg1.2.0
 	array('Create intermediate pictures','make_intermediate',1),
 	array('Max width or height of an intermediate picture <b>*</b>', 'picture_width', 0),
 	array('Max size for uploaded pictures (KB)', 'max_upl_size', 0),
@@ -391,7 +392,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Field 4 name', 'user_field4_name', 0),
 
 	'Pictures and thumbnails advanced settings',
-        array('Show private album Icon to unlogged user','show_private',1),  //new in cpg1.2.0
+        array('Показать собственный альбом незарегистрированному пользователю','show_private',1),  //new in cpg1.2.0
 	array('Characters forbidden in filenames', 'forbiden_fname_char',0),
 	array('Accepted file extensions for uploaded pictures', 'allowed_file_extensions',0),
 	array('Method for resizing images','thumb_method',2),
@@ -508,10 +509,10 @@ $lang_picinfo = array(
 	'Aperture' => 'Aperture',
 	'Exposure time' => 'Exposure time',
 	'Focal length' => 'Focal length',
-	'Comment' => 'Comment',
-        'addFav' => 'Add to Fav',  //new in cpg1.2.0
-        'addFavPhrase' => 'Favourites',  //new in cpg1.2.0
-        'remFav' => 'Remove from Fav',  //new in cpg1.2.0
+        'Comment' => 'Коментарий', 
+        'addFav' => 'Добавить в избранные', 
+        'addFavPhrase' => 'Избранные', 
+        'remFav' => 'Удалить из избранных',  //new in cpg1.2.0
 );
 
 $lang_display_comments = array(
@@ -519,13 +520,13 @@ $lang_display_comments = array(
 	'edit_title' => 'Отредактировать',
 	'confirm_delete' => 'Точно удалить ?',
 	'add_your_comment' => 'Прокомментировать',
-        'name'=>'Name',  //new in cpg1.2.0
-        'comment'=>'Comment',  //new in cpg1.2.0
-	'your_name' => 'Ваше имя',
+        'name' => 'Имя', 
+        'comment' => 'Комментарий', 
+        'your_name' => 'Анонимно',
 );
 
 $lang_fullsize_popup = array( 
-        'click_to_close' => 'Click image to close this window',  //new in cpg1.2.0
+        'click_to_close' => 'Нажмите на картинку, чтобы закрыть окно',  //new in cpg1.2.0
 );
 
 }
@@ -846,18 +847,18 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 
 
 // ------------------------------------------------------------------------- // 
-// File banning.php  //new in cpg1.2.0
+// File banning.php 
 // ------------------------------------------------------------------------- // 
 
 if (defined('BANNING_PHP')) $lang_banning_php = array( 
-                'title' => 'Ban Users', 
-                'user_name' => 'User Name', 
-                'ip_address' => 'IP Address', 
-                'expiry' => 'Expires (blank is permanent)', 
-                'edit_ban' => 'Save Changes', 
-                'delete_ban' => 'Delete', 
-                'add_new' => 'Add New Ban', 
-                'add_ban' => 'Add', 
+                'title' => 'Бан пользователей', 
+                'user_name' => 'Ваше имя', 
+                'ip_address' => 'IP адресс', 
+                'expiry' => 'Истекает (если пусто - невсегда)', 
+                'edit_ban' => 'Сохранить изменения', 
+                'delete_ban' => 'Удалить', 
+                'add_new' => 'Добавить новый бан', 
+                'add_ban' => 'Добавить', 
 ); 
 
 // ------------------------------------------------------------------------- //
@@ -972,5 +973,56 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
         'delete_replace' => 'Deletes the original images replacing them with the sized versions', 
         'select_album' => 'Select album', 
 ); 
+
+// ------------------------------------------------------------------------- // 
+// File util.php 
+// ------------------------------------------------------------------------- // 
+
+if (defined('UTIL_PHP')) $lang_util_php = array( 
+        'title' => 'Изменить размер', 
+        'what_it_does' => 'Что это делает', 
+        'what_update_titles' => 'Обновить название из имени фаила', 
+        'what_delete_title' => 'Удалить названия', 
+        'what_rebuild' => 'Перестроить эксизы и изменить размер фото', 
+        'what_delete_originals' => 'Замена оригинальных фото, фотками с измененным размером', 
+        'file' => 'Фаил', 
+        'title_set_to' => 'установлено название в', 
+        'submit_form' => 'отправить', 
+        'updated_succesfully' => 'обновление прошло успешно', 
+        'error_create' => 'ОШИБКА создания', 
+        'continue' => 'В процессе много картинок', 
+        'main_success' => 'Фаил %s успешно использовался как главная картинка', 
+        'error_rename' => 'Ошибка переменования %s в %s', 
+        'error_not_found' => 'Фаил %s не найден', 
+        'back' => 'назад на главную', 
+        'thumbs_wait' => 'Обновление эксизов и/или изменения размеров картинки, пожалуйста подождите...', 
+        'thumbs_continue_wait' => 'Проболжение обновления эксиза и/или изменения размеров картинки...', 
+        'titles_wait' => 'Обновление заголовков, пожалуйста подождите...', 
+        'delete_wait' => 'Кдаление заголовков, пожалуйста подождите...', 
+        'replace_wait' => 'Удаление оригинальных и замена измененными картинками, пожалуйста подождите..', 
+        'instruction' => 'Быстрые инструкции', 
+        'instruction_action' => 'Выберите действие', 
+        'instruction_parameter' => 'Установить параметры', 
+        'instruction_album' => 'Выбрать альбом, 
+        'instruction_press' => 'Нажмите %s', 
+        'update' => 'Обновление эксизов и/или размеров фото', 
+        'update_what' => 'Что должно быть обновлено', 
+        'update_thumb' => 'Только эксизы', 
+        'update_pic' => 'Только изменение размеров', 
+        'update_both' => 'Эксизы и изменения размеров', 
+        'update_number' => 'Число обработанных изображений', 
+        'update_option' => '(Попробуйте настроить опцию ниже, если у вас проблемы с timeout)', 
+        'filename_title' => 'Имя фаила ? Название картинки', 
+        'filename_how' => 'Как должно быть изменено имя фаила', 
+        'filename_remove' => 'Удалить в конце .jpg и заменить _ (подчеркивание) с пробелами', 
+        'filename_euro' => 'Изменить 2003_11_23_13_20_20.jpg на 23/11/2003 13:20', 
+        'filename_us' => 'Изменить 2003_11_23_13_20_20.jpg на 11/23/2003 13:20', 
+        'filename_time' => 'Изменить 2003_11_23_13_20_20.jpg на 13:20', 
+        'delete' => 'Удалить название картинки и оригинальный размер фото', 
+        'delete_title' => 'Удалить название картинки', 
+        'delete_original' => 'Удалить оригинальный размер картинки', 
+        'delete_replace' => 'Замена оригинальных фото, фотками с измененным размером', 
+        'select_album' => 'Выбрать альбом', 
+);
 
 ?>
