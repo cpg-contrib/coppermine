@@ -563,7 +563,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Notify admin of user upload awaiting approval', 'upl_notify_admin_email', 1),
   array('Allow logged in users to view memberlist', 'allow_memberlist', 1),
   array('Allow users to change their email address in profile', 'allow_email_change', 1, 'f=index.htm&as=config_user_allow_email_change&ae=config_user_allow_email_change_end'), //cpg1.4.0
-  array('Number of failed login attemps untill temporary ban (to avoid brute force attacks)', 'login_treshold', 0, 'f=index.htm&as=config_user_login_start&ae=config_user_login_end'), //cpg1.4.0
+  array('Number of failed login attemps untill temporary ban (to avoid brute force attacks)', 'login_threshold', 0, 'f=index.htm&as=config_user_login_start&ae=config_user_login_end'), //cpg1.4.0
   array('Duration of a temporary ban after failed logins', 'login_expiry', 0, 'f=index.htm&as=config_user_login_start&ae=config_user_login_end'), //cpg1.4.0
 
 // custom profile fields, (casper) 1.4 devel

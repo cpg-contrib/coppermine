@@ -67,7 +67,7 @@ if ($failed_logon_counter['brute_force']) {
     $failed_logon_counter['brute_force'] = $failed_logon_counter['brute_force'] - 1;
     $query_string = "UPDATE {$CONFIG['TABLE_BANNED']} SET brute_force='".$failed_logon_counter['brute_force']."',  expiry='".$expiry_date."' WHERE ban_id=".$failed_logon_counter['ban_id'];
 }else{
-    $failed_logon_counter['brute_force'] = $CONFIG['login_treshold'];
+    $failed_logon_counter['brute_force'] = $CONFIG['login_threshold'];
     $query_string = "INSERT INTO {$CONFIG['TABLE_BANNED']} (ip_addr, expiry, brute_force) VALUES ('$raw_ip', '$expiry_date','".$failed_logon_counter['brute_force']."')";
 }
 

@@ -144,7 +144,7 @@ INSERT INTO CPG_config VALUES ('enable_help', '2');
 
 INSERT INTO CPG_config VALUES ('categories_alpha_sort', '0');
 
-INSERT INTO CPG_config VALUES ('login_treshold', '5');
+INSERT INTO CPG_config VALUES ('login_threshold', '5');
 INSERT INTO CPG_config VALUES ('login_expiry', '10');
 
 
