@@ -16,25 +16,26 @@ var Pic = new Array() // don't touch this
 // to add more images, just continue
 // the pattern, adding to the array below
 <?php
-	$i = 0;
-	$j = 0;
-	$pid = (int)$HTTP_GET_VARS['pid'];
-	$start_img = '';
-	$pic_data = get_pic_data($HTTP_GET_VARS['album'], $pic_count, $album_name, -1, -1, false);
-	foreach ($pic_data as $picture){
-		if ($CONFIG['make_intermediate'] && max($picture['pwidth'], $picture['pheight']) > $CONFIG['picture_width'])  {
-		    $picture_url = get_pic_url($picture, 'normal');
-		} else {
-		    $picture_url = get_pic_url($picture, 'fullsize');
-		}
+$i = 0;
+$j = 0;
+$pid = (int)$HTTP_GET_VARS['pid'];
+$start_img = '';
+$pic_data = get_pic_data($HTTP_GET_VARS['album'], $pic_count, $album_name, -1, -1, false);
+foreach ($pic_data as $picture) {
+    if ($CONFIG['make_intermediate'] && max($picture['pwidth'], $picture['pheight']) > $CONFIG['picture_width']) {
+        $picture_url = get_pic_url($picture, 'normal');
+    } else {
+        $picture_url = get_pic_url($picture, 'fullsize');
+    } 
 
-		echo "Pic[$i] = '".$picture_url."'\n";
-		if ($picture['pid'] == $pid){
-			$j = $i;
-			$start_img = $picture_url;
-		}
-		$i++;
-	}
+    echo "Pic[$i] = '" . $picture_url . "'\n";
+    if ($picture['pid'] == $pid) {
+        $j = $i;
+        $start_img = $picture_url;
+    } 
+    $i++;
+} 
+
 ?>
 
 var t
@@ -75,7 +76,8 @@ function runSlideShow(){
 }
 
 function endSlideShow(){
-	self.document.location = 'displayimage.php?album=<?php echo isset($HTTP_GET_VARS['album']) ? $HTTP_GET_VARS['album'] : ''; echo isset($HTTP_GET_VARS['cat']) ? '&cat='.$HTTP_GET_VARS['cat'] : '' ?>&pos='+pos
+	self.document.location = 'displayimage.php?album=<?php echo isset($HTTP_GET_VARS['album']) ? $HTTP_GET_VARS['album'] : '';
+echo isset($HTTP_GET_VARS['cat']) ? '&cat=' . $HTTP_GET_VARS['cat'] : '' ?>&pos='+pos
 }
 
 preLoadPic(j)
