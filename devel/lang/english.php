@@ -171,7 +171,7 @@ $lang_thumb_view = array(
         'sort_nd' => 'Sort by name descending',
         'sort_ta' => 'Sort by title ascending',
         'sort_td' => 'Sort by title descending',
-	'download_zip' => 'Download as Zip file',
+        'download_zip' => 'Download as Zip file',
         'pic_on_page' => '%d files on %d page(s)',
         'user_on_page' => '%d users on %d page(s)'
 );
@@ -621,9 +621,9 @@ $lang_picinfo = array(
         'Exposure time' => 'Exposure time',
         'Focal length' => 'Focal length',
         'Comment' => 'Comment',
-        'addFav'=>'Add to Fav',
-        'addFavPhrase'=>'Favourites',
-        'remFav'=>'Remove from Fav',
+        'addFav'=>'Add to Favorites',
+        'addFavPhrase'=>'Favorites',
+        'remFav'=>'Remove from Favorites',
         'iptcTitle'=>'IPTC Title',
         'iptcCopyright'=>'IPTC Copyright',
         'iptcKeywords'=>'IPTC Keywords',
@@ -886,7 +886,8 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
         'owner_only' => 'Album owner (%s) only',
         'groupp_only' => 'Members of the \'%s\' group',
         'err_no_alb_to_modify' => 'No album you can modify in the database.',
-        'update' => 'Update album'
+        'update' => 'Update album',
+        'notice1' => '(*) depending on %sgroups%s settings',
 );
 
 // ------------------------------------------------------------------------- //

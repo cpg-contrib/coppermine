@@ -29,6 +29,10 @@ if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
 // 3 => Textarea
 // 4 => Album thumbnail
 // 5 => Album visibility
+
+// add footnote
+$notice1 = ' *';
+
 $captionLabel = $lang_modifyalb_php['alb_desc'];
 if ($CONFIG['show_bbcode_help']) {$captionLabel .= '<hr />'.$lang_bbcode_help;}
 $data = array($lang_modifyalb_php['general_settings'],
@@ -38,9 +42,9 @@ $data = array($lang_modifyalb_php['general_settings'],
     array($lang_modifyalb_php['alb_thumb'], 'thumb', 4),
     $lang_modifyalb_php['alb_perm'],
     array($lang_modifyalb_php['can_view'], 'visibility', 5),
-    array($lang_modifyalb_php['can_upload'], 'uploads', 1),
-    array($lang_modifyalb_php['can_post_comments'], 'comments', 1),
-    array($lang_modifyalb_php['can_rate'], 'votes', 1)
+    array($lang_modifyalb_php['can_upload'].$notice1, 'uploads', 1),
+    array($lang_modifyalb_php['can_post_comments'].$notice1, 'comments', 1),
+    array($lang_modifyalb_php['can_rate'].$notice1, 'votes', 1),
     );
 
 function get_subcat_data($parent, $ident = '')
@@ -98,8 +102,8 @@ function form_yes_no($text, $name)
     }
 
     $value = isset($ALBUM_DATA[$name]) ? $ALBUM_DATA[$name] : false;
-    $yes_selected = $value == 'YES' ? 'selected' : '';
-    $no_selected = $value == 'NO' ? 'selected' : '';
+    $yes_selected = $value == 'YES' ? 'checked="checked"' : '';
+    $no_selected = $value == 'NO' ? 'checked="checked"' : '';
 
     echo <<<EOT
         <tr>
@@ -107,10 +111,9 @@ function form_yes_no($text, $name)
                         $text
         </td>
         <td class="tableb" valign="top">
-                        <select name="$name" class="listbox">
-                                <option value="YES" $yes_selected>$lang_yes</option>
-                                <option value="NO" $no_selected>$lang_no</option>
-                        </select>
+                        <input type="radio" id="{$name}1" name="$name" value="YES" $yes_selected /><label for="{$name}1" class="clickable_option">$lang_yes</label>
+                        &nbsp;&nbsp;
+                        <input type="radio" id="{$name}0" name="$name" value="NO" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
                 </td>
         </tr>
 
@@ -417,6 +420,18 @@ echo <<<EOT
 EOT;
 create_form($data);
 echo <<<EOT
+<tr>
+        <td colspan="2" align="left" class="tablef">
+EOT;
+if (GALLERY_ADMIN_MODE) {
+printf($lang_modifyalb_php['notice1'],'<a href="groupmgr.php">','</a>');
+}
+else {
+printf($lang_modifyalb_php['notice1'],'','');
+}
+echo <<<EOT
+        </td>
+</tr>
 <tr>
         <td colspan="2" align="center" class="tablef">
         <input type="submit" class="button" value="{$lang_modifyalb_php['update']}">

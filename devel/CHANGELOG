@@ -77,3 +77,4 @@ Moved HTML format for image-borders from theme.php to style.css - 29th February 
 Added config option "debug output for admin only" - 2nd March 2004, GauGau
 Added multiple HTTP upload changes to the language file - 2nd March 2004, Hyperion
 Added Download Favourites as Zip file - 4th March 2004, Tarique
+Added footnote on album manager to explain group settings - 5th March 2004, GauGau
