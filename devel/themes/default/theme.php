@@ -604,9 +604,9 @@ $template_image_comments = <<<EOT
                                                 <form name="f{MSG_ID}" method="POST" action="db_input.php">
                                                 <input type="hidden" name="event" value="comment_update">
                                                 <input type="hidden" name="msg_id" value="{MSG_ID}">
-                                                <td> 
-                                                <input type=text name=msg_author value="{MSG_AUTHOR}" class="textinput" size=10> 
-                                                </td> 
+                                                <td>
+                                                <input type=text name=msg_author value="{MSG_AUTHOR}" class="textinput" size=10>
+                                                </td>
                                         </tr>
                                         <tr>
                                                 <td width="100%">
@@ -797,45 +797,7 @@ function pagefooter()
     global $template_footer;
 
     if ($CONFIG['debug_mode']) {
-        $time_end = getmicrotime();
-        $time = round($time_end - $time_start, 3);
-
-        $query_count = count($query_stats);
-        $query_times = '';
-        $total_query_time = 0;
-        foreach ($query_stats as $qtime) {
-            $query_times .= round($qtime, 3) . "s ";
-            $total_query_time += $qtime;
-        }
-        $total_query_time = round($total_query_time, 3);
-
-        starttable('100%', 'Debug info');
-        echo "<tr><td class=\"tableb\">";
-        echo "USER: <pre>";
-        print_r($USER);
-        echo "</pre></td></tr><td class=\"tableb\">";
-        echo "<tr><td class=\"tableb\">";
-        echo "USER DATA: <pre>";
-        print_r($USER_DATA);
-        echo "</pre></td></tr><td class=\"tableb\">";
-        echo "<tr><td class=\"tableb\">";
-        echo "Queries: <pre>";
-        print_r($queries);
-        echo "</pre></td></tr><td class=\"tableb\">";
-        echo "GET :<pre>";
-        print_r($HTTP_GET_VARS);
-        echo "</pre></td></tr><td class=\"tableb\">";
-        echo "POST :<pre>";
-        print_r($HTTP_POST_VARS);
-        echo "</pre></td></tr><td class=\"tableb\" >";
-        echo <<<EOT
-                Page generated in <b>$time</b> seconds - <b>$query_count</b> queries in <b>$total_query_time</b> seconds - Album set : $ALBUM_SET
-EOT;
-        echo "</td></tr>";
-        echo "<tr><td class=\"tableb\">";
-        echo "<a href=\"phpinfo.php\">Advanced debug mode</a> (phpinfo)";
-        echo "</td></tr>";
-        endtable();
+    cpg_debug_output();
     }
 
     echo $template_footer;
@@ -1020,14 +982,14 @@ function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
     foreach($cat_data as $category) {
         if (count($category) == 3) {
             $params = array('{CAT_TITLE}' => $category[0],
-	    	'{CAT_THUMB}' => $category['cat_thumb'],
+                    '{CAT_THUMB}' => $category['cat_thumb'],
                 '{CAT_DESC}' => $category[1]
                 );
             echo template_eval($template_noabl, $params);
         } elseif (isset($category['cat_albums']) && ($category['cat_albums'] != '')) {
             $params = array('{CAT_TITLE}' => $category[0],
                 '{CAT_THUMB}' => $category['cat_thumb'],
-		'{CAT_DESC}' => $category[1],
+                '{CAT_DESC}' => $category[1],
                 '{CAT_ALBUMS}' => $category['cat_albums'],
                 '{ALB_COUNT}' => $category[2],
                 '{PIC_COUNT}' => $category[3],
@@ -1036,7 +998,7 @@ function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
         } else {
             $params = array('{CAT_TITLE}' => $category[0],
                 '{CAT_THUMB}' => $category['cat_thumb'],
-		'{CAT_DESC}' => $category[1],
+                '{CAT_DESC}' => $category[1],
                 '{CAT_ALBUMS}' => '',
                 '{ALB_COUNT}' => $category[2],
                 '{PIC_COUNT}' => $category[3],
@@ -1365,7 +1327,7 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     }
 
     $cat_link = is_numeric($aid) ? '' : '&cat=' . $cat;
-	
+
     $thumbcols = $CONFIG['thumbcols'];
     $cell_width = ceil(100 / $CONFIG['max_film_strip_items']) . '%';
 
@@ -1389,8 +1351,8 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                 );
         }
         $thumb_strip .= template_eval($thumb_cell, $params);
-    } 
-    
+    }
+
     $params = array('{THUMB_STRIP}' => $thumb_strip,
         '{COLS}' => $i);
 

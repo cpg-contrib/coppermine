@@ -216,6 +216,11 @@ $lang_get_pic_data = array(
         'n_votes' => '(%s votes)'
 );
 
+$lang_cpg_debug_output = array(
+        'select_all' => 'Select All',
+        'copy_and_paste_instructions' => 'If you\'re going to request help on the coppermine support board, copy-and-paste this debug output into your posting.',
+);
+
 // ------------------------------------------------------------------------- //
 // File include/init.inc.php
 // ------------------------------------------------------------------------- //

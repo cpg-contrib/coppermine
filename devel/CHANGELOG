@@ -55,3 +55,4 @@ Added Breadcrumb for meta-albums -  8th November 2003, Tarique
 Added forgot my password link in login form - 9th November - GauGau
 Cosmetical fixes to util.php - 10th November 2003, GauGau
 Added picture ownername display as an admin setable option - 17th November 2003, Tarique
+Moved debug_output from themes to functions.inc.php with easy copy-and-paste option - 22nd November 2003, GauGau

@@ -8,7 +8,9 @@
 //  Based on PHPhotoalbum by Henning Stverud <henning@stoverud.com>         //
 //  http://www.stoverud.com/PHPhotoalbum/                                    //
 // ------------------------------------------------------------------------- //
-//  Hacked by Tarique Sani <tarique@sanisoft.com>                            //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -449,12 +451,12 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
                 $result = db_query("SELECT $select_columns from {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' $approved $ALBUM_SET ORDER BY $sort_order $limit");
                 $rowset = db_fetch_rowset($result);
-                mysql_free_result($result);		
+                mysql_free_result($result);
                 // Set picture caption
                 if ($set_caption) foreach ($rowset as $key => $row){
-		        
+
                         $caption = ($rowset[$key]['title']||$rowset[$key]['hits']) ? "<span class=\"thumb_title\">".$rowset[$key]['title'].(($rowset[$key]['title'])?"-":"").sprintf($lang_get_pic_data['n_views'], $rowset[$key]['hits'])."</span>" : '';
-			
+
                         if ($CONFIG['caption_in_thumbview']){
                            $caption .= $rowset[$key]['caption'] ? "<span class=\"thumb_caption\">".bb_decode(($rowset[$key]['caption']))."</span>" : '';
                         }
@@ -462,13 +464,13 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                                 $comments_nr = count_pic_comments($row['pid']);
                                 if ($comments_nr > 0) $caption .= "<span class=\"thumb_num_comments\">".sprintf($lang_get_pic_data['n_comments'], $comments_nr )."</span>";
                         }
-			
-			if ($CONFIG['display_uploader']){
-				$caption .= '<span class="thumb_title"><a href ="profile.php?uid='.$rowset[$key]['owner_id'].'">'.$rowset[$key]['owner_name'].'</a></span>';
-			}
-			
+
+                        if ($CONFIG['display_uploader']){
+                                $caption .= '<span class="thumb_title"><a href ="profile.php?uid='.$rowset[$key]['owner_id'].'">'.$rowset[$key]['owner_name'].'</a></span>';
+                        }
+
                         $rowset[$key]['caption_text'] = $caption;
-			
+
                 }
 
                 return $rowset;
@@ -1117,4 +1119,238 @@ function get_pic_url(&$pic_row, $mode)
 
         return $url_prefix[$pic_row['url_prefix']]. path2url($pic_row['filepath']. $pic_prefix[$mode]. $pic_row['filename']);
 }
+
+//defined new debug_output function here in functions.inc.php instead of theme.php with different function names to avoid incompatibilities with users not updating their themes as required. Advanced info is only output if (GALLERY_ADMIN_MODE == TRUE)  - GauGau 2003-11-23
+
+function cpg_debug_output()
+{
+    global $HTTP_GET_VARS, $HTTP_POST_VARS, $HTTP_SERVER_VARS;
+    global $USER, $USER_DATA, $ALBUM_SET, $CONFIG, $time_start, $query_stats, $queries, $lang_cpg_debug_output;
+        $time_end = getmicrotime();
+        $time = round($time_end - $time_start, 3);
+
+        $query_count = count($query_stats);
+        $query_times = '';
+        $total_query_time = 0;
+        foreach ($query_stats as $qtime) {
+            $query_times .= round($qtime, 3) . "s ";
+            $total_query_time += $qtime;
+        }
+        $total_query_time = round($total_query_time, 3);
+        $debug_underline = '&#0010;------------------&#0010;';
+        $debug_separate = '&#0010;==========================&#0010;';
+        starttable('100%', 'Debug info');
+        echo "<tr><td class=\"\">";
+        echo '<form name="debug">';
+        echo '<script language="Javascript">
+<!--
+
+function HighlightAll(theField) {
+var tempval=eval("document."+theField)
+tempval.focus()
+tempval.select()
+}
+//-->
+</script>';
+        echo '<table border="0" cellpadding="0" cellspacing="1">
+        <tr>
+        <td align="center" valign="middle" class="admin_menu">
+        <a href="javascript:HighlightAll(\'debug.debugtext\')" class="adm_menu">' . $lang_cpg_debug_output['select_all'] . '</a>
+        </td>';
+        if (GALLERY_ADMIN_MODE){echo '<td class="album_stat">('.$lang_cpg_debug_output['copy_and_paste_instructions'].')</td>';}
+        echo '</tr></table>';
+        echo '<textarea  rows="10" class="debug_text" name="debugtext">';
+        echo "USER: ";
+        echo $debug_underline;
+        print_r($USER);
+        echo $debug_separate;
+        echo "USER DATA:";
+        echo $debug_underline;
+        print_r($USER_DATA);
+        echo $debug_separate;
+        echo "Queries:";
+        echo $debug_underline;
+        print_r($queries);
+        echo $debug_separate;
+        echo "GET :";
+        echo $debug_underline;
+        print_r($HTTP_GET_VARS);
+        echo $debug_separate;
+        echo "POST :";
+        echo $debug_underline;
+        print_r($HTTP_POST_VARS);
+        echo $debug_separate;
+        if (GALLERY_ADMIN_MODE){
+        echo "VERSION INFO :";
+        echo $debug_underline;
+        $version_comment = ' - OK';
+        if (strcmp('4.0.0', phpversion()) == 1) {$version_comment = ' - your PHP version isn\'t good enough! Minimum requirements: 4.x';}
+        echo 'PHP version: ' . phpversion().$version_comment;
+        echo $debug_underline;
+        $version_comment = '';
+        $mySqlVersion = cpg_phpinfo_mysql_version();
+        if (strcmp('3.23.23', $mySqlVersion) == 1) {$version_comment = ' - your mySQL version isn\'t good enough! Minimum requirements: 3.23.23';}
+        echo 'mySQL version: ' . $mySqlVersion . $version_comment;
+        echo $debug_separate;
+        error_reporting  (E_ERROR | E_WARNING | E_PARSE);
+        echo cpg_phpinfo_mod_output('gd','text');
+        echo cpg_phpinfo_mod_output('mysql','text');
+        echo 'Server restrictions (safe mode)?';
+        echo $debug_underline;
+        echo 'Directive | Local Value | Master Value';
+        echo cpg_phpinfo_conf_output("safe_mode");
+        echo cpg_phpinfo_conf_output("safe_mode_exec_dir");
+        echo cpg_phpinfo_conf_output("safe_mode_gid");
+        echo cpg_phpinfo_conf_output("safe_mode_include_dir");
+        echo cpg_phpinfo_conf_output("safe_mode_exec_dir");
+        echo cpg_phpinfo_conf_output("sql.safe_mode");
+        echo cpg_phpinfo_conf_output("disable_functions");
+        echo cpg_phpinfo_conf_output("file_uploads");
+        echo cpg_phpinfo_conf_output("include_path");
+        echo cpg_phpinfo_conf_output("open_basedir");
+        echo $debug_separate;
+        echo 'email';
+        echo $debug_underline;
+        echo 'Directive | Local Value | Master Value';
+        echo cpg_phpinfo_conf_output("sendmail_from");
+        echo cpg_phpinfo_conf_output("sendmail_path");
+        echo cpg_phpinfo_conf_output("SMTP");
+        echo cpg_phpinfo_conf_output("smtp_port");
+        echo $debug_separate;
+        echo 'Size and Time';
+        echo $debug_underline;
+        echo 'Directive | Local Value | Master Value';
+        echo cpg_phpinfo_conf_output("max_execution_time");
+        echo cpg_phpinfo_conf_output("max_input_time");
+        echo cpg_phpinfo_conf_output("upload_max_filesize");
+        echo cpg_phpinfo_conf_output("post_max_size");
+        echo $debug_separate;
+        }
+
+        echo <<<EOT
+Page generated in $time seconds - $query_count queries in $total_query_time seconds - Album set : $ALBUM_SET
+EOT;
+        echo "</textarea>";
+        echo "</form>";
+        echo "</td>";
+        echo "</tr>";
+        echo "<tr><td class=\"tableb\">";
+        //echo "<a href=\"phpinfo.php\">Advanced debug mode</a> (phpinfo)";
+        error_reporting  (E_ERROR | E_WARNING | E_PARSE);
+        //echo '<pre>';
+        //echo cpg_phpinfo_mod_output('gd','text');
+        //echo $foo1;
+        //echo '</pre>';
+        echo "</td></tr>";
+        endtable();
+}
+
+//phpinfo-related functions:
+function cpg_phpinfo_mod($search)
+{
+    // this could be done much better with regexpr - anyone who wants to change it: go ahead
+    ob_start();
+    phpinfo(INFO_MODULES);
+    $string = ob_get_contents();
+    $module = $string;
+    ob_end_clean();
+    // find out the first occurence of "<h2" and throw the superfluos stuff away
+    $string = strstr($string, 'module_' . $search);
+    $string = eregi_replace('</table>(.*)', '', $string);
+    $string = strstr($string, '<tr>');
+    $string = str_replace('</td>', '|', $string);
+    $string = str_replace('</tr>', '§', $string);
+    $string = chop(strip_tags($string));
+    $pieces = explode("§", $string);
+    foreach($pieces as $key => $val) {
+        $bits[$key] = explode("|", $val);
+    }
+    return $bits;
+}
+
+function cpg_phpinfo_mod_output($search,$output_type)
+{
+// first parameter is the module name, second parameter is the way you want your output to look like: table or text
+    $pieces = cpg_phpinfo_mod($search);
+    $summ = '';
+    $return = '';
+    $debug_underline = '&#0010;------------------&#0010;';
+    $debug_separate = '&#0010;==========================&#0010;';
+
+    if ($output_type == 'table')
+    {
+    ob_start();
+    starttable('100%', 'Module: '.$search, 2);
+    $return.= ob_get_contents();
+    ob_end_clean();
+    }
+    else
+    {
+    $return.= 'Module: '.$search.$debug_underline;
+    }
+    foreach($pieces as $val) {
+        if ($output_type == 'table') {$return.= '<tr><td>';}
+        $return.= $val[0];
+        if ($output_type == 'table') {$return.= '</td><td>';}
+        $return.= $val[1];
+        if ($output_type == 'table') {$return.= '</td></tr>';}
+        $summ .= $val[0];
+    }
+    if (!$summ) {
+        if ($output_type == 'table') {$return.= '<tr><td colspan="2">';}
+        $return.= 'module doesn\'t exist';
+        if ($output_type == 'table') {$return.= '</td></tr>';}
+    }
+    if ($output_type == 'table')
+    {
+    ob_start();
+    endtable();
+    $return.= ob_get_contents();
+    ob_end_clean();
+    }
+    else
+    {
+    $return.= $debug_separate;
+    }
+    return $return;
+}
+
+function cpg_phpinfo_mysql_version()
+{
+    $result = mysql_query("SELECT VERSION() as version");
+    $row = mysql_fetch_row($result);
+    return $row[0];
+}
+
+function cpg_phpinfo_conf($search)
+{
+    // this could be done much better with regexpr - anyone who wants to change it: go ahead
+    $string ='';
+    $pieces = '';
+    $bits = '';
+    ob_start();
+    phpinfo(INFO_CONFIGURATION);
+    $string = ob_get_contents();
+    ob_end_clean();
+    // find out the first occurence of "</tr" and throw the superfluos stuff in front of it away
+    $string = strchr($string, '</tr>');
+    $string = str_replace('</td>', '|', $string);
+    $string = str_replace('</tr>', '§', $string);
+    $string = chop(strip_tags($string));
+    $pieces = explode("§", $string);
+    foreach($pieces as $val) {
+        $bits = explode("|", $val);
+        if (strchr($bits[0], $search)) {
+            return $bits;
+        }
+    }
+}
+
+function cpg_phpinfo_conf_output($search)
+{
+$pieces = cpg_phpinfo_conf($search);
+        $return= $pieces[0] . ' | ' . $pieces[1] . ' | ' . $pieces[2];
+        return $return;
+}
+
 ?>
