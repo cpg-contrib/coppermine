@@ -147,7 +147,7 @@ if (defined('ADMIN_PHP')) {
   $lang_admin_php = array_merge($lang_admin_php_en, $lang_admin_php);
 }
 
-if (defined('CONFIG_PHP')) {
+if (defined('ADMIN_PHP')) {
   $lang_admin_data_en = cpg_get_default_lang_var('lang_admin_data','english');
   $lang_admin_data = array_merge($lang_admin_data_en, $lang_admin_data);
 }
