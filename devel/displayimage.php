@@ -142,6 +142,9 @@ function html_picinfo()
     if ($CONFIG['read_exif_data']) $exif = exif_parse_file($path_to_pic);
 
     if (isset($exif) && is_array($exif)) {
+        foreach ($exif as $key=>$data) {
+           $exif[$key] = htmlentities(strip_tags(trim($data,"\x7f..\xff\x0..\x1f")),ENT_QUOTES); //sanitize data against sql/html injection; trim any nongraphical non-ASCII character:
+        }
         $info = array_merge($info,$exif);
     }
 

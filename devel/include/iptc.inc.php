@@ -46,7 +46,7 @@ function get_IPTC($filename) {
                                         "CaptionWriter"                =>         $iptc["2#122"][0]        # Max 32 octets, non-repeatable, alphanumeric
                 );
                 foreach ($IPTC_data as $key=>$data) {
-                   $IPTC_data[$key] = str_replace("'","''",$data); //sanitize data against sql injection
+                   $IPTC_data[$key] = htmlentities(strip_tags(trim($data,"\x7f..\xff\x0..\x1f")),ENT_QUOTES); //sanitize data against sql/html injection; trim any nongraphical non-ASCII character:
                 }
                 $IPTC_data=filter_content($IPTC_data);   //run the data against the bad word list
             }

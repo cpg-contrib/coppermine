@@ -2350,7 +2350,7 @@ function theme_html_comments($pid)
 
     if (USER_CAN_POST_COMMENTS && $CURRENT_ALBUM_DATA['comments'] == 'YES') {
         if (USER_ID) {
-            $user_name_input = '<input type="hidden" name="msg_author" value="' . USER_NAME . '" />';
+            $user_name_input = '<tr><td><input type="hidden" name="msg_author" value="' . USER_NAME . '" /></td>';
             template_extract_block($template_add_your_comment, 'user_name_input', $user_name_input);
             $user_name = '';
         } else {
