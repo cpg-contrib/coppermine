@@ -547,7 +547,7 @@ if ($_GET['id']){
       <option value="270">+90&#176;
       </select>
    </td>
-
+   <!--
    <td >
     <input valign="bottom" type="checkbox" class="checkbox" name="mirror" value="true">
       Mirror
@@ -575,7 +575,7 @@ if ($_GET['id']){
    <td>
        <input type="text" size="3" name="newsize" class="textinput"> px
    </td>
-
+   -->
   
 
  
