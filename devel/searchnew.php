@@ -400,7 +400,9 @@ EOT;
     foreach ($_POST['pics'] as $pic_id) {
         $album_lb_id = $_POST['album_lb_id_' . $pic_id];
         $album_id = $_POST[$album_lb_id];
-
+        
+        $edit_album_array[] = $album_id; //Load the album number into an array for later
+        
         $pic_file = base64_decode($_POST['picfile_' . $pic_id]);
         $dir_name = dirname($pic_file) . "/";
         $file_name = basename($pic_file);
@@ -410,7 +412,7 @@ EOT;
             // added individually using a separate script that returns an image
             $status = "<a href=\"addpic.php?aid=$album_id&pic_file=" . ($_POST['picfile_' . $pic_id]) . "&reload=" . uniqid('') . "\"><img src=\"addpic.php?aid=$album_id&pic_file=" . ($_POST['picfile_' . $pic_id]) . "&reload=" . uniqid('') . "\" class=\"thumbnail\" border=\"0\" width=\"24\" height=\"24\" alt=\"{$lang_search_new_php['result_icon']}\" /><br /></a>";
             $album_name = $album_array[$album_id];
-            $edit_pics_content .= '<a href="editpics.php?album='.$album_id. '">' . $lang_search_new_php['edit_pics'] . ' : ' . $album_name . '</a><br />';
+            //$edit_pics_content .= '<a href="editpics.php?album='.$album_id. '">' . $lang_search_new_php['edit_pics'] . ' : ' . $album_name . '</a><br />';
         } else {
             $album_name = $lang_search_new_php['no_album'];
             $status = "<img src=\"images/up_na.gif\" alt=\"" . $lang_search_new_php['no_album'] . "\" class=\"thumbnail\" border=\"0\" width=\"24\" height=\"24\" /><br />";
@@ -424,6 +426,15 @@ EOT;
         $count++;
         flush();
     }
+    
+    // Eliminate the duplicate albums from the edit_album_array
+    $edit_album_array = array_unique($edit_album_array);
+    // Display the albums that have new pictures added
+    foreach ($edit_album_array as $edit_album)
+    {
+      $edit_pics_content .= '<a href="editpics.php?album='.$edit_album. '">' . $lang_search_new_php['edit_pics'] . ' : ' . $album_array[$edit_album] . '</a><br />';
+    }
+    
     echo <<<EOT
         <tr>
                 <td class="tableh2" colspan="4">
