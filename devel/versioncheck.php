@@ -906,7 +906,8 @@ function cpg_version_compare($version)
 {
 $version_info = explode ( '.', $version);
 for ($i=0;$i<count($version_info);$i++) {
-$return = $return + (pow('100',count($version_info)-$i)*$version_info[$i]);
+$power = @pow('100',count($version_info)-$i)*$version_info[$i];
+$return = $return + $power;
 }
 return $return;
 }
