@@ -538,7 +538,7 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
   'err_invalid_img' => 'The file you have uploaded is not a valid image !',
   'allowed_img_types' => 'You can only upload %s images.',
   'err_insert_pic' => 'The file \'%s\' can\'t be inserted in the album ', //cpg1.3.0
-  'upload_success' => 'Your file was uploaded successfully<br /><br />It will be visible after admin approval.', //cpg1.3.0
+  'upload_success' => 'Your file was uploaded successfully.<br /><br />It will be visible after admin approval.', //cpg1.3.0
   'notify_admin_email_subject' => '%s - Upload notification', //cpg1.3.0
   'notify_admin_email_body' => 'A picture has been uploaded by %s that needs your approval. Visit %s', //cpg1.3.0
   'info' => 'Information',
@@ -613,6 +613,7 @@ $lang_picinfo = array(
   'Displayed' => 'Displayed',
   'Camera' => 'Camera',
   'Date taken' => 'Date taken',
+  'ISO'=>'ISO',
   'Aperture' => 'Aperture',
   'Exposure time' => 'Exposure time',
   'Focal length' => 'Focal length',
@@ -671,7 +672,7 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
 // ------------------------------------------------------------------------- //
 
 if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
-  'pic_info' => 'File&nbsp;info', //cpg1.3.0
+  'pic_info' => 'File info', //cpg1.3.0
   'album' => 'Album',
   'title' => 'Title',
   'desc' => 'Description',
