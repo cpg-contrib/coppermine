@@ -499,7 +499,7 @@ function list_albums()
 // Redone for a cleaner approach
 function list_cat_albums($cat = 0)
 {
-    global $CONFIG, $USER, $lastup_date_fmt, $HTTP_GET_VARS, $USER_DATA, $FORBIDDEN_SET, $cpg_show_private_album;
+    global $CONFIG, $USER, $lastup_date_fmt, $HTTP_GET_VARS, $USER_DATA, $FORBIDDEN_SET, $FORBIDDEN_SET_DATA, $cpg_show_private_album;
     global $lang_list_albums, $lang_errors;
 
     $PAGE = 1;
