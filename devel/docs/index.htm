@@ -3,6 +3,16 @@
 <head>
 <title>Coppermine Photo Gallery - Documentation &amp; Manual</title>
 <meta http-equiv=content-type content="text/html; charset=iso-8859-1">
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<meta name="language"    content="en">
+<meta name="author"      content="Coppermine dev team">
+<meta name="copyright"   content="Coppermine dev team">
+<meta name="description" content="Coppermine Photo Gallery project - Coppermine is an easily set-up, fast, feature-rich photo gallery script with mySQL database, user management, private galleries, automatic thumbnail creation, ecard feature and a template system for easy customization to match the rest of a site.">
+<meta name="keywords"    content="photo,gallery,galery,image,coppermine,php,mysql,easy,feature,phpnuke,thumbnail,automatic,creation,gd,Image Magick,ecard">
+<meta name="page-topic"    content="photo,gallery,galery,image,coppermine,php,mysql,easy,feature,phpnuke,thumbnail,automatic,creation,gd,Image Magick,ecard">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<meta name="MSSmartTagsPreventParsing" content="true">
+<meta http-equiv="imagetoolbar" content="no">
 <!--
 CVS version info:
 $Id$
@@ -420,21 +430,17 @@ a.navbar:hover {
       <h2>4.3 The group control panel<a id="group_cp" name="group_cp"></a></h2>
       <p><img src="pics/group_cp.GIF" border="1" /></p>
       <p>This is where you define what members of a group can and can't do.</p>
-      <p>The disk quota applies only for groups where "Can have a personal"
-      gallery has been set to "YES". Only pictures uploaded by a user in his
-      personal gallery are included in the quota.</p>
+      <p>The disk quota applies only for groups where &quot;<i>Can have a personal</i>&quot;
+      gallery has been set to &quot;<b>YES</b>&quot;. Both pictures uploaded by a user in his
+      personal gallery as well as files uploaded to public galleries are included in the quota.</p>
       <p>Use the <b>anonymous</b> group to define what non-registered users can
-      and can't do. Quota and "Can have a personal gallery" are meaningless for
-      anonymous users.</p>
-      <p>Bear in mind that if a user is a member of a group where "can rate
-      pictures", "can post comments" or "can upload pictures" is set YES, he
-      will have the right to perform these operations only in albums where they
-      are allowed, ie. uploading pictures will only be possible in albums where
-      "Visitors can upload pictures" has been set to YES.</p>
-      <p>If "can have a personal gallery" is set to YES, the members of the
-      group will have their own gallery in the "User galleries" category where
+      and can't do. Quota and &quot;<i>Can have a personal gallery</i>&quot; are meaningless for anonymous users.</p>
+      <p>Bear in mind that if a user is a member of a group where &quot;<i>can rate pictures</i>&quot;, &quot;<i>can post comments</i>&quot; or &quot;<i>can upload pictures</i>&quot; is set &quot;<i>YES</i>&quot;, he will have the right to perform these operations only in albums where they are allowed, ie. uploading pictures will only be possible in albums where
+      &quot;<i>Visitors can upload pictures</i>&quot; has been set to <i>YES</i>.</p>
+      <p>If &quot;<i>can have a personal gallery</i>&quot; is set to <i>YES</i>, the members of the
+      group will have their own gallery in the &quot;<i>User galleries</i>&quot; category where
       they will be able to create their own albums.</p>
-      <p>If "priv. upl. approval" is set to NO, pictures uploaded by members of
+      <p>If &quot;<i>priv. upl. approval</i>&quot; is set to <i>NO</i>, pictures uploaded by members of
       the group in albums created in their own gallery won't need to be approved
       by the admin.</p>
       <p><a class="back" href="#top">Back to
@@ -684,7 +690,9 @@ a.navbar:hover {
         <li>'<b>toprated</b>': top rated
         <li>'<b>lastcom</b>': last comments </li>
         <li>'<b>lasthits</b>': last viewed </li>
-        <li>'<b>anycontent</b>': inserts php-generated content that has to reside within the file 'anycontent.php' into the index page. Can be used to include banner-rotation scripts or similar.</li></ul>
+        <li>'<b>anycontent</b>': inserts php-generated content that has to reside within the file 'anycontent.php' into the index page. Can be used to include banner-rotation scripts or similar.</li>
+        <li>'<b>lastalb</b>': last updated albums</li>
+        </ul>
       <p></p>
       <p>The <b>,2</b> means 2 rows of thumbnails.</p>
 
