@@ -17,11 +17,6 @@
 // CVS version: $Id$
 // ------------------------------------------------------------------------- //
 
-// USER CONFIGURATION
-// Default number of pictures to process at a time when rebuilding thumbs or normals:
-$defpicnum = 45;
-// END USER CONFIGURATION
-
 define('IN_COPPERMINE', true);
 define('UTIL_PHP', true);
 
@@ -29,6 +24,11 @@ require('include/init.inc.php');
 require('include/picmgmt.inc.php');
 
 pageheader($lang_util_php['title']);
+
+// USER CONFIGURATION
+// Default number of pictures to process at a time when rebuilding thumbs or normals:
+$defpicnum = 45;
+// END USER CONFIGURATION
 
 if (!GALLERY_ADMIN_MODE) die('Access denied');
 
