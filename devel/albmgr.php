@@ -357,7 +357,7 @@ if (count ($rowset) > 0) foreach ($rowset as $album) {
         <input type="hidden" name="delete_album" value="">
         <input type="hidden" name="sort_order" value="<?php echo $sort_order ?>">
         <td class="tableb" valign="top" align="center">
-                <br>
+                <br />
                 <table width="300" border="0" cellspacing="0" cellpadding="0">
 <?php
 if (GALLERY_ADMIN_MODE) {
@@ -408,7 +408,7 @@ echo $lb;
                                         </td>
                                         <td align="center" style="background-color: #D4D0C8; width: 80px; height: 21px; border-top: 1px solid White; border-left: 1px solid White; border-right: 1px solid #808080; border-bottom: 1px solid #808080;"><a href="javascript:Album_Delete();" style="color: Black; font-weight: bold;"><?php echo $lang_albmgr_php['delete'] ?></a>
                                         </td>
-                                        <td align="center" style="width: 1px;"><img src="images/spacer.gif" width="1" alt=""><br>
+                                        <td align="center" style="width: 1px;"><img src="images/spacer.gif" width="1" alt=""><br />
                                         </td>
                                         <td align="center" style="background-color: #D4D0C8; width: 80px; height: 21px; border-top: 1px solid White; border-left: 1px solid White; border-right: 1px solid #808080; border-bottom: 1px solid #808080;"><a href="javascript:Album_Create();" style="color: Black; font-weight: bold;"><?php echo $lang_albmgr_php['new'] ?></a>
                                         </td>
@@ -417,10 +417,10 @@ echo $lb;
                         </td>
                 </tr>
                 <tr>
-                        <td><br>
+                        <td><br />
                                 <input type="text" name="album_nm" size="27" maxlength="80" class="textinput" style="width: 300px;" onChange="Album_NameChange(this.value);" onKeyUp="Album_NameChange(this.value);">
-                                <br>
-                                <br>
+                                <br />
+                                <br />
                         </td>
                 </tr>
         </table>
