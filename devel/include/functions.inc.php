@@ -1021,6 +1021,11 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
                 foreach ($pic_data as $key => $row) {
                         $i++;
 
+                        if (!is_image($row['filename'])) {
+                                $row['pwidth'] = 100;
+                                $row['pheight'] = 100;
+                        }
+
                         $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
 
                         $pic_title =$lang_display_thumbnails['filename'].$row['filename']."\n".
@@ -1029,7 +1034,23 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
                                 $lang_display_thumbnails['date_added'].localised_date($row['ctime'], $album_date_fmt);
 
                         $thumb_list[$i]['pos'] = $key < 0 ? $key : $i - 1 + $lower_limit;
-                        $thumb_list[$i]['image'] = "<img src=\"" . get_pic_url($row, 'thumb') . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\"></a>";
+                        if (is_image($row['filename']))
+                                $thumb_list[$i]['image'] = "<img src=\"" . get_pic_url($row, 'thumb') . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\"></a>";
+                        elseif ($extension = is_movie($row['filename'])) {
+                                $extension = (file_exists("images/thumb_$extension.jpg")) ? $extension : "movie";
+                                $thumb_list[$i]['image'] = "<img src=\"images/thumb_{$extension}.jpg\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\"></a>";
+                        }
+                        elseif ($extension = is_audio($row['filename'])) {
+                                $extension = (file_exists("images/thumb_$extension.jpg")) ? $extension : "audio";
+                                $thumb_list[$i]['image'] = "<img src=\"images/thumb_{$extension}.jpg\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\"></a>";
+                        }
+                        elseif ($extension = is_document($row['filename'])) {
+                                $extension = (file_exists("images/thumb_$extension.jpg")) ? $extension : "document";
+                                $thumb_list[$i]['image'] = "<img src=\"images/thumb_{$extension}.jpg\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\"></a>";
+                        }
+                        else
+                                $thumb_list[$i]['image'] = '';
+
                         $thumb_list[$i]['caption'] = $row['caption_text'];
                         $thumb_list[$i]['admin_menu'] = '';
                         $thumb_list[$i]['aid'] = $row['aid'];
@@ -1086,6 +1107,10 @@ function display_film_strip($album, $cat, $pos)
                         $hi =(($pos==($i + $lower_limit)) ? '1': '');
                         $i++;
 
+                        if (!is_image($row['filename'])) {
+                                $row['pwidth'] = 100;
+                                $row['pheight'] = 100;
+                        }
                         $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
 
                         $pic_title =$lang_display_thumbnails['filename'].$row['filename']."\n".
@@ -1096,7 +1121,22 @@ function display_film_strip($album, $cat, $pos)
                         $p=$i - 1 + $lower_limit;
                         $p=($p < 0 ? 0 : $p);
                         $thumb_list[$i]['pos'] = $key < 0 ? $key : $p;
-                        $thumb_list[$i]['image'] = "<img src=\"" . get_pic_url($row, 'thumb') . "\" class=\"image$hi\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\">";
+                        if (is_image($row['filename']))
+                                $thumb_list[$i]['image'] = "<img src=\"" . get_pic_url($row, 'thumb') . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\"></a>";
+                        elseif ($extension = is_movie($row['filename'])) {
+                                $extension = (file_exists("images/thumb_$extension.jpg")) ? $extension : "movie";
+                                $thumb_list[$i]['image'] = "<img src=\"images/thumb_{$extension}.jpg\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\"></a>";
+                        }
+                        elseif ($extension = is_audio($row['filename'])) {
+                                $extension = (file_exists("images/thumb_$extension.jpg")) ? $extension : "audio";
+                                $thumb_list[$i]['image'] = "<img src=\"images/thumb_{$extension}.jpg\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\"></a>";
+                        }
+                        elseif ($extension = is_document($row['filename'])) {
+                                $extension = (file_exists("images/thumb_$extension.jpg")) ? $extension : "document";
+                                $thumb_list[$i]['image'] = "<img src=\"images/thumb_{$extension}.jpg\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\"></a>";
+                        }
+                        else
+                                $thumb_list[$i]['image'] = '';
                         $thumb_list[$i]['caption'] = $row['caption_text'];
                         $thumb_list[$i]['admin_menu'] = '';
 
@@ -1564,9 +1604,4 @@ switch ($parameter) {
 
 return $return;
 }
-
-
-
-
-
 ?>

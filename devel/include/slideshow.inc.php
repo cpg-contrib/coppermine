@@ -31,18 +31,20 @@ $pid = (int)$HTTP_GET_VARS['pid'];
 $start_img = '';
 $pic_data = get_pic_data($HTTP_GET_VARS['album'], $pic_count, $album_name, -1, -1, false);
 foreach ($pic_data as $picture) {
-    if ($CONFIG['make_intermediate'] && max($picture['pwidth'], $picture['pheight']) > $CONFIG['picture_width']) {
-        $picture_url = get_pic_url($picture, 'normal');
-    } else {
-        $picture_url = get_pic_url($picture, 'fullsize');
-    } 
-
-    echo "Pic[$i] = '" . $picture_url . "'\n";
-    if ($picture['pid'] == $pid) {
-        $j = $i;
-        $start_img = $picture_url;
-    } 
-    $i++;
+    if (is_image($picture['filename'])) {
+        if ($CONFIG['make_intermediate'] && max($picture['pwidth'], $picture['pheight']) > $CONFIG['picture_width']) {
+            $picture_url = get_pic_url($picture, 'normal');
+        } else {
+            $picture_url = get_pic_url($picture, 'fullsize');
+        } 
+    
+        echo "Pic[$i] = '" . $picture_url . "'\n";
+        if ($picture['pid'] == $pid) {
+            $j = $i;
+            $start_img = $picture_url;
+        } 
+        $i++;
+    }
 } 
 
 ?>
