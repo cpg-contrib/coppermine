@@ -31,12 +31,12 @@ function display_group_list()
     global $CONFIG;
     global $lang_groupmgr_php, $lang_byte_units, $lang_yes, $lang_no;
     $row_counter = 0;
-    $table_start = '<table border="0" cellspacing="0" cellpadding="0">';
-    $table_end = '</table>';
-    $tr_start = '<tr>';
-    $tr_end = '</tr>';
-    $td_start = '<td>';
-    $td_end = '</td>';
+    $table_start = '<table border="0" cellspacing="0" cellpadding="0">'."\n";
+    $table_end = '</table>'."\n";
+    $tr_start = '<tr>'."\n";
+    $tr_end = '</tr>'."\n";
+    $td_start = '<td>'."\n";
+    $td_end = '</td>'."\n";
     //$approval_needed = ', admin approval needed';
     //$approval_not_needed = ', visible instantly';
     $default_group_names = array(
@@ -84,10 +84,22 @@ EOT;
 
 EOT;
         }
+        // disable row if applicable
+        if ($group['group_id'] == 3 && $CONFIG['allow_unlogged_access'] == 0) {
+            $disabled = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
+            $explain_greyedout = '&nbsp;'.cpg_display_help('f=index.htm&base=64&h='.urlencode(base64_encode(serialize($lang_groupmgr_php['explain_greyed_out_title']))).'&t='.urlencode(base64_encode(serialize(sprintf($lang_groupmgr_php['explain_guests_greyed_out_text'],'<i>'.$group['group_name'].'</i>')))), '450', '300');
+        } elseif ($group['group_id'] == 4) {
+            $disabled = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
+            $explain_greyedout = '&nbsp;'.cpg_display_help('f=index.htm&base=64&h='.urlencode(base64_encode(serialize($lang_groupmgr_php['explain_greyed_out_title']))).'&t='.urlencode(base64_encode(serialize(sprintf($lang_groupmgr_php['explain_banned_greyed_out_text'],'<i>'.$group['group_name'].'</i>')))), '450', '300');
+        } else {
+            $disabled = '';
+            $explain_greyedout = '';
+        }
         echo <<< EOT
                 <td class="$table_background" align="left" valign="top">
                         <input type="hidden" name="group_id[]" value="{$group['group_id']}" />
                         <input type="text" name="group_name_{$group['group_id']}" value="{$group['group_name']}" class="textinput" size="12" />
+                        $explain_greyedout
 EOT;
         // show reset option if applicable
         if (!defined('UDB_INTEGRATION') and isset($default_group_names[$group['group_id']])) {
@@ -98,7 +110,7 @@ EOT;
         }
         echo <<< EOT
                         <br />
-                        {$lang_groupmgr_php['disk_quota']}: <input type="text" name="group_quota_{$group['group_id']}" value="{$group['group_quota']}" size="5" class="textinput" /> {$lang_byte_units[1]}
+                        {$lang_groupmgr_php['disk_quota']}: <input type="text" name="group_quota_{$group['group_id']}" value="{$group['group_quota']}" size="5" class="textinput" $disabled /> {$lang_byte_units[1]}
                 </td>
                 <td class="$table_background" align="left" valign="top">
 EOT;
@@ -106,19 +118,43 @@ EOT;
             $value = $group[$field_name];
             $yes_selected = ($value == 1) ? 'checked="checked"' : '';
             $no_selected = ($value == 0) ? 'checked="checked"' : '';
-            if ($field_name=='can_rate_pictures'){echo $table_start.$tr_start.$td_start.$lang_groupmgr_php['rating'].$td_end;}
-            elseif($field_name=='can_send_ecards'){echo $tr_start.$td_start.$lang_groupmgr_php['ecards'].$td_end;}
-            elseif($field_name=='can_post_comments'){echo $tr_start.$td_start.$lang_groupmgr_php['comments'].$td_end;}
-            elseif($field_name=='can_upload_pictures'){echo $table_start.$tr_start.$td_start.$lang_groupmgr_php['allowed'].$td_end;}
-            elseif($field_name=='pub_upl_need_approval'){echo $tr_start.$td_start.$lang_groupmgr_php['approval'].$td_end;}
-            elseif($field_name=='can_create_albums'){echo $table_start.$tr_start.$td_start.$lang_groupmgr_php['allowed'].$td_end;}
-            elseif($field_name=='priv_upl_need_approval'){echo $tr_start.$td_start.$lang_groupmgr_php['approval'].$td_end;}
+            if ($field_name=='can_rate_pictures'){
+                echo $table_start.$tr_start.$td_start.$lang_groupmgr_php['rating'].$td_end;
+            }
+            elseif ($field_name=='can_send_ecards') {
+                echo $tr_start.$td_start.$lang_groupmgr_php['ecards'].$td_end;
+            }
+            elseif ($field_name=='can_post_comments') {
+                echo $tr_start.$td_start.$lang_groupmgr_php['comments'].$td_end;
+            }
+            elseif ($field_name=='can_upload_pictures') {
+                echo $table_start.$tr_start.$td_start.$lang_groupmgr_php['allowed'].$td_end;
+            }
+            elseif ($field_name=='pub_upl_need_approval') {
+                echo $tr_start.$td_start.$lang_groupmgr_php['approval'].$td_end;
+            }
+            elseif ($field_name=='can_create_albums') {
+                echo $table_start.$tr_start.$td_start.$lang_groupmgr_php['allowed'].$td_end;
+            }
+            elseif ($field_name=='priv_upl_need_approval') {
+                echo $tr_start.$td_start.$lang_groupmgr_php['approval'].$td_end;
+            }
+            if ($group['group_id'] == 3 && $CONFIG['allow_unlogged_access'] == 0) {
+                $disabled_yes = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
+                $disabled_no = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
+            } elseif ($group['group_id'] == 4) {
+                $disabled_yes = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
+                $disabled_no = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
+            } else {
+                $disabled_yes = '';
+                $disabled_no = '';
+            }
             echo <<< EOT
             $td_start
-            <input type="radio" id="{$field_name}_{$group['group_id']}1" name="{$field_name}_{$group['group_id']}" value="1" $yes_selected /><label for="{$field_name}_{$group['group_id']}1" class="clickable_option">$lang_yes</label>
+            <input type="radio" id="{$field_name}_{$group['group_id']}1" name="{$field_name}_{$group['group_id']}" value="1" $yes_selected $disabled_yes /><label for="{$field_name}_{$group['group_id']}1" class="clickable_option">$lang_yes</label>
             $td_end
             $td_start
-                        <input type="radio" id="{$field_name}_{$group['group_id']}0" name="{$field_name}_{$group['group_id']}" value="0" $no_selected /><label for="{$field_name}_{$group['group_id']}0" class="clickable_option">$lang_no</label>
+                        <input type="radio" id="{$field_name}_{$group['group_id']}0" name="{$field_name}_{$group['group_id']}" value="0" $no_selected $disabled_no /><label for="{$field_name}_{$group['group_id']}0" class="clickable_option">$lang_no</label>
                         $td_end
                         $tr_end
 
@@ -133,16 +169,23 @@ EOT;
      $custom_upload_no = ($group['custom_user_upload'] == 0) ? 'checked="checked"' : '';
 
      // Create select list.
+    if ($group['group_id'] == 3 && $CONFIG['allow_unlogged_access'] == 0) {
+        $disabled = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
+    } elseif ($group['group_id'] == 4) {
+        $disabled = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
+    } else {
+        $disabled = '';
+    }
      echo $table_start;
      echo $tr_start.$td_start;
      echo <<< EOT
      {$lang_groupmgr_php['boxes_number']}
      $td_end
      $td_start
-     <input type="radio" id="custom_user_upload_{$group['group_id']}1" name="custom_user_upload_{$group['group_id']}" value="1" $custom_upload_yes /><label for="custom_user_upload_{$group['group_id']}1" class="clickable_option">{$lang_groupmgr_php['variable']}</label>
+     <input type="radio" id="custom_user_upload_{$group['group_id']}1" name="custom_user_upload_{$group['group_id']}" value="1" $custom_upload_yes $disabled /><label for="custom_user_upload_{$group['group_id']}1" class="clickable_option">{$lang_groupmgr_php['variable']}</label>
      $td_end
      $td_start
-     <input type="radio" id="custom_user_upload_{$group['group_id']}0" name="custom_user_upload_{$group['group_id']}" value="0" $custom_upload_no /><label for="custom_user_upload_{$group['group_id']}0" class="clickable_option">{$lang_groupmgr_php['fixed']}</label>
+     <input type="radio" id="custom_user_upload_{$group['group_id']}0" name="custom_user_upload_{$group['group_id']}" value="0" $custom_upload_no $disabled /><label for="custom_user_upload_{$group['group_id']}0" class="clickable_option">{$lang_groupmgr_php['fixed']}</label>
      $td_end
      $tr_end
 EOT;
@@ -152,7 +195,7 @@ EOT;
      echo $tr_start.$td_start;
      echo $lang_groupmgr_php['num_file_upload'].":";
      echo $td_end.$td_start;
-     echo "<select name=\"num_file_upload_{$group['group_id']}\" class=\"listbox_lang\">";
+     echo "<select name=\"num_file_upload_{$group['group_id']}\" class=\"listbox_lang\" $disabled>";
      for ($i = 0; $i <= 10; $i++) {
      echo "<option value=\"$i\"";
      if($group['num_file_upload']==$i){echo "selected=\"selected\"";}
@@ -166,7 +209,7 @@ EOT;
      echo $tr_start.$td_start;
      echo $lang_groupmgr_php['num_URI_upload'].":";
      echo $td_end.$td_start;
-     echo "<select name=\"num_URI_upload_{$group['group_id']}\" class=\"listbox_lang\">";
+     echo "<select name=\"num_URI_upload_{$group['group_id']}\" class=\"listbox_lang\" $disabled>";
      for ($i = 0; $i <= 10; $i++) {
      echo "<option value=\"$i\"";
      if($group['num_URI_upload']==$i){echo "selected=\"selected\"";}

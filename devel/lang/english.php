@@ -1185,6 +1185,9 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
   'num_URI_upload' => 'URI upload boxes', // cpg1.4.0
   'reset_to_default' => 'Reset to default name (%s) - recommended!', // cpg1.4.0
   'error_group_empty' => 'Group table was empty !<br /><br />Default groups created, please reload this page', // cpg1.4.0
+  'explain_greyed_out_title' => 'Why is this row greyed out?', // cpg1.4.0
+  'explain_guests_greyed_out_text' => 'You can not change the properties of this group because you set the option &quot; Allow unlogged users (guest or anonymous) access&quot; to &quot;No&quot; on the config page. All guest (members of the group %s) can\'t do anything but login; therefor group settings don\'t apply for them.', // cpg1.4.0
+  'explain_banned_greyed_out_text' => 'You can not change the properties of the group %s because it\'s members can\'t do anything anyway.', // cpg1.4.0
 );
 
 // ------------------------------------------------------------------------- //
