@@ -14,7 +14,7 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-
+if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 //////////////////// Variables //////////////////////////////
 // used texts
 $txt['bigger'] = ">";
@@ -52,11 +52,16 @@ function cropCheck(crA){
     var url = 'cropAction.php?pop=1&x='+cropX+'&y='+cropY+'&h='+obj.cb+'&w='+obj.cr+'&id={$pid}' ;
     if (crA == 'pre'){
       window.open(url,'prevWin','width='+obj.cr+',height='+obj.cb);
-    }else{
-      location.href=url;
-    }
-  } else {
+    }else if(crA == 'final') {
+      url = url+'&final=1';
+      window.open(url,'prevWin','width='+obj.cr+',height='+(obj.cb+100));
+      //location.href=url;
+    }else if(crA == 'asThumb') {
+      url = url+'&asThumb=1';
+      window.open(url,'prevWin','width='+obj.cr+',height='+obj.cb);
+    } else {
     alert('{$lang_editpics_php['sel_on_img']}');
+    }
   }
 }
 
@@ -127,9 +132,12 @@ echo <<<EOT
 <tr><td>
 <table cellspacing="0" cellpadding="5" border="0" align="center">
 <tr><td align="center" valign="top"><DIV ID="imgDiv"><IMG SRC="$pic_url"></DIV></td></tr>
+</table>
+<table border=0>
 <tr>
 <td align="right">
-    <input type="button" name="Submit2" value="{$lang_editpics_php['save']}" onclick="cropCheck('pre');" class="button" >
+    <input type="button" name="Submit2" value="{$lang_editpics_php['save_thumb']}" onclick="cropCheck('asThumb');" class="button" >
+    <input type="button" name="Submit2" value="{$lang_editpics_php['save']}" onclick="cropCheck('final');" class="button" >
     <input type="button" name="Submit2" value="{$lang_editpics_php['preview']}" onclick="cropCheck('pre');" class="button" >
     <input type="button" name="Submit3" value="{$txt['smaller']}" onMouseDown="cropZoom('in');" onMouseUp="stopZoom();" class="button" >
     <input type="button" name="Submit3" value="{$txt['up']}" onMouseDown="cropZoom('up');" onMouseUp="stopZoom();" class="button" >

@@ -28,25 +28,25 @@ $height = (int)$HTTP_GET_VARS['h'];
 $width = (int)$HTTP_GET_VARS['w'];
 $x = (int)$HTTP_GET_VARS['x'];
 $y = (int)$HTTP_GET_VARS['y'];
-
-
-
+(int)$asThumb= $HTTP_GET_VARS['asThumb']==1? 1 : 0;
+(int)$final= $HTTP_GET_VARS['final']==1? 1 : 0;
 //If pop is set do a little recursive trick to output HTML and not just image
-
-if (isset($HTTP_GET_VARS[pop])){
+if (isset($HTTP_GET_VARS['pop'])){
 echo <<<EOT
 <html>
 <head>
 <title></title>
 </head>
+<javascript>
+</javascript>
 <body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="top.focus();">
-<a href="#" onClick="top.close();"><img src="cropAction.php?x=$x'&y=$y&h=$height&w=$width&id=$pid" border=0></a>
+<a href="#" onClick="top.close();"><img src="cropAction.php?x=$x'&y=$y&h=$height&w=$width&id=$pid&asThumb=$asThumb&final=$final" border=0></a>
+<p align="Center">Hit Reload to see cropped Image if saved</p>
 </body>
 </html>
 EOT;
 exit;
 }
-
 
 //Get all the pic info
 $result = db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = '$pid'");
@@ -55,18 +55,50 @@ mysql_free_result($result);
 
 $workImage = $CONFIG['fullpath'].$CURRENT_PIC['filepath'].$CURRENT_PIC['filename'];
 
-// This method is Only for GD - TODO should detect and use IM as well
+if($HTTP_GET_VARS['asThumb']==1){
+ 	$savePath = $CONFIG['fullpath'].$CURRENT_PIC['filepath'].$CONFIG['thumb_pfx'].$CURRENT_PIC['filename'];	
+	if ($CONFIG['thumb_use'] == 'ht') {
+                $ratio = $height / $CONFIG['thumb_width'] ;
+        } elseif ($CONFIG['thumb_use'] == 'wd') {
+                $ratio = $width / $CONFIG['thumb_width'] ;
+        } else {
+                $ratio = max($width, $height) / $CONFIG['thumb_width'] ;
+        } 
+	$ratio = max($ratio, 1.0);
+	$destWidth = (int)($width / $ratio);
+	$destHeight = (int)($height / $ratio);
+}else{
+	$savePath = $workImage;
+	$destWidth = (int)($width);
+	$destHeight = (int)($height);
+}
+
+
+
+// This method is Only for GD2 - TODO should detect and use IM as well
 
 //Create a workImg from the picture - TODO should work with PNG as well
 $workImg = ImageCreateFromjpeg ($workImage);
 
 //Create a cropImg of the same width and  height as the crop parameters passed
-$cropImg = ImageCreateTrueColor($width,$height);
+$cropImg = ImageCreateTrueColor($destWidth,$destHeight);
 
-imagecopy($cropImg, $workImg, 0, 0, $x, $y, $width,$height);
+if($HTTP_GET_VARS['asThumb']==1){
+	imagecopyresampled($cropImg, $workImg, 0, 0, $x, $y, $destWidth, $destHeight, $width,$height);
+}else{
+	imagecopy($cropImg, $workImg, 0, 0, $x, $y, $width,$height);
+}
+
+//Save the file if needed
+if($HTTP_GET_VARS['asThumb']==1 || $HTTP_GET_VARS['final']==1){
+	imagejpeg($cropImg,$savePath,100);
+}
+
+if($HTTP_GET_VARS['final']==1){
+    db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET pwidth = '$width', pheight  = '$height' WHERE pid = '$pid'");
+}
+
 Header("Content-Type: image/jpeg");
 imagejpeg($cropImg);
 exit;
-
 ?>
-
