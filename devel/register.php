@@ -105,7 +105,30 @@ EOT;
                         {$element[2]}
         </td>
         <td width="60%" class="tableb" valign="top">
-                <input type="text" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="$value" class="textinput">
+                <input type="text" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="$value" class="textinput" />
+                </td>
+        </tr>
+
+EOT;
+            break;
+
+        case 'radio' :
+            // added the radio option for possible future use. The array definition would have to look like this:
+            // array('radio', 'user_var', 'Text label', 'option 1','option 2'),
+            // enabling this option requires changes in profile.php and usermgr.php as well
+            if (isset($_POST[$element[1]])) {
+                $value = $_POST[$element[1]];
+            } else {
+                $value = '';
+            }
+            if ($element[2]) echo <<<EOT
+        <tr>
+            <td width="40%" class="tableb"  height="25">
+                        {$element[2]}
+        </td>
+        <td width="60%" class="tableb" valign="top">
+                <input type="radio" name="{$element[1]}" id="{$element[1]}1" value="{$element[3]}" class="radio" /><label for="{$element[1]}1" class="clickable_option">{$element[3]}</label>
+                <input type="radio" name="{$element[1]}" id="{$element[1]}2" value="{$element[4]}" class="radio" /><label for="{$element[1]}2" class="clickable_option">{$element[4]}</label>
                 </td>
         </tr>
 
@@ -124,7 +147,7 @@ EOT;
                         {$element[2]}
         </td>
         <td width="60%" class="tableb" valign="top">
-                <textarea name="{$element[1]}" ROWS="7" WRAP="virtual"  class="textinput" STYLE="WIDTH: 100%">$value</textarea>
+                <textarea name="{$element[1]}" rows="7" wrap="virtual"  class="textinput" style="width:100%">$value</textarea>
                 </td>
         </tr>
 
@@ -139,7 +162,7 @@ EOT;
                         {$element[2]}
         </td>
         <td width="60%" class="tableb" valign="top">
-                <input type="password" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="" class="textinput">
+                <input type="password" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="" class="textinput" />
                 </td>
         </tr>
 
@@ -168,7 +191,7 @@ EOT;
     echo <<<EOT
         <tr>
                 <td colspan="2" align="center" class="tablef">
-                        <input type="submit" name="submit" value="{$lang_register_php['submit']}" class="button">
+                        <input type="submit" name="submit" value="{$lang_register_php['submit']}" class="button" />
                 </td>
         </tr>
         </form>
