@@ -179,7 +179,7 @@ $template_album_list_cat = <<<EOT
         </tr>
         <tr>
                 <td colspan="3">
-                        <img src="images/spacer.gif" width="1" height="1"><br />
+                        <img src="images/spacer.gif" width="1" height="1" border="0" alt="" /<br />
                 </td>
         </tr>
         <tr>
@@ -189,7 +189,7 @@ $template_album_list_cat = <<<EOT
                         <a href="{ALB_LINK_TGT}" class="albums">{ALB_LINK_PIC}<br /></a>
                 </td>
                 <td>
-                        <img src="images/spacer.gif" width="1" height="1">
+                        <img src="images/spacer.gif" width="1" height="1" border="0" alt="" /
                 </td>
                 <td width="100%" valign="top" class="tableb_compact">
                         {ADMIN_MENU}
@@ -210,7 +210,7 @@ $template_album_list_cat = <<<EOT
         </tr>
         <tr>
                 <td>
-                        <img src="images/spacer.gif" width="1" height="1"><br />
+                        <img src="images/spacer.gif" width="1" height="1" border="0" alt="" /<br />
                 </td>
         </tr>
         <tr>

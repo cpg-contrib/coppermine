@@ -277,7 +277,7 @@ EOT;
     <tr>
         <td colspan="2" align="center" class="tablef">
             <input type="submit" name="change_profile" value="{$lang_register_php['apply_modif']}" class="button">
-            <img src="images/spacer.gif" width="20" height="1">
+            <img src="images/spacer.gif" width="20" height="1" border="0" alt="" />
             <input type="submit" name="change_pass" value="{$lang_register_php['change_pass']}" class="button">
         </td>
     </tr>

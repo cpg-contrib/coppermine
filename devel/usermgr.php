@@ -79,8 +79,8 @@ function list_users()
     $tab_tmpl = array('left_text' => '<td width="100%%" align="left" valign="middle" class="tableh1_compact" style="white-space: nowrap"><b>' . $lang_usermgr_php['u_user_on_p_pages'] . '</b></td>' . "\n",
         'tab_header' => '',
         'tab_trailer' => '',
-        'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1"></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%d</b></td>',
-        'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1"></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="' . $PHP_SELF . '?page=%d&sort=' . $sort . '"<b>%d</b></a></td>' . "\n"
+        'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%d</b></td>',
+        'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="' . $PHP_SELF . '?page=%d&sort=' . $sort . '"<b>%d</b></a></td>' . "\n"
         );
 
     $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_USERS']} WHERE 1");

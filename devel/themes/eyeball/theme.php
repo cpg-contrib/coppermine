@@ -211,7 +211,7 @@ $template_album_list = <<<EOT
         </tr>
         <tr>
                 <td colspan="3">
-                        <img src="images/spacer.gif" width="1" height="1"><br />
+                        <img src="images/spacer.gif" width="1" height="1" border="0" alt="" /<br />
                 </td>
         </tr>
         <tr>
@@ -221,7 +221,7 @@ $template_album_list = <<<EOT
                         <a href="{ALB_LINK_TGT}" class="albums">{ALB_LINK_PIC}<br /></a>
                 </td>
                 <td>
-                        <img src="images/spacer.gif" width="1" height="1">
+                        <img src="images/spacer.gif" width="1" height="1" border="0" alt="" /
                 </td>
                 <td width="100%" valign="top" class="tableb_compact">
                         {ADMIN_MENU}
@@ -242,7 +242,7 @@ $template_album_list = <<<EOT
         </tr>
         <tr>
                 <td>
-                        <img src="images/spacer.gif" width="1" height="1"><br />
+                        <img src="images/spacer.gif" width="1" height="1" border="0" alt="" /<br />
                 </td>
         </tr>
         <tr>
@@ -321,7 +321,7 @@ $template_album_list_cat = <<<EOT
         </tr>
         <tr>
                 <td colspan="3">
-                        <img src="images/spacer.gif" width="1" height="1"><br />
+                        <img src="images/spacer.gif" width="1" height="1" border="0" alt="" /<br />
                 </td>
         </tr>
         <tr>
@@ -331,7 +331,7 @@ $template_album_list_cat = <<<EOT
                         <a href="{ALB_LINK_TGT}" class="albums">{ALB_LINK_PIC}<br /></a>
                 </td>
                 <td>
-                        <img src="images/spacer.gif" width="1" height="1">
+                        <img src="images/spacer.gif" width="1" height="1" border="0" alt="" /
                 </td>
                 <td width="100%" valign="top" class="tableb_compact">
                         {ADMIN_MENU}
@@ -352,7 +352,7 @@ $template_album_list_cat = <<<EOT
         </tr>
         <tr>
                 <td>
-                        <img src="images/spacer.gif" width="1" height="1"><br />
+                        <img src="images/spacer.gif" width="1" height="1" border="0" alt="" /<br />
                 </td>
         </tr>
         <tr>
@@ -852,8 +852,8 @@ EOT;
 $template_tab_display = array('left_text' => '<td width="100%%" align="left" valign="middle" class="tableh1_compact" style="white-space: nowrap"><b>{LEFT_TEXT}</b></td>' . "\n",
     'tab_header' => '',
     'tab_trailer' => '',
-    'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1"></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%d</b></td>',
-    'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1"></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"<b>%d</b></a></td>' . "\n"
+    'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /</td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%d</b></td>',
+    'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /</td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"<b>%d</b></a></td>' . "\n"
     );
 
 function pageheader($section, $meta = '')
