@@ -15,209 +15,218 @@
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- // 
 
-define('IN_COPPERMINE', true);
-define('UPLOAD_PHP', true);
+// Report all errors except E_NOTICE
+// This is the default value set in php.ini
+error_reporting (E_ALL ^ E_NOTICE);
 
-require('include/init.inc.php');
-
-if (!USER_CAN_UPLOAD_PICTURES) {
-    cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
-} 
-// Type 0 => input
-// 1 => file input
-// 2 => album list
-$data = array(
-    sprintf($lang_upload_php['max_fsize'], $CONFIG['max_upl_size']),
-    array($lang_upload_php['album'], 'album', 2),
-    array($lang_upload_php['picture'], 'userpicture', 1),
-    array($lang_upload_php['pic_title'], 'title', 0, 255),
-    array($lang_upload_php['description'], 'caption', 3, $CONFIG['max_img_desc_length']),
-    array($lang_upload_php['keywords'], 'keywords', 0, 255),
-    array($CONFIG['user_field1_name'], 'user1', 0, 255),
-    array($CONFIG['user_field2_name'], 'user2', 0, 255),
-    array($CONFIG['user_field3_name'], 'user3', 0, 255),
-    array($CONFIG['user_field4_name'], 'user4', 0, 255)
-    );
-
-function form_label($text)
+require ('include/sql_parse.php');
+require ('include/config.inc.php');
+// ---------------------------- TEST PREREQUIRED --------------------------- //
+function test_fs()
 {
-    echo <<<EOT
-	<tr>
-		<td class="tableh2" colspan="2">
-			<b>$text</b>
-		</td>
-	</tr>
+    global $errors, $DFLT; 
+    // No Filesystem Updates yet
+} 
+// ----------------------------- TEST FUNCTIONS ---------------------------- //
+function test_sql_connection()
+{
+    global $errors, $HTTP_POST_VARS, $CONFIG;
 
-EOT;
+    if (! $connect_id = @mysql_connect($CONFIG['dbserver'], $CONFIG['dbuser'], $CONFIG['dbpass'])) {
+        $errors .= "<hr /><br />Could not create a mySQL connection, please check the SQL values in include/config.inc.php<br /><br />MySQL error was : " . mysql_error() . "<br /><br />";
+    } elseif (! mysql_select_db($CONFIG['dbname'], $connect_id)) {
+        $errors .= "<hr /><br />mySQL could not locate a database called '{$CONFIG['dbname']}' please check the value entered for this in include/config.inc.php<br /><br />";
+    } 
+} 
+// ------------------------- HTML OUTPUT FUNCTIONS ------------------------- //
+function html_header()
+{
+
+    ?>
+<!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Coppermine - Upgrade</title><link type="text/css" rel="stylesheet" href="installer.css">
+</head>
+<body>
+ <div align="center">
+  <div style="width:600px;">
+<?php
 } 
 
-function form_input($text, $name, $max_length)
+function html_logo()
 {
-    if ($text == '') {
-        echo "	<input type=\"hidden\" name=\"$name\" value=\"\">\n";
-        return;
+
+    ?>
+      <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
+       <tr>
+        <td valign="top" bgcolor="#EFEFEF"><img src="images/logo.gif"><br />
+        </td>
+       </tr>
+      </table>
+<?php
+} 
+
+function html_prereq_errors($error_msg)
+{
+
+    ?>
+      <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
+       <tr>
+	    <form action="install.php">
+        <td class="tableh1" colspan="2"><h2>Welcome to Coppermine installation</h2>
+        </td>
+       </tr>
+       <tr>
+        <td class="tableh2" colspan="2" align="center"><span class="error">&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;ERROR&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</span>
+        </td>
+       </tr>
+       <tr>
+        <td class="tableb" colspan="2"> Before you continue with the Coppermine upgrade, there are some problems that need to be fixed.<br /><br /><b><?php echo $error_msg ?></b>Once you are done, hit the "Try again" button.<br />
+        </td>
+       </tr>
+       <tr>
+        <td colspan="2" align="center"><br />
+       	 <input type="submit" value="Try again !"><br /><br />
+        </td>
+		</form>
+       </tr>
+      </table>
+<?php
+} 
+
+function html_error($error_msg = '')
+{
+    global $HTTP_POST_VARS, $im_installed;
+
+    ?>
+      <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
+       <tr>
+	    <form action="upgrade.php" method="post">
+        <td class="tableh1" colspan="2"><h2>Welcome to the Coppermine upgrade program</h2>
+        </td>
+       </tr>
+<?php
+    if ($error_msg) {
+
+        ?>
+       <tr>
+        <td class="tableh2" colspan="2" align="center"><span class="error">&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;ERROR&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</span>
+        </td>
+       </tr>
+       <tr>
+        <td class="tableb" colspan="2"> The following errors were encountered and need to be corrected first:<br /><br /><b><?php echo $error_msg ?></b>
+        </td>
+       </tr>
+<?php
     } 
 
-    echo <<<EOT
-	<tr>
-    	<td width="40%" class="tableb">
-			$text
+    ?>
+    
+       </tr>
+      </table>
+<?php
+} 
+
+function html_install_success($notes)
+{
+    global $DFLT, $HTTP_POST_VARS;
+
+    ?>
+      <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
+       <tr>
+	    <td class="tableh1" colspan="2"><h2>Upgrade completed</h2>
         </td>
-        <td width="60%" class="tableb" valign="top">
-        	<input type="text" style="width: 100%" name="$name" maxlength="$max_length" value="" class="textinput">
-		</td>
-	</tr>
-
-EOT;
-} 
-
-function form_file_input($text, $name)
-{
-    global $CONFIG;
-
-    $max_file_size = $CONFIG['max_upl_size'] << 10;
-
-    echo <<<EOT
-	<tr>
-    	<td class="tableb">
-			$text
+       </tr>
+       <tr>
+        <td class="tableb" colspan="2"> Coppermine is now upgraded and ready to roll.<br /><?php echo $notes ?>
         </td>
-        <td class="tableb" valign="top">
-			<input type="hidden" name="MAX_FILE_SIZE" value="$max_file_size">
-			<input type="file" name="$name" size="40" class="listbox">
-		</td>
-	</tr>
-
-EOT;
-} 
-
-function form_alb_list_box($text, $name)
-{
-    global $CONFIG, $HTTP_GET_VARS;
-    global $user_albums_list, $public_albums_list;
-
-    $sel_album = isset($HTTP_GET_VARS['album']) ? $HTTP_GET_VARS['album'] : 0;
-
-    echo <<<EOT
-	<tr>
-    	<td class="tableb">
-			$text
+       </tr>
+       <tr>
+        <td colspan="2" align="center" class="tableh2"><br />
+       	 <a href="index.php">Let's continue !</a><br />
         </td>
-        <td class="tableb" valign="top">
-        	<select name="$name" class="listbox">
-
-EOT;
-    foreach($user_albums_list as $album) {
-        echo '        		<option value="' . $album['aid'] . '"' . ($album['aid'] == $sel_album ? ' selected' : '') . '>* ' . $album['title'] . "</option>\n";
-    } 
-    foreach($public_albums_list as $album) {
-        echo '        		<option value="' . $album['aid'] . '"' . ($album['aid'] == $sel_album ? ' selected' : '') . '>' . $album['title'] . "</option>\n";
-    } 
-    echo <<<EOT
-			</select>
-		</td>
-	</tr>
-
-EOT;
+		</form>
+       </tr>
+      </table>
+<?php
 } 
 
-function form_textarea($text, $name, $max_length)
+function html_footer()
 {
-    global $ALBUM_DATA;
 
-    $value = $ALBUM_DATA[$name];
-
-    echo <<<EOT
-	<tr>
-		<td class="tableb" valign="top">
-			$text
-		</td>
-		<td class="tableb" valign="top">
-			<textarea name="$name" rows="5" cols="40" wrap="virtual"  class="textinput" style="width: 100%;" onKeyDown="textCounter(this, $max_length);" onKeyUp="textCounter(this, $max_length);"></textarea>
-		</td>
-	</tr>
-EOT;
+    ?>
+  </div>
+ </div>
+</body>
+</html>
+<noscript><plaintext>
+<?php
 } 
-
-function create_form(&$data)
+// ------------------------- SQL QUERIES TO CREATE TABLES ------------------ //
+function update_tables()
 {
-    foreach($data as $element) {
-        if ((is_array($element))) {
-            switch ($element[2]) {
-                case 0 :
-                    form_input($element[0], $element[1], $element[3]);
-                    break;
-                case 1 :
-                    form_file_input($element[0], $element[1]);
-                    break;
-                case 2 :
-                    form_alb_list_box($element[0], $element[1]);
-                    break;
-                case 3 :
-                    form_textarea($element[0], $element[1], $element[3]);
-                    break;
-                default:
-                    cpg_die(ERROR, 'Invalid action for form creation', __FILE__, __LINE__);
-            } // switch
+    global $HTTP_POST_VARS, $HTTP_SERVER_VARS, $errors, $CONFIG;
+
+    $PHP_SELF = $HTTP_SERVER_VARS['PHP_SELF'];
+    $gallery_dir = strtr(dirname($PHP_SELF), '\\', '/');
+    $gallery_url_prefix = 'http://' . $HTTP_SERVER_VARS['HTTP_HOST'] . $gallery_dir . (substr($gallery_dir, -1) == '/' ? '' : '/');
+
+    $db_update = 'sql/update.sql';
+    $sql_query = fread(fopen($db_update, 'r'), filesize($db_update)); 
+    // Update table prefix
+    $sql_query = preg_replace('/CPG_/', $CONFIG['TABLE_PREFIX'], $sql_query);
+
+    $sql_query = remove_remarks($sql_query);
+    $sql_query = split_sql_file($sql_query, ';');
+
+    ?>
+	<table class="maintable">
+    <tr>
+      <th colspan=2 class="tableh1">Performing Database Updates</th>
+    </tr>
+ <?php
+
+    foreach($sql_query as $q) {
+        echo "<tr><td class='tableb'>$q</td>";
+        if (mysql_query($q)) {
+            echo "<td class='updatesOK'>OK</td>";
         } else {
-            form_label($element);
+            echo "<td class='updatesFail'>Already Done</td>";
         } 
     } 
 } 
+// --------------------------------- MAIN CODE ----------------------------- //
+// The defaults values
+$table_prefix = $HTTP_POST_VARS['table_prefix'];
+$DFLT = array('lck_f' => 'install.lock', // Name of install lock file
+    'cfg_d' => 'include', // The config file dir
+    'cfg_f' => 'include/config.inc.php', // The config file name
+    'alb_d' => 'albums', // The album dir
+    'upl_d' => 'userpics' // The uploaded pic dir
+    );
 
-if (GALLERY_ADMIN_MODE) {
-    $public_albums = mysql_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
-} else {
-    $public_albums = mysql_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " AND uploads='YES' ORDER BY title");
+$errors = '';
+$notes = ''; 
+// The installer
+html_header();
+html_logo();
+
+test_fs();
+if ($errors != '')
+    html_prereq_errors($errors);
+else {
+    test_sql_connection();
+    if ($errors == '')
+        update_tables();
+    else
+        html_error($errors);
+    if ($errors == '')
+        html_install_success($notes);
+    else
+        html_error($errors);
 } 
-if (mysql_num_rows($public_albums)) {
-    $public_albums_list = db_fetch_rowset($public_albums);
-} else {
-    $public_albums_list = array();
-} 
 
-if (USER_ID) {
-    $user_albums = mysql_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' ORDER BY title");
-    if (mysql_num_rows($user_albums)) {
-        $user_albums_list = db_fetch_rowset($user_albums);
-    } else {
-        $user_albums_list = array();
-    } 
-} else {
-    $user_albums_list = array();
-} 
-
-if (!count($public_albums_list) && !count($user_albums_list)) {
-    cpg_die (ERROR, $lang_upload_php['err_no_alb_uploadables'], __FILE__, __LINE__);
-} 
-
-pageheader($lang_upload_php['title']);
-starttable("100%", $lang_upload_php['title'], 2);
-echo <<<EOT
-
-<script language="JavaScript">
-function textCounter(field, maxlimit) {
-	if (field.value.length > maxlimit) // if too long...trim it!
-	field.value = field.value.substring(0, maxlimit);
-}
-</script>
-
-<form method="post" action="db_input.php" ENCTYPE="multipart/form-data">
-<input type="hidden" name="event" value="picture">
-
-EOT;
-create_form($data);
-echo <<<EOT
-	<tr>
-		<td colspan="2" align="center" class="tablef">
-			<input type="submit" value="{$lang_upload_php['title']}" class="button">
-		</td>
-		</form>
-	</tr>
-
-EOT;
-endtable();
-pagefooter();
-ob_end_flush();
+html_footer();
 
 ?>
