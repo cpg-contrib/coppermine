@@ -86,6 +86,9 @@ a.external {
 .menu1 {font-weight:bolder;font-stretch:expanded;font-size:120%}
 .menu2 {font-weight:bold;font-stretch:normal;font-size:100%}
 .menu3 {font-weight:normal;font-stretch:condensed }
+.code {
+        font-size: 12px; font-style: normal; font-family: "Courier New", Courier, mono; background-color: #E0E0E0
+}
 </style>
 </head>
 <body>
@@ -99,7 +102,7 @@ a.external {
 <p>Coppermine Photo Gallery is a picture gallery script. Users can upload pictures
   with a web browser (thumbnails are created on the fly), rate pictures, add comments
   and send e-cards. The admins can manage the galleries and batch add pictures
-  that have been uploaded on the server by FTP.</p>
+  that have been uploaded on the server by FTP. Support for multimedia files has been added recently.</p>
 <p>Images are stored in albums and albums can be grouped by categories. The script
   supports multiple users and each user can possibly have its own set of albums.</p>
 <p>The script also supports multiple languages and has a theme system. It uses
@@ -129,7 +132,7 @@ a.external {
         </ul>
         <li class="content"><a href="#administration"><span class="menu1">4. Configuration &amp; Administration</span></a></li>
         <ul class="content">
-          <li class="content"><a href="#cat_alb_pic"><span class="menu2">4.1 Categories, albums and pictures</a></span></li>
+          <li class="content"><a href="#cat_alb_pic"><span class="menu2">4.1 Categories, albums and files</a></span></li>
           <li class="content"><a href="#admin_user_mode"><span class="menu2">4.2 Admin mode &amp; User mode</a></span></li>
           <li class="content"><a href="#group_cp"><span class="menu2">4.3 The group control panel</a></span></li>
           <li class="content"><a href="#cat_cp"><span class="menu2">4.4 The category control panel</a></span></li>
@@ -141,10 +144,10 @@ a.external {
             <li class="content"><a href="#albmgr_delete">4.5.4 Deleting albums</a></li>
           </ul>
           </li>
-          <li class="content"><a href="#modif_alb_pics"><span class="menu2">4.6 Modifying album/pictures</a></span></li>
+          <li class="content"><a href="#modif_alb_pics"><span class="menu2">4.6 Modifying album/files</a></span></li>
           <li class="content"><a href="#batch_add_pics"><span class="menu2">4.7 Uploading pics by FTP / Batch-Add Pictures</a></span></li>
           <li class="content"><a href="#album_prop"><span class="menu2">4.8 Album properties</a></span></li>
-          <li class="content"><a href="#edit_pics"><span class="menu2">4.9 Editing pictures</a></span></li>
+          <li class="content"><a href="#edit_pics"><span class="menu2">4.9 Editing files</a></span></li>
           <li class="content"><a href="#config"><span class="menu2">4.10 The configuration page</a></span></li>
             <ul class="content">
             <li class="content"><a href="#config_general">4.10.1 General settings</a></li>
@@ -152,8 +155,8 @@ a.external {
             <li class="content"><a href="#config_album_list">4.10.3 Album list view</a></li>
             <li class="content"><a href="#config_thumbnail_view">4.10.4 Thumbnail view</a></li>
             <li class="content"><a href="#config_image_comment">4.10.5 Image view &amp; Comment settings</a></li>
-            <li class="content"><a href="#config_picture_thumbnail">4.10.6 Picture and thumbnail settings</a></li>
-            <li class="content"><a href="#config_picture_thumb_advanced">4.10.7 Pictures and thumbnails advanced settings</a></li>
+            <li class="content"><a href="#config_picture_thumbnail">4.10.6 File and thumbnail settings</a></li>
+            <li class="content"><a href="#config_picture_thumb_advanced">4.10.7 Files and thumbnails advanced settings</a></li>
             <li class="content"><a href="#config_user">4.10.8 User settings</a></li>
             <li class="content"><a href="#config_custom">4.10.9 Custom fields for image description</a></li>
             <li class="content"><a href="#config_cookie">4.10.10 Cookie settings</a></li>
@@ -254,19 +257,19 @@ open-source photo gallery!</p>
   link if it is visible, go to the <b>Config</b> page and start to configure your
   gallery. Note that even if you are a member of the administrator group, you
   need to be in &quot;admin mode&quot; to configure your gallery.</p>
-<p>There are some settings in config that can't be changed later (if there are already pictures in the database) - make sure to set them up correctly in the first place. Although you'll surely want to start using coppermine immediately it is advisable to configure those settings (marked with an asterisk &quot;*&quot;) properly at the very beginning.</p>
+<p>There are some settings in config that can't be changed later (if there are already files in the database) - make sure to set them up correctly in the first place. Although you'll surely want to start using coppermine immediately it is advisable to configure those settings (marked with an asterisk &quot;*&quot;) properly at the very beginning.</p>
 <p>Use the &quot;<b><a href="#albmgr">Album Manager</a></b>&quot; (&quot;Albums&quot; link in the admin
-  menu) in to create and order your albums. You'll need at least one album your pictures can go into.</p>
+  menu) in to create and order your albums. You'll need at least one album your files can go into.</p>
 <p>Use the <b>anonymous</b> group to define what non-regsitered users can and
   can't do (in the <a href="#group_cp">groups</a> panel).</p>
 <p>Use the <b><a href="#modif_alb_pics">properties</a></b> of an album to modify its description and permissions.
 </p>
-<p>In order for a user to be allowed to upload a picture in album three conditions
+<p>In order for a user to be allowed to upload a file in album three conditions
   must be met:</p>
 <ul>
   <li>&quot;<a href="#config_user">Users can have private albums</a>&quot; must be turned on in coppermine config</li>
-  <li> The user must be part of a <a href="#group_cp">group</a> that can upload picture.</li>
-  <li>There must be at least one album where &quot;<b>Visitors can upload pictures</b>&quot;
+  <li> The user must be part of a <a href="#group_cp">group</a> that can upload files.</li>
+  <li>There must be at least one album where &quot;<b>Visitors can upload files</b>&quot;
     has been set to &quot;<b>Yes</b>&quot;.</li>
 </ul>
 <p>The same applies to <b>picture rating</b> and <b>comment posting</b>.</p>
@@ -434,11 +437,11 @@ open-source photo gallery!</p>
 <a name="administration"></a>
 <h1>4. Configuration &amp; Administration</h1>
 
-      <h2>4.1 Categories, albums and pictures<a id="cat_alb_pic"
+      <h2>4.1 Categories, albums and files<a id="cat_alb_pic"
       name="cat_alb_pic"></a></h2>
       <p>The Coppermine Photo Gallery (CPG) works in the following way:</p>
       <ul>
-        <li>Pictures are stored in albums</li>
+        <li>Files are stored in albums</li>
         <li>Albums are organised in categories</li>
         <li>Categories can be nested (subcategories)</li>
                         </ul>
@@ -484,7 +487,7 @@ open-source photo gallery!</p>
       </li>
       <li><b>Review Comments</b><br />edit/delete user's comments</li>
       <li><b>Batch add Pictures</b><br /><a href="#batch_add_pics">Batch-add pictures</a> to the coppermine database that have been uploaded by FTP.</li>
-      <li><b>Resize Pictures</b><br />Collection of utilities to resize, rename or delete full-size pictures, intermediate pictures and thumbnails</li>
+      <li><b>Admin Tools (Resize Pictures)</b><br />Collection of utilities to resize, rename or delete full-size pictures, intermediate pictures and thumbnails</li>
       <li><b>My profile</b><br />Edit your own user profile</li>
       </ul>
       <p>There's an admin mode and user mode for &quot;regular&quot; users as well - the user admin has these options:</p>
@@ -504,16 +507,16 @@ open-source photo gallery!</p>
       <p><img src="pics/group_cp.GIF" border="1" /></p>
       <p>This is where you define what members of a group can and can't do.</p>
       <p>The disk quota applies only for groups where &quot;<i>Can have a personal</i>&quot;
-      gallery has been set to &quot;<b>YES</b>&quot;. Both pictures uploaded by a user in his
+      gallery has been set to &quot;<b>YES</b>&quot;. Both files uploaded by a user in his
       personal gallery as well as files uploaded to public galleries are included in the quota.</p>
       <p>Use the <b>anonymous</b> group to define what non-registered users can
       and can't do. Quota and &quot;<i>Can have a personal gallery</i>&quot; are meaningless for anonymous users.</p>
-      <p>Bear in mind that if a user is a member of a group where &quot;<i>can rate pictures</i>&quot;, &quot;<i>can post comments</i>&quot; or &quot;<i>can upload pictures</i>&quot; is set &quot;<i>YES</i>&quot;, he will have the right to perform these operations only in albums where they are allowed, ie. uploading pictures will only be possible in albums where
-      &quot;<i>Visitors can upload pictures</i>&quot; has been set to <i>YES</i>.</p>
+      <p>Bear in mind that if a user is a member of a group where &quot;<i>can rate pictures</i>&quot;, &quot;<i>can post comments</i>&quot; or &quot;<i>can upload files</i>&quot; is set &quot;<i>YES</i>&quot;, he will have the right to perform these operations only in albums where they are allowed, ie. uploading files will only be possible in albums where
+      &quot;<i>Visitors can upload files</i>&quot; has been set to <i>YES</i>.</p>
       <p>If &quot;<i>can have a personal gallery</i>&quot; is set to <i>YES</i>, the members of the
       group will have their own gallery in the &quot;<i>User galleries</i>&quot; category where
       they will be able to create their own albums.</p>
-      <p>If &quot;<i>priv. upl. approval</i>&quot; is set to <i>NO</i>, pictures uploaded by members of
+      <p>If &quot;<i>priv. upl. approval</i>&quot; is set to <i>NO</i>, files uploaded by members of
       the group in albums created in their own gallery won't need to be approved
       by the admin.</p>
       <p><img src="pics/groupsscrsht2.jpg" border="1" /></p>
@@ -542,7 +545,7 @@ open-source photo gallery!</p>
         existing cetegory.
         <li>The <img src="pics/delete.gif" width="16" height="16" alt="" /> button
         allows you to delete a category. Deleting a category does not delete the
-        albums and pictures it contains. They are simply moved to the "Root"
+        albums and files it contains. They are simply moved to the &quot;Root&quot;
         category.
         <li>The <img src="pics/up.gif" width="16" height="16" alt="" /> and <img
         src="pics/down.gif" width="16" height="16" alt="" /> buttons allow you to
@@ -601,18 +604,18 @@ open-source photo gallery!</p>
       top</a></p>
       <hr>
 
-      <h2>4.6 Modifying albums/picture<a id="modif_alb_pics"
+      <h2>4.6 Modifying albums/files<a id="modif_alb_pics"
       name="modif_alb_pics"></a></h2>
       <p>When you are in admin mode there is a menu displayed next to each
       album</p>
       <p></p>
       <p><img src="pics/album_menu.GIF" border="1" /></p>
-      <p><b>Delete</b> allows you to delete the album and all pictures it
+      <p><b>Delete</b> allows you to delete the album and all files it
       contains.</p>
       <p><b>Properties</b> allows you to modify the name, description and
       permissions of the album</p>
       <p><b>Edit pics</b> allows you to modify the title/caption/keywords etc...
-      of the pictures in the album</p>
+      of the files in the album</p>
       <p><a class="back" href="#top">Back to
       top</a></p>
       <hr>
@@ -657,23 +660,23 @@ If your browser times out, hit the reload button.
       <p>The thumbnail is the picture that will represent the album in the album
       list.</p>
       <p>If you have set &quot;Users can can have private albums&quot; to YES on the
-      <a href="#config">config page</a>, you can define who can view the pictures of this album.</p>
-      <p>When "visitors can upload picture" is set to YES, it is possible to
-      upload pictures in this album. <b>Note that a visitor will have the right
-      to upload pictures into an album where this option is set to YES only if
-      he is a member of a group for which "Can upload pictures" is set to YES.
+      <a href="#config">config page</a>, you can define who can view the files of this album.</p>
+      <p>When &quot;visitors can upload file&quot; is set to YES, it is possible to
+      upload files in this album. <b>Note that a visitor will have the right
+      to upload files into an album where this option is set to YES only if
+      he is a member of a group for which &quot;Can upload pictures&quot; is set to YES.
       </b>Non registered users are members of the "Anonymous" group.</p>
-      <p>The same rules as above apply for "Visitors can post comments" and
-      "Visitors can rate pictures".</p>
+      <p>The same rules as above apply for &quot;Visitors can post comments&quot; and
+      &quot;Visitors can rate files&quot;.</p>
       <p><a class="back" href="#top">Back to
       top</a></p>
       <hr>
 
-      <h2>4.9 Editing pictures<a id="edit_pics" name="edit_pics"></a></h2>
+      <h2>4.9 Editing files<a id="edit_pics" name="edit_pics"></a></h2>
       <p><img src="pics/edit_picture.GIF" border="1" /></p>
       <p>This is where you can modify the title description, keywords and custom
-      fields (if they are used) of a picture.</p>
-      <p>Use the album drop down menu to move a picture to another album.</p>
+      fields (if they are used) of a file.</p>
+      <p>Use the album drop down menu to move a file to another album.</p>
       <p><a class="back" href="#top">Back to
       top</a></p>
       <hr>
@@ -691,7 +694,7 @@ If your browser times out, hit the reload button.
       <p>All emails sent by the gallery are sent with this email address.</p>
       <h4>Target address for the 'See more pictures' link in e-cards</h4>
       <p>This is the URL where a user will be directed when he will click on the
-      "See more pictures" link in an e-card. This should normally be the URL for
+      &quot;See more pictures&quot; link in an e-card. This should normally be the URL for
       your gallery but it may be the URL of another page of your site. </p>
       <h4>Gallery is offline</h4>
       <p>If you have to do maintenance work to do on your gallery, switch it to offline mode. Only members of the admin group will be able to log in, all other users will only see &quot;Gallery is offline&quot;. Remember to switch this option off once your maintenance work is done.<br />
@@ -737,7 +740,7 @@ If your browser times out, hit the reload button.
       force the script to do another auto detection) call it with something
       like: <a
       href="#">http://yoursite.com/coppermine_dir/index.php?lang=xxx</a></p>
-      <p>Once you have added some comments or pictures to your gallery, you
+      <p>Once you have added some comments or files to your gallery, you
       should not change the character set of your gallery. If you do so,
       non-ASCII character may not be shown correctly.</p>
       <h4>Theme</h4>
@@ -828,8 +831,8 @@ If your browser times out, hit the reload button.
       <h4>Size of thumbnails in pixels</h4>
       <p>This is the size of the thumbnails that are displayed for each album.
       50 means that the thumbnail will fit inside a square of 50x50 pixels.</p>
-      <p>If the size you specify there is larger than "Pictures and thumbnails
-      settings/Max width or height of a thumbnail", the thumbnail will be
+      <p>If the size you specify there is larger than &quot;Pictures and thumbnails
+      settings/Max width or height of a thumbnail&quot;, the thumbnail will be
       stretched.</p>
       <a name="changing"></a><h4>The content of the main page</h4>
       <p>This option allows you to change the content of the main page displayed
@@ -847,7 +850,7 @@ If your browser times out, hit the reload button.
         </li>
         <li>'<b>catlist</b>': category list
         <li>'<b>alblist</b>': album list
-        <li>'<b>random</b>': random pictures (leaving random pictures &quot;on&quot; for huge galleries with more than 10,000 pics might result in performance problems; switch random &quot;off&quot; in this case)
+        <li>'<b>random</b>': random files (leaving random files &quot;on&quot; for huge galleries with more than 10,000 pics might result in performance problems; switch random &quot;off&quot; in this case)
         <li>'<b>lastup</b>': last uploads
         <li>'<b>topn</b>': most viewed
         <li>'<b>toprated</b>': top rated
@@ -890,8 +893,8 @@ If your browser times out, hit the reload button.
       <p>When the thumbnails spread over multiple pages, tabs are displayed at
       the bottom of the page. This value define how many tabs will be
       displayed.</p>
-                        <h4>Display picture caption (in addition to title) below the thumbnail </h4>
-                        <p>Toggles whether the picture caption is displayed
+                        <h4>Display file caption (in addition to title) below the thumbnail </h4>
+                        <p>Toggles whether the file caption is displayed
                         below each thumbnail while user is in thumbnail view.<br />
                         <img src="pics/cpg10.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
       <img src="pics/cpg110.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
@@ -916,13 +919,13 @@ If your browser times out, hit the reload button.
       <img src="pics/cpg120.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
       <img src="pics/cpg121.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
       <img src="pics/cpg130.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_ok.gif" width="18" height="20" border="0" alt=""></p>
-                        <h4>Default sort order for pictures </h4>
-                        <p>This option determines if you wish to have the picture caption displayed
+                        <h4>Default sort order for files</h4>
+                        <p>This option determines if you wish to have the file caption displayed
                         below each thumbnail while user is in thumbnail view.</p>
-      <h4>Minimum number of votes for a picture to appear in the 'top-rated'
+      <h4>Minimum number of votes for a file to appear in the 'top-rated'
       list</h4>
-                        Used to determine how many votes a picture must receive before appearing as
-                        &quot;top-rated.&quot;  If a picture has received less than "this value"
+                        Used to determine how many votes a file must receive before appearing as
+                        &quot;top-rated.&quot;  If a file has received less than &quot;this value&quot;
                         votes, it will not be displayed on the "top-rated" page.</p>
                         <p><a class="back" href="#top">Back to
       top</a></p>
@@ -932,8 +935,8 @@ If your browser times out, hit the reload button.
       <h3>4.10.5 Image view &amp; Comment settings</h3>
       <h4>Width of the table for picture display (pixels or %)</h4>
       <p>The width of the table used to display the intermediate picture.</p>
-      <h4>Picture information are visible by default</h4>
-      <p>Define whether or not picture information (those that appear when you
+      <h4>File information are visible by default</h4>
+      <p>Define whether or not file information (those that appear when you
       click on the (i) button) should be visible by default.</p>
       <h4>Filter bad words in comments</h4>
       <p>Remove "bad words" from comments. The "bad words" list is in the
@@ -977,21 +980,21 @@ If your browser times out, hit the reload button.
       when using ImageMagick.</p>
                         <h4>Max dimension of a thumbnail</h4>
                         <p>Sets the maximum size in pixels for the specified dimension for thumbnails.
-                        <div class="important">When changing this setting, only the pictures that are added from that point on are affected, so it is advisable that this setting must not be changed if there are already photos in the gallery. You can, however, apply the changes to the existing pictures with the &quot;admin tools (resize pictures)&quot; utility from the admin menu.</div></p>
+                        <div class="important">When changing this setting, only the files that are added from that point on are affected, so it is advisable that this setting must not be changed if there are already photos in the gallery. You can, however, apply the changes to the existing pictures with the &quot;admin tools (resize pictures)&quot; utility from the admin menu.</div></p>
                         <h4>Use dimension ( width or height or Max aspect for thumbnail )</h4>
                         <p>Sets the dimension for which the maximum pixel size should apply to.
-                        <div class="important">When changing this setting, only the pictures that are added from that point on are affected, so it is advisable that this setting must not be changed if there are already photos in the gallery. You can, however, apply the changes to the existing pictures with the &quot;resize pictures&quot; utility from the admin menu.</div></p>
+                        <div class="important">When changing this setting, only the files that are added from that point on are affected, so it is advisable that this setting must not be changed if there are already photos in the gallery. You can, however, apply the changes to the existing files with the &quot;resize pictures&quot; utility from the admin menu.</div></p>
       <h4>Create intermediate pictures</h4>
-      <p>By default, whenever you upload a picture, the script creates a
-      thumbnail of the picture (picture name with a thumb_ prefix) plus an
-      intermediate version (picture name with a normal_ prefix). If you set this
-      option to NO, the intermediate picture is not created.</p>
+      <p>By default, whenever you upload a file, the script creates a
+      thumbnail of the file (file name with a thumb_ prefix) plus an
+      intermediate version (file name with a normal_ prefix). If you set this
+      option to NO, the intermediate file is not created.</p>
       <h4>Max width or height of an intermediate picture</h4>
       <p>The intermediate pictures are those that appears when you click on a
       thumbnail. The default value is 400, it means that the intermediate
       picture will fit inside a square of 400x400 pixels.</p>
-      <h4>Max size for uploaded pictures (KB)</h4>
-      <p>Any picture with a file size larger than this value will be rejected by
+      <h4>Max size for uploaded files (KB)</h4>
+      <p>Any file with a file size larger than this value will be rejected by
       the script.</p>
       <h4>Max width or height for uploaded pictures (pixels)</h4>
       <p>Limit the dimensions of the pictures that are uploaded. Resizing large
@@ -1001,21 +1004,63 @@ If your browser times out, hit the reload button.
       <hr />
 
       <a name="config_picture_thumb_advanced"></a>
-      <h3>4.10.7 Pictures and thumbnails advanced settings</h3>
+      <h3>4.10.7 Files and thumbnails advanced settings</h3>
                         <h4>Show private album Icon to unlogged user </h4>
                         <p>Toggles the display of the private album icon to unlogged users.</p>
       <h4>Characters forbidden in filenames</h4>
-      <p>When the filename of a picture that is uploaded contains one of these
+      <p>When the filename of a file that is uploaded contains one of these
       characters, it will be replaced with an underscore.</p>
       <p>Don't change this unless you know exactly what you are doing.</p>
       <h4>Accepted file extensions for uploaded pictures</h4>
       <p>Any file uploaded whose extension is not in this list will be rejected
       by the script. This is intended to prevent a user from uploading non-image
       files.</p>
-      <p>The script can only handle image files, so you won't add support for
-      instance for video files by adding AVI to the list.</p>
       <p>The GD library only supports JPEG and PNG images so other types of
-      files will be rejected even if their extension is valid.</p>
+      files will be rejected even if their extension is valid.<br />
+      <img src="pics/cpg10.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_ok.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg110.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_ok.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg111.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_ok.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg120.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_ok.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg121.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_exclam.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg130.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""></p>
+      <h4>Allowed image types</h4>
+      <p>&quot;<i>ALL</i>&quot; will result in all allowed image file types that your image library (GD or ImageMagick) is capable of handling to be allowed. If you want to restrict the allowed file types to certain types only, enter a coma-separated list of extensions, e.g. <tt class="code">jpg,bmp,tif</tt>
+      <br />
+      <img src="pics/cpg10.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg110.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg111.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg120.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg121.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_exclam.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg130.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_ok.gif" width="18" height="20" border="0" alt=""></p>
+      <h4>Allowed movie types</h4>
+      <p>&quot;<i>ALL</i>&quot; will result in all allowed movie file types to be uploaded. If you want to restrict the allowed file types to certain extensions only, enter a coma-separated list of extensions, e.g. <tt class="code">wmv,avi,mov</tt>.<br />
+      Note that being able to display a movie requires the cpg-user to have the codecs needed to display the movie installed and configured properly on their computer, e.g. if you allow the file type <tt class="faq">mov</tt>, the user who is going to watch the movie will need to have Apple's Quick-Time plug-in installed. Also note that <tt class="code">avi</tt> is just a container for different codecs - this means that a computer which is capable of playing movie1.avi may not be capable of playing movie2.avi if those files have been encoded with different codecs.
+      <br />
+      <img src="pics/cpg10.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg110.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg111.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg120.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg121.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_exclam.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg130.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_ok.gif" width="18" height="20" border="0" alt=""></p>
+      <h4>Allowed audio types</h4>
+      <p>&quot;<i>ALL</i>&quot; will result in all allowed audio file types to be uploaded. If you want to restrict the allowed file types to certain extensions only, enter a coma-separated list of extensions, e.g. <tt class="code">wav,mp3,wma</tt>.<br />
+      Note that being able to listen to an audio file requires the cpg-user to have the codecs needed installed and configured properly on their computer, e.g. if you allow the file type <tt class="code">mp3</tt>, the user who is going to listen to the file will need to have an mp3-player installed.<br />
+      <img src="pics/cpg10.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg110.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg111.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg120.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg121.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_exclam.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg130.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_ok.gif" width="18" height="20" border="0" alt=""></p>
+      <h4>Allowed document types</h4>
+      <p>&quot;<i>ALL</i>&quot; will result in all allowed document file types to be uploaded. If you want to restrict the allowed file types to certain extensions only, enter a coma-separated list of extensions, e.g. <tt class="code">txt,pdf</tt>.<br />
+      Note that being able to browse a document file requires the cpg-user to have a software installed and configured properly on their computer that is capable of displaying the document type uploaded, e.g. if you allow the file type <tt class="code">xls</tt>, the user who is going browse the file will need to have an application installed that can display MS-Excel sheets. Be carefull with some document types (especially if you allow users to be capable of uploading documents without admin approval), as they may contain macro viruses.
+      <br />
+      <img src="pics/cpg10.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg110.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg111.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg120.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg121.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_exclam.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg130.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_ok.gif" width="18" height="20" border="0" alt=""></p>
       <h4>Method for resizing images</h4>
       <p>If you are using GD 1.x and the colors of your thumbnails or
       intermediate image are wrong then switch to GD 2.x</p>
@@ -1043,21 +1088,37 @@ If your browser times out, hit the reload button.
       available.</p>
       <h4>Read EXIF data in JPEG files</h4>
       <p>With this option turned on, the script will read the EXIF data stored
-      by digicams in JPEG files. This option will work only if PHP was compiled
-      with the EXIF extension.</p>
+      by digicams in JPEG files. For cpg1.x to cpg1.2.1, this option will work only if PHP was compiled
+      with the EXIF extension. Coppermine 1.3.0 (or better) comes with built-in EXIF support even if the webserver itself doesn't have EXIF support, as it uses a <a href="http://www.sanisoft.com/phpexifrw/" class="external">separate EXIF class</a>.<br />
+      <img src="pics/cpg10.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg110.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_exclam.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg111.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_exclam.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg120.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_exclam.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg121.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_exclam.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg130.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_ok.gif" width="18" height="20" border="0" alt=""></p>
+      <h4>Read IPTC data in JPEG files</h4>
+      <p>With this option turned on, the script will read the <a href="http://www.iptc.org/" class="external">IPTC</a> data stored
+      by digicams in picture files.
+      <br />
+      <img src="pics/cpg10.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg110.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg111.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg120.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg121.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg130.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_ok.gif" width="18" height="20" border="0" alt=""></p>
       <h4>The album directory</h4>
       <p>This is the base directory for your "Image Store". The path is relative
       to the main directory of the script. </p>
       <p>You can use ../ in the path to move-up one level in the directory
       tree.</p>
-      <p>You can not use an absolute path there ("/var/my_images/" will not
+      <p>You can <b>not</b> use an absolute path there ("/var/my_images/" will not
       work) and the album directory must be visible by your web server.</p>
-      <h4>The directory for user pictures</h4>
-      <p>This is the directory where pictures uploaded with the web interface
+      <h4>The directory for user files</h4>
+      <p>This is the directory where files uploaded with the web interface
       are stored. This directory is a subdirectory of the album directory.</p>
       <p>The same remarks as above apply.</p>
-      <p>When you upload pictures by FTP, store them in a subdirectory of the
-      "album directory" and not inside the "directory for user pictures". </p>
+      <p>When you upload files by FTP, store them in a subdirectory of the
+      "album directory" and not inside the &quot;directory for user files&quot;. </p>
                         <h4>The prefix for intermediate pictures</h4>
                         <p>This prefix is added to the file name of created pictures.</p>
                         <h4>The prefix for thumbnails</h4>
@@ -1067,7 +1128,7 @@ If your browser times out, hit the reload button.
       not having the right permissions set this to <b>0777</b> else you won't be
       able to delete the directories created by the script with your FTP client
       the day you will decide to uninstall the script.</p>
-      <h4>Default mode for pictures</h4>
+      <h4>Default mode for files</h4>
       <p>If during the installation, the installer complained about directories
       not having the right permissions set this to <b>0666</b>.</p>
       <p><a class="back" href="#top">Back to
@@ -1082,9 +1143,18 @@ If your browser times out, hit the reload button.
       <p>If set to YES an email will be sent to the user that will contain a
       code to activate his account. If set to NO, user accounts become
       immediately active.</p>
+      <h4>Notify admin of user registration by email</h4>
+      <p>If set to YES an email will be sent to the gallery admin when a new user registers.<br />
+      <img src="pics/cpg10.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg110.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg111.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg120.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg121.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
+      <img src="pics/cpg130.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_ok.gif" width="18" height="20" border="0" alt="">
+      </p>
       <h4>Allow two users to have the same email address</h4>
       <p>Allow or prevent two users from registering with the same email
-      address.</p>
+      address. Recommended setting is NO</p>
       <h4>Users can can have private albums</h4>
       <p>If set to YES then your gallery can contain albums that can be visible
       only by users that belong to a certain group.</p>
@@ -1114,7 +1184,7 @@ If your browser times out, hit the reload button.
 
       <a name="config_custom"></a>
       <h3>4.10.9 Custom fields for image description (leave blank if unused)</h3>
-      <p>These fields are displayed within the "picture information" area. They
+      <p>These fields are displayed within the &quot;file information&quot; area. They
       will appear only if you give them a name.</p>
       <p><a class="back" href="#top">Back to
       top</a></p>
@@ -1124,7 +1194,7 @@ If your browser times out, hit the reload button.
       <h3>4.10.10 Cookie settings</h3>
       <h4>Name of the cookie used by the script</h4>
       <p>Default value is "cpg11d". Even if you have multiple instances of the
-      script running on the same server you can keep the default value.</p>
+      script running on the same server you can keep the default value.<br /><span class="important">When using bbs integration, make sure it <b>differs</b> from the bbs's cookie name</span></p>
       <h4>Path of the cookie used by the script</h4>
       <p>Default value is "/". Don't change this unless you know what you are
       doing. This may prevent you from logging in.</p>
@@ -1141,9 +1211,11 @@ If your browser times out, hit the reload button.
       <a name="debug_mode"></a><h4>Enable debug mode</h4>
       <p>CPG will show error messages which are normally suppressed.  This is
       helpful in troubleshooting problems with your gallery or when asking
-      for help on the <a ref="http://coppermine.sf.net/board/">
+      for help on the <a href="http://coppermine.sf.net/board/">
       CPG Support Forums</a>. Turn this feature off if you don't experience problems.<br />
-      Turn it on (option &quot;Everyone&quot;) if you are requesting help on the <a ref="http://coppermine.sf.net/board/">coppermine support board</a>, so the supporters can have a look at the debug output as well. Choose the option &quot;Admin only&quot; when trouble-shooting on your own - debug output will be only visible when you're logged in as admin, regular users or guests won't see the debug output.</p>
+      Turn it on (option &quot;Everyone&quot;) if you are requesting help on the <a href="http://coppermine.sf.net/board/">coppermine support board</a>, so the supporters can have a look at the debug output as well. Choose the option &quot;Admin only&quot; when trouble-shooting on your own - debug output will be only visible when you're logged in as admin, regular users or guests won't see the debug output.</p>
+      <h4>Display notices in debug mode</h4>
+      <p>May be helpfull to trouble-shoot problems with your coppermine install - only recommended if you know a little PHP and you can understand the additional error messages this option shows. This option only applies if debug mode is enabled.</p>
       <p><a class="back" href="#top">Back to
 top</a></p>
       <hr />
