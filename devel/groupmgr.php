@@ -30,14 +30,14 @@ if (defined('UDB_INTEGRATION')) udb_synchronize_groups();
 function display_group_list()
 {
     global $CONFIG;
-    global $lang_byte_units, $lang_yes, $lang_no;
+    global $lang_groupmgr_php, $lang_byte_units, $lang_yes, $lang_no;
 
     $result = db_query("SELECT * FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1 ORDER BY group_id");
     if (!mysql_num_rows($result)) {
-        db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} VALUES (1, 'Administrators', 0, 1, 1, 1, 1, 1, 1)");
-        db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} VALUES (2, 'Registered', 1024, 0, 1, 1, 1, 1, 1)");
-        db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} VALUES (3, 'Anonymous', 0, 0, 0, 0, 1, 0, 0)");
-        db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} VALUES (4, 'Banned', 0, 0, 0, 0, 0, 0, 0);");
+        db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} VALUES (1, 'Administrators', 0, 1, 1, 1, 1, 1, 1, 3, 0, 5, 3)");
+        db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} VALUES (2, 'Registered', 1024, 0, 1, 1, 1, 1, 1, 3, 0, 5, 3)");
+        db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} VALUES (3, 'Anonymous', 0, 0, 0, 0, 1, 0, 0, 0, 0, 5, 3)");
+        db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} VALUES (4, 'Banned', 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 3);");
         cpg_die(CRITICAL_ERROR, 'Group table was empty !<br /><br />Default groups created, please reload this page', __FILE__, __LINE__);
     }
 
@@ -87,6 +87,72 @@ EOT;
 
 EOT;
         }
+
+     echo "<td class=\"tableb\" align=\"center\">";
+      echo "<select name=\"upload_form_config_{$group['group_id']}\" class=\"listbox\">";
+
+       for ($count=0; $count<5; $count++) {
+
+           if ($count == '3') {
+
+               continue;
+
+           }
+
+           if ($count == '4') {
+
+	       if ($group['upload_form_config'] == 3) {
+                   $selected = 'selected';
+               } else {
+                   $selected = '';
+               }
+
+	       echo "<option value=\"3\" $selected >{$lang_groupmgr_php['upload_form_config_values'][3]}</option>";
+
+               continue;        
+
+           }
+
+	   if ($group['upload_form_config'] == $count) {
+               $selected = 'selected';
+           } else {
+               $selected = '';
+           }
+
+	   echo "<option value=\"$count\" $selected >{$lang_groupmgr_php['upload_form_config_values'][$count]}</option>";
+
+       }
+
+        echo "</select>";
+	echo "</td>";
+
+     // Create custom form request permission box
+     echo "<td class=\"tableb\" align=\"center\">";
+     echo "<select name=\"custom_user_upload_{$group['group_id']}\" class=\"listbox\">";
+
+     // Determine if yes or no should be the selected option in the form.
+     $custom_upload_yes = ($group['custom_user_upload'] == 1) ? 'selected' : '';
+     $custom_upload_no = ($group['custom_user_upload'] == 0) ? 'selected' : '';
+
+     // Create select list.
+     echo "<option value=\"1\" $custom_upload_yes>$lang_yes</option>";
+     echo "<option value=\"0\" $custom_upload_no>$lang_no</option>";
+     echo "</select>";
+     echo "</td>";
+
+     // Create permissible number of file upload boxes box. 
+     echo "<td class=\"tableb\" align=\"center\">";
+     echo "<input type=\"text\" name=\"num_file_upload_{$group['group_id']}\" value=\"{$group['num_file_upload']}\" class=\"textinput\" size=\"5\">";
+     echo "</select>";
+     echo "</td>";
+
+     // Create permissible number of URI upload boxes box. 
+     echo "<td class=\"tableb\" align=\"center\">";
+     echo "<input type=\"text\" name=\"num_URI_upload_{$group['group_id']}\" value=\"{$group['num_URI_upload']}\" class=\"textinput\" size=\"5\">";
+     echo "</select>";
+     echo "</td>";
+
+
         echo <<< EOT
         </tr>
 
@@ -107,7 +173,7 @@ function process_post_data()
 {
     global $CONFIG, $HTTP_POST_VARS;
 
-    $field_list = array('group_name', 'group_quota', 'can_rate_pictures', 'can_send_ecards', 'can_post_comments', 'can_upload_pictures', 'pub_upl_need_approval', 'can_create_albums', 'priv_upl_need_approval');
+    $field_list = array('group_name', 'group_quota', 'can_rate_pictures', 'can_send_ecards', 'can_post_comments', 'can_upload_pictures', 'pub_upl_need_approval', 'can_create_albums', 'priv_upl_need_approval', 'upload_form_config', 'custom_user_upload', 'num_file_upload', 'num_URI_upload');
 
     $group_id_array = get_post_var('group_id');
     foreach ($group_id_array as $key => $group_id) {
@@ -164,6 +230,10 @@ echo <<<EOT
                 <td class="tableh1" align="center"><b><span class="statlink">{$lang_groupmgr_php['approval_1']}</span></b></td>
                 <td class="tableh1" align="center"><b><span class="statlink">{$lang_groupmgr_php['can_have_gallery']}</span></b></td>
                 <td class="tableh1" align="center"><b><span class="statlink">{$lang_groupmgr_php['approval_2']}</span></b></td>
+                <td class="tableh1" align="center"><b><span class="statlink">{$lang_groupmgr_php['upload_form_config']}</span></b></td>                        
+                <td class="tableh1" align="center"><b><span class="statlink">{$lang_groupmgr_php['custom_user_upload']}</span></b></td>
+                <td class="tableh1" align="center"><b><span class="statlink">{$lang_groupmgr_php['num_file_upload']}</span></b></td>
+                <td class="tableh1" align="center"><b><span class="statlink">{$lang_groupmgr_php['num_URI_upload']}</span></b></td>
         </tr>
         <form method="post" action="$PHP_SELF">
 
@@ -173,17 +243,17 @@ display_group_list();
 
 echo <<<EOT
         <tr>
-            <td colspan="10" class="tableh2">
+            <td colspan="14" class="tableh2">
                 <b>{$lang_groupmgr_php['notes']}</b>
                 </td>
         </tr>
         <tr>
-            <td colspan="10" class="tableb">
+            <td colspan="14" class="tableb">
                 {$lang_groupmgr_php['note1']}
                 </td>
         </tr>
         <tr>
-            <td colspan="10" class="tableb">
+            <td colspan="14" class="tableb">
                 {$lang_groupmgr_php['note2']}
                 </td>
         </tr>
@@ -193,7 +263,7 @@ EOT;
 if (defined('UDB_INTEGRATION')) {
     echo <<<EOT
         <tr>
-            <td colspan="10" align="center" class="tablef">
+            <td colspan="14" align="center" class="tablef">
                         <input type="submit" name="apply_modifs" value="{$lang_groupmgr_php['apply']}" class="button">&nbsp;&nbsp;&nbsp;
                 </td>
         </form>
@@ -203,7 +273,7 @@ EOT;
 } else {
     echo <<<EOT
         <tr>
-            <td colspan="10" align="center" class="tablef">
+            <td colspan="14" align="center" class="tablef">
                         <input type="submit" name="apply_modifs" value="{$lang_groupmgr_php['apply']}" class="button">&nbsp;&nbsp;&nbsp;
                         <input type="submit" name="new_group" value="{$lang_groupmgr_php['create_new_group']}" class="button">&nbsp;&nbsp;&nbsp;
                         <input type="submit" name="del_sel" value="{$lang_groupmgr_php['del_groups']}" onClick="return confirmDel()" class="button">
