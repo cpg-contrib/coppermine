@@ -55,9 +55,11 @@
             </tr><tr>{assign var="col" value="0"}
         {/if}
         <td valign="top" class="thumbnails" width="{$colWidth}%" align="center">
+          {if $thumbList[element].aid ne ""}
           <a href="displayimageNew.php?albumName={$thumbList.album}&amp;aid={$thumbList[element].aid}&amp;pid={$thumbList[element].pid}&amp;pos={if $thumbList.currentPage eq 1}{$smarty.section.element.index}{else}{$smarty.section.element.index+$thumbcols*$thumbrows*$cur}{/if}"><img src="{$thumbList[element].image.url}" class="image" border="0" alt="{$thumbList[element].image.alt}" title="{$thumbList[element].image.title}" /></a>
           <br />
           <span class=\"thumb_title\">{$thumbList[element].caption}</span>
+          {/if}
           {if $thumbList[element].comment ne ""}
             <span class=\"thumb_num_comments\">{$thumbList[element].comment}</span>
           {/if}
