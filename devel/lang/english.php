@@ -631,7 +631,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Gallery is offline', 'offline', 1, 'f=index.htm&amp;as=admin_general_offline&amp;ae=admin_general_offline_end'), //cpg 1.4
   array('Allow ZIP-download of favorites', 'enable_zipdownload', 1, 'f=index.htm&amp;as=admin_general_zip-download&amp;ae=admin_general_zip-download_end'), //cpg 1.4
   array('Timezone difference relative to GMT (current time: ' . localised_date(-1, $comment_date_fmt) . ')','time_offset',0, 'f=index.htm&amp;as=admin_general_time-offset&amp;ae=admin_general_time-offset_end&amp;top=1'), //cpg 1.4
-  array('Enable encrypted passwords','enable_encrypted_passwords',18), // cpg 1.4
+  array('Enable encrypted passwords (can not be undone)','enable_encrypted_passwords',18, 'f=index.htm&amp;as=admin_general_encrypt_password_start&amp;ae=admin_general_encrypt_password_end&amp;top=1'), // cpg 1.4
   array('Enable help-icons (help available in English only)','enable_help',9, 'f=index.htm&amp;as=admin_general_help&amp;ae=admin_general_help_end'), //cpg 1.4
   array('Enable clickable keywords in search','clickable_keyword_search',14), //cpg 1.4
   array('Show number of linked files','link_pic_count',1), //cpg 1.4
