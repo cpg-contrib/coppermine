@@ -98,7 +98,7 @@ class core_udb {
 		$CONFIG['TABLE_USERS'] = '**ERROR**';
 			
 		define('USER_ID', $USER_DATA['user_id']);
-        define('USER_NAME', $USER_DATA['user_name']);
+        define('USER_NAME', addslashes($USER_DATA['user_name']));
         define('USER_GROUP', $USER_DATA['group_name']);
         define('USER_GROUP_SET', $user_group_set);
         define('USER_IS_ADMIN', $USER_DATA['has_admin_access']);
