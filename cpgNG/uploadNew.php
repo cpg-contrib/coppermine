@@ -8,7 +8,7 @@ require('include/init.inc.php');
 require('include/picmgmt.inc.php');
 require('include/mailer.inc.php');
 
-require_once('cpgTemplate.class.php');
+require_once('classes/cpgTemplate.class.php');
 
 /**
  * If user submit's the form
