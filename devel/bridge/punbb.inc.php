@@ -34,7 +34,7 @@ $path = 'http://www.yoursite.com/punbb';
 require_once('../punbb/config.php');
 
 } else { // the vars from the bridgemgr
-$path = $BRIDGE['full_forum_url'];
+$path = $BRIDGE['full_forum_url'].'config.php';
 require_once($BRIDGE['relative_path_to_config_file']);
 }
 

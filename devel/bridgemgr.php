@@ -335,6 +335,22 @@ mysql_free_result($results);
 return $CONFIG;
 }
 
+function cpg_is_writable($folder)
+{
+$return = 0;
+$file_content = "this is just a test file that hasn't been deleted properly.\nIt's safe to delete it now";
+@unlink($folder.'/cpgvc_tf.txt');
+if ($fd = @fopen($folder.'/cpgvc_tf.txt', 'w')) {
+    @fwrite($fd, $file_content);
+    @fclose($fd);
+    @unlink($folder.'/cpgvc_tf.txt');
+    $return = 1;
+} else {
+    $return = -1;
+}
+return $return;
+}
+
 ///////////// function defintions end /////////////////////////////
 
 
@@ -357,7 +373,7 @@ $default_bridge_data['invisionboard'] = array(
   'relative_path_of_forum_from_webroot_used' => 'mandatory,not_empty',
   'cookie_prefix_default' => '',
   'cookie_prefix_used' => 'cookie,empty',
-  'table_prefix_default' => 'ibf_',
+  'table_prefix_default' => 'ipb_',
   'table_prefix_used' => 'optional',
   'user_table_default' => 'members',
   'user_table_used' => 'mandatory,not_empty',
@@ -395,7 +411,7 @@ $default_bridge_data['invisionboard_2.0'] = array(
   'relative_path_of_forum_from_webroot_used' => 'mandatory,not_empty',
   'cookie_prefix_default' => 'iv2_',
   'cookie_prefix_used' => 'cookie,empty',
-  'table_prefix_default' => 'ibf_',
+  'table_prefix_default' => 'ipb_',
   'table_prefix_used' => 'optional',
   'user_table_default' => 'members',
   'user_table_used' => 'mandatory,not_empty',
@@ -503,8 +519,8 @@ $default_bridge_data['punbb'] = array(
   'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
   'relative_path_of_forum_from_webroot_default' => '',
   'relative_path_of_forum_from_webroot_used' => '',
-  'relative_path_to_config_file_default' => '../punbb/config.php',
-  'relative_path_to_config_file_used' => 'lookfor',
+  'relative_path_to_config_file_default' => '../punbb/',
+  'relative_path_to_config_file_used' => 'lookfor,config.php',
 );
 
 $default_bridge_data['smf'] = array(
@@ -581,6 +597,9 @@ $default_bridge_data['vbulletin30'] = array(
   'member_group_used' => 'optional',
   'admin_group_default' => '6',
   'admin_group_used' => 'optional',
+  'create_redir_file_content' => '&lt;?php\necho\'Hello World\';\n?&gt;\n',
+  'create_redir_file_location' => '{BBS_LOCATION}/cpg_redir.php',
+  'create_redir_file_action' => 'display,write',
 );
 
 $default_bridge_data['woltlab21'] = array(
@@ -721,7 +740,7 @@ case "settings_path":
             $prefill = cpg_bridge_prefill($BRIDGE['short_name'],$key);
             $reset_to_default = '';
             if ($default_bridge_data[$BRIDGE['short_name']][$key.'_used'] == '') {
-                $disabled = 'disabled="disabled" style="background-color:#D1D7DC"';
+                $disabled = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
             } else {
                 $disabled = '';
                 $rows_displayed++;
@@ -781,7 +800,7 @@ case "db_connect":
             $prefill = cpg_bridge_prefill($BRIDGE['short_name'],$key);
             $reset_to_default = '';
             if ($default_bridge_data[$BRIDGE['short_name']][$key.'_used'] == '') {
-                $disabled = 'disabled="disabled" style="background-color:#D1D7DC"';
+                $disabled = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
             } else {
                 $disabled = '';
                 $rows_displayed++;
@@ -828,13 +847,13 @@ case "db_tables":
         $BRIDGE = cpg_get_bridge_db_values();
         print '<form name="'.$step.'" action="'.$PHP_SELF.'" method="post">';
         starttable('100%',$lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['database_tables'], 3);
-        $loop_array = array('table_prefix', 'user_table', 'session_table', 'group_table', 'group_relation_table', 'group_mapping_table', 'license_number');
+        $loop_array = array('table_prefix', 'user_table', 'session_table', 'group_table', 'group_relation_table', 'group_mapping_table');
         $rows_displayed = 0;
         foreach($loop_array as $key) {
             $prefill = cpg_bridge_prefill($BRIDGE['short_name'],$key);
             $reset_to_default = '';
             if ($default_bridge_data[$BRIDGE['short_name']][$key.'_used'] == '') {
-                $disabled = 'disabled="disabled" style="background-color:#D1D7DC"';
+                $disabled = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
             } else {
                 $disabled = '';
                 $rows_displayed++;
@@ -910,7 +929,7 @@ case "db_groups":
             $prefill = cpg_bridge_prefill($BRIDGE['short_name'],$key);
             $reset_to_default = '';
             if ($default_bridge_data[$BRIDGE['short_name']][$key.'_used'] == '') {
-                $disabled = 'disabled="disabled" style="background-color:#D1D7DC"';
+                $disabled = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
             } else {
                 $disabled = '';
                 $rows_displayed++;
@@ -960,11 +979,15 @@ case "db_groups":
     print 'function AllGroupFieldsDisable() {'.$new_line;
     foreach($keywords as $key) {
     print '    document.getElementById("'.$key.'").disabled = true;'.$new_line;
+    print '    document.getElementById("'.$key.'").style.backgroundColor = \'InactiveCaptionText\';'.$new_line;
+    print '    document.getElementById("'.$key.'").style.color = \'GrayText\';'.$new_line;
     }
     print '}'.$new_line;
     print 'function AllGroupFieldsEnable() {'.$new_line;
     foreach($keywords as $key) {
     print '    document.getElementById("'.$key.'").disabled = false;'.$new_line;
+    print '    document.getElementById("'.$key.'").style.backgroundColor = \'Window\';'.$new_line;
+    print '    document.getElementById("'.$key.'").style.color = \'MenuText\';'.$new_line;
     }
     print '}'.$new_line;
     print '-->'.$new_line;
@@ -983,9 +1006,9 @@ case "special_settings":
         $BRIDGE = cpg_get_bridge_db_values();
         print '<form name="'.$step.'" action="'.$PHP_SELF.'" method="post">';
         starttable('100%',$lang_bridgemgr_php['title'].': '.$lang_bridgemgr_php['special_settings'], 3);
-        $loop_array = array('logout_flag', 'use_post_based_groups');
+        $loop_array = array('logout_flag', 'use_post_based_groups','license_number');
         $rows_displayed = 0;
-        foreach($loop_array as $key) {
+        foreach($loop_array as $key) { // foreach loop_array --- start
             if ($BRIDGE[$key]) {
                 $prefill = $BRIDGE[$key];
             } else {
@@ -1018,26 +1041,98 @@ case "special_settings":
             //if ($BRIDGE[$key] == 1){print $key.'true<br>';}
             //if ($BRIDGE[$key] == 0){print $key.'false<br>';}
             //print $key.$BRIDGE[$key];
-            if ($_POST['hide_unused_fields'] != 1 || $disabled == '')
-            {
-                //print $default_bridge_data[$BRIDGE['short_name']][$key.'_used'].'|<br>';
-                print '<tr>'.$new_line;
-                print '    <td class="tableb">'.$new_line;
-                print '        '.$lang_bridgemgr_php[$key].':'.$new_line;
-                print '    </td>'.$new_line;
-                print '    <td class="tableb">'.$new_line;
-                print '        <input type="Radio" name="'.$key.'" id="'.$key.'_yes" class="radio" value="'.$option_yes.'" '.$disabled.' '.$checked_yes.' />'.$new_line;
-                print '        <label for="'.$key.'_yes" class="clickable_option">'.$new_line;
-                print '            '.$lang_bridgemgr_php[$key.'_yes'].$new_line;
-                print '        </label>&nbsp;'.$new_line;
-                print '        <input type="Radio" name="'.$key.'" id="'.$key.'_no" class="radio" value="'.$option_no.'" '.$disabled.' '.$checked_no.' /><label for="'.$key.'_no" class="clickable_option">'.$lang_bridgemgr_php[$key.'_no'].'</label>'.$new_line;
-                print '    </td>'.$new_line;
-                print '    <td class="tableb">'.$new_line;
-                print '        <span class="explanation">'.$lang_bridgemgr_php[$key.'_explanation'].'</span>'.$new_line;
-                print '    </td>'.$new_line;
-                print '</tr>'.$new_line;
-            }
-        }
+            if ($default_bridge_data[$BRIDGE['short_name']][$key.'_used'] == 'password') {$fieldtype = 'password';} else {$fieldtype = 'text';}
+            if ($_POST['hide_unused_fields'] != 1 || $disabled == '') { // actually display the row? --- start
+                if ($options[0] == 'radio') { // radio button --- start
+                    print '<tr>'.$new_line;
+                    print '    <td class="tableb">'.$new_line;
+                    print '        '.$lang_bridgemgr_php[$key].':'.$new_line;
+                    print '    </td>'.$new_line;
+                    print '    <td class="tableb">'.$new_line;
+                    print '        <input type="Radio" name="'.$key.'" id="'.$key.'_yes" class="radio" value="'.$option_yes.'" '.$disabled.' '.$checked_yes.' />'.$new_line;
+                    print '        <label for="'.$key.'_yes" class="clickable_option">'.$new_line;
+                    print '            '.$lang_bridgemgr_php[$key.'_yes'].$new_line;
+                    print '        </label>&nbsp;'.$new_line;
+                    print '        <input type="Radio" name="'.$key.'" id="'.$key.'_no" class="radio" value="'.$option_no.'" '.$disabled.' '.$checked_no.' /><label for="'.$key.'_no" class="clickable_option">'.$lang_bridgemgr_php[$key.'_no'].'</label>'.$new_line;
+                    print '    </td>'.$new_line;
+                    print '    <td class="tableb">'.$new_line;
+                    print '        <span class="explanation">'.$lang_bridgemgr_php[$key.'_explanation'].'</span>'.$new_line;
+                    print '    </td>'.$new_line;
+                    print '</tr>'.$new_line;
+                } // radio button --- end
+                if ($options[0] == 'mandatory') { // input field --- start
+                    print '<tr>'.$new_line;
+                    print '    <td class="tableb">'.$new_line;
+                    print '        '.$lang_bridgemgr_php[$key].':'.$new_line;
+                    print '    </td>'.$new_line;
+                    print '    <td class="tableb">'.$new_line;
+                    print '        <input type="'.$fieldtype.'" name="'.$key.'" id="'.$key.'" class="textinput" value="'.$prefill.'" '.$disabled.' size="30"  style="width:80%" />'.$reset_to_default.$new_line;
+                    print '    </td>'.$new_line;
+                    print '    <td class="tableb">'.$new_line;
+                    print '        <span class="explanation">'.$lang_bridgemgr_php[$key.'_explanation'].'</span>'.$new_line;
+                    print '    </td>'.$new_line;
+                    print '</tr>'.$new_line;
+                } // input field --- end
+                if ($options[0] == 'checkbox') { // checkbox --- start
+                    print '<tr>'.$new_line;
+                    print '    <td class="tableb" colspan="2">'.$new_line;
+                    print '        <input type="checkbox" name="'.$key.'" id="'.$key.'" class="checkbox" value="1" '.$checked.' />'.$new_line;
+                    print '        <label for="'.$key.'" class="clickable_option">'.$new_line;
+                    print '            '.$lang_bridgemgr_php[$key].$new_line;
+                    print '        </label>&nbsp;'.$new_line;
+                    print '    </td>'.$new_line;
+                    print '    <td class="tableb">'.$new_line;
+                    print '        <span class="explanation">'.$lang_bridgemgr_php[$key.'_explanation'].'</span>'.$new_line;
+                    print '    </td>'.$new_line;
+                    print '</tr>'.$new_line;
+                } // checkbox --- end
+            } // actually display the row? --- end
+        } // foreach loop_array --- end
+
+        if ($default_bridge_data[$BRIDGE['short_name']]['create_redir_file_content'] != '') { // create redirection file question --- start
+            // what do we need: write the file, display it only or do both?
+            $redir_action = explode(',', $default_bridge_data[$BRIDGE['short_name']]['create_redir_file_action']);
+            if (in_array('write',$redir_action)) { // the file should be created --- start
+                // come up with the folder the bbs resides in
+                if ($BRIDGE['relative_path_of_forum_from_webroot'] != '' && $default_bridge_data[$BRIDGE['short_name']]['relative_path_of_forum_from_webroot_used'] != '') {
+                    // we have a db entry and the user appears to have it configured
+                    $redir_folder = $BRIDGE['relative_path_of_forum_from_webroot'];
+                } elseif ($BRIDGE['relative_path_to_config_file'] != '' && $default_bridge_data[$BRIDGE['short_name']]['relative_path_to_config_file_used'] != '') {
+                    // we have a relative path. We'll use it if we don't have a folder already
+                    $redir_folder = $BRIDGE['relative_path_to_config_file'];
+                } else {
+                    // something strange happened: there is no path set at all. We won't be able to write the file. Change the option to "display_only"
+                    $default_bridge_data[$BRIDGE['short_name']]['create_redir_file_action'] = @str_replace(',write', '', $default_bridge_data[$BRIDGE['short_name']]['create_redir_file_action']);
+                    $default_bridge_data[$BRIDGE['short_name']]['create_redir_file_action'] = @str_replace('write,', '', $default_bridge_data[$BRIDGE['short_name']]['create_redir_file_action']);
+                    $default_bridge_data[$BRIDGE['short_name']]['create_redir_file_action'] = @str_replace('write', '', $default_bridge_data[$BRIDGE['short_name']]['create_redir_file_action']);
+                    $redir_action = explode(',', $default_bridge_data[$BRIDGE['short_name']]['create_redir_file_action']);
+                }
+                // check if the redir file already exists
+                print $redir_folder;
+                $redir_folder_writable = cpg_is_writable($redir_folder);
+                if ($redir_folder_writable == '-1') {
+                    // the redir folder is not writable
+                    print 'Not writable';
+                }
+            } // the file should be created --- end
+            // display the option
+            print '<tr>'.$new_line;
+            print '    <td class="tableb" colspan="2">'.$new_line;
+            print '        <input type="checkbox" name="create_redir_file" id="create_redir_file" class="checkbox" value="1" checked="checked" />'.$new_line;
+            print '        <label for="create_redir_file" class="clickable_option">'.$new_line;
+            print '        <span class="explanation">'.$new_line;
+            print '            '.$lang_bridgemgr_php['create_redir_file'].$new_line;
+            print '        </span>'.$new_line;
+            print '        </label>&nbsp;'.$new_line;
+            print '    </td>'.$new_line;
+            print '    <td class="tableb">'.$new_line;
+            print '        <span class="explanation">'.$new_line;
+            print '        '.$lang_bridgemgr_php['create_redir_file_explanation'].$new_line;
+            print '        </span>'.$new_line;
+            print '    </td>'.$new_line;
+            print '</tr>'.$new_line;
+        } // create redirection file question --- end
+
         if ($rows_displayed == 0) {
             print '<tr>';
             print '    <td class="tableh2" colspan="3" align="center">';

@@ -499,6 +499,8 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'recovery_wait_title' => 'Wait time has not elapsed',
   'recovery_wait_content' => 'For security reasons this script does not allow failed logons in short succession, so you will have to wait a bit untill you\'re allowed to try to authenticate.',
   'wait' => 'wait',
+  'create_redir_file' => 'Create redirection file (recommended)',
+  'create_redir_file_explanation' => 'To redirect users back to Coppermine once they logged into your BBS, you need a redirection file to be created within your BBS folder. When this option is checked, the bridge manager will attempt to create this file for you, or give you code ready to copy-and-paste to create the file manually.',
 );
 
 // ------------------------------------------------------------------------- //
