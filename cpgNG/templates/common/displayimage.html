@@ -1,34 +1,30 @@
 <!-- Start standard table -->
 <table align="center" width="600" cellspacing="0" cellpadding="0" class="maintable">
-
-        <tr>
-                <td align="center" valign="middle" class="navmenu" width="48">
-                  <a href="thumbnails.php?album={$picData.aid}&amp;page={$page}" class="navmenu_pic" title="{$lang_img_nav_bar.thumb_title}"><img src="images/folder.gif" width="16" height="16" align="middle" border="0" alt="{$lang_img_nav_bar.thumb_title}" /></a>
-                </td>
-                <td align="center" valign="middle" class="navmenu" width="48">
-                  <a href="javascript:;" onclick="blocking('picinfo','yes', 'block'); return false;" title="{$lang_img_nav_bar.pic_info_title}"><img src="images/info.gif" width="16" height="16" border="0" align="middle" alt="{$lang_img_nav_bar.pic_info_title}" /></a>
-                </td>
-                <td align="center" valign="middle" class="navmenu" width="48">
-                  <a href="{$slideshowTgt}" title="{$lang_img_nav_bar.slideshow_title}"><img src="images/slideshow.gif" width="16" height="16" border="0" align="middle" alt="{$lang_img_nav_bar.slideshow_title}" /></a>
-                </td>
-                <td align="center" valign="middle" class="navmenu" width="100%">
-                  FILE {$pos+1}/{$picCount}
-                </td>
-                <td align="center" valign="middle" class="navmenu" width="48">
-                  <a href="{$picData.ecardTgt}" title="{$picData.ecardTitle}"><img src="images/ecard.gif" width="16" height="16" border="0" align="middle" alt="{$picData.ecardTitle}" /></a>
-                </td>
-
-                <td align="center" valign="middle" class="navmenu" width="48">
-                  {if $pos gt 0}<a href="displayimageNew.php?albumName={$picData.aid}&amp;aid={$picData.aid}&amp;pos={$pos-1}" class="navmenu_pic" title="{$lang_img_nav_bar.prev_title}">{else}<a href="javascript:;">{/if}<img src="images/prev.gif" width="16" height="16" border="0" align="middle" alt="{$lang_img_nav_bar.prev_title}" /></a>
-                </td>
-                <td align="center" valign="middle" class="navmenu" width="48">
-                  {if $pos lt $picCount-1}<a href="displayimageNew.php?albumName={$picData.aid}&amp;aid={$picData.aid}&amp;pos={$pos+1}" class="navmenu_pic" title="{$lang_img_nav_bar.next_title}">{else}<a href="javascript:;">{/if}<img src="images/next.gif" width="16" height="16" border="0" align="middle" alt="{$lang_img_nav_bar.next_title}" /></a>
-                </td>
-        </tr>
+  <tr>
+    <td align="center" valign="middle" class="navmenu" width="48">
+      <a href="thumbnails.php?album={$picData.aid}&amp;page={$page}" class="navmenu_pic" title="{$lang_img_nav_bar.thumb_title}"><img src="images/folder.gif" width="16" height="16" align="middle" border="0" alt="{$lang_img_nav_bar.thumb_title}" /></a>
+    </td>
+    <td align="center" valign="middle" class="navmenu" width="48">
+      <a href="javascript:;" onclick="blocking('picinfo','yes', 'block'); return false;" title="{$lang_img_nav_bar.pic_info_title}"><img src="images/info.gif" width="16" height="16" border="0" align="middle" alt="{$lang_img_nav_bar.pic_info_title}" /></a>
+    </td>
+    <td align="center" valign="middle" class="navmenu" width="48">
+      <a href="{$slideshowTgt}" title="{$lang_img_nav_bar.slideshow_title}"><img src="images/slideshow.gif" width="16" height="16" border="0" align="middle" alt="{$lang_img_nav_bar.slideshow_title}" /></a>
+    </td>
+    <td align="center" valign="middle" class="navmenu" width="100%">
+      FILE {$pos+1}/{$picCount}
+    </td>
+    <td align="center" valign="middle" class="navmenu" width="48">
+      <a href="{$picData.ecardTgt}" title="{$picData.ecardTitle}"><img src="images/ecard.gif" width="16" height="16" border="0" align="middle" alt="{$picData.ecardTitle}" /></a>
+    </td>
+    <td align="center" valign="middle" class="navmenu" width="48">
+      {if $pos gt 0}<a href="displayimageNew.php?albumName={$picData.aid}&amp;aid={$picData.aid}&amp;pos={$pos-1}" class="navmenu_pic" title="{$lang_img_nav_bar.prev_title}">{else}<a href="javascript:;">{/if}<img src="images/prev.gif" width="16" height="16" border="0" align="middle" alt="{$lang_img_nav_bar.prev_title}" /></a>
+    </td>
+    <td align="center" valign="middle" class="navmenu" width="48">
+      {if $pos lt $picCount-1}<a href="displayimageNew.php?albumName={$picData.aid}&amp;aid={$picData.aid}&amp;pos={$pos+1}" class="navmenu_pic" title="{$lang_img_nav_bar.next_title}">{else}<a href="javascript:;">{/if}<img src="images/next.gif" width="16" height="16" border="0" align="middle" alt="{$lang_img_nav_bar.next_title}" /></a>
+    </td>
+  </tr>
 </table>
 <!-- End standard table -->
-
-
 <!-- Start standard table -->
 <table align="center" width="600" cellspacing="0" cellpadding="0" class="maintable">
   <tr>
@@ -36,12 +32,6 @@
       <table cellspacing="2" cellpadding="0" class="imageborder">
         <tr>
           <td align="center">
-<!--          
-            <a href="javascript:;" onclick="MM_openBrWindow('displayfullsizeimage.php?pid={$picData.pid}','fullsizeimage','scrollbars=yes,toolbar=yes,status=yes,resizable=yes,width=694,height=580')"><img src="{$picData.url}" class="image" border="0" alt="Click to view full size image" id="p"/><br /></a>
-            {if $picData.menu}
-            <a href="#" onclick="return MM_openBrWindow('picEditor.php?id={$picData.pid}','Crop_Picture','scrollbars=yes,toolbar=no,status=yes,resizable=yes')" class="admin_menu" >{$lang_display_image_php.crop_pic}</a> <a href="editOnePic.php?id={$picData.pid}&amp;what=picture"  class="admin_menu">{$lang_display_image_php.edit_pic}</a> <a href="delete.php?id={$picData.pid}&amp;what=picture"  class="admin_menu" onclick="return confirm('{$lang_display_image_php.confirm_del}'); return false; ">{$lang_display_image_php.del_pic}</a>
-            {/if}
--->
             {if $picData.mime_content.content eq "image"}
               {if $picData.image_size.reduced}
                 <a href="javascript:;" onclick="MM_openBrWindow('displayFullSizeImage.php?pid={$picData.pid}&amp;fullsize=1','','scrollbars=yes,toolbar=yes,status=yes,resizable=yes,width={$picData.winsizeX},height={$picData.winsizeY}')"><img src="{$picData.picUrl}" class="image" border="0" alt="{$lang_display_image_php.view_fs}" id="p" /><br /></a>
@@ -56,7 +46,7 @@
             {/if}
             {if $picData.menu}
             <a href="#" onclick="return MM_openBrWindow('picEditor.php?id={$picData.pid}','Crop_Picture','scrollbars=yes,toolbar=no,status=yes,resizable=yes')" class="admin_menu" >{$lang_display_image_php.crop_pic}</a> <a href="editOnePic.php?id={$picData.pid}&amp;what=picture"  class="admin_menu">{$lang_display_image_php.edit_pic}</a> <a href="delete.php?id={$picData.pid}&amp;what=picture"  class="admin_menu" onclick="return confirm('{$lang_display_image_php.confirm_del}'); return false; ">{$lang_display_image_php.del_pic}</a>
-            {/if}            
+            {/if}
           </td>
         </tr>
       </table>
@@ -88,7 +78,6 @@
   </tr>
 </table>
 <!-- End standard table -->
-
 <!-- Start standard table -->
 <table align="center" width="" cellspacing="1" cellpadding="0" class="maintable">
   <tr>
@@ -105,23 +94,21 @@
     <td valign="top" style="background-image: url(themes/classic/images/tile.gif);" align="center" height='30'>&nbsp;</td>
   </tr>
 </table>
-<!-- End standard table -->        
-
+<!-- End standard table -->
 {if $votes}
 <!-- Start standard table -->
 <table align="center" width="600" cellspacing="0" cellpadding="0" class="maintable">
-
-        <tr>
-                <td colspan="6" class="tableh2_compact"><b>{$lang_rate_pic.rate_this_pic}</b> {$votes} </td>
-        </tr>
-        <tr>
-                <td class="tableb_compact" width="17%" align="center"><a href="ratepic.php?pic={$picData.pid}&amp;rate=0" title="{$lang_rate_pic.rubbish}"><img src="themes/2bornot2b/images/rating0.gif" alt="{$lang_rate_pic.rubbish}" border="0" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="ratepic.php?pic={$picData.pid}&amp;rate=1" title="{$lang_rate_pic.poor}"><img src="themes/2bornot2b/images/rating1.gif" alt="{$lang_rate_pic.poor}" border="0" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="ratepic.php?pic={$picData.pid}&amp;rate=2" title="{$lang_rate_pic.fair}"><img src="themes/2bornot2b/images/rating2.gif" alt="{$lang_rate_pic.fair}" border="0" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="ratepic.php?pic={$picData.pid}&amp;rate=3" title="{$lang_rate_pic.good}"><img src="themes/2bornot2b/images/rating3.gif" alt="{$lang_rate_pic.good}" border="0" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="ratepic.php?pic={$picData.pid}&amp;rate=4" title="{$lang_rate_pic.excellent}"><img src="themes/2bornot2b/images/rating4.gif" alt="{$lang_rate_pic.excellent}" border="0" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="ratepic.php?pic={$picData.pid}&amp;rate=5" title="{$lang_rate_pic.great}"><img src="themes/2bornot2b/images/rating5.gif" alt="{$lang_rate_pic.great}" border="0" /><br /></a></td>
-        </tr>
+  <tr>
+    <td colspan="6" class="tableh2_compact"><b>{$lang_rate_pic.rate_this_pic}</b> {$votes} </td>
+  </tr>
+  <tr>
+    <td class="tableb_compact" width="17%" align="center"><a href="ratepic.php?pic={$picData.pid}&amp;rate=0" title="{$lang_rate_pic.rubbish}"><img src="themes/2bornot2b/images/rating0.gif" alt="{$lang_rate_pic.rubbish}" border="0" /><br /></a></td>
+    <td class="tableb_compact" width="17%" align="center"><a href="ratepic.php?pic={$picData.pid}&amp;rate=1" title="{$lang_rate_pic.poor}"><img src="themes/2bornot2b/images/rating1.gif" alt="{$lang_rate_pic.poor}" border="0" /><br /></a></td>
+    <td class="tableb_compact" width="17%" align="center"><a href="ratepic.php?pic={$picData.pid}&amp;rate=2" title="{$lang_rate_pic.fair}"><img src="themes/2bornot2b/images/rating2.gif" alt="{$lang_rate_pic.fair}" border="0" /><br /></a></td>
+    <td class="tableb_compact" width="17%" align="center"><a href="ratepic.php?pic={$picData.pid}&amp;rate=3" title="{$lang_rate_pic.good}"><img src="themes/2bornot2b/images/rating3.gif" alt="{$lang_rate_pic.good}" border="0" /><br /></a></td>
+    <td class="tableb_compact" width="17%" align="center"><a href="ratepic.php?pic={$picData.pid}&amp;rate=4" title="{$lang_rate_pic.excellent}"><img src="themes/2bornot2b/images/rating4.gif" alt="{$lang_rate_pic.excellent}" border="0" /><br /></a></td>
+    <td class="tableb_compact" width="17%" align="center"><a href="ratepic.php?pic={$picData.pid}&amp;rate=5" title="{$lang_rate_pic.great}"><img src="themes/2bornot2b/images/rating5.gif" alt="{$lang_rate_pic.great}" border="0" /><br /></a></td>
+  </tr>
 </table>
 <!-- End standard table -->
 {/if}
@@ -130,113 +117,113 @@
 
 <!-- Start standard table -->
 <table align="center" width="600" cellspacing="0" cellpadding="0" class="maintable">
-        <tr>
-          <td colspan="2" class="tableh2_compact"><b>{$lang_picinfo.title}:</b></td>
-        </tr>
-        <tr>
-          <td class="tableb_compact" valign="top" >{$lang_picinfo.Filename}:</td>
-          <td class="tableb_compact">{$picInfo.fileName}</td>
-        </tr>
-        <tr>
-          <td class="tableb_compact" valign="top" >{$lang_picinfo.AlbumName}:</td>
-          <td class="tableb_compact">
-            <span class="alblink"><a href ="profile.php?uid={$picInfo.ownerUid}">{$picInfo.ownerName}</a> {$picInfo.ipinfo} <a href="thumbnailsNew.php?album={$picInfo.aid}">{$picInfo.albumName}</a></span>
-          </td>
-        </tr>
-        {if $picInfo.rating}
-        <tr>
-          <td class="tableb_compact" valign="top" >{$picInfo.rating}:</td>
-          <td class="tableb_compact">
-            <img src="{$picInfo.ratingImgPath}" align="middle" alt="" /> 
-            {if $picInfo.voteDetailsLink}
-            (<a href="#" onclick="MM_openBrWindow('voteDetails.php?pid={$picInfo.pid}','','resizable=no,width={$picInfo.width},height={$picInfo.height},top=50,left=50,scrollbars=yes'); return false;">{$lang_picinfo.details}</a>)
-            {/if}
-          </td>
-        </tr>
-        <tr>
-        {/if}
-        {if $picInfo.keywords}
-        <tr>
-          <td class="tableb_compact" valign="top" >{$lang_picinfo.Keywords}:</td>
-          <td class="tableb_compact">
-            <span class="alblink">{$picInfo.keywordLink}</a>
-          </td>
-        </tr>
-        {/if}        
-        {if $picInfo.userFields|@count gt 0}
-        {foreach from=$picInfo.userFields item=value key=key}
-        <tr>
-          <td class="tableb_compact" valign="top" >{$key}:</td>
-          <td class="tableb_compact">{$value}</td>
-        </tr>   
-        {/foreach}     
-        {/if}        
-        <tr>
-          <td class="tableb_compact" valign="top" >{$lang_picinfo.FileSize}:</td>
-          <td class="tableb_compact"><span dir="ltr">{$picInfo.fileSize}</span></td>
-        </tr>
-        <tr>
-          <td class="tableb_compact" valign="top" >{$lang_picinfo.DateAdded}:</td>
-          <td class="tableb_compact">{$picInfo.dateAdded}</td>
-        </tr>
-        <tr>
-          <td class="tableb_compact" valign="top" >{$lang_picinfo.Dimensions}:</td>
-          <td class="tableb_compact">{$picInfo.dimensions}</td>
-        </tr>
-        <tr>
-          <td class="tableb_compact" valign="top" >{$lang_picinfo.Displayed}:</td>
-          <td class="tableb_compact">{$picInfo.displayed} 
-          {if $picInfo.hitsDetailsLink}
-          (<a href="#" onclick="MM_openBrWindow('hitDetails.php?pid={$picInfo.pid}','','resizable=no,width=978,height=504,top=50,left=50,scrollbars=yes'); return false;">{$lang_picinfo.details}</a>)
-          {/if}
-          </td>
-        </tr>
-        {if $picInfo.exifInfo}
-        {foreach from=$picInfo.exifInfo item=exif key=key}
-        <tr>
-          <td class="tableb_compact" valign="top" >{$key}:</td>
-          <td class="tableb_compact">{$exif}</td>
-        </tr>   
-        {/foreach}     
-        {/if}
-        {if $picInfo.iptcTitle}
-        <tr>
-          <td class="tableb_compact" valign="top" >{$lang_picinfo.iptcTitle}:</td>
-          <td class="tableb_compact"><a href="{$picInfo.URL}" >{$picInfo.iptcTitle}</a></td>
-        </tr> 
-        {/if}       
-        {if $picInfo.iptcCopyright}
-        <tr>
-          <td class="tableb_compact" valign="top" >{$lang_picinfo.iptcCopyright}:</td>
-          <td class="tableb_compact"><a href="{$picInfo.URL}" >{$picInfo.iptcCopyright}</a></td>
-        </tr> 
-        {/if}       
-        {if $picInfo.iptcKeywords}
-        <tr>
-          <td class="tableb_compact" valign="top" >{$lang_picinfo.iptcKeywords}:</td>
-          <td class="tableb_compact"><a href="{$picInfo.URL}" >{$picInfo.iptcKeywords}</a></td>
-        </tr> 
-        {/if}       
-        {if $picInfo.iptcCategory}
-        <tr>
-          <td class="tableb_compact" valign="top" >{$lang_picinfo.iptcCategory}:</td>
-          <td class="tableb_compact"><a href="{$picInfo.URL}" >{$picInfo.iptcCategory}</a></td>
-        </tr> 
-        {/if}       
-        {if $picInfo.iptcSubCategories}
-        <tr>
-          <td class="tableb_compact" valign="top" >{$lang_picinfo.iptcSubCategories}:</td>
-          <td class="tableb_compact"><a href="{$picInfo.URL}" >{$picInfo.iptcSubCategories}</a></td>
-        </tr> 
-        {/if}                                       
-        <tr>
-          <td class="tableb_compact" valign="top" >{$lang_picinfo.URL}:</td>
-          <td class="tableb_compact"><a href="{$picInfo.URL}" >{$picInfo.URL}</a></td>
-        </tr>
-        <tr>
-          <td class="tableb_compact" valign="top" >{$lang_picinfo.addFavPhrase}:</td>
-          <td class="tableb_compact"><a href="addfav.php?pid={$picInfo.pid}" >{$picInfo.favPhrase}</a></td>
-        </tr>
+  <tr>
+    <td colspan="2" class="tableh2_compact"><b>{$lang_picinfo.title}:</b></td>
+  </tr>
+  <tr>
+    <td class="tableb_compact" valign="top" >{$lang_picinfo.Filename}:</td>
+    <td class="tableb_compact">{$picInfo.fileName}</td>
+  </tr>
+  <tr>
+    <td class="tableb_compact" valign="top" >{$lang_picinfo.AlbumName}:</td>
+    <td class="tableb_compact">
+      <span class="alblink"><a href ="profile.php?uid={$picInfo.ownerUid}">{$picInfo.ownerName}</a> {$picInfo.ipinfo} <a href="thumbnailsNew.php?album={$picInfo.aid}">{$picInfo.albumName}</a></span>
+    </td>
+  </tr>
+  {if $picInfo.rating}
+  <tr>
+    <td class="tableb_compact" valign="top" >{$picInfo.rating}:</td>
+    <td class="tableb_compact">
+      <img src="{$picInfo.ratingImgPath}" align="middle" alt="" />
+      {if $picInfo.voteDetailsLink}
+      (<a href="#" onclick="MM_openBrWindow('voteDetails.php?pid={$picInfo.pid}','','resizable=no,width={$picInfo.width},height={$picInfo.height},top=50,left=50,scrollbars=yes'); return false;">{$lang_picinfo.details}</a>)
+      {/if}
+    </td>
+  </tr>
+  <tr>
+  {/if}
+  {if $picInfo.keywords}
+  <tr>
+    <td class="tableb_compact" valign="top" >{$lang_picinfo.Keywords}:</td>
+    <td class="tableb_compact">
+      <span class="alblink">{$picInfo.keywordLink}</a>
+    </td>
+  </tr>
+  {/if}
+  {if $picInfo.userFields|@count gt 0}
+  {foreach from=$picInfo.userFields item=value key=key}
+  <tr>
+    <td class="tableb_compact" valign="top" >{$key}:</td>
+    <td class="tableb_compact">{$value}</td>
+  </tr>
+  {/foreach}
+  {/if}
+  <tr>
+    <td class="tableb_compact" valign="top" >{$lang_picinfo.FileSize}:</td>
+    <td class="tableb_compact"><span dir="ltr">{$picInfo.fileSize}</span></td>
+  </tr>
+  <tr>
+    <td class="tableb_compact" valign="top" >{$lang_picinfo.DateAdded}:</td>
+    <td class="tableb_compact">{$picInfo.dateAdded}</td>
+  </tr>
+  <tr>
+    <td class="tableb_compact" valign="top" >{$lang_picinfo.Dimensions}:</td>
+    <td class="tableb_compact">{$picInfo.dimensions}</td>
+  </tr>
+  <tr>
+    <td class="tableb_compact" valign="top" >{$lang_picinfo.Displayed}:</td>
+    <td class="tableb_compact">{$picInfo.displayed}
+    {if $picInfo.hitsDetailsLink}
+    (<a href="#" onclick="MM_openBrWindow('hitDetails.php?pid={$picInfo.pid}','','resizable=no,width=978,height=504,top=50,left=50,scrollbars=yes'); return false;">{$lang_picinfo.details}</a>)
+    {/if}
+    </td>
+  </tr>
+  {if $picInfo.exifInfo}
+  {foreach from=$picInfo.exifInfo item=exif key=key}
+  <tr>
+    <td class="tableb_compact" valign="top" >{$key}:</td>
+    <td class="tableb_compact">{$exif}</td>
+  </tr>
+  {/foreach}
+  {/if}
+  {if $picInfo.iptcTitle}
+  <tr>
+    <td class="tableb_compact" valign="top" >{$lang_picinfo.iptcTitle}:</td>
+    <td class="tableb_compact"><a href="{$picInfo.URL}" >{$picInfo.iptcTitle}</a></td>
+  </tr>
+  {/if}
+  {if $picInfo.iptcCopyright}
+  <tr>
+    <td class="tableb_compact" valign="top" >{$lang_picinfo.iptcCopyright}:</td>
+    <td class="tableb_compact"><a href="{$picInfo.URL}" >{$picInfo.iptcCopyright}</a></td>
+  </tr>
+  {/if}
+  {if $picInfo.iptcKeywords}
+  <tr>
+    <td class="tableb_compact" valign="top" >{$lang_picinfo.iptcKeywords}:</td>
+    <td class="tableb_compact"><a href="{$picInfo.URL}" >{$picInfo.iptcKeywords}</a></td>
+  </tr>
+  {/if}
+  {if $picInfo.iptcCategory}
+  <tr>
+    <td class="tableb_compact" valign="top" >{$lang_picinfo.iptcCategory}:</td>
+    <td class="tableb_compact"><a href="{$picInfo.URL}" >{$picInfo.iptcCategory}</a></td>
+  </tr>
+  {/if}
+  {if $picInfo.iptcSubCategories}
+  <tr>
+    <td class="tableb_compact" valign="top" >{$lang_picinfo.iptcSubCategories}:</td>
+    <td class="tableb_compact"><a href="{$picInfo.URL}" >{$picInfo.iptcSubCategories}</a></td>
+  </tr>
+  {/if}
+  <tr>
+    <td class="tableb_compact" valign="top" >{$lang_picinfo.URL}:</td>
+    <td class="tableb_compact"><a href="{$picInfo.URL}" >{$picInfo.URL}</a></td>
+  </tr>
+  <tr>
+    <td class="tableb_compact" valign="top" >{$lang_picinfo.addFavPhrase}:</td>
+    <td class="tableb_compact"><a href="addfav.php?pid={$picInfo.pid}" >{$picInfo.favPhrase}</a></td>
+  </tr>
 </table>
 <!-- End standard table -->
 </div>
@@ -288,7 +275,7 @@
       <input type="hidden" name="pid" value="{$picData.pid}" />
       <table width="100%" cellpadding="0" cellspacing="0">
         <tr>
-          {if $commentBox.status eq "anon"}  
+          {if $commentBox.status eq "anon"}
           <!-- BEGIN user_name_input -->
           <td class="tableb_compact">
             {$lang_display_comments.name}
@@ -305,7 +292,7 @@
           <td class="tableb_compact">
             {$lang_display_comments.comment} </td>
           <td width="100%" class="tableb_compact">
-            <input type="text" class="textinput" id="message" name="msg_body" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" maxlength="{$commentBox.maxComSize}" style="width: 100%;" /> 
+            <input type="text" class="textinput" id="message" name="msg_body" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" maxlength="{$commentBox.maxComSize}" style="width: 100%;" />
           <!-- END input_box_smilies -->
           {else}
           <td width="100%" class="tableb_compact">
@@ -326,28 +313,28 @@
   <tr>
     <td width="100%" class="tableb_compact">
       <table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr align="center" valign="middle">
-                      <td width="5%"><img src="images/smiles/icon_lol.gif" alt=" :lol:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :lol:" onclick="javascript:emoticon_post(':lol:')" /></td>
-                      <td width="5%"><img src="images/smiles/icon_razz.gif" alt=" :-P" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-P" onclick="javascript:emoticon_post(':-P')" /></td>
-      
-                      <td width="5%"><img src="images/smiles/icon_biggrin.gif" alt=" :-D" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-D" onclick="javascript:emoticon_post(':-D')" /></td>
-                      <td width="5%"><img src="images/smiles/icon_smile.gif" alt=" :-)" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-)" onclick="javascript:emoticon_post(':-)')" /></td>
-                      <td width="5%"><img src="images/smiles/icon_neutral.gif" alt=" :-|" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-|" onclick="javascript:emoticon_post(':-|')" /></td>
-                      <td width="5%"><img src="images/smiles/icon_sad.gif" alt=" :-(" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-(" onclick="javascript:emoticon_post(':-(')" /></td>
-                      <td width="5%"><img src="images/smiles/icon_cry.gif" alt=" :cry:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :cry:" onclick="javascript:emoticon_post(':cry:')" /></td>
-                      <td width="5%"><img src="images/smiles/icon_cool.gif" alt=" 8-)" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" 8-)" onclick="javascript:emoticon_post('8-)')" /></td>
-                      <td width="5%"><img src="images/smiles/icon_surprised.gif" alt=" :-o" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-o" onclick="javascript:emoticon_post(':-o')" /></td>
-                      <td width="5%"><img src="images/smiles/icon_confused.gif" alt=" :-?" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-?" onclick="javascript:emoticon_post(':-?')" /></td>
-                      <td width="5%"><img src="images/smiles/icon_redface.gif" alt=" :oops:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :oops:" onclick="javascript:emoticon_post(':oops:')" /></td>
-      
-                      <td width="5%"><img src="images/smiles/icon_eek.gif" alt=" :shock:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :shock:" onclick="javascript:emoticon_post(':shock:')" /></td>
-                      <td width="5%"><img src="images/smiles/icon_mad.gif" alt=" :-x" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-x" onclick="javascript:emoticon_post(':-x')" /></td>
-                      <td width="5%"><img src="images/smiles/icon_rolleyes.gif" alt=" :roll:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :roll:" onclick="javascript:emoticon_post(':roll:')" /></td>
-                      <td width="5%"><img src="images/smiles/icon_wink.gif" alt=" ;-)" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" ;-)" onclick="javascript:emoticon_post(';-)')" /></td>
-                      <td width="5%"><img src="images/smiles/icon_idea.gif" alt=" :idea:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :idea:" onclick="javascript:emoticon_post(':idea:')" /></td>
-                      <td width="5%"><img src="images/smiles/icon_exclaim.gif" alt=" :!:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :!:" onclick="javascript:emoticon_post(':!:')" /></td>
-                      <td width="5%"><img src="images/smiles/icon_question.gif" alt=" :?:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :?:" onclick="javascript:emoticon_post(':?:')" /></td>
-              </tr>
+        <tr align="center" valign="middle">
+          <td width="5%"><img src="images/smiles/icon_lol.gif" alt=" :lol:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :lol:" onclick="javascript:emoticon_post(':lol:')" /></td>
+          <td width="5%"><img src="images/smiles/icon_razz.gif" alt=" :-P" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-P" onclick="javascript:emoticon_post(':-P')" /></td>
+
+          <td width="5%"><img src="images/smiles/icon_biggrin.gif" alt=" :-D" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-D" onclick="javascript:emoticon_post(':-D')" /></td>
+          <td width="5%"><img src="images/smiles/icon_smile.gif" alt=" :-)" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-)" onclick="javascript:emoticon_post(':-)')" /></td>
+          <td width="5%"><img src="images/smiles/icon_neutral.gif" alt=" :-|" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-|" onclick="javascript:emoticon_post(':-|')" /></td>
+          <td width="5%"><img src="images/smiles/icon_sad.gif" alt=" :-(" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-(" onclick="javascript:emoticon_post(':-(')" /></td>
+          <td width="5%"><img src="images/smiles/icon_cry.gif" alt=" :cry:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :cry:" onclick="javascript:emoticon_post(':cry:')" /></td>
+          <td width="5%"><img src="images/smiles/icon_cool.gif" alt=" 8-)" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" 8-)" onclick="javascript:emoticon_post('8-)')" /></td>
+          <td width="5%"><img src="images/smiles/icon_surprised.gif" alt=" :-o" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-o" onclick="javascript:emoticon_post(':-o')" /></td>
+          <td width="5%"><img src="images/smiles/icon_confused.gif" alt=" :-?" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-?" onclick="javascript:emoticon_post(':-?')" /></td>
+          <td width="5%"><img src="images/smiles/icon_redface.gif" alt=" :oops:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :oops:" onclick="javascript:emoticon_post(':oops:')" /></td>
+
+          <td width="5%"><img src="images/smiles/icon_eek.gif" alt=" :shock:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :shock:" onclick="javascript:emoticon_post(':shock:')" /></td>
+          <td width="5%"><img src="images/smiles/icon_mad.gif" alt=" :-x" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :-x" onclick="javascript:emoticon_post(':-x')" /></td>
+          <td width="5%"><img src="images/smiles/icon_rolleyes.gif" alt=" :roll:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :roll:" onclick="javascript:emoticon_post(':roll:')" /></td>
+          <td width="5%"><img src="images/smiles/icon_wink.gif" alt=" ;-)" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" ;-)" onclick="javascript:emoticon_post(';-)')" /></td>
+          <td width="5%"><img src="images/smiles/icon_idea.gif" alt=" :idea:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :idea:" onclick="javascript:emoticon_post(':idea:')" /></td>
+          <td width="5%"><img src="images/smiles/icon_exclaim.gif" alt=" :!:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :!:" onclick="javascript:emoticon_post(':!:')" /></td>
+          <td width="5%"><img src="images/smiles/icon_question.gif" alt=" :?:" width="15" height="15" border="0" style="cursor:pointer;cursor:hand;" title=" :?:" onclick="javascript:emoticon_post(':?:')" /></td>
+        </tr>
       </table>
       <script language="JavaScript" type="text/javascript">
       <!--
@@ -363,13 +350,13 @@
                       document.post.message.focus();
               }
       }
-      
+
       function storeCaret_post(textEl) {
               if (textEl.createTextRange) textEl.caretPos = document.selection.createRange().duplicate();
       }
       {/literal}
       //-->
-      </script>      
+      </script>
       {/if}
     </td>
   </tr>
