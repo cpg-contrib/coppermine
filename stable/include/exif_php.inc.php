@@ -30,7 +30,7 @@ function exif_parse_file($filename)
 
         //Check if we have the data of the said file in the table
         $sql = "SELECT * FROM {$CONFIG['TABLE_EXIF']} ".
-                  "WHERE filename = '$filename'";
+                  "WHERE filename = \"$filename\"";
 
         $result = db_query($sql);
 
