@@ -26,46 +26,42 @@ require('include/mailer.inc.php');
 
 if ((!$CONFIG['report_post']==1) || (!USER_CAN_SEND_ECARDS)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
-//print_r(get_defined_constants());
-
-function get_post_var($name, $default = '')
-{
-
-    return isset($_POST[$name]) ? $_POST[$name] : $default;
-}
-
 $pid = (int)$_GET['pid'];
 $album = $_GET['album'];
 $pos = (int)$_GET['pos'];
 $cid = (int)$_GET['msg_id']; //comment id
-$what = (int)$_GET['what'];
+$what = $_GET['what'];
 
 $sender_name = get_post_var('sender_name', USER_NAME ? USER_NAME : (isset($USER['name']) ? $USER['name'] : ''));
 if (defined('UDB_INTEGRATION')AND USER_ID) $USER_DATA = array_merge($USER_DATA,$cpg_udb->get_user_infos(USER_ID));
 if ($USER_DATA['user_email']){
-$sender_email = $USER_DATA['user_email'];
-$sender_box = $sender_email;
+	$sender_email = $USER_DATA['user_email'];
+	$sender_box = $sender_email;
 } else {
-$sender_email = get_post_var('sender_email',$USER['email'] ? $USER['email'] : '');
-$sender_box = "<input type=\"text\" class=\"textinput\" value=\"$sender_email\" name=\"sender_email\" style=\"WIDTH: 100%;\">";
-$sender_name = "<input type=\"text\" class=\"textinput\" value=\"$sender_name\" name=\"sender_name\" style=\"WIDTH: 100%;\">";
+	$sender_email = get_post_var('sender_email',$USER['email'] ? $USER['email'] : '');
+	$sender_box = "<input type=\"text\" class=\"textinput\" value=\"$sender_email\" name=\"sender_email\" style=\"WIDTH: 100%;\">";
+	$sender_name = "<input type=\"text\" class=\"textinput\" value=\"$sender_name\" name=\"sender_name\" style=\"WIDTH: 100%;\">";
 }
 $subject = get_post_var('subject');
 $message = get_post_var('message');
 $sender_email_warning = '';
 
 // Get picture thumbnail url
+$result = cpg_db_query("SELECT * from {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' $ALBUM_SET");
+if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+$row = mysql_fetch_array($result);
+$thumb_pic_url = get_pic_url($row, 'thumb');
+        
 if ($what == 'picture') {
-        $result = cpg_db_query("SELECT * from {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' $ALBUM_SET");
-        //if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
-        $row = mysql_fetch_array($result);
-        $thumb_pic_url = get_pic_url($row, 'thumb');
-        //template_extract_block($template_report_form, 'display_comment'); //need help remove comment preview when reporting picture
+	//template_extract_block($template_report_form, 'display_comment'); //need help remove comment preview when reporting picture
 } elseif ($what == 'comment') { //need help display the comment as preview just like when reporting picture shows picture
-        $result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid' ORDER BY msg_id $comment_sort_order");
-        $row = mysql_fetch_array($result);
-        //template_extract_block($template_report_form, 'display_thumbnail'); //need help remove picture preview when reporting comment
-        //template_extract_block($template_report_form, 'reason_missing'); //need help to toggle off reason(missing) since doesn't apply to comments
+	$result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id='$cid'");
+	if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_comment'], __FILE__, __LINE__);
+	$row = mysql_fetch_array($result);
+	$comment = bb_decode($row['msg_body']);
+	$msg_author = $row['msg_author'];
+	$comment_field_name = sprintf($lang_report_php['comment_field_name'], $msg_author);
+	//template_extract_block($template_report_form, 'reason_missing'); //need help to toggle off reason(missing) since doesn't apply to comments
 }
 
 // Check supplied email address
@@ -104,6 +100,7 @@ if (count($_POST) > 0 && $valid_sender_email) {
         'su' => $subject,
         'm' => $message,
         'r' => $reason,
+        'c' => $comment,
         );
 
     $encoded_data = urlencode(base64_encode(serialize($data)));
@@ -124,6 +121,7 @@ if (count($_POST) > 0 && $valid_sender_email) {
         '{VIEW_MORE_TGT}' => $CONFIG['ecards_more_pic_target'],
         '{VIEW_MORE_LNK}' => $lang_report_php['view_more_pics'],
         '{REASON}' => $reason,
+        '{COMMENT}' => $comment,
         );
 
             $message = template_eval($template_report, $params);
@@ -135,7 +133,7 @@ if (count($_POST) > 0 && $valid_sender_email) {
 
             $result = cpg_mail('admin', $subject, $message, 'text/html', $sender_name, $sender_email, $plaintext_message);
 
-        /*//write ecard log
+        /*//write log
         if ($CONFIG['log_ecards'] == 1) {
           $result_log = cpg_db_query("INSERT INTO {$CONFIG['TABLE_ECARDS']} (sender_name, sender_email, recipient_name, recipient_email, link, date, sender_ip) VALUES ('$sender_name', '$sender_email', '$recipient_name', '$recipient_email',   '$encoded_data', '$tempTime', '{$_SERVER["REMOTE_ADDR"]}')");
           }*/
@@ -200,16 +198,17 @@ echo <<<EOT
         </tr>
         <tr>
                 <td class="tableb" colspan="3">
-										<a href="{$CONFIG['ecards_more_pic_target']}displayimage.php?pos=-{$pid}">{$CONFIG['ecards_more_pic_target']}displayimage.php?pos=-{$pid}</a> <br />
+										<a href="{$CONFIG['ecards_more_pic_target']}displayimage.php?pos=-{$pid}">
+										{$CONFIG['ecards_more_pic_target']}displayimage.php?pos=-{$pid}</a> <br />
                 </td>
         </tr>
 <!-- BEGIN display_comment -->
                                 <tr>
-                <td class="tableh2" valign="top" width="40%" colspan="3"><b>{$lang_report_php['comment']}</b></td>
+                <td class="tableh2" valign="top" width="40%" colspan="3"><b>$comment_field_name</b></td>
                                 </tr>
         <tr>
                 <td class="tableb" valign="top" width="40%" colspan="3">
-           details of comment go here<br />
+           $comment<br />
                 </td>
         </tr>
 <!-- END display_comment -->
@@ -274,7 +273,7 @@ echo <<<EOT
         </tr>
         <tr>
                 <td class="tableb" colspan="3" valign="top">
-                        <textarea name="message" class="textinput" ROWS="8" COLS="40" WRAP="virtual" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" STYLE="WIDTH: 100%;">$message</textarea><br /><br />
+											<textarea name="message" class="textinput" ROWS="8" COLS="40" WRAP="virtual" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" STYLE="WIDTH: 100%;">$message</textarea><br /><br />
                 </td>
         </tr>
         <tr>
