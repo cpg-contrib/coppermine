@@ -1,0 +1,440 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<!-- saved from url=(0034)http://www.chezgreg.net/cpgmanual/ -->
+<HTML xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>Coppermine Photo Gallery - Online Doc</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+<STYLE type=text/css>
+
+BODY {
+	FONT-SIZE: 12px; BACKGROUND: #f7f7f7; MARGIN: 2%; COLOR: black; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+TD {
+	FONT-SIZE: 12px
+}
+H1 {
+	FONT-WEIGHT: bold; FONT-SIZE: 22px; COLOR: #000000; LINE-HEIGHT: 120%; FONT-FAMILY: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: none
+}
+H2 {
+	FONT-SIZE: 18px; COLOR: #0e72a4; FONT-FAMILY: Arial, Helvetica, sans-serif; TEXT-DECORATION: underline
+}
+H3 {
+	FONT-WEIGHT: bold; FONT-SIZE: 12px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; TEXT-DECORATION: underline
+}
+P {
+	FONT-SIZE: 12px; MARGIN: 10px 10px 0px 0px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif
+}
+PRE {
+	BORDER-RIGHT: #999999 1px solid; PADDING-RIGHT: 5px; BORDER-TOP: #999999 1px solid; PADDING-LEFT: 5px; FONT-SIZE: 12px; PADDING-BOTTOM: 5px; MARGIN: 10px 10px 0px 0px; BORDER-LEFT: #999999 1px solid; PADDING-TOP: 5px; BORDER-BOTTOM: #999999 1px solid; FONT-STYLE: normal; FONT-FAMILY: "Courier New", Courier, mono; BACKGROUND-COLOR: #e0e0e0
+}
+UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 10px 0px 10px 5px; PADDING-TOP: 0px
+}
+LI {
+	PADDING-RIGHT: 0px; MARGIN-TOP: 4px; PADDING-LEFT: 0px; LIST-STYLE-POSITION: outside; MARGIN-BOTTOM: 4px; PADDING-BOTTOM: 0px; MARGIN-LEFT: 10px; PADDING-TOP: 0px; LIST-STYLE-TYPE: disc
+}
+HR {
+	BORDER-RIGHT: #000000 0px solid; BORDER-TOP: #000000 1px solid; BORDER-LEFT: #000000 0px solid; BORDER-BOTTOM: #000000 0px solid; HEIGHT: 0px
+}
+.navbar {
+	FONT-WEIGHT: bold; FONT-SIZE: 10px; BACKGROUND: url(/coppermine/themes/Pixel-Rave-Blue100/images/nav-bar-button.gif) #72a5cc no-repeat; VERTICAL-ALIGN: middle; COLOR: #a5c6df; FONT-FAMILY: Arial, Helvetica, sans-serif
+}
+A.navbar {
+	DISPLAY: block; VERTICAL-ALIGN: middle; WIDTH: 100px; COLOR: #a5c6df; LINE-HEIGHT: 25px; POSITION: relative; HEIGHT: 25px; TEXT-ALIGN: center; TEXT-DECORATION: none
+}
+A.navbar:hover {
+	BACKGROUND-IMAGE: url(/coppermine/themes/Pixel-Rave-Blue100/images/nav-bar-button-over.gif); COLOR: #ffffff; TEXT-DECORATION: none
+}
+.type1 {
+	BACKGROUND-IMAGE: url(/coppermine/themes/Pixel-Rave-Blue100/images/splash-bg.gif); BACKGROUND-REPEAT: no-repeat
+}
+.back {
+	MARGIN-TOP: 10px; FONT-SIZE: 10px; MARGIN-BOTTOM: 10px
+}
+</STYLE>
+</HEAD>
+<BODY><!-- *** Pixel Blue Rave theme *** -->
+<TABLE cellSpacing=0 cellPadding=0 width="100%" 
+background=manual_1-filer/tablebg.gif border=0>
+  <TBODY>
+  <TR>
+    <TD>
+      <H1>Coppermine online documentation<A id=top name=top></A></H1>
+      <UL>
+        <LI><a href="#cat_alb_pic">Categories, 
+        albums and pictures</a> 
+        <LI><a href="#admin_user_mode">Admin 
+        mode &amp; User mode</a> 
+        <LI><a href="#group_cp">The group 
+        control panel</a> 
+        <LI><a href="#cat_cp">The category 
+        control panel</a> 
+        <LI><a href="#modif_alb_pics">Modifying 
+        album/pictures</a> 
+        <LI><a href="#album_prop">Album 
+        properties</a> 
+        <LI><a href="#edit_pics">Editing 
+        pictures</a> 
+        <LI><a href="#config">The 
+        configuration page</a> </LI></UL>
+      <P>&nbsp;</P>
+      <P></P>
+      <HR>
+
+      <H1>Categories, albums and pictures<A id=cat_alb_pic 
+      name=cat_alb_pic></A></H1>
+      <P>The script works in the following way :</P>
+      <UL>
+        <LI>Pictures are stored in albums 
+        <LI>Albums are organised in categories 
+        <LI>Categories can be nested (subcategories) </LI></UL>
+      <P>If you don't have many albums, you don't need to use categories. In 
+      that case you don't create any category and all your albums will appear on 
+      the main page of the script.</P>
+      <P>There is a special category named "<B>User galleries</B>". This 
+      category can't be deleted. If a user belongs to a group where "can have a 
+      personal gallery" is set to YES, he will have the right to create his own 
+      albums and his gallery will be a sub-category of "User galleries".</P>
+      <P>The administrator can create albums in any category. Regular users can 
+      only create albums in "User galleries/Their_username".</P>
+      <P><a class="back" href="#top">Back to 
+      top</a></P>
+      <HR>
+
+      <H1>Admin mode &amp; User mode<A id=admin_user_mode 
+      name=admin_user_mode></A></H1>
+      <P>When you are logged in as an admin, the script has two modes of 
+      operation : Admin mode &amp; User mode. You switch between Admin &amp; 
+      User mode by clicking on the corresponding link in the menu bar at the top 
+      of the screen.</P>
+      <P>When you are in admin mode, you can administer your gallery and the 
+      following menu bar appears :</P>
+      <P><IMG src="pics/admin_mode_bar.gif" border="1" /></P>
+      <P>When you are in user mode you are just a regular user and can't access 
+      the admin pages.</P>
+      <P><a class="back" href="#top">Back to 
+      top</a></P>
+      <HR>
+
+      <H1>The group control panel<A id=group_cp name=group_cp></A></H1>
+      <P><IMG src="pics/group_cp.gif" border="1" /></P>
+      <P>This is where you define what members of a group can and can't do.</P>
+      <P>The disk quota applies only for groups where "Can have a personal" 
+      gallery has been set to "YES". Only pictures uploaded by a user in his 
+      personal gallery are included in the quota.</P>
+      <P>Use the <B>anonymous</B> group to define what non-registered users can 
+      and can't do. Quota and "Can have a personal gallery" are meaningless for 
+      anonymous users.</P>
+      <P>Bear in mind that if a user is a member of a group where "can rate 
+      pictures", "can post comments" or "can upload pictures" is set YES, he 
+      will have the right to perform these operations only in albums where they 
+      are allowed, ie. uploading pictures will only be possible in albums where 
+      "Visitors can upload pictures" has been set to YES.</P>
+      <P>If "can have a personal gallery" is set to YES, the members of the 
+      group will have their own gallery in the "User galleries" category where 
+      they will be able to create their own albums.</P>
+      <P>If "priv. upl. approval" is set to NO, pictures uploaded by members of 
+      the group in albums created in their own gallery won't need to be approved 
+      by the admin.</P>
+      <P><a class="back" href="#top">Back to 
+      top</a></P>
+      <HR>
+
+      <H1>The categories control panel<A id=cat_cp name=cat_cp></A></H1>
+      <P><IMG src="pics/category_cp.gif" border="1" /></P>
+      <P>This is where you can edit your categories.</P>
+      <UL>
+        <LI>The <IMG height=16 src="pics/edit.gif" width=16> button 
+        allows you to edit the title, description and parent category of an 
+        existing cetegory. 
+        <LI>The <IMG height=16 src="pics/delete.gif" width=16> button 
+        allows you to delete a category. Deleting a category does not delete the 
+        albums and pictures it contains. They are simply moved to the "Root" 
+        category. 
+        <LI>The <IMG height=16 src="pics/up.gif" width=16> and <IMG 
+        height=16 src="pics/down.gif" width=16> buttons allow you to 
+        order your categories. 
+        <LI>The "<B>Move into</B>" dropdown lists allow you to change the parent 
+        of a specific category. </LI></UL>
+      <P>"<B>User galleries</B>" is a special category. It is not visible unless 
+      you have some users that have created their own gallery. It can't be 
+      deleted but you can edit its title and description by using the <IMG 
+      height=16 src="edit.gif" width=16> button. </P>
+      <P><a class="back" href="#top">Back to 
+      top</a></P>
+      <HR>
+
+      <H1>Modifying albums/picture<A id=modif_alb_pics 
+      name=modif_alb_pics></A></H1>
+      <P>When you are in admin mode there is a menu displayed next to each 
+      album</P>
+      <P></P>
+      <P><IMG src="pics/album_menu.gif" border="1" /></P>
+      <P><B>Delete</B> allows you to delete the album and all pictures it 
+      contains.</P>
+      <P><B>Properties</B> allows you to modify the name, description and 
+      permissions of the album</P>
+      <P><B>Edit pics</B> allows you to modify the title/caption/keywords etc... 
+      of the pictures in the album</P>
+      <P><a class="back" href="#top">Back to 
+      top</a></P>
+      <HR>
+
+      <H1>Album properties<A id=album_prop name=album_prop></A></H1>
+      <P><IMG src="pics/edit_album.gif" border="1" /></P>
+      <P>The "Album category" drop down list allows you to move an album between 
+      categories. If you set this to "* No category *" then the album will be 
+      displayed on your main page.</P>
+      <P>Coppermine understands the following bbCodes (the same bbCodes that are 
+      used by phpBB) in image and album description</P>
+      <UL>
+        <LI>[b]<B>bold</B>[/b] 
+        <LI>[i]<I>italic</I>[/i] 
+        <LI>[url=http://url]<A href="javascript:;">URL text</A>[/url] 
+        <LI>[email]<A href="javascript:;">user@domain.tld</A>[/email] </LI></UL>
+      <P>The thumbnail is the picture that will represent the album in the album 
+      list.</P>
+      <P>If you have set "Users can can have private albums" to YES on the 
+      config page, you can define who can view the pictures of this album.</P>
+      <P>When "visitors can upload picture" is set to YES, it is possible to 
+      upload pictures in this album. <B>Note that a visitor will have the right 
+      to upload pictures into an album where this option is set to YES only if 
+      he is a member of a group for which "Can upload pictures" is set to YES. 
+      </B>Non registered users are members of the "Anonymous" group.</P>
+      <P>The same rules as above apply for "Visitors can post comments" and 
+      "Visitors can rate pictures".</P>
+      <P><a class="back" href="#top">Back to 
+      top</a></P>
+      <HR>
+
+      <H1>Editing pictures<A id=edit_pics name=edit_pics></A></H1>
+      <P><IMG src="pics/edit_picture.gif" border="1" /></P>
+      <P>This is where you can modify the title description, keywords and custom 
+      fields (if they are used) of a picture.</P>
+      <P>Use the album drop down menu to move a picture to another album.</P>
+      <P><a class="back" href="#top">Back to 
+      top</a></P>
+      <HR>
+
+      <H1>The configuration page<A id=config name=config></A></H1>
+      <H2>General settings</H2>
+      <H3>Gallery name</H3>
+      <P>This is the name of your gallery. It will appear in the title of your 
+      page and is shown on some templates.</P>
+      <H3>Gallery description</H3>
+      <P>This is a short description of your gallery. This description is shown 
+      on some templates below the name of your gallery.</P>
+      <H3>Gallery administrator email</H3>
+      <P>All emails sent by the gallery are sent with this email address.</P>
+      <H3>Target address for the 'See more pictures' link in e-cards</H3>
+      <P>This is the URL where a user will be directed when he will click on the 
+      "See more pictures" link in an e-card. This should normally be the URL for 
+      your gallery but it may be the URL of another page of your site. </P>
+      <H3>Language</H3>
+      <P>This is the default language for your gallery. All language files are 
+      stored in the <B>lang</B> directory on your server.</P>
+      <P>The language files with an "<B>-utf8</B>" suffix are unicode encoded 
+      files. If you select an -utf8 file as the default language and you set 
+      "Character encoding" to "Unicode (utf-8)" then the script will auto detect 
+      the preferred language of the visitor based on what is configured in his 
+      browser. If the corresponding language is available it will be used else 
+      the default language file will be used.</P>
+      <P>When the script auto detect the preferred language, it stores the 
+      result in a cookie on the visitor's computer. To reset this cookie (and so 
+      force the script to do another auto detection) call it with something 
+      like: <A 
+      href="javascript:%20;">http://yoursite.com/coppermine_dir/index.php?lang=xxx</A></P>
+      <P>Once you have added some comments or pictures to your gallery, you 
+      should not change the character set of your gallery. If you do so, 
+      non-ASCII character may not be shown correctly.</P>
+      <H3>Theme</H3>
+      <P>Use this line to select the theme of your gallery. Themes are stored in 
+      sub-directories of the <B>themes</B> directory.</P>
+      <H2>Album list view</H2>
+      <H3>Width of the main table (pixels or %)</H3>
+      <P>This is the width of tables used on your main page or when you are 
+      viewing thumbnails of an album. You can enter a width in pixels or specify 
+      it in percents. The default value is 100%.</P>
+      <H3>Number of levels of categories to display</H3>
+      <P>The default value is 2. With this value the script will display the 
+      current categories plus one level of sub-categories.</P>
+      <H3>Number of albums to display</H3>
+      <P>This is the number of albums to display on a page. If the current 
+      category contains more albums, the album list will spread over multiple 
+      pages.</P>
+      <H3>Number of columns for the album list</H3>
+      <P>Self explanatory. The default value is 2.</P>
+      <H3>Size of thumbnails in pixels</H3>
+      <P>This is the size of the thumbnails that are displayed for each album. 
+      50 means that the thumbnail will fit inside a square of 50x50 pixels.</P>
+      <P>If the size you specify there is larger than "Pictures and thumbnails 
+      settings/Max width or height of a thumbnail", the thumbnail will be 
+      stretched.</P>
+      <H3>The content of the main page</H3>
+      <P>This option allows you to change the content of the main page displayed 
+      by the script.</P>
+      <P>The default value is "<B>catlist/alblist/random,2/lastup,2</B>"</P>
+      <P>You can use the following "codes"</P>
+      <UL>
+        <LI>'<B>catlist</B>': category list 
+        <LI>'<B>alblist</B>': album list 
+        <LI>'<B>random</B>': random pictures 
+        <LI>'<B>lastup</B>': last uploads 
+        <LI>'<B>topn</B>': most viewed 
+        <LI>'<B>toprated</B>': top rated 
+        <LI>'<B>lastcom</B>': last comments </LI></UL>
+      <P></P>
+      <P>The <B>,2</B> means 2 rows of thumbnails.</P>
+      <H2>Thumbnail view</H2>
+      <H3>Number of columns on thumbnail page</H3>
+      <P>Default value is 4 this means that each row will show 4 thumbnails.</P>
+      <H3>Number of rows on thumbnail page</H3>
+      <P>Default value is 3.</P>
+      <H3>Maximum number of tabs to display</H3>
+      <P>When the thumbnails spread over multiple pages, tabs are displayed at 
+      the bottom of the page. This value define how many tabs will be 
+      displayed.</P>
+      <H3>Minimum number of votes for a picture to appear in the 'top-rated' 
+      list</H3>
+      <P>If a picture has received less than "this value" votes, it will not be 
+      displayed on the "top-rated" page.</P>
+      <H2>Image view &amp; Comment settings</H2>
+      <H3>Width of the table for picture display (pixels or %)</H3>
+      <P>The width of the table used to display the intermediate picture.</P>
+      <H3>Picture information are visible by default</H3>
+      <P>Define whether or not picture information (those that appear when you 
+      click on the (i) button) should be visible by default.</P>
+      <H3>Filter bad words in comments</H3>
+      <P>Remove "bad words" from comments. The "bad words" list is in the 
+      language file. So far only the English language file has one.</P>
+      <H3>Max length for an image description</H3>
+      <P>Maximum number of characters that an image description may contain.</P>
+      <H3>Max number of characters in a word</H3>
+      <P>This is intended to prevent that someone break the layout of the 
+      gallery by posting a long comment without space. With the default value, 
+      words with more than 38 characters are censored.</P>
+      <H3>Max number of lines in a comment</H3>
+      <P>Prevent a comment for containing too many new line char.</P>
+      <H3>Maximum length of a comment</H3>
+      <P>Maximum number of characters that a comment may contain.</P>
+      <H2>Picture and thumbnail settings</H2>
+      <H3>Quality for JPEG files</H3>
+      <P>The quality used for JPEG compression when the script resizes an image. 
+      Value can range from 0 (worst) to 100 (best). This value can be set to 75 
+      when using ImageMagick.</P>
+      <H3>Max width or height of a thumbnail</H3>
+      <P>With the default value thumbnails will fit inside a box of 100x100 
+      pixels.</P>
+      <H3>Create intermediate pictures</H3>
+      <P>By default, whenever you upload a picture, the script creates a 
+      thumbnail of the picture (picture name with a thumb_ prefix) plus an 
+      intermediate version (picture name with a normal_ prefix). If you set this 
+      option to NO, the intermediate picture is not created.</P>
+      <H3>Max width or height of an intermediate picture</H3>
+      <P>The intermediate pictures are those that appears when you click on a 
+      thumbnail. The default value is 400, it means that the intermediate 
+      picture will fit inside a square of 400x400 pixels.</P>
+      <H3>Max size for uploaded pictures (KB)</H3>
+      <P>Any picture with a file size larger than this value will be rejected by 
+      the script.</P>
+      <H3>Max width or height for uploaded pictures (pixels)</H3>
+      <P>Limit the dimensions of the pictures that are uploaded. Resizing large 
+      pictures requires a lot of memory and consumes CPU.</P>
+      <H2>User settings</H2>
+      <H3>Allow new user registrations</H3>
+      <P>Define whether new users can self-register or not.</P>
+      <H3>User registration requires email verification</H3>
+      <P>If set to YES an email will be sent to the user that will contain a 
+      code to activate his account. If set to NO, user accounts become 
+      immediately active.</P>
+      <H3>Allow two users to have the same email address</H3>
+      <P>Allow or prevent two users from registering with the same email 
+      address.</P>
+      <H3>Users can can have private albums</H3>
+      <P>If set to YES then your gallery can contain albums that can be visible 
+      only by users that belong to a certain group.</P>
+      <P>If a user is a member of a group that can have its own gallery and this 
+      option is turned on then this user will have the permission to hide some 
+      of this albums to other users.</P>
+      <H2>Custom fields for image description (leave blank if unused)</H2>
+      <P>These fields are displayed within the "picture information" area. They 
+      will appear only if you give them a name.</P>
+      <H2>Pictures and thumbnails advanced settings</H2>
+      <H3>Characters forbidden in filenames</H3>
+      <P>When the filename of a picture that is uploaded contains one of these 
+      characters, it will be replaced with an underscore.</P>
+      <P>Don't change this unless you know exactly what you are doing.</P>
+      <H3>Accepted file extensions for uploaded pictures</H3>
+      <P>Any file uploaded whose extension is not in this list will be rejected 
+      by the script. This is intended to prevent a user from uploading non-image 
+      files.</P>
+      <P>The script can only handle image files, so you won't add support for 
+      instance for video files by adding AVI to the list.</P>
+      <P>The GD library only supports JPEG and PNG images so other types of 
+      files will be rejected even if their extension is valid.</P>
+      <H3>Method for resizing images</H3>
+      <P>If you are using GD 1.x and the colors of your thumbnails or 
+      intermediate image are wrong then switch to GD 2.x</P>
+      <H3>Path to ImageMagick 'convert' utility (example /usr/bin/X11/)</H3>
+      <P>If you are using ImageMagick convert utility to resize you picture, you 
+      must enter the name of the directory where the convert program is located 
+      there. Don't forget the trailing "/".</P>
+      <P>If your server is running under Windows, use / and not \ to separate 
+      components of the path (eg. use C:/ImageMagick/ and not C:\ImageMagick\). 
+      This path must not contain any space so under Windows don't put 
+      ImageMagick in the "Program files" directory.</P>
+      <P><B>ImageMagick will hardly work if PHP on your server is running in 
+      SAFE mode and it is a real challenge to get it running under Windows. 
+      Consider using GD in these cases and don't waste your time asking for 
+      support in the forum. There are too many things that can prevent 
+      ImageMagick to work correctly and without a physical access to your server 
+      it is hard to guess what is wrong.</B></P>
+      <H3>Allowed image types (only valid for ImageMagick)</H3>
+      <P>This is the list of image types that the script will accept when using 
+      ImageMagick. Image type detection is performed by reading the header of 
+      the file and not by looking at its file extension.</P>
+      <H3>Command line options for ImageMagick</H3>
+      <P>Here you can add options that will be appended to the command line when 
+      executing ImageMagick. Read the ImageMagick Convert manual to see what is 
+      available.</P>
+      <H3>Read EXIF data in JPEG files</H3>
+      <P>With this option turned on, the script will read the EXIF data stored 
+      by digicams in JPEG files. This option will work only if PHP was compiled 
+      with the EXIF extension.</P>
+      <H3>The album directory</H3>
+      <P>This is the base directory for your "Image Store". The path is relative 
+      to the main directory of the script. </P>
+      <P>You can use ../ in the path to move-up one level in the directory 
+      tree.</P>
+      <P>You can not use an absolute path there ("/var/my_images/" will not 
+      work) and the album directory must be visible by your web server.</P>
+      <H3>The directory for user pictures</H3>
+      <P>This is the directory where pictures uploaded with the web interface 
+      are stored. This directory is a subdirectory of the album directory.</P>
+      <P>The same remarks as above apply.</P>
+      <P>When you upload pictures by FTP, store them in a subdirectory of the 
+      "album directory" and not inside the "directory for user pictures". </P>
+      <H3>Default mode for directories</H3>
+      <P>If during the installation, the installer complained about directory 
+      not having the right permissions set this to <B>0777</B> else you won't be 
+      able to delete the directories created by the script with your FTP client 
+      the day you will decide to uninstall the script.</P>
+      <H3>Default mode for pictures</H3>
+      <P>If during the installation, the installer complained about directories 
+      not having the right permissions set this to <B>0666</B>.</P>
+      <H2>Cookies &amp; Charset settings</H2>
+      <H3>Name of the cookie used by the script</H3>
+      <P>Default value is "cpg11d". Even if you have multiple instances of the 
+      script running on the same server you can keep the default value.</P>
+      <H3>Path of the cookie used by the script</H3>
+      <P>Default value is "/". Don't change this unless you know what you are 
+      doing. This may prevent you from logging in.</P>
+      <P>If you have broken your gallery by modifying this value, use phpMyAdmin 
+      to edit the xxxx_config table in your database and restore the default 
+      value. </P>
+      <H3>Character encoding</H3>
+      <P>This should normally be set to "Default (language file)" or "Unicode 
+      (utf-8)". See the discussion in the "<B>language</B>" section of this 
+      page.</P>
+      <P><a class="back" href="#top">Back to 
+      top</a></P></TD></TR></TBODY></TABLE>
+</BODY></HTML>
+
