@@ -421,23 +421,55 @@ function template_extract_block(&$template, $block_name, $subst='')
  **************************************************************************/
 
 // Get the list of albums that the current user can't see
-function get_private_album_set()
+
+function get_private_album_set($aid_str="")
 {
         if (GALLERY_ADMIN_MODE) return;
-        global $CONFIG, $ALBUM_SET, $USER_DATA, $FORBIDDEN_SET;
-
+		
+        global $CONFIG, $ALBUM_SET, $USER_DATA, $FORBIDDEN_SET, $HTTP_COOKIE_VARS, $FORBIDDEN_SET_DATA;
+		
         if ($USER_DATA['can_see_all_albums']) return;
-
-        $result = db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE visibility != '0' AND visibility !='".(FIRST_USER_CAT + USER_ID)."' AND visibility NOT IN ".USER_GROUP_SET);
-        if (mysql_num_rows($result))
-        {
-                $set = array();
-                           while ($album = mysql_fetch_array($result)) $set[] = $album['aid'];
-                $csv = implode(',',$set);
-                $FORBIDDEN_SET = "p.aid NOT IN ($csv) ";
-                $ALBUM_SET .= "AND aid NOT IN ($csv) ";
+		
+		//Stuff for Album level passwords
+        if (isset($HTTP_COOKIE_VARS[$CONFIG['cookie_name']."_albpw"]) && empty($aid_str)) {
+          $alb_pw = unserialize($HTTP_COOKIE_VARS[$CONFIG['cookie_name']."_albpw"]);
+          $aid_str = implode(",",array_keys($alb_pw));
+          $sql = "SELECT aid, MD5(alb_password) as md5_password FROM ".$CONFIG['TABLE_ALBUMS']." WHERE aid IN ($aid_str)";
+          $result = db_query($sql);
+          $albpw_db = array();
+          if (mysql_num_rows($result)) {
+            while ($data = mysql_fetch_array($result)) {
+              $albpw_db[$data['aid']] = $data['md5_password'];
+            }
+          }
+          $valid = array_intersect($albpw_db, $alb_pw);
+          if (is_array($valid)) {
+            $aid_str = implode(",",array_keys($valid));
+          } else {
+            $aid_str = "";
+          }
         }
-               mysql_free_result($result);
+        
+        $sql = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE visibility != '0' AND visibility !='".(FIRST_USER_CAT + USER_ID)."' AND visibility NOT IN ".USER_GROUP_SET;
+        if (!empty($aid_str)) {
+          $sql .= " AND aid NOT IN ($aid_str)";
+		}        
+        
+		$result = db_query($sql);
+        if ((mysql_num_rows($result))) {
+                $set ='';
+            while($album=mysql_fetch_array($result)){
+                    $set .= $album['aid'].',';
+                    $FORBIDDEN_SET_DATA[] = $album['aid'];
+            } // while
+                $FORBIDDEN_SET = "p.aid NOT IN (".substr($set, 0, -1).') ';
+                $ALBUM_SET = 'AND aid NOT IN ('.substr($set, 0, -1).') ';
+        }else{		
+		  $FORBIDDEN_SET_DATA = array();
+          $FORBIDDEN_SET = "";
+          $ALBUM_SET = "";
+		}
+        mysql_free_result($result);
 }
 
 // Retrieve the data for a picture or a set of picture
