@@ -296,7 +296,8 @@ switch ($event) {
                 // start: send admin approval mail added by gaugau: 03-11-02
                 if ($CONFIG['upl_notify_admin_email'])
                 {
-                cpg_mail($CONFIG['gallery_admin_email'], sprintf($lang_db_input_php['notify_admin_email_subject'], $CONFIG['gallery_name']), sprintf($lang_db_input_php['notify_admin_email_body'], $user_name));
+                include_once('include/mailer.inc.php');
+                cpg_mail($CONFIG['gallery_admin_email'], sprintf($lang_db_input_php['notify_admin_email_subject'], $CONFIG['gallery_name']), sprintf($lang_db_input_php['notify_admin_email_body'], $CONFIG['ecards_more_pic_target'].'editpics.php?mode=upload_approval' ));
                 }
                 // end: send admin approval mail
                 pagefooter();
