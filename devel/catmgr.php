@@ -40,8 +40,13 @@ function fix_cat_table()
 function get_subcat_data($parent, $ident = '')
 {
     global $CONFIG, $CAT_LIST;
+    if ($CONFIG['categories_alpha_sort'] == 1) {
+    $sort_query = 'name';
+    } else {
+    $sort_query = 'pos';
+    }
 
-    $sql = "SELECT cid, name, description " . "FROM {$CONFIG['TABLE_CATEGORIES']} " . "WHERE parent = '$parent' " . "ORDER BY pos";
+    $sql = "SELECT cid, name, description " . "FROM {$CONFIG['TABLE_CATEGORIES']} " . "WHERE parent = '$parent' " . "ORDER BY $sort_query";
     $result = db_query($sql);
 
     if (($cat_count = mysql_num_rows($result)) > 0) {
@@ -161,7 +166,7 @@ EOT;
                         {$lang_catmgr_php['cat_thumb']}
                 </td>
                 <td class="tableb" align="center">
-                        <table cellspacing="0" cellpadding="5" border="0" alt="" />
+                        <table cellspacing="0" cellpadding="5" border="0">
                                 <tr>
                                         <td width="$thumb_cell_height" height="$thumb_cell_height" align="center"><img src="$initial_thumb_url" name='Thumb' class='image' /><br /></td>
                                 </tr>
@@ -347,7 +352,9 @@ switch ($op) {
 
 fix_cat_table();
 get_subcat_data(0);
-update_cat_order();
+if ($CONFIG['categories_alpha_sort'] != 1) {
+    update_cat_order();
+}
 
 pageheader($lang_catmgr_php['manage_cat']);
 echo <<<EOT
@@ -418,6 +425,7 @@ echo "<br />\n";
 starttable('100%', $lang_catmgr_php['update_create'], 2);
 $lb = cat_list_box($current_category['parent'], $current_category['cid'], false);
 $op = $current_category['cid'] ? 'updatecat' : 'createcat';
+if ($CONFIG['show_bbcode_help']) {$description_help .= '&nbsp;'. cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&t='.urlencode(base64_encode(serialize($lang_bbcode_help))),400,180);}
 echo <<<EOT
         <form method="post" action="$PHP_SELF?op=$op">
         <input type="hidden" name="cid" value ="{$current_category['cid']}">
@@ -439,7 +447,7 @@ echo <<<EOT
         </tr>
         <tr>
                 <td class="tableb" valign="top">
-                        {$lang_catmgr_php['cat_desc']}
+                        {$lang_catmgr_php['cat_desc']}$description_help
                 </td>
                 <td class="tableb" valign="top">
                         <textarea name="description" ROWS="5" COLS="40" SIZE="9"  WRAP="virtual" STYLE="WIDTH: 100%;" class="textinput">{$current_category['description']}</textarea>
