@@ -317,6 +317,9 @@ if($CONFIG['lang'] != 'english' && $CONFIG['language_fallback']==1 ){
 // See if the fav cookie is set else set it
 if (isset($_COOKIE[$CONFIG['cookie_name'] . '_fav'])) {
     $FAVPICS = @unserialize(@base64_decode($_COOKIE[$CONFIG['cookie_name'] . '_fav']));
+    foreach ($FAVPICS as $key => $id ){
+        $FAVPICS[$key] = (int)$id; //protect against sql injection attacks
+    }
 } else {
     $FAVPICS = array();
 }

@@ -357,6 +357,9 @@ require "lang/{$CONFIG['lang']}.php";
 // See if the fav cookie is set else set it
 if (isset($HTTP_COOKIE_VARS[$CONFIG['cookie_name'] . '_fav'])) {
     $FAVPICS = @unserialize(@base64_decode($HTTP_COOKIE_VARS[$CONFIG['cookie_name'] . '_fav']));
+    foreach ($FAVPICS as $key => $id ){
+        $FAVPICS[$key] = (int)$id; //protect against sql injection attacks
+    }
 } else {
     $FAVPICS = array();
 }
