@@ -1,8 +1,8 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.4.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -14,14 +14,10 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
+// $Id$
+// ------------------------------------------------------------------------- //
 
-/*
-$Id$
-*/
 
-$CONFIG['smtp_host'] = '';
-$CONFIG['smtp_username'] = '';
-$CONFIG['smtp_password'] = '';
 // Custom mail function
 function cpg_mail($to, $subject, $msg_body, $type = 'text/plain', $sender_name = '', $sender_email = '')
 {

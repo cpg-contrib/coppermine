@@ -540,6 +540,11 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Name of the cookie used by the script (when using bbs integration, make sure it differs from the bbs\'s cookie name)', 'cookie_name', 0),
   array('Path of the cookie used by the script', 'cookie_path', 0),
 
+  'Email settings  (usually nothing has to be changed here; leave all fields blank when not sure)',
+  array('SMTP Host', 'smtp_host', 0),
+  array('SMTP Username', 'smtp_username', 0),
+  array('SMTP Password', 'smtp_password', 0),
+
   'Miscellaneous settings',
   array('Enable debug mode', 'debug_mode', 9),
   array('Display notices in debug mode', 'debug_notice', 1),

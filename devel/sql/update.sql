@@ -119,7 +119,6 @@ INSERT INTO CPG_config VALUES ('log_mode', '0');
 
 INSERT INTO CPG_config VALUES ('media_autostart', '1');
 
-
 # Modify structure for category thumb
 ALTER TABLE `CPG_categories` ADD `thumb` INT NOT NULL AFTER `parent` ;
 
@@ -264,3 +263,7 @@ ALTER TABLE `CPG_users` CHANGE `user_profile6` `user_profile6` TEXT NOT NULL;
 ALTER TABLE `CPG_albums` ADD `alb_password` varchar(32) default '';
 
 INSERT INTO CPG_config VALUES ('ban_private_ip', '0');
+
+INSERT INTO CPG_config VALUES ('smtp_host', '');
+INSERT INTO CPG_config VALUES ('smtp_username', '');
+INSERT INTO CPG_config VALUES ('smtp_password', '');

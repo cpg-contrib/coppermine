@@ -119,6 +119,9 @@ INSERT INTO CPG_config VALUES ('time_offset', '0');
 
 INSERT INTO CPG_config VALUES ('ban_private_ip', '0');
 
+INSERT INTO CPG_config VALUES ('smtp_host', '');
+INSERT INTO CPG_config VALUES ('smtp_username', '');
+INSERT INTO CPG_config VALUES ('smtp_password', '');
 
 #
 # Dumping data for table `CPG_filetypes`
