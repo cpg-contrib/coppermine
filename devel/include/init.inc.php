@@ -18,6 +18,10 @@
 // ------------------------------------------------------------------------- //
 
 define('COPPERMINE_VERSION', '1.3.0 - devel');
+
+// Include logger functions
+include_once('logger.inc.php');
+
 // User database integration
 // Uncomment the applicable line if you want to use it
 // define('UDB_INTEGRATION', 'phpbb');
