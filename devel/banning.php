@@ -93,10 +93,10 @@ if (count($HTTP_POST_VARS) > 0) {
             $ban_uid = 'NULL';
         }
 
-        if (isset($HTTP_POST_VARS['add_ban_ip_addr'])) {
+        if ($HTTP_POST_VARS['add_ban_ip_addr']) {
             $ban_ip_addr = "'" . addslashes($HTTP_POST_VARS['add_ban_ip_addr']) . "'";
             //check admin ip address
-            if ($HTTP_POST_VARS['add_ban_ip_addr'] == $REMOTE_ADDR || $HTTP_POST_VARS['add_ban_ip_addr'] == $_SERVER["REMOTE_ADDR"] || $HTTP_POST_VARS['add_ban_ip_addr'] == $_ENV["REMOTE_ADDR"]) {
+            if ($HTTP_POST_VARS['add_ban_ip_addr'] == $REMOTE_ADDR || $HTTP_POST_VARS['add_ban_ip_addr'] == $_SERVER["REMOTE_ADDR"] || ($HTTP_POST_VARS['add_ban_ip_addr'] == $_ENV["REMOTE_ADDR"] && $_ENV["REMOTE_ADDR"])) {
                cpg_die(ERROR, $lang_banning_php['error_admin_ban'], __FILE__, __LINE__);
                }
             //check server ip adress
