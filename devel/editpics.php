@@ -192,36 +192,30 @@ EOT;
 
 function form_pic_info($text)
 {
-    global $CURRENT_PIC, $THUMB_ROWSPAN, $CONFIG, $lang_byte_units, $lang_editpics_php;
+        global $CURRENT_PIC, $THUMB_ROWSPAN, $CONFIG, $lang_byte_units, $lang_editpics_php;
 
-    if (UPLOAD_APPROVAL_MODE) {
-        $pic_info = $CURRENT_PIC['pwidth'].' &times; '.$CURRENT_PIC['pheight'].' - '.($CURRENT_PIC['filesize'] >> 10).$lang_byte_units[1];
-        if($CURRENT_PIC['owner_name']){
-            $pic_info .= ' - <a href ="profile.php?uid='.$CURRENT_PIC['owner_id'].'" target="_blank">'.$CURRENT_PIC['owner_name'].'</a>';
+        if (!is_movie($CURRENT_PIC['filename'])) {
+                $pic_info = sprintf($lang_editpics_php['pic_info_str'], $CURRENT_PIC['pwidth'], $CURRENT_PIC['pheight'], ($CURRENT_PIC['filesize'] >> 10), $CURRENT_PIC['hits'], $CURRENT_PIC['votes']);
+        } else {
+                $pic_info = sprintf($lang_editpics_php['pic_info_str'], '<input type="text" name="pwidth'.$CURRENT_PIC['pid'].'" value="'.$CURRENT_PIC['pwidth'].'" size="5" maxlength="5" class="textinput" />', '<input type="text" name="pheight'.$CURRENT_PIC['pid'].'" value="'.$CURRENT_PIC['pheight'].'" size="5" maxlength="5" class="textinput" />', ($CURRENT_PIC['filesize'] >> 10), $CURRENT_PIC['hits'], $CURRENT_PIC['votes']);
         }
-    } elseif (!is_movie($CURRENT_PIC['filename'])) {
-        $pic_info = sprintf($lang_editpics_php['pic_info_str'], $CURRENT_PIC['pwidth'], $CURRENT_PIC['pheight'], ($CURRENT_PIC['filesize'] >> 10), $CURRENT_PIC['hits'], $CURRENT_PIC['votes']);
-    } else {
-        $pic_info = sprintf($lang_editpics_php['pic_info_str'], '<input type="text" name="pwidth'.$CURRENT_PIC['pid'].'" value="'.$CURRENT_PIC['pwidth'].'" size="5" maxlength="5" class="textinput" />', '<input type="text" name="pheight'.$CURRENT_PIC['pid'].'" value="'.$CURRENT_PIC['pheight'].'" size="5" maxlength="5" class="textinput" />', ($CURRENT_PIC['filesize'] >> 10), $CURRENT_PIC['hits'], $CURRENT_PIC['votes']);
-    }
+    
+        if (UPLOAD_APPROVAL_MODE) {
+                // Commented out by Omni; Duplicate of above
+                //$pic_info = $CURRENT_PIC['pwidth'].' &times; '.$CURRENT_PIC['pheight'].' - '.($CURRENT_PIC['filesize'] >> 10).$lang_byte_units[1];
+                if($CURRENT_PIC['owner_name']){
+                        $pic_info .= ' - <a href ="profile.php?uid='.$CURRENT_PIC['owner_id'].'" target="_blank">'.$CURRENT_PIC['owner_name'].'</a>';
+                }
+        }
 
-    if (is_image($CURRENT_PIC['filename']))
-        $thumb_url = get_pic_url($CURRENT_PIC, 'thumb');
-    elseif ($extension = is_movie($CURRENT_PIC['filename'])) {
-        $extension = (file_exists("images/thumb_$extension.jpg")) ? $extension : "movie";
-        $thumb_url = "images/thumb_{$extension}.jpg\"";
-    }
-    elseif ($extension = is_audio($CURRENT_PIC['filename'])) {
-        $extension = (file_exists("images/thumb_$extension.jpg")) ? $extension : "audio";
-        $thumb_url = "images/thumb_{$extension}.jpg\"";
-    }
-    elseif ($extension = is_document($CURRENT_PIC['filename'])) {
-        $extension = (file_exists("images/thumb_$extension.jpg")) ? $extension : "document";
-        $thumb_url = "images/thumb_{$extension}.jpg\"";
-    }
-    else
-        $thumb_url = '';
+        $mime_content = get_type($CURRENT_PIC['filename']);
+        $extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
 
+        if ($mime_content['content']=='image') {
+                $thumb_url = get_pic_url($CURRENT_PIC, 'thumb');
+        } else {
+                $thumb_url = "images/thumb_{$extension}.jpg\"";
+        }
 
         $thumb_link = 'displayimage.php?&pos='.(-$CURRENT_PIC['pid']);
         $filename = htmlspecialchars($CURRENT_PIC['filename']);

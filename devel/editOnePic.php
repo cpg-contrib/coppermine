@@ -43,15 +43,17 @@ function process_post_data()
         global $HTTP_POST_VARS, $CONFIG;
         global $lang_errors;
 
-                $pid             = (int)$HTTP_POST_VARS['pid'];
-                $aid         = (int)$HTTP_POST_VARS['aid'];
-                $title       = $HTTP_POST_VARS['title'];
-                $caption     = $HTTP_POST_VARS['caption'];
-                $keywords    = $HTTP_POST_VARS['keywords'];
-                $user1       = $HTTP_POST_VARS['user1'];
-                $user2       = $HTTP_POST_VARS['user2'];
-                $user3       = $HTTP_POST_VARS['user3'];
-                $user4       = $HTTP_POST_VARS['user4'];
+                $pid          = (int)$HTTP_POST_VARS['pid'];
+                $aid          = (int)$HTTP_POST_VARS['aid'];
+                $pwidth       = (int)$HTTP_POST_VARS['pwidth'];
+                $pheight      = (int)$HTTP_POST_VARS['pheight'];
+                $title        = $HTTP_POST_VARS['title'];
+                $caption      = $HTTP_POST_VARS['caption'];
+                $keywords     = $HTTP_POST_VARS['keywords'];
+                $user1        = $HTTP_POST_VARS['user1'];
+                $user2        = $HTTP_POST_VARS['user2'];
+                $user3        = $HTTP_POST_VARS['user3'];
+                $user4        = $HTTP_POST_VARS['user4'];
 
                 $read_exif    = isset($HTTP_POST_VARS['read_exif']);
                 $reset_vcount = isset($HTTP_POST_VARS['reset_vcount']);
@@ -70,6 +72,10 @@ function process_post_data()
                 }
 
                 $update  = "aid = '".$aid."'";
+                if (is_movie($pic['filename'])) {
+                        $update .= ", pwidth = ".$pwidth;
+                        $update .= ", pheight = ".$pheight;
+                }
                 $update .= ", title = '".addslashes($title)."'";
                 $update .= ", caption = '".addslashes($caption)."'";
                 $update .= ", keywords = '".addslashes($keywords)."'";
@@ -188,7 +194,19 @@ function textCounter(field, maxlimit) {
 </script>
 EOT;
 
-$pic_info = sprintf($lang_editpics_php['pic_info_str'], $CURRENT_PIC['pwidth'], $CURRENT_PIC['pheight'], ($CURRENT_PIC['filesize'] >> 10), $CURRENT_PIC['hits'], $CURRENT_PIC['votes']);
+//$pic_info = sprintf($lang_editpics_php['pic_info_str'], $CURRENT_PIC['pwidth'], $CURRENT_PIC['pheight'], ($CURRENT_PIC['filesize'] >> 10), $CURRENT_PIC['hits'], $CURRENT_PIC['votes']);
+
+if (!is_movie($CURRENT_PIC['filename'])) {
+        $pic_info = sprintf($lang_editpics_php['pic_info_str'], $CURRENT_PIC['pwidth'], $CURRENT_PIC['pheight'], ($CURRENT_PIC['filesize'] >> 10), $CURRENT_PIC['hits'], $CURRENT_PIC['votes']);
+} else {
+        $pic_info = sprintf($lang_editpics_php['pic_info_str'], '<input type="text" name="pwidth" value="'.$CURRENT_PIC['pwidth'].'" size="5" maxlength="5" class="textinput" />', '<input type="text" name="pheight" value="'.$CURRENT_PIC['pheight'].'" size="5" maxlength="5" class="textinput" />', ($CURRENT_PIC['filesize'] >> 10), $CURRENT_PIC['hits'], $CURRENT_PIC['votes']);
+}
+
+if (UPLOAD_APPROVAL_MODE) {
+        if($CURRENT_PIC['owner_name']){
+                $pic_info .= ' - <a href ="profile.php?uid='.$CURRENT_PIC['owner_id'].'" target="_blank">'.$CURRENT_PIC['owner_name'].'</a>';
+        }
+}
 
 print <<<EOT
 <table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintableb">
