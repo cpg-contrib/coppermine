@@ -41,7 +41,7 @@ class cpg_udb extends core_udb {
 		$this->use_post_based_groups = $BRIDGE['use_post_based_groups'];
 		$this->boardurl = $boardurl;
 		$this->multigroups = 1;
-		$this->group_overrride = !$this->use_post_based_groups;
+		$this->group_overrride = 1;
 
 
 		// Board table names
@@ -98,8 +98,12 @@ class cpg_udb extends core_udb {
 		
 		$i = $this->use_post_based_groups ? 100 : 0;
 		
-		$data[0] = $user_settings['ID_GROUP'] + $i;
-
+		if ($user_settings['ID_GROUP'] == 0){
+			$data[0] = 2;
+		} else {
+			$data[0] = $user_settings['ID_GROUP'] + $i;
+		}
+		
 		if ($user_settings['additionalGroups']){
 			
 			$groups = explode(',', $user_settings['additionalGroups']);
@@ -118,13 +122,13 @@ class cpg_udb extends core_udb {
 	
 		$result = cpg_db_query($sql, $this->link_id);
 		
-		$udb_groups = array(1=>'Guests');
+		$udb_groups = array(1=>'Guests', 2=>'Registered');
 			
 		while ($row = mysql_fetch_assoc($result))
 		{
 			$udb_groups[$row[$this->field['grouptbl_group_id']]+100] = ucfirst(strtolower($row[$this->field['grouptbl_group_name']]));
 		}
-		
+		var_dump($udb_groups);
 		return $udb_groups;
 	}
 	
