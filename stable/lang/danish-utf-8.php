@@ -28,7 +28,7 @@ $lang_translation_info = array(
 'trans_website' => 'http://www.tommerup.net', //translator's website (optional) 
 'trans_name2'=> 'David Holm', //the name of the translator - can be a nickname 
 'trans_email2' => 'wormie@alberg.dk', //translator's email address (optional)
-'trans_date' => '2003-10-07', //the date the translation was created / last modified 
+'trans_date' => '2003-21-11', //the date the translation was created / last modified
 ); 
 
 $lang_charset = 'iso-8859-1';
@@ -332,7 +332,7 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'title_a' => 'Titel stigende',
         'title_d' => 'Titel faldende',
 	'date_a' => 'Dato stigende',
-	'date_d' => 'Dato faldende',,
+	'date_d' => 'Dato faldende',
         'th_any' => 'Max Aspect',
         'th_ht' => 'Height',
         'th_wd' => 'Width',
@@ -918,7 +918,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 	'confirm_del' => 'Er du sikker på du vil SLETTE denne bruger? \\nAlle billeder og albums vil også blive slettet.',
 	'mail' => 'POST',
 	'err_unknown_user' => 'Valgt bruger eksister ikke!',
-	'modify_user' => 'Rediger bruger',
+	'modify_user' => 'Rediger / opret bruger',
 	'notes' => 'Noter',
 	'note_list' => '<li>Hvis du ikke vil rette det aktuelle password, så lad feltet "password" stå tomt',
 	'password' => 'Password',
