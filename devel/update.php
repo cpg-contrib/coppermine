@@ -246,9 +246,10 @@ function html_footer()
  </div>
 </body>
 </html>
-<noscript><plaintext>
+
 <?php
 }
+
 // ------------------------- SQL QUERIES TO CREATE TABLES ------------------ //
 function update_tables()
 {
@@ -317,5 +318,4 @@ else {
 }
 
 html_footer();
-
 ?>
