@@ -1757,7 +1757,7 @@ $return = '
 1.4.0|upload.php|1.4.0|1.55|mandatory|r@
 1.4.0|usermgr.php|1.4.0|1.26|mandatory|r@
 1.4.0|util.php|1.4.0|1.22|mandatory|r@
-1.4.0|versioncheck.php|1.4.0|1.27|mandatory|r@
+1.4.0|versioncheck.php|1.4.0|1.28|mandatory|r@
 1.4.0|viewlog.php|1.4.0|1.8|mandatory|r@
 1.4.0|voteDetails.php|1.4.0|1.1|mandatory|r@
 1.4.0|xp_publish.php|1.4.0|1.21|mandatory|r@
@@ -1780,7 +1780,7 @@ $return = '
 1.4.0|docs|||mandatory|r@
 1.4.0|docs/credits.html||1.12|optional|r@
 1.4.0|docs/faq.htm|||optional|r@
-1.4.0|docs/index.htm||1.11|mandatory|r@
+1.4.0|docs/index.htm||1.12|mandatory|r@
 1.4.0|docs/README.html||1.17|optional|r@
 1.4.0|docs/showdoc.php|1.4.0|1.9|mandatory|r@
 1.4.0|docs/theme.htm|||optional|r@
