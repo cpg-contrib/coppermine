@@ -41,6 +41,7 @@ if (isset($HTTP_POST_VARS['submitted'])) {
         pageheader($lang_forgot_passwd_php['forgot_passwd'], "<META http-equiv=\"refresh\" content=\"3;url=login.php\">");
         $referer = 'login.php';
         msg_box($lang_forgot_passwd_php['forgot_passwd'], sprintf($lang_forgot_passwd_php['email_sent'], $USER_DATA['user_email']), $lang_continue, $referer);
+        $USER_DATA['user_password'] = '***********';
         pagefooter();
         exit;
         // something has been found end
