@@ -13,7 +13,7 @@
 //  it under the terms of the GNU General Public License as published by     //
 //  the Free Software Foundation; either version 2 of the License, or        //
 //  (at your option) any later version.                                      //
-// ------------------------------------------------------------------------- // 
+// ------------------------------------------------------------------------- //
 
 
 // info about translators and translated language
@@ -56,7 +56,7 @@ $lasthit_date_fmt = '%B %d, %Y at %I:%M %p';
 $comment_date_fmt =  '%B %d, %Y at %I:%M %p';
 
 // For the word censor
-$lang_bad_words = array('píèa', 'hovno', '*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
+$lang_bad_words = array('píèa', 'hovno', '*fuck*', 'prdel', 'èùrák', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
 
 $lang_meta_album_names = array(
         'random' => 'Náhodné obrázky',
@@ -327,7 +327,7 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
     'name_a' => 'Jméno vzestupnì',
     'name_d' => 'Jméno sestupnì',
     'date_a' => 'Datum vzestupnì',
-    'date_d' => 'Datum sestupnì',,
+    'date_d' => 'Datum sestupnì',
         'th_any' => 'Max Aspect',
         'th_ht' => 'Height',
         'th_wd' => 'Width',

@@ -18,7 +18,7 @@
 // info about translators and translated language 
 $lang_translation_info = array( 
 'lang_name_english' => 'Greek',  
-'lang_name_native' => '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;', 
+'lang_name_native' => 'Ελληνικά', 
 'lang_country_code' => 'gr', 
 'trans_name'=> 'lykman', //the name of the translator - can be a nickname 
 'trans_email' => 'lykman@freemail.gr', //translator's email address (optional) 
@@ -325,7 +325,7 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
 	'name_a' => 'Αυξων όνομα',
 	'name_d' => 'Φθίνων όνομα',
 	'date_a' => 'Αυξουσα ημερομηνία',
-	'date_d' => 'Φθίνουσα ημερομηνία',,
+	'date_d' => 'Φθίνουσα ημερομηνία',
         'th_any' => 'Max Aspect',
         'th_ht' => 'Height',
         'th_wd' => 'Width',
@@ -349,7 +349,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Πλήθος στηλών για την λίστα των άλμπουμ', 'album_list_cols', 0),
 	array('Μέγεθος των thumbnails σε πίξελ', 'alb_list_thumb_size', 0),
 	array('Περιεχόμενο της κεντρικής σελίδας', 'main_page_layout', 0),
-        array('Εμφάνιση πρώτου επιπέδου thumbnails του άλμπουμ στις κατηγορίες','first_level',1), 
+        array('Εμφάνιση πρώτου επιπέδου thumbnails του άλμπουμ στις κατηγορίες','first_level', 1), 
 
 	'Εμφάνιση Thumbnail',
 	array('Πλήθος στηλών στην σελίδα των thumbnail', 'thumbcols', 0),

@@ -18,7 +18,7 @@
 // info about translators and translated language 
 $lang_translation_info = array( 
 'lang_name_english' => 'Greek',  
-'lang_name_native' => '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;', 
+'lang_name_native' => 'ÅëëçíéêÜ', 
 'lang_country_code' => 'gr', 
 'trans_name'=> 'lykman', //the name of the translator - can be a nickname 
 'trans_email' => 'lykman@freemail.gr', //translator's email address (optional) 
@@ -325,7 +325,7 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
 	'name_a' => 'Áõîùí üíïìá',
 	'name_d' => 'Öèßíùí üíïìá',
 	'date_a' => 'Áõîïõóá çìåñïìçíßá',
-	'date_d' => 'Öèßíïõóá çìåñïìçíßá',,
+	'date_d' => 'Öèßíïõóá çìåñïìçíßá',
         'th_any' => 'Max Aspect',
         'th_ht' => 'Height',
         'th_wd' => 'Width',
@@ -349,7 +349,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('ÐëÞèïò óôçëþí ãéá ôçí ëßóôá ôùí Üëìðïõì', 'album_list_cols', 0),
 	array('ÌÝãåèïò ôùí thumbnails óå ðßîåë', 'alb_list_thumb_size', 0),
 	array('Ðåñéå÷üìåíï ôçò êåíôñéêÞò óåëßäáò', 'main_page_layout', 0),
-        array('ÅìöÜíéóç ðñþôïõ åðéðÝäïõ thumbnails ôïõ Üëìðïõì óôéò êáôçãïñßåò','first_level',1), 
+        array('ÅìöÜíéóç ðñþôïõ åðéðÝäïõ thumbnails ôïõ Üëìðïõì óôéò êáôçãïñßåò','first_level', 1), 
 
 	'ÅìöÜíéóç Thumbnail',
 	array('ÐëÞèïò óôçëþí óôçí óåëßäá ôùí thumbnail', 'thumbcols', 0),
