@@ -243,39 +243,43 @@ function display_dir_tree($folder, $ident)
     global $CONFIG, $lang_search_new_php; //$PHP_SELF,
     $dir_path = $CONFIG['fullpath'] . $folder;
 
-
     if (!is_readable($dir_path)) return;
 
     $dir = opendir($dir_path);
     static $dirCounter = 0;
-    while ($file = readdir($dir)) {
-        if (is_dir($CONFIG['fullpath'] . $folder . $file) && substr($file,0,1) != "." && strpos($file,"'") == FALSE) {
-            $start_target = $folder . $file;
-            $dir_path = $CONFIG['fullpath'] . $folder . $file;
+    while ($file = readdir($dir)) { // loop looking for files - start
+        if (is_dir($CONFIG['fullpath'] . $folder . $file) &&
+            substr($file,0,1) != "." &&
+            strpos($file,"'") == FALSE &&
+            strpos($file,trim($CONFIG['userpics'],'/')) === FALSE &&
+            strpos($file,'edit') === FALSE &&
+            strpos($file,'CVS') === FALSE) {
+                $start_target = $folder . $file;
+                $dir_path = $CONFIG['fullpath'] . $folder . $file;
 
-            $warnings = '';
-            if (!is_writable($dir_path)) $warnings .= $lang_search_new_php['dir_ro'];
-            if (!is_readable($dir_path)) $warnings .= $lang_search_new_php['dir_cant_read'];
+                $warnings = '';
+                if (!is_writable($dir_path)) $warnings .= $lang_search_new_php['dir_ro'];
+                if (!is_readable($dir_path)) $warnings .= $lang_search_new_php['dir_cant_read'];
 
-            if ($warnings) $warnings = '&nbsp;&nbsp;&nbsp;<b>' . $warnings . '<b>';
+                if ($warnings) $warnings = '&nbsp;&nbsp;&nbsp;<b>' . $warnings . '<b>';
 
-            echo <<<EOT
-                        <tr>
-                                <td class="tableb">
-                                        $ident<img src="images/folder.gif" border="0" alt="" />&nbsp;<a href= "{$_SERVER['PHP_SELF']}?startdir=$start_target">$file</a>$warnings
-                                </td>
-                        </tr>
+                echo <<<EOT
+                            <tr>
+                                    <td class="tableb">
+                                            $ident<img src="images/folder.gif" border="0" alt="" />&nbsp;<a href= "{$_SERVER['PHP_SELF']}?startdir=$start_target">$file</a>$warnings
+                                    </td>
+                            </tr>
 EOT;
-            $dirCounter++;
-            display_dir_tree($folder . $file . '/', $ident . '&nbsp;&nbsp;&nbsp;&nbsp;');
+                $dirCounter++;
+                display_dir_tree($folder . $file . '/', $ident . '&nbsp;&nbsp;&nbsp;&nbsp;');
         }
-    }
+    } // loop looking for files - end
     closedir($dir);
     if ($dirCounter == 0) {
     echo '
                         <tr>
                                 <td class="tableb">';
-    echo '                                   ' . $lang_search_new_php['no_folders'];
+    echo '                                   ' . sprintf($lang_search_new_php['no_folders'],trim($CONFIG['fullpath'],'/'),trim($CONFIG['fullpath'],'/'),trim($CONFIG['userpics'],'/'));
     echo '
                                     </td>
                         </tr>';
@@ -346,7 +350,6 @@ function CPGscandir($dir, &$expic_array)
 
     $pic_array = array();
     $dir_array = array();
-
     getfoldercontent($dir, $dir_array, $pic_array, $expic_array);
 
     if (count($pic_array) > 0) {
@@ -494,10 +497,8 @@ EOT;
 
 EOT;
     $expic_array = array();
-
     getallpicindb($expic_array, $_GET['startdir']);
     if (CPGscandir($_GET['startdir'] . '/', $expic_array)) {
-
         echo <<<EOT
         <tr>
                 <td class="tablef">
@@ -547,9 +548,7 @@ EOT;
     }
 
 
-    //$iframe_startfolder = rtrim(cpg_get_webroot_path(), '/');
     $iframe_startfolder .= str_replace('searchnew.php', '', $_SERVER['PHP_SELF']).rtrim($CONFIG['fullpath'], '/').'/';
-    //print $iframe_startfolder;
     $iframe_hide = rawurlencode('.,..,CVS,edit,'.rtrim($CONFIG['userpics'], '/'));
     print '    <tr>'."\n";
     print '        <td class="tableb" align="center">'."\n";
@@ -567,7 +566,6 @@ EOT;
     $yes_selected = $CONFIG['browse_batch_add'] ? 'checked="checked"' : '';
     $no_selected = !$CONFIG['browse_batch_add'] ? 'checked="checked"' : '';
     $help = cpg_display_help('f=index.htm&as=admin_misc_browsable_batch_add&ae=admin_misc_browsable_batch_add_end', '500', '300');
-
     echo <<<EOT
         <tr>
                 <td class="tableb">
