@@ -9,7 +9,7 @@
  * @version $Id$
  */
 
-class cpgDbMysql {
+class cpgDB {
 
   /* public: connection parameters */
   var $Host     = "";
@@ -38,7 +38,7 @@ class cpgDbMysql {
   /* private: link and query handles */
   var $Link_ID  = 0;
   var $Query_ID = 0;
-  
+
   /**
    * @var array $queries
    */
@@ -54,14 +54,14 @@ class cpgDbMysql {
       $this->Password = $CONFIG["dbpass"];
       $this->query($query);
   }
-  
+
   function getInstance() {
     static $instance;
-    
+
     if (!isset($instance)) {
       $instance = new cpgDbMysql;
     }
-    
+
     return ($instance);
   }
 
@@ -116,10 +116,10 @@ class cpgDbMysql {
 
      $re = mysql_select_db($database,$this->Link_ID);
      if(!$re) {
-	if ($this->Debug)
-	        echo "Cannot change db to $database";
+  if ($this->Debug)
+          echo "Cannot change db to $database";
      }
-     return $re;	
+     return $re;
   }
   /* end of addition by vinay */
 
@@ -154,11 +154,11 @@ class cpgDbMysql {
     }
     if ($this->Debug)
       printf(" - Results = %s<br>\n", $this->nf());
-    
+
     if ($this->nf() > 0) {
       $this->nextRecord();
     }
-    
+
     $this->queries = $Query_String;
 
     # Will return nada if it fails. That's fine. // '
@@ -183,19 +183,19 @@ class cpgDbMysql {
     }
     return $stat;
   }
-  
+
   function fetchRow() {
     $row = $this->Record;
     $this->nextRecord();
     return ($row);
   }
-  
+
   function fetchRowSet() {
     $rowset = array();
     do {
-      $rowset[] = $this->Record; 
+      $rowset[] = $this->Record;
     } while ($this->nextRecord());
-    
+
     return ($rowset);
   }
 
