@@ -447,7 +447,7 @@ print '</tr>';
 
 // step three: go through all files that exist in the repository and check if they're on the webserver as well
 if ($webroot == 1) {
-$dir = ''; // this is the place to start browsing
+$dir = ''; // this is the place to start browsing for root folders
 } else {
 $dir = '../'.cpg_get_coppermine_path().'/'; // this is the place to start browsing
 }
