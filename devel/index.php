@@ -13,7 +13,7 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- // 
+// ------------------------------------------------------------------------- //
 
 // Check if standalone is installed in a portal like phpNuke (added by DJMaze)
 $DIR=preg_split("/[\/\\\]/",dirname($_SERVER["SCRIPT_FILENAME"] ? $_SERVER["SCRIPT_FILENAME"] : $HTTP_SERVER_VARS["SCRIPT_FILENAME"]));
@@ -45,13 +45,13 @@ function html_albummenu($id)
             );
 
         $template = template_eval($template_album_admin_menu, $params);
-    } 
+    }
 
     $params = array('{ALBUM_ID}' => $id,
         );
 
     return template_eval($template, $params);
-} 
+}
 
 function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident = '')
 {
@@ -81,7 +81,7 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
                     $HIDE_USER_CAT = 0;
                 } else {
                     $HIDE_USER_CAT = 1;
-                } 
+                }
             } else {
                 $result = db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = {$subcat['cid']}");
                 $album_count = mysql_num_rows($result);
@@ -102,7 +102,7 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
                         mysql_free_result($result);
                         $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
                         $user_thumb = "<a href=\"index.php?cat={$subcat['cid']}\"><img src=\"" . get_pic_url($picture, 'thumb') . "\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" align=top /></a>";
-                    } 
+                    }
             }else{
             $user_thumb ="";
         }
@@ -118,28 +118,28 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
                         $cat_albums = list_cat_albums($subcat['cid']);
                     } else {
                         $cat_albums = '';
-                    } 
+                    }
                     $cat_data[] = array($link, $subcat['description'], $album_count, $pic_count, 'cat_albums' => $cat_albums,'cat_thumb' =>$user_thumb);
-                } 
-            } 
+                }
+            }
 
             if ($level > 1) get_subcat_data($subcat['cid'], $cat_data, $album_set_array, $level -1, $ident . "</td><td><img src=\"images/spacer.gif\" width=\"20\" height=\"1\"></td><td>");
-        } 
-    } 
-} 
+        }
+    }
+}
 // List all categories
 function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
 {
     global $HTTP_GET_VARS, $CONFIG, $ALBUM_SET, $CURRENT_CAT_NAME, $BREADCRUMB_TEXT, $STATS_IN_ALB_LIST;
     global $HIDE_USER_CAT;
     global $cat;
-    global $lang_list_categories, $lang_errors; 
+    global $lang_list_categories, $lang_errors;
     // Build the breadcrumb
-    breadcrumb($cat, $breadcrumb, $BREADCRUMB_TEXT); 
+    breadcrumb($cat, $breadcrumb, $BREADCRUMB_TEXT);
     // Build the category list
     $cat_data = array();
     $album_set_array = array();
-    get_subcat_data($cat, $cat_data, $album_set_array, $CONFIG['subcat_level']); 
+    get_subcat_data($cat, $cat_data, $album_set_array, $CONFIG['subcat_level']);
     // Add the albums in the current category to the album set
     if ($cat) {
         if ($cat == USER_GAL_CAT) {
@@ -150,7 +150,7 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
             $album_set_array[] = $row['aid'];
         } // while
         mysql_free_result($result);
-    } 
+    }
     if (count($album_set_array) && $cat) {
         $set = '';
         foreach ($album_set_array as $album) $set .= $album . ',';
@@ -160,7 +160,7 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
     } elseif ($cat) {
         $current_album_set = "AND aid IN (-1) ";
         $ALBUM_SET .= $current_album_set;
-    } 
+    }
     // Gather gallery statistics
     if ($cat == 0) {
         $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_ALBUMS']} WHERE 1");
@@ -200,7 +200,7 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
                     '[albums]' => $album_count,
                     '[comments]' => $comment_count,
                     '[views]' => $hit_count));
-        } 
+        }
     } elseif ($cat >= FIRST_USER_CAT && $ALBUM_SET) {
         $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_ALBUMS']} WHERE 1 $current_album_set");
         $nbEnr = mysql_fetch_array($result);
@@ -222,8 +222,8 @@ function get_cat_list(&$breadcrumb, &$cat_data, &$statistics)
                 '[views]' => $hit_count));
     } else {
         $statistics = '';
-    } 
-} 
+    }
+}
 
 function list_users()
 {
@@ -249,13 +249,13 @@ function list_users()
         $result = db_query($sql);
 
         $user_count = mysql_num_rows($result);
-    } 
+    }
 
     if (!$user_count) {
         msg_box($lang_list_users['user_list'], $lang_list_users['no_user_gal'], '', '', '100%');
         mysql_free_result($result);
         return;
-    } 
+    }
 
     $user_per_page = $CONFIG['thumbcols'] * $CONFIG['thumbrows'];
     $totalPages = ceil($user_count / $user_per_page);
@@ -272,7 +272,7 @@ function list_users()
         mysql_data_seek($result, $lower_limit);
         while (($row = mysql_fetch_array($result)) && ($i++ < $row_count)) $rowset[] = $row;
         mysql_free_result($result);
-    } 
+    }
 
     $user_list = array();
     foreach ($rowset as $user) {
@@ -290,8 +290,8 @@ function list_users()
 
                 $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['thumb_width']);
                 $user_thumb = "<img src=\"" . get_pic_url($picture, 'thumb') . "\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
-            } 
-        } 
+            }
+        }
 
         $albums_txt = sprintf($lang_list_users['n_albums'], $user_album_count);
         $pictures_txt = sprintf($lang_list_users['n_pics'], $user_pic_count);
@@ -307,9 +307,9 @@ function list_users()
             'image' => $user_thumb,
             'caption' => $caption,
             );
-    } 
+    }
     theme_display_thumbnails($user_list, $user_count, '', '', 1, $PAGE, $totalPages, false, true, 'user');
-} 
+}
 // List all albums
 function list_albums()
 {
@@ -343,7 +343,7 @@ function list_albums()
     $album_set = '';
     foreach($alb_thumbs as $value) {
         $album_set .= $value['aid'] . ', ';
-    } 
+    }
     $album_set = '(' . substr($album_set, 0, -2) . ')';
 
     $sql = "SELECT aid, count(pid) as pic_count, max(pid) as last_pid, max(ctime) as last_upload " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE aid IN $album_set AND approved = 'YES' " . "GROUP BY aid";
@@ -353,7 +353,7 @@ function list_albums()
 
     foreach($alb_stats as $key => $value) {
         $cross_ref[$value['aid']] = &$alb_stats[$key];
-    } 
+    }
 
     for ($alb_idx = 0; $alb_idx < $disp_album_count; $alb_idx++) {
         $alb_thumb = &$alb_thumbs[$alb_idx];
@@ -365,7 +365,7 @@ function list_albums()
         } else {
             $alb_stat = array();
             $count = 0;
-        } 
+        }
         // Inserts a thumbnail if the album contains 1 or more images
         $visibility = $alb_thumb['visibility'];
         if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || $visibility == $USER_DATA['group_id'] || $USER_DATA['group_id'] == 1 || $CONFIG['allow_private_albums']==0 ) {
@@ -377,7 +377,7 @@ function list_albums()
                     $result = db_query($sql);
                     $picture = mysql_fetch_array($result);
                     mysql_free_result($result);
-                } 
+                }
                 if (!is_image($picture['filename'])) {
                     $picture['pwidth'] = 100;
                     $picture['pheight'] = 100;
@@ -400,7 +400,7 @@ function list_albums()
             $image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
             $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/private.jpg\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
 
-        } 
+        }
         // Prepare everything
         if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || $visibility == $USER_DATA['group_id'] || $USER_DATA['group_id'] == 1) {
             $last_upload_date = $count ? localised_date($alb_stat['last_upload'], $lastup_date_fmt) : '';
@@ -420,11 +420,11 @@ function list_albums()
             $alb_list[$alb_idx]['last_upl'] = $last_upload_date;
             $alb_list[$alb_idx]['album_info'] = sprintf($lang_list_albums['n_pictures'], $count) . ($count ? sprintf($lang_list_albums['last_added'], $last_upload_date) : "");
             $alb_list[$alb_idx]['album_adm_menu'] = (GALLERY_ADMIN_MODE || (USER_ADMIN_MODE && $cat == USER_ID + FIRST_USER_CAT)) ? html_albummenu($alb_thumb['aid']) : ' ';
-        } 
-    } 
+        }
+    }
 
     theme_display_album_list($alb_list, $nbAlb, $cat, $PAGE, $totalPages);
-} 
+}
 
 /**
  */
@@ -438,7 +438,7 @@ function list_cat_albums($cat = 0)
     $PAGE = 1;
     if ($cat == 0) {
         return '';
-    } 
+    }
 
     $alb_per_page = $CONFIG['albums_per_page'];
     $maxTab = $CONFIG['max_tabs'];
@@ -450,7 +450,7 @@ function list_cat_albums($cat = 0)
 
     if ($nbAlb == 0) {
         return;
-    } 
+    }
 
     $totalPages = ceil($nbAlb / $alb_per_page);
 
@@ -468,7 +468,7 @@ function list_cat_albums($cat = 0)
     $album_set = '';
     foreach($alb_thumbs as $value) {
         $album_set .= $value['aid'] . ', ';
-    } 
+    }
     $album_set = '(' . substr($album_set, 0, -2) . ')';
 
     $sql = "SELECT aid, count(pid) as pic_count, max(pid) as last_pid, max(ctime) as last_upload " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE aid IN $album_set AND approved = 'YES' " . "GROUP BY aid";
@@ -478,7 +478,7 @@ function list_cat_albums($cat = 0)
 
     foreach($alb_stats as $key => $value) {
         $cross_ref[$value['aid']] = &$alb_stats[$key];
-    } 
+    }
 
     for ($alb_idx = 0; $alb_idx < $disp_album_count; $alb_idx++) {
         $alb_thumb = &$alb_thumbs[$alb_idx];
@@ -490,7 +490,7 @@ function list_cat_albums($cat = 0)
         } else {
             $alb_stat = array();
             $count = 0;
-        } 
+        }
         // Inserts a thumbnail if the album contains 1 or more images
         $visibility = $alb_thumb['visibility'];
         if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || $visibility == $USER_DATA['group_id'] || $USER_DATA['group_id'] == 1 || $CONFIG['allow_private_albums']==0 ) { // test for visibility
@@ -502,7 +502,7 @@ function list_cat_albums($cat = 0)
                     $result = db_query($sql);
                     $picture = mysql_fetch_array($result);
                     mysql_free_result($result);
-                } 
+                }
                 if (!is_image($picture['filename'])) {
                     $picture['pwidth'] = 100;
                     $picture['pheight'] = 100;
@@ -519,11 +519,11 @@ function list_cat_albums($cat = 0)
             } else { // Inserts an empty thumbnail if the album contains 0 images
                 $image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
                 $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/nopic.jpg\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
-            } 
+            }
         } elseif ($CONFIG['show_private']) {
             $image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
             $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/private.jpg\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
-        } 
+        }
         // Prepare everything
         if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || $visibility == $USER_DATA['group_id'] || $USER_DATA['group_id'] == 1) {
             $last_upload_date = $count ? localised_date($alb_stat['last_upload'], $lastup_date_fmt) : '';
@@ -543,14 +543,14 @@ function list_cat_albums($cat = 0)
             $alb_list[$alb_idx]['last_upl'] = $last_upload_date;
             $alb_list[$alb_idx]['album_info'] = sprintf($lang_list_albums['n_pictures'], $count) . ($count ? sprintf($lang_list_albums['last_added'], $last_upload_date) : "");
             $alb_list[$alb_idx]['album_adm_menu'] = (GALLERY_ADMIN_MODE || (USER_ADMIN_MODE && $cat == USER_ID + FIRST_USER_CAT)) ? html_albummenu($alb_thumb['aid']) : '';
-        } 
-    } 
+        }
+    }
     ob_start();
     theme_display_album_list_cat($alb_list, $nbAlb, $cat, $PAGE, $totalPages);
     $cat_albums = ob_get_contents();
     ob_end_clean();
     return $cat_albums;
-} 
+}
 
 /**
  */
@@ -565,11 +565,11 @@ if (isset($HTTP_GET_VARS['page'])) {
     $PAGE = max((int)$USER['lap'], 1);
 } else {
     $PAGE = 1;
-} 
+}
 
 if (isset($HTTP_GET_VARS['cat'])) {
     $cat = (int)$HTTP_GET_VARS['cat'];
-} 
+}
 // Gather data for categories
 $breadcrumb = '';
 $cat_data = array();
@@ -582,7 +582,7 @@ pageheader($BREADCRUMB_TEXT ? $BREADCRUMB_TEXT : $lang_index_php['welcome']);
 $elements = preg_split("|/|", $CONFIG['main_page_layout'], -1, PREG_SPLIT_NO_EMPTY);
 foreach ($elements as $element) {
     if (preg_match("/(\w+),*(\d+)*/", $element, $matches)) switch ($matches[1]) {
-            case 'breadcrumb': 
+            case 'breadcrumb':
                 // Added breadcrumb as a separate listable block from config
                 if (($breadcrumb != '' || count($cat_data) > 0) && $cat !=0 ) theme_display_breadcrumb($breadcrumb, $cat_data);
                 break;
@@ -626,17 +626,22 @@ foreach ($elements as $element) {
                 flush();
                 break;
 
+            case 'lasthits':
+                display_thumbnails('lasthits', $cat, 1, $CONFIG['thumbcols'], max(1, $matches[2]), false);
+                flush();
+                break;
+
             case 'anycontent':
                 if ($cat == 0) {
                     include('anycontent.php');
-                } 
+                }
                 flush();
                 break;
-        } 
-    } 
+        }
+    }
 
     pagefooter();
-    ob_end_flush(); 
+    ob_end_flush();
     // Speed-up the random image query by 'keying' the image table
     if (time() - $CONFIG['randpos_interval'] > 86400) {
         $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE 1");
@@ -646,6 +651,6 @@ foreach ($elements as $element) {
         $granularity = floor($pic_count / RANDPOS_MAX_PIC);
         $result = db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET randpos = ROUND(RAND()*$granularity) WHERE 1");
         $result = db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '" . time() . "' WHERE name = 'randpos_interval'");
-    } 
+    }
 
     ?>
