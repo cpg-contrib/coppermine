@@ -149,6 +149,7 @@ function html_picture()
     } else {
         $picture_url = get_pic_url($CURRENT_PIC_DATA, 'fullsize');
     }
+    $pic_thumb_url = get_pic_url($CURRENT_PIC_DATA,'thumb');
 
     $picture_menu = ((USER_ADMIN_MODE && $CURRENT_ALBUM_DATA['category'] == FIRST_USER_CAT + USER_ID) || GALLERY_ADMIN_MODE) ? html_picture_menu($pid) : '';
 
@@ -156,7 +157,7 @@ function html_picture()
 
     $pic_title = '';
     $mime_content = get_type($CURRENT_PIC_DATA['filename']);
-    $extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
+    //$extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
 
 
     if ($CURRENT_PIC_DATA['title'] != '') {
@@ -194,7 +195,7 @@ function html_picture()
             $pic_html = "<img src=\"" . $picture_url . "\" {$image_size['geom']} class=\"image\" border=\"0\" /><br />\n";
         }
     } elseif ($mime_content['content']=='document') {
-        $pic_html = "<a href=\"{$picture_url}\" target=\"_blank\" class=\"document_link\"><img src=\"images/thumb_$extension.jpg\" border=\"0\" class=\"image\" /></a>\n<br />";
+        $pic_html = "<a href=\"{$picture_url}\" target=\"_blank\" class=\"document_link\"><img src=\"".$pic_thumb_url."\" border=\"0\" class=\"image\" /></a>\n<br />";
     } else {
             $pic_html = "<object {$image_size['whole']}><param name=\"autostart\" value=\"true\"><param name=\"src\" value=\"". $picture_url . "\"><embed {$image_size['whole']} src=\"". $picture_url . "\" autostart=\"true\"></embed></object><br />\n";
     }
