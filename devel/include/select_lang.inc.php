@@ -81,6 +81,7 @@ $available_languages = array('ar' => array('ar([-_][[:alpha:]]{2})?|arabic', 'ar
     'ro' => array('ro|romanian', 'romanian-utf-8', 'ro'),
     'ru' => array('ru|russian', 'russian-utf-8', 'ru'),
     'sk' => array('sk|slovak', 'slovak-utf-8', 'sk'),
+	'sl' => array('sl|slovenian', 'slovenian-utf-8', 'sl'),
     'sq' => array('sq|albanian', 'albanian-utf-8', 'sq'),
     'sr' => array('sr|serbian', 'serbian-utf-8', 'sr'),
     'sv' => array('sv|swedish', 'swedish-utf-8', 'sv'),
