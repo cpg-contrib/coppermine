@@ -176,12 +176,13 @@ function html_picture()
         $ctrl_offset['mov']=15;
         $ctrl_offset['wmv']=45;
         $ctrl_offset['swf']=0;
+        $ctrl_offset['rm']=0;
         $ctrl_offset_default=45;
         $ctrl_height = (isset($ctrl_offset[$mime_content['extension']]))?($ctrl_offset[$mime_content['extension']]):$ctrl_offset_default;
         $image_size['whole']='width="'.$CURRENT_PIC_DATA['pwidth'].'" height="'.($CURRENT_PIC_DATA['pheight']+$ctrl_height).'"';
     }
 
-    if ($mime_content['content']=='image')
+    if ($mime_content['content']=='image') {
         if (isset($image_size['reduced'])) {
             $winsizeX = $CURRENT_PIC_DATA['pwidth'] + 16;
             $winsizeY = $CURRENT_PIC_DATA['pheight'] + 16;
@@ -192,12 +193,10 @@ function html_picture()
         } else {
             $pic_html = "<img src=\"" . $picture_url . "\" {$image_size['geom']} class=\"image\" border=\"0\" /><br />\n";
         }
-    elseif ($mime_content['content']=='movie')
-            $pic_html = "<object {$image_size['whole']}><param name=\"movie\" value=\"". $picture_url . "\"><embed {$image_size['whole']} src=\"". $picture_url . "\"></embed></object><br />\n";
-    elseif ($mime_content['content']=='audio')
-            $pic_html = "<object {$image_size['whole']}><param name=\"movie\" value=\"". $picture_url . "\"><embed {$image_size['whole']} src=\"". $picture_url . "\"></embed></object><br />\n";
-    elseif ($mime_content['content']=='document') {
+    } elseif ($mime_content['content']=='document') {
         $pic_html = "<a href=\"{$picture_url}\" target=\"_blank\" class=\"document_link\"><img src=\"images/thumb_$extension.jpg\" border=\"0\" class=\"image\" /></a>\n<br />";
+    } else {
+            $pic_html = "<object {$image_size['whole']}><param name=\"autostart\" value=\"true\"><param name=\"src\" value=\"". $picture_url . "\"><embed {$image_size['whole']} src=\"". $picture_url . "\" autostart=\"true\"></embed></object><br />\n";
     }
 
     if (!$CURRENT_PIC_DATA['title'] && !$CURRENT_PIC_DATA['caption']) {
