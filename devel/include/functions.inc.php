@@ -78,11 +78,11 @@ function db_query($query, $link_id = 0)
 	} else {
 		$result = mysql_query($query);
 	}
-	$query_end = getmicrotime();	
-	$query_stats[] = $query_end - $query_start;
-	$queries[] = $query;
-	
-
+	$query_end = getmicrotime();
+	if (isset($CONFIG['debug_mode']) && ($CONFIG['debug_mode']==1)) {
+		$query_stats[] = $query_end - $query_start;
+		$queries[] = $query;
+	}
 	if (!$result) db_error("While executing query \"$query\" on $link_id");
 
 	return $result;
