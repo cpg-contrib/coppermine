@@ -147,12 +147,10 @@ if (!defined('THEME_HAS_NO_SUB_MENU_BUTTONS')) {
   // HTML template for template sub_menu buttons
   if (!isset($sub_menu_buttons)) { //{THEMES}
     // {HREF_LNK}{HREF_TITLE}{HREF_TGT}{BLOCK_ID}{SPACER}
- 
-    if ($CONFIG['custom_lnk_url'] != '') {
+	if ($CONFIG['custom_lnk_url'] != '') {
 	addbutton($sub_menu_buttons,'{CUSTOM_LNK_LNK}','{CUSTOM_LNK_TITLE}','{CUSTOM_LNK_TGT}','custom_link',$template_sub_menu_spacer);
   }
-   
-	addbutton($sub_menu_buttons,'{ALB_LIST_LNK}','{ALB_LIST_TITLE}','{ALB_LIST_TGT}','album_list',$template_sub_menu_spacer);
+    addbutton($sub_menu_buttons,'{ALB_LIST_LNK}','{ALB_LIST_TITLE}','{ALB_LIST_TGT}','album_list',$template_sub_menu_spacer);
     addbutton($sub_menu_buttons,'{LASTUP_LNK}','{LASTUP_TITLE}','{LASTUP_TGT}','lastup',$template_sub_menu_spacer);
     addbutton($sub_menu_buttons,'{LASTCOM_LNK}','{LASTCOM_TITLE}','{LASTCOM_TGT}','lastcom',$template_sub_menu_spacer);
     addbutton($sub_menu_buttons,'{TOPN_LNK}','{TOPN_TITLE}','{TOPN_TGT}','topn',$template_sub_menu_spacer);
@@ -631,7 +629,7 @@ if (!isset($template_img_navbar))  //{THEMES}
 $template_img_navbar = <<<EOT
 
         <tr>
-                <td align="center" valign="middle" class="navmenu" width="48px">
+                <a name="top_display_media"><td align="center" valign="middle" class="navmenu" width="48px"></a>
                         <a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="{LOCATION}images/thumbnails.gif" align="middle" border="0px" alt="{THUMB_TITLE}" /></a>
                 </td>
                 <td align="center" valign="middle" class="navmenu" width="48px">
@@ -839,6 +837,7 @@ $template_add_your_comment = <<<EOT
                 <td colspan="3">
                 <form method="post" name="post" action="db_input.php">
                         <table width="100%" cellpadding="0px" cellspacing="0px">
+
 <!-- BEGIN user_name_input -->
                                 <tr><td class="tableb_compact">
                                         {NAME}

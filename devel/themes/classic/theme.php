@@ -698,14 +698,14 @@ $template_image_rating = <<<EOT
 EOT;
 // HTML template for the display of comments
 $template_image_comments = <<<EOT
-<table align="center" width="90%" cellspacing="1" cellpadding="0" class="maintable">
+<table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
 
         <tr>
                 <td>
                         <table width="100%" cellpadding="0px" cellspacing="0px">
                            <tr>
                                 <td class="tableh2_compact" nowrap="nowrap">
-                                        <b>{MSG_AUTHOR}</b>
+                                        <b>{MSG_AUTHOR}</b><a name="comment{MSG_ID}">&nbsp;</a>
 <!-- BEGIN ipinfo -->
                                                                                  ({HDR_IP} [{RAW_IP}])
 <!-- END ipinfo -->
@@ -714,7 +714,7 @@ $template_image_comments = <<<EOT
 
                                 <td class="tableh2_compact" align="right" width="100%">
 <!-- BEGIN report_comment_button -->
-     <a href="report_file.php?pid={PID}&msg_id={MSG_ID}&what=comment" title="{REPORT_COMMENT_TITLE}"><img src="images/report.gif" width="16px" height="16px" border="0px" align="middle" alt="{REPORT_COMMENT_TITLE}" /></a>
+     <a href="report_file.php?pid={PID}&amp;msg_id={MSG_ID}&amp;what=comment" title="{REPORT_COMMENT_TITLE}"><img src="images/report.gif" width="16px" height="16px" border="0px" align="middle" alt="{REPORT_COMMENT_TITLE}" /></a>
 <!-- END report_comment_button -->
 
 
@@ -802,11 +802,9 @@ $template_add_your_comment = <<<EOT
                 <td width="100%" class="tableh2_compact"><b>{ADD_YOUR_COMMENT}</b></td>
         </tr>
         <tr>
-                <form method="post" name="post" action="db_input.php">
                 <td colspan="3">
                         <table width="100%" cellpadding="0px" cellspacing="0px">
-                                <input type="hidden" name="event" value="comment" />
-                                <input type="hidden" name="pid" value="{PIC_ID}" />
+
 <!-- BEGIN user_name_input -->
                                 <tr><td class="tableb_compact">
                                         {NAME}
@@ -825,11 +823,13 @@ $template_add_your_comment = <<<EOT
 <!-- END input_box_no_smilies -->
                                 </td>
                                 <td class="tableb_compact">
+                                <input type="hidden" name="event" value="comment" />
+                                <input type="hidden" name="pid" value="{PIC_ID}" />
                                 <input type="submit" class="comment_button" name="submit" value="{OK}" />
                                 </td></tr>
                         </table>
-                </td>
                 </form>
+                </td>
         </tr>
 <!-- BEGIN smilies -->
         <tr>
@@ -977,7 +977,7 @@ $template_report = <<<EOT
       <table border="0px" cellspacing="0px" cellpadding="10px" bgcolor="#ffffff">
         <tr>
           <td valign="top">
-           <img src="{PIC_URL}" border="1px" alt="" /><br />
+           <a href="{PIC_TGT}"><img src="{PIC_URL}" border="1px" alt="" /></a><br />
           </td>
           <td valign="top" width="200px">
             <b><font face="arial" color="#000000" size="4">{SUBJECT}</font></b>
@@ -1022,6 +1022,73 @@ $template_report_plaintext = <<<EOT
 {VIEW_MORE_TGT}
 EOT;
 
+// HTML template for displaying a reported comment
+if (!isset($template_report_comment))  //{THEMES}
+$template_report_comment = <<<EOT
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="{LANG_DIR}">
+<head>
+<title>{TITLE}</title>
+<meta http-equiv="content-type" content="text/html; charset={CHARSET}" />
+</head>
+<body bgcolor="#FFFFFF" text="#0F5475" link="#0F5475" vlink="#0F5475" alink="#0F5475">
+<br />
+<p align="center"><a href="{VIEW_REPORT_TGT}"><b>{VIEW_REPORT_LNK}</b></a></p>
+<table border="0px" cellspacing="0px" cellpadding="1px" align="center">
+  <tr>
+    <td bgcolor="#000000">
+      <table border="0px" cellspacing="0px" cellpadding="10px" bgcolor="#ffffff">
+        <tr>
+          <td valign="top">
+           {COMMENT}
+						<p align="center"><a href="{COMMENT_TGT}">{COMMENT_LNK}</a></p>
+          </td>
+					</tr>
+					<tr>
+          <td valign="top">
+            <b><font face="arial" color="#000000" size="4">{SUBJECT}</font></b>
+						<p>
+              {REASON}
+            <p>
+            <font face="arial" color="#000000" size="2">{MESSAGE}</font>
+            </p>
+            <font face="arial" color="#000000" size="2">{SENDER_NAME}</font>
+            (<a href="mailto:{SENDER_EMAIL}"><font face="arial" color="#000000" size="2">{SENDER_EMAIL}</font></a>)
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<p align="center"><a href="{VIEW_MORE_TGT}"><b>{VIEW_MORE_LNK}</b></a></p>
+</body>
+</html>
+EOT;
+
+// plain-text template for reports (as fallback for clients that can't display html-formatted mails)
+if (!isset($template_report_comment_email))  //{THEMES}
+$template_report_comment_email = <<<EOT
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="{LANG_DIR}">
+<head>
+<title>{TITLE}</title>
+<meta http-equiv="content-type" content="text/html; charset={CHARSET}" />
+</head>
+<body bgcolor="#FFFFFF" text="#0F5475" link="#0F5475" vlink="#0F5475" alink="#0F5475">
+<p><a href="{VIEW_REPORT_TGT}">{VIEW_COMMENT_LNK}</a></p>
+		<b><font face="arial" color="#000000" size="4">{SUBJECT}</font></b>
+		<p>
+			{REASON}
+		<p>
+		<font face="arial" color="#000000" size="2">{MESSAGE}</font>
+		</p>
+		<font face="arial" color="#000000" size="2">{SENDER_NAME}</font>
+		(<a href="mailto:{SENDER_EMAIL}"><font face="arial" color="#000000" size="2">{SENDER_EMAIL}</font></a>)
+<p><a href="{VIEW_MORE_TGT}"><b>{VIEW_MORE_LNK}</b></a></p>
+</body>
+</html>
+EOT;
+
 // Template used for tabbed display
 $template_tab_display = array('left_text' => '<td width="100%" align="left" valign="middle" class="tableh1_compact" style="white-space: nowrap"><b>{LEFT_TEXT}</b></td>' . "\n",
     'tab_header' => '',
@@ -1051,7 +1118,7 @@ function pageheader($section, $meta = '')
     user_save_profile();
 
     $template_vars = array('{LANG_DIR}' => $lang_text_dir,
-        '{TITLE}' => $CONFIG['gallery_name'] . ' - ' . $section,
+        '{TITLE}' => $CONFIG['gallery_name'] . ' - ' . strip_tags(bb_decode($section)),
         '{CHARSET}' => $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'],
         '{META}' => $meta,
         '{GAL_NAME}' => $CONFIG['gallery_name'],
@@ -1131,6 +1198,8 @@ function theme_main_menu($which)
     $cat_l = (isset($actual_cat))? "?cat=$actual_cat" : (isset($cat) ? "?cat=$cat" : '');
     $cat_l2 = isset($cat) ? "&amp;cat=$cat" : '';
     $my_gallery_id = FIRST_USER_CAT + USER_ID;
+	
+
 
   if ($which == 'sys_menu' ) {
     if (USER_ID) {
@@ -1174,7 +1243,8 @@ function theme_main_menu($which)
     if (!$CONFIG['display_faq']) {
         template_extract_block($template_sys_menu, 'faq');
     }
-
+	
+	
     $param = array(
         '{HOME_TGT}' => $CONFIG['home_target'],
         '{HOME_TITLE}' => $lang_main_menu['home_title'],
@@ -1985,7 +2055,7 @@ function theme_html_picture()
     $params = array('{CELL_HEIGHT}' => '100',
         '{IMAGE}' => $CURRENT_PIC_DATA['header'].$CURRENT_PIC_DATA['html'].$CURRENT_PIC_DATA['footer'],
         '{ADMIN_MENU}' => $CURRENT_PIC_DATA['menu'],
-        '{TITLE}' => $CURRENT_PIC_DATA['title'],
+        '{TITLE}' => bb_decode($CURRENT_PIC_DATA['title']),
         '{CAPTION}' => bb_decode($CURRENT_PIC_DATA['caption']),
         );
 
@@ -2003,22 +2073,34 @@ function theme_html_img_nav_menu()
     $page = ceil(($pos + 1) / ($CONFIG['thumbrows'] * $CONFIG['thumbcols']));
     $pid = $CURRENT_PIC_DATA['pid'];
 
+    $start = 0;
+	$start_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$start";
+	$start_title = $lang_img_nav_bar['go_album_start'];
+	$meta_nav .= "<link rel=\"start\" href=\"$start_tgt\" title=\"$start_title\" />
+	";
+	$end = $pic_count - 1;
+	$end_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$end";
+	$end_title = $lang_img_nav_bar['go_album_end'];
+	$meta_nav .= "<link rel=\"last\" href=\"$end_tgt\" title=\"$end_title\" />
+	";
+		
     if ($pos > 0) {
         $prev = $pos - 1;
         $prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$prev";
         $prev_title = $lang_img_nav_bar['prev_title'];
-                $meta_nav .= "<link rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />
-                ";
+				$meta_nav .= "<link rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />
+				";
     } else {
         $prev_tgt = "javascript:;";
         $prev_title = "";
     }
+		
     if ($pos < ($pic_count -1)) {
         $next = $pos + 1;
         $next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$next";
         $next_title = $lang_img_nav_bar['next_title'];
-                $meta_nav .= "<link rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>
-                ";
+				$meta_nav .= "<link rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>
+				";
     } else {
         $next_tgt = "javascript:;";
         $next_title = "";
@@ -2181,6 +2263,7 @@ function theme_html_comments($pid)
             '{HDR_IP}' => $row['msg_hdr_ip'],
             '{RAW_IP}' => $row['msg_raw_ip'],
             '{REPORT_COMMENT_TITLE}' => &$lang_display_comments['report_comment_title'],
+            '{WIDTH}' => $CONFIG['picture_table_width']
             );
 
         $html .= template_eval($template, $params);
@@ -2188,11 +2271,11 @@ function theme_html_comments($pid)
 
     if (USER_CAN_POST_COMMENTS && $CURRENT_ALBUM_DATA['comments'] == 'YES') {
         if (USER_ID) {
-            $user_name_input = '<input type="hidden" name="msg_author" value="' . USER_NAME . '" />';
+            $user_name_input = '<tr><td><input type="hidden" name="msg_author" value="' . USER_NAME . '" /></td>';
             template_extract_block($template_add_your_comment, 'user_name_input', $user_name_input);
             $user_name = '';
         } else {
-            $user_name = isset($USER['name']) ? '"' . strtr($USER['name'], $HTML_SUBST) . '"' : '"' . $lang_display_comments['your_name'] . '" onclick="javascript:this.value=\'\';"';
+            $user_name = isset($USER['name']) ? '"' . strtr($USER['name'], $HTML_SUBST) . '"' : $lang_display_comments['your_name'] . '" onclick="javascript:this.value=\'\';';
         }
 
         $params = array('{ADD_YOUR_COMMENT}' => $lang_display_comments['add_your_comment'],
