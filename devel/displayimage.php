@@ -67,7 +67,7 @@ function html_img_nav_menu()
         $prev = $pos - 1;
         $prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$prev";
         $prev_title = $lang_img_nav_bar['prev_title'];
-                $meta_nav .= "<LINK rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />
+                $meta_nav .= "<link rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />
                 ";
     } else {
         $prev_tgt = "javascript:;";
@@ -77,7 +77,7 @@ function html_img_nav_menu()
         $next = $pos + 1;
         $next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$next";
         $next_title = $lang_img_nav_bar['next_title'];
-                $meta_nav .= "<LINK rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>
+                $meta_nav .= "<link rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>
                 ";
     } else {
         $next_tgt = "javascript:;";
@@ -93,7 +93,7 @@ function html_img_nav_menu()
     }
 
     $thumb_tgt = "thumbnails.php?album=$album$cat_link&amp;page=$page";
-        $meta_nav .= "<LINK rel=\"up\" href=\"$thumb_tgt\" title=\"".$lang_img_nav_bar['thumb_title']."\"/>
+        $meta_nav .= "<link rel=\"up\" href=\"$thumb_tgt\" title=\"".$lang_img_nav_bar['thumb_title']."\"/>
         ";
 
     $slideshow_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pid=$pid&amp;slideshow=".$CONFIG['slideshow_interval'];
