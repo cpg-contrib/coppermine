@@ -126,6 +126,10 @@ function form_alb_list_box()
                 </td>
                 <td class="tableb" valign="top">
                                 <select name="aid" class="listbox">
+                                
+	if (count($public_albums_list) + count($user_albums_list) == 0){
+		echo "<option value=\"{$CURRENT_PIC['aid']}\" selected>{$title}</option>";
+	}
 
 EOT;
                 foreach($public_albums_list as $album) {
@@ -140,6 +144,8 @@ EOT;
                 </tr>
 
 EOT;
+
+
 }
 
 if (isset($HTTP_POST_VARS['submitDescription'])) process_post_data();
