@@ -103,6 +103,7 @@ INSERT INTO CPG_config VALUES ('display_faq', '0');
 INSERT INTO CPG_config VALUES ('views_in_thumbview', '1');
 INSERT INTO CPG_config VALUES ('show_bbcode_help', '1');
 INSERT INTO CPG_config VALUES ('log_ecards', '0');
+INSERT INTO CPG_config VALUES ('email_comment_notification', '0');
 
 
 # Modify structure for category thumb
@@ -145,4 +146,3 @@ CREATE TABLE CPG_ecards (
   sender_ip tinytext NOT NULL,
   PRIMARY KEY  (eid)
 ) TYPE=MyISAM COMMENT='Used to log ecards';
-

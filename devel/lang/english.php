@@ -418,6 +418,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Maximum length of a comment', 'max_com_size', 0),
         array('Show film strip', 'display_film_strip', 1),
         array('Number of items in film strip', 'max_film_strip_items', 0),
+        array('Notify admin of comments by email', 'email_comment_notification', 1),
 
         'Pictures and thumbnails settings',
         array('Quality for JPEG files', 'jpeg_qual', 0),
@@ -539,6 +540,8 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
         'no_flood' => 'Sorry but you are already the author of the last comment posted for this picture<br /><br />Edit the comment you have posted if you want to modify it',
         'redirect_msg' => 'You are being redirected.<br /><br /><br />Click \'CONTINUE\' if the page does not refresh automatically',
         'upl_success' => 'Your picture was successfully added',
+        'email_comment_subject' => 'Comment posted on Coppermine Photo Gallery',
+        'email_comment_body' => 'Someone has posted a comment on your gallery. See it at',
 );
 
 // ------------------------------------------------------------------------- //

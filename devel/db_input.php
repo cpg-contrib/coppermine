@@ -29,21 +29,21 @@ function check_comment(&$str)
     $ercp = array('/\S{' . ($CONFIG['max_com_wlength'] + 1) . ',}/i');
     if ($CONFIG['filter_bad_words']) foreach($lang_bad_words as $word) {
         $ercp[] = '/' . ($word[0] == '*' ? '': '\b') . str_replace('*', '', $word) . ($word[(strlen($word)-1)] == '*' ? '': '\b') . '/i';
-    } 
+    }
 
     if (strlen($str) > $CONFIG['max_com_size']) $str = substr($str, 0, ($CONFIG['max_com_size'] -3)) . '...';
     $str = preg_replace($ercp, '(...)', $str);
-} 
+}
 
 if (!isset($HTTP_GET_VARS['event']) && !isset($HTTP_POST_VARS['event'])) {
     cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
-} 
+}
 
 $event = isset($HTTP_POST_VARS['event']) ? $HTTP_POST_VARS['event'] : $HTTP_GET_VARS['event'];
 switch ($event) {
-    
+
     // Comment update
-    
+
     case 'comment_update':
         if (!(USER_CAN_POST_COMMENTS)) cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
@@ -61,7 +61,7 @@ switch ($event) {
             $update = db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body', msg_author='$msg_author' WHERE msg_id='$msg_id' AND author_id ='" . USER_ID . "' LIMIT 1");
         } else {
             $update = db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body', msg_author='$msg_author' WHERE msg_id='$msg_id' AND author_md5_id ='{$USER['ID']}' AND author_id = '0' LIMIT 1");
-        } 
+        }
 
         $result = db_query("SELECT pid FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id='$msg_id'");
         if (!mysql_num_rows($result)) {
@@ -84,11 +84,11 @@ switch ($event) {
             pagefooter();
             ob_end_flush();
             exit;
-        } 
+        }
         break;
 
     // Comment
-    
+
     case 'comment':
         if (!(USER_CAN_POST_COMMENTS)) cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
@@ -111,15 +111,15 @@ switch ($event) {
             $last_com_data = mysql_fetch_array($result);
             if ((USER_ID && $last_com_data['author_id'] == USER_ID) || (!USER_ID && $last_com_data['author_md5_id'] == $USER['ID'])) {
                 cpg_die(ERROR, $lang_db_input_php['no_flood'], __FILE__, __LINE__);
-            } 
-        } 
+            }
+        }
 
         if (!USER_ID) { // Anonymous users, we need to use META refresh to save the cookie
             $insert = db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip) VALUES ('$pid', '$msg_author', '$msg_body', NOW(), '{$USER['ID']}', '0', '$raw_ip', '$hdr_ip')");
             $USER['name'] = $HTTP_POST_VARS['msg_author'];
             $redirect = "displayimage.php?pos=" . (- $pid);
             if ($CONFIG['email_comment_notification']) {
-                $mail_body = $msg_body . "\n\r See it at http://" . $_SERVER["SERVER_NAME"] . "/" . $redirect;
+                $mail_body = $msg_body . "\n\r ".$lang_db_input_php['email_comment_body']." http://" . $_SERVER["SERVER_NAME"] . "/" . $redirect;
                 cpg_mail($CONFIG['gallery_admin_email'], $lang_db_input_php['email_comment_subject'], $mail_body);
             }
             pageheader($lang_db_input_php['com_added'], "<META http-equiv=\"refresh\" content=\"1;url=$redirect\">");
@@ -131,7 +131,7 @@ switch ($event) {
             $insert = db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip) VALUES ('$pid', '" . addslashes(USER_NAME) . "', '$msg_body', NOW(), '', '" . USER_ID . "', '$raw_ip', '$hdr_ip')");
             $redirect = "displayimage.php?pos=" . (- $pid);
             if ($CONFIG['email_comment_notification']) {
-                $mail_body = $msg_body . "\n\r See it at http://" . $_SERVER["SERVER_NAME"] . "/" . $redirect;
+                $mail_body = $msg_body . "\n\r ".$lang_db_input_php['email_comment_body']." http://" . $_SERVER["SERVER_NAME"] . "/" . $redirect;
                 cpg_mail($CONFIG['gallery_admin_email'], $lang_db_input_php['email_comment_subject'], $mail_body);
             }
             $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
@@ -141,11 +141,11 @@ switch ($event) {
             pagefooter();
             ob_end_flush();
             exit;
-        } 
+        }
         break;
-    
+
     // Update album
-    
+
     case 'album_update':
         if (!(USER_ADMIN_MODE || GALLERY_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
@@ -166,12 +166,12 @@ switch ($event) {
         } else {
             $category = FIRST_USER_CAT + USER_ID;
             $query = "UPDATE {$CONFIG['TABLE_ALBUMS']} SET title='$title', description='$description', thumb='$thumb',  comments='$comments', votes='$votes', visibility='$visibility' WHERE aid='$aid' AND category='$category' LIMIT 1";
-        } 
+        }
 
         $update = db_query($query);
         if (isset($CONFIG['debug_mode']) && ($CONFIG['debug_mode'] == 1)) {
             $queries[] = $query;
-        } 
+        }
 
         if (!mysql_affected_rows()) cpg_die(INFORMATION, $lang_db_input_php['no_udp_needed'], __FILE__, __LINE__);
         if ($CONFIG['debug_mode'] == 0) {
@@ -210,9 +210,9 @@ switch ($event) {
             $row = mysql_fetch_array($result);
             mysql_free_result($result);
             $category = $row['category'];
-        } 
+        }
         // Test if the filename of the temporary uploaded picture is empty
-        if ($HTTP_POST_FILES['userpicture']['tmp_name'] == '') cpg_die(ERROR, $lang_db_input_php['no_pic_uploaded'], __FILE__, __LINE__); 
+        if ($HTTP_POST_FILES['userpicture']['tmp_name'] == '') cpg_die(ERROR, $lang_db_input_php['no_pic_uploaded'], __FILE__, __LINE__);
         // Pictures are moved in a directory named 10000 + USER_ID
         if (USER_ID && !defined('SILLY_SAFE_MODE')) {
             $filepath = $CONFIG['userpics'] . (USER_ID + FIRST_USER_CAT);
@@ -224,18 +224,18 @@ switch ($event) {
                 $fp = fopen($dest_dir . '/index.html', 'w');
                 fwrite($fp, ' ');
                 fclose($fp);
-            } 
+            }
             $dest_dir .= '/';
             $filepath .= '/';
         } else {
             $filepath = $CONFIG['userpics'];
             $dest_dir = $CONFIG['fullpath'] . $filepath;
-        } 
+        }
         // Check that target dir is writable
-        if (!is_writable($dest_dir)) cpg_die(CRITICAL_ERROR, sprintf($lang_db_input_php['dest_dir_ro'], $dest_dir), __FILE__, __LINE__, true); 
+        if (!is_writable($dest_dir)) cpg_die(CRITICAL_ERROR, sprintf($lang_db_input_php['dest_dir_ro'], $dest_dir), __FILE__, __LINE__, true);
         // Replace forbidden chars with underscores
         $matches = array();
-        $forbidden_chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>')); 
+        $forbidden_chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>'));
         // Check that the file uploaded has a valid extension
         if (get_magic_quotes_gpc()) $HTTP_POST_FILES['userpicture']['name'] = stripslashes($HTTP_POST_FILES['userpicture']['name']);
         $picture_name = strtr($HTTP_POST_FILES['userpicture']['name'], $forbidden_chars, str_repeat('_', strlen($CONFIG['forbiden_fname_char'])));
