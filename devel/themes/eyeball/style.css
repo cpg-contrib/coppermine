@@ -1,6 +1,20 @@
 /*
 $Id$
 */
+
+/* Colors used in this style sheet:
+   Hex 000000 = RBG   0,   0,   0 = black
+   Hex 666666 = RBG 102, 102, 102 = light black
+   Hex 999999 = RBG 153, 153, 153 = dark grey
+   Hex BDBEBD = RBG 189, 190, 189 = medium grey
+   Hex EFEFEF = RBG 239, 239, 239 = light grey
+   Hex FFFFFF = RBG 255, 255, 255 = white
+   Hex FFC956 = RBG 255, 201,  86 = medium orange
+   Hex FFE8B7 = RBG 255, 232, 183 = light orange
+   Hex 447AC9 = RBG  68, 122, 201 = darker blue
+   Hex 0397FF = RBG   3, 151, 255 = lighter blue
+*/
+
 /* Foreground color definition */
 body { color : #FFFFFF; }
 
@@ -591,4 +605,3 @@ td #admin_menu_anim {
         font-family: Arial, Helvetica, sans-serif;
         vertical-align : middle;
 }
-

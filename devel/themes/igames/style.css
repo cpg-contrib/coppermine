@@ -2,6 +2,27 @@
 $Id$
 */
 
+/* Colors used in this style sheet:
+    Hex 000000 = RBG   0,   0,   0 = black
+    Hex 222222 = RBG  34,  34,  34 = black
+    Hex 343333 = RBG  52,  51,  51 = black
+    Hex 3F3F3F = RBG  63,  63,  63 = light black
+    Hex 454444 = RBG  69,  68,  68 = light black
+    Hex 4A4A4A = RBG  74,  74,  74 = dark grey
+    Hex 5F5F5F = RBG  95,  95,  95 = dark grey
+    Hex 666666 = RBG 102, 102, 102 = dark grey
+    Hex 838383 = RBG 131, 131, 131 = medium grey
+    Hex BDBEBD = RBG 189, 190, 189 = medium grey
+    Hex BFC0C3 = RBG 191, 192, 195 = medium grey
+    Hex C6B78E = RBG 198, 183, 142 = beige
+    Hex E6E6E6 = RBG 230, 230, 230 = light grey
+    Hex EFEFEF = RBG 239, 239, 239 = light grey
+    Hex F0AF00 = RBG 240, 175,   0 = orange
+    Hex ff0000 = RBG 255,   0,   0 = red
+    Hex FFFFCC = RBG 255, 255, 204 = light yellow
+    Hex FFFFFF = RBG 255, 255, 255 = white
+*/
+
 /* Foreground color definition */
 body { color : #C6B78E; }
 .topmenu, .topmenu a { color : #E6E6E6; }

@@ -2,6 +2,42 @@
 $Id$
 */
 
+/* Colors used in this style sheet:
+Hex 000000 = RBG   0,   0,   0 = black
+Hex 005D8C = RBG   0,  93, 140 = dark blue
+Hex 333333 = RBG  51,  51,  51 = black
+Hex 394048 = RBG  57,  64,  72 = black
+Hex 394049 = RBG  57,  64,  73 = black
+Hex 404750 = RBG  64,  71,  80 = dark grey
+Hex 414852 = RBG  65,  72,  82 = dark grey
+Hex 444444 = RBG  68,  68,  68 = dark grey
+Hex 474F5A = RBG  71,  79,  90 = dark grey
+Hex 49525D = RBG  73,   82, 93 = dark grey
+Hex 4F5864 = RBG  79,  88, 100 = dark grey
+Hex 4F5964 = RBG  79,  89, 100 = dark grey
+Hex 515B67 = RBG  81,  91, 103 = dark grey
+Hex 555555 = RBG  85,  85,  85 = medium grey
+Hex 56606D = RBG  86,  96, 109 = medium grey
+Hex 5B5B5B = RBG  91,  91,  91 = medium grey
+Hex 5D6674 = RBG  93, 102, 116 = medium grey
+Hex 5D6876 = RBG  93, 104, 118 = medium grey
+Hex 616C7A = RBG  97, 108, 122 = medium grey
+Hex 616D7B = RBG  97, 108, 123 = medium grey
+Hex 6A7786 = RBG 106, 119, 134 = medium grey
+Hex 777777 = RBG 119, 119, 119 = medium grey
+Hex 8090A3 = RBG 128, 144, 163 = steel grey
+Hex 949494 = RBG 148, 148, 148 = medium grey
+Hex AEAEAE = RBG 174, 174, 174 = light grey
+Hex BDBEBD = RBG 189, 190, 189 = light grey
+Hex C7C7C7 = RBG 199, 199, 199 = light grey
+Hex CCCCCC = RBG 204, 204, 204 = light grey
+Hex DFDFDF = RBG 223, 223, 223 = light grey
+Hex EAEAEA = RBG 234, 234, 234 = dark white
+Hex EFEFEF = RBG 239, 239, 239 = dark white
+Hex F2F8FF = RBG 242, 248, 255 = dark white
+Hex FFFFFF = RBG 255, 255, 255 = white
+*/
+
 body {
         font-family : Verdana, Arial, Helvetica, sans-serif;
         font-size: 10px;

@@ -2,6 +2,19 @@
 $Id$
 */
 
+/* Colors used in this style sheet:
+   Hex 000000 = RBG   0,   0,   0 = black
+   Hex 5F5F5F = RBG  95,  95,  95 = light black
+   Hex BDBEBD = RBG 189, 190, 189 = dark grey
+   Hex D1D7DC = RBG 209, 215, 220 = medium grey
+   Hex F7F7F7 = RBG 247, 247, 247 = light grey
+   Hex EFEFEF = RBG 239, 239, 239 = dark white
+   Hex FFFFFF = RBG 255, 255, 255 = white
+   Hex 005D8C = RBG   0,  93, 140 = dark blue
+   Hex 0033CC = RBG   0,  91, 104 = medium blue
+   Hex 0E72A4 = RBG  14, 114, 164 = light blue
+*/
+
 body {
         font-family : Verdana, Arial, Helvetica, sans-serif;
         font-size: 12px;
