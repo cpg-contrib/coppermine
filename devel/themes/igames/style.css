@@ -56,7 +56,7 @@ body { background-color: #4A4A4A; }
 .textinput, .listbox, .radio, .checkbox { background-color: #4A4A4A; }
 .tableh1, .tableh1_compact, .navmenu, .navmenu a, .navmenu a:hover  {         background : #3F3F3F ; }
 .tableh2, .catrow_noalb, .tableh2_compact, .tablef, .img_caption_table th {         background : #343333 ; }
-.tableb, .catrow, .tableb_compact, .thumbnails, .img_caption_table td { background : #454444 ; }
+.tableb, .catrow, .display_media, .tableb_compact, .thumbnails, .img_caption_table td { background : #454444 ; }
 
 /* Borders for input controls */
 .textinput, .listbox, .button, .comment_button, .admin_menu, .admin_menu_thumb  {        border: 1px solid #666666; }
@@ -380,20 +380,6 @@ a:hover {
         padding-left: 10px;
 }
 
-.catrow_noalb {
-        padding-top: 3px;
-        padding-right: 10px;
-        padding-bottom: 3px;
-        padding-left: 10px;
-}
-
-.catrow {
-        padding-top: 3px;
-        padding-right: 10px;
-        padding-bottom: 3px;
-        padding-left: 10px;
-}
-
 .tableb_compact {
         padding-top: 2px;
         padding-right: 5px;
@@ -405,6 +391,20 @@ a:hover {
         padding-top: 10px;
         padding-right: 10px;
         padding-bottom: 10px;
+        padding-left: 10px;
+}
+
+.catrow_noalb {
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+}
+
+.catrow {
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
         padding-left: 10px;
 }
 
@@ -573,6 +573,13 @@ td #admin_menu_anim {
 
 .image {
         margin: 2px;
+}
+
+.display_media {
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
 }
 
 .thumbnails {
