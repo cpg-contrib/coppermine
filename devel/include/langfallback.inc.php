@@ -400,4 +400,14 @@ if (defined('VIEWLOG_PHP')) {
   $lang_viewlog_php = array_merge($lang_viewlog_php_en, $lang_viewlog_php);
 }
 
+if (defined('VOTEDETAILS_PHP')) {
+  $lang_votedetails_php_en = cpg_get_default_lang_var('lang_votedetails_php','english');
+  $lang_votedetails_php = array_merge($lang_votedetails_php_en, $lang_votedetails_php);
+}
+
+if (defined('HITDETAILS_PHP')) {
+  $lang_hitdetails_php_en = cpg_get_default_lang_var('lang_hitdetails_php','english');
+  $lang_hitdetails_php = array_merge($lang_hitdetails_php_en, $lang_hitdetails_php);
+}
+
 ?> 
