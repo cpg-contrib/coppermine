@@ -119,7 +119,7 @@ class CPGPluginAPI {
             }
 
             // Pass the value to the filter's function and get a value back
-            $value = $plugin_function($value);
+            $value = call_user_func($plugin_function,$value);
         }
 
         // Return the value back to Coppermine
@@ -143,7 +143,7 @@ class CPGPluginAPI {
             }
 
             // Pass the value to the action's function and get a value back
-            $value = $plugin_function($value);
+            $value = call_user_func($plugin_function,$value);
         }
 
         // Return the value back to Coppermine
