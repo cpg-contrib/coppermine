@@ -70,20 +70,21 @@ if ($use_bridgemgr == 0) { // the vars that are used when bridgemgr is disabled
     // rather than using Post Count based groups.
     define('USE_POST_GROUPS', 1);
 
-    // Set the names of implied groups here
-    define('CM_ADMIN_GROUP_NAME', 'Administrators');
-    define('CM_MEMBERS_GROUP_NAME', 'Registered');
-    define('CM_GUEST_GROUP_NAME', 'Anonymous');
-    define('CM_BANNED_GROUP_NAME', 'Banned');
-    define('CM_GMOD_GROUP_NAME', 'Global Moderators');
-
 // ------------------------------------------------------------------------- //
 // Nothing to edit below this line
 // ------------------------------------------------------------------------- //
 
 } else { // the vars from the bridgemgr
-       define('PHPBB_WEB_PATH', $BRIDGE['relative_path_to_config_file']);
+       $path = $BRIDGE['relative_path_to_config_file'];
+       define('USE_POST_GROUPS', $BRIDGE['use_post_based_groups']);
 }
+
+// Set the names of implied groups here
+define('CM_ADMIN_GROUP_NAME', 'Administrators');
+define('CM_MEMBERS_GROUP_NAME', 'Registered');
+define('CM_GUEST_GROUP_NAME', 'Anonymous');
+define('CM_BANNED_GROUP_NAME', 'Banned');
+define('CM_GMOD_GROUP_NAME', 'Global Moderators');
 
 // Otherwise, try to autodetect SMF path if not set:
 if (substr($path, -1) == '/')

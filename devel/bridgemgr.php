@@ -44,7 +44,7 @@ function write_to_db($step) {
                 if ($options[0] == 'cookie') { // check for the existance of a cookie --- start
                     foreach ($_COOKIE as $key2 => $value2) { // loop through the cookie global var --- start
                         //print '<br>cookie:'.$key2.', content:'.$value2."<br />\n";
-                        if (strstr($key2,$value) == false) {
+                        if (@strstr($key2,$value) == false && $options[1] == 'not_empty') {
                             $return[$key] = sprintf($lang_bridgemgr_php['error_cookie_not_readible'], '&quot;<tt>'.$value.'</tt>*&quot;','<i>'.$lang_bridgemgr_php[$key].'</i>');
                         }
                     }  // loop through the cookie global var --- end
@@ -145,14 +145,12 @@ function write_to_db($step) {
         $loop_table_names = array ('user_table', 'session_table', 'group_table', 'group_table', 'group_relation_table', 'group_mapping_table');
         foreach ($loop_table_names as $key) { // loop through the possible tables --- start
             if ($default_bridge_data[$BRIDGE['short_name']][$key.'_used'] != '') { // check if table exists --- start
-                if ($default_bridge_data[$BRIDGE['short_name']][$key.'_used'] != '') {
-                    $temp_tablename = $_POST['table_prefix'].$_POST[$key];
-                    $result = mysql_query('SELECT * FROM '.$temp_tablename);
-                    if (!$result) {
-                        $return['db_'.$key] = sprintf($lang_bridgemgr_php['error_db_table'], '<i>'.$temp_tablename.'</i>', $prefix_and_table.'<i>'.$lang_bridgemgr_php[$key].'</i>'). ' <tt>'.$mysql_error_output.'</tt>';
-                    }
-                    @mysql_free_result($result);
+                $temp_tablename = $_POST['table_prefix'].$_POST[$key];
+                $result = mysql_query('SELECT * FROM '.$temp_tablename);
+                if (!$result) {
+                    $return['db_'.$key] = sprintf($lang_bridgemgr_php['error_db_table'], '<i>'.$temp_tablename.'</i>', $prefix_and_table.'<i>'.$lang_bridgemgr_php[$key].'</i>'). ' <tt>'.$mysql_error_output.'</tt>';
                 }
+                @mysql_free_result($result);
             } // check if table exists --- end
         } // loop through the possible tables --- end
         @mysql_close($link);
@@ -346,7 +344,7 @@ if (GALLERY_ADMIN_MODE) { // gallery admin mode --- start
 $default_bridge_data['invisionboard'] = array(
   'full_name' => 'Invision Power Board 1.x',
   'short_name' => 'invisionboard',
-  'support_url' => 'http://invisionize.com/',
+  'support_url' => 'http://forums.invisionpower.com/',
   'db_database_name_default' => 'ivboard',
   'db_database_name_used' => 'mandatory,not_empty',
   'db_hostname_default' => 'localhost',
@@ -384,7 +382,7 @@ $default_bridge_data['invisionboard'] = array(
 $default_bridge_data['invisionboard_2.0'] = array(
   'full_name' => 'Invision Power Board 2.x',
   'short_name' => 'invisionboard_2.0',
-  'support_url' => 'http://invisionize.com/',
+  'support_url' => 'http://forums.invisionpower.com/',
   'db_database_name_default' => 'ivboard',
   'db_database_name_used' => 'mandatory,not_empty',
   'db_hostname_default' => 'localhost',
