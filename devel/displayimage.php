@@ -131,7 +131,7 @@ function html_picture()
         $USER['liv'] = array();
     }
     // Add 1 to hit counter
-    if ($album != "lasthits" && !in_array($pid, $USER['liv']) && isset($_COOKIE[$CONFIG['cookie_name'] . '_data'])) {
+    if (!USER_IS_ADMIN && $album != "lasthits" && !in_array($pid, $USER['liv']) && isset($_COOKIE[$CONFIG['cookie_name'] . '_data'])) {
         add_hit($pid);
         if (count($USER['liv']) > 4) array_shift($USER['liv']);
         array_push($USER['liv'], $pid);
