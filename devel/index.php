@@ -850,4 +850,4 @@ foreach ($elements as $element) {
         $result = cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET randpos = ROUND(RAND()*$granularity) WHERE 1");
         $result = cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '" . time() . "' WHERE name = 'randpos_interval'");
     }
-    ?>
+?>
