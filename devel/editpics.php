@@ -22,7 +22,7 @@ require('include/init.inc.php');
 if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
 define('UPLOAD_APPROVAL_MODE', isset($HTTP_GET_VARS['mode']));
-echo "Upload Approval".UPLOAD_APPROVAL_MODE ;
+
 
 define('EDIT_PICTURES_MODE', !isset($HTTP_GET_VARS['mode']));
 
