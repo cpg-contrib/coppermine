@@ -1,4 +1,4 @@
-ï»¿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -110,7 +110,7 @@ For credits and copyrights, see <a href="index.htm#credits">Coppermine documenta
 <ul class="nomargin">
 <li><b>Installation</b></li>
 <ul class="nomargin">
-<li><a class="content" href="#MinimumRequirements">What are the <b>minimum requirements</b> for the use of Coppermine 1.3.0 ?</a></li>
+<li><a class="content" href="#MinimumRequirements">What are the <b>minimum requirements</b> for the use of Coppermine 1.4.0 ?</a></li>
 <li><a class="content" href="#whatIsImageMagick">What's <b>ImageMagick</b> and how can I get it?</a></li>
 <li><a class="content" href="#WhatIsGD">What's <b>GD</b> and how can I get it?</a></li>
 <li><a class="content" href="#VersionPHP">How do I find out <b>which version of PHP</b> I have?</a></li>
@@ -163,6 +163,7 @@ For credits and copyrights, see <a href="index.htm#credits">Coppermine documenta
 <li><a class="content" href="#deleteIntermediates">I don't use the <b>intermediate pictures</b> anymore. How can I <b>delete</b> them to gain disk space?</a></li>
 <li><a class="content" href="#howAlbumsFolderWork">How do <b>albums and folders</b> work in coppermine?</a></li>
 <li><a class="content" href="#howMoveAlbum">How can I <b>move albums from one category to another</b>?</a></li>
+<li><a class="content" href="#moveGallery">Move gallery</a></li>
 </ul>
 <li><b>Add-ons / Modifications / Hacks</b></li>
 <ul class="nomargin">
@@ -199,7 +200,7 @@ For credits and copyrights, see <a href="index.htm#credits">Coppermine documenta
 
 <br />&nbsp;<br />
 <h2>Installation</h2><a name="MinimumRequirements"></a>
-<h3>What are the <b>minimum requirements</b> for the use of Coppermine 1.3.0 ?</h3>
+<h3>What are the <b>minimum requirements</b> for the use of Coppermine 1.4.0 ?</h3>
 <p>
     <ul>
         <li>any webserver, Apache recommended (Coppermine has been reported to work with <a href="http://httpd.apache.org/" class="external">Apache</a>, <a href="http://www.microsoft.com/iis/" class="external">Microsoft Internet Information Server</a> (IIS), <a href="http://www.roxen.com/products/webserver/" class="external">Roxen WebServer</a>, <a href="http://www.aprelium.com/" class="external">Abyss</a>, <a href="http://www.janaserver.de/" class="external">JanaServer</a>)</li>
@@ -318,8 +319,8 @@ Yes, we want you to check the permissions of each folder even if you think you h
 <li><b>post_max_size</b> - 8MB is the default limit for post requests.</li>
 <li><b>memory_limit</b> - 8MB is the default size.</li>
 <li>PHP's <b>LimitRequestBody</b> - 512KB default limit. (mainly an issue on Redhat/Apache systems.  Found in /etc/http/conf.d)<br />In general, upload_max_filesize &lt; post_max_size &lt; memory_limit in order for uploads to function properly. Coppermine may warn you if a file exceeds upload_max_filesize, but it cannot warn you if the total size of all the files exceeds the post limit or the memory limit.</li>
-<li><b>file_uploads</b> &Acirc;– This determines whether or not PHP will allow file uploads. It must be set to &Acirc;‘On&Acirc;’.</li>
-<li><b>upload_tmp_dir</b> &Acirc;– This specifies the temporary directory where PHP stores uploaded files.</li>
+<li><b>file_uploads</b> &Acirc; This determines whether or not PHP will allow file uploads. It must be set to &Acirc;On&Acirc;.</li>
+<li><b>upload_tmp_dir</b> &Acirc; This specifies the temporary directory where PHP stores uploaded files.</li>
 </ol>
 
 <p>The most common issue caused by this setting is an open_basedir warning.  In this situation, your server administrator has restricted the files that PHP can work with to a certain directory.  If he does not create and specify a temporary directory within the open_basedir restriction, PHP will attempt to use the OS temporary directory, and it will be rebuffed by the open_basedir restriction.</p>
@@ -584,10 +585,10 @@ To change the settings by album (above steps must have been made):
 <li>use the &quot;arrow up&quot;- and &quot;arrow down&quot;-buttons to change the order of categories</li>
 </ul><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="cantDeletePic"></a>
 <h3>I <b>can&#39;t delete a certain picture</b> with ftp. What can I do?</h3>
-<p>It is not Coppermine that doesn&#39;t let you delete the picture, it is your FTP server. The problem is due to the configuration of your server. Try to delete your picture from within the script.<br />
-If PHP on your server runs under the user nobody then all files created by any PHP script (this is not specific to Coppermine) will be owned by nobody. There is no way to change that.<br />&nbsp;<br />
+<p>It is not Coppermine that doesn&#39;t let you delete the picture; it is your FTP server. The problem is due to the configuration of your server. Try to delete your picture from within the script.</p>
+<p>If PHP on your server runs under the user nobody then all files created by any PHP script (this is not specific to Coppermine) will be owned by nobody. There is no way to change that.</p>
 <table border="0" cellspacing="2" cellpadding="2" class="bordl"><tr><td valign="top" align="left"><p class="fliess"> 0777 should not be the default mode for directories because it may be completely unsafe, if your gallery is running on a shared server and PHP safe mode is not enabled, anybody having an account on the server can possibly delete your pictures. There have been several threads on this issue on the Menalto Gallery forum and several users have seen their gallery hacked and destoyed because of that. This issue is not specific to Photo galleries, it applies to all PHP scripts that create directories. Provided you have write access to a directory, you can delete any file it contains, even if you don&#39;t have write access to the file itself.<br />&nbsp;<br />
-I prefer to have 20 persons complaining LOUDLY and REPEATINGLY that they have to contact their sysadmin to uninstal Coppermine, that this is an issue and possibly switching to another gallery because of that rather than 1 person complaining that all his pictures have been erased.<br />&nbsp;<br />
+I prefer to have 20 persons complaining LOUDLY and REPEATEDLY that they have to contact their sysadmin to uninstall Coppermine, that this is an issue and possibly switching to another gallery because of that rather than 1 person complaining that all his pictures have been erased.<br />&nbsp;<br />
 If you disagree spend you time reading :<br />
 <a href="http://www.zend.com/manual/function.mkdir.php" class="external">http://www.zend.com/manual/function.mkdir.php</a><br />
 <a href="http://www.zend.com/manual/function.chmod.php" class="external">http://www.zend.com/manual/function.chmod.php</a><br />
@@ -660,6 +661,19 @@ Greg</p></td></tr></table><br /></p><br /><div class="totop">[<a href="#top" cla
 <li>click "Properties" next to the album thumbnail</li>
 <li>From the dropdown list &quot;Album category&quot;, choose the category the album should go to</li>
 <li>Click &quot;Update Album&quot;</li>
+</ul>
+<br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+
+<a name="moveGallery"></a>
+<h3>How can I <b>move my gallery to another host</b>?</h3>
+<ul>
+<li>Backup your files: FTP-download your complete coppermine-folder to your hard drive</li>
+<li>use a tool like phpMyAdmin to get a dump (backup) of your mySQL database entries. More info <a href="http://coppermine.sourceforge.net/faq.php?q=BackupDatabase#BackupDatabase">here</a></li>
+<li>verify your backup is working: check if the mySQL-dump contains all data (open the zipped dump file and use a text editor to view it)</li>
+<li>on the new server: FTP-upload your coppermine-folder to the new server</li>
+<li>CHMOD the folder /albums to 755 or 777 (depending on your server config]</li>
+<li>restore the mySQL table by running the queries of the dump files you created in step 2</li>
+<li>test-drive your coppermine gallery - you should be done</li>
 </ul>
 
 <br />&nbsp;<br />
@@ -917,7 +931,7 @@ This hack hasn&#39;t been tested, use at your own risk...!<br /></p><br /><div c
 
 <a name="renameTemplateHtml"></a>
 <h3>Can I rename template.html to template.php to include PHP code in my template?</h3>
-<p>No, this is simply not the way coppermine works; for &quot;normal&quot; pages the name of the extension tells the webserver wether the file should be parsed by the PHP interpreter. The template files within the themes folder are not being parsed this way - the extension .html was just chosen to make editing easier. You can not have PHP code in the template file, no matter how you name it - that's it!</p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+<p>No, this is simply not the way coppermine works; for &quot;normal&quot; pages the name of the extension tells the webserver whether the file should be parsed by the PHP interpreter. The template files within the themes folder are not being parsed this way - the extension .html was just chosen to make editing easier. You can not have PHP code in the template file, no matter how you name it - that's it!</p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 
 <a name="preventPictureStealing"></a>
 <h3>How can I prevent users from saving (stealing) my pictures?</h3>
@@ -981,7 +995,8 @@ Greg<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of pag
 <li>choose the right support board: if you&#39;re running the phpnuke-port of coppermine, don&#39;t post in the support board for the standalone version and vice versa</li>
 </ul><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="nonEnglishPosting"></a>
 <h3>Hey, by looking at your profile I can see you&#39;re German/French/Whatever. Can I post a question in that <b>language</b>?</h3>
-<p>Please do not post in another language than English - this way, others may benefit from your question (and the answer), too. Don&#39;t be afraid to write &quot;bad english&quot; - no one will laugh at you, and most visitor&#39;s first language isn&#39;t english either! There&#39;s a german support board available at <a href="http://forum.the-service.de/" class="external">http://forum.the-service.de/</a> - use it if you&#39; not able to write in English!<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="emailSupport"></a>
+<p>Please do not post in another language than English - this way, others may benefit from your question (and the answer), too. Don&#39;t be afraid to write &quot;bad english&quot; - no one will laugh at you, and most visitor&#39;s first language isn&#39;t english either! There&#39;s a german support board available at <a href="http://forum.the-service.de/" class="external">http://forum.the-service.de/</a> - use it if you&#39; not able to write in English!<br /></p>
+<p>We have <a href="http://coppermine.sourceforge.net/board/index.php?board=37.0">language-specific support boards</a> for Chinese and French.</p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="emailSupport"></a>
 <h3>May I email/<acronym title="private message" class="tool">pm</acronym>/<acronym title="instant message" class="tool">im</acronym> you for <b>support</b>?</h3>
 <p>No you mustn&#39;t! Post your question on the <a href="http://coppermine.sourceforge.net/board/">Coppermine support board</a> (publicly) - if we (the community) don&#39;t find a solution <b>and</b> <i>I</i> have the time <b>and</b> <i>I</i> want to <i>I</i>&#39;ll email/pm/im <i>you</i>!<br />
 </p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
