@@ -190,6 +190,7 @@ EOT;
 } //display explanation what this file does: start
 echo <<< EOT
 <style type="text/css">
+/*
 .green {
         font-weight: bold;
         color: #CFCFCF;
@@ -216,6 +217,19 @@ echo <<< EOT
         margin: 0px;
         padding: 0px;
         text-align: center;
+}
+*/
+.green {
+        font-weight: bold;
+        color: green;
+}
+.red {
+        font-weight: bold;
+        color: red;
+}
+.yellow {
+        font-weight: bold;
+        color:#FFBE00;
 }
 </style>
 EOT;
