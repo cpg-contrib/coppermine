@@ -2292,16 +2292,16 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
             // Send e-mail notification to the admin if requested (added by gaugau: 03-11-09).
             if (($CONFIG['upl_notify_admin_email']) and ($PIC_NEED_APPROVAL)) {
                 // Encapsulate so included lang file doesn't interfere with global one
-                cpg_send_upload_notification();
                 function cpg_send_upload_notification() {
                     global $CONFIG;
-                    $lang_db_input_php = cpg_get_default_lang('lang_db_input_php');
+                    $lang_db_input_php = cpg_get_default_lang_var('lang_db_input_php');
                     // Get the mail files.
                     include_once('include/mailer.inc.php');
     
                     // Send the message.
                     cpg_mail($CONFIG['gallery_admin_email'], sprintf($lang_db_input_php['notify_admin_email_subject'], $CONFIG['gallery_name']), sprintf($lang_db_input_php['notify_admin_email_body'], USER_NAME,  $CONFIG['ecards_more_pic_target'].'/editpics.php?mode=upload_approval' ));
                 }
+                cpg_send_upload_notification();
             }
 
             // That was the last one. Create a redirect box.
