@@ -773,8 +773,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE  randpos IN ($random_num_set) AND approved = 'YES' $ALBUM_SET ORDER BY RAND() LIMIT $limit2");
                 } else {
                                 */
-                $result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $ALBUM_SET ORDER BY RAND() LIMIT $limit2");
-
+                $sql = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $ALBUM_SET ORDER BY RAND() LIMIT $limit2";
+                $result = db_query($sql);
 
                 $rowset = array();
                 while($row = mysql_fetch_array($result)){
@@ -1084,8 +1084,44 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
         }
 }
 
-// Prints thumbnails of pictures in an album
+/**
+ * Return an array containing the system thumbs in a directory
+ */
+function cpg_get_system_thumb_list($search_folder = 'images/')
+{
+        global $CONFIG;
+        static $thumbs = array();
+        
+        $folder = 'images/';
 
+        $thumb_pfx =& $CONFIG['thumb_pfx'];
+        // If thumb array is empty get list from coppermine 'images' folder
+        if ((count($thumbs) == 0) && ($folder == $search_folder)) {
+                $dir = opendir($folder);
+                while (($file = readdir($dir))!==false) {
+                        if (is_file($folder . $file) && strpos($file,$thumb_pfx) === 0) {
+                                // Store filenames in an array
+                                $thumbs[] = array('filename' => $file);
+                        }
+                }
+                closedir($dir);
+                return $thumbs;
+        } elseif ($folder == $search_folder) {
+                // Search folder is the same as coppermine images folder; just return the array
+                return $thumbs;
+        } else {
+                // Search folder is the different; check for files in the given folder
+                $results = array();
+                foreach ($thumbs as $thumb) {
+                        if (is_file($search_folder.$thumb['filename'])) {
+                                $results[] = array('filename' => $thumb['filename']);
+                        }
+                }
+                return $results;
+        }
+}
+
+// Prints thumbnails of pictures in an album
 function display_film_strip($album, $cat, $pos)
 {
         global $CONFIG, $AUTHORIZED, $HTTP_GET_VARS;
