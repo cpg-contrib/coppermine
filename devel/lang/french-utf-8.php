@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.2                                            //
 // ------------------------------------------------------------------------- //
@@ -22,7 +22,7 @@ $lang_translation_info = array(
 'lang_name_english' => 'French',
 'lang_name_native' => 'Français',
 'lang_country_code' => 'fr',
-'trans_name'=> 'jdbaranger - modified by JDBaranger, edited by sbourdon',
+'trans_name'=> 'jdbaranger - modified by JDBaranger, edited by sbourdon, corrected by Olivier Verdier',
 'trans_email' => '',
 'trans_website' => 'http://www.everlasting-star.net/',
 'trans_date' => '2004-09-28',
@@ -48,12 +48,12 @@ $lang_error = 'Erreur';
 
 // The various date formats
 // See http://www.php.net/manual/en/function.strftime.php to define the variable below
-$album_date_fmt =  '%B %d, %Y';
-$lastcom_date_fmt =  '%m/%d/%y à %H:%M';
-$lastup_date_fmt = '%d %B %Y';
-$register_date_fmt = '%B %d, %Y';
-$lasthit_date_fmt = '%B %d, %Y à %I:%M %p';
-$comment_date_fmt =  '%B %d, %Y à %I:%M %p';
+$album_date_fmt =  '%e %B %Y';
+$lastcom_date_fmt =  '%d/%m/%y à %H:%M';
+$lastup_date_fmt = '%e %B %Y';
+$register_date_fmt = '%e %B %Y';
+$lasthit_date_fmt = ' %a %e %B %Y à %H:%M';
+$comment_date_fmt =  '%a %e %B %Y à %H:%M';
 
 // For the word censor
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*', 'merde', 'putain', 'enculé*', 'salope', 'bite', 'cul', 'pute', 'pénis', 'clito', 'couille', 'pétasse', 'connard', 'salaud');
@@ -281,7 +281,7 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
   'Evil or Very Mad' => 'Diabolique ou très en colère',
   'Twisted Evil' => 'Sadique',
   'Rolling Eyes' => 'Lève les yeux au ciel',
-  'Wink' => 'Clin d\'oeil',
+  'Wink' => 'Clin d\'œil',
   'Idea' => 'Idée',
   'Arrow' => 'Flèche',
   'Neutral' => 'Neutre',
@@ -614,6 +614,7 @@ $lang_picinfo = array(
   'Displayed' => 'Affichées',
   'Camera' => 'Appareil photos',
   'Date taken' => 'Date de la prise de vue',
+  'ISO'=>'ISO',
   'Aperture' => 'Ouverture',
   'Exposure time' => 'Temps d\'exposition',
   'Focal length' => 'Focale',
@@ -919,9 +920,9 @@ $lang_register_disclamer = <<<EOT
 <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Le droit à l'image est la prérogative reconnue à toute personne de s'opposer, à certaines conditions, à ce que des tiers non autorisés reproduisent et, a fortiori, diffusent son image. Ainsi, pour toute publication de photos montrant des personnes reconnaissables, vous devez, en tant qu'exposant, être en possession d'une autorisation de publication. L'autorisation doit être expresse et suffisamment précise quant aux modalités de diffusion. Vous devez, en tant qu'exposant, pouvoir rapporter la preuve de cet accord exprès à toute personne qui en ferait la demande. L'absence d'autorisation engage directement votre unique responsabilité.
 <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Les droits d'auteur permettent à leur titulaire d'être le seul à produire ou reproduire son oeuvre, à la présenter au public, à la publier ou à pouvoir octroyer ce droit à quelqu'un d'autre. Ainsi, pour publier des photos, vous devez en être l'auteur ou être en possession d'une autorisation de publication fournie par l'auteur. Vous devez, en tant qu'exposant, pouvoir rapporter la preuve de cette autorisation à toute personne qui en ferait la demande. L'absence d'autorisation engage directement votre unique responsabilité.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Les droits d'auteur permettent à leur titulaire d'être le seul à produire ou reproduire son œuvre, à la présenter au public, à la publier ou à pouvoir octroyer ce droit à quelqu'un d'autre. Ainsi, pour publier des photos, vous devez en être l'auteur ou être en possession d'une autorisation de publication fournie par l'auteur. Vous devez, en tant qu'exposant, pouvoir rapporter la preuve de cette autorisation à toute personne qui en ferait la demande. L'absence d'autorisation engage directement votre unique responsabilité.
 <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Selon le Code de la Propriété Intellectuelle du 1er juillet 1992 qui regroupe les lois relatives à la propriété intellectuelle, notamment la loi du 11 mars 1957 et la loi du 3 juillet 1985, le droit d'auteur protège les oeuvres sans l'accomplissement de formalités. D'autre part, afin d'éviter que d'éventuels liens puissent être faits vers vos photos à partir de sites dont nous ne pouvons contrôler le contenu, les noms de fichiers de vos photos pourront être modifiés à tout instant et sans préavis.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  Selon le Code de la Propriété Intellectuelle du 1er juillet 1992 qui regroupe les lois relatives à la propriété intellectuelle, notamment la loi du 11 mars 1957 et la loi du 3 juillet 1985, le droit d'auteur protège les œuvres sans l'accomplissement de formalités. D'autre part, afin d'éviter que d'éventuels liens puissent être faits vers vos photos à partir de sites dont nous ne pouvons contrôler le contenu, les noms de fichiers de vos photos pourront être modifiés à tout instant et sans préavis.
 <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  En tant qu'utilisateur, vous acceptez que toutes les informations entrées plus haut et toutes les photographies que vous publiez soient stockées dans une base de données. Bien que ces informations et photographies ne soient pas communiquées à des tiers sans votre consentement, le webmaster et les administrateurs ne peuvent en aucun cas être tenus pour responsables dans le cas de tentatives de hack qui pourraient compromettre les données ou permettre l'accès ou l'utilisation illicite de vos photographies.
 <br />
