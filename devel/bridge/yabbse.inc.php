@@ -181,6 +181,7 @@ function udb_authenticate()
 
 		define('USER_ID', $ID_MEMBER);
 		define('USER_NAME', $realname);
+		define('YSE_USER_NAME', $username);
 	    	define('USER_GROUP', $USER_DATA['group_name']);
 		define('USER_GROUP_SET', '('.$USER_DATA['group_id'].')');
 	    	define('USER_IS_ADMIN', ($settings[7] == 'Administrator'));
@@ -296,7 +297,7 @@ function udb_get_user_infos($uid)
 // Edit user profile
 function udb_edit_profile($uid)
 {
-	$target = 'index.php';
+	$target = 'index.php?action=profile;user=' . YSE_USER_NAME;
 	udb_redirect($target);
 }
 
