@@ -447,7 +447,7 @@ function udb_util_filloptions()
 
         print '</select> (3)';
         print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="button" /> (4)';
-        print '</form>';
+        //print '</form>';
 
     } else {
 
@@ -549,7 +549,7 @@ function udb_util_filloptions()
         // Close list, etc.
         print '</select> (3)';
         print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="button" /> (4)';
-        print '</form>'; 
+        //print '</form>'; 
 
     }
 
