@@ -223,7 +223,7 @@ function check_user_info(&$error)
     $result = db_query($sql);
 
     if ($CONFIG['reg_requires_valid_email']) {
-        $act_link = $CONFIG['ecards_more_pic_target'] . $PHP_SELF . '?activate=' . $act_key;
+        $act_link = $CONFIG['ecards_more_pic_target'] . '/register.php?activate=' . $act_key;
         $template_vars = array('{SITE_NAME}' => $CONFIG['gallery_name'],
             '{USER_NAME}' => $user_name,
             '{PASSWORD}' => $password,
