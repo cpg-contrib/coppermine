@@ -371,7 +371,7 @@ class core_udb {
 	// View user profile
 	function view_profile($uid)
 	{
-		$this->redirect($this->page['edituserprofile'].$uid);
+		$this->redirect($this->page['edituserprofile'].($uid ? $uid : USER_ID));
 	}
 
 	// Edit user profile
@@ -507,7 +507,9 @@ class core_udb {
 		// Scan udb groups that need to be created inside Coppermine table
 		foreach($udb_groups as $i_group_id => $i_group_name) {
 			if ((!isset($cpg_groups[$i_group_id]))) {
-				cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} (group_id, group_name) VALUES ('$i_group_id', '" . addslashes($i_group_name) . "')");
+				// add admin info
+				$admin_access = in_array($i_group_id-100, $this->admingroups) ? '1' : '0';
+				cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} (group_id, group_name, has_admin_access) VALUES ('$i_group_id', '" . addslashes($i_group_name) . "', '$admin_access')");
 				$cpg_groups[$i_group_id] = $i_group_name;
 			}
 		}
@@ -518,6 +520,9 @@ class core_udb {
 				cpg_db_query("UPDATE {$CONFIG['TABLE_USERGROUPS']} SET group_name = '" . addslashes($i_group_name) . "' WHERE group_id = '$i_group_id' LIMIT 1");
 			}
 		}
+		// fix admin grp
+		if (!$this->use_post_based_groups) cpg_db_query("UPDATE {$CONFIG['TABLE_USERGROUPS']} SET has_admin_access = '1' WHERE group_id = '1' LIMIT 1");
+		
 	}	
 
 	// Retrieve the album list used in gallery admin mode
