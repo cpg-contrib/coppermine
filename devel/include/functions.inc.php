@@ -92,7 +92,7 @@ function get_meta_album_set($cat, &$meta_album_set)  //adapted from index.php ge
     global $USER_DATA;
     if ($cat < 0) {
         $meta_album_set= 'AND aid IN (' . (- $cat) . ') ';
-    } elseif ($USER_DATA['can_see_all_albums']) {
+    } elseif ($USER_DATA['can_see_all_albums'] && $cat == 0) {
         $meta_album_set ='';
     } else {
        $meta_album_set_array=array();
