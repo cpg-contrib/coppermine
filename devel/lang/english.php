@@ -495,7 +495,9 @@ $lang_picinfo = array(
         'Aperture' => 'Aperture',
         'Exposure time' => 'Exposure time',
         'Focal length' => 'Focal length',
-        'Comment' => 'Comment'
+        'Comment' => 'Comment',
+	'addFav'=>'Add to Fav',
+	'addFavPhrase'=>'Favourites'
 );
 
 $lang_display_comments = array(
