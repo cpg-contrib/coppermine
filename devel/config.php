@@ -258,7 +258,7 @@ EOT;
 // Added for allowing user to select which aspect of thumbnails to scale
 function form_scale($text, $name)
 {
-    global $CONFIG;
+   global $CONFIG, $lang_config_php ;
 
     $value = $CONFIG[$name];
     $any_selected = ($value == 'max') ? 'selected' : '';
@@ -272,9 +272,9 @@ function form_scale($text, $name)
         </td>
         <td class="tableb" valign="top">
                         <select name="$name" class="listbox">
-                                <option value="any" $any_selected>Max aspect</option>
-                                <option value="ht" $ht_selected>Height</option>
-                                <option value="wd" $wd_selected>Width</option>
+                                <option value="any" $any_selected>{$lang_config_php['th_any']}</option>
+                                <option value="ht" $ht_selected>{$lang_config_php['th_ht']}</option>
+                                <option value="wd" $wd_selected>{$lang_config_php['th_wd']}</option>
                         </select>
                 </td>
         </tr>
