@@ -116,16 +116,59 @@ li {
         list-style-type: disc;
 }
 
+.top_panel_left {
+        white-space: nowrap;
+		background-image: url(images/top_panel_r1_c1.jpg);
+		background-repeat : no-repeat;
+		padding-top : 0;
+        padding-bottom : 0;	
+
+}
+
+.top_panel_right {
+        white-space: nowrap;
+		background-image: url(images/top_panel_r1_c2.jpg);
+		background-repeat : no-repeat;
+		padding-top : 0;
+        padding-bottom : 0;	
+
+}
+		
 .top_panel td {
         white-space: nowrap;
+		padding-top : 0;
+        padding-bottom : 0;	
+}
+
+.top_panel_btm {
+       
+		background: #4A4A4A;
+		background-image: url(images/top_panel_r2_c3.jpg);
+		background-repeat : no-repeat;
+		background-position:right;
+		padding-top : 0;
+        padding-bottom : 0;	
+
+}
+
+.top_panel_bgd {
+      
+		background: #4A4A4A;
+		background-image: url(images/top_panel_r2_c2.jpg);
+		padding-top : 0;
+        padding-bottom : 0;	
+
 }
 
 .top_menu_left_bttn a {
+		background: #4A4A4A;
         background-image : url(images/left_menu_button.gif);
         background-repeat : no-repeat;
         background-position : left;
         padding-left : 12px;
         padding-right : 6px;
+		padding-top :3px;
+        padding-bottom : 0;	
         position: relative;
         display: block;
         height : 35px;
@@ -136,6 +179,7 @@ li {
 }
 
 .top_menu_left_bttn a:hover {
+		background: #4A4A4A;
         background-image : url(images/left_menu_button_over.gif);
         background-position : left;
         background-repeat : no-repeat;
@@ -144,11 +188,14 @@ li {
 }
 
 .top_menu_right_bttn a {
+		background: #4A4A4A;
         background-image : url(images/right_menu_button.gif);
         background-repeat : no-repeat;
         background-position : right;
         padding-right : 22px;
         padding-left : 6px;
+	    padding-top : 3px;
+        padding-bottom : 0;	
         position: relative;
         display: block;
         height : 35px;
@@ -159,6 +206,7 @@ li {
 }
 
 .top_menu_right_bttn a:hover {
+		background: #4A4A4A;
         background-image : url(images/right_menu_button_over.gif);
         background-position : right;
         background-repeat : no-repeat;
@@ -167,10 +215,13 @@ li {
 }
 
 .top_menu_bttn a {
+		background: #4A4A4A;
         background-image : url(images/menu_button.gif);
         background-position : left;
         padding-left : 6px;
         padding-right : 6px;
+		padding-top : 3px;
+        padding-bottom : 0;	
         position: relative;
         display: block;
         height : 35px;
@@ -181,6 +232,7 @@ li {
 }
 
 .top_menu_bttn a:hover {
+		background: #4A4A4A;
         background-image : url(images/menu_button_over.gif);
         text-decoration: none;
         color:         #F0AF00;
@@ -575,7 +627,7 @@ td #admin_menu_anim {
 
 .clickable_option {
         font-weight: bold;
-        cursor : hand;
+        cursor : default;
 }
 
 .listbox_lang {
@@ -585,4 +637,10 @@ td #admin_menu_anim {
         font-size: 80%;
         font-family: Arial, Helvetica, sans-serif;
         vertical-align : middle;
+}
+
+.blank_image {
+/* Margin should = .image (margin+border-width) */
+        border:0;
+        margin: 3px;
 }
