@@ -388,7 +388,7 @@ $replacement_header ='<meta http-equiv="imagetoolbar" content="no" />
         $template_header = ereg_replace("</head[^>]*>",$replacement_header,$template_header);
         }
         $template_footer = substr($template, $gallery_pos);
-        $add_version_info = '<!--Coppermine Photo Gallery '.COPPERMINE_VERSION.'-->\n</body>';
+        $add_version_info = '<!--Coppermine Photo Gallery '.COPPERMINE_VERSION.'--></body>';
         $template_footer = ereg_replace("</body[^>]*>",$add_version_info,$template_footer);
 }
 
@@ -513,8 +513,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         } else {
                                 $user_link = $row['msg_author'];
                         }
-
-                        $caption = '<span class="thumb_title">'.$user_link.'</span>'.'<span class="thumb_caption">'.localised_date($row['msg_date'], $lastcom_date_fmt).'</span>'.'<span class="thumb_caption">'.$row['msg_body'].'</span>';
+			$msg_body = strlen($row['msg_body']) > 50 ? @substr($row['msg_body'],0,50)."...": $row['msg_body'];
+                        $caption = '<span class="thumb_title">'.$user_link.'</span>'.'<span class="thumb_caption">'.localised_date($row['msg_date'], $lastcom_date_fmt).'</span>'.'<span class="thumb_caption">'.$msg_body.'</span>';
                         $rowset[$key]['caption_text'] = $caption;
                 }
                 return $rowset;
