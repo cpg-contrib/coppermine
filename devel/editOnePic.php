@@ -1,12 +1,11 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.2                                            //
+// Coppermine Photo Gallery 1.4.0                                            //
 // ------------------------------------------------------------------------- //
 // Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
-// (http://coppermine.sf.net/team/)                                          //
 // see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
 // This program is free software; you can redistribute it and/or modify      //
@@ -14,7 +13,7 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-// CVS version: $Id$
+// $Id$
 // ------------------------------------------------------------------------- //
 
 define('IN_COPPERMINE', true);
@@ -37,36 +36,32 @@ pageheader($title);
 
 function process_post_data()
 {
-        global $HTTP_POST_VARS, $CONFIG;
-        global $lang_errors;
+        global $CONFIG;
+        global $lang_errors, $lang_editpics_php;
 
-                $pid          = (int)$HTTP_POST_VARS['id'];
-                $aid          = (int)$HTTP_POST_VARS['aid'];
-                $pwidth       = (int)$HTTP_POST_VARS['pwidth'];
-                $pheight      = (int)$HTTP_POST_VARS['pheight'];
-                $title        = $HTTP_POST_VARS['title'];
-                $caption      = $HTTP_POST_VARS['caption'];
-                $keywords     = $HTTP_POST_VARS['keywords'];
-                $user1        = $HTTP_POST_VARS['user1'];
-                $user2        = $HTTP_POST_VARS['user2'];
-                $user3        = $HTTP_POST_VARS['user3'];
-                $user4        = $HTTP_POST_VARS['user4'];
+                $pid          = (int)$_POST['id'];
+                $aid          = (int)$_POST['aid'];
+                $pwidth       = (int)$_POST['pwidth'];
+                $pheight      = (int)$_POST['pheight'];
+                $title        = $_POST['title'];
+                $caption      = $_POST['caption'];
+                $keywords     = $_POST['keywords'];
+                $user1        = $_POST['user1'];
+                $user2        = $_POST['user2'];
+                $user3        = $_POST['user3'];
+                $user4        = $_POST['user4'];
 
-                $read_exif    = isset($HTTP_POST_VARS['read_exif']);
-                $reset_vcount = isset($HTTP_POST_VARS['reset_vcount']);
-                $reset_votes  = isset($HTTP_POST_VARS['reset_votes']);
-                $del_comments = isset($HTTP_POST_VARS['del_comments']) || $delete;
+                $read_exif    = isset($_POST['read_exif']);
+                $reset_vcount = isset($_POST['reset_vcount']);
+                $reset_votes  = isset($_POST['reset_votes']);
+                $del_comments = isset($_POST['del_comments']) || $delete;
 
-                $query = "SELECT category, filepath, filename FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND pid='$pid'";
-                $result = cpg_db_query($query);
+                $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a WHERE a.aid = p.aid AND pid = '$pid'");
                 if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
                 $pic = mysql_fetch_array($result);
                 mysql_free_result($result);
 
-                if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
-                        if ($pic['category'] != FIRST_USER_CAT + USER_ID) cpg_die(ERROR, $lang_errors['perm_denied']."<br />(picture category = {$pic['category']}/ $pid)", __FILE__, __LINE__);
-                        if (!isset($user_album_set[$aid])) cpg_die(ERROR, $lang_errors['perm_denied']."<br />(target album = $aid)", __FILE__, __LINE__);
-                }
+				if (!(GALLERY_ADMIN_MODE || $pic['category'] == FIRST_USER_CAT + USER_ID || ($CONFIG['users_can_edit_pics'] && $pic['owner_id'] == USER_ID))) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
                 $update  = "aid = '".$aid."'";
                 if (is_movie($pic['filename'])) {
@@ -92,7 +87,59 @@ function process_post_data()
                         $query = "UPDATE {$CONFIG['TABLE_PICTURES']} SET $update WHERE pid='$pid' LIMIT 1";
                         $result = cpg_db_query($query);
                 }
+				
+				// rename a file
+				if ($_POST['filename'] != $pic['filename'])
+				{
+					$forbidden_chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>'));
+					if($CONFIG['thumb_use']=='ht' && $pic['pheight'] > $CONFIG['picture_width'])
+					{
+						$condition = true;
+					} elseif ($CONFIG['thumb_use']=='wd' && $pic['pwidth'] > $CONFIG['picture_width']){
+						$condition = true;
+					} elseif ($CONFIG['thumb_use']=='any' && max($pic['pwidth'], $pic['pheight']) > $CONFIG['picture_width']){
+						$condition = true;
+					} else {
+						 $condition = false;
+					}
+	
+					if ($CONFIG['make_intermediate'] && $condition ) {
+						$prefices = array('fullsize', 'normal', 'thumb');
+					} else {
+						$prefices = array('fullsize', 'thumb');
+					}
+	
+					if (!is_image($pic['filename'])){
+						$prefices = array('fullsize');
+					}
+					
+					foreach ($prefices as $prefix)
+					{
+						$oldname = get_pic_url($pic, $prefix);
+						$filename = strtr($_POST['filename'], $forbidden_chars, str_repeat('_', strlen($CONFIG['forbiden_fname_char'])));
+						$newname = str_replace($pic['filename'], $filename, $oldname);
+						
+						$old_mime = cpg_get_type($oldname);
+						$new_mime = cpg_get_type($newname);
+						
+						if (($old_mime['mime'] != $new_mime['mime']) && isset($new_mime['mime']))
+							cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['mime_conv'], $old_mime['mime'], $new_mime['mime']), __FILE__, __LINE__);
+						
+						if (!is_known_filetype($newname))
+							cpg_die(CRITICAL_ERROR, $lang_editpics_php['forb_ext'], __FILE__, __LINE__);
+							
+						if (file_exists($newname))
+							cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['file_exists'], $newname), __FILE__, __LINE__);
+							
+						if (!file_exists($oldname))
+							cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['src_file_missing'], $oldname), __FILE__, __LINE__);
 
+						if (rename($oldname, $newname))
+						{
+							cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET filename = '$filename' WHERE pid = '$pid' LIMIT 1");
+						} else cpg_die(CRITICAL_ERROR, sprintf($lang_editpics_php['rename_failed'], $oldname, $newname), __FILE__, __LINE__);
+					}
+				}
 }
 
 function get_user_albums($user_id)
@@ -127,11 +174,6 @@ function form_alb_list_box()
                 <td class="tableb" valign="top">
                                 <select name="aid" class="listbox">
 EOT;
-	if (count($public_albums_list) + count($user_albums_list) == 0){
-		echo "<option value=\"{$CURRENT_PIC['aid']}\" selected>{$title}</option>";
-	}
-
-
                 foreach($public_albums_list as $album) {
         echo '              <option value="' . $album['aid'] . '"' . ($album['aid'] == $sel_album ? ' selected="selected"' : '') . '>' . $album['cat_title'] . "</option>\n";
     }
@@ -144,17 +186,15 @@ EOT;
                 </tr>
 
 EOT;
-
-
 }
 
-if (isset($HTTP_POST_VARS['submitDescription'])) process_post_data();
+if (isset($_POST['submitDescription'])) process_post_data();
 
-$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = '$pid'");
+$result = cpg_db_query("SELECT *, p.title AS title FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a WHERE a.aid = p.aid AND pid = '$pid'");
 $CURRENT_PIC = mysql_fetch_array($result);
 mysql_free_result($result);
 
-if (!(GALLERY_ADMIN_MODE || $CURRENT_PIC['owner_id'] == USER_ID)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+if (!(GALLERY_ADMIN_MODE || $CURRENT_PIC['category'] == FIRST_USER_CAT + USER_ID || ($CONFIG['users_can_edit_pics'] && $CURRENT_PIC['owner_id'] == USER_ID))) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
 $thumb_url = get_pic_url($CURRENT_PIC, 'thumb');
 $thumb_link = 'displayimage.php?pos='.(-$CURRENT_PIC['pid']);
@@ -179,7 +219,7 @@ if (GALLERY_ADMIN_MODE) {
         $public_albums_list = array();
 }
 
-get_user_albums($CURRENT_PIC['owner_id']);
+get_user_albums(USER_ID);
 
 echo <<<EOT
 <script type="JavaScript">
@@ -188,7 +228,7 @@ function textCounter(field, maxlimit) {
         field.value = field.value.substring(0, maxlimit);
 }
 </script>
-<form method="post" action="editOnePic.php">
+<form name="editonepicform" method="post" action="editOnePic.php">
 <input type="hidden" name="id" value="{$CURRENT_PIC['pid']}" />
 EOT;
 
@@ -212,6 +252,8 @@ print <<<EOT
         <tr>
                         <td class="tableh2" colspan="3">
                                 <b>$filename</b>
+                                &nbsp;&nbsp;-&nbsp;&nbsp;<a href="modifyalb.php?album={$CURRENT_PIC['aid']}" class="admin_menu">{$lang_editpics_php['album_properties']}</a>&nbsp;&nbsp;-&nbsp;&nbsp;
+                        <a href="thumbnails.php?album={$CURRENT_PIC['aid']}" class="admin_menu">{$lang_editpics_php['thumbnail_view']}</a>
                         </td>
         </tr>
         <tr>
@@ -229,6 +271,8 @@ EOT;
 
 form_alb_list_box();
 
+if ($CONFIG['show_bbcode_help']) {$captionLabel = '&nbsp;'. cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&t='.urlencode(base64_encode(serialize($lang_bbcode_help))),400,180);}
+
 print <<<EOT
         <tr>
                         <td class="tableb" style="white-space: nowrap;">
@@ -238,11 +282,19 @@ print <<<EOT
                                 <input type="text" style="width: 100%" name="title" maxlength="255" value="{$CURRENT_PIC['title']}" class="textinput" />
                         </td>
         </tr>
-EOT;
-echo <<<EOT
+
+        <tr>
+                        <td class="tableb" style="white-space: nowrap;">
+                        {$lang_editpics_php['filename']}
+                </td>
+                <td width="100%" class="tableb" valign="top">
+                                <input type="text" style="width: 100%" name="filename" maxlength="255" value="{$CURRENT_PIC['filename']}" class="textinput" />
+                        </td>
+        </tr>
+		
         <tr>
                         <td class="tableb" valign="top" style="white-space: nowrap;">
-                                {$lang_editpics_php['desc']}
+                                {$lang_editpics_php['desc']}$captionLabel
                         </td>
                         <td class="tableb" valign="top">
                                 <textarea name="caption" rows="5" cols="40" class="textinput" style="width: 100%;" onkeydown="textCounter(this, {$CONFIG['max_img_desc_length']});" onkeyup="textCounter(this, {$CONFIG['max_img_desc_length']});">{$CURRENT_PIC['caption']}</textarea>
