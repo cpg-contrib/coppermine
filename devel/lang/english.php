@@ -1468,7 +1468,7 @@ $lang_register_php = array(
   'thank_you' => 'Thank you for registering.<br /><br />An email with information on how to activate your account was sent to the email address you provided.',
   'acct_created' => 'Your account has been created and you can now login with your username and password',
   'acct_active' => 'Your account is now active and you can login with your username and password',
-  'acct_already_act' => 'Your account is already active !',
+  'acct_already_act' => 'Account is already active!',
   'acct_act_failed' => 'This account can\'t be activated !',
   'err_unk_user' => 'Selected user does not exist !',
   'x_s_profile' => '%s\'s profile',
@@ -1490,6 +1490,10 @@ $lang_register_php = array(
   'last_comments' => 'Last comment.<br>Click to see all comments made by',
   'notify_admin_email_body' => 'A new user with the username "%s" has registered in your gallery',
   'pic_count' => 'Files uploaded', // cpg1.4.0
+  'notify_admin_request_email_subject' => '%s - Registration request',
+  'thank_you_admin_activation' => 'Thank you.<br /><br />Your request for account activation was sent to the admin. You will receive an email if approved.',
+  'acct_active_admin_activation' => 'The account is now active and an email has been sent to the user.',
+  'notify_user_email_subject' => '%s - Activation notification',
 );
 
 $lang_register_confirm_email = <<<EOT
@@ -1501,7 +1505,7 @@ Your password is : "{PASSWORD}"
 In order to activate your account, you need to click on the link below
 or copy and paste it in your web browser.
 
-{ACT_LINK}
+<a href="{ACT_LINK}">{ACT_LINK}</a>
 
 Regards,
 
@@ -1509,6 +1513,29 @@ The management of {SITE_NAME}
 
 EOT;
 
+$lang_register_approve_email = <<<EOT
+A new user with the username "{USER_NAME}" has registered in your gallery.
+
+In order to activate the account, you need to click on the link below
+or copy and paste it in your web browser.
+
+<a href="{ACT_LINK}">{ACT_LINK}</a>
+
+EOT;
+
+$lang_register_activated_email = <<<EOT
+Your account has been approved and activated.
+
+You can now log in at <a href="{SITE_LINK}">{SITE_LINK}</a>
+with the following:
+Username: "{USER_NAME}"
+Password: "{PASSWORD}"
+
+Regards,
+
+The management of {SITE_NAME}
+
+EOT;
 }
 
 // ------------------------------------------------------------------------- //
