@@ -36,6 +36,52 @@ $template_sys_menu_spacer ="|";
 
 // HTML template for template sub_menu
 // special note: I left the java 'hide' off of the first and third buttons to help avoid trouble keeping sys_menu open. :Donnoman
+if ($CONFIG['custom_lnk_url'] != '') {
+$template_sub_menu = <<<EOT
+                        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                <tr>
+										<td class="top_menu_left_bttn">
+                                                <a href="{CUSTOM_LNK_TGT}" title="{CUSTOM_LNK_TITLE}">{CUSTOM_LNK_LNK}</a>
+                                        </td>
+                                        <td><img src="themes/igames/images/menu_spacer.gif" width="2" height="35" border="0" alt="" /><br /></td>
+                                        <td class="top_menu_bttn">
+                                                <a href="{ALB_LIST_TGT}" title="{ALB_LIST_TITLE}">{ALB_LIST_LNK}</a>
+                                        </td>
+                                        <td><img src="themes/igames/images/menu_spacer.gif" width="2" height="35" border="0" alt="" /><br /></td>
+                                        <td class="top_menu_bttn">
+                                                <a href="javascript:;" onmouseover="MM_showHideLayers('SYS_MENU','','show')">@</a>
+                                        </td>
+                                        <td><img src="themes/igames/images/menu_spacer.gif" width="2" height="35" border="0" alt="" /><br /></td>
+                                        <td class="top_menu_bttn">
+                                                <a href="{LASTUP_TGT}" title="{LASTUP_LNK}">{LASTUP_LNK}</a>
+                                        </td>
+                                        <td><img src="themes/igames/images/menu_spacer.gif" width="2" height="35" border="0" alt="" /><br /></td>
+                                        <td class="top_menu_bttn">
+                                                <a href="{LASTCOM_TGT}" onmouseover="MM_showHideLayers('SYS_MENU','','hide')" title="{LASTCOM_LNK}">{LASTCOM_LNK}</a>
+                                        </td>
+                                        <td><img src="themes/igames/images/menu_spacer.gif" width="2" height="35" border="0" alt="" /><br /></td>
+                                        <td class="top_menu_bttn">
+                                                <a href="{TOPN_TGT}" onmouseover="MM_showHideLayers('SYS_MENU','','hide')" title="{TOPN_LNK}">{TOPN_LNK}</a>
+                                        </td>
+                                        <td><img src="themes/igames/images/menu_spacer.gif" width="2" height="35" border="0" alt="" /><br /></td>
+                                        <td class="top_menu_bttn">
+                                                <a href="{TOPRATED_TGT}" onmouseover="MM_showHideLayers('SYS_MENU','','hide')" title="{TOPRATED_LNK}">{TOPRATED_LNK}</a>
+                                        </td>
+                                        <td><img src="themes/igames/images/menu_spacer.gif" width="2" height="35" border="0" alt="" /><br /></td>
+                                        <td class="top_menu_bttn">
+                                                <a href="{FAV_TGT}" onmouseover="MM_showHideLayers('SYS_MENU','','hide')" title="{FAV_LNK}">{FAV_LNK}</a>
+                                        </td>
+                                        <td><img src="themes/igames/images/menu_spacer.gif" width="2" height="35" border="0" alt="" /><br /></td>
+                                        <td class="top_menu_right_bttn">
+                                                <a href="{SEARCH_TGT}" onmouseover="MM_showHideLayers('SYS_MENU','','hide')" title="{SEARCH_LNK}">{SEARCH_LNK}</a>
+                                        </td>
+                                        <td width="100%">&nbsp;</td>
+                                </tr>
+                        </table>
+EOT;
+
+} else {
+
 $template_sub_menu = <<<EOT
                         <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                 <tr>
@@ -74,7 +120,7 @@ $template_sub_menu = <<<EOT
                                 </tr>
                         </table>
 EOT;
-
+}
 // HTML template for title row of the thumbnail view (album title + sort options)
 $template_thumb_view_title_row = <<<EOT
 

@@ -27,6 +27,54 @@ define('THEME_IS_XHTML10_TRANSITIONAL',1);  // Remove this if you edit this temp
 $template_sys_menu_spacer ='|';
   
 // HTML template for template sub_menu
+if ($CONFIG['custom_lnk_url'] != '') {
+$template_sub_menu = <<<EOT
+                        <table cellpadding="0" cellspacing="0" border="0" class="top_menu_bttn">
+                                <tr>
+
+                                        <td><img src="themes/eyeball/images/top_menu_left.gif" border="0" alt="" /><br /></td>
+										<td style="background-image:url(themes/eyeball/images/top_menu_button.gif);">
+                                                <a href="{CUSTOM_LNK_TGT}" title="{CUSTOM_LNK_TITLE}">{CUSTOM_LNK_LNK}</a>
+                                        </td>
+                                        <td><img src="themes/eyeball/images/top_menu_spacer.gif" border="0" alt="" /><br /></td>
+                                        <td style="background-image:url(themes/eyeball/images/top_menu_button.gif);">
+                                                <a href="index.php" onmouseover="MM_showHideLayers('Menu1','','show')"><img src="themes/eyeball/images/home.gif" border="0" alt="" /><br /></a>
+                                        </td>
+                                        <td><img src="themes/eyeball/images/top_menu_spacer.gif" border="0" alt="" /><br /></td>
+                                        <td style="background-image:url(themes/eyeball/images/top_menu_button.gif);">
+                                                <a href="{ALB_LIST_TGT}" title="{ALB_LIST_TITLE}">{ALB_LIST_LNK}</a>
+                                        </td>
+                                        <td><img src="themes/eyeball/images/top_menu_spacer.gif" border="0" alt="" /><br /></td>
+                                        <td style="background-image:url(themes/eyeball/images/top_menu_button.gif);">
+                                                <a href="{LASTUP_TGT}" onmouseover="MM_showHideLayers('Menu1','','hide')" title="{LASTUP_LNK}">{LASTUP_LNK}</a>
+                                        </td>
+                                        <td><img src="themes/eyeball/images/top_menu_spacer.gif" border="0" alt="" /><br /></td>
+                                        <td style="background-image:url(themes/eyeball/images/top_menu_button.gif);">
+                                                <a href="{LASTCOM_TGT}" onmouseover="MM_showHideLayers('Menu1','','hide')" title="{LASTCOM_LNK}">{LASTCOM_LNK}</a>
+                                        </td>
+                                        <td><img src="themes/eyeball/images/top_menu_spacer.gif" border="0" alt="" /><br /></td>
+                                        <td style="background-image:url(themes/eyeball/images/top_menu_button.gif);">
+                                                <a href="{TOPN_TGT}" onmouseover="MM_showHideLayers('Menu1','','hide')" title="{TOPN_LNK}">{TOPN_LNK}</a>
+                                        </td>
+                                        <td><img src="themes/eyeball/images/top_menu_spacer.gif" border="0" alt="" /><br /></td>
+                                        <td style="background-image:url(themes/eyeball/images/top_menu_button.gif);">
+                                                <a href="{TOPRATED_TGT}" onmouseover="MM_showHideLayers('Menu1','','hide')" title="{TOPRATED_LNK}">{TOPRATED_LNK}</a>
+                                        </td>
+                                        <td><img src="themes/eyeball/images/top_menu_spacer.gif" border="0" alt="" /><br /></td>
+                                        <td style="background-image:url(themes/eyeball/images/top_menu_button.gif);">
+                                        <a href="{FAV_TGT}" onmouseover="MM_showHideLayers('Menu1','','hide')" title="{FAV_LNK}">{FAV_LNK}</a>
+                                        </td>
+                                        <td><img src="themes/eyeball/images/top_menu_spacer.gif" border="0" alt="" /><br /></td>
+                                         <td style="background-image:url(themes/eyeball/images/top_menu_button.gif);">
+                                                <a href="{SEARCH_TGT}" onmouseover="MM_showHideLayers('Menu1','','hide')" title="{SEARCH_LNK}">{SEARCH_LNK}</a>
+                                        </td>
+                                        <td><img src="themes/eyeball/images/top_menu_right.gif" border="0" alt="" /><br /></td>
+
+                                </tr>
+                        </table>
+EOT;
+
+} else {
 $template_sub_menu = <<<EOT
                         <table cellpadding="0" cellspacing="0" border="0" class="top_menu_bttn">
                                 <tr>
@@ -68,6 +116,7 @@ $template_sub_menu = <<<EOT
                                 </tr>
                         </table>
 EOT;
+}
 
 // HTML template for title row of the thumbnail view (album title + sort options)
 $template_thumb_view_title_row = <<<EOT

@@ -451,3 +451,6 @@ INSERT INTO CPG_config VALUES ('home_target', 'index.php');
 
 DELETE FROM CPG_config WHERE `name` = 'comment_email_notification';
 DELETE FROM CPG_CONFIG WHERE `name` = 'hide_admin_uploader';
+
+INSERT INTO CPG_config VALUES ('custom_lnk_name', '');
+INSERT INTO CPG_config VALUES ('custom_lnk_url', '');

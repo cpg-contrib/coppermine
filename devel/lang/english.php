@@ -626,6 +626,8 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Gallery administrator email', 'gallery_admin_email', 0, 'f=index.htm&amp;as=admin_general_email&amp;ae=admin_general_email_end'), //cpg 1.4
   array('URL of your coppermine gallery folder (no \'index.php\' or similar at the end)', 'ecards_more_pic_target', 0, 'f=index.htm&amp;as=admin_general_coppermine-url&amp;ae=admin_general_coppermine-url_end'), //cpg 1.4
   array('URL of your home page', 'home_target', 0, 'f=index.htm&amp;as=admin_general_home-url&amp;ae=admin_general_home-url_end'), //cpg 1.4
+  array('Custom menu link name', 'custom_lnk_name', 0,'f=index.htm&amp;as=admin_general_custom_lnk_name&amp;ae=admin_general_custom_lnk_name_end'), //cpg 1.4
+  array('Custom menu link URL', 'custom_lnk_url', 0,'f=index.htm&amp;as=admin_general_custom_lnk_url&amp;ae=admin_general_custom_lnk_url_end'), //cpg 1.4
   array('Gallery is offline', 'offline', 1, 'f=index.htm&amp;as=admin_general_offline&amp;ae=admin_general_offline_end'), //cpg 1.4
   array('Allow ZIP-download of favorites', 'enable_zipdownload', 1, 'f=index.htm&amp;as=admin_general_zip-download&amp;ae=admin_general_zip-download_end'), //cpg 1.4
   array('Timezone difference relative to GMT (current time: ' . localised_date(-1, $comment_date_fmt) . ')','time_offset',0, 'f=index.htm&amp;as=admin_general_time-offset&amp;ae=admin_general_time-offset_end&amp;top=1'), //cpg 1.4
@@ -634,7 +636,9 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Enable clickable keywords in search','clickable_keyword_search',14), //cpg 1.4
   array('Show number of linked files','link_pic_count',1), //cpg 1.4
   array('Show the vanity block on themes that are defined as XHTML and CSS compliant','vanity_block',1, 'f=index.htm&amp;as=vanity_block&amp;ae=vanity_block_end'), //cpg 1.4
-
+  
+  
+  
   'Language, Themes &amp; Charset settings',
   array('Language', 'lang', 5, 'f=index.htm&amp;as=admin_language_language&amp;ae=admin_language_language_end'), //cpg 1.4
   array('Fallback to English if translated phrase not found?', 'language_fallback', 1, 'f=index.htm&amp;as=admin_language_fallback&amp;ae=admin_language_fallback_end'), //cpg 1.4
