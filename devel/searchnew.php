@@ -183,7 +183,7 @@ function picrow($picfile, $picid, $albid)
                         <a href="javascript:;" onClick= "MM_openBrWindow('displayimage.php?&fullsize=1&picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')">$pic_fname</a>
                 </td>
                 <td class="tableb" valign="middle" align="center">
-                        <a href="javascript:;" onClick= "MM_openBrWindow('displayimage.php?&fullsize=1&picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')"><img src="images/spacer.gif" width="1" height="48" alt="" border="0" alt="" />$img<br /></a>
+                        <a href="javascript:;" onClick= "MM_openBrWindow('displayimage.php?&fullsize=1&picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')"><img src="images/spacer.gif" width="1" height="48" border="0" alt="" />$img<br /></a>
                 </td>
         </tr>
 EOT;
@@ -261,7 +261,7 @@ function display_dir_tree($folder, $ident)
             echo <<<EOT
                         <tr>
                                 <td class="tableb">
-                                        $ident<img src="images/folder.gif" alt="" />&nbsp;<a href= "$PHP_SELF?startdir=$start_target">$file</a>$warnings
+                                        $ident<img src="images/folder.gif" border="0" alt="" />&nbsp;<a href= "$PHP_SELF?startdir=$start_target">$file</a>$warnings
                                 </td>
                         </tr>
 EOT;
@@ -405,7 +405,7 @@ EOT;
         if ($album_id) {
             // To avoid problems with PHP scripts max execution time limit, each picture is
             // added individually using a separate script that returns an image
-            $status = "<a href=\"addpic.php?aid=$album_id&pic_file=" . ($HTTP_POST_VARS['picfile_' . $pic_id]) . "&reload=" . uniqid('') . "\"><img src=\"addpic.php?aid=$album_id&pic_file=" . ($HTTP_POST_VARS['picfile_' . $pic_id]) . "&reload=" . uniqid('') . "\" class=\"thumbnail\" border=\"0\" width=\"24\" height=\"24\" /><br /></a>";
+            $status = "<a href=\"addpic.php?aid=$album_id&pic_file=" . ($HTTP_POST_VARS['picfile_' . $pic_id]) . "&reload=" . uniqid('') . "\"><img src=\"addpic.php?aid=$album_id&pic_file=" . ($HTTP_POST_VARS['picfile_' . $pic_id]) . "&reload=" . uniqid('') . "\" class=\"thumbnail\" border=\"0\" width=\"24\" height=\"24\" alt=\"{$lang_search_new_php['result_icon']}\" /><br /></a>";
             $album_name = $album_array[$album_id];
         } else {
             $album_name = $lang_search_new_php['no_album'];
