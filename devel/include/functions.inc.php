@@ -654,6 +654,8 @@ function get_private_album_set($aid_str="")
         if (GALLERY_ADMIN_MODE) return;
 
         global $CONFIG, $ALBUM_SET, $USER_DATA, $FORBIDDEN_SET, $FORBIDDEN_SET_DATA;
+        
+        $FORBIDDEN_SET_DATA = array();
 
         if ($USER_DATA['can_see_all_albums']) return;
 
