@@ -72,23 +72,27 @@ $lang_meta_album_names['lastupby'] = $lang_meta_album_names['lastup'];
 $lang_meta_album_names['lastcomby'] = $lang_meta_album_names['lastcom'];
 
 if (is_numeric($album)) {
-    $result = db_query("SELECT category, title, aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
+    $result = db_query("SELECT category, title, aid, keyword FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
     if (mysql_num_rows($result) > 0) {
         $CURRENT_ALBUM_DATA = mysql_fetch_array($result);
         $actual_cat = $CURRENT_ALBUM_DATA['category'];
+	$CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];	
         breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);
         $cat = - $album;
     }
 } elseif (isset($cat) && $cat) { // Meta albums, we need to restrict the albums to the current category
     if ($cat < 0) {
-        $result = db_query("SELECT category, title, aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='" . (- $cat) . "'");
+        $result = db_query("SELECT category, title, aid, keyword FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='" . (- $cat) . "'");
         if (mysql_num_rows($result) > 0) {
             $CURRENT_ALBUM_DATA = mysql_fetch_array($result);
             $actual_cat = $CURRENT_ALBUM_DATA['category'];
+	    $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];	    
         }
+	 
         $ALBUM_SET .= 'AND aid IN (' . (- $cat) . ') ';
         breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);
         $CURRENT_CAT_NAME = $CURRENT_ALBUM_DATA['title'];
+	$CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];
     } else {
         $album_set_array = array();
         if ($cat == USER_GAL_CAT)
