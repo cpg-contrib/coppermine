@@ -157,7 +157,7 @@ $local_lang_versioncheck_php = array(
 );
 foreach($local_lang_versioncheck_php as $key => $value) {
     if ($lang_versioncheck_php[$key] == '') { $lang_versioncheck_php[$key] = $value;}
-    //print $key.'|'.$value.'<br>';
+    //print $key.'|'.$value.'<br />';
 }
 
 if (function_exists('cpg_display_help') == false ) {
@@ -621,7 +621,7 @@ function cpg_get_fileversion($folder  = '',$file = '') {
       // get rid of the filename inside the string
       $return['cvs_version'] = trim(str_replace($file.',v ', '',$return['cvs_version']));
       $return['cvs_version'] = str_replace('v ', '', $return['cvs_version']);
-      //if ($file=='picmgmt.inc.php' || $file=='index.php') {print $folder.$file.':'.$return['cvs_version'].'<br>';}
+      //if ($file=='picmgmt.inc.php' || $file=='index.php') {print $folder.$file.':'.$return['cvs_version'].'<br />';}
       $return['cvs_version'] = trim(str_replace(strstr($return['cvs_version'], ' '), '', $return['cvs_version']));
     }
     if (strlen($return['cvs_version']) > 5) {$return['cvs_version']='n/a';}

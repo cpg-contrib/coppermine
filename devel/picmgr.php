@@ -106,7 +106,7 @@ function albumselect($id = "album") {
 
         // Create the nicely sorted and formatted drop down list
         $alb_cat = '';
-        
+
 
         foreach ($listArray as $val) {
             if ($val['cat'] != $alb_cat) {
@@ -368,7 +368,7 @@ pageheader($lang_picmgr_php['pic_mgr']);
    <input type="hidden" name="delete_picture" value="">
    <input type="hidden" name="sort_order" value="<?php echo $sort_order ?>">
    <td class="tableb" valign="top" align="center">
-      <br>
+      <br />
       <table width="300" border="0" cellspacing="0" cellpadding="0">
 <?php
 //Joe Ernst - Added USER_ADMIN_MODE
@@ -411,15 +411,15 @@ EOT;
                <td><a href="javascript:Moveup_Option();"><img src="images/move_up.gif" width="26" height="21" border="0" alt="" /></a><a href="javascript:Movedown_Option();"><img src="images/move_down.gif" width="26" height="21" border="0" alt="" /></a>
                </td>
 <!-- Joe Ernst: I commented this out because I can't get it to work. -->
-               <td align="center" style="width: 1px;"><img src="images/spacer.gif" width="1" alt=""><br>
+               <td align="center" style="width: 1px;"><img src="images/spacer.gif" width="1" alt=""><br />
                </td>
             </tr>
             </table>
          </td>
       </tr>
       <tr>
-         <td><br>
-            <br>
+         <td><br />
+            <br />
          </td>
       </tr>
         </table>

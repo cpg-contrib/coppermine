@@ -74,8 +74,8 @@ function delete_picture($pid)
     if (!$header_printed)
         output_table_header();
 
-    $green = "<img src=\"images/green.gif\" border=\"0\" width=\"12\" height=\"12\"><br>";
-    $red = "<img src=\"images/red.gif\" border=\"0\" width=\"12\" height=\"12\"><br>";
+    $green = "<img src=\"images/green.gif\" border=\"0\" width=\"12\" height=\"12\"><br />";
+    $red = "<img src=\"images/red.gif\" border=\"0\" width=\"12\" height=\"12\"><br />";
 
     if (GALLERY_ADMIN_MODE) {
         $query = "SELECT aid, filepath, filename FROM {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid'";

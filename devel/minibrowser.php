@@ -121,7 +121,7 @@ if (!GALLERY_ADMIN_MODE) { cpg_die(ERROR, $lang_errors['access_denied'], __FILE_
 
 $base_folder = rtrim(cpg_get_webroot_path(), '/').'/';
 
-//print $base_folder.'<br>';
+//print $base_folder.'<br />';
 
 $dir = opendir($base_folder.$folder);
 // read the folder/file structure we're currently in and put it into an array
@@ -187,14 +187,14 @@ print '</tr>'.$newline;
 if ((!empty($_REQUEST['folder']) || !empty($_REQUEST['startfolder'])) && ($folder != '' && $folder!= '/')) {
     $uplink = rtrim($folder, '/');
     $remove = strrchr ($uplink,'/');
-    //print 'uplink:'.$uplink.'<br>';
-    //print 'remove:'.$remove.'<br>';
+    //print 'uplink:'.$uplink.'<br />';
+    //print 'remove:'.$remove.'<br />';
     if ($remove != '') {
         $uplink = str_replace($remove, '', $uplink).'/';
     } else {
         $uplink = '';
     }
-    //print 'uplink:'.$uplink.'<br>';
+    //print 'uplink:'.$uplink.'<br />';
     if ($_REQUEST['limitfolder'] != $folder) {
         print '<tr>'.$newline;
         print '<td class="tableb">'.$newline;
