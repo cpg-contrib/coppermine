@@ -31,7 +31,7 @@ $anchorName = '';
 
 foreach($lang_faq_data as $element) {
   if ((is_array($element))) {
-     if ($config[$element[2]] == $element[3]) {
+     if ($CONFIG[$element[2]] == $element[3]) {
        $anchorName = createAnchorName($element[0]);
        $faqHeading .= '<ul style="margin-top:0px;margin-bottom:0px"><li><a href="#'.$anchorName.'">'.$element[0].'</a></li></ul>';
        $faqContent .= '<tr><td class="tablef"><i>'.$lang_faq_php['question'].'</i><a name="'.$anchorName.'"></a><b>'.$element[0].'</b></td></tr><tr><td class="tableb"><i>'.$lang_faq_php['answer'].'</i>'.$element[1].'<br />&nbsp;<br />&nbsp;<br /></td></tr>';
