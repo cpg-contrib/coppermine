@@ -249,7 +249,7 @@ EOT;
 $template_film_strip = <<<EOT
 
         <tr>
-         <td valign="top" background='themes/igames/images/tile.gif' align="center" height='30'>&nbsp;</td>
+         <td valign="top" background='themes/water_drop/images/tile.gif' align="center" height='30'>&nbsp;</td>
         </tr>
         <tr>
         <td valign="bottom" class="thumbnails" align="center">
@@ -257,7 +257,7 @@ $template_film_strip = <<<EOT
         </td>
         </tr>
         <tr>
-         <td valign="top" background='themes/igames/images/tile.gif' align="center" height='30'>&nbsp;</td>
+         <td valign="top" background='themes/water_drop/images/tile.gif' align="center" height='30'>&nbsp;</td>
         </tr>
 <!-- BEGIN thumb_cell -->
                                         <a href="{LINK_TGT}">{THUMB}</a>&nbsp;
