@@ -738,7 +738,7 @@ $template_image_comments = <<<EOT
                 <td>
                         <table width="100%" cellpadding="0px" cellspacing="0px">
                            <tr>
-                                <td class="tableh2_compact" nowrap="nowrap">
+                                <a name="comment{MSG_ID}"><td class="tableh2_compact" nowrap="nowrap"></a>
                                         <b>{MSG_AUTHOR}</b>
 <!-- BEGIN ipinfo -->
                                                                                  ({HDR_IP} [{RAW_IP}])
@@ -1016,7 +1016,7 @@ $template_report = <<<EOT
       <table border="0px" cellspacing="0px" cellpadding="10px" bgcolor="#ffffff">
         <tr>
           <td valign="top">
-           <img src="{PIC_URL}" border="1px" alt="" /><br />
+           <a href="{PIC_TGT}"><img src="{PIC_URL}" border="1px" alt="" /></a><br />
           </td>
           <td valign="top" width="200px">
             <b><font face="arial" color="#000000" size="4">{SUBJECT}</font></b>
@@ -1060,6 +1060,73 @@ $template_report_plaintext = <<<EOT
 -----------------------------------------
 {VIEW_MORE_LNK}:
 {VIEW_MORE_TGT}
+EOT;
+
+// HTML template for displaying a reported comment
+if (!isset($template_report_comment))  //{THEMES}
+$template_report_comment = <<<EOT
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="{LANG_DIR}">
+<head>
+<title>{TITLE}</title>
+<meta http-equiv="content-type" content="text/html; charset={CHARSET}" />
+</head>
+<body bgcolor="#FFFFFF" text="#0F5475" link="#0F5475" vlink="#0F5475" alink="#0F5475">
+<br />
+<p align="center"><a href="{VIEW_REPORT_TGT}"><b>{VIEW_REPORT_LNK}</b></a></p>
+<table border="0px" cellspacing="0px" cellpadding="1px" align="center">
+  <tr>
+    <td bgcolor="#000000">
+      <table border="0px" cellspacing="0px" cellpadding="10px" bgcolor="#ffffff">
+        <tr>
+          <td valign="top">
+           {COMMENT}
+						<p align="center"><a href="{COMMENT_TGT}">{COMMENT_LNK}</a></p>
+          </td>
+					</tr>
+					<tr>
+          <td valign="top">
+            <b><font face="arial" color="#000000" size="4">{SUBJECT}</font></b>
+						<p>
+              {REASON}
+            <p>
+            <font face="arial" color="#000000" size="2">{MESSAGE}</font>
+            </p>
+            <font face="arial" color="#000000" size="2">{SENDER_NAME}</font>
+            (<a href="mailto:{SENDER_EMAIL}"><font face="arial" color="#000000" size="2">{SENDER_EMAIL}</font></a>)
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<p align="center"><a href="{VIEW_MORE_TGT}"><b>{VIEW_MORE_LNK}</b></a></p>
+</body>
+</html>
+EOT;
+
+// plain-text template for reports (as fallback for clients that can't display html-formatted mails)
+if (!isset($template_report_comment_email))  //{THEMES}
+$template_report_comment_email = <<<EOT
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="{LANG_DIR}">
+<head>
+<title>{TITLE}</title>
+<meta http-equiv="content-type" content="text/html; charset={CHARSET}" />
+</head>
+<body bgcolor="#FFFFFF" text="#0F5475" link="#0F5475" vlink="#0F5475" alink="#0F5475">
+<p><a href="{VIEW_REPORT_TGT}">{VIEW_COMMENT_LNK}</a></p>
+		<b><font face="arial" color="#000000" size="4">{SUBJECT}</font></b>
+		<p>
+			{REASON}
+		<p>
+		<font face="arial" color="#000000" size="2">{MESSAGE}</font>
+		</p>
+		<font face="arial" color="#000000" size="2">{SENDER_NAME}</font>
+		(<a href="mailto:{SENDER_EMAIL}"><font face="arial" color="#000000" size="2">{SENDER_EMAIL}</font></a>)
+<p><a href="{VIEW_MORE_TGT}"><b>{VIEW_MORE_LNK}</b></a></p>
+</body>
+</html>
 EOT;
 
 // Template used for tabbed display

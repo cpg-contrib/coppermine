@@ -1072,7 +1072,7 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
 if (defined('REPORT_FILE_PHP') || defined('DISPLAYREPORT_PHP')) $lang_report_php =array(
   'title' => 'Report to administrator', //cpg 1.4
   'invalid_email' => '<b>Warning</b> : invalid email address !', //cpg 1.4
-  'report_title' => 'A report from %s on a gallery file', //cpg 1.4
+  'report_subject' => 'A report from %s on a gallery %s', //cpg 1.4
   'view_report' => 'Alternate link if the report does not display correctly', //cpg 1.4
   'view_report_plaintext' => 'To view the report, copy and paste this url into your browser\'s address bar:', //cpg1.4
   'view_more_pics' => 'Gallery', //cpg 1.4
@@ -1088,14 +1088,19 @@ if (defined('REPORT_FILE_PHP') || defined('DISPLAYREPORT_PHP')) $lang_report_php
   'reason' => 'Reason', //cpg 1.4
   'message' => 'Message', //cpg 1.4
   'report_footer' => 'Sent by %s from IP %s at %s (Gallery time)', //cpg 1.4
-  'obscene' => 'Obscene', //cpg 1.4
-  'offensive' => 'Offensive', //cpg 1.4
-  'misplaced' => 'Off-topic/misplaced', //cpg 1.4
-  'missing' => 'Missing', //cpg 1.4
-  'issue' => 'Error/Cannot view', //cpg 1.4
-  'other' => 'Other', //cpg 1.4
+  'obscene' => 'obscene', //cpg 1.4
+  'offensive' => 'offensive', //cpg 1.4
+  'misplaced' => 'off-topic/misplaced', //cpg 1.4
+  'missing' => 'missing', //cpg 1.4
+  'issue' => 'error/cannot view', //cpg 1.4
+  'other' => 'other', //cpg 1.4
   'refers_to' => 'File report refers to', //cpg 1.4
-  'reasons_list_heading' => 'reason(s) for report: <br />', //cpg 1.4
+  'reasons_list_heading' => 'reason(s) for report:', //cpg 1.4
+  'no_reason_given' => 'no reason was given', //cpg 1.4
+  'go_comment' => 'Go to comment', //cpg 1.4
+  'view_comment' => 'View full report with comment', //cpg 1.4
+  'type_file' => 'file', //cpg 1.4
+  'type_comment' => 'comment', //cpg 1.4
 );
 
 // ------------------------------------------------------------------------- //

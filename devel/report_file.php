@@ -25,6 +25,7 @@ require('include/mailer.inc.php');
 
 if ((!$CONFIG['report_post']==1) || (!USER_CAN_SEND_ECARDS)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 //print_r(get_defined_constants());
+if ($CONFIG['enable_smilies']) include("include/smilies.inc.php");
 
 function get_post_var($name, $default = '')
 {
@@ -34,6 +35,8 @@ function get_post_var($name, $default = '')
 $pid = (int)$_GET['pid'];
 $cid = (int)$_GET['msg_id']; //comment id
 $what = $_GET['what'];
+$type = $lang_report_php['type_file'];
+$template = $template_report;
 
 $sender_name = get_post_var('sender_name', USER_NAME ? USER_NAME : (isset($USER['name']) ? $USER['name'] : ''));
 if (defined('UDB_INTEGRATION')AND USER_ID) $USER_DATA = array_merge($USER_DATA,$cpg_udb->get_user_infos(USER_ID));
@@ -48,6 +51,7 @@ if ($USER_DATA['user_email']){
 $subject = get_post_var('subject');
 $message = get_post_var('message');
 $sender_email_warning = '';
+$form_action="{$_SERVER['PHP_SELF']}?pid=$pid";
 
 // Get picture thumbnail url
 $result = cpg_db_query("SELECT * from {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' $ALBUM_SET");
@@ -59,9 +63,13 @@ if ($what == 'comment') {
 	$result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id='$cid' AND pid='$pid'");
 	if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_comment'], __FILE__, __LINE__);
 	$row = mysql_fetch_array($result);
-	$comment = bb_decode($row['msg_body']);
+	$comment = bb_decode(process_smilies($row['msg_body']));
 	$msg_author = $row['msg_author'];
 	$comment_field_name = sprintf($lang_report_php['comment_field_name'], $msg_author);
+	$type = $lang_report_php['type_comment'];
+	$template = $template_report_comment_email;
+	$form_action ="{$_SERVER['PHP_SELF']}?pid=$pid&msg_id=$cid&what=comment";
+
 	//template_extract_block($template_report_form, 'reason_missing'); //need help to toggle off reason(missing) since doesn't apply to comments
 } else {
 	//template_extract_block($template_report_form, 'display_comment'); //need help remove comment preview when reporting picture
@@ -84,38 +92,44 @@ if (count($_POST) > 0 && $valid_sender_email) {
     if (!stristr($n_picname, 'http:')) $n_picname = $gallery_url_prefix . $n_picname;
 		
 		//output list of reasons checkmarked
-		$reason = $lang_report_php['reasons_list_heading'];
+		$reasons = $lang_report_php['reasons_list_heading'] . "\n";
 		if (isset($_POST['reason'])) {
 			foreach(get_post_var('reason') as $value) {
 				$value = $lang_report_php["$value"];
-				$reason .= "<li>$value</li>\n";
+				$reason_list .= "$value, ";
 			}
 		} else {
-				$reason .= "<li>no reason was selected</li>\n";
+				$reasons .= "{$lang_report_php['no_reason_given']}";
 		}
 
-    $msg_content = nl2br($message);
+		$reason_list = substr($reason_list, 0, -2); //remove trailing comma and space
+		$reasons .= $reason_list;
+		$msg_content = nl2br(strip_tags($message));
 
     $data = array(
-        'sn' => $_POST['sender_name'],
+        'sn' => $sender_name,
         'se' => $sender_email,
         'p' => $n_picname,
         'su' => $subject,
         'm' => $message,
-        'r' => $reason,
+        'r' => $reasons,
         'c' => $comment,
+        'cid' => $cid,
+        'pid' => $pid,
+        't' => $type,
         );
 
     $encoded_data = urlencode(base64_encode(serialize($data)));
 
     $params = array('{LANG_DIR}' => $lang_text_dir,
-        '{TITLE}' => sprintf($lang_report_php['report_title'], $sender_name),
+        '{TITLE}' => sprintf($lang_report_php['report_subject'], $sender_name, $type),
         '{CHARSET}' => $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'],
         '{VIEW_REPORT_TGT}' => "{$gallery_url_prefix}displayreport.php?data=$encoded_data",
         '{VIEW_REPORT_LNK}' => $lang_report_php['view_report'],
         '{VIEW_REPORT_LNK_PLAINTEXT}' => $lang_report_php['view_report_plaintext'],
         '{PIC_URL}' => $n_picname,
         '{URL_PREFIX}' => $gallery_url_prefix,
+		'{PIC_TGT}' => "{$CONFIG['ecards_more_pic_target']}displayimage.php?pos=-" . $pid,
         '{SUBJECT}' => $subject,
         '{MESSAGE}' => $msg_content,
         '{PLAINTEXT_MESSAGE}' => $message,
@@ -123,18 +137,22 @@ if (count($_POST) > 0 && $valid_sender_email) {
         '{SENDER_NAME}' => $sender_name,
         '{VIEW_MORE_TGT}' => $CONFIG['ecards_more_pic_target'],
         '{VIEW_MORE_LNK}' => $lang_report_php['view_more_pics'],
-        '{REASON}' => $reason,
+        '{REASON}' => $reasons,
         '{COMMENT}' => $comment,
+        '{COMMENT_ID}' => $cid,
+        '{VIEW_COMMENT_LNK}' => $lang_report_php['view_comment'],
+        '{COMMENT_TGT}' => "{$CONFIG['ecards_more_pic_target']}displayimage.php?pos=-$pid#comment$cid",
+        '{PID}' => $pid,
         );
 
-            $message = template_eval($template_report, $params);
-            $plaintext_message = template_eval($template_report_plaintext, $params);
+		$message = template_eval($template, $params);
+        $plaintext_message = template_eval($template_report_plaintext, $params);
 
         $tempTime = time();
         $message .= sprintf($lang_report_php['report_footer'], $sender_name, $_SERVER['REMOTE_ADDR'], localised_date(-1,$comment_date_fmt));
-            $subject = sprintf($lang_report_php['report_title'], $sender_name);
+		$subject = sprintf($lang_report_php['report_subject'], $sender_name, $type);
 
-            $result = cpg_mail('admin', $subject, $message, 'text/html', $sender_name, $sender_email, $plaintext_message);
+        $result = cpg_mail('admin', $subject, $message, 'text/html', $sender_name, $sender_email, $plaintext_message);
 
         /*//write log
         if ($CONFIG['log_ecards'] == 1) {
@@ -171,7 +189,7 @@ echo <<<EOT
         </tr>
         <tr>
                 <td class="tableb" valign="top" width="40%">
-                        <form method="post" name="post" action="{$_SERVER['PHP_SELF']}?pid=$pid&pos=$pos">
+                        <form method="post" name="post" action="$form_action">
                         {$lang_report_php['your_name']}<br />
                 </td>
                 <td valign="top" class="tableb" width="60%">
