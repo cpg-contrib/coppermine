@@ -255,3 +255,4 @@ Added documentation link to admin menu - 27 January 2005, GauGau
 Added display of the uploader under all thumbs when set in config (even random/lastviewed/lastupdated) - 30 January 2005, Donnoman
 Added switch to show/hide admin username under thumbnails - 30 January 2005, Donnoman
 Added link to user profile and sort options in review comments page - 01 February 2005, GauGau
+Added {pseudo} session functionality - 03 Februaru 2005, Chris
