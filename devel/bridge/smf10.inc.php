@@ -112,7 +112,8 @@ class cpg_udb extends core_udb {
 			$groups = explode(',', $user_settings['additionalGroups']);
 			
 			foreach ($groups as $id => $group){
-				$data[$id] = $group+$i;
+   				//$data[$id] = $group+$i; This was overwriting the primary group
+				$data[] = $group+$i;  //appends additionalGroups to the primary group.
 			}
 		}
 

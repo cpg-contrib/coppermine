@@ -164,12 +164,12 @@ class cpg_udb extends core_udb {
 
 
         // Get groups of which user is member
-        function get_groups($row)
+        function get_groups( &$user )
         {
 
-                $group_list = in_array($row['group_id'] - 100, $this->admingroups) ? 1 : 2;
+                $group_list = in_array($user['group_id'] - 100, $this->admingroups) ? 1 : 2;
 
-                $sql = "SELECT user_group_list FROM {$this->usertable} AS u WHERE {$this->field['user_id']}='{$row['id']}' and user_group_list <> '';";
+                $sql = "SELECT user_group_list FROM {$this->usertable} AS u WHERE {$this->field['user_id']}='{$user['id']}' and user_group_list <> '';";
 
                 $result = cpg_db_query($sql, $this->link_id);
 
@@ -183,10 +183,14 @@ class cpg_udb extends core_udb {
                 }
 
                 $all_groups = explode(',',$group_list);
-                
+
                 if ( $admin_groups = array_intersect($this->admingroups, $all_groups) ) {
                         $all_groups[0] = 1;
-                }        
+                }
+
+                if ( !in_array($user['group_id'] - 100, $all_groups) ) {
+                        $all_groups[] = intval($user['group_id'] - 100);
+                }
 
                 return $all_groups;
         }
