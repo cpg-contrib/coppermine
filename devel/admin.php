@@ -705,7 +705,7 @@ function create_form(&$data)
     foreach($data as $element) {
         if ((is_array($element))) {
                 $element[3] = (isset($element[3])) ? $element[3] : '';
-                if (defined('UDB_INTEGRATION') AND in_array($element[1],$options_to_disable) AND $CONFIG['bridge_enable']) $element[2] = 15;
+                if (UDB_INTEGRATION != 'coppermine' AND in_array($element[1],$options_to_disable) AND $CONFIG['bridge_enable']) $element[2] = 15;
                 $sn1 = max($sn1,(strpos($element[0],'<a href="#notice1"')));
                 $sn2 = max($sn2,(strpos($element[0],'<a href="#notice2"')));
                 $sn3 = max($sn3,(strpos($element[0],'<a href="#notice3"')));
@@ -714,7 +714,9 @@ function create_form(&$data)
                     form_input($element[0], $element[1], $element[3]);
                     break;
                 case 1 :
-                    form_yes_no($element[0], $element[1], $element[3]);
+                    if (($element[1] == 'enable_encrypted_passwords' && !$CONFIG['enable_encrypted_passwords']) || $element[1] != 'enable_encrypted_passwords') {
+                        form_yes_no($element[0], $element[1], $element[3]);
+                    }
                     break;
                 case 2 :
                     form_img_pkg($element[0], $element[1], $element[3]);
