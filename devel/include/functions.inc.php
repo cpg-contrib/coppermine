@@ -185,11 +185,11 @@ function cpg_db_fetch_rowset($result)
    Utilities functions
  **************************************************************************/
 
-//define ('LOC','YToyOntzOjE6ImwiO3M6OToie0dBTExFUll9IjtzOjE6InMiO3M6MTY5OiI8ZGl2IGNsYXNzPSJmb290ZXIiIGFsaWduPSJjZW50ZXIiIHN0eWxlPSJwYWRkaW5nLXRvcDogMTBweDsiPlBvd2VyZWQgYnkgPGEgaHJlZj0iaHR0cDovL3d3dy5jaGV6Z3JlZy5uZXQvY29wcGVybWluZS8iIHRhcmdldD0iX2JsYW5rIj5Db3BwZXJtaW5lIFBob3RvIEdhbGxlcnk8L2E+PC9kaXY+Ijt9');
  /**
  * @ignore
  */
- define ('LOC','YToyOntzOjE6ImwiO3M6OToie0dBTExFUll9IjtzOjE6InMiO3M6MTU5OiI8ZGl2IGNsYXNzPSJmb290ZXIiIGFsaWduPSJjZW50ZXIiIHN0eWxlPSJwYWRkaW5nLXRvcDogMTBweDsiPlBvd2VyZWQgYnkgPGEgaHJlZj0iaHR0cDovL2NvcHBlcm1pbmUuc2YubmV0LyIgdGFyZ2V0PSJfYmxhbmsiPkNvcHBlcm1pbmUgUGhvdG8gR2FsbGVyeTwvYT48L2Rpdj4iO30=');
+ define ('LOC','YToyOntzOjE6ImwiO3M6OToie0dBTExFUll9IjtzOjE6InMiO3M6MjAwOiI8ZGl2IGNsYXNzPSJmb290ZXIiIGFsaWduPSJjZW50ZXIiIHN0eWxlPSJwYWRkaW5nLXRvcDogMTBweDsiPlBvd2VyZWQgYnkgPGEgaHJlZj0iaHR0cDovL2NvcHBlcm1pbmUuc291cmNlZm9yZ2UubmV0LyIgdGl0bGU9IkNvcHBlcm1pbmUgUGhvdG8gR2FsbGVyeSIgcmVsPSJleHRlcm5hbCI+Q29wcGVybWluZSBQaG90byBHYWxsZXJ5PC9hPjwvZGl2PiI7fQ==');
+
 // Replacement for the die function
 
 /**
