@@ -237,7 +237,7 @@ function udb_login_page()
 // Logout
 function udb_logout_page()
 {
-	$target = 'index.php?&action=logout';
+	$target = 'index.php?&action=logout;sesc=' . session_id();
 	udb_redirect($target);
 }
 
@@ -361,44 +361,44 @@ function udb_synchronize_groups()
 
 	$result = db_query("SELECT ID_GROUP as usergroupid, membergroup as title FROM ".$UDB_DB_NAME_PREFIX.YS_TABLE_PREFIX.YS_GROUP_TABLE." WHERE grouptype=1", $UDB_DB_LINK_ID);
 	while ($row = mysql_fetch_array($result)){
-		$YS_groups[$row['usergroupid']] = $row['title'];
+		$YS_groups[$row['title']] = $row['usergroupid'];
 	}
 	mysql_free_result($result);
 	
-	$YS_groups[YS_ADMIN_GROUP] = CM_ADMIN_GROUP_NAME;
-	$YS_groups[YS_MEMBERS_GROUP] = CM_MEMBERS_GROUP_NAME;
-	$YS_groups[YS_GUEST_GROUP] = CM_GUEST_GROUP_NAME;
-	$YS_groups[YS_BANNED_GROUP] = CM_BANNED_GROUP_NAME;
-	$YS_groups[YS_GMOD_GROUP] = CM_GMOD_GROUP_NAME;
+	$YS_groups[CM_ADMIN_GROUP_NAME] = YS_ADMIN_GROUP;
+	$YS_groups[CM_MEMBERS_GROUP_NAME] = YS_MEMBERS_GROUP;
+	$YS_groups[CM_GUEST_GROUP_NAME] = YS_GUEST_GROUP;
+	$YS_groups[CM_BANNED_GROUP_NAME] = YS_BANNED_GROUP;
+	$YS_groups[CM_GMOD_GROUP_NAME] = YS_GMOD_GROUP;
 
 	$result=db_query("SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1");
 	while ($row = mysql_fetch_array($result)){
-		$cpg_groups[$row['group_id']] = $row['group_name'];
+		$cpg_groups[$row['group_name']] = $row['group_id'];
 	}
 	mysql_free_result($result);
 	
 	// Scan Coppermine groups that need to be deleted
-	foreach($cpg_groups as $c_group_id => $c_group_name){
-		if ((!isset($YS_groups[$c_group_id]))) {
+	foreach($cpg_groups as $c_group_name => $c_group_id){
+		if ((!isset($YS_groups[$c_group_name]))) {
    			db_query("DELETE FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = '".$c_group_id."' LIMIT 1");
-			unset($cpg_groups[$c_group_id]);
+			unset($cpg_groups[$c_group_name]);
 		}
 	}
 	
 	// Scan Board groups that need to be created inside Coppermine table
-	foreach($YS_groups as $i_group_id => $i_group_name){
-		if ((!isset($cpg_groups[$i_group_id]))) {
+	foreach($YS_groups as $i_group_name => $i_group_id){
+		if ((!isset($cpg_groups[$i_group_name]))) {
 			db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} (group_id, group_name) VALUES ('$i_group_id', '".addslashes($i_group_name)."')");
-			$cpg_groups[$i_group_id] = $i_group_name;
+			$cpg_groups[$i_group_name] = $i_group_id;
 		}
 	}
 	
-	// Update Group names
-	foreach($YS_groups as $i_group_id => $i_group_name){
-		if ($cpg_groups[$i_group_id] != $i_group_name) {
-			db_query("UPDATE {$CONFIG['TABLE_USERGROUPS']} SET group_name = '".addslashes($i_group_name)."' WHERE group_id = '$i_group_id' LIMIT 1");
-		}
-	}
+	// Update Group names -- Can't be done with YSE
+	//foreach($YS_groups as $i_group_id => $i_group_name){
+	//	if ($cpg_groups[$i_group_id] != $i_group_name) {
+	//		db_query("UPDATE {$CONFIG['TABLE_USERGROUPS']} SET group_name = '".addslashes($i_group_name)."' WHERE group_id = '$i_group_id' LIMIT 1");
+	//	}
+	//}
 }
 
 // Retrieve the album list used in gallery admin mode
