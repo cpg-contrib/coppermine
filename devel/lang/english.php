@@ -1037,10 +1037,12 @@ if (defined('REPORT_PHP') || defined('DISPLAYREPORT_PHP')) $lang_report_php =arr
   'message' => 'Message',
   'report_footer' => 'Sent by %s from IP %s at %s (Gallery time)',
   'obscene' => 'Obscene',
+  'offensive' => 'Offensive',
   'misplaced' => 'Off-topic/misplaced',
   'missing' => 'Missing',
   'issue' => 'Error/Cannot view',
   'other' => 'Other',
+  'refers_to' => 'File report refers to',
 );
 
 // ------------------------------------------------------------------------- //

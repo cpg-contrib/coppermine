@@ -183,6 +183,15 @@ echo <<<EOT
                         {$lang_report_php['administrator']}<br />
                 </td>
         </tr>
+		
+		<tr>
+                <td class="tableh2" colspan="3"><b>{$lang_report_php['refers_to']};</b></td>
+        </tr>
+        <tr>
+                <td class="tableb" colspan="3">
+								<a href="{$CONFIG['ecards_more_pic_target']}displayimage.php?pos=-{$pid}">{$CONFIG['ecards_more_pic_target']}displayimage.php?pos=-{$pid}</a> <br />
+                </td>
+        </tr>
 <!-- BEGIN display_comment -->
 				<tr>
                 <td class="tableh2" valign="top" width="40%" colspan="3"><b>{$lang_report_php['comment']}</b></td>
@@ -209,6 +218,10 @@ echo <<<EOT
 <!-- BEGIN reason_obscene -->
 									<input value="obscene" type="checkbox" name="reason">{$lang_report_php['obscene']}</input>
 <!-- END reason_obscene -->
+
+									<input value="offensive" type="checkbox" name="reason">{$lang_report_php['offensive']}</input>
+
+
 <!-- BEGIN reason_misplaced -->
 									<input value="misplaced" type="checkbox" name="reason">{$lang_report_php['misplaced']}</input>
 <!-- END reason_misplaced -->
