@@ -22,6 +22,8 @@ require('include/init.inc.php');
 if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
 define('UPLOAD_APPROVAL_MODE', isset($HTTP_GET_VARS['mode']));
+echo "Upload Approval".UPLOAD_APPROVAL_MODE ;
+
 define('EDIT_PICTURES_MODE', !isset($HTTP_GET_VARS['mode']));
 
 if (isset($HTTP_GET_VARS['album'])) {
@@ -389,8 +391,8 @@ if (count($HTTP_POST_VARS)) process_post_data();
 
 $start = isset($HTTP_GET_VARS['start']) ? (int)$HTTP_GET_VARS['start'] : 0;
 $count = isset($HTTP_GET_VARS['count']) ? (int)$HTTP_GET_VARS['count'] : 25;
-$next_target = $PHP_SELF.'?album='.$album_id.'&start='.($start+$count).'&count='.$count.(('UPLOAD_APPROVAL_MODE')?"&mode=upload_approval":"");
-$prev_target = $PHP_SELF.'?album='.$album_id.'&start='.max(0,$start-$count).'&count='.$count.(('UPLOAD_APPROVAL_MODE')?"&mode=upload_approval":"");
+$next_target = $PHP_SELF.'?album='.$album_id.'&start='.($start+$count).'&count='.$count.((UPLOAD_APPROVAL_MODE==1)?"&mode=upload_approval":"");
+$prev_target = $PHP_SELF.'?album='.$album_id.'&start='.max(0,$start-$count).'&count='.$count.((UPLOAD_APPROVAL_MODE==1)?"&mode=upload_approval":"");
 $s50 = $count == 50 ? 'selected' : '';
 $s75 = $count == 75 ? 'selected' : '';
 $s100 = $count == 100 ? 'selected' : '';
@@ -470,7 +472,7 @@ function textCounter(field, maxlimit) {
 }
 </script>
 EOT;
-$mode= ('UPLOAD_APPROVAL_MODE')?"&mode=upload_approval":"";
+$mode= (UPLOAD_APPROVAL_MODE==1) ? "&mode=upload_approval":"";
 echo <<<EOT
 	<tr>
 		<td class="tableb" colspan="3" align="center">
