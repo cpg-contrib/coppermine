@@ -722,10 +722,10 @@ foreach ($elements as $element) {
                     $file = str_replace('//','',str_replace('..','',$_GET['file']));
                     
                     // Don't include the codebase and credits files
-                    if ($file != 'codebase.php' && $file != 'credits.php') {
+                    if ($file != 'codebase' && $file != 'credits') {
                         
                         // Include the code from the plugin
-                        @include_once('./plugins/'.$CPG_PLUGINS[$scope]->path.'/'.$file);
+                        @include_once('./plugins/'.$CPG_PLUGINS[$scope]->path.'/'.$file.'.php');
                     }
                 }
                 break;
