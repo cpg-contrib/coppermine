@@ -224,6 +224,9 @@ function check_user_info(&$error)
     }
 
     $sql = "INSERT INTO {$CONFIG['TABLE_USERS']} " . "(user_regdate, user_active, user_actkey, user_name, user_password, user_email, user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6) " . "VALUES (NOW(), '$active', '$act_key', '" . addslashes($user_name) . "', '" . addslashes($password) . "', '" . addslashes($email) . "', '$profile1', '$profile2', '$profile3', '$profile4', '$profile5', '$profile6')";
+    if ($CONFIG['log_mode']) {
+        log_write('New user "'.addslashes($user_name).'" created on '.date("F j, Y, g:i a"),CPG_ACCESS_LOG);
+    }
     $result = db_query($sql);
 
     if ($CONFIG['reg_requires_valid_email']) {
