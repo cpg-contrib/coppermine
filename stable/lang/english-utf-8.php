@@ -48,11 +48,11 @@ $lang_error = 'Error';
 // The various date formats
 // See http://www.php.net/manual/en/function.strftime.php to define the variable below
 $album_date_fmt =    '%B %d, %Y';
-$lastcom_date_fmt =  '%m/%d/%y at %H:%M';
+$lastcom_date_fmt =  '%m/%d/%y @ %H:%M';
 $lastup_date_fmt = '%B %d, %Y';
 $register_date_fmt = '%B %d, %Y';
-$lasthit_date_fmt = '%B %d, %Y at %I:%M %p';
-$comment_date_fmt =  '%B %d, %Y at %I:%M %p';
+$lasthit_date_fmt = '%B %d, %Y @ %I:%M %p';
+$comment_date_fmt =  '%B %d, %Y @ %I:%M %p';
 
 // For the word censor
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
@@ -333,10 +333,7 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
         'th_any' => 'Max Aspect',
         'th_ht' => 'Height',
         'th_wd' => 'Width',
-                'th_any' => 'Max Aspect',
-                'th_ht' => 'Height',
-                'th_wd' => 'Width'
-);
+      );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
         'General settings',
@@ -573,7 +570,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
         'title' => 'Title',
         'desc' => 'Description',
         'keywords' => 'Keywords',
-        'pic_info_str' => '%sx%s - %sKB - %s views - %s votes',
+        'pic_info_str' => '%s &times; %s - %s KB - %s views - %s votes',
         'approve' => 'Approve picture',
         'postpone_app' => 'Postpone approval',
         'del_pic' => 'Delete picture',
