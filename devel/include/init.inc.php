@@ -229,7 +229,8 @@ $CONFIG['TABLE_ECARDS']          = $CONFIG['TABLE_PREFIX']."ecards";
 $CONFIG['TABLE_TEMPDATA']        = $CONFIG['TABLE_PREFIX']."temp_data";
 $CONFIG['TABLE_FAVPICS']        = $CONFIG['TABLE_PREFIX']."favpics";
 $CONFIG['TABLE_BRIDGE']        = $CONFIG['TABLE_PREFIX']."bridge";
-
+$CONFIG['TABLE_VOTE_STATS']        = $CONFIG['TABLE_PREFIX']."vote_stats";
+$CONFIG['TABLE_HIT_STATS'] = $CONFIG['TABLE_PREFIX']."hit_stats";
 // Connect to database
 cpg_db_connect() || die("<b>Coppermine critical error</b>:<br />Unable to connect to database !<br /><br />MySQL said: <b>" . mysql_error() . "</b>");
 // Retrieve DB stored configuration
