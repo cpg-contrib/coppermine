@@ -160,8 +160,8 @@ if ($_GET['id']){
 ?>
 <html>
 <head>
-    <title><?= $lang_editpics_php['crop_title'] ?></title>
-    <?if($imgObj){?>
+    <title><?php echo $lang_editpics_php['crop_title'] ?></title>
+    <?php if($imgObj){?>
     <script language="JavaScript1.2">
 
     /****************************************************************************
@@ -401,12 +401,12 @@ if ($_GET['id']){
 
     // page functions
     function resetClip(){
-      newleft = (screen.width - <?=$imgObj->width?>)/2;
+      newleft = (screen.width - <?php echo $imgObj->width?>)/2;
       if (newleft<0)newleft = 0;
       objimg.moveIt(newleft,100);
-      objimg.clipTo(0,<?=$imgObj->width?>,<?=$imgObj->height?>,0,1);
+      objimg.clipTo(0,<?php echo $imgObj->width?>,<?php echo $imgObj->height?>,0,1);
       objlefttop.moveIt(newleft-2,97);
-      objrightbottom.moveIt(newleft+<?=$imgObj->width?>-23,100+<?=$imgObj->height?>-23);
+      objrightbottom.moveIt(newleft+<?php echo $imgObj->width?>-23,100+<?php echo $imgObj->height?>-23);
       document.mainform.clipval.value = "";
       }
     function libinit(){
@@ -449,11 +449,11 @@ if ($_GET['id']){
     }
 
     </script>
-<?}?>
+<?php }?>
     <style>    
     #lefttopdiv{
     position:absolute;
-    background-image:url(<?=$PHP_SELF?>?img=left);
+    background-image:url(<?php echo $PHP_SELF?>?img=left);
     left:0px;
     top:100px;
     height:25px;
@@ -464,7 +464,7 @@ if ($_GET['id']){
     }
     #rightbottomdiv{
     position:absolute;
-    background-image:url(<?=$PHP_SELF?>?img=right);
+    background-image:url(<?php echo $PHP_SELF?>?img=right);
     left:0px;
     top:225px;
     height:25px;
@@ -476,19 +476,19 @@ if ($_GET['id']){
     #imgdiv{
     position:absolute;
     top:100px;
-    width:<?=$imgObj->width?>px;
-    height:<?=$imgObj->height?>px;
+    width:<?php echo $imgObj->width?>px;
+    height:<?php echo $imgObj->height?>px;
     text-align:center;
     margin-left:auto;
     margin-right:auto;
     z-index:0;
-    <? if (!$imgObj->imgRes) print "visibility:hidden;\n";?>
+    <?php if (!$imgObj->imgRes) print "visibility:hidden;\n";?>
     }
     </style>
-    <link rel="stylesheet" href="themes/<?= $CONFIG['theme'];?>/style.css" />
+    <link rel="stylesheet" href="themes/<?php echo $CONFIG['theme'];?>/style.css" />
 </head>
 
-<body <? if ($imgObj) print "onload=\"libinit()\"";?>>
+<body <?php if ($imgObj) print "onload=\"libinit()\"";?>>
 
 <form name="mainform" method="POST" enctype="multipart/form-data" action="picEditor.php">
 
@@ -502,7 +502,7 @@ if ($_GET['id']){
 <td>
 <table border="0" cellspacing="2" cellpadding="2" class="maintableb" width="100%" >
   <tr>
-<? if ($imgObj->truecolor){ ?>
+<?php if ($imgObj->truecolor){ ?>
 
 
    <td>
@@ -520,7 +520,7 @@ if ($_GET['id']){
     </td>
 
    
-<? } ?>
+<?php } ?>
 
    <td>
        <select name="rescale" class="listbox">
@@ -556,14 +556,14 @@ if ($_GET['id']){
         
         </select>
    </td>
-   <td><input type="submit" name="submit" class="button" value=" <?= $lang_editpics_php['preview'] ?> "></td>
-   <td><input type="submit" name="save" class="button" value=" <?= $lang_editpics_php['save'] ?> "></td>
-   <td><input type="submit" name="save_thumb" class="button" value=" <?= $lang_editpics_php['save_thumb'] ?> "></td>
+   <td><input type="submit" name="submit" class="button" value=" <?php echo $lang_editpics_php['preview'] ?> "></td>
+   <td><input type="submit" name="save" class="button" value=" <?php echo $lang_editpics_php['save'] ?> "></td>
+   <td><input type="submit" name="save_thumb" class="button" value=" <?php echo $lang_editpics_php['save_thumb'] ?> "></td>
  </tr>
 </table>
 </td>
 </tr>
-<? endtable(); ?>
+<?php endtable(); ?>
 
 <div id="lefttopdiv" onclick="showPreview(); return false;">
 </div>
@@ -571,14 +571,14 @@ if ($_GET['id']){
 <div id="rightbottomdiv" onclick="showPreview(); return false;">
 </div>
 
-<? if ($message){ ?>
-<h1 align=center><?=$message?></h1>
-<? } ?>
+<?php if ($message){ ?>
+<h1 align=center><?php echo $message?></h1>
+<?php } ?>
 
 <div id="imgdiv">
-<? if ($imgObj){ ?>
-<IMG src="<?=$imgObj->directory.$imgObj->filename?>" <?=$imgObj->string; ?> align="absmiddle">
-<? } ?>
+<?php if ($imgObj){ ?>
+<IMG src="<?php echo $imgObj->directory.$imgObj->filename?>" <?php echo $imgObj->string; ?> align="absmiddle">
+<?php } ?>
 </div>
 
 </body>
