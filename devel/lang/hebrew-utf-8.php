@@ -2,7 +2,7 @@
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -26,7 +26,7 @@ $lang_translation_info = array(
 'trans_date' => '2004-04-04',
 );
 
-$lang_charset = 'iso-8859-8-i';
+$lang_charset = 'utf-8';
 $lang_text_dir = 'RTL';
 
 // shortcuts for Byte, Kilo, Mega
