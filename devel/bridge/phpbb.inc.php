@@ -129,8 +129,11 @@ function udb_authenticate()
         $USER_DATA['can_create_albums'] = 0;
         $USER_DATA['pub_upl_need_approval'] = 1;
         $USER_DATA['priv_upl_need_approval'] = 1;
+        $USER_DATA['upload_form_config'] = 0;
+        $USER_DATA['num_file_upload'] = 0; 
+        $USER_DATA['num_URI_upoad'] = 0; 
 
-        $sql = "SELECT  group_quota as gq, " . "        can_rate_pictures as crp, " . "        can_send_ecards as cse, " . "        can_post_comments as cpc, " . "        can_upload_pictures as cup, " . "        can_create_albums as cca, " . "        pub_upl_need_approval as puna, " . "        priv_upl_need_approval as pruna " . "FROM {$CONFIG['TABLE_USERGROUPS']} " . "WHERE group_id IN " . $user_group_set;
+        $sql = "SELECT  group_quota as gq, " . "        can_rate_pictures as crp, " . "        can_send_ecards as cse, " . "        can_post_comments as cpc, " . "        can_upload_pictures as cup, " . "        can_create_albums as cca, " . "        pub_upl_need_approval as puna, " . "        priv_upl_need_approval as pruna, " . "        upload_form_config as ufc, " . "        custom_user_upload as cuu, " . "        num_file_upload as nfu, " . "        num_URI_upload as nuu " . "FROM {$CONFIG['TABLE_USERGROUPS']} " . "WHERE group_id IN " . $user_group_set;
         $result = db_query($sql);
         // Merge permissions for groups the user is a member of
         while ($row = mysql_fetch_array($result)) {
@@ -141,9 +144,20 @@ function udb_authenticate()
             $USER_DATA['can_create_albums'] += $row['cca'];
             $USER_DATA['pub_upl_need_approval'] *= $row['puna'];
             $USER_DATA['priv_upl_need_approval'] *= $row['pruna'];
+            $USER_DATA['custom_user_upload'] += $row['cuu'];
 
             $quota = $USER_DATA['group_quota'];
             if (($quota && $row['gq'] > $quota) || !$row['gq']) $USER_DATA['group_quota'] = $row['gq'];
+
+            $form_number = $row['ufc'];
+            if($form_number > $USER_DATA['upload_form_config']) $USER_DATA['upload_form_config'] = $form_number; 
+
+            $fbox_number = $row['nfu'];
+            if($fbox_number  > $USER_DATA['num_file_upload']) $USER_DATA['num_file_upload'] = $fbox_number; 
+
+            $ubox_number = $row['nuu'];
+            if($ubox_number > $USER_DATA['num_URI_upoad']) $USER_DATA['num_URI_upoad'] = $ubox_number; 
+
         }
         mysql_free_result($result);
 
@@ -155,6 +169,10 @@ function udb_authenticate()
         define('USER_CAN_POST_COMMENTS', (int)$USER_DATA['can_post_comments']);
         define('USER_CAN_UPLOAD_PICTURES', (int)$USER_DATA['can_upload_pictures']);
         define('USER_CAN_CREATE_ALBUMS', (int)$USER_DATA['can_create_albums']);
+        define('USER_UPLOAD_FORM', (int)$USER_DATA['upload_form_config']);
+        define('CUSTOMIZE_UPLOAD_FORM', (int)$USER_DATA['custom_user_upload']);
+        define('NUM_FILE_BOXES', (int)$USER_DATA['num_file_upload']);
+        define('NUM_URI_BOXES', (int)$USER_DATA['num_URI_upload']);
     } else {
         $result = db_query("SELECT * FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = " . PHPBB_GUEST_GROUP);
         if (!mysql_num_rows($result)) {
@@ -171,6 +189,10 @@ function udb_authenticate()
         define('USER_CAN_POST_COMMENTS', (int)$USER_DATA['can_post_comments']);
         define('USER_CAN_UPLOAD_PICTURES', (int)$USER_DATA['can_upload_pictures']);
         define('USER_CAN_CREATE_ALBUMS', 0);
+        define('USER_UPLOAD_FORM', (int)$USER_DATA['upload_form_config']);
+        define('CUSTOMIZE_UPLOAD_FORM', (int)$USER_DATA['custom_user_upload']);
+        define('NUM_FILE_BOXES', (int)$USER_DATA['num_file_upload']);
+        define('NUM_URI_BOXES', (int)$USER_DATA['num_URI_upload']);
         mysql_free_result($result);
     }
 }
