@@ -821,6 +821,26 @@ $template_ecard = <<<EOT
 </body>
 </html>
 EOT;
+
+// plain-text template for e-cards (as fallback for clients that can't display html-formatted mails)
+$template_ecard_plaintext = <<<EOT
+{TITLE}
+=========================================
+
+{VIEW_ECARD_LNK_PLAINTEXT}:
+{VIEW_ECARD_TGT}
+
+
+{GREETINGS}
+{PLAINTEXT_MESSAGE}
+
+{SENDER_NAME} ({SENDER_EMAIL})
+
+-----------------------------------------
+{VIEW_MORE_LNK}:
+{VIEW_MORE_TGT}
+EOT;
+
 // Template used for tabbed display
 $template_tab_display = array('left_text' => '<td width="100%%" align="left" valign="middle" class="tableh1_compact" style="white-space: nowrap"><b>{LEFT_TEXT}</b></td>' . "\n",
     'tab_header' => '',
@@ -1076,7 +1096,7 @@ function theme_admin_mode_menu()
      if (cpg_get_pending_approvals() != 0) {
          $param['{APPROVAL_ID}'] = 'admin_menu_anim';
      }
-     
+
         $html = template_eval($template_gallery_admin_menu, $param);
         $html.= cpg_alert_dev_version();
     } elseif (USER_ADMIN_MODE) {
