@@ -82,7 +82,7 @@ INSERT INTO CPG_config VALUES ('randpos_interval', '1063623637');
 INSERT INTO CPG_config VALUES ('read_exif_data', '0');
 INSERT INTO CPG_config VALUES ('reg_requires_valid_email', '1');
 INSERT INTO CPG_config VALUES ('subcat_level', '2');
-INSERT INTO CPG_config VALUES ('theme', 'classic');
+INSERT INTO CPG_config VALUES ('theme', 'core');
 INSERT INTO CPG_config VALUES ('thumbcols', '4');
 INSERT INTO CPG_config VALUES ('thumbrows', '3');
 INSERT INTO CPG_config VALUES ('thumb_method', 'im');
