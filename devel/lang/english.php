@@ -642,6 +642,7 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
   'del_user' => 'Delete user',
   'err_unknown_user' => 'The selected user does not exist !',
   'comment_deleted' => 'Comment was succesfully deleted',
+  'npic' => 'Picture',
 );
 
 // ------------------------------------------------------------------------- //

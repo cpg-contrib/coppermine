@@ -32,14 +32,14 @@ $need_caption = false;
 
 function output_table_header()
 {
-    global $header_printed, $need_caption;
+    global $header_printed, $need_caption, $lang_delete_php;
 
     $header_printed = true;
     $need_caption = true;
 
     ?>
 <tr>
-<td class="tableh2"><b>Picture</b></td>
+<td class="tableh2"><b><?php echo $lang_delete_php['npic'] ?></b></td>
 <td class="tableh2" align="center"><b>F</b></td>
 <td class="tableh2" align="center"><b>N</b></td>
 <td class="tableh2" align="center"><b>T</b></td>
