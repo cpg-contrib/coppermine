@@ -17,6 +17,8 @@
 // $Id$
 // ------------------------------------------------------------------------- //
 
+if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
+
 // Initiate defines
 define('CPG_SECURITY_LOG','security');
 define('CPG_GLOBAL_LOG','global');

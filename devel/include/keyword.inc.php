@@ -19,6 +19,8 @@
 define('IN_COPPERMINE', true);
 define('SEARCH_PHP', true);
 
+if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
+
 // ADDED QUICK KEYWORDS FUNCTIONALITY 8/6/2004
 
 // Grab all keywords

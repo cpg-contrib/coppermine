@@ -20,6 +20,8 @@
 // REQUIRES GLOBAL VAR: ADMIN
 // REQUIRES GLOBAL FUNCTION: cpg_db_query
 
+if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
+
 global $FILE_TYPES;
 
 // Map content types to corresponding user parameters

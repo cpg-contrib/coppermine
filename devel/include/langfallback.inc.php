@@ -17,6 +17,8 @@
 // $Id$
 // ------------------------------------------------------------------------- //
 
+if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
+
 $lang_charset = cpg_lang_var("lang_charset");
 
 $lang_text_dir = cpg_lang_var("lang_text_dir");

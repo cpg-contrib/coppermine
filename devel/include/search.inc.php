@@ -17,6 +17,8 @@
 // $Id$
 // ------------------------------------------------------------------------- //
 
+if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
+
 /**
  * functions_search.php
  *

@@ -17,6 +17,8 @@
 // $Id$
 // ------------------------------------------------------------------------- //
 
+if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
+
 // Add plugin_install action
 $thisplugin->add_action('plugin_install','sef_urls_install');
 

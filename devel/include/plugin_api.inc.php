@@ -25,6 +25,7 @@ define('CPG_EXEC_ALL','all');           // Define CPG_EXEC_ALL
 define('CPG_EXEC_FIRST', 'first');      // Define CPG_EXEC_FIRST
 define('CPG_EXEC_NEW', 'new');          // Define CPG_EXEC_NEW
 
+if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
 // Store the table name in CONFIG
 $CONFIG['TABLE_PLUGINS']                = $CONFIG['TABLE_PREFIX'].'plugins';

@@ -17,6 +17,8 @@
 // $Id$
 // ------------------------------------------------------------------------- //
 
+if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
+
 // info about translators and translated language
 $lang_translation_info = array(
   'lang_name_english' => 'English',
