@@ -58,6 +58,7 @@ $template_main_menu = <<<EOT
                         <a href="{LASTCOM_TGT}">{LASTCOM_LNK}</a>
                         <a href="{TOPN_TGT}">{TOPN_LNK}</a>
                         <a href="{TOPRATED_TGT}">{TOPRATED_LNK}</a>
+                        <a href="{FAV_TGT}">{FAV_LNK}</a>
                         <a href="{SEARCH_TGT}">{SEARCH_LNK}</a>
                 </span>
 EOT;
@@ -77,7 +78,8 @@ $template_gallery_admin_menu = <<<EOT
                                 <td class="admin_menu"><a href="banning.php" title="">{BAN_LNK}</a></td>
                                 <td class="admin_menu"><a href="reviewcom.php" title="">{COMMENTS_LNK}</a></td>
                                 <td class="admin_menu"><a href="searchnew.php" title="">{SEARCHNEW_LNK}</a></td>
-                                <td class="admin_menu"><a href="util.php" title="">{UTIL_LNK}</a></td>                                <td class="admin_menu"><a href="profile.php?op=edit_profile" title="">{MY_PROF_LNK}</a></td>
+                                <td class="admin_menu"><a href="util.php" title="">{UTIL_LNK}</a></td>
+                                <td class="admin_menu"><a href="profile.php?op=edit_profile" title="">{MY_PROF_LNK}</a></td>
                         </tr>
                 </table>
                 </div>
@@ -266,6 +268,11 @@ $template_thumb_view_title_row = <<<EOT
                                 <td><img src="images/spacer.gif" width="1" alt="" /></td>
                                 <td class="sortorder_cell">
                                         <table height="100%" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                                <td class="sortorder_options">{TITLE}</td>
+                                                <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=ta" title="{SORT_TA}">&nbsp;+&nbsp;</a></span></td>
+                                                <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=td" title="{SORT_TD}">&nbsp;-&nbsp;</a></span></td>
+                                        </tr>
                                         <tr>
                                                 <td class="sortorder_options">{NAME}</td>
                                                 <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=na" title="{SORT_NA}">&nbsp;+&nbsp;</a></span></td>
@@ -863,6 +870,8 @@ function theme_main_menu()
                 '{TOPN_LNK}' => $lang_main_menu['topn_lnk'],
                 '{TOPRATED_TGT}'=> "thumbnails.php?album=toprated$cat_l2",
                 '{TOPRATED_LNK}'=> $lang_main_menu['toprated_lnk'],
+                '{FAV_TGT}'=> "thumbnails.php?album=favpics",
+                '{FAV_LNK}'=> $lang_main_menu['fav_lnk'],
                 '{SEARCH_TGT}'=> "search.php",
                 '{SEARCH_LNK}'=> $lang_main_menu['search_lnk'],
         );
@@ -1113,7 +1122,10 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                         '{AID}' => $aid,
                         '{PAGE}' => $page,
                         '{NAME}' => $lang_thumb_view['name'],
+                        '{TITLE}' => $lang_thumb_view['title'],
                         '{DATE}' => $lang_thumb_view['date'],
+                        '{SORT_TA}' => $lang_thumb_view['sort_ta'],
+                        '{SORT_TD}' => $lang_thumb_view['sort_td'],
                         '{SORT_NA}' => $lang_thumb_view['sort_na'],
                         '{SORT_ND}' => $lang_thumb_view['sort_nd'],
                         '{SORT_DA}' => $lang_thumb_view['sort_da'],
