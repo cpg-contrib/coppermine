@@ -241,9 +241,9 @@ function form_options()
                 echo <<<EOT
         <tr>
                 <td class="tableb" colspan="3" align="center">
-                        <b><input type="radio" name="approved{$CURRENT_PIC['pid']}" value="YES" class="radio">{$lang_editpics_php['approve']}</b>&nbsp;
-                        <b><input type="radio" name="approved{$CURRENT_PIC['pid']}" value="NO" class="radio" checked>{$lang_editpics_php['postpone_app']}</b>&nbsp;
-                        <b><input type="radio" name="approved{$CURRENT_PIC['pid']}" value="DELETE" class="radio">{$lang_editpics_php['del_pic']}</b>&nbsp;
+                        <input type="radio" name="approved{$CURRENT_PIC['pid']}" id="approved{$CURRENT_PIC['pid']}yes" value="YES" class="radio" /><label for="approved{$CURRENT_PIC['pid']}yes" class="clickable_option">{$lang_editpics_php['approve']}</label>&nbsp;
+                        <input type="radio" name="approved{$CURRENT_PIC['pid']}" id="approved{$CURRENT_PIC['pid']}no" value="NO" class="radio" checked="checked" /><label for="approved{$CURRENT_PIC['pid']}no" class="clickable_option">{$lang_editpics_php['postpone_app']}</label>&nbsp;
+                        <input type="radio" name="approved{$CURRENT_PIC['pid']}" name="approved{$CURRENT_PIC['pid']}del" value="DELETE" class="radio" /><label for="approved{$CURRENT_PIC['pid']}del" class="clickable_option">{$lang_editpics_php['del_pic']}</label>&nbsp;
                 </td>
         </tr>
 
