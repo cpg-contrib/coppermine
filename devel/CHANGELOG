@@ -24,3 +24,6 @@ fixed improper html tags in hardwired theme - 1st October 2003, GauGau
 added version info to html output (above </body>) for easier support - 1st October, GauGau
 Added user banning functionality - 2nd October, 2003,
 Added offline-manual in /docs-folder (manual.pdf) - 03rd October 2003, GauGau
+Fixed charset in pop-up bug (http://coppermine.sourceforge.net/board/viewtopic.php?t=291) - 05th October 2003, GauGau
+Fixed pop-up scrollbar bug (http://coppermine.sourceforge.net/board/viewtopic.php?t=290) - 05th October 2003, GauGau
+Added 1.2.0 translations for dutch, finnish, norwegian, spanish - 05th October 2003, GauGau
