@@ -51,6 +51,8 @@ function sef_urls_convert(&$html) {
     // Rewrite thumbnails.php?album=[album] URLs to thumbnails-[album].html
     $html = preg_replace('/thumbnails\.php\?album=([a-z0-9]+)/i','thumbnails-$1.html',$html);
 
+    // Rewrite displayimage.php?album=[album]&cat=[category]&pos=[position] URLs to displayimage-[album]-[category]-[position].html
+    $html = preg_replace('/displayimage\.php\?album=([a-z0-9]+)(\&|\&amp;)cat=([0-9]+)(\&|\&amp;)pos=([\-0-9]+)/i','displayimage-$1-$3-$5.html',$html);
 
     // Rewrite displayimage.php?album=[album]&pos=[position] URLs to displayimage-[album]-[position].html
     $html = preg_replace('/displayimage\.php\?album=([a-z0-9]+)(\&|\&amp;)pos=([\-0-9]+)/i','displayimage-$1-$3.html',$html);
