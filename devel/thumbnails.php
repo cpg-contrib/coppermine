@@ -78,14 +78,15 @@ if (isset($_GET['sort'])) $USER['sort'] = $_GET['sort'];
 if (isset($_GET['cat'])) $cat = (int)$_GET['cat'];
 if (isset($_GET['uid'])) $USER['uid'] = (int)$_GET['uid'];
 
-if (isset($_GET['search'])) {
-    $USER['search'] = $_GET['search'];
-    if (isset($_GET['type']) && $_GET['type'] == 'full') {
-        $USER['search'] = '###' . $USER['search'];
-    }
-}
+if (isset($_GET['album'])) $album = $_GET['album'];
 
-$album = $_GET['album'];
+if (isset($_POST['search'])) {
+    $USER['search'] = $_POST;
+	$album = 'search';
+}
+if (isset($_GET['search'])) {
+    $USER['search']['search'] = $_GET['search'];
+}
 
 if (isset($_GET['page'])) {
     $page = max((int)$_GET['page'], 1);
