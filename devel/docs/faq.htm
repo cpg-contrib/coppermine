@@ -207,7 +207,7 @@ For credits and copyrights, see <a href="index.htm#credits">Coppermine documenta
     <ul>
         <li>any webserver, Apache recommended (Coppermine has been reported to work with <a href="http://httpd.apache.org/" class="external">Apache</a>, <a href="http://www.microsoft.com/iis/" class="external">Microsoft Internet Information Server</a> (IIS), <a href="http://www.roxen.com/products/webserver/" class="external">Roxen WebServer</a>, <a href="http://www.aprelium.com/" class="external">Abyss</a>, <a href="http://www.janaserver.de/" class="external">JanaServer</a>)</li>
         <li>PHP 4.1.0 or better</li>
-        <li><a href="/specials/faq/coppermine.htm?q=WhatIsGD#WhatIsGD">GD lib</a> or Image Magick</li>
+        <li><a href="#WhatIsGD">GD lib</a> or Image Magick</li>
         <li>mySQL 3.23.23 or better (4.x recommended). Don&#39;t confuse the client api version (which is shown in phpinfo) with the mySQL version!</li>
     </ul><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 <a name="WhatIsGD"></a>
@@ -257,7 +257,7 @@ For credits and copyrights, see <a href="index.htm#credits">Coppermine documenta
 
 <a name="installIMwhenHosted"></a>
 <h3>How can I <b>install ImageMagick or GD</b>?</h3>
-<p>You can only <a href="faq.php?q=enableIMonWindows#enableIMonWindows">install ImageMagic or GD if you&#39;re running your own server</a> or if you have at least shell access to your webserver. If you&#39;re hosted by a webhost you can only contact your webhost and ask them to install it for you or choose another webhost.<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+<p>You can only <a href="#enableIMonWindows">install ImageMagic or GD if you&#39;re running your own server</a> or if you have at least shell access to your webserver. If you&#39;re hosted by a webhost you can only contact your webhost and ask them to install it for you or choose another webhost.<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 
 <a name="minimumInstall"></a>
 <h3>I'm short on webspace. Is there a &quot;<b>minimum install</b>&quot;?</h3>
@@ -347,7 +347,7 @@ If the ImageMagick suite is installed on your server you can try to use it, else
 <h3>When installing I get the <b>error</b> <tt class="code">Warning: mkdir(dummy) [function.mkdir]: Permission denied in /your/path/to/coppermine/install.php on line 126</tt>. What does that mean?</h3>
 <p>The script must have the right to create and delete files.
 <ul>
-<li>on *nix/linux-webservers:<br />chmod the coppermine directory (and all subdirectories) to 755 (rwxr-xr-x). To find more about chmod: check some of these <a href="http://www.google.com/search?sourceid=navclient&hl=de&q=chmod+tutorial" class="external">fine chmod tutorials</a></li>
+<li>on *nix/linux-webservers:<br />chmod the coppermine directory (and all subdirectories) to 755 (rwxr-xr-x). To find more about chmod: check some of these <a href="http://www.google.com/search?q=chmod+tutorial" class="external">fine chmod tutorials</a></li>
 <li>on Windows/IIS:<br />Check if the user the webserver runs the php-scripts under (usually called IUSR) has sufficient rights to read, execute, change, delete in the Coppermine folder. To find out how, ask your webhost or read the server manual if you're running the server yourself.
 </li>
 <li>on Windows/Apache:<br />Check the account Apache runs under an set the rights in the file-system.
@@ -388,7 +388,7 @@ If the open basedir restriction is in effect on your site then the temp director
 
 <a name="httpPostVars"></a>
 <h3>When uploading I get the error <tt class="code">Warning: Undefined variable: HTTP_POST_VARS in include/init.inc.php on line 43</tt>. What can I do?</h3>
-<p>Check if <a href="coppermine.htm?q=VersionPHP#VersionPHP">your version of PHP</a> fullfills the <a href="coppermine.htm?q=MinimumRequirements#MinimumRequirements">minimum requirements</a> for Coppermine. If your version is 4.1.0 or better, then this error is probably caused by a misconfiguration of your server, so Coppermine isn&#39;t to blame in the first place. If the server isn&#39;t yours to configure properly (that is: if you&#39;re with a webhost), you can try this workaround (at your own risk):<br >
+<p>Check if <a href="#VersionPHP">your version of PHP</a> fullfills the <a href="#MinimumRequirements">minimum requirements</a> for Coppermine. If your version is 4.1.0 or better, then this error is probably caused by a misconfiguration of your server, so Coppermine isn&#39;t to blame in the first place. If the server isn&#39;t yours to configure properly (that is: if you&#39;re with a webhost), you can try this workaround (at your own risk):<br >
 Edit the file "init.inc.php" and look for<br />
 <pre>$PHP_SELF = isset($HTTP_SERVER_VARS[&#39;REDIRECT_URL&#39;]) ? $HTTP_SERVER_VARS[&#39;REDIRECT_URL&#39;] : $HTTP_SERVER_VARS[&#39;SCRIPT_NAME&#39;];</pre>
 Replace it with<br />
@@ -518,7 +518,7 @@ Here&#39;s a small &quot;howto backup a database with phpMyAdmin&quot;:
 <li>save the file on your harddisk (depending on the speed of your connection this could take a while)</li>
 </ul><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="noFullsizePopup"></a>
 <h3>The <b>fullsize-pic doesn&#39;t pop up</b> when clicking on the intermediate size pic. What&#39;s wrong?</h3>
-<p>You probably over-edited your template: you&#39;ll definitely need the line <tt class="code"><script type=&quot;text/javascript&quot; src=&quot;scripts.js&quot;></script></tt> inside /themes/yourtheme/template.html to make the pop-up window work...<br />
+<p>You probably over-edited your template: you&#39;ll definitely need the line <tt class="code">&lt;script type=&quot;text/javascript&quot; src=&quot;scripts.js&quot;&gt;&lt;/script&gt;</tt> inside /themes/yourtheme/template.html to make the pop-up window work...<br />
 The &lt;head&gt;-part of your template file should look like this:<br />
 <pre>&lt;head&gt;
 &lt;title&gt;{TITLE}&lt;/title&gt;
@@ -569,7 +569,7 @@ To change the settings by album (above steps must have been made):
 <li>&quot;Update album&quot;</li>
 </ul><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="httpUpload"></a>
 <h3>I <b>can&#39;t upload</b> with the upload feature. What&#39;s wrong?</h3>
-<p>If you get the error message <tt class="code">No picture was uploaded. If you have really selected a picture to upload, check that the server allows file uploads...</tt>, check if there&#39;s a problem with HTTP uploads on your server - they may have been disabled or improperly configured. In <a href="/specials/faq/coppermine.htm?q=VersionPHP#VersionPHP">phpinfo()</a>, check that "file_uploads" is ON, "upload_max_filesize" is something like 2M and "upload_tmp_dir" is a valid directory!<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="ordercategories"></a>
+<p>If you get the error message <tt class="code">No picture was uploaded. If you have really selected a picture to upload, check that the server allows file uploads...</tt>, check if there&#39;s a problem with HTTP uploads on your server - they may have been disabled or improperly configured. In <a href="#VersionPHP">phpinfo()</a>, check that "file_uploads" is ON, "upload_max_filesize" is something like 2M and "upload_tmp_dir" is a valid directory!<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="ordercategories"></a>
 <h3>How do I change the <b>order of categories</b>?</h3>
 <p><ul>
 <li>log in as admin</li>
@@ -727,7 +727,7 @@ and replace it with:<br />
 <tt class="code">$lang_picinfo = array(</tt><br />
 and add after that:<br />
 <tt class="code">        &#39;Username&#39; => &#39;Username&#39;,</tt><br />
-Also you need to execute this query in MySQL (with a tool like <a href="www.phpmyadmin.net"><? external_link("11"); ?>phpMyAdmin</a>):<br />
+Also you need to execute this query in MySQL (with a tool like <a href="http://www.phpmyadmin.net"><? external_link("11"); ?>phpMyAdmin</a>):<br />
 <tt class="code">ALTER TABLE `cpg11d_pictures` ADD INDEX ( `owner_id` );</tt><br />
 (If your table_prefix is not cpg11d_ then you need to change it in the query)<br /><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="linksInCustomFields"></a>
 <h3>How do I enable clickable <b>links in custom user fields</b>?</h3>
@@ -897,7 +897,7 @@ This hack hasn&#39;t been tested, use at your own risk...!<br /></p><br /><div c
 <h3>How can I <b>add</b> some output <b>directly before</b> the line &quot;Powered by Coppermine&quot;?</h3>
 <p>Edit /themes/yourtheme/theme.php, look for <tt class="code">echo $template_footer</tt> and add the stuff you want to output in a line <b>before</b> it, like <tt class="code">print &#39;&lt;span class=&quot;footer&quot;&gt;&lt;a href=&quot;http://www.mylink.com/foo.htm&quot;&gt;My Link&lt;/a&gt;&lt;/span&gt;&#39;;</tt><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="commonPHPerrors"></a>
 <h3>Common PHP errors and how to get rid of them...</h3>
-<p>There are a lot of people (especially PHP newbies) that post questions like <tt class="code">I get the error &quot;Parse error: parse error in XXX&quot;</tt> and don&#39;t know what to do about it. That&#39;s why I translated this list of common errors (and a solution how to fix them) from the original <a href="http://www.drweb.de/programmierung/php_fehlermeldungen.shtml" class="external">german article in Dr. Web</a> :<br />
+<p>There are a lot of people (especially PHP newbies) that post questions like <tt class="code">I get the error &quot;Parse error: parse error in XXX&quot;</tt> and don&#39;t know what to do about it. That&#39;s why I translated this list of common errors (and a solution how to fix them) from the original german article in <a href="http://www.drweb.de" class="external">Dr. Web</a> :<br />
 <ul>
 <li><tt class="code">Parse error: parse error in C:\Apache\htdocs\read.php on line 8</tt> - This error message refers to an error in the PHP syntax. You probably forgot to end a line with <tt class="code">;</tt> or you have too many brackets opened or closed (<tt class="code">{</tt>).</li>
 <li><tt class="code">Fatal error: Call to unsupported/undefined function ... in C:\Apache\htdocs\read.php on line 8</tt> - This error means that the function your script was going to use isn&#39;t defined in the current PHP version with modules, or if yo&#39;re using user-defined functions that your function hasn&#39;t been defined yet (this is usually caused if you forgot to include the function definition).</li>
@@ -919,9 +919,9 @@ This hack hasn&#39;t been tested, use at your own risk...!<br /></p><br /><div c
 <p>You can not completely prevent users from stealing your pics - that's the way the www works: if a picture is being displayed in the browser, the user already has a copy of it on his hard drive. There are however some methods to make it harder for newbie users to steal your pics:
 <ul>
 <li>Add a watermark to your images before you upload them</li>
-<li>Apply one of the watermark-hacks: <a href="http://coppermine.sourceforge.net/board/viewtopic.php?t=1467">Coppermine support board / mods / Watermarking hack (w/ ImageMagick)</a>, <a href="http://coppermine.sourceforge.net/board/index.php?topic=3269">Coppermine support board / mods / Watermark on a per image basis (GD)</a>, <a href="http://coppermine.sourceforge.net/board/index.php?topic=4312">Coppermine support board / mods / Permanent Watermark with GD2</a>. Please note that those hacks will result in a high server load, as the watermark is applied to a picture each time a users views the picture in his browser.</li>
+<li>Apply one of the watermark-hacks: <a href="http://coppermine.sourceforge.net/board/index.php?topic=1467.0">Coppermine support board / mods / Watermarking hack (w/ ImageMagick)</a>, <a href="http://coppermine.sourceforge.net/board/index.php?topic=3269.0">Coppermine support board / mods / Watermark on a per image basis (GD)</a>, <a href="http://coppermine.sourceforge.net/board/index.php?topic=7160.0">Coppermine support board / mods / Permanent Watermark with GD2</a>. Please note that those hacks will result in a high server load, as the watermark is applied to a picture each time a users views the picture in his browser.</li>
 <li>Prevent Internet Explorer to show the image toolbar when a user hovers over a pic with the mouse. Edit themes/yourtheme/template.html, find <tt class="code">&lt;meta http-equiv="Pragma" content="no-cache" /&gt;</tt> and add after it <tt class="code">&lt;meta http-equiv="imagetoolbar" content="no" /&gt;</tt></li>
-<li>Use one of the many &quot;no right-click&quot; scripts that are available (e.g. <a href="http://coppermine.sourceforge.net/board/viewtopic.php?t=2450">Coppermine support board / mods / no right-click</a> or <a href="http://www.codelifter.com/main/javascript/norightclick1.html" class="external">codelifter.com: no right-click</a>)</li>
+<li>Use one of the many &quot;no right-click&quot; scripts that are available (e.g. <a href="http://coppermine.sourceforge.net/board/index.php?topic=2450.0">Coppermine support board / mods / no right-click</a> or <a href="http://www.codelifter.com/main/javascript/norightclick1.html" class="external">codelifter.com: no right-click</a>)</li>
 </ul>
 <br /></p>
 <br />
@@ -961,7 +961,7 @@ Greg<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of pag
 <p>If you have a question, make sure you provide as much information as possible:
 <ul>
 <li>a link to your gallery is most often the only way to help - provide it with your question, or even better: edit your profile on the support board and enter the url of your page there!</li>
-<li>when addressing server issues, make sure to provide information on your server (<acronym class="tool" title="operation system">OS</acronym>, server, PHP version, mySQL version, gd lib version, safe mode on/off?). Most information can be retrieved by <a href="/specials/faq/coppermine.htm?q=VersionGD#VersionGD">phpinfo()</a></li>
+<li>when addressing server issues, make sure to provide information on your server (<acronym class="tool" title="operation system">OS</acronym>, server, PHP version, mySQL version, gd lib version, safe mode on/off?). Most information can be retrieved by <a href="#VersionGD">phpinfo()</a></li>
 <li>if it&#39;s a client issue, give us information at least to your client&#39;s <acronym class="tool" title="operation system">OS</acronym> and browser</li>
 <li>Give us a screenshot, if necessary</li>
 <li>use a proper subject line: state in the subject line what your question is actually about! Most supporters are reluctant to answer to a posting that has a silly subject line like &quot;I have a question&quot; or &quot;Install problem&quot; or &quot;feature request&quot; or &quot;help me pleeeeaaaase&quot;</li>
@@ -971,7 +971,7 @@ Greg<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of pag
 <li>read the readme that comes with the coppermine distribution</li>
 <li>read the documentation</li>
 <li>read this FAQ</li>
-<li><a href="http://coppermine.sourceforge.net/board/search.php">Search</a> the support board</li>
+<li><a href="http://coppermine.sourceforge.net/board/index.php?action=search">Search</a> the support board</li>
 <li>enable debug mode (log in as admin, admin mode, config, debug mode)</li>
 <li>choose the right support board: if you&#39;re running the phpnuke-port of coppermine, don&#39;t post in the support board for the standalone version and vice versa</li>
 </ul><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="nonEnglishPosting"></a>
