@@ -19,6 +19,10 @@
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
+if($CONFIG['read_iptc_data'] ){
+        include("include/iptc.inc.php");
+}
+
 // Add a picture to an album
 function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $caption = '', $keywords = '', $user1 = '', $user2 = '', $user3 = '', $user4 = '', $category = 0, $raw_ip = '', $hdr_ip = '')
 {
@@ -33,6 +37,16 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
         return false;
     } elseif (is_image($filename)) {
         $imagesize = getimagesize($image);
+
+        if ($CONFIG['read_iptc_data']) {
+           $iptc = get_IPTC($image);
+           if (is_array($iptc) && !title && !$caption && !$keywords) {  //if any of those 3 are filled out we don't want to override them, they may be blank on purpose.
+               $title = (isset($iptc['Title'])) ? $iptc['Title'] : $title;
+               $caption = (isset($iptc['Caption'])) ? $iptc['Caption'] : $caption;
+               $keywords = (isset($iptc['Keywords'])) ? implode(' ',$iptc['Keywords']) : $keywords;
+           }
+        }
+
         if (((USER_IS_ADMIN && $CONFIG['auto_resize'] == 1) || (!USER_IS_ADMIN && $CONFIG['auto_resize'] > 0)) && max($imagesize[0], $imagesize[1]) > $CONFIG['max_upl_width_height']) //$CONFIG['auto_resize']==1
         {
           //resize_image($image, $image, $CONFIG['max_upl_width_height'], $CONFIG['thumb_method'], $imagesize[0] > $CONFIG['max_upl_width_height'] ? 'wd' : 'ht');
