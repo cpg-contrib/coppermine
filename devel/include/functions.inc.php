@@ -679,9 +679,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 mysql_free_result($result);
 
                 if($select_columns != '*') $select_columns .= ', hits, aid, filename';
-								
+
                 $result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES'AND hits > 0 $ALBUM_SET $keyword ORDER BY hits DESC, filename  $limit");
-				
+
                 $rowset = db_fetch_rowset($result);
                 mysql_free_result($result);
 
@@ -1470,7 +1470,7 @@ if ($CONFIG['language_flags'] == 0 && $parameter == 'flags'){
 // for now, use a static array definition here - this could later be made into a true database query
 $lang_language_data['arabic'] = array('Arabic','&#1575;&#1604;&#1593;&#1585;&#1576;&#1610;&#1577;','sa');
 $lang_language_data['bosnian'] = array('Bosnian','Bosanski','ba');
-$lang_language_data['brazilian_portuguese'] = array('Portuguese [Brazilian]','br');
+$lang_language_data['brazilian_portuguese'] = array('Portuguese [Brazilian]','Portugu&ecirc;s','br');
 $lang_language_data['bulgarian'] = array('Bulgarian','&#1041;&#1098;&#1083;&#1075;&#1072;&#1088;&#1089;&#1082;&#1080;','bg');
 $lang_language_data['chinese_big5'] = array('Chinese-Big5','&#21488;&#28771;','tw');
 $lang_language_data['chinese_gb'] = array('Chinese-GB2312','&#20013;&#22269;','cn');
@@ -1501,7 +1501,7 @@ $lang_language_data['spanish'] = array('Spanish','Espa&ntilde;ol','es');
 $lang_language_data['swedish'] = array('Swedish','Svenska','se');
 $lang_language_data['thai'] = array('Thai','&#3652;&#3607;&#3618;','th');
 $lang_language_data['turkish'] = array('Turkish','T&uuml;rk&ccedil;e','tr');
-$lang_language_data['vietnamese'] = array('Vietnamese','vn');
+$lang_language_data['vietnamese'] = array('Vietnamese','','vn');
 
 
 
