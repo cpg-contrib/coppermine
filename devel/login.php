@@ -52,7 +52,7 @@ if (isset($_POST['submitted'])) {
         $login_failed = <<<EOT
                   <tr>
                           <td colspan="2" align="center" class="tableh2">
-                        <font size="1" color="red"><b>{$lang_login_php['err_login']}<b></font>
+                        <font size="1" color="red"><b>{$lang_login_php['err_login']}</b></font>
                         </td>
                   </tr>
 
@@ -80,7 +80,7 @@ if (!isset($_COOKIE[$CONFIG['cookie_name'] . '_data'])) {
     $cookie_warning = <<<EOT
                   <tr>
                           <td colspan="2" align="center" class="tableh2">
-                        <font size="1" color="red"><b>{$lang_login_php['cookie_warning']}<b></font>
+                        <font size="1" color="red"><b>{$lang_login_php['cookie_warning']}</b></font>
                         </td>
                   </tr>
 
@@ -93,28 +93,25 @@ starttable('-1', $lang_login_php['enter_login_pswd'], 2);
 echo <<< EOT
                   $login_failed
                   $cookie_warning
-                  <tr>
-                    <form action="login.php?referer=$referer" method="post" name="loginbox">
+       <tr><td><form action="login.php?referer=$referer" method="post" name="loginbox"><table width="100%">           <tr>
+                    
                         <td class="tableb" width="40%">{$lang_login_php['username']}</td>
                         <td class="tableb" width="60%"><input type="text" class="textinput" name="username" style="width: 100%" /></td>
-                        <script language="javascript" type="text/javascript">
-                        <!--
-                        document.loginbox.username.focus();
-                        -->
-                        </script>
+                      
                   </tr>
                   <tr>
                           <td class="tableb">{$lang_login_php['password']}</td>
                         <td class="tableb"><input type="password" class="textinput" name="password" style="width: 100%" /></td>
                   </tr>
                   <tr>
-                    <td colspan="2" align="center" class="tableb">{$lang_login_php['remember_me']} <input name="remember_me" type="checkbox" class="checkbox" value="1"></td>
+                    <td colspan="2" align="center" class="tableb">{$lang_login_php['remember_me']} <input name="remember_me" type="checkbox" class="checkbox" value="1" /></td>
                   </tr>
                   <tr>
                     <td align="center" class="tablef"><a href="forgot_passwd.php" class="topmenu">{$lang_login_php['forgot_password_link']}</a></td>
-                    <td align="left" class="tablef"><input name="submitted" type="submit" class="button" value="{$lang_login_php['login']}"></td>
-                    </form>
+                    <td align="left" class="tablef"><input name="submitted" type="submit" class="button" value="{$lang_login_php['login']}" /></td>
+                    
                   </tr>
+				  </table></form></td></tr>
 
 EOT;
 

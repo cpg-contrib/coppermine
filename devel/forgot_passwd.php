@@ -77,15 +77,16 @@ echo <<< EOT
             $lookup_failed
                  <tr>
                         <td class="tableb" width="40%">{$lang_forgot_passwd_php['enter_username_email']}</td>
-                        <td class="tableb" width="60%"><input type="text" class="textinput" name="username" style="width: 100%"></td>
-                        <script language="javascript" type="text/javascript">
+                        <td class="tableb" width="60%"><input type="text" class="textinput" name="username" style="width: 100%" /></td>
+                        
+                  </tr>
+                  <tr>
+                        <td colspan="2" align="center" class="tablef"><script language="javascript" type="text/javascript">
                         <!--
                         document.passwordreminder.username.focus();
                         -->
                         </script>
-                  </tr>
-                  <tr>
-                        <td colspan="2" align="center" class="tablef"><input name="submitted" type="submit" class="button" value="{$lang_forgot_passwd_php['submit']}"></td>
+						<input name="submitted" type="submit" class="button" value="{$lang_forgot_passwd_php['submit']}" /></td>
                   </tr>
 
 EOT;
