@@ -433,6 +433,11 @@ EOT;
                         {$lang_search_new_php['notes']}
                 </td>
         </tr>
+        <tr>
+                <td class="tableb" colspan="4">
+                <p align="center"><a href="editpics.php?album={$album_id}">{$lang_search_new_php['edit_pics']}</a></p>
+                </td>
+        </tr>
 
 EOT;
     endtable();
