@@ -907,6 +907,11 @@ on some templates below the name of your gallery.</p>
 <p>Specify the time zone difference between your local time and the time zone your webserver is in. This value will be used to adjust time stamps in ecards and other places.</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_general_time-offset_end"></a>
+<a name="admin_general_encrypt_password_start"></a><h4>Enable encrypted passwords</h4>
+<p>This option is only available when the user passwords are stored in plain text the database (usually happens if you upgraded from previous versions of coppermine that didn't have this feature). It will encrypt all passwords in the database, and all future passwords will be stored encypted as well. This process can not be undone: once encryption in turned on, it can not be turned off, so use this option wisely.<br />
+The option increases security of coppermine, but there is a drawback to this method as well: even the admin can not recover a lost password of a user (or his own password), the password can only be reset to another value, but the admin can not read the current password of a user.</p>
+<p class="small">[cpg1.4.0 or better required]</p>
+<a name="admin_general_encrypt_password_end"></a>
 <a name="admin_general_help"></a><h4>Enable help-icons</h4>
 <p>Enable display of the help icons in various places within coppermine admin pages. When enabled, make sure you have uploaded the docs folder into your coppermine folder on your webserver.<br />
 If you choose to set this to &quot;Yes: everyone&quot;, logged in users will see the help icon in some places as well, e.g. when creating a user gallery.<br />
