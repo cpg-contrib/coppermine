@@ -21,12 +21,15 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
 // ADDED QUICK KEYWORDS FUNCTIONALITY 8/6/2004
 
+
 // Grab all keywords
 print '<br />';
 starttable("100%", $lang_search_php['keyword_list_title']);
 
-$result = mysql_query("select keywords from {$CONFIG['TABLE_PICTURES']}");
-if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap'],__FILE__,__LINE__);
+$result = mysql_query("select keywords FROM {$CONFIG['TABLE_PICTURES']} WHERE 1=1 $ALBUM_SET");
+if (!mysql_num_rows($result)) {
+    cpg_die(ERROR, $lang_errors['non_exist_ap'],__FILE__,__LINE__);
+}
 
 // Find unique keywords
 $keywords_array = array();
