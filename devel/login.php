@@ -49,6 +49,8 @@ if (isset($HTTP_POST_VARS['submitted'])) {
         pagefooter();
         exit;
     } else {
+    	log_write("Failed login attempt with Username: {$_POST['username']} Password: {$_POST['password']} from IP {$_SERVER['REMOTE_ADDR']} on " . localised_date(-1,$log_date_fmt),CPG_SECURITY_LOG);
+
         $login_failed = <<<EOT
                   <tr>
                           <td colspan="2" align="center" class="tableh2">
