@@ -102,7 +102,7 @@ INSERT INTO CPG_config VALUES ('allow_memberlist', '0');
 INSERT INTO CPG_config VALUES ('display_faq', '0');
 INSERT INTO CPG_config VALUES ('views_in_thumbview', '1');
 INSERT INTO CPG_config VALUES ('show_bbcode_help', '1');
-
+INSERT INTO CPG_config VALUES ('log_ecards', '0');
 
 
 # Modify structure for category thumb
@@ -129,3 +129,20 @@ CREATE TABLE CPG_exif (
   `exifData` text NOT NULL,
   UNIQUE KEY `filename` (`filename`)
 ) TYPE=MyISAM;
+
+#
+# Table structure for table `CPG_ecards`
+#
+
+CREATE TABLE CPG_ecards (
+  eid int(11) NOT NULL auto_increment,
+  sender_name varchar(50) NOT NULL default '',
+  sender_email text NOT NULL,
+  recipient_name varchar(50) NOT NULL default '',
+  recipient_email text NOT NULL,
+  link text NOT NULL,
+  date tinytext NOT NULL,
+  sender_ip tinytext NOT NULL,
+  PRIMARY KEY  (eid)
+) TYPE=MyISAM COMMENT='Used to log ecards';
+

@@ -177,11 +177,11 @@ CREATE TABLE CPG_votes (
 #
 
 CREATE TABLE CPG_banned (
-	ban_id int(11) NOT NULL auto_increment,
-	user_id int(11) DEFAULT NULL,
-	ip_addr tinytext DEFAULT NULL,
-	expiry datetime DEFAULT NULL,
-	PRIMARY KEY  (ban_id)
+        ban_id int(11) NOT NULL auto_increment,
+        user_id int(11) DEFAULT NULL,
+        ip_addr tinytext DEFAULT NULL,
+        expiry datetime DEFAULT NULL,
+        PRIMARY KEY  (ban_id)
 ) TYPE=MyISAM;
 #---------------------------------------------------------
 
@@ -206,3 +206,20 @@ CREATE TABLE CPG_filetypes (
   content char(15) default NULL,
   KEY extension (extension)
 ) TYPE=MyISAM COMMENT='Used to store the file extensions';
+
+
+#
+# Table structure for table `CPG_ecards`
+#
+
+CREATE TABLE CPG_ecards (
+  eid int(11) NOT NULL auto_increment,
+  sender_name varchar(50) NOT NULL default '',
+  sender_email text NOT NULL,
+  recipient_name varchar(50) NOT NULL default '',
+  recipient_email text NOT NULL,
+  link text NOT NULL,
+  date tinytext NOT NULL,
+  sender_ip tinytext NOT NULL,
+  PRIMARY KEY  (eid)
+) TYPE=MyISAM COMMENT='Used to log ecards';

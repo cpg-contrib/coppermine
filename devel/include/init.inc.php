@@ -131,6 +131,7 @@ $CONFIG['TABLE_USERS']                = $CONFIG['TABLE_PREFIX']."users";
 $CONFIG['TABLE_BANNED']                = $CONFIG['TABLE_PREFIX']."banned";
 $CONFIG['TABLE_EXIF']                = $CONFIG['TABLE_PREFIX']."exif";
 $CONFIG['TABLE_FILETYPES']          = $CONFIG['TABLE_PREFIX']."filetypes";
+$CONFIG['TABLE_ECARDS']          = $CONFIG['TABLE_PREFIX']."ecards";
 
 // User DB system
 if (defined('UDB_INTEGRATION')) require 'bridge/' . UDB_INTEGRATION . '.inc.php';

@@ -13,7 +13,7 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- // 
+// ------------------------------------------------------------------------- //
 
 define('IN_COPPERMINE', true);
 define('ECARDS_PHP', true);
@@ -30,7 +30,7 @@ function get_post_var($name, $default = '')
     global $HTTP_POST_VARS;
 
     return isset($HTTP_POST_VARS[$name]) ? $HTTP_POST_VARS[$name] : $default;
-} 
+}
 
 $pid = (int)$HTTP_GET_VARS['pid'];
 $album = $HTTP_GET_VARS['album'];
@@ -68,7 +68,7 @@ if (count($HTTP_POST_VARS) > 0 && $valid_sender_email && $valid_recipient_email)
         $n_picname = get_pic_url($row, 'normal');
     } else {
         $n_picname = get_pic_url($row, 'fullsize');
-    } 
+    }
 
     if (!stristr($n_picname, 'http:')) $n_picname = $gallery_url_prefix . $n_picname;
 
@@ -100,113 +100,118 @@ if (count($HTTP_POST_VARS) > 0 && $valid_sender_email && $valid_recipient_email)
         );
 
     $message = template_eval($template_ecard, $params);
-	$message .= "Sent by from IP" .$_SERVER["REMOTE_HOST"]." at ".gmstrftime("%A,  %B,%V,%Y %I:%M %p ", time())." [GMT]"; 
+        $tempTime = time();
+        $message .= "Sent by from IP" .$_SERVER["REMOTE_HOST"]." at ".gmstrftime("%A,  %B,%V,%Y %I:%M %p ", time())." [GMT]";
     $subject = sprintf($lang_ecard_php['ecard_title'], $sender_name);
     //cheap cookie fix
-	if ((!USER_ID)||($_COOKIE['cookiename']==1))
-	{
-	$result = cpg_mail($recipient_email, $subject, $message, 'text/html', $sender_name, $sender_email);
-	} else {
-		cpg_die(ERROR, $lang_ecard_php['send_failed']);
-		// cpg_die(ERROR, $lang_ecard_php['cookie_required']);
+        if ((!USER_ID)||($_COOKIE['cookiename']==1))
+        {
+        $result = cpg_mail($recipient_email, $subject, $message, 'text/html', $sender_name, $sender_email);
+        //write ecard log
+        if ($CONFIG['log_ecards'] == 1) {
+          $result = db_query("INSERT INTO {$CONFIG['TABLE_ECARDS']} (sender_name, sender_email, recipient_name, recipient_email, link, date, sender_ip) VALUES ('$sender_name', '$sender_email', '$recipient_name', '$recipient_email',   '$encoded_data', '$tempTime', '{$_SERVER["REMOTE_ADDR"]}')");
+          }
+        } else {
+                cpg_die(ERROR, $lang_ecard_php['send_failed']);
+                // cpg_die(ERROR, $lang_ecard_php['cookie_required']);
     }
-	if (!USER) setcookie('ecard',1);
+        if (!USER) setcookie('ecard',1);
     if (!USER_ID) {
         $USER['name'] = $sender_name;
         $USER['email'] = $sender_email;
-    } 
+    }
 
     if ($result) {
         pageheader($lang_ecard_php['title'], "<META http-equiv=\"refresh\" content=\"3;url=displayimage.php?album=$album&pos=$pos\">");
         //cheap cookie fix
-		if (!USER) setcookie('ecard',0); 
+                if (!USER) setcookie('ecard',0);
     msg_box($lang_cpg_die[INFORMATION], $lang_ecard_php['send_success'], $lang_continue, "displayimage.php?album=$album&pos=$pos");
         pagefooter();
         ob_end_flush();
         exit;
     } else {
         cpg_die(ERROR, $lang_ecard_php['send_failed'], __FILE__, __LINE__);
-    } 
-} 
+    }
+}
 
 pageheader($lang_ecard_php['title']);
 starttable("100%", $lang_ecard_php['title'], 3);
 
 echo <<<EOT
-	<tr>
-		<td class="tableh2" colspan="2"><b>{$lang_ecard_php['from']}</b></td>
-		<td rowspan="6" align="center" valign="top" class="tableb">
-			<img src="$thumb_pic_url" alt="" vspace="8" border="0" class="image"><br />
-		</td>
-	</tr>
-	<tr>
-		<td class="tableb" valign="top" width="40%">
-			<form method="post" name="post" action="$PHP_SELF?album=$album&pid=$pid&pos=$pos">
-			{$lang_ecard_php['your_name']}<br />
-		</td>
-		<td valign="top" class="tableb" width="60%">
-			<input type="text" class="textinput" name="sender_name"  value="$sender_name" style="WIDTH: 100%;"><br />
-		</td>
-	</tr>
-	<tr>
-		<td class="tableb" valign="top" width="40%">
-			{$lang_ecard_php['your_email']}<br />
-		</td>
-		<td valign="top" class="tableb" width="60%">
-			<input type="text" class="textinput" name="sender_email"  value="$sender_email" style="WIDTH: 100%;"><br />
-			$sender_email_warning
-		</td>
-	</tr>
-	<tr>
-		<td class="tableh2" colspan="2"><b>{$lang_ecard_php['to']}</b></td>
-	</tr>
-	<tr>
-		<td class="tableb" valign="top" width="40%">
-			{$lang_ecard_php['rcpt_name']}<br />
-		</td>
-		<td valign="top" class="tableb" width="60%">
-			<input type="text" class="textinput" name="recipient_name"  value="$recipient_name" style="WIDTH: 100%;"><br />
-		</td>
-	</tr>
-	<tr>
-		<td class="tableb" valign="top" width="40%">
-			{$lang_ecard_php['rcpt_email']}<br />
-		</td>
-		<td valign="top" class="tableb" width="60%">
-			<input type="text" class="textinput" name="recipient_email"  value="$recipient_email" style="WIDTH: 100%;"><br />
-			$recipient_email_warning
-		</td>
-	</tr>
-	<tr>
-		<td class="tableh2" colspan="3"><b>{$lang_ecard_php['greetings']}</b></td>
-	</tr>
-	<tr>
-		<td class="tableb" colspan="3">
-			<input type="text" class="textinput" name="greetings"  value="$greetings" style="WIDTH: 100%;"><br />
-		</td>
-	</tr>
-	<tr>
-		<td class="tableh2" colspan="3"><b>{$lang_ecard_php['message']}</b></td>
-	</tr>
-	<tr>
-		<td class="tableb" colspan="3" valign="top"><br />
-			<textarea name="message" class="textinput" ROWS="8" COLS="40" WRAP="virtual" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" STYLE="WIDTH: 100%;">$message</textarea><br /><br />
-		</td>
-	</tr>
-	<tr>
-		<td class="tableb" colspan="3" valign="top">
+        <tr>
+                <td class="tableh2" colspan="2"><b>{$lang_ecard_php['from']}</b></td>
+                <td rowspan="6" align="center" valign="top" class="tableb">
+                        <img src="$thumb_pic_url" alt="" vspace="8" border="0" class="image"><br />
+                </td>
+        </tr>
+        <tr>
+                <td class="tableb" valign="top" width="40%">
+                        <form method="post" name="post" action="$PHP_SELF?album=$album&pid=$pid&pos=$pos">
+                        {$lang_ecard_php['your_name']}<br />
+                </td>
+                <td valign="top" class="tableb" width="60%">
+                        <input type="text" class="textinput" name="sender_name"  value="$sender_name" style="WIDTH: 100%;"><br />
+                </td>
+        </tr>
+        <tr>
+                <td class="tableb" valign="top" width="40%">
+                        {$lang_ecard_php['your_email']}<br />
+                </td>
+                <td valign="top" class="tableb" width="60%">
+                        <input type="text" class="textinput" name="sender_email"  value="$sender_email" style="WIDTH: 100%;"><br />
+                        $sender_email_warning
+                </td>
+        </tr>
+        <tr>
+                <td class="tableh2" colspan="2"><b>{$lang_ecard_php['to']}</b></td>
+        </tr>
+        <tr>
+                <td class="tableb" valign="top" width="40%">
+                        {$lang_ecard_php['rcpt_name']}<br />
+                </td>
+                <td valign="top" class="tableb" width="60%">
+                        <input type="text" class="textinput" name="recipient_name"  value="$recipient_name" style="WIDTH: 100%;"><br />
+                </td>
+        </tr>
+        <tr>
+                <td class="tableb" valign="top" width="40%">
+                        {$lang_ecard_php['rcpt_email']}<br />
+                </td>
+                <td valign="top" class="tableb" width="60%">
+                        <input type="text" class="textinput" name="recipient_email"  value="$recipient_email" style="WIDTH: 100%;"><br />
+                        $recipient_email_warning
+                </td>
+        </tr>
+        <tr>
+                <td class="tableh2" colspan="3"><b>{$lang_ecard_php['greetings']}</b></td>
+        </tr>
+        <tr>
+                <td class="tableb" colspan="3">
+                        <input type="text" class="textinput" name="greetings"  value="$greetings" style="WIDTH: 100%;"><br />
+                </td>
+        </tr>
+        <tr>
+                <td class="tableh2" colspan="3"><b>{$lang_ecard_php['message']}</b></td>
+        </tr>
+        <tr>
+                <td class="tableb" colspan="3" valign="top"><br />
+                        <textarea name="message" class="textinput" ROWS="8" COLS="40" WRAP="virtual" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" STYLE="WIDTH: 100%;">$message</textarea><br /><br />
+                </td>
+        </tr>
+        <tr>
+                <td class="tableb" colspan="3" valign="top">
 
 EOT;
 echo generate_smilies();
 echo <<<EOT
-		</td>
-	</tr>
-	<tr>
-		<td colspan="3" align="center" class="tablef">
-			<input type="submit" class="button" value="{$lang_ecard_php['title']}">
-			</form>
-		</td>
-	</tr>
+                </td>
+        </tr>
+        <tr>
+                <td colspan="3" align="center" class="tablef">
+                        <input type="submit" class="button" value="{$lang_ecard_php['title']}">
+                        </form>
+                </td>
+        </tr>
 EOT;
 
 endtable();

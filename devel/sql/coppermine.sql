@@ -94,6 +94,7 @@ INSERT INTO CPG_config VALUES ('offline', '0');
 INSERT INTO CPG_config VALUES ('allow_memberlist', '0');
 INSERT INTO CPG_config VALUES ('display_faq', '0');
 INSERT INTO CPG_config VALUES ('show_bbcode_help', '1');
+INSERT INTO CPG_config VALUES ('log_ecards', '0');
 
 #
 # Dumping data for table `CPG_usergroups`

@@ -1,22 +1,20 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery                                                 //
+// Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003  Gr&eacute;gory DEMAR <gdemar@wanadoo.fr>               //
-// http://www.chezgreg.net/coppermine/                                      //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
-// Based on PHPhotoalbum by Henning Stverud <henning@stoverud.com>         //
-// http://www.stoverud.com/PHPhotoalbum/                                    //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
-// Hacked by Tarique Sani <tarique@sanisoft.com> and Girsh Nair             //
-// <girish@sanisoft.com> see http://www.sanisoft.com/cpg/README.txt for     //
-// details                                                                  //
+// This program is free software; you can redistribute it and/or modify      //
+// it under the terms of the GNU General Public License as published by      //
+// the Free Software Foundation; either version 2 of the License, or         //
+// (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify     //
-// it under the terms of the GNU General Public License as published by     //
-// the Free Software Foundation; either version 2 of the License, or        //
-// (at your option) any later version.                                      //
-// ------------------------------------------------------------------------- //
+
 // HTML template for main menu
 $template_main_menu = <<<EOT
                 <span class="topmenu">
@@ -89,6 +87,7 @@ $template_gallery_admin_menu = <<<EOT
                                 <td class="admin_menu"><a href="usermgr.php" title="">{USERS_LNK}</a></td>
                                 <td class="admin_menu"><a href="groupmgr.php" title="">{GROUPS_LNK}</a></td>
                                 <td class="admin_menu"><a href="banning.php" title="">{BAN_LNK}</a></td>
+                                <td class="admin_menu"><a href="db_ecard.php" title="">{DB_ECARD_LNK}</a></td>
                                 <td class="admin_menu"><a href="reviewcom.php" title="">{COMMENTS_LNK}</a></td>
                                 <td class="admin_menu"><a href="searchnew.php" title="">{SEARCHNEW_LNK}</a></td>
                                 <td class="admin_menu"><a href="util.php" title="">{UTIL_LNK}</a></td>
@@ -981,6 +980,7 @@ function theme_admin_mode_menu()
             '{MY_PROF_LNK}' => $lang_user_admin_menu['my_prof_lnk'],
             '{UTIL_LNK}' => $lang_gallery_admin_menu['util_lnk'],
             '{BAN_LNK}' => $lang_gallery_admin_menu['ban_lnk'],
+            '{DB_ECARD_LNK}' => $lang_gallery_admin_menu['db_ecard_lnk'],
             );
 
         $html = template_eval($template_gallery_admin_menu, $param);

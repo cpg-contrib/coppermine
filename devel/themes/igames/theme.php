@@ -1,8 +1,8 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.2.0                                            //
+// Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR <gdemar@wanadoo.fr>                 //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -101,6 +101,7 @@ $template_gallery_admin_menu = <<<EOT
                                 <td class="admin_menu"><a href="usermgr.php" title="">{USERS_LNK}</a></td>
                                 <td class="admin_menu"><a href="groupmgr.php" title="">{GROUPS_LNK}</a></td>
                                 <td class="admin_menu"><a href="banning.php" title="">{BAN_LNK}</a></td>
+                                <td class="admin_menu"><a href="db_ecard.php" title="">{DB_ECARD_LNK}</a></td>
                                 <td class="admin_menu"><a href="reviewcom.php" title="">{COMMENTS_LNK}</a></td>
                                 <td class="admin_menu"><a href="searchnew.php" title="">{SEARCHNEW_LNK}</a></td>
                                 <td class="admin_menu"><a href="util.php" title="">{UTIL_LNK}</a></td>
@@ -1020,6 +1021,7 @@ function theme_admin_mode_menu()
             '{MY_PROF_LNK}' => $lang_user_admin_menu['my_prof_lnk'],
             '{UTIL_LNK}' => $lang_gallery_admin_menu['util_lnk'],
             '{BAN_LNK}' => $lang_gallery_admin_menu['ban_lnk'],
+            '{DB_ECARD_LNK}' => $lang_gallery_admin_menu['db_ecard_lnk'],
             );
 
         $html = template_eval($template_gallery_admin_menu, $param);
