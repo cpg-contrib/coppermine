@@ -47,9 +47,9 @@ function form_label($text)
         static $cmi = 0;
         static $open = false;
 
-        if ($sn1) echo '<tr><td colspan ="2"><a name="notice1"></a>'.$lang_admin_php['notice1'].'</td></tr>';
-        if ($sn2) echo '<tr><td colspan ="2"><a name="notice2"></a>'.$lang_admin_php['notice2'].'</td></tr>';
-        if ($sn3) echo '<tr><td colspan ="2"><a name="notice3"></a>'.$lang_admin_php['notice3'].'</td></tr>';
+        if ($sn1) echo '<tr><td colspan ="3" class="tableb_compact"><a name="notice1"></a>'.$lang_admin_php['notice1'].'</td></tr>';
+        if ($sn2) echo '<tr><td colspan ="3" class="tableb_compact"><a name="notice2"></a>'.$lang_admin_php['notice2'].'</td></tr>';
+        if ($sn3) echo '<tr><td colspan ="3" class="tableb_compact"><a name="notice3"></a>'.$lang_admin_php['notice3'].'</td></tr>';
 
         $sn1 = $sn2 = $sn3 = 0;
 
@@ -62,13 +62,13 @@ EOT;
         }
         echo <<< EOT
                 <tr>
-                        <td class="tableh2" colspan="2" onclick="show_section('section{$cmi}')">
+                        <td class="tableh2" colspan="3" onclick="show_section('section{$cmi}')">
                                 <span style="cursor:hand"><img src="images/descending.gif" border="0" width="9" height="9" alt="" title="{$lang_admin_php['click_expand']}" /> <b>$text</b></span>
                         </td>
                 </tr>
                 <tr>
                         <td>
-                                <table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable" id="section{$cmi}">
+                                <table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable" id="section{$cmi}" border="0">
 EOT;
 
         $open = true;
@@ -81,8 +81,8 @@ function form_input($text, $name, $help = '')
 
     $value = $CONFIG[$name];
     $help = cpg_display_help($help);
-    
-    $type = ($name == 'smtp_password') ? 'password' : 'text'; 
+
+    $type = ($name == 'smtp_password') ? 'password' : 'text';
 
 
     echo <<<EOT
@@ -90,8 +90,8 @@ function form_input($text, $name, $help = '')
                         <td width="60%" class="tableb">
                                 $text
                         </td>
-                <td width="40%" class="tableb" valign="top">
-                    <input type="$type" class="textinput" style="width: 100%" name="$name" value="$value"/>
+                        <td width="50%" class="tableb" valign="top">
+                            <input type="$type" class="textinput" style="width: 100%" name="$name" value="$value"/>
                         </td>
                         <td class="tableb" width="10%">
                                 $help
@@ -115,7 +115,7 @@ function form_yes_no($text, $name, $help = '')
                         <td class="tableb" width="60%">
                                 $text
                         </td>
-                <td class="tableb" valign="top" width="50%">
+                        <td class="tableb" valign="top" width="50%">
                                 <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected/><label for="{$name}1" class="clickable_option">$lang_yes</label>
                                 &nbsp;&nbsp;
                                 <input type="radio" id="{$name}0" name="$name" value="0" $no_selected/><label for="{$name}0" class="clickable_option">$lang_no</label>
@@ -142,19 +142,19 @@ function form_img_pkg($text, $name, $help = '')
     echo <<<EOT
         <tr>
             <td class="tableb" width="60%">
-                                $text
-                </td>
-                <td class="tableb" valign="top" width="50%">
-                                <select name="$name" class="listbox">
-                                        <option value="im" $im_selected>Image Magick</option>
-                                        <option value="gd1" $gd1_selected>GD version 1.x</option>
-                                        <option value="gd2" $gd2_selected>GD version 2.x</option>
-                                </select>
-                        </td>
-                        <td class="tableb" width="10%">
-                        $help
-                        </td>
-                </tr>
+                $text
+            </td>
+            <td class="tableb" valign="top" width="50%">
+                <select name="$name" class="listbox">
+                    <option value="im" $im_selected>Image Magick</option>
+                    <option value="gd1" $gd1_selected>GD version 1.x</option>
+                    <option value="gd2" $gd2_selected>GD version 2.x</option>
+                </select>
+            </td>
+            <td class="tableb" width="10%">
+                $help
+            </td>
+        </tr>
 
 EOT;
 }
@@ -178,7 +178,7 @@ function form_sort_order($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-            <td class="tableb" width="50%">
+            <td class="tableb" width="60%">
                         $text
         </td>
         <td class="tableb" valign="top" width="50%">
@@ -231,7 +231,7 @@ function form_charset($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-            <td class="tableb" width="50%">
+            <td class="tableb" width="60%">
                         $text
         </td>
         <td class="tableb" valign="top" width="50%">
@@ -272,7 +272,7 @@ function form_language($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-            <td class="tableb" width="50%">
+            <td class="tableb" width="60%">
                         $text
         </td>
         <td class="tableb" valign="top" width="50%">
@@ -316,7 +316,7 @@ function form_theme($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-            <td class="tableb" width="50%">
+            <td class="tableb" width="60%">
                         $text
         </td>
         <td class="tableb" valign="top" width="50%">
@@ -350,7 +350,7 @@ function form_scale($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-            <td class="tableb" width="50%">
+            <td class="tableb" width="60%">
                         $text
         </td>
         <td class="tableb" valign="top" width="50%">
@@ -381,15 +381,15 @@ function form_lang_theme($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-            <td class="tableb" width="50%">
+            <td class="tableb" width="60%">
                         $text
         </td>
-        <td class="tableb" valign="top" width="50%">          
+        <td class="tableb" valign="top" width="50%">
                         <input type="radio" id="{$name}1" name="$name" value="1" $yes_1_selected /><label for="{$name}1" class="clickable_option">$lang_yes:{$lang_admin_php['item']}</label>
                         &nbsp;&nbsp;
                         <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">$lang_yes:{$lang_admin_php['label']}+{$lang_admin_php['item']}</label>
-        				&nbsp;&nbsp;
-        				<input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
+                &nbsp;&nbsp;
+                <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
         </td>
         <td class="tableb" width="10%">
         $help
@@ -412,16 +412,16 @@ function form_lang_debug($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-            <td class="tableb" width="50%">
+            <td class="tableb" width="60%">
                                 $text
                 </td>
                 <td class="tableb" valign="top" width="50%">
                                 <input type="radio" id="{$name}1" name="$name" value="1" $yes_1_selected /><label for="{$name}1" class="clickable_option">$lang_yes:{$lang_admin_php['debug_everyone']}</label>
                                 &nbsp;&nbsp;
                                 <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">$lang_yes:{$lang_admin_php['debug_admin']}</label>
-                				&nbsp;&nbsp;
-                				<input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
-                                
+                        &nbsp;&nbsp;
+                        <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
+
                 </td>
                 <td class="tableb" width="10%">
                         $help
@@ -439,7 +439,7 @@ function form_number_dropdown($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-            <td class="tableb" width="50%">
+            <td class="tableb" width="60%">
                         $text
         </td>
         <td class="tableb" valign="top" width="50%">
@@ -473,7 +473,7 @@ function form_lang_logmode($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-            <td class="tableb" width="50%">
+            <td class="tableb" width="60%">
                         $text
         </td>
         <td class="tableb" valign="top" width="50%">
@@ -506,7 +506,7 @@ function form_plugin_yes_no($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-            <td class="tableb" width="50%">
+            <td class="tableb" width="60%">
                         $text
         </td>
         <td class="tableb" valign="top" width="50%">
@@ -535,7 +535,7 @@ function form_exif_yes_no($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-            <td class="tableb" width="50%">
+            <td class="tableb" width="60%">
                         $text
         </td>
         <td class="tableb" valign="top" width="50%">
@@ -564,7 +564,7 @@ function form_keywords_yes_no($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-            <td class="tableb" width="50%">
+            <td class="tableb" width="60%">
                         $text
         </td>
         <td class="tableb" valign="top" width="50%">
@@ -583,21 +583,21 @@ EOT;
 
 function form_disabled($text, $name, $help = '')
 {
-	global $lang_admin_php;
-	$help = cpg_display_help($help);
-	
+  global $lang_admin_php;
+  $help = cpg_display_help($help);
+
     echo <<<EOT
                 <tr>
-                        <td width="60%" class="tableb">
-                                $text
-                        </td>
-                <td width="40%" class="tableb" valign="top">
-                    {$lang_admin_php['bbs_disabled']}
-                        </td>
-                        <td class="tableb" width="10%">
-                                $help
-                        </td>
-        </tr>
+                    <td width="60%" class="tableb">
+                        $text
+                    </td>
+                    <td width="50%" class="tableb" valign="top">
+                        {$lang_admin_php['bbs_disabled']}
+                    </td>
+                    <td class="tableb" width="10%">
+                        $help
+                    </td>
+                </tr>
 
 EOT;
 }
@@ -615,19 +615,19 @@ function form_auto_resize($text, $name, $help = '')
 
     echo <<<EOT
         <tr>
-            <td class="tableb" width="50%">
-                                $text
-                </td>
-                <td class="tableb" valign="top" width="50%">
-                                <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
-                                &nbsp;&nbsp;
-                                <input type="radio" id="{$name}1" name="$name" value="1" $yes_1_selected /><label for="{$name}1" class="clickable_option">$lang_yes:{$lang_admin_php['auto_resize_everyone']}</label>
-                                &nbsp;&nbsp;
-                                <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">$lang_yes:{$lang_admin_php['auto_resize_user']}</label>
-                </td>
-                <td class="tableb" width="10%">
-                        $help
-                </td>
+            <td class="tableb" width="60%">
+                $text
+            </td>
+            <td class="tableb" valign="top" width="50%">
+                <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
+                &nbsp;&nbsp;
+                <input type="radio" id="{$name}1" name="$name" value="1" $yes_1_selected /><label for="{$name}1" class="clickable_option">$lang_yes:{$lang_admin_php['auto_resize_everyone']}</label>
+                &nbsp;&nbsp;
+                <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">$lang_yes:{$lang_admin_php['auto_resize_user']}</label>
+            </td>
+            <td class="tableb" width="10%">
+                $help
+            </td>
         </tr>
 
 EOT;
@@ -694,7 +694,7 @@ function create_form(&$data)
                 case 14 :
                     form_keywords_yes_no($element[0], $element[1], $element[3]);
                     break;
-				            case 15 :
+                    case 15 :
                     form_disabled($element[0], $element[1], $element[3]);
                     break;
                 case 16 :
@@ -799,9 +799,9 @@ echo <<<EOT
 EOT;
 create_form($lang_admin_data);
 
-        if ($sn1) echo '<tr><td colspan ="2"><a name="notice1"></a>'.$lang_admin_php['notice1'].'</td></tr>';
-        if ($sn2) echo '<tr><td colspan ="2"><a name="notice2"></a>'.$lang_admin_php['notice2'].'</td></tr>';
-        if ($sn3) echo '<tr><td colspan ="2"><a name="notice3"></a>'.$lang_admin_php['notice3'].'</td></tr>';
+        if ($sn1) echo '<tr><td colspan ="3" class="tableb_compact"><a name="notice1"></a>'.$lang_admin_php['notice1'].'</td></tr>';
+        if ($sn2) echo '<tr><td colspan ="3" class="tableb_compact"><a name="notice2"></a>'.$lang_admin_php['notice2'].'</td></tr>';
+        if ($sn3) echo '<tr><td colspan ="3" class="tableb_compact"><a name="notice3"></a>'.$lang_admin_php['notice3'].'</td></tr>';
 
 echo '</table></td></tr>';
 
