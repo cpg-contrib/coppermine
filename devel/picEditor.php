@@ -204,6 +204,7 @@ if ($_GET['id']){
         $ratio = max($ratio, 1.0);
         $dstWidth = (int)($width / $ratio);
         $dstHeight = (int)($height / $ratio);
+        $imgObj->quality = (int)($_POST['quality']);
         $imgObj = $imgObj->resizeImage($dstWidth,$dstHeight);
         $newimage = $imgObj->filename;
 
@@ -212,10 +213,7 @@ if ($_GET['id']){
         $total_filesize = filesize($currentPic) + (file_exists($normal) ? filesize($normal) : 0) + filesize($thumbnail);
 			   
           //Update the image size in the DB
-          db_query("UPDATE {$CONFIG['TABLE_PICTURES']}
-                          SET pheight = $height,
-							total_filesize = $total_filesize
-                          WHERE pid = '$pid'");
+          db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET total_filesize = $total_filesize WHERE pid = '$pid'");
 		
 		
         $message = "Thumbnail successfully saved - you can close this window now";
