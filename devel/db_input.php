@@ -109,12 +109,14 @@ switch ($event) {
 
         if ($album_data['comments'] != 'YES') cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
-        $result = db_query("SELECT author_md5_id, author_id FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid = '$pid' ORDER BY msg_id DESC LIMIT 1");
-        if (mysql_num_rows($result)) {
-            $last_com_data = mysql_fetch_array($result);
-            if ((USER_ID && $last_com_data['author_id'] == USER_ID) || (!USER_ID && $last_com_data['author_md5_id'] == $USER['ID'])) {
-                cpg_die(ERROR, $lang_db_input_php['no_flood'], __FILE__, __LINE__);
-            }
+        if (!$CONFIG['disable_comment_flood_protect']){
+          $result = db_query("SELECT author_md5_id, author_id FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid = '$pid' ORDER BY msg_id DESC LIMIT 1");
+          if (mysql_num_rows($result)) {
+              $last_com_data = mysql_fetch_array($result);
+              if ((USER_ID && $last_com_data['author_id'] == USER_ID) || (!USER_ID && $last_com_data['author_md5_id'] == $USER['ID'])) {
+                  cpg_die(ERROR, $lang_db_input_php['no_flood'], __FILE__, __LINE__);
+              }
+          }
         }
 
         if (!USER_ID) { // Anonymous users, we need to use META refresh to save the cookie
