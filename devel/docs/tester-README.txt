@@ -19,7 +19,7 @@ Areas to be particularly mindful of:
 . Please attempt to use multiple types of graphics such as JPEG, PNG and GIF (for
   IM users).
 
-Please report your test results to the testing board at http://coppermine.sourceforge.net/board/ .
+Please report your test results to the testing board at http://coppermine.sourceforge.net/board/viewforum.php?f=19 .
 
 The report format should include:
 
