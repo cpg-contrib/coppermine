@@ -56,6 +56,13 @@ function display_log($logname)
 
         echo <<<EOT
                 <tr>
+                        <td class="tableb" align="center">
+                                <input class="button" type="button" value="{$lang_viewlog_php['delete_all']}" name="dall1" id="dall1" onclick="window.location='viewlog.php?action=dall';" />
+                                <input class="button" type="button" value="{$lang_viewlog_php['view_logs']}" name="back1" id="back1" onclick="window.location='viewlog.php';" />
+                                <input class="button" type="button" value="{$lang_viewlog_php['delete_this']}" name="dthis1" id="dthis1" onclick="window.location='viewlog.php?action=dthis&log=$logname';" />
+                        </td>
+                </tr>
+                <tr>
                         <td class="tableb">
                                 <pre>
 EOT;
@@ -66,9 +73,9 @@ EOT;
                 </tr>
                 <tr>
                         <td class="tableb" align="center">
-                                <input class="button" type="button" value="{$lang_viewlog_php['delete_all']}" name="dall" id="dall" onclick="window.location='viewlog.php?action=dall';" />
-                                <input class="button" type="button" value="{$lang_viewlog_php['view_logs']}" name="back" id="back" onclick="window.location='viewlog.php';" />
-                                <input class="button" type="button" value="{$lang_viewlog_php['delete_this']}" name="dthis" id="dthis" onclick="window.location='viewlog.php?action=dthis&log=$logname';" />
+                                <input class="button" type="button" value="{$lang_viewlog_php['delete_all']}" name="dall2" id="dall2" onclick="window.location='viewlog.php?action=dall';" />
+                                <input class="button" type="button" value="{$lang_viewlog_php['view_logs']}" name="back2" id="back2" onclick="window.location='viewlog.php';" />
+                                <input class="button" type="button" value="{$lang_viewlog_php['delete_this']}" name="dthis2" id="dthis2" onclick="window.location='viewlog.php?action=dthis&log=$logname';" />
                         </td>
                 </tr>
 

@@ -398,9 +398,9 @@ function get_and_convert_to_bytes ($ini_variable_name) {
 
     }
 }
-
+/*** Moved to 'logger.inc.php'
 // The function spring_cleaning is a garbage collection routine used to purge a directory of old files.
-function spring_cleaning($directory_path) {
+function spring_cleaning($directory_path, $exclusion_list = array('index.html')) {
 
     //First we get the transitory directory handle.
     $directory_handle = opendir($directory_path);
@@ -417,7 +417,7 @@ function spring_cleaning($directory_path) {
     while (!(($file = readdir($directory_handle)) === false)) {
 
             // Avoid deleting the index page of the directory.
-            if ($file == 'index.html') {
+            if (in_array($file,$exclusion_list)) { // == 'index.html') {
 
                 // This is the index file, so we move on.
                 continue;
@@ -447,7 +447,7 @@ function spring_cleaning($directory_path) {
 
                     // The file is old. We delete it.
                     if ($CONFIG['log_mode']) {
-                          log_write('Garbage collection deleted '.$dir_path.' via upload.php at '.date("F j, Y, g:i a"),CPG_GLOBAL_LOG);
+                          log_write('Garbage collection deleted '.$dir_path.' at '.date("F j, Y, g:i a"),CPG_GLOBAL_LOG);
                     }
                     unlink($dir_path);
             }
@@ -458,6 +458,7 @@ function spring_cleaning($directory_path) {
     closedir($directory_handle);
 
 }
+*/
 
 // The create_record function. Takes the encoded string. Returns the unique record ID.
 function create_record($encoded_string) {
@@ -852,7 +853,7 @@ $max_file_size = $CONFIG['max_upl_size'] << 10;
 if (!isset($_REQUEST['control'])) {
 
     // Do some cleanup in the edit directory.
-    spring_cleaning('./albums/edit');
+    spring_cleaning('./albums/edit',CPG_HOUR);
 
     // Do some cleaning in the temp data table.
     clean_table();
