@@ -20,7 +20,7 @@ $Id$
 */
 
 function get_IPTC($filename) {
-        $size = GetImageSize ($filename, &$info);
+        $size = GetImageSize ($filename, $info);
         if (isset($info["APP13"])) {
         $iptc = iptcparse($info["APP13"]);
         if (is_array($iptc)) {
