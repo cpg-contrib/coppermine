@@ -580,9 +580,11 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
   'notice1' => '(*) These settings mustn\'t be changed if you already have files in your database.', //cpg1.4.0 - (relocated)
   'notice2' => '(**) When changing this setting, only the files that are added from that point on are affected, so it is advisable that this setting must not be changed if there are already files in the gallery. You can, however, apply the changes to the existing files with the &quot;<a href="util.php">admin tools</a> (resize pictures)&quot; utility from the admin menu.', //cpg1.4.0 - (relocated)
   'notice3' => '(***) All log files are written in english.', //cpg1.4.0 - (relocated)
-  'bbs_disabled' => 'Function disabled when using bb integration',
-  'auto_resize_everyone' => 'Everyone',
-  'auto_resize_user' => 'User only',
+  'bbs_disabled' => 'Function disabled when using bb integration', //cpg1.4.0
+  'auto_resize_everyone' => 'Everyone', //cpg1.4.0
+  'auto_resize_user' => 'User only', //cpg1.4.0
+  'ascending' => 'ascending', //cpg1.4.0
+  'descending' => 'descending', //cpg1.4.0  
 );
 
 if (defined('ADMIN_PHP')) $lang_admin_data = array(
@@ -650,6 +652,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Max number of lines in a comment', 'max_com_lines', 0, 'f=index.htm&as=admin_image_comment_lines&ae=admin_image_comment_lines_end'),
   array('Maximum length of a comment', 'max_com_size', 0, 'f=index.htm&as=admin_image_comment_length&ae=admin_image_comment_length_end'),
   array('Notify admin of comments by email', 'email_comment_notification', 1, 'f=index.htm&as=admin_image_comment_admin_notify&ae=admin_image_comment_admin_notify_end'),
+  array('Sort order of comments', 'comments_sort_descending', 17, 'f=index.htm&as=admin_comment_sort_start&ae=admin_comment_sort_end'),
 
   'Files and thumbnails settings',
   array('Quality for JPEG files', 'jpeg_qual', 0, 'f=index.htm&as=admin_picture_thumbnail_jpeg_quality&ae=admin_picture_thumbnail_jpeg_quality_end'),

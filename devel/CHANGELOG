@@ -203,3 +203,4 @@ Added option to delete all files and comments when deleting users - 28 October 2
 Added custom header and footer include option - 02 November 2004, GauGau
 Added slovak translation (user contribution) - 06 November 2004, GauGau
 Changed options for "Image view" and "Comment settings" to be different sections - 08 November 2004, GauGau
+Added option to sort comments ascending or descending - 08 November 2004, GauGau

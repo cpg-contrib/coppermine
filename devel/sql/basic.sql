@@ -268,3 +268,4 @@ INSERT INTO CPG_config VALUES ('hit_details', '0');
 INSERT INTO CPG_config VALUES ('browse_batch_add', '1');
 INSERT INTO CPG_config VALUES ('custom_header_path', '');
 INSERT INTO CPG_config VALUES ('custom_footer_path', '');
+INSERT INTO CPG_config VALUES ('comments_sort_descending', '0');
