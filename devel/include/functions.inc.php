@@ -2,11 +2,13 @@
 // ------------------------------------------------------------------------- //
 //  Coppermine Photo Gallery                                                 //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Grégory DEMAR <gdemar@wanadoo.fr>               //
+//  Copyright (C) 2002,2003  Grï¿½ory DEMAR <gdemar@wanadoo.fr>               //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
+//  Based on PHPhotoalbum by Henning Stverud <henning@stoverud.com>         //
 //  http://www.stoverud.com/PHPhotoalbum/                                    //
+// ------------------------------------------------------------------------- //
+//  Hacked by Tarique Sani <tarique@sanisoft.com>                            //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
@@ -193,13 +195,6 @@ function msg_box($title, $msg_text, $button_text="", $button_link="", $width="-1
 	endtable();
 }
 
-// create tabs for multi-page navigation
-// $template = array(
-//	'left_text' => ,
-//	'tab_header' => ,
-//	'tab_trailer' => ,
-//  'active_tab' => ,
-//	'inactive_tab' => );
 function create_tabs($items, $curr_page, $total_pages, $template)
 {
 	global $CONFIG;
@@ -414,8 +409,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 	global $album_date_fmt, $lastcom_date_fmt, $lastup_date_fmt, $lasthit_date_fmt;
 	global $lang_get_pic_data, $lang_meta_album_names, $lang_errors;
 
-	$sort_array = array('na' => 'filename ASC', 'nd' => 'filename DESC', 'da' => 'pid ASC', 'dd' => 'pid DESC');
-    $sort_code = isset($USER['sort'])? $USER['sort'] : $CONFIG['default_sort_order'];
+	$sort_array = array('na' => 'filename ASC', 'nd' => 'filename DESC', 'ta'=>'title ASC', 'td'=>'title DESC', 'da' => 'pid ASC', 'dd' => 'pid DESC');
+	$sort_code = isset($USER['sort'])? $USER['sort'] : $CONFIG['default_sort_order'];
 	$sort_order = isset($sort_array[$sort_code]) ? $sort_array[$sort_code] : $sort_array[$CONFIG['default_sort_order']];
 	$limit = ($limit1 != -1) ? ' LIMIT '. $limit1 : '';
 	$limit .= ($limit2 != -1) ? ' ,'. $limit2 : '';
@@ -437,7 +432,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 		$count = $nbEnr[0];
 		mysql_free_result($result);
 
-		if($select_columns != '*') $select_columns .= ', title, caption';
+		if($select_columns != '*') $select_columns .= ', title, caption,hits';
 
 		$result = db_query("SELECT $select_columns from {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' $approved $ALBUM_SET ORDER BY $sort_order $limit");
 		$rowset = db_fetch_rowset($result);
@@ -445,7 +440,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
 		// Set picture caption
 		if ($set_caption) foreach ($rowset as $key => $row){
-			$caption = $rowset[$key]['title'] ? "<span class=\"thumb_title\">".$rowset[$key]['title']."</span>" : '';
+			$caption = $rowset[$key]['title'] ? "<span class=\"thumb_title\">".$rowset[$key]['title']."-".$rowset[$key]['hits']." Hits</span>" : '';
 			if ($CONFIG['caption_in_thumbview']){
            		$caption .= $rowset[$key]['caption'] ? "<span class=\"thumb_caption\">".bb_decode(($rowset[$key]['caption']))."</span>" : '';
 			}
@@ -743,6 +738,40 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 		}
 		
 		include 'include/search.inc.php';
+
+		case 'lastalb': // Last albums to which uploads	        
+                if ($ALBUM_SET && $CURRENT_CAT_NAME) {
+                        $album_name = $lang_meta_album_names['lastalb'].' - '. $CURRENT_CAT_NAME;
+                } else {
+                        $album_name = $lang_meta_album_names['lastalb'];
+                }
+		
+		
+		$ALBUM_SET = str_replace( "aid", $CONFIG['TABLE_PICTURES'].".aid" , $ALBUM_SET );
+		
+		echo "ALBUM SET ". $ALBUM_SET;
+		 
+                $result = db_query("SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $ALBUM_SET");
+                $nbEnr = mysql_fetch_array($result);
+                $count = $nbEnr[0];
+                mysql_free_result($result);
+		                
+		$result = db_query("SELECT *,{$CONFIG['TABLE_ALBUMS']}.title AS title,{$CONFIG['TABLE_ALBUMS']}.aid AS aid  FROM {$CONFIG['TABLE_PICTURES']},{$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND approved = 'YES' $ALBUM_SET GROUP  BY {$CONFIG['TABLE_PICTURES']}.aid ORDER BY {$CONFIG['TABLE_PICTURES']}.ctime DESC $limit");
+                $rowset = db_fetch_rowset($result);		
+                mysql_free_result($result);
+
+                if ($set_caption) foreach ($rowset as $key => $row){
+                        if ($row['user_id']) {
+                            $user_link = '<br /><a href ="profile.php?uid='.$row['user_id'].'">'.$row['user_name'].'</a>';
+                        } else {
+                                $user_link = '';
+                        }
+                        $caption = "<span class=\"thumb_caption\">".$row['title']." - ".localised_date($row['ctime'], $lastup_date_fmt).$user_link.'</span>';
+                        $rowset[$key]['caption_text'] = $caption;
+                }
+                return $rowset;
+                break;
+		
 		
 		return $rowset;
 		break;
@@ -809,13 +838,12 @@ function add_hit($pid)
 	db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET hits=hits+1 WHERE pid='$pid'");
 }
 
+
 // Build the breadcrumb
 function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
 {
-	global $lang_errors, $lang_list_categories;
-	global $CONFIG, $CURRENT_CAT_NAME;
-
-	$breadcrumb = '';
+        global $album, $lang_errors, $lang_list_categories;
+        global $CONFIG,$CURRENT_ALBUM_DATA, $CURRENT_CAT_NAME;
 	if ($cat != 0) {
 		$breadcrumb_array = array();
 		if ($cat >= FIRST_USER_CAT) {
@@ -834,6 +862,7 @@ function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
 			$CURRENT_CAT_NAME = $row['name'];
 			mysql_free_result($result);
 		}
+		
 		while($row['parent'] != 0){
 		    $result = db_query("SELECT cid, name, parent FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '{$row['parent']}'");
 			if (mysql_num_rows($result) == 0) cpg_die(CRITICAL_ERROR, $lang_errors['orphan_cat'], __FILE__, __LINE__);
@@ -846,13 +875,26 @@ function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
 		$breadcrumb_array = array_reverse($breadcrumb_array);
 		$breadcrumb = '<a href=index.php>'.$lang_list_categories['home'].'</a>';
 		$BREADCRUMB_TEXT = $lang_list_categories['home'];
+		
 		foreach ($breadcrumb_array as $category){
 			$link = "<a href=index.php?cat={$category[0]}>{$category[1]}</a>";
 			$breadcrumb .= ' > ' . $link;
 			$BREADCRUMB_TEXT .= ' > ' . $category[1];
 		}
-	}
+
+		//Add Link for album if $album is set
+		if (is_numeric($album)){
+			$link = "<a href=thumbnails.php?album=$album>".$CURRENT_ALBUM_DATA['title']."</a>";
+			$breadcrumb .= ' > ' . $link;
+                        $BREADCRUMB_TEXT .= ' > ' . $CURRENT_ALBUM_DATA['title'];
+		}		
+
+	   }
 }
+
+
+
+
 
 /**************************************************************************
 
@@ -861,7 +903,15 @@ function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
 // Compute image geometry based on max width / height
 function compute_img_size($width, $height, $max)
 {
-	$ratio = max($width, $height) / $max;
+         global $CONFIG;
+        $thumb_use=$CONFIG['thumb_use'];
+        if($thumb_use=='ht') {
+          $ratio = $height / $max;
+        } elseif($thumb_use=='wd') {
+          $ratio = $width / $max;
+        } else {
+	  $ratio = max($width, $height) / $max;
+	}
 	if ($ratio > 1.0) {
 		$image_size['reduced'] = true;
 	}
@@ -901,12 +951,76 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
 			$thumb_list[$i]['image'] = "<img src=\"" . get_pic_url($row, 'thumb') . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\"></a>";
 			$thumb_list[$i]['caption'] = $row['caption_text'];
 			$thumb_list[$i]['admin_menu'] = '';
-
+			$thumb_list[$i]['aid'] = $row['aid'];
 		}
 		theme_display_thumbnails($thumb_list, $thumb_count, $album_name, $album, $cat, $page, $total_pages, is_numeric($album), $display_tabs);
 	} else {
 		theme_no_img_to_display($album_name);
 	}
+}
+
+// Prints thumbnails of pictures in an album
+
+function display_film_strip($album, $cat, $pos)
+{
+        global $CONFIG, $AUTHORIZED, $HTTP_GET_VARS;
+        global $album_date_fmt, $lang_display_thumbnails, $lang_errors, $lang_byte_units;
+        $max_item=$CONFIG['max_film_strip_items'];
+        //$thumb_per_page = $pos+$CONFIG['max_film_strip_items'];
+        $thumb_per_page = $max_item*2;
+        $l_limit = max(0,$pos-$CONFIG['max_film_strip_items']);
+        $new_pos=max(0,$pos-$l_limit);
+
+        $pic_data = get_pic_data($album, $thumb_count, $album_name, $l_limit, $thumb_per_page);
+
+        $lower_limit=3;
+
+        if(!isset($pic_data[$new_pos+1])) {
+           $lower_limit=$new_pos-$max_item+1;
+        } else if(!isset($pic_data[$new_pos+2])) {
+           $lower_limit=$new_pos-$max_item+2;
+        } else if(!isset($pic_data[$new_pos-1])) {
+           $lower_limit=$new_pos;
+        } else {
+          $hf=$max_item/2;
+          $ihf=(int)($max_item/2);
+          if($new_pos > $hf ) {
+             //if($max_item%2==0) {
+               //$lower_limit=
+             //} else {
+             {
+               $lower_limit=$new_pos-$ihf;
+             }
+          }
+          elseif($new_pos < $hf ) { $lower_limit=0; }
+        }
+
+        $pic_data=array_slice($pic_data,$lower_limit,$max_item);
+        $i=$l_limit;
+        if (count($pic_data) > 0) {
+                foreach ($pic_data as $key => $row) {
+                        $hi =(($pos==($i + $lower_limit)) ? '1': '');
+                        $i++;
+
+                        $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
+
+                        $pic_title =$lang_display_thumbnails['filename'].$row['filename']."\n".
+                                $lang_display_thumbnails['filesize'].($row['filesize'] >> 10).$lang_byte_units[1]."\n".
+                                $lang_display_thumbnails['dimensions'].$row['pwidth']."x".$row['pheight']."\n".
+                                $lang_display_thumbnails['date_added'].localised_date($row['ctime'], $album_date_fmt);
+
+                        $p=$i - 1 + $lower_limit;
+                        $p=($p < 0 ? 0 : $p);
+                        $thumb_list[$i]['pos'] = $key < 0 ? $key : $p;
+                        $thumb_list[$i]['image'] = "<img src=\"" . get_pic_url($row, 'thumb') . "\" class=\"image$hi\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\"></a>";
+                        $thumb_list[$i]['caption'] = $row['caption_text'];
+                        $thumb_list[$i]['admin_menu'] = '';
+
+                }
+                return theme_display_film_strip($thumb_list, $thumb_count, $album_name, $album, $cat, $pos, is_numeric($album));
+        } else {
+                theme_no_img_to_display($album_name);
+        }
 }
 
 // Return the url for a picture, allows to have pictures spreaded over multiple servers
