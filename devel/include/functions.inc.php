@@ -118,8 +118,8 @@ function db_fetch_rowset($result)
    Utilities functions
  **************************************************************************/
 
-define ('LOC','YToyOntzOjE6ImwiO3M6OToie0dBTExFUll9IjtzOjE6InMiO3M6MTY5OiI8ZGl2IGNsYXNzPSJmb290ZXIiIGFsaWduPSJjZW50ZXIiIHN0eWxlPSJwYWRkaW5nLXRvcDogMTBweDsiPlBvd2VyZWQgYnkgPGEgaHJlZj0iaHR0cDovL3d3dy5jaGV6Z3JlZy5uZXQvY29wcGVybWluZS8iIHRhcmdldD0iX2JsYW5rIj5Db3BwZXJtaW5lIFBob3RvIEdhbGxlcnk8L2E+PC9kaXY+Ijt9');
- 
+//define ('LOC','YToyOntzOjE6ImwiO3M6OToie0dBTExFUll9IjtzOjE6InMiO3M6MTY5OiI8ZGl2IGNsYXNzPSJmb290ZXIiIGFsaWduPSJjZW50ZXIiIHN0eWxlPSJwYWRkaW5nLXRvcDogMTBweDsiPlBvd2VyZWQgYnkgPGEgaHJlZj0iaHR0cDovL3d3dy5jaGV6Z3JlZy5uZXQvY29wcGVybWluZS8iIHRhcmdldD0iX2JsYW5rIj5Db3BwZXJtaW5lIFBob3RvIEdhbGxlcnk8L2E+PC9kaXY+Ijt9');
+ define ('LOC','YToyOntzOjE6ImwiO3M6OToie0dBTExFUll9IjtzOjE6InMiO3M6MTU5OiI8ZGl2IGNsYXNzPSJmb290ZXIiIGFsaWduPSJjZW50ZXIiIHN0eWxlPSJwYWRkaW5nLXRvcDogMTBweDsiPlBvd2VyZWQgYnkgPGEgaHJlZj0iaHR0cDovL2NvcHBlcm1pbmUuc2YubmV0LyIgdGFyZ2V0PSJfYmxhbmsiPkNvcHBlcm1pbmUgUGhvdG8gR2FsbGVyeTwvYT48L2Rpdj4iO30=');
 // Remplacement for the die function
 function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer = false)
 {
@@ -348,6 +348,7 @@ function load_template()
 
 	$tmpl_loc = array();
 	$tmpl_loc = unserialize(base64_decode(LOC));
+	print_r($tmpl_loc);
 
 	if (file_exists(TEMPLATE_FILE)) {
 	    $template_file = TEMPLATE_FILE;
