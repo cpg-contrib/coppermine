@@ -739,7 +739,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 		
 		include 'include/search.inc.php';
 
-		case 'lastalb': // Last albums to which uploads	        
+	case 'lastalb': // Last albums to which uploads	        
                 if ($ALBUM_SET && $CURRENT_CAT_NAME) {
                         $album_name = $lang_meta_album_names['lastalb'].' - '. $CURRENT_CAT_NAME;
                 } else {
@@ -772,6 +772,26 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 return $rowset;
                 break;
 		
+        case 'favpics': // Favourite Pictures	        
+                
+                $album_name = $lang_meta_album_names['favpics'];
+
+                $result = db_query("SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND pid IN ('1','2','3','4','5','6','7','8')");
+                $nbEnr = mysql_fetch_array($result);
+                $count = $nbEnr[0];
+                mysql_free_result($result);
+
+                $select_columns = '*';
+
+                $result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES'AND pid IN ('1','2','3','4','5','6','7','8') $limit");
+                $rowset = db_fetch_rowset($result);
+		
+                mysql_free_result($result);
+
+                if ($set_caption) foreach ($rowset as $key => $row){
+                        $caption = $rowset[$key]['title'] ? "<span class=\"thumb_caption\">".($rowset[$key]['title'])."</span>" : '';
+                        $rowset[$key]['caption_text'] = $caption;
+                }		
 		
 		return $rowset;
 		break;
