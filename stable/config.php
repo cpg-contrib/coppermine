@@ -450,8 +450,7 @@ if (count($HTTP_POST_VARS) > 0) {
         }
         pageheader($lang_config_php['title']);
         msg_box($lang_config_php['info'], $lang_config_php['upd_success'], $lang_continue, 'index.php');
-        pagefooter();
-        exit;
+
     } elseif (isset($HTTP_POST_VARS['restore_config'])) {
         $default_config = 'sql/basic.sql';
         $sql_query = fread(fopen($default_config, 'r'), filesize($default_config));
@@ -463,10 +462,11 @@ if (count($HTTP_POST_VARS) > 0) {
 
         $sql_count = count($sql_query);
         for($i = 0; $i < $sql_count; $i++) if (strpos($sql_query[$i],'_config') || strpos($sql_query[$i],'_filetypes')) db_query($sql_query[$i]);
+      	pageheader($lang_config_php['title']);
+    	msg_box($lang_config_php['info'], $lang_config_php['restore_success'], $lang_continue, $PHP_SELF);
     }
-    pageheader($lang_config_php['title']);
-    msg_box($lang_config_php['info'], $lang_config_php['restore_success'], $lang_continue, $PHP_SELF);
     pagefooter();
+    exit;
 }
 
 pageheader($lang_config_php['title']);
