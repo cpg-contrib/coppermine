@@ -400,6 +400,7 @@ function template_extract_block(&$template, $block_name, $subst='')
 // Get the list of albums that the current user can't see
 function get_private_album_set()
 {
+        if (GALLERY_ADMIN_MODE) return;
         global $CONFIG, $ALBUM_SET, $USER_DATA, $FORBIDDEN_SET;
 
         $result = db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE visibility != '0' AND visibility !='".(FIRST_USER_CAT + USER_ID)."' AND visibility NOT IN ".USER_GROUP_SET);
