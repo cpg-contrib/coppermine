@@ -210,19 +210,3 @@ ALTER TABLE CPG_pictures ADD INDEX owner_id( `owner_id` );
 #
 
 ALTER TABLE `CPG_pictures` ADD `lasthit_ip` TINYTEXT ;
-
-
-# Updates for profile fields
-
-# msn = 'msn' , im = 'im' , other_contact = 'other' , gender = '0' , age = '21' , user_location = 'loc' , user_website = 'hp' , best_tune = 'tune' , best_mc = 'mc' , best_dj = 'dj' , hobbies = 'hob' , user_interests = 'int' , other_inf = 'other'
-
-ALTER TABLE `CPG_pictures` ADD `msn` varchar(255) NOT NULL default '';
-ALTER TABLE `CPG_pictures` ADD `im` varchar(255) NOT NULL default '';
-ALTER TABLE `CPG_pictures` ADD `other_contact` varchar(255) NOT NULL default '';
-ALTER TABLE `CPG_pictures` ADD `gender` tinyint default NULL;
-ALTER TABLE `CPG_pictures` ADD `age` varchar(255) tinyint(1) default NULL;
-ALTER TABLE `CPG_pictures` ADD `best_tune` varchar(255) NOT NULL default '';
-ALTER TABLE `CPG_pictures` ADD `best_mc` varchar(255) NOT NULL default '';
-ALTER TABLE `CPG_pictures` ADD `best_dj` varchar(255) NOT NULL default '';
-ALTER TABLE `CPG_pictures` ADD `hobbies` varchar(255) NOT NULL default '';
-ALTER TABLE `CPG_pictures` ADD `other_inf` varchar(255) NOT NULL default '';
