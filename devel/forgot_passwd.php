@@ -31,10 +31,23 @@ if (USER_ID) cpg_die(ERROR, $lang_forgot_passwd_php['err_already_logged_in'], __
 $lookup_failed = '';
 
 if (isset($HTTP_POST_VARS['submitted'])) {
-    $results = db_query("SELECT user_name, user_password, user_email  FROM {$CONFIG['TABLE_USERS']} WHERE (user_name = '" . addslashes($HTTP_POST_VARS['username']) . "' OR  user_email = '" . addslashes($HTTP_POST_VARS['username']) . "') AND user_active = 'YES'");
+    $results = db_query("SELECT user_group,user_active,user_name, user_password, user_email  FROM {$CONFIG['TABLE_USERS']} WHERE (user_name = '" . addslashes($HTTP_POST_VARS['username']) . "' OR  user_email = '" . addslashes($HTTP_POST_VARS['username']) . "') AND user_active = 'YES'");
     if (mysql_num_rows($results))
         { // something has been found start
         $USER_DATA = mysql_fetch_array($results);
+        // check if we have an admin account (with empty email address)
+        if ($USER_DATA['user_email'] == '') {
+          // the password is empty. Is the current user the gallery admin?
+          if ($USER_DATA['user_group' == 1]) {
+            $USER_DATA['user_email'] = $CONFIG['gallery_admin_email'];
+          } else {
+            cpg_die(CRITICAL_ERROR, $lang_forgot_passwd_php['failed_sending_email'], __FILE__, __LINE__); //not the gallery admin account
+            }
+        }
+        // has the user account been activated yet?
+        if ($USER_DATA['user_active'] != 'YES') {
+          cpg_die(CRITICAL_ERROR, $lang_forgot_passwd_php['failed_sending_email'], __FILE__, __LINE__); // account hasn't been activated yet
+        }
         // send the email
         if (!cpg_mail($USER_DATA['user_email'], sprintf($lang_forgot_passwd_php['passwd_reminder_subject'], $CONFIG['gallery_name']), sprintf($lang_forgot_passwd_php['passwd_reminder_body'], $USER_DATA['user_name'],$USER_DATA['user_password'],  $CONFIG['ecards_more_pic_target'].'/login.php' ))) {
             cpg_die(CRITICAL_ERROR, $lang_forgot_passwd_php['failed_sending_email'], __FILE__, __LINE__);
