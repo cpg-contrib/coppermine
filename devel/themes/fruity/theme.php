@@ -186,16 +186,17 @@ $template_album_list_cat = <<<EOT
         </tr>
         <tr>
                 <td colspan="3">
-                        <img src="images/spacer.gif" width="1" height="1" alt="" /><br />
+                        <img src="images/spacer.gif" width="1" height="1"><br />
                 </td>
         </tr>
         <tr height="100%">
                 <td align="center" height="100%" valign="middle" class="thumbnails">
-                        <img src="images/spacer.gif" width="{THUMB_CELL_WIDTH}" height="1" class="image" style="margin-top: 0px; margin-bottom: 0px; border: none;" alt="" /><br />
+                        <img src="images/spacer.gif" width="{THUMB_CELL_WIDTH}" height="1" class="image" style="margin-top: 0px;
+ margin-bottom: 0px; border: none;"><br />
                         <a href="{ALB_LINK_TGT}" class="albums">{ALB_LINK_PIC}<br /></a>
                 </td>
                 <td height="100%">
-                        <img src="images/spacer.gif" width="1" height="1" alt="" />
+                        <img src="images/spacer.gif" width="1" height="1">
                 </td>
                 <td width="100%" height="100%" valign="top" class="tableb_compact">
                         {ADMIN_MENU}
@@ -216,7 +217,7 @@ $template_album_list_cat = <<<EOT
         </tr>
         <tr>
                 <td>
-                        <img src="images/spacer.gif" width="1" height="1" alt="" /><br />
+                        <img src="images/spacer.gif" width="1" height="1"><br />
                 </td>
         </tr>
         <tr height="100%">
@@ -246,7 +247,7 @@ $template_album_list_cat = <<<EOT
         </tr>
 <!-- END c_tabs -->
 <!-- BEGIN c_spacer -->
-        <img src="images/spacer.gif" width="1" height="17" alt="" /><br />
+        <img src="images/spacer.gif" width="1" height="17" /><br />
 <!-- END c_spacer -->
 
 EOT;
@@ -413,7 +414,7 @@ $template_fav_thumb_view_title_row = <<<EOT
                         <table width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                                 <td width="100%" class="statlink"><h2>{ALBUM_NAME}</h2></td>
-                                <td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>
+                                <td><img src="images/spacer.gif" width="1"></td>
                                 <td class="sortorder_cell">
                                         <table height="100%" cellpadding="0" cellspacing="0">
                                                 <tr>
@@ -612,15 +613,15 @@ $template_image_comments = <<<EOT
                                 <table width="100%" cellpadding="0" cellspacing="0">
                                         <tr>
                                                 <form name="f{MSG_ID}" method="POST" action="db_input.php">
-                                                <input type="hidden" name="event" value="comment_update" />
-                                                <input type="hidden" name="msg_id" value="{MSG_ID}" />
+                                                <input type="hidden" name="event" value="comment_update">
+                                                <input type="hidden" name="msg_id" value="{MSG_ID}">
                                                 <td width="100%">
                                                         <textarea cols="40" rows="2" class="textinput" name="msg_body" onselect="storeCaret_f{MSG_ID}(this);" onclick="storeCaret_f{MSG_ID}(this);" onkeyup="storeCaret_f{MSG_ID}(this);" style="width: 100%;">{MSG_BODY_RAW}</textarea>
                                                 </td>
                                                 <td class="tableb_compact">
                                                 </td>
                                                 <td>
-                                                        <input type="submit" class="comment_button" name="submit" value="{OK}" />
+                                                        <input type="submit" class="comment_button" name="submit" value="{OK}">
                                                 </td>
                                                 </form>
                                         </tr>
@@ -634,8 +635,8 @@ $template_image_comments = <<<EOT
                                 <table width="100%" cellpadding="0" cellspacing="0">
                                         <tr>
                                                 <form name="f{MSG_ID}" method="POST" action="db_input.php">
-                                                <input type="hidden" name="event" value="comment_update" />
-                                                <input type="hidden" name="msg_id" value="{MSG_ID}" />
+                                                <input type="hidden" name="event" value="comment_update">
+                                                <input type="hidden" name="msg_id" value="{MSG_ID}">
                                                                                                                                                                                                 <td>
                                                 <input type=text name=msg_author value={MSG_AUTHOR} class="textinput" size=10>
                                                 </td>
@@ -647,7 +648,7 @@ $template_image_comments = <<<EOT
                                                 <td class="tableb_compact">
                                                 </td>
                                                 <td>
-                                                        <input type="submit" class="comment_button" name="submit" value="{OK}" />
+                                                        <input type="submit" class="comment_button" name="submit" value="{OK}">
                                                 </td>
                                                 </form>
                                         </tr>
@@ -671,22 +672,22 @@ $template_add_your_comment = <<<EOT
                 <form method="post" name="post" action="db_input.php">
                 <td colspan="3">
                         <table width="100%" cellpadding="0" cellspacing="0">
-                                <input type="hidden" name="event" value="comment" />
-                                <input type="hidden" name="pid" value="{PIC_ID}" />
+                                <input type="hidden" name="event" value="comment">
+                                <input type="hidden" name="pid" value="{PIC_ID}">
 <!-- BEGIN user_name_input -->
                                 <td class="tableb_compact">
-                                        <input type="text" class="textinput" name="msg_author" size="10" maxlength="20" value="{USER_NAME}" >
+                                        <input type="text" class="textinput" name="msg_author" size="10" maxlength="20" value={USER_NAME}>
                                 </td>
 <!-- END user_name_input -->
 <!-- BEGIN input_box_smilies -->
                                 <td width="100%" class="tableb_compact">
-                                <input type="text" class="textinput" id="message" name="msg_body" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" maxlength="{MAX_COM_LENGTH}" style="width: 100%;" />                                        <!-- END input_box_smilies -->
+                                <input type="text" class="textinput" id="message" name="msg_body" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" maxlength="{MAX_COM_LENGTH}" style="width: 100%;">                                        <!-- END input_box_smilies -->
 <!-- BEGIN input_box_no_smilies -->
-                                <input type="text" class="textinput" id="message" name="msg_body"  maxlength="{MAX_COM_LENGTH}" style="width: 100%;" />
+                                <input type="text" class="textinput" id="message" name="msg_body"  maxlength="{MAX_COM_LENGTH}" style="width: 100%;">
 <!-- END input_box_no_smilies -->
                                 </td>
                                 <td class="tableb_compact">
-                                <input type="submit" class="comment_button" name="submit" value="{OK}" />
+                                <input type="submit" class="comment_button" name="submit" value="{OK}">
                                 </td>
                         </table>
                 </td>

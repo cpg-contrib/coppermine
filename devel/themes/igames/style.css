@@ -431,6 +431,8 @@ a:hover {
         font-size: 90%;
         background-image : url(images/button_bg.gif);
         background-position : bottom;
+        background-repeat: repeat-x;
+        background-color: #BFC0C3;
         margin-top: 0px;
         margin-bottom: 0px;
         text-align: center;

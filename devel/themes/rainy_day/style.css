@@ -340,6 +340,8 @@ bblink a:hover {
         border: 1px solid #005D8C;
         background-image : url(images/button_bg.gif);
         background-position : bottom;
+        background-repeat: repeat-x;
+        background-color: #FFFFFF;
         color: #000000;
         margin-top: 0px;
         margin-bottom: 0px;

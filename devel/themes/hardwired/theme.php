@@ -14,11 +14,8 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-
-/*
-$Id$
-*/
-
+// $Id$
+// ------------------------------------------------------------------------- //
 
 define('THEME_HAS_RATING_GRAPHICS', 1);
 // HTML template for main menu
@@ -173,6 +170,7 @@ $template_gallery_admin_menu = <<<EOT
                                 <td class="admin_menu"><a href="catmgr.php" title="">{CATEGORIES_LNK}</a></td>
                                 <td class="admin_menu"><a href="usermgr.php" title="">{USERS_LNK}</a></td>
                                 <td class="admin_menu"><a href="groupmgr.php" title="">{GROUPS_LNK}</a></td>
+                                </tr><tr>
                                 <td class="admin_menu"><a href="banning.php" title="">{BAN_LNK}</a></td>
                                 <td class="admin_menu"><a href="db_ecard.php" title="">{DB_ECARD_LNK}</a></td>
                                 <td class="admin_menu"><a href="reviewcom.php" title="">{COMMENTS_LNK}</a></td>

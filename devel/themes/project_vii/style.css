@@ -333,7 +333,10 @@ bblink a:hover {
 .sortorder_cell {
         background : #BDBDBD ;
         color: #FFFFFF;
-        padding: 0px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+        padding-right: 20px;
         margin: 0px;
 }
 
@@ -416,6 +419,8 @@ bblink a:hover {
         border: 1px solid #666666;
         background-image : url(images/button_bg.gif);
         background-position : bottom;
+        background-repeat: repeat-x;
+        background-color: #FFFFFF;
         color: #000000;
         margin-top: 0px;
         margin-bottom: 0px;
