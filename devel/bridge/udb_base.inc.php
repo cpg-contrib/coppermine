@@ -81,7 +81,7 @@ class core_udb {
 		
 		$user_group_set = '(' . implode(',', $USER_DATA['groups']) . ')';
 
-        $USER_DATA = array_merge($USER_DATA, cpgGetUserData($USER_DATA['groups'][0], $USER_DATA['groups'], $this->guestgroup));
+        $USER_DATA = array_merge($USER_DATA, $this->get_user_data($USER_DATA['groups'][0], $USER_DATA['groups'], $this->guestgroup));
 
 		if ($this->use_post_based_groups){
 			$USER_DATA['has_admin_access'] = (in_array($USER_DATA['groups'][0] - 100,$this->admingroups)) ? 1 : 0;
@@ -270,6 +270,76 @@ class core_udb {
 		}
 	}
 	
+    // Perform database queries to calculate user's privileges based on group membership
+    function get_user_data($pri_group, $groups, $default_group_id = 3)
+    {
+    
+            //Parameters :
+            //                $pri_group (scalar) :         Group ID number of the user's 'main' group. This is the group that will be
+            //                                                                                        the user's profile display. ($USER_DATA['group_id'])
+            //
+            //                $groups (array) :                        List of group ids of all the groups that the user is a member of. IF this list
+            //                                                                                        does not include the $pri_group, it will be added.
+            //
+            //                $default_group_id (scalar) :         The group used as a fall-back if no valid group ids are specified.
+            //                                                                                                        If this group also does not exist then CPG will abort with a critical
+            //                                                                                                        error.
+            //
+            // Returns an array containing most of the data to put into in $USER_DATA.
+    
+            global $CONFIG;
+    
+            foreach ($groups as $key => $val)
+                    if (!is_numeric($val))
+                            unset ($groups[$key]);
+            if (!in_array($pri_group, $groups)) array_push($groups, $pri_group);
+    
+            $result = cpg_db_query("SELECT MAX(group_quota) as disk_max, MIN(group_quota) as disk_min, " .
+                            "MAX(can_rate_pictures) as can_rate_pictures, MAX(can_send_ecards) as can_send_ecards, " .
+                            "MAX(upload_form_config) as ufc_max, MIN(upload_form_config) as ufc_min, " .
+                            "MAX(custom_user_upload) as custom_user_upload, MAX(num_file_upload) as num_file_upload, " .
+                            "MAX(num_URI_upload) as num_URI_upload, " .
+                            "MAX(can_post_comments) as can_post_comments, MAX(can_upload_pictures) as can_upload_pictures, " .
+                            "MAX(can_create_albums) as can_create_albums, " .
+                            "MAX(has_admin_access) as has_admin_access, " .
+                            "MIN(pub_upl_need_approval) as pub_upl_need_approval, MIN( priv_upl_need_approval) as  priv_upl_need_approval ".
+                            "FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id in (" .  implode(",", $groups). ")");
+    
+            if (mysql_num_rows($result)) {
+                    $USER_DATA = mysql_fetch_assoc($result);
+                    $result = cpg_db_query("SELECT group_name FROM  {$CONFIG['TABLE_USERGROUPS']} WHERE group_id= " . $pri_group);
+                    $temp_arr = mysql_fetch_assoc($result);
+                    $USER_DATA["group_name"] = $temp_arr["group_name"];
+            } else {
+                    $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = $default_group_id");
+                   if (!mysql_num_rows($result)) die('<b>Coppermine critical error</b>:<br />The group table does not contain the Anonymous group !');
+                           $USER_DATA = mysql_fetch_assoc($result);
+                    }
+            mysql_free_result($result);
+    
+            if ( $USER_DATA['ufc_max'] == $USER_DATA['ufc_min'] ) {
+                    $USER_DATA["upload_form_config"] = $USER_DATA['ufc_min'];
+            } elseif ($USER_DATA['ufc_min'] == 0) {
+                    $USER_DATA["upload_form_config"] = $USER_DATA['ufc_max'];
+            } elseif ((($USER_DATA['ufc_max'] == 2) or ($USER_DATA['ufc_max'] == 3)) and ($USER_DATA['ufc_min'] == 1)) {
+                    $USER_DATA["upload_form_config"] = 3;
+            } elseif (($USER_DATA['ufc_max'] == 3) and ($USER_DATA['ufc_min'] == 2)) {
+                    $USER_DATA["upload_form_config"] = 3;
+            } else {
+                    $USER_DATA["upload_form_config"] = 0;
+            }
+            $USER_DATA["group_quota"] = ($USER_DATA["disk_min"])?$USER_DATA["disk_max"]:0;
+    
+            $USER_DATA['can_see_all_albums'] = $USER_DATA['has_admin_access'];
+    
+            $USER_DATA["group_id"] = $pri_group;
+            $USER_DATA['groups'] = $groups;
+    
+            if (get_magic_quotes_gpc() == 0)
+                            $USER_DATA['group_name'] = mysql_escape_string($USER_DATA['group_name']);
+    
+            return($USER_DATA);
+    }
 	// Redirect
 	function redirect($target)
 	{
@@ -342,7 +412,7 @@ class core_udb {
 			$forbidden = '';
 		}
 		
-		$sql = "SELECT (category - " . FIRST_USER_CAT . ") as user_id," . "        '???' as user_name," . "        COUNT(DISTINCT a.aid) as alb_count," . "        COUNT(DISTINCT pid) as pic_count," . "        MAX(pid) as thumb_pid, " . "        MAX(galleryicon) as gallery_pid " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid " . "WHERE (approved = 'YES' AND category > " . FIRST_USER_CAT . ") $forbidden GROUP BY category " . "ORDER BY category ";
+		$sql = "SELECT (category - " . FIRST_USER_CAT . ") as user_id," . "        '???' as user_name," . "        COUNT(DISTINCT a.aid) as alb_count," . "        COUNT(DISTINCT pid) as pic_count," . "        MAX(pid) as thumb_pid, " . "        MAX(galleryicon) as gallery_pid " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid " . "WHERE (approved = 'YES' AND category > " . FIRST_USER_CAT . ") $forbidden GROUP BY category " . "ORDER BY category ";
 		$result = cpg_db_query($sql);
 
 		$user_count = mysql_num_rows($result);
@@ -611,87 +681,5 @@ class core_udb {
 	function cookie_extraction() {
 	   return false;
 	}
-
-/*	
-	function authenticate()
-	{
-		global $USER_DATA;
-
-		list($id, $cookie_pass) = $this->cookie_extraction();
-		
- 
-        if ($id)
-        {
-
-			if (isset($this->usergroupstable)){
-				$sql = "SELECT u.{$this->field['user_id']} AS id, u.{$this->field['username']} AS username, u.{$this->field['password']} AS password, ug.{$this->field['usertbl_group_id']} AS group_id FROM {$this->usertable} AS u, {$this->usergroupstable} AS ug WHERE u.{$this->field['user_id']}=ug.{$this->field['user_id']} AND u.{$this->field['user_id']}='$id'";
-			} else {
-				$sql = "SELECT u.{$this->field['user_id']} AS id, u.{$this->field['username']} AS username, u.{$this->field['password']} AS password, u.{$this->field['usertbl_group_id']}+100 AS group_id FROM {$this->usertable} AS u INNER JOIN {$this->groupstable} AS g ON u.{$this->field['usertbl_group_id']}=g.{$this->field['grouptbl_group_id']} WHERE u.{$this->field['user_id']}='$id'";
-			}
-
-			$result = cpg_db_query($sql, $this->link_id);
-
-			if (mysql_num_rows($result)){
-				$row = mysql_fetch_assoc($result);
-				mysql_free_result($result);
-			}
-        }
-
-		if (isset($row['password'])) {
-			$db_pass = $this->udb_hash_db($row['password']);
-			if ($db_pass == $cookie_pass){
-				$this->load_user_data($row);
-			} else {
-				$row = $this->session_extraction($id);
-			}
-		} else {
-			$row = $this->session_extraction($id);
-		}
-
-		if ($row[$this->field['user_id']]){
-			$this->load_user_data($row);
-		} else if (!isset($db_pass)) {
-			$this->load_guest_data();
-		}
-
-		$user_group_set = '(' . implode(',', $USER_DATA['groups']) . ')';
-
-        // Had to add these two lines
-        if (!$USER_DATA['user_id'] && isset($db_pass)) {
-            $USER_DATA['user_id'] = $row['id'];
-            $USER_DATA['user_name'] = $row['username'];
-        }
-
-        $USER_DATA = array_merge($USER_DATA, cpgGetUserData($USER_DATA['groups'][0], $USER_DATA['groups'], $this->guestgroup));
-
-		if ($this->use_post_based_groups){
-			$USER_DATA['has_admin_access'] = (in_array($USER_DATA['groups'][0] - 100,$this->admingroups)) ? 1 : 0;
-		} else {
-			$USER_DATA['has_admin_access'] = ($USER_DATA['groups'][0] == 1) ? 1 : 0;
-		}
-		
-		$USER_DATA['can_see_all_albums'] = $USER_DATA['has_admin_access'];
-		
-	    // For error checking
-		$CONFIG['TABLE_USERS'] = '**ERROR**';
-			
-		define('USER_ID', $USER_DATA['user_id']);
-        define('USER_NAME', $USER_DATA['user_name']);
-        define('USER_GROUP', $USER_DATA['group_name']);
-        define('USER_GROUP_SET', $user_group_set);
-        define('USER_IS_ADMIN', $USER_DATA['has_admin_access']);
-        define('USER_CAN_SEND_ECARDS', (int)$USER_DATA['can_send_ecards']);
-        define('USER_CAN_RATE_PICTURES', (int)$USER_DATA['can_rate_pictures']);
-        define('USER_CAN_POST_COMMENTS', (int)$USER_DATA['can_post_comments']);
-        define('USER_CAN_UPLOAD_PICTURES', (int)$USER_DATA['can_upload_pictures']);
-        define('USER_CAN_CREATE_ALBUMS', (int)$USER_DATA['can_create_albums']);
-        define('USER_UPLOAD_FORM', (int)$USER_DATA['upload_form_config']);
-        define('CUSTOMIZE_UPLOAD_FORM', (int)$USER_DATA['custom_user_upload']);
-        define('NUM_FILE_BOXES', (int)$USER_DATA['num_file_upload']);
-        define('NUM_URI_BOXES', (int)$USER_DATA['num_URI_upload']);
-		
-		$this->session_update();
-	}
-*/	
 }
 ?>

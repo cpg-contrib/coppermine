@@ -24,7 +24,7 @@ require('include/init.inc.php');
 
 if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
-if (defined('UDB_INTEGRATION')) $cpg_udb->synchronize_groups();
+$cpg_udb->synchronize_groups();
 
 function display_group_list()
 {
@@ -67,7 +67,7 @@ function display_group_list()
         if ($row_counter == 1 ) {$table_background = 'tableb';}else{$table_background = 'tableh2';$row_counter = 0;}
 
 
-        if ($group['group_id'] > 4 && !defined('UDB_INTEGRATION')) {
+        if ($group['group_id'] > 4 && UDB_INTEGRATION == 'coppermine') {
             echo <<< EOT
         <tr>
                 <td class="$table_background" align="center" valign="top" style="padding-left: 1px; padding-right: 1px" >
@@ -102,7 +102,7 @@ EOT;
                         $explain_greyedout
 EOT;
         // show reset option if applicable
-        if (!defined('UDB_INTEGRATION') and isset($default_group_names[$group['group_id']])) {
+        if (UDB_INTEGRATION == 'coppermine' and isset($default_group_names[$group['group_id']])) {
             if ($group['group_name'] != $default_group_names[$group['group_id']] && $default_group_names[$group['group_id']] != '') {
                 // we have a group here that doesn't have the default name
                 print '<img src="images/flags/reset.gif" width="16" height="11" border="0" alt="" title="'.sprintf($lang_groupmgr_php['reset_to_default'], $default_group_names[$group['group_id']]).'" style="cursor:pointer" onclick="document.groupmanager.group_name_'.$group['group_id'].'.value=\''.$default_group_names[$group['group_id']].'\'" />';
@@ -363,7 +363,7 @@ EOT;
 
 display_group_list();
 
-if (defined('UDB_INTEGRATION')) {
+if (UDB_INTEGRATION != 'coppermine') {
     echo <<<EOT
         <tr>
             <td colspan="14" align="center" class="tablef">

@@ -23,8 +23,6 @@ define('PROFILE_PHP', true);
 
 require('include/init.inc.php');
 
-//if (defined('UDB_INTEGRATION')) $cpg_udb->view_users();
-
 $cpg_udb->view_users();
 
 if (USER_ID !='') {
