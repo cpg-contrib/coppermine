@@ -1,4 +1,4 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.2.0                                            //
 // ------------------------------------------------------------------------- //
@@ -14,7 +14,7 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-define('COPPERMINE_VERSION', '1.2.x - devel');
+define('COPPERMINE_VERSION', '1.3.x - devel');
 // User database integration
 // Uncomment the applicable line if you want to use it
 // define('UDB_INTEGRATION', 'phpbb');
@@ -37,7 +37,7 @@ function getmicrotime()
 {
     list($usec, $sec) = explode(" ", microtime());
     return ((float)$usec + (float)$sec);
-} 
+}
 $time_start = getmicrotime();
 // Do some cleanup in GET, POST and cookie data and un-register global vars
 $HTML_SUBST = array('"' => '&quot;', '<' => '&lt;', '>' => '&gt;');
@@ -47,45 +47,45 @@ if (get_magic_quotes_gpc()) {
             if (!is_array($value))
                 $HTTP_POST_VARS[$key] = strtr(stripslashes($value), $HTML_SUBST);
             if (isset($$key)) unset($$key);
-        } 
-    } 
+        }
+    }
 
     if (is_array($HTTP_GET_VARS)) {
         foreach ($HTTP_GET_VARS as $key => $value) {
             $HTTP_GET_VARS[$key] = strtr(stripslashes($value), $HTML_SUBST);
             if (isset($$key)) unset($$key);
-        } 
-    } 
+        }
+    }
 
     if (is_array($HTTP_COOKIE_VARS)) {
         foreach ($HTTP_COOKIE_VARS as $key => $value) {
             if (!is_array($value))
                 $HTTP_COOKIE_VARS[$key] = stripslashes($value);
             if (isset($$key)) unset($$key);
-        } 
-    } 
+        }
+    }
 } else {
     if (is_array($HTTP_POST_VARS)) {
         foreach ($HTTP_POST_VARS as $key => $value) {
             if (!is_array($value))
                 $HTTP_POST_VARS[$key] = strtr($value, $HTML_SUBST);
             if (isset($$key)) unset($$key);
-        } 
-    } 
+        }
+    }
 
     if (is_array($HTTP_GET_VARS)) {
         foreach ($HTTP_GET_VARS as $key => $value) {
             $HTTP_GET_VARS[$key] = strtr($value, $HTML_SUBST);
             if (isset($$key)) unset($$key);
-        } 
-    } 
+        }
+    }
 
     if (is_array($HTTP_COOKIE_VARS)) {
         foreach ($HTTP_COOKIE_VARS as $key => $value) {
             if (isset($$key)) unset($$key);
-        } 
-    } 
-} 
+        }
+    }
+}
 // Initialise the $CONFIG array and some other variables
 $CONFIG = array();
 $PHP_SELF = isset($HTTP_SERVER_VARS['REDIRECT_URL']) ? $HTTP_SERVER_VARS['REDIRECT_URL'] : $HTTP_SERVER_VARS['SCRIPT_NAME'];
@@ -104,8 +104,8 @@ if (isset($HTTP_SERVER_VARS['HTTP_CLIENT_IP'])) {
         $hdr_ip = stripslashes($HTTP_SERVER_VARS['HTTP_X_FORWARDED_FOR']);
     } else {
         $hdr_ip = $raw_ip;
-    } 
-} 
+    }
+}
 // Define some constants
 define('USER_GAL_CAT', 1);
 define('FIRST_USER_CAT', 10000);
@@ -161,7 +161,7 @@ if ($CONFIG['debug_mode']) {
     error_reporting (E_ALL);
 } else {
     error_reporting (E_ALL ^ E_NOTICE);
-} 
+}
 // Parse cookie stored user profile
 user_get_profile();
 // Authenticate
@@ -174,7 +174,7 @@ if (defined('UDB_INTEGRATION')) {
     } else {
         $cookie_uid = (int)$HTTP_COOKIE_VARS[$CONFIG['cookie_name'] . '_uid'];
         $cookie_pass = substr(addslashes($HTTP_COOKIE_VARS[$CONFIG['cookie_name'] . '_pass']), 0, 32);
-    } 
+    }
 
     $sql = "SELECT * " . "FROM {$CONFIG['TABLE_USERS']}, {$CONFIG['TABLE_USERGROUPS']} " . "WHERE user_group = group_id " . "AND user_id='$cookie_uid'" . "AND user_active = 'YES' " . "AND user_password != '' " . "AND BINARY MD5(user_password) = '$cookie_pass'";
     $results = db_query($sql);
@@ -209,8 +209,8 @@ if (defined('UDB_INTEGRATION')) {
         define('USER_CAN_UPLOAD_PICTURES', (int)$USER_DATA['can_upload_pictures']);
         define('USER_CAN_CREATE_ALBUMS', 0);
         mysql_free_result($results);
-    } 
-} 
+    }
+}
 // Test if admin mode
 $USER['am'] = isset($USER['am']) ? (int)$USER['am'] : 0;
 define('GALLERY_ADMIN_MODE', USER_IS_ADMIN && $USER['am']);
@@ -218,13 +218,13 @@ define('USER_ADMIN_MODE', USER_ID && USER_CAN_CREATE_ALBUMS && $USER['am'] && !G
 // Process theme selection if present in URI or in user profile
 if (!empty($HTTP_GET_VARS['theme'])) {
     $USER['theme'] = $HTTP_GET_VARS['theme'];
-} 
+}
 // Load theme file
 if (isset($USER['theme']) && !strstr($USER['theme'], '/') && is_dir('themes/' . $USER['theme'])) {
     $CONFIG['theme'] = strtr($USER['theme'], '$/\\:*?"\'<>|`', '____________');
 } else {
     unset($USER['theme']);
-} 
+}
 
 if (!file_exists("themes/{$CONFIG['theme']}/theme.php")) $CONFIG['theme'] = 'default';
 require "themes/{$CONFIG['theme']}/theme.php";
@@ -233,7 +233,7 @@ $THEME_DIR = "themes/{$CONFIG['theme']}/";
 // autodetection if default charset is utf-8
 if (!empty($HTTP_GET_VARS['lang'])) {
     $USER['lang'] = $HTTP_GET_VARS['lang'];
-} 
+}
 
 if (isset($USER['lang']) && !strstr($USER['lang'], '/') && file_exists('lang/' . $USER['lang'] . '.php')) {
     $CONFIG['lang'] = strtr($USER['lang'], '$/\\:*?"\'<>|`', '____________');
@@ -242,7 +242,7 @@ if (isset($USER['lang']) && !strstr($USER['lang'], '/') && file_exists('lang/' .
     if (file_exists('lang/' . $USER['lang'] . '.php')) $CONFIG['lang'] = $USER['lang'];
 } else {
     unset($USER['lang']);
-} 
+}
 
 if (!file_exists("lang/{$CONFIG['lang']}.php")) $CONFIG['lang'] = 'english';
 require "lang/{$CONFIG['lang']}.php";
@@ -251,7 +251,7 @@ if (isset($HTTP_COOKIE_VARS[$CONFIG['cookie_name'] . '_fav'])) {
     $FAVPICS = @unserialize(@base64_decode($HTTP_COOKIE_VARS[$CONFIG['cookie_name'] . '_fav']));
 } else {
     $FAVPICS = array();
-} 
+}
 // load the main template
 load_template();
 // Remove expired bans
@@ -265,7 +265,7 @@ if (mysql_num_rows($result)) {
     msg_box($lang_info, $lang_errors['banned']);
     pagefooter();
     exit;
-} 
+}
 mysql_free_result($result);
 // Retrieve the "private" album set
 if (!GALLERY_ADMIN_MODE && $CONFIG['allow_private_albums']) get_private_album_set();
