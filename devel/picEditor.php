@@ -165,8 +165,10 @@ if ($_GET['id']){
           // Normal image resized and replace, use the CPG resize method instead of the object resizeImage
           // as using the object resizeImage will make the final display of image to be a thumbnail in the editor
 
-          if ($CONFIG['make_intermediate']) {
+          if (max($width, $height) > $CONFIG['picture_width'] && $CONFIG['make_intermediate']) {
                 resize_image($img_dir.$newimage, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use']);
+          } else {
+                @unlink($normal);
           }
 
           //thumbnail resized and replace
