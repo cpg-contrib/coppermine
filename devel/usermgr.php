@@ -53,7 +53,7 @@ function show_memberlist()
 
 
 
-function list_users()
+function list_users($search = '')
 {
     global $CONFIG, $PHP_SELF, $HTTP_GET_VARS;
     global $lang_usermgr_php, $lang_byte_units, $register_date_fmt;
@@ -100,6 +100,7 @@ function list_users()
            "FROM {$CONFIG['TABLE_USERS']} AS u ".
            "INNER JOIN {$CONFIG['TABLE_USERGROUPS']} AS g ON user_group = group_id ".
            "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.owner_id = u.user_id ".
+           $search.
            "GROUP BY user_id " . "ORDER BY " . $sort_codes[$sort] . " ".
            "LIMIT $lower_limit, $user_per_page";
 
@@ -198,11 +199,13 @@ EOT;
     if (!$lim_user) {
      echo <<<EOT
         <tr>
-                <form method="post" action="$PHP_SELF?op=new_user">
-                <td colspan="9" align="center" class="tablef">
+                
+                <td colspan="9"  class="tablef">
                 <table cellpadding="0" cellspacing="0">
                 <tr>
-                        <td><input type="submit" value="{$lang_usermgr_php['create_new_user']}" class="button"></td>
+                		<td align="left"><form method="post" action="$PHP_SELF"><input type="text" name="username" class="textinput"> <input type="submit" name="user_search" value="{$lang_usermgr_php['search']}" class="button"></form></td>
+                        <td><img src="images/spacer.gif" width="50" height="1" alt="" /></td>
+                        <td><form method="post" action="$PHP_SELF?op=new_user"><input type="submit" value="{$lang_usermgr_php['create_new_user']}" class="button"></form></td>
                         <td><img src="images/spacer.gif" width="50" height="1" alt="" /></td>
                         <td><b>{$lang_usermgr_php['sort_by']}</b></td>
                         <td><img src="images/spacer.gif" width="10" height="1" alt="" /></td>
@@ -210,7 +213,7 @@ EOT;
                 </tr>
                 </table>
                 </td>
-                </form>
+                
         </tr>
 EOT;
     }
@@ -479,7 +482,8 @@ switch ($op) {
         db_query("DELETE FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '' LIMIT 1");
 
         pageheader($lang_usermgr_php['title']);
-        list_users();
+        $search = (isset($_POST['username'])) ? "WHERE user_name LIKE '%{$_POST['username']}%' " : "";
+        list_users($search);
         pagefooter();
         ob_end_flush();
         break;

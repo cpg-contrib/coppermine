@@ -1454,6 +1454,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'user_profile6' => '$user_profile6',
   'latest_upload' => 'Recent uploads',
   'never' => 'never',
+  'search' => 'User search',
 );
 
 // ------------------------------------------------------------------------- //
