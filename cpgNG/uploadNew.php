@@ -231,7 +231,7 @@ $t->assign("sel_album", $sel_album);
 $t->assign("lang_upload_php", $lang_upload_php);
 $t->assign("listArray", $listArray);
 $t->assign("userFields", $userFields);
-$t->assign("CONTENT", $t->fetch("2bornot2b/upload.html"));
+$t->assign("CONTENT", $t->fetch($CONFIG['theme']."/upload.html"));
 
 /**
  * Assign lang array's
@@ -265,5 +265,5 @@ if (!USER_ID) {
 /**
  * Display the common html file
  */
-$t->display ("2bornot2b/main.html");
+$t->display ($CONFIG['theme']."/main.html");
 ?>
