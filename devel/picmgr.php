@@ -80,7 +80,7 @@ function albumselect($id = "album") {
             if (GALLERY_ADMIN_MODE) {
                 $sql = udb_get_admin_album_list();
             } else {
-                cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+                $sql = "SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = ".(FIRST_USER_CAT + USER_ID);
             }
         } else {
             if (GALLERY_ADMIN_MODE) {
