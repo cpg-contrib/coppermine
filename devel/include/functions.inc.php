@@ -2105,7 +2105,7 @@ function cpg_phpinfo_mod_output($search,$output_type)
         if ($output_type == 'table') {$return.= '<tr><td>';}
         $return.= $val[0];
         if ($output_type == 'table') {$return.= '</td><td>';}
-        $return.= $val[1];
+        if (isset($val[1])) {$return.= $val[1];}
         if ($output_type == 'table') {$return.= '</td></tr>';}
         $summ .= $val[0];
     }

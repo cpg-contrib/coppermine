@@ -185,9 +185,9 @@ EOT;
     foreach($user_albums_list as $album) {
 
         // Add to multi-dim array for later sorting
-        $listArray[$list_count][cat] = $lang_upload_php['personal_albums'];
-        $listArray[$list_count][aid] = $album['aid'];
-        $listArray[$list_count][title] = $album['title'];
+        $listArray[$list_count]['cat'] = $lang_upload_php['personal_albums'];
+        $listArray[$list_count]['aid'] = $album['aid'];
+        $listArray[$list_count]['title'] = $album['title'];
         $list_count++;
     }
 
@@ -204,12 +204,12 @@ EOT;
 
         // Add to multi-dim array for sorting later
         if ($vRes['name']) {
-            $listArray[$list_count][cat] = $vRes['name'];
+            $listArray[$list_count]['cat'] = $vRes['name'];
         } else {
-            $listArray[$list_count][cat] = $lang_upload_php['albums_no_category'];
+            $listArray[$list_count]['cat'] = $lang_upload_php['albums_no_category'];
         }
-        $listArray[$list_count][aid] = $album['aid'];
-        $listArray[$list_count][title] = $album['title'];
+        $listArray[$list_count]['aid'] = $album['aid'];
+        $listArray[$list_count]['title'] = $album['title'];
         $list_count++;
     }
 
@@ -220,12 +220,12 @@ EOT;
     $alb_cat = '';
         echo '                <option value="">' . $lang_upload_php['select_album'] . "</option>\n";
     foreach ($listArray as $val) {
-        if ($val[cat] != $alb_cat) {
+        if ($val['cat'] != $alb_cat) {
 if ($alb_cat) echo "                </optgroup>\n";
-            echo '                <optgroup label="' . $val[cat] . '">' . "\n";
-            $alb_cat = $val[cat];
+            echo '                <optgroup label="' . $val['cat'] . '">' . "\n";
+            $alb_cat = $val['cat'];
         }
-        echo '                <option value="' . $val[aid] . '"' . ($val[aid] == $sel_album ? ' selected' : '') . '>   ' . $val[title] . "</option>\n";
+        echo '                <option value="' . $val['aid'] . '"' . ($val['aid'] == $sel_album ? ' selected' : '') . '>   ' . $val['title'] . "</option>\n";
     }
     if ($alb_cat) echo "                </optgroup>\n";
 
@@ -1366,7 +1366,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
             if ($matches[2] == '' || !is_known_filetype($matches)) {
 
                 // Check for stream_get_meta_data support.
-                if (!function_exists(stream_get_meta_data)) {
+                if (!function_exists('stream_get_meta_data')) {
 
                     // We cannot get the header information for the file, so we reject the URI as unsafe.
                     $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['unsafe_URI']);
@@ -1711,7 +1711,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
             } else {
 
                 // Obtain header info if possible.
-                if (function_exists(stream_get_meta_data)) {
+                if (function_exists('stream_get_meta_data')) {
 
                     // Store header data in $header.
                     $header = stream_get_meta_data($fp);
