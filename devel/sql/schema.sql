@@ -111,6 +111,7 @@ CREATE TABLE CPG_pictures (
   pic_hdr_ip tinytext,
   lasthit_ip tinytext,
   PRIMARY KEY  (pid),
+  KEY owner_id (owner_id),
   KEY pic_hits (hits),
   KEY pic_rate (pic_rating),
   KEY aid_approved (aid,approved),

@@ -197,6 +197,11 @@ DELETE FROM `CPG_filetypes` WHERE mime='text/html';
 
 ALTER TABLE `CPG_users` CHANGE user_lang user_group_list varchar(255) NOT NULL default ''; 
 
+#
+# Fix usermgr timing out with 1k+ users -Omni
+#
+ALTER TABLE CPG_pictures ADD INDEX ( `owner_id` )
+
 
 #
 # Record the last hit IP
