@@ -201,6 +201,7 @@ $lang_img_nav_bar = array(
   'next_title' => 'See next file',
   'pic_pos' => 'FILE %s/%s',
   'report_title' => 'Report this file to the administrator', // cpg1.4.0
+  
 );
 
 $lang_rate_pic = array(
@@ -981,6 +982,7 @@ $lang_display_comments = array(
   'name'=>'Name',
   'comment'=>'Comment',
   'your_name' => 'Anon',
+  'report_comment_title' => 'Report this comment to the administrator', // cpg1.4.0
 );
 
 $lang_fullsize_popup = array(

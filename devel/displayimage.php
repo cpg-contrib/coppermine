@@ -379,7 +379,7 @@ function html_comments($pid)
 
 //report to moderator buttons
     if ($CONFIG['report_post']==1) {
-                                $report1_tgt = "report_file.php?album=$album$cat_link&amp;pid=$pid&amp;pos=$pos";
+                                $report_comment_tgt = "report_file.php?msg_id={MSG_ID}&what=comment";
     } else { // remove buttons if report toggle is off
         template_extract_block($template_image_comments, 'report_comment_button');
     }
@@ -436,7 +436,8 @@ function html_comments($pid)
             '{SMILIES}' => $smilies,
             '{HDR_IP}' => $row['msg_hdr_ip'],
             '{RAW_IP}' => $row['msg_raw_ip'],
-                        '{REPORT1_TGT}' => $report1_tgt,
+            '{REPORT_COMMENT_TGT}' => $report_comment_tgt,
+			'{REPORT_COMMENT_TITLE}' => &$lang_display_comments['report_comment_title'],
             );
 
         $html .= template_eval($template, $params);
