@@ -23,9 +23,9 @@ $lang_translation_info = array(
 'lang_name_english' => 'French',  //the name of your language in English, e.g. 'Greek' or 'Spanish'
 'lang_name_native' => 'Français', //the name of your language in your mother tongue (for non-latin alphabets, use unicode), e.g. '&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;' or 'Espa&ntilde;ol'
 'lang_country_code' => 'fr', //the two-letter code for the country your language is most-often spoken (refer to http://www.iana.org/cctld/cctld-whois.htm), e.g. 'gr' or 'es'
-'trans_name'=> 'mels - Modifications by Rod', //the name of the translator - can be a nickname
-'trans_email' => 'mels@wanadoo.fr - rod@fantasya.net', //translator's email address (optional)
-'trans_website' => 'http://www.everlasting-star.net/ - http://www.sortons.net/photos/', //translator's website (optional)
+'trans_name'=> 'mels', //the name of the translator - can be a nickname
+'trans_email' => 'mels@wanadoo.fr', //translator's email address (optional)
+'trans_website' => 'http://www.everlasting-star.net/', //translator's website (optional)
 'trans_date' => '2003-10-15', //the date the translation was created / last modified
 );
 
@@ -120,7 +120,7 @@ $lang_main_menu = array(
 );
 
 $lang_gallery_admin_menu = array(
-        'upl_app_lnk' => 'Autorisation d\'uploader',
+        'upl_app_lnk' => 'Fichiers en attente',
         'config_lnk' => 'Configuration',
         'albums_lnk' => 'Albums',
         'categories_lnk' => 'Categories',
@@ -153,12 +153,12 @@ $lang_thumb_view = array(
         //Sort by filename and title
         'name' => 'NOM DU FICHIER', //new in cpg1.2.0
         'title' => 'TITRE', //new in cpg1.2.0
-        'sort_da' => 'Classer par date ascendante',
-        'sort_dd' => 'Classer par date descendante',
-        'sort_na' => 'Classer par nom ascendant',
-        'sort_nd' => 'Classer par nom descendant',
-        'sort_ta' => 'Classer par titre ascendant', //new in cpg1.2.0
-        'sort_td' => 'Classer par titre descendant', //new in cpg1.2.0
+        'sort_da' => 'Classer par date ascendantes',
+        'sort_dd' => 'Classer par date descendantes',
+        'sort_na' => 'Classer par nom ascendants',
+        'sort_nd' => 'Classer par nom descendants',
+        'sort_ta' => 'Classer par titre ascendants', //new in cpg1.2.0
+        'sort_td' => 'Classer par titre descendants', //new in cpg1.2.0
         'pic_on_page' => '%d photos sur %d page(s)',
         'user_on_page' => '%d utilisateurs sur %d page(s)'
 );
@@ -281,7 +281,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
 if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
         'alb_need_name' => 'Les albums doivent avoir un nom !',
         'confirm_modifs' => 'Voulez-vous vraiment effectuer ces modifications ?',
-        'no_change' => 'Vous n\\\'avez effectué aucun changement !',
+        'no_change' => 'Vous n\'avez effectué aucun changement !',
         'new_album' => 'Nouvel album',
         'confirm_delete1' => 'Voulez vous vraiment supprimer cet album ?',
         'confirm_delete2' => '\nToutes les images et tous les commentaires seront perdus !',
@@ -320,15 +320,15 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
 
 if (defined('CONFIG_PHP')) $lang_config_php = array(
         'title' => 'Configuration',
-        'restore_cfg' => 'Restaurer les paramètres d\'origine',
-        'save_cfg' => 'Sauvegarder la nouvelle configuration',
+        'restore_cfg' => 'Restorer les paramètres d\'origine',
+        'save_cfg' => 'Sauvergarder la nouvelle configuration',
         'notes' => 'Notes',
         'info' => 'Information',
         'upd_success' => 'La configuration de Coppermine a été mise à jour',
         'restore_success' => 'La configuration d\'origine de Coppermine a été restaurée',
         'name_a' => 'Nom ascendant',
         'name_d' => 'Nom descendant',
-        'title_a' => 'Titre ascendant', //new in cpg1.2.0
+        'title_a' => 'Titre ascendand', //new in cpg1.2.0
         'title_d' => 'Titre descendant', //new in cpg1.2.0
         'date_a' => 'Date ascendante',
         'date_d' => 'Date descendante'
@@ -355,7 +355,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         'Affichage des vignettes',
         array('Nombre de colonnes sur la page des vignettes', 'thumbcols', 0),
         array('Nombre de lignes sur la page des vignettes', 'thumbrows', 0),
-        array('Nombre maximal de tabs à afficher', 'max_tabs', 0),
+        array('Nombre maximal d\'onglets à afficher', 'max_tabs', 0),
         array('Afficher la légende de l\'image (en plus de son titre) sous la vignette', 'caption_in_thumbview', 1),
         array('Afficher le nombre de commentaires sous les vignettes', 'display_comment_count', 1),
         array('Classement par défaut des images', 'default_sort_order', 3),
@@ -379,8 +379,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Utiliser la dimension ( largeur ou hauteur ou aspect max pour la vignette)<b>*</b>', 'thumb_use', 7), //new in cpg1.2.0
         array('Créer des images intermédiaires','make_intermediate',1),
         array('Largeur ou hauteur maximale pour une image intermédiaire <b>*</b>', 'picture_width', 0),
-        array('Poids maximale des images à uploader (Ko)', 'max_upl_size', 0),
-        array('Longueur ou hauteur maximal pour les images uploadées (en pixels)', 'max_upl_width_height', 0),
+        array('Poids max des images à uploader (Ko)', 'max_upl_size', 0),
+        array('Longueur ou hauteur maximale pour les images uploadées (en pixels)', 'max_upl_width_height', 0),
 
         'Paramètres Utilisateurs',
         array('Autoriser de nouvelles inscriptions', 'allow_user_registration', 1),
@@ -389,10 +389,10 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Les utilisateurs peuvent avoir un album personnel', 'allow_private_albums', 1),
 
         'Champs libres pour les descriptions d\'images (à laisser tel quel si vous n\'utilisez pas cette fonction)',
-        array('Nom du champ 1 name', 'user_field1_name', 0),
-        array('Nom du champ 2 name', 'user_field2_name', 0),
-        array('Nom du champ 3 name', 'user_field3_name', 0),
-        array('Nom du champ 4 name', 'user_field4_name', 0),
+        array('Nom du champ 1', 'user_field1_name', 0),
+        array('Nom du champ 2', 'user_field2_name', 0),
+        array('Nom du champ 3', 'user_field3_name', 0),
+        array('Nom du champ 4', 'user_field4_name', 0),
 
         'Paramètres avancés des images et vignettes',
         array('Afficher l\'icône des albums privés aux utilisateurs non indentifiés','show_private',1), //new in cpg1.2.0
@@ -409,8 +409,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Préfixe pour les vignettes <b>*</b>', 'thumb_pfx', 0),
         array('Mode par défaut des répertoires', 'default_dir_mode', 0),
         array('Mode par défaut des images', 'default_file_mode', 0),
-        array('Désactiver le clic droit sur les images en taille réelle (JavaScript - il y a des moyens de contourner cette méthode)', 'disable_popup_rightclick', 1), //new in cpg1.2.0
-        array('Désactiver le clic droit sur toutes les pages normales (JavaScript - il y a des moyens de contourner cette méthode)', 'disable_gallery_rightclick', 1), //new in cpg1.2.0
+        array('Désactiver le clic droit sur les images en taille réelle (JavaScript - il existe des moyens de contourner cette méthode)', 'disable_popup_rightclick', 1), //new in cpg1.2.0
+        array('Désactiver le clic droit sur toutes les pages normales (JavaScript - il existe des moyens de contourner cette méthode)', 'disable_gallery_rightclick', 1), //new in cpg1.2.0
 
         'Cookies &amp; paramètres d\'encodage des caractères',
         array('Nom du cookie utilisé par le script', 'cookie_name', 0),
@@ -938,11 +938,11 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 
 if (defined('UTIL_PHP')) $lang_util_php = array(
         'title' => 'Redimensionner les photos', //new in cpg1.2.0
-        'what_it_does' => 'Ce que cela fait', //new in cpg1.2.0
+        'what_it_does' => 'Fonctionnalités', //new in cpg1.2.0
         'what_update_titles' => 'Met à jour les titres à partir des noms de fichier', //new in cpg1.2.0
         'what_delete_title' => 'Supprime les titres', //new in cpg1.2.0
         'what_rebuild' => 'Regénère les vignettes et les photos redimensionnées', //new in cpg1.2.0
-        'what_delete_originals' => 'Supprime les photos originales et les remplace avec leur version redimensionnée', //new in cpg1.2.0
+        'what_delete_originals' => 'Supprime les photos originales et les remplace par leur version redimensionnée', //new in cpg1.2.0
         'file' => 'Fichier', //new in cpg1.2.0
         'title_set_to' => 'titre changé en', //new in cpg1.2.0
         'submit_form' => 'valider', //new in cpg1.2.0
@@ -970,8 +970,8 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
         'update_both' => 'Les vignettes et les images redimensionnées', //new in cpg1.2.0
         'update_number' => 'Nombre d\'images traitées par clic', //new in cpg1.2.0
         'update_option' => '(essayez de réduire cette valeur si vous avez des problèmes de timeout)', //new in cpg1.2.0
-        'filename_title' => 'Nom du fichier &rArr; Titre de l\'image', //new in cpg1.2.0
-        'filename_how' => 'Comment le nom du fichier doit être modifié', //new in cpg1.2.0
+        'filename_title' => 'Nom du fichier / Titre de l\'image', //new in cpg1.2.0
+        'filename_how' => 'Comment le nom du fichier doit-il être modifié ?', //new in cpg1.2.0
         'filename_remove' => 'Supprimer la fin .jpg et remplacer _ (underscore) par des espaces', //new in cpg1.2.0
         'filename_euro' => 'Changer 2003_11_23_13_20_20.jpg en 23/11/2003 13:20', //new in cpg1.2.0
         'filename_us' => 'Changer 2003_11_23_13_20_20.jpg en 11/23/2003 13:20', //new in cpg1.2.0

@@ -39,7 +39,7 @@ $lang_month = array('sij', 'velj', 'oµu', 'tra', 'svi', 'lip', 'srp', 'kol', 'ru
 $lang_yes = 'Da';
 $lang_no  = 'Ne';
 $lang_back = 'NATRAG';
-$lang_continue = 'DALJE';
+$lang_continue = 'NAPRIJED';
 $lang_info = 'Informacija';
 $lang_error = 'Pogreška';
 
@@ -110,7 +110,7 @@ $lang_main_menu = array(
 	'lastcom_lnk' => 'Posljednji komentari',
 	'topn_lnk' => 'Najgledanije',
 	'toprated_lnk' => 'Visoko rangirano',
-	'search_lnk' => 'Pretraµivanje',
+	'search_lnk' => 'Pretraživanje',
         'fav_lnk' => 'Moje omiljene slike', 
 );
 
@@ -297,7 +297,7 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
 	'miss_param' => 'Parametri obavezni za \'%s\'naredba nije izvr±ena !',
 	'unknown_cat' => 'Izabrana kategorija ne postoji u bazi podataka',
-	'usergal_cat_ro' => 'Korisnièka kategorija se ne moµe brisati !',
+	'usergal_cat_ro' => 'Korisnièka kategorija se ne može brisati !',
 	'manage_cat' => 'Organiziraj kategorije',
 	'confirm_delete' => 'Da li ste sigurni da želite IZBRISATI ovu kategoriju',
 	'category' => 'Kategorija',
@@ -339,8 +339,8 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Predložak', 'theme', 6),
 
 	'Album list view',
-	array('Širina glavne tabele (pikseli ili %)', 'main_table_width', 0),
-	array('Broj levela kategorija za prikaz', 'subcat_level', 0),
+	array('Širina glavne tablice (pikseli ili %)', 'main_table_width', 0),
+	array('Broj nivoa kategorija za prikaz', 'subcat_level', 0),
 	array('Broj albuma za prikaz', 'albums_per_page', 0),
 	array('Broj stupaca za listu albuma', 'album_list_cols', 0),
 	array('Velièina slièice u pikselima', 'alb_list_thumb_size', 0),
@@ -357,25 +357,25 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Minimum number of votes for a picture to appear in the \'top-rated\' list', 'min_votes_for_rating', 0),
 
 	'Image view &amp; Comment settings',
-	array('Width of the table for picture display (pixels or %)', 'picture_table_width', 0),
-	array('Picture information are visible by default', 'display_pic_info', 1),
-	array('Filter bad words in comments', 'filter_bad_words', 1),
-	array('Allow smiles in comments', 'enable_smilies', 1),
-	array('Max length for an image description', 'max_img_desc_length', 0),
-	array('Max number of characters in a word', 'max_com_wlength', 0),
-	array('Max number of lines in a comment', 'max_com_lines', 0),
-	array('Maximum length of a comment', 'max_com_size', 0),
-        array('Show film strip', 'display_film_strip', 1), 
-        array('Number of items in film strip', 'max_film_strip_items', 0), 
+	array('Širina tablice za prikaz slike (pixels or %)', 'picture_table_width', 0),
+	array('Informacije o slici se vide po dafaultu', 'display_pic_info', 1),
+	array('Izbaci ružne rijeèi u komentarima', 'filter_bad_words', 1),
+	array('Omoguæi smješke u komentarima', 'enable_smilies', 1),
+	array('Max dužina za opis slike', 'max_img_desc_length', 0),
+	array('Max broj znakova u rijeèi', 'max_com_wlength', 0),
+	array('Max broj linija u komentaru', 'max_com_lines', 0),
+	array('Max dužina komentara', 'max_com_size', 0),
+        array('Pokaži film strip', 'display_film_strip', 1), 
+        array('Broj slièica u film stripu', 'max_film_strip_items', 0), 
 
 	'Pictures and thumbnails settings',
 	array('Kvalitet za JPEG slike', 'jpeg_qual', 0),
-        array('Max dimension of a thumbnail <b>*</b>', 'thumb_width', 0), 
-        array('Use dimension ( width or height or Max aspect for thumbnail )<b>*</b>', 'thumb_use', 7), 
-	array('Create intermediate pictures','make_intermediate',1),
-	array('Max width or height of an intermediate picture <b>*</b>', 'picture_width', 0),
-	array('Max size for uploaded pictures (KB)', 'max_upl_size', 0),
-	array('Max width or height for uploaded pictures (pixels)', 'max_upl_width_height', 0),
+        array('Max dimenzija slièice <b>*</b>', 'thumb_width', 0), 
+        array('Korištena velièina ( width or height or Max aspect for thumbnail )<b>*</b>', 'thumb_use', 7), 
+	array('Napravi srednje-velike slike','make_intermediate',1),
+	array('Max širina ili visina srednje-velike slike <b>*</b>', 'picture_width', 0),
+	array('Max velièina za uploadane slike (KB)', 'max_upl_size', 0),
+	array('Max širina ili visina za uploadane slike (pixels)', 'max_upl_width_height', 0),
 
 	'User settings',
 	array('Želite li dopustiti registraciju novih korisnika', 'allow_user_registration', 1),
@@ -390,26 +390,26 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Field 4 name', 'user_field4_name', 0),
 
 	'Pictures and thumbnails advanced settings',
-        array('Show private album Icon to unlogged user','show_private',1), 
-	array('Characters forbidden in filenames', 'forbiden_fname_char',0),
-	array('Accepted file extensions for uploaded pictures', 'allowed_file_extensions',0),
-	array('Method for resizing images','thumb_method',2),
-	array('Path to ImageMagick \'convert\' utility (example /usr/bin/X11/)', 'impath', 0),
-	array('Allowed image types (only valid for ImageMagick)', 'allowed_img_types',0),
-	array('Command line options for ImageMagick', 'im_options', 0),
-	array('Read EXIF data in JPEG files', 'read_exif_data', 1),
-	array('The album directory <b>*</b>', 'fullpath', 0),
-	array('The directory for user pictures <b>*</b>', 'userpics', 0),
-	array('The prefix for intermediate pictures <b>*</b>', 'normal_pfx', 0),
-	array('The prefix for thumbnails <b>*</b>', 'thumb_pfx', 0),
-	array('Default mode for directories', 'default_dir_mode', 0),
-	array('Default mode for pictures', 'default_file_mode', 0),
-        array('Disable right-click on full-size pop-up (JavaScript - no foolproof method)', 'disable_popup_rightclick', 1), 
-        array('Disable right-click on all "regular" pages (JavaScript - no foolproof method)', 'disable_gallery_rightclick', 1), 
+        array('Pokaži ikonu osobnih albuma nelogiranom korisniku','show_private',1), 
+	array('Znakovi zabranjeni u imenima dokumenata', 'forbiden_fname_char',0),
+	array('Dopušteni doèeci dokumenata za upload slike', 'allowed_file_extensions',0),
+	array('Metoda za mijenjanje velièine slike','thumb_method',2),
+	array('Put do ImageMagick \'convert\' programa (example /usr/bin/X11/)', 'impath', 0),
+	array('Dopuštene vrste slika (vrijedi samo za ImageMagick)', 'allowed_img_types',0),
+	array('Opcije komandne linije za ImageMagick', 'im_options', 0),
+	array('Proèitaj EXIF podatke u JPEG dokumentima', 'read_exif_data', 1),
+	array('Album direktorij <b>*</b>', 'fullpath', 0),
+	array('Direktorij za korisnièke slike <b>*</b>', 'userpics', 0),
+	array('Prefix za srednje-velike slike <b>*</b>', 'normal_pfx', 0),
+	array('Prefix za slièice <b>*</b>', 'thumb_pfx', 0),
+	array('Default mode za direktorije', 'default_dir_mode', 0),
+	array('Default mode za slike', 'default_file_mode', 0),
+        array('Iskljuèi desni klik na full-sizr pop-up (JavaScript - no foolproof method)', 'disable_popup_rightclick', 1), 
+        array('Iskljuèi desni klik na "redovne" stranice (JavaScript - no foolproof method)', 'disable_gallery_rightclick', 1), 
 
 	'Cookies &amp; Charset settings',
-	array('Name of the cookie used by the script', 'cookie_name', 0),
-	array('Path of the cookie used by the script', 'cookie_path', 0),
+	array('Naziv cookie-ja korištenog u skripti', 'cookie_name', 0),
+	array('Put cookie-ja korištenog u skripti', 'cookie_path', 0),
 	array('Character encoding', 'charset', 4),
 
 	'Miscellaneous settings',
@@ -424,7 +424,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 
 if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 	'empty_name_or_com' => 'Trebate upisati svoje ime i komentar',
-	'com_added' => 'Va± komentar je dodan',
+	'com_added' => 'Vaš komentar je dodan',
 	'alb_need_title' => 'Morate upisati naziv za album !',
 	'no_udp_needed' => 'Nije potrebno osvježavanje.',
 	'alb_updated' => 'Album je osvježen',
@@ -432,7 +432,7 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 	'no_pic_uploaded' => 'Slika nije dodana !<br /><br />Ako ste zaista izabrali sliku za upload, onda je došlo do greške...',
 	'err_mkdir' => 'Nije moguæe napraviti direktorij %s !',
 	'dest_dir_ro' => 'Odabrani direktorij nije writable po skripti !',
-	'err_move' => 'Ne moµe se prebaciti %s u %s !',
+	'err_move' => 'Ne može se prebaciti %s u %s !',
 	'err_fsize_too_large' => 'Dimenzije slike koju uploadate je prevelika (maksimalno dozvoljeno je %s x %s) !',
 	'err_imgsize_too_large' => 'Velièina koju uploadate je prevelika (maksimalno dozvoljeno je %s KB) !',
 	'err_invalid_img' => 'Datoteka koju uploadate nije  u dopu±tenom formatu slike !',
@@ -441,9 +441,9 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 	'upload_success' => 'Vaša slika je uploadana uspješno<br /><br />Slika æe biti vidljiva nakon administratovog dopuštenja.',
 	'info' => 'Informacija',
 	'com_added' => 'Komentar dodan',
-	'alb_updated' => 'Album osvjeµen',
+	'alb_updated' => 'Album osvježen',
 	'err_comment_empty' => 'Prostor za komentar je prazan !',
-	'err_invalid_fext' => 'Samo datoteke sa sljedeæim ekstenzijama su prihvatljive : <br /><br />%s.',
+	'err_invalid_fext' => 'Samo datoteke sa slijedeæim ekstenzijama su prihvatljive : <br /><br />%s.',
 	'no_flood' => 'Žao nam je, vi ste veæ autor posljednjeg komentara upisanog za ovu sliku<br /><br />Izmijenite komentar koji ste poslali ako želite promijeniti komentar o slici',
 	'redirect_msg' => 'Biti æete prebaèeni.<br /><br /><br />Klinki \'CONTINUE\' ako se stranica ne osvježi automatski',
 	'upl_success' => 'Slika uspješno dodana',
@@ -464,7 +464,7 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 	'im_in_alb' => 'Slika u albumu',
 	'alb_del_success' => 'Album \'%s\' izbrisan',
 	'alb_mgr' => 'Organizator albuma',
-	'err_invalid_data' => 'Netoèni podaci primljenji u \'%s\'',
+	'err_invalid_data' => 'Netoèni podaci primljeni u \'%s\'',
 	'create_alb' => 'Kreiranje albuma \'%s\'',
 	'update_alb' => 'Osvježavanje albuma \'%s\' sa malo \'%s\' i index \'%s\'',
 	'del_pic' => 'Izbriši sliku',
@@ -623,10 +623,10 @@ $lang_album_admin_menu = array(
 
 $lang_list_categories = array(
 	'home' => 'Poèetna stranica',
-	'stat1' => '<b>[pictures]</b> slike u <b>[albums]</b> albumima i <b>[cat]</b> kategorijama sa <b>[comments]</b> komentarima pogledane <b>[views]</b> puta',
-	'stat2' => '<b>[pictures]</b> slike u <b>[albums]</b> albumima pogledane <b>[views]</b> puta',
+	'stat1' => '<b>[pictures]</b> slika u <b>[albums]</b> albuma i <b>[cat]</b> kategorije sa <b>[comments]</b> komentara pogledane <b>[views]</b> puta',
+	'stat2' => '<b>[pictures]</b> slike u <b>[albums]</b> albuma pogledane <b>[views]</b> puta',
 	'xx_s_gallery' => '%s\'s Galerija',
-	'stat3' => '<b>[pictures]</b> slike u <b>[albums]</b> albumima sa <b>[comments]</b> komentarima pogledane <b>[views]</b> puta'
+	'stat3' => '<b>[pictures]</b> slike u <b>[albums]</b> albuma sa <b>[comments]</b> komentara pogledane <b>[views]</b> puta'
 );
 
 $lang_list_users = array(
@@ -691,7 +691,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 	'public_alb' => 'Svi (javni album)',
 	'me_only' => 'Samo ja',
 	'owner_only' => 'Vlasnik albuma (%s) samo',
-	'groupp_only' => 'Members of the \'%s\' group',
+	'groupp_only' => 'Èlanovi \'%s\' grupe',
 	'err_no_alb_to_modify' => 'U bazi podataka nema albuma koji možete prepraviti.',
 	'update' => 'Osvježi album'
 );
@@ -822,7 +822,7 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 	'no_pic_to_add' => 'Nema slike za dodati',
 	'need_one_album' => 'Morate imati najmanje jedan album da bi koristili ovu funkciju',
 	'warning' => 'Upozorenje',
-	'change_perm' => 'Skripta ne moµe upisivati u ovaj direktorij, morate promijeniti CHMOD na 755 ili 777 prije nego ±to dodate slike !',
+	'change_perm' => 'Skripta ne može upisivati u ovaj direktorij, morate promijeniti CHMOD na 755 ili 777 prije nego što dodate slike !',
 	'target_album' => '<b>Prebaci sliku iz &quot;</b>%s<b>&quot; u </b>%s',
 	'folder' => 'Folder',
 	'image' => 'Slika',
@@ -900,7 +900,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 	'disku_d' => 'Iskorištenost diska descending',
 	'sort_by' => 'Poredajte korisnike po',
 	'err_no_users' => 'Korisnièka tabla je prazna !',
-	'err_edit_self' => 'Ne moµete promijeniti svoj profil, koristite \'My profile\' link za to',
+	'err_edit_self' => 'Ne možete promijeniti svoj profil, koristite \'My profile\' link za to',
 	'edit' => 'PREPRAVI',
 	'delete' => 'IZBRIŠI',
 	'name' => 'Korisnièko ime',

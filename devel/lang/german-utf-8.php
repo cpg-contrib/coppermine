@@ -372,7 +372,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Maximale Anzahl von Buchstaben in einem Wort', 'max_com_wlength', 0),
         array('Maximale Zeilenzahl eines Kommentars', 'max_com_lines', 0),
         array('Maximale Länge eines Kommentars', 'max_com_size', 0),
-        array('Mehrere Kommentare hintereinander von einem Benutzer zulassen', 'disable_flood', 1),
         array('Film-Streifen anzeigen', 'display_film_strip', 1),
         array('Anzahl Elemente in Film-Streifen', 'max_film_strip_items', 0),
 

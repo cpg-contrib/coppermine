@@ -29,7 +29,7 @@ $lang_translation_info = array(
 'trans_name2'=> '(Completed by) Sesto Avolio', //the name of the translator - can be a nickname
 'trans_email2' => 'webmaster@eolica.net', //translator's email address (optional)
 'trans_website2' => 'http://www.eolica.net/', //translator's website (optional)
-'trans_date' => '2003-10-13', //the date the translation was created / last modified
+'trans_date' => '2003-10-15', //the date the translation was created / last modified
 );
 
 $lang_charset = 'iso-8859-1';
@@ -65,7 +65,7 @@ $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clit
 $lang_meta_album_names = array(
 	'random' => 'Immagini...a casaccio',
 	'lastup' => 'Ultimi arrivi',
-	'lastalb'=> 'Last updated albums',
+	'lastalb'=> 'Ultimi aggiornamenti albums',
 	'lastcom' => 'Ultimi commenti',
 	'topn' => 'Le più viste',
 	'toprated' => 'Le più votate',
@@ -83,7 +83,7 @@ $lang_errors = array(
 	'gd_file_type_err' => 'Le librerie GD supportano solo i formati JPEG and PNG.',
 	'invalid_image' => 'Immagine corrotta o non supportata dalla libreria GD',
 	'resize_failed' => 'Non posso creare le miniature e le immagini intermedie.',
-	'no_img_to_display' => 'Nessuna immagine disponiblile',
+	'no_img_to_display' => 'Nessuna immagine disponibile',
 	'non_exist_cat' => 'La categoria selezionata non esiste',
 	'orphan_cat' => 'Una categoria non è legata, correggi il problema col Manager Categorie.',
 	'directory_ro' => 'La directory \'%s\' è protetta in scrittura, le immagini non possono essere cancellate',
@@ -152,14 +152,14 @@ $lang_album_list = array(
 );
 
 $lang_thumb_view = array(
-	'date' => 'DATE',
+	'date' => 'DATA',
 //Sort by filename and title
-    'name' => 'FILE NAME',
-    'title' => 'TITLE',
+    'name' => 'NOME FILE',
+    'title' => 'TITOLO',
 	'sort_da' => 'Ordina per data ascendente',
 	'sort_dd' => 'Ordina per data discendente',
-	'sort_na' => 'Ordina per name ascendente',
-	'sort_nd' => 'Ordina per name discendente',
+	'sort_na' => 'Ordina per nome ascendente',
+	'sort_nd' => 'Ordina per nome discendente',
     'sort_ta' => 'Ordina per titolo ascendente',
     'sort_td' => 'Ordina per titolo discendente',
 	'pic_on_page' => '%d immagini in %d pagine',
@@ -210,7 +210,7 @@ $lang_cpg_die = array(
 
 $lang_display_thumbnails = array(
 	'filename' => 'Nome del file : ',
-	'filesize' => 'Dimensione file: ',
+	'filesize' => 'Dimensione file : ',
 	'dimensions' => 'Dimensioni : ',
 	'date_added' => 'Aggiunta il : '
 );
@@ -282,7 +282,7 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
-	'alb_need_name' => 'Albums devono avere un nome !',
+	'alb_need_name' => 'Ogni album deve avere un nome !',
 	'confirm_modifs' => 'Applico davvero le modifiche?',
 	'no_change' => 'Non hai fatto alcuna modifica !',
 	'new_album' => 'Nuovo album',
@@ -323,7 +323,7 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
 
 if (defined('CONFIG_PHP')) $lang_config_php = array(
 	'title' => 'Configurazione',
-	'restore_cfg' => 'Ripristina impostazioni di defaults',
+	'restore_cfg' => 'Ripristina impostazioni di default',
 	'save_cfg' => 'Salva la nuova configurazione',
 	'notes' => 'Note',
 	'info' => 'Informazione',
@@ -353,7 +353,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Numero di colonne della lista album', 'album_list_cols', 0),
 	array('Dimensione miniature in pixels', 'alb_list_thumb_size', 0),
 	array('Contenuto della pagina principale', 'main_page_layout', 0),
-	array('Mostra miniatyre per primo livello album nelle categorie','first_level',1),
+	array('Mostra miniature per primo livello album nelle categorie','first_level',1),
 
 	'Vista miniature',
 	array('Numero di colonne nella pagina delle miniature', 'thumbcols', 0),
@@ -379,7 +379,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	'Impostazioni immagini e miniature',
 	array('Qualità files JPEG', 'jpeg_qual', 0),
 	array('Max dimensione delle miniature <b>*</b>', 'thumb_width', 0),
-    array('Usa dimensione ( larghezza o altezza o aspetto Max per miniature )<b>*</b>', 'thumb_use', 7),
+    array('Usa dimensione ( larghezza o altezza o aspetto Max per miniature e immagini intermedie)<b>*</b>', 'thumb_use', 7),
 	array('Crea immagini intermedie','make_intermediate',1),
 	array('Max larghezza o altezza delle immagini intermedie <b>*</b>', 'picture_width', 0),
 	array('Peso massimo dei files (KB)', 'max_upl_size', 0),
@@ -403,7 +403,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 	array('Estensioni consentite per le immagini ', 'allowed_file_extensions',0),
 	array('Metodo ridimensionamento immagini','thumb_method',2),
 	array('Percorso per ImageMagick (esempio /usr/bin/X11/)', 'impath', 0),
-	array('Tipi di immagini consentiti (solo per ImageMagick)', 'allowed_img_types',0),
+	array('Tipi di immagine consentiti (solo per ImageMagick)', 'allowed_img_types',0),
 	array('Opzioni per ImageMagick', 'im_options', 0),
 	array('Leggi dati EXIF nei files JPEG', 'read_exif_data', 1),
 	array('Directory degli album <b>*</b>', 'fullpath', 0),
@@ -433,7 +433,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 	'empty_name_or_com' => 'Inserisci nome e commento',
 	'com_added' => 'Il tuo commento è stato aggiunto',
-	'alb_need_title' => 'Inserisci il titolo dello album !',
+	'alb_need_title' => 'Inserisci il titolo dell\'album !',
 	'no_udp_needed' => 'Non necessita di aggiornamenti.',
 	'alb_updated' => 'Album aggiornato',
 	'unknown_album' => 'Album inesistente o upload non consentito in questo album',
@@ -442,19 +442,19 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 	'dest_dir_ro' => 'La directory di destinazione %s non è scrivibile !',
 	'err_move' => 'Impossible spostare %s in %s !',
 	'err_fsize_too_large' => 'La dimensione della immagine caricata è eccessiva (il massimo consentito è %s x %s) !',
-	'err_imgsize_too_large' => 'Il peso del file caricato è eccasivo (il massimo consentito è %s KB) !',
+	'err_imgsize_too_large' => 'Il peso del file caricato è eccessivo (il massimo consentito è %s KB) !',
 	'err_invalid_img' => 'Il file caricato non è una immagine supportata !',
 	'allowed_img_types' => 'Puoi caricare %s immagini.',
 	'err_insert_pic' => 'La immagine \'%s\' non può essere inserita',
-	'upload_success' => 'Immagine caricata con successo<br /><br />Sarà visibile dopo il vaglio amministrativo.',
+	'upload_success' => 'Immagine caricata con successo<br /><br />Sarà visibile dopo il vaglio di un amministratore.',
 	'info' => 'Informazione',
 	'com_added' => 'Commento aggiunto',
 	'alb_updated' => 'Album aggiornato',
 	'err_comment_empty' => 'Il commento è vuoto !',
 	'err_invalid_fext' => 'Solo i files con le seguenti estensioni sono ammessi : <br /><br />%s.',
-	'no_flood' => 'Spiacenti sei già autore del commento<br /><br />Edita il commento se vuoi',
+	'no_flood' => 'Spiacenti, sei già autore del commento<br /><br />Edita il commento se vuoi',
 	'redirect_msg' => 'Sei stato reindirizzato.<br /><br /><br />Clicca \'CONTINUA\' se la pagina non si ricarica automaticamente',
-	'upl_success' => 'Immagine aggiunta con succeso',
+	'upl_success' => 'Immagine aggiunta con successo',
 );
 
 // ------------------------------------------------------------------------- //
@@ -469,7 +469,7 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 	'err_del' => 'non può essere cancellata',
 	'thumb_pic' => 'miniatura',
 	'comment' => 'commento',
-	'im_in_alb' => 'immagine nello album',
+	'im_in_alb' => 'immagine nell\'album',
 	'alb_del_success' => 'Album \'%s\' cancellato',
 	'alb_mgr' => 'Album Manager',
 	'err_invalid_data' => 'Dati non validi ricevuti in \'%s\'',
@@ -495,7 +495,7 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 if (defined('DISPLAYIMAGE_PHP')){
 
 $lang_display_image_php = array(
-	'confirm_del' => 'Vuoi davvero cancellare questa immagine? \\nCommenti andranno persi.',
+	'confirm_del' => 'Vuoi davvero cancellare questa immagine? \\nI commenti andranno persi.',
 	'del_pic' => 'CANCELLA QUESTA IMMAGINE',
 	'size' => '%s x %s pixels',
 	'views' => '%s volte',
@@ -508,7 +508,7 @@ $lang_picinfo = array(
 	'title' =>'Info immagine',
 	'Filename' => 'Nome file',
 	'Album name' => 'Nome album',
-	'Rating' => 'Media (%s voti)',
+	'Rating' => 'Punteggio (%s voti)',
 	'Keywords' => 'Keywords',
 	'File Size' => 'Peso file',
 	'Dimensions' => 'Dimensioni',
@@ -519,9 +519,9 @@ $lang_picinfo = array(
 	'Exposure time' => 'Esposizione',
 	'Focal length' => 'Focale',
 	'Comment' => 'Commento',
-        'addFav'=>'Aggiungi a Pref',
+        'addFav'=>'Aggiungi a "I miei Preferiti"',
         'addFavPhrase'=>'Preferiti',
-        'remFav'=>'Rimuovi da Pref',
+        'remFav'=>'Rimuovi da "I miei Preferiti"',
 );
 
 $lang_display_comments = array(
@@ -603,7 +603,7 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
 	'apply' => 'Applica modifiche',
 	'create_new_group' => 'Crea nuovo gruppo',
 	'del_groups' => 'Cancella grouppi selezionati',
-	'confirm_del' => 'Attento, gli utenti saranno trasferiti nel gruppo degli utenti Registrati Vuoi proseguire?',
+	'confirm_del' => 'Attento, gli utenti saranno trasferiti nel gruppo degli Utenti registrati - Vuoi proseguire?',
 	'title' => 'Gestisci gruppi utenti',
 	'approval_1' => 'Approvazione Pub. Upl.  (1)',
 	'approval_2' => 'Approvazione Priv. Upl.  (2)',
@@ -623,7 +623,7 @@ $lang_index_php = array(
 );
 
 $lang_album_admin_menu = array(
-	'confirm_delete' => 'Vuoi davvero cancellare questo album ? \\nTutte le immagini ed i commenti andranno persi.',
+	'confirm_delete' => 'Vuoi davvero cancellare quest\'album ? \\nTutte le immagini ed i commenti andranno persi.',
 	'delete' => 'CANCELLA',
 	'modify' => 'PROPRIETA\'',
 	'edit_pics' => 'EDITA IMMAGINI',
@@ -631,10 +631,10 @@ $lang_album_admin_menu = array(
 
 $lang_list_categories = array(
 	'home' => 'Home',
-	'stat1' => '<b>[pictures]</b> immagini in <b>[albums]</b> albums e <b>[cat]</b> categorie con <b>[comments]</b> commenti viste <b>[views]</b> volte',
-	'stat2' => '<b>[pictures]</b> immagini in <b>[albums]</b> albums viste <b>[views]</b> volte',
+	'stat1' => '<b>[pictures]</b> immagini :: <b>[albums]</b> albums :: <b>[cat]</b> categorie :: <b>[comments]</b> commenti :: viste <b>[views]</b> volte',
+	'stat2' => '<b>[pictures]</b> immagini :: <b>[albums]</b> albums :: viste <b>[views]</b> volte',
 	'xx_s_gallery' => '%s\'s Galleria',
-	'stat3' => '<b>[pictures]</b> immagini in <b>[albums]</b> albums con <b>[comments]</b> commenti viste <b>[views]</b> volte'
+	'stat3' => '<b>[pictures]</b> immagini :: <b>[albums]</b> albums :: <b>[comments]</b> commenti :: viste <b>[views]</b> volte'
 );
 
 $lang_list_users = array(
@@ -663,7 +663,7 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
 	'remember_me' => 'Ricordami',
 	'welcome' => 'Benvenuto %s ...',
 	'err_login' => '*** Non posso fare il login. Riprova ***',
-	'err_already_logged_in' => 'Sei connesso !',
+	'err_already_logged_in' => 'Sei già connesso !',
 );
 
 // ------------------------------------------------------------------------- //
@@ -709,7 +709,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
-	'already_rated' => 'Spiacenti hai già votato questa immagine',
+	'already_rated' => 'Spiacenti, hai già votato questa immagine',
 	'rate_ok' => 'il tuo voto è stato accettato',
 );
 
@@ -720,7 +720,7 @@ if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
-Gli amministratori di {SITE_NAME} rimuoveranno tutto quello che non sarà ritenuto compatibile con le finalità ed il decoro del sito.Ti chiediamo di rispettare il lavoro degli altri utenti e del webmaster.<br />
+Gli amministratori di <b>{SITE_NAME}</b> rimuoveranno tutto quello che non sarà ritenuto compatibile con le finalità ed il decoro del sito.Ti chiediamo di rispettare il lavoro degli altri utenti e del webmaster.<br />
 <br />
 Accetti di non pubblicare materiale osceno ed offensivo.<br />
 <br />
@@ -735,10 +735,10 @@ $lang_register_php = array(
 	'i_agree' => 'Accetto',
 	'submit' => 'Invia registrazione',
 	'err_user_exists' => 'Lo username scelto è già utilizzato, scegline un altro',
-	'err_password_mismatch' => 'Le passwords non combaciano, controlla e riprova',
+	'err_password_mismatch' => 'Le password non coincidono, controlla e riprova',
 	'err_uname_short' => 'Lo username deve essere almeno di 2 caratteri',
 	'err_password_short' => 'La password deve essere almeno di 2 caratteri',
-	'err_uname_pass_diff' => 'Username e password evono essere diversi',
+	'err_uname_pass_diff' => 'Username e password devono essere diversi',
 	'err_invalid_email' => 'La email non è valida',
 	'err_duplicate_email' => 'Email già utilizzata da un altro utente',
 	'enter_info' => 'Inserisci info per la registrazione',
@@ -750,7 +750,7 @@ $lang_register_php = array(
 	'email' => 'Email',
 	'location' => 'Dove vivi?',
 	'interests' => 'Interessi',
-	'website' => 'Home page',
+	'website' => 'Sito web',
 	'occupation' => 'Occupazione',
 	'error' => 'ERRORE',
 	'confirm_email_subject' => '%s - Conferma registrazione',
@@ -769,11 +769,11 @@ $lang_register_php = array(
 	'change_pass' => 'Cambia password',
 	'current_pass' => 'Password corrente',
 	'new_pass' => 'Nuova password',
-	'new_pass_again' => 'Nuova password di nuovo',
-	'err_curr_pass' => 'La password attulale è errata',
+	'new_pass_again' => 'Ripeti nuova password',
+	'err_curr_pass' => 'La password attuale è errata',
 	'apply_modif' => 'Applica modifiche',
 	'change_pass' => 'Cambia la mia password',
-	'update_success' => 'Profile aggiornato',
+	'update_success' => 'Profilo aggiornato',
 	'pass_chg_success' => 'Password cambiata',
 	'pass_chg_error' => 'La tua password non è stata cambiata',
 );
@@ -829,12 +829,12 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 	'select_dir' => 'Seleziona directory',
 	'select_dir_msg' => 'Questa funzione consente di aggiungere immagini caricate via FTP sul tuo server<br /><br />Scegli la directory in cui hai caricato le immagini',
 	'no_pic_to_add' => 'Non ci sono immagini da aggiungere',
-	'need_one_album' => 'Hai bisogno almeno di un album per usare questa function',
+	'need_one_album' => 'Hai bisogno almeno di un album per usare questa funzione',
 	'warning' => 'Attento',
 	'change_perm' => 'lo script non può scrivere in questa directory, fai il chmod a 755 o 777 e riprova!',
 	'target_album' => '<b>Metti le immagini di &quot;</b>%s<b>&quot; in </b>%s',
 	'folder' => 'Cartella',
-	'image' => 'Immgine',
+	'image' => 'Immagine',
 	'album' => 'Album',
 	'result' => 'Risultato',
 	'dir_ro' => 'Non scrivibile. ',
@@ -887,7 +887,7 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
 	'pic_title' => 'Titolo immagine',
 	'description' => 'Descrizione immagine',
 	'keywords' => 'Keywords (separate da spazi)',
-	'err_no_alb_uploadables' => 'Spiacenti in nessun album è consentito caricare immagini',
+	'err_no_alb_uploadables' => 'Spiacenti, in nessun album è consentito caricare immagini',
 );
 
 // ------------------------------------------------------------------------- //
@@ -902,13 +902,13 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 	'group_d' => 'Gruppo discendente',
 	'reg_a' => 'Data iscrizione ascendente',
 	'reg_d' => 'Data iscrizione discendente',
-	'pic_a' => 'Conto immagini ascendente',
-	'pic_d' => 'Conto immagini discendente',
-	'disku_a' => 'Utilizzo disco ascendente',
-	'disku_d' => 'Utilizzo disco discendente',
+	'pic_a' => 'Numero immagini crescente',
+	'pic_d' => 'Numero immagini decrescente',
+	'disku_a' => 'Utilizzo disco crescente',
+	'disku_d' => 'Utilizzo disco decrescente',
 	'sort_by' => 'Ordina utenti per',
 	'err_no_users' => 'La tabella utenti è vuota !',
-	'err_edit_self' => 'Non puoi editare il tuo profilo da qui, usa  invece Il mio profilo',
+	'err_edit_self' => 'Non puoi editare il tuo profilo da qui, usa invece "Il mio profilo"',
 	'edit' => 'EDITA',
 	'delete' => 'CANCELLA',
 	'name' => 'Nome utente',
@@ -928,12 +928,12 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 	'password' => 'Password',
 	'user_active' => 'Utente attivo',
 	'user_group' => 'Gruppo utente',
-	'user_email' => 'Email utente',
-	'user_web_site' => 'Website utente',
+	'user_email' => 'Email',
+	'user_web_site' => 'Sito web',
 	'create_new_user' => 'Crea nuovo utente',
-	'user_location' => 'Dove vive utente',
-	'user_interests' => 'Interessi utente',
-	'user_occupation' => 'Occupazione utente',
+	'user_location' => 'Dove vive',
+	'user_interests' => 'Interessi',
+	'user_occupation' => 'Occupazione',
 );
 
 // ------------------------------------------------------------------------- //
@@ -966,7 +966,7 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
         'instruction_action' => 'Scegli azione',
         'instruction_parameter' => 'Imposta parametri',
         'instruction_album' => 'Scegli album',
-        'instruction_press' => 'Premi %s',
+        'instruction_press' => 'Premi [submit]%s',
         'update' => 'Aggiorna miniature e/o immagini ridimensionate',
         'update_what' => 'Cosa aggiornare',
         'update_thumb' => 'Solo miniature',
@@ -982,8 +982,8 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
         'filename_time' => 'Cambia 2003_11_23_13_20_20.jpg in 13:20',
         'delete' => 'Cancella titoli immagini o immagini con dimensioni originali',
         'delete_title' => 'Cancella titoli immagini',
-        'delete_original' => 'Cancella immagini con dimensioni originali',
-        'delete_replace' => 'Cancella immagini originali sostituendole con la versione ridimensionata',
+        'delete_original' => 'Cancella le immagini originali',
+        'delete_replace' => 'Cancella le immagini originali sostituendole con la versione ridimensionata',
         'select_album' => 'Scegli album',
 );
 
