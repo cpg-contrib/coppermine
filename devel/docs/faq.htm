@@ -121,6 +121,7 @@ For credits and copyrights, see <a href="index.htm#credits">Coppermine documenta
 <li><a class="content" href="#GD1vsGD2">What&#39;s the difference between <b>GD1 and GD2</b>?</a></li>
 <li><a class="content" href="#InstallSteps">What are the <b>steps</b> to get Coppermine running?</a></li>
 <li><a class="content" href="#installIMwhenHosted">How can I <b>install ImageMagick or GD</b>?</a></li>
+<li><a class="content" href="#minimumInstall">I'm short on webspace. Is there a &quot;<b>minimum install</b>&quot;?</a></li>
 </ul>
 
 <li><b>Upload</b></li>
@@ -257,6 +258,45 @@ For credits and copyrights, see <a href="index.htm#credits">Coppermine documenta
 <a name="installIMwhenHosted"></a>
 <h3>How can I <b>install ImageMagick or GD</b>?</h3>
 <p>You can only <a href="faq.php?q=enableIMonWindows#enableIMonWindows">install ImageMagic or GD if you&#39;re running your own server</a> or if you have at least shell access to your webserver. If you&#39;re hosted by a webhost you can only contact your webhost and ask them to install it for you or choose another webhost.<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+
+<a name="minimumInstall"></a>
+<h3>I'm short on webspace. Is there a &quot;<b>minimum install</b>&quot;?</h3>
+<p>This is of course a contradiction in terms: running a gallery page usually means you will need a lot of webspace for your pics, but if you only want to publish some pics and have little webspace left, there are some files that don't have to be uploaded or can be removed if not needed. It is however recommended that only experienced users create a minimum install; when in doubt, go for the full install.</p>
+<ol>
+<li><b>Remove all languages that you don't need</b> (if your users are all from the same country).<br />
+It's recommended that you keep English anyway even if your users use another language, just for you as admin to be able to temporarily switch to English.<br />
+Delete all files in the lang-subfolder of your coppermine install except yourlanguage.php (e.g. if you're using french, delete all files but /lang/french.php and /lang/french-utf-8.php).
+<br /><div class="totop">Webspace that can be saved (maximum): 2.9 MB</div>
+</li>
+<li><b>Remove all language files that come with an encoding you don't need</b><br />
+You'll notice that for each language there are two files in the lang-folder: yourlanguage.php and yourlanguage-utf-8.php. You will need the utf-8 files only if you chose &quot;Unicode(utf-8)&quot; in &quot;Character encoding&quot; on your config page. Using <i>Unicode (utf-8)</i> will display the gallery in the language your page visitor has set in his browser. If you haven't chosen <i>Unicode (utf-8)</i> in coppermine config, it's safe to delete all language files with &quot;utf-8&quot; in their filenames from the lang folder.
+<br /><div class="totop">Webspace that can be saved (maximum): 1.7 MB</div>
+</li>
+<li><b>Remove all unnecessary themes</b><br />
+Remove all themes you won't use from your themes folder. If you're using a customized theme, it's recommended to leave the classic/default theme in place for administrative purposes.<br />
+Example: if you're using the theme &quot;Eyeball&quot; that comes with coppermine, you can safely delete the sub-folders &quot;classic&quot;, &quot;fruity&quot;, &quot;hardwired&quot;, &quot;igames&quot;, &quot;mac_ox_x&quot;, &quot;project_vii&quot;, &quot;rainy_day&quot;, &quot;styleguide&quot; and &quot;water_drop&quot; from your themes folder.
+<br /><div class="totop">Webspace that can be saved (maximum): 1 MB</div>
+</li>
+<li><b>Remove the docs folder</b><br />
+The docs folder contains documents that are meant to help you set up and administer coppermine, but it doesn't have to be on your webserver. You can safely delete the docs folder from your webserver (or even don't upload it in the first place), but it's strongly recommended to keep the docs folder on your local machine for reference.
+<br /><div class="totop">Webspace that can be saved (maximum): 0.5 MB</div>
+</li>
+<li><b>Remove bridge files</b><br />
+The bridge files are being used for integration of coppermine with a bulletin board software like phpBB, YaBB SE, SMF etc. If you're not using bbs integration at all it is safe to delete the whole bridge folder from your webserver (or not upload it in the first place). If you <i>are</i> using bbs integration, you will have to keep the bridge file that corresponds to the bbs you're using - it's safe to delete all other bridge files that exist inside the bridge folder.
+<br /><div class="totop">Webspace that can be saved (maximum): 137 KB</div>
+</li>
+<li><b>Remove the flags</b><br />
+If you're not going to use the &quot;select language by flags&quot; option from the coppermine menu, it's safe to delete the flags folder (/your_coppermine_folder/images/flags/). If you <i>are</i> using the flags option, you can of course delete all flags you don't use at all.
+<br /><div class="totop">Webspace that can be saved (maximum): 80 KB</div>
+</li>
+<li><b>Remove files that are needed for install or upgrade only</b><br />
+Once Coppermine has been installed and is &quot;up-and-running&quot;, you can safely delete the files that are needed for installing only: from the coppermine root folder, delete install.php, installer.css, update.php,  upgrade-1.0-to-1.2.php. You can delete the folder &quot;sql&quot; as well.<br />
+If you want to update/upgrade your coppermine install later (once a new version comes out), you will of course have to re-upload the update files and the sql folder to your webserver.
+<br /><div class="totop">Webspace that can be saved (maximum): 73 KB</div>
+</li>
+</ol>
+Summary: a minimum install of coppermine will need approx. 3.3 MB of webspace.
+<br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 
 <h2>Upload</h2>
 
