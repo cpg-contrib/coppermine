@@ -1018,7 +1018,7 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
 // ------------------------------------------------------------------------- //
 
 if (defined('REPORT_PHP') || defined('DISPLAYREPORT_PHP')) $lang_report_php =array(
-  'title' => 'Report file to administrator',
+  'title' => 'Report to administrator',
   'invalid_email' => '<b>Warning</b> : invalid email address !',
   'report_title' => 'A report from %s on a gallery file',
   'view_report' => 'Alternate link if the report does not display correctly',
@@ -1032,9 +1032,15 @@ if (defined('REPORT_PHP') || defined('DISPLAYREPORT_PHP')) $lang_report_php =arr
   'to' => 'To',
   'administrator' => 'Administrator/Mod',
   'subject' => 'Subject',
+  'comment' => 'Reporting on Comment',
   'reason' => 'Reason',
   'message' => 'Message',
   'report_footer' => 'Sent by %s from IP %s at %s (Gallery time)',
+  'obscene' => 'Obscene',
+  'misplaced' => 'Off-topic/misplaced',
+  'missing' => 'Missing',
+  'issue' => 'Error/Cannot view',
+  'other' => 'Other',
 );
 
 // ------------------------------------------------------------------------- //

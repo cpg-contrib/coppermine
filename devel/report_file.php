@@ -37,6 +37,8 @@ function get_post_var($name, $default = '')
 $pid = (int)$_GET['pid'];
 $album = $_GET['album'];
 $pos = (int)$_GET['pos'];
+$cid = (int)$_GET['msg_id']; //comment id
+$what = (int)$_GET['what'];
 
 $sender_name = get_post_var('sender_name', USER_NAME ? USER_NAME : (isset($USER['name']) ? $USER['name'] : ''));
 if (defined('UDB_INTEGRATION')AND USER_ID) $USER_DATA = array_merge($USER_DATA,udb_get_user_infos(USER_ID));
@@ -53,10 +55,18 @@ $message = get_post_var('message');
 $sender_email_warning = '';
 
 // Get picture thumbnail url
-$result = cpg_db_query("SELECT * from {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' $ALBUM_SET");
-if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
-$row = mysql_fetch_array($result);
-$thumb_pic_url = get_pic_url($row, 'thumb');
+if ($what == 'picture') {
+	$result = cpg_db_query("SELECT * from {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' $ALBUM_SET");
+	//if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+	$row = mysql_fetch_array($result);
+	$thumb_pic_url = get_pic_url($row, 'thumb');
+	//template_extract_block($template_report_form, 'display_comment'); //need help remove comment preview when reporting picture
+} elseif ($what == 'comment') { //need help display the comment as preview just like when reporting picture shows picture
+	$result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid' ORDER BY msg_id $comment_sort_order");
+	$row = mysql_fetch_array($result);
+	//template_extract_block($template_report_form, 'display_thumbnail'); //need help remove picture preview when reporting comment
+	//template_extract_block($template_report_form, 'reason_missing'); //need help to toggle off reason(missing) since doesn't apply to comments
+}
 
 // Check supplied email address
 $valid_email_pattern = "^[_\.0-9a-z\-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,6}$";
@@ -141,9 +151,11 @@ starttable("100%", $lang_report_php['title'], 3);
 echo <<<EOT
         <tr>
                 <td class="tableh2" colspan="2"><b>{$lang_report_php['from']}</b></td>
+<!-- BEGIN display_thumbnail -->
                 <td rowspan="6" align="center" valign="top" class="tableb">
                         <img src="$thumb_pic_url" alt="" vspace="8" border="0" class="image"><br />
                 </td>
+<!-- END display_thumbnail -->
         </tr>
         <tr>
                 <td class="tableb" valign="top" width="40%">
@@ -171,6 +183,16 @@ echo <<<EOT
                         {$lang_report_php['administrator']}<br />
                 </td>
         </tr>
+<!-- BEGIN display_comment -->
+				<tr>
+                <td class="tableh2" valign="top" width="40%" colspan="3"><b>{$lang_report_php['comment']}</b></td>
+				</tr>
+        <tr>
+                <td class="tableb" valign="top" width="40%" colspan="3">
+                        COMMENT PREVIEW GOES HERE<br />
+                </td>
+        </tr>
+<!-- END display_comment -->
         <tr>
                 <td class="tableh2" colspan="3"><b>{$lang_report_php['subject']}</b></td>
         </tr>
@@ -184,11 +206,21 @@ echo <<<EOT
         </tr>
         <tr>
                 <td class="tableb" colspan="3">
-									<input value="obscene" type="checkbox" name="reason">Obscene</input>
-									<input value="misplaced" type="checkbox" name="reason">Off-topic/misplaced</input>
-									<input value="missing" type="checkbox" name="reason">Missing</input>
-									<input value="issue" type="checkbox" name="reason">Cannot view</input>
-									<input value="other" type="checkbox" name="reason">Other</input>
+<!-- BEGIN reason_obscene -->
+									<input value="obscene" type="checkbox" name="reason">{$lang_report_php['obscene']}</input>
+<!-- END reason_obscene -->
+<!-- BEGIN reason_misplaced -->
+									<input value="misplaced" type="checkbox" name="reason">{$lang_report_php['misplaced']}</input>
+<!-- END reason_misplaced -->
+<!-- BEGIN reason_missing -->
+									<input value="missing" type="checkbox" name="reason">{$lang_report_php['missing']}</input>
+<!-- END reason_missing -->
+<!-- BEGIN reason_issue -->
+									<input value="issue" type="checkbox" name="reason">{$lang_report_php['issue']}</input>
+<!-- END reason_issue -->
+<!-- BEGIN reason_other -->
+									<input value="other" type="checkbox" name="reason">{$lang_report_php['other']}</input>
+<!-- END reason_other -->
                 </td>
         </tr>
         <tr>

@@ -93,12 +93,12 @@ function html_img_nav_menu()
         $ecard_title = $lang_img_nav_bar['ecard_disabled'];*/
     }
 		
-		//report to moderator button
+		//report to moderator buttons
     if ($CONFIG['report_post']==1) {
 				$report_tgt = "report_file.php?album=$album$cat_link&amp;pid=$pid&amp;pos=$pos";
-        //$ecard_title = $lang_img_nav_bar['ecard_title'];
-    } else {
-        template_extract_block($template_img_navbar, 'report_button');
+    } else { // remove buttons if report toggle is off
+        template_extract_block($template_img_navbar, 'report_file_button'); 
+        template_extract_block($template_image_comments, 'report_comment_button'); //need help: error message said button not found but it's in theme.php
     }
 		
 		    $thumb_tgt = "thumbnails.php?album=$album$cat_link&amp;page=$page";

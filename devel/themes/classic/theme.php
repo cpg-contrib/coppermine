@@ -515,11 +515,11 @@ $template_img_navbar = <<<EOT
                 <td align="center" valign="middle" class="navmenu" width="100%">
                         {PIC_POS}
                 </td>
-<!-- BEGIN report_button --> 
+<!-- BEGIN report_file_button --> 
                 <td align="center" valign="middle" class="navmenu" width="48px">
                         <a href="{REPORT_TGT}">report</a>
                 </td>
-<!-- END report_button --> 
+<!-- END report_file_button --> 
 <!-- BEGIN ecard_button -->
                 <td align="center" valign="middle" class="navmenu" width="48px">
                         <a href="{ECARD_TGT}" title="{ECARD_TITLE}"><img src="images/ecard.gif" width="16px" height="16px" border="0px" align="middle" alt="{ECARD_TITLE}" /></a>
@@ -613,6 +613,9 @@ $template_image_comments = <<<EOT
 <!-- END ipinfo -->
                                 </td>
                                 <td class="tableh2_compact" align="right" width="100%">
+<!-- BEGIN report_comment_button -->
+                                        <a href="report_file.php?msg_id={MSG_ID}&what=comment">report</a>
+<!-- END report_comment_button -->
 <!-- BEGIN buttons -->
                                         <a href="javascript:;" onclick="blocking('cbody{MSG_ID}','', 'block'); blocking('cedit{MSG_ID}','', 'block'); return false;" title="{EDIT_TITLE}"><img src="images/edit.gif" border="0px" align="middle" /></a>
                                         <a href="delete.php?msg_id={MSG_ID}&what=comment"  onclick="return confirm('{CONFIRM_DELETE}');"><img src="images/delete.gif" border="0px" align="middle" /></a>
