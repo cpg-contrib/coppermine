@@ -20,6 +20,9 @@
 // ------------------------------------------------------------------------- //
 
 define('THEME_HAS_RATING_GRAPHICS', 1);
+define('THEME_HAS_NAVBAR_GRAPHICS', 1);
+
+
 // HTML template for main menu
 $template_main_menu1 = <<<EOT
 
@@ -98,42 +101,6 @@ $template_main_menu2 = <<<EOT
                         </table>
 EOT;
 
-// HTML template for the image navigation bar
-$template_img_navbar = <<<EOT
-
-        <tr>
-                <td align="center" valign="middle" class="navmenu" width="50%">
-                        &nbsp;
-                </td>
-                <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="themes/eyeball/images/imv_up.gif" align="absmiddle" border="0" alt="{THUMB_TITLE}" /></a>
-                </td>
-                <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="javascript:;" onClick="blocking('picinfo','yes', 'block'); return false;" title="{PIC_INFO_TITLE}"><img src="themes/eyeball/images/imv_picinfo.gif" border="0" align="absmiddle" alt="{PIC_INFO_TITLE}" /></a>
-                </td>
-                <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{SLIDESHOW_TGT}" title="{SLIDESHOW_TITLE}"><img src="themes/eyeball/images/imv_slideshow.gif" border="0" align="absmiddle" alt="{SLIDESHOW_TITLE}" /></a>
-                </td>
-                <td align="center" valign="middle" class="navmenu" style="white-space: nowrap; padding-left: 15px; padding-right: 15px; font-size: 18px; font-weight: normal;">
-                        {PIC_POS}
-                </td>
-<!-- BEGIN ecard_button -->
-                <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{ECARD_TGT}" title="{ECARD_TITLE}"><img src="themes/eyeball/images/imv_ecards.gif" border="0" align="absmiddle" alt="{ECARD_TITLE}" /></a>
-                </td>
-<!-- END ecard_button -->
-                <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="themes/eyeball/images/imv_prev.gif" border="0" align="absmiddle" alt="{PREV_TITLE}" /></a>
-                </td>
-                <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="themes/eyeball/images/imv_next.gif" border="0" align="absmiddle" alt="{NEXT_TITLE}" /></a>
-                </td>
-                <td align="center" valign="middle" class="navmenu" width="50%">
-                        &nbsp;
-                </td>
-        </tr>
-
-EOT;
 
 function pageheader($section, $meta = '')
 {
@@ -142,15 +109,15 @@ function pageheader($section, $meta = '')
 
     $custom_header = cpg_get_custom_include($CONFIG['custom_header_path']);
 
-    $charset = ($CONFIG['charset'] == 'language file') ? $lang_charset : $CONFIG['charset'];
+ 
 
     header('P3P: CP="CAO DSP COR CURa ADMa DEVa OUR IND PHY ONL UNI COM NAV INT DEM PRE"');
-    header("Content-Type: text/html; charset=$charset");
+
     user_save_profile();
 
     $template_vars = array('{LANG_DIR}' => $lang_text_dir,
         '{TITLE}' => $CONFIG['gallery_name'] . ' - ' . $section,
-        '{CHARSET}' => $charset,
+        '{CHARSET}' => $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'],
         '{META}' => $meta,
         '{GAL_NAME}' => $CONFIG['gallery_name'],
         '{GAL_DESCRIPTION}' => $CONFIG['gallery_description'],
@@ -359,183 +326,21 @@ function theme_main_menu2()
 
 
 
-// Function to display first level Albums of a category
-function theme_display_album_list_cat(&$alb_list, $nbAlb, $cat, $page, $total_pages)
-{
-    global $CONFIG, $STATS_IN_ALB_LIST, $statistics, $template_tab_display, $template_album_list_cat, $lang_album_list;
-    if (!$CONFIG['first_level']) {
-        return;
-    }
-
-    // $theme_alb_list_tab_tmpl = $template_tab_display;
-
-    // $theme_alb_list_tab_tmpl['left_text'] = strtr($theme_alb_list_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_album_list['album_on_page']));
-    // $theme_alb_list_tab_tmpl['inactive_tab'] = strtr($theme_alb_list_tab_tmpl['inactive_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&amp;page=%d'));
-
-    // $tabs = create_tabs($nbAlb, $page, $total_pages, $theme_alb_list_tab_tmpl);
-    // echo $template_album_list_cat;
-    $template_album_list_cat1 = $template_album_list_cat;
-    $album_cell = template_extract_block($template_album_list_cat1, 'c_album_cell');
-    $empty_cell = template_extract_block($template_album_list_cat1, 'c_empty_cell');
-    $tabs_row = template_extract_block($template_album_list_cat1, 'c_tabs');
-    $stat_row = template_extract_block($template_album_list_cat1, 'c_stat_row');
-    $spacer = template_extract_block($template_album_list_cat1, 'c_spacer');
-    $header = template_extract_block($template_album_list_cat1, 'c_header');
-    $footer = template_extract_block($template_album_list_cat1, 'c_footer');
-    $rows_separator = template_extract_block($template_album_list_cat1, 'c_row_separator');
-
-    $count = 0;
-
-    $columns = $CONFIG['album_list_cols'];
-    $column_width = ceil(100 / $columns);
-    $thumb_cell_width = $CONFIG['alb_list_thumb_size'] + 2;
-
-    starttable('100%');
-
-    if ($STATS_IN_ALB_LIST) {
-        $params = array('{STATISTICS}' => $statistics,
-            '{COLUMNS}' => $columns,
-            );
-        echo template_eval($stat_row, $params);
-    }
-
-    echo $header;
-
-    if (is_array($alb_list)) {
-        foreach($alb_list as $album) {
-                $count ++;
-
-                $params = array('{COL_WIDTH}' => $column_width,
-                '{ALBUM_TITLE}' => $album['album_title'],
-                '{THUMB_CELL_WIDTH}' => $thumb_cell_width,
-                '{ALB_LINK_TGT}' => "thumbnails.php?album={$album['aid']}",
-                '{ALB_LINK_PIC}' => $album['thumb_pic'],
-                '{ADMIN_MENU}' => $album['album_adm_menu'],
-                '{ALB_DESC}' => $album['album_desc'],
-                '{ALB_INFOS}' => $album['album_info'],
-                );
-
-                echo template_eval($album_cell, $params);
-
-                if ($count % $columns == 0 && $count < count($alb_list)) {
-                     echo $rows_separator;
-                }
-        }
-    }
-
-    $params = array('{COL_WIDTH}' => $column_width);
-    $empty_cell = template_eval($empty_cell, $params);
-
-    while ($count++ % $columns != 0) {
-        echo $empty_cell;
-    }
-
-    echo $footer;
-    // Tab display
-    $params = array('{COLUMNS}' => $columns,
-        '{TABS}' => $tabs,
-        );
-    echo template_eval($tabs_row, $params);
-
-    endtable();
-
-    echo $spacer;
-}
 
 
-// Added to display flim_strip
-function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $pos, $sort_options, $mode = 'thumb')
-{
-    global $CONFIG;
-    global $template_film_strip, $lang_film_strip;
 
-    static $template = '';
-    static $thumb_cell = '';
-    static $empty_cell = '';
-    static $spacer = '';
 
-    if ((!$template)) {
-        $template = $template_film_strip;
-        $thumb_cell = template_extract_block($template, 'thumb_cell');
-        $empty_cell = template_extract_block($template, 'empty_cell');
-        // $spacer = template_extract_block($template, 'spacer');
-    }
 
-    if ($header == '') {
-    }
 
-    $cat_link = is_numeric($aid) ? '' : '&amp;cat=' . $cat;
 
-    $theme_thumb_tab_tmpl = $template_tab_display;
 
-    if ($mode == 'thumb') {
-        $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_thumb_view['pic_on_page']));
-        $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . '&page=%d'));
-    } else {
-        $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_thumb_view['user_on_page']));
-        $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&page=%d'));
-    }
 
-    $thumbcols = $CONFIG['thumbcols'];
-    $cell_width = ceil(100 / $CONFIG['max_film_strip_items']) . '%';
 
-    $i = 0;
-    $thumb_strip = '';
-    foreach($thumb_list as $thumb) {
-        $i++;
-        if ($mode == 'thumb') {
-            $params = array('{CELL_WIDTH}' => $cell_width,
-                '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}",
-                '{THUMB}' => $thumb['image'],
-                '{CAPTION}' => '',
-                '{ADMIN_MENU}' => ''
-                );
-        } else {
-            $params = array('{CELL_WIDTH}' => $cell_width,
-                '{LINK_TGT}' => "index.php?cat={$thumb['cat']}",
-                '{THUMB}' => $thumb['image'],
-                '{CAPTION}' => '',
-                '{ADMIN_MENU}' => ''
-                );
-        }
-        $thumb_strip .= template_eval($thumb_cell, $params);
-        // if ((($i % $thumbcols) == 0) && ($i < count($thumb_list))) {
-        // echo $row_separator;
-        // }
-    }
-    // for (;($i % $thumbcols); $i++){
-    // echo $empty_cell;
-    // }
-    $params = array('{THUMB_STRIP}' => $thumb_strip,
-        '{COLS}' => $i);
 
-    ob_start();
-    starttable($CONFIG['picture_table_width']);
-    echo template_eval($template, $params);
-    endtable();
-    $film_strip = ob_get_contents();
-    ob_end_clean();
 
-    return $film_strip;
-}
 
-function theme_no_img_to_display($album_name)
-{
-    global $lang_errors, $template_no_img_to_display;
 
-    static $template = '';
-    static $spacer;
 
-    if ((!$template)) {
-        $template = $template_no_img_to_display;
-        $spacer = template_extract_block($template, 'spacer');
-    }
-
-    $params = array('{TEXT}' => $lang_errors['no_img_to_display']);
-    starttable('100%', $album_name);
-    echo template_eval($template, $params);
-    endtable();
-}
 
 function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, $film_strip)
 {
