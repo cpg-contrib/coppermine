@@ -252,10 +252,15 @@ EOT;
                 echo <<<EOT
         <tr>
                 <td class="tableb" colspan="3" align="center">
-                        <b><input type="checkbox" name="delete{$CURRENT_PIC['pid']}" value="1" class="checkbox">{$lang_editpics_php['del_pic']}</b>&nbsp;
-                        <b><input type="checkbox" name="reset_vcount{$CURRENT_PIC['pid']}" value="1" class="checkbox">{$lang_editpics_php['reset_view_count']}</b>&nbsp;
-                        <b><input type="checkbox" name="reset_votes{$CURRENT_PIC['pid']}" value="1" class="checkbox">{$lang_editpics_php['reset_votes']}</b>&nbsp;
-                        <b><input type="checkbox" name="del_comments{$CURRENT_PIC['pid']}" value="1" class="checkbox">{$lang_editpics_php['del_comm']}</b>&nbsp;
+                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                        <tr>
+                            <td width="20%" align="center"></td>
+                            <td width="20%" align="center"><input type="checkbox" name="delete{$CURRENT_PIC['pid']}" value="1" class="checkbox">{$lang_editpics_php['del_pic']}</td>
+                            <td width="20%" align="center"><input type="checkbox" name="reset_vcount{$CURRENT_PIC['pid']}" value="1" class="checkbox">{$lang_editpics_php['reset_view_count']}</td>
+                            <td width="20%" align="center"><input type="checkbox" name="reset_votes{$CURRENT_PIC['pid']}" value="1" class="checkbox">{$lang_editpics_php['reset_votes']}</td>
+                            <td width="20%" align="center"><input type="checkbox" name="del_comments{$CURRENT_PIC['pid']}" value="1" class="checkbox">{$lang_editpics_php['del_comm']}</td>
+                        </tr>
+                    </table>
                 </td>
         </tr>
 
@@ -480,19 +485,34 @@ $pic_count_text = sprintf($lang_editpics_php['n_pic'], $pic_count);
 pageheader($title);
 starttable("100%", $title.$help, 3);
 echo <<<EOT
-<SCRIPT LANGUAGE="JavaScript">
+<script type="text/javascript" language="javascript">
+<!--
 function textCounter(field, maxlimit) {
         if (field.value.length > maxlimit) // if too long...trim it!
         field.value = field.value.substring(0, maxlimit);
 }
+
+function selectAll(d,box) {
+  var f = document.editForm;
+  for (i = 0; i < f.length; i++) {
+    if (f[i].type == "checkbox" && f[i].name.indexOf(box) >= 0) {
+      if (d.checked) {
+        f[i].checked = true;
+      } else {
+        f[i].checked = false;
+      }
+    }
+  }
+}
+-->
 </script>
 EOT;
 $mode= (UPLOAD_APPROVAL_MODE==1) ? "&mode=upload_approval":"";
 $cat_l = (isset($actual_cat))? "?cat=$actual_cat" : (isset($cat) ? "?cat=$cat" : '');
 echo <<<EOT
         <tr>
-                <td class="tableb" colspan="3" align="center">
-                <form method="post" action="$form_target$mode">
+                <td class="tableh2" colspan="3" align="center" valign="middle">
+                <form method="post" name="editForm" action="$form_target$mode">
                         <b>$pic_count_text</b>&nbsp;&nbsp;-&nbsp;&nbsp;
                         $prev_link
                         $next_link
@@ -513,6 +533,44 @@ EOT;
 }
 echo <<<EOT
                 </td>
+        </tr>
+EOT;
+
+echo <<<EOT
+        <tr>
+            <td class="tableb" colspan="3" align="center">
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="padding-top:5px;padding-bottom:5px">
+                    <tr>
+                        <td width="20%" align="right">
+                            <b>{$lang_editpics_php['select_unselect']}:</b>
+                        </td>
+                        <td width="20%" align="center">
+                            <span class="admin_menu">
+                                <input type="checkbox" name="deleteAll" onClick="selectAll(this,'delete');" class="checkbox" id="deleteAll" />
+                                <label for="deleteAll" class="clickable_option">{$lang_editpics_php['del_pic']}</label>
+                            </span>
+                        </td>
+                        <td width="20%" align="center">
+                            <span class="admin_menu">
+                                <input type="checkbox" name="reset_vcountAll" onClick="selectAll(this,'reset_vcount');" class="checkbox" id="reset_vcountAll" />
+                                <label for="reset_vcountAll" class="clickable_option">{$lang_editpics_php['reset_view_count']}</label>
+                            </span>
+                        </td>
+                        <td width="20%" align="center">
+                            <span class="admin_menu">
+                                <input type="checkbox" name="reset_votesAll" onClick="selectAll(this,'reset_votes');" class="checkbox" id="reset_votesAll" />
+                                <label for="reset_votesAll" class="clickable_option">{$lang_editpics_php['reset_votes']}</label>
+                            </span>
+                        </td>
+                        <td width="20%" align="center">
+                            <span class="admin_menu">
+                                <input type="checkbox" name="del_commentsAll" onClick="selectAll(this,'del_comments');" class="checkbox"reset_votesAll" id="del_commentsAll" />
+                                <label for="del_commentsAll" class="clickable_option">{$lang_editpics_php['del_comm']}</label>
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+            </td>
         </tr>
 EOT;
 
