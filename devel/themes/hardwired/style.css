@@ -155,7 +155,7 @@ bblink a:hover {
 
 .tableh1_compact {
         background : #515B67 ;
-        color : #CCCCCCC;
+        color : #CCCCCC;
         padding-top: 2px;
         padding-right: 5px;
         padding-bottom: 2px;
@@ -379,7 +379,7 @@ bblink a:hover {
 
 .image {
         border-style: solid;
-        border-width:2;
+        border-width:2px;
         border-color: #394048;
         margin: 2px;
 }
@@ -493,5 +493,5 @@ bblink a:hover {
 .gal_name
 {
         color:#4C5157;
-        font-size=20px;
+        font-size:20px;
 }
