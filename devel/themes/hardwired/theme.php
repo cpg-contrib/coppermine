@@ -20,144 +20,144 @@
 define('THEME_HAS_RATING_GRAPHICS', 1);
 // HTML template for main menu
 $template_main_menu1 = <<<EOT
-                <span class="topmenu">
+                
                         <table border="0" cellpadding="0" cellspacing="0">
                                 <tr>
 <!-- BEGIN my_gallery -->
-                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-                                        <td><img name="buttonleftmy" src="themes/hardwired/images/buttonleftmy.gif" width="17" height="25" border="0" id="buttonleftmy" alt="" /></td>
-                                        <td background="themes/hardwired/images/buttoncenter.gif">
+                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
+                                        <td><img name="buttonleftmy" src="themes/hardwired/images/buttonleftmy.gif" width="17" height="25" border="0" alt="" /></td>
+                                        <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
                                                 <a href="{MY_GAL_TGT}" title="{MY_GAL_TITLE}">{MY_GAL_LNK}</a>
                                         </td>
-                                        <td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0" id="buttonright" alt="" /></td>
+                                        <td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /></td>
 <!-- END my_gallery -->
 <!-- BEGIN allow_memberlist -->
-                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-                                        <td><img name="buttonleft" src="themes/hardwired/images/buttonleftmemb.gif" width="17" height="25" border="0" id="buttonleft" alt="" /></td>
-                                        <td background="themes/hardwired/images/buttoncenter.gif">
+                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
+                                        <td><img name="buttonleft" src="themes/hardwired/images/buttonleftmemb.gif" width="17" height="25" border="0" alt="" /></td>
+                                        <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
                                                 <a href="{MEMBERLIST_TGT}" title="{MEMBERLIST_TITLE}">{MEMBERLIST_LNK}</a>
                                         </td>
-                                        <td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0" id="buttonright" alt="" /></td>
+                                        <td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /></td>
 <!-- END allow_memberlist -->
 <!-- BEGIN my_profile -->
-                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-                                        <td><img name="buttonleft" src="themes/hardwired/images/buttonleft.gif" width="17" height="25" border="0" id="buttonleft" alt="" /></td>
-                                        <td background="themes/hardwired/images/buttoncenter.gif">
+                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
+                                        <td><img name="buttonleft" src="themes/hardwired/images/buttonleft.gif" width="17" height="25" border="0" alt="" /></td>
+                                        <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
                                                 <a href="{MY_PROF_TGT}" title="{MY_PROF_LNK}">{MY_PROF_LNK}</a>
                                         </td>
-                                        <td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0" id="buttonright" alt="" /></td>
+                                        <td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /></td>
 <!-- END my_profile -->
 <!-- BEGIN faq -->
-                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-                                        <td><img name="buttonleft" src="themes/hardwired/images/buttonleftfaq.gif" width="17" height="25" border="0" id="buttonleft" alt="" /></td>
-                                        <td background="themes/hardwired/images/buttoncenter.gif">
+                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
+                                        <td><img name="buttonleft" src="themes/hardwired/images/buttonleftfaq.gif" width="17" height="25" border="0" alt="" /></td>
+                                        <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
                         <a href="{FAQ_TGT}" title="{FAQ_TITLE}">{FAQ_LNK}</a>
                                         </td>
-                                        <td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0" id="buttonright" alt="" /></td>
+                                        <td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /></td>
 <!-- END faq -->
 <!-- BEGIN enter_admin_mode -->
-                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-                                        <td><img name="buttonleftad" src="themes/hardwired/images/buttonleftad.gif" width="17" height="25" border="0" id="buttonleftad" alt="" /></td>
-                                        <td background="themes/hardwired/images/buttoncenter.gif">
+                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
+                                        <td><img name="buttonleftad" src="themes/hardwired/images/buttonleftad.gif" width="17" height="25" border="0" alt="" /></td>
+                                        <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
                                                 <a href="{ADM_MODE_TGT}" title="{ADM_MODE_TITLE}">{ADM_MODE_LNK}</a>
                                         </td>
-                                        <td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0" id="buttonright" alt="" /></td>
+                                        <td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /></td>
 <!-- END enter_admin_mode -->
 <!-- BEGIN leave_admin_mode -->
-                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-                                        <td><img name="buttonleftad" src="themes/hardwired/images/buttonleftad.gif" width="17" height="25" border="0" id="buttonleftad" alt="" /></td>
-                                        <td background="themes/hardwired/images/buttoncenter.gif">
+                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
+                                        <td><img name="buttonleftad" src="themes/hardwired/images/buttonleftad.gif" width="17" height="25" border="0" alt="" /></td>
+                                        <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
                                                 <a href="{USR_MODE_TGT}" title="{USR_MODE_TITLE}">{USR_MODE_LNK}</a>
                                         </td>
-                                        <td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0" id="buttonleft" alt="" /></td>
+                                        <td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0" alt="" /></td>
 <!-- END leave_admin_mode -->
 <!-- BEGIN upload_pic -->
-                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-                                        <td><img name="buttonleftup" src="themes/hardwired/images/buttonleftup.gif" width="17" height="25" border="0" id="buttonleftup" alt="" /></td>
-                                        <td background="themes/hardwired/images/buttoncenter.gif">
+                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
+                                        <td><img name="buttonleftup" src="themes/hardwired/images/buttonleftup.gif" width="17" height="25" border="0" alt="" /></td>
+                                       <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
                                                 <a href="{UPL_PIC_TGT}" title="{UPL_PIC_TITLE}">{UPL_PIC_LNK}</a>
                                         </td>
-                                        <td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0" id="buttonright" alt="" /></td>
+                                        <td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /></td>
 <!-- END upload_pic -->
 <!-- BEGIN register -->
-                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-                                        <td><img name="buttonleft" src="themes/hardwired/images/buttonleft.gif" width="17" height="25" border="0" id="buttonleft" alt="" /></td>
-                                        <td background="themes/hardwired/images/buttoncenter.gif">
+                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
+                                        <td><img name="buttonleft" src="themes/hardwired/images/buttonleft.gif" width="17" height="25" border="0" alt="" /></td>
+                                        <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
                                                 <a href="{REGISTER_TGT}" title="{REGISTER_TITLE}">{REGISTER_LNK}</a>
                                         </td>
-                                        <td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0" id="buttonright" alt="" /></td>
+                                        <td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /></td>
 <!-- END register -->
 <!-- BEGIN login -->
-                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-                                        <td><img name="buttonleft" src="themes/hardwired/images/buttonleft.gif" width="17" height="25" border="0" id="buttonleft" alt="" /></td>
-                                        <td background="themes/hardwired/images/buttoncenter.gif">
+                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
+                                        <td><img name="buttonleft" src="themes/hardwired/images/buttonleft.gif" width="17" height="25" border="0" alt="" /></td>
+                                       <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
                                                 <a href="{LOGIN_TGT}" title="{LOGIN_LNK}">{LOGIN_LNK}</a>
                                         </td>
-                                        <td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0" id="buttonright" alt="" /></td>
+                                        <td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0"  alt="" /></td>
 <!-- END login -->
 <!-- BEGIN logout -->
-                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-                                        <td><img name="buttonleftout" src="themes/hardwired/images/buttonleftout.gif" width="17" height="25" border="0" id="buttonleftout" alt="" /></td>
-                                        <td background="themes/hardwired/images/buttoncenter.gif">
+                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
+                                        <td><img name="buttonleftout" src="themes/hardwired/images/buttonleftout.gif" width="17" height="25" border="0" alt="" /></td>
+                                        <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
                                                 <a href="{LOGOUT_TGT}" title="{LOGOUT_LNK}">{LOGOUT_LNK}</a>
                                         </td>
-                                        <td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0" id="buttonright" alt="" /></td>
+                                        <td><img name="buttonright" src="themes/hardwired/images/buttonright.gif" width="7" height="25" border="0" alt="" /></td>
 <!-- END logout -->
                                 </tr>
                         </table>
-                </span>
+                
 EOT;
 $template_main_menu2 = <<<EOT
-                <span class="topmenu">
+               
                         <table border="0" cellpadding="0" cellspacing="0">
                                 <tr>
 <!-- BEGIN album_list -->
-                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-                                        <td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" id="buttonleft" alt="" /></td>
-                                        <td background="themes/hardwired/images/buttoncenter1.gif">
+                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
+                                        <td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" alt="" /></td>
+                                        <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
                                                 <a href="{ALB_LIST_TGT}" title="{ALB_LIST_TITLE}">{ALB_LIST_LNK}</a>
                                         </td>
-                                        <td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" id="buttonright1" alt="" /></td>
+                                        <td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" alt="" /></td>
 <!-- END album_list -->
-                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-                                        <td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" id="buttonleft1" alt="" /></td>
-                                        <td background="themes/hardwired/images/buttoncenter1.gif">
+                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
+                                        <td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" alt="" /></td>
+                                       <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
                                                 <a href="{LASTUP_TGT}" title="{LASTUP_LNK}">{LASTUP_LNK}</a>
                                         </td>
-                                        <td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" id="buttonright1" alt="" /></td>
-                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-                                        <td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" id="buttonleft1" alt="" /></td>
-                                        <td background="themes/hardwired/images/buttoncenter1.gif">
+                                        <td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" alt="" /></td>
+                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
+                                        <td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" alt="" /></td>
+                                       <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
                                                 <a href="{LASTCOM_TGT}" title="{LASTCOM_LNK}">{LASTCOM_LNK}</a>
                                         </td>
-                                        <td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" id="buttonright1" alt="" /></td>
-                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-                                        <td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" id="buttonleft1" alt="" /></td>
-                                        <td background="themes/hardwired/images/buttoncenter1.gif">
+                                        <td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" alt="" /></td>
+                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
+                                        <td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" alt="" /></td>
+                                        <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
                                                 <a href="{TOPN_TGT}" title="{TOPN_LNK}">{TOPN_LNK}</a>
                                         </td>
-                                        <td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" id="buttonright1" alt="" /></td>
-                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-                                        <td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" id="buttonleft1" alt="" /></td>
-                                        <td background="themes/hardwired/images/buttoncenter1.gif">
+                                        <td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" alt="" /></td>
+                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
+                                        <td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" alt="" /></td>
+                                        <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
                                                 <a href="{TOPRATED_TGT}" title="{TOPRATED_LNK}">{TOPRATED_LNK}</a>
                                         </td>
-                                        <td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" id="buttonright1" alt="" /></td>
-                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-                                        <td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" id="buttonleft1" alt="" /></td>
-                                        <td background="themes/hardwired/images/buttoncenter1.gif">
+                                        <td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" alt="" /></td>
+                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
+                                        <td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" alt="" /></td>
+                                        <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
                                                 <a href="{FAV_TGT}" title="{FAV_LNK}">{FAV_LNK}</a>
                                         </td>
-                                        <td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" id="buttonright1" alt="" /></td>
-                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-                                        <td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" id="buttonleft1" alt="" /></td>
-                                        <td background="themes/hardwired/images/buttoncenter1.gif">
+                                        <td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" alt="" /></td>
+                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" alt="" /></td>
+                                        <td><img name="buttonleft1" src="themes/hardwired/images/buttonleft1.gif" width="7" height="25" border="0" alt="" /></td>
+                                        <td style="background: url(themes/hardwired/images/buttoncenter.gif);">
                                                 <a href="{SEARCH_TGT}" title="{SEARCH_LNK}">{SEARCH_LNK}</a>
                                         </td>
-                                        <td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" id="buttonright1" alt="" /></td>
+                                        <td><img name="buttonright1" src="themes/hardwired/images/buttonright1.gif" width="7" height="25" border="0" alt="" /></td>
                                 </tr>
                         </table>
-                </span>
+                
 EOT;
 // HTML template for gallery admin menu
 $template_gallery_admin_menu = <<<EOT
@@ -216,7 +216,7 @@ $template_cat_list = <<<EOT
                 <td class="tableb" align="center">{PIC_COUNT}</td>
         </tr>
       <tr>
-            <td class="tableb" colspan=3>{CAT_ALBUMS}</td>
+            <td class="tableb" colspan="3">{CAT_ALBUMS}</td>
       </tr>
 <!-- END catrow -->
 <!-- BEGIN footer -->
@@ -293,17 +293,18 @@ $template_album_list = <<<EOT
         <table width="100%" cellspacing="0" cellpadding="0">
         <tr>
                 <td height="1" valign="top" class="tableh2">
-                        <b>&nbsp;</b>
+                &nbsp;
                 </td>
         </tr>
         <tr>
                 <td>
-                        <img src="images/spacer.gif" width="1" height="1" alt="" /><br />
+                        <img src="images/spacer.gif" width="1" height="1" border="0" alt="" /><br />
                 </td>
         </tr>
         <tr>
-                <td width="100%" valign="top" class="tableb_compact">
-                        &nbsp;
+                <td align="center" class="thumbnails">
+                        <img src="images/spacer.gif" width="1" height="2" border="0" alt="" /><br />
+                        <img src="images/spacer.gif" width="1" height="{SPACER_HEIGHT}" class="blank_image" alt="" /><br />
                 </td>
         </tr>
         </table>
@@ -321,7 +322,7 @@ $template_album_list = <<<EOT
                 <td colspan="{COLUMNS}" style="padding: 0px;">
                         <table width="100%" cellspacing="0" cellpadding="0">
                                 <tr>
-                                        {TABS}
+                                        <td>{TABS}</td>
                                 </tr>
                         </table>
                 </td>
@@ -336,7 +337,7 @@ EOT;
 $template_film_strip = <<<EOT
 
         <tr>
-         <td valign="top" background='themes/hardwired/images/tile.gif' align="center" height='30'>&nbsp;</td>
+         <td valign="top" style="background-image: url(themes/hardwired/images/tile.gif);" align="center" height="30">&nbsp;</td>
         </tr>
         <tr>
         <td valign="bottom" class="thumbnails" align="center">
@@ -344,7 +345,7 @@ $template_film_strip = <<<EOT
         </td>
         </tr>
         <tr>
-         <td valign="top" background='themes/hardwired/images/tile.gif' align="center" height='30'>&nbsp;</td>
+         <td valign="top" style="background-image: url(themes/hardwired/images/tile.gif);" align="center" height="30">&nbsp;</td>
         </tr>
 <!-- BEGIN thumb_cell -->
                                         <a href="{LINK_TGT}">{THUMB}</a>&nbsp;
@@ -402,22 +403,24 @@ $template_album_list_cat = <<<EOT
         <table width="100%" cellspacing="0" cellpadding="0">
         <tr>
                 <td height="1" valign="top" class="tableh2">
-                        <b>&nbsp;</b>
+                &nbsp;
                 </td>
         </tr>
         <tr>
                 <td>
-                        <img src="images/spacer.gif" width="1" height="1" alt="" /><br />
+                        <img src="images/spacer.gif" width="1" height="1" border="0" alt="" /><br />
                 </td>
         </tr>
-        <tr>
-                <td width="100%" valign="top" class="tableb_compact">
-                        &nbsp;
+        <tr>         
+                <td align="center" class="thumbnails">
+                        <img src="images/spacer.gif" width="1" height="1" border="0" alt="" /><br />
+                        <img src="images/spacer.gif" width="1" height="{SPACER_HEIGHT}" class="blank_image" alt="" /><br />
                 </td>
         </tr>
         </table>
         </td>
 <!-- END c_empty_cell -->
+
 <!-- BEGIN c_row_separator -->
         </tr>
         <tr>
@@ -430,7 +433,7 @@ $template_album_list_cat = <<<EOT
                 <td colspan="{COLUMNS}" style="padding: 0px;">
                         <table width="100%" cellspacing="0" cellpadding="0">
                                 <tr>
-                                        {TABS}
+                                        <td>{TABS}</td>
                                 </tr>
                         </table>
                 </td>
@@ -446,7 +449,7 @@ $template_album_admin_menu = <<<EOT
         <table border="0" cellpadding="0" cellspacing="1">
                 <tr>
                         <td align="center" valign="middle" class="admin_menu">
-                                <a href="delete.php?id={ALBUM_ID}&what=album"  class="adm_menu" onclick="return confirm('{CONFIRM_DELETE}');">{DELETE}</a>
+                                <a href="delete.php?id={ALBUM_ID}&amp;what=album"  class="adm_menu" onclick="return confirm('{CONFIRM_DELETE}');">{DELETE}</a>
                         </td>
                         <td align="center" valign="middle" class="admin_menu">
                                 <a href="modifyalb.php?album={ALBUM_ID}"  class="adm_menu">{MODIFY}</a>
@@ -469,23 +472,23 @@ $template_thumb_view_title_row = <<<EOT
                                         <table cellpadding="0" cellspacing="0">
                                         <tr>
                                 <td class="sortorder_options">{TITLE}</td>
-                                <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=ta" title="{SORT_TA}">&nbsp;+&nbsp;</a></span></td>
-                                <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=td" title="{SORT_TD}">&nbsp;-&nbsp;</a></span></td>
+                                <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=ta" title="{SORT_TA}">&nbsp;+&nbsp;</a></span></td>
+                                <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=td" title="{SORT_TD}">&nbsp;-&nbsp;</a></span></td>
                                         </tr>
                                         <tr>
                                                 <td class="sortorder_options">{NAME}</td>
-                                                <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=na" title="{SORT_NA}">&nbsp;+&nbsp;</a></span></td>
-                                                <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=nd" title="{SORT_ND}">&nbsp;-&nbsp;</a></span></td>
+                                                <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=na" title="{SORT_NA}">&nbsp;+&nbsp;</a></span></td>
+                                                <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=nd" title="{SORT_ND}">&nbsp;-&nbsp;</a></span></td>
                                         </tr>
                                         <tr>
                                                 <td class="sortorder_options">{DATE}</td>
-                                                <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=da" title="{SORT_DA}">&nbsp;+&nbsp;</a></span></td>
-                                                <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=dd" title="{SORT_DD}">&nbsp;-&nbsp;</a></span></td>
+                                                <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=da" title="{SORT_DA}">&nbsp;+&nbsp;</a></span></td>
+                                                <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=dd" title="{SORT_DD}">&nbsp;-&nbsp;</a></span></td>
                                         </tr>
                                         <tr>
                                             <td class="sortorder_options">{POSITION}</td>
-                                            <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=pa" title="{SORT_PA}">&nbsp;+&nbsp;</a></span></td>
-                                            <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=pd" title="{SORT_PD}">&nbsp;-&nbsp;</a></span></td>
+                                            <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=pa" title="{SORT_PA}">&nbsp;+&nbsp;</a></span></td>
+                                            <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&amp;page={PAGE}&amp;sort=pd" title="{SORT_PD}">&nbsp;-&nbsp;</a></span></td>
                                         </tr>
                                         </table>
                                 </td>
@@ -549,7 +552,7 @@ $template_thumbnail_view = <<<EOT
                 <td colspan="{THUMB_COLS}" style="padding: 0px;">
                         <table width="100%" cellspacing="0" cellpadding="0">
                                 <tr>
-                                        {TABS}
+                                        <td>{TABS}</td>
                                 </tr>
                         </table>
                 </td>
@@ -592,28 +595,36 @@ EOT;
 $template_img_navbar = <<<EOT
 
         <tr>
-                <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="themes/hardwired/images/back.gif" width="21" height="15" align="absmiddle" border="0" alt="{THUMB_TITLE}" /></a>
+                <td align="center" valign="middle" class="navmenu" width="48px">
+                        <a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="themes/hardwired/images/back.gif" width="21" height="15" align="middle" border="0" alt="{THUMB_TITLE}" /></a>
                 </td>
-                <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="javascript:;" onClick="blocking('picinfo','yes', 'block'); return false;" title="{PIC_INFO_TITLE}"><img src="themes/hardwired/images/info.gif" width="18" height="15" border="0" align="absmiddle" alt="{PIC_INFO_TITLE}" /></a>
+                <td align="center" valign="middle" class="navmenu" width="48px">
+                        <a href="javascript:;" onclick="blocking('picinfo','yes', 'block'); return false;" title="{PIC_INFO_TITLE}"><img src="themes/hardwired/images/info.gif" width="18" height="15" border="0" align="middle" alt="{PIC_INFO_TITLE}" /></a>
                 </td>
-                <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{SLIDESHOW_TGT}" title="{SLIDESHOW_TITLE}"><img src="themes/hardwired/images/slideshow.gif" width="21" height="15" border="0" align="absmiddle" alt="{SLIDESHOW_TITLE}" /></a>
+                <td align="center" valign="middle" class="navmenu" width="48px">
+                        <a href="{SLIDESHOW_TGT}" title="{SLIDESHOW_TITLE}"><img src="themes/hardwired/images/slideshow.gif" width="21" height="15" border="0" align="middle" alt="{SLIDESHOW_TITLE}" /></a>
                 </td>
-                <td align="center" valign="middle" class="navmenu" witdh="100%">
+                <td align="center" valign="middle" class="navmenu" width="100%">
                         {PIC_POS}
                 </td>
+				
+<!-- BEGIN report_file_button -->
+                <td align="center" valign="middle" class="navmenu" width="48px">
+                        <a href="{REPORT_TGT}" title="{REPORT_TITLE}"><img src="images/report.gif" width="16" height="16" border="0" align="middle" alt="{REPORT_TITLE}" /></a>
+                </td>
+<!-- END report_file_button -->				
+				
+				
 <!-- BEGIN ecard_button -->
-                <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{ECARD_TGT}" title="{ECARD_TITLE}"><img src="themes/hardwired/images/ecard.gif" width="21" height="15" border="0" align="absmiddle" alt="{ECARD_TITLE}"></a>
+                <td align="center" valign="middle" class="navmenu" width="48px">
+                        <a href="{ECARD_TGT}" title="{ECARD_TITLE}"><img src="themes/hardwired/images/ecard.gif" width="21" height="15" border="0" align="middle" alt="{ECARD_TITLE}"></a>
                 </td>
 <!-- END ecard_button -->
-                <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="themes/hardwired/images/previmg.gif" width="18" height="15" border="0" align="absmiddle" alt="{PREV_TITLE}" /></a>
+                <td align="center" valign="middle" class="navmenu" width="48px">
+                        <a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="themes/hardwired/images/previmg.gif" width="18" height="15" border="0" align="middle" alt="{PREV_TITLE}" /></a>
                 </td>
-                <td align="center" valign="middle" class="navmenu" width="48">
-                        <a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="themes/hardwired/images/nextimg.gif" width="18" height="15" border="0" align="absmiddle" alt="{NEXT_TITLE}" /></a>
+                <td align="center" valign="middle" class="navmenu" width="48px">
+                        <a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="themes/hardwired/images/nextimg.gif" width="18" height="15" border="0" align="middle" alt="{NEXT_TITLE}" /></a>
                 </td>
         </tr>
 
@@ -642,7 +653,8 @@ $template_display_picture = <<<EOT
 <!-- BEGIN caption -->
                                 <tr>
                                         <td>
-                                                {CAPTION}
+                                          <center>      {CAPTION}
+										  </center>
                                         </td>
                                 </tr>
 <!-- END caption -->
@@ -654,7 +666,7 @@ $template_display_picture = <<<EOT
 EOT;
 // HTML template for the image rating box
 $template_image_rating = <<<EOT
-
+<table align="center" width="$width" cellspacing="1" cellpadding="0" class="maintable">
         <tr>
                 <td colspan="6" class="tableh2_compact"><b>{TITLE}</b> {VOTES}</td>
         </tr>
@@ -666,29 +678,35 @@ $template_image_rating = <<<EOT
                 <td class="tableb_compact" width="17%" align="center"><a href="{RATE4}" title="{EXCELLENT}"><img src="themes/hardwired/images/rating4.gif" alt="{EXCELLENT}" border="0" alt="" /><br /></a></td>
                 <td class="tableb_compact" width="17%" align="center"><a href="{RATE5}" title="{GREAT}"><img src="themes/hardwired/images/rating5.gif" alt="{GREAT}" border="0" alt="" /><br /></a></td>
         </tr>
-
+</table>
 EOT;
 // HTML template for the display of comments
 $template_image_comments = <<<EOT
-
+<table align="center" width="90%" cellspacing="1" cellpadding="0" class="maintable">
         <tr>
                 <td>
                         <table width="100%" cellpadding="0" cellspacing="0">
-                                <td class="tableh2_compact" nowrap>
+							<tr>
+                                <td class="tableh2_compact" nowrap="nowrap">
                                         <b>{MSG_AUTHOR}</b>
 <!-- BEGIN ipinfo -->
                                                                                  ({HDR_IP} [{RAW_IP}])
 <!-- END ipinfo -->
                                 </td>
                                 <td class="tableh2_compact" align="right" width="100%">
+								
+<!-- BEGIN report_comment_button -->
+                                        <a href="{REPORT_COMMENT_TGT}" title="{REPORT_COMMENT_TITLE}"><img src="images/report.gif" width="16px" height="16px" border="0px" align="middle" alt="{REPORT_COMMENT_TITLE}" /></a>
+<!-- END report_comment_button -->
 <!-- BEGIN buttons -->
-                                        <a href="javascript:;" onClick="blocking('cbody{MSG_ID}','', 'block'); blocking('cedit{MSG_ID}','', 'block'); return false;" title="{EDIT_TITLE}"><img src="themes/hardwired/images/edit.gif" border="0" align="absmiddle" ></a>
-                                        <a href="delete.php?msg_id={MSG_ID}&what=comment"  onclick="return confirm('{CONFIRM_DELETE}');"><img src="themes/hardwired/images/delete.gif" border="0" align="absmiddle" ></a>
+                                        <a href="javascript:;" onclick="blocking('cbody{MSG_ID}','', 'block'); blocking('cedit{MSG_ID}','', 'block'); return false;" title="{EDIT_TITLE}"><img src="themes/hardwired/images/edit.gif" border="0" align="middle" ></a>
+                                        <a href="delete.php?msg_id={MSG_ID}&amp;what=comment"  onclick="return confirm('{CONFIRM_DELETE}');"><img src="themes/hardwired/images/delete.gif" border="0" align="middle" ></a>
 <!-- END buttons -->
                                 </td>
-                                <td class="tableh2_compact" align="right" nowrap>
+                                <td class="tableh2_compact" align="right" nowrap="nowrap">
                                         <span class="comment_date">[{MSG_DATE}]</span>
                                 </td>
+							</tr>
                         </table>
                 </td>
         </tr>
@@ -755,10 +773,10 @@ $template_image_comments = <<<EOT
                         </div>
                 </td>
         </tr>
-
+</table>
 EOT;
 $template_add_your_comment = <<<EOT
-
+<table align="center" width="90%" cellspacing="1" cellpadding="0" class="maintable">
         <tr>
                 <td class="tableh2_compact"><b>{ADD_YOUR_COMMENT}</b></td>
         </tr>
@@ -799,7 +817,7 @@ $template_add_your_comment = <<<EOT
                 </td>
         </tr>
 <!-- END smilies -->
-
+</table>
 EOT;
 // HTML template used by the cpg_die function
 $template_cpg_die = <<<EOT
@@ -908,14 +926,76 @@ $template_ecard_plaintext = <<<EOT
 {VIEW_MORE_TGT}
 EOT;
 
+// HTML template for report
+$template_report = <<<EOT
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="{LANG_DIR}">
+<head>
+<title>{TITLE}</title>
+<meta http-equiv="content-type" content="text/html; charset={CHARSET}" />
+</head>
+<body bgcolor="#FFFFFF" text="#0F5475" link="#0F5475" vlink="#0F5475" alink="#0F5475">
+<br />
+<p align="center"><a href="{VIEW_REPORT_TGT}"><b>{VIEW_REPORT_LNK}</b></a></p>
+<table border="0px" cellspacing="0px" cellpadding="1px" align="center">
+  <tr>
+    <td bgcolor="#000000">
+      <table border="0px" cellspacing="0px" cellpadding="10px" bgcolor="#ffffff">
+        <tr>
+          <td valign="top">
+           <img src="{PIC_URL}" border="1px" alt="" /><br />
+          </td>
+          <td valign="top" width="200px">
+            <b><font face="arial" color="#000000" size="4">{SUBJECT}</font></b>
+            <br />{REASON}
+            <br />
+            <font face="arial" color="#000000" size="2">{MESSAGE}</font>
+            <br />
+            <br />
+            <font face="arial" color="#000000" size="2">{SENDER_NAME}</font>
+            (<a href="mailto:{SENDER_EMAIL}"><font face="arial" color="#000000" size="2">{SENDER_EMAIL}</font></a>)
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<p align="center"><a href="{VIEW_MORE_TGT}"><b>{VIEW_MORE_LNK}</b></a></p>
+</body>
+</html>
+EOT;
+
+// plain-text template for reports (as fallback for clients that can't display html-formatted mails)
+$template_report_plaintext = <<<EOT
+{TITLE}
+=========================================
+
+{VIEW_REPORT_LNK_PLAINTEXT}:
+{VIEW_REPORT_TGT}
+
+
+{SUBJECT}
+{PLAINTEXT_MESSAGE}
+
+{SENDER_NAME} ({SENDER_EMAIL})
+
+-----------------------------------------
+{VIEW_MORE_LNK}:
+{VIEW_MORE_TGT}
+EOT;
+
+
 // Template used for tabbed display
-$template_tab_display = array('left_text' => '<td width="100%%" align="left" valign="middle" class="tableh1_compact" style="white-space: nowrap"><b>{LEFT_TEXT}</b></td>' . "\n",
+$template_tab_display = array('left_text' => '<table><tr><td width="100%%" align="left" valign="middle" class="tableh1_compact" nowrap="nowrap"><b>{LEFT_TEXT}</b></td></tr></table>' . "\n",
     'tab_header' => '',
     'tab_trailer' => '',
-    'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%d</b></td>',
-    'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"<b>%d</b></a></td>' . "\n"
+    'active_next_tab' => '<td><img src="images/spacer.gif" width="1px" height="1px" border="0px" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%s</b></td>',
+    'inactive_next_tab' => '<td><img src="images/spacer.gif" width="1px" height="1px" border="0px" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"><b>%s</b></a></td>',
+    'active_prev_tab' => '<td><img src="images/spacer.gif" width="1px" height="1" border="0px" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%s</b></td>',
+    'inactive_prev_tab' => '<td><img src="images/spacer.gif" width="1px" height="1px" border="0px" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"><b>%s</b></a></td>',
+    'active_tab' => '<td><img src="images/spacer.gif" width="1px" height="1px" border="0px" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%d</b></td>',
+    'inactive_tab' => '<td><img src="images/spacer.gif" width="1px" height="1px" border="0px" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"><b>%d</b></a></td>' . "\n"
     );
-
 function pageheader($section, $meta = '')
 {
     global $CONFIG, $THEME_DIR;
@@ -976,7 +1056,7 @@ EOT;
     if ($title) {
         echo <<<EOT
         <tr>
-                <td class="tableh1" colspan="$title_colspan"><h2>$title</h2></td>
+                <td class="tableh1" colspan="$title_colspan">$title</td>
         </tr>
 
 EOT;
@@ -1048,10 +1128,10 @@ function theme_main_menu1()
         '{FAQ_TGT}' => "faq.php",
         '{FAQ_TITLE}' => $lang_main_menu['faq_title'],
         '{FAQ_LNK}' => $lang_main_menu['faq_lnk'],
-        '{ADM_MODE_TGT}' => "mode.php?admin_mode=1&referer=$REFERER",
+        '{ADM_MODE_TGT}' => "mode.php?admin_mode=1&amp;referer=$REFERER",
         '{ADM_MODE_TITLE}' => $lang_main_menu['adm_mode_title'],
         '{ADM_MODE_LNK}' => $lang_main_menu['adm_mode_lnk'],
-        '{USR_MODE_TGT}' => "mode.php?admin_mode=0&referer=$REFERER",
+        '{USR_MODE_TGT}' => "mode.php?admin_mode=0&amp;referer=$REFERER",
         '{USR_MODE_TITLE}' => $lang_main_menu['usr_mode_title'],
         '{USR_MODE_LNK}' => $lang_main_menu['usr_mode_lnk'],
         '{UPL_PIC_TGT}' => "upload.php",
@@ -1075,7 +1155,7 @@ function theme_main_menu2()
     static $main_menu = '';
     if ($main_menu != '') return $main_menu;
     $cat_l = isset($actual_cat) ? "?cat=$actual_cat" : (isset($cat) ? "?cat=$cat" : '');
-    $cat_l2 = isset($cat) ? "&cat=$cat" : '';
+    $cat_l2 = isset($cat) ? "&amp;cat=$cat" : '';
     $template_main_menu = &$template_main_menu2;
     $param = array('{ALB_LIST_TGT}' => "index.php$cat_l",
         '{ALB_LIST_TITLE}' => $lang_main_menu['alb_list_title'],
@@ -1139,8 +1219,9 @@ function theme_admin_mode_menu()
 function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
 {
     global $template_cat_list, $lang_cat_list;
-    starttable('100%');
+    
     if (count($cat_data) > 0) {
+		starttable('100%');
         $template = template_extract_block($template_cat_list, 'header');
         $params = array('{CATEGORY}' => $lang_cat_list['category'],
             '{ALBUMS}' => $lang_cat_list['albums'],
@@ -1173,8 +1254,9 @@ function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
         $params = array('{STATISTICS}' => $statistics);
         echo template_eval($template, $params);
     }
-    endtable();
+   
     if (count($cat_data) > 0)
+		 endtable();
         echo template_extract_block($template_cat_list, 'spacer');
 }
 function theme_display_breadcrumb($breadcrumb, &$cat_data)
@@ -1197,7 +1279,7 @@ function theme_display_album_list(&$alb_list, $nbAlb, $cat, $page, $total_pages)
     global $CONFIG, $STATS_IN_ALB_LIST, $statistics, $template_tab_display, $template_album_list, $lang_album_list;
     $theme_alb_list_tab_tmpl = $template_tab_display;
     $theme_alb_list_tab_tmpl['left_text'] = strtr($theme_alb_list_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_album_list['album_on_page']));
-    $theme_alb_list_tab_tmpl['inactive_tab'] = strtr($theme_alb_list_tab_tmpl['inactive_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&page=%d'));
+    $theme_alb_list_tab_tmpl['inactive_tab'] = strtr($theme_alb_list_tab_tmpl['inactive_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&amp;page=%d'));
     $tabs = create_tabs($nbAlb, $page, $total_pages, $theme_alb_list_tab_tmpl);
     $album_cell = template_extract_block($template_album_list, 'album_cell');
     $empty_cell = template_extract_block($template_album_list, 'empty_cell');
@@ -1238,7 +1320,9 @@ function theme_display_album_list(&$alb_list, $nbAlb, $cat, $page, $total_pages)
         }
     }
 
-    $params = array('{COL_WIDTH}' => $column_width);
+	$params = array('{COL_WIDTH}' => $column_width,
+    '{SPACER_HEIGHT}' => $CONFIG['alb_list_thumb_size']
+    );
     $empty_cell = template_eval($empty_cell, $params);
     while ($count++ % $columns != 0) {
         echo $empty_cell;
@@ -1261,7 +1345,7 @@ function theme_display_album_list_cat(&$alb_list, $nbAlb, $cat, $page, $total_pa
     }
     // $theme_alb_list_tab_tmpl = $template_tab_display;
     // $theme_alb_list_tab_tmpl['left_text'] = strtr($theme_alb_list_tab_tmpl['left_text'],array('{LEFT_TEXT}' => $lang_album_list['album_on_page']));
-    // $theme_alb_list_tab_tmpl['inactive_tab'] = strtr($theme_alb_list_tab_tmpl['inactive_tab'],array('{LINK}' => 'index.php?cat='.$cat.'&page=%d'));
+    // $theme_alb_list_tab_tmpl['inactive_tab'] = strtr($theme_alb_list_tab_tmpl['inactive_tab'],array('{LINK}' => 'index.php?cat='.$cat.'&amp;page=%d'));
     // $tabs = create_tabs($nbAlb, $page, $total_pages, $theme_alb_list_tab_tmpl);
     // echo $template_album_list_cat;
     $template_album_list_cat1 = $template_album_list_cat;
@@ -1304,7 +1388,9 @@ function theme_display_album_list_cat(&$alb_list, $nbAlb, $cat, $page, $total_pa
         }
     }
 
-    $params = array('{COL_WIDTH}' => $column_width);
+	$params = array('{COL_WIDTH}' => $column_width,
+    '{SPACER_HEIGHT}' => $CONFIG['alb_list_thumb_size']
+    );
     $empty_cell = template_eval($empty_cell, $params);
     while ($count++ % $columns != 0) {
         echo $empty_cell;
@@ -1338,14 +1424,14 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
         $footer = template_extract_block($template_thumbnail_view, 'footer');
         $spacer = template_extract_block($template_thumbnail_view, 'spacer');
     }
-    $cat_link = is_numeric($aid) ? '' : '&cat=' . $cat;
+    $cat_link = is_numeric($aid) ? '' : '&amp;cat=' . $cat;
     $theme_thumb_tab_tmpl = $template_tab_display;
     if ($mode == 'thumb') {
         $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_thumb_view['pic_on_page']));
-        $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . '&page=%d'));
+        $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . '&amp;page=%d'));
     } else {
         $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_thumb_view['user_on_page']));
-        $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&page=%d'));
+        $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&amp;page=%d'));
     }
     $thumbcols = $CONFIG['thumbcols'];
     $cell_width = ceil(100 / $CONFIG['thumbcols']) . '%';
@@ -1396,7 +1482,7 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
                     );
             } else {
                 $params = array('{CELL_WIDTH}' => $cell_width,
-                    '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&pos={$thumb['pos']}",
+                    '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}",
                     '{THUMB}' => $thumb['image'],
                     '{CAPTION}' => $thumb['caption'],
                     '{ADMIN_MENU}' => $thumb['admin_menu']
@@ -1445,14 +1531,14 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     }
     if ($header == '') {
     }
-    $cat_link = is_numeric($aid) ? '' : '&cat=' . $cat;
+    $cat_link = is_numeric($aid) ? '' : '&amp;cat=' . $cat;
     $theme_thumb_tab_tmpl = $template_tab_display;
     if ($mode == 'thumb') {
         $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_thumb_view['pic_on_page']));
-        $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . '&page=%d'));
+        $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . '&amp;page=%d'));
     } else {
         $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_thumb_view['user_on_page']));
-        $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&page=%d'));
+        $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&amp;page=%d'));
     }
     $thumbcols = $CONFIG['thumbcols'];
     $cell_width = ceil(100 / $CONFIG['max_film_strip_items']) . '%';
@@ -1462,7 +1548,7 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
         $i++;
         if ($mode == 'thumb') {
             $params = array('{CELL_WIDTH}' => $cell_width,
-                '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&pos={$thumb['pos']}",
+                '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}",
                 '{THUMB}' => $thumb['image'],
                 '{CAPTION}' => '',
                 '{ADMIN_MENU}' => ''
@@ -1519,25 +1605,25 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, 
     if ($CONFIG['display_film_strip'] == 1) {
         echo $film_strip;
     }
-    starttable();
-    echo $votes;
-    endtable();
+    echo "<div id=\"votes\">\n";
+	echo $votes;
+	echo "</div>\n";
     $picinfo = isset($_COOKIE['picinfo']) ? $_COOKIE['picinfo'] : ($CONFIG['display_pic_info'] ? 'block' : 'none');
     echo "<div id=\"picinfo\" style=\"display: $picinfo;\">\n";
     starttable();
     echo $pic_info;
     endtable();
     echo "</div>\n";
-    starttable();
-    echo $comments;
-    endtable();
+    echo "<div id=\"comments\">\n";
+	echo $comments;
+	echo "</div>\n";
 }
 function theme_html_picinfo(&$info)
 {
     global $lang_picinfo;
     $html = '';
     $html .= "        <tr><td colspan=\"2\" class=\"tableh2_compact\"><b>{$lang_picinfo['title']}</b></td></tr>\n";
-    $template = "        <tr><td class=\"tableb_compact\" valign=\"top\" nowrap>%s:</td><td class=\"tableb_compact\">%s</td></tr>\n";
+    $template = "        <tr><td class=\"tableb_compact\" valign=\"top\" nowrap=\"nowrap\">%s:</td><td class=\"tableb_compact\">%s</td></tr>\n";
     foreach ($info as $key => $value) $html .= sprintf($template, $key, $value);
     return $html;
 }

@@ -43,14 +43,6 @@ body {
         font-size: 10px;
         color : #AEAEAE;
         margin: 0px;
-        scrollbar-face-color: #444444;
-        scrollbar-highlight-color: #444444;
-        scrollbar-shadow-color: #333333;
-        scrollbar-3dlight-color: #555555;
-        scrollbar-arrow-color:  #777777;
-        scrollbar-track-color: #333333;
-        scrollbar-darkshadow-color: #333333;
-        margin:0px;
         background-color:#000000;
         background-image:url(images/hardwired_bak.gif);
         background-repeat:repeat;
@@ -186,7 +178,7 @@ bblink a:hover {
 
 .tableh1 {
         background : #4F5964 ;
-        color : #6A7786;
+        color : #FFFFFF;
         padding-top: 3px;
         padding-right: 10px;
         padding-bottom: 3px;
@@ -558,7 +550,7 @@ td #admin_menu_anim {
 
 .clickable_option {
         border-bottom : 1px dotted #444444;
-        cursor : hand;
+        cursor : default;
 }
 
 .listbox_lang {
@@ -568,4 +560,10 @@ td #admin_menu_anim {
         font-size: 90%;
         font-family: Arial, Helvetica, sans-serif;
         vertical-align : middle;
+}
+
+.blank_image {
+/* Margin should = .image (margin+border-width) */
+        border:0;
+        margin: 3px;
 }
