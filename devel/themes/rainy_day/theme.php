@@ -131,12 +131,12 @@ $template_main_menu2 = <<<EOT
                                         <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
                                         <td><img name="button1_r1_c1" src="themes/rainy_day/images/button1_r1_c1.gif" width="5" height="25" border="0" id="button1_r1_c1" alt="" /></td>
                                         <td background="themes/rainy_day/images/button1_r1_c2.gif">
-						<a href="{FAV_TGT}">{FAV_LNK}</a>
-					</td>					
-					<td><img name="button1_r1_c3" src="themes/rainy_day/images/button1_r1_c3.gif" width="5" height="25" border="0" id="button1_r1_c3" alt="" /></td>
-					<td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
-					<td><img name="button1_r1_c1" src="themes/rainy_day/images/button1_r1_c1.gif" width="5" height="25" border="0" id="button1_r1_c1" alt="" /></td>
-					<td background="themes/rainy_day/images/button1_r1_c2.gif">
+                                                <a href="{FAV_TGT}">{FAV_LNK}</a>
+                                        </td>
+                                        <td><img name="button1_r1_c3" src="themes/rainy_day/images/button1_r1_c3.gif" width="5" height="25" border="0" id="button1_r1_c3" alt="" /></td>
+                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
+                                        <td><img name="button1_r1_c1" src="themes/rainy_day/images/button1_r1_c1.gif" width="5" height="25" border="0" id="button1_r1_c1" alt="" /></td>
+                                        <td background="themes/rainy_day/images/button1_r1_c2.gif">
                                                 <a href="{SEARCH_TGT}">{SEARCH_LNK}</a>
                                         </td>
                                         <td><img name="button1_r1_c3" src="themes/rainy_day/images/button1_r1_c3.gif" width="5" height="25" border="0" id="button1_r1_c3" alt="" /></td>
@@ -939,6 +939,9 @@ function pagefooter()
                 Page generated in <b>$time</b> seconds - <b>$query_count</b> queries in <b>$total_query_time</b> seconds - Album set : $ALBUM_SET
 EOT;
                 echo "</td></tr>";
+                echo "<tr><td class=\"tableb\">";
+                echo "<a href=\"phpinfo.php\">Advanced debug mode</a> (phpinfo)";
+                echo "</td></tr>";                
                 endtable();
         }
 
@@ -1080,8 +1083,8 @@ function theme_main_menu2()
                 '{TOPN_LNK}' => $lang_main_menu['topn_lnk'],
                 '{TOPRATED_TGT}'=> "thumbnails.php?album=toprated$cat_l2",
                 '{TOPRATED_LNK}'=> $lang_main_menu['toprated_lnk'],
-				'{FAV_TGT}'=> "thumbnails.php?album=favpics",
-				'{FAV_LNK}'=> $lang_main_menu['fav_lnk'],		
+                                '{FAV_TGT}'=> "thumbnails.php?album=favpics",
+                                '{FAV_LNK}'=> $lang_main_menu['fav_lnk'],
                 '{SEARCH_TGT}'=> "search.php",
                 '{SEARCH_LNK}'=> $lang_main_menu['search_lnk'],
         );

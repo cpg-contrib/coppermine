@@ -86,7 +86,7 @@ $template_main_menu2 = <<<EOT
                                         <td><img name="menu_spacer" src="themes/igames/images/menu_spacer.gif" width="2" height="35" border="0" id="menu_spcer" alt="" /><br /></td>
                                         <td class="top_menu_bttn">
                                                 <a href="{FAV_TGT}" onMouseOver="MM_showHideLayers('Menu1','','hide')">{FAV_LNK}</a>
-                                        </td>					
+                                        </td>
                                         <td><img name="menu_spacer" src="themes/igames/images/menu_spacer.gif" width="2" height="35" border="0" id="menu_spcer" alt="" /><br /></td>
                                         <td class="top_menu_right_bttn">
                                                 <a href="{SEARCH_TGT}" onMouseOver="MM_showHideLayers('Menu1','','hide')">{SEARCH_LNK}</a>
@@ -623,16 +623,16 @@ $template_image_comments = <<<EOT
                         <div id="cedit{MSG_ID}" style="display:none">
 <!-- BEGIN edit_box_smilies -->
                                 <table width="100%" cellpadding="0" cellspacing="0">
-                                        
+
                                                 <form name="f{MSG_ID}" method="POST" action="db_input.php">
                                                 <input type="hidden" name="event" value="comment_update">
                                                 <input type="hidden" name="msg_id" value="{MSG_ID}">
-						<tr>
-						<td>
-						   <input type=text name=msg_author value={MSG_AUTHOR} class="textinput" size=10> 
-						</td>
-						</tr>
-						<tr>
+                                                <tr>
+                                                <td>
+                                                   <input type=text name=msg_author value={MSG_AUTHOR} class="textinput" size=10>
+                                                </td>
+                                                </tr>
+                                                <tr>
                                                 <td width="80%">
                                                         <textarea cols="40" rows="2" class="textinput" name="msg_body" onselect="storeCaret_f{MSG_ID}(this);" onclick="storeCaret_f{MSG_ID}(this);" onkeyup="storeCaret_f{MSG_ID}(this);" style="width: 100%;">{MSG_BODY_RAW}</textarea>
                                                 </td>
@@ -872,7 +872,7 @@ function pagefooter()
                 echo "<tr><td class=\"tableb\">";
                 echo "Queries: <pre>";
                 print_r($queries);
-                echo "</pre></td></tr><td class=\"tableb\">";		
+                echo "</pre></td></tr><td class=\"tableb\">";
                 echo "GET :<pre>";
                 print_r($HTTP_GET_VARS);
                 echo "</pre></td></tr><td class=\"tableb\">";
@@ -883,6 +883,9 @@ function pagefooter()
                 Page generated in <b>$time</b> seconds - <b>$query_count</b> queries in <b>$total_query_time</b> seconds - Album set : $ALBUM_SET
 EOT;
                 echo "</td></tr>";
+                echo "<tr><td class=\"tableb\">";
+                echo "<a href=\"phpinfo.php\">Advanced debug mode</a> (phpinfo)";
+                echo "</td></tr>";                
                 endtable();
         }
 
@@ -1040,8 +1043,8 @@ function theme_main_menu2()
                 '{TOPRATED_TGT}'=> "thumbnails.php?album=toprated$cat_l2",
                 '{TOPRATED_LNK}'=> $lang_main_menu['toprated_lnk'],
                 '{FAV_TGT}'=> "thumbnails.php?album=favpics",
-                '{FAV_LNK}'=> $lang_main_menu['fav_lnk'],		                
-		'{SEARCH_TGT}'=> "search.php",
+                '{FAV_LNK}'=> $lang_main_menu['fav_lnk'],
+                '{SEARCH_TGT}'=> "search.php",
                 '{SEARCH_LNK}'=> $lang_main_menu['search_lnk'],
         );
 
@@ -1245,9 +1248,9 @@ function theme_display_album_list(&$alb_list,$nbAlb, $cat, $page, $total_pages)
 function theme_display_album_list_cat(&$alb_list,$nbAlb, $cat, $page, $total_pages)
 {
         global $CONFIG, $STATS_IN_ALB_LIST, $statistics, $template_tab_display, $template_album_list_cat, $lang_album_list;
-	if (!$CONFIG['first_level']){
-		return;
-	}
+        if (!$CONFIG['first_level']){
+                return;
+        }
 
         //$theme_alb_list_tab_tmpl = $template_tab_display;
 
@@ -1330,8 +1333,8 @@ function theme_display_album_list_cat(&$alb_list,$nbAlb, $cat, $page, $total_pag
 
 function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $page, $total_pages, $sort_options, $display_tabs, $mode='thumb')
 {
-        
-	global $CONFIG;
+
+        global $CONFIG;
         global $template_thumb_view_title_row, $lang_thumb_view, $template_tab_display, $template_thumbnail_view;
         static $header='';
         static $thumb_cell='';
@@ -1403,24 +1406,24 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
         foreach($thumb_list as $thumb){
                 $i++;
                 if ($mode == 'thumb') {
-			if ($aid =='lastalb'){
-				$params =array(
-					'{CELL_WIDTH}' => $cell_width,
-					'{LINK_TGT}' => "thumbnails.php?album={$thumb['aid']}",
-					'{THUMB}' => $thumb['image'],
-					'{CAPTION}' => $thumb['caption'],
-					'{ADMIN_MENU}' => $thumb['admin_menu']
-				);			
-			
-			} else { 
-				$params =array(
-					'{CELL_WIDTH}' => $cell_width,
-					'{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&pos={$thumb['pos']}",
-					'{THUMB}' => $thumb['image'],
-					'{CAPTION}' => $thumb['caption'],
-					'{ADMIN_MENU}' => $thumb['admin_menu']
-				);
-			}
+                        if ($aid =='lastalb'){
+                                $params =array(
+                                        '{CELL_WIDTH}' => $cell_width,
+                                        '{LINK_TGT}' => "thumbnails.php?album={$thumb['aid']}",
+                                        '{THUMB}' => $thumb['image'],
+                                        '{CAPTION}' => $thumb['caption'],
+                                        '{ADMIN_MENU}' => $thumb['admin_menu']
+                                );
+
+                        } else {
+                                $params =array(
+                                        '{CELL_WIDTH}' => $cell_width,
+                                        '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&pos={$thumb['pos']}",
+                                        '{THUMB}' => $thumb['image'],
+                                        '{CAPTION}' => $thumb['caption'],
+                                        '{ADMIN_MENU}' => $thumb['admin_menu']
+                                );
+                        }
                 } else {
                         $params =array(
                                 '{CELL_WIDTH}' => $cell_width,

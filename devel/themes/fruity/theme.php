@@ -715,6 +715,9 @@ function pagefooter()
                 Page generated in <b>$time</b> seconds - <b>$query_count</b> queries in <b>$total_query_time</b> seconds - Album set : $ALBUM_SET
 EOT;
                 echo "</td></tr>";
+                echo "<tr><td class=\"tableb\">";
+                echo "<a href=\"phpinfo.php\">Advanced debug mode</a> (phpinfo)";
+                echo "</td></tr>";
                 endtable();
         }
 

@@ -87,7 +87,7 @@ $template_main_menu2 = <<<EOT
                                         <td><img src="themes/eyeball/images/top_menu_spacer.gif" border="0" alt="" /><br /></td>
                                         <td background="themes/eyeball/images/top_menu_button.gif">
                                         <a href="{FAV_TGT}" onMouseOver="MM_showHideLayers('Menu1','','hide')">{FAV_LNK}</a>
-                                        </td>					
+                                        </td>
                                         <td><img src="themes/eyeball/images/top_menu_spacer.gif" border="0" alt="" /><br /></td>
                                          <td background="themes/eyeball/images/top_menu_button.gif">
                                                 <a href="{SEARCH_TGT}" onMouseOver="MM_showHideLayers('Menu1','','hide')">{SEARCH_LNK}</a>
@@ -888,6 +888,9 @@ function pagefooter()
                 Page generated in <b>$time</b> seconds - <b>$query_count</b> queries in <b>$total_query_time</b> seconds - Album set : $ALBUM_SET
 EOT;
                 echo "</td></tr>";
+                echo "<tr><td class=\"tableb\">";
+                echo "<a href=\"phpinfo.php\">Advanced debug mode</a> (phpinfo)";
+                echo "</td></tr>";
                 endtable();
         }
 
@@ -1066,7 +1069,7 @@ function theme_main_menu2()
                 '{TOPRATED_TGT}'=> "thumbnails.php?album=toprated$cat_l2",
                 '{TOPRATED_LNK}'=> $lang_main_menu['toprated_lnk'],
                 '{FAV_TGT}'=> "thumbnails.php?album=favpics",
-                '{FAV_LNK}'=> $lang_main_menu['fav_lnk'],		
+                '{FAV_LNK}'=> $lang_main_menu['fav_lnk'],
                 '{SEARCH_TGT}'=> "search.php",
                 '{SEARCH_LNK}'=> $lang_main_menu['search_lnk'],
         );

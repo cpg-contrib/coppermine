@@ -97,11 +97,11 @@ $template_main_menu2 = <<<EOT
                                         <td><img src="themes/mac_ox_x/images/menu_button_bg_right.gif" border="0" alt="" /><br /></td>
                                         <td><img src="themes/mac_ox_x/images/menu_button_bg_left.gif" border="0" alt="" /><br /></td>
                                         <td background="themes/mac_ox_x/images/menu_button_bg_middle.gif" valign="top">
-						<a href="{FAV_TGT}" onMouseOver="MM_showHideLayers('Menu1','','hide')">{FAV_LNK}</a>
-					</td>					
-					<td><img src="themes/mac_ox_x/images/menu_button_bg_right.gif" border="0" alt="" /><br /></td>
-					<td><img src="themes/mac_ox_x/images/menu_button_bg_left.gif" border="0" alt="" /><br /></td>
-					<td background="themes/mac_ox_x/images/menu_button_bg_middle.gif" valign="top">
+                                                <a href="{FAV_TGT}" onMouseOver="MM_showHideLayers('Menu1','','hide')">{FAV_LNK}</a>
+                                        </td>
+                                        <td><img src="themes/mac_ox_x/images/menu_button_bg_right.gif" border="0" alt="" /><br /></td>
+                                        <td><img src="themes/mac_ox_x/images/menu_button_bg_left.gif" border="0" alt="" /><br /></td>
+                                        <td background="themes/mac_ox_x/images/menu_button_bg_middle.gif" valign="top">
                                                 <a href="{SEARCH_TGT}" onMouseOver="MM_showHideLayers('Menu1','','hide')">{SEARCH_LNK}</a>
                                         </td>
                                         <td><img src="themes/mac_ox_x/images/menu_button_bg_right.gif" border="0" alt="" /><br /></td>
@@ -895,6 +895,9 @@ function pagefooter()
                 Page generated in <b>$time</b> seconds - <b>$query_count</b> queries in <b>$total_query_time</b> seconds - Album set : $ALBUM_SET
 EOT;
                 echo "</td></tr>";
+                echo "<tr><td class=\"tableb\">";
+                echo "<a href=\"phpinfo.php\">Advanced debug mode</a> (phpinfo)";
+                echo "</td></tr>";                
                 endtable();
         }
 
@@ -1067,7 +1070,7 @@ function theme_main_menu2()
                 '{TOPRATED_TGT}'=> "thumbnails.php?album=toprated$cat_l2",
                 '{TOPRATED_LNK}'=> $lang_main_menu['toprated_lnk'],
                 '{FAV_TGT}'=> "thumbnails.php?album=favpics",
-                '{FAV_LNK}'=> $lang_main_menu['fav_lnk'],		
+                '{FAV_LNK}'=> $lang_main_menu['fav_lnk'],
                 '{SEARCH_TGT}'=> "search.php",
                 '{SEARCH_LNK}'=> $lang_main_menu['search_lnk'],
         );
