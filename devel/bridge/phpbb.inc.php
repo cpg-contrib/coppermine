@@ -263,7 +263,7 @@ function udb_logout_page()
 // Edit users
 function udb_edit_users()
 {
-    $target = 'admin/index.php';
+    $target = 'memberlist.php';
     udb_redirect($target);
 }
 // Get user information
