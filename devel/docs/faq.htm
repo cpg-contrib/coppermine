@@ -137,7 +137,7 @@ For credits and copyrights, see <a href="index.htm#credits">Coppermine documenta
 <li><a class="content" href="#httpPostVars">When uploading I get the error <tt class="code">Warning: Undefined variable: HTTP_POST_VARS in include/init.inc.php on line 43</tt>. What can I do?</a></li>
 </ul>
 
-<li><b>Setup / Administration</b></li>
+<li><b>Setup / Configuration</b></li>
 <ul class="nomargin">
 <li><a class="content" href="#LinkInAlbumDescription">How can I include a <b>link in an album description</b> or the caption of a pic?</a></li>
 <li><a class="content" href="#NoLastUploads">I don&#39;t want to show the <b>last uploads</b> on the start page. How do I edit what&#39;s shown on the start page of coppermine?</a></li>
@@ -150,7 +150,7 @@ For credits and copyrights, see <a href="index.htm#credits">Coppermine documenta
 <li><a class="content" href="#noFullsizePopup">The <b>fullsize-pic doesn&#39;t pop up</b> when clicking on the intermediate size pic. What&#39;s wrong?</a></li>
 <li><a class="content" href="#viewThumbnailsOnly">How can I let unregistered users see the <b>thumbnails only</b>, but not the actual pictures?</a></li>
 <li><a class="content" href="#preventHotlinks">How can I prevent other sites linking directly to the pictures in my gallery instead of the gallery page?</a></li>
-<li><a class="content" href="#changeLanguage">I tried to change the <b>language</b> on the admin page, but it doesn&#39;t work. What&#39;s wrong?</a></li>
+<li><a class="content" href="#changeLanguage">I tried to change the <b>language</b> on the config page, but it doesn&#39;t work. What&#39;s wrong?</a></li>
 <li><a class="content" href="#onlyregisteredcomments">How do I let guests, not only registered users to put <b>comments</b> on pictures?</a></li>
 <li><a class="content" href="#httpUpload">I <b>can&#39;t upload</b> with the upload feature. What&#39;s wrong?</a></li>
 <li><a class="content" href="#ordercategories">How do I change the <b>order of categories</b>?</a></li>
@@ -246,7 +246,7 @@ For credits and copyrights, see <a href="index.htm#credits">Coppermine documenta
 <li>chmod the folders "include" and "albums" for the script (the webserver, that is) to have read/write access</li>
 <li>point your browser to http://www.yoursite.com/coppermine/install.php and follow the directions of the install file (basically the mySQL-tables will be created there and the config table will be filled with default values)</li>
 <li>after successfull installation, delete install.php from your webserver</li>
-<li>point your browser to http://www.yoursite.com/coppermine/ , log in as admin, admin mode and do the admin job (customizing your coppermine)</li>
+<li>point your browser to http://www.yoursite.com/coppermine/ , log in as admin, admin mode and do the config job (customizing your coppermine)</li>
 <li>Play around, toy a little, test if everything works</li>
 <li>Publish your site by linking it (e.g. from your homepage)</li>
 </ol><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
@@ -265,7 +265,7 @@ Delete all files in the lang-subfolder of your coppermine install except yourlan
 <br /><div class="totop">Webspace that can be saved (maximum): 2.9 MB</div>
 </li>
 <li><b>Remove all language files that come with an encoding you don't need</b><br />
-You'll notice that for each language there are two files in the lang-folder: yourlanguage.php and yourlanguage-utf-8.php. You will need the utf-8 files only if you chose &quot;Unicode(utf-8)&quot; in &quot;Character encoding&quot; on your admin page. Using <i>Unicode (utf-8)</i> will display the gallery in the language your page visitor has set in his browser. If you haven't chosen <i>Unicode (utf-8)</i> in coppermine admin, it's safe to delete all language files with &quot;utf-8&quot; in their filenames from the lang folder.
+You'll notice that for each language there are two files in the lang-folder: yourlanguage.php and yourlanguage-utf-8.php. You will need the utf-8 files only if you chose &quot;Unicode(utf-8)&quot; in &quot;Character encoding&quot; on your config page. Using <i>Unicode (utf-8)</i> will display the gallery in the language your page visitor has set in his browser. If you haven't chosen <i>Unicode (utf-8)</i> in coppermine config, it's safe to delete all language files with &quot;utf-8&quot; in their filenames from the lang folder.
 <br /><div class="totop">Webspace that can be saved (maximum): 1.7 MB</div>
 </li>
 <li><b>Remove all unnecessary themes</b><br />
@@ -298,7 +298,7 @@ Summary: a minimum install of coppermine will need approx. 3.3 MB of webspace.
 
 <a name="uploadGeneralTroubleshooting"></a>
 <h3>General Upload Troubleshooting</h3>
-<p>When troubleshooting uploads in CPG 1.3, you are advised to change the upload settings in the Groups console to 'Single uploads only' and to activate 'Debug mode' in the Admin console.  Changing this setting negates some of the error masking done in the multiple upload setting.  This will allow you to access more detailed error messages.</p>
+<p>When troubleshooting uploads in CPG 1.3, you are advised to change the upload settings in the Groups console to 'Single uploads only' and to activate 'Debug mode' in the config console.  Changing this setting negates some of the error masking done in the multiple upload setting.  This will allow you to access more detailed error messages.</p>
 <p><span class="important">First and foremost: check your permissions on the /albums, /albums/userpics, and /albums/edit directories.  All should be 777 or 755.</span><br />If you don't know what we mean when we write 777 or 755,  you need to do a Google search on UNIX file permissions. Windows has a similar set of file permissions. You can usually set these permissions using your FTP client.<br />
 For those of you who skim over statements written in red letters, I will repeat to try to get your attention:
 <br />
@@ -391,7 +391,7 @@ Replace it with<br />
 <pre>$PHP_SELF = $_SERVER[&#39;PHP_SELF&#39;];</pre><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 
 <br />&nbsp;<br />
-<h2>Setup / Administration</h2><a name="LinkInAlbumDescription"></a>
+<h2>Setup / configuration</h2><a name="LinkInAlbumDescription"></a>
 <h3>How can I include a <b>link in an album description</b> or the caption of a pic?</h3>
 <p>Coppermine understands the following bbCodes (the same bbCodes that are used by phpBB) in image and album description:</p>
 <table border="0">
@@ -414,7 +414,7 @@ Replace it with<br />
 <p>  <ol>
     <li>login as admin into your CPG</li>
     <li>click on "Admin Mode" if it is not already enabled</li>
-    <li>Click on Admin in the "Admin Menu"</li>
+    <li>Click on Config in the "Admin Menu"</li>
     <li>under "Album list view" use the above provided keywords:
     <ul>
       <li>'<b>breadcrumb</b>': navigation inside the gallery (e.g. &quot;home &gt; category &gt; subcategory &gt; album&quot;)</li>
@@ -539,9 +539,9 @@ SetEnvIf Referer &quot;^$&quot; locally_linked=1
   Allow from env=locally_linked
 &lt;/FilesMatch&gt;</pre>
 This will only work on linux/unix and only if you&#39;re allowed to do that by your webhost or if you run your own server!<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="changeLanguage"></a>
-<h3>I tried to change the <b>language</b> on the admin page, but it doesn&#39;t work. What&#39;s wrong?</h3>
-<p>&quot;Character encoding&quot; is probably set (or has been set sometime ago) to UTF-8 on your admin page.<br />
-When UTF-8 is selected, Coppermine chooses your language file based on your browser configuration and stores the value in a cookie. This overrides the value stored in the ADMIN.<br />
+<h3>I tried to change the <b>language</b> on the config page, but it doesn&#39;t work. What&#39;s wrong?</h3>
+<p>&quot;Character encoding&quot; is probably set (or has been set sometime ago) to UTF-8 on your config page.<br />
+When UTF-8 is selected, Coppermine chooses your language file based on your browser configuration and stores the value in a cookie. This overrides the value stored in the CONFIG.<br />
 <b>To fix that:</b><br />
 <ul>
 <li>Set &quot;Character encoding&quot; to Default (language file)</li>
@@ -733,7 +733,7 @@ into<br />
 In order to allow the use of BBCodes in custom fields: you can then have something like<br />
 <tt class="code">[url]http://www.somesite.com/foo/bar.php?whatever=42[/url]</tt><br />
 or<br />
-<tt class="code">[url=http://www.somesite.com/foo/bar.php?whatever=42]link to some site![/url]</tt><br />in your custom user fields (which of course have to be enabled first in the admin page)<br /><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+<tt class="code">[url=http://www.somesite.com/foo/bar.php?whatever=42]link to some site![/url]</tt><br />in your custom user fields (which of course have to be enabled first in the config page)<br /><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 
 <a name="sortThumbsByCustomField"></a>
 <h3>How can I <b>sort the thumbnails by user defined (custom) fields</b>?</h3>
@@ -967,7 +967,7 @@ Greg<br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of pag
 <li>read the documentation</li>
 <li>read this FAQ</li>
 <li><a href="http://coppermine.sourceforge.net/board/index.php?action=search">Search</a> the support board</li>
-<li>enable debug mode (log in as admin, admin mode, admin, debug mode)</li>
+<li>enable debug mode (log in as admin, admin mode, config, debug mode)</li>
 <li>choose the right support board: if you&#39;re running the phpnuke-port of coppermine, don&#39;t post in the support board for the standalone version and vice versa</li>
 </ul><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="nonEnglishPosting"></a>
 <h3>Hey, by looking at your profile I can see you&#39;re German/French/Whatever. Can I post a question in that <b>language</b>?</h3>

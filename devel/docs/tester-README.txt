@@ -7,7 +7,7 @@ eliminate bugs from our public release of version 1.3.
 While testing CPG 1.3, please make certain to note any odd behavior you
 encounter.  This could include typographical errors, misleading instructions,
 or any other out-right error.  If you encounter a major error, please switch
-the debug mode to "on" in the administration panel and copy the text in the
+the debug mode to "on" in the configuration panel and copy the text in the
 debug window.  This will greatly aid the development team in hunting down the
 problem.
 

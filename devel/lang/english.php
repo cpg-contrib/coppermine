@@ -90,7 +90,7 @@ $lang_errors = array(
   'not_with_udb' => 'This function is disabled in Coppermine because it is integrated with forum software. Either what you are trying to do is not supported in this configuration, or the function should be handled by the forum software.',
   'offline_title' => 'Offline',
   'offline_text' => 'Gallery is currently offline - check back soon',
-  'ecards_empty' => 'There are currently no ecard records to display. Check that you have enabled ecard logging in coppermine admin!',
+  'ecards_empty' => 'There are currently no ecard records to display. Check that you have enabled ecard logging in coppermine config!',
   'action_failed' => 'Action failed.  Coppermine is unable to process your request.',
   'no_zip' => 'The necessary libraries to process ZIP files are not available.  Please contact your Coppermine administrator.',
   'zip_type' => 'You do not have permission to upload ZIP files.',
@@ -134,7 +134,7 @@ $lang_main_menu = array(
 
 $lang_gallery_admin_menu = array(
   'upl_app_lnk' => 'Upload approval',
-  'admin_lnk' => 'Admin',
+  'admin_lnk' => 'Config',
   'albums_lnk' => 'Albums',
   'categories_lnk' => 'Categories',
   'users_lnk' => 'Users',
@@ -381,7 +381,7 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
   'error_ban_id' => 'Invalid ban ID!',
   'error_admin_ban' => 'You cannnot ban yourself!',
   'error_server_ban' => 'You were going to ban your own server? Tsk tsk, cannot do that...',
-  'error_ip_forbidden' => 'You cannnot ban this IP - it is non-routable (private) anyway!<br />If you want to allow banning for private IPs, change this in your <a href="admin.php">Admin</a> (only makes sense when Coppermine runs on a LAN).', //cpg1.4.0
+  'error_ip_forbidden' => 'You cannnot ban this IP - it is non-routable (private) anyway!<br />If you want to allow banning for private IPs, change this in your <a href="admin.php">Config</a> (only makes sense when Coppermine runs on a LAN).', //cpg1.4.0
   'lookup_ip' => 'Lookup an IP address',
   'submit' => 'go!',
   'select_date' => 'select date', //cpg1.4.0
@@ -1222,7 +1222,7 @@ if (defined('PICMGR_PHP')) $lang_picmgr_php = array(
   'no_change' => 'You did not make any change !', // cpg1.4.0
   'no_album' => '* No album *', // cpg1.4.0
   'explanation_header' => 'The custom sort order you can specify on this page will only be taken into account if', // cpg1.4.0
-  'explanation1' => 'the admin has set the "Default sort order for files" in the admin to "Position descending" or "Position ascending" (global setting for all users who haven\'t chosen another sort option individually)', // cpg1.4.0
+  'explanation1' => 'the admin has set the "Default sort order for files" in the config to "Position descending" or "Position ascending" (global setting for all users who haven\'t chosen another sort option individually)', // cpg1.4.0
   'explanation2' => 'the user has chosen "Position descending" or "Position ascending" on the thumbail page (per user setting)', // cpg1.4.0
 );
 
@@ -1507,7 +1507,7 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'impossible' => 'Impossible to move.',
   'not_image' => 'Not an image/corrupt',
   'not_GD' => 'Not a GD extension.',
-  'pixel_allowance' => 'The height and or width of the uploaded picture is more than that allowed by the gallery admin.',
+  'pixel_allowance' => 'The height and or width of the uploaded picture is more than that allowed by the gallery config.',
   'incorrect_prefix' => 'Incorrect URI/URL prefix',
   'could_not_open_URI' => 'Could not open URI.',
   'unsafe_URI' => 'Safety not verifiable.',
@@ -1670,7 +1670,7 @@ $lang_util_php = array(
   'delete_original' => 'Delete original size photos',
   'delete_original_explanation' => 'This will remove the full sized pictures.', //cpg 1.4.0
   'delete_intermediate' => 'Delete intermediate pictures', //cpg 1.4.0
-  'delete_intermediate_explanation' => 'This will delete intermediate (normal) pictures.<br />Use this to free up disk space if you have disabled \'Make intermediate pics\' in admin after adding pictures.', //cpg 1.4.0
+  'delete_intermediate_explanation' => 'This will delete intermediate (normal) pictures.<br />Use this to free up disk space if you have disabled \'Make intermediate pics\' in config after adding pictures.', //cpg 1.4.0
   'delete_replace' => 'Deletes the original images replacing them with the sized versions',
   'titles_deleted' => 'All titles in specified album removed',
   'deleting_intermediates' => 'Deleting intermediate images, please wait...',
@@ -1693,7 +1693,7 @@ $lang_util_php = array(
   'update_db' => 'Update database',
   'update_db_explanation' => 'If you have replaced coppermine files, added a modification or upgraded from a previous version of coppermine, make sure to run the database update once. This will create the necessary tables and/or config values in your coppermine database.',
   'view_log' => 'View log files', //cpg 1.4.0
-  'view_log_explanation' => 'Coppermine can keep track of various actions users perform. You can browse those logs if you have enabled logging in <a href="admin.php">coppermine admin</a>.', //cpg 1.4.0
+  'view_log_explanation' => 'Coppermine can keep track of various actions users perform. You can browse those logs if you have enabled logging in <a href="admin.php">coppermine config</a>.', //cpg 1.4.0
   'versioncheck' => 'Check versions', //cpg 1.4.0
   'versioncheck_explanation' => 'Check your file versions to find out if you have replaced all files after an upgrade, or if coppermine source files have been updated after the release of a package.', //cpg 1.4.0
   'bridgemanager' => 'Bridge Manager', //cpg 1.4.0

@@ -178,7 +178,7 @@ a.external {
             </ul>
           <li class="content"><a href="#bbcode" class="menu2">4.9 Using bbcode to insert links and format in descriptions</a></li>
           <li class="content"><a href="#batch_add_pics" class="menu2">4.10 Uploading pics by FTP / Batch-Add Pictures</a></li>
-          <li class="content"><a href="#admin" class="menu2">4.11 The gallery administration page</a></li>
+          <li class="content"><a href="#admin" class="menu2">4.11 The gallery configuration page</a></li>
             <ul class="content">
             <li class="content"><a href="#admin_general">4.11.1 General settings</a></li>
             <li class="content"><a href="#admin_language">4.11.2 Language, Themes &amp; Charset settings</a></li>
@@ -243,7 +243,7 @@ a.external {
 Thank you for taking the time to test Coppermine Photo Gallery. Please be rough on the program so that we can track down and eliminate bugs from our public release of version 1.4.<br />
 Please understand that this is still beta software that is meant to be used for testing purposes and not for production, so there is no support for cpg1.4.0 yet.</p>
 
-<p>While testing CPG 1.4, please make certain to note any odd behavior you encounter.  This could include typographical errors, misleading instructions, or any other out-right error.  If you encounter a major error, please switch the debug mode to &quot;on&quot; in the administration panel and copy the text in the debug window.  This will greatly aid the development team in hunting down the problem.</p>
+<p>While testing CPG 1.4, please make certain to note any odd behavior you encounter.  This could include typographical errors, misleading instructions, or any other out-right error.  If you encounter a major error, please switch the debug mode to &quot;on&quot; in the configuration panel and copy the text in the debug window.  This will greatly aid the development team in hunting down the problem.</p>
 
 <p><b>Areas to be particularly mindful of:</b></p>
 <ul>
@@ -305,12 +305,11 @@ Please understand that this is still beta software that is meant to be used for 
 <a name="getting"></a>
 <h2>2.2 Getting started</h2>
 <p>Log in with the admin username and password you set up during install, click on the &quot;admin mode&quot;
-  link if it is visible, go to the <b>Admin</b> page and start to configure your
+  link if it is visible, go to the <b>Config</b> page and start to configure your
   gallery. Note that even if you are a member of the administrator group, you
   need to be in &quot;admin mode&quot; to configure your gallery.</p>
-<p>There are some settings in admin that can't be changed later (if there are already files in the database) - make sure to set them up correctly in the first place. Although you'll surely want to start using coppermine immediately it is advisable to configure those settings (marked with an asterisk &quot;*&quot;) properly at the very beginning.</p>
-<p>Use the &quot;<b><a href="#albmgr">Album Manager</a></b>&quot; (&quot;Albums&quot; link in the admin
-  menu) in to create and order your albums. You'll need at least one album your files can go into.</p>
+<p>There are some settings in config that can't be changed later (if there are already files in the database) - make sure to set them up correctly in the first place. Although you'll surely want to start using coppermine immediately it is advisable to configure those settings (marked with an asterisk &quot;*&quot;) properly at the very beginning.</p>
+<p>Use the &quot;<b><a href="#albmgr">Album Manager</a></b>&quot; (&quot;Albums&quot; link in the admin menu) in to create and order your albums. You'll need at least one album your files can go into.</p>
 <p>Use the <b>anonymous</b> group to define what non-regsitered users can and
   can't do (in the <a href="#group_cp">groups</a> panel).</p>
 <p>Use the <b><a href="#modif_alb_pics">properties</a></b> of an album to modify its description and permissions.
@@ -325,7 +324,7 @@ Please understand that this is still beta software that is meant to be used for 
 <p>The same applies to <b>picture rating</b> and <b>comment posting</b>.</p>
 <p>If you have installed the script succesfully but are having trouble getting
   it working properly you can enable the &quot;<b><a href="#debug_mode">debug mode</a></b>&quot; on the
-  <b>admin page</b>. In this mode, the script outputs most of the warning/error
+  <b>Config page</b>. In this mode, the script outputs most of the warning/error
   messages produced by PHP in addition to some debug information. This can provide
   valuable information to understand what is wrong.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
@@ -368,7 +367,7 @@ Please understand that this is still beta software that is meant to be used for 
 <ul>
 <li><tt class="code">http://yoursite.tld/coppermine/index.php?theme=your_theme_name</tt> will show the coppermine index page, using your theme</li>
 <li><tt class="code">http://yoursite.tld/coppermine/thumbnails.php?album=1&theme=your_theme_name</tt> will show the thumbnail view of album 1, using your theme</li>
-<li><tt class="code">http://yoursite.tld/coppermine/?theme=xxx</tt> will reset your view back to the theme you chose as your default theme in coppermine admin</li>
+<li><tt class="code">http://yoursite.tld/coppermine/?theme=xxx</tt> will reset your view back to the theme you chose as your default theme in coppermine config</li>
 </ul>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
@@ -386,7 +385,7 @@ Please understand that this is still beta software that is meant to be used for 
 <a name="smtp"></a>
 <h2>2.6 Using SMTP to send emails</h2>
 <p>By default the script uses the PHP built-in <b>mail</b> function to send emails. In some cases, the PHP built-in function can't be used.</p>
-<p> If in order to send emails with PHP you need to supply a <b>hostname</b>, a <b>username</b> and a <b>password</b>, you need to edit the admin section &quot;Email settings&quot; and put the correct values there. If you don't need a username and password to connect to your SMTP server, just leave them blank. If you don't know what settings to enter, contact your webhost.</p>
+<p> If in order to send emails with PHP you need to supply a <b>hostname</b>, a <b>username</b> and a <b>password</b>, you need to edit the config section &quot;Email settings&quot; and put the correct values there. If you don't need a username and password to connect to your SMTP server, just leave them blank. If you don't know what settings to enter, contact your webhost.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="upgrade"></a>
@@ -403,7 +402,7 @@ Please understand that this is still beta software that is meant to be used for 
   <li>Login to your 1.3.2 Gallery, enter the admin mode</li>
   <li>Call the upgrade script, http://yousitename/coppermine_dir/upgrade-1.0-to-1.2.php</li>
   <li><b>The upgrade from 1.0 to 1.3.2 is a two-step process.</b> You must click the link which comes up on the bottom of the page to complete the upgrade!.</li>
-        <li><b>Delete upgrade-1.0-to-1.2.php from your server</b>. <li>If you get an error, go to Coppermine 1.3.2 admin page, enable <a href="#debug_mode">debug mode</a>, try to call the upgrade script again and check what errors you get.</li>
+        <li><b>Delete upgrade-1.0-to-1.2.php from your server</b>. <li>If you get an error, go to Coppermine 1.3.2 config page, enable <a href="#debug_mode">debug mode</a>, try to call the upgrade script again and check what errors you get.</li>
 </ul>
 <p> <b>This upgrade process leaves your v1.0 gallery untouched </b></p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
@@ -543,7 +542,7 @@ the main page of the script.</p>
 <p>The items in the admin menu should be pretty self-explanatory:</p>
 <ul>
   <li><b>Upload approval</b><br />See all pics that await approval by the admin (depending on the settings in the &quot;<a href="#group_cp">groups</a>&quot; control panel)</li>
-  <li><b>Admin</b><br />Configure the overall look of your gallery and the settings using the &quot;<a href="#admin">Admin</a>&quot; button in the admin menu (note: you can not access the configuration by manually entering the url of the admin file)</li>
+  <li><b>Config</b><br />Configure the overall look of your gallery and the settings using the &quot;<a href="#admin">Config</a>&quot; button in the admin menu (note: you can not access the configuration by manually entering the url of the config file)</li>
   <li><b>Albums</b><br />Create/edit/delete <a href="#albums_cp">albums</a></li>
   <li><b>Categories</b><br />Create/edit/delete <a href="#cat_cp">categories</a></li>
   <li><b>Users</b><br />Create/edit/delete <a href="#users_cp">users</a></li>
@@ -559,7 +558,7 @@ the main page of the script.</p>
   <img src="pics/cpg140.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_ok.gif" width="18" height="20" border="0" alt="">
   </li>
   <li><a name="ecard_log"></a><b>Display Ecards</b><br />View the ecards sent by users.<br />
-  You will have to enable ecard-logging in the admin first (by default, logging is disabled). When enabled, all ecards that are being sent are as well written into the database, where the coppermine admin can view them.<br />
+  You will have to enable ecard-logging in the config first (by default, logging is disabled). When enabled, all ecards that are being sent are as well written into the database, where the coppermine admin can view them.<br />
   <img src="pics/ecard_log.gif" border="0" alt=""><br />
   You can sort the log by clicking on the arrow icons next to each heading, and you can delete single or multiple log entries (deleting the log entries will not disable the ecard recipient to view the ecard).<br />
   Before switching this option on, make sure that logging is legal in your country. It is also advisable to notify your users that all ecards are being logged (preferrably on the registration screen).<br />
@@ -577,7 +576,7 @@ the main page of the script.</p>
   <li><b>Batch add files</b><br /><a href="#batch_add_pics">Batch-add files</a> to the coppermine database that have been uploaded by FTP.</li>
   <li><a name="admin_tools"></a><b>Admin Tools (Resize Pictures)</b><br />Collection of utilities to;<br />
       <dd><b>Rebuild or resize intermediate pictures and thumbnails.</b><br />
-      <dd><img src="pics/util_re-size.gif" alt="" border="0"><br />Use this if you have changed the settings for thumbnail or intermediate images in admin, or if you have to replace corrupt versions.<br />Select the radio button for this action, then choose to rebuild the thumbnails, intermediates, or both.<br />This uses a lot of server resources, so if you have timeout problems, try doing it in smaller batches.
+      <dd><img src="pics/util_re-size.gif" alt="" border="0"><br />Use this if you have changed the settings for thumbnail or intermediate images in config, or if you have to replace corrupt versions.<br />Select the radio button for this action, then choose to rebuild the thumbnails, intermediates, or both.<br />This uses a lot of server resources, so if you have timeout problems, try doing it in smaller batches.
       <br /><dd><b>Delete full-size pictures.</b><br /></dd>
       Use this to save space on your webspace.<br />When selected, Coppermine checks to see if an intermediate copy exists, and if it does, it deletes the original sized picture, then re-names the intermediate. If no intermediate exists, Coppermine leaves the original in place.<br />
       <dd><b>Delete orphaned comments.</b><br /></dd>
@@ -651,7 +650,7 @@ of a specific category. </li></ul>
 you have some users that have created their own gallery. It can't be
 deleted but you can edit its title and description by using the <img
 src="pics/edit.gif" width="16" height="16" alt="" /> button. </p>
-<p>You can specify to have coppermine sort all categories alphabetically (instead of a customized order) by setting &quot;Sort categories alphabetically&quot; to &quot;Yes&quot;. This setting is available both in coppermine admin an the category manager. If you enable alphabetical sorting, the up and down arrows that normally let you move the categories will disappear.</p>
+<p>You can specify to have coppermine sort all categories alphabetically (instead of a customized order) by setting &quot;Sort categories alphabetically&quot; to &quot;Yes&quot;. This setting is available both in coppermine config and the category manager. If you enable alphabetical sorting, the up and down arrows that normally let you move the categories will disappear.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
       <a name="albmgr"></a><h2>4.5 The Album Manager</h2>
@@ -711,7 +710,7 @@ src="pics/edit.gif" width="16" height="16" alt="" /> button. </p>
 <p>The "Album category" drop down list allows you to move an album between categories. If you set this to &quot;* No category *&quot; then the album will be displayed on your main page.</p>
 <p>Use <a href="#bbcode">bbcode</a> to add links and some formating to the description.</p>
 <p>The thumbnail is the picture that will represent the album in the album list.</p>
-<p>If you have set &quot;Users can can have private albums&quot; to YES on the <a href="#admin">admin page</a>, you can define who can view the files of this album.</p>
+<p>If you have set &quot;Users can can have private albums&quot; to YES on the <a href="#admin">config page</a>, you can define who can view the files of this album.</p>
 <p>When &quot;visitors can upload file&quot; is set to YES, it is possible to upload files in this album. <b>Note that a visitor will have the right to upload files into an album where this option is set to YES only if he is a member of a group for which &quot;Can upload pictures&quot; is set to YES.</b> Non registered users are members of the &quot;Anonymous&quot; group.</p>
 <p>The same rules as above apply for &quot;Visitors can post comments&quot; and &quot;Visitors can rate files&quot;.</p>
 <a name="album_prop_end"></a>
@@ -1071,7 +1070,7 @@ If your browser times out, hit the reload button.
 
 <a name="admin_album_list_alphasort_start"></a>
 <h4>Sort categories alphabetically (instead of custom sort order)</h4>
-<p>You can specify to have coppermine sort all categories alphabetically (instead of a customized order) by setting &quot;Sort categories alphabetically&quot; to &quot;Yes&quot;. This setting is available both in coppermine admin an the category manager. If you enable alphabetical sorting, the up and down arrows that normally let you move the categories will disappear.<br />
+<p>You can specify to have coppermine sort all categories alphabetically (instead of a customized order) by setting &quot;Sort categories alphabetically&quot; to &quot;Yes&quot;. This setting is available both in coppermine config an the category manager. If you enable alphabetical sorting, the up and down arrows that normally let you move the categories will disappear.<br />
 <img src="pics/cpg10.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
       <img src="pics/cpg110.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />
       <img src="pics/cpg111.gif" width="23" height="20" border="0" alt=""><img src="pics/cpg_no.gif" width="18" height="20" border="0" alt=""><img src="pics/spacer.gif" width="5" height="20" border="0" alt="" />

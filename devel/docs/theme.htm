@@ -130,7 +130,7 @@ Edit style.css, go to the very end of the file and add this code:
         font-family: Arial, Helvetica, sans-serif;
         vertical-align : middle;
 }</pre></li>
-<li>Choose a place where the language and theme selection should be located on your coppermine pages. It's recommended to do this even if you're not planning to actually use the language and theme selection options, since they can be enable/disabled at any time in Coppermine admin:<br />
+<li>Choose a place where the language and theme selection should be located on your coppermine pages. It's recommended to do this even if you're not planning to actually use the language and theme selection options, since they can be enable/disabled at any time in Coppermine Config:<br />
 Edit template.html and find a place anywhere between <tt class="code">&lt;body&gt;</tt> and <tt class="code">&lt;/body&gt;</tt> where you want the selectors to appear. Add <tt class="code">{LANGUAGE_SELECT_LIST}</tt> for the language selection dropdown, <tt class="code">{LANGUAGE_SELECT_FLAGS}</tt> for the language-by-flag selector and <tt class="code">{THEME_SELECT_LIST}</tt> for the theme selection dropdown.</li>
 <li>Make the header information of your local file match the version you have updated to.<br />
 Edit theme.php and find
@@ -138,14 +138,14 @@ Edit theme.php and find
 and change it to
 <pre>// Coppermine Photo Gallery 1.4.0                                            //</pre>
 </li>
-<li>Find a place where the memberlist list should appear in your coppermine navigation. It's recommended to do this even if you're not planning to actually use the feature, since it can be enable/disabled at any time in Coppermine admin.<br />
+<li>Find a place where the memberlist list should appear in your coppermine navigation. It's recommended to do this even if you're not planning to actually use the feature, since it can be enable/disabled at any time in Coppermine Config.<br />
 Edit theme.php and find
 <pre>&lt;!-- END my_gallery --&gt;</pre>
 and add after it
 <pre>&lt;!-- BEGIN allow_memberlist --&gt;
                 &lt;a href="{MEMBERLIST_TGT}" title="{MEMBERLIST_TITLE}"&gt;{MEMBERLIST_LNK}&lt;/a&gt;  ::
 &lt;!-- END allow_memberlist --&gt;</pre>. You may have to adopt the html that is usually wrapped around your menu items for the memberlist menu item as well.</li>
-<li>Find a place where the user FAQ should appear in your coppermine navigation. It's recommended to do this even if you're not planning to actually use the feature, since it can be enable/disabled at any time in Coppermine admin.<br />
+<li>Find a place where the user FAQ should appear in your coppermine navigation. It's recommended to do this even if you're not planning to actually use the feature, since it can be enable/disabled at any time in Coppermine Config.<br />
 Edit theme.php and find
 <pre>&lt;!-- END my_profile --&gt;</pre>
 and add after it
