@@ -2248,7 +2248,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
             @chmod($uploaded_pic, octdec($CONFIG['default_file_mode'])); //silence the output in case chmod is disabled
 
             // Create thumbnail and internediate image and add the image into the DB
-            $result = add_picture($album, $filepath, $picture_name, $title, $caption, $keywords, $user1, $user2, $user3, $user4, $category, $raw_ip, $hdr_ip, $movie_wd, $movie_ht);
+            $result = add_picture($album, $filepath, $picture_name, 0,$title, $caption, $keywords, $user1, $user2, $user3, $user4, $category, $raw_ip, $hdr_ip, $movie_wd, $movie_ht);
 
             if (!$result) {
 
