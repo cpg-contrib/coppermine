@@ -87,7 +87,7 @@ class cpg_udb extends core_udb {
 		);
 		
 		// Group ids - admin and guest only.
-		$this->admingroup = $this->use_post_based_groups ? 2 : 1;
+		$this->admingroup = $this->use_post_based_groups ? 2 : 2;
 		$this->guestgroup = $this->use_post_based_groups ? 3 : 3;
 		
 		// Use a special function to collect groups for cpg groups table
@@ -125,7 +125,6 @@ class cpg_udb extends core_udb {
 			$sql = "SELECT u.{$this->field['user_id']} AS user_id, u.{$this->field['username']} AS username, u.{$this->field['password']} AS password, ug.{$this->field['usertbl_group_id']}+100 AS group_id FROM {$this->usertable} AS u, {$this->usergroupstable} AS ug WHERE u.{$this->field['user_id']}=ug.{$this->field['user_id']} AND u.{$this->field['user_id']}='$cookie_id'";
 			
 			$result = cpg_db_query($sql, $this->link_id);
-			
 			if (mysql_num_rows($result)){
 				$row = mysql_fetch_array($result);
 				return $row;
@@ -136,7 +135,8 @@ class cpg_udb extends core_udb {
 	// Get groups of which user is member
 	function get_groups($row)
 	{
-		$data[0] = $row[$this->field['usertbl_group_id']] - 100 == $this->admingroup ? 102 : 2;
+		$i = $this->use_post_based_groups ? 102 : 1;
+		$data[0] = $row[$this->field['usertbl_group_id']] - 100 == $this->admingroup ? $i : 2;
 		
 		if ($this->use_post_based_groups){
 			$sql = "SELECT ug.{$this->field['usertbl_group_id']}+100 AS group_id FROM {$this->usertable} AS u, {$this->usergroupstable} AS ug, {$this->groupstable} as g WHERE u.{$this->field['user_id']}=ug.{$this->field['user_id']} AND u.{$this->field['user_id']}='{$row[$this->field['user_id']]}' AND g.{$this->field['grouptbl_group_id']} = ug.{$this->field['grouptbl_group_id']} AND g.group_single_user = 0";
@@ -162,7 +162,7 @@ class cpg_udb extends core_udb {
 			$id = $sessiondata['userid'] > 1 ? intval($sessiondata['userid']) : 0;
             $pass = (isset($sessiondata['autologinid'])) ? addslashes($sessiondata['autologinid']) : '';
 		}
-
+		
 		return array($id, $pass);
 	}
 	
