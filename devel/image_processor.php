@@ -3,7 +3,7 @@
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.2.0 - Developer's Rotation Mod                 //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR <gdemar@wanadoo.fr>                 //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //

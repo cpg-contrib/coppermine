@@ -2,7 +2,7 @@
 // ------------------------------------------------------------------------- //
 //  Coppermine Photo Gallery                                                 //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Gr�ory DEMAR <gdemar@wanadoo.fr>               //
+//  Copyright (C) 2002,2003  Gr�ory DEMAR                                   //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
 //  Based on PHPhotoalbum by Henning Stverud <henning@stoverud.com>         //
