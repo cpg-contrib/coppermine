@@ -234,6 +234,23 @@ bblink a:hover {
         padding-left: 10px;
 }
 
+.catrow_noalb {
+        background: #616C7A ;
+        color : #C7C7C7;
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+}
+
+.catrow {
+        background: #56606D ;
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+}
+
 .tableb_compact {
         background: #474F5A;
         padding-top: 2px;

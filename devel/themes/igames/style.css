@@ -42,7 +42,7 @@ body { color : #C6B78E; }
 .topmenu, .topmenu a { color : #E6E6E6; }
 .topmenu a:hover { color : #FFFFCC; }
 .tableh1, .tableh1a, .tableh1_compact, .navmenu, .navmenu a, .sortorder_cell, .sortorder_options, .statlink, .statlink a, .statlink a:hover { color : #C6B78E; }
-.tableh2, .tableh2_compact { color : #FFFFCC; }
+.tableh2, .tableh2_compact, .catrow_noalb { color : #FFFFCC; }
 .textinput, .listbox, .radio, .checkbox { color: #FFFFCC; }
 .alblink, .alblink a, .catlink, .catlink a { color : #FFFFCC; }
 a,  .bblink a, .user_thumb_infobox a  { color: #FFFFCC; }
@@ -55,8 +55,8 @@ a:hover, .bblink a:hover, .user_thumb_infobox a:hover, .alblink a:hover, .catlin
 body { background-color: #4A4A4A; }
 .textinput, .listbox, .radio, .checkbox { background-color: #4A4A4A; }
 .tableh1, .tableh1_compact, .navmenu, .navmenu a, .navmenu a:hover  {         background : #3F3F3F ; }
-.tableh2, .tableh2_compact, .tablef, .img_caption_table th {         background : #343333 ; }
-.tableb, .tableb_compact, .thumbnails, .img_caption_table td { background : #454444 ; }
+.tableh2, .catrow_noalb, .tableh2_compact, .tablef, .img_caption_table th {         background : #343333 ; }
+.tableb, .catrow, .tableb_compact, .thumbnails, .img_caption_table td { background : #454444 ; }
 
 /* Borders for input controls */
 .textinput, .listbox, .button, .comment_button, .admin_menu, .admin_menu_thumb  {        border: 1px solid #666666; }
@@ -69,7 +69,7 @@ body { background-color: #4A4A4A; }
 
 /* Fonts definition */
 body { font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif; }
-.tableh1, .tableh1a, .catlink, .tableh2 { font-family: Verdana, Geneva, Arial, sans-serif; }
+.tableh1, .tableh1a, .catlink, .tableh2, .catrow_noalb { font-family: Verdana, Geneva, Arial, sans-serif; }
 .textinput, .listbox, .radio, .checkbox { font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif; }
 .button, .comment_button, .sortorder_options, .admin_menu_thumb { font-family: Arial, Helvetica, sans-serif; }
 
@@ -374,6 +374,20 @@ a:hover {
 }
 
 .tableb {
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+}
+
+.catrow_noalb {
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+}
+
+.catrow {
         padding-top: 3px;
         padding-right: 10px;
         padding-bottom: 3px;

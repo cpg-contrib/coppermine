@@ -25,7 +25,7 @@ body { color : #000000; }
 
 .tableh1, .tableh1a, .tableh1_compact, .navmenu, .navmenu a, .sortorder_cell, .sortorder_options, .statlink, .statlink a, .statlink a:hover { color : #000000; }
 
-.tableh2, .tableh2_compact { color : #000000; }
+.tableh2, .tableh2_compact, .catrow_noalb { color : #000000; }
 
 .textinput, .listbox, .radio, .checkbox { color: #000000; }
 
@@ -49,9 +49,9 @@ body { background-color: #FAFAFA; }
 
 .tableh1, .tableh1_compact, .navmenu, .navmenu a, .navmenu a:hover  {         background : #FFFFFF ; }
 
-.tableh2, .tableh2_compact, .tablef, .img_caption_table th {         background : #FFFFFF ; }
+.tableh2, .catrow_noalb, .tableh2_compact, .tablef, .img_caption_table th {         background : #FFFFFF ; }
 
-.tableb, .tableb_compact, .thumbnails, .img_caption_table td { background : #FFFFFF ; }
+.tableb, .catrow, .tableb_compact, .thumbnails, .img_caption_table td { background : #FFFFFF ; }
 
 
 /* Borders for input controls */
@@ -289,6 +289,20 @@ a:hover {
         padding-left: 10px;
 }
 
+.catrow_noalb {
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+        background-image: url(images/tableh2_bg.gif);
+}
+
+.catrow {
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+}
 
 .tableb_compact {
         padding-top: 2px;
