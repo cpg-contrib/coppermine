@@ -78,7 +78,7 @@ INSERT INTO CPG_config VALUES ('read_iptc_data', '0');
 
 INSERT INTO CPG_usergroups VALUES (1, 'Administrators', 0, 1, 1, 1, 1, 1, 1, 0, 0);
 INSERT INTO CPG_usergroups VALUES (2, 'Registered', 1024, 0, 1, 1, 1, 1, 1, 1, 0);
-INSERT INTO CPG_usergroups VALUES (3, 'Anonymous', 0, 0, 1, 1, 0, 0, 0, 1, 1);
+INSERT INTO CPG_usergroups VALUES (3, 'Anonymous', 0, 0, 1, 0, 0, 0, 0, 1, 1);
 INSERT INTO CPG_usergroups VALUES (4, 'Banned', 0, 0, 0, 0, 0, 0, 0, 1, 1);
 
 #
