@@ -109,7 +109,7 @@ if (count($HTTP_POST_VARS) > 0 && $valid_sender_email && $valid_recipient_email)
 
             $message = template_eval($template_ecard, $params);
         $tempTime = time();
-        $message .= "Sent by $sender_name from IP {$_SERVER['REMOTE_ADDR']} at ".gmstrftime("%A,  %B,%V,%Y %I:%M %p ", time())." [GMT]";
+        $message .= "Sent by $sender_name from IP {$_SERVER['REMOTE_ADDR']} at ".gmstrftime("%A,  %B,%d,%Y %I:%M %p ", time())." [GMT]";
             $subject = sprintf($lang_ecard_php['ecard_title'], $sender_name);
 
             $result = cpg_mail($recipient_email, $subject, $message, 'text/html', $sender_name, $sender_email);
