@@ -823,7 +823,8 @@ function build_caption(&$rowset,$must_have=array())
             $caption .= '<span class="thumb_caption">'.localised_date($row['msg_date'], $lastcom_date_fmt).'</span>';
         }
         if (in_array('msg_body',$must_have)) {
-            $msg_body = strlen($row['msg_body']) > 50 ? @substr($row['msg_body'],0,50)."...": $row['msg_body'];
+            $msg_body = strip_tags(bb_decode($row['msg_body'])); // I didn't want to fully bb_decode the message where report to admin isn't available. -donnoman
+            $msg_body = strlen($msg_body) > 50 ? @substr($msg_body,0,50)."...": $msg_body;
             if ($CONFIG['enable_smilies']) $msg_body = process_smilies($msg_body);
             if ($row['author_id']) {
                 $caption .= '<span class="thumb_caption"><a href ="profile.php?uid='.$row['author_id'].'">'.$row['msg_author'].'</a>: '.$msg_body.'</span>';
@@ -843,7 +844,11 @@ function build_caption(&$rowset,$must_have=array())
             $caption .= "<span class=\"thumb_caption\">".'<img src="'.$prefix.'images/rating'.round($row['pic_rating']/2000).'.gif" alt=""/>'.'<br />'.sprintf($lang_get_pic_data['n_votes'], $row['votes']).'</span>';
         }
         if (in_array('mtime',$must_have)) {
-                $caption .= "<span class=\"thumb_caption\">".localised_date($row['mtime'], $lasthit_date_fmt)."<br/>".$row['lasthit_ip'].'</span>';
+                $caption .= "<span class=\"thumb_caption\">".localised_date($row['mtime'], $lasthit_date_fmt);
+                if (GALLERY_ADMIN_MODE) {
+                  $caption .="<br/>".$row['lasthit_ip'];
+                }
+                $caption .='</span>';
         }
 
         $rowset[$key]['caption_text'] = $caption;

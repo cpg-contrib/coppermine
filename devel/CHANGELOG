@@ -272,3 +272,5 @@ Enabled smilies in reviewcom.php (Review Comments) for comments with smilies - 1
 Added single function to generate the thumbnail captions - 19 Februrary 2005, Donnoman 
 Added linked file statistics along with normal stats. (Admin setable) - February 15 2005, Aditya
 Added plugin actions to put content below the breadcrumb on thumbnail.php and displayimage.php - March 7 2005, Donnoman 
+Fixed display of IP address in last viewed to be dependent on 'GALLERY_ADMIN_MODE' - March 8 2005, Donnoman
+Fixed display of bb_code'ed comments being displayed raw in thumbnail captions, now is bb_decoded then strip_tagged - March 8 2005, Donnoman
