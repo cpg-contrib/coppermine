@@ -1,0 +1,42 @@
+Added Title option to sort in albums, Tarique
+Separated the breadcrumb block so that it can be placed independently of category, Tarique
+Added option to choose max hieght or width for thumbnails - will help in creating nicer looking thumbnail rows and cols, Tarique
+Added option to display a clickable flimstrip of thumbnails below the image display, Tarique
+Added option to show first level albums of a category instead of just statistics of the category, Tarique
+Added Absolute URL of a picture in the pic info this helps in giving out links to other people and the same picture will display regardless of the sort setting of the individual, Tarique
+Added option of turning on OR off the showing of "Private" Icon to unlogged / unprivileged user, Tarique
+Added Breadcrumb navigation to include album names - 23 Aug 2003, Tarique
+Added Last Updated Album Block - 23 Aug 2003, Tarique
+Fixed the bug in search.inc.php - 1st September 2003, Tarique
+Added Edit Name in comments - 2nd September 2003, Tarique
+Added IP logging - 18th - 18th September 2003, Jack
+Added Fav Pics Option - 18th September 2003, Tarique
+Added AnyContent Block - 19th September 2003, Tarique
+Added Complete Queries to the debug output - 24th September 2003, Tarique
+Added Comment IP viewing - 24th September 2003, Jack
+Fixed Batch Update to force selection of an album & identify the category of an album - 25th September 2003, Jack
+Added Email notification on Comment - 25th September 2003, Tarique
+Moved hardcoded text from util.php to language file - 27th September 2003, GauGau
+updated dutch.php and greek.php (minor bugfixes by original translators) - 30th September 2003, GauGau
+Added 'no right-click' admin option (I know this is childish but has been requested often), db update necessary (see update.sql) - 30th September 2003, GauGau
+IP Logging now on picture uploads - 30th September 2003, Jack
+fixed improper html tags in hardwired theme - 1st October 2003, GauGau
+added version info to html output (above </body>) for easier support - 1st October, GauGau
+Added user banning functionality - 2nd October, 2003,
+Added offline-manual in /docs-folder (manual.pdf) - 03rd October 2003, GauGau
+Fixed charset in pop-up bug (http://coppermine.sourceforge.net/board/viewtopic.php?t=291) - 05th October 2003, GauGau
+Fixed pop-up scrollbar bug (http://coppermine.sourceforge.net/board/viewtopic.php?t=290) - 05th October 2003, GauGau
+Added 1.2.0 translations for dutch, finnish, norwegian, spanish - 05th October 2003, GauGau
+Added 1.2.0 translations for arabic, hebrew and turkish - 06th October 2003, GauGau
+Moved all docs into the docs folder - 06th October 2003, GauGau
+Added 1.2.0 translations for swedish and german - 07th October 2003, GauGau
+Added 1.2.0 changes in english language to bosnian.php, brazilian.php, estonian.php, latvian.php, portuguese.php, russian.php, slovenian.php for 1.2.0 compliance - 07th October 2003, GauGau
+Added 1.2.0 indonesian (done by sengsara), updated danish (Laugesen) - 08th October 2003, GauGau
+Fixed corrupted language files (mustn't be in unicode, but ansi)  - 08th October 2003, GauGau
+Added romanian language file - 09th October 2003, GauGau
+fixed rtl-bug (filesize/unit) - 09th October 2003, GauGau
+Added french translation for 1.2.0 - 10th October 2003, GauGau
+Added korean language file for 1.2.0 - 10th October 2003, GauGau
+Added slovenian language file for 1.2.0 - 12th October 2003, GauGau
+Added croatian language file for 1.2.0 - 14th October 2003, GauGau
+Added chinese_gb language file for 1.2.0 - 14th October 2003, GauGau
