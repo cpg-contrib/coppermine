@@ -1,14 +1,32 @@
 <?php
+/**
+ * uplaodNew.php
+ *
+ * Script to upload the pictures with javascript Add More functionality.
+ *
+ * @package cpgNG
+ * @author Aditya <adityamooley@sanisoft.com>
+ * @version $Id$
+ */
+
+/**#@+
+ * Constant to prevent direct execution of config.inc.php
+ */
 define('IN_COPPERMINE', true);
 define('UPLOAD_PHP', true);
 define('DB_INPUT_PHP', true);
 define('ADMIN_PHP', true);
+/**#@-*/
 
 require('include/init.inc.php');
 require('include/picmgmt.inc.php');
-require('include/mailer.inc.php');
 
+/**#@+
+ * Include all the classes
+ */
+require('include/mailer.inc.php');
 require_once('classes/cpgTemplate.class.php');
+/**#@-*/
 
 /**
  * If user submit's the form
@@ -231,7 +249,7 @@ $t->assign("sel_album", $sel_album);
 $t->assign("lang_upload_php", $lang_upload_php);
 $t->assign("listArray", $listArray);
 $t->assign("userFields", $userFields);
-$t->assign("CONTENT", $t->fetch($CONFIG['theme']."/upload.html"));
+$t->assign("CONTENT", $t->fetch($CONFIG['theme']."/common/upload.html"));
 
 /**
  * Assign lang array's
