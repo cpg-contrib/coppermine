@@ -17,7 +17,8 @@
 /**
 * Coppermine Photo Gallery 1.3.0 index.php
 *
-* This file is the main display for categories and album it also displays thumbnails
+* This file is the main display for categories and album it also displays thumbnails,
+* also see documentation for this file's {@relativelink ../_index.php.php Free Standing Code}
 *
 * @copyright  2002,2003 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
@@ -31,10 +32,12 @@ if ($DIR[count($DIR)-2] == "modules") {
     echo "<html><body><h1>ERROR</h1>You installed the standalone Coppermine into your Nuke portal.<br>" . "Please download and install a CPG Port: <a href=\"http://sourceforge.net/project/showfiles.php?group_id=89658\">CPG for PostNuke OR CPG for PHPnuke</a></body></html>";
     die();
 } // end check
+
 /**
 * Unless this is true most things wont work - protection against direct execution of inc files
 */
 define('IN_COPPERMINE', true);
+
 /**
 * Sets the flag for lang file
 */
@@ -661,6 +664,9 @@ function list_cat_albums($cat = 0)
 // Main code
 //
 
+/**
+* See if $page has been passed in GET
+*/
 if (isset($HTTP_GET_VARS['page'])) {
     $PAGE = max((int)$HTTP_GET_VARS['page'], 1);
     $USER['lap'] = $PAGE;
@@ -669,6 +675,10 @@ if (isset($HTTP_GET_VARS['page'])) {
 } else {
     $PAGE = 1;
 } 
+
+/**
+* See if $cat has been passed in GET
+*/
 
 if (isset($HTTP_GET_VARS['cat'])) {
     $cat = (int)$HTTP_GET_VARS['cat'];
@@ -685,6 +695,11 @@ get_cat_list($breadcrumb, $cat_data, $statistics);
 pageheader($BREADCRUMB_TEXT ? $BREADCRUMB_TEXT : $lang_index_php['welcome']);
 
 $elements = preg_split("|/|", $CONFIG['main_page_layout'], -1, PREG_SPLIT_NO_EMPTY);
+
+/**
+* Loop through the $elements array to build the page using the parameters
+* set in the config
+*/
 
 foreach ($elements as $element) {
     if (preg_match("/(\w+),*(\d+)*/", $element, $matches)){ 
@@ -743,6 +758,9 @@ foreach ($elements as $element) {
             case 'anycontent':
                 if ($cat == 0) {
                     ob_start();
+					/**
+					* Any php code or HTML can be put in this file and will be displayed
+					*/
                     include('anycontent.php');
                     $anycontent = CPGPluginAPI::filter('anycontent',ob_get_contents());
                     ob_end_clean();
