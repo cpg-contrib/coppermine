@@ -998,9 +998,9 @@ $return = '
 1.2.1|lang/dutch-utf-8.php|1.2.1||optional|r@
 1.2.1|lang/english.php|1.2.1||mandatory|r@
 1.2.1|lang/english-utf-8.php|1.2.1||optional|r@
-1.2.1|lang/estonian.php|1.2.1||mandatory|r@
+1.2.1|lang/estonian.php|1.2.1||optional|r@
 1.2.1|lang/estonian-utf-8.php|1.2.1||optional|r@
-1.2.1|lang/finnish.php|1.2.1||mandatory|r@
+1.2.1|lang/finnish.php|1.2.1||optional|r@
 1.2.1|lang/finnish-utf-8.php|1.2.1||optional|r@
 1.2.1|lang/french.php|1.2.1||optional|r@
 1.2.1|lang/french-utf-8.php|1.2.1||optional|r@
