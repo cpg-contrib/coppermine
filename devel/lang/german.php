@@ -451,7 +451,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   //array('Erlaubte Datei-Typen (nur gültig für ImageMagick)', 'allowed_img_types',0), //cpg1.3.0
   array('Kommandozeilen-Parameter für ImageMagick', 'im_options', 0), //cpg1.3.0
   array('EXIF-Daten in JPEG-Dateien lesen', 'read_exif_data', 1), //cpg1.3.0
-  array('Read IPTC data in JPEG files', 'read_iptc_data', 1), //cpg1.3.0
+  array('IPTC-Daten in JPEG-Dateien lesen', 'read_iptc_data', 1), //cpg1.3.0
   array('Alben-Verzeichnis <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0), //cpg1.3.0
   array('Verzeichnis für Benutzer-Dateien <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0), //cpg1.3.0
   array('Vorsilbe für Bilder in Zwischengröße <a href="#notice1" class="clickable_option">*</a>', 'normal_pfx', 0), //cpg1.3.0
