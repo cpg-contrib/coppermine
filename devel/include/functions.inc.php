@@ -1868,7 +1868,17 @@ tempval.select()
         echo COPPERMINE_VERSION . '(' . COPPERMINE_VERSION_STATUS . ')';
         echo $debug_separate;
         error_reporting  (E_ERROR | E_WARNING | E_PARSE);
-        echo cpg_phpinfo_mod_output('gd','text');
+        if (function_exists('gd_info') == true) {
+            echo 'Module: GD';
+            echo $debug_underline;
+            $gd_array = gd_info();
+            foreach ($gd_array as $key => $value) {
+                echo $key.': '.$value."\n";
+            }
+            echo $debug_separate;
+        } else {
+            echo cpg_phpinfo_mod_output('gd','text');
+        }
         echo cpg_phpinfo_mod_output('mysql','text');
         echo cpg_phpinfo_mod_output('zlib','text');
         echo 'Server restrictions (safe mode)?';
@@ -2298,18 +2308,22 @@ return $return;
  **/
 
 function cpg_alert_dev_version() {
-        global $lang_version_alert;
+        global $lang_version_alert, $CONFIG;
         $return = '';
         if (COPPERMINE_VERSION_STATUS != 'stable') {
-        ob_start();
-        starttable('100%', $lang_version_alert['version_alert']);
-        print '<tr><td class="tableb">';
-        print sprintf($lang_version_alert['no_stable_version'], COPPERMINE_VERSION, COPPERMINE_VERSION_STATUS);
-        print '</td></tr>';
-        endtable();
-        print '<br />';
-        $return = ob_get_contents();
-        ob_end_clean();
+            ob_start();
+            starttable('100%', $lang_version_alert['version_alert']);
+            print '<tr><td class="tableb">';
+            print sprintf($lang_version_alert['no_stable_version'], COPPERMINE_VERSION, COPPERMINE_VERSION_STATUS);
+            print '</td></tr>';
+            endtable();
+            print '<br />';
+            $return = ob_get_contents();
+            ob_end_clean();
+        }
+        // check if gallery is offline
+        if ($CONFIG['offline'] == 1 && GALLERY_ADMIN_MODE) {
+            $return .= '<span style="color:red;font-weight:bold">'.$lang_version_alert['gallery_offline'].'</span><br />&nbsp;<br />';
         }
         return $return;
 }

@@ -240,6 +240,7 @@ $CONFIG['TABLE_FILETYPES']          = $CONFIG['TABLE_PREFIX']."filetypes";
 $CONFIG['TABLE_ECARDS']          = $CONFIG['TABLE_PREFIX']."ecards";
 $CONFIG['TABLE_TEMPDATA']        = $CONFIG['TABLE_PREFIX']."temp_data";
 $CONFIG['TABLE_FAVPICS']        = $CONFIG['TABLE_PREFIX']."favpics";
+$CONFIG['TABLE_BRIDGE']        = $CONFIG['TABLE_PREFIX']."bridge";
 
 // Connect to database
 cpg_db_connect() || die("<b>Coppermine critical error</b>:<br />Unable to connect to database !<br /><br />MySQL said: <b>" . mysql_error() . "</b>");
@@ -437,10 +438,10 @@ mysql_free_result($result);
 if (!GALLERY_ADMIN_MODE && $CONFIG['allow_private_albums']) get_private_album_set();
 
 if (!USER_IS_ADMIN && $CONFIG['offline'] && !strstr($_SERVER["SCRIPT_NAME"],'login')) {
-pageheader($lang_errors['offline_title']);
-msg_box($lang_errors['offline_title'], $lang_errors['offline_text']);
-pagefooter();
-exit;
+    pageheader($lang_errors['offline_title']);
+    msg_box($lang_errors['offline_title'], $lang_errors['offline_text']);
+    pagefooter();
+    exit;
 }
 
 
