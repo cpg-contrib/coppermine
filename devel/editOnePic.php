@@ -66,7 +66,7 @@ function process_post_data()
                 $pic = mysql_fetch_array($result);
                 mysql_free_result($result);
 
-                if (!GALLERY_ADMIN_MODE) {
+                if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
                         if ($pic['category'] != FIRST_USER_CAT + USER_ID) cpg_die(ERROR, $lang_errors['perm_denied']."<br />(picture category = {$pic['category']}/ $pid)", __FILE__, __LINE__);
                         if (!isset($user_album_set[$aid])) cpg_die(ERROR, $lang_errors['perm_denied']."<br />(target album = $aid)", __FILE__, __LINE__);
                 }
