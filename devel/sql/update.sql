@@ -249,3 +249,4 @@ INSERT INTO CPG_config VALUES ('user_profile6_name', '');
 
 INSERT INTO CPG_config VALUES ('language_fallback', '0');
 
+ALTER TABLE `CPG_users` CHANGE `user_profile6` `user_profile6` TEXT NOT NULL;

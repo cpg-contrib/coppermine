@@ -79,7 +79,7 @@ EOT;
 		array('input', 'user_profile3', $CONFIG['user_profile3_name'], 255),
 		array('input', 'user_profile4', $CONFIG['user_profile4_name'], 255),
 		array('input', 'user_profile5', $CONFIG['user_profile5_name'], 255),
-		array('input', 'user_profile6', $CONFIG['user_profile6_name'], 255)
+		array('textarea', 'user_profile6', $CONFIG['user_profile6_name'], 255)
         );
 
     foreach ($form_data as $element) switch ($element[0]) {
@@ -109,6 +109,25 @@ EOT;
                 <input type="text" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="$value" class="textinput">
                 </td>
         </tr>
+		
+EOT;
+            break;
+
+        case 'textarea' :
+            if (isset($HTTP_POST_VARS[$element[1]])) {
+                $value = $HTTP_POST_VARS[$element[1]];
+            } else {
+                $value = '';
+            } 
+           if ($element[2]) echo <<<EOT
+	<tr>
+    	<td width="40%" class="tableb"  height="25">
+			{$element[2]}
+        </td>
+        <td width="60%" class="tableb" valign="top">
+        	<textarea name="{$element[1]}" ROWS="7" WRAP="virtual"  class="textinput" STYLE="WIDTH: 100%">$value</textarea>
+		</td>
+	</tr>
 		
 
 EOT;

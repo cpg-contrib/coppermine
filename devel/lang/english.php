@@ -479,13 +479,14 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Allow logged in users to view memberlist', 'allow_memberlist', 1), //cpg1.3.0
 
 // custom profile fields, (casper) 1.4 devel
-  'Custom fields for user profile (leave blank if unused)',
-  array('Profile1 name', 'user_profile1_name', 0),
-  array('Profile2 name', 'user_profile2_name', 0),
-  array('Profile3 name', 'user_profile3_name', 0),
-  array('Profile4 name', 'user_profile4_name', 0),
-  array('Profile5 name', 'user_profile5_name', 0),
-  array('Profile6 name', 'user_profile6_name', 0),
+  'Custom fields for user profile (leave blank if unused).
+  Use Profile 6 for long entries, such as biographies',
+  array('Profile 1 name', 'user_profile1_name', 0),
+  array('Profile 2 name', 'user_profile2_name', 0),
+  array('Profile 3 name', 'user_profile3_name', 0),
+  array('Profile 4 name', 'user_profile4_name', 0),
+  array('Profile 5 name', 'user_profile5_name', 0),
+  array('Profile 6 name', 'user_profile6_name', 0),
   
   'Custom fields for image description (leave blank if unused)',
   array('Field 1 name', 'user_field1_name', 0),

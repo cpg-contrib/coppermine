@@ -116,3 +116,4 @@ Updated Server side favorite to be in separate table, 17th June 2004 tarique
 Added config settable profile fields, 19th June 2004, casper
 Added keyword Inserter, 20th June 2004, tarique
 Added version warning if other version than stable is being used, 22.06.2004, GauGau
+Changed profile field 6 to text area for longer biography entries etc, 22.06.2004, Casper

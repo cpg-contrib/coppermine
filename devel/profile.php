@@ -34,7 +34,7 @@ $edit_profile_form_param = array(
 	array('input', 'user_profile3', $CONFIG['user_profile3_name'], 255),
 	array('input', 'user_profile4', $CONFIG['user_profile4_name'], 255),
 	array('input', 'user_profile5', $CONFIG['user_profile5_name'], 255),
-	array('input', 'user_profile6', $CONFIG['user_profile6_name'], 255),
+	array('textarea', 'user_profile6', $CONFIG['user_profile6_name'], 255),
     );
 
 	
@@ -106,6 +106,24 @@ EOT;
         </td>
     </tr>
 
+	
+EOT;
+            break;
+
+        case 'textarea' :
+            $value = $form_data[$element[1]];
+			
+           if ($element[2]) echo <<<EOT
+	<tr>
+    	<td width="40%" class="tableb"  height="25">
+			{$element[2]}
+        </td>
+        <td width="60%" class="tableb" valign="top">
+        	<textarea name="{$element[1]}" ROWS="7" WRAP="virtual"  class="textinput" STYLE="WIDTH: 100%">$value</textarea>
+		</td>
+	</tr>
+	
+	
 EOT;
             break;
 

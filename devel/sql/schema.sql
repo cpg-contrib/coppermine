@@ -163,7 +163,7 @@ CREATE TABLE CPG_users (
   user_profile3 varchar(255) NOT NULL default '',
   user_profile4 varchar(255) NOT NULL default '',
   user_profile5 varchar(255) NOT NULL default '',
-  user_profile6 varchar(255) NOT NULL default '',
+  user_profile6 text NOT NULL default '',
   user_actkey varchar(32) NOT NULL default '',
 
   PRIMARY KEY  (user_id),
