@@ -223,8 +223,9 @@ function getfoldercontent($folder, &$dir_array, &$pic_array, &$expic_array)
     $dir = opendir($CONFIG['fullpath'] . $folder);
     while ($file = readdir($dir)) {
         if (is_dir($CONFIG['fullpath'] . $folder . $file)) {
-            if ($file != "." && $file != "..")
+            if ($file != "." && $file != ".." && $CONFIG['fullpath'] . $folder . $file != $CONFIG['fullpath'].'/edit' && $CONFIG['fullpath'] . $folder . $file != $CONFIG['fullpath'].'/'.substr($CONFIG['userpics'],0,strlen($CONFIG['userpics'])-1)) {
                 $dir_array[] = $file;
+            }
         }
         if (is_file($CONFIG['fullpath'] . $folder . $file)) {
             if (strncmp($file, $CONFIG['thumb_pfx'], strlen($CONFIG['thumb_pfx'])) != 0 && strncmp($file, $CONFIG['normal_pfx'], strlen($CONFIG['normal_pfx'])) != 0 && $file != 'index.html')
@@ -248,7 +249,7 @@ function display_dir_tree($folder, $ident)
     $dir = opendir($dir_path);
     static $dirCounter = 0;
     while ($file = readdir($dir)) {
-        if (is_dir($CONFIG['fullpath'] . $folder . $file) && substr($file,0,1) != "." && strpos($file,"'") == FALSE && $file != substr($CONFIG['userpics'],0,strlen($CONFIG['userpics'])-1)  && $file != "edit" ) {
+        if (is_dir($CONFIG['fullpath'] . $folder . $file) && substr($file,0,1) != "." && strpos($file,"'") == FALSE) {
             $start_target = $folder . $file;
             $dir_path = $CONFIG['fullpath'] . $folder . $file;
 
