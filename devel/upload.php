@@ -401,8 +401,7 @@ function get_and_convert_to_bytes ($ini_variable_name) {
 // Moved to 'logger.inc.php' - omni
 // The function spring_cleaning is a garbage collection routine used to purge a directory of old files.
 if (!function_exists('spring_cleaning'))
-function& spring_cleaning($directory_path, $cache_time = CPG_HOUR, $exclusion_list = array('index.html')) {
-    global $CONFIG;
+function& spring_cleaning($directory_path, $cache_time = 86400, $exclusion_list = array('index.html')) {
 
     //Storage the deleted files
     $deleted_list = array();
@@ -459,13 +458,6 @@ function& spring_cleaning($directory_path, $cache_time = CPG_HOUR, $exclusion_li
 
     // Don't forget to close the directory.
     closedir($directory_handle);
-
-    // For logging purposes
-    if ($CONFIG['log_mode']) {
-        for ( $i = 0; $i<count($deleted_list); $i++ ) {
-                log_write('Garbage collection deleted '.$deleted_list[$i].' at '.date("F j, Y, g:i a"),CPG_GLOBAL_LOG);
-        }
-    }
     return $deleted_list;
 }
 
