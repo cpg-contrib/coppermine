@@ -56,7 +56,7 @@ function display_group_list()
         VALUES (3, 'Anonymous', 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
         db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
         VALUES (4, 'Banned', 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
-        cpg_die(CRITICAL_ERROR, 'Group table was empty !<br /><br />Default groups created, please reload this page', __FILE__, __LINE__);
+        cpg_die(CRITICAL_ERROR, $lang_groupmgr_php['error_group_empty'], __FILE__, __LINE__);
     }
 
     $field_list = array('can_rate_pictures', 'can_send_ecards', 'can_post_comments', 'can_upload_pictures', 'pub_upl_need_approval', 'can_create_albums', 'priv_upl_need_approval');

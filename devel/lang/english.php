@@ -1128,9 +1128,10 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
   'del_groups' => 'Delete selected group(s)',
   'confirm_del' => 'Warning, when you delete a group, users that belong to this group will be transferred to the \'Registered\' group !\n\nDo you want to proceed ?', //js-alert
   'title' => 'Manage user groups',
-  'num_file_upload'=>'File upload boxes', // cpg1.4.0
-  'num_URI_upload'=>'URI upload boxes', // cpg1.4.0
-  'reset_to_default'=>'Reset to default name (%s) - recommended!', // cpg1.4.0
+  'num_file_upload' => 'File upload boxes', // cpg1.4.0
+  'num_URI_upload' => 'URI upload boxes', // cpg1.4.0
+  'reset_to_default' => 'Reset to default name (%s) - recommended!', // cpg1.4.0
+  'error_group_empty' => 'Group table was empty !<br /><br />Default groups created, please reload this page', // cpg1.4.0
 );
 
 // ------------------------------------------------------------------------- //
