@@ -381,6 +381,9 @@ function load_template()
         } else die("<b>Coppermine critical error</b>:<br />Unable to load template file ".TEMPLATE_FILE."!</b>");
 
         $template = fread(fopen($template_file, 'r'), filesize($template_file));
+        
+        $template = CPGPluginAPI::filter('template_html',$template);
+
         $gallery_pos = strpos($template, '{LANGUAGE_SELECT_FLAGS}');
         $template = str_replace('{LANGUAGE_SELECT_FLAGS}', languageSelect('flags') ,$template);
         $gallery_pos = strpos($template, '{LANGUAGE_SELECT_LIST}');
