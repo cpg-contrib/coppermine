@@ -1206,7 +1206,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
             }
 
             // Change file permission
-            chmod($path_to_image, octdec($CONFIG['default_file_mode']));
+            @chmod($path_to_image, octdec($CONFIG['default_file_mode'])); //silence the output in case chmod is disabled
 
             // Create a testing alias.
             $picture_alias = $matches[1].".".$matches[2];
@@ -1856,7 +1856,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
             // The file is located at $path_to_image.  We now need to continue with on server testing.
 
             // Change file permission
-            chmod($path_to_image, octdec($CONFIG['default_file_mode']));
+            @chmod($path_to_image, octdec($CONFIG['default_file_mode'])); //silence the output in case chmod is disabled
 
             // Create a testing alias. Use the temp name if a MIME type eas discovered.
             if ($URI_MIME_type) {
@@ -2191,7 +2191,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
             if (!is_dir($dest_dir)) {
                 mkdir($dest_dir, octdec($CONFIG['default_dir_mode']));
                 if (!is_dir($dest_dir)) cpg_die(CRITICAL_ERROR, sprintf($lang_db_input_php['err_mkdir'], $dest_dir), __FILE__, __LINE__, true);
-                chmod($dest_dir, octdec($CONFIG['default_dir_mode']));
+                @chmod($dest_dir, octdec($CONFIG['default_dir_mode'])); //silence the output in case chmod is disabled
                 $fp = fopen($dest_dir . '/index.html', 'w');
                 fwrite($fp, ' ');
                 fclose($fp);
@@ -2226,7 +2226,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
         if (rename($path_to_image, $uploaded_pic)) {
 
             // Change file permission
-            chmod($uploaded_pic, octdec($CONFIG['default_file_mode']));
+            @chmod($uploaded_pic, octdec($CONFIG['default_file_mode'])); //silence the output in case chmod is disabled
 
             // Create thumbnail and internediate image and add the image into the DB
             $result = add_picture($album, $filepath, $picture_name, $title, $caption, $keywords, $user1, $user2, $user3, $user4, $category, $raw_ip, $hdr_ip, $movie_wd, $movie_ht);
