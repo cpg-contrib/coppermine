@@ -501,6 +501,7 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'wait' => 'wait',
   'create_redir_file' => 'Create redirection file (recommended)',
   'create_redir_file_explanation' => 'To redirect users back to Coppermine once they logged into your BBS, you need a redirection file to be created within your BBS folder. When this option is checked, the bridge manager will attempt to create this file for you, or give you code ready to copy-and-paste to create the file manually.',
+  'browse' => 'browse',
 );
 
 // ------------------------------------------------------------------------- //
@@ -1178,6 +1179,17 @@ if (defined('LOGOUT_PHP')) $lang_logout_php = array(
   'logout' => 'Logout',
   'bye' => 'Bye bye %s ...',
   'err_not_loged_in' => 'You are not logged in !',
+);
+
+// ------------------------------------------------------------------------- //
+// File minibrowser.php
+// ------------------------------------------------------------------------- //
+
+if (defined('MINIBROWSER_PHP')) $lang_minibrowser_php = array(
+  'close' => 'close',
+  'submit' => 'OK',
+  'up' => 'up one level',
+  'current_path' => 'current path',
 );
 
 // ------------------------------------------------------------------------- //

@@ -738,9 +738,15 @@ case "settings_path":
         $section_number = 0;
         foreach($loop_array as $key) {
             $prefill = cpg_bridge_prefill($BRIDGE['short_name'],$key);
+            if ($key == 'relative_path_of_forum_from_webroot') {
+                $minibrowser = '<a href="javascript:;" onclick="MM_openBrWindow(\'minibrowser.php?startfolder='.rawurlencode($prefill).'&parentform='.rawurlencode($step).'&formelementname='.rawurlencode($key).'\',\''.uniqid(rand()) .'\',\'scrollbars=yes,toolbar=no,status=no,locationbar=no,resizable=yes,width=600,height=400\')"><img src="images/folder.gif" width="16" height="16" border="0" alt="" title="'.$lang_bridgemgr_php['browse'].'" /></a>';
+            } else {
+                $minibrowser = '';
+            }
             $reset_to_default = '';
             if ($default_bridge_data[$BRIDGE['short_name']][$key.'_used'] == '') {
                 $disabled = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
+                $minibrowser = '';
             } else {
                 $disabled = '';
                 $rows_displayed++;
@@ -750,21 +756,12 @@ case "settings_path":
             }
             if ($_POST['hide_unused_fields'] != 1 || $disabled == '')
             {
-                /*
-                $display1 = '';
-                $display2 = '';
-            } else {
-                $display1 = '<div id="section'.$section_number.'">';
-                $display2 = '</div>';
-                $section_number++;
-            }
-            */
                 print '<tr>'.$new_line;
                 print '    <td class="tableb">'.$new_line;
                 print '        '.$lang_bridgemgr_php[$key].':'.$new_line;
                 print '    </td>'.$new_line;
                 print '    <td class="tableb" style="overflow:visible">'.$new_line;
-                print '        <input type="text" name="'.$key.'" id="'.$key.'" class="textinput" value="'.$prefill.'" '.$disabled.' size="50" style="width:80%" />'.$reset_to_default.$new_line;
+                print '        <input type="text" name="'.$key.'" id="'.$key.'" class="textinput" value="'.$prefill.'" '.$disabled.' size="50" style="width:80%" />'.$minibrowser.$reset_to_default.$new_line;
                 print '    </td>'.$new_line;
                 print '    <td class="tableb">'.$new_line;
                 print $display1.$new_line;
