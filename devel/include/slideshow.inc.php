@@ -8,6 +8,15 @@
 // Set slideShowSpeed (milliseconds)
 var slideShowSpeed = <?php echo (int)$HTTP_GET_VARS['slideshow'] ?>
 
+// Agent sniffer shamelessly 'stolen' from the excellent X library from cross-browser.com
+var xOp7=false,xOp5or6=false,xIE4Up=false,xNN4=false,xUA=navigator.userAgent.toLowerCase(); 
+if(window.opera){ 
+  xOp7=(xUA.indexOf('opera 7')!=-1 || xUA.indexOf('opera/7')!=-1); 
+  if (!xOp7) xOp5or6=(xUA.indexOf('opera 5')!=-1 || xUA.indexOf('opera/5')!=-1 || xUA.indexOf('opera 6')!=-1 || xUA.indexOf('opera/6')!=-1); 
+} 
+else if(document.layers) xNN4=true; 
+else {xIE4Up=document.all && xUA.indexOf('msie')!=-1 && parseInt(navigator.appVersion)>=4;}
+
 // Duration of crossfade (seconds)
 var crossFadeDuration = 3
 
@@ -57,13 +66,13 @@ function preLoadPic(index)
 }
 
 function runSlideShow(){
-   if (document.all){
+   if (xIE4Up){
     	document.images.SlideShow.style.filter="blendTrans(duration=2)"
 		document.images.SlideShow.style.filter= "blendTrans(duration=crossFadeDuration)"
       document.images.SlideShow.filters.blendTrans.Apply()
 	}
 	document.images.SlideShow.src = preLoad[j].src
-	if (document.all){
+	if (xIE4Up){
 	   document.images.SlideShow.filters.blendTrans.Play()
 	}
 	
