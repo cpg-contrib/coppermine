@@ -595,6 +595,8 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Enable help-icons (help available in English only)','enable_help',9, 'f=index.htm&as=admin_general_help&ae=admin_general_help_end'),
   array('Enable clickable keywords in search','clickable_keyword_search',14),
   array('Show number of linked files','link_pic_count',1),
+  array('Keep detailed vote statistics','vote_details',1, 'f=index.htm&as=admin_general_votedetails&ae=admin_general_votedetails_end'),
+  array('Keep detailed hit statistics','hit_details',1, 'f=index.htm&as=admin_general_hitdetails&ae=admin_general_hitdetails_end'),
 
   'Language, Themes &amp; Charset settings',
   array('Language', 'lang', 5, 'f=index.htm&as=admin_language_language&ae=admin_language_language_end'),
@@ -937,7 +939,8 @@ $lang_picinfo = array(
   'Sharpness' => 'Sharpness',
   'ManageExifDisplay' => 'Manage Exif Display',
   'submit' => 'Submit',
-  'success' => 'Information updated successfully.'
+  'success' => 'Information updated successfully.',
+  'details' => 'Details'
 );
 
 $lang_display_comments = array(
@@ -1797,4 +1800,31 @@ if (defined('VIEWLOG_PHP')) $lang_viewlog_php = array(
   'no_logs' => 'No logs created.',
 );
 
+// ------------------------------------------------------------------------- //
+// File voteDetails.php - OK
+// ------------------------------------------------------------------------- //
+
+if (defined('VOTEDETAILS_PHP')) $lang_votedetails_php = array(
+  'title' => 'Vote Details',
+  'stats' => 'Vote Statistics',
+  'date' => 'Date',
+  'rating' => 'Rating',
+  'referer' => 'Referer',
+  'browser' => 'Browser',
+  'os' => 'Operating System'
+);
+
+// ------------------------------------------------------------------------- //
+// File hitDetails.php - OK
+// ------------------------------------------------------------------------- //
+
+if (defined('HITDETAILS_PHP')) $lang_hitdetails_php = array(
+  'title' => 'Hit Details',
+  'date' => 'Date',
+  'search_phrase' => 'Search',
+  'rating' => 'Rating',
+  'referer' => 'Referer',
+  'browser' => 'Browser',
+  'os' => 'O.S.'
+);
 ?>
