@@ -30,7 +30,7 @@ $lang_translation_info = array(
   'trans_date' => '2004-11-14',
 );
 
-$lang_charset = 'gb-2312';
+$lang_charset = 'utf-8';
 $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 
 // shortcuts for Byte, Kilo, Mega
