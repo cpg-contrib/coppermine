@@ -39,15 +39,15 @@ if (!in_array($pic, $FAVPICS)) {
     unset ($FAVPICS[$key]);
 }
 
-//If the user is logged in then put it in the DB 
+$data = base64_encode(serialize($FAVPICS));
+setcookie($CONFIG['cookie_name'] . '_fav', $data, time() + 86400 * 30, $CONFIG['cookie_path']);
 
+//If the user is logged in then put it in the DB 
 if (USER_ID > 0){	
 	$sql = "UPDATE {$CONFIG['TABLE_USERS']} SET user_favpics = '$data' WHERE user_id = ".USER_ID;	
 	db_query($sql);
 }
 
-$data = base64_encode(serialize($FAVPICS));
-setcookie($CONFIG['cookie_name'] . '_fav', $data, time() + 86400 * 30, $CONFIG['cookie_path']);
 
 $location = "displayimage.php?pos=" . (- $pic);
 $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
