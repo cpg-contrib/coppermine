@@ -578,7 +578,7 @@ $template_display_picture = <<<EOT
 EOT;
 // HTML template for the image rating box
 $template_image_rating = <<<EOT
-<table width="100%">
+<table align="center" width="$width" cellspacing="1" cellpadding="0" class="maintable">
         <tr>
                 <td colspan="6" class="tableh2_compact"><b>{TITLE}</b> {VOTES}</td>
         </tr>
@@ -594,7 +594,7 @@ $template_image_rating = <<<EOT
 EOT;
 // HTML template for the display of comments
 $template_image_comments = <<<EOT
-<table width="100%">
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
 
         <tr>
                 <td>
@@ -684,7 +684,7 @@ $template_image_comments = <<<EOT
 EOT;
 
 $template_add_your_comment = <<<EOT
-
+<table align="center" width="100%" cellspacing="1" cellpadding="0" class="maintable">
         <tr>
                 <td width="100%" class="tableh2_compact"><b>{ADD_YOUR_COMMENT}</b></td>
         </tr>
@@ -724,6 +724,7 @@ $template_add_your_comment = <<<EOT
                         {SMILIES}
                 </td>
         </tr>
+</table>		
 <!-- END smilies -->
 
 EOT;
@@ -1523,9 +1524,9 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, 
         echo $film_strip;
     }
 
-    echo $votes;
 	
-	echo $comments;
+    echo $votes;
+   
 	
 	
     $picinfo = isset($_COOKIE['picinfo']) ? $_COOKIE['picinfo'] : ($CONFIG['display_pic_info'] ? 'block' : 'none');
@@ -1535,9 +1536,11 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, 
     endtable();
 	echo "</div>\n";
     
+	echo "<div id=\"comments\">\n";
+   	 
+	echo $comments;
 	
-    
-
+	echo "</div>\n";
 	
 
 }
