@@ -17,11 +17,11 @@
 // $Id$
 // ------------------------------------------------------------------------- //
 /**
-* Coppermine Photo Gallery 1.3.0 banning.php
-* 
+* Coppermine Photo Gallery 1.4.0 banning.php
+*
 * Someone please add a description
-* 
-* @copyright 2002,2003 Gregory DEMAR, Coppermine Dev Team
+*
+* @copyright 2002-2004 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
 * @version $Id$
@@ -39,8 +39,8 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
 
 /**
  * create_banlist()
- * 
- * @return 
+ *
+ * @return
  **/
 function create_banlist()
 {

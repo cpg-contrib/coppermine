@@ -1,12 +1,11 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.4.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
-// (http://coppermine.sf.net/team/)                                          //
 // see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
 // This program is free software; you can redistribute it and/or modify      //
@@ -14,9 +13,8 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-/*
-$Id$
-*/
+// $Id$
+// ------------------------------------------------------------------------- //
 
 define('IN_COPPERMINE', true);
 define('DB_INPUT_PHP', true);
@@ -160,13 +158,13 @@ switch ($event) {
         $title = addslashes(trim($HTTP_POST_VARS['title']));
         $category = (int)$HTTP_POST_VARS['category'];
         $description = addslashes(trim($HTTP_POST_VARS['description']));
-		$keyword = addslashes(trim($HTTP_POST_VARS['keyword']));
+                $keyword = addslashes(trim($HTTP_POST_VARS['keyword']));
         $thumb = (int)$HTTP_POST_VARS['thumb'];
         $visibility = (int)$HTTP_POST_VARS['visibility'];
         $uploads = $HTTP_POST_VARS['uploads'] == 'YES' ? 'YES' : 'NO';
         $comments = $HTTP_POST_VARS['comments'] == 'YES' ? 'YES' : 'NO';
         $votes = $HTTP_POST_VARS['votes'] == 'YES' ? 'YES' : 'NO';
-		$password = $HTTP_POST_VARS['alb_password'];
+                $password = $HTTP_POST_VARS['alb_password'];
         $visibility = !empty($password) ? FIRST_USER_CAT + USER_ID : $visibility;
 
         if (!$title) cpg_die(ERROR, $lang_db_input_php['alb_need_title'], __FILE__, __LINE__);

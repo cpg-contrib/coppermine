@@ -1,18 +1,19 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.4.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
-// (http://coppermine.sf.net/team/)                                          //
 // see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
 // This program is free software; you can redistribute it and/or modify      //
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
+// ------------------------------------------------------------------------- //
+// $Id$
 // ------------------------------------------------------------------------- //
 // Coppermine Windows XP Web Publishing Wizard Client                        //
 // Based on the article posted by Sebastian Delmont                          //
@@ -24,8 +25,6 @@
 // ------------------------------------------------------------------------- //
 // Original implementation comes from Gallery                                //
 // http://gallery.menalto.com                                                //
-// ------------------------------------------------------------------------- //
-// $Id$
 // ------------------------------------------------------------------------- //
 
 // Declare we are in Coppermine.
@@ -568,8 +567,8 @@ function send_reg_file()
 
     header("Content-Type: application/octet-stream");
     $time_stamp = time();
-	header("Content-Disposition: attachment; filename=cpg_".$time_stamp.".reg");
-	
+        header("Content-Disposition: attachment; filename=cpg_".$time_stamp.".reg");
+
     $lines[] = 'Windows Registry Editor Version 5.00';
     $lines[] = '';
     //$lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\PublishingWizard\Providers\CopperminePhotoGallery]';

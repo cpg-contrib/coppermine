@@ -1,12 +1,11 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.2.0                                            //
+// Coppermine Photo Gallery 1.4.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR <gdemar@wanadoo.fr>                 //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
-// (http://coppermine.sf.net/team/)                                          //
 // see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
 // This program is free software; you can redistribute it and/or modify      //
@@ -14,12 +13,8 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-// DHTML core functions (c) Thomas Brattli DHTMLCentral 2001                 //
-// Base64 image functions thanks to php.holtsmark.no                         //
+// $Id$
 // ------------------------------------------------------------------------- //
-/*
-$Id$
-*/
 
 // embedded images
 function cornerleft()
@@ -59,7 +54,7 @@ if (isset($_GET['img'])) {
 }
 if (isset($_GET['img'])) {
   if ($_GET['img']=="right") {cornerright();exit;}
-} 
+}
 
 
 define('IN_COPPERMINE', true);
@@ -152,12 +147,12 @@ if ($_GET['id']){
    }//   newimage
 
    if(isset($_POST["save"])) {
-        
-		$width=$imgObj->width;
+
+                $width=$imgObj->width;
         $height=$imgObj->height;
-		$normal = $CONFIG['fullpath'] . $CURRENT_PIC['filepath'] . $CONFIG['normal_pfx'] . $CURRENT_PIC['filename'];
-		$thumbnail = $CONFIG['fullpath'] . $CURRENT_PIC['filepath'] . $CONFIG['thumb_pfx'] . $CURRENT_PIC['filename'];
-		$filesize = @filesize($img_dir.$newimage);
+                $normal = $CONFIG['fullpath'] . $CURRENT_PIC['filepath'] . $CONFIG['normal_pfx'] . $CURRENT_PIC['filename'];
+                $thumbnail = $CONFIG['fullpath'] . $CURRENT_PIC['filepath'] . $CONFIG['thumb_pfx'] . $CURRENT_PIC['filename'];
+                $filesize = @filesize($img_dir.$newimage);
 
           //Full image replace
           copy($img_dir.$newimage,$CONFIG['fullpath'].$CURRENT_PIC['filepath'].$CURRENT_PIC['filename'])   ;
@@ -173,14 +168,14 @@ if ($_GET['id']){
 
           //thumbnail resized and replace
                resize_image($img_dir.$newimage, $thumbnail, $CONFIG['thumb_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use']);
-		       $total_filesize = $filesize + (file_exists($normal) ? filesize($normal) : 0) + filesize($thumbnail);
-			   
+                       $total_filesize = $filesize + (file_exists($normal) ? filesize($normal) : 0) + filesize($thumbnail);
+
           //Update the image size in the DB
           db_query("UPDATE {$CONFIG['TABLE_PICTURES']}
                           SET pheight = $height,
                             pwidth = $width,
-							filesize = $filesize,
-							total_filesize = $total_filesize
+                                                        filesize = $filesize,
+                                                        total_filesize = $total_filesize
                           WHERE pid = '$pid'");
 
           $message = "Picture successfully saved - you can close this window now";
@@ -191,10 +186,10 @@ if ($_GET['id']){
 
         $width=$imgObj->width;
         $height=$imgObj->height;
-		$normal = $CONFIG['fullpath'] . $CURRENT_PIC['filepath'] . $CONFIG['normal_pfx'] . $CURRENT_PIC['filename'];
-		$thumbnail = $CONFIG['fullpath'] . $CURRENT_PIC['filepath'] . $CONFIG['thumb_pfx'] . $CURRENT_PIC['filename'];		
-		$currentPic = $CONFIG['fullpath'] . $CURRENT_PIC['filepath'] . $CURRENT_PIC['filename'];
-		
+                $normal = $CONFIG['fullpath'] . $CURRENT_PIC['filepath'] . $CONFIG['normal_pfx'] . $CURRENT_PIC['filename'];
+                $thumbnail = $CONFIG['fullpath'] . $CURRENT_PIC['filepath'] . $CONFIG['thumb_pfx'] . $CURRENT_PIC['filename'];
+                $currentPic = $CONFIG['fullpath'] . $CURRENT_PIC['filepath'] . $CURRENT_PIC['filename'];
+
         //Calculate the thumbnail dimensions
         if ($CONFIG['thumb_use'] == 'ht') {
                 $ratio = $height / $CONFIG['thumb_width'] ;
@@ -211,13 +206,13 @@ if ($_GET['id']){
         $newimage = $imgObj->filename;
 
         copy($img_dir.$newimage,$CONFIG['fullpath'].$CURRENT_PIC['filepath'].$CONFIG['thumb_pfx'].$CURRENT_PIC['filename'])   ;
-		
+
         $total_filesize = filesize($currentPic) + (file_exists($normal) ? filesize($normal) : 0) + filesize($thumbnail);
-			   
+
           //Update the image size in the DB
           db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET total_filesize = $total_filesize WHERE pid = '$pid'");
-		
-		
+
+
         $message = "Thumbnail successfully saved - you can close this window now";
 
    }

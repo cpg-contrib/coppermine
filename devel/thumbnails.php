@@ -1,12 +1,11 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.4.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
-// (http://coppermine.sf.net/team/)                                          //
 // see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
 // This program is free software; you can redistribute it and/or modify      //
@@ -14,14 +13,17 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
+// $Id$
+// ------------------------------------------------------------------------- //
+
 /**
-* Coppermine Photo Gallery 1.3.0 thumbnails.php
+* Coppermine Photo Gallery 1.4.0 thumbnails.php
 *
 * This file generates the data of thumbnails for all the albums and metalbums,
-* the actual display is handled by the display_thumbnails and then in-turn 
+* the actual display is handled by the display_thumbnails and then in-turn
 * theme_display_thumbnail function
 *
-* @copyright  2002,2003 Gregory DEMAR, Coppermine Dev Team
+* @copyright  2002-2004 Gregory DEMAR, Coppermine Dev Team
 * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
 * @package Coppermine
 * @version $Id$
@@ -95,7 +97,7 @@ if (is_numeric($album)) {
     if (mysql_num_rows($result) > 0) {
         $CURRENT_ALBUM_DATA = mysql_fetch_array($result);
         $actual_cat = $CURRENT_ALBUM_DATA['category'];
-	$CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];	
+        $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];
         breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);
         $cat = - $album;
     }
@@ -105,13 +107,13 @@ if (is_numeric($album)) {
         if (mysql_num_rows($result) > 0) {
             $CURRENT_ALBUM_DATA = mysql_fetch_array($result);
             $actual_cat = $CURRENT_ALBUM_DATA['category'];
-	        $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];	    
+                $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];
         }
-	 
+
         $ALBUM_SET .= 'AND aid IN (' . (- $cat) . ') ';
         breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);
         $CURRENT_CAT_NAME = $CURRENT_ALBUM_DATA['title'];
-	    $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];
+            $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];
     } else {
         $album_set_array = array();
         if ($cat == USER_GAL_CAT)
@@ -147,8 +149,8 @@ if (is_numeric($album)) {
 pageheader(isset($CURRENT_ALBUM_DATA) ? $CURRENT_ALBUM_DATA['title'] : $lang_meta_album_names[$album]);
 if ($breadcrumb) {
   if(!(strpos($CONFIG['main_page_layout'],"breadcrumb")===false)){
-    	theme_display_breadcrumb($breadcrumb, $cat_data);
-	}
+            theme_display_breadcrumb($breadcrumb, $cat_data);
+        }
     theme_display_cat_list($breadcrumb, $cat_data, '');
 }
 
@@ -158,16 +160,16 @@ if ($breadcrumb) {
 function form_albpw()
 {
     global $HTTP_POST_VARS, $lang_thumb_view;
-    $login_falied = 
-	  starttable('-1', $lang_thumb_view['enter_alb_pass'], 2);
+    $login_falied =
+          starttable('-1', $lang_thumb_view['enter_alb_pass'], 2);
       if (isset($HTTP_POST_VARS['validate_album'])) {
           $login_failed = "<tr><td class='tableh2' colspan='2' align='center'>
-		               <font color='red' size='1'>{$lang_thumb_view['invalid_pass']}</font></td></tr>
-					 ";
+                               <font color='red' size='1'>{$lang_thumb_view['invalid_pass']}</font></td></tr>
+                                         ";
       }
-	  echo <<<EOT
-			$login_failed
-			<tr>
+          echo <<<EOT
+                        $login_failed
+                        <tr>
               <form method="post" action="">
               <input type="hidden" name="validate_album" value="validate_album"/>
               <td class="tableb" width="40%">{$lang_thumb_view['pass']}: </td>
@@ -205,7 +207,7 @@ if ($CONFIG['allow_private_albums'] == 0 || !in_array($album,$FORBIDDEN_SET_DATA
 $sql = "SELECT aid FROM ".$CONFIG['TABLE_ALBUMS']." WHERE aid='$album' AND alb_password != ''";
 $result = db_query($sql);
 if (mysql_num_rows($result)) {
-  // This album has a password. 
+  // This album has a password.
   //Check whether the cookie is set for the current albums password
   if (!empty($HTTP_COOKIE_VARS[$CONFIG['cookie_name'].'_albpw'])) {
     $alb_pw = unserialize($HTTP_COOKIE_VARS[$CONFIG['cookie_name'].'_albpw']);

@@ -1,12 +1,11 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.4.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
-// (http://coppermine.sf.net/team/)                                          //
 // see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
 // This program is free software; you can redistribute it and/or modify      //
@@ -14,9 +13,8 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-/*
-$Id$
-*/
+// $Id$
+// ------------------------------------------------------------------------- //
 
 define('IN_COPPERMINE', true);
 define('DELETE_PHP', true);
@@ -94,7 +92,7 @@ function delete_picture($pid)
     $aid = $pic['aid'];
     $dir = $CONFIG['fullpath'] . $pic['filepath'];
     $file = $pic['filename'];
-    
+
 
     if (!is_writable($dir)) cpg_die(CRITICAL_ERROR, sprintf($lang_errors['directory_ro'], htmlspecialchars($dir)), __FILE__, __LINE__);
 
@@ -121,10 +119,10 @@ function delete_picture($pid)
     else
         echo "&nbsp;";
     echo "</td>";
-    
+
     $query = "DELETE FROM {$CONFIG['TABLE_EXIF']} WHERE filename='$dir$file' LIMIT 1";
     $result = db_query($query);
-    
+
     $query = "DELETE FROM {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' LIMIT 1";
     $result = db_query($query);
     echo "<td class=\"tableb\" align=\"center\">";

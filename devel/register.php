@@ -1,12 +1,11 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.4.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
-// (http://coppermine.sf.net/team/)                                          //
 // see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
 // This program is free software; you can redistribute it and/or modify      //
@@ -14,9 +13,8 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-/*
-$Id$
-*/
+// $Id$
+// ------------------------------------------------------------------------- //
 
 define('IN_COPPERMINE', true);
 define('REGISTER_PHP', true);
@@ -74,12 +72,12 @@ EOT;
         array('password', 'password_verification', $lang_register_php['password_again'], 25),
         array('input', 'email', $lang_register_php['email'], 255),
         array('label', $lang_register_php['optional_info']),
-		array('input', 'user_profile1', $CONFIG['user_profile1_name'], 255),
-		array('input', 'user_profile2', $CONFIG['user_profile2_name'], 255),
-		array('input', 'user_profile3', $CONFIG['user_profile3_name'], 255),
-		array('input', 'user_profile4', $CONFIG['user_profile4_name'], 255),
-		array('input', 'user_profile5', $CONFIG['user_profile5_name'], 255),
-		array('textarea', 'user_profile6', $CONFIG['user_profile6_name'], 255)
+                array('input', 'user_profile1', $CONFIG['user_profile1_name'], 255),
+                array('input', 'user_profile2', $CONFIG['user_profile2_name'], 255),
+                array('input', 'user_profile3', $CONFIG['user_profile3_name'], 255),
+                array('input', 'user_profile4', $CONFIG['user_profile4_name'], 255),
+                array('input', 'user_profile5', $CONFIG['user_profile5_name'], 255),
+                array('textarea', 'user_profile6', $CONFIG['user_profile6_name'], 255)
         );
 
     foreach ($form_data as $element) switch ($element[0]) {
@@ -109,7 +107,7 @@ EOT;
                 <input type="text" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="$value" class="textinput">
                 </td>
         </tr>
-		
+
 EOT;
             break;
 
@@ -118,17 +116,17 @@ EOT;
                 $value = $HTTP_POST_VARS[$element[1]];
             } else {
                 $value = '';
-            } 
+            }
            if ($element[2]) echo <<<EOT
-	<tr>
-    	<td width="40%" class="tableb"  height="25">
-			{$element[2]}
+        <tr>
+            <td width="40%" class="tableb"  height="25">
+                        {$element[2]}
         </td>
         <td width="60%" class="tableb" valign="top">
-        	<textarea name="{$element[1]}" ROWS="7" WRAP="virtual"  class="textinput" STYLE="WIDTH: 100%">$value</textarea>
-		</td>
-	</tr>
-		
+                <textarea name="{$element[1]}" ROWS="7" WRAP="virtual"  class="textinput" STYLE="WIDTH: 100%">$value</textarea>
+                </td>
+        </tr>
+
 
 EOT;
             break;
@@ -195,12 +193,12 @@ function check_user_info(&$error)
     $password = trim(get_post_var('password'));
     $password_again = trim(get_post_var('password_verification'));
     $email = trim(get_post_var('email'));
-	$profile1 = addslashes($HTTP_POST_VARS['user_profile1']);
-	$profile2 = addslashes($HTTP_POST_VARS['user_profile2']);
-	$profile3 = addslashes($HTTP_POST_VARS['user_profile3']);
-	$profile4 = addslashes($HTTP_POST_VARS['user_profile4']);
-	$profile5 = addslashes($HTTP_POST_VARS['user_profile5']);
-	$profile6 = addslashes($HTTP_POST_VARS['user_profile6']);
+        $profile1 = addslashes($HTTP_POST_VARS['user_profile1']);
+        $profile2 = addslashes($HTTP_POST_VARS['user_profile2']);
+        $profile3 = addslashes($HTTP_POST_VARS['user_profile3']);
+        $profile4 = addslashes($HTTP_POST_VARS['user_profile4']);
+        $profile5 = addslashes($HTTP_POST_VARS['user_profile5']);
+        $profile6 = addslashes($HTTP_POST_VARS['user_profile6']);
 
     $sql = "SELECT user_id " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_name = '" . addslashes($user_name) . "'";
     $result = db_query($sql);

@@ -1,12 +1,11 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.4.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
-// (http://coppermine.sf.net/team/)                                          //
 // see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
 // This program is free software; you can redistribute it and/or modify      //
@@ -14,9 +13,8 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-/*
-$Id$
-*/
+// $Id$
+// ------------------------------------------------------------------------- //
 
 define('IN_COPPERMINE', true);
 define('USERMGR_PHP', true);
@@ -244,12 +242,12 @@ function edit_user($user_id)
         array('yesno', 'user_active', $lang_usermgr_php['user_active']),
         array('group_list', 'user_group', $lang_usermgr_php['user_group']),
         array('input', 'user_email', $lang_usermgr_php['user_email'], 255),
-		array('input', 'user_profile1', $CONFIG['user_profile1_name'], 255),
-		array('input', 'user_profile2', $CONFIG['user_profile2_name'], 255),
-		array('input', 'user_profile3', $CONFIG['user_profile3_name'], 255),
-		array('input', 'user_profile4', $CONFIG['user_profile4_name'], 255),
-		array('input', 'user_profile5', $CONFIG['user_profile5_name'], 255),
-		array('textarea', 'user_profile6', $CONFIG['user_profile6_name'], 255)
+                array('input', 'user_profile1', $CONFIG['user_profile1_name'], 255),
+                array('input', 'user_profile2', $CONFIG['user_profile2_name'], 255),
+                array('input', 'user_profile3', $CONFIG['user_profile3_name'], 255),
+                array('input', 'user_profile4', $CONFIG['user_profile4_name'], 255),
+                array('input', 'user_profile5', $CONFIG['user_profile5_name'], 255),
+                array('textarea', 'user_profile6', $CONFIG['user_profile6_name'], 255)
         );
 
     $sql = "SELECT * FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$user_id'";
@@ -277,24 +275,24 @@ EOT;
                 </td>
         </tr>
 
-		
+
 EOT;
             break;
 
         case 'textarea' :
             $value = $form_data[$element[1]];
-			
+
            if ($element[2]) echo <<<EOT
-	<tr>
-    	<td width="40%" class="tableb"  height="25">
-			{$element[2]}
+        <tr>
+            <td width="40%" class="tableb"  height="25">
+                        {$element[2]}
         </td>
         <td width="60%" class="tableb" valign="top">
-        	<textarea name="{$element[1]}" ROWS="7" WRAP="virtual"  class="textinput" STYLE="WIDTH: 100%">$value</textarea>
-		</td>
-	</tr>
-	
-	
+                <textarea name="{$element[1]}" ROWS="7" WRAP="virtual"  class="textinput" STYLE="WIDTH: 100%">$value</textarea>
+                </td>
+        </tr>
+
+
 EOT;
             break;
 
@@ -402,12 +400,12 @@ function update_user($user_id)
     $user_name = addslashes(trim($HTTP_POST_VARS['user_name']));
     $user_password = addslashes(trim($HTTP_POST_VARS['user_password']));
     $user_email = addslashes(trim($HTTP_POST_VARS['user_email']));
-	$profile1 = addslashes($HTTP_POST_VARS['user_profile1']);
-	$profile2 = addslashes($HTTP_POST_VARS['user_profile2']);
-	$profile3 = addslashes($HTTP_POST_VARS['user_profile3']);
-	$profile4 = addslashes($HTTP_POST_VARS['user_profile4']);
-	$profile5 = addslashes($HTTP_POST_VARS['user_profile5']);
-	$profile6 = addslashes($HTTP_POST_VARS['user_profile6']);
+        $profile1 = addslashes($HTTP_POST_VARS['user_profile1']);
+        $profile2 = addslashes($HTTP_POST_VARS['user_profile2']);
+        $profile3 = addslashes($HTTP_POST_VARS['user_profile3']);
+        $profile4 = addslashes($HTTP_POST_VARS['user_profile4']);
+        $profile5 = addslashes($HTTP_POST_VARS['user_profile5']);
+        $profile6 = addslashes($HTTP_POST_VARS['user_profile6']);
     $user_active = $HTTP_POST_VARS['user_active'];
     $user_group = $HTTP_POST_VARS['user_group'];
     $group_list = isset($HTTP_POST_VARS['group_list']) ? $HTTP_POST_VARS['group_list'] : '';
