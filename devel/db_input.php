@@ -21,6 +21,7 @@ define('DB_INPUT_PHP', true);
 
 require('include/init.inc.php');
 require('include/picmgmt.inc.php');
+require('include/mailer.inc.php');
 
 function check_comment(&$str)
 {
@@ -130,9 +131,12 @@ switch ($event){
 
 	if (!USER_ID) { // Anonymous users, we need to use META refresh to save the cookie
 		$insert = db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip) VALUES ('$pid', '$msg_author', '$msg_body', NOW(), '{$USER['ID']}', '0', '$raw_ip', '$hdr_ip')");
-
 		$USER['name'] = $HTTP_POST_VARS['msg_author'];
 		$redirect = "displayimage.php?pos=".(-$pid);
+		if($CONFIG['email_comment_notification']){
+			$mail_body=$msg_body."\n\r See it at http://".$_SERVER["SERVER_NAME"]."/".$redirect;				
+			cpg_mail($CONFIG['gallery_admin_email'],$lang_db_input_php['email_comment_subject'],$mail_body);
+		}		
 		pageheader($lang_db_input_php['com_added'],"<META http-equiv=\"refresh\" content=\"1;url=$redirect\">");
 		msg_box($lang_db_input_php['info'],$lang_db_input_php['com_added'], $lang_continue, $redirect);
 		pagefooter();
@@ -140,8 +144,12 @@ switch ($event){
 		exit;
 	} else { // Registered users, we can use Location to redirect
 		$insert = db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip) VALUES ('$pid', '".addslashes(USER_NAME)."', '$msg_body', NOW(), '', '".USER_ID."', '$raw_ip', '$hdr_ip')");
-		$header_location = ( @preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE')) ) ? 'Refresh: 0; URL=' : 'Location: ';
 		$redirect = "displayimage.php?pos=".(-$pid);
+		if($CONFIG['email_comment_notification']){
+			$mail_body=$msg_body."\n\r See it at http://".$_SERVER["SERVER_NAME"]."/".$redirect;				
+			cpg_mail($CONFIG['gallery_admin_email'],$lang_db_input_php['email_comment_subject'],$mail_body);
+		}
+		$header_location = ( @preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE')) ) ? 'Refresh: 0; URL=' : 'Location: ';
 		header($header_location.$redirect);
 		pageheader($lang_db_input_php['com_added'],"<META http-equiv=\"refresh\" content=\"1;url=$redirect\">");
 		msg_box($lang_db_input_php['info'],$lang_db_input_php['com_added'], $lang_continue, $redirect);
