@@ -668,7 +668,7 @@ $lang_image_processor_php = array('finished_manipulation'=>'You have finished ma
 				  'finished_manipulation_button'=>'Proceed',
 				  'page_title'=>'Image Manipulation',
 				  'preview_image_alt_text'=>'Thumbnail preview of image.',
-				  'manipulation_query'=>'This is how the image you selected for upload currently appears. Do you wish to rotate the image? All rotations are counterclockwise.',
+				  'manipulation_query'=>'This is how the image you selected for upload currently appears. Do you wish to rotate the image? All rotations are counterclockwise. Please note, your image has not been uploaded yet.',
 				  'no_manipulation'=>'No',
 				  'IM_Error'=>'Error executing ImageMagick - Return value: ',
 				  'cmd_line'=>'Command Line :',
