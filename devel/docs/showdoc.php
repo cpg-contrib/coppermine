@@ -21,9 +21,6 @@
 $file = $_REQUEST['f'];
 $anchor_start = $_REQUEST['as'];
 $anchor_end = $_REQUEST['ae'];
-//$windowsize_x = $_REQUEST['windowsize_x'];
-//$windowsize_y = $_REQUEST['windowsize_y'];
-//$in_coppermine = $_REQUEST['in_coppermine'];
 $remove_head = $_REQUEST['remove_head'];
 $remove_stylesheet = $_REQUEST['remove_stylesheet'];
 $remove_to_top = $_REQUEST['top'];
