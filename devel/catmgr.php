@@ -215,6 +215,24 @@ function display_cat_list()
     }
 }
 
+function verify_children($parent, $cid)
+{
+    global $CONFIG, $children;
+
+    $sql = "SELECT cid " . "FROM {$CONFIG['TABLE_CATEGORIES']} " . "WHERE parent = '$parent' ";
+    $result = db_query($sql);
+
+    if (($cat_count = mysql_num_rows($result)) > 0) {
+		while ($row = mysql_fetch_array($result)) {
+       		$children[]=$row['cid'];		       
+       // call this function again to this this
+       // child's children
+       		verify_children($row['cid'], $cid);
+   	   } 
+    }
+	return false;
+}
+
 $op = isset($HTTP_GET_VARS['op']) ? $HTTP_GET_VARS['op'] : '';
 $current_category = array('cid' => '0', 'name' => '', 'parent' => '0', 'description' => '');
 
@@ -236,9 +254,14 @@ switch ($op) {
 
         $cid = (int)$HTTP_GET_VARS['cid'];
         $parent = (int)$HTTP_GET_VARS['parent'];
-
-        db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent', pos='-1' WHERE cid = '$cid' LIMIT 1");
-        break;
+		$children=array();	
+		verify_children($cid, $cid);
+		if (!in_array($parent, $children)){
+        	db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent', pos='-1' WHERE cid = '$cid' LIMIT 1");
+		}else{
+			cpg_die(ERROR, "You cannot move a category into its own child", __FILE__, __LINE__);
+		}    
+		break;
 
     case 'editcat':
         if (!isset($HTTP_GET_VARS['cid'])) cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'editcat'), __FILE__, __LINE__);
