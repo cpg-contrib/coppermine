@@ -248,16 +248,6 @@ $lang_language_selection = array(
   'choose_language' => 'Choose your language',
 );
 
-// ------------------------------------------------------------------------- //
-// File include/plugin_api.inc.php
-// ------------------------------------------------------------------------- //
-$lang_plugin_api = array(
-  'error_wakeup' => "Couldn't awaken plugin '%s'",
-  'error_install' => "Couldn't install plugin '%s'",
-  'error_uninstall' => "Couldn't uninstall plugin '%s'",
-  'error_sleep' => "Couldn't uninstall plugin '%s'<br />",
-);
-
 $lang_theme_selection = array(
   'reset_theme' => 'Default theme',
   'choose_theme' => 'Choose a theme',
@@ -279,6 +269,16 @@ $lang_version_alert = array(
 // ------------------------------------------------------------------------- //
 
 // void
+
+// ------------------------------------------------------------------------- //
+// File include/plugin_api.inc.php
+// ------------------------------------------------------------------------- //
+$lang_plugin_api = array(
+  'error_wakeup' => "Couldn't awaken plugin '%s'",
+  'error_install' => "Couldn't install plugin '%s'",
+  'error_uninstall' => "Couldn't uninstall plugin '%s'",
+  'error_sleep' => "Couldn't uninstall plugin '%s'<br />",
+);
 
 // ------------------------------------------------------------------------- //
 // File include/smilies.inc.php
