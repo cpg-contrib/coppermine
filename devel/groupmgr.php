@@ -83,10 +83,10 @@ EOT;
         echo <<< EOT
                 <td class="$table_background" align="left" valign="top">
                         <input type="hidden" name="group_id[]" value="{$group['group_id']}" />
-                        <input type="text" name="group_name_{$group['group_id']}" value="{$group['group_name']}" class="textinput" size="15" />
+                        <input type="text" name="group_name_{$group['group_id']}" value="{$group['group_name']}" class="textinput" size="12" />
 EOT;
         // show reset option if applicable
-        if (!defined('UDB_INTEGRATION')) {
+        if (!defined('UDB_INTEGRATION') and isset($default_group_names[$group['group_id']])) {
             if ($group['group_name'] != $default_group_names[$group['group_id']] && $default_group_names[$group['group_id']] != '') {
                 // we have a group here that doesn't have the default name
                 print '<img src="images/flags/reset.gif" width="16" height="11" border="0" alt="" title="'.sprintf($lang_groupmgr_php['reset_to_default'], $default_group_names[$group['group_id']]).'" style="cursor:pointer" onclick="document.groupmanager.group_name_'.$group['group_id'].'.value=\''.$default_group_names[$group['group_id']].'\'" />';
@@ -111,10 +111,10 @@ EOT;
             elseif($field_name=='priv_upl_need_approval'){echo $tr_start.$td_start.$lang_groupmgr_php['approval'].$td_end;}
             echo <<< EOT
             $td_start
-            <input type="radio" id="{$field_name}_{$group['group_id']}1" name="{$field_name}_{$group['group_id']}" value="1" $yes_selected /><label for="{$name}1" class="clickable_option">$lang_yes</label>
+            <input type="radio" id="{$field_name}_{$group['group_id']}1" name="{$field_name}_{$group['group_id']}" value="1" $yes_selected /><label for="{$field_name}_{$group['group_id']}1" class="clickable_option">$lang_yes</label>
             $td_end
             $td_start
-                        <input type="radio" id="{$field_name}_{$group['group_id']}0" name="{$field_name}_{$group['group_id']}" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
+                        <input type="radio" id="{$field_name}_{$group['group_id']}0" name="{$field_name}_{$group['group_id']}" value="0" $no_selected /><label for="{$field_name}_{$group['group_id']}0" class="clickable_option">$lang_no</label>
                         $td_end
                         $tr_end
 
