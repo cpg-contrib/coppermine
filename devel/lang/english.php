@@ -116,7 +116,7 @@ $lang_main_menu = array(
         'topn_lnk' => 'Most viewed',
         'toprated_lnk' => 'Top rated',
         'search_lnk' => 'Search',
-                'fav_lnk' => 'My Favorites',
+        'fav_lnk' => 'My Favorites',
 
 );
 
@@ -350,7 +350,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Number of columns for the album list', 'album_list_cols', 0),
         array('Size of thumbnails in pixels', 'alb_list_thumb_size', 0),
         array('The content of the main page', 'main_page_layout', 0),
-            array('Show first level album thumbnails in categories','first_level',1),
+        array('Show first level album thumbnails in categories','first_level',1),
 
         'Thumbnail view',
         array('Number of columns on thumbnail page', 'thumbcols', 0),
