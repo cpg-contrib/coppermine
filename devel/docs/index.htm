@@ -905,88 +905,89 @@ If your browser times out, hit the reload button.
       <a name="admin_language_charset_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
-      <a name="admin_album_list"></a>
-      <h3>4.11.3 Album list view</h3>
-      <h4>Width of the main table (pixels or %)</h4>
-      <p>This is the width of tables used on your main page or when you are
-      viewing thumbnails of an album. You can enter a width in pixels or specify
-      it in percents. The default value is 100%.</p>
-      <h4>Number of levels of categories to display</h4>
-      <p>The default value is 2. With this value the script will display the
-      current categories plus one level of sub-categories.</p>
-      <h4>Number of albums to display</h4>
-      <p>This is the number of albums to display on a page. If the current
-      category contains more albums, the album list will spread over multiple
-      pages.</p>
-      <h4>Number of columns for the album list</h4>
-      <p>Self explanatory. The default value is 2.</p>
-      <h4>Size of thumbnails in pixels</h4>
-      <p>This is the size of the thumbnails that are displayed for each album.
-      50 means that the thumbnail will fit inside a square of 50x50 pixels.</p>
-      <p>If the size you specify there is larger than &quot;Pictures and thumbnails
-      settings/Max width or height of a thumbnail&quot;, the thumbnail will be
-      stretched.</p>
-      <a name="admin_album_list_content"></a><a name="changing"></a><h4>The content of the main page</h4>
-      <p>This option allows you to change the content of the main page displayed
-      by the script.</p>
-      <p>The default value is &quot;<b>catlist/alblist/random,2/lastup,2</b>&quot;</p>
-      <p>You can use the following "codes"</p>
-      <ul>
-        <li>'<b>breadcrumb</b>': navigation inside the gallery (e.g. &quot;home &gt; category &gt; subcategory &gt; album&quot;)</li>
-        <li>'<b>catlist</b>': category list
-        <li>'<b>alblist</b>': album list
-        <li>'<b>random</b>': random files (leaving random files &quot;on&quot; for huge galleries with more than 10,000 pics might result in performance problems; switch random &quot;off&quot; in this case)
-        <li>'<b>lastup</b>': last uploads
-        <li>'<b>topn</b>': most viewed
-        <li>'<b>toprated</b>': top rated
-        <li>'<b>lastcom</b>': last comments </li>
-        <li>'<b>lasthits</b>': last viewed </li>
-        <li>'<b>anycontent</b>': inserts php-generated content that has to reside within the file 'anycontent.php' into the index page. Can be used to include banner-rotation scripts or similar.</li>
-        <li>'<b>lastalb</b>': last created albums</li>
-        </ul>
-      <p>Unless you really know what you are doing you should always keep catlist and alblist in &quot;<i>the content of the main page</i>&quot;, as they are the most basic parts of the index page.</p>
-      <p>The <b>,2</b> means 2 rows of thumbnails.</p>
-      <a name="admin_album_list_content_end"></a>
-
+<a name="admin_album_list"></a>
+<h3>4.11.3 Album list view</h3>
+<a name="admin_album_table-width"></a>
+<h4>Width of the main table (pixels or %)</h4>
+<p>This is the width of tables used on your main page or when you are viewing thumbnails of an album. You can enter a width in pixels or specify it in percents. The default value is 100%.</p>
+<a name="admin_album_table-width_end"></a>
+<a name="admin_album_category-levels"></a>
+<h4>Number of levels of categories to display</h4>
+<p>The default value is 2. With this value the script will display the current categories plus one level of sub-categories.</p>
+<a name="admin_album_category-levels_end"></a>
+<a name="admin_album_number"></a>
+<h4>Number of albums to display</h4>
+<p>This is the number of albums to display on a page. If the current category contains more albums, the album list will spread over multiple pages.</p>
+<a name="admin_album_number_end"></a>
+<a name="admin_album_columns"></a>
+<h4>Number of columns for the album list</h4>
+<p>Self explanatory. The default value is 2.</p>
+<a name="admin_album_columns_end"></a>
+<a name="admin_album_thumbnail-size"></a>
+<h4>Size of thumbnails in pixels</h4>
+<p>This is the size of the thumbnails that are displayed for each album. 50 means that the thumbnail will fit inside a square of 50x50 pixels.</p>
+<p>If the size you specify there is larger than &quot;Pictures and thumbnails settings/Max width or height of a thumbnail&quot;, the thumbnail will be stretched.</p>
+<a name="admin_album_thumbnail-size_end"></a>
+<a name="admin_album_list_content"></a><a name="changing"></a><h4>The content of the main page</h4>
+<p>This option allows you to change the content of the main page displayed by the script.</p>
+<p>The default value is &quot;<b>catlist/alblist/random,2/lastup,2</b>&quot;</p>
+<p>You can use the following "codes"</p>
+<ul>
+  <li>'<b>breadcrumb</b>': navigation inside the gallery (e.g. &quot;home &gt; category &gt; subcategory &gt; album&quot;)</li>
+  <li>'<b>catlist</b>': category list
+  <li>'<b>alblist</b>': album list
+  <li>'<b>random</b>': random files (leaving random files &quot;on&quot; for huge galleries with more than 10,000 pics might result in performance problems; switch random &quot;off&quot; in this case)
+  <li>'<b>lastup</b>': last uploads
+  <li>'<b>topn</b>': most viewed
+  <li>'<b>toprated</b>': top rated
+  <li>'<b>lastcom</b>': last comments </li>
+  <li>'<b>lasthits</b>': last viewed </li>
+  <li>'<b>anycontent</b>': inserts php-generated content that has to reside within the file 'anycontent.php' into the index page. Can be used to include banner-rotation scripts or similar.</li>
+  <li>'<b>lastalb</b>': last created albums</li>
+  </ul>
+<p>Unless you really know what you are doing you should always keep catlist and alblist in &quot;<i>the content of the main page</i>&quot;, as they are the most basic parts of the index page.</p>
+<p>The <b>,2</b> means 2 rows of thumbnails.</p>
+<a name="admin_album_list_content_end"></a>
+<a name="admin_album_first-level_thumbs"></a>
 <h4>Show first level album thumbnails in categories</h4>
 <p>Use this setting to choose between showing or not showing thumbnails from the first album in the categories.</p>
-
+<a name="admin_album_first-level_thumbs_end"></a>
 <a name="admin_album_list_alphasort_start"></a>
 <h4>Sort categories alphabetically (instead of custom sort order)</h4>
 <p>You can specify to have coppermine sort all categories alphabetically (instead of a customized order) by setting &quot;Sort categories alphabetically&quot; to &quot;Yes&quot;. This setting is available both in coppermine config an the category manager. If you enable alphabetical sorting, the up and down arrows that normally let you move the categories will disappear.</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_album_list_alphasort_end"></a>
+<a name="admin_album_list_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
-      <a name="admin_thumbnail_view"></a>
-      <h3>4.11.4 Thumbnail view</h3>
-      <h4>Number of columns on thumbnail page</h4>
-      <p>Default value is 4 this means that each row will show 4 thumbnails.</p>
-      <h4>Number of rows on thumbnail page</h4>
-      <p>Default value is 3.</p>
-      <h4>Maximum number of tabs to display</h4>
-      <p>When the thumbnails spread over multiple pages, tabs are displayed at
-      the bottom of the page. This value define how many tabs will be
-      displayed.</p>
-                        <h4>Display file caption (in addition to title) below the thumbnail </h4>
-                        <p>Toggles whether the file caption is displayed
-                        below each thumbnail while user is in thumbnail view.</p>
-                        <p class="small">[cpg1.3.0 or better required]</p>
-                        <h4>Display number of views below the thumbnail</h4>
-                        <p>Toggles whether the number of views is displayed
-                        below each thumbnail while user is in thumbnail view.</p>
-                        <p class="small">[cpg1.3.0 or better required]</p>
-                        <h4>Display number of comments below the thumbnail</h4>
-                        <p>Toggles the display of the number of comments for below each thumbnail.</p>
-                        <p class="small">[cpg1.3.0 or better required]</p>
-                        <h4>Default sort order for files</h4>
-                        <p>This option determines if you wish to have the file caption displayed
-                        below each thumbnail while user is in thumbnail view.</p>
-      <h4>Minimum number of votes for a file to appear in the 'top-rated'
-      list</h4>
-                        Used to determine how many votes a file must receive before appearing as
-                        &quot;top-rated.&quot;  If a file has received less than &quot;this value&quot;
-                        votes, it will not be displayed on the "top-rated" page.</p>
+<a name="admin_thumbnail_view"></a>
+<h3>4.11.4 Thumbnail view</h3>
+<a name="admin_thumbnail_columns"></a>
+<h4>Number of columns on thumbnail page</h4>
+<p>Default value is 4 this means that each row will show 4 thumbnails.</p>
+<a name="admin_thumbnail_columns_end"></a>
+<a name="admin_thumbnail_rows"></a>
+<h4>Number of rows on thumbnail page</h4>
+<p>Default value is 3.</p>
+<a name="admin_thumbnail_rows_end"></a>
+<a name="admin_thumbnail_tabs"></a>
+<h4>Maximum number of tabs to display</h4>
+<p>When the thumbnails spread over multiple pages, tabs are displayed at the bottom of the page. This value define how many tabs will be displayed.</p>
+<a name="admin_thumbnail_tabs_end"></a>
+<h4>Display file caption (in addition to title) below the thumbnail </h4>
+<p>Toggles whether the file caption is displayed below each thumbnail while user is in (regular) thumbnail view.</p>
+<p class="small">[cpg1.3.0 or better required]</p>
+<h4>Display number of views below the thumbnail</h4>
+<p>Toggles whether the number of views is displayed below each thumbnail while user is in thumbnail view.</p>
+<p class="small">[cpg1.3.0 or better required]</p>
+<h4>Display number of comments below the thumbnail</h4>
+<p>Toggles the display of the number of comments for below each thumbnail.</p>
+<p class="small">[cpg1.3.0 or better required]</p>
+<h4>Default sort order for files</h4>
+<p>This option determines if you wish to have the file caption displayed below each thumbnail while user is in thumbnail view.</p>
+<h4>Minimum number of votes for a file to appear in the 'top-rated' list</h4>
+Used to determine how many votes a file must receive before appearing as &quot;top-rated.&quot;  If a file has received less than &quot;this value&quot; votes, it will not be displayed on the "top-rated" page.</p>
+<a name="admin_thumbnail_view_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="admin_image_comment"></a>
