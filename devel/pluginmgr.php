@@ -188,7 +188,7 @@ switch ($op) {
         CPGPluginAPI::uninstall($_GET['p']);
         break;
     case 'install':
-        CPGPluginAPI::install($HTTP_GET_VARS['p']);
+        $installed = CPGPluginAPI::install($HTTP_GET_VARS['p']);
         break;
     case 'delete':
         $path = $_GET['p'];
@@ -254,12 +254,6 @@ switch ($op) {
 
 }
 
-// Refresh the screen
-if (isset($op)) {
-    header('Location: pluginmgr.php');
-}
-
-
 pageheader($lang_pluginmgr_php['pmgr']);
 echo <<<EOT
 
@@ -276,12 +270,36 @@ function confirmDel(text)
 </script>
 EOT;
 
-display_plugin_list();
+// Plugin isn't being configured; Display the plugin list
+if ($op != 'install' || (is_bool($installed) && $installed)) {
 
-echo <<<EOT
-        </form>
+    // Refresh the page; An operation was just performed
+    if  (isset($op)) {
+        header('Location: pluginmgr.php');
+    }
+    display_plugin_list();
+    
+// Plugin is being configured; Execute 'plugin_configure' action
+} else {
 
+    // Display configure page table header
+    starttable('100%','Configuring plugin:'.$CPG_PLUGINS['new']->name);
+
+    echo <<< EOT
+    <tr>
+        <td class="tableb" valign="top" width="100%">
 EOT;
+
+        // Execute 'plugin_configure' action on the new plugin
+        CPGPluginAPI::action('plugin_configure',null,CPG_EXEC_NEW);
+    echo <<< EOT
+        </td>
+    </tr>
+EOT;
+
+    // End the table
+    endtable();
+}
 
 echo "<br />\n";
 
