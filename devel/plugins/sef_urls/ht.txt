@@ -1,0 +1,33 @@
+
+Options FollowSymLinks SymLinksIfOwnerMatch 
+
+RewriteEngine on
+
+#  Uncomment the following line if your webserver's
+#  URL is not directly related to physical file paths.
+#  Update "YOUR_COPPERMINE_ROOT" (just / for root)
+
+#RewriteBase /YOUR_COPPERMINE_ROOT
+
+#
+# Rewrite index urls
+#
+RewriteRule index-([0-9]*)\.html index.php?cat=$1 [NC]
+
+#
+# Rewrite thumbnail urls
+#
+RewriteRule thumbnails-([a-z0-9]*)-([0-9]*)\.html thumbnails.php?album=$1&cat=$2 [NC]
+
+RewriteRule thumbnails-([a-z0-9]*)-page-([0-9]*)\.html thumbnails.php?album=$1&page=$2 [NC]
+
+RewriteRule thumbnails-([a-z0-9]*)\.html thumbnails.php?album=$1 [NC]
+
+
+#
+# Rewrite displayimage urls
+#
+RewriteRule displayimage-([a-z0-9]*)-([\-]?[0-9]*)\.html displayimage.php?album=$1&pos=$2 [NC]
+
+RewriteRule displayimage-([\-]?[0-9]*)\.html displayimage.php?pos=$1 [NC]
+
