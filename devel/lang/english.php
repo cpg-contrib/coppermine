@@ -471,6 +471,9 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Default mode for directories', 'default_dir_mode', 0),
   array('Default mode for files', 'default_file_mode', 0),
 
+  'Movie Playback Settings (Doesn\'t affect flash files)',
+  array('Autostart', 'media_autostart',1),
+
   'User settings',
   array('Allow new user registrations', 'allow_user_registration', 1),
   array('User registration requires email verification', 'reg_requires_valid_email', 1),
