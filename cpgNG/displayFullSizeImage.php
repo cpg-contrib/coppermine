@@ -26,11 +26,13 @@
   } elseif (isset($_GET['pid'])) {
       $pid = (int)$_GET['pid'];
       $sql = "SELECT * " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='$pid' $ALBUM_SET";
-      $result = cpg_db_query($sql);
 
-      if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+      $db->query($sql);
+      if (!$db->nf()) {
+        cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
+      }
 
-      $row = mysql_fetch_array($result);
+      $row = $db->fetchRow();
       $picUrl = $picData->__getPicUrl($row, 'fullsize');
       $geom = 'width="' . $row['pwidth'] . '" height="' . $row['pheight'] . '"';
       $t->assign("picUrl", $picUrl);

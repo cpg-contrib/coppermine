@@ -137,10 +137,11 @@ if (!$picData["pid"]) {
 if (isset($picData)) {
     $query = "SELECT title, comments, votes, category, aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='{$picData['aid']}' LIMIT 1";
 
-    $result = cpg_db_query($query);
-    if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, sprintf($lang_errors['pic_in_invalid_album'], $picData['aid']), __FILE__, __LINE__);
-    $CURRENT_ALBUM_DATA = mysql_fetch_array($result);
-    mysql_free_result($result);
+    $db->query($query);
+    if (!$db->nf()) {
+      cpg_die(CRITICAL_ERROR, sprintf($lang_errors['pic_in_invalid_album'], $picData['aid']), __FILE__, __LINE__);
+    }
+    $CURRENT_ALBUM_DATA = $db->fetchRow();
 }
 
 /**

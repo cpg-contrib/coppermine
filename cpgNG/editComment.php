@@ -3,7 +3,7 @@ define('IN_COPPERMINE', true);
 define('DISPLAYIMAGE_PHP', true);
 define('INDEX_PHP', true);
 //define('SMILIES_PHP', true);
-
+error_reporting(E_ALL);
 require('include/init.inc.php');
 
 require_once('classes/cpgTemplate.class.php');
@@ -35,11 +35,14 @@ if (isset($_POST["event"])) {
         if ($msg_body == '') cpg_die(ERROR, $lang_db_input_php['err_comment_empty'], __FILE__, __LINE__);
 
         if (GALLERY_ADMIN_MODE) {
-            $update = cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body', msg_author='$msg_author' WHERE msg_id='$msg_id'");
+            $query = "UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body', msg_author='$msg_author' WHERE msg_id='$msg_id'";
+            $update = $db->query($query);
         } elseif (USER_ID) {
-            $update = cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body' WHERE msg_id='$msg_id' AND author_id ='" . USER_ID . "' LIMIT 1");
+            $query = "UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body' WHERE msg_id='$msg_id' AND author_id ='" . USER_ID . "' LIMIT 1";
+            $update = $db->query($query);
         } else {
-            $update = cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body' WHERE msg_id='$msg_id' AND author_md5_id ='{$USER['ID']}' AND author_id = '0' LIMIT 1");
+            $query = "UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body' WHERE msg_id='$msg_id' AND author_md5_id ='{$USER['ID']}' AND author_id = '0' LIMIT 1";
+            $update = $db->query($query);
         }
 
         $commentUpdated = 1;
@@ -54,12 +57,14 @@ if (isset($_GET['msg_id'])) {
 }
 
 $query = "SELECT msg_author, msg_body FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id = '$msg_id'";
-$result = cpg_db_query($query);
-if (mysql_num_rows($result) == 0) {
+
+$db->query($query);
+
+if ($db->nf() == 0) {
   cpg_die(ERROR, $lang_errors["non_exist_comment"], __FILE__, __LINE__);
 }
 
-$row = mysql_fetch_array($result);
+$row = $db->fetchRow();
 
 $comment = array (
                   "msg_id" => $msg_id,
@@ -81,8 +86,12 @@ if (isset($commentUpdated)) {
 }
 $t->assign("comment", $comment);
 $t->assign("lang_display_comments", $lang_display_comments);
-$t->assign("CONTENT", $t->fetchHTML("commom/editComment.html"));
+$t->assign("CONTENT", $t->fetchHTML("common/editComment.html"));
 $t->assign("PAGE_TITLE", $CONFIG["gallery_name"]);
 $t->assign("CHARSET", $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset']);
-$t->display("popup.html");
+
+/**
+  * Using print $t->fetchHTML() instead of $t->display() so that fallback for popup.html can be implemented.
+  */
+print $t->fetchHTML("common/popup.html");
 ?>
