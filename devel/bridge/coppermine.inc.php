@@ -134,7 +134,7 @@ class cpg_udb extends core_udb {
 
             // If this is a 'remember me' login set the remember field to true
 			if ($remember) {
-      	        $remember_sql = ",remember = true ";
+      	        $remember_sql = ",remember = 'true' ";
 			} else {
 			    $remember_sql = '';
 			}
