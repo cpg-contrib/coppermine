@@ -126,7 +126,7 @@ EOT;
 // step one:  get the data from the online repository
 $online_repository_url = 'http://coppermine.sourceforeg.net/repository.txt';
 // connect to the online repository at sourceforge.net
-@ini_set('allow_url_fopen','1');
+@ini_set("allow_url_fopen","1");
 $file = @fopen ($online_repository_url, 'r');
 if ($file) {
     while (!feof ($file)) {
@@ -143,7 +143,7 @@ if ($file) {
     }
     $online_repository_connection = 1;
     fclose($file);
-    @ini_set('allow_url_fopen','0');
+    @ini_set("allow_url_fopen","0");
 } else {
     starttable('100%', $lang_versioncheck_php['online_repository_unable']);
     print '<tr><td class="tableb">';
@@ -931,7 +931,7 @@ $return = '
 1.3.2|upload.php|1.3.2|1.6|mandatory|r@
 1.3.2|usermgr.php|1.3.2|1.5|mandatory|r@
 1.3.2|util.php|1.3.2|1.5|mandatory|r@
-1.3.2|versioncheck.php|1.3.2|1.1|mandatory|r@
+1.3.2|versioncheck.php|1.4.0|1.1|mandatory|r@
 1.3.2|xp_publish.php|1.3.2|1.4|mandatory|r@
 1.3.2|zipdownload.php|1.3.2|1.2|mandatory|r@
 1.3.2|albums|||mandatory|w@
@@ -1031,10 +1031,10 @@ $return = '
 1.3.2|lang/norwegian-utf-8.php|1.3.2|1.6|optional|r@
 1.3.2|lang/polish.php|1.3.2|1.4|optional|r@
 1.3.2|lang/polish-utf-8.php|1.3.2|1.3|optional|r@
-1.3.2|lang/romanian.php|1.3.2|1.4|optional|r@
-1.3.2|lang/romanian-utf-8.php|1.3.2|1.3|optional|r@
-1.3.2|lang/romanian_no_diacritics.php|1.3.2|1.4|optional|r@
-1.3.2|lang/romanian_no_diacritics-utf-8.php|1.3.2|1.3|optional|r@
+1.3.2|lang/romanian.php|1.3.0|1.4|optional|r@
+1.3.2|lang/romanian-utf-8.php|1.3.0|1.3|optional|r@
+1.3.2|lang/romanian_no_diacritics.php|1.3.0|1.4|optional|r@
+1.3.2|lang/romanian_no_diacritics-utf-8.php|1.3.0|1.3|optional|r@
 1.3.2|lang/russian.php|1.3.2|1.4|optional|r@
 1.3.2|lang/russian-utf-8.php|1.3.2|1.3|optional|r@
 1.3.2|lang/slovenian.php|1.3.2|1.10|optional|r@
