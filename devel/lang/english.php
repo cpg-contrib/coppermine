@@ -89,6 +89,9 @@ $lang_errors = array(
         'offline_title' => 'Offline',
         'offline_text' => 'Gallery is currently offline - check back soon',
         'ecards_empty' => 'There are currently no ecard records to display. Check that you have enabled ecard logging in coppermine config!',
+        'action_failed' => 'Action failed.  Coppermine is unable to process your request.',
+        'no_zip' => 'The necessary libraries to process ZIP files are not available.  Please contact your Coppermine administrator.',
+        'zip_type' => 'You do not have permission to upload ZIP files.'
 );
 
 $lang_bbcode_help = 'Following codes might be useful: <li>[b]<b>Bold</b>[/b]</li> <li>[i]<i>Italic</i>[/i]</li> <li>[url=http://yoursite.com/]Url Text[/url]</li> <li>[email]user@domain.com[/email]</li>';
@@ -782,6 +785,11 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
         'title' => 'Manage user groups',
         'approval_1' => 'Pub. Upl. approval (1)',
         'approval_2' => 'Priv. Upl. approval (2)',
+        'upload_form_config' => 'Upload form configuration',
+        'upload_form_config_values' => array( 'Single file uploads only', 'Multiple file uploads only', 'URI uploads only', 'ZIP upload only', 'File-URI', 'File-ZIP', 'URI-ZIP', 'File-URI-ZIP'),
+        'custom_user_upload'=>'User may customize number of upload boxes?',
+        'num_file_upload'=>'Maximum/exact number of file upload boxes',
+        'num_URI_upload'=>'Maximum/exact number of URI upload boxes',
         'note1' => '<b>(1)</b> Uploads in a public album need admin approval',
         'note2' => '<b>(2)</b> Uploads in an album that belong to the user need admin approval',
         'notes' => 'Notes'
@@ -1067,6 +1075,17 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
 
 if (defined('UPLOAD_PHP')) $lang_upload_php = array(
         'title' => 'Upload file',
+        'custom_title' => 'Customized Request Form',
+        'cust_instr_1' => 'You may select a customized number of file and URI upload boxes. However, you may not select more than the limits listed below.',
+        'cust_instr_2' => 'URI upload boxes:',
+        'cust_instr_3' => 'File upload boxes:',
+        'cust_instr_4' => 'Please enter the number of each type of upload box you desire at this time.  Then click submit.',
+        'reg_instr_1' => 'You may upload using the following methods:',
+        'reg_instr_2' => 'Individual file',
+        'reg_instr_3' => 'URI/URL',
+        'reg_instr_4' => 'ZIP file',
+        'reg_instr_5' => 'Use any file upload box to upload ZIP files.',
+        'reg_instr_6' => 'Enter the URI/URL in the text box. (Example: http://www.mysite.com/images/example.jpg)',
         'max_fsize' => 'Maximum allowed file size is %s KB',
         'album' => 'Album',
         'picture' => 'File',
@@ -1074,6 +1093,12 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
         'description' => 'File description',
         'keywords' => 'Keywords (separate with spaces)',
         'err_no_alb_uploadables' => 'Sorry there is no album where you are allowed to upload files',
+        'success' => 'The upload was successful.',
+        'part_success' => 'However, some files could not be uploaded.',
+        'failure' => 'The upload failed.',
+        'place_instr_1' => 'Please place the files in albums at this time.  You may also enter relevant information about each file now.',
+        'place_instr_2' => 'More files need placement. Please click continue.',
+        'process_complete' => 'You have successfully placed all the files.'
 );
 
 
