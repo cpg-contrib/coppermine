@@ -77,12 +77,10 @@ class cpg_udb extends core_udb {
 		// Board table names
 		$this->table = array(
 			'users' => 'users',
-			'groups' => 'groups',
 		);
 
 		// Derived full table names
 		$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
-		$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
 		
 		// Table field names
 		$this->field = array(
@@ -93,9 +91,7 @@ class cpg_udb extends core_udb {
 			'regdate' => 'registered', // name of 'registered' field in users table
 			'location' => 'location', // name of 'location' field in users table
 			'website' => 'url', // name of 'website' field in users table
-			'usertbl_group_id' => 'group_id', // name of 'group id' field in users table
-			'grouptbl_group_id' => 'g_id', // name of 'group id' field in groups table
-			'grouptbl_group_name' => 'g_title' // name of 'group name' field in groups table
+			'usertbl_group_id' => 'status', // name of 'group id' field in users table
 		);
 		
 		// Pages to redirect to
@@ -106,38 +102,45 @@ class cpg_udb extends core_udb {
 		);
 		
 		// Group ids
-		$this->admingroup = 1;
-		$this->guestgroup = 3;
+		$this->admingroup = 2;
+		$this->guestgroup = -1;
 		
 		// Cookie settings - used in following functions only
 		$this->cookie_name = $cookie_name;
-		$this->cookie_seed = $cookie_seed;
 		
 		// Connect to db
 		$this->connect();
 	}
-
+		
 	// definition of how to extract id, name, group from a session cookie
 	function session_extraction($cookie_id)
 	{
-			// unused
+		$row = array('id' => 0, 'username' => 'Guest', 'status' => -1);
+		
+        if (isset($_COOKIE[$this->cookie_name])) {
+			list($username, $pass_hash) = unserialize($_COOKIE[$this->cookie_name]);
+			if (strcasecmp($username, 'Guest'))
+			{
+				$result = cpg_db_query("SELECT id, username, status+100 AS status FROM {$this->usertable} WHERE username = '$username' AND password = '$pass_hash'", $this->link_id);
+				$row = mysql_fetch_assoc($result);
+			}
+		}
+		
+		return $row;
 	}
 	
 	// definition of how to extract an id and password hash from a cookie
 	function cookie_extraction()
 	{
 	    $id = 0;
-
-        if (isset($_COOKIE[$this->cookie_name]))
-                list($id, $pass_hash) = unserialize($_COOKIE[$this->cookie_name]);
-
-		return array($id, $pass_hash);
+		
+		return array($id, '');
 	}
 	
 	// definition of actions required to convert a password from user database form to cookie form
 	function udb_hash_db($password)
 	{
-		return md5($this->cookie_seed.$password);
+		return $password;
 	}
 	
 	// Login
@@ -145,7 +148,7 @@ class cpg_udb extends core_udb {
 	{
 		global $CONFIG;
 		
-		$this->redirect('/login.php?action=login&redir='.$CONFIG['site_url']);
+		$this->redirect('/login.php?action=in&redir='.$CONFIG['site_url']);
 	}
 
 	// Logout
