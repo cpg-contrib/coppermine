@@ -1,4 +1,4 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.2.1                                            //
 // ------------------------------------------------------------------------- //
@@ -13,7 +13,7 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- // 
+// ------------------------------------------------------------------------- //
 
 define('IN_COPPERMINE', true);
 define('CATMGR_PHP', true);
@@ -33,8 +33,8 @@ function fix_cat_table()
         $set = '(' . substr($set, 0, -1) . ')';
         $sql = "UPDATE {$CONFIG['TABLE_CATEGORIES']} " . "SET parent = '0' " . "WHERE parent=cid OR parent NOT IN $set";
         $result = db_query($sql);
-    } 
-} 
+    }
+}
 
 function get_subcat_data($parent, $ident = '')
 {
@@ -61,13 +61,13 @@ function get_subcat_data($parent, $ident = '')
                     'pos' => $pos++,
                     'cat_count' => $cat_count,
                     'name' => $ident . $subcat['name']);
-            } 
+            }
             $prev_cid = $subcat['cid'];
             $last_index = count($CAT_LIST) -1;
             get_subcat_data($subcat['cid'], $ident . '&nbsp;&nbsp;&nbsp;');
-        } 
-    } 
-} 
+        }
+    }
+}
 
 function update_cat_order()
 {
@@ -75,7 +75,7 @@ function update_cat_order()
 
     foreach ($CAT_LIST as $category)
     db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='{$category['pos']}' WHERE cid = '{$category['cid']}' LIMIT 1");
-} 
+}
 
 function cat_list_box($highlight = 0, $curr_cat, $on_change_refresh = true)
 {
@@ -83,29 +83,29 @@ function cat_list_box($highlight = 0, $curr_cat, $on_change_refresh = true)
 
     if ($on_change_refresh) {
         $lb = <<< EOT
-			<select onChange="if(this.options[this.selectedIndex].value) window.location.href='$PHP_SELF?op=setparent&cid=$curr_cat&parent='+this.options[this.selectedIndex].value;"  name="parent" class="listbox">
+                        <select onChange="if(this.options[this.selectedIndex].value) window.location.href='$PHP_SELF?op=setparent&cid=$curr_cat&parent='+this.options[this.selectedIndex].value;"  name="parent" class="listbox">
 
 EOT;
     } else {
         $lb = <<< EOT
-			<select name="parent" class="listbox">
+                        <select name="parent" class="listbox">
 
 EOT;
-    } 
-    $lb .= '			<option value="0"' . ($highlight == 0 ? ' selected': '') . ">* No Category *</option>\n";
+    }
+    $lb .= '                        <option value="0"' . ($highlight == 0 ? ' selected': '') . ">' . $lang_albmgr_php['no_category'] . '</option>\n";
     foreach($CAT_LIST as $category) if ($category['cid'] != 1 && $category['cid'] != $curr_cat) {
-        $lb .= '			<option value="' . $category['cid'] . '"' . ($highlight == $category['cid'] ? ' selected': '') . ">" . $category['name'] . "</option>\n";
+        $lb .= '                        <option value="' . $category['cid'] . '"' . ($highlight == $category['cid'] ? ' selected': '') . ">" . $category['name'] . "</option>\n";
     } elseif ($category['cid'] != 1 && $category['cid'] == $curr_cat) {
-        $lb .= '			<option value="' . $category['parent'] . '"' . ($highlight == $category['cid'] ? ' selected': '') . ">" . $category['name'] . "</option>\n";
-    } 
+        $lb .= '                        <option value="' . $category['parent'] . '"' . ($highlight == $category['cid'] ? ' selected': '') . ">" . $category['name'] . "</option>\n";
+    }
 
     $lb .= <<<EOT
-			</select>
+                        </select>
 
 EOT;
 
     return $lb;
-} 
+}
 
 function display_cat_list()
 {
@@ -114,32 +114,32 @@ function display_cat_list()
     $CAT_LIST3 = $CAT_LIST;
 
     foreach ($CAT_LIST3 as $key => $category) {
-        echo "	<tr>\n";
-        echo '		<td class="tableb" width="80%"><b>' . $category['name'] . '</b></td>' . "\n";
+        echo "        <tr>\n";
+        echo '                <td class="tableb" width="80%"><b>' . $category['name'] . '</b></td>' . "\n";
 
         if ($category['pos'] > 0) {
-            echo '		<td class="tableb" width="4%"><a href="' . $PHP_SELF . '?op=move&cid1=' . $category['cid'] . '&pos1=' . ($category['pos']-1) . '&cid2=' . $category['prev'] . '&pos2=' . ($category['pos']) . '">' . '<img src="images/up.gif"  border="0">' . '</a></td>' . "\n";
+            echo '                <td class="tableb" width="4%"><a href="' . $PHP_SELF . '?op=move&cid1=' . $category['cid'] . '&pos1=' . ($category['pos']-1) . '&cid2=' . $category['prev'] . '&pos2=' . ($category['pos']) . '">' . '<img src="images/up.gif"  border="0">' . '</a></td>' . "\n";
         } else {
-            echo '		<td class="tableb" width="4%">' . '&nbsp;' . '</td>' . "\n";
-        } 
+            echo '                <td class="tableb" width="4%">' . '&nbsp;' . '</td>' . "\n";
+        }
 
         if ($category['pos'] < $category['cat_count']-1) {
-            echo '		<td class="tableb" width="4%"><a href="' . $PHP_SELF . '?op=move&cid1=' . $category['cid'] . '&pos1=' . ($category['pos'] + 1) . '&cid2=' . $category['next'] . '&pos2=' . ($category['pos']) . '">' . '<img src="images/down.gif"  border="0">' . '</a></td>' . "\n";
+            echo '                <td class="tableb" width="4%"><a href="' . $PHP_SELF . '?op=move&cid1=' . $category['cid'] . '&pos1=' . ($category['pos'] + 1) . '&cid2=' . $category['next'] . '&pos2=' . ($category['pos']) . '">' . '<img src="images/down.gif"  border="0">' . '</a></td>' . "\n";
         } else {
-            echo '		<td class="tableb" width="4%">' . '&nbsp;' . '</td>' . "\n";
-        } 
+            echo '                <td class="tableb" width="4%">' . '&nbsp;' . '</td>' . "\n";
+        }
 
         if ($category['cid'] != 1) {
-            echo '		<td class="tableb" width="4%"><a href="' . $PHP_SELF . '?op=deletecat&cid=' . $category['cid'] . '" onClick="return confirmDel(\'' . addslashes(str_replace('&nbsp;', '', $category['name'])) . '\')">' . '<img src="images/delete.gif"  border="0">' . '</a></td>' . "\n";
+            echo '                <td class="tableb" width="4%"><a href="' . $PHP_SELF . '?op=deletecat&cid=' . $category['cid'] . '" onClick="return confirmDel(\'' . addslashes(str_replace('&nbsp;', '', $category['name'])) . '\')">' . '<img src="images/delete.gif"  border="0">' . '</a></td>' . "\n";
         } else {
-            echo '		<td class="tableb" width="4%">' . '&nbsp;' . '</td>' . "\n";
-        } 
+            echo '                <td class="tableb" width="4%">' . '&nbsp;' . '</td>' . "\n";
+        }
 
-        echo '		<td class="tableb" width="4%">' . '<a href="' . $PHP_SELF . '?op=editcat&cid=' . $category['cid'] . '">' . '<img src="images/edit.gif" border="0">' . '</a></td>' . "\n";
-        echo '		<td class="tableb" width="4%">' . "\n" . cat_list_box($category['parent'], $category['cid']) . "\n" . '</td>' . "\n";
-        echo "	</tr>\n";
-    } 
-} 
+        echo '                <td class="tableb" width="4%">' . '<a href="' . $PHP_SELF . '?op=editcat&cid=' . $category['cid'] . '">' . '<img src="images/edit.gif" border="0">' . '</a></td>' . "\n";
+        echo '                <td class="tableb" width="4%">' . "\n" . cat_list_box($category['parent'], $category['cid']) . "\n" . '</td>' . "\n";
+        echo "        </tr>\n";
+    }
+}
 
 $op = isset($HTTP_GET_VARS['op']) ? $HTTP_GET_VARS['op'] : '';
 $current_category = array('cid' => '0', 'name' => '', 'parent' => '0', 'description' => '');
@@ -211,7 +211,7 @@ switch ($op) {
         $result = db_query("UPDATE {$CONFIG['TABLE_ALBUMS']} SET category='$parent' WHERE category = '$cid'");
         $result = db_query("DELETE FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid='$cid' LIMIT 1");
         break;
-} 
+}
 
 fix_cat_table();
 get_subcat_data(0);
@@ -233,19 +233,19 @@ EOT;
 starttable('100%');
 
 echo <<<EOT
-	<tr>
-		<td class="tableh1"><b><span class="statlink">{$lang_catmgr_php['category']}</span></b></td>
-		<td colspan="4" class="tableh1" align="center"><b><span class="statlink">{$lang_catmgr_php['operations']}</span></b></td>
-		<td class="tableh1" align="center"><b><span class="statlink">{$lang_catmgr_php['move_into']}</span></b></td>
-	</tr>
-	<form method="get" action="$PHP_SELF">
+        <tr>
+                <td class="tableh1"><b><span class="statlink">{$lang_catmgr_php['category']}</span></b></td>
+                <td colspan="4" class="tableh1" align="center"><b><span class="statlink">{$lang_catmgr_php['operations']}</span></b></td>
+                <td class="tableh1" align="center"><b><span class="statlink">{$lang_catmgr_php['move_into']}</span></b></td>
+        </tr>
+        <form method="get" action="$PHP_SELF">
 
 EOT;
 
 display_cat_list();
 
 echo <<<EOT
-	</form>
+        </form>
 
 EOT;
 
@@ -257,38 +257,38 @@ starttable('100%', $lang_catmgr_php['update_create'], 2);
 $lb = cat_list_box($current_category['parent'], $current_category['cid'], false);
 $op = $current_category['cid'] ? 'updatecat' : 'createcat';
 echo <<<EOT
-	<form method="post" action="$PHP_SELF?op=$op">
-	<input type="hidden" name="cid" value ="{$current_category['cid']}">
-	<tr>
-    	<td width="40%" class="tableb">
-			{$lang_catmgr_php['parent_cat']}
+        <form method="post" action="$PHP_SELF?op=$op">
+        <input type="hidden" name="cid" value ="{$current_category['cid']}">
+        <tr>
+            <td width="40%" class="tableb">
+                        {$lang_catmgr_php['parent_cat']}
         </td>
         <td width="60%" class="tableb" valign="top">
-        	$lb
-		</td>
-	</tr>
-	<tr>
-    	<td width="40%" class="tableb">
-			{$lang_catmgr_php['cat_title']}
+                $lb
+                </td>
+        </tr>
+        <tr>
+            <td width="40%" class="tableb">
+                        {$lang_catmgr_php['cat_title']}
         </td>
         <td width="60%" class="tableb" valign="top">
-        	<input type="text" style="width: 100%" name="name" value="{$current_category['name']}" class="textinput">
-		</td>
-	</tr>
-	<tr>
-		<td class="tableb" valign="top">
-			{$lang_catmgr_php['cat_desc']}
-		</td>
-		<td class="tableb" valign="top">
-			<textarea name="description" ROWS="5" COLS="40" SIZE="9"  WRAP="virtual" STYLE="WIDTH: 100%;" class="textinput">{$current_category['description']}</textarea>
-		</td>
-	</tr>
-	<tr>
-		<td colspan="2" align="center" class="tablef">
-		<input type="submit" value="{$lang_catmgr_php['update_create']}" class="button">
-		</td>
-		</form>
-	</tr>
+                <input type="text" style="width: 100%" name="name" value="{$current_category['name']}" class="textinput">
+                </td>
+        </tr>
+        <tr>
+                <td class="tableb" valign="top">
+                        {$lang_catmgr_php['cat_desc']}
+                </td>
+                <td class="tableb" valign="top">
+                        <textarea name="description" ROWS="5" COLS="40" SIZE="9"  WRAP="virtual" STYLE="WIDTH: 100%;" class="textinput">{$current_category['description']}</textarea>
+                </td>
+        </tr>
+        <tr>
+                <td colspan="2" align="center" class="tablef">
+                <input type="submit" value="{$lang_catmgr_php['update_create']}" class="button">
+                </td>
+                </form>
+        </tr>
 
 EOT;
 
