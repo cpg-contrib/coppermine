@@ -121,7 +121,7 @@ function picrow($picfile, $picid, $albid)
         $mime_content = get_type($picname);
         $extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
         $img = '<img src="images/thumb_'.$extension.'.jpg" class="thumbnail" width="48" border="0">';
-    else return '';
+    }    
 
     if (filesize($picname) && is_readable($picname)) {
         //$fullimagesize = getimagesize($picname); COMMENTED OUT FOR VIDEO SUPPORT
