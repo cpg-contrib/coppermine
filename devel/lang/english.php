@@ -726,6 +726,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Enable plugins', 'enable_plugins', 12, 'f=index.htm&as=admin_misc_enable-plugins&ae=admin_misc_enable-plugins_end'),  //cpg1.4.0
   array('Logging mode <a href="#notice3" class="clickable_option">***</a>', 'log_mode', 11, 'f=index.htm&as=admin_misc_logging&ae=admin_misc_logging_end'), //cpg1.4.0
   array('Allow banning of non-routable (private) IP addresses', 'ban_private_ip', 1,  'f=index.htm&as=admin_misc_private-ip&ae=admin_misc_private-ip_end'), //cpg1.4.0
+  array('Browsable batch-add interface', 'browse_batch_add', 1), //cpg1.4.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -1473,6 +1474,7 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'no_folders' => 'There are no folders inside the "albums" folder yet. Make sure to create at least one custom folder within "albums" folder and ftp-upload your files there. You mustn\'t upload to the "userpics" nor "edit" folders, they are reserved for http uploads and internal purposes.', //cpg1.4.0
    'albums_no_category' => 'Albums with no category', //cpg1.4.0, album pulldown mod, added by frogfoot
   'personal_albums' => '* Personal albums', //cpg1.4.0, album pulldown mod, added by frogfoot
+  'browse_batch_add' => 'Browsable interface (recommended)', //cpg1.4.0
 );
 
 

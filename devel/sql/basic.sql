@@ -265,3 +265,4 @@ INSERT INTO CPG_config VALUES ('language_fallback', '1');
 INSERT INTO CPG_config VALUES ('vote_details', '0');
 
 INSERT INTO CPG_config VALUES ('hit_details', '0');
+INSERT INTO CPG_config VALUES ('browse_batch_add', '1');

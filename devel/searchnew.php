@@ -122,7 +122,7 @@ function dirheader($dir, $dirid)
 
     if (!is_writable($CONFIG['fullpath'] . $dir))
         $warning = "<tr><td class=\"tableh2\" valign=\"middle\" colspan=\"3\">\n" . "<b>{$lang_search_new_php['warning']}</b>: {$lang_search_new_php['change_perm']}</td></tr>\n";
-    return "<tr><td class=\"tableh2\"><input type=\"checkbox\" name=\"checkAll2\" onClick=\"selectAll(this,'pics');\" class=\"checkbox\" title=\"".$lang_check_uncheck_all."\" /></td><td class=\"tableh2\" valign=\"middle\" colspan=\"2\">\n" .
+    return "<tr><td class=\"tableh2\"><input type=\"checkbox\" name=\"checkAll2\" onClick=\"selectAll(this,'pics');\" class=\"checkbox\" title=\"".$lang_check_uncheck_all."\" /></td><td class=\"tableh2\" valign=\"middle\" align=\"right\" colspan=\"2\">\n" .
     sprintf($lang_search_new_php['target_album'], $dir, albumselect($dirid)) . "</td></tr>\n" . $warning;
 }
 
@@ -373,7 +373,9 @@ function CPGscandir($dir, &$expic_array)
 $album_array = array();
 getallalbumsindb($album_array);
 // We need at least one album
-if (!count($album_array)) cpg_die(ERROR, $lang_search_new_php['need_one_album'], __FILE__, __LINE__);
+if (!count($album_array)) {
+    cpg_die(ERROR, $lang_search_new_php['need_one_album'], __FILE__, __LINE__);
+}
 
 if (isset($_POST['insert'])) {
     if (!isset($_POST['pics'])) cpg_die(ERROR, $lang_search_new_php['no_pic_to_add'], __FILE__, __LINE__);
@@ -438,7 +440,7 @@ EOT;
     ob_end_flush();
 } elseif (isset($_GET['startdir'])) {
     pageheader($lang_search_new_php['page_title']);
-    $help = '&nbsp;'.cpg_display_help('f=index.htm&as=ftp&ae=ftp_end&top=1#ftp_select_file', '500', '400');
+    $help = '&nbsp;'.cpg_display_help('f=index.htm&as=ftp&ae=ftp_end&top=1#ftp_select_file', '550', '400');
     starttable("100%");
     echo <<<EOT
         <script language="javascript" type="text/javascript">
@@ -506,15 +508,62 @@ EOT;
     pageheader($lang_search_new_php['page_title']);
     $help = '&nbsp;'.cpg_display_help('f=index.htm&as=ftp&ae=ftp_end&top=1', '600', '450');
     starttable(-1, $lang_search_new_php['select_dir'].$help);
+
+    // write the interface change to the db
+    if (isset($_POST['update_config'])) {
+        $value = $_POST['browse_batch_add'];
+        cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'browse_batch_add'");
+        $CONFIG['browse_batch_add'] = $value;
+        if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
+            log_write('CONFIG UPDATE SQL: '.
+              "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'browse_batch_add'\n".
+              'TIME: '.date("F j, Y, g:i a")."\n".
+              'USER: '.$USER_DATA['user_name'],
+              CPG_DATABASE_LOG
+              );
+        }
+    }
+
+    $iframe_startfolder = str_replace('searchnew.php', '', $_SERVER['PHP_SELF']).rtrim($CONFIG['fullpath'], '/').'/';
+    $iframe_hide = rawurlencode('.,..,edit,'.rtrim($CONFIG['userpics'], '/'));
+    print '    <tr>'."\n";
+    print '        <td class="tableb" align="center">'."\n";
+    if ($CONFIG['browse_batch_add'] == 1) {
+        print '            <iframe src="minibrowser.php?startfolder='.$iframe_startfolder.'&parentform=choosefolder&formelementname=startdir&no_popup=1&limitfolder='.$iframe_startfolder.'&hidefolders='.$iframe_hide.'&linktarget='.$_SERVER['PHP_SELF'].'&searchnew_php=1" width="95%" height="400" name="popup_in_a_box">'."\n";
+    }
     display_dir_tree('', '');
+    if ($CONFIG['browse_batch_add'] == 1) {
+        print '            </iframe>'."\n";
+    }
+    print '        </td>'."\n";
+    print '    </tr>'."\n";
+
+    // configure batch-add interface (classic or browsable)
+    $yes_selected = $CONFIG['browse_batch_add'] ? 'checked="checked"' : '';
+    $no_selected = !$CONFIG['browse_batch_add'] ? 'checked="checked"' : '';
+
     echo <<<EOT
         <tr>
-                <td class="tablef">
+                <td class="tableb">
                         <b>{$lang_search_new_php['select_dir_msg']}</b>
                 </td>
         </tr>
-
+        <tr>
+<form name="interfaceconfig" action="{$_SERVER['PHP_SELF']}" method="post">
+        <tr>
+            <td class="tablef" colspan="6">
+                        {$lang_search_new_php['browse_batch_add']}
+                        &nbsp;&nbsp;
+                        <input type="radio" id="browse_batch_add1" name="browse_batch_add" value="1"  onclick="document.interfaceconfig.submit();" $yes_selected /><label for="browse_batch_add1" class="clickable_option">$lang_yes</label>
+                        &nbsp;&nbsp;
+                        <input type="radio" id="browse_batch_add0" name="browse_batch_add" value="0"  onclick="document.interfaceconfig.submit();" $no_selected /><label for="browse_batch_add0" class="clickable_option">$lang_no</label>
+                        &nbsp;&nbsp;
+                        <input type="hidden" name="update_config" value="1" />
+                </td>
+        </tr>
+        </form>
 EOT;
+
     endtable();
     pagefooter();
     ob_end_flush();

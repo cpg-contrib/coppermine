@@ -389,3 +389,5 @@ CREATE TABLE CPG_hit_stats (
 ) ENGINE=MyISAM;
 
 INSERT INTO CPG_config VALUES ('hit_details', '0');
+
+INSERT INTO CPG_config VALUES ('browse_batch_add', '1');
