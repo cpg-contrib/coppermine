@@ -500,12 +500,9 @@ EOT;
             break;
 
         case 'textarea' :
-            if (isset($form_data[$element[1]])) {
-                $value = $form_data[$element[1]];
-            } else {
-                $value = '';
-            }
-
+            
+           $value = $user_data[$element[1]];
+           
            if ($element[2]) echo <<<EOT
         <tr>
             <td width="40%" class="tableb"  height="25">
