@@ -18,14 +18,14 @@ if (isset($HTTP_POST_VARS['save'])) {
   $str = "";
   foreach ($exifRawData as $val) {
     if (in_array($val, $HTTP_POST_VARS['exif_tags'])) {
-      $str .= "|1";
+      $str .= "1|";
     } else {
-      $str .= "|0";
+      $str .= "0|";
     }
   }
   
   //Remove the last pipe from the string.
-  //$selectedExifTags = substr ($str,0,strlen($str)-1);
+  $selectedExifTags = substr ($str,0,strlen($str)-1);
   $selectedExifTags = $str;
   $sql = "UPDATE ".$CONFIG['TABLE_CONFIG']." SET value = '".$selectedExifTags."' WHERE name = 'show_which_exif'";
   db_query($sql);
