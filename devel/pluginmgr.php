@@ -58,7 +58,7 @@ EOT;
         if ($thisplugin->priority > 0 && count($CPG_PLUGINS) > 1) {
             echo <<<EOT
             <td class="tableb" width="3%" align="center" valign="middle">
-                <a href="$PHP_SELF?op=moveu&p={$thisplugin->plugin_id}"><img src="images/up.gif"  border="0"></a>
+                <a href="pluginmgr.php?op=moveu&p={$thisplugin->plugin_id}"><img src="images/up.gif"  border="0"></a>
             </td>
 EOT;
         } else {
@@ -68,7 +68,7 @@ EOT;
         if ($thisplugin->priority < (count($CPG_PLUGINS)-1)) {
             echo <<<EOT
             <td class="tableb" width="3%" align="center" valign="middle">
-                <a href="$PHP_SELF?op=moved&p={$thisplugin->plugin_id}"><img src="images/down.gif"  border="0"></a>
+                <a href="pluginmgr.php?op=moved&p={$thisplugin->plugin_id}"><img src="images/down.gif"  border="0"></a>
             </td>
 EOT;
         } else {
@@ -77,7 +77,7 @@ EOT;
 
         echo <<<EOT
             <td class="tableb" width="3%" align="center" valign="middle">
-                <a href="$PHP_SELF?op=uninstall&p={$thisplugin->plugin_id}" onClick="return confirmUninstall('$safename')">
+                <a href="pluginmgr.php?op=uninstall&p={$thisplugin->plugin_id}" onClick="return confirmUninstall('$safename')">
                     <img src="images/delete.gif"  border="0">
                 </a>
             </td>
@@ -129,10 +129,10 @@ EOT;
                 <img src="images/spacer.gif" width="16" height="16" />
             </td>
             <td class="tableb" width="5%" align="center" valign="middle">
-                <a href="$PHP_SELF?op=install&p=$path"><img src="images/info.gif"  border="0"></a>
+                <a href="pluginmgr.php?op=install&p=$path"><img src="images/info.gif"  border="0"></a>
             </td>
             <td class="tableb" width="5%" align="center" valign="middle">
-                <a href="$PHP_SELF?op=delete&p=$path" onClick="return confirmDel('$safename')">
+                <a href="pluginmgr.php?op=delete&p=$path" onClick="return confirmDel('$safename')">
                     <img src="images/delete.gif"  border="0">
                 </a>
             </td>
@@ -213,7 +213,7 @@ switch ($op) {
 
 // Refresh the screen
 if (isset($op)) {
-    header('Location: '.$PHP_SELF);
+    header('Location: pluginmgr.php');
 }
 
 
