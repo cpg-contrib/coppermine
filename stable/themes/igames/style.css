@@ -1,3 +1,7 @@
+/*
+$Id$
+*/
+
 /* Foreground color definition */
 body { color : #C6B78E; }
 .topmenu, .topmenu a { color : #E6E6E6; }
@@ -22,6 +26,7 @@ body { background-color: #4A4A4A; }
 /* Borders for input controls */
 .textinput, .listbox, .button, .comment_button, .admin_menu, .admin_menu_thumb  {        border: 1px solid #666666; }
 .image { border: 1px solid #000000; }
+.imageborder { border: 1px solid #000000; background-color:#000000; margin-top: 30px; margin-bottom: 30px; }
 .image1 { border: 1px solid #ff0000; }
 
 .maintable, .maintablea, .maintableb {        background-color: #222222; }
@@ -426,6 +431,8 @@ a:hover {
         font-size: 90%;
         background-image : url(images/button_bg.gif);
         background-position : bottom;
+        background-repeat: repeat-x;
+        background-color: #BFC0C3;
         margin-top: 0px;
         margin-bottom: 0px;
         text-align: center;
@@ -437,8 +444,8 @@ a:hover {
         position: relative;
         padding-top: 1px;
         padding-bottom: 1px;
-        padding-left: 10px;
-        padding-right: 10px;
+        padding-left: 2px;
+        padding-right: 2px;
 }
 
 .admin_menu a:hover {
@@ -531,4 +538,25 @@ a:hover {
         padding-right: 10px;
         padding-bottom: 6px;
         padding-left: 10px;
+}
+
+.debug_text {
+        border: #BDBEBD;
+        background-color: #EFEFEF;
+        width : 100%;
+        margin : 0px;
+}
+
+.clickable_option {
+        font-weight: bold;
+        cursor : hand;
+}
+
+.listbox_lang {
+        color: #C6B78E;
+        background-color: #4A4A4A;
+        border: 1px solid #4A4A4A;
+        font-size: 80%;
+        font-family: Arial, Helvetica, sans-serif;
+        vertical-align : middle;
 }

@@ -1,6 +1,6 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.2.1                                            //
+// Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
 // Copyright (C) 2002,2003 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
@@ -14,13 +14,13 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
+// $Id$
+// ------------------------------------------------------------------------- //
+// phpBB2 Integration for Coppermine                                         //
+// ------------------------------------------------------------------------- //
+// Modify the values below according to your Board installation              //
+// ------------------------------------------------------------------------- //
 
-// phpBB2 Integration for Coppermine
-
-// ------------------------------------------------------------------------- //
-// ------------------------------------------------------------------------- //
-// Modify the values below according to your Board installation
-// ------------------------------------------------------------------------- //
 // database configuration
 define('PHPBB_DB_NAME', 'phpBB'); // The name of the database used by the board
 define('PHPBB_BD_HOST', 'localhost'); // The name of the database server
@@ -28,8 +28,14 @@ define('PHPBB_DB_USERNAME', 'root'); // The username to use to connect to the da
 define('PHPBB_DB_PASSWORD', ''); // The password to use to connect to the database
 
 // The web path to your phpBB directory
-// In this example http://yoursite_name.com/phpBB2/
+// If your URL to your board is for example 'http://yoursite_name.com/phpBB2/',
+// you'll have to set the below var to '/phpBB2/'.
 define('PHPBB_WEB_PATH', '/phpBB2/');
+// Logout Flag
+// the value of this boolean constant depends on your phpBB version:
+// If your version of phpBB is 2.0.4 or lower - change the value to FALSE;
+// if your version of phpBB is 2.0.5 or newer - leave it as TRUE
+define('PHPBB_LOGOUT_GET', TRUE);
 // ------------------------------------------------------------------------- //
 // You can keep the default values below if your instalation is standard
 // ------------------------------------------------------------------------- //
@@ -68,6 +74,13 @@ function udb_authenticate()
         'can_create_albums' => 0,
         'pub_upl_need_approval' => 1,
         'priv_upl_need_approval' => 1,
+        'upload_form_config' => 0,
+        'custom_user_upload' => 0,
+        'num_file_upload' => 0,
+        'num_URI_upload' => 0,
+        'has_admin_access' => 0,
+        'can_see_all_albums' => 0,
+        'groups' => array (PHPBB_GUEST_GROUP)
         );
     // Retrieve cookie stored login information
     if (!isset($HTTP_COOKIE_VARS[PHPBB_COOKIE_PREFIX . '_data'])) {
@@ -87,9 +100,9 @@ function udb_authenticate()
     if ($cookie_uid && !$cookie_pass && isset($HTTP_COOKIE_VARS[PHPBB_COOKIE_PREFIX . '_sid'])) {
         $session_id = addslashes($HTTP_COOKIE_VARS[PHPBB_COOKIE_PREFIX . '_sid']);
 
-        $sql = "SELECT user_id, username as user_name, user_level " . "FROM " . $UDB_DB_NAME_PREFIX . PHPBB_TABLE_PREFIX . PHPBB_SESSION_TABLE . " " . "INNER JOIN " . $UDB_DB_NAME_PREFIX . PHPBB_TABLE_PREFIX . PHPBB_USER_TABLE . " ON session_user_id = user_id " . "WHERE session_id='$session_id' AND session_user_id ='$cookie_uid'";
+        $sql = "SELECT user_id, username as user_name, user_level " . "FROM " . $UDB_DB_NAME_PREFIX . PHPBB_TABLE_PREFIX . PHPBB_SESSION_TABLE . " " . "INNER JOIN " . $UDB_DB_NAME_PREFIX . PHPBB_TABLE_PREFIX . PHPBB_USER_TABLE . " ON session_user_id = user_id " . "WHERE session_id='$session_id' AND session_user_id ='$cookie_uid' AND user_active='1'";
     } else {
-        $sql = "SELECT user_id, username as user_name, user_level " . "FROM " . $UDB_DB_NAME_PREFIX . PHPBB_TABLE_PREFIX . PHPBB_USER_TABLE . " " . "WHERE user_id='$cookie_uid' AND user_password='$cookie_pass'";
+        $sql = "SELECT user_id, username as user_name, user_level " . "FROM " . $UDB_DB_NAME_PREFIX . PHPBB_TABLE_PREFIX . PHPBB_USER_TABLE . " " . "WHERE user_id='$cookie_uid' AND user_password='$cookie_pass' AND user_active='1'";
     }
     $result = db_query($sql, $UDB_DB_LINK_ID);
 
@@ -97,23 +110,39 @@ function udb_authenticate()
         $USER_DATA = mysql_fetch_array($result);
         mysql_free_result($result);
 
-        define('USER_ID', (int)$USER_DATA['user_id']);
-        define('USER_NAME', $USER_DATA['user_name']);
-        // Define the basic groups
-        if ($USER_DATA['user_level'] == 1) {
-            $user_group_set = PHPBB_ADMIN_GROUP . ',' . PHPBB_MEMBERS_GROUP . ',';
+	$USER_DATA['groups'] = array();
+
+        if($USER_DATA['user_id'] == "-1") {
+            define('USER_ID', 0);
         } else {
-            $user_group_set = PHPBB_MEMBERS_GROUP . ',';
+            define('USER_ID', (int)$USER_DATA['user_id']);
         }
+
+        define('USER_NAME', $USER_DATA['user_name']);
+
+        // Define the basic groups
+        if ($USER_DATA['user_id'] == "-1") {
+
+            array_push($USER_DATA['groups'], PHPBB_GUEST_GROUP);
+
+        } else {
+
+            if ($USER_DATA['user_level'] == 1) {
+        	array_push($USER_DATA['groups'], PHPBB_ADMIN_GROUP);
+            }
+            array_push($USER_DATA['groups'], PHPBB_MEMBERS_GROUP);
+
+        }
+        
         // Retrieve the groups the user is a member of
         $sql = "SELECT (ug.group_id + 5) as group_id " . "FROM " . $UDB_DB_NAME_PREFIX . PHPBB_TABLE_PREFIX . PHPBB_UGROUP_TABLE . " as ug " . "LEFT JOIN " . $UDB_DB_NAME_PREFIX . PHPBB_TABLE_PREFIX . PHPBB_GROUP_TABLE . " as g ON ug.group_id = g.group_id " . "WHERE user_id = " . USER_ID . " AND user_pending = 0 AND group_single_user = 0";
         $result = db_query($sql, $UDB_DB_LINK_ID);
         while ($row = mysql_fetch_array($result)) {
-            $user_group_set .= $row['group_id'] . ',';
+        	array_push($USER_DATA['groups'], $row['group_id']);
         }
         mysql_free_result($result);
 
-        $user_group_set = '(' . substr($user_group_set, 0, -1) . ')';
+        $user_group_set = '(' . implode(',', $USER_DATA['groups']) . ')';
         // Default group data
         $USER_DATA['group_quota'] = 1;
         $USER_DATA['can_rate_pictures'] = 0;
@@ -123,23 +152,12 @@ function udb_authenticate()
         $USER_DATA['can_create_albums'] = 0;
         $USER_DATA['pub_upl_need_approval'] = 1;
         $USER_DATA['priv_upl_need_approval'] = 1;
+        $USER_DATA['upload_form_config'] = 0;
+        $USER_DATA['num_file_upload'] = 0; 
+        $USER_DATA['num_URI_upload'] = 0;
+        $USER_DATA['custom_user_upload'] = 0; 
 
-        $sql = "SELECT  group_quota as gq, " . "                can_rate_pictures as crp, " . "                can_send_ecards as cse, " . "                can_post_comments as cpc, " . "                can_upload_pictures as cup, " . "                can_create_albums as cca, " . "                pub_upl_need_approval as puna, " . "                priv_upl_need_approval as pruna " . "FROM {$CONFIG['TABLE_USERGROUPS']} " . "WHERE group_id IN " . $user_group_set;
-        $result = db_query($sql);
-        // Merge permissions for groups the user is a member of
-        while ($row = mysql_fetch_array($result)) {
-            $USER_DATA['can_rate_pictures'] += $row['crp'];
-            $USER_DATA['can_send_ecards'] += $row['cse'];
-            $USER_DATA['can_post_comments'] += $row['cpc'];
-            $USER_DATA['can_upload_pictures'] += $row['cup'];
-            $USER_DATA['can_create_albums'] += $row['cca'];
-            $USER_DATA['pub_upl_need_approval'] *= $row['puna'];
-            $USER_DATA['priv_upl_need_approval'] *= $row['pruna'];
-
-            $quota = $USER_DATA['group_quota'];
-            if (($quota && $row['gq'] > $quota) || !$row['gq']) $USER_DATA['group_quota'] = $row['gq'];
-        }
-        mysql_free_result($result);
+	$USER_DATA = array_merge($USER_DATA, cpgGetUserData($USER_DATA['groups'][0], $USER_DATA['groups'], PHPBB_GUEST_GROUP));
 
         define('USER_GROUP', '');
         define('USER_GROUP_SET', $user_group_set);
@@ -149,13 +167,12 @@ function udb_authenticate()
         define('USER_CAN_POST_COMMENTS', (int)$USER_DATA['can_post_comments']);
         define('USER_CAN_UPLOAD_PICTURES', (int)$USER_DATA['can_upload_pictures']);
         define('USER_CAN_CREATE_ALBUMS', (int)$USER_DATA['can_create_albums']);
+        define('USER_UPLOAD_FORM', (int)$USER_DATA['upload_form_config']);
+        define('CUSTOMIZE_UPLOAD_FORM', (int)$USER_DATA['custom_user_upload']);
+        define('NUM_FILE_BOXES', (int)$USER_DATA['num_file_upload']);
+        define('NUM_URI_BOXES', (int)$USER_DATA['num_URI_upload']);
     } else {
-        $result = db_query("SELECT * FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = " . PHPBB_GUEST_GROUP);
-        if (!mysql_num_rows($result)) {
-            $USER_DATA = $default_group;
-        } else {
-            $USER_DATA = mysql_fetch_array($result);
-        }
+        $USER_DATA = cpgGetUserData(PHPBB_GUEST_GROUP, array(), PHPBB_GUEST_GROUP);
         define('USER_ID', 0);
         define('USER_NAME', 'Anonymous');
         define('USER_GROUP_SET', '(' . PHPBB_GUEST_GROUP . ')');
@@ -165,6 +182,10 @@ function udb_authenticate()
         define('USER_CAN_POST_COMMENTS', (int)$USER_DATA['can_post_comments']);
         define('USER_CAN_UPLOAD_PICTURES', (int)$USER_DATA['can_upload_pictures']);
         define('USER_CAN_CREATE_ALBUMS', 0);
+        define('USER_UPLOAD_FORM', (int)$USER_DATA['upload_form_config']);
+        define('CUSTOMIZE_UPLOAD_FORM', (int)$USER_DATA['custom_user_upload']);
+        define('NUM_FILE_BOXES', (int)$USER_DATA['num_file_upload']);
+        define('NUM_URI_BOXES', (int)$USER_DATA['num_URI_upload']);
         mysql_free_result($result);
     }
 }
@@ -185,33 +206,59 @@ function udb_get_user_name($uid)
         return '';
     }
 }
+// Retrieve the name of a user (Added to fix banning w/ bb integration - Nibbler)
+function udb_get_user_id($username)
+{
+    global $UDB_DB_LINK_ID, $UDB_DB_NAME_PREFIX, $CONFIG;
+
+    $username = addslashes($username);
+
+    $sql = "SELECT user_id " . "FROM " . $UDB_DB_NAME_PREFIX . PHPBB_TABLE_PREFIX . PHPBB_USER_TABLE . " " . "WHERE username = '$username'";
+
+    $result = db_query($sql, $UDB_DB_LINK_ID);
+
+    if (mysql_num_rows($result)) {
+        $row = mysql_fetch_array($result);
+        mysql_free_result($result);
+        return $row['user_id'];
+    } else {
+        return '';
+    }
+}
+
 // Redirect
 function udb_redirect($target)
 {
-    header('Location: ' . PHPBB_WEB_PATH . $target);
+    header('Location: http://' . $_SERVER['HTTP_HOST'] . PHPBB_WEB_PATH . $target);
     exit;
 }
+
 // Register
 function udb_register_page()
 {
     $target = 'profile.php?mode=register';
     udb_redirect($target);
 }
+// HTML code for login/logout redirection
+DEFINE("REDIR1",'<html><body onload="document.redir.submit();"><form name="redir" method="post" action="');
+DEFINE("REDIR2",'"><input type="hidden" name="redirect" value="cpg_redir.php" /></form></body></html>');
+DEFINE('LOGIN_REDIR', 'login.php?redirect=cpg_redir.php');
+DEFINE('LOGOUT_FLAG', '&logout=true');
 // Login
 function udb_login_page()
 {
-    global $CONFIG;
-
-    $target = 'login.php';
-    udb_redirect($target);
+    udb_redirect(LOGIN_REDIR);
 }
 // Logout
 function udb_logout_page()
 {
-    global $CONFIG;
+   if (PHPBB_LOGOUT_GET) {
 
-    $target = 'login.php?logout=true';
-    udb_redirect($target);
+       udb_redirect(LOGIN_REDIR.LOGOUT_FLAG);
+   } else {
+       echo(REDIR1.PHPBB_WEB_PATH.LOGIN_REDIR.LOGOUT_FLAG.REDIR2);
+      exit();
+   }
 }
 // Edit users
 function udb_edit_users()
@@ -246,7 +293,8 @@ function udb_list_users_query(&$user_count)
 {
     global $CONFIG, $FORBIDDEN_SET;
 
-    $sql = "SELECT (category - " . FIRST_USER_CAT . ") as user_id," . "                '???' as user_name," . "                COUNT(DISTINCT a.aid) as alb_count," . "                COUNT(DISTINCT pid) as pic_count," . "                MAX(pid) as thumb_pid " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid " . "WHERE approved = 'YES' AND category > " . FIRST_USER_CAT . " " . "$FORBIDDEN_SET " . "GROUP BY category " . "ORDER BY category ";
+    if ($FORBIDDEN_SET != "") $FORBIDDEN_SET = "AND $FORBIDDEN_SET";
+    $sql = "SELECT (category - " . FIRST_USER_CAT . ") as user_id," . "        '???' as user_name," . "        COUNT(DISTINCT a.aid) as alb_count," . "        COUNT(DISTINCT pid) as pic_count," . "        MAX(pid) as thumb_pid " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid " . "WHERE approved = 'YES' AND category > " . FIRST_USER_CAT . " $FORBIDDEN_SET " . "GROUP BY category " . "ORDER BY category ";
     $result = db_query($sql);
 
     $user_count = mysql_num_rows($result);
@@ -340,6 +388,31 @@ function udb_get_admin_album_list()
         return $sql;
     }
 }
+
+function udb_util_filloptions()
+{
+    global $albumtbl, $picturetbl, $categorytbl, $lang_util_php;
+
+    $usertbl = $UDB_DB_NAME_PREFIX.PHPBB_TABLE_PREFIX.PHPBB_USER_TABLE;
+
+    $query = "SELECT aid, category, IF(username IS NOT NULL, CONCAT('(', username, ') ',title), CONCAT(' - ', title)) AS title " . "FROM $albumtbl AS a " . "LEFT JOIN $usertbl AS u ON category = (" . FIRST_USER_CAT . " + user_id) " . "ORDER BY category, title";
+    $result = db_query($query, $UDB_DB_LINK_ID);
+    // $num=mysql_numrows($result);
+    echo '<select size="1" name="albumid">';
+
+    while ($row = mysql_fetch_array($result)) {
+        $sql = "SELECT name FROM $categorytbl WHERE cid = " . $row["category"];
+        $result2 = db_query($sql);
+        $row2 = mysql_fetch_array($result2);
+
+        print "<option value=\"" . $row["aid"] . "\">" . $row2["name"] . $row["title"] . "</option>\n";
+    }
+
+    print '</select> (3)';
+    print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="submit" /> (4)';
+    print '</form>';
+}
+
 // ------------------------------------------------------------------------- //
 // Define wheter we can join tables or not in SQL queries (same host & same db or user)
 define('UDB_CAN_JOIN_TABLES', (PHPBB_BD_HOST == $CONFIG['dbserver'] && (PHPBB_DB_NAME == $CONFIG['dbname'] || PHPBB_DB_USERNAME == $CONFIG['dbuser'])));

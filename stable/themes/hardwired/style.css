@@ -1,3 +1,7 @@
+/*
+$Id$
+*/
+
 body {
         font-family : Verdana, Arial, Helvetica, sans-serif;
         font-size: 10px;
@@ -363,8 +367,8 @@ bblink a:hover {
         position: relative;
         padding-top: 1px;
         padding-bottom: 1px;
-        padding-left: 10px;
-        padding-right: 10px;
+        padding-left: 2px;
+        padding-right: 2px;
 }
 
 .admin_menu a:hover {
@@ -383,6 +387,13 @@ bblink a:hover {
         border-width:2px;
         border-color: #394048;
         margin: 2px;
+}
+
+.imageborder {
+        border: 1px solid #000000;
+        background-color: #5B5B5B;
+        margin-top: 30px;
+        margin-bottom: 30px;
 }
 
 .thumbnails {
@@ -495,4 +506,25 @@ bblink a:hover {
 {
         color:#4C5157;
         font-size:20px;
+}
+
+.debug_text {
+        border: #BDBEBD;
+        background-color: #EFEFEF;
+        width : 100%;
+        margin : 0px;
+}
+
+.clickable_option {
+        border-bottom : 1px dotted #444444;
+        cursor : hand;
+}
+
+.listbox_lang {
+        color: #BDBEBD;
+        background-color: #4F5864;
+        border: 1px solid #4F5864;
+        font-size: 90%;
+        font-family: Arial, Helvetica, sans-serif;
+        vertical-align : middle;
 }

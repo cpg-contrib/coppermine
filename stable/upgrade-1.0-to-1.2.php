@@ -1,6 +1,6 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.2.1                                            //
+// Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
 // Copyright (C) 2002,2003 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
@@ -13,7 +13,11 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- // 
+// ------------------------------------------------------------------------- //
+/*
+$Id$
+*/
+
 define('IN_COPPERMINE', true);
 define('ADMIN_PHP', true);
 
@@ -49,7 +53,7 @@ if ((mysql_num_rows($result))) {
         $set .= $comment['msg_id'] . ',';
     } // while
     $msg_id_set = 'AND msg_id NOT IN (' . substr($set, 0, -1) . ') ';
-} 
+}
 mysql_free_result($result);
 // Upgrade the comment table
 $sql = "INSERT INTO $cpg11_comments " . "(pid, msg_id, msg_author, msg_body, msg_date)" . "SELECT pid, msg_id, msg_author, msg_body, msg_date " . "FROM $CPG_comments " . "WHERE 1 $msg_id_set";

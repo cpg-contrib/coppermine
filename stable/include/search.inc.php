@@ -1,6 +1,6 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.2.1                                            //
+// Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
 // Copyright (C) 2002,2003 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
@@ -14,19 +14,24 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
+
+/*
+$Id$
+*/
+
 /**
  * functions_search.php
- * 
+ *
  *                               -------------------
- * 
+ *
  *      begin                : Wed Sep 05 2001
- * 
+ *
  *      copyright            : (C) 2001 The phpBB Group
- * 
+ *
  *      email                : support@phpbb.com
- * 
- * 
- * 
+ *
+ *
+ *
  *      $Id$
  */
 
@@ -46,23 +51,23 @@ function clean_words(&$entry, $mb_charset)
 
     static $drop_char_replace = array(' ', ' ', ' ', ' ', ' ', ' ', ' ', '', '', ' ', ' ', ' ', ' ', '', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' , ' ', ' ', ' ', ' ', ' ', ' ');
 
-    $entry = ' ' . strtolower($entry) . ' '; 
+    $entry = ' ' . strtolower($entry) . ' ';
     // Replace line endings by a space
-    $entry = preg_replace('/[\n\r]/is', ' ', $entry); 
+    $entry = preg_replace('/[\n\r]/is', ' ', $entry);
     // + and - becomes and & not
     $entry = str_replace(' +', ' and ', $entry);
 
-    $entry = str_replace(' -', ' not ', $entry); 
-    
+    $entry = str_replace(' -', ' not ', $entry);
+
     // Filter out strange characters like ^, $, &, change "it's" to "its"
-    
+
     if (!$mb_charset) for($i = 0; $i < count($drop_char_match); $i++) {
         $entry = str_replace($drop_char_match[$i], $drop_char_replace[$i], $entry);
-    } 
+    }
     // 'words' that consist of <3 or >20 characters are removed.
     // $entry = preg_replace('/\b([a-z0-9]{1,2}|[a-z0-9]{21,})\b/',' ', $entry);
     return $entry;
-} 
+}
 
 if (defined('USE_MYSQL_SEARCH') && $query_all) {
     // If using MySQL 4 or above we use boolean search
@@ -72,7 +77,7 @@ if (defined('USE_MYSQL_SEARCH') && $query_all) {
         $boolean_mode = 'IN BOOLEAN MODE';
     } else {
         $boolean_mode = '';
-    } 
+    }
 
     $result = db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE MATCH(filename, title, caption, keywords) AGAINST ('$search_string' $boolean_mode) AND approved = 'YES' $ALBUM_SET");
 
@@ -95,10 +100,10 @@ if (defined('USE_MYSQL_SEARCH') && $query_all) {
 
         if ($CONFIG['caption_in_thumbview']) {
             $caption .= $rowset[$key]['caption'] ? "<span class=\"thumb_caption\">" . bb_decode($rowset[$key]['caption']) . "</span>" : '';
-        } 
+        }
 
         $rowset[$key]['caption_text'] = $caption;
-    } 
+    }
 } elseif ($search_string != '') {
     $split_search = array();
 
@@ -149,27 +154,27 @@ if (defined('USE_MYSQL_SEARCH') && $query_all) {
                 } // while
                 if (empty($set)) {
                     $set = "'',";
-                } 
+                }
 
                 if (empty($pic_set)) {
                     if ($current_match_type == 'not') {
                         $pic_set .= ' pid not in (' . substr($set, 0, -1) . ') ';
                     } else {
                         $pic_set .= ' pid in (' . substr($set, 0, -1) . ') ';
-                    } 
+                    }
                 } else {
                     if ($current_match_type == 'not') {
                         $pic_set .= ' and pid not in (' . substr($set, 0, -1) . ') ';
                     } else {
                         $pic_set .= ' ' . $current_match_type . ' pid in (' . substr($set, 0, -1) . ') ';
-                    } 
-                } 
+                    }
+                }
 
                 mysql_free_result($result);
 
                 $current_match_type = 'and';
-        } 
-    } 
+        }
+    }
 
     if (!empty($pic_set)) {
         $sql = "SELECT COUNT(*) " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE ($pic_set) " . "AND approved = 'YES' " . "$ALBUM_SET";
@@ -197,19 +202,19 @@ if (defined('USE_MYSQL_SEARCH') && $query_all) {
 
             if ($CONFIG['caption_in_thumbview']) {
                 $caption .= $rowset[$key]['caption'] ? "<span class=\"thumb_caption\">" . bb_decode($rowset[$key]['caption']) . "</span>" : '';
-            } 
+            }
 
             $rowset[$key]['caption_text'] = $caption;
-        } 
+        }
     } else {
         $count = 0;
 
         $rowset = array();
-    } 
+    }
 } else {
     $count = 0;
 
     $rowset = array();
-} 
+}
 
 ?>

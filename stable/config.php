@@ -1,8 +1,8 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.2.1                                            //
+// Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -13,6 +13,8 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
+// ------------------------------------------------------------------------- //
+// $Id$
 // ------------------------------------------------------------------------- //
 
 define('IN_COPPERMINE', true);
@@ -59,8 +61,8 @@ function form_yes_no($text, $name)
     global $CONFIG, $lang_yes, $lang_no;
 
     $value = $CONFIG[$name];
-    $yes_selected = $value ? 'selected' : '';
-    $no_selected = !$value ? 'selected' : '';
+    $yes_selected = $value ? 'checked="checked"' : '';
+    $no_selected = !$value ? 'checked="checked"' : '';
 
     echo <<<EOT
         <tr>
@@ -68,10 +70,9 @@ function form_yes_no($text, $name)
                         $text
         </td>
         <td class="tableb" valign="top">
-                        <select name="$name" class="listbox">
-                                <option value="1" $yes_selected>$lang_yes</option>
-                                <option value="0" $no_selected>$lang_no</option>
-                        </select>
+                        <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected /><label for="{$name}1" class="clickable_option">$lang_yes</label>
+                        &nbsp;&nbsp;
+                        <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
                 </td>
         </tr>
 
@@ -258,7 +259,7 @@ EOT;
 // Added for allowing user to select which aspect of thumbnails to scale
 function form_scale($text, $name)
 {
-    global $CONFIG, $lang_config_php;
+   global $CONFIG, $lang_config_php ;
 
     $value = $CONFIG[$name];
     $any_selected = ($value == 'max') ? 'selected' : '';
@@ -281,6 +282,83 @@ function form_scale($text, $name)
 
 EOT;
 }
+
+function form_lang_theme($text, $name)
+{
+    global $CONFIG, $lang_yes, $lang_no, $lang_config_php;
+
+    $value = $CONFIG[$name];
+    $no_selected = ($value == '0') ? 'checked="checked"' : '';
+    $yes_1_selected = ($value == '1') ? 'checked="checked"' : '';
+    $yes_2_selected = ($value == '2') ? 'checked="checked"' : '';
+
+    echo <<<EOT
+        <tr>
+            <td class="tableb">
+                        $text
+        </td>
+        <td class="tableb" valign="top">
+                        <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
+                        &nbsp;&nbsp;
+                        <input type="radio" id="{$name}1" name="$name" value="1" $yes_1_selected /><label for="{$name}1" class="clickable_option">$lang_yes:{$lang_config_php['item']}</label>
+                        &nbsp;&nbsp;
+                        <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">$lang_yes:{$lang_config_php['label']}+{$lang_config_php['item']}</label>
+        </td>
+        </tr>
+
+EOT;
+}
+
+function form_lang_debug($text, $name)
+{
+    global $CONFIG, $lang_yes, $lang_no, $lang_config_php;
+
+    $value = $CONFIG[$name];
+    $no_selected = ($value == '0') ? 'checked="checked"' : '';
+    $yes_1_selected = ($value == '1') ? 'checked="checked"' : '';
+    $yes_2_selected = ($value == '2') ? 'checked="checked"' : '';
+
+    echo <<<EOT
+        <tr>
+            <td class="tableb">
+                        $text
+        </td>
+        <td class="tableb" valign="top">
+                        <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
+                        &nbsp;&nbsp;
+                        <input type="radio" id="{$name}1" name="$name" value="1" $yes_1_selected /><label for="{$name}1" class="clickable_option">$lang_yes:{$lang_config_php['debug_everyone']}</label>
+                        &nbsp;&nbsp;
+                        <input type="radio" id="{$name}2" name="$name" value="2" $yes_2_selected /><label for="{$name}2" class="clickable_option">$lang_yes:{$lang_config_php['debug_admin']}</label>
+        </td>
+        </tr>
+
+EOT;
+}
+
+function form_number_dropdown($text, $name)
+{
+   global $CONFIG, $lang_config_php ;
+
+    echo <<<EOT
+        <tr>
+            <td class="tableb">
+                        $text
+        </td>
+        <td class="tableb" valign="top">
+                        <select name="$name" class="listbox">
+EOT;
+        for ($i = 5; $i <= 25; $i++) {
+        echo "<option value=\"".$i."\"";
+        if ($i == $CONFIG[$name]) { echo " selected=\"selected\"";}
+        echo ">".$i."</option>\n";
+        }
+     echo <<<EOT
+     </select>
+                </td>
+        </tr>
+EOT;
+}
+
 
 function create_form(&$data)
 {
@@ -312,9 +390,17 @@ function create_form(&$data)
                 case 7 :
                     form_scale($element[0], $element[1]);
                     break;
-                // Add triple dropdwon later - put back in for compatibility reasons
+                // Language + Theme selection
                 case 8 :
-                    // do nothing
+                    form_lang_theme($element[0], $element[1]);
+                    break;
+                // debug mode selection
+                case 9 :
+                    form_lang_debug($element[0], $element[1]);
+                    break;
+                // tabbed display fix
+                case 10 :
+                    form_number_dropdown($element[0], $element[1]);
                     break;
                 default:
                     die('Invalid action');

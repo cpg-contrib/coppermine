@@ -1,6 +1,6 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.2.1                                            //
+// Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
 // Copyright (C) 2002,2003 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
@@ -13,7 +13,10 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- // 
+// ------------------------------------------------------------------------- //
+/*
+$Id$
+*/
 
 define('IN_COPPERMINE', true);
 define('SEARCH_PHP', true);
@@ -24,20 +27,25 @@ pageheader($lang_search_php[0]);
 
 starttable(500, $lang_search_php[0]);
 echo <<< EOT
-	<tr>
-		<form method="get" action="thumbnails.php">
-       	<input type="hidden" name="album" value="search">
-       	<input type="hidden" name="type" value="full">
+        <tr>
+                <form method="get" action="thumbnails.php" name="searchcpg">
+               <input type="hidden" name="album" value="search">
+               <input type="hidden" name="type" value="full">
         <td class="tableb" align="center" height="60">
-        	<input type="input" style="width: 90%" name="search" maxlength="255" value="" class="textinput">
-		</td>
-	</tr>
-	<tr>
-		<td colspan="8" align="center" class="tablef">
-			<input type="submit" value="{$lang_search_php[0]}" class="button">
-		</td>
-		</form>
-	</tr>
+                <input type="input" style="width: 90%" name="search" maxlength="255" value="" class="textinput">
+                </td>
+                        <script language="javascript" type="text/javascript">
+                        <!--
+                        document.searchcpg.search.focus();
+                        -->
+                        </script>
+        </tr>
+        <tr>
+                <td colspan="8" align="center" class="tablef">
+                        <input type="submit" value="{$lang_search_php[0]}" class="button">
+                </td>
+                </form>
+        </tr>
 
 EOT;
 endtable();

@@ -1,6 +1,6 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.2.1                                            //
+// Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
 // Copyright (C) 2002,2003 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
@@ -13,7 +13,10 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- // 
+// ------------------------------------------------------------------------- //
+/*
+$Id$
+*/
 
 define('IN_COPPERMINE', true);
 define('CONFIG_PHP', true);
@@ -27,8 +30,8 @@ $lang_files = array();
 while ($file = readdir($dir)) {
     if (is_file(LANG_DIR . '/' . $file)) {
         $lang_files[] = $file;
-    } 
-} 
+    }
+}
 closedir($dir);
 asort($lang_files);
 
@@ -39,20 +42,20 @@ if (isset($HTTP_GET_VARS['get'])) {
         header("Content-Disposition: attachment; filename={$lang_files[$file_index]}");
         fpassthru(fopen(LANG_DIR . '/' . $lang_files[$file_index], 'r'));
         exit;
-    } 
-} 
+    }
+}
 
 pageheader('Language files');
 starttable('100%', 'Language files');
 foreach($lang_files as $index => $file) {
     echo <<<EOT
-		<tr>
-			<td class="tableb">
-				<img src="images/folder.gif" alt="">&nbsp;<a href="$PHP_SELF?get=$index">$file</a>
-			</td>
-		</tr>
+                <tr>
+                        <td class="tableb">
+                                <img src="images/folder.gif" alt="">&nbsp;<a href="$PHP_SELF?get=$index">$file</a>
+                        </td>
+                </tr>
 EOT;
-} 
+}
 endtable();
 pagefooter();
 ob_end_flush();

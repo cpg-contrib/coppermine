@@ -1,9 +1,13 @@
+/*
+$Id$
+*/
+
 body {
         background: url("images/bg.gif");
         background-color: #f2f5f7;
         font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
         font-size : 12px;
-        color: #666;
+        color: #000666;
         margin: 0px;
 }
 
@@ -257,7 +261,10 @@ bblink a:hover {
 .sortorder_cell {
         background : #8AA5B5 ;
         color: #FFFFFF;
-        padding: 0px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+        padding-right: 20px;
         margin: 0px;
 }
 
@@ -337,9 +344,11 @@ bblink a:hover {
 .admin_menu {
         font-family: Arial, Helvetica, sans-serif;
         font-size: 90%;
-        border: 1px solid #ccd7e0;
+        border: 1px solid #CCD7E0;
         background-image : url(images/button_bg.gif);
         background-position : bottom;
+        background-repeat: repeat-x;
+        background-color: #FFFFFF;
         color: #000000;
         margin-top: 0px;
         margin-bottom: 0px;
@@ -353,8 +362,8 @@ bblink a:hover {
         position: relative;
         padding-top: 1px;
         padding-bottom: 1px;
-        padding-left: 10px;
-        padding-right: 10px;
+        padding-left: 2px;
+        padding-right: 2px;
 }
 
 .admin_menu a:hover {
@@ -373,6 +382,13 @@ bblink a:hover {
         border-width:1px;
         border-color: #000000;
         margin: 2px;
+}
+
+.imageborder {
+        border: 1px solid #000000;
+        background-color: #FFFFFF;
+        margin-top: 30px;
+        margin-bottom: 30px;
 }
 
 .thumbnails {
@@ -474,4 +490,25 @@ bblink a:hover {
         padding-bottom: 6px;
         padding-left: 10px;
         border-top : 1px solid #FFFFFF;
+}
+
+.debug_text {
+        border: #BDBEBD;
+        background-color: #EFEFEF;
+        width : 100%;
+        margin : 0px;
+}
+
+.clickable_option {
+        border-bottom : 1px dotted blue;
+        cursor : hand;
+}
+
+.listbox_lang {
+        color: #000666;
+        background-color: #f2f5f7;
+        border: 1px solid #f2f5f7;
+        font-size: 80%;
+        font-family: Arial, Helvetica, sans-serif;
+        vertical-align : middle;
 }

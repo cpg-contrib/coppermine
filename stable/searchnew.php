@@ -1,8 +1,8 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.2.1                                            //
+// Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -13,7 +13,10 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- // 
+// ------------------------------------------------------------------------- //
+// $Id$
+// ------------------------------------------------------------------------- //
+
 define('IN_COPPERMINE', true);
 define('SEARCHNEW_PHP', true);
 
@@ -27,10 +30,10 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
 
 /**
  * albumselect()
- * 
+ *
  * return the HTML code for a listbox with name $id that contains the list
  * of all albums
- * 
+ *
  * @param string $id the name of the listbox
  * @return the HTML code
  */
@@ -44,18 +47,18 @@ function albumselect($id = "album")
         $rowset = db_fetch_rowset($result);
         mysql_free_result($result);
 
-        $result = db_query("SELECT DISTINCT a.aid as aid, a.title as title, c.name as cname FROM {$CONFIG['TABLE_ALBUMS']} as a, {$CONFIG['TABLE_CATEGORIES']} as c WHERE a.category = c.cid AND a.category < '" . FIRST_USER_CAT . "' ORDER BY title");
+        $result = db_query("SELECT DISTINCT a.aid as aid, a.title as title, c.name as cname FROM {$CONFIG['TABLE_ALBUMS']} as a, {$CONFIG['TABLE_CATEGORIES']} as c WHERE a.category = c.cid AND a.category < '" . FIRST_USER_CAT . "' ORDER BY cname,title");
         while ($row = mysql_fetch_array($result)) {
             $row['title'] = $row['cname'] . " - " . $row['title'];
             $rowset[] = $row;
-        } 
+        }
         mysql_free_result($result);
 
         if (defined('UDB_INTEGRATION')) {
             $sql = udb_get_admin_album_list();
         } else {
             $sql = "SELECT aid, CONCAT('(', user_name, ') ', title) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id) " . "ORDER BY title";
-        } 
+        }
         $result = db_query($sql);
         while ($row = mysql_fetch_array($result)) $rowset[] = $row;
         mysql_free_result($result);
@@ -64,18 +67,18 @@ function albumselect($id = "album")
 
         foreach ($rowset as $row) {
             $select .= "<option value=\"" . $row["aid"] . "\">" . $row["title"] . "</option>\n";
-        } 
-    } 
+        }
+    }
 
     return "\n<select name=\"$id\" class=\"listbox\">\n$select</select>\n";
-} 
+}
 
 /**
  * dirheader()
- * 
+ *
  * return the HTML code for the row to be displayed when we start a new
  * directory
- * 
+ *
  * @param  $dir the directory
  * @param  $dirid the name of the listbox that will list the albums
  * @return the HTML code
@@ -89,14 +92,14 @@ function dirheader($dir, $dirid)
         $warning = "<tr><td class=\"tableh2\" valign=\"middle\" colspan=\"3\">\n" . "<b>{$lang_search_new_php['warning']}</b>: {$lang_search_new_php['change_perm']}</td></tr>\n";
     return "<tr><td class=\"tableh2\" valign=\"middle\" colspan=\"3\">\n" .
     sprintf($lang_search_new_php['target_album'], $dir, albumselect($dirid)) . "</td></tr>\n" . $warning;
-} 
+}
 
 /**
  * picrow()
- * 
+ *
  * return the HTML code for a row to be displayed for an image
  * the row contains a checkbox, the image name, a thumbnail
- * 
+ *
  * @param  $picfile the full path of the file that contains the picture
  * @param  $picid the name of the check box
  * @return the HTML code
@@ -109,35 +112,46 @@ function picrow($picfile, $picid, $albid)
     $picname = $CONFIG['fullpath'] . $picfile;
     $pic_url = urlencode($picfile);
     $pic_fname = basename($picfile);
+    $pic_dirname = dirname($picname);
 
     $thumb_file = dirname($picname) . '/' . $CONFIG['thumb_pfx'] . $pic_fname;
     if (file_exists($thumb_file)) {
         $thumb_info = getimagesize($picname);
         $thumb_size = compute_img_size($thumb_info[0], $thumb_info[1], 48);
-        $img = '<img src="' . path2url($thumb_file) . '" ' . $thumb_size['geom'] . ' class="thumbnail" border="0">';
-    } else {
+        $img = '<img src="' . path2url($thumb_file) . '" ' . $thumb_size['geom'] . ' class="thumbnail" border="0" />';
+    } elseif (is_image($picname)) {
         $img = '<img src="showthumb.php?picfile=' . $pic_url . '&size=48" class="thumbnail" border="0">';
-    } 
+    } else {
+        $file['filepath'] = $pic_dirname.'/'; //substr($picname,0,strrpos($picname,'/'))
+        $file['filename'] = $pic_fname;
+        $filepathname = get_pic_url($file,'thumb');
+        //$mime_content = get_type($picname);
+        //$extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
+        //$img = '<img src="images/thumb_'.$extension.'.jpg" class="thumbnail" width="48" border="0">';
+        $img = '<img src="'.$filepathname.'" class="thumbnail" width="48" border="0">';
+    }
 
     if (filesize($picname) && is_readable($picname)) {
-        $fullimagesize = getimagesize($picname);
+        //$fullimagesize = getimagesize($picname); COMMENTED OUT FOR VIDEO SUPPORT
         $winsizeX = ($fullimagesize[0] + 16);
         $winsizeY = ($fullimagesize[1] + 16);
 
-        $checked = isset($expic_array[$picfile]) || !$fullimagesize ? '' : 'checked';
+        //$checked = isset($expic_array[$picfile]) || !$fullimagesize ? '' : 'checked';
+
+        $checked = isset($expic_array[$picfile]) ? '' : 'checked';
 
         return <<<EOT
         <tr>
                 <td class="tableb" valign="middle">
-                        <input name="pics[]" type="checkbox" value="$picid" $checked>
-                        <input name="album_lb_id_$picid" type="hidden" value="$albid">
-                        <input name="picfile_$picid" type="hidden" value="$encoded_picfile">
+                        <input name="pics[]" id="picselector" type="checkbox" value="$picid" $checked />
+                        <input name="album_lb_id_$picid" type="hidden" value="$albid" />
+                        <input name="picfile_$picid" type="hidden" value="$encoded_picfile" />
                 </td>
                 <td class="tableb" valign="middle" width="100%">
                         <a href="javascript:;" onClick= "MM_openBrWindow('displayimage.php?&fullsize=1&picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')">$pic_fname</a>
                 </td>
                 <td class="tableb" valign="middle" align="center">
-                        <a href="javascript:;" onClick= "MM_openBrWindow('displayimage.php?&fullsize=1&picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')">$img<br /></a>
+                        <a href="javascript:;" onClick= "MM_openBrWindow('displayimage.php?&fullsize=1&picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')"><img src="images/spacer.gif" width="1" height="48" alt="" border="0" />$img<br /></a>
                 </td>
         </tr>
 EOT;
@@ -153,56 +167,56 @@ EOT;
                         <i>$pic_fname</i>
                 </td>
                 <td class="tableb" valign="middle" align="center">
-                        <a href="javascript:;" onClick= "MM_openBrWindow('displayimage.php?&fullsize=1&picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')"><img src="showthumb.php?picfile=$pic_url&size=48" class="thumbnail" border="0"><br /></a>
+                        <a href="javascript:;" onClick= "MM_openBrWindow('displayimage.php?&fullsize=1&picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')"><img src="showthumb.php?picfile=$pic_url&size=48" class="thumbnail" border="0" /><br /></a>
                 </td>
         </tr>
 EOT;
-    } 
-} 
+    }
+}
 
 /**
  * getfoldercontent()
- * 
+ *
  * return the files and directories of a folder in two arrays
- * 
+ *
  * @param  $folder the folder to read
  * @param  $dir_array the array that will contain name of sub-dir
  * @param  $pic_array the array that will contain name of picture
  * @param  $expic_array an array that contains pictures already in db
- * @return 
+ * @return
  */
 function getfoldercontent($folder, &$dir_array, &$pic_array, &$expic_array)
 {
     global $CONFIG;
-
     $dir = opendir($CONFIG['fullpath'] . $folder);
     while ($file = readdir($dir)) {
         if (is_dir($CONFIG['fullpath'] . $folder . $file)) {
             if ($file != "." && $file != "..")
                 $dir_array[] = $file;
-        } 
+        }
         if (is_file($CONFIG['fullpath'] . $folder . $file)) {
             if (strncmp($file, $CONFIG['thumb_pfx'], strlen($CONFIG['thumb_pfx'])) != 0 && strncmp($file, $CONFIG['normal_pfx'], strlen($CONFIG['normal_pfx'])) != 0 && $file != 'index.html')
                 $pic_array[] = $file;
-        } 
-    } 
+        }
+    }
     closedir($dir);
 
     natcasesort($dir_array);
     natcasesort($pic_array);
-} 
+}
 
 function display_dir_tree($folder, $ident)
 {
     global $CONFIG, $PHP_SELF, $lang_search_new_php;
-
     $dir_path = $CONFIG['fullpath'] . $folder;
+
 
     if (!is_readable($dir_path)) return;
 
     $dir = opendir($dir_path);
     while ($file = readdir($dir)) {
-        if (is_dir($CONFIG['fullpath'] . $folder . $file) && $file != "." && $file != "..") {
+        //if (is_dir($CONFIG['fullpath'] . $folder . $file) && $file != "." && $file != "..") { // removed by following line for 'do not show folders with dots': gaugau 03-11-02
+        if (is_dir($CONFIG['fullpath'] . $folder . $file) && substr($file,0,1) != "." && strpos($file,"'") == FALSE && $file != "userpics"  && $file != "edit" ) {
             $start_target = $folder . $file;
             $dir_path = $CONFIG['fullpath'] . $folder . $file;
 
@@ -215,23 +229,23 @@ function display_dir_tree($folder, $ident)
             echo <<<EOT
                         <tr>
                                 <td class="tableb">
-                                        $ident<img src="images/folder.gif" alt="">&nbsp;<a href= "$PHP_SELF?startdir=$start_target">$file</a>$warnings
+                                        $ident<img src="images/folder.gif" alt="" />&nbsp;<a href= "$PHP_SELF?startdir=$start_target">$file</a>$warnings
                                 </td>
                         </tr>
 EOT;
             display_dir_tree($folder . $file . '/', $ident . '&nbsp;&nbsp;&nbsp;&nbsp;');
-        } 
-    } 
+        }
+    }
     closedir($dir);
-} 
+}
 
 /**
  * getallpicindb()
- * 
+ *
  * Fill an array where keys are the full path of all images in the picture table
- * 
+ *
  * @param  $pic_array the array to be filled
- * @return 
+ * @return
  */
 function getallpicindb(&$pic_array, $startdir)
 {
@@ -242,18 +256,18 @@ function getallpicindb(&$pic_array, $startdir)
     while ($row = mysql_fetch_array($result)) {
         $pic_file = $row['filepath'] . $row['filename'];
         $pic_array[$pic_file] = 1;
-    } 
+    }
     mysql_free_result($result);
-} 
+}
 
 /**
  * getallalbumsindb()
- * 
+ *
  * Fill an array with all albums where keys are aid of albums and values are
  * album title
- * 
+ *
  * @param  $album_array the array to be filled
- * @return 
+ * @return
  */
 function getallalbumsindb(&$album_array)
 {
@@ -264,24 +278,24 @@ function getallalbumsindb(&$album_array)
 
     while ($row = mysql_fetch_array($result)) {
         $album_array[$row['aid']] = $row['title'];
-    } 
+    }
     mysql_free_result($result);
-} 
+}
 
 /**
- * scandir()
- * 
+ * CPGscandir() //renamed because php5 has same function as scandir()
+ *
  * recursive function that scan a directory, create the HTML code for each
  * picture and add new pictures in an array
- * 
+ *
  * @param  $dir the directory to be scanned
  * @param  $expic_array the array that contains pictures already in DB
  * @param  $newpic_array the array that contains new pictures found
- * @return 
+ * @return
  */
-function scandir($dir, &$expic_array)
+function CPGscandir($dir, &$expic_array)
 {
-	$dir = str_replace(".","" ,$dir);
+        $dir = str_replace(".","" ,$dir);
     static $dir_id = 0;
     static $count = 0;
     static $pic_id = 0;
@@ -298,15 +312,16 @@ function scandir($dir, &$expic_array)
             $count++;
             $pic_id_str = sprintf("i%04d", $pic_id++);
             echo picrow($dir . $picture, $pic_id_str, $dir_id_str);
-        } 
-    } 
+        }
+    }
     if (count($dir_array) > 0) {
         foreach ($dir_array as $directory) {
-            scandir($dir . $directory . '/', $expic_array);
-        } 
-    } 
+            if (substr($directory,0,1) != ".") // added do not show folders with dots: gaugau 03-11-02
+            CPGscandir($dir . $directory . '/', $expic_array);
+        }
+    }
     return $count;
-} 
+}
 
 /**
  * Main code
@@ -351,7 +366,7 @@ EOT;
         } else {
             $album_name = $lang_search_new_php['no_album'];
             $status = "<img src=\"images/up_na.gif\" alt=\"" . $lang_search_new_php['no_album'] . "\" class=\"thumbnail\" border=\"0\" width=\"24\" height=\"24\" /><br />";
-        } 
+        }
         echo "<tr>\n";
         echo "<td class=\"tableb\" valign=\"middle\" align=\"left\">$dir_name</td>\n";
         echo "<td class=\"tableb\" valign=\"middle\" align=\"left\">$file_name</td>\n";
@@ -360,7 +375,7 @@ EOT;
         echo "</tr>\n";
         $count++;
         flush();
-    } 
+    }
     echo <<<EOT
         <tr>
                 <td class="tableh2" colspan="4">
@@ -381,20 +396,49 @@ EOT;
     pageheader($lang_search_new_php['page_title']);
     starttable("100%");
     echo <<<EOT
-        <form method="post" action="$PHP_SELF?insert=1">
+        <form method="post" action="$PHP_SELF?insert=1" name="selectPics">
         <tr>
                 <td colspan="3" class="tableh1"><h2>{$lang_search_new_php['list_new_pic']}</h2></td>
         </tr>
 
 EOT;
     $expic_array = array();
+    $check_all = $lang_search_new_php['check_all'];
+    $uncheck_all = $lang_search_new_php['uncheck_all'];
+    // added below table, JavaScript and additional check/uncheck options: gaugau 03-11-02
 
     getallpicindb($expic_array, $HTTP_GET_VARS['startdir']);
-    if (scandir($HTTP_GET_VARS['startdir'] . '/', $expic_array)) {
+    if (CPGscandir($HTTP_GET_VARS['startdir'] . '/', $expic_array)) {
+
         echo <<<EOT
         <tr>
                 <td colspan="3" align="center" class="tablef">
+                                <script language="javascript" type="text/javascript">
+                                <!--
+                                function checkAll(field)
+                                {
+                                for (i = 0; i < field.length; i++)
+                                  field[i].checked = true ;
+                                }
+
+                                function uncheckAll(field)
+                                {
+                                for (i = 0; i < field.length; i++)
+                                  field[i].checked = false ;
+                                }
+                                -->
+                                </script>
+                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                        <tr>
+                        <td align="left">
+                        <input type="button" name="CheckAll" class="button" value="$check_all" onClick="checkAll(document.selectPics.picselector)">
+                        <input type="button" name="UnCheckAll" class="button" value="$uncheck_all" onClick="uncheckAll(document.selectPics.picselector)">
+                        </td>
+                        <td align="center">
                         <input type="submit" class="button" name="insert" value="{$lang_search_new_php['insert_selected']}">
+                        </td>
+                        </tr>
+                        </table>
                 </td>
         </tr>
         </form>
@@ -412,7 +456,7 @@ EOT;
         </form>
 
 EOT;
-    } 
+    }
     endtable();
     pagefooter();
     ob_end_flush();
@@ -431,6 +475,6 @@ EOT;
     endtable();
     pagefooter();
     ob_end_flush();
-} 
+}
 
 ?>

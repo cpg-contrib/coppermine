@@ -1,3 +1,7 @@
+/*
+$Id$
+*/
+
 /* Colors used:                                */
 /* --------------------------------------------*/
 /* #FFFFFF = RBG 255,255,255 = (white)         */
@@ -381,8 +385,8 @@ a:hover.yebg {
         position: relative;
         padding-top: 1px;
         padding-bottom: 1px;
-        padding-left: 10px;
-        padding-right: 10px;
+        padding-left: 2px;
+        padding-right: 2px;
 }
 
 .admin_menu a:hover {
@@ -402,6 +406,13 @@ a:hover.yebg {
         border-width:1px;
         border-color: #000000;
         margin: 2px;
+}
+
+.imageborder {
+        border: 1px solid #000000;
+        background-color: #FFFFFF;
+        margin-top: 30px;
+        margin-bottom: 30px;
 }
 
 .thumbnails {
@@ -528,3 +539,39 @@ a:hover.yebg {
         padding-left: 10px;
         border-top : 1px solid #FFFFFF;
 }
+
+.debug_text {
+        border: #BDBEBD;
+        background-color: #EFEFEF;
+        width : 100%;
+        margin : 0px;
+}
+
+.clickable_option {
+        color: #6BBE10;
+        font-weight: bold;
+        cursor : hand;
+}
+
+.listbox_lang {
+        color: #000000;
+        background-color: #E7F38C;
+        border: 1px solid #6BBE10;
+        font-size: 80%;
+        font-family: Arial, Helvetica, sans-serif;
+        vertical-align : middle;
+}
+
+/* Colors used:                                */
+/* --------------------------------------------*/
+/* #FFFFFF = RBG 255,255,255 = (white)         */
+/* #000000 = RBG   0,  0,  0 = (black)         */
+/* #FFA600 = RGB 255,166,  0 = (orange)        */
+/* #6BBE10 = RGB 107,190, 16 = (green)         */
+/* #FFFF00 = RGB 255,255,  0 = (yellow)        */
+/* #D1D7DC = RGB 209,215,220 = (light grey)    */
+/* #F7F37B = RGB 247,243,123 = (light yellow)  */
+/* #5F5F5F = RGB  95, 95, 95 = (dark grey)     */
+/* #E7F38C = RGB 239,243,140 = (light green)   */
+/* if you don't like a color, just do a search */
+/* and replace on the hex color...

@@ -1,6 +1,6 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.2.1                                            //
+// Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
 // Copyright (C) 2002,2003 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
@@ -13,7 +13,10 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- // 
+// ------------------------------------------------------------------------- //
+/*
+$Id$
+*/
 
 define('IN_COPPERMINE', true);
 define('SHOWTHUMB_PHP', true);
@@ -38,26 +41,26 @@ function makethumbnail($src_file, $newSize, $method)
         GIS_GIF => 'gif',
         GIS_JPG => 'jpeg',
         GIS_PNG => 'png'
-        ); 
+        );
     // Checks that file exists and is readable
     if (!filesize($src_file) || !is_readable($src_file)) {
         header("Content-type: image/gif");
         fpassthru(fopen(READ_ERROR_ICON, 'rb'));
         exit;
-    } 
+    }
     // find the image size, no size => unknow type
     $imginfo = getimagesize($src_file);
     if ($imginfo == null) {
         header("Content-type: image/gif");
         fpassthru(fopen(UNKNOW_ICON, 'rb'));
         exit;
-    } 
+    }
     // GD can't handle gif images
     if ($imginfo[2] == GIS_GIF && ($method == 'gd1' || $method == 'gd2')) {
         header("Content-type: image/gif");
         fpassthru(fopen(GIF_ICON, 'rb'));
         exit;
-    } 
+    }
     // height/width
     $srcWidth = $imginfo[0];
     $srcHeight = $imginfo[1];
@@ -65,7 +68,7 @@ function makethumbnail($src_file, $newSize, $method)
     $ratio = max($srcWidth, $srcHeight) / $newSize;
     $ratio = max($ratio, 1.0);
     $destWidth = (int)($srcWidth / $ratio);
-    $destHeight = (int)($srcHeight / $ratio); 
+    $destHeight = (int)($srcHeight / $ratio);
     // Choose method for thumb creation
     switch ($method) {
         case "im" :
@@ -74,7 +77,7 @@ function makethumbnail($src_file, $newSize, $method)
                 $src_file = '"' . $cur_dir . '\\' . strtr($src_file, '/', '\\') . '"';
             } else {
                 $src_file = escapeshellarg($src_file);
-            } 
+            }
             header("Content-type: image/" . ($content_type[$imginfo[2]]));
             passthru("{$CONFIG['impath']}convert -quality $CONFIG[jpeg_qual] -antialias -geometry {$destWidth}x{$destHeight} $src_file -");
             break;
@@ -104,8 +107,8 @@ function makethumbnail($src_file, $newSize, $method)
             imagedestroy($src_img);
             imagedestroy($dst_img);
             break;
-    } 
-} 
+    }
+}
 
 makethumbnail($CONFIG['fullpath'] . $HTTP_GET_VARS['picfile'], $HTTP_GET_VARS['size'], $CONFIG['thumb_method']);
 

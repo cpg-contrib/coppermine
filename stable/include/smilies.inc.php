@@ -1,6 +1,6 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.2.1                                            //
+// Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
 // Copyright (C) 2002,2003 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
@@ -17,8 +17,12 @@
 // ------------------------------------------------------------------------- //
 // CODE IN THIS MODULE IS TAKEN FROM phpBB                    //
 // ------------------------------------------------------------------------- //
-define('SMILIES_PHP', true);
 
+/*
+$Id$
+*/
+
+define('SMILIES_PHP', true);
 function get_smilies_table1()
 {
     global $lang_smilies_inc_php;
@@ -67,7 +71,7 @@ function get_smilies_table1()
         array(':neutral:', 'icon_neutral.gif', $lang_smilies_inc_php['Neutral']),
         array(':mrgreen:', 'icon_mrgreen.gif', $lang_smilies_inc_php['Mr. Green'])
         );
-} 
+}
 
 function get_smilies_table2()
 {
@@ -93,7 +97,7 @@ function get_smilies_table2()
         array(':!:', 'icon_exclaim.gif', $lang_smilies_inc_php['Exclamation']),
         array(':?:', 'icon_question.gif', $lang_smilies_inc_php['Question'])
         );
-} 
+}
 // Smilies code ... would this be better tagged on to the end of bbcode.php?
 // Probably so and I'll move it before B2
 
@@ -110,15 +114,15 @@ function process_smilies($message, $url_prefix = '')
         for($i = 0; $i < count($smilies); $i++) {
             $orig[] = "/(?<=.\W|\W.|^\W)" . preg_quote($smilies[$i][0], "/") . "(?=.\W|\W.|\W$)/";
             $repl[] = '<img src="' . $url_prefix . 'images/smiles' . '/' . ($smilies[$i][1]) . '" alt="' . ($smilies[$i][2]) . '" border="0" />';
-        } 
-    } 
+        }
+    }
 
     if (count($orig)) {
         $message = preg_replace($orig, $repl, ' ' . $message . ' ');
         $message = substr($message, 1, -1);
-    } 
+    }
     return $message;
-} 
+}
 
 // Fill smiley templates (or just the variables) with smileys
 // Either in a window or inline
@@ -127,39 +131,39 @@ function generate_smilies($form = 'post', $field = 'message')
 {
     $smilies = get_smilies_table2();
 
-    $html = '<table width="100%" border="0" cellspacing="0" cellpadding="0">' . "\n" . '	<tr align="center" valign="middle">' . "\n";
+    $html = '<table width="100%" border="0" cellspacing="0" cellpadding="0">' . "\n" . '        <tr align="center" valign="middle">' . "\n";
 
     foreach($smilies as $smiley) {
         $caption = $smiley[2] . " " . $smiley[0];
-        $html .= '		<td width="5%"><a href="javascript:emoticon_' . $form . '(\'' . $smiley[0] . '\')"><img src="images/smiles/' . $smiley[1] . '" alt="' . $caption . '" width="15" height="15" border="0" title="' . $caption . '"></a></td>' . "\n";
-    } 
+        $html .= '                <td width="5%"><a href="javascript:emoticon_' . $form . '(\'' . $smiley[0] . '\')"><img src="images/smiles/' . $smiley[1] . '" alt="' . $caption . '" width="15" height="15" border="0" title="' . $caption . '"></a></td>' . "\n";
+    }
 
-    $html .= '	</tr>' . "\n" . '</table>' . "\n";
+    $html .= '        </tr>' . "\n" . '</table>' . "\n";
 
     $html .= <<<EOT
-	
+
 <script language="JavaScript" type="text/javascript">
 <!--
 function emoticon_$form(text) {
-	text = ' ' + text + ' ';
-	if (document.$form.$field.createTextRange && document.post.message.caretPos) {
-		var caretPos = document.$form.$field.caretPos;
-		caretPos.text = caretPos.text.charAt(caretPos.text.length - 1) == ' ' ? text + ' ' : text;
-		document.$form.$field.focus();
-	} else {
-		document.$form.$field.value  += text;
-		document.$form.$field.focus();
-	}
+        text = ' ' + text + ' ';
+        if (document.$form.$field.createTextRange && document.post.message.caretPos) {
+                var caretPos = document.$form.$field.caretPos;
+                caretPos.text = caretPos.text.charAt(caretPos.text.length - 1) == ' ' ? text + ' ' : text;
+                document.$form.$field.focus();
+        } else {
+                document.$form.$field.value  += text;
+                document.$form.$field.focus();
+        }
 }
 
 function storeCaret_$form(textEl) {
-	if (textEl.createTextRange) textEl.caretPos = document.selection.createRange().duplicate();
+        if (textEl.createTextRange) textEl.caretPos = document.selection.createRange().duplicate();
 }
 //-->
 
 EOT;
     $html .= "</script>\n";
     return $html;
-} 
+}
 
 ?>

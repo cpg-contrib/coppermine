@@ -1,3 +1,7 @@
+/*
+$Id$
+*/
+
 body {
         font-family : Verdana, Arial, Helvetica, sans-serif;
         font-size: 12px;
@@ -336,6 +340,8 @@ bblink a:hover {
         border: 1px solid #005D8C;
         background-image : url(images/button_bg.gif);
         background-position : bottom;
+        background-repeat: repeat-x;
+        background-color: #FFFFFF;
         color: #000000;
         margin-top: 0px;
         margin-bottom: 0px;
@@ -349,8 +355,8 @@ bblink a:hover {
         position: relative;
         padding-top: 1px;
         padding-bottom: 1px;
-        padding-left: 10px;
-        padding-right: 10px;
+        padding-left: 2px;
+        padding-right: 2px;
 }
 
 .admin_menu a:hover {
@@ -370,6 +376,14 @@ bblink a:hover {
         border-color: #000000;
         margin: 2px;
 }
+
+.imageborder {
+        border: 1px solid #000000;
+        background-color: #FFFFFF;
+        margin-top: 30px;
+        margin-bottom: 30px;
+}
+
 
 .thumbnails {
         background: #C2C9D3 ;
@@ -475,4 +489,25 @@ bblink a:hover {
         padding-bottom: 6px;
         padding-left: 10px;
         border-top : 1px solid #FFFFFF;
+}
+
+.debug_text {
+        border: #BDBEBD;
+        background-color: #EFEFEF;
+        width : 100%;
+        margin : 0px;
+}
+
+.clickable_option {
+        border-bottom : 1px dotted #758698;
+        cursor : hand;
+}
+
+.listbox_lang {
+        color: #000000;
+        background-color: #758698;
+        border: 1px solid #758698;
+        font-size: 80%;
+        font-family: Arial, Helvetica, sans-serif;
+        vertical-align : middle;
 }

@@ -6,7 +6,11 @@
 <meta http-equiv="Pragma" content="no-cache" />
 {META}
 <link rel="stylesheet" href="themes/project_vii/style.css" />
-<script type="text/javascript" src="scripts.js"></script></head>
+<script type="text/javascript" src="scripts.js"></script>
+<!--
+$Id$
+-->
+</head>
 <script language="JavaScript" type="text/JavaScript">
 <!--
 function MM_findObj(n, d) { //v4.01
@@ -26,7 +30,17 @@ function MM_showHideLayers() { //v6.0
 //-->
 </script>
 <body>
-<div id="Menu1" style="position:absolute; width:800px; height:30px; z-index:1; left: 20px; top: 100px; visibility: hidden;">{MAIN_MENU1}</div>
+<div id="Menu1" style="position:absolute; width:800px; height:30px; z-index:1; left: 20px; top: 100px; visibility: hidden;">
+                <span class="topmenu">
+                        <table border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                        <td>
+                                        {MAIN_MENU1}
+                                        </td>
+                                </tr>
+                        </table>
+                </span>
+</div>
 <table border="0" cellpadding="0" cellspacing="0" width="100%" class="top_panel">
   <!-- fwtable fwsrc="top_panel.png" fwbase="top_panel" fwstyle="Dreamweaver" fwdocid = "742308039" fwnested="1" -->
   <tr>
@@ -56,7 +70,11 @@ background-position : right;
   <tr>
     <td align="center">{ADMIN_MENU} {GALLERY} </td>
   </tr>
+  <tr>
+    <td align="center">{THEME_SELECT_LIST}&nbsp;{LANGUAGE_SELECT_LIST}&nbsp;{LANGUAGE_SELECT_FLAGS}</td>
+  </tr>
 </table>
+
 <p>&nbsp;</p>
 </body>
 </html>

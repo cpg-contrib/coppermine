@@ -25,9 +25,22 @@ function MM_showHideLayers() { //v6.0
 }
 //-->
 </script>
+<!--
+$Id$
+-->
 </head>
 <body>
-<div id="Menu1" style="position:absolute; width:780px; height:30px; z-index:1; left: 22px; top: 47px; visibility: hidden;">{MAIN_MENU1}</div>
+<div id="Menu1" style="position:absolute; width:780px; height:30px; z-index:1; left: 22px; top: 47px; visibility: hidden;">
+                <span class="topmenu">
+                        <table border="0" cellpadding="0" cellspacing="0">
+                                <tr>
+                                        <td>
+                                        {MAIN_MENU1}
+                                        </td>
+                                </tr>
+                        </table>
+                </span>
+                                        </div>
 <table border="0" cellpadding="0" cellspacing="0" width="100%" class="top_panel">
   <tr>
    <td><table border="0" cellpadding="0" cellspacing="0" width="100%">
@@ -64,9 +77,14 @@ function MM_showHideLayers() { //v6.0
         <tr>
                 <td align="center" valign="top">
                         {ADMIN_MENU}
+                  &nbsp;{LANGUAGE_SELECT_FLAGS}
                         {GALLERY}
                 </td>
         </tr>
+		<tr>
+                <td align="center" valign="top">{THEME_SELECT_LIST}&nbsp;{LANGUAGE_SELECT_LIST}</td>
+        </tr>
 </table>
+
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.2.1                                            //
+// Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
 // Copyright (C) 2002,2003 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
@@ -14,11 +14,14 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
+/*
+$Id$
+*/
 
 define('IN_COPPERMINE', true);
 define('DISPLAYIMAGE_PHP', true);
 define('INDEX_PHP', true);
-define('SMILIES_PHP', true);
+//define('SMILIES_PHP', true);
 
 require('include/init.inc.php');
 
@@ -28,11 +31,13 @@ $breadcrumb = '';
 $breadcrumb_text = '';
 $cat_data = array();
 
-if ($CONFIG['read_exif_data'] && function_exists('exif_read_data')) {
-    include("include/exif_php.inc.php");
-} elseif ($CONFIG['read_exif_data']) {
-    cpg_die(CRITICAL_ERROR, 'PHP running on your server does not support reading EXIF data in JPEG files, please turn this off on the config page', __FILE__, __LINE__);
+if($CONFIG['read_exif_data'] ){
+        include("include/exif_php.inc.php");
 }
+if($CONFIG['read_iptc_data'] ){
+        include("include/iptc.inc.php");
+}
+
 
 /**
  * Local functions definition
@@ -43,7 +48,7 @@ function html_picture_menu($id)
     global $lang_display_image_php;
 
     return <<<EOT
-<div align="center" class="admin_menu"><a href="delete.php?id=$id&what=picture"  class="adm_menu" onclick="return confirm('{$lang_display_image_php['confirm_del']}');">{$lang_display_image_php['del_pic']}</a></div>
+     <a href="#" onClick="return MM_openBrWindow('picEditor.php?id=$id','Crop_Picture','scrollbars=yes,toolbar=no,status=yes,resizable=yes')" class="admin_menu" >{$lang_display_image_php['crop_pic']}</a> <a href="editOnePic.php?id=$id&what=picture"  class="admin_menu">{$lang_display_image_php['edit_pic']}</a> <a href="delete.php?id=$id&what=picture"  class="admin_menu" onclick="return confirm('{$lang_display_image_php['confirm_del']}'); return false; ">{$lang_display_image_php['del_pic']}</a>
 
 EOT;
 }
@@ -51,7 +56,7 @@ EOT;
 function html_img_nav_menu()
 {
     global $CONFIG, $HTTP_SERVER_VARS, $HTTP_GET_VARS, $CURRENT_PIC_DATA, $PHP_SELF;
-    global $album, $cat, $pos, $pic_count, $lang_img_nav_bar, $template_img_navbar;
+    global $album, $cat, $pos, $pic_count, $lang_img_nav_bar, $lang_text_dir, $template_img_navbar;
 
     $cat_link = is_numeric($album) ? '' : '&cat=' . $cat;
 
@@ -86,7 +91,7 @@ function html_img_nav_menu()
 
     $thumb_tgt = "thumbnails.php?album=$album$cat_link&page=$page";
 
-    $slideshow_tgt = "$PHP_SELF?album=$album$cat_link&pid=$pid&slideshow=5000";
+    $slideshow_tgt = "$PHP_SELF?album=$album$cat_link&pid=$pid&slideshow=".$CONFIG['slideshow_interval'];
 
     $pic_pos = sprintf($lang_img_nav_bar['pic_pos'], $human_pos, $pic_count);
 
@@ -102,6 +107,8 @@ function html_img_nav_menu()
         '{PREV_TITLE}' => $prev_title,
         '{NEXT_TGT}' => $next_tgt,
         '{NEXT_TITLE}' => $next_title,
+        '{PREV_IMAGE}' => ($lang_text_dir=='LTR') ? 'prev' : 'next',
+        '{NEXT_IMAGE}' => ($lang_text_dir=='LTR') ? 'next' : 'prev',
         );
 
     return template_eval($template_img_navbar, $params);
@@ -111,7 +118,7 @@ function html_picture()
 {
     global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $USER, $HTTP_COOKIE_VARS;
     global $album, $comment_date_fmt, $template_display_picture;
-    global $lang_display_image_php;
+    global $lang_display_image_php, $lang_picinfo;
 
     $pid = $CURRENT_PIC_DATA['pid'];
 
@@ -125,17 +132,33 @@ function html_picture()
         array_push($USER['liv'], $pid);
     }
 
-    if ($CONFIG['make_intermediate'] && max($CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight']) > $CONFIG['picture_width']) {
+    if($CONFIG['thumb_use']=='ht' && $CURRENT_PIC_DATA['pheight'] > $CONFIG['picture_width'] ){ // The wierd comparision is because only picture_width is stored
+      $condition = true;
+    }elseif($CONFIG['thumb_use']=='wd' && $CURRENT_PIC_DATA['pwidth'] > $CONFIG['picture_width']){
+      $condition = true;
+    }elseif($CONFIG['thumb_use']=='any' && max($CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight']) > $CONFIG['picture_width']){
+      $condition = true;
+    }else{
+     $condition = false;
+    }
+
+
+
+    if ($CONFIG['make_intermediate'] && $condition ) {
         $picture_url = get_pic_url($CURRENT_PIC_DATA, 'normal');
     } else {
         $picture_url = get_pic_url($CURRENT_PIC_DATA, 'fullsize');
     }
+    $pic_thumb_url = get_pic_url($CURRENT_PIC_DATA,'thumb');
 
     $picture_menu = ((USER_ADMIN_MODE && $CURRENT_ALBUM_DATA['category'] == FIRST_USER_CAT + USER_ID) || GALLERY_ADMIN_MODE) ? html_picture_menu($pid) : '';
 
     $image_size = compute_img_size($CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight'], $CONFIG['picture_width']);
 
     $pic_title = '';
+    $mime_content = get_type($CURRENT_PIC_DATA['filename']);
+
+
     if ($CURRENT_PIC_DATA['title'] != '') {
         $pic_title .= $CURRENT_PIC_DATA['title'] . "\n";
     }
@@ -144,16 +167,36 @@ function html_picture()
     }
     if ($CURRENT_PIC_DATA['keywords'] != '') {
         $pic_title .= $lang_picinfo['Keywords'] . ": " . $CURRENT_PIC_DATA['keywords'];
-    } // added by gaugau
-    if (isset($image_size['reduced'])) {
-        $winsizeX = $CURRENT_PIC_DATA['pwidth'] + 16;
-        $winsizeY = $CURRENT_PIC_DATA['pheight'] + 16;
-        $pic_html = "<a href=\"javascript:;\" onClick=\"MM_openBrWindow('displayimage.php?pid=$pid&fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=yes,status=yes,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
-        $pic_title = $lang_display_image_php['view_fs'] . "\n==============\n" . $pic_title; //added by gaugau
-        $pic_html .= "<img src=\"" . $picture_url . "\" class=\"image\" border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
-        $pic_html .= "</a>\n";
+    }
+
+    if ($CURRENT_PIC_DATA['pwidth']==0 || $CURRENT_PIC_DATA['pheight']==0) {
+        $image_size['geom']='';
+        $image_size['whole'] = '';
+    } elseif ($mime_content['content']=='movie' || $mime_content['content']=='audio') {
+        $ctrl_offset['mov']=15;
+        $ctrl_offset['wmv']=45;
+        $ctrl_offset['swf']=0;
+        $ctrl_offset['rm']=0;
+        $ctrl_offset_default=45;
+        $ctrl_height = (isset($ctrl_offset[$mime_content['extension']]))?($ctrl_offset[$mime_content['extension']]):$ctrl_offset_default;
+        $image_size['whole']='width="'.$CURRENT_PIC_DATA['pwidth'].'" height="'.($CURRENT_PIC_DATA['pheight']+$ctrl_height).'"';
+    }
+
+    if ($mime_content['content']=='image') {
+        if (isset($image_size['reduced'])) {
+            $winsizeX = $CURRENT_PIC_DATA['pwidth'] + 16;
+            $winsizeY = $CURRENT_PIC_DATA['pheight'] + 16;
+            $pic_html = "<a href=\"javascript:;\" onClick=\"MM_openBrWindow('displayimage.php?pid=$pid&fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=yes,status=yes,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
+            $pic_title = $lang_display_image_php['view_fs'] . "\n==============\n" . $pic_title; //added by gaugau
+            $pic_html .= "<img src=\"" . $picture_url . "\" class=\"image\" border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
+            $pic_html .= "</a>\n";
+        } else {
+            $pic_html = "<img src=\"" . $picture_url . "\" {$image_size['geom']} class=\"image\" border=\"0\" /><br />\n";
+        }
+    } elseif ($mime_content['content']=='document') {
+        $pic_html = "<a href=\"{$picture_url}\" target=\"_blank\" class=\"document_link\"><img src=\"".$pic_thumb_url."\" border=\"0\" class=\"image\" /></a>\n<br />";
     } else {
-        $pic_html = "<img src=\"" . $picture_url . "\" {$image_size['geom']} class=\"image\" border=\"0\" /><br />\n";
+            $pic_html = "<object {$image_size['whole']}><param name=\"autostart\" value=\"true\"><param name=\"src\" value=\"". $picture_url . "\"><embed {$image_size['whole']} src=\"". $picture_url . "\" autostart=\"true\"></embed></object><br />\n";
     }
 
     if (!$CURRENT_PIC_DATA['title'] && !$CURRENT_PIC_DATA['caption']) {
@@ -255,7 +298,7 @@ function html_picinfo()
         }
     }
 
-    $info[$lang_picinfo['File Size']] = ($CURRENT_PIC_DATA['filesize'] > 10240 ? ($CURRENT_PIC_DATA['filesize'] >> 10) . ' ' . $lang_byte_units[1] : $CURRENT_PIC_DATA['filesize'] . ' ' . $lang_byte_units[0]);
+    $info[$lang_picinfo['File Size']] = ($CURRENT_PIC_DATA['filesize'] > 10240 ? ($CURRENT_PIC_DATA['filesize'] >> 10) . '&nbsp;' . $lang_byte_units[1] : $CURRENT_PIC_DATA['filesize'] . '&nbsp;' . $lang_byte_units[0]);
     $info[$lang_picinfo['File Size']] = '<span dir="LTR">' . $info[$lang_picinfo['File Size']] . '</span>';
     $info[$lang_picinfo['Dimensions']] = sprintf($lang_display_image_php['size'], $CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight']);
     $info[$lang_picinfo['Displayed']] = sprintf($lang_display_image_php['views'], $CURRENT_PIC_DATA['hits']);
@@ -268,12 +311,25 @@ function html_picinfo()
         if (isset($exif['Camera'])) $info[$lang_picinfo['Camera']] = $exif['Camera'];
         if (isset($exif['DateTaken'])) $info[$lang_picinfo['Date taken']] = $exif['DateTaken'];
         if (isset($exif['Aperture'])) $info[$lang_picinfo['Aperture']] = $exif['Aperture'];
+        if (isset($exif['ISO'])) $info[$lang_picinfo['ISO']] = $exif['ISO'];	
         if (isset($exif['ExposureTime'])) $info[$lang_picinfo['Exposure time']] = $exif['ExposureTime'];
         if (isset($exif['FocalLength'])) $info[$lang_picinfo['Focal length']] = $exif['FocalLength'];
-        if (isset($exif['Comment'])) $info[$lang_picinfo['Comment']] = $exif['Comment'];
+        if (@strlen(trim($exif['Comment'])) > 0 ) {
+                $info[$lang_picinfo['Comment']] = trim($exif['Comment']);
+        }
+    }
+
+    if ($CONFIG['read_iptc_data']) $iptc = get_IPTC($path_to_pic);
+
+    if (isset($iptc) && is_array($iptc)) {
+        if (isset($iptc['Title'])) $info[$lang_picinfo['iptcTitle']] = trim($iptc['Title']);
+        if (isset($iptc['Copyright'])) $info[$lang_picinfo['iptcCopyright']] = trim($iptc['Copyright']);
+        if (isset($iptc['Keywords'])) $info[$lang_picinfo['iptcKeywords']] = trim(implode(" ",$iptc['Keywords']));
+        if (isset($iptc['Category'])) $info[$lang_picinfo['iptcCategory']] = trim($iptc['Category']);
+        if (isset($iptc['SubCategories'])) $info[$lang_picinfo['iptcSubCategories']] = trim(implode(" ",$iptc['SubCategories']));
     }
     // Create the absolute URL for display in info
-    $info['URL'] = '<a href=' . $CONFIG["ecards_more_pic_target"] . '/' . basename($_SERVER['PHP_SELF']) . "?pos=-$CURRENT_PIC_DATA[pid]" . ' >' . $CONFIG["ecards_more_pic_target"] . '/' . basename($_SERVER['PHP_SELF']) . "?pos=-$CURRENT_PIC_DATA[pid]" . '</a>';
+    $info['URL'] = '<a href=' . $CONFIG["ecards_more_pic_target"] . basename($_SERVER['PHP_SELF']) . "?pos=-$CURRENT_PIC_DATA[pid]" . ' >' . $CONFIG["ecards_more_pic_target"] . basename($_SERVER['PHP_SELF']) . "?pos=-$CURRENT_PIC_DATA[pid]" . '</a>';
     // with subdomains the variable is $_SERVER["SERVER_NAME"] does not return the right value instead of using a new config variable I reused $CONFIG["ecards_more_pic_target"] no trailing slash in the configure
     // Create the add to fav link
     if (!in_array($CURRENT_PIC_DATA['pid'], $FAVPICS)) {
@@ -392,7 +448,7 @@ function display_fullsize_pic()
 <link rel="stylesheet" href="<?php echo $THEME_DIR ?>style.css" />
 <script type="text/javascript" src="scripts.js"></script>
 </head>
-<body scroll="auto">
+<body scroll="auto" marginwidth="0" marginheight="0">
 <script language="JavaScript" type="text/JavaScript">
 adjust_popup();
 </script>
@@ -542,7 +598,7 @@ if ($pos < 0) {
 }
 // Retrieve data for the current album
 if (isset($CURRENT_PIC_DATA)) {
-    $result = db_query("SELECT title, comments, votes, category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='{$CURRENT_PIC_DATA['aid']}' LIMIT 1");
+    $result = db_query("SELECT title, comments, votes, category, aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='{$CURRENT_PIC_DATA['aid']}' LIMIT 1");
     if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, sprintf($lang_errors['pic_in_invalid_album'], $CURRENT_PIC_DATA['aid']), __FILE__, __LINE__);
     $CURRENT_ALBUM_DATA = mysql_fetch_array($result);
 
@@ -553,6 +609,7 @@ if (isset($CURRENT_PIC_DATA)) {
         $cat = - $album;
     } else {
         $actual_cat = $CURRENT_ALBUM_DATA['category'];
+        breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);	
     }
 }
 
@@ -571,10 +628,11 @@ if (isset($HTTP_GET_VARS['fullsize'])) {
     $votes = html_rating_box();
     $pic_info = html_picinfo();
     $comments = html_comments($CURRENT_PIC_DATA['pid']);
+    if ($CURRENT_PIC_DATA['keywords']) { $meta_keywords = "<meta name=\"keywords\" content=\"".$CURRENT_PIC_DATA['keywords']."\">"; }
 
-    pageheader($album_name . '/' . $picture_title, '', false);
+    pageheader($album_name . '/' . $picture_title, $meta_keywords, false);
     // Display Breadcrumbs
-    if ($breadcrumb) {
+    if ($breadcrumb && !(strpos($CONFIG['main_page_layout'],"breadcrumb")===false)) {
         theme_display_breadcrumb($breadcrumb, $cat_data);
     }
     // Display Filmstrip if the album is not search

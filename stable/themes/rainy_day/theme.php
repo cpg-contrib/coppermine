@@ -1,22 +1,25 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery                                                 //
+// Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003  Gr&eacute;gory DEMAR <gdemar@wanadoo.fr>               //
-// http://www.chezgreg.net/coppermine/                                      //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
-// Based on PHPhotoalbum by Henning Stverud <henning@stoverud.com>         //
-// http://www.stoverud.com/PHPhotoalbum/                                    //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
-// Hacked by Tarique Sani <tarique@sanisoft.com> and Girsh Nair             //
-// <girish@sanisoft.com> see http://www.sanisoft.com/cpg/README.txt for     //
-// details                                                                  //
+// This program is free software; you can redistribute it and/or modify      //
+// it under the terms of the GNU General Public License as published by      //
+// the Free Software Foundation; either version 2 of the License, or         //
+// (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify     //
-// it under the terms of the GNU General Public License as published by     //
-// the Free Software Foundation; either version 2 of the License, or        //
-// (at your option) any later version.                                      //
-// ------------------------------------------------------------------------- //
+
+/*
+$Id$
+*/
+
+define('THEME_HAS_RATING_GRAPHICS', 1);
 // HTML template for main menu
 $template_main_menu1 = <<<EOT
                 <span class="topmenu">
@@ -30,6 +33,14 @@ $template_main_menu1 = <<<EOT
                                         </td>
                                         <td><img name="button1_r1_c3" src="themes/rainy_day/images/button1_r1_c3.gif" width="5" height="25" border="0" id="button1_r1_c3" alt="" /></td>
 <!-- END my_gallery -->
+<!-- BEGIN allow_memberlist -->
+                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
+                                        <td><img name="button1_r1_c1" src="themes/rainy_day/images/button1_r1_c1.gif" width="5" height="25" border="0" id="button1_r1_c1" alt="" /></td>
+                                        <td background="themes/rainy_day/images/button1_r1_c2.gif">
+                                                <a href="{MEMBERLIST_TGT}" title="{MEMBERLIST_TITLE}">{MEMBERLIST_LNK}</a>
+                                        </td>
+                                        <td><img name="button1_r1_c3" src="themes/rainy_day/images/button1_r1_c3.gif" width="5" height="25" border="0" id="button1_r1_c3" alt="" /></td>
+<!-- END allow_memberlist -->
 <!-- BEGIN my_profile -->
                                         <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
                                         <td><img name="button1_r1_c1" src="themes/rainy_day/images/button1_r1_c1.gif" width="5" height="25" border="0" id="button1_r1_c1" alt="" /></td>
@@ -38,6 +49,15 @@ $template_main_menu1 = <<<EOT
                                         </td>
                                         <td><img name="button1_r1_c3" src="themes/rainy_day/images/button1_r1_c3.gif" width="5" height="25" border="0" id="button1_r1_c3" alt="" /></td>
 <!-- END my_profile -->
+<!-- BEGIN faq -->
+                                        <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
+                                        <td><img name="button1_r1_c1" src="themes/rainy_day/images/button1_r1_c1.gif" width="5" height="25" border="0" id="button1_r1_c1" alt="" /></td>
+                                        <td background="themes/rainy_day/images/button1_r1_c2.gif">
+
+                        <a href="{FAQ_TGT}" title="{FAQ_TITLE}">{FAQ_LNK}</a>
+                                        </td>
+                                        <td><img name="button1_r1_c3" src="themes/rainy_day/images/button1_r1_c3.gif" width="5" height="25" border="0" id="button1_r1_c3" alt="" /></td>
+<!-- END faq -->
 <!-- BEGIN enter_admin_mode -->
                                         <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
                                         <td><img name="button1_r1_c1" src="themes/rainy_day/images/button1_r1_c1.gif" width="5" height="25" border="0" id="button1_r1_c1" alt="" /></td>
@@ -92,9 +112,6 @@ $template_main_menu1 = <<<EOT
 EOT;
 
 $template_main_menu2 = <<<EOT
-                <span class="topmenu">
-                        <table border="0" cellpadding="0" cellspacing="0">
-                                <tr>
 <!-- BEGIN album_list -->
                                         <td><img name="spacer" src="images/spacer.gif" width="5" height="25" border="0" id="spacer" alt="" /></td>
                                         <td><img name="button1_r1_c1" src="themes/rainy_day/images/button1_r1_c1.gif" width="5" height="25" border="0" id="button1_r1_c1" alt="" /></td>
@@ -139,14 +156,11 @@ $template_main_menu2 = <<<EOT
                                                 <a href="{SEARCH_TGT}">{SEARCH_LNK}</a>
                                         </td>
                                         <td><img name="button1_r1_c3" src="themes/rainy_day/images/button1_r1_c3.gif" width="5" height="25" border="0" id="button1_r1_c3" alt="" /></td>
-                                </tr>
-                        </table>
-                </span>
 EOT;
 // HTML template for gallery admin menu
 $template_gallery_admin_menu = <<<EOT
 
-                <div align="left">
+                <div align="center">
                 <table cellpadding="0" cellspacing="1">
                         <tr>
                                 <td class="admin_menu"><a href="editpics.php?mode=upload_approval" title="">{UPL_APP_LNK}</a></td>
@@ -156,6 +170,7 @@ $template_gallery_admin_menu = <<<EOT
                                 <td class="admin_menu"><a href="usermgr.php" title="">{USERS_LNK}</a></td>
                                 <td class="admin_menu"><a href="groupmgr.php" title="">{GROUPS_LNK}</a></td>
                                 <td class="admin_menu"><a href="banning.php" title="">{BAN_LNK}</a></td>
+                                <td class="admin_menu"><a href="db_ecard.php" title="">{DB_ECARD_LNK}</a></td>
                                 <td class="admin_menu"><a href="reviewcom.php" title="">{COMMENTS_LNK}</a></td>
                                 <td class="admin_menu"><a href="searchnew.php" title="">{SEARCHNEW_LNK}</a></td>
                                 <td class="admin_menu"><a href="util.php" title="">{UTIL_LNK}</a></td>
@@ -168,7 +183,7 @@ EOT;
 // HTML template for user admin menu
 $template_user_admin_menu = <<<EOT
 
-                <div align="left">
+                <div align="center">
                 <table cellpadding="0" cellspacing="1">
                         <tr>
                                 <td class="admin_menu"><a href="albmgr.php" title="">{ALBMGR_LNK}</a></td>
@@ -191,12 +206,12 @@ $template_cat_list = <<<EOT
 <!-- END header -->
 <!-- BEGIN catrow_noalb -->
         <tr>
-                <td class="tableh2" colspan="3"><span class="catlink"><b>{CAT_TITLE}</b></span>{CAT_DESC}</td>
+                <td class="tableh2" colspan="3"><table border="0"><tr><td>{CAT_THUMB}</td><td><span class="catlink"><b>{CAT_TITLE}</b></span>{CAT_DESC}</td></tr></table></td>
         </tr>
 <!-- END catrow_noalb -->
 <!-- BEGIN catrow -->
         <tr>
-                <td class="tableb"><span class="catlink"><b>{CAT_TITLE}</b></span>{CAT_DESC}</td>
+                <td class="tableb"><table border="0"><tr><td>{CAT_THUMB}</td><td><span class="catlink"><b>{CAT_TITLE}</b></span>{CAT_DESC}</td></tr></table></td>
                 <td class="tableb" align="center">{ALB_COUNT}</td>
                 <td class="tableb" align="center">{PIC_COUNT}</td>
         </tr>
@@ -251,7 +266,7 @@ $template_album_list = <<<EOT
         <table width="100%" height="100%" cellspacing="0" cellpadding="0">
         <tr>
                 <td colspan="3" height="1" valign="top" class="tableh2">
-                        <b>{ALBUM_TITLE}</b>
+                        <a href="{ALB_LINK_TGT}" class="alblink"><b>{ALBUM_TITLE}</b></a>
                 </td>
         </tr>
         <tr>
@@ -321,11 +336,11 @@ $template_album_list = <<<EOT
 <!-- END spacer -->
 
 EOT;
-// HTML template for thumbnails display
+// HTML template for filmstrip display
 $template_film_strip = <<<EOT
 
         <tr>
-         <td valign="top" background='themes/igames/images/tile.gif' align="center" height='30'>&nbsp;</td>
+         <td valign="top" background='themes/rainy_day/images/tile.gif' align="center" height='30'>&nbsp;</td>
         </tr>
         <tr>
         <td valign="bottom" class="thumbnails" align="center">
@@ -333,7 +348,7 @@ $template_film_strip = <<<EOT
         </td>
         </tr>
         <tr>
-         <td valign="top" background='themes/igames/images/tile.gif' align="center" height='30'>&nbsp;</td>
+         <td valign="top" background='themes/rainy_day/images/tile.gif' align="center" height='30'>&nbsp;</td>
         </tr>
 <!-- BEGIN thumb_cell -->
                                         <a href="{LINK_TGT}">{THUMB}</a>&nbsp;
@@ -361,7 +376,7 @@ $template_album_list_cat = <<<EOT
         <table width="100%" height="100%" cellspacing="0" cellpadding="0">
         <tr>
                 <td colspan="3" height="1" valign="top" class="tableh2">
-                        <b>{ALBUM_TITLE}</b>
+                        <a href="{ALB_LINK_TGT}" class="alblink"><b>{ALBUM_TITLE}</b></a>
                 </td>
         </tr>
         <tr>
@@ -478,6 +493,28 @@ $template_thumb_view_title_row = <<<EOT
                         </table>
 
 EOT;
+
+
+// HTML template for title row of the fav thumbnail view (album title + download)
+$template_fav_thumb_view_title_row = <<<EOT
+
+                        <table width="100%" cellpadding="0" cellspacing="0">
+                        <tr>
+                                <td width="100%" class="statlink"><h2>{ALBUM_NAME}</h2></td>
+                                <td><img src="images/spacer.gif" width="1"></td>
+                                <td class="sortorder_cell">
+                                        <table height="100%" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                        <td class="sortorder_options"><span class="statlink"><a href="zipdownload.php">{DOWNLOAD_ZIP}</a></span></td>
+                                                </tr>
+                                                </table>
+                                </td>
+                        </tr>
+                        </table>
+
+EOT;
+
+
 // HTML template for thumbnails display
 $template_thumbnail_view = <<<EOT
 
@@ -583,9 +620,9 @@ EOT;
 $template_display_picture = <<<EOT
         <tr>
                 <td align="center" class="tableb" height="{CELL_HEIGHT}" style="white-space: nowrap; padding: 0px;">
-                        <table cellspacing="2" cellpadding="0" style="border: 1px solid #000000; background-color: #FFFFFF; margin-top: 30px; margin-bottom: 30px;">
+                        <table cellspacing="2" cellpadding="0" class="imageborder">
                                 <tr>
-                                        <td>
+                                        <td align="center">
                                                 {IMAGE}
                                                 {ADMIN_MENU}
                                         </td>
@@ -620,12 +657,12 @@ $template_image_rating = <<<EOT
                 <td colspan="6" class="tableh2_compact"><b>{TITLE}</b> {VOTES}</td>
         </tr>
         <tr>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE0}" title="{RUBBISH}"><img src="images/rating0.gif" alt="{RUBBISH}" border="0" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE1}" title="{POOR}"><img src="images/rating1.gif" alt="{POOR}" border="0" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE2}" title="{FAIR}"><img src="images/rating2.gif" alt="{FAIR}" border="0" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE3}" title="{GOOD}"><img src="images/rating3.gif" alt="{GOOD}" border="0" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE4}" title="{EXCELLENT}"><img src="images/rating4.gif" alt="{EXCELLENT}" border="0" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE5}" title="{GREAT}"><img src="images/rating5.gif" alt="{GREAT}" border="0" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE0}" title="{RUBBISH}"><img src="themes/rainy_day/images/rating0.gif" alt="{RUBBISH}" border="0" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE1}" title="{POOR}"><img src="themes/rainy_day/images/rating1.gif" alt="{POOR}" border="0" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE2}" title="{FAIR}"><img src="themes/rainy_day/images/rating2.gif" alt="{FAIR}" border="0" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE3}" title="{GOOD}"><img src="themes/rainy_day/images/rating3.gif" alt="{GOOD}" border="0" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE4}" title="{EXCELLENT}"><img src="themes/rainy_day/images/rating4.gif" alt="{EXCELLENT}" border="0" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE5}" title="{GREAT}"><img src="themes/rainy_day/images/rating5.gif" alt="{GREAT}" border="0" /><br /></a></td>
         </tr>
 
 EOT;
@@ -667,7 +704,7 @@ $template_image_comments = <<<EOT
                                                 <input type="hidden" name="msg_id" value="{MSG_ID}">
                                                 <tr>
                                                 <td>
-                                                   <input type=text name=msg_author value="{MSG_AUTHOR}" class="textinput" size=10>
+                                                   <input type=text name=msg_author value="{MSG_AUTHOR}" class="textinput" size="25">
                                                 </td>
                                                 </tr>
                                                 <tr>
@@ -693,12 +730,12 @@ $template_image_comments = <<<EOT
                                                 <form name="f{MSG_ID}" method="POST" action="db_input.php">
                                                 <input type="hidden" name="event" value="comment_update">
                                                 <input type="hidden" name="msg_id" value="{MSG_ID}">
-                                                <td> 
-                                                <input type=text name=msg_author value="{MSG_AUTHOR}" class="textinput" size=10> 
-                                                </td> 
+                                                <td>
+                                                <input type=text name=msg_author value="{MSG_AUTHOR}" class="textinput" size="25">
+                                                </td>
                                         </tr>
                                         <tr>
-																								<td width="100%">
+                                                <td width="100%">
                                                         <textarea cols="40" rows="2" class="textinput" name="msg_body" style="width: 100%;">{MSG_BODY_RAW}</textarea>
                                                 </td>
                                                 <td class="tableb_compact">
@@ -886,38 +923,8 @@ function pagefooter()
     global $USER, $ALBUM_SET, $CONFIG, $time_start, $query_stats;
     global $template_footer;
 
-    if ($CONFIG['debug_mode']) {
-        $time_end = getmicrotime();
-        $time = round($time_end - $time_start, 3);
-
-        $query_count = count($query_stats);
-        $query_times = '';
-        $total_query_time = 0;
-        foreach ($query_stats as $qtime) {
-            $query_times .= round($qtime, 3) . "s ";
-            $total_query_time += $qtime;
-        }
-        $total_query_time = round($total_query_time, 3);
-
-        starttable('100%', 'Debug info');
-        echo "<tr><td class=\"tableb\">";
-        echo "USER: <pre>";
-        print_r($USER);
-        echo "</pre></td></tr><td class=\"tableb\">";
-        echo "GET :<pre>";
-        print_r($HTTP_GET_VARS);
-        echo "</pre></td></tr><td class=\"tableb\">";
-        echo "POST :<pre>";
-        print_r($HTTP_POST_VARS);
-        echo "</pre></td></tr><td class=\"tableb\" align=\"center\">";
-        echo <<<EOT
-                Page generated in <b>$time</b> seconds - <b>$query_count</b> queries in <b>$total_query_time</b> seconds - Album set : $ALBUM_SET
-EOT;
-        echo "</td></tr>";
-        echo "<tr><td class=\"tableb\">";
-        echo "<a href=\"phpinfo.php\">Advanced debug mode</a> (phpinfo)";
-        echo "</td></tr>";
-        endtable();
+    if ($CONFIG['debug_mode']==1 || ($CONFIG['debug_mode']==2 && GALLERY_ADMIN_MODE)) {
+    cpg_debug_output();
     }
 
     echo $template_footer;
@@ -1003,11 +1010,25 @@ function theme_main_menu1()
         template_extract_block($template_main_menu, 'register');
     }
 
+    if (!USER_ID || !$CONFIG['allow_memberlist']) {
+        template_extract_block($template_main_menu, 'allow_memberlist');
+    }
+
+    if (!$CONFIG['display_faq']) {
+        template_extract_block($template_main_menu, 'faq');
+    }
+
     $param = array('{MY_GAL_TGT}' => "index.php?cat=$my_gallery_id",
         '{MY_GAL_TITLE}' => $lang_main_menu['my_gal_title'],
         '{MY_GAL_LNK}' => $lang_main_menu['my_gal_lnk'],
+        '{MEMBERLIST_TGT}' => "usermgr.php",
+        '{MEMBERLIST_TITLE}' => $lang_main_menu['memberlist_title'],
+        '{MEMBERLIST_LNK}' => $lang_main_menu['memberlist_lnk'],
         '{MY_PROF_TGT}' => "profile.php?op=edit_profile",
         '{MY_PROF_LNK}' => $lang_main_menu['my_prof_lnk'],
+        '{FAQ_TGT}' => "faq.php",
+        '{FAQ_TITLE}' => $lang_main_menu['faq_title'],
+        '{FAQ_LNK}' => $lang_main_menu['faq_lnk'],
         '{ADM_MODE_TGT}' => "admin.php?admin_mode=1&referer=$REFERER",
         '{ADM_MODE_TITLE}' => $lang_main_menu['adm_mode_title'],
         '{ADM_MODE_LNK}' => $lang_main_menu['adm_mode_lnk'],
@@ -1086,6 +1107,7 @@ function theme_admin_mode_menu()
             '{MY_PROF_LNK}' => $lang_user_admin_menu['my_prof_lnk'],
             '{UTIL_LNK}' => $lang_gallery_admin_menu['util_lnk'],
             '{BAN_LNK}' => $lang_gallery_admin_menu['ban_lnk'],
+            '{DB_ECARD_LNK}' => $lang_gallery_admin_menu['db_ecard_lnk'],
             );
 
         $html = template_eval($template_gallery_admin_menu, $param);
@@ -1121,13 +1143,15 @@ function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
     $template_noabl = template_extract_block($template_cat_list, 'catrow_noalb');
     $template = template_extract_block($template_cat_list, 'catrow');
     foreach($cat_data as $category) {
-        if (count($category) == 2) {
+        if (count($category) == 3) {
             $params = array('{CAT_TITLE}' => $category[0],
+                '{CAT_THUMB}' => $category['cat_thumb'],
                 '{CAT_DESC}' => $category[1]
                 );
             echo template_eval($template_noabl, $params);
         } else {
             $params = array('{CAT_TITLE}' => $category[0],
+                '{CAT_THUMB}' => $category['cat_thumb'],
                 '{CAT_DESC}' => $category[1],
                 '{CAT_ALBUMS}' => $category['cat_albums'],
                 '{ALB_COUNT}' => $category[2],
@@ -1200,24 +1224,25 @@ function theme_display_album_list(&$alb_list, $nbAlb, $cat, $page, $total_pages)
     }
 
     echo $header;
+    if (is_array($alb_list)) {
+        foreach($alb_list as $album) {
+                $count ++;
 
-    foreach($alb_list as $album) {
-        $count ++;
+                $params = array('{COL_WIDTH}' => $column_width,
+                '{ALBUM_TITLE}' => $album['album_title'],
+                '{THUMB_CELL_WIDTH}' => $thumb_cell_width,
+                '{ALB_LINK_TGT}' => "thumbnails.php?album={$album['aid']}",
+                '{ALB_LINK_PIC}' => $album['thumb_pic'],
+                '{ADMIN_MENU}' => $album['album_adm_menu'],
+                '{ALB_DESC}' => $album['album_desc'],
+                '{ALB_INFOS}' => $album['album_info'],
+                );
 
-        $params = array('{COL_WIDTH}' => $column_width,
-            '{ALBUM_TITLE}' => $album['album_title'],
-            '{THUMB_CELL_WIDTH}' => $thumb_cell_width,
-            '{ALB_LINK_TGT}' => "thumbnails.php?album={$album['aid']}",
-            '{ALB_LINK_PIC}' => $album['thumb_pic'],
-            '{ADMIN_MENU}' => $album['album_adm_menu'],
-            '{ALB_DESC}' => $album['album_desc'],
-            '{ALB_INFOS}' => $album['album_info'],
-            );
+                echo template_eval($album_cell, $params);
 
-        echo template_eval($album_cell, $params);
-
-        if ($count % $columns == 0 && $count < count($alb_list)) {
-            echo $rows_separator;
+                if ($count % $columns == 0 && $count < count($alb_list)) {
+                echo $rows_separator;
+                }
         }
     }
 
@@ -1277,27 +1302,27 @@ function theme_display_album_list_cat(&$alb_list, $nbAlb, $cat, $page, $total_pa
     }
 
     echo $header;
+        if (is_array($alb_list)) {
+                foreach($alb_list as $album) {
+                        $count ++;
 
-    foreach($alb_list as $album) {
-        $count ++;
+                        $params = array('{COL_WIDTH}' => $column_width,
+                        '{ALBUM_TITLE}' => $album['album_title'],
+                        '{THUMB_CELL_WIDTH}' => $thumb_cell_width,
+                        '{ALB_LINK_TGT}' => "thumbnails.php?album={$album['aid']}",
+                        '{ALB_LINK_PIC}' => $album['thumb_pic'],
+                        '{ADMIN_MENU}' => $album['album_adm_menu'],
+                        '{ALB_DESC}' => $album['album_desc'],
+                        '{ALB_INFOS}' => $album['album_info'],
+                        );
 
-        $params = array('{COL_WIDTH}' => $column_width,
-            '{ALBUM_TITLE}' => $album['album_title'],
-            '{THUMB_CELL_WIDTH}' => $thumb_cell_width,
-            '{ALB_LINK_TGT}' => "thumbnails.php?album={$album['aid']}",
-            '{ALB_LINK_PIC}' => $album['thumb_pic'],
-            '{ADMIN_MENU}' => $album['album_adm_menu'],
-            '{ALB_DESC}' => $album['album_desc'],
-            '{ALB_INFOS}' => $album['album_info'],
-            );
+                        echo template_eval($album_cell, $params);
 
-        echo template_eval($album_cell, $params);
-
-        if ($count % $columns == 0 && $count < count($alb_list)) {
-            echo $rows_separator;
+                        if ($count % $columns == 0 && $count < count($alb_list)) {
+                        echo $rows_separator;
+                        }
+                }
         }
-    }
-
     $params = array('{COL_WIDTH}' => $column_width);
     $empty_cell = template_eval($empty_cell, $params);
 
@@ -1320,7 +1345,7 @@ function theme_display_album_list_cat(&$alb_list, $nbAlb, $cat, $page, $total_pa
 function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $page, $total_pages, $sort_options, $display_tabs, $mode = 'thumb')
 {
     global $CONFIG;
-    global $template_thumb_view_title_row, $lang_thumb_view, $template_tab_display, $template_thumbnail_view;
+    global $template_thumb_view_title_row, $template_fav_thumb_view_title_row, $lang_thumb_view, $template_tab_display, $template_thumbnail_view;
 
     static $header = '';
     static $thumb_cell = '';
@@ -1372,6 +1397,11 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
             '{SORT_DD}' => $lang_thumb_view['sort_dd'],
             );
         $title = template_eval($template_thumb_view_title_row, $param);
+    } else if ($aid == 'favpics' && $CONFIG['enable_zipdownload'] == 1) { //Lots of stuff can be added here later
+       $param = array('{ALBUM_NAME}' => $album_name,
+                             '{DOWNLOAD_ZIP}'=>$lang_thumb_view['download_zip']
+                               );
+       $title = template_eval($template_fav_thumb_view_title_row, $param);
     } else {
         $title = $album_name;
     }
