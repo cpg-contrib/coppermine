@@ -501,6 +501,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Max width or height for uploaded pictures/videos (pixels)', 'max_upl_width_height', 0),
 
   'Files and thumbnails advanced settings',
+  array('Albums can be private (Note: if you switch from \'yes\' to \'no\' any current private albums will become public)', 'allow_private_albums', 1),
   array('Show private album Icon to unlogged user','show_private',1),
   array('Characters forbidden in filenames', 'forbiden_fname_char',0),
   //array('Accepted file extensions for uploaded pictures', 'allowed_file_extensions',0),
@@ -529,7 +530,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('User registration requires email verification', 'reg_requires_valid_email', 1),
   array('Notify admin of user registration by email', 'reg_notify_admin_email', 1),
   array('Allow two users to have the same email address', 'allow_duplicate_emails_addr', 1),
-  array('Users can have private albums (Note: if you switch from \'yes\' to \'no\' any current private albums will become public)', 'allow_private_albums', 1),
   array('Notify admin of user upload awaiting approval', 'upl_notify_admin_email', 1),
   array('Allow logged in users to view memberlist', 'allow_memberlist', 1),
 
