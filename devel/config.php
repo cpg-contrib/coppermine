@@ -388,6 +388,31 @@ EOT;
 }
 
 
+function form_plugin_yes_no($text, $name)
+{
+    global $CONFIG, $lang_yes, $lang_no,$lang_config_php;
+
+    $value = $CONFIG[$name];
+    $yes_selected = $value ? 'checked="checked"' : '';
+    $no_selected = !$value ? 'checked="checked"' : '';
+
+    echo <<<EOT
+        <tr>
+            <td class="tableb">
+                        $text
+        </td>
+        <td class="tableb" valign="top">
+                        <input type="radio" id="{$name}1" name="$name" value="1" $yes_selected /><label for="{$name}1" class="clickable_option">$lang_yes</label>
+                        &nbsp;&nbsp;
+                        <input type="radio" id="{$name}0" name="$name" value="0" $no_selected /><label for="{$name}0" class="clickable_option">$lang_no</label>
+                        ( <a href="pluginmgr.php">{$lang_config_php['manage_plugins']}</a> )
+                </td>
+        </tr>
+
+EOT;
+}
+
+
 function create_form(&$data)
 {
     foreach($data as $element) {
@@ -432,6 +457,9 @@ function create_form(&$data)
                     break;
                 case 11 :
                     form_lang_logmode($element[0], $element[1]);
+                    break;
+                case 12 :
+                    form_plugin_yes_no($element[0], $element[1]);
                     break;
                 default:
                     die('Invalid action');
