@@ -84,7 +84,7 @@ if (count($_POST) > 0 && $valid_sender_email && $valid_recipient_email) {
 
     if (!stristr($n_picname, 'http:')) $n_picname = $gallery_url_prefix . $n_picname;
 
-    $msg_content = nl2br(process_smilies($message, $gallery_url_prefix));
+    $msg_content = process_smilies($message, $gallery_url_prefix);
 
     $data = array('rn' => $_POST['recipient_name'],
         'sn' => $_POST['sender_name'],
@@ -158,7 +158,7 @@ elseif (isset($_POST['preview'])) {
         $n_picname = get_pic_url($row, 'fullsize');
     }
     if (!stristr($n_picname, 'http:')) $n_picname = $gallery_url_prefix . $n_picname;
-    $msg_content = nl2br(process_smilies($message, $gallery_url_prefix));
+    $msg_content = process_smilies($message, $gallery_url_prefix);
     $data = array(
         'sn' => $_POST['sender_name'],
         'se' => $sender_email,
