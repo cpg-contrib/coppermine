@@ -31,3 +31,5 @@ Added 1.2.0 translations for arabic, hebrew and turkish - 06th October 2003, Gau
 Moved all docs into the docs folder - 06th October 2003, GauGau
 Added 1.2.0 translations for swedish and german - 07th October 2003, GauGau
 Added 1.2.0 changes in english language to bosnian.php, brazilian.php, estonian.php, latvian.php, portuguese.php, russian.php, slovenian.php for 1.2.0 compliance - 07th October 2003, GauGau
+Added 1.2.0 indonesian (done by sengsara), updated danish (Laugesen) - 08th October 2003, GauGau
+Fixed corrupted language files (mustn't be in unicode, but ansi)  - 08th October 2003, GauGau

@@ -62,7 +62,7 @@ $lang_meta_album_names = array(
 	'topn' => 'Ñàìûå ïîïóëÿðíûå',
 	'toprated' => 'Ëó÷øèå ïî ðåéòèíãó',
 	'lasthits' => 'Ïîñëåäíèå ïîêàçû',
-	'search' => 'Ðåçóëüòàòû ïîèñêà'
+	'search' => 'Ðåçóëüòàòû ïîèñêà',
         'favpics'=> 'Favourite Pictures', //new in cpg1.2.0
 );
 
@@ -80,7 +80,7 @@ $lang_errors = array(
 	'orphan_cat' => 'A category has a non-existing parent, runs the category manager to correct the problem.',
 	'directory_ro' => 'Directory \'%s\' is not writable, pictures can\'t be deleted',
 	'non_exist_comment' => 'The selected comment does not exist.',
-	'pic_in_invalid_album' => 'Picture is in a non existant album (%s)!?'
+	'pic_in_invalid_album' => 'Picture is in a non existant album (%s)!?',
         'banned' => 'You are currently banned from using this site.',  //new in cpg1.2.0
         'not_with_udb' => 'This function is disabled in Coppermine because it is integrated with forum software. Either what you are trying to do is not supported in this configuration, or the function should be handled by the forum software.',  //new in cpg1.2.0
 );
@@ -507,10 +507,10 @@ $lang_picinfo = array(
 	'Aperture' => 'Aperture',
 	'Exposure time' => 'Exposure time',
 	'Focal length' => 'Focal length',
-	'Comment' => 'Comment'
-        'addFav'=>'Add to Fav',  //new in cpg1.2.0
-        'addFavPhrase'=>'Favourites',  //new in cpg1.2.0
-        'remFav'=>'Remove from Fav',  //new in cpg1.2.0
+	'Comment' => 'Comment',
+        'addFav' => 'Add to Fav',  //new in cpg1.2.0
+        'addFavPhrase' => 'Favourites',  //new in cpg1.2.0
+        'remFav' => 'Remove from Fav',  //new in cpg1.2.0
 );
 
 $lang_display_comments = array(

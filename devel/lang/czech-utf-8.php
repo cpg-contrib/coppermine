@@ -1,18 +1,20 @@
 ﻿<?php
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery                                                 //
+// Coppermine Photo Gallery 1.2.0                                            //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Grégory DEMAR <gdemar@wanadoo.fr>               //
-//  http://www.chezgreg.net/coppermine/                                      //
+// Copyright (C) 2002,2003 Gregory DEMAR <gdemar@wanadoo.fr>                 //
+// http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
-//  http://www.stoverud.com/PHPhotoalbum/                                    //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-// ------------------------------------------------------------------------- //
+// This program is free software; you can redistribute it and/or modify      //
+// it under the terms of the GNU General Public License as published by      //
+// the Free Software Foundation; either version 2 of the License, or         //
+// (at your option) any later version.                                       //
+// ------------------------------------------------------------------------- // 
+
 
 // info about translators and translated language
 $lang_translation_info = array(
@@ -65,7 +67,7 @@ $lang_meta_album_names = array(
         'toprated' => 'Nejlépe hodnocené',
         'lasthits' => 'Naposledy zobrazené',
         'search' => 'Výsledky hledání',
-        'favpics'=> 'Oblíbené obrázky'
+        'favpics'=> 'Oblíbené obrázky',
 );
 
 $lang_errors = array(
@@ -82,7 +84,7 @@ $lang_errors = array(
     'orphan_cat' => 'Podkategorie nemá nadøízenou kategorii. Problém opravte pøes nastavení kategorií.',
     'directory_ro' => 'Do adresáøe \'%s\' nelze zapisovat (nedostateèná práva), obrázky nemohly být smazány.',
     'non_exist_comment' => 'Vybraný komentáø neexistuje',
-    'pic_in_invalid_album' => 'Obrázek(y) je/jsou v neexitujícím albu (%s)!?'
+    'pic_in_invalid_album' => 'Obrázek(y) je/jsou v neexitujícím albu (%s)!?',
     'banned' => 'Byl jse vykopnut z tìchto stránek, není Vám umo¾nìno je pou¾ívat.',
     'not_with_udb' => 'Tato funkce je vypnutá jeliko¾ je integrována ve fóru. Buï není po¾adovaná fukce dostupná na tomto systému, nebo tuto/tyto funci/e plní fórum.',
 );
@@ -511,10 +513,10 @@ $lang_picinfo = array(
     'Aperture' => 'Clona',
     'Exposure time' => 'Expozièní èas',
     'Focal length' => 'Ohnisková vzdálenost',
-    'Comment' => 'Komentáøe'
-    'addFav'=>'Pøidat k oblíbeným',
-    'addFavPhrase'=>'Oblíbené',
-    'remFav'=>'Odstranit z oblíbených',
+    'Comment' => 'Komentáøe',
+    'addFav' => 'Pøidat k oblíbeným',
+    'addFavPhrase' => 'Oblíbené',
+    'remFav' => 'Odstranit z oblíbených',
 );
 
 $lang_display_comments = array(

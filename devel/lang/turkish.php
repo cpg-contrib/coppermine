@@ -85,9 +85,9 @@ $lang_errors = array(
 	'orphan_cat' => 'Bir kategorinin ana dalý yok, bu sorunu haletmek için Kategori Y&ouml;neticisini çalýþtýrýn.',
 	'directory_ro' => 'Dizin \'%s\'  e yazýlabilir deðil, resimler silinemiyor',
 	'non_exist_comment' => 'Þeçilmiþ olan yorum yok.',
-        'pic_in_invalid_album' => 'Resim var olmayan bir albümde (%s)!?', 
+        'pic_in_invalid_album' => 'Resim var olmayan bir albümde (%s)!?',
         'banned' => 'Bu siteyi þimdlik kullanmanýz yasaklanmýþtýr.', 
-        'not_with_udb' => 'Bu fonksiyon Coppermine'da iptal edilmiþtir çünkü forum yazýlýmý ile birleþtirilmiþtir. Denemek istediðiniz ya bu konfigurasyon ile desteklenmiyor veyahut bu fonksiyon forum yazýlýmý tarafýndan uygulanacak.', 
+        'not_with_udb' => 'Bu fonksiyon Coppermine\'da iptal edilmiþtir çünkü forum yazýlýmý ile birleþtirilmiþtir. Denemek istediðiniz ya bu konfigurasyon ile desteklenmiyor veyahut bu fonksiyon forum yazýlýmý tarafýndan uygulanacak.', 
 ); 
 
 // ------------------------------------------------------------------------- //
@@ -328,7 +328,7 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
 	'name_a' => 'Ad k&uuml;ç&uuml;kten b&uuml;y&uuml;y&uuml;ðe',
 	'name_d' => 'Ad b&uuml;y&uuml;kten k&uuml;ç&uuml;y&uuml;ðe',
 	'date_a' => 'Tarih k&uuml;ç&uuml;kten b&uuml;y&uuml;y&uuml;ðe',
-	'date_d' => 'Date b&uuml;y&uuml;kten k&uuml;ç&uuml;y&uuml;ðe'
+	'date_d' => 'Date b&uuml;y&uuml;kten k&uuml;ç&uuml;y&uuml;ðe',
         'title_a' => 'Baþlýk küçükten büyüðe', 
         'title_d' => 'Baþlýk büyükten küçüðe',
 );

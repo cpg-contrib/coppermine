@@ -1,4 +1,4 @@
-�<?php
+﻿<?php
 // ------------------------------------------------------------------------- //
 //  Coppermine Photo Gallery                                                 //
 // ------------------------------------------------------------------------- //
@@ -62,7 +62,7 @@ $lang_meta_album_names = array(
 	'topn' => 'Najgledanije',
 	'toprated' => 'Visoko rangirano',
 	'lasthits' => 'Posljednje pogledano',
-	'search' => 'Rezultati pretrage'
+	'search' => 'Rezultati pretrage',
         'favpics'=> 'Favourite Pictures', //new in cpg1.2.0
 );
 
@@ -80,7 +80,7 @@ $lang_errors = array(
 	'orphan_cat' => 'Kategorija ne postoji, pokrenite organizator kategorija da bi riješili problem.',
 	'directory_ro' => 'Direktoriju \'%s\' nije dodjeljen status writable, slike ne mogu biti izbrisane',
 	'non_exist_comment' => 'Izabrani komentar ne postoji.',
-	'pic_in_invalid_album' => 'Slika je u nepostojeæem albumu (%s)!?'
+	'pic_in_invalid_album' => 'Slika je u nepostojeæem albumu (%s)!?',
         'banned' => 'You are currently banned from using this site.',  //new in cpg1.2.0
         'not_with_udb' => 'This function is disabled in Coppermine because it is integrated with forum software. Either what you are trying to do is not supported in this configuration, or the function should be handled by the forum software.',  //new in cpg1.2.0
 );
@@ -509,9 +509,9 @@ $lang_picinfo = array(
 	'Aperture' => 'Otvor',
 	'Exposure time' => 'Vrijeme izlaganja',
 	'Focal length' => 'Odstojanje od centra',
-	'Comment' => 'Komentar'
-        'addFav'=>'Add to Fav',  //new in cpg1.2.0
-        'addFavPhrase'=>'Favourites',  //new in cpg1.2.0
+	'Comment' => 'Komentar',
+        'addFav' => 'Add to Fav',  //new in cpg1.2.0
+        'addFavPhrase' => 'Favourites',  //new in cpg1.2.0
         'remFav'=>'Remove from Fav',  //new in cpg1.2.0
 );
 

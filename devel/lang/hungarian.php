@@ -153,7 +153,7 @@ $lang_thumb_view = array(
         'sort_na' => 'N&eacute;v szerinti sorrendez&eacute;s, n&ouml;vekvõ',
         'sort_nd' => 'N&eacute;v szerinti sorrendez&eacute;s, cs&ouml;kkenõ',
         'sort_ta' => 'Sorrendez&eacute;s c&iacute;m szerint - n&ouml;vekvo',
-        'sort_td' => 'Sorrendez&eacute;s c&iacute;m szerint - cs&ouml;kkeno,
+        'sort_td' => 'Sorrendez&eacute;s c&iacute;m szerint - cs&ouml;kkeno',
         'pic_on_page' => '%d k&eacute;p %d oldalon',
         'user_on_page' => '%d felhaszn&aacute;l&oacute; %d oldalon'
 );

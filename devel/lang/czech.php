@@ -67,7 +67,7 @@ $lang_meta_album_names = array(
         'toprated' => 'Nejlépe hodnocené',
         'lasthits' => 'Naposledy zobrazené',
         'search' => 'Výsledky hledání',
-        'favpics'=> 'Oblíbené obrázky'
+        'favpics'=> 'Oblíbené obrázky',
 );
 
 $lang_errors = array(
@@ -84,7 +84,7 @@ $lang_errors = array(
     'orphan_cat' => 'Podkategorie nemá nadøízenou kategorii. Problém opravte pøes nastavení kategorií.',
     'directory_ro' => 'Do adresáøe \'%s\' nelze zapisovat (nedostateèná práva), obrázky nemohly být smazány.',
     'non_exist_comment' => 'Vybraný komentáø neexistuje',
-    'pic_in_invalid_album' => 'Obrázek(y) je/jsou v neexitujícím albu (%s)!?'
+    'pic_in_invalid_album' => 'Obrázek(y) je/jsou v neexitujícím albu (%s)!?',
     'banned' => 'Byl jse vykopnut z tìchto stránek, není Vám umo¾nìno je pou¾ívat.',
     'not_with_udb' => 'Tato funkce je vypnutá jeliko¾ je integrována ve fóru. Buï není po¾adovaná fukce dostupná na tomto systému, nebo tuto/tyto funci/e plní fórum.',
 );
@@ -513,10 +513,10 @@ $lang_picinfo = array(
     'Aperture' => 'Clona',
     'Exposure time' => 'Expozièní èas',
     'Focal length' => 'Ohnisková vzdálenost',
-    'Comment' => 'Komentáøe'
-    'addFav'=>'Pøidat k oblíbeným',
-    'addFavPhrase'=>'Oblíbené',
-    'remFav'=>'Odstranit z oblíbených',
+    'Comment' => 'Komentáøe',
+    'addFav' => 'Pøidat k oblíbeným',
+    'addFavPhrase' => 'Oblíbené',
+    'remFav' => 'Odstranit z oblíbených',
 );
 
 $lang_display_comments = array(

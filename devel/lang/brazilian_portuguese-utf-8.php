@@ -75,7 +75,7 @@ $lang_meta_album_names = array(
 	'topn' => 'Mais Visualizados',
 	'toprated' => 'Topo de Linha',
 	'lasthits' => 'Últimos Visualizados',
-	'search' => 'Resultado da Pesquisa'
+	'search' => 'Resultado da Pesquisa',
         'favpics'=> 'Favourite Pictures', //new in cpg1.2.0
 );
 
@@ -522,10 +522,10 @@ $lang_picinfo = array(
 	'Aperture' => 'Abertura',
 	'Exposure time' => 'Tempo de exposição',
 	'Focal length' => 'Largura focal',
-	'Comment' => 'Comentário'
-        'addFav'=>'Add to Fav',  //new in cpg1.2.0
-        'addFavPhrase'=>'Favourites',  //new in cpg1.2.0
-        'remFav'=>'Remove from Fav',  //new in cpg1.2.0
+	'Comment' => 'Comentário',
+        'addFav' => 'Add to Fav',  //new in cpg1.2.0
+        'addFavPhrase' => 'Favourites',  //new in cpg1.2.0
+        'remFav' => 'Remove from Fav',  //new in cpg1.2.0
 );
 
 $lang_display_comments = array(
@@ -979,7 +979,7 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
         'update_both' => 'Both thumbnails and resized pictures', 
         'update_number' => 'Number of processed images per click', 
         'update_option' => '(Try setting this option lower if you experience timeout problems)', 
-        'filename_title' => 'Filename ⇒ Picture title', 
+        'filename_title' => 'Filename ? Picture title', 
         'filename_how' => 'How should the filename be modified', 
         'filename_remove' => 'Remove the .jpg ending and replace _ (underscore) with spaces', 
         'filename_euro' => 'Change 2003_11_23_13_20_20.jpg to 23/11/2003 13:20', 

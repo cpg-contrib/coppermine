@@ -70,7 +70,7 @@ $lang_meta_album_names = array(
         'toprated' => 'Mest populære', 
         'lasthits' => 'Sidst viste', 
         'search' => 'Søge resultat', 
-        'favpics'=> 'Foretrukne billeder' 
+        'favpics'=> 'Foretrukne billeder', 
 ); 
 
 $lang_errors = array(
@@ -87,7 +87,7 @@ $lang_errors = array(
 	'orphan_cat' => 'En kategori har ikke et tilhørsforhold, kør kategori manager for at rette problemet.',
 	'directory_ro' => 'Mappen \'%s\' er skrivebeskyttet, billeder kan ikke slettes',
 	'non_exist_comment' => 'Den valgte kommentar findes ikke.',
-	'pic_in_invalid_album' => 'Billede er i et ikke eksisterende album (%s)!?'
+	'pic_in_invalid_album' => 'Billede er i et ikke eksisterende album (%s)!?',
         'banned' => 'Din adgang til denne side er spærret.', 
         'not_with_udb' => 'Denne funktion er deaktiveret i Coppermine da den er integreret med forum software. Enten er det du ønsker at gøre ikke understøttet i denne opsætning eller også skal det gøres vha. forum software.', 
 );

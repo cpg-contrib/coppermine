@@ -62,7 +62,7 @@ $lang_meta_album_names = array(
 	'topn' => 'Mais vistas',
 	'toprated' => 'Melhor Classificadas',
 	'lasthits' => 'Últimas vistas',
-	'search' => 'Resultado da procura'
+	'search' => 'Resultado da procura',
         'favpics'=> 'Favourite Pictures', //new in cpg1.2.0
 );
 
@@ -109,7 +109,7 @@ $lang_main_menu = array(
 	'lastcom_lnk' => 'Últimos comentários',
 	'topn_lnk' => 'Mais vistas',
 	'toprated_lnk' => 'Melhor Classificadas',
-	'search_lnk' => 'Procurar'
+	'search_lnk' => 'Procurar',
         'fav_lnk' => 'My Favorites', //new in cpg1.2.0
 );
 
@@ -509,10 +509,10 @@ $lang_picinfo = array(
 	'Aperture' => 'Abertura',
 	'Exposure time' => 'Tempo de exposição',
 	'Focal length' => 'Distância Focal ',
-	'Comment' => 'Comentário'
-        'addFav'=>'Add to Fav',  //new in cpg1.2.0
-        'addFavPhrase'=>'Favourites',  //new in cpg1.2.0
-        'remFav'=>'Remove from Fav',  //new in cpg1.2.0
+	'Comment' => 'Comentário',
+        'addFav' => 'Add to Fav',  //new in cpg1.2.0
+        'addFavPhrase' => 'Favourites',  //new in cpg1.2.0
+        'remFav' => 'Remove from Fav',  //new in cpg1.2.0
 );
 
 $lang_display_comments = array(

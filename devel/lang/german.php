@@ -67,7 +67,7 @@ $lang_meta_album_names = array(
         'topn' => 'am meisten angesehen',
         'toprated' => 'am besten bewertet',
         'lasthits' => 'zuletzt angesehen',
-        'search' => 'Suchergebnisse'
+        'search' => 'Suchergebnisse',
         'favpics'=> 'Favourite Pictures' //new in cpg1.2.0
 );
 
@@ -85,7 +85,9 @@ $lang_errors = array(
         'orphan_cat' => 'Eine Kategorie besitzt ein nicht-existierendes Eltern-Element, benutze den Kategorie-Manager um das Problem zu beheben.',
         'directory_ro' => 'Das Verzeichnis \'%s\' ist nicht beschreibbar, die Bilder k&ouml;nnen nicht gel&ouml;scht werden',
         'non_exist_comment' => 'Der gew&auml;hlte Kommentar existiert nicht.',
-        'pic_in_invalid_album' => 'Das Bild befindet sich in einem nicht-existierenden Album (%s)!?'
+        'pic_in_invalid_album' => 'Das Bild befindet sich in einem nicht-existierenden Album (%s)!?',
+        'banned' => 'You are currently banned from using this site.',  //new in cpg1.2.0
+        'not_with_udb' => 'This function is disabled in Coppermine because it is integrated with forum software. Either what you are trying to do is not supported in this configuration, or the function should be handled by the forum software.',  //new in cpg1.2.0
 );
 
 // ------------------------------------------------------------------------- //
