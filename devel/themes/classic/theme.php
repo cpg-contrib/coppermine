@@ -1703,8 +1703,8 @@ function theme_html_picture()
 
     if ($mime_content['content']=='image') {
         if (isset($image_size['reduced'])) {
-            $winsizeX = $CURRENT_PIC_DATA['pwidth'] + 16;
-            $winsizeY = $CURRENT_PIC_DATA['pheight'] + 16;
+            $winsizeX = $CURRENT_PIC_DATA['pwidth']+5;  //the +'s are the mysterious FF and IE paddings
+            $winsizeY = $CURRENT_PIC_DATA['pheight']+3; //the +'s are the mysterious FF and IE paddings
             $pic_html = "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('displayimage.php?pid=$pid&amp;fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=yes,status=yes,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
             $pic_title = $lang_display_image_php['view_fs'] . "\n==============\n" . $pic_title;
             $pic_html .= "<img src=\"" . $picture_url . "\" class=\"image\" border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
@@ -2010,41 +2010,42 @@ function theme_display_fullsize_pic()
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
-<head>
-<title><?php echo $CONFIG['gallery_name'] ?>: <?php echo $lang_fullsize_popup['click_to_close'];
-    ?></title>
-<meta http-equiv="content-type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'] ?>" />
-<link rel="stylesheet" href="<?php echo $THEME_DIR ?>style.css" type="text/css" />
-<script type="text/javascript" src="scripts.js"></script>
-</head>
-<body class="tableb" style="margin:0px">
-<script language="JavaScript" type="text/JavaScript">
-adjust_popup();
-</script>
-
-<table width="100%" border="0" cellpadding="0" cellspacing="2">
-  <tr>
-    <td align="center" valign="middle">
-      <table cellspacing="2" cellpadding="0" style="border: 1px solid #000000; background-color: #FFFFFF;">
-        <tr>
-         <td>
-            <?php     echo  '<a href="javascript: window.close()"><img src="'
-              . htmlspecialchars($imagedata['path']) . '" '
-              . $imagedata['geometry']
-              . ' class="image"  alt="'
-              . htmlspecialchars($imagedata['name'])
-              . '" title="'
-              . htmlspecialchars($imagedata['name'])
-              . "\n" . $lang_fullsize_popup['click_to_close']
-              . '" /></a><br />' ."\n";
-             ?>
-         </td>
-       </tr>
-      </table>
-    </td>
-  </tr>
-</table>
-</body>
+  <head>
+  <title><?php echo $CONFIG['gallery_name'] ?>: <?php echo $lang_fullsize_popup['click_to_close'];
+      ?></title>
+  <meta http-equiv="content-type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'] ?>" />
+  <script type="text/javascript" src="scripts.js"></script>
+  <style type="text/css">
+  body { margin: 0; padding: 0; background-color: gray; }
+  img { margin:0; padding:0; border:0; }
+  #content { margin:0 auto; padding:0; border:0; }
+  table { border:0; height:100%; width:100%; border-collapse:collapse}
+  td { 	vertical-align: middle; text-align:center; }
+  </style>
+  </head>
+  <body>
+    <script language="JavaScript" type="text/JavaScript">
+      adjust_popup();
+    </script>
+    <table>
+      <tr>
+    	<td>
+          <div id="content">
+              <?php     echo  '<a href="javascript: window.close()"><img src="'
+                . htmlspecialchars($imagedata['path']) . '" '
+                . $imagedata['geometry']
+                . 'alt="'
+                . htmlspecialchars($imagedata['name'])
+                . '" title="'
+                . htmlspecialchars($imagedata['name'])
+                . "\n" . $lang_fullsize_popup['click_to_close']
+                . '" /></a><br />' ."\n";
+               ?>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </body>
 </html>
 <?php
 }
