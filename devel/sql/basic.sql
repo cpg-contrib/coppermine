@@ -36,6 +36,7 @@ INSERT INTO CPG_config VALUES ('allowed_img_types', 'ALL');
 
 INSERT INTO CPG_config VALUES ('allow_private_albums', '1');
 INSERT INTO CPG_config VALUES ('allow_user_registration', '0');
+INSERT INTO CPG_config VALUES ('allow_unlogged_access', '1');
 INSERT INTO CPG_config VALUES ('allow_duplicate_emails_addr', '0');
 INSERT INTO CPG_config VALUES ('caption_in_thumbview', '1');
 INSERT INTO CPG_config VALUES ('views_in_thumbview', '1');
@@ -271,3 +272,4 @@ INSERT INTO CPG_config VALUES ('browse_batch_add', '1');
 INSERT INTO CPG_config VALUES ('custom_header_path', '');
 INSERT INTO CPG_config VALUES ('custom_footer_path', '');
 INSERT INTO CPG_config VALUES ('comments_sort_descending', '0');
+

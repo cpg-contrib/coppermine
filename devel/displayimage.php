@@ -24,6 +24,12 @@ define('INDEX_PHP', true);
 
 require('include/init.inc.php');
 
+if (!USER_ID && $CONFIG['allow_unlogged_access'] == 0) {
+    $redirect = $redirect . "login.php";
+    header("Location: $redirect");
+    exit();
+}
+
 if ($CONFIG['enable_smilies']) include("include/smilies.inc.php");
 
 $breadcrumb = '';
@@ -437,7 +443,7 @@ function html_comments($pid)
             '{HDR_IP}' => $row['msg_hdr_ip'],
             '{RAW_IP}' => $row['msg_raw_ip'],
             '{REPORT_COMMENT_TGT}' => $report_comment_tgt,
-			'{REPORT_COMMENT_TITLE}' => &$lang_display_comments['report_comment_title'],
+                        '{REPORT_COMMENT_TITLE}' => &$lang_display_comments['report_comment_title'],
             );
 
         $html .= template_eval($template, $params);
@@ -476,7 +482,7 @@ function display_fullsize_pic()
     global $CONFIG, $THEME_DIR, $ALBUM_SET;
     global $lang_errors, $lang_fullsize_popup, $lang_charset;
 
-    if (isset($_GET['picfile'])) 
+    if (isset($_GET['picfile']))
     {
         if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
@@ -484,8 +490,8 @@ function display_fullsize_pic()
     $picname = $CONFIG['fullpath'] . $picfile;
     $imagesize = @getimagesize($picname);
     $imagedata = array('name' => $picfile, 'path' => path2url($picname), 'geometry' => $imagesize[3]);
-    } 
-    elseif (isset($_GET['pid'])) 
+    }
+    elseif (isset($_GET['pid']))
     {
     $pid = (int)$_GET['pid'];
     $sql = "SELECT * " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='$pid' $ALBUM_SET";
@@ -498,10 +504,10 @@ function display_fullsize_pic()
     $geom = 'width="' . $row['pwidth'] . '" height="' . $row['pheight'] . '"';
     $imagedata = array('name' => $row['filename'], 'path' => $pic_url, 'geometry' => $geom);
     }
-    
+
     //------->If the theme function exists, we call it
     // WARNING! this is a new syntax for this function /chtito
-    if (function_exists('theme_display_fullsize_pic')) 
+    if (function_exists('theme_display_fullsize_pic'))
     {
         theme_display_fullsize_pic($imagelink);
         return;
@@ -527,14 +533,14 @@ adjust_popup();
  <td align="center" valign="middle">
   <table cellspacing="2" cellpadding="0" style="border: 1px solid #000000; background-color: #FFFFFF;">
    <td>
-<?php     echo  '<a href="javascript: window.close()"><img src="' 
-    . htmlspecialchars($imagedata['path']) . '" ' 
-    . $imagedata['geometry'] 
+<?php     echo  '<a href="javascript: window.close()"><img src="'
+    . htmlspecialchars($imagedata['path']) . '" '
+    . $imagedata['geometry']
     . ' class="image"  alt="'
     . htmlspecialchars($imagedata['name'])
-    . '" title="' 
-    . htmlspecialchars($imagedata['name']) 
-    . "\n" . $lang_fullsize_popup['click_to_close'] 
+    . '" title="'
+    . htmlspecialchars($imagedata['name'])
+    . "\n" . $lang_fullsize_popup['click_to_close']
     . '" /></a><br />' ."\n";
  ?>
    </td>

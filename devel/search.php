@@ -21,6 +21,12 @@ define('SEARCH_PHP', true);
 
 require('include/init.inc.php');
 
+if (!USER_ID && $CONFIG['allow_unlogged_access'] == 0) {
+    $redirect = $redirect . "login.php";
+    header("Location: $redirect");
+    exit();
+}
+
 pageheader($lang_search_php['title']);
 echo <<< EOT
 <script language="javascript" type="text/javascript">
@@ -40,11 +46,11 @@ $customs = '';
 $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_CONFIG']} WHERE name LIKE 'user_field%_name' AND value <> '' ORDER BY name ASC");
 
 while ($row = mysql_fetch_assoc($result)){
-	$name = str_replace(array('_field', '_name'), '', $row['name']);
-	$customs .= <<< EOT
-		<tr>
-			<td><input type="checkbox" name="params[$name]">{$row['value']}</td>
-		</tr>
+        $name = str_replace(array('_field', '_name'), '', $row['name']);
+        $customs .= <<< EOT
+                <tr>
+                        <td><input type="checkbox" name="params[$name]">{$row['value']}</td>
+                </tr>
 EOT;
 }
 echo <<< EOT
@@ -55,42 +61,42 @@ echo <<< EOT
                 <input type="hidden" name="album" value="search">
             </td>
         </tr>
-		<tr>
-			<td>
-				<table align="center" width="60%">
-					<tr>
-						<td>{$lang_search_php['fields']}:</td>
-						<td align="center">{$lang_search_php['age']}:</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" name="params[title]" checked="checked">{$lang_adv_opts['title']}</td>
-						<td align="right">{$lang_search_php['newer_than']} <input type="text" name="newer_than" size="3" maxlength="4"> {$lang_search_php['days']}</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" name="params[caption]" checked="checked">{$lang_adv_opts['caption']}</td>
-						<td align="right">{$lang_search_php['older_than']} <input type="text" name="older_than" size="3" maxlength="4"> {$lang_search_php['days']}</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" name="params[keywords]" checked="checked">{$lang_adv_opts['keywords']}</td>
-						<td>&nbsp;</td>
+                <tr>
+                        <td>
+                                <table align="center" width="60%">
+                                        <tr>
+                                                <td>{$lang_search_php['fields']}:</td>
+                                                <td align="center">{$lang_search_php['age']}:</td>
+                                        </tr>
+                                        <tr>
+                                                <td><input type="checkbox" name="params[title]" checked="checked">{$lang_adv_opts['title']}</td>
+                                                <td align="right">{$lang_search_php['newer_than']} <input type="text" name="newer_than" size="3" maxlength="4"> {$lang_search_php['days']}</td>
+                                        </tr>
+                                        <tr>
+                                                <td><input type="checkbox" name="params[caption]" checked="checked">{$lang_adv_opts['caption']}</td>
+                                                <td align="right">{$lang_search_php['older_than']} <input type="text" name="older_than" size="3" maxlength="4"> {$lang_search_php['days']}</td>
+                                        </tr>
+                                        <tr>
+                                                <td><input type="checkbox" name="params[keywords]" checked="checked">{$lang_adv_opts['keywords']}</td>
+                                                <td>&nbsp;</td>
 
-					</tr>
-					<tr>
-						<td><input type="checkbox" name="params[owner_name]">{$lang_adv_opts['owner_name']}</td>
-						<td align="right"><select name="type">
-							<option value="AND" selected="selected">{$lang_search_php['all_words']}</option>
-							<option value="OR">{$lang_search_php['any_words']}</option></select>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="checkbox" name="params[filename]">{$lang_adv_opts['filename']}</td>
-						<td>&nbsp;</td>
-					</tr>
-						$customs
-						$ip
-				</table>
-			</td>
-		</tr>
+                                        </tr>
+                                        <tr>
+                                                <td><input type="checkbox" name="params[owner_name]">{$lang_adv_opts['owner_name']}</td>
+                                                <td align="right"><select name="type">
+                                                        <option value="AND" selected="selected">{$lang_search_php['all_words']}</option>
+                                                        <option value="OR">{$lang_search_php['any_words']}</option></select>
+                                                </td>
+                                        </tr>
+                                        <tr>
+                                                <td><input type="checkbox" name="params[filename]">{$lang_adv_opts['filename']}</td>
+                                                <td>&nbsp;</td>
+                                        </tr>
+                                                $customs
+                                                $ip
+                                </table>
+                        </td>
+                </tr>
 </form>
 EOT;
 

@@ -44,6 +44,13 @@ define('IN_COPPERMINE', true);
 define('INDEX_PHP', true);
 
 require('include/init.inc.php');
+
+if (!USER_ID && $CONFIG['allow_unlogged_access'] == 0) {
+    $redirect = $redirect . "login.php";
+    header("Location: $redirect");
+    exit();
+}
+
 if ($CONFIG['enable_smilies']) include("include/smilies.inc.php");
 
 /**
@@ -447,18 +454,18 @@ function list_albums()
         $album_set .= $value['aid'] . ', ';
     }
     $album_set = '(' . substr($album_set, 0, -2) . ')';
-    
+
     //This query will fetch album stats and keyword for the albums
     $sql = "SELECT a.aid, count( p.pid )  AS pic_count, max( p.pid )  AS last_pid, max( p.ctime )  AS last_upload, a.keyword" .
             " FROM {$CONFIG['TABLE_ALBUMS']} AS a " .
-	    " LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON a.aid = p.aid AND p.approved =  'YES' ".
+            " LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON a.aid = p.aid AND p.approved =  'YES' ".
             "WHERE a.aid IN $album_set" . "GROUP BY p.aid";
-	    	    
+
     $alb_stats_q = cpg_db_query($sql);
     $alb_stats = cpg_db_fetch_rowset($alb_stats_q);
     mysql_free_result($alb_stats_q);
-    
-    
+
+
     foreach($alb_stats as $key => $value) {
         $cross_ref[$value['aid']] = &$alb_stats[$key];
         if ($CONFIG['link_pic_count'] == 1) {
@@ -616,7 +623,7 @@ function list_cat_albums($cat = 0)
     //This query will fetch album stats and keyword for the albums
     $sql = "SELECT a.aid, count( p.pid )  AS pic_count, max( p.pid )  AS last_pid, max( p.ctime )  AS last_upload, a.keyword" .
             " FROM {$CONFIG['TABLE_ALBUMS']} AS a " .
-	    " LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON a.aid = p.aid AND p.approved =  'YES' ".
+            " LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON a.aid = p.aid AND p.approved =  'YES' ".
             "WHERE a.aid IN $album_set" . "GROUP BY p.aid";
     $alb_stats_q = cpg_db_query($sql);
     $alb_stats = cpg_db_fetch_rowset($alb_stats_q);

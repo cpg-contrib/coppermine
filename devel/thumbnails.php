@@ -1,4 +1,4 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.4.1                                            //
 // ------------------------------------------------------------------------- //
@@ -17,11 +17,11 @@
 // ------------------------------------------------------------------------- //
 /**
  * Coppermine Photo Gallery 1.4.0 thumbnails.php
- * 
+ *
  * This file generates the data of thumbnails for all the albums and metalbums,
  * the actual display is handled by the display_thumbnails and then in-turn
  * theme_display_thumbnail function
- * 
+ *
  * @copyright 2002-2004 Gregory DEMAR, Coppermine Dev Team
  * @license http://opensource.org/licenses/gpl-license.php GNU General Public License V2
  * @package Coppermine
@@ -29,20 +29,26 @@
  */
 
 /**
- * 
- * @ignore 
+ *
+ * @ignore
  */
 define('IN_COPPERMINE', true);
 
 define('THUMBNAILS_PHP', true);
 
 /**
- * 
- * @ignore 
+ *
+ * @ignore
  */
 define('INDEX_PHP', true);
 
 require('include/init.inc.php');
+
+if (!USER_ID && $CONFIG['allow_unlogged_access'] == 0) {
+    $redirect = $redirect . "login.php";
+    header("Location: $redirect");
+    exit();
+}
 
 if ($CONFIG['enable_smilies']) include("include/smilies.inc.php");
 
@@ -59,10 +65,10 @@ function thumb_get_subcat_data($parent, &$album_set_array, $level)
             while ($row = mysql_fetch_array($result)) {
                 $album_set_array[] = $row['aid'];
             } // while
-        } 
+        }
         if ($level > 1) thumb_get_subcat_data($subcat['cid'], $album_set_array, $level -1);
-    } 
-} 
+    }
+}
 
 /**
  * Main code
@@ -76,8 +82,8 @@ if (isset($_GET['search'])) {
     $USER['search'] = $_GET['search'];
     if (isset($_GET['type']) && $_GET['type'] == 'full') {
         $USER['search'] = '###' . $USER['search'];
-    } 
-} 
+    }
+}
 
 $album = $_GET['album'];
 
@@ -85,7 +91,7 @@ if (isset($_GET['page'])) {
     $page = max((int)$_GET['page'], 1);
 } else {
     $page = 1;
-} 
+}
 
 $breadcrumb = '';
 $breadcrumb_text = '';
@@ -101,7 +107,7 @@ if (is_numeric($album)) {
         $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];
         breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);
         $cat = - $album;
-    } 
+    }
 } elseif (isset($cat) && $cat) { // Meta albums, we need to restrict the albums to the current category
     if ($cat < 0) {
         $result = cpg_db_query("SELECT category, title, aid, keyword, description, alb_password_hint FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='" . (- $cat) . "'");
@@ -109,7 +115,7 @@ if (is_numeric($album)) {
             $CURRENT_ALBUM_DATA = mysql_fetch_array($result);
             $actual_cat = $CURRENT_ALBUM_DATA['category'];
             $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];
-        } 
+        }
 
         $ALBUM_SET = 'AND aid IN (' . (- $cat) . ') ' . $ALBUM_SET;
         breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);
@@ -134,26 +140,26 @@ if (is_numeric($album)) {
             if (mysql_num_rows($result) == 0) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_cat'], __FILE__, __LINE__);
             $row = mysql_fetch_array($result);
             $CURRENT_CAT_NAME = $row['name'];
-        } 
-        thumb_get_subcat_data($cat, $album_set_array, $CONFIG['subcat_level']); 
+        }
+        thumb_get_subcat_data($cat, $album_set_array, $CONFIG['subcat_level']);
         // Treat the album set
         if (count($album_set_array)) {
             $set = '';
             foreach ($album_set_array as $album_id) $set .= ($set == '') ? $album_id : ',' . $album_id;
             $ALBUM_SET .= "AND aid IN ($set) ";
-        } 
+        }
 
         breadcrumb($cat, $breadcrumb, $breadcrumb_text);
-    } 
-} 
+    }
+}
 
 pageheader(isset($CURRENT_ALBUM_DATA) ? $CURRENT_ALBUM_DATA['title'] : $lang_meta_album_names[$album]);
 if ($breadcrumb) {
     if (!(strpos($CONFIG['main_page_layout'], "breadcrumb") === false)) {
         theme_display_breadcrumb($breadcrumb, $cat_data);
-    } 
+    }
     theme_display_cat_list($breadcrumb, $cat_data, '');
-} 
+}
 
 /**
  * Function to draw the password box if the album is password protected
@@ -167,14 +173,14 @@ function form_albpw()
         $login_failed = "<tr><td class='tableh2' colspan='2' align='center'>
                                <font color='red' size='1'>{$lang_thumb_view['invalid_pass']}</font></td></tr>
                                          ";
-    } 
+    }
     if (!empty($CURRENT_ALBUM_DATA['alb_password_hint'])) {
         echo <<<EOT
                   <tr>
                     <td colspan="2" align="center" class="tableb">{$CURRENT_ALBUM_DATA['alb_password_hint']}</td>
                   </tr>
 EOT;
-    } 
+    }
     echo <<<EOT
                         $login_failed
                         <tr>
@@ -189,7 +195,7 @@ EOT;
             </tr>
 EOT;
     endtable();
-} 
+}
 
 $valid = false; //flag to test whether the album is validated.
 if ($CONFIG['allow_private_albums'] == 0 || !in_array($album, $FORBIDDEN_SET_DATA)) {
@@ -201,7 +207,7 @@ if ($CONFIG['allow_private_albums'] == 0 || !in_array($album, $FORBIDDEN_SET_DAT
     if (mysql_num_rows($result)) {
         if (!empty($_COOKIE[$CONFIG['cookie_name'] . '_albpw'])) {
             $albpw = unserialize($_COOKIE[$CONFIG['cookie_name'] . '_albpw']);
-        } 
+        }
         $albpw[$album] = md5($password);
         $alb_cookie_str = serialize($albpw);
         setcookie($CONFIG['cookie_name'] . "_albpw", $alb_cookie_str);
@@ -210,7 +216,7 @@ if ($CONFIG['allow_private_albums'] == 0 || !in_array($album, $FORBIDDEN_SET_DAT
     } else {
         // Invalid password
         $valid = false;
-    } 
+    }
 } else {
     $sql = "SELECT aid FROM " . $CONFIG['TABLE_ALBUMS'] . " WHERE aid='$album' AND alb_password != ''";
     $result = cpg_db_query($sql);
@@ -218,7 +224,7 @@ if ($CONFIG['allow_private_albums'] == 0 || !in_array($album, $FORBIDDEN_SET_DAT
         // This album has a password.
         // Check whether the cookie is set for the current albums password
         if (!empty($_COOKIE[$CONFIG['cookie_name'] . '_albpw'])) {
-            $alb_pw = unserialize($_COOKIE[$CONFIG['cookie_name'] . '_albpw']); 
+            $alb_pw = unserialize($_COOKIE[$CONFIG['cookie_name'] . '_albpw']);
             // Check whether the alubm id in the cookie is same as that of the album id send by get
             if (isset($alb_pw[$album])) {
                 $sql = "SELECT aid FROM " . $CONFIG['TABLE_ALBUMS'] . " WHERE MD5(alb_password)='{$alb_pw[$album]}' AND aid='{$album}'";
@@ -226,19 +232,19 @@ if ($CONFIG['allow_private_albums'] == 0 || !in_array($album, $FORBIDDEN_SET_DAT
                 if (mysql_num_rows($result)) {
                     $valid = true; //The album password is correct. Show the album details.
                     get_private_album_set();
-                } 
-            } 
-        } 
+                }
+            }
+        }
     } else {
         // Album with no password. Might be a private or normal album. Just set valid as true.
         $valid = true;
-    } 
-} 
+    }
+}
 if (!$valid) {
     form_albpw();
 } else {
     display_thumbnails($album, (isset($cat) ? $cat : 0), $page, $CONFIG['thumbcols'], $CONFIG['thumbrows'], true);
-} 
+}
 
 pagefooter();
 ob_end_flush();
