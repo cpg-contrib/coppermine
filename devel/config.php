@@ -14,10 +14,7 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-if (eregi("config.php",$_SERVER['PHP_SELF'])) {
-    Header("Location: index.php");
-    die();
-	}
+
 define('IN_COPPERMINE', true);
 define('CONFIG_PHP', true);
 
