@@ -1,6 +1,6 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.3.1                                            //
 // ------------------------------------------------------------------------- //
 // Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
@@ -27,7 +27,7 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
 // if (defined('UDB_INTEGRATION')) cpg_die(ERROR, $lang_errors['not_with_udb'], __FILE__, __LINE__);
 function create_banlist()
 {
-    global $CONFIG, $PHP_SELF, $lang_banning_php;
+    global $CONFIG, $PHP_SELF, $lang_banning_php, $album_date_fmt;
 
     $result = db_query ("SELECT * FROM {$CONFIG['TABLE_BANNED']}");
     $count = mysql_num_rows($result);
@@ -41,6 +41,7 @@ function create_banlist()
                 </tr>
 EOHEAD;
 
+        $row_counter = 0;
         while ($row = mysql_fetch_array($result)) {
             if ($row['user_id']) {
                 $username = get_username($row['user_id']);
@@ -48,24 +49,24 @@ EOHEAD;
                 $username = '';
             }
             if ($row['expiry']) {
-                $expiry = strftime ('%H:%M:%S %d %b %Y %Z', $row['expiry']);
+                $expiry = $row['expiry'];
             } else {
                 $expiry = '';
             }
             echo <<<EOROW
                                         <tr>
-                                               <form action="$PHP_SELF" method="post">
-                                                     <td width="20%" class="tableb" valign="top">
+                                               <form action="$PHP_SELF" method="post" name="banlist$row_counter">
+                                                     <td width="20%" class="tableb" valign="middle">
                                                              <input type="hidden" name="ban_id" value="{$row['ban_id']}">
                                                 <input type="text" class="textinput" style="width: 100%" name="edit_ban_user_name" value="$username">
                                         </td>
-                                                <td class="tableb" valign="top">
-                                                <input type="text" class="textinput" style="width: 100%" name="edit_ban_ip_addr" value="{$row['ip_addr']}">
+                                                <td class="tableb" valign="middle">
+                                                <input type="text" class="textinput" size="15" name="edit_ban_ip_addr" value="{$row['ip_addr']}">
                                         </td>
-                                                <td class="tableb" valign="top">
-                                                <input type="text" class="textinput" style="width: 100%" name="edit_ban_expires" value="$expiry">
+                                                <td class="tableb" valign="middle">
+                                                <input type="text" class="listbox_lang" size="20" name="edit_ban_expires" value="$expiry" readonly="readonly" onclick="return getCalendar(document.banlist$row_counter.edit_ban_expires);" style="cursor:pointer" title="select date" />
                                         </td>
-                                        <td class="tableb" valign="top">
+                                        <td class="tableb" valign="middle">
                                                                 <input type="submit" class="button" name="edit_ban" value="{$lang_banning_php['edit_ban']}">
                                         &nbsp;&nbsp;
                                                                 <input type="submit" class="button" name="delete_ban" value="{$lang_banning_php['delete_ban']}">
@@ -73,6 +74,7 @@ EOHEAD;
                                 </form>
                                 </tr>
 EOROW;
+          $row_counter++;
         }
     }
     mysql_free_result($result);
@@ -120,19 +122,19 @@ if (count($HTTP_POST_VARS) > 0) {
             $ban_ip_addr = 'NULL';
         }
 
-        if (isset($HTTP_POST_VARS['add_ban_expires'])) {
-            if (($HTTP_POST_VARS['add_ban_expires']) && ($HTTP_POST_VARS['add_ban_expires'] != 'never')) {
-                if (!($ban_expires = strtotime($HTTP_POST_VARS['add_ban_expires']))) {
-                    $ban_expires = 'NULL';
-                }
-            } else {
-                $ban_expires = 'NULL';
-            }
-        } else {
-            $ban_expires = 'NULL';
-        }
 
-        if ($ban_expires < 0) $ban_expires = 'NULL';
+$ban_expires = $HTTP_POST_VARS['add_ban_expires'];
+if ($ban_expires == '') {
+    $ban_expires = 'NULL';
+} else {
+    $ban_expires = "'".$ban_expires.' 00:00:00'."'";
+}
+if ($ban_expires == '\' 00:00:00\'') {
+    $ban_expires = 'NULL';
+}
+
+
+        if ($ban_expires < 0) { $ban_expires = 'NULL';}
         // check if anything has been submit at all
         if (!$HTTP_POST_VARS['add_ban_user_name'] && !$HTTP_POST_VARS['add_ban_ip_addr']) {
           cpg_die(CRITICAL_ERROR, $lang_banning_php['error_specify'], __FILE__, __LINE__);
@@ -169,16 +171,11 @@ if (count($HTTP_POST_VARS) > 0) {
                     $ban_ip_addr = 'NULL';
                 }
 
-                if (isset($HTTP_POST_VARS['edit_ban_expires'])) {
-                    if (($HTTP_POST_VARS['edit_ban_expires']) && ($HTTP_POST_VARS['edit_ban_expires'] != 'never')) {
-                        if (!($ban_expires = strtotime($HTTP_POST_VARS['edit_ban_expires']))) {
-                            $ban_expires = 'NULL';
-                        }
-                    } else {
-                        $ban_expires = 'NULL';
-                    }
+                $ban_expires = $HTTP_POST_VARS['edit_ban_expires'];
+                if ($ban_expires == '') {
+                      $ban_expires = 'NULL';
                 } else {
-                    $ban_expires = 'NULL';
+                    $ban_expires = "'".$ban_expires."'";
                 }
 
                 if ((int)$ban_expires < 0) $ban_expires = 'NULL';
@@ -202,6 +199,45 @@ $signature = 'Coppermine Photo Gallery ' . COPPERMINE_VERSION;
 starttable('100%', "{$lang_banning_php['title']} - $signature", 4);
 create_banlist();
 endtable();
+$calendar_link_new = 'calendar.php?action=banning&month='.ltrim(strftime('%m'),'0').'&year='.strftime('%Y');
+print <<<EOT
+<script language="Javascript">
+var calendarWindow = null;
+var calendarFormat = 'y-m-d';
+
+function getCalendar(in_dateField)
+{
+    if (calendarWindow && !calendarWindow.closed) {
+        alert('Calendar window already open.  Attempting focus...');
+        try {
+            calendarWindow.focus();
+        }
+        catch(e) {}
+
+        return false;
+    }
+
+    var cal_width = 300;
+    var cal_height = 200;
+
+    // IE needs less space to make this thing
+    if ((document.all) && (navigator.userAgent.indexOf("Konqueror") == -1)) {
+        cal_width = 290;
+    }
+
+    calendarTarget = in_dateField;
+    calendarWindow = window.open('{$calendar_link_new}', 'dateSelectorPopup','toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=no,resizable=1,dependent=no,width='+cal_width+',height='+cal_height);
+    return false;
+}
+
+function killCalendar()
+{
+    if (calendarWindow && !calendarWindow.closed) {
+        calendarWindow.close();
+    }
+}
+</script>
+EOT;
 print "<br />\n";
 starttable('100%', $lang_banning_php['add_new'], 4);
 echo <<<EOT
@@ -213,15 +249,15 @@ echo <<<EOT
                                         </tr>
 
                                         <tr>
-                                               <form action="$PHP_SELF" method="post">
-                                                     <td class="tableb" valign="top">
+                                               <form action="$PHP_SELF" method="post" name="list">
+                                                     <td class="tableb" valign="middle">
                                                 <input type="text" class="textinput" style="width: 100%" name="add_ban_user_name" value="">
                                         </td>
-                                                <td class="tableb" valign="top">
-                                                <input type="text" class="textinput" name="add_ban_ip_addr" value="" style="width:100%" maxlength="15" />
+                                                <td class="tableb" valign="middle">
+                                                <input type="text" class="textinput" name="add_ban_ip_addr" value="" size="15" maxlength="15" />
                                         </td>
-                                                <td class="tableb" valign="top">
-                                                <input type="text" class="textinput" style="width: 100%" name="add_ban_expires" value="" />
+                                                <td class="tableb" valign="middle">
+                                                <input type="text" class="listbox_lang"  name="add_ban_expires" value="" size="20" readonly="readonly" onclick="return getCalendar(document.list.add_ban_expires);" style="cursor:pointer" title="select date" />
                                         </td>
                                         <td class="tableb" valign="top">
                                                                 <input type="submit" class="button" name="add_ban" value="{$lang_banning_php['add_ban']}" />
@@ -247,6 +283,7 @@ print "</td>\n";
 print "</tr>\n";
 endtable();
 print "</form>\n";
+
 pagefooter();
 ob_end_flush();
 
