@@ -36,6 +36,7 @@ function cpg_mail($to, $subject, $msg_body = '', $type = 'text/plain', $sender_n
     $mail->setHtml($msg_body, $msg_body_plaintext, './');
     $mail->setFrom($sender_name . ' <' . $sender_email . '>');
     $mail->setSubject($subject);
+    $mail->setHeader('Date', gmdate('D, d M Y H:i:s', time()) . " UT\n");
 
     if (empty($CONFIG['smtp_host'])) {
         $result = $mail->send(array($to));
