@@ -364,7 +364,7 @@ if (isset($USER['theme']) && !strstr($USER['theme'], '/') && is_dir('themes/' . 
 
 if (!file_exists("themes/{$CONFIG['theme']}/theme.php")) $CONFIG['theme'] = 'classic';
 require "themes/{$CONFIG['theme']}/theme.php";
-require "include/core.inc.php";  //All Fallback Theme Templates and Functions
+require "include/themes.inc.php";  //All Fallback Theme Templates and Functions
 $THEME_DIR = "themes/{$CONFIG['theme']}/";
 
 

@@ -17,10 +17,10 @@
   $Date$
 **********************************************/
 
-// ------------------------------------------------------------------------- //
-// All lines that should NOT be IN themes/classic/theme.php          //{CORE}//
-// should end in "//{CORE}" so that they can be easily stripped      //{CORE}//
-if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}       //{CORE}//
+// ----------------------------------------------------------------------------- //
+// All lines that should NOT be IN themes/classic/theme.php            //{THEMES}//
+// should end in "//{THEMES}" so that they can be easily stripped      //{THEMES}//
+if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}         //{THEMES}//
 
 // The following terms can be defined in theme.php
 // ('THEME_HAS_RATING_GRAPHICS', 1) : The location for the ratings graphics will
@@ -61,7 +61,7 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}       //{CORE}//
 
 // Creates buttons from a template using an array of tokens
 // this function is used in this file it needs to be declared before being called.
-if (!function_exists('assemble_template_buttons')) {  //{CORE}
+if (!function_exists('assemble_template_buttons')) {  //{THEMES}
 function assemble_template_buttons($template_buttons,$buttons) {
     $counter=0;
     $output='';
@@ -84,36 +84,36 @@ function assemble_template_buttons($template_buttons,$buttons) {
     }
     return $output;
 }
-}  //{CORE}
+}  //{THEMES}
 
 
 // Creates an array of tokens to be used with function assemble_template_buttons
 // this function is used in this file it needs to be declared before being called.
-if (!function_exists('addbutton')) {  //{CORE}
+if (!function_exists('addbutton')) {  //{THEMES}
 function addbutton(&$menu,$href_lnk,$href_title,$href_tgt,$block_id,$spacer) {
   $menu[]=array($href_lnk,$href_title,$href_tgt,$block_id,$spacer);
 }
-}  //{CORE}
+}  //{THEMES}
 
 
 // HTML template for sys_menu
-if (!isset($template_sys_menu))  //{CORE}
+if (!isset($template_sys_menu))  //{THEMES}
 $template_sys_menu = <<<EOT
           {BUTTONS}
 EOT;
 
 // HTML template for sub_menu
-if (!isset($template_sub_menu))  //{CORE}
+if (!isset($template_sub_menu))  //{THEMES}
 $template_sub_menu = $template_sys_menu;
 
 if (!defined('THEME_HAS_NO_SYS_MENU_BUTTONS')) {
 
   // HTML template for template sys_menu spacer
-  if (!isset($template_sys_menu_spacer))  //{CORE}
+  if (!isset($template_sys_menu_spacer))  //{THEMES}
   $template_sys_menu_spacer ="::";
 
   // HTML template for template sys_menu buttons
-  if (!isset($template_sys_menu_button))  //{CORE}
+  if (!isset($template_sys_menu_button))  //{THEMES}
   $template_sys_menu_button = <<<EOT
   <!-- BEGIN {BLOCK_ID} -->
         <a href="{HREF_TGT}" title="{HREF_TITLE}">{HREF_LNK}</a> {SPACER}
@@ -121,7 +121,7 @@ if (!defined('THEME_HAS_NO_SYS_MENU_BUTTONS')) {
 EOT;
 
   // HTML template for template sys_menu buttons
-  if (!isset($sys_menu_buttons)) { //{CORE}
+  if (!isset($sys_menu_buttons)) { //{THEMES}
     // {HREF_LNK}{HREF_TITLE}{HREF_TGT}{BLOCK_ID}{SPACER}
     addbutton($sys_menu_buttons,'{MY_GAL_LNK}','{MY_GAL_TITLE}','{MY_GAL_TGT}','my_gallery',$template_sys_menu_spacer);
     addbutton($sys_menu_buttons,'{MEMBERLIST_LNK}','{MEMBERLIST_TITLE}','{MEMBERLIST_TGT}','allow_memberlist',$template_sys_menu_spacer);
@@ -134,7 +134,7 @@ EOT;
     addbutton($sys_menu_buttons,'{LOGIN_LNK}','{LOGIN_TITLE}','{LOGIN_TGT}','login','');
     addbutton($sys_menu_buttons,'{LOGOUT_LNK}','{LOGOUT_TITLE}','{LOGOUT_TGT}','logout','');
     // Login and Logout don't have a spacer as only one is shown, and either would be the last option.
-  } //{CORE}
+  } //{THEMES}
 
   $params = array('{BUTTONS}' => assemble_template_buttons($template_sys_menu_button,$sys_menu_buttons));
   $template_sys_menu = template_eval($template_sys_menu,$params);
@@ -143,15 +143,15 @@ EOT;
 if (!defined('THEME_HAS_NO_SUB_MENU_BUTTONS')) {
 
   // HTML template for template sub_menu spacer
-  if (!isset($template_sub_menu_spacer))  //{CORE}
+  if (!isset($template_sub_menu_spacer))  //{THEMES}
   $template_sub_menu_spacer = $template_sys_menu_spacer;
 
   // HTML template for template sub_menu buttons
-  if (!isset($template_sub_menu_button))  //{CORE}
+  if (!isset($template_sub_menu_button))  //{THEMES}
   $template_sub_menu_button= $template_sys_menu_button;
 
   // HTML template for template sub_menu buttons
-  if (!isset($sub_menu_buttons)) { //{CORE}
+  if (!isset($sub_menu_buttons)) { //{THEMES}
     // {HREF_LNK}{HREF_TITLE}{HREF_TGT}{BLOCK_ID}{SPACER}
     addbutton($sub_menu_buttons,'{ALB_LIST_LNK}','{ALB_LIST_TITLE}','{ALB_LIST_TGT}','album_list',$template_sub_menu_spacer);
     addbutton($sub_menu_buttons,'{LASTUP_LNK}','{LASTUP_TITLE}','{LASTUP_TGT}','lastup',$template_sub_menu_spacer);
@@ -160,14 +160,14 @@ if (!defined('THEME_HAS_NO_SUB_MENU_BUTTONS')) {
     addbutton($sub_menu_buttons,'{TOPRATED_LNK}','{TOPRATED_TITLE}','{TOPRATED_TGT}','toprated',$template_sub_menu_spacer);
     addbutton($sub_menu_buttons,'{FAV_LNK}','{FAV_TITLE}','{FAV_TGT}','favpics',$template_sub_menu_spacer);
     addbutton($sub_menu_buttons,'{SEARCH_LNK}','{SEARCH_TITLE}','{SEARCH_TGT}','search','');
-    } //{CORE}
+    } //{THEMES}
 
   $params = array('{BUTTONS}' => assemble_template_buttons($template_sub_menu_button,$sub_menu_buttons));
   $template_sub_menu = template_eval($template_sub_menu,$params);
 }
 
 // HTML template for gallery admin menu
-if (!isset($template_gallery_admin_menu))  //{CORE}
+if (!isset($template_gallery_admin_menu))  //{THEMES}
 $template_gallery_admin_menu = <<<EOT
 
                 <div align="center">
@@ -196,7 +196,7 @@ $template_gallery_admin_menu = <<<EOT
 
 EOT;
 // HTML template for user admin menu
-if (!isset($template_user_admin_menu))  //{CORE}
+if (!isset($template_user_admin_menu))  //{THEMES}
 $template_user_admin_menu = <<<EOT
 
                 <div align="center">
@@ -212,7 +212,7 @@ $template_user_admin_menu = <<<EOT
 
 EOT;
 // HTML template for the category list
-if (!isset($template_cat_list))  //{CORE}
+if (!isset($template_cat_list))  //{THEMES}
 $template_cat_list = <<<EOT
 <!-- BEGIN header -->
         <tr>
@@ -247,7 +247,7 @@ $template_cat_list = <<<EOT
 
 EOT;
 // HTML template for the breadcrumb
-if (!isset($template_breadcrumb))  //{CORE}
+if (!isset($template_breadcrumb))  //{THEMES}
 $template_breadcrumb = <<<EOT
 <!-- BEGIN breadcrumb -->
         <tr>
@@ -269,7 +269,7 @@ $template_breadcrumb = <<<EOT
 
 EOT;
 // HTML template for the album list
-if (!isset($template_album_list))  //{CORE}
+if (!isset($template_album_list))  //{THEMES}
 $template_album_list = <<<EOT
 
 <!-- BEGIN stat_row -->
@@ -355,7 +355,7 @@ $template_album_list = <<<EOT
 
 EOT;
 // HTML template for filmstrip display
-if (!isset($template_film_strip))  //{CORE}
+if (!isset($template_film_strip))  //{THEMES}
 $template_film_strip = <<<EOT
 
         <tr>
@@ -380,7 +380,7 @@ $template_film_strip = <<<EOT
 
 EOT;
 // HTML template for the album list
-if (!isset($template_album_list_cat))  //{CORE}
+if (!isset($template_album_list_cat))  //{THEMES}
 $template_album_list_cat = <<<EOT
 
 <!-- BEGIN c_stat_row -->
@@ -466,7 +466,7 @@ $template_album_list_cat = <<<EOT
 
 EOT;
 // HTML template for the ALBUM admin menu displayed in the album list
-if (!isset($template_album_admin_menu))  //{CORE}
+if (!isset($template_album_admin_menu))  //{THEMES}
 $template_album_admin_menu = <<<EOT
         <table border="0" cellpadding="0" cellspacing="1">
                 <tr>
@@ -484,7 +484,7 @@ $template_album_admin_menu = <<<EOT
 
 EOT;
 // HTML template for title row of the thumbnail view (album title + sort options)
-if (!isset($template_thumb_view_title_row))  //{CORE}
+if (!isset($template_thumb_view_title_row))  //{THEMES}
 $template_thumb_view_title_row = <<<EOT
 
                         <table width="100%" cellpadding="0" cellspacing="0">
@@ -522,7 +522,7 @@ EOT;
 
 
 // HTML template for title row of the fav thumbnail view (album title + download)
-if (!isset($template_fav_thumb_view_title_row))  //{CORE}
+if (!isset($template_fav_thumb_view_title_row))  //{THEMES}
 $template_fav_thumb_view_title_row = <<<EOT
 
                         <table width="100%" cellpadding="0" cellspacing="0">
@@ -543,7 +543,7 @@ EOT;
 
 
 // HTML template for thumbnails display
-if (!isset($template_thumbnail_view))  //{CORE}
+if (!isset($template_thumbnail_view))  //{THEMES}
 $template_thumbnail_view = <<<EOT
 
 <!-- BEGIN header -->
@@ -589,7 +589,7 @@ $template_thumbnail_view = <<<EOT
 
 EOT;
 // HTML template for the thumbnail view when there is no picture to show
-if (!isset($template_no_img_to_display))  //{CORE}
+if (!isset($template_no_img_to_display))  //{THEMES}
 $template_no_img_to_display = <<<EOT
         <tr>
                 <td class="tableb" height="200" align="center">
@@ -602,7 +602,7 @@ $template_no_img_to_display = <<<EOT
 
 EOT;
 // HTML template for the USER info box in the user list view
-if (!isset($template_user_list_info_box))  //{CORE}
+if (!isset($template_user_list_info_box))  //{THEMES}
 $template_user_list_info_box = <<<EOT
 
         <table cellspacing="1" cellpadding="0" border="0" width="100%" class="user_thumb_infobox">
@@ -619,7 +619,7 @@ $template_user_list_info_box = <<<EOT
 
 EOT;
 // HTML template for the image navigation bar
-if (!isset($template_img_navbar))  //{CORE}
+if (!isset($template_img_navbar))  //{THEMES}
 $template_img_navbar = <<<EOT
 
         <tr>
@@ -655,7 +655,7 @@ $template_img_navbar = <<<EOT
 
 EOT;
 // HTML template for intermediate image display
-if (!isset($template_display_picture))  //{CORE}
+if (!isset($template_display_picture))  //{THEMES}
 $template_display_picture = <<<EOT
         <tr>
                 <td align="center" class="tableb" nowrap="nowrap">
@@ -705,7 +705,7 @@ $template_display_picture = <<<EOT
 
 EOT;
 // HTML template for the image rating box
-if (!isset($template_image_rating))  //{CORE}
+if (!isset($template_image_rating))  //{THEMES}
 $template_image_rating = <<<EOT
 <table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
         <tr>
@@ -722,7 +722,7 @@ $template_image_rating = <<<EOT
 </table>
 EOT;
 // HTML template for the display of comments
-if (!isset($template_image_comments))  //{CORE}
+if (!isset($template_image_comments))  //{THEMES}
 $template_image_comments = <<<EOT
 <table align="center" width="90%" cellspacing="1" cellpadding="0" class="maintable">
 
@@ -821,7 +821,7 @@ $template_image_comments = <<<EOT
 </table>
 EOT;
 
-if (!isset($template_add_your_comment))  //{CORE}
+if (!isset($template_add_your_comment))  //{THEMES}
 $template_add_your_comment = <<<EOT
 <table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
         <tr>
@@ -868,7 +868,7 @@ $template_add_your_comment = <<<EOT
 
 EOT;
 // HTML template used by the cpg_die function
-if (!isset($template_cpg_die))  //{CORE}
+if (!isset($template_cpg_die))  //{THEMES}
 $template_cpg_die = <<<EOT
 
         <tr>
@@ -893,7 +893,7 @@ $template_cpg_die = <<<EOT
 
 EOT;
 // HTML template used by the msg_box function
-if (!isset($template_msg_box))  //{CORE}
+if (!isset($template_msg_box))  //{THEMES}
 $template_msg_box = <<<EOT
 
         <tr>
@@ -917,7 +917,7 @@ $template_msg_box = <<<EOT
 
 EOT;
 // HTML template for e-cards
-if (!isset($template_ecard))  //{CORE}
+if (!isset($template_ecard))  //{THEMES}
 $template_ecard = <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="{LANG_DIR}">
@@ -959,7 +959,7 @@ $template_ecard = <<<EOT
 EOT;
 
 // plain-text template for e-cards (as fallback for clients that can't display html-formatted mails)
-if (!isset($template_ecard_plaintext))  //{CORE}
+if (!isset($template_ecard_plaintext))  //{THEMES}
 $template_ecard_plaintext = <<<EOT
 {TITLE}
 =========================================
@@ -979,7 +979,7 @@ $template_ecard_plaintext = <<<EOT
 EOT;
 
 // HTML template for report
-if (!isset($template_report))  //{CORE}
+if (!isset($template_report))  //{THEMES}
 $template_report = <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="{LANG_DIR}">
@@ -1020,7 +1020,7 @@ $template_report = <<<EOT
 EOT;
 
 // plain-text template for reports (as fallback for clients that can't display html-formatted mails)
-if (!isset($template_report_plaintext))  //{CORE}
+if (!isset($template_report_plaintext))  //{THEMES}
 $template_report_plaintext = <<<EOT
 {TITLE}
 =========================================
@@ -1043,7 +1043,7 @@ $template_report_plaintext = <<<EOT
 EOT;
 
 // Template used for tabbed display
-if (!isset($template_tab_display))  //{CORE}
+if (!isset($template_tab_display))  //{THEMES}
 $template_tab_display = array('left_text' => '<td width="100%%" align="left" valign="middle" class="tableh1_compact" style="white-space: nowrap"><b>{LEFT_TEXT}</b></td>' . "\n",
     'tab_header' => '',
     'tab_trailer' => '',
@@ -1052,21 +1052,17 @@ $template_tab_display = array('left_text' => '<td width="100%%" align="left" val
     );
 
 // Template used for Vanity Footer
-if (!isset($template_vanity))  //{CORE}
+if (!isset($template_vanity))  //{THEMES}
 $template_vanity = <<<EOT
-<div id="vanity" style="text-align: center; padding-bottom: 1ex;">
-  <table cellspacing="0" cellpadding="3" border="0" align="center" width="100%">
-    <tr>
-      <td><a href="http://www.mysql.com/" target="_blank"><img src="{LOCATION}images/powered-mysql.gif" alt="Powered by MySQL"  border="0" /></a></td>
-      <td><a href="http://www.php.net/" target="_blank"><img src="{LOCATION}images/powered-php.gif" alt="Powered by PHP" border="0" /></a></td>
-      <td><a href="http://validator.w3.org/check/referer" target="_blank"><img src="{LOCATION}images/valid-xhtml10.gif" alt="Valid XHTML 1.0!" border="0" /></a></td>
-      <td><a href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank"><img src="{LOCATION}images/valid-css.gif" alt="Valid CSS!" border="0" /></a></td>
-    </tr>
-  </table>
+<div id="vanity">
+      <a id="v_php" href="http://www.php.net/" target="_blank"></a>
+      <a id="v_mysql" href="http://www.mysql.com/" target="_blank"></a>
+      <a id="v_xhtml" href="http://validator.w3.org/check/referer" target="_blank"></a>
+      <a id="v_css" href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank"></a>
 </div>
 EOT;
 
-if (!function_exists('pageheader')) {  //{CORE}
+if (!function_exists('pageheader')) {  //{THEMES}
 function pageheader($section, $meta = '')
 {
     global $CONFIG, $THEME_DIR;
@@ -1091,9 +1087,9 @@ function pageheader($section, $meta = '')
 
     echo template_eval($template_header, $template_vars);
 }
-}  //{CORE}
+}  //{THEMES}
 // Function for writing a pagefooter
-if (!function_exists('pagefooter')) {  //{CORE}
+if (!function_exists('pagefooter')) {  //{THEMES}
 function pagefooter()
 {
     global $HTTP_GET_VARS, $HTTP_POST_VARS, $HTTP_SERVER_VARS;
@@ -1113,9 +1109,9 @@ function pagefooter()
 
     echo template_eval($template_footer, $template_vars);
 }
-}  //{CORE}
+}  //{THEMES}
 // Function to start a 'standard' table
-if (!function_exists('starttable')) {  //{CORE}
+if (!function_exists('starttable')) {  //{THEMES}
 function starttable($width = '-1', $title = '', $title_colspan = '1')
 {
     global $CONFIG;
@@ -1137,9 +1133,9 @@ EOT;
 EOT;
     }
 }
-}  //{CORE}
+}  //{THEMES}
 
-if (!function_exists('endtable')) {  //{CORE}
+if (!function_exists('endtable')) {  //{THEMES}
 function endtable()
 {
     echo <<<EOT
@@ -1148,9 +1144,9 @@ function endtable()
 
 EOT;
 }
-}  //{CORE}
+}  //{THEMES}
 
-if (!function_exists('theme_main_menu')) {  //{CORE}
+if (!function_exists('theme_main_menu')) {  //{THEMES}
 function theme_main_menu($which)
 {
     global $AUTHORIZED, $CONFIG, $album, $actual_cat, $cat, $REFERER;
@@ -1270,9 +1266,9 @@ function theme_main_menu($which)
 
     return $main_menu;
 }
-}  //{CORE}
+}  //{THEMES}
 
-if (!function_exists('theme_admin_mode_menu')) {  //{CORE}
+if (!function_exists('theme_admin_mode_menu')) {  //{THEMES}
 function theme_admin_mode_menu()
 {
     global $cat;
@@ -1340,9 +1336,9 @@ function theme_admin_mode_menu()
 
     return $html;
 }
-}  //{CORE}
+}  //{THEMES}
 
-if (!function_exists('theme_display_cat_list')) {  //{CORE}
+if (!function_exists('theme_display_cat_list')) {  //{THEMES}
 function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
 {
     global $template_cat_list, $lang_cat_list;
@@ -1397,9 +1393,9 @@ function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
           endtable();
         echo template_extract_block($template_cat_list, 'spacer');
 }
-}  //{CORE}
+}  //{THEMES}
 
-if (!function_exists('theme_display_breadcrumb')) {  //{CORE}
+if (!function_exists('theme_display_breadcrumb')) {  //{THEMES}
 function theme_display_breadcrumb($breadcrumb, &$cat_data)
 {
     /**
@@ -1416,9 +1412,9 @@ function theme_display_breadcrumb($breadcrumb, &$cat_data)
     }
         endtable();
 }
-}  //{CORE}
+}  //{THEMES}
 
-if (!function_exists('theme_display_album_list'))  {  //{CORE}
+if (!function_exists('theme_display_album_list'))  {  //{THEMES}
 function theme_display_album_list(&$alb_list, $nbAlb, $cat, $page, $total_pages)
 {
 
@@ -1501,9 +1497,9 @@ function theme_display_album_list(&$alb_list, $nbAlb, $cat, $page, $total_pages)
 
     echo $spacer;
 }
-}  //{CORE}
+}  //{THEMES}
 // Function to display first level Albums of a category
-if (!function_exists('theme_display_album_list_cat')) {  //{CORE}
+if (!function_exists('theme_display_album_list_cat')) {  //{THEMES}
 function theme_display_album_list_cat(&$alb_list, $nbAlb, $cat, $page, $total_pages)
 {
     global $CONFIG, $STATS_IN_ALB_LIST, $statistics, $template_tab_display, $template_album_list_cat, $lang_album_list;
@@ -1587,9 +1583,9 @@ function theme_display_album_list_cat(&$alb_list, $nbAlb, $cat, $page, $total_pa
 
     echo $spacer;
 }
-}  //{CORE}
+}  //{THEMES}
 
-if (!function_exists('theme_display_thumbnails')) {  //{CORE}
+if (!function_exists('theme_display_thumbnails')) {  //{THEMES}
 function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $page, $total_pages, $sort_options, $display_tabs, $mode = 'thumb')
 {
     global $CONFIG;
@@ -1718,9 +1714,9 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     endtable();
     echo $spacer;
 }
-}  //{CORE}
+}  //{THEMES}
 // Added to display flim_strip
-if (!function_exists('theme_display_film_strip')) {  //{CORE}
+if (!function_exists('theme_display_film_strip')) {  //{THEMES}
 function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $pos, $sort_options, $mode = 'thumb')
 {
     global $CONFIG, $THEME_DIR;
@@ -1786,9 +1782,9 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
 
     return $film_strip;
 }
-}  //{CORE}
+}  //{THEMES}
 
-if (!function_exists('theme_no_img_to_display')) {  //{CORE}
+if (!function_exists('theme_no_img_to_display')) {  //{THEMES}
 function theme_no_img_to_display($album_name)
 {
     global $lang_errors, $template_no_img_to_display;
@@ -1806,9 +1802,9 @@ function theme_no_img_to_display($album_name)
     echo template_eval($template, $params);
     endtable();
 }
-}  //{CORE}
+}  //{THEMES}
 
-if (!function_exists('theme_display_image')) {  //{CORE}
+if (!function_exists('theme_display_image')) {  //{THEMES}
 function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, $film_strip)
 {
     global $CONFIG;
@@ -1843,9 +1839,9 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments, 
         echo "</div>\n";
 
 }
-}  //{CORE}
+}  //{THEMES}
 
-if (!function_exists('theme_html_picinfo')) {  //{CORE}
+if (!function_exists('theme_html_picinfo')) {  //{THEMES}
 function theme_html_picinfo(&$info)
 {
     global $lang_picinfo;
@@ -1858,10 +1854,10 @@ function theme_html_picinfo(&$info)
 
     return $html;
 }
-}  //{CORE}
+}  //{THEMES}
 
 // Displays a picture
-if (!function_exists('theme_html_picture')) {  //{CORE}
+if (!function_exists('theme_html_picture')) {  //{THEMES}
 function theme_html_picture()
 {
     global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $USER;
@@ -1971,9 +1967,9 @@ function theme_html_picture()
 
     return template_eval($template_display_picture, $params);
 }
-}  //{CORE}
+}  //{THEMES}
 
-if (!function_exists('theme_html_img_nav_menu')) {  //{CORE}
+if (!function_exists('theme_html_img_nav_menu')) {  //{THEMES}
 function theme_html_img_nav_menu()
 {
     global $CONFIG, $CURRENT_PIC_DATA, $meta_nav, $THEME_DIR ; //$PHP_SELF,
@@ -2058,9 +2054,9 @@ function theme_html_img_nav_menu()
 
     return template_eval($template_img_navbar, $params);
 }
-}  //{CORE}
+}  //{THEMES}
 
-if (!function_exists('theme_html_rating_box')) {  //{CORE}
+if (!function_exists('theme_html_rating_box')) {  //{THEMES}
 function theme_html_rating_box()
 {
     global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $THEME_DIR;
@@ -2097,10 +2093,10 @@ function theme_html_rating_box()
 
     return template_eval($template_image_rating, $params);
 }
-}  //{CORE}
+}  //{THEMES}
 
 // Displays comments for a specific picture
-if (!function_exists('theme_html_comments')) {  //{CORE}
+if (!function_exists('theme_html_comments')) {  //{THEMES}
 function theme_html_comments($pid)
 {
     global $CONFIG, $USER, $CURRENT_ALBUM_DATA, $comment_date_fmt, $HTML_SUBST;
@@ -2200,9 +2196,9 @@ function theme_html_comments($pid)
 
     return $html;
 }
-}  //{CORE}
+}  //{THEMES}
 
-if (!function_exists('theme_slideshow')) {  //{CORE}
+if (!function_exists('theme_slideshow')) {  //{THEMES}
 function theme_slideshow()
 {
     global $CONFIG, $lang_display_image_php, $template_display_picture;
@@ -2234,10 +2230,10 @@ EOT;
     endtable();
     pagefooter();
 }
-}  //{CORE}
+}  //{THEMES}
 
 // Display the full size image
-if (!function_exists('theme_display_fullsize_pic')) {  //{CORE}
+if (!function_exists('theme_display_fullsize_pic')) {  //{THEMES}
 function theme_display_fullsize_pic()
 {
     global $CONFIG, $THEME_DIR, $ALBUM_SET;
@@ -2308,10 +2304,10 @@ function theme_display_fullsize_pic()
 </html>
 <?php
 }
-}  //{CORE}
+}  //{THEMES}
 
 
-if (!function_exists('theme_vanity')) {  //{CORE}
+if (!function_exists('theme_vanity')) {  //{THEMES}
 function theme_vanity()
 {
     global $CONFIG, $THEME_DIR, $template_vanity ;
@@ -2326,6 +2322,6 @@ function theme_vanity()
 
     return template_eval($template_vanity, $params);
 }
-} //{CORE}
+} //{THEMES}
 
 ?>
