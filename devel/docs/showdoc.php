@@ -108,7 +108,7 @@ if ($add_stylesheet) {
 }
 
 if ($header) {
-$string = "<html>\n<head>\n<title>".$header."</title>\n" . '<link rel="stylesheet" href="../themes/'.$style.'/style.css" />' . "\n</head>\n<body>\n<h1>" . $header . "</h1>\n" . $text . "\n".$close_link."\n</body>\n</html>";
+$string = "<html>\n<head>\n<title>".$header."</title>\n" . '<link rel="stylesheet" href="../themes/'.$add_stylesheet.'/style.css" />' . "\n</head>\n<body>\n<h1>" . $header . "</h1>\n" . $text . "\n".$close_link."\n</body>\n</html>";
 }
 
 
