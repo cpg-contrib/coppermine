@@ -451,7 +451,8 @@ a:hover {
 }
 
 .navmenu img {
-        display: block;
+        margin-top: 5px;
+
 }
 
 .navmenu a {

@@ -397,6 +397,9 @@ a:hover {
         text-decoration: none;
 }
 
+.navmenu_pic {
+        margin-top: 5px;
+}
 
 .admin_menu_thumb {
         font-size: 90%;
