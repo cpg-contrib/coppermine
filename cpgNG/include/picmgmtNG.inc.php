@@ -15,6 +15,8 @@
   $Revision$
   $Author$
   $Date$
+  
+  This file has been included as an example and mostly redundant
 **********************************************/
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
