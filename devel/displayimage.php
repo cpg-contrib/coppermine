@@ -35,6 +35,7 @@ if($CONFIG['read_iptc_data'] ){
         include("include/iptc.inc.php");
 }
 
+
 /**
  * Local functions definition
  */
@@ -139,6 +140,10 @@ function html_picture()
     $image_size = compute_img_size($CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight'], $CONFIG['picture_width']);
 
     $pic_title = '';
+    $mime_content = get_type($CURRENT_PIC_DATA['filename']);
+    $extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
+
+
     if ($CURRENT_PIC_DATA['title'] != '') {
         $pic_title .= $CURRENT_PIC_DATA['title'] . "\n";
     }
@@ -148,15 +153,26 @@ function html_picture()
     if ($CURRENT_PIC_DATA['keywords'] != '') {
         $pic_title .= $lang_picinfo['Keywords'] . ": " . $CURRENT_PIC_DATA['keywords'];
     } // added by gaugau
-    if (isset($image_size['reduced'])) {
-        $winsizeX = $CURRENT_PIC_DATA['pwidth'] + 16;
-        $winsizeY = $CURRENT_PIC_DATA['pheight'] + 16;
-        $pic_html = "<a href=\"javascript:;\" onClick=\"MM_openBrWindow('displayimage.php?pid=$pid&fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=yes,status=yes,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
-        $pic_title = $lang_display_image_php['view_fs'] . "\n==============\n" . $pic_title; //added by gaugau
-        $pic_html .= "<img src=\"" . $picture_url . "\" class=\"image\" border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
-        $pic_html .= "</a>\n";
-    } else {
-        $pic_html = "<img src=\"" . $picture_url . "\" class=\"image\" border=\"0\" /><br />\n";
+    if ($CURRENT_PIC_DATA['pwidth']==0 || $CURRENT_PIC_DATA['pheight']==0)
+        $image_size['geom']='';
+
+    if ($mime_content['content']='image')
+        if (isset($image_size['reduced'])) {
+            $winsizeX = $CURRENT_PIC_DATA['pwidth'] + 16;
+            $winsizeY = $CURRENT_PIC_DATA['pheight'] + 16;
+            $pic_html = "<a href=\"javascript:;\" onClick=\"MM_openBrWindow('displayimage.php?pid=$pid&fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=yes,status=yes,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
+            $pic_title = $lang_display_image_php['view_fs'] . "\n==============\n" . $pic_title; //added by gaugau
+            $pic_html .= "<img src=\"" . $picture_url . "\" class=\"image\" border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
+            $pic_html .= "</a>\n";
+        } else {
+            $pic_html = "<img src=\"" . $picture_url . "\" {$image_size['geom']} class=\"image\" border=\"0\" /><br />\n";
+        }
+    elseif ($mime_content['content']='movie')
+            $pic_html = "<object {$image_size['geom']}><param name=\"movie\" value=\"". $picture_url . "\"><embed {$image_size['geom']} src=\"". $picture_url . "\"></embed></object>\n";
+    elseif ($mime_content['content']='audio')
+            $pic_html = "<object {$image_size['geom']}><param name=\"movie\" value=\"". $picture_url . "\"><embed {$image_size['geom']} src=\"". $picture_url . "\"></embed></object>\n";
+    elseif ($mime_content['content']='document') {
+        $pic_html = "<a href=\"{$picture_url}\" target=\"_blank\" class=\"document_link\"><img src=\"images/thumb_$extension.jpg\" border=\"0\" class=\"image\" /></a>\n";
     }
 
     if (!$CURRENT_PIC_DATA['title'] && !$CURRENT_PIC_DATA['caption']) {

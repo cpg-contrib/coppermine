@@ -22,8 +22,6 @@ require('include/init.inc.php');
 if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
 define('UPLOAD_APPROVAL_MODE', isset($HTTP_GET_VARS['mode']));
-
-
 define('EDIT_PICTURES_MODE', !isset($HTTP_GET_VARS['mode']));
 
 if (isset($HTTP_GET_VARS['album'])) {
@@ -128,6 +126,12 @@ function process_post_data()
 		$update .= ", user2 = '".addslashes($user2)."'";
 		$update .= ", user3 = '".addslashes($user3)."'";
 		$update .= ", user4 = '".addslashes($user4)."'";
+        if (is_movie($pic['filename'])) {
+            $pwidth = get_post_var('pwidth', $pid);
+            $pheight = get_post_var('pheight', $pid);
+            $update .= ", pwidth = " .  (int) $pwidth;
+            $update .= ", pheight = " . (int) $pheight;
+        }
 
 		if ($reset_vcount) $update .= ", hits = '0'";
 		if ($reset_votes) $update .= ", pic_rating = '0', votes = '0'";
@@ -190,11 +194,34 @@ function form_pic_info($text)
 		if($CURRENT_PIC['owner_name']){
 			$pic_info .= ' - <a href ="profile.php?uid='.$CURRENT_PIC['owner_id'].'" target="_blank">'.$CURRENT_PIC['owner_name'].'</a>';
 		}
-	} else {
-		$pic_info = sprintf($lang_editpics_php['pic_info_str'], $CURRENT_PIC['pwidth'], $CURRENT_PIC['pheight'], ($CURRENT_PIC['filesize'] >> 10), $CURRENT_PIC['hits'], $CURRENT_PIC['votes']);
-	}
+    } elseif (!is_movie($CURRENT_PIC['filename'])) {
+        $pic_info = sprintf($lang_editpics_php['pic_info_str'], $CURRENT_PIC['pwidth'], $CURRENT_PIC['pheight'], ($CURRENT_PIC['filesize'] >> 10), $CURRENT_PIC['hits'], $CURRENT_PIC['votes']);
+    } else {
+        $pic_info = '<input type="text" name="pwidth'.$CURRENT_PIC['pid'].'" value="'.$CURRENT_PIC['pwidth'].'" size="5" maxlength="5" class="textinput" /> x ';
+        $pic_info .= '<input type="text" name="pheight'.$CURRENT_PIC['pid'].'" value="'.$CURRENT_PIC['pheight'].'" size="5" maxlength="5" class="textinput" /> - ';
+        $pic_info .=($CURRENT_PIC['filesize'] >> 10)."KB - ";
+        $pic_info .=$CURRENT_PIC['hits']." views - ";
+        $pic_info .=$CURRENT_PIC['votes']." votes";
+    }
 
-	$thumb_url = get_pic_url($CURRENT_PIC, 'thumb');
+    if (is_image($CURRENT_PIC['filename']))
+        $thumb_url = get_pic_url($CURRENT_PIC, 'thumb');
+    elseif ($extension = is_movie($CURRENT_PIC['filename'])) {
+        $extension = (file_exists("images/thumb_$extension.jpg")) ? $extension : "movie";
+        $thumb_url = "images/thumb_{$extension}.jpg\"";
+    }
+    elseif ($extension = is_audio($CURRENT_PIC['filename'])) {
+        $extension = (file_exists("images/thumb_$extension.jpg")) ? $extension : "audio";
+        $thumb_url = "images/thumb_{$extension}.jpg\"";
+    }
+    elseif ($extension = is_document($CURRENT_PIC['filename'])) {
+        $extension = (file_exists("images/thumb_$extension.jpg")) ? $extension : "document";
+        $thumb_url = "images/thumb_{$extension}.jpg\"";
+    }
+    else
+        $thumb_url = '';
+
+
 	$thumb_link = 'displayimage.php?&pos='.(-$CURRENT_PIC['pid']);
 	$filename = htmlspecialchars($CURRENT_PIC['filename']);
 
@@ -250,24 +277,24 @@ EOT;
 	}
 }
 
-function form_input($text, $name, $max_length)
+function form_input($text, $name, $max_length,$field_width=100)
 {
-	global $CURRENT_PIC;
+    global $CURRENT_PIC;
 
-	$value = $CURRENT_PIC[$name];
-	$name .= $CURRENT_PIC['pid'];
-	if ($text == ''){
-		echo "	<input type=\"hidden\" name=\"$name\" value=\"\">\n";
-		return;
-	}
+    $value = $CURRENT_PIC[$name];
+    $name .= $CURRENT_PIC['pid'];
+    if ($text == '') {
+        echo "	<input type=\"hidden\" name=\"$name\" value=\"\">\n";
+        return;
+    } 
 
-	echo <<<EOT
+    echo <<<EOT
 	<tr>
     	<td class="tableb" style="white-space: nowrap;">
 			$text
         </td>
         <td width="100%" class="tableb" valign="top">
-        	<input type="text" style="width: 100%" name="$name" maxlength="$max_length" value="$value" class="textinput">
+        	<input type="text" style="width: {$field_width}%" name="$name" maxlength="$max_length" value="$value" class="textinput">
 		</td>
 	</tr>
 

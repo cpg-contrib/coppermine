@@ -115,16 +115,22 @@ function picrow($picfile, $picid, $albid)
         $thumb_info = getimagesize($picname);
         $thumb_size = compute_img_size($thumb_info[0], $thumb_info[1], 48);
         $img = '<img src="' . path2url($thumb_file) . '" ' . $thumb_size['geom'] . ' class="thumbnail" border="0" />';
+    } elseif (is_image($picname)) {
+        $img = '<img src="showthumb.php?picfile=' . $pic_url . '&size=48" class="thumbnail" border="0">';
     } else {
-        $img = '<img src="showthumb.php?picfile=' . $pic_url . '&size=48" class="thumbnail" border="0" />';
-    }
+        $mime_content = get_type($picname);
+        $extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
+        $img = '<img src="images/thumb_'.$extension.'.jpg" class="thumbnail" width="48" border="0">';
+    else return '';
 
     if (filesize($picname) && is_readable($picname)) {
-        $fullimagesize = getimagesize($picname);
+        //$fullimagesize = getimagesize($picname); COMMENTED OUT FOR VIDEO SUPPORT
         $winsizeX = ($fullimagesize[0] + 16);
         $winsizeY = ($fullimagesize[1] + 16);
 
-        $checked = isset($expic_array[$picfile]) || !$fullimagesize ? '' : 'checked';
+        //$checked = isset($expic_array[$picfile]) || !$fullimagesize ? '' : 'checked';
+
+        $checked = isset($expic_array[$picfile]) ? '' : 'checked';
 
         return <<<EOT
         <tr>

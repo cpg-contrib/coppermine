@@ -379,14 +379,24 @@ function list_albums()
                     $picture = mysql_fetch_array($result);
                     mysql_free_result($result);
                 } 
+                if (!is_image($picture['filename'])) {
+                    $picture['pwidth'] = 100;
+                    $picture['pheight'] = 100;
+                }
                 $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
-                $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"" . get_pic_url($picture, 'thumb') . "\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
+                $mime_content = get_type($filename);
+                $extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
+
+                if ($mime_content['content']=='image') {
+                        $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"" . get_pic_url($row, 'thumb') . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\">";
+                } else {
+                        $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/thumb_{$extension}.jpg\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\">";
+                }
             } else { // Inserts an empty thumbnail if the album contains 0 images
                 $image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
 
                 $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/nopic.jpg\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
             }
-
         } elseif ($CONFIG['show_private']) {
             $image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
             $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/private.jpg\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
@@ -494,8 +504,19 @@ function list_cat_albums($cat = 0)
                     $picture = mysql_fetch_array($result);
                     mysql_free_result($result);
                 } 
+                if (!is_image($picture['filename'])) {
+                    $picture['pwidth'] = 100;
+                    $picture['pheight'] = 100;
+                }
                 $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
-                $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"" . get_pic_url($picture, 'thumb') . "\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
+                $mime_content = get_type($filename);
+                $extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
+
+                if ($mime_content['content']=='image') {
+                        $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"" . get_pic_url($row, 'thumb') . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\">";
+                } else {
+                        $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/thumb_{$extension}.jpg\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\">";
+                }
             } else { // Inserts an empty thumbnail if the album contains 0 images
                 $image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
                 $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/nopic.jpg\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";

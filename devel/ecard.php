@@ -1,4 +1,4 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
@@ -49,6 +49,9 @@ $result = mysql_query("SELECT * from {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid
 if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap']);
 $row = mysql_fetch_array($result);
 $thumb_pic_url = get_pic_url($row, 'thumb');
+
+if (!is_image($row['filename'])) cpg_die(ERROR, $lang_ecard_php['error_not_image']);
+
 // Check supplied email address
 $valid_email_pattern = "^[_\.0-9a-z\-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,6}$";
 $valid_sender_email = eregi($valid_email_pattern, $sender_email);
@@ -97,7 +100,7 @@ if (count($HTTP_POST_VARS) > 0 && $valid_sender_email && $valid_recipient_email)
         );
 
     $message = template_eval($template_ecard, $params);
-	$message .= "Sent by from IP .$_SERVER["REMOTE_HOST"]. at .gmstrftime("%A,  %B,%V,%Y %I:%M %p ", time()). [GMT]"; 
+	$message .= "Sent by from IP" .$_SERVER["REMOTE_HOST"]." at ".gmstrftime("%A,  %B,%V,%Y %I:%M %p ", time())." [GMT]"; 
     $subject = sprintf($lang_ecard_php['ecard_title'], $sender_name);
     //cheap cookie fix
 	if ((!USER_ID)||($_COOKIE['cookiename']==1))
