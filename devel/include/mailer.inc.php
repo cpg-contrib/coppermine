@@ -23,7 +23,18 @@ function cpg_mail($to, $subject, $msg_body = '', $type = 'text/plain', $sender_n
 {
     global $CONFIG;
     global $lang_charset;
-
+   	
+	// send mails to ALL admins - not bridged only
+    if (($to == $CONFIG['gallery_admin_email']) AND (!defined('UDB_INTEGRATION'))){
+    	$to = array($to);
+    	$result = cpg_db_query("SELECT user_email FROM {$CONFIG['TABLE_USERS']} WHERE user_group = 1");
+    	while($row = mysql_fetch_assoc($result)) {
+    		if (isset($row['user_email'])) $to[] = $row['user_email'];
+    	}
+	} else {
+		$to = array($to);
+	}
+	
     if ($sender_name == '') { $sender_name = $CONFIG['gallery_name']; }
     if ($sender_email == '') { $sender_email = $CONFIG['gallery_admin_email']; }
 
@@ -39,10 +50,10 @@ function cpg_mail($to, $subject, $msg_body = '', $type = 'text/plain', $sender_n
     $mail->setHeader('Date', gmdate('D, d M Y H:i:s', time()) . " UT\n");
 
     if (empty($CONFIG['smtp_host'])) {
-        $result = $mail->send(array($to));
+        $result = $mail->send($to);
     } else {
         $mail->setSMTPParams($CONFIG['smtp_host'], null, null, null, $CONFIG['smtp_username'], $CONFIG['smtp_password']);
-        $result = $mail->send(array($to), 'smtp');
+        $result = $mail->send($to, 'smtp');
     }
 
         // These errors are only set if you're using SMTP to send the message
