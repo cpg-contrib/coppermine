@@ -1,8 +1,8 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.3.1                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -14,7 +14,7 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-// $Id$
+// CVS version: $Id$
 // ------------------------------------------------------------------------- //
 // phpBB2 Integration for Coppermine                                         //
 // ------------------------------------------------------------------------- //
@@ -110,7 +110,7 @@ function udb_authenticate()
         $USER_DATA = mysql_fetch_array($result);
         mysql_free_result($result);
 
-	$USER_DATA['groups'] = array();
+        $USER_DATA['groups'] = array();
 
         if($USER_DATA['user_id'] == "-1") {
             define('USER_ID', 0);
@@ -128,17 +128,17 @@ function udb_authenticate()
         } else {
 
             if ($USER_DATA['user_level'] == 1) {
-        	array_push($USER_DATA['groups'], PHPBB_ADMIN_GROUP);
+                array_push($USER_DATA['groups'], PHPBB_ADMIN_GROUP);
             }
             array_push($USER_DATA['groups'], PHPBB_MEMBERS_GROUP);
 
         }
-        
+
         // Retrieve the groups the user is a member of
         $sql = "SELECT (ug.group_id + 5) as group_id " . "FROM " . $UDB_DB_NAME_PREFIX . PHPBB_TABLE_PREFIX . PHPBB_UGROUP_TABLE . " as ug " . "LEFT JOIN " . $UDB_DB_NAME_PREFIX . PHPBB_TABLE_PREFIX . PHPBB_GROUP_TABLE . " as g ON ug.group_id = g.group_id " . "WHERE user_id = " . USER_ID . " AND user_pending = 0 AND group_single_user = 0";
         $result = db_query($sql, $UDB_DB_LINK_ID);
         while ($row = mysql_fetch_array($result)) {
-        	array_push($USER_DATA['groups'], $row['group_id']);
+                array_push($USER_DATA['groups'], $row['group_id']);
         }
         mysql_free_result($result);
 
@@ -153,11 +153,11 @@ function udb_authenticate()
         $USER_DATA['pub_upl_need_approval'] = 1;
         $USER_DATA['priv_upl_need_approval'] = 1;
         $USER_DATA['upload_form_config'] = 0;
-        $USER_DATA['num_file_upload'] = 0; 
+        $USER_DATA['num_file_upload'] = 0;
         $USER_DATA['num_URI_upload'] = 0;
-        $USER_DATA['custom_user_upload'] = 0; 
+        $USER_DATA['custom_user_upload'] = 0;
 
-	$USER_DATA = array_merge($USER_DATA, cpgGetUserData($USER_DATA['groups'][0], $USER_DATA['groups'], PHPBB_GUEST_GROUP));
+        $USER_DATA = array_merge($USER_DATA, cpgGetUserData($USER_DATA['groups'][0], $USER_DATA['groups'], PHPBB_GUEST_GROUP));
 
         define('USER_GROUP', '');
         define('USER_GROUP_SET', $user_group_set);
@@ -427,13 +427,13 @@ function udb_util_filloptions()
         }
 
         // Initialize $merged_array
-        $merged_array = array();    
+        $merged_array = array();
 
         // Count the number of albums returned.
         $end = count($public_result);
 
         // Cylce through the User albums.
-        for($i=0;$i<$end;$i++) {        
+        for($i=0;$i<$end;$i++) {
 
             //Create a new array sow we may sort the final results.
             $merged_array[$i]['id'] = $public_result[$i]['aid'];
@@ -446,12 +446,12 @@ function udb_util_filloptions()
             if (isset($merged_array[$i]['username_category'])) {
                 $merged_array[$i]['username_category'] = (($vRes['name']) ? '(' . $vRes['name'] . ') ' : '').$merged_array[$i]['username_category'];
             } else {
-                $merged_array[$i]['username_category'] = (($vRes['name']) ? '(' . $vRes['name'] . ') ' : '');   
+                $merged_array[$i]['username_category'] = (($vRes['name']) ? '(' . $vRes['name'] . ') ' : '');
             }
 
         }
 
-        // We transpose and divide the matrix into columns to prepare it for use in array_multisort(). 
+        // We transpose and divide the matrix into columns to prepare it for use in array_multisort().
         foreach ($merged_array as $key => $row) {
            $aid[$key] = $row['id'];
            $title[$key] = $row['album_name'];
@@ -471,7 +471,7 @@ function udb_util_filloptions()
         }
 
         // Query for list of user IDs and names
-    
+
         $user_album_ids_and_names = db_query("SELECT (user_id + ".FIRST_USER_CAT.") as id, CONCAT('(', username, ') ') as name FROM $usertbl ORDER BY name ASC",$UDB_DB_LINK_ID);
 
         if (mysql_num_rows($user_album_ids_and_names)) {
@@ -484,7 +484,7 @@ function udb_util_filloptions()
 
         // Initialize $udb_i as a counter.
         if (count($merged_array)) {
-            $udb_i = count($merged_array); 
+            $udb_i = count($merged_array);
         } else {
             $udb_i = 0;
         }
@@ -507,13 +507,13 @@ function udb_util_filloptions()
         foreach ($merged_array as $menu_item) {
 
             echo "<option value=\"" . $menu_item['id'] . "\">" . (isset($menu_item['username_category']) ? $menu_item['username_category'] : '') . $menu_item['album_name'] . "</option>\n";
-   
+
         }
 
         // Close list, etc.
         print '</select> (3)';
         print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="submit" /> (4)';
-        print '</form>'; 
+        print '</form>';
 
     }
 

@@ -1,8 +1,8 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.3.1                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -14,6 +14,8 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
+// CVS version: $Id$
+// ------------------------------------------------------------------------- //
 // Coppermine Windows XP Web Publishing Wizard Client                        //
 // Based on the article posted by Sebastian Delmont                          //
 // http://www.zonageek.com/code/misc/wizards/                                //
@@ -24,8 +26,6 @@
 // ------------------------------------------------------------------------- //
 // Original implementation comes from Gallery                                //
 // http://gallery.menalto.com                                                //
-// ------------------------------------------------------------------------- //
-// $Id$
 // ------------------------------------------------------------------------- //
 
 // Declare we are in Coppermine.
@@ -568,8 +568,8 @@ function send_reg_file()
 
     header("Content-Type: application/octet-stream");
     $time_stamp = time();
-	header("Content-Disposition: attachment; filename=cpg_".$time_stamp.".reg");
-	
+        header("Content-Disposition: attachment; filename=cpg_".$time_stamp.".reg");
+
     $lines[] = 'Windows Registry Editor Version 5.00';
     $lines[] = '';
     //$lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\PublishingWizard\Providers\CopperminePhotoGallery]';

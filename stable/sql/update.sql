@@ -194,7 +194,7 @@ DELETE FROM `CPG_filetypes` WHERE mime='text/html';
 # Finally remove all user_lang references - Jack
 #
 
-ALTER TABLE `CPG_users` CHANGE user_lang user_group_list varchar(255) NOT NULL default ''; 
+ALTER TABLE `CPG_users` CHANGE user_lang user_group_list varchar(255) NOT NULL default '';
 
 #
 # Fix usermgr timing out with 1k+ users -Omni

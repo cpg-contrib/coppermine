@@ -1,8 +1,8 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.3.1                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -14,9 +14,8 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-/*
-$Id$
-*/
+// CVS version: $Id$
+// ------------------------------------------------------------------------- //
 
 define('IN_COPPERMINE', true);
 define('THUMBNAILS_PHP', true);
@@ -76,7 +75,7 @@ if (is_numeric($album)) {
     if (mysql_num_rows($result) > 0) {
         $CURRENT_ALBUM_DATA = mysql_fetch_array($result);
         $actual_cat = $CURRENT_ALBUM_DATA['category'];
-	$CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];	
+        $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];
         breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);
         $cat = - $album;
     }
@@ -86,13 +85,13 @@ if (is_numeric($album)) {
         if (mysql_num_rows($result) > 0) {
             $CURRENT_ALBUM_DATA = mysql_fetch_array($result);
             $actual_cat = $CURRENT_ALBUM_DATA['category'];
-	        $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];	    
+                $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];
         }
-	 
+
         $ALBUM_SET .= 'AND aid IN (' . (- $cat) . ') ';
         breadcrumb($actual_cat, $breadcrumb, $breadcrumb_text);
         $CURRENT_CAT_NAME = $CURRENT_ALBUM_DATA['title'];
-	    $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];
+            $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];
     } else {
         $album_set_array = array();
         if ($cat == USER_GAL_CAT)
@@ -128,8 +127,8 @@ if (is_numeric($album)) {
 pageheader(isset($CURRENT_ALBUM_DATA) ? $CURRENT_ALBUM_DATA['title'] : $lang_meta_album_names[$album]);
 if ($breadcrumb) {
   if(!(strpos($CONFIG['main_page_layout'],"breadcrumb")===false)){
-    	theme_display_breadcrumb($breadcrumb, $cat_data);
-	}
+            theme_display_breadcrumb($breadcrumb, $cat_data);
+        }
     theme_display_cat_list($breadcrumb, $cat_data, '');
 }
 

@@ -1,8 +1,8 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3                                              //
+// Coppermine Photo Gallery 1.3.1                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003,2004 Gregory DEMAR                                //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -14,7 +14,7 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-// $Id$
+// CVS version: $Id$
 // ------------------------------------------------------------------------- //
 
 // Confirm we are in Coppermine and set the language blocks.
@@ -2264,7 +2264,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
 
             // Create the final message.
             if ($PIC_NEED_APPROVAL) {
- 
+
                 if ($file_placement == 'no') {
 
                     $final_message = ''.$lang_upload_php['no_place'].'<br /><br />'.$lang_db_input_php['upload_success'];
@@ -2287,7 +2287,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
 
                 }
 
-            }           
+            }
 
             // Delete the temporary data file.
             delete_record($_POST['unique_ID']);
@@ -2300,7 +2300,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
                     $lang_db_input_php = cpg_get_default_lang_var('lang_db_input_php');
                     // Get the mail files.
                     include_once('include/mailer.inc.php');
-    
+
                     // Send the message.
                     cpg_mail($CONFIG['gallery_admin_email'], sprintf($lang_db_input_php['notify_admin_email_subject'], $CONFIG['gallery_name']), sprintf($lang_db_input_php['notify_admin_email_body'], USER_NAME,  $CONFIG['ecards_more_pic_target'].'/editpics.php?mode=upload_approval' ));
                 }

@@ -1,8 +1,8 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.3.1                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -13,6 +13,8 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
+// ------------------------------------------------------------------------- //
+// CVS version: $Id$
 // ------------------------------------------------------------------------- //
 // As a special exception, the copyright holders of Coppermine Photo Gallery //
 // give you permission to link Coppermine Photo Gallery with independent     //
@@ -32,8 +34,6 @@
 // License gives permission to release a modified version without this       //
 // exception; this exception also makes it possible to release a modified    //
 // version which carries forward this exception.                             //
-// ------------------------------------------------------------------------- //
-// $Id$
 // ------------------------------------------------------------------------- //
 // Simple Machines Forum Integration for Coppermine                          //
 // V0.5 Public Beta                                                          //
@@ -130,8 +130,8 @@ function cm_include_smf_funcs ($source_file, $funcs)
 
 function cm_db_query ($query, $other, $other2)
 {
-		global $UDB_DB_LINK_ID;
-		
+                global $UDB_DB_LINK_ID;
+
         return db_query($query, $UDB_DB_LINK_ID);
 }
 
@@ -160,7 +160,7 @@ function udb_authenticate()
     /* If the user is a guest, initialize all the critial user settings */
     if (!$ID_MEMBER) {
         $USER_DATA = cpgGetUserData(SMF_GUEST_GROUP, array(SMF_GUEST_GROUP), SMF_GUEST_GROUP);
-      
+
         define('USER_ID', 0);
         define('USER_NAME', 'Anonymous');
         define('USER_GROUP_SET', '(' . SMF_GUEST_GROUP . ')');
@@ -184,8 +184,8 @@ function udb_authenticate()
         }
 
         // Retrieve group information
-		$USER_DATA = cpgGetUserData($cm_group_id, $user_info['groups'], SMF_GUEST_GROUP);
-		$USER_DATA['has_admin_access'] = $user_info['is_admin'];
+                $USER_DATA = cpgGetUserData($cm_group_id, $user_info['groups'], SMF_GUEST_GROUP);
+                $USER_DATA['has_admin_access'] = $user_info['is_admin'];
         $USER_DATA['can_see_all_albums']=$USER_DATA['has_admin_access'] | in_array(SMF_GMOD_GROUP,$user_info['groups']);
 
         define('USER_ID', $ID_MEMBER);
@@ -260,8 +260,8 @@ function udb_register_page()
 // Login
 function udb_login_page()
 {
-	$_SESSION['login_url'] = $HTTP_GET_VARS['referer'] ? $HTTP_GET_VARS['referer'] : 'index.php';
-	$_SESSION['login_url'] = "http://localhost/cgpcvs/";
+        $_SESSION['login_url'] = $HTTP_GET_VARS['referer'] ? $HTTP_GET_VARS['referer'] : 'index.php';
+        $_SESSION['login_url'] = "http://localhost/cgpcvs/";
     $target = 'index.php?action=login';
     udb_redirect($target);
 }
@@ -327,7 +327,7 @@ function udb_list_users_query(&$user_count)
 {
     global $CONFIG, $FORBIDDEN_SET;
 
-	if ($FORBIDDEN_SET != "") $forbidden = "AND $FORBIDDEN_SET";
+        if ($FORBIDDEN_SET != "") $forbidden = "AND $FORBIDDEN_SET";
     $sql = "SELECT (category - " . FIRST_USER_CAT . ") as user_id," . "                '???' as user_name," . "                COUNT(DISTINCT a.aid) as alb_count," . "                COUNT(DISTINCT pid) as pic_count," . "                MAX(pid) as thumb_pid " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid " . "WHERE approved = 'YES' AND category > " . FIRST_USER_CAT . " $forbidden GROUP BY category " . "ORDER BY category ";
     $result = db_query($sql);
 
@@ -460,13 +460,13 @@ function udb_util_filloptions()
         }
 
         // Initialize $merged_array
-        $merged_array = array();    
+        $merged_array = array();
 
         // Count the number of albums returned.
         $end = count($public_result);
 
         // Cylce through the User albums.
-        for($i=0;$i<$end;$i++) {        
+        for($i=0;$i<$end;$i++) {
 
             //Create a new array sow we may sort the final results.
             $merged_array[$i]['id'] = $public_result[$i]['aid'];
@@ -479,12 +479,12 @@ function udb_util_filloptions()
             if (isset($merged_array[$i]['username_category'])) {
                 $merged_array[$i]['username_category'] = (($vRes['name']) ? '(' . $vRes['name'] . ') ' : '').$merged_array[$i]['username_category'];
             } else {
-                $merged_array[$i]['username_category'] = (($vRes['name']) ? '(' . $vRes['name'] . ') ' : '');   
+                $merged_array[$i]['username_category'] = (($vRes['name']) ? '(' . $vRes['name'] . ') ' : '');
             }
 
         }
 
-        // We transpose and divide the matrix into columns to prepare it for use in array_multisort(). 
+        // We transpose and divide the matrix into columns to prepare it for use in array_multisort().
         foreach ($merged_array as $key => $row) {
            $aid[$key] = $row['id'];
            $title[$key] = $row['album_name'];
@@ -504,7 +504,7 @@ function udb_util_filloptions()
         }
 
         // Query for list of user IDs and names
-    
+
         $user_album_ids_and_names = db_query("SELECT (ID_MEMBER + ".FIRST_USER_CAT.") as id, CONCAT('(', realName, ') ') as name FROM $usertbl ORDER BY name ASC",$UDB_DB_LINK_ID);
 
         if (mysql_num_rows($user_album_ids_and_names)) {
@@ -517,7 +517,7 @@ function udb_util_filloptions()
 
         // Initialize $udb_i as a counter.
         if (count($merged_array)) {
-            $udb_i = count($merged_array); 
+            $udb_i = count($merged_array);
         } else {
             $udb_i = 0;
         }
@@ -540,13 +540,13 @@ function udb_util_filloptions()
         foreach ($merged_array as $menu_item) {
 
             echo "<option value=\"" . $menu_item['id'] . "\">" . (isset($menu_item['username_category']) ? $menu_item['username_category'] : '') . $menu_item['album_name'] . "</option>\n";
-   
+
         }
 
         // Close list, etc.
         print '</select> (3)';
         print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="submit" /> (4)';
-        print '</form>'; 
+        print '</form>';
 
     }
 
@@ -561,7 +561,7 @@ $UDB_DB_LINK_ID = 0;
 $UDB_DB_NAME_PREFIX = SMF_DB_NAME ? '`' . SMF_DB_NAME . '`.' : '';
 if (!UDB_CAN_JOIN_TABLES) {
     $UDB_DB_LINK_ID = @mysql_connect(SMF_DB_HOST, SMF_DB_USERNAME, SMF_DB_PASSWORD);
-    
+
     if (!$UDB_DB_LINK_ID) die("<b>Coppermine critical error</b>:<br />Unable to connect to SMF Board database !<br /><br />MySQL said: <b>" . mysql_error() . "</b>");
     mysql_select_db (SMF_DB_NAME, $UDB_DB_LINK_ID);
 }

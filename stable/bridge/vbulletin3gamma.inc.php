@@ -1,25 +1,24 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.2.0                                            //
+// Coppermine Photo Gallery 1.3.1                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
 // (http://coppermine.sf.net/team/)                                          //
 // see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
-// Modified for vB3 by Nanobot at www.f5hosting.com                          //
-// ------------------------------------------------------------------------- //
 // This program is free software; you can redistribute it and/or modify      //
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-
-// vBulletin 3.0 Integration for Coppermine
-
+// CVS version: $Id$
 // ------------------------------------------------------------------------- //
+// vBulletin 3.0 Integration for Coppermine
+// ------------------------------------------------------------------------- //
+
 // ------------------------------------------------------------------------- //
 // Modify the values below according to your Board installation
 // ------------------------------------------------------------------------- //
@@ -258,7 +257,7 @@ function udb_list_users_query(&$user_count)
 {
     global $CONFIG, $FORBIDDEN_SET;
 
-	if ($FORBIDDEN_SET != "") $forbidden = "AND $FORBIDDEN_SET";
+        if ($FORBIDDEN_SET != "") $forbidden = "AND $FORBIDDEN_SET";
     $sql = "SELECT (category - " . FIRST_USER_CAT . ") as user_id," . "  '???' as user_name," . "  COUNT(DISTINCT a.aid) as alb_count," . "  COUNT(DISTINCT pid) as pic_count," . "  MAX(pid) as thumb_pid " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid " . "WHERE approved = 'YES' AND category > " . FIRST_USER_CAT . " $forbidden GROUP BY category " . "ORDER BY category ";
     $result = db_query($sql);
 
@@ -384,13 +383,13 @@ function udb_util_filloptions()
         }
 
         // Initialize $merged_array
-        $merged_array = array();    
+        $merged_array = array();
 
         // Count the number of albums returned.
         $end = count($public_result);
 
         // Cylce through the User albums.
-        for($i=0;$i<$end;$i++) {        
+        for($i=0;$i<$end;$i++) {
 
             //Create a new array sow we may sort the final results.
             $merged_array[$i]['id'] = $public_result[$i]['aid'];
@@ -403,12 +402,12 @@ function udb_util_filloptions()
             if (isset($merged_array[$i]['username_category'])) {
                 $merged_array[$i]['username_category'] = (($vRes['name']) ? '(' . $vRes['name'] . ') ' : '').$merged_array[$i]['username_category'];
             } else {
-                $merged_array[$i]['username_category'] = (($vRes['name']) ? '(' . $vRes['name'] . ') ' : '');   
+                $merged_array[$i]['username_category'] = (($vRes['name']) ? '(' . $vRes['name'] . ') ' : '');
             }
 
         }
 
-        // We transpose and divide the matrix into columns to prepare it for use in array_multisort(). 
+        // We transpose and divide the matrix into columns to prepare it for use in array_multisort().
         foreach ($merged_array as $key => $row) {
            $aid[$key] = $row['id'];
            $title[$key] = $row['album_name'];
@@ -428,7 +427,7 @@ function udb_util_filloptions()
         }
 
         // Query for list of user IDs and names
-    
+
         $user_album_ids_and_names = db_query("SELECT (userid + ".FIRST_USER_CAT.") as id, CONCAT('(', username, ') ') as name FROM $usertbl ORDER BY name ASC",$UDB_DB_LINK_ID);
 
         if (mysql_num_rows($user_album_ids_and_names)) {
@@ -441,7 +440,7 @@ function udb_util_filloptions()
 
         // Initialize $udb_i as a counter.
         if (count($merged_array)) {
-            $udb_i = count($merged_array); 
+            $udb_i = count($merged_array);
         } else {
             $udb_i = 0;
         }
@@ -464,13 +463,13 @@ function udb_util_filloptions()
         foreach ($merged_array as $menu_item) {
 
             echo "<option value=\"" . $menu_item['id'] . "\">" . (isset($menu_item['username_category']) ? $menu_item['username_category'] : '') . $menu_item['album_name'] . "</option>\n";
-   
+
         }
 
         // Close list, etc.
         print '</select> (3)';
         print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="submit" /> (4)';
-        print '</form>'; 
+        print '</form>';
 
     }
 

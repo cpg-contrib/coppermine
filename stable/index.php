@@ -1,8 +1,8 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.3.1                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -14,9 +14,8 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-/*
-$Id$
-*/
+// CVS version: $Id$
+// ------------------------------------------------------------------------- //
 
 // Check if standalone is installed in a portal like phpNuke (added by DJMaze)
 $DIR=preg_split("/[\/\\\]/",dirname($_SERVER['PATH_TRANSLATED']));
@@ -92,8 +91,8 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
                 } else {
                     $HIDE_USER_CAT = 1;
                 }
-            } else {			  
-				$unaliased_album_filter = str_replace('a.','',$album_filter);
+            } else {
+                                $unaliased_album_filter = str_replace('a.','',$album_filter);
                 $result = db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = {$subcat['cid']}".$unaliased_album_filter);
                 $album_count = mysql_num_rows($result);
                 while ($row = mysql_fetch_array($result)) {
@@ -294,7 +293,7 @@ function list_users()
         if ($FORBIDDEN_SET != "" && !$cpg_show_private_album) $sql .= "WHERE $FORBIDDEN_SET ";
         $sql .= "GROUP BY user_id " .
                 "ORDER BY user_name";
-                
+
         $result = db_query($sql);
 
         $user_count = mysql_num_rows($result);
@@ -343,7 +342,7 @@ function list_users()
                         $picture['pheight'] = $image_info[1];
                 }
                 $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
-		    $user_thumb = "<img src=\"" . get_pic_url($picture, 'thumb') . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"\">";
+                    $user_thumb = "<img src=\"" . get_pic_url($picture, 'thumb') . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"\">";
             }
         }
 
@@ -443,7 +442,7 @@ function list_albums()
             $count = 0;
         }
         // Inserts a thumbnail if the album contains 1 or more images
-	
+
         $visibility = $alb_thumb['visibility'];
         if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || in_array($visibility, $USER_DATA['groups']) || $USER_DATA['can_see_all_albums'] || $CONFIG['allow_private_albums']==0) {
             if ($count > 0) {
@@ -476,7 +475,7 @@ function list_albums()
 
         }
         // Prepare everything
-		
+
         if ($visibility == '0' || $visibility == (FIRST_USER_CAT + USER_ID) || in_array($visibility, $USER_DATA['groups']) || $USER_DATA['can_see_all_albums'] || $CONFIG['allow_private_albums']==0) {
             $last_upload_date = $count ? localised_date($alb_stat['last_upload'], $lastup_date_fmt) : '';
             $alb_list[$alb_idx]['aid'] = $alb_thumb['aid'];
@@ -536,7 +535,7 @@ function list_cat_albums($cat = 0)
     }
 
     $totalPages = ceil($nbAlb / $alb_per_page);
-    
+
     if ($PAGE > $totalPages) $PAGE = 1;
     $lower_limit = ($PAGE-1) * $alb_per_page;
     $upper_limit = min($nbAlb, $PAGE * $alb_per_page);

@@ -1,8 +1,8 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.3.1                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -14,18 +14,13 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-// Theme "Fruity"                                                            //
+// CVS version: $Id$
 // ------------------------------------------------------------------------- //
 // The theme "Fruity" has been done by GauGau (http://gaugau.de/) based on   //
 // the framed template of studicasa.nl (their website has gone down, so I    //
 // guess no one will care). The usage of this theme is free for personal     //
 // use, not for commercial use (according to the disclaimer of studiocasa)!  //
 // ------------------------------------------------------------------------- //
-
-/*
-$Id$
-*/
-
 
 // HTML template for main menu
 $template_main_menu = <<<EOT

@@ -1,8 +1,8 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.3.1                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -14,9 +14,8 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-/*
-$Id$
-*/
+// CVS version: $Id$
+// ------------------------------------------------------------------------- //
 
 define('IN_COPPERMINE', true);
 define('ECARDS_PHP', true);
@@ -41,11 +40,11 @@ $album = $HTTP_GET_VARS['album'];
 $pos = (int)$HTTP_GET_VARS['pos'];
 
 $sender_name = get_post_var('sender_name', USER_NAME ? USER_NAME : (isset($USER['name']) ? $USER['name'] : ''));
-if (defined('UDB_INTEGRATION')AND USER_ID) $USER_DATA = array_merge($USER_DATA,udb_get_user_infos(USER_ID)); 
+if (defined('UDB_INTEGRATION')AND USER_ID) $USER_DATA = array_merge($USER_DATA,udb_get_user_infos(USER_ID));
 if ($USER_DATA['user_email']){
 $sender_email = $USER_DATA['user_email'];
 $sender_box = $sender_email;
-} else { 
+} else {
 $sender_email = get_post_var('sender_email',$USER['email'] ? $USER['email'] : '');
 $sender_box = "<input type=\"text\" class=\"textinput\" value=\"$sender_email\" name=\"sender_email\" style=\"WIDTH: 100%;\">";
 }
@@ -108,12 +107,12 @@ if (count($HTTP_POST_VARS) > 0 && $valid_sender_email && $valid_recipient_email)
         '{VIEW_MORE_LNK}' => $lang_ecard_php['view_more_pics'],
         );
 
-    	$message = template_eval($template_ecard, $params);
+            $message = template_eval($template_ecard, $params);
         $tempTime = time();
         $message .= "Sent by $sender_name from IP {$_SERVER['REMOTE_ADDR']} at ".gmstrftime("%A,  %B,%V,%Y %I:%M %p ", time())." [GMT]";
-    	$subject = sprintf($lang_ecard_php['ecard_title'], $sender_name);
+            $subject = sprintf($lang_ecard_php['ecard_title'], $sender_name);
 
-    	$result = cpg_mail($recipient_email, $subject, $message, 'text/html', $sender_name, $sender_email);
+            $result = cpg_mail($recipient_email, $subject, $message, 'text/html', $sender_name, $sender_email);
 
         //write ecard log
         if ($CONFIG['log_ecards'] == 1) {
