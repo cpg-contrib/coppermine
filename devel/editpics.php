@@ -55,7 +55,7 @@ if ($CONFIG['user_field2_name'] != '') $THUMB_ROWSPAN++;
 if ($CONFIG['user_field3_name'] != '') $THUMB_ROWSPAN++;
 if ($CONFIG['user_field4_name'] != '') $THUMB_ROWSPAN++;
 
-$USER_ALBUMS_ARRAY=array(0 => array());
+// $USER_ALBUMS_ARRAY=array(0 => array());
 
 // Type 0 => input
 //      1 => album list
@@ -388,21 +388,28 @@ function create_form(&$data)
         }
 }
 
-function get_user_albums($user_id)
+function get_user_albums($user_id = '')
 {
-        global $CONFIG, $USER_ALBUMS_ARRAY, $user_albums_list;
+        global $CONFIG, $user_albums_list;
+        
+        $USER_ALBUMS_ARRAY=array(0 => array());
+        
+        if ($user_id != '') {
+                $or = " OR category='" . (FIRST_USER_CAT + $user_id) . "'";
+        }                
 
-        if (!isset($USER_ALBUMS_ARRAY[$user_id])) {
-                $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='".(FIRST_USER_CAT + $user_id)."' ORDER BY title");
+        if (!isset($USER_ALBUMS_ARRAY[USER_ID])) {
+                $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='".(FIRST_USER_CAT + USER_ID)."' $or ORDER BY title");
+                
                 if (mysql_num_rows($user_albums)) {
                     $user_albums_list=cpg_db_fetch_rowset($user_albums);
                 } else {
                         $user_albums_list = array();
                 }
                 mysql_free_result($user_albums);
-                $USER_ALBUMS_ARRAY[$user_id] = $user_albums_list;
+                $USER_ALBUMS_ARRAY[USER_ID] = $user_albums_list;
         } else {
-                $user_albums_list = &$USER_ALBUMS_ARRAY[$user_id];
+                $user_albums_list = &$USER_ALBUMS_ARRAY[USER_ID];
         }
 }
 
@@ -418,9 +425,9 @@ if (GALLERY_ADMIN_MODE) {
 } else {
         $public_albums_list = array();
 }
-
-get_user_albums(USER_ID);
-
+  
+// get_user_albums(USER_ID);
+  
 if (count($_POST)) process_post_data();
 
 $start = isset($_GET['start']) ? (int)$_GET['start'] : 0;
@@ -595,7 +602,12 @@ echo <<<EOT
 EOT;
 
 while($CURRENT_PIC = mysql_fetch_array($result)){
-        if (GALLERY_ADMIN_MODE) get_user_albums($CURRENT_PIC['owner_id']);
+
+        if (GALLERY_ADMIN_MODE && $CURRENT_PIC['owner_id'] != USER_ID) {
+              get_user_albums($CURRENT_PIC['owner_id']);
+        } else {
+              get_user_albums();
+        }
         create_form($data);
         flush();
 } // while

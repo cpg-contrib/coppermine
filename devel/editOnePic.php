@@ -152,21 +152,26 @@ function process_post_data()
                                 }
 }
 
-function get_user_albums($user_id)
+function get_user_albums($user_id = '')
 {
         global $CONFIG, $USER_ALBUMS_ARRAY, $user_albums_list;
+        
+        if ($user_id != '') {
+                $or = " OR category='" . (FIRST_USER_CAT + $user_id) . "'";
+        }        
 
-        if (!isset($USER_ALBUMS_ARRAY[$user_id])) {
-                $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='".(FIRST_USER_CAT + $user_id)."' ORDER BY title");
+        if (!isset($USER_ALBUMS_ARRAY[USER_ID])) {
+                $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='".(FIRST_USER_CAT + USER_ID)."' $or ORDER BY title");
+                
                 if (mysql_num_rows($user_albums)) {
                     $user_albums_list=cpg_db_fetch_rowset($user_albums);
                 } else {
                         $user_albums_list = array();
                 }
                 mysql_free_result($user_albums);
-                $USER_ALBUMS_ARRAY[$user_id] = $user_albums_list;
+                $USER_ALBUMS_ARRAY[USER_ID] = $user_albums_list;
         } else {
-                $user_albums_list = &$USER_ALBUMS_ARRAY[$user_id];
+                $user_albums_list = &$USER_ALBUMS_ARRAY[USER_ID];
         }
 }
 
@@ -229,10 +234,10 @@ if (GALLERY_ADMIN_MODE) {
         $public_albums_list = array();
 }
 
-if (GALLERY_ADMIN_MODE) {
+if (GALLERY_ADMIN_MODE && $CURRENT_PIC['owner_id'] != USER_ID) {
   get_user_albums($CURRENT_PIC['owner_id']);
 } else {
-  get_user_albums(USER_ID);
+  get_user_albums();
 }
 
 echo <<<EOT
