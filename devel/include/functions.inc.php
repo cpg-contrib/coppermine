@@ -405,7 +405,7 @@ function get_private_album_set()
 // Retrieve the data for a picture or a set of picture
 function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $set_caption = true)
 {
-	global $USER, $CONFIG, $ALBUM_SET, $CURRENT_CAT_NAME, $HTTP_GET_VARS, $HTML_SUBST, $THEME_DIR;
+	global $USER, $CONFIG, $ALBUM_SET, $CURRENT_CAT_NAME, $HTTP_GET_VARS, $HTML_SUBST, $THEME_DIR, $FAVPICS;
 	global $album_date_fmt, $lastcom_date_fmt, $lastup_date_fmt, $lasthit_date_fmt;
 	global $lang_get_pic_data, $lang_meta_album_names, $lang_errors;
 
@@ -775,15 +775,15 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         case 'favpics': // Favourite Pictures	        
                 
                 $album_name = $lang_meta_album_names['favpics'];
-
-                $result = db_query("SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND pid IN ('1','2','3','4','5','6','7','8')");
+		$favs = implode(",",$FAVPICS);
+                $result = db_query("SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND pid IN ($favs)");
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
                 mysql_free_result($result);
 
                 $select_columns = '*';
 
-                $result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES'AND pid IN ('1','2','3','4','5','6','7','8') $limit");
+                $result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES'AND pid IN ($favs) $limit");
                 $rowset = db_fetch_rowset($result);
 		
                 mysql_free_result($result);
