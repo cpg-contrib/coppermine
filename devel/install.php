@@ -307,6 +307,13 @@ function html_input_config($error_msg = '')
                 <input type='text' class='textinput' name='admin_password' value='<?php echo $_POST['admin_password'] ?>'>
         </td>
        </tr>
+     	<tr>
+        <td width="40%" class="tableb"><b>Email address</b>
+        </td>
+        <td width="60%" class="tableb">
+                <input type='text' class='textinput' name='admin_email' value='<?php echo $_POST['admin_email'] ?>'>
+        </td>
+       </tr>
        <tr>
         <td class="tableh2" colspan="2"><b>Your MySQL configuration</b>
         </td>
@@ -431,11 +438,12 @@ function create_tables()
     $db_basic = 'sql/basic.sql';
     $sql_query .= fread(fopen($db_basic, 'r'), filesize($db_basic));
     // Insert the admin account
-    $sql_query .= "INSERT INTO CPG_users (user_id, user_group, user_active, user_name, user_password, user_lastvisit, user_regdate, user_group_list, user_email, user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6, user_actkey ) VALUES (1, 1, 'YES', '" . $_POST['admin_username'] . "', '" . $_POST['admin_password'] . "', NOW(), NOW(), '', '', '', '', '', '', '', '', '');\n";
+    $sql_query .= "INSERT INTO CPG_users (user_id, user_group, user_active, user_name, user_password, user_lastvisit, user_regdate, user_group_list, user_email, user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6, user_actkey ) VALUES (1, 1, 'YES', '{$_POST['admin_username']}', '{$_POST['admin_password']}', NOW(), NOW(), '', '{$_POST['admin_email']}', '', '', '', '', '', '', '');\n";
     // Set configuration values for image package
-    $sql_query .= "REPLACE INTO CPG_config VALUES ('thumb_method', '" . $_POST['thumb_method'] . "');\n";
-    $sql_query .= "REPLACE INTO CPG_config VALUES ('impath', '" . $_POST['impath'] . "');\n";
-    $sql_query .= "REPLACE INTO CPG_config VALUES ('ecards_more_pic_target', '" . $gallery_url_prefix . "');\n";
+    $sql_query .= "REPLACE INTO CPG_config VALUES ('thumb_method', '{$_POST['thumb_method']}');\n";
+    $sql_query .= "REPLACE INTO CPG_config VALUES ('impath', '{$_POST['impath']}');\n";
+    $sql_query .= "REPLACE INTO CPG_config VALUES ('ecards_more_pic_target', '$gallery_url_prefix');\n"; 
+    $sql_query .= "REPLACE INTO CPG_config VALUES ('gallery_admin_email', '{$_POST['admin_email']}');\n";
     // Test write permissions for main dir
     if (!is_writable('.')) {
         $sql_query .= "REPLACE INTO CPG_config VALUES ('default_dir_mode', '0777');\n";
