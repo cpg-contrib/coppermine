@@ -894,6 +894,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'alb_title' => 'Album title',
   'alb_cat' => 'Album category',
   'alb_desc' => 'Album description',
+  'alb_keyword' => 'Album Keyword (used for displaying images from other album into this album)',
   'alb_thumb' => 'Album thumbnail',
   'alb_perm' => 'Permissions for this album',
   'can_view' => 'Album can be viewed by',
