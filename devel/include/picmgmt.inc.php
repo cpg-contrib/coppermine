@@ -18,7 +18,9 @@
 // ------------------------------------------------------------------------- //
 
 // Add a picture to an album
-function add_picture($aid, $filepath, $filename, $title = '', $caption = '', $keywords = '', $user1 = '', $user2 = '', $user3 = '', $user4 = '', $category = 0, $raw_ip = '', $hdr_ip = '',$iwidth=0,$iheight=0)
+function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $caption = '', $keywords = '', $user1 = '', $user2 = '', $user3 = '', $user4 = '', $category = 0, $raw_ip = '', $hdr_ip = '')
+
+
 {
     global $CONFIG, $ERROR, $USER_DATA, $PIC_NEED_APPROVAL;
     global $lang_errors;
@@ -80,7 +82,7 @@ function add_picture($aid, $filepath, $filename, $title = '', $caption = '', $ke
     // User ID is now recorded when in admin mode (casper)
     $user_id = USER_ID;
     $username= USER_NAME;
-    $query = "INSERT INTO {$CONFIG['TABLE_PICTURES']} (pid, aid, filepath, filename, filesize, total_filesize, pwidth, pheight, ctime, owner_id, owner_name, title, caption, keywords, approved, user1, user2, user3, user4, pic_raw_ip, pic_hdr_ip) VALUES ('', '$aid', '" . addslashes($filepath) . "', '" . addslashes($filename) . "', '$image_filesize', '$total_filesize', '{$imagesize[0]}', '{$imagesize[1]}', '" . time() . "', '$user_id', '$username','$title', '$caption', '$keywords', '$approved', '$user1', '$user2', '$user3', '$user4', '$raw_ip', '$hdr_ip')";
+    $query = "INSERT INTO {$CONFIG['TABLE_PICTURES']} (pid, aid, filepath, filename, filesize, total_filesize, pwidth, pheight, ctime, owner_id, owner_name, title, caption, keywords, approved, user1, user2, user3, user4, pic_raw_ip, pic_hdr_ip, position) VALUES ('', '$aid', '" . addslashes($filepath) . "', '" . addslashes($filename) . "', '$image_filesize', '$total_filesize', '{$imagesize[0]}', '{$imagesize[1]}', '" . time() . "', '$user_id', '$username','$title', '$caption', '$keywords', '$approved', '$user1', '$user2', '$user3', '$user4', '$raw_ip', '$hdr_ip', '$position')";
     $result = db_query($query);
 
     return $result;
@@ -221,7 +223,7 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use)
             break;
     }
     // Set mode of uploaded picture
-    chmod($dest_file, octdec($CONFIG['default_file_mode']));
+    @chmod($dest_file, octdec($CONFIG['default_file_mode'])); //silence the output in case chmod is disabled
     // We check that the image is valid
     $imginfo = getimagesize($dest_file);
     if ($imginfo == null) {

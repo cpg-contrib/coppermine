@@ -77,6 +77,7 @@ $template_gallery_admin_menu = <<<EOT
                                 <td class="admin_menu"><a href="banning.php" title="">{BAN_LNK}</a></td>
                                 <td class="admin_menu"><a href="db_ecard.php" title="">{DB_ECARD_LNK}</a></td>
                                 <td class="admin_menu"><a href="reviewcom.php" title="">{COMMENTS_LNK}</a></td>
+                                <td class="admin_menu"><a href="picmgr.php" title="">{PICTURES_LNK}</a></td>
                                 <td class="admin_menu"><a href="searchnew.php" title="">{SEARCHNEW_LNK}</a></td>
                                 <td class="admin_menu"><a href="util.php" title="">{UTIL_LNK}</a></td>
                                 <td class="admin_menu"><a href="profile.php?op=edit_profile" title="">{MY_PROF_LNK}</a></td>
@@ -94,6 +95,7 @@ $template_user_admin_menu = <<<EOT
                                 <td class="admin_menu"><a href="albmgr.php" title="">{ALBMGR_LNK}</a></td>
                                 <td class="admin_menu"><a href="modifyalb.php" title="">{MODIFYALB_LNK}</a></td>
                                 <td class="admin_menu"><a href="profile.php?op=edit_profile" title="">{MY_PROF_LNK}</a></td>
+                                <td class="admin_menu"><a href="picmgr.php" title="">{PICTURES_LNK}</a></td>
                         </tr>
                 </table>
                 </div>
@@ -392,6 +394,12 @@ $template_thumb_view_title_row = <<<EOT
                                                 <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=da" title="{SORT_DA}">&nbsp;+&nbsp;</a></span></td>
                                                 <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=dd" title="{SORT_DD}">&nbsp;-&nbsp;</a></span></td>
                                         </tr>
+                                        <tr>
+                                            <td class="sortorder_options">{POSITION}</td>
+                                            <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=pa" title="{SORT_PA}">&nbsp;+&nbsp;</a></span></td>
+                                            <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=pd" title="{SORT_PD}">&nbsp;-&nbsp;</a></span></td>
+                                        </tr>
+
                                         </table>
                                 </td>
                         </tr>
@@ -816,6 +824,10 @@ EOT;
 $template_tab_display = array('left_text' => '<td width="100%%" align="left" valign="middle" class="tableh1_compact" style="white-space: nowrap"><b>{LEFT_TEXT}</b></td>' . "\n",
     'tab_header' => '',
     'tab_trailer' => '',
+    'active_next_tab' => '<td><img src="images/spacer.gif" width="1" height="1"></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%s</b></td>',
+    'inactive_next_tab' => '<td><img src="images/spacer.gif" width="1" height="1"></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"<b>%s</b></a></td>',
+    'active_prev_tab' => '<td><img src="images/spacer.gif" width="1" height="1"></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%s</b></td>',
+    'inactive_prev_tab' => '<td><img src="images/spacer.gif" width="1" height="1"></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"<b>%s</b></a></td>',
     'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1"></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%d</b></td>',
     'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1"></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"<b>%d</b></a></td>' . "\n"
     );
@@ -1011,6 +1023,7 @@ function theme_admin_mode_menu()
             '{UTIL_LNK}' => $lang_gallery_admin_menu['util_lnk'],
             '{BAN_LNK}' => $lang_gallery_admin_menu['ban_lnk'],
             '{DB_ECARD_LNK}' => $lang_gallery_admin_menu['db_ecard_lnk'],
+            '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
             );
      if (cpg_get_pending_approvals() != 0) {
          $param['{APPROVAL_ID}'] = 'admin_menu_anim';
@@ -1114,6 +1127,8 @@ function theme_display_album_list(&$alb_list, $nbAlb, $cat, $page, $total_pages)
 
     $theme_alb_list_tab_tmpl['left_text'] = strtr($theme_alb_list_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_album_list['album_on_page']));
     $theme_alb_list_tab_tmpl['inactive_tab'] = strtr($theme_alb_list_tab_tmpl['inactive_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&page=%d'));
+    $theme_alb_list_tab_tmpl['inactive_next_tab'] = strtr($theme_alb_list_tab_tmpl['inactive_next_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&page=%d'));
+    $theme_alb_list_tab_tmpl['inactive_prev_tab'] = strtr($theme_alb_list_tab_tmpl['inactive_prev_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&page=%d'));
 
     $tabs = create_tabs($nbAlb, $page, $total_pages, $theme_alb_list_tab_tmpl);
 
@@ -1296,9 +1311,13 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     if ($mode == 'thumb') {
         $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_thumb_view['pic_on_page']));
         $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . '&page=%d'));
+        $theme_thumb_tab_tmpl['inactive_next_tab'] = strtr($theme_thumb_tab_tmpl['inactive_next_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . '&page=%d'));
+        $theme_thumb_tab_tmpl['inactive_prev_tab'] = strtr($theme_thumb_tab_tmpl['inactive_prev_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . '&page=%d'));
     } else {
         $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_thumb_view['user_on_page']));
         $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&page=%d'));
+        $theme_thumb_tab_tmpl['inactive_next_tab'] = strtr($theme_thumb_tab_tmpl['inactive_next_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&page=%d'));
+        $theme_thumb_tab_tmpl['inactive_prev_tab'] = strtr($theme_thumb_tab_tmpl['inactive_prev_tab'], array('{LINK}' => 'index.php?cat=' . $cat . '&page=%d'));
     }
 
     $thumbcols = $CONFIG['thumbcols'];
@@ -1319,6 +1338,9 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
             '{SORT_ND}' => $lang_thumb_view['sort_nd'],
             '{SORT_DA}' => $lang_thumb_view['sort_da'],
             '{SORT_DD}' => $lang_thumb_view['sort_dd'],
+            '{POSITION}' => $lang_thumb_view['position'],
+            '{SORT_PA}' => $lang_thumb_view['sort_pa'],
+            '{SORT_PD}' => $lang_thumb_view['sort_pd'],
             );
         $title = template_eval($template_thumb_view_title_row, $param);
     } else if ($aid == 'favpics' && $CONFIG['enable_zipdownload'] == 1) { //Lots of stuff can be added here later

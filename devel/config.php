@@ -156,6 +156,9 @@ function form_sort_order($text, $name, $help = '')
     $nd_selected = ($value == 'nd') ? 'selected="selected"' : '';
     $da_selected = ($value == 'da') ? 'selected="selected"' : '';
     $dd_selected = ($value == 'dd') ? 'selected="selected"' : '';
+    $pa_selected = ($value == 'pa') ? 'selected="selected"' : '';
+    $pd_selected = ($value == 'pd') ? 'selected="selected"' : '';
+
 
     echo <<<EOT
         <tr>
@@ -170,6 +173,8 @@ function form_sort_order($text, $name, $help = '')
                                 <option value="nd" $nd_selected>{$lang_config_php['name_d']}</option>
                                 <option value="da" $da_selected>{$lang_config_php['date_a']}</option>
                                 <option value="dd" $dd_selected>{$lang_config_php['date_d']}</option>
+                                <option value="pa" $pa_selected>{$lang_config_php['pos_a']}</option>
+                                <option value="pd" $pd_selected>{$lang_config_php['pos_d']}</option>
                         </select>
                 </td>
                 <td class="tableb" width="10%">
@@ -709,7 +714,7 @@ starttable('100%', "{$lang_config_php['title']} - $signature", 3);
 echo <<<EOT
     <tr>
         <td class="tableh2" colspan="3">
-            <a href="javascript:expand();">{$lang_config_php['expand_all']}</a>
+            <a href="javascript:expand();" class="admin_menu">{$lang_config_php['expand_all']}<img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_config_php['expand_all']}" /></a>
         </td>
     </tr>
 EOT;
@@ -723,11 +728,11 @@ echo '</table></td></tr>';
 
 echo <<<EOT
                 <tr>
-                        <td align="left" class="tableh2">
+                        <td align="left" class="tablef">
                             <table border="0" cellspacing="0" cellpadding="0" width="100%">
                                 <tr>
                                     <td width="33%">
-                                        <a href="javascript:expand();">{$lang_config_php['expand_all']}</a>
+                                        <a href="javascript:expand();" class="admin_menu">{$lang_config_php['expand_all']}<img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_config_php['expand_all']}" /></a>
                                     </td>
                                     <td width="67%" align="center">
                                         <input type="submit" class="button" name="update_config" value="{$lang_config_php['save_cfg']}" />

@@ -165,3 +165,5 @@ Added display number of uploaded pictures in the profile mod (user contribution)
 Fixed animated smilies stoppping to move when being clicked on (user contribution) - 10 August 2004, GauGau
 Added option to select all checkboxes when editing files in an album - 12 August 2004, GauGau
 Added clickable keyword search and keyword manager - 12 August 2004, GauGau
+Silenced CHMOD command to avoid issues on servers not supporting the command - 13 August 2004, GauGau
+Added advanced sorting hack (sort by position, picture manager) - 13 August 2004, GauGau

@@ -134,6 +134,7 @@ CREATE TABLE CPG_pictures (
   KEY aid_approved (aid,approved),
   KEY randpos (randpos),
   KEY pic_aid (aid),
+  position INT(11) NOT NULL default '0',
   FULLTEXT KEY search (title,caption,keywords,filename)
 ) TYPE=MyISAM;
 # --------------------------------------------------------

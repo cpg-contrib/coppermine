@@ -110,6 +110,7 @@ $template_gallery_admin_menu = <<<EOT
                                 <td class="admin_menu"><a href="banning.php" title="">{BAN_LNK}</a></td>
                                 <td class="admin_menu"><a href="db_ecard.php" title="">{DB_ECARD_LNK}</a></td>
                                 <td class="admin_menu"><a href="reviewcom.php" title="">{COMMENTS_LNK}</a></td>
+                                <td class="admin_menu"><a href="picmgr.php" title="">{PICTURES_LNK}</a></td>
                                 <td class="admin_menu"><a href="searchnew.php" title="">{SEARCHNEW_LNK}</a></td>
                                 <td class="admin_menu"><a href="util.php" title="">{UTIL_LNK}</a></td>
                                 <td class="admin_menu"><a href="profile.php?op=edit_profile" title="">{MY_PROF_LNK}</a></td>
@@ -127,6 +128,7 @@ $template_user_admin_menu = <<<EOT
                                 <td class="admin_menu"><a href="albmgr.php" title="">{ALBMGR_LNK}</a></td>
                                 <td class="admin_menu"><a href="modifyalb.php" title="">{MODIFYALB_LNK}</a></td>
                                 <td class="admin_menu"><a href="profile.php?op=edit_profile" title="">{MY_PROF_LNK}</a></td>
+                                <td class="admin_menu"><a href="picmgr.php" title="">{PICTURES_LNK}</a></td>
                         </tr>
                 </table>
                 </div>
@@ -407,9 +409,10 @@ $template_thumb_view_title_row = <<<EOT
                         <table width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                                 <td width="100%" class="statlink">{ALBUM_NAME}</td>
-                <td class="sortorder_options">{TITLE}</td>
-                <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=ta" title="{SORT_TA}">&nbsp;+&nbsp;</a></span></td>
-                <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=td" title="{SORT_TD}">&nbsp;-&nbsp;</a></span></td>
+                                <td class="sortorder_options" style="font-size: 100%;">{TITLE}</td>
+                                <td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=ta" title="{SORT_TA}">&nbsp;+&nbsp;</a></span></td>
+                                <td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=td" title="{SORT_TD}">&nbsp;-&nbsp;</a></span></td>
+                                <td>&nbsp&nbsp</td>
                                 <td class="sortorder_options" style="font-size: 100%;">{NAME}</td>
                                 <td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=na" title="{SORT_NA}">&nbsp;+&nbsp;</a></span></td>
                                 <td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=nd" title="{SORT_ND}">&nbsp;-&nbsp;</a></span></td>
@@ -417,6 +420,10 @@ $template_thumb_view_title_row = <<<EOT
                                 <td class="sortorder_options" style="font-size: 100%;">{DATE}</td>
                                 <td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=da" title="{SORT_DA}">&nbsp;+&nbsp;</a></span></td>
                                 <td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=dd" title="{SORT_DD}">&nbsp;-&nbsp;</a></span></td>
+                                <td>&nbsp&nbsp</td>
+                                <td class="sortorder_options" style="font-size: 100%;">{POSITION}</td>
+                                <td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=pa" title="{SORT_PA}">&nbsp;+&nbsp;</a></span></td>
+                                <td class="sortorder_options" style="font-size: 100%;"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=pd" title="{SORT_PD}">&nbsp;-&nbsp;</a></span></td>
                         </tr>
                         </table>
 
@@ -1097,6 +1104,7 @@ function theme_admin_mode_menu()
             '{UTIL_LNK}' => $lang_gallery_admin_menu['util_lnk'],
             '{BAN_LNK}' => $lang_gallery_admin_menu['ban_lnk'],
             '{DB_ECARD_LNK}' => $lang_gallery_admin_menu['db_ecard_lnk'],
+            '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
             );
      if (cpg_get_pending_approvals() != 0) {
          $param['{APPROVAL_ID}'] = 'admin_menu_anim';
@@ -1390,6 +1398,9 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
             '{SORT_ND}' => $lang_thumb_view['sort_nd'],
             '{SORT_DA}' => $lang_thumb_view['sort_da'],
             '{SORT_DD}' => $lang_thumb_view['sort_dd'],
+            '{POSITION}' => $lang_thumb_view['position'],
+            '{SORT_PA}' => $lang_thumb_view['sort_pa'],
+            '{SORT_PD}' => $lang_thumb_view['sort_pd'],
             );
         $title = template_eval($template_thumb_view_title_row, $param);
     } else if ($aid == 'favpics' && $CONFIG['enable_zipdownload'] == 1) { //Lots of stuff can be added here later

@@ -196,6 +196,43 @@ function parse_list($value)
     return preg_split("/,/", $value, -1, PREG_SPLIT_NO_EMPTY);
 }
 
+/**************************************************************************
+* Picture manager functions
+**************************************************************************/
+
+               function parse_pic_select_option($value)
+               {
+                       global $HTML_SUBST;
+
+                       if (!preg_match("/.+?no=(\d+),picture_nm='(.+?)',picture_sort=(\d+),action=(\d)/", $value, $matches))
+                               return false;
+
+                       return array(
+                               'picture_no'   => (int)$matches[1],
+                               'picture_nm'   => get_magic_quotes_gpc() ? strtr(stripslashes($matches[2]), $HTML_SUBST) : strtr($matches[2], $HTML_SUBST),
+                               'picture_sort' => (int)$matches[3],
+                               'action'     => (int)$matches[4]
+                       );
+               }
+
+               function parse_pic_orig_sort_order($value)
+               {
+                       if (!preg_match("/(\d+)@(\d+)/", $value, $matches))
+                               return false;
+
+                       return array(
+                               'aid'   => (int)$matches[1],
+                               'pos'   => (int)$matches[2],
+                       );
+               }
+
+
+               function parse_pic_list($value)
+               {
+                       return preg_split("/,/", $value, -1, PREG_SPLIT_NO_EMPTY);
+               }
+
+
 /**
  * Main code starts here
  */
@@ -269,6 +306,73 @@ switch ($what) {
         pagefooter();
         ob_end_flush();
         break;
+
+//
+// Picture manager (don't necessarily delete something ;-)
+//
+   case 'picmgr':
+      if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+
+      if(!GALLERY_ADMIN_MODE){
+         //$restrict = "AND category = '".(FIRST_USER_CAT + USER_ID)."'";
+         $restrict = '';
+      } else {
+         $restrict = '';
+      }
+
+      pageheader($lang_delete_php['pic_mgr']);
+      starttable("100%", $lang_delete_php['pic_mgr'], 6);
+
+      $orig_sort_order = parse_pic_list($HTTP_POST_VARS['sort_order']);
+      foreach ($orig_sort_order as $picture){
+         $op = parse_pic_orig_sort_order($picture);
+         if (count ($op) == 2){
+            $query = "UPDATE $CONFIG[TABLE_PICTURES] SET position='{$op['pos']}' WHERE pid='{$op['aid']}' $restrict LIMIT 1";
+            db_query($query);
+         } else {
+            cpg_die (sprintf(CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], $HTTP_POST_VARS['sort_order']), __FILE__, __LINE__);
+         }
+      }
+
+      $to_delete = parse_pic_list($HTTP_POST_VARS['delete_picture']);
+      foreach ($to_delete as $picture_id){
+         delete_picture((int)$picture_id);
+      }
+
+      if (isset($HTTP_POST_VARS['to'])) foreach ($HTTP_POST_VARS['to'] as $option_value){
+         $op = parse_pic_select_option(stripslashes($option_value));
+         switch ($op['action']){
+            case '0':
+               break;
+            case '1':
+               if(GALLERY_ADMIN_MODE){
+                  $category = (int)$HTTP_POST_VARS['cat'];
+               } else {
+                  $category = FIRST_USER_CAT + USER_ID;
+               }
+               echo "<tr><td colspan=\"6\" class=\"tableb\">".sprintf($lang_delete_php['create_alb'], $op['album_nm'])."</td></tr>\n";
+               $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos) VALUES ('$category', '".addslashes($op['album_nm'])."', 'NO',  '{$op['album_sort']}')";
+               db_query($query);
+               break;
+            case '2':
+               echo "<tr><td colspan=\"6\" class=\"tableb\">".sprintf($lang_delete_php['update_pic'], $op['picture_no'], $op['picture_nm'], $op['picture_sort'])."</td></tr>\n";
+               $query = "UPDATE $CONFIG[TABLE_PICTURES] SET position='{$op['picture_sort']}' WHERE pid='{$op['picture_no']}' $restrict LIMIT 1";
+               db_query($query);
+               break;
+            default:
+               cpg_die (CRITICAL_ERROR, $lang_delete_php['err_invalid_data'], __FILE__, __LINE__);
+         }
+      }
+      if ($need_caption) output_caption();
+      echo "<tr><td colspan=\"6\" class=\"tablef\" align=\"center\">\n";
+      echo "<div class=\"admin_menu_thumb\"><a href=\"index.php\"  class=\"adm_menu\">$lang_continue</a></div>\n";
+      echo "</td></tr>";
+      endtable();
+      pagefooter();
+      ob_end_flush();
+      break;
+
+
 
     // Comment
 

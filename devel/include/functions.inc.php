@@ -675,8 +675,17 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         global $album_date_fmt, $lastcom_date_fmt, $lastup_date_fmt, $lasthit_date_fmt, $cat;
         global $lang_get_pic_data, $lang_meta_album_names, $lang_errors;
 
-        $sort_array = array('na' => 'filename ASC', 'nd' => 'filename DESC', 'ta'=>'title ASC', 'td'=>'title DESC', 'da' => 'pid ASC', 'dd' => 'pid DESC');
-        $sort_code = isset($USER['sort'])? $USER['sort'] : $CONFIG['default_sort_order'];
+        $sort_array = array(
+          'na' => 'filename ASC',
+          'nd' => 'filename DESC',
+          'ta'=>'title ASC',
+          'td'=>'title DESC',
+          'da' => 'pid ASC',
+          'dd' => 'pid DESC',
+          'pa' => 'position ASC',
+          'pd' => 'position DESC',
+        );
+         $sort_code = isset($USER['sort'])? $USER['sort'] : $CONFIG['default_sort_order'];
         $sort_order = isset($sort_array[$sort_code]) ? $sort_array[$sort_code] : $sort_array[$CONFIG['default_sort_order']];
         $limit = ($limit1 != -1) ? ' LIMIT '. $limit1 : '';
         $limit .= ($limit2 != -1) ? ' ,'. $limit2 : '';

@@ -763,6 +763,7 @@ function process_picture()
     $user2 = '';
     $user3 = '';
     $user4 = '';
+    $position = 0;
     // Check if the album id provided is valid
     if (!USER_IS_ADMIN) {
         $result = db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album' and category = '" . (USER_ID + FIRST_USER_CAT) . "'");
@@ -777,6 +778,21 @@ function process_picture()
         mysql_free_result($result);
         $category = $row['category'];
     }
+
+     // Get position
+     $result = db_query("SELECT position FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' order by position desc");
+     if (mysql_num_rows($result) == 0) {
+             $position = 100;
+     } else {
+             $row = mysql_fetch_array($result);
+             mysql_free_result($result);
+                     if ($row['position']) {
+                     $position = $row['position'];
+                             $position++;
+                     }
+             }
+
+
     // Test if the filename of the temporary uploaded picture is empty
     if ($HTTP_POST_FILES['userpicture']['tmp_name'] == '') simple_die(ERROR, $lang_db_input_php['no_pic_uploaded'], __FILE__, __LINE__);
     // Create destination directory for pictures
@@ -863,7 +879,8 @@ function process_picture()
     }
 
     // Create thumbnail and internediate image and add the image into the DB
-    $result = add_picture($album, $filepath, $picture_name, $title, $caption, $keywords, $user1, $user2, $user3, $user4, $category);
+    $result = add_picture($album, $filepath, $picture_name, $position, $title, $caption, $keywords, $user1, $user2, $user3, $user4, $category);
+
     if (!$result) {
         @unlink($uploaded_pic);
         simple_die(CRITICAL_ERROR, sprintf($lang_db_input_php['err_insert_pic'], $uploaded_pic) . '<br /><br />' . $ERROR, __FILE__, __LINE__, true);
