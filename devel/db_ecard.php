@@ -234,7 +234,7 @@ while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
    print "<td".$tempClass." align=\"center\"><input type=\"Checkbox\" name=\"eid[]\" value=\"".$line['eid']."\" id=\"eidselector\" $checked class=\"checkbox\"></td>\n";
    print "<td".$tempClass."><b class=\"thumb_caption\">".$line['sender_name']."</b></td>\n";
    print "<td".$tempClass."><span class=\"thumb_caption\"><a href=\"mailto:".$line['sender_email']."\">".$line['sender_email']."</a></span></td>\n";
-   print "<td".$tempClass."><span class=\"thumb_caption\"><a href=\"http://sunny.nic.com/cgi-bin/whois?query=".$line['sender_ip']."\">".$line['sender_ip']."</a></span></td>\n";
+   print "<td".$tempClass."><span class=\"thumb_caption\"><a href=\"http://ws.arin.net/cgi-bin/whois.pl?queryinput=".$line['sender_ip']."\">".$line['sender_ip']."</a></span></td>\n";
    print "<td".$tempClass."><b class=\"thumb_caption\">".$line['recipient_name']."</b></td>\n";
    print "<td".$tempClass."><span class=\"thumb_caption\"><a href=\"mailto:".$line['recipient_email']."\">".$line['recipient_email']."</a></span></td>\n";
    print "<td".$tempClass."><span class=\"thumb_caption\">".strftime($lastcom_date_fmt,$line['date'])."</span></td>\n";

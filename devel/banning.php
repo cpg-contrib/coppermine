@@ -32,10 +32,10 @@ function create_banlist()
     if ($count > 0) {
         echo <<<EOHEAD
                 <tr>
-                <th align="center">{$lang_banning_php['user_name']}</th>
-                <th align="center">{$lang_banning_php['ip_address']}</th>
-                <th align="center">{$lang_banning_php['expiry']}</th>
-                <th align="center"></th>
+                <th align="center" class="tableh2">{$lang_banning_php['user_name']}</th>
+                <th align="center" class="tableh2">{$lang_banning_php['ip_address']}</th>
+                <th align="center" class="tableh2">{$lang_banning_php['expiry']}</th>
+                <th align="center" class="tableh2"></th>
                 </tr>
 EOHEAD;
 
@@ -57,13 +57,13 @@ EOHEAD;
                                                              <input type="hidden" name="ban_id" value="{$row['ban_id']}">
                                                 <input type="text" class="textinput" style="width: 100%" name="edit_ban_user_name" value="$username">
                                         </td>
-                                                <td width="20%" class="tableb" valign="top">
+                                                <td class="tableb" valign="top">
                                                 <input type="text" class="textinput" style="width: 100%" name="edit_ban_ip_addr" value="{$row['ip_addr']}">
                                         </td>
-                                                <td width="20%" class="tableb" valign="top">
+                                                <td class="tableb" valign="top">
                                                 <input type="text" class="textinput" style="width: 100%" name="edit_ban_expires" value="$expiry">
                                         </td>
-                                        <td width="40%" class="tableb" valign="top">
+                                        <td class="tableb" valign="top">
                                                                 <input type="submit" class="button" name="edit_ban" value="{$lang_banning_php['edit_ban']}">
                                         &nbsp;&nbsp;
                                                                 <input type="submit" class="button" name="delete_ban" value="{$lang_banning_php['delete_ban']}">
@@ -195,42 +195,53 @@ pageheader($lang_banning_php['title']);
 $signature = 'Coppermine Photo Gallery ' . COPPERMINE_VERSION;
 
 starttable('100%', "{$lang_banning_php['title']} - $signature", 4);
-
 create_banlist();
-
+endtable();
+print "<br />\n";
+starttable('100%', $lang_banning_php['add_new'], 4);
 echo <<<EOT
                                         <tr>
-                                        <tr>
-                                        <th width="100%" class="tableb" valign="top" align="center" colspan=4>
-                                                {$lang_banning_php['add_new']}
-                                        </th>
-                                        </tr>
-                                        <tr>
-                                                <th align="center">{$lang_banning_php['user_name']}</th>
-                                                <th align="center">{$lang_banning_php['ip_address']}</th>
-                                                <th align="center">{$lang_banning_php['expiry']}</th>
-                                                <th align="center"></th>
+                                                <th class="tableh2">{$lang_banning_php['user_name']}</th>
+                                                <th class="tableh2">{$lang_banning_php['ip_address']}</th>
+                                                <th class="tableh2">{$lang_banning_php['expiry']}</th>
+                                                <th class="tableh2"></th>
                                         </tr>
 
                                         <tr>
                                                <form action="$PHP_SELF" method="post">
-                                                     <td width="20%" class="tableb" valign="top">
+                                                     <td class="tableb" valign="top">
                                                 <input type="text" class="textinput" style="width: 100%" name="add_ban_user_name" value="">
                                         </td>
-                                                <td width="20%" class="tableb" valign="top">
-                                                <input type="text" class="textinput" style="width: 100%" name="add_ban_ip_addr" value="">
+                                                <td class="tableb" valign="top">
+                                                <input type="text" class="textinput" name="add_ban_ip_addr" value="" style="width:100%" maxlength="15" />
                                         </td>
-                                                <td width="20%" class="tableb" valign="top">
-                                                <input type="text" class="textinput" style="width: 100%" name="add_ban_expires" value="">
+                                                <td class="tableb" valign="top">
+                                                <input type="text" class="textinput" style="width: 100%" name="add_ban_expires" value="" />
                                         </td>
-                                        <td width="40%" class="tableb" valign="top">
-                                                                <input type="submit" class="button" name="add_ban" value="{$lang_banning_php['add_ban']}">
+                                        <td class="tableb" valign="top">
+                                                                <input type="submit" class="button" name="add_ban" value="{$lang_banning_php['add_ban']}" />
                                         </td>
                                 </form>
                                 </tr>
 EOT;
-
 endtable();
+print "<form action=\"http://ws.arin.net/cgi-bin/whois.pl\" method=\"post\" name=\"lookup\" target=\"_blank\">\n";
+
+//starttable('-2', $lang_banning_php['lookup_ip'], 2);
+starttable('-2');
+print "<tr>\n";
+print "<td class=\"tablef\">\n";
+print "<b>".$lang_banning_php['lookup_ip']."</b>\n";
+print "</td>\n";
+print "<td class=\"tableb\">\n";
+print "<input type=\"text\" class=\"textinput\" size=\"20\" name=\"queryinput\" value=\"\" maxlength=\"15\" />\n";
+print "</td>\n";
+print "<td class=\"tableb\">\n";
+print "<input type=\"submit\" class=\"button\" name=\"submit\" value=\"{$lang_banning_php['submit']}\" >\n";
+print "</td>\n";
+print "</tr>\n";
+endtable();
+print "</form>\n";
 pagefooter();
 ob_end_flush();
 

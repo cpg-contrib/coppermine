@@ -1082,6 +1082,8 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
                 'error_admin_ban' => 'You cannnot ban yourself!',
                 'error_server_ban' => 'You were going to ban your own server? Tsk tsk, cannot do that...',
                 'error_ip_forbidden' => 'You cannnot ban this IP - it is non-routable!',
+                'lookup_ip' => 'Look up an IP address',
+                'submit' => 'go!',
 );
 
 // ------------------------------------------------------------------------- //
