@@ -29,7 +29,9 @@ define('COPPERMINE_VERSION_STATUS', 'alpha');
 // define('UDB_INTEGRATION', 'yabbse');
 // define('UDB_INTEGRATION', 'smf');
 // define('UDB_INTEGRATION', 'woltlab21');
-//define('UDB_INTEGRATION', 'mambo');
+// define('UDB_INTEGRATION', 'mambo');
+// define('UDB_INTEGRATION', 'punbb');
+
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 
 // Report all errors except E_NOTICE
