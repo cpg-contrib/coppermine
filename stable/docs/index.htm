@@ -1444,9 +1444,9 @@ Create a new file named <b>redir.php</b> in your <b>PunBB directory</b>, and pas
 $cpg_url = 'http://www.yoursite.com/coppermine';
 
 if (isset($_POST['redir'])){
-	echo '&lt;html&gt;&lt;body onload="document.redir.submit();"&gt;&lt;form name="redir" method="post" action="'.$_POST['redir'].'"&gt;&lt;/form&gt;&lt;/body&gt;&lt;/html&gt;';
+        echo '&lt;html&gt;&lt;body onload="document.redir.submit();"&gt;&lt;form name="redir" method="post" action="'.$_POST['redir'].'"&gt;&lt;/form&gt;&lt;/body&gt;&lt;/html&gt;';
 } else {
-	header("Location: $cpg_url");
+        header("Location: $cpg_url");
 }
 ?&gt;</pre>
 <span class="important">Important</span> - before you save the file, you must ensure that:
@@ -1494,11 +1494,13 @@ if (isset($_POST['redir'])){
         <li>Some small text items are only available in English, e.g picEditor. (Language issue)</li>
         <li>Various error messages (especially notices) while in debug mode with notices display turned on. (Does not affect main CPG app)</li>
         <li>Documentation (this document) and FAQ still incomplete.</li>
-        <li>User upload settings breaks table-width display in groups manager. This feature has been added recently before the release of this version; the broken layout will be released in the final.</li>
-        <li>There are <!--<a href="http://coppermine.sourceforge.net/board/viewtopic.php?t=4793">-->known issues<!--</a>--> with the vbulletin bridge files that will affect users who are not members of the &quot;Registered User&quot; group</li>
-        <li>Only a few <a href="http://coppermine.sourceforge.net/board/index.php?topic=4623.0">language files</a> have been sent back, so there's not many languages to test with.</li>
+        <li>User upload settings breaks table-width display in groups manager. This feature has been added recently before the release of cpg1.3.0; the broken layout will be fixed in the next version.</li>
         <li>&quot;Download favorites as zip&quot; only works if the zlib library is installed on the server</li>
         <li>The <a href="http://coppermine.sourceforge.net/board/index.php?topic=1866.0">arrows used for navigation</a> from one pic to the other display in the wrong order for rtl-languages</li>
+        <li>There is a bar that appears underneath the menus and above the album title on the category and thumbnail page that shouldn't be there in the theme &quot;Mac OX X&quot;</li>
+        <li>On pages with high traffic load the &quot;top rated&quot; pic might get outdated while the user watches the page, resulting in the thumbnail linking to a different pic.</li>
+        <li>minor issue with the filmstrip not displaying correctly when the number of pics to appear on the filmstrip is set to an even number</li>
+        <li>Crop and rotate not working on all server setups.</li>
 </ul>
 <p><a class="back" href="#top">Back to top</a></p>
 <hr />
@@ -1541,13 +1543,7 @@ if (isset($_POST['redir'])){
 <tr>
         <td>Scott Gahres</td>
         <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=66">gtroll</a></td>
-        <td>Developer (nuke team)</td>
-        <td>active</td>
-</tr>
-<tr>
-        <td>Hyperion</td>
-        <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=125">hyperion01</a></td>
-        <td>Developer</td>
+        <td>Developer (nuke team project manager)</td>
         <td>active</td>
 </tr>
 <tr>
@@ -1557,9 +1553,9 @@ if (isset($_POST['redir'])){
         <td>active</td>
 </tr>
 <tr>
-        <td>Moorey</td>
-        <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=13">moorey</a></td>
-        <td>Web Designer</td>
+        <td>Dave Kazebeer</td>
+        <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=7">kegobeer</a></td>
+        <td>Support Technician</td>
         <td>active</td>
 </tr>
 <tr>
@@ -1587,13 +1583,6 @@ if (isset($_POST['redir'])){
         <td>active</td>
 </tr>
 <tr>
-        <td>David Holm</td>
-        <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=14">wormie_dk</a></td>
-        <td>Developer</td>
-        <td>active</td>
-</tr>
-
-<tr>
         <td>DJ Axion</td>
         <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=9">djaxion</a></td>
         <td>Developer</td>
@@ -1606,15 +1595,15 @@ if (isset($_POST['redir'])){
         <td>retired</td>
 </tr>
 <tr>
+        <td>Hyperion</td>
+        <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=125">hyperion01</a></td>
+        <td>Developer</td>
+        <td>retired</td>
+</tr>
+<tr>
         <td>John Asendorf</td>
         <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=30">jasendorf</a></td>
         <td>Developer</td>
-        <td>pending</td>
-</tr>
-<tr>
-        <td>Dave Kazebeer</td>
-        <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=7">kegobeer</a></td>
-        <td>Support Technician</td>
         <td>pending</td>
 </tr>
 <tr>
@@ -1622,6 +1611,18 @@ if (isset($_POST['redir'])){
         <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=133">mitirapa</a></td>
         <td>Porter (Cross Platform Devel.)</td>
         <td>retired</td>
+</tr>
+<tr>
+        <td>Moorey</td>
+        <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=13">moorey</a></td>
+        <td>Web Designer</td>
+        <td>pending</td>
+</tr>
+<tr>
+        <td>David Holm</td>
+        <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=14">wormie_dk</a></td>
+        <td>Developer</td>
+        <td>pending</td>
 </tr>
 <tr>
         <td>Mark Zerr</td>
