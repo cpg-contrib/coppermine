@@ -295,8 +295,7 @@ Please understand that this is still beta software that is meant to be used for 
 <li>GD, GD2 or ImageMagick Test</li>
 <li>PHP Version</li>
 <li>BB Integration (if any)</li>
-<li>Themes fully tested (by fully tested, we mean as many different features as</li>
-<li>possible using that theme)</li>
+<li>Themes fully tested (by fully tested, we mean as many different features as possible using that theme)</li>
 <li>Major Errors</li>
 <li>Client OS and Browser</li>
 <li>Fresh install or upgrade (if yes, from which version of cpg)</li>
@@ -568,18 +567,19 @@ the main page of the script.</p>
 <p>When you are logged in as an admin, the script has two modes of operation : Admin mode &amp; User mode. You switch between Admin &amp; User mode by clicking on the corresponding link in the menu bar at the top of the screen.</p>
 <p>When you are in admin mode, you can administer your gallery and the following menu bar appears :</p>
 <p><a name="admin_menu"></a><img src="pics/admin_menu.gif" border="0" alt="Admin menu" /></p>
-<p>When you are in user mode you are just a regular user and can't access the admin pages.</p>
+<p>When you are in user mode you are still an admin user, but the admin controls (the admin menu bar etc.) are hidden from the screen to give you an impression what the page would look like for a "regular user". However (as you still are logged in as admin), permissions in user mode are still the same as if you were in admin mode; you can <b>not</b> use "<i>User Mode</i>" to check what a non-admin user is allowed to see; to see what an actual user can see and do, create a test user account (non-admin) and log in with this particular user (it's recommended to use two different browsers, so you can stay logged in as admin and regular users at the same time).</p>
 <p>The items in the admin menu should be pretty self-explanatory:</p>
 <ul>
   <li><b>Upload approval</b><br />See all pics that await approval by the admin (depending on the settings in the &quot;<a href="#group_cp">groups</a>&quot; control panel)</li>
   <li><b>Config</b><br />Configure the overall look of your gallery and the settings using the &quot;<a href="#admin">Config</a>&quot; button in the admin menu (note: you can not access the configuration by manually entering the url of the config file)</li>
-  <li><b>Albums</b><br />Create/edit/delete <a href="#albums_cp">albums</a></li>
   <li><b>Categories</b><br />Create/edit/delete <a href="#cat_cp">categories</a></li>
-  <li><b>Users</b><br />Create/edit/delete <a href="#users_cp">users</a></li>
+  <li><b>Albums</b><br />Create/edit/delete <a href="#albums_cp">albums</a></li>
   <li><b>Groups</b><br />Create/edit/delete <a href="#group_cp">groups</a></li>
+  <li><b>Users</b><br />Create/edit/delete <a href="#users_cp">users</a></li>
   <li><b>Ban Users</b><br />Ban users based on hostname or IP address. Make sure not to ban yourself! Use this feature with extreme care, since most users don't have static IP addresses, this feature should only be used if you really know what you're doing.<br />
   <span class="small">[cpg1.3.0 or better required]</span>
   </li>
+  <li><b>Review Comments</b><br />edit/delete user's comments</li>
   <li><a name="ecard_log"></a><b>Display Ecards</b><br />View the ecards sent by users.<br />
   You will have to enable ecard-logging in the config first (by default, logging is disabled). When enabled, all ecards that are being sent are as well written into the database, where the coppermine admin can view them.<br />
   <img src="pics/ecard_log.gif" border="0" alt=""><br />
@@ -588,7 +588,8 @@ the main page of the script.</p>
   <span class="small">[cpg1.3.0 or better required]</span>
   <a name="ecard_log_end"></a>
   </li>
-  <li><b>Review Comments</b><br />edit/delete user's comments</li>
+  <li><b>Sort my pictures</b><br />Picture manager that can be used to custom-sort files within an album. By default, the thumbnail page that represents an album will be sorted by the sorting order specified in &quot;<a href="#admin_thumbnail_view">Default sort order for files</a>&quot; on the config page. The "sort my pictures" option overrides this default sorting mechanism and displays the thumbnails in the order you specified. As this means an additional effort in the maintenance of each album, it's recommended to use the default sorting by filename and (instead of specifying a custom sort order) and naming the files appropriately before upload.<br />
+  Note: each user (including the admin) can use the sort controls on the album thumbnails page to again manually override the sorting that was specified in coppermine's config and the "Sort my pictures" option; this final method of changing the sort order is stored locally in a cookie of the client.</li>
   <li><b>Batch add files</b><br /><a href="#batch_add_pics">Batch-add files</a> to the coppermine database that have been uploaded by FTP.</li>
   <li><a name="admin_tools"></a><b>Admin Tools (Resize Pictures)</b><br />Collection of utilities to;<br />
       <dd><b>Rebuild or resize intermediate pictures and thumbnails.</b><br />
@@ -608,7 +609,8 @@ the main page of the script.</p>
   </li><br />
   <li><b>My profile</b><br />Edit your own user profile</li>
 </ul>
-<p>There's an admin mode and user mode for &quot;regular&quot; users as well - the user admin has these options:</p>
+<p>There used to be an admin mode and user mode for &quot;regular&quot; users as well in versions before cpg1.4.x, which has been removed as it was confusing for end users and didn't serve any special purpose.<br />
+The user admin has these options:</p>
 <ul>
   <li><b>Create / order my albums</b><br />similar to album manager in admin mode, the user can create albums within his user gallery</li>
   <li><b>Modify my albums</b><br />The user can edit album title and description (similar to &quot;<a href="#album_prop">album properties</a>&quot; for the admin, but the user can't move his albums to other categories)</li>
@@ -746,11 +748,11 @@ When you click on &quot;albums&quot; in the admin menu, you will see the <i>Albu
 <p><img src="pics/album_menu.gif" border="1" /></p>
 <p><b>Delete</b> allows you to delete the album and all files it contains.</p>
 <p><b><a href="#album_prop">Properties</a></b> allows you to modify the name, description and permissions of the album</p>
-<p><b>Edit pics</b> allows you to modify the title/caption/keywords etc... of the files in the album</p>
+<p><b><a href="#edit_pics">Edit files</a></b> allows you to modify the title/caption/keywords etc... of the files in the album</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="album_prop"></a><h2>4.8 Album properties</h2>
-<p><img src="pics/edit_album.gif" border="1" /></p>
+<p><img src="pics/edit_album.gif" border="0" alt="" /></p>
 <p>The "Album category" drop down list allows you to move an album between categories. If you set this to &quot;* No category *&quot; then the album will be displayed on your main page.</p>
 <p>Use <a href="#bbcode">bbcode</a> to add links and some formating to the description.</p>
 <p>The thumbnail is the picture that will represent the album in the album list.</p>
@@ -770,7 +772,7 @@ Note: when setting an album password, the permission dropdown field "<i>Album ca
 
 <a name="album_prop_reset_start"></a>
 <h3>4.8.1 Reset album properties</h3>
-<img src="pics/modifyalb_reset.gif" width="341" height="155" border="0" alt="" />
+<img src="pics/modifyalb_reset.gif" width="436" height="148" border="0" alt="" />
 <p>You can reset the views and ratings in the album and even delete all pics at once in the sub-section &quot;Reset album&quot; by ticking the checkboxes and then submitting the form. To avoid accidental resets, you have to tick the checkbox &quot;I'm sure&quot; before you can actually submit the changes (the button will be greyed out if you don't).<br />
 Use these options with care: the deleting of files is irreversible, as well as the reset of views and ratings (you can only restore views and ratings by manually editing coppermine's database entries with third-party tools like <a href="http://www.phpmyadmin.net/" class="external" rel="external">phpMyAdmin</a> - not recommended).</p>
 <a name="album_prop_reset_end"></a>
@@ -778,13 +780,13 @@ Use these options with care: the deleting of files is irreversible, as well as t
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="edit_pics"></a><h2>4.9 Editing files</h2>
-<p><img src="pics/edit_picture.gif" border="1" /></p>
+<p><img src="pics/edit_picture.gif" border="0" alt="" /></p>
 <p>This is where you can modify the title description, keywords and custom fields (if they are used) of a file.</p>
 <p>Use the album drop down menu to move the file to another album.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <h3>4.9.1 Editing videos<a name="edit_vids"></a></h3>
-<p><img src="pics/edit_video.gif" border="1" /></p>
+<p><img src="pics/edit_video.gif" border="0" alt="" /></p>
 <p>This is where you can modify the title description, keywords and custom fields (if they are used) of a video.</p>
 <p>Use the album drop down menu to move the video to another album.</p>
 <p>Use the height and width fields to set the size of the video.</p>
@@ -1399,6 +1401,10 @@ address. Recommended setting is NO. This option is considered as deprecated and 
 This option will only be taken into account if you use Coppermine as a standalone application; if you run Coppermine integrated with a bbs, this option will simply not be taken into account, as the user profile from your bbs will be used to manage your user's profile.</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_user_allow_email_change_end"></a>
+<a name="admin_user_editpics_public_start"></a><h4>Allow users to retain control over their pics in public galleries</h4>
+<p>When enabled, not only the admin can edit files after they have been uploaded to a public gallery, but the regular user can do so as well. Of course the user must have permissions to upload to the public gallery in the first place (can be set on the <a href="#group_cp">groups control panel</a>) for this option to have any effect.</p>
+<p class="small">[cpg1.4.0 or better required]</p>
+<a name="admin_user_editpics_public_end"></a>
 <a name="admin_user_login_start"></a>
 <a name="admin_user_login_threshold_start"></a>
 <h4>Number of failed login attemps untill temporary ban (to avoid brute force attacks)</h4>
@@ -1430,7 +1436,7 @@ With this setting you specify the number of failed logins after that the IP addr
 <a name="admin_cookie"></a>
 <h4>4.12.13 Cookie settings</h4>
 <a name="admin_cookie_name"></a>
-<h4>Name of the cookie used by the script</h4>
+<h4>Name of the cookie used by coppermine</h4>
 <p>Default value is &quot;cpg140&quot;. Even if you have multiple instances of the script running on the same server you can keep the default value.<br /><span class="important">When using bbs integration, make sure it <b>differs</b> from the bbs's cookie name</span></p>
 <a name="admin_cookie_name_end"></a>
 <a name="admin_cookie_path"></a>
@@ -1472,7 +1478,7 @@ All log files are written in english</p>
 <a name="admin_general_log_ecards_end"></a>
 <a name="admin_logging_votedetails"></a><h4>Keep detailed vote statistics</h4>
 <p>
-  Enabeling this option records:
+  Enabling this option records:
   <ol>
     <li>Each vote seperatly</li>
     <li>IP Address</li>
@@ -1480,7 +1486,8 @@ All log files are written in english</p>
     <li>Browser</li>
     <li>Operating System</li>
   </ol>
-   of the voter.
+   of the voter.<br />
+   As the statistics are being kept per file, the link to the stats can be accessed on the individual file's page (displayimage.php) by clicking the link in the file info section to open the stats pop-up.
 </p>
 <p>
   <br /><span class="important">Note: The total votes may not match if you enable details and do not reset the earlier votes.</span>
@@ -1497,7 +1504,8 @@ All log files are written in english</p>
     <li>Browser</li>
     <li>Operating System</li>
   </ol>
-   of the voter.
+   of the visitor.<br />
+   As the statistics are being kept per file, the link to the stats can be accessed on the individual file's page (displayimage.php) by clicking the link in the file info section to open the stats pop-up.
 </p>
 <p>
   <br /><span class="important">Note: The total hits may not match if you enable details and do not reset the earlier hits.</span>
@@ -1916,13 +1924,13 @@ if (isset($_POST['redir'])){
         <td>Scott Gahres</td>
         <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=66">gtroll</a></td>
         <td>Developer (nuke team project manager)</td>
-        <td>active</td>
+        <td>pending</td>
 </tr>
 <tr>
         <td>Jack</td>
         <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=6">datajack</a></td>
         <td>Developer</td>
-        <td>active</td>
+        <td>pending</td>
 </tr>
 <tr>
         <td>Dave Kazebeer</td>
@@ -1952,7 +1960,7 @@ if (isset($_POST['redir'])){
         <td>Timothy</td>
         <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=6949">skybax</a></td>
         <td>Developer</td>
-        <td>active</td>
+        <td>pending</td>
 </tr>
 <tr>
         <td>Dr Tarique Sani</td>
@@ -1988,7 +1996,7 @@ if (isset($_POST['redir'])){
         <td>John Asendorf</td>
         <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=30">jasendorf</a></td>
         <td>Developer</td>
-        <td>pending</td>
+        <td>retired</td>
 </tr>
 <tr>
         <td>mitirapa</td>
@@ -2000,13 +2008,13 @@ if (isset($_POST['redir'])){
         <td>Moorey</td>
         <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=13">moorey</a></td>
         <td>Web Designer</td>
-        <td>pending</td>
+        <td>retired</td>
 </tr>
 <tr>
         <td>David Holm</td>
         <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=14">wormie_dk</a></td>
         <td>Developer</td>
-        <td>pending</td>
+        <td>retired</td>
 </tr>
 <tr>
         <td>Mark Zerr</td>
