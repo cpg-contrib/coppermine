@@ -158,13 +158,13 @@ class CPGPluginAPI {
             // Reference current plugin to local scope
             $thisplugin = $CPG_PLUGINS[$plugin_id];
 
-            // Get the filter's value from the plugin
-            $plugin_function = @$thisplugin->filters[$key];
-
             // Skip this plugin; the key isn't set
-            if (!isset($plugin_function) || (!$thisplugin->awake)) {
+            if (!isset($thisplugin->filters[$key]) || (!$thisplugin->awake)) {
                  return $value;
             }
+
+            // Get the filter's value from the plugin
+            $plugin_function = $thisplugin->filters[$key];
 
             if (function_exists($plugin_function)) {
                 // Pass the value to the filter's function and get a value back
@@ -188,13 +188,10 @@ class CPGPluginAPI {
                 $thisplugin = $CPG_PLUGINS[$plugin_id];
 
                 // Get the filter's value from the plugin
-                if (isset($thisplugin->filters[$key])) {
+                if (!isset($thisplugin->filters[$key]) || ($key != 'plugin_wakeup' && !$thisplugin->awake)) {
+                    continue;
+                } else {
                     $plugin_function = $thisplugin->filters[$key];
-                }
-
-                // Skip this plugin; the key isn't set
-                if (!isset($plugin_function) || (!$thisplugin->awake)) {
-                     continue;
                 }
 
                 // Skip this plugin; Only looking for new plugins
@@ -246,13 +243,13 @@ class CPGPluginAPI {
             // Reference current plugin to local scope
             $thisplugin = $CPG_PLUGINS[$plugin_id];
 
-            // Get the filter's value from the plugin
-            $plugin_function = @$thisplugin->actions[$key];
-
             // Skip this plugin; the key isn't set
-            if (!isset($plugin_function) || (!$thisplugin->awake)) {
+            if (!isset($thisplugin->actions[$key]) || (!$thisplugin->awake)) {
                  return $value;
             }
+
+            // Get the filter's value from the plugin
+            $plugin_function = $thisplugin->actions[$key];
 
             if (function_exists($plugin_function)) {
                 // Pass the value to the filter's function and get a value back
@@ -276,13 +273,10 @@ class CPGPluginAPI {
                 $thisplugin = $CPG_PLUGINS[$plugin_id];
 
                 // Get the action's value from the plugin
-                if (isset($thisplugin->actions[$key])) {
+                if (!isset($thisplugin->actions[$key]) || ($key != 'plugin_wakeup' && !$thisplugin->awake)) {
+                    continue;
+                } else {
                     $plugin_function = $thisplugin->actions[$key];
-                }
-
-                // Skip this plugin; the key isn't set
-                if (!isset($plugin_function) || ($key != 'plugin_wakeup' && !$thisplugin->awake)) {
-                     continue;
                 }
 
                 // Skip this plugin; Only looking for new plugins
