@@ -859,28 +859,27 @@ Click %s to log in.',
 // ------------------------------------------------------------------------- //
 
 if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
-  'group_name' => 'Group name',
-  'disk_quota' => 'Disk quota',
-  'can_rate' => 'Can rate files',
-  'can_send_ecards' => 'Can send ecards',
-  'can_post_com' => 'Can post comments',
-  'can_upload' => 'Can upload files',
-  'can_have_gallery' => 'Can have a personal gallery',
+  'group_name' => 'Group',
+  'permissions' => 'Permissions', // cpg1.4.0
+  'public_albums' => 'Public albums upload', // cpg1.4.0
+  'personal_gallery' => 'Personal gallery', // cpg1.4.0
+  'upload_method' => 'Upload method', // cpg1.4.0
+  'disk_quota' => 'Quota',
+  'rating' => 'Rating', // cpg1.4.0
+  'ecards' => 'Ecards', // cpg1.4.0
+  'comments' => 'Comments', // cpg1.4.0
+  'allowed' => 'Allowed', // cpg1.4.0
+  'approval' => 'Approval', // cpg1.4.0
+  'boxes_number' => 'No. of boxes', // cpg1.4.0
+  'variable' => 'variable', // cpg1.4.0
+  'fixed' => 'fixed', // cpg1.4.0
   'apply' => 'Apply modifications',
   'create_new_group' => 'Create new group',
   'del_groups' => 'Delete selected group(s)',
   'confirm_del' => 'Warning, when you delete a group, users that belong to this group will be transferred to the \'Registered\' group !\n\nDo you want to proceed ?', //js-alert
   'title' => 'Manage user groups',
-  'approval_1' => 'Pub. Upl. approval (1)',
-  'approval_2' => 'Priv. Upl. approval (2)',
-  'upload_form_config' => 'Upload form configuration',
-  'upload_form_config_values' => array( 'Single file uploads only', 'Multiple file uploads only', 'URI uploads only', 'ZIP upload only', 'File-URI', 'File-ZIP', 'URI-ZIP', 'File-URI-ZIP'),
-  'custom_user_upload'=>'User may customize number of upload boxes?',
-  'num_file_upload'=>'Maximum/exact number of file upload boxes',
-  'num_URI_upload'=>'Maximum/exact number of URI upload boxes',
-  'note1' => '<b>(1)</b> Uploads in a public album need admin approval',
-  'note2' => '<b>(2)</b> Uploads in an album that belong to the user need admin approval',
-  'notes' => 'Notes',
+  'num_file_upload'=>'File upload boxes', // cpg1.4.0
+  'num_URI_upload'=>'URI upload boxes', // cpg1.4.0
 );
 
 // ------------------------------------------------------------------------- //
