@@ -102,7 +102,6 @@ $lang_main_menu = array(
         'topn_lnk' => 'Most viewed',
         'toprated_lnk' => 'Top rated',
         'search_lnk' => 'Search',
-	'fav_lnk'=>'Favourites'
 );
 
 $lang_gallery_admin_menu = array(
@@ -114,6 +113,7 @@ $lang_gallery_admin_menu = array(
         'groups_lnk' => 'Groups',
         'comments_lnk' => 'Comments',
         'searchnew_lnk' => 'Batch add pictures',
+        'util_lnk' => 'Resize pictures',
 );
 
 $lang_user_admin_menu = array(
