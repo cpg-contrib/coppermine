@@ -21,50 +21,16 @@
 // This theme has had all redundant CORE items removed                       //
 // ------------------------------------------------------------------------- //
 
-// HTML template for main menu
-$template_main_menu = <<<EOT
-                <span class="topmenu">
-<!-- BEGIN album_list -->
-                        <a href="{ALB_LIST_TGT}" title="{ALB_LIST_TITLE}">{ALB_LIST_LNK}</a> |
-<!-- END album_list -->
-<!-- BEGIN my_gallery -->
-                        <a href="{MY_GAL_TGT}" title="{MY_GAL_TITLE}">{MY_GAL_LNK}</a> |
-<!-- END my_gallery -->
-<!-- BEGIN allow_memberlist -->
-                        <a href="{MEMBERLIST_TGT}" title="{MEMBERLIST_TITLE}">{MEMBERLIST_LNK}</a>  ::
-<!-- END allow_memberlist -->
-<!-- BEGIN my_profile -->
-                        <a href="{MY_PROF_TGT}" title="{MY_PROF_LNK}">{MY_PROF_LNK}</a> |
-<!-- END my_profile -->
-<!-- BEGIN faq -->
-                        <a href="{FAQ_TGT}" title="{FAQ_TITLE}">{FAQ_LNK}</a> |
-<!-- END faq -->
-<!-- BEGIN enter_admin_mode -->
-                        <a href="{ADM_MODE_TGT}" title="{ADM_MODE_TITLE}">{ADM_MODE_LNK}</a> |
-<!-- END enter_admin_mode -->
-<!-- BEGIN leave_admin_mode -->
-                        <a href="{USR_MODE_TGT}" title="{USR_MODE_TITLE}">{USR_MODE_LNK}</a> |
-<!-- END leave_admin_mode -->
-<!-- BEGIN upload_pic -->
-                        <a href="{UPL_PIC_TGT}" title="{UPL_PIC_TITLE}">{UPL_PIC_LNK}</a> |
-<!-- END upload_pic -->
-<!-- BEGIN register -->
-                        <a href="{REGISTER_TGT}" title="{REGISTER_TITLE}">{REGISTER_LNK}</a> |
-<!-- END register -->
-<!-- BEGIN login -->
-                        <a href="{LOGIN_TGT}" title="{LOGIN_LNK}">{LOGIN_LNK}</a> |
-<!-- END login -->
-<!-- BEGIN logout -->
-                        <a href="{LOGOUT_TGT}" title="{LOGOUT_LNK}">{LOGOUT_LNK}</a> |
-<!-- END logout -->
-                        <a href="{LASTUP_TGT}" title="{LASTUP_LNK}">{LASTUP_LNK}</a> |
-                        <a href="{LASTCOM_TGT}" title="{LASTCOM_LNK}">{LASTCOM_LNK}</a> |
-                        <a href="{TOPN_TGT}" title="{TOPN_LNK}">{TOPN_LNK}</a> |
-                        <a href="{TOPRATED_TGT}" title="{TOPRATED_LNK}">{TOPRATED_LNK}</a> |
-                        <a href="{FAV_TGT}" title="{FAV_LNK}">{FAV_LNK}</a> |
-                        <a href="{SEARCH_TGT}" title="{SEARCH_LNK}">{SEARCH_LNK}</a>
-                </span>
+// HTML template for sys_menu
+$template_sys_menu = <<<EOT
+<span class="topmenu">
+    {BUTTONS}
+</span>
 EOT;
+
+// HTML template for template sys_menu spacer
+$template_sys_menu_spacer ="|";
+
 
 // HTML template for the album list
 $template_album_list = <<<EOT
@@ -127,9 +93,8 @@ $template_album_list = <<<EOT
                 </td>
         </tr>
         <tr>
-                <td align="center" class="thumbnails">
-                        <img src="images/spacer.gif" width="1" height="2" border="0" alt="" /><br />
-                        <img src="images/spacer.gif" width="1" height="{SPACER_HEIGHT}" class="blank_image" alt="" /><br />
+                <td width="100%" valign="top" class="tableb_compact">
+                    <div class="thumbnails" style="background-color:transparent"><img src="images/spacer.gif" width="1" height="{SPACER}" border="0" class="image" style="border:0;margin-top:1;margin-bottom:0" alt="" /></div>
                 </td>
         </tr>
         </table>
@@ -147,14 +112,14 @@ $template_album_list = <<<EOT
                 <td colspan="{COLUMNS}" style="padding: 0px;">
                         <table width="100%" cellspacing="0" cellpadding="0">
                                 <tr>
-                                        {TABS}
+                                       {TABS}
                                 </tr>
                         </table>
                 </td>
         </tr>
 <!-- END tabs -->
 <!-- BEGIN spacer -->
-        <img src="images/spacer.gif" width="1" height="17" border="" alt="" /><br />
+        <img src="images/spacer.gif" width="1" height="7" border="" alt="" /><br />
 <!-- END spacer -->
 
 EOT;
@@ -179,7 +144,8 @@ function pageheader($section, $meta = '')
         '{META}' => $meta,
         '{GAL_NAME}' => $CONFIG['gallery_name'],
         '{GAL_DESCRIPTION}' => $CONFIG['gallery_description'],
-        '{MAIN_MENU}' => theme_main_menu(),
+        '{SYS_MENU}' => theme_main_menu('sys_menu'),
+        '{SUB_MENU}' => theme_main_menu('sub_menu'),
         '{ADMIN_MENU}' => theme_admin_mode_menu(),
         '{CUSTOM_STYLESHEET}' => customStylesheet(),
         '{STYLEGUIDE_HEADER}' => styleGuideHeader(),
@@ -188,6 +154,7 @@ function pageheader($section, $meta = '')
 
     echo template_eval($template_header, $template_vars);
 }
+
 
 function styleGuideHeader()
 {
