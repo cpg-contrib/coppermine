@@ -2,10 +2,10 @@
 // ------------------------------------------------------------------------- //
 //  Coppermine Photo Gallery                                                 //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Grégory DEMAR <gdemar@wanadoo.fr>               //
+//  Copyright (C) 2002,2003  Grï¿½ory DEMAR <gdemar@wanadoo.fr>               //
 //  http://www.chezgreg.net/coppermine/                                      //
 // ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
+//  Based on PHPhotoalbum by Henning Stverud <henning@stoverud.com>         //
 //  http://www.stoverud.com/PHPhotoalbum/                                    //
 // ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
@@ -261,6 +261,13 @@ if (isset($USER['lang'])
 
 if (!file_exists("lang/{$CONFIG['lang']}.php")) $CONFIG['lang'] = 'english';
 require "lang/{$CONFIG['lang']}.php";
+
+//See if the fav cookie is set else set it
+if (isset($HTTP_COOKIE_VARS[$CONFIG['cookie_name'].'_fav'])) {
+	$FAVPICS = @unserialize(@base64_decode($HTTP_COOKIE_VARS[$CONFIG['cookie_name'].'_fav']));
+}else{
+	$FAVPICS = array();
+}
 
 // load the main template
 load_template();
