@@ -30,8 +30,10 @@ $lang_back = cpg_lang_var("lang_back");
 $lang_continue = cpg_lang_var("lang_continue");
 $lang_info = cpg_lang_var("lang_info");
 $lang_error = cpg_lang_var("lang_error");
+$lang_check_uncheck_all = cpg_lang_var("lang_check_uncheck_all");
 
 $lang_bbcode_help = cpg_lang_var("lang_bbcode_help");
+$lang_bbcode_help_title = cpg_lang_var("lang_bbcode_help_title");
 
 $lang_register_confirm_email = cpg_lang_var("lang_register_confirm_email");
 
@@ -192,6 +194,15 @@ if (defined('DELETE_PHP')) {
 }
 
 // ------------------------------------------------------------------------- //
+// File displayecard.php
+// ------------------------------------------------------------------------- //
+
+if (defined('DISPLAYECARD_PHP')) {
+  $lang_display_image_php_en = cpg_get_default_lang_var('lang_display_image_php','english');
+  $lang_display_image_php = array_merge($lang_display_image_php_en, $lang_display_image_php);
+}
+
+// ------------------------------------------------------------------------- //
 // File displayimage.php
 // ------------------------------------------------------------------------- //
 
@@ -338,6 +349,15 @@ if (defined('MODIFYALB_PHP')) {
 }
 
 // ------------------------------------------------------------------------- //
+// File picmgr.php
+// ------------------------------------------------------------------------- //
+
+if (defined('PICMGR_PHP')) {
+  $lang_picmgr_php_en = cpg_get_default_lang_var('lang_picmgr_php','english');
+  $lang_picmgr_php = array_merge($lang_picmgr_php_en, $lang_picmgr_php);
+}
+
+// ------------------------------------------------------------------------- //
 // File phpinfo.php //cpg1.3.0
 // ------------------------------------------------------------------------- //
 
@@ -366,6 +386,10 @@ if (defined('RATEPIC_PHP')) {
   $lang_rate_pic_php_en = cpg_get_default_lang_var('lang_rate_pic_php','english');
   $lang_rate_pic_php = array_merge($lang_rate_pic_php_en, $lang_rate_pic_php);
 }
+
+// ------------------------------------------------------------------------- //
+// File register.php
+// ------------------------------------------------------------------------- //
 
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
   $lang_register_php_en = cpg_get_default_lang_var('lang_register_php','english');
@@ -435,6 +459,8 @@ if (defined('USERMGR_PHP')) {
 if (defined('UTIL_PHP')) {
   $lang_util_php_en = cpg_get_default_lang_var('lang_util_php','english');
   $lang_util_php = array_merge($lang_util_php_en, $lang_util_php);
+  $lang_util_desc_php_en = cpg_get_default_lang_var('lang_util_desc_php','english');
+  $lang_util_desc_php = array_merge($lang_util_desc_php_en, $lang_util_desc_php);
 }
 
 // ------------------------------------------------------------------------- //
