@@ -1,34 +1,25 @@
 <?php
+// ------------------------------------------------------------------------- //
+//  Coppermine Photo Gallery                                                 //
+// ------------------------------------------------------------------------- //
+//  Copyright (C) 2002,2003  Gregory DEMAR <gdemar@wanadoo.fr>               //
+//  http://www.chezgreg.net/coppermine/                                      //
+// ------------------------------------------------------------------------- //
+//  Based on PHPhotoalbum by Henning Stverud <henning@stoverud.com>          //
+//  http://www.stoverud.com/PHPhotoalbum/                                    //
+// ------------------------------------------------------------------------- //
+//  Title/thumbnail Utility version 1.4 (27/09/2003)                         //
+//  Created by David Holm (wormie@alberg.dk)                                 //
+// ------------------------------------------------------------------------- //
+//  This program is free software; you can redistribute it and/or modify     //
+//  it under the terms of the GNU General Public License as published by     //
+//  the Free Software Foundation; either version 2 of the License, or        //
+//  (at your option) any later version.                                      //
+// ------------------------------------------------------------------------- //
+// If you know regular expressions scroll down to ADD YOUR OWN PARSEMODES    //
+// HERE to modify the included parsemodes.                                   //
+// ------------------------------------------------------------------------- //
 
-/*
-        Title/thumbnail Utility for Coppermine photo album 1.1         (http://www.chezgreg.net/coppermine/)
-
-        version 1.3 (16/7/2003)
-
-        - Updates titles from filename
-        - Deletes titles
-        - Rebuilds thumbnails and resized photos
-        - Deletes original sized photos replacing them with the sized version
-
-        This script has been tested on my own Coppermine 1.1 gallery with no errors, but I recommend backing up
-        the database and album files before using it for the first time...
-
-        Usage:
-        1) Upload util.php to the root dir of Coppermine
-        2) Login to Coppermine
-        3) Open http://www.yourdomain.com/coppermine/util.php
-        4) Follow onscreen instructions
-
-         If you want a link to the script from the admin menu do the following:
-         1) Open /themes/yourtheme/theme.php
-         2) Add:     <td class="admin_menu"><a href="util.php" title="">Util.mod</a></td>
-             After:   <td class="admin_menu"><a href="profile.php?op=edit_profile" title="">{MY_PROF_LNK}</a></td>
-
-        If you know regular expressions scroll down to ADD YOUR OWN PARSEMODES HERE to modify the included parsemodes.
-
-        Created by David Holm (wormie@alberg.dk)
-        Updated by gaugau
-*/
 //USER CONFIGURATION
 
 //Default number of pictures to process at a time when rebuilding thumbs or normals:
@@ -38,6 +29,7 @@ $defpicnum=45;
 
 
 define('IN_COPPERMINE', true);
+define('UTIL_PHP', true);
 
 require("include/config.inc.php");
 require('include/init.inc.php');
@@ -45,10 +37,7 @@ require('include/picmgmt.inc.php');
 
 pageheader($lang_search_php[0]);
 
-starttable();
 
-print '<tr><td>';
-print '<center><h1>Util.mod</h1></center>';
 
 if (!GALLERY_ADMIN_MODE) die('Access denied');
 
@@ -117,7 +106,7 @@ function filenametotitle($delete) {
                 $newtitle = '';
               }
 
-              print "File: $filename title set to: $newtitle<br />";
+              print $lang_util_php['file'] . ': $filename ' . $lang_util_php['title_set_to'] . ': $newtitle<br />';
               my_flush();
 
               $query = "UPDATE $picturetbl SET title='$newtitle' WHERE pid='$pid' ";
@@ -143,12 +132,13 @@ function filloptions() {
          $result2 = db_query($sql);
          $row2 = mysql_fetch_array($result2);
 
-          echo "<option value=\"" . $row["aid"] . "\">" . $row2["name"] . $row["title"] . "</option>\n";
+          print "<option value=\"" . $row["aid"] . "\">" . $row2["name"] . $row["title"] . "</option>\n";
 
        }
 
-        echo '</select>';
-        echo " <input type=\"submit\" value=\"go\" class=\"submit\" /></form>";
+        print '</select>';
+        print '<input type="submit" value="submit" class="submit" />';
+        print '</form>';
 
 }
 
@@ -185,10 +175,10 @@ function updatethumbs() {
                        $thumb = $CONFIG['fullpath'].mysql_result($result,$i,"filepath").$CONFIG['thumb_pfx'].mysql_result($result,$i,"filename");
 
                        if( resize_image($image, $thumb, $CONFIG['thumb_width'], $CONFIG['thumb_method']) ) {
-                              print  "$thumb updated succesfully!<br />";
+                              print  $thumb . $lang_util_php['updated_succesfully'] . '!<br />';
                               my_flush();
                        } else {
-                              print "ERROR creating:$thumb<br />";
+                              print $lang_util_php['error_create'] . ':$thumb<br />';
                               my_flush();
                        }
                }
@@ -200,10 +190,10 @@ function updatethumbs() {
                        if ( max($imagesize[0],$imagesize[1]) > $CONFIG['picture_width'] && $CONFIG['make_intermediate'] ) {
 
                            if ( resize_image($image, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method']) ) {
-                                      print  "$normal updated succesfully!<br />";
+                                      print  $normal . $lang_util_php['updated_succesfully'] . '!<br />';
                                       my_flush();
                             } else {
-                                      print "ERROR creating:$thumb<br />";
+                                      print $lang_util_php['error_create'] . ':$normal<br />';
                                       my_flush();
                             }
                        }
@@ -221,7 +211,7 @@ function updatethumbs() {
                     <input type="hidden" name="startpic" value="<?php echo $startpic?>" />
                     <input type="hidden" name="updatetype" value="<?php echo $updatetype?>" />
             <input type="hidden" name="albumid" value="<?php echo $albumid?>" />
-            <input type="submit" value="Process more images" class="submit" /></form>
+            <input type="submit" value="<? print $lang_util_php['continue']; ?>" class="submit" /></form>
                     <?php
         }
 }
@@ -259,13 +249,15 @@ function deleteorig() {
 
                         $query = "UPDATE $picturetbl SET pheight='{$imagesize[1]}' WHERE pid='$pid' ";
                         MYSQL_QUERY($query);
-                        print 'The file: '.$normal.' was successfully used as main picture!<br>';
+                        printf($lang_util_php['main_success'], $normal);
+                        print '!<br>';
             } else {
-                print 'Error renaming: '.$normal.'<br>to: '.$thumb;
+                printf($lang_util_php['error_rename'], $normal, $thumb);
             }
 
                } else {
-            print 'The file: '.$normal.' was not found!<br>';
+                printf($lang_util_php['error_not_found'], $normal);
+                print '<br>';
                }
 
                ++$i;
@@ -277,112 +269,142 @@ function deleteorig() {
 $phpself = $_SERVER['PHP_SELF'];
 
 //start output
-print<<<EOT
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-          "http://www.w3.org/TR/html4/loose.dtd">
+print '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-<title>Thumbs and Title utility</title>
+<title>' . $lang_util_php['title'] . '</title>
 </head>
 <style type="text/css">
 .labelradio { cursor : hand;}
 /*.accesskey {text-decoration:underline}*/
 </style>
-<body>
-EOT;
+<body>';
 
 if ( $action=='thumbs' ) {
         global $picturetbl, $CONFIG;
 
-        print "<a href=$phpself>back to main</a><br />";
-        print "<h2>Updating thumbnails and/or resized images, please wait...</h2>";
+        print '<a href="' . $phpself . '">' . $lang_util_php['back'] . '</a><br />';
+        print '<h2>' . $lang_util_php['thumbs_wait'] . '</h2>';
 
         updatethumbs();
 
-        echo "<br /><a href=$phpself>back to menu</a>";
+        echo '<br /><a href="' . $phpself . '">' . $lang_util_php['back'] . '</a>';
 
 } else if ( $action=='continuethumbs' ) {
-        print "<a href=$phpself>back to menu</a><br />";
-        print "<h2>Continuing to update thumbnails and/or resized images...</h2>";
+        print '<a href="' . $phpself . '">' . $lang_util_php['back'] . '</a><br />';
+        print '<h2>' . $lang_util_php['thumbs_continue_wait'] . '</h2>';
 
         updatethumbs();
 
-        echo "<br /><a href=$phpself>back to menu</a>";
+        echo '<br /><a href="' . $phpself . '">' . $lang_util_php['back'] . '</a>';
 
 } else if ( $action=='title' ) {
-        print "<a href=$phpself>back to menu</a><br />";
-        print "<h2>Updating titles, please wait...</h2>";
+        echo '<a href="' . $phpself . '">' . $lang_util_php['back'] . '</a><br />';
+        print '<h2>' . $lang_util_php['titles_wait'] . '</h2>';
 
         filenametotitle(0);
 
-        echo "<br /><a href=$phpself >back to menu</a>";
+        echo '<br /><a href="' . $phpself . '">' . $lang_util_php['back'] . '</a>';
 
 } else if ( $action=='deltit' ) {
-        print "<a href=$phpself>back to menu</a><br />";
-        print "<h2>Deleting titles, please wait...</h2>";
+        print '<a href="' . $phpself . '">' . $lang_util_php['back'] . '</a><br />';
+        print '<h2>' . $lang_util_php['delete_wait'] . '</h2>';
 
         filenametotitle(1);
 
-        echo "<br /><a href=$phpself >back to menu</a>";
+        echo '<br /><a href="' . $phpself . '">' . $lang_util_php['back'] . '</a>';
 
 } else if ( $action=='delnorm') {
-        print "<a href=$phpself>back to menu</a><br />";
-        print "<h2>Deleting originals and replasing them with sized images, please wait...</h2>";
+        print '<a href="' . $phpself . '">' . $lang_util_php['back'] . '</a><br />';
+        print '<h2>' . $lang_util_php['replace_wait'] . '</h2>';
 
         deleteorig();
 
-        echo "<br /><a href=$phpself >back to menu</a>";
+        echo '<br /><a href="' . $phpself . '">' . $lang_util_php['back'] . '</a>';
 
 } else {
-        ?>
-        <table align=center border=0><td>
-        Quick instructions:<br />
-        1) Select action<br />
-        2) Set parameters<br />
-        3) Select album<br />
-        4) Press GO<br /></td>
-        </table>
-        <table border=1 align=center>
-        <tr><td>
-        <form action=<?php echo $phpself; ?> method="post">
-        <h2><input type="radio" name="action" checked="checked" value="thumbs" id="thumbs" class="nobg" />Update <label for="thumbs" accesskey="t" class="labelradio"><span class="accesskey">T</span>humbs and/or resized photos</label></h2>
-        What should be updated:<br />
-        <input type="radio" name="updatetype" value="0" id="thumb" class="nobg" /><label for="thumb" accesskey="t" class="labelradio">Only <span class="accesskey">t</span>humbnails</label><br />
-        <input type="radio" name="updatetype" value="1" id="resized" class="nobg" /><label for="resized" accesskey="r" class="labelradio">Only <span class="accesskey">r</span>esized pictures </label><br />
-        <input type="radio" name="updatetype" value="2" checked="checked" id="all" class="nobg" /><label for="all" accesskey="a" class="labelradio">Both thumbnails <span class="accesskey">a</span>nd resized pictures</label><br />
-        Number of processed images pr. click
-        <input type="text" name="numpics" value="<?php echo $defpicnum;?>" size="5" /><br />
-        (Try setting this option lower if you experience timeout problems)<br /><br />
-        </td></tr>
 
-        <tr><td>
-        <h2><input type="radio" name="action" value="title" id="title" class="nobg" /><label for="title" accesskey="F" class="labelradio"><span class="accesskey">F</span>ilename -> Picture title</label></h2>
-        How should the filename be parsed:<br />
-        <input type="radio" name="parsemode" checked="checked" value="0" id="remove" class="nobg" /><label for="remove" accesskey="s" class="labelradio">Remove the .jpg ending and replaces _ with spaces</label><br />
-        <input type="radio" name="parsemode" value="1" id="euro" class="nobg" /><label for="euro" accesskey="e" class="labelradio">Parse 2003_11_23_13_20_20.jpg to 23/11/2003 13:20</label><br />
-        <input type="radio" name="parsemode" value="2" id="us" class="nobg" /><label for="us" accesskey="u" class="labelradio">Parse 2003_11_23_13_20_20.jpg to 11/23/2003 13:20</label><br />
-        <input type="radio" name="parsemode" value="3" id="hour" class="nobg" /><label for="hour" accesskey="h" class="labelradio">Parse 2003_11_23_13_20_20.jpg to 13:20</label><br /><br />
-        </td></tr>
+starttable();
 
-        <tr><td>
-        <h2><input type="radio" name="action" value="deltit" id="deltit" class="nobg" /><label for="deltit" accesskey="D" class="labelradio"><span class="accesskey">D</span>elete picture titles</label><br /></h2><br />
-        </td></tr>
+print '<tr><td>';
+starttable('100%', $lang_util_php['title'] . ' (util.mod)',2);
+print '<tr><td><b>';
+print $lang_util_php['what_it_does'] . '</b>:
+<ul style="margin-top:0px;margin-bottom:0px;list-style-type:square">
+<li>' . $lang_util_php['what_update_titles'] . '</li>
+<li>' . $lang_util_php['what_delete_title'] . '</li>
+<li>' . $lang_util_php['what_rebuild'] . '</li>
+<li>' . $lang_util_php['what_delete_originals'] . '</li>
+</ul></td>
+<td><b>
+' . $lang_util_php['instruction'] . '</b>:
+<ol style="margin-top:0px;margin-bottom:0px;list-style-type:decimal">
+<li>' . $lang_util_php['instruction_action'] . '</li>
+<li>' . $lang_util_php['instruction_parameter'] . '</li>
+<li>' . $lang_util_php['instruction_album'] . '</li>
+<li>';
+printf($lang_util_php['instruction_press'],$lang_util_php['submit']);
+print '</li>
+</ol>';
 
-        <tr><td>
-        <h2><input type="radio" name="action" value="delnorm" id="delnorm" class="nobg" />D<label for="delnorm" accesskey="e" class="labelradio"><span class="accesskey">e</span>lete original size photos</label><br /></h2>
-        <tab>Deletes the original images replacing them with the sized versions<br />
-        </td></tr>
+print '</td></tr>';
+endtable();
+print '<br />
+<form action="' . $phpself . '" method="post">
+';
 
-        <tr><td>
-        <h2>Select album</h2>
-        <?php filloptions(); ?>
-        </td></tr>
-        </table>
-<?php
+starttable('100%', '<input type="radio" name="action" checked="checked" value="thumbs" id="thumbs" class="nobg" /><label for="thumbs" accesskey="t" class="labelradio">' . $lang_util_php['update'] . '</label>');
+print '
+<tr><td>
+' . $lang_util_php['update_what'] . ':<br />
+<input type="radio" name="updatetype" value="0" id="thumb" class="nobg" /><label for="thumb" accesskey="t" class="labelradio">' . $lang_util_php['update_thumb'] . '</label><br />
+<input type="radio" name="updatetype" value="1" id="resized" class="nobg" /><label for="resized" accesskey="r" class="labelradio">' . $lang_util_php['update_pic'] . '</label><br />
+<input type="radio" name="updatetype" value="2" checked="checked" id="all" class="nobg" /><label for="all" accesskey="a" class="labelradio">' . $lang_util_php['update_both'] . '</label><br />
+' . $lang_util_php['update_number'] . '
+<input type="text" name="numpics" value="' . $defpicnum . '" size="5" /><br />
+' . $lang_util_php['update_option'] . '<br /><br />
+</td></tr>';
+endtable();
+
+print '<br />';
+
+starttable('100%', '<input type="radio" name="action" value="title" id="title" class="nobg" /><label for="title" accesskey="F" class="labelradio">' . $lang_util_php['filename_title'] . '</label>');
+print '
+<tr><td>
+' . $lang_util_php['filename_how'] . ':<br />
+<input type="radio" name="parsemode" checked="checked" value="0" id="remove" class="nobg" /><label for="remove" accesskey="s" class="labelradio">' . $lang_util_php['filename_remove'] . '</label><br />
+<input type="radio" name="parsemode" value="1" id="euro" class="nobg" /><label for="euro" accesskey="e" class="labelradio">' . $lang_util_php['filename_euro'] . '</label><br />
+<input type="radio" name="parsemode" value="2" id="us" class="nobg" /><label for="us" accesskey="u" class="labelradio">' . $lang_util_php['filename_us'] . '</label><br />
+<input type="radio" name="parsemode" value="3" id="hour" class="nobg" /><label for="hour" accesskey="h" class="labelradio">' . $lang_util_php['filename_time'] . '</label><br /><br />
+</td></tr>';
+endtable();
+
+print '<br />';
+
+starttable('100%', $lang_util_php['delete']);
+print '
+<tr>
+<td>
+<h2><input type="radio" name="action" value="deltit" id="deltit" class="nobg" /><label for="deltit" accesskey="D" class="labelradio">' . $lang_util_php['delete_title'] . '</label></h2>
+</td>
+</tr>
+<tr><td>
+<h2><input type="radio" name="action" value="delnorm" id="delnorm" class="nobg" /><label for="delnorm" accesskey="e" class="labelradio">' . $lang_util_php['delete_original'] . '</label><br /></h2>
+<tab>' . $lang_util_php['delete_replace'] . '<br />
+</td></tr>
+
+<tr><td>
+<h2>' . $lang_util_php['Select album'] . '</h2>
+';
+
+filloptions();
+print '</td></tr>';
+endtable();
+
 }
 print '</td></tr>';
 endtable();
-echo 'Util.mod 1.3 - Created by David Alberg Holm';
+echo 'Util.mod 1.4 - Created by David Alberg Holm';
 pagefooter();
 ob_end_flush();
 ?>
