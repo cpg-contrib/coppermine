@@ -548,25 +548,25 @@ echo <<<EOT
                         <td width="20%" align="center">
                             <span class="admin_menu">
                                 <input type="checkbox" name="deleteAll" onclick="selectAll(this,'delete');" class="checkbox" id="deleteAll" />
-                                <label for="deleteAll" class="clickable_option">{$lang_editpics_php['del_pic']}</label>
+                                <label for="deleteAll" class="clickable_option">{$lang_editpics_php['del_all']}</label>
                             </span>
                         </td>
                         <td width="20%" align="center">
                             <span class="admin_menu">
                                 <input type="checkbox" name="reset_vcountAll" onclick="selectAll(this,'reset_vcount');" class="checkbox" id="reset_vcountAll" />
-                                <label for="reset_vcountAll" class="clickable_option">{$lang_editpics_php['reset_view_count']}</label>
+                                <label for="reset_vcountAll" class="clickable_option">{$lang_editpics_php['reset_all_view_count']}</label>
                             </span>
                         </td>
                         <td width="20%" align="center">
                             <span class="admin_menu">
                                 <input type="checkbox" name="reset_votesAll" onclick="selectAll(this,'reset_votes');" class="checkbox" id="reset_votesAll" />
-                                <label for="reset_votesAll" class="clickable_option">{$lang_editpics_php['reset_votes']}</label>
+                                <label for="reset_votesAll" class="clickable_option">{$lang_editpics_php['reset_all_votes']}</label>
                             </span>
                         </td>
                         <td width="20%" align="center">
                             <span class="admin_menu">
                                 <input type="checkbox" name="del_commentsAll" onclick="selectAll(this,'del_comments');" class="checkbox"reset_votesAll" id="del_commentsAll" />
-                                <label for="del_commentsAll" class="clickable_option">{$lang_editpics_php['del_comm']}</label>
+                                <label for="del_commentsAll" class="clickable_option">{$lang_editpics_php['del_all_comm']}</label>
                             </span>
                         </td>
                     </tr>
