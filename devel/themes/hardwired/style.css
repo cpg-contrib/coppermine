@@ -391,16 +391,16 @@ bblink a:hover {
 
 .footer {
         font-size: 9px;
-        color: #49525D;
+        color: #000000;
 }
 
 .footer a {
         text-decoration: none;
-        color: #49525D;
+        color: #949494;
 }
 
 .footer a:hover {
-        color: #49525D;
+        color: #000000;
         text-decoration: none;
 }
 
