@@ -1,6 +1,6 @@
 <?php 
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.2.1                                            //
+// Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
 // Copyright (C) 2002,2003 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
@@ -13,28 +13,28 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
-
-//    As a special exception, the copyright holders of Coppermine Photo Gallery give you
-//    permission to link Coppermine Photo Gallery with independent modules that communicate with
-//    SimpleMachines Forum solely through this 'bridge file' interface, regardless of the license
-//    terms of these independent modules, and to copy and distribute the
-//    resulting combined work under terms of your choice, provided that
-//    every copy of the combined work is accompanied by a complete copy of
-//    the source code of Coppermine Photo Gallery (the version of Coppermine Photo Gallery used to produce the
-//    combined work), being distributed under the terms of the GNU General
-//    Public License plus this exception.  An independent module is a module
-//    which is not derived from or based on Coppermine Photo Gallery.
-
-//    Note that people who make modified versions of Coppermine Photo Gallery are not obligated
-//    to grant this special exception for their modified versions; it is
-//    their choice whether to do so.  The GNU General Public License gives
-//    permission to release a modified version without this exception; this
-//    exception also makes it possible to release a modified version which
-//    carries forward this exception.
-
 // ------------------------------------------------------------------------- //
-// Simple Machines Forum Integration for Coppermine
-// V0.3Beta
+// As a special exception, the copyright holders of Coppermine Photo Gallery //
+// give you permission to link Coppermine Photo Gallery with independent     //
+// modules that communicate with SimpleMachines Forum solely through this    //
+// 'bridge file' interface, regardless of the license terms of these         //
+// independent modules, and to copy and distribute the resulting combined    //
+// work under terms of your choice, provided that every copy of the combined //
+// work is accompanied by a complete copy of the source code of Coppermine   //
+// Photo Gallery (the version of Coppermine Photo Gallery used to produce    //
+// the combined work), being distributed under the terms of the GNU General  //
+// Public License plus this exception.  An independent module is a module    //
+// which is not derived from or based on Coppermine Photo Gallery.           //
+//                                                                           //
+// Note that people who make modified versions of Coppermine Photo Gallery   //
+// are not obligated to grant this special exception for their modified      //
+// versions; it is their choice whether to do so.  The GNU General Public    //
+// License gives permission to release a modified version without this       //
+// exception; this exception also makes it possible to release a modified    //
+// version which carries forward this exception.                             //
+// ------------------------------------------------------------------------- //
+// Simple Machines Forum Integration for Coppermine                          //
+// V0.4Beta                                                                  //
 
 
 // ------------------------------------------------------------------------- //
@@ -229,11 +229,7 @@ function udb_authenticate()
         define('USER_CAN_CREATE_ALBUMS', 0);
         mysql_free_result($result);
     } else {
-        if ($user_info['is_gmod']) {
-        	$cm_group_id = SMF_GMOD_GROUP;
-        } else if ($user_info['is_admin']) {
-            $cm_group_id = SMF_ADMIN_GROUP;
-	    } else if ($user_settings['ID_GROUP']){
+		if ($user_settings['ID_GROUP']){
         	$cm_group_id = $user_settings['ID_GROUP'];
         }  else if ($user_settings['ID_POST_GROUP'] && defined ('USE_POST_GROUPS')){
         	$cm_group_id = $user_settings['ID_POST_GROUP'];
@@ -246,7 +242,7 @@ function udb_authenticate()
 
         define('USER_ID', $ID_MEMBER);
         define('USER_NAME', $user_info['name']);
-        define('YSE_USER_NAME', $user_info['username']);
+        define('SMF_USER_NAME', $user_info['username']);
         define('USER_GROUP', $USER_DATA['group_name']);
         define('USER_GROUP_SET', '(' . $USER_DATA['group_id'] . ')');
         define('USER_IS_ADMIN', $user_info['is_admin']);
@@ -301,7 +297,7 @@ function udb_logout_page()
 // Edit users
 function udb_edit_users()
 {
-    $target = 'index.php';
+    $target = 'index.php?action=mlist';
     udb_redirect($target);
 } 
 // Get user information
@@ -341,7 +337,7 @@ function udb_get_user_infos($uid)
 // Edit user profile
 function udb_edit_profile($uid)
 {
-    $target = 'index.php?action=profile;user=' . YSE_USER_NAME;
+    $target = 'index.php?action=profile;u=' . USER_ID;
     udb_redirect($target);
 } 
 // Query used to list users
@@ -414,7 +410,7 @@ function udb_synchronize_groups()
     // Scan Board groups that need to be created inside Coppermine table
     foreach($SMF_groups as $i_group_id => $i_group_name) {
         if ((!isset($cpg_groups[$i_group_id]))) {
-            db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} (group_id, group_name) VALUES ('$i_group_id', '" . addslashes($i_group_name) . "')");
+            db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} (group_id, group_name, group_quota) VALUES ('$i_group_id', '" . addslashes($i_group_name) . "', 1)");
             $cpg_groups[$i_group_id] = $i_group_name;
         } 
     } 
