@@ -31,9 +31,6 @@ h1
     padding: 5px;
 }
 
-h2 {
-        font-size: 18px;
-}
 
 p {
         margin: 2px 0px;
@@ -71,7 +68,7 @@ a:hover {
         text-decoration: underline;
 }
 
-.tableh1 {
+.tableh1, h2 {
         background : #0E72A4 ;
         color : #FFFFFF;
         padding-top: 3px;
@@ -87,6 +84,7 @@ a:hover {
         padding-right: 10px;
         padding-bottom: 3px;
         padding-left: 2px;
+        border: 1px black solid;
 }
 
 .tableb {
@@ -95,6 +93,7 @@ a:hover {
         padding-right: 10px;
         padding-bottom: 8px;
         padding-left: 2px;
+        border: 1px black solid;
 }
 
 .updatesOK {
@@ -124,6 +123,12 @@ a:hover {
  .error, .bigwarning {
         color : Red;
         font-weight : bold;
+}
+
+h2.error
+{
+    text-align: center;
+    background-color: #EFEFEF;
 }
 
 img.logo
@@ -165,4 +170,9 @@ p.warning, div.warning
 .done 
 {
     color: green;
+}
+
+.input
+{
+    text-align: center;
 }
