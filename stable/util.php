@@ -222,7 +222,8 @@ function deleteorig()
         $thumb = $CONFIG['fullpath'] . mysql_result($result, $i, "filepath") . $CONFIG['thumb_pfx'] . mysql_result($result, $i, "filename");
 
         if (file_exists($normal)) {
-            $test = rename ($normal, $image);
+			unlink($image);
+			$test = rename($normal, $image);
             if ($test == true) {
                 $imagesize = getimagesize($image);
                 $image_filesize = filesize($image);
@@ -242,7 +243,7 @@ function deleteorig()
                 printf($lang_util_php['main_success'], $normal);
                 print '!<br>';
             } else {
-                printf($lang_util_php['error_rename'], $normal, $thumb);
+                printf($lang_util_php['error_rename'], $normal, $image);
             }
         } else {
             printf($lang_util_php['error_not_found'], $normal);
