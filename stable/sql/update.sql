@@ -74,6 +74,7 @@ ALTER TABLE CPG_comments add msg_hdr_ip tinytext;
 ALTER TABLE CPG_pictures add pic_raw_ip tinytext;
 ALTER TABLE CPG_pictures add pic_hdr_ip tinytext;
 
+
 INSERT INTO CPG_config VALUES ('thumb_use', 'any');
 INSERT INTO CPG_config VALUES ('show_private', '0');
 INSERT INTO CPG_config VALUES ('first_level', '1');
@@ -194,6 +195,11 @@ DELETE FROM `CPG_filetypes` WHERE mime='text/html';
 #
 
 ALTER TABLE `CPG_users` CHANGE user_lang user_group_list varchar(255) NOT NULL default ''; 
+
+#
+# Fix usermgr timing out with 1k+ users -Omni
+#
+ALTER TABLE CPG_pictures ADD INDEX ( `owner_id` )
 
 
 #

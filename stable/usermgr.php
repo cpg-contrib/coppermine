@@ -97,8 +97,14 @@ function list_users()
     $lower_limit = ($page-1) * $user_per_page;
     $total_pages = ceil($user_count / $user_per_page);
 
-$sql = "SELECT user_id, user_name, user_email, UNIX_TIMESTAMP(user_regdate) as user_regdate, UNIX_TIMESTAMP(user_lastvisit) as user_lastvisit, group_name, user_active, " . "COUNT(pid) as pic_count, ROUND(SUM(total_filesize)/1024) as disk_usage, group_quota " . "FROM {$CONFIG['TABLE_USERS']} AS u " . "INNER JOIN {$CONFIG['TABLE_USERGROUPS']} AS g ON user_group = group_id " . "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.owner_id = u.user_id " . "GROUP BY user_id " . "ORDER BY " . $sort_codes[$sort] . " " . "LIMIT $lower_limit, $user_per_page";
-
+    $sql = "SELECT user_id, user_name, UNIX_TIMESTAMP(user_regdate) as user_regdate, UNIX_TIMESTAMP(user_lastvisit) as user_lastvisit, user_active, ".
+           "COUNT(pid) as pic_count, ROUND(SUM(total_filesize)/1024) as disk_usage, group_name, group_quota ".
+           "FROM {$CONFIG['TABLE_USERS']} AS u ".
+           "INNER JOIN {$CONFIG['TABLE_USERGROUPS']} AS g ON user_group = group_id ".
+           "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.owner_id = u.user_id ".
+           "GROUP BY user_id ".
+           "ORDER BY " . $sort_codes[$sort] . " ".
+           "LIMIT $lower_limit, $user_per_page;";
 
     $result = db_query($sql);
 
