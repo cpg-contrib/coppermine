@@ -57,13 +57,20 @@ function show_memberlist()
 function list_group_alb_access($group_id) {  //shows a list of albums a specific group can see. Categories are listed with albums for clarity
     global $CONFIG, $group_id, $aid;
 		
-$query = "
-		SELECT group_id, albums.aid AS aid, group_name, categories.name AS category, albums.title AS album
-		FROM {$CONFIG['TABLE_USERGROUPS']} AS groups, {$CONFIG['TABLE_ALBUMS']} AS albums
-		LEFT JOIN {$CONFIG['TABLE_CATEGORIES']} AS categories
-		ON albums.category = categories.cid
-		WHERE group_id = $group_id AND albums.visibility = groups.group_id
-		ORDER BY category, album";
+		$query = "
+			SELECT 
+        group_id, albums.aid AS aid, group_name, categories.name AS category, albums.title AS album 
+			FROM 
+        {$CONFIG['TABLE_USERGROUPS']} AS groups, 
+        {$CONFIG['TABLE_ALBUMS']} AS albums 
+      LEFT JOIN 
+        {$CONFIG['TABLE_CATEGORIES']} AS categories 
+      ON 
+        albums.category = categories.cid
+			WHERE 
+        group_id = $group_id AND albums.visibility = groups.group_id 
+			ORDER BY 
+        category, album";
 		$result = cpg_db_query($query);
 		$albs = cpg_db_fetch_rowset($result);
 		mysql_free_result($result);
