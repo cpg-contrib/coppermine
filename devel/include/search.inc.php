@@ -145,7 +145,7 @@ if (defined('USE_MYSQL_SEARCH') && $query_all) {
 
                 $sql = "SELECT pid " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE CONCAT(' ', keywords, ' ') LIKE '$match_keyword' ";
 
-                if ($query_all) $sql .= "OR filename LIKE '$match_word' " . "OR title LIKE '$match_word' " . "OR caption LIKE '$match_word' " . "OR user1 LIKE '$match_word' " . "OR user2 LIKE '$match_word' " . "OR user3 LIKE '$match_word' " . "OR user4 LIKE '$match_word' ORDER BY $sort_order";
+                if ($query_all) $sql .= "OR filename LIKE '$match_word' " . "OR title LIKE '$match_word' " . "OR caption LIKE '$match_word' " . "OR user1 LIKE '$match_word' " . "OR user2 LIKE '$match_word' " . "OR user3 LIKE '$match_word' " . "OR user4 LIKE '$match_word' OR owner_name LIKE '$match_word' ORDER BY $sort_order";
 
                 $result = cpg_db_query($sql);
 
