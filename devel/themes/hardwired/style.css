@@ -585,6 +585,12 @@ td #admin_menu_anim {
         font-size:20px;
 }
 
+.gal_description
+{
+        color:#4C5157;
+        font-size:10px;
+}
+
 .debug_text {
         border: #BDBEBD;
         background-color: #EFEFEF;
