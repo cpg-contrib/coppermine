@@ -155,7 +155,7 @@ CREATE TABLE CPG_users (
   user_password varchar(25) NOT NULL default '',
   user_lastvisit datetime NOT NULL default '0000-00-00 00:00:00',
   user_regdate datetime NOT NULL default '0000-00-00 00:00:00',
-  user_lang varchar(255) NOT NULL default '',
+  user_group_list varchar(255) NOT NULL default '',
   user_email varchar(255) NOT NULL default '',
   user_website varchar(255) NOT NULL default '',
   user_location varchar(255) NOT NULL default '',

@@ -314,7 +314,7 @@ EOT;
             mysql_free_result($result);
 
             $sel_group = $user_data[$element[1]];
-            $user_group_list = ($user_data['user_lang'] == '') ? ',' . $sel_group . ',' : ',' . $user_data['user_lang'] . ',' . $sel_group . ',';
+            $user_group_list = ($user_data['user_group_list'] == '') ? ',' . $sel_group . ',' : ',' . $user_data['user_group_list'] . ',' . $sel_group . ',';
 
             echo <<<EOT
         <tr>
@@ -405,7 +405,7 @@ function update_user($user_id)
         $user_group_list = '';
     }
 
-    $sql_update = "UPDATE {$CONFIG['TABLE_USERS']} " . "SET " . "user_name           = '$user_name', " . "user_email          = '$user_email', " . "user_active    = '$user_active', " . "user_group           = '$user_group', " . "user_location  = '$user_location', " . "user_interests = '$user_interests', " . "user_website          = '$user_website', " . "user_occupation= '$user_occupation', " . "user_lang      = '$user_group_list'";
+    $sql_update = "UPDATE {$CONFIG['TABLE_USERS']} " . "SET " . "user_name           = '$user_name', " . "user_email          = '$user_email', " . "user_active    = '$user_active', " . "user_group           = '$user_group', " . "user_location  = '$user_location', " . "user_interests = '$user_interests', " . "user_website          = '$user_website', " . "user_occupation= '$user_occupation', " . "user_group_list      = '$user_group_list'";
     if (strlen($user_password)) $sql_update .= ", user_password = '$user_password'";
     $sql_update .= " WHERE user_id = '$user_id'";
 

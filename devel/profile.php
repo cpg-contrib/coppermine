@@ -196,7 +196,7 @@ switch ($op) {
 
         if (defined('UDB_INTEGRATION')) udb_edit_profile(USER_ID);
 
-        $sql = "SELECT user_name, user_email, user_group, UNIX_TIMESTAMP(user_regdate) as user_regdate, group_name, " . "user_location, user_interests, user_website, user_occupation, user_lang as user_group_list, " . "COUNT(pid) as pic_count, ROUND(SUM(total_filesize)/1024) as disk_usage, group_quota " . "FROM {$CONFIG['TABLE_USERS']} AS u " . "INNER JOIN {$CONFIG['TABLE_USERGROUPS']} AS g ON user_group = group_id " . "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.owner_id = u.user_id " . "WHERE user_id ='" . USER_ID . "' " . "GROUP BY user_id ";
+        $sql = "SELECT user_name, user_email, user_group, UNIX_TIMESTAMP(user_regdate) as user_regdate, group_name, " . "user_location, user_interests, user_website, user_occupation, user_group_list, " . "COUNT(pid) as pic_count, ROUND(SUM(total_filesize)/1024) as disk_usage, group_quota " . "FROM {$CONFIG['TABLE_USERS']} AS u " . "INNER JOIN {$CONFIG['TABLE_USERGROUPS']} AS g ON user_group = group_id " . "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.owner_id = u.user_id " . "WHERE user_id ='" . USER_ID . "' " . "GROUP BY user_id ";
 
         $result = db_query($sql);
 

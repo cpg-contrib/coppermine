@@ -270,7 +270,7 @@ if (defined('UDB_INTEGRATION')) {
         //unset($USER_DATA['user_password']);
         $USER_DATA['user_password'] = '********';
 
-		$USER_DATA = $USER_DATA + cpgGetUserData($USER_DATA['user_group'], explode(',', $USER_DATA['user_lang']));
+		$USER_DATA = $USER_DATA + cpgGetUserData($USER_DATA['user_group'], explode(',', $USER_DATA['user_group_list']));
 
         define('USER_ID', (int)$USER_DATA['user_id']);
         define('USER_NAME', $USER_DATA['user_name']);

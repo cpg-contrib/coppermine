@@ -177,3 +177,16 @@ CREATE TABLE IF NOT EXISTS `CPG_temp_data` (
 `timestamp` INT( 11 ) UNSIGNED NOT NULL ,
 PRIMARY KEY ( `unique_ID` )
 ) TYPE = MYISAM COMMENT = 'Holds temporary file data for multiple file uploads';
+
+#
+# Close security hole and re-point default theme in 1.3 - Jack
+#
+
+UPDATE `CPG_config` SET value='classic' WHERE (name='theme' AND value='default');
+DELETE FROM `CPG_filetypes` WHERE mime='text/html';
+
+#
+# Finally remove all user_lang references - Jack
+#
+
+ALTER TABLE `CPG_users` CHANGE user_lang user_group_list varchar(255) NOT NULL default ''; 
