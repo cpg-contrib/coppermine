@@ -105,3 +105,4 @@ Removed 'field1' typo in editOnepics.php, 13th June 2004 casper
 Changed 'cpg130_filetypes' to 'CPG_filetypes' - 14 June 2004, Chris
 Added 'images' folder to 'themes/classic' and inserted Coppermine logo as 'site_logo.png' - 15 June 2004, Chris
 Fixed user album thumb showing only 'nopic.jpg' - 15 June 2004, Chris
+Changed thumb generation in index.php [list_users()] to same as devel branch - 15 June 2004, Chris
