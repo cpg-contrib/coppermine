@@ -18,7 +18,7 @@
 // ------------------------------------------------------------------------- //
 
 // REQUIRES GLOBAL VAR: CONFIG
-// REQUIRES GLOBAL FUNCTION: db_query
+// REQUIRES GLOBAL FUNCTION: cpg_db_query
 
 global $FILE_TYPES;
 
@@ -27,7 +27,7 @@ $content_types_to_vars = array('image'=>'allowed_img_types','audio'=>'allowed_sn
 $CONFIG['allowed_file_extensions'] = '';
 
 if (count($FILE_TYPES)==0) {
-         $result = db_query('SELECT extension, mime, content FROM '.$CONFIG['TABLE_FILETYPES'].';');
+         $result = cpg_db_query('SELECT extension, mime, content FROM '.$CONFIG['TABLE_FILETYPES'].';');
          while ($row = mysql_fetch_array($result)) {
              // Only add types that are in both the database and user defined parameter
         if ($CONFIG[$content_types_to_vars[$row['content']]]=='ALL' || is_int(strpos('/'.$CONFIG[$content_types_to_vars[$row['content']]].'/','/'.$row['extension'].'/')))

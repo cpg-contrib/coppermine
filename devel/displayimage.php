@@ -261,7 +261,7 @@ function html_rating_box()
 function html_picinfo()
 {
     global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $THEME_DIR, $FAVPICS;
-    global $album, $lang_picinfo, $lang_display_image_php, $lang_byte_units;
+    global $album, $lang_picinfo, $lang_display_image_php, $lang_byte_units, $lastup_date_fmt;
 
     if ($CURRENT_PIC_DATA['owner_id'] && $CURRENT_PIC_DATA['owner_name']) {
         $owner_link = '<a href ="profile.php?uid=' . $CURRENT_PIC_DATA['owner_id'] . '">' . $CURRENT_PIC_DATA['owner_name'] . '</a> ';
@@ -309,6 +309,7 @@ function html_picinfo()
 
     $info[$lang_picinfo['File Size']] = ($CURRENT_PIC_DATA['filesize'] > 10240 ? ($CURRENT_PIC_DATA['filesize'] >> 10) . '&nbsp;' . $lang_byte_units[1] : $CURRENT_PIC_DATA['filesize'] . '&nbsp;' . $lang_byte_units[0]);
     $info[$lang_picinfo['File Size']] = '<span dir="ltr">' . $info[$lang_picinfo['File Size']] . '</span>';
+    $info[$lang_picinfo['Date Added']] = localised_date($CURRENT_PIC_DATA['ctime'],$lastup_date_fmt);
     $info[$lang_picinfo['Dimensions']] = sprintf($lang_display_image_php['size'], $CURRENT_PIC_DATA['pwidth'], $CURRENT_PIC_DATA['pheight']);
     $info[$lang_picinfo['Displayed']] = sprintf($lang_display_image_php['views'], $CURRENT_PIC_DATA['hits']);
 
@@ -367,7 +368,7 @@ function html_comments($pid)
     $tmpl_comments_buttons = template_extract_block($template_image_comments, 'buttons', '{BUTTONS}');
     $tmpl_comments_ipinfo = template_extract_block($template_image_comments, 'ipinfo', '{IPINFO}');
 
-    $result = db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid' ORDER BY msg_id ASC");
+    $result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid' ORDER BY msg_id ASC");
 
     while ($row = mysql_fetch_array($result)) {
         $user_can_edit = (GALLERY_ADMIN_MODE) || (USER_ID && USER_ID == $row['author_id'] && USER_CAN_POST_COMMENTS) || (!USER_ID && USER_CAN_POST_COMMENTS && ($USER['ID'] == $row['author_md5_id']));
@@ -474,7 +475,7 @@ adjust_popup();
     } elseif (isset($HTTP_GET_VARS['pid'])) {
         $pid = (int)$HTTP_GET_VARS['pid'];
         $sql = "SELECT * " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='$pid' $ALBUM_SET";
-        $result = db_query($sql);
+        $result = cpg_db_query($sql);
 
         if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
 
@@ -535,11 +536,11 @@ function get_subcat_data($parent, $level)
 {
     global $CONFIG, $ALBUM_SET_ARRAY;
 
-    $result = db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent'");
+    $result = cpg_db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent'");
     if (mysql_num_rows($result) > 0) {
-        $rowset = db_fetch_rowset($result);
+        $rowset = cpg_db_fetch_rowset($result);
         foreach ($rowset as $subcat) {
-            $result = db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = {$subcat['cid']}");
+            $result = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = {$subcat['cid']}");
             $album_count = mysql_num_rows($result);
             while ($row = mysql_fetch_array($result)) {
                 $ALBUM_SET_ARRAY[] = $row['aid'];
@@ -567,7 +568,7 @@ if (!is_numeric($album) && $cat) { // Meta albums, we need to restrict the album
         else
             $where = "category = '$cat'";
 
-        $result = db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE $where");
+        $result = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE $where");
         while ($row = mysql_fetch_array($result)) {
             $ALBUM_SET_ARRAY[] = $row['aid'];
         } // while
@@ -583,7 +584,7 @@ if (!is_numeric($album) && $cat) { // Meta albums, we need to restrict the album
 // Retrieve data for the current picture
 if ($pos < 0) {
     $pid = - $pos;
-    $result = db_query("SELECT aid from {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' $ALBUM_SET LIMIT 1");
+    $result = cpg_db_query("SELECT aid from {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' $ALBUM_SET LIMIT 1");
     if (mysql_num_rows($result) == 0) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
     $row = mysql_fetch_array($result);
     $album = $row['aid'];
@@ -604,7 +605,7 @@ if ($pos < 0) {
 }
 // Retrieve data for the current album
 if (isset($CURRENT_PIC_DATA)) {
-    $result = db_query("SELECT title, comments, votes, category, aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='{$CURRENT_PIC_DATA['aid']}' LIMIT 1");
+    $result = cpg_db_query("SELECT title, comments, votes, category, aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='{$CURRENT_PIC_DATA['aid']}' LIMIT 1");
     if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, sprintf($lang_errors['pic_in_invalid_album'], $CURRENT_PIC_DATA['aid']), __FILE__, __LINE__);
     $CURRENT_ALBUM_DATA = mysql_fetch_array($result);
 

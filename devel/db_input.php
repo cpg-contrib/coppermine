@@ -57,16 +57,16 @@ switch ($event) {
         if ($msg_body == '') cpg_die(ERROR, $lang_db_input_php['err_comment_empty'], __FILE__, __LINE__);
 
         if (GALLERY_ADMIN_MODE) {
-            $update = db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body', msg_author='$msg_author' WHERE msg_id='$msg_id'");
+            $update = cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body', msg_author='$msg_author' WHERE msg_id='$msg_id'");
         } elseif (USER_ID) {
-            $update = db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body' WHERE msg_id='$msg_id' AND author_id ='" . USER_ID . "' LIMIT 1");
+            $update = cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body' WHERE msg_id='$msg_id' AND author_id ='" . USER_ID . "' LIMIT 1");
         } else {
-            $update = db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body' WHERE msg_id='$msg_id' AND author_md5_id ='{$USER['ID']}' AND author_id = '0' LIMIT 1");
+            $update = cpg_db_query("UPDATE {$CONFIG['TABLE_COMMENTS']} SET msg_body='$msg_body' WHERE msg_id='$msg_id' AND author_md5_id ='{$USER['ID']}' AND author_id = '0' LIMIT 1");
         }
 
         $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
 
-        $result = db_query("SELECT pid FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id='$msg_id'");
+        $result = cpg_db_query("SELECT pid FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id='$msg_id'");
         if (!mysql_num_rows($result)) {
             mysql_free_result($result);
             $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
@@ -102,7 +102,7 @@ switch ($event) {
 
         if ($msg_author == '' || $msg_body == '') cpg_die(ERROR, $lang_db_input_php['empty_name_or_com'], __FILE__, __LINE__);
 
-        $result = db_query("SELECT comments FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND pid='$pid'");
+        $result = cpg_db_query("SELECT comments FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND pid='$pid'");
         if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
         $album_data = mysql_fetch_array($result);
         mysql_free_result($result);
@@ -110,7 +110,7 @@ switch ($event) {
         if ($album_data['comments'] != 'YES') cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
         if (!$CONFIG['disable_comment_flood_protect']){
-          $result = db_query("SELECT author_md5_id, author_id FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid = '$pid' ORDER BY msg_id DESC LIMIT 1");
+          $result = cpg_db_query("SELECT author_md5_id, author_id FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid = '$pid' ORDER BY msg_id DESC LIMIT 1");
           if (mysql_num_rows($result)) {
               $last_com_data = mysql_fetch_array($result);
               if ((USER_ID && $last_com_data['author_id'] == USER_ID) || (!USER_ID && $last_com_data['author_md5_id'] == $USER['ID'])) {
@@ -120,7 +120,7 @@ switch ($event) {
         }
 
         if (!USER_ID) { // Anonymous users, we need to use META refresh to save the cookie
-            $insert = db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip) VALUES ('$pid', '$msg_author', '$msg_body', NOW(), '{$USER['ID']}', '0', '$raw_ip', '$hdr_ip')");
+            $insert = cpg_db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip) VALUES ('$pid', '$msg_author', '$msg_body', NOW(), '{$USER['ID']}', '0', '$raw_ip', '$hdr_ip')");
             $USER['name'] = $HTTP_POST_VARS['msg_author'];
             $redirect = "displayimage.php?pos=" . (- $pid);
             if ($CONFIG['email_comment_notification']) {
@@ -133,7 +133,7 @@ switch ($event) {
             ob_end_flush();
             exit;
         } else { // Registered users, we can use Location to redirect
-            $insert = db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip) VALUES ('$pid', '" . addslashes(USER_NAME) . "', '$msg_body', NOW(), '', '" . USER_ID . "', '$raw_ip', '$hdr_ip')");
+            $insert = cpg_db_query("INSERT INTO {$CONFIG['TABLE_COMMENTS']} (pid, msg_author, msg_body, msg_date, author_md5_id, author_id, msg_raw_ip, msg_hdr_ip) VALUES ('$pid', '" . addslashes(USER_NAME) . "', '$msg_body', NOW(), '', '" . USER_ID . "', '$raw_ip', '$hdr_ip')");
             $redirect = "displayimage.php?pos=" . (- $pid);
             if ($CONFIG['email_comment_notification']) {
                 $mail_body = $msg_body . "\n\r ".$lang_db_input_php['email_comment_body'] . " " . $CONFIG['ecards_more_pic_target'] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') . $redirect;
@@ -177,7 +177,7 @@ switch ($event) {
             $query = "UPDATE {$CONFIG['TABLE_ALBUMS']} SET title='$title', description='$description', thumb='$thumb',  comments='$comments', votes='$votes', visibility='$visibility', alb_password='$password', alb_password_hint='$password_hint',keyword='$keyword' WHERE aid='$aid' AND category='$category' LIMIT 1";
         }
 
-        $update = db_query($query);
+        $update = cpg_db_query($query);
         if (isset($CONFIG['debug_mode']) && ($CONFIG['debug_mode'] == 1)) {
             $queries[] = $query;
         }
@@ -206,7 +206,7 @@ switch ($event) {
 
         if ($reset_views) { // if reset_views start
             $query = "UPDATE {$CONFIG['TABLE_PICTURES']} SET hits='0' WHERE aid='$aid'";
-                $update = db_query($query);
+                $update = cpg_db_query($query);
             if (isset($CONFIG['debug_mode']) && ($CONFIG['debug_mode'] == 1)) {
                 $queries[] = $query;
             }
@@ -217,7 +217,7 @@ switch ($event) {
 
         if ($reset_rating) { // if reset_rating start
             $query = "UPDATE {$CONFIG['TABLE_PICTURES']} SET  pic_rating='0',  votes='0' WHERE aid='$aid'";
-                $update = db_query($query);
+                $update = cpg_db_query($query);
             if (isset($CONFIG['debug_mode']) && ($CONFIG['debug_mode'] == 1)) {
                 $queries[] = $query;
             }
@@ -228,7 +228,7 @@ switch ($event) {
 
         if ($delete_files) { // if delete_files start
             $query = "DELETE FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$aid'";
-                $update = db_query($query);
+                $update = cpg_db_query($query);
             if (isset($CONFIG['debug_mode']) && ($CONFIG['debug_mode'] == 1)) {
                 $queries[] = $query;
             }
@@ -264,13 +264,13 @@ switch ($event) {
         $user4 = addslashes($HTTP_POST_VARS['user4']);
         // Check if the album id provided is valid
         if (!GALLERY_ADMIN_MODE) {
-            $result = db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album' and (uploads = 'YES' OR category = '" . (USER_ID + FIRST_USER_CAT) . "')");
+            $result = cpg_db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album' and (uploads = 'YES' OR category = '" . (USER_ID + FIRST_USER_CAT) . "')");
             if (mysql_num_rows($result) == 0)cpg_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
             $row = mysql_fetch_array($result);
             mysql_free_result($result);
             $category = $row['category'];
         } else {
-            $result = db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
+            $result = cpg_db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
             if (mysql_num_rows($result) == 0)cpg_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
             $row = mysql_fetch_array($result);
             mysql_free_result($result);

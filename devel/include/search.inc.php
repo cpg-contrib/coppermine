@@ -81,7 +81,7 @@ if (defined('USE_MYSQL_SEARCH') && $query_all) {
         $boolean_mode = '';
     }
 
-    $result = db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE MATCH(filename, title, caption, keywords) AGAINST ('$search_string' $boolean_mode) AND approved = 'YES' $ALBUM_SET");
+    $result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE MATCH(filename, title, caption, keywords) AGAINST ('$search_string' $boolean_mode) AND approved = 'YES' $ALBUM_SET");
 
     $nbEnr = mysql_fetch_array($result);
 
@@ -91,9 +91,9 @@ if (defined('USE_MYSQL_SEARCH') && $query_all) {
 
     if ($select_columns != '*') $select_columns .= ', title, caption';
 
-    $result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE MATCH(filename, title, caption, keywords) AGAINST ('$search_string' $boolean_mode) AND approved = 'YES' $ALBUM_SET ORDER BY $sort_order $limit");
+    $result = cpg_db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE MATCH(filename, title, caption, keywords) AGAINST ('$search_string' $boolean_mode) AND approved = 'YES' $ALBUM_SET ORDER BY $sort_order $limit");
 
-    $rowset = db_fetch_rowset($result);
+    $rowset = cpg_db_fetch_rowset($result);
 
     mysql_free_result($result);
 
@@ -147,7 +147,7 @@ if (defined('USE_MYSQL_SEARCH') && $query_all) {
 
                 if ($query_all) $sql .= "OR filename LIKE '$match_word' " . "OR title LIKE '$match_word' " . "OR caption LIKE '$match_word' " . "OR user1 LIKE '$match_word' " . "OR user2 LIKE '$match_word' " . "OR user3 LIKE '$match_word' " . "OR user4 LIKE '$match_word' ORDER BY $sort_order";
 
-                $result = db_query($sql);
+                $result = cpg_db_query($sql);
 
                 $set = '';
 
@@ -181,7 +181,7 @@ if (defined('USE_MYSQL_SEARCH') && $query_all) {
     if (!empty($pic_set)) {
         $sql = "SELECT COUNT(*) " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE ($pic_set) " . "AND approved = 'YES' " . "$ALBUM_SET";
 
-        $result = db_query($sql);
+        $result = cpg_db_query($sql);
 
         $nbEnr = mysql_fetch_array($result);
 
@@ -193,9 +193,9 @@ if (defined('USE_MYSQL_SEARCH') && $query_all) {
 
         $sql = "SELECT $select_columns " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE ($pic_set) " . "AND approved = 'YES' " . "$ALBUM_SET ORDER BY $sort_order $limit";
 
-        $result = db_query($sql);
+        $result = cpg_db_query($sql);
 
-        $rowset = db_fetch_rowset($result);
+        $rowset = cpg_db_fetch_rowset($result);
 
         mysql_free_result($result);
 

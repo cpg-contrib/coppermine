@@ -47,7 +47,7 @@ function exif_parse_file($filename)
         $sql = "SELECT * FROM {$CONFIG['TABLE_EXIF']} ".
                   "WHERE filename = \"$filename\"";
 
-        $result = db_query($sql);
+        $result = cpg_db_query($sql);
 
         if (mysql_num_rows($result) > 0){
                 $row = mysql_fetch_array($result);
@@ -60,7 +60,7 @@ function exif_parse_file($filename)
           $sql = "INSERT INTO {$CONFIG['TABLE_EXIF']} ".
                     "VALUES ('$filename', '".addslashes(serialize($exifRawData))."')";
 
-          $result = db_query($sql);
+          $result = cpg_db_query($sql);
         }
 
         $exif = array();

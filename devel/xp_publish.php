@@ -188,9 +188,9 @@ function get_subcat_data($parent, $ident = '')
 {
     global $CONFIG, $CAT_LIST;
 
-    $result = db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent' AND cid != 1 ORDER BY pos");
+    $result = cpg_db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent' AND cid != 1 ORDER BY pos");
     if (mysql_num_rows($result) > 0) {
-        $rowset = db_fetch_rowset($result);
+        $rowset = cpg_db_fetch_rowset($result);
         foreach ($rowset as $subcat) {
             $CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
             get_subcat_data($subcat['cid'], $ident . '&nbsp;&nbsp;&nbsp;');
@@ -204,9 +204,9 @@ function html_album_list(&$alb_count)
     global $CONFIG;
 
     if (USER_IS_ADMIN) {
-        $public_albums = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
+        $public_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
         if (mysql_num_rows($public_albums)) {
-            $public_albums_list = db_fetch_rowset($public_albums);
+            $public_albums_list = cpg_db_fetch_rowset($public_albums);
         } else {
             $public_albums_list = array();
         }
@@ -215,9 +215,9 @@ function html_album_list(&$alb_count)
     }
 
     if (USER_ID) {
-        $user_albums = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' ORDER BY title");
+        $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' ORDER BY title");
         if (mysql_num_rows($user_albums)) {
-            $user_albums_list = db_fetch_rowset($user_albums);
+            $user_albums_list = cpg_db_fetch_rowset($user_albums);
         } else {
             $user_albums_list = array();
         }
@@ -621,7 +621,7 @@ function process_login()
     global $template_login_success, $template_login_failure;
     global $lang_login_php;
 
-    $results = db_query("SELECT user_id, user_name, user_password FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '" . addslashes($HTTP_POST_VARS['username']) . "' AND BINARY user_password = '" . addslashes($HTTP_POST_VARS['password']) . "' AND user_active = 'YES'");
+    $results = cpg_db_query("SELECT user_id, user_name, user_password FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '" . addslashes($HTTP_POST_VARS['username']) . "' AND BINARY user_password = '" . addslashes($HTTP_POST_VARS['password']) . "' AND user_active = 'YES'");
     if (mysql_num_rows($results)) {
         $USER_DATA = mysql_fetch_array($results);
 
@@ -731,7 +731,7 @@ function create_album()
     }
 
     $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos) VALUES ('$category', '" . addslashes($HTTP_POST_VARS['new_alb_name']) . "', 'NO',  '0')";
-    db_query($query);
+    cpg_db_query($query);
 
     $params = array('{NEW_ALB_CREATED}' => sprintf($lang_xp_publish_php['new_alb_created'], $HTTP_POST_VARS['new_alb_name']),
         '{CONTINUE}' => $lang_xp_publish_php['continue'],
@@ -766,13 +766,13 @@ function process_picture()
     $position = 0;
     // Check if the album id provided is valid
     if (!USER_IS_ADMIN) {
-        $result = db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album' and category = '" . (USER_ID + FIRST_USER_CAT) . "'");
+        $result = cpg_db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album' and category = '" . (USER_ID + FIRST_USER_CAT) . "'");
         if (mysql_num_rows($result) == 0) simple_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
         $row = mysql_fetch_array($result);
         mysql_free_result($result);
         $category = $row['category'];
     } else {
-        $result = db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
+        $result = cpg_db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
         if (mysql_num_rows($result) == 0) simple_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
         $row = mysql_fetch_array($result);
         mysql_free_result($result);
@@ -780,7 +780,7 @@ function process_picture()
     }
 
      // Get position
-     $result = db_query("SELECT position FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' order by position desc");
+     $result = cpg_db_query("SELECT position FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' order by position desc");
      if (mysql_num_rows($result) == 0) {
              $position = 100;
      } else {

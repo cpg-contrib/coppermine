@@ -29,7 +29,7 @@ if (USER_ID) cpg_die(ERROR, $lang_forgot_passwd_php['err_already_logged_in'], __
 $lookup_failed = '';
 
 if ($_POST['username']) {
-    $results = db_query("SELECT user_group,user_active,user_name, user_password, user_email  FROM {$CONFIG['TABLE_USERS']} WHERE (user_name = '" . addslashes($HTTP_POST_VARS['username']) . "' OR  user_email = '" . addslashes($HTTP_POST_VARS['username']) . "') AND user_active = 'YES'");
+    $results = cpg_db_query("SELECT user_group,user_active,user_name, user_password, user_email  FROM {$CONFIG['TABLE_USERS']} WHERE (user_name = '" . addslashes($HTTP_POST_VARS['username']) . "' OR  user_email = '" . addslashes($HTTP_POST_VARS['username']) . "') AND user_active = 'YES'");
     if (mysql_num_rows($results))
         { // something has been found start
         $USER_DATA = mysql_fetch_array($results);

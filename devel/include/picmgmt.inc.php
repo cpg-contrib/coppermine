@@ -52,7 +52,7 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
 
     // Test if disk quota exceeded
     if (!GALLERY_ADMIN_MODE && $USER_DATA['group_quota']) {
-        $result = db_query("SELECT sum(total_filesize) FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE  {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND category = '" . (FIRST_USER_CAT + USER_ID) . "'");
+        $result = cpg_db_query("SELECT sum(total_filesize) FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE  {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND category = '" . (FIRST_USER_CAT + USER_ID) . "'");
         $record = mysql_fetch_array($result);
         $total_space_used = $record[0];
         mysql_free_result($result);
@@ -83,7 +83,7 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
     $user_id = USER_ID;
     $username= USER_NAME;
     $query = "INSERT INTO {$CONFIG['TABLE_PICTURES']} (pid, aid, filepath, filename, filesize, total_filesize, pwidth, pheight, ctime, owner_id, owner_name, title, caption, keywords, approved, user1, user2, user3, user4, pic_raw_ip, pic_hdr_ip, position) VALUES ('', '$aid', '" . addslashes($filepath) . "', '" . addslashes($filename) . "', '$image_filesize', '$total_filesize', '{$imagesize[0]}', '{$imagesize[1]}', '" . time() . "', '$user_id', '$username','$title', '$caption', '$keywords', '$approved', '$user1', '$user2', '$user3', '$user4', '$raw_ip', '$hdr_ip', '$position')";
-    $result = db_query($query);
+    $result = cpg_db_query($query);
 
     return $result;
 }

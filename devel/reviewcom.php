@@ -31,11 +31,11 @@ if (isset($HTTP_POST_VARS['cid_array'])) {
     $cid_set .= ($cid_set == '') ? '(' . $cid : ', ' . $cid;
     $cid_set .= ')';
 
-    db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id IN $cid_set");
+    cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id IN $cid_set");
     $nb_com_del = mysql_affected_rows();
 }
 
-$result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_COMMENTS']} WHERE 1");
+$result = cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_COMMENTS']} WHERE 1");
 $nbEnr = mysql_fetch_array($result);
 $comment_count = $nbEnr[0];
 
@@ -97,7 +97,7 @@ echo <<<EOT
 
 EOT;
 
-$result = db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, {$CONFIG['TABLE_COMMENTS']}.pid as pid, aid, filepath, filename, url_prefix, pwidth, pheight FROM {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']} WHERE {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid ORDER BY msg_id DESC LIMIT $start, $count");
+$result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, {$CONFIG['TABLE_COMMENTS']}.pid as pid, aid, filepath, filename, url_prefix, pwidth, pheight FROM {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']} WHERE {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid ORDER BY msg_id DESC LIMIT $start, $count");
 
 while ($row = mysql_fetch_array($result)) {
     $thumb_url =  get_pic_url($row, 'thumb');

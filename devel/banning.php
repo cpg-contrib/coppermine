@@ -46,7 +46,7 @@ function create_banlist()
 {
     global $CONFIG, $PHP_SELF, $lang_banning_php, $album_date_fmt;
 
-    $result = db_query ("SELECT * FROM {$CONFIG['TABLE_BANNED']} WHERE brute_force=0");
+    $result = cpg_db_query ("SELECT * FROM {$CONFIG['TABLE_BANNED']} WHERE brute_force=0");
     $count = mysql_num_rows($result);
     if ($count > 0) {
         echo <<<EOHEAD
@@ -171,7 +171,7 @@ if ($ban_expires == '\' 00:00:00\'') {
           cpg_die(CRITICAL_ERROR, $lang_banning_php['error_specify'], __FILE__, __LINE__);
           }
         if ($ban_uid || $ban_ip_addr) {
-            db_query("INSERT INTO {$CONFIG['TABLE_BANNED']} (user_id, ip_addr, expiry) VALUES ($ban_uid, $ban_ip_addr, $ban_expires)");
+            cpg_db_query("INSERT INTO {$CONFIG['TABLE_BANNED']} (user_id, ip_addr, expiry) VALUES ($ban_uid, $ban_ip_addr, $ban_expires)");
         } else {
             cpg_die(CRITICAL_ERROR, $lang_banning_php['error_specify'], __FILE__, __LINE__);
         }
@@ -179,7 +179,7 @@ if ($ban_expires == '\' 00:00:00\'') {
         if (isset($HTTP_POST_VARS['ban_id'])) {
             $ban_id = (int)$HTTP_POST_VARS['ban_id'];
             if ($ban_id) {
-                db_query("DELETE FROM {$CONFIG['TABLE_BANNED']} WHERE ban_id=$ban_id");
+                cpg_db_query("DELETE FROM {$CONFIG['TABLE_BANNED']} WHERE ban_id=$ban_id");
             } else {
                 cpg_die(CRITICAL_ERROR, $lang_banning_php['error_ban_id'], __FILE__, __LINE__);
             }
@@ -225,7 +225,7 @@ if ($ban_expires == '\' 00:00:00\'') {
                 if ((int)$ban_expires < 0) $ban_expires = 'NULL';
 
                 if ($ban_uid || $ban_ip_addr) {
-                    db_query("UPDATE {$CONFIG['TABLE_BANNED']} SET user_id=$ban_uid, ip_addr=$ban_ip_addr, expiry=$ban_expires where ban_id=$ban_id");
+                    cpg_db_query("UPDATE {$CONFIG['TABLE_BANNED']} SET user_id=$ban_uid, ip_addr=$ban_ip_addr, expiry=$ban_expires where ban_id=$ban_id");
                 } else {
                     cpg_die(CRITICAL_ERROR, $lang_banning_php['error_specify'], __FILE__, __LINE__);
                 }

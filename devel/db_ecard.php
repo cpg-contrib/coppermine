@@ -42,7 +42,7 @@ if (isset($_REQUEST['eid'])) {
     //print $key;
     //print "<br>";
     $query = "DELETE FROM {$CONFIG['TABLE_ECARDS']} WHERE eid='$key'";
-    $result = db_query($query);
+    $result = cpg_db_query($query);
     }
 }
 
@@ -106,11 +106,11 @@ switch ($sort) {
 if ($sortDirection == 'ASC'){$sortDirectionText = $lang_db_ecard_php['ecard_ascending'];}
 
 // determine the total number of entries
-$result = db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_ECARDS']}");
+$result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_ECARDS']}");
 if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['ecards_empty'], __FILE__, __LINE__, false);
 $totalEcards = mysql_fetch_array($result);
 $totalEcards = $totalEcards[0];
-$result = db_query("SELECT eid, sender_name, sender_email, recipient_name, recipient_email, link, date, sender_ip FROM {$CONFIG['TABLE_ECARDS']} ORDER BY $sortBy $sortDirection LIMIT $startFrom,$countTo");
+$result = cpg_db_query("SELECT eid, sender_name, sender_email, recipient_name, recipient_email, link, date, sender_ip FROM {$CONFIG['TABLE_ECARDS']} ORDER BY $sortBy $sortDirection LIMIT $startFrom,$countTo");
 if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['ecards_empty'], __FILE__, __LINE__, false);
 
 pageheader($lang_db_ecard_php['title']);

@@ -44,7 +44,7 @@ else {
 
 function show_memberlist()
 {
-        db_query("DELETE FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '' LIMIT 1");
+        cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '' LIMIT 1");
         pageheader($lang_usermgr_php['title']);
         list_users();
         pagefooter();
@@ -83,7 +83,7 @@ function list_users($search = '')
         'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="' . $PHP_SELF . '?page=%d&sort=' . $sort . '"<b>%d</b></a></td>' . "\n"
         );
 
-    $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_USERS']} WHERE 1");
+    $result = cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_USERS']} WHERE 1");
     $nbEnr = mysql_fetch_array($result);
     $user_count = $nbEnr[0];
     mysql_free_result($result);
@@ -104,7 +104,7 @@ function list_users($search = '')
            "GROUP BY user_id " . "ORDER BY " . $sort_codes[$sort] . " ".
            "LIMIT $lower_limit, $user_per_page";
 
-    $result = db_query($sql);
+    $result = cpg_db_query($sql);
 
     $tabs = create_tabs($user_count, $page, $total_pages, $tab_tmpl);
 
@@ -254,7 +254,7 @@ function edit_user($user_id)
         );
 
     $sql = "SELECT * FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '$user_id'";
-    $result = db_query($sql);
+    $result = cpg_db_query($sql);
     if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, $lang_usermgr_php['err_unknown_user'], __FILE__, __LINE__);
     $user_data = mysql_fetch_array($result);
     mysql_free_result($result);
@@ -335,8 +335,8 @@ EOT;
 
         case 'group_list' :
             $sql = "SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} ORDER BY group_name";
-            $result = db_query($sql);
-            $group_list = db_fetch_rowset($result);
+            $result = cpg_db_query($sql);
+            $group_list = cpg_db_fetch_rowset($result);
             mysql_free_result($result);
 
             $sel_group = $user_data[$element[1]];
@@ -414,7 +414,7 @@ function update_user($user_id)
     $group_list = isset($HTTP_POST_VARS['group_list']) ? $HTTP_POST_VARS['group_list'] : '';
 
     $sql = "SELECT user_id " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_name = '" . addslashes($user_name) . "' AND user_id != $user_id";
-    $result = db_query($sql);
+    $result = cpg_db_query($sql);
 
     if (mysql_num_rows($result)) {
         cpg_die(ERROR, $lang_register_php['err_user_exists'], __FILE__, __LINE__);
@@ -437,7 +437,7 @@ function update_user($user_id)
     if (strlen($user_password)) $sql_update .= ", user_password = '$user_password'";
     $sql_update .= " WHERE user_id = '$user_id'";
 
-    db_query($sql_update);
+    cpg_db_query($sql_update);
 }
 
 $op = isset($HTTP_GET_VARS['op']) ? $HTTP_GET_VARS['op'] : '';
@@ -459,7 +459,7 @@ switch ($op) {
 
         update_user($user_id);
 
-        db_query("DELETE FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '' LIMIT 1");
+        cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '' LIMIT 1");
 
         pageheader($lang_usermgr_php['title']);
         list_users();
@@ -468,7 +468,7 @@ switch ($op) {
         break;
 
     case 'new_user' :
-        db_query("INSERT INTO {$CONFIG['TABLE_USERS']}(user_regdate, user_active) VALUES (NOW(), 'YES')");
+        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERS']}(user_regdate, user_active) VALUES (NOW(), 'YES')");
 
         $user_id = mysql_insert_id();
 
@@ -479,7 +479,7 @@ switch ($op) {
         break;
 
     default :
-        db_query("DELETE FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '' LIMIT 1");
+        cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '' LIMIT 1");
 
         pageheader($lang_usermgr_php['title']);
         if (isset($_POST['username'])){

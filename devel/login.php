@@ -30,8 +30,8 @@ $login_failed = '';
 $cookie_warning = '';
 
 if (isset($HTTP_POST_VARS['submitted'])) {
-    $results = db_query("SELECT user_id, user_name, user_password FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '" . addslashes($HTTP_POST_VARS['username']) . "' AND BINARY user_password = '" . addslashes($HTTP_POST_VARS['password']) . "' AND user_active = 'YES'");
-    $lastvisit = db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_lastvisit = NOW() WHERE user_name = '" . addslashes($HTTP_POST_VARS['username']) . "' AND BINARY user_password = '" . addslashes($HTTP_POST_VARS['password']) . "' AND user_active = 'YES'");
+    $results = cpg_db_query("SELECT user_id, user_name, user_password FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '" . addslashes($HTTP_POST_VARS['username']) . "' AND BINARY user_password = '" . addslashes($HTTP_POST_VARS['password']) . "' AND user_active = 'YES'");
+    $lastvisit = cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_lastvisit = NOW() WHERE user_name = '" . addslashes($HTTP_POST_VARS['username']) . "' AND BINARY user_password = '" . addslashes($HTTP_POST_VARS['password']) . "' AND user_active = 'YES'");
     if (mysql_num_rows($results)) {
         $USER_DATA = mysql_fetch_array($results);
         if (isset($HTTP_POST_VARS['remember_me'])) {
@@ -59,7 +59,7 @@ if (isset($HTTP_POST_VARS['submitted'])) {
 EOT;
 
 // get IP address of the person who tried to log in, look it up on the banning table and increase the brute force counter. If the brute force counter has reached a critical limit, set a regular banning record
-$result = db_query("SELECT * FROM {$CONFIG['TABLE_BANNED']} WHERE ip_addr='$raw_ip' OR ip_addr='$hdr_ip'");
+$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_BANNED']} WHERE ip_addr='$raw_ip' OR ip_addr='$hdr_ip'");
 $failed_logon_counter = mysql_fetch_array($result);
 mysql_free_result($result);
 $expiry_date = date("Y-m-d H:i:s", mktime(date('H'), date('i')+$CONFIG['login_expiry'], date('s'), date('m'), date('d'),date('Y')));
@@ -72,7 +72,7 @@ if ($failed_logon_counter['brute_force']) {
 }
 
 //write the logon counter to the database
-db_query($query_string);
+cpg_db_query($query_string);
     }
 }
 

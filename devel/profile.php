@@ -190,7 +190,7 @@ if (isset($HTTP_POST_VARS['change_profile']) && USER_ID && !defined('UDB_INTEGRA
 
 
 
-    $result = db_query($sql);
+    $result = cpg_db_query($sql);
 
     $title = sprintf($lang_register_php['x_s_profile'], USER_NAME);
     $redirect = "index.php";
@@ -211,7 +211,7 @@ if (isset($HTTP_POST_VARS['change_password']) && USER_ID && !defined('UDB_INTEGR
 
     $sql = "UPDATE {$CONFIG['TABLE_USERS']} SET " . "user_password = '$new_pass' " . "WHERE user_id = '" . USER_ID . "' AND BINARY user_password = '$current_pass'";
 
-    $result = db_query($sql);
+    $result = cpg_db_query($sql);
     if (!mysql_affected_rows()) cpg_die(ERROR, $lang_register_php['pass_chg_error'], __FILE__, __LINE__);
 
     setcookie($CONFIG['cookie_name'] . '_pass', md5($HTTP_POST_VARS['new_pass']), time() + 86400, $CONFIG['cookie_path']);
@@ -234,7 +234,7 @@ switch ($op) {
 
         $sql = "SELECT user_name, user_email, user_group, UNIX_TIMESTAMP(user_regdate) as user_regdate, group_name, " . "user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6, user_group_list, " . "COUNT(pid) as pic_count, ROUND(SUM(total_filesize)/1024) as disk_usage, group_quota " . "FROM {$CONFIG['TABLE_USERS']} AS u " . "INNER JOIN {$CONFIG['TABLE_USERGROUPS']} AS g ON user_group = group_id " . "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.owner_id = u.user_id " . "WHERE user_id ='" . USER_ID . "' " . "GROUP BY user_id ";
 
-        $result = db_query($sql);
+        $result = cpg_db_query($sql);
 
         if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_register_php['err_unk_user'], __FILE__, __LINE__);
         $user_data = mysql_fetch_array($result);
@@ -243,7 +243,7 @@ switch ($op) {
         $group_list = '';
         if ($user_data['user_group_list'] != '') {
             $sql = "SELECT group_name " . "FROM {$CONFIG['TABLE_USERGROUPS']} " . "WHERE group_id IN ({$user_data['user_group_list']}) AND group_id != {$user_data['user_group']} " . "ORDER BY group_name";
-            $result = db_query($sql);
+            $result = cpg_db_query($sql);
             while ($row = mysql_fetch_array($result)) {
                 $group_list .= $row['group_name'] . ', ';
             }
@@ -321,7 +321,7 @@ EOT;
         } else {
             $sql = "SELECT user_name, user_email, UNIX_TIMESTAMP(user_regdate) as user_regdate, group_name, " . "user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6 " . "FROM {$CONFIG['TABLE_USERS']} AS u " . "INNER JOIN {$CONFIG['TABLE_USERGROUPS']} AS g ON user_group = group_id " . "WHERE user_id ='$uid'";
 
-            $result = db_query($sql);
+            $result = cpg_db_query($sql);
 
             if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_register_php['err_unk_user'], __FILE__, __LINE__);
             $user_data = mysql_fetch_array($result);
@@ -329,31 +329,31 @@ EOT;
         }
         if ($FORBIDDEN_SET != "") $FORBIDDEN_SET = "AND $FORBIDDEN_SET";
         $query = "SELECT count(*), MAX(pid) FROM {$CONFIG['TABLE_PICTURES']} AS p WHERE owner_id = '$uid' AND approved = 'YES' $FORBIDDEN_SET";
-        $result = db_query($query);
+        $result = cpg_db_query($query);
         $nbEnr = mysql_fetch_array($result);
         $picture_count = $nbEnr[0];
         $thumb_pid = $nbEnr[1];
         mysql_free_result($result);
 
-        $result = db_query("SELECT count(*) FROM {$CONFIG['TABLE_ALBUMS']} AS p WHERE category = '" . (FIRST_USER_CAT + $uid) . "' $FORBIDDEN_SET");
+        $result = cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_ALBUMS']} AS p WHERE category = '" . (FIRST_USER_CAT + $uid) . "' $FORBIDDEN_SET");
         $nbEnr = mysql_fetch_array($result);
         $album_count = $nbEnr[0];
         mysql_free_result($result);
 
-        $result = db_query("SELECT count(*), MAX(msg_id) FROM {$CONFIG['TABLE_COMMENTS']} as c, {$CONFIG['TABLE_PICTURES']} as p WHERE c.pid = p.pid AND author_id = '$uid' $FORBIDDEN_SET");
+        $result = cpg_db_query("SELECT count(*), MAX(msg_id) FROM {$CONFIG['TABLE_COMMENTS']} as c, {$CONFIG['TABLE_PICTURES']} as p WHERE c.pid = p.pid AND author_id = '$uid' $FORBIDDEN_SET");
         $nbEnr = mysql_fetch_array($result);
         $comment_count = $nbEnr[0];
         $lastcom_id = $nbEnr[1];
         mysql_free_result($result);
 
-        $result = db_query("SELECT pid FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_name = '$user_data[user_name]'");
+        $result = cpg_db_query("SELECT pid FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_name = '$user_data[user_name]'");
         $pic_count = mysql_num_rows($result);
         mysql_free_result($result);
 
         $lastcom = '';
         if ($comment_count) {
             $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight, msg_author, UNIX_TIMESTAMP(msg_date) as msg_date, msg_body " . "FROM {$CONFIG['TABLE_COMMENTS']} AS c, {$CONFIG['TABLE_PICTURES']} AS p " . "WHERE msg_id='" . $lastcom_id . "' AND c.pid = p.pid";
-            $result = db_query($sql);
+            $result = cpg_db_query($sql);
             if (mysql_num_rows($result)) {
                 $row = mysql_fetch_array($result);
                 mysql_free_result($result);
@@ -378,7 +378,7 @@ EOT;
         $user_thumb = '';
         if ($picture_count) {
             $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='" . $thumb_pid . "'";
-            $result = db_query($sql);
+            $result = cpg_db_query($sql);
             if (mysql_num_rows($result)) {
                 $picture = mysql_fetch_array($result);
                 mysql_free_result($result);

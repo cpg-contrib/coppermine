@@ -55,9 +55,9 @@ function get_subcat_data($parent, $ident = '')
 {
     global $CONFIG, $CAT_LIST;
 
-    $result = db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent' AND cid != 1 ORDER BY pos");
+    $result = cpg_db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent' AND cid != 1 ORDER BY pos");
     if (mysql_num_rows($result) > 0) {
-        $rowset = db_fetch_rowset($result);
+        $rowset = cpg_db_fetch_rowset($result);
         foreach ($rowset as $subcat) {
             $CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
             get_subcat_data($subcat['cid'], $ident . '&nbsp;&nbsp;&nbsp;');
@@ -190,7 +190,7 @@ function form_alb_thumb($text, $name)
 
     $cpg_nopic_data = cpg_get_system_thumb('nopic.jpg',$USER_DATA['user_id']);
 
-    $results = db_query("SELECT pid, filepath, filename, url_prefix FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' AND approved='YES' ORDER BY filename");
+    $results = cpg_db_query("SELECT pid, filepath, filename, url_prefix FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' AND approved='YES' ORDER BY filename");
     if (mysql_num_rows($results) == 0) {
         echo <<<EOT
         <tr>
@@ -335,7 +335,7 @@ function form_visibility($text, $name)
             if (defined('UDB_INTEGRATION')) {
                 $owner_name = udb_get_user_name($ALBUM_DATA['category'] - FIRST_USER_CAT);
             } else {
-                $result = db_query("SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id='" . ($ALBUM_DATA['category'] - FIRST_USER_CAT) . "'");
+                $result = cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id='" . ($ALBUM_DATA['category'] - FIRST_USER_CAT) . "'");
                 if (mysql_num_rows($result)) {
                     $user = mysql_fetch_array($result);
                     $owner_name = $user['user_name'];
@@ -343,7 +343,7 @@ function form_visibility($text, $name)
             }
             $options[$ALBUM_DATA['category']] = sprintf($lang_modifyalb_php['owner_only'], $owner_name);
         }
-        $result = db_query("SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1");
+        $result = cpg_db_query("SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1");
         while ($group = mysql_fetch_array($result)) {
             $options[$group['group_id']] = sprintf($lang_modifyalb_php['groupp_only'], $group['group_name']);
         } // while
@@ -351,7 +351,7 @@ function form_visibility($text, $name)
         $options = array(0 => $lang_modifyalb_php['public_alb'],
             FIRST_USER_CAT + USER_ID => $lang_modifyalb_php['me_only'],
             );
-        $result = db_query("SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id IN " . USER_GROUP_SET);
+        $result = cpg_db_query("SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id IN " . USER_GROUP_SET);
         while ($group = mysql_fetch_array($result)) {
             $options[$group['group_id']] = sprintf($lang_modifyalb_php['groupp_only'], $group['group_name']);
         } // while
@@ -419,8 +419,8 @@ function alb_list_box()
     global $CONFIG, $album, $PHP_SELF;
 
     if (GALLERY_ADMIN_MODE) {
-        $result = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < '" . FIRST_USER_CAT . "' ORDER BY title");
-        $rowset = db_fetch_rowset($result);
+        $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < '" . FIRST_USER_CAT . "' ORDER BY title");
+        $rowset = cpg_db_fetch_rowset($result);
         mysql_free_result($result);
 
         if (defined('UDB_INTEGRATION')) {
@@ -428,12 +428,12 @@ function alb_list_box()
         } else {
             $sql = "SELECT aid, CONCAT('(', user_name, ') ', title) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id) " . "ORDER BY title";
         }
-        $result = db_query($sql);
+        $result = cpg_db_query($sql);
         while ($row = mysql_fetch_array($result)) $rowset[] = $row;
         mysql_free_result($result);
     } else {
-        $result = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = '" . (FIRST_USER_CAT + USER_ID) . "' ORDER BY title");
-        $rowset = db_fetch_rowset($result);
+        $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = '" . (FIRST_USER_CAT + USER_ID) . "' ORDER BY title");
+        $rowset = cpg_db_fetch_rowset($result);
         mysql_free_result($result);
     }
 
@@ -450,16 +450,16 @@ function alb_list_box()
 
 if (!isset($HTTP_GET_VARS['album'])) {
     if (GALLERY_ADMIN_MODE) {
-        $results = db_query("SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE 1 LIMIT 1");
+        $results = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE 1 LIMIT 1");
     } else {
-        $results = db_query("SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = " . (FIRST_USER_CAT + USER_ID) . " LIMIT 1");
+        $results = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = " . (FIRST_USER_CAT + USER_ID) . " LIMIT 1");
     }
     if (mysql_num_rows($results) == 0) cpg_die(ERROR, $lang_modifyalb_php['err_no_alb_to_modify'], __FILE__, __LINE__);
     $ALBUM_DATA = mysql_fetch_array($results);
     $album = $ALBUM_DATA['aid'];
 } else {
     $album = (int)$HTTP_GET_VARS['album'];
-    $results = db_query("SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
+    $results = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
     if (!mysql_num_rows($results)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
     $ALBUM_DATA = mysql_fetch_array($results);
 }
@@ -523,17 +523,17 @@ endtable();
 
 if (GALLERY_ADMIN_MODE) {
     // get the album stats
-    $result = db_query("SELECT SUM(hits) FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$album'");
+    $result = cpg_db_query("SELECT SUM(hits) FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$album'");
     $nbEnr = mysql_fetch_array($result);
     $hits = $nbEnr[0];
     if (!$hits) { $hits = 0; }
     mysql_free_result($result);
-    $result = db_query("SELECT SUM(votes) FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' AND votes > 0");
+    $result = cpg_db_query("SELECT SUM(votes) FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' AND votes > 0");
     $nbEnr = mysql_fetch_array($result);
     $votes = $nbEnr[0];
     if (!$votes) { $votes = 0; }
     mysql_free_result($result);
-    $result = db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$album'");
+    $result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$album'");
     $nbEnr = mysql_fetch_array($result);
     $files = $nbEnr[0];
     if (!$files) { $files = 0; }

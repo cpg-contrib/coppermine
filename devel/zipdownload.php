@@ -46,8 +46,8 @@ if (count($FAVPICS)>0){
 
         $select_columns = 'filepath,filename';
 
-        $result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES'AND pid IN ($favs)");
-        $rowset = db_fetch_rowset($result);
+        $result = cpg_db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES'AND pid IN ($favs)");
+        $rowset = cpg_db_fetch_rowset($result);
         foreach ($rowset as $key => $row){
 
                 $filelist[] = $rowset[$key]['filepath'].$rowset[$key]['filename'];

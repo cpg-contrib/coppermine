@@ -102,7 +102,7 @@ function cpg_db_connect()
 // Perform a database query
 
 /**
- * db_query()
+ * cpg_db_query()
  *
  * Perform a database query
  *
@@ -111,7 +111,7 @@ function cpg_db_connect()
  * @return
  **/
 
-function db_query($query, $link_id = 0)
+function cpg_db_query($query, $link_id = 0)
 {
         global $CONFIG, $query_stats, $queries;
 
@@ -127,7 +127,7 @@ function db_query($query, $link_id = 0)
                 $query_stats[] = $duration;
                 $queries[] = "$query ({$duration}s)";
         }
-        if (!$result) db_error("While executing query \"$query\" on $link_id");
+        if (!$result) cpg_db_error("While executing query \"$query\" on $link_id");
 
         return $result;
 }
@@ -136,7 +136,7 @@ function db_query($query, $link_id = 0)
 
 
 /**
- * db_error()
+ * cpg_db_error()
  *
  * Error message if a query failed
  *
@@ -144,7 +144,7 @@ function db_query($query, $link_id = 0)
  * @return
  **/
 
-function db_error($the_error)
+function cpg_db_error($the_error)
 {
         global $CONFIG;
 
@@ -164,7 +164,7 @@ function db_error($the_error)
 // Fetch all rows in an array
 
 /**
- * db_fetch_rowset()
+ * cpg_db_fetch_rowset()
  *
  * Fetch all rows in an array
  *
@@ -172,7 +172,7 @@ function db_error($the_error)
  * @return
  **/
 
-function db_fetch_rowset($result)
+function cpg_db_fetch_rowset($result)
 {
         $rowset = array();
 
@@ -618,7 +618,7 @@ function get_private_album_set($aid_str="")
           $alb_pw = unserialize($HTTP_COOKIE_VARS[$CONFIG['cookie_name']."_albpw"]);
           $aid_str = implode(",",array_keys($alb_pw));
           $sql = "SELECT aid, MD5(alb_password) as md5_password FROM ".$CONFIG['TABLE_ALBUMS']." WHERE aid IN ($aid_str)";
-          $result = db_query($sql);
+          $result = cpg_db_query($sql);
           $albpw_db = array();
           if (mysql_num_rows($result)) {
             while ($data = mysql_fetch_array($result)) {
@@ -638,7 +638,7 @@ function get_private_album_set($aid_str="")
           $sql .= " AND aid NOT IN ($aid_str)";
                 }
 
-                $result = db_query($sql);
+                $result = cpg_db_query($sql);
         if ((mysql_num_rows($result))) {
                 $set ='';
             while($album=mysql_fetch_array($result)){
@@ -719,7 +719,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $approved = GALLERY_ADMIN_MODE ? '' : 'AND approved=\'YES\'';
 
                 $query = "SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' $keyword $approved $ALBUM_SET";
-                $result = db_query($query);
+                $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
                 mysql_free_result($result);
@@ -728,8 +728,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
                 $query = "SELECT $select_columns from {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' $keyword $approved $ALBUM_SET ORDER BY $sort_order $limit";
 
-                $result = db_query($query);
-                $rowset = db_fetch_rowset($result);
+                $result = cpg_db_query($query);
+                $rowset = cpg_db_fetch_rowset($result);
                 mysql_free_result($result);
                 // Set picture caption
                 if ($set_caption) foreach ($rowset as $key => $row){
@@ -775,7 +775,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $TMP_SET = "AND (" . substr($ALBUM_SET, 3);
                 
                 $query = "SELECT COUNT(*) from {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']}  WHERE approved = 'YES' AND {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid $TMP_SET $keyword)";
-                $result = db_query($query);
+                $result = cpg_db_query($query);
 
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
@@ -789,10 +789,10 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
                 $TMP_SET = str_replace($CONFIG['TABLE_PICTURES'],'p',$TMP_SET);
                 $query = "SELECT $select_columns FROM {$CONFIG['TABLE_COMMENTS']} as c, {$CONFIG['TABLE_PICTURES']} as p WHERE approved = 'YES' AND c.pid = p.pid $TMP_SET $keyword) ORDER by msg_id DESC $limit";
-                $result = db_query($query);
+                $result = cpg_db_query($query);
 
 
-                $rowset = db_fetch_rowset($result);
+                $rowset = cpg_db_fetch_rowset($result);
                 mysql_free_result($result);
 
                 if ($set_caption) foreach ($rowset as $key => $row){
@@ -824,7 +824,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 }
                 
                 $query = "SELECT COUNT(*) from {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']}  WHERE approved = 'YES' AND author_id = '$uid' AND {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid $ALBUM_SET";
-                $result = db_query($query);
+                $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
                 mysql_free_result($result);
@@ -836,8 +836,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 }
 
                 $query = "SELECT $select_columns FROM {$CONFIG['TABLE_COMMENTS']} as c, {$CONFIG['TABLE_PICTURES']} as p WHERE approved = 'YES' AND author_id = '$uid' AND c.pid = p.pid $ALBUM_SET ORDER by msg_id DESC $limit";
-                $result = db_query($query);
-                $rowset = db_fetch_rowset($result);
+                $result = cpg_db_query($query);
+                $rowset = cpg_db_fetch_rowset($result);
                 mysql_free_result($result);
 
                 if ($set_caption) foreach ($rowset as $key => $row){
@@ -861,7 +861,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 }
 
                 $query = "SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $ALBUM_SET";
-                $result = db_query($query);
+                $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
                 mysql_free_result($result);
@@ -869,9 +869,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 if($select_columns != '*' ) $select_columns .= ',title, caption, owner_id, owner_name, aid';
 
                 $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $ALBUM_SET ORDER BY pid DESC $limit";
-                $result = db_query($query);
+                $result = cpg_db_query($query);
 
-                $rowset = db_fetch_rowset($result);
+                $rowset = cpg_db_fetch_rowset($result);
                 mysql_free_result($result);
 
                 if ($set_caption) foreach ($rowset as $key => $row){
@@ -897,7 +897,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 }
 
                 $query = "SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND owner_id = '$uid' $ALBUM_SET";
-                $result = db_query($query);
+                $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
                 mysql_free_result($result);
@@ -905,9 +905,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 if($select_columns != '*' ) $select_columns .= ', owner_id, owner_name, aid';
 
                 $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND owner_id = '$uid' $ALBUM_SET ORDER BY pid DESC $limit";
-                $result = db_query($query);
+                $result = cpg_db_query($query);
 
-                $rowset = db_fetch_rowset($result);
+                $rowset = cpg_db_fetch_rowset($result);
                 mysql_free_result($result);
 
                 if ($set_caption) foreach ($rowset as $key => $row){
@@ -931,7 +931,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 
                 $query ="SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND hits > 0  $ALBUM_SET $keyword";
 
-                $result = db_query($query);
+                $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
                 mysql_free_result($result);
@@ -939,9 +939,9 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 if($select_columns != '*') $select_columns .= ', hits, aid, filename';
 
                 $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES'AND hits > 0 $ALBUM_SET $keyword ORDER BY hits DESC, filename  $limit";
-                $result = db_query($query);
+                $result = cpg_db_query($query);
 
-                $rowset = db_fetch_rowset($result);
+                $rowset = cpg_db_fetch_rowset($result);
                 mysql_free_result($result);
 
                 if ($set_caption) foreach ($rowset as $key => $row){
@@ -958,7 +958,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $album_name = $lang_meta_album_names['toprated'];
                 }
                 $query = "SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND votes >= '{$CONFIG['min_votes_for_rating']}' $ALBUM_SET";
-                $result = db_query($query);
+                $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
                 mysql_free_result($result);
@@ -966,8 +966,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 if($select_columns != '*') $select_columns .= ', pic_rating, votes, aid';
 
                 $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND votes >= '{$CONFIG['min_votes_for_rating']}' $ALBUM_SET ORDER BY ROUND((pic_rating+1)/2000) DESC, votes DESC $limit";
-                $result = db_query($query);
-                $rowset = db_fetch_rowset($result);
+                $result = cpg_db_query($query);
+                $rowset = cpg_db_fetch_rowset($result);
                 mysql_free_result($result);
 
                 if ($set_caption) foreach ($rowset as $key => $row){
@@ -989,7 +989,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $album_name = $lang_meta_album_names['lasthits'];
                 }
                 $query = "SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $ALBUM_SET";
-                $result = db_query($query);
+                $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
                 mysql_free_result($result);
@@ -997,8 +997,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 if($select_columns != '*') $select_columns .= ', UNIX_TIMESTAMP(mtime) as mtime, aid, hits, lasthit_ip';
 
                 $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $ALBUM_SET ORDER BY mtime DESC $limit";
-                $result = db_query($query);
-                $rowset = db_fetch_rowset($result);
+                $result = cpg_db_query($query);
+                $rowset = cpg_db_fetch_rowset($result);
                 mysql_free_result($result);
 
                 if ($set_caption) foreach ($rowset as $key => $row){
@@ -1016,7 +1016,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 }
                 
                 $query = "SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $ALBUM_SET";
-                $result = db_query($query);
+                $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $pic_count = $nbEnr[0];
                 mysql_free_result($result);
@@ -1027,7 +1027,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 // by the SELECT statement as ORDER BY RAND() is time consuming
                                 /* Commented out due to image not found bug
                 if ($pic_count > 1000) {
-                    $result = db_query("SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES'");
+                    $result = cpg_db_query("SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES'");
                         $nbEnr = mysql_fetch_array($result);
                         $total_count = $nbEnr[0];
                         mysql_free_result($result);
@@ -1037,11 +1037,11 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         srand(time());
                         for ($i=1; $i<= $cor_gran; $i++) $random_num_set =rand(0, $granularity).', ';
                         $random_num_set = substr($random_num_set,0, -2);
-                        $result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE  randpos IN ($random_num_set) AND approved = 'YES' $ALBUM_SET ORDER BY RAND() LIMIT $limit2");
+                        $result = cpg_db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE  randpos IN ($random_num_set) AND approved = 'YES' $ALBUM_SET ORDER BY RAND() LIMIT $limit2");
                 } else {
                                 */
                 $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $ALBUM_SET ORDER BY RAND() LIMIT $limit2";
-                $result = db_query($query);
+                $result = cpg_db_query($query);
 
                 $rowset = array();
                 while($row = mysql_fetch_array($result)){
@@ -1088,14 +1088,14 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $ALBUM_SET = str_replace( "aid", $CONFIG['TABLE_PICTURES'].".aid" , $ALBUM_SET );
 
                 $query = "SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' $ALBUM_SET";
-                $result = db_query($query);
+                $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
                 mysql_free_result($result);
 
                 $query = "SELECT *,{$CONFIG['TABLE_ALBUMS']}.title AS title,{$CONFIG['TABLE_ALBUMS']}.aid AS aid FROM {$CONFIG['TABLE_PICTURES']},{$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND approved = 'YES' $ALBUM_SET GROUP  BY {$CONFIG['TABLE_PICTURES']}.aid ORDER BY {$CONFIG['TABLE_PICTURES']}.ctime DESC $limit";
-                $result = db_query($query);
-                $rowset = db_fetch_rowset($result);
+                $result = cpg_db_query($query);
+                $rowset = cpg_db_fetch_rowset($result);
                 mysql_free_result($result);
 
                 if ($set_caption) foreach ($rowset as $key => $row){
@@ -1112,7 +1112,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 if (count($FAVPICS)>0){
                         $favs = implode(",",$FAVPICS);
                         $query = "SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES' AND pid IN ($favs) $ALBUM_SET";
-                        $result = db_query($query);
+                        $result = cpg_db_query($query);
                         $nbEnr = mysql_fetch_array($result);
                         $count = $nbEnr[0];
                         mysql_free_result($result);
@@ -1120,8 +1120,8 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                         $select_columns = '*';
 
                         $query = "SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES'AND pid IN ($favs) $ALBUM_SET $limit";
-                        $result = db_query($query);
-                        $rowset = db_fetch_rowset($result);
+                        $result = cpg_db_query($query);
+                        $rowset = cpg_db_fetch_rowset($result);
 
                         mysql_free_result($result);
 
@@ -1153,7 +1153,7 @@ function get_album_name($aid)
         global $CONFIG;
         global $lang_errors;
 
-        $result = db_query("SELECT title,keyword from {$CONFIG['TABLE_ALBUMS']} WHERE aid='$aid'");
+        $result = cpg_db_query("SELECT title,keyword from {$CONFIG['TABLE_ALBUMS']} WHERE aid='$aid'");
         $count = mysql_num_rows($result);
         if ($count > 0) {
                 $row = mysql_fetch_array($result);
@@ -1182,7 +1182,7 @@ function get_username($uid)
         } elseif (defined('UDB_INTEGRATION')) {
            return udb_get_user_name($uid);
         } else {
-                $result = db_query("SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '".$uid."'");
+                $result = cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '".$uid."'");
                 if (mysql_num_rows($result) == 0) return '';
                 $row = mysql_fetch_array($result);
                 mysql_free_result($result);
@@ -1209,7 +1209,7 @@ function get_userid($username)
         } elseif (defined('UDB_INTEGRATION')) { // (Altered to fix banning w/ bb integration - Nibbler)
            return udb_get_user_id($username);
         } else {
-                $result = db_query("SELECT user_id FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '".$username."'");
+                $result = cpg_db_query("SELECT user_id FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '".$username."'");
                 if (mysql_num_rows($result) == 0) return 0;
                 $row = mysql_fetch_array($result);
                 mysql_free_result($result);
@@ -1227,7 +1227,7 @@ function get_userid($username)
 function cpg_get_pending_approvals()
 {
     global $CONFIG;
-    $result = db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'NO'");
+    $result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'NO'");
     if (mysql_num_rows($result) == 0) return 0;
     $row = mysql_fetch_array($result);
     mysql_free_result($result);
@@ -1246,7 +1246,7 @@ function cpg_get_pending_approvals()
 function count_pic_comments($pid, $skip=0)
 {
         global $CONFIG;
-        $result = db_query("SELECT count(*) from {$CONFIG['TABLE_COMMENTS']} where pid=$pid and msg_id!=$skip");
+        $result = cpg_db_query("SELECT count(*) from {$CONFIG['TABLE_COMMENTS']} where pid=$pid and msg_id!=$skip");
         $nbEnr = mysql_fetch_array($result);
         $count = $nbEnr[0];
         mysql_free_result($result);
@@ -1265,7 +1265,7 @@ function count_pic_comments($pid, $skip=0)
 function add_hit($pid)
 {
         global $CONFIG, $raw_ip;
-        db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET hits=hits+1, lasthit_ip='$raw_ip' WHERE pid='$pid'");
+        cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET hits=hits+1, lasthit_ip='$raw_ip' WHERE pid='$pid'");
 
 }
 
@@ -1294,7 +1294,7 @@ function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
                         $CURRENT_CAT_NAME = sprintf($lang_list_categories['xx_s_gallery'], $user_name);
                         $row['parent'] = 1;
                 } else {
-                    $result = db_query("SELECT name, parent FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '$cat'");
+                    $result = cpg_db_query("SELECT name, parent FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '$cat'");
                         if (mysql_num_rows($result) == 0) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_cat'], __FILE__, __LINE__);
                         $row = mysql_fetch_array($result);
 
@@ -1304,7 +1304,7 @@ function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
                 }
 
                 while($row['parent'] != 0){
-                    $result = db_query("SELECT cid, name, parent FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '{$row['parent']}'");
+                    $result = cpg_db_query("SELECT cid, name, parent FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '{$row['parent']}'");
                         if (mysql_num_rows($result) == 0) cpg_die(CRITICAL_ERROR, $lang_errors['orphan_cat'], __FILE__, __LINE__);
                         $row = mysql_fetch_array($result);
 

@@ -40,12 +40,12 @@ function display_group_list()
     //$approval_needed = ', admin approval needed';
     //$approval_not_needed = ', visible instantly';
 
-    $result = db_query("SELECT * FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1 ORDER BY group_id");
+    $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1 ORDER BY group_id");
     if (!mysql_num_rows($result)) {
-        db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} VALUES (1, 'Administrators', 0, 1, 1, 1, 1, 1, 1, 3, 0, 5, 3)");
-        db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} VALUES (2, 'Registered', 1024, 0, 1, 1, 1, 1, 1, 3, 0, 5, 3)");
-        db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} VALUES (3, 'Anonymous', 0, 0, 0, 0, 1, 0, 0, 0, 0, 5, 3)");
-        db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} VALUES (4, 'Banned', 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 3);");
+        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} VALUES (1, 'Administrators', 0, 1, 1, 1, 1, 1, 1, 3, 0, 5, 3)");
+        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} VALUES (2, 'Registered', 1024, 0, 1, 1, 1, 1, 1, 3, 0, 5, 3)");
+        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} VALUES (3, 'Anonymous', 0, 0, 0, 0, 1, 0, 0, 0, 0, 5, 3)");
+        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} VALUES (4, 'Banned', 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 3);");
         cpg_die(CRITICAL_ERROR, 'Group table was empty !<br /><br />Default groups created, please reload this page', __FILE__, __LINE__);
     }
 
@@ -214,18 +214,18 @@ function process_post_data()
             }
         }
         $set_statment = substr($set_statment, 0, -1);
-        db_query("UPDATE {$CONFIG['TABLE_USERGROUPS']} SET $set_statment WHERE group_id = '$group_id' LIMIT 1");
+        cpg_db_query("UPDATE {$CONFIG['TABLE_USERGROUPS']} SET $set_statment WHERE group_id = '$group_id' LIMIT 1");
     }
 }
 
 if (isset($HTTP_POST_VARS) && count($HTTP_POST_VARS)) {
     if (isset($HTTP_POST_VARS['del_sel']) && isset($HTTP_POST_VARS['delete_group']) && is_array($HTTP_POST_VARS['delete_group'])) {
         foreach($HTTP_POST_VARS['delete_group'] as $group_id) {
-            db_query("DELETE FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = '" . (int)$group_id . "' LIMIT 1");
-            db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_group = '2' WHERE user_group = '" . (int)$group_id . "'");
+            cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = '" . (int)$group_id . "' LIMIT 1");
+            cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_group = '2' WHERE user_group = '" . (int)$group_id . "'");
         }
     } elseif (isset($HTTP_POST_VARS['new_group'])) {
-        db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} (group_name) VALUES ('')");
+        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} (group_name) VALUES ('')");
     } elseif (isset($HTTP_POST_VARS['apply_modifs'])) {
         process_post_data();
     }

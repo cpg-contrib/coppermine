@@ -61,11 +61,11 @@ setcookie($CONFIG['cookie_name'] . '_fav', $data, time() + 86400 * 30, $CONFIG['
 // If the user is logged in then put it in the DB
 if (USER_ID > 0) {
     $sql = "UPDATE {$CONFIG['TABLE_FAVPICS']} SET user_favpics = '$data' WHERE user_id = " . USER_ID;
-    db_query($sql);
+    cpg_db_query($sql);
     // User never stored a fav... so insert new row
     if (!mysql_affected_rows()) {
         $sql = "INSERT INTO {$CONFIG['TABLE_FAVPICS']} ( user_id, user_favpics) VALUES (" . USER_ID . ", '$data')";
-        db_query($sql);
+        cpg_db_query($sql);
     }
 }
 

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+ï»¿<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
    "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -317,8 +317,8 @@ Yes, we want you to check the permissions of each folder even if you think you h
 <li><b>post_max_size</b> - 8MB is the default limit for post requests.</li>
 <li><b>memory_limit</b> - 8MB is the default size.</li>
 <li>PHP's <b>LimitRequestBody</b> - 512KB default limit. (mainly an issue on Redhat/Apache systems.  Found in /etc/http/conf.d)<br />In general, upload_max_filesize &lt; post_max_size &lt; memory_limit in order for uploads to function properly. Coppermine may warn you if a file exceeds upload_max_filesize, but it cannot warn you if the total size of all the files exceeds the post limit or the memory limit.</li>
-<li><b>file_uploads</b> – This determines whether or not PHP will allow file uploads. It must be set to ‘On’.</li>
-<li><b>upload_tmp_dir</b> – This specifies the temporary directory where PHP stores uploaded files.</li>
+<li><b>file_uploads</b> Â– This determines whether or not PHP will allow file uploads. It must be set to Â‘OnÂ’.</li>
+<li><b>upload_tmp_dir</b> Â– This specifies the temporary directory where PHP stores uploaded files.</li>
 </ol>
 
 <p>The most common issue caused by this setting is an open_basedir warning.  In this situation, your server administrator has restricted the files that PHP can work with to a certain directory.  If he does not create and specify a temporary directory within the open_basedir restriction, PHP will attempt to use the OS temporary directory, and it will be rebuffed by the open_basedir restriction.</p>
@@ -657,9 +657,9 @@ Greg</p></td></tr></table><br /></p><br /><div class="totop">[<a href="#top" cla
 <a name="changeOrderEdit"></a>
 <h3>How can I change the order of the pics when <b>editing</b> them?</h3>
 <p>By default, the pics are shown alphabetically when you edit them. To change the sorting order to &quot;by date&quot;, edit <tt class="code">editpics.php</tt> and change<br />
-<tt class="code">$result = db_query(&quot;SELECT * FROM {$CONFIG[&#39;TABLE_PICTURES&#39;]} WHERE aid = &#39;$album_id&#39; ORDER BY filename LIMIT $start, $count&quot;);</tt><br />
+<tt class="code">$result = cpg_db_query(&quot;SELECT * FROM {$CONFIG[&#39;TABLE_PICTURES&#39;]} WHERE aid = &#39;$album_id&#39; ORDER BY filename LIMIT $start, $count&quot;);</tt><br />
 to<br />
-<tt class="code">$result = db_query(&quot;SELECT * FROM {$CONFIG[&#39;TABLE_PICTURES&#39;]} WHERE aid = &#39;$album_id&#39; ORDER BY pid LIMIT $start, $count&quot;);</tt><br /></p><br />
+<tt class="code">$result = cpg_db_query(&quot;SELECT * FROM {$CONFIG[&#39;TABLE_PICTURES&#39;]} WHERE aid = &#39;$album_id&#39; ORDER BY pid LIMIT $start, $count&quot;);</tt><br /></p><br />
 <div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="rightHandMenu"></a>
 <h3>How can I create a menu that&#39;s shown on the <b>right side</b> of the gallery?</h3>
 <p>When the template.html is read, it is split in 2. What is before the {GALLERY} tag is output by the pageheader function, what is after by the pagefooter function.<br />
@@ -716,9 +716,9 @@ Then open /include/functions.inc.php and search for following in function get_pi
 <tt class="code">      if($select_columns != &#39;*&#39;) $select_columns .= &#39;, title, caption&#39;;</tt><br />and replace it with:<br />
 <tt class="code">      if($select_columns != &#39;*&#39;) $select_columns .= &#39;, title, caption, user_name&#39;;</tt>.<br />
 After that search for:<br />
-<tt class="code">      $result = db_query("SELECT $select_columns from {$CONFIG[&#39;TABLE_PICTURES&#39;]} WHERE aid=&#39;$album&#39; $approved $ALBUM_SET ORDER BY $sort_order $limit");</tt><br />
+<tt class="code">      $result = cpg_db_query("SELECT $select_columns from {$CONFIG[&#39;TABLE_PICTURES&#39;]} WHERE aid=&#39;$album&#39; $approved $ALBUM_SET ORDER BY $sort_order $limit");</tt><br />
 and replace it with:<br />
-<tt class="code">      $result = db_query("SELECT $select_columns from {$CONFIG[&#39;TABLE_PICTURES&#39;]} AS p LEFT JOIN {$CONFIG[&#39;TABLE_USERS&#39;]} AS u ON u.user_id = p.owner_id WHERE p.aid=&#39;$album&#39; $approved $ALBUM_SET ORDER BY $sort_order $limit");</tt><br />Then you have to add the language string for the username. Open /lang/yourlang.php and search for:<br />
+<tt class="code">      $result = cpg_db_query("SELECT $select_columns from {$CONFIG[&#39;TABLE_PICTURES&#39;]} AS p LEFT JOIN {$CONFIG[&#39;TABLE_USERS&#39;]} AS u ON u.user_id = p.owner_id WHERE p.aid=&#39;$album&#39; $approved $ALBUM_SET ORDER BY $sort_order $limit");</tt><br />Then you have to add the language string for the username. Open /lang/yourlang.php and search for:<br />
 <tt class="code">$lang_picinfo = array(</tt><br />
 and add after that:<br />
 <tt class="code">        &#39;Username&#39; => &#39;Username&#39;,</tt><br />

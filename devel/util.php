@@ -142,7 +142,7 @@ function del_titles()
         $albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
         $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
         echo "<h2>{$lang_util_php['delete_wait']}</h2>";
-        $query = db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET title = '' $albstr");
+        $query = cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET title = '' $albstr");
         if ($query) {
                 echo $lang_util_php['titles_deleted']."<br />";
         }
@@ -156,7 +156,7 @@ function filename_to_title()
         $albstr = ($albumid) ? " WHERE aid = $albumid" : '';
         $parsemode = $_POST['parsemode'];
 
-        $result = db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr");
+        $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr");
 
         echo "<h2>{$lang_util_php['titles_wait']}</h2>";
 
@@ -192,7 +192,7 @@ function filename_to_title()
                         break;
         }
 
-        $query = db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET title = '$newtitle' WHERE pid = '$pid'");
+        $query = cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET title = '$newtitle' WHERE pid = '$pid'");
         if ($query){
                 echo "{$lang_util_php['file']} : $filename {$lang_util_php['title_set_to']} : $newtitle<br />";
         }
@@ -206,12 +206,12 @@ function filloptions()
 {
         global $CONFIG, $lang_util_php;
 
-        $result = db_query("SELECT aid, category, IF(user_name IS NOT NULL, CONCAT('(', user_name, ') ',title), CONCAT(' - ', title)) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "LEFT JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id) " . "ORDER BY category, title");
+        $result = cpg_db_query("SELECT aid, category, IF(user_name IS NOT NULL, CONCAT('(', user_name, ') ',title), CONCAT(' - ', title)) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "LEFT JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id) " . "ORDER BY category, title");
 
         echo '&nbsp;&nbsp;&nbsp;&nbsp;<select size="1" name="albumid" class="listbox"><option value="0">All Albums</option>';
 
         while ($row = mysql_fetch_array($result)){
-                $result2 = db_query("SELECT name FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = {$row['category']}");
+                $result2 = cpg_db_query("SELECT name FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = {$row['category']}");
                 $row2 = mysql_fetch_assoc($result2);
                 echo "<option value=\"{$row['aid']}\">{$row2['name']} {$row['title']}</option>";
         }
@@ -232,7 +232,7 @@ function update_thumbs()
 
         echo "<h2>{$lang_util_php['thumbs_wait']}</h2>";
 
-        $result = db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr LIMIT $startpic, $numpics");
+        $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr LIMIT $startpic, $numpics");
         $count = mysql_num_rows($result);
 
         while ($row = mysql_fetch_assoc($result)){
@@ -291,7 +291,7 @@ function del_orig()
         $albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
         $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
 
-        $result = db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr");
+        $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr");
         $num = mysql_num_rows($result);
         echo "<h2>{$lang_util_php['replace_wait']}</h2>";
 
@@ -309,7 +309,7 @@ function del_orig()
                                 $imagesize = getimagesize($image); // dimensions
                                 $image_filesize = filesize($image); // bytes
                                 $total_filesize = $image_filesize + filesize($thumb);
-                                db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET filesize='$image_filesize', total_filesize='$total_filesize', pwidth='{$imagesize[0]}', pheight='{$imagesize[1]}' WHERE pid='$pid' ");
+                                cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET filesize='$image_filesize', total_filesize='$total_filesize', pwidth='{$imagesize[0]}', pheight='{$imagesize[1]}' WHERE pid='$pid' ");
                                 printf($lang_util_php['main_success'], $normal);
                         } else {
                                 echo (!$renamed) ? sprintf($lang_util_php['error_rename'], $normal, $image) : sprintf($lang_util_php['error_deleting'], $image);;
@@ -327,7 +327,7 @@ function del_norm()
 
         $albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
         $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
-        $result = db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr");
+        $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr");
         $num = mysql_num_rows($result);
         echo "<h2>".$lang_util_php['deleting_intermediates']."</h2>";
 
@@ -342,7 +342,7 @@ function del_norm()
                         $test = unlink($normal);
                         if ($test){
                                 $total_filesize = filesize($image) + filesize($thumb);
-                                db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET total_filesize='$total_filesize' WHERE pid='$pid'");
+                                cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET total_filesize='$total_filesize' WHERE pid='$pid'");
                                 printf('The intermediate pic %s was successfully deleted', $normal);
                                 print '<br />';
                         } else {
@@ -364,17 +364,17 @@ function del_orphans()
         my_flush();
 
         if (isset($_GET['single'])){
-                $delone = db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id= '{$_GET['single']}' LIMIT 1");
+                $delone = cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id= '{$_GET['single']}' LIMIT 1");
         }
 
-        $result = db_query("SELECT pid FROM {$CONFIG['TABLE_PICTURES']}");
+        $result = cpg_db_query("SELECT pid FROM {$CONFIG['TABLE_PICTURES']}");
 
         while ($row = mysql_fetch_assoc($result)){
                 $ok_array[] = $row['pid'];
         }
 
         $check_str = '(' . implode(',',$ok_array) . ')';
-        $result = db_query("SELECT * FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid NOT IN $check_str");
+        $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid NOT IN $check_str");
 
         while ($row = mysql_fetch_array($result)){
 
@@ -383,7 +383,7 @@ function del_orphans()
                 $msg_body = $row['msg_body'];
 
                 if (isset($_POST['del'])){
-                        db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id= $msg_id");
+                        cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id= $msg_id");
                         echo "{$lang_util_php['comment']} $msg_body {$lang_util_php['nonexist']} $pid - <a href=\"util.php?action=del_orphans&single=$msg_id\">{$lang_util_php['delete']}</a><br />";
         }
 
@@ -409,7 +409,7 @@ function reset_views()
         $albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
         $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
 
-        if (db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET hits ='0' $albstr")) echo 'Reset successful';
+        if (cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET hits ='0' $albstr")) echo 'Reset successful';
 
 }
 function refresh_db()
@@ -426,7 +426,7 @@ function refresh_db()
         echo "<tr><th class=\"tableh2\">File</th><th class=\"tableh2\">Problem</th><th class=\"tableh2\">Status</th></tr>";
 
         $outcome = 'none';
-        $result = db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr ORDER BY pid ASC LIMIT $startpic, $numpics");
+        $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr ORDER BY pid ASC LIMIT $startpic, $numpics");
         $count = mysql_num_rows($result);
         $found = 0;
 
@@ -454,14 +454,14 @@ function refresh_db()
                                 if ($total_filesize <> $db_total_filesize){
 
                                         $prob .= "Total filesize is incorrect<br />Database: {$db_total_filesize} bytes<br /> Actual: {$total_filesize} bytes<br />";
-                                        $fs1_upd = @db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET total_filesize = '$total_filesize' WHERE pid = '$db_pid' LIMIT 1");
+                                        $fs1_upd = @cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET total_filesize = '$total_filesize' WHERE pid = '$db_pid' LIMIT 1");
                                         $outcome = ($fs1_upd) ? 'Updated' : 'Update failed.';
                                 }
 
                                 if ($filesize <> $db_filesize){
 
                                         $prob .= "Total filesize is incorrect<br />Database: {$db_filesize} bytes<br />Actual: {$filesize} bytes<br />";
-                                        $fs2_upd = @db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET filesize = '$filesize' WHERE pid = '$db_pid' LIMIT 1");
+                                        $fs2_upd = @cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET filesize = '$filesize' WHERE pid = '$db_pid' LIMIT 1");
                                         $outcome = ($fs2_upd) ? 'Updated' : 'Update failed.';
                                 }
                         } else {
@@ -473,7 +473,7 @@ function refresh_db()
                                 if (($dimensions[0] <> $db_pwidth) ||  ($dimensions[1] <> $db_pheight)){
 
                                         $prob .= "Dimensions are incorrect<br />Database: {$db_pwidth}x{$db_pheight}<br />Actual:{$dimensions[0]}x{$dimensions[1]}<br />";
-                                        $dim_upd = @db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET `pwidth` = '{$dimensions[0]}', `pheight` = '{$dimensions[1]}' WHERE `pid` = '$db_pid' LIMIT 1");
+                                        $dim_upd = @cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET `pwidth` = '{$dimensions[0]}', `pheight` = '{$dimensions[1]}' WHERE `pid` = '$db_pid' LIMIT 1");
                                         $outcome = ($dim_upd) ? 'Updated' : 'Update failed - '.mysql_error();
                                 }
                         } else {

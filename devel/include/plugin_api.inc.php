@@ -49,7 +49,7 @@ class CPGPluginAPI {
 
         // Get the installed plugins from the database and sort them by execution priority
         $sql = 'select * from '.$CONFIG['TABLE_PLUGINS'].' order by priority asc;';
-        $result = db_query($sql);
+        $result = cpg_db_query($sql);
 
         // Exit if no plugins are installed
         if (mysql_num_rows($result) == 0) {
@@ -114,7 +114,7 @@ class CPGPluginAPI {
             $sql = 'select plugin_id from '.$CONFIG['TABLE_PLUGINS'].' where '.
                    'path="'.$plugin_folder.'";';
 
-            $result = db_query($sql);
+            $result = cpg_db_query($sql);
 
             // If the plugin isn't in the database store a false value in the array
             if (mysql_num_rows($result) == 0) {
@@ -372,7 +372,7 @@ class CPGPluginAPI {
 
         // Get the lowest priority level (highest number) from the database
         $sql = 'select priority from '.$CONFIG['TABLE_PLUGINS'].' order by priority desc limit 1;';
-        $result = db_query($sql);
+        $result = cpg_db_query($sql);
 
         $data = mysql_fetch_assoc($result);
         mysql_free_result($result);
@@ -416,7 +416,7 @@ class CPGPluginAPI {
                    '("'.addslashes($name).'",'.
                    '"'.addslashes($path).'",'.
                    $priority.');';
-            $result = db_query($sql);
+            $result = cpg_db_query($sql);
 
             if ($CONFIG['log_mode']) {
                 log_write("Plugin '".$name."' installed at ".date("F j, Y, g:i a"),CPG_GLOBAL_LOG);
@@ -465,11 +465,11 @@ class CPGPluginAPI {
         if (is_bool($uninstalled) && $uninstalled) {
             $sql = 'delete from '.$CONFIG['TABLE_PLUGINS'].' '.
                    'where plugin_id='.$plugin_id.';';
-            $result = db_query($sql);
+            $result = cpg_db_query($sql);
 
             // Shift the plugins up
             $sql = 'update '.$CONFIG['TABLE_PLUGINS'].' set priority=priority-1 where priority>'.$priority.';';
-            $result = db_query($sql);
+            $result = cpg_db_query($sql);
 
             if ($CONFIG['log_mode']) {
                 log_write("Plugin '".$name."' uninstalled at ".date("F j, Y, g:i a"),CPG_GLOBAL_LOG);

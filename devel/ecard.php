@@ -55,7 +55,7 @@ $message = get_post_var('message');
 $sender_email_warning = '';
 $recipient_email_warning = '';
 // Get picture thumbnail url
-$result = db_query("SELECT * from {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' $ALBUM_SET");
+$result = cpg_db_query("SELECT * from {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' $ALBUM_SET");
 if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
 $row = mysql_fetch_array($result);
 $thumb_pic_url = get_pic_url($row, 'thumb');
@@ -120,7 +120,7 @@ if (count($HTTP_POST_VARS) > 0 && $valid_sender_email && $valid_recipient_email)
 
         //write ecard log
         if ($CONFIG['log_ecards'] == 1) {
-          $result_log = db_query("INSERT INTO {$CONFIG['TABLE_ECARDS']} (sender_name, sender_email, recipient_name, recipient_email, link, date, sender_ip) VALUES ('$sender_name', '$sender_email', '$recipient_name', '$recipient_email',   '$encoded_data', '$tempTime', '{$_SERVER["REMOTE_ADDR"]}')");
+          $result_log = cpg_db_query("INSERT INTO {$CONFIG['TABLE_ECARDS']} (sender_name, sender_email, recipient_name, recipient_email, link, date, sender_ip) VALUES ('$sender_name', '$sender_email', '$recipient_name', '$recipient_email',   '$encoded_data', '$tempTime', '{$_SERVER["REMOTE_ADDR"]}')");
           }
 
     if (!USER_ID) {

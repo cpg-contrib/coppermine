@@ -734,6 +734,7 @@ $lang_picinfo = array(
   'Rating' => 'Rating (%s votes)',
   'Keywords' => 'Keywords',
   'File Size' => 'File Size',
+  'Date Added' => 'Date added', // Added for date added mod
   'Dimensions' => 'Dimensions',
   'Displayed' => 'Displayed',
   'URL' => 'URL',

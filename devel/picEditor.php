@@ -77,7 +77,7 @@ if (isset($HTTP_GET_VARS['id'])) {
 }
 if ($pid > 0){
 
-        $result = db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = '$pid'");
+        $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = '$pid'");
         $CURRENT_PIC = mysql_fetch_array($result);
         mysql_free_result($result);
         $pic_url = get_pic_url($CURRENT_PIC,'fullsize');
@@ -171,7 +171,7 @@ if ($_GET['id']){
                        $total_filesize = $filesize + (file_exists($normal) ? filesize($normal) : 0) + filesize($thumbnail);
 
           //Update the image size in the DB
-          db_query("UPDATE {$CONFIG['TABLE_PICTURES']}
+          cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']}
                           SET pheight = $height,
                             pwidth = $width,
                                                         filesize = $filesize,
@@ -210,7 +210,7 @@ if ($_GET['id']){
         $total_filesize = filesize($currentPic) + (file_exists($normal) ? filesize($normal) : 0) + filesize($thumbnail);
 
           //Update the image size in the DB
-          db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET total_filesize = $total_filesize WHERE pid = '$pid'");
+          cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET total_filesize = $total_filesize WHERE pid = '$pid'");
 
 
         $message = "Thumbnail successfully saved - you can close this window now";

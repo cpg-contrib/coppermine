@@ -27,13 +27,13 @@ function fix_cat_table()
 {
     global $CONFIG;
 
-    $result = db_query("SELECT cid FROM {$CONFIG['TABLE_CATEGORIES']} WHERE 1");
+    $result = cpg_db_query("SELECT cid FROM {$CONFIG['TABLE_CATEGORIES']} WHERE 1");
     if (mysql_num_rows($result) > 0) {
         $set = '';
         while ($row = mysql_fetch_array($result)) $set .= $row['cid'] . ',';
         $set = '(' . substr($set, 0, -1) . ')';
         $sql = "UPDATE {$CONFIG['TABLE_CATEGORIES']} " . "SET parent = '0' " . "WHERE parent=cid OR parent NOT IN $set";
-        $result = db_query($sql);
+        $result = cpg_db_query($sql);
     }
 }
 
@@ -47,10 +47,10 @@ function get_subcat_data($parent, $ident = '')
     }
 
     $sql = "SELECT cid, name, description " . "FROM {$CONFIG['TABLE_CATEGORIES']} " . "WHERE parent = '$parent' " . "ORDER BY $sort_query";
-    $result = db_query($sql);
+    $result = cpg_db_query($sql);
 
     if (($cat_count = mysql_num_rows($result)) > 0) {
-        $rowset = db_fetch_rowset($result);
+        $rowset = cpg_db_fetch_rowset($result);
         $pos = 0;
         foreach ($rowset as $subcat) {
             if ($pos > 0) {
@@ -80,7 +80,7 @@ function update_cat_order()
     global $CAT_LIST, $CONFIG;
 
     foreach ($CAT_LIST as $category)
-    db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='{$category['pos']}' WHERE cid = '{$category['cid']}' LIMIT 1");
+    cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='{$category['pos']}' WHERE cid = '{$category['cid']}' LIMIT 1");
 }
 
 function cat_list_box($highlight = 0, $curr_cat, $on_change_refresh = true)
@@ -116,7 +116,7 @@ EOT;
 function form_alb_thumb()
 {
     global $CONFIG, $lang_catmgr_php, $lang_modifyalb_php, $current_category, $cid,$USER_DATA;
-    $results = db_query("SELECT pid, filepath, filename, url_prefix FROM {$CONFIG['TABLE_PICTURES']},{$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND {$CONFIG['TABLE_ALBUMS']}.category = '$cid' AND approved='YES' ORDER BY filename");
+    $results = cpg_db_query("SELECT pid, filepath, filename, url_prefix FROM {$CONFIG['TABLE_PICTURES']},{$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND {$CONFIG['TABLE_ALBUMS']}.category = '$cid' AND approved='YES' ORDER BY filename");
     if (mysql_num_rows($results) == 0) {
         echo <<<EOT
         <tr>
@@ -224,7 +224,7 @@ function verify_children($parent, $cid)
     global $CONFIG, $children;
 
     $sql = "SELECT cid " . "FROM {$CONFIG['TABLE_CATEGORIES']} " . "WHERE parent = '$parent' ";
-    $result = db_query($sql);
+    $result = cpg_db_query($sql);
 
     if (($cat_count = mysql_num_rows($result)) > 0) {
                 while ($row = mysql_fetch_array($result)) {
@@ -240,7 +240,7 @@ function verify_children($parent, $cid)
 
 if (isset($HTTP_POST_VARS['update_config'])) {
     $value = $HTTP_POST_VARS['categories_alpha_sort'];
-            db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'categories_alpha_sort'");
+            cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'categories_alpha_sort'");
             $CONFIG['categories_alpha_sort'] = $value;
             if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
                     log_write('CONFIG UPDATE SQL: '.
@@ -266,8 +266,8 @@ switch ($op) {
         $pos1 = (int)$HTTP_GET_VARS['pos1'];
         $pos2 = (int)$HTTP_GET_VARS['pos2'];
 
-        db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='$pos1' WHERE cid = '$cid1' LIMIT 1");
-        db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='$pos2' WHERE cid = '$cid2' LIMIT 1");
+        cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='$pos1' WHERE cid = '$cid1' LIMIT 1");
+        cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET pos='$pos2' WHERE cid = '$cid2' LIMIT 1");
         break;
 
     case 'setparent':
@@ -278,7 +278,7 @@ switch ($op) {
                 $children=array();
                 verify_children($cid, $cid);
                 if (!in_array($parent, $children)){
-                db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent', pos='-1' WHERE cid = '$cid' LIMIT 1");
+                cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent', pos='-1' WHERE cid = '$cid' LIMIT 1");
                 }else{
                         cpg_die(ERROR, "You cannot move a category into its own child", __FILE__, __LINE__);
                 }
@@ -288,7 +288,7 @@ switch ($op) {
         if (!isset($HTTP_GET_VARS['cid'])) cpg_die(CRITICAL_ERROR, sprintf($lang_catmgr_php['miss_param'], 'editcat'), __FILE__, __LINE__);
 
         $cid = (int)$HTTP_GET_VARS['cid'];
-        $result = db_query("SELECT cid, name, parent, description, thumb FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '$cid' LIMIT 1");
+        $result = cpg_db_query("SELECT cid, name, parent, description, thumb FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '$cid' LIMIT 1");
 
         if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_catmgr_php['unknown_cat'], __FILE__, __LINE__);
         $current_category = mysql_fetch_array($result);
@@ -311,9 +311,9 @@ switch ($op) {
                 $children=array();
                 verify_children($cid, $cid);
                 if (!in_array($parent, $children)){
-                db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent', name='$name', description='$description', thumb='$thumb' WHERE cid = '$cid' LIMIT 1");
+                cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent', name='$name', description='$description', thumb='$thumb' WHERE cid = '$cid' LIMIT 1");
                 }else{
-                        db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET name='$name', description='$description', thumb='$thumb' WHERE cid = '$cid' LIMIT 1");
+                        cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET name='$name', description='$description', thumb='$thumb' WHERE cid = '$cid' LIMIT 1");
                 }
         break;
 
@@ -331,7 +331,7 @@ switch ($op) {
         $name = trim($HTTP_POST_VARS['name']) ? addslashes($HTTP_POST_VARS['name']) : '&lt;???&gt;';
         $description = addslashes($HTTP_POST_VARS['description']);
 
-        db_query("INSERT INTO {$CONFIG['TABLE_CATEGORIES']} (pos, parent, name, description) VALUES ('10000', '$parent', '$name', '$description')");
+        cpg_db_query("INSERT INTO {$CONFIG['TABLE_CATEGORIES']} (pos, parent, name, description) VALUES ('10000', '$parent', '$name', '$description')");
         break;
 
     case 'deletecat':
@@ -339,14 +339,14 @@ switch ($op) {
 
         $cid = (int)$HTTP_GET_VARS['cid'];
 
-        $result = db_query("SELECT parent FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '$cid' LIMIT 1");
+        $result = cpg_db_query("SELECT parent FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '$cid' LIMIT 1");
         if ($cid == 1) cpg_die(ERROR, $lang_catmgr_php['usergal_cat_ro'], __FILE__, __LINE__);
         if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_catmgr_php['unknown_cat'], __FILE__, __LINE__);
         $del_category = mysql_fetch_array($result);
         $parent = $del_category['parent'];
-        $result = db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent' WHERE parent = '$cid'");
-        $result = db_query("UPDATE {$CONFIG['TABLE_ALBUMS']} SET category='$parent' WHERE category = '$cid'");
-        $result = db_query("DELETE FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid='$cid' LIMIT 1");
+        $result = cpg_db_query("UPDATE {$CONFIG['TABLE_CATEGORIES']} SET parent='$parent' WHERE parent = '$cid'");
+        $result = cpg_db_query("UPDATE {$CONFIG['TABLE_ALBUMS']} SET category='$parent' WHERE category = '$cid'");
+        $result = cpg_db_query("DELETE FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid='$cid' LIMIT 1");
         break;
 }
 

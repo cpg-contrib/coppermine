@@ -232,12 +232,12 @@ switch ($op) {
 
             // Move the plugin above down
             $sql = 'update '.$CONFIG['TABLE_PLUGINS'].' set priority='.$priority.' where priority='.($priority-1).';';
-            db_query($sql);
+            cpg_db_query($sql);
 
             // Move this plugin up
             $sql = 'update '.$CONFIG['TABLE_PLUGINS'].' '.
                    'set priority='.($priority-1).' where plugin_id='.$thisplugin->plugin_id.';';
-            db_query($sql);
+            cpg_db_query($sql);
         }
         break;
     case 'moved':
@@ -246,12 +246,12 @@ switch ($op) {
 
             // Move the plugin below up
             $sql = 'update '.$CONFIG['TABLE_PLUGINS'].' set priority='.($priority).' where priority='.($priority+1).';';
-            db_query($sql);
+            cpg_db_query($sql);
 
             // Move this plugin down
             $sql = 'update '.$CONFIG['TABLE_PLUGINS'].' '.
                    'set priority='.($priority+1).' where plugin_id='.$thisplugin->plugin_id.';';
-            db_query($sql);
+            cpg_db_query($sql);
         }
         break;
     case 'upload':

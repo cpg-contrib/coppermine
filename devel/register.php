@@ -201,7 +201,7 @@ function check_user_info(&$error)
         $profile6 = addslashes($HTTP_POST_VARS['user_profile6']);
 
     $sql = "SELECT user_id " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_name = '" . addslashes($user_name) . "'";
-    $result = db_query($sql);
+    $result = cpg_db_query($sql);
 
     if (mysql_num_rows($result)) {
         $error = '<li>' . $lang_register_php['err_user_exists'];
@@ -220,7 +220,7 @@ function check_user_info(&$error)
 
     if (!$CONFIG['allow_duplicate_emails_addr']) {
         $sql = "SELECT user_id " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_email = '" . addslashes($email) . "'";
-        $result = db_query($sql);
+        $result = cpg_db_query($sql);
 
         if (mysql_num_rows($result)) {
             $error = '<li>' . $lang_register_php['err_duplicate_email'];
@@ -247,7 +247,7 @@ function check_user_info(&$error)
     if ($CONFIG['log_mode']) {
         log_write('New user "'.addslashes($user_name).'" created on '.date("F j, Y, g:i a"),CPG_ACCESS_LOG);
     }
-    $result = db_query($sql);
+    $result = cpg_db_query($sql);
 
     if ($CONFIG['reg_requires_valid_email']) {
         $act_link = $CONFIG['site_url'] . 'register.php?activate=' . $act_key;
@@ -286,7 +286,7 @@ if (isset($HTTP_POST_VARS['agree'])) {
     if (strlen($act_key) != 32) cpg_die(ERROR, $lang_register_php['acct_act_failed'], __FILE__, __LINE__);
 
     $sql = "SELECT user_active " . "FROM {$CONFIG['TABLE_USERS']} " . "WHERE user_actkey = '$act_key' " . "LIMIT 1";
-    $result = db_query($sql);
+    $result = cpg_db_query($sql);
     if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_register_php['acct_act_failed'], __FILE__, __LINE__);
 
     $row = mysql_fetch_array($result);
@@ -295,7 +295,7 @@ if (isset($HTTP_POST_VARS['agree'])) {
     if ($row['user_active'] == 'YES') cpg_die(ERROR, $lang_register_php['acct_already_act'], __FILE__, __LINE__);
 
     $sql = "UPDATE {$CONFIG['TABLE_USERS']} " . "SET user_active = 'YES' " . "WHERE user_actkey = '$act_key' " . "LIMIT 1";
-    $result = db_query($sql);
+    $result = cpg_db_query($sql);
 
     msg_box($lang_register_php['information'], $lang_register_php['acct_active'], $lang_continue, 'index.php');
 } else {

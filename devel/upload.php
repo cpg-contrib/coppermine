@@ -199,7 +199,7 @@ EOT;
 
         // Get the category name
         $vQuery = "SELECT cat.name FROM " . $CONFIG['TABLE_CATEGORIES'] . " cat, " . $CONFIG['TABLE_ALBUMS'] . " alb WHERE alb.aid='" . $album_id . "' AND cat.cid=alb.category";
-        $vRes = db_query($vQuery);
+        $vRes = cpg_db_query($vQuery);
         $vRes = mysql_fetch_array($vRes);
 
         // Add to multi-dim array for sorting later
@@ -483,7 +483,7 @@ function create_record($encoded_string) {
     $generic_array = array();
 
     // Get all IDs from the table.
-    $result = db_query("SELECT unique_ID FROM {$CONFIG['TABLE_TEMPDATA']}");
+    $result = cpg_db_query("SELECT unique_ID FROM {$CONFIG['TABLE_TEMPDATA']}");
 
     // Create unique ID array.
     if (mysql_num_rows($result)) {
@@ -518,7 +518,7 @@ function create_record($encoded_string) {
     $timestamp = time();
 
     // Insert the new record.
-    $result = db_query("INSERT INTO {$CONFIG['TABLE_TEMPDATA']} VALUES ('$unique_ID', '$encoded_string', '$timestamp')");
+    $result = cpg_db_query("INSERT INTO {$CONFIG['TABLE_TEMPDATA']} VALUES ('$unique_ID', '$encoded_string', '$timestamp')");
 
     // Return the unique ID if insertion was successful. Otherwise, return false.
     if ($result) {
@@ -540,7 +540,7 @@ function update_record($unique_ID, $encoded_string) {
     global $CONFIG;
 
     // Update record.
-    $result = db_query("UPDATE {$CONFIG['TABLE_TEMPDATA']} SET encoded_string = '$encoded_string' WHERE unique_ID = '$unique_ID'");
+    $result = cpg_db_query("UPDATE {$CONFIG['TABLE_TEMPDATA']} SET encoded_string = '$encoded_string' WHERE unique_ID = '$unique_ID'");
 
     // Return true if successful.
     if ($result) {
@@ -562,7 +562,7 @@ function delete_record($unique_ID) {
     global $CONFIG;
 
     // Delete record.
-    $result = db_query("DELETE FROM {$CONFIG['TABLE_TEMPDATA']} WHERE unique_ID = '$unique_ID'");
+    $result = cpg_db_query("DELETE FROM {$CONFIG['TABLE_TEMPDATA']} WHERE unique_ID = '$unique_ID'");
 
     // Return true if successful.
     if ($result) {
@@ -584,7 +584,7 @@ function retrieve_record($unique_ID) {
     global $CONFIG;
 
     // Retrieve record.
-    $result = db_query("SELECT encoded_string FROM {$CONFIG['TABLE_TEMPDATA']} WHERE unique_ID = '$unique_ID'");
+    $result = cpg_db_query("SELECT encoded_string FROM {$CONFIG['TABLE_TEMPDATA']} WHERE unique_ID = '$unique_ID'");
 
     // Return string if successful.
     if (mysql_num_rows($result)) {
@@ -623,7 +623,7 @@ function clean_table() {
     $comparative_timestamp = time() - 3600;
 
     // Delete record.
-    $result = db_query("DELETE FROM {$CONFIG['TABLE_TEMPDATA']} WHERE timestamp < $comparative_timestamp");
+    $result = cpg_db_query("DELETE FROM {$CONFIG['TABLE_TEMPDATA']} WHERE timestamp < $comparative_timestamp");
 
     // Return true if successful.
     if ($result) {
@@ -832,20 +832,20 @@ if ((CUSTOMIZE_UPLOAD_FORM) and (!isset($_REQUEST['file_upload_request'])) and (
 // Get public and private albums, and set maximum individual file size.
 
 if (GALLERY_ADMIN_MODE) {
-    $public_albums = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
+    $public_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
 } else {
-    $public_albums = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " AND uploads='YES' ORDER BY title");
+    $public_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " AND uploads='YES' ORDER BY title");
 }
 if (mysql_num_rows($public_albums)) {
-    $public_albums_list = db_fetch_rowset($public_albums);
+    $public_albums_list = cpg_db_fetch_rowset($public_albums);
 } else {
     $public_albums_list = array();
 }
 
 if (USER_ID) {
-    $user_albums = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' ORDER BY title");
+    $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' ORDER BY title");
     if (mysql_num_rows($user_albums)) {
-        $user_albums_list = db_fetch_rowset($user_albums);
+        $user_albums_list = cpg_db_fetch_rowset($user_albums);
     } else {
         $user_albums_list = array();
     }
@@ -1580,7 +1580,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
 
                 } else {
                     // We will try to get the extension from the database.
-                    $MIME_result = db_query("SELECT extension FROM {$CONFIG['TABLE_FILETYPES']} WHERE mime='$URI_MIME_type'");
+                    $MIME_result = cpg_db_query("SELECT extension FROM {$CONFIG['TABLE_FILETYPES']} WHERE mime='$URI_MIME_type'");
 
                     // Check to see if any results were returned.
                     if (!mysql_num_rows($MIME_result)) {
@@ -2190,13 +2190,13 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
 
         // Check if the album id provided is valid
         if (!GALLERY_ADMIN_MODE) {
-            $result = db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album' and (uploads = 'YES' OR category = '" . (USER_ID + FIRST_USER_CAT) . "')");
+            $result = cpg_db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album' and (uploads = 'YES' OR category = '" . (USER_ID + FIRST_USER_CAT) . "')");
             if (mysql_num_rows($result) == 0)cpg_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
             $row = mysql_fetch_array($result);
             mysql_free_result($result);
             $category = $row['category'];
         } else {
-            $result = db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
+            $result = cpg_db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
             if (mysql_num_rows($result) == 0)cpg_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
             $row = mysql_fetch_array($result);
             mysql_free_result($result);

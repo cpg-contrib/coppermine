@@ -297,7 +297,7 @@ function form_theme($text, $name, $help = '')
     $help = cpg_display_help($help);
 
 
-    $result = db_query("SELECT value FROM {$CONFIG['TABLE_CONFIG']} WHERE name = 'theme'");
+    $result = cpg_db_query("SELECT value FROM {$CONFIG['TABLE_CONFIG']} WHERE name = 'theme'");
     list($value) = mysql_fetch_row($result);
     mysql_free_result($result);
     $theme_dir = 'themes/';
@@ -708,7 +708,7 @@ if (count($HTTP_POST_VARS) > 0) {
                 $value = addslashes($HTTP_POST_VARS[$element[1]]);
                 if ($CONFIG[$element[1]] !== stripslashes($value))
                      {
-                        db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = '{$element[1]}'");
+                        cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = '{$element[1]}'");
                         if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
                                 log_write('CONFIG UPDATE SQL: '.
                                           "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = '{$element[1]}'\n".
@@ -727,13 +727,13 @@ if (count($HTTP_POST_VARS) > 0) {
         $default_config = 'sql/basic.sql';
         $sql_query = fread(fopen($default_config, 'r'), filesize($default_config));
         $sql_query = preg_replace('/CPG_/', $CONFIG['TABLE_PREFIX'], $sql_query);
-        db_query("TRUNCATE TABLE {$CONFIG['TABLE_CONFIG']}");
-        db_query("TRUNCATE TABLE {$CONFIG['TABLE_FILETYPES']}");
+        cpg_db_query("TRUNCATE TABLE {$CONFIG['TABLE_CONFIG']}");
+        cpg_db_query("TRUNCATE TABLE {$CONFIG['TABLE_FILETYPES']}");
         $sql_query = remove_remarks($sql_query);
         $sql_query = split_sql_file($sql_query, ';');
 
         $sql_count = count($sql_query);
-        for($i = 0; $i < $sql_count; $i++) if (strpos($sql_query[$i],'config VALUES') || strpos($sql_query[$i],'filetypes VALUES')) db_query($sql_query[$i]);
+        for($i = 0; $i < $sql_count; $i++) if (strpos($sql_query[$i],'config VALUES') || strpos($sql_query[$i],'filetypes VALUES')) cpg_db_query($sql_query[$i]);
         pageheader($lang_config_php['title']);
             msg_box($lang_config_php['info'], $lang_config_php['restore_success'], $lang_continue, $PHP_SELF);
     }

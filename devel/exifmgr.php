@@ -45,7 +45,7 @@ if (isset($HTTP_POST_VARS['save'])) {
   $selectedExifTags = substr ($str,0,strlen($str)-1);
   $selectedExifTags = $str;
   $sql = "UPDATE ".$CONFIG['TABLE_CONFIG']." SET value = '".$selectedExifTags."' WHERE name = 'show_which_exif'";
-  db_query($sql);
+  cpg_db_query($sql);
   msg_box($lang_picinfo['ManageExifDisplay'], $lang_picinfo['success'], $lang_continue, "config.php");
 } else {
   echo <<< EOT

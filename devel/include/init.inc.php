@@ -68,7 +68,7 @@ function cpgGetUserData($pri_group, $groups, $default_group_id = 3)
                         unset ($groups[$key]);
         if (!in_array($pri_group, $groups)) array_push($groups, $pri_group);
 
-        $result = db_query("SELECT MAX(group_quota) as disk_max, MIN(group_quota) as disk_min, " .
+        $result = cpg_db_query("SELECT MAX(group_quota) as disk_max, MIN(group_quota) as disk_min, " .
                         "MAX(can_rate_pictures) as can_rate_pictures, MAX(can_send_ecards) as can_send_ecards, " .
                         "MAX(upload_form_config) as ufc_max, MIN(upload_form_config) as ufc_min, " .
                         "MAX(custom_user_upload) as custom_user_upload, MAX(num_file_upload) as num_file_upload, " .
@@ -81,11 +81,11 @@ function cpgGetUserData($pri_group, $groups, $default_group_id = 3)
 
         if (mysql_num_rows($result)) {
                 $USER_DATA = mysql_fetch_assoc($result);
-                $result = db_query("SELECT group_name FROM  {$CONFIG['TABLE_USERGROUPS']} WHERE group_id= " . $pri_group);
+                $result = cpg_db_query("SELECT group_name FROM  {$CONFIG['TABLE_USERGROUPS']} WHERE group_id= " . $pri_group);
                 $temp_arr = mysql_fetch_assoc($result);
                 $USER_DATA["group_name"] = $temp_arr["group_name"];
         } else {
-                $result = db_query("SELECT * FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = $default_group_id");
+                $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = $default_group_id");
                if (!mysql_num_rows($resultt)) die('<b>Coppermine critical error</b>:<br />The group table does not contain the Anonymous group !');
                        $USER_DATA = mysql_fetch_assoc($result);
                 }
@@ -244,7 +244,7 @@ $CONFIG['TABLE_FAVPICS']        = $CONFIG['TABLE_PREFIX']."favpics";
 // Connect to database
 cpg_db_connect() || die("<b>Coppermine critical error</b>:<br />Unable to connect to database !<br /><br />MySQL said: <b>" . mysql_error() . "</b>");
 // Retrieve DB stored configuration
-$results = db_query("SELECT * FROM {$CONFIG['TABLE_CONFIG']}");
+$results = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_CONFIG']}");
 while ($row = mysql_fetch_array($results)) {
     $CONFIG[$row['name']] = $row['value'];
 } // while
@@ -289,7 +289,7 @@ if (defined('UDB_INTEGRATION')) {
     }
 
     $sql = "SELECT * " . "FROM {$CONFIG['TABLE_USERS']} WHERE user_id='$cookie_uid'" . "AND user_active = 'YES' " . "AND user_password != '' " . "AND BINARY MD5(user_password) = '$cookie_pass'";
-    $results = db_query($sql);
+    $results = cpg_db_query($sql);
 
     if (mysql_num_rows($results)) {
         $USER_DATA = mysql_fetch_assoc($results);
@@ -398,7 +398,7 @@ if (isset($HTTP_COOKIE_VARS[$CONFIG['cookie_name'] . '_fav'])) {
 // If the person is logged in get favs from DB those in the DB have precedence
 if (USER_ID > 0){
         $sql = "SELECT user_favpics FROM {$CONFIG['TABLE_FAVPICS']} WHERE user_id = ".USER_ID;
-        $results = db_query($sql);
+        $results = cpg_db_query($sql);
         $row = mysql_fetch_array($results);
         if (!empty($row['user_favpics'])){
                 $FAVPICS = @unserialize(@base64_decode($row['user_favpics']));
@@ -422,10 +422,10 @@ CPGPluginAPI::action('page_start',null);
 load_template();
 // Remove expired bans
 $now = time();
-db_query("DELETE FROM {$CONFIG['TABLE_BANNED']} WHERE expiry < $now");
+cpg_db_query("DELETE FROM {$CONFIG['TABLE_BANNED']} WHERE expiry < $now");
 // Check if the user is banned
 $user_id = USER_ID;
-$result = db_query("SELECT * FROM {$CONFIG['TABLE_BANNED']} WHERE (ip_addr='$raw_ip' OR ip_addr='$hdr_ip' OR user_id=$user_id) AND brute_force=0");
+$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_BANNED']} WHERE (ip_addr='$raw_ip' OR ip_addr='$hdr_ip' OR user_id=$user_id) AND brute_force=0");
 if (mysql_num_rows($result)) {
     pageheader($lang_error);
     msg_box($lang_info, $lang_errors['banned']);

@@ -44,7 +44,7 @@ if (!eregi("displayimage",$HTTP_SERVER_VARS["HTTP_REFERER"])){
 
 // Retrieve picture/album information & check if user can rate picture
 $sql = "SELECT a.votes as votes_allowed, p.votes as votes, pic_rating, owner_id " . "FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a " . "WHERE p.aid = a.aid AND pid = '$pic' LIMIT 1";
-$result = db_query($sql);
+$result = cpg_db_query($sql);
 if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
 $row = mysql_fetch_array($result);
 mysql_free_result($result);
@@ -53,11 +53,11 @@ if (!USER_CAN_RATE_PICTURES || $row['votes_allowed'] == 'NO') cpg_die(ERROR, $la
 $curr_time = time();
 $clean_before = $curr_time - $CONFIG['keep_votes_time'] * 86400;
 $sql = "DELETE " . "FROM {$CONFIG['TABLE_VOTES']} " . "WHERE vote_time < $clean_before";
-$result = db_query($sql);
+$result = cpg_db_query($sql);
 // Check if user already rated this picture
 $user_md5_id = USER_ID ? md5(USER_ID) : $USER['ID'];
 $sql = "SELECT * " . "FROM {$CONFIG['TABLE_VOTES']} " . "WHERE pic_id = '$pic' AND user_md5_id = '$user_md5_id'";
-$result = db_query($sql);
+$result = cpg_db_query($sql);
 if (mysql_num_rows($result)) cpg_die(ERROR, $lang_rate_pic_php['already_rated'], __FILE__, __LINE__);
 //Test for Self-Rating
 $user=USER_ID;
@@ -67,10 +67,10 @@ if (!empty($user) && $user==$owner && !USER_IS_ADMIN) cpg_die(ERROR, $lang_rate_
 // Update picture rating
 $new_rating = round(($row['votes'] * $row['pic_rating'] + $rate * 2000) / ($row['votes'] + 1));
 $sql = "UPDATE {$CONFIG['TABLE_PICTURES']} " . "SET pic_rating = '$new_rating', votes = votes + 1 " . "WHERE pid = '$pic' LIMIT 1";
-$result = db_query($sql);
+$result = cpg_db_query($sql);
 // Update the votes table
 $sql = "INSERT INTO {$CONFIG['TABLE_VOTES']} " . "VALUES ('$pic', '$user_md5_id', '$curr_time')";
-$result = db_query($sql);
+$result = cpg_db_query($sql);
 
 $location = "displayimage.php?pos=" . (- $pic);
 $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';

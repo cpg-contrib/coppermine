@@ -37,7 +37,7 @@ if (!USER_CAN_UPLOAD_PICTURES) {
 }
 
 $query = "SELECT * FROM {$CONFIG['TABLE_PREFIX']}dict ORDER BY keyword";
-$result = db_query($query);
+$result = cpg_db_query($query);
 while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
     $keywordIds[] = $row["keywordId"];
     $keywords[]   = $row["keyword"];

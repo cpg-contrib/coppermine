@@ -40,7 +40,7 @@ switch($_REQUEST['page']) {
 default :
 case 'display':
 
-$result = db_query("select keywords from {$CONFIG['TABLE_PICTURES']}");
+$result = cpg_db_query("select keywords from {$CONFIG['TABLE_PICTURES']}");
 if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap']);
   // Find unique keywords
    $total_array = array();
@@ -102,7 +102,7 @@ case 'changeword':
        $keywordEdit = $_REQUEST['keywordEdit'];
 
        $query = "SELECT `pid`,`keywords` FROM {$CONFIG['TABLE_PICTURES']} WHERE CONCAT(' ',`keywords`,' ') LIKE '% {$keywordEdit} %'";
-       $result = db_query($query) or die(mysql_error());
+       $result = cpg_db_query($query) or die(mysql_error());
 
        while (list($id,$keywords) = mysql_fetch_row($result))
        {
@@ -124,7 +124,7 @@ case 'changeword':
    }
    $newquerys[] = "UPDATE {$CONFIG['TABLE_PICTURES']} SET `keywords` = TRIM(REPLACE(`keywords`,'  ',' '))";
 
-   foreach ($newquerys as $query) { $result = db_query($query) or die($query."<br />".mysql_error()); }
+   foreach ($newquerys as $query) { $result = cpg_db_query($query) or die($query."<br />".mysql_error()); }
 
    header("Location: ?page=display");
 
@@ -135,7 +135,7 @@ case 'delete':
        $keywordEdit = $_REQUEST['remov'];
 
        $query = "SELECT `pid`,`keywords` FROM {$CONFIG['TABLE_PICTURES']} WHERE CONCAT(' ',`keywords`,' ') LIKE '% {$keywordEdit} %'";
-       $result = db_query($query) or die(mysql_error());
+       $result = cpg_db_query($query) or die(mysql_error());
 
        while (list($id,$keywords) = mysql_fetch_row($result))
        {
@@ -157,7 +157,7 @@ case 'delete':
 
    $newquerys[] = "UPDATE {$CONFIG['TABLE_PICTURES']} SET `keywords` = TRIM(REPLACE(`keywords`,'  ',' '))";
 
-   foreach ($newquerys as $query) { $result = db_query($query) or die($query."<br />".mysql_error()); }
+   foreach ($newquerys as $query) { $result = cpg_db_query($query) or die($query."<br />".mysql_error()); }
 
    header("Location: ?page=display");
 

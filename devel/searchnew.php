@@ -49,7 +49,7 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
     $list_count = 0;
 
     if ($select == "") {
-        $result = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0");
+        $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0");
         while ($row = mysql_fetch_array($result)) {
             // Add to multi-dim array for later sorting
             $listArray[$list_count][cat] = $lang_search_new_php['albums_no_category'];
@@ -59,7 +59,7 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
         }
         mysql_free_result($result);
 
-        $result = db_query("SELECT DISTINCT a.aid as aid, a.title as title, c.name as cname FROM {$CONFIG['TABLE_ALBUMS']} as a, {$CONFIG['TABLE_CATEGORIES']} as c WHERE a.category = c.cid AND a.category < '" . FIRST_USER_CAT . "'");
+        $result = cpg_db_query("SELECT DISTINCT a.aid as aid, a.title as title, c.name as cname FROM {$CONFIG['TABLE_ALBUMS']} as a, {$CONFIG['TABLE_CATEGORIES']} as c WHERE a.category = c.cid AND a.category < '" . FIRST_USER_CAT . "'");
         while ($row = mysql_fetch_array($result)) {
             // Add to multi-dim array for later sorting
             $listArray[$list_count][cat] = $row['cname'];
@@ -74,7 +74,7 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
         } else {
             $sql = "SELECT aid, CONCAT('(', user_name, ') ', title) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id)";
         }
-        $result = db_query($sql);
+        $result = cpg_db_query($sql);
         while ($row = mysql_fetch_array($result)) {
             // Add to multi-dim array for later sorting
             $listArray[$list_count][cat] = $lang_search_new_php['personal_albums'];
@@ -295,7 +295,7 @@ function getallpicindb(&$pic_array, $startdir)
     global $CONFIG;
 
     $sql = "SELECT filepath, filename " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE filepath LIKE '$startdir%'";
-    $result = db_query($sql);
+    $result = cpg_db_query($sql);
     while ($row = mysql_fetch_array($result)) {
         $pic_file = $row['filepath'] . $row['filename'];
         $pic_array[$pic_file] = 1;
@@ -317,7 +317,7 @@ function getallalbumsindb(&$album_array)
     global $CONFIG;
 
     $sql = "SELECT aid, title " . "FROM {$CONFIG['TABLE_ALBUMS']} " . "WHERE 1";
-    $result = db_query($sql);
+    $result = cpg_db_query($sql);
 
     while ($row = mysql_fetch_array($result)) {
         $album_array[$row['aid']] = $row['title'];

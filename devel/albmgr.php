@@ -50,9 +50,9 @@ function alb_get_subcat_data($parent, $ident = '')
 {
     global $CONFIG, $CAT_LIST;
 
-    $result = db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent' AND cid != 1 ORDER BY pos");
+    $result = cpg_db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent' AND cid != 1 ORDER BY pos");
     if (mysql_num_rows($result) > 0) {
-        $rowset = db_fetch_rowset($result);
+        $rowset = cpg_db_fetch_rowset($result);
         foreach ($rowset as $subcat) {
             $CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
             alb_get_subcat_data($subcat['cid'], $ident . '&nbsp;&nbsp;&nbsp;');
@@ -340,11 +340,11 @@ $cat = isset($HTTP_GET_VARS['cat']) ? ($HTTP_GET_VARS['cat']) : 0;
 if ($cat == 1) $cat = 0;
 
 if (GALLERY_ADMIN_MODE) {
-    $result = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $cat ORDER BY pos ASC");
+    $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = $cat ORDER BY pos ASC");
 } elseif (USER_ADMIN_MODE) {
-    $result = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = " . (USER_ID + FIRST_USER_CAT) . " ORDER BY pos ASC");
+    $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = " . (USER_ID + FIRST_USER_CAT) . " ORDER BY pos ASC");
 } else cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
-$rowset = db_fetch_rowset($result);
+$rowset = cpg_db_fetch_rowset($result);
 $i = 100;
 $sort_order = '';
 if (count ($rowset) > 0) foreach ($rowset as $album) {

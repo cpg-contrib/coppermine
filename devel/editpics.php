@@ -37,7 +37,7 @@ if (isset($HTTP_GET_VARS['album'])) {
 if (UPLOAD_APPROVAL_MODE && !GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
 if (EDIT_PICTURES_MODE) {
-    $result = db_query("SELECT title, category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid = '$album_id'");
+    $result = cpg_db_query("SELECT title, category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid = '$album_id'");
         if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
         $ALBUM_DATA=mysql_fetch_array($result);
         mysql_free_result($result);
@@ -112,7 +112,7 @@ function process_post_data()
                 $del_comments = isset($HTTP_POST_VARS['del_comments'.$pid]) || $delete;
 
                 $query = "SELECT category, filepath, filename FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND pid='$pid'";
-                $result = db_query($query);
+                $result = cpg_db_query($query);
                 if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
                 $pic = mysql_fetch_array($result);
                 mysql_free_result($result);
@@ -152,7 +152,7 @@ function process_post_data()
 
                 if ($del_comments) {
                         $query = "DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid'";
-                        $result =db_query($query);
+                        $result =cpg_db_query($query);
                 }
 
                 if ($delete) {
@@ -167,10 +167,10 @@ function process_post_data()
                         }
 
                         $query = "DELETE FROM {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' LIMIT 1";
-                        $result = db_query($query);
+                        $result = cpg_db_query($query);
                 } else {
                         $query = "UPDATE {$CONFIG['TABLE_PICTURES']} SET $update WHERE pid='$pid' LIMIT 1";
-                        $result = db_query($query);
+                        $result = cpg_db_query($query);
                 }
         }
 }
@@ -377,9 +377,9 @@ function get_user_albums($user_id)
         global $CONFIG, $USER_ALBUMS_ARRAY, $user_albums_list;
 
         if (!isset($USER_ALBUMS_ARRAY[$user_id])) {
-                $user_albums = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='".(FIRST_USER_CAT + $user_id)."' ORDER BY title");
+                $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='".(FIRST_USER_CAT + $user_id)."' ORDER BY title");
                 if (mysql_num_rows($user_albums)) {
-                    $user_albums_list=db_fetch_rowset($user_albums);
+                    $user_albums_list=cpg_db_fetch_rowset($user_albums);
                 } else {
                         $user_albums_list = array();
                 }
@@ -392,9 +392,9 @@ function get_user_albums($user_id)
 
 
 if (GALLERY_ADMIN_MODE) {
-    $public_albums = db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']}, {$CONFIG['TABLE_CATEGORIES']} WHERE category < '" . FIRST_USER_CAT . "' AND (category = 0 OR category = cid) ORDER BY cat_title");
+    $public_albums = cpg_db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']}, {$CONFIG['TABLE_CATEGORIES']} WHERE category < '" . FIRST_USER_CAT . "' AND (category = 0 OR category = cid) ORDER BY cat_title");
         if (mysql_num_rows($public_albums)) {
-            $public_albums_list=db_fetch_rowset($public_albums);
+            $public_albums_list=cpg_db_fetch_rowset($public_albums);
         } else {
                 $public_albums_list = array();
         }
@@ -416,18 +416,18 @@ $s75 = $count == 75 ? 'selected' : '';
 $s100 = $count == 100 ? 'selected' : '';
 
 if (UPLOAD_APPROVAL_MODE) {
-        $result=db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'NO'");
+        $result=cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'NO'");
         $nbEnr = mysql_fetch_array($result);
         $pic_count = $nbEnr[0];
 
         // Update user names for pictures
         $sql = "SELECT pid, owner_id FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_id != 0 AND owner_name = ''";
-        $result = db_query($sql);
+        $result = cpg_db_query($sql);
         while($row = mysql_fetch_array($result)){
                 if(defined('UDB_INTEGRATION')){
                         $owner_name = udb_get_user_name($row['owner_id']);
                 } else {
-                    $result2 = db_query("SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '".$row['owner_id']."'");
+                    $result2 = cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '".$row['owner_id']."'");
                         if (mysql_num_rows($result2)){
                                 $row2 = mysql_fetch_array($result2);
                                 mysql_free_result($result2);
@@ -438,9 +438,9 @@ if (UPLOAD_APPROVAL_MODE) {
                 }
 
                 if($owner_name){
-                        db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET owner_name = '$owner_name' WHERE pid = {$row['pid']} LIMIT 1");
+                        cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET owner_name = '$owner_name' WHERE pid = {$row['pid']} LIMIT 1");
                 } else {
-                        db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET owner_id = 0 WHERE pid = {$row['pid']} LIMIT 1");
+                        cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET owner_id = 0 WHERE pid = {$row['pid']} LIMIT 1");
                 }
         }
         mysql_free_result($result);
@@ -450,17 +450,17 @@ if (UPLOAD_APPROVAL_MODE) {
                         "WHERE approved = 'NO' ".
                         "ORDER BY pid ".
                         "LIMIT $start, $count";
-        $result = db_query($sql);
+        $result = cpg_db_query($sql);
         $form_target = $PHP_SELF.'?mode=upload_approval&start='.$start.'&count='.$count;
         $title = $lang_editpics_php['upl_approval'];
         $help = '';
 } else {
-        $result=db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = '$album_id'");
+        $result=cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = '$album_id'");
         $nbEnr = mysql_fetch_array($result);
         $pic_count = $nbEnr[0];
         mysql_free_result($result);
 
-    $result = db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = '$album_id' ORDER BY filename LIMIT $start, $count");
+    $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = '$album_id' ORDER BY filename LIMIT $start, $count");
         $form_target = $PHP_SELF.'?album='.$album_id.'&start='.$start.'&count='.$count;
         $title = $lang_editpics_php['edit_pics'];
         $help = '&nbsp;'.cpg_display_help('f=index.htm&as=edit_pics&ae=edit_pics_end&top=1', '800', '500');

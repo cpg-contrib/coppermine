@@ -30,9 +30,9 @@ function get_album_data()
 {
     global $CONFIG, $ALBUM_LIST;
 
-   $result = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} ORDER BY title");
+   $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} ORDER BY title");
    if (mysql_num_rows($result) > 0){
-      $rowset = db_fetch_rowset($result);
+      $rowset = cpg_db_fetch_rowset($result);
       foreach ($rowset as $alb){
          $ALBUM_LIST[]=array($alb['aid'], $alb['title']);
       }
@@ -269,11 +269,11 @@ pageheader($lang_picmgr_php['pic_mgr']);
    $aid = isset($HTTP_GET_VARS['aid']) ? ($HTTP_GET_VARS['aid']) : 0;
 
    if (GALLERY_ADMIN_MODE || USER_ADMIN_MODE) {
-      $result = db_query("SELECT aid, pid, filename FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = $aid ORDER BY position ASC, pid");
-//BM in case I have to fix an album      $result = db_query("SELECT aid, pid, filename FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = $aid ORDER BY filename");
+      $result = cpg_db_query("SELECT aid, pid, filename FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = $aid ORDER BY position ASC, pid");
+//BM in case I have to fix an album      $result = cpg_db_query("SELECT aid, pid, filename FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = $aid ORDER BY filename");
    } else cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
-   $rowset = db_fetch_rowset($result);
+   $rowset = cpg_db_fetch_rowset($result);
    $i=100;
    $sort_order = '';
 

@@ -97,7 +97,7 @@ function udb_authenticate()
 
         $sql = "SELECT u.id as user_id, u.username as user_name, u.gid as user_level " . "FROM " . $UDB_DB_NAME_PREFIX . MOS_TABLE_PREFIX . MOS_USER_TABLE . " AS u LEFT JOIN " . $UDB_DB_NAME_PREFIX . MOS_TABLE_PREFIX . MOS_SESSION_TABLE . " as s ON u.username = s.username " . "WHERE u.username='$cookie_uid' AND u.password='$cookie_pass' AND s.session_id IS NOT NULL AND block='0'";
 
-    $result = db_query($sql, $UDB_DB_LINK_ID);
+    $result = cpg_db_query($sql, $UDB_DB_LINK_ID);
 
     if (mysql_num_rows($result)) {
         $USER_DATA = mysql_fetch_array($result);
@@ -129,7 +129,7 @@ function udb_authenticate()
 
         // Retrieve the groups the user is a member of
         $sql = "SELECT (ug.group_id + 5) as group_id " . "FROM " . $UDB_DB_NAME_PREFIX . MOS_TABLE_PREFIX . MOS_UGROUPMAP_TABLE . " as ug " . "LEFT JOIN " . $UDB_DB_NAME_PREFIX . MOS_TABLE_PREFIX . MOS_UGROUP_TABLE . " as g ON ug.aro_id = g.aro_id " . "WHERE g.value = " . USER_ID . "";
-        $result = db_query($sql, $UDB_DB_LINK_ID);
+        $result = cpg_db_query($sql, $UDB_DB_LINK_ID);
         while ($row = mysql_fetch_array($result)) {
                 array_push($USER_DATA['groups'], $row['group_id']);
         }
@@ -189,7 +189,7 @@ function udb_get_user_name($uid)
 
     $sql = "SELECT username as user_name " . "FROM " . $UDB_DB_NAME_PREFIX . MOS_TABLE_PREFIX . MOS_USER_TABLE . " " . "WHERE id = '$uid'";
 
-    $result = db_query($sql, $UDB_DB_LINK_ID);
+    $result = cpg_db_query($sql, $UDB_DB_LINK_ID);
 
     if (mysql_num_rows($result)) {
         $row = mysql_fetch_array($result);
@@ -208,7 +208,7 @@ function udb_get_user_id($username)
 
     $sql = "SELECT id as user_id " . "FROM " . $UDB_DB_NAME_PREFIX . MOS_TABLE_PREFIX . MOS_USER_TABLE . " " . "WHERE username = '$username'";
 
-    $result = db_query($sql, $UDB_DB_LINK_ID);
+    $result = cpg_db_query($sql, $UDB_DB_LINK_ID);
 
     if (mysql_num_rows($result)) {
         $row = mysql_fetch_array($result);
@@ -260,7 +260,7 @@ function udb_get_user_infos($uid)
     global $lang_register_php;
 
     $sql = "SELECT username as user_name, email as user_email, registerDate as user_regdate " . "FROM " . $UDB_DB_NAME_PREFIX . MOS_TABLE_PREFIX . MOS_USER_TABLE . " " . "WHERE id = '$uid'";
-    $result = db_query($sql, $UDB_DB_LINK_ID);
+    $result = cpg_db_query($sql, $UDB_DB_LINK_ID);
     if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_register_php['err_unk_user'], __FILE__, __LINE__);
 
     $user_data = mysql_fetch_array($result);
@@ -282,7 +282,7 @@ function udb_list_users_query(&$user_count)
 
     if ($FORBIDDEN_SET != "") $FORBIDDEN_SET = "AND $FORBIDDEN_SET";
     $sql = "SELECT (category - " . FIRST_USER_CAT . ") as user_id," . "        '???' as user_name," . "        COUNT(DISTINCT a.aid) as alb_count," . "        COUNT(DISTINCT pid) as pic_count," . "        MAX(pid) as thumb_pid " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid " . "WHERE approved = 'YES' AND category > " . FIRST_USER_CAT . " $FORBIDDEN_SET " . "GROUP BY category " . "ORDER BY category ";
-    $result = db_query($sql);
+    $result = cpg_db_query($sql);
 
     $user_count = mysql_num_rows($result);
 
@@ -307,7 +307,7 @@ function udb_list_users_retrieve_data($result, $lower_limit, $count)
 
     $user_id_set = '(' . substr($user_id_set, 0, -1) . ')';
     $sql = "SELECT id as user_id, username as user_name " . "FROM " . $UDB_DB_NAME_PREFIX . MOS_TABLE_PREFIX . MOS_USER_TABLE . " " . "WHERE id IN $user_id_set";
-    $result = db_query($sql, $UDB_DB_LINK_ID);
+    $result = cpg_db_query($sql, $UDB_DB_LINK_ID);
     while ($row = mysql_fetch_array($result)) {
         $name[$row['user_id']] = $row['user_name'];
     }
@@ -330,13 +330,13 @@ function udb_synchronize_groups()
         );
 
     $sql = "SELECT (ug.group_id + 5) as group_id, name " . "FROM " . $UDB_DB_NAME_PREFIX . MOS_TABLE_PREFIX . MOS_GROUP_TABLE . " as ug ";
-    $result = db_query($sql, $UDB_DB_LINK_ID);
+    $result = cpg_db_query($sql, $UDB_DB_LINK_ID);
     while ($row = mysql_fetch_array($result)) {
         $MOS_groups[$row['group_id']] = $row['group_name'];
     }
     mysql_free_result($result);
 
-    $result = db_query("SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1");
+    $result = cpg_db_query("SELECT group_id, group_name FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1");
     while ($row = mysql_fetch_array($result)) {
         $cpg_groups[$row['group_id']] = $row['group_name'];
     }
@@ -344,21 +344,21 @@ function udb_synchronize_groups()
     // Scan Coppermine groups that need to be deleted
     foreach($cpg_groups as $c_group_id => $c_group_name) {
         if ((!isset($MOS_groups[$c_group_id]))) {
-            db_query("DELETE FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = '" . $c_group_id . "' LIMIT 1");
+            cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERGROUPS']} WHERE group_id = '" . $c_group_id . "' LIMIT 1");
             unset($cpg_groups[$c_group_id]);
         }
     }
     // Scan Mambo groups that need to be created inside Coppermine table
     foreach($MOS_groups as $i_group_id => $i_group_name) {
         if ((!isset($cpg_groups[$i_group_id]))) {
-            db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} (group_id, group_name) VALUES ('$i_group_id', '" . addslashes($i_group_name) . "')");
+            cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']} (group_id, group_name) VALUES ('$i_group_id', '" . addslashes($i_group_name) . "')");
             $cpg_groups[$i_group_id] = $i_group_name;
         }
     }
     // Update Group names
     foreach($MOS_groups as $i_group_id => $i_group_name) {
         if ($cpg_groups[$i_group_id] != $i_group_name) {
-            db_query("UPDATE {$CONFIG['TABLE_USERGROUPS']} SET group_name = '" . addslashes($i_group_name) . "' WHERE group_id = '$i_group_id' LIMIT 1");
+            cpg_db_query("UPDATE {$CONFIG['TABLE_USERGROUPS']} SET group_name = '" . addslashes($i_group_name) . "' WHERE group_id = '$i_group_id' LIMIT 1");
         }
     }
 }
@@ -383,13 +383,13 @@ function udb_util_filloptions()
     $usertbl = $UDB_DB_NAME_PREFIX.MOS_TABLE_PREFIX.MOS_USER_TABLE;
 
     $query = "SELECT aid, category, IF(username IS NOT NULL, CONCAT('(', username, ') ',a.title), CONCAT(' - ', a.title)) AS title " . "FROM $albumtbl AS a " . "LEFT JOIN $usertbl AS u ON category = (" . FIRST_USER_CAT . " + id) " . "ORDER BY category, a.title";
-    $result = db_query($query, $UDB_DB_LINK_ID);
+    $result = cpg_db_query($query, $UDB_DB_LINK_ID);
     // $num=mysql_numrows($result);
     echo '<select size="1" name="albumid">';
 
     while ($row = mysql_fetch_array($result)) {
         $sql = "SELECT name FROM $categorytbl WHERE cid = " . $row["category"];
-        $result2 = db_query($sql);
+        $result2 = cpg_db_query($sql);
         $row2 = mysql_fetch_array($result2);
 
         print "<option value=\"" . $row["aid"] . "\">" . $row2["name"] . $row["title"] . "</option>\n";
