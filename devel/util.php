@@ -157,7 +157,7 @@ function updatethumbs()
         if ($updatetype == 0 || $updatetype == 2) {
             $thumb = $CONFIG['fullpath'] . mysql_result($result, $i, "filepath") . $CONFIG['thumb_pfx'] . mysql_result($result, $i, "filename");
 
-            if (resize_image($image, $thumb, $CONFIG['thumb_width'], $CONFIG['thumb_method'])) {
+            if (resize_image($image, $thumb, $CONFIG['thumb_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use'])) {
                 print $thumb . $lang_util_php['updated_succesfully'] . '!<br />';
                 my_flush();
             } else {
@@ -171,7 +171,7 @@ function updatethumbs()
 
             $imagesize = getimagesize($image);
             if (max($imagesize[0], $imagesize[1]) > $CONFIG['picture_width'] && $CONFIG['make_intermediate']) {
-                if (resize_image($image, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method'])) {
+                if (resize_image($image, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use'])) {
                     print $normal . $lang_util_php['updated_succesfully'] . '!<br />';
                     my_flush();
                 } else {
