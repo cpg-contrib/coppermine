@@ -865,7 +865,7 @@ $max_file_size = $CONFIG['max_upl_size'] << 10;
 if (!isset($_REQUEST['control'])) {
 
     // Do some cleanup in the edit directory.
-    spring_cleaning('./albums/edit',CPG_HOUR);
+    spring_cleaning('./{$CONFIG['fullpath']}edit',CPG_HOUR);
 
     // Do some cleaning in the temp data table.
     clean_table();

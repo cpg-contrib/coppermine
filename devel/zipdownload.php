@@ -56,7 +56,6 @@ if (count($FAVPICS)>0){
 }
 
 $flags['storepath'] = 0;
-// $cwd = './albums';
 $cwd = "./{$CONFIG['fullpath']}";
 $cwd = substr($cwd, 0, -1);
 

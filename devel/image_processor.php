@@ -669,8 +669,8 @@ if (!USER_CAN_UPLOAD_PICTURES) cpg_die(ERROR, $lang_errors['perm_denied'], __FIL
 
 // Let us define the directories where images will be temporarily stored.
 
-$transitory_file_directory = "./albums/manipulation/transitory/";
-$preview_image_directory = "./albums/manipulation/transitory/previews/";
+$transitory_file_directory = "./{$CONFIG['fullpath']}manipulation/transitory/";
+$preview_image_directory = "./{$CONFIG['fullpath']}manipulation/transitory/previews/";
 
 // We can also create a rudimentary language array to make integration into CPG easier at a later date.
 $lang_image_processor_php = array('finished_manipulation'=>'You have finished manipulating the image. Please click the Proceed button to finish uploading the image.',
