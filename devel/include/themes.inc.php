@@ -631,7 +631,7 @@ if (!isset($template_img_navbar))  //{THEMES}
 $template_img_navbar = <<<EOT
 
         <tr>
-                <td align="center" valign="middle" class="navmenu" width="48px">
+                <a name="top_display_media"><td align="center" valign="middle" class="navmenu" width="48px"></a>
                         <a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="{LOCATION}images/thumbnails.gif" align="middle" border="0px" alt="{THUMB_TITLE}" /></a>
                 </td>
                 <td align="center" valign="middle" class="navmenu" width="48px">
@@ -663,10 +663,10 @@ $template_img_navbar = <<<EOT
 
 EOT;
 // HTML template for intermediate image display
-if (!isset($template_display_picture))  //{THEMES}
-$template_display_picture = <<<EOT
+if (!isset($template_display_media))  //{THEMES}
+$template_display_media = <<<EOT
         <tr>
-                <td align="center" class="tableb" nowrap="nowrap">
+                <td align="center" class="display_media" nowrap="nowrap">
                         <table cellspacing="2px" cellpadding="0px" class="imageborder">
                                 <tr>
                                         <td align="center">
@@ -1976,7 +1976,7 @@ if (!function_exists('theme_html_picture')) {  //{THEMES}
 function theme_html_picture()
 {
     global $CONFIG, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $USER;
-    global $album, $comment_date_fmt, $template_display_picture;
+    global $album, $comment_date_fmt, $template_display_media;
     global $lang_display_image_php, $lang_picinfo;
 
     $pid = $CURRENT_PIC_DATA['pid'];
@@ -2013,13 +2013,13 @@ function theme_html_picture()
     }
 
     if (!$CURRENT_PIC_DATA['title'] && !$CURRENT_PIC_DATA['caption']) {
-        template_extract_block($template_display_picture, 'img_desc');
+        template_extract_block($template_display_media, 'img_desc');
     } else {
         if (!$CURRENT_PIC_DATA['title']) {
-            template_extract_block($template_display_picture, 'title');
+            template_extract_block($template_display_media, 'title');
         }
         if (!$CURRENT_PIC_DATA['caption']) {
-            template_extract_block($template_display_picture, 'caption');
+            template_extract_block($template_display_media, 'caption');
         }
     }
 
@@ -2132,7 +2132,7 @@ function theme_html_picture()
         '{CAPTION}' => bb_decode($CURRENT_PIC_DATA['caption']),
         );
 
-    return template_eval($template_display_picture, $params);
+    return template_eval($template_display_media, $params);
 }
 }  //{THEMES}
 
@@ -2368,14 +2368,14 @@ function theme_html_comments($pid)
 if (!function_exists('theme_slideshow')) {  //{THEMES}
 function theme_slideshow()
 {
-    global $CONFIG, $lang_display_image_php, $template_display_picture;
+    global $CONFIG, $lang_display_image_php, $template_display_media;
 
     pageheader($lang_display_image_php['slideshow']);
 
     include "include/slideshow.inc.php";
 
     $start_slideshow = '<script language="JavaScript" type="text/JavaScript">runSlideShow()</script>';
-    template_extract_block($template_display_picture, 'img_desc', $start_slideshow);
+    template_extract_block($template_display_media, 'img_desc', $start_slideshow);
 
     $params = array('{CELL_HEIGHT}' => $CONFIG['picture_width'] + 100,
         '{IMAGE}' => '<img src="' . $start_img . '" name="SlideShow" class="image" /><br />',
@@ -2383,7 +2383,7 @@ function theme_slideshow()
         );
 
     starttable();
-    echo template_eval($template_display_picture, $params);
+    echo template_eval($template_display_media, $params);
     endtable();
     starttable();
     echo <<<EOT
