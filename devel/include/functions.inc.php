@@ -1960,7 +1960,7 @@ tempval.select()
         echo 'Coppermine version: ';
         echo COPPERMINE_VERSION . '(' . COPPERMINE_VERSION_STATUS . ')';
         echo $debug_separate;
-        error_reporting  (E_ERROR | E_WARNING | E_PARSE);
+//        error_reporting  (E_ERROR | E_WARNING | E_PARSE); // New maze's error report system
         if (function_exists('gd_info') == true) {
             echo 'Module: GD';
             echo $debug_underline;
@@ -2015,11 +2015,27 @@ EOT;
         if (GALLERY_ADMIN_MODE){
           echo "<tr><td class=\"tableb\" colspan=\"2\">";
           echo "<a href=\"phpinfo.php\" class=\"admin_menu\">".$lang_cpg_debug_output['phpinfo']."</a>";
-          error_reporting  (E_ERROR | E_WARNING | E_PARSE);
+//          error_reporting  (E_ERROR | E_WARNING | E_PARSE); // New maze's error report system
           echo "</td></tr>";
         }
         endtable();
         echo "</form>";
+
+        // Maze's new error report system
+        global $cpgdebugger;
+        $report = $cpgdebugger->stop();
+        if (is_array($report)) {
+            starttable('100%', $lang_cpg_debug_output['debug_info'],2);
+            echo '<tr><td>';
+            foreach($report AS $file => $errors) {
+                echo '<b>'.substr($file, $strstart).'</b><ul>';
+                foreach($errors AS $error) { echo "<li>$error</li>"; }
+                echo '</ul>';
+            }
+            echo '</td></tr>';
+            endtable();
+        }
+
 }
 
 /**

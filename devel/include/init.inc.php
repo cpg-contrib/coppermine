@@ -22,10 +22,8 @@ define('COPPERMINE_VERSION_STATUS', 'alpha');
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 
-// Report all errors except E_NOTICE
-// This is the default value set in php.ini
-// error_reporting (E_ALL ^ E_NOTICE);
-error_reporting(E_ALL);
+// Store all reported errors in the $cpgdebugger
+require_once('include/debugger.inc');
 
 set_magic_quotes_runtime(0);
 // used for timing purpose
@@ -339,12 +337,18 @@ define('GALLERY_ADMIN_MODE', USER_IS_ADMIN && $USER['am']);
 define('USER_ADMIN_MODE', USER_ID && USER_CAN_CREATE_ALBUMS && $USER['am'] && !GALLERY_ADMIN_MODE);
 
 // Set error logging level
+// Maze's new error report system
+if (!USER_IS_ADMIN) {
+    if (!$CONFIG['debug_mode']) $cpgdebugger->stop(); // useless to run debugger cos there's no output
+    error_reporting(0); // hide all errors for visitors
+}
+/*
 if ($CONFIG['debug_notice']==1 && ($CONFIG['debug_mode']==1 || ($CONFIG['debug_mode']==2 && GALLERY_ADMIN_MODE ))) {
     error_reporting (E_ALL);
 } else {
     error_reporting (E_ALL ^ E_NOTICE);
 }
-
+*/
 
 // Process theme selection if present in URI or in user profile
 if (!empty($_GET['theme'])) {
