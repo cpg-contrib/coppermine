@@ -71,6 +71,8 @@ $tasks =  array(
 
         'versioncheck' => array('', '<a href="versioncheck.php" class="statlink">' . $lang_util_php['versioncheck'] . '</a>', $lang_util_php['versioncheck_explanation']),
 
+        'bridgemgr' => array('', '<a href="bridgemgr.php" class="statlink">' . $lang_util_php['bridgemanager'] . '</a>', $lang_util_php['bridgemanager_explanation']),
+
         );
 
 $action = (isset($_REQUEST['action'])) ? $_REQUEST['action'] : '';
@@ -394,7 +396,7 @@ function del_orphans()
                         <form action="util.php" method="post">
                                 <input type="hidden" name="action" value="del_orphans" />
                                 <input type="hidden" name="del" value="all" />
-                                Delete all orphans?
+                                {$lang_util_php['delete_all_orphans']}
                                 <input type="submit" value="{$lang_util_php['delete_all']}" class="button" />
                         </form>
 EOT;
@@ -423,7 +425,7 @@ function refresh_db()
 
         starttable('100%', "Update results", 3);
 
-        echo "<tr><th class=\"tableh2\">File</th><th class=\"tableh2\">Problem</th><th class=\"tableh2\">Status</th></tr>";
+        echo "<tr><th class=\"tableh2\">{$lang_util_php['file']}</th><th class=\"tableh2\">{$lang_util_php['problem']}</th><th class=\"tableh2\">{$lang_util_php['status']}</th></tr>";
 
         $outcome = 'none';
         $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr ORDER BY pid ASC LIMIT $startpic, $numpics");
