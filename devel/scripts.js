@@ -80,40 +80,29 @@ function adjust_popup()
 
 ///////////////////////////////////
 // disable right-click start///////
-function clickIE4(){
-if (event.button==2){
-// uncomment below line to display a message
-// alert(message);
-return false;
-}
-}
-
-function clickNS4(e){
-if (document.layers||document.getElementById&&!document.all){
-if (e.which==2||e.which==3){
-// uncomment below line to display a message
-//alert(message);
-return false;
-}
-}
-}
-
-if (document.layers){
-document.captureEvents(Event.MOUSEDOWN);
-document.onmousedown=clickNS4;
-}
-else if (document.all&&!document.getElementById){
-document.onmousedown=clickIE4;
-}
+function click(e)
+   {
+   if (document.all)
+   if (event.button == 2) return false;
+   if(document.layers) if (e.which == 3) return false;
+   }
+function click2()
+   {
+   event.returnValue=false;return false;
+   }
+   if (document.layers)document.captureEvents(Event.MOUSEDOWN);
+   document.onmousedown=click;
+   document.oncontextmenu=click2;
+   
 // disable right-click end/////////
 ///////////////////////////////////
 
 function disableselect(e){
-return false
+//return false
 }
 
 function reEnable(){
-return true
+//return true
 }
 
 ///////////////////////////////////
@@ -128,7 +117,7 @@ function onKeyDown() {
    // disable key press porcessing
    event.returnValue = false;
    //uncomment below line to display a message
-   //alert("Cant use Ctrl + n");
+   alert("Cant use Ctrl + n");
  }
 
 } // onKeyDown
