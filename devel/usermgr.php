@@ -58,7 +58,7 @@ function show_memberlist()
 function list_users($search = '')
 {
     global $CONFIG; //, $PHP_SELF;
-    global $lang_usermgr_php, $lang_byte_units, $register_date_fmt;
+    global $lang_usermgr_php, $lang_byte_units, $register_date_fmt,$lang_check_uncheck_all;
     global $lim_user,$number_of_columns;
 
     $number_of_columns_minus_one = $number_of_columns - 1;
@@ -177,7 +177,9 @@ EOT;
 
     starttable('100%');
         if (isset($_POST['username'])){
-            $search_filter= '<td class="tableh1" align="center">'.$lang_usermgr_php['search_result'].'&laquo;'.$_POST['username'].'&raquo;</td>';
+            $search_filter = '<td class="tableh1" align="center">'.$lang_usermgr_php['search_result'].'&laquo;'.$_POST['username'].'&raquo;</td>';
+        } else {
+            $search_filter = '';
         }
     echo <<<EOT
         <tr>
@@ -313,6 +315,8 @@ EOT;
         }
         if ($CONFIG['enable_help'] == 1 ) {
             $help = cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_usermgr_php['search_help_title']))).'&t='.urlencode(base64_encode(serialize($lang_usermgr_php['search_help_text']))),400,150);
+        } else {
+            $help = '';
         }
         echo <<<EOT
         <tr>
@@ -615,6 +619,7 @@ switch ($op) {
                 $wildcards = array("*" => "%", "?" => "_");
                         $search = strtr("WHERE user_name LIKE '$name' ", $wildcards);
         }
+        if (isset($search) == false) {$search = '';}
         list_users($search);
         pagefooter();
         ob_end_flush();
