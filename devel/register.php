@@ -287,7 +287,6 @@ function check_user_info(&$error)
                                         $template_vars = array(
                                                         '{SITE_NAME}' => $CONFIG['gallery_name'],
                                                         '{USER_NAME}' => $user_name,
-                                                        '{PASSWORD}' => $password,
                                                         '{ACT_LINK}' => $act_link
             );
                                         if (!cpg_mail($email, sprintf($lang_register_php['confirm_email_subject'], $CONFIG['gallery_name']), nl2br(strtr($lang_register_confirm_email, $template_vars)))) {

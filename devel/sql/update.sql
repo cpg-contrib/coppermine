@@ -454,4 +454,7 @@ DELETE FROM CPG_config WHERE `name` = 'hide_admin_uploader';
 INSERT INTO CPG_config VALUES ('custom_lnk_name', '');
 INSERT INTO CPG_config VALUES ('custom_lnk_url', '');
 INSERT INTO CPG_config VALUES ('comments_anon_pfx', 'Guest_');
-INSERT INTO CPG_config VALUES ('admin_activate', '0');
+
+DELETE FROM CPG_config WHERE `name` = 'admin_activate';
+INSERT INTO CPG_config VALUES ('admin_activation', '0');
+

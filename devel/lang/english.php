@@ -1562,10 +1562,8 @@ EOT;
 $lang_register_activated_email = <<<EOT
 Your account has been approved and activated.
 
-You can now log in at <a href="{SITE_LINK}">{SITE_LINK}</a>
-with the following:
-Username: "{USER_NAME}"
-Password: "{PASSWORD}"
+You can now log in at <a href="{SITE_LINK}">{SITE_LINK}</a> using the username "{USER_NAME}"
+
 
 Regards,
 
