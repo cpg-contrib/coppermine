@@ -3,7 +3,7 @@
   Coppermine Photo Gallery
   ************************
   Copyright (c) 2003-2005 Coppermine Dev Team
-  v1.1 originaly written by Gregory DEMAR
+  v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -40,7 +40,7 @@ if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 // Switch that allows overriding the bridge manager with hard-coded values
 define('USE_BRIDGEMGR', 1);
 
-require 'core.inc.php';
+require 'udb_base.inc.php';
 
 class cpg_udb extends core_udb {
 
