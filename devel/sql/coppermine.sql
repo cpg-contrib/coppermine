@@ -2,12 +2,20 @@
 # Dumping data for table `CPG_config`
 #
 
+#INSERT INTO CPG_config VALUES ('allowed_file_extensions', 'GIF/PNG/JPG/JPEG/TIF/TIFF');
+#INSERT INTO CPG_config VALUES ('allowed_img_types', 'JPG/GIF/PNG/TIFF');
+
+
+INSERT INTO CPG_config VALUES ('allowed_mov_types', 'ALL');
+INSERT INTO CPG_config VALUES ('allowed_doc_types', 'ALL');
+INSERT INTO CPG_config VALUES ('allowed_snd_types', 'ALL');
+INSERT INTO CPG_config VALUES ('allowed_img_types', 'ALL');
+
+
 INSERT INTO CPG_config VALUES ('albums_per_page', '12');
 INSERT INTO CPG_config VALUES ('album_list_cols', '2');
 INSERT INTO CPG_config VALUES ('display_pic_info', '0');
 INSERT INTO CPG_config VALUES ('alb_list_thumb_size', '50');
-INSERT INTO CPG_config VALUES ('allowed_file_extensions', 'GIF/PNG/JPG/JPEG/TIF/TIFF');
-INSERT INTO CPG_config VALUES ('allowed_img_types', 'JPG/GIF/PNG/TIFF');
 INSERT INTO CPG_config VALUES ('allow_private_albums', '1');
 INSERT INTO CPG_config VALUES ('allow_user_registration', '0');
 INSERT INTO CPG_config VALUES ('allow_duplicate_emails_addr', '0');

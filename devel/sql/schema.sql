@@ -183,7 +183,6 @@ CREATE TABLE CPG_banned (
 	expiry datetime DEFAULT NULL,
 	PRIMARY KEY  (ban_id)
 ) TYPE=MyISAM;
-
 #---------------------------------------------------------
 
 #
@@ -195,3 +194,15 @@ CREATE TABLE CPG_exif (
   `exifData` text NOT NULL,
   UNIQUE KEY `filename` (`filename`)
 ) TYPE=MyISAM;
+# --------------------------------------------------------
+
+#
+# Table structure for table `CPG_filetypes`
+#
+
+CREATE TABLE CPG_filetypes (
+  extension char(7) NOT NULL default '',
+  mime char(30) default NULL,
+  content char(15) default NULL,
+  KEY extension (extension)
+) TYPE=MyISAM COMMENT='Used to store the file extensions';
