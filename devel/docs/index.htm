@@ -241,7 +241,7 @@ open-source photo gallery!</p>
 <ul>
   <li><b>Unpack the archive preserving the directory structure</b><br />(you can rename the coppermine folder, but not the files or folders within).</li>
   <li><b>Upload all files onto your webserver</b> (make sure to use the correct ftp mode)</li>
-  <li><b>CHMOD the folders <i>albums</i> and <i>include</i> to 755 (or 777, depending on your server config)</b> - this step is really important, don't skip it!<br />There are a lot of tutorials for beginners how to use chmod available: <a href="http://www.google.com/search?q=chmod+tutorial">search chmod tutorials with google</a>. If you're on a windows server, you'll have to set permissions accordingly as well.</li>
+  <li><b>CHMOD the folders <i>albums</i> and <i>include</i> to 755 (or 777, depending on your server config)</b> - this step is really important, don't skip it!<br />There are a lot of tutorials for beginners how to use chmod available: <a href="http://www.google.com/search?q=chmod+tutorial">search chmod tutorials with google</a>. If you're on a windows server, you'll have to set permissions accordingly as well (usually the webserver runs under the user name &quot;IUSR_hostname&quot; - you'll have to set rwx-permissions for this user).</li>
   <li><b>Run the install script on your server</b> (http://your_server/coppermine_dir/install.php)
     and follow the instructions</li>
 </ul>
@@ -407,6 +407,7 @@ open-source photo gallery!</p>
                 <li>Unpack the archive</li>
                 <li>If the file <b>install.php</b> exists in the root directory, delete it.</li>
                 <li><b>Except for the "albums" directory</b>, upload all of the new files and directories making sure not to overwrite the include/config.inc.php file or the albums directory.</li>
+                <li>create a folder called &quot;edit&quot; within your &quot;albums&quot; directory - this folder will be used by coppermine as a temporary folder, do not ftp-upload files there. Make sure the new &quot;edit&quot;-folder is CHMODed the same way your albums-directory is (755 or 777, depending on your server's config)</li>
                 <li>No database update necessary, you're ready to roll</li>
         </ul>
 
