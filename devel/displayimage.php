@@ -149,7 +149,7 @@ function html_picture()
         $winsizeY = $CURRENT_PIC_DATA['pheight'] + 16;
         $pic_html = "<a href=\"javascript:;\" onClick=\"MM_openBrWindow('displayimage.php?pid=$pid&fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=yes,status=yes,resizable=yes,width=$winsizeX,height=$winsizeY')\">";
         $pic_title = $lang_display_image_php['view_fs'] . "\n==============\n" . $pic_title; //added by gaugau
-        $pic_html .= "<img src=\"" . $picture_url . "\" {$image_size['geom']} class=\"image\" border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
+        $pic_html .= "<img src=\"" . $picture_url . "\" class=\"image\" border=\"0\" alt=\"{$lang_display_image_php['view_fs']}\" /><br />";
         $pic_html .= "</a>\n";
     } else {
         $pic_html = "<img src=\"" . $picture_url . "\" {$image_size['geom']} class=\"image\" border=\"0\" /><br />\n";
