@@ -56,6 +56,24 @@ td #admin_menu_anim {
     </li>
 
     <li>Copy the file "button_bg_anim.gif" from "themes/classic/images" to the theme's "images" directory.</li>
+    <li>Create a new class for the "thumb_filename" class.
+    <h6>Find:</h6>
+    <pre>
+.thumb_title {
+        font-weight &#58; bold&#59;
+        font-size&#58; 80%&#59;
+        padding&#58; 2px&#59;
+        display &#58; block&#59;
+}
+    </pre>
+    <h6>Add before it:</h6>
+    <pre>
+.thumb_filename {
+        font-size: 80%;
+        display: block;
+}
+    </pre>
+    </li>
 
     <li>
       Remove the proprietary value "hand" for class ".clickable_option" 

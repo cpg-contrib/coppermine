@@ -336,6 +336,10 @@ a:hover {
         margin: 5px 0px;
 }
 
+.thumb_filename {
+        font-size: 80%;
+        display: block;
+}
 
 .thumb_title {
         font-weight : bold;

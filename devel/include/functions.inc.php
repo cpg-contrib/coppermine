@@ -1606,6 +1606,8 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
                                 $row['pwidth'] = $image_info[0];
                                 $row['pheight'] = $image_info[1];
                         }
+                        
+                        $row['caption_text'] = ($CONFIG['display_filename']) ? '<span class="thumb_filename">' . $row['filename'] . '</span>' . $row['caption_text'] : $row['caption_text'];
 
                         $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
 
@@ -2757,7 +2759,7 @@ function cpg_get_custom_include($path = '')
  * Replace strings that match badwords with tokens indicating it has been filtered.
  *
  * @param string or array $str
- * @return string
+ * @return string or array
  **/
 function filter_content($str)
 {
