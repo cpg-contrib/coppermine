@@ -42,6 +42,7 @@ define('VB_TABLE_PREFIX', ''); // Leave empty, not supported by vBulletin 2.3
 define('VB_USER_TABLE', 'user'); // The members table
 define('VB_SESSION_TABLE', 'session'); // The sessions table
 define('VB_GROUP_TABLE', 'usergroup'); // The groups table
+define('VB_COOKIE_PREFIX', '');  // Cookie Prefix, not supported by vBulletin 2
 
 // Group definitions (default values used by the board)
 define('VB_VALIDATING_GROUP', 3);
@@ -78,8 +79,8 @@ function udb_authenticate()
 
     if (is_array($HTTP_COOKIE_VARS)) {
         $sessionhash = isset($HTTP_COOKIE_VARS['sessionhash']) ? $HTTP_COOKIE_VARS['sessionhash'] : '';
-        $bbuserid = isset($HTTP_COOKIE_VARS['bbuserid']) ? $HTTP_COOKIE_VARS['bbuserid'] : 0;
-        $bbpassword = isset($HTTP_COOKIE_VARS['bbpassword']) ? $HTTP_COOKIE_VARS['bbpassword'] : '';
+        $bbuserid = isset($HTTP_COOKIE_VARS[VB_COOKIE_PREFIX . 'userid']) ? $HTTP_COOKIE_VARS[VB_COOKIE_PREFIX . 'userid'] : 0;
+        $bbpassword = isset($HTTP_COOKIE_VARS[VB_COOKIE_PREFIX . 'password']) ? $HTTP_COOKIE_VARS[VB_COOKIE_PREFIX . 'password'] : '';
     }
 
     $got_user = 0;
@@ -97,15 +98,15 @@ function udb_authenticate()
     } elseif ($sessionhash) {
         // session hash exists
         // validate it:
-        if ($HTTP_SERVER_VARS['HTTP_CLIENT_IP'])
+        if (isset($HTTP_SERVER_VARS['HTTP_CLIENT_IP']))
         {
             $alt_ip =  $HTTP_SERVER_VARS['HTTP_CLIENT_IP'];
         }
-        else if ($HTTP_SERVER_VARS['HTTP_X_FORWARDED_FOR'] AND preg_match('#\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}#s', $HTTP_SERVER_VARS['HTTP_X_FORWARDED_FOR'], $matches))
+        elseif (isset($HTTP_SERVER_VARS['HTTP_X_FORWARDED_FOR']) AND preg_match('#\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}#s', $HTTP_SERVER_VARS['HTTP_X_FORWARDED_FOR'], $matches))
         {
             $alt_ip = $matches[0];
         }
-        else if ($HTTP_SERVER_VARS['HTTP_FROM'])
+        elseif (isset($HTTP_SERVER_VARS['HTTP_FROM']))
         {
             $alt_ip = $HTTP_SERVER_VARS['HTTP_FROM'];
         }
@@ -228,12 +229,14 @@ function udb_get_user_id($username)
         return '';
     }
 }
+
 // Redirect
 function udb_redirect($target)
 {
-    header('Location: ' . VB_WEB_PATH . $target);
+    header('Location: http://' . $_SERVER['HTTP_HOST'] . VB_WEB_PATH . $target);
     exit;
 }
+
 // Register
 function udb_register_page()
 {
@@ -298,6 +301,7 @@ function udb_list_users_query(&$user_count)
 {
     global $CONFIG, $FORBIDDEN_SET;
 
+    if ($FORBIDDEN_SET != "") $FORBIDDEN_SET = "AND $FORBIDDEN_SET";
     $sql = "SELECT (category - " . FIRST_USER_CAT . ") as user_id," . "  '???' as user_name," . "  COUNT(DISTINCT a.aid) as alb_count," . "  COUNT(DISTINCT pid) as pic_count," . "  MAX(pid) as thumb_pid " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid " . "WHERE approved = 'YES' AND category > " . FIRST_USER_CAT . " " . "$FORBIDDEN_SET " . "GROUP BY category " . "ORDER BY category ";
     $result = db_query($sql);
 
@@ -384,6 +388,31 @@ function udb_get_admin_album_list()
         return $sql;
     }
 }
+
+function udb_util_filloptions()
+{
+    global $albumtbl, $picturetbl, $categorytbl, $lang_util_php;
+
+    $usertbl = $UDB_DB_NAME_PREFIX.VB_TABLE_PREFIX.VB_USER_TABLE;
+
+    $query = "SELECT aid, category, IF(username IS NOT NULL, CONCAT('(', username, ') ',title), CONCAT(' - ', title)) AS title " . "FROM $albumtbl AS a " . "LEFT JOIN $usertbl AS u ON category = (" . FIRST_USER_CAT . " + userid) " . "ORDER BY category, title";
+    $result = db_query($query, $UDB_DB_LINK_ID);
+    // $num=mysql_numrows($result);
+    echo '<select size="1" name="albumid">';
+
+    while ($row = mysql_fetch_array($result)) {
+        $sql = "SELECT name FROM $categorytbl WHERE cid = " . $row["category"];
+        $result2 = db_query($sql);
+        $row2 = mysql_fetch_array($result2);
+
+        print "<option value=\"" . $row["aid"] . "\">" . $row2["name"] . $row["title"] . "</option>\n";
+    }
+
+    print '</select> (3)';
+    print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="submit" /> (4)';
+    print '</form>';
+}
+
 // ------------------------------------------------------------------------- //
 // Define wheter we can join tables or not in SQL queries (same host & same db or user)
 define('UDB_CAN_JOIN_TABLES', (VB_BD_HOST == $CONFIG['dbserver'] && (VB_DB_NAME == $CONFIG['dbname'] || VB_DB_USERNAME == $CONFIG['dbuser'])));
