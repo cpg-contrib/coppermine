@@ -211,7 +211,7 @@ switch ($op) {
         if (!is_numeric($_GET['p'])) {
             $plugin_id = CPGPluginAPI::installed($plugin_id);
         }
-        CPGPluginAPI::uninstall($plugin_id);
+        $uninstalled = CPGPluginAPI::uninstall($plugin_id);
         break;
     case 'install':
         $installed = CPGPluginAPI::install($_GET['p']);
@@ -261,7 +261,7 @@ switch ($op) {
             
             if (!is_dir('./plugins/receive')) {
                 $mask = umask(0);
-                mkdir('./plugins/receive',0655);
+                mkdir('./plugins/receive',0777);
                 umask($mask);
             }
 
@@ -301,7 +301,7 @@ EOT;
  */
 
 // Plugin isn't being configured; Display the plugin list
-if ($op != 'install' || (is_bool($installed) && $installed)) {
+if ((($op != 'install') && ($op != 'uninstall')) || (is_bool($installed) && $installed) || (is_bool($uninstalled) && $uninstalled)) {
 
     // Refresh the page; An operation was just performed
     if  (isset($op)) {
@@ -310,7 +310,7 @@ if ($op != 'install' || (is_bool($installed) && $installed)) {
     display_plugin_list();
     
 // Plugin is being configured; Execute 'plugin_configure' action
-} else {
+} elseif ($op == 'install') {
 
     // Display configure page table header
     starttable('100%','Configuring plugin:'.$CPG_PLUGINS['new']->name);
@@ -321,7 +321,26 @@ if ($op != 'install' || (is_bool($installed) && $installed)) {
 EOT;
 
         // Execute 'plugin_configure' action on the new plugin
-        CPGPluginAPI::action('plugin_configure',null,CPG_EXEC_NEW);
+        CPGPluginAPI::action('plugin_configure',$installed,CPG_EXEC_NEW);
+    echo <<< EOT
+        </td>
+    </tr>
+EOT;
+
+    // End the table
+    endtable();
+} else {
+
+    // Display cleanup page table header
+    starttable('100%','Cleanup plugin:'.$CPG_PLUGINS[$plugin_id]->name);
+
+    echo <<< EOT
+    <tr>
+        <td class="tableb" valign="top" width="100%">
+EOT;
+
+        // Execute 'plugin_cleanup' action on the plugin
+        CPGPluginAPI::action('plugin_cleanup',$uninstalled,$plugin_id);
     echo <<< EOT
         </td>
     </tr>
@@ -330,6 +349,7 @@ EOT;
     // End the table
     endtable();
 }
+
 
 echo "<br />\n";
 
