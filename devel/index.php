@@ -712,8 +712,9 @@ foreach ($elements as $element) {
                 if ($cat == 0) {
                     ob_start();
                     include('anycontent.php');
-                    echo (CPGPluginAPI::filter('anycontent',ob_get_contents()));
+                    $anycontent = CPGPluginAPI::filter('anycontent',ob_get_contents());
                     ob_end_clean();
+                    echo ($anycontent);
                 }
                 flush();
                 break;
