@@ -429,7 +429,10 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
   'log_normal'=> 'Normal', //cpg1.4.0
   'log_all' => 'All', //cpg1.4.0
   'view_logs' => 'View logs', //cpg1.4.0
-        );
+  'notice1' => '(*) These settings mustn\'t be changed if you already have files in your database.', //cpg1.4.0 - (relocated)
+  'notice2' => '(**) When changing this setting, only the files that are added from that point on are affected, so it is advisable that this setting must not be changed if there are already files in the gallery. You can, however, apply the changes to the existing files with the &quot;<a href="util.php">admin tools</a> (resize pictures)&quot; utility from the admin menu.', //cpg1.4.0 - (relocated)
+  'notice3' => '(***) All log files are written in english.', //cpg1.4.0 - (relocated)
+);
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
   'General settings',
@@ -564,11 +567,6 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Enable plugins', 'enable_plugins', 12, 'f=index.htm&as=config_misc_enable-plugins&ae=config_misc_enable-plugins_end'),  //cpg1.4.0
   array('Logging mode <a href="#notice3" class="clickable_option">***</a>', 'log_mode', 11, 'f=index.htm&as=config_misc_logging&ae=config_misc_logging_end'), //cpg1.4.0
   array('Allow banning of non-routable (private) IP addresses', 'ban_private_ip', 1,  'f=index.htm&as=config_misc_private-ip&ae=config_misc_private-ip_end'), //cpg1.4.0
-
-  '<br /><div align="left"><a name="notice1"></a>(*) This settings mustn\'t be changed if you already have files in your database.<br />
-  <a name="notice2"></a>(**) When changing this setting, only the files that are added from that point on are affected, so it is advisable that this setting must not be changed if there are already files in the gallery. You can, however, apply the changes to the existing files with the &quot;<a href="util.php">admin tools</a> (resize pictures)&quot; utility from the admin menu.<br />
-  <a name="notice2"></a>(***) All log files are written in english.
-  </div><br />',
 );
 
 // ------------------------------------------------------------------------- //
