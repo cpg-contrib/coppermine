@@ -205,6 +205,8 @@ $pid = isset($_GET['pid']) ? (int)$_GET['pid'] : 0;
 $cat = isset($_GET['cat']) ? (int)$_GET['cat'] : 0;
 $album = isset($_GET['album']) ? $_GET['album'] : '';
 // Build the album set if required
+/*
+//disabled by donnoman
 if (!is_numeric($album) && $cat) { // Meta albums, we need to restrict the albums to the current category
     if ($cat < 0) {
         $ALBUM_SET .= 'AND aid IN (' . (- $cat) . ') ';
@@ -228,6 +230,11 @@ if (!is_numeric($album) && $cat) { // Meta albums, we need to restrict the album
         }
     }
 }
+//disabled by donnoman
+*/
+//get_meta_album_set in functions.inc.php will populate the $ALBUM_SET instead; matches $META_ALBUM_SET.
+get_meta_album_set($cat,$ALBUM_SET);
+
 // Retrieve data for the current picture
 if ($pos < 0 || $pid > 0) {
     $pid = ($pos < 0) ? -$pos : $pid;

@@ -88,6 +88,7 @@ $CONFIG = array();
 //$PHP_SELF = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : $_SERVER['SCRIPT_NAME'];
 $REFERER = urlencode($_SERVER['PHP_SELF'] . (isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING'] ? '?' . $_SERVER['QUERY_STRING'] : ''));
 $ALBUM_SET = '';
+$META_ALBUM_SET = '';
 $FORBIDDEN_SET = '';
 $FORBIDDEN_SET_DATA = array();
 $CURRENT_CAT_NAME = '';

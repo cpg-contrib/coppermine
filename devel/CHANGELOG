@@ -266,3 +266,4 @@ Added admin configurable "home" button as first button in the sys_menu. - 11 Feb
 Added "anonymous user posting comments can not disguise as registered user" hack (contributed by nol33t) - 15 February 2005, GauGau
 Various bug fixes in UDB integration - 17 February 2005, Chris
 Added ability to filter blocks and include plugin files into Coppermine - 17 February 2005, Chris
+Added experimental code to create and use a separate "album set" for metalbums that is not limited to the configured category depth - 17 February 2005, Donnoman

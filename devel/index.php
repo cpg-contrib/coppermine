@@ -762,6 +762,13 @@ if (!$file) {
     $cat_data = array();
     $statistics = '';
     $STATS_IN_ALB_LIST = false;
+    
+    if (isset($cat)) {
+        get_meta_album_set($cat,$META_ALBUM_SET);
+    } else {
+        get_meta_album_set(0,$META_ALBUM_SET);
+    }
+
     $cpg_show_private_album = ($CONFIG['allow_private_albums'])?($CONFIG['show_private']):(true);
     
     get_cat_list($breadcrumb, $cat_data, $statistics);
