@@ -592,6 +592,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Timezone difference relative to GMT','time_offset',0, 'f=index.htm&as=config_general_time-offset&ae=config_general_time-offset_end&top=1'),
   array('Enable help-icons (help available in English only)','enable_help',9, 'f=index.htm&as=config_general_help&ae=config_general_help_end'),
   array('Enable clickable keywords in search','clickable_keyword_search',14),
+  array('Show number of linked files','link_pic_count',1),
 
   'Language, Themes &amp; Charset settings',
   array('Language', 'lang', 5, 'f=index.htm&as=config_language_language&ae=config_language_language_end'),
@@ -1136,6 +1137,8 @@ $lang_list_users = array(
 $lang_list_albums = array(
   'n_pictures' => '%s files',
   'last_added' => ', last one added on %s',
+  'n_link_pictures' => '%s linked files',
+  'total_pictures' => '%s files total'
 );
 
 }
