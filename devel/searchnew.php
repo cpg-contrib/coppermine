@@ -248,7 +248,7 @@ function display_dir_tree($folder, $ident)
     $dir = opendir($dir_path);
     static $dirCounter = 0;
     while ($file = readdir($dir)) {
-        if (is_dir($CONFIG['fullpath'] . $folder . $file) && substr($file,0,1) != "." && strpos($file,"'") == FALSE && $file != "userpics"  && $file != "edit" ) {
+        if (is_dir($CONFIG['fullpath'] . $folder . $file) && substr($file,0,1) != "." && strpos($file,"'") == FALSE && $file != substr($CONFIG['userpics'],0,strlen($CONFIG['userpics'])-1)  && $file != "edit" ) {
             $start_target = $folder . $file;
             $dir_path = $CONFIG['fullpath'] . $folder . $file;
 

@@ -216,7 +216,7 @@ function display_dir_tree($folder, $ident)
     $dir = opendir($dir_path);
     while ($file = readdir($dir)) {
         //if (is_dir($CONFIG['fullpath'] . $folder . $file) && $file != "." && $file != "..") { // removed by following line for 'do not show folders with dots': gaugau 03-11-02
-        if (is_dir($CONFIG['fullpath'] . $folder . $file) && substr($file,0,1) != "." && strpos($file,"'") == FALSE && $file != "userpics"  && $file != "edit" ) {
+        if (is_dir($CONFIG['fullpath'] . $folder . $file) && substr($file,0,1) != "." && strpos($file,"'") == FALSE && $file != substr($CONFIG['userpics'],0,strlen($CONFIG['userpics'])-1)  && $file != "edit" ) {
             $start_target = $folder . $file;
             $dir_path = $CONFIG['fullpath'] . $folder . $file;
 
