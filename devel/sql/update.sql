@@ -48,8 +48,6 @@ INSERT INTO CPG_filetypes VALUES ('rm', 'audio/x-realmedia', 'document');
 INSERT INTO CPG_filetypes VALUES ('tiff', 'image/tiff', 'document');
 INSERT INTO CPG_filetypes VALUES ('tif', 'image/tif', 'document');
 INSERT INTO CPG_filetypes VALUES ('doc', 'application/msword', 'document');
-INSERT INTO CPG_filetypes VALUES ('htm', 'text/html', 'document');
-INSERT INTO CPG_filetypes VALUES ('html', 'text/html', 'document');
 INSERT INTO CPG_filetypes VALUES ('txt', 'text/plain', 'document');
 INSERT INTO CPG_filetypes VALUES ('rtf', 'text/richtext', 'document');
 INSERT INTO CPG_filetypes VALUES ('pdf', 'application/pdf', 'document');
