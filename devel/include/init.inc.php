@@ -119,7 +119,6 @@ define('CRITICAL_ERROR', 3);
 // Include config and functions files
 require 'include/config.inc.php';
 require 'include/functions.inc.php';
-require 'include/media.functions.inc.php';
 
 $CONFIG['TABLE_PICTURES']        = $CONFIG['TABLE_PREFIX']."pictures";
 $CONFIG['TABLE_ALBUMS']                = $CONFIG['TABLE_PREFIX']."albums";
@@ -132,46 +131,6 @@ $CONFIG['TABLE_USERS']                = $CONFIG['TABLE_PREFIX']."users";
 $CONFIG['TABLE_BANNED']                = $CONFIG['TABLE_PREFIX']."banned";
 $CONFIG['TABLE_EXIF']                = $CONFIG['TABLE_PREFIX']."exif";
 $CONFIG['TABLE_FILETYPES']          = $CONFIG['TABLE_PREFIX']."filetypes";
-
-// TODO: MOVE INTO DATABASE
-$IMG_TYPES = array(1 => 'GIF',
-    2 => 'JPG',
-    3 => 'PNG',
-    4 => 'PSD',
-    5 => 'BMP',
-    6 => 'TIFF',
-    7 => 'JPC',
-    8 => 'JP2',
-    9 => 'JPX',
-    10 => 'JB2',
-    11 => 'SWC',
-    12 => 'IFF'
-    );
-
-$MOV_TYPES = array(1 => 'MPG',
-    2 => 'MPEG',
-    3 => 'WMV',
-    4 => 'SWF',
-    5 => 'AVI',
-    6 => 'MOV'
-    );
-
-$SND_TYPES = array(1 => 'MP3',
-    2 => 'MIDI',
-    3 => 'MID',
-    4 => 'WMA',
-    5 => 'WAV'
-    );
-
-$DOC_TYPES = array(1 => 'DOC',
-    2 => 'TXT',
-    3 => 'RTF',
-    4 => 'PDF',
-    5 => 'XLS',
-    6 => 'PPT',
-    7 => 'ZIP',
-    8 => 'RAR'
-    );
 
 // User DB system
 if (defined('UDB_INTEGRATION')) require 'bridge/' . UDB_INTEGRATION . '.inc.php';
@@ -189,6 +148,9 @@ if ($CONFIG['debug_mode']) {
 } else {
     error_reporting (E_ALL ^ E_NOTICE);
 }
+
+require 'include/media.functions.inc.php';
+
 // Parse cookie stored user profile
 user_get_profile();
 // Authenticate

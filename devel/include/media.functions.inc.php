@@ -18,47 +18,67 @@
 //  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
 
-function get_type($filename)
+// REQUIRES GLOBAL VAR: CONFIG
+// REQUIRES GLOBAL FUNCTION: db_query
+
+global $FILE_TYPES;
+
+// Map content types to corresponding user parameters
+$content_types_to_vars = array('image'=>'allowed_img_types','audio'=>'allowed_snd_types','movie'=>'allowed_mov_types','document'=>'allowed_doc_types');
+$CONFIG['allowed_file_extensions'] = '';
+
+if (count($FILE_TYPES)==0) {
+ 	$result = db_query('SELECT extension, mime, content FROM '.$CONFIG['TABLE_FILETYPES'].';');
+ 	while ($row = mysql_fetch_array($result)) {
+ 	    // Only add types that are in both the database and user defined parameter
+        if ($CONFIG[$content_types_to_vars[$row['content']]]=='ALL' || is_int(strpos('/'.$CONFIG[$content_types_to_vars[$row['content']]].'/','/'.$row['extension'].'/')))
+        {
+            $FILE_TYPES[$row['extension']] = $row;
+            $CONFIG['allowed_file_extensions'].= '/'.$row['extension'];
+    }   }
+    mysql_free_result($result);
+}
+
+$CONFIG['allowed_file_extensions'] = substr($CONFIG['allowed_file_extensions'],1);
+
+function get_type($filename,$filter=null)
 {
-    global $CONFIG;
- 	static $file_types = array();
- 	if (count($file_types)==0) {
- 	    $result = db_query('SELECT extension, content_type, media_type FROM '.$CONFIG['TABLE_FILETYPES'].';');
- 	    while ($row = mysql_fetch_array($result)) {
-            $files_types[$row['extension']] = $row;
-        }
-        mysql_free_result();
-    }
+    global $FILE_TYPES;
     if (!is_array($filename))
         $filename = explode('.',$filename);
     $EOA = count($filename)-1;
-    @return $file_types[$file[$EOA]];
+    $filename[$EOA] = strtolower($filename[$EOA]);
+
+    if (!is_null($filter) && $FILE_TYPES[$filename[$EOA]]['content']==$filter)
+        return $FILE_TYPES[$filename[$EOA]];
+    elseif (is_null($filter))
+        return $FILE_TYPES[$filename[$EOA]];
+    else
+        return null;
 }
 
 function is_image(&$file)
 {
-        return get_type($file,$IMG_TYPES);
+    return get_type($file,'image');
 }
 
 function is_movie(&$file)
 {
-        global $MOV_TYPES;
-        return file_type_test($file,$MOV_TYPES);
+    return get_type($file,'movie');
 }
 
 function is_audio(&$file)
 {
-        global $SND_TYPES;
-        return file_type_test($file,$SND_TYPES);
+    return get_type($file,'audio');
 }
 
 function is_document(&$file)
 {
-        global $DOC_TYPES;
-        return file_type_test($file,$DOC_TYPES);
+    return get_type($file,'document');
 }
 
-function is_known_filetype(&$file) {
-        return is_image($file) || is_movie($file) || is_audio($file) || is_document($file);
+function is_known_filetype($file)
+{
+    return is_image($file) || is_movie($file) || is_audio($file) || is_document($file);
 }
 ?>
