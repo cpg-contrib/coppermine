@@ -40,5 +40,9 @@
     cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
   }
   $t->assign("CONTENT", $t->fetchHTML("common/displayFullSizeImage.html"));
-  $t->display("common/popup.html");
+
+  /**
+   * Using print $t->fetchHTML() instead of $t->display() so that fallback for popup.html can be implemented.
+   */
+  print $t->fetchHTML("common/popup.html");
 ?>
