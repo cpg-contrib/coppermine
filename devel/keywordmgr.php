@@ -63,7 +63,7 @@ if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap']);
          </label>
          </td>
 EOT;
-         $word .= '<td class="tableb"><a href="?page=delete&remov='.$single_word.'" onclick="return confirm(\''.sprintf($lang_keywordmgr_php['confirm_delete'], '&quot;'.$single_word.'&quot;').'\')">';
+         $word .= '<td class="tableb"><a href="keywordmgr.php?page=delete&remov='.$single_word.'" onclick="return confirm(\''.sprintf($lang_keywordmgr_php['confirm_delete'], '&quot;'.$single_word.'&quot;').'\')">';
          $word .= '<img src="images/delete.gif" width="16" height="16" border="0" alt="" title="'.sprintf($lang_keywordmgr_php['keyword_del'],'&quot;'.$single_word.'&quot;').'" /> '.$single_word;
          $word .= <<<EOT
          </a></td>
@@ -82,7 +82,7 @@ EOT;
    $output = implode("</tr>\n<tr>", $total_array);
 
    echo <<<EOT
-<form name="keywordForm" action="?page=changeword" method="post">
+<form name="keywordForm" action="keywordmgr.php?page=changeword" method="post">
 $output
 <tr><td colspan="5" class="tablef" align="center">
    <input type="text" name="newword">
@@ -127,7 +127,7 @@ case 'changeword':
 
    foreach ($newquerys as $query) { $result = cpg_db_query($query) or die($query."<br />".mysql_error()); }
 
-   header("Location: ?page=display");
+   header("Location: keywordmgr.php?page=display");
 
 break;
 
