@@ -13,116 +13,7 @@
 <meta name="MSSmartTagsPreventParsing" content="true">
 <meta http-equiv="imagetoolbar" content="no">
 <!-- CVS version info: $Id$ -->
-<style type=text/css>
-
-body {
-        font-size: 12px;
-        background: #F7F7F7;
-        margin: 2%;
-        color: black;
-        font-family: verdana, arial, helvetica, sans-serif;
-        scrollbar-face-color: #DEE3E7;
-        scrollbar-highlight-color: #FFFFFF;
-        scrollbar-shadow-color: #DEE3E7;
-        scrollbar-3dlight-color: #D1D7DC;
-        scrollbar-arrow-color:  #006699;
-        scrollbar-track-color: #EFEFEF;
-        scrollbar-darkshadow-color: #98AAB1;
-}
-td {
-        font-size: 12px;
-}
-h1 {
-        font-weight: bolder; font-size: 24px; color: #0E72A4; line-height: 120%; font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; text-decoration: none
-}
-h2 {
-        font-size: 20px; color: #0E72A4; font-family: Arial, Helvetica, sans-serif; text-decoration: none;
-}
-h3 {
-        font-weight: bolder; font-size: 16px; font-family: Verdana, Arial, Helvetica, sans-serif; text-decoration: none; color: #0E72A4;
-}
-h4 {
-        font-weight: bold; font-size: 14px; font-family: Verdana, Arial, Helvetica, sans-serif; text-decoration: none; color: #0E72A4;
-}
-p {
-        font-size: 12px; margin: 10px 10px 0px 0px; font-family: Verdana, Arial, Helvetica, sans-serif
-}
-pre {
-        border-right: #999999 1px solid;
-        padding-right: 5px;
-        border-top: #999999 1px solid;
-        padding-left: 5px;
-        font-size: 12px;
-        padding-bottom: 5px;
-        margin: 10px 10px 0px 0px;
-        border-left: #999999 1px solid;
-        padding-top: 5px;
-        border-bottom: #999999 1px solid;
-        font-style: normal; font-family: "Courier New", Courier, mono;
-        background-color: #E0E0E0;
-}
-ul {
-        padding-right: 0px; padding-left: 0px; padding-bottom: 0px; margin: 10px 0px 10px 5px; padding-top: 0px
-}
-ul.content {
-        padding-right: 0px; padding-left: 0px; padding-bottom: 0px; margin: 5px 5px 0px 0px; padding-top: 0px
-}
-li {
-        padding-right: 0px; margin-top: 4px; padding-left: 0px; list-style-position: outside; margin-bottom: 4px; padding-bottom: 0px; margin-left: 10px; padding-top: 0px; list-style-type: disc
-}
-li.content {
-        padding-right: 0px; margin-top: 0px; padding-left: 0px; list-style-position: outside; margin-bottom: 5px; padding-bottom: 0px; margin-left: 10px; padding-top: 0px; list-style-type: none;
-}
-hr {
-        border-right: #000000 0px solid; border-top: #000000 1px solid; border-left: #000000 0px solid; border-bottom: #000000 0px solid; height: 0px; width:80%;text-align:left;
-}
-.navbar {
-        font-weight: bold; font-size: 10px; background: url(/coppermine/themes/pixel-rave-blue100/images/nav-bar-button.gif) #72a5cc no-repeat; vertical-align: middle; color: #A5C6DF; font-family: Arial, Helvetica, sans-serif
-}
-a.navbar {
-        display: block; vertical-align: middle; width: 100px; color: #A5C6DF; line-height: 25px; position: relative; height: 25px; text-align: center; text-decoration: none
-}
-a.navbar:hover {
-        color: #ffffff; text-decoration: none
-}
-
-a.external {
-        background: transparent url('pics/link.gif') 100% 50% no-repeat;
-        padding-right: 10px;
-}
-
-.back {
-        margin-top: 10px; font-size: 10px; margin-bottom: 10px
-}
-.important { color: red }
-.menu1 {font-weight:bolder;font-stretch:expanded;font-size:120%}
-.menu2 {font-weight:bold;font-stretch:normal;font-size:100%}
-.menu3 {font-weight:normal;font-stretch:condensed }
-.code {
-        font-size: 12px; font-style: normal; font-family: "Courier New", Courier, mono; background-color: #E0E0E0
-}
-.border1 {
-        border-right: #999999 1px solid; padding-right: 5px; border-top: #999999 1px solid; padding-left: 5px; font-size: 12px; padding-bottom: 5px; margin: 10px 10px 0px 0px; border-left: #999999 1px solid; padding-top: 5px; border-bottom: #999999 1px solid;
-          }
-.quote
-{
-        color: #000000;
-        background-color: #C3B8D0;
-        border: 1px solid #000000;
-        margin: 1px;
-        padding: 1px;
-        font-size: x-small;
-}
-.small {
-        font-size: 9px;
-        text-align:right;
-        margin-top:0px;
-        margin-bottom:0px;
-}
-acronym {
-        border-bottom: 1px dashed blue;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
 <table cellspacing="0" cellpadding="0" width="100%" border="0">
@@ -595,7 +486,7 @@ the main page of the script.</p>
   <li><a name="admin_tools"></a><b>Admin Tools (Resize Pictures)</b><br />Collection of utilities to:
 	<dl>
       <dt>Rebuild or resize intermediate pictures and thumbnails.</dt>
-      <dd><img src="../pics/util_re-size.gif" alt="" border="0" /><br />Use this if you have changed the settings for thumbnail or intermediate images in config, or if you have to replace corrupt versions.<br />Select the radio button for this action, then choose to rebuild the thumbnails, intermediates, or both.<br />This uses a lot of server resources, so if you have timeout problems, try doing it in smaller batches.</dd>
+      <dd><img src="pics/util_re-size.gif" alt="" border="0" /><br />Use this if you have changed the settings for thumbnail or intermediate images in config, or if you have to replace corrupt versions.<br />Select the radio button for this action, then choose to rebuild the thumbnails, intermediates, or both.<br />This uses a lot of server resources, so if you have timeout problems, try doing it in smaller batches.</dd>
       <dt>Delete full-size pictures.</dt>
       <dd>Use this to save space on your webspace.<br />When selected, Coppermine checks to see if an intermediate copy exists, and if it does, it deletes the original sized picture, then re-names the intermediate. If no intermediate exists, Coppermine leaves the original in place.</dd>
       <dt>Delete orphaned comments.</dt>
