@@ -2313,7 +2313,7 @@ switch ($parameter) {
               if ($lang_language_data[$language][1] != $lang_language_data[$language][0]){
                   $return.= ' (' . $lang_language_data[$language][1] . ')';
                   }
-              $return.= '" /></a>&nbsp;' . $lineBreak;
+              $return.= '" /></a>' . $lineBreak;
               }
               }
           if ($CONFIG['language_reset'] == 1){
