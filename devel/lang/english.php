@@ -820,6 +820,11 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
   'npic' => 'Picture',
   'pic_mgr' => 'Picture Manager', // cpg1.4.0
   'update_pic' => 'Updating picture \'%s\' with filename \'%s\' and index \'%s\'', // cpg1.4.0
+  'username' => 'Username', // cpg1.4.0
+  'deleted_albums' => 'Deleted albums', // cpg1.4.0
+  'anonymized_comments' => 'Anonymized comments', // cpg1.4.0
+  'anonymized_uploads' => 'Anonymized uploads', // cpg1.4.0
+  'done' => 'done', // cpg1.4.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -1101,6 +1106,7 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
   'title' => 'Manage user groups',
   'num_file_upload'=>'File upload boxes', // cpg1.4.0
   'num_URI_upload'=>'URI upload boxes', // cpg1.4.0
+  'reset_to_default'=>'Reset to default name (%s) - recommended!', // cpg1.4.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -1559,6 +1565,7 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
+  'memberlist' => 'Memberlist', // cpg1.4.0
   'title' => 'Manage users',
   'name_a' => 'Name ascending',
   'name_d' => 'Name descending',
@@ -1575,14 +1582,16 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'sort_by' => 'Sort users by',
   'err_no_users' => 'User table is empty !',
   'err_edit_self' => 'You can\'t edit your own profile, use the \'My profile\' link for that',
-  'edit' => 'EDIT',
-  'delete' => 'DELETE',
+  'edit' => 'Edit',
+  'with_selected' => 'With selected:',
+  'delete' => 'Delete selected user(s)',
   'name' => 'User name',
   'group' => 'Group',
   'inactive' => 'Inactive',
   'operations' => 'Operations',
   'pictures' => 'Files',
-  'disk_space' => 'Space used / Quota',
+  'disk_space_used' => 'Space used',
+  'disk_space_quota' => 'Space Quota',
   'registered_on' => 'Registered on',
   'last_visit' => 'Last Visit',
   'u_user_on_p_pages' => '%d users on %d page(s)',
@@ -1609,7 +1618,13 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'user_profile6' => '$user_profile6',
   'latest_upload' => 'Recent uploads',
   'never' => 'never',
-  'search' => 'User search',
+  'search' => 'User search', // cpg1.4.0
+  'search_submit' => 'Go!', // cpg1.4.0
+  'search_result' => 'Search results for: ', // cpg1.4.0
+  'search_help_title' => 'Searching for users', // cpg1.4.0
+  'search_help_text' => 'You can use the wildcards <tt class="debug_text">*</tt> (any string) and <tt class="debug_text">?</tt> (any single character).<br />Example: searching for <tt class="debug_text">j*</tt> will return both <tt class="debug_text">Jack</tt> and <tt class="debug_text">Jill</tt>', // cpg1.4.0
+  'check_all' => 'check/uncheck all', // cpg1.4.0
+  'alert_no_selection' => 'You have to select a user first!', // cpg1.4.0 //js-alert
 );
 
 // ------------------------------------------------------------------------- //

@@ -27,9 +27,11 @@ if (defined('UDB_INTEGRATION')) udb_edit_users();
 if (USER_ID !='') {
  if (GALLERY_ADMIN_MODE) {
   $lim_user = 0;
+  $number_of_columns = 9;
  }
  elseif ($CONFIG['allow_memberlist']) {
   $lim_user = 1;
+  $number_of_columns = 7;
   show_memberlist;
  }
  else {
@@ -57,8 +59,9 @@ function list_users($search = '')
 {
     global $CONFIG; //, $PHP_SELF;
     global $lang_usermgr_php, $lang_byte_units, $register_date_fmt;
-    global $lim_user;
+    global $lim_user,$number_of_columns;
 
+    $number_of_columns_minus_one = $number_of_columns - 1;
 
     $sort_codes = array('name_a' => 'user_name ASC',
         'name_d' => 'user_name DESC',
@@ -108,18 +111,123 @@ function list_users($search = '')
 
     $tabs = create_tabs($user_count, $page, $total_pages, $tab_tmpl);
 
+    $lb = "<select name=\"album_listbox\" class=\"listbox\" onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$_SERVER['PHP_SELF']}?page=$page&sort='+this.options[this.selectedIndex].value;\">\n";
+    foreach($sort_codes as $key => $value) {
+        $selected = ($key == $sort) ? "SELECTED" : "";
+        $lb .= "        <option value=\"" . $key . "\" $selected>" . $lang_usermgr_php[$key] . "</option>\n";
+    }
+    $lb .= "</select>\n";
+
+echo <<<EOT
+<script type="text/javascript" language="javascript">
+<!--
+function selectAll(d,box) {
+  var f = document.editForm;
+  for (i = 0; i < f.length; i++) {
+    //alert (f[i].name.indexOf(box));
+    if (f[i].type == "checkbox" && f[i].name.indexOf(box) >= 0) {
+      if (d.checked) {
+        f[i].checked = true;
+      } else {
+        f[i].checked = false;
+      }
+    }
+  }
+  if (d.name == "checkAll") {
+      document.getElementsByName('checkAll2')[0].checked = document.getElementsByName('checkAll')[0].checked;
+  } else {
+      document.getElementsByName('checkAll')[0].checked = document.getElementsByName('checkAll2')[0].checked;
+  }
+}
+
+function selectaction(d,box) {
+// check if an action has been selected
+  var action = document.editForm.what.value;
+  if (action == '') {
+    return false;
+  }
+// check if at least one user has been selected
+  var checked_counter = 0;
+  var checked_string = '';
+  var f = document.editForm;
+  for (i = 0; i < f.length; i++) {
+    if (f[i].type == "checkbox" && f[i].name.indexOf(box) >= 0) {
+      if (f[i].checked) {
+        checked_counter = checked_counter + 1;
+        if (checked_string == '') {
+          checked_string = f[i].name;
+        } else {
+          checked_string = checked_string + ',' + f[i].name;
+        }
+      }
+    }
+  }
+  if (checked_counter == 0) {
+    document.editForm.what.value = '';
+    alert('{$lang_usermgr_php['alert_no_selection']}');
+    return false;
+  }
+  document.editForm.id.value = checked_string;
+  //alert(document.editForm.id.value);
+  document.editForm.submit();
+}
+-->
+</script>
+EOT;
+
     starttable('100%');
+        if (isset($_POST['username'])){
+            $search_filter= '<td class="tableh1" align="center">'.$lang_usermgr_php['search_result'].'&laquo;'.$_POST['username'].'&raquo;</td>';
+        }
+    echo <<<EOT
+        <tr>
+            <td colspan="$number_of_columns" class="tableh1">
+                <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                    <tr>
+                        <td class="tableh1">
+                            <h2>{$lang_usermgr_php['memberlist']}</h2>
+                        </td>
+                        $search_filter
+                        <td class="tableh1" align="right"><b>{$lang_usermgr_php['sort_by']}</b>:
+                        $lb</td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+EOT;
+    print '<form method="get" action="delete.php" name="editForm">'."\n";
+    print '<input type="hidden" name="id" value="" />';
     if (!$lim_user) {
      echo <<< EOT
 
         <tr>
-                <td class="tableh1"><b><span class="statlink">{$lang_usermgr_php['name']}</span></b></td>
-                <td class="tableh1"><b><span class="statlink">{$lang_usermgr_php['group']}</span></b></td>
-                <td class="tableh1"><b><span class="statlink">{$lang_usermgr_php['registered_on']}</span></b></td>
-                <td class="tableh1"><b><span class="statlink">{$lang_usermgr_php['last_visit']}</span></b></td>
-                <td class="tableh1" colspan="2" align="center"><b><span class="statlink">{$lang_usermgr_php['operations']}</span></b></td>
-                <td class="tableh1" align="center"><b><span class="statlink">{$lang_usermgr_php['pictures']}</span></b></td>
-                <td class="tableh1" colspan="2" align="center"><b><span class="statlink">{$lang_usermgr_php['disk_space']}</span></b></td>
+                <td class="tableh1" align="center"><input type="checkbox" name="checkAll" onClick="selectAll(this,'u');" class="checkbox" title="{$lang_usermgr_php['check_all']}" /></td>
+                <td class="tableh1" colspan="2"><b><span class="statlink">{$lang_usermgr_php['name']}</span></b>
+                <a href="{$_SERVER['PHP_SELF']}?page=$page&sort=name_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_a']}" /></a>
+                <a href="{$_SERVER['PHP_SELF']}?page=$page&sort=name_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_d']}" /></a>
+                </td>
+                <td class="tableh1"><b><a href="groupmgr.php" class="statlink">{$lang_usermgr_php['group']}</a></b>
+                <a href="{$_SERVER['PHP_SELF']}?page=$page&sort=group_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['group_a']}" /></a>
+                <a href="{$_SERVER['PHP_SELF']}?page=$page&sort=group_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['group_d']}" /></a>
+                </td>
+                <td class="tableh1"><b><span class="statlink">{$lang_usermgr_php['registered_on']}</span></b>
+                <a href="{$_SERVER['PHP_SELF']}?page=$page&sort=reg_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['reg_a']}" /></a>
+                <a href="{$_SERVER['PHP_SELF']}?page=$page&sort=reg_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['reg_d']}" /></a>
+                </td>
+                <td class="tableh1"><b><span class="statlink">{$lang_usermgr_php['last_visit']}</span></b>
+                <a href="{$_SERVER['PHP_SELF']}?page=$page&sort=lv_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['lv_a']}" /></a>
+                <a href="{$_SERVER['PHP_SELF']}?page=$page&sort=lv_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['lv_d']}" /></a>
+                </td>
+                <td class="tableh1" align="center"><b><span class="statlink">{$lang_usermgr_php['pictures']}</span></b>
+                <a href="{$_SERVER['PHP_SELF']}?page=$page&sort=pic_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['pic_a']}" /></a>
+                <a href="{$_SERVER['PHP_SELF']}?page=$page&sort=pic_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['pic_d']}" /></a>
+                </td>
+                <td class="tableh1" align="center"><b><span class="statlink">{$lang_usermgr_php['disk_space_used']}</span></b>
+                <a href="{$_SERVER['PHP_SELF']}?page=$page&disku=pic_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['disku_a']}" /></a>
+                <a href="{$_SERVER['PHP_SELF']}?page=$page&disku=pic_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['disku_d']}" /></a>
+                </td>
+                <td class="tableh1" align="center"><b><span class="statlink">{$lang_usermgr_php['disk_space_quota']}</span></b>
+                </td>
         </tr>
 EOT;
     }
@@ -132,14 +240,20 @@ EOT;
                 <td class="tableh1"><b><span class="statlink">{$lang_usermgr_php['registered_on']}</span></b></td>
                 <td class="tableh1"><b><span class="statlink">{$lang_usermgr_php['last_visit']}</span></b></td>
                 <td class="tableh1" align="center"><b><span class="statlink">{$lang_usermgr_php['pictures']}</span></b></td>
-                <td class="tableh1" colspan="2" align="center"><b><span class="statlink">{$lang_usermgr_php['disk_space']}</span></b></td>
+                <td class="tableh1" align="center"><b><span class="statlink">{$lang_usermgr_php['disk_space_used']}</span></b></td>
+                <td class="tableh1" align="center"><b><span class="statlink">{$lang_usermgr_php['disk_space_quota']}</span></b></td>
         </tr>
 EOT;
     }
 
 
     while ($user = mysql_fetch_array($result)) {
-        if ($user['user_active'] == 'NO') $user['group_name'] = '<i>' . $lang_usermgr_php['inactive'] . '</i>';
+        if ($user['disk_usage'] == '') {
+            $user['disk_usage'] = 0;
+        }
+        if ($user['user_active'] == 'NO') {
+            $user['group_name'] = '<i>' . $lang_usermgr_php['inactive'] . '</i>';
+        }
         $user['user_regdate'] = localised_date($user['user_regdate'], $register_date_fmt);
         if ($user['user_lastvisit']) {
             $user['user_lastvisit'] = localised_date($user['user_lastvisit'], $register_date_fmt);
@@ -159,13 +273,13 @@ EOT;
         if (!$lim_user) {
          echo <<< EOT
         <tr>
+                <td class="tableb" align="center"><input name="u{$user['user_id']}" type="checkbox" value="" /></td>
                 <td class="tableb">$usr_link</td>
+                <td class="tableb" align="center"><a href="{$_SERVER['PHP_SELF']}?op=edit&user_id={$user['user_id']}"><img src="images/edit.gif" width="16" height="16" border="0" alt="" title="{$lang_usermgr_php['edit']}" /></a></td>
                 <td class="tableb">{$user['group_name']}</td>
                 <td class="tableb">{$user['user_regdate']}</td>
                 <td class="tableb">{$user['user_lastvisit']}</td>
-                <td class="tableb" align="center"><div class="admin_menu"><a href="{$_SERVER['PHP_SELF']}?op=edit&user_id={$user['user_id']}">{$lang_usermgr_php['edit']}</a></div></td>
-                <td class="tableb"  align="center"><div class="admin_menu"><a href="delete.php?id={$user['user_id']}&what=user"  onclick="return confirm('{$lang_usermgr_php['confirm_del']}');">{$lang_usermgr_php['delete']}</a></div></td>
-                <td class="tableb" align="center">{$user['pic_count']}</td>
+                <td class="tableb" align="right">{$user['pic_count']}</td>
                 <td class="tableb" align="right">{$user['disk_usage']}&nbsp;{$lang_byte_units[1]}</td>
                 <td class="tableb" align="right">{$user['group_quota']}&nbsp;{$lang_byte_units[1]}</td>
         </tr>
@@ -178,7 +292,7 @@ EOT;
                 <td class="tableb">{$user['group_name']}</td>
                 <td class="tableb">{$user['user_regdate']}</td>
                 <td class="tableb">{$user['user_lastvisit']}</td>
-                <td class="tableb" align="center">{$user['pic_count']}</td>
+                <td class="tableb" align="right">{$user['pic_count']}</td>
                 <td class="tableb" align="right">{$user['disk_usage']}&nbsp;{$lang_byte_units[1]}</td>
                 <td class="tableb" align="right">{$user['group_quota']}&nbsp;{$lang_byte_units[1]}</td>
         </tr>
@@ -189,32 +303,41 @@ EOT;
     } // while
     mysql_free_result($result);
 
-    $lb = "<select name=\"album_listbox\" class=\"listbox\" onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$_SERVER['PHP_SELF']}?page=$page&sort='+this.options[this.selectedIndex].value;\">\n";
-    foreach($sort_codes as $key => $value) {
-        $selected = ($key == $sort) ? "SELECTED" : "";
-        $lb .= "        <option value=\"" . $key . "\" $selected>" . $lang_usermgr_php[$key] . "</option>\n";
-    }
-    $lb .= "</select>\n";
+
 
     if (!$lim_user) {
-     echo <<<EOT
+        if (isset($_POST['username'])){
+            $search_string_default = 'value="'.$_POST['username'].'"';
+        } else {
+            $search_string_default = 'value="'.$lang_usermgr_php['search'].'" onfocus="this.value=\'\'"';
+        }
+        if ($CONFIG['enable_help'] == 1 ) {
+            $help = cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_usermgr_php['search_help_title']))).'&t='.urlencode(base64_encode(serialize($lang_usermgr_php['search_help_text']))),400,150);
+        }
+        echo <<<EOT
         <tr>
-
-                <td colspan="9"  class="tablef">
-                <table cellpadding="0" cellspacing="0">
+                <td class="tablef" align="center"><input type="checkbox" name="checkAll2" onClick="selectAll(this,'u');" class="checkbox" title="{$lang_usermgr_php['check_all']}" /></td>
+                <td colspan="$number_of_columns_minus_one"  class="tablef">
+                <table cellpadding="0" cellspacing="0" width="100%" border="0">
                 <tr>
                         <td align="left">
-                            <form method="post" action="{$_SERVER['PHP_SELF']}">
-                                <input type="text" name="username" class="textinput" />
-                                <input type="submit" name="user_search" value="{$lang_usermgr_php['search']}" class="button" />
-                            </form>
+                            <select name="what" size="1" class="listbox" onchange="return selectaction(this,'u');">
+                                <option value="" checked="checked">{$lang_usermgr_php['with_selected']}</option>
+                                <option value="user">{$lang_usermgr_php['delete']}</option>
+                            </select>
+                            <noscript><input type="submit" name="Go" value="{$lang_usermgr_php['search_submit']}" /></noscript>
                         </td>
-                        <td><img src="images/spacer.gif" width="50" height="1" alt="" /></td>
-                        <td><form method="post" action="{$_SERVER['PHP_SELF']}?op=new_user"><input type="submit" value="{$lang_usermgr_php['create_new_user']}" class="button" /></form></td>
-                        <td><img src="images/spacer.gif" width="50" height="1" alt="" /></td>
-                        <td><b>{$lang_usermgr_php['sort_by']}</b></td>
-                        <td><img src="images/spacer.gif" width="10" height="1" alt="" /></td>
-                        <td>$lb</td>
+                        <td align="center">
+                        <a href="{$_SERVER['PHP_SELF']}?op=new_user" class="admin_menu">{$lang_usermgr_php['create_new_user']}</a>
+                        </td>
+                        </form>
+                        <td align="right">
+                                <form method="post" action="{$_SERVER['PHP_SELF']}" name="searchUser">
+                                <input type="text" name="username" class="textinput" $search_string_default />
+                                <input type="submit" name="user_search" value="{$lang_usermgr_php['search_submit']}" class="button" />
+                                $help
+                                </form>
+                        </td>
                 </tr>
                 </table>
                 </td>
@@ -224,7 +347,7 @@ EOT;
     }
     echo <<<EOT
         <tr>
-                <td colspan="9" style="padding: 0px;">
+                <td colspan="$number_of_columns" style="padding: 0px;">
                         <table width="100%" cellspacing="0" cellpadding="0">
                                 <tr>
                                         $tabs
