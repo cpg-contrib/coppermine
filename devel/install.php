@@ -498,6 +498,9 @@ function lock_install()
 }
 // --------------------------------- MAIN CODE ----------------------------- //
 
+// Disable magic_quotes_runtime if active to allow proper reading from .sql files.
+set_magic_quotes_runtime(0);
+
 // The defaults values
 $table_prefix =$HTTP_POST_VARS['table_prefix'];
 $DFLT = array(
