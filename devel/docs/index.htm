@@ -1309,6 +1309,7 @@ there. Don't forget the trailing "<tt class="code">/</tt>".</p>
 <h4>Allow unlogged users (guest or anonymous) access</h4>
 <p>When set to &quot;No&quot;, unlogged users (i.e. guests or anonymous users) can not acces anything of your gallery except the login screen (and the registration screen if you allow registrations). You have to be aware that completely disabling anonymous access will decrease your site's popularity. Only use this if you need your gallery to be absolutely private. It's recommended to leave anonymous access enabled and use the more granular permissions by groups and albums instead.</p>
 <a name="admin_allow_unlogged_access_end"></a>
+<p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_allow_registration_end"></a>
 <a name="admin_registration_verify"></a>
 <h4>User registration requires email verification</h4>
@@ -1319,9 +1320,11 @@ there. Don't forget the trailing "<tt class="code">/</tt>".</p>
 <p>If set to YES an email will be sent to the gallery admin when a new user registers.</p>
 <a name="admin_registration_notify_end"></a>
 <p class="small">[cpg1.3.0 or better required]</p>
+<a name="admin_allow_duplicate_emails_addr"></a>
 <h4>Allow two users to have the same email address</h4>
 <p>Allow or prevent two users from registering with the same email
-address. Recommended setting is NO</p>
+address. Recommended setting is NO. This option is considered as deprecated and will possibly removed in future versions of coppermine.</p>
+<a name="admin_allow_duplicate_emails_addr_end"></a>
 <a name="admin_approval_notify"></a>
 <h4>Notify admin of user upload awaiting approval</h4>
 <p>When enabled, the gallery admin receives an email notification of all pics that wait for his approval (depends on the approval settings in &quot;<a href="#group_cp">groups</a>&quot;). The email is sent to the address specified in &quot;<a href="#admin_general">General settings</a>&quot;.<br />This option is only recommended with low or medium traffic (if users only upload every now and then).</p>

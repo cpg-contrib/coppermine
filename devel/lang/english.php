@@ -696,7 +696,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Allow unlogged users (guest or anonymous) access', 'allow_unlogged_access', 1, 'f=index.htm&as=admin_allow_unlogged_access&ae=admin_allow_unlogged_access_end'),
   array('User registration requires email verification', 'reg_requires_valid_email', 1, 'f=index.htm&as=admin_registration_verify&ae=admin_registration_verify_end'),
   array('Notify admin of user registration by email', 'reg_notify_admin_email', 1, 'f=index.htm&as=admin_registration_notify&ae=admin_registration_notify_end'),
-  array('Allow two users to have the same email address', 'allow_duplicate_emails_addr', 1),
+  array('Allow two users to have the same email address', 'allow_duplicate_emails_addr', 1, 'f=index.htm&as=admin_allow_duplicate_emails_addr&ae=admin_allow_duplicate_emails_addr_end'),
   array('Notify admin of user upload awaiting approval', 'upl_notify_admin_email', 1, 'f=index.htm&as=admin_approval_notify&ae=admin_approval_notify_end'),
   array('Allow logged in users to view memberlist', 'allow_memberlist', 1, 'f=index.htm&as=admin_user_memberlist&ae=admin_user_memberlist_end'),
   array('Allow users to change their email address in profile', 'allow_email_change', 1, 'f=index.htm&as=admin_user_allow_email_change&ae=admin_user_allow_email_change_end'), //cpg1.4.0
