@@ -30,7 +30,7 @@ $template_main_menu = <<<EOT
                         <a href="{MEMBERLIST_TGT}" title="{MEMBERLIST_TITLE}">{MEMBERLIST_LNK}</a>  ::
 <!-- END allow_memberlist -->
 <!-- BEGIN my_profile -->
-                        <a href="{MY_PROF_TGT}" title="{MY_PROF_LNK}">{MY_PROF_LNK}</a> ::
+                        <a href="{MY_PROF_TGT}" title="{MY_PROF_TITLE}">{MY_PROF_LNK}</a> ::
 <!-- END my_profile -->
 <!-- BEGIN faq -->
                         <a href="{FAQ_TGT}" title="{FAQ_TITLE}">{FAQ_LNK}</a> ::
@@ -48,18 +48,18 @@ $template_main_menu = <<<EOT
                         <a href="{REGISTER_TGT}" title="{REGISTER_TITLE}">{REGISTER_LNK}</a> ::
 <!-- END register -->
 <!-- BEGIN login -->
-                        <a href="{LOGIN_TGT}" title="{LOGIN_LNK}">{LOGIN_LNK}</a>
+                        <a href="{LOGIN_TGT}" title="{LOGIN_TITLE}">{LOGIN_LNK}</a>
 <!-- END login -->
 <!-- BEGIN logout -->
-                        <a href="{LOGOUT_TGT}" title="{LOGOUT_LNK}">{LOGOUT_LNK}</a>
+                        <a href="{LOGOUT_TGT}" title="{LOGOUT_TITLE}">{LOGOUT_LNK}</a>
 <!-- END logout -->
                         <br />
-                        <a href="{LASTUP_TGT}" title="{LASTUP_LNK}">{LASTUP_LNK}</a> ::
-                        <a href="{LASTCOM_TGT}" title="{LASTCOM_LNK}">{LASTCOM_LNK}</a> ::
-                        <a href="{TOPN_TGT}" title="{TOPN_LNK}">{TOPN_LNK}</a> ::
-                        <a href="{TOPRATED_TGT}" title="{TOPRATED_LNK}">{TOPRATED_LNK}</a> ::
-                        <a href="{FAV_TGT}" title="{FAV_LNK}">{FAV_LNK}</a> ::
-                        <a href="{SEARCH_TGT}" title="{SEARCH_LNK}">{SEARCH_LNK}</a>
+                        <a href="{LASTUP_TGT}" title="{LASTUP_TITLE}">{LASTUP_LNK}</a> ::
+                        <a href="{LASTCOM_TGT}" title="{LASTCOM_TITLE}">{LASTCOM_LNK}</a> ::
+                        <a href="{TOPN_TGT}" title="{TOPN_TITLE}">{TOPN_LNK}</a> ::
+                        <a href="{TOPRATED_TGT}" title="{TOPRATED_TITLE}">{TOPRATED_LNK}</a> ::
+                        <a href="{FAV_TGT}" title="{FAV_TITLE}">{FAV_LNK}</a> ::
+                        <a href="{SEARCH_TGT}" title="{SEARCH_TITLE}">{SEARCH_LNK}</a>
                 </span>
 EOT;
 // HTML template for gallery admin menu
@@ -68,19 +68,19 @@ $template_gallery_admin_menu = <<<EOT
                 <div align="center">
                 <table cellpadding="0" cellspacing="1">
                         <tr>
-                                <td class="admin_menu" id="{APPROVAL_ID}"><a href="editpics.php?mode=upload_approval" title="{UPL_APP_LNK}">{UPL_APP_LNK}</a></td>
-                                <td class="admin_menu"><a href="admin.php" title="{ADMIN_LNK}">{ADMIN_LNK}</a></td>
-                                <td class="admin_menu"><a href="albmgr.php{CATL}" title="{ALBUMS_LNK}">{ALBUMS_LNK}</a></td>
-                                <td class="admin_menu"><a href="catmgr.php" title="{CATEGORIES_LNK}">{CATEGORIES_LNK}</a></td>
-                                <td class="admin_menu"><a href="usermgr.php" title="{USERS_LNK}">{USERS_LNK}</a></td>
-                                <td class="admin_menu"><a href="groupmgr.php" title="{GROUPS_LNK}">{GROUPS_LNK}</a></td>
-                                <td class="admin_menu"><a href="banning.php" title="{BAN_LNK}">{BAN_LNK}</a></td>
-                                <td class="admin_menu"><a href="db_ecard.php" title="{DB_ECARD_LNK}">{DB_ECARD_LNK}</a></td>
-                                <td class="admin_menu"><a href="reviewcom.php" title="{COMMENTS_LNK}">{COMMENTS_LNK}</a></td>
-                                <td class="admin_menu"><a href="picmgr.php" title="{PICTURES_LNK}">{PICTURES_LNK}</a></td>
-                                <td class="admin_menu"><a href="searchnew.php" title="{SEARCHNEW_LNK}">{SEARCHNEW_LNK}</a></td>
-                                <td class="admin_menu"><a href="util.php" title="{UTIL_LNK}">{UTIL_LNK}</a></td>
-                                <td class="admin_menu"><a href="profile.php?op=edit_profile" title="{MY_PROF_LNK}">{MY_PROF_LNK}</a></td>
+                                <td class="admin_menu" id="{APPROVAL_ID}"><a href="editpics.php?mode=upload_approval" title="{UPL_APP_TITLE}">{UPL_APP_LNK}</a></td>
+                                <td class="admin_menu"><a href="admin.php" title="{ADMIN_TITLE}">{ADMIN_LNK}</a></td>
+                                <td class="admin_menu"><a href="albmgr.php{CATL}" title="{ALBUMS_TITLE}">{ALBUMS_LNK}</a></td>
+                                <td class="admin_menu"><a href="catmgr.php" title="{CATEGORIES_TITLE}">{CATEGORIES_LNK}</a></td>
+                                <td class="admin_menu"><a href="usermgr.php" title="{USERS_TITLE}">{USERS_LNK}</a></td>
+                                <td class="admin_menu"><a href="groupmgr.php" title="{GROUPS_TITLE}">{GROUPS_LNK}</a></td>
+                                <td class="admin_menu"><a href="banning.php" title="{BAN_TITLE}">{BAN_LNK}</a></td>
+                                <td class="admin_menu"><a href="db_ecard.php" title="{DB_ECARD_TITLE}">{DB_ECARD_LNK}</a></td>
+                                <td class="admin_menu"><a href="reviewcom.php" title="{COMMENTS_TITLE}">{COMMENTS_LNK}</a></td>
+                                <td class="admin_menu"><a href="picmgr.php" title="{PICTURES_TITLE}">{PICTURES_LNK}</a></td>
+                                <td class="admin_menu"><a href="searchnew.php" title="{SEARCHNEW_TITLE}">{SEARCHNEW_LNK}</a></td>
+                                <td class="admin_menu"><a href="util.php" title="{UTIL_TITLE}">{UTIL_LNK}</a></td>
+                                <td class="admin_menu"><a href="profile.php?op=edit_profile" title="{MY_PROF_TITLE}">{MY_PROF_LNK}</a></td>
                         </tr>
                 </table>
                 </div>
@@ -92,10 +92,10 @@ $template_user_admin_menu = <<<EOT
                 <div align="center">
                 <table cellpadding="0" cellspacing="1">
                         <tr>
-                                <td class="admin_menu"><a href="albmgr.php" title="{ALBMGR_LNK}">{ALBMGR_LNK}</a></td>
-                                <td class="admin_menu"><a href="modifyalb.php" title="{MODIFYALB_LNK}">{MODIFYALB_LNK}</a></td>
-                                <td class="admin_menu"><a href="profile.php?op=edit_profile" title="">{MY_PROF_LNK}</a></td>
-                                <td class="admin_menu"><a href="picmgr.php" title="{PICTURES_LNK}">{PICTURES_LNK}</a></td>
+                                <td class="admin_menu"><a href="albmgr.php" title="{ALBMGR_TITLE}">{ALBMGR_LNK}</a></td>
+                                <td class="admin_menu"><a href="modifyalb.php" title="{MODIFYALB_TITLE}">{MODIFYALB_LNK}</a></td>
+                                <td class="admin_menu"><a href="profile.php?op=edit_profile" title="{MY_PROF_TITLE}">{MY_PROF_LNK}</a></td>
+                                <td class="admin_menu"><a href="picmgr.php" title="{PICTURES_TITLE}">{PICTURES_LNK}</a></td>
                         </tr>
                 </table>
                 </div>
@@ -1056,6 +1056,7 @@ function theme_main_menu()
         '{MEMBERLIST_TITLE}' => $lang_main_menu['memberlist_title'],
         '{MEMBERLIST_LNK}' => $lang_main_menu['memberlist_lnk'],
         '{MY_PROF_TGT}' => "profile.php?op=edit_profile",
+        '{MY_PROF_TITLE}' => $lang_main_menu['my_prof_title'],
         '{MY_PROF_LNK}' => $lang_main_menu['my_prof_lnk'],
         '{ADM_MODE_TGT}' => "mode.php?admin_mode=1&amp;referer=$REFERER",
         '{ADM_MODE_TITLE}' => $lang_main_menu['adm_mode_title'],
@@ -1070,23 +1071,31 @@ function theme_main_menu()
         '{REGISTER_TITLE}' => $lang_main_menu['register_title'],
         '{REGISTER_LNK}' => $lang_main_menu['register_lnk'],
         '{LOGIN_TGT}' => "login.php?referer=$REFERER",
+        '{LOGIN_TITLE}' => $lang_main_menu['login_title'],
         '{LOGIN_LNK}' => $lang_main_menu['login_lnk'],
         '{LOGOUT_TGT}' => "logout.php?referer=$REFERER",
+        '{LOGOUT_TITLE}' => $lang_main_menu['logout_title'],
         '{LOGOUT_LNK}' => $lang_main_menu['logout_lnk'] . " [" . USER_NAME . "]",
         '{FAQ_TGT}' => "faq.php",
         '{FAQ_TITLE}' => $lang_main_menu['faq_title'],
         '{FAQ_LNK}' => $lang_main_menu['faq_lnk'],
         '{LASTUP_TGT}' => "thumbnails.php?album=lastup$cat_l2",
+        '{LASTUP_TITLE}' => $lang_main_menu['lastup_title'],
         '{LASTUP_LNK}' => $lang_main_menu['lastup_lnk'],
         '{LASTCOM_TGT}' => "thumbnails.php?album=lastcom$cat_l2",
+        '{LASTCOM_TITLE}' => $lang_main_menu['lastcom_title'],
         '{LASTCOM_LNK}' => $lang_main_menu['lastcom_lnk'],
         '{TOPN_TGT}' => "thumbnails.php?album=topn$cat_l2",
+        '{TOPN_TITLE}' => $lang_main_menu['topn_title'],
         '{TOPN_LNK}' => $lang_main_menu['topn_lnk'],
         '{TOPRATED_TGT}' => "thumbnails.php?album=toprated$cat_l2",
+        '{TOPRATED_TITLE}' => $lang_main_menu['toprated_title'],
         '{TOPRATED_LNK}' => $lang_main_menu['toprated_lnk'],
         '{FAV_TGT}' => "thumbnails.php?album=favpics",
+        '{FAV_TITLE}' => $lang_main_menu['fav_title'],
         '{FAV_LNK}' => $lang_main_menu['fav_lnk'],
         '{SEARCH_TGT}' => "search.php",
+        '{SEARCH_TITLE}' => $lang_main_menu['search_title'],
         '{SEARCH_LNK}' => $lang_main_menu['search_lnk'],
         );
 
@@ -1104,18 +1113,31 @@ function theme_admin_mode_menu()
 
     if (GALLERY_ADMIN_MODE) {
         $param = array('{CATL}' => $cat_l,
+            '{UPL_APP_TITLE}' => $lang_gallery_admin_menu['upl_app_title'],
             '{UPL_APP_LNK}' => $lang_gallery_admin_menu['upl_app_lnk'],
+            '{ADMIN_TITLE}' => $lang_gallery_admin_menu['admin_title'],
             '{ADMIN_LNK}' => $lang_gallery_admin_menu['admin_lnk'],
+            '{ALBUMS_TITLE}' => $lang_gallery_admin_menu['albums_title'],
             '{ALBUMS_LNK}' => $lang_gallery_admin_menu['albums_lnk'],
+            '{CATEGORIES_TITLE}' => $lang_gallery_admin_menu['categories_title'],
             '{CATEGORIES_LNK}' => $lang_gallery_admin_menu['categories_lnk'],
+            '{USERS_TITLE}' => $lang_gallery_admin_menu['users_title'],
             '{USERS_LNK}' => $lang_gallery_admin_menu['users_lnk'],
+            '{GROUPS_TITLE}' => $lang_gallery_admin_menu['groups_title'],
             '{GROUPS_LNK}' => $lang_gallery_admin_menu['groups_lnk'],
+            '{COMMENTS_TITLE}' => $lang_gallery_admin_menu['comments_title'],
             '{COMMENTS_LNK}' => $lang_gallery_admin_menu['comments_lnk'],
+            '{SEARCHNEW_TITLE}' => $lang_gallery_admin_menu['searchnew_title'],
             '{SEARCHNEW_LNK}' => $lang_gallery_admin_menu['searchnew_lnk'],
+            '{MY_PROF_TITLE}' => $lang_user_admin_menu['my_prof_title'],
             '{MY_PROF_LNK}' => $lang_user_admin_menu['my_prof_lnk'],
+            '{UTIL_TITLE}' => $lang_gallery_admin_menu['util_title'],
             '{UTIL_LNK}' => $lang_gallery_admin_menu['util_lnk'],
+            '{BAN_TITLE}' => $lang_gallery_admin_menu['ban_title'],
             '{BAN_LNK}' => $lang_gallery_admin_menu['ban_lnk'],
+            '{DB_ECARD_TITLE}' => $lang_gallery_admin_menu['db_ecard_title'],
             '{DB_ECARD_LNK}' => $lang_gallery_admin_menu['db_ecard_lnk'],
+            '{PICTURES_TITLE}' => $lang_gallery_admin_menu['pictures_title'],
             '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
             );
      if (cpg_get_pending_approvals() != 0) {
@@ -1125,10 +1147,14 @@ function theme_admin_mode_menu()
         $html = template_eval($template_gallery_admin_menu, $param);
         $html.= cpg_alert_dev_version();
     } elseif (USER_ADMIN_MODE) {
-        $param = array('{ALBMGR_LNK}' => $lang_user_admin_menu['albmgr_lnk'],
+        $param = array('{ALBMGR_TITLE}' => $lang_user_admin_menu['albmgr_title'],
+            '{ALBMGR_LNK}' => $lang_user_admin_menu['albmgr_lnk'],
+            '{MODIFYALB_TITLE}' => $lang_user_admin_menu['modifyalb_title'],
             '{MODIFYALB_LNK}' => $lang_user_admin_menu['modifyalb_lnk'],
+            '{MY_PROF_TITLE}' => $lang_user_admin_menu['my_prof_title'],
             '{MY_PROF_LNK}' => $lang_user_admin_menu['my_prof_lnk'],
-                        '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
+            '{PICTURES_TITLE}' => $lang_gallery_admin_menu['pictures_title'],
+            '{PICTURES_LNK}' => $lang_gallery_admin_menu['pictures_lnk'],
             );
 
         $html = template_eval($template_user_admin_menu, $param);
