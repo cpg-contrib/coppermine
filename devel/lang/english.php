@@ -1537,10 +1537,7 @@ $lang_register_php = array(
 $lang_register_confirm_email = <<<EOT
 Thank you for registering at {SITE_NAME}
 
-Your username is : "{USER_NAME}"
-Your password is : "{PASSWORD}"
-
-In order to activate your account, you need to click on the link below or copy and paste it in your web browser.
+In order to activate your account with username "{USER_NAME}", you need to click on the link below or copy and paste it in your web browser.
 
 <a href="{ACT_LINK}">{ACT_LINK}</a>
 
