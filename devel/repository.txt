@@ -430,7 +430,7 @@
 1.4.0|register.php|1.4.0|1.15|mandatory|r
 1.4.0|repository.txt|||mandatory|r
 1.4.0|reviewcom.php|1.4.0|1.8|mandatory|r
-1.4.0|scripts.js|1.4.0||mandatory|r
+1.4.0|scripts.js|1.4.0|1.7|mandatory|r
 1.4.0|search.php|1.4.0|1.6|mandatory|r
 1.4.0|searchnew.php|1.4.0|1.19|mandatory|r
 1.4.0|showthumb.php|1.4.0|1.5|mandatory|r
@@ -571,7 +571,7 @@
 1.4.0|plugins/sef_urls|||mandatory|r
 1.4.0|plugins/sef_urls/codebase.php|1.4.0||mandatory|r
 1.4.0|plugins/sef_urls/credits.php|1.4.0||mandatory|r
-1.4.0|plugins/sef_urls/ht.txt|1.4.0||mandatory|r
+1.4.0|plugins/sef_urls/ht.txt|||mandatory|r
 1.4.0|sql|||mandatory|r
 1.4.0|sql/basic.sql||1.31|mandatory|r
 1.4.0|sql/schema.sql||1.12|mandatory|r

@@ -218,7 +218,7 @@ print '<tr><td class="tableb">';
 $help_ouput = '';
 if ($file_version_info['exists'] == 1) {
     $stylecolor = '';
-    $helptitle = 'file exists';
+    $helptitle = '';
 } else {
     if ($repository_needed[$file_complete_path] == 'optional') {
         $stylecolor = 'yellow';
@@ -250,7 +250,7 @@ print '</td><td class="tableb">';
         $helptitle = '';
     } elseif (!$file_version_info['cpg_version'] && $repository_version[$file_complete_path] == '?') {
         print 'n/a';
-    } elseif (!$file_version_info['cpg_version'] || $file_version_info['cpg_version'] == 'n/a') {
+    } elseif ((!$file_version_info['cpg_version'] || $file_version_info['cpg_version'] == 'n/a') && $repository_version[$file_complete_path] != '?') {
         $cvs_version_check = 'disable';
         print '<span class="red">';
         print '?';
@@ -259,6 +259,11 @@ print '</td><td class="tableb">';
         print $repository_version[$file_complete_path];
         $helptitle = $lang_versioncheck_php['help_no_local_version1'];
         $helpoutput = $lang_versioncheck_php['help_no_local_version2'];
+    } elseif ((!$file_version_info['cpg_version'] || $file_version_info['cpg_version'] == 'n/a') && $repository_version[$file_complete_path] == '?') {
+        $cvs_version_check = 'disable';
+        print '-';
+        $helptitle = '';
+        $helpoutput = '';
     } elseif ($file_version_info['cpg_version'] == $repository_version[$file_complete_path]) {
         print '<span class="green">';
         print $file_version_info['cpg_version'];
