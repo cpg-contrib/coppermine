@@ -526,7 +526,7 @@ $default_bridge_data['phpbb22'] = array(
   'relative_path_of_forum_from_webroot_default' => '/phpBB2/',
   'relative_path_of_forum_from_webroot_used' => 'mandatory,not_empty,trailing_slash',
   'cookie_prefix_default' => 'phpbb22',
-  'cookie_prefix_used' => 'cookie,not_empty',
+  'cookie_prefix_used' => 'cookie',
   'table_prefix_default' => 'phpbb_',
   'table_prefix_used' => 'mandatory,not_empty',
   'user_table_default' => 'users',
@@ -1135,6 +1135,7 @@ case "special_settings":
                     print '        <label for="'.$key.'_yes" class="clickable_option">'.$new_line;
                     print '            '.$lang_bridgemgr_php[$key.'_yes'].$new_line;
                     print '        </label>&nbsp;'.$new_line;
+                    print '        <br />'.$new_line;
                     print '        <input type="Radio" name="'.$key.'" id="'.$key.'_no" class="radio" value="'.$option_no.'" '.$disabled.' '.$checked_no.' /><label for="'.$key.'_no" class="clickable_option">'.$lang_bridgemgr_php[$key.'_no'].'</label>'.$new_line;
                     print '    </td>'.$new_line;
                     print '    <td class="tableb">'.$new_line;
