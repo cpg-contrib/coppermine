@@ -229,7 +229,11 @@ if (GALLERY_ADMIN_MODE) {
         $public_albums_list = array();
 }
 
-get_user_albums(USER_ID);
+if (GALLERY_ADMIN_MODE) {
+  get_user_albums($CURRENT_PIC['owner_id']);
+} else {
+  get_user_albums(USER_ID);
+}
 
 echo <<<EOT
 <script type="JavaScript">
