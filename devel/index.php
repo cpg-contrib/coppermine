@@ -341,6 +341,7 @@ function list_users()
                         $picture['pheight'] = $image_info[1];
                 }
                 $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
+		    $user_thumb = "<img src=\"" . get_pic_url($picture, 'thumb') . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"\">";
             }
         }
 
