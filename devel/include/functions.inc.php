@@ -1686,13 +1686,13 @@ function& get_pic_url(&$pic_row, $mode,$system_pic = false)
             $pic_row['url'] = $filepathname;
             $pic_row['mode'] = $mode;
             $pic_row = CPGPluginAPI::filter('thumb_data',$pic_row);
-        } elseif $mode != 'thumb' {
+        } elseif ($mode != 'thumb') {
             $pic_row['url'] = $filepathname;
             $pic_row['mode'] = $mode;
         } else {
             $pic_row['url'] = $filepathname;
         }
-        
+
         return $pic_row['url'];
 }
 
