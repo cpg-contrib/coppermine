@@ -46,19 +46,49 @@ if (isset($_POST['save'])) {
   $selectedExifTags = $str;
   $sql = "UPDATE ".$CONFIG['TABLE_CONFIG']." SET value = '".$selectedExifTags."' WHERE name = 'show_which_exif'";
   cpg_db_query($sql);
-  msg_box($lang_picinfo['ManageExifDisplay'], $lang_picinfo['success'], $lang_continue, "config.php");
+  msg_box($lang_picinfo['ManageExifDisplay'], $lang_picinfo['success'], $lang_continue, "admin.php");
 } else {
   echo <<< EOT
-    <form method="POST" action="">
+    <form method="POST" action="" name="editForm">
     <input type="hidden" name="save" value="save" />
+
+    <script type="text/javascript" language="javascript">
+    <!--
+    function selectAll(d,box) {
+      var f = document.editForm;
+      for (i = 0; i < f.length; i++) {
+        //alert (f[i].name.indexOf(box));
+        if (f[i].type == "checkbox" && f[i].name.indexOf(box) >= 0) {
+          if (d.checked) {
+            f[i].checked = true;
+          } else {
+            f[i].checked = false;
+          }
+        }
+      }
+      if (d.name == "checkAll") {
+          document.getElementsByName('checkAll2')[0].checked = document.getElementsByName('checkAll')[0].checked;
+      } else {
+          document.getElementsByName('checkAll')[0].checked = document.getElementsByName('checkAll2')[0].checked;
+      }
+    }
+
+    -->
+    </script>
 EOT;
   starttable('-1',$lang_picinfo['ManageExifDisplay'], 2);
+  echo '<tr><td class="tableh2">&nbsp;</td><td class="tableh2" align="center">';
+  echo '<input type="checkbox" name="checkAll" onClick="selectAll(this,\'exif_tags\');" class="checkbox" title="'.$lang_check_uncheck_all.'" />';
+  echo '</td></tr>';
   foreach ($exifRawData as $key => $val) {
     $checked = $exifCurrentData[$key] == 1 ? 'checked' : '';
-    echo "<tr><td class='tableb'>".$lang_picinfo[$val]."</td><td class='tableb'><input type='checkbox' name='exif_tags[]' value='$val' " . $checked . " /></td></tr>";
+    echo '<tr><td class="tableb">'.$lang_picinfo[$val].'</td><td class="tableb" align="center"><input type="checkbox" name="exif_tags[]" value="'.$val.'" ' . $checked . ' class="checkbox" /></td></tr>';
   }
-  echo "<tr>
-  <td class='tablef' colspan='2' align='center'><input type='submit' class='button' name='submit' value='".$lang_picinfo['submit']."' />";
+  echo '<tr>
+  <td class="tablef" align="center"><input type="submit" class="button" name="submit" value="'.$lang_picinfo['submit'].'" />';
+  echo '<td class="tablef" align="center">';
+  echo '<input type="checkbox" name="checkAll2" onClick="selectAll(this,\'exif_tags\');" class="checkbox" title="'.$lang_check_uncheck_all.'" />';
+  echo '  </td></tr>';
   endtable();
   echo <<< EOT
     </form>
