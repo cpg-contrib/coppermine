@@ -253,6 +253,13 @@ mysql_free_result($results);
 // Reference 'site_url' to 'ecards_more_pic_target'
 $CONFIG['site_url'] =& $CONFIG['ecards_more_pic_target'];
 
+// Include logger functions
+include_once('include/logger.inc.php');
+
+// Include media functions
+require 'include/media.functions.inc.php';
+
+// Include plugin API
 require('include/plugin_api.inc.php');
 if ($CONFIG['enable_plugins'] == 1) {
     CPGPluginAPI::load();
@@ -266,12 +273,6 @@ if (!CPGPluginAPI::action('UDB_INTEGRATION',false,CPG_EXEC_FIRST) && defined('UD
 
 // Start output buffering
 ob_start('cpg_filter_page_html');
-
-// Include logger functions
-include_once('include/logger.inc.php');
-
-
-require 'include/media.functions.inc.php';
 
 // Parse cookie stored user profile
 user_get_profile();
