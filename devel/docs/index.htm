@@ -418,7 +418,7 @@ open-source photo gallery!</p>
 <a name="11"></a>
 <h2>3.2 Upgrading from releases of version 1.1</h2>
         <ul>
-                <li>Backup your include/config.inc.php file and your "albums" directoy.</li>
+                <li>Backup your include/config.inc.php file, your anycontent.php file and your "albums" directoy.</li>
                 <li>Unpack the archive</li>
                 <li>If the file <b>install.php</b> exists in the root directory, delete it.</li>
                 <li>Upload all of the new files and directories</li>
@@ -431,10 +431,10 @@ open-source photo gallery!</p>
 <a name="12"></a>
 <h2>3.3 Upgrading from cpg1.2.0rc2 or cpg1.2.0final to version cpg1.2.1</h2>
         <ul>
-                <li>Backup your include/config.inc.php file and your "albums" directoy.</li>
+                <li>Backup your include/config.inc.php file, your anycontent.php file and your "albums" directoy.</li>
                 <li>Unpack the archive</li>
                 <li>If the file <b>install.php</b> exists in the root directory, delete it.</li>
-                <li><b>Except for the "albums" directory</b>, upload all of the new files and directories making sure not to overwrite the include/config.inc.php file or the albums directory.</li>
+                <li><b>Except for the "albums" directory</b>, upload all of the new files and directories making sure not to overwrite the include/config.inc.php file, your anycontent.php file or the albums directory.</li>
                 <li>create a folder called &quot;edit&quot; within your &quot;albums&quot; directory - this folder will be used by coppermine as a temporary folder, do not ftp-upload files there. Make sure the new &quot;edit&quot;-folder is CHMODed the same way your albums-directory is (755 or 777, depending on your server's config)</li>
                 <li>No database update necessary, you're ready to roll</li>
         </ul>
@@ -442,12 +442,12 @@ open-source photo gallery!</p>
 <p><a class="back" href="#top">Back to top</a></p>
 
 <a name="13"></a>
-<h2>3.4 Upgrading from cpg1.2.0, cpg1.2.1 or cpg1.3.0beta to version cpg1.3.0</h2>
+<h2>3.4 Upgrading from cpg1.2.0rc2 or cpg1.2.0, cpg1.2.1 or cpg1.3.0beta to version cpg1.3.0</h2>
         <ul>
-                <li>Backup your include/config.inc.php file and your &quot;albums&quot; directoy.</li>
+                <li>Backup your include/config.inc.php file, your anycontent.php file and your &quot;albums&quot; directoy.</li>
                 <li>Unpack the archive</li>
                 <li>If the file <b>install.php</b> exists in the root directory, delete it.</li>
-                <li><b>Except for the &quot;albums&quot; directory</b>, upload all of the new files and directories making sure not to overwrite the include/config.inc.php file or the albums directory.</li>
+                <li><b>Except for the &quot;albums&quot; directory</b>, upload all of the new files and directories making sure not to overwrite the include/config.inc.php file, your anycontent.php file or the albums directory.</li>
                 <li>If you have not already done so, create a folder called &quot;edit&quot; within your &quot;albums&quot; directory - this folder will be used by coppermine as a temporary folder, do not ftp-upload files there. Make sure the new &quot;edit&quot;-folder is CHMODed the same way your albums-directory is (755 or 777, depending on your server's config)</li>
                 <li>Run the file &quot;update.php&quot; in the coppermine directory once in your browser (e.g. http://yourdomain.tld/coppermine/update.php). This will update your coppermine install by making all necessary changes in the database.</li>
                 <li>If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme - refer to the <a href="theme.htm">theme-upgrade guide</a>.</li>
@@ -537,7 +537,7 @@ open-source photo gallery!</p>
 
 
       <h2>4.3 The group control panel<a id="group_cp" name="group_cp"></a></h2>
-      <p><img src="pics/group_cp.gif" border="1" /></p>
+      <p><img src="pics/group_cp.GIF" border="1" /></p>
       <p>This is where you define what members of a group can and can't do.</p>
       <p>The disk quota applies only for groups where &quot;<i>Can have a personal</i>&quot;
       gallery has been set to &quot;<b>YES</b>&quot;. Both files uploaded by a user in his
@@ -570,7 +570,7 @@ open-source photo gallery!</p>
       <hr>
 
       <h2>4.4 The categories control panel<a id="cat_cp" name="cat_cp"></a></h2>
-      <p><img src="pics/category_cp.gif" border="1" /></p>
+      <p><img src="pics/category_cp.GIF" border="1" /></p>
       <p>This is where you can edit your categories.</p>
       <ul>
         <li>The <img src="pics/edit.gif" border="0" width="16" height="16" alt="" /> button
@@ -642,7 +642,7 @@ open-source photo gallery!</p>
       <p>When you are in admin mode there is a menu displayed next to each
       album</p>
       <p></p>
-      <p><img src="pics/album_menu.gif" border="1" /></p>
+      <p><img src="pics/album_menu.GIF" border="1" /></p>
       <p><b>Delete</b> allows you to delete the album and all files it
       contains.</p>
       <p><b>Properties</b> allows you to modify the name, description and
@@ -679,7 +679,7 @@ If your browser times out, hit the reload button.
 <hr />
 
       <h2>4.8 Album properties<a id="album_prop" name="album_prop"></a></h2>
-      <p><img src="pics/edit_album.gif" border="1" /></p>
+      <p><img src="pics/edit_album.GIF" border="1" /></p>
       <p>The "Album category" drop down list allows you to move an album between
       categories. If you set this to "* No category *" then the album will be
       displayed on your main page.</p>
@@ -706,7 +706,7 @@ If your browser times out, hit the reload button.
       <hr>
 
       <h2>4.9 Editing files<a id="edit_pics" name="edit_pics"></a></h2>
-      <p><img src="pics/edit_picture.gif" border="1" /></p>
+      <p><img src="pics/edit_picture.GIF" border="1" /></p>
       <p>This is where you can modify the title description, keywords and custom
       fields (if they are used) of a file.</p>
       <p>Use the album drop down menu to move the file to another album.<br /></p>
