@@ -1,4 +1,4 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.2.1                                            //
 // ------------------------------------------------------------------------- //
@@ -34,7 +34,7 @@ function add_picture($aid, $filepath, $filename, $title = '', $caption = '', $ke
                 return false;
 
             $image_filesize = filesize($image);
-            $total_filesize = $image_filesize + (file_exists($normal) ? filesize($normal) : 0) + filesize($thumb); 
+            $total_filesize = $image_filesize + (file_exists($normal) ? filesize($normal) : 0) + filesize($thumb);
             // Test if disk quota exceeded
             if (!GALLERY_ADMIN_MODE && $USER_DATA['group_quota']) {
                 $result = db_query("SELECT sum(total_filesize) FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE  {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND category = '" . (FIRST_USER_CAT + USER_ID) . "'");
@@ -50,8 +50,8 @@ function add_picture($aid, $filepath, $filename, $title = '', $caption = '', $ke
                             '[space]' => ($total_space_used >> 10)));
 
                     cpg_die(ERROR, $msg, __FILE__, __LINE__);
-                } 
-            } 
+                }
+            }
             // Test if picture requires approval
             if (GALLERY_ADMIN_MODE) {
                 $approved = 'YES';
@@ -61,16 +61,16 @@ function add_picture($aid, $filepath, $filename, $title = '', $caption = '', $ke
                 $approved = 'YES';
             } else {
                 $approved = 'NO';
-            } 
-            $PIC_NEED_APPROVAL = ($approved == 'NO'); 
+            }
+            $PIC_NEED_APPROVAL = ($approved == 'NO');
             // User ID is not recorded when in admin mode (ie. for batch uploads)
             $user_id = GALLERY_ADMIN_MODE ? 0 : USER_ID;
-			$username=$USER_DATA['user_name'] ;
+                        $username=addslashes($USER_DATA['user_name']) ;
             $query = "INSERT INTO {$CONFIG['TABLE_PICTURES']} (pid, aid, filepath, filename, filesize, total_filesize, pwidth, pheight, ctime, owner_id, owner_name, title, caption, keywords, approved, user1, user2, user3, user4, pic_raw_ip, pic_hdr_ip) VALUES ('', '$aid', '" . addslashes($filepath) . "', '" . addslashes($filename) . "', '$image_filesize', '$total_filesize', '{$imagesize[0]}', '{$imagesize[1]}', '" . time() . "', '$user_id', '$username','$title', '$caption', '$keywords', '$approved', '$user1', '$user2', '$user3', '$user4', '$raw_ip', '$hdr_ip')";
             $result = db_query($query);
 
             return $result;
-        } 
+        }
 
         define("GIS_GIF", 1);
         define("GIS_JPG", 2);
@@ -78,9 +78,9 @@ function add_picture($aid, $filepath, $filename, $title = '', $caption = '', $ke
 
         /**
          * resize_image()
-         * 
+         *
          * Create a file containing a resized image
-         * 
+         *
          * @param  $src_file the source file
          * @param  $dest_file the destination file
          * @param  $new_size the size of the square within which the new image must fit
@@ -94,12 +94,12 @@ function add_picture($aid, $filepath, $filename, $title = '', $caption = '', $ke
 
             $imginfo = getimagesize($src_file);
             if ($imginfo == null)
-                return false; 
+                return false;
             // GD can only handle JPG & PNG images
             if ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && ($method == 'gd1' || $method == 'gd2')) {
                 $ERROR = $lang_errors['gd_file_type_err'];
                 return false;
-            } 
+            }
             // height/width
             $srcWidth = $imginfo[0];
             $srcHeight = $imginfo[1];
@@ -109,10 +109,10 @@ function add_picture($aid, $filepath, $filename, $title = '', $caption = '', $ke
                 $ratio = $srcWidth / $new_size;
             } else {
                 $ratio = max($srcWidth, $srcHeight) / $new_size;
-            } 
+            }
             $ratio = max($ratio, 1.0);
             $destWidth = (int)($srcWidth / $ratio);
-            $destHeight = (int)($srcHeight / $ratio); 
+            $destHeight = (int)($srcHeight / $ratio);
             // Method for thumbnails creation
             switch ($method) {
                 case "im" :
@@ -124,7 +124,7 @@ function add_picture($aid, $filepath, $filename, $title = '', $caption = '', $ke
                     } else {
                         $src_file = escapeshellarg($src_file);
                         $im_dest_file = str_replace('%', '%%', escapeshellarg($dest_file));
-                    } 
+                    }
 
                     $output = array();
                     $cmd = "{$CONFIG['impath']}convert -quality {$CONFIG['jpeg_qual']} {$CONFIG['im_options']} -geometry {$destWidth}x{$destHeight} $src_file $im_dest_file";
@@ -140,16 +140,16 @@ function add_picture($aid, $filepath, $filename, $title = '', $caption = '', $ke
                             $ERROR .= "<br /><br /><div align=\"left\">The convert program said:<br /><font size=\"2\">";
                             $ERROR .= nl2br(htmlspecialchars($output));
                             $ERROR .= "</font></div>";
-                        } 
+                        }
                         @unlink($dest_file);
                         return false;
-                    } 
+                    }
                     break;
 
                 case "gd1" :
                     if (!function_exists('imagecreatefromjpeg')) {
                         cpg_die(CRITICAL_ERROR, 'PHP running on your server does not support the GD image library, check with your webhost if ImageMagick is installed', __FILE__, __LINE__);
-                    } 
+                    }
                     if ($imginfo[2] == GIS_JPG)
                         $src_img = imagecreatefromjpeg($src_file);
                     else
@@ -157,7 +157,7 @@ function add_picture($aid, $filepath, $filename, $title = '', $caption = '', $ke
                     if (!$src_img) {
                         $ERROR = $lang_errors['invalid_image'];
                         return false;
-                    } 
+                    }
                     $dst_img = imagecreate($destWidth, $destHeight);
                     imagecopyresized($dst_img, $src_img, 0, 0, 0, 0, $destWidth, (int)$destHeight, $srcWidth, $srcHeight);
                     imagejpeg($dst_img, $dest_file, $CONFIG['jpeg_qual']);
@@ -168,10 +168,10 @@ function add_picture($aid, $filepath, $filename, $title = '', $caption = '', $ke
                 case "gd2" :
                     if (!function_exists('imagecreatefromjpeg')) {
                         cpg_die(CRITICAL_ERROR, 'PHP running on your server does not support the GD image library, check with your webhost if ImageMagick is installed', __FILE__, __LINE__);
-                    } 
+                    }
                     if (!function_exists('imagecreatetruecolor')) {
                         cpg_die(CRITICAL_ERROR, 'PHP running on your server does not support GD version 2.x, please switch to GD version 1.x on the config page', __FILE__, __LINE__);
-                    } 
+                    }
                     if ($imginfo[2] == GIS_JPG)
                         $src_img = imagecreatefromjpeg($src_file);
                     else
@@ -179,16 +179,16 @@ function add_picture($aid, $filepath, $filename, $title = '', $caption = '', $ke
                     if (!$src_img) {
                         $ERROR = $lang_errors['invalid_image'];
                         return false;
-                    } 
+                    }
                     $dst_img = imagecreatetruecolor($destWidth, $destHeight);
                     imagecopyresampled($dst_img, $src_img, 0, 0, 0, 0, $destWidth, (int)$destHeight, $srcWidth, $srcHeight);
                     imagejpeg($dst_img, $dest_file, $CONFIG['jpeg_qual']);
                     imagedestroy($src_img);
                     imagedestroy($dst_img);
                     break;
-            } 
+            }
             // Set mode of uploaded picture
-            chmod($dest_file, octdec($CONFIG['default_file_mode'])); 
+            chmod($dest_file, octdec($CONFIG['default_file_mode']));
             // We check that the image is valid
             $imginfo = getimagesize($dest_file);
             if ($imginfo == null) {
@@ -197,7 +197,7 @@ function add_picture($aid, $filepath, $filename, $title = '', $caption = '', $ke
                 return false;
             } else {
                 return true;
-            } 
-        } 
+            }
+        }
 
         ?>
