@@ -316,7 +316,25 @@ function udb_get_user_name($uid)
         return '';
     }
 }
+// Retrieve the name of a user (Added to fix banning w/ bb integration - Nibbler)
+function udb_get_user_id($username)
+{
+    global $UDB_DB_LINK_ID, $UDB_DB_NAME_PREFIX, $CONFIG;
 
+    $username = addslashes($username);
+
+    $sql = "SELECT ID_MEMBER as user_id " . "FROM " . $UDB_DB_NAME_PREFIX . SMF_TABLE_PREFIX . SMF_USER_TABLE . " " . "WHERE realName = '$username'";
+
+    $result = db_query($sql, $UDB_DB_LINK_ID);
+
+    if (mysql_num_rows($result)) {
+        $row = mysql_fetch_array($result);
+        mysql_free_result($result);
+        return $row['user_id'];
+    } else {
+        return '';
+    }
+}
 // Redirect
 function udb_redirect($target)
 {
