@@ -315,9 +315,25 @@ EOT;
             if (mysql_num_rows($result)) {
                 $row = mysql_fetch_array($result);
                 mysql_free_result($result);
-
+                if (!is_image($row['filename'])) {
+                    $row['pwidth'] = 100;
+                    $row['pheight'] = 100;
+                }
                 $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
-                $lastcom = "<td width=\"50%\" valign=\"top\" align=\"center\"><a href=\"thumbnails.php?album=lastcomby&uid=" . $uid . "\"><img src=\"" . get_pic_url($row, 'thumb') . "\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" /></a><br />";
+                $mime_content = get_type($row['filename']);
+                $extension = file_exists('images/thumb_'.$mime_content['extension'].'.jpg') ? $mime_content['extension']:$mime_content['content'];
+
+                if ($mime_content['content']=='image') {
+                    $lastcom = '<img src="' . get_pic_url($row, 'thumb') . '" class="image"'
+                                . $image_size['geom'] . ' border="0" alt="">';
+                } else {
+                    $lastcom = '<img src="images/thumb_' . $extension . '.jpg" class="image"'
+                                . $image_size['geom'] . ' border="0" alt="">';
+                }
+                $lastcom = '<td width="50%" valign="top" align="center">'
+                            . '<a href="thumbnails.php?album=lastcomby&uid=' . $uid . '">'
+                            . $lastcom
+                            . '</a><br />';
                 $lastcom .= "<span class=\"thumb_caption\"><b>" . $row['msg_author'] . '</b></span>' . "<span class=\"thumb_caption\">" . localised_date($row['msg_date'], $lastcom_date_fmt) . '</span>' . "<span class=\"thumb_caption\">" . $row['msg_body'] . '</span></td>';
             }
         }
@@ -329,9 +345,25 @@ EOT;
             if (mysql_num_rows($result)) {
                 $picture = mysql_fetch_array($result);
                 mysql_free_result($result);
-
+                if (!is_image($picture['filename'])) {
+                    $picture['pwidth'] = 100;
+                    $picture['pheight'] = 100;
+                }
                 $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['thumb_width']);
-                $user_thumb = "<td width=\"50%\" valign=\"top\" align=\"center\"><a href=\"thumbnails.php?album=lastupby&uid=" . $uid . "\"><img src=\"" . get_pic_url($picture, 'thumb') . "\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" /></a></td>";
+                $mime_content = get_type($picture['filename']);
+                $extension = file_exists('images/thumb_'.$mime_content['extension'].'.jpg') ? $mime_content['extension']:$mime_content['content'];
+
+                if ($mime_content['content']=='image') {
+                    $user_thumb = '<img src="' . get_pic_url($picture, 'thumb') . '" class="image"'
+                                . $image_size['geom'] . ' border="0" alt="">';
+                } else {
+                    $user_thumb = '<img src="images/thumb_' . $extension . '.jpg" class="image"'
+                                . $image_size['geom'] . ' border="0" alt="">';
+                }
+                $user_thumb = '<td width="50%" valign="top" align="center">'
+                            . '<a href="thumbnails.php?album=lastupby&uid=' . $uid . '">'
+                            . $user_thumb
+                            . '</a></td>';
             }
         }
 
