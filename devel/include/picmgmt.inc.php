@@ -1,8 +1,8 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.4.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -14,10 +14,8 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-
-/*
-$Id$
-*/
+// $Id$
+// ------------------------------------------------------------------------- //
 
 // Add a picture to an album
 function add_picture($aid, $filepath, $filename, $title = '', $caption = '', $keywords = '', $user1 = '', $user2 = '', $user3 = '', $user4 = '', $category = 0, $raw_ip = '', $hdr_ip = '',$iwidth=0,$iheight=0)
@@ -153,17 +151,17 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use)
 
             $output = array();
             /*
-	     * Hack for working with ImageMagick on WIndows even if IM is installed in C:\Program Files.
-	     * By Aditya Mooley <aditya@sanisoft.com>
-	     */ 
-	    if (eregi("win",$_ENV['OS'])) {
-	        $cmd = "\"".str_replace("\\","/", $CONFIG['impath'])."convert\" -quality {$CONFIG['jpeg_qual']} {$CONFIG['im_options']} -geometry {$destWidth}x{$destHeight} ".str_replace("\\","/" ,$src_file )." ".str_replace("\\","/" ,$im_dest_file );
-		exec ("\"$cmd\"", $output, $retval);
-	    } else {
-	        $cmd = "{$CONFIG['impath']}convert -quality {$CONFIG['jpeg_qual']} {$CONFIG['im_options']} -geometry {$destWidth}x{$destHeight} $src_file $im_dest_file";
-		exec ($cmd, $output, $retval);
-	    }
-            
+             * Hack for working with ImageMagick on WIndows even if IM is installed in C:\Program Files.
+             * By Aditya Mooley <aditya@sanisoft.com>
+             */
+            if (eregi("win",$_ENV['OS'])) {
+                $cmd = "\"".str_replace("\\","/", $CONFIG['impath'])."convert\" -quality {$CONFIG['jpeg_qual']} {$CONFIG['im_options']} -geometry {$destWidth}x{$destHeight} ".str_replace("\\","/" ,$src_file )." ".str_replace("\\","/" ,$im_dest_file );
+                exec ("\"$cmd\"", $output, $retval);
+            } else {
+                $cmd = "{$CONFIG['impath']}convert -quality {$CONFIG['jpeg_qual']} {$CONFIG['im_options']} -geometry {$destWidth}x{$destHeight} $src_file $im_dest_file";
+                exec ($cmd, $output, $retval);
+            }
+
 
             if ($retval) {
                 $ERROR = "Error executing ImageMagick - Return value: $retval";

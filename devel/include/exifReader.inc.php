@@ -1,4 +1,22 @@
 <?php
+// ------------------------------------------------------------------------- //
+// Coppermine Photo Gallery 1.4.0                                            //
+// ------------------------------------------------------------------------- //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
+// http://www.chezgreg.net/coppermine/                                       //
+// ------------------------------------------------------------------------- //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
+// ------------------------------------------------------------------------- //
+// This program is free software; you can redistribute it and/or modify      //
+// it under the terms of the GNU General Public License as published by      //
+// the Free Software Foundation; either version 2 of the License, or         //
+// (at your option) any later version.                                       //
+// ------------------------------------------------------------------------- //
+// $Id$
+// ------------------------------------------------------------------------- //
+
 /**
  * PHP Class to read EXIF information
  * that most of the digital camera produce
@@ -787,7 +805,7 @@ class phpExifReader {
 
                 case TAG_EXPOSURETIME:
                     // Simplest way of expressing exposure time, so I trust it most.
-                    // (overwrite previously computd value if there is one)  
+                    // (overwrite previously computd value if there is one)
                     $tmp = $this->ConvertAnyFormat($ValuePtr, $Format);
                     $this->ImageInfo['h']["exposureTime"] = sprintf("%6.3f s (%d/%d)",(double)$tmp[0],$tmp[1][0],$tmp[1][1]);
                     if ($tmp[0] <= 0.5 && $tmp[1][0] != 1){
