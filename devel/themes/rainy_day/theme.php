@@ -8,6 +8,10 @@
 //  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
 //  http://www.stoverud.com/PHPhotoalbum/                                    //
 // ------------------------------------------------------------------------- //
+//  Hacked by Tarique Sani <tarique@sanisoft.com> and Girsh Nair             //
+//  <girish@sanisoft.com> see http://www.sanisoft.com/cpg/README.txt for     //
+//  details                                                                  //
+// ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
 //  the Free Software Foundation; either version 2 of the License, or        //
@@ -173,23 +177,7 @@ EOT;
 
 // HTML template for the category list
 $template_cat_list = <<<EOT
-<!-- BEGIN breadcrumb -->
-	<tr>
-		<td colspan="3" class="tableh1"><span class="statlink"><b>{BREADCRUMB}</b></span></td>
-	</tr>
-<!-- END breadcrumb -->
-<!-- BEGIN breadcrumb_user_gal -->
-	<tr>
-		<td colspan="3" class="tableh1">
-		<table width="100%" cellpadding="0" cellspacing="0" border="0">
-		<tr>
-			<td><span class="statlink"><b>{BREADCRUMB}</b></span></td>
-			<td align="right"><span class="statlink"><b>{STATISTICS}</b></span></td>
-		</tr>
-		</table>
-		</td>
-	</tr>
-<!-- END breadcrumb_user_gal -->
+
 <!-- BEGIN header -->
 	<tr>
 		<td class="tableh1" width="80%"><b>{CATEGORY}</b></td>
@@ -208,6 +196,9 @@ $template_cat_list = <<<EOT
 		<td class="tableb" align="center">{ALB_COUNT}</td>
 		<td class="tableb" align="center">{PIC_COUNT}</td>
 	</tr>
+      <tr>
+            <td class="tableb" colspan=3>{CAT_ALBUMS}</td>
+      </tr>
 <!-- END catrow -->
 <!-- BEGIN footer -->
 	<tr>
@@ -217,6 +208,28 @@ $template_cat_list = <<<EOT
 <!-- BEGIN spacer -->
 	<img src="images/spacer.gif" width="1" height="17" /><br />
 <!-- END spacer -->
+
+EOT;
+
+//HTML template for the breadcrumb
+$template_breadcrumb = <<<EOT
+<!-- BEGIN breadcrumb -->
+	<tr>
+		<td colspan="3" class="tableh1"><span class="statlink"><b>{BREADCRUMB}</b></span></td>
+	</tr>
+<!-- END breadcrumb -->
+<!-- BEGIN breadcrumb_user_gal -->
+	<tr>
+		<td colspan="3" class="tableh1">
+		<table width="100%" cellpadding="0" cellspacing="0" border="0">
+		<tr>
+			<td><span class="statlink"><b>{BREADCRUMB}</b></span></td>
+			<td align="right"><span class="statlink"><b>{STATISTICS}</b></span></td>
+		</tr>
+		</table>
+		</td>
+	</tr>
+<!-- END breadcrumb_user_gal -->
 
 EOT;
 
@@ -307,6 +320,119 @@ $template_album_list = <<<EOT
 
 EOT;
 
+// HTML template for thumbnails display
+$template_film_strip = <<<EOT
+
+        <tr>
+         <td valign="top" background='themes/igames/images/tile.gif' align="center" height='30'>&nbsp;</td>
+        </tr>
+        <tr>
+        <td valign="bottom" class="thumbnails" align="center">
+          {THUMB_STRIP}
+        </td>
+        </tr>
+        <tr>
+         <td valign="top" background='themes/igames/images/tile.gif' align="center" height='30'>&nbsp;</td>
+        </tr>
+<!-- BEGIN thumb_cell -->
+                                        <a href="{LINK_TGT}">{THUMB}</a>&nbsp;
+                                        {CAPTION}
+                                        {ADMIN_MENU}
+<!-- END thumb_cell -->
+<!-- BEGIN empty_cell -->
+                <td valign="top" align="center" >1&nbsp;</td>
+<!-- END empty_cell -->
+
+EOT;
+
+
+// HTML template for the album list
+$template_album_list_cat = <<<EOT
+
+<!-- BEGIN c_stat_row -->
+        <tr>
+                <td colspan="{COLUMNS}" class="tableh1" align="center"><span class="statlink"><b>{STATISTICS}</b></span></td>
+        </tr>
+<!-- END c_stat_row -->
+<!-- BEGIN c_header -->
+        <tr>
+<!-- END c_header -->
+<!-- BEGIN c_album_cell -->
+        <td width="{COL_WIDTH}%" height="100%" valign="top">
+        <table width="100%" height="100%" cellspacing="0" cellpadding="0">
+        <tr>
+                <td colspan="3" height="1" valign="top" class="tableh2">
+                        <b>{ALBUM_TITLE}</b>
+                </td>
+        </tr>
+        <tr>
+                <td colspan="3">
+                        <img src="images/spacer.gif" width="1" height="1"><br />
+                </td>
+        </tr>
+        <tr height="100%">
+                <td align="center" height="100%" valign="middle" class="thumbnails">
+                        <img src="images/spacer.gif" width="{THUMB_CELL_WIDTH}" height="1" class="image" style="margin-top: 0px;
+ margin-bottom: 0px; border: none;"><br />
+                        <a href="{ALB_LINK_TGT}" class="albums">{ALB_LINK_PIC}<br /></a>
+                </td>
+                <td height="100%">
+                        <img src="images/spacer.gif" width="1" height="1">
+                </td>
+                <td width="100%" height="100%" valign="top" class="tableb_compact">
+                        {ADMIN_MENU}
+                        <p>{ALB_DESC}</p>
+                        <p class="album_stat">{ALB_INFOS}</p>
+                </td>
+        </tr>
+        </table>
+        </td>
+<!-- END c_album_cell -->
+<!-- BEGIN c_empty_cell -->
+        <td width="{COL_WIDTH}%" height="100%" valign="top">
+        <table width="100%" height="100%" cellspacing="0" cellpadding="0">
+        <tr>
+                <td height="1" valign="top" class="tableh2">
+                        <b>&nbsp;</b>
+                </td>
+        </tr>
+        <tr>
+                <td>
+                        <img src="images/spacer.gif" width="1" height="1"><br />
+                </td>
+        </tr>
+        <tr height="100%">
+                <td width="100%" height="100%" valign="top" class="tableb_compact">
+                        &nbsp;
+                </td>
+        </tr>
+        </table>
+        </td>
+<!-- END c_empty_cell -->
+<!-- BEGIN c_row_separator -->
+        </tr>
+        <tr>
+<!-- END c_row_separator -->
+<!-- BEGIN c_footer -->
+        </tr>
+<!-- END c_footer -->
+<!-- BEGIN c_tabs -->
+        <tr>
+                <td colspan="{COLUMNS}" style="padding: 0px;">
+                        <table width="100%" cellspacing="0" cellpadding="0">
+                                <tr>
+                                        {TABS}
+                                </tr>
+                        </table>
+                </td>
+        </tr>
+<!-- END c_tabs -->
+<!-- BEGIN c_spacer -->
+        <img src="images/spacer.gif" width="1" height="17" /><br />
+<!-- END c_spacer -->
+
+EOT;
+
 // HTML template for the ALBUM admin menu displayed in the album list
 $template_album_admin_menu = <<<EOT
 	<table border="0" cellpadding="0" cellspacing="1">
@@ -339,6 +465,11 @@ $template_thumb_view_title_row = <<<EOT
 				<td><img src="images/spacer.gif" width="1"></td>
 				<td class="sortorder_cell">
 					<table height="100%" cellpadding="0" cellspacing="0">
+					<tr>
+                        <td class="sortorder_options">{TITLE}</td>
+                        <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=ta" title="{SORT_TA}">&nbsp;+&nbsp;</a></span></td>
+                        <td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=td" title="{SORT_TD}">&nbsp;-&nbsp;</a></span></td>
+					</tr>
 					<tr>
 						<td class="sortorder_options">{NAME}</td>
 						<td class="sortorder_options"><span class="statlink"><a href="thumbnails.php?album={AID}&page={PAGE}&sort=na" title="{SORT_NA}">&nbsp;+&nbsp;</a></span></td>
@@ -541,26 +672,32 @@ $template_image_comments = <<<EOT
 			</div>
 			<div id="cedit{MSG_ID}" style="display:none">
 <!-- BEGIN edit_box_smilies -->
-				<table width="100%" cellpadding="0" cellspacing="0">
-					<tr>
-						<form name="f{MSG_ID}" method="POST" action="db_input.php">
-						<input type="hidden" name="event" value="comment_update">
-						<input type="hidden" name="msg_id" value="{MSG_ID}">
-						<td width="100%">
-							<textarea cols="40" rows="2" class="textinput" name="msg_body" onselect="storeCaret_f{MSG_ID}(this);" onclick="storeCaret_f{MSG_ID}(this);" onkeyup="storeCaret_f{MSG_ID}(this);" style="width: 100%;">{MSG_BODY_RAW}</textarea>
-						</td>
-						<td class="tableb_compact">
-						</td>
+                                <table width="100%" cellpadding="0" cellspacing="0">
+                                        
+                                                <form name="f{MSG_ID}" method="POST" action="db_input.php">
+                                                <input type="hidden" name="event" value="comment_update">
+                                                <input type="hidden" name="msg_id" value="{MSG_ID}">
+						<tr>
 						<td>
-							<input type="submit" class="comment_button" name="submit" value="{OK}">
+						   <input type=text name=msg_author value={MSG_AUTHOR} class="textinput" size=10> 
 						</td>
-						</form>
-					</tr>
-					<tr>
-						<td colspan="3"><img src="images/spacer.gif" width="1" height="2" /><br /></td>
-					</tr>
-				</table>
-				{SMILIES}
+						</tr>
+						<tr>
+                                                <td width="80%">
+                                                        <textarea cols="40" rows="2" class="textinput" name="msg_body" onselect="storeCaret_f{MSG_ID}(this);" onclick="storeCaret_f{MSG_ID}(this);" onkeyup="storeCaret_f{MSG_ID}(this);" style="width: 100%;">{MSG_BODY_RAW}</textarea>
+                                                </td>
+                                                <td class="tableb_compact">
+                                                </td>
+                                                <td>
+                                                        <input type="submit" class="comment_button" name="submit" value="{OK}">
+                                                </td>
+                                                </form>
+                                        </tr>
+                                        <tr>
+                                                <td colspan="3"><img src="images/spacer.gif" width="1" height="2" /><br /></td>
+                                        </tr>
+                                </table>
+                                {SMILIES}
 <!-- END edit_box_smilies -->
 <!-- BEGIN edit_box_no_smilies -->
 				<table width="100%" cellpadding="0" cellspacing="0">
@@ -602,10 +739,15 @@ $template_add_your_comment = <<<EOT
 				<input type="hidden" name="pid" value="{PIC_ID}">
 <!-- BEGIN user_name_input -->
 				<td class="tableb_compact">
+                          {NAME}
+                 </td>
+                 <td class="tableb_compact">
 					<input type="text" class="textinput" name="msg_author" size="10" maxlength="20" value={USER_NAME}>
 				</td>
 <!-- END user_name_input -->
 <!-- BEGIN input_box_smilies -->
+                <td class="tableb_compact">
+                {COMMENT} </td>
 				<td width="100%" class="tableb_compact">
 				<input type="text" class="textinput" id="message" name="msg_body" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" maxlength="{MAX_COM_LENGTH}" style="width: 100%;">					<!-- END input_box_smilies -->
 <!-- BEGIN input_box_no_smilies -->
@@ -987,24 +1129,6 @@ function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
 	global $template_cat_list, $lang_cat_list;
 
 	starttable('100%');
-	if ($breadcrumb && count($cat_data)>0 || !$statistics) {
-
-		$template = template_extract_block($template_cat_list, 'breadcrumb');
-		$params = array(
-			'{BREADCRUMB}' => $breadcrumb
-		);
-		echo template_eval($template, $params);
-
-	} elseif (count($cat_data) == 0 && $statistics) {
-
-		$template = template_extract_block($template_cat_list, 'breadcrumb_user_gal');
-		$params = array(
-			'{BREADCRUMB}' => $breadcrumb,
-			'{STATISTICS}' => $statistics,
-		);
-		echo template_eval($template, $params);
-
-	}
 
 	if (count($cat_data)>0) {
 		$template = template_extract_block($template_cat_list, 'header');
@@ -1029,6 +1153,7 @@ function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
 			$params = array(
 				'{CAT_TITLE}' => $category[0],
 				'{CAT_DESC}' => $category[1],
+                '{CAT_ALBUMS}'=>$category['cat_albums'],
 				'{ALB_COUNT}' => $category[2],
 				'{PIC_COUNT}' => $category[3],
 			);
@@ -1045,6 +1170,22 @@ function theme_display_cat_list($breadcrumb, &$cat_data, $statistics)
 
 	if (count($cat_data)>0)
 		echo template_extract_block($template_cat_list, 'spacer');
+}
+
+function theme_display_breadcrumb($breadcrumb,&$cat_data)
+{
+/*** added breadcrumb as a seperate element */
+        global $template_breadcrumb, $lang_breadcrumb;
+
+        starttable('100%');
+        if ($breadcrumb) {
+                $template = template_extract_block($template_breadcrumb, 'breadcrumb');
+                $params = array(
+                        '{BREADCRUMB}' => $breadcrumb
+                );
+                echo template_eval($template, $params);
+
+        }
 }
 
 
@@ -1129,6 +1270,92 @@ function theme_display_album_list(&$alb_list,$nbAlb, $cat, $page, $total_pages)
 
 }
 
+//Function to display first level Albums of a category
+function theme_display_album_list_cat(&$alb_list,$nbAlb, $cat, $page, $total_pages)
+{
+        global $CONFIG, $STATS_IN_ALB_LIST, $statistics, $template_tab_display, $template_album_list_cat, $lang_album_list;
+	if (!$CONFIG['first_level']){
+		return;
+	}
+
+        //$theme_alb_list_tab_tmpl = $template_tab_display;
+
+        //$theme_alb_list_tab_tmpl['left_text'] = strtr($theme_alb_list_tab_tmpl['left_text'],array('{LEFT_TEXT}' => $lang_album_list['album_on_page']));
+        //$theme_alb_list_tab_tmpl['inactive_tab'] = strtr($theme_alb_list_tab_tmpl['inactive_tab'],array('{LINK}' => 'index.php?cat='.$cat.'&page=%d'));
+
+        //$tabs = create_tabs($nbAlb, $page, $total_pages, $theme_alb_list_tab_tmpl);
+        //echo $template_album_list_cat;
+        $template_album_list_cat1=$template_album_list_cat;
+        $album_cell = template_extract_block($template_album_list_cat1, 'c_album_cell');
+        $empty_cell = template_extract_block($template_album_list_cat1, 'c_empty_cell');
+        $tabs_row = template_extract_block($template_album_list_cat1, 'c_tabs');
+        $stat_row = template_extract_block($template_album_list_cat1, 'c_stat_row');
+        $spacer = template_extract_block($template_album_list_cat1, 'c_spacer');
+        $header = template_extract_block($template_album_list_cat1, 'c_header');
+        $footer = template_extract_block($template_album_list_cat1, 'c_footer');
+        $rows_separator = template_extract_block($template_album_list_cat1, 'c_row_separator');
+
+        $count = 0;
+
+        $columns = $CONFIG['album_list_cols'];
+        $column_width = ceil(100/$columns);
+        $thumb_cell_width = $CONFIG['alb_list_thumb_size']+2;
+
+        starttable('100%');
+
+        if ($STATS_IN_ALB_LIST) {
+                $params = array(
+                        '{STATISTICS}' => $statistics,
+                        '{COLUMNS}' => $columns,
+                );
+                echo template_eval($stat_row, $params);
+        }
+
+        echo $header;
+
+        foreach($alb_list as $album){
+                $count ++;
+
+                $params = array(
+                        '{COL_WIDTH}' => $column_width,
+                        '{ALBUM_TITLE}' => $album['album_title'],
+                        '{THUMB_CELL_WIDTH}' => $thumb_cell_width,
+                        '{ALB_LINK_TGT}' => "thumbnails.php?album={$album['aid']}",
+                        '{ALB_LINK_PIC}' => $album['thumb_pic'],
+                        '{ADMIN_MENU}' => $album['album_adm_menu'],
+                        '{ALB_DESC}' => $album['album_desc'],
+                        '{ALB_INFOS}' => $album['album_info'],
+                );
+
+                echo template_eval($album_cell, $params);
+
+                if ($count % $columns == 0 && $count < count($alb_list)) {
+                        echo $rows_separator;
+                }
+        }
+
+        $params = array('{COL_WIDTH}' => $column_width);
+        $empty_cell = template_eval($empty_cell, $params);
+
+        while ($count++ % $columns != 0) {
+                echo $empty_cell;
+        }
+
+        echo $footer;
+
+        // Tab display
+        $params = array(
+                '{COLUMNS}' => $columns,
+                '{TABS}' => $tabs,
+        );
+        echo template_eval($tabs_row, $params);
+
+        endtable();
+
+        echo $spacer;
+
+}
+
 function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $page, $total_pages, $sort_options, $display_tabs, $mode='thumb')
 {
 	global $CONFIG;
@@ -1177,7 +1404,10 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
 			'{AID}' => $aid,
 			'{PAGE}' => $page,
 			'{NAME}' => $lang_thumb_view['name'],
+            '{TITLE}' => $lang_thumb_view['title'],
 			'{DATE}' => $lang_thumb_view['date'],
+            '{SORT_TA}' => $lang_thumb_view['sort_ta'],
+            '{SORT_TD}' => $lang_thumb_view['sort_td'],
 			'{SORT_NA}' => $lang_thumb_view['sort_na'],
 			'{SORT_ND}' => $lang_thumb_view['sort_nd'],
 			'{SORT_DA}' => $lang_thumb_view['sort_da'],
@@ -1201,6 +1431,16 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
 	foreach($thumb_list as $thumb){
 		$i++;
 		if ($mode == 'thumb') {
+			if ($aid =='lastalb'){
+				$params =array(
+					'{CELL_WIDTH}' => $cell_width,
+					'{LINK_TGT}' => "thumbnails.php?album={$thumb['aid']}",
+					'{THUMB}' => $thumb['image'],
+					'{CAPTION}' => $thumb['caption'],
+					'{ADMIN_MENU}' => $thumb['admin_menu']
+				);			
+			
+			} else { 
 			$params =array(
 				'{CELL_WIDTH}' => $cell_width,
 				'{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&pos={$thumb['pos']}",
@@ -1208,6 +1448,7 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
 				'{CAPTION}' => $thumb['caption'],
 				'{ADMIN_MENU}' => $thumb['admin_menu']
 			);
+	    }
 		} else {
 			$params =array(
 				'{CELL_WIDTH}' => $cell_width,
@@ -1240,6 +1481,87 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
 	echo $spacer;
 }
 
+//Added to display flim_strip
+function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $pos, $sort_options, $mode='thumb')
+{
+        global $CONFIG;
+        global $template_film_strip, $lang_film_strip;
+
+        static $template='';
+        static $thumb_cell='';
+        static $empty_cell='';
+        static $spacer='';
+
+        if ((!$template)) {
+                $template = $template_film_strip;
+                $thumb_cell = template_extract_block($template, 'thumb_cell');
+                $empty_cell = template_extract_block($template, 'empty_cell');
+//                $spacer = template_extract_block($template, 'spacer');
+        }
+
+        if ($header == '') {
+        }
+
+        $cat_link= is_numeric($aid) ? '' : '&cat='.$cat;
+
+        $theme_thumb_tab_tmpl = $template_tab_display;
+
+        if ($mode == 'thumb') {
+                $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'],array('{LEFT_TEXT}' => $lang_thumb_view['pic_on_page']));
+                $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'],array('{LINK}' => 'thumbnails.php?album='.$aid.$cat_link.'&page=%d'));
+        } else {
+                $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'],array('{LEFT_TEXT}' => $lang_thumb_view['user_on_page']));
+                $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'],array('{LINK}' => 'index.php?cat='.$cat.'&page=%d'));
+        }
+
+        $thumbcols = $CONFIG['thumbcols'];
+        $cell_width = ceil(100/$CONFIG['max_film_strip_items']).'%';
+
+        $i = 0;
+        $thumb_strip='';
+        foreach($thumb_list as $thumb){
+                $i++;
+                if ($mode == 'thumb') {
+                        $params =array(
+                                '{CELL_WIDTH}' => $cell_width,
+                                '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&pos={$thumb['pos']}",
+                                '{THUMB}' => $thumb['image'],
+                                '{CAPTION}' => '',
+                                '{ADMIN_MENU}' => ''
+                        );
+                } else {
+                        $params =array(
+                                '{CELL_WIDTH}' => $cell_width,
+                                '{LINK_TGT}' => "index.php?cat={$thumb['cat']}",
+                                '{THUMB}' => $thumb['image'],
+                                '{CAPTION}' => '',
+                                '{ADMIN_MENU}' => ''
+                        );
+                }
+                $thumb_strip.=template_eval($thumb_cell, $params);
+//                if ((($i % $thumbcols) == 0) && ($i < count($thumb_list))) {
+//                        echo $row_separator;
+//                }
+        }
+//        for (;($i % $thumbcols); $i++){
+//                echo $empty_cell;
+//        }
+
+                        $params =array(
+                                '{THUMB_STRIP}' => $thumb_strip,
+                                '{COLS}'=>$i);
+
+        ob_start();
+        starttable('');
+        echo template_eval($template, $params);
+        endtable();
+        $film_strip=ob_get_contents();
+        ob_end_clean();
+
+        return $film_strip;
+
+}
+
 function theme_no_img_to_display($album_name)
 {
 	global $lang_errors, $template_no_img_to_display;
@@ -1258,7 +1580,7 @@ function theme_no_img_to_display($album_name)
 	endtable();
 }
 
-function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments)
+function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments,$film_strip)
 {
 	global $HTTP_COOKIE_VARS, $CONFIG;
 
@@ -1269,7 +1591,9 @@ function theme_display_image($nav_menu, $picture, $votes, $pic_info, $comments)
 	starttable();
 	echo $picture;
 	endtable();
-
+      if($CONFIG['display_film_strip']==1) {
+			echo $film_strip;
+     }
 	starttable();
 	echo $votes;
 	endtable();
