@@ -1,3 +1,5 @@
+# $Id$
+
 #
 # Dumping data for table `CPG_config`
 #
@@ -23,7 +25,7 @@ INSERT INTO CPG_config VALUES ('allow_duplicate_emails_addr', '0');
 INSERT INTO CPG_config VALUES ('caption_in_thumbview', '1');
 INSERT INTO CPG_config VALUES ('views_in_thumbview', '1');
 INSERT INTO CPG_config VALUES ('charset', 'language file');
-INSERT INTO CPG_config VALUES ('cookie_name', 'cpg11d');
+INSERT INTO CPG_config VALUES ('cookie_name', 'cpg130');
 INSERT INTO CPG_config VALUES ('cookie_path', '/');
 INSERT INTO CPG_config VALUES ('debug_mode', '0');
 INSERT INTO CPG_config VALUES ('debug_notice', '0');
@@ -61,7 +63,7 @@ INSERT INTO CPG_config VALUES ('randpos_interval', '1063623637');
 INSERT INTO CPG_config VALUES ('read_exif_data', '0');
 INSERT INTO CPG_config VALUES ('reg_requires_valid_email', '1');
 INSERT INTO CPG_config VALUES ('subcat_level', '2');
-INSERT INTO CPG_config VALUES ('theme', 'default');
+INSERT INTO CPG_config VALUES ('theme', 'classic');
 INSERT INTO CPG_config VALUES ('thumbcols', '4');
 INSERT INTO CPG_config VALUES ('thumbrows', '3');
 INSERT INTO CPG_config VALUES ('thumb_method', 'im');
