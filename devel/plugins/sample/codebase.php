@@ -1,13 +1,12 @@
 <?php
 // Add an install action
-cpg_add_action('plugin_install','sample_install');
+$thisplugin->add_action('plugin_install','sample_install');
 
 // Add a configure action
-cpg_add_action('plugin_configure','sample_configure');
+$thisplugin->add_action('plugin_configure','sample_configure');
 
 // Add a filter for the gallery header
-cpg_add_filter('gallery_header','sample_header');
-
+$thisplugin->add_filter('gallery_header','sample_header');
 
 // Sample function to modify gallery header html
 function sample_header($html) {
