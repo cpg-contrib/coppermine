@@ -1859,7 +1859,15 @@ EOT;
         echo "</form>";
 }
 
-//phpinfo-related functions:
+/**
+ * cpg_phpinfo_mod()
+ *
+ * phpinfo-related functions:
+ *
+ * @param $search
+ * @return 
+ **/
+
 function cpg_phpinfo_mod($search)
 {
     // this could be done much better with regexpr - anyone who wants to change it: go ahead
@@ -1882,6 +1890,14 @@ function cpg_phpinfo_mod($search)
     }
     return $bits;
 }
+
+/**
+ * cpg_phpinfo_mod_output()
+ * 
+ * @param $search
+ * @param $output_type
+ * @return 
+ **/
 
 function cpg_phpinfo_mod_output($search,$output_type)
 {
@@ -1930,12 +1946,26 @@ function cpg_phpinfo_mod_output($search,$output_type)
     return $return;
 }
 
+/**
+ * cpg_phpinfo_mysql_version()
+ * 
+ * @return 
+ **/
+
+
 function cpg_phpinfo_mysql_version()
 {
     $result = mysql_query("SELECT VERSION() as version");
     $row = mysql_fetch_row($result);
     return $row[0];
 }
+
+/**
+ * cpg_phpinfo_conf()
+ * 
+ * @param $search
+ * @return 
+ **/
 
 function cpg_phpinfo_conf($search)
 {
@@ -1963,6 +1993,13 @@ function cpg_phpinfo_conf($search)
     }
 }
 
+/**
+ * cpg_phpinfo_conf_output()
+ * 
+ * @param $search
+ * @return 
+ **/
+
 function cpg_phpinfo_conf_output($search)
 {
 $pieces = cpg_phpinfo_conf($search);
@@ -1971,6 +2008,15 @@ $pieces = cpg_phpinfo_conf($search);
 }
 
 // theme and language selection
+
+
+/**
+ * languageSelect()
+ * 
+ * @param $parameter
+ * @return 
+ **/
+
 function languageSelect($parameter)
 {
 global $CONFIG,$lang_language_selection;
@@ -2113,6 +2159,14 @@ switch ($parameter) {
 return $return;
 }
 
+
+/**
+ * themeSelect()
+ * 
+ * @param $parameter
+ * @return 
+ **/
+ 
 function themeSelect($parameter)
 {
 global $CONFIG,$lang_theme_selection;
@@ -2167,6 +2221,13 @@ switch ($parameter) {
 return $return;
 }
 
+
+/**
+ * cpg_alert_dev_version()
+ * 
+ * @return 
+ **/
+
 function cpg_alert_dev_version() {
         global $lang_version_alert;
         $return = '';
@@ -2184,6 +2245,15 @@ function cpg_alert_dev_version() {
         return $return;
 }
 
+/**
+ * cpg_display_help()
+ * 
+ * @param string $reference
+ * @param string $width
+ * @param string $height
+ * @return 
+ **/
+ 
 function cpg_display_help($reference = 'f=index.htm', $width = '600', $height = '350') {
 global $CONFIG, $USER;
 if ($reference == '' || $CONFIG['enable_help'] != '1') {return; }
