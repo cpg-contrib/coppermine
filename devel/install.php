@@ -221,7 +221,7 @@ function html_installer_locked()
         </td>
        </tr>
        <tr>
-        <td colspan="2" align="center"><br />
+        <td colspan="2" align="center" class="tableb"><br />
                 <input type="submit" value="Go to the main page"><br /><br />
         </td>
            </form>
@@ -307,7 +307,7 @@ function html_input_config($error_msg = '')
                 <input type='text' class='textinput' name='admin_password' value='<?php echo $_POST['admin_password'] ?>'>
         </td>
        </tr>
-     	<tr>
+             <tr>
         <td width="40%" class="tableb"><b>Email address</b>
         </td>
         <td width="60%" class="tableb">
@@ -434,26 +434,26 @@ function create_tables()
 
     $db_schema = "{$DFLT['sql_d']}/schema.sql";
     $db_basic = "{$DFLT['sql_d']}/basic.sql";
-    
+
     if (($sch_open = fopen($db_schema, 'r')) === FALSE){
-    	$errors .= "<hr /><br />The file '$db_schema' could not be found. Check that you have uploaded all Coppermine files to your server<br /><br />";
-    	return;
+            $errors .= "<hr /><br />The file '$db_schema' could not be found. Check that you have uploaded all Coppermine files to your server<br /><br />";
+            return;
     } else {
-    	$sql_query = fread($sch_open, filesize($db_schema));	
-		if (($bas_open = fopen($db_basic, 'r')) === FALSE){
-			$errors .= "<hr /><br />The file '$db_basic' could not be found. Check that you have uploaded all Coppermine files to your server<br /><br />";    
-    		return;
-    	} else {
-    		$sql_query .= fread($bas_open, filesize($db_basic));
-    	}
+            $sql_query = fread($sch_open, filesize($db_schema));
+                if (($bas_open = fopen($db_basic, 'r')) === FALSE){
+                        $errors .= "<hr /><br />The file '$db_basic' could not be found. Check that you have uploaded all Coppermine files to your server<br /><br />";
+                    return;
+            } else {
+                    $sql_query .= fread($bas_open, filesize($db_basic));
+            }
     }
-    
+
     // Insert the admin account
     $sql_query .= "INSERT INTO CPG_users (user_id, user_group, user_active, user_name, user_password, user_lastvisit, user_regdate, user_group_list, user_email, user_profile1, user_profile2, user_profile3, user_profile4, user_profile5, user_profile6, user_actkey ) VALUES (1, 1, 'YES', '{$_POST['admin_username']}', '{$_POST['admin_password']}', NOW(), NOW(), '', '{$_POST['admin_email']}', '', '', '', '', '', '', '');\n";
     // Set configuration values for image package
     $sql_query .= "REPLACE INTO CPG_config VALUES ('thumb_method', '{$_POST['thumb_method']}');\n";
     $sql_query .= "REPLACE INTO CPG_config VALUES ('impath', '{$_POST['impath']}');\n";
-    $sql_query .= "REPLACE INTO CPG_config VALUES ('ecards_more_pic_target', '$gallery_url_prefix');\n"; 
+    $sql_query .= "REPLACE INTO CPG_config VALUES ('ecards_more_pic_target', '$gallery_url_prefix');\n";
     $sql_query .= "REPLACE INTO CPG_config VALUES ('gallery_admin_email', '{$_POST['admin_email']}');\n";
     // Test write permissions for main dir
     if (!is_writable('.')) {
@@ -561,7 +561,7 @@ if ($_GET['test_gd1']) { // GD1 test
     if (file_exists($DFLT['lck_f'])) {
         html_installer_locked();
     } elseif (count($_POST)) {
-    	test_fs();
+            test_fs();
         test_sql_connection();
         test_admin_login();
         write_config_file();

@@ -135,7 +135,6 @@ function html_header()
 </head>
 <body>
  <div align="center">
-  <div style="width:600px;">
 <?php
 }
 
@@ -242,7 +241,6 @@ function html_footer()
 {
 
     ?>
-  </div>
  </div>
 </body>
 </html>
