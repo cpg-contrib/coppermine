@@ -1225,6 +1225,18 @@ function get_pic_url(&$pic_row, $mode)
         return $url_prefix[$pic_row['url_prefix']]. path2url($pic_row['filepath']. $pic_prefix[$mode]. $pic_row['filename']);
 }
 
+// Return a variable from the default language file
+function& cpg_get_default_lang_var($language_var_name) {
+        global $CONFIG;
+        if (isset($CONFIG['default_lang'])) {
+                $language = $CONFIG['default_lang'];
+        } else {
+               	$language = $CONFIG['lang'];
+        }
+        include('lang/'.$language.'.php');
+        return $$lang_var_name;
+}
+
 //defined new debug_output function here in functions.inc.php instead of theme.php with different function names to avoid incompatibilities with users not updating their themes as required. Advanced info is only output if (GALLERY_ADMIN_MODE == TRUE)  - GauGau 2003-11-23
 
 function cpg_debug_output()
