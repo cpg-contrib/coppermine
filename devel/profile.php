@@ -336,7 +336,7 @@ EOT;
         $album_count = $nbEnr[0];
         mysql_free_result($result);
 
-        $result = db_query("SELECT count(*), MAX(msg_id) FROM {$CONFIG['TABLE_COMMENTS']} WHERE author_id = '$uid'");
+        $result = db_query("SELECT count(*), MAX(msg_id) FROM {$CONFIG['TABLE_COMMENTS']} as c, {$CONFIG['TABLE_PICTURES']} as p WHERE c.pid = p.pid AND author_id = '$uid' $FORBIDDEN_SET");
         $nbEnr = mysql_fetch_array($result);
         $comment_count = $nbEnr[0];
         $lastcom_id = $nbEnr[1];
