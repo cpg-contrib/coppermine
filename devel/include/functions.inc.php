@@ -498,7 +498,7 @@ function bb_decode($text)
                 $replacements[5] = $bbcode_tpl['email'];
 
                 // [img]xxxx://www.phpbb.com[/img] code..
-                $bbcode_tpl['img']  = '<img src="{URL}" />';
+                $bbcode_tpl['img']  = '<img src="{URL}" alt="" />';
                 $bbcode_tpl['img']  = str_replace('{URL}', '\\1\\2', $bbcode_tpl['img']);
 
                 $patterns[6] = "#\[img\]([a-z]+?://){1}([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+\(\)]+)\[/img\]#si";
