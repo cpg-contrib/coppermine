@@ -1738,7 +1738,7 @@ $return = '
 1.4.0|login.php|1.4.0|1.15|mandatory|r@
 1.4.0|logout.php|1.4.0|1.5|mandatory|r@
 1.4.0|mode.php|1.4.0|1.1|mandatory|r@
-1.4.0|modifyalb.php|1.4.0|1.22|mandatory|r@
+1.4.0|modifyalb.php|1.4.0|1.23|mandatory|r@
 1.4.0|phpinfo.php|1.4.0|1.8|mandatory|r@
 1.4.0|picEditor.php|1.4.0|1.19|mandatory|r@
 1.4.0|picmgr.php|1.4.0|1.7|mandatory|r@
@@ -1757,7 +1757,7 @@ $return = '
 1.4.0|upload.php|1.4.0|1.55|mandatory|r@
 1.4.0|usermgr.php|1.4.0|1.26|mandatory|r@
 1.4.0|util.php|1.4.0|1.22|mandatory|r@
-1.4.0|versioncheck.php|1.4.0|1.26|mandatory|r@
+1.4.0|versioncheck.php|1.4.0|1.27|mandatory|r@
 1.4.0|viewlog.php|1.4.0|1.8|mandatory|r@
 1.4.0|voteDetails.php|1.4.0|1.1|mandatory|r@
 1.4.0|xp_publish.php|1.4.0|1.21|mandatory|r@
@@ -1780,7 +1780,7 @@ $return = '
 1.4.0|docs|||mandatory|r@
 1.4.0|docs/credits.html||1.12|optional|r@
 1.4.0|docs/faq.htm|||optional|r@
-1.4.0|docs/index.htm||1.10|mandatory|r@
+1.4.0|docs/index.htm||1.11|mandatory|r@
 1.4.0|docs/README.html||1.17|optional|r@
 1.4.0|docs/showdoc.php|1.4.0|1.9|mandatory|r@
 1.4.0|docs/theme.htm|||optional|r@
