@@ -8,6 +8,9 @@
 //  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
 //  http://www.stoverud.com/PHPhotoalbum/                                    //
 // ------------------------------------------------------------------------- //
+//  Fixed bug with empty result in AND or OR conditions Dr Tarique Sani      //
+//  <tarique@sanisoft .com> 1st Sept 2003                                    //
+// ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
 //  the Free Software Foundation; either version 2 of the License, or        //
@@ -138,25 +141,30 @@ elseif ($search_string != '')
 						"OR user4 LIKE '$match_word' ";
 
 				$result = db_query($sql);
-				if (mysql_num_rows($result)) {
-					$set ='';
-		    	    while($row=mysql_fetch_array($result)){
-			    		$set .= $row['pid'].',';
-					} // while
-					if (empty($pic_set)) {
-						if ($current_match_type == 'not') {
-						    $pic_set .= ' pid not in ('.substr($set, 0, -1).') ';
-						} else {
-							$pic_set .= ' pid in ('.substr($set, 0, -1).') ';
-						}
-					} else {
-						if ($current_match_type == 'not') {
-						    $pic_set .= ' and pid not in ('.substr($set, 0, -1).') ';
-						} else {
-							$pic_set .= ' '.$current_match_type.' pid in ('.substr($set, 0, -1).') ';
-						}
-					}
-				}
+
+				$set = '';
+					while($row=mysql_fetch_array($result)){
+                        $set .= $row['pid'].',';
+                    } // while
+
+                    if(empty($set)) {
+                        $set ="'',";
+                    }
+
+                    if (empty($pic_set)) {
+                            if ($current_match_type == 'not') {
+                                $pic_set .= ' pid not in ('.substr($set, 0, -1).') ';
+                            } else {
+                                    $pic_set .= ' pid in ('.substr($set, 0, -1).') ';
+                            }
+                    } else {
+                            if ($current_match_type == 'not') {
+                                $pic_set .= ' and pid not in ('.substr($set, 0, -1).') ';
+                            } else {
+                                    $pic_set .= ' '.$current_match_type.' pid in ('.substr($set, 0, -1).') ';
+                            }
+                    }                                
+
 
 				mysql_free_result($result);
 				
