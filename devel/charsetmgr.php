@@ -75,14 +75,14 @@ function charset_convert($table_name, $column_name, $index_name, $charsetin, $ch
             if ($convstr = iconv($charsetin,$charsetout,$element))
             {
                 
-                $convstr = addslashes($convstr);
-                $query = "UPDATE $table_name SET $column_name='$convstr' WHERE $index_name=$elementid";
+                $query = "UPDATE $table_name SET $column_name='".addslashes($convstr)."' WHERE $index_name=$elementid";
+                $status = "<td>$query</td>";
                 $conversion_possible = 1;
             }
             else 
             {
                 $convstr = $element;
-                $query = "<span class=\"warning\">CONVERSION IMPOSSIBLE</span>";
+                $status = "<td class=\"warning\">CONVERSION IMPOSSIBLE</td>";
                 $conversion_possible = 0;
             }
             if ($doit)
@@ -92,16 +92,25 @@ function charset_convert($table_name, $column_name, $index_name, $charsetin, $ch
                 {
                     $updateresult = cpg_db_query($query);
                     if ($updateresult )// check that the conversion was performed
-                        $query = '<span class="done">DONE</span>';
+                        $status = '<td class="done">DONE</td>';
                     else
-                        $query = '<span class="failed">Query failed: '.mysql_error().' </span>';
+                        $status = '<td class="failed">Query failed: '.mysql_error().' </td>';
                 }
                 else
-                    $query = '<span >Query was impossible.</span>';
+                    $status = '<td >Query was impossible.</td>';
                     
             }
             
-            echo "<tr><td>$table_name</td><td>$column_name</td><td>$elementid</td><td class=\"check\">$convstr</td><td>$query</td></tr>\n";
+            // We try to check if there are non-ascii characters in the string
+            if (iconv($charsetin, 'us-ascii', $element))
+                $asciionly = 1;
+            else
+                $asciionly = 0;
+                
+            // The test above does not work, so the user has to check all the strings:
+            $asciionly = 0;
+                
+                echo '<tr><td class="'.($asciionly ? 'nocheck' : 'check')."\">$convstr</td><td>$table_name</td><td>$column_name</td><td>$elementid</td>$status</tr>\n";
         }
         
                 
@@ -126,6 +135,8 @@ function register_changes()
             $charsetin = $_POST['charset_in'];
             $charsetout = $_POST['charset_out'];
             
+            // elements of the database that need converting
+            // the first element in the array is the id name of the table
             $affected_elements = array(
                                        $CONFIG['TABLE_ALBUMS'] =>
                                        array('aid', 'title', 'description', 'keyword'),
@@ -143,11 +154,6 @@ function register_changes()
             
             
             header("Content-Type: text/html; charset=$charsetout");
-/*            echo <<<EOT
-
-                <meta http-equiv="Content-Type" content="text/html; charset=$charsetout" />
-
-            */
             
 
             //echo $charsetin . " " .$charsetout;
@@ -159,13 +165,13 @@ function register_changes()
             {
                 $title = "Converting from $charsetin to $charsetout";
             }
-            html_header($title);
+            html_header($title, $charsetout);
             html_logo();
             echo "<h1>$title</h1>";
-            echo '<table border="1" class="maintable">';
+            echo '<table border="1" class="charsetchecktable" cellpadding="3" cellspacing="0"  style="margin:auto;">';
             if (!$doconvert)
-                echo '<p class="warning">You <b>must check</b> that all the cells in <span class="check">blue</span> are displayed right.</p>';
-            echo "<tr><th>Table</th><th>Column</th><th>Id</th><th>String</th><th>".($doconvert? "Result" : "Query")."</th></tr>";
+                echo '<p class="warning">You <b>must check</b> that all the cells in <span class="check">blue</span> are displayed properly.</p>';
+            echo "<tr><th>String</th><th>Table</th><th>Column</th><th>Id</th><th>".($doconvert? "Result" : "Query")."</th></tr>";
             foreach($affected_elements as $table => $columns)
                 for ($i = 1; $i < count($columns); ++$i)
                 {
@@ -194,13 +200,15 @@ echo '<div class="input"><input type="submit" class="button" name="convert" valu
             if ($doconvert)
             {
                 cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value='$charsetout' WHERE name='charset'");
+                // the following warning has been removed, because unnecessary, i think -- chtito
+                // <li>You may have to go to the <a href="admin.php">configuration page</a> and choose your language <b>with a utf-8 extension</b></li>
+
                 echo <<<EOT
                     <div class="warning">
-                    <p>The conversion has been carried out.</p>
-                    <ul>
-                <li>You may have to go to the <a href="admin.php">configuration page</a> and choose your language <b>with a utf-8 extension</b></li>
-                <li> If you did not get any errors, you should remove the file charsetmgr.php, or make it unaccessible, for security reasons. You will not need this file anymore.</li>
-                    </ul>
+                    <p>The conversion has been carried out.<br/>
+                If you did not get any errors, for security reasons, you may now <b>remove the file charsetmgr.php</b>, or make it unaccessible, since you will not need this file anymore.<br/>
+                    You may now <a href="index.php">proceed to the main page.</a>
+                    </p>
                     </div>
 EOT;
                 

@@ -120,6 +120,29 @@ a:hover {
         margin: 2px;
 }
 
+.charsetchecktable
+{
+
+}
+
+.charsetchecktable td, .charsetchecktable th
+{
+    padding: 2px;
+    border: 1px solid gray;
+}
+
+.charsetchecktable td
+{
+    font-size: 10px;
+}
+
+.charsetchecktable td.check
+{
+    font-size: 12px;
+}
+
+
+
  .error, .bigwarning {
         color : Red;
         font-weight : bold;
@@ -140,6 +163,12 @@ img.logo
 .bigwarning, .warning, .failed 
 {
     color: red;
+}
+
+td.warning
+{
+    background-color: red;
+    color: white;
 }
 
 p, div.warning
@@ -164,12 +193,21 @@ p.warning, div.warning
 
 .check 
 {
+    background-color: white;
+    font-weight: bold;
     color: blue;
+}
+
+.nocheck
+{
+    color: gray;
 }
 
 .done 
 {
-    color: green;
+    background-color: green;
+    color: white;
+    text-align: center;
 }
 
 .input
