@@ -151,7 +151,6 @@ if (is_numeric($album)) {
             foreach ($album_set_array as $album_id) $set .= ($set == '') ? $album_id : ',' . $album_id;
             $ALBUM_SET .= "AND aid IN ($set) ";
         }
-
         breadcrumb($cat, $breadcrumb, $breadcrumb_text);
     }
 }
@@ -243,6 +242,7 @@ if ($CONFIG['allow_private_albums'] == 0 || !in_array($album, $FORBIDDEN_SET_DAT
         $valid = true;
     }
 }
+$META_ALBUM_SET = $ALBUM_SET; //temporary assignment until we are sure we are keeping the $META_ALBUM_SET functionality.
 if (!$valid) {
     form_albpw();
 } else {

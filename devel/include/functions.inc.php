@@ -41,11 +41,11 @@
  **/
 function get_meta_album_set_data($cid,&$meta_album_set_array) //adapted from index.php get_subcat_data()
 {
-    global $CONFIG, $HIDE_USER_CAT, $FORBIDDEN_SET, $cpg_show_private_album;
+    global $CONFIG, $HIDE_USER_CAT, $FORBIDDEN_SET, $cpg_show_private_album, $cat;
     $album_filter = '';
-    $pic_filter = '';
+
     if (!empty($FORBIDDEN_SET) && !$cpg_show_private_album) {
-        $album_filter = ' and ' . str_replace('p.', 'a.', $FORBIDDEN_SET);
+        $album_filter .= ' and ' . str_replace('p.', 'a.', $FORBIDDEN_SET);
     }
             if ($cid == USER_GAL_CAT) {
                 $sql = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category>=" . FIRST_USER_CAT . $album_filter;
@@ -90,7 +90,9 @@ function get_meta_album_set_data($cid,&$meta_album_set_array) //adapted from ind
 function get_meta_album_set($cat, &$meta_album_set)  //adapted from index.php get_cat_list()
 {
     global $USER_DATA;
-    if ($USER_DATA['can_see_all_albums']) {
+    if ($cat < 0) {
+        $meta_album_set= 'AND aid IN (' . (- $cat) . ') ';
+    } elseif ($USER_DATA['can_see_all_albums']) {
         $meta_album_set ='';
     } else {
        $meta_album_set_array=array();
