@@ -459,7 +459,7 @@ function& spring_cleaning($directory_path, $cache_time = 86400, $exclusion_list 
     // Don't forget to close the directory.
     closedir($directory_handle);
     return $deleted_list;
-	}
+        }
 }
 // The create_record function. Takes the encoded string. Returns the unique record ID.
 function create_record($encoded_string) {
@@ -2265,7 +2265,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
 
             // Create the final message.
             if ($PIC_NEED_APPROVAL) {
- 
+
                 if ($file_placement == 'no') {
 
                     $final_message = ''.$lang_upload_php['no_place'].'<br /><br />'.$lang_db_input_php['upload_success'];
@@ -2288,7 +2288,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
 
                 }
 
-            }           
+            }
 
             // Delete the temporary data file.
             delete_record($_POST['unique_ID']);
@@ -2301,7 +2301,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
                     $lang_db_input_php = cpg_get_default_lang_var('lang_db_input_php');
                     // Get the mail files.
                     include_once('include/mailer.inc.php');
-    
+
                     // Send the message.
                     cpg_mail($CONFIG['gallery_admin_email'], sprintf($lang_db_input_php['notify_admin_email_subject'], $CONFIG['gallery_name']), sprintf($lang_db_input_php['notify_admin_email_body'], USER_NAME,  $CONFIG['ecards_more_pic_target']. (substr( $CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') .'editpics.php?mode=upload_approval' ));
                 }
@@ -2311,6 +2311,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
             // That was the last one. Create a redirect box.
             pageheader($lang_info);
             msg_box($lang_info, $final_message, $lang_continue, 'index.php', "100%");
+            pagefooter();
 
             // Exit the script.
             exit;

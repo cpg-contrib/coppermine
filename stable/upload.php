@@ -2310,6 +2310,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
             // That was the last one. Create a redirect box.
             pageheader($lang_info);
             msg_box($lang_info, $final_message, $lang_continue, 'index.php', "100%");
+            pagefooter();
 
             // Exit the script.
             exit;
