@@ -1,8 +1,8 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.4.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -14,29 +14,27 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-
-/*
-$Id$
-*/
+// $Id$
+// ------------------------------------------------------------------------- //
 
 define("EXIF_CACHE_FILE","exif.dat");
 require("include/exif.php");
 
 function exif_parse_file($filename)
-{       
+{
         global $CONFIG, $lang_picinfo;
-        
+
         //String containing all the available exif tags.
         $exif_info = "AFFocusPosition|Adapter|ColorMode|ColorSpace|ComponentsConfiguration|CompressedBitsPerPixel|Contrast|CustomerRender|DateTimeOriginal|DateTimedigitized|DigitalZoom|DigitalZoomRatio|ExifImageHeight|ExifImageWidth|ExifInteroperabilityOffset|ExifOffset|ExifVersion|ExposureBiasValue|ExposureMode|ExposureProgram|ExposureTime|FNumber|FileSource|Flash|FlashPixVersion|FlashSetting|FocalLength|FocusMode|GainControl|IFD1Offset|ISOSelection|ISOSetting|ISOSpeedRatings|ImageAdjustment|ImageDescription|ImageSharpening|LightSource|Make|ManualFocusDistance|MaxApertureValue|MeteringMode|Model|NoiseReduction|Orientation|Quality|ResolutionUnit|Saturation|SceneCaptureMode|SceneType|Sharpness|Software|WhiteBalance|YCbCrPositioning|xResolution|yResolution";
 
         if (!is_readable($filename)) return false;
-       
+
         $size = @getimagesize($filename);
         if ($size[2] != 2) return false; // Not a JPEG file
 
         $exifRawData = explode ("|",$exif_info);
         $exifCurrentData = explode("|",$CONFIG['show_which_exif']);
-        
+
         //Let's build the string of current exif values to be shown
         $showExifStr = "";
         foreach ($exifRawData as $key => $val) {
@@ -57,14 +55,14 @@ function exif_parse_file($filename)
                 $exifRawData = unserialize($row["exifData"]);
         } else {
           // No data in the table - read it from the image file
-          $exifRawData = read_exif_data_raw($filename,0);	
+          $exifRawData = read_exif_data_raw($filename,0);
           // Insert it into table for future reference
           $sql = "INSERT INTO {$CONFIG['TABLE_EXIF']} ".
                     "VALUES ('$filename', '".addslashes(serialize($exifRawData))."')";
-  
+
           $result = db_query($sql);
         }
-        
+
         $exif = array();
 
         if (is_array($exifRawData['IFD0'])) {
@@ -76,11 +74,11 @@ function exif_parse_file($filename)
         if (is_array($exifRawData['SubIFD']['MakerNote'])) {
           $exif = array_merge ($exif,$exifRawData['SubIFD']['MakerNote']);
         }
-        
+
         $exif['IFD1OffSet'] = $exifRawData['IFD1OffSet'];
-        
+
         $exifParsed = array();
-        
+
         foreach ($exif as $key => $val) {
           if (strpos($showExifStr,"|".$key) && isset($val)){
                 $exifParsed[$lang_picinfo[$key]] = $val;

@@ -1,11 +1,27 @@
 <script language="JavaScript" type="text/JavaScript">
+// ------------------------------------------------------------------------- //
+// Coppermine Photo Gallery 1.4.0                                            //
+// ------------------------------------------------------------------------- //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
+// http://www.chezgreg.net/coppermine/                                       //
+// ------------------------------------------------------------------------- //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
+// ------------------------------------------------------------------------- //
+// This program is free software; you can redistribute it and/or modify      //
+// it under the terms of the GNU General Public License as published by      //
+// the Free Software Foundation; either version 2 of the License, or         //
+// (at your option) any later version.                                       //
+// ------------------------------------------------------------------------- //
+// $Id$
+// ------------------------------------------------------------------------- //
 // (C) 2000 www.CodeLifter.com
 // http://www.codelifter.com
 // Free for all users, but leave in this  header
 // NS4-6,IE4-6
 // Fade effect only in IE; degrades gracefully
-
-// $Id$
+// ------------------------------------------------------------------------- //
 
 // Set slideShowSpeed (milliseconds)
 var slideShowSpeed = <?php echo (int)$HTTP_GET_VARS['slideshow'] ?>
@@ -33,7 +49,7 @@ $pid = (int)$HTTP_GET_VARS['pid'];
 $start_img = '';
 $pic_data = get_pic_data($HTTP_GET_VARS['album'], $pic_count, $album_name, -1, -1, false);
 foreach ($pic_data as $picture) {
-    
+
     if($CONFIG['thumb_use']=='ht' && $picture['pheight'] > $CONFIG['picture_width'] ){ // The wierd comparision is because only picture_width is stored
       $condition = true;
     }elseif($CONFIG['thumb_use']=='wd' && $picture['pwidth'] > $CONFIG['picture_width']){
@@ -44,10 +60,10 @@ foreach ($pic_data as $picture) {
      $condition = false;
     }
 
-    if (is_image($picture['filename'])) {    
-	if ($CONFIG['make_intermediate'] && $condition ) {
+    if (is_image($picture['filename'])) {
+        if ($CONFIG['make_intermediate'] && $condition ) {
             $picture_url = get_pic_url($picture, 'normal');
-        } else {	
+        } else {
             $picture_url = get_pic_url($picture, 'fullsize');
         }
 

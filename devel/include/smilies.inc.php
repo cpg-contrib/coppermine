@@ -1,8 +1,8 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.4.0                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -14,13 +14,11 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
+// $Id$
 // ------------------------------------------------------------------------- //
-// CODE IN THIS MODULE IS TAKEN FROM phpBB                    //
+// CODE IN THIS MODULE IS TAKEN FROM phpBB                                   //
 // ------------------------------------------------------------------------- //
 
-/*
-$Id$
-*/
 
 define('SMILIES_PHP', true);
 function get_smilies_table1()

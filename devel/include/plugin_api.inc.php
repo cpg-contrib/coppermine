@@ -1,5 +1,7 @@
 <?php
 // ------------------------------------------------------------------------- //
+// Coppermine Photo Gallery 1.4.0                                            //
+// ------------------------------------------------------------------------- //
 //  Open Plugin API (Open PAPI) for Coppermine Photo Gallery                 //
 // ------------------------------------------------------------------------- //
 //  Copyright (C) 2004  Christopher Brown-Floyd                              //
@@ -10,6 +12,8 @@
 //  it under the terms of the GNU General Public License as published by     //
 //  the Free Software Foundation; either version 2 of the License, or        //
 //  (at your option) any later version.                                      //
+// ------------------------------------------------------------------------- //
+// $Id$
 // ------------------------------------------------------------------------- //
 
 global $thisplugin;                     // Stores the current plugin being processed
@@ -101,7 +105,7 @@ class CPGPluginAPI {
 
     function installed( $plugin_folder ) {
         global $CONFIG;
-        
+
         // Stores if a given plugin is installed or not
         static $installed_array = array();
 
@@ -111,7 +115,7 @@ class CPGPluginAPI {
                    'path="'.$plugin_folder.'";';
 
             $result = db_query($sql);
-            
+
             // If the plugin isn't in the database store a false value in the array
             if (mysql_num_rows($result) == 0) {
                 $installed_array[$plugin_folder] = false;
@@ -125,7 +129,7 @@ class CPGPluginAPI {
             // Store the plugin_id in the database
             $installed_array[$plugin_folder] = $plugin['plugin_id'];
         }
-        
+
         // Return the plugin_id or false, if the plugin isn't installed
         return $installed_array[$plugin_folder];
     }
@@ -177,34 +181,34 @@ class CPGPluginAPI {
             $ids = array_keys($CPG_PLUGINS);
 
             foreach($ids as $plugin_id) {
-    
+
                 // Reference current plugin to local scope
                 $thisplugin = $CPG_PLUGINS[$plugin_id];
 
                 // Get the filter's value from the plugin
                 $plugin_function = @$thisplugin->filters[$key];
-    
+
                 // Skip this plugin; the key isn't set
                 if (!isset($plugin_function) || (!$thisplugin->awake)) {
                      continue;
                 }
-                
+
                 // Skip this plugin; Only looking for new plugins
                 if (($execute_scope == CPG_EXEC_NEW) && ($thisplugin->plugin_id != CPG_EXEC_NEW)) {
                     continue;
                 }
-    
+
                 if (function_exists($plugin_function)) {
                     // Pass the value to the filter's function and get a value back
                     $value = call_user_func($plugin_function,$value);
-    
+
                     // Copy back to global scope
                     $CPG_PLUGINS[$plugin_id] = $thisplugin;
                 }
-    
+
                 // Copy back to global scope
                 $CPG_PLUGINS[$plugin_id] = $thisplugin;
-    
+
                 if ($execute_scope != CPG_EXEC_ALL) {
                     return $value;
                     break;
@@ -261,12 +265,12 @@ class CPGPluginAPI {
         } else {
             // Get all the plugin ids
             $ids = array_keys($CPG_PLUGINS);
-    
+
             foreach($ids as $plugin_id) {
 
                 // Copy current plugin to local scope
                 $thisplugin = $CPG_PLUGINS[$plugin_id];
-    
+
                 // Get the action's value from the plugin
                 $plugin_function = @$thisplugin->actions[$key];
 
@@ -274,20 +278,20 @@ class CPGPluginAPI {
                 if (!isset($plugin_function) || ($key != 'plugin_wakeup' && !$thisplugin->awake)) {
                      continue;
                 }
-    
+
                 // Skip this plugin; Only looking for new plugins
                 if (($execute_scope == CPG_EXEC_NEW) && ($thisplugin->plugin_id != CPG_EXEC_NEW)) {
                     continue;
                 }
-    
+
                 if (function_exists($plugin_function)) {
                     // Pass the value to the action's function and get a value back
                     $value = call_user_func($plugin_function,$value);
-    
+
                     // Copy back to global scope
                     $CPG_PLUGINS[$plugin_id] = $thisplugin;
                 }
-    
+
                 if ($execute_scope != CPG_EXEC_ALL) {
                     return $value;
                     break;
@@ -339,7 +343,7 @@ class CPGPluginAPI {
 
         // Loop through all the plugins
         foreach($CPG_PLUGINS as $thisplugin) {
-            
+
             // If the plugin has a sleep action, execute it
             if (!CPGPluginAPI::action('plugin_sleep',true)) {
 
@@ -365,7 +369,7 @@ class CPGPluginAPI {
 
     function install($path) {
         global $CONFIG,$thisplugin,$CPG_PLUGINS,$lang_plugin_api;
-        
+
         // Get the lowest priority level (highest number) from the database
         $sql = 'select priority from '.$CONFIG['TABLE_PLUGINS'].' order by priority desc limit 1;';
         $result = db_query($sql);
@@ -419,12 +423,12 @@ class CPGPluginAPI {
             }
 
             return $installed;
-        
+
         // If $installed is an integer then the plugin needs to be configured; Return the value
         } elseif (is_int($installed)) {
 
             return $installed;
-        
+
         // Plugin wasn't installed; Display an error
         } else {
 
@@ -470,7 +474,7 @@ class CPGPluginAPI {
             if ($CONFIG['log_mode']) {
                 log_write("Plugin '".$name."' uninstalled at ".date("F j, Y, g:i a"),CPG_GLOBAL_LOG);
             }
-            
+
             return true;
 
         // If $uninstalled is an integer then the plugin needs to be cleaned up; Return the value
@@ -513,7 +517,7 @@ class CPGPlugin {
         foreach($properties as $key => $value) {
             $this->$key = stripslashes($value);
         }
-        
+
         $this->fullpath = './plugins/'.$this->path;
     }
 
@@ -526,13 +530,13 @@ class CPGPlugin {
      * @param variant $value
      * @return N/A
      **/
-    
+
     function add_filter($key,$value) {
         if (!isset($this->filters[$key])) {
             $this->filters[$key] = $value;
         }
     }
-    
+
     /**
      * cpg_delete_filter()
      *
@@ -541,13 +545,13 @@ class CPGPlugin {
      * @param integer $plugin_id
      * @return N/A
      **/
-    
+
     function delete_filter($key) {
         if (isset($this->filters[$key])) {
             unset($this->filters[$key]);
         }
     }
-    
+
     /**
      * cpg_add_action()
      *
@@ -557,7 +561,7 @@ class CPGPlugin {
      * @param variant $value
      * @return N/A
      **/
-    
+
     function add_action($key,$value) {
         if (!isset($this->actions[$key])) {
             $this->actions[$key] = $value;
@@ -572,7 +576,7 @@ class CPGPlugin {
      * @param integer $plugin_id
      * @return N/A
      **/
-    
+
     function delete_action($key) {
         if (isset($this->actions[$key])) {
             unset($this->actions[$key]);

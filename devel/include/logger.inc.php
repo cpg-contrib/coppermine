@@ -1,21 +1,20 @@
 <?php
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery                                                 //
+// Coppermine Photo Gallery 1.4.0                                            //
 // ------------------------------------------------------------------------- //
-//  Copyright (C) 2002,2003  Gregory DEMAR                                   //
-//  http://www.chezgreg.net/coppermine/                                      //
-// ------------------------------------------------------------------------- //
-//  Based on PHPhotoalbum by Henning Stverud <henning@stoverud.com>          //
-//  http://www.stoverud.com/PHPhotoalbum/                                    //
+// Copyright (C) 2002-2004 Gregory DEMAR                                     //
+// http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
 // (http://coppermine.sf.net/team/)                                          //
 // see /docs/credits.html for details                                        //
 // ------------------------------------------------------------------------- //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
+// This program is free software; you can redistribute it and/or modify      //
+// it under the terms of the GNU General Public License as published by      //
+// the Free Software Foundation; either version 2 of the License, or         //
+// (at your option) any later version.                                       //
+// ------------------------------------------------------------------------- //
+// $Id$
 // ------------------------------------------------------------------------- //
 
 // Initiate defines
@@ -44,7 +43,7 @@ function log_write( $text, $log = null ) {
         if (!file_exists($log)) {
                 $log_header = implode('',file('logs/log_header.inc.php'));
         } else {
-               	$log_header = '';
+                       $log_header = '';
         }
 
         $fp = fopen($log,'a');
@@ -61,7 +60,7 @@ function log_read( $log = null ) {
         }
 
         $log = 'logs/'.$log.'.log.php';
-        
+
         @include($log);
 }
 
@@ -74,7 +73,7 @@ function log_delete( $log = null ) {
                         unlink('logs/'.$log['filename']);
                 }
         } else {
-               	unlink('logs/'.$log.'.log.php');
+                       unlink('logs/'.$log.'.log.php');
         }
         header('Location: viewlog.php');
 }
@@ -116,7 +115,7 @@ function& spring_cleaning($directory_path, $cache_time = CPG_HOUR, $exclusion_li
         return;
 
     }
-    
+
     // Now let's read through the directory contents.
     while (!(($file = readdir($directory_handle)) === false)) {
 
@@ -158,7 +157,7 @@ function& spring_cleaning($directory_path, $cache_time = CPG_HOUR, $exclusion_li
 
     // Don't forget to close the directory.
     closedir($directory_handle);
-    
+
     // For logging purposes
     if ($CONFIG['log_mode']) {
         for ( $i = 0; $i<count($deleted_list); $i++ ) {
@@ -170,5 +169,5 @@ function& spring_cleaning($directory_path, $cache_time = CPG_HOUR, $exclusion_li
 
 if ($CONFIG['log_mode']) {
         spring_cleaning('logs', CPG_DAY*2, array('log_header.inc.php'));
-}        
+}
 ?>

@@ -1,6 +1,6 @@
 <?php
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery                                                 //
+//  Coppermine Photo Gallery 1.4.0                                           //
 // ------------------------------------------------------------------------- //
 //  Copyright (C) 2002-2004  Gregory DEMAR                                   //
 //  http://www.chezgreg.net/coppermine/                                      //
@@ -16,6 +16,8 @@
 //  it under the terms of the GNU General Public License as published by     //
 //  the Free Software Foundation; either version 2 of the License, or        //
 //  (at your option) any later version.                                      //
+// ------------------------------------------------------------------------- //
+// $Id$
 // ------------------------------------------------------------------------- //
 
 /**
