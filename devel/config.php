@@ -8,6 +8,7 @@
 //  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
 //  http://www.stoverud.com/PHPhotoalbum/                                    //
 // ------------------------------------------------------------------------- //
+//  Hacked by Tarique Sani <tarique@sanisoft.com>                            //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
 //  the Free Software Foundation; either version 2 of the License, or        //
@@ -108,6 +109,8 @@ function form_sort_order($text, $name)
 	global $CONFIG, $lang_config_php;
 
 	$value = $CONFIG[$name];
+	$ta_selected  = ($value == 'ta')  ? 'selected' : '';
+	$td_selected  = ($value == 'td') ? 'selected' : '';
 	$na_selected  = ($value == 'na')  ? 'selected' : '';
 	$nd_selected  = ($value == 'nd') ? 'selected' : '';
 	$da_selected  = ($value == 'da') ? 'selected' : '';
@@ -120,6 +123,8 @@ function form_sort_order($text, $name)
         </td>
         <td class="tableb" valign="top">
 			<select name="$name" class="listbox">
+				<option value="ta" $ta_selected>{$lang_config_php['title_a']}</option>
+				<option value="td" $td_selected>{$lang_config_php['title_d']}</option>
 				<option value="na" $na_selected>{$lang_config_php['name_a']}</option>
 				<option value="nd" $nd_selected>{$lang_config_php['name_d']}</option>
 				<option value="da" $da_selected>{$lang_config_php['date_a']}</option>
@@ -252,6 +257,33 @@ EOT;
 EOT;
 }
 
+//Added for allowing user to select which aspect of thumbnails to scale
+function form_scale($text, $name)
+{
+        global $CONFIG;
+
+        $value = $CONFIG[$name];
+        $any_selected   = ($value == 'max')  ? 'selected' : '';
+        $ht_selected  = ($value == 'ht') ? 'selected' : '';
+        $wd_selected  = ($value == 'wd') ? 'selected' : '';
+
+        echo <<<EOT
+        <tr>
+            <td class="tableb">
+                        $text
+        </td>
+        <td class="tableb" valign="top">
+                        <select name="$name" class="listbox">
+                                <option value="any" $any_selected>Max aspect</option>
+                                <option value="ht" $ht_selected>Height</option>
+                                <option value="wd" $wd_selected>Width</option>
+                        </select>
+                </td>
+        </tr>
+
+EOT;
+}
+
 function create_form(&$data)
 {
 	foreach($data as $element){
@@ -278,6 +310,10 @@ function create_form(&$data)
 		    	case 6 :
 		    		form_theme($element[0], $element[1]);
 		    		break;
+				//Thumbnail scaling        
+				case 7 :
+					form_scale($element[0], $element[1]);
+					break;
 		    	default:
 					die('Invalid action');
 		    } // switch
@@ -299,7 +335,9 @@ if (count($HTTP_POST_VARS) > 0) {
 		'subcat_level',
 		'thumb_width',
 		'thumbcols',
-		'thumbrows');
+		'thumbrows',
+		//Show filmstrip
+		'max_film_strip_items');
 
 	foreach ($need_to_be_positive as $parameter)
 		$HTTP_POST_VARS[$parameter] = max(1,(int)$HTTP_POST_VARS[$parameter]);
