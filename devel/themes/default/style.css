@@ -197,11 +197,6 @@ bblink a:hover {
 	display : block;
 }
 
-.thumb_title a {
-	text-decoration: underline;
-	color: #000000;
-}
-
 .thumb_caption {
 	font-size: 80%;
 	padding: 1px;
