@@ -727,131 +727,141 @@ if (isset($_GET['page'])) {
     $PAGE = 1;
 }
 
-/**
-* See if $cat has been passed in GET
-*/
+if (isset($_GET['file'])) {
+    // Scrub: Remove '..' and leftover '//' from filename
+    $file = str_replace('//','',str_replace('..','',$_GET['file']));
+    $path = './plugins/'.$file.'.php';
 
-if (isset($_GET['cat'])) {
-    $cat = (int)$_GET['cat'];
+    // Don't include the codebase and credits files
+    if ($file != 'codebase' && $file != 'credits' && file_exists($path)) {
+
+        // Include the code from the plugin
+        include_once($path);
+        $file = true;
+    } else {
+        $file = false;
+    }
 }
-// Gather data for categories
-$breadcrumb = '';
-$cat_data = array();
-$statistics = '';
-$STATS_IN_ALB_LIST = false;
-$cpg_show_private_album = ($CONFIG['allow_private_albums'])?($CONFIG['show_private']):(true);
-
-get_cat_list($breadcrumb, $cat_data, $statistics);
-
-pageheader($BREADCRUMB_TEXT ? $BREADCRUMB_TEXT : $lang_index_php['welcome']);
-
-$elements = preg_split("|/|", $CONFIG['main_page_layout'], -1, PREG_SPLIT_NO_EMPTY);
 
 /**
 * Loop through the $elements array to build the page using the parameters
 * set in the config
 */
 
-foreach ($elements as $element) {
-    if (preg_match("/(\w+),*(\d+)*/", $element, $matches)){
-          if (!isset($matches[2])) { // added to fix notice about undefined index
-              $matches[2] = 0;
-          }
-          switch ($matches[1]) {
-            case 'breadcrumb':
-                // Added breadcrumb as a separate listable block from config
-                if (($breadcrumb != '' || count($cat_data) > 0) && $cat != 0) theme_display_breadcrumb($breadcrumb, $cat_data);
-                break;
+if (!$file) {
 
-            case 'catlist':
-                if ($breadcrumb != '' || count($cat_data) > 0) theme_display_cat_list($breadcrumb, $cat_data, $statistics);
-                if (isset($cat) && $cat == USER_GAL_CAT) {
-                                        list_users();
-                                }
-                flush();
-                break;
+    /**
+    * See if $cat has been passed in GET
+    */
+    
+    if (isset($_GET['cat'])) {
+        $cat = (int)$_GET['cat'];
+    }
+    // Gather data for categories
+    $breadcrumb = '';
+    $cat_data = array();
+    $statistics = '';
+    $STATS_IN_ALB_LIST = false;
+    $cpg_show_private_album = ($CONFIG['allow_private_albums'])?($CONFIG['show_private']):(true);
+    
+    get_cat_list($breadcrumb, $cat_data, $statistics);
+    
+    pageheader($BREADCRUMB_TEXT ? $BREADCRUMB_TEXT : $lang_index_php['welcome']);
+    
+    $elements = preg_split("|/|", $CONFIG['main_page_layout'], -1, PREG_SPLIT_NO_EMPTY);
 
-            case 'alblist':
-                list_albums();
-                flush();
-                break;
+    foreach ($elements as $element) {
+        if (preg_match("/(\w+),*(\d+)*/", $element, $matches)){
+            if (!isset($matches[2])) { // added to fix notice about undefined index
+                $matches[2] = 0;
+            }
 
-            case 'random':
-                display_thumbnails('random', $cat, 1, $CONFIG['thumbcols'], max(1, $matches[2]), false);
-                flush();
-                break;
+            $matches = CPGPluginAPI::filter('plugin_block', $matches);
 
-            case 'lastup':
-                display_thumbnails('lastup', $cat, 1, $CONFIG['thumbcols'], max(1, $matches[2]), false);
-                flush();
-                break;
-            case 'lastalb':
-                display_thumbnails('lastalb', $cat, 1, $CONFIG['thumbcols'], max(1, $matches[2]), false);
-                break;
+            if (is_array($matches)) {
+                switch ($matches[1]) {
+                    case 'breadcrumb':
+                        // Added breadcrumb as a separate listable block from config
+                        if (($breadcrumb != '' || count($cat_data) > 0) && $cat != 0) theme_display_breadcrumb($breadcrumb, $cat_data);
+                        break;
 
-            case 'topn':
-                display_thumbnails('topn', $cat, 1, $CONFIG['thumbcols'], max(1, $matches[2]), false);
-                flush();
-                break;
+                    case 'catlist':
+                        if ($breadcrumb != '' || count($cat_data) > 0) theme_display_cat_list($breadcrumb, $cat_data, $statistics);
+                        if (isset($cat) && $cat == USER_GAL_CAT) {
+                            list_users();
+                        }
+                        flush();
+                        break;
 
-            case 'toprated':
-                display_thumbnails('toprated', $cat, 1, $CONFIG['thumbcols'], max(1, $matches[2]), false);
-                flush();
-                break;
+                    case 'alblist':
+                        list_albums();
+                        flush();
+                        break;
 
-            case 'lastcom':
-                display_thumbnails('lastcom', $cat, 1, $CONFIG['thumbcols'], max(1, $matches[2]), false);
-                flush();
-                break;
+                    case 'random':
+                        display_thumbnails('random', $cat, 1, $CONFIG['thumbcols'], max(1, $matches[2]), false);
+                        flush();
+                        break;
 
-            case 'lasthits':
-                display_thumbnails('lasthits', $cat, 1, $CONFIG['thumbcols'], max(1, $matches[2]), false);
-                flush();
-                break;
+                    case 'lastup':
+                        display_thumbnails('lastup', $cat, 1, $CONFIG['thumbcols'], max(1, $matches[2]), false);
+                        flush();
+                        break;
 
-            case 'anycontent':
-                if ($cat == 0) {
-                    ob_start();
-                                        /**
-                                        * Any php code or HTML can be put in this file and will be displayed
-                                        */
-                    include('anycontent.php');
-                    $anycontent = CPGPluginAPI::filter('anycontent',ob_get_contents());
-                    ob_end_clean();
-                                        echo ($anycontent);
+                    case 'lastalb':
+                        display_thumbnails('lastalb', $cat, 1, $CONFIG['thumbcols'], max(1, $matches[2]), false);
+                        break;
+
+                    case 'topn':
+                        display_thumbnails('topn', $cat, 1, $CONFIG['thumbcols'], max(1, $matches[2]), false);
+                        flush();
+                        break;
+
+                    case 'toprated':
+                        display_thumbnails('toprated', $cat, 1, $CONFIG['thumbcols'], max(1, $matches[2]), false);
+                        flush();
+                        break;
+
+                    case 'lastcom':
+                        display_thumbnails('lastcom', $cat, 1, $CONFIG['thumbcols'], max(1, $matches[2]), false);
+                        flush();
+                        break;
+
+                    case 'lasthits':
+                        display_thumbnails('lasthits', $cat, 1, $CONFIG['thumbcols'], max(1, $matches[2]), false);
+                        flush();
+                        break;
+
+                    case 'anycontent':
+                        if ($cat == 0) {
+                            ob_start();
+                            /**
+                             * Any php code or HTML can be put in this file and will be displayed
+                             */
+                            include('anycontent.php');
+                            $anycontent = CPGPluginAPI::filter('anycontent',ob_get_contents());
+                            ob_end_clean();
+                            echo ($anycontent);
+                        }
+                        flush();
+                        break;
                 }
-                flush();
-                break;
-            case 'plugin':
-                echo (CPGPluginAPI::filter('plugin_content',''));
-                if ($cat == 0) {
-                    $scope = (int) $_GET['scope'];
-
-                    // Scrub: Remove '..' and leftover '//' from filename
-                    $file = str_replace('//','',str_replace('..','',$_GET['file']));
-
-                    // Don't include the codebase and credits files
-                    if ($file != 'codebase' && $file != 'credits') {
-
-                        // Include the code from the plugin
-                        @include_once('./plugins/'.$CPG_PLUGINS[$scope]->path.'/'.$file.'.php');
-                    }
-                }
-                break;
+            }
         }
-      }
-   }
+    }
 
     pagefooter();
-    ob_end_flush();
-    // Speed-up the random image query by 'keying' the image table
-    if (time() - $CONFIG['randpos_interval'] > 86400) {
-        $result = cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE 1");
-        $nbEnr = mysql_fetch_array($result);
-        mysql_free_result($result);
-        $pic_count = $nbEnr[0];
-        $granularity = floor($pic_count / RANDPOS_MAX_PIC);
-        $result = cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET randpos = ROUND(RAND()*$granularity) WHERE 1");
-        $result = cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '" . time() . "' WHERE name = 'randpos_interval'");
-    }
+}
+
+ob_end_flush();
+// Speed-up the random image query by 'keying' the image table
+if (time() - $CONFIG['randpos_interval'] > 86400) {
+    $result = cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE 1");
+    $nbEnr = mysql_fetch_array($result);
+    mysql_free_result($result);
+    $pic_count = $nbEnr[0];
+    $granularity = floor($pic_count / RANDPOS_MAX_PIC);
+    $result = cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET randpos = ROUND(RAND()*$granularity) WHERE 1");
+    $result = cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '" . time() . "' WHERE name = 'randpos_interval'");
+}
 ?>
