@@ -1066,6 +1066,12 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
                 'delete_ban' => 'Delete',
                 'add_new' => 'Add New Ban',
                 'add_ban' => 'Add',
+                'error_user' => 'Cannot find user',
+                'error_specify' => 'You need to specifiy either a user name or an IP address',
+                'error_ban_id' => 'Invalid ban ID!',
+                'error_admin_ban' => 'You cannnot ban yourself!',
+                'error_server_ban' => 'You were going to ban your own server? Tsk tsk, cannot do that...',
+                'error_ip_forbidden' => 'You cannnot ban this IP - it is non-routable!',
 );
 
 // ------------------------------------------------------------------------- //
