@@ -591,7 +591,12 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
         'see_prev' => 'See previous pictures',
         'n_pic' => '%s pictures',
         'n_of_pic_to_disp' => 'Number of picture to display',
-        'apply' => 'Apply modifications'
+        'apply' => 'Apply modifications',
+	'crop_title' => 'Crop Picture',
+	'preview' => 'Preview Crop',
+	'save' => 'Save cropped picture',
+	'save_thumb' =>'Save cropped picture as thumbnail',
+	'sel_on_img' =>'The selection has to be entirely on the image!'
 );
 
 // ------------------------------------------------------------------------- //

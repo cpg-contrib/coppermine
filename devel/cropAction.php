@@ -14,46 +14,43 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- // 
-
 define('IN_COPPERMINE', true);
-define('EDITPICS_PHP', true);
+define('INDEX_PHP', true);
 
 require('include/init.inc.php');
 
-if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+//print_r($HTTP_GET_VARS);
+$pid=(int)$HTTP_GET_VARS['id'];
+$height = (int)$HTTP_GET_VARS['h'];
+$width = (int)$HTTP_GET_VARS['w'];
+$x = (int)$HTTP_GET_VARS['x'];
+$y = (int)$HTTP_GET_VARS['y'];
 
-
-if (isset($HTTP_GET_VARS['id'])) {
-	$pid = (int)$HTTP_GET_VARS['id'];
-} elseif (isset($HTTP_GET_VARS['id'])) {
-	$pid = (int)$HTTP_POST_VARS['id'];
-} else {
-	$pid = -1;
+if (isset($HTTP_GET_VARS[pop])){
+echo <<<EOT
+<html>
+<head>
+<title></title>
+</head>
+<body leftmargin="0" topmargin="0" marginwidth="0" marginheight="0" onLoad="top.focus();">
+<a href="#" onClick="top.close();"><img src="cropAction.php?x=$x'&y=$y&h=$height&w=$width&id=$pid" border=0></a>
+</body>
+</html>
+EOT;
+exit;
 }
 
+$result = db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = '$pid'");
+$CURRENT_PIC = mysql_fetch_array($result);
+mysql_free_result($result);
 
-$title = $lang_editpics_php['edit_pics'];
-
-pageheader($title);
-
-//Code after this is Specific to the individual actions - it would be preferable to have each actions in their own inc file
-
-//Crop picture
-include("include/crop.inc.php");
-
-
-//Edit description of the picture 
-include("include/editDesc.inc.php");
-
-
-//Upload new thumbnail
-
-//Rotate Image 
-
-//Just imagine 
-
-endtable();
-echo "<center>";
-pagefooter();
-ob_end_flush();
+//print_r($CURRENT_PIC);
+$workImage = $CONFIG['fullpath'].$CURRENT_PIC['filepath'].$CURRENT_PIC['filename'];
+$workImg = ImageCreateFromjpeg ($workImage);
+$cropImg = ImageCreateTrueColor($width,$height);
+imagecopy($cropImg, $workImg, 0, 0, $x, $y, $width,$height);
+Header("Content-Type: image/jpeg");
+imagejpeg($cropImg);
+exit;
 ?>
+

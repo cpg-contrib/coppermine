@@ -147,7 +147,7 @@ if (GALLERY_ADMIN_MODE) {
 
 get_user_albums(USER_ID);
 
-starttable("100%", $title, 3);
+starttable("100%", $lang_editpics_php['desc'], 3);
 echo <<<EOT
 <SCRIPT LANGUAGE="JavaScript">
 function textCounter(field, maxlimit) {
@@ -275,4 +275,5 @@ print <<<EOT
 	</tr>
 </table>
 EOT;
+
 ?>
