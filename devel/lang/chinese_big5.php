@@ -552,7 +552,7 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
   'redirect_msg' => '頁面轉移中.<br /><br /><br />按 \'繼續\' 如果頁面沒有自動刷新',
   'upl_success' => '已經加入您的圖片', //cpg1.3.0
   'email_comment_subject' => '已經有留言發表在網路相簿', //cpg1.3.0
-  'email_comment_body' => '已經有留言發表在您的相簿. 請查閱'', //cpg1.3.0
+  'email_comment_body' => '已經有留言發表在您的相簿. 請查閱', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
