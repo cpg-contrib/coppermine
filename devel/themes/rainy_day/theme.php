@@ -24,7 +24,6 @@
 define('THEME_HAS_RATING_GRAPHICS', 1);
 define('THEME_IS_XHTML10_TRANSITIONAL',1);
 
-// HTML meta_menu inherits sys_menu settings
 // HTML template for sys_menu
 $template_sys_menu = <<<EOT
   <div class="topmenu">
