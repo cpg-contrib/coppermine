@@ -46,9 +46,7 @@ function get_meta_album_set_data($cid,&$meta_album_set_array) //adapted from ind
     $pic_filter = '';
     if (!empty($FORBIDDEN_SET) && !$cpg_show_private_album) {
         $album_filter = ' and ' . str_replace('p.', 'a.', $FORBIDDEN_SET);
-        $pic_filter = ' and ' . str_replace('p.', $CONFIG['TABLE_PICTURES'] . '.', $FORBIDDEN_SET);
     }
-
             if ($cid == USER_GAL_CAT) {
                 $sql = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category>=" . FIRST_USER_CAT . $album_filter;
                 $result = cpg_db_query($sql);
@@ -64,6 +62,7 @@ function get_meta_album_set_data($cid,&$meta_album_set_array) //adapted from ind
                 while ($row = mysql_fetch_array($result)) {
                     $meta_album_set_array[] = $row['aid'];
                 } // while
+
                 mysql_free_result($result);
             }
 
@@ -90,21 +89,21 @@ function get_meta_album_set_data($cid,&$meta_album_set_array) //adapted from ind
  **/
 function get_meta_album_set($cat, &$meta_album_set)  //adapted from index.php get_cat_list()
 {
+    global $USER_DATA;
+    if ($USER_DATA['can_see_all_albums']) {
+        $meta_album_set ='';
+    } else {
+       $meta_album_set_array=array();
+        get_meta_album_set_data($cat,$meta_album_set_array);
 
-    $meta_album_set_array=array();
-    get_meta_album_set_data($cat,$meta_album_set_array);
-/*   print("<br><pre>");
- *   print_r($meta_album_set_array);
- *   print("</pre><br>");
- */
-//trigger_error("count meta_album_set_array: " . count($meta_album_set_array). " cat: $cat",E_USER_NOTICE);
-    if (count($meta_album_set_array) && $cat) {
-//trigger_error("set: $set",E_USER_NOTICE);
-        $meta_album_set = "AND aid IN (" . implode(',',$meta_album_set_array) . ") ";
-    } elseif ($cat) {
-        $meta_album_set = "AND aid IN (-1) ";
-    }
-//trigger_error("meta_album_set: $meta_album_set",E_USER_NOTICE);
+  //    if (count($meta_album_set_array) && $cat) {
+        if (count($meta_album_set_array)) {
+            $meta_album_set = "AND aid IN (" . implode(',',$meta_album_set_array) . ") ";
+  //    } elseif ($cat) {
+        } else {
+            $meta_album_set = "AND aid IN (-1) ";
+        }
+     }
 }
 
 /**
@@ -880,7 +879,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
           'pa' => 'position ASC',
           'pd' => 'position DESC',
         );
-         $sort_code = isset($USER['sort'])? $USER['sort'] : $CONFIG['default_sort_order'];
+        $sort_code = isset($USER['sort'])? $USER['sort'] : $CONFIG['default_sort_order'];
         $sort_order = isset($sort_array[$sort_code]) ? $sort_array[$sort_code] : $sort_array[$CONFIG['default_sort_order']];
         $limit = ($limit1 != -1) ? ' LIMIT '. $limit1 : '';
         $limit .= ($limit2 != -1) ? ' ,'. $limit2 : '';

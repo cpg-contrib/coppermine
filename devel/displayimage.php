@@ -234,6 +234,7 @@ if (!is_numeric($album) && $cat) { // Meta albums, we need to restrict the album
 */
 //get_meta_album_set in functions.inc.php will populate the $ALBUM_SET instead; matches $META_ALBUM_SET.
 get_meta_album_set($cat,$ALBUM_SET);
+$META_ALBUM_SET = $ALBUM_SET; //displayimage uses $ALBUM_SET but get_pic_data in functions now uses $META_ALBUM_SET
 
 // Retrieve data for the current picture
 if ($pos < 0 || $pid > 0) {
