@@ -42,7 +42,7 @@ function get_album_data()
 function albumselect($id = "album") {
 // frogfoot re-wrote this function to present the list in categorized, sorted and nicely formatted order
 
-    global $CONFIG, $lang_picmgr_php, $aid;
+    global $CONFIG, $lang_picmgr_php, $aid, $lang_errors;
     static $select = "";
 
     // Reset counter
@@ -76,15 +76,19 @@ function albumselect($id = "album") {
         }
 
         // albums in user's personal galleries
-        //if (defined('UDB_INTEGRATION')) {
-        //    $sql = udb_get_admin_album_list();
-        //} else {
+        if (defined('UDB_INTEGRATION')) {
+            if (GALLERY_ADMIN_MODE) {
+                $sql = udb_get_admin_album_list();
+            } else {
+                cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+            }
+        } else {
             if (GALLERY_ADMIN_MODE) {
                 $sql = "SELECT aid, CONCAT('(', user_name, ') ', title) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id)";
             } else {
                 $sql = "SELECT aid, title AS title FROM {$CONFIG['TABLE_ALBUMS']}  WHERE category = " . (FIRST_USER_CAT + USER_ID);
             }
-        //}
+        }
         $result = cpg_db_query($sql);
         while ($row = mysql_fetch_array($result)) {
             // Add to multi-dim array for later sorting
