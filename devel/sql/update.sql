@@ -17,10 +17,12 @@ INSERT INTO CPG_config VALUES ('read_iptc_data', '0');
 
 INSERT INTO CPG_config VALUES ('disable_popup_rightclick', '0');
 INSERT INTO CPG_config VALUES ('disable_gallery_rightclick', '0');
+INSERT INTO CPG_config VALUES ('nice_titles', '0');
+INSERT INTO CPG_config VALUES ('user_table_prefix','nuke_');
+=======
 
 # Modify structure for category thumb
 ALTER TABLE `CPG_categories` ADD `thumb` INT NOT NULL AFTER `parent` ;
-
 
 #
 # Table structure for table `CPG_banned`
