@@ -26,12 +26,14 @@ if (!USER_CAN_UPLOAD_PICTURES) {
 // Type 0 => input
 // 1 => file input
 // 2 => album list
+$captionLabel = $lang_upload_php['description'];
+if ($CONFIG['show_bbcode_help']) {$captionLabel .= '<hr />'.$lang_bbcode_help;}
 $data = array(
     sprintf($lang_upload_php['max_fsize'], $CONFIG['max_upl_size']),
     array($lang_upload_php['album'], 'album', 2),
     array($lang_upload_php['picture'], 'userpicture', 1),
     array($lang_upload_php['pic_title'], 'title', 0, 255),
-    array($lang_upload_php['description'], 'caption', 3, $CONFIG['max_img_desc_length']),
+    array($captionLabel, 'caption', 3, $CONFIG['max_img_desc_length']),
     array($lang_upload_php['keywords'], 'keywords', 0, 255),
     array($CONFIG['user_field1_name'], 'user1', 0, 255),
     array($CONFIG['user_field2_name'], 'user2', 0, 255),

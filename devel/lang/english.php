@@ -90,6 +90,8 @@ $lang_errors = array(
         'offline_text' => 'Gallery is currently offline check back soon'
 );
 
+$lang_bbcode_help = 'Following codes might be useful: <li>[b]<b>Bold</b>[/b]</li> <li>[i]<i>Italic</i>[/i]</li> <li>[url=http://yoursite.com/]Url Text[/url]</li> <li>[email]user@domain.com[/email]</li>';
+
 // ------------------------------------------------------------------------- //
 // File theme.php
 // ------------------------------------------------------------------------- //
@@ -375,6 +377,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Display theme list', 'theme_list', 8),
         array('Display &quot;reset&quot; in theme selection', 'theme_reset', 1),
         array('Display FAQ', 'display_faq', 1),
+        array('Display bbcode help', 'show_bbcode_help', 1),
         array('Character encoding', 'charset', 4),
 
         'Album list view',
