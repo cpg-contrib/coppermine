@@ -506,6 +506,9 @@ function create_form(&$data)
     foreach($data as $element) {
         if ((is_array($element))) {
         	$element[3] = (isset($element[3])) ? $element[3] : '';
+        	$sn1 = max($sn1(strpos($element[0],'<a href="#notice1"')));
+        	$sn2 = max($sn2(strpos($element[0],'<a href="#notice2"')));
+        	$sn3 = max($sn3(strpos($element[0],'<a href="#notice3"')));
             switch ($element[2]) {
                 case 0 :
                     form_input($element[0], $element[1], $element[3]);
