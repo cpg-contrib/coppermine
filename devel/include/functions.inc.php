@@ -1544,12 +1544,10 @@ switch ($parameter) {
        break;
    default:
        $return.= $lineBreak . '<form name="cpgChooseLanguage" action="' . $cpgChangeUrl . '" method="get" style="margin-top:0px;margin-bottom:0px;margin-left:0px;margin-right:0px;display:inline">' . $lineBreak;
-       if ($CONFIG['language_list'] == 2){
-           $return.= $lang_language_selection['choose_language'].':';
-       }
        $return.= '<select name="cpgLanguageSelect" class="listbox_lang" onchange="if (this.options[this.selectedIndex].value) window.location.href=\'' . $cpgChangeUrl . '\' + this.options[this.selectedIndex].value;">' . $lineBreak;
+       $return.='<option selected="selected">' . $lang_language_selection['choose_language'] . '</option>' . $lineBreak;
        foreach ($lang_array as $language) {
-          $return.=  '<option value="' . $language . '" ' . ($value == $language ? 'selected' : '') . '>';
+          $return.=  '<option value="' . $language  . '" >';
               if (array_key_exists($language, $lang_language_data)){
               $return.= $lang_language_data[$language][0];
               if ($lang_language_data[$language][1] != $lang_language_data[$language][0]){
@@ -1559,6 +1557,7 @@ switch ($parameter) {
               else{
                   $return.= ucfirst($language);
                   }
+              $return.= ($value == $language ? '*' : '');
               $return.= '</option>' . $lineBreak;
               }
           if ($CONFIG['language_reset'] == 1){
@@ -1610,12 +1609,10 @@ switch ($parameter) {
        break;
    default:
        $return.= $lineBreak . '<form name="cpgChooseTheme" action="' . $cpgCurrentTheme . '" method="get" style="margin-top:0px;margin-bottom:0px;margin-left:0px;margin-right:0px;display:inline">' . $lineBreak;
-       if ($CONFIG['theme_list'] == 2){
-           $return.= $lang_theme_selection['choose_theme'].':';
-       }
        $return.= '<select name="cpgThemeSelect" class="listbox_lang" onchange="if (this.options[this.selectedIndex].value) window.location.href=\'' . $cpgCurrentTheme . '\' + this.options[this.selectedIndex].value;">' . $lineBreak;
+       $return.='<option selected="selected">' . $lang_theme_selection['choose_theme'] . '</option>';
        foreach ($theme_array as $theme) {
-           $return.= '<option value="' . $theme . '" ' . ($value == $theme ? 'selected' : '') . '>' . strtr(ucfirst($theme), '_', ' ') . '</option>' . $lineBreak;
+           $return.= '<option value="' . $theme . '">' . strtr(ucfirst($theme), '_', ' ') . ($value == $theme ? '*' : ''). '</option>' . $lineBreak;
        }
           if ($CONFIG['theme_reset'] == 1){
               $return.=  '<option value="xxx">' . $lang_theme_selection['reset_theme'] . '</option>' . $lineBreak;
