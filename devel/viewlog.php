@@ -35,13 +35,15 @@ function display_log_list()
                                                 <img src="images/folder.gif" alt="" />&nbsp;<a href= "$PHP_SELF?log={$log['logname']}">{$log['logname']}</a>
                                         </td>
                                 </tr>
+EOT;
+            }
+            echo <<<EOT
                                 <tr>
                                         <td class="tableb" align="center">
                                                 <input class="button" type="button" value="{$lang_viewlog_php['delete_all']}" name="dall" id="dall" onclick="window.location='viewlog.php?action=dall';" />
                                         </td>
                                 </tr>
 EOT;
-            }
     } else {
             cpg_die(INFORMATION,$lang_viewlog_php['no_logs'], __FILE__,1);
     }
