@@ -1,8 +1,9 @@
 <?php
-define ("SMARTY_DIR" , "smarty/libs/");
+define ("SMARTY_DIR" , "libs/smarty/");
 include(SMARTY_DIR . 'Smarty.class.php');
 class cpgTemplate extends Smarty{
   var $template_dir = "templates/";
+  var $compile_dir = "templates_c/";
   var $compile_check = true;
   var $debugging = false;
   var $force_compile = true;
