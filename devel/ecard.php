@@ -59,6 +59,9 @@ if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FIL
 $row = mysql_fetch_array($result);
 $thumb_pic_url = get_pic_url($row, 'thumb');
 
+$pic_title = $row['title'];
+$pic_caption = bb_decode($row['caption']);
+
 if (!is_image($row['filename'])) cpg_die(ERROR, $lang_ecard_php['error_not_image'], __FILE__, __LINE__);
 
 // Check supplied email address
@@ -92,6 +95,9 @@ if (count($_POST) > 0 && $valid_sender_email && $valid_recipient_email) {
         'p' => $n_picname,
         'g' => $greetings,
         'm' => $message,
+        'pid' => $pid,
+        'pt' => $pic_title,
+        'pc' => $pic_caption,
         );
 
     $encoded_data = urlencode(base64_encode(serialize($data)));
@@ -111,6 +117,9 @@ if (count($_POST) > 0 && $valid_sender_email && $valid_recipient_email) {
         '{SENDER_NAME}' => $sender_name,
         '{VIEW_MORE_TGT}' => $CONFIG['ecards_more_pic_target'],
         '{VIEW_MORE_LNK}' => $lang_ecard_php['view_more_pics'],
+        '{PID}' => $pid,
+        '{PIC_TITLE}' => $pic_title,
+        '{PIC_CAPTION}' => $pic_caption,
         );
 
                                 $message = template_eval($template_ecard, $params);
@@ -165,6 +174,9 @@ elseif (isset($_POST['preview'])) {
         'p' => $n_picname,
         'g' => $greetings,
         'm' => $message,
+        'pid' => $pid,
+        'pt' => $pic_title,
+        'pc' => $pic_caption,
         );
 
     $params = array('{LANG_DIR}' => $lang_text_dir,
@@ -180,6 +192,9 @@ elseif (isset($_POST['preview'])) {
         '{SENDER_NAME}' => $sender_name,
         '{VIEW_MORE_TGT}' => $CONFIG['ecards_more_pic_target'],
         '{VIEW_MORE_LNK}' => $lang_ecard_php['view_more_pics'],
+        '{PID}' => $pid,
+        '{PIC_TITLE}' => $pic_title,
+        '{PIC_CAPTION}' => $pic_caption,
         );
 
                                 starttable('100%', $lang_ecard_php['preview']);
@@ -200,7 +215,8 @@ echo <<<EOT
         <tr>
                 <td class="tableh2" colspan="2"><b>{$lang_ecard_php['from']}</b></td>
                 <td rowspan="6" align="center" valign="top" class="tableb">
-                        <img src="$thumb_pic_url" alt="" vspace="8" border="0" class="image"><br />
+                        <a href="displayimage.php?pos=-{$pid}">
+												<img src="$thumb_pic_url" alt="" vspace="8" border="0" class="image"></a><br />
                 </td>
         </tr>
         <tr>

@@ -927,10 +927,16 @@ $template_ecard = <<<EOT
       <table border="0px" cellspacing="0px" cellpadding="10px" bgcolor="#ffffff">
         <tr>
           <td valign="top">
-           <img src="{PIC_URL}" border="1px" alt="" /><br />
+           <a href="{VIEW_MORE_TGT}/displayimage.php?pos=-{PID}">
+					 <img src="{PIC_URL}" border="1px" alt="" /></a>
+					 <br />
+					 <div align="center">
+						 <h2>{PIC_TITLE}</h2>
+					 </div>
+					 
           </td>
-          <td valign="top" width="200px">
-            <div align="right"><img src="{URL_PREFIX}images/stamp.gif" alt="" border="0px" alt="" /></div>
+          <td valign="top" width="300px">
+            <div align="right"><img src="{URL_PREFIX}images/stamp.gif" border="0px" alt="" /></div>
             <br />
             <b><font face="arial" color="#000000" size="4">{GREETINGS}</font></b>
             <br />
@@ -942,6 +948,11 @@ $template_ecard = <<<EOT
             (<a href="mailto:{SENDER_EMAIL}"><font face="arial" color="#000000" size="2">{SENDER_EMAIL}</font></a>)
           </td>
         </tr>
+		<tr>
+			<td colspan="2">
+				{PIC_CAPTION}
+			</td>
+		</tr>
       </table>
     </td>
   </tr>
