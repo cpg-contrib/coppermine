@@ -104,14 +104,17 @@ function process_smilies($message, $url_prefix = '')
     static $orig, $repl;
 
     if (!isset($orig)) {
-        global $db, $board_config;
+        global $db, $board_config,$THEME_DIR;
         $orig = $repl = array();
 
         $smilies = get_smilies_table1();
 
+        $paths = array($THEME_DIR.'/smiles/','images/smiles/');
+
         for($i = 0; $i < count($smilies); $i++) {
             $orig[] = "/(?<=.\W|\W.|^\W)" . preg_quote($smilies[$i][0], "/") . "(?=.\W|\W.|\W$)/";
-            $repl[] = '<img src="' . $url_prefix . 'images/smiles' . '/' . ($smilies[$i][1]) . '" alt="' . ($smilies[$i][2]) . '" border="0" />';
+            $smile_path = (file_exists($paths[0].$smilies[$i][1]))?($paths[0]):($paths[1]);
+            $repl[] = '<img src="' . $url_prefix . $smile_path . ($smilies[$i][1]) . '" alt="' . ($smilies[$i][2]) . '" border="0" />';
         }
     }
 
@@ -128,12 +131,14 @@ function process_smilies($message, $url_prefix = '')
 function generate_smilies($form = 'post', $field = 'message')
 {
     $smilies = get_smilies_table2();
+    $paths = array($THEME_DIR.'/smiles/','images/smiles/');
 
     $html = '<table width="100%" border="0" cellspacing="0" cellpadding="0">' . "\n" . '        <tr align="center" valign="middle">' . "\n";
 
     foreach($smilies as $smiley) {
+        $smile_path = (file_exists($paths[0].$smiley[1]))?($paths[0]):($paths[1]);
         $caption = $smiley[2] . " " . $smiley[0];
-        $html .= '                <td width="5%"><a href="javascript:emoticon_' . $form . '(\'' . $smiley[0] . '\')"><img src="images/smiles/' . $smiley[1] . '" alt="' . $caption . '" width="15" height="15" border="0" title="' . $caption . '"/></a></td>' . "\n";
+        $html .= '                <td width="5%"><a href="javascript:emoticon_' . $form . '(\'' . $smiley[0] . '\')"><img src="' . $smile_path . $smiley[1] . '" alt="' . $caption . '" width="15" height="15" border="0" title="' . $caption . '"/></a></td>' . "\n";
     }
 
     $html .= '        </tr>' . "\n" . '</table>' . "\n";
