@@ -69,7 +69,11 @@ function exif_parse_file($filename)
         if (isset($exif['focalLength'])){
                 $exifParsed['FocalLength'] = $exif['focalLength'];
         }
-
+		
+        if (isset($exif['isoEquiv'])){
+                $exifParsed['ISO'] = $exif['isoEquiv'];
+        }
+		
         if (isset($exif['exifComment'])){
                 $comment = $exif['exifComment'];
                 $exifParsed['Comment'] = $comment; // eregi_replace("ASCII"," ", $comment);
