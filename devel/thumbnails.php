@@ -8,6 +8,8 @@
 //  Based on PHPhotoalbum by Henning Støverud <henning@stoverud.com>         //
 //  http://www.stoverud.com/PHPhotoalbum/                                    //
 // ------------------------------------------------------------------------- //
+//  Hacked by Tarique Sani <tarique@sanisoft.com>                            //
+// ------------------------------------------------------------------------- //
 //  This program is free software; you can redistribute it and/or modify     //
 //  it under the terms of the GNU General Public License as published by     //
 //  the Free Software Foundation; either version 2 of the License, or        //
@@ -119,7 +121,12 @@ if (is_numeric($album)){
 }
 
 pageheader(isset($CURRENT_ALBUM_DATA) ? $CURRENT_ALBUM_DATA['title'] : $lang_meta_album_names[$album]);
-if ($breadcrumb) theme_display_cat_list($breadcrumb, $cat_data, '');
+
+if ($breadcrumb) {
+                theme_display_breadcrumb($breadcrumb, $cat_data);
+                theme_display_cat_list($breadcrumb, $cat_data, '');
+}
+
 display_thumbnails($album, (isset($cat) ? $cat : 0), $page, $CONFIG['thumbcols'], $CONFIG['thumbrows'], true);
 pagefooter();
 ob_end_flush();
