@@ -922,16 +922,13 @@ $template_report_plaintext = <<<EOT
 EOT;
 
 // Template used for tabbed display
-$template_tab_display = array('left_text' => '<td width="100%%" align="left" valign="middle" class="tableh1_compact" nowrap="nowrap"><b>{LEFT_TEXT}</b></td>' . "\n",
+$template_tab_display = array('left_text' => '<td width="100%%" align="left" valign="middle" class="tableh1_compact" style="white-space: nowrap"><b>{LEFT_TEXT}</b></td>' . "\n",
     'tab_header' => '',
     'tab_trailer' => '',
-    'active_next_tab' => '<td><img src="images/spacer.gif" width="1px" height="1px" border="0px" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%s</b></td>',
-    'inactive_next_tab' => '<td><img src="images/spacer.gif" width="1px" height="1px" border="0px" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"><b>%s</b></a></td>',
-    'active_prev_tab' => '<td><img src="images/spacer.gif" width="1px" height="1" border="0px" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%s</b></td>',
-    'inactive_prev_tab' => '<td><img src="images/spacer.gif" width="1px" height="1px" border="0px" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"><b>%s</b></a></td>',
-    'active_tab' => '<td><img src="images/spacer.gif" width="1px" height="1px" border="0px" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%d</b></td>',
-    'inactive_tab' => '<td><img src="images/spacer.gif" width="1px" height="1px" border="0px" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"><b>%d</b></a></td>' . "\n"
+    'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%d</b></td>',
+    'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"><b>%d</b></a></td>' . "\n"
     );
+
 
 function pageheader($section, $meta = '')
 {

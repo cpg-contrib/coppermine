@@ -260,7 +260,7 @@ $template_album_list = <<<EOT
                 <td colspan="{COLUMNS}" style="padding: 0px;">
                         <table width="100%" cellspacing="0" cellpadding="0">
                                 <tr>
-                                        <td>{TABS}</td>
+                                        {TABS}
                                 </tr>
                         </table>
                 </td>
@@ -347,7 +347,7 @@ $template_album_list_cat = <<<EOT
                 <td colspan="{COLUMNS}" style="padding: 0px;">
                         <table width="100%" cellspacing="0" cellpadding="0">
                                 <tr>
-                                        <td>{TABS}</td>
+                                       {TABS}
                                 </tr>
                         </table>
                 </td>
@@ -454,7 +454,7 @@ $template_thumbnail_view = <<<EOT
                 <td colspan="{THUMB_COLS}" style="padding: 0px;">
                         <table width="100%" cellspacing="0" cellpadding="0">
                                 <tr>
-                                        <td>{TABS}</td>
+                                        {TABS}
                                 </tr>
                         </table>
                 </td>
@@ -913,15 +913,11 @@ EOT;
 
 
 // Template used for tabbed display
-$template_tab_display = array('left_text' => '<table><tr><td width="100%%" align="left" valign="middle" class="tableh1_compact" nowrap="nowrap"><b>{LEFT_TEXT}</b></td></tr></table>' . "\n",
+$template_tab_display = array('left_text' => '<td width="100%%" align="left" valign="middle" class="tableh1_compact" style="white-space: nowrap"><b>{LEFT_TEXT}</b></td>' . "\n",
     'tab_header' => '',
     'tab_trailer' => '',
-    'active_next_tab' => '<td><img src="images/spacer.gif" width="1px" height="1px" border="0px" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%s</b></td>',
-    'inactive_next_tab' => '<td><img src="images/spacer.gif" width="1px" height="1px" border="0px" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"><b>%s</b></a></td>',
-    'active_prev_tab' => '<td><img src="images/spacer.gif" width="1px" height="1" border="0px" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%s</b></td>',
-    'inactive_prev_tab' => '<td><img src="images/spacer.gif" width="1px" height="1px" border="0px" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"><b>%s</b></a></td>',
-    'active_tab' => '<td><img src="images/spacer.gif" width="1px" height="1px" border="0px" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%d</b></td>',
-    'inactive_tab' => '<td><img src="images/spacer.gif" width="1px" height="1px" border="0px" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"><b>%d</b></a></td>' . "\n"
+    'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%d</b></td>',
+    'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="{LINK}"><b>%d</b></a></td>' . "\n"
     );
 
 function pageheader($section, $meta = '')
@@ -1338,10 +1334,10 @@ function theme_display_album_list_cat(&$alb_list, $nbAlb, $cat, $page, $total_pa
     if (!$CONFIG['first_level']) {
         return;
     }
-    // $theme_alb_list_tab_tmpl = $template_tab_display;
-    // $theme_alb_list_tab_tmpl['left_text'] = strtr($theme_alb_list_tab_tmpl['left_text'],array('{LEFT_TEXT}' => $lang_album_list['album_on_page']));
-    // $theme_alb_list_tab_tmpl['inactive_tab'] = strtr($theme_alb_list_tab_tmpl['inactive_tab'],array('{LINK}' => 'index.php?cat='.$cat.'&amp;page=%d'));
-    // $tabs = create_tabs($nbAlb, $page, $total_pages, $theme_alb_list_tab_tmpl);
+    $theme_alb_list_tab_tmpl = $template_tab_display;
+    $theme_alb_list_tab_tmpl['left_text'] = strtr($theme_alb_list_tab_tmpl['left_text'],array('{LEFT_TEXT}' => $lang_album_list['album_on_page']));
+    $theme_alb_list_tab_tmpl['inactive_tab'] = strtr($theme_alb_list_tab_tmpl['inactive_tab'],array('{LINK}' => 'index.php?cat='.$cat.'&amp;page=%d'));
+    $tabs = create_tabs($nbAlb, $page, $total_pages, $theme_alb_list_tab_tmpl);
     // echo $template_album_list_cat;
     $template_album_list_cat1 = $template_album_list_cat;
     $album_cell = template_extract_block($template_album_list_cat1, 'c_album_cell');
