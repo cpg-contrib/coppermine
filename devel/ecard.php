@@ -24,7 +24,7 @@ require('include/mailer.inc.php');
 
 if (!USER_CAN_SEND_ECARDS) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 // cheap cookie fix
-if (!USER) setcookie('ecard',1);
+if ((!USER) && ($_COOKIE['cookiename']!=0)) setcookie('ecard',1);
 function get_post_var($name, $default = '')
 {
     global $HTTP_POST_VARS;
