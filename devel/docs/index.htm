@@ -229,17 +229,21 @@ acronym {
                </li>
                <li class="content"><a href="#integrating_steps_start" class="menu2">5.3 Integration steps</a>
                    <ul class="content">
-                       <li class="content"><a href="#integrating_steps_settings_start">5.3.1 Check your bbs settings</a></li>
-                       <li class="content"><a href="#integrating_steps_bridge_start">5.3.2 Edit your bridge file</a></li>
-                       <li class="content"><a href="#integrating_steps_init_start">5.3.3 Enable bbs integration</a></li>
-                       <li class="content"><a href="#integrating_steps_special_start">5.3.4 Special steps depending on the bbs you use</a>
+                     <li class="content"><a href="#bridge_manager_start">5.3.1 Using the bridge manager</a></li>
+                     <li class="content"><a href="#integration_manual_start">5.3.2 Manual integration</a>
+                       <ul class="content">
+                           <li class="content"><a href="#integrating_steps_settings_start">5.3.2.1 Check your bbs settings</a></li>
+                           <li class="content"><a href="#integrating_steps_bridge_start">5.3.2.2 Edit your bridge file</a></li>
+                           <li class="content"><a href="#integrating_steps_init_start">5.3.2.3 Enable bbs integration</a></li>
+                       </ul>
+                       <li class="content"><a href="#integrating_steps_special_start">5.3.3 Special steps depending on the bbs you use</a>
                            <ul class="content">
-                               <li class="content"><a href="#integrating_steps_special_phpbb_start">5.3.4.1 For phpBB only</a></li>
-                               <li class="content"><a href="#integrating_steps_special_punbb_start">5.3.4.2 For PunBB only</a></li>
+                               <li class="content"><a href="#integrating_steps_special_phpbb_start">5.3.3.1 For phpBB only</a></li>
+                               <li class="content"><a href="#integrating_steps_special_punbb_start">5.3.3.2 For PunBB only</a></li>
                            </ul>
                        </li>
-                       <li class="content"><a href="#integrating_steps_upload_start">5.3.5 Upload the modified files</a></li>
-                       <li class="content"><a href="#integrating_steps_sync_start">5.3.6 Synchronsising the bbs groups with Coppermine's groups</a></li>
+                       <li class="content"><a href="#integrating_steps_upload_start">5.3.4 Upload the modified files</a></li>
+                       <li class="content"><a href="#integrating_steps_sync_start">5.3.5 Synchronsising the bbs groups with Coppermine's groups</a></li>
                    </ul>
                </li>
             </ul>
@@ -1504,8 +1508,27 @@ Coppermine: http://gallery.yourdomain.com/</td>
 <a name="integrating_steps_start"></a>
 <h2>5.3 Integration steps</h2>
 
+<a name="bridge_manager_start"></a>
+<h3>5.3.1 Using the bridge manager</h3>
+<p>The bridge manager is a new feature in cpg1.4, it is not available in older versions. Instead of manually editing coppermine code files, you can enable/disable bridging in your browser, using a wizard-like user interface. To start the bridge manager, log in as admin, choose &quot;Admin Tools&quot; from the navigation and the &quot;bridge manager&quot;</p>
+<p><img src="pics/bridge_01_start.gif" width="429" height="72" border="0" alt="" align="right" />If you run the bridge manager for the first time, there will only be one button that let's you actually start the wizard (if you return to the bridge manager later, you will also find a switch to enable/disable bridging) click it.</p>
+<p class="important">Note: with each step in the wizard, some information is being written to the coppermine database. Unlike other wizards (mostly on your local machine), the bridge manager doesn't have a &quot;&quot;cancel&quot;-button! Once you have enabled bridging and everything is working fine, you shouldn't change any values just out of curiosity, as they will get written to the database, which might result in a bridging that used to work not working any more after &quot;playing&quot; with it.<br clear="all" /></p>
+<p><img src="pics/bridge_02_app.gif" width="581" height="368" border="0" alt="" align="right" />In the first actual step of the wizard &quot;choose application to bridge coppermine with&quot;, you have to choose the application you actually want to coppermine with. Note that you <b>must</b> have this application already installed on your webserver, it has to be properly configured and must be up-and-running. Don't use the bridge manager yet if you only <i>plan</i> to integrate coppermine with another application later.<br />
+If you have a custom-made bridge file that is not available in the wizard, choose the radio button in front of the text field and enter the name of your bridge file there, without the extension &quot;.inc.php&quot; (the bridge file must reside in the coppermine sub-folder &quot;bridge&quot;).<br />
+Click &quot;next&quot;</p>
+<p>The next steps depend on the application you have chosen to bridge with: some applications need <acronym title="Uniform Resource Locator">URL</acronym>s to be entered, or paths. Some need mySQL table information or cookie data to be entered, others don't. The point of the wizard is that it will only &quot;aks&quot; you the relevant settings for your application - if one or more items of the following description doesn't turn up for your application, there's no need to worry - just keep filling in the mandatory information and then hit &quot;next&quot;.<br clear="all" /></p>
+<ul>
+<li>to be continued</li>
+</ul>
+<p class="small">[cpg1.4.0 or better required]</p>
+<a name="bridge_manager_end"></a>
+<p><a class="back" href="#top">Back to top</a></p><hr />
+
+<a name="integration_manual_start"></a>
+<h3>5.3.2 Manual integration</h3>
+
 <a name="integrating_steps_settings_start"></a>
-<h3>5.3.1 Check your bbs settings</h3>
+<h4>5.3.2.1 Check your bbs settings</h4>
 <p>You will also need to perform the following operations after having unpacked the archive on your harddrive and before uploading the files to your webserver:</p>
 <ul>
 <li>If you are using <b>phpBB</b> 2, go to the admin control panel and check that &quot;Cookie domain&quot; corresponds to your domain, &quot;Cookie name&quot; is &quot;phpbb2mysql&quot; and &quot;Cookie path&quot; is &quot;/&quot;.</li>
@@ -1515,7 +1538,7 @@ Coppermine: http://gallery.yourdomain.com/</td>
 <a name="integrating_steps_settings_end"></a>
 
 <a name="integrating_steps_bridge_start"></a>
-<h3>5.3.2 Edit your bridge file</h3>
+<h4>5.3.2.2 Edit your bridge file</h4>
 <p>Go to the <i>bridge</i> directory and open the file that corresponds to the bulletin board you use (eg. <i>phpbb.inc.php</i> if you use phpBB) with a text editor.</p>
 <p>At the beginning of the file there are a number a configuration values that need to be set. For phpBB as an example they are the following :</p>
 <pre>// database configuration
@@ -1537,7 +1560,7 @@ define('PHPBB_LOGOUT_GET', TRUE);</pre>
 <a name="integrating_steps_bridge_end"></a>
 
 <a name="integrating_steps_init_start"></a>
-<h3>5.3.3 Enable bbs integration</h3>
+<h4>5.3.2.3 Enable bbs integration</h4>
 <p>Edit the file <i>include/init.inc.php</i>. At the beginning of the file you will find the following lines :</p>
 <pre>// User database integration
 // Uncomment the applicable line if you want to use it
@@ -1553,13 +1576,14 @@ define('PHPBB_LOGOUT_GET', TRUE);</pre>
 <p>Un-comment the line that corresponds to the bulletin board you use (eg. remove the &quot;//&quot; that are at the beginning of the line)</p>
 <pre>define('UDB_INTEGRATION', 'phpbb');</pre>
 <a name="integrating_steps_init_end"></a>
+<a name="integration_manual_end"></a>
 
 <a name="integrating_steps_special_start"></a>
-<h3>5.3.4 Special steps depending on the bbs you use</h3>
+<h3>5.3.3 Special steps depending on the bbs you use</h3>
 <p><span class="important">Important</span>: if you use phpBB or PunBB, you'll have to do this additional steps</p>
 
 <a name="integrating_steps_special_phpbb_start"></a>
-<h4>5.3.4.1 For phpBB only</h4>
+<h4>5.3.3.1 For phpBB only</h4>
 <p>Create a new file named <b>cpg_redir.php</b> in your <b>phpBB directory</b>, and paste the following code into the file:</p>
 <pre>&lt;?php
 if (!$_SERVER['HTTP_HOST']) {
@@ -1580,7 +1604,7 @@ exit;
 <a name="integrating_steps_special_phpbb_end"></a>
 
 <a name="integrating_steps_special_punbb_start"></a>
-<h4>5.3.4.2 For PunBB only</h4>
+<h4>5.3.3.2 For PunBB only</h4>
 <p>Create a new file named <b>redir.php</b> in your <b>PunBB directory</b>, and paste the following code into the file:</p>
 <pre>&lt;?php
 
@@ -1606,12 +1630,12 @@ if (isset($_POST['redir'])){
 <a name="integrating_steps_special_end"></a>
 
 <a name="integrating_steps_upload_start"></a>
-<h3>5.3.5 Upload the modified files</h3>
+<h3>5.3.4 Upload the modified files</h3>
 <p>Upload all modified files (the file in the &quot;bridge&quot; folder that corresponds to your bbs and the file <i>include/init.inc.php</i>, plus the redirector files your created in step &quot;Special steps for depending on the bbs you use&quot; if you're using one of the mentioned bbs) onto your webserver. Visit your coppermine gallery in your browser. To login as an admin, you will need to use the admin username and password of your board.</p>
 <a name="integrating_steps_upload_end"></a>
 
 <a name="integrating_steps_sync_start"></a>
-<h3>5.3.6 Synchronsising the bbs groups with Coppermine's groups</h3>
+<h3>5.3.5 Synchronsising the bbs groups with Coppermine's groups</h3>
 <p>Login using the admin account of your board. Go to the gallery, enter admin mode and click on the &quot;Groups&quot; button. This will synchronize Coppermine groups with those of your board. The permission you will see for each group will be completely messy, so take some time to set them properly.</p>
 <p>Each time you add or delete a group in your board you will need to do the operation above in order to keep the synchronisation of the groups.</p>
 <p>When you will try to login / logout or manage users from Coppermine, you will be redirected to the corresponding page of your bulletin board. Once the login or logout is performed you won't be redirected automatically to the gallery because your board does not have any function for that. It's up to you to add a link on your board to get you back to the gallery.</p>
