@@ -808,6 +808,7 @@ if (count($_POST) > 0) {
             if ((is_array($element))) {
                 if (!isset($_POST[$element[1]])) /*cpg_die(CRITICAL_ERROR, "Missing admin value for '{$element[1]}'", __FILE__, __LINE__);*/ continue;
                 $value = addslashes($_POST[$element[1]]);
+                if ($element[1] == 'ecards_more_pic_target' && substr($value, -1, 1) != '/') $value .= '/';
                 if ($CONFIG[$element[1]] !== stripslashes($value))
                      {
                         cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = '{$element[1]}'");
