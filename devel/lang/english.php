@@ -636,11 +636,8 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Timezone difference relative to GMT (current time: ' . localised_date(-1, $comment_date_fmt) . ')','time_offset',0, 'f=index.htm&amp;as=admin_general_time-offset&amp;ae=admin_general_time-offset_end&amp;top=1'), //cpg 1.4
   array('Enable encrypted passwords (can not be undone)','enable_encrypted_passwords',1, 'f=index.htm&amp;as=admin_general_encrypt_password_start&amp;ae=admin_general_encrypt_password_end&amp;top=1'), // cpg 1.4
   array('Enable help-icons (help available in English only)','enable_help',9, 'f=index.htm&amp;as=admin_general_help&amp;ae=admin_general_help_end'), //cpg 1.4
-  array('Enable clickable keywords in search','clickable_keyword_search',14), //cpg 1.4
-  array('Show number of linked files','link_pic_count',1), //cpg 1.4
-  array('Show the vanity block on themes that are defined as XHTML and CSS compliant','vanity_block',1, 'f=index.htm&amp;as=vanity_block&amp;ae=vanity_block_end'), //cpg 1.4
-
-
+  array('Enable clickable keywords in search','clickable_keyword_search',14, 'f=index.htm&amp;as=admin_general_keywords_start&amp;ae=admin_general_keywords_end'), //cpg 1.4
+  array('Show number of linked files','link_pic_count',1, 'f=index.htm&amp;as=admin_general_linked_files_start&amp;ae=admin_general_linked_files_end'), //cpg 1.4
 
   'Language, Themes &amp; Charset settings',
   array('Language', 'lang', 5, 'f=index.htm&amp;as=admin_language_language&amp;ae=admin_language_language_end'), //cpg 1.4
@@ -655,6 +652,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Display bbcode help', 'show_bbcode_help', 1, 'f=index.htm&amp;as=admin_language_bbcode&amp;ae=admin_language_bbcode_end&amp;top=1'), //cpg 1.4
   //array('Display previous/next on tabbed pages', 'previous_next_tab', 1), //cpg 1.4
   array('Character encoding', 'charset', 4, 'f=index.htm&amp;as=admin_language_charset&amp;ae=admin_language_charset_end'), //cpg 1.4
+  array('Show the vanity block on themes that are defined as XHTML and CSS compliant','vanity_block',1, 'f=index.htm&amp;as=vanity_block&amp;ae=vanity_block_end'), //cpg 1.4
 
   'Album list view',
   array('Width of the main table (pixels or %)', 'main_table_width', 0, 'f=index.htm&amp;as=admin_album_table-width&amp;ae=admin_album_table-width_end'), //cpg 1.4
@@ -1357,7 +1355,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'alb_title' => 'Album title',
   'alb_cat' => 'Album category',
   'alb_desc' => 'Album description',
-  'alb_keyword' => 'Album Keyword (used for displaying images from other album into this album)', //cpg 1.4
+  'alb_keyword' => 'Album Keyword (used for displaying images from other albums into this album)', //cpg 1.4
   'alb_thumb' => 'Album thumbnail',
   'alb_perm' => 'Permissions for this album',
   'can_view' => 'Album can be viewed by',

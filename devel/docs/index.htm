@@ -760,6 +760,11 @@ When you click on &quot;albums&quot; in the admin menu, you will see the <i>Albu
 <p><b>Note that a visitor will have the right to upload files into an album where this option is set to YES only if he is a member of a group for which &quot;Can upload pictures&quot; is set to YES.</b> Non registered users are members of the &quot;Anonymous&quot; group.</p>
 <p>The same rules as above apply for &quot;Visitors can post comments&quot; and &quot;Visitors can rate files&quot;.</p>
 <a name="album_prop_visitor_end"></a>
+
+<a name="album_prop_keyword_start"></a>
+<p>The <b>Album Keyword</b> is <i>not</i> being used for searching purposes, but to display images from other album into this album. Using this method, files/images can be in various albums while the file itself only exists once on your webserver: you upload a file to one album and assign one or more keywords to it. Then you go to another album's properties and add the keywords you assigned to the file to the second album's &quot;Album keywords&quot; field. For the visitor of this album it will appear as if the file/image existed in both albums. </p>
+<a name="album_prop_keyword_end"></a>
+
 <a name="album_prop_reset_start"></a>
 <h3>4.8.1 Reset album properties</h3>
 <img src="pics/modifyalb_reset.gif" width="341" height="155" border="0" alt="" />
@@ -915,13 +920,18 @@ The option increases security of coppermine, but there is a drawback to this met
 <a name="admin_general_help"></a><h4>Enable help-icons</h4>
 <p>Enable display of the help icons in various places within coppermine admin pages. When enabled, make sure you have uploaded the docs folder into your coppermine folder on your webserver.<br />
 If you choose to set this to &quot;Yes: everyone&quot;, logged in users will see the help icon in some places as well, e.g. when creating a user gallery.<br />
-As the help text is based on the documentation that comes with coppermine, it is available in English only. If the native language of your users is not English, it is advisable to set this option to &quot;Yes: admin only&quot; to avoid confusion among your users.</p>
+As the help text is based on the documentation that comes with coppermine, it is available in English only. If the native language of your users is not English, it is advisable to set this option to &quot;Yes: admin only&quot; to avoid confusion among your users.<br />
+It is strongly recommended not to disable the help icons alltogether: even though you might think that you know your way around in your Coppermine install, the help icons might give you a clue what a specific option does later.</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_general_help_end"></a>
-<a name="vanity_block"></a><h4>Show the vanity block on themes that are defined as XHTML and CSS compliant</h4>
-<p>When enabled and using a theme that has been defined as XHTML and CSS compliant, the vanity block will be shown. The vanity block contains the logos and links for HTML and CSS compliance at w3.org, as well as pointers to the PHP, and MySQL projects.</p>
-<p class="small">[cpg1.4.1 or better required]</p>
-<a name="vanity_block_end"></a>
+<a name="admin_general_keywords_start"></a><h4>Enable clickable keywords in search</h4>
+<p>When enabled, a list of all keywords entered in the &quot;<a href="#edit_pics">Edit files</a>&quot; page will appear at the botom of the search page, with each keyword being clickable. Enabling this option is recommended if you have a smaller number of keywords in use (e.g. less than 100) - it will give your users an idea what to search for (to the additional full text search). Please note that enabling this option for a large list of keywords (e.g. thousands of keywords) will slow down the search page and might be confusing for newbie users.</p>
+<p class="small">[cpg1.4.0 or better required]</p>
+<a name="admin_general_keywords_end"></a>
+<a name="admin_general_linked_files_start"></a><h4>Show number of linked files</h4>
+<p>If you use album keywords to display images/files in more than one album, enabling this option will display additional information for the album stats: if an album doesn't only contain &quot;regular&quot; files, but files linked via the "<a href="#album_prop_keyword_start">album keyword</a>" option as well, the number of linked files will be displayed separately like this "3 files, last one added on Oct 07, 2004<i>, 3 linked files, 6 files total</i>".</p>
+<p class="small">[cpg1.4.0 or better required]</p>
+<a name="admin_general_linked_files_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
       <a name="admin_language"></a>
@@ -985,10 +995,12 @@ As the help text is based on the documentation that comes with coppermine, it is
       <p class="small">[cpg1.3.0 or better required]</p>
       <a name="admin_language_bbcode_end"></a>
       <a name="admin_language_charset"></a><h4>Character encoding</h4>
-      <p>This should normally be set to "Default (language file)" or "Unicode
-      (utf-8)". See the discussion in the &quot;<b><a href="#admin_language">language</a></b>&quot; section of this
-      page.</p>
+      <p>This should normally be set to "Unicode (utf-8)" (or "Default (language file)"). See the discussion in the &quot;<b><a href="#admin_language">language</a></b>&quot; section of this page.</p>
       <a name="admin_language_charset_end"></a>
+<a name="vanity_block"></a><h4>Show the vanity block on themes that are defined as XHTML and CSS compliant</h4>
+<p>When enabled and using a theme that has been defined as XHTML and CSS compliant, the vanity block will be shown. The vanity block contains the logos and links for HTML and CSS compliance at w3.org, as well as pointers to the PHP, and MySQL projects.</p>
+<p class="small">[cpg1.4.1 or better required]</p>
+<a name="vanity_block_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="admin_album_list"></a>
