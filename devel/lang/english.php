@@ -455,7 +455,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('User registration requires email verification', 'reg_requires_valid_email', 1),
         array('Notify admin of user registration by email', 'reg_notify_admin_email', 1),
         array('Allow two users to have the same email address', 'allow_duplicate_emails_addr', 1),
-        array('Users can have private albums', 'allow_private_albums', 1),
+        array('Users can have private albums, your current private albums will become public as well', 'allow_private_albums', 1),
         array('Notify admin of user upload awaiting approval', 'upl_notify_admin_email', 1),
         array('Allow logged in users to view memberlist', 'allow_memberlist', 1),
 
