@@ -28,8 +28,7 @@ function cpg_mail($to, $subject, $msg_body, $type = 'text/plain', $sender_name =
 
     $charset = $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'];
 
-    $extra_headers = "From: $sender_name <$sender_email>\r\n" . "MIME-Version: 1.0\r\n" . "Content-type: $type; charset=" . $charset . "\r\n" . "Content-transfer-encoding: 8bit\r\n" . "Date: " . gmdate('D, d M Y H:i:s', time()) . " UT\r\n" . "X-Mailer: Coppermine Photo Gallery\r\n"; 
-    
+    $extra_headers = "From: $sender_name <$sender_email>\n" . "MIME-Version: 1.0\n" . "Content-type: $type; charset=" . $charset . "\n" . "Content-transfer-encoding: 8bit\n" . "Date: " . gmdate('D, d M Y H:i:s', time()) . " UT\n" ."X-Priority: 3 (Normal)\n" ."X-MSMail-Priority: Normal\n" . "X-Mailer: Coppermine Photo Gallery\n" ."Importance: Normal"; 
     // Fix any bare linefeeds in the message to make it RFC821 Compliant.
     
     $message = preg_replace("/(?<!\r)\n/si", "\r\n", $msg_body);
@@ -97,7 +96,7 @@ function smtp_mail($mail_to, $subject, $message, $headers = "")
     if ($headers != "") {
         if (is_array($headers)) {
             if (sizeof($headers) > 1) {
-                $headers = join("\r\n", $headers);
+                $headers = join("\n", $headers);
             } else {
                 $headers = $headers[0];
             } 
@@ -112,7 +111,7 @@ function smtp_mail($mail_to, $subject, $message, $headers = "")
         // but we have to grab bcc and cc headers and treat them differently
         // Something we really didn't take into consideration originally
         
-        $header_array = explode("\r\n", $headers);
+        $header_array = explode("\n", $headers);
         @reset($header_array);
         $headers = "";
         while (list(, $header) = each($header_array)) {
@@ -122,7 +121,7 @@ function smtp_mail($mail_to, $subject, $message, $headers = "")
                 $bcc = preg_replace("/^bcc:(.*)/si", "\\1", $header);
                 $header = "";
             } 
-            $headers .= $header . "\r\n";
+            $headers .= $header . "\n";
         } 
         $headers = chop($headers);
         $cc = explode(",", $cc);
