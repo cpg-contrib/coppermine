@@ -35,8 +35,8 @@ $pic_url = get_pic_url($CURRENT_PIC,'fullsize');
 
 
 echo <<<cropUIjs
-<script language="JavaScript" src="dhtmlLib.js"></script>
-<script language="JavaScript">
+<script language="javascript" type="text/javascript" src="dhtmlLib.js"></script>
+<script language="javascript" type="text/javascript">
 <!--
 
 function libinit(){

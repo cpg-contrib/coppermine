@@ -246,7 +246,7 @@ endtable();
 //print "</div>\n";
 $calendar_link_new = 'calendar.php?action=banning&month='.ltrim(strftime('%m'),'0').'&year='.strftime('%Y');
 print <<<EOT
-<script language="Javascript">
+<script language="javascript" type="text/javascript">
 var calendarWindow = null;
 var calendarFormat = 'y-m-d';
 

@@ -352,7 +352,7 @@ update_cat_order();
 pageheader($lang_catmgr_php['manage_cat']);
 echo <<<EOT
 
-<script language="javascript">
+<script language="javascript" type="text/javascript">
 function confirmDel(catName)
 {
     return confirm("{$lang_catmgr_php['confirm_delete']} (" + catName + ") ?");
@@ -388,7 +388,7 @@ EOT;
     $no_selected = !$CONFIG['categories_alpha_sort'] ? 'checked="checked"' : '';
 
 echo <<<EOT
-        <script type="text/javascript">
+        <script language="javascript" type="text/javascript">
         <!--
         function checkFormSubmit()
         {

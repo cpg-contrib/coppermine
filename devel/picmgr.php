@@ -42,7 +42,7 @@ function get_album_data()
 pageheader($lang_picmgr_php['pic_mgr']);
 ?>
 
-<script language="javascript">
+<script language="javascript" type="text/javascript">
 <!--
     function CheckPictureForm(frm)
     {
@@ -92,7 +92,7 @@ pageheader($lang_picmgr_php['pic_mgr']);
 -->
 </script>
 
-<script language="javascript">
+<script language="javascript" type="text/javascript">
 <!--
     var selectedOptIndex;
 

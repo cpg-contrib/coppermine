@@ -286,7 +286,7 @@ switch ($op) {
 pageheader($lang_pluginmgr_php['pmgr']);
 echo <<<EOT
 
-<script language="javascript">
+<script language="javascript" type="text/javascript">
 function confirmUninstall(text)
 {
     return confirm("{$lang_pluginmgr_php['confirm_uninstall']} (" + text + ") ?");

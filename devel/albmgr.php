@@ -64,7 +64,7 @@ pageheader($lang_albmgr_php['alb_mrg']);
 
 ?>
 
-<script language="javascript">
+<script language="javascript" type="text/javascript">
 <!--
     function CheckAlbumForm(frm)
     {
@@ -114,7 +114,7 @@ pageheader($lang_albmgr_php['alb_mrg']);
 -->
 </script>
 
-<script language="javascript">
+<script language="javascript" type="text/javascript">
 <!--
     var selectedOptIndex;
 

@@ -218,7 +218,7 @@ EOT;
 
     // Finally, print out the nicely sorted and formatted drop down list
     $alb_cat = '';
-	echo '                <option value="">' . $lang_upload_php['select_album'] . "</option>\n";
+        echo '                <option value="">' . $lang_upload_php['select_album'] . "</option>\n";
     foreach ($listArray as $val) {
         if ($val[cat] != $alb_cat) {
 if ($alb_cat) echo "                </optgroup>\n";
@@ -312,7 +312,7 @@ function create_form(&$data) {
 function open_form($path) {
 
     echo <<<EOT
-    <script language="JavaScript">
+    <script language="javascript" type="text/javascript">
     function textCounter(field, maxlimit) {
             if (field.value.length > maxlimit) // if too long...trim it!
             field.value = field.value.substring(0, maxlimit);
@@ -2082,14 +2082,14 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
 
     // Check for incoming album placement data.
     if ((isset($_POST['album'])) and (isset($_POST['unique_ID']))) {
-	
-	    // Check if user selected an album to upload picture to. If not, die with error.
+
+            // Check if user selected an album to upload picture to. If not, die with error.
         // added by frogfoot
         $album = (int)$_POST['album'];
         if (!$album){
-			cpg_die(ERROR, $lang_db_input_php['album_not_selected'], __FILE__, __LINE__);
-		}
-		
+                        cpg_die(ERROR, $lang_db_input_php['album_not_selected'], __FILE__, __LINE__);
+                }
+
         if (isset($_POST['unique_ID'])) {
 
             // The unique ID is set, so let us retrieve the record.

@@ -1791,7 +1791,7 @@ function cpg_debug_output()
         echo '<form name="debug" action="'.$PHP_SELF.'">';
         starttable('100%', $lang_cpg_debug_output['debug_info'],2);
         echo '<tr><td align="center" valign="middle" class="tableh2">';
-        echo '<script language="Javascript">
+        echo '<script language="javascript" type="text/javascript">
 <!--
 
 function HighlightAll(theField) {

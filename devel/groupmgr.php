@@ -234,7 +234,7 @@ if (isset($HTTP_POST_VARS) && count($HTTP_POST_VARS)) {
 pageheader($lang_groupmgr_php['title']);
 echo <<<EOT
 
-<script language="javascript">
+<script language="javascript" type="text/javascript">
 function confirmDel()
 {
     return confirm("{$lang_groupmgr_php['confirm_del']}");

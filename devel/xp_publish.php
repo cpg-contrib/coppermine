@@ -88,7 +88,7 @@ $template_login_success = <<< EOT
         <form method="post" id="dummy" action="{POST_ACTION}">
                 <input type="hidden" name="dummy_val" value="1" />
         </form>
-<script language="javascript">
+<script language="javascript" type="text/javascript">
 dummy.submit();
 </script>
 EOT;
@@ -487,7 +487,7 @@ function output_footer()
 
 <div id="content"></div>
 
-<script language='javascript'>
+<script language="javascript" type="text/javascript">
 function create_alb() {
         if (createAlb.newAlbName.value == ''){
                 return false;

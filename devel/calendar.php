@@ -37,7 +37,7 @@ if ($USER['theme']) {
 }
 ?>
 /style.css" />
-<script language="JavaScript">
+<script language="javascript" type="text/javascript">
 
 // get the date format
 var calendarFormat = 'y-m-d';

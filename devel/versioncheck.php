@@ -53,7 +53,7 @@ $counter_cpg_version_older = 0;
 $counter_cpg_version_younger = 0;
 $counter_cvs_version_older = 0;
 $counter_cvs_version_younger = 0;
-$number_of_columns = 5;
+$number_of_columns = 6;
 $line_counter = 0;
 $online_repository_connection = 0;
 $online_repository_url = 'http://coppermine.sourceforge.net/repository.txt';
@@ -421,7 +421,7 @@ echo <<< EOT
 </tr>
 <tr>
     <td class="tablef"><b>{$lang_versioncheck_php['folder_file']}</b></td>
-    <td class="tablef"><b>{$lang_versioncheck_php['coppermine_version']}</b></td>
+    <td class="tablef" colspan="2"><b>{$lang_versioncheck_php['coppermine_version']}</b></td>
 EOT;
 
 if ($file_versions != 0) {print '    <td class="tablef"><b>'.$lang_versioncheck_php['file_version'].'</b></td>';}
@@ -702,7 +702,7 @@ if (!$cpg_is_file && $permissions == 1) { // we have a folder: start
 // writable ? end
 
 
-print '</td><td class="tableb">';
+print '</td>';
 // cpg version start
     $cvs_version_check = 'enable';
     if (!$repository_version[$file_complete_path]) {
@@ -710,16 +710,18 @@ print '</td><td class="tableb">';
     }
     if ($file_version_info['exists'] != 1)
     {
-        print '-';
+        print '<td class="tableb">-</td><td class="tableb">';
         $helptitle = '';
     } elseif (!$file_version_info['cpg_version'] && $repository_version[$file_complete_path] == '?') {
-        print 'n/a';
+        print '<td class="tableb">';
+        print 'n/a</td><td class="tableb">';
     } elseif ((!$file_version_info['cpg_version'] || $file_version_info['cpg_version'] == 'n/a') && $repository_version[$file_complete_path] != '?') {
         $cvs_version_check = 'disable';
+        print '<td class="tableb">';
         print '<span class="red" title="'.$lang_versioncheck_php['your_file'].'">';
         print '?';
         print '</span>';
-        print ' / ';
+        print '</td><td class="tableb">';
         print '<span title="'.$lang_versioncheck_php['reference_file'].'">';
         print $repository_version[$file_complete_path];
         print '</span>';
@@ -729,24 +731,27 @@ print '</td><td class="tableb">';
         $error_counter++;
     } elseif ((!$file_version_info['cpg_version'] || $file_version_info['cpg_version'] == 'n/a') && $repository_version[$file_complete_path] == '?') {
         $cvs_version_check = 'disable';
-        print '-';
+        print '<td class="tableb">';
+        print '-</td><td class="tableb">';
         $helptitle = '';
         $helpoutput = '';
     } elseif ($file_version_info['cpg_version'] == $repository_version[$file_complete_path]) {
+        print '<td class="tableb">';
         print '<span class="green" title="'.$lang_versioncheck_php['your_file'].'">';
         print $file_version_info['cpg_version'];
         print '</span>';
-        print ' / ';
+        print '</td><td class="tableb">';
         print '<span class="green" title="'.$lang_versioncheck_php['reference_file'].'">';
         print $file_version_info['cpg_version'];
         print '</span>';
         $helptitle = '';
     } elseif ($file_version_info['cpg_version'] < $repository_version[$file_complete_path]) {
         $cvs_version_check = 'disable';
+        print '<td class="tableb">';
         print '<span class="red" title="'.$lang_versioncheck_php['your_file'].'">';
         print $file_version_info['cpg_version'];
         print '</span>';
-        print ' / ';
+        print '</td><td class="tableb">';
         print '<span title="'.$lang_versioncheck_php['reference_file'].'">';
         print $repository_version[$file_complete_path];
         print '</span>';
@@ -756,9 +761,10 @@ print '</td><td class="tableb">';
         $error_counter++;
     } elseif ($file_version_info['cpg_version'] > $repository_version[$file_complete_path]) {
         $cvs_version_check = 'disable';
+        print '<td class="tableb">';
         print '<span title="'.$lang_versioncheck_php['your_file'].'">';
         print $file_version_info['cpg_version'];
-        print ' / ';
+        print '</td><td class="tableb">';
         print '<span class="yellow" title="'.$lang_versioncheck_php['reference_file'].'">';
         print $repository_version[$file_complete_path];
         print '</span>';
@@ -768,10 +774,11 @@ print '</td><td class="tableb">';
         $error_counter++;
     } else {
         $cvs_version_check = 'disable';
+        print '<td class="tableb">';
         print '<span class="red" title="'.$lang_versioncheck_php['your_file'].'">';
         print $file_version_info['cpg_version'];
         print '</span>';
-        print ' / ';
+        print '</td><td class="tableb">';
         print '<span class="red" title="'.$lang_versioncheck_php['reference_file'].'">';
         print $repository_version[$file_complete_path];
         print '</span>';
