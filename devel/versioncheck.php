@@ -118,7 +118,7 @@ $local_lang_versioncheck_php = array(
   'help_no_local_version1' => 'No local file version',
   'help_no_local_version2' => 'The script was unable to extract a local file version - your file is either outdated or you have modified it, removing the header information on the way. Updating the file is recommended.',
   'help_local_version_outdated1' => 'Local version outdated',
-  'help_local_version_outdated2' => 'Your version of this file seems to be from an older version of Coppermine (you probably upgraded). Make sure to update this file as well.',
+  'help_local_version_outdated2' => 'Your version of this file seems to be from an older version of Coppermine (you probably upgraded). Make sure to update this file as well. There might have been changes to this file after the release of the package - check the web cvs as well to look for an update.',
   'help_local_version_na1' => 'Unable to extract cvs version info',
   'help_local_version_na2' => 'The script could not determine what cvs version the file on your webserver is. You should upload the file from your package.',
   'help_local_version_dev1' => 'Development version',
@@ -1523,7 +1523,7 @@ $return = '
 1.3.2|upload.php|1.3.2|1.9|mandatory|r@
 1.3.2|usermgr.php|1.3.2|1.6|mandatory|r@
 1.3.2|util.php|1.3.2|1.8|mandatory|r@
-1.3.2|versioncheck.php|1.4.0|1.5|optional|r@
+1.3.2|versioncheck.php|1.4.0|1.7|optional|r@
 1.3.2|xp_publish.php|1.3.2|1.5|mandatory|r@
 1.3.2|zipdownload.php|1.3.2|1.3|mandatory|r@
 1.3.2|albums|||mandatory|w@
@@ -1534,7 +1534,7 @@ $return = '
 1.3.2|albums/userpics/index.html|||optional|w@
 1.3.2|bridge|||optional|r@
 1.3.2|bridge/invisionboard.inc.php|1.3.2|1.8|optional|r@
-1.3.2|bridge/phpbb.inc.php|1.3.2|1.9|optional|r@
+1.3.2|bridge/phpbb.inc.php|1.3.2|1.10|optional|r@
 1.3.2|bridge/punbb.inc.php|1.3.2|1.2|optional|r@
 1.3.2|bridge/smf.inc.php|1.3.2|1.7|optional|r@
 1.3.2|bridge/vbulletin.inc.php|1.3.2|1.6|optional|r@
@@ -1580,7 +1580,7 @@ $return = '
 1.3.2|lang/brazilian_portuguese.php|1.3.2|1.7|optional|r@
 1.3.2|lang/brazilian_portuguese-utf-8.php|1.3.2|1.7|optional|r@
 1.3.2|lang/bulgarian.php|1.3.2|1.4|optional|r@
-1.3.2|lang/bulgarian-utf-8.php|1.3.2|1.4|optional|r@
+1.3.2|lang/bulgarian-utf-8.php|1.3.2|1.5|optional|r@
 1.3.2|lang/chinese_big5.php|1.3.2|1.7|optional|r@
 1.3.2|lang/chinese_big5-utf-8.php|1.3.2|1.7|optional|r@
 1.3.2|lang/chinese_gb.php|1.3.2|1.7|optional|r@
@@ -1591,16 +1591,16 @@ $return = '
 1.3.2|lang/czech-utf-8.php|1.3.2|1.8|optional|r@
 1.3.2|lang/danish.php|1.3.2|1.8|optional|r@
 1.3.2|lang/danish-utf-8.php|1.3.2|1.8|optional|r@
-1.3.2|lang/dutch.php|1.3.2|1.7|optional|r@
-1.3.2|lang/dutch-utf-8.php|1.3.2|1.7|optional|r@
+1.3.2|lang/dutch.php|1.3.2|1.8|optional|r@
+1.3.2|lang/dutch-utf-8.php|1.3.2|1.8|optional|r@
 1.3.2|lang/english.php|1.3.2|1.13|mandatory|r@
 1.3.2|lang/english-utf-8.php|1.3.2|1.9|optional|r@
 1.3.2|lang/finnish.php|1.3.2|1.6|optional|r@
 1.3.2|lang/finnish-utf-8.php|1.3.2|1.6|optional|r@
 1.3.2|lang/french.php|1.3.2|1.10|optional|r@
 1.3.2|lang/french-utf-8.php|1.3.2|1.10|optional|r@
-1.3.2|lang/german.php|1.3.2|1.7|optional|r@
-1.3.2|lang/german-utf-8.php|1.3.2|1.7|optional|r@
+1.3.2|lang/german.php|1.3.2|1.10|optional|r@
+1.3.2|lang/german-utf-8.php|1.3.2|1.10|optional|r@
 1.3.2|lang/greek.php|1.3.2|1.7|optional|r@
 1.3.2|lang/greek-utf-8.php|1.3.2|1.7|optional|r@
 1.3.2|lang/hebrew.php|1.3.2|1.8|optional|r@
