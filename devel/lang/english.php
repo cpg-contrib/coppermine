@@ -436,7 +436,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Gallery name', 'gallery_name', 0),
   array('Gallery description', 'gallery_description', 0),
   array('Gallery administrator email', 'gallery_admin_email', 0),
-  array('Target address for the \'See more pictures\' link in e-cards', 'ecards_more_pic_target', 0),
+  array('URL of your coppermine gallery (omit \'index.php\' or similar at the end)', 'ecards_more_pic_target', 0),
   array('Gallery is offline', 'offline', 1),
   array('Log ecards', 'log_ecards', 1),
   array('Allow ZIP-download of favorites', 'enable_zipdownload', 1),
