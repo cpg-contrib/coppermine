@@ -13,6 +13,8 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
+// $Id$
+// ------------------------------------------------------------------------- //
 
 define('IN_COPPERMINE', true);
 define('VERSIONCHECK_PHP', true);
@@ -163,6 +165,7 @@ function cpg_get_fileversion($folder  = '',$file = '') {
     $handle = @fopen($folder.$file, 'r');
     $blob = @fread($handle, filesize($folder.$file));
     @fclose($handle);
+    $cvs_string = '$'.'I'.'d'.':';
 
     $blob = str_replace('<?php','',$blob);
     $return['cpg_version'] = substr($blob,strpos($blob, 'Coppermine Photo Gallery'));
@@ -170,9 +173,9 @@ function cpg_get_fileversion($folder  = '',$file = '') {
     $return['cpg_version'] = trim(str_replace('Coppermine Photo Gallery', '', $return['cpg_version']));
     if (strlen($return['cpg_version']) > 5) {$return['cpg_version']='n/a';}
 
-    $return['cvs_version'] = substr($blob,strpos($blob, '$Id:'));
+    $return['cvs_version'] = substr($blob,strpos($blob, $cvs_string));
     $return['cvs_version'] = substr($return['cvs_version'],0,strpos($return['cvs_version'], 'Exp'));
-    $return['cvs_version'] = str_replace('$Id$return['cvs_version']);
+    $return['cvs_version'] = str_replace($cvs_string, '', $return['cvs_version']);
     $return['cvs_version'] = strrchr($return['cvs_version'], 'v ');
     $return['cvs_version'] = str_replace('v ', '', $return['cvs_version']);
     $return['cvs_version'] = trim(str_replace(strstr($return['cvs_version'], ' '), '', $return['cvs_version']));
