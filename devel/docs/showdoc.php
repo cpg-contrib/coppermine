@@ -28,7 +28,7 @@ $remove_head = $_REQUEST['remove_head'];
 $remove_stylesheet = $_REQUEST['remove_stylesheet'];
 $remove_to_top = $_REQUEST['top'];
 $add_stylesheet = $_REQUEST['css'];
-$foo = $_REQUEST['foo'];
+
 
 // todo: harden against expolits: check the requested vars
 //...

@@ -347,10 +347,11 @@ if (isset($HTTP_POST_VARS['insert'])) {
     if (!isset($HTTP_POST_VARS['pics'])) cpg_die(ERROR, $lang_search_new_php['no_pic_to_add'], __FILE__, __LINE__);
 
     pageheader($lang_search_new_php['page_title']);
+    $help = '&nbsp;'.cpg_display_help('f=index.htm&as=ftp&ae=ftp_end&top=1#ftp_show_result', '600', '400');
     starttable("100%");
     echo <<<EOT
         <tr>
-                <td colspan="4" class="tableh1"><h2>{$lang_search_new_php['insert']}</h2></td>
+                <td colspan="4" class="tableh1"><h2>{$lang_search_new_php['insert']}$help</h2></td>
         </tr>
         <tr>
                 <td class="tableh2" valign="middle" align="center"><b>{$lang_search_new_php['folder']}</b></td>
@@ -405,11 +406,12 @@ EOT;
     ob_end_flush();
 } elseif (isset($HTTP_GET_VARS['startdir'])) {
     pageheader($lang_search_new_php['page_title']);
+    $help = '&nbsp;'.cpg_display_help('f=index.htm&as=ftp&ae=ftp_end&top=1#ftp_select_file', '500', '400');
     starttable("100%");
     echo <<<EOT
         <form method="post" action="$PHP_SELF?insert=1" name="selectPics">
         <tr>
-                <td colspan="3" class="tableh1"><h2>{$lang_search_new_php['list_new_pic']}</h2></td>
+                <td colspan="3" class="tableh1"><h2>{$lang_search_new_php['list_new_pic']}$help</h2></td>
         </tr>
 
 EOT;
@@ -473,7 +475,8 @@ EOT;
     ob_end_flush();
 } else {
     pageheader($lang_search_new_php['page_title']);
-    starttable(-1, $lang_search_new_php['select_dir']);
+    $help = '&nbsp;'.cpg_display_help('f=index.htm&as=ftp&ae=ftp_end&top=1', '600', '450');
+    starttable(-1, $lang_search_new_php['select_dir'].$help);
     display_dir_tree('', '');
     echo <<<EOT
         <tr>

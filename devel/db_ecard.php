@@ -190,8 +190,8 @@ $tabOutput .= '&nbsp;';
 }
 $maxPage =  $page-1;
 
-
-$tableHeader1 = $lang_db_ecard_php['title']." (".$lang_db_ecard_php['ecard_sorted']." ".$sortText.", ".$sortDirectionText.")";
+$help = '&nbsp;'.cpg_display_help('f=index.htm&as=ecard_log&ae=ecard_log_end&top=1', '830', '400');
+$tableHeader1 = $lang_db_ecard_php['title']." (".$lang_db_ecard_php['ecard_sorted']." ".$sortText.", ".$sortDirectionText.")" . $help;
 starttable('100%',$tableHeader1,3);
 print '<tr><td class="tableb_compact">';
 printf($lang_db_ecard_php['ecard_number'], $currentStart, $currentEnd, $totalEcards);
