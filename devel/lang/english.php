@@ -1432,6 +1432,8 @@ $lang_pluginmgr_php = array(
   'not_plugin_package' => 'The file uploaded is not a plugin package.', //cpg 1.4
   'copy_error' => 'There was an error copying the package to the plugins folder.', //cpg 1.4
   'upload' => 'Upload', //cpg 1.4
+  'configure_plugin' => 'Configure plugin', //cpg 1.4
+  'cleanup_plugin' => 'Cleanup plugin', //cpg 1.4
 );
 }
 

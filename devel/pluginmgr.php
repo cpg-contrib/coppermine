@@ -326,7 +326,7 @@ if ((($op != 'install') && ($op != 'uninstall')) || (is_bool($installed) && $ins
 } elseif ($op == 'install') {
 
     // Display configure page table header
-    starttable('100%','Configuring plugin:'.$CPG_PLUGINS['new']->name);
+    starttable('100%',$lang_pluginmgr_php['configure_plugin'] . ': ' . $CPG_PLUGINS['new']->name);
 
     echo <<< EOT
     <tr>
@@ -345,7 +345,7 @@ EOT;
 } else {
 
     // Display cleanup page table header
-    starttable('100%','Cleanup plugin:'.$CPG_PLUGINS[$plugin_id]->name);
+    starttable('100%',$lang_pluginmgr_php['cleanup_plugin'] . ': ' . $CPG_PLUGINS[$plugin_id]->name);
 
     echo <<< EOT
     <tr>
