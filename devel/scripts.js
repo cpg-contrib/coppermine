@@ -72,8 +72,13 @@ function blocking(nr, cookie, vis_state)
 function adjust_popup()
 {
         var w, h, fixedW, fixedH, diffW, diffH;
-
-        if (document.all) {
+        if (document.compatMode=='CSS1Compat' && !window.opera) {     // CSS1Compat Catches IE6 in Compliant mode, Opera does not like it, FF is OK
+                fixedW = document.documentElement.clientWidth;
+                fixedH = document.documentElement.clientHeight;
+                window.resizeTo(fixedW, fixedH);
+                diffW = fixedW - document.documentElement.clientWidth;
+                diffH = fixedH - document.documentElement.clientHeight;
+        } else if (document.all) {
                 fixedW = document.body.clientWidth;
                 fixedH = document.body.clientHeight;
                 window.resizeTo(fixedW, fixedH);
