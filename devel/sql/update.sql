@@ -16,6 +16,21 @@
 ##  $Date$
 ##  ********************************************
 
+
+#
+# Table structure for table `CPG_sessions`
+#
+
+CREATE TABLE IF NOT EXISTS CPG_sessions (
+  session_id varchar(40) NOT NULL default '',
+  user_id int(11) default '0',
+  time int(11) default NULL,
+  remember int(1) default '0',
+  PRIMARY KEY (session_id)
+) TYPE=MyISAM COMMENT='Used to store sessions';
+
+
+
 #
 # Table structure for table `CPG_filetypes`
 #
