@@ -976,22 +976,22 @@ function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
                 } // while
 
                 $breadcrumb_array = array_reverse($breadcrumb_array);
-                $breadcrumb = '<a href=index.php>'.$lang_list_categories['home'].'</a>';
+                $breadcrumb = '<a href="index.php">'.$lang_list_categories['home'].'</a>';
                 $BREADCRUMB_TEXT = $lang_list_categories['home'];
 
                 foreach ($breadcrumb_array as $category){
-                        $link = "<a href=index.php?cat={$category[0]}>{$category[1]}</a>";
+                        $link = "<a href=\"index.php?cat={$category[0]}\">{$category[1]}</a>";
                         $breadcrumb .= ' > ' . $link;
                         $BREADCRUMB_TEXT .= ' > ' . $category[1];
                 }
 
         }else{ //Dont bother just add the Home link  to breadcrumb
-                $breadcrumb = '<a href=index.php>'.$lang_list_categories['home'].'</a>';
+                $breadcrumb = '<a href="index.php">'.$lang_list_categories['home'].'</a>';
                 $BREADCRUMB_TEXT = $lang_list_categories['home'];
         }
         //Add Link for album if aid is set
         if (isset($CURRENT_ALBUM_DATA['aid'])){
-                $link = "<a href=thumbnails.php?album=".$CURRENT_ALBUM_DATA['aid'].">".$CURRENT_ALBUM_DATA['title']."</a>";
+                $link = "<a href=\"thumbnails.php?album=".$CURRENT_ALBUM_DATA['aid']."\">".$CURRENT_ALBUM_DATA['title']."</a>";
                 $breadcrumb .= ' > ' . $link;
                 $BREADCRUMB_TEXT .= ' > ' . $CURRENT_ALBUM_DATA['title'];
         }
@@ -1025,7 +1025,7 @@ function compute_img_size($width, $height, $max)
         $image_size['height'] = ceil($height / $ratio);
         $image_size['whole'] = 'width="'.$image_size['width'].'" height="'.$image_size['height'].'"';
         if($thumb_use=='ht') {
-          $image_size['geom'] = '" height="'.$image_size['height'].'"';
+          $image_size['geom'] = ' height="'.$image_size['height'].'"';
         } elseif($thumb_use=='wd') {
           $image_size['geom'] = 'width="'.$image_size['width'].'"';
         } else {
