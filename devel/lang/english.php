@@ -13,7 +13,7 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- // 
+// ------------------------------------------------------------------------- //
 // to all devs: stop overwriting this file!
 
 // info about translators and translated language
@@ -339,7 +339,9 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Gallery administrator email', 'gallery_admin_email', 0),
         array('Target address for the \'See more pictures\' link in e-cards', 'ecards_more_pic_target', 0),
         array('Language', 'lang', 5),
+        array('enable language selection', 'lang_select_enable', 8),
         array('Theme', 'theme', 6),
+        array('enable user theme selection', 'theme_select_enable', 8),
 
         'Album list view',
         array('Width of the main table (pixels or %)', 'main_table_width', 0),
@@ -941,7 +943,7 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
         'what_update_titles' => 'Updates titles from filename', //new in cpg1.2.0
         'what_delete_title' => 'Deletes titles', //new in cpg1.2.0
         'what_rebuild' => 'Rebuilds thumbnails and resized photos', //new in cpg1.2.0
-        'what_delete_originals' => 'Deletes original sized photos replacing them with the sized version', //new in cpg1.2.0
+        'what_delete_originals' => 'Deletes original sized photos replacing them with the resized version', //new in cpg1.2.0
         'file' => 'File', //new in cpg1.2.0
         'title_set_to' => 'title set to', //new in cpg1.2.0
         'submit_form' => 'submit', //new in cpg1.2.0
