@@ -71,6 +71,9 @@ INSERT INTO CPG_config VALUES ('comment_email_notification', '0');
 INSERT INTO CPG_config VALUES ('disable_popup_rightclick', '0');
 INSERT INTO CPG_config VALUES ('disable_gallery_rightclick', '0');
 INSERT INTO CPG_config VALUES ('read_iptc_data', '0');
+INSERT INTO CPG_config VALUES ('reg_notify_admin_email', '0');
+INSERT INTO CPG_config VALUES ('disable_comment_flood_protect', '0');
+INSERT INTO CPG_config VALUES ('upl_notify_admin_email', '0');
 
 #
 # Dumping data for table `CPG_usergroups`
