@@ -14,12 +14,14 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-define('IN_COPPERMINE', true);
-
-require("include/config.inc.php");
-require('include/init.inc.php');
 error_reporting (E_ALL ^ E_NOTICE);
+define('IN_COPPERMINE', true);
+define('PHPINFO_PHP', true);
+require('include/init.inc.php');
+
 $CONFIG['debug_mode']=0;
+
+
 
 pageheader($lang_cpg_debug_output['phpinfo']);
 
@@ -40,9 +42,16 @@ cpg_die(ERROR, $lang_errors['access_denied'] );
     $string = str_replace('class="center"','',$string);
     ob_end_clean();
 
-print <<<EOT
-<div align="left" style="overflow:hidden;width:800px;text-align:left;">
-EOT;
+print '<div align="left" style="overflow:hidden;width:800px;text-align:left;">';
+starttable('100%', $lang_phpinfo_php['php_info'], 1);
+print '<tr><td class="tableb">';
+print $lang_phpinfo_php['explanation'];
+print '<br />';
+print $lang_phpinfo_php['no_link'];
+print '</td></tr>';
+endtable();
+print '<br />';
+
 
 print $string;
 print "</div>\n";

@@ -1252,6 +1252,7 @@ tempval.select()
         error_reporting  (E_ERROR | E_WARNING | E_PARSE);
         echo cpg_phpinfo_mod_output('gd','text');
         echo cpg_phpinfo_mod_output('mysql','text');
+        echo cpg_phpinfo_mod_output('zlib','text');
         echo 'Server restrictions (safe mode)?';
         echo $debug_underline;
         echo 'Directive | Local Value | Master Value';
