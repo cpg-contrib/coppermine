@@ -221,3 +221,6 @@ Added admin option "Allow unlogged users (guest or anonymous) access" - 12 Decem
 Added Basque language (user contribution) - 14 December 2004, GauGau
 Added ability to preview and edit ecard before sending - 15 December 2004, TranzNDance
 Added "advanced album dropdown" to "sort my pics" (picmgr.php) - 16 December 2004, GauGau
+Changed script.js to recognize IE6 and FF in compliance mode for pop-up resize - 19 December 2004, Donnoman
+Changed full size pic pop-up to be XHTML 1.0 Transitional Compliant - 19 December 2004, Donnoman
+Fixed pipe separator display when no keywords existed on the search page - 19 December 2004, Donnoman
