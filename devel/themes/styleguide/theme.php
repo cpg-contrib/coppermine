@@ -1682,6 +1682,7 @@ $cssClassDef = array(
 'imageborder' => ' border: 1px solid #000000; background-color: #FFFFFF; margin-top: 30px; margin-bottom: 30px; ',
 'img_caption_table' => ' border: none; background-color: #FFFFFF; width : 100%; margin : 0px; ',
 'img_caption_table th' => ' background: #D1D7DC ; font-size: 100%; color : #000000; padding-top: 4px; padding-right: 10px; padding-bottom: 4px; padding-left: 10px; border-top : 1px solid #FFFFFF; ',
+'img_caption_table td' => 'background: #EFEFEF; padding-top: 6px; padding-right: 10px; padding-bottom: 6px; padding-left: 10px; border-top : 1px solid #FFFFFF; white-space: normal;',
 'listbox' => ' font-family: Verdana, Arial, Arial, Helvetica, sans-serif; font-size: 100%; border: 1px solid #D1D7DC; vertical-align : middle; ',
 'listbox_lang' => ' color: #000000; background-color: #D1D7DC; border: 1px solid #D1D7DC; font-size: 80%; font-family: Arial, Helvetica, sans-serif; vertical-align : middle; ',
 'maintable' => ' border: 1px solid #C0C0C0; background-color: #FFFFFF; margin-top: 1px; margin-bottom: 1px; ',

@@ -494,6 +494,7 @@ td #admin_menu_anim {
         padding-bottom: 6px;
         padding-left: 10px;
         border-top : 1px solid #FFFFFF;
+        white-space: normal;
 }
 
 .debug_text {

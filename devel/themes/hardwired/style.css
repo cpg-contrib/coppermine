@@ -540,6 +540,7 @@ td #admin_menu_anim {
         padding-bottom: 6px;
         padding-left: 10px;
         border-top : 1px solid #394049;
+        white-space: normal;
 }
 
 .gal_name

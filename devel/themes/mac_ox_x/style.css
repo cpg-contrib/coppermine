@@ -567,6 +567,7 @@ td #admin_menu_anim {
         padding-right: 10px;
         padding-bottom: 6px;
         padding-left: 10px;
+        white-space: normal;
 }
 
 .debug_text {
@@ -588,4 +589,3 @@ td #admin_menu_anim {
         font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
         vertical-align : middle;
 }
-
