@@ -329,6 +329,20 @@ function cpg_delete_action($key) {
     }
 }
 
+
+// Get the current plugin from the scope
+function& cpg_get_scope( $plugin_id = null ) {
+    global $CPG_PLUGINS,$thisplugin;
+    
+    if (!is_null($plugin_id)) {
+        return $CPG_PLUGINS[$plugin_id];
+    } else {
+        $plugin_id = (int) $_GET['scope'];
+        $thisplugin = $CPG_PLUGINS[$plugin_id];
+        return $CPG_PLUGINS[$plugin_id];
+    }
+}
+
 // Returns all the subdirecties in a given folder
 function& cpg_get_dir_list($folder) {
     global $CONFIG;
