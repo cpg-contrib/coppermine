@@ -139,6 +139,7 @@ $lang_gallery_admin_menu = array(
   'comments_lnk' => 'Review Comments', //cpg1.3.0
   'searchnew_lnk' => 'Batch add files', //cpg1.3.0
   'util_lnk' => 'Admin Tools', //cpg1.3.0
+  'key_lnk' => 'Keyword Dictinary',
   'ban_lnk' => 'Ban Users',
   'db_ecard_lnk' => 'Display Ecards', //cpg1.3.0
 );
@@ -1153,7 +1154,8 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'picture' => 'File', //cpg1.3.0
   'pic_title' => 'File title', //cpg1.3.0
   'description' => 'File description', //cpg1.3.0
-  'keywords' => 'Keywords (separate with spaces)',
+  'keywords' => 'Keywords (separate with spaces)<br /><a href="#" onClick="return MM_openBrWindow(\'keyword_select.php\',\'selectKey\',\'width=250, height=400, scrollbars=yes,toolbar=no,status=yes,resizable=yes\')">Insert from list</a>',
+  'keywords_sel' =>'Select a Keyword',
   'err_no_alb_uploadables' => 'Sorry there is no album where you are allowed to upload files', //cpg1.3.0
   'place_instr_1' => 'Please place the files in albums at this time.  You may also enter relevant information about each file now.', //cpg1.3.0
   'place_instr_2' => 'More files need placement. Please click \'Continue\'.', //cpg1.3.0
