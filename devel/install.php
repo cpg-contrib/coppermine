@@ -19,12 +19,14 @@
 
 // Check if standalone is installed in a portal like phpNuke
 if (is_dir('../../modules') && $_REQUEST['continue_anyway'] != 1) {
-    die("<html><body><h1>ERROR</h1>You seem to be trying to install the standalone Coppermine into your Nuke portal.<br />
+    die(
+        "<html><body><h1>ERROR</h1>You seem to be trying to install the standalone Coppermine into your Nuke portal.<br />
          This version can only be used as standalone!<br />
          Some server setups might display this warning even though you don't have a nuke portal installed - if this is the case for you, <a href=\"" . $PHP_SELF . "?continue_anyway=1\">continue</a> with the install.
          If you are using a nuke portal, you might want to take a look into <a href=\"http://www.cpgnuke.com/\">CpgNuke</a> or use one of the (unsupported)
          <a href=\"http://sourceforge.net/project/showfiles.php?group_id=89658&package_id=95984\">coppermine ports</a>
-         - do not continue!</body></html>");
+         - do not continue!</body></html>"
+         );
 } // end check
 
 // Report all errors except E_NOTICE
