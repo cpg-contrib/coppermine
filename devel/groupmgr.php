@@ -245,16 +245,19 @@ function confirmDel()
 EOT;
 
 starttable('100%');
-
+$help_group = '&nbsp;'.cpg_display_help('f=index.htm&as=group_cp&ae=group_cp_end&top=1', '700', '400');
+$help_permissions = '&nbsp;'.cpg_display_help('f=index.htm&as=group_cp_permissions&ae=group_cp_permissions_end&top=1', '400', '150');
+$help_personal = '&nbsp;'.cpg_display_help('f=index.htm&as=group_cp_personal&ae=group_cp_personal_end&top=1', '400', '150');
+$help_upload_method = '&nbsp;'.cpg_display_help('f=index.htm&as=group_cp_upload_method&ae=group_cp_upload_method_end&top=1', '700', '400');
 echo <<<EOT
         <form method="post" action="$PHP_SELF" name="groupmanager">
         <tr>
                 <td class="tableh1"><!--<input type="checkbox" name="allbox" onclick="selectall()" value="" class="checkbox" />--></td>
-                <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['group_name']}</span></b></td>
-                <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['permissions']}</span></b></td>
+                <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['group_name']}</span></b>$help_group</td>
+                <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['permissions']}</span></b>$help_permissions</td>
                 <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['public_albums']}</span></b></td>
-                <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['personal_gallery']}</span></b></td>
-                <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['upload_method']}</span></b></td>
+                <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['personal_gallery']}</span></b>$help_personal</td>
+                <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['upload_method']}</span></b>$help_upload_method</td>
         </tr>
 
 <script language="javascript" type="text/javascript">
