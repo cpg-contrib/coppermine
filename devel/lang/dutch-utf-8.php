@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 // ------------------------------------------------------------------------- //
 //  Coppermine Photo Gallery v1.1 Devel                                      //
 // ------------------------------------------------------------------------- //
@@ -14,12 +14,13 @@
 //  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
 
-$lang_charset = 'utf-8';
+$lang_charset = 'iso-8859-1';
 $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 
 // shortcuts for Byte, Kilo, Mega
-$byteUnits = array('Bytes', 'KB', 'MB');
+$lang_byte_units = array('Bytes', 'KB', 'MB');
 
+// Day of weeks and months
 $lang_day_of_week = array('Zon', 'Maa', 'Din', 'Woe', 'Don', 'Vri', 'Zat');
 $lang_month = array('Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec');
 
@@ -45,7 +46,7 @@ $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clit
 $lang_meta_album_names = array(
         'random' => 'Willekeurige foto\'s',
         'lastup' => 'Laatste toevoegingen',
-        'lastcom' => 'Laatste commentaar',
+        'lastcom' => 'Laatste commentaren',
         'topn' => 'Meest bekeken',
         'toprated' => 'Best beoordeeld',
         'lasthits' => 'Laatst bekeken',
@@ -111,7 +112,6 @@ $lang_user_admin_menu = array(
         'albmgr_lnk' => 'Creëer/sorteer albums',
         'modifyalb_lnk' => 'Wijzig mijn albums',
         'my_prof_lnk' => 'Mijn profiel',
-
 );
 
 $lang_cat_list = array(
@@ -125,25 +125,7 @@ $lang_album_list = array(
 );
 
 $lang_thumb_view = array(
-        'date' => 'DATUM',
-        'name' => 'NAAM',
-        'sort_da' => 'Sorteer op datum oplopend',
-        'sort_dd' => 'Sorteer op datum aflopend',
-        'sort_na' => 'Sorteer op naam oplopend',
-        'sort_nd' => 'Sorteer op naam aflopend',
-        'pic_on_page' => '%d foto(\'s) op %d pagina(\'s)',
-        'user_on_page' => '%d gebruiker(s) op %d pagina(\'s)'
-);
-
-$lang_display_comments = array(
-        'OK' => 'OK',
-        'edit_title' => 'Wijzig dit commentaar',
-        'confirm_delete' => 'Weet je het zeker dat je dit commentaar wilt verwijderen ?',
-        'add_your_comment' => 'Voeg je commentaar toe',
-);
-
-$lang_thumb_view = array(
-        'date' => 'DATUM',
+        'date' => 'Datum',
         'name' => 'Naam',
         'sort_da' => 'Sorteer op datum oplopend',
         'sort_dd' => 'Sorteer op datum aflopend',
@@ -152,6 +134,7 @@ $lang_thumb_view = array(
         'pic_on_page' => '%d foto(\'s) op %d pagina(\'s)',
         'user_on_page' => '%d gebruiker(s) op %d pagina(\'s)'
 );
+
 
 
 $lang_img_nav_bar = array(
@@ -201,7 +184,7 @@ $lang_display_thumbnails = array(
         'filesize' => 'Bestandsgrootte : ',
         'dimensions' => 'Afmetingen : ',
         'date_added' => 'Datum toegevoegd : '
-);
+);;
 
 $lang_get_pic_data = array(
         'n_comments' => '%s commentaren',
@@ -287,11 +270,8 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
         'select_category' => 'Selecteer categorie',
 );
 
-
-
-
 // ------------------------------------------------------------------------- //
-// File catmgr.php - OK
+// File catmgr.php - 
 // ------------------------------------------------------------------------- //
 
 if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
@@ -299,7 +279,7 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
         'unknown_cat' => 'Geselecteerde categorie bestaat niet in database',
         'usergal_cat_ro' => 'Gebruiker gallerien categorie kan niet verwijderd worden !',
         'manage_cat' => 'Beheer categorien',
-        'confirm_delete' => 'Weet je het zeker dat de deze categorie wilt VERWIJDEREN',
+        'confirm_delete' => 'Weet je het zeker dat je deze categorie wilt VERWIJDEREN',
         'category' => 'Categorie',
         'operations' => 'Bewerkingen',
         'move_into' => 'Verplaats naar',
@@ -308,7 +288,6 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
         'cat_title' => 'Categorie titel',
         'cat_desc' => 'Categorie omschrijving'
 );
-
 
 // ------------------------------------------------------------------------- //
 // File config.php - OK
@@ -430,7 +409,7 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
         'err_invalid_img' => 'Het bestand dat je opgeladen hebt is niet een geldige foto !',
         'allowed_img_types' => 'Je kan aleen %s foto\'s uploaden.',
         'err_insert_pic' => 'De foto \'%s\' kan niet ingevoegd worden in het album ',
-        'upload_success' => 'Je foto is succesvol opgeladen<br /><br />Het wordt zichtbaar als de admin het goedgekeurd heeft.',
+        'upload_success' => 'Je foto is succesvol geladen<br /><br />Het wordt zichtbaar als de admin het goedgekeurd heeft.',
         'info' => 'Informatie',
         'com_added' => 'Commentaar toegevoegd',
         'alb_updated' => 'Album aangepast',
@@ -522,7 +501,7 @@ $lang_display_comments = array(
 if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array(
         'title' => 'Stuur een e-card',
         'invalid_email' => '<b>Waarschuwing</b> : ongelding email adres !',
-        'ecard_title' => 'Een e-card van %s voor jouw',
+        'ecard_title' => 'Een e-card van %s voor jou',
         'view_ecard' => 'Indien de e-card niet juist getoond wordt, klik dan deze link',
         'view_more_pics' => 'Klik op deze link om meer foto\'s te bekijken !',
         'send_success' => 'Je e-card is verzonden',
@@ -554,7 +533,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
         'reset_view_count' => 'Reset bekeken teller',
         'reset_votes' => 'Reset stemmen',
         'del_comm' => 'verwijder commentaar',
-        'upl_approval' => 'Oplaat toestemming',
+        'upl_approval' => 'Oplaad toestemming',
         'edit_pics' => 'Wijzig foto\'s',
         'see_next' => 'Bekijk volgende foto\'s',
         'see_prev' => 'Bekijk vorige foto\'s',
@@ -600,8 +579,8 @@ $lang_index_php = array(
 $lang_album_admin_menu = array(
         'confirm_delete' => 'Weet je het zeker dat je dit album wilt VERWIJDEREN ? \\nAlle foto\'s en commentaren worden ook verwijderd.',
         'delete' => 'Verw',
-        'modify' => 'Eigenschappen',
-        'edit_pics' => 'Wijzig',
+        'modify' => 'Aanpassen',
+        'edit_pics' => 'Wijzig foto\'s',
 );
 
 $lang_list_categories = array(
@@ -637,7 +616,7 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
         'password' => 'Wachtwoord',
         'remember_me' => 'Onthoud mij',
         'welcome' => 'Welkom %s ...',
-        'err_login' => '*** Kon niet inloggen. Probeer het nogmaals ***',
+        'err_login' => '*** Kan niet inloggen. Probeer het nogmaals ***',
         'err_already_logged_in' => 'Je bent reeds ingelogd !',
 );
 
@@ -674,7 +653,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
         'public_alb' => 'Iedereen (publiek album)',
         'me_only' => 'Alleen ik',
         'owner_only' => 'Alleen album eigenaar (%s)',
-		'groupp_only' => 'Leden van de \'%s\' groep',
+        'groupp_only' => 'Leden van de \'%s\' groep',
         'err_no_alb_to_modify' => 'Geen album die jij kan aanpassen in de database.',
         'update' => 'Pas album aan'
 );
@@ -696,19 +675,19 @@ if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
-De administrator van {SITE_NAME} zal proberen elk aanstootgevend materiaal zo snel als mogelijk te verwijderen. Het is echter onmogelijk elk materiaal te bekijken. Daarom ga je accoord dat alle postings die op deze site gemaakt worden de gezichtspunten en opinies zijn van de auteur en niet van de administrators of webmaster (behalve hun eigen posting) en deze zullen daarom niet aansprakelijk gesteld worden.<br />
+De administrator van {SITE_NAME} zal proberen elk aanstootgevend materiaal zo snel als mogelijk te verwijderen. Het is echter onmogelijk elk materiaal te bekijken. Daarom ga je akkoord dat alle postings die op deze site gemaakt worden de gezichtspunten en opinies zijn van de auteur en niet van de administrators of webmaster (behalve hun eigen posting) en deze zullen daarom niet aansprakelijk gesteld worden.<br />
 <br />
-Je gaat er mee accoord geen aanstootgevende, obscene, vulgaire, hatelijke, bedreigende, sexueel-getinte of elk ander materiaal dat elke van toepassing zijnde wet overtreedt op deze site te plaatsen. Je gaat er mee accoord dat de webmaster, administrator en  moderators van {SITE_NAME} het recht hebben elke inhoud te verwijderen en of te wijzigen wanneer zij dat nodig vinden. Als gebruiker ga je er mee accoord dat alle data die je hebt verstrekt in een database worden bewaard. Terwijl deze informatie niet openbaar gemaakt wordt aan een derde partij zonder jouw toestemming, ga je accoord met het feit dat de webmaster en de administrator niet verantwoordelijk gehouden kunnen worden voor elke hack poging, dat kan lijden tot het openbaar worden van de database.<br />
+Je gaat er mee akkoord geen aanstootgevende, obscene, vulgaire, hatelijke, bedreigende, sexueel-getinte of elk ander materiaal dat elke van toepassing zijnde wet overtreedt op deze site te plaatsen. Je gaat er mee akkoord dat de webmaster, administrator en  moderators van {SITE_NAME} het recht hebben elke inhoud te verwijderen en of te wijzigen wanneer zij dat nodig vinden. Als gebruiker ga je er mee akkoord dat alle data die je hebt verstrekt in een database worden bewaard. Terwijl deze informatie niet openbaar gemaakt wordt aan een derde partij zonder jouw toestemming, ga je akkoord met het feit dat de webmaster en de administrator niet verantwoordelijk gehouden kunnen worden voor elke hack poging, dat kan lijden tot het openbaar worden van de database.<br />
 <br />
 Deze site gebruikt cookies om informatie te bewaren op je lokale computer. Deze cookies dienen er voor jouw kijk plezier te verhogen. Het email adres wordt alleen gebruikt om jouw registratie details en wachtwoord te bevestigen.<br />
 <br />
-Door op 'Ik ga accoord' hieronder te klikken , ga je accoord dat je gebonden bent aan deze condities.
+Door op 'Ik ga akkoord' hieronder te klikken , ga je akkoord dat je gebonden bent aan deze condities.
 EOT;
 
 $lang_register_php = array(
         'page_title' => 'Gebruiker registratie',
         'term_cond' => 'Voorwaarde en condities',
-        'i_agree' => 'Ik ga accoord',
+        'i_agree' => 'Ik ga akkoord',
         'submit' => 'Zend registratie',
         'err_user_exists' => 'De gebruikersnaam die je ingevoerd hebt bestaat reeds, kies ajb een andere',
         'err_password_mismatch' => 'De twee wachtwoorden zijn niet gelijk, geef ze ajb nogmaals in',
@@ -716,6 +695,7 @@ $lang_register_php = array(
         'err_password_short' => 'Wachtwoord moet minimaal 2 tekens lang zijn',
         'err_uname_pass_diff' => 'Gebruikersnaam en wachtwoord moeten verschillend zijn',
         'err_invalid_email' => 'Email adres is ongeldig',
+        'err_duplicate_email' => 'Een andere gebruiker heeft zich reeds geregistreerd met dit e-mail adres',
         'enter_info' => 'Voer registratie informatie in ',
         'required_info' => 'Verplichte informatie',
         'optional_info' => 'Niet verplichte informatie',
@@ -813,11 +793,13 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
         'image' => 'Foto',
         'album' => 'Album',
         'result' => 'Resultaat',
+	  'dir_ro' => 'Niet beschrijfbaar. ',
+	  'dir_cant_read' => 'Niet leesbaar. ',
         'insert' => 'Toevoegen van nieuwe foto\'s aan gallerie',
         'list_new_pic' => 'Lijst van nieuwe foto\'s',
         'insert_selected' => 'Invoegen van geselecteerde foto\'s',
         'no_pic_found' => 'Er zijn GEEN foto\'s gevonden',
-        'be_patient' => 'Wees geduldig, het script heeft tijd nodig om de foto\'s toe te voegen',
+        'be_patient' => 'Heb geduld, het script heeft tijd nodig om de foto\'s toe te voegen',
         'notes' =>  '<ul>'.
                                 '<li><b>OK</b> : betekent dat de foto succesvol toegevoegd is'.
                                 '<li><b>DP</b> : betekent dat de foto dubbel is en zich reeds in de database bevindt'.
@@ -893,6 +875,6 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
         'create_new_user'=> 'Creëer nieuwe gebruiker',
         'user_location' => 'Gebruiker locatie',
         'user_interests' => 'Gebruiker interesse',
-        'user_occupation'  => 'Gebruiker beroep'
-)
+        'user_occupation'  => 'Gebruiker beroep',
+);
 ?>

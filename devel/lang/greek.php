@@ -13,9 +13,9 @@
 //  the Free Software Foundation; either version 2 of the License, or        //
 //  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
-//  Greek language by lykman, Ελληνική μετάφραση από Λυκούργο Μ., ver. 0.03  //
-//  You can mail me for errors or suggestions about GReek, lyk@lykman.com    //
-//  Για τυχόν λάθη ή προτάσεις στα Ελληνικά, στείλτε mail, lyk@lykman.com    //
+//  Greek language by lykman, Ελληνική μετάφραση από Λυκούργο Μ., ver. 1.0   //
+// You can mail me for errors or suggestions about GReek, lykman@freemail.gr //
+// Για τυχόν λάθη ή προτάσεις στα Ελληνικά, στείλτε mail, lykman@freemail.gr //
 // ------------------------------------------------------------------------- //
 
 $lang_charset = 'iso-8859-7';
@@ -80,7 +80,7 @@ $lang_errors = array(
 // ------------------------------------------------------------------------- //
 
 $lang_main_menu = array(
-	'alb_list_title' => 'Ματακίνηση στην λίστα των άλμπουμ',
+	'alb_list_title' => 'Μετακίνηση στην λίστα των άλμπουμ',
 	'alb_list_lnk' => 'Λίστα των άλμπουμ',
 	'my_gal_title' => 'Μετακίνηση στo προσωπικό φώτο άλμπουμ',
 	'my_gal_lnk' => 'Το φώτο άλμπουμ μου',
@@ -483,6 +483,9 @@ $lang_picinfo = array(
 	'Aperture' => 'Διάφραγμα',
 	'Exposure time' => 'Χρόνος έκθεσης',
 	'Focal length' => 'Εστιακή απόσταση',
+	'Flash' => 'Φλας',
+	'ISOSpeedRatings' => 'ISO',
+	'ExposureProgram' => 'Πρόγραμμα έκθεσης',
 	'Comment' => 'Σχόλιο'
 );
 
@@ -587,10 +590,10 @@ $lang_album_admin_menu = array(
 
 $lang_list_categories = array(
 	'home' => 'Αρχική',
-	'stat1' => '<b>[pictures]</b> φωτογραφίες σε <b>[albums]</b> άλμπουμ και <b>[cat]</b> κατηγορίες με <b>[comments]</b> τα σχόλια να έχουν εμφανιστεί <b>[views]</b> φορές',
-	'stat2' => '<b>[pictures]</b> φωτογραφίες σε <b>[albums]</b> αλμπουμ που έχουν εμφανιστεί <b>[views]</b> φορές',
+	'stat1' => '<b>[pictures]</b> φωτογραφίες σε <b>[albums]</b> άλμπουμ και <b>[cat]</b> κατηγορίες με <b>[comments]</b> σχόλια, οι οποίες έχουν εμφανιστεί <b>[views]</b> φορές',
+	'stat2' => '<b>[pictures]</b> φωτογραφίες σε <b>[albums]</b> αλμπουμ, οι οποίες έχουν εμφανιστεί <b>[views]</b> φορές',
 	'xx_s_gallery' => '%s\'s Φώτο άλμπουμ',
-	'stat3' => '<b>[pictures]</b> φωτογραφίες σε <b>[albums]</b> άλμπουμ με <b>[comments]</b> σχόλια που έχουν εμφανιστεί <b>[views]</b> φορές'
+	'stat3' => '<b>[pictures]</b> φωτογραφίες σε <b>[albums]</b> άλμπουμ με <b>[comments]</b> σχόλια, οι οποίες έχουν εμφανιστεί <b>[views]</b> φορές'
 );
 
 $lang_list_users = array(
