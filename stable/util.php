@@ -191,8 +191,7 @@ function updatethumbs()
     if ($startpic < $totalpics) {
 
         ?>
-            <form action=<?php echo $phpself;
-        ?> method="post">
+            <form action="<?php echo $phpself; ?>" method="post">
                     <input type="hidden" name="action" value="continuethumbs" />
                     <input type="hidden" name="numpics" value="<?php echo $numpics?>" />
                     <input type="hidden" name="startpic" value="<?php echo $startpic?>" />
@@ -221,8 +220,8 @@ function deleteorig()
         $thumb = $CONFIG['fullpath'] . mysql_result($result, $i, "filepath") . $CONFIG['thumb_pfx'] . mysql_result($result, $i, "filename");
 
         if (file_exists($normal)) {
-			unlink($image);
-			$test = rename($normal, $image);
+                        unlink($image);
+                        $test = rename($normal, $image);
             if ($test == true) {
                 $imagesize = getimagesize($image);
                 $image_filesize = filesize($image);
@@ -279,7 +278,7 @@ function deleteorphans()
                         } else {
                                 $count++;
                                 ?>
-                                <form action=<?php echo $phpself;?> method="post">
+                                <form action="<?php echo $phpself;?>" method="post">
                                 <input type="hidden" name="action" value="delorphans" />
                                 <input type="hidden" name="single" value="<?php echo $msg_id; ?>" />
                                 <?php echo $lang_util_php['comment'].' "'.$msg_body.'" '.$lang_util_php['nonexist'].' '.$pid; ?>
@@ -293,7 +292,7 @@ function deleteorphans()
         echo '<br>'.$count.' '.$lang_util_php['orphan_comment'].'<br><br>';
         if ($count>=1) {
         ?>
-        <form action=<?php echo $phpself;?> method="post">
+        <form action="<?php echo $phpself;?>" method="post">
         <input type="hidden" name="action" value="delorphans" />
         <input type="hidden" name="del" value="all" />
         Delete all orphans?

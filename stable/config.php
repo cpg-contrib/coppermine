@@ -224,7 +224,10 @@ function form_theme($text, $name)
 {
     global $CONFIG;
 
-    $value = $CONFIG[$name];
+    $result = db_query("SELECT value FROM {$CONFIG['TABLE_CONFIG']} WHERE name = 'theme'");
+    list($value) = mysql_fetch_row($result);
+    mysql_free_result($result);
+
     $theme_dir = 'themes/';
 
     $dir = opendir($theme_dir);
