@@ -501,7 +501,7 @@ function display_fullsize_pic()
     
     //------->If the theme function exists, we call it
     // WARNING! this is a new syntax for this function /chtito
-    if (function_exists('theme_display_fullsize_picc')) 
+    if (function_exists('theme_display_fullsize_pic')) 
     {
         theme_display_fullsize_pic($imagelink);
         return;
