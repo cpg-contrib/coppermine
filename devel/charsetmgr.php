@@ -116,6 +116,7 @@ function register_changes()
 {
     global $CONFIG;
     if (count($_POST) > 0) {
+        
         if (isset($_POST['check']))
             $doconvert = 0;
         else if (isset($_POST['convert']))
@@ -214,13 +215,32 @@ EOT;
 // Charsetmgr start page
 register_changes();
 
-
-pageheader($lang_picinfo['CharsetManager']);
-
+$languagefilecfg = 0;
 
 if ($CONFIG['charset'] == 'language file')
 {
     $thecharset = $lang_charset;
+    $languagefilecfg = 1;
+}
+else
+{
+    $thecharset = $CONFIG['charset'];
+}    
+
+    
+
+    
+
+pageheader("Charset Manager");
+
+if (!function_exists('iconva'))
+{
+    echo "<p class=\"warning\">The <a href=\"http://www.php.net/iconv\">iconv</a> function is not available. <b>You cannot use this script.</b></p>";
+}
+
+
+if ($languagefilecfg)
+{
     echo <<<EOT
         <p class="warning">You are using the language default encoding. It means that:</p>
     <ol>
@@ -230,12 +250,12 @@ if ($CONFIG['charset'] == 'language file')
 EOT;
     
 }
-else
+
+if ($thecharset == 'utf-8')
 {
-    $thecharset = $CONFIG['charset'];
-    if ($thecharset == 'utf-8')
-        echo '<p class="warning">Your site is already configured to use utf-8. <b>You should <a href="index.php">leave this page</a></b>.</p>';
+    echo '<p class="warning">Your site is already configured to use utf-8. <b>You don\'t need this script and should <a href="index.php">leave this page</a></b>.</p>';
 }
+
 
 echo <<<EOT
 <ul>
