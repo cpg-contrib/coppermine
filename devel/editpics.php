@@ -189,21 +189,17 @@ EOT;
 
 function form_pic_info($text)
 {
-        global $CURRENT_PIC, $THUMB_ROWSPAN, $CONFIG, $lang_byte_units, $lang_editpics_php;
+    global $CURRENT_PIC, $THUMB_ROWSPAN, $CONFIG, $lang_byte_units, $lang_editpics_php;
 
-        if (UPLOAD_APPROVAL_MODE) {
-            $pic_info = $CURRENT_PIC['pwidth'].' &times; '.$CURRENT_PIC['pheight'].' - '.($CURRENT_PIC['filesize'] >> 10).$lang_byte_units[1];
-                if($CURRENT_PIC['owner_name']){
-                        $pic_info .= ' - <a href ="profile.php?uid='.$CURRENT_PIC['owner_id'].'" target="_blank">'.$CURRENT_PIC['owner_name'].'</a>';
-                }
+    if (UPLOAD_APPROVAL_MODE) {
+        $pic_info = $CURRENT_PIC['pwidth'].' &times; '.$CURRENT_PIC['pheight'].' - '.($CURRENT_PIC['filesize'] >> 10).$lang_byte_units[1];
+        if($CURRENT_PIC['owner_name']){
+            $pic_info .= ' - <a href ="profile.php?uid='.$CURRENT_PIC['owner_id'].'" target="_blank">'.$CURRENT_PIC['owner_name'].'</a>';
+        }
     } elseif (!is_movie($CURRENT_PIC['filename'])) {
         $pic_info = sprintf($lang_editpics_php['pic_info_str'], $CURRENT_PIC['pwidth'], $CURRENT_PIC['pheight'], ($CURRENT_PIC['filesize'] >> 10), $CURRENT_PIC['hits'], $CURRENT_PIC['votes']);
     } else {
-        $pic_info = '<input type="text" name="pwidth'.$CURRENT_PIC['pid'].'" value="'.$CURRENT_PIC['pwidth'].'" size="5" maxlength="5" class="textinput" /> x ';
-        $pic_info .= '<input type="text" name="pheight'.$CURRENT_PIC['pid'].'" value="'.$CURRENT_PIC['pheight'].'" size="5" maxlength="5" class="textinput" /> - ';
-        $pic_info .=($CURRENT_PIC['filesize'] >> 10)."KB - ";
-        $pic_info .=$CURRENT_PIC['hits']." views - ";
-        $pic_info .=$CURRENT_PIC['votes']." votes";
+        $pic_info = sprintf($lang_editpics_php['pic_info_str'], '<input type="text" name="pwidth'.$CURRENT_PIC['pid'].'" value="'.$CURRENT_PIC['pwidth'].'" size="5" maxlength="5" class="textinput" />', '<input type="text" name="pheight'.$CURRENT_PIC['pid'].'" value="'.$CURRENT_PIC['pheight'].'" size="5" maxlength="5" class="textinput" />', ($CURRENT_PIC['filesize'] >> 10), $CURRENT_PIC['hits'], $CURRENT_PIC['votes']);
     }
 
     if (is_image($CURRENT_PIC['filename']))

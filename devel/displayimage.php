@@ -153,6 +153,7 @@ function html_picture()
     if ($CURRENT_PIC_DATA['keywords'] != '') {
         $pic_title .= $lang_picinfo['Keywords'] . ": " . $CURRENT_PIC_DATA['keywords'];
     } // added by gaugau
+    
     if ($CURRENT_PIC_DATA['pwidth']==0 || $CURRENT_PIC_DATA['pheight']==0)
         $image_size['geom']='';
 

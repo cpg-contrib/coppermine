@@ -1,4 +1,4 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
@@ -99,8 +99,20 @@ EOT;
 $result = db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, {$CONFIG['TABLE_COMMENTS']}.pid as pid, aid, filepath, filename, url_prefix, pwidth, pheight FROM {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']} WHERE {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid ORDER BY msg_id DESC LIMIT $start, $count");
 
 while ($row = mysql_fetch_array($result)) {
-    $thumb_url = get_pic_url($row, 'thumb');
+    if (!is_image($row['filename'])) {
+        $row['pwidth'] = 100;
+        $row['pheight'] = 100;
+    }
     $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['alb_list_thumb_size']);
+    $mime_content = get_type($row['filename']);
+    $extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
+
+    if ($mime_content['content']=='image') {
+            $thumb_url = get_pic_url($row, 'thumb');
+    } else {
+            $thumb_url = "images/thumb_{$extension}.jpg";
+    }
+
     $thumb_link = 'displayimage.php?pos=' . - $row['pid'];
     $msg_date = localised_date($row['msg_date'], $comment_date_fmt);
     echo <<<EOT

@@ -1043,6 +1043,11 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
                 foreach ($pic_data as $key => $row) {
                         $i++;
 
+                        if (!is_image($row['filename'])) {
+                            $row['pwidth'] = 100;
+                            $row['pheight'] = 100;
+                        }
+
                         $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
 
                         $pic_title =$lang_display_thumbnails['filename'].$row['filename']."\n".
@@ -1116,6 +1121,11 @@ function display_film_strip($album, $cat, $pos)
                         $hi =(($pos==($i + $lower_limit)) ? '1': '');
                         $i++;
 
+                        if (!is_image($row['filename'])) {
+                            $row['pwidth'] = 100;
+                            $row['pheight'] = 100;
+                        }
+
                         $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
 
                         $pic_title =$lang_display_thumbnails['filename'].$row['filename']."\n".
@@ -1135,7 +1145,6 @@ function display_film_strip($album, $cat, $pos)
                         } else { // is movie/audio/document
                                 $thumb_list[$i]['image'] = "<img src=\"images/thumb_{$extension}.jpg\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\">";
                         }
-
                         $thumb_list[$i]['caption'] = $row['caption_text'];
                         $thumb_list[$i]['admin_menu'] = '';
 

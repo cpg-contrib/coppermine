@@ -30,7 +30,6 @@ if ($CONFIG['enable_smilies']) include("include/smilies.inc.php");
 /**
  * Local functions definition
  */
-
 function html_albummenu($id)
 {
     global $template_album_admin_menu, $lang_album_admin_menu;
@@ -387,9 +386,9 @@ function list_albums()
                 $extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
 
                 if ($mime_content['content']=='image') {
-                        $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"" . get_pic_url($picture, 'thumb') . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\">";
+                        $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"" . get_pic_url($picture, 'thumb') . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$picture['filename']}\">";
                 } else {
-                        $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/thumb_{$extension}.jpg\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\">";
+                        $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/thumb_{$extension}.jpg\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$picture['filename']}\">";
                 }
             } else { // Inserts an empty thumbnail if the album contains 0 images
                 $image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
@@ -512,9 +511,9 @@ function list_cat_albums($cat = 0)
                 $extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
 
                 if ($mime_content['content']=='image') {
-                        $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"" . get_pic_url($picture, 'thumb') . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\">";
+                        $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"" . get_pic_url($picture, 'thumb') . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$picture['filename']}\">";
                 } else {
-                        $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/thumb_{$extension}.jpg\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$row['filename']}\" title=\"$pic_title\">";
+                        $alb_list[$alb_idx]['thumb_pic'] = "<img src=\"images/thumb_{$extension}.jpg\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$picture['filename']}\">";
                 }
             } else { // Inserts an empty thumbnail if the album contains 0 images
                 $image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
