@@ -43,7 +43,7 @@ class cpg_udb extends core_udb {
 		}
 		
 		// A hash that's a little specific to the client's configuration
-		$this->client_id = md5($_SERVER['USER_AGENT'].$_SERVER['HTTP_PROTOCOL']);
+		$this->client_id = md5($_SERVER['HTTP_USER_AGENT'].$_SERVER['HTTP_PROTOCOL']);
 
 		$this->multigroups = 0;
 
