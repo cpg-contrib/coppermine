@@ -72,7 +72,9 @@ switch ($method) {
 	
 	case "im" :
 
-		$escaped_path_to_primary_image = escapeshellarg($path_to_primary_image);
+		$real_path_to_primary_image = realpath($path_to_primary_image);
+
+		$escaped_path_to_primary_image = escapeshellarg($real_path_to_primary_image);
 
 		$output = array();
 
@@ -504,6 +506,10 @@ imagedestroy($destination_image_handle);
     	} else {
         	$trailing_slash = "/";
     	}
+
+	//Determine real paths to files.
+	$real_path_to_primary_image = realpath($path_to_primary_image);
+	$real_path_to_preview_image = realpath($path_to_preview_image);
 	
 	// Prevent the user from creating a process zombie by aborting while IM does its work.
 	ignore_user_abort(true);
@@ -512,7 +518,7 @@ imagedestroy($destination_image_handle);
 	
 	$output = array();
 
-	$cmd = "{$CONFIG['impath']}".$trailing_slash."convert -geometry {$new_width}x{$new_height} \"$path_to_primary_image\" \"$path_to_preview_image\"";
+	$cmd = "{$CONFIG['impath']}".$trailing_slash."convert -geometry {$new_width}x{$new_height} \"$real_path_to_primary_image\" \"$real_path_to_preview_image\"";
 	
 	exec ($cmd, $output, $retval);
 
@@ -827,7 +833,7 @@ if (!isset($HTTP_POST_VARS['degrees'])) {
 	// Our preview thumbnail is now stored on the server. Let's create the 
 	// rotation form.
 
-	make_form($_SERVER[PHP_SELF], $path_to_preview_image, $path_to_primary_image, $file_name, $encoded_image, $source_image_size_and_type['mime']);
+	make_form($_SERVER[PHP_SELF], $path_to_preview_image, $path_to_primary_image, $file_name);
  
 } else {
 
