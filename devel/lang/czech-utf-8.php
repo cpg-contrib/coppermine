@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.0                                            //
 // ------------------------------------------------------------------------- //
@@ -14,7 +14,10 @@
 //  the Free Software Foundation; either version 2 of the License, or        //
 //  (at your option) any later version.                                      //
 // ------------------------------------------------------------------------- //
-// Tanslation updated by Michal Ambroz <rebus@seznam.cz>
+// Tanslation updated by Michal Ambroz <rebus@seznam.cz>                     //
+// ------------------------------------------------------------------------- //
+// $Id$
+// ------------------------------------------------------------------------- //
 
 
 // info about translators and translated language
