@@ -93,7 +93,7 @@ $lang_meta_album_names['lastupby'] = $lang_meta_album_names['lastup'];
 $lang_meta_album_names['lastcomby'] = $lang_meta_album_names['lastcom'];
 
 if (is_numeric($album)) {
-    $result = db_query("SELECT category, title, aid, keyword, description FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
+    $result = db_query("SELECT category, title, aid, keyword, description, alb_password_hint FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
     if (mysql_num_rows($result) > 0) {
         $CURRENT_ALBUM_DATA = mysql_fetch_array($result);
         $actual_cat = $CURRENT_ALBUM_DATA['category'];
@@ -103,7 +103,7 @@ if (is_numeric($album)) {
     }
 } elseif (isset($cat) && $cat) { // Meta albums, we need to restrict the albums to the current category
     if ($cat < 0) {
-        $result = db_query("SELECT category, title, aid, keyword,description FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='" . (- $cat) . "'");
+        $result = db_query("SELECT category, title, aid, keyword, description, alb_password_hint FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='" . (- $cat) . "'");
         if (mysql_num_rows($result) > 0) {
             $CURRENT_ALBUM_DATA = mysql_fetch_array($result);
             $actual_cat = $CURRENT_ALBUM_DATA['category'];
@@ -159,13 +159,20 @@ if ($breadcrumb) {
 */
 function form_albpw()
 {
-    global $HTTP_POST_VARS, $lang_thumb_view;
+    global $HTTP_POST_VARS, $lang_thumb_view, $CURRENT_ALBUM_DATA;
     $login_falied =
           starttable('-1', $lang_thumb_view['enter_alb_pass'], 2);
       if (isset($HTTP_POST_VARS['validate_album'])) {
           $login_failed = "<tr><td class='tableh2' colspan='2' align='center'>
                                <font color='red' size='1'>{$lang_thumb_view['invalid_pass']}</font></td></tr>
                                          ";
+      }
+      if (!empty($CURRENT_ALBUM_DATA['alb_password_hint'])) {
+        echo <<<EOT
+                  <tr>
+                    <td colspan="2" align="center" class="tableb">{$CURRENT_ALBUM_DATA['alb_password_hint']}</td>
+                  </tr>
+EOT;
       }
           echo <<<EOT
                         $login_failed
