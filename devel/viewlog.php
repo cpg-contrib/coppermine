@@ -78,6 +78,10 @@ $action = @$_GET['action'];
 pageheader('Logs :: '.$log);
 
 if (!$USER_DATA['has_admin_access']) {
+        // Write access attempt to 'security' log file
+        if ($CONFIG['log_mode']) {
+                log_write('Denied privilaged access to user '.$USER_DATA['user_name'].' from '.$_SERVER['REMOTE_HOST'].' on '.date("F j, Y, g:i a"),CPG_SECURITY_LOG);
+        }
         cpg_die(CRITICAL_ERROR,$lang_errors['access_denied'], __FILE__,1);
 }
 

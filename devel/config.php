@@ -359,6 +359,34 @@ EOT;
 EOT;
 }
 
+function form_lang_logmode($text, $name)
+{
+    global $CONFIG, $lang_config_php;
+
+    $value = $CONFIG[$name];
+    $off_selected = ($value == '0') ? 'checked="checked"' : '';
+    $normal_selected = ($value == '1') ? 'checked="checked"' : '';
+    $all_selected = ($value == '2') ? 'checked="checked"' : '';
+
+    echo <<<EOT
+        <tr>
+            <td class="tableb">
+                        $text
+        </td>
+        <td class="tableb" valign="top">
+                        <input type="radio" id="{$name}0" name="$name" value="0" $off_selected /><label for="{$name}0" class="clickable_option">{$lang_config_php['no_logs']}</label>
+                        &nbsp;&nbsp;
+                        <input type="radio" id="{$name}1" name="$name" value="1" $normal_selected /><label for="{$name}1" class="clickable_option">{$lang_config_php['log_normal']}</label>
+                        &nbsp;&nbsp;
+                        <input type="radio" id="{$name}2" name="$name" value="2" $all_selected /><label for="{$name}2" class="clickable_option">{$lang_config_php['log_all']}</label>
+                        &nbsp;&nbsp;
+                        ( <a href="viewlog.php">{$lang_config_php['view_logs']}</a> )
+        </td>
+        </tr>
+
+EOT;
+}
+
 
 function create_form(&$data)
 {
@@ -402,6 +430,9 @@ function create_form(&$data)
                 case 10 :
                     form_number_dropdown($element[0], $element[1]);
                     break;
+                case 11 :
+                    form_lang_logmode($element[0], $element[1]);
+                    break;
                 default:
                     die('Invalid action');
             } // switch
@@ -432,6 +463,15 @@ if (count($HTTP_POST_VARS) > 0) {
                 if ((!isset($HTTP_POST_VARS[$element[1]]))) cpg_die(CRITICAL_ERROR, "Missing config value for '{$element[1]}'", __FILE__, __LINE__);
                 $value = addslashes($HTTP_POST_VARS[$element[1]]);
                 db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET  value = '$value' WHERE name = '{$element[1]}'");
+                if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
+                        log_write('CONFIG UPDATE SQL: '.
+                                  "UPDATE {$CONFIG['TABLE_CONFIG']} SET  value = '$value' WHERE name = '{$element[1]}'\n".
+                                  'TIME: '.date("F j, Y, g:i a")."\n".
+                                  'USER: '.$USER_DATA['user_name'],
+                                  CPG_DATABASE_LOG
+                                  );
+                }
+
             }
         }
         pageheader($lang_config_php['title']);
