@@ -1,4 +1,4 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.2.0                                            //
 // ------------------------------------------------------------------------- //
@@ -13,7 +13,7 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- // 
+// ------------------------------------------------------------------------- //
 
 define('IN_COPPERMINE', true);
 define('CONFIG_PHP', true);
@@ -33,7 +33,7 @@ function form_label($text)
         </tr>
 
 EOT;
-} 
+}
 
 function form_input($text, $name)
 {
@@ -52,7 +52,7 @@ function form_input($text, $name)
         </tr>
 
 EOT;
-} 
+}
 
 function form_yes_no($text, $name)
 {
@@ -76,7 +76,7 @@ function form_yes_no($text, $name)
         </tr>
 
 EOT;
-} 
+}
 
 function form_img_pkg($text, $name)
 {
@@ -102,7 +102,7 @@ function form_img_pkg($text, $name)
         </tr>
 
 EOT;
-} 
+}
 
 function form_sort_order($text, $name)
 {
@@ -134,7 +134,7 @@ function form_sort_order($text, $name)
         </tr>
 
 EOT;
-} 
+}
 
 function form_charset($text, $name)
 {
@@ -173,14 +173,14 @@ function form_charset($text, $name)
 EOT;
     foreach ($charsets as $country => $charset) {
         echo "                                <option value=\"$charset\" " . ($value == $charset ? 'selected' : '') . ">$country ($charset)</option>\n";
-    } 
+    }
     echo <<<EOT
                         </select>
                 </td>
         </tr>
 
 EOT;
-} 
+}
 
 function form_language($text, $name)
 {
@@ -193,8 +193,8 @@ function form_language($text, $name)
     while ($file = readdir($dir)) {
         if (is_file($lang_dir . $file) && strtolower(substr($file, -4)) == '.php') {
             $lang_array[] = strtolower(substr($file, 0 , -4));
-        } 
-    } 
+        }
+    }
     closedir($dir);
 
     natcasesort($lang_array);
@@ -210,14 +210,14 @@ function form_language($text, $name)
 EOT;
     foreach ($lang_array as $language) {
         echo "                                <option value=\"$language\" " . ($value == $language ? 'selected' : '') . ">" . ucfirst($language) . "</option>\n";
-    } 
+    }
     echo <<<EOT
                         </select>
                 </td>
         </tr>
 
 EOT;
-} 
+}
 
 function form_theme($text, $name)
 {
@@ -230,8 +230,8 @@ function form_theme($text, $name)
     while ($file = readdir($dir)) {
         if (is_dir($theme_dir . $file) && $file != "." && $file != "..") {
             $theme_array[] = $file;
-        } 
-    } 
+        }
+    }
     closedir($dir);
 
     natcasesort($theme_array);
@@ -247,14 +247,14 @@ function form_theme($text, $name)
 EOT;
     foreach ($theme_array as $theme) {
         echo "                                <option value=\"$theme\" " . ($value == $theme ? 'selected' : '') . ">" . strtr(ucfirst($theme), '_', ' ') . "</option>\n";
-    } 
+    }
     echo <<<EOT
                         </select>
                 </td>
         </tr>
 
 EOT;
-} 
+}
 // Added for allowing user to select which aspect of thumbnails to scale
 function form_scale($text, $name)
 {
@@ -280,7 +280,7 @@ function form_scale($text, $name)
         </tr>
 
 EOT;
-} 
+}
 
 function create_form(&$data)
 {
@@ -307,19 +307,23 @@ function create_form(&$data)
                     break;
                 case 6 :
                     form_theme($element[0], $element[1]);
-                    break; 
+                    break;
                 // Thumbnail scaling
                 case 7 :
                     form_scale($element[0], $element[1]);
+                    break;
+                // Add triple dropdwon later - put back in for compatibility reasons
+                case 8 :
+                    // do nothing
                     break;
                 default:
                     die('Invalid action');
             } // switch
         } else {
             form_label($element);
-        } 
-    } 
-} 
+        }
+    }
+}
 
 if (count($HTTP_POST_VARS) > 0) {
     if (isset($HTTP_POST_VARS['update_config'])) {
@@ -330,7 +334,7 @@ if (count($HTTP_POST_VARS) > 0) {
             'subcat_level',
             'thumb_width',
             'thumbcols',
-            'thumbrows', 
+            'thumbrows',
             // Show filmstrip
             'max_film_strip_items');
 
@@ -342,8 +346,8 @@ if (count($HTTP_POST_VARS) > 0) {
                 if ((!isset($HTTP_POST_VARS[$element[1]]))) cpg_die(CRITICAL_ERROR, "Missing config value for '{$element[1]}'", __FILE__, __LINE__);
                 $value = addslashes($HTTP_POST_VARS[$element[1]]);
                 db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET  value = '$value' WHERE name = '{$element[1]}'");
-            } 
-        } 
+            }
+        }
         pageheader($lang_config_php['title']);
         msg_box($lang_config_php['info'], $lang_config_php['upd_success'], $lang_continue, 'index.php');
         pagefooter();
@@ -359,11 +363,11 @@ if (count($HTTP_POST_VARS) > 0) {
 
         $sql_count = count($sql_query);
         for($i = 0; $i < $sql_count; $i++) db_query($sql_query[$i]);
-    } 
+    }
     pageheader($lang_config_php['title']);
     msg_box($lang_config_php['info'], $lang_config_php['restore_success'], $lang_continue, $PHP_SELF);
     pagefooter();
-} 
+}
 
 pageheader($lang_config_php['title']);
 
