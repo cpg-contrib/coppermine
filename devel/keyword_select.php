@@ -17,7 +17,6 @@
   $Date$
 **********************************************/
 
-/* vim: set expandtab tabstop=4 shiftwidth=4: */
 // +----------------------------------------------------------------------+
 // | Filename: keyword_select.php                                         |
 // +----------------------------------------------------------------------+
@@ -58,23 +57,25 @@ $html_header = <<<EOT
 <meta http-equiv="Pragma" content="no-cache" />
 
 <link rel="stylesheet" href="themes/{$CONFIG['theme']}/style.css" />
+</head>
+<body>
 EOT;
 
 print $html_header;
 starttable("100%",$lang_upload_php['keywords_sel'], 3);
 if ($total > 0) {
 
-    $form = "
-    <script language='JavaScript'>
+    $form = '
+    <script type="text/javascript">
     <!--
     var str;
 
     function CM_select(f)
     {
         str = window.document.form.elements[0].value;
-        var substrings = window.opener.document.getElementById('keywords').value.split(str);
+        var substrings = window.opener.document.getElementById(\'keywords\').value.split(str);
         if (substrings.length <= 1){
-                window.opener.document.getElementById('keywords').value += ' ' + str;
+                window.opener.document.getElementById(\'keywords\').value += \' \' + str;
         }
 
 
@@ -85,30 +86,32 @@ if ($total > 0) {
     //-->
     </script>
 
-    <form name='form'>
-    <table align='center'>
+    <form name="form" name="keywordform">
+    <table align="center">
     <tr>
-        <td align=center ><select name='keyword' size='15' onChange='CM_select(this)'>";
+        <td align="center"><select name="keyword" size="15" onChange="CM_select(this)">";
+
         foreach ($keywords as $keyword) {
-            $form.= "<option value='$keyword'>$keyword</option>";
+            $form.= '<option value="$keyword">$keyword</option>';
         }
-    $form .= "
+    $form .= '
             </select>
         </td>
     </tr>
     <tr>
-        <td align=center ><a href='#' onClick='window.close()'>Close</a></td>
+        <td align="center"><a href="#" onClick="window.close()">{$lang_upload_php['close']}</a></td>
     </tr>
     </table>
-    </form>";
+    </form>';
 } else {
-    echo "<b><font color='red'><b>Sorry, No keywords available !</b></font> ";
+    echo '<b>{$lang_upload_php['no_keywords']}</b>';
 }
 print($form);
 endtable();
 
 if (GALLERY_ADMIN_MODE) {
-        echo "<center><a href='keyword_create_dict.php>Regenerate Dictionary</a></center>";
+        echo '<center><a href="keyword_create_dict.php">{$lang_upload_php['regenerate_dictionary']}</a></center>';
 }
 ?>
+</body>
 </html>
