@@ -166,7 +166,7 @@ class cpgDB {
       return 0;
     }
 
-    $this->Record = @mysql_fetch_array($this->Query_ID,MYSQL_ASSOC);
+    $this->Record = @mysql_fetch_array($this->Query_ID,MYSQL_BOTH);
     $this->Row   += 1;
     $this->Errno  = mysql_errno();
     $this->Error  = mysql_error();
@@ -196,9 +196,10 @@ class cpgDB {
   /* public: position in result set */
   function seek($pos = 0) {
     $status = @mysql_data_seek($this->Query_ID, $pos);
-    if ($status)
+    if ($status) {
       $this->Row = $pos;
-    else {
+      $this->nextRecord();
+    } else {
       $this->halt("seek($pos) failed: result has ".$this->numRows()." rows");
 
       /* half assed attempt to save the day,
