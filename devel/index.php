@@ -710,11 +710,15 @@ foreach ($elements as $element) {
 
             case 'anycontent':
                 if ($cat == 0) {
+                    ob_start();
                     include('anycontent.php');
-                } 
+                    echo (CPGPluginAPI::filter('anycontent',ob_get_contents()));
+                    ob_end_clean();
+                }
                 flush();
                 break;
             case 'plugin':
+                echo (CPGPluginAPI::filter('plugin_content',''));
                 if ($cat == 0) {
                     $scope = (int) $_GET['scope'];
                     
