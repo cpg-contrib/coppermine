@@ -44,7 +44,7 @@ function cpg_mail($to, $subject, $msg_body = '', $type = 'text/plain', $sender_n
                 $to = array($to);
         }
 
-    if ($sender_name == '') { $sender_name = $CONFIG['gallery_name']; }
+    if ($sender_name == '') { $sender_name = '"' . $CONFIG['gallery_name'] . '"'; }
     if ($sender_email == '') { $sender_email = $CONFIG['gallery_admin_email']; }
 
     $charset = $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'];
