@@ -310,4 +310,5 @@ ALTER TABLE `CPG_banned` ADD `brute_force` TINYINT( 5 ) DEFAULT '0' NOT NULL ;
 INSERT INTO CPG_config VALUES ('login_threshold', '5');
 INSERT INTO CPG_config VALUES ('login_expiry', '10');
 INSERT INTO CPG_config VALUES ('clickable_keyword_search', '1');
+INSERT INTO CPG_config VALUES ('link_pic_count', '0');
 ALTER TABLE CPG_pictures ADD position INT(11) DEFAULT '0' NOT NULL;

@@ -221,3 +221,4 @@ INSERT INTO CPG_categories VALUES (1, 0, 'User galleries', 'This category contai
 
 INSERT INTO CPG_config VALUES ('show_which_exif', '|0|0|0|0|0|0|0|0|1|0|1|1|0|0|0|0|0|0|0|0|0|0|0|1|0|0|0|1|0|0|0|1|1|0|0|0|0|1|0|0|0|1|0|0|1|1|0|0|0|0|0|1|0|1|1');
 INSERT INTO CPG_config VALUES ('alb_desc_thumb', '1');
+INSERT INTO CPG_config VALUES ('link_pic_count', '0');
