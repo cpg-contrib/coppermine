@@ -487,7 +487,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Profile 4 name', 'user_profile4_name', 0),
   array('Profile 5 name', 'user_profile5_name', 0),
   array('Profile 6 name', 'user_profile6_name', 0),
-  
+
   'Custom fields for image description (leave blank if unused)',
   array('Field 1 name', 'user_field1_name', 0),
   array('Field 2 name', 'user_field2_name', 0),
@@ -995,6 +995,8 @@ $lang_register_php = array(
   'pass_chg_success' => 'Your password was changed',
   'pass_chg_error' => 'Your password was not changed',
   'notify_admin_email_subject' => '%s - Registration notification', //cpg1.3.0
+  'last_uploads' => 'Last uploads by',
+  'last_comments' => 'Last comments made by',
   'notify_admin_email_body' => 'A new user with the username "%s" has registered in your gallery', //cpg1.3.0
 );
 

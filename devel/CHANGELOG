@@ -117,3 +117,4 @@ Added config settable profile fields, 19th June 2004, casper
 Added keyword Inserter, 20th June 2004, tarique
 Added version warning if other version than stable is being used, 22.06.2004, GauGau
 Changed profile field 6 to text area for longer biography entries etc, 22.06.2004, Casper
+Added text link over thumbnails on profile page, 23.06.2004, GauGau

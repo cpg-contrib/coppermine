@@ -29,31 +29,31 @@ $edit_profile_form_param = array(
     array('text', 'group', $lang_register_php['group']),
     array('text', 'email', $lang_register_php['email']),
     array('text', 'disk_usage', $lang_register_php['disk_usage']),
-	array('input', 'user_profile1', $CONFIG['user_profile1_name'], 255),
-	array('input', 'user_profile2', $CONFIG['user_profile2_name'], 255),
-	array('input', 'user_profile3', $CONFIG['user_profile3_name'], 255),
-	array('input', 'user_profile4', $CONFIG['user_profile4_name'], 255),
-	array('input', 'user_profile5', $CONFIG['user_profile5_name'], 255),
-	array('textarea', 'user_profile6', $CONFIG['user_profile6_name'], 255),
+        array('input', 'user_profile1', $CONFIG['user_profile1_name'], 255),
+        array('input', 'user_profile2', $CONFIG['user_profile2_name'], 255),
+        array('input', 'user_profile3', $CONFIG['user_profile3_name'], 255),
+        array('input', 'user_profile4', $CONFIG['user_profile4_name'], 255),
+        array('input', 'user_profile5', $CONFIG['user_profile5_name'], 255),
+        array('textarea', 'user_profile6', $CONFIG['user_profile6_name'], 255),
     );
 
-	
-	// profile mod test
+
+        // profile mod test
 $display_profile_form_param = array(
     array('text', 'username', $lang_register_php['username']),
     array('text', 'reg_date', $lang_register_php['reg_date']),
     array('text', 'group', $lang_register_php['group']),
-	array('text', 'user_profile1', $CONFIG['user_profile1_name']),
+        array('text', 'user_profile1', $CONFIG['user_profile1_name']),
     array('text', 'user_profile2', $CONFIG['user_profile2_name']),
     array('text', 'user_profile3', $CONFIG['user_profile3_name']),
     array('text', 'user_profile4', $CONFIG['user_profile4_name']),
-	array('text', 'user_profile5', $CONFIG['user_profile5_name']),
-	array('text', 'user_profile6', $CONFIG['user_profile6_name']),
+        array('text', 'user_profile5', $CONFIG['user_profile5_name']),
+        array('text', 'user_profile6', $CONFIG['user_profile6_name']),
     array('thumb', 'user_thumb'),
     );
-	
 
-	
+
+
 
 $change_password_form_param = array(
     array('password', 'current_pass', $lang_register_php['current_pass'], 25),
@@ -106,24 +106,24 @@ EOT;
         </td>
     </tr>
 
-	
+
 EOT;
             break;
 
         case 'textarea' :
             $value = $form_data[$element[1]];
-			
+
            if ($element[2]) echo <<<EOT
-	<tr>
-    	<td width="40%" class="tableb"  height="25">
-			{$element[2]}
+        <tr>
+            <td width="40%" class="tableb"  height="25">
+                        {$element[2]}
         </td>
         <td width="60%" class="tableb" valign="top">
-        	<textarea name="{$element[1]}" ROWS="7" WRAP="virtual"  class="textinput" STYLE="WIDTH: 100%">$value</textarea>
-		</td>
-	</tr>
-	
-	
+                <textarea name="{$element[1]}" ROWS="7" WRAP="virtual"  class="textinput" STYLE="WIDTH: 100%">$value</textarea>
+                </td>
+        </tr>
+
+
 EOT;
             break;
 
@@ -175,12 +175,12 @@ if (isset($HTTP_POST_VARS['change_pass'])) $op = 'change_pass';
 
 if (isset($HTTP_POST_VARS['change_profile']) && USER_ID && !defined('UDB_INTEGRATION')) {
 
-	$profile1 = addslashes($HTTP_POST_VARS['user_profile1']);
-	$profile2 = addslashes($HTTP_POST_VARS['user_profile2']);
-	$profile3 = addslashes($HTTP_POST_VARS['user_profile3']);
-	$profile4 = addslashes($HTTP_POST_VARS['user_profile4']);
-	$profile5 = addslashes($HTTP_POST_VARS['user_profile5']);
-	$profile6 = addslashes($HTTP_POST_VARS['user_profile6']);
+        $profile1 = addslashes($HTTP_POST_VARS['user_profile1']);
+        $profile2 = addslashes($HTTP_POST_VARS['user_profile2']);
+        $profile3 = addslashes($HTTP_POST_VARS['user_profile3']);
+        $profile4 = addslashes($HTTP_POST_VARS['user_profile4']);
+        $profile5 = addslashes($HTTP_POST_VARS['user_profile5']);
+        $profile6 = addslashes($HTTP_POST_VARS['user_profile6']);
 
     $sql = "UPDATE {$CONFIG['TABLE_USERS']} SET " . "user_profile1 = '$profile1', " . "user_profile2 = '$profile2', " . "user_profile3 = '$profile3', " . "user_profile4 = '$profile4', " . "user_profile5 = '$profile5', " . "user_profile6 = '$profile6' " . "WHERE user_id = '" . USER_ID . "'";
 
@@ -253,12 +253,12 @@ switch ($op) {
             'email' => $user_data['user_email'],
             'disk_usage' => $user_data['disk_usage'] .
             ($user_data['group_quota'] ? '/' . $user_data['group_quota'] : '') . '&nbsp;' . $lang_byte_units[1],
-			'user_profile1' => $user_data['user_profile1'],
-			'user_profile2' => $user_data['user_profile2'],
-			'user_profile3' => $user_data['user_profile3'],
-			'user_profile4' => $user_data['user_profile4'],
-			'user_profile5' => $user_data['user_profile5'],
-			'user_profile6' => $user_data['user_profile6'],
+                        'user_profile1' => $user_data['user_profile1'],
+                        'user_profile2' => $user_data['user_profile2'],
+                        'user_profile3' => $user_data['user_profile3'],
+                        'user_profile4' => $user_data['user_profile4'],
+                        'user_profile5' => $user_data['user_profile5'],
+                        'user_profile6' => $user_data['user_profile6'],
             );
 
         $title = sprintf($lang_register_php['x_s_profile'], USER_NAME);
@@ -360,6 +360,7 @@ EOT;
                 $lastcom = '<img src="' . $pic_url . '" class="image"' . $image_size['geom'] . ' border="0" alt="">';
                 $lastcom = '<td width="50%" valign="top" align="center">'
                             . '<a href="thumbnails.php?album=lastcomby&uid=' . $uid . '">'
+                            . '<span class="thumb_title">' . $lang_register_php['last_comments'] . ' ' . $user_data['user_name'] . '<br /></span>'
                             . $lastcom
                             . '</a><br />';
                 $lastcom .= "<span class=\"thumb_caption\"><b>" . $row['msg_author'] . '</b></span>' . "<span class=\"thumb_caption\">" . localised_date($row['msg_date'], $lastcom_date_fmt) . '</span>' . "<span class=\"thumb_caption\">" . $row['msg_body'] . '</span></td>';
@@ -385,6 +386,7 @@ EOT;
                                 . $image_size['geom'] . ' border="0" alt="">';
                 $user_thumb = '<td width="50%" valign="top" align="center">'
                             . '<a href="thumbnails.php?album=lastupby&uid=' . $uid . '">'
+                            . '<span class="thumb_title">' . $lang_register_php['last_uploads'] . ' ' . $user_data['user_name'] . '<br /></span>'
                             . $user_thumb
                             . '</a></td>';
             }
@@ -395,12 +397,12 @@ EOT;
         $form_data = array('username' => $user_data['user_name'],
             'reg_date' => localised_date($user_data['user_regdate'], $register_date_fmt),
             'group' => $user_data['group_name'],
-			'user_profile1' => $user_data['user_profile1'],
-			'user_profile2' => $user_data['user_profile2'],
-			'user_profile3' => $user_data['user_profile3'],
-			'user_profile4' => $user_data['user_profile4'],
-			'user_profile5' => $user_data['user_profile5'],
-			'user_profile6' => $user_data['user_profile6'],
+                        'user_profile1' => $user_data['user_profile1'],
+                        'user_profile2' => $user_data['user_profile2'],
+                        'user_profile3' => $user_data['user_profile3'],
+                        'user_profile4' => $user_data['user_profile4'],
+                        'user_profile5' => $user_data['user_profile5'],
+                        'user_profile6' => $user_data['user_profile6'],
             'user_thumb' => $quick_jump,
             );
 
