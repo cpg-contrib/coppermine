@@ -1,5 +1,7 @@
 <?php
 
+// ENCODING CHECK; SHOULD BE YEN BETA MU: ¥ ß µ
+
 // info about translators and translated language
 $lang_translation_info = array(
 'lang_name_english' => 'Basque',  

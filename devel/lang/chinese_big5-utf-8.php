@@ -1,8 +1,8 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.3.2                                            //
 // ------------------------------------------------------------------------- //
-// Copyright (C) 2002-2004 Gregory DEMAR                                     //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
 // ------------------------------------------------------------------------- //
 // Updated by the Coppermine Dev Team                                        //
@@ -14,37 +14,39 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
+// ENCODING CHECK; SHOULD BE YEN BETA MU: ¥ ß µ
+// ------------------------------------------------------------------------- //
 // $Id$
 // ------------------------------------------------------------------------- //
 
 // info about translators and translated language
 $lang_translation_info = array(
   'lang_name_english' => 'Chinese Tranditional BIG5',
-  'lang_name_native' => 'ç¹é«”ä¸­æ–‡BIG5',
+  'lang_name_native' => '中文繁體BIG5',
   'lang_country_code' => 'tw',
-  'trans_name'=> 'Monkey',
-  'trans_email' => 'dnfans@hotmail.com',
-  'trans_website' => 'http://cpg.38.com/',
-  'trans_date' => '2004-04-09',
+  'trans_name'=> 'CapriSkye and monkey',
+  'trans_email' => 'admin@capriskye.com',
+  'trans_website' => 'http://open.38.com/',
+  'trans_date' => '2004-09-28',
 );
 
-$lang_charset = 'utf-8';
+$lang_charset = 'BIG5';
 $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 
 // shortcuts for Byte, Kilo, Mega
 $lang_byte_units = array('Bytes', 'KB', 'MB');
 
 // Day of weeks and months
-$lang_day_of_week = array('æ˜ŸæœŸæ—¥', 'æ˜ŸæœŸä¸€', 'æ˜ŸæœŸäºŒ', 'æ˜ŸæœŸä¸‰', 'æ˜ŸæœŸå››', 'æ˜ŸæœŸäº”', 'æ˜ŸæœŸå…­');
-$lang_month = array('ä¸€æœˆ', 'äºŒæœˆ', 'ä¸‰æœˆ', 'å››æœˆ', 'äº”æœˆ', 'å…­æœˆ', 'ä¸ƒæœˆ', 'å…«æœˆ', 'ä¹æœˆ', 'åæœˆ', 'åä¸€æœˆ', 'åäºŒæœˆ');
+$lang_day_of_week = array('星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六');
+$lang_month = array('一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月');
 
 // Some common strings
-$lang_yes = 'æ˜¯';
-$lang_no  = 'å¦';
-$lang_back = 'è¿”å›ž';
-$lang_continue = 'ç¹¼çºŒ';
-$lang_info = 'è¨Šæ¯';
-$lang_error = 'éŒ¯èª¤';
+$lang_yes = '是';
+$lang_no  = '否';
+$lang_back = '返回';
+$lang_continue = '繼續';
+$lang_info = '訊息';
+$lang_error = '錯誤';
 
 // The various date formats
 // See http://www.php.net/manual/en/function.strftime.php to define the variable below
@@ -59,144 +61,144 @@ $comment_date_fmt =  '%B %d, %Y at %I:%M %p'; //cpg1.3.0
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
 
 $lang_meta_album_names = array(
-  'random' => 'éš¨æ©Ÿå½±åƒ', //cpg1.3.0
-  'lastup' => 'æœ€æ–°ä¸Šå‚³',
-  'lastalb'=> 'æœ€è¿‘æ›´æ–°',
-  'lastcom' => 'æœ€æ–°ç•™è¨€',
-  'topn' => 'ç†±é–€å½±åƒ',
-  'toprated' => 'æœ€é«˜è©•åˆ†',
-  'lasthits' => 'æœ€è¿‘é¡¯ç¤º',
-  'search' => 'æœå°‹çµæžœ',
-  'favpics'=> 'æˆ‘çš„æœ€æ„›', //cpg1.3.0
+  'random' => '隨機圖片', //cpg1.3.0
+  'lastup' => '最新上傳',
+  'lastalb'=> '最近更新',
+  'lastcom' => '最新留言',
+  'topn' => '熱門圖片',
+  'toprated' => '最高評分',
+  'lasthits' => '最近顯示',
+  'search' => '搜尋結果',
+  'favpics'=> '最愛圖片', //cpg1.3.0
 );
 
 $lang_errors = array(
-  'access_denied' => 'ä½ æ²’æœ‰ä½¿ç”¨æœ¬é çš„æ¬Šé™!.',
-  'perm_denied' => 'ä½ æ²’æœ‰æ¬Šé™åŸ·è¡Œæ­¤å‹•ä½œ!.',
-  'param_missing' => 'ç¨‹å¼è¢«å‘¼å«è€Œ æ²’æœ‰éœ€è¦çš„åƒæ•¸!.',
-  'non_exist_ap' => 'æ‰€é¸æ“‡çš„ ç›¸ç°¿/å½±åƒ ä¸å­˜åœ¨ !', //cpg1.3.0
-  'quota_exceeded' => 'è¶…éŽç£ç¢Ÿé…é¡<br /><br />ä½ çš„é…é¡æœ‰ [quota]K, å·²ä½¿ç”¨çš„æœ‰ [space]K, åŠ å…¥æ­¤å½±åƒæœƒè¶…éŽé…é¡.', //cpg1.3.0
-  'gd_file_type_err' => 'ç•¶ä½¿ç”¨ GD åœ–åƒç¨‹å¼åº«åªå®¹è¨± JPEG / PNG åœ–æª”.',
-  'invalid_image' => 'ä½ ä¸Šå‚³çš„æª”æ¡ˆå·±ç¶“æå£ž, æˆ–æ˜¯ GD åœ–åƒç¨‹å¼åº«ä¸èƒ½è™•ç†',
-  'resize_failed' => 'ç„¡æ³•å»ºç«‹ç¸®åœ–æˆ–è®Šæ›´åœ–æª”å°ºå¯¸.',
-  'no_img_to_display' => 'é‚„æ²’æœ‰å½±åƒå¯ä»¥é¡¯ç¤º.',
-  'non_exist_cat' => 'æ‰€é¸æ“‡çš„é¡žåˆ¥ä¸¦ä¸å­˜åœ¨.',
-  'orphan_cat' => 'é€™å€‹å­é¡žåˆ¥å­˜æ–¼ä¸€å€‹ä¸å­˜åœ¨çš„çˆ¶é¡žåˆ¥, è«‹å…ˆè‡³é¡žåˆ¥ç®¡ç†ä¿®æ­£é€™å€‹å•é¡Œ.', //cpg1.3.0
-  'directory_ro' => 'ç›®éŒ„ \'%s\' ç„¡æ³•å¯«å…¥, å°Žè‡´å½±åƒç„¡æ³•åˆªé™¤', //cpg1.3.0
-  'non_exist_comment' => 'æ‰€é¸æ“‡çš„ç•™è¨€ä¸¦ä¸å­˜åœ¨.',
-  'pic_in_invalid_album' => 'æ­¤å½±åƒå­˜æ–¼ ä¸å­˜åœ¨çš„ç›¸ç°¿ (%s)!?', //cpg1.3.0
-  'banned' => 'ä½ ç›®å‰è¢«ç¦æ­¢ä½¿ç”¨æœ¬ç¶²ç«™.',
-  'not_with_udb' => 'ç”±æ–¼æœ¬ç›¸ç°¿å·²å’Œè«–å£‡ç¨‹å¼æ•´åˆ, æ­¤åŠŸèƒ½åœæ­¢ä½¿ç”¨. å¯èƒ½æ˜¯ç›®å‰è¨­å®šä¸æ”¯æ´, æˆ–å·²ç”±è«–å£‡è™•ç†.', 
-  'offline_title' => 'é›¢ç·š', //cpg1.3.0
-  'offline_text' => 'ç›¸ç°¿ç›®å‰é›¢ç·š- è«‹ç¨å¾Œå†è©¦', //cpg1.3.0
-  'ecards_empty' => 'ç›®å‰æ²’æœ‰é›»å­å¡ç‰‡çš„ç´€éŒ„å¯é¡¯ç¤º. è«‹æª¢æŸ¥ç›¸ç°¿è¨­å®šä¸­æ˜¯å¦å•Ÿç”¨é›»å­å¡ç‰‡æ—¥èªŒ!', //cpg1.3.0
-  'action_failed' => 'å‹•ä½œå¤±æ•—.  Coppermine ç„¡æ³•åŸ·è¡Œä½ çš„è¦æ±‚.', //cpg1.3.0
-  'no_zip' => 'ç„¡æ³•åŸ·è¡ŒZIPå£“ç¸®æª”.  è«‹è¯çµ¡ä½ çš„ç›¸ç°¿ç®¡ç†å“¡.', //cpg1.3.0
-  'zip_type' => 'ä½ æ²’æœ‰æ¬Šé™ä¸Šå‚³ZIPå£“ç¸®æª”.', //cpg1.3.0
+  'access_denied' => '你沒有使用本頁的權限.',
+  'perm_denied' => '你沒有權限執行此動作.',
+  'param_missing' => '程式被呼叫而沒有需要的參數.',
+  'non_exist_ap' => '所選擇的 相簿/圖片 不存在 !', //cpg1.3.0
+  'quota_exceeded' => '超過磁碟配額<br /><br />你的配額有 [quota]K, 已使用的有 [space]K, 加入此圖片會超過擁有的配額.', //cpg1.3.0
+  'gd_file_type_err' => '當使用 GD 圖像程式庫只容許 JPEG / PNG 圖檔.',
+  'invalid_image' => '你上傳的檔案己經損壞, 或是 GD 圖像程式庫不能處理',
+  'resize_failed' => '無法建立縮圖或變更圖檔尺寸.',
+  'no_img_to_display' => '沒有圖片可以顯示.',
+  'non_exist_cat' => '所選擇的類別並不存在.',
+  'orphan_cat' => '這個子類別存於一個不存在的母類別, 請先至類別管理修正這個問題.', //cpg1.3.0
+  'directory_ro' => '目錄 \'%s\' 無法寫入, 導致無法刪除圖片', //cpg1.3.0
+  'non_exist_comment' => '所選擇的留言並不存在.',
+  'pic_in_invalid_album' => '此圖片存於不存在的相簿 (%s)!?', //cpg1.3.0
+  'banned' => '您目前被禁止使用本站.',
+  'not_with_udb' => '由於本相簿已和論壇程式整合, 此功能已停止使用. 可能是目前設定不支援此功能, 或已由論壇處理.', 
+  'offline_title' => '離線', //cpg1.3.0
+  'offline_text' => '相簿目前是離線狀態 - 請稍後再試', //cpg1.3.0
+  'ecards_empty' => '目前沒有電子卡片的紀錄可顯示. 請檢查相簿設定中是否啟用紀錄電子卡片功能!', //cpg1.3.0
+  'action_failed' => '動作失敗.  Coppermine 無法執行您的要求.', //cpg1.3.0
+  'no_zip' => '無法執行ZIP壓縮檔.  請聯絡您的相簿管理員.', //cpg1.3.0
+  'zip_type' => '您沒有上傳ZIP壓縮檔的權限.', //cpg1.3.0
 );
 
-$lang_bbcode_help = 'å¯ä»¥åƒè€ƒçš„ç·¨ç¢¼: <li>[b]<b>Bold</b>[/b]</li> <li>[i]<i>Italic</i>[/i]</li> <li>[url=http://yoursite.com/]Url Text[/url]</li> <li>[email]user@domain.com[/email]</li>'; //cpg1.3.0
+$lang_bbcode_help = '參考編碼: <li>[b]<b>Bold</b>[/b]</li> <li>[i]<i>Italic</i>[/i]</li> <li>[url=http://yoursite.com/]Url Text[/url]</li> <li>[email]user@domain.com[/email]</li>'; //cpg1.3.0
 
 // ------------------------------------------------------------------------- //
 // File theme.php
 // ------------------------------------------------------------------------- //
-
+//
 $lang_main_menu = array(
-  'alb_list_title' => 'è¿”å›žç›¸ç°¿ç›®éŒ„',
-  'alb_list_lnk' => 'ç›¸ç°¿ç›®éŒ„',
-  'my_gal_title' => 'è¿”å›žæˆ‘çš„ç›¸ç°¿',
-  'my_gal_lnk' => 'æˆ‘çš„ç›¸ç°¿',
-  'my_prof_lnk' => 'æˆ‘çš„å€‹äººè³‡æ–™',
-  'adm_mode_title' => 'è½‰ç‚ºç®¡ç†æ¨¡å¼',
-  'adm_mode_lnk' => 'ç®¡ç†æ¨¡å¼',
-  'usr_mode_title' => 'è½‰ç‚ºæœƒå“¡æ¨¡å¼',
-  'usr_mode_lnk' => 'æœƒå“¡æ¨¡å¼',
-  'upload_pic_title' => 'ä¸Šå‚³å½±åƒè‡³ç›¸ç°¿', //cpg1.3.0
-  'upload_pic_lnk' => 'ä¸Šå‚³å½±åƒ', //cpg1.3.0
-  'register_title' => 'å»ºç«‹æœƒå“¡å¸³è™Ÿ',
-  'register_lnk' => 'è¨»å†Š',
-  'login_lnk' => 'ç™»å…¥',
-  'logout_lnk' => 'ç™»å‡º',
-  'lastup_lnk' => 'æœ€æ–°ä¸Šå‚³',
-  'lastcom_lnk' => 'æœ€æ–°ç•™è¨€',
-  'topn_lnk' => 'ç†±é–€å½±åƒ',
-  'toprated_lnk' => 'æœ€é«˜è©•åˆ†',
-  'search_lnk' => 'æœå°‹',
-  'fav_lnk' => 'æˆ‘çš„æœ€æ„›',
-  'memberlist_title' => 'é¡¯ç¤ºæœƒå“¡åˆ—è¡¨', //cpg1.3.0
-  'memberlist_lnk' => 'æœƒå“¡åˆ—è¡¨', //cpg1.3.0
-  'faq_title' => 'ç›¸ç°¿çš„å¸¸è¦‹å•é¡Œè§£ç­” &quot;Coppermine&quot;', //cpg1.3.0
-  'faq_lnk' => 'å¸¸è¦‹å•é¡Œ', //cpg1.3.0
+  'alb_list_title' => '返回相簿目錄',
+  'alb_list_lnk' => '相簿目錄',
+  'my_gal_title' => '返回我的相簿',
+  'my_gal_lnk' => '我的相簿',
+  'my_prof_lnk' => '我的個人資料',
+  'adm_mode_title' => '轉為管理模式',
+  'adm_mode_lnk' => '管理模式',
+  'usr_mode_title' => '轉為會員模式',
+  'usr_mode_lnk' => '會員模式',
+  'upload_pic_title' => '上傳圖片至相簿', //cpg1.3.0
+  'upload_pic_lnk' => '上傳圖片', //cpg1.3.0
+  'register_title' => '建立會員帳號',
+  'register_lnk' => '註冊',
+  'login_lnk' => '登入',
+  'logout_lnk' => '登出',
+  'lastup_lnk' => '最新上傳',
+  'lastcom_lnk' => '最新留言',
+  'topn_lnk' => '熱門圖片',
+  'toprated_lnk' => '最高評分',
+  'search_lnk' => '搜尋',
+  'fav_lnk' => '我的最愛',
+  'memberlist_title' => '顯示會員名單', //cpg1.3.0
+  'memberlist_lnk' => '會員名單', //cpg1.3.0
+  'faq_title' => '&quot;Coppermine&quot; 相簿的常見問題解答', //cpg1.3.0
+  'faq_lnk' => '常見問題解答', //cpg1.3.0
 );
 
 $lang_gallery_admin_menu = array(
-  'upl_app_lnk' => 'æ ¸å‡†ä¸Šå‚³',
-  'config_lnk' => 'è¨­å®š',
-  'albums_lnk' => 'ç›¸ç°¿',
-  'categories_lnk' => 'é¡žåˆ¥',
-  'users_lnk' => 'æœƒå“¡',
-  'groups_lnk' => 'ç¾¤çµ„',
-  'comments_lnk' => 'è§€çœ‹ç•™è¨€', //cpg1.3.0
-  'searchnew_lnk' => 'æ•´æ‰¹åŠ å…¥æª”æ¡ˆ', //cpg1.3.0
-  'util_lnk' => 'ç®¡ç†å·¥å…·', //cpg1.3.0
-  'ban_lnk' => 'åœæ¬Šæœƒå“¡',
-  'db_ecard_lnk' => 'é¡¯ç¤ºé›»å­å¡ç‰‡', //cpg1.3.0
+  'upl_app_lnk' => '核准上傳',
+  'config_lnk' => '設定',
+  'albums_lnk' => '相簿',
+  'categories_lnk' => '類別',
+  'users_lnk' => '會員',
+  'groups_lnk' => '群組',
+  'comments_lnk' => '觀看留言', //cpg1.3.0
+  'searchnew_lnk' => '整批加入圖片', //cpg1.3.0
+  'util_lnk' => '管理工具', //cpg1.3.0
+  'ban_lnk' => '阻擋會員',
+  'db_ecard_lnk' => '顯示電子卡片', //cpg1.3.0
 );
 
 $lang_user_admin_menu = array(
-  'albmgr_lnk' => 'å»ºç«‹/æŽ’åº æˆ‘çš„ç›¸ç°¿',
-  'modifyalb_lnk' => 'ç·¨è¼¯æˆ‘çš„ç›¸ç°¿',
-  'my_prof_lnk' => 'æˆ‘çš„å€‹äººè³‡æ–™',
+  'albmgr_lnk' => '建立/排序 我的相簿',
+  'modifyalb_lnk' => '編輯我的相簿',
+  'my_prof_lnk' => '我的個人資料',
 );
 
 $lang_cat_list = array(
-  'category' => 'é¡žåˆ¥',
-  'albums' => 'ç›¸ç°¿',
-  'pictures' => 'å½±åƒ', //cpg1.3.0
+  'category' => '類別',
+  'albums' => '相簿',
+  'pictures' => '圖片', //cpg1.3.0
 );
 
 $lang_album_list = array(
-  'album_on_page' => '%d ç›¸ç°¿åœ¨ %d é ',
+  'album_on_page' => '%d 個相簿在 %d 頁',
 );
 
 $lang_thumb_view = array(
-  'date' => 'æ—¥æœŸ',
+  'date' => '日期',
   //Sort by filename and title
-  'name' => 'æª”å',
-  'title' => 'æ¨™é¡Œ',
-  'sort_da' => 'ä¾æ—¥æœŸæŽ’åº ç”±é è‡³è¿‘',
-  'sort_dd' => 'ä¾æ—¥æœŸæŽ’åº ç”±è¿‘è‡³é ',
-  'sort_na' => 'ä¾åç¨±æŽ’åº ç”±å°è‡³å¤§',
-  'sort_nd' => 'ä¾åç¨±æŽ’åº ç”±å¤§è‡³å°',
-  'sort_ta' => 'ä¾æ¨™é¡ŒæŽ’åº ç”±å°è‡³å¤§',
-  'sort_td' => 'ä¾æ¨™é¡ŒæŽ’åº ç”±å¤§è‡³å°',
-  'download_zip' => 'ä¸‹è¼‰æˆ Zip æª”', //cpg1.3.0
-  'pic_on_page' => '%d å½±åƒåœ¨ %d é ',
-  'user_on_page' => '%d æœƒå“¡åœ¨ %d é ', //cpg1.3.0
+  'name' => '檔名',
+  'title' => '標題',
+  'sort_da' => '依日期排序 由遠至近',
+  'sort_dd' => '依日期排序 由近至遠',
+  'sort_na' => '依名稱排序 由小至大',
+  'sort_nd' => '依名稱排序 由大至小',
+  'sort_ta' => '依標題排序 由小至大',
+  'sort_td' => '依標題排序 由大至小',
+  'download_zip' => '下載成 Zip 檔', //cpg1.3.0
+  'pic_on_page' => '%d 張圖片在 %d 頁',
+  'user_on_page' => '%d 名會員在 %d 頁', //cpg1.3.0
 );
 
 $lang_img_nav_bar = array(
-  'thumb_title' => 'è¿”å›žç¸®åœ–é ',
-  'pic_info_title' => 'é¡¯ç¤º/éš±è— å½±åƒè³‡è¨Š', //cpg1.3.0
-  'slideshow_title' => 'é€£çºŒæ’­æ”¾',
-  'ecard_title' => 'æŠŠåœ–ç‰‡ä»¥é›»å­å¡ç‰‡å¯„å‡º', //cpg1.3.0
-  'ecard_disabled' => 'é›»å­å¡ç‰‡åŠŸèƒ½ç›®å‰åœç”¨',
-  'ecard_disabled_msg' => 'ä½ æ²’æœ‰æ¬Šé™å¯„é›»å­å¡ç‰‡', //js-alert //cpg1.3.0
-  'prev_title' => 'è§€çœ‹å‰ä¸€å¼µå½±åƒ', //cpg1.3.0
-  'next_title' => 'è§€çœ‹ä¸‹ä¸€å¼µå½±åƒ', //cpg1.3.0
-  'pic_pos' => 'å½±åƒ %s/%s', //cpg1.3.0
+  'thumb_title' => '返回縮圖頁',
+  'pic_info_title' => '顯示/隱藏 圖片資訊', //cpg1.3.0
+  'slideshow_title' => '連續播放',
+  'ecard_title' => '把圖片以電子卡片寄出', //cpg1.3.0
+  'ecard_disabled' => '電子卡片功能目前停用',
+  'ecard_disabled_msg' => '您沒有寄電子卡片的權限', //js-alert //cpg1.3.0
+  'prev_title' => '顯示前一張圖片', //cpg1.3.0
+  'next_title' => '顯示下一張圖片', //cpg1.3.0
+  'pic_pos' => '圖片 %s/%s', //cpg1.3.0
 );
 
 $lang_rate_pic = array(
-  'rate_this_pic' => 'å°å½±åƒè©•åˆ†', //cpg1.3.0
-  'no_votes' => '(é‚„æ²’æœ‰äººè©•åˆ†)',
-  'rating' => '(ç›®å‰å¾—åˆ† : %s / 5 æ–¼ %s å€‹è©•åˆ†)',
-  'rubbish' => 'æ˜å€’ ä¸çœ‹ä¹Ÿç½·',
-  'poor' => 'æœ‰é»žå·®å‹',
-  'fair' => 'æ™®æ™®é€šé€š',
-  'good' => 'å¾ˆå¥½ å¾ˆå¥½',
-  'excellent' => 'éžå¸¸å‡ºè‰²',
-  'great' => 'å«æˆ‘ç¬¬ä¸€å',
+  'rate_this_pic' => '對圖片評分', //cpg1.3.0
+  'no_votes' => '(還沒有人評分)',
+  'rating' => '(目前得分 : %s / 5 於 %s 個評分)',
+  'rubbish' => '昏倒 不看也罷',
+  'poor' => '有點差勁',
+  'fair' => '普普通通',
+  'good' => '很好',
+  'excellent' => '非常出色',
+  'great' => '叫我第一名',
 );
 
 // ------------------------------------------------------------------------- //
@@ -212,39 +214,39 @@ $lang_rate_pic = array(
 $lang_cpg_die = array(
   INFORMATION => $lang_info,
   ERROR => $lang_error,
-  CRITICAL_ERROR => 'ç·Šæ€¥éŒ¯èª¤',
-  'file' => 'æª”æ¡ˆ: ',
-  'line' => 'è¡Œæ•¸: ',
+  CRITICAL_ERROR => '緊急錯誤',
+  'file' => '檔案: ',
+  'line' => '行數: ',
 );
 
 $lang_display_thumbnails = array(
-  'filename' => 'æª”æ¡ˆåç¨± : ',
-  'filesize' => 'æª”æ¡ˆå¤§å° : ',
-  'dimensions' => 'å½±åƒå°ºå¯¸ : ',
-  'date_added' => 'åŠ å…¥æ—¥æœŸ : ', //cpg1.3.0
+  'filename' => '檔案名稱: ',
+  'filesize' => '檔案大小: ',
+  'dimensions' => '圖片尺寸: ',
+  'date_added' => '加入日期: ', //cpg1.3.0
 );
 
 $lang_get_pic_data = array(
-  'n_comments' => '%s å€‹ç•™è¨€',
-  'n_views' => '%s æ¬¡è§€çœ‹',
-  'n_votes' => '(%s å€‹è©•åˆ†)',
+  'n_comments' => '%s 個留言',
+  'n_views' => '%s 次觀看',
+  'n_votes' => '(%s 個評分)',
 );
 
 $lang_cpg_debug_output = array(
-  'debug_info' => 'é™¤éŒ¯è¨Šæ¯', //cpg1.3.0
-  'select_all' => 'å…¨é¸', //cpg1.3.0
-  'copy_and_paste_instructions' => 'å¦‚æžœä½ è¦åœ¨Coppermineæ”¯æ´è«–å£‡ä¸Šè¦æ±‚å”åŠ©, è¤‡è£½ä¸¦è²¼ä¸Š é€™å€‹é™¤éŒ¯è¨Šæ¯åˆ°ä½ çš„ç™¼è¡¨æ–‡ç« å…§. ç™¼è¡¨æ–‡ç« å‰è«‹ç¢ºå®šç”¨***å–ä»£ä½ çš„å¯†ç¢¼.', //cpg1.3.0
-  'phpinfo' => 'é¡¯ç¤ºphpè¨Šæ¯', //cpg1.3.0
+  'debug_info' => '除錯訊息', //cpg1.3.0
+  'select_all' => '全選', //cpg1.3.0
+  'copy_and_paste_instructions' => '如果你要在Coppermine支援論壇上要求協助, 複製並貼上這個除錯訊息到你的發表文章內. 發表文章前請注意用***來取代您的密碼.', //cpg1.3.0
+  'phpinfo' => '顯示PHP訊息 (phpinfo)', //cpg1.3.0
 );
 
 $lang_language_selection = array(
-  'reset_language' => 'é è¨­èªžè¨€', //cpg1.3.0
-  'choose_language' => 'é¸æ“‡ä½ çš„èªžè¨€', //cpg1.3.0
+  'reset_language' => '預設語系', //cpg1.3.0
+  'choose_language' => '選擇你的語系', //cpg1.3.0
 );
 
 $lang_theme_selection = array(
-  'reset_theme' => 'é è¨­ä½ˆæ™¯ä¸»é¡Œ', //cpg1.3.0
-  'choose_theme' => 'é¸æ“‡ä½ˆæ™¯ä¸»é¡Œ', //cpg1.3.0
+  'reset_theme' => '預設佈景', //cpg1.3.0
+  'choose_theme' => '選擇佈景', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -264,28 +266,28 @@ $lang_theme_selection = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
-  'Exclamation' => 'æ„Ÿæ­Ž',
-  'Question' => 'ç–‘å•',
-  'Very Happy' => 'å¾ˆé«˜èˆˆ',
-  'Smile' => 'å¾®ç¬‘',
-  'Sad' => 'æ‚²å“€',
-  'Surprised' => 'é©šè¨',
-  'Shocked' => 'éœ‡é©š',
-  'Confused' => 'æ˜å€’',
-  'Cool' => 'å¾ˆæ£’',
-  'Laughing' => 'ç™¼ç¬‘',
-  'Mad' => 'ç™¼ç‹‚',
-  'Razz' => 'å˜²ç¬‘',
-  'Embarassed' => 'å°·å°¬',
-  'Crying or Very sad' => 'åšŽå“­',
-  'Evil or Very Mad' => 'æƒ¡æ¯’',
-  'Twisted Evil' => 'å¤æ€ª',
-  'Rolling Eyes' => 'æ—‹è½‰çš„çœ¼ç›',
-  'Wink' => 'çœ¨çœ¼',
-  'Idea' => 'ä¸»æ„',
-  'Arrow' => 'ç®­é ­',
-  'Neutral' => 'ä¸­ç«‹',
-  'Mr. Green' => 'æ ¼æž—å…ˆç”Ÿ',
+  'Exclamation' => '感歎',
+  'Question' => '疑問',
+  'Very Happy' => '很高興',
+  'Smile' => '微笑',
+  'Sad' => '悲哀',
+  'Surprised' => '驚訝',
+  'Shocked' => '震驚',
+  'Confused' => '昏倒',
+  'Cool' => '很棒',
+  'Laughing' => '發笑',
+  'Mad' => '發狂',
+  'Razz' => '嘲笑',
+  'Embarassed' => '尷尬',
+  'Crying or Very sad' => '嚎哭',
+  'Evil or Very Mad' => '惡毒',
+  'Twisted Evil' => '古怪',
+  'Rolling Eyes' => '旋轉的眼睛',
+  'Wink' => '眨眼',
+  'Idea' => '主意',
+  'Arrow' => '箭頭',
+  'Neutral' => '中立',
+  'Mr. Green' => '格林先生',
 );
 
 // ------------------------------------------------------------------------- //
@@ -299,8 +301,8 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ADMIN_PHP')) $lang_admin_php = array(
-  0 => 'æ­£é›¢é–‹ç®¡ç†æ¨¡å¼...',
-  1 => 'æ­£é€²å…¥ç®¡ç†æ¨¡å¼...',
+  0 => '正離開管理模式...',
+  1 => '正進入管理模式...',
 );
 
 // ------------------------------------------------------------------------- //
@@ -308,20 +310,20 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
-  'alb_need_name' => 'æ‚¨éœ€è¦çµ¦ç›¸ç°¿ä¸€å€‹åç¨± !', //js-alert
-  'confirm_modifs' => 'ç¢ºå®šè¦åšé€™äº›ä¿®æ”¹å—Ž ?', //js-alert
-  'no_change' => 'æ‚¨æ²’æœ‰åšä»»ä½•æ”¹è®Š !', //js-alert
-  'new_album' => 'æ–°ç›¸ç°¿',
-  'confirm_delete1' => 'ç¢ºå®šè¦åˆªé™¤æ­¤ç›¸ç°¿å—Ž ?', //js-alert
-  'confirm_delete2' => '\næ‰€æœ‰å½±åƒåŠç•™è¨€éƒ½æœƒåˆªé™¤ !', //js-alert
-  'select_first' => 'è«‹å…ˆé¸æ“‡ä¸€å€‹ç›¸ç°¿', //js-alert
-  'alb_mrg' => 'ç›¸ç°¿ç®¡ç†å“¡',
-  'my_gallery' => '* æˆ‘çš„ç›¸ç°¿ *',
-  'no_category' => '* æ²’æœ‰é¡žåˆ¥ *',
-  'delete' => 'åˆªé™¤',
-  'new' => 'æ–°å¢ž',
-  'apply_modifs' => 'ç¢ºèªä¿®æ”¹',
-  'select_category' => 'é¸æ“‡é¡žåˆ¥',
+  'alb_need_name' => '您需要給相簿一個名稱 !', //js-alert
+  'confirm_modifs' => '確定要做這些修改嗎 ?', //js-alert
+  'no_change' => '您沒有做任何改變 !', //js-alert
+  'new_album' => '新相簿',
+  'confirm_delete1' => '確定要刪除此相簿嗎 ?', //js-alert
+  'confirm_delete2' => '\n所有圖片及留言都會刪除 !', //js-alert
+  'select_first' => '請先選擇一個相簿', //js-alert
+  'alb_mrg' => '相簿管理員',
+  'my_gallery' => '* 我的相簿 *',
+  'no_category' => '* 沒有類別 *',
+  'delete' => '刪除',
+  'new' => '新增',
+  'apply_modifs' => '修改',
+  'select_category' => '選擇類別',
 );
 
 // ------------------------------------------------------------------------- //
@@ -329,19 +331,19 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
-  'miss_param' => '\'%s\'æ“ä½œæ‰€éœ€è¦çš„åƒæ•¸ä¸¦æœªæä¾› !',
-  'unknown_cat' => 'æ‰€é¸æ“‡çš„é¡žåˆ¥ä¸¦ä¸å­˜åœ¨æ–¼è³‡æ–™åº«',
-  'usergal_cat_ro' => 'æœƒå“¡ç›¸ç°¿é¡žåˆ¥ä¸èƒ½åˆªé™¤ !',
-  'manage_cat' => 'é¡žåˆ¥ç®¡ç†',
-  'confirm_delete' => 'ç¢ºå®šè¦åˆªé™¤æ­¤é¡žåˆ¥å—Ž', //js-alert
-  'category' => 'é¡žåˆ¥',
-  'operations' => 'æ“ä½œ',
-  'move_into' => 'è½‰ç§»åˆ°',
-  'update_create' => 'æ›´æ–°/å»ºç«‹ é¡žåˆ¥',
-  'parent_cat' => 'çˆ¶é¡žåˆ¥',
-  'cat_title' => 'é¡žåˆ¥æ¨™é¡Œ',
-  'cat_thumb' => 'é¡žåˆ¥ç¸®åœ–', //cpg1.3.0
-  'cat_desc' => 'é¡žåˆ¥æè¿°',
+  'miss_param' => '\'%s\'操作所需要的參數並未提供 !',
+  'unknown_cat' => '資料庫裡沒有您所選的類別',
+  'usergal_cat_ro' => '會員相簿類別不能刪除 !',
+  'manage_cat' => '類別管理',
+  'confirm_delete' => '確定要刪除此類別嗎', //js-alert
+  'category' => '類別',
+  'operations' => '操作',
+  'move_into' => '移動到',
+  'update_create' => '更新/建立 類別',
+  'parent_cat' => '母類別',
+  'cat_title' => '類別標題',
+  'cat_thumb' => '類別縮圖', //cpg1.3.0
+  'cat_desc' => '類別簡介',
 );
 
 // ------------------------------------------------------------------------- //
@@ -349,140 +351,140 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('CONFIG_PHP')) $lang_config_php = array(
-  'title' => 'è¨­å®š',
-  'restore_cfg' => 'å›žå¾©åŽŸå§‹è¨­å®š',
-  'save_cfg' => 'å„²å­˜æ–°è¨­å®š',
-  'notes' => 'æ³¨æ„',
-  'info' => 'è¨Šæ¯',
-  'upd_success' => 'è¨­å®šå·²æ›´æ–°',
-  'restore_success' => 'åŽŸå§‹è¨­å®šå·²å›žå¾©',
-  'name_a' => 'æŽ’åºä¾åç¨± ç”±å°è‡³å¤§',
-  'name_d' => 'æŽ’åºä¾åç¨± ç”±å¤§è‡³å°',
-  'title_a' => 'æŽ’åºä¾æ¨™é¡Œ ç”±å°è‡³å¤§',
-  'title_d' => 'æŽ’åºä¾æ¨™é¡Œ ç”±å¤§è‡³å°',
-  'date_a' => 'æŽ’åºä¾æ—¥æœŸ ç”±é è‡³è¿‘',
-  'date_d' => 'æŽ’åºä¾æ—¥æœŸ ç”±è¿‘è‡³é ',
-  'th_any' => 'æœ€å¤§å¤–è§€',
-  'th_ht' => 'é«˜åº¦',
-  'th_wd' => 'å¯¬åº¦',
-  'label' => 'æ¨™ç±¤', //cpg1.3.0
-  'item' => 'é …ç›®', //cpg1.3.0
-  'debug_everyone' => 'ä»»ä½•äºº', //cpg1.3.0
-  'debug_admin' => 'ç®¡ç†å“¡å°ˆç”¨', //cpg1.3.0
+  'title' => '設定',
+  'restore_cfg' => '回復原始設定',
+  'save_cfg' => '儲存新設定',
+  'notes' => '注意',
+  'info' => '訊息',
+  'upd_success' => '設定已更新',
+  'restore_success' => '原始設定已回復',
+  'name_a' => '排序依名稱 由小至大',
+  'name_d' => '排序依名稱 由大至小',
+  'title_a' => '排序依標題 由小至大',
+  'title_d' => '排序依標題 由大至小',
+  'date_a' => '排序依日期 由遠至近',
+  'date_d' => '排序依日期 由近至遠',
+  'th_any' => '最大外觀',
+  'th_ht' => '高度',
+  'th_wd' => '寬度',
+  'label' => '標籤', //cpg1.3.0
+  'item' => '項目', //cpg1.3.0
+  'debug_everyone' => '任何人', //cpg1.3.0
+  'debug_admin' => '管理員專用', //cpg1.3.0
         );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
-  'åŸºæœ¬è¨­å®š',
-  array('ç›¸ç°¿åç¨±', 'gallery_name', 0),
-  array('ç›¸ç°¿æè¿°', 'gallery_description', 0),
-  array('ç›¸ç°¿ç®¡ç†å“¡é›»å­éƒµä»¶', 'gallery_admin_email', 0),
-  array('åœ¨é›»å­å¡ç‰‡å…§é¡¯ç¤º\'è§€çœ‹æ›´å¤šå½±åƒ\'çš„ç¶²å€', 'ecards_more_pic_target', 0),
-  array('ç›¸ç°¿ç›®å‰é›¢ç·šä¸­', 'offline', 1), //cpg1.3.0
-  array('é›»å­å¡ç‰‡æ—¥èªŒ', 'log_ecards', 1), //cpg1.3.0
-  array('å…è¨±å°‡æœ€æ„›çš„å½±åƒä¸‹è¼‰æˆZIPæª”', 'enable_zipdownload', 1), //cpg1.3.0
+  '基本設定',
+  array('相簿名稱', 'gallery_name', 0),
+  array('相簿描述', 'gallery_description', 0),
+  array('相簿管理員的電子郵件', 'gallery_admin_email', 0),
+  array('在電子卡片內顯示\'觀看更多圖片\'的連結', 'ecards_more_pic_target', 0),
+  array('相簿目前離線中', 'offline', 1), //cpg1.3.0
+  array('紀錄電子卡片', 'log_ecards', 1), //cpg1.3.0
+  array('允許將最愛的圖片下載成ZIP檔', 'enable_zipdownload', 1), //cpg1.3.0
 
-  'èªžç³», ä½ˆæ™¯ &amp; æ–‡å­—ç·¨ç¢¼è¨­å®š',
-  array('èªžè¨€', 'lang', 5),
-  array('ä½ˆæ™¯', 'theme', 6),
-  array('é¡¯ç¤ºèªžè¨€åˆ—è¡¨', 'language_list', 8), //cpg1.3.0
-  array('é¡¯ç¤ºèªžè¨€åœ‹æ——', 'language_flags', 8), //cpg1.3.0
-  array('é¡¯ç¤º &quot;é‡è¨­&quot; åœ¨èªžè¨€é¸æ“‡', 'language_reset', 1), //cpg1.3.0
-  array('é¡¯ç¤ºä½ˆæ™¯åˆ—è¡¨', 'theme_list', 8), //cpg1.3.0
-  array('é¡¯ç¤º &quot;é‡è¨­&quot; åœ¨ä½ˆæ™¯é¸æ“‡', 'theme_reset', 1), //cpg1.3.0
-  array('é¡¯ç¤º FAQ', 'display_faq', 1), //cpg1.3.0
-  array('é¡¯ç¤º bbcode help', 'show_bbcode_help', 1), //cpg1.3.0
-  array('æ–‡å­—ç·¨ç¢¼', 'charset', 4), //cpg1.3.0
+  '語系, 佈景 &amp; 文字編碼設定',
+  array('語系', 'lang', 5),
+  array('佈景', 'theme', 6),
+  array('顯示語系列表', 'language_list', 8), //cpg1.3.0
+  array('顯示語系國旗', 'language_flags', 8), //cpg1.3.0
+  array('在語系列表內顯示 &quot;重設&quot;', 'language_reset', 1), //cpg1.3.0
+  array('顯示佈景列表', 'theme_list', 8), //cpg1.3.0
+  array('在佈景列表內顯示 &quot;重設&quot;', 'theme_reset', 1), //cpg1.3.0
+  array('顯示 FAQ', 'display_faq', 1), //cpg1.3.0
+  array('顯示 bbcode 簡介', 'show_bbcode_help', 1), //cpg1.3.0
+  array('文字編碼', 'charset', 4), //cpg1.3.0
 
-  'ç›¸ç°¿ç›®éŒ„é¡¯ç¤º',
-  array('ä¸»è¦è¡¨æ ¼å¯¬åº¦ (åƒç´ æˆ– %)', 'main_table_width', 0),
-  array('åŒä¸€å±¤æ¬¡çš„å­é¡žåˆ¥é¡¯ç¤ºå€‹æ•¸', 'subcat_level', 0),
-  array('ç›¸ç°¿é¡¯ç¤ºå€‹æ•¸', 'albums_per_page', 0),
-array('ç›¸ç°¿ç›®éŒ„é ç›¸ç°¿æ¬„æ•¸', 'album_list_cols', 0),
-  array('ç¸®åœ–åƒç´ ', 'alb_list_thumb_size', 0),
-  array('ä¸»é çš„å…§å®¹', 'main_page_layout', 0),
-  array('é¡¯ç¤ºåˆ†é¡žä¸­ç¬¬ä¸€å±¤çš„ç›¸ç°¿ç¸®åœ–','first_level',1),
+  '相簿目錄顯示',
+  array('主要表格寬度 (像素或 %)', 'main_table_width', 0),
+  array('同一層次的子類別顯示數量', 'subcat_level', 0),
+  array('相簿顯示數量', 'albums_per_page', 0),
+  array('相簿目錄內的相簿欄數', 'album_list_cols', 0),
+  array('縮圖像素', 'alb_list_thumb_size', 0),
+  array('主頁的內容', 'main_page_layout', 0),
+  array('顯示分類中第一層的相簿縮圖','first_level',1),
 
-  'ç¸®åœ–é¡¯ç¤º',
-  array('ç¸®åœ–é æ¬„æ•¸', 'thumbcols', 0),
-  array('ç¸®åœ–é åˆ—æ•¸', 'thumbrows', 0),
-  array('è¡¨æ ¼é¡¯ç¤ºæœ€é«˜å€‹æ•¸', 'max_tabs', 10), //cpg1.3.0
-  array('é¡¯ç¤ºå½±åƒèªªæ˜Žæ–¼ç¸®åœ–ä¸‹æ–¹ (é™„åŠ çš„æ¨™é¡Œ)', 'caption_in_thumbview', 1), //cpg1.3.0
-  array('é¡¯ç¤ºè§€çœ‹æ¬¡æ•¸æ–¼ç¸®åœ–ä¸‹æ–¹', 'views_in_thumbview', 1), //cpg1.3.0
-  array('é¡¯ç¤ºç•™è¨€æ•¸æ–¼ç¸®åœ–ä¸‹æ–¹', 'display_comment_count', 1),
-  array('é¡¯ç¤ºä¸Šå‚³è€…åç¨±æ–¼ç¸®åœ–ä¸‹æ–¹', 'display_uploader', 1), //cpg1.3.0
-  array('å½±åƒçš„åŽŸå§‹æŽ’åºæ¬¡åº', 'default_sort_order', 3), //cpg1.3.0
-  array('\'ç†±é–€è©•åˆ†\'éœ€è¦æœ€å°‘è©•åˆ†æ•¸', 'min_votes_for_rating', 0), //cpg1.3.0
+  '縮圖顯示',
+  array('縮圖頁欄數', 'thumbcols', 0),
+  array('縮圖頁列數', 'thumbrows', 0),
+  array('表格顯示最高個數', 'max_tabs', 10), //cpg1.3.0
+  array('顯示圖片說明於縮圖下方 (連標題)', 'caption_in_thumbview', 1), //cpg1.3.0
+  array('顯示觀看次數於縮圖下方', 'views_in_thumbview', 1), //cpg1.3.0
+  array('顯示留言數於縮圖下方', 'display_comment_count', 1),
+  array('顯示上傳者名稱於縮圖下方', 'display_uploader', 1), //cpg1.3.0
+  array('圖片的預設排序', 'default_sort_order', 3), //cpg1.3.0
+  array('\'熱門投票\'需要的最少投票數', 'min_votes_for_rating', 0), //cpg1.3.0
 
-  'å½±åƒé¡¯ç¤º &amp; ç•™è¨€è¨­å®š',
-  array('å½±åƒé¡¯ç¤ºçš„è¡¨æ ¼å¯¬åº¦ (åƒç´ æˆ– %)', 'picture_table_width', 0), //cpg1.3.0
-  array('å½±åƒè³‡è¨Šé è¨­é¡¯ç¤º', 'display_pic_info', 1), //cpg1.3.0
-  array('ç•™è¨€å…§éŽæ¿¾ä¸è‰¯è©žå½™', 'filter_bad_words', 1),
-  array('ç•™è¨€å¯ä»¥ä½¿ç”¨ç¬‘è‡‰åœ–ç¤º', 'enable_smilies', 1),
-  array('å…è¨±æœƒå“¡åœ¨åŒä¸€å¼µå½±åƒ é€£çºŒç™¼è¡¨ç•™è¨€(é—œé–‰çŒæ°´ä¿è­·)', 'disable_comment_flood_protect', 1), //cpg1.3.0
-  array('å½±åƒæè¿°å…§å®¹çš„æœ€å¤§é•·åº¦', 'max_img_desc_length', 0),
-  array('æè¿°å…§å®¹çš„æœ€å¤§å­—æ•¸', 'max_com_wlength', 0),
-  array('ç•™è¨€çš„æœ€å¤§è¡Œæ•¸', 'max_com_lines', 0),
-  array('ç•™è¨€çš„æœ€å¤§é•·åº¦', 'max_com_size', 0),
-  array('é¡¯ç¤ºå½±åƒé è¦½åˆ—', 'display_film_strip', 1),
-  array('å½±åƒé è¦½åˆ— çš„å½±åƒæ•¸', 'max_film_strip_items', 0),
-  array('æœ‰ç•™è¨€æ™‚ ç”¨é›»å­éƒµä»¶é€šçŸ¥ç®¡ç†å“¡', 'email_comment_notification', 1), //cpg1.3.0
-  array('é€£çºŒæ’¥æ”¾é–“éš”å¹¾ æ¯«ç§’(1 ç§’ = 1000 æ¯«ç§’)', 'slideshow_interval', 0), //cpg1.3.0
+  '圖片顯示 &amp; 留言設定',
+  array('圖片顯示的表格寬度 (像素或 %)', 'picture_table_width', 0), //cpg1.3.0
+  array('圖片資訊的預設為顯示', 'display_pic_info', 1), //cpg1.3.0
+  array('留言內過濾不良詞彙', 'filter_bad_words', 1),
+  array('留言可以使用笑臉圖示', 'enable_smilies', 1),
+  array('允許會員在同一張圖片 連續發表留言(關閉灌水保護)', 'disable_comment_flood_protect', 1), //cpg1.3.0
+  array('圖片簡介的最大長度', 'max_img_desc_length', 0),
+  array('文字的最大字數', 'max_com_wlength', 0),
+  array('留言的最大行數', 'max_com_lines', 0),
+  array('留言的最大長度', 'max_com_size', 0),
+  array('顯示圖片預覽列', 'display_film_strip', 1),
+  array('圖片預覽列的圖片數', 'max_film_strip_items', 0),
+  array('有留言時用電子郵件通知管理員', 'email_comment_notification', 1), //cpg1.3.0
+  array('連續撥放間隔時間 (毫秒). 1 秒 = 1000 毫秒', 'slideshow_interval', 0), //cpg1.3.0
 
-  'å½±åƒåŠç¸®åœ–è¨­å®š', //cpg1.3.0
-  array('JPEG æ ¼å¼å“è³ª', 'jpeg_qual', 0),
-  array('ç¸®åœ–æœ€å¤§å°ºå¯¸ <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0), //cpg1.3.0
-  array('ä½¿ç”¨å°ºå¯¸ ( å¯¬ã€é«˜æˆ–ç¸®åœ–æœ€å¤§é‚Šé•· )<b>*</b>', 'thumb_use', 7),
-  array('å»ºç«‹ä¸­ç´šå½±åƒ','make_intermediate',1),
-  array('ä¸­ç´šå½±åƒ/å½±ç‰‡æœ€å¤§å°ºå¯¸ <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0), //cpg1.3.0
-  array('ä¸Šå‚³å½±åƒçš„æœ€å¤§é™åˆ¶ (KB)', 'max_upl_size', 0), //cpg1.3.0
-  array('ä¸Šå‚³åœ–ç‰‡/å½±ç‰‡æœ€å¤§å¯¬æˆ–é«˜å°ºå¯¸ (åƒç´ )', 'max_upl_width_height', 0), //cpg1.3.0
+  '圖片及縮圖設定', //cpg1.3.0
+  array('JPEG 格式品質', 'jpeg_qual', 0),
+  array('縮圖最大尺寸 <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0), //cpg1.3.0
+  array('使用尺寸 ( 寬、高或縮圖最大邊長 )<b>**</b>', 'thumb_use', 7),
+  array('建立中級圖片','make_intermediate',1),
+  array('中級圖片/影片最大尺寸 <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0), //cpg1.3.0
+  array('上傳圖檔的最大限制 (KB)', 'max_upl_size', 0), //cpg1.3.0
+  array('上傳圖片/影片的最大寬度或最高尺寸 (像素)', 'max_upl_width_height', 0), //cpg1.3.0
 
-  'å½±åƒå’Œç¸®åœ–çš„é€²éšŽè¨­å®š', //cpg1.3.0
-  array('é¡¯ç¤ºç§äººç›¸ç°¿å½±åƒçµ¦æœªç™»å…¥æœƒå“¡','show_private',1), //cpg1.3.0
-  array('æª”æ¡ˆåç¨±ä¸æŽ¥å—çš„å­—ç¬¦', 'forbiden_fname_char',0), //cpg1.3.0
-  //array('ä¸Šå‚³åœ–æª”å¯æŽ¥å—çš„å‰¯æª”å', 'allowed_file_extensions',0), //cpg1.3.0
-  array('å¯æŽ¥å—çš„åœ–ç‰‡æª”é¡žåž‹', 'allowed_img_types',0), //cpg1.3.0
-  array('å¯æŽ¥å—çš„å½±ç‰‡æª”é¡žåž‹', 'allowed_mov_types',0), //cpg1.3.0
-  array('å¯æŽ¥å—çš„è²éŸ³æª”é¡žåž‹', 'allowed_snd_types',0), //cpg1.3.0
-  array('å¯æŽ¥å—çš„æ–‡ä»¶æª”é¡žåž‹', 'allowed_doc_types',0), //cpg1.3.0
-  array('å»ºç«‹ç¸®åœ–çš„æ–¹æ³•','thumb_method',2), //cpg1.3.0
-  array('ImageMagick \'convert\' ç¨‹å¼çš„è·¯å¾‘ (ä¾‹å¦‚ /usr/bin/X11/)', 'impath', 0), //cpg1.3.0
-  //array('å¯æŽ¥å—çš„åœ–æª”é¡žåž‹(åªå° ImageMagick æœ‰æ•ˆ)', 'allowed_img_types',0), //cpg1.3.0
-  array('ImageMagick çš„å‘½ä»¤åˆ—é¸é …', 'im_options', 0), //cpg1.3.0
-  array('è®€å– JPEG æª”æ¡ˆçš„ EXIF è³‡æ–™', 'read_exif_data', 1), //cpg1.3.0
-  array('è®€å– JPEG æª”æ¡ˆçš„ IPTC è³‡æ–™', 'read_iptc_data', 1), //cpg1.3.0
-  array('ç›¸ç°¿è·¯å¾‘ <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0), //cpg1.3.0
-  array('æœƒå“¡åœ–æª”è·¯å¾‘ <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0), //cpg1.3.0
-  array('ä¸­ç´šåœ–æª”çš„å‰ç½®å­—å…ƒ <a href="#notice1" class="clickable_option">*</a>', 'normal_pfx', 0), //cpg1.3.0
-  array('ç¸®åœ–æª”çš„å‰ç½®å­—å…ƒ <a href="#notice1" class="clickable_option">*</a>', 'thumb_pfx', 0), //cpg1.3.0
-  array('æ”¾ç½®åœ–æª”ç›®éŒ„çš„é è¨­æ¬Šé™', 'default_dir_mode', 0), //cpg1.3.0
-  array('ä¸Šå‚³å½±åƒçš„é è¨­æ¬Šé™', 'default_file_mode', 0), //cpg1.3.0
+  '圖片和縮圖的進階設定', //cpg1.3.0
+  array('顯示私人相簿圖片給未登入會員','show_private',1), //cpg1.3.0
+  array('檔案名稱不接受的字符', 'forbiden_fname_char',0), //cpg1.3.0
+  //array('上傳圖檔可接受的副檔名', 'allowed_file_extensions',0), //cpg1.3.0
+  array('允許的圖片檔類型', 'allowed_img_types',0), //cpg1.3.0
+  array('允許的影片檔類型', 'allowed_mov_types',0), //cpg1.3.0
+  array('允許的聲音檔類型', 'allowed_snd_types',0), //cpg1.3.0
+  array('允許的文件檔類型', 'allowed_doc_types',0), //cpg1.3.0
+  array('建立縮圖的方法','thumb_method',2), //cpg1.3.0
+  array('ImageMagick \'convert\' 程式的路徑 (例如 /usr/bin/X11/)', 'impath', 0), //cpg1.3.0
+  //array('可接受的圖檔類型(只對 ImageMagick 有效)', 'allowed_img_types',0), //cpg1.3.0
+  array('ImageMagick 的命令列選項', 'im_options', 0), //cpg1.3.0
+  array('讀取 JPEG 檔案的 EXIF 資料', 'read_exif_data', 1), //cpg1.3.0
+  array('讀取 JPEG 檔案的 IPTC 資料', 'read_iptc_data', 1), //cpg1.3.0
+  array('相簿路徑 <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0), //cpg1.3.0
+  array('會員圖檔路徑 <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0), //cpg1.3.0
+  array('中級圖檔的前置字元 <a href="#notice1" class="clickable_option">*</a>', 'normal_pfx', 0), //cpg1.3.0
+  array('縮圖檔的前置字元 <a href="#notice1" class="clickable_option">*</a>', 'thumb_pfx', 0), //cpg1.3.0
+  array('放置圖檔目錄的預設權限', 'default_dir_mode', 0), //cpg1.3.0
+  array('上傳圖片的預設權限', 'default_file_mode', 0), //cpg1.3.0
 
-  'æœƒå“¡è¨­å®š',
-  array('å…è¨±æ–°æœƒå“¡è¨»å†Š', 'allow_user_registration', 1),
-  array('è¨»å†Šéœ€è¦é›»å­éƒµä»¶é©—è­‰', 'reg_requires_valid_email', 1),
-  array('æœ‰ä½¿ç”¨è€…è¨»å†Šæ™‚ ç”¨é›»å­éƒµä»¶é€šçŸ¥ç®¡ç†å“¡', 'reg_notify_admin_email', 1), //cpg1.3.0
-  array('å…è¨±å…©å€‹æœƒå“¡ä½¿ç”¨åŒä¸€å€‹é›»å­éƒµä»¶åœ°å€', 'allow_duplicate_emails_addr', 1),
-  array('æœƒå“¡å¯ä»¥æœ‰ç§äººçš„ç›¸ç°¿ (æ³¨æ„: å¦‚æžœä½ åˆ‡æ› æ˜¯åˆ°å¦ ä»»ä½•ç›®å‰ç§äººç›¸ç°¿å°‡è®Šæˆå…¬é–‹ç›¸ç°¿)', 'allow_private_albums', 1), //cpg1.3.0
-  array('æœ‰æœƒå“¡ä¸Šå‚³æª”æ¡ˆç­‰å¾…æ ¸å‡†æ™‚ é€šçŸ¥ç®¡ç†å“¡', 'upl_notify_admin_email', 1), //cpg1.3.0
-  array('å…è¨±ç™»å…¥çš„æœƒå“¡æŸ¥çœ‹æœƒå“¡åˆ—è¡¨', 'allow_memberlist', 1), //cpg1.3.0
+  '會員設定',
+  array('允許新會員註冊', 'allow_user_registration', 1),
+  array('註冊需要電子郵件驗證', 'reg_requires_valid_email', 1),
+  array('有使用者註冊時用電子郵件通知管理員', 'reg_notify_admin_email', 1), //cpg1.3.0
+  array('允許兩個會員使用同一個電子郵件', 'allow_duplicate_emails_addr', 1),
+  array('會員可以有私人的相簿 (注意: 如果你切換 是到否 任何目前私人相簿將變成公開相簿)', 'allow_private_albums', 1), //cpg1.3.0
+  array('有會員上傳檔案等待核准時通知管理員', 'upl_notify_admin_email', 1), //cpg1.3.0
+  array('允許登入的會員查看會員名單', 'allow_memberlist', 1), //cpg1.3.0
 
-  'å½±åƒæè¿°çš„è‡ªè¨‚æ¬„ä½ (å¦‚æžœä¸ä½¿ç”¨è«‹ç•™ä¸‹ç©ºç™½)',
-  array('æ¬„ä½ 1 åç¨±', 'user_field1_name', 0),
-  array('æ¬„ä½ 2 åç¨±', 'user_field2_name', 0),
-  array('æ¬„ä½ 3 åç¨±', 'user_field3_name', 0),
-  array('æ¬„ä½ 4 åç¨±', 'user_field4_name', 0),
+  '影像簡介的自訂欄位 (如果不使用請留下空白)',
+  array('欄位 1 的名稱', 'user_field1_name', 0),
+  array('欄位 2 的名稱', 'user_field2_name', 0),
+  array('欄位 3 的名稱', 'user_field3_name', 0),
+  array('欄位 4 的名稱', 'user_field4_name', 0),
 
-  'Cookies settings',
-  array('ä½¿ç”¨çš„ cookie åç¨± (èˆ‡è«–å£‡ç¨‹å¼æ•´åˆæ™‚, ç¢ºå®šå®ƒå’Œè«–å£‡çš„cookieä¸åŒ)', 'cookie_name', 0),
-  array('ä½¿ç”¨çš„ cookie è·¯å¾‘', 'cookie_path', 0),
+  'Cookies 設定',
+  array('使用的 cookie 名稱 (與論壇程式整合時, 確定它和論壇的cookie不同)', 'cookie_name', 0),
+  array('使用的 cookie 路徑', 'cookie_path', 0),
 
-  'å…¶ä»–è¨­å®š',
-  array('å•Ÿå‹•é™¤éŒ¯æ¨¡å¼', 'debug_mode', 9), //cpg1.3.0
-  array('åœ¨é™¤éŒ¯æ¨¡å¼æ™‚é¡¯ç¤ºæç¤º', 'debug_notice', 1), //cpg1.3.0
+  '其他設定',
+  array('啟動除錯模式', 'debug_mode', 9), //cpg1.3.0
+  array('在除錯模式時顯示提示', 'debug_notice', 1), //cpg1.3.0
 
-  '<br /><div align="left"><a name="notice1"></a>(*) è‹¥ç›¸ç°¿å…§æœ‰å½±åƒ, æ¨™ç¤ºæœ‰ * çš„æ¬„ä½è¡¨ç¤ºä¸å¯æ›´æ”¹.<br />
-  <a name="notice2"></a>(**) æ”¹è®Šé€™å€‹è¨­å®šåªå½±éŸ¿å·²ç¶“åŠ å…¥çš„æª”æ¡ˆ, å¦‚æžœé‚£äº›æª”æ¡ˆå·²ç¶“åœ¨ç›¸ç°¿å…§äº†,é€™å€‹è¨­å®šä¸å¿…æ”¹è®Š. ç„¡è«–å¦‚ä½•,ä½ å¯ä»¥å¾ž ç®¡ç†å“¡åŠŸèƒ½é¸å–®è£¡ èª¿æ•´æ—¢æœ‰çš„æª”æ¡ˆ,å¾ž &quot;<a href="util.php">ç®¡ç†å·¥å…·</a> (èª¿æ•´å½±åƒå°ºå¯¸)&quot; </div><br />', //cpg1.3.0
+  '<br /><div align="left"><a name="notice1"></a>(*) 若相簿內有圖片, 標示有 * 的欄位表示不可更改.<br />
+  <a name="notice2"></a>(**) 改變這個設定只影響已經加入的檔案, 如果那些檔案已經在相簿內了,這個設定不必改變. 無論如何,你可以從 管理員功能選單裡 調整既有的檔案,從 &quot;<a href="util.php">管理工具</a> (調整圖片尺寸)&quot; </div><br />', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -490,67 +492,66 @@ array('ç›¸ç°¿ç›®éŒ„é ç›¸ç°¿æ¬„æ•¸', 'album_list
 // ------------------------------------------------------------------------- //
 
 if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
-  'title' => 'å¯„å‡ºé›»å­å¡ç‰‡', //cpg1.3.0
-  'ecard_sender' => 'å¯„ä»¶è€…', //cpg1.3.0
-  'ecard_recipient' => 'æ”¶ä»¶è€…', //cpg1.3.0
-  'ecard_date' => 'æ—¥æœŸ', //cpg1.3.0
-  'ecard_display' => 'é¡¯ç¤ºé›»å­å¡ç‰‡', //cpg1.3.0
-  'ecard_name' => 'åç¨±', //cpg1.3.0
-  'ecard_email' => 'é›»å­éƒµä»¶åœ°å€', //cpg1.3.0  
+  'title' => '寄出電子卡片', //cpg1.3.0
+  'ecard_sender' => '寄件者', //cpg1.3.0
+  'ecard_recipient' => '收件者', //cpg1.3.0
+  'ecard_date' => '日期', //cpg1.3.0
+  'ecard_display' => '顯示電子卡片', //cpg1.3.0
+  'ecard_name' => '名稱', //cpg1.3.0
+  'ecard_email' => '電子郵件', //cpg1.3.0
   'ecard_ip' => 'IP #', //cpg1.3.0
-  'ecard_ascending' => 'å‡å†ª', //cpg1.3.0
-  'ecard_descending' => 'é™å†ª', //cpg1.3.0
-  'ecard_sorted' => 'æŽ’åº', //cpg1.3.0
-  'ecard_by_date' => 'ä¾æ—¥æœŸ', //cpg1.3.0
-  'ecard_by_sender_name' => 'ä¾å¯„ä»¶è€…åç¨±', //cpg1.3.0
-  'ecard_by_sender_email' => 'ä¾å¯„ä»¶è€…éƒµä»¶', //cpg1.3.0
-  'ecard_by_sender_ip' => 'ä¾å¯„ä»¶è€…çš„ IP ä½å€', //cpg1.3.0
-  'ecard_by_recipient_name' => 'ä¾æ”¶ä»¶è€…åç¨±', //cpg1.3.0
-  'ecard_by_recipient_email' => 'ä¾æ”¶ä»¶è€…éƒµä»¶', //cpg1.3.0
-  'ecard_number' => 'é¡¯ç¤ºç´€éŒ„ %s åˆ° %s åœ¨ %s', //cpg1.3.0
-  'ecard_goto_page' => 'åˆ°é æ¬¡', //cpg1.3.0
-  'ecard_records_per_page' => 'é æ¬¡ç´€éŒ„', //cpg1.3.0
-  'check_all' => 'å…¨é¸', //cpg1.3.0
-  'uncheck_all' => 'éƒ½ä¸é¸', //cpg1.3.0
-  'ecards_delete_selected' => 'åˆªé™¤å·²ç¶“é¸æ“‡çš„å¡ç‰‡', //cpg1.3.0
-  'ecards_delete_confirm' => 'ä½ ç¢ºå®šè¦åˆªé™¤ç´€éŒ„? è«‹é»žé¸!', //cpg1.3.0
-  'ecards_delete_sure' => 'æˆ‘ç¢ºå®š', //cpg1.3.0
+  'ecard_ascending' => '升冪', //cpg1.3.0
+  'ecard_descending' => '降冪', //cpg1.3.0
+  'ecard_sorted' => '排序', //cpg1.3.0
+  'ecard_by_date' => '依日期', //cpg1.3.0
+  'ecard_by_sender_name' => '依寄件者名稱', //cpg1.3.0
+  'ecard_by_sender_email' => '依寄件者郵件', //cpg1.3.0
+  'ecard_by_sender_ip' => '依寄件者的 IP 位址', //cpg1.3.0
+  'ecard_by_recipient_name' => '依收件者名稱', //cpg1.3.0
+  'ecard_by_recipient_email' => '依收件者郵件', //cpg1.3.0
+  'ecard_number' => '顯示紀錄 %s 到 %s 在 %s', //cpg1.3.0
+  'ecard_goto_page' => '到頁次', //cpg1.3.0
+  'ecard_records_per_page' => '頁次紀錄', //cpg1.3.0
+  'check_all' => '全選', //cpg1.3.0
+  'uncheck_all' => '都不選', //cpg1.3.0
+  'ecards_delete_selected' => '刪除選取的卡片', //cpg1.3.0
+  'ecards_delete_confirm' => '你確定要刪除紀錄? 請點選!', //cpg1.3.0
+  'ecards_delete_sure' => '我確定', //cpg1.3.0
 );
-
 
 // ------------------------------------------------------------------------- //
 // File db_input.php
 // ------------------------------------------------------------------------- //
 
 if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
-  'empty_name_or_com' => 'è«‹è¼¸å…¥ä½ çš„åå­—å’Œç•™è¨€',
-  'com_added' => 'æ‚¨çš„ç•™è¨€å·²ç¶“åŠ å…¥',
-  'alb_need_title' => 'æ‚¨å¿…é ˆç‚ºç›¸ç°¿æä¾›ä¸€å€‹æ¨™é¡Œ !',
-  'no_udp_needed' => 'æ²’æœ‰æ›´æ–°çš„å¿…è¦',
-  'alb_updated' => 'ç›¸ç°¿å·²ç¶“æ›´æ–°',
-  'unknown_album' => 'æ‰€é¸æ“‡çš„ç›¸ç°¿ä¸å­˜åœ¨æˆ–æ‚¨æ²’æœ‰æ¬Šé™ä¸Šå‚³æª”æ¡ˆåˆ°æ­¤ç›¸ç°¿',
-  'no_pic_uploaded' => 'æ²’æœ‰æª”æ¡ˆè¢«ä¸Šå‚³ !<br /><br />å¦‚æžœæ‚¨ç¢ºå®šæœ‰é¸æ“‡æª”æ¡ˆä¸Šå‚³, è«‹æª¢æŸ¥ä¼ºæœå™¨æ˜¯å¦å…è¨±ä¸Šå‚³æª”æ¡ˆ...', //cpg1.3.0
-  'err_mkdir' => 'ç„¡æ³•å»ºç«‹ç›®éŒ„ %s !',
-  'dest_dir_ro' => 'ç›®éŒ„ %s ç„¡æ³•å¯«å…¥ !',
-  'err_move' => 'ç„¡æ³•æ¬ç§» %s åˆ° %s !',
-  'err_fsize_too_large' => 'æ‚¨ä¸Šå‚³çš„å½±åƒå¤ªå¤§ (ä¸èƒ½è¶…éŽ %s x %s) !', //cpg1.3.0
-  'err_imgsize_too_large' => 'æ‚¨ä¸Šå‚³çš„åœ–æª”å¤ªå¤§ (ä¸èƒ½è¶…éŽ %s KB) !',
-  'err_invalid_img' => 'ä¸Šå‚³çš„æª”æ¡ˆä¸¦ä¸æ˜¯å®¹è¨±çš„å½±åƒæ ¼å¼ !',
-  'allowed_img_types' => 'æ‚¨åªå¯ä»¥ä¸Šå‚³ %s å¼µå½±åƒ.',
-  'err_insert_pic' => 'æª”æ¡ˆ \'%s\' ç„¡æ³•åŠ å…¥æ­¤ç›¸ç°¿ ', //cpg1.3.0
-  'upload_success' => 'æª”æ¡ˆä¸Šå‚³å®Œæˆ!<br /><br />ç•¶ç®¡ç†è€…æ ¸å‡†å¾Œå°±å¯ä»¥çœ‹åˆ°æª”æ¡ˆäº†.', //cpg1.3.0
-  'notify_admin_email_subject' => '%s - ä¸Šå‚³æª”æ¡ˆé€šçŸ¥', //cpg1.3.0
-  'notify_admin_email_body' => '%sæœ‰ä¸Šå‚³æª”æ¡ˆ éœ€è¦ä½ çš„æ ¸å‡†. è«‹æŸ¥é–± %s', //cpg1.3.0
-  'info' => 'è¨Šæ¯',
-  'com_added' => 'ç•™è¨€å·²åŠ å…¥',
-  'alb_updated' => 'ç›¸ç°¿å·²ç¶“æ›´æ–°',
-  'err_comment_empty' => 'ç•™è¨€æ˜¯ç©ºçš„ !',
-  'err_invalid_fext' => 'åªæœ‰ä¸‹åˆ—çš„å‰¯æª”åæ‰å®¹è¨± : <br /><br />%s.',
-  'no_flood' => 'æŠ±æ­‰, æ­¤å½±åƒæœ€å¾Œä¸€å€‹ç•™è¨€æ˜¯æ‚¨æä¾›<br /><br />æ‚¨å¯ä»¥ä¿®æ”¹æ‚¨çš„ç•™è¨€', //cpg1.3.0
-  'redirect_msg' => 'é é¢è½‰ç§»ä¸­.<br /><br /><br />æŒ‰ \'ç¹¼çºŒ\' å¦‚æžœé é¢æ²’æœ‰è‡ªå‹•æ›´æ–°',
-  'upl_success' => 'å·²ç¶“åŠ å…¥æ‚¨çš„æª”æ¡ˆ', //cpg1.3.0
-  'email_comment_subject' => 'å·²ç¶“æœ‰ç•™è¨€ç™¼è¡¨åœ¨ç¶²è·¯ç›¸ç°¿', //cpg1.3.0
-  'email_comment_body' => ' æ‚¨çš„ç¶²è·¯ç›¸ç°¿ä¸Šæœ‰æ–°çš„ç•™è¨€. è«‹æŸ¥é–±! ', //cpg1.3.0
+  'empty_name_or_com' => '請輸入您的名字和留言',
+  'com_added' => '您的留言已經加入',
+  'alb_need_title' => '您必須為相簿提供一個標題 !',
+  'no_udp_needed' => '沒有更新的必要',
+  'alb_updated' => '相簿已經更新',
+  'unknown_album' => '所選擇的相簿不存在或您沒有權限上傳檔案到此相簿',
+  'no_pic_uploaded' => '沒有檔案被上傳 !<br /><br />如果您確定有選擇檔案上傳, 請檢查伺服器是否允許上傳檔案...', //cpg1.3.0
+  'err_mkdir' => '無法建立目錄 %s !',
+  'dest_dir_ro' => '目錄 %s 無法寫入 !',
+  'err_move' => '無法移動 %s 到 %s !',
+  'err_fsize_too_large' => '您上傳的圖片太大 (不能超過 %s x %s) !', //cpg1.3.0
+  'err_imgsize_too_large' => '您上傳的圖檔太大 (不能超過 %s KB) !',
+  'err_invalid_img' => '上傳的檔案並不是容許的圖片格式 !',
+  'allowed_img_types' => '您只可以上傳 %s 張圖片.',
+  'err_insert_pic' => '檔案 \'%s\' 無法加入此相簿 ', //cpg1.3.0
+  'upload_success' => '檔案上傳完成!<br /><br />當管理者核准後就可以看到檔案了.', //cpg1.3.0
+  'notify_admin_email_subject' => '%s - 上傳檔案通知', //cpg1.3.0
+  'notify_admin_email_body' => '%s有上傳檔案 需要你的核准. 請查閱 %s', //cpg1.3.0
+  'info' => '訊息',
+  'com_added' => '留言已加入',
+  'alb_updated' => '相簿已經更新',
+  'err_comment_empty' => '留言是空的 !',
+  'err_invalid_fext' => '只有下列的副檔名才允許上傳 : <br /><br />%s.',
+  'no_flood' => '抱歉, 此圖片最後一個留言是您提供<br /><br />您只可以修改您的留言', //cpg1.3.0
+  'redirect_msg' => '頁面轉移中.<br /><br /><br />按 \'繼續\' 如果頁面沒有自動刷新',
+  'upl_success' => '已經加入您的圖片', //cpg1.3.0
+  'email_comment_subject' => '已經有留言發表在網路相簿', //cpg1.3.0
+  'email_comment_body' => '已經有留言發表在您的相簿. 請查閱'', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -558,24 +559,24 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DELETE_PHP')) $lang_delete_php = array(
-  'caption' => 'èªªæ˜Ž',
-  'fs_pic' => 'åŽŸåœ–',
-  'del_success' => 'å®Œæˆåˆªé™¤',
-  'ns_pic' => 'æ¨™æº–å°ºå¯¸å½±åƒ',
-  'err_del' => 'ç„¡æ³•åˆªé™¤',
-  'thumb_pic' => 'ç¸®åœ–',
-  'comment' => 'ç•™è¨€',
-  'im_in_alb' => 'ç›¸ç°¿å…§å½±åƒ',
-  'alb_del_success' => 'ç›¸ç°¿ \'%s\' å·²åˆªé™¤',
-  'alb_mgr' => 'ç›¸ç°¿ç®¡ç†',
-  'err_invalid_data' => 'æŽ¥æ”¶åˆ°ä¸æ­£ç¢ºçš„è³‡æ–™æ–¼ \'%s\'',
-  'create_alb' => 'å»ºç«‹ç›¸ç°¿ \'%s\'',
-  'update_alb' => 'æ›´æ–°ç›¸ç°¿ \'%s\' æ¨™é¡Œç‚º \'%s\' ç´¢å¼•ç‚º \'%s\'',
-  'del_pic' => 'åˆªé™¤å½±åƒ', //cpg1.3.0
-  'del_alb' => 'åˆªé™¤ç›¸ç°¿',
-  'del_user' => 'åˆªé™¤æœƒå“¡',
-  'err_unknown_user' => 'æ‰€é¸æ“‡çš„æœƒå“¡ä¸å­˜åœ¨ !',
-  'comment_deleted' => 'ç•™è¨€å·²åˆªé™¤',
+  'caption' => '說明',
+  'fs_pic' => '原圖',
+  'del_success' => '完成刪除',
+  'ns_pic' => '標準尺寸圖片',
+  'err_del' => '無法刪除',
+  'thumb_pic' => '縮圖',
+  'comment' => '留言',
+  'im_in_alb' => '相簿內圖片',
+  'alb_del_success' => '相簿 \'%s\' 已刪除',
+  'alb_mgr' => '相簿管理',
+  'err_invalid_data' => '接收到不正確的資料於 \'%s\'',
+  'create_alb' => '建立相簿 \'%s\'',
+  'update_alb' => '更新相簿 \'%s\' 標題為 \'%s\' 索引為 \'%s\'',
+  'del_pic' => '刪除圖片', //cpg1.3.0
+  'del_alb' => '刪除相簿',
+  'del_user' => '刪除會員',
+  'err_unknown_user' => '所選擇的會員不存在 !',
+  'comment_deleted' => '留言已刪除',
 );
 
 // ------------------------------------------------------------------------- //
@@ -591,54 +592,54 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 if (defined('DISPLAYIMAGE_PHP')){
 
 $lang_display_image_php = array(
-  'confirm_del' => 'ç¢ºå®šè¦åˆªé™¤æ­¤å½±åƒå—Ž ? \\nç•™è¨€ä¹Ÿæœƒè¢«åˆªé™¤.', //js-alert //cpg1.3.0
-  'del_pic' => 'åˆªé™¤æ­¤å½±åƒ', //cpg1.3.0
-  'size' => '%s x %s åƒç´ ',
-  'views' => '%s æ¬¡',
-  'slideshow' => 'é€£çºŒæ’­æ”¾',
-  'stop_slideshow' => 'åœæ­¢æ’­æ”¾',
-  'view_fs' => 'é»žé¸å½±åƒä»¥è§€çœ‹åŽŸåœ–',
-  'edit_pic' => 'ç·¨è¼¯èªªæ˜Ž', //cpg1.3.0
-  'crop_pic' => 'è£å‰ªèˆ‡æ—‹è½‰', //cpg1.3.0
+  'confirm_del' => '確定要刪除此圖片嗎 ? \\n留言也會被刪除.', //js-alert //cpg1.3.0
+  'del_pic' => '刪除此圖片', //cpg1.3.0
+  'size' => '%s x %s 像素',
+  'views' => '%s 次',
+  'slideshow' => '連續播放',
+  'stop_slideshow' => '停止播放',
+  'view_fs' => '點選圖片以觀看原圖',
+  'edit_pic' => '編輯說明', //cpg1.3.0
+  'crop_pic' => '裁剪與旋轉', //cpg1.3.0
 );
 
 $lang_picinfo = array(
-  'title' =>'å½±åƒè³‡è¨Š', //cpg1.3.0
-  'Filename' => 'æª”æ¡ˆåç¨±',
-  'Album name' => 'ç›¸ç°¿åç¨±',
-  'Rating' => 'è©•åˆ† (%s æ¬¡è©•åˆ†)',
-  'Keywords' => 'é—œéµå­—',
-  'File Size' => 'æª”æ¡ˆå¤§å°',
-  'Dimensions' => 'å°ºå¯¸',
-  'Displayed' => 'é¡¯ç¤º',
-  'Camera' => 'ç›¸æ©Ÿ',
-  'Date taken' => 'æ‹æ”æ—¥æœŸ',
-  'Aperture' => 'å…‰åœˆ',
-  'Exposure time' => 'æ›å…‰æ™‚é–“',
-  'Focal length' => 'ç„¦è·',
-  'Comment' => 'ç•™è¨€',
-  'addFav'=>'åŠ åˆ°æˆ‘çš„æœ€æ„›', //cpg1.3.0
-  'addFavPhrase'=>'æˆ‘çš„æœ€æ„›', //cpg1.3.0
-  'remFav'=>'å¾žæˆ‘çš„æœ€æ„›ç§»é™¤', //cpg1.3.0
-  'iptcTitle'=>'IPTC æ¨™é¡Œ', //cpg1.3.0
-  'iptcCopyright'=>'IPTC ç‰ˆæ¬Š', //cpg1.3.0
-  'iptcKeywords'=>'IPTC é—œéµå­—', //cpg1.3.0
-  'iptcCategory'=>'IPTC é¡žåˆ¥', //cpg1.3.0
-  'iptcSubCategories'=>'IPTC å­é¡žåˆ¥', //cpg1.3.0
+  'title' =>'圖片資訊', //cpg1.3.0
+  'Filename' => '檔案名稱',
+  'Album name' => '相簿名稱',
+  'Rating' => '評分 (%s 次投票)',
+  'Keywords' => '關鍵字',
+  'File Size' => '檔案大小',
+  'Dimensions' => '尺寸',
+  'Displayed' => '顯示',
+  'Camera' => '相機',
+  'Date taken' => '拍攝日期',
+  'Aperture' => '光圈',
+  'Exposure time' => '曝光時間',
+  'Focal length' => '焦距',
+  'Comment' => '留言',
+  'addFav'=>'加到我的最愛', //cpg1.3.0
+  'addFavPhrase'=>'我的最愛', //cpg1.3.0
+  'remFav'=>'從我的最愛移除', //cpg1.3.0
+  'iptcTitle'=>'IPTC 標題', //cpg1.3.0
+  'iptcCopyright'=>'IPTC 版權', //cpg1.3.0
+  'iptcKeywords'=>'IPTC 關鍵字', //cpg1.3.0
+  'iptcCategory'=>'IPTC 類別', //cpg1.3.0
+  'iptcSubCategories'=>'IPTC 子類別', //cpg1.3.0
 );
 
 $lang_display_comments = array(
   'OK' => 'OK',
-  'edit_title' => 'ç·¨è¼¯æ­¤ç•™è¨€',
-  'confirm_delete' => 'ç¢ºå®šè¦åˆªé™¤æ­¤ç•™è¨€ ?', //js-alert
-  'add_your_comment' => 'åŠ å…¥ä½ çš„ç•™è¨€',
-  'name'=>'åç¨±',
-  'comment'=>'ç•™è¨€',
-  'your_name' => 'ç•™è¨€',
+  'edit_title' => '編輯此留言',
+  'confirm_delete' => '確定要刪除此留言 ?', //js-alert
+  'add_your_comment' => '加入你的留言',
+  'name'=>'名稱',
+  'comment'=>'留言',
+  'your_name' => '無名氏',
 );
 
 $lang_fullsize_popup = array(
-  'click_to_close' => 'é»žé¸å½±åƒä»¥é—œé–‰è¦–çª—',
+  'click_to_close' => '點選圖片來關閉視窗',
 );
 
 }
@@ -648,22 +649,22 @@ $lang_fullsize_popup = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array(
-  'title' => 'å¯„å‡º é›»å­å¡ç‰‡',
-  'invalid_email' => '<b>è­¦å‘Š</b> : ä¸æ­£ç¢ºçš„é›»å­éƒµä»¶åœ°å€ !',
-  'ecard_title' => '%s å¯„ä¾†çµ¦ä½ çš„ é›»å­å¡ç‰‡',
-  'error_not_image' => 'é›»å­å¡ç‰‡åªèƒ½å¯„å‡º åœ–ç‰‡.', //cpg1.3.0
-  'view_ecard' => 'å¦‚æžœ é›»å­å¡ç‰‡ ç„¡æ³•æ­£ç¢ºé¡¯ç¤º, è«‹æŒ‰æ­¤é€£çµ',
-  'view_more_pics' => 'æŒ‰æ­¤é€£çµçœ‹æ›´å¤šå½±åƒ !',
-  'send_success' => 'ä½ çš„ é›»å­å¡ç‰‡ å¯„å‡º',
-  'send_failed' => 'æŠ±æ­‰, æœ¬ä¼ºæœå™¨ç„¡æ³•ç‚ºä½ å¯„å‡º é›»å­å¡ç‰‡...',
-  'from' => 'ç”±',
-  'your_name' => 'ä½ çš„åç¨±',
-  'your_email' => 'ä½ çš„é›»å­éƒµä»¶åœ°å€',
-  'to' => 'çµ¦',
-  'rcpt_name' => 'æ”¶ä»¶è€…åç¨±',
-  'rcpt_email' => 'æ”¶ä»¶è€…é›»å­éƒµä»¶åœ°å€',
-  'greetings' => 'å•å€™èªž',
-  'message' => 'è¨Šæ¯å…§å®¹',
+  'title' => '寄出 電子卡片',
+  'invalid_email' => '<b>警告</b> : 不正確的電子郵件地址 !',
+  'ecard_title' => '%s 寄給你一張電子卡片',
+  'error_not_image' => '電子卡片只能寄出圖片.', //cpg1.3.0
+  'view_ecard' => '如果 電子卡片 無法正確顯示, 請按此連結',
+  'view_more_pics' => '按此連結看更多圖片 !',
+  'send_success' => '你的 電子卡片 已寄出',
+  'send_failed' => '抱歉, 本伺服器無法為你寄出 電子卡片...',
+  'from' => '由',
+  'your_name' => '你的名稱',
+  'your_email' => '你的電子郵件',
+  'to' => '給',
+  'rcpt_name' => '收件者名稱',
+  'rcpt_email' => '收件者電子郵件',
+  'greetings' => '標題',
+  'message' => '訊息內容',
 );
 
 // ------------------------------------------------------------------------- //
@@ -671,31 +672,31 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
 // ------------------------------------------------------------------------- //
 
 if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
-  'pic_info' => 'File&nbsp;info', //cpg1.3.0
-  'album' => 'ç›¸ç°¿',
-  'title' => 'æ¨™é¡Œ',
-  'desc' => 'æè¿°',
-  'keywords' => 'é—œéµå­—',
-  'pic_info_str' => '%s &times; %s - %s KB - %s æ¬¡è§€çœ‹ - %s æ¬¡è©•åˆ†',
-  'approve' => 'æ ¸å‡†å½±åƒ', //cpg1.3.0
-  'postpone_app' => 'å»¶é²æ ¸å‡†',
-  'del_pic' => 'åˆªé™¤å½±åƒ', //cpg1.3.0
-  'read_exif' => 'å†æ¬¡è®€å–EXIF è¨Šæ¯', //cpg1.3.0
-  'reset_view_count' => 'é‡è¨­è§€çœ‹è¨ˆæ•¸å™¨',
-  'reset_votes' => 'é‡è¨­è©•åˆ†',
-  'del_comm' => 'åˆªé™¤ç•™è¨€',
-  'upl_approval' => 'æ ¸å‡†ä¸Šå‚³',
-  'edit_pics' => 'ç·¨è¼¯å½±åƒ', //cpg1.3.0
-  'see_next' => 'è§€çœ‹ä¸‹ä¸€å¼µå½±åƒ', //cpg1.3.0
-  'see_prev' => 'è§€çœ‹å‰ä¸€å¼µå½±åƒ', //cpg1.3.0
-  'n_pic' => '%s å¼µå½±åƒ', //cpg1.3.0
-  'n_of_pic_to_disp' => 'å½±åƒé¡¯ç¤ºæ•¸é‡', //cpg1.3.0
-  'apply' => 'ç¢ºèªä¿®æ”¹', //cpg1.3.0
-  'crop_title' => 'Coppermine å½±åƒç·¨è¼¯å™¨', //cpg1.3.0
-  'preview' => 'é è¦½', //cpg1.3.0
-  'save' => 'å­˜æª”', //cpg1.3.0
-  'save_thumb' =>'å­˜æˆç¸®åœ–', //cpg1.3.0
-  'sel_on_img' =>'å‹•ä½œå·²ç¶“å®Œæˆ!', //js-alert //cpg1.3.0
+  'pic_info' => '檔案資料', //cpg1.3.0
+  'album' => '相簿',
+  'title' => '標題',
+  'desc' => '描述',
+  'keywords' => '關鍵字',
+  'pic_info_str' => '%s &times; %s - %s KB - %s 次觀看 - %s 次評分',
+  'approve' => '核准圖片', //cpg1.3.0
+  'postpone_app' => '延遲核准',
+  'del_pic' => '刪除圖片', //cpg1.3.0
+  'read_exif' => '再次讀取 EXIF 資料', //cpg1.3.0
+  'reset_view_count' => '重設觀看計數器',
+  'reset_votes' => '重設評分',
+  'del_comm' => '刪除留言',
+  'upl_approval' => '核准上傳',
+  'edit_pics' => '編輯圖片', //cpg1.3.0
+  'see_next' => '觀看下一張圖片', //cpg1.3.0
+  'see_prev' => '觀看前一張圖片', //cpg1.3.0
+  'n_pic' => '%s 張圖片', //cpg1.3.0
+  'n_of_pic_to_disp' => '圖片顯示數量', //cpg1.3.0
+  'apply' => '修改', //cpg1.3.0
+  'crop_title' => 'CPG 圖片編輯器', //cpg1.3.0
+  'preview' => '預覽', //cpg1.3.0
+  'save' => '存檔', //cpg1.3.0
+  'save_thumb' =>'存成縮圖', //cpg1.3.0
+  'sel_on_img' =>'選擇的區域必須在圖片範圍內!', //js-alert //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -703,43 +704,43 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('FAQ_PHP')) $lang_faq_php = array(
-  'faq' => 'å¸¸è¦‹å•é¡Œèˆ‡è§£ç­”', //cpg1.3.0
-  'toc' => 'ç›®éŒ„', //cpg1.3.0
-  'question' => 'å•é¡Œ: ', //cpg1.3.0
-  'answer' => 'è§£ç­”: ', //cpg1.3.0
+  'faq' => '常見問題解答', //cpg1.3.0
+  'toc' => '目錄', //cpg1.3.0
+  'question' => '問題: ', //cpg1.3.0
+  'answer' => '解答: ', //cpg1.3.0
 );
 
 if (defined('FAQ_PHP')) $lang_faq_data = array(
-  'ä¸€èˆ¬æ€§å•é¡Œèˆ‡è§£ç­”', //cpg1.3.0
-  array('ç‚ºä»€éº¼è¦è¨»å†Š?', 'ç®¡ç†å“¡æ±ºå®šä½¿ç”¨è€…æ˜¯å¦éœ€è¦è¨»å†Š. è¨»å†Šæˆç‚ºæœƒå“¡å¯ç²å¾—é¡å¤–çš„åŠŸèƒ½,å¦‚ ä¸Šå‚³æª”æ¡ˆ,æœ‰ æˆ‘çš„æœ€æ„›åˆ—è¡¨, å°å½±åƒè©•åˆ†åŠç™¼è¡¨ç•™è¨€ ç­‰ç­‰.', 'allow_user_registration', '0'), //cpg1.3.0
-  array('å¦‚ä½•è¨»å†Š?', 'åˆ° &quot;è¨»å†Š&quot; åŽ»å¡«å¯«æ¬„ä½å…§çš„è³‡æ–™ (éƒ¨åˆ†æ¬„ä½æ˜¯é¸å¡«çš„).<br />å¦‚æžœç®¡ç†å“¡é–‹å•ŸEmail å•Ÿç”¨åŠŸèƒ½ ,åœ¨ä½ ç¢ºèªé€å‡ºè¨»å†Šè³‡æ–™å¾Œ ä½ æœƒæ”¶åˆ°ä¸€å°èªè­‰ä¿¡ å¯„åˆ°ä½ æ‰€å¡«å¯«çš„ä¿¡ç®±å…§, è£¡é¢æœƒèªªæ˜Žå¦‚ä½•å•Ÿç”¨ä½ çš„æœƒå“¡è³‡æ ¼. æœƒå“¡ç™»å…¥å‰ å¿…é ˆå…ˆå®Œæˆå•Ÿç”¨å‹•ä½œ.', 'allow_user_registration', '1'), //cpg1.3.0
-  array('å¦‚ä½•ç™»å…¥?', 'åˆ° &quot;ç™»å…¥&quot;, å¡«å…¥ä½ çš„æœƒå“¡åç¨±åŠå¯†ç¢¼ ä¸”å‹¾é¸ &quot;è¨˜ä½æˆ‘&quot; ä¸‹æ¬¡ä½ å†ä¾†çš„æ™‚å€™å°±æœƒè‡ªå‹•ç™»å…¥äº†.<br /><b>æ³¨æ„:å¦‚æžœä½ é»žé¸ &quot;è¨˜ä½æˆ‘ &quot; ,Cookies åŠŸèƒ½å¿…é ˆé–‹å•Ÿ,è®“cookieå­˜åœ¨ä½ çš„é›»è…¦ä¸­..</b>', 'offline', 0), //cpg1.3.0
-  array('ç‚ºä½•ç„¡æ³•ç™»å…¥?', 'ä½ å·²ç¶“è¨»å†Šä¸¦ å•Ÿç”¨å¸³è™Ÿäº†å—Ž(å›žè¦†èªè­‰éƒµä»¶çš„é€£çµ)?. é‚£å€‹é€£çµå°‡æœƒå•Ÿç”¨ä½ çš„å¸³è™Ÿ. å…¶ä»–ç™»å…¥å•é¡Œ è«‹è¯çµ¡ç¶²ç«™ç®¡ç†å“¡.', 'offline', 0), //cpg1.3.0
-  array('å¿˜è¨˜å¯†ç¢¼äº†æ€Žéº¼è¾¦ ?', 'å¦‚æžœé€™å€‹ç¶²ç«™æœ‰ &quot;å¿˜è¨˜å¯†ç¢¼äº†&quot; çš„é€£çµ,å°±æŒ‰å®ƒ. ä¸ç„¶å°±è¯çµ¡ç¶²ç«™ç®¡ç†å“¡ è«‹ä»–çµ¦ä½ ä¸€å€‹æ–°çš„å¯†ç¢¼.', 'offline', 0), //cpg1.3.0
-  array('æˆ‘çš„emailè®Šæ›´äº†æ€Žéº¼è¾¦ ?', 'åªè¦ç™»å…¥ ä¸¦ä¸”åˆ° &quot;æˆ‘çš„å€‹äººè³‡æ–™&quot; è®Šæ›´ä½ çš„é›»å­éƒµä»¶åœ°å€å°±å¯ä»¥äº†', 'offline', 0), //cpg1.3.0
-  array('å¦‚ä½•æŠŠå½±åƒå­˜åˆ°  &quot;æˆ‘çš„æœ€æ„› &quot;?', 'é»žé¸å½±åƒä¸¦ä¸”é»žæŒ‰ &quot;å½±åƒè³‡è¨Š&quot; é€£çµ (<img src="images/info.gif" width="16" height="16" border="0" alt="Picture information" />); åœ¨å½±åƒè³‡è¨Šè¨­å®šè£¡é¢æŒ‰ &quot;åŠ å…¥æˆ‘çš„æœ€æ„›&quot;.<br />ç®¡ç†å“¡å¯èƒ½æœ‰é è¨­çš„&quot;å½±åƒè³‡è¨Š&quot; .<br />æ³¨æ„:Cookies åŠŸèƒ½å¿…é ˆé–‹å•Ÿ,è®“cookieå­˜åœ¨ä½ çš„é›»è…¦ä¸­.', 'offline', 0), //cpg1.3.0
-  array('å¦‚ä½•å°å½±åƒè©•åˆ† ?', 'é»žæŒ‰è©²å½±åƒç¸®åœ–,åœ¨å½±åƒåº•ä¸‹å¯ä»¥é»žé¸ä½ çš„è©•åˆ†.', 'offline', 0), //cpg1.3.0
-  array('å¦‚ä½•ç™¼è¡¨ç•™è¨€ ?', 'é»žæŒ‰è©²å½±åƒç¸®åœ–,åœ¨å½±åƒåº•ä¸‹å¯ä»¥ç™¼è¡¨ç•™è¨€.', 'offline', 0), //cpg1.3.0
-  array('å¦‚ä½•ä¸Šå‚³å½±åƒ ?', 'åˆ° &quot;ä¸Šå‚³å½±åƒ&quot;ä¸¦é¸æ“‡ä½ è¦ä¸Šå‚³åˆ°å“ªä¸€å€‹ç›¸ç°¿,æŒ‰ &quot;ç€è¦½&quot; ä¸”é»žé¸è¦ä¸Šå‚³çš„å½±åƒ æŒ‰ &quot;é–‹å•Ÿ&quot; (ä½ å¯ä»¥åŠ å…¥å½±åƒæ¨™é¡ŒåŠæè¿°) ç„¶å¾ŒæŒ‰ &quot;ç¢ºèª&quot;', 'allow_private_albums', 0), //cpg1.3.0
-  array('ä¸Šå‚³å½±åƒåˆ°å“ªè£¡ ?', 'ä½ å¯ä»¥ä¸Šå‚³å½±åƒåˆ° &quot;æˆ‘çš„ç›¸ç°¿&quot;. ç®¡ç†å“¡ä¹Ÿå¯èƒ½å…è¨±ä½ ä¸Šå‚³å½±åƒåˆ°ä¸»ç›¸ç°¿å…§.', 'allow_private_albums', 0), //cpg1.3.0
-  array('å“ªç¨®æ ¼å¼æˆ–å¤§å°çš„å½±åƒå¯ä»¥ä¸Šå‚³?', 'æ ¼å¼è·Ÿå¤§å° (jpg,gif,..etc.) æ ¹æ“šç®¡ç†å“¡çš„è¨­å®š.', 'offline', 0), //cpg1.3.0
-  array('ä»€éº¼æ˜¯ &quot;æˆ‘çš„ç›¸ç°¿&quot;?', '&quot;æˆ‘çš„ç›¸ç°¿&quot; æ˜¯å€‹äººçš„ç›¸ç°¿,è®“æœƒå“¡å¯ä»¥ä¸Šå‚³åŠç®¡è£¡å½±åƒ.', 'allow_private_albums', 0), //cpg1.3.0
-  array('å¦‚ä½•æ–°å¢ž,ä¿®æ”¹ æˆ–åˆªé™¤ç›¸ç°¿ å¾ž &quot;æˆ‘çš„ç›¸ç°¿&quot;?', 'ä½ å¿…é ˆåœ¨ &quot;ç®¡ç†æ¨¡å¼&quot;<br />åˆ° &quot;æ–°å¢ž/æŽ’åº æˆ‘çš„ç›¸ç°¿&quot;æŒ‰ &quot;æ–°å¢ž&quot;.  ä¿®æ”¹ &quot;æ–°ç›¸ç°¿&quot; åˆ°ä½ æƒ³è¦çš„åç¨±.<br />ä½ å¯ä»¥å°ä½ çš„æ¯ä¸€å€‹ç›¸ç°¿é‡æ–°å‘½å.<br />æŒ‰ &quot;ç¢ºèªä¿®æ”¹&quot;.', 'allow_private_albums', 0), //cpg1.3.0
-  array('æˆ‘è¦å¦‚ä½•ç¦æ­¢å…¶ä»–æœƒå“¡çœ‹æˆ‘çš„ç›¸ç°¿?', 'ä½ å¿…é ˆåœ¨ &quot;ç®¡ç†æ¨¡å¼&quot;<br />åˆ° &quot;ç·¨è¼¯æˆ‘çš„ç›¸ç°¿&quot;. åœ¨ &quot;æ›´æ–°ç›¸ç°¿&quot; æ¬„ä½, é¸æ“‡ä½ è¦è®Šæ›´çš„ç›¸ç°¿.<br />åœ¨é€™è£¡, ä½ å¯ä»¥è®Šæ›´ç›¸ç°¿åç¨± æè¿° ç¸®åœ– ,åŠé™åˆ¶è§€çœ‹ ç•™è¨€ è©•åˆ† çš„æ¬Šé™.<br />ç„¶å¾ŒæŒ‰ &quot;æ›´æ–°ç›¸ç°¿&quot;.', 'allow_private_albums', 0), //cpg1.3.0
-  array('å¦‚ä½•è§€çœ‹å…¶ä»–æœƒå“¡çš„ç›¸ç°¿?', 'åˆ° &quot;ç›¸ç°¿ç›®éŒ„&quot; é¸æ“‡ &quot;æœƒå“¡ç›¸ç°¿&quot;.', 'allow_private_albums', 0), //cpg1.3.0
-  array('ä»€éº¼æ˜¯ cookies?', 'Cookies æ˜¯ç¶²ç«™æ”¾åœ¨ä½ é›»è…¦ä¸­çš„æ–‡å­—è³‡æ–™.<br />Cookies é€šå¸¸è®“ä½¿ç”¨è€…å†æ¬¡å›žåˆ°ç¶²ç«™æ™‚è‡ªå‹•ç™»å…¥ ä¸¦è¨˜éŒ„å…¶ä»–è¨­å®šè³‡æ–™.', 'offline', 0), //cpg1.3.0
-  array('åœ¨å“ªè£¡å¯ä»¥å–å¾—é€™å€‹ç›¸ç°¿ç¨‹å¼?', 'Coppermine æ˜¯åŸºæ–¼GNU GPLçš„å…è²»å¤šåª’é«”ç›¸ç°¿. å®ƒæ˜¯å…¨åŠŸèƒ½çš„ ä¸”æ”¯æ´ä¸åŒçš„å¹³å°. è«‹åˆ°<a href="http://coppermine.sf.net/">Coppermine çš„ç¶²ç«™</a> å–å¾—æ›´å¤šçš„è³‡è¨Š æˆ–æ˜¯ä¸‹è¼‰å®ƒ.<br />ç¹é«”ä¸­æ–‡ç‰ˆå•é¡Œè«‹åˆ°<a href="http://cpg.38.com/">é€™è£¡</a> å–å¾—æ›´å¤šçš„è³‡è¨Š', 'offline', 0), //cpg1.3.0
+  '一般性問題與解答', //cpg1.3.0
+  array('為什麼要註冊?', '管理員決定使用者是否需要註冊. 註冊成為會員可獲得額外的功能,如 上傳檔案,有 我的最愛列表, 對影像評分及發表留言 等等.', 'allow_user_registration', '0'), //cpg1.3.0
+  array('如何註冊?', '到 &quot;註冊&quot; 去填寫欄位內的資料 (部分欄位是選填的).<br />如果管理員開啟Email 啟用功能 ,在你確認送出註冊資料後 你會收到一封認證信 寄到你所填寫的信箱內, 裡面會說明如何啟用你的會員資格. 會員登入前 必須先完成啟用動作.', 'allow_user_registration', '1'), //cpg1.3.0
+  array('如何登入?', '到 &quot;登入&quot;, 填入你的會員名稱及密碼 且勾選 &quot;記住我&quot; 下次你再來的時候就會自動登入了.<br /><b>注意:如果你點選 &quot;記住我 Me&quot; ,Cookies 功能必須開啟,且本站的cookie存在你的電腦中..</b>', 'offline', 0), //cpg1.3.0
+  array('為何無法登入?', '你已經註冊並啟用帳號了嗎(回覆認證郵件的連結)?. 那個連結將會啟用你的帳號. 其他登入問題 請聯絡網站管理員.', 'offline', 0), //cpg1.3.0
+  array('忘記密碼了怎麼辦 ?', '如果這個網站有 &quot;忘記密碼了&quot; 的連結,就按它. 不然就聯絡網站管理員 請他給你一個新的密碼.', 'offline', 0), //cpg1.3.0
+  array('我的email變更了怎麼辦 ?', '只要登入 並且到 &quot;我的個人資料&quot; 變更你的電子郵件地址就可以了', 'offline', 0), //cpg1.3.0
+  array('如何把圖片存到  &quot;我的最愛 &quot;?', '點選圖片並且點按 &quot;影像資訊&quot; 連結 (<img src="images/info.gif" width="16" height="16" border="0" alt="Picture information" />); 在影像資訊設定裡面按 &quot;加入我的最愛&quot;.<br />管理員可能有預設&quot;影像資訊; .<br />注意:Cookies 功能必須開啟,且本站的cookie存在你的電腦中.', 'offline', 0), //cpg1.3.0
+  array('如何對圖片評分 ?', '點按該影像縮圖,在影像底下可以點選你的評分.', 'offline', 0), //cpg1.3.0
+  array('如何發表留言 ?', '點按該影像縮圖,在影像底下可以發表留言.', 'offline', 0), //cpg1.3.0
+  array('如何上傳圖片 ?', '到 &quot;上傳圖片&quot;並選擇你要上傳到哪一個相簿,按 &quot;瀏覽&quot; 且點選要上傳的圖片 按 &quot;開啟&quot; (你可以加入影像標題及描述) 然後按 &quot;確認&quot;', 'allow_private_albums', 0), //cpg1.3.0
+  array('要從哪裡上傳圖片 ?', '你可以上傳圖片在 &quot;我的相簿&quot;. 管理員可能允許你上傳圖片到主相簿內.', 'allow_private_albums', 0), //cpg1.3.0
+  array('哪種格式或大小的影像可以上傳?', '格式跟大小 (jpg,gif,..etc.) 根據管理員的設定.', 'offline', 0), //cpg1.3.0
+  array('什麼是 &quot;我的相簿&quot;?', '&quot;我的相簿&quot; 是個人的相簿,讓會員可以上傳及管裡影像.', 'allow_private_albums', 0), //cpg1.3.0
+  array('如何新增,修改 或刪除相簿 從 &quot;我的相簿&quot;?', '你必須在 &quot;管理模式&quot;<br />到 &quot;新增/排序 我的相簿&quot;按 &quot;新增New&quot;. 變更 &quot;新相簿&quot; 到你要的名稱.<br />你可以對你的每一個相簿重新命名.<br />按 &quot;修改;.', 'allow_private_albums', 0), //cpg1.3.0
+  array('我要如何禁止其他會員看我的相簿?', '你必須在 &quot;管理模式&quot;<br />到 &quot;變更我的相簿. 在 &quot;更新相簿&quot; 欄位, 選擇你要變更的相簿.<br />在這裡, 你可以變更相簿名稱 描述 縮圖 ,及限制觀看 留言 評分 的權限.<br />按 &quot;更新相簿&quot;.', 'allow_private_albums', 0), //cpg1.3.0
+  array('如何觀看其他會員的相簿?', '到 &quot;相簿目錄&quot; 選擇 &quot;會員相簿&quot;.', 'allow_private_albums', 0), //cpg1.3.0
+  array('什麼是 cookies?', 'Cookies 是網站放在你電腦中的文字資料.<br />Cookies 通常讓使用者再次回到網站時自動登入 並記錄其他設定資料.', 'offline', 0), //cpg1.3.0
+  array('在哪裡可以取得這個相簿程式?', 'Coppermine 是基於GNU GPL的免費多媒體相簿. 它是全功能的 且支援不同的平台. 請到<a href="http://coppermine.sf.net/">Coppermine 的網站</a> 取得更多的資訊 或是下載它.', 'offline', 0), //cpg1.3.0
 
-  'ç¶²ç«™å°Žå¼•', //cpg1.3.0
-  array('ä»€éº¼æ˜¯ &quot;ç›¸ç°¿ç›®éŒ„ &quot;?', 'é€™å°‡é¡¯ç¤ºæ•´å€‹ç›¸ç°¿ åŒ…å«æ¯ä¸€å€‹åˆ†é¡ž. é»žé¸ç¸®åœ–å¯ä»¥é€£çµåˆ°é¡žåˆ¥ä¸­.', 'offline', 0), //cpg1.3.0
-  array('ä»€éº¼æ˜¯ &quot;æˆ‘çš„ç›¸ç°¿ &quot;?', 'é€™é …åŠŸèƒ½è®“æœƒå“¡å»ºç«‹è‡ªå·±çš„ç›¸ç°¿,å¯å¢žåŠ ,åˆªé™¤,ä¿®æ”¹ç›¸ç°¿. ä¸¦ä¸”å¯ä¸Šå‚³æª”æ¡ˆåˆ°ç›¸ç°¿è£¡.', 'allow_private_albums', 0), //cpg1.3.0
-  array('æœ‰ä»€éº¼å·®ç•°åœ¨ &quot;ç®¡ç†æ¨¡å¼&quot; å’Œ &quot;æœƒå“¡æ¨¡å¼&quot;?', 'é€™é …åŠŸèƒ½, åœ¨ç®¡ç†æ¨¡å¼æ™‚, å…è¨±æœƒå“¡ä¿®æ”¹ä»–å€‘è‡ªå·±çš„ç›¸ç°¿ (å¦‚æžœç®¡ç†å“¡å…è¨±çš„è©±).', 'allow_private_albums', 0), //cpg1.3.0
-  array('ä»€éº¼æ˜¯ &quot;ä¸Šå‚³å½±åƒ &quot;?', 'é€™é …åŠŸèƒ½å…è¨±æœƒå“¡ä¸Šå‚³å½±åƒ(æª”æ¡ˆå¤§å°åŠæ ¼å¼ä¾ç®¡ç†å“¡è¨­å®š) åˆ°æŒ‡å®šçš„ç›¸ç°¿.', 'allow_private_albums', 0), //cpg1.3.0
-  array('ä»€éº¼æ˜¯ &quot;æœ€æ–°ä¸Šå‚³ &quot;?', 'é€™é …åŠŸèƒ½é¡¯ç¤ºæœ€æ–°ä¸Šå‚³åˆ°ç›¸ç°¿çš„æª”æ¡ˆ.', 'offline', 0), //cpg1.3.0
-  array('ä»€éº¼æ˜¯ &quot;æœ€æ–°ç•™è¨€ &quot;?', 'é€™é …åŠŸèƒ½æ˜¯æœƒå“¡æˆ–è¨ªå®¢å°å½±åƒç™¼è¡¨çš„æœ€æ–°ç•™è¨€.', 'offline', 0), //cpg1.3.0
-  array('ä»€éº¼æ˜¯ &quot;ç†±é–€å½±åƒ &quot;?', 'é€™é …åŠŸèƒ½é¡¯ç¤ºè¢«è§€çœ‹æœ€å¤šæ¬¡çš„å½±åƒ,ä¸è«–æ˜¯æœƒå“¡æˆ–è¨ªå®¢.', 'offline', 0), //cpg1.3.0
-  array('ä»€éº¼æ˜¯ &quot;æœ€é«˜è©•åˆ† &quot;?', 'é€™é …åŠŸèƒ½é¡¯ç¤ºæœƒå“¡è©•åˆ†æœ€é«˜çš„å½±åƒ, é¡¯ç¤ºå¹³å‡åˆ†æ•¸(ä¾‹å¦‚: äº”å€‹æœƒå“¡å„çµ¦ä¸€å€‹è©•åˆ† <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />: å½±åƒå°‡æœ‰å¹³å‡è©•åˆ† <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> ;äº”å€‹æœƒå“¡è©•åˆ†å¾ž 1 åˆ° 5 (1,2,3,4,5) å¹³å‡çµæžœå°‡æ˜¯ <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> .)<br />è©•åˆ†å¾ž <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> (æœ€ä½³) åˆ° <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" /> (æœ€å·®).', 'offline', 0), //cpg1.3.0
-  array('ä»€éº¼æ˜¯ &quot;æˆ‘çš„æœ€æ„› &quot;?', 'é€™é …åŠŸèƒ½è®“æœƒå“¡å„²å­˜å–œæ„›çš„å½±åƒ,éœ€è¦æœ‰cookieè³‡è¨Š.', 'offline', 0), //cpg1.3.0
+  '網站導引', //cpg1.3.0
+  array('什麼是 &quot;相簿目錄 &quot;?', '這將顯示整個相簿 包含每一個分類. 縮圖可以連結到類別中.', 'offline', 0), //cpg1.3.0
+  array('什麼是 &quot;我的相簿 &quot;?', '這項功能讓會員建立自己的相簿,可增加,刪除,修改相簿. 並且可上傳檔案到相簿裡.', 'allow_private_albums', 0), //cpg1.3.0
+  array('有什麼差異在 &quot;管理模式&quot; 和 &quot;會員模式&quot;?', '這項功能, 在管理模式時, 允許會員修改他們自己的相簿 (如果管理員允許的話).', 'allow_private_albums', 0), //cpg1.3.0
+  array('什麼是 &quot;上傳圖片 &quot;?', '這項功能允許會員上傳影像(檔案大小及格式依管理員設定) 到指定的相簿.', 'allow_private_albums', 0), //cpg1.3.0
+  array('什麼是 &quot;最新上傳 &quot;?', '這項功能顯示最新上傳到相簿的檔案.', 'offline', 0), //cpg1.3.0
+  array('什麼是 &quot;最新留言 &quot;?', '這項功能會員對影像發表的最新留言.', 'offline', 0), //cpg1.3.0
+  array('什麼是 &quot;熱門圖片 &quot;?', '這項功能顯示被觀看最多次的影像,不論是會員或訪客.', 'offline', 0), //cpg1.3.0
+  array('什麼是 &quot;最高評分 &quot;?', '這項功能顯示會員評分最高的影像, 顯示平均分數(例如: 五個會員各給一個評分 <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />: 影像將有平均評分 <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> ;五個會員評分從 1 到 5 (1,2,3,4,5) 平均結果將是 <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> .)<br />評分從 <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> (最佳) 到 <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" /> (最差).', 'offline', 0), //cpg1.3.0
+  array('什麼是 &quot;我的最愛 &quot;?', '這項功能讓會員儲存喜愛的影像,需要有cookie資訊.', 'offline', 0), //cpg1.3.0
 );
 
 
@@ -748,18 +749,18 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('FORGOT_PASSWD_PHP')) $lang_forgot_passwd_php = array(
-  'forgot_passwd' => 'å¿˜è¨˜å¯†ç¢¼äº†', //cpg1.3.0
-  'err_already_logged_in' => 'ä½ å·²ç¶“ç™»å…¥äº†!', //cpg1.3.0
-  'enter_username_email' => 'è¼¸å…¥ä½ çš„æœƒå“¡åç¨±æˆ– email ', //cpg1.3.0
-  'submit' => 'ç¢ºèª', //cpg1.3.0
-  'failed_sending_email' => 'ç„¡æ³•å¯„å‡ºå¯†ç¢¼æé†’éƒµä»¶ !', //cpg1.3.0
-  'email_sent' => 'å·²ç¶“å°‡ä½ çš„æœƒå“¡åç¨±èˆ‡å¯†ç¢¼å¯„åˆ° %s', //cpg1.3.0
-  'err_unk_user' => 'æ²’æœ‰é€™å€‹æœƒå“¡!', //cpg1.3.0
-  'passwd_reminder_subject' => '%s - å¯†ç¢¼æé†’', //cpg1.3.0
-  'passwd_reminder_body' => 'æ‚¨çš„ç™»å…¥è³‡æ–™å¦‚ä¸‹:
+  'forgot_passwd' => '忘記密碼', //cpg1.3.0
+  'err_already_logged_in' => '你已經登入了!', //cpg1.3.0
+  'enter_username_email' => '輸入你的會員名稱或 email ', //cpg1.3.0
+  'submit' => '繼續', //cpg1.3.0
+  'failed_sending_email' => '無法寄出密碼提醒郵件 !', //cpg1.3.0
+  'email_sent' => '已經將你的會員名稱與密碼寄到 %s', //cpg1.3.0
+  'err_unk_user' => '沒有這個會員!', //cpg1.3.0
+  'passwd_reminder_subject' => '%s - 密碼提醒', //cpg1.3.0
+  'passwd_reminder_body' => '您的登入資料如下:
 Username: %s
 Password: %s
-æŒ‰ %s ç™»å…¥.', //cpg1.3.0
+按 %s 登入.', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -767,28 +768,28 @@ Password: %s
 // ------------------------------------------------------------------------- //
 
 if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
-  'group_name' => 'ç¾¤çµ„åç¨±',
-  'disk_quota' => 'ç£ç¢Ÿé…é¡',
-  'can_rate' => 'å®¹è¨±ç‚ºå½±åƒè©•åˆ†', //cpg1.3.0
-  'can_send_ecards' => 'å®¹è¨±å¯„å‡ºå¡ç‰‡',
-  'can_post_com' => 'å®¹è¨±ç™¼è¡¨ç•™è¨€',
-  'can_upload' => 'å®¹è¨±ä¸Šå‚³æª”æ¡ˆ', //cpg1.3.0
-  'can_have_gallery' => 'å®¹è¨±æœ‰å€‹äººç›¸ç°¿',
-  'apply' => 'ç¢ºèªä¿®æ”¹',
-  'create_new_group' => 'å»ºç«‹æ–°ç¾¤çµ„',
-  'del_groups' => 'åˆªé™¤æ‰€é¸æ“‡çš„ç¾¤çµ„',
-  'confirm_del' => 'è­¦å‘Š, ç•¶åˆªé™¤äº†ä¸€å€‹ç¾¤çµ„, å±¬æ–¼è©²ç¾¤çµ„çš„ç”¨æˆ¶å°‡è¢«è½‰ç§»è‡³ \'Registered\' ç¾¤çµ„ä¸­ !\n\nnç¢ºå®šè¦åˆªé™¤ ?', //js-alert //cpg1.3.0
-  'title' => 'ç®¡ç†ç¾¤çµ„',
-  'approval_1' => 'å®¹è¨±ä¸Šå‚³åˆ°å…¬é–‹ç›¸ç°¿ (1)',
-  'approval_2' => 'å®¹è¨±ä¸Šå‚³åˆ°ç§äººç›¸ç°¿ (2)',
-  'upload_form_config' => 'ä¸Šå‚³æ ¼å¼è¨­å®š', //cpg1.3.0
-  'upload_form_config_values' => array( 'ä¸Šå‚³ä¸€å€‹æª”æ¡ˆ', 'å¤šæª”ä¸Šå‚³', 'åªä¸Šå‚³URI ', 'åªä¸Šå‚³ZIP ', 'File-URI', 'File-ZIP', 'URI-ZIP', 'File-URI-ZIP'), //cpg1.3.0
-  'custom_user_upload'=>'æœƒå“¡å¯ç”¨çš„ä¸Šå‚³æ¡†æ•¸é‡?', //cpg1.3.0
-  'num_file_upload'=>'æœ€å¤§/å¯¦éš› æª”æ¡ˆ ä¸Šå‚³æ¡†æ•¸é‡', //cpg1.3.0
-  'num_URI_upload'=>'æœ€å¤§/å¯¦éš› URI ä¸Šå‚³æ¡†æ•¸é‡', //cpg1.3.0
-  'note1' => '<b>(1)</b> ä¸Šå‚³å½±åƒè‡³å…¬é–‹ç›¸ç°¿éœ€ç®¡ç†å“¡æ ¸å‡†',
-  'note2' => '<b>(2)</b> ä¸Šå‚³å½±åƒè‡³ç§äººç›¸ç°¿éœ€ç®¡ç†å“¡æ ¸å‡†',
-  'notes' => 'æ³¨æ„',
+  'group_name' => '群組名稱',
+  'disk_quota' => '磁碟配額',
+  'can_rate' => '允許圖片評分', //cpg1.3.0
+  'can_send_ecards' => '允許寄出卡片',
+  'can_post_com' => '允許貼出留言',
+  'can_upload' => '允許上傳檔案', //cpg1.3.0
+  'can_have_gallery' => '允許私人相簿',
+  'apply' => '修改',
+  'create_new_group' => '建立新群組',
+  'del_groups' => '刪除所選擇的群組',
+  'confirm_del' => '警告, 當刪除了一個群組, 屬於該群組的用戶將被轉移至 \'Registered\' 群組中 !\n\nn確定要刪除嗎 ?', //js-alert //cpg1.3.0
+  'title' => '管理會員群組',
+  'approval_1' => '公開相簿上傳核准 (1)',
+  'approval_2' => '私人相簿上傳核准 (2)',
+  'upload_form_config' => '上傳格式設定', //cpg1.3.0
+  'upload_form_config_values' => array( '上傳一個檔案', '多檔上傳', '只上傳URI ', '只上傳ZIP ', 'File-URI', 'File-ZIP', 'URI-ZIP', 'File-URI-ZIP'), //cpg1.3.0
+  'custom_user_upload'=>'會員可用的上傳框數量?', //cpg1.3.0
+  'num_file_upload'=>'最大/實際 檔案 上傳框數量', //cpg1.3.0
+  'num_URI_upload'=>'最大/實際 URI 上傳框數量', //cpg1.3.0
+  'note1' => '<b>(1)</b> 上傳圖片至公開相簿需管理員核准',
+  'note2' => '<b>(2)</b> 上傳圖片至私人相簿需管理員核准',
+  'notes' => '注意',
 );
 
 // ------------------------------------------------------------------------- //
@@ -798,34 +799,34 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
 if (defined('INDEX_PHP')){
 
 $lang_index_php = array(
-  'welcome' => 'æ­¡ è¿Ž !',
+  'welcome' => '歡迎 !',
 );
 
 $lang_album_admin_menu = array(
-  'confirm_delete' => 'ç¢ºå®šè¦åˆªé™¤é€™ç›¸ç°¿ ? \\næ‰€æœ‰å½±åƒåŠç•™è¨€éƒ½æœƒåˆªé™¤.', //js-alert //cpg1.3.0
-  'delete' => 'åˆªé™¤',
-  'modify' => 'å±¬æ€§',
-  'edit_pics' => 'ç·¨è¼¯', //cpg1.3.0
+  'confirm_delete' => '確定要刪除這相簿 ? \\n所有圖片及留言都會被刪除.', //js-alert //cpg1.3.0
+  'delete' => '刪除',
+  'modify' => '屬性',
+  'edit_pics' => '編輯', //cpg1.3.0
 );
 
 $lang_list_categories = array(
-  'home' => 'ç›¸ç°¿é¦–é ',
-  'stat1' => '<b>[pictures]</b> å¼µå½±åƒæ–¼ <b>[albums]</b> å€‹ç›¸ç°¿åŠ <b>[cat]</b> å€‹é¡žåˆ¥, æœ‰ <b>[comments]</b> å€‹ç•™è¨€, è¢«è§€çœ‹ <b>[views]</b> æ¬¡', //cpg1.3.0
-  'stat2' => '<b>[pictures]</b> å¼µå½±åƒæ–¼ <b>[albums]</b> å€‹ç›¸ç°¿, è¢«è§€çœ‹ <b>[views]</b> æ¬¡', //cpg1.3.0
-  'xx_s_gallery' => '%s çš„å€‹äººç›¸ç°¿',
-  'stat3' => '<b>[pictures]</b> å¼µå½±åƒæ–¼ <b>[albums]</b> å€‹ç›¸ç°¿, æœ‰ <b>[comments]</b> å€‹ç•™è¨€, è¢«è§€çœ‹ <b>[views]</b> æ¬¡', //cpg1.3.0
+  'home' => '相簿首頁',
+  'stat1' => '<b>[pictures]</b> 張影像於 <b>[albums]</b> 個相簿及 <b>[cat]</b> 個類別, 有 <b>[comments]</b> 個留言, 被觀看 <b>[views]</b> 次', //cpg1.3.0
+  'stat2' => '<b>[pictures]</b> 張影像於 <b>[albums]</b> 個相簿, 被觀看 <b>[views]</b> 次', //cpg1.3.0
+  'xx_s_gallery' => '%s\'s 相簿',
+  'stat3' => '<b>[pictures]</b> 張影像於 <b>[albums]</b> 個相簿, 有 <b>[comments]</b> 個留言, 被觀看 <b>[views]</b> 次', //cpg1.3.0
 );
 
 $lang_list_users = array(
-  'user_list' => 'æœƒå“¡åˆ—è¡¨',
-  'no_user_gal' => 'é‚„æ²’æœ‰æœƒå“¡ç›¸ç°¿',
-  'n_albums' => '%s å€‹ç›¸ç°¿',
-  'n_pics' => '%s å¼µå½±åƒ', //cpg1.3.0
+  'user_list' => '會員列表',
+  'no_user_gal' => '還沒有會員相簿',
+  'n_albums' => '%s 個相簿',
+  'n_pics' => '%s 張影像', //cpg1.3.0
 );
 
 $lang_list_albums = array(
-  'n_pictures' => '%s å¼µå½±åƒ', //cpg1.3.0
-  'last_added' => ', æœ€æ–°å½±åƒæ–¼ %s',
+  'n_pictures' => '%s 張影像', //cpg1.3.0
+  'last_added' => ', 最新影像於 %s',
 );
 
 }
@@ -835,15 +836,15 @@ $lang_list_albums = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('LOGIN_PHP')) $lang_login_php = array(
-  'login' => 'ç™»å…¥',
-  'enter_login_pswd' => 'è¼¸å…¥æœƒå“¡åç¨±å’Œå¯†ç¢¼',
-  'username' => 'æœƒå“¡åç¨±',
-  'password' => 'å¯†ç¢¼',
-  'remember_me' => 'è¨˜ä½æˆ‘',
-  'welcome' => 'æ­¡è¿Ž %s ...',
-  'err_login' => '*** ç„¡æ³•ç™»å…¥. è«‹é‡è©¦ ***',
-  'err_already_logged_in' => 'æ‚¨å·²ç¶“ç™»å…¥ !',
-  'forgot_password_link' => 'å¿˜è¨˜å¯†ç¢¼äº†', //cpg1.3.0
+  'login' => '登入',
+  'enter_login_pswd' => '輸入會員名稱和密碼',
+  'username' => '會員名稱',
+  'password' => '密碼',
+  'remember_me' => '記住我',
+  'welcome' => '歡迎 %s ...',
+  'err_login' => '*** 無法登入. 請重試 ***',
+  'err_already_logged_in' => '您已經登入 !',
+  'forgot_password_link' => '忘記密碼了', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -851,9 +852,9 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('LOGOUT_PHP')) $lang_logout_php = array(
-  'logout' => 'ç™»å‡º',
-  'bye' => 'å†è¦‹ %s ...',
-  'err_not_loged_in' => 'æ‚¨é‚„æ²’æœ‰ç™»å…¥ !',
+  'logout' => '登出',
+  'bye' => '再見 %s ...',
+  'err_not_loged_in' => '您還沒有登入 !',
 );
 
 // ------------------------------------------------------------------------- //
@@ -861,9 +862,9 @@ if (defined('LOGOUT_PHP')) $lang_logout_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
-  'php_info' => 'PHP è³‡è¨Š', //cpg1.3.0
-  'explanation' => 'é€™æ˜¯ç”±PHP-function ç”¢ç”Ÿ <a href="http://www.php.net/phpinfo">phpinfo()</a>, Copermine æˆªå–éƒ¨åˆ†å…§å®¹é¡¯ç¤º.', //cpg1.3.0
-  'no_link' => 'å…¶ä»–äººçœ‹åˆ°ä½ çš„ phpinfo æœƒæœ‰å®‰å…¨ä¸Šçš„é¢¨éšª, é€™å°±æ˜¯ç‚ºä½• ç•¶ä½ ä»¥ç®¡ç†å“¡èº«åˆ†ç™»å…¥æ™‚æ‰æœƒçœ‹åˆ°æ­¤é çš„åŽŸå› . ä½ ä¸èƒ½å°‡æœ¬é çš„é€£çµçµ¦å…¶ä»–äºº, å› ç‚ºå®ƒå€‘å°‡æœƒé‡åˆ°å­˜å–éŒ¯èª¤.', //cpg1.3.0
+  'php_info' => 'PHP 資料', //cpg1.3.0
+  'explanation' => '這是由 PHP-function 產生 <a href="http://www.php.net/phpinfo">phpinfo()</a>, Copermine 截取部分內容顯示.', //cpg1.3.0
+  'no_link' => '讓其他人看到你的 phpinfo 會有安全上的風險, 這就是為何 當你以管理員身分登入時才會看到此頁的原因. 你不能將本頁的連結給其他人因為會顯示存取錯誤.', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -871,28 +872,28 @@ if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
-  'upd_alb_n' => 'æ›´æ–°ç›¸ç°¿ %s',
-  'general_settings' => 'ä¸€èˆ¬è¨­å®š',
-  'alb_title' => 'ç›¸ç°¿æ¨™é¡Œ',
-  'alb_cat' => 'ç›¸ç°¿é¡žåˆ¥',
-  'alb_desc' => 'ç›¸ç°¿æè¿°',
-  'alb_thumb' => 'ç›¸ç°¿ç¸®åœ–',
-  'alb_perm' => 'ç›¸ç°¿æ¬Šé™',
-  'can_view' => 'ç›¸ç°¿å¯è§€çœ‹',
-  'can_upload' => 'è¨ªå®¢å¯ä¸Šå‚³å½±åƒ',
-  'can_post_comments' => 'è¨ªå®¢å¯ç™¼è¡¨ç•™è¨€',
-  'can_rate' => 'è¨ªå®¢å¯ç‚ºå½±åƒè©•åˆ†',
-  'user_gal' => 'æœƒå“¡ç›¸ç°¿',
-  'no_cat' => '* æ²’æœ‰é¡žåˆ¥ *',
-  'alb_empty' => 'ç›¸ç°¿æ˜¯ç©ºçš„',
-  'last_uploaded' => 'æœ€è¿‘ä¸Šå‚³',
-  'public_alb' => 'ä»»ä½•äºº (å…¬é–‹ç›¸ç°¿)',
-  'me_only' => 'åªæœ‰æˆ‘',
-  'owner_only' => 'åªæœ‰ç›¸ç°¿æ“æœ‰äºº (%s) ',
-  'groupp_only' => 'ç¾¤çµ„ \'%s\' æœƒå“¡',
-  'err_no_alb_to_modify' => 'è³‡æ–™åº«å…§æ²’æœ‰æ‚¨å¯ä¿®æ”¹çš„ç›¸ç°¿.',
-  'update' => 'æ›´æ–°ç›¸ç°¿', //cpg1.3.0
-  'notice1' => '(*) æ ¹æ“š %sç¾¤çµ„%s è¨­å®š', //cpg1.3.0 (do not translate %s!)
+  'upd_alb_n' => '更新相簿 %s',
+  'general_settings' => '一般設定',
+  'alb_title' => '相簿標題',
+  'alb_cat' => '相簿類別',
+  'alb_desc' => '相簿描述',
+  'alb_thumb' => '相簿縮圖',
+  'alb_perm' => '相簿權限',
+  'can_view' => '允許觀看相簿的會員',
+  'can_upload' => '訪客可上傳圖片',
+  'can_post_comments' => '訪客可發表留言',
+  'can_rate' => '訪客可為圖片評分',
+  'user_gal' => '會員相簿',
+  'no_cat' => '* 沒有類別 *',
+  'alb_empty' => '相簿是空的',
+  'last_uploaded' => '最近上傳',
+  'public_alb' => '任何人 (公開相簿)',
+  'me_only' => '只有我',
+  'owner_only' => '只有相簿擁有人 (%s) ',
+  'groupp_only' => ' \'%s\' 群組的會員',
+  'err_no_alb_to_modify' => '資料庫內沒有您可修改的相簿.',
+  'update' => '更新相簿', //cpg1.3.0
+  'notice1' => '(*) 根據 %s群組%s 設定', //cpg1.3.0 (do not translate %s!)
 );
 
 // ------------------------------------------------------------------------- //
@@ -900,9 +901,9 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
-  'already_rated' => 'æŠ±æ­‰, æ‚¨å·²ç¶“ç‚ºæ­¤å½±åƒè©•åˆ†', //cpg1.3.0
-  'rate_ok' => 'æ‚¨çš„è©•åˆ†å·²ç¶“è¢«æŽ¥å—',
-  'forbidden' => 'ä½ ä¸èƒ½å°ä½ è‡ªå·±çš„å½±åƒè©•åˆ†.', //cpg1.3.0
+  'already_rated' => '抱歉, 您已經為此圖片評分', //cpg1.3.0
+  'rate_ok' => '您的評分已經被接受',
+  'forbidden' => '你不能對你自己的圖片評分.', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -912,80 +913,80 @@ if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
- {SITE_NAME} çš„ç®¡ç†å“¡æœƒå„˜å¿«æ•´ç†æœƒå¼•èµ·åæ„Ÿçš„è³‡æ–™, ä½†æˆ‘å€‘ä¸å¯èƒ½å¯©æŸ¥æ¯ä¸€ä»½æ–‡ä»¶. å› æ­¤æ‚¨å¿…éœ€åŒæ„æ‰€æœ‰æ–‡ä»¶åªæ˜¯ä»£è¡¨ä½œè€…çš„ç«‹å ´åŠæ„è¦‹, ä¸ä»£è¡¨ç®¡ç†äººå“¡çš„ç«‹å ´ (é™¤äº†ç”±ä»–å€‘è²¼å‡º) ä¸¦ä¸è² ä»»ä½•æ³•å¾‹è²¬ä»».<br />
+ {SITE_NAME} 的管理員會儘快整理會引起反感的資料, 但我們不可能審查每一份文件. 因此您必需同意所有文件只是代表作者的立場及意見, 不代表管理人員的立場 (除了由他們貼出) 並不負任何法律責任.<br />
 <br />
-æ‚¨å¿…éœ€åŒæ„ä¸å¯å¼µè²¼ä»»ä½•è‰²æƒ…, æš´åŠ›, ä¸è‰¯, ä¸æ­£ç•¶, ä¸å¥åº·, å¦¨å®³åœ‹å®¶å®‰å…¨, æˆ–ä»»ä½•å¯èƒ½é•æ³•çš„æ–‡ä»¶.  {SITE_NAME} äººå“¡åœ¨ä»»ä½•æ™‚å€™éƒ½æœ‰æ¬ŠéŽæ¿¾ä¸¦ç·¨è¼¯æ‚¨å¼µè²¼çš„å…§å®¹. ä¸¦ä¸”æœƒå“¡ç•™åœ¨æœ¬ç«™å…§çš„è³‡æ–™å·²å­˜åœ¨è³‡æ–™åº«ä¸­. æœ«ç¶“æ‚¨çš„åŒæ„, æˆ‘å€‘ä¸æœƒå°‡æ‚¨çš„è³‡æ–™è½‰çµ¦å…¶ä»–äººä½¿ç”¨, ä¸éŽæˆ‘å€‘ä¸æœƒç‚ºä»»ä½•å› é§­å®¢è¡Œç‚ºè€Œå¤–æ´©çš„è³‡æ–™è² ä»»ä½•è²¬ä»».<br />
+您必需同意不可張貼任何色情, 暴力, 不良, 不正當, 不健康, 妨害國家安全, 或任何可能違法的文件.  {SITE_NAME} 人員在任何時候都有權過濾並編輯您張貼的內容. 並且會員留在本站內的資料已存在資料庫中. 末經您的同意, 我們不會將您的資料轉給其他人使用, 不過我們不會為任何因駭客行為而外洩的資料負任何責任.<br />
 <br />
-æœ¬ç«™ä½¿ç”¨ cookies åœ¨æ‚¨çš„é›»è…¦ä¸Šä¾†å„²å­˜è³‡è¨Š. é€™æ¨£æ˜¯æ–¹ä¾¿æ‚¨æ›´æ„‰å¿«ç€è¦½. æ‚¨çš„é›»å­éƒµä»¶åœ°å€åªæ˜¯è®“æˆ‘å€‘èªè­‰æ‚¨çš„è³‡æ–™è€Œå·².<br />
+本站使用 cookies 在您的電腦上來儲存資訊. 這樣是方便您更愉快瀏覽. 您的電子郵件地址只是讓我們認證您的資料而已.<br />
 <br />
-æŒ‰ä¸‹ 'æˆ‘åŒæ„' ä»£è¡¨æ‚¨åŒæ„ä»¥ä¸Šæ¢æ¬¾.
+按下 '我同意' 代表您同意以上條款.
 EOT;
 
 $lang_register_php = array(
-  'page_title' => 'æœƒå“¡è¨»å†Š',
-  'term_cond' => 'æ¢æ¬¾èˆ‡è¦å‰‡',
-  'i_agree' => 'æˆ‘åŒæ„',
-  'submit' => 'ç¢ºèªè¨»å†Š',
-  'err_user_exists' => 'æ‚¨æ‰€å¡«å¯«çš„æœƒå“¡åç¨±å·²è¢«äººä½¿ç”¨, è«‹é‡é¸ä¸€å€‹',
-  'err_password_mismatch' => 'å…©å€‹å¯†ç¢¼ä¸åˆ, è«‹é‡å¡«ä¸€æ¬¡',
-  'err_uname_short' => 'æœƒå“¡åç¨±è‡³å°‘éœ€ 2 å€‹å­—å…ƒ',
-  'err_password_short' => 'å¯†ç¢¼è‡³å°‘éœ€ 2 å€‹å­—å…ƒ',
-  'err_uname_pass_diff' => 'æœƒå“¡åç¨±å’Œå¯†ç¢¼ä¸å¯ä»¥ç›¸åŒ',
-  'err_invalid_email' => 'é›»å­éƒµä»¶åœ°å€ä¸æ­£ç¢º',
-  'err_duplicate_email' => 'é€™å€‹é›»å­éƒµä»¶åœ°å€å·²ç¶“è¢«å…¶ä»–äººä½¿ç”¨éŽäº†',
-  'enter_info' => 'è¼¸å…¥è¨»å†Šè³‡æ–™',
-  'required_info' => 'å¿…å¡«çš„è³‡æ–™',
-  'optional_info' => 'é¸å¡«çš„è³‡æ–™',
-  'username' => 'æœƒå“¡åç¨±',
-  'password' => 'å¯†ç¢¼',
-  'password_again' => 'ç¢ºèªå¯†ç¢¼',
-  'email' => 'é›»å­éƒµä»¶åœ°å€',
-  'location' => 'åœ°å€',
-  'interests' => 'èˆˆè¶£',
-  'website' => 'ç¶²ç«™',
-  'occupation' => 'è·æ¥­',
-  'error' => 'éŒ¯å¨›',
-  'confirm_email_subject' => '%s - è¨»å†Šèªè­‰',
-  'information' => 'è¨Šæ¯',
-  'failed_sending_email' => 'æ‰€è¨»å†Šçš„é›»å­éƒµä»¶åœ°å€ç„¡æ³•å¯„å‡º !',
-  'thank_you' => 'æ„Ÿè¬æ‚¨çš„è¨»å†Š.<br /><br />ä¸€å°å…§å«æœ‰å¦‚ä½•å•Ÿç”¨å¸³è™Ÿçš„è³‡è¨Šé›»å­éƒµä»¶å°‡è¢«é€åˆ°æ‚¨æ‰€æä¾›çš„ä¿¡ç®±.',
-  'acct_created' => 'æ‚¨çš„å¸³è™Ÿå·²ç¶“å»ºç«‹, ç¾åœ¨æ‚¨å¯ä»¥ç™»å…¥',
-  'acct_active' => 'æ‚¨çš„å¸³è™Ÿå·²ç¶“å•Ÿç”¨, ç¾åœ¨æ‚¨å¯ä»¥ç™»å…¥',
-  'acct_already_act' => 'æ‚¨çš„å¸³è™Ÿå·²ç¶“å•Ÿç”¨ !',
-  'acct_act_failed' => 'æ­¤å¸³è™Ÿç„¡æ³•å•Ÿç”¨ !',
-  'err_unk_user' => 'æ‰€é¸æ“‡çš„æœƒå“¡ä¸¦ä¸å­˜åœ¨ !',
-  'x_s_profile' => '%s çš„å€‹äººè³‡æ–™',
-  'group' => 'ç¾¤çµ„',
-  'reg_date' => 'è¨»å†Šæ™‚é–“',
-  'disk_usage' => 'ç£ç¢Ÿä½¿ç”¨é‡',
-  'change_pass' => 'ä¿®æ”¹å¯†ç¢¼',
-  'current_pass' => 'ç›®å‰çš„å¯†ç¢¼',
-  'new_pass' => 'æ–°å¯†ç¢¼',
-  'new_pass_again' => 'ç¢ºèªæ–°å¯†ç¢¼',
-  'err_curr_pass' => 'ç›®å‰çš„å¯†ç¢¼ä¸æ­£ç¢º',
-  'apply_modif' => 'ç¢ºèªä¿®æ”¹',
-  'change_pass' => 'ç¢ºèªä¿®æ”¹å¯†ç¢¼',
-  'update_success' => 'ä½ çš„å€‹äººè³‡æ–™å·²ç¶“æ›´æ–°',
-  'pass_chg_success' => 'ä½ çš„å¯†ç¢¼å·²ç¶“ä¿®æ”¹',
-  'pass_chg_error' => 'ä½ çš„å¯†ç¢¼æ²’æœ‰ä¿®æ”¹',
-  'notify_admin_email_subject' => '%s - è¨»å†Šé€šçŸ¥', //cpg1.3.0
-  'notify_admin_email_body' => 'æœ‰ä¸€å€‹æ–°æœƒå“¡åç¨± "%s" å·²ç¶“åœ¨ä½ çš„ç›¸ç°¿è¨»å†Š', //cpg1.3.0
+  'page_title' => '會員註冊',
+  'term_cond' => '條款與規則',
+  'i_agree' => '我同意',
+  'submit' => '確認註冊',
+  'err_user_exists' => '您所填寫的會員名稱已被其他會員使用, 請重選一個',
+  'err_password_mismatch' => '兩個密碼不合, 請重填一次',
+  'err_uname_short' => '會員名稱至少需 2 個字元',
+  'err_password_short' => '密碼至少需 2 個字元',
+  'err_uname_pass_diff' => '會員名稱和密碼不可以相同',
+  'err_invalid_email' => '電子郵件不正確',
+  'err_duplicate_email' => '這個電子郵件已經被其他會員使用',
+  'enter_info' => '輸入註冊資料',
+  'required_info' => '必填的資料',
+  'optional_info' => '選填的資料',
+  'username' => '會員名稱',
+  'password' => '會員密碼',
+  'password_again' => '確認密碼',
+  'email' => '電子郵件',
+  'location' => '居住地區',
+  'interests' => '興趣',
+  'website' => '個人網站',
+  'occupation' => '職業',
+  'error' => '錯誤',
+  'confirm_email_subject' => '%s - 註冊認證',
+  'information' => '訊息',
+  'failed_sending_email' => '所註冊的電子郵件無法寄出 !',
+  'thank_you' => '感謝您的註冊.<br /><br />一封含有如何啟用帳號的電子郵件將會送到您所提供的信箱.',
+  'acct_created' => '您的帳號已經建立, 現在您可以登入',
+  'acct_active' => '您的帳號已經啟用, 現在您可以登入',
+  'acct_already_act' => '您的帳號已經啟用 !',
+  'acct_act_failed' => '此帳號無法啟用 !',
+  'err_unk_user' => '所選擇的會員並不存在 !',
+  'x_s_profile' => '%s\'的個人資料',
+  'group' => '群組',
+  'reg_date' => '加入日期',
+  'disk_usage' => '磁碟使用量',
+  'change_pass' => '修改密碼',
+  'current_pass' => '目前的密碼',
+  'new_pass' => '新密碼',
+  'new_pass_again' => '確認新密碼',
+  'err_curr_pass' => '目前的密碼不正確',
+  'apply_modif' => '修改',
+  'change_pass' => '修改密碼',
+  'update_success' => '你的個人資料已經更新',
+  'pass_chg_success' => '你的密碼已經修改',
+  'pass_chg_error' => '你的密碼沒有修改',
+  'notify_admin_email_subject' => '%s - 註冊通知', //cpg1.3.0
+  'notify_admin_email_body' => '有一個新會員名稱 "%s" 已經在你的相簿註冊', //cpg1.3.0
 );
 
 $lang_register_confirm_email = <<<EOT
-æ„Ÿè¬æ‚¨åœ¨ {SITE_NAME} çš„è¨»å†Š
+感謝您在 {SITE_NAME} 的註冊
 
-æ‚¨çš„æœƒå“¡åç¨± : "{USER_NAME}"
-æ‚¨çš„å¯†ç¢¼ : "{PASSWORD}"
+您的會員名稱 : "{USER_NAME}"
+您的密碼 : "{PASSWORD}"
 
-è«‹æ‚¨æŒ‰ä¸‹é¢çš„é€£çµä»¥å•Ÿå‹•æ‚¨çš„å¸³è™Ÿ
-æˆ–è€…æŠŠæ­¤é€£çµè²¼ä¸Šç€è¦½å™¨ä¸Š.
+請您按下面的連結以啟動您的帳號
+或者把此連結貼到瀏覽器上.
 
 {ACT_LINK}
 
-æ­¡è¿Žä½ (å¦³),
+歡迎你(妳),
 
-{SITE_NAME} æ•¬ä¸Š
+{SITE_NAME} 管理小組
 
 EOT;
 
@@ -996,13 +997,13 @@ EOT;
 // ------------------------------------------------------------------------- //
 
 if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
-  'title' => 'è§€çœ‹ç•™è¨€',
-  'no_comment' => 'é‚„æ²’æœ‰ç•™è¨€å¯ä»¥è§€çœ‹',
-  'n_comm_del' => '%s å€‹ç•™è¨€å·²åˆªé™¤',
-  'n_comm_disp' => 'é¡¯ç¤ºçš„ç•™è¨€æ•¸é‡',
-  'see_prev' => 'çœ‹å‰ä¸€å€‹',
-  'see_next' => 'çœ‹ä¸‹ä¸€å€‹',
-  'del_comm' => 'åˆªé™¤æ‰€é¸çš„ç•™è¨€',
+  'title' => '觀看留言',
+  'no_comment' => '還沒有留言可以觀看',
+  'n_comm_del' => '%s 個留言已刪除',
+  'n_comm_disp' => '顯示的留言數量',
+  'see_prev' => '看前一個',
+  'see_next' => '看下一個',
+  'del_comm' => '刪除所選的留言',
 );
 
 
@@ -1011,7 +1012,7 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCH_PHP')) $lang_search_php = array(
-  0 => 'æœå°‹å½±åƒå…§å®¹',
+  0 => '搜尋圖片內容',
 );
 
 // ------------------------------------------------------------------------- //
@@ -1019,37 +1020,37 @@ if (defined('SEARCH_PHP')) $lang_search_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
-  'page_title' => 'æœå°‹æ–°å½±åƒ', //cpg1.3.0
-  'select_dir' => 'é¸æ“‡ç›®éŒ„',
-  'select_dir_msg' => 'æœ¬åŠŸèƒ½å¯ä»¥è®“ä½ ç”¨ FTP ä¸Šå‚³æ•´æ‰¹å½±åƒ.<br /><br />è«‹é¸æ“‡ä½ å·²ä¸Šå‚³å½±åƒçš„ç›®éŒ„', //cpg1.3.0
-  'no_pic_to_add' => 'æ²’æœ‰å½±åƒå¯ä»¥åŠ å…¥', //cpg1.3.0
-  'need_one_album' => 'ä½¿ç”¨æ­¤åŠŸèƒ½å¿…éœ€å°‘è¦æœ‰ä¸€å€‹ç›¸ç°¿',
-  'warning' => 'è­¦å‘Š',
-  'change_perm' => 'ç¨‹å¼ç„¡æ³•å¯«å…¥é€™å€‹ç›®éŒ„, è«‹ä¿®æ”¹æ¬Šé™è‡³ 755 æˆ–r 777 å¾Œå†è©¦ä¸€æ¬¡ !', //cpg1.3.0
-  'target_album' => '<b>æŠŠå½±åƒç”± &quot;</b>%s<b>&quot; åˆ° </b>%s', //cpg1.3.0
-  'folder' => 'è³‡æ–™å¤¾',
-  'image' => 'å½±åƒ',
-  'album' => 'ç›¸ç°¿',
-  'result' => 'çµæžœ',
-  'dir_ro' => 'ç„¡æ³•å¯«å…¥. ',
-  'dir_cant_read' => 'ç„¡æ³•è®€å–. ',
-  'insert' => 'æ–°å¢žå½±åƒè‡³ç›¸ç°¿', //cpg1.3.0
-  'list_new_pic' => 'åˆ—å‡ºæ–°å½±åƒ', //cpg1.3.0
-  'insert_selected' => 'åŠ å…¥æ‰€é¸æ“‡çš„å½±åƒ', //cpg1.3.0
-  'no_pic_found' => 'æ²’æœ‰æ‰¾åˆ°æ–°å½±åƒ', //cpg1.3.0
-  'be_patient' => 'è«‹è€å¿ƒç­‰å€™, ç¨‹å¼éœ€è¦ä¸€é»žæ™‚é–“ä¾†åŠ å…¥æ‰€é¸å½±åƒ', //cpg1.3.0
-  'no_album' => 'æ²’æœ‰ç›¸ç°¿è¢«é¸æ“‡',  //cpg1.3.0
+  'page_title' => '搜尋新圖片', //cpg1.3.0
+  'select_dir' => '選擇目錄',
+  'select_dir_msg' => '本功能可以讓你用 FTP 上傳整批圖片.<br /><br />請選擇你已上傳圖片的目錄', //cpg1.3.0
+  'no_pic_to_add' => '沒有圖片可以加入', //cpg1.3.0
+  'need_one_album' => '使用此功能必需至少要有一個相簿',
+  'warning' => '警告',
+  'change_perm' => '程式無法寫入這個目錄, 請修改權限至 755 或 777 後再試一次 !', //cpg1.3.0
+  'target_album' => '<b>把圖片由 &quot;</b>%s<b>&quot; 放到 </b>%s', //cpg1.3.0
+  'folder' => '資料夾',
+  'image' => '圖片',
+  'album' => '相簿',
+  'result' => '結果',
+  'dir_ro' => '無法寫入. ',
+  'dir_cant_read' => '無法讀取. ',
+  'insert' => '新增圖片至相簿', //cpg1.3.0
+  'list_new_pic' => '新圖片列表', //cpg1.3.0
+  'insert_selected' => '加入所選擇的圖片', //cpg1.3.0
+  'no_pic_found' => '沒有找到新圖片', //cpg1.3.0
+  'be_patient' => '請耐心等候, 程式需要一點時間來加入所選圖片', //cpg1.3.0
+  'no_album' => '沒有選擇的相簿',  //cpg1.3.0
   'notes' =>  '<ul>'.
-                          '<li><b>OK</b> : è¡¨ç¤ºå½±åƒå·²æˆåŠŸè¢«åŠ å…¥'.
-                          '<li><b>DP</b> : è¡¨ç¤ºå½±åƒé‡è¦†æˆ–å·²å­˜åœ¨è³‡æ–™åº«'.
-                          '<li><b>PB</b> : è¡¨ç¤ºå½±åƒç„¡æ³•åŠ å…¥, è«‹æª¢æŸ¥è¨­å®šæˆ–å½±åƒå­˜æ”¾ç›®éŒ„çš„æ¬Šé™'.
-                          '<li><b>NA</b> : è¡¨ç¤ºä½ é‚„æ²’æœ‰é¸æ“‡å½±åƒçš„ç›¸ç°¿, æŒ‰ \'<a href="javascript:history.back(1)">è¿”å›ž</a>\' ä¸¦é¸æ“‡ç›¸ç°¿. å¦‚æžœä½ æ²’æœ‰ç›¸ç°¿ <a href="albmgr.php">è«‹å…ˆå»ºç«‹ä¸€å€‹</a></li>'.
-                          '<li>å¦‚æžœ OK, DP, PB \'ç¬¦è™Ÿ\' æ²’æœ‰é¡¯ç¤ºè«‹æŒ‰å£žæŽ‰çš„å½±åƒæŸ¥çœ‹ PHP é¡¯ç¤ºçš„éŒ¯èª¤è¨Šæ¯'.
-                          '<li>å¦‚æžœç€è¦½å™¨é€¾æ™‚, è«‹æŒ‰é‡æ–°æ•´ç†'.
+                          '<li><b>OK</b> : 表示圖片已成功被加入'.
+                          '<li><b>DP</b> : 表示圖片重覆或已存在資料庫'.
+                          '<li><b>PB</b> : 表示圖片無法加入, 請檢查設定或圖片存放目錄的權限'.
+                          '<li><b>NA</b> : 表示你還沒有選擇圖片的相簿, 按 \'<a href="javascript:history.back(1)">返回</a>\' 並選擇相簿. 如果你沒有相簿 <a href="albmgr.php">請先建立一個</a></li>'.
+                          '<li>如果 OK, DP, PB \'符號\' 沒有顯示請按壞掉的圖片查看 PHP 顯示的錯誤訊息'.
+                          '<li>如果瀏覽器逾時, 請按重新整理'.
                           '</ul>', //cpg1.3.0
-  'select_album' => 'é¸æ“‡ç›¸ç°¿', //cpg1.3.0
-  'check_all' => 'å…¨é¸', //cpg1.3.0
-  'uncheck_all' => 'éƒ½ä¸é¸', //cpg1.3.0
+  'select_album' => '選擇相簿', //cpg1.3.0
+  'check_all' => '全選', //cpg1.3.0
+  'uncheck_all' => '都不選', //cpg1.3.0
 );
 
 
@@ -1064,22 +1065,22 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('BANNING_PHP')) $lang_banning_php = array(
-  'title' => 'åœæ¬Šæœƒå“¡',
-  'user_name' => 'æœƒå“¡åç¨±',
-  'ip_address' => 'IPä½å€',
-  'expiry' => 'åœæ¬ŠæœŸé™ï¼ˆç©ºç™½ä»£è¡¨æ°¸ä¹…åœæ¬Šï¼‰',
-  'edit_ban' => 'å„²å­˜ä¿®æ”¹',
-  'delete_ban' => 'åˆªé™¤',
-  'add_new' => 'æ–°å¢žåœæ¬Šæœƒå“¡',
-  'add_ban' => 'æ–°å¢ž',
-  'error_user' => 'æ‰¾ä¸åˆ°è©²ä½¿ç”¨è€…åç¨±!ä½ æ²’æ‰“éŒ¯å§.. ', //cpg1.3.0
-  'error_specify' => 'ä½ éœ€è¦å…·é«”æŒ‡æ˜Žä½¿ç”¨è€…åç¨±æˆ–IPä½å€', //cpg1.3.0
-  'error_ban_id' => 'ç„¡æ•ˆçš„ ID!', //cpg1.3.0
-  'error_admin_ban' => 'åˆ¥é¬§äº† ä½ ç„¡æ³•å°‡è‡ªå·±åœæ¬Š!', //cpg1.3.0
-  'error_server_ban' => 'ä½ è¦å°‡è‡ªå·±çš„ä¼ºæœå™¨åœæ¬Š? å“Ž..ä¸è¦å†è€å¯¶äº†...', //cpg1.3.0
-  'error_ip_forbidden' => 'ä½ ç„¡æ³•ç¦æ­¢é€™å€‹ IP - å®ƒæ˜¯ non-routable!', //cpg1.3.0
-  'lookup_ip' => 'æŸ¥çœ‹IP ä½å€', //cpg1.3.0
-  'submit' => 'åŸ·è¡Œ!', //cpg1.3.0
+  'title' => '阻擋會員',
+  'user_name' => '會員名稱',
+  'ip_address' => 'IP位址',
+  'expiry' => '期限（空白代表永久停權）',
+  'edit_ban' => '儲存修改',
+  'delete_ban' => '刪除',
+  'add_new' => '新增阻擋會員',
+  'add_ban' => '新增',
+  'error_user' => '找不到該會員的名稱!你沒打錯吧.. ', //cpg1.3.0
+  'error_specify' => '你需要具體指明會員名稱或IP位址', //cpg1.3.0
+  'error_ban_id' => '無效的 ID!', //cpg1.3.0
+  'error_admin_ban' => '別鬧了 你無法將自己停權!', //cpg1.3.0
+  'error_server_ban' => '你要將自己的伺服器停權? 哎..不要再耍寶了...', //cpg1.3.0
+  'error_ip_forbidden' => '你無法禁止這個 IP - 它是 non-routable!', //cpg1.3.0
+  'lookup_ip' => '查看 IP 位址', //cpg1.3.0
+  'submit' => '執行!', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -1087,76 +1088,76 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UPLOAD_PHP')) $lang_upload_php = array(
-  'title' => 'ä¸Šå‚³æª”æ¡ˆ', //cpg1.3.0
-  'custom_title' => 'ä¸Šå‚³é¸é …è¡¨', //cpg1.3.0
-  'cust_instr_1' => 'ä½ å¯ä»¥å¾žä¸‹åˆ— é¸æ“‡ä¸€å€‹ä¸Šå‚³æ¡† é€²è¡Œä¸Šå‚³.', //cpg1.3.0
-  'cust_instr_2' => 'é¸æ“‡ä¸Šå‚³æ¡†è™Ÿ', //cpg1.3.0
-  'cust_instr_3' => 'æª”æ¡ˆä¸Šå‚³æ¡†: %s', //cpg1.3.0
-  'cust_instr_4' => 'URI/URL ä¸Šå‚³æ¡†: %s', //cpg1.3.0
-  'cust_instr_5' => 'URI/URL ä¸Šå‚³æ¡†:', //cpg1.3.0
-  'cust_instr_6' => 'æª”æ¡ˆä¸Šå‚³æ¡†:', //cpg1.3.0
-  'cust_instr_7' => 'è«‹è¼¸å…¥æ‚¨ç›®å‰éœ€è¦çš„ æ¯ä¸€ç¨®ä¸Šå‚³æ¡†çš„æ•¸é‡. ç„¶å¾ŒæŒ‰ \'ç¹¼çºŒ\'. ', //cpg1.3.0
-  'reg_instr_1' => 'ç„¡æ•ˆçš„é¸é …è¡¨å‹•ä½œ.', //cpg1.3.0
-  'reg_instr_2' => 'ç¾åœ¨ ä½ å¯ä»¥ç”¨ä»¥ä¸‹çš„ä¸Šå‚³æ¡† ä¸Šå‚³ä½ çš„æª”æ¡ˆ. æ¯ä¸€å€‹ä¸Šå‚³æª”æ¡ˆçš„å¤§å°ä¸å¯ä»¥è¶…éŽ %s KB . ZIP æª”æ¡ˆä¸Šå‚³åœ¨ \'æª”æ¡ˆä¸Šå‚³\' åŠ \'URI/URL ä¸Šå‚³\' å€ .', //cpg1.3.0
-  'reg_instr_3' => 'å¦‚æžœä½ è¦ä¸Šå‚³å£“ç¸®æª”æˆ–è¦è§£å£“ç¸®, å¿…é ˆä½¿ç”¨æª”æ¡ˆä¸Šå‚³æ¡† \'è§£å£“ç¸®ZIP ä¸Šå‚³\' å€.', //cpg1.3.0
-  'reg_instr_4' => 'å¦‚æžœé¸æ“‡ä»¥ URI/URL ä¸Šå‚³, è«‹è¼¸å…¥æª”æ¡ˆé€£çµè·¯å¾‘ å¦‚: http://www.mysite.com/images/example.jpg', //cpg1.3.0
-  'reg_instr_5' => 'å®Œæˆé¸é …è¡¨å¾Œ,è«‹æŒ‰ \'ç¹¼çºŒ\'.', //cpg1.3.0
-  'reg_instr_6' => 'è§£å£“ç¸®ZIP ä¸Šå‚³:', //cpg1.3.0
-  'reg_instr_7' => 'æª”æ¡ˆ ä¸Šå‚³:', //cpg1.3.0
-  'reg_instr_8' => 'URI/URL ä¸Šå‚³:', //cpg1.3.0
-  'error_report' => 'éŒ¯èª¤å ±å‘Š', //cpg1.3.0
-  'error_instr' => 'ä¸‹åˆ—ä¸Šå‚³é‡åˆ°éŒ¯èª¤:', //cpg1.3.0
-  'file_name_url' => 'æª”æ¡ˆ åç¨±/URL', //cpg1.3.0
-  'error_message' => 'éŒ¯èª¤è¨Šæ¯', //cpg1.3.0
-  'no_post' => 'æª”æ¡ˆæ²’æœ‰è¢«ä¸Šå‚³.', //cpg1.3.0
-  'forb_ext' => 'ä¸å…è¨±çš„å‰¯æª”å.', //cpg1.3.0
-  'exc_php_ini' => 'æª”æ¡ˆè¶…éŽphp.iniå…è¨±çš„å¤§å°.', //cpg1.3.0
-  'exc_file_size' => 'æª”æ¡ˆè¶…éŽCPGå…è¨±çš„å¤§å°.', //cpg1.3.0
-  'partial_upload' => 'åªæœ‰éƒ¨åˆ†ä¸Šå‚³.', //cpg1.3.0
-  'no_upload' => 'æ²’æœ‰ä¸Šå‚³.', //cpg1.3.0
-  'unknown_code' => 'æœªçŸ¥çš„ PHP ä¸Šå‚³éŒ¯èª¤ç¢¼.', //cpg1.3.0
-  'no_temp_name' => 'æ²’æœ‰ä¸Šå‚³ - ç„¡æš«å­˜æª”å.', //cpg1.3.0
-  'no_file_size' => 'æ²’æœ‰å…§å®¹', //cpg1.3.0
-  'impossible' => 'ç„¡æ³•å‚³æª”.', //cpg1.3.0
-  'not_image' => 'é€™ä¸æ˜¯æ¨™æº–å½±åƒæª”', //cpg1.3.0
-  'not_GD' => 'é€™ä¸æ˜¯ GD å‰¯æª”å.', //cpg1.3.0
-  'pixel_allowance' => 'å½±åƒå°ºå¯¸å¤ªå¤§äº†.', //cpg1.3.0
-  'incorrect_prefix' => 'ä¸æ­£ç¢ºçš„ URI/URL å‰ç¶´', //cpg1.3.0
-  'could_not_open_URI' => 'ç„¡æ³•é–‹å•ŸURI.', //cpg1.3.0
-  'unsafe_URI' => 'å®‰å…¨æ€§æœªè¢«èªè­‰.', //cpg1.3.0
-  'meta_data_failure' => 'è½‰æ›è³‡æ–™å¤±æ•—', //cpg1.3.0
-  'http_401' => '401 æœªè¢«æŽˆæ¬Šç€è¦½', //cpg1.3.0
-  'http_402' => '402 æ­¤è™•éœ€ä»˜è²»ç€è¦½', //cpg1.3.0
-  'http_403' => '403 ç›®å‰æ­¤è™•é—œé–‰ç¦æ­¢ç€è¦½', //cpg1.3.0
-  'http_404' => '404 ä¼ºæœå™¨æ²’æœ‰å›žæ‡‰', //cpg1.3.0
-  'http_500' => '500 å…§éƒ¨ä¼ºæœå™¨éŒ¯èª¤', //cpg1.3.0
-  'http_503' => '503 ä¼ºæœå™¨ç­‰å¾…éŽä¹… åœæ­¢æœå‹™', //cpg1.3.0
-  'MIME_extraction_failure' => 'MIME ç„¡æ³•è¢«æ¸¬å®š.', //cpg1.3.0
-  'MIME_type_unknown' => 'æœªçŸ¥çš„ MIME type', //cpg1.3.0
-  'cant_create_write' => 'ç„¡æ³•æ–°å¢žå¯«å…¥æª”æ¡ˆ.', //cpg1.3.0
-  'not_writable' => 'ç„¡æ³•å¯«å…¥.', //cpg1.3.0
-  'cant_read_URI' => 'ç„¡æ³•è®€å– URI/URL', //cpg1.3.0
-  'cant_open_write_file' => 'ç„¡æ³•é–‹å•ŸURI .', //cpg1.3.0
-  'cant_write_write_file' => 'ç„¡æ³•å¯«å…¥URI .', //cpg1.3.0
-  'cant_unzip' => 'ç„¡æ³• unzip.', //cpg1.3.0
-  'unknown' => 'æœªçŸ¥çš„éŒ¯èª¤', //cpg1.3.0
-  'succ' => 'æˆåŠŸä¸Šå‚³', //cpg1.3.0
-  'success' => '%s ä¸Šå‚³å·²ç¶“æˆåŠŸ.', //cpg1.3.0
-  'add' => 'è«‹æŒ‰ \'ç¹¼çºŒ\' å¢žåŠ æª”æ¡ˆåˆ°ç›¸ç°¿.', //cpg1.3.0
-  'failure' => 'ä¸Šå‚³å¤±æ•—', //cpg1.3.0
-  'f_info' => 'æª”æ¡ˆè³‡è¨Š', //cpg1.3.0
-  'no_place' => 'å…ˆå‰çš„æª”æ¡ˆç„¡æ³•è¢«é…ç½®.', //cpg1.3.0
-  'yes_place' => 'å…ˆå‰çš„æª”æ¡ˆå·²ç¶“é…ç½®æˆåŠŸ.', //cpg1.3.0
-  'max_fsize' => 'æœ€å¤§å…è¨±æª”æ¡ˆå¤§å°æ˜¯ %s KB',
-  'album' => 'ç›¸ç°¿',
-  'picture' => 'å½±åƒ', //cpg1.3.0
-  'pic_title' => 'å½±åƒæ¨™é¡Œ', //cpg1.3.0
-  'description' => 'å½±åƒæè¿°', //cpg1.3.0
-  'keywords' => 'é—œéµå­— (ä»¥ç©ºæ ¼å€éš”)',
-  'err_no_alb_uploadables' => 'ç›®å‰å°šæœªæœ‰ç›¸ç°¿å¯ä»¥ä¸Šå‚³å½±åƒ', //cpg1.3.0
-  'place_instr_1' => 'ç¾åœ¨ è«‹å°‡å½±åƒæ”¾åˆ°ç›¸ç°¿.  ä½ ç¾åœ¨å¯ä»¥è¼¸å…¥é€™å€‹æª”æ¡ˆçš„ç›¸é—œè³‡è¨Š.', //cpg1.3.0
-  'place_instr_2' => 'æ›´å¤šçš„å½±åƒéœ€è¦é…ç½®. è«‹æŒ‰ \'ç¹¼çºŒ\'.', //cpg1.3.0
-  'process_complete' => 'æ­å–œ  ä½ å·²ç¶“å°‡å…¨éƒ¨çš„æˆåŠŸæª”æ¡ˆä¸Šå‚³äº†.', //cpg1.3.0
+  'title' => '上傳檔案', //cpg1.3.0
+  'custom_title' => '上傳選項表', //cpg1.3.0
+  'cust_instr_1' => '你可以從下列 選擇一個上傳框 進行上傳.', //cpg1.3.0
+  'cust_instr_2' => '選擇上傳框號', //cpg1.3.0
+  'cust_instr_3' => '檔案上傳框: %s', //cpg1.3.0
+  'cust_instr_4' => 'URI/URL 上傳框: %s', //cpg1.3.0
+  'cust_instr_5' => 'URI/URL 上傳框:', //cpg1.3.0
+  'cust_instr_6' => '檔案上傳框:', //cpg1.3.0
+  'cust_instr_7' => '請輸入您目前需要的 每一種上傳框的數量. 然後按 \'繼續\'. ', //cpg1.3.0
+  'reg_instr_1' => '無效的選項表動作.', //cpg1.3.0
+  'reg_instr_2' => '現在 你可以用以下的上傳框 上傳你的檔案. 每一個上傳檔案的大小不可以超過 %s KB . ZIP 檔案上傳在 \'檔案上傳\' and \'URI/URL 上傳\' 區 .', //cpg1.3.0
+  'reg_instr_3' => '如果你要上傳壓縮檔或要解壓縮, 必須使用檔案上傳框 \'解壓縮ZIP 上傳\' 區.', //cpg1.3.0
+  'reg_instr_4' => '如果選擇以 URI/URL 上傳, 請輸入檔案連結路徑 如: http://www.mysite.com/images/example.jpg', //cpg1.3.0
+  'reg_instr_5' => '完成選項表後,請按 \'繼續\'.', //cpg1.3.0
+  'reg_instr_6' => '解壓縮ZIP 上傳:', //cpg1.3.0
+  'reg_instr_7' => '檔案 上傳:', //cpg1.3.0
+  'reg_instr_8' => 'URI/URL 上傳:', //cpg1.3.0
+  'error_report' => '錯誤報告', //cpg1.3.0
+  'error_instr' => '下列上傳遇到錯誤:', //cpg1.3.0
+  'file_name_url' => '檔案 名稱/URL', //cpg1.3.0
+  'error_message' => '錯誤訊息', //cpg1.3.0
+  'no_post' => '檔案沒有被上傳.', //cpg1.3.0
+  'forb_ext' => '不允許的副檔名.', //cpg1.3.0
+  'exc_php_ini' => '檔案超過php.ini允許的大小.', //cpg1.3.0
+  'exc_file_size' => '檔案超過CPG允許的大小.', //cpg1.3.0
+  'partial_upload' => '只有部分上傳.', //cpg1.3.0
+  'no_upload' => '沒有上傳.', //cpg1.3.0
+  'unknown_code' => '未知的 PHP 上傳錯誤碼.', //cpg1.3.0
+  'no_temp_name' => '沒有上傳 - 無暫存檔名.', //cpg1.3.0
+  'no_file_size' => '沒有內容', //cpg1.3.0
+  'impossible' => '無法傳檔.', //cpg1.3.0
+  'not_image' => '這不是標準影像檔', //cpg1.3.0
+  'not_GD' => '這不是 GD 副檔名.', //cpg1.3.0
+  'pixel_allowance' => '影像尺寸太大了.', //cpg1.3.0
+  'incorrect_prefix' => '不正確的 URI/URL 前綴', //cpg1.3.0
+  'could_not_open_URI' => '無法開啟URI.', //cpg1.3.0
+  'unsafe_URI' => '安全性未被認證.', //cpg1.3.0
+  'meta_data_failure' => '轉換資料失敗', //cpg1.3.0
+  'http_401' => '401 未被授權瀏覽', //cpg1.3.0
+  'http_402' => '402 此處需付費瀏覽', //cpg1.3.0
+  'http_403' => '403 目前此處關閉禁止瀏覽', //cpg1.3.0
+  'http_404' => '404 伺服器沒有回應', //cpg1.3.0
+  'http_500' => '500 內部伺服器錯誤', //cpg1.3.0
+  'http_503' => '503 伺服器等待過久 停止服務', //cpg1.3.0
+  'MIME_extraction_failure' => '無法確認 MIME.', //cpg1.3.0
+  'MIME_type_unknown' => '未知的 MIME type', //cpg1.3.0
+  'cant_create_write' => '無法新增寫入檔案.', //cpg1.3.0
+  'not_writable' => '無法寫入.', //cpg1.3.0
+  'cant_read_URI' => '無法讀取 URI/URL', //cpg1.3.0
+  'cant_open_write_file' => '無法開啟URI .', //cpg1.3.0
+  'cant_write_write_file' => '無法寫入URI .', //cpg1.3.0
+  'cant_unzip' => '無法解壓縮.', //cpg1.3.0
+  'unknown' => '未知的錯誤', //cpg1.3.0
+  'succ' => '成功上傳', //cpg1.3.0
+  'success' => '%s 上傳已經完成.', //cpg1.3.0
+  'add' => '請按 \'繼續\' 增加檔案到相簿.', //cpg1.3.0
+  'failure' => '上傳失敗', //cpg1.3.0
+  'f_info' => '檔案資訊', //cpg1.3.0
+  'no_place' => '先前的檔案無法被配置.', //cpg1.3.0
+  'yes_place' => '先前的檔案已經配置完成.', //cpg1.3.0
+  'max_fsize' => '最大允許檔案大小是 %s KB',
+  'album' => '相簿',
+  'picture' => '圖片', //cpg1.3.0
+  'pic_title' => '圖片標題', //cpg1.3.0
+  'description' => '圖片描述', //cpg1.3.0
+  'keywords' => '關鍵字 (以空格區隔)',
+  'err_no_alb_uploadables' => '目前尚未有相簿可以上傳圖片', //cpg1.3.0
+  'place_instr_1' => '現在 請將圖片放到相簿.  你現在可以輸入這個檔案的相關資訊.', //cpg1.3.0
+  'place_instr_2' => '更多的圖片需要配置. 請按 \'繼續\'.', //cpg1.3.0
+  'process_complete' => '恭喜  你已經成功的將全部檔案上傳了.', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -1164,50 +1165,50 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
-  'title' => 'æœƒå“¡ç®¡ç†',
-  'name_a' => 'åç¨± ç”±å°è‡³å¤§',
-  'name_d' => 'åç¨± ç”±å¤§è‡³å°',
-  'group_a' => 'ç¾¤çµ„ ç”±å°è‡³å¤§',
-  'group_d' => 'ç¾¤çµ„ ç”±å¤§è‡³å°',
-  'reg_a' => 'è¨»å†Šæ—¥æœŸ ç”±é è‡³è¿‘',
-  'reg_d' => 'è¨»å†Šæ—¥æœŸ ç”±è¿‘è‡³é ',
-  'pic_a' => 'å½±åƒæ•¸ ç”±å°è‡³å¤§',
-  'pic_d' => 'å½±åƒæ•¸ ç”±å¤§è‡³å°',
-  'disku_a' => 'ç£ç¢Ÿç”¨é‡ ç”±å°è‡³å¤§',
-  'disku_d' => 'ç£ç¢Ÿç”¨é‡ ç”±å¤§è‡³å°',
-  'lv_a' => 'æœ€è¿‘ä¾†è¨ª ç”±è¿‘è‡³é ', //cpg1.3.0
-  'lv_d' => 'æœ€è¿‘ä¾†è¨ª ç”±é è‡³è¿‘', //cpg1.3.0
-  'sort_by' => 'æœƒå“¡æŽ’åºä¾',
-  'err_no_users' => 'æœƒå“¡è³‡æ–™è¡¨æ˜¯ç©ºçš„ !',
-  'err_edit_self' => 'æ‚¨ç„¡æ³•ç·¨è¼¯æ‚¨çš„å€‹äººè³‡æ–™, è«‹åˆ©ç”¨ \'æˆ‘çš„å€‹äººè³‡æ–™\' ä¾†ç·¨è¼¯',
-  'edit' => 'ç·¨è¼¯',
-  'delete' => 'åˆªé™¤',
-  'name' => 'æœƒå“¡åç¨±',
-  'group' => 'ç¾¤çµ„',
-  'inactive' => 'æœªå•Ÿå‹•',
-  'operations' => 'æ“ä½œ',
-  'pictures' => 'å½±åƒ', //cpg1.3.0
-  'disk_space' => 'ç£ç¢Ÿ ç”¨é‡ / é™é¡',
-  'registered_on' => 'è¨»å†Šæ—¥',
-  'last_visit' => 'æœ€è¿‘ä¾†è¨ª', //cpg1.3.0
-  'u_user_on_p_pages' => '%d å€‹æœƒå“¡æ–¼ %d é ',
-  'confirm_del' => 'ç¢ºå®šè¦åˆªé™¤é€™å€‹æœƒå“¡å—Ž? \\næ‰€æœ‰ä»–çš„ç›¸ç°¿åŠå½±åƒéƒ½æœƒè¢«åˆªé™¤.', //js-alert //cpg1.3.0
-  'mail' => 'é›»å­éƒµä»¶',
-  'err_unknown_user' => 'æ‰€é¸æ“‡çš„æœƒå“¡ä¸¦ä¸å­˜åœ¨ !',
-  'modify_user' => 'ç·¨è¼¯æœƒå“¡',
-  'notes' => 'æ³¨æ„',
-  'note_list' => '<li>å¦‚æžœä¸æƒ³æ”¹è®Šç¾è¡Œå¯†ç¢¼, è«‹å°‡ "å¯†ç¢¼" ä½ç•™ä¸‹ç©ºç™½',
-  'password' => 'å¯†ç¢¼',
-  'user_active' => 'æœƒå“¡å·²å•Ÿå‹•',
-  'user_group' => 'æœƒå“¡ç¾¤çµ„',
-  'user_email' => 'æœƒå“¡é›»å­éƒµä»¶',
-  'user_web_site' => 'æœƒå“¡ç¶²å€',
-  'create_new_user' => 'å»ºç«‹æ–°æœƒå“¡',
-  'user_location' => 'æœƒå“¡åœ°å€',
-  'user_interests' => 'æœƒå“¡èˆˆè¶£',
-  'user_occupation' => 'æœƒå“¡è·æ¥­',
-  'latest_upload' => 'æœ€æ–°ä¸Šå‚³', //cpg1.3.0
-  'never' => 'å¾žæœªæœ‰', //cpg1.3.0
+  'title' => '會員管理',
+  'name_a' => '名稱 由小至大',
+  'name_d' => '名稱 由大至小',
+  'group_a' => '群組 由小至大',
+  'group_d' => '群組 由大至小',
+  'reg_a' => '註冊日期 由遠至近',
+  'reg_d' => '註冊日期 由近至遠',
+  'pic_a' => '圖片數 由小至大',
+  'pic_d' => '圖片數 由大至小',
+  'disku_a' => '磁碟用量 由小至大',
+  'disku_d' => '磁碟用量 由大至小',
+  'lv_a' => '最近來訪 由近至遠', //cpg1.3.0
+  'lv_d' => '最近來訪 由遠至近', //cpg1.3.0
+  'sort_by' => '會員排序依',
+  'err_no_users' => '會員資料表是空的 !',
+  'err_edit_self' => '您無法編輯您的個人資料, 請利用 \'我的個人資料\' 來編輯',
+  'edit' => '編輯',
+  'delete' => '刪除',
+  'name' => '會員名稱',
+  'group' => '群組',
+  'inactive' => '未啟動',
+  'operations' => '操作',
+  'pictures' => '圖片', //cpg1.3.0
+  'disk_space' => '磁碟 用量 / 限額',
+  'registered_on' => '註冊日',
+  'last_visit' => '最近來訪', //cpg1.3.0
+  'u_user_on_p_pages' => '%d 個會員於 %d 頁',
+  'confirm_del' => '確定要刪除這個會員嗎? \\n所有他的相簿及圖片都會被刪除.', //js-alert //cpg1.3.0
+  'mail' => '電子郵件',
+  'err_unknown_user' => '所選擇的會員並不存在 !',
+  'modify_user' => '編輯會員',
+  'notes' => '注意',
+  'note_list' => '<li>如果不想改變目前的密碼, 請將 "密碼" 位留下空白',
+  'password' => '密碼',
+  'user_active' => '會員已啟動',
+  'user_group' => '會員群組',
+  'user_email' => '會員電子郵件',
+  'user_web_site' => '會員網址',
+  'create_new_user' => '建立新會員',
+  'user_location' => '會員地區',
+  'user_interests' => '會員興趣',
+  'user_occupation' => '會員職業',
+  'latest_upload' => '最新上傳', //cpg1.3.0
+  'never' => '從未有', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -1215,59 +1216,59 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UTIL_PHP')) $lang_util_php = array(
-  'title' => 'ç®¡ç†å·¥å…· (èª¿æ•´å½±åƒå¤§å°)', //cpg1.3.0
-  'what_it_does' => 'åŠŸèƒ½',
-  'what_update_titles' => 'ä¾æ“šæª”æ¡ˆåç¨± æ›´æ–°å½±åƒæ¨™é¡Œ',
-  'what_delete_title' => 'åˆªé™¤å½±åƒæ¨™é¡Œ',
-  'what_rebuild' => 'é‡å»ºç¸®åœ–åŠèª¿æ•´å½±åƒå¤§å°',
-  'what_delete_originals' => 'é‡æ–°èª¿æ•´å¾Œçš„å½±åƒ å°‡å–ä»£åŽŸæœ‰çš„å½±åƒ',
-  'file' => ' æª”æ¡ˆ ',
-  'title_set_to' => ' æ¨™é¡Œè®Šæ›´ç‚º ',
-  'submit_form' => ' ç¢ºèª ',
-  'updated_succesfully' => ' æ›´æ–° å·²ç¶“æˆåŠŸ ',
-  'error_create' => ' ç”¢ç”ŸéŒ¯èª¤ ',
-  'continue' => ' ç¹¼çºŒåŸ·è¡Œå…¶ä»–çš„å½±åƒ ',
-  'main_success' => ' æª”æ¡ˆ %s å·²è¨­ç‚ºä¸»åœ– ',  //cpg1.3.0
-  'error_rename' => ' éŒ¯èª¤ %s æ”¹åç‚º %s ', 
-  'error_not_found' => ' æ‰¾ä¸åˆ°æª”æ¡ˆ %s ',
-  'back' => 'å›žä¸»é ',
-  'thumbs_wait' => 'æ›´æ–°ç¸®åœ– ä¸”/æˆ– èª¿æ•´å½±åƒå°ºå¯¸, è«‹ç¨å¾…... ',
-  'thumbs_continue_wait' => 'ç¹¼çºŒ æ›´æ–°ç¸®åœ– ä¸”/æˆ– èª¿æ•´å½±åƒå°ºå¯¸... ',
-  'titles_wait' => 'æ›´æ–°æ¨™é¡Œ, è«‹ç¨å¾…... ',
-  'delete_wait' => 'åˆªé™¤æ¨™é¡Œ, è«‹ç¨å¾…... ',
-  'replace_wait' => 'é‡æ–°èª¿æ•´å¾Œçš„å½±åƒå°‡ å–ä»£åŽŸæœ‰çš„å½±åƒä¸­, è«‹ç¨å¾…... ',
-  'instruction' => 'ç°¡æ˜“æ“ä½œèªªæ˜Ž ',
-  'instruction_action' => 'è«‹é¸æ“‡æ“ä½œ ',
-  'instruction_parameter' => 'è¨­å®šåƒæ•¸ ',
-  'instruction_album' => 'é¸æ“‡ç›¸ç°¿ ',
-  'instruction_press' => 'è«‹æŒ‰ %s ',
-  'update' => 'æ›´æ–°ç¸®åœ– ä¸”/æˆ– èª¿æ•´å½±åƒå¤§å° ',
-  'update_what' => 'è¦æ›´æ–°ä»€éº¼ ',
-  'update_thumb' => 'åªæœ‰ç¸®åœ–',
-  'update_pic' => 'åªèª¿æ•´å½±åƒå¤§å°',
-  'update_both' => 'æ›´æ–°ç¸®åœ–ä¸”èª¿æ•´å½±åƒå°ºå¯¸',
-  'update_number' => 'æ¯é»žé¸ä¸€æ¬¡è¦è™•ç†çš„å½±åƒæ•¸ç›®',
-  'update_option' => '(å¦‚æžœæ‚¨é‡åˆ°æ“ä½œç¨‹åºé€¾æ™‚çš„å•é¡Œï¼Œè«‹è©¦è‘—é™ä½Žæ­¤è¨­å®š)',
-  'filename_title' => 'æª”æ¡ˆåç¨± &rArr; å½±åƒæ¨™é¡Œ', //cpg1.3.0
-  'filename_how' => 'å¦‚ä½•ä¿®æ”¹æª”å', 
-  'filename_remove' => 'åˆªé™¤ .jpg ä¸¦å°‡ _ (åº•ç·š) ç”¨ç©ºæ ¼å–ä»£', 
-  'filename_euro' => 'å°‡ 2003_11_23_13_20_20.jpg æ”¹ç‚º 23/11/2003 13:20', 
-  'filename_us' => 'å°‡ 2003_11_23_13_20_20.jpg æ”¹ç‚º 11/23/2003 13:20', 
-  'filename_time' => 'å°‡ 2003_11_23_13_20_20.jpg æ”¹ç‚º 13:20', 
-  'delete' => 'åˆªé™¤å½±åƒæ¨™é¡Œæˆ–åŽŸå§‹å°ºå¯¸çš„å½±åƒ', //cpg1.3.0
-  'delete_title' => 'åˆªé™¤å½±åƒæ¨™é¡Œ', //cpg1.3.0
-  'delete_original' => 'åˆªé™¤åŽŸå§‹å°ºå¯¸çš„å½±åƒ',
-  'delete_replace' => 'åˆªé™¤åŽŸå§‹å°ºå¯¸çš„å½±åƒä¸¦ä»¥èª¿æ•´å°ºå¯¸çš„å½±åƒå–ä»£',
-  'select_album' => 'é¸æ“‡ç›¸ç°¿',
-  'delete_orphans' => 'åˆªé™¤é›¶æ•£çš„ç•™è¨€(å°å…¨éƒ¨çš„ç›¸ç°¿)', //cpg1.3.0
-  'orphan_comment' => 'ç™¼ç¾é›¶æ•£çš„ç•™è¨€', //cpg1.3.0
-  'delete' => 'åˆªé™¤', //cpg1.3.0
-  'delete_all' => 'å…¨éƒ¨åˆªé™¤', //cpg1.3.0
-  'comment' => 'ç•™è¨€: ', //cpg1.3.0
-  'nonexist' => 'è¦é™„åŠ çš„æª”æ¡ˆä¸å­˜åœ¨ # ', //cpg1.3.0
-  'phpinfo' => 'é¡¯ç¤ºphpè³‡è¨Š', //cpg1.3.0
-  'update_db' => 'æ›´æ–°è³‡æ–™åº«', //cpg1.3.0
-  'update_db_explanation' => 'å¦‚æžœæ‚¨æœ‰æ›´æ–° coppermine æª”æ¡ˆ, åŠ ä»¥ä¿®æ”¹æˆ–ç”±ä»¥å‰çš„ç‰ˆæœ¬å‡ç´š, è«‹å‹™å¿…åŸ·è¡Œä¸€æ¬¡è³‡æ–™åº«æ›´æ–°. é€™å°‡æœƒåœ¨è³‡æ–™åº«æ–°å¢žå¿…è¦çš„è³‡æ–™è¡¨ åŠ/æˆ– è¨­å®šå€¼.', //cpg1.3.0
+  'title' => '管理員工具 (調整圖片大小)', //cpg1.3.0
+  'what_it_does' => '功能',
+  'what_update_titles' => '從檔案名稱更新圖片標題',
+  'what_delete_title' => '刪除標題',
+  'what_rebuild' => '重建縮圖及調整圖片大小',
+  'what_delete_originals' => '重新調整後的圖片將 取代原有的圖片',
+  'file' => '檔案',
+  'title_set_to' => '標題變更為',
+  'submit_form' => '確認',
+  'updated_succesfully' => '更新 已經完成',
+  'error_create' => '產生錯誤',
+  'continue' => '繼續執行其他的影像',
+  'main_success' => '檔案 %s 已設為主圖',  //cpg1.3.0
+  'error_rename' => '錯誤 %s 改名為 %s', 
+  'error_not_found' => '找不到檔案 %s ',
+  'back' => '回主頁',
+  'thumbs_wait' => '更新縮圖 且/或 調整影像尺寸, 請稍待...',
+  'thumbs_continue_wait' => '繼續 更新縮圖 且/或 調整影像尺寸...',
+  'titles_wait' => '更新標題, 請稍待...',
+  'delete_wait' => '刪除標題, 請稍待...',
+  'replace_wait' => '重新調整後的圖片將 取代原有的圖片中, 請稍待...',
+  'instruction' => '簡易操作說明',
+  'instruction_action' => '請選擇操作',
+  'instruction_parameter' => '設定參數',
+  'instruction_album' => '選擇相簿',
+  'instruction_press' => '請按 %s',
+  'update' => '更新縮圖 且/或 調整圖片大小',
+  'update_what' => '要更新什麼',
+  'update_thumb' => '只有縮圖',
+  'update_pic' => '只調整圖片大小',
+  'update_both' => '更新縮圖且調整圖片尺寸',
+  'update_number' => '每點選一次要處理的圖片數目',
+  'update_option' => '(如果您遇到操作程序逾時的問題，請試著降低此設定)',
+  'filename_title' => '檔案名稱 &rArr; 圖片標題', //cpg1.3.0
+  'filename_how' => '如何修改檔名', 
+  'filename_remove' => '刪除 .jpg 並將 _ (底線) 用空格取代', 
+  'filename_euro' => '將 2003_11_23_13_20_20.jpg 改為 23/11/2003 13:20', 
+  'filename_us' => '將 2003_11_23_13_20_20.jpg 改為 11/23/2003 13:20', 
+  'filename_time' => '將 2003_11_23_13_20_20.jpg 改為 13:20', 
+  'delete' => '刪除圖片標題或原始尺寸的圖片', //cpg1.3.0
+  'delete_title' => '刪除圖片標題', //cpg1.3.0
+  'delete_original' => '刪除原始尺寸的圖片',
+  'delete_replace' => '刪除原始尺寸的圖片並以調整尺寸的圖片取代',
+  'select_album' => '選擇相簿',
+  'delete_orphans' => '刪除零散的留言(對全部的相簿)', //cpg1.3.0
+  'orphan_comment' => '發現零散的留言', //cpg1.3.0
+  'delete' => '刪除', //cpg1.3.0
+  'delete_all' => '全部刪除', //cpg1.3.0
+  'comment' => '留言: ', //cpg1.3.0
+  'nonexist' => '要附加的檔案不存在 # ', //cpg1.3.0
+  'phpinfo' => '顯示 phpinfo 資料', //cpg1.3.0
+  'update_db' => '更新資料庫', //cpg1.3.0
+  'update_db_explanation' => '如果妳有更新 CPG 檔案, 加入修改或由以前的版本升級, 請確定執行一次資料庫更新. 這將會在 CPG 資料庫新增必要的資料表 及/或 設定值.', //cpg1.3.0
 );
 
 ?>

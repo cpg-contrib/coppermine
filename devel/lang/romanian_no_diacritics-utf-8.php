@@ -14,6 +14,8 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
+// ENCODING CHECK; SHOULD BE YEN BETA MU: ¥ ß µ
+// ------------------------------------------------------------------------- //
 // $Id$
 // ------------------------------------------------------------------------- //
 
@@ -28,7 +30,7 @@ $lang_translation_info = array(
         'trans_date' => '2004-08-01',
 );
 
-$lang_charset = 'iso-8859-2';
+$lang_charset = 'utf-8';
 $lang_text_dir = 'ltr'; // ('ltr' stanga la dreapta, 'rtl' dreapta la stanga)
 
 // prescurtari pentru Byte, Kilo, Mega

@@ -14,8 +14,11 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
+// ENCODING CHECK; SHOULD BE YEN BETA MU: ¥ ß µ
+// ------------------------------------------------------------------------- //
 // $Id$
 // ------------------------------------------------------------------------- //
+
 
 // info about translators and translated language
 $lang_translation_info = array(
