@@ -293,6 +293,7 @@ function list_users()
         if ($FORBIDDEN_SET != "") $sql .= "WHERE $FORBIDDEN_SET ";
         $sql .= "GROUP BY user_id " .
                 "ORDER BY user_name";
+                
         $result = db_query($sql);
 
         $user_count = mysql_num_rows($result);
@@ -323,13 +324,14 @@ function list_users()
 
     $user_list = array();
     foreach ($rowset as $user) {
-        $user_thumb = '<img src="images/nopic.jpg" class="image" border="0" />';
         $user_pic_count = $user['pic_count'];
         $user_thumb_pid = $user['thumb_pid'];
         $user_album_count = $user['alb_count'];
 
         if ($user_pic_count) {
-            $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='$user_thumb_pid'";
+            $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight ".
+                   "FROM {$CONFIG['TABLE_PICTURES']} ".
+                   "WHERE pid='$user_thumb_pid'";
             $result = db_query($sql);
             if (mysql_num_rows($result)) {
                 $picture = mysql_fetch_array($result);
@@ -340,9 +342,16 @@ function list_users()
                         $picture['pwidth'] = $image_info[0];
                         $picture['pheight'] = $image_info[1];
                 }
-                $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['alb_list_thumb_size']);
             }
+        } else {
+            $pic_url = 'images/nopic.jpg';
+            $image_info = getimagesize($pic_url);
+            $picture['pwidth'] = $image_info[0];
+            $picture['pheight'] = $image_info[1];
         }
+
+        $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['thumb_width']);
+        $user_thumb = '<img src="'.$pic_url.'" class="image" border="0" '.$image_size['geom'].' alt="" />';
 
         $albums_txt = sprintf($lang_list_users['n_albums'], $user_album_count);
         $pictures_txt = sprintf($lang_list_users['n_pics'], $user_pic_count);
