@@ -1870,13 +1870,13 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'alert_no_selection' => 'You have to select at least one user first!', //cpg1.4 //js-alert
   'password' => 'password', //cpg1.4
   'select_group' => 'Select group', //cpg1.4
-  'groups_alb_access' => 'Album access by group', //cpg1.4
+  'groups_alb_access' => 'Album permissions by group', //cpg1.4
   'album' => 'Album', //cpg1.4
   'category' => 'Category', //cpg1.4
   'modify' => 'Modify?', //cpg1.4
   'group_no_access' => 'This group has no special access', //cpg1.4
   'notice' => 'Notice', //cpg1.4
-  'group_can_access' => 'Albums "%s" can view', //cpg1.4
+  'group_can_access' => 'Album(s) that only "%s" can access', //cpg1.4
 );
 
 // ------------------------------------------------------------------------- //
