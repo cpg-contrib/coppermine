@@ -250,6 +250,10 @@ while ($row = mysql_fetch_array($results)) {
 } // while
 mysql_free_result($results);
 
+require('include/plugin_api.inc.php');
+if ($CONFIG['enable_plugins'] == 1) {
+    CPGPluginAPI::load();
+}
 
 // Include logger functions
 include_once('include/logger.inc.php');
