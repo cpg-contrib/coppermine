@@ -156,10 +156,11 @@ class cpg_udb extends core_udb {
 
 	// Logout function
 	function logout() {
-	    global $CONFIG;
 
         // Revert authenticated session to a guest session
-        $sql  = "update {$this->sessionstable} set user_id = 0, remember=false where session_id=md5('{$this->session_id}');";
+        $session_id = $this->session_id.$this->client_id;
+        $sql  = "update {$this->sessionstable} set user_id = 0, remember=false where session_id=md5('$session_id');";
+        cpg_db_query($sql, $this->link_id);
     }
 
 
@@ -298,7 +299,7 @@ class cpg_udb extends core_udb {
 	}
 
 
-	/** Modified function taken from Mambo session class */
+	// Modified function taken from Mambo session class
 	function generateId() {
 		$failsafe = 20;
 		$randnum = 0;
@@ -315,6 +316,27 @@ class cpg_udb extends core_udb {
 		}
 		return $randnum;
 	}
+	
+
+	// Gets user/guest count
+	function get_user_count() {
+	   static $count = array();
+	   
+	   if (!$count) {
+
+            // Get guest count
+	        $sql = "select count(user_id) as num_guests from {$this->sessionstable} where user_id=0;";
+	        $result = cpg_db_query($sql, $this->link_id);
+	        $count = mysql_fetch_assoc($result);
+
+            // Get authenticated user count
+	        $sql = "select count(user_id) as num_users from {$this->sessionstable} where user_id>0;";
+	        $result = cpg_db_query($sql, $this->link_id);
+	        $count = array_merge(mysql_fetch_assoc($result), $count);
+        }
+        
+        return $count;
+    }
 
 
 	/*
