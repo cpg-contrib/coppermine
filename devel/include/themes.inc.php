@@ -359,16 +359,22 @@ $template_film_strip = <<<EOT
         </tr>
         <tr>
         <td valign="bottom" class="thumbnails" align="center">
-          {THUMB_STRIP}
+          <table width="100%" cellspacing="0" cellpadding="0">
+              <tr>
+                 {THUMB_STRIP}
+              </tr>
+          </table>
         </td>
         </tr>
         <tr>
          <td valign="top" style="background-image: url({TILE2});" align="center" height='30'>&nbsp;</td>
         </tr>
 <!-- BEGIN thumb_cell -->
+                <td>
                                         <a href="{LINK_TGT}">{THUMB}</a>&nbsp;
                                         {CAPTION}
                                         {ADMIN_MENU}
+                </td>
 <!-- END thumb_cell -->
 <!-- BEGIN empty_cell -->
                 <td valign="top" align="center" >&nbsp;</td>
@@ -1773,7 +1779,7 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
             $params = array('{CELL_WIDTH}' => $cell_width,
                 '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&amp;pos={$thumb['pos']}",
                 '{THUMB}' => $thumb['image'],
-                '{CAPTION}' => '',
+                '{CAPTION}' => $thumb['caption'],
                 '{ADMIN_MENU}' => ''
                 );
         } else {

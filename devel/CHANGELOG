@@ -261,4 +261,5 @@ Added function filter_content that filters arbitrary arrays of strings for bad_w
 Changed wording on the ability to hide admin uploaders to Display admin uploaders under thumbnails - 08 February 2005, Donnoman
 Changed the reliance on having regular uploaders displayed in order to turn on or off displaying admin uploaders being displayed under thumbnails - 08 February 2005, Donnoman
 Added display filename under thumbnail based on admin configuration. - 09 February 2004, Donnoman
+Added display filename under thumbnail of the film strip based on admin configuration. - 09 February 2004, Donnoman
 

@@ -119,6 +119,7 @@ INSERT INTO CPG_config VALUES ('thumb_use', 'any');
 INSERT INTO CPG_config VALUES ('show_private', '0');
 INSERT INTO CPG_config VALUES ('first_level', '1');
 INSERT INTO CPG_config VALUES ('display_film_strip', '1');
+INSERT INTO CPG_config VALUES ('display_film_strip_filename', '0');
 INSERT INTO CPG_config VALUES ('max_film_strip_items', '5');
 INSERT INTO CPG_config VALUES ('comment_email_notification', '0');
 INSERT INTO CPG_config VALUES ('read_iptc_data', '0');
