@@ -4,11 +4,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
-  <meta name="language"    content="en" />
-  <meta name="author"      content="Coppermine dev team" />
-  <meta name="copyright"   content="Coppermine dev team" />
-  <meta name="description" content="Coppermine Photo Gallery project - Theme Upgrade Documentation" />
-  <!-- CVS version info: $Id$ -->
+  <meta name="language" content="en" />
+  <meta name="author" content="Coppermine dev team" />
+  <meta name="copyright" content="Coppermine dev team" />
+  <meta name="description" content="Coppermine Photo Gallery project - Theme Upgrade Documentation" /><!-- CVS version info: $Id$ -->
+
   <title>CPG Theme Upgrade Docs</title>
   <style type="text/css">
   /*<![CDATA[*/
@@ -31,7 +31,7 @@
 <body>
   <h1>Converting cpg1.3.x themes to cpg1.4.1</h1>
 
-  <p>To make your custom made theme from cpg1.3.x work with cpg1.4.x, you'll have to make some changes. Remember to back up your original files, so you can go back to a working version in case something goes wrong with the modifications.</p>
+  <p>To make your custom made theme from cpg1.3.x work with cpg1.4.1, you will need to make some changes. Remember to back up your original files, so you can go back to a working version in case something goes wrong with the modifications.</p>
 
   <h2>Edit style.css</h2>
 
@@ -74,6 +74,29 @@ td #admin_menu_anim {
         border-bottom : 1px dotted blue;
         cursor : default;
 }
+</pre>
+    </li>
+
+    <li>
+      Add the style information for the vanity roll-over graphics 
+
+      <h6>Insert at the bottom of style.css</h6>
+      <pre>
+#vanity a {
+        display:block;
+        width:57px;
+        height:20px;
+        margin: 3px 20px;
+}
+#vanity img {border:0}
+#v_php {float:left;background-image:url(../../images/powered-php.gif);}
+#v_php:hover {background-image:url(../../images/h_powered-php.gif);}
+#v_mysql {float:left;background-image:url(../../images/powered-mysql.gif);}
+#v_mysql:hover  {background-image:url(../../images/h_powered-mysql.gif);}
+#v_xhtml {float:right;background-image:url(../../images/valid-xhtml10.gif);}
+#v_xhtml:hover {background-image:url(../../images/h_valid-xhtml10.gif);}
+#v_css {float:right;background-image:url(../../images/valid-css.gif);}
+#v_css:hover{background-image:url(../../images/h_valid-css.gif);}
 </pre>
     </li>
 
@@ -403,27 +426,6 @@ define('THEME_HAS_NAVBAR_GRAPHICS', 1);
           <h6>if your theme's images folder contain these filenames insert the define</h6>
           <pre>
 define('THEME_HAS_FILM_STRIP_GRAPHICS', 1);
-</pre>
-        </li>
-
-        <li>
-          define('THEME_HAS_VANITY_GRAPHICS',1); 
-
-          <p>"Powered By","Valid XHTML","Valid CSS". The location for the vanity graphics will be directed to the themes images folder. Vanity graphics will only be shown for themes that have "THEME_IS_XHTML10_TRANSITIONAL" defined.</p>
-
-          <ul>
-            <li>Powered By PHP : images/powered-php.gif <span class="new">*NEW*</span></li>
-
-            <li>Powered By MySQL : images/powered-mysql.gif <span class="new">*NEW*</span></li>
-
-            <li>Valid XHTML : images/valid-xhtml10.gif <span class="new">*NEW*</span></li>
-
-            <li>Valid CSS : images/valid-css.gif <span class="new">*NEW*</span></li>
-          </ul>
-
-          <h6>if your theme's images folder contain these filenames insert the define</h6>
-          <pre>
-define('THEME_HAS_VANITY_GRAPHICS', 1);
 </pre>
         </li>
 
@@ -851,7 +853,7 @@ EOT;
 
   <ol>
     <li>
-      Suggestions to help you bring the theme you are editing up to XHTML 1.0 Transitional HTML
+      Suggestions to help you bring the theme you are editing up to XHTML 1.0 Transitional HTML 
 
       <ul>
         <li>All ampersands that form part of a <u><b>URL</b></u> are to be coded '&amp;amp;'. There are quite a few of these in the functions of theme.php.</li>
@@ -871,7 +873,7 @@ EOT;
     <li>Save all your open files and upload them to your webserver; test-drive both as admin and as "regular" user.</li>
 
     <li>
-      Use the following methodology to confirm that your theme generates valid XHTML 1.0 Transitional HTML.
+      Use the following methodology to confirm that your theme generates valid XHTML 1.0 Transitional HTML. 
 
       <p>Each of the following pages needs to be <a href="http://validator.w3.org/">validated</a> as an anonymous user, registered user, and in admin mode:</p>
 
@@ -905,6 +907,6 @@ EOT;
 
   <h2>Congratulations</h2>
 
-  <p>Your theme should now be ready to use with Coppermine 1.4.</p>
+  <p>Your theme should now be ready to use with Coppermine 1.4.1</p>
 </body>
 </html>
