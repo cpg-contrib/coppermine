@@ -578,7 +578,7 @@ $template_image_comments = <<<EOT
                                                 <input type="hidden" name="msg_id" value="{MSG_ID}">
                                                 <tr>
                                                 <td>
-                                                   <input type=text name=msg_author value={MSG_AUTHOR} class="textinput" size=10>
+                                                   <input type=text name=msg_author value="{MSG_AUTHOR}" class="textinput" size=10>
                                                 </td>
                                                 </tr>
                                                 <tr>
@@ -605,7 +605,7 @@ $template_image_comments = <<<EOT
                                                 <input type="hidden" name="event" value="comment_update">
                                                 <input type="hidden" name="msg_id" value="{MSG_ID}">
                                                 <td> 
-                                                <input type=text name=msg_author value={MSG_AUTHOR} class="textinput" size=10> 
+                                                <input type=text name=msg_author value="{MSG_AUTHOR}" class="textinput" size=10> 
                                                 </td> 
                                         </tr>
                                         <tr>
