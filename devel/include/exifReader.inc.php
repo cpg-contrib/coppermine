@@ -308,7 +308,7 @@ class phpExifReader {
     var $thumbnail = ""; /* Name of thumbnail */
     var $thumbnailURL = ""; /* */
 
-    var $exifSection = -1;   // market the exif section index oout of all sections
+    var $exifSection = -1;   // mark the exif section index out of all sections
 
     var $errno = 0;
     var $errstr = "";
@@ -787,10 +787,10 @@ class phpExifReader {
 
                 case TAG_EXPOSURETIME:
                     // Simplest way of expressing exposure time, so I trust it most.
-                    // (overwrite previously computd value if there is one)
+                    // (overwrite previously computd value if there is one)  
                     $tmp = $this->ConvertAnyFormat($ValuePtr, $Format);
                     $this->ImageInfo['h']["exposureTime"] = sprintf("%6.3f s (%d/%d)",(double)$tmp[0],$tmp[1][0],$tmp[1][1]);
-                    if ($tmp[0] <= 0.5){
+                    if ($tmp[0] <= 0.5 && $tmp[1][0] != 1){
                             $this->ImageInfo['h']["exposureTime"] .= sprintf(" (1/%d)",(int)(0.5 + 1/$tmp[0]));
                     }
                     break;
