@@ -1,4 +1,4 @@
-<?php 
+<?php
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.2.0                                            //
 // ------------------------------------------------------------------------- //
@@ -13,7 +13,7 @@
 // it under the terms of the GNU General Public License as published by      //
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- // 
+// ------------------------------------------------------------------------- //
 // If you know regular expressions scroll down to ADD YOUR OWN PARSEMODES    //
 // HERE to modify the included parsemodes.                                   //
 // ------------------------------------------------------------------------- //
@@ -28,7 +28,7 @@ require("include/config.inc.php");
 require('include/init.inc.php');
 require('include/picmgmt.inc.php');
 
-pageheader($lang_search_php[0]);
+pageheader($lang_util_php['title']);
 
 if (!GALLERY_ADMIN_MODE) die('Access denied');
 
@@ -38,6 +38,8 @@ $picturetbl = $CONFIG['TABLE_PREFIX'] . 'pictures';
 $categorytbl = $CONFIG['TABLE_PREFIX'] . 'categories';
 $usertbl = $CONFIG['TABLE_PREFIX'] . 'users';
 
+// initialize vars
+$startpic = '';
 $action = "";
 $action = $_POST['action'];
 
@@ -47,7 +49,7 @@ MYSQL_SELECT_DB($CONFIG['dbname']);
 function my_flush()
 {
     print str_repeat(" ", 4096); // force a flush
-} 
+}
 
 function filenametotitle($delete)
 {
@@ -62,7 +64,7 @@ function filenametotitle($delete)
     $i = 0;
     while ($i < $num) {
         $filename = mysql_result($result, $i, "filename");
-        $pid = mysql_result($result, $i, "pid"); 
+        $pid = mysql_result($result, $i, "pid");
         // //////////////////////////////////////////
         // ADD YOUR OWN PARSEMODES HERE //
         // /////////////////////////////////////////
@@ -88,10 +90,10 @@ function filenametotitle($delete)
                 $newtitle = str_replace("%20", " ", $filename);
                 $replacement = "$7:$9";
                 $newtitle = preg_replace($pattern, $replacement, $filename);
-            } 
+            }
         } else {
             $newtitle = '';
-        } 
+        }
 
         print $lang_util_php['file'] . ': '.$filename.' ' . $lang_util_php['title_set_to'] . ':'. $newtitle.'<br />';
         my_flush();
@@ -100,15 +102,15 @@ function filenametotitle($delete)
         MYSQL_QUERY($query);
 
         ++$i;
-    } 
-} 
+    }
+}
 
 function filloptions()
 {
     global $albumtbl, $picturetbl, $categorytbl, $usertbl, $lang_util_php;
 
     $query = "SELECT aid, category, IF(user_name IS NOT NULL, CONCAT('(', user_name, ') ',title), CONCAT(' - ', title)) AS title " . "FROM $albumtbl AS a " . "LEFT JOIN $usertbl AS u ON category = (" . FIRST_USER_CAT . " + user_id) " . "ORDER BY category, title";
-    $result = db_query($query); 
+    $result = db_query($query);
     // $num=mysql_numrows($result);
     echo '<select size="1" name="albumid">';
 
@@ -118,12 +120,12 @@ function filloptions()
         $row2 = mysql_fetch_array($result2);
 
         print "<option value=\"" . $row["aid"] . "\">" . $row2["name"] . $row["title"] . "</option>\n";
-    } 
+    }
 
-    print '</select>';
-    print '<input type="submit" value="submit" class="submit" />';
+    print '</select> (3)';
+    print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="submit" /> (4)';
     print '</form>';
-} 
+}
 
 function updatethumbs()
 {
@@ -141,14 +143,14 @@ function updatethumbs()
 
     if ($startpic == 0) {
         // 0 - numpics
-        $num = $totalpics; 
+        $num = $totalpics;
         // Over picture limit
         if ($totalpics > $numpics) $num = $startpic + $numpics;
     } else {
         // startpic - numpics
         $num = $startpic + $numpics;
         if ($num > $totalpics) $num = $totalpics;
-    } 
+    }
 
     $i = $startpic;
     while ($i < $num) {
@@ -163,8 +165,8 @@ function updatethumbs()
             } else {
                 print $lang_util_php['error_create'] . ':$thumb<br />';
                 my_flush();
-            } 
-        } 
+            }
+        }
 
         if ($updatetype == 1 || $updatetype == 2) {
             $normal = $CONFIG['fullpath'] . mysql_result($result, $i, "filepath") . $CONFIG['normal_pfx'] . mysql_result($result, $i, "filename");
@@ -177,12 +179,12 @@ function updatethumbs()
                 } else {
                     print $lang_util_php['error_create'] . ':$normal<br />';
                     my_flush();
-                } 
-            } 
-        } 
+                }
+            }
+        }
 
         ++$i;
-    } 
+    }
     $startpic = $i;
 
     if ($startpic < $totalpics) {
@@ -198,8 +200,8 @@ function updatethumbs()
             <input type="submit" value="<?php print $lang_util_php['continue'];
         ?>" class="submit" /></form>
                     <?php
-    } 
-} 
+    }
+}
 
 function deleteorig()
 {
@@ -239,15 +241,15 @@ function deleteorig()
                 print '!<br>';
             } else {
                 printf($lang_util_php['error_rename'], $normal, $thumb);
-            } 
+            }
         } else {
             printf($lang_util_php['error_not_found'], $normal);
             print '<br>';
-        } 
+        }
 
         ++$i;
-    } 
-} 
+    }
+}
 
 $phpself = $_SERVER['PHP_SELF'];
 // start output
@@ -300,11 +302,11 @@ if ($action == 'thumbs') {
 
     echo '<br /><a href="' . $phpself . '">' . $lang_util_php['back'] . '</a>';
 } else {
-    starttable();
+    starttable('100%');
 
     print '<tr><td>';
     starttable('100%', $lang_util_php['title'] . ' (util.mod)', 2);
-    print '<tr><td><b>';
+    print '<tr><td class="tablef"><b>';
     print $lang_util_php['what_it_does'] . '</b>:
 <ul style="margin-top:0px;margin-bottom:0px;list-style-type:square">
 <li>' . $lang_util_php['what_update_titles'] . '</li>
@@ -312,16 +314,16 @@ if ($action == 'thumbs') {
 <li>' . $lang_util_php['what_rebuild'] . '</li>
 <li>' . $lang_util_php['what_delete_originals'] . '</li>
 </ul></td>
-<td><b>
+<td class="tableb"><b>
 ' . $lang_util_php['instruction'] . '</b>:
-<ol style="margin-top:0px;margin-bottom:0px;list-style-type:decimal">
-<li>' . $lang_util_php['instruction_action'] . '</li>
-<li>' . $lang_util_php['instruction_parameter'] . '</li>
-<li>' . $lang_util_php['instruction_album'] . '</li>
-<li>';
-    printf($lang_util_php['instruction_press'], $lang_util_php['submit']);
-    print '</li>
-</ol>';
+<br />
+(1) ' . $lang_util_php['instruction_action'] . '<br />
+(2) ' . $lang_util_php['instruction_parameter'] . '<br />
+(3) ' . $lang_util_php['instruction_album'] . '<br />
+(4) ';
+    printf($lang_util_php['instruction_press'], $lang_util_php['submit_form']);
+    print '
+';
 
     print '</td></tr>';
     endtable();
@@ -329,10 +331,10 @@ if ($action == 'thumbs') {
 <form action="' . $phpself . '" method="post">
 ';
 
-    starttable('100%', '<input type="radio" name="action" checked="checked" value="thumbs" id="thumbs" class="nobg" /><label for="thumbs" accesskey="t" class="labelradio">' . $lang_util_php['update'] . '</label>');
+    starttable('100%', '<input type="radio" name="action" checked="checked" value="thumbs" id="thumbs" class="nobg" /><label for="thumbs" accesskey="t" class="labelradio">' . $lang_util_php['update'] . '</label> (1)');
     print '
 <tr><td>
-' . $lang_util_php['update_what'] . ':<br />
+' . $lang_util_php['update_what'] . ' (2):<br />
 <input type="radio" name="updatetype" value="0" id="thumb" class="nobg" /><label for="thumb" accesskey="t" class="labelradio">' . $lang_util_php['update_thumb'] . '</label><br />
 <input type="radio" name="updatetype" value="1" id="resized" class="nobg" /><label for="resized" accesskey="r" class="labelradio">' . $lang_util_php['update_pic'] . '</label><br />
 <input type="radio" name="updatetype" value="2" checked="checked" id="all" class="nobg" /><label for="all" accesskey="a" class="labelradio">' . $lang_util_php['update_both'] . '</label><br />
@@ -344,10 +346,10 @@ if ($action == 'thumbs') {
 
     print '<br />';
 
-    starttable('100%', '<input type="radio" name="action" value="title" id="title" class="nobg" /><label for="title" accesskey="F" class="labelradio">' . $lang_util_php['filename_title'] . '</label>');
+    starttable('100%', '<input type="radio" name="action" value="title" id="title" class="nobg" /><label for="title" accesskey="F" class="labelradio">' . $lang_util_php['filename_title'] . '</label> (1)');
     print '
 <tr><td>
-' . $lang_util_php['filename_how'] . ':<br />
+' . $lang_util_php['filename_how'] . ' (2):<br />
 <input type="radio" name="parsemode" checked="checked" value="0" id="remove" class="nobg" /><label for="remove" accesskey="s" class="labelradio">' . $lang_util_php['filename_remove'] . '</label><br />
 <input type="radio" name="parsemode" value="1" id="euro" class="nobg" /><label for="euro" accesskey="e" class="labelradio">' . $lang_util_php['filename_euro'] . '</label><br />
 <input type="radio" name="parsemode" value="2" id="us" class="nobg" /><label for="us" accesskey="u" class="labelradio">' . $lang_util_php['filename_us'] . '</label><br />
@@ -357,26 +359,23 @@ if ($action == 'thumbs') {
 
     print '<br />';
 
-    starttable('100%', $lang_util_php['delete']);
-    print '
-<tr>
-<td>
-<h2><input type="radio" name="action" value="deltit" id="deltit" class="nobg" /><label for="deltit" accesskey="D" class="labelradio">' . $lang_util_php['delete_title'] . '</label></h2>
-</td>
-</tr>
-<tr><td>
-<h2><input type="radio" name="action" value="delnorm" id="delnorm" class="nobg" /><label for="delnorm" accesskey="e" class="labelradio">' . $lang_util_php['delete_original'] . '</label><br /></h2>
-<tab>' . $lang_util_php['delete_replace'] . '<br />
-</td></tr>
+    starttable('100%', '<input type="radio" name="action" value="deltit" id="deltit" class="nobg" /><label for="deltit" accesskey="D" class="labelradio">' . $lang_util_php['delete_title'] . '</label> (1)');
+    endtable();
+    print '<br />';
 
-<tr><td>
-<h2>' . $lang_util_php['Select album'] . '</h2>
-';
+    starttable('100%', '<input type="radio" name="action" value="delnorm" id="delnorm" class="nobg" /><label for="delnorm" accesskey="e" class="labelradio">' . $lang_util_php['delete_original'] . '</label> (1)');
+    endtable();
+    print '<br />&nbsp;<br />';
+
+    print '<h2>'.$lang_util_php['select_album'].'</h2>';
 
     filloptions();
-    print '</td></tr>';
-    endtable();
-} 
+
+
+
+
+
+}
 print '</td></tr>';
 endtable();
 echo 'Util.mod 1.4 - Created by David Alberg Holm';
