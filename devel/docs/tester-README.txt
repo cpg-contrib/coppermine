@@ -2,9 +2,9 @@ Dear Tester,
 
 Thank you for taking the time to test Coppermine Photo Gallery.
 Please be rough on the program so that we can track down and
-eliminate bugs from our public release of version 1.3.
+eliminate bugs from our public release of version 1.4.
 
-While testing CPG 1.3, please make certain to note any odd behavior you
+While testing CPG 1.4, please make certain to note any odd behavior you
 encounter.  This could include typographical errors, misleading instructions,
 or any other out-right error.  If you encounter a major error, please switch
 the debug mode to "on" in the configuration panel and copy the text in the

@@ -1,6 +1,6 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.4.0                                            //
+// Coppermine Photo Gallery 1.4.1                                            //
 // ------------------------------------------------------------------------- //
 // Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
@@ -17,8 +17,8 @@
 // $Id$
 // ------------------------------------------------------------------------- //
 
-define('COPPERMINE_VERSION', '1.4.0');
-define('COPPERMINE_VERSION_STATUS', 'alpha');
+define('COPPERMINE_VERSION', '1.4.1');
+define('COPPERMINE_VERSION_STATUS', 'beta');
 
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 

@@ -1,6 +1,6 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.4.0                                            //
+// Coppermine Photo Gallery 1.4.1                                            //
 // ------------------------------------------------------------------------- //
 // Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
@@ -201,7 +201,7 @@ $lang_img_nav_bar = array(
   'next_title' => 'See next file',
   'pic_pos' => 'FILE %s/%s',
   'report_title' => 'Report this file to the administrator', // cpg1.4.0
-  
+
 );
 
 $lang_rate_pic = array(
@@ -1058,7 +1058,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'pic_info' => 'File info',
   'album' => 'Album',
   'title' => 'Title',
-  'filename' => 'Filename', //cpg1.4.0    
+  'filename' => 'Filename', //cpg1.4.0
   'desc' => 'Description',
   'keywords' => 'Keywords',
   'pic_info_str' => '%s &times; %s - %s KB - %s views - %s votes',
@@ -1500,14 +1500,14 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
 
 
 if (defined('SEARCH_PHP')){
-	
+
 $lang_search_php = array(
   'title' => 'Search the file collection',
   'submit_search' => 'search', // cpg1.4
   'keyword_list_title' => 'Keyword list', // cpg1.4
   'keyword_msg' => 'The above list is not all inclusive. It does not include words from photo titles or descriptions. Try a full-text search.',  // cpg1.4
   'edit_keywords' => 'Edit keywords', // cpg1.4
-  'search in' => 'Search in:', 
+  'search in' => 'Search in:',
   'ip_address' => 'IP address',
   'fields' => 'Fields',
   'age' => 'Age',
@@ -1515,16 +1515,16 @@ $lang_search_php = array(
   'older_than' => 'Older than',
   'days' => 'days',
   'all_words' => 'Match all words',
-  'any_words' => 'Match any words'  
+  'any_words' => 'Match any words'
 );
 
 $lang_adv_opts = array(
-  'title' => 'Title', 
-  'caption' => 'Caption',  
-  'keywords' => 'Keywords',  
-  'owner_name' => 'Owner name',  
+  'title' => 'Title',
+  'caption' => 'Caption',
+  'keywords' => 'Keywords',
+  'owner_name' => 'Owner name',
   'filename' => 'Filename',
-);  
+);
 
 }
 

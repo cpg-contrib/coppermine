@@ -1,6 +1,6 @@
 <?php
 // ------------------------------------------------------------------------- //
-//  Coppermine Photo Gallery 1.4.0                                           //
+//  Coppermine Photo Gallery 1.4.1                                           //
 // ------------------------------------------------------------------------- //
 //  Copyright (C) 2002-2004  Gregory DEMAR                                   //
 //  http://www.chezgreg.net/coppermine/                                      //
@@ -116,11 +116,11 @@ function cpg_db_query($query, $link_id = 0)
         global $CONFIG, $query_stats, $queries;
 
         $query_start = cpgGetMicroTime();
-				
+
         if (($link_id)) {
             $result = mysql_query($query, $link_id);
         } else {
-			$result = mysql_query($query, $CONFIG['LINK_ID']);
+                        $result = mysql_query($query, $CONFIG['LINK_ID']);
         }
         $query_end = cpgGetMicroTime();
         if (isset($CONFIG['debug_mode']) && (($CONFIG['debug_mode']==1) || ($CONFIG['debug_mode']==2) )) {
@@ -218,7 +218,7 @@ function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer
 
     $ob = ob_get_contents();
         if ($ob) ob_end_clean();
-        
+
         if (function_exists('theme_cpg_die'))
         {
             theme_cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer);
@@ -788,11 +788,11 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 }
 
                 // Replacing the AND in ALBUM_SET with AND (
-		if($ALBUM_SET){
-                	$TMP_SET = "AND (" . substr($ALBUM_SET, 3);
-		}else{
-			$TMP_SET = "AND (1";
-		}
+                if($ALBUM_SET){
+                        $TMP_SET = "AND (" . substr($ALBUM_SET, 3);
+                }else{
+                        $TMP_SET = "AND (1";
+                }
 
                 $query = "SELECT COUNT(*) from {$CONFIG['TABLE_COMMENTS']}, {$CONFIG['TABLE_PICTURES']}  WHERE approved = 'YES' AND {$CONFIG['TABLE_COMMENTS']}.pid = {$CONFIG['TABLE_PICTURES']}.pid $TMP_SET $keyword)";
                 $result = cpg_db_query($query);
@@ -1097,12 +1097,12 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 break;
 
         case 'search': // Search results
-				if (isset($USER['search']['search'])) {
-					$search_string = $USER['search']['search'];
+                                if (isset($USER['search']['search'])) {
+                                        $search_string = $USER['search']['search'];
                 } else {
-					$search_string = '';
+                                        $search_string = '';
                 }
-				
+
                 if ($ALBUM_SET && $CURRENT_CAT_NAME) {
                         $album_name = $lang_meta_album_names['search'].' - '. $CURRENT_CAT_NAME;
                 } else {
@@ -1387,10 +1387,10 @@ function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
         global $album, $lang_errors, $lang_list_categories;
         global $CONFIG,$CURRENT_ALBUM_DATA, $CURRENT_CAT_NAME;
         // first we build the category path: names and id
-        if ($cat != 0) 
+        if ($cat != 0)
         { //Categories other than 0 need to be selected
                 $category_array = array();
-                if ($cat >= FIRST_USER_CAT) 
+                if ($cat >= FIRST_USER_CAT)
                 {
                     $user_name = get_username($cat - FIRST_USER_CAT);
                     if (!$user_name) $user_name = 'Mr. X';
@@ -1398,11 +1398,11 @@ function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
                     $category_array[] = array($cat, $user_name);
                     $CURRENT_CAT_NAME = sprintf($lang_list_categories['xx_s_gallery'], $user_name);
                     $row['parent'] = 1;
-                } 
-                else 
+                }
+                else
                 {
                     $result = cpg_db_query("SELECT name, parent FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '$cat'");
-                    if (mysql_num_rows($result) == 0) 
+                    if (mysql_num_rows($result) == 0)
                         cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_cat'], __FILE__, __LINE__);
                     $row = mysql_fetch_array($result);
 
@@ -1414,7 +1414,7 @@ function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
                 while($row['parent'] != 0)
                 {
                     $result = cpg_db_query("SELECT cid, name, parent FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = '{$row['parent']}'");
-                    if (mysql_num_rows($result) == 0) 
+                    if (mysql_num_rows($result) == 0)
                         cpg_die(CRITICAL_ERROR, $lang_errors['orphan_cat'], __FILE__, __LINE__);
                     $row = mysql_fetch_array($result);
 
@@ -1424,14 +1424,14 @@ function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
 
                 $category_array = array_reverse($category_array);
         }
-        
+
         $breadcrumb_links = array();
         $BREADCRUMB_TEXTS = array();
-        
+
         // Add the Home link  to breadcrumb
         $breadcrumb_links[0] = '<a href="index.php">'.$lang_list_categories['home'].'</a>';
         $BREADCRUMB_TEXTS[0] = $lang_list_categories['home'];
-        
+
         $cat_order = 1;
         foreach ($category_array as $category)
         {
@@ -1446,7 +1446,7 @@ function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
             $breadcrumb_links[$cat_order] = "<a href=\"thumbnails.php?album=".$CURRENT_ALBUM_DATA['aid']."\">".$CURRENT_ALBUM_DATA['title']."</a>";
             $BREADCRUMB_TEXTS[$cat_order] = $CURRENT_ALBUM_DATA['title'];
         }
-        
+
         // we check if the theme_breadcrumb exists...
         if (function_exists('theme_breadcrumb'))
         {

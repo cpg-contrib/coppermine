@@ -1,6 +1,6 @@
 <?php 
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.4.0                                            //
+// Coppermine Photo Gallery 1.4.1                                            //
 // ------------------------------------------------------------------------- //
 // Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
