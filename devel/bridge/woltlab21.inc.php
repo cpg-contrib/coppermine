@@ -35,7 +35,7 @@
 
 // The paths to your Woltlab Board directory
 define('RELATIVE_WBB_PATH','../wbb2/');
-define('WBB_WEB_PATH','http://yoursite_name.com/wbb2/');
+define('WBB_WEB_PATH','/wbb2/');
 
 // database configuration
 require_once(RELATIVE_WBB_PATH."acp/lib/config.inc.php");
@@ -268,7 +268,7 @@ function udb_get_user_id($username)
 // Redirect
 function udb_redirect($target)
 {
-    header('Location: ' . WBB_WEB_PATH . $target);
+    header('Location: http://' . $_SERVER['HTTP_HOST'] . WBB_WEB_PATH . $target);
     exit;
 }
 
