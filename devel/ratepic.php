@@ -36,6 +36,14 @@ if (!isset($HTTP_COOKIE_VARS[$CONFIG['cookie_name'] . '_data'])) {
     header('Location: displayimage.php?pos=' . (- $pic));
     exit;
 }
+
+// If referer is not displayimage.php we don't accept the vote
+if (!eregi("displayimage",$HTTP_SERVER_VARS["HTTP_REFERER"])){
+    header('Location: displayimage.php?pos=' . (- $pic));
+    exit;
+}
+
+
 // Retrieve picture/album information & check if user can rate picture
 $sql = "SELECT a.votes as votes_allowed, p.votes as votes, pic_rating, owner_id " . "FROM {$CONFIG['TABLE_PICTURES']} AS p, {$CONFIG['TABLE_ALBUMS']} AS a " . "WHERE p.aid = a.aid AND pid = '$pic' LIMIT 1";
 $result = db_query($sql);
