@@ -454,6 +454,20 @@ if (count($HTTP_POST_VARS) > 0) {
             'thumbrows',
             // Show filmstrip
             'max_film_strip_items');
+        
+        // Code to rename system thumbs in images folder
+        $old_thumb_pfx =& $CONFIG['thumb_pfx'];
+
+        if ($old_thumb_pfx != $HTTP_POST_VARS['thumb_pfx']) {
+            $folders = array('images/', $THEME_DIR.'images/');
+            foreach ($folders as $folder) {
+                $thumbs = cpg_get_system_thumb_list($folder);
+                foreach ($thumbs as $thumb) {
+                    @rename($folder.$thumb['filename'],
+                            $folder.str_replace($old_thumb_pfx,$HTTP_POST_VARS['thumb_pfx'],$thumb['filename']));
+                }
+            }
+        }
 
         foreach ($need_to_be_positive as $parameter)
         $HTTP_POST_VARS[$parameter] = max(1, (int)$HTTP_POST_VARS[$parameter]);

@@ -201,7 +201,8 @@ function html_picture()
     } elseif ($mime_content['content']=='document') {
         $pic_html = "<a href=\"{$picture_url}\" target=\"_blank\" class=\"document_link\"><img src=\"".$pic_thumb_url."\" border=\"0\" class=\"image\" /></a>\n<br />";
     } else {
-            $pic_html = "<object {$image_size['whole']}><param name=\"autostart\" value=\"true\"><param name=\"src\" value=\"". $picture_url . "\"><embed {$image_size['whole']} src=\"". $picture_url . "\" autostart=\"true\"></embed></object><br />\n";
+           	$autostart = ($CONFIG['mv_autostart'])? ('true'):('false');
+            $pic_html = "<object {$image_size['whole']}><param name=\"autostart\" value=\"$autostart\"><param name=\"src\" value=\"". $picture_url . "\"><embed {$image_size['whole']} src=\"". $picture_url . "\" autostart=\"$autostart\"></embed></object><br />\n";
     }
 
     if (!$CURRENT_PIC_DATA['title'] && !$CURRENT_PIC_DATA['caption']) {
