@@ -34,17 +34,21 @@ class cpg_udb extends core_udb {
 
 			$this->boardurl = 'http://localhost/mambo';
 			include('../mambo/configuration.php');
+			include('../mambo/includes/version.php');
 
 		} else {
 			include($BRIDGE['relative_path_to_config_file'] . 'configuration.php');
+			include($BRIDGE['relative_path_to_config_file'] . 'includes/version.php');
 			$this->boardurl = $mosConfig_live_site;
 			$this->use_post_based_groups = $BRIDGE['use_post_based_groups'];
 		}
 		
-		$this->multigroups = 0;
-		
+		$this->mambo_version = $_VERSION;
+
+        $this->multigroups = 0;
+
 		$this->group_overrride = !$this->use_post_based_groups;
-		
+
 		// Database connection settings
 		$this->db = array(
 			'name' => $mosConfig_db,
@@ -134,57 +138,61 @@ class cpg_udb extends core_udb {
 		$id = 0;
 		$pass = '';
 		$f = $this->field;
-		
-		$sessioncookie = $_COOKIE['sessioncookie'];
-		$usercookie = $_COOKIE['usercookie'];
+		$mambo_version =& $this->mambo_version;
 
+		$sessioncookie = $_COOKIE['sessioncookie'];
+		
+        // 4.5.1 and 4.5.2 compatibility
+        if (($mambo_version->RELEASE == '4.5' && $mambo_version->DEV_LEVEL != '1.0.9') && $sessioncookie) {
+		    $sessioncookie .= $_SERVER['REMOTE_ADDR'];
+		}
+
+		$usercookie = $_COOKIE['usercookie'];
+        $result = false;
+
+        // Query database for session, if cookie exists
         if ($sessioncookie) {
 
             $sql =  'select userid from '.$this->sessionstable.' where session_id=md5("'.$sessioncookie.'");';
             $result = cpg_db_query($sql, $this->link_id);
+        }
 
-            // If session exists, check if user exists
+        // If session exists, check if user exists
+        if (mysql_num_rows($result)) {
+
+            $row = mysql_fetch_assoc($result);
+            mysql_free_result($result);
+
+            $row['userid'] = (int) $row['userid'];
+
+            $sql =  'select id, password ';
+            $sql .= 'from '.$this->usertable.' ';
+            $sql .= 'where id='.$row['userid'];
+
+            $result = cpg_db_query($sql, $this->link_id);
+
+            // If user exists, use the current session
             if ($result) {
-
                 $row = mysql_fetch_assoc($result);
                 mysql_free_result($result);
 
-                $row['userid'] = (int) $row['userid'];
+                $pass = $row['password'];
+                $id = (int) $row['id'];
+                $this->session_id = $sessioncookie;
 
-                $sql =  'select id, password ';
-                $sql .= 'from '.$this->usertable.' ';
-                $sql .= 'where id='.$row['userid'];
-
-                $result = cpg_db_query($sql, $this->link_id);
-
-                // If user exists, use the current session
-                if ($result) {
-                    $row = mysql_fetch_assoc($result);
-                    mysql_free_result($result);
-
-                    $pass = $row['password'];
-                    $id = (int) $row['id'];
-                    $this->session_id = $sessioncookie;
-
-                // If the user doesn't exist, use default guest credentials
-                }
-
-            // If no session exists, create a session
-            } else {
- 
-                $this->create_session();
+            // If the user doesn't exist, use default guest credentials
             }
-        
-        // No session cookie exists, so create a session and check for remember me cookie
+
+        // No session exists, so create a session and check for remember me cookie
         } else {
 
 			$this->create_session();
-			
+
 			// remember me cookie exists; login with user creditials
             if ($usercookie) {
                 $username = (isset($usercookie['username'])) ? addslashes($usercookie['username']) : '';
 				$password = (isset($usercookie['password'])) ? addslashes($usercookie['password']) : '';
-				
+
 				// Grab id from Mambo database, if a cookie exists
 				if ($username) {
 					$sql =  'select u.'.$f['user_id'].' as id, u.'.$f['password'].' as password, u.'.
@@ -194,7 +202,7 @@ class cpg_udb extends core_udb {
 					$sql .= 'inner join '.$this->groupstable.' as g ';
 					$sql .= 'on gid=group_id ';
 					$sql .= 'where u.'.$f['username'].'="'.$username.'" and u.'.$f['password'].'="'.$password.'" and u.block=0;';
-					
+
 					$result = cpg_db_query($sql, $this->link_id);
 					
 					// the user exists; finalize login procedures
@@ -242,9 +250,18 @@ class cpg_udb extends core_udb {
 	
 	/** create a guest session */
 	function create_session() {
+	    // alias the Mambo version object
+	    $mambo_version =& $this->mambo_version;
+
 		// start session
         $this->session_id = $this->generateId();
-            
+        $sessioncookie = $this->session_id;
+
+        // 4.5.1 and 4.5.2 compatibility
+        if ($mambo_version->RELEASE == '4.5' && $mambo_version->DEV_LEVEL != '1.0.9') {
+		    $this->session_id .= $_SERVER['REMOTE_ADDR'];
+		}
+
         $sql =  'insert into '.$this->sessionstable.' (session_id, username, guest, time, gid) values ';
         $sql .= '("'.md5($this->session_id).'", "", 1, "'.time().'",0)';
 
@@ -252,7 +269,7 @@ class cpg_udb extends core_udb {
         cpg_db_query($sql);
 
 		// set the session cookie
-        setcookie( "sessioncookie", $this->session_id, time() + 43200, "/" );
+        setcookie( "sessioncookie", $sessioncookie, time() + 43200, "/" );
 	}
 
 	/** taken from Mambo session class */
