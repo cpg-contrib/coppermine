@@ -77,7 +77,7 @@ if (isset($_POST['save'])) {
     -->
     </script>
 EOT;
-  starttable('-1',$lang_picinfo['ManageExifDisplay'], 2);
+  starttable(-2,$lang_picinfo['ManageExifDisplay'], 2);
   echo '<tr><td class="tableh2">&nbsp;</td><td class="tableh2" align="center">';
   echo '<input type="checkbox" name="checkAll" onClick="selectAll(this,\'exif_tags\');" class="checkbox" title="'.$lang_check_uncheck_all.'" />';
   echo '</td></tr>';
