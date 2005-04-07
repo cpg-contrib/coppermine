@@ -118,16 +118,16 @@
                 <ul class="level3">
                         <li class="level3"><a href="#admin_general">4.12.1 General settings</a></li>
 
-                        <li class="level3"><a href="#admin_language">4.12.2 Language, Themes &amp; Charset settings</a></li>
-                        <li class="level3"><a href="#admin_album_list">4.12.3 Album list view</a></li>
-                        <li class="level3"><a href="#admin_thumbnail_view">4.12.4 Thumbnail view</a></li>
-                        <li class="level3"><a href="#admin_image_comment">4.12.5 Image view</a></li>
-                        <li class="level3"><a href="#admin_comment_start">4.12.6 Comment settings</a></li>
+                        <li class="level3"><a href="#admin_language">4.12.2 Language &amp; Charset settings</a></li>
+                        <li class="level3"><a href="#admin_theme">4.12.3 Themes settings</a></li>
+                        <li class="level3"><a href="#admin_album_list">4.12.4 Album list view</a></li>
+                        <li class="level3"><a href="#admin_thumbnail_view">4.12.5 Thumbnail view</a></li>
+                        <li class="level3"><a href="#admin_image_comment">4.12.6 Image view</a></li>
+                        <li class="level3"><a href="#admin_comment_start">4.12.7 Comment settings</a></li>
 
-                        <li class="level3"><a href="#admin_picture_thumbnail">4.12.7 File and thumbnail settings</a></li>
-                        <li class="level3"><a href="#admin_picture_thumb_advanced">4.12.8 Files and thumbnails advanced settings</a></li>
-                        <li class="level3"><a href="#admin_user">4.12.9 User settings</a></li>
-                        <li class="level3"><a href="#admin_movie">4.12.10 Movie Playback Settings</a></li>
+                        <li class="level3"><a href="#admin_picture_thumbnail">4.12.8 File and thumbnail settings</a></li>
+                        <li class="level3"><a href="#admin_picture_thumb_advanced">4.12.9 Files and thumbnails advanced settings</a></li>
+                        <li class="level3"><a href="#admin_user">4.12.10 User settings</a></li>
                         <li class="level3"><a href="#admin_custom">4.12.11 Custom fields for user profile</a></li>
                         <li class="level3"><a href="#admin_custom_image">4.12.12 Custom fields for image description</a></li>
 
@@ -831,20 +831,6 @@ on some templates below the name of your gallery.</p>
 <p>You can use &quot;/&quot; for the root of your domain, &quot;index.php&quot; for your gallery, or any valid URL.</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_general_home-url_end"></a>
-<a name="admin_general_custom_lnk_name"></a><h4>Name of your custom link</h4>
-<p>This is the name that will appear in the menu for your custom link.  Leave empty if you do not use.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
-<a name="admin_general_custom_lnk_name_end"></a>
-<a name="admin_general_custom_lnk_url"></a><h4>URL of your custom link</h4>
-<p>This is the URL where a user will be directed when he clicks on the &quot;Custom link name&quot; button in the main menu.</p>
-<p>You can use any valid URL.</p>
-<p>It is important you leave this blank if you want no custom link.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
-<a name="admin_general_custom_lnk_url_end"></a>
-<a name="admin_general_offline"></a><h4>Gallery is offline</h4>
-<p>If you have to do maintenance work to do on your gallery, switch it to offline mode. Only members of the admin group will be able to log in, all other users will only see &quot;Gallery is offline&quot;. Remember to switch this option off once your maintenance work is done.</p>
-<p class="small">[cpg1.3.0 or better required]</p>
-<a name="admin_general_offline_end"></a>
 <a name="admin_general_zip-download"></a><h4>Allow ZIP-download of favorites</h4>
 <p>When enabled, the user can download the files put into the favorites in a zip-file from the &quot;My favorites&quot; page. This option requires zlib to be installed on your server (run <a href="http://www.php.net/phpinfo" class="external">phpinfo</a> to check if this library exists on your server).</p>
 <p class="small">[cpg1.3.0 or better required]</p>
@@ -869,84 +855,108 @@ on some templates below the name of your gallery.</p>
 <p>When enabled, a list of all keywords entered in the &quot;<a href="#edit_pics">Edit files</a>&quot; page will appear at the botom of the search page, with each keyword being clickable. Enabling this option is recommended if you have a smaller number of keywords in use (e.g. less than 100) - it will give your users an idea what to search for (to the additional full text search). Please note that enabling this option for a large list of keywords (e.g. thousands of keywords) will slow down the search page and might be confusing for newbie users.</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_general_keywords_end"></a>
-<a name="admin_general_linked_files_start"></a><h4>Show number of linked files</h4>
-<p>If you use album keywords to display images/files in more than one album, enabling this option will display additional information for the album stats: if an album doesn't only contain &quot;regular&quot; files, but files linked via the "<a href="#album_prop_keyword_start">album keyword</a>" option as well, the number of linked files will be displayed separately like this "3 files, last one added on Oct 07, 2004<i>, 3 linked files, 6 files total</i>".</p>
+<a name="admin_general_enable-plugins"></a><h4>Enable plugins</h4>
+<p>Enable plugins. This feature is brand-new, there's no documentation for it yet.</p>
 <p class="small">[cpg1.4.0 or better required]</p>
-<a name="admin_general_linked_files_end"></a>
+<a name="admin_general_enable-plugins_end"></a>
+
+<a name="admin_general_private-ip"></a><h4>Allow banning of non-routable (private) IP addresses</h4>
+<p>Usually most people on the internet have dynamic IP addresses assigned to them when connecting to the internet by their Internet Service Provider. These IP adresses change with each session users connect to the internet, but during an internet session these IP addresses are &quot;visible&quot; for the web-sites the user is surfing. From the range of all IP adresses (0.0.0.0 to 255.255.255.255), some ranges have been reserved for special purposes (mostly for the use on private networks). The banning feature won't accept IP adresses to be banned that belong to these private ranges (e.g. 192.168.0.1) to avoid unexperienced coppermine admins to ban IP addresses within their own LAN. If you're actually running Coppermine on your LAN/WAN that uses private IP addresses (e.g. on a company's intranet) and you want to be able to ban users, switch this option to &quot;Yes&quot;. If you're running coppermine on a webserver located in the internet (e.g. you're webhosted), you should keep this option set to &quot;No&quot;.<br />
+If you don't use banning at all, you can safely ignore this setting completely.</p>
+<p class="small">[cpg1.4.0 or better required]</p>
+<a name="admin_general_private-ip_end"></a>
+
+<a name="admin_general_browsable_batch_add"></a><h4>Browsable batch-add interface</h4>
+<p>When <a href="#batch_add_pics">batch-adding</a> files (that you have uploaded by <acronym title="File Transfer Protocol">FTP</acronym> before) to your gallery, you have the option to switch between a browsable list, where you can go through the directory structure in your <tt class="code">albums</tt>-folder and to display the whole directory structure at once. Enable this option if you have a larger structure of directories and subdirectories you want to browse through (this requires your browser to be capable of displaying <a href="http://www.w3schools.com/tags/tag_iframe.asp" class="external" rel="external">iframes</a>). Set this option to &quot;No&quot; (disabled) if you want to use the &quot;classic&quot; coppermine interface that shows a complete list of the structure at once.<br />
+You can toggle this option on the <a href="#batch_add_pics">batch-add</a> page as well.</p>
+<p class="small">[cpg1.4.0 or better required]</p>
+<a name="admin_general_browsable_batch_add_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
-      <a name="admin_language"></a>
-      <h3>4.12.2 Language, Themes &amp; Charset settings</h3>
-      <p><img src="pics/config_language.gif" width="612" height="234" border="1" alt="" /></p>
-      <a name="admin_language_language"></a><h4>Language</h4>
-      <p>This is the default language for your gallery. All language files are
-      stored in the <b>lang</b> directory on your server.</p>
-      <p>The language files with an "<b>-utf8</b>" suffix are unicode encoded
-      files. If you select an -utf8 file as the default language and you set
-      "Character encoding" to "Unicode (utf-8)" then the script will auto detect
-      the preferred language of the visitor based on what is configured in his
-      browser. If the corresponding language is available it will be used else
-      the default language file will be used.</p>
-      <p>When the script auto detect the preferred language, it stores the
-      result in a cookie on the visitor's computer. To reset this cookie (and so
-      force the script to do another auto detection) call it with something
-      like: <a
-      href="#">http://yoursite.com/coppermine_dir/index.php?lang=xxx</a></p>
-      <p>Once you have added some comments or files to your gallery, you
-      should not change the character set of your gallery. If you do so,
-      non-ASCII character may not be shown correctly.</p>
-      <a name="admin_language_language_end"></a>
-      <a name="admin_language_fallback"></a><h4>Fallback to English if translated phrase not found?</h4>
-      <p>Enable this option if you're using other languages than english. If a certain phrase doesn't exist within your language file, coppermine will show the english phrase instead.</p><p>This feature has been introduced to allow the usage of older language files, as during the development of new coppermine versions only the english language file is being updated. To make up for translations being submitted later, you can use this option. Most translations affect the admin part of coppermine only, so mostly the admin will see some phrases in english instead of his language that don't exist in his language file. Currently this fallback option only works for 95% of all phrases, so there still might be some missing translations.</p>
-      <p class="small">[cpg1.4.0 or better required]</p>
-      <a name="admin_language_fallback_end"></a>
-      <a name="admin_language_theme"></a><h4>Theme</h4>
-      <p>Use this line to select the theme of your gallery. Themes are stored in
-      sub-directories of the <b>themes</b> directory.</p>
-      <a name="admin_language_theme_end"></a>
-      <a name="admin_language_list"></a><h4>Display language list</h4>
-      <p>Enable this option if you want your users to be able to select their own language with a dropdown list (you can specify to display only the list itself or a label saying &quot;<b>Choose your language:</b>&quot; in front of the list). Edit your template file (/themes/yourtheme/template.html) to specify where the language dropdown list should appear on your gallery (look for <b>{LANGUAGE_SELECT_LIST}</b>).</p>
-      <p class="small">[cpg1.3.0 or better required]</p>
-      <a name="admin_language_list_end"></a>
-      <a name="admin_language_flags"></a><h4>Display language flags</h4>
-      <p>Enable this option if you want your users to be able to select their own language by clicking on a flag representing their language (you can specify to display only the flags themselves or a label saying &quot;<b>Choose your language:</b>&quot; in front of the flags). Edit your template file (/themes/yourtheme/template.html) to specify where the language dropdown list should appear on your gallery (look for <b>{LANGUAGE_SELECT_FLAGS}</b>).</p>
-      <p class="small">[cpg1.3.0 or better required]</p>
-      <a name="admin_language_flags_end"></a>
-      <a name="admin_language_reset"></a><h4>Display &quot;reset&quot; in language selection</h4>
-      <p>This option only applies if you enabled language selection at all - it will show a &quot;default&quot;-icon or list entry to let the users go back to the original language of your gallery.</p>
-      <p class="small">[cpg1.3.0 or better required]</p>
-      <a name="admin_language_reset_end"></a>
-      <a name="admin_language_theme_list"></a><h4>Display theme list</h4>
-      <p>Enable this option if you want your users to be able to select another theme with a dropdown list (you can specify to display only the list itself or a label saying &quot;<b>Choose your theme:</b>&quot; in front of the list). Edit your template file (/themes/yourtheme/template.html) to specify where the theme dropdown list should appear on your gallery (look for <b>{THEME_SELECT_LIST}</b>).</p>
-      <p>This option only makes sense if you have at least one other theme in your /themes/ folder than your default theme. It's recommended to only offer this option if there's an additional benefit for the user (for example a theme with less graphics in it that loads faster for users on a dial-up connection, or a theme with reduced color pallettes and good contrast).</p>
-      <p class="small">[cpg1.3.0 or better required]</p>
-      <a name="admin_language_theme_list_end"></a>
-      <a name="admin_language_theme_reset"></a><h4>Display &quot;reset&quot; in theme selection</h4>
-      <p>This option only applies if you enabled theme selection at all - it will show a &quot;default&quot; list entry to let the users go back to the original theme of your gallery.</p>
-      <p class="small">[cpg1.3.0 or better required]</p>
-      <a name="admin_language_theme_reset_end"></a>
-      <a name="admin_language_faq"></a><h4>Display FAQ</h4>
-      <p>This option adds &quot;FAQ&quot; to the menu bar when enabled. If a user clicks on it, it will display a list of &quot;Frequently asked question&quot; on how to use coppermine. To change the content of the FAQ, edit the file /your_coppermine_folder/lang/yourlanguage.php (e.g. english.php) and look for</p>
-                        <pre>// ------------------------------------------------------------------------- //
+<a name="admin_language"></a>
+<h3>4.12.2 Language &amp; Charset settings</h3>
+<p><img src="pics/config_language.gif" width="612" height="234" border="1" alt="" /></p>
+<a name="admin_language_language"></a><h4>Language</h4>
+<p>This is the default language for your gallery. All language files are stored in the <b>lang</b> directory on your server.</p>
+<p>The language files with an "<b>-utf8</b>" suffix are unicode encoded files. If you select an -utf8 file as the default language and you set "Character encoding" to "Unicode (utf-8)" then the script will auto detect the preferred language of the visitor based on what is configured in his browser. If the corresponding language is available it will be used else the default language file will be used.</p>
+<p>When the script auto detect the preferred language, it stores the result in a cookie on the visitor's computer. To reset this cookie (and so force the script to do another auto detection) call it with something like: <a href="#">http://yoursite.com/coppermine_dir/index.php?lang=xxx</a></p>
+<p>Once you have added some comments or files to your gallery, you should not change the character set of your gallery. If you do so, non-ASCII character may not be shown correctly.</p>
+<a name="admin_language_language_end"></a>
+<a name="admin_language_fallback"></a><h4>Fallback to English if translated phrase not found?</h4>
+<p>Enable this option if you're using other languages than english. If a certain phrase doesn't exist within your language file, coppermine will show the english phrase instead.</p><p>This feature has been introduced to allow the usage of older language files, as during the development of new coppermine versions only the english language file is being updated. To make up for translations being submitted later, you can use this option. Most translations affect the admin part of coppermine only, so mostly the admin will see some phrases in english instead of his language that don't exist in his language file. Currently this fallback option only works for 95% of all phrases, so there still might be some missing translations.</p>
+<p class="small">[cpg1.4.0 or better required]</p>
+<a name="admin_language_fallback_end"></a>
+<a name="admin_language_charset"></a><h4>Character encoding</h4>
+<p>This should normally be set to "Unicode (utf-8)" (or "Default (language file)"). See the discussion in the &quot;<b><a href="#admin_language">language</a></b>&quot; section of this page.</p>
+<a name="admin_language_list"></a><h4>Display language list</h4>
+<p>Enable this option if you want your users to be able to select their own language with a dropdown list (you can specify to display only the list itself or a label saying &quot;<b>Choose your language:</b>&quot; in front of the list). Edit your template file (/themes/yourtheme/template.html) to specify where the language dropdown list should appear on your gallery (look for <b>{LANGUAGE_SELECT_LIST}</b>).</p>
+<p class="small">[cpg1.3.0 or better required]</p>
+<a name="admin_language_list_end"></a>
+<a name="admin_language_flags"></a><h4>Display language flags</h4>
+<p>Enable this option if you want your users to be able to select their own language by clicking on a flag representing their language (you can specify to display only the flags themselves or a label saying &quot;<b>Choose your language:</b>&quot; in front of the flags). Edit your template file (/themes/yourtheme/template.html) to specify where the language dropdown list should appear on your gallery (look for <b>{LANGUAGE_SELECT_FLAGS}</b>).</p>
+<p class="small">[cpg1.3.0 or better required]</p>
+<a name="admin_language_flags_end"></a>
+<a name="admin_language_reset"></a><h4>Display &quot;reset&quot; in language selection</h4>
+<p>This option only applies if you enabled language selection at all - it will show a &quot;default&quot;-icon or list entry to let the users go back to the original language of your gallery.</p>
+<p class="small">[cpg1.3.0 or better required]</p>
+<a name="admin_language_reset_end"></a>
+<a name="admin_language_charset_end"></a>
+<p><a class="back" href="#top">Back to top</a></p><hr />
+
+<a name="admin_theme"></a>
+<h3>4.12.3 Themes settings</h3>
+<a name="admin_theme_theme"></a><h4>Theme</h4>
+<p>Use this line to select the theme of your gallery. Themes are stored in sub-directories of the <b>themes</b> directory.</p>
+<a name="admin_theme_theme_end"></a>
+<a name="admin_theme_theme_list"></a><h4>Display theme list</h4>
+<p>Enable this option if you want your users to be able to select another theme with a dropdown list (you can specify to display only the list itself or a label saying &quot;<b>Choose your theme:</b>&quot; in front of the list). Edit your template file (/themes/yourtheme/template.html) to specify where the theme dropdown list should appear on your gallery (look for <b>{THEME_SELECT_LIST}</b>).</p>
+<p>This option only makes sense if you have at least one other theme in your /themes/ folder than your default theme. It's recommended to only offer this option if there's an additional benefit for the user (for example a theme with less graphics in it that loads faster for users on a dial-up connection, or a theme with reduced color pallettes and good contrast).</p>
+<p class="small">[cpg1.3.0 or better required]</p>
+<a name="admin_theme_theme_list_end"></a>
+<a name="admin_theme_theme_reset"></a><h4>Display &quot;reset&quot; in theme selection</h4>
+<p>This option only applies if you enabled theme selection at all - it will show a &quot;default&quot; list entry to let the users go back to the original theme of your gallery.</p>
+<p class="small">[cpg1.3.0 or better required]</p>
+<a name="admin_theme_theme_reset_end"></a>
+<a name="admin_theme_faq"></a><h4>Display FAQ</h4>
+<p>This option adds &quot;FAQ&quot; to the menu bar when enabled. If a user clicks on it, it will display a list of &quot;Frequently asked question&quot; on how to use coppermine. To change the content of the FAQ, edit the file /your_coppermine_folder/lang/yourlanguage.php (e.g. english.php) and look for</p>
+<pre>// ------------------------------------------------------------------------- //
 // File faq.php
-// ------------------------------------------------------------------------- //</pre><p>Edit the stuff that comes after it.</p>
-      <p class="small">[cpg1.3.0 or better required]</p>
-      <a name="admin_language_faq_end"></a>
-      <a name="admin_language_bbcode"></a><h4>Display bbcode help</h4>
-      <p>When enabled, this will display the <a href="#bbcode">bulletin board codes</a> that are allowed to use in description fields next to the field.</p>
-      <p class="small">[cpg1.3.0 or better required]</p>
-      <a name="admin_language_bbcode_end"></a>
-      <a name="admin_language_charset"></a><h4>Character encoding</h4>
-      <p>This should normally be set to "Unicode (utf-8)" (or "Default (language file)"). See the discussion in the &quot;<b><a href="#admin_language">language</a></b>&quot; section of this page.</p>
-      <a name="admin_language_charset_end"></a>
+// ------------------------------------------------------------------------- //</pre>
+<p>Edit the stuff that comes after it.</p>
+<p class="small">[cpg1.3.0 or better required]</p>
+<a name="admin_theme_faq_end"></a>
+<a name="admin_theme_custom_lnk_name"></a><h4>Name of your custom link</h4>
+<p>This is the name that will appear in the menu for your custom link.  Leave empty if you do not use.</p>
+<p class="small">[cpg1.4.0 or better required]</p>
+<a name="admin_theme_custom_lnk_name_end"></a>
+<a name="admin_language_custom_lnk_url"></a><h4>URL of your custom link</h4>
+<p>This is the URL where a user will be directed when he clicks on the &quot;Custom link name&quot; button in the main menu.</p>
+<p>You can use any valid URL.</p>
+<p>It is important you leave this blank if you want no custom link.</p>
+<p class="small">[cpg1.4.0 or better required]</p>
+<a name="admin_language_custom_lnk_url_end"></a>
+<a name="admin_theme_bbcode"></a><h4>Display bbcode help</h4>
+<p>When enabled, this will display the <a href="#bbcode">bulletin board codes</a> that are allowed to use in description fields next to the field.</p>
+<p class="small">[cpg1.3.0 or better required]</p>
+<a name="admin_theme_bbcode_end"></a>
 <a name="vanity_block"></a><h4>Show the vanity block on themes that are defined as XHTML and CSS compliant</h4>
 <p>When enabled and using a theme that has been defined as XHTML and CSS compliant, the vanity block will be shown. The vanity block contains the logos and links for HTML and CSS compliance at w3.org, as well as pointers to the PHP, and MySQL projects.</p>
 <p class="small">[cpg1.4.1 or better required]</p>
 <a name="vanity_block_end"></a>
+<a name="admin_theme_include_path_start"></a>
+<h4>Path to custom header include</h4>
+<p>Optional relative path to a custom header file. Using this option, you can include non-coppermine code bits to be included into your theme, e.g. an overall navigation that gets included on your whole website. You can only add a relative path (seen from the root path of your coppermine install) - not an absolute one, nor a http include from another website. This option is only meant for experienced users who have some PHP know-how. <br />
+<span class="important">Warning: you mustn't include full html pages that contain an html header or footer (tags like <tt class="code">&lt;head&gt;</tt> or <tt class="code">&lt;body&gt;</tt>), nor can the included file do file header manipulation, e.g. reading another (non-coppermine) cookie.</span></p>
+<p class="small">[cpg1.4.0 or better required]</p>
+<h4>Path to custom footer include</h4>
+<p>Optional relative path to a custom footer file. The same remarks apply as for the custom header include path.</p>
+<p class="small">[cpg1.4.0 or better required]</p>
+<a name="admin_theme_include_path_end"></a>
+<a name="admin_theme_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="admin_album_list"></a>
-<h3>4.12.3 Album list view</h3>
+<h3>4.12.4 Album list view</h3>
 <a name="admin_album_table-width"></a>
 <h4>Width of the main table (pixels or %)</h4>
 <p>This is the width of tables used on your main page or when you are viewing thumbnails of an album. You can enter a width in pixels or specify it in percents. The default value is 100%.</p>
@@ -997,11 +1007,15 @@ on some templates below the name of your gallery.</p>
 <p>You can specify to have coppermine sort all categories alphabetically (instead of a customized order) by setting &quot;Sort categories alphabetically&quot; to &quot;Yes&quot;. This setting is available both in coppermine config an the category manager. If you enable alphabetical sorting, the up and down arrows that normally let you move the categories will disappear.</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_album_list_alphasort_end"></a>
+<a name="admin_album_linked_files_start"></a><h4>Show number of linked files</h4>
+<p>If you use album keywords to display images/files in more than one album, enabling this option will display additional information for the album stats: if an album doesn't only contain &quot;regular&quot; files, but files linked via the "<a href="#album_prop_keyword_start">album keyword</a>" option as well, the number of linked files will be displayed separately like this "3 files, last one added on Oct 07, 2004<i>, 3 linked files, 6 files total</i>".</p>
+<p class="small">[cpg1.4.0 or better required]</p>
+<a name="admin_album_linked_files_end"></a>
 <a name="admin_album_list_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="admin_thumbnail_view"></a>
-<h3>4.12.4 Thumbnail view</h3>
+<h3>4.12.5 Thumbnail view</h3>
 <a name="admin_thumbnail_columns"></a>
 <h4>Number of columns on thumbnail page</h4>
 <p>Default value is 4 this means that each row will show 4 thumbnails.</p>
@@ -1060,7 +1074,7 @@ on some templates below the name of your gallery.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="admin_image_comment"></a>
-<h3>4.12.5 Image view</h3>
+<h3>4.12.6 Image view</h3>
 <a name="admin_image_comment_table-width"></a>
 <h4>Width of the table for picture display (pixels or %)</h4>
 <p>The width of the table used to display the intermediate picture.</p>
@@ -1099,7 +1113,7 @@ click on the (i) button) should be visible by default.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="admin_comment_start"></a>
-<h3>4.12.6 Comment settings</h3>
+<h3>4.12.7 Comment settings</h3>
 <a name="admin_image_comment_bad_words"></a>
 <h4>Filter bad words in comments</h4>
 <p>Remove "bad words" from comments. The "bad words" list is in the language file. So far only the English language file has one.</p>
@@ -1136,13 +1150,13 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 <a name="admin_comment_sort_end"></a>
 <a name="comments_anon_pfx"></a>
 <h4>Prefix for anonymous comments authors</h4>
-<p>If you allowed anonymous comments, this prefix will be used for comments left by unregistered users .</p>
+<p>If you allowed anonymous comments (permissions set on the <a href="#group_cp">groups</a> control panel), this prefix will be used for comments left by unregistered users. This can be helpful to prevent unregistered users posing as a registered user (or even an admin) when posting comments. Leave blank if you want no prefix for guest's comments.</p>
 <a name="comments_anon_pfx_end"></a>
 <a name="admin_comment_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="admin_picture_thumbnail"></a>
-<h3>4.12.7 Picture and thumbnail settings</h3>
+<h3>4.12.8 Picture and thumbnail settings</h3>
 <a name="admin_picture_thumbnail_jpeg_quality"></a>
 <h4>Quality for JPEG files</h4>
 <p>The quality used for JPEG compression when the script resizes an image. Value can range from 0 (worst) to 100 (best). This value can be set to 75 when using ImageMagick.<br />You shouldn't change this setting unless you know what you're doing, as the other thumbnail and intermediate pic options (dimensions) have a much greater impact on filesize than this compression level.</p>
@@ -1181,7 +1195,7 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="admin_picture_thumb_advanced"></a>
-<h3>4.12.8 Files and thumbnails advanced settings</h3>
+<h3>4.12.9 Files and thumbnails advanced settings</h3>
 <a name="admin_picture_thumb_advanced_private_toggle"></a>
 <h4>Albums can be private</h4>
 <p>If set to YES then your gallery can contain albums that can be visible only by users that belong to a certain group.</p>
@@ -1209,6 +1223,10 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 <p>Note that being able to display a movie requires the cpg-user to have the codecs needed to display the movie installed and configured properly on their computer, e.g. if you allow the file type <tt class="faq">mov</tt>, the user who is going to watch the movie will need to have Apple's Quick-Time plug-in installed. Also note that <tt class="code">avi</tt> is just a container for different codecs - this means that a computer which is capable of playing movie1.avi may not be capable of playing movie2.avi if those files have been encoded with different codecs.</p>
 <p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_thumbs_advanced_movie_end"></a>
+<a name="admin_movie_autoplay"></a>
+<h4>Movie Playback Autostart</h4>
+<p>If set to YES, movies will instantly start playing when loaded (doesn't affect flash files though).</p>
+<a name="admin_movie_autoplay_end"></a>
 <a name="admin_picture_thumb_advanced_audio_extensions"></a>
 <h4>Allowed audio types</h4>
 <p>&quot;<i>ALL</i>&quot; will result in all allowed audio file types to be uploaded. If you want to restrict the allowed file types to certain extensions only, enter a coma-separated list of extensions, e.g. <tt class="code">wav,mp3,wma</tt>.</p>
@@ -1289,15 +1307,6 @@ there. Don't forget the trailing "<tt class="code">/</tt>".</p>
 <a name="admin_picture_thumb_advanced_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
-<a name="admin_movie"></a>
-<h3>4.12.9 Movie Playback Settings</h3>
-<a name="admin_movie_autoplay"></a>
-<h4>Autostart</h4>
-<p>If set to YES, movies will instantly start playing when loaded (doesn't affect flash files though).</p>
-<a name="admin_movie_autoplay_end"></a>
-<a name="admin_movie_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
-
 <a name="admin_user"></a>
 <h3>4.12.10 User settings</h3>
 <a name="admin_allow_registration"></a>
@@ -1318,6 +1327,11 @@ there. Don't forget the trailing "<tt class="code">/</tt>".</p>
 <p>If set to YES an email will be sent to the gallery admin when a new user registers.</p>
 <a name="admin_registration_notify_end"></a>
 <p class="small">[cpg1.3.0 or better required]</p>
+<a name="admin_activation"></a><h4>Admin Activation</h4>
+<p>Enable admin activation. When set to yes, this gives control to gallery administrator to activate new registrations.</p>
+<p>By default, it is set to no, so users would activate their own accounts upon registering.</p>
+<p class="small">[cpg1.4.0 or better required]</p>
+<a name="admin_activation_end"></a>
 <a name="admin_allow_duplicate_emails_addr"></a>
 <h4>Allow two users to have the same email address</h4>
 <p>Allow or prevent two users from registering with the same email
@@ -1355,6 +1369,11 @@ address. Recommended setting is NO. This option is considered as deprecated and 
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_user_login_expiry_end"></a>
 <a name="admin_user_login_end"></a>
+<a name="admin_user_enable_report"></a><h4>Enable reports</h4>
+<p>Enable reports. When set to yes, this allows users to report uploaded files or comments to the site admin.</p>
+<p>This setting is dependant on e-cards being enabled.  Only users who have permission to send e-cards in the 'groups' settings are able to send reports. The report icon is hidden from those not allowed to do so.</p>
+<p class="small">[cpg1.4.0 or better required]</p>
+<a name="admin_user_enable_report_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="admin_custom"></a>
@@ -1458,44 +1477,11 @@ All log files are written in english</p>
 <p>May be helpfull to trouble-shoot problems with your coppermine install - only recommended if you know a little PHP and you can understand the additional error messages this option shows. This option only applies if debug mode is enabled.</p>
 <a name="admin_misc_debug_notices_end"></a>
 <a name="debug_mode_end"></a>
-<a name="admin_misc_enable-plugins"></a><h4>Enable plugins</h4>
-<p>Enable plugins. This feature is brand-new, there's no documentation for it yet.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
-<a name="admin_misc_enable-plugins_end"></a>
 
-<a name="admin_misc_private-ip"></a><h4>Allow banning of non-routable (private) IP addresses</h4>
-<p>Usually most people on the internet have dynamic IP addresses assigned to them when connecting to the internet by their Internet Service Provider. These IP adresses change with each session users connect to the internet, but during an internet session these IP addresses are &quot;visible&quot; for the web-sites the user is surfing. From the range of all IP adresses (0.0.0.0 to 255.255.255.255), some ranges have been reserved for special purposes (mostly for the use on private networks). The banning feature won't accept IP adresses to be banned that belong to these private ranges (e.g. 192.168.0.1) to avoid unexperienced coppermine admins to ban IP addresses within their own LAN. If you're actually running Coppermine on your LAN/WAN that uses private IP addresses (e.g. on a company's intranet) and you want to be able to ban users, switch this option to &quot;Yes&quot;. If you're running coppermine on a webserver located in the internet (e.g. you're webhosted), you should keep this option set to &quot;No&quot;.<br />
-If you don't use banning at all, you can safely ignore this setting completely.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
-<a name="admin_misc_private-ip_end"></a>
-
-<a name="admin_misc_browsable_batch_add"></a><h4>Browsable batch-add interface</h4>
-<p>When <a href="#batch_add_pics">batch-adding</a> files (that you have uploaded by <acronym title="File Transfer Protocol">FTP</acronym> before) to your gallery, you have the option to switch between a browsable list, where you can go through the directory structure in your <tt class="code">albums</tt>-folder and to display the whole directory structure at once. Enable this option if you have a larger structure of directories and subdirectories you want to browse through (this requires your browser to be capable of displaying <a href="http://www.w3schools.com/tags/tag_iframe.asp" class="external" rel="external">iframes</a>). Set this option to &quot;No&quot; (disabled) if you want to use the &quot;classic&quot; coppermine interface that shows a complete list of the structure at once.<br />
-You can toggle this option on the <a href="#batch_add_pics">batch-add</a> page as well.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
-<a name="admin_misc_browsable_batch_add_end"></a>
-
-<a name="admin_misc_include_path_start"></a>
-<h4>Path to custom header include</h4>
-<p>Optional relative path to a custom header file. Using this option, you can include non-coppermine code bits to be included into your theme, e.g. an overall navigation that gets included on your whole website. You can only add a relative path (seen from the root path of your coppermine install) - not an absolute one, nor a http include from another website. This option is only meant for experienced users who have some PHP know-how. <br />
-<span class="important">Warning: you mustn't include full html pages that contain an html header or footer (tags like <tt class="code">&lt;head&gt;</tt> or <tt class="code">&lt;body&gt;</tt>), nor can the included file do file header manipulation, e.g. reading another (non-coppermine) cookie.</span></p>
-<p class="small">[cpg1.4.0 or better required]</p>
-<h4>Path to custom footer include</h4>
-<p>Optional relative path to a custom footer file. The same remarks apply as for the custom header include path.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
-<a name="admin_misc_include_path_end"></a>
-
-<a name="admin_misc_enable_report"></a><h4>Enable reports</h4>
-<p>Enable reports. When set to yes, this allows users to report uploaded files or comments to the site admin.</p>
-<p>This setting is dependant on e-cards being enabled.  Only users who have permission to send e-cards in the 'groups' settings are able to send reports. The report icon is hidden from those not allowed to do so.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
-<a name="admin_misc_enable_report_end"></a>
-
-<a name="admin_activation"></a><h4>Admin Activation</h4>
-<p>Enable admin activation. When set to yes, this gives control to gallery administrator to activate new registrations.</p>
-<p>By default, it is set to no, so users would activate their own accounts upon registering.</p>
-<p class="small">[cpg1.4.0 or better required]</p>
-<a name="admin_activation_end"></a>
+<a name="admin_general_offline"></a><h4>Gallery is offline</h4>
+<p>If you have to do maintenance work to do on your gallery, switch it to offline mode. Only members of the admin group will be able to log in, all other users will only see &quot;Gallery is offline&quot;. Remember to switch this option off once your maintenance work is done.</p>
+<p class="small">[cpg1.3.0 or better required]</p>
+<a name="admin_general_offline_end"></a>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
