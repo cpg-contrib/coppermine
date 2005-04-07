@@ -397,7 +397,7 @@ class phpExifReader {
      */
     function debug($str,$TYPE = 0,$file="",$line=0) {
        if($this->debug) {
-        echo "<br>[$file:$line:".($this->getDiffTime())."]$str";
+        echo "<br />[$file:$line:".($this->getDiffTime())."]$str";
         flush();
         if($TYPE == 1) {
            exit;
@@ -414,7 +414,7 @@ class phpExifReader {
         if(!$this->newFile) return true;
 
         if(!file_exists($this->file)) {
-            echo "<br>Error: File ".($this->file)."does not exists!";
+            echo "<br />Error: File ".($this->file)."does not exists!";
             exit;
         }
 
@@ -504,7 +504,7 @@ class phpExifReader {
 
         switch($marker) {
                 case M_SOS:
-                    $this->debug("<br>Found '".M_SOS."' Section, Prcessing it... <br>");;
+                    $this->debug("<br />Found '".M_SOS."' Section, Prcessing it... <br />");;
                         // If reading entire image is requested, read the rest of the data.
                         if ($this->ImageReadMode & $this->ReadMode["READ_IMAGE"]){
                         // Determine how much file is left.
@@ -523,34 +523,34 @@ class phpExifReader {
                         $HaveAll = 1;
                         $exitAll =1;
                         }
-                        $this->debug("<br>'".M_SOS."' Section, PROCESSED<br>");
+                        $this->debug("<br />'".M_SOS."' Section, PROCESSED<br />");
                     break;
                 case M_COM: // Comment section
-                        $this->debug("<br>Found '".M_COM."'(Comment) Section, Processing<br>");
+                        $this->debug("<br />Found '".M_COM."'(Comment) Section, Processing<br />");
                         $this->process_COM($data, $itemlen);
-                        $this->debug("<br>'".M_COM."'(Comment) Section, PROCESSED<br>");
+                        $this->debug("<br />'".M_COM."'(Comment) Section, PROCESSED<br />");
 
                         $tmpTestLevel++;
                     break;
                 case M_SOI:
-                        $this->debug(" <br> === START OF IMAGE =====<br>");
+                        $this->debug(" <br /> === START OF IMAGE =====<br />");
                 break;
                 case M_EOI:
-                        $this->debug(" <br>=== END OF IMAGE =====<br> ");
+                        $this->debug(" <br />=== END OF IMAGE =====<br /> ");
                 break;
                 case M_JFIF:
                         // Regular jpegs always have this tag, exif images have the exif
                         // marker instead, althogh ACDsee will write images with both markers.
                         // this program will re-create this marker on absence of exif marker.
                         // hence no need to keep the copy from the file.
-                        //echo " <br> === M_JFIF =====<br>";
+                        //echo " <br /> === M_JFIF =====<br />";
                         $this->sections[--$this->currSection]["data"] = "";
                         break;
                 case M_EXIF:
                         // Seen files from some 'U-lead' software with Vivitar scanner
                         // that uses marker 31 for non exif stuff.  Thus make sure
                         // it says 'Exif' in the section before treating it as exif.
-                        $this->debug("<br>Found '".M_EXIF."'(Exif) Section, Proccessing<br>");
+                        $this->debug("<br />Found '".M_EXIF."'(Exif) Section, Proccessing<br />");
                         $this->exifSection = $this->currSection-1;
                         if (($this->ImageReadMode & $this->ReadMode["READ_EXIF"]) && ($data[2].$data[3].$data[4].$data[5]) == "Exif"){
                                 $this->process_EXIF($data, $itemlen);
@@ -558,7 +558,7 @@ class phpExifReader {
                                 // Discard this section.
                                 $this->sections[--$this->currSection]["data"] = "";
                         }
-                        $this->debug("<br>'".M_EXIF."'(Exif) Section, PROCESSED<br>");
+                        $this->debug("<br />'".M_EXIF."'(Exif) Section, PROCESSED<br />");
                         $tmpTestLevel++;
                 break;
                 case M_SOF0:
@@ -574,9 +574,9 @@ class phpExifReader {
                 case M_SOF13:
                 case M_SOF14:
                 case M_SOF15:
-                        $this->debug("<br>Found M_SOFn Section, Processing<br>");
+                        $this->debug("<br />Found M_SOFn Section, Processing<br />");
                         $this->process_SOFn($data,$marker);
-                        $this->debug("<br>M_SOFn Section, PROCESSED<br>");
+                        $this->debug("<br />M_SOFn Section, PROCESSED<br />");
                 break;
                 default:
                         $this->debug("DEFAULT: Jpeg section marker 0x$marker x size $itemlen\n");
@@ -675,7 +675,7 @@ class phpExifReader {
         $NumDirEntries = $this->Get16u($DirStart[0],$DirStart[1]);
 
 
-        $this->debug("<br>Directory with $NumDirEntries entries\n");
+        $this->debug("<br />Directory with $NumDirEntries entries\n");
 
         for ($de=0;$de<$NumDirEntries;$de++){
             //$DirEntry = array_slice($DirStart,2+12*$de);
