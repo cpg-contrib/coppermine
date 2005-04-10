@@ -133,8 +133,8 @@ if (!defined('THEME_HAS_NO_SUB_MENU_BUTTONS')) {
 
   // HTML template for template sub_menu buttons
     // {HREF_LNK}{HREF_TITLE}{HREF_TGT}{BLOCK_ID}{SPACER}
-	if ($CONFIG['custom_lnk_url'] != '') {
-	addbutton($sub_menu_buttons,'{CUSTOM_LNK_LNK}','{CUSTOM_LNK_TITLE}','{CUSTOM_LNK_TGT}','custom_link',$template_sub_menu_spacer);
+        if ($CONFIG['custom_lnk_url'] != '') {
+        addbutton($sub_menu_buttons,'{CUSTOM_LNK_LNK}','{CUSTOM_LNK_TITLE}','{CUSTOM_LNK_TGT}','custom_link',$template_sub_menu_spacer);
   }
     addbutton($sub_menu_buttons,'{ALB_LIST_LNK}','{ALB_LIST_TITLE}','{ALB_LIST_TGT}','album_list',$template_sub_menu_spacer);
     addbutton($sub_menu_buttons,'{LASTUP_LNK}','{LASTUP_TITLE}','{LASTUP_TGT}','lastup',$template_sub_menu_spacer);
@@ -687,12 +687,12 @@ $template_image_rating = <<<EOT
                 <td colspan="6" class="tableh2_compact"><b>{TITLE}</b> {VOTES}</td>
         </tr>
         <tr>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE0}" title="{RUBBISH}"><img src="{LOCATION}images/rating0.gif" border="0px" alt="{RUBBISH}" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE1}" title="{POOR}"><img src="{LOCATION}images/rating1.gif" border="0px" alt="{POOR}" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE2}" title="{FAIR}"><img src="{LOCATION}images/rating2.gif" border="0px" alt="{FAIR}" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE3}" title="{GOOD}"><img src="{LOCATION}images/rating3.gif" border="0px" alt="{GOOD}" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE4}" title="{EXCELLENT}"><img src="{LOCATION}images/rating4.gif" border="0px" alt="{EXCELLENT}" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE5}" title="{GREAT}"><img src="{LOCATION}images/rating5.gif" border="0px" alt="{GREAT}" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE0}" title="{RUBBISH}" rel="nofollow"><img src="{LOCATION}images/rating0.gif" border="0px" alt="{RUBBISH}" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE1}" title="{POOR}" rel="nofollow"><img src="{LOCATION}images/rating1.gif" border="0px" alt="{POOR}" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE2}" title="{FAIR}" rel="nofollow"><img src="{LOCATION}images/rating2.gif" border="0px" alt="{FAIR}" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE3}" title="{GOOD}" rel="nofollow"><img src="{LOCATION}images/rating3.gif" border="0px" alt="{GOOD}" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE4}" title="{EXCELLENT}" rel="nofollow"><img src="{LOCATION}images/rating4.gif" border="0px" alt="{EXCELLENT}" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE5}" title="{GREAT}" rel="nofollow"><img src="{LOCATION}images/rating5.gif" border="0px" alt="{GREAT}" /><br /></a></td>
         </tr>
 </table>
 EOT;
@@ -1041,13 +1041,13 @@ $template_report_comment = <<<EOT
         <tr>
           <td valign="top">
            {COMMENT}
-						<p align="center"><a href="{COMMENT_TGT}">{COMMENT_LNK}</a></p>
+                                                <p align="center"><a href="{COMMENT_TGT}">{COMMENT_LNK}</a></p>
           </td>
-					</tr>
-					<tr>
+                                        </tr>
+                                        <tr>
           <td valign="top">
             <b><font face="arial" color="#000000" size="4">{SUBJECT}</font></b>
-						<p>
+                                                <p>
               {REASON}
             <p>
             <font face="arial" color="#000000" size="2">{MESSAGE}</font>
@@ -1076,14 +1076,14 @@ $template_report_comment_email = <<<EOT
 </head>
 <body bgcolor="#FFFFFF" text="#0F5475" link="#0F5475" vlink="#0F5475" alink="#0F5475">
 <p><a href="{VIEW_REPORT_TGT}">{VIEW_COMMENT_LNK}</a></p>
-		<b><font face="arial" color="#000000" size="4">{SUBJECT}</font></b>
-		<p>
-			{REASON}
-		<p>
-		<font face="arial" color="#000000" size="2">{MESSAGE}</font>
-		</p>
-		<font face="arial" color="#000000" size="2">{SENDER_NAME}</font>
-		(<a href="mailto:{SENDER_EMAIL}"><font face="arial" color="#000000" size="2">{SENDER_EMAIL}</font></a>)
+                <b><font face="arial" color="#000000" size="4">{SUBJECT}</font></b>
+                <p>
+                        {REASON}
+                <p>
+                <font face="arial" color="#000000" size="2">{MESSAGE}</font>
+                </p>
+                <font face="arial" color="#000000" size="2">{SENDER_NAME}</font>
+                (<a href="mailto:{SENDER_EMAIL}"><font face="arial" color="#000000" size="2">{SENDER_EMAIL}</font></a>)
 <p><a href="{VIEW_MORE_TGT}"><b>{VIEW_MORE_LNK}</b></a></p>
 </body>
 </html>
@@ -1198,7 +1198,7 @@ function theme_main_menu($which)
     $cat_l = (isset($actual_cat))? "?cat=$actual_cat" : (isset($cat) ? "?cat=$cat" : '');
     $cat_l2 = isset($cat) ? "&amp;cat=$cat" : '';
     $my_gallery_id = FIRST_USER_CAT + USER_ID;
-	
+
 
 
   if ($which == 'sys_menu' ) {
@@ -1243,8 +1243,8 @@ function theme_main_menu($which)
     if (!$CONFIG['display_faq']) {
         template_extract_block($template_sys_menu, 'faq');
     }
-	
-	
+
+
     $param = array(
         '{HOME_TGT}' => $CONFIG['home_target'],
         '{HOME_TITLE}' => $lang_main_menu['home_title'],
@@ -1287,9 +1287,9 @@ function theme_main_menu($which)
         '{ALB_LIST_TGT}' => "index.php$cat_l",
         '{ALB_LIST_TITLE}' => $lang_main_menu['alb_list_title'],
         '{ALB_LIST_LNK}' => $lang_main_menu['alb_list_lnk'],
-		'{CUSTOM_LNK_TGT}' => $CONFIG['custom_lnk_url'],
-		'{CUSTOM_LNK_TITLE}' => $CONFIG['custom_lnk_name'],
-		'{CUSTOM_LNK_LNK}' => $CONFIG['custom_lnk_name'],
+                '{CUSTOM_LNK_TGT}' => $CONFIG['custom_lnk_url'],
+                '{CUSTOM_LNK_TITLE}' => $CONFIG['custom_lnk_name'],
+                '{CUSTOM_LNK_LNK}' => $CONFIG['custom_lnk_name'],
         '{LASTUP_TGT}' => "thumbnails.php?album=lastup$cat_l2",
         '{LASTUP_TITLE}' => $lang_main_menu['lastup_title'],
         '{LASTUP_LNK}' => $lang_main_menu['lastup_lnk'],
@@ -2074,33 +2074,33 @@ function theme_html_img_nav_menu()
     $pid = $CURRENT_PIC_DATA['pid'];
 
     $start = 0;
-	$start_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$start";
-	$start_title = $lang_img_nav_bar['go_album_start'];
-	$meta_nav .= "<link rel=\"start\" href=\"$start_tgt\" title=\"$start_title\" />
-	";
-	$end = $pic_count - 1;
-	$end_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$end";
-	$end_title = $lang_img_nav_bar['go_album_end'];
-	$meta_nav .= "<link rel=\"last\" href=\"$end_tgt\" title=\"$end_title\" />
-	";
-		
+        $start_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$start";
+        $start_title = $lang_img_nav_bar['go_album_start'];
+        $meta_nav .= "<link rel=\"start\" href=\"$start_tgt\" title=\"$start_title\" />
+        ";
+        $end = $pic_count - 1;
+        $end_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$end";
+        $end_title = $lang_img_nav_bar['go_album_end'];
+        $meta_nav .= "<link rel=\"last\" href=\"$end_tgt\" title=\"$end_title\" />
+        ";
+
     if ($pos > 0) {
         $prev = $pos - 1;
         $prev_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$prev";
         $prev_title = $lang_img_nav_bar['prev_title'];
-				$meta_nav .= "<link rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />
-				";
+                                $meta_nav .= "<link rel=\"prev\" href=\"$prev_tgt\" title=\"$prev_title\" />
+                                ";
     } else {
         $prev_tgt = "javascript:;";
         $prev_title = "";
     }
-		
+
     if ($pos < ($pic_count -1)) {
         $next = $pos + 1;
         $next_tgt = "{$_SERVER['PHP_SELF']}?album=$album$cat_link&amp;pos=$next";
         $next_title = $lang_img_nav_bar['next_title'];
-				$meta_nav .= "<link rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>
-				";
+                                $meta_nav .= "<link rel=\"next\" href=\"$next_tgt\" title=\"$next_title\"/>
+                                ";
     } else {
         $next_tgt = "javascript:;";
         $next_title = "";
