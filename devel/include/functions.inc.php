@@ -1682,7 +1682,7 @@ function display_thumbnails($album, $cat, $page, $thumbcols, $thumbrows, $displa
 
                         $pic_url =  get_pic_url($row, 'thumb');
                         if (!is_image($row['filename'])) {
-                                $image_info = getimagesize($pic_url);
+                                $image_info = getimagesize(urldecode($pic_url));
                                 $row['pwidth'] = $image_info[0];
                                 $row['pheight'] = $image_info[1];
                         }
@@ -1775,7 +1775,7 @@ function& cpg_get_system_thumb($filename,$user=10001)
                          'url_prefix'=>0);
         $pic_url = get_pic_url($picdata,'thumb',true);
         $picdata['thumb'] = $pic_url;
-        $image_info = getimagesize($pic_url);
+        $image_info = getimagesize(urldecode($pic_url));
         $picdata['pwidth'] = $image_info[0];
         $picdata['pheight'] = $image_info[1];
         $image_size = compute_img_size($picdata['pwidth'], $picdata['pheight'], $CONFIG['alb_list_thumb_size']);
@@ -1846,7 +1846,7 @@ function display_film_strip($album, $cat, $pos)
 
                         $pic_url =  get_pic_url($row, 'thumb');
                         if (!is_image($row['filename'])) {
-                                $image_info = getimagesize($pic_url);
+                                $image_info = getimagesize(urldecode($pic_url));
                                 $row['pwidth'] = $image_info[0];
                                 $row['pheight'] = $image_info[1];
                         }

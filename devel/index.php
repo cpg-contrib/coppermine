@@ -154,7 +154,7 @@ function get_subcat_data($parent, &$cat_data, &$album_set_array, $level, $ident 
                         mysql_free_result($result);
                         $pic_url = get_pic_url($picture, 'thumb');
                         if (!is_image($picture['filename'])) {
-                            $image_info = getimagesize($pic_url);
+                            $image_info = getimagesize(urldecode($pic_url));
                             $picture['pwidth'] = $image_info[0];
                             $picture['pheight'] = $image_info[1];
                         }
@@ -347,7 +347,7 @@ function list_users()
                 mysql_free_result($result);
                 $pic_url = get_pic_url($picture, 'thumb');
                 if (!is_image($picture['filename'])) {
-                    $image_info = getimagesize($pic_url);
+                    $image_info = getimagesize(urldecode($pic_url));
                     $picture['pwidth'] = $image_info[0];
                     $picture['pheight'] = $image_info[1];
                 }
@@ -480,7 +480,7 @@ function list_albums()
                 }
                 $pic_url = get_pic_url($picture, 'thumb');
                 if (!is_image($picture['filename'])) {
-                    $image_info = getimagesize($pic_url);
+                    $image_info = getimagesize(urldecode($pic_url));
                     $picture['pwidth'] = $image_info[0];
                     $picture['pheight'] = $image_info[1];
                 }
@@ -642,7 +642,7 @@ function list_cat_albums($cat = 0)
                 }
                 $pic_url = get_pic_url($picture, 'thumb');
                 if (!is_image($picture['filename'])) {
-                    $image_info = getimagesize($pic_url);
+                    $image_info = getimagesize(urldecode($pic_url));
                     $picture['pwidth'] = $image_info[0];
                     $picture['pheight'] = $image_info[1];
                 }
