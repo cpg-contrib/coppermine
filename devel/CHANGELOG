@@ -281,3 +281,4 @@ Added new bridge files (Xoops, XMB, MyBB) to bridge manager - 23 March 2005, Nib
 Fixed custom thumbs in directories that have spaces - 10 April 2005, Donnoman
 Fixed notices coming from create_session in the bridge files  - 10 April 2005, Donnoman
 Added <span> to alblink so that it's selector will work like the other anchor selectors - 10 April 2005, Donnoman
+Changed themes/classic => themes/sample, themes/core => themes/classic, excluded 'sample' from the themeSelect, 10 April 2005, Donnoman

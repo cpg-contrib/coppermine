@@ -18,7 +18,7 @@
 **********************************************/
 
 // ----------------------------------------------------------------------------- //
-// All lines that should NOT be IN themes/classic/theme.php            //{THEMES}//
+// All lines that should NOT be IN themes/sample/theme.php             //{THEMES}//
 // should end in "//{THEMES}" so that they can be easily stripped      //{THEMES}//
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}         //{THEMES}//
 
