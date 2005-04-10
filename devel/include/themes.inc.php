@@ -739,7 +739,7 @@ $template_image_comments = <<<EOT
                                 <td class="tableh2_compact" nowrap="nowrap">
                                         <b>{MSG_AUTHOR}</b><a name="comment{MSG_ID}">&nbsp;</a>
 <!-- BEGIN ipinfo -->
-                                                                                 ({HDR_IP} [{RAW_IP}])
+                                                                                 ({IP})
 <!-- END ipinfo -->
 </td>
 
@@ -2321,6 +2321,11 @@ function theme_html_comments($pid)
             $smilies = '';
         }
 
+        $ip = $row['msg_hdr_ip'];
+        if ($row['msg_hdr_ip'] != $row['msg_raw_ip']) {
+            $ip .= ' [' . $row['msg_raw_ip'] . ']';
+        }
+
         $params = array('{EDIT}' => &$comment_edit_box,
             '{BUTTONS}' => &$comment_buttons,
             '{IPINFO}' => &$comment_ipinfo
@@ -2338,8 +2343,7 @@ function theme_html_comments($pid)
             '{MSG_BODY_RAW}' => $row['msg_body'],
             '{OK}' => &$lang_display_comments['OK'],
             '{SMILIES}' => $smilies,
-            '{HDR_IP}' => $row['msg_hdr_ip'],
-            '{RAW_IP}' => $row['msg_raw_ip'],
+            '{IP}' => $ip,
             '{REPORT_COMMENT_TITLE}' => &$lang_display_comments['report_comment_title'],
             '{WIDTH}' => $CONFIG['picture_table_width']
             );
