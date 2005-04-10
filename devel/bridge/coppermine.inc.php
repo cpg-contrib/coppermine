@@ -291,6 +291,7 @@ class cpg_udb extends core_udb {
 
         // Create a new session with the cookie lifetime set to 2 weeks
         function create_session() {
+                global $CONFIG;
                 // start session
                 $this->session_id = $this->generateId();
                 $session_id = $this->session_id.$this->client_id;
