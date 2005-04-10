@@ -278,3 +278,5 @@ Removed styleguide theme from package (available in coppermine download section 
 Added thai language file (user contribution) - 22 March 2005, GauGau
 Added persian (farsi) language file (user contribution) - 22 March 2005, GauGau
 Added new bridge files (Xoops, XMB, MyBB) to bridge manager - 23 March 2005, Nibbler
+Fixed custom thumbs in directories that have spaces - 10 April 2005, Donnoman
+Fixed notices coming from create_session in the bridge files  - 10 April 2005, Donnoman
