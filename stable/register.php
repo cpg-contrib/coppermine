@@ -187,10 +187,22 @@ function check_user_info(&$error)
     }
     mysql_free_result($result);
 
-    if (strlen($user_name) < 2) $error .= '<li>' . $lang_register_php['err_uname_short'];
-    if (strlen($password) < 2) $error .= '<li>' . $lang_register_php['err_password_short'];
-    if ($password == $user_name) $error .= '<li>' . $lang_register_php['err_uname_pass_diff'];
-    if ($password != $password_again) $error .= '<li>' . $lang_register_php['err_password_mismatch'];
+    if (strlen($user_name) < 2) {
+        $error .= '<li>' . $lang_register_php['err_uname_short'];
+    }
+    if (strlen($password) < 2) {
+        $error .= '<li>' . $lang_register_php['err_password_short'];
+    }
+    if ($password == $user_name) {
+        $error .= '<li>' . $lang_register_php['err_uname_pass_diff'];
+    }
+    if ($password != $password_again) {
+        $error .= '<li>' . $lang_register_php['err_password_mismatch'];
+    }
+    if (strlen(htmlspecialchars($user_name)) > 25)
+    {
+        $error .= '<li>Your name is to long to be stored in the database. Choose a shorter one.';
+    }
 
     if (!eregi("^[_\.0-9a-z\-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,6}$", $email)) $error .= '<li>' . $lang_register_php['err_invalid_email'];
 
