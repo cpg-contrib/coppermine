@@ -459,3 +459,4 @@ DELETE FROM CPG_config WHERE `name` = 'admin_activate';
 INSERT INTO CPG_config VALUES ('admin_activation', '0');
 ALTER TABLE CPG_pictures CHANGE `mtime` `mtime` DATETIME;
 
+DELETE FROM CPG_exif;
