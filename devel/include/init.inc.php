@@ -64,7 +64,7 @@ if (get_magic_quotes_gpc()) {
     if (is_array($_REQUEST)) {
         foreach ($_REQUEST as $key => $value) {
             if (!is_array($value))
-                $_REQUEST[$key] = stripslashes($value);
+                $_REQUEST[$key] = strtr(stripslashes($value), $HTML_SUBST);
             if (isset($$key)) unset($$key);
         }
     }
