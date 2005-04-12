@@ -35,16 +35,18 @@ $template_sys_menu_spacer ="|";
 
 // HTML template for template sub_menu
 // special note: I left the java 'hide' off of the first and third buttons to help avoid trouble keeping sys_menu open. :Donnoman
-if ($CONFIG['custom_lnk_url'] != '') {
+
 $template_sub_menu = <<<EOT
 <table cellpadding="0" cellspacing="0" border="0" width="100%">
 <tr>
     <td width="50%"></td>
+<!-- BEGIN custom_link -->
 	<td><img src="themes/mac_ox_x/images/menu_button_bg_left.gif" border="0" alt="" /><br /></td>
     <td style="background-image:url(themes/mac_ox_x/images/menu_button_bg_middle.gif);" valign="top">
             <a href="{CUSTOM_LNK_TGT}" title="{CUSTOM_LNK_TITLE}">{CUSTOM_LNK_LNK}</a>
     </td>
     <td><img src="themes/mac_ox_x/images/menu_button_bg_right.gif" border="0" alt="" /><br /></td>
+<!-- END custom_link -->
     <td><img src="themes/mac_ox_x/images/menu_button_bg_left.gif" border="0" alt="" /><br /></td>
     <td style="background-image:url(themes/mac_ox_x/images/menu_button_bg_middle.gif);" valign="top">
             <a href="index.php"><img src="themes/mac_ox_x/images/home.gif" border="0" alt="" /><br /></a>
@@ -93,63 +95,10 @@ $template_sub_menu = <<<EOT
     <td width="50%"></td>
   </tr>
 </table>
+
 EOT;
 
-} else {
-$template_sub_menu = <<<EOT
-<table cellpadding="0" cellspacing="0" border="0" width="100%">
-<tr>
-    <td width="50%"></td>
-    <td><img src="themes/mac_ox_x/images/menu_button_bg_left.gif" border="0" alt="" /><br /></td>
-    <td style="background-image:url(themes/mac_ox_x/images/menu_button_bg_middle.gif);" valign="top">
-            <a href="index.php"><img src="themes/mac_ox_x/images/home.gif" border="0" alt="" /><br /></a>
-    </td>
-    <td><img src="themes/mac_ox_x/images/menu_button_bg_right.gif" border="0" alt="" /><br /></td>
-    <td><img src="themes/mac_ox_x/images/menu_button_bg_left.gif" border="0" alt="" /><br /></td>
-    <td style="background-image:url(themes/mac_ox_x/images/menu_button_bg_middle.gif);" valign="top">
-            <a href="javascript:;" onmouseover="MM_showHideLayers('SYS_MENU','','show')">@</a>
-    </td>
-    <td><img src="themes/mac_ox_x/images/menu_button_bg_right.gif" border="0" alt="" /><br /></td>
-    <td><img src="themes/mac_ox_x/images/menu_button_bg_left.gif" border="0" alt="" /><br /></td>
-    <td style="background-image:url(themes/mac_ox_x/images/menu_button_bg_middle.gif);" valign="top">
-            <a href="{ALB_LIST_TGT}" title="{ALB_LIST_TITLE}">{ALB_LIST_LNK}</a>
-    </td>
-    <td><img src="themes/mac_ox_x/images/menu_button_bg_right.gif" border="0" alt="" /><br /></td>
-    <td><img src="themes/mac_ox_x/images/menu_button_bg_left.gif" border="0" alt="" /><br /></td>
-    <td style="background-image:url(themes/mac_ox_x/images/menu_button_bg_middle.gif);" valign="top">
-            <a href="{LASTUP_TGT}" onmouseover="MM_showHideLayers('SYS_MENU','','hide')" title="{LASTUP_LNK}">{LASTUP_LNK}</a>
-    </td>
-    <td><img src="themes/mac_ox_x/images/menu_button_bg_right.gif" border="0" alt="" /><br /></td>
-    <td><img src="themes/mac_ox_x/images/menu_button_bg_left.gif" border="0" alt="" /><br /></td>
-    <td style="background-image:url(themes/mac_ox_x/images/menu_button_bg_middle.gif);" valign="top">
-            <a href="{LASTCOM_TGT}" onmouseover="MM_showHideLayers('SYS_MENU','','hide')" title="{LASTCOM_LNK}">{LASTCOM_LNK}</a>
-    </td>
-    <td><img src="themes/mac_ox_x/images/menu_button_bg_right.gif" border="0" alt="" /><br /></td>
-    <td><img src="themes/mac_ox_x/images/menu_button_bg_left.gif" border="0" alt="" /><br /></td>
-    <td style="background-image:url(themes/mac_ox_x/images/menu_button_bg_middle.gif);" valign="top">
-            <a href="{TOPN_TGT}" onmouseover="MM_showHideLayers('SYS_MENU','','hide')" title="{TOPN_LNK}">{TOPN_LNK}</a>
-    </td>
-    <td><img src="themes/mac_ox_x/images/menu_button_bg_right.gif" border="0" alt="" /><br /></td>
-    <td><img src="themes/mac_ox_x/images/menu_button_bg_left.gif" border="0" alt="" /><br /></td>
-    <td style="background-image:url(themes/mac_ox_x/images/menu_button_bg_middle.gif);" valign="top">
-            <a href="{TOPRATED_TGT}" onmouseover="MM_showHideLayers('SYS_MENU','','hide')" title="{TOPRATED_LNK}">{TOPRATED_LNK}</a>
-    </td>
-    <td><img src="themes/mac_ox_x/images/menu_button_bg_right.gif" border="0" alt="" /><br /></td>
-    <td><img src="themes/mac_ox_x/images/menu_button_bg_left.gif" border="0" alt="" /><br /></td>
-    <td style="background-image:url(themes/mac_ox_x/images/menu_button_bg_middle.gif);" valign="top">
-            <a href="{FAV_TGT}" onmouseover="MM_showHideLayers('SYS_MENU','','hide')" title="{FAV_LNK}">{FAV_LNK}</a>
-    </td>
-    <td><img src="themes/mac_ox_x/images/menu_button_bg_right.gif" border="0" alt="" /><br /></td>
-    <td><img src="themes/mac_ox_x/images/menu_button_bg_left.gif" border="0" alt="" /><br /></td>
-    <td style="background-image:url(themes/mac_ox_x/images/menu_button_bg_middle.gif);" valign="top">
-            <a href="{SEARCH_TGT}" onmouseover="MM_showHideLayers('SYS_MENU','','hide')" title="{SEARCH_LNK}">{SEARCH_LNK}</a>
-    </td>
-    <td><img src="themes/mac_ox_x/images/menu_button_bg_right.gif" border="0" alt="" /><br /></td>
-    <td width="50%"></td>
-  </tr>
-</table>
-EOT;
-}
+
 // HTML template for title row of the thumbnail view (album title + sort options)
 $template_thumb_view_title_row = <<<EOT
 

@@ -40,10 +40,12 @@ if ($CONFIG['custom_lnk_url'] != '') {
 $template_sub_menu = <<<EOT
                         <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                 <tr>
+<!-- BEGIN custom_link -->
 										<td class="top_menu_left_bttn">
                                                 <a href="{CUSTOM_LNK_TGT}" title="{CUSTOM_LNK_TITLE}">{CUSTOM_LNK_LNK}</a>
                                         </td>
                                         <td><img src="themes/igames/images/menu_spacer.gif" width="2" height="35" border="0" alt="" /><br /></td>
+<!-- END custom_link -->
                                         <td class="top_menu_bttn">
                                                 <a href="{ALB_LIST_TGT}" title="{ALB_LIST_TITLE}">{ALB_LIST_LNK}</a>
                                         </td>
@@ -85,6 +87,8 @@ EOT;
 $template_sub_menu = <<<EOT
                         <table border="0" cellpadding="0" cellspacing="0" width="100%">
                                 <tr>
+<!-- BEGIN custom_link -->
+<!-- END custom_link -->
                                         <td class="top_menu_left_bttn">
                                                 <a href="{ALB_LIST_TGT}" title="{ALB_LIST_TITLE}">{ALB_LIST_LNK}</a>
                                         </td>
