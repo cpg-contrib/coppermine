@@ -1,4 +1,8 @@
-$Id$
+Coppermine version: 1.3.3
+$Source$
+$Revision$
+$Author$
+$Date$
 
 Added Title option to sort in albums, Tarique
 Separated the breadcrumb block so that it can be placed independently of category, Tarique
@@ -131,3 +135,4 @@ Added Basque language (user contribution) - 14 December 2004, GauGau
 Added Welsh language (user contribution) - 6 January 2004, GauGau
 Fixed 'inactive_tab' bug in theme.php (user contribution) - 5 February 2005, Donnoman
 Added persian (farsi) language file (user contribution) - 22 March 2005, GauGau
+Changed file headers and version numbers from cpg1.3.2 to cpg1.3.3 - 19 April 2005, GauGau

@@ -1,21 +1,21 @@
 <?php
-// ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.2                                            //
-// ------------------------------------------------------------------------- //
-// Copyright (C) 2002-2004 Gregory DEMAR                                     //
-// http://www.chezgreg.net/coppermine/                                       //
-// ------------------------------------------------------------------------- //
-// Updated by the Coppermine Dev Team                                        //
-// (http://coppermine.sf.net/team/)                                          //
-// see /docs/credits.html for details                                        //
-// ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- //
-// CVS version: $Id$
-// ------------------------------------------------------------------------- //
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2005 Coppermine Dev Team
+  v1.1 originaly written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  ********************************************
+  Coppermine version: 1.3.3
+  $Source$
+  $Revision$
+  $Author$
+  $Date$
+**********************************************/
 
 // Check if standalone is installed in a portal like phpNuke (added by DJMaze)
 $DIR=preg_split("/[\/\\\]/",dirname($_SERVER['PATH_TRANSLATED']));
@@ -331,14 +331,14 @@ function list_users()
         $user_album_count = $user['alb_count'];
 
         if ($user_pic_count) {
-			
-			if ($CONFIG['show_private']){
-				$image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
-				$user_thumb = "<img src=\"images/private.jpg\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
-			} 
+
+                        if ($CONFIG['show_private']){
+                                $image_size = compute_img_size(100, 75, $CONFIG['alb_list_thumb_size']);
+                                $user_thumb = "<img src=\"images/private.jpg\" {$image_size['geom']} alt=\"\" border=\"0\" class=\"image\" />";
+                        }
             $sql = "SELECT filepath, filename, url_prefix, pwidth, pheight " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE pid='$user_thumb_pid'";
             $result = db_query($sql);
-					
+
             if (mysql_num_rows($result)) {
                 $picture = mysql_fetch_array($result);
                 mysql_free_result($result);
@@ -352,8 +352,8 @@ function list_users()
                     $user_thumb = "<img src=\"" . get_pic_url($picture, 'thumb') . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"\">";
 
             }
-        
-		}
+
+                }
         $albums_txt = sprintf($lang_list_users['n_albums'], $user_album_count);
         $pictures_txt = sprintf($lang_list_users['n_pics'], $user_pic_count);
 

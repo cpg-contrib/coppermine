@@ -1,4 +1,20 @@
-# $Id$
+#*************************
+#  Coppermine Photo Gallery
+#  ************************
+#  Copyright (c) 2003-2005 Coppermine Dev Team
+#  v1.1 originaly written by Gregory DEMAR
+#
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2 of the License, or
+#  (at your option) any later version.
+#  ********************************************
+#  Coppermine version: 1.3.3
+#  $Source$
+#  $Revision$
+#  $Author$
+#  $Date$
+#**********************************************
 
 #
 # Dumping data for table `CPG_config`
@@ -25,7 +41,7 @@ INSERT INTO CPG_config VALUES ('allow_duplicate_emails_addr', '0');
 INSERT INTO CPG_config VALUES ('caption_in_thumbview', '1');
 INSERT INTO CPG_config VALUES ('views_in_thumbview', '1');
 INSERT INTO CPG_config VALUES ('charset', 'language file');
-INSERT INTO CPG_config VALUES ('cookie_name', 'cpg132');
+INSERT INTO CPG_config VALUES ('cookie_name', 'cpg133');
 INSERT INTO CPG_config VALUES ('cookie_path', '/');
 INSERT INTO CPG_config VALUES ('debug_mode', '0');
 INSERT INTO CPG_config VALUES ('debug_notice', '0');

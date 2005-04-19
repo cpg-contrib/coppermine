@@ -1,32 +1,32 @@
 <?php
-// ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.2                                            //
-// ------------------------------------------------------------------------- //
-// Copyright (C) 2002-2004 Gregory DEMAR                                     //
-// http://www.chezgreg.net/coppermine/                                       //
-// ------------------------------------------------------------------------- //
-// Updated by the Coppermine Dev Team                                        //
-// (http://coppermine.sf.net/team/)                                          //
-// see /docs/credits.html for details                                        //
-// ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- //
-// CVS version: $Id$
-// ------------------------------------------------------------------------- //
-// Coppermine Windows XP Web Publishing Wizard Client                        //
-// Based on the article posted by Sebastian Delmont                          //
-// http://www.zonageek.com/code/misc/wizards/                                //
-// ------------------------------------------------------------------------- //
-// Other information can be found on Microsoft web site                      //
-// http://www.microsoft.com/whdc/hwdev/tech/WIA/imaging/webwizard.mspx       //
-// http://msdn.microsoft.com/library/default.asp?url=/library/en-us/shellcc/platform/shell/programmersguide/shell_basics/shell_basics_extending/publishing_wizard/pubwiz_intro.asp
-// ------------------------------------------------------------------------- //
-// Original implementation comes from Gallery                                //
-// http://gallery.menalto.com                                                //
-// ------------------------------------------------------------------------- //
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2005 Coppermine Dev Team
+  v1.1 originaly written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  ********************************************
+  Coppermine version: 1.3.3
+  $Source$
+  $Revision$
+  $Author$
+  $Date$
+  **********************************************
+  Coppermine Windows XP Web Publishing Wizard Client
+  Based on the article posted by Sebastian Delmont
+  http://www.zonageek.com/code/misc/wizards/
+  **********************************************
+  Other information can be found on Microsoft web site
+  http://www.microsoft.com/whdc/hwdev/tech/WIA/imaging/webwizard.mspx
+  http://msdn.microsoft.com/library/default.asp?url=/library/en-us/shellcc/platform/shell/programmersguide/shell_basics/shell_basics_extending/publishing_wizard/pubwiz_intro.asp
+  **********************************************
+  Original implementation comes from Gallery
+  http://gallery.menalto.com
+  **********************************************/
 
 // Declare we are in Coppermine.
 define('IN_COPPERMINE', true);

@@ -1,21 +1,21 @@
 <?php
-// ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.2                                            //
-// ------------------------------------------------------------------------- //
-// Copyright (C) 2002-2004 Gregory DEMAR                                     //
-// http://www.chezgreg.net/coppermine/                                       //
-// ------------------------------------------------------------------------- //
-// Updated by the Coppermine Dev Team                                        //
-// (http://coppermine.sf.net/team/)                                          //
-// see /docs/credits.html for details                                        //
-// ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- //
-// CVS version: $Id$
-// ------------------------------------------------------------------------- //
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2005 Coppermine Dev Team
+  v1.1 originaly written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  ********************************************
+  Coppermine version: 1.3.3
+  $Source$
+  $Revision$
+  $Author$
+  $Date$
+**********************************************/
 
 define('IN_COPPERMINE', true);
 define('ECARDS_PHP', true);
@@ -72,9 +72,9 @@ if (!$valid_recipient_email && count($HTTP_POST_VARS) > 0) $recipient_email_warn
 // Create and send the e-card
 if (count($HTTP_POST_VARS) > 0 && $valid_sender_email && $valid_recipient_email) {
     $gallery_url_prefix = $CONFIG['ecards_more_pic_target']. (substr($CONFIG['ecards_more_pic_target'], -1) == '/' ? '' : '/');
-	
-	
-	    if($CONFIG['thumb_use']=='ht' && $row['pheight'] > $CONFIG['picture_width'] ){ // The wierd comparision is because only picture_width is stored
+
+
+            if($CONFIG['thumb_use']=='ht' && $row['pheight'] > $CONFIG['picture_width'] ){ // The wierd comparision is because only picture_width is stored
       $condition = true;
     }elseif($CONFIG['thumb_use']=='wd' && $row['pwidth'] > $CONFIG['picture_width']){
       $condition = true;
