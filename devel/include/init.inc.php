@@ -119,6 +119,10 @@ if (isset($_SERVER['HTTP_CLIENT_IP'])) {
         $hdr_ip = $raw_ip;
     }
 }
+
+if (!preg_match('/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$/', $raw_ip)) $raw_ip = '0.0.0.0';
+if (!preg_match('/^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$/', $hdr_ip)) $hdr_ip = '0.0.0.0';
+
 // Define some constants
 define('USER_GAL_CAT', 1);
 define('FIRST_USER_CAT', 10000);
