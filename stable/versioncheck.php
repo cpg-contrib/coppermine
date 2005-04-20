@@ -10,7 +10,7 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.3.3
+  Coppermine version: 1.4.1
   $Source$
   $Revision$
   $Author$
@@ -157,7 +157,7 @@ $local_lang_versioncheck_php = array(
 );
 foreach($local_lang_versioncheck_php as $key => $value) {
     if ($lang_versioncheck_php[$key] == '') { $lang_versioncheck_php[$key] = $value;}
-    //print $key.'|'.$value.'<br>';
+    //print $key.'|'.$value.'<br />';
 }
 
 if (function_exists('cpg_display_help') == false ) {
@@ -576,22 +576,54 @@ function cpg_get_fileversion($folder  = '',$file = '') {
     $handle = @fopen($folder.$file, 'r');
     $blob = @fread($handle, filesize($folder.$file));
     @fclose($handle);
-    $cvs_string = '$'.'I'.'d'.':';
+    $cvs_string1 = '$'.'I'.'d'.':';
+    $cvs_string2 = '$'.'Revision'.':';
+    $cpg_version_determination = 'Coppermine' . ' ' . 'version:';
 
     $blob = str_replace('<?php','',$blob);
-    $return['cpg_version'] = substr($blob,strpos($blob, 'Coppermine Photo Gallery'));
-    $return['cpg_version'] = substr($return['cpg_version'],0,strpos($return['cpg_version'], '//'));
-    $return['cpg_version'] = trim(str_replace('Coppermine Photo Gallery', '', $return['cpg_version']));
+
+    // Determine the cpg version
+    $return['cpg_version'] = substr($blob,strpos($blob, $cpg_version_determination)); // chop off the first bit up to the string $cpg_version_determination
+    $double_slash_position = strpos($return['cpg_version'], '//');
+    if ($double_slash_position) {
+       $return['cpg_version'] = substr($return['cpg_version'],0,$double_slash_position);
+    }
+    $return['cpg_version'] = trim(str_replace($cpg_version_determination, '', $return['cpg_version']));
+    $return['cpg_version'] = trim(str_replace('#', '', $return['cpg_version']));
+    $return['cpg_version'] = trim(substr($return['cpg_version'], 0, strpos($return['cpg_version'], '$')));
+    /*
+    print $file;
+    print ':<font color="red">';
+    print $return['cpg_version'];
+    print "</font>";
+    print $double_slash_position;
+    print "<br />\n";
+    */
     if (strlen($return['cpg_version']) > 5) {$return['cpg_version']='n/a';}
 
-    $return['cvs_version'] = substr($blob,strpos($blob, $cvs_string));
-    $return['cvs_version'] = substr($return['cvs_version'],0,strpos($return['cvs_version'], 'Exp'));
-    $return['cvs_version'] = str_replace($cvs_string, '', $return['cvs_version']);
-    // get rid of the filename inside the string
-    $return['cvs_version'] = trim(str_replace($file.',v ', '',$return['cvs_version']));
-    $return['cvs_version'] = str_replace('v ', '', $return['cvs_version']);
-    //if ($file=='picmgmt.inc.php' || $file=='index.php') {print $folder.$file.':'.$return['cvs_version'].'<br>';}
-    $return['cvs_version'] = trim(str_replace(strstr($return['cvs_version'], ' '), '', $return['cvs_version']));
+    // Fallback to the "old" cpg version determination method if no result (for compatibility with older versions)
+    if ($return['cpg_version'] == '') {
+      $return['cpg_version'] = substr($blob,strpos($blob, 'Coppermine Photo Gallery'));
+      $return['cpg_version'] = substr($return['cpg_version'],0,strpos($return['cpg_version'], '//'));
+      $return['cpg_version'] = trim(str_replace('Coppermine Photo Gallery', '', $return['cpg_version']));
+      if (strlen($return['cpg_version']) > 5) {$return['cpg_version']='n/a';}
+    }
+
+    // Determine file (cvs) revision
+    $return['cvs_version'] = str_replace($cvs_string2, '', substr($blob,strpos($blob, $cvs_string2),25));
+    $return['cvs_version'] = trim(substr($return['cvs_version'], 0, strpos($return['cvs_version'], '$')));
+
+    // Fallback to the "old" revision determination method if no result (for compatibility with older versions)
+    if ($return['cvs_version'] == '' || !is_numeric($return['cvs_version'])) {
+      $return['cvs_version'] = substr($blob,strpos($blob, $cvs_string1));
+      $return['cvs_version'] = substr($return['cvs_version'],0,strpos($return['cvs_version'], 'Exp'));
+      $return['cvs_version'] = str_replace($cvs_string1, '', $return['cvs_version']);
+      // get rid of the filename inside the string
+      $return['cvs_version'] = trim(str_replace($file.',v ', '',$return['cvs_version']));
+      $return['cvs_version'] = str_replace('v ', '', $return['cvs_version']);
+      //if ($file=='picmgmt.inc.php' || $file=='index.php') {print $folder.$file.':'.$return['cvs_version'].'<br />';}
+      $return['cvs_version'] = trim(str_replace(strstr($return['cvs_version'], ' '), '', $return['cvs_version']));
+    }
     if (strlen($return['cvs_version']) > 5) {$return['cvs_version']='n/a';}
 
     if (file_exists($folder.$file)) {
@@ -1540,7 +1572,7 @@ $return = '
 1.3.2|upload.php|1.3.2|1.9|mandatory|r@
 1.3.2|usermgr.php|1.3.2|1.6|mandatory|r@
 1.3.2|util.php|1.3.2|1.8|mandatory|r@
-1.3.2|versioncheck.php|1.4.1|1.4|optional|r@
+1.3.2|versioncheck.php|1.4.0|1.4|optional|r@
 1.3.2|xp_publish.php|1.3.2|1.5|mandatory|r@
 1.3.2|zipdownload.php|1.3.2|1.3|mandatory|r@
 1.3.2|albums|||mandatory|w@
@@ -1724,6 +1756,234 @@ $return = '
 1.3.2|themes/water_drop/template.html||1.6|optional|r@
 1.3.2|themes/water_drop/theme.php|1.3.2|1.7|optional|r@
 1.3.2|themes/water_drop/images|||optional|r@
+1.3.3|addfav.php|1.3.3|1.6|mandatory|r@
+1.3.3|addpic.php|1.3.3|1.9|optional|r@
+1.3.3|admin.php|1.3.3|1.6|mandatory|r@
+1.3.3|albmgr.php|1.3.3|1.6|mandatory|r@
+1.3.3|anycontent.php|1.3.3|1.6|mandatory|r@
+1.3.3|banning.php|1.3.3|1.7|mandatory|r@
+1.3.3|calendar.php|1.3.3|1.4|mandatory|r@
+1.3.3|catmgr.php|1.3.3|1.7|mandatory|r@
+1.3.3|config.php|1.3.3|1.13|mandatory|r@
+1.3.3|db_ecard.php|1.3.3|1.5|mandatory|r@
+1.3.3|db_input.php|1.3.3|1.9|mandatory|r@
+1.3.3|delete.php|1.3.3|1.7|mandatory|r@
+1.3.3|displayecard.php|1.3.3|1.6|mandatory|r@
+1.3.3|displayimage.php|1.3.3|1.11|mandatory|r@
+1.3.3|ecard.php|1.3.3|1.12|mandatory|r@
+1.3.3|editOnePic.php|1.3.3|1.12|mandatory|r@
+1.3.3|editpics.php|1.3.3|1.8|mandatory|r@
+1.3.3|faq.php|1.3.3|1.4|mandatory|r@
+1.3.3|forgot_passwd.php|1.3.3|1.6|mandatory|r@
+1.3.3|getlang.php|1.3.3|1.6|mandatory|r@
+1.3.3|groupmgr.php|1.3.3|1.7|mandatory|r@
+1.3.3|image_processor.php|1.3.3|1.5|mandatory|r@
+1.3.3|index.php|1.3.3|1.17|mandatory|r@
+1.3.3|install.php|1.3.3|1.14|mandatory|r@
+1.3.3|installer.css|1.3.3|1.4|mandatory|r@
+1.3.3|login.php|1.3.3|1.6|mandatory|r@
+1.3.3|logout.php|1.3.3|1.6|mandatory|r@
+1.3.3|modifyalb.php|1.3.3|1.7|mandatory|r@
+1.3.3|phpinfo.php|1.3.3|1.6|mandatory|r@
+1.3.3|picEditor.php|1.3.3|1.4|mandatory|r@
+1.3.3|profile.php|1.3.3|1.7|mandatory|r@
+1.3.3|ratepic.php|1.3.3|1.6|mandatory|r@
+1.3.3|register.php|1.3.3|1.11|mandatory|r@
+1.3.3|reviewcom.php|1.3.3|1.6|mandatory|r@
+1.3.3|scripts.js|||mandatory|r@
+1.3.3|search.php|1.3.3|1.6|mandatory|r@
+1.3.3|searchnew.php|1.3.3|1.10|mandatory|r@
+1.3.3|showthumb.php|1.3.3|1.6|mandatory|r@
+1.3.3|thumbnails.php|1.3.3|1.6|mandatory|r@
+1.3.3|update.php|1.3.3|1.9|mandatory|r@
+1.3.3|upgrade-1.0-to-1.2.php|1.3.3|1.7|mandatory|r@
+1.3.3|upload.php|1.3.3|1.14|mandatory|r@
+1.3.3|usermgr.php|1.3.3|1.7|mandatory|r@
+1.3.3|util.php|1.3.3|1.13|mandatory|r@
+1.3.3|versioncheck.php|1.4.1|1.5|optional|r@
+1.3.3|xp_publish.php|1.3.3|1.8|mandatory|r@
+1.3.3|zipdownload.php|1.3.3|1.5|mandatory|r@
+1.3.3|albums|||mandatory|w@
+1.3.3|albums/index.html||1.2|optional|r@
+1.3.3|albums/edit|||mandatory|w@
+1.3.3|albums/edit/index.html|||optional|w@
+1.3.3|albums/userpics|||mandatory|w@
+1.3.3|albums/userpics/index.html|||optional|w@
+1.3.3|bridge|||optional|r@
+1.3.3|bridge/invisionboard.inc.php|1.3.3|1.9|optional|r@
+1.3.3|bridge/phpbb.inc.php|1.3.3|1.11|optional|r@
+1.3.3|bridge/punbb.inc.php|1.3.3|1.3|optional|r@
+1.3.3|bridge/smf.inc.php|1.3.3|1.8|optional|r@
+1.3.3|bridge/vbulletin.inc.php|1.3.3|1.7|optional|r@
+1.3.3|bridge/vbulletin23.inc.php|1.3.3|1.7|optional|r@
+1.3.3|bridge/vbulletin30.inc.php|1.3.3|1.8|optional|r@
+1.3.3|bridge/vbulletin3gamma.inc.php|1.3.3|1.6|optional|r@
+1.3.3|bridge/woltlab21.inc.php|1.3.3|1.7|optional|r@
+1.3.3|bridge/yabbse.inc.php|1.3.3|1.9|optional|r@
+1.3.3|docs|||optional|r@
+1.3.3|docs/credits.html||1.7|optional|r@
+1.3.3|docs/faq.htm||1.5|optional|r@
+1.3.3|docs/index.htm||1.7|optional|r@
+1.3.3|docs/README.html||1.7|optional|r@
+1.3.3|docs/theme.htm||1.3|optional|r@
+1.3.3|docs/translation.htm||1.3|optional|r@
+1.3.3|docs/pics|||optional|r@
+1.3.3|images|||mandatory|r@
+1.3.3|images/flags|||optional|r@
+1.3.3|images/smiles|||mandatory|r@
+1.3.3|include|||mandatory|w@
+1.3.3|include/archive.php|1.3.3|1.4|mandatory|r@
+1.3.3|include/config.inc.php|||mandatory|r@
+1.3.3|include/crop.inc.php|1.3.3|1.5|mandatory|r@
+1.3.3|include/exif_php.inc.php|1.3.3|1.7|mandatory|r@
+1.3.3|include/exifReader.inc.php|1.3.3|1.4|mandatory|r@
+1.3.3|include/functions.inc.php|1.3.3|1.24|mandatory|r@
+1.3.3|include/imageObjectGD.class.php|1.3.3|1.5|mandatory|r@
+1.3.3|include/imageObjectIM.class.php|1.3.3|1.4|mandatory|r@
+1.3.3|include/index.html|||mandatory|r@
+1.3.3|include/init.inc.php|1.3.3|1.15|mandatory|r@
+1.3.3|include/iptc.inc.php|1.3.3|1.4|mandatory|r@
+1.3.3|include/mailer.inc.php|1.3.3|1.6|mandatory|r@
+1.3.3|include/media.functions.inc.php|1.3.3|1.4|mandatory|r@
+1.3.3|include/picmgmt.inc.php|1.3.3|1.10|mandatory|r@
+1.3.3|include/search.inc.php|1.3.3|1.6|mandatory|r@
+1.3.3|include/select_lang.inc.php|1.3.3|1.7|mandatory|r@
+1.3.3|include/slideshow.inc.php|1.3.3|1.9|mandatory|r@
+1.3.3|include/smilies.inc.php|1.3.3|1.6|mandatory|r@
+1.3.3|include/sql_parse.php|1.3.3|1.6|mandatory|r@
+1.3.3|lang|||mandatory|r@
+1.3.3|lang/arabic.php|1.3.0|1.11|optional|r@
+1.3.3|lang/arabic-utf-8.php|1.3.0|1.12|optional|r@
+1.3.3|lang/brazilian_portuguese.php|1.3.0|1.9|optional|r@
+1.3.3|lang/brazilian_portuguese-utf-8.php|1.3.0|1.10|optional|r@
+1.3.3|lang/bulgarian.php|1.3.0|1.6|optional|r@
+1.3.3|lang/bulgarian-utf-8.php|1.3.2|1.8|optional|r@
+1.3.3|lang/catalan.php|1.3.2|1.6|optional|r@
+1.3.3|lang/catalan-utf-8.php|1.3.2|1.7|optional|r@
+1.3.3|lang/chinese_big5.php|1.3.2|1.11|optional|r@
+1.3.3|lang/chinese_big5-utf-8.php|1.3.2|1.12|optional|r@
+1.3.3|lang/chinese_gb.php|1.3.2|1.11|optional|r@
+1.3.3|lang/chinese_gb-utf-8.php|1.3.2|1.12|optional|r@
+1.3.3|lang/croatian.php|1.3.0|1.9|optional|r@
+1.3.3|lang/croatian-utf-8.php|1.3.0|1.10|optional|r@
+1.3.3|lang/czech.php|1.3.0|1.10|optional|r@
+1.3.3|lang/czech-utf-8.php|1.3.0|1.11|optional|r@
+1.3.3|lang/danish.php|1.3.0|1.11|optional|r@
+1.3.3|lang/danish-utf-8.php|1.3.0|1.11|optional|r@
+1.3.3|lang/dutch.php|1.3.2|1.10|optional|r@
+1.3.3|lang/dutch-utf-8.php|1.3.2|1.11|optional|r@
+1.3.3|lang/english.php|1.3.3|1.18|mandatory|r@
+1.3.3|lang/english-utf-8.php|1.3.3|1.13|optional|r@
+1.3.3|lang/estonian.php|1.3.2|1.10|optional|r@
+1.3.3|lang/estonian-utf-8.php|1.3.2|1.11|optional|r@
+1.3.3|lang/finnish.php|1.3.0|1.7|optional|r@
+1.3.3|lang/finnish-utf-8.php|1.3.0|1.8|optional|r@
+1.3.3|lang/french.php|1.3.2|1.15|optional|r@
+1.3.3|lang/french-utf-8.php|1.3.2|1.14|optional|r@
+1.3.3|lang/german.php|1.3.3|1.13|optional|r@
+1.3.3|lang/german-utf-8.php|1.3.2|1.13|optional|r@
+1.3.3|lang/german_sie.php|1.3.3|1.4|optional|r@
+1.3.3|lang/german_sie-utf-8.php|1.3.2|1.4|optional|r@
+1.3.3|lang/greek.php|1.3.0|1.8|optional|r@
+1.3.3|lang/greek-utf-8.php|1.3.0|1.9|optional|r@
+1.3.3|lang/hebrew.php|1.3.0|1.9|optional|r@
+1.3.3|lang/hebrew-utf-8.php|1.3.0|1.11|optional|r@
+1.3.3|lang/hungarian.php|1.3.0|1.8|optional|r@
+1.3.3|lang/hungarian-utf-8.php|1.3.0|1.9|optional|r@
+1.3.3|lang/indonesian.php|1.3.0|1.7|optional|r@
+1.3.3|lang/indonesian-utf-8.php|1.3.0|1.8|optional|r@
+1.3.3|lang/italian.php|1.3.0|1.10|optional|r@
+1.3.3|lang/italian-utf-8.php|1.3.0|1.11|optional|r@
+1.3.3|lang/italian2.php|1.3.0|1.3|optional|r@
+1.3.3|lang/italian2-utf-8.php|1.3.0|1.4|optional|r@
+1.3.3|lang/japanese.php|1.3.0|1.9|optional|r@
+1.3.3|lang/japanese-utf-8.php|1.3.0|1.10|optional|r@
+1.3.3|lang/kurdish.php|1.3.2|1.2|optional|r@
+1.3.3|lang/kurdish-utf-8.php|1.3.2|1.3|optional|r@
+1.3.3|lang/latvian.php|1.3.0|1.10|optional|r@
+1.3.3|lang/latvian-utf-8.php|1.3.0|1.12|optional|r@
+1.3.3|lang/malay.php|1.3.0|1.3|optional|r@
+1.3.3|lang/malay-utf-8.php|1.3.0|1.4|optional|r@
+1.3.3|lang/norwegian.php|1.4.0|1.9|optional|r@
+1.3.3|lang/norwegian-utf-8.php|1.4.0|1.10|optional|r@
+1.3.3|lang/polish.php|1.3.0|1.6|optional|r@
+1.3.3|lang/polish-utf-8.php|1.3.0|1.8|optional|r@
+1.3.3|lang/romanian.php|1.4.0|1.7|optional|r@
+1.3.3|lang/romanian-utf-8.php|1.4.0|1.8|optional|r@
+1.3.3|lang/romanian_no_diacritics.php|1.4.0|1.2|optional|r@
+1.3.3|lang/romanian_no_diacritics-utf-8.php|1.4.0|1.3|optional|r@
+1.3.3|lang/russian.php|1.3.2|1.13|optional|r@
+1.3.3|lang/russian-utf-8.php|1.3.2|1.14|optional|r@
+1.3.3|lang/slovak.php|1.3.2|1.5|optional|r@
+1.3.3|lang/slovak-utf-8.php|1.3.2|1.6|optional|r@
+1.3.3|lang/slovenian.php|1.3.0|1.7|optional|r@
+1.3.3|lang/slovenian-utf-8.php|1.3.0|1.8|optional|r@
+1.3.3|lang/spanish.php|1.3.0|1.7|optional|r@
+1.3.3|lang/spanish-utf-8.php|1.3.0|1.9|optional|r@
+1.3.3|lang/swedish.php|1.3.0|1.9|optional|r@
+1.3.3|lang/swedish-utf-8.php|1.3.0|1.10|optional|r@
+1.3.3|lang/turkish.php|1.3.2|1.8|optional|r@
+1.3.3|lang/turkish-utf-8.php|1.3.2|1.9|optional|r@
+1.3.3|lang/uighur.php|1.3.2|1.3|optional|r@
+1.3.3|lang/uighur-utf-8.php|1.3.2|1.4|optional|r@
+1.3.3|lang/vietnamese.php|1.3.2|1.5|optional|r@
+1.3.3|lang/vietnamese-utf-8.php|1.3.2|1.6|optional|r@
+1.3.3|sql/basic.sql|1.3.3|1.8|mandatory|r@
+1.3.3|sql/schema.sql|1.3.3|1.4|mandatory|r@
+1.3.3|sql/update.sql|1.3.3|1.14|mandatory|r@
+1.3.3|themes|||mandatory|r@
+1.3.3|themes/classic|||optional|r@
+1.3.3|themes/classic/style.css|1.3.3|1.2|optional|r@
+1.3.3|themes/classic/template.html|1.3.3|1.2|optional|r@
+1.3.3|themes/classic/theme.php|1.3.3|1.8|optional|r@
+1.3.3|themes/classic/images|||optional|r@
+1.3.3|themes/eyeball|||optional|r@
+1.3.3|themes/eyeball/style.css|1.3.3|1.3|optional|r@
+1.3.3|themes/eyeball/template.html|1.3.3|1.5|optional|r@
+1.3.3|themes/eyeball/theme.php|1.3.3|1.10|optional|r@
+1.3.3|themes/eyeball/images|||optional|r@
+1.3.3|themes/fruity|||optional|r@
+1.3.3|themes/fruity/style.css|1.3.3|1.3|optional|r@
+1.3.3|themes/fruity/template.html|1.3.3|1.6|optional|r@
+1.3.3|themes/fruity/theme.php|1.3.3|1.9|optional|r@
+1.3.3|themes/fruity/images|||optional|r@
+1.3.3|themes/hardwired|||optional|r@
+1.3.3|themes/hardwired/style.css|1.3.3|1.3|optional|r@
+1.3.3|themes/hardwired/template.html|1.3.3|1.7|optional|r@
+1.3.3|themes/hardwired/theme.php|1.3.3|1.12|optional|r@
+1.3.3|themes/hardwired/images|||optional|r@
+1.3.3|themes/igames|||optional|r@
+1.3.3|themes/igames/style.css|1.3.3|1.3|optional|r@
+1.3.3|themes/igames/template.html|1.3.3|1.6|optional|r@
+1.3.3|themes/igames/theme.php|1.3.3|1.11|optional|r@
+1.3.3|themes/igames/images|||optional|r@
+1.3.3|themes/mac_ox_x|||optional|r@
+1.3.3|themes/mac_ox_x/style.css|1.3.3|1.3|optional|r@
+1.3.3|themes/mac_ox_x/template.html|1.3.3|1.5|optional|r@
+1.3.3|themes/mac_ox_x/theme.php|1.3.3|1.10|optional|r@
+1.3.3|themes/mac_ox_x/images|||optional|r@
+1.3.3|themes/project_vii|||optional|r@
+1.3.3|themes/project_vii/style.css|1.3.3|1.3|optional|r@
+1.3.3|themes/project_vii/template.html|1.3.3|1.5|optional|r@
+1.3.3|themes/project_vii/theme.php|1.3.3|1.10|optional|r@
+1.3.3|themes/project_vii/images|||optional|r@
+1.3.3|themes/rainy_day|||optional|r@
+1.3.3|themes/rainy_day/style.css|1.3.3|1.3|optional|r@
+1.3.3|themes/rainy_day/template.html|1.3.3|1.7|optional|r@
+1.3.3|themes/rainy_day/theme.php|1.3.3|1.10|optional|r@
+1.3.3|themes/rainy_day/images|||optional|r@
+1.3.3|themes/styleguide|||optional|r@
+1.3.3|themes/styleguide/domLib.js|||optional|r@
+1.3.3|themes/styleguide/domTT.js|||optional|r@
+1.3.3|themes/styleguide/readme.htm||1.2|optional|r@
+1.3.3|themes/styleguide/template.html|1.3.3|1.3|optional|r@
+1.3.3|themes/styleguide/theme.php|1.3.3|1.6|optional|r@
+1.3.3|themes/styleguide/images|||optional|r@
+1.3.3|themes/water_drop|||optional|r@
+1.3.3|themes/water_drop/style.css|1.3.3|1.3|optional|r@
+1.3.3|themes/water_drop/template.html|1.3.3|1.5|optional|r@
+1.3.3|themes/water_drop/theme.php|1.3.3|1.10|optional|r@
+1.3.3|themes/water_drop/images|||optional|r@
 1.4.0|addfav.php|1.4.0|1.15|mandatory|r@
 1.4.0|addpic.php|1.4.0|1.11|mandatory|r@
 1.4.0|admin.php|1.4.0|1.14|mandatory|r@
@@ -1981,264 +2241,229 @@ $return = '
 1.4.0|themes/water_drop/style.css||1.14|optional|r@
 1.4.0|themes/water_drop/theme.php|1.4.0|1.52|optional|r@
 1.4.0|themes/water_drop/images|||optional|r@
-1.4.1|addfav.php|1.4.1|1.16|mandatory|r@
-1.4.1|addpic.php|1.4.1|1.12|mandatory|r@
-1.4.1|admin.php|1.4.1|1.15|mandatory|r@
-1.4.1|albmgr.php|1.4.1|1.14|mandatory|r@
-1.4.1|anycontent.php|1.4.1|1.12|mandatory|r@
-1.4.1|banning.php|1.4.1|1.21|mandatory|r@
-1.4.1|bridgemgr.php|1.4.1|1.14|mandatory|r@
-1.4.1|calendar.php|1.4.1|1.3|mandatory|r@
-1.4.1|catmgr.php|1.4.1|1.24|mandatory|r@
-1.4.1|db_ecard.php|1.4.1|1.12|mandatory|r@
-1.4.1|db_input.php|1.4.1|1.41|mandatory|r@
-1.4.1|delete.php|1.4.1|1.19|mandatory|r@
-1.4.1|displayecard.php|1.4.1|1.11|mandatory|r@
-1.4.1|displayimage.php|1.4.1|1.87|mandatory|r@
-1.4.1|ecard.php|1.4.1|1.29|mandatory|r@
-1.4.1|editOnePic.php|1.4.1|1.29|mandatory|r@
-1.4.1|editpics.php|1.4.1|1.31|mandatory|r@
-1.4.1|exifmgr.php|1.4.1|1.7|mandatory|r@
-1.4.1|faq.php|1.4.1|1.6|mandatory|r@
-1.4.1|forgot_passwd.php|1.4.1|1.13|mandatory|r@
-1.4.1|getlang.php|1.4.1|1.9|mandatory|r@
-1.4.1|groupmgr.php|1.4.1|1.22|mandatory|r@
-1.4.1|hitDetails.php|1.4.1|1.2|mandatory|r@
-1.4.1|image_processor.php|1.4.1|1.17|mandatory|r@
-1.4.1|index.php|1.4.1|1.73|mandatory|r@
-1.4.1|install.php|1.4.1|1.27|mandatory|r@
-1.4.1|installer.css|1.4.1|1.6|mandatory|r@
-1.4.1|keyword_create_dict.php|1.4.1|1.4|mandatory|r@
-1.4.1|keyword_select.php|1.4.1|1.4|mandatory|r@
-1.4.1|keywordmgr.php|1.4.1|1.5|mandatory|r@
-1.4.1|login.php|1.4.1|1.20|mandatory|r@
-1.4.1|logout.php|1.4.1|1.6|mandatory|r@
-1.4.1|mode.php|1.4.1|1.3|mandatory|r@
-1.4.1|modifyalb.php|1.4.1|1.25|mandatory|r@
-1.4.1|phpinfo.php|1.4.1|1.9|mandatory|r@
-1.4.1|picEditor.php|1.4.1|1.20|mandatory|r@
-1.4.1|picmgr.php|1.4.1|1.11|mandatory|r@
-1.4.1|pluginmgr.php|1.4.1|1.13|mandatory|r@
-1.4.1|profile.php|1.4.1|1.33|mandatory|r@
-1.4.1|ratepic.php|1.4.1|1.12|mandatory|r@
-1.4.1|register.php|1.4.1|1.22|mandatory|r@
-1.4.1|relocate_server.php|1.4.1|1.3|optional|r@
-1.4.1|reviewcom.php|1.4.1|1.15|mandatory|r@
-1.4.1|scripts.js|1.4.1|1.10|mandatory|r@
-1.4.1|search.php|1.4.1|1.13|mandatory|r@
-1.4.1|searchnew.php|1.4.1|1.40|mandatory|r@
-1.4.1|showthumb.php|1.4.1|1.9|mandatory|r@
-1.4.1|thumbnails.php|1.4.1|1.23|mandatory|r@
-1.4.1|update.php|1.4.1|1.18|mandatory|r@
-1.4.1|upgrade-1.0-to-1.2.php|1.4.1|1.8|mandatory|r@
-1.4.1|upload.php|1.4.1|1.62|mandatory|r@
-1.4.1|usermgr.php|1.4.1|1.31|mandatory|r@
-1.4.1|util.php|1.4.1|1.24|mandatory|r@
-1.4.1|versioncheck.php|1.4.1|1.45|mandatory|r@
-1.4.1|viewlog.php|1.4.1|1.9|mandatory|r@
-1.4.1|voteDetails.php|1.4.1|1.2|mandatory|r@
-1.4.1|xp_publish.php|1.4.1|1.24|mandatory|r@
-1.4.1|zipdownload.php|1.4.1|1.9|mandatory|r@
+1.4.1|addfav.php|1.4.1|1.17|mandatory|r@
+1.4.1|addpic.php|1.4.1|1.13|mandatory|r@
+1.4.1|admin.php|1.4.1|1.24|mandatory|r@
+1.4.1|albmgr.php|1.4.1|1.16|mandatory|r@
+1.4.1|anycontent.php|1.4.1|1.13|mandatory|r@
+1.4.1|banning.php|1.4.1|1.25|mandatory|r@
+1.4.1|bridgemgr.php|1.4.1|1.22|mandatory|r@
+1.4.1|calendar.php|1.4.1|1.11|mandatory|r@
+1.4.1|catmgr.php|1.4.1|1.25|mandatory|r@
+1.4.1|db_ecard.php|1.4.1|1.13|mandatory|r@
+1.4.1|db_input.php|1.4.1|1.49|mandatory|r@
+1.4.1|delete.php|1.4.1|1.23|mandatory|r@
+1.4.1|displayecard.php|1.4.1|1.13|mandatory|r@
+1.4.1|displayimage.php|1.4.1|1.98|mandatory|r@
+1.4.1|ecard.php|1.4.1|1.32|mandatory|r@
+1.4.1|editOnePic.php|1.4.1|1.37|mandatory|r@
+1.4.1|editpics.php|1.4.1|1.36|mandatory|r@
+1.4.1|exifmgr.php|1.4.1|1.9|mandatory|r@
+1.4.1|faq.php|1.4.1|1.7|mandatory|r@
+1.4.1|forgot_passwd.php|1.4.1|1.18|mandatory|r@
+1.4.1|getlang.php|1.4.1|1.10|mandatory|r@
+1.4.1|groupmgr.php|1.4.1|1.29|mandatory|r@
+1.4.1|image_processor.php|1.4.1|1.19|mandatory|r@
+1.4.1|index.php|1.4.1|1.84|mandatory|r@
+1.4.1|install.php|1.4.1|1.31|mandatory|r@
+1.4.1|installer.css|1.4.1|1.11|mandatory|r@
+1.4.1|keyword_create_dict.php|1.4.1|1.7|mandatory|r@
+1.4.1|keyword_select.php|1.4.1|1.7|mandatory|r@
+1.4.1|keywordmgr.php|1.4.1|1.8|mandatory|r@
+1.4.1|login.php|1.4.1|1.25|mandatory|r@
+1.4.1|logout.php|1.4.1|1.9|mandatory|r@
+1.4.1|mode.php|1.4.1|1.4|mandatory|r@
+1.4.1|modifyalb.php|1.4.1|1.29|mandatory|r@
+1.4.1|phpinfo.php|1.4.1|1.10|mandatory|r@
+1.4.1|picEditor.php|1.4.1|1.21|mandatory|r@
+1.4.1|picmgr.php|1.4.1|1.17|mandatory|r@
+1.4.1|pluginmgr.php|1.4.1|1.17|mandatory|r@
+1.4.1|profile.php|1.4.1|1.41|mandatory|r@
+1.4.1|ratepic.php|1.4.1|1.13|mandatory|r@
+1.4.1|register.php|1.4.1|1.30|mandatory|r@
+1.4.1|relocate_server.php|1.4.1|1.4|optional|r@
+1.4.1|reviewcom.php|1.4.1|1.19|mandatory|r@
+1.4.1|scripts.js|1.4.1|1.13|mandatory|r@
+1.4.1|search.php|1.4.1|1.15|mandatory|r@
+1.4.1|searchnew.php|1.4.1|1.46|mandatory|r@
+1.4.1|showthumb.php|1.4.1|1.10|mandatory|r@
+1.4.1|stat_details.php|1.4.1|1.1|mandatory|r@
+1.4.1|thumbnails.php|1.4.1|1.28|mandatory|r@
+1.4.1|update.php|1.4.1|1.22|mandatory|r@
+1.4.1|upgrade-1.0-to-1.2.php|1.4.1|1.9|mandatory|r@
+1.4.1|upload.php|1.4.1|1.66|mandatory|r@
+1.4.1|usermgr.php|1.4.1|1.45|mandatory|r@
+1.4.1|util.php|1.4.1|1.28|mandatory|r@
+1.4.1|versioncheck.php|1.4.1|1.56|mandatory|r@
+1.4.1|viewlog.php|1.4.1|1.10|mandatory|r@
+1.4.1|xp_publish.php|1.4.1|1.27|mandatory|r@
+1.4.1|zipdownload.php|1.4.1|1.10|mandatory|r@
 1.4.1|**fullpath**|||mandatory|w@
-1.4.1|**fullpath**/index.html||1.2|mandatory|w@
+1.4.1|**fullpath**/index.php|||mandatory|w@
 1.4.1|**fullpath**/edit/index.html|||mandatory|w@
 1.4.1|**fullpath**/edit|||mandatory|w@
 1.4.1|**fullpath**/edit/index.html|||mandatory|w@
 1.4.1|**fullpath**/**userpics**|||mandatory|w@
-1.4.1|**fullpath**/**userpics**/index.html||1.2|mandatory|w@
-1.4.1|bridge/invisionboard.inc.php|1.4.1|1.20|optional|r@
-1.4.1|bridge/mambo.inc.php|1.4.1|1.8|optional|r@
-1.4.1|bridge/phpbb.inc.php|1.4.1|1.30|optional|r@
-1.4.1|bridge/smf.inc.php|1.4.1|1.29|optional|r@
-1.4.1|bridge/vbulletin23.inc.php|1.4.1|1.14|optional|r@
-1.4.1|bridge/vbulletin30.inc.php|1.4.1|1.16|optional|r@
-1.4.1|bridge/woltlab21.inc.php|1.4.1|1.20|optional|r@
-1.4.1|bridge/yabbse.inc.php|1.4.1|1.32|optional|r@
+1.4.1|**fullpath**/**userpics**/index.php|||mandatory|w@
+1.4.1|bridge/invisionboard20.inc.php|1.4.1|1.6|optional|r@
+1.4.1|bridge/mambo.inc.php|1.4.1|1.15|optional|r@
+1.4.1|bridge/phpbb.inc.php|1.4.1|1.38|optional|r@
+1.4.1|bridge/phpbb22.inc.php|1.4.1|1.10|optional|r@
+1.4.1|bridge/punbb115.inc.php|1.4.1|1.5|optional|r@
+1.4.1|bridge/punbb12.inc.php|1.4.1|1.12|optional|r@
+1.4.1|bridge/smf10.inc.php|1.4.1|1.11|optional|r@
+1.4.1|bridge/udb_base.inc.php|1.4.1|1.9|optional|r@
+1.4.1|bridge/vbulletin30.inc.php|1.4.1|1.23|optional|r@
 1.4.1|docs|||mandatory|r@
 1.4.1|docs/credits.html||1.12|optional|r@
 1.4.1|docs/faq.htm|||optional|r@
 1.4.1|docs/index.htm||1.12|mandatory|r@
 1.4.1|docs/README.html||1.17|optional|r@
-1.4.1|docs/showdoc.php|1.4.1|1.11|mandatory|r@
-1.4.1|docs/theme.htm|||optional|r@
+1.4.1|docs/showdoc.php|1.4.1|1.13|mandatory|r@
+1.4.1|docs/theme.htm||1.15|optional|r@
 1.4.1|docs/translation.htm|||optional|r@
 1.4.1|docs/pics|||mandatory|r@
 1.4.1|include|||mandatory|w@
-1.4.1|include/archive.php|1.4.1|1.4|mandatory|r@
+1.4.1|include/archive.php|1.4.1|1.5|mandatory|r@
 1.4.1|include/config.inc.php|||mandatory|r@
 1.4.1|include/crop.inc.php|1.4.1|1.12|mandatory|r@
-1.4.1|include/debugger.inc.php|1.4.1|1.7|mandatory|r@
-1.4.1|include/exif.php|1.4.1|1.4|mandatory|r@
-1.4.1|include/exif_php.inc.php|1.4.1|1.14|mandatory|r@
-1.4.1|include/exifReader.inc.php|1.4.1|1.6|mandatory|r@
-1.4.1|include/functions.inc.php|1.4.1|1.141|mandatory|r@
-1.4.1|include/imageObjectGD.class.php|1.4.1|1.7|mandatory|r@
-1.4.1|include/imageObjectIM.class.php|1.4.1|1.7|mandatory|r@
-1.4.1|include/index.html|||mandatory|r@
-1.4.1|include/init.inc.php|1.4.1|1.73|mandatory|r@
-1.4.1|include/iptc.inc.php|1.4.1|1.7|mandatory|r@
-1.4.1|include/keyword.inc.php|1.4.1|1.5|mandatory|r@
-1.4.1|include/langfallback.inc.php|1.4.1|1.13|mandatory|r@
-1.4.1|include/logger.inc.php|1.4.1|1.13|mandatory|r@
-1.4.1|include/mailer.inc.php|1.4.1|1.11|mandatory|r@
-1.4.1|include/media.functions.inc.php|1.4.1|1.10|mandatory|r@
-1.4.1|include/picmgmt.inc.php|1.4.1|1.28|mandatory|r@
-1.4.1|include/plugin_api.inc.php|1.4.1|1.12|mandatory|r@
-1.4.1|include/search.inc.php|1.4.1|1.14|mandatory|r@
-1.4.1|include/select_lang.inc.php|1.4.1|1.8|mandatory|r@
-1.4.1|include/slideshow.inc.php|1.4.1|1.11|mandatory|r@
-1.4.1|include/smilies.inc.php|1.4.1|1.14|mandatory|r@
-1.4.1|include/smtp.inc.php|1.4.1|1.3|mandatory|r@
-1.4.1|include/sql_parse.php|1.4.1|1.6|mandatory|r@
-1.4.1|include/zip.lib.php|1.4.1|1.3|mandatory|r@
+1.4.1|include/debugger.inc.php|1.4.1|1.9|mandatory|r@
+1.4.1|include/exif.php|1.4.1|1.6|mandatory|r@
+1.4.1|include/exif_php.inc.php|1.4.1|1.15|mandatory|r@
+1.4.1|include/exifReader.inc.php|1.4.1|1.8|mandatory|r@
+1.4.1|include/functions.inc.php|1.4.1|1.184|mandatory|r@
+1.4.1|include/imageObjectGD.class.php|1.4.1|1.8|mandatory|r@
+1.4.1|include/imageObjectIM.class.php|1.4.1|1.8|mandatory|r@
+1.4.1|include/index.html|1.4.1|1.2|mandatory|r@
+1.4.1|include/init.inc.php|1.4.1|1.91|mandatory|r@
+1.4.1|include/iptc.inc.php|1.4.1|1.11|mandatory|r@
+1.4.1|include/keyword.inc.php|1.4.1|1.9|mandatory|r@
+1.4.1|include/langfallback.inc.php|1.4.1|1.22|mandatory|r@
+1.4.1|include/logger.inc.php|1.4.1|1.14|mandatory|r@
+1.4.1|include/mailer.inc.php|1.4.1|1.16|mandatory|r@
+1.4.1|include/media.functions.inc.php|1.4.1|1.12|mandatory|r@
+1.4.1|include/picmgmt.inc.php|1.4.1|1.31|mandatory|r@
+1.4.1|include/plugin_api.inc.php|1.4.1|1.18|mandatory|r@
+1.4.1|include/search.inc.php|1.4.1|1.20|mandatory|r@
+1.4.1|include/select_lang.inc.php|1.4.1|1.10|mandatory|r@
+1.4.1|include/slideshow.inc.php|1.4.1|1.12|mandatory|r@
+1.4.1|include/smilies.inc.php|1.4.1|1.17|mandatory|r@
+1.4.1|include/smtp.inc.php|1.4.1|1.4|mandatory|r@
+1.4.1|include/sql_parse.php|1.4.1|1.7|mandatory|r@
+1.4.1|include/themes.inc.php|1.4.1|1.29|mandatory|r@
+1.4.1|include/zip.lib.php|1.4.1|1.4|mandatory|r@
 1.4.1|include/makers|||mandatory|w@
-1.4.1|include/makers/canon.php|1.4.1|1.3|mandatory|r@
-1.4.1|include/makers/fujifilm.php|1.4.1|1.3|mandatory|r@
-1.4.1|include/makers/gps.php|1.4.1|1.3|mandatory|r@
-1.4.1|include/makers/nikon.php|1.4.1|1.3|mandatory|r@
-1.4.1|include/makers/olympus.php|1.4.1|1.3|mandatory|r@
-1.4.1|include/makers/sanyo.php|1.4.1|1.3|mandatory|r@
+1.4.1|include/makers/canon.php|1.4.1|1.6|mandatory|r@
+1.4.1|include/makers/fujifilm.php|1.4.1|1.6|mandatory|r@
+1.4.1|include/makers/gps.php|1.4.1|1.6|mandatory|r@
+1.4.1|include/makers/nikon.php|1.4.1|1.6|mandatory|r@
+1.4.1|include/makers/olympus.php|1.4.1|1.6|mandatory|r@
+1.4.1|include/makers/sanyo.php|1.4.1|1.6|mandatory|r@
 1.4.1|lang|||mandatory|r@
-1.4.1|lang/arabic.php|1.3.0|1.5|optional|r@
-1.4.1|lang/arabic-utf-8.php|1.3.0|1.5|optional|r@
-1.4.1|lang/brazilian_portuguese.php|1.3.0|1.6|optional|r@
-1.4.1|lang/brazilian_portuguese-utf-8.php|1.3.0|1.7|optional|r@
-1.4.1|lang/bulgarian.php|1.3.0|1.5|optional|r@
-1.4.1|lang/bulgarian-utf-8.php|1.3.2|1.7|optional|r@
-1.4.1|lang/chinese_big5.php|1.3.2|1.6|optional|r@
-1.4.1|lang/chinese_big5-utf-8.php|1.3.0|1.8|optional|r@
-1.4.1|lang/chinese_gb.php|1.3.2|1.6|optional|r@
-1.4.1|lang/chinese_gb-utf-8.php|1.3.0|1.7|optional|r@
-1.4.1|lang/catalan.php|1.3.2|1.1|optional|r@
-1.4.1|lang/catalan-utf-8.php|1.3.2|1.3|optional|r@
-1.4.1|lang/croatian.php|1.3.0|1.5|optional|r@
-1.4.1|lang/croatian-utf-8.php|1.3.0|1.8|optional|r@
-1.4.1|lang/czech.php|1.3.0|1.6|optional|r@
-1.4.1|lang/czech-utf-8.php|1.3.0|1.8|optional|r@
-1.4.1|lang/danish.php|1.3.0|1.11|optional|r@
-1.4.1|lang/danish-utf-8.php|1.3.0|1.8|optional|r@
-1.4.1|lang/dutch.php|1.3.2|1.12|optional|r@
-1.4.1|lang/dutch-utf-8.php|1.3.2|1.14|optional|r@
-1.4.1|lang/english.php|1.4.1|1.224|mandatory|r@
-1.4.1|lang/english-utf-8.php|1.3.0|1.16|mandatory|r@
-1.4.1|lang/estonian.php|1.3.2|1.6|optional|r@
-1.4.1|lang/estonian-utf-8.php|1.3.2|1.7|optional|r@
-1.4.1|lang/finnish.php|1.3.0|1.5|optional|r@
-1.4.1|lang/finnish-utf-8.php|1.3.0|1.7|optional|r@
-1.4.1|lang/french.php|1.3.2|1.18|optional|r@
-1.4.1|lang/french-utf-8.php|1.3.2|1.17|optional|r@
-1.4.1|lang/german.php|1.3.2|1.19|optional|r@
-1.4.1|lang/german-utf-8.php|1.3.2|1.22|optional|r@
-1.4.1|lang/german_sie.php|1.3.2|1.2|optional|r@
-1.4.1|lang/german_sie-utf-8.php|1.3.2|1.4|optional|r@
-1.4.1|lang/greek.php|1.3.0|1.7|optional|r@
-1.4.1|lang/greek-utf-8.php|1.3.0|1.9|optional|r@
-1.4.1|lang/hebrew.php|1.3.0|1.6|optional|r@
-1.4.1|lang/hebrew-utf-8.php|1.3.0|1.10|optional|r@
-1.4.1|lang/hungarian.php|1.3.0|1.8|optional|r@
-1.4.1|lang/hungarian-utf-8.php|1.3.0|1.11|optional|r@
-1.4.1|lang/indonesian.php|1.3.0|1.5|optional|r@
-1.4.1|lang/indonesian-utf-8.php|1.3.0|1.8|optional|r@
-1.4.1|lang/italian.php|1.3.0|1.7|optional|r@
-1.4.1|lang/italian-utf-8.php|1.3.0|1.9|optional|r@
-1.4.1|lang/italian2.php|1.3.0|1.1|optional|r@
-1.4.1|lang/italian2-utf-8.php|1.3.0|1.3|optional|r@
-1.4.1|lang/japanese.php|1.3.0|1.5|optional|r@
-1.4.1|lang/japanese-utf-8.php|1.3.0|1.8|optional|r@
-1.4.1|lang/latvian.php|1.3.0|1.7|optional|r@
-1.4.1|lang/latvian-utf-8.php|1.3.0|1.7|optional|r@
-1.4.1|lang/malay.php|1.3.0|1.1|optional|r@
-1.4.1|lang/malay-utf-8.php|1.3.0|1.2|optional|r@
-1.4.1|lang/norwegian.php|1.4.0|1.8|optional|r@
-1.4.1|lang/norwegian-utf-8.php|1.4.0|1.10|optional|r@
-1.4.1|lang/polish.php|1.3.0|1.4|optional|r@
-1.4.1|lang/polish-utf-8.php|1.3.0|1.5|optional|r@
-1.4.1|lang/romanian.php|1.4.0|1.4|optional|r@
-1.4.1|lang/romanian-utf-8.php|1.4.0|1.6|optional|r@
-1.4.1|lang/romanian_no_diacritics.php|1.4.0|1.1|optional|r@
-1.4.1|lang/romanian_no_diacritics-utf-8.php|1.4.0|1.2|optional|r@
-1.4.1|lang/russian.php|1.3.2|1.7|optional|r@
-1.4.1|lang/russian-utf-8.php|1.3.2|1.9|optional|r@
-1.4.1|lang/slovak.php|1.3.2|1.2|optional|r@
-1.4.1|lang/slovak-utf-8.php|1.3.2|1.4|optional|r@
-1.4.1|lang/slovenian.php|1.3.0|1.10|optional|r@
-1.4.1|lang/slovenian-utf-8.php|1.3.0|1.10|optional|r@
-1.4.1|lang/spanish.php|1.3.0|1.8|optional|r@
-1.4.1|lang/spanish-utf-8.php|1.3.0|1.10|optional|r@
-1.4.1|lang/swedish.php|1.3.0|1.6|optional|r@
-1.4.1|lang/swedish-utf-8.php|1.3.0|1.6|optional|r@
-1.4.1|lang/turkish.php|1.3.2|1.5|optional|r@
-1.4.1|lang/turkish-utf-8.php|1.3.2|1.7|optional|r@
-1.4.1|lang/uighur.php|1.3.2|1.2|optional|r@
-1.4.1|lang/uighur-utf-8.php|1.3.2|1.4|optional|r@
-1.4.1|lang/vietnamese.php|1.3.2|1.1|optional|r@
-1.4.1|lang/vietnamese-utf-8.php|1.3.2|1.3|optional|r@
+1.4.1|lang/arabic.php|1.4.1|1.6|optional|r@
+1.4.1|lang/brazilian_portuguese.php|1.4.1|1.8|optional|r@
+1.4.1|lang/bulgarian.php|1.4.1|1.6|optional|r@
+1.4.1|lang/chinese_big5.php|1.4.1|1.8|optional|r@
+1.4.1|lang/chinese_gb.php|1.4.1|1.7|optional|r@
+1.4.1|lang/catalan.php|1.4.1|1.3|optional|r@
+1.4.1|lang/croatian.php|1.4.1|1.6|optional|r@
+1.4.1|lang/czech.php|1.4.1|1.7|optional|r@
+1.4.1|lang/danish.php|1.4.1|1.13|optional|r@
+1.4.1|lang/dutch.php|1.4.1|1.14|optional|r@
+1.4.1|lang/english.php|1.4.1|1.278|mandatory|r@
+1.4.1|lang/estonian.php|1.4.1|1.7|optional|r@
+1.4.1|lang/finnish.php|1.4.1|1.7|optional|r@
+1.4.1|lang/french.php|1.4.1|1.21|optional|r@
+1.4.1|lang/german.php|1.4.1|1.21|optional|r@
+1.4.1|lang/german_sie.php|1.4.1|1.4|optional|r@
+1.4.1|lang/greek.php|1.4.1|1.8|optional|r@
+1.4.1|lang/hebrew.php|1.4.1|1.7|optional|r@
+1.4.1|lang/hungarian.php|1.4.1|1.9|optional|r@
+1.4.1|lang/indonesian.php|1.4.1|1.7|optional|r@
+1.4.1|lang/italian.php|1.4.1|1.9|optional|r@
+1.4.1|lang/italian2.php|1.4.1|1.3|optional|r@
+1.4.1|lang/japanese.php|1.4.1|1.6|optional|r@
+1.4.1|lang/latvian.php|1.4.1|1.8|optional|r@
+1.4.1|lang/malay.php|1.4.1|1.3|optional|r@
+1.4.1|lang/norwegian.php|1.4.1|1.10|optional|r@
+1.4.1|lang/persian.php|1.3.2|1.1|optional|r@
+1.4.1|lang/polish.php|1.4.1|1.5|optional|r@
+1.4.1|lang/romanian.php|1.4.1|1.5|optional|r@
+1.4.1|lang/romanian_no_diacritics.php|1.4.1|1.2|optional|r@
+1.4.1|lang/russian.php|1.4.1|1.8|optional|r@
+1.4.1|lang/slovak.php|1.4.1|1.3|optional|r@
+1.4.1|lang/slovenian.php|1.4.1|1.11|optional|r@
+1.4.1|lang/spanish.php|1.4.1|1.10|optional|r@
+1.4.1|lang/swedish.php|1.4.1|1.8|optional|r@
+1.4.1|lang/thai.php|1.3.2|1.5|optional|r@
+1.4.1|lang/turkish.php|1.4.1|1.6|optional|r@
+1.4.1|lang/uighur.php|1.4.1|1.3|optional|r@
+1.4.1|lang/vietnamese.php|1.4.1|1.3|optional|r@
+1.4.1|lang/welsh.php|1.3.2|1.2|optional|r@
 1.4.1|logs|||mandatory|w@
-1.4.1|logs/log_header.inc.php|1.4.1|1.4|mandatory|r@
+1.4.1|logs/log_header.inc.php|1.4.1|1.5|mandatory|r@
 1.4.1|plugins|||optional|r@
 1.4.1|plugins/sample|||optional|r@
-1.4.1|plugins/sample/codebase.php|1.4.1|1.6|optional|r@
-1.4.1|plugins/sample/credits.php|1.4.1|1.3|optional|r@
+1.4.1|plugins/sample/codebase.php|1.4.1|1.8|optional|r@
+1.4.1|plugins/sample/configuration.php|1.4.1|1.1|optional|r@
 1.4.1|plugins/sef_urls|||optional|r@
-1.4.1|plugins/sef_urls/codebase.php|1.4.1|1.5|optional|r@
-1.4.1|plugins/sef_urls/credits.php|1.4.1|1.3|optional|r@
-1.4.1|plugins/sef_urls/ht.txt|||optional|r@
+1.4.1|plugins/sef_urls/codebase.php|1.4.1|1.7|optional|r@
+1.4.1|plugins/sef_urls/configuration.php|1.4.1|1.1|optional|r@
+1.4.1|plugins/sef_urls/ht.txt|1.4.1|1.3|optional|r@
 1.4.1|sql|||mandatory|r@
-1.4.1|sql/basic.sql||1.49|mandatory|r@
-1.4.1|sql/schema.sql||1.23|mandatory|r@
-1.4.1|sql/update.sql||1.74|mandatory|r@
+1.4.1|sql/basic.sql|1.4.1|1.86|mandatory|r@
+1.4.1|sql/schema.sql|1.4.1|1.37|mandatory|r@
+1.4.1|sql/update.sql|1.4.1|1.115|mandatory|r@
 1.4.1|themes|||mandatory|r@
 1.4.1|themes/classic|||optional|r@
-1.4.1|themes/classic/style.css||1.9|optional|r@
+1.4.1|themes/classic/style.css|1.4.1|1.16|optional|r@
 1.4.1|themes/classic/template.html||1.9|optional|r@
-1.4.1|themes/classic/theme.php|1.4.1|1.47|optional|r@
+1.4.1|themes/classic/theme.php|1.4.1|1.70|optional|r@
 1.4.1|themes/classic/images|||optional|r@
 1.4.1|themes/eyeball|||optional|r@
-1.4.1|themes/eyeball/style.css||1.15|optional|r@
+1.4.1|themes/eyeball/style.css|1.4.1|1.21|optional|r@
 1.4.1|themes/eyeball/template.html||1.8|optional|r@
-1.4.1|themes/eyeball/theme.php|1.4.1|1.60|optional|r@
+1.4.1|themes/eyeball/theme.php|1.4.1|1.64|optional|r@
 1.4.1|themes/eyeball/images|||optional|r@
 1.4.1|themes/fruity|||optional|r@
-1.4.1|themes/fruity/style.css||1.14|optional|r@
+1.4.1|themes/fruity/style.css|1.4.1|1.20|optional|r@
 1.4.1|themes/fruity/template.html||1.8|optional|r@
-1.4.1|themes/fruity/theme.php|1.4.1|1.59|optional|r@
+1.4.1|themes/fruity/theme.php|1.4.1|1.61|optional|r@
 1.4.1|themes/fruity/images|||optional|r@
 1.4.1|themes/hardwired|||optional|r@
-1.4.1|themes/hardwired/style.css||1.17|optional|r@
+1.4.1|themes/hardwired/style.css|1.4.1|1.23|optional|r@
 1.4.1|themes/hardwired/template.html||1.9|optional|r@
-1.4.1|themes/hardwired/theme.php|1.4.1|1.59|optional|r@
+1.4.1|themes/hardwired/theme.php|1.4.1|1.66|optional|r@
 1.4.1|themes/hardwired/images|||optional|r@
 1.4.1|themes/igames|||optional|r@
-1.4.1|themes/igames/style.css||1.17|optional|r@
+1.4.1|themes/igames/style.css|1.4.1|1.23|optional|r@
 1.4.1|themes/igames/template.html||1.9|optional|r@
-1.4.1|themes/igames/theme.php|1.4.1|1.63|optional|r@
+1.4.1|themes/igames/theme.php|1.4.1|1.67|optional|r@
 1.4.1|themes/igames/images|||optional|r@
 1.4.1|themes/mac_ox_x|||optional|r@
-1.4.1|themes/mac_ox_x/style.css||1.15|optional|r@
+1.4.1|themes/mac_ox_x/style.css|1.4.1|1.21|optional|r@
 1.4.1|themes/mac_ox_x/template.html||1.8|optional|r@
-1.4.1|themes/mac_ox_x/theme.php|1.4.1|1.57|optional|r@
+1.4.1|themes/mac_ox_x/theme.php|1.4.1|1.62|optional|r@
 1.4.1|themes/mac_ox_x/images|||optional|r@
 1.4.1|themes/classic|||optional|r@
-1.4.1|themes/project_vii/style.css||1.17|optional|r@
+1.4.1|themes/project_vii/style.css|1.4.1|1.25|optional|r@
 1.4.1|themes/project_vii/template.html||1.7|optional|r@
-1.4.1|themes/project_vii/theme.php|1.4.1|1.57|optional|r@
+1.4.1|themes/project_vii/theme.php|1.4.1|1.61|optional|r@
 1.4.1|themes/project_vii/images|||optional|r@
 1.4.1|themes/rainy_day|||optional|r@
-1.4.1|themes/rainy_day/style.css||1.16|optional|r@
+1.4.1|themes/rainy_day/style.css|1.4.1|1.22|optional|r@
 1.4.1|themes/rainy_day/template.html||1.6|optional|r@
-1.4.1|themes/rainy_day/theme.php|1.4.1|1.61|optional|r@
+1.4.1|themes/rainy_day/theme.php|1.4.1|1.64|optional|r@
 1.4.1|themes/rainy_day/images|||optional|r@
-1.4.1|themes/styleguide|||optional|r@
-1.4.1|themes/styleguide/domLib.js|||optional|r@
-1.4.1|themes/styleguide/domTT.js|||optional|r@
-1.4.1|themes/styleguide/readme.htm||1.2|optional|r@
-1.4.1|themes/styleguide/template.html||1.4|optional|r@
-1.4.1|themes/styleguide/theme.php|1.4.1|1.41|optional|r@
-1.4.1|themes/styleguide/images|||optional|r@
+1.4.1|themes/sample|||optional|r@
+1.4.1|themes/sample/style.css|1.4.1|1.1|optional|r@
+1.4.1|themes/sample/template.html|||optional|r@
+1.4.1|themes/sample/theme.php|1.4.1|1.1|optional|r@
+1.4.1|themes/sample/images|||optional|r@
 1.4.1|themes/water_drop|||optional|r@
-1.4.1|themes/water_drop/style.css||1.16|optional|r@
+1.4.1|themes/water_drop/style.css|1.4.1|1.21|optional|r@
 1.4.1|themes/water_drop/template.html||1.15|optional|r@
-1.4.1|themes/water_drop/theme.php|1.4.1|1.61|optional|r@
+1.4.1|themes/water_drop/theme.php|1.4.1|1.64|optional|r@
 1.4.1|themes/water_drop/images|||optional|r@
 ';
 return $return;
