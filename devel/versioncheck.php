@@ -2294,7 +2294,7 @@ $return = '
 1.4.1|upload.php|1.4.1|1.66|mandatory|r@
 1.4.1|usermgr.php|1.4.1|1.45|mandatory|r@
 1.4.1|util.php|1.4.1|1.28|mandatory|r@
-1.4.1|versioncheck.php|1.4.1|1.57|mandatory|r@
+1.4.1|versioncheck.php|1.4.1|1.58|mandatory|r@
 1.4.1|viewlog.php|1.4.1|1.10|mandatory|r@
 1.4.1|xp_publish.php|1.4.1|1.27|mandatory|r@
 1.4.1|zipdownload.php|1.4.1|1.10|mandatory|r@
@@ -2306,7 +2306,10 @@ $return = '
 1.4.1|**fullpath**/**userpics**|||mandatory|w@
 1.4.1|**fullpath**/**userpics**/index.php|||mandatory|w@
 1.4.1|bridge/invisionboard20.inc.php|1.4.1|1.6|optional|r@
+1.4.1|bridge/coppermine.inc.php|1.4.1|1.15|mandatory|r@
+1.4.1|bridge/eblah.inc.php|1.4.1|1.2|optional|r@
 1.4.1|bridge/mambo.inc.php|1.4.1|1.15|optional|r@
+1.4.1|bridge/mybb.inc.php|1.4.1|1.2|optional|r@
 1.4.1|bridge/phpbb.inc.php|1.4.1|1.38|optional|r@
 1.4.1|bridge/phpbb22.inc.php|1.4.1|1.10|optional|r@
 1.4.1|bridge/punbb115.inc.php|1.4.1|1.5|optional|r@
@@ -2314,6 +2317,8 @@ $return = '
 1.4.1|bridge/smf10.inc.php|1.4.1|1.11|optional|r@
 1.4.1|bridge/udb_base.inc.php|1.4.1|1.9|optional|r@
 1.4.1|bridge/vbulletin30.inc.php|1.4.1|1.23|optional|r@
+1.4.1|bridge/xmb.inc.php|1.4.1|1.2|optional|r@
+1.4.1|bridge/xoops.inc.php|1.4.1|1.2|optional|r@
 1.4.1|docs|||mandatory|r@
 1.4.1|docs/credits.html||1.12|optional|r@
 1.4.1|docs/faq.htm|||optional|r@
