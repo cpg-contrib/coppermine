@@ -49,6 +49,9 @@ $lang_byte_units = array_merge($lang_byte_units_en, $lang_byte_units);
 $lang_day_of_week_en = cpg_get_default_lang_var('lang_day_of_week','english');
 $lang_day_of_week = array_merge($lang_day_of_week_en, $lang_day_of_week);
 
+$lang_month_en = cpg_get_default_lang_var('lang_month','english');
+$lang_month = array_merge($lang_month_en, $lang_month);
+
 
 $lang_meta_album_names_en = cpg_get_default_lang_var('lang_meta_album_names','english');
 $lang_meta_album_names = array_merge($lang_meta_album_names_en, $lang_meta_album_names);
@@ -152,10 +155,7 @@ if (defined('ADMIN_PHP')) {
   $lang_admin_php = array_merge($lang_admin_php_en, $lang_admin_php);
 }
 
-if (defined('ADMIN_PHP')) {
-  $lang_admin_data_en = cpg_get_default_lang_var('lang_admin_data','english');
-  $lang_admin_data = array_merge($lang_admin_data_en, $lang_admin_data);
-}
+
 
 // ------------------------------------------------------------------------- //
 // File calendar.php
@@ -498,6 +498,18 @@ if (defined('HITDETAILS_PHP')) {
 if (defined('XP_PUBLISH_PHP')) {
   $lang_xp_publish_php_en = cpg_get_default_lang_var('lang_xp_publish_php','english');
   $lang_xp_publish_php = array_merge($lang_xp_publish_php_en, $lang_xp_publish_php);
+  $lang_xp_publish_required_en = cpg_get_default_lang_var('lang_xp_publish_required','english');
+  $lang_xp_publish_required = array_merge($lang_xp_publish_required_en, $lang_xp_publish_required);
+  $lang_xp_publish_client_en = cpg_get_default_lang_var('lang_xp_publish_client','english');
+  $lang_xp_publish_client = array_merge($lang_xp_publish_client_en, $lang_xp_publish_client);
+  $lang_xp_publish_select_en = cpg_get_default_lang_var('lang_xp_publish_select','english');
+  $lang_xp_publish_select = array_merge($lang_xp_publish_select_en, $lang_xp_publish_select);
+  $lang_xp_publish_testing_en = cpg_get_default_lang_var('lang_xp_publish_testing','english');
+  $lang_xp_publish_testing = array_merge($lang_xp_publish_testing_en, $lang_xp_publish_testing);
+  $lang_xp_publish_notes_en = cpg_get_default_lang_var('lang_xp_publish_notes','english');
+  $lang_xp_publish_notes = array_merge($lang_xp_publish_notes_en, $lang_xp_publish_notes);
+  $lang_xp_publish_flood_en = cpg_get_default_lang_var('lang_xp_publish_flood','english');
+  $lang_xp_publish_flood = array_merge($lang_xp_publish_flood_en, $lang_xp_publish_flood);
 }
 
 ?>
