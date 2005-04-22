@@ -372,7 +372,7 @@ $template_film_strip = <<<EOT
          <td valign="top" style="background-image: url({TILE2});" align="center" height='30'>&nbsp;</td>
         </tr>
 <!-- BEGIN thumb_cell -->
-                <td>
+                <td valign="top" align="center">
                                         <a href="{LINK_TGT}">{THUMB}</a>&nbsp;
                                         {CAPTION}
                                         {ADMIN_MENU}
