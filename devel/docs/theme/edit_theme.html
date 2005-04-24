@@ -165,6 +165,22 @@ directly.</p>
         </li>
 
         <li>
+          define('THEME_HAS_FILM_STRIP_GRAPHIC', 1); 
+
+            <p>The location for the film strip graphic will be directed to the themes images folder.</p>
+
+          <ul>
+            <li>tile : images/tile.gif</li>
+          </ul>
+
+          <p>This
+define specifies a single tile to be used for both locations.</p>
+
+          <h6>if your theme's images folder contains the above filename insert this define</h6>
+          <pre>define('THEME_HAS_FILM_STRIP_GRAPHIC', 1);
+</pre>
+        </li>
+<li>
           define('THEME_HAS_FILM_STRIP_GRAPHICS', 1); 
 
           <p>The location for the film strip graphics will be directed to the themes images folder.</p>
@@ -176,12 +192,9 @@ directly.</p>
           </ul>
 
           <p>This
-define specifies TWO tiles. Your theme may only have one and use it for
-both spots. You will either need to create a copy and name them to
-conform to the define or you will need to modify the film_strip
-template directly.</p>
+define specifies TWO tiles. </p>
 
-          <h6>if your theme's images folder contain these filenames insert the define</h6>
+          <h6>if your theme's images folder contains these filenames insert this define</h6>
           <pre>define('THEME_HAS_FILM_STRIP_GRAPHICS', 1);
 </pre>
         </li>
@@ -194,7 +207,7 @@ the theme is defined as XHTML10_TRANSITIONAL the VANITY footer will be
 enabled. You shouldn't enable this until you've been able to follow the
 validation methodology discussed later in this document.</p>
 
-          <h6>if your theme has passed the validation methodology insert the define:</h6>
+          <h6>if your theme has passed the validation methodology insert this define:</h6>
           <pre>define('THEME_IS_XHTML10_TRANSITIONAL',1);
 </pre>
         </li>

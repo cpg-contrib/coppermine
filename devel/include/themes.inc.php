@@ -40,6 +40,9 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}         //{THEMES
 //    Ecard                : images/ecard.gif
 //    Previous             : images/prev.gif
 //    Next                 : images/next.gif
+// ('THEME_HAS_FILM_STRIP_GRAPHIC', 1) : The location for the film strip graphics will
+//    be directed to the themes images folder.
+//    tile                 : images/tile.gif
 // ('THEME_HAS_FILM_STRIP_GRAPHICS', 1) : The location for the film strip graphics will
 //    be directed to the themes images folder.
 //    tile on the top      : images/tile1.gif
@@ -357,23 +360,25 @@ if (!isset($template_film_strip))  //{THEMES}
 $template_film_strip = <<<EOT
 
         <tr>
-         <td valign="top" style="background-image: url({TILE1});" align="center" height='30'>&nbsp;</td>
+         <td valign="top" style="background-image: url({TILE1});"><img src="{TILE1}" alt="" border="0" /></td>
         </tr>
         <tr>
         <td valign="bottom" class="thumbnails" align="center">
-          <table width="100%" cellspacing="0" cellpadding="0">
+          <table width="100%" cellspacing="0" cellpadding="3" border="0">
               <tr>
+                 <td width="50%"></td>
                  {THUMB_STRIP}
+                 <td width="50%"></td>
               </tr>
           </table>
         </td>
         </tr>
         <tr>
-         <td valign="top" style="background-image: url({TILE2});" align="center" height='30'>&nbsp;</td>
+         <td valign="top" style="background-image: url({TILE2});"><img src="{TILE2}" alt="" border="0" /></td>
         </tr>
 <!-- BEGIN thumb_cell -->
                 <td valign="top" align="center">
-                                        <a href="{LINK_TGT}">{THUMB}</a>&nbsp;
+                                        <a href="{LINK_TGT}">{THUMB}</a>
                                         {CAPTION}
                                         {ADMIN_MENU}
                 </td>
@@ -627,6 +632,7 @@ if (!isset($template_img_navbar))  //{THEMES}
 $template_img_navbar = <<<EOT
 
         <tr>
+                <td>
                 <a name="top_display_media"><td align="center" valign="middle" class="navmenu" width="48px"></a>
                         <a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="{LOCATION}images/thumbnails.gif" align="middle" border="0px" alt="{THUMB_TITLE}" /></a>
                 </td>
@@ -1877,8 +1883,10 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     }
 
     if (defined('THEME_HAS_FILM_STRIP_GRAPHICS')) {
-                $tile1 = $THEME_DIR . 'images/tile1.gif';
-                $tile2 = $THEME_DIR . 'images/tile2.gif';
+        $tile1 = $THEME_DIR . 'images/tile1.gif';
+        $tile2 = $THEME_DIR . 'images/tile2.gif';
+    } elseif (defined('THEME_HAS_FILM_STRIP_GRAPHIC')) {
+        $tile1=$tile2=$THEME_DIR . 'images/tile.gif';
     } else {
         $tile1=$tile2= 'images/tile.gif';
     }
