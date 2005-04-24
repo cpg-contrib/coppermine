@@ -282,4 +282,5 @@ Fixed custom thumbs in directories that have spaces - 10 April 2005, Donnoman
 Fixed notices coming from create_session in the bridge files  - 10 April 2005, Donnoman
 Added <span> to alblink so that it's selector will work like the other anchor selectors - 10 April 2005, Donnoman
 Changed themes/classic => themes/sample, themes/core => themes/classic, excluded 'sample' from the themeSelect, 10 April 2005, Donnoman
-Fixed require path to 'udb_base.inc.php' in the bridge files, 10 April 2005, Donnoman
+Fixed require path to 'udb_base.inc.php' in the bridge files - 10 April 2005, Donnoman
+Added plugin hook in picmgmt.inc.php 'add_file_data' - 24 April 2005, Donnoman
