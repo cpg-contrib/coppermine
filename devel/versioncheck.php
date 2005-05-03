@@ -2376,6 +2376,7 @@ $return = '
 1.4.1|lang/danish.php|1.4.1|1.13|optional|r@
 1.4.1|lang/dutch.php|1.4.1|1.14|optional|r@
 1.4.1|lang/english.php|1.4.1|1.278|mandatory|r@
+1.4.1|lang/english_gb.php|1.4.1|1.2|optional|r@
 1.4.1|lang/estonian.php|1.4.1|1.7|optional|r@
 1.4.1|lang/finnish.php|1.4.1|1.7|optional|r@
 1.4.1|lang/french.php|1.4.1|1.21|optional|r@
