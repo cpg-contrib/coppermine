@@ -2080,7 +2080,7 @@ $return = '
 1.4.0|include/init.inc.php|1.4.0|1.71|mandatory|r@
 1.4.0|include/iptc.inc.php|1.4.0|1.6|mandatory|r@
 1.4.0|include/keyword.inc.php|1.4.0|1.4|mandatory|r@
-1.4.0|include/langfallback.inc.php|1.4.0|1.11|mandatory|r@
+1.4.0|include/langfallback.inc.php|1.4.0|1.24|mandatory|r@
 1.4.0|include/logger.inc.php|1.4.0|1.12|mandatory|r@
 1.4.0|include/mailer.inc.php|1.4.0|1.10|mandatory|r@
 1.4.0|include/media.functions.inc.php|1.4.0|1.9|mandatory|r@
@@ -2343,7 +2343,7 @@ $return = '
 1.4.1|include/init.inc.php|1.4.1|1.91|mandatory|r@
 1.4.1|include/iptc.inc.php|1.4.1|1.11|mandatory|r@
 1.4.1|include/keyword.inc.php|1.4.1|1.9|mandatory|r@
-1.4.1|include/langfallback.inc.php|1.4.1|1.22|mandatory|r@
+1.4.1|include/langfallback.inc.php|1.4.1|1.24|mandatory|r@
 1.4.1|include/logger.inc.php|1.4.1|1.14|mandatory|r@
 1.4.1|include/mailer.inc.php|1.4.1|1.16|mandatory|r@
 1.4.1|include/media.functions.inc.php|1.4.1|1.12|mandatory|r@

@@ -137,6 +137,17 @@ if (defined('BANNING_PHP')) {
   $lang_banning_php = array_merge($lang_banning_php_en, $lang_banning_php);
 }
 
+
+// ------------------------------------------------------------------------- //
+// File bridgemgr.php
+// ------------------------------------------------------------------------- //
+
+if (defined('BRIDGEMGR_PHP')) {
+  $lang_bridgemgr_php_en = cpg_get_default_lang_var('lang_bridgemgr_php','english');
+  $lang_bridgemgr_php = array_merge($lang_bridgemgr_php_en, $lang_bridgemgr_php);
+}
+
+
 // ------------------------------------------------------------------------- //
 // File catmgr.php
 // ------------------------------------------------------------------------- //
