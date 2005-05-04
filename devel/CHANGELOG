@@ -285,3 +285,4 @@ Changed themes/classic => themes/sample, themes/core => themes/classic, excluded
 Fixed require path to 'udb_base.inc.php' in the bridge files - 10 April 2005, Donnoman
 Added plugin hook in picmgmt.inc.php 'add_file_data' - 24 April 2005, Donnoman
 Added define('THEME_HAS_FILM_STRIP_GRAPHIC', 1); adjusted filmstrip template - 24 April 2005, Donnoman
+Added fix for sort order of rated thumbs with identical rating - 04 May 2005, GauGau
