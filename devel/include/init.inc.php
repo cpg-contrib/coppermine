@@ -220,6 +220,10 @@ define('UDB_INTEGRATION', $BRIDGE['short_name']);
 
 require_once 'bridge/' . UDB_INTEGRATION . '.inc.php';
 
+/*
+
+Removed temporarily due to non-compliance with bridging system - Nibbler
+
 // Retrieve Array of Admin Groups (used for hiding admin usernames on thumbnails)
 $results = cpg_db_query("SELECT group_id FROM {$CONFIG['TABLE_USERGROUPS']} WHERE has_admin_access ");
 $CONFIG['ADMIN_GROUPS']=array();
@@ -235,6 +239,8 @@ while ($row = mysql_fetch_array($results)) {
     $CONFIG['ADMIN_USERS'][] = $row['user_id'];
 } // while
 mysql_free_result($results);
+
+*/
 
 // Start output buffering
 ob_start('cpg_filter_page_html');
