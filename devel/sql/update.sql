@@ -123,7 +123,7 @@ INSERT INTO CPG_config VALUES ('display_film_strip_filename', '0');
 INSERT INTO CPG_config VALUES ('max_film_strip_items', '5');
 INSERT INTO CPG_config VALUES ('read_iptc_data', '0');
 INSERT INTO CPG_config VALUES ('display_uploader', '0');
-INSERT INTO CPG_config VALUES ('display_admin_uploader','0');
+# INSERT INTO CPG_config VALUES ('display_admin_uploader','0');
 INSERT INTO CPG_config VALUES ('display_filename','0');
 
 #gtroll wil implement
