@@ -202,6 +202,62 @@ class cpg_udb extends core_udb {
 
 	function view_users() {}
 	function view_profile() {}
+	
+	
+	function get_users($options = array())
+    {
+    	global $CONFIG;
+		
+
+		// Copy UDB fields and config variables (just to make it easier to read)
+    	$f =& $this->field;
+		$C =& $CONFIG;
+		
+		// Sort codes
+        $sort_codes = array('name_a' => 'user_name ASC',
+                            'name_d' => 'user_name DESC',
+                            'group_a' => 'group_name ASC',
+                            'group_d' => 'group_name DESC',
+                            'reg_a' => 'user_regdate ASC',
+                            'reg_d' => 'user_regdate DESC',
+                            'pic_a' => 'pic_count ASC',
+                            'pic_d' => 'pic_count DESC',
+                            'disku_a' => 'disk_usage ASC',
+                            'disku_d' => 'disk_usage DESC',
+                            'lv_a' => 'user_lastvisit ASC',
+                            'lv_d' => 'user_lastvisit DESC',
+                           );
+        
+		// Build WHERE clause, if this is a username search
+        if ($options['search']) {
+            $options['search'] = 'WHERE u.'.$f['username'].' LIKE "'.$options['search'].'" ';
+        }
+
+		// Build SQL table, should work with all bridges
+        $sql = "SELECT u.{$f['user_id']} as user_id, {$f['username']} as user_name, {$f['email']} as user_email, {$f['regdate']} as user_regdate, {$f['lastvisit']} as user_lastvisit, '' as user_active, ".
+               "COUNT(pid) as pic_count, ROUND(SUM(total_filesize)/1024) as disk_usage, group_name, group_quota ".
+               "FROM {$this->usertable} AS u ".
+			   "INNER JOIN {$this->usergroupstable} AS ug ON u.{$this->field['user_id']}=ug.{$this->field['user_id']}    ".   
+               " INNER JOIN {$C['TABLE_USERGROUPS']} AS g ".
+			   "ON  g.group_id = ug.{$f['grouptbl_group_id']} LEFT JOIN {$C['TABLE_PICTURES']} AS p ON p.owner_id = u.{$f['user_id']} ".
+               $options['search'].
+               "GROUP BY user_id " . "ORDER BY " . $sort_codes[$options['sort']] . " ".
+               "LIMIT {$options['lower_limit']}, {$options['users_per_page']};";
+
+		$result = cpg_db_query($sql);
+		
+		// If no records, return empty value
+		if (!$result) {
+			return array();
+		}
+		
+		// Extract user list to an array
+		while ($user = mysql_fetch_assoc($result)) {
+			$userlist[] = $user;
+		}	
+
+        return $userlist;
+    }
 }
 
 // and go !
