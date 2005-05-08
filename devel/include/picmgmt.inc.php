@@ -33,6 +33,8 @@ function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $ca
     $normal = $CONFIG['fullpath'] . $filepath . $CONFIG['normal_pfx'] . $filename;
     $thumb = $CONFIG['fullpath'] . $filepath . $CONFIG['thumb_pfx'] . $filename;
 
+
+	
     if (!is_known_filetype($image)) {
         return false;
     } elseif (is_image($filename)) {

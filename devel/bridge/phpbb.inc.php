@@ -121,18 +121,13 @@ class cpg_udb extends core_udb {
 	// definition of how to extract id, name, group from a session cookie
 	function session_extraction()
 	{
-		/** 
-         * Need to set cookie_id? (Omni)
-         */
-        $cookie_id = null;
-
-
-		if (isset($_COOKIE[$this->cookie_name . '_sid'])) {
+		if (isset($_COOKIE[$this->cookie_name . '_sid'])) {			
 			$session_id = addslashes($_COOKIE[$this->cookie_name . '_sid']);
-			
-			$sql = "SELECT u.{$this->field['user_id']} AS user_id, u.{$this->field['password']} AS password FROM {$this->usertable} AS u, {$this->usergroupstable} AS ug WHERE u.{$this->field['user_id']}=ug.{$this->field['user_id']} AND u.{$this->field['user_id']}='$cookie_id'";
+
+			$sql = "SELECT u.{$this->field['user_id']} AS user_id, u.{$this->field['password']} AS password FROM {$this->usertable} AS u, {$this->sessionstable} AS s WHERE u.{$this->field['user_id']}=s.session_user_id AND s.session_id = '$session_id'";
 			
 			$result = cpg_db_query($sql, $this->link_id);
+
 			if (mysql_num_rows($result)){
 				$row = mysql_fetch_array($result);
 				return $row;
@@ -145,9 +140,6 @@ class cpg_udb extends core_udb {
 	// Get groups of which user is member
 	function get_groups($row)
 	{
-		$i = $this->use_post_based_groups ? 102 : 1;
-		$data[0] = in_array($row[$this->field['usertbl_group_id']] - 100, $this->admingroups) ? $i : 2;
-		
 		if ($this->use_post_based_groups){
 			$sql = "SELECT ug.{$this->field['usertbl_group_id']}+100 AS group_id FROM {$this->usertable} AS u, {$this->usergroupstable} AS ug, {$this->groupstable} as g WHERE u.{$this->field['user_id']}=ug.{$this->field['user_id']} AND u.{$this->field['user_id']}='{$row[$this->field['user_id']]}' AND g.{$this->field['grouptbl_group_id']} = ug.{$this->field['grouptbl_group_id']} AND g.group_single_user = 0";
 
@@ -156,6 +148,8 @@ class cpg_udb extends core_udb {
 			while ($row = mysql_fetch_array($result)) {
 				$data[] = $row['group_id'];
 			}
+		} else {
+			$data[0] = in_array($row[$this->field['usertbl_group_id']] , $this->admingroups) ? 1 : 2;
 		}
 		
 		return $data;

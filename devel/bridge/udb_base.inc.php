@@ -46,7 +46,7 @@ class core_udb {
 	{
 		global $USER_DATA;
 
-		if (!($auth = $this->cookie_extraction()) && !($auth = $this->session_extraction())) {
+		if (!($auth = $this->session_extraction()) && !($auth = $this->cookie_extraction())) {
 			$this->load_guest_data();
 		} else {
 			list ($id, $cookie_pass) = $auth;
