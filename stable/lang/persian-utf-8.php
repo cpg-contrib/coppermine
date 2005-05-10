@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 //This version is modifide by Bmossavari@gmail.com and it's first persian version//
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.2                                            //
