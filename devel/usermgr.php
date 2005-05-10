@@ -451,7 +451,7 @@ EOT;
         }
 
     } // while
-    mysql_free_result($result);
+    //mysql_free_result($result);
 
 
 
