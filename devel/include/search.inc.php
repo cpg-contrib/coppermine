@@ -45,29 +45,32 @@ if (isset($_GET['album']) && $_GET['album'] == 'search')
         $_POST = $USER['search'];
 
 
-$type = $_POST['type'] ? " {$_POST['type']} " : " OR ";
+$type = $_POST['type'] == 'AND' ? " AND " : " OR ";
 
-$_POST['params']['pic_hdr_ip']  = $_POST['params']['pic_raw_ip'];
+if (isset($_POST['params']['pic_raw_ip'])) $_POST['params']['pic_hdr_ip']  = $_POST['params']['pic_raw_ip'];
 
 if ($search_string && isset($_POST['params'])) {
         $sql = "SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE ";
         $split_search = explode(' ', $search_string);
         $sections = array();
 
-        foreach($split_search as $word) {
-
+		$allowed = array('title', 'caption', 'keywords', 'owner_name', 'filename', 'pic_raw_ip', 'pic_hrd_ip', 'user1', 'user2', 'user3', 'user4');
+        
+		foreach($split_search as $word) {
+				$word = addslashes($word);
                 $fields = array();
 
-                foreach ($_POST['params'] as $param => $value)
-                        $fields[] = "$param LIKE '%$word%'";
-
+                foreach ($_POST['params'] as $param => $value){
+					if (in_array($param, $allowed))$fields[] = "$param LIKE '%$word%'";
+				}
+				
                 $sections[] = '(' . implode(' OR ', $fields) . ')';
         }
 
         $sql .= implode($type, $sections);
 
-        $sql .= $_POST['newer_than'] ? ' AND ctime > UNIX_TIMESTAMP() - '.($_POST['newer_than'] * 60*60*24) : '';
-        $sql .= $_POST['older_than'] ? ' AND ctime < UNIX_TIMESTAMP() - '.($_POST['older_than'] * 60*60*24) : '';
+        $sql .= $_POST['newer_than'] ? ' AND ctime > UNIX_TIMESTAMP() - '.( (int) $_POST['newer_than'] * 60*60*24) : '';
+        $sql .= $_POST['older_than'] ? ' AND ctime < UNIX_TIMESTAMP() - '.( (int) $_POST['older_than'] * 60*60*24) : '';
         $sql .=  " $ALBUM_SET";
 
         $temp = str_replace('SELECT *', 'SELECT COUNT(*)', $sql);
