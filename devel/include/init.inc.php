@@ -23,7 +23,7 @@ define('COPPERMINE_VERSION_STATUS', 'beta');
 if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
 // Store all reported errors in the $cpgdebugger
-//require_once('include/debugger.inc.php');
+require_once('include/debugger.inc.php');
 
 set_magic_quotes_runtime(0);
 // used for timing purpose
@@ -101,13 +101,13 @@ if (get_magic_quotes_gpc()) {
 $CONFIG = array();
 //$PHP_SELF = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : $_SERVER['SCRIPT_NAME'];
 
+$PHP_SELF = '';
 $possibilities = array('REDIRECT_URL', 'PHP_SELF', 'SCRIPT_URL', 'SCRIPT_NAME','SCRIPT_FILENAME');
 foreach ($possibilities as $test){	
 	if (isset($_SERVER[$test]) && preg_match('/([^\/]+\.php)$/', $_SERVER[$test], $matches)){
 		$PHP_SELF = $_SERVER['PHP_SELF'] = $_SERVER['SCRIPT_NAME'] = $matches[1];
 		break;
 	}
-	$PHP_SELF = $_SERVER['PHP_SELF'] = $_SERVER['SCRIPT_NAME'] = '';
 }
 
 $REFERER = urlencode($_SERVER['PHP_SELF'] . (isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING'] ? '?' . $_SERVER['QUERY_STRING'] : ''));
