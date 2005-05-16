@@ -43,7 +43,6 @@ CREATE TABLE CPG_albums (
   votes enum('YES','NO') NOT NULL default 'YES',
   pos int(11) NOT NULL default '0',
   category int(11) NOT NULL default '0',
-  pic_count int(11) NOT NULL default '0',
   thumb int(11) NOT NULL default '0',
   keyword VARCHAR( 50 ),
   alb_password VARCHAR( 32 ),
@@ -65,10 +64,6 @@ CREATE TABLE CPG_categories (
   pos int(11) NOT NULL default '0',
   parent int(11) NOT NULL default '0',
   thumb int(11) NOT NULL default '0',
-  subcat_count int(11) NOT NULL default '0',
-  alb_count int(11) NOT NULL default '0',
-  pic_count int(11) NOT NULL default '0',
-  stat_uptodate enum('YES','NO') NOT NULL default 'NO',
   PRIMARY KEY  (cid),
   KEY cat_parent (parent),
   KEY cat_pos (pos),
@@ -327,7 +322,7 @@ CREATE TABLE CPG_bridge (
 ) TYPE=MyISAM;
 
 #
-# Table structure for table 'CPG_vote_stats
+# Table structure for table `CPG_vote_stats`
 #
 CREATE TABLE `CPG_vote_stats` (
   `sid` int(11) NOT NULL auto_increment,
