@@ -45,8 +45,6 @@ CREATE TABLE CPG_albums (
   category int(11) NOT NULL default '0',
   pic_count int(11) NOT NULL default '0',
   thumb int(11) NOT NULL default '0',
-  last_addition datetime NOT NULL default '0000-00-00 00:00:00',
-  stat_uptodate enum('YES','NO') NOT NULL default 'NO',
   keyword VARCHAR( 50 ),
   alb_password VARCHAR( 32 ),
   alb_password_hint TEXT,
