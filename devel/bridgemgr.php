@@ -513,6 +513,18 @@ $default_bridge_data['xoops'] = array(
   'use_post_based_groups_used' => 'radio,1,0',    
 );
 
+$default_bridge_data['phorum'] = array(
+  'full_name' => 'Phorum 5',
+  'short_name' => 'phorum',
+  'support_url' => 'http://www.phorum.org/',
+  'full_forum_url_default' => '',
+  'full_forum_url_used' => '',  
+  'relative_path_to_config_file_default' => '../phorum/',
+  'relative_path_to_config_file_used' => 'lookfor,common.php',
+  'use_post_based_groups_default' => '0',
+  'use_post_based_groups_used' => 'radio,1,0',
+);
+
 //////////////// main code start //////////////////////
 
 // initialize vars
