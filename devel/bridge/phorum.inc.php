@@ -26,7 +26,7 @@ require 'bridge/udb_base.inc.php';
 
 $dir = getcwd();
 
-chdir('../phorum');
+chdir($BRIDGE['relative_path_to_config_file']);
 
 if (!USE_BRIDGEMGR) {
 	require_once('../phorum/common.php');
