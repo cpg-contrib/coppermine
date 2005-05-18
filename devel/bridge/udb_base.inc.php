@@ -425,7 +425,7 @@ class core_udb {
         $sql .= "where ( category>".FIRST_USER_CAT." $forbidden) ";
         $sql .= "group by category;";
 
-        $result = cpg_db_query($sql, $this->link_id);
+        $result = cpg_db_query($sql);
         $user_count = mysql_num_rows($result);
 
         if ($user_count == 0) {
