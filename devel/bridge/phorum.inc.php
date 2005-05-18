@@ -45,6 +45,7 @@ class cpg_udb extends core_udb {
 		$this->use_post_based_groups = $BRIDGE['use_post_based_groups'];
 		$this->boardurl = $PHORUM['http_path'];
 		$this->multigroups = 1;
+		$this->group_overrride = 1;
 
 		// Board table names
 		$this->table = array(
