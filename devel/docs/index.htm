@@ -166,7 +166,7 @@
 
                  <ul class="level3">
                                  <li class="level3"><a href="#bridge_manager_recover_start">5.3.2 Recover from failed bridging</a></li>
-								 <li class="level3"><a href="#integrating_steps_sync_start">5.3.3 Synchronising the bbs groups with Coppermine's groups</a></li>
+                                                                 <li class="level3"><a href="#integrating_steps_sync_start">5.3.3 Synchronising the bbs groups with Coppermine's groups</a></li>
                  </ul>
 <ul class="level1">
         <li class="level1"><a href="#translating" class="menu1">6. Translating Coppermine into other languages</a></li>
@@ -249,7 +249,7 @@
   <li><b>Upload all files onto your webserver</b> (make sure to use the correct ftp mode)</li>
   <li><b>CHMOD the folders <i>albums</i> and <i>include</i> to 755 (or 777, depending on your server config)</b> - this step is really important, don't skip it!<p>There are a lot of tutorials for beginners how to use chmod available: <a href="http://www.google.com/search?q=chmod+tutorial" class="external">search chmod tutorials with google</a>. If you're on a windows server, you'll have to set permissions accordingly as well (usually the webserver on IIS runs under the user name &quot;IUSR_hostname&quot; - you'll have to set rwx-permissions for this user). </p><p>The reason these permissions need to be set is to allow Coppermine to store files inside the albums directory (the pics that are uploaded to the gallery) and to setup a file in the include directory that contains your database information. (This <i>config.inc.php</i> file is what you would edit if your database information changes after the installation). If you are unsure whether you require 777 or 755 then try 777 first and see if that works. If it does not work then try 755, if that fails then consult your server administrator.</p></li>
   <li><b>Ensure you have correct information about your database</b> - you need to know the database name aswell as the details of a MySQL user account with which Coppermine should connect to the database. The database and the username must already exist, and the user must have access to the relevent database. Coppermine will create the tables in the database during installation, there is no need for you to add any tables yourself.</li>
-  <li><b>Run the install script on your server</b> (by going to http://your_server/coppermine_dir/install.php with your web browser)  
+  <li><b>Run the install script on your server</b> (by going to http://your_server/coppermine_dir/install.php with your web browser)
   and follow the instructions</li>
 </ul>
 <p><a class="back" href="#top">Back to top</a></p><hr />
@@ -1471,16 +1471,16 @@ All log files are written in english</p>
 <p>Coppermine can be integrated with the following bulletin boards (eg. Coppermine
   and your bulletin board will share the same user database).</p>
 <ul>
-  <li>eBlah</li> 
+  <li>eBlah</li>
   <li>Invision Power Board</li>
   <li>Mambo</li>
-  <li>MyBB</li>  
+  <li>MyBB</li>
   <li>phpBB 2</li>
-  <li>PunBB</li>   
+  <li>PunBB</li>
   <li>SMF</li>
   <li>vBulletin</li>
   <li>XMB</li>
-  <li>Xoops2</li>  
+  <li>Xoops2</li>
 </ul>
 
 <a name="integrating_bridge_end"></a>
@@ -1543,16 +1543,16 @@ Click &quot;next&quot;</p>
 <h4>5.3.1.1 choose application to bridge coppermine with</h4>
 <ul>
 <ul>
-  <li>eBlah</li> 
+  <li>eBlah</li>
   <li>Invision Power Board</li>
   <li>Mambo</li>
-  <li>MyBB</li>  
+  <li>MyBB</li>
   <li>phpBB 2</li>
-  <li>PunBB</li>   
+  <li>PunBB</li>
   <li>SMF</li>
   <li>vBulletin</li>
   <li>XMB</li>
-  <li>Xoops2</li>  
+  <li>Xoops2</li>
 </ul>
 </ul>
 <a name="bridge_manager_app_end"></a>
@@ -1618,7 +1618,7 @@ Should Coppermine import the special groups that exist in the forum ? If you sel
         <li>Some small text items are only available in English, e.g picEditor. (Language issue)</li>
         <li>Documentation (this document) and <a href="faq.htm">FAQ</a> still incomplete.</li>
         <li>The <a href="http://coppermine.sourceforge.net/board/index.php?topic=1866.0">arrows used for navigation</a> from one pic to the other display in the wrong order for rtl-languages</li>
-		<li class="important">As you're currently using the beta version of coppermine 1.4, there are several more known issues that are being discussed in the <a href="http://coppermine.sourceforge.net/board/index.php?board=29.0">CPG 1.4 Testing/Bugs</a> board. Please refer to the board for details.</li>
+                <li class="important">As you're currently using the beta version of coppermine 1.4, there are several more known issues that are being discussed in the <a href="http://coppermine.sourceforge.net/board/index.php?board=29.0">CPG 1.4 Testing/Bugs</a> board. Please refer to the board for details.</li>
 </ul>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
@@ -1681,7 +1681,7 @@ Should Coppermine import the special groups that exist in the forum ? If you sel
     <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=941">Nibbler</a></td>
     <td>Developer</td>
     <td>active</td>
-  </tr>  
+  </tr>
   <tr>
     <td>Christopher Brown-Floyd</td>
     <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=1874">omniscientdeveloper</a></td>
@@ -1707,7 +1707,7 @@ Should Coppermine import the special groups that exist in the forum ? If you sel
     <td>active</td>
   </tr>
   <tr>
-    <td> Andreas Ellsel</td>
+    <td>Andreas Ellsel</td>
     <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=898">Andi</a></td>
     <td>Tester</td>
     <td>active</td>
