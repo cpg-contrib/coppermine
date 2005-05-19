@@ -805,7 +805,7 @@ $lang_index_php = array(
 );
 
 $lang_album_admin_menu = array(
-  'confirm_delete' => 'Wyt ti\\'n siwr dy fod am DDILEU y llyfr lluniau? Bydd pob ffeil a sylw hefyd yn cael eu dileu.', //js-alert //cpg1.3.0
+  'confirm_delete' => 'Wyt ti\\\'n siwr dy fod am DDILEU y llyfr lluniau? Bydd pob ffeil a sylw hefyd yn cael eu dileu.', //js-alert //cpg1.3.0
   'delete' => 'DILEU',
   'modify' => 'PRIODWEDDAU',
   'edit_pics' => 'GOLYGU FFEIL', //cpg1.3.0
