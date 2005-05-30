@@ -279,8 +279,8 @@ The docs folder contains documents that are meant to help you set up and adminis
 <br /><div class="totop">Webspace that can be saved (maximum): 164 KB</div>
 </li>
 <li><b>Remove bridge files</b><br />
-The bridge files are being used for integration of coppermine with a bulletin board software like phpBB, YaBB SE, SMF etc. If you're not using bbs integration at all it is safe to delete the whole bridge folder from your webserver (or not upload it in the first place). If you <i>are</i> using bbs integration, you will have to keep the bridge file that corresponds to the bbs you're using - it's safe to delete all other bridge files that exist inside the bridge folder.
-<br /><div class="totop">Webspace that can be saved (maximum): 137 KB</div>
+The Coppermine package includes bridge files used for integration of coppermine with bulletin board software like phpBB, SMF etc. It is safe to delete some files in the bridge folder; if you <i>are</i> using bbs integration, you will have to keep the bridge file that corresponds to the bbs you're using. If you are not using integration, you must keep the file <b>coppermine.inc.php</b>. The file <b>udb_base.php</b> is required under all setups ans should not be deleted.
+<br /><div class="totop">Webspace that can be saved (maximum): 85 KB</div>
 </li>
 <li><b>Remove the flags</b><br />
 If you're not going to use the &quot;select language by flags&quot; option from the coppermine menu, it's safe to delete the flags folder (/your_coppermine_folder/images/flags/). If you <i>are</i> using the flags option, you can of course delete all flags you don't use at all.
