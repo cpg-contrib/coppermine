@@ -1916,6 +1916,13 @@ class SMTP
             # smaller lines
             while(strlen($line) > $max_line_length) {
                 $pos = strrpos(substr($line,0,$max_line_length)," ");
+                
+                # ----- Vulnerability fix (phpsec) -------
+                if (!$pos) {
+                    $pos = $max_line_length - 1;
+                }
+                # --------- End of fix ----------------
+                                
                 $lines_out[] = substr($line,0,$pos);
                 $line = substr($line,$pos + 1);
                 # if we are processing headers we need to
