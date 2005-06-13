@@ -1,31 +1,31 @@
 <?php
-// ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
-// ------------------------------------------------------------------------- //
-// Copyright (C) 2002-2004 Gregory DEMAR                                     //
-// http://www.chezgreg.net/coppermine/                                       //
-// ------------------------------------------------------------------------- //
-// Updated by the Coppermine Dev Team                                        //
-// (http://coppermine.sf.net/team/)                                          //
-// see /docs/credits.html for details                                        //
-// ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- //
-// $Id$
-// ------------------------------------------------------------------------- //
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2005 Coppermine Dev Team
+  v1.1 originaly written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  ********************************************
+  Coppermine version: 1.3.3
+  $Source$
+  $Revision$
+  $Author$
+  $Date$
+**********************************************/
 
 // info about translators and translated language
 $lang_translation_info = array(
-  'lang_name_english' => 'Japanese',  
-  'lang_name_native' => 'Japanese', 
-  'lang_country_code' => 'jp', 
-  'trans_name'=> 'Mitsuhiro Yoshida', //the name of the translator - can be a nickname
-  'trans_email' => 'mits@mitstek.com', //translator's email address (optional)
-  'trans_website' => 'http://mitstek.com/', //translator's website (optional)
-  'trans_date' => '2004-04-07', //the date the translation was created / last modified
+  'lang_name_english' => 'Japanese',
+  'lang_name_native' => 'Japanese',
+  'lang_country_code' => 'jp',
+  'trans_name'=> 'Mitsuhiro Yoshida',
+  'trans_email' => 'mits@mitstek.com',
+  'trans_website' => 'http://mitstek.com/',
+  'trans_date' => '2005-06-12',
 );
 
 $lang_charset = 'EUC-JP';
@@ -160,7 +160,7 @@ $lang_album_list = array(
 );
 
 $lang_thumb_view = array(
-  'date' => '日付',
+  'date' => 'DATE',
   //Sort by filename and title
   'name' => 'ファイル名',
   'title' => 'タイトル',
@@ -277,8 +277,8 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
   'Mad' => '怒り',
   'Razz' => '苦笑い',
   'Embarassed' => '恥ずかしい',
-  'Crying or Very sad' => '泣く又はとても悲しい',
-  'Evil or Very Mad' => '悪い又はとても怒った',
+  'Crying or Very sad' => '泣くまたはとても悲しい',
+  'Evil or Very Mad' => '悪いまたはとても怒った',
   'Twisted Evil' => '意地悪い',
   'Rolling Eyes' => '転がる目',
   'Wink' => 'ウインク',
@@ -300,7 +300,7 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 
 if (defined('ADMIN_PHP')) $lang_admin_php = array(
   0 => '管理者モードを終了中 ...',
-  1 => '管理者モードに移行中 ...',
+  1 => '管理者モードに移動中 ...',
 );
 
 // ------------------------------------------------------------------------- //
@@ -369,7 +369,7 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
   'item' => '項目',
   'debug_everyone' => '全員',
   'debug_admin' => '管理者のみ',
-);
+        );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
   '一般設定',
@@ -394,7 +394,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('エンコード', 'charset', 4),
 
   'アルバムリスト表示',
-  array('メインテーブルの幅 (ピクセル又は%)', 'main_table_width', 0),
+  array('メインテーブルの幅 (ピクセルまたは%)', 'main_table_width', 0),
   array('カテゴリ階層の表示数', 'subcat_level', 0),
   array('アルバムの表示数', 'albums_per_page', 0),
   array('アルバムリストの列数', 'album_list_cols', 0),
@@ -414,7 +414,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('「トップレート」リストにファイルが表示される為の最小投票数', 'min_votes_for_rating', 0),
 
   '画像表示とコメント設定',
-  array('写真表示のテーブル幅 (ピクセル又は%)', 'picture_table_width', 0),
+  array('写真表示のテーブル幅 (ピクセルまたは%)', 'picture_table_width', 0),
   array('写真情報をデフォルトで表示する', 'display_pic_info', 1),
   array('コメント中の使用禁止用語を取除く', 'filter_bad_words', 1),
   array('コメント中のスマイリー使用を許可する', 'enable_smilies', 1),
@@ -428,15 +428,14 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('コメント投稿時に管理者にメール通知する', 'email_comment_notification', 1), 
   array('スライドショーの間隔 (1/1000秒単位)', 'slideshow_interval', 0), 
 
-  'ファイルとサムネイル設定',
+  'Files and thumbnails settings', //cpg1.3.0
   array('JPEGファイルのクオリティー', 'jpeg_qual', 0),
-  array('サムネイルの最大幅又は高さ <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0),
-  array('使用する寸法 ( 幅 又は 高さ 又は サムネイルの最大サイズ )<b>*</b>', 'thumb_use', 7),
+  array('サムネイルの最大幅または高さ <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0),
+  array('使用する寸法 ( 幅 または 高さ または サムネイルの最大サイズ )<b>*</b>', 'thumb_use', 7),
   array('中間写真を作成する','make_intermediate',1),
-  array('中間写真の最大幅又は高さ <b>*</b>', 'picture_width', 0),
-  array('中間写真/ビデオの最大幅又は高さ <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0),
+  array('中間写真/ビデオの最大幅または高さ <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0),
   array('アップロードファイルの最大サイズ (KB)', 'max_upl_size', 0),
-  array('アップロード写真/ビデオの最大幅又は高さ (ピクセル)', 'max_upl_width_height', 0),
+  array('アップロード写真/ビデオの最大幅または高さ (ピクセル)', 'max_upl_width_height', 0),
 
   'ファイルとサムネイル設定の高度な設定',
   array('ログインしていないユーザにプライベートアルバムアイコンを表示する','show_private',1),
@@ -459,13 +458,12 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('ディレクトリのデフォルトパーミッション', 'default_dir_mode', 0),
   array('ファイルのデフォルトパーミッション', 'default_file_mode', 0),
 
-  'ユーザ設定',
+  'User settings',
   array('ユーザ登録を許可する', 'allow_user_registration', 1),
   array('ユーザ登録にメール承認を必要とする', 'reg_requires_valid_email', 1),
   array('管理者にユーザ登録をメール通知する', 'reg_notify_admin_email', 1),
   array('2人のユーザによる同一メールアドレスの登録を許可する', 'allow_duplicate_emails_addr', 1),
   array('ユーザがプライベートアルバムを作成出来る', 'allow_private_albums', 1),
-  array('ユーザがプライベートアルバムを作成出来る (注意: \'yes\' から \'no\' に変更した場合、現存する全てのプライベートは公開されます)', 'allow_private_albums', 1),
   array('管理者にユーザのアップロード承認待ちをメール通知する', 'upl_notify_admin_email', 1),
   array('ログインユーザにメンバーリストの閲覧を許可する', 'allow_memberlist', 1),
 
@@ -488,7 +486,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 );
 
 // ------------------------------------------------------------------------- //
-// File db_ecard.php
+// File db_ecard.php //cpg1.3.0
 // ------------------------------------------------------------------------- //
 
 if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
@@ -530,7 +528,7 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
   'alb_need_title' => 'アルバム名を入力してください !',
   'no_udp_needed' => '更新は必要ありません。',
   'alb_updated' => 'アルバムが更新されました。',
-  'unknown_album' => '選択したアルバムが存在しない、又はこのアルバムにアップロードする権限がありません。',
+  'unknown_album' => '選択したアルバムが存在しない、またはこのアルバムにアップロードする権限がありません。',
   'no_pic_uploaded' => 'ファイルはアップロードされませんでした !<br /><br />アップロードするファイルを正しく選択している場合は、サーバが</br>ファイルのアップロードを許可しているか確認してください ...',
   'err_mkdir' => 'ディレクトリ %s の作成に失敗しました !',
   'dest_dir_ro' => '対象ディレクトリ %s はスクリプトによる書込みが出来ません !',
@@ -615,6 +613,7 @@ $lang_picinfo = array(
   'Displayed' => '表示',
   'Camera' => 'カメラ',
   'Date taken' => '撮影日',
+  'ISO'=>'ISO',
   'Aperture' => 'レンズ',
   'Exposure time' => '露出時間',
   'Focal length' => '焦点距離',
@@ -701,7 +700,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 );
 
 // ------------------------------------------------------------------------- //
-// File faq.php
+// File faq.php //cpg1.3.0
 // ------------------------------------------------------------------------- //
 
 if (defined('FAQ_PHP')) $lang_faq_php = array(
@@ -736,7 +735,7 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   array('&quot;アルバムリスト&quot;とは?', 'アルバムリストでは、ギャラリー全てをそれぞれのカテゴリへのリンクと共に表示します。サムネイルは、カテゴリへリンクされています。', 'offline', 0),
   array('&quot;マイギャラリー&quot;とは?', 'マイギャラリーでは、ユーザが自身のギャラリーを作成することが出来ます。ユーザは、写真のアップロードと同様に、アルバムの追加、削除、修正を行うことが出来ます。', 'allow_private_albums', 0),
   array('&quot;管理者モード&quot;と&quot;ユーザモード&quot;の違いは?', '管理者モードでは、ユーザが自分のギャラリーを(管理者が許可している場合は他の人のギャラリーも)修正することが出来ます。', 'allow_private_albums', 0),
-  array('&quot;ファイルのアップロード&quot;とは?', 'ユーザは自分又は管理者が選択したギャラリーに写真をアップロードすることが出来ます。 (サイズと種類は管理者により設定されます)', 'allow_private_albums', 0),
+  array('&quot;ファイルのアップロード&quot;とは?', 'ユーザは自分または管理者が選択したギャラリーに写真をアップロードすることが出来ます。 (サイズと種類は管理者により設定されます)', 'allow_private_albums', 0),
   array('&quot;最新アップロード&quot;とは?', '最新アップロードでは、サイトにアップロードされた直近のファイルが表示されます。', 'offline', 0),
   array('&quot;最新コメント&quot;とは?', '最新コメントでは、写真に投稿された直近のコメントが表示されます。', 'offline', 0),
   array('&quot;閲覧最多&quot;とは?', '閲覧最多では、ログインの有無に係わらず全ユーザから最も閲覧された写真が表示されます。', 'offline', 0),
@@ -746,13 +745,13 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
 
 
 // ------------------------------------------------------------------------- //
-// File forgot_passwd.php
+// File forgot_passwd.php //cpg1.3.0
 // ------------------------------------------------------------------------- //
 
 if (defined('FORGOT_PASSWD_PHP')) $lang_forgot_passwd_php = array(
   'forgot_passwd' => 'パスワードリマインダ', 
   'err_already_logged_in' => '既にログインしています !',
-  'enter_username_email' => 'ユーザ名又はメールアドレスを入力してください',
+  'enter_username_email' => 'ユーザ名またはメールアドレスを入力してください',
   'submit' => 'go',
   'failed_sending_email' => 'パスワードリマインダによるメールは送信出来ません!',
   'email_sent' => 'ユーザ名とパスワードを記載したメールが %s 宛に送信されました',
@@ -859,7 +858,7 @@ if (defined('LOGOUT_PHP')) $lang_logout_php = array(
 );
 
 // ------------------------------------------------------------------------- //
-// File phpinfo.php
+// File phpinfo.php //cpg1.3.0
 // ------------------------------------------------------------------------- //
 
 if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
@@ -914,16 +913,12 @@ if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
-{SITE_NAME}の管理者は、一般的に好ましくない投稿を出来るだけ速やかに削除するよう試みますが、全ての投稿を閲覧することは不可能です。従って、このサイトに対する全投稿の見解が投稿者によるものであり、管理者やウェブマスターのもので無く(これらの人々の投稿は除く)、管理者やウェブマスターに投稿の責任が無いことをあなたは認めます。
-<br>
-<br>
-あなたは、公序良俗に反する投稿や、個人への誹謗中傷の投稿、性的な投稿、その他法に反する投稿をしない事に同意します。
-あなたは、{SITE_NAME}の管理者、ウェブマスター、モデレーターが如何なる時も投稿内容を編集・削除する権利を有することに同意します。あなたは、ユーザとしてあなたが投稿した情報がデータベースに保存されることに同意します。この情報は、あなたの同意無しに管理者、ウェブマスターより第三者に開示されることはありませんが、データが流出する恐れのあるハッキング等の行為に対して管理者、ウェブマスターは責任を負うことはありません。
-<br>
-<br>
-このサイトでは、あなたのコンピュータに情報を保存するためにクッキーを使用します。クッキーはあなたの閲覧を快適にする為だけに使用されます。メールアドレスは、あなたの登録に関する詳細及びパスワードの認証の為だけに使用されます。 
-<br>
-<br>
+{SITE_NAME}の管理者は、一般的に好ましくない投稿を出来るだけ速やかに削除するよう試みますが、全ての投稿を閲覧することは不可能です。従って、このサイトに対する全投稿の見解が投稿者によるものであり、管理者やウェブマスターのもので無く(これらの人々の投稿は除く)、管理者やウェブマスターに投稿の責任が無いことをあなたは認めます。<br />
+<br />
+あなたは、公序良俗に反する投稿や、個人への誹謗中傷の投稿、性的な投稿、その他法に反する投稿をしない事に同意します。あなたは、{SITE_NAME}の管理者、ウェブマスター、モデレーターが如何なる時も投稿内容を編集・削除する権利を有することに同意します。あなたは、ユーザとしてあなたが投稿した情報がデータベースに保存されることに同意します。この情報は、あなたの同意無しに管理者、ウェブマスターより第三者に開示されることはありませんが、データが流出する恐れのあるハッキング等の行為に対して管理者、ウェブマスターは責任を負うことはありません。<br />
+<br />
+このサイトでは、あなたのコンピュータに情報を保存するためにクッキーを使用します。クッキーはあなたの閲覧を快適にする為だけに使用されます。メールアドレスは、あなたの登録に関する詳細及びパスワードの認証の為だけに使用されます。<br />
+<br />
 「同意します」をクリックすることで、あなたは上記の利用規約に同意します。
 EOT;
 
@@ -984,12 +979,12 @@ $lang_register_confirm_email = <<<EOT
 あなたのユーザ名は "{USER_NAME}" です。
 あなたのパスワードは "{PASSWORD}" です。
 
-アカウントの活性化をするには下記のリンクをクリック又は
+アカウントの活性化をするには下記のリンクをクリックまたは
 ブラウザのアドレス欄にコピーしてください。
 
-{ACT_LINK}管理者
+{ACT_LINK}
 
-{SITE_NAME}
+{SITE_NAME} 管理者
 
 EOT;
 
@@ -1008,6 +1003,7 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
   'see_next' => '次へ',
   'del_comm' => '選択したコメントを削除',
 );
+
 
 // ------------------------------------------------------------------------- //
 // File search.php - OK
