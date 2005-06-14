@@ -65,7 +65,7 @@ class cpg_udb extends core_udb {
 		$this->field = array(
 			'username' => 'name', // name of 'username' field in users table
 			'user_id' => 'id', // name of 'id' field in users table
-			'password' => 'legacy_password', // name of 'password' field in users table
+			'password' => 'member_login_key', // name of 'password' field in users table
 			'email' => 'email', // name of 'email' field in users table
 			'regdate' => 'joined', // name of 'registered' field in users table
 			'location' => "''", // name of 'location' field in users table
@@ -91,13 +91,13 @@ class cpg_udb extends core_udb {
 		$this->connect();
 	}
 
-	// definition of how to extract id, name, group from a session cookie
+	// definition of how to extract id, pass from session cookie
 	function session_extraction()
 	{
 		if (isset($_COOKIE['session_id'])) {
 			$session_id = addslashes($_COOKIE['session_id']);
 
-			$sql = "SELECT member_id AS id, member_name AS name, member_group AS mgroup FROM {$this->sessionstable} WHERE id = '$session_id'";
+			$sql = "SELECT member_id , member_login_key FROM {$this->sessionstable} AS s INNER JOIN {$this->usertable} AS u ON s.member_id = u.id WHERE s.id = '$session_id'";
 			
 			$result = cpg_db_query($sql, $this->link_id);
 			
@@ -143,4 +143,6 @@ class cpg_udb extends core_udb {
 
 // and go !
 $cpg_udb = new cpg_udb;
-?>
+
+
+
