@@ -21,19 +21,11 @@ define('IN_COPPERMINE', true);
 define('EDITPICS_PHP', true);
 require('include/init.inc.php');
 
-if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
-
-
 if (isset($_REQUEST['id'])) {
         $pid = (int)$_REQUEST['id'];
 } else {
         $pid = -1;
 }
-
-
-$title = $lang_editpics_php['edit_pics'];
-
-pageheader($title);
 
 function process_post_data()
 {
@@ -65,7 +57,7 @@ function process_post_data()
                 $pic = mysql_fetch_array($result);
                 mysql_free_result($result);
 
-                if (!(GALLERY_ADMIN_MODE || $pic['category'] == FIRST_USER_CAT + USER_ID || ($CONFIG['users_can_edit_pics'] && $pic['owner_id'] == USER_ID))) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+                if (!(GALLERY_ADMIN_MODE || $pic['category'] == FIRST_USER_CAT + USER_ID || ($CONFIG['users_can_edit_pics'] && $pic['owner_id'] == USER_ID)) || !USER_ID) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
                 $update  = "aid = '".$aid."'";
                 if (is_movie($pic['filename'])) {
@@ -209,7 +201,9 @@ $result = cpg_db_query("SELECT *, p.title AS title, p.votes AS votes FROM {$CONF
 $CURRENT_PIC = mysql_fetch_array($result);
 mysql_free_result($result);
 
-if (!(GALLERY_ADMIN_MODE || $CURRENT_PIC['category'] == FIRST_USER_CAT + USER_ID || ($CONFIG['users_can_edit_pics'] && $CURRENT_PIC['owner_id'] == USER_ID))) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+if (!(GALLERY_ADMIN_MODE || $CURRENT_PIC['category'] == FIRST_USER_CAT + USER_ID || ($CONFIG['users_can_edit_pics'] && $CURRENT_PIC['owner_id'] == USER_ID)) || !USER_ID) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
+
+pageheader($lang_editpics_php['edit_pics']);
 
 $thumb_url = get_pic_url($CURRENT_PIC, 'thumb');
 $thumb_link = 'displayimage.php?pos='.(-$CURRENT_PIC['pid']);
