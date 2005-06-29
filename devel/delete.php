@@ -87,7 +87,7 @@ function delete_picture($pid)
         $result = cpg_db_query($query);
         if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
         $pic = mysql_fetch_array($result);
-        if (($pic['category'] != FIRST_USER_CAT + USER_ID) && !($CONFIG['users_can_edit_pics'] && $pic['owner_id'] == USER_ID && USER_ID != 0))  cpg_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
+        if (!($pic['category'] == FIRST_USER_CAT + USER_ID || ($CONFIG['users_can_edit_pics'] && $pic['owner_id'] == USER_ID)) || !USER_ID) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
     }
 
     $aid = $pic['aid'];
@@ -408,8 +408,6 @@ switch ($what) {
     // Picture
 
     case 'picture':
-        if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
-
         $pid = (int)$_GET['id'];
 
         pageheader($lang_delete_php['del_pic']);

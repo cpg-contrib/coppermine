@@ -66,9 +66,6 @@ require('include/picmgmt.inc.php');
 
 define('IMG_DIR', $CONFIG['fullpath'].'edit/');
 
-if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
-
-
 if (isset($_GET['id'])) {
         $pid = (int)$_GET['id'];
 } elseif (isset($_POST['id'])) {
@@ -80,9 +77,9 @@ if ($pid > 0){
 
         $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = '$pid'");
         $CURRENT_PIC = mysql_fetch_array($result);
+		if (!(GALLERY_ADMIN_MODE || $CURRENT_PIC['category'] == FIRST_USER_CAT + USER_ID || ($CONFIG['users_can_edit_pics'] && $CURRENT_PIC['owner_id'] == USER_ID)) || !USER_ID) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
         mysql_free_result($result);
         $pic_url = get_pic_url($CURRENT_PIC,'fullsize');
-
 }
 
 //Garbage collection run at an probability of 25% and delete all files older than one hour
