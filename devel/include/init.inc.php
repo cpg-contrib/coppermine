@@ -102,6 +102,7 @@ $CONFIG = array();
 //$PHP_SELF = isset($_SERVER['REDIRECT_URL']) ? $_SERVER['REDIRECT_URL'] : $_SERVER['SCRIPT_NAME'];
 
 $PHP_SELF = '';
+$ORIGINAL_PHP_SELF = $_SERVER['PHP_SELF'];
 $possibilities = array('REDIRECT_URL', 'PHP_SELF', 'SCRIPT_URL', 'SCRIPT_NAME','SCRIPT_FILENAME');
 foreach ($possibilities as $test){	
 	if (isset($_SERVER[$test]) && preg_match('/([^\/]+\.php)$/', $_SERVER[$test], $matches)){

@@ -454,6 +454,7 @@ $dir = ''; // this is the place to start browsing for root folders
 } else {
 $dir = '../'.cpg_get_coppermine_path().'/'; // this is the place to start browsing
 }
+
 if (is_array($repository_filename)) {
     foreach ($repository_filename as $rep_file) { //foreach start
         $counter_total_files++;
@@ -536,8 +537,8 @@ pagefooter();
 ////////////////////////////////// functions ///////////////////////////////
 
 function cpg_get_coppermine_path() {
-//global $PHP_SELF;
-$return = str_replace('/', '',strrchr(str_replace('/'.str_replace('/', '',strrchr($_SERVER['PHP_SELF'], '/')), '', $_SERVER['PHP_SELF']),'/'));
+global $ORIGINAL_PHP_SELF;
+$return = str_replace('/', '',strrchr(str_replace('/'.str_replace('/', '',strrchr($ORIGINAL_PHP_SELF, '/')), '', $ORIGINAL_PHP_SELF),'/'));
 return $return;
 }
 
