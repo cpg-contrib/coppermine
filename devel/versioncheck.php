@@ -2295,7 +2295,7 @@ $return = '
 1.4.1|upload.php|1.4.1|1.66|mandatory|r@
 1.4.1|usermgr.php|1.4.1|1.46|mandatory|r@
 1.4.1|util.php|1.4.1|1.28|mandatory|r@
-1.4.1|versioncheck.php|1.4.1|1.63|mandatory|r@
+1.4.1|versioncheck.php|1.4.1|1.65|mandatory|r@
 1.4.1|viewlog.php|1.4.1|1.10|mandatory|r@
 1.4.1|xp_publish.php|1.4.1|1.27|mandatory|r@
 1.4.1|zipdownload.php|1.4.1|1.10|mandatory|r@
