@@ -2295,7 +2295,7 @@ $return = '
 1.4.1|upload.php|1.4.1|1.66|mandatory|r@
 1.4.1|usermgr.php|1.4.1|1.46|mandatory|r@
 1.4.1|util.php|1.4.1|1.28|mandatory|r@
-1.4.1|versioncheck.php|1.4.1|1.62|mandatory|r@
+1.4.1|versioncheck.php|1.4.1|1.63|mandatory|r@
 1.4.1|viewlog.php|1.4.1|1.10|mandatory|r@
 1.4.1|xp_publish.php|1.4.1|1.27|mandatory|r@
 1.4.1|zipdownload.php|1.4.1|1.10|mandatory|r@
@@ -2306,6 +2306,7 @@ $return = '
 1.4.1|**fullpath**/edit/index.html|||mandatory|w@
 1.4.1|**fullpath**/**userpics**|||mandatory|w@
 1.4.1|**fullpath**/**userpics**/index.php|||mandatory|w@
+1.4.1|bridge|||mandatory|r@
 1.4.1|bridge/coppermine.inc.php|1.4.1|1.16|mandatory|r@
 1.4.1|bridge/eblah.inc.php|1.4.1|1.2|optional|r@
 1.4.1|bridge/invisionboard20.inc.php|1.4.1|1.7|optional|r@
@@ -2330,6 +2331,13 @@ $return = '
 1.4.1|docs/theme.htm||1.15|optional|r@
 1.4.1|docs/translation.htm|||optional|r@
 1.4.1|docs/pics|||mandatory|r@
+1.4.1|docs/theme|||optional|r@
+1.4.1|docs/theme/edit_style.html|||optional|r@
+1.4.1|docs/theme/edit_template.html|||optional|r@
+1.4.1|docs/theme/edit_theme.html|||optional|r@
+1.4.1|docs/theme/index.html|||optional|r@
+1.4.1|docs/theme/style.css|||optional|r@
+1.4.1|docs/theme/validation.html|||optional|r@
 1.4.1|include|||mandatory|w@
 1.4.1|include/archive.php|1.4.1|1.5|mandatory|r@
 1.4.1|include/config.inc.php|||mandatory|r@
@@ -2453,7 +2461,7 @@ $return = '
 1.4.1|themes/mac_ox_x/template.html||1.8|optional|r@
 1.4.1|themes/mac_ox_x/theme.php|1.4.1|1.62|optional|r@
 1.4.1|themes/mac_ox_x/images|||optional|r@
-1.4.1|themes/classic|||optional|r@
+1.4.1|themes/project_vii|||optional|r@
 1.4.1|themes/project_vii/style.css|1.4.1|1.25|optional|r@
 1.4.1|themes/project_vii/template.html||1.7|optional|r@
 1.4.1|themes/project_vii/theme.php|1.4.1|1.61|optional|r@
