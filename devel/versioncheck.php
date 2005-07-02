@@ -2334,8 +2334,8 @@ $return = '
 1.4.1|docs/theme|||optional|r@
 1.4.1|docs/theme/edit_style.html|||optional|r@
 1.4.1|docs/theme/edit_template.html|||optional|r@
-1.4.1|docs/theme/edit_theme.html|||optional|r@
-1.4.1|docs/theme/index.html|||optional|r@
+1.4.1|docs/theme/edit_theme.html|1.4.1|1.5|optional|r@
+1.4.1|docs/theme/index.html||1.1|optional|r@
 1.4.1|docs/theme/style.css|||optional|r@
 1.4.1|docs/theme/validation.html|||optional|r@
 1.4.1|include|||mandatory|w@
