@@ -286,3 +286,5 @@ Fixed require path to 'udb_base.inc.php' in the bridge files - 10 April 2005, Do
 Added plugin hook in picmgmt.inc.php 'add_file_data' - 24 April 2005, Donnoman
 Added define('THEME_HAS_FILM_STRIP_GRAPHIC', 1); adjusted filmstrip template - 24 April 2005, Donnoman
 Added fix for sort order of rated thumbs with identical rating - 04 May 2005, GauGau
+Fixed omission about privacy settings in french language file - 04 July, GauGau
+Updated the translator's guide - 04 July, GauGau
