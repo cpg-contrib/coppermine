@@ -218,7 +218,7 @@ if ($CONFIG['enable_plugins'] == 1) {
 }
 
 // Set UDB_INTEGRATION if enabled in admin
-if ($CONFIG['bridge_enable'] == 1) {
+if ($CONFIG['bridge_enable'] == 1 && !defined('BRIDGEMGR_PHP')) {
     $BRIDGE = cpg_get_bridge_db_values();
 } else {
 	$BRIDGE['short_name'] = 'coppermine';
