@@ -136,3 +136,4 @@ Added Welsh language (user contribution) - 6 January 2004, GauGau
 Fixed 'inactive_tab' bug in theme.php (user contribution) - 5 February 2005, Donnoman
 Added persian (farsi) language file (user contribution) - 22 March 2005, GauGau
 Changed file headers and version numbers from cpg1.3.2 to cpg1.3.3 - 19 April 2005, GauGau
+Fixed omission about privacy settings in french language file - 04 July, GauGau
