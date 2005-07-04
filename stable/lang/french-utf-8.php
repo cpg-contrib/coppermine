@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 // ------------------------------------------------------------------------- //
 // Coppermine Photo Gallery 1.3.2                                            //
 // ------------------------------------------------------------------------- //
@@ -464,7 +464,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('L\'inscription d\'un nouvel utilisateur doit être validée', 'reg_requires_valid_email', 1),
   array('Notifier l\'administrateur des nouvelles inscriptions', 'reg_notify_admin_email', 1), //cpg1.3.0
   array('Autoriser deux utilisateurs à avoir le même e-mail', 'allow_duplicate_emails_addr', 1),
-  array('Les utilisateurs peuvent avoir des albums personnels', 'allow_private_albums', 1),
+  array('Les utilisateurs peuvent avoir des albums personnels (Note: si vous passez de "oui" à "non", tous les albums privés deviendront public).', 'allow_private_albums', 1),
   array('Notifier l\'administrateur lorsque des uploads nécessitent son approbation', 'upl_notify_admin_email', 1), //cpg1.3.0
   array('Autoriser les utilisateurs authentifiés à visualiser la Liste des membres', 'allow_memberlist', 1), //cpg1.3.0
 
