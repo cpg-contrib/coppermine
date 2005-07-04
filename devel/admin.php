@@ -861,7 +861,7 @@ $signature = 'Coppermine Photo Gallery ' . COPPERMINE_VERSION . ' ('. COPPERMINE
 <script type="text/javascript">
         onload = hideall;
 </script>
-<?
+<?php
 //echo "<form action=\"$PHP_SELF\" method=\"post\">";
 echo "<form action=\"".$_SERVER['PHP_SELF']."\" method=\"post\">";
 starttable('100%', "{$lang_admin_php['title']} - $signature", 3);
