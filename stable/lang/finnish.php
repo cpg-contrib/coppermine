@@ -61,7 +61,7 @@ $comment_date_fmt =  '%B %d, %Y at %I:%M %p';
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
 
 $lang_meta_album_names = array(
-        'random' => 'Satunaiset kuvat', 
+        'random' => 'Satunnaiset kuvat', 
         'lastup' => 'Uusimmat kuvat', 
         'lastalb'=> 'Viimeksi päivitetyt albumit', 
         'lastcom' => 'Uusimmat komentit', 
@@ -839,7 +839,7 @@ $lang_list_albums = array(
 if (defined('LOGIN_PHP')) $lang_login_php = array(
   	'login' => 'Kirjaudu',
   	'enter_login_pswd' => 'Kirjoita käyttäjänimesi ja salasanasi kirjautuaksesi sisään.',
-  	'username' => 'Käyttjänimi',
+  	'username' => 'Käyttäjänimi',
   	'password' => 'Salasana',
   	'remember_me' => 'Muista minut',
   	'welcome' => 'Tervetuloa %s',
