@@ -803,8 +803,8 @@ $template_add_your_comment = <<<EOT
         </tr>
         <tr>
                 <td colspan="3">
+				<form method="post" name="post" action="db_input.php">
                         <table width="100%" cellpadding="0px" cellspacing="0px">
-
 <!-- BEGIN user_name_input -->
                                 <tr><td class="tableb_compact">
                                         {NAME}
