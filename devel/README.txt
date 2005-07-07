@@ -33,8 +33,8 @@ get you started with the basics.  Let’s jump into it, shall we?
 
 Question:  Does my webserver support Coppermine?
 
-Answer:  You need to have a webserver (Apache 2.0.50 recommended), PHP 4.1.0 or
-newer (4.3.10 recommended, 5.xx not recommended at this time), and MySQL 3.23.23 or
+Answer:  You need to have a webserver (Apache 1.3.x or above. Apache 2.0.x also works well), PHP 4.1.0 or
+newer (4.3.10 recommended, 5.xx also works well), and MySQL 3.23.23 or
 newer (4.0.20 recommended).  You also need either GD 1.xx or 2.xx (2.xx
 recommended) or ImageMagick installed.  GD normally comes bundled with PHP;
 ImageMagick must be installed by your webhost.
@@ -61,7 +61,7 @@ Answer:  You need to change permissions on a few directories before you can do
 anything else.  Using your FTP program or website Control Panel, change permissions on
 the include, albums, albums/userpics, and albums/edit directories to 777.  You should
 also create a new directory in albums that you will FTP your images/files to (call it
-uploads) and set its permissions to 777 also. Some server set-ups will not work with 
+uploads) and set its permissions to 777 also. Some server set-ups will not work with
 chmod 777. Instead, use 755.
 
 Question:  I changed the permissions.  What’s next?
