@@ -72,7 +72,9 @@ function test_sql_connection()
 {
     global $errors;
 
-    if (! $connect_id = @mysql_connect($_POST['dbserver'], $_POST['dbuser'], $_POST['dbpass'])) {
+	if (!function_exists('mysql_connect')){
+		$errors .= "<hr /><br />PHP does not have MySQL support enabled.<br /><br />";
+	 } elseif (! $connect_id = @mysql_connect($_POST['dbserver'], $_POST['dbuser'], $_POST['dbpass'])) {
         $errors .= "<hr /><br />Could not create a mySQL connection, please check the SQL values entered<br /><br />MySQL error was : " . mysql_error() . "<br /><br />";
     } elseif (! mysql_select_db($_POST['dbname'], $connect_id)) {
         $errors .= "<hr /><br />mySQL could not locate a database called '{$_POST['dbname']}' please check the value entered for this<br /><br />";
