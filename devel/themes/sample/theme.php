@@ -39,6 +39,9 @@
 //    Ecard                : images/ecard.gif
 //    Previous             : images/prev.gif
 //    Next                 : images/next.gif
+// ('THEME_HAS_FILM_STRIP_GRAPHIC', 1) : The location for the film strip graphics will
+//    be directed to the themes images folder.
+//    tile                 : images/tile.gif
 // ('THEME_HAS_FILM_STRIP_GRAPHICS', 1) : The location for the film strip graphics will
 //    be directed to the themes images folder.
 //    tile on the top      : images/tile1.gif
@@ -133,9 +136,7 @@ if (!defined('THEME_HAS_NO_SUB_MENU_BUTTONS')) {
 
   // HTML template for template sub_menu buttons
     // {HREF_LNK}{HREF_TITLE}{HREF_TGT}{BLOCK_ID}{SPACER}
-        if ($CONFIG['custom_lnk_url'] != '') {
-        addbutton($sub_menu_buttons,'{CUSTOM_LNK_LNK}','{CUSTOM_LNK_TITLE}','{CUSTOM_LNK_TGT}','custom_link',$template_sub_menu_spacer);
-  }
+    addbutton($sub_menu_buttons,'{CUSTOM_LNK_LNK}','{CUSTOM_LNK_TITLE}','{CUSTOM_LNK_TGT}','custom_link',$template_sub_menu_spacer);
     addbutton($sub_menu_buttons,'{ALB_LIST_LNK}','{ALB_LIST_TITLE}','{ALB_LIST_TGT}','album_list',$template_sub_menu_spacer);
     addbutton($sub_menu_buttons,'{LASTUP_LNK}','{LASTUP_TITLE}','{LASTUP_TGT}','lastup',$template_sub_menu_spacer);
     addbutton($sub_menu_buttons,'{LASTCOM_LNK}','{LASTCOM_TITLE}','{LASTCOM_TGT}','lastcom',$template_sub_menu_spacer);
@@ -265,7 +266,7 @@ $template_album_list = <<<EOT
         <table width="100%" cellspacing="0" cellpadding="0">
         <tr>
                 <td colspan="3" height="1" align="left" valign="top" class="tableh2">
-                        <a href="{ALB_LINK_TGT}" class="alblink"><b>{ALBUM_TITLE}</b></a>
+                        <span class="alblink"><a href="{ALB_LINK_TGT}"><b>{ALBUM_TITLE}</b></a></span>
                 </td>
         </tr>
         <tr>
@@ -338,23 +339,25 @@ EOT;
 $template_film_strip = <<<EOT
 
         <tr>
-         <td valign="top" style="background-image: url({TILE1});" align="center" height='30'>&nbsp;</td>
+         <td valign="top" style="background-image: url({TILE1});"><img src="{TILE1}" alt="" border="0" /></td>
         </tr>
         <tr>
         <td valign="bottom" class="thumbnails" align="center">
-          <table width="100%" cellspacing="0" cellpadding="0">
+          <table width="100%" cellspacing="0" cellpadding="3" border="0">
               <tr>
+                 <td width="50%"></td>
                  {THUMB_STRIP}
+                 <td width="50%"></td>
               </tr>
           </table>
         </td>
         </tr>
         <tr>
-         <td valign="top" style="background-image: url({TILE2});" align="center" height='30'>&nbsp;</td>
+         <td valign="top" style="background-image: url({TILE2});"><img src="{TILE2}" alt="" border="0" /></td>
         </tr>
 <!-- BEGIN thumb_cell -->
-                <td>
-                                        <a href="{LINK_TGT}">{THUMB}</a>&nbsp;
+                <td valign="top" align="center">
+                                        <a href="{LINK_TGT}">{THUMB}</a>
                                         {CAPTION}
                                         {ADMIN_MENU}
                 </td>
@@ -380,7 +383,7 @@ $template_album_list_cat = <<<EOT
         <table width="100%" cellspacing="0" cellpadding="0">
         <tr>
                 <td colspan="3" height="1" valign="top" class="tableh2">
-                        <a href="{ALB_LINK_TGT}" class="alblink"><b>{ALBUM_TITLE}</b></a>
+                        <span class="alblink"><a href="{ALB_LINK_TGT}"><b>{ALBUM_TITLE}</b></a></span>
                 </td>
         </tr>
         <tr>
@@ -600,7 +603,7 @@ EOT;
 $template_img_navbar = <<<EOT
 
         <tr>
-                <a name="top_display_media"><td align="center" valign="middle" class="navmenu" width="48px"></a>
+                <td align="center" valign="middle" class="navmenu" width="48px"><a name="top_display_media"></a>
                         <a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="{LOCATION}images/thumbnails.gif" align="middle" border="0px" alt="{THUMB_TITLE}" /></a>
                 </td>
                 <td align="center" valign="middle" class="navmenu" width="48px">
@@ -803,8 +806,9 @@ $template_add_your_comment = <<<EOT
         </tr>
         <tr>
                 <td colspan="3">
-				<form method="post" name="post" action="db_input.php">
+                <form method="post" name="post" action="db_input.php">
                         <table width="100%" cellpadding="0px" cellspacing="0px">
+
 <!-- BEGIN user_name_input -->
                                 <tr><td class="tableb_compact">
                                         {NAME}
@@ -1243,8 +1247,7 @@ function theme_main_menu($which)
     if (!$CONFIG['display_faq']) {
         template_extract_block($template_sys_menu, 'faq');
     }
-
-
+    
     $param = array(
         '{HOME_TGT}' => $CONFIG['home_target'],
         '{HOME_TITLE}' => $lang_main_menu['home_title'],
@@ -1283,13 +1286,18 @@ function theme_main_menu($which)
 
         $sys_menu = template_eval($template_sys_menu, $param);
   } else {
+
+    if (!$CONFIG['custom_lnk_url']) {
+        template_extract_block($template_sub_menu, 'custom_link');
+    }
+    
     $param = array(
         '{ALB_LIST_TGT}' => "index.php$cat_l",
         '{ALB_LIST_TITLE}' => $lang_main_menu['alb_list_title'],
         '{ALB_LIST_LNK}' => $lang_main_menu['alb_list_lnk'],
-                '{CUSTOM_LNK_TGT}' => $CONFIG['custom_lnk_url'],
-                '{CUSTOM_LNK_TITLE}' => $CONFIG['custom_lnk_name'],
-                '{CUSTOM_LNK_LNK}' => $CONFIG['custom_lnk_name'],
+        '{CUSTOM_LNK_TGT}' => $CONFIG['custom_lnk_url'],
+        '{CUSTOM_LNK_TITLE}' => $CONFIG['custom_lnk_name'],
+        '{CUSTOM_LNK_LNK}' => $CONFIG['custom_lnk_name'],
         '{LASTUP_TGT}' => "thumbnails.php?album=lastup$cat_l2",
         '{LASTUP_TITLE}' => $lang_main_menu['lastup_title'],
         '{LASTUP_LNK}' => $lang_main_menu['lastup_lnk'],
@@ -1811,8 +1819,10 @@ function theme_display_film_strip(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     }
 
     if (defined('THEME_HAS_FILM_STRIP_GRAPHICS')) {
-                $tile1 = $THEME_DIR . 'images/tile1.gif';
-                $tile2 = $THEME_DIR . 'images/tile2.gif';
+        $tile1 = $THEME_DIR . 'images/tile1.gif';
+        $tile2 = $THEME_DIR . 'images/tile2.gif';
+    } elseif (defined('THEME_HAS_FILM_STRIP_GRAPHIC')) {
+        $tile1=$tile2=$THEME_DIR . 'images/tile.gif';
     } else {
         $tile1=$tile2= 'images/tile.gif';
     }
@@ -2041,8 +2051,8 @@ function theme_html_picture()
         $player = $players[$user_player];
 
         $pic_html  = '<object id="'.$player['id'].'" '.$player['classid'].$player['codebase'].$player['mime'].$image_size['whole'].'>';
-        $pic_html .= "<param name=\"autostart\" value=\"$autostart\"><param name=\"src\" value=\"". $picture_url . "\">";
-        $pic_html .= "<embed {$image_size['whole']} src=\"". $picture_url . "\" autostart=\"$autostart\" type=\"".$player['mime']."\"></embed>";
+        $pic_html .= "<param name=\"autostart\" value=\"$autostart\" /><param name=\"src\" value=\"". $picture_url . "\" />";
+        $pic_html .= '<embed '.$image_size['whole'].' src="'. $picture_url . '" autostart="'.$autostart.'" '.$player['mime'].'></embed>';
         $pic_html .= "</object><br />\n";
     }
 

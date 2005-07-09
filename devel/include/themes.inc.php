@@ -632,8 +632,7 @@ if (!isset($template_img_navbar))  //{THEMES}
 $template_img_navbar = <<<EOT
 
         <tr>
-                <td>
-                <a name="top_display_media"><td align="center" valign="middle" class="navmenu" width="48px"></a>
+                <td align="center" valign="middle" class="navmenu" width="48px"><a name="top_display_media"></a>
                         <a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="{LOCATION}images/thumbnails.gif" align="middle" border="0px" alt="{THUMB_TITLE}" /></a>
                 </td>
                 <td align="center" valign="middle" class="navmenu" width="48px">
@@ -2123,8 +2122,8 @@ function theme_html_picture()
         $player = $players[$user_player];
 
         $pic_html  = '<object id="'.$player['id'].'" '.$player['classid'].$player['codebase'].$player['mime'].$image_size['whole'].'>';
-        $pic_html .= "<param name=\"autostart\" value=\"$autostart\"><param name=\"src\" value=\"". $picture_url . "\">";
-        $pic_html .= "<embed {$image_size['whole']} src=\"". $picture_url . "\" autostart=\"$autostart\" type=\"".$player['mime']."\"></embed>";
+        $pic_html .= "<param name=\"autostart\" value=\"$autostart\" /><param name=\"src\" value=\"". $picture_url . "\" />";
+        $pic_html .= '<embed '.$image_size['whole'].' src="'. $picture_url . '" autostart="'.$autostart.'" '.$player['mime'].'></embed>';
         $pic_html .= "</object><br />\n";
     }
 
