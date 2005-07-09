@@ -176,14 +176,14 @@ class cpg_udb extends core_udb {
 	{
 		global $CONFIG;
 		
-		$this->redirect('/login.php?1');
+		$this->redirect('/login.php');
 	}
 
 	function logout_page()
 	{
 		global $CONFIG;
 
-        $this->redirect('/login.php?1,logout=1');
+        $this->redirect('/login.php,logout=1');
 	}
 
 	//function view_users() {}
