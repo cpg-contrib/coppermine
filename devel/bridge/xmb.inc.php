@@ -34,7 +34,7 @@ just inside the top of the function
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 
 // Switch that allows overriding the bridge manager with hard-coded values
-define('USE_BRIDGEMGR', 0);
+define('USE_BRIDGEMGR', 1);
 
 require 'bridge/udb_base.inc.php';
 
