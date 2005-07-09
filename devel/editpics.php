@@ -426,7 +426,7 @@ if (GALLERY_ADMIN_MODE) {
         $public_albums_list = array();
 }
   
-// get_user_albums(USER_ID);
+get_user_albums(USER_ID);
   
 if (count($_POST)) process_post_data();
 
