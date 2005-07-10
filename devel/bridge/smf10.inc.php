@@ -58,10 +58,15 @@ class cpg_udb extends core_udb {
 			'prefix' =>$db_prefix
 		);
 		
-		// Derived full table names
-		$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
-		$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
-		
+        // Derived full table names
+        if (strpos($db_prefix, '.') === false) {
+            $this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
+            $this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
+        } else {
+            $this->usertable = $this->db['prefix'] . $this->table['users'];
+            $this->groupstable = $this->db['prefix'] . $this->table['groups'];
+        }
+        
 		// Table field names
 		$this->field = array(
 			'username' => 'memberName', // name of 'username' field in users table
