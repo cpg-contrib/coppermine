@@ -872,6 +872,7 @@ echo <<<EOT
         </td>
     </tr>
 EOT;
+$lang_admin_data = isset($lang_config_data) ? $lang_config_data : $lang_admin_data;
 create_form($lang_admin_data);
 
         if ($sn1) echo '<tr><td colspan ="3" class="tableb_compact"><a name="notice1"></a>'.$lang_admin_php['notice1'].'</td></tr>';
