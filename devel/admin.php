@@ -24,6 +24,8 @@ define('CONFIG_PHP', true); // added for backwards compatibility (language fallb
 require('include/init.inc.php');
 require('include/sql_parse.php');
 
+$lang_admin_data = isset($lang_config_data) ? $lang_config_data : $lang_admin_data;
+
 // Options disabled in bridged version
 $options_to_disable = array('reg_notify_admin_email',
     'reg_requires_valid_email',
@@ -872,7 +874,7 @@ echo <<<EOT
         </td>
     </tr>
 EOT;
-$lang_admin_data = isset($lang_config_data) ? $lang_config_data : $lang_admin_data;
+
 create_form($lang_admin_data);
 
         if ($sn1) echo '<tr><td colspan ="3" class="tableb_compact"><a name="notice1"></a>'.$lang_admin_php['notice1'].'</td></tr>';
