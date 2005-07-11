@@ -329,7 +329,7 @@ function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer
                 '{OUTPUT_BUFFER}' => $ob,
         );
 
-        if(!$CONFIG['debug_mode']) template_extract_block($template_cpg_die, 'file_line');
+        if (!($CONFIG['debug_mode'] == 1 || ($CONFIG['debug_mode'] == 2 && GALLERY_ADMIN_MODE))) template_extract_block($template_cpg_die, 'file_line');
         if(!$output_buffer && !$CONFIG['debug_mode']) template_extract_block($template_cpg_die, 'output_buffer');
 
         pageheader($lang_cpg_die[$msg_code]);
