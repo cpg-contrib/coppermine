@@ -33,10 +33,9 @@ class cpg_udb extends core_udb {
 		
 		if (!USE_BRIDGEMGR) { // the vars that are used when bridgemgr is disabled
 
-			// URL of your punbb
-			$this->cookie_name = 'blah';
-			$this->datapath = '/var/www/cgi-bin/Blah/Members/';
-			$this->boardurl = 'http://localhost/cgi-bin/Blah';
+			$this->cookie_name = 'eblah';
+			$this->datapath = '../cgi-bin/forum/Members/';
+			$this->boardurl = 'http://www.yoursite.com/cgi-bin/forum';
 		}
 		
 		$this->multigroups = 0;
@@ -87,9 +86,8 @@ class cpg_udb extends core_udb {
 
 		// Connect to db
 		$this->connect($CONFIG['link_id']);
-
 	}
-		
+	
 	// definition of how to extract id, name, group from a session cookie
 	function session_extraction()
 	{
@@ -99,8 +97,8 @@ class cpg_udb extends core_udb {
 	// definition of how to extract an id and password hash from a cookie
 	function cookie_extraction()
 	{
-		if (isset($_COOKIE['blahname']) && isset($_COOKIE['blahpass'])){
-			return array($this->get_user_id($_COOKIE['blahname']), $_COOKIE['blahpass']);
+		if (isset($_COOKIE[$this->cookie_name . '_un']) && isset($_COOKIE[$this->cookie_name . '_pw'])){
+			return array($this->get_user_id($_COOKIE[$this->cookie_name . '_un']), $_COOKIE[$this->cookie_name . '_pw']);
 		}
 		
 		return false;
@@ -121,7 +119,8 @@ class cpg_udb extends core_udb {
 	// definition of actions required to convert a password from user database form to cookie form
 	function udb_hash_db($password)
 	{
-		return crypt($password, $_COOKIE['blahpass']);
+		return $password;
+		//return crypt($password, $_COOKIE[$this->cookie_name . '_pw']);
 	}
 	
 	// Login
