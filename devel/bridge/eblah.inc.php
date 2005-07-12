@@ -169,15 +169,26 @@ class cpg_udb extends core_udb {
 	
 	function sync_users()
 	{
-		$data = file($this->datapath . 'List.txt');
+		$data = array();
 		
+		if ($dh = opendir($this->datapath)) {
+			while (($file = readdir($dh)) !== false) {
+				if (preg_match('/([^\.]+)\.dat/', $file, $matches)) $data[] = $matches[1];
+			}
+			closedir($dh);
+		}
+		
+		$groupdata = file_get_contents($this->datapath . '../Prefs/Ranks2.txt');
+		preg_match('/members = \(([^\)]+)\)/', $groupdata, $matches);
+		$adminusernames = explode(',', $matches[1]);
+
 		foreach ($data as $name){
 			$name = trim($name);
 			$info = file($this->datapath . "$name.dat");
 			$info = array_map('trim', $info);
 			
 			list($password, $username, $email,,$rank) = $info;
-			$user_group = $rank === 'Administrator' ? 1 : 2;
+			$user_group = in_array($username, $adminusernames) ? 1 : 2;
 			cpg_db_query("INSERT IGNORE INTO {$this->usertable} (`user_name`, `user_password`, `user_email`, `user_active`, `user_group`) VALUES ( '$username', '$password', '$email', 'YES', $user_group)");
 		}
 	}
@@ -185,4 +196,3 @@ class cpg_udb extends core_udb {
 
 // and go !
 $cpg_udb = new cpg_udb;
-?>
