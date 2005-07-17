@@ -1104,10 +1104,10 @@ $template_tab_display = array('left_text' => '<td width="100%" align="left" vali
 // Template used for Vanity Footer
 $template_vanity = <<<EOT
 <div id="vanity">
-      <a id="v_php" href="http://www.php.net/" target="_blank"></a>
-      <a id="v_mysql" href="http://www.mysql.com/" target="_blank"></a>
-      <a id="v_xhtml" href="http://validator.w3.org/check/referer" target="_blank"></a>
-      <a id="v_css" href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank"></a>
+      <a id="v_php" href="http://www.php.net/"  rel="external"></a>
+      <a id="v_mysql" href="http://www.mysql.com/"  rel="external"></a>
+      <a id="v_xhtml" href="http://validator.w3.org/check/referer"  rel="external"></a>
+      <a id="v_css" href="http://jigsaw.w3.org/css-validator/check/referer"  rel="external"></a>
 </div>
 EOT;
 
@@ -1247,7 +1247,7 @@ function theme_main_menu($which)
     if (!$CONFIG['display_faq']) {
         template_extract_block($template_sys_menu, 'faq');
     }
-    
+
     $param = array(
         '{HOME_TGT}' => $CONFIG['home_target'],
         '{HOME_TITLE}' => $lang_main_menu['home_title'],
@@ -1290,7 +1290,7 @@ function theme_main_menu($which)
     if (!$CONFIG['custom_lnk_url']) {
         template_extract_block($template_sub_menu, 'custom_link');
     }
-    
+
     $param = array(
         '{ALB_LIST_TGT}' => "index.php$cat_l",
         '{ALB_LIST_TITLE}' => $lang_main_menu['alb_list_title'],
