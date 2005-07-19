@@ -548,7 +548,7 @@ EOT;
     }
 
 
-    $iframe_startfolder .= str_replace('searchnew.php', '', $_SERVER['PHP_SELF']).rtrim($CONFIG['fullpath'], '/').'/';
+    $iframe_startfolder .= str_replace('searchnew.php', '', __FILE__).rtrim($CONFIG['fullpath'], '/').'/';
     $iframe_hide = rawurlencode('.,..,CVS,edit,'.rtrim($CONFIG['userpics'], '/'));
     print '    <tr>'."\n";
     print '        <td class="tableb" align="center">'."\n";
