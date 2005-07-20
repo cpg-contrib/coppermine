@@ -2300,12 +2300,12 @@ $return = '
 1.4.1|xp_publish.php|1.4.1|1.27|mandatory|r@
 1.4.1|zipdownload.php|1.4.1|1.10|mandatory|r@
 1.4.1|**fullpath**|||mandatory|w@
-1.4.1|**fullpath**/index.php|||mandatory|w@
-1.4.1|**fullpath**/edit/index.html|||mandatory|w@
+1.4.1|**fullpath**/index.php|||optional|w@
+1.4.1|**fullpath**/edit/index.html|||optional|w@
 1.4.1|**fullpath**/edit|||mandatory|w@
-1.4.1|**fullpath**/edit/index.html|||mandatory|w@
+1.4.1|**fullpath**/edit/index.html|||optional|w@
 1.4.1|**fullpath**/**userpics**|||mandatory|w@
-1.4.1|**fullpath**/**userpics**/index.php|||mandatory|w@
+1.4.1|**fullpath**/**userpics**/index.php|||optional|w@
 1.4.1|bridge|||mandatory|r@
 1.4.1|bridge/coppermine.inc.php|1.4.1|1.16|mandatory|r@
 1.4.1|bridge/eblah.inc.php|1.4.1|1.2|optional|r@
