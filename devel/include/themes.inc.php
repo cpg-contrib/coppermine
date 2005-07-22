@@ -2085,7 +2085,7 @@ function theme_html_picture()
         $players['WMP'] = array('id' => 'MediaPlayer',
                                 'clsid' => 'classid="clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6" ',
                                 'codebase' => 'codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5,1,52,701" ',
-                                'mime' => 'type="application/x-mplayer2" ',
+                                'mime' => 'type="application/x-mplayer2" '
                                );
         $players['RMP'] = array('id' => 'RealPlayer',
                                 'clsid' => 'classid="clsid:CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA" ',
