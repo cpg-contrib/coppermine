@@ -34,20 +34,39 @@
 */
 define('IN_COPPERMINE', true);
 
-/**
-* Sets the flag for lang file
-*/
-define('INDEX_PHP', true);
+if (isset($_GET['file'])) {
+    // Scrub: Remove '..' and leftover '//' from filename
+    $file = str_replace('//','',str_replace('..','',$_GET['file']));
+    $path = './plugins/'.$file.'.php';
 
-require('include/init.inc.php');
+    // Don't include the codebase and credits files
+    if ($file != 'codebase' && $file != 'configuration' && file_exists($path)) {
 
-if (!USER_ID && $CONFIG['allow_unlogged_access'] == 0) {
-    $redirect = $redirect . "login.php";
-    header("Location: $redirect");
-    exit();
+        // Include the code from the plugin
+        include_once($path);
+        $file = true;
+    } else {
+        $file = false;
+    }
+} else $file = false;
+
+if (!$file) {
+    /**
+    * Sets the flag for lang file
+    */
+    define('INDEX_PHP', true);
+
+    require('include/init.inc.php');
+
+    if (!USER_ID && $CONFIG['allow_unlogged_access'] == 0) {
+        $redirect = $redirect . "login.php";
+        header("Location: $redirect");
+        exit();
+    }
+
+    if ($CONFIG['enable_smilies']) include("include/smilies.inc.php");
 }
 
-if ($CONFIG['enable_smilies']) include("include/smilies.inc.php");
 
 /**
 * Local functions definition
@@ -689,41 +708,25 @@ function list_cat_albums($cat = 0)
 //
 // Main code
 //
-
-/**
-* See if $page has been passed in GET
-*/
-if (isset($_GET['page'])) {
-    $PAGE = max((int)$_GET['page'], 1);
-    $USER['lap'] = $PAGE;
-} elseif (isset($USER['lap'])) {
-    $PAGE = max((int)$USER['lap'], 1);
-} else {
-    $PAGE = 1;
-}
-
-if (isset($_GET['file'])) {
-    // Scrub: Remove '..' and leftover '//' from filename
-    $file = str_replace('//','',str_replace('..','',$_GET['file']));
-    $path = './plugins/'.$file.'.php';
-
-    // Don't include the codebase and credits files
-    if ($file != 'codebase' && $file != 'configuration' && file_exists($path)) {
-
-        // Include the code from the plugin
-        include_once($path);
-        $file = true;
-    } else {
-        $file = false;
-    }
-}
-
-/**
-* Loop through the $elements array to build the page using the parameters
-* set in the config
-*/
-
 if (!$file) {
+
+    /**
+    * See if $page has been passed in GET
+    */
+    if (isset($_GET['page'])) {
+        $PAGE = max((int)$_GET['page'], 1);
+        $USER['lap'] = $PAGE;
+    } elseif (isset($USER['lap'])) {
+        $PAGE = max((int)$USER['lap'], 1);
+    } else {
+        $PAGE = 1;
+    }
+
+    /**
+    * Loop through the $elements array to build the page using the parameters
+    * set in the config
+    */
+
 
     /**
     * See if $cat has been passed in GET
@@ -836,6 +839,8 @@ if (!$file) {
 }
 
 ob_end_flush();
+
+/* Not used anymore, somone else removed the usage of this keying in functions.inc.php due to problems - donnoman
 // Speed-up the random image query by 'keying' the image table
 if (time() - $CONFIG['randpos_interval'] > 86400) {
     $result = cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE 1");
@@ -846,4 +851,5 @@ if (time() - $CONFIG['randpos_interval'] > 86400) {
     $result = cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET randpos = ROUND(RAND()*$granularity) WHERE 1");
     $result = cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '" . time() . "' WHERE name = 'randpos_interval'");
 }
+*/
 ?>
