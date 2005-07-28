@@ -124,7 +124,7 @@ class cpg_udb extends core_udb {
 		if (isset($_COOKIE[$this->cookie_name . '_sid'])) {			
 			$session_id = addslashes($_COOKIE[$this->cookie_name . '_sid']);
 
-			$sql = "SELECT u.{$this->field['user_id']} AS user_id, u.{$this->field['password']} AS password FROM {$this->usertable} AS u, {$this->sessionstable} AS s WHERE u.{$this->field['user_id']}=s.session_user_id AND s.session_id = '$session_id'";
+			$sql = "SELECT u.{$this->field['user_id']} AS user_id, u.{$this->field['password']} AS password FROM {$this->usertable} AS u, {$this->sessionstable} AS s WHERE u.{$this->field['user_id']}=s.session_user_id AND s.session_id = '$session_id' AND u.user_id > 0";
 			
 			$result = cpg_db_query($sql, $this->link_id);
 
@@ -141,10 +141,11 @@ class cpg_udb extends core_udb {
 	function get_groups($row)
 	{
 		if ($this->use_post_based_groups){
-			$sql = "SELECT ug.{$this->field['usertbl_group_id']}+100 AS group_id FROM {$this->usertable} AS u, {$this->usergroupstable} AS ug, {$this->groupstable} as g WHERE u.{$this->field['user_id']}=ug.{$this->field['user_id']} AND u.{$this->field['user_id']}='{$row[$this->field['user_id']]}' AND g.{$this->field['grouptbl_group_id']} = ug.{$this->field['grouptbl_group_id']} AND g.group_single_user = 0";
+
+			$sql = "SELECT ug.{$this->field['usertbl_group_id']}+100 AS group_id FROM {$this->usertable} AS u, {$this->usergroupstable} AS ug, {$this->groupstable} as g WHERE u.{$this->field['user_id']}=ug.{$this->field['user_id']} AND u.{$this->field['user_id']}='{$row['id']}' AND g.{$this->field['grouptbl_group_id']} = ug.{$this->field['grouptbl_group_id']}";
 
 			$result = cpg_db_query($sql, $this->link_id);
-        
+
 			while ($row = mysql_fetch_array($result)) {
 				$data[] = $row['group_id'];
 			}
