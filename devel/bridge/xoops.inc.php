@@ -58,7 +58,9 @@ class cpg_udb extends core_udb {
 		// Database connection settings
 		$this->db = array(
 			'name' => XOOPS_DB_NAME,
-			'prefix' =>XOOPS_DB_PREFIX . '_'
+			'prefix' =>XOOPS_DB_PREFIX . '_',
+			'host' =>XOOPS_DB_HOST,
+			'user' => XOOPS_DB_USER
 		);
 		
 		// Derived full table names
@@ -100,8 +102,10 @@ class cpg_udb extends core_udb {
 	function get_groups($row)
 	{
 		if ($this->use_post_based_groups){
-			$groups = $_SESSION['xoopsUserGroups'];
-			foreach ($groups as $a => &$b) $b += 100;
+		   //$groups = $_SESSION['xoopsUserGroups'];
+			//foreach ($groups as $a => &$b) $b += 100;
+			$groups = array();
+			foreach ($_SESSION['xoopsUserGroups'] as $a => $b) $groups[$a] = $b + 100;
 			return $groups;
 		}
 		return array($_SESSION['xoopsUserGroups'][0]);
