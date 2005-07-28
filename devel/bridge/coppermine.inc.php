@@ -381,9 +381,10 @@ class cpg_udb extends core_udb {
         function logout_page() {
             $this->logout();
         }
-
+		/* Note : we don't want to overide this - the groups need to be resynced to coppermine default after un-integration
         function synchronize_groups()
         {   }
+		*/
 }
 
 // and go !
