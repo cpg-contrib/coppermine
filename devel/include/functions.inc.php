@@ -1009,12 +1009,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $count = $nbEnr[0];
                 mysql_free_result($result);
 
-                $select_columns = '*'; //allows building any data into any thumbnail caption
-                if($select_columns == '*'){
-                        $select_columns = 'p.*';
-                } else {
-                        $select_columns = str_replace('pid', 'c.pid', $select_columns).', msg_id, author_id, msg_author, UNIX_TIMESTAMP(msg_date) as msg_date, msg_body, aid';
-                }
+				$select_columns = '*, UNIX_TIMESTAMP(msg_date) AS msg_date'; //allows building any data into any thumbnail caption
 
                 $query = "SELECT $select_columns FROM {$CONFIG['TABLE_COMMENTS']} as c, {$CONFIG['TABLE_PICTURES']} as p WHERE approved = 'YES' AND author_id = '$uid' AND c.pid = p.pid $META_ALBUM_SET ORDER by msg_id DESC $limit";
                 $result = cpg_db_query($query);
