@@ -754,8 +754,8 @@ $template_image_comments = <<<EOT
 
 
 <!-- BEGIN buttons -->
-                                        <a href="javascript:;" onclick="blocking('cbody{MSG_ID}','', 'block'); blocking('cedit{MSG_ID}','', 'block'); return false;" title="{EDIT_TITLE}"><img src="images/edit.gif" border="0px" align="middle" /></a>
-                                        <a href="delete.php?msg_id={MSG_ID}&what=comment"  onclick="return confirm('{CONFIRM_DELETE}');"><img src="images/delete.gif" border="0px" align="middle" /></a>
+                                        <a href="javascript:;" onclick="blocking('cbody{MSG_ID}','', 'block'); blocking('cedit{MSG_ID}','', 'block'); return false;" title="{EDIT_TITLE}"><img src="images/edit.gif" border="0px" align="middle" alt="" /></a>
+                                        <a href="delete.php?msg_id={MSG_ID}&amp;what=comment"  onclick="return confirm('{CONFIRM_DELETE}');"><img src="images/delete.gif" border="0px" align="middle" /></a>
 <!-- END buttons -->
                                 </td>
                                 <td class="tableh2_compact" align="right" nowrap="nowrap">
@@ -771,58 +771,55 @@ $template_image_comments = <<<EOT
                         </div>
                         <div id="cedit{MSG_ID}" style="display:none">
 <!-- BEGIN edit_box_smilies -->
-                                <table width="100%" cellpadding="0px" cellspacing="0px">
-
-                                                <form name="f{MSG_ID}" method="POST" action="db_input.php">
+                                <form name="f{MSG_ID}" method="post" action="db_input.php">
+                                    <table width="100%" cellpadding="0px" cellspacing="0px">
+                                        <tr>
+                                            <td valign="top">
+                                                <input type="text" name="msg_author" value="{MSG_AUTHOR}" class="textinput" size="25" />
                                                 <input type="hidden" name="event" value="comment_update" />
                                                 <input type="hidden" name="msg_id" value="{MSG_ID}" />
-                                                <tr>
-                                                <td>
-                                                   <input type="text" name="msg_author" value="{MSG_AUTHOR}" class="textinput" size="25" />
-                                                </td><td>
-                                                </tr>
-                                                <tr>
-                                                <td width="80%">
-                                                        <textarea cols="40" rows="2" class="textinput" name="msg_body" onselect="storeCaret_f{MSG_ID}(this);" onclick="storeCaret_f{MSG_ID}(this);" onkeyup="storeCaret_f{MSG_ID}(this);" style="width: 100%;">{MSG_BODY_RAW}</textarea>
-                                                </td>
-                                                <td class="tableb_compact">
-                                                </td>
-                                                <td>
-                                                        <input type="submit" class="comment_button" name="submit" value="{OK}" />
-                                                </td>
-                                                </form>
+                                            </td>
+                                            <td width="70%">
+                                                <textarea cols="40" rows="2" class="textinput" name="msg_body" onselect="storeCaret_f{MSG_ID}(this);" onclick="storeCaret_f{MSG_ID}(this);" onkeyup="storeCaret_f{MSG_ID}(this);" style="width:99%;">{MSG_BODY_RAW}</textarea>
+                                            </td>
+                                            <td align="right">
+                                                <input type="submit" class="comment_button" name="submit" value="{OK}" />
+                                            </td>
                                         </tr>
                                         <tr>
-                                                <td colspan="3"><img src="images/spacer.gif" width="1px" height="2px" /><br /></td>
+                                            <td colspan="3">
+                                                <img src="images/spacer.gif" width="1px" height="2px" />
+                                                <br />
+                                            </td>
                                         </tr>
-                                </table>
+                                    </table>
+                                </form>
                                 {SMILIES}
 <!-- END edit_box_smilies -->
 <!-- BEGIN edit_box_no_smilies -->
-                                <table width="100%" cellpadding="0px" cellspacing="0px">
+                                <form name="f{MSG_ID}" method="post" action="db_input.php">
+                                    <table width="100%" cellpadding="0px" cellspacing="0px">
                                         <tr>
-                                                <form name="f{MSG_ID}" method="POST" action="db_input.php">
+                                            <td valign="top">
                                                 <input type="hidden" name="event" value="comment_update" />
                                                 <input type="hidden" name="msg_id" value="{MSG_ID}" />
-                                                <td>
                                                 <input type="text" name="msg_author" value="{MSG_AUTHOR}" class="textinput" size="25" />
-                                                </td>
+                                            </td>
+                                            <td width="70%">
+                                                <textarea cols="40" rows="2" class="textinput" name="msg_body" style="width:99%;">{MSG_BODY_RAW}</textarea>
+                                            </td>
+                                            <td align="right">
+                                                <input type="submit" class="comment_button" name="submit" value="{OK}" />
+                                            </td>
                                         </tr>
                                         <tr>
-                                                <td width="100%">
-                                                        <textarea cols="40" rows="2" class="textinput" name="msg_body" style="width: 100%;">{MSG_BODY_RAW}</textarea>
-                                                </td>
-                                                <td class="tableb_compact">
-                                                </td>
-                                                <td>
-                                                        <input type="submit" class="comment_button" name="submit" value="{OK}" />
-                                                </td>
-                                                </form>
+                                            <td colspan="3">
+                                                <img src="images/spacer.gif" width="1px" height="2px" />
+                                                <br />
+                                            </td>
                                         </tr>
-                                        <tr>
-                                                <td colspan="3"><img src="images/spacer.gif" width="1px" height="2px" /><br /></td>
-                                        </tr>
-                                </table>
+                                    </table>
+                                </form>
 <!-- END edit_box_no_smilies -->
                         </div>
                 </td>
