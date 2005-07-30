@@ -1570,7 +1570,7 @@ function breadcrumb($cat, &$breadcrumb, &$BREADCRUMB_TEXT)
         // we check if the theme_breadcrumb exists...
         if (function_exists('theme_breadcrumb'))
         {
-            theme_breadcrumb($breadcrumb_list, $BREADCRUMB_TEXTS, $breadcrumb, $BREADCRUMB_TEXT);
+            theme_breadcrumb($breadcrumb_links, $BREADCRUMB_TEXTS, $breadcrumb, $BREADCRUMB_TEXT);
             return;
         }
         // otherwise we have a default breadcrumb builder:
