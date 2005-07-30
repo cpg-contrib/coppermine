@@ -754,8 +754,8 @@ $template_image_comments = <<<EOT
 
 
 <!-- BEGIN buttons -->
-                                        <a href="javascript:;" onclick="blocking('cbody{MSG_ID}','', 'block'); blocking('cedit{MSG_ID}','', 'block'); return false;" title="{EDIT_TITLE}"><img src="images/edit.gif" border="0px" align="middle" alt="" /></a>
-                                        <a href="delete.php?msg_id={MSG_ID}&amp;what=comment"  onclick="return confirm('{CONFIRM_DELETE}');"><img src="images/delete.gif" border="0px" align="middle" /></a>
+                                        <a href="javascript:;" onclick="blocking('cbody{MSG_ID}','', 'block'); blocking('cedit{MSG_ID}','', 'block'); return false;" title="{EDIT_TITLE}"><img src="images/edit.gif" border="0px" align="middle" /></a>
+                                        <a href="delete.php?msg_id={MSG_ID}&what=comment"  onclick="return confirm('{CONFIRM_DELETE}');"><img src="images/delete.gif" border="0px" align="middle" /></a>
 <!-- END buttons -->
                                 </td>
                                 <td class="tableh2_compact" align="right" nowrap="nowrap">
@@ -771,55 +771,58 @@ $template_image_comments = <<<EOT
                         </div>
                         <div id="cedit{MSG_ID}" style="display:none">
 <!-- BEGIN edit_box_smilies -->
-                                <form name="f{MSG_ID}" method="post" action="db_input.php">
-                                    <table width="100%" cellpadding="0px" cellspacing="0px">
-                                        <tr>
-                                            <td valign="top">
-                                                <input type="text" name="msg_author" value="{MSG_AUTHOR}" class="textinput" size="25" />
+                                <table width="100%" cellpadding="0px" cellspacing="0px">
+
+                                                <form name="f{MSG_ID}" method="POST" action="db_input.php">
                                                 <input type="hidden" name="event" value="comment_update" />
                                                 <input type="hidden" name="msg_id" value="{MSG_ID}" />
-                                            </td>
-                                            <td width="70%">
-                                                <textarea cols="40" rows="2" class="textinput" name="msg_body" onselect="storeCaret_f{MSG_ID}(this);" onclick="storeCaret_f{MSG_ID}(this);" onkeyup="storeCaret_f{MSG_ID}(this);" style="width:99%;">{MSG_BODY_RAW}</textarea>
-                                            </td>
-                                            <td align="right">
-                                                <input type="submit" class="comment_button" name="submit" value="{OK}" />
-                                            </td>
+                                                <tr>
+                                                <td>
+                                                   <input type="text" name="msg_author" value="{MSG_AUTHOR}" class="textinput" size="25" />
+                                                </td><td>
+                                                </tr>
+                                                <tr>
+                                                <td width="80%">
+                                                        <textarea cols="40" rows="2" class="textinput" name="msg_body" onselect="storeCaret_f{MSG_ID}(this);" onclick="storeCaret_f{MSG_ID}(this);" onkeyup="storeCaret_f{MSG_ID}(this);" style="width: 100%;">{MSG_BODY_RAW}</textarea>
+                                                </td>
+                                                <td class="tableb_compact">
+                                                </td>
+                                                <td>
+                                                        <input type="submit" class="comment_button" name="submit" value="{OK}" />
+                                                </td>
+                                                </form>
                                         </tr>
                                         <tr>
-                                            <td colspan="3">
-                                                <img src="images/spacer.gif" width="1px" height="2px" />
-                                                <br />
-                                            </td>
+                                                <td colspan="3"><img src="images/spacer.gif" width="1px" height="2px" /><br /></td>
                                         </tr>
-                                    </table>
-                                </form>
+                                </table>
                                 {SMILIES}
 <!-- END edit_box_smilies -->
 <!-- BEGIN edit_box_no_smilies -->
-                                <form name="f{MSG_ID}" method="post" action="db_input.php">
-                                    <table width="100%" cellpadding="0px" cellspacing="0px">
+                                <table width="100%" cellpadding="0px" cellspacing="0px">
                                         <tr>
-                                            <td valign="top">
+                                                <form name="f{MSG_ID}" method="POST" action="db_input.php">
                                                 <input type="hidden" name="event" value="comment_update" />
                                                 <input type="hidden" name="msg_id" value="{MSG_ID}" />
+                                                <td>
                                                 <input type="text" name="msg_author" value="{MSG_AUTHOR}" class="textinput" size="25" />
-                                            </td>
-                                            <td width="70%">
-                                                <textarea cols="40" rows="2" class="textinput" name="msg_body" style="width:99%;">{MSG_BODY_RAW}</textarea>
-                                            </td>
-                                            <td align="right">
-                                                <input type="submit" class="comment_button" name="submit" value="{OK}" />
-                                            </td>
+                                                </td>
                                         </tr>
                                         <tr>
-                                            <td colspan="3">
-                                                <img src="images/spacer.gif" width="1px" height="2px" />
-                                                <br />
-                                            </td>
+                                                <td width="100%">
+                                                        <textarea cols="40" rows="2" class="textinput" name="msg_body" style="width: 100%;">{MSG_BODY_RAW}</textarea>
+                                                </td>
+                                                <td class="tableb_compact">
+                                                </td>
+                                                <td>
+                                                        <input type="submit" class="comment_button" name="submit" value="{OK}" />
+                                                </td>
+                                                </form>
                                         </tr>
-                                    </table>
-                                </form>
+                                        <tr>
+                                                <td colspan="3"><img src="images/spacer.gif" width="1px" height="2px" /><br /></td>
+                                        </tr>
+                                </table>
 <!-- END edit_box_no_smilies -->
                         </div>
                 </td>
@@ -852,7 +855,6 @@ $template_add_your_comment = <<<EOT
                                 <td width="100%" class="tableb_compact">
                                 <input type="text" class="textinput" id="message" name="msg_body" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" maxlength="{MAX_COM_LENGTH}" style="width: 100%;" />                                        <!-- END input_box_smilies -->
 <!-- BEGIN input_box_no_smilies -->
-                                <td class="tableb_compact">
                                 <input type="text" class="textinput" id="message" name="msg_body"  maxlength="{MAX_COM_LENGTH}" style="width: 100%;" />
 <!-- END input_box_no_smilies -->
                                 </td>
@@ -1142,10 +1144,10 @@ $template_tab_display = array('left_text' => '<td width="100%%" align="left" val
 if (!isset($template_vanity))  //{THEMES}
 $template_vanity = <<<EOT
 <div id="vanity">
-      <a id="v_php" href="http://www.php.net/"  rel="external"></a>
-      <a id="v_mysql" href="http://www.mysql.com/"  rel="external"></a>
-      <a id="v_xhtml" href="http://validator.w3.org/check/referer"  rel="external"></a>
-      <a id="v_css" href="http://jigsaw.w3.org/css-validator/check/referer"  rel="external"></a>
+      <a id="v_php" href="http://www.php.net/" target="_blank"></a>
+      <a id="v_mysql" href="http://www.mysql.com/" target="_blank"></a>
+      <a id="v_xhtml" href="http://validator.w3.org/check/referer" target="_blank"></a>
+      <a id="v_css" href="http://jigsaw.w3.org/css-validator/check/referer" target="_blank"></a>
 </div>
 EOT;
 
@@ -1294,7 +1296,7 @@ function theme_main_menu($which)
     if (!$CONFIG['display_faq']) {
         template_extract_block($template_sys_menu, 'faq');
     }
-
+    
     $param = array(
         '{HOME_TGT}' => $CONFIG['home_target'],
         '{HOME_TITLE}' => $lang_main_menu['home_title'],
@@ -1337,7 +1339,7 @@ function theme_main_menu($which)
     if (!$CONFIG['custom_lnk_url']) {
         template_extract_block($template_sub_menu, 'custom_link');
     }
-
+    
     $param = array(
         '{ALB_LIST_TGT}' => "index.php$cat_l",
         '{ALB_LIST_TITLE}' => $lang_main_menu['alb_list_title'],
@@ -2083,7 +2085,7 @@ function theme_html_picture()
         $players['WMP'] = array('id' => 'MediaPlayer',
                                 'clsid' => 'classid="clsid:6BF52A52-394A-11D3-B153-00C04F79FAA6" ',
                                 'codebase' => 'codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=5,1,52,701" ',
-                                'mime' => 'type="application/x-mplayer2" '
+                                'mime' => 'type="application/x-mplayer2" ',
                                );
         $players['RMP'] = array('id' => 'RealPlayer',
                                 'clsid' => 'classid="clsid:CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA" ',
@@ -2119,7 +2121,7 @@ function theme_html_picture()
 
         $player = $players[$user_player];
 
-        $pic_html  = '<object id="'.$player['id'].'" '.$player['classid'].$player['codebase'].$player['mime'].$image_size['whole'].'>';
+        $pic_html  = '<object id="'.$player['id'].'" '.$player['clsid'].$player['codebase'].$player['mime'].$image_size['whole'].'>';
         $pic_html .= "<param name=\"autostart\" value=\"$autostart\" /><param name=\"src\" value=\"". $picture_url . "\" />";
         $pic_html .= '<embed '.$image_size['whole'].' src="'. $picture_url . '" autostart="'.$autostart.'" '.$player['mime'].'></embed>';
         $pic_html .= "</object><br />\n";
