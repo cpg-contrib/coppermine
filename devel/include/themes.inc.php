@@ -2342,7 +2342,7 @@ function theme_html_comments($pid)
 
         $template = template_eval($template_image_comments, $params);
 
-        $params = array('{MSG_AUTHOR}' => $row['msg_author'],
+        $params = array('{MSG_AUTHOR}' => stripslashes($row['msg_author']),
             '{MSG_ID}' => $row['msg_id'],
             '{PID}' => $row['pid'],
             '{EDIT_TITLE}' => &$lang_display_comments['edit_title'],
