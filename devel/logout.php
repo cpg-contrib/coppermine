@@ -34,7 +34,7 @@ setcookie($CONFIG['cookie_name'] . '_uid', '', time()-86400, $CONFIG['cookie_pat
 $referer = 'index.php';
 
 pageheader($lang_logout_php['logout'], "<META http-equiv=\"refresh\" content=\"3;url=$referer\">");
-msg_box($lang_logout_php['logout'], sprintf($lang_logout_php['bye'], USER_NAME), $lang_continue, $referer);
+msg_box($lang_logout_php['logout'], sprintf($lang_logout_php['bye'], stripslashes(USER_NAME)), $lang_continue, $referer);
 pagefooter();
 ob_end_flush();
 

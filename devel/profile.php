@@ -24,7 +24,7 @@ require('include/init.inc.php');
 include("include/smilies.inc.php");
 
 //if (defined('UDB_INTEGRATION')){
-	$cpg_udb->view_profile($_GET['uid']);
+  $cpg_udb->view_profile($_GET['uid']);
 //}
 
 $edit_profile_form_param = array(
@@ -198,7 +198,7 @@ if (isset($_POST['change_profile']) && USER_ID && UDB_INTEGRATION == 'coppermine
 
     $result = cpg_db_query($sql);
 
-    $title = sprintf($lang_register_php['x_s_profile'], USER_NAME);
+    $title = sprintf($lang_register_php['x_s_profile'], stripslashes(USER_NAME));
     $redirect = "index.php";
     pageheader($title, "<META http-equiv=\"refresh\" content=\"3;url=$redirect\">");
     msg_box($lang_info, $lang_register_php['update_success'], $lang_continue, $redirect);
@@ -215,10 +215,10 @@ if (isset($_POST['change_password']) && USER_ID && UDB_INTEGRATION == 'coppermin
     if (strlen($new_pass) < 2) cpg_die(ERROR, $lang_register_php['err_password_short'], __FILE__, __LINE__);
     if ($new_pass != $new_pass_again) cpg_die(ERROR, $lang_register_php['err_password_mismatch'], __FILE__, __LINE__);
 
-	if ($CONFIG['enable_encrypted_passwords']) {
-		$new_pass = md5($new_pass);
-		$current_pass = md5($current_pass);
-	}
+  if ($CONFIG['enable_encrypted_passwords']) {
+    $new_pass = md5($new_pass);
+    $current_pass = md5($current_pass);
+  }
 
     $sql = "UPDATE {$cpg_udb->usertable} SET " .
            $cpg_udb->field['password']." = '$new_pass' " .
@@ -240,7 +240,7 @@ if (isset($_POST['change_password']) && USER_ID && UDB_INTEGRATION == 'coppermin
 
     setcookie($CONFIG['cookie_name'] . '_pass', md5($_POST['new_pass']), time() + 86400, $CONFIG['cookie_path']);
 
-    $title = sprintf($lang_register_php['x_s_profile'], USER_NAME);
+    $title = sprintf($lang_register_php['x_s_profile'], stripslashes(USER_NAME));
     $redirect = $_SERVER['PHP_SELF'] . "?op=edit_profile";
     pageheader($title, "<META http-equiv=\"refresh\" content=\"3;url=$redirect\">");
     msg_box($lang_info, $lang_register_php['pass_chg_success'], $lang_continue, $redirect);
@@ -289,7 +289,7 @@ switch ($op) {
                         'user_profile6' => $user_data['user_profile6'],
             );
 
-        $title = sprintf($lang_register_php['x_s_profile'], USER_NAME);
+        $title = sprintf($lang_register_php['x_s_profile'], stripslashes(USER_NAME));
         pageheader($title);
         starttable(-1, $title, 2);
         echo <<<EOT
@@ -315,7 +315,7 @@ EOT;
     // ------------------------------------------------------------------------- //
     case 'change_pass' :
         if (!USER_ID /*|| defined('UDB_INTEGRATION')*/) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
-        
+
         // Just a sanity check (should get caught when user clicks 'My Profile')
         if (UDB_INTEGRATION != 'coppermine') {
             $cpg_udb->edit_profile(USER_ID);
@@ -376,7 +376,7 @@ EOT;
         $lastcom_id = $nbEnr[1];
         mysql_free_result($result);
 
-        $result = cpg_db_query("SELECT pid FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_name = '$user_data[user_name]'");
+        $result = cpg_db_query("SELECT pid FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_name = '".addslashes($user_data[user_name])."'");
         $pic_count = mysql_num_rows($result);
         mysql_free_result($result);
 

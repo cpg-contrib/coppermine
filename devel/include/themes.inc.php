@@ -1296,7 +1296,7 @@ function theme_main_menu($which)
     if (!$CONFIG['display_faq']) {
         template_extract_block($template_sys_menu, 'faq');
     }
-    
+
     $param = array(
         '{HOME_TGT}' => $CONFIG['home_target'],
         '{HOME_TITLE}' => $lang_main_menu['home_title'],
@@ -1327,7 +1327,7 @@ function theme_main_menu($which)
         '{LOGIN_LNK}' => $lang_main_menu['login_lnk'],
         '{LOGOUT_TGT}' => "logout.php?referer=$REFERER",
         '{LOGOUT_TITLE}' => $lang_main_menu['logout_title'],
-        '{LOGOUT_LNK}' => $lang_main_menu['logout_lnk'] . " [" . USER_NAME . "]",
+        '{LOGOUT_LNK}' => $lang_main_menu['logout_lnk'] . " [" . stripslashes(USER_NAME) . "]",
         '{FAQ_TGT}' => "faq.php",
         '{FAQ_TITLE}' => $lang_main_menu['faq_title'],
         '{FAQ_LNK}' => $lang_main_menu['faq_lnk'],
@@ -1339,7 +1339,7 @@ function theme_main_menu($which)
     if (!$CONFIG['custom_lnk_url']) {
         template_extract_block($template_sub_menu, 'custom_link');
     }
-    
+
     $param = array(
         '{ALB_LIST_TGT}' => "index.php$cat_l",
         '{ALB_LIST_TITLE}' => $lang_main_menu['alb_list_title'],
@@ -2362,7 +2362,7 @@ function theme_html_comments($pid)
 
     if (USER_CAN_POST_COMMENTS && $CURRENT_ALBUM_DATA['comments'] == 'YES') {
         if (USER_ID) {
-            $user_name_input = '<tr><td><input type="hidden" name="msg_author" value="' . USER_NAME . '" /></td>';
+            $user_name_input = '<tr><td><input type="hidden" name="msg_author" value="' . stripslashes(USER_NAME) . '" /></td>';
             template_extract_block($template_add_your_comment, 'user_name_input', $user_name_input);
             $user_name = '';
         } else {
