@@ -109,7 +109,7 @@ adjust_popup();
 //} // print the javascript bit that updates the parent element --- end
 ?>
 </head>
-<body class="tableb" scroll="auto" marginwidth="0px" marginheight="0px">
+<body class="tableb" scroll="auto" marginwidth="0" marginheight="0">
 
 <form name="childform" id="childform" method="get" action="<?php print $_SERVER['PHP_SELF']; ?>" onsubmit="return updateParent();">
 
@@ -152,7 +152,7 @@ if ($radio != 0) {
 }
 print '</td>'.$newline;
 print '<td class="tableh2">'.$newline;
-print '<input type="text" name="cf2" size="50px" value="/'.ltrim($folder, '/').'" disabled="disabled" class="tableh2_compact">&nbsp;'.$newline;
+print '<input type="text" name="cf2" size="50" value="/'.ltrim($folder, '/').'" disabled="disabled" class="tableh2_compact">&nbsp;'.$newline;
 if ($linktarget != '') {
     // determine if we should display a submit button start
     // get the allowed extensions
@@ -201,7 +201,7 @@ if ((!empty($_REQUEST['folder']) || !empty($_REQUEST['startfolder'])) && ($folde
         print '&nbsp;';
         print '</td>'.$newline;
         print '<td class="tableb">'.$newline;
-        print '<img src="images/spacer.gif" width="16px" height="16px" border="0px" alt="" align="left" />'.$newline;
+        print '<img src="images/spacer.gif" width="16" height="16" border="0" alt="" align="left" />'.$newline;
         print '<a href="'.$_SERVER['PHP_SELF'].'?folder='.rawurlencode($uplink).'&parentform='.rawurlencode($parentform).'&formelementname='.rawurlencode($formelementname).'&no_popup='.$_REQUEST['no_popup'].'&limitfolder='.$_REQUEST['limitfolder'].'&hidefolders='.$_REQUEST['hidefolders'].'&linktarget='.$_REQUEST['linktarget'].'">'.$newline;
         print '.. '.$lang_minibrowser_php['up'];
         print '</a>'.$newline;
@@ -223,7 +223,7 @@ if (is_array($foldername)) {
             print '</td>'.$newline;
             print '<td class="tableb">'.$newline;
             print '<a href="'.$_SERVER['PHP_SELF'].'?folder='.rawurlencode('/'.ltrim($folder, '/').$key.'/').'&parentform='.rawurlencode($parentform).'&formelementname='.rawurlencode($formelementname).'&no_popup='.$_REQUEST['no_popup'].'&limitfolder='.$_REQUEST['limitfolder'].'&hidefolders='.$_REQUEST['hidefolders'].'&linktarget='.$_REQUEST['linktarget'].'">'.$newline;
-            print '<img src="images/folder.gif" width="16px" height="16px" border="0px" alt="" title="folder" />'.$newline;
+            print '<img src="images/folder.gif" width="16" height="16" border="0" alt="" title="folder" />'.$newline;
             print $key.$newline;
             print '</a>'.$newline;
             print '</td>'.$newline;
@@ -240,7 +240,7 @@ if (is_array($filename)) {
         print '&nbsp;';
         print '</td>'.$newline;
         print '<td class="tableb">'.$newline;
-        print '<img src="images/spacer.gif" width="10px" height="15px" border="0px" alt="" align="left" />'.$newline;
+        print '<img src="images/spacer.gif" width="10" height="15" border="0" alt="" align="left" />'.$newline;
         print $key.$newline;
         print '</td>'.$newline;
         print '</tr>'.$newline;

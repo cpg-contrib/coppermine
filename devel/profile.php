@@ -153,15 +153,17 @@ EOT;
             $value = $form_data[$element[1]];
 
             if ($value) echo <<<EOT
-    <td valign="top" colspan="2" class="thumbnails" align="center">
-        <table width="100%" cellpadding="0" cellspacing="0">
-            <tr>
-                <td align="center">
-                    $value
-                </td>
-            </tr>
-        </table>
-    </td>
+    <tr>
+        <td valign="top" colspan="2" class="thumbnails" align="center">
+            <table width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="center">
+                        $value
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
 EOT;
             break;
 
@@ -395,9 +397,9 @@ EOT;
                 }
                 $image_size = compute_img_size($row['pwidth'], $row['pheight'], $CONFIG['thumb_width']);
                 $mime_content = cpg_get_type($row['filename']);
-                $lastcom = '<img src="' . $pic_url . '" class="image"' . $image_size['geom'] . ' border="0" alt="">';
+                $lastcom = '<img src="' . $pic_url . '" class="image"' . $image_size['geom'] . ' border="0" alt="" />';
                 $lastcom = '<td width="50%" valign="top" align="center">'
-                            . '<a href="thumbnails.php?album=lastcomby&uid=' . $uid . '">'
+                            . '<a href="thumbnails.php?album=lastcomby&amp;uid=' . $uid . '">'
                             . '<span class="thumb_title">' . $lang_register_php['last_comments'] . ' ' . $user_data['user_name'] . '<br /></span>'
                             . $lastcom
                             . '</a><br />';
@@ -421,9 +423,9 @@ EOT;
                 $image_size = compute_img_size($picture['pwidth'], $picture['pheight'], $CONFIG['thumb_width']);
                 $mime_content = cpg_get_type($picture['filename']);
                 $user_thumb = '<img src="' . $pic_url . '" class="image"'
-                                . $image_size['geom'] . ' border="0" alt="">';
+                                . $image_size['geom'] . ' border="0" alt="" />';
                 $user_thumb = '<td width="50%" valign="top" align="center">'
-                            . '<a href="thumbnails.php?album=lastupby&uid=' . $uid . '">'
+                            . '<a href="thumbnails.php?album=lastupby&amp;uid=' . $uid . '">'
                             . '<span class="thumb_title">' . $lang_register_php['last_uploads'] . ' ' . $user_data['user_name'] . '<br /></span>'
                             . $user_thumb
                             . '</a></td>';

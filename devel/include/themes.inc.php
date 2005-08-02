@@ -537,7 +537,7 @@ $template_fav_thumb_view_title_row = <<<EOT
                         <table width="100%" cellpadding="0" cellspacing="0">
                         <tr>
                                 <td width="100%" class="statlink"><h2>{ALBUM_NAME}</h2></td>
-                                <td><img src="images/spacer.gif" width="1px" alt=""></td>
+                                <td><img src="images/spacer.gif" width="1" alt=""></td>
                                 <td class="sortorder_cell">
                                         <table cellpadding="0" cellspacing="0">
                                                 <tr>
@@ -632,33 +632,33 @@ if (!isset($template_img_navbar))  //{THEMES}
 $template_img_navbar = <<<EOT
 
         <tr>
-                <td align="center" valign="middle" class="navmenu" width="48px"><a name="top_display_media"></a>
-                        <a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="{LOCATION}images/thumbnails.gif" align="middle" border="0px" alt="{THUMB_TITLE}" /></a>
+                <td align="center" valign="middle" class="navmenu" width="48">
+                        <a href="{THUMB_TGT}" class="navmenu_pic" title="{THUMB_TITLE}"><img src="{LOCATION}images/thumbnails.gif" align="middle" border="0" alt="{THUMB_TITLE}" /></a>
                 </td>
-                <td align="center" valign="middle" class="navmenu" width="48px">
-                        <a href="javascript:;" class="navmenu_pic" onclick="blocking('picinfo','yes', 'block'); return false;" title="{PIC_INFO_TITLE}"><img src="{LOCATION}images/info.gif" border="0px" align="middle" alt="{PIC_INFO_TITLE}" /></a>
+                <td align="center" valign="middle" class="navmenu" width="48">
+                        <a href="javascript:;" class="navmenu_pic" onclick="blocking('picinfo','yes', 'block'); return false;" title="{PIC_INFO_TITLE}"><img src="{LOCATION}images/info.gif" border="0" align="middle" alt="{PIC_INFO_TITLE}" /></a>
                 </td>
-                <td align="center" valign="middle" class="navmenu" width="48px">
-                        <a href="{SLIDESHOW_TGT}" class="navmenu_pic" title="{SLIDESHOW_TITLE}"><img src="{LOCATION}images/slideshow.gif" border="0px" align="middle" alt="{SLIDESHOW_TITLE}" /></a>
+                <td align="center" valign="middle" class="navmenu" width="48">
+                        <a href="{SLIDESHOW_TGT}" class="navmenu_pic" title="{SLIDESHOW_TITLE}"><img src="{LOCATION}images/slideshow.gif" border="0" align="middle" alt="{SLIDESHOW_TITLE}" /></a>
                 </td>
                 <td align="center" valign="middle" class="navmenu" width="100%">
                         {PIC_POS}
                 </td>
 <!-- BEGIN report_file_button -->
-                <td align="center" valign="middle" class="navmenu" width="48px">
+                <td align="center" valign="middle" class="navmenu" width="48">
                         <a href="{REPORT_TGT}" class="navmenu_pic" title="{REPORT_TITLE}"><img src="{LOCATION}images/report.gif" border="0" align="middle" alt="{REPORT_TITLE}" /></a>
                 </td>
 <!-- END report_file_button -->
 <!-- BEGIN ecard_button -->
-                <td align="center" valign="middle" class="navmenu" width="48px">
-                        <a href="{ECARD_TGT}" class="navmenu_pic" title="{ECARD_TITLE}"><img src="{LOCATION}images/ecard.gif"  border="0px" align="middle" alt="{ECARD_TITLE}" /></a>
+                <td align="center" valign="middle" class="navmenu" width="48">
+                        <a href="{ECARD_TGT}" class="navmenu_pic" title="{ECARD_TITLE}"><img src="{LOCATION}images/ecard.gif"  border="0" align="middle" alt="{ECARD_TITLE}" /></a>
                 </td>
 <!-- END ecard_button -->
-                <td align="center" valign="middle" class="navmenu" width="48px">
-                        <a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="{LOCATION}images/prev.gif"  border="0px" align="middle" alt="{PREV_TITLE}" /></a>
+                <td align="center" valign="middle" class="navmenu" width="48">
+                        <a href="{PREV_TGT}" class="navmenu_pic" title="{PREV_TITLE}"><img src="{LOCATION}images/prev.gif"  border="0" align="middle" alt="{PREV_TITLE}" /></a>
                 </td>
-                <td align="center" valign="middle" class="navmenu" width="48px">
-                        <a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="{LOCATION}images/next.gif"  border="0px" align="middle" alt="{NEXT_TITLE}" /></a>
+                <td align="center" valign="middle" class="navmenu" width="48">
+                        <a href="{NEXT_TGT}" class="navmenu_pic" title="{NEXT_TITLE}"><img src="{LOCATION}images/next.gif"  border="0" align="middle" alt="{NEXT_TITLE}" /></a>
                 </td>
         </tr>
 
@@ -668,7 +668,7 @@ if (!isset($template_display_media))  //{THEMES}
 $template_display_media = <<<EOT
         <tr>
                 <td align="center" class="display_media" nowrap="nowrap">
-                        <table cellspacing="2px" cellpadding="0px" class="imageborder">
+                        <table cellspacing="2" cellpadding="0" class="imageborder">
                                 <tr>
                                         <td align="center">
                                                 {IMAGE}
@@ -678,7 +678,7 @@ $template_display_media = <<<EOT
                         </table>
                 </td></tr>
                 <tr><td>
-                                                <table width="100%" cellspacing="2px" cellpadding="0px" class="tableb">
+                                                <table width="100%" cellspacing="2" cellpadding="0" class="tableb">
                                 <tr>
                                         <td align="center">
 
@@ -692,7 +692,7 @@ $template_display_media = <<<EOT
 
 
 <!-- BEGIN img_desc -->
-                        <table cellpadding="0px" cellspacing="0px" class="tableb" width="100%">
+                        <table cellpadding="0" cellspacing="0" class="tableb" width="100%">
 <!-- BEGIN title -->
                                 <tr>
                                         <td class="tableb"><center><b>
@@ -721,12 +721,12 @@ $template_image_rating = <<<EOT
                 <td colspan="6" class="tableh2_compact"><b>{TITLE}</b> {VOTES}</td>
         </tr>
         <tr>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE0}" title="{RUBBISH}" rel="nofollow"><img src="{LOCATION}images/rating0.gif" border="0px" alt="{RUBBISH}" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE1}" title="{POOR}" rel="nofollow"><img src="{LOCATION}images/rating1.gif" border="0px" alt="{POOR}" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE2}" title="{FAIR}" rel="nofollow"><img src="{LOCATION}images/rating2.gif" border="0px" alt="{FAIR}" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE3}" title="{GOOD}" rel="nofollow"><img src="{LOCATION}images/rating3.gif" border="0px" alt="{GOOD}" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE4}" title="{EXCELLENT}" rel="nofollow"><img src="{LOCATION}images/rating4.gif" border="0px" alt="{EXCELLENT}" /><br /></a></td>
-                <td class="tableb_compact" width="17%" align="center"><a href="{RATE5}" title="{GREAT}" rel="nofollow"><img src="{LOCATION}images/rating5.gif" border="0px" alt="{GREAT}" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE0}" title="{RUBBISH}" rel="nofollow"><img src="{LOCATION}images/rating0.gif" border="0" alt="{RUBBISH}" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE1}" title="{POOR}" rel="nofollow"><img src="{LOCATION}images/rating1.gif" border="0" alt="{POOR}" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE2}" title="{FAIR}" rel="nofollow"><img src="{LOCATION}images/rating2.gif" border="0" alt="{FAIR}" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE3}" title="{GOOD}" rel="nofollow"><img src="{LOCATION}images/rating3.gif" border="0" alt="{GOOD}" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE4}" title="{EXCELLENT}" rel="nofollow"><img src="{LOCATION}images/rating4.gif" border="0" alt="{EXCELLENT}" /><br /></a></td>
+                <td class="tableb_compact" width="17%" align="center"><a href="{RATE5}" title="{GREAT}" rel="nofollow"><img src="{LOCATION}images/rating5.gif" border="0" alt="{GREAT}" /><br /></a></td>
         </tr>
 </table>
 EOT;
@@ -737,7 +737,7 @@ $template_image_comments = <<<EOT
 
         <tr>
                 <td>
-                        <table width="100%" cellpadding="0px" cellspacing="0px">
+                        <table width="100%" cellpadding="0" cellspacing="0">
                            <tr>
                                 <td class="tableh2_compact" nowrap="nowrap">
                                         <b>{MSG_AUTHOR}</b><a name="comment{MSG_ID}">&nbsp;</a>
@@ -749,13 +749,13 @@ $template_image_comments = <<<EOT
 
                                 <td class="tableh2_compact" align="right" width="100%">
 <!-- BEGIN report_comment_button -->
-     <a href="report_file.php?pid={PID}&amp;msg_id={MSG_ID}&amp;what=comment" title="{REPORT_COMMENT_TITLE}"><img src="images/report.gif" width="16px" height="16px" border="0px" align="middle" alt="{REPORT_COMMENT_TITLE}" /></a>
+     <a href="report_file.php?pid={PID}&amp;msg_id={MSG_ID}&amp;what=comment" title="{REPORT_COMMENT_TITLE}"><img src="images/report.gif" width="16" height="16" border="0" align="middle" alt="{REPORT_COMMENT_TITLE}" /></a>
 <!-- END report_comment_button -->
 
 
 <!-- BEGIN buttons -->
-                                        <a href="javascript:;" onclick="blocking('cbody{MSG_ID}','', 'block'); blocking('cedit{MSG_ID}','', 'block'); return false;" title="{EDIT_TITLE}"><img src="images/edit.gif" border="0px" align="middle" /></a>
-                                        <a href="delete.php?msg_id={MSG_ID}&what=comment"  onclick="return confirm('{CONFIRM_DELETE}');"><img src="images/delete.gif" border="0px" align="middle" /></a>
+                                        <a href="javascript:;" onclick="blocking('cbody{MSG_ID}','', 'block'); blocking('cedit{MSG_ID}','', 'block'); return false;" title="{EDIT_TITLE}"><img src="images/edit.gif" border="0" align="middle" /></a>
+                                        <a href="delete.php?msg_id={MSG_ID}&what=comment"  onclick="return confirm('{CONFIRM_DELETE}');"><img src="images/delete.gif" border="0" align="middle" /></a>
 <!-- END buttons -->
                                 </td>
                                 <td class="tableh2_compact" align="right" nowrap="nowrap">
@@ -771,7 +771,7 @@ $template_image_comments = <<<EOT
                         </div>
                         <div id="cedit{MSG_ID}" style="display:none">
 <!-- BEGIN edit_box_smilies -->
-                                <table width="100%" cellpadding="0px" cellspacing="0px">
+                                <table width="100%" cellpadding="0" cellspacing="0">
 
                                                 <form name="f{MSG_ID}" method="POST" action="db_input.php">
                                                 <input type="hidden" name="event" value="comment_update" />
@@ -793,13 +793,13 @@ $template_image_comments = <<<EOT
                                                 </form>
                                         </tr>
                                         <tr>
-                                                <td colspan="3"><img src="images/spacer.gif" width="1px" height="2px" /><br /></td>
+                                                <td colspan="3"><img src="images/spacer.gif" width="1" height="2" /><br /></td>
                                         </tr>
                                 </table>
                                 {SMILIES}
 <!-- END edit_box_smilies -->
 <!-- BEGIN edit_box_no_smilies -->
-                                <table width="100%" cellpadding="0px" cellspacing="0px">
+                                <table width="100%" cellpadding="0" cellspacing="0">
                                         <tr>
                                                 <form name="f{MSG_ID}" method="POST" action="db_input.php">
                                                 <input type="hidden" name="event" value="comment_update" />
@@ -820,7 +820,7 @@ $template_image_comments = <<<EOT
                                                 </form>
                                         </tr>
                                         <tr>
-                                                <td colspan="3"><img src="images/spacer.gif" width="1px" height="2px" /><br /></td>
+                                                <td colspan="3"><img src="images/spacer.gif" width="1" height="2" /><br /></td>
                                         </tr>
                                 </table>
 <!-- END edit_box_no_smilies -->
@@ -839,7 +839,7 @@ $template_add_your_comment = <<<EOT
         <tr>
                 <td colspan="3">
                 <form method="post" name="post" action="db_input.php">
-                        <table width="100%" cellpadding="0px" cellspacing="0px">
+                        <table width="100%" cellpadding="0" cellspacing="0">
 
 <!-- BEGIN user_name_input -->
                                 <tr><td class="tableb_compact">
@@ -938,22 +938,22 @@ $template_ecard = <<<EOT
 <body bgcolor="#FFFFFF" text="#0F5475" link="#0F5475" vlink="#0F5475" alink="#0F5475">
 <br />
 <p align="center"><a href="{VIEW_ECARD_TGT}"><b>{VIEW_ECARD_LNK}</b></a></p>
-<table border="0px" cellspacing="0px" cellpadding="1px" align="center">
+<table border="0" cellspacing="0" cellpadding="1" align="center">
   <tr>
     <td bgcolor="#000000">
-      <table border="0px" cellspacing="0px" cellpadding="10px" bgcolor="#ffffff">
+      <table border="0" cellspacing="0" cellpadding="10" bgcolor="#ffffff">
         <tr>
           <td valign="top">
            <a href="{VIEW_MORE_TGT}/displayimage.php?pos=-{PID}">
-                                         <img src="{PIC_URL}" border="1px" alt="" /></a>
+                                         <img src="{PIC_URL}" border="1" alt="" /></a>
                                          <br />
                                          <div align="center">
                                                  <h2>{PIC_TITLE}</h2>
                                          </div>
 
           </td>
-          <td valign="top" width="300px">
-            <div align="right"><img src="{URL_PREFIX}images/stamp.gif" border="0px" alt="" /></div>
+          <td valign="top" width="300">
+            <div align="right"><img src="{URL_PREFIX}images/stamp.gif" border="0" alt="" /></div>
             <br />
             <b><font face="arial" color="#000000" size="4">{GREETINGS}</font></b>
             <br />
@@ -1012,15 +1012,15 @@ $template_report = <<<EOT
 <body bgcolor="#FFFFFF" text="#0F5475" link="#0F5475" vlink="#0F5475" alink="#0F5475">
 <br />
 <p align="center"><a href="{VIEW_REPORT_TGT}"><b>{VIEW_REPORT_LNK}</b></a></p>
-<table border="0px" cellspacing="0px" cellpadding="1px" align="center">
+<table border="0" cellspacing="0" cellpadding="1" align="center">
   <tr>
     <td bgcolor="#000000">
-      <table border="0px" cellspacing="0px" cellpadding="10px" bgcolor="#ffffff">
+      <table border="0" cellspacing="0" cellpadding="10" bgcolor="#ffffff">
         <tr>
           <td valign="top">
-           <a href="{PIC_TGT}"><img src="{PIC_URL}" border="1px" alt="" /></a><br />
+           <a href="{PIC_TGT}"><img src="{PIC_URL}" border="1" alt="" /></a><br />
           </td>
-          <td valign="top" width="200px">
+          <td valign="top" width="200">
             <b><font face="arial" color="#000000" size="4">{SUBJECT}</font></b>
             <br />
                                                 <br />
@@ -1076,10 +1076,10 @@ $template_report_comment = <<<EOT
 <body bgcolor="#FFFFFF" text="#0F5475" link="#0F5475" vlink="#0F5475" alink="#0F5475">
 <br />
 <p align="center"><a href="{VIEW_REPORT_TGT}"><b>{VIEW_REPORT_LNK}</b></a></p>
-<table border="0px" cellspacing="0px" cellpadding="1px" align="center">
+<table border="0" cellspacing="0" cellpadding="1" align="center">
   <tr>
     <td bgcolor="#000000">
-      <table border="0px" cellspacing="0px" cellpadding="10px" bgcolor="#ffffff">
+      <table border="0" cellspacing="0" cellpadding="10" bgcolor="#ffffff">
         <tr>
           <td valign="top">
            {COMMENT}
