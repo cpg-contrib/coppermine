@@ -112,12 +112,15 @@ echo '</form>';
 if ($CONFIG['clickable_keyword_search'] != 0) {
     include('include/keyword.inc.php');
 }
+
+echo <<< EOT
+      <script language="javascript" type="text/javascript">
+      <!--
+      document.searchcpg.search.focus();
+      -->
+      </script>
+EOT;
+
 pagefooter();
 ob_end_flush();
 ?>
-
-<script language="javascript" type="text/javascript">
-<!--
-document.searchcpg.search.focus();
--->
-</script>
