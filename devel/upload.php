@@ -102,7 +102,7 @@ function text_box_input($text, $name, $max_length, $iterations, $default='') {
                         $text  $ordinal
         </td>
         <td width="60%" class="tableb" valign="top">
-                <input type="text" style="width: 100%" name="$name" id="$name" maxlength="$max_length" value="$default" class="textinput">
+                <input type="text" style="width: 100%" name="$name" maxlength="$max_length" value="$default" class="textinput">
                 </td>
         </tr>
 
@@ -2438,7 +2438,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
         if ($CONFIG['read_iptc_data']) {
            $iptc = get_IPTC($path_to_image);
         }
-        
+
     } else {
 
         // The file is not an image, so we will use the non-image thumbs
