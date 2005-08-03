@@ -31,7 +31,7 @@ $edit_profile_form_param = array(
     array('text', 'username', $lang_register_php['username']),
     array('text', 'reg_date', $lang_register_php['reg_date']),
     array('text', 'group', $lang_register_php['group']),
-    array('text', 'email', $lang_register_php['email']),
+    array('text', 'email', $lang_register_php['email'],255),
     array('text', 'disk_usage', $lang_register_php['disk_usage']),
         array('input', 'user_profile1', $CONFIG['user_profile1_name'], 255),
         array('input', 'user_profile2', $CONFIG['user_profile2_name'], 255),
@@ -111,7 +111,7 @@ EOT;
             {$element[2]}
         </td>
         <td width="60%" class="tableb" valign="top">
-            <input type="text" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="$value" class="textinput">
+            <input type="text" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="$value" class="textinput" />
         </td>
     </tr>
 
@@ -128,7 +128,7 @@ EOT;
                         {$element[2]}
         </td>
         <td width="60%" class="tableb" valign="top">
-                <textarea name="{$element[1]}" ROWS="7" WRAP="virtual"  class="textinput" STYLE="WIDTH: 100%">$value</textarea>
+                <textarea name="{$element[1]}" rows="7" cols="40" class="textinput" style="width: 100%">$value</textarea>
                 </td>
         </tr>
 
@@ -143,7 +143,7 @@ EOT;
             {$element[2]}
         </td>
         <td width="60%" class="tableb" valign="top">
-            <input type="password" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="" class="textinput">
+            <input type="password" style="width: 100%" name="{$element[1]}" maxlength="{$element[3]}" value="" class="textinput" />
         </td>
     </tr>
 
@@ -293,24 +293,24 @@ switch ($op) {
 
         $title = sprintf($lang_register_php['x_s_profile'], stripslashes(USER_NAME));
         pageheader($title);
-        starttable(-1, $title, 2);
+
         echo <<<EOT
     <form method="post" action="{$_SERVER['PHP_SELF']}">
 
 EOT;
+        starttable(-1, $title, 2);
         make_form($edit_profile_form_param, $form_data);
         echo <<<EOT
     <tr>
         <td colspan="2" align="center" class="tablef">
-            <input type="submit" name="change_profile" value="{$lang_register_php['apply_modif']}" class="button">
+            <input type="submit" name="change_profile" value="{$lang_register_php['apply_modif']}" class="button" />
             <img src="images/spacer.gif" width="20" height="1" border="0" alt="" />
-            <input type="submit" name="change_pass" value="{$lang_register_php['change_pass']}" class="button">
+            <input type="submit" name="change_pass" value="{$lang_register_php['change_pass']}" class="button" />
         </td>
     </tr>
-    </form>
-
 EOT;
         endtable();
+        echo "</form>";
         pagefooter();
         ob_end_flush();
         break;
@@ -325,22 +325,20 @@ EOT;
 
         $title = $lang_register_php['change_pass'];
         pageheader($title);
-        starttable(-1, $title, 2);
         echo <<<EOT
-    <form method="post" action="{$_SERVER['PHP_SELF']}">
-
+         <form method="post" action="{$_SERVER['PHP_SELF']}">
 EOT;
+        starttable(-1, $title, 2);
         make_form($change_password_form_param, '');
         echo <<<EOT
     <tr>
         <td colspan="2" align="center" class="tablef">
-            <input type="submit" name="change_password" value="$title" class="button">
+            <input type="submit" name="change_password" value="$title" class="button" />
         </td>
     </tr>
-    </form>
-
 EOT;
         endtable();
+        echo "    </form>";
         pagefooter();
         ob_end_flush();
         break;
