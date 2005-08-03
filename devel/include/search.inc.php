@@ -29,6 +29,9 @@ $sort_array = array('na' => 'filename ASC', 'nd' => 'filename DESC', 'ta'=>'titl
 $sort_code = isset($USER['sort'])? $USER['sort'] : $CONFIG['default_sort_order'];
 $sort_order = isset($sort_array[$sort_code]) ? $sort_array[$sort_code] : $sort_array[$CONFIG['default_sort_order']];
 
+$allowed = array('title', 'caption', 'keywords', 'owner_name', 'filename', 'pic_raw_ip', 'pic_hrd_ip', 'user1', 'user2', 'user3', 'user4');
+
+
 $mb_charset = stristr($multibyte_charset, $charset);
 
 $search_string = str_replace('*', '%', addslashes($search_string));
@@ -54,16 +57,14 @@ if ($search_string && isset($_POST['params'])) {
         $split_search = explode(' ', $search_string);
         $sections = array();
 
-		$allowed = array('title', 'caption', 'keywords', 'owner_name', 'filename', 'pic_raw_ip', 'pic_hrd_ip', 'user1', 'user2', 'user3', 'user4');
-        
-		foreach($split_search as $word) {
-				$word = addslashes($word);
+                foreach($split_search as $word) {
+                                $word = addslashes($word);
                 $fields = array();
 
                 foreach ($_POST['params'] as $param => $value){
-					if (in_array($param, $allowed))$fields[] = "$param LIKE '%$word%'";
-				}
-				
+                                        if (in_array($param, $allowed))$fields[] = "$param LIKE '%$word%'";
+                                }
+
                 $sections[] = '(' . implode(' OR ', $fields) . ')';
         }
 

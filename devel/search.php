@@ -39,7 +39,7 @@ starttable('60%', $lang_search_php['title']);
 $ip = GALLERY_ADMIN_MODE ? '
         <tr>
                 <td>
-                        <input type="checkbox" name="params[pic_raw_ip]" class="checkbox" id="params[pic_raw_ip]" /><label for="params[pic_raw_ip]" class="clickable_option">'.$lang_search_php['ip_address'].'</label>
+                        <input type="checkbox" name="pic_raw_ip" class="checkbox" id="pic_raw_ip" /><label for="pic_raw_ip" class="clickable_option">'.$lang_search_php['ip_address'].'</label>
                 </td>
         </tr>' :
         '<tr>
@@ -55,7 +55,7 @@ while ($row = mysql_fetch_assoc($result)){
         $name = str_replace(array('_field', '_name'), '', $row['name']);
         $customs .= <<< EOT
                 <tr>
-                        <td><input type="checkbox" name="params[$name]" id="params[$name]" class="checkbox" /><label for="params[$name]" class="clickable_option">{$row['value']}</label></td>
+                        <td><input type="checkbox" name="$name" id="$name" class="checkbox" /><label for="$name" class="clickable_option">{$row['value']}</label></td>
                 </tr>
 EOT;
 }
@@ -75,27 +75,27 @@ echo <<< EOT
                                                 <td align="center">{$lang_search_php['age']}:</td>
                                         </tr>
                                         <tr>
-                                                <td><input type="checkbox" name="params[title]" id="params[title]" class="checkbox" checked="checked" /><label for="params[title]" class="clickable_option">{$lang_adv_opts['title']}</label></td>
+                                                <td><input type="checkbox" name="title" id="title" class="checkbox" checked="checked" /><label for="title" class="clickable_option">{$lang_adv_opts['title']}</label></td>
                                                 <td align="right">{$lang_search_php['newer_than']} <input type="text" name="newer_than" size="3" maxlength="4" class="textinput" /> {$lang_search_php['days']}</td>
                                         </tr>
                                         <tr>
-                                                <td><input type="checkbox" name="params[caption]" id="params[caption]" class="checkbox" checked="checked" /><label for="params[caption]" class="clickable_option">{$lang_adv_opts['caption']}</label></td>
+                                                <td><input type="checkbox" name="caption" id="caption" class="checkbox" checked="checked" /><label for="caption" class="clickable_option">{$lang_adv_opts['caption']}</label></td>
                                                 <td align="right">{$lang_search_php['older_than']} <input type="text" name="older_than" size="3" maxlength="4" class="textinput" /> {$lang_search_php['days']}</td>
                                         </tr>
                                         <tr>
-                                                <td><input type="checkbox" name="params[keywords]" id="params[keywords]" class="checkbox" checked="checked" /><label for="params[keywords]" class="clickable_option">{$lang_adv_opts['keywords']}</label></td>
+                                                <td><input type="checkbox" name="keywords" id="keywords" class="checkbox" checked="checked" /><label for="keywords" class="clickable_option">{$lang_adv_opts['keywords']}</label></td>
                                                 <td>&nbsp;</td>
 
                                         </tr>
                                         <tr>
-                                                <td><input type="checkbox" name="params[owner_name]" id="params[owner_name]" class="checkbox" /><label for="params[owner_name]" class="clickable_option">{$lang_adv_opts['owner_name']}</label></td>
+                                                <td><input type="checkbox" name="owner_name" id="owner_name" class="checkbox" /><label for="owner_name" class="clickable_option">{$lang_adv_opts['owner_name']}</label></td>
                                                 <td align="right"><select name="type" class="listbox">
                                                         <option value="AND" selected="selected">{$lang_search_php['all_words']}</option>
                                                         <option value="OR">{$lang_search_php['any_words']}</option></select>
                                                 </td>
                                         </tr>
                                         <tr>
-                                                <td><input type="checkbox" name="params[filename]" id="params[filename]" class="checkbox" /><label for="params[filename]" class="clickable_option">{$lang_adv_opts['filename']}</label></td>
+                                                <td><input type="checkbox" name="filename" id="filename" class="checkbox" /><label for="filename" class="clickable_option">{$lang_adv_opts['filename']}</label></td>
                                                 <td>&nbsp;</td>
                                         </tr>
                                                 $customs

@@ -83,6 +83,13 @@ if (isset($_GET['uid'])) $USER['uid'] = (int)$_GET['uid'];
 if (isset($_GET['album'])) $album = $_GET['album'];
 
 if (isset($_POST['search'])) {
+    // find out if a parameter has been submitted at all
+    $allowed = array('title', 'caption', 'keywords', 'owner_name', 'filename', 'pic_raw_ip', 'pic_hrd_ip', 'user1', 'user2', 'user3', 'user4');
+    foreach ($allowed as $key) {
+        if (isset($_POST[$key]) == TRUE) {
+            $_POST['params'][$key] = $_POST[$key];
+        }
+    }
     $USER['search'] = $_POST;
         $album = 'search';
 }
