@@ -70,7 +70,14 @@ EOT;
 
 // The hidden form input function. Takes the hidden input field name and value.
 function hidden_input($name, $value) {
-        echo "        <input type=\"hidden\" name=\"$name\" value=\"$value\">\n";
+        echo <<<EOT
+        <tr>
+            <td colspan="2">
+                   <input type="hidden" name="$name" value="$value" />
+            </td>
+        </tr>
+
+EOT;
 }
 
 // The text box form input function. Takes the text label for the box, the input name, the maximum length for text boxes,
@@ -82,7 +89,7 @@ function text_box_input($text, $name, $max_length, $iterations, $default='') {
     $ordinal = '';
 
     if (($text == '') and ($iterations == '')) {
-        echo "        <input type=\"hidden\" name=\"$name\" value=\"$default\">\n";
+        echo "        <input type=\"hidden\" name=\"$name\" value=\"$default\" />\n";
         return;
     }
 
@@ -102,7 +109,7 @@ function text_box_input($text, $name, $max_length, $iterations, $default='') {
                         $text  $ordinal
         </td>
         <td width="60%" class="tableb" valign="top">
-                <input type="text" style="width: 100%" name="$name" maxlength="$max_length" value="$default" class="textinput">
+                <input type="text" style="width: 100%" name="$name" maxlength="$max_length" value="$default" class="textinput" />
                 </td>
         </tr>
 
@@ -131,7 +138,7 @@ function file_input($text, $name, $iterations) {
                         $text  $ordinal
         </td>
         <td class="tableb" valign="top">
-                        <input type="file" name="$name" size="40" class="listbox">
+                        <input type="file" name="$name" size="40" class="listbox" />
                 </td>
         </tr>
 
@@ -149,7 +156,7 @@ function text_area_input($text, $name, $max_length,$default='') {
                         $text
                 </td>
                 <td class="tableb" valign="top">
-                        <textarea name="$name" rows="5" cols="40" wrap="virtual"  class="textinput" style="width: 100%;" onKeyDown="textCounter(this, $max_length);" onKeyUp="textCounter(this, $max_length);">$default</textarea>
+<f></f>                        <textarea name="$name" rows="5" cols="40" class="textinput" style="width: 100%;" onKeyDown="textCounter(this, $max_length);" onKeyUp="textCounter(this, $max_length);">$default</textarea>
                 </td>
         </tr>
 EOT;
@@ -319,8 +326,7 @@ function open_form($path) {
             field.value = field.value.substring(0, maxlimit);
     }
     </script>
-    <form method="post" action="$path" ENCTYPE="multipart/form-data">
-    </td>
+    <form method="post" action="$path" enctype="multipart/form-data">
 EOT;
 }
 
@@ -334,9 +340,9 @@ global $lang_upload_php;
 echo <<<EOT
         <tr>
                 <td colspan="2" align="center" class="tablef">
-                        <input type="submit" value="{$button_value}" class="button">
+                        <input type="submit" value="{$button_value}" class="button" />
                 </td>
-                </form>
+
         </tr>
 
 EOT;
@@ -874,23 +880,26 @@ if (!isset($_REQUEST['control'])) {
     // Create upload form headers.
     pageheader($lang_upload_php['title']);
 
-    // Open the form table.
-    starttable("100%", $lang_upload_php['title'], 2);
 
     // Select the form action.
     if (USER_UPLOAD_FORM == '0') {
 
         // The user has the single upload only form. Send the request to db_input.php.
         open_form('db_input.php');
-
+        // Open the form table.
+        starttable("100%", $lang_upload_php['title'], 2);
     } else {
 
         // Direct the request to this script and print the form instructions.
         open_form($_SERVER['PHP_SELF']);
+        // Open the form table.
+        starttable("100%", $lang_upload_php['title'], 2);
         form_instructions();
 
     }
+    
 
+    
     // Use a if-then-else construct to create the upload form for the user based on the setting in the
     // groups panel.
     if(USER_UPLOAD_FORM == '0') {
@@ -981,6 +990,8 @@ if (!isset($_REQUEST['control'])) {
 
     // Create the form.
     create_form($form_array);
+    
+
 
     // Close the form.
     if (USER_UPLOAD_FORM == '0') {
@@ -996,8 +1007,8 @@ if (!isset($_REQUEST['control'])) {
     }
 
     // Close the table, create footers, and flush the output buffer.
-
     endtable();
+    echo "</form>";
     pagefooter();
     ob_end_flush();
 
