@@ -202,7 +202,7 @@ if ((!empty($_REQUEST['folder']) || !empty($_REQUEST['startfolder'])) && ($folde
         print '</td>'.$newline;
         print '<td class="tableb">'.$newline;
         print '<img src="images/spacer.gif" width="16" height="16" border="0" alt="" align="left" />'.$newline;
-        print '<a href="'.$_SERVER['PHP_SELF'].'?folder='.rawurlencode($uplink).'&parentform='.rawurlencode($parentform).'&formelementname='.rawurlencode($formelementname).'&no_popup='.$_REQUEST['no_popup'].'&limitfolder='.$_REQUEST['limitfolder'].'&hidefolders='.$_REQUEST['hidefolders'].'&linktarget='.$_REQUEST['linktarget'].'">'.$newline;
+        print '<a href="'.$_SERVER['PHP_SELF'].'?folder='.rawurlencode($uplink).'&amp;parentform='.rawurlencode($parentform).'&amp;formelementname='.rawurlencode($formelementname).'&amp;no_popup='.$_REQUEST['no_popup'].'&amp;limitfolder='.$_REQUEST['limitfolder'].'&amp;hidefolders='.$_REQUEST['hidefolders'].'&amp;linktarget='.$_REQUEST['linktarget'].'">'.$newline;
         print '.. '.$lang_minibrowser_php['up'];
         print '</a>'.$newline;
         print '</td>'.$newline;
@@ -222,7 +222,7 @@ if (is_array($foldername)) {
             }
             print '</td>'.$newline;
             print '<td class="tableb">'.$newline;
-            print '<a href="'.$_SERVER['PHP_SELF'].'?folder='.rawurlencode('/'.ltrim($folder, '/').$key.'/').'&parentform='.rawurlencode($parentform).'&formelementname='.rawurlencode($formelementname).'&no_popup='.$_REQUEST['no_popup'].'&limitfolder='.$_REQUEST['limitfolder'].'&hidefolders='.$_REQUEST['hidefolders'].'&linktarget='.$_REQUEST['linktarget'].'">'.$newline;
+            print '<a href="'.$_SERVER['PHP_SELF'].'?folder='.rawurlencode('/'.ltrim($folder, '/').$key.'/').'&amp;parentform='.rawurlencode($parentform).'&amp;formelementname='.rawurlencode($formelementname).'&amp;no_popup='.$_REQUEST['no_popup'].'&amp;limitfolder='.$_REQUEST['limitfolder'].'&amp;hidefolders='.$_REQUEST['hidefolders'].'&amp;linktarget='.$_REQUEST['linktarget'].'">'.$newline;
             print '<img src="images/folder.gif" width="16" height="16" border="0" alt="" title="folder" />'.$newline;
             print $key.$newline;
             print '</a>'.$newline;

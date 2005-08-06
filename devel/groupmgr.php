@@ -89,10 +89,10 @@ EOT;
         // disable row if applicable
         if ($group['group_id'] == 3 && $CONFIG['allow_unlogged_access'] == 0) {
             $disabled = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
-            $explain_greyedout = '&nbsp;'.cpg_display_help('f=index.htm&base=64&h='.urlencode(base64_encode(serialize($lang_groupmgr_php['explain_greyed_out_title']))).'&t='.urlencode(base64_encode(serialize(sprintf($lang_groupmgr_php['explain_guests_greyed_out_text'],'<i>'.$group['group_name'].'</i>')))), '450', '300');
+            $explain_greyedout = '&nbsp;'.cpg_display_help('f=index.htm&amp;base=64&h='.urlencode(base64_encode(serialize($lang_groupmgr_php['explain_greyed_out_title']))).'&amp;t='.urlencode(base64_encode(serialize(sprintf($lang_groupmgr_php['explain_guests_greyed_out_text'],'<i>'.$group['group_name'].'</i>')))), '450', '300');
         } elseif ($group['group_id'] == 4) {
             $disabled = 'disabled="disabled" style="background-color:InactiveCaptionText;color:GrayText"';
-            $explain_greyedout = '&nbsp;'.cpg_display_help('f=index.htm&base=64&h='.urlencode(base64_encode(serialize($lang_groupmgr_php['explain_greyed_out_title']))).'&t='.urlencode(base64_encode(serialize(sprintf($lang_groupmgr_php['explain_banned_greyed_out_text'],'<i>'.$group['group_name'].'</i>')))), '450', '300');
+            $explain_greyedout = '&nbsp;'.cpg_display_help('f=index.htm&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_groupmgr_php['explain_greyed_out_title']))).'&amp;t='.urlencode(base64_encode(serialize(sprintf($lang_groupmgr_php['explain_banned_greyed_out_text'],'<i>'.$group['group_name'].'</i>')))), '450', '300');
         } else {
             $disabled = '';
             $explain_greyedout = '';
@@ -113,7 +113,7 @@ EOT;
         echo <<< EOT
                         <br />
                         {$lang_groupmgr_php['disk_quota']}: <input type="text" name="group_quota_{$group['group_id']}" value="{$group['group_quota']}" size="5" class="textinput" $disabled /> {$lang_byte_units[1]}
-                <br /><a href="usermgr.php?op=group_alb_access&gid={$group['group_id']}" class="admin_menu">{$lang_groupmgr_php['group_assigned_album']}</a>
+                <br /><a href="usermgr.php?op=group_alb_access&amp;gid={$group['group_id']}" class="admin_menu">{$lang_groupmgr_php['group_assigned_album']}</a>
                                                                 </td>
                 <td class="$table_background" align="left" valign="top">
 EOT;
@@ -329,10 +329,10 @@ function selectAll(d,box) {
 EOT;
 
 starttable('100%');
-$help_group = '&nbsp;'.cpg_display_help('f=index.htm&as=group_cp&ae=group_cp_end&top=1', '700', '500');
-$help_permissions = '&nbsp;'.cpg_display_help('f=index.htm&as=group_cp_permissions&ae=group_cp_permissions_end&top=1', '500', '200');
-$help_personal = '&nbsp;'.cpg_display_help('f=index.htm&as=group_cp_personal&ae=group_cp_personal_end&top=1', '500', '200');
-$help_upload_method = '&nbsp;'.cpg_display_help('f=index.htm&as=group_cp_upload_method&ae=group_cp_upload_method_end&top=1', '700', '400');
+$help_group = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=group_cp&amp;ae=group_cp_end&amp;top=1', '700', '500');
+$help_permissions = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=group_cp_permissions&amp;ae=group_cp_permissions_end&amp;top=1', '500', '200');
+$help_personal = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=group_cp_personal&amp;ae=group_cp_personal_end&amp;top=1', '500', '200');
+$help_upload_method = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=group_cp_upload_method&amp;ae=group_cp_upload_method_end&amp;top=1', '700', '400');
 echo <<<EOT
         <form method="post" action="{$_SERVER['PHP_SELF']}" name="groupmanager">
         <tr>

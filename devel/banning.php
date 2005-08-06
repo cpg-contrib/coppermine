@@ -246,7 +246,7 @@ starttable('100%', "{$lang_banning_php['title']} - $signature", 4);
 create_banlist();
 endtable();
 //print "</div>\n";
-$calendar_link_new = 'calendar.php?action=banning&month='.ltrim(strftime('%m'),'0').'&year='.strftime('%Y');
+$calendar_link_new = 'calendar.php?action=banning&amp;month='.ltrim(strftime('%m'),'0').'&amp;year='.strftime('%Y');
 print <<<EOT
 <script language="javascript" type="text/javascript">
 var calendarWindow = null;

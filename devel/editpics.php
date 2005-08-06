@@ -95,9 +95,9 @@ function process_post_data()
 
         if (!is_array($_POST['pid'])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
         $pid_array = &$_POST['pid'];
-		
-		$galleryicon = (int) $_POST['galleryicon'];
-		
+
+                $galleryicon = (int) $_POST['galleryicon'];
+
         foreach($pid_array as $pid){
                 $pid = (int)$pid;
 
@@ -109,8 +109,8 @@ function process_post_data()
                 $user2       = get_post_var('user2', $pid);
                 $user3       = get_post_var('user3', $pid);
                 $user4       = get_post_var('user4', $pid);
-				
-				$isgalleryicon = ($galleryicon===$pid);
+
+                                $isgalleryicon = ($galleryicon===$pid);
 
                 $delete       = isset($_POST['delete'.$pid]);
                 $reset_vcount = isset($_POST['reset_vcount'.$pid]);
@@ -136,19 +136,19 @@ function process_post_data()
                 $update .= ", user2 = '".addslashes($user2)."'";
                 $update .= ", user3 = '".addslashes($user3)."'";
                 $update .= ", user4 = '".addslashes($user4)."'";
-				
-                if ($isgalleryicon && $pic['category']>FIRST_USER_CAT) {
-					$sql = 'update '.$CONFIG['TABLE_PICTURES'].' set galleryicon=0 where owner_id='.$pic['owner_id'].';';
-					cpg_db_query($sql);
-					$update .= ", galleryicon = ".addslashes($galleryicon);
-				}
 
-				if (is_movie($pic['filename'])) {
-					$pwidth = get_post_var('pwidth', $pid);
-					$pheight = get_post_var('pheight', $pid);
-					$update .= ", pwidth = " .  (int) $pwidth;
-					$update .= ", pheight = " . (int) $pheight;
-				}
+                if ($isgalleryicon && $pic['category']>FIRST_USER_CAT) {
+                                        $sql = 'update '.$CONFIG['TABLE_PICTURES'].' set galleryicon=0 where owner_id='.$pic['owner_id'].';';
+                                        cpg_db_query($sql);
+                                        $update .= ", galleryicon = ".addslashes($galleryicon);
+                                }
+
+                                if (is_movie($pic['filename'])) {
+                                        $pwidth = get_post_var('pwidth', $pid);
+                                        $pheight = get_post_var('pheight', $pid);
+                                        $update .= ", pwidth = " .  (int) $pwidth;
+                                        $update .= ", pheight = " . (int) $pheight;
+                                }
 
                 if ($reset_vcount) $update .= ", hits = '0'";
                 if ($reset_votes) $update .= ", pic_rating = '0', votes = '0'";
@@ -221,7 +221,7 @@ function form_pic_info($text)
         }
 
         $thumb_url = get_pic_url($CURRENT_PIC, 'thumb');
-        $thumb_link = 'displayimage.php?&pos='.(-$CURRENT_PIC['pid']);
+        $thumb_link = 'displayimage.php?&amp;pos='.(-$CURRENT_PIC['pid']);
         $filename = htmlspecialchars($CURRENT_PIC['filename']);
 
         echo <<<EOT
@@ -250,8 +250,8 @@ function form_options()
 {
         global $CURRENT_PIC, $lang_editpics_php;
 
-		$isgalleryicon_selected = ($CURRENT_PIC['galleryicon']) ? 'checked="checked" ':'';
-		$isgalleryicon_disabled = ($CURRENT_PIC['category'] < FIRST_USER_CAT) ? 'disabled="disabled" ':'';
+                $isgalleryicon_selected = ($CURRENT_PIC['galleryicon']) ? 'checked="checked" ':'';
+                $isgalleryicon_disabled = ($CURRENT_PIC['category'] < FIRST_USER_CAT) ? 'disabled="disabled" ':'';
 
         if (UPLOAD_APPROVAL_MODE) {
                 echo <<<EOT
@@ -391,16 +391,16 @@ function create_form(&$data)
 function get_user_albums($user_id = '')
 {
         global $CONFIG, $user_albums_list;
-        
+
         $USER_ALBUMS_ARRAY=array(0 => array());
-        
+
         if ($user_id != '') {
                 $or = " OR category='" . (FIRST_USER_CAT + $user_id) . "'";
-        }                
+        }
 
         if (!isset($USER_ALBUMS_ARRAY[USER_ID])) {
                 $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='".(FIRST_USER_CAT + USER_ID)."' $or ORDER BY title");
-                
+
                 if (mysql_num_rows($user_albums)) {
                     $user_albums_list=cpg_db_fetch_rowset($user_albums);
                 } else {
@@ -425,15 +425,15 @@ if (GALLERY_ADMIN_MODE) {
 } else {
         $public_albums_list = array();
 }
-  
+
 get_user_albums(USER_ID);
-  
+
 if (count($_POST)) process_post_data();
 
 $start = isset($_GET['start']) ? (int)$_GET['start'] : 0;
 $count = isset($_GET['count']) ? (int)$_GET['count'] : 25;
-$next_target = $_SERVER['PHP_SELF'].'?album='.$album_id.'&start='.($start+$count).'&count='.$count.((UPLOAD_APPROVAL_MODE==1)?"&mode=upload_approval":"");
-$prev_target = $_SERVER['PHP_SELF'].'?album='.$album_id.'&start='.max(0,$start-$count).'&count='.$count.((UPLOAD_APPROVAL_MODE==1)?"&mode=upload_approval":"");
+$next_target = $_SERVER['PHP_SELF'].'?album='.$album_id.'&amp;start='.($start+$count).'&amp;count='.$count.((UPLOAD_APPROVAL_MODE==1)?"&amp;mode=upload_approval":"");
+$prev_target = $_SERVER['PHP_SELF'].'?album='.$album_id.'&amp;start='.max(0,$start-$count).'&amp;count='.$count.((UPLOAD_APPROVAL_MODE==1)?"&amp;mode=upload_approval":"");
 $s50 = $count == 50 ? 'selected' : '';
 $s75 = $count == 75 ? 'selected' : '';
 $s100 = $count == 100 ? 'selected' : '';
@@ -474,7 +474,7 @@ if (UPLOAD_APPROVAL_MODE) {
                         "ORDER BY pid ".
                         "LIMIT $start, $count";
         $result = cpg_db_query($sql);
-        $form_target = $_SERVER['PHP_SELF'].'?mode=upload_approval&start='.$start.'&count='.$count;
+        $form_target = $_SERVER['PHP_SELF'].'?mode=upload_approval&amp;start='.$start.'&amp;count='.$count;
         $title = $lang_editpics_php['upl_approval'];
         $help = '';
 } else {
@@ -482,15 +482,15 @@ if (UPLOAD_APPROVAL_MODE) {
         $nbEnr = mysql_fetch_array($result);
         $pic_count = $nbEnr[0];
         mysql_free_result($result);
-		$sql = "SELECT p.*,a.category FROM {$CONFIG['TABLE_PICTURES']} as p ".
-			   "INNER JOIN {$CONFIG['TABLE_ALBUMS']} as a ".
-			   "ON a.aid=p.aid ".
-			   "WHERE p.aid = '$album_id' ".
-			   "ORDER BY p.filename LIMIT $start, $count";
-		$result = cpg_db_query($sql);
-        $form_target = $_SERVER['PHP_SELF'].'?album='.$album_id.'&start='.$start.'&count='.$count;
+                $sql = "SELECT p.*,a.category FROM {$CONFIG['TABLE_PICTURES']} as p ".
+                           "INNER JOIN {$CONFIG['TABLE_ALBUMS']} as a ".
+                           "ON a.aid=p.aid ".
+                           "WHERE p.aid = '$album_id' ".
+                           "ORDER BY p.filename LIMIT $start, $count";
+                $result = cpg_db_query($sql);
+        $form_target = $_SERVER['PHP_SELF'].'?album='.$album_id.'&amp;start='.$start.'&amp;count='.$count;
         $title = $lang_editpics_php['edit_pics'];
-        $help = '&nbsp;'.cpg_display_help('f=index.htm&as=edit_pics&ae=edit_pics_end&top=1', '800', '500');
+        $help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=edit_pics&amp;ae=edit_pics_end&amp;top=1', '800', '500');
 }
 
 if (!mysql_num_rows($result)) cpg_die(INFORMATION, $lang_errors['no_img_to_display'], __FILE__, __LINE__);
@@ -534,7 +534,7 @@ function selectAll(d,box) {
 -->
 </script>
 EOT;
-$mode= (UPLOAD_APPROVAL_MODE==1) ? "&mode=upload_approval":"";
+$mode= (UPLOAD_APPROVAL_MODE==1) ? "&amp;mode=upload_approval":"";
 $cat_l = (isset($actual_cat))? "?cat=$actual_cat" : (isset($cat) ? "?cat=$cat" : '');
 echo <<<EOT
         <tr>
@@ -544,7 +544,7 @@ echo <<<EOT
                         $prev_link
                         $next_link
                         <b>{$lang_editpics_php['n_of_pic_to_disp']}</b>
-                        <select onChange="if(this.options[this.selectedIndex].value) window.location.href='{$_SERVER['PHP_SELF']}?album=$album_id$mode&start=$start&count='+this.options[this.selectedIndex].value;"  name="count" class="listbox">
+                        <select onChange="if(this.options[this.selectedIndex].value) window.location.href='{$_SERVER['PHP_SELF']}?album=$album_id$mode&amp;start=$start&amp;count='+this.options[this.selectedIndex].value;"  name="count" class="listbox">
                                 <option value="25">25</option>
                                 <option value="50" $s50>50</option>
                                 <option value="75" $s75>75</option>

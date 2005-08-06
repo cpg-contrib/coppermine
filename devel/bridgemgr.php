@@ -50,7 +50,7 @@ function write_to_db($step) {
                             $return[$key] = sprintf($lang_bridgemgr_php['error_cookie_not_readible'], '&quot;<tt>'.$value.'</tt>*&quot;','<i>'.$lang_bridgemgr_php[$key].'</i>');
                         }
                     }  // loop through the cookie global var --- end
-					if (isset($temp_err)) $return[$key] = $temp_err;
+                                        if (isset($temp_err)) $return[$key] = $temp_err;
                 } // check for the existance of a cookie --- end
                 if ($options[1] == 'not_empty') { // check for empty mandatory fields --- start
                     if ($value == '') {
@@ -393,13 +393,13 @@ $default_bridge_data['phpbb'] = array(
   'short_name' => 'phpbb20',
   'support_url' => 'http://www.phpbb.com/',
   'full_forum_url_default' => 'http://www.yoursite.com/board',
-  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',  
+  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
   'relative_path_to_config_file_default' => '../board/',
   'relative_path_to_config_file_used' => 'lookfor,config.php',
   'use_post_based_groups_default' => '0',
   'use_post_based_groups_used' => 'radio,1,0',
-   'cookie_prefix_default' => 'phpbb2mysql', 	 
-   'cookie_prefix_used' => 'cookie',  
+   'cookie_prefix_default' => 'phpbb2mysql',
+   'cookie_prefix_used' => 'cookie',
 );
 
 // status: bridge ok, manager unknown
@@ -408,7 +408,7 @@ $default_bridge_data['phpbb22'] = array(
   'short_name' => 'phpbb22',
   'support_url' => 'http://www.phpbb.com/',
   'full_forum_url_default' => 'http://www.yoursite.com/board',
-  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',  
+  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
   'relative_path_to_config_file_default' => '../board/',
   'relative_path_to_config_file_used' => 'lookfor,config.php',
   'use_post_based_groups_default' => '0',
@@ -446,7 +446,7 @@ $default_bridge_data['smf10'] = array(
   'short_name' => 'smf10',
   'support_url' => 'http://www.simplemachines.org/',
   'full_forum_url_default' => 'http://www.yoursite.com/board',
-  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',  
+  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
   'relative_path_to_config_file_default' => '../board/',
   'relative_path_to_config_file_used' => 'lookfor,Settings.php',
   'use_post_based_groups_default' => '0',
@@ -463,7 +463,7 @@ $default_bridge_data['vbulletin30'] = array(
   'relative_path_to_config_file_default' => '../board/',
   'relative_path_to_config_file_used' => 'lookfor,includes/config.php',
   'use_post_based_groups_default' => '0',
-  'use_post_based_groups_used' => 'radio,1,0',  
+  'use_post_based_groups_used' => 'radio,1,0',
 );
 
 // status: bridge unknown, manager unknown
@@ -472,9 +472,9 @@ $default_bridge_data['woltlab21'] = array(
   'short_name' => 'woltlab21',
   'support_url' => 'http://www.woltlab.de/',
   'full_forum_url_default' => 'http://www.yoursite.com/board',
-  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',    
+  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
   'relative_path_to_config_file_default' => '../board/',
-  'relative_path_to_config_file_used' => 'lookfor,index.php',  
+  'relative_path_to_config_file_used' => 'lookfor,index.php',
 );
 
 $default_bridge_data['mybb'] = array(
@@ -482,11 +482,11 @@ $default_bridge_data['mybb'] = array(
   'short_name' => 'mybb',
   'support_url' => 'http://www.mybboard.com/',
   'full_forum_url_default' => 'http://www.yoursite.com/board',
-  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',    
+  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
   'relative_path_to_config_file_default' => '../board/inc',
-  'relative_path_to_config_file_used' => 'lookfor,config.php',  
+  'relative_path_to_config_file_used' => 'lookfor,config.php',
   'use_post_based_groups_default' => '0',
-  'use_post_based_groups_used' => 'radio,1,0',    
+  'use_post_based_groups_used' => 'radio,1,0',
 );
 
 $default_bridge_data['xmb'] = array(
@@ -494,11 +494,11 @@ $default_bridge_data['xmb'] = array(
   'short_name' => 'xmb',
   'support_url' => 'http://www.xmbforum.com/',
   'full_forum_url_default' => 'http://www.yoursite.com/board',
-  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',    
+  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
   'relative_path_to_config_file_default' => '../board/',
-  'relative_path_to_config_file_used' => 'lookfor,config.php',  
+  'relative_path_to_config_file_used' => 'lookfor,config.php',
   'use_post_based_groups_default' => '0',
-  'use_post_based_groups_used' => 'radio,1,0',    
+  'use_post_based_groups_used' => 'radio,1,0',
 );
 
 $default_bridge_data['xoops'] = array(
@@ -506,11 +506,11 @@ $default_bridge_data['xoops'] = array(
   'short_name' => 'xoops',
   'support_url' => 'http://www.xoops.org/',
   'full_forum_url_default' => 'http://www.yoursite.com/board',
-  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',    
+  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
   'relative_path_to_config_file_default' => '../board/',
-  'relative_path_to_config_file_used' => 'lookfor,mainfile.php',  
+  'relative_path_to_config_file_used' => 'lookfor,mainfile.php',
   'use_post_based_groups_default' => '0',
-  'use_post_based_groups_used' => 'radio,1,0',    
+  'use_post_based_groups_used' => 'radio,1,0',
 );
 
 $default_bridge_data['phorum'] = array(
@@ -518,7 +518,7 @@ $default_bridge_data['phorum'] = array(
   'short_name' => 'phorum',
   'support_url' => 'http://www.phorum.org/',
   'full_forum_url_default' => '',
-  'full_forum_url_used' => '',  
+  'full_forum_url_used' => '',
   'relative_path_to_config_file_default' => '../phorum/',
   'relative_path_to_config_file_used' => 'lookfor,common.php',
   'use_post_based_groups_default' => '0',
@@ -639,7 +639,7 @@ case "settings_path":
         foreach($loop_array as $key) {
             $prefill = cpg_bridge_prefill($BRIDGE['short_name'],$key);
             if ($key == 'relative_path_of_forum_from_webroot') {
-                $minibrowser = '<a href="javascript:;" onclick="MM_openBrWindow(\'minibrowser.php?startfolder='.rawurlencode($prefill).'&parentform='.rawurlencode($step).'&formelementname='.rawurlencode($key).'\',\''.uniqid(rand()) .'\',\'scrollbars=yes,toolbar=no,status=no,locationbar=no,resizable=yes,width=600,height=400\')"><img src="images/folder.gif" width="16" height="16" border="0" alt="" title="'.$lang_bridgemgr_php['browse'].'" /></a>';
+                $minibrowser = '<a href="javascript:;" onclick="MM_openBrWindow(\'minibrowser.php?startfolder='.rawurlencode($prefill).'&amp;parentform='.rawurlencode($step).'&amp;formelementname='.rawurlencode($key).'\',\''.uniqid(rand()) .'\',\'scrollbars=yes,toolbar=no,status=no,locationbar=no,resizable=yes,width=600,height=400\')"><img src="images/folder.gif" width="16" height="16" border="0" alt="" title="'.$lang_bridgemgr_php['browse'].'" /></a>';
             } else {
                 $minibrowser = '';
             }
@@ -1068,23 +1068,23 @@ case "finalize":
     if (!$error) {
         $BRIDGE = cpg_get_bridge_db_values();
         $CONFIG = cpg_refresh_config_db_values();
-		
-		// sync groups here now :)
-		if ($CONFIG['bridge_enable']){
-			if (!isset($cpg_udb)) include_once 'bridge/' . $BRIDGE['short_name'] . '.inc.php';
-			$cpg_udb->synchronize_groups();
-		} else {
-			// ok, then restore group table
-			cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1");
-			cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
-			VALUES (1, 'Administrators', 0, 1, 1, 1, 1, 1, 1, 0, 0, 3, 0, 5, 3)");
-			cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
-			VALUES (2, 'Registered', 1024, 0, 1, 1, 1, 1, 1, 1, 0, 3, 0, 5, 3)");
-			cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
-			VALUES (3, 'Anonymous', 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
-			cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
-			VALUES (4, 'Banned', 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
-		}
+
+                // sync groups here now :)
+                if ($CONFIG['bridge_enable']){
+                        if (!isset($cpg_udb)) include_once 'bridge/' . $BRIDGE['short_name'] . '.inc.php';
+                        $cpg_udb->synchronize_groups();
+                } else {
+                        // ok, then restore group table
+                        cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1");
+                        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+                        VALUES (1, 'Administrators', 0, 1, 1, 1, 1, 1, 1, 0, 0, 3, 0, 5, 3)");
+                        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+                        VALUES (2, 'Registered', 1024, 0, 1, 1, 1, 1, 1, 1, 0, 3, 0, 5, 3)");
+                        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+                        VALUES (3, 'Anonymous', 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
+                        cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+                        VALUES (4, 'Banned', 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
+                }
         print '<form name="'.$step.'" action="'.$_SERVER['PHP_SELF'].'" method="post">';
         echo <<<EOT
     <script type="text/javascript">
@@ -1266,7 +1266,7 @@ else { // not in gallery admin mode --- start
     } else { // the logon wait time has passed, the user is allowed to try to logon now
         // go through the list of standalone admins and check if we have a match
         $temp_user_table = $CONFIG['TABLE_PREFIX'].'users';
-        
+
         // Check if encrypted passwords are enabled
         if ($CONFIG['enable_encrypted_passwords']) {
                 $encpassword = md5(addslashes($_POST['password']));

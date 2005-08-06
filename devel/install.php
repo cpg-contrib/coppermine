@@ -24,7 +24,7 @@ if (is_dir('../../modules') && $_REQUEST['continue_anyway'] != 1) {
          This version can only be used as standalone!<br />
          Some server setups might display this warning even though you don't have a nuke portal installed - if this is the case for you, <a href=\"" . $PHP_SELF . "?continue_anyway=1\">continue</a> with the install.
          If you are using a nuke portal, you might want to take a look into <a href=\"http://www.cpgnuke.com/\">CpgNuke</a> or use one of the (unsupported)
-         <a href=\"http://sourceforge.net/project/showfiles.php?group_id=89658&package_id=95984\">coppermine ports</a>
+         <a href=\"http://sourceforge.net/project/showfiles.php?group_id=89658&amp;package_id=95984\">coppermine ports</a>
          - do not continue!</body></html>"
          );
 } // end check
@@ -72,9 +72,9 @@ function test_sql_connection()
 {
     global $errors;
 
-	if (!function_exists('mysql_connect')){
-		$errors .= "<hr /><br />PHP does not have MySQL support enabled.<br /><br />";
-	 } elseif (! $connect_id = @mysql_connect($_POST['dbserver'], $_POST['dbuser'], $_POST['dbpass'])) {
+        if (!function_exists('mysql_connect')){
+                $errors .= "<hr /><br />PHP does not have MySQL support enabled.<br /><br />";
+         } elseif (! $connect_id = @mysql_connect($_POST['dbserver'], $_POST['dbuser'], $_POST['dbpass'])) {
         $errors .= "<hr /><br />Could not create a mySQL connection, please check the SQL values entered<br /><br />MySQL error was : " . mysql_error() . "<br /><br />";
     } elseif (! mysql_select_db($_POST['dbname'], $connect_id)) {
         $errors .= "<hr /><br />mySQL could not locate a database called '{$_POST['dbname']}' please check the value entered for this<br /><br />";
@@ -386,8 +386,8 @@ function html_input_config($error_msg = '')
                 </form>
        </tr>
       </table>
-   <img src="install.php?test_gd1=1&reload=<?php echo uniqid('') ?>" alt="" width="1" height="1" border="0" alt="" />
-   <img src="install.php?test_gd2=1&reload=<?php echo uniqid('') ?>" alt="" width="1" height="1" border="0" alt="" />
+   <img src="install.php?test_gd1=1&amp;reload=<?php echo uniqid('') ?>" alt="" width="1" height="1" border="0" alt="" />
+   <img src="install.php?test_gd2=1&amp;reload=<?php echo uniqid('') ?>" alt="" width="1" height="1" border="0" alt="" />
 <?php
 }
 

@@ -143,7 +143,7 @@ if (count($_POST) > 0 && $valid_sender_email && $valid_recipient_email) {
 
     if ($result) {
         //pageheader($lang_ecard_php['title']);
-        msg_box($lang_cpg_die[INFORMATION], $lang_ecard_php['send_success'], $lang_continue, "displayimage.php?album=$album&pos=$pos");
+        msg_box($lang_cpg_die[INFORMATION], $lang_ecard_php['send_success'], $lang_continue, "displayimage.php?album=$album&amp;pos=$pos");
                                 echo '<br />';
                                 starttable('100%', $lang_ecard_php['preview']);
                                 echo '<tr><td>';
@@ -208,7 +208,7 @@ elseif (isset($_POST['preview'])) {
 //pageheader($lang_ecard_php['title']);
 
 //ecard form
-if ($CONFIG['show_bbcode_help']) {$captionLabel = '&nbsp;'. cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
+if ($CONFIG['show_bbcode_help']) {$captionLabel = '&nbsp;'. cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
 starttable("100%", $lang_ecard_php['title'], 3);
 
 echo <<<EOT
@@ -216,12 +216,12 @@ echo <<<EOT
                 <td class="tableh2" colspan="2"><b>{$lang_ecard_php['from']}</b></td>
                 <td rowspan="6" align="center" valign="top" class="tableb">
                         <a href="displayimage.php?pos=-{$pid}">
-												<img src="$thumb_pic_url" alt="" vspace="8" border="0" class="image"></a><br />
+                                                                                                <img src="$thumb_pic_url" alt="" vspace="8" border="0" class="image"></a><br />
                 </td>
         </tr>
         <tr>
                 <td class="tableb" valign="top" width="40%">
-                        <form method="post" name="post" action="{$_SERVER['PHP_SELF']}?album=$album&pid=$pid&pos=$pos">
+                        <form method="post" name="post" action="{$_SERVER['PHP_SELF']}?album=$album&amp;pid=$pid&amp;pos=$pos">
                         {$lang_ecard_php['your_name']}<br />
                 </td>
                 <td valign="top" class="tableb" width="60%">

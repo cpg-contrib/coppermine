@@ -34,12 +34,12 @@ if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) {
 
 // add footnote
 $notice1 = ' *';
-$help_can_upload = '&nbsp;'.cpg_display_help('f=index.htm&as=album_prop_visitor_start&ae=album_prop_visitor_end&top=1', '400', '200');
-$help_album_keywords = '&nbsp;'.cpg_display_help('f=index.htm&as=album_prop_keyword_start&ae=album_prop_keyword_end&top=1', '400', '200');
-$help_album_password = '&nbsp;'.cpg_display_help('f=index.htm&as=album_prop_password_start&ae=album_prop_password_end&top=1', '500', '250');
+$help_can_upload = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=album_prop_visitor_start&amp;ae=album_prop_visitor_end&amp;top=1', '400', '200');
+$help_album_keywords = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=album_prop_keyword_start&amp;ae=album_prop_keyword_end&amp;top=1', '400', '200');
+$help_album_password = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=album_prop_password_start&amp;ae=album_prop_password_end&amp;top=1', '500', '250');
 
 $captionLabel = $lang_modifyalb_php['alb_desc'];
-if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
+if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
 $data = array($lang_modifyalb_php['general_settings'],
     array($lang_modifyalb_php['alb_title'], 'title', 0),
     array($lang_modifyalb_php['alb_cat'], 'category', 2),
@@ -480,7 +480,7 @@ if (!GALLERY_ADMIN_MODE && $ALBUM_DATA['category'] != FIRST_USER_CAT + USER_ID) 
 pageheader(sprintf($lang_modifyalb_php['upd_alb_n'], $ALBUM_DATA['title']));
 
 $album_lb = alb_list_box();
-$help = '&nbsp;'.cpg_display_help('f=index.htm&as=album_prop&ae=album_prop_end&top=1', '600', '400');
+$help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=album_prop&amp;ae=album_prop_end&amp;top=1', '600', '400');
 starttable("100%",$lang_modifyalb_php['update'].$help, 2);
 echo <<<EOT
         <tr>
