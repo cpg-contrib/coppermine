@@ -152,7 +152,7 @@ function picrow($picfile, $picid, $albid)
         $thumb_size = compute_img_size($thumb_info[0], $thumb_info[1], 48);
         $img = '<img src="' . path2url($thumb_file) . '" ' . $thumb_size['geom'] . ' class="thumbnail" border="0" alt="" />';
     } elseif (is_image($picname)) {
-        $img = '<img src="showthumb.php?picfile=' . $pic_url . '&size=48" class="thumbnail" border="0" alt="" />';
+        $img = '<img src="showthumb.php?picfile=' . $pic_url . '&amp;size=48" class="thumbnail" border="0" alt="" />';
     } else {
         $file['filepath'] = $pic_dirname.'/'; //substr($picname,0,strrpos($picname,'/'))
         $file['filename'] = $pic_fname;
@@ -180,10 +180,10 @@ function picrow($picfile, $picid, $albid)
                         <input name="picfile_$picid" type="hidden" value="$encoded_picfile" />
                 </td>
                 <td class="tableb" valign="middle" width="100%">
-                        <a href="javascript:;" onclick= "MM_openBrWindow('displayimage.php?&fullsize=1&picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')">$pic_fname</a>
+                        <a href="javascript:;" onclick= "MM_openBrWindow('displayimage.php?fullsize=1&amp;picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')">$pic_fname</a>
                 </td>
                 <td class="tableb" valign="middle" align="center">
-                        <a href="javascript:;" onclick= "MM_openBrWindow('displayimage.php?&fullsize=1&picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')"><img src="images/spacer.gif" width="1" height="48" border="0" alt="" />$img<br /></a>
+                        <a href="javascript:;" onclick= "MM_openBrWindow('displayimage.php?fullsize=1&amp;picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')"><img src="images/spacer.gif" width="1" height="48" border="0" alt="" />$img<br /></a>
                 </td>
         </tr>
 EOT;
@@ -199,7 +199,7 @@ EOT;
                         <i>$pic_fname</i>
                 </td>
                 <td class="tableb" valign="middle" align="center">
-                        <a href="javascript:;" onclick= "MM_openBrWindow('displayimage.php?&fullsize=1&picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')"><img src="showthumb.php?picfile=$pic_url&size=48" class="thumbnail" border="0" alt="" /><br /></a>
+                        <a href="javascript:;" onclick= "MM_openBrWindow('displayimage.php?fullsize=1&amp;picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')"><img src="showthumb.php?picfile=$pic_url&amp;size=48" class="thumbnail" border="0" alt="" /><br /></a>
                 </td>
         </tr>
 EOT;
@@ -385,7 +385,7 @@ if (isset($_POST['insert'])) {
     if (!isset($_POST['pics'])) cpg_die(ERROR, $lang_search_new_php['no_pic_to_add'], __FILE__, __LINE__);
 
     pageheader($lang_search_new_php['page_title']);
-    $help = '&nbsp;'.cpg_display_help('f=index.htm&as=ftp&ae=ftp_end&top=1#ftp_show_result', '600', '400');
+    $help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=ftp&amp;ae=ftp_end&amp;top=1#ftp_show_result', '600', '400');
     starttable("100%");
     echo <<<EOT
         <tr>
@@ -413,7 +413,7 @@ EOT;
         if ($album_id) {
             // To avoid problems with PHP scripts max execution time limit, each picture is
             // added individually using a separate script that returns an image
-            $status = "<a href=\"addpic.php?aid=$album_id&pic_file=" . ($_POST['picfile_' . $pic_id]) . "&reload=" . uniqid('') . "\"><img src=\"addpic.php?aid=$album_id&pic_file=" . ($_POST['picfile_' . $pic_id]) . "&reload=" . uniqid('') . "\" class=\"thumbnail\" border=\"0\" width=\"24\" height=\"24\" alt=\"{$lang_search_new_php['result_icon']}\" /><br /></a>";
+            $status = "<a href=\"addpic.php?aid=$album_id&pic_file=" . ($_POST['picfile_' . $pic_id]) . "&amp;reload=" . uniqid('') . "\"><img src=\"addpic.php?aid=$album_id&amp;pic_file=" . ($_POST['picfile_' . $pic_id]) . "&amp;reload=" . uniqid('') . "\" class=\"thumbnail\" border=\"0\" width=\"24\" height=\"24\" alt=\"{$lang_search_new_php['result_icon']}\" /><br /></a>";
             $album_name = $album_array[$album_id];
             //$edit_pics_content .= '<a href="editpics.php?album='.$album_id. '">' . $lang_search_new_php['edit_pics'] . ' : ' . $album_name . '</a><br />';
         } else {
@@ -465,7 +465,7 @@ EOT;
     ob_end_flush();
 } elseif (isset($_GET['startdir'])) {
     pageheader($lang_search_new_php['page_title']);
-    $help = '&nbsp;'.cpg_display_help('f=index.htm&as=ftp&ae=ftp_end&top=1#ftp_select_file', '550', '400');
+    $help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=ftp&amp;ae=ftp_end&amp;top=1#ftp_select_file', '550', '400');
     starttable("100%");
     echo <<<EOT
         <script language="javascript" type="text/javascript">
@@ -529,7 +529,7 @@ EOT;
     ob_end_flush();
 } else {
     pageheader($lang_search_new_php['page_title']);
-    $help = '&nbsp;'.cpg_display_help('f=index.htm&as=ftp&ae=ftp_end&top=1', '600', '450');
+    $help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=ftp&amp;ae=ftp_end&amp;top=1', '600', '450');
     starttable(-1, $lang_search_new_php['select_dir'].$help);
 
     // write the interface change to the db
@@ -553,7 +553,7 @@ EOT;
     print '    <tr>'."\n";
     print '        <td class="tableb" align="center">'."\n";
     if ($CONFIG['browse_batch_add'] == 1) {
-        print '            <iframe src="minibrowser.php?startfolder='.$iframe_startfolder.'&parentform=choosefolder&formelementname=startdir&no_popup=1&limitfolder='.$iframe_startfolder.'&hidefolders='.$iframe_hide.'&linktarget='.$_SERVER['PHP_SELF'].'&searchnew_php=1&radio=0" width="95%" height="400" name="popup_in_a_box">'."\n";
+        print '            <iframe src="minibrowser.php?startfolder='.$iframe_startfolder.'&amp;parentform=choosefolder&amp;formelementname=startdir&amp;no_popup=1&amp;limitfolder='.$iframe_startfolder.'&amp;hidefolders='.$iframe_hide.'&amp;linktarget='.$_SERVER['PHP_SELF'].'&amp;searchnew_php=1&amp;radio=0" width="95%" height="400" name="popup_in_a_box">'."\n";
     }
     display_dir_tree('', '');
     if ($CONFIG['browse_batch_add'] == 1) {
@@ -565,7 +565,7 @@ EOT;
     // configure batch-add interface (classic or browsable)
     $yes_selected = $CONFIG['browse_batch_add'] ? 'checked="checked"' : '';
     $no_selected = !$CONFIG['browse_batch_add'] ? 'checked="checked"' : '';
-    $help = cpg_display_help('f=index.htm&as=admin_misc_browsable_batch_add&ae=admin_misc_browsable_batch_add_end', '500', '300');
+    $help = cpg_display_help('f=index.htm&amp;as=admin_misc_browsable_batch_add&amp;ae=admin_misc_browsable_batch_add_end', '500', '300');
     echo <<<EOT
         <tr>
                 <td class="tableb">

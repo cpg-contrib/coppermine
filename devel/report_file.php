@@ -41,12 +41,12 @@ $template = $template_report;
 $sender_name = get_post_var('sender_name', USER_NAME ? USER_NAME : (isset($USER['name']) ? $USER['name'] : ''));
 if (defined('UDB_INTEGRATION')AND USER_ID) $USER_DATA = array_merge($USER_DATA,$cpg_udb->get_user_infos(USER_ID));
 if ($USER_DATA['user_email']){
-	$sender_email = $USER_DATA['user_email'];
-	$sender_box = $sender_email;
+        $sender_email = $USER_DATA['user_email'];
+        $sender_box = $sender_email;
 } else {
-	$sender_email = get_post_var('sender_email',$USER['email'] ? $USER['email'] : '');
-	$sender_box = "<input type=\"text\" class=\"textinput\" value=\"$sender_email\" name=\"sender_email\" style=\"WIDTH: 100%;\">";
-	$sender_name = "<input type=\"text\" class=\"textinput\" value=\"$sender_name\" name=\"sender_name\" style=\"WIDTH: 100%;\">";
+        $sender_email = get_post_var('sender_email',$USER['email'] ? $USER['email'] : '');
+        $sender_box = "<input type=\"text\" class=\"textinput\" value=\"$sender_email\" name=\"sender_email\" style=\"WIDTH: 100%;\">";
+        $sender_name = "<input type=\"text\" class=\"textinput\" value=\"$sender_name\" name=\"sender_name\" style=\"WIDTH: 100%;\">";
 }
 $subject = get_post_var('subject');
 $message = get_post_var('message');
@@ -58,21 +58,21 @@ $result = cpg_db_query("SELECT * from {$CONFIG['TABLE_PICTURES']} WHERE pid='$pi
 if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
 $row = mysql_fetch_array($result);
 $thumb_pic_url = get_pic_url($row, 'thumb');
-        
-if ($what == 'comment') {
-	$result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id='$cid' AND pid='$pid'");
-	if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_comment'], __FILE__, __LINE__);
-	$row = mysql_fetch_array($result);
-	$comment = bb_decode(process_smilies($row['msg_body']));
-	$msg_author = $row['msg_author'];
-	$comment_field_name = sprintf($lang_report_php['comment_field_name'], $msg_author);
-	$type = $lang_report_php['type_comment'];
-	$template = $template_report_comment_email;
-	$form_action ="{$_SERVER['PHP_SELF']}?pid=$pid&msg_id=$cid&what=comment";
 
-	//template_extract_block($template_report_form, 'reason_missing'); //need help to toggle off reason(missing) since doesn't apply to comments
+if ($what == 'comment') {
+        $result = cpg_db_query("SELECT msg_id, msg_author, msg_body, UNIX_TIMESTAMP(msg_date) AS msg_date, author_id, author_md5_id, msg_raw_ip, msg_hdr_ip FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id='$cid' AND pid='$pid'");
+        if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_comment'], __FILE__, __LINE__);
+        $row = mysql_fetch_array($result);
+        $comment = bb_decode(process_smilies($row['msg_body']));
+        $msg_author = $row['msg_author'];
+        $comment_field_name = sprintf($lang_report_php['comment_field_name'], $msg_author);
+        $type = $lang_report_php['type_comment'];
+        $template = $template_report_comment_email;
+        $form_action ="{$_SERVER['PHP_SELF']}?pid=$pid&amp;msg_id=$cid&amp;what=comment";
+
+        //template_extract_block($template_report_form, 'reason_missing'); //need help to toggle off reason(missing) since doesn't apply to comments
 } else {
-	//template_extract_block($template_report_form, 'display_comment'); //need help remove comment preview when reporting picture
+        //template_extract_block($template_report_form, 'display_comment'); //need help remove comment preview when reporting picture
 }
 
 // Check supplied email address
@@ -90,21 +90,21 @@ if (count($_POST) > 0 && $valid_sender_email) {
     }
 
     if (!stristr($n_picname, 'http:')) $n_picname = $gallery_url_prefix . $n_picname;
-		
-		//output list of reasons checkmarked
-		$reasons = $lang_report_php['reasons_list_heading'] . "\n";
-		if (isset($_POST['reason'])) {
-			foreach(get_post_var('reason') as $value) {
-				$value = $lang_report_php["$value"];
-				$reason_list .= "$value, ";
-			}
-		} else {
-				$reasons .= "{$lang_report_php['no_reason_given']}";
-		}
 
-		$reason_list = substr($reason_list, 0, -2); //remove trailing comma and space
-		$reasons .= $reason_list;
-		$msg_content = nl2br(strip_tags($message));
+                //output list of reasons checkmarked
+                $reasons = $lang_report_php['reasons_list_heading'] . "\n";
+                if (isset($_POST['reason'])) {
+                        foreach(get_post_var('reason') as $value) {
+                                $value = $lang_report_php["$value"];
+                                $reason_list .= "$value, ";
+                        }
+                } else {
+                                $reasons .= "{$lang_report_php['no_reason_given']}";
+                }
+
+                $reason_list = substr($reason_list, 0, -2); //remove trailing comma and space
+                $reasons .= $reason_list;
+                $msg_content = nl2br(strip_tags($message));
 
     $data = array(
         'sn' => $sender_name,
@@ -129,7 +129,7 @@ if (count($_POST) > 0 && $valid_sender_email) {
         '{VIEW_REPORT_LNK_PLAINTEXT}' => $lang_report_php['view_report_plaintext'],
         '{PIC_URL}' => $n_picname,
         '{URL_PREFIX}' => $gallery_url_prefix,
-		'{PIC_TGT}' => "{$CONFIG['ecards_more_pic_target']}displayimage.php?pos=-" . $pid,
+                '{PIC_TGT}' => "{$CONFIG['ecards_more_pic_target']}displayimage.php?pos=-" . $pid,
         '{SUBJECT}' => $subject,
         '{MESSAGE}' => $msg_content,
         '{PLAINTEXT_MESSAGE}' => $message,
@@ -145,12 +145,12 @@ if (count($_POST) > 0 && $valid_sender_email) {
         '{PID}' => $pid,
         );
 
-		$message = template_eval($template, $params);
+                $message = template_eval($template, $params);
         $plaintext_message = template_eval($template_report_plaintext, $params);
 
         $tempTime = time();
         $message .= sprintf($lang_report_php['report_footer'], $sender_name, $_SERVER['REMOTE_ADDR'], localised_date(-1,$comment_date_fmt));
-		$subject = sprintf($lang_report_php['report_subject'], $sender_name, $type);
+                $subject = sprintf($lang_report_php['report_subject'], $sender_name, $type);
 
         $result = cpg_mail('admin', $subject, $message, 'text/html', $sender_name, $sender_email, $plaintext_message);
 
@@ -219,8 +219,8 @@ echo <<<EOT
         </tr>
         <tr>
                 <td class="tableb" colspan="3">
-										<a href="{$CONFIG['ecards_more_pic_target']}displayimage.php?pos=-{$pid}">
-										{$CONFIG['ecards_more_pic_target']}displayimage.php?pos=-{$pid}</a> <br />
+                                                                                <a href="{$CONFIG['ecards_more_pic_target']}displayimage.php?pos=-{$pid}">
+                                                                                {$CONFIG['ecards_more_pic_target']}displayimage.php?pos=-{$pid}</a> <br />
                 </td>
         </tr>
 <!-- BEGIN display_comment -->
@@ -238,7 +238,7 @@ echo <<<EOT
         </tr>
         <tr>
                 <td class="tableb" colspan="3">
-										<input type="text" class="textinput" name="subject"  value="$subject" style="WIDTH: 100%;"><br />
+                                                                                <input type="text" class="textinput" name="subject"  value="$subject" style="WIDTH: 100%;"><br />
                 </td>
         </tr>
         <tr>
@@ -294,7 +294,7 @@ echo <<<EOT
         </tr>
         <tr>
                 <td class="tableb" colspan="3" valign="top">
-											<textarea name="message" class="textinput" ROWS="8" COLS="40" WRAP="virtual" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" STYLE="WIDTH: 100%;">$message</textarea><br /><br />
+                                                                                        <textarea name="message" class="textinput" ROWS="8" COLS="40" WRAP="virtual" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" STYLE="WIDTH: 100%;">$message</textarea><br /><br />
                 </td>
         </tr>
         <tr>

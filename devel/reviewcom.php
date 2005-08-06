@@ -50,8 +50,8 @@ if (!$comment_count) cpg_die(INFORMATION , $lang_reviewcom_php['no_comment'], __
 
 $start = isset($_GET['start']) ? (int)$_GET['start'] : 0;
 $count = isset($_GET['count']) ? $_GET['count'] : 25;
-$next_target = $_SERVER['PHP_SELF'] . '?start=' . ($start + $count) . '&count=' . $count;
-$prev_target = $_SERVER['PHP_SELF'] . '?start=' . max(0, $start - $count) . '&count=' . $count;
+$next_target = $_SERVER['PHP_SELF'] . '?start=' . ($start + $count) . '&amp;count=' . $count;
+$prev_target = $_SERVER['PHP_SELF'] . '?start=' . max(0, $start - $count) . '&amp;count=' . $count;
 $s50 = $count == 50 ? 'selected' : '';
 $s75 = $count == 75 ? 'selected' : '';
 $s100 = $count == 100 ? 'selected' : '';
@@ -100,7 +100,7 @@ function selectAll(d,box) {
 -->
 </script>
 
-    <form action="{$_SERVER['PHP_SELF']}?start=$start&count=$count" method="post" name="editForm">
+    <form action="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count" method="post" name="editForm">
 
 EOT;
 
@@ -136,7 +136,7 @@ echo <<<EOT
                             </td>
                             <td class="tableh1" align="right">
                                 {$lang_reviewcom_php['n_comm_disp']}
-                                <select onChange="if(this.options[this.selectedIndex].value) window.location.href='{$_SERVER['PHP_SELF']}?start=$start&count='+this.options[this.selectedIndex].value;"  name="count" class="listbox">
+                                <select onChange="if(this.options[this.selectedIndex].value) window.location.href='{$_SERVER['PHP_SELF']}?start=$start&amp;count='+this.options[this.selectedIndex].value;"  name="count" class="listbox">
                                         <option value="25">25</option>
                                         <option value="50" $s50>50</option>
                                         <option value="75" $s75>75</option>
@@ -156,20 +156,20 @@ EOT;
             <input type="checkbox" name="checkAll" onClick="selectAll(this,'cid_array');" class="checkbox" title="$lang_check_uncheck_all" />
         </td>
         <td class="tableh2" valign="top">{$lang_reviewcom_php['user_name']}
-        <a href="{$_SERVER['PHP_SELF']}?start=$start&count=$count&sort=name_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['name_a']}" /></a>
-        <a href="{$_SERVER['PHP_SELF']}?start=$start&count=$count&sort=name_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['name_d']}" /></a>
+        <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=name_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['name_a']}" /></a>
+        <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=name_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['name_d']}" /></a>
         </td>
         <td class="tableh2" valign="top">{$lang_reviewcom_php['date']}
-        <a href="{$_SERVER['PHP_SELF']}?start=$start&count=$count&sort=date_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['date_a']}" /></a>
-        <a href="{$_SERVER['PHP_SELF']}?start=$start&count=$count&sort=date_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['date_d']}" /></a>
+        <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=date_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['date_a']}" /></a>
+        <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=date_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['date_d']}" /></a>
         </td>
         <td class="tableh2" valign="top">{$lang_reviewcom_php['comment']}
-        <a href="{$_SERVER['PHP_SELF']}?start=$start&count=$count&sort=comment_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['comment_a']}" /></a>
-        <a href="{$_SERVER['PHP_SELF']}?start=$start&count=$count&sort=comment_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['comment_d']}" /></a>
+        <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=comment_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['comment_a']}" /></a>
+        <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=comment_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['comment_d']}" /></a>
         </td>
         <td class="tableh2" valign="top">{$lang_reviewcom_php['file']}
-        <a href="{$_SERVER['PHP_SELF']}?start=$start&count=$count&sort=file_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['file_a']}" /></a>
-        <a href="{$_SERVER['PHP_SELF']}?start=$start&count=$count&sort=file_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['file_d']}" /></a>
+        <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=file_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['file_a']}" /></a>
+        <a href="{$_SERVER['PHP_SELF']}?start=$start&amp;count=$count&amp;sort=file_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_reviewcom_php['file_d']}" /></a>
         </td>
         </tr>
 

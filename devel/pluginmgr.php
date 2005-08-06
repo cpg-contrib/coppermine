@@ -81,7 +81,7 @@ EOT;
         if ($thisplugin->index > 0 && count($CPG_PLUGINS) > 1) {
             echo <<<EOT
             <td class="tableb" width="3%" align="center" valign="middle">
-                <a href="pluginmgr.php?op=moveu&p={$thisplugin->plugin_id}"><img src="images/up.gif"  border="0" alt="" /></a>
+                <a href="pluginmgr.php?op=moveu&amp;p={$thisplugin->plugin_id}"><img src="images/up.gif"  border="0" alt="" /></a>
             </td>
 EOT;
         } else {
@@ -91,7 +91,7 @@ EOT;
         if ($thisplugin->index < (count($CPG_PLUGINS)-1)) {
             echo <<<EOT
             <td class="tableb" width="3%" align="center" valign="middle">
-                <a href="pluginmgr.php?op=moved&p={$thisplugin->plugin_id}"><img src="images/down.gif"  border="0" alt="" /></a>
+                <a href="pluginmgr.php?op=moved&amp;p={$thisplugin->plugin_id}"><img src="images/down.gif"  border="0" alt="" /></a>
             </td>
 EOT;
         } else {
@@ -100,7 +100,7 @@ EOT;
 
         echo <<<EOT
             <td class="tableb" width="3%" align="center" valign="middle">
-                <a href="pluginmgr.php?op=uninstall&p={$thisplugin->plugin_id}" onClick="return confirmUninstall('$safename')">
+                <a href="pluginmgr.php?op=uninstall&amp;p={$thisplugin->plugin_id}" onClick="return confirmUninstall('$safename')">
                     <img src="images/delete.gif"  border="0" alt="" />
                 </a>
             </td>
@@ -167,10 +167,10 @@ EOT;
                 <img src="images/spacer.gif" width="16" height="16" />
             </td>
             <td class="tableb" width="5%" align="center" valign="middle">
-                <a href="pluginmgr.php?op=install&p=$path"><img src="images/info.gif"  border="0" alt="" /></a>
+                <a href="pluginmgr.php?op=install&amp;p=$path"><img src="images/info.gif"  border="0" alt="" /></a>
             </td>
             <td class="tableb" width="5%" align="center" valign="middle">
-                <a href="pluginmgr.php?op=delete&p=$path" onClick="return confirmDel('$safename')">
+                <a href="pluginmgr.php?op=delete&amp;p=$path" onClick="return confirmDel('$safename')">
                     <img src="images/delete.gif"  border="0" alt="" />
                 </a>
             </td>
