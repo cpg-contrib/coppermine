@@ -17,6 +17,17 @@
   $Date$
 **********************************************/
 
+function strip_IPTC($data) {
+    if (is_array($data)) {
+        foreach ($data as $key=>$item) {
+             $data[$key]=strip_IPTC($item);
+        }
+    } else {
+         $data=htmlentities(strip_tags(trim($data,"\x7f..\xff\x0..\x1f")),ENT_QUOTES); //sanitize data against sql/html injection; trim any nongraphical non-ASCII character:
+    }
+    return $data;
+}
+
 function get_IPTC($filename) {
         $IPTC_data=array();
         $size = GetImageSize ($filename, $info);
@@ -43,11 +54,9 @@ function get_IPTC($filename) {
                                         "Source"                =>         $iptc["2#115"][0],        # Max 32 octets, non-repeatable, alphanumeric
                                         "Copyright"                =>         $iptc["2#116"][0],        # Max 128 octets, non-repeatable, alphanumeric
                                         "Caption"                =>         $iptc["2#120"][0],        # Max 2000 octets, non-repeatable, alphanumeric
-                                        "CaptionWriter"                =>         $iptc["2#122"][0]        # Max 32 octets, non-repeatable, alphanumeric
+                                        "CaptionWriter"                =>         $iptc["2#122"][0],       # Max 32 octets, non-repeatable, alphanumeric
                 );
-                foreach ($IPTC_data as $key=>$data) {
-                   $IPTC_data[$key] = htmlentities(strip_tags(trim($data,"\x7f..\xff\x0..\x1f")),ENT_QUOTES); //sanitize data against sql/html injection; trim any nongraphical non-ASCII character:
-                }
+                $IPTC_data=strip_IPTC($IPTC_data); //sanitize data against sql/html injection; trim any nongraphical non-ASCII character:
                 $IPTC_data=filter_content($IPTC_data);   //run the data against the bad word list
             }
         }
