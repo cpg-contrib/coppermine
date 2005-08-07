@@ -154,7 +154,7 @@ function update_tables()
 
     foreach($sql_query as $q) {
         echo "<tr><td class='tableb'>$q</td>";
-        if (mysql_query($q)) {
+        if (@mysql_query($q)) {
             echo "<td class='updatesOK'>OK</td>";
         } else {
             echo "<td class='updatesFail'>Already Done</td>";
