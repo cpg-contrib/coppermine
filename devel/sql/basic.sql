@@ -81,7 +81,7 @@ INSERT INTO CPG_config VALUES ('normal_pfx', 'normal_');
 INSERT INTO CPG_config VALUES ('offline', '0');
 INSERT INTO CPG_config VALUES ('picture_table_width', '600');
 INSERT INTO CPG_config VALUES ('picture_width', '400');
-INSERT INTO CPG_config VALUES ('randpos_interval', '1063623637');
+# INSERT INTO CPG_config VALUES ('randpos_interval', '1063623637');
 INSERT INTO CPG_config VALUES ('read_exif_data', '0');
 INSERT INTO CPG_config VALUES ('reg_requires_valid_email', '1');
 INSERT INTO CPG_config VALUES ('subcat_level', '2');

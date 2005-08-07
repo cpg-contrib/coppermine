@@ -131,7 +131,7 @@ CREATE TABLE CPG_pictures (
   user3 varchar(255) NOT NULL default '',
   user4 varchar(255) NOT NULL default '',
   url_prefix tinyint(4) NOT NULL default '0',
-  randpos int(11) NOT NULL default '0',
+#  randpos int(11) NOT NULL default '0',
   pic_raw_ip tinytext,
   pic_hdr_ip tinytext,
   lasthit_ip tinytext,
@@ -140,7 +140,7 @@ CREATE TABLE CPG_pictures (
   KEY pic_hits (hits),
   KEY pic_rate (pic_rating),
   KEY aid_approved (aid,approved),
-  KEY randpos (randpos),
+#  KEY randpos (randpos),
   KEY pic_aid (aid),
   position INT(11) NOT NULL default '0',
   FULLTEXT KEY search (title,caption,keywords,filename)

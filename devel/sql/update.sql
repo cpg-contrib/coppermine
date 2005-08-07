@@ -403,7 +403,7 @@ INSERT INTO CPG_bridge VALUES ('recovery_logon_timestamp', '');
 INSERT INTO CPG_config VALUES ('bridge_enable', '0');
 
 #
-# Table structure for table 'CPG_vote_stats
+# Table structure for table 'CPG_vote_stats'
 #
 CREATE TABLE CPG_vote_stats (
   `sid` int(11) NOT NULL auto_increment,
@@ -451,6 +451,7 @@ INSERT INTO CPG_config VALUES ('home_target', 'index.php');
 DELETE FROM CPG_config WHERE `name` = 'comment_email_notification';
 DELETE FROM CPG_config WHERE `name` = 'hide_admin_uploader';
 
+
 INSERT INTO CPG_config VALUES ('custom_lnk_name', '');
 INSERT INTO CPG_config VALUES ('custom_lnk_url', '');
 INSERT INTO CPG_config VALUES ('comments_anon_pfx', 'Guest_');
@@ -460,3 +461,10 @@ INSERT INTO CPG_config VALUES ('admin_activation', '0');
 ALTER TABLE CPG_pictures CHANGE `mtime` `mtime` DATETIME;
 
 DELETE FROM CPG_exif;
+
+#
+# Remove support for random keying that has been abandoned.
+#
+DELETE FROM CPG_config WHERE `name` = 'randpos_interval';
+ALTER TABLE CPG_pictures DROP INDEX `randpos`;
+ALTER TABLE CPG_pictures DROP `randpos`;
