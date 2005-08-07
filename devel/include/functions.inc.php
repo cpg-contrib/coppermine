@@ -807,7 +807,7 @@ function build_caption(&$rowset,$must_have=array())
             $caption .= '<span class="thumb_title">' . sprintf($lang_get_pic_data['n_views'], $row['hits']).'</span>';
         }
         if ($CONFIG['caption_in_thumbview']){
-            $caption .= $row['caption'] ? "<span class=\"thumb_caption\">".bb_decode(($row['caption']))."</span>" : '';
+            $caption .= $row['caption'] ? "<span class=\"thumb_caption\">".strip_tags(bb_decode($row['caption']))."</span>" : '';
         }
         if ($CONFIG['display_comment_count']) {
             $comments_nr = count_pic_comments($row['pid']);
