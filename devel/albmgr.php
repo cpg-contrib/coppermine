@@ -354,8 +354,8 @@ if (count ($rowset) > 0) foreach ($rowset as $album) {
 
 ?>
         <form name="album_menu" method="post" action="delete.php?what=albmgr" onSubmit="return CheckAlbumForm(this);">
-        <input type="hidden" name="delete_album" value="">
-        <input type="hidden" name="sort_order" value="<?php echo $sort_order ?>">
+        <input type="hidden" name="delete_album" value="" />
+        <input type="hidden" name="sort_order" value="<?php echo $sort_order ?>" />
         <td class="tableb" valign="top" align="center">
                 <br />
                 <table width="300" border="0" cellspacing="0" cellpadding="0">
@@ -418,7 +418,7 @@ echo $lb;
                 </tr>
                 <tr>
                         <td><br />
-                                <input type="text" name="album_nm" size="27" maxlength="80" class="textinput" style="width: 300px;" onChange="Album_NameChange(this.value);" onKeyUp="Album_NameChange(this.value);">
+                                <input type="text" name="album_nm" size="27" maxlength="80" class="textinput" style="width: 300px;" onChange="Album_NameChange(this.value);" onKeyUp="Album_NameChange(this.value);" />
                                 <br />
                                 <br />
                         </td>
@@ -428,7 +428,7 @@ echo $lb;
 </tr>
 <tr>
         <td colspan="2" align="center" class="tablef">
-        <input type="submit" class="button" value="<?php echo $lang_albmgr_php['apply_modifs'] ?>">
+        <input type="submit" class="button" value="<?php echo $lang_albmgr_php['apply_modifs'] ?>" />
         </td>
         </form>
 </tr>

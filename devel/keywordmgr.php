@@ -85,8 +85,8 @@ EOT;
 <form name="keywordForm" action="keywordmgr.php?page=changeword" method="post">
 $output
 <tr><td colspan="5" class="tablef" align="center">
-   <input type="text" name="newword">
-   <input type="submit" value="{$lang_keywordmgr_php['change_keyword']}">
+   <input type="text" name="newword" />
+   <input type="submit" value="{$lang_keywordmgr_php['change_keyword']}" />
 </td></tr>
 </form>
 EOT;

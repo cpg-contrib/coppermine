@@ -505,7 +505,7 @@ EOT;
                     <input type="checkbox" name="checkAll" onClick="selectAll(this,'pics');" class="checkbox" title="$lang_check_uncheck_all" />
                 </td>
                 <td colspan="2" align="center" class="tablef">
-                        <input type="submit" class="button" name="insert" value="{$lang_search_new_php['insert_selected']}">
+                        <input type="submit" class="button" name="insert" value="{$lang_search_new_php['insert_selected']}" />
                 </td>
         </tr>
         </form>

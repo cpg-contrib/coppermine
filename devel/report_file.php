@@ -45,8 +45,8 @@ if ($USER_DATA['user_email']){
         $sender_box = $sender_email;
 } else {
         $sender_email = get_post_var('sender_email',$USER['email'] ? $USER['email'] : '');
-        $sender_box = "<input type=\"text\" class=\"textinput\" value=\"$sender_email\" name=\"sender_email\" style=\"WIDTH: 100%;\">";
-        $sender_name = "<input type=\"text\" class=\"textinput\" value=\"$sender_name\" name=\"sender_name\" style=\"WIDTH: 100%;\">";
+        $sender_box = "<input type=\"text\" class=\"textinput\" value=\"$sender_email\" name=\"sender_email\" style=\"width: 100%;\" />";
+        $sender_name = "<input type=\"text\" class=\"textinput\" value=\"$sender_name\" name=\"sender_name\" style=\"width: 100%;\" />";
 }
 $subject = get_post_var('subject');
 $message = get_post_var('message');
@@ -238,7 +238,7 @@ echo <<<EOT
         </tr>
         <tr>
                 <td class="tableb" colspan="3">
-                                                                                <input type="text" class="textinput" name="subject"  value="$subject" style="WIDTH: 100%;"><br />
+                                                                                <input type="text" class="textinput" name="subject"  value="$subject" style="width: 100%;" /><br />
                 </td>
         </tr>
         <tr>
@@ -299,7 +299,7 @@ echo <<<EOT
         </tr>
         <tr>
                 <td colspan="3" align="center" class="tablef">
-                        <input type="submit" class="button" value="{$lang_report_php['title']}">
+                        <input type="submit" class="button" value="{$lang_report_php['title']}" />
                         </form>
                 </td>
         </tr>

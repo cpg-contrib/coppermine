@@ -76,20 +76,20 @@ EOHEAD;
                                         <tr>
                                                <form action="{$_SERVER['PHP_SELF']}" method="post" name="banlist$row_counter">
                                                      <td width="20%" class="tableb" valign="middle">
-                                                             <input type="hidden" name="ban_id" value="{$row['ban_id']}">
-                                                <input type="text" class="textinput" style="width: 100%" name="edit_ban_user_name" value="$username">
+                                                             <input type="hidden" name="ban_id" value="{$row['ban_id']}" />
+                                                <input type="text" class="textinput" style="width: 100%" name="edit_ban_user_name" value="$username" />
                                         </td>
                                                 <td class="tableb" valign="middle">
-                                                <input type="text" class="textinput" size="15" name="edit_ban_ip_addr" value="{$row['ip_addr']}">
+                                                <input type="text" class="textinput" size="15" name="edit_ban_ip_addr" value="{$row['ip_addr']}" />
                                         </td>
                                                 <td class="tableb" valign="middle">
                                                 <input type="text" class="listbox_lang" size="20" name="edit_ban_expires" value="$expiry" readonly="readonly" title="{$lang_banning_php['select_date']}" />
                                                 <a href="javascript:;"  onclick="return getCalendar(document.banlist$row_counter.edit_ban_expires);" title="{$lang_banning_php['select_date']}"><img src="images/calendar.gif" width="16" height="16" border="0" alt="" /></a>
                                         </td>
                                         <td class="tableb" valign="middle">
-                                                                <input type="submit" class="button" name="edit_ban" value="{$lang_banning_php['edit_ban']}">
+                                                                <input type="submit" class="button" name="edit_ban" value="{$lang_banning_php['edit_ban']}" />
                                         &nbsp;&nbsp;
-                                                                <input type="submit" class="button" name="delete_ban" value="{$lang_banning_php['delete_ban']}">
+                                                                <input type="submit" class="button" name="delete_ban" value="{$lang_banning_php['delete_ban']}" />
                                         </td>
                                 </form>
                                 </tr>
@@ -298,7 +298,7 @@ echo <<<EOT
                                         <tr>
                                                <form action="{$_SERVER['PHP_SELF']}" method="post" name="list">
                                                      <td class="tableb" valign="middle">
-                                                <input type="text" class="textinput" style="width: 100%" name="add_ban_user_name" value="">
+                                                <input type="text" class="textinput" style="width: 100%" name="add_ban_user_name" value="" />
                                         </td>
                                                 <td class="tableb" valign="middle">
                                                 <input type="text" class="textinput" name="add_ban_ip_addr" value="" size="15" maxlength="15" />
@@ -326,7 +326,7 @@ print "<td class=\"tableb\">\n";
 print "<input type=\"text\" class=\"textinput\" size=\"20\" name=\"queryinput\" value=\"\" maxlength=\"15\" />\n";
 print "</td>\n";
 print "<td class=\"tableb\">\n";
-print "<input type=\"submit\" class=\"button\" name=\"submit\" value=\"{$lang_banning_php['submit']}\" >\n";
+print "<input type=\"submit\" class=\"button\" name=\"submit\" value=\"{$lang_banning_php['submit']}\" />\n";
 print "</td>\n";
 print "</tr>\n";
 endtable();

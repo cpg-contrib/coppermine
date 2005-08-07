@@ -228,7 +228,7 @@ function html_installer_locked()
        </tr>
        <tr>
         <td colspan="2" align="center" class="tableb"><br />
-                <input type="submit" value="Go to the main page"><br /><br />
+                <input type="submit" value="Go to the main page" /><br /><br />
         </td>
            </form>
        </tr>
@@ -256,7 +256,7 @@ function html_prereq_errors($error_msg)
        </tr>
        <tr>
         <td colspan="2" align="center"><br />
-                <input type="submit" value="Try again !"><br /><br />
+                <input type="submit" value="Try again !" /><br /><br />
         </td>
                 </form>
        </tr>
@@ -303,21 +303,21 @@ function html_input_config($error_msg = '')
         <td width="40%" class="tableb"><b>Username</b>
         </td>
         <td width="60%" class="tableb">
-                <input type='text' class='textinput' name='admin_username' value='<?php echo $_POST['admin_username'] ?>'>
+                <input type='text' class='textinput' name='admin_username' value='<?php echo $_POST['admin_username'] ?>' />
         </td>
        </tr>
        <tr>
         <td width="40%" class="tableb"><b>Password</b>
         </td>
         <td width="60%" class="tableb">
-                <input type='text' class='textinput' name='admin_password' value='<?php echo $_POST['admin_password'] ?>'>
+                <input type='text' class='textinput' name='admin_password' value='<?php echo $_POST['admin_password'] ?>' />
         </td>
        </tr>
              <tr>
         <td width="40%" class="tableb"><b>Email address</b>
         </td>
         <td width="60%" class="tableb">
-                <input type='text' class='textinput' name='admin_email' value='<?php echo $_POST['admin_email'] ?>'>
+                <input type='text' class='textinput' name='admin_email' value='<?php echo $_POST['admin_email'] ?>' />
         </td>
        </tr>
        <tr>
@@ -332,35 +332,35 @@ function html_input_config($error_msg = '')
         <td width="40%" class="tableb"><b>MySQL Host</b><br />(localhost is usually OK)
         </td>
         <td width="60%" class="tableb" valign="top">
-                <input type='text' class='textinput' name='dbserver' value='<?php echo ($_POST['dbserver'] ? $_POST['dbserver'] : 'localhost') ?>'>
+                <input type='text' class='textinput' name='dbserver' value='<?php echo ($_POST['dbserver'] ? $_POST['dbserver'] : 'localhost') ?>' />
         </td>
        </tr>
        <tr>
         <td width="40%" class="tableb"><b>MySQL Database Name</b>
         </td>
         <td width="60%" class="tableb">
-                <input type='text' class='textinput' name='dbname' value='<?php echo $_POST['dbname'] ?>'>
+                <input type='text' class='textinput' name='dbname' value='<?php echo $_POST['dbname'] ?>' />
         </td>
        </tr>
        <tr>
         <td width="40%" class="tableb"><b>MySQL Username</b>
         </td>
         <td width="60%" class="tableb">
-                <input type='text' class='textinput' name='dbuser' value='<?php echo $_POST['dbuser'] ?>'>
+                <input type='text' class='textinput' name='dbuser' value='<?php echo $_POST['dbuser'] ?>' />
         </td>
        </tr>
        <tr>
         <td width="40%" class="tableb"><b>MySQL Password</b>
         </td>
         <td width="60%" class="tableb">
-                <input type='text' class='textinput' name='dbpass' value='<?php echo $_POST['dbpass'] ?>'>
+                <input type='text' class='textinput' name='dbpass' value='<?php echo $_POST['dbpass'] ?>' />
         </td>
        </tr>
        <tr>
         <td width="40%" class="tableb"><b>MySQL table prefix</b><br />(default value is OK; do not use dots!)
         </td>
         <td width="60%" class="tableb" valign="top">
-                <input type='text' class='textinput' name='table_prefix' value='<?php echo ($_POST['table_prefix'] ? $_POST['table_prefix'] : 'cpg140_') ?>'>
+                <input type='text' class='textinput' name='table_prefix' value='<?php echo ($_POST['table_prefix'] ? $_POST['table_prefix'] : 'cpg140_') ?>' />
         </td>
        </tr>
        <tr>
@@ -376,12 +376,12 @@ function html_input_config($error_msg = '')
         <td width="40%" class="tableb"><b>ImageMagick path</b>
         </td>
         <td width="60%" class="tableb" valign="top">
-                <input type='text' class='textinput' name='impath' value='<?php echo $_POST['impath'] ?>'>
+                <input type='text' class='textinput' name='impath' value='<?php echo $_POST['impath'] ?>' />
         </td>
        </tr>
        <tr>
         <td colspan="2" align="center" class="tableh2"><br />
-         <input type="submit" value="Let's Go !"><br /><br />
+         <input type="submit" value="Let's Go !" /><br /><br />
         </td>
                 </form>
        </tr>
@@ -408,9 +408,9 @@ function html_install_success($notes)
        </tr>
        <tr>
         <td colspan="2" align="center" class="tableh2"><br />
-                 <input type="hidden" name="username" value="<?php echo $_POST['admin_username'] ?>"
-                 <input type="hidden" name="password" value="<?php echo $_POST['admin_password'] ?>"
-                <input type="submit" name="submitted" value="Let's continue !"><br /><br />
+                 <input type="hidden" name="username" value="<?php echo $_POST['admin_username'] ?>" />
+                 <input type="hidden" name="password" value="<?php echo $_POST['admin_password'] ?>" />
+                <input type="submit" name="submitted" value="Let's continue !" /><br /><br />
         </td>
                 </form>
        </tr>

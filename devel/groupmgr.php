@@ -73,7 +73,7 @@ function display_group_list()
             echo <<< EOT
         <tr>
                 <td class="$table_background" align="center" valign="top" style="padding-left: 1px; padding-right: 1px" >
-                        <input type="checkbox" name="delete_group[]" value="{$group['group_id']}" class="checkbox">
+                        <input type="checkbox" name="delete_group[]" value="{$group['group_id']}" class="checkbox" />
                 </td>
 
 EOT;
@@ -370,7 +370,7 @@ if (UDB_INTEGRATION != 'coppermine') {
     echo <<<EOT
         <tr>
             <td colspan="14" align="center" class="tablef">
-                        <input type="submit" name="apply_modifs" value="{$lang_groupmgr_php['apply']}" class="button">&nbsp;&nbsp;&nbsp;
+                        <input type="submit" name="apply_modifs" value="{$lang_groupmgr_php['apply']}" class="button" />&nbsp;&nbsp;&nbsp;
                 </td>
         </form>
         </tr>
@@ -381,11 +381,11 @@ EOT;
         <tr>
             <td class="tablef"><input type="checkbox" name="checkAll2" onClick="selectAll(this,'delete_group');" class="checkbox" title="$lang_check_uncheck_all" /></td>
             <td colspan="13" align="center" class="tablef">
-                        <input type="submit" name="apply_modifs" value="{$lang_groupmgr_php['apply']}" class="button">&nbsp;&nbsp;&nbsp;
-                        <input type="submit" name="new_group" value="{$lang_groupmgr_php['create_new_group']}" class="button">&nbsp;&nbsp;&nbsp;
+                        <input type="submit" name="apply_modifs" value="{$lang_groupmgr_php['apply']}" class="button" />&nbsp;&nbsp;&nbsp;
+                        <input type="submit" name="new_group" value="{$lang_groupmgr_php['create_new_group']}" class="button" />&nbsp;&nbsp;&nbsp;
 EOT;
     if($custom_group_counter > 0) {
-        print '                        <input type="submit" name="del_sel" value="'.$lang_groupmgr_php['del_groups'].'" onClick="return confirmDel()" class="button">';
+        print '                        <input type="submit" name="del_sel" value="'.$lang_groupmgr_php['del_groups'].'" onClick="return confirmDel()" class="button" />';
     }
     echo <<<EOT
                 </td>

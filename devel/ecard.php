@@ -45,7 +45,7 @@ $sender_email = $USER_DATA['user_email'];
 $sender_box = $sender_email;
 } else {
 $sender_email = get_post_var('sender_email',$USER['email'] ? $USER['email'] : '');
-$sender_box = "<input type=\"text\" class=\"textinput\" value=\"$sender_email\" name=\"sender_email\" style=\"WIDTH: 100%;\">";
+$sender_box = "<input type=\"text\" class=\"textinput\" value=\"$sender_email\" name=\"sender_email\" style=\"WIDTH: 100%;\" />";
 }
 $recipient_name = get_post_var('recipient_name');
 $recipient_email = get_post_var('recipient_email');
@@ -225,7 +225,7 @@ echo <<<EOT
                         {$lang_ecard_php['your_name']}<br />
                 </td>
                 <td valign="top" class="tableb" width="60%">
-                        <input type="text" class="textinput" name="sender_name"  value="$sender_name" style="WIDTH: 100%;"><br />
+                        <input type="text" class="textinput" name="sender_name"  value="$sender_name" style="width: 100%;" /><br />
                 </td>
         </tr>
         <tr>
@@ -245,7 +245,7 @@ echo <<<EOT
                         {$lang_ecard_php['rcpt_name']}<br />
                 </td>
                 <td valign="top" class="tableb" width="60%">
-                        <input type="text" class="textinput" name="recipient_name"  value="$recipient_name" style="WIDTH: 100%;"><br />
+                        <input type="text" class="textinput" name="recipient_name"  value="$recipient_name" style="width: 100%;" /><br />
                 </td>
         </tr>
         <tr>
@@ -253,7 +253,7 @@ echo <<<EOT
                         {$lang_ecard_php['rcpt_email']}<br />
                 </td>
                 <td valign="top" class="tableb" width="60%">
-                        <input type="text" class="textinput" name="recipient_email"  value="$recipient_email" style="WIDTH: 100%;"><br />
+                        <input type="text" class="textinput" name="recipient_email"  value="$recipient_email" style="width: 100%;" /><br />
                         $recipient_email_warning
                 </td>
         </tr>
@@ -262,7 +262,7 @@ echo <<<EOT
         </tr>
         <tr>
                 <td class="tableb" colspan="3">
-                        <input type="text" class="textinput" name="greetings"  value="$greetings" style="WIDTH: 100%;"><br />
+                        <input type="text" class="textinput" name="greetings"  value="$greetings" style="width: 100%;" /><br />
                 </td>
         </tr>
         <tr>
@@ -283,9 +283,9 @@ echo <<<EOT
         </tr>
         <tr>
                 <td colspan="3" align="center" class="tablef">
-                        <input type="submit" class="button" name="preview" title="preview" value="{$lang_ecard_php['preview_button']}">
+                        <input type="submit" class="button" name="preview" title="preview" value="{$lang_ecard_php['preview_button']}" />
                                                                                                 &nbsp;&nbsp;
-                        <input type="submit" class="button" name="submit" title="submit" value="{$lang_ecard_php['submit_button']}">
+                        <input type="submit" class="button" name="submit" title="submit" value="{$lang_ecard_php['submit_button']}" />
                         </form>
                 </td>
         </tr>

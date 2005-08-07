@@ -154,9 +154,9 @@ function introduction()
 <p>
 If all of these steps are complete, click the continue button.</p>
 <form name="mysql" method="post" action="' . $_SERVER["PHP_SELF"] . '">
-<p><input type="submit" class="button" value="Continue">
+<p><input type="submit" class="button" value="Continue" />
 </p>
-<input type="hidden" name="continue" value="1">
+<input type="hidden" name="continue" value="1" />
 </form>
 ';
 }
@@ -200,14 +200,14 @@ echo '<form name="mysql" method="post" action="' . $_SERVER["PHP_SELF"] . '">
   {
           echo '<tr><td class="border">' . $lang[$key] . '</td>
 <td class="border">'. $value . '</td>
-<td class="border"><input name="' . $key . '" type="text" size="30" maxlength="75"' . (isset($_SESSION['config_inc_new']) ? ' value="' . $_SESSION['config_inc_new'][$key] . '"' : '') . '></td></tr>
+<td class="border"><input name="' . $key . '" type="text" size="30" maxlength="75"' . (isset($_SESSION['config_inc_new']) ? ' value="' . $_SESSION['config_inc_new'][$key] . '"' : '') . ' /></td></tr>
 ';
   }
   echo '</table>
 <p>
-<input type="submit" class="button" value="Continue">
+<input type="submit" class="button" value="Continue" />
 </p>
-<input type="hidden" name="continue" value="2">
+<input type="hidden" name="continue" value="2" />
 </form>
 <p>The left column contains the variables from your config.inc.php file.</p>
 <p>The middle column contains the old values from your config.inc.php file.</p>
@@ -275,7 +275,7 @@ else
   echo $c . '&nbsp;</td>
 <td class="border"><input name="' . $key . '" type="text" size="30" maxlength="75"';
 if (! isset($_SESSION['config_table_new']) && $key == 'ecards_more_pic_target')
-  echo ' value="' . $gallery_url_prefix . '">';
+  echo ' value="' . $gallery_url_prefix . '" />';
 elseif (isset($_SESSION['config_table_new']))
   echo ' value="' . $_SESSION['config_table_new'][$key] . '">';
 }
@@ -284,9 +284,9 @@ echo '</td></tr>
   }
   echo '</table>
 <p>
-<input type="submit" class="button" value="Continue">
+<input type="submit" class="button" value="Continue" />
 </p>
-<input type="hidden" name="continue" value="3">
+<input type="hidden" name="continue" value="3" />
 </form>
 <p>The left column contains the variables from your config table.</p>
 <p>The middle column contains the old values from your config table.</p>
@@ -317,9 +317,9 @@ function finalize()
   echo '
 <hr><br /><br />If this is correct, click the continue button.  Otherwise, click the change button.<br /><br />
 <form name="cont" method="post" action="' . $_SERVER['PHP_SELF'] . '">
-<input type="submit" name="go" class="button" value="Continue">
-<input type="submit" name="stop" class="button" value="Change">
-<input type="hidden" name="continue" value="4">
+<input type="submit" name="go" class="button" value="Continue" />
+<input type="submit" name="stop" class="button" value="Change" />
+<input type="hidden" name="continue" value="4" />
 </form>
 ';
 }

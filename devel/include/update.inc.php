@@ -22,7 +22,7 @@
 function html_prereq_errors($error_msg)
 {
     ?>
-    <h2>Welcome to Coppermine installation</h2>    
+    <h2>Welcome to Coppermine installation</h2>
 
     <form action="install.php">
     <h2 class="error">&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;ERROR&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</h2>
@@ -31,11 +31,11 @@ function html_prereq_errors($error_msg)
         </p>
 
         <div class="input">
-        <input type="submit" value="Try again !"><br /><br />
+        <input type="submit" value="Try again !" /><br /><br />
         </div>
 
         </form>
-        
+
         <?php
 }
 
@@ -56,7 +56,7 @@ function html_header($title, $charset = '')
 }
 
 function html_logo()
-{     
+{
     echo '<img class="logo" src="images/logo.gif">';
 }
 

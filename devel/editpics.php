@@ -225,7 +225,7 @@ function form_pic_info($text)
         $filename = htmlspecialchars($CURRENT_PIC['filename']);
 
         echo <<<EOT
-        <input type="hidden" name="pid[]" value="{$CURRENT_PIC['pid']}">
+        <input type="hidden" name="pid[]" value="{$CURRENT_PIC['pid']}" />
         <tr>
                 <td class="tableh2" colspan="3">
                         <b>$filename</b>
@@ -270,11 +270,11 @@ EOT;
                 <td class="tableb" colspan="3" align="center">
                     <table border="0" cellspacing="0" cellpadding="0" width="100%">
                         <tr>
-                            <td width="20%" align="center"><input type="radio" name="galleryicon" id="galleryicon{$CURRENT_PIC['pid']}" value="{$CURRENT_PIC['pid']}" {$isgalleryicon_selected}{$isgalleryicon_disabled}class="checkbox">{$lang_editpics_php['gallery_icon']}</td>
-                            <td width="20%" align="center"><input type="checkbox" name="delete{$CURRENT_PIC['pid']}" id="delete{$CURRENT_PIC['pid']}" value="1" class="checkbox"><label for="delete{$CURRENT_PIC['pid']}" class="clickable_option">{$lang_editpics_php['del_pic']}</label></td>
-                            <td width="20%" align="center"><input type="checkbox" name="reset_vcount{$CURRENT_PIC['pid']}" id="reset_vcount{$CURRENT_PIC['pid']}" value="1" class="checkbox"><label for="reset_vcount{$CURRENT_PIC['pid']}" class="clickable_option">{$lang_editpics_php['reset_view_count']}</label></td>
-                            <td width="20%" align="center"><input type="checkbox" name="reset_votes{$CURRENT_PIC['pid']}" id="reset_votes{$CURRENT_PIC['pid']}" value="1" class="checkbox"><label for="reset_votes{$CURRENT_PIC['pid']}" class="clickable_option">{$lang_editpics_php['reset_votes']}</label></td>
-                            <td width="20%" align="center"><input type="checkbox" name="del_comments{$CURRENT_PIC['pid']}" id="del_comments{$CURRENT_PIC['pid']}" value="1" class="checkbox"><label for="del_comments{$CURRENT_PIC['pid']}" class="clickable_option">{$lang_editpics_php['del_comm']}</label></td>
+                            <td width="20%" align="center"><input type="radio" name="galleryicon" id="galleryicon{$CURRENT_PIC['pid']}" value="{$CURRENT_PIC['pid']}" {$isgalleryicon_selected}{$isgalleryicon_disabled}class="checkbox" />{$lang_editpics_php['gallery_icon']}</td>
+                            <td width="20%" align="center"><input type="checkbox" name="delete{$CURRENT_PIC['pid']}" id="delete{$CURRENT_PIC['pid']}" value="1" class="checkbox" /><label for="delete{$CURRENT_PIC['pid']}" class="clickable_option">{$lang_editpics_php['del_pic']}</label></td>
+                            <td width="20%" align="center"><input type="checkbox" name="reset_vcount{$CURRENT_PIC['pid']}" id="reset_vcount{$CURRENT_PIC['pid']}" value="1" class="checkbox" /><label for="reset_vcount{$CURRENT_PIC['pid']}" class="clickable_option">{$lang_editpics_php['reset_view_count']}</label></td>
+                            <td width="20%" align="center"><input type="checkbox" name="reset_votes{$CURRENT_PIC['pid']}" id="reset_votes{$CURRENT_PIC['pid']}" value="1" class="checkbox" /><label for="reset_votes{$CURRENT_PIC['pid']}" class="clickable_option">{$lang_editpics_php['reset_votes']}</label></td>
+                            <td width="20%" align="center"><input type="checkbox" name="del_comments{$CURRENT_PIC['pid']}" id="del_comments{$CURRENT_PIC['pid']}" value="1" class="checkbox" /><label for="del_comments{$CURRENT_PIC['pid']}" class="clickable_option">{$lang_editpics_php['del_comm']}</label></td>
                         </tr>
                     </table>
                 </td>
@@ -291,7 +291,7 @@ function form_input($text, $name, $max_length,$field_width=100)
     $value = $CURRENT_PIC[$name];
     $name .= $CURRENT_PIC['pid'];
     if ($text == '') {
-        echo "        <input type=\"hidden\" name=\"$name\" value=\"\">\n";
+        echo "        <input type=\"hidden\" name=\"$name\" value=\"\" />\n";
         return;
     }
 
@@ -301,7 +301,7 @@ function form_input($text, $name, $max_length,$field_width=100)
                         $text
         </td>
         <td width="100%" class="tableb" valign="top">
-                <input type="text" style="width: {$field_width}%" name="$name" maxlength="$max_length" value="$value" class="textinput">
+                <input type="text" style="width: {$field_width}%" name="$name" maxlength="$max_length" value="$value" class="textinput" />
                 </td>
         </tr>
 
@@ -616,7 +616,7 @@ mysql_free_result($result);
 echo <<<EOT
         <tr>
                 <td colspan="3" align="center" class="tablef">
-                        <input type="submit" value="{$lang_editpics_php['apply']}" class="button">
+                        <input type="submit" value="{$lang_editpics_php['apply']}" class="button" />
                 </td>
                 </form>
         </tr>

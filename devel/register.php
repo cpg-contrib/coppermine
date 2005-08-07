@@ -46,7 +46,7 @@ EOT;
         </tr>
         <tr>
                 <td colspan="2" align="center" class="tablef">
-                        <input type="submit" name="agree" value="{$lang_register_php['i_agree']}" class="button">
+                        <input type="submit" name="agree" value="{$lang_register_php['i_agree']}" class="button" />
                 </td>
         </tr>
         </form>

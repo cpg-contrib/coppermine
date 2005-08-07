@@ -128,7 +128,7 @@ function form_alb_thumb()
                 </td>
                 <td class="tableb" valign="top">
                         <i>{$lang_modifyalb_php['alb_empty']}</i>
-                        <input type="hidden" name="thumb" value="0">
+                        <input type="hidden" name="thumb" value="0" />
                 </td>
         </tr>
 
@@ -431,7 +431,7 @@ $op = $current_category['cid'] ? 'updatecat' : 'createcat';
 if ($CONFIG['show_bbcode_help']) {$description_help .= '&nbsp;'. cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
 echo <<<EOT
         <form method="post" action="{$_SERVER['PHP_SELF']}?op=$op">
-        <input type="hidden" name="cid" value ="{$current_category['cid']}">
+        <input type="hidden" name="cid" value ="{$current_category['cid']}" />
         <tr>
             <td width="40%" class="tableb">
                         {$lang_catmgr_php['parent_cat']}
@@ -445,7 +445,7 @@ echo <<<EOT
                         {$lang_catmgr_php['cat_title']}
         </td>
         <td width="60%" class="tableb" valign="top">
-                <input type="text" style="width: 100%" name="name" value="{$current_category['name']}" class="textinput">
+                <input type="text" style="width: 100%" name="name" value="{$current_category['name']}" class="textinput" />
                 </td>
         </tr>
         <tr>
@@ -463,7 +463,7 @@ form_alb_thumb();
 echo <<<EOT
         <tr>
                 <td colspan="2" align="center" class="tablef">
-                <input type="submit" value="{$lang_catmgr_php['update_create']}" class="button">
+                <input type="submit" value="{$lang_catmgr_php['update_create']}" class="button" />
                 </td>
                 </form>
         </tr>

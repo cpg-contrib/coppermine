@@ -235,7 +235,7 @@ print "<tr>
 $tempClass = ' class="tableb"';
 while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
    print "\t<tr>\n";
-   print "<td".$tempClass." align=\"center\"><input type=\"Checkbox\" name=\"eid[]\" value=\"".$line['eid']."\" id=\"eidselector\" class=\"checkbox\"></td>\n";
+   print "<td".$tempClass." align=\"center\"><input type=\"Checkbox\" name=\"eid[]\" value=\"".$line['eid']."\" id=\"eidselector\" class=\"checkbox\" /></td>\n";
    print "<td".$tempClass."><b class=\"thumb_caption\">".$line['sender_name']."</b></td>\n";
    print "<td".$tempClass."><span class=\"thumb_caption\"><a href=\"mailto:".$line['sender_email']."\">".$line['sender_email']."</a></span></td>\n";
    print "<td".$tempClass."><span class=\"thumb_caption\"><a href=\"http://ws.arin.net/cgi-bin/whois.pl?queryinput=".$line['sender_ip']."\">".$line['sender_ip']."</a></span></td>\n";
@@ -249,12 +249,12 @@ while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
 
 print '<tr><td class="tableh1_compact" align="center"><img src="images/arrow_upleft.gif" width="31" height="22" border="0" alt="" /></td>';
 print '<td colspan="3" class="tableh1_compact">';
-print '<input type="button" name="CheckAll" class="button" value="'.$lang_db_ecard_php['check_all'].'" onClick="checkAll(document.ecardselect.eidselector)">&nbsp;';
-print '<input type="button" name="UnCheckAll" class="button" value="'.$lang_db_ecard_php['uncheck_all'].'" onClick="uncheckAll(document.ecardselect.eidselector)">';
+print '<input type="button" name="CheckAll" class="button" value="'.$lang_db_ecard_php['check_all'].'" onClick="checkAll(document.ecardselect.eidselector)" />&nbsp;';
+print '<input type="button" name="UnCheckAll" class="button" value="'.$lang_db_ecard_php['uncheck_all'].'" onClick="uncheckAll(document.ecardselect.eidselector)" />';
 print '</td>';
 print '<td colspan="4" class="tableh1_compact" align="left">';
-print '<input type="submit" class="button" name="delete" value="'.$lang_db_ecard_php['ecards_delete_selected'].'" disabled="disabled">&nbsp;';
-print '<input name="agreecheck" type="checkbox" onClick="agreesubmit(this)">'.$lang_db_ecard_php['ecards_delete_sure'];
+print '<input type="submit" class="button" name="delete" value="'.$lang_db_ecard_php['ecards_delete_selected'].'" disabled="disabled" />&nbsp;';
+print '<input name="agreecheck" type="checkbox" onClick="agreesubmit(this)" />'.$lang_db_ecard_php['ecards_delete_sure'];
 print '</td>';
 print '</tr>';
 endtable();

@@ -92,7 +92,7 @@ function form_input($text, $name)
                         $text
         </td>
         <td width="60%" class="tableb" valign="top">
-                <input type="text" style="width: 100%" name="$name" value="$value" class="textinput">
+                <input type="text" style="width: 100%" name="$name" value="$value" class="textinput" />
                 </td>
         </tr>
 
@@ -104,7 +104,7 @@ function form_yes_no($text, $name)
     global $ALBUM_DATA, $lang_yes, $lang_no;
 
     if ($name == 'uploads' && USER_ADMIN_MODE) {
-        echo "        <input type=\"hidden\" name=\"$name\" value=\"{$ALBUM_DATA['uploads']}\">";
+        echo "        <input type=\"hidden\" name=\"$name\" value=\"{$ALBUM_DATA['uploads']}\" />";
         return;
     }
 
@@ -139,7 +139,7 @@ function form_category($text, $name)
         </td>
         <td class="tableb" valign="top">
                         <i>{$lang_modifyalb_php['user_gal']}</i>
-                        <input type="hidden" name="$name" value="{$ALBUM_DATA['category']}">
+                        <input type="hidden" name="$name" value="{$ALBUM_DATA['category']}" />
                 </td>
 
 EOT;
@@ -202,7 +202,7 @@ function form_alb_thumb($text, $name)
                 </td>
                 <td class="tableb" valign="top">
                         <i>{$lang_modifyalb_php['alb_empty']}</i>
-                        <input type="hidden" name="$name" value="0">
+                        <input type="hidden" name="$name" value="0" />
                 </td>
         </tr>
 
@@ -300,7 +300,7 @@ function form_password($text, $name)
               $text
           </td>
           <td width="60%" class="tableb" valign="top">
-            <input type="password" name="$name" value="$value" class="textinput" maxlength="32" size="34">
+            <input type="password" name="$name" value="$value" class="textinput" maxlength="32" size="34" />
           </td>
         </tr>
 EOT;
@@ -317,7 +317,7 @@ function form_password_hint($text, $name)
               $text
           </td>
           <td width="60%" class="tableb" valign="top">
-            <input type="text" name="$name" value="$value" class="textinput" maxlength="32" size="34">
+            <input type="text" name="$name" value="$value" class="textinput" maxlength="32" size="34" />
           </td>
         </tr>
 EOT;
@@ -328,7 +328,7 @@ function form_visibility($text, $name)
     global $CONFIG, $USER_DATA, $ALBUM_DATA, $lang_modifyalb_php, $cpg_udb;
 
     if (!$CONFIG['allow_private_albums']) {
-        echo '        <input type="hidden" name="' . $name . '" value="0">' . "\n";
+        echo '        <input type="hidden" name="' . $name . '" value="0" />' . "\n";
         return;
     }
 
@@ -496,8 +496,8 @@ echo <<<EOT
             </td>
         </tr>
         <form method="post" name="modifyalbum" action="db_input.php">
-        <input type="hidden" name="event" value="album_update">
-        <input type="hidden" name="aid" value="$album">
+        <input type="hidden" name="event" value="album_update" />
+        <input type="hidden" name="aid" value="$album" />
 
 EOT;
 
@@ -547,8 +547,8 @@ if (GALLERY_ADMIN_MODE) {
     echo <<<EOT
     <br />
     <form action="db_input.php" method="post" name="reset_views_form" onSubmit="return defaultagree(this)">
-    <input type="hidden" name="event" value="album_reset">
-    <input type="hidden" name="aid" value="$album">
+    <input type="hidden" name="event" value="album_reset" />
+    <input type="hidden" name="aid" value="$album" />
 EOT;
 // set up the translation strings
 $translation_reset_views = sprintf($lang_modifyalb_php['reset_views'], '&quot;'.$ALBUM_DATA['title'].'&quot;');
@@ -594,7 +594,7 @@ $translation_delete_files = sprintf($lang_modifyalb_php['delete_files'], '<span 
     <tr>
             <td class="tablef" colspan="2" align="center" valign="bottom">
                 <input type="submit" class="button" value="{$lang_modifyalb_php['submit_reset']}" disabled="disabled" />
-                <input name="agreecheck" type="checkbox" onClick="agreesubmit(this)">{$lang_modifyalb_php['reset_views_confirm']}
+                <input name="agreecheck" type="checkbox" onClick="agreesubmit(this)" />{$lang_modifyalb_php['reset_views_confirm']}
             </td>
     </tr>
 EOT;

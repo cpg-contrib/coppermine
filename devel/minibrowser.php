@@ -152,7 +152,7 @@ if ($radio != 0) {
 }
 print '</td>'.$newline;
 print '<td class="tableh2">'.$newline;
-print '<input type="text" name="cf2" size="50" value="/'.ltrim($folder, '/').'" disabled="disabled" class="tableh2_compact">&nbsp;'.$newline;
+print '<input type="text" name="cf2" size="50" value="/'.ltrim($folder, '/').'" disabled="disabled" class="tableh2_compact" />&nbsp;'.$newline;
 if ($linktarget != '') {
     // determine if we should display a submit button start
     // get the allowed extensions
@@ -246,8 +246,8 @@ if (is_array($filename)) {
         print '</tr>'.$newline;
     }
 }
-print '                        <input type="hidden" name="parentform" value="'.$parentform.'">'."\n";
-print '                        <input type="hidden" name="formelementname" value="'.$formelementname.'">'."\n";
+print '                        <input type="hidden" name="parentform" value="'.$parentform.'" />'."\n";
+print '                        <input type="hidden" name="formelementname" value="'.$formelementname.'" />'."\n";
 if ($searchnew_php == 1 && $dirCounter == 0) {
 print '<tr>'.$newline;
 print '<td class="tablef" colspan="2">'.$newline;

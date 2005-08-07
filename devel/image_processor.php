@@ -634,28 +634,28 @@ print "</center>";
 print "<br />";
 print "<br />";
 print "<form action=\"$next_form_action\" method=\"post\">";
-print "<input type=\"hidden\" name=\"album\" value=\"$album\">";
-print "<input type=\"hidden\" name=\"title\" value=\"$title\">";
-print "<input type=\"hidden\" name=\"caption\" value=\"$caption\">";
-print "<input type=\"hidden\" name=\"keywords\" value=\"$keywords\">";
-print "<input type=\"hidden\" name=\"user1\" value=\"$user1\">";
-print "<input type=\"hidden\" name=\"user2\" value=\"$user2\">";
-print "<input type=\"hidden\" name=\"user3\" value=\"$user3\">";
-print "<input type=\"hidden\" name=\"user4\" value=\"$user4\">";
-print "<input type=\"hidden\" name=\"event\" value=\"$event\">";
-print "<input type=\"hidden\" name=\"file_name\" value=\"$file_name\">";
-print "<input type=\"hidden\" name=\"transitory_image_path\" value=\"$path_to_primary_image\">";
-print "<input type=\"hidden\" name=\"preview_image_path\" value=\"$path_to_preview_image\">";
+print "<input type=\"hidden\" name=\"album\" value=\"$album\" />";
+print "<input type=\"hidden\" name=\"title\" value=\"$title\" />";
+print "<input type=\"hidden\" name=\"caption\" value=\"$caption\" />";
+print "<input type=\"hidden\" name=\"keywords\" value=\"$keywords\" />";
+print "<input type=\"hidden\" name=\"user1\" value=\"$user1\" />";
+print "<input type=\"hidden\" name=\"user2\" value=\"$user2\" />";
+print "<input type=\"hidden\" name=\"user3\" value=\"$user3\" />";
+print "<input type=\"hidden\" name=\"user4\" value=\"$user4\" />";
+print "<input type=\"hidden\" name=\"event\" value=\"$event\" />";
+print "<input type=\"hidden\" name=\"file_name\" value=\"$file_name\" />";
+print "<input type=\"hidden\" name=\"transitory_image_path\" value=\"$path_to_primary_image\" />";
+print "<input type=\"hidden\" name=\"preview_image_path\" value=\"$path_to_preview_image\" />";
 
 print "<p>{$lang_image_processor_php['manipulation_query']}</p>";
 
 print "<br />";
-print "<input type=\"radio\" name=\"degrees\" value=\"no\" checked>{$lang_image_processor_php['no_manipulation']}&nbsp;&nbsp;&nbsp;&nbsp;";
-print "<input type=\"radio\" name=\"degrees\" value=\"90\">90&#176;&nbsp;&nbsp;&nbsp;&nbsp;";
-print "<input type=\"radio\" name=\"degrees\" value=\"180\">180&#176;&nbsp;&nbsp;&nbsp;&nbsp;";
-print "<input type=\"radio\" name=\"degrees\" value=\"270\">270&#176;&nbsp;&nbsp;&nbsp;&nbsp;";
+print "<input type=\"radio\" name=\"degrees\" value=\"no\" checked=\"checked\" />{$lang_image_processor_php['no_manipulation']}&nbsp;&nbsp;&nbsp;&nbsp;";
+print "<input type=\"radio\" name=\"degrees\" value=\"90\" />90&#176;&nbsp;&nbsp;&nbsp;&nbsp;";
+print "<input type=\"radio\" name=\"degrees\" value=\"180\" />180&#176;&nbsp;&nbsp;&nbsp;&nbsp;";
+print "<input type=\"radio\" name=\"degrees\" value=\"270\" />270&#176;&nbsp;&nbsp;&nbsp;&nbsp;";
 print "<br /><br />";
-print "<input type=\"submit\" value=\"Continue\">";
+print "<input type=\"submit\" value=\"Continue\" />";
 print "</form>";
 
 pagefooter();
@@ -952,23 +952,23 @@ if (!isset($_POST['degrees'])) {
                 print "<br /><br /><br />";
 
                 print "<form action=\"db_input.php\" method=\"post\">";
-                print "<input type=\"hidden\" name=\"album\" value=\"$album\">";
-                print "<input type=\"hidden\" name=\"title\" value=\"$title\">";
-                print "<input type=\"hidden\" name=\"caption\" value=\"$caption\">";
-                print "<input type=\"hidden\" name=\"keywords\" value=\"$keywords\">";
-                print "<input type=\"hidden\" name=\"user1\" value=\"$user1\">";
-                print "<input type=\"hidden\" name=\"user2\" value=\"$user2\">";
-                print "<input type=\"hidden\" name=\"user3\" value=\"$user3\">";
-                print "<input type=\"hidden\" name=\"user4\" value=\"$user4\">";
-                print "<input type=\"hidden\" name=\"event\" value=\"$event\">";
-                print "<input type=\"hidden\" name=\"transitory_image_path\" value=\"$path_to_primary_image\">";
-                print "<input type=\"hidden\" name=\"file_name\" value=\"$transitory_file_name\">";
+                print "<input type=\"hidden\" name=\"album\" value=\"$album\" />";
+                print "<input type=\"hidden\" name=\"title\" value=\"$title\" />";
+                print "<input type=\"hidden\" name=\"caption\" value=\"$caption\" />";
+                print "<input type=\"hidden\" name=\"keywords\" value=\"$keywords\" />";
+                print "<input type=\"hidden\" name=\"user1\" value=\"$user1\" />";
+                print "<input type=\"hidden\" name=\"user2\" value=\"$user2\" />";
+                print "<input type=\"hidden\" name=\"user3\" value=\"$user3\" />";
+                print "<input type=\"hidden\" name=\"user4\" value=\"$user4\" />";
+                print "<input type=\"hidden\" name=\"event\" value=\"$event\" />";
+                print "<input type=\"hidden\" name=\"transitory_image_path\" value=\"$path_to_primary_image\" />";
+                print "<input type=\"hidden\" name=\"file_name\" value=\"$transitory_file_name\" />";
 
                 print "<p>{$lang_image_processor_php['finished_manipulation']}</p>";
 
                 print "<br />";
 
-                print "<input type=\"submit\" value=\"{$lang_image_processor_php['finished_manipulation_button']}\">";
+                print "<input type=\"submit\" value=\"{$lang_image_processor_php['finished_manipulation_button']}\" />";
                 print "</form>";
 
                 pagefooter();

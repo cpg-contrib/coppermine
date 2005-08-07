@@ -29,8 +29,8 @@ if (!GALLERY_ADMIN_MODE) die('Access denied');
 function form_charset($optionvalue, $selected)
 {
     global $CONFIG;
-    
-    
+
+
     $charsets = array(//'Default' => 'language file',
                       'Arabic' => 'iso-8859-6',
                       'Baltic' => 'iso-8859-4',
@@ -51,11 +51,11 @@ function form_charset($optionvalue, $selected)
                       'Vietnamese' => 'windows-1258',
                       'Western' => 'iso-8859-1'
                       );
-    
+
     //$value = strtolower($CONFIG['charset']);
-    
+
     echo "<select name=\"$optionvalue\">";
-    foreach ($charsets as $country => $charset) 
+    foreach ($charsets as $country => $charset)
     {
         echo "<option value=\"$charset\" " . ($selected == $charset ? 'selected="selected"' : '') . ">$country ($charset)</option>\n";
     }
@@ -67,7 +67,7 @@ function charset_convert($table_name, $column_name, $index_name, $charsetin, $ch
 {
     global $CONFIG;
      $result = cpg_db_query("SELECT * FROM $table_name");
-     
+
     while ($row = mysql_fetch_array($result))
     {
         if ($element = $row["$column_name"])
@@ -75,12 +75,12 @@ function charset_convert($table_name, $column_name, $index_name, $charsetin, $ch
             $elementid = $row[$index_name];
             if ($convstr = iconv($charsetin,$charsetout,$element))
             {
-                
+
                 $query = "UPDATE $table_name SET $column_name='".addslashes($convstr)."' WHERE $index_name=$elementid";
                 $status = "<td>$query</td>";
                 $conversion_possible = 1;
             }
-            else 
+            else
             {
                 $convstr = $element;
                 $status = "<td class=\"warning\">CONVERSION IMPOSSIBLE</td>";
@@ -88,7 +88,7 @@ function charset_convert($table_name, $column_name, $index_name, $charsetin, $ch
             }
             if ($doit)
             {
-                
+
                 if ($conversion_possible)
                 {
                     $updateresult = cpg_db_query($query);
@@ -99,26 +99,26 @@ function charset_convert($table_name, $column_name, $index_name, $charsetin, $ch
                 }
                 else
                     $status = '<td >Query was impossible.</td>';
-                    
+
             }
-            
+
             // We try to check if there are non-ascii characters in the string
             if (iconv($charsetin, 'us-ascii', $element))
                 $asciionly = 1;
             else
                 $asciionly = 0;
-                
+
             // The test above does not work, so the user has to check all the strings:
             $asciionly = 0;
-                
+
                 echo '<tr><td class="'.($asciionly ? 'nocheck' : 'check')."\">$convstr</td><td>$table_name</td><td>$column_name</td><td>$elementid</td>$status</tr>\n";
         }
-        
-                
+
+
     }
     return $conversion_possible;
-     
-    
+
+
 }
 
 function set_config($name, $value)
@@ -132,7 +132,7 @@ function register_changes()
 {
     global $CONFIG;
     if (count($_POST) > 0) {
-        
+
         if (isset($_POST['check']))
             $doconvert = 0;
         else if (isset($_POST['convert']))
@@ -141,7 +141,7 @@ function register_changes()
         {
             $charsetin = $_POST['charset_in'];
             $charsetout = $_POST['charset_out'];
-            
+
             // elements of the database that need converting
             // the first element in the array is the id name of the table
             $affected_elements = array(
@@ -158,10 +158,10 @@ function register_changes()
                                        $CONFIG['TABLE_USERS'] =>
                                        array('user_id', 'user_name', 'user_password', 'user_location', 'user_interests', 'user_occupations')
                                        );
-            
-            
+
+
             header("Content-Type: text/html; charset=$charsetout");
-            
+
 
             //echo $charsetin . " " .$charsetout;
             if (!$doconvert)
@@ -184,16 +184,16 @@ function register_changes()
             foreach($affected_elements as $table => $columns)
                 for ($i = 1; $i < count($columns); ++$i)
                 {
-                    
-                    charset_convert($table, $columns[$i], $columns[0], $charsetin, $charsetout, $doconvert);                
-                
+
+                    charset_convert($table, $columns[$i], $columns[0], $charsetin, $charsetout, $doconvert);
+
                 }
                 echo '</table>';
             if (!$doconvert)
             {
                 echo  "<form action=\"".$_SERVER['PHP_SELF']."\" method=\"post\">";
-                echo '<input type="hidden" name="charset_in" value="'.$charsetin."\">\n";
-echo '<input type="hidden" name="charset_out" value="'.$charsetout."\">\n";
+                echo '<input type="hidden" name="charset_in" value="'.$charsetin."\" />\n";
+echo '<input type="hidden" name="charset_out" value="'.$charsetout."\" />\n";
 echo <<<EOT
     <div class="warning">
     <p>Before converting you <b>must</b>:</p>
@@ -219,12 +219,12 @@ echo '<div class="input"><input type="submit" class="button" name="convert" valu
                     </p>
                     </div>
 EOT;
-                
+
             }
-            
+
                     html_footer();
                 exit;
-        } 
+        }
     }
 }
 
@@ -243,11 +243,11 @@ if ($CONFIG['charset'] == 'language file')
 else
 {
     $thecharset = $CONFIG['charset'];
-}    
+}
 
-    
 
-    
+
+
 
 html_header("Charset Manager - 1/3 - Start");
 html_logo();
@@ -275,7 +275,7 @@ if ($languagefilecfg)
         </ol>
 EOT;
      */
-    
+
 }
 
 if ($thecharset == 'utf-8')

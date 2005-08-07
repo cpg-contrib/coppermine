@@ -132,7 +132,7 @@ $template_create_album = <<<EOT
         <p>{NEW_ALB_CREATED}</p>
         <p>{CONTINUE}</p>
         <form id="selform">
-                <input type="hidden" id="album" name="album" value ="{ALBUM_ID}">
+                <input type="hidden" id="album" name="album" value ="{ALBUM_ID}" />
         </form>
 
 EOT;
@@ -586,7 +586,7 @@ function process_login()
             '{POST_ACTION}' => $_SERVER['PHP_SELF'] . '?cmd=publish',
             );
 
-        
+
         echo template_eval($template_login_failure, $params);
     }
 
@@ -735,7 +735,7 @@ function process_picture()
                      if ($row['position']) {
                      $position = $row['position'];
                              $position++;
-					 }
+                                         }
     }
 
 
