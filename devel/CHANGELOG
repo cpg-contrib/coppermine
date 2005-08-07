@@ -291,3 +291,5 @@ Updated the translator's guide - 04 July 2005, GauGau
 Fixed typos in finnish language file - 05 July 2005, GauGau
 Removed depreciated randomizing code from index.php - 24 July 2005, Donnoman
 Changed to not automatically include init.inc.php for included files via the query string (?file=) - 24 July 2005, Donnoman
+Fixed mulitple keywords getting filtered out from iptc on upload - 07 Aug 2005, Donnoman
+Changed Upload title to be iptc headline if iptc title isn't available - 07 Aug 2005, Donnoman
