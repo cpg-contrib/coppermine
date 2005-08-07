@@ -636,7 +636,7 @@ if ($_GET['id']){
 
 <div id="imgdiv">
 <?php if ($imgObj){ ?>
-<IMG src="<?php echo $imgObj->directory.$imgObj->filename?>?<?php echo rand(); ?>" <?php echo $imgObj->string; ?> align="absmiddle">
+<img src="<?php echo $imgObj->directory.$imgObj->filename?>?<?php echo rand(); ?>" <?php echo $imgObj->string; ?> align="absmiddle" />
 <?php } ?>
 </div>
 

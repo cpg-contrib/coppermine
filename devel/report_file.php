@@ -183,7 +183,7 @@ echo <<<EOT
                 <td class="tableh2" colspan="2"><b>{$lang_report_php['from']}</b></td>
 <!-- BEGIN display_thumbnail -->
                 <td rowspan="6" align="center" valign="top" class="tableb">
-                        <img src="$thumb_pic_url" alt="" vspace="8" border="0" class="image"><br />
+                        <img src="$thumb_pic_url" alt="" vspace="8" border="0" class="image" /><br />
                 </td>
 <!-- END display_thumbnail -->
         </tr>

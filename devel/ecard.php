@@ -216,7 +216,7 @@ echo <<<EOT
                 <td class="tableh2" colspan="2"><b>{$lang_ecard_php['from']}</b></td>
                 <td rowspan="6" align="center" valign="top" class="tableb">
                         <a href="displayimage.php?pos=-{$pid}">
-                                                                                                <img src="$thumb_pic_url" alt="" vspace="8" border="0" class="image"></a><br />
+                                                                                                <img src="$thumb_pic_url" alt="" vspace="8" border="0" class="image" /></a><br />
                 </td>
         </tr>
         <tr>

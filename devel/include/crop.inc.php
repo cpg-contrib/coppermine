@@ -150,7 +150,7 @@ echo <<<EOT
 <table cellspacing="0" cellpadding="5" border="0" align="center">
 <tr><td>
 <table cellspacing="0" cellpadding="5" border="0" align="center">
-<tr><td align="center" valign="top"><div id="imgDiv"><img src="$pic_url"></div></td></tr>
+<tr><td align="center" valign="top"><div id="imgDiv"><img src="$pic_url" /></div></td></tr>
 </table>
 <table border="0">
 <tr>
@@ -174,7 +174,7 @@ echo <<<EOT
 <div id="cropDiv">
   <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border:1px solid #000000">
 <tr>
-      <td><img src="images/spacer.gif"></td>
+      <td><img src="images/spacer.gif" border="0" alt="" /></td>
     </tr>
   </table>
 </div>

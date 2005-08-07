@@ -114,10 +114,10 @@ function cpg_file_html(&$file,$type='thumb',$file_title='')
             $file_html = "<a href=\"javascript:;\" onClick=\"MM_openBrWindow('displayimage.php?pid=$pid&fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=yes,status=yes,resizable=yes,width=" . $file['pwidth']+16 . ",height=" . $file['pheight']+16 . "')\">"
             $file_title = ""
         }
-        return "<img src=\"" . $file_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$file['filename']}\" title=\"$pic_title\">";
+        return "<img src=\"" . $file_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$file['filename']}\" title=\"$pic_title\" />";
     }
     elseif ($type=='thumb')
-        return "<img src=\"images/thumb_{$extension}.jpg\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$file['filename']}\" title=\"$pic_title\">";
+        return "<img src=\"images/thumb_{$extension}.jpg\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$file['filename']}\" title=\"$pic_title\" />";
     elseif ($mime_content['content']=='movie')
         return "<object {$image_size['geom']}><param name=\"movie\" value=\"". $file_url . "\"><embed {$image_size['geom']} src=\"". $file_url . "\"></embed></object>\n";
     elseif ($mime_content['content']=='audio')

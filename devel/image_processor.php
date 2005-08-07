@@ -627,7 +627,7 @@ print "<br /><br /><br />";
 
 print "<center>";
 
-print "<img src=\"$path_to_preview_image\" alt=\"{$lang_image_processor_php['preview_image_alt_text']}\">";
+print "<img src=\"$path_to_preview_image\" alt=\"{$lang_image_processor_php['preview_image_alt_text']}\" />";
 
 print "</center>";
 

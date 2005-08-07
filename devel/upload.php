@@ -2487,7 +2487,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
     open_form($_SERVER['PHP_SELF']);
 
     // Create image tag and echo it to the output buffer.
-    echo "<tr><td class=\"tableh2\"><img class=\"image\" src=\"".$path_to_preview."\" ></td>";
+    echo "<tr><td class=\"tableh2\"><img class=\"image\" src=\"".$path_to_preview."\"  /></td>";
 
     // Echo instructions.
     echo "<td class=\"tableh2\">{$lang_upload_php['picture']} - {$file_set[0]}<br /><br />{$lang_upload_php['place_instr_1']}<br /><br />";
