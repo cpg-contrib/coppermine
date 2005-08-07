@@ -279,7 +279,7 @@ $template_album_list = <<<EOT
         </tr>
 <!-- END stat_row -->
 <!-- BEGIN header -->
-        <tr>
+        <tr class="tableb_compact">
 <!-- END header -->
 <!-- BEGIN album_cell -->
         <td width="{COL_WIDTH}%" valign="top">
@@ -334,7 +334,7 @@ $template_album_list = <<<EOT
 <!-- END empty_cell -->
 <!-- BEGIN row_separator -->
         </tr>
-        <tr>
+        <tr class="tableb_compact">
 <!-- END row_separator -->
 <!-- BEGIN footer -->
         </tr>
@@ -398,7 +398,7 @@ $template_album_list_cat = <<<EOT
         </tr>
 <!-- END c_stat_row -->
 <!-- BEGIN c_header -->
-        <tr>
+        <tr class="tableb_compact">
 <!-- END c_header -->
 <!-- BEGIN c_album_cell -->
         <td width="{COL_WIDTH}%" valign="top">
@@ -453,7 +453,7 @@ $template_album_list_cat = <<<EOT
 <!-- END c_empty_cell -->
 <!-- BEGIN c_row_separator -->
         </tr>
-        <tr>
+        <tr class="tableb_compact">
 <!-- END c_row_separator -->
 <!-- BEGIN c_footer -->
         </tr>
