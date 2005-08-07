@@ -855,6 +855,7 @@ $template_add_your_comment = <<<EOT
                                 <td width="100%" class="tableb_compact">
                                 <input type="text" class="textinput" id="message" name="msg_body" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" maxlength="{MAX_COM_LENGTH}" style="width: 100%;" />                                        <!-- END input_box_smilies -->
 <!-- BEGIN input_box_no_smilies -->
+                                <td class="tableb_compact">
                                 <input type="text" class="textinput" id="message" name="msg_body"  maxlength="{MAX_COM_LENGTH}" style="width: 100%;" />
 <!-- END input_box_no_smilies -->
                                 </td>
