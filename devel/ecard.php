@@ -45,7 +45,7 @@ $sender_email = $USER_DATA['user_email'];
 $sender_box = $sender_email;
 } else {
 $sender_email = get_post_var('sender_email',$USER['email'] ? $USER['email'] : '');
-$sender_box = "<input type=\"text\" class=\"textinput\" value=\"$sender_email\" name=\"sender_email\" style=\"WIDTH: 100%;\" />";
+$sender_box = "<input type=\"text\" class=\"textinput\" value=\"$sender_email\" name=\"sender_email\" style=\"width: 100%;\" />";
 }
 $recipient_name = get_post_var('recipient_name');
 $recipient_email = get_post_var('recipient_email');
@@ -270,7 +270,7 @@ echo <<<EOT
         </tr>
         <tr>
                 <td class="tableb" colspan="3" valign="top"><br />
-                        <textarea name="message" class="textinput" ROWS="8" COLS="40" WRAP="virtual" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" STYLE="WIDTH: 100%;">$message</textarea><br /><br />
+                        <textarea name="message" class="textinput" rows="8" cols="40"  onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" style="width: 100%;">$message</textarea><br /><br />
                 </td>
         </tr>
         <tr>

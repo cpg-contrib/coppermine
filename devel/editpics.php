@@ -353,7 +353,7 @@ function form_textarea($text, $name, $max_length)
                         $text
                 </td>
                 <td class="tableb" valign="top">
-                        <textarea name="$name" ROWS="5" COLS="40" WRAP="virtual"  class="textinput" STYLE="WIDTH: 100%;" onKeyDown="textCounter(this, $max_length);" onKeyUp="textCounter(this, $max_length);">$value</textarea>
+                        <textarea name="$name" rows="5" cols="40" class="textinput" style="width: 100%;" onkeydown="textCounter(this, $max_length);" onkeyup="textCounter(this, $max_length);">$value</textarea>
                 </td>
         </tr>
 EOT;

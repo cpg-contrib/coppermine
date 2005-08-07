@@ -90,7 +90,7 @@ switch ($event) {
             $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
             $redirect = "index.php";
             header($header_location . $redirect);
-            pageheader($lang_info, "<META http-equiv=\"refresh\" content=\"1;url=$redirect\">");
+            pageheader($lang_info, "<meta http-equiv=\"refresh\" content=\"1;url=$redirect\" />");
             msg_box($lang_info, $lang_db_input_php['redirect_msg'], $lang_db_input_php['continue'], $redirect);
             pagefooter();
             ob_end_flush();
@@ -100,7 +100,7 @@ switch ($event) {
             mysql_free_result($result);
             $redirect = "displayimage.php?pos=" . (- $comment_data['pid']);
             header($header_location . $redirect);
-            pageheader($lang_info, "<META http-equiv=\"refresh\" content=\"1;url=$redirect\">");
+            pageheader($lang_info, "<meta http-equiv=\"refresh\" content=\"1;url=$redirect\" />");
             msg_box($lang_info, $lang_db_input_php['redirect_msg'], $lang_db_input_php['continue'], $redirect);
             pagefooter();
             ob_end_flush();
@@ -152,7 +152,7 @@ switch ($event) {
                 $mail_body = "<p>" . bb_decode(process_smilies($msg_body)) . "</p>\n\r ".$lang_db_input_php['email_comment_body'] . " " . $CONFIG['ecards_more_pic_target'].(substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/').$redirect;
                 cpg_mail('admin', $lang_db_input_php['email_comment_subject'], make_clickable($mail_body));
             }
-            pageheader($lang_db_input_php['com_added'], "<META http-equiv=\"refresh\" content=\"1;url=$redirect\">");
+            pageheader($lang_db_input_php['com_added'], "<meta http-equiv=\"refresh\" content=\"1;url=$redirect\" />");
             msg_box($lang_db_input_php['info'], $lang_db_input_php['com_added'], $lang_continue, $redirect);
             pagefooter();
             ob_end_flush();
@@ -166,7 +166,7 @@ switch ($event) {
             }
             $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
             header($header_location . $redirect);
-            pageheader($lang_db_input_php['com_added'], "<META http-equiv=\"refresh\" content=\"1;url=$redirect\">");
+            pageheader($lang_db_input_php['com_added'], "<meta http-equiv=\"refresh\" content=\"1;url=$redirect\" />");
             msg_box($lang_db_input_php['info'], $lang_db_input_php['com_added'], $lang_continue, $redirect);
             pagefooter();
             ob_end_flush();
@@ -205,7 +205,7 @@ switch ($event) {
         $update = cpg_db_query($query);
 
         if (!mysql_affected_rows()) cpg_die(INFORMATION, $lang_db_input_php['no_udp_needed'], __FILE__, __LINE__);
-                pageheader($lang_db_input_php['alb_updated'], "<META http-equiv=\"refresh\" content=\"1;url=modifyalb.php?album=$aid\">");
+                pageheader($lang_db_input_php['alb_updated'], "<meta http-equiv=\"refresh\" content=\"1;url=modifyalb.php?album=$aid\" />");
         msg_box($lang_db_input_php['info'], $lang_db_input_php['alb_updated'], $lang_continue, "modifyalb.php?album=$aid");
         pagefooter();
         ob_end_flush();
@@ -260,7 +260,7 @@ switch ($event) {
 
         if ($counter_affected_rows == 0) cpg_die(INFORMATION, $lang_db_input_php['no_udp_needed'], __FILE__, __LINE__);
         if ($CONFIG['debug_mode'] == 0) {
-            pageheader($lang_db_input_php['alb_updated'], "<META http-equiv=\"refresh\" content=\"1;url=modifyalb.php?album=$aid\">");
+            pageheader($lang_db_input_php['alb_updated'], "<meta http-equiv=\"refresh\" content=\"1;url=modifyalb.php?album=$aid\" />");
         }
         msg_box($lang_db_input_php['info'], $lang_db_input_php['alb_updated'], $lang_continue, "modifyalb.php?album=$aid");
         pagefooter();
@@ -405,7 +405,7 @@ switch ($event) {
             $header_location = (@preg_match('/Microsoft|WebSTAR|Xitami/', getenv('SERVER_SOFTWARE'))) ? 'Refresh: 0; URL=' : 'Location: ';
             $redirect = "displayimage.php?pos=" . (- mysql_insert_id());
             header($header_location . $redirect);
-            pageheader($lang_info, "<META http-equiv=\"refresh\" content=\"1;url=$redirect\">");
+            pageheader($lang_info, "<meta http-equiv=\"refresh\" content=\"1;url=$redirect\" />");
             msg_box($lang_info, $lang_db_input_php['upl_success'], $lang_continue, $redirect);
             pagefooter();
             ob_end_flush();

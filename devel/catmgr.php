@@ -453,7 +453,7 @@ echo <<<EOT
                         {$lang_catmgr_php['cat_desc']}$description_help
                 </td>
                 <td class="tableb" valign="top">
-                        <textarea name="description" ROWS="5" COLS="40" SIZE="9"  WRAP="virtual" STYLE="WIDTH: 100%;" class="textinput">{$current_category['description']}</textarea>
+                        <textarea name="description" rows="5" cols="40" style="width: 100%;" class="textinput">{$current_category['description']}</textarea>
                 </td>
         </tr>
 EOT;

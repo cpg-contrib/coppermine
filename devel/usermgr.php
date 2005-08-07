@@ -611,7 +611,7 @@ EOT;
                         {$element[2]}
         </td>
         <td width="60%" class="tableb" valign="top">
-                <textarea name="{$element[1]}" ROWS="7" WRAP="virtual"  class="textinput" STYLE="WIDTH: 100%">$value</textarea>
+                <textarea name="{$element[1]}" rows="7" class="textinput" style="width: 100%">$value</textarea>
                 </td>
         </tr>
 
