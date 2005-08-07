@@ -697,5 +697,26 @@ class core_udb {
 	function cookie_extraction() {
 	   return false;
 	}
+	
+	// Simple login by specified username and pass.
+	// Used for xp publisher login
+	// Needs override for any BBS that is more complex than straight md5(password)
+	function login( $username = null, $password = null, $remember = false ) {
+				
+		$encpassword = md5($password);
+				
+		// Check for user in users table
+        $sql =  "SELECT {$this->field['user_id']} AS user_id, {$this->field['username']} AS user_name FROM {$this->usertable} WHERE ";
+        $sql .= "{$this->field['username']} = '$username' AND BINARY {$this->field['password']} = '$encpassword'";
+		$results = cpg_db_query($sql);
+				
+		if (mysql_num_rows($results)) {
+			$USER_DATA = mysql_fetch_assoc($results);
+			mysql_free_result($results);
+			return $USER_DATA;
+		} else {
+			return false;
+		}
+	}
 }
 ?>
