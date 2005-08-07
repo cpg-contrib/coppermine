@@ -2515,10 +2515,19 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
     $captionLabel = $lang_upload_php['description'];
     if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
     //$printed_file_name = "{$lang_upload_php['picture']} - {$file_set[0]}";
-
+    
+    //Use the IPTC title or headline for the Coppermine title if available.
+    if (isset($iptc['Title']) && !empty($iptc['Title'])) {
+        $title=$iptc['Title'];
+    } elseif (isset($iptc['Headline']) && !empty($iptc['Headline'])) {
+        $title=$iptc['Headline'];
+    } else {
+        $title='';
+    }
+    
     $form_array = array(
     array($lang_upload_php['album'], 'album', 2),
-    array($lang_upload_php['pic_title'], 'title', 0, 255, 1, (isset($iptc['Title'])) ? $iptc['Title'] : ''),
+    array($lang_upload_php['pic_title'], 'title', 0, 255, 1, $title),
     array($captionLabel, 'caption', 3, $CONFIG['max_img_desc_length'], (isset($iptc['Caption'])) ? $iptc['Caption'] : ''),
     array($lang_upload_php['keywords'], 'keywords', 0, 255, 1,(isset($iptc['Keywords'])) ? implode(' ',$iptc['Keywords']): ''),
     array('control', 'phase_2', 4),
