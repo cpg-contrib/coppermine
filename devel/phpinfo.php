@@ -24,26 +24,21 @@ require('include/init.inc.php');
 
 $CONFIG['debug_mode']=0;
 
-
+if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied']);
 
 pageheader($lang_cpg_debug_output['phpinfo']);
 
-if (!GALLERY_ADMIN_MODE) {
-cpg_die(ERROR, $lang_errors['access_denied'] );
-
-} else {
-
-    ob_start();
-    phpinfo();
-    $string = ob_get_contents();
-    $string = strchr($string, '</style>');
-    $string = str_replace('</style>','',$string);
-    $string = str_replace('class="p"','',$string);
-    $string = str_replace('class="e"','class="tableb"',$string);
-    $string = str_replace('class="v"','class="tablef"',$string);
-    $string = str_replace('class="h"','class="tableh2"',$string);
-    $string = str_replace('class="center"','',$string);
-    ob_end_clean();
+ob_start();
+phpinfo();
+$string = ob_get_contents();
+$string = strchr($string, '</style>');
+$string = str_replace('</style>','',$string);
+$string = str_replace('class="p"','',$string);
+$string = str_replace('class="e"','class="tableb"',$string);
+$string = str_replace('class="v"','class="tablef"',$string);
+$string = str_replace('class="h"','class="tableh2"',$string);
+$string = str_replace('class="center"','',$string);
+ob_end_clean();
 
 print '<div align="left" style="overflow:hidden;width:800px;text-align:left;">';
 starttable('100%', $lang_phpinfo_php['php_info'], 1);
@@ -62,5 +57,5 @@ print "</div>\n";
 
 pagefooter();
 ob_end_flush();
-}
+
 ?>
