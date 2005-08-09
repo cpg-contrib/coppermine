@@ -159,7 +159,7 @@ function list_users($search = '')
         'tab_header' => '',
         'tab_trailer' => '',
         'active_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="tableb_compact"><b>%d</b></td>',
-        'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="' . $_SERVER['PHP_SELF'] . '?page=%d&sort=' . $sort . '"<b>%d</b></a></td>' . "\n"
+        'inactive_tab' => '<td><img src="images/spacer.gif" width="1" height="1" border="0" alt="" /></td>' . "\n" . '<td align="center" valign="middle" class="navmenu"><a href="' . $_SERVER['PHP_SELF'] . '?page=%d&amp;sort=' . $sort . '"<b>%d</b></a></td>' . "\n"
         );
 
     $makereadonly = ($CONFIG['bridge_enable']) ? 'style="display:none;" disabled="disabled" ':'';
@@ -205,7 +205,7 @@ function list_users($search = '')
 
     $tabs = create_tabs($user_count, $page, $total_pages, $tab_tmpl);
 
-    $lb = "<select name=\"album_listbox\" class=\"listbox\" onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$_SERVER['PHP_SELF']}?page=$page&sort='+this.options[this.selectedIndex].value;\">\n";
+    $lb = "<select name=\"album_listbox\" class=\"listbox\" onChange=\"if(this.options[this.selectedIndex].value) window.location.href='{$_SERVER['PHP_SELF']}?page=$page&amp;sort='+this.options[this.selectedIndex].value;\">\n";
     foreach($sort_codes as $key => $value) {
         $selected = ($key == $sort) ? "SELECTED" : "";
         $lb .= "        <option value=\"" . $key . "\" $selected>" . $lang_usermgr_php[$key] . "</option>\n";
@@ -307,7 +307,7 @@ EOT;
         } else {
             $search_filter = '';
         }
-        $help = '&nbsp;'.cpg_display_help('f=index.htm&as=user_cp&ae=user_cp_end&top=1', '650', '500');
+        $help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=user_cp&amp;ae=user_cp_end&amp;top=1', '650', '500');
     echo <<<EOT
         <tr>
             <td colspan="$number_of_columns" class="tableh1">
@@ -342,28 +342,28 @@ EOT;
         <tr>
                 <td class="tableh1" align="center"><input type="checkbox" {$makereadonly}name="checkAll" onClick="selectAll(this,'u');" class="checkbox" title="$lang_check_uncheck_all" /></td>
                 <td class="tableh1" colspan="2"><b><span class="statlink">{$lang_usermgr_php['name']}</span></b>
-                <a href="{$_SERVER['PHP_SELF']}?page=$page&sort=name_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_a']}" /></a>
-                <a href="{$_SERVER['PHP_SELF']}?page=$page&sort=name_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_d']}" /></a>
+                <a href="{$_SERVER['PHP_SELF']}?page=$page&amp;sort=name_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_a']}" /></a>
+                <a href="{$_SERVER['PHP_SELF']}?page=$page&amp;sort=name_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['name_d']}" /></a>
                 </td>
                 <td class="tableh1"><b><a href="groupmgr.php" class="statlink">{$lang_usermgr_php['group']}</a></b>
-                <a href="{$_SERVER['PHP_SELF']}?page=$page&sort=group_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['group_a']}" /></a>
-                <a href="{$_SERVER['PHP_SELF']}?page=$page&sort=group_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['group_d']}" /></a>
+                <a href="{$_SERVER['PHP_SELF']}?page=$page&amp;sort=group_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['group_a']}" /></a>
+                <a href="{$_SERVER['PHP_SELF']}?page=$page&amp;sort=group_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['group_d']}" /></a>
                 </td>
                 <td class="tableh1"><b><span class="statlink">{$lang_usermgr_php['registered_on']}</span></b>
-                <a href="{$_SERVER['PHP_SELF']}?page=$page&sort=reg_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['reg_a']}" /></a>
-                <a href="{$_SERVER['PHP_SELF']}?page=$page&sort=reg_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['reg_d']}" /></a>
+                <a href="{$_SERVER['PHP_SELF']}?page=$page&amp;sort=reg_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['reg_a']}" /></a>
+                <a href="{$_SERVER['PHP_SELF']}?page=$page&amp;sort=reg_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['reg_d']}" /></a>
                 </td>
                 <td class="tableh1"><b><span class="statlink">{$lang_usermgr_php['last_visit']}</span></b>
-                <a href="{$_SERVER['PHP_SELF']}?page=$page&sort=lv_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['lv_a']}" /></a>
-                <a href="{$_SERVER['PHP_SELF']}?page=$page&sort=lv_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['lv_d']}" /></a>
+                <a href="{$_SERVER['PHP_SELF']}?page=$page&amp;sort=lv_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['lv_a']}" /></a>
+                <a href="{$_SERVER['PHP_SELF']}?page=$page&amp;sort=lv_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['lv_d']}" /></a>
                 </td>
                 <td class="tableh1" align="center"><b><span class="statlink">{$lang_usermgr_php['pictures']}</span></b>
-                <a href="{$_SERVER['PHP_SELF']}?page=$page&sort=pic_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['pic_a']}" /></a>
-                <a href="{$_SERVER['PHP_SELF']}?page=$page&sort=pic_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['pic_d']}" /></a>
+                <a href="{$_SERVER['PHP_SELF']}?page=$page&amp;sort=pic_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['pic_a']}" /></a>
+                <a href="{$_SERVER['PHP_SELF']}?page=$page&amp;sort=pic_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['pic_d']}" /></a>
                 </td>
                 <td class="tableh1" align="center"><b><span class="statlink">{$lang_usermgr_php['disk_space_used']}</span></b>
-                <a href="{$_SERVER['PHP_SELF']}?page=$page&sort=disku_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['disku_a']}" /></a>
-                <a href="{$_SERVER['PHP_SELF']}?page=$page&sort=disku_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['disku_d']}" /></a>
+                <a href="{$_SERVER['PHP_SELF']}?page=$page&amp;sort=disku_a"><img src="images/ascending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['disku_a']}" /></a>
+                <a href="{$_SERVER['PHP_SELF']}?page=$page&amp;sort=disku_d"><img src="images/descending.gif" width="9" height="9" border="0" alt="" title="{$lang_usermgr_php['disku_d']}" /></a>
                 </td>
                 <td class="tableh1" align="center"><b><span class="statlink">{$lang_usermgr_php['disk_space_quota']}</span></b>
                 </td>

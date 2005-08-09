@@ -59,7 +59,7 @@ function display_log($logname)
                         <td class="tableb" align="center">
                                 <input class="button" type="button" value="{$lang_viewlog_php['delete_all']}" name="dall1" id="dall1" onclick="window.location='viewlog.php?action=dall';" />
                                 <input class="button" type="button" value="{$lang_viewlog_php['view_logs']}" name="back1" id="back1" onclick="window.location='viewlog.php';" />
-                                <input class="button" type="button" value="{$lang_viewlog_php['delete_this']}" name="dthis1" id="dthis1" onclick="window.location='viewlog.php?action=dthis&log=$logname';" />
+                                <input class="button" type="button" value="{$lang_viewlog_php['delete_this']}" name="dthis1" id="dthis1" onclick="window.location='viewlog.php?action=dthis&amp;log=$logname';" />
                         </td>
                 </tr>
                 <tr>
@@ -75,7 +75,7 @@ EOT;
                         <td class="tableb" align="center">
                                 <input class="button" type="button" value="{$lang_viewlog_php['delete_all']}" name="dall2" id="dall2" onclick="window.location='viewlog.php?action=dall';" />
                                 <input class="button" type="button" value="{$lang_viewlog_php['view_logs']}" name="back2" id="back2" onclick="window.location='viewlog.php';" />
-                                <input class="button" type="button" value="{$lang_viewlog_php['delete_this']}" name="dthis2" id="dthis2" onclick="window.location='viewlog.php?action=dthis&log=$logname';" />
+                                <input class="button" type="button" value="{$lang_viewlog_php['delete_this']}" name="dthis2" id="dthis2" onclick="window.location='viewlog.php?action=dthis&amp;log=$logname';" />
                         </td>
                 </tr>
 

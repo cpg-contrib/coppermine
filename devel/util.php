@@ -83,7 +83,7 @@ if (array_key_exists($action, $tasks)){
         echo "<br /><a href=\"util.php\">{$lang_util_php['back']}</a>";
 } else {
 
-        $help = '&nbsp;'.cpg_display_help('f=index.htm&as=admin_tools&ae=admin_tools_end&top=1', '600', '400');
+        $help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=admin_tools&amp;ae=admin_tools_end&amp;top=1', '600', '400');
 
         starttable('100%', $lang_util_php['title'].$help, 2);
 
@@ -387,7 +387,7 @@ function del_orphans()
 
                 if (isset($_POST['del'])){
                         cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id= $msg_id");
-                        echo "{$lang_util_php['comment']} $msg_body {$lang_util_php['nonexist']} $pid - <a href=\"util.php?action=del_orphans&single=$msg_id\">{$lang_util_php['delete']}</a><br />";
+                        echo "{$lang_util_php['comment']} $msg_body {$lang_util_php['nonexist']} $pid - <a href=\"util.php?action=del_orphans&amp;single=$msg_id\">{$lang_util_php['delete']}</a><br />";
         }
 
                 $count = mysql_num_rows($result);

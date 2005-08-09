@@ -461,7 +461,7 @@ function startUpload() {
 
         for (i = 0; i < files.length; i++) {
                 var postTag = xml.createNode(1, 'post', '');
-                postTag.setAttribute('href', '<?php echo 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'] . '?cmd=add_picture'?>&album=' + selform.album.value);
+                postTag.setAttribute('href', '<?php echo 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'] . '?cmd=add_picture'?>&amp;album=' + selform.album.value);
                 postTag.setAttribute('name', 'userpicture');
 
                 var dataTag = xml.createNode(1, 'formdata', '');

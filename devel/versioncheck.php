@@ -173,7 +173,7 @@ if ($USER['theme']) {
 if (file_exists('images/help.gif') == true) { $help_icon = '<img src="images/help.gif" width="13" height="11" border="0" alt="" title="'.$lang_versioncheck_php['help'].'" />';
 } else { $help_icon = '<span style="background-color:#FFFAD3;color:#000000;font-weight:bold;border:1px solid black;font-size:8pt;margin:0px;padding:0px" title="'.$lang_versioncheck_php['help'].'"> ? </span>';
 }
-$help_html = "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('".$_SERVER['PHP_SELF']."?pop=1&css=" . $help_theme . "&" . $reference . "','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=" . $width . ",height=" . $height . "')\" style=\"cursor:help;text-decoration:none\">".$help_icon."</a>";
+$help_html = "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('".$_SERVER['PHP_SELF']."?pop=1&amp;css=" . $help_theme . "&amp;" . $reference . "','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=" . $width . ",height=" . $height . "')\" style=\"cursor:help;text-decoration:none\">".$help_icon."</a>";
 return $help_html;
 }
 }
@@ -705,7 +705,7 @@ print $file_path['file'];
 print '</span>';
 if ($stylecolor != '') {
     print '&nbsp;';
-    print cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($helptitle))).'&t='.urlencode(base64_encode(serialize($helpoutput))),400,150);
+    print cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($helptitle))).'&amp;t='.urlencode(base64_encode(serialize($helpoutput))),400,150);
 }
 
 
@@ -768,7 +768,7 @@ if (!$cpg_is_file && $permissions == 1) { // we have a folder: start
     print $writable_output;
     if ($helptitle != '') {
         print '&nbsp;';
-        print cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($helptitle))).'&t='.urlencode(base64_encode(serialize($helpoutput)).'&css=1'),400,150);
+        print cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($helptitle))).'&amp;t='.urlencode(base64_encode(serialize($helpoutput)).'&amp;css=1'),400,150);
         $helptitle = '';
         $helpoutput = '';
     }
@@ -949,7 +949,7 @@ function cpg_vc_help($helptitle='',$helpoutput='') {
    $return= '';
    if ($helptitle != '') {
       $return = '&nbsp;';
-      $return .= cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($helptitle))).'&t='.urlencode(base64_encode(serialize($helpoutput))),400,150);
+      $return .= cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($helptitle))).'&amp;t='.urlencode(base64_encode(serialize($helpoutput))),400,150);
 
    }
    return $return;
