@@ -18,7 +18,9 @@
 **********************************************/
 
 define('IN_COPPERMINE', true);
+define('ALBMGR_PHP', true); // added this line as workaround for missing translation of *no category*. Should be removed in next version. GauGau 2005-08-09
 define('CATMGR_PHP', true);
+
 
 require('include/init.inc.php');
 
