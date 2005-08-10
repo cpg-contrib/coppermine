@@ -36,7 +36,7 @@ $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 // The various date formats
 // See http://www.php.net/manual/en/function.strftime.php to define the variable below
 $album_date_fmt =    '%e.%B %Y';
-$lastcom_date_fmt =  '%e.%m.%y um %H:%M';
+$lastcom_date_fmt =  '%e.%m.%y at %H:%M';
 $lastup_date_fmt = '%e %B %Y';
 $register_date_fmt = '%e %B %Y';
 $lasthit_date_fmt = '%e %B %Y at %H:%M';
