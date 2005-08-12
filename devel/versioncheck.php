@@ -1801,7 +1801,7 @@ $return = '
 1.3.3|upload.php|1.3.3|1.14|mandatory|r@
 1.3.3|usermgr.php|1.3.3|1.7|mandatory|r@
 1.3.3|util.php|1.3.3|1.13|mandatory|r@
-1.3.3|versioncheck.php|1.4.1|1.8|optional|r@
+1.3.3|versioncheck.php|1.4.1|1.9|optional|r@
 1.3.3|xp_publish.php|1.3.3|1.8|mandatory|r@
 1.3.3|zipdownload.php|1.3.3|1.5|mandatory|r@
 1.3.3|albums|||mandatory|w@
@@ -2299,7 +2299,7 @@ $return = '
 1.4.1|upload.php|1.4.1|1.71|mandatory|r@
 1.4.1|usermgr.php|1.4.1|1.48|mandatory|r@
 1.4.1|util.php|1.4.1|1.29|mandatory|r@
-1.4.1|versioncheck.php|1.4.1|1.68|mandatory|r@
+1.4.1|versioncheck.php|1.4.1|1.69|mandatory|r@
 1.4.1|viewlog.php|1.4.1|1.11|mandatory|r@
 1.4.1|xp_publish.php|1.4.1|1.29|mandatory|r@
 1.4.1|zipdownload.php|1.4.1|1.10|mandatory|r@
