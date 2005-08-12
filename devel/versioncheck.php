@@ -2255,11 +2255,13 @@ $return = '
 1.4.1|bridgemgr.php|1.4.1|1.25|mandatory|r@
 1.4.1|calendar.php|1.4.1|1.11|mandatory|r@
 1.4.1|catmgr.php|1.4.1|1.30|mandatory|r@
+1.4.1|charsetmgr|1.4.1|1.9|mandatory|r@
 1.4.1|db_ecard.php|1.4.1|1.15|mandatory|r@
 1.4.1|db_input.php|1.4.1|1.50|mandatory|r@
 1.4.1|delete.php|1.4.1|1.24|mandatory|r@
 1.4.1|displayecard.php|1.4.1|1.13|mandatory|r@
 1.4.1|displayimage.php|1.4.1|1.98|mandatory|r@
+1.4.1|displayreport.php|1.4.1|1.6|mandatory|r@
 1.4.1|ecard.php|1.4.1|1.36|mandatory|r@
 1.4.1|editOnePic.php|1.4.1|1.39|mandatory|r@
 1.4.1|editpics.php|1.4.1|1.40|mandatory|r@
@@ -2277,6 +2279,7 @@ $return = '
 1.4.1|keywordmgr.php|1.4.1|1.10|mandatory|r@
 1.4.1|login.php|1.4.1|1.25|mandatory|r@
 1.4.1|logout.php|1.4.1|1.10|mandatory|r@
+1.4.1|minibrowser.php|1.4.1|1.15|mandatory|r@
 1.4.1|mode.php|1.4.1|1.4|mandatory|r@
 1.4.1|modifyalb.php|1.4.1|1.31|mandatory|r@
 1.4.1|phpinfo.php|1.4.1|1.11|mandatory|r@
@@ -2287,6 +2290,7 @@ $return = '
 1.4.1|ratepic.php|1.4.1|1.13|mandatory|r@
 1.4.1|register.php|1.4.1|1.31|mandatory|r@
 1.4.1|relocate_server.php|1.4.1|1.5|optional|r@
+1.4.1|report_file.php|1.4.1|1.22|mandatory|r@
 1.4.1|reviewcom.php|1.4.1|1.20|mandatory|r@
 1.4.1|scripts.js|1.4.1|1.13|mandatory|r@
 1.4.1|search.php|1.4.1|1.17|mandatory|r@
@@ -2361,6 +2365,7 @@ $return = '
 1.4.1|include/logger.inc.php|1.4.1|1.14|mandatory|r@
 1.4.1|include/mailer.inc.php|1.4.1|1.17|mandatory|r@
 1.4.1|include/media.functions.inc.php|1.4.1|1.13|mandatory|r@
+1.4.1|include/phpmailer.lang-en.php|1.4.1||mandatory|r@
 1.4.1|include/picmgmt.inc.php|1.4.1|1.34|mandatory|r@
 1.4.1|include/plugin_api.inc.php|1.4.1|1.18|mandatory|r@
 1.4.1|include/search.inc.php|1.4.1|1.22|mandatory|r@
@@ -2370,6 +2375,7 @@ $return = '
 1.4.1|include/smtp.inc.php|1.4.1|1.4|mandatory|r@
 1.4.1|include/sql_parse.php|1.4.1|1.7|mandatory|r@
 1.4.1|include/themes.inc.php|1.4.1|1.44|mandatory|r@
+1.4.1|include/update.inc.php|1.4.1|1.5|mandatory|r@
 1.4.1|include/zip.lib.php|1.4.1|1.4|mandatory|r@
 1.4.1|include/makers|||mandatory|w@
 1.4.1|include/makers/canon.php|1.4.1|1.6|mandatory|r@
