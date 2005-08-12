@@ -98,9 +98,9 @@ EOT;
             $explain_greyedout = '';
         }
         echo <<< EOT
-                <td class="$table_background" align="left" valign="top">
+                <td class="$table_background" align="left" valign="top" style="white-space:nowrap">
                         <input type="hidden" name="group_id[]" value="{$group['group_id']}" />
-                        <input type="text" name="group_name_{$group['group_id']}" value="{$group['group_name']}" class="textinput" size="12" />
+                        <input type="text" name="group_name_{$group['group_id']}" value="{$group['group_name']}" class="textinput" size="14" />
                         $explain_greyedout
 EOT;
         // show reset option if applicable
@@ -180,7 +180,7 @@ EOT;
         $disabled = '';
     }
      echo $table_start;
-     echo $tr_start.$td_start;
+     echo $tr_start.'<td style="white-space:nowrap">';
      echo <<< EOT
      {$lang_groupmgr_php['boxes_number']}
      $td_end
@@ -195,7 +195,7 @@ EOT;
      //echo "<br />";
 
      // Create permissible number of file upload boxes box.
-     echo $tr_start.$td_start;
+     echo $tr_start.'<td style="white-space:nowrap">';
      echo $lang_groupmgr_php['num_file_upload'].":";
      echo $td_end.$td_start;
      echo "<select name=\"num_file_upload_{$group['group_id']}\" class=\"listbox_lang\" $disabled>";
@@ -209,7 +209,7 @@ EOT;
      //echo "<br />";
 
      // Create permissible number of URI upload boxes box.
-     echo $tr_start.$td_start;
+     echo $tr_start.'<td style="white-space:nowrap">';
      echo $lang_groupmgr_php['num_URI_upload'].":";
      echo $td_end.$td_start;
      echo "<select name=\"num_URI_upload_{$group['group_id']}\" class=\"listbox_lang\" $disabled>";
@@ -300,6 +300,8 @@ pageheader($lang_groupmgr_php['title']);
 echo <<<EOT
 
 <script language="javascript" type="text/javascript">
+<!--
+<![CDATA[
 function confirmDel()
 {
     return confirm("{$lang_groupmgr_php['confirm_del']}");
@@ -323,28 +325,7 @@ function selectAll(d,box) {
       document.getElementsByName('checkAll')[0].checked = document.getElementsByName('checkAll2')[0].checked;
   }
 }
-</script>
 
-
-EOT;
-
-starttable('100%');
-$help_group = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=group_cp&amp;ae=group_cp_end&amp;top=1', '700', '500');
-$help_permissions = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=group_cp_permissions&amp;ae=group_cp_permissions_end&amp;top=1', '500', '200');
-$help_personal = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=group_cp_personal&amp;ae=group_cp_personal_end&amp;top=1', '500', '200');
-$help_upload_method = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=group_cp_upload_method&amp;ae=group_cp_upload_method_end&amp;top=1', '700', '400');
-echo <<<EOT
-        <form method="post" action="{$_SERVER['PHP_SELF']}" name="groupmanager">
-        <tr>
-                <td class="tableh1"><input type="checkbox" name="checkAll" onClick="selectAll(this,'delete_group');" class="checkbox" title="$lang_check_uncheck_all" /></td>
-                <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['group_name']}</span></b>$help_group</td>
-                <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['permissions']}</span></b>$help_permissions</td>
-                <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['public_albums']}</span></b></td>
-                <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['personal_gallery']}</span></b>$help_personal</td>
-                <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['upload_method']}</span></b>$help_upload_method</td>
-        </tr>
-
-<script language="javascript" type="text/javascript">
 function selectall()
 {
         for( var i = 0; i < document.groupmanager.elements.length; i++ )
@@ -360,7 +341,28 @@ function selectall()
                 }
         }
 }
+]]>
+//-->
 </script>
+
+<form method="post" action="{$_SERVER['PHP_SELF']}" name="groupmanager">
+EOT;
+
+starttable('100%');
+$help_group = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=group_cp&amp;ae=group_cp_end&amp;top=1', '700', '500');
+$help_permissions = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=group_cp_permissions&amp;ae=group_cp_permissions_end&amp;top=1', '500', '200');
+$help_personal = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=group_cp_personal&amp;ae=group_cp_personal_end&amp;top=1', '500', '200');
+$help_upload_method = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=group_cp_upload_method&amp;ae=group_cp_upload_method_end&amp;top=1', '700', '400');
+echo <<<EOT
+
+        <tr>
+                <td class="tableh1"><input type="checkbox" name="checkAll" onclick="selectAll(this,'delete_group');" class="checkbox" title="$lang_check_uncheck_all" /></td>
+                <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['group_name']}</span></b>$help_group</td>
+                <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['permissions']}</span></b>$help_permissions</td>
+                <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['public_albums']}</span></b></td>
+                <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['personal_gallery']}</span></b>$help_personal</td>
+                <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['upload_method']}</span></b>$help_upload_method</td>
+        </tr>
 
 EOT;
 
@@ -389,12 +391,13 @@ EOT;
     }
     echo <<<EOT
                 </td>
-        </form>
+
         </tr>
 
 EOT;
 }
 endtable();
+echo "</form>";
 pagefooter();
 ob_end_flush();
 
