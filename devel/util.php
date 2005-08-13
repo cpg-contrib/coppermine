@@ -26,7 +26,7 @@ require('include/picmgmt.inc.php');
 // Default number of pictures to process at a time when rebuilding thumbs or normals:
 $defpicnum = 45;
 
-if (!GALLERY_ADMIN_MODE) die('Access denied');
+if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
 pageheader($lang_util_php['title']);
 
