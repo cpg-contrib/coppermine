@@ -1195,7 +1195,7 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
 //
 
 if (defined('SEARCH_PHP')) $lang_search_php = array(
-	0 => 'Procurar na galeria de fotos de Sarria',
+	0 => 'Procurar na galeria',
 );
 
 // ------------------------------------------------------------------------- 
