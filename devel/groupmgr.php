@@ -31,7 +31,7 @@ function display_group_list()
     global $CONFIG, $custom_group_counter;
     global $lang_groupmgr_php, $lang_byte_units, $lang_yes, $lang_no;
     $row_counter = 0;
-    $table_start = '<table border="0" cellspacing="0" cellpadding="0">'."\n";
+    $table_start = '<table border="0" cellspacing="0" cellpadding="0" style="white-space:nowrap;">'."\n";
     $table_end = '</table>'."\n";
     $tr_start = '<tr>'."\n";
     $tr_end = '</tr>'."\n";
@@ -100,7 +100,7 @@ EOT;
         echo <<< EOT
                 <td class="$table_background" align="left" valign="top" style="white-space:nowrap">
                         <input type="hidden" name="group_id[]" value="{$group['group_id']}" />
-                        <input type="text" name="group_name_{$group['group_id']}" value="{$group['group_name']}" class="textinput" size="20" />
+                        <input type="text" name="group_name_{$group['group_id']}" value="{$group['group_name']}" class="textinput" size="18" style="font-size:80%" />
                         $explain_greyedout
 EOT;
         // show reset option if applicable
@@ -113,7 +113,7 @@ EOT;
         echo <<< EOT
                         <br />
                         {$lang_groupmgr_php['disk_quota']}: <input type="text" name="group_quota_{$group['group_id']}" value="{$group['group_quota']}" size="5" class="textinput" $disabled /> {$lang_byte_units[1]}
-                <br /><a href="usermgr.php?op=group_alb_access&amp;gid={$group['group_id']}" class="admin_menu">{$lang_groupmgr_php['group_assigned_album']}</a>
+                <br /><br /><a href="usermgr.php?op=group_alb_access&amp;gid={$group['group_id']}" class="admin_menu">{$lang_groupmgr_php['group_assigned_album']}</a>
                                                                 </td>
                 <td class="$table_background" align="left" valign="top">
 EOT;
@@ -180,14 +180,14 @@ EOT;
         $disabled = '';
     }
      echo $table_start;
-     echo $tr_start.'<td style="white-space:nowrap">';
+     echo $tr_start.$td_start;
      echo <<< EOT
      {$lang_groupmgr_php['boxes_number']}
      $td_end
-     $td_start
+     <td style="white-space:normal;">
      <input type="radio" id="custom_user_upload_{$group['group_id']}1" name="custom_user_upload_{$group['group_id']}" value="1" $custom_upload_yes $disabled /><label for="custom_user_upload_{$group['group_id']}1" class="clickable_option">{$lang_groupmgr_php['variable']}</label>
      $td_end
-     $td_start
+     <td style="white-space:normal;">
      <input type="radio" id="custom_user_upload_{$group['group_id']}0" name="custom_user_upload_{$group['group_id']}" value="0" $custom_upload_no $disabled /><label for="custom_user_upload_{$group['group_id']}0" class="clickable_option">{$lang_groupmgr_php['fixed']}</label>
      $td_end
      $tr_end
@@ -353,7 +353,7 @@ $help_personal = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=group_cp_personal
 $help_upload_method = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=group_cp_upload_method&amp;ae=group_cp_upload_method_end&amp;top=1', '700', '400');
 echo <<<EOT
 
-        <tr>
+        <tr style="white-space:nowrap">
                 <td class="tableh1"><input type="checkbox" name="checkAll" onclick="selectAll(this,'delete_group');" class="checkbox" title="$lang_check_uncheck_all" /></td>
                 <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['group_name']}</span></b>$help_group</td>
                 <td class="tableh1"><b><span class="statlink">{$lang_groupmgr_php['permissions']}</span></b>$help_permissions</td>
