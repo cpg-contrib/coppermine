@@ -100,7 +100,7 @@ EOT;
         echo <<< EOT
                 <td class="$table_background" align="left" valign="top" style="white-space:nowrap">
                         <input type="hidden" name="group_id[]" value="{$group['group_id']}" />
-                        <input type="text" name="group_name_{$group['group_id']}" value="{$group['group_name']}" class="textinput" size="14" />
+                        <input type="text" name="group_name_{$group['group_id']}" value="{$group['group_name']}" class="textinput" size="20" />
                         $explain_greyedout
 EOT;
         // show reset option if applicable
@@ -300,8 +300,7 @@ pageheader($lang_groupmgr_php['title']);
 echo <<<EOT
 
 <script language="javascript" type="text/javascript">
-<!--
-<![CDATA[
+<!--//<![CDATA[
 function confirmDel()
 {
     return confirm("{$lang_groupmgr_php['confirm_del']}");
@@ -341,8 +340,7 @@ function selectall()
                 }
         }
 }
-]]>
-//-->
+//]]>-->
 </script>
 
 <form method="post" action="{$_SERVER['PHP_SELF']}" name="groupmanager">
