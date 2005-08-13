@@ -31,7 +31,7 @@ function display_group_list()
     global $CONFIG, $custom_group_counter;
     global $lang_groupmgr_php, $lang_byte_units, $lang_yes, $lang_no;
     $row_counter = 0;
-    $table_start = '<table border="0" cellspacing="0" cellpadding="0" style="white-space:nowrap;">'."\n";
+    $table_start = '<table border="0" cellspacing="0" cellpadding="0" style="white-space:nowrap;font-size:90%;">'."\n";
     $table_end = '</table>'."\n";
     $tr_start = '<tr>'."\n";
     $tr_end = '</tr>'."\n";
@@ -100,7 +100,7 @@ EOT;
         echo <<< EOT
                 <td class="$table_background" align="left" valign="top" style="white-space:nowrap">
                         <input type="hidden" name="group_id[]" value="{$group['group_id']}" />
-                        <input type="text" name="group_name_{$group['group_id']}" value="{$group['group_name']}" class="textinput" size="18" style="font-size:80%" />
+                        <input type="text" name="group_name_{$group['group_id']}" value="{$group['group_name']}" class="textinput" size="18" style="font-size:80%;" />
                         $explain_greyedout
 EOT;
         // show reset option if applicable
@@ -184,10 +184,10 @@ EOT;
      echo <<< EOT
      {$lang_groupmgr_php['boxes_number']}
      $td_end
-     <td style="white-space:normal;">
+     $td_start
      <input type="radio" id="custom_user_upload_{$group['group_id']}1" name="custom_user_upload_{$group['group_id']}" value="1" $custom_upload_yes $disabled /><label for="custom_user_upload_{$group['group_id']}1" class="clickable_option">{$lang_groupmgr_php['variable']}</label>
      $td_end
-     <td style="white-space:normal;">
+     $td_start
      <input type="radio" id="custom_user_upload_{$group['group_id']}0" name="custom_user_upload_{$group['group_id']}" value="0" $custom_upload_no $disabled /><label for="custom_user_upload_{$group['group_id']}0" class="clickable_option">{$lang_groupmgr_php['fixed']}</label>
      $td_end
      $tr_end
