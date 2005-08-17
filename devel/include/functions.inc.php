@@ -1009,7 +1009,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $count = $nbEnr[0];
                 mysql_free_result($result);
 
-				$select_columns = '*, UNIX_TIMESTAMP(msg_date) AS msg_date'; //allows building any data into any thumbnail caption
+                                $select_columns = '*, UNIX_TIMESTAMP(msg_date) AS msg_date'; //allows building any data into any thumbnail caption
 
                 $query = "SELECT $select_columns FROM {$CONFIG['TABLE_COMMENTS']} as c, {$CONFIG['TABLE_PICTURES']} as p WHERE approved = 'YES' AND author_id = '$uid' AND c.pid = p.pid $META_ALBUM_SET ORDER by msg_id DESC $limit";
                 $result = cpg_db_query($query);
@@ -2420,6 +2420,7 @@ $lang_language_data['english_gb'] = array('English(British)','English(British)',
 $lang_language_data['estonian'] = array('Estonian','Eesti','ee');
 $lang_language_data['finnish'] = array('Finnish','Suomea','fi');
 $lang_language_data['french'] = array('French','Fran&ccedil;ais','fr');
+$lang_language_data['galician'] = array('Galician','Galego','es_gln');
 $lang_language_data['german'] = array('German','Deutsch','de');
 $lang_language_data['greek'] = array('Greek','&#917;&#955;&#955;&#951;&#957;&#953;&#954;&#940;','gr');
 $lang_language_data['hebrew'] = array('Hebrew','&#1506;&#1489;&#1512;&#1497;&#1514;','il');
