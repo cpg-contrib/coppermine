@@ -1252,7 +1252,7 @@ function get_pic_url(&$pic_row, $mode)
                 // Use default thumbs
                 if (is_null($filepathname)) {
                                // Check for default theme- and global-level thumbs
-                               $thumb_paths[] = $THEME_DIR.'/images/';                 // Used for custom theme thumbs
+                               $thumb_paths[] = $THEME_DIR.'images/';                 // Used for custom theme thumbs
                                $thumb_paths[] = 'images/';                             // Default Coppermine thumbs
                                foreach ($thumb_paths as $default_thumb_path) {
                                        if (is_dir($default_thumb_path)) {
