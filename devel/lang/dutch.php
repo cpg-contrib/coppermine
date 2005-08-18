@@ -17,7 +17,7 @@
 	  $Date$
 	**********************************************/
 	
-	IF (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
+	IF (!defined('IN_COPPERMINE')) { die('Niet in Coppermine...');}
 	
 	// info about translators and translated language
 	$lang_translation_info = array( 
@@ -25,12 +25,12 @@
 		'lang_name_native' => 'Nederlands', 
 		'lang_country_code' => 'nl', 
 		'trans_name'=> 'Jan Paul', //the name of the translator - can be a nickname 
-		'trans_email' => 'http://janpaul@frankrijker.com', //translator's email address (optional) 
-		'trans_website' => 'www.frankrijker.com/', //translator's website (optional) 
-		'trans_date' => '2005-08-01', //the date the translation was created / last modified 
+		'trans_email' => '', //translator's email address (optional) 
+		'trans_website' => '', //translator's website (optional) 
+		'trans_date' => '2005-08-17', //the date the translation was created / last modified 
 	); 
 	
-	$lang_charset = 'iso-8859-1';
+	$lang_charset = 'utf-8';
 	$lang_text_dir = 'ltr';
 	
 	// shortcuts for Byte, Kilo, Mega
@@ -333,7 +333,7 @@
 	$lang_plugin_api = array(
 		'error_wakeup' => "Kan plugin '%s' niet uit standby halen", //cpg1.4
 		'error_install' => "Kan plugin '%s' niet installeren", //cpg1.4
-		'error_uninstall' => "Kan plugin '%s' niet deinstalleren", //cpg1.4
+		'error_uninstall' => "Kan plugin '%s' niet deïnstalleren", //cpg1.4
 		'error_sleep' => "Kan plugin '%s' niet standby schakelen<br/>", //cpg1.4
 	);
 
@@ -386,12 +386,12 @@
 	// ------------------------------------------------------------------------- //
 	
 	if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
-		'alb_need_name' => 'Albums moeten een naam hebben !', //js-alert
-		'confirm_modifs' => 'Weet je zeker dat je deze wijzigingen wilt maken ?', //js-alert
-		'no_change' => 'Je hebt geen enkele wijziging gedaan !', //js-alert
+		'alb_need_name' => 'Albums moeten een naam hebben!', //js-alert
+		'confirm_modifs' => 'Weet je zeker dat je deze wijzigingen wilt maken?', //js-alert
+		'no_change' => 'Je hebt geen enkele wijziging gedaan!', //js-alert
 		'new_album' => 'Nieuw album',
-		'confirm_delete1' => 'Weet je het zeker dat je dit album wilt verwijderen ?', //js-alert
-		'confirm_delete2' => '\nAlle bestanden en commentaren zullen verloren gaan !', //js-alert
+		'confirm_delete1' => 'Weet je het zeker dat je dit album wilt verwijderen?', //js-alert
+		'confirm_delete2' => '\nAlle bestanden en commentaren zullen verloren gaan!', //js-alert
 		'select_first' => 'Selecteer eerst een album.', //js-alert
 		'alb_mrg' => 'Album beheer',
 		'my_gallery' => '* Mijn galerij *',
@@ -410,7 +410,7 @@
 		'title' => 'Verban gebruikers', //cpg1.4
 		'user_name' => 'Gebruikers naam', //cpg1.4
 		'ip_address' => 'IP Adres', //cpg1.4
-		'expiry' => 'Verloopt (leef is voor altijd)', //cpg1.4
+		'expiry' => 'Verloopt (leeg is voor altijd)', //cpg1.4
 		'edit_ban' => 'Sla wijzigingen op', //cpg1.4
 		'delete_ban' => 'Verwijder', //cpg1.4
 		'add_new' => 'Voeg nieuwe verbanning toe', //cpg1.4
@@ -494,7 +494,7 @@
 		'global_moderators_group_explanation' => 'De groeps ID van het BBS programma waar de moderators in staan. (De standaard waarde moet goed zijn, tenzij je installatie van je BBS programma niet standaard was)', //cpg1.4
 		'special_settings' => 'BBS-specifieke instellingen', //cpg1.4
 		'logout_flag' => 'phpBB versie (logout waarde)', //cpg1.4
-		'logout_flag_explanation' => 'Wat is de versie van het BBS programma (deze instellinge bepaald hoe logouts worden afgehandeld)', //cpg1.4
+		'logout_flag_explanation' => 'Wat is de versie van het BBS programma (deze instelling bepaalt hoe logouts worden afgehandeld)', //cpg1.4
 		'use_post_based_groups' => 'Gebuik bericht gebaseerde groepen?', //cpg1.4
 		'logout_flag_yes' => '2.0.5 of hoger', //cpg1.4
 		'logout_flag_no' => '2.0.4 of lager', //cpg1.4
@@ -507,7 +507,7 @@
 		'error_no_special_chars' => 'De integratie bestandsnaam mag geen speciale tekens bevatten behalve de underscore (_) en het streepje (-)!', //cpg1.4
 		'error_bridge_file_not_exist' => 'Het integratie bestand %s bestaat niet op de server. Controleer of deze goed is geupload.', //cpg1.4
 		'finalize' => 'Zet BBS integratie aan/uit', //cpg1.4
-		'finalize_explanation' => 'Ton nu toe zijn de intellingen opgeslagen in de database, maar de BBS integratioe in nog niet aangezet. Je kan de integratie op ieder moment aan of uitzetten. Onthoud de beheerders naam van de standalone Coppermine installatie goed, deze heb je later weer nodig om wijzigingen aan te brengen. Als er iets verkeerd gaat, ga naar %s en zet de BBS integratie weer uit met behulp van je standalone Coppermine gebruikersnaam en wachtwoord (die je hebt ingegeven tijdens de installatie van Coppermine).', //cpg1.4
+		'finalize_explanation' => 'Ton nu toe zijn de instellingen opgeslagen in de database, maar de BBS integratioe in nog niet aangezet. Je kan de integratie op ieder moment aan of uitzetten. Onthoud de beheerders naam van de standalone Coppermine installatie goed, deze heb je later weer nodig om wijzigingen aan te brengen. Als er iets verkeerd gaat, ga naar %s en zet de BBS integratie weer uit met behulp van je standalone Coppermine gebruikersnaam en wachtwoord (die je hebt ingegeven tijdens de installatie van Coppermine).', //cpg1.4
 		'your_bridge_settings' => 'De integratie instellingen', //cpg1.4
 		'title_enable' => 'Zet integratie aan met %s', //cpg1.4
 		'bridge_enable_yes' => 'zet aan', //cpg1.4
@@ -615,7 +615,7 @@
 		'notice1' => '(*) Deze instellingen mogen niet worden aangepast als je al waardes in de gegevens hebt zitten.', //cpg1.4
 		'notice2' => '(**) Als deze waarde wordt aangepast zullen alleen bestanden vanaf dit moment beinvloed worden. Het is aanbevolen deze waarden niet aan te passen als er al bestanden in de database zitten. Je kunt waardes aanpassen via het &quot;<a href="util.php">beheerders gereedschappen</a> menu (afbeeldinggrootte aanpassen)&quot;.',  //cpg1.4
 		'notice3' => '(***) Alle loggings zijn in het Engels.', //cpg1.4
-		'bbs_disabled' => 'Deze functie is uitgeschakeld als bb is geintegreerd', //cpg1.4
+		'bbs_disabled' => 'Deze functie is uitgeschakeld als het bbs is geintegreerd', //cpg1.4
 		'auto_resize_everyone' => ' Iedereen', //cpg1.4
 		'auto_resize_user' => ' Alleen leden', //cpg1.4
 		'ascending' => 'aflopend', //cpg1.4
@@ -715,8 +715,8 @@
 		array('Pas grootte van de afbeeldingen automatisch aan indien groter dan de maximale waarden?', 'auto_resize', 16, 'f=index.htm&amp;as=admin_picture_thumbnail_auto-resize&amp;ae=admin_picture_thumbnail_auto-resize_end'), //cpg1.4
 	
 		'Bestanden en thumbnails geavanceerde instellingen',
-		array('Albums kunnen prive zijn (Let op: als je deze waarde van \'ja\' to \'nee\' omzet, zullen alle prive albums publiek worden)', 'allow_private_albums', 1, 'f=index.htm&amp;as=admin_picture_thumb_advanced_private_toggle&amp;ae=admin_picture_thumb_advanced_private_toggle_end'), //cpg1.4
-		array('Geef prive albums ikoon weer aan een niet ingelogde gebruiker','show_private',1, 'f=index.htm&amp;as=admin_picture_thumb_advanced_private_icon_show&amp;ae=admin_picture_thumb_advanced_private_icon_show_end'), //cpg1.4
+		array('Albums kunnen persoonlijk zijn (Let op: als je deze waarde van \'ja\' to \'nee\' omzet, zullen alle persoonlijke albums publiek worden)', 'allow_private_albums', 1, 'f=index.htm&amp;as=admin_picture_thumb_advanced_private_toggle&amp;ae=admin_picture_thumb_advanced_private_toggle_end'), //cpg1.4
+		array('Geef persoonlijke albums ikoon weer aan een niet ingelogde gebruiker','show_private',1, 'f=index.htm&amp;as=admin_picture_thumb_advanced_private_icon_show&amp;ae=admin_picture_thumb_advanced_private_icon_show_end'), //cpg1.4
 		array('Verboden karakerts in de bestandsnaam', 'forbiden_fname_char',0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_filename_forbidden_chars&amp;ae=admin_picture_thumb_advanced_filename_forbidden_chars_end'), //cpg1.4
 		//array('Accepted file extensions for uploaded pictures', 'allowed_file_extensions',0, 'f=index.htm&amp;as=&amp;ae=_end'), //cpg1.4
 		array('Toegestane afbeeldings formaten', 'allowed_img_types',0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_pic_extensions&amp;ae=admin_picture_thumb_advanced_pic_extensions_end'), //cpg1.4
@@ -1665,7 +1665,7 @@ EOT;
 		'uncheck_all' => 'de-selecteer alles', 
 		'no_folders' => 'Er bevinden zich geen subdirectories in de "albums". Zorg ervoor dat minstens een subdirecotry is opgenomen in deze "albums" directory en ftp-upload je bestanden daarheen. Je mag geen bestanden uploaden naar de "userpics" of de "edit" directory, deze zijn gereserveerd voor Coppermine.',
 		'albums_no_category' => 'Albums met geen catagorie', //cpg1.4 // album pulldown mod, added by frogfoot
-		'personal_albums' => '* Prive albums', //cpg1.4 // album pulldown mod, added by frogfoot
+		'personal_albums' => '* Persoonlijke albums', //cpg1.4 // album pulldown mod, added by frogfoot
 		'browse_batch_add' => 'Explorer interface (aanbevolen)', //cpg1.4
 		'edit_pics' => 'Wijzig bestanden', //cpg1.4
 		'edit_properties' => 'Album eigenschappen', //cpg1.4
@@ -1781,7 +1781,7 @@ EOT;
 		'place_instr_2' => 'Er zijn meer bestanden die geplaatst moeten worden. Klik op \'Doorgaan\'.',
 		'process_complete' => 'Je hebt met succes alle bestanden geplaatst.', 
 		'albums_no_category' => 'Albums zonder catagorie', //cpg1.4. //album pulldown mod, added by frogfoot
-		'personal_albums' => '* Prive albums', //cpg1.4. //album pulldown mod, added by frogfoot
+		'personal_albums' => '* Persoonlijke albums', //cpg1.4. //album pulldown mod, added by frogfoot
 		'select_album' => 'Selecteer album', //cpg1.4. //album pulldown mod, added by frogfoot
 		'close' => 'Sluiten', //cpg1.4
 		'no_keywords' => 'Sorry, er zijn geen zoekbegrippen!', //cpg1.4
@@ -1887,7 +1887,7 @@ EOT;
 			'Verwijder verweesde commentaarregels', //cpg1.4
 			'Pas bestandsgrootte en afmetingen aan (na handmatige aanpassing afbeeldingen)', //cpg1.4
 			'Reset bekeken teller', //cpg1.4
-			'PHPINFO', //cpg1.4
+			'Geef PHPINFO weer', //cpg1.4
 			'Update de database', //cpg1.4
 			'Laat logging zien', //cpg1.4
 		);
@@ -1942,9 +1942,9 @@ EOT;
 			'deleting_intermediates' => 'Bezig met het verwijderen van de tussenafbeeldingen, momentje...', //cpg1.4
 			'searching_orphans' => 'Zoeken naar wezen, momentje...', //cpg1.4
 			'select_album' => 'Kies een album', //cpg1.4
-			'delete_orphans' => 'Verwijder commentaar van niet aanwezige bestanden', //cpg1.4
+			'delete_orphans' => 'Verwijder commentaar van niet aanwezige bestanden.', //cpg1.4
 			'delete_orphans_explanation' => 'Deze optie zorgt ervoor dat alle commentaarregels van bestanden die niet meer bestaan worden verwijderd.<br/>Kies \'Alle albums\'.', //cpg1.4
-			'refresh_db' => 'Herzien afmetingen en informatie van bestanden', //cpg1.4
+			'refresh_db' => 'Herzien afmetingen en informatie van bestanden.', //cpg1.4
 			'refresh_db_explanation' => 'Deze optie zal de inforatie over de bestanden updaten in de database. Gebruik deze optie als je de bestanden handmatig hebt aangepast.',
 			'reset_views' => 'Reset bekeken teller', //cpg1.4
 			'reset_views_explanation' => 'Deze optie reset alle bekeken tellers in het geselecteerde album.',
