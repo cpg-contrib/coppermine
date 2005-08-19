@@ -307,6 +307,10 @@ function html_picinfo()
     if ($CONFIG['read_exif_data']) $exif = exif_parse_file($path_to_pic);
 
     if (isset($exif) && is_array($exif)) {
+        //Sanitize the data - to fix the XSS vulnarability - Aditya
+        foreach ($exif as $key=>$data) {
+          $exif[$key] = htmlentities(strip_tags(trim($data,"\x7f..\xff\x0..\x1f")),ENT_QUOTES); //sanitize data against sql/html injection; trim any nongraphical non-ASCII character:
+        }
         if (isset($exif['Camera'])) $info[$lang_picinfo['Camera']] = $exif['Camera'];
         if (isset($exif['DateTaken'])) $info[$lang_picinfo['Date taken']] = $exif['DateTaken'];
         if (isset($exif['Aperture'])) $info[$lang_picinfo['Aperture']] = $exif['Aperture'];
@@ -321,6 +325,10 @@ function html_picinfo()
     if ($CONFIG['read_iptc_data']) $iptc = get_IPTC($path_to_pic);
 
     if (isset($iptc) && is_array($iptc)) {
+        //Sanitize the data - to fix the XSS vulnarability - Aditya
+        foreach ($iptc as $key=>$data) {
+          $iptc[$key] = htmlentities(strip_tags(trim($data,"\x7f..\xff\x0..\x1f")),ENT_QUOTES); //sanitize data against sql/html injection; trim any nongraphical non-ASCII character:
+        }
         if (isset($iptc['Title'])) $info[$lang_picinfo['iptcTitle']] = trim($iptc['Title']);
         if (isset($iptc['Copyright'])) $info[$lang_picinfo['iptcCopyright']] = trim($iptc['Copyright']);
         if (isset($iptc['Keywords'])) $info[$lang_picinfo['iptcKeywords']] = trim(implode(" ",$iptc['Keywords']));
