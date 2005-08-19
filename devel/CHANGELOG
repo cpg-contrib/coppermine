@@ -294,3 +294,4 @@ Changed to not automatically include init.inc.php for included files via the que
 Fixed mulitple keywords getting filtered out from iptc on upload - 07 Aug 2005, Donnoman
 Changed Upload title to be iptc headline if iptc title isn't available - 07 Aug 2005, Donnoman
 Fixed hardwired. 11 Aug 2005, Donnoman
+Added Galician language support (user contribution) - 12 August 2005, GauGau
