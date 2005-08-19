@@ -109,7 +109,7 @@ a.external {
   <tr>
     <td>
                         <p><img src="../images/coppermine_logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery">
-<h1>Coppermine Photo Gallery v1.3.3: Documentation and Manual</h1>
+<h1>Coppermine Photo Gallery v1.3.4: Documentation and Manual</h1>
 <h1>About Coppermine</h1>
 <p>Coppermine Photo Gallery is a picture gallery script. Users can upload pictures
   with a web browser (thumbnails are created on the fly), rate pictures, add comments
@@ -139,7 +139,7 @@ a.external {
         <ul class="content">
           <li class="content"><a href="#10"><span class="menu2">3.1 Upgrading from version 1.0</span></a></li>
           <li class="content"><a href="#11"><span class="menu2">3.2 Upgrading from releases of version 1.1</a></span></li>
-          <li class="content"><a href="#13"><span class="menu2">3.4 Upgrading from cpg1.2.0 (or better) to version cpg1.3.3</a></span></li>
+          <li class="content"><a href="#13"><span class="menu2">3.4 Upgrading from cpg1.2.0 (or better) to version cpg1.3.4</a></span></li>
         </ul>
         <li class="content"><a href="#administration"><span class="menu1">4. Configuration &amp; Administration</span></a></li>
         <ul class="content">
@@ -218,55 +218,6 @@ a.external {
         </ul>
       </ul>
       <hr />
-<!--
-<a name="testVersion"></a>
-<h1>0. Beta (Testing) version</h1>
-<p>Dear Tester,<br />&nbsp;<br />
-Thank you for taking the time to test Coppermine Photo Gallery.
-Please be rough on the program so that we can track down and
-eliminate bugs from our public release of version 1.3.<br />
-Please understand that this is still beta software that is meant to be used for testing purposes and not for production, so there is no support for cpg1.3.0beta yet.</p>
-
-<p>While testing CPG 1.3, please make certain to note any odd behavior you
-encounter.  This could include typographical errors, misleading instructions,
-or any other out-right error.  If you encounter a major error, please switch
-the debug mode to &quot;on&quot; in the configuration panel and copy the text in the
-debug window.  This will greatly aid the development team in hunting down the
-problem.</p>
-
-<p><b>Areas to be particularly mindful of:</b></p>
-<ul>
-<li>Please test every facet of CPG, from the installation on to every feature available (and in as many themes as possible).</li>
-<li>If you have the ability to test GD, GD2 and ImageMagick, please test all of them.</li>
-<li>Please attempt to use multiple types of graphics such as JPEG, PNG and GIF (for IM users).</li>
-</ul>
-<p>Please report your test results to the <a href="http://coppermine.sourceforge.net/board/viewforum.php?f=19">testing board</a>, but before starting a new thread make sure that the potential bug you're going to report hasn't been posted before.</p>
-
-<p><b>The report format should include:</b></p>
-<ul>
-<li>Server OS</li>
-<li>Web Server Software</li>
-<li>GD, GD2 or ImageMagick Test</li>
-<li>PHP Version</li>
-<li>BB Integration (if any)</li>
-<li>Themes fully tested (by fully tested, we mean as many different features as</li>
-<li>possible using that theme)</li>
-<li>Major Errors</li>
-<li>Client OS and Browser</li>
-<li>Fresh install or upgrade (if yes, from which version of cpg)</li>
-</ul>
-
-<p>Your test results will not merely be used to fix problems but will also be used
-to tout the compatibility of CPG with multiple browsers and OS's.  That is why
-this information is important EVEN IF YOU FIND NOTHING WRONG.</p>
-
-<p>Thanks for your participation and your time in making CPG the premiere
-open-source photo gallery!</p>
-
-<p>Coppermine Development Team</p>
-<p><a class="back" href="#top">Back to
-      top</a></p>
--->
 
 
 <a name="what"></a>
@@ -422,16 +373,16 @@ open-source photo gallery!</p>
 <h2>3.1 Upgrading from version 1.0</h2>
 
 <p>If you already have installed version 1.0 and you want to transfer your albums
-  to version 1.3.3 proceed in the following way:</p>
+  to version 1.3.4 proceed in the following way:</p>
 <ul>
   <li>First, make a backup (dump) of your database.</li>
-  <li> Install version 1.3.3 normally in a directory different from the one where you installed v 1.0. Note that in order to use the upgrade script, <b>tables for version 1.0 and 1.3.3 must be stored in the same database</b>.</li>
-  <li>Copy the &quot;<b>albums</b>&quot; directory of version 1.0 into the directory where you installed version 1.3.3</li>
+  <li> Install version 1.3.4 normally in a directory different from the one where you installed v 1.0. Note that in order to use the upgrade script, <b>tables for version 1.0 and 1.3.4 must be stored in the same database</b>.</li>
+  <li>Copy the &quot;<b>albums</b>&quot; directory of version 1.0 into the directory where you installed version 1.3.4</li>
   <li>The upgrade script assumes that you used the &quot;<b>CPG_</b>&quot; prefix for tables (default value) when you installed version 1.0, if this is not the case, edit upgrade-1.0-to-1.2.php and edit the $prefix10 variable.</li>
-  <li>Login to your 1.3.3 Gallery, enter the admin mode</li>
+  <li>Login to your 1.3.4 Gallery, enter the admin mode</li>
   <li>Call the upgrade script, http://yousitename/coppermine_dir/upgrade-1.0-to-1.2.php</li>
-  <li><b>The upgrade from 1.0 to 1.3.3 is a two-step process.</b> You must click the link which comes up on the bottom of the page to complete the upgrade!.</li>
-        <li><b>Delete upgrade-1.0-to-1.2.php from your server</b>. <li>If you get an error, go to Coppermine 1.3.3 config page, enable <a href="#debug_mode">debug mode</a>, try to call the upgrade script again and check what errors you get.</li>
+  <li><b>The upgrade from 1.0 to 1.3.4 is a two-step process.</b> You must click the link which comes up on the bottom of the page to complete the upgrade!.</li>
+        <li><b>Delete upgrade-1.0-to-1.2.php from your server</b>. <li>If you get an error, go to Coppermine 1.3.4 config page, enable <a href="#debug_mode">debug mode</a>, try to call the upgrade script again and check what errors you get.</li>
 </ul>
 <p> <b>This upgrade process leaves your v1.0 gallery untouched </b></p>
 <p><a class="back" href="#top">Back to top</a></p>
@@ -452,7 +403,7 @@ open-source photo gallery!</p>
 
 
 <a name="13"></a>
-<h2>3.4 Upgrading from cpg1.2.0rc2 or better to version cpg1.3.3</h2>
+<h2>3.4 Upgrading from cpg1.2.0rc2 or better to version cpg1.3.4</h2>
         <ul>
                                 <li>First, make a backup (dump) of your database.</li>
                 <li>Backup your include/config.inc.php file, your anycontent.php file and your &quot;albums&quot; directoy.</li>
@@ -464,7 +415,7 @@ open-source photo gallery!</p>
                 <li>If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme - refer to the <a href="theme.htm">theme-upgrade guide</a>.</li>
                 <li>You can not use language files from older versions of Coppermine - make sure to only have the language files that come with this package inside your lang folder (delete or rename all files from older versions within the lang folder)</li>
         </ul>
-<p>Please note: as there have been changes both in the coppermine files and the database from cpg1.3.0, cpg1.3.1 or cpg1.3.2 to cpg1.3.3, users of cpg1.3.0/1.3.1/1.3.2 will have to apply all steps mentioned above: both the files have to be replaced and the update.php script has to be run once.</p>
+<p>Please note: as there have been changes both in the coppermine files and the database from cpg1.3.0, cpg1.3.1, cpg1.3.2 or cpg1.3.3 to cpg1.3.4, users of cpg1.3.0/1.3.1/1.3.2/1.3.3 will have to apply all steps mentioned above: both the files have to be replaced and the update.php script has to be run once.</p>
 
 <p><a class="back" href="#top">Back to top</a></p>
 
@@ -1569,7 +1520,7 @@ if (isset($_POST['redir'])){
         <li>On pages with high traffic load the &quot;top rated&quot; pic might get outdated while the user watches the page, resulting in the thumbnail linking to a different pic.</li>
         <li>minor issue with the filmstrip not displaying correctly when the number of pics to appear on the filmstrip is set to an even number</li>
         <li>Crop and rotate not working on all server setups.</li>
-                <li>ISO settings missing from exif data in most languages.</li>
+        <li>ISO settings missing from exif data in most languages.</li>
 </ul>
 <p><a class="back" href="#top">Back to top</a></p>
 <hr />
@@ -1649,7 +1600,7 @@ if (isset($_POST['redir'])){
         <td>Christopher Brown-Floyd</td>
         <td><a href="http://coppermine.sourceforge.net/board/index.php?action=profile;u=1874">omniscientdeveloper</a></td>
         <td>Developer</td>
-        <td>active</td>
+        <td>retired</td>
 </tr>
 <tr>
         <td>Timothy</td>
@@ -1788,7 +1739,7 @@ if (isset($_POST['redir'])){
   to the quality and performance of the program is with you. Should the
   program prove defective, you assume the cost of all necessary servicing,
   repair or correction. </p>
-<p>Coppermine Photo Gallery is Copyright &copy; 2002 - 2004 <a href="http://www.chezgreg.net/coppermine/">Gr&eacute;gory
+<p>Coppermine Photo Gallery is Copyright &copy; 2002 - 2005 <a href="http://www.chezgreg.net/coppermine/">Gr&eacute;gory
   DEMAR</a> and the Coppermine Dev Team, All Rights Reserved.<br />
 </p>
 <p><a class="back" href="#top">Back to top</a></p>
