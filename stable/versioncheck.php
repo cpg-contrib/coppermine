@@ -173,7 +173,7 @@ if ($USER['theme']) {
 if (file_exists('images/help.gif') == true) { $help_icon = '<img src="images/help.gif" width="13" height="11" border="0" alt="" title="'.$lang_versioncheck_php['help'].'" />';
 } else { $help_icon = '<span style="background-color:#FFFAD3;color:#000000;font-weight:bold;border:1px solid black;font-size:8pt;margin:0px;padding:0px" title="'.$lang_versioncheck_php['help'].'"> ? </span>';
 }
-$help_html = "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('".$_SERVER['PHP_SELF']."?pop=1&amp;css=" . $help_theme . "&amp;" . $reference . "','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=" . $width . ",height=" . $height . "')\" style=\"cursor:help;text-decoration:none\">".$help_icon."</a>";
+$help_html = "<a href=\"javascript:;\" onclick=\"MM_openBrWindow('".$_SERVER['PHP_SELF']."?pop=1&css=" . $help_theme . "&" . $reference . "','" . uniqid(rand()) . "','scrollbars=yes,toolbar=no,status=no,resizable=yes,width=" . $width . ",height=" . $height . "')\" style=\"cursor:help;text-decoration:none\">".$help_icon."</a>";
 return $help_html;
 }
 }
@@ -454,7 +454,6 @@ $dir = ''; // this is the place to start browsing for root folders
 } else {
 $dir = '../'.cpg_get_coppermine_path().'/'; // this is the place to start browsing
 }
-
 if (is_array($repository_filename)) {
     foreach ($repository_filename as $rep_file) { //foreach start
         $counter_total_files++;
@@ -537,8 +536,8 @@ pagefooter();
 ////////////////////////////////// functions ///////////////////////////////
 
 function cpg_get_coppermine_path() {
-global $ORIGINAL_PHP_SELF;
-$return = str_replace('/', '',strrchr(str_replace('/'.str_replace('/', '',strrchr($ORIGINAL_PHP_SELF, '/')), '', $ORIGINAL_PHP_SELF),'/'));
+//global $PHP_SELF;
+$return = str_replace('/', '',strrchr(str_replace('/'.str_replace('/', '',strrchr($_SERVER['PHP_SELF'], '/')), '', $_SERVER['PHP_SELF']),'/'));
 return $return;
 }
 
@@ -705,7 +704,7 @@ print $file_path['file'];
 print '</span>';
 if ($stylecolor != '') {
     print '&nbsp;';
-    print cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($helptitle))).'&amp;t='.urlencode(base64_encode(serialize($helpoutput))),400,150);
+    print cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($helptitle))).'&t='.urlencode(base64_encode(serialize($helpoutput))),400,150);
 }
 
 
@@ -768,7 +767,7 @@ if (!$cpg_is_file && $permissions == 1) { // we have a folder: start
     print $writable_output;
     if ($helptitle != '') {
         print '&nbsp;';
-        print cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($helptitle))).'&amp;t='.urlencode(base64_encode(serialize($helpoutput)).'&amp;css=1'),400,150);
+        print cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($helptitle))).'&t='.urlencode(base64_encode(serialize($helpoutput)).'&css=1'),400,150);
         $helptitle = '';
         $helpoutput = '';
     }
@@ -949,7 +948,7 @@ function cpg_vc_help($helptitle='',$helpoutput='') {
    $return= '';
    if ($helptitle != '') {
       $return = '&nbsp;';
-      $return .= cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($helptitle))).'&amp;t='.urlencode(base64_encode(serialize($helpoutput))),400,150);
+      $return .= cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($helptitle))).'&t='.urlencode(base64_encode(serialize($helpoutput))),400,150);
 
    }
    return $return;
@@ -2002,7 +2001,7 @@ $return = '
 1.3.4|db_input.php|1.3.4|1.10|mandatory|r@
 1.3.4|delete.php|1.3.4|1.8|mandatory|r@
 1.3.4|displayecard.php|1.3.4|1.7|mandatory|r@
-1.3.4|displayimage.php|1.3.4|1.12|mandatory|r@
+1.3.4|displayimage.php|1.3.4|1.13|mandatory|r@
 1.3.4|ecard.php|1.3.4|1.13|mandatory|r@
 1.3.4|editOnePic.php|1.3.4|1.13|mandatory|r@
 1.3.4|editpics.php|1.3.4|1.9|mandatory|r@
@@ -2043,47 +2042,47 @@ $return = '
 1.3.4|albums/userpics|||mandatory|w@
 1.3.4|albums/userpics/index.html|||optional|w@
 1.3.4|bridge|||optional|r@
-1.3.4|bridge/invisionboard.inc.php|1.3.4|1.9|optional|r@
-1.3.4|bridge/phpbb.inc.php|1.3.4|1.11|optional|r@
-1.3.4|bridge/punbb.inc.php|1.3.4|1.3|optional|r@
-1.3.4|bridge/smf.inc.php|1.3.4|1.8|optional|r@
-1.3.4|bridge/vbulletin.inc.php|1.3.4|1.7|optional|r@
-1.3.4|bridge/vbulletin23.inc.php|1.3.4|1.7|optional|r@
-1.3.4|bridge/vbulletin30.inc.php|1.3.4|1.8|optional|r@
-1.3.4|bridge/vbulletin3gamma.inc.php|1.3.4|1.6|optional|r@
-1.3.4|bridge/woltlab21.inc.php|1.3.4|1.7|optional|r@
-1.3.4|bridge/yabbse.inc.php|1.3.4|1.9|optional|r@
+1.3.4|bridge/invisionboard.inc.php|1.3.4|1.10|optional|r@
+1.3.4|bridge/phpbb.inc.php|1.3.4|1.12|optional|r@
+1.3.4|bridge/punbb.inc.php|1.3.4|1.4|optional|r@
+1.3.4|bridge/smf.inc.php|1.3.4|1.9|optional|r@
+1.3.4|bridge/vbulletin.inc.php|1.3.4|1.8|optional|r@
+1.3.4|bridge/vbulletin23.inc.php|1.3.4|1.8|optional|r@
+1.3.4|bridge/vbulletin30.inc.php|1.3.4|1.9|optional|r@
+1.3.4|bridge/vbulletin3gamma.inc.php|1.3.4|1.7|optional|r@
+1.3.4|bridge/woltlab21.inc.php|1.3.4|1.8|optional|r@
+1.3.4|bridge/yabbse.inc.php|1.3.4|1.10|optional|r@
 1.3.4|docs|||optional|r@
 1.3.4|docs/credits.html||1.7|optional|r@
-1.3.4|docs/faq.htm||1.5|optional|r@
-1.3.4|docs/index.htm||1.7|optional|r@
+1.3.4|docs/faq.htm||1.6|optional|r@
+1.3.4|docs/index.htm||1.8|optional|r@
 1.3.4|docs/README.html||1.7|optional|r@
-1.3.4|docs/theme.htm||1.3|optional|r@
-1.3.4|docs/translation.htm||1.3|optional|r@
+1.3.4|docs/theme.htm||1.4|optional|r@
+1.3.4|docs/translation.htm||1.4|optional|r@
 1.3.4|docs/pics|||optional|r@
 1.3.4|images|||mandatory|r@
 1.3.4|images/flags|||optional|r@
 1.3.4|images/smiles|||mandatory|r@
 1.3.4|include|||mandatory|w@
-1.3.4|include/archive.php|1.3.4|1.4|mandatory|r@
+1.3.4|include/archive.php|1.3.4|1.5|mandatory|r@
 1.3.4|include/config.inc.php|||mandatory|r@
-1.3.4|include/crop.inc.php|1.3.4|1.5|mandatory|r@
-1.3.4|include/exif_php.inc.php|1.3.4|1.7|mandatory|r@
-1.3.4|include/exifReader.inc.php|1.3.4|1.4|mandatory|r@
-1.3.4|include/functions.inc.php|1.3.4|1.24|mandatory|r@
-1.3.4|include/imageObjectGD.class.php|1.3.4|1.5|mandatory|r@
-1.3.4|include/imageObjectIM.class.php|1.3.4|1.4|mandatory|r@
+1.3.4|include/crop.inc.php|1.3.4|1.6|mandatory|r@
+1.3.4|include/exif_php.inc.php|1.3.4|1.8|mandatory|r@
+1.3.4|include/exifReader.inc.php|1.3.4|1.5|mandatory|r@
+1.3.4|include/functions.inc.php|1.3.4|1.28|mandatory|r@
+1.3.4|include/imageObjectGD.class.php|1.3.4|1.6|mandatory|r@
+1.3.4|include/imageObjectIM.class.php|1.3.4|1.5|mandatory|r@
 1.3.4|include/index.html|||mandatory|r@
-1.3.4|include/init.inc.php|1.3.4|1.15|mandatory|r@
-1.3.4|include/iptc.inc.php|1.3.4|1.4|mandatory|r@
-1.3.4|include/mailer.inc.php|1.3.4|1.6|mandatory|r@
-1.3.4|include/media.functions.inc.php|1.3.4|1.4|mandatory|r@
-1.3.4|include/picmgmt.inc.php|1.3.4|1.10|mandatory|r@
-1.3.4|include/search.inc.php|1.3.4|1.6|mandatory|r@
-1.3.4|include/select_lang.inc.php|1.3.4|1.7|mandatory|r@
-1.3.4|include/slideshow.inc.php|1.3.4|1.9|mandatory|r@
-1.3.4|include/smilies.inc.php|1.3.4|1.6|mandatory|r@
-1.3.4|include/sql_parse.php|1.3.4|1.6|mandatory|r@
+1.3.4|include/init.inc.php|1.3.4|1.16|mandatory|r@
+1.3.4|include/iptc.inc.php|1.3.4|1.5|mandatory|r@
+1.3.4|include/mailer.inc.php|1.3.4|1.7|mandatory|r@
+1.3.4|include/media.functions.inc.php|1.3.4|1.5|mandatory|r@
+1.3.4|include/picmgmt.inc.php|1.3.4|1.11|mandatory|r@
+1.3.4|include/search.inc.php|1.3.4|1.7|mandatory|r@
+1.3.4|include/select_lang.inc.php|1.3.4|1.8|mandatory|r@
+1.3.4|include/slideshow.inc.php|1.3.4|1.10|mandatory|r@
+1.3.4|include/smilies.inc.php|1.3.4|1.7|mandatory|r@
+1.3.4|include/sql_parse.php|1.3.4|1.7|mandatory|r@
 1.3.4|lang|||mandatory|r@
 1.3.4|lang/albanian.php|1.3.3|1.2|optional|r@
 1.3.4|lang/albanian-utf-8.php|1.3.3|1.2|optional|r@
@@ -2108,15 +2107,15 @@ $return = '
 1.3.4|lang/dutch.php|1.3.2|1.10|optional|r@
 1.3.4|lang/dutch-utf-8.php|1.3.2|1.11|optional|r@
 1.3.4|lang/english.php|1.3.3|1.18|mandatory|r@
-1.3.4|lang/english-utf-8.php|1.3.3|1.13|optional|r@
+1.3.4|lang/english-utf-8.php|1.3.3|1.14|optional|r@
 1.3.4|lang/estonian.php|1.3.2|1.10|optional|r@
 1.3.4|lang/estonian-utf-8.php|1.3.2|1.11|optional|r@
-1.3.4|lang/finnish.php|1.3.0|1.7|optional|r@
-1.3.4|lang/finnish-utf-8.php|1.3.0|1.8|optional|r@
-1.3.4|lang/french.php|1.3.2|1.15|optional|r@
-1.3.4|lang/french-utf-8.php|1.3.2|1.14|optional|r@
-1.3.4|lang/galician.php|1.3.3|1.1|optional|r@
-1.3.4|lang/galician-utf-8.php|1.3.3|1.1|optional|r@
+1.3.4|lang/finnish.php|1.3.0|1.8|optional|r@
+1.3.4|lang/finnish-utf-8.php|1.3.0|1.9|optional|r@
+1.3.4|lang/french.php|1.3.2|1.16|optional|r@
+1.3.4|lang/french-utf-8.php|1.3.2|1.15|optional|r@
+1.3.4|lang/galician.php|1.3.3|1.2|optional|r@
+1.3.4|lang/galician-utf-8.php|1.3.3|1.2|optional|r@
 1.3.4|lang/german.php|1.3.3|1.13|optional|r@
 1.3.4|lang/german-utf-8.php|1.3.2|1.13|optional|r@
 1.3.4|lang/german_sie.php|1.3.3|1.4|optional|r@
@@ -2133,16 +2132,16 @@ $return = '
 1.3.4|lang/italian-utf-8.php|1.3.0|1.11|optional|r@
 1.3.4|lang/italian2.php|1.3.0|1.3|optional|r@
 1.3.4|lang/italian2-utf-8.php|1.3.0|1.4|optional|r@
-1.3.4|lang/japanese.php|1.3.0|1.9|optional|r@
-1.3.4|lang/japanese-utf-8.php|1.3.0|1.10|optional|r@
+1.3.4|lang/japanese.php|1.3.3|1.10|optional|r@
+1.3.4|lang/japanese-utf-8.php|1.3.3|1.11|optional|r@
 1.3.4|lang/kurdish.php|1.3.2|1.2|optional|r@
 1.3.4|lang/kurdish-utf-8.php|1.3.2|1.3|optional|r@
 1.3.4|lang/latvian.php|1.3.0|1.10|optional|r@
 1.3.4|lang/latvian-utf-8.php|1.3.0|1.12|optional|r@
 1.3.4|lang/malay.php|1.3.0|1.3|optional|r@
 1.3.4|lang/malay-utf-8.php|1.3.0|1.4|optional|r@
-1.3.4|lang/norwegian.php|1.4.0|1.9|optional|r@
-1.3.4|lang/norwegian-utf-8.php|1.4.0|1.10|optional|r@
+1.3.4|lang/norwegian.php|1.3.2|1.10|optional|r@
+1.3.4|lang/norwegian-utf-8.php|1.3.2|1.11|optional|r@
 1.3.4|lang/polish.php|1.3.0|1.6|optional|r@
 1.3.4|lang/polish-utf-8.php|1.3.0|1.8|optional|r@
 1.3.4|lang/romanian.php|1.4.0|1.7|optional|r@
@@ -2165,61 +2164,61 @@ $return = '
 1.3.4|lang/uighur-utf-8.php|1.3.2|1.4|optional|r@
 1.3.4|lang/vietnamese.php|1.3.2|1.5|optional|r@
 1.3.4|lang/vietnamese-utf-8.php|1.3.2|1.6|optional|r@
-1.3.4|sql/basic.sql|1.3.4|1.8|mandatory|r@
-1.3.4|sql/schema.sql|1.3.4|1.4|mandatory|r@
-1.3.4|sql/update.sql|1.3.4|1.14|mandatory|r@
+1.3.4|sql/basic.sql|1.3.4|1.9|mandatory|r@
+1.3.4|sql/schema.sql|1.3.4|1.5|mandatory|r@
+1.3.4|sql/update.sql|1.3.4|1.15|mandatory|r@
 1.3.4|themes|||mandatory|r@
 1.3.4|themes/classic|||optional|r@
-1.3.4|themes/classic/style.css|1.3.4|1.2|optional|r@
-1.3.4|themes/classic/template.html|1.3.4|1.2|optional|r@
-1.3.4|themes/classic/theme.php|1.3.4|1.8|optional|r@
+1.3.4|themes/classic/style.css|1.3.4|1.3|optional|r@
+1.3.4|themes/classic/template.html|1.3.4|1.3|optional|r@
+1.3.4|themes/classic/theme.php|1.3.4|1.9|optional|r@
 1.3.4|themes/classic/images|||optional|r@
 1.3.4|themes/eyeball|||optional|r@
-1.3.4|themes/eyeball/style.css|1.3.4|1.3|optional|r@
-1.3.4|themes/eyeball/template.html|1.3.4|1.5|optional|r@
-1.3.4|themes/eyeball/theme.php|1.3.4|1.10|optional|r@
+1.3.4|themes/eyeball/style.css|1.3.4|1.4|optional|r@
+1.3.4|themes/eyeball/template.html|1.3.4|1.7|optional|r@
+1.3.4|themes/eyeball/theme.php|1.3.4|1.11|optional|r@
 1.3.4|themes/eyeball/images|||optional|r@
 1.3.4|themes/fruity|||optional|r@
-1.3.4|themes/fruity/style.css|1.3.4|1.3|optional|r@
-1.3.4|themes/fruity/template.html|1.3.4|1.6|optional|r@
-1.3.4|themes/fruity/theme.php|1.3.4|1.9|optional|r@
+1.3.4|themes/fruity/style.css|1.3.4|1.4|optional|r@
+1.3.4|themes/fruity/template.html|1.3.4|1.7|optional|r@
+1.3.4|themes/fruity/theme.php|1.3.4|1.10|optional|r@
 1.3.4|themes/fruity/images|||optional|r@
 1.3.4|themes/hardwired|||optional|r@
-1.3.4|themes/hardwired/style.css|1.3.4|1.3|optional|r@
-1.3.4|themes/hardwired/template.html|1.3.4|1.7|optional|r@
-1.3.4|themes/hardwired/theme.php|1.3.4|1.12|optional|r@
+1.3.4|themes/hardwired/style.css|1.3.4|1.4|optional|r@
+1.3.4|themes/hardwired/template.html|1.3.4|1.8|optional|r@
+1.3.4|themes/hardwired/theme.php|1.3.4|1.13|optional|r@
 1.3.4|themes/hardwired/images|||optional|r@
 1.3.4|themes/igames|||optional|r@
-1.3.4|themes/igames/style.css|1.3.4|1.3|optional|r@
-1.3.4|themes/igames/template.html|1.3.4|1.6|optional|r@
-1.3.4|themes/igames/theme.php|1.3.4|1.11|optional|r@
+1.3.4|themes/igames/style.css|1.3.4|1.4|optional|r@
+1.3.4|themes/igames/template.html|1.3.4|1.7|optional|r@
+1.3.4|themes/igames/theme.php|1.3.4|1.12|optional|r@
 1.3.4|themes/igames/images|||optional|r@
 1.3.4|themes/mac_ox_x|||optional|r@
-1.3.4|themes/mac_ox_x/style.css|1.3.4|1.3|optional|r@
-1.3.4|themes/mac_ox_x/template.html|1.3.4|1.5|optional|r@
-1.3.4|themes/mac_ox_x/theme.php|1.3.4|1.10|optional|r@
+1.3.4|themes/mac_ox_x/style.css|1.3.4|1.4|optional|r@
+1.3.4|themes/mac_ox_x/template.html|1.3.4|1.6|optional|r@
+1.3.4|themes/mac_ox_x/theme.php|1.3.4|1.11|optional|r@
 1.3.4|themes/mac_ox_x/images|||optional|r@
 1.3.4|themes/project_vii|||optional|r@
-1.3.4|themes/project_vii/style.css|1.3.4|1.3|optional|r@
-1.3.4|themes/project_vii/template.html|1.3.4|1.5|optional|r@
-1.3.4|themes/project_vii/theme.php|1.3.4|1.10|optional|r@
+1.3.4|themes/project_vii/style.css|1.3.4|1.4|optional|r@
+1.3.4|themes/project_vii/template.html|1.3.4|1.6|optional|r@
+1.3.4|themes/project_vii/theme.php|1.3.4|1.11|optional|r@
 1.3.4|themes/project_vii/images|||optional|r@
 1.3.4|themes/rainy_day|||optional|r@
-1.3.4|themes/rainy_day/style.css|1.3.4|1.3|optional|r@
-1.3.4|themes/rainy_day/template.html|1.3.4|1.7|optional|r@
-1.3.4|themes/rainy_day/theme.php|1.3.4|1.10|optional|r@
+1.3.4|themes/rainy_day/style.css|1.3.4|1.4|optional|r@
+1.3.4|themes/rainy_day/template.html|1.3.4|1.8|optional|r@
+1.3.4|themes/rainy_day/theme.php|1.3.4|1.11|optional|r@
 1.3.4|themes/rainy_day/images|||optional|r@
 1.3.4|themes/styleguide|||optional|r@
 1.3.4|themes/styleguide/domLib.js|||optional|r@
 1.3.4|themes/styleguide/domTT.js|||optional|r@
-1.3.4|themes/styleguide/readme.htm||1.2|optional|r@
-1.3.4|themes/styleguide/template.html|1.3.4|1.3|optional|r@
-1.3.4|themes/styleguide/theme.php|1.3.4|1.6|optional|r@
+1.3.4|themes/styleguide/readme.htm||1.3|optional|r@
+1.3.4|themes/styleguide/template.html|1.3.4|1.4|optional|r@
+1.3.4|themes/styleguide/theme.php|1.3.4|1.7|optional|r@
 1.3.4|themes/styleguide/images|||optional|r@
 1.3.4|themes/water_drop|||optional|r@
-1.3.4|themes/water_drop/style.css|1.3.4|1.3|optional|r@
-1.3.4|themes/water_drop/template.html|1.3.4|1.5|optional|r@
-1.3.4|themes/water_drop/theme.php|1.3.4|1.10|optional|r@
+1.3.4|themes/water_drop/style.css|1.3.4|1.4|optional|r@
+1.3.4|themes/water_drop/template.html|1.3.4|1.6|optional|r@
+1.3.4|themes/water_drop/theme.php|1.3.4|1.11|optional|r@
 1.3.4|themes/water_drop/images|||optional|r@
 1.4.0|addfav.php|1.4.0|1.15|mandatory|r@
 1.4.0|addpic.php|1.4.0|1.11|mandatory|r@
@@ -2487,13 +2486,11 @@ $return = '
 1.4.1|bridgemgr.php|1.4.1|1.25|mandatory|r@
 1.4.1|calendar.php|1.4.1|1.11|mandatory|r@
 1.4.1|catmgr.php|1.4.1|1.30|mandatory|r@
-1.4.1|charsetmgr.php|1.4.1|1.9|mandatory|r@
 1.4.1|db_ecard.php|1.4.1|1.15|mandatory|r@
 1.4.1|db_input.php|1.4.1|1.50|mandatory|r@
 1.4.1|delete.php|1.4.1|1.24|mandatory|r@
 1.4.1|displayecard.php|1.4.1|1.13|mandatory|r@
 1.4.1|displayimage.php|1.4.1|1.98|mandatory|r@
-1.4.1|displayreport.php|1.4.1|1.6|mandatory|r@
 1.4.1|ecard.php|1.4.1|1.36|mandatory|r@
 1.4.1|editOnePic.php|1.4.1|1.39|mandatory|r@
 1.4.1|editpics.php|1.4.1|1.40|mandatory|r@
@@ -2511,7 +2508,6 @@ $return = '
 1.4.1|keywordmgr.php|1.4.1|1.10|mandatory|r@
 1.4.1|login.php|1.4.1|1.25|mandatory|r@
 1.4.1|logout.php|1.4.1|1.10|mandatory|r@
-1.4.1|minibrowser.php|1.4.1|1.15|mandatory|r@
 1.4.1|mode.php|1.4.1|1.4|mandatory|r@
 1.4.1|modifyalb.php|1.4.1|1.31|mandatory|r@
 1.4.1|phpinfo.php|1.4.1|1.11|mandatory|r@
@@ -2522,7 +2518,6 @@ $return = '
 1.4.1|ratepic.php|1.4.1|1.13|mandatory|r@
 1.4.1|register.php|1.4.1|1.31|mandatory|r@
 1.4.1|relocate_server.php|1.4.1|1.5|optional|r@
-1.4.1|report_file.php|1.4.1|1.22|mandatory|r@
 1.4.1|reviewcom.php|1.4.1|1.20|mandatory|r@
 1.4.1|scripts.js|1.4.1|1.13|mandatory|r@
 1.4.1|search.php|1.4.1|1.17|mandatory|r@
@@ -2597,7 +2592,6 @@ $return = '
 1.4.1|include/logger.inc.php|1.4.1|1.14|mandatory|r@
 1.4.1|include/mailer.inc.php|1.4.1|1.17|mandatory|r@
 1.4.1|include/media.functions.inc.php|1.4.1|1.13|mandatory|r@
-1.4.1|include/phpmailer.lang-en.php|1.4.1|1.2|mandatory|r@
 1.4.1|include/picmgmt.inc.php|1.4.1|1.34|mandatory|r@
 1.4.1|include/plugin_api.inc.php|1.4.1|1.18|mandatory|r@
 1.4.1|include/search.inc.php|1.4.1|1.22|mandatory|r@
@@ -2607,7 +2601,6 @@ $return = '
 1.4.1|include/smtp.inc.php|1.4.1|1.4|mandatory|r@
 1.4.1|include/sql_parse.php|1.4.1|1.7|mandatory|r@
 1.4.1|include/themes.inc.php|1.4.1|1.44|mandatory|r@
-1.4.1|include/update.inc.php|1.4.1|1.5|mandatory|r@
 1.4.1|include/zip.lib.php|1.4.1|1.4|mandatory|r@
 1.4.1|include/makers|||mandatory|w@
 1.4.1|include/makers/canon.php|1.4.1|1.6|mandatory|r@
