@@ -156,9 +156,9 @@ function html_picinfo()
         }
         if (isset($iptc['Title'])) $info[$lang_picinfo['iptcTitle']] = trim($iptc['Title']);
         if (isset($iptc['Copyright'])) $info[$lang_picinfo['iptcCopyright']] = trim($iptc['Copyright']);
-        if (isset($iptc['Keywords'])) $info[$lang_picinfo['iptcKeywords']] = trim(implode(" ",$iptc['Keywords']));
+        if (!empty($iptc['Keywords'])) $info[$lang_picinfo['iptcKeywords']] = trim(implode(" ",$iptc['Keywords']));
         if (isset($iptc['Category'])) $info[$lang_picinfo['iptcCategory']] = trim($iptc['Category']);
-        if (isset($iptc['SubCategories'])) $info[$lang_picinfo['iptcSubCategories']] = trim(implode(" ",$iptc['SubCategories']));
+        if (!empty($iptc['SubCategories'])) $info[$lang_picinfo['iptcSubCategories']] = trim(implode(" ",$iptc['SubCategories']));
     }
     // Create the absolute URL for display in info
     $info[$lang_picinfo['URL']] = '<a href="' . $CONFIG["ecards_more_pic_target"] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') .basename($_SERVER['PHP_SELF']) . "?pos=-$CURRENT_PIC_DATA[pid]" . '" >' . $CONFIG["ecards_more_pic_target"] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') . basename($_SERVER['PHP_SELF']) . "?pos=-$CURRENT_PIC_DATA[pid]" . '</a>';
