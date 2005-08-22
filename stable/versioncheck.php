@@ -2032,7 +2032,7 @@ $return = '
 1.3.4|upload.php|1.3.4|1.15|mandatory|r@
 1.3.4|usermgr.php|1.3.4|1.8|mandatory|r@
 1.3.4|util.php|1.3.4|1.14|mandatory|r@
-1.3.4|versioncheck.php|1.4.1|1.10|optional|r@
+1.3.4|versioncheck.php|1.4.1|1.13|optional|r@
 1.3.4|xp_publish.php|1.3.4|1.9|mandatory|r@
 1.3.4|zipdownload.php|1.3.4|1.6|mandatory|r@
 1.3.4|albums|||mandatory|w@
