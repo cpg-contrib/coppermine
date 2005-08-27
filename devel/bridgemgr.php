@@ -661,7 +661,7 @@ case "settings_path":
                 print '        '.$lang_bridgemgr_php[$key].':'.$new_line;
                 print '    </td>'.$new_line;
                 print '    <td class="tableb" style="overflow:visible">'.$new_line;
-                print '        <input type="text" name="'.$key.'" id="'.$key.'" class="textinput" value="'.$prefill.'" '.$disabled.' size="50" style="width:80%" />'.$minibrowser.$reset_to_default.$new_line;
+                print '        <input type="text" name="'.$key.'" id="'.$key.'" class="textinput" value="'.$prefill.'" '.$disabled.' size="50" />'.$minibrowser.$reset_to_default.$new_line;
                 print '    </td>'.$new_line;
                 print '    <td class="tableb">'.$new_line;
                 print $display1.$new_line;
