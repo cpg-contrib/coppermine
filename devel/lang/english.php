@@ -1209,14 +1209,20 @@ if (defined('FORGOT_PASSWD_PHP')) $lang_forgot_passwd_php = array(
   'err_already_logged_in' => 'You are already logged in !',
   'enter_email' => 'Enter your email address', //cpg1.4
   'submit' => 'go',
+  'illegal_session' => 'Forgot password session invalid or has expired.', //cpg1.4
   'failed_sending_email' => 'The password reminder email can\'t be sent !',
-  'email_sent' => 'An email with your username and password was sent to %s',
+  'email_sent' => 'An email with your username and new password was sent to %s', //cpg1.4
+  'verify_email_sent' => 'An email has been sent to %s. Please check your email to complete the process.', //cpg1.4
   'err_unk_user' => 'Selected user does not exist!',
-  'passwd_reminder_subject' => '%s - Password reminder',
-  'passwd_reminder_body' => 'You have requested to be reminded of your login data:
+  'account_verify_subject' => '%s - New password request', //cpg1.4
+  'account_verify_body' => 'You have requested to a new password. If you would like to proceed with having a new password sent to you, click on the following link:
+  
+%s', //cpg1.4
+  'passwd_reset_subject' => '%s - Your New Password', //cpg1.4
+  'passwd_reset_body' => 'Here is the new password you requested:
 Username: %s
 Password: %s
-Click %s to log in.',
+Click %s to log in.', //cpg1.4
 );
 
 // ------------------------------------------------------------------------- //
