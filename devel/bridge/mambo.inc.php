@@ -247,7 +247,66 @@ class cpg_udb extends core_udb {
 
 		return ($id) ? array($id, $pass) : false;
 	}
-	
+
+    function login( $username = null, $password = null ) {
+
+		$this->create_session();
+
+        if ( is_null($username) || is_null($password) ) {
+            return false;
+        }
+
+		// Grab id from Mambo database, if a cookie exists
+		if ($username) {
+			$sql =  'select u.'.$f['user_id'].' as id, u.'.$f['password'].' as password, u.'.
+					$f['username'].' as username, u.'.$f['usertbl_group_id'].' as usertbl_group_id, '.
+					'g.'.$f['grouptbl_group_id'].' as grouptbl_group_id, g.'.$f['grouptbl_group_name'].' as grouptbl_group_name ';
+			$sql .= 'from '.$this->usertable.' as u ';
+			$sql .= 'inner join '.$this->groupstable.' as g ';
+			$sql .= 'on gid=group_id ';
+			$sql .= 'where u.'.$f['username'].'="'.$username.'" and u.'.$f['password'].'="'.$password.'" and u.block=0;';
+
+			$result = cpg_db_query($sql, $this->link_id);
+					
+			// the user exists; finalize login procedures
+			if ($result) {
+					
+				$row = mysql_fetch_assoc($result);
+				mysql_free_result($result);
+
+				$gid = 1;
+						
+				if ($this->is_group_child_of($row['grouptbl_group_name'],'Registered') ||
+					$this->is_group_child_of($row['grouptbl_group_name'],'Administrator')) {
+							
+					$gid = 2;
+				}
+						
+				// update session information in session table
+				$sql =  'update '.$this->sessionstable.' set '.
+						'userid='.$row['id'].
+						',username="'.$row['username'].'"'.
+						',guest=0 '.
+						',gid='.$gid.' '.
+						',usertype="'.$row['grouptbl_group_name'].'" '.
+						'where session_id=md5("'.$this->session_id.'");';
+						
+				cpg_db_query($sql, $this->link_id);
+						
+				// update last visit date
+				$currentDate = date("Y-m-d\TH:i:s");
+				$sql = 'update '.$this->usertable.' set '.
+					   'lastvisitDate="'.$currentDate.'" '.
+					   'where id='.$row['id'];
+						
+				cpg_db_query($sql, $this->link_id);
+						
+				$pass = $password;
+				$id = $row['id'];
+			}
+		}
+    }
+
 	/** create a guest session */
 	function create_session() {
 	    // alias the Mambo version object
