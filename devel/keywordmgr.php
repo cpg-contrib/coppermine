@@ -47,14 +47,13 @@ if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap']);
    $total_array = array();
 
    while (list($keywords) = mysql_fetch_row($result)) {
-       $array = explode(" ",$keywords);
+       $array = explode(' ',$keywords);
 
        foreach($array as $word)
        {
-         if($word == "." || $word == "" || $word == " " )
-      continue;
+         if ($word == '.' || $word == '' || $word == ' ' ) continue;
          $single_word = $word;
-         $lowercase_word = strtolower($single_word);
+         $lowercase_word = utf_strtolower($single_word);
          $word = <<<EOT
          <td class="tableb">
          <input type="radio" class="radio" name="keywordEdit" value="$lowercase_word" onClick="document.keywordForm.newword.value='$single_word'" id="$lowercase_word" />
@@ -113,7 +112,7 @@ case 'changeword':
            foreach($array_old as $word)
            {
                // convert old to new if its the same word
-               if (strtolower($word) == $keywordEdit) $word = addslashes($_REQUEST['newword']);
+               if (utf_strtolower($word) == $keywordEdit) $word = addslashes($_REQUEST['newword']);
 
                // rebuild array to reprocess it
                $array_new[] = $word;
@@ -146,7 +145,7 @@ case 'delete':
            foreach($array_old as $word)
            {
                // convert old to new if its the same word
-               if (strtolower($word) == $keywordEdit) $word = '';
+               if (utf_strtolower($word) == $keywordEdit) $word = '';
 
                // rebuild array to reprocess it
                $array_new[] = $word;

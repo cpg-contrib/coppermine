@@ -520,13 +520,11 @@ function create_tabs($items, $curr_page, $total_pages, $template)
 
 function make_clickable($text)
 {
-        $ret = " " . $text;
+        $ret = ' '.$text;
         $ret = preg_replace("#([\n ])([a-z]+?)://([a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+]+)#i", "\\1<a href=\"\\2://\\3\" rel=\"external\">\\2://\\3</a>", $ret);
         $ret = preg_replace("#([\n ])www\.([a-z0-9\-]+)\.([a-z0-9\-.\~]+)((?:/[a-z0-9\-\.,\?!%\*_\#:;~\\&$@\/=\+]*)?)#i", "\\1<a href=\"http://www.\\2.\\3\\4\" rel=\"external\">www.\\2.\\3\\4</a>", $ret);
         $ret = preg_replace("#([\n ])([a-z0-9\-_.]+?)@([\w\-]+\.([\w\-\.]+\.)?[\w]+)#i", "\\1<a href=\"mailto:\\2@\\3\">\\2@\\3</a>", $ret);
-        $ret = substr($ret, 1);
-
-        return($ret);
+        return substr($ret, 1);
 }
 
 // Allow the use of a limited set of phpBB bb codes in albums and image descriptions
@@ -824,7 +822,7 @@ function build_caption(&$rowset,$must_have=array())
         }
         if (in_array('msg_body',$must_have)) {
             $msg_body = strip_tags(bb_decode($row['msg_body'])); // I didn't want to fully bb_decode the message where report to admin isn't available. -donnoman
-            $msg_body = strlen($msg_body) > 50 ? @substr($msg_body,0,50)."...": $msg_body;
+            $msg_body = utf_strlen($msg_body) > 50 ? utf_substr($msg_body,0,50).'...': $msg_body;
             if ($CONFIG['enable_smilies']) $msg_body = process_smilies($msg_body);
             if ($row['author_id']) {
                 $caption .= '<span class="thumb_caption"><a href ="profile.php?uid='.$row['author_id'].'">'.$row['msg_author'].'</a>: '.$msg_body.'</span>';
@@ -2859,4 +2857,21 @@ return $str;
 {
     return isset($_POST[$name]) ? $_POST[$name] : $default;
 }*/
+
+function utf_strtolower($str)
+{
+	if (!function_exists('mb_strtolower')) { require 'include/mb.inc.php'; }
+	return mb_strtolower($str);
+}
+function utf_substr($str, $start, $end=null)
+{
+	if (!function_exists('mb_substr')) { require 'include/mb.inc.php'; }
+	return mb_substr($str, $start, $end);
+}
+function utf_strlen($str)
+{
+	if (!function_exists('mb_strlen')) { require 'include/mb.inc.php'; }
+	return mb_strlen($str);
+}
+
 ?>

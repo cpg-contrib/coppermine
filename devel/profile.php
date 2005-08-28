@@ -214,7 +214,7 @@ if (isset($_POST['change_password']) && USER_ID && UDB_INTEGRATION == 'coppermin
     $new_pass = get_post_var('new_pass');
     $new_pass_again = get_post_var('new_pass_again');
 
-    if (strlen($new_pass) < 2) cpg_die(ERROR, $lang_register_php['err_password_short'], __FILE__, __LINE__);
+    if (utf_strlen($new_pass) < 2) cpg_die(ERROR, $lang_register_php['err_password_short'], __FILE__, __LINE__);
     if ($new_pass != $new_pass_again) cpg_die(ERROR, $lang_register_php['err_password_mismatch'], __FILE__, __LINE__);
 
   if ($CONFIG['enable_encrypted_passwords']) {
