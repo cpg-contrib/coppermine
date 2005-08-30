@@ -261,15 +261,8 @@ if (defined('FAQ_PHP')) {
 }
 
 if (defined('FAQ_PHP')) {
-  $lang_faq_data_en = cpg_get_default_lang_var('lang_faq_data','english');
- 
-	foreach ($lang_faq_data as $header => $section){
-		if (is_array($section)){
-			foreach ($section as $question => $answer){
-				if (!isset($lang_faq_data[$header][$question])) $lang_faq_data[$header][$question] = $lang_faq_data_en[$header][$question];
-			}
-		}
-	}
+	$lang_faq_data_en = cpg_get_default_lang_var('lang_faq_data','english');
+	 if (!isset($lang_faq_data)) $lang_faq_data = $lang_faq_data_en;
 }
 
 // ------------------------------------------------------------------------- //
