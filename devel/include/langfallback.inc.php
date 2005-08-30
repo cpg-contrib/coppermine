@@ -515,20 +515,20 @@ if (defined('HITDETAILS_PHP')) {
 // ------------------------------------------------------------------------- //
 
 if (defined('XP_PUBLISH_PHP')) {
-  $lang_xp_publish_php_en = cpg_get_default_lang_var('lang_xp_publish_php','english');
-  $lang_xp_publish_php = array_merge($lang_xp_publish_php_en, $lang_xp_publish_php);
-  $lang_xp_publish_required_en = cpg_get_default_lang_var('lang_xp_publish_required','english');
-  $lang_xp_publish_required = array_merge($lang_xp_publish_required_en, $lang_xp_publish_required);
-  $lang_xp_publish_client_en = cpg_get_default_lang_var('lang_xp_publish_client','english');
-  $lang_xp_publish_client = array_merge($lang_xp_publish_client_en, $lang_xp_publish_client);
-  $lang_xp_publish_select_en = cpg_get_default_lang_var('lang_xp_publish_select','english');
-  $lang_xp_publish_select = array_merge($lang_xp_publish_select_en, $lang_xp_publish_select);
-  $lang_xp_publish_testing_en = cpg_get_default_lang_var('lang_xp_publish_testing','english');
-  $lang_xp_publish_testing = array_merge($lang_xp_publish_testing_en, $lang_xp_publish_testing);
-  $lang_xp_publish_notes_en = cpg_get_default_lang_var('lang_xp_publish_notes','english');
-  $lang_xp_publish_notes = array_merge($lang_xp_publish_notes_en, $lang_xp_publish_notes);
-  $lang_xp_publish_flood_en = cpg_get_default_lang_var('lang_xp_publish_flood','english');
-  $lang_xp_publish_flood = array_merge($lang_xp_publish_flood_en, $lang_xp_publish_flood);
+	$lang_xp_publish_php_en = cpg_get_default_lang_var('lang_xp_publish_php','english');
+	$lang_xp_publish_php = array_merge($lang_xp_publish_php_en, $lang_xp_publish_php);
+	$lang_xp_publish_required_en = cpg_get_default_lang_var('lang_xp_publish_required','english');
+	if (!isset($lang_xp_publish_required)) $lang_xp_publish_required = $lang_xp_publish_required_en;
+	$lang_xp_publish_client_en = cpg_get_default_lang_var('lang_xp_publish_client','english');
+	if (!isset($lang_xp_publish_client)) $lang_xp_publish_client =  $lang_xp_publish_client_en;
+	$lang_xp_publish_select_en = cpg_get_default_lang_var('lang_xp_publish_select','english');
+	if (!isset($lang_xp_publish_select)) $lang_xp_publish_select =  $lang_xp_publish_select_en;
+	$lang_xp_publish_testing_en = cpg_get_default_lang_var('lang_xp_publish_testing','english');
+	if (!isset($lang_xp_publish_testing)) $lang_xp_publish_testing =  $lang_xp_publish_testing_en;
+	$lang_xp_publish_notes_en = cpg_get_default_lang_var('lang_xp_publish_notes','english');
+	if (!isset($lang_xp_publish_notes)) $lang_xp_publish_notes =  $lang_xp_publish_notes_en;
+	$lang_xp_publish_flood_en = cpg_get_default_lang_var('lang_xp_publish_flood','english');
+	if (!isset($lang_xp_publish_flood)) $lang_xp_publish_flood =  $lang_xp_publish_flood_en;
 }
 
 ?>
