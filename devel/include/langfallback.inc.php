@@ -262,7 +262,14 @@ if (defined('FAQ_PHP')) {
 
 if (defined('FAQ_PHP')) {
   $lang_faq_data_en = cpg_get_default_lang_var('lang_faq_data','english');
-  $lang_faq_data = array_merge($lang_faq_data_en, $lang_faq_data);
+ 
+	foreach ($lang_faq_data as $header => $section){
+		if (is_array($section)){
+			foreach ($section as $question => $answer){
+				if (!isset($lang_faq_data[$header][$question])) $lang_faq_data[$header][$question] = $lang_faq_data_en[$header][$question];
+			}
+		}
+	}
 }
 
 // ------------------------------------------------------------------------- //
