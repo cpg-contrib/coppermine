@@ -487,8 +487,7 @@ if (defined('UTIL_PHP')) {
 	$lang_util_php_en = cpg_get_default_lang_var('lang_util_php','english');
 	$lang_util_php = array_merge($lang_util_php_en, $lang_util_php);
 	$lang_util_desc_php_en = cpg_get_default_lang_var('lang_util_desc_php','english');
-	$lang_util_desc_php = array_merge($lang_util_desc_php_en, $lang_util_desc_php);
-	$lang_util_desc_php = array_unique($lang_util_desc_php);    
+	if (!isset($lang_util_desc_php)) $lang_util_desc_php = $lang_util_desc_php;
 }
 
 // ------------------------------------------------------------------------- //
