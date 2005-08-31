@@ -27,7 +27,7 @@ $lang_translation_info = array(
   'trans_name'=> 'Coppermine dev team',
   'trans_email' => '',
   'trans_website' => 'http://coppermine.sourceforge.net/',
-  'trans_date' => '11-01-2005',
+  'trans_date' => '31-08-2005',
 );
 
 $lang_charset = 'iso-8859-1';
@@ -41,7 +41,7 @@ $lastup_date_fmt = '%e %B %Y';
 $register_date_fmt = '%e %B %Y';
 $lasthit_date_fmt = '%e %B %Y at %H:%M';
 $comment_date_fmt =  '%e %B %Y at %H:%M';
-
+$log_date_fmt = '%e %B, %Y at %I:%M %p'; //cpg1.4
 
 $lang_meta_album_names = array(
    'favpics'=> 'Favourite Files',
@@ -120,7 +120,7 @@ if (defined('ADMIN_PHP')) $lang_admin_data = array(
   array('Display number of views below the thumbnail', 'views_in_thumbview', 1, 'f=index.htm&amp;as=admin_thumbnail_display_views&amp;ae=admin_thumbnail_display_views_end'), //cpg1.4
   array('Display number of comments below the thumbnail', 'display_comment_count', 1, 'f=index.htm&amp;as=admin_thumbnail_display_comments&amp;ae=admin_thumbnail_display_comments_end'), //cpg1.4
   array('Display uploader name below the thumbnail', 'display_uploader', 1, 'f=index.htm&amp;as=admin_thumbnail_display_uploader&amp;ae=admin_thumbnail_display_uploader_end'), //cpg1.4
-  array('Display name of admin uploaders below the thumbnail', 'display_admin_uploader', 1, 'f=index.htm&amp;as=admin_thumbnail_display_admin_uploader&amp;ae=admin_thumbnail_display_admin_uploader_end'), //cpg1.4
+  //array('Display name of admin uploaders below the thumbnail', 'display_admin_uploader', 1, 'f=index.htm&amp;as=admin_thumbnail_display_admin_uploader&amp;ae=admin_thumbnail_display_admin_uploader_end'), //cpg1.4
   array('Display file name below the thumbnail', 'display_filename', 1, 'f=index.htm&amp;as=admin_thumbnail_display_filename&amp;ae=admin_thumbnail_display_filename_end'), //cpg1.4
   array('Display album description', 'alb_desc_thumb', 1, 'f=index.htm&amp;as=admin_thumbnail_display_description&amp;ae=admin_thumbnail_display_description_end'), //cpg1.4
   array('Default sort order for files', 'default_sort_order', 3, 'f=index.htm&amp;as=admin_thumbnail_default_sortorder&amp;ae=admin_thumbnail_default_sortorder_end'), //cpg1.4
