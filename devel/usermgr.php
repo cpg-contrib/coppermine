@@ -753,8 +753,8 @@ function update_user($user_id)
     }
     mysql_free_result($result);
 
-    if (strlen($user_name) < 2) cpg_die(ERROR, $lang_register_php['err_uname_short'], __FILE__, __LINE__);
-    if (strlen($user_password) && strlen($user_password) < 2) cpg_die(ERROR, $lang_register_php['err_password_short'], __FILE__, __LINE__);
+    if (utf_strlen($user_name) < 2) cpg_die(ERROR, $lang_register_php['err_uname_short'], __FILE__, __LINE__);
+    if (utf_strlen($user_password) < 2) cpg_die(ERROR, $lang_register_php['err_password_short'], __FILE__, __LINE__);
 
     if (is_array($group_list)) {
         $user_group_list = '';
@@ -777,7 +777,7 @@ function update_user($user_id)
           "user_profile6 = '$profile6', " .
           "user_group_list = '$user_group_list'";
 
-    if (strlen($user_password)) $sql_update .= ", user_password = '".(($CONFIG['enable_encrypted_passwords'])?md5($user_password):$user_password)."'";
+    if (!empty($user_password)) $sql_update .= ", user_password = '".(($CONFIG['enable_encrypted_passwords'])?md5($user_password):$user_password)."'";
     $sql_update .= " WHERE user_id = '$user_id'";
 
     cpg_db_query($sql_update);

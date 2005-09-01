@@ -415,7 +415,7 @@ $source_image_type = $source_image_size_and_type[2];
         // Generate the unique name.
 
         do {
-                $seed = substr(md5(uniqid("")), 0, 8);
+                $seed = substr(md5(uniqid('')), 0, 8);
                 $path_to_preview_image = $preview_image_directory . $prefix . $seed . $suffix;
             } while (file_exists($path_to_preview_image));
 
@@ -747,14 +747,11 @@ if (!isset($_POST['degrees'])) {
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         // We must check the file name for security reasons.
-
-        // Replace forbidden chars with underscores
-        $matches = array();
-        $forbidden_chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>'));
-
-        // Check that the file uploaded has a valid extension
         if (get_magic_quotes_gpc()) $file_name = stripslashes($file_name);
-        $picture_name = strtr($file_name, $forbidden_chars, str_repeat('_', strlen($CONFIG['forbiden_fname_char'])));
+        // Replace forbidden chars with underscores
+		$picture_name = replace_forbidden($file_name);
+        // Check that the file uploaded has a valid extension
+        $matches = array();
         if (!preg_match("/(.+)\.(.*?)\Z/", $picture_name, $matches)){
                 $matches[1] = 'invalid_fname';
                 $matches[2] = 'xxx';
@@ -823,7 +820,7 @@ if (!isset($_POST['degrees'])) {
                 // Generate the unique name.
 
                 do {
-                        $seed = substr(md5(uniqid("")), 0, 8);
+                        $seed = substr(md5(uniqid('')), 0, 8);
                         $path_to_primary_image = $transitory_file_directory . $prefix . $seed . $suffix;
                     } while (file_exists($path_to_primary_image));
 
@@ -868,14 +865,11 @@ if (!isset($_POST['degrees'])) {
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         // We must check the file name for security reasons.
-
-        // Replace forbidden chars with underscores
-        $matches = array();
-        $forbidden_chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>'));
-
-        // Check that the file uploaded has a valid extension
         if (get_magic_quotes_gpc()) $transitory_file_name = stripslashes($transitory_file_name);
-        $picture_name = strtr($transitory_file_name, $forbidden_chars, str_repeat('_', strlen($CONFIG['forbiden_fname_char'])));
+        // Replace forbidden chars with underscores
+		$picture_name = replace_forbidden($transitory_file_name);
+        // Check that the file uploaded has a valid extension
+        $matches = array();
         if (!preg_match("/(.+)\.(.*?)\Z/", $picture_name, $matches)){
                 $matches[1] = 'invalid_fname';
                 $matches[2] = 'xxx';

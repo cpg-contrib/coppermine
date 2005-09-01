@@ -2873,5 +2873,25 @@ function utf_strlen($str)
 	if (!function_exists('mb_strlen')) { require 'include/mb.inc.php'; }
 	return mb_strlen($str);
 }
+function utf_ucfirst($str)
+{
+	if (!function_exists('mb_substr')) { require 'include/mb.inc.php'; }
+	return mb_strtoupper(mb_substr($str, 0, 1)).mb_substr($str, 1);
+}
+
+function replace_forbidden($str)
+{
+	static $forbidden_chars;
+	if (!is_array($forbidden_chars)) {
+		global $CONFIG, $mb_utf8_regex;
+		if (function_exists('html_entity_decode')) {
+			$chars = html_entity_decode($CONFIG['forbiden_fname_char'], ENT_QUOTES, 'UTF-8');
+		} else {
+			$chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>'));
+		}
+		preg_match_all("#$mb_utf8_regex".'|[\x00-\x7F]#', $chars, $forbidden_chars);
+	}
+	return str_replace($forbidden_chars, '_', $str);
+}
 
 ?>

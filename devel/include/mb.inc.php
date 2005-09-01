@@ -28,11 +28,12 @@
 global $mb_uppercase, $mb_lowercase;
 
 function mb_strlen($str) {
-	return preg_match_all('#[\xE1-\xEF][\x80-\xBF][\x80-\xBF]|\xE0[\x9F-\xBF][\x80-\xBF]|[\xC2-\xDF][\x80-\xBF]|[\x00-\x7F]#', $str, $dummy);
+	global $mb_utf8_regex;
+	return preg_match_all("#$mb_utf8_regex".'|[\x00-\x7F]#', $str, $dummy);
 }
 
 function mb_substr($str, $start, $end=null) {
-	preg_match_all('#[\xE1-\xEF][\x80-\xBF][\x80-\xBF]|\xE0[\x9F-\xBF][\x80-\xBF]|[\xC2-\xDF][\x80-\xBF]|[\x00-\x7F]#', $str, $str);
+	preg_match_all("#$mb_utf8_regex".'|[\x00-\x7F]#', $str, $str);
 	$str = array_slice($str, $start, $end);
 	return implode('', $str);
 }
@@ -40,6 +41,11 @@ function mb_substr($str, $start, $end=null) {
 function mb_strtolower($str) {
 	global $mb_uppercase, $mb_lowercase;
 	return str_replace($mb_uppercase, $mb_lowercase, $str);
+}
+
+function mb_strtoupper($str) {
+	global $mb_uppercase, $mb_lowercase;
+	return str_replace($mb_lowercase, $mb_uppercase, $str);
 }
 
 $mb_uppercase = array(

@@ -1109,14 +1109,11 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                     // Initialise the $matches array.
                     $matches = array();
 
-                    // Get the forbidden characters from the Admin console string, and do any necessary translation. Return the translated string.
-                    $forbidden_chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>'));
-
                     // If magic quotes is on, remove the slashes it added to the file name.
                     if (get_magic_quotes_gpc()) $_FILES['file_upload_array']['name'][$counter] = stripslashes($_FILES['file_upload_array']['name'][$counter]);
 
                     // Create the holder $picture_name by translating the file name. Translate any forbidden character into an underscore.
-                    $picture_name = strtr($_FILES['file_upload_array']['name'][$counter], $forbidden_chars, str_repeat('_', strlen($CONFIG['forbiden_fname_char'])));
+                    $picture_name = replace_forbidden($_FILES['file_upload_array']['name'][$counter]);
 
                     // Analyze the file extension using regular expressions.
                     if (!preg_match("/(.+)\.(.*?)\Z/", $picture_name, $matches)) {
@@ -1355,11 +1352,8 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
             // Initialise the $matches array.
             $matches = array();
 
-            // Get the forbidden characters from the Admin console string, and do any necessary translation. Return the translated string.
-            $forbidden_chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>'));
-
             // Create the holder $picture_name by translating the possible file name. Translate any forbidden character into an underscore.
-            $picture_name = strtr($possible_file_name, $forbidden_chars, str_repeat('_', strlen($CONFIG['forbiden_fname_char'])));
+            $picture_name = replace_forbidden($possible_file_name);
 
             // Analyze the file extension using regular expressions.
             if (!preg_match("/(.+)\.(.*?)\Z/", $picture_name, $matches)) {

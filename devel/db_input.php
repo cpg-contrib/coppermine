@@ -318,12 +318,11 @@ switch ($event) {
         }
         // Check that target dir is writable
         if (!is_writable($dest_dir)) cpg_die(CRITICAL_ERROR, sprintf($lang_db_input_php['dest_dir_ro'], $dest_dir), __FILE__, __LINE__, true);
-        // Replace forbidden chars with underscores
-        $matches = array();
-        $forbidden_chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>'));
-        // Check that the file uploaded has a valid extension
         if (get_magic_quotes_gpc()) $_FILES['userpicture']['name'] = stripslashes($_FILES['userpicture']['name']);
-        $picture_name = strtr($_FILES['userpicture']['name'], $forbidden_chars, str_repeat('_', strlen($CONFIG['forbiden_fname_char'])));
+        // Replace forbidden chars with underscores
+		$picture_name = replace_forbidden($_FILES['userpicture']['name']);
+        // Check that the file uploaded has a valid extension
+        $matches = array();
         if (!preg_match("/(.+)\.(.*?)\Z/", $picture_name, $matches)) {
             $matches[1] = 'invalid_fname';
             $matches[2] = 'xxx';

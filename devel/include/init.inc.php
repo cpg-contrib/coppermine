@@ -165,6 +165,7 @@ if(file_exists('include/config.inc.php')){
     </body>
 </html>');
 }
+$mb_utf8_regex = '[\xE1-\xEF][\x80-\xBF][\x80-\xBF]|\xE0[\xA0-\xBF][\x80-\xBF]|[\xC2-\xDF][\x80-\xBF]';
 require 'include/functions.inc.php';
 # see http://php.net/mbstring for details
 if (function_exists('mb_internal_encoding')) { mb_internal_encoding('UTF-8'); }
