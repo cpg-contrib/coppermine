@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /*************************
   Coppermine Photo Gallery
   ************************
@@ -1209,15 +1209,22 @@ if (defined('FORGOT_PASSWD_PHP')) $lang_forgot_passwd_php = array(
   'err_already_logged_in' => 'Du er allerede logget inn!',
   'enter_email' => 'Skriv inn din epostadresse', //cpg1.4
   'submit' => 'OK',
+  'illegal_session' => 'Passordpåminnelsens sesjon er ugyldig eller har utløpt.', //cpg1.4
   'failed_sending_email' => 'Passordpåminnelsen kunne ikke sendes!',
-  'email_sent' => 'En epost med ditt brukernavn og passord ble sendt til %s',
+  'email_sent' => 'En epost med ditt brukernavn og nye passord ble sendt til %s', //cpg1.4
+  'verify_email_sent' => 'En epost har blitt sendt til %s. Sjekk din epost for å fullføre prosessen.', //cpg1.4
   'err_unk_user' => 'Valgte bruker eksisterer ikke!',
-  'passwd_reminder_subject' => '%s - Passordpåminnelse',
-  'passwd_reminder_body' => 'Du har etterspurt en påminnelse av dine innloggingsdata:
+  'account_verify_subject' => '%s - Forespørsel om nytt passord', //cpg1.4
+  'account_verify_body' => 'Du har anmodet om et nytt passord. Om du ønsker å fortsette ved å få et nytt passord tilsendt, klikk på denne linken:
+  
+%s', //cpg1.4
+  'passwd_reset_subject' => '%s - Ditt nye passord', //cpg1.4
+  'passwd_reset_body' => 'Her er det nye passordet du anmodet:
 Brukernavn: %s
 Passord: %s
-Klikk %s for å logge inn.',
+Klikk %s for å logge inn.', //cpg1.4
 );
+
 
 // ------------------------------------------------------------------------- //
 // File groupmgr.php
