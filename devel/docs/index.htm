@@ -299,6 +299,7 @@
 <p>The &quot;<b>theme.php</b>&quot; file contains all the HTML templates used by the script. You can also edit them. When making modifications to these templates, don't touch the lines with <i>&lt;!-- BEGIN xxx --&gt;</i> and <i>&lt;!-- END xxx --&gt;</i>.</p>
 <p>If you're not sure how to create your own theme, you could also have a look at the download section of the coppermine homepage: there are tons of <a href="http://sourceforge.net/project/showfiles.php?group_id=89658&amp;package_id=98541">user-contributed themes</a> available for download that can be previewed on the <a href="http://coppermine.sourceforge.net/demo/">coppermine demo page</a>.</p>
 <p>While you're in the process of creating a new theme, you might not want to show the theme to the visitors of your page, but you (as coppermine admin) want to be able to preview your theme. To do that, simply add <tt class="code">theme=your_theme_name</tt> to the url in your browser.</p>
+<br />
 <b>Examples:</b>
 <ul>
 <li><tt class="code">http://yoursite.tld/coppermine/index.php?theme=your_theme_name</tt> will show the coppermine index page, using your theme</li>
@@ -518,7 +519,7 @@ the main page of the script.</p>
       <dt>Delete file titles.</dt>
       <dd>Use this to clear the file titles from one or more albums.</dd>
       <dt>View your server php info.</dt>
-      <dd>If you are having problems, it is sometimes caused by server setup.  Clicking this link will provide you with all your php and mySQL settings, as well as on the GD library (if installed).  This may be needed by the support team, if you are unable to sort problems yourself.<br />It is not possible for visitors to your site to browse to this information, so if asked for it, copy and paste it to the support board.</dd>
+      <dd><p>If you are having problems, it is sometimes caused by server setup.  Clicking this link will provide you with all your php and mySQL settings, as well as on the GD library (if installed).  This may be needed by the support team, if you are unable to sort problems yourself.</p><p>It is not possible for visitors to your site to browse to this information, so if asked for it, copy and paste it to the support board.</p></dd>
       <dt>Run a database update (update.php).</dt>
       <dd>After an update/upgrade, it is usually necessary to run update.php.  This can be done by typing the address directly into your browser, or by clicking this link.<a name="admin_tools_end"></a></dd>
           </dl>
@@ -626,7 +627,7 @@ src="pics/edit.gif" width="16" height="16" alt="" /> button. </p>
 <li><b>Click on the text input filed at the bottom of the screen</b>, highlighting the default name &quot;New album&quot;</li>
 <li><b>Type the album name you want to assign</b></li>
 <li>(repeat steps 2 to 4 to add more than one album)</li>
-<li><b>click &quot;Apply modifications&quot;</b> to submit your changes to the database (if you don't, all changes will be lost)</li>
+<li><b>Click &quot;Apply modifications&quot;</b> to submit your changes to the database (if you don't, all changes will be lost)</li>
 <li><b>Confirm the alert box with &quot;OK&quot;</b> (<i>Are you sure you want to make these modifications ?</i>)</li>
 </ul>
 <h3><a name="albmgr_rename"></a>4.6.2 Renaming albums</h3>
@@ -635,7 +636,7 @@ src="pics/edit.gif" width="16" height="16" alt="" /> button. </p>
 <li><b>Click on the album you want to change</b></li>
 <li><b>Click on the text input filed at the bottom of the screen</b>, highlighting the album name</li>
 <li><b>Type the album name you want to assign</b></li>
-<li><b>click &quot;Apply modifications&quot;</b></li>
+<li><b>Click &quot;Apply modifications&quot;</b></li>
 <li><b>Confirm the alert box with &quot;OK&quot;</b> (<i>Are you sure you want to make these modifications ?</i>)</li>
 </ul>
 <h3><a name="albmgr_order"></a>4.6.3 Changing the album order</h3>
@@ -643,7 +644,7 @@ src="pics/edit.gif" width="16" height="16" alt="" /> button. </p>
 <li><b>Choose a category from the dropdown list</b></li>
 <li><b>Click on the album you want to move up or down in the list</b></li>
 <li><b>Use the arrow buttons to move the album up<img src="../images/move_up.gif" width="26" height="21" border="0" alt="" title="move the album up" /> or down<img src="../images/move_down.gif" width="26" height="21" border="0" alt="" title="move the album down" /></b></li>
-<li><b>click &quot;Apply modifications&quot;</b></li>
+<li><b>Click &quot;Apply modifications&quot;</b></li>
 <li><b>Confirm the alert box with &quot;OK&quot;</b> (<i>Are you sure you want to make these modifications ?</i>)</li>
 </ul>
 <h3><a name="albmgr_delete"></a>4.3.4 Deleting albums</h3>
@@ -652,7 +653,7 @@ src="pics/edit.gif" width="16" height="16" alt="" /> button. </p>
 <li><b>Click on the album you want to delete</b></li>
 <li><b>Click the &quot;Delete&quot; button</b></li>
 <li><b>Confirm the alert box with &quot;OK&quot;</b> (<i>Are you sure you want to delete this album ? All files and comments it contains will be lost !</i>)</li>
-<li><b>click &quot;Apply modifications&quot;</b></li>
+<li><b>Click &quot;Apply modifications&quot;</b></li>
 <li><b>Confirm the alert box with &quot;OK&quot;</b> (<i>Are you sure you want to make these modifications ?</i>)</li>
 </ul>
 <a name="albmgr_end"></a>
@@ -682,8 +683,8 @@ src="pics/edit.gif" width="16" height="16" alt="" /> button. </p>
 <p>The <b>Album Keyword</b> is <i>not</i> being used for searching purposes, but to display images from other album into this album. Using this method, files/images can be in various albums while the file itself only exists once on your webserver: you upload a file to one album and assign one or more keywords to it. Then you go to another album's properties and add the keywords you assigned to the file to the second album's &quot;Album keywords&quot; field. For the visitor of this album it will appear as if the file/image existed in both albums. </p>
 <a name="album_prop_keyword_end"></a>
 <a name="album_prop_password_start"></a>
-<p><b>Album Password</b>: you can specify an album to be password-protected (instead of relying on the "regular" group-based permissions). This way, you can even allow acces for unlogged users (guests) who know the password. Use this option to set up an album for your family members only by specifying a password only they can know with an additional password hint (e.g. "<i>What was the maiden name of aunt Emma?</i>"), or you could decide to send the particular password only to some friends by email. The optional <b>password hint</b> will be displayed at the password prompt when set.<br />
-Note: when setting an album password, the permission dropdown field "<i>Album can be viewed by</i>" will be switched automatically to "<i>me only</i>" - this is expected behaviour. If you change the "<i>Album can be viewed by</i>" back to something else, you have to disable the album password as well.</p>
+<p><b>Album Password</b>: you can specify an album to be password-protected (instead of relying on the "regular" group-based permissions). This way, you can even allow acces for unlogged users (guests) who know the password. Use this option to set up an album for your family members only by specifying a password only they can know with an additional password hint (e.g. "<i>What was the maiden name of aunt Emma?</i>"), or you could decide to send the particular password only to some friends by email. The optional <b>password hint</b> will be displayed at the password prompt when set.</p>
+<p>Note: when setting an album password, the permission dropdown field "<i>Album can be viewed by</i>" will be switched automatically to "<i>me only</i>" - this is expected behaviour. If you change the "<i>Album can be viewed by</i>" back to something else, you have to disable the album password as well.</p>
 <a name="album_prop_password_end"></a>
 
 <a name="album_prop_reset_start"></a>
@@ -924,8 +925,8 @@ You can toggle this option on the <a href="#batch_add_pics">batch-add</a> page a
 <a name="vanity_block_end"></a>
 <a name="admin_theme_include_path_start"></a>
 <h4>Path to custom header include</h4>
-<p>Optional relative path to a custom header file. Using this option, you can include non-coppermine code bits to be included into your theme, e.g. an overall navigation that gets included on your whole website. You can only add a relative path (seen from the root path of your coppermine install) - not an absolute one, nor a http include from another website. This option is only meant for experienced users who have some PHP know-how. <br />
-<span class="important">Warning: you mustn't include full html pages that contain an html header or footer (tags like <tt class="code">&lt;head&gt;</tt> or <tt class="code">&lt;body&gt;</tt>), nor can the included file do file header manipulation, e.g. reading another (non-coppermine) cookie.</span></p>
+<p>Optional relative path to a custom header file. Using this option, you can include non-coppermine code bits to be included into your theme, e.g. an overall navigation that gets included on your whole website. You can only add a relative path (seen from the root path of your coppermine install) - not an absolute one, nor a http include from another website. This option is only meant for experienced users who have some PHP know-how. </p>
+<p><span class="important">Warning: you mustn't include full html pages that contain an html header or footer (tags like <tt class="code">&lt;head&gt;</tt> or <tt class="code">&lt;body&gt;</tt>), nor can the included file do file header manipulation, e.g. reading another (non-coppermine) cookie.</span></p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <h4>Path to custom footer include</h4>
 <p>Optional relative path to a custom footer file. The same remarks apply as for the custom header include path.</p>
@@ -1372,7 +1373,7 @@ address. Recommended setting is NO. This option is considered as deprecated and 
 <h4>4.12.13 Cookie settings</h4>
 <a name="admin_cookie_name"></a>
 <h4>Name of the cookie used by coppermine</h4>
-<p>Default value is &quot;cpg140&quot;. Even if you have multiple instances of the script running on the same server you can keep the default value.<br /><span class="important">When using bbs integration, make sure it <b>differs</b> from the bbs's cookie name</span></p>
+<p>Default value is &quot;cpg140&quot;. Even if you have multiple instances of the script running on the same server you can keep the default value.</p><p><span class="important">When using bbs integration, make sure it <b>differs</b> from the bbs's cookie name</span></p>
 <a name="admin_cookie_name_end"></a>
 <a name="admin_cookie_path"></a>
 <h4>Path of the cookie used by the script</h4>
@@ -1458,7 +1459,8 @@ All log files are written in english</p>
 <a name="debug_mode_end"></a>
 
 <a name="admin_general_offline"></a><h4>Gallery is offline</h4>
-<p>If you have to do maintenance work to do on your gallery, switch it to offline mode. Only members of the admin group will be able to log in, all other users will only see &quot;Gallery is offline&quot;. Remember to switch this option off once your maintenance work is done.</p>
+<p>If you have to do maintenance work on your gallery, switch it to offline mode. Only members of the admin group will be able to log in, all other users will only see &quot;Gallery is offline&quot;. Remember to switch this option off once your maintenance work is done.</p>
+<p>Do not log out while gallery is offline or you will not be able to log in as admin to put the gallery back online.</p>
 <p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_general_offline_end"></a>
 
