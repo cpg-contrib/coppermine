@@ -449,7 +449,7 @@ function list_albums()
     $sql = "SELECT a.aid, count( p.pid )  AS pic_count, max( p.pid )  AS last_pid, max( p.ctime )  AS last_upload, a.keyword" .
             " FROM {$CONFIG['TABLE_ALBUMS']} AS a " .
             " LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON a.aid = p.aid AND p.approved =  'YES' ".
-            "WHERE a.aid IN $album_set" . "GROUP BY p.aid";
+            "WHERE a.aid IN $album_set" . "GROUP BY a.aid";
 
     $alb_stats_q = cpg_db_query($sql);
     $alb_stats = cpg_db_fetch_rowset($alb_stats_q);
@@ -614,7 +614,7 @@ function list_cat_albums($cat = 0)
     $sql = "SELECT a.aid, count( p.pid )  AS pic_count, max( p.pid )  AS last_pid, max( p.ctime )  AS last_upload, a.keyword" .
             " FROM {$CONFIG['TABLE_ALBUMS']} AS a " .
             " LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON a.aid = p.aid AND p.approved =  'YES' ".
-            "WHERE a.aid IN $album_set" . "GROUP BY p.aid";
+            "WHERE a.aid IN $album_set" . "GROUP BY a.aid";
     $alb_stats_q = cpg_db_query($sql);
     $alb_stats = cpg_db_fetch_rowset($alb_stats_q);
     mysql_free_result($alb_stats_q);
