@@ -330,7 +330,8 @@ function cpg_die($msg_code, $msg_text,  $error_file, $error_line, $output_buffer
         );
 
         if (!($CONFIG['debug_mode'] == 1 || ($CONFIG['debug_mode'] == 2 && GALLERY_ADMIN_MODE))) template_extract_block($template_cpg_die, 'file_line');
-        if(!$output_buffer && !$CONFIG['debug_mode']) template_extract_block($template_cpg_die, 'output_buffer');
+        //if(!$output_buffer && !$CONFIG['debug_mode'])
+        template_extract_block($template_cpg_die, 'output_buffer');
 
         pageheader($lang_cpg_die[$msg_code]);
         starttable(-1, $lang_cpg_die[$msg_code]);echo "<!-- cpg_die -->";
@@ -2860,38 +2861,38 @@ return $str;
 
 function utf_strtolower($str)
 {
-	if (!function_exists('mb_strtolower')) { require 'include/mb.inc.php'; }
-	return mb_strtolower($str);
+  if (!function_exists('mb_strtolower')) { require 'include/mb.inc.php'; }
+  return mb_strtolower($str);
 }
 function utf_substr($str, $start, $end=null)
 {
-	if (!function_exists('mb_substr')) { require 'include/mb.inc.php'; }
-	return mb_substr($str, $start, $end);
+  if (!function_exists('mb_substr')) { require 'include/mb.inc.php'; }
+  return mb_substr($str, $start, $end);
 }
 function utf_strlen($str)
 {
-	if (!function_exists('mb_strlen')) { require 'include/mb.inc.php'; }
-	return mb_strlen($str);
+  if (!function_exists('mb_strlen')) { require 'include/mb.inc.php'; }
+  return mb_strlen($str);
 }
 function utf_ucfirst($str)
 {
-	if (!function_exists('mb_substr')) { require 'include/mb.inc.php'; }
-	return mb_strtoupper(mb_substr($str, 0, 1)).mb_substr($str, 1);
+  if (!function_exists('mb_substr')) { require 'include/mb.inc.php'; }
+  return mb_strtoupper(mb_substr($str, 0, 1)).mb_substr($str, 1);
 }
 
 function replace_forbidden($str)
 {
-	static $forbidden_chars;
-	if (!is_array($forbidden_chars)) {
-		global $CONFIG, $mb_utf8_regex;
-		if (function_exists('html_entity_decode')) {
-			$chars = html_entity_decode($CONFIG['forbiden_fname_char'], ENT_QUOTES, 'UTF-8');
-		} else {
-			$chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>'));
-		}
-		preg_match_all("#$mb_utf8_regex".'|[\x00-\x7F]#', $chars, $forbidden_chars);
-	}
-	return str_replace($forbidden_chars, '_', $str);
+  static $forbidden_chars;
+  if (!is_array($forbidden_chars)) {
+    global $CONFIG, $mb_utf8_regex;
+    if (function_exists('html_entity_decode')) {
+      $chars = html_entity_decode($CONFIG['forbiden_fname_char'], ENT_QUOTES, 'UTF-8');
+    } else {
+      $chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>'));
+    }
+    preg_match_all("#$mb_utf8_regex".'|[\x00-\x7F]#', $chars, $forbidden_chars);
+  }
+  return str_replace($forbidden_chars, '_', $str);
 }
 
 ?>
