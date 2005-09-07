@@ -295,3 +295,5 @@ Fixed mulitple keywords getting filtered out from iptc on upload - 07 Aug 2005, 
 Changed Upload title to be iptc headline if iptc title isn't available - 07 Aug 2005, Donnoman
 Fixed hardwired. 11 Aug 2005, Donnoman
 Added Galician language support (user contribution) - 12 August 2005, GauGau
+Fixed minor bugs in italian translations - 12 August 2005, GauGau
+Fixed email validation routine for ecards - 12 August 2005, GauGau
