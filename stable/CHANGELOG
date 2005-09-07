@@ -140,6 +140,7 @@ Fixed omission about privacy settings in french language file - 04 July 2005, Ga
 Fixed typos in finnish language file - 05 July 2005, GauGau
 Added Galician language support (user contribution) - 12 August 2005, GauGau
 Fixed XSS vulnerability for EXIF data in displayimage.php
+Increased version count from 1.3.3 to 1.3.4 - GauGau
 Fixed minor bugs in italian translations - 12 August 2005, GauGau
 Fixed single quote bug for iptc - 07 September 2005, GauGau
 Fixed email validation routine for ecards - 12 August 2005, GauGau
