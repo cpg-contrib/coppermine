@@ -1316,12 +1316,21 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     foreach($thumb_list as $thumb) {
         $i++;
         if ($mode == 'thumb') {
-            $params = array('{CELL_WIDTH}' => $cell_width,
-                '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&pos={$thumb['pos']}",
-                '{THUMB}' => $thumb['image'],
-                '{CAPTION}' => $thumb['caption'],
-                '{ADMIN_MENU}' => $thumb['admin_menu']
-                );
+            if ($aid == 'lastalb') {
+                $params = array('{CELL_WIDTH}' => $cell_width,
+                    '{LINK_TGT}' => "thumbnails.php?album={$thumb['aid']}",
+                    '{THUMB}' => $thumb['image'],
+                    '{CAPTION}' => $thumb['caption'],
+                    '{ADMIN_MENU}' => $thumb['admin_menu']
+                    );
+            } else {
+                $params = array('{CELL_WIDTH}' => $cell_width,
+                    '{LINK_TGT}' => "displayimage.php?album=$aid$cat_link&pos={$thumb['pos']}",
+                    '{THUMB}' => $thumb['image'],
+                    '{CAPTION}' => $thumb['caption'],
+                    '{ADMIN_MENU}' => $thumb['admin_menu']
+                    );
+            }
         } else {
             $params = array('{CELL_WIDTH}' => $cell_width,
                 '{LINK_TGT}' => "index.php?cat={$thumb['cat']}",
