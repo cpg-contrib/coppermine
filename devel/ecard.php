@@ -65,7 +65,7 @@ $pic_caption = bb_decode($row['caption']);
 if (!is_image($row['filename'])) cpg_die(ERROR, $lang_ecard_php['error_not_image'], __FILE__, __LINE__);
 
 // Check supplied email address
-$valid_email_pattern = "^[_\.0-9a-z\-]+@([0-9a-z][0-9a-z-]+\.)+[a-z]{2,6}$";
+$valid_email_pattern = "^[_\.0-9a-z\-]+@([0-9a-z][0-9a-z-]*\.)+[a-z]{2,6}$";
 $valid_sender_email = eregi($valid_email_pattern, $sender_email);
 $valid_recipient_email = eregi($valid_email_pattern, $recipient_email);
 $invalid_email = '<font size="1">' . $lang_ecard_php['invalid_email'] . ' (' . $recipient_email . ')</font>';
