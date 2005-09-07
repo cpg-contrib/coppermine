@@ -1,6 +1,6 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.3.4                                            //
 // ------------------------------------------------------------------------- //
 // Copyright (C) 2002,2003 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
@@ -371,6 +371,9 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
   'title_d' => 'Titolo decrescente',
   'date_a' => 'Data crescente',
   'date_d' => 'Data decrescente',
+  'th_any' => 'Dimensione maggiore',
+  'th_ht' => 'Altezza',
+  'th_wd' => 'Larghezza',
   'label' => 'etichetta', //cpg1.3.0
   'item' => 'elemento', //cpg1.3.0
   'debug_everyone' => 'Tutti', //cpg1.3.0

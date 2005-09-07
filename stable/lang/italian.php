@@ -1,6 +1,6 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
+// Coppermine Photo Gallery 1.3.4                                            //
 // ------------------------------------------------------------------------- //
 // Copyright (C) 2002,2003 Gregory DEMAR                                     //
 //  http://www.chezgreg.net/coppermine/                                      //
@@ -21,9 +21,9 @@
 
 // info about translators and translated language
 $lang_translation_info = array(
-'lang_name_english' => 'Italian',  
-'lang_name_native' => 'Italiano', 
-'lang_country_code' => 'it', 
+'lang_name_english' => 'Italian',
+'lang_name_native' => 'Italiano',
+'lang_country_code' => 'it',
 'trans_name'=> 'ralf57 (CPG 1.1)', //the name of the translator - can be a nickname
 'trans_email' => 'greatkingrat@katamail.com', //translator's email address (optional)
 'trans_website' => 'http://www.madeinbanzi.it/', //translator's website (optional)
@@ -314,13 +314,13 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
-  'alb_need_name' => 'Ogni album deve avere un nome !',
-  'confirm_modifs' => 'Applico davvero le modifiche?',
-  'no_change' => 'Non hai fatto alcuna modifica !',
+  'alb_need_name' => 'Ogni album deve avere un nome !',	 //js-alert
+  'confirm_modifs' => 'Applico davvero le modifiche?', //js-alert
+  'no_change' => 'Non hai fatto alcuna modifica !', //js-alert
   'new_album' => 'Nuovo album',
-  'confirm_delete1' => 'Cancello davvero questo album ?',
-  'confirm_delete2' => '\nTutte le immagini ed i commenti andranno persi !',
-  'select_first' => 'Prima scegli un album',
+  'confirm_delete1' => 'Cancello davvero questo album ?', //js-alert
+  'confirm_delete2' => '\nTutte le immagini ed i commenti andranno persi !', //js-alert
+  'select_first' => 'Prima scegli un album', //js-alert
   'alb_mrg' => 'Album Manager',
   'my_gallery' => '* Galleria personale *',
   'no_category' => '* Nessuna categoria *',
@@ -339,7 +339,7 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
   'unknown_cat' => 'La categoria scelta non è nel database',
   'usergal_cat_ro' => 'La categoria delle gallerie personali non può essere cancellata !',
   'manage_cat' => 'Gestisci categorie',
-  'confirm_delete' => 'Vuoi davvero cancellare questa categoria?',
+  'confirm_delete' => 'Vuoi davvero cancellare questa categoria?', //js-alert
   'category' => 'Categoria',
   'operations' => 'Operazioni',
   'move_into' => 'Sposta in',
@@ -596,7 +596,7 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 if (defined('DISPLAYIMAGE_PHP')){
 
 $lang_display_image_php = array(
-  'confirm_del' => 'Vuoi davvero cancellare questa immagine? \\nI commenti andranno persi.',
+  'confirm_del' => 'Vuoi davvero cancellare questa immagine? \\nI commenti andranno persi.', //js-alert
   'del_pic' => 'CANCELLA QUESTA IMMAGINE',
   'size' => '%s x %s pixels',
   'views' => '%s volte',
@@ -635,7 +635,7 @@ $lang_picinfo = array(
 $lang_display_comments = array(
   'OK' => 'OK',
   'edit_title' => 'Edita questo commento',
-  'confirm_delete' => 'Vuoi davvero cancellare questo commento?',
+  'confirm_delete' => 'Vuoi davvero cancellare questo commento?', //js-alert
   'add_your_comment' => 'Aggiungi il tuo commento',
   'name'=>'Nome',
   'comment'=>'Commento',
@@ -700,7 +700,7 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'preview' => 'Anteprima',
   'save' => 'Salva immagine',
   'save_thumb' =>'Salva come miniatura',
-  'sel_on_img' =>'La selezione deve essere tutta interna all\'immagine!', //js-alert
+  'sel_on_img' =>'La selezione deve essere tutta interna all\\\'immagine!', //js-alert
 );
 
 // ------------------------------------------------------------------------- //
@@ -726,7 +726,7 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   array('Come voto un\'immagine?', 'Clicca sulla miniatura, vai al fondo della pagina e scegli un voto.', 'offline', 0), //cpg1.3.0
   array('Come inserisco un commento su un\'immagine?', 'Clicca su una miniatura, vai in fondo alla pagina ed inserisci il commento.', 'offline', 0), //cpg1.3.0
   array('Come inserisco un\'immagine?', 'Vai alla sezione &quot;Aggiungi Immagine&quot;, seleziona l\'album in cui vuoi inserirla, clicca &quot;Browse&quot; e cerca l\'immagine da inserire, clicca su &quot;Apri&quot; (aggiungi un titolo e una descrizione se lo desideri) e infine clicca su &quot;Upload immagine&quot;', 'allow_private_albums', 0), //cpg1.3.0
-  
+
   array('Dove inserisco un\'immagine?', 'Puoi inserire immagini in uno dei tuoi album della &quot;Galleria personale&quot;. L\'amministratore può inoltre consentirti di inserire immagini in uno o più album della Galleria Principale.', 'allow_private_albums', 0), //cpg1.3.0
   array('Che tipo di immagine e di che dimensione posso inserire?', 'La dimensione ed il tipo (jpg, gif, ecc.) sono inmpostati dall\'amministratore.', 'offline', 0), //cpg1.3.0
   array('Cos\'è la &quot;Galleria personale&quot;?', 'La &quot;Galleria personale&quot; è una galleria in cui ogni utente può inserire le proprie immagini e gestirle.', 'allow_private_albums', 0), //cpg1.3.0
@@ -782,7 +782,7 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
   'apply' => 'Applica modifiche',
   'create_new_group' => 'Crea nuovo gruppo',
   'del_groups' => 'Cancella gruppi selezionati',
-  'confirm_del' => 'Attento, gli utenti saranno trasferiti nel gruppo degli Utenti registrati - Vuoi proseguire?',
+  'confirm_del' => 'Attento, gli utenti saranno trasferiti nel gruppo degli Utenti registrati - Vuoi proseguire?', //js-alert
   'title' => 'Gestisci gruppi utenti',
   'approval_1' => 'Approvazione Pub. Upl.  (1)',
   'approval_2' => 'Approvazione Priv. Upl.  (2)',
@@ -807,7 +807,7 @@ $lang_index_php = array(
 );
 
 $lang_album_admin_menu = array(
-  'confirm_delete' => 'Vuoi davvero cancellare quest\'album ? \\nTutte le immagini ed i commenti andranno persi.',
+  'confirm_delete' => 'Vuoi davvero cancellare quest\\\'album ? \\nTutte le immagini ed i commenti andranno persi.',	//js-alert
   'delete' => 'CANCELLA',
   'modify' => 'PROPRIETA\'',
   'edit_pics' => 'EDITA IMMAGINI',
@@ -1195,7 +1195,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
   'registered_on' => 'Registrato il',
   'last_visit' => 'Ultima Visita',
   'u_user_on_p_pages' => '%d utenti in %d pagine',
-  'confirm_del' => 'Vuoi davvero cancellare questo utente ? \\nTutte le sue immagini ed i suoi album andranno persi.',
+  'confirm_del' => 'Vuoi davvero cancellare questo utente ? \\nTutte le sue immagini ed i suoi album andranno persi.', //js-alert
   'mail' => 'MAIL',
   'err_unknown_user' => 'Utente selezionato inesistente !',
   'modify_user' => 'Modifica utente',
