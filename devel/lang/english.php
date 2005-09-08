@@ -300,7 +300,7 @@ $lang_theme_selection = array(
 
 $lang_version_alert = array(
   'version_alert' => 'Unsupported version!', //cpg1.4
-  'no_stable_version' => 'You are running Coppermine  %s (%s) which is only meant for very experienced users - this version comes without support nor any warranties. Use it at your own risk or downgrade to the latest stable version if you need support!', //cpg1.4
+  'no_stable_version' => 'You are running Coppermine %s (%s) which is only meant for very experienced users - this version comes without support nor any warranties. Use it at your own risk or downgrade to the latest stable version if you need support!', //cpg1.4
   'gallery_offline' => 'The gallery is currently offline and will be only visible for you as admin. Don\'t forget to switch it back online after finishing maintenance.', //cpg1.4
 );
 
@@ -1216,7 +1216,7 @@ if (defined('FORGOT_PASSWD_PHP')) $lang_forgot_passwd_php = array(
   'err_unk_user' => 'Selected user does not exist!',
   'account_verify_subject' => '%s - New password request', //cpg1.4
   'account_verify_body' => 'You have requested to a new password. If you would like to proceed with having a new password sent to you, click on the following link:
-  
+
 %s', //cpg1.4
   'passwd_reset_subject' => '%s - Your New Password', //cpg1.4
   'passwd_reset_body' => 'Here is the new password you requested:
