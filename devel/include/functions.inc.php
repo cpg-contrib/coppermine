@@ -2468,7 +2468,7 @@ switch ($parameter) {
        foreach ($lang_array as $language) {
        $cpg_language_name = str_replace('-utf-8','', $language);
               if (array_key_exists($cpg_language_name, $lang_language_data)){
-              $return.= $lineBreak .  '<a href="' .$cpgChangeUrl. $language . '"><img src="images/flags/' . $lang_language_data[$cpg_language_name][2] . '.gif" border="0" width="16" height="10" alt="" title="';
+              $return.= $lineBreak .  '<a href="' .$cpgChangeUrl. $language . '" rel="nofollow"><img src="images/flags/' . $lang_language_data[$cpg_language_name][2] . '.gif" border="0" width="16" height="10" alt="" title="';
               $return.= $lang_language_data[$language][0];
               if ($lang_language_data[$language][1] != $lang_language_data[$language][0]){
                   $return.= ' (' . $lang_language_data[$language][1] . ')';
@@ -2477,7 +2477,7 @@ switch ($parameter) {
               }
               }
           if ($CONFIG['language_reset'] == 1){
-              $return.=  '<a href="' .$cpgChangeUrl. 'xxx"><img src="images/flags/reset.gif" border="0" width="16" height="11" alt="" title="';
+              $return.=  '<a href="' .$cpgChangeUrl. 'xxx" rel="nofollow"><img src="images/flags/reset.gif" border="0" width="16" height="11" alt="" title="';
               $return.=  $lang_language_selection['reset_language'] . '" /></a>' . $lineBreak;
           }
        break;
