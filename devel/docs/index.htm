@@ -136,8 +136,14 @@
                         <li class="level3"><a href="#admin_logging">4.12.15 Logging &amp; statistics</a></li>
                         <li class="level3"><a href="#admin_misc">4.12.16 Miscellaneous settings</a></li>
                 </ul>
-<ul class="level1">
+        <ul class="level2">
+            <li class="level2"><a href="#exif" class="menu2">4.13 EXIF data</a></li>
+        </ul>
+                <ul class="level3">
+                        <li class="level3"><a href="#exif_manager">4.13.1 The EXIF manager</a></li>
+                </ul>
 
+<ul class="level1">
         <li class="level1"><a href="#integrating" class="menu1">5. Integrating the script with your bulletin board</a></li>
 </ul>
         <ul class="level2">
@@ -1463,6 +1469,21 @@ All log files are written in english</p>
 <p>Do not log out while gallery is offline or you will not be able to log in as admin to put the gallery back online.</p>
 <p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_general_offline_end"></a>
+
+<p><a class="back" href="#top">Back to top</a></p><hr />
+
+<a name="exif"></a>
+<h2>4.12 EXIF data</h2>
+<p>The &quot;Exchangeable image file&quot; format (Exif) is a specification for the image file format used by digital cameras with the addition of specific metadata tags. The meta data are written by the camera and can be post-processed using certain desktop applications. Coppermine is capable of displaying some of the EXIF data within the pic info section, like date and time information, camera settings, location information, descriptions and copyright information.<br />
+<img src="pics/exif_data_cpg1.4.x.jpg" width="400" height="202" border="0" alt="Exif data in pic info section" />
+</p>
+
+<a name="exif_manager"></a>
+<h2>4.12.1 EXIF manager</h2>
+<p><img src="pics/exifmanager_cpg1.4.x.gif" width="600" height="439" border="0" alt="" align="right" />CPG1.4.x (or better) comes with an EXIF manager that let's the coppermine admin decide what EXIF data should be displayed within coppermine. Please note: if the exif data don't exist within a particular image, coppermine will of course not be able to display them. Coppermine is not an editor for exif data - it just displays the exif data that exists in your pics.<br />
+To access the exif manager, go to coppermine's config and click within the section <a href="#admin_picture_thumb_advanced">Files and thumbnails advanced settings</a> at &quot;Manage exif display&quot; next to the line &quot;<a href="#admin_picture_thumb_advanced_exif">Read EXIF data in JPEG files</a>&quot;. Alternatively, you can directly enter http://yoursite.tld/your_coppermine_folder/exifmgr.php into your browser's address bar.</p>
+<p>Tick the checkboxes in the exif manager that you want to show up in coppermine's pic info section (if the image file actually holds this particular set of information).</p>
+<br clear="all" />
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
