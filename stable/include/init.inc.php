@@ -120,7 +120,7 @@ function cpgGetMicroTime()
 }
 $time_start = cpgGetMicroTime();
 // Do some cleanup in GET, POST and cookie data and un-register global vars
-$HTML_SUBST = array('"' => '&quot;', '<' => '&lt;', '>' => '&gt;');
+$HTML_SUBST = array('&' => '&amp;', '"' => '&quot;', '<' => '&lt;', '>' => '&gt;', '%26' => '&amp;', '%22' => '&quot;', '%3C' => '&lt;', '%3E' => '&gt;');
 if (get_magic_quotes_gpc()) {
     if (is_array($HTTP_POST_VARS)) {
         foreach ($HTTP_POST_VARS as $key => $value) {
@@ -132,7 +132,19 @@ if (get_magic_quotes_gpc()) {
 
     if (is_array($HTTP_GET_VARS)) {
         foreach ($HTTP_GET_VARS as $key => $value) {
-            $HTTP_GET_VARS[$key] = strtr(stripslashes($value), $HTML_SUBST);
+            unset($HTTP_GET_VARS[$key]);
+            $HTTP_GET_VARS[strtr(stripslashes($key), $HTML_SUBST)] = strtr(stripslashes($value), $HTML_SUBST);
+            if (isset($$key)) unset($$key);
+        }
+    }
+
+    /**
+     * Sanitize $_GET also, as we have used it in many places
+     */
+    if (is_array($_GET)) {
+        foreach ($_GET as $key => $value) {
+            unset($_GET[$key]);
+            $_GET[strtr(stripslashes($key), $HTML_SUBST)] = strtr(stripslashes($value), $HTML_SUBST);
             if (isset($$key)) unset($$key);
         }
     }
@@ -155,7 +167,19 @@ if (get_magic_quotes_gpc()) {
 
     if (is_array($HTTP_GET_VARS)) {
         foreach ($HTTP_GET_VARS as $key => $value) {
-            $HTTP_GET_VARS[$key] = strtr($value, $HTML_SUBST);
+            unset($HTTP_GET_VARS[$key]);
+            $HTTP_GET_VARS[strtr(stripslashes($key), $HTML_SUBST)] = strtr(stripslashes($value), $HTML_SUBST);
+            if (isset($$key)) unset($$key);
+        }
+    }
+
+    /**
+     * Sanitize $_GET also, as we have used it in many places
+     */
+    if (is_array($_GET)) {
+        foreach ($_GET as $key => $value) {
+            unset($_GET[$key]);
+            $_GET[strtr(stripslashes($key), $HTML_SUBST)] = strtr(stripslashes($value), $HTML_SUBST);
             if (isset($$key)) unset($$key);
         }
     }
