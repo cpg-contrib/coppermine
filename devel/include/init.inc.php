@@ -37,7 +37,7 @@ function cpgGetMicroTime()
 }
 $cpg_time_start = cpgGetMicroTime();
 // Do some cleanup in GET, POST and cookie data and un-register global vars
-$HTML_SUBST = array('&' => '&amp;', '"' => '&quot;', '<' => '&lt;', '>' => '&gt;');
+$HTML_SUBST = array('&' => '&amp;', '"' => '&quot;', '<' => '&lt;', '>' => '&gt;', '%26' => '&amp;', '%22' => '&quot;', '%3C' => '&lt;', '%3E' => '&gt;');
 if (get_magic_quotes_gpc()) {
     if (is_array($_POST)) {
         foreach ($_POST as $key => $value) {
@@ -49,7 +49,8 @@ if (get_magic_quotes_gpc()) {
 
     if (is_array($_GET)) {
         foreach ($_GET as $key => $value) {
-            $_GET[$key] = strtr(stripslashes($value), $HTML_SUBST);
+            unset($_GET[$key]);
+            $_GET[strtr(stripslashes($key), $HTML_SUBST)] = strtr(stripslashes($value), $HTML_SUBST);
             if (isset($$key)) unset($$key);
         }
     }
@@ -79,7 +80,8 @@ if (get_magic_quotes_gpc()) {
 
     if (is_array($_GET)) {
         foreach ($_GET as $key => $value) {
-            $_GET[$key] = strtr($value, $HTML_SUBST);
+            unset($_GET[$key]);
+            $_GET[strtr(stripslashes($key), $HTML_SUBST)] = strtr(stripslashes($value), $HTML_SUBST);
             if (isset($$key)) unset($$key);
         }
     }
@@ -104,11 +106,11 @@ $CONFIG = array();
 $PHP_SELF = '';
 $ORIGINAL_PHP_SELF = $_SERVER['PHP_SELF'];
 $possibilities = array('REDIRECT_URL', 'PHP_SELF', 'SCRIPT_URL', 'SCRIPT_NAME','SCRIPT_FILENAME');
-foreach ($possibilities as $test){	
-	if (isset($_SERVER[$test]) && preg_match('/([^\/]+\.php)$/', $_SERVER[$test], $matches)){
-		$PHP_SELF = $_SERVER['PHP_SELF'] = $_SERVER['SCRIPT_NAME'] = $matches[1];
-		break;
-	}
+foreach ($possibilities as $test){
+  if (isset($_SERVER[$test]) && preg_match('/([^\/]+\.php)$/', $_SERVER[$test], $matches)){
+    $PHP_SELF = $_SERVER['PHP_SELF'] = $_SERVER['SCRIPT_NAME'] = $matches[1];
+    break;
+  }
 }
 
 $REFERER = urlencode($_SERVER['PHP_SELF'] . (isset($_SERVER['QUERY_STRING']) && $_SERVER['QUERY_STRING'] ? '?' . $_SERVER['QUERY_STRING'] : ''));
@@ -221,10 +223,10 @@ if ($CONFIG['enable_plugins'] == 1) {
 if ($CONFIG['bridge_enable'] == 1 && !defined('BRIDGEMGR_PHP')) {
     $BRIDGE = cpg_get_bridge_db_values();
 } else {
-	$BRIDGE['short_name'] = 'coppermine';
-	$BRIDGE['use_standard_groups'] = 1;
-	$BRIDGE['recovery_logon_failures'] = 0;
-	$BRIDGE['use_post_based_groups'] = false;
+  $BRIDGE['short_name'] = 'coppermine';
+  $BRIDGE['use_standard_groups'] = 1;
+  $BRIDGE['recovery_logon_failures'] = 0;
+  $BRIDGE['use_post_based_groups'] = false;
 }
 
 define('UDB_INTEGRATION', $BRIDGE['short_name']);
@@ -294,17 +296,17 @@ $THEME_DIR = "themes/{$CONFIG['theme']}/";
 
 // Process language selection if present in URI or in user profile or try
 // autodetection if default charset is utf-8
-if (!empty($_GET['lang'])) 
+if (!empty($_GET['lang']))
 {
     $USER['lang'] = $_GET['lang'];
 }
 
-if (isset($USER['lang']) && !strstr($USER['lang'], '/') && file_exists('lang/' . $USER['lang'] . '.php')) 
+if (isset($USER['lang']) && !strstr($USER['lang'], '/') && file_exists('lang/' . $USER['lang'] . '.php'))
 {
     $CONFIG['default_lang'] = $CONFIG['lang'];          // Save default language
     $CONFIG['lang'] = strtr($USER['lang'], '$/\\:*?"\'<>|`', '____________');
-} 
-elseif ($CONFIG['charset'] == 'utf-8') 
+}
+elseif ($CONFIG['charset'] == 'utf-8')
 {
     include('include/select_lang.inc.php');
     if (file_exists('lang/' . $USER['lang'] . '.php'))
@@ -313,18 +315,18 @@ elseif ($CONFIG['charset'] == 'utf-8')
         $CONFIG['lang'] = $USER['lang'];
     }
 }
-else 
+else
 {
     unset($USER['lang']);
 }
 
-if (isset($CONFIG['default_lang']) && ($CONFIG['default_lang']==$CONFIG['lang'])) 
+if (isset($CONFIG['default_lang']) && ($CONFIG['default_lang']==$CONFIG['lang']))
 {
         unset($CONFIG['default_lang']);
 }
 
-if (!file_exists("lang/{$CONFIG['lang']}.php")) 
-	$CONFIG['lang'] = 'english';
+if (!file_exists("lang/{$CONFIG['lang']}.php"))
+  $CONFIG['lang'] = 'english';
 
 // We load the chosen language file
 require "lang/{$CONFIG['lang']}.php";
