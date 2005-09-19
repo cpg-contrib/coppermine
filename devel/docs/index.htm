@@ -44,6 +44,12 @@
                 <li class="level2"><a href="#how" class="menu2">2.1 How To Install The Script</a></li>
                 <li class="level2"><a href="#getting" class="menu2">2.2 Getting Started</a></li>
                 <li class="level2"><a href="#xp" class="menu2">2.3 Using Windows XP Web Publishing Wizard with Coppermine</a></li>
+        </ul>
+                <ul class="level3">
+                  <li class="level3"><a href="#xp_publish_setup">2.3.1 XP Web Publishing Wizard: Setup</a></li>
+                  <li class="level3"><a href="#xp_publish_upload">2.3.2 XP Web Publishing Wizard: Uploading pictures</a></li>
+                </ul>
+        <ul class="level2">
                 <li class="level2"><a href="#creating" class="menu2">2.4 Creating or upgrading your own themes</a></li>
 
                 <li class="level2"><a href="#safe" class="menu2">2.5 Safe mode issues</a></li>
@@ -284,6 +290,40 @@
 <p>Once you have properly installed the script on your server, call the xp_publish.php file from your web browser (http://your_site.com/coppermine_dir/xp_publish.php).</p>
 <p>The script displays some information on how to do the installation on the client side and how to use the Wizard. Basically you will need to download a small file created by the script that needs to be loaded into your Windows registry.</p>
 <p>If you want to allow your users to use the Windows XP Web Publishing Wizard, it's advisable to promote it by showing a link to the file somewhere on your page.</p>
+
+<a name="xp_publish_setup"></a>
+<h3>2.3.1 XP Web Publishing Wizard: Setup</h3>
+Before you can use the XP Web Publishing Wizard, it needs to know the address of the your gallery.
+<ul>
+<li>Open your browser and type the following into the address box replacing "your_site.com" and "coppermine_dir" with your own Gallery address information : <tt class="code">http://your_site.com/coppermine_dir/xp_publish.php</tt></li>
+<li>On "File Download - Security Warning" click "Save" to save the cpg_###.reg file on your Desktop. (The ### represents a 10-digit numerical timestamp.)</li>
+<li>Open Windows Explorer</li>
+<li>Select Desktop from the left panel</li>
+<li>Double click on the file name that you just saved</li>
+<li>On Registry Editor's "Are you sure..." dialog click "Yes"</li>
+</ul>
+
+Above procedure needs to be done only once by users wishing to use the XP Publishing Wizard.
+
+<a name="xp_publish_upload"></a>
+<h3>2.3.2 XP Web Publishing Wizard: Uploading pictures</h3>
+The process of uploading pictures is a matter of following a simple dialog. It takes much longer to describe the process than do it.
+<ul>
+<li>Start Windows Explorer and locate the directory with your photographs and select one or more pictures for upload.</li>
+<li>If the Windows Explorer left panel is not titled "Picture Tasks", click on the "X" in the top right corner of the panel to close it and to reveal the Picture Tasks panel.</li>
+<li>Select "Publish xxxx to the Web" from "File and Folder Tasks" on the left panel. "xxxx" could say "this file, these files or this folder" depending on what is highlighted on the right panel.</li>
+<li>On Web Publishing Wizard's Welcome screen click "Next".</li>
+<li>You can change your selection if necessary on the Thumbnail window showing up. Click "Next" when you are ready.</li>
+<li>From the service provider window highlight your Photo Gallery name and click "Next".</li>
+<li>Enter your Coppermine username and password to login to your gallery and click "Next".</li>
+<li>From the "Welcome username" window you have an option of uploading your picture(s) into one of the existing albums or starting a new album. Click "Next" when you are ready.</li>
+<li>Click "Next" in the upload starting confirmation window.</li>
+<li>Select the picture sizes for the uploaded pictures. If you are unsure about acceptable picture sizes, verify with your Gallery administrator. Click "Next" when you are ready.</li>
+<li>You are presented with the last window of the dialog and given a choice of opening the Gallery when the upload is complete.</li>
+<li>Click "Finish" to end the XP Web Publishing Wizard and to enter the Gallery to check the new album contents.</li>
+</ul>
+
+
 <p class="small">[cpg1.1.1 or better required]</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
