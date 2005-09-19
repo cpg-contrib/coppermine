@@ -237,6 +237,7 @@ PRIMARY KEY ( `unique_ID` )
 UPDATE `CPG_config` SET value='classic' WHERE (name='theme' AND value='default');
 DELETE FROM `CPG_filetypes` WHERE mime='text/html';
 
+UPDATE `CPG_config` SET value='$/\\\\:*?&quot;\'&lt;&gt;|`&nbsp;&amp;' WHERE name='forbiden_fname_char';
 
 #
 # Finally remove all user_lang references - Jack
