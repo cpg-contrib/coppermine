@@ -2888,12 +2888,9 @@ function replace_forbidden($str)
     if (function_exists('html_entity_decode')) {
       $chars = html_entity_decode($CONFIG['forbiden_fname_char'], ENT_QUOTES, 'UTF-8');
     } else {
-      $chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>'));
+      $chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>', '&nbsp;' => ' '));
     }
     preg_match_all("#$mb_utf8_regex".'|[\x00-\x7F]#', $chars, $forbidden_chars);
-    // Since we dont need space and ampersand in file names.
-    $forbidden_chars[0][] = ' ';
-    $forbidden_chars[0][] = '&';        
   }
   return str_replace($forbidden_chars[0], '_', $str);
 }
