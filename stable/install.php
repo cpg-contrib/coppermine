@@ -18,13 +18,14 @@
 **********************************************/
 
 // Check if standalone is installed in a portal like phpNuke (added by DJMaze)
-$DIR=preg_split("/[\/\\\]/",dirname($_SERVER['PATH_TRANSLATED']));
-if ($DIR[count($DIR)-2] == "modules") {
-    echo "<html><body><h1>ERROR</h1>You installed the standalone Coppermine into your Nuke portal.<br>".
-         "Please download and install a CPG Port: <a href=\"http://sourceforge.net/project/showfiles.php?group_id=89658\">CPG for PostNuke OR CPG for PHPnuke</a></body></html>";
-    die();
-} // end check
-
+if (isset($_SERVER['PATH_TRANSLATED'])){
+	$DIR=preg_split("/[\/\\\]/",dirname($_SERVER['PATH_TRANSLATED']));
+	if ($DIR[count($DIR)-2] == "modules") {
+		echo "<html><body><h1>ERROR</h1>You installed the standalone Coppermine into your Nuke portal.<br>".
+			 "Please download and install a CPG Port: <a href=\"http://sourceforge.net/project/showfiles.php?group_id=89658\">CPG for PostNuke OR CPG for PHPnuke</a></body></html>";
+		die();
+	} // end check
+}
 error_reporting (E_ALL ^ E_NOTICE);
 
 require('include/sql_parse.php');
@@ -66,7 +67,9 @@ function test_sql_connection()
 {
     global $errors, $HTTP_POST_VARS;
 
-    if (! $connect_id = @mysql_connect($HTTP_POST_VARS['dbserver'], $HTTP_POST_VARS['dbuser'], $HTTP_POST_VARS['dbpass'])) {
+	if (!function_exists('mysql_connect')) {
+		$errors .= "<hr /><br />PHP does not have MySQL support enabled.<br /><br />";
+    } elseif (! $connect_id = @mysql_connect($HTTP_POST_VARS['dbserver'], $HTTP_POST_VARS['dbuser'], $HTTP_POST_VARS['dbpass'])) {
         $errors .= "<hr /><br />Could not create a mySQL connection, please check the SQL values entered<br /><br />MySQL error was : " . mysql_error() . "<br /><br />";
     } elseif (! mysql_select_db($HTTP_POST_VARS['dbname'], $connect_id)) {
         $errors .= "<hr /><br />mySQL could not locate a database called '{$HTTP_POST_VARS['dbname']}' please check the value entered for this<br /><br />";
@@ -550,6 +553,9 @@ if ($HTTP_GET_VARS['test_gd1']) { // GD1 test
             lock_install();
             html_install_success($notes);
         }
+	} elseif (count($_POST)){
+		$errors .= "<hr /><br />Coppermine requires that the php.ini setting 'register_long_arrays' is enabled in order to work with PHP 5.<br /><br />";
+		html_prereq_errors($errors);
     } else {
         test_fs();
         if ($errors != '')
