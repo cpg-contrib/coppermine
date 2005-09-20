@@ -146,3 +146,4 @@ Fixed single quote bug for iptc - 07 September 2005, GauGau
 Fixed email validation routine for ecards - 12 August 2005, GauGau
 Added improved XP publisher section to docs - 19 September 2005, GauGau
 Added portuguese language file - 19 September 2005, GauGau
+Fixed installation issues caused by register_long_arrays and mysql setup issues - 20 September, Nibbler
