@@ -115,7 +115,7 @@ function process_post_data()
 
         foreach ($prefices as $prefix)
         {
-            $oldname = get_pic_url($pic, $prefix);
+            $oldname = urldecode(get_pic_url($pic, $prefix));
             $filename = replace_forbidden($_POST['filename']);
             $newname = str_replace($pic['filename'], $filename, $oldname);
 
