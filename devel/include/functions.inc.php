@@ -2892,6 +2892,13 @@ function replace_forbidden($str)
     }
     preg_match_all("#$mb_utf8_regex".'|[\x00-\x7F]#', $chars, $forbidden_chars);
   }
+  /**
+   * $str may also come from $_POST, in this case, all &, ", etc will get replaced with entities.
+   * Replace them back to normal chars so that the str_replace below can work.
+   */
+  $revertArr = array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>');
+  $str = strtr($str, $revertArr);
+
   return str_replace($forbidden_chars[0], '_', $str);
 }
 
