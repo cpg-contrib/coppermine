@@ -139,7 +139,7 @@ pageheader($lang_picmgr_php['pic_mgr']);
 
             if (picture.action != '0') {
                 if (picture.picture_nm == '') {
-                    alert('<?php echo $lang_picmgr_php['pic_need_name'] ?>');
+                    alert("<?php echo $lang_picmgr_php['pic_need_name'] ?>");
                     frm.to.options[i].selected = true;
                     return false;
                 }
@@ -151,7 +151,7 @@ pageheader($lang_picmgr_php['pic_mgr']);
             changed = true;
 
         if (changed) {
-            if (confirm('<?php echo $lang_picmgr_php['confirm_modifs'] ?>')) {
+            if (confirm("<?php echo $lang_picmgr_php['confirm_modifs'] ?>")) {
                 for (i=0; i<select_len; i++) {
                     picture = new parseSelectValue(frm.to, i);
                     if (picture.action != '0') {
@@ -164,7 +164,7 @@ pageheader($lang_picmgr_php['pic_mgr']);
                 return false;
         }
         else {
-            alert('<?php echo $lang_picmgr_php['no_change'] ?>');
+            alert("<?php echo $lang_picmgr_php['no_change'] ?>");
             return false;
         }
     }
@@ -227,7 +227,7 @@ pageheader($lang_picmgr_php['pic_mgr']);
         var to = document.picture_menu.to;
         picture = new parseSelectValue(to, selectedOptIndex);
 
-        var msg = '<?php echo $lang_picmgr_php['confirm_delete1'] ?>';
+        var msg = "<?php echo $lang_picmgr_php['confirm_delete1'] ?>";
 
         if (picture.action == '1') {
             if (confirm(msg)) {
@@ -239,7 +239,7 @@ pageheader($lang_picmgr_php['pic_mgr']);
             }
         }
         else {
-            msg = msg + '<?php echo $lang_picmgr_php['confirm_delete2'] ?>';
+            msg = msg + "<?php echo $lang_picmgr_php['confirm_delete2'] ?>";
 
             if (confirm(msg)) {
                 var picture = new Object();
