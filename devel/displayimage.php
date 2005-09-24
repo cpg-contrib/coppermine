@@ -48,6 +48,16 @@ if($CONFIG['read_iptc_data'] ){
  * Local functions definition
  */
 
+# Sanitize the data - to fix the XSS vulnerability - Aditya
+function sanitize_data(&$value, $key)
+{
+	if (is_array($value)) {
+		array_walk($value, 'sanitize_data');
+	} else {
+		# sanitize against sql/html injection; trim any nongraphical non-ASCII character:
+		$value = trim(htmlentities(strip_tags(trim($value,"\x7f..\xff\x0..\x1f")),ENT_QUOTES));
+	}
+}
 function html_picture_menu()
 {
     global $lang_display_image_php, $CURRENT_PIC_DATA, $CURRENT_ALBUM_DATA, $CONFIG;
@@ -142,23 +152,19 @@ function html_picinfo()
     if ($CONFIG['read_exif_data']) $exif = exif_parse_file($path_to_pic);
 
     if (isset($exif) && is_array($exif)) {
-        foreach ($exif as $key=>$data) {
-           $exif[$key] = htmlentities(strip_tags(trim($data,"\x7f..\xff\x0..\x1f")),ENT_QUOTES); //sanitize data against sql/html injection; trim any nongraphical non-ASCII character:
-        }
+		array_walk($exif, 'sanitize_data');
         $info = array_merge($info,$exif);
     }
 
     if ($CONFIG['read_iptc_data']) $iptc = get_IPTC($path_to_pic);
 
     if (isset($iptc) && is_array($iptc)) {
-        foreach ($iptc as $key=>$data) {
-           $iptc[$key] = htmlentities(strip_tags(trim($data,"\x7f..\xff\x0..\x1f")),ENT_QUOTES); //sanitize data against sql/html injection; trim any nongraphical non-ASCII character:
-        }
-        if (isset($iptc['Title'])) $info[$lang_picinfo['iptcTitle']] = trim($iptc['Title']);
-        if (isset($iptc['Copyright'])) $info[$lang_picinfo['iptcCopyright']] = trim($iptc['Copyright']);
-        if (!empty($iptc['Keywords'])) $info[$lang_picinfo['iptcKeywords']] = trim(implode(" ",$iptc['Keywords']));
-        if (isset($iptc['Category'])) $info[$lang_picinfo['iptcCategory']] = trim($iptc['Category']);
-        if (!empty($iptc['SubCategories'])) $info[$lang_picinfo['iptcSubCategories']] = trim(implode(" ",$iptc['SubCategories']));
+		array_walk($iptc, 'sanitize_data');
+        if (isset($iptc['Title'])) $info[$lang_picinfo['iptcTitle']] = $iptc['Title'];
+        if (isset($iptc['Copyright'])) $info[$lang_picinfo['iptcCopyright']] = $iptc['Copyright'];
+        if (!empty($iptc['Keywords'])) $info[$lang_picinfo['iptcKeywords']] = implode(' ',$iptc['Keywords']);
+        if (isset($iptc['Category'])) $info[$lang_picinfo['iptcCategory']] = $iptc['Category'];
+        if (!empty($iptc['SubCategories'])) $info[$lang_picinfo['iptcSubCategories']] = implode(' ',$iptc['SubCategories']);
     }
     // Create the absolute URL for display in info
     $info[$lang_picinfo['URL']] = '<a href="' . $CONFIG["ecards_more_pic_target"] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') .basename($_SERVER['PHP_SELF']) . "?pos=-$CURRENT_PIC_DATA[pid]" . '" >' . $CONFIG["ecards_more_pic_target"] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') . basename($_SERVER['PHP_SELF']) . "?pos=-$CURRENT_PIC_DATA[pid]" . '</a>';
