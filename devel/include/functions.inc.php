@@ -911,7 +911,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
         if ((is_numeric($album))) {
                 $album_name_keyword = get_album_name($album);
                 $album_name = $album_name_keyword['title'];
-                $album_keyword = $album_name_keyword['keyword'];
+                $album_keyword = addslashes($album_name_keyword['keyword']);
 
                 if (!empty($album_keyword)) {
                         $keyword = "OR (keywords like '%$album_keyword%' $forbidden_set_string )";
