@@ -52,24 +52,26 @@ if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['non_exist_ap']);
        foreach($array as $word)
        {
          if ($word == '.' || $word == '' || $word == ' ' ) continue;
-         $single_word = $word;
+         $orig_word = $word;
+         $single_word = addslashes($word);
          $lowercase_word = utf_strtolower($single_word);
+         $lowercase_word = addslashes($lowercase_word);
          $word = <<<EOT
          <td class="tableb">
          <input type="radio" class="radio" name="keywordEdit" value="$lowercase_word" onClick="document.keywordForm.newword.value='$single_word'" id="$lowercase_word" />
          <label for="$lowercase_word" class="clickable_option">
-         <img src="images/edit.gif" width="16" height="16" border="0" alt="" title="{$lang_keywordmgr_php['edit']} &quot;$single_word&quot;" /> &quot;<i>$single_word</i>&quot;
+         <img src="images/edit.gif" width="16" height="16" border="0" alt="" title="{$lang_keywordmgr_php['edit']} &quot;$orig_word&quot;" /> &quot;<i>$orig_word</i>&quot;
          </label>
          </td>
 EOT;
          $word .= '<td class="tableb"><a href="keywordmgr.php?page=delete&amp;remov='.$single_word.'" onclick="return confirm(\''.sprintf($lang_keywordmgr_php['confirm_delete'], '&quot;'.$single_word.'&quot;').'\')">';
-         $word .= '<img src="images/delete.gif" width="16" height="16" border="0" alt="" title="'.sprintf($lang_keywordmgr_php['keyword_del'],'&quot;'.$single_word.'&quot;').'" /> '.$single_word;
+         $word .= '<img src="images/delete.gif" width="16" height="16" border="0" alt="" title="'.sprintf($lang_keywordmgr_php['keyword_del'],'&quot;'.$orig_word.'&quot;').'" /> '.$orig_word;
          $word .= <<<EOT
          </a></td>
-         <td class="tableb"><a href="thumbnails.php?album=search&amp;search=$single_word" target="_blank">
+         <td class="tableb"><a href="thumbnails.php?album=search&amp;search=$orig_word" target="_blank">
 EOT;
 
-         $word .= sprintf($lang_keywordmgr_php['keyword_test_search'], '&quot;<i>'.$single_word.'</i>&quot;');
+         $word .= sprintf($lang_keywordmgr_php['keyword_test_search'], '&quot;<i>'.$orig_word.'</i>&quot;');
          $word .= '</a></td>';
 
            if (!in_array($word,$total_array)) $total_array[] = $word;
