@@ -460,6 +460,7 @@ function list_albums()
         $cross_ref[$value['aid']] = &$alb_stats[$key];
         if ($CONFIG['link_pic_count'] == 1) {
           if (!empty($value['keyword'])) {
+            $value['keyword'] = addslashes($value['keyword']);
             $query = "SELECT count(pid) AS link_pic_count
                       FROM {$CONFIG['TABLE_PICTURES']}
                         WHERE aid != {$value['aid']} AND
@@ -731,7 +732,7 @@ if (!$file) {
     /**
     * See if $cat has been passed in GET
     */
-    
+
     if (isset($_GET['cat'])) {
         $cat = (int)$_GET['cat'];
     }
@@ -740,7 +741,7 @@ if (!$file) {
     $cat_data = array();
     $statistics = '';
     $STATS_IN_ALB_LIST = false;
-    
+
     if (isset($cat)) {
         get_meta_album_set($cat,$META_ALBUM_SET);
     } else {
@@ -748,11 +749,11 @@ if (!$file) {
     }
 
     $cpg_show_private_album = ($CONFIG['allow_private_albums'])?($CONFIG['show_private']):(true);
-    
+
     get_cat_list($breadcrumb, $cat_data, $statistics);
-    
+
     pageheader($BREADCRUMB_TEXT ? $BREADCRUMB_TEXT : $lang_index_php['welcome']);
-    
+
     $elements = preg_split("|/|", $CONFIG['main_page_layout'], -1, PREG_SPLIT_NO_EMPTY);
 
     foreach ($elements as $element) {
