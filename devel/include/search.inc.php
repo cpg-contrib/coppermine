@@ -54,18 +54,18 @@ if (isset($_POST['params']['pic_raw_ip'])) $_POST['params']['pic_hdr_ip']  = $_P
 
 if ($search_string && isset($_POST['params'])) {
         $sql = "SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE ";
+        $search_string = strtr($search_string, array('_' => '\_', '%' => '\%'));
         $split_search = explode(' ', $search_string);
         $sections = array();
 
-                foreach($split_search as $word) {
-                                $word = addslashes($word);
-                $fields = array();
+        foreach($split_search as $word) {
+          $word = addslashes($word);
+          $fields = array();
 
-                foreach ($_POST['params'] as $param => $value){
-                                        if (in_array($param, $allowed))$fields[] = "$param LIKE '%$word%'";
-                                }
-
-                $sections[] = '(' . implode(' OR ', $fields) . ')';
+          foreach ($_POST['params'] as $param => $value){
+            if (in_array($param, $allowed))$fields[] = "$param LIKE '%$word%'";
+          }
+          $sections[] = '(' . implode(' OR ', $fields) . ')';
         }
 
         $sql .= implode($type, $sections);
@@ -88,4 +88,4 @@ if ($search_string && isset($_POST['params'])) {
 
 
 }
-?> 
+?>
