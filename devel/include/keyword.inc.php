@@ -23,53 +23,53 @@ if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
 $result = cpg_db_query("select keywords FROM {$CONFIG['TABLE_PICTURES']} WHERE keywords <> '' $ALBUM_SET");
 if (mysql_num_rows($result)) {
-	
-	// Grab all keywords
-	print '<br />';
-	starttable("100%", $lang_search_php['keyword_list_title']);
-	
-	
-	// Find unique keywords
-	$keywords_array = array();
-	
-	while (list($keywords) = mysql_fetch_row($result)) {
-			$array = explode(" ",$keywords);
-	
-			foreach($array as $word)
-			{
-				if (!in_array($word,$keywords_array)) $keywords_array[] = $word;
-			}
-	}
-	
-	// Sort selected keywords
-	sort($keywords_array);
-	$count = count($keywords_array);
-	
-	// Result to table
-	echo '<tr><td class="tableb">' ;
-	for ($i = 0; $i < $count; $i++) {
-	  if ($keywords_array[$i]) {     // Eliminates Null Keywords
-		echo "<a href=\"thumbnails.php?album=search&search=$keywords_array[$i]\">$keywords_array[$i]</a>";
-		if ($i<$count-1) {                     // Eliminates Trailing Pipe after last keyword
-		  echo " | ";
-		}
-	  }
-	}
-	echo "</td></tr>" ;
-	if (GALLERY_ADMIN_MODE == true){
-	  $url = basename($_SERVER['PHP_SELF']);
-	  if ($url != "keywordmgr.php"){
-		echo '<tr><td class="tableb" align="center">';
-		echo '<a href="keywordmgr.php" class="admin_menu">Edit Keywords</a>';
-		echo "</td></tr>" ;
-	  }
-	} else {
-		echo '<tr><td class="tableb" align="center">';
-		echo $lang_search_php['keyword_msg'];
-		echo "</td></tr>" ;
-	}
-	
-	endtable();
+
+  // Grab all keywords
+  print '<br />';
+  starttable("100%", $lang_search_php['keyword_list_title']);
+
+
+  // Find unique keywords
+  $keywords_array = array();
+
+  while (list($keywords) = mysql_fetch_row($result)) {
+      $array = explode(" ",$keywords);
+
+      foreach($array as $word)
+      {
+        if (!in_array(strtolower($word),$keywords_array)) $keywords_array[] = $word;
+      }
+  }
+
+  // Sort selected keywords
+  sort($keywords_array);
+  $count = count($keywords_array);
+
+  // Result to table
+  echo '<tr><td class="tableb">' ;
+  for ($i = 0; $i < $count; $i++) {
+    if ($keywords_array[$i]) {     // Eliminates Null Keywords
+    echo "<a href=\"thumbnails.php?album=search&search=".$keywords_array[$i]."\">$keywords_array[$i]</a>";
+    if ($i<$count-1) {                     // Eliminates Trailing Pipe after last keyword
+      echo " | ";
+    }
+    }
+  }
+  echo "</td></tr>" ;
+  if (GALLERY_ADMIN_MODE == true){
+    $url = basename($_SERVER['PHP_SELF']);
+    if ($url != "keywordmgr.php"){
+    echo '<tr><td class="tableb" align="center">';
+    echo '<a href="keywordmgr.php" class="admin_menu">Edit Keywords</a>';
+    echo "</td></tr>" ;
+    }
+  } else {
+    echo '<tr><td class="tableb" align="center">';
+    echo $lang_search_php['keyword_msg'];
+    echo "</td></tr>" ;
+  }
+
+  endtable();
 }
 ob_end_flush();
 ?>
