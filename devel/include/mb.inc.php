@@ -27,17 +27,23 @@
 
 global $mb_uppercase, $mb_lowercase;
 
-function mb_strlen($str) {
-	global $mb_utf8_regex;
-	return preg_match_all("#$mb_utf8_regex".'|[\x00-\x7F]#', $str, $dummy);
+# PHP 4 >= 4.0.6, PHP 5
+if (!function_exists('mb_strlen')) {
+
+	function mb_strlen($str) {
+		global $mb_utf8_regex;
+		return preg_match_all("#$mb_utf8_regex".'|[\x00-\x7F]#', $str, $dummy);
+	}
+
+	function mb_substr($str, $start, $end=null) {
+		preg_match_all("#$mb_utf8_regex".'|[\x00-\x7F]#', $str, $str);
+		$str = array_slice($str, $start, $end);
+		return implode('', $str);
+	}
+
 }
 
-function mb_substr($str, $start, $end=null) {
-	preg_match_all("#$mb_utf8_regex".'|[\x00-\x7F]#', $str, $str);
-	$str = array_slice($str, $start, $end);
-	return implode('', $str);
-}
-
+# PHP 4 >= 4.3.0, PHP 5
 function mb_strtolower($str) {
 	global $mb_uppercase, $mb_lowercase;
 	return str_replace($mb_uppercase, $mb_lowercase, $str);
