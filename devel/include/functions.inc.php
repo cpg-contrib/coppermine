@@ -828,7 +828,7 @@ function build_caption(&$rowset,$must_have=array())
             if ($row['author_id']) {
                 $caption .= '<span class="thumb_caption"><a href ="profile.php?uid='.$row['author_id'].'">'.$row['msg_author'].'</a>: '.$msg_body.'</span>';
             } else {
-                    $caption .= '<span class="thumb_title">'.$row['msg_author'].': '.$msg_body.'</span>';
+                    $caption .= '<span class="thumb_caption">'.$row['msg_author'].': '.$msg_body.'</span>';
             }
         }
         if (in_array('ctime',$must_have)) {
