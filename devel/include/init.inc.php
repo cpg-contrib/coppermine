@@ -37,7 +37,7 @@ function cpgGetMicroTime()
 }
 $cpg_time_start = cpgGetMicroTime();
 // Do some cleanup in GET, POST and cookie data and un-register global vars
-$HTML_SUBST = array('&' => '&amp;', '"' => '&quot;', '<' => '&lt;', '>' => '&gt;', '%26' => '&amp;', '%22' => '&quot;', '%3C' => '&lt;', '%3E' => '&gt;');
+$HTML_SUBST = array('&' => '&amp;', '"' => '&quot;', '<' => '&lt;', '>' => '&gt;', '%26' => '&amp;', '%22' => '&quot;', '%3C' => '&lt;', '%3E' => '&gt;','%27' => '&#39;', "'" => '&#39;');
 if (get_magic_quotes_gpc()) {
     if (is_array($_POST)) {
         foreach ($_POST as $key => $value) {
