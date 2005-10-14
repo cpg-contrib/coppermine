@@ -304,6 +304,11 @@ function check_user_info(&$error)
 
     // email notification to admin
         if ($CONFIG['reg_notify_admin_email']) {
+			
+			// get default language in which to inform the admin
+			$lang_register_php_def = cpg_get_default_lang_var('lang_register_php');
+			$lang_register_approve_email_def = cpg_get_default_lang_var('lang_register_approve_email');
+			
                                         if ($CONFIG['admin_activation']==1) {
                                                         $act_link = rtrim($CONFIG['site_url'], '/') . '/register.php?activate=' . $act_key;
                                                         $template_vars = array(
@@ -311,9 +316,9 @@ function check_user_info(&$error)
                                                                         '{USER_NAME}' => $user_name,
                                                                         '{ACT_LINK}' => $act_link,
                                                         );
-                                                        cpg_mail('admin', sprintf($lang_register_php['notify_admin_request_email_subject'], $CONFIG['gallery_name']), nl2br(strtr($lang_register_approve_email, $template_vars)));
+                                                        cpg_mail('admin', sprintf($lang_register_php_def['notify_admin_request_email_subject'], $CONFIG['gallery_name']), nl2br(strtr($lang_register_approve_email_def, $template_vars)));
                                         } else {
-                                                        cpg_mail('admin', sprintf($lang_register_php['notify_admin_email_subject'], $CONFIG['gallery_name']), sprintf($lang_register_php['notify_admin_email_body'], $user_name));
+                                                        cpg_mail('admin', sprintf($lang_register_php_def['notify_admin_email_subject'], $CONFIG['gallery_name']), sprintf($lang_register_php_def['notify_admin_email_body'], $user_name));
                 }
                                 }
 
