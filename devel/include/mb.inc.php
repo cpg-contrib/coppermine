@@ -36,8 +36,9 @@ if (!function_exists('mb_strlen')) {
 	}
 
 	function mb_substr($str, $start, $end=null) {
+		global $mb_utf8_regex;
 		preg_match_all("#$mb_utf8_regex".'|[\x00-\x7F]#', $str, $str);
-		$str = array_slice($str, $start, $end);
+		$str = array_slice($str[0], $start, $end);
 		return implode('', $str);
 	}
 
