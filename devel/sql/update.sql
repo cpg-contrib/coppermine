@@ -187,7 +187,7 @@ CREATE TABLE CPG_banned (
 # Table structure for table `CPG_exif`
 #
 CREATE TABLE CPG_exif (
-  `filename` text NOT NULL default '',
+  `filename` varchar(255) NOT NULL default '',
   `exifData` text NOT NULL,
   UNIQUE KEY `filename` (`filename`)
 ) TYPE=MyISAM;
