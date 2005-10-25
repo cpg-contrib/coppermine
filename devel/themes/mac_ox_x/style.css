@@ -16,6 +16,20 @@
   $Date$
 **********************************************/
 
+/* Colors used:                                */
+/* --------------------------------------------*/
+/* #000000 = RBG   0,  0,  0 = (black)         */
+/* #7F7F7F = RBG 127,127,127 = (dark grey)     */
+/* #666666 = RBG 102,102,102 = (medium grey)   */
+/* #999999 = RBG 153,153,153 = (light grey)    */
+/* #FAFAFA = RBG 250,250,250 = (light grey)    */
+/* #BDBEBD = RBG 189,190,189 = (light grey)    */
+/* #EFF0F1 = RBG 239,240,241 = (dark white)    */
+/* #EFEFEF = RBG 239,239,239 = (dark white)    */
+/* #FFFFFF = RBG 255,255,255 = (white)         */
+/* if you don't like a color, just do a search */
+/* and replace on the hex color...             */
+
 /* Foreground color definition */
 body { color : #000000; }
 
@@ -130,7 +144,7 @@ li {
 .top_panel {
         background-image: url(images/top_panel_r1_c1b.gif);
         background-repeat: no-repeat;
-        background-color: White;
+        background-color: #FFFFFF;
         background-position: left;
 }
 
@@ -435,8 +449,8 @@ a:hover {
 
 .admin_menu_thumb {
         font-size: 90%;
-        background-image : url(images/button_bg.gif);
-        background-position : bottom;
+        background-image: url(images/button_bg.gif);
+        background-position: bottom;
         font-weight: bold;
         margin-top: 0px;
         margin-bottom: 0px;
