@@ -114,7 +114,7 @@ class cpg_udb extends core_udb {
 		{
 			$udb_groups[$row[$this->field['grouptbl_group_id']]+100] = utf_ucfirst(utf_strtolower($row[$this->field['grouptbl_group_name']]));
 		}
-		
+
 		return $udb_groups;
 		
 	}
@@ -196,7 +196,7 @@ class cpg_udb extends core_udb {
 		$cpg = parse_url($CONFIG['site_url']);
 		$bb = parse_url($this->boardurl);
 		$levels = count(explode('/', $bb['path'])) - 1;
-		$redirect = str_repeat('..', $levels) . rtrim($cpg['path'], '/') . '/';
+		$redirect = str_repeat('../', $levels) . trim($cpg['path'], '/') . '/';
 		
 		$this->redirect("/login.php?logout=true&redirect=$redirect");
 	}
@@ -229,36 +229,103 @@ class cpg_udb extends core_udb {
                             'lv_d' => 'user_lastvisit DESC',
                            );
         
+		if (in_array($options['sort'], array('group_a', 'group_d', 'pic_a', 'pic_d', 'disku_a', 'disku_d'))){
+			
+			$sort = '';
+			list($this->sortfield, $this->sortdir) = explode(' ', $sort_codes[$options['sort']]);
+			$this->adv_sort = true;
+			
+		} else {
+			
+			$sort = "ORDER BY " . $sort_codes[$options['sort']];
+			$this->adv_sort = false;
+		}
+
 		// Build WHERE clause, if this is a username search
         if ($options['search']) {
-            $options['search'] = 'WHERE u.'.$f['username'].' LIKE "'.$options['search'].'" ';
+            $options['search'] = 'AND u.'.$f['username'].' LIKE "'.$options['search'].'" ';
         }
 
-		// Build SQL table, should work with all bridges
-        $sql = "SELECT u.{$f['user_id']} as user_id, {$f['username']} as user_name, {$f['email']} as user_email, {$f['regdate']} as user_regdate, {$f['lastvisit']} as user_lastvisit, '' as user_active, ".
-               "COUNT(pid) as pic_count, ROUND(SUM(total_filesize)/1024) as disk_usage, group_name, group_quota ".
-               "FROM {$this->usertable} AS u ".
-			   "INNER JOIN {$this->usergroupstable} AS ug ON u.{$this->field['user_id']}=ug.{$this->field['user_id']}    ".   
-               " INNER JOIN {$C['TABLE_USERGROUPS']} AS g ".
-			   "ON  g.group_id = ug.{$f['grouptbl_group_id']} LEFT JOIN {$C['TABLE_PICTURES']} AS p ON p.owner_id = u.{$f['user_id']} ".
-               $options['search'].
-               "GROUP BY user_id " . "ORDER BY " . $sort_codes[$options['sort']] . " ".
-               "LIMIT {$options['lower_limit']}, {$options['users_per_page']};";
+        $sql = "SELECT group_id, group_name, group_quota FROM {$C['TABLE_USERGROUPS']}";
 
 		$result = cpg_db_query($sql);
 		
-		// If no records, return empty value
-		if (!$result) {
-			return array();
+		$groups = array();
+	
+		while ($row = mysql_fetch_assoc($result)) {
+			$groups[$row['group_id']] = $row;
 		}
 		
+		$sql ="SELECT group_id FROM {$this->groupstable} WHERE group_single_user = 0";
+	
+		$result = cpg_db_query($sql, $this->link_id);
+		$udb_groups = array();
+		
+		while ($row = mysql_fetch_assoc($result)) {
+			$udb_groups[] = $row['group_id'];
+		}
+
+
+        $sql = "SELECT u.{$f['user_id']} as user_id, MIN(ug.{$f['grouptbl_group_id']}) AS user_group, {$f['username']} as user_name, {$f['email']} as user_email, {$f['regdate']} as user_regdate, {$f['lastvisit']} as user_lastvisit, '' as user_active, 0 as pic_count, 0 as disk_usage ".
+               "FROM {$this->usertable} AS u ".
+			   "INNER JOIN {$this->usergroupstable} AS ug ON u.{$this->field['user_id']}=ug.{$this->field['user_id']}    ".   
+               "WHERE u.{$f['user_id']} > 0 " . $options['search'].
+               "GROUP BY ug.{$f['user_id']} " . $sort .
+               " LIMIT {$options['lower_limit']}, {$options['users_per_page']};";
+
+		$result = cpg_db_query($sql, $this->link_id);
+		
+		// If no records, return empty value
+		if (!mysql_num_rows($result)) {
+			return array();
+		}
+
 		// Extract user list to an array
 		while ($user = mysql_fetch_assoc($result)) {
-			$userlist[] = $user;
-		}	
+			
+			$gid = 2;
+
+			if ($this->use_post_based_groups){
+				if (in_array($user['user_group'], $udb_groups)){
+					$gid = $user['user_group'] + 100;
+		
+				} elseif (in_array($user['user_group'], $this->admingroups)){
+					$gid = 102;
+				}
+			} else {
+				if (in_array($user['user_group'], $this->admingroups)){
+					$gid = 1;
+				}
+			}
+
+			$userlist[$user['user_id']] = array_merge($user, $groups[$gid]);
+			$users[] = $user['user_id'];
+		}
+		
+		$user_list_string = implode(', ', $users);
+		
+		$sql = "SELECT owner_id, COUNT(pid) as pic_count, ROUND(SUM(total_filesize)/1024) as disk_usage FROM {$C['TABLE_PICTURES']} WHERE owner_id IN ($user_list_string) GROUP BY owner_id";
+
+		$result = cpg_db_query($sql);
+
+
+		while ($owner = mysql_fetch_assoc($result)) {
+			$userlist[$owner['owner_id']] = array_merge($userlist[$owner['owner_id']], $owner);
+		}
+
+		if ($this->adv_sort) usort($userlist, array('cpg_udb', 'adv_sort'));
 
         return $userlist;
     }
+	
+	function adv_sort($a, $b)
+	{
+		if ($this->sortdir == 'ASC'){
+			return strcmp($a[$this->sortfield], $b[$this->sortfield]);
+		 } else {
+			return strcmp($b[$this->sortfield], $a[$this->sortfield]);
+		}
+	}
 }
 
 // and go !
