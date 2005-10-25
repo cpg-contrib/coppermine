@@ -16,11 +16,28 @@
   $Date$
 **********************************************/
 
+/* Colors used:                                */
+/* --------------------------------------------*/
+/* #000000 = RBG   0,  0,  0 = (black)         */
+/* #66707C = RBG 102,112,124 = (dark grey)     */
+/* #5F5F5F = RBG  95, 95, 95 = (dark grey)     */
+/* #BDBEBD = RBG 189,190,189 = (light grey)    */
+/* #A3AAB4 = RBG 163,170,180 = (light grey)    */
+/* #C2C9D3 = RBG 194,201,211 = (light grey)    */
+/* #DEDEDE = RBG 222,222,222 = (dark white)    */
+/* #EFEFEF = RBG 239,239,239 = (dark white)    */
+/* #FFFFFF = RBG 255,255,255 = (white)         */
+/* #758698 = RBG 117,134,152 = (light blue)    */
+/* #005D8C = RBG   0, 93,140 = (medium blue)   */
+/* #0033CC = RBG   0, 51,204 = (medium blue)   */
+/* if you don't like a color, just do a search */
+/* and replace on the hex color...             */
+
 body {
-        font-family : Verdana, Arial, Helvetica, sans-serif;
+        font-family: Verdana, Arial, Helvetica, sans-serif;
         font-size: 12px;
-        background : #758698 ;
-        color : Black;
+        background: #758698 ;
+        color: Black;
         margin: 0px;
 }
 
@@ -32,17 +49,17 @@ h1{
         font-size: 32px;
         font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
         text-decoration: none;
-        color : White;
+        color: #FFFFFF;
         margin: 2px;
-        font-style : italic;
+        font-style: italic;
 }
 
 h2 {
         font-family: Arial, Helvetica, sans-serif;
         font-size: 18px;
         margin: 0px;
-        color : White;
-        font-style : italic;
+        color: #FFFFFF;
+        font-style: italic;
 }
 
 h3 {
@@ -78,31 +95,31 @@ li {
         border: 1px solid #A3AAB4;
         padding-right: 3px;
         padding-left: 3px;
-        background-color : #DEDEDE;
+        background-color: #DEDEDE;
 }
 
 .listbox {
         font-family: Verdana, Arial, Arial, Helvetica, sans-serif;
-        background-color : #DEDEDE;
+        background-color: #DEDEDE;
         font-size: 100%;
         border: 1px solid #A3AAB4;
-        vertical-align : middle;
+        vertical-align: middle;
 }
 
 .button {
         font-family: Arial, Helvetica, sans-serif;
         font-size: 100%;
         border: 1px solid #005D8C;
-        background-image : url(images/button_bg.gif);
-        background-position : bottom;
+        background-image: url(images/button_bg.gif);
+        background-position: bottom;
 }
 
 .comment_button {
         font-family: Arial, Helvetica, sans-serif;
         font-size: 100%;
         border: 1px solid #005D8C;
-        background-image : url(images/button_bg.gif);
-        background-position : bottom;
+        background-image: url(images/button_bg.gif);
+        background-position: bottom;
         padding-left: 3px;
         padding-right: 3px;
 }
@@ -110,13 +127,13 @@ li {
 .radio {
         font-family: Verdana, Arial, Helvetica, sans-serif;
         font-size: 100%;
-        vertical-align : middle;
+        vertical-align: middle;
 }
 
 .checkbox {
         font-family: Verdana, Arial, Helvetica, sans-serif;
         font-size: 100%;
-        vertical-align : middle;
+        vertical-align: middle;
 }
 
 a {
@@ -141,15 +158,15 @@ bblink a:hover {
 
 .maintable {
         border: 1px solid #DEDEDE;
-/*        background-color: #bdbebd; */
-        background-color:#c2c9d3;
+/*        background-color: #BDBEBD; */
+        background-color:#C2C9D3;
         margin-top: 1px;
         margin-bottom: 1px;
 }
 
 .tableh1 {
-        background : #66707C ;
-        color : #FFFFFF;
+        background: #66707C ;
+        color: #FFFFFF;
         padding-top: 3px;
         padding-right: 10px;
         padding-bottom: 3px;
@@ -157,8 +174,8 @@ bblink a:hover {
 }
 
 .tableh1_compact {
-        background : #66707C ;
-        color : #FFFFFF;
+        background: #66707C ;
+        color: #FFFFFF;
         padding-top: 2px;
         padding-right: 5px;
         padding-bottom: 2px;
@@ -167,7 +184,7 @@ bblink a:hover {
 
 .tableh2 {
         background: #A3AAB4 ;
-        color : #000000;
+        color: #000000;
         padding-top: 3px;
         padding-right: 10px;
         padding-bottom: 3px;
@@ -176,7 +193,7 @@ bblink a:hover {
 
 .tableh2_compact {
         background: #A3AAB4 ;
-        color : #000000;
+        color: #000000;
         padding-top: 2px;
         padding-right: 5px;
         padding-bottom: 2px;
@@ -209,7 +226,7 @@ bblink a:hover {
 
 .catrow_noalb {
         background: #A3AAB4 ;
-        color : #000000;
+        color: #000000;
         padding-top: 3px;
         padding-right: 10px;
         padding-bottom: 3px;
@@ -225,7 +242,7 @@ bblink a:hover {
 }
 
 .album_stat {
-        font-size : 85%;
+        font-size: 85%;
         margin: 5px 0px;
 }
 
@@ -235,16 +252,16 @@ bblink a:hover {
 }
 
 .thumb_title {
-        font-weight : bold;
+        font-weight: bold;
         font-size: 80%;
         padding: 2px;
-        display : block;
+        display: block;
 }
 
 .thumb_caption {
         font-size: 80%;
         padding: 1px;
-        display : block;
+        display: block;
 }
 
 .thumb_caption a {
@@ -256,8 +273,8 @@ bblink a:hover {
         font-weight: normal;
         font-size: 80%;
         padding: 2px;
-        font-style : italic;
-        display : block;
+        font-style: italic;
+        display: block;
 }
 
 .user_thumb_infobox {
@@ -266,18 +283,18 @@ bblink a:hover {
 }
 
 .user_thumb_infobox th {
-        font-weight : bold;
+        font-weight: bold;
         font-size: 100%;
         margin-top: 1px;
         margin-bottom: 1px;
-        text-align : center;
+        text-align: center;
 }
 
 .user_thumb_infobox td {
         font-size: 85%;
         margin-top: 1px;
         margin-bottom: 1px;
-        text-align : center;
+        text-align: center;
 }
 
 .user_thumb_infobox a {
@@ -291,16 +308,16 @@ bblink a:hover {
 }
 
 .sortorder_cell {
-        background : #66707C ;
-        color : #FFFFFF;
+        background: #66707C ;
+        color: #FFFFFF;
         padding: 0px;
         margin: 0px;
 }
 
 .sortorder_options {
         font-family: Verdana, Arial, Helvetica, sans-serif;
-        background : #66707C ;
-        color : #FFFFFF;
+        background: #66707C ;
+        color: #FFFFFF;
         padding: 0px;
         margin: 0px;
         font-weight: normal;
@@ -313,7 +330,7 @@ bblink a:hover {
         color: #FFFFFF;
         font-size: 100%;
         font-weight: bold;
-        background : #66707C ;
+        background: #66707C ;
         border-style: none;
 }
 
@@ -336,7 +353,7 @@ bblink a:hover {
 }
 
 .navmenu a:hover {
-        background : #C2C9D3 ;
+        background: #C2C9D3 ;
         text-decoration: none;
         color:         #000000;
 }
@@ -345,8 +362,8 @@ bblink a:hover {
         font-family: Arial, Helvetica, sans-serif;
         font-size: 85%;
         border: 1px solid #005D8C;
-        background-image : url(images/button_bg.gif);
-        background-position : bottom;
+        background-image: url(images/button_bg.gif);
+        background-position: bottom;
         color: #000000;
         font-weight: bold;
         margin-top: 0px;
@@ -375,8 +392,8 @@ bblink a:hover {
         font-family: Arial, Helvetica, sans-serif;
         font-size: 85%;
         border: 1px solid #005D8C;
-        background-image : url(images/button_bg.gif);
-        background-position : bottom;
+        background-image: url(images/button_bg.gif);
+        background-position: bottom;
         background-repeat: repeat-x;
         background-color: #FFFFFF;
         color: #000000;
@@ -402,12 +419,12 @@ bblink a:hover {
 }
 
 td #admin_menu_anim {
-        background-image : url(images/button_bg_anim.gif);
+        background-image: url(images/button_bg_anim.gif);
 }
 .comment_date{
-        color : #5F5F5F;
-        font-size : 90%;
-        vertical-align : middle;
+        color: #5F5F5F;
+        font-size: 90%;
+        vertical-align: middle;
 }
 
 .image {
@@ -492,41 +509,41 @@ td #admin_menu_anim {
 }
 
 .topmenu {
-        font-size : 100%;
+        font-size: 100%;
 }
 
 .topmenu a {
-        color : #FFFFFF;
-        text-decoration : none;
+        color: #FFFFFF;
+        text-decoration: none;
 }
 
 .topmenu a:hover  {
-        color : #FFFFFF;
-        text-decoration : underline;
+        color: #FFFFFF;
+        text-decoration: underline;
 }
 
 .topmenu td  {
         white-space: nowrap;
-        font-weight : bold;
+        font-weight: bold;
 }
 
 
 .img_caption_table {
         border: none;
         background-color: #FFFFFF;
-        width : 100%;
-        margin : 0px;
+        width: 100%;
+        margin: 0px;
 }
 
 .img_caption_table th {
         background: #A3AAB4 ;
-        font-size : 100%;
-        color : #000000;
+        font-size: 100%;
+        color: #000000;
         padding-top: 4px;
         padding-right: 10px;
         padding-bottom: 4px;
         padding-left: 10px;
-        border-top : 1px solid #FFFFFF;
+        border-top: 1px solid #FFFFFF;
 }
 
 .img_caption_table td {
@@ -535,19 +552,19 @@ td #admin_menu_anim {
         padding-right: 10px;
         padding-bottom: 6px;
         padding-left: 10px;
-        border-top : 1px solid #FFFFFF;
+        border-top: 1px solid #FFFFFF;
         white-space: normal;
 }
 
 .debug_text {
         border: #BDBEBD;
         background-color: #EFEFEF;
-        width : 100%;
-        margin : 0px;
+        width: 100%;
+        margin: 0px;
 }
 
 .clickable_option {
-        cursor : default;
+        cursor: default;
 }
 
 .listbox_lang {
@@ -556,7 +573,7 @@ td #admin_menu_anim {
         border: 1px solid #758698;
         font-size: 80%;
         font-family: Arial, Helvetica, sans-serif;
-        vertical-align : middle;
+        vertical-align: middle;
 }
 
 #vanity a {
