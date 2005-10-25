@@ -17,16 +17,16 @@
 **********************************************/
 
 /* Colors used in this style sheet:
-   Hex 000000 = RBG   0,   0,   0 = black
-   Hex 5F5F5F = RBG  95,  95,  95 = light black
-   Hex BDBEBD = RBG 189, 190, 189 = dark grey
-   Hex D1D7DC = RBG 209, 215, 220 = medium grey
-   Hex CCCCCC = RBG 204, 204, 204 = medium grey
-   Hex EFEFEF = RBG 239, 239, 239 = dark white
-   Hex FFFFFF = RBG 255, 255, 255 = white
-   Hex 005D8C = RBG   0,  93, 140 = dark blue
-   Hex 0033CC = RBG   0,  91, 104 = medium blue
-   Hex 0E72A4 = RBG  14, 114, 164 = light blue
+   Hex 000000 = RGB   0,   0,   0 = black
+   Hex 5F5F5F = RGB  95,  95,  95 = light black
+   Hex BDBEBD = RGB 189, 190, 189 = dark grey
+   Hex D1D7DC = RGB 209, 215, 220 = medium grey
+   Hex CCCCCC = RGB 204, 204, 204 = medium grey
+   Hex EFEFEF = RGB 239, 239, 239 = dark white
+   Hex FFFFFF = RGB 255, 255, 255 = white
+   Hex 005D8C = RGB   0,  93, 140 = dark blue
+   Hex 0033CC = RGB   0,  91, 104 = medium blue
+   Hex 0E72A4 = RGB  14, 114, 164 = light blue
 */
 
 body {

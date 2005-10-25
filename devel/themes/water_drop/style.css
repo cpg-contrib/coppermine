@@ -16,9 +16,27 @@
   $Date$
 **********************************************/
 
+/* Colors used:                                */
+/* --------------------------------------------*/
+/* Hex 000000 = RGB   0,  0,  0 = black        */
+/* Hex 5F5F5F = RGB  95, 95, 95 = light black  */
+/* Hex BDBEBD = RGB 189,190,189 = dark grey    */
+/* Hex D1D7DC = RGB 209,215,220 = medium grey  */
+/* Hex CCD7E0 = RGB 204,215,224 = light grey   */
+/* Hex CBD7DE = RGB 203,215,222 = steel grey   */
+/* Hex F2F5F7 = RGB 242,245,247 = dark white   */
+/* Hex EFEFEF = RGB 239,239,239 = dark white   */
+/* Hex FFFFFF = RGB 255,255,255 = white        */
+/* Hex 000666 = RGB   0,  6,102 = dark blue    */
+/* Hex 0033CC = RBG   0, 91,104 = medium blue  */
+/* Hex 718EA5 = RGB 113,142,165 = light blue   */
+/* Hex 8AA5B5 = RGB 138,165,181 = light blue   */
+/* if you don't like a color, just do a search */
+/* and replace on the hex color...             */
+
 body {
         background: url("images/bg.gif");
-        background-color: #f2f5f7;
+        background-color: #F2F5F7;
         font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
         font-size : 12px;
         color: #000666;
@@ -35,7 +53,7 @@ h1{
         font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
         text-decoration: none;
         line-height : 120%;
-        color: #718ea5;
+        color: #718EA5;
         margin: 2px;
 }
 
@@ -94,7 +112,7 @@ li {
 .button {
         font-family: Arial, Helvetica, sans-serif;
         font-size: 100%;
-        border: 1px solid #ccd7e0;
+        border: 1px solid #CCD7E0;
         background-image : url(images/button_bg.gif);
         background-position : bottom;
 }
@@ -102,7 +120,7 @@ li {
 .comment_button {
         font-family: Arial, Helvetica, sans-serif;
         font-size: 100%;
-        border: 1px solid #ccd7e0;
+        border: 1px solid #CCD7E0;
         background-image : url(images/button_bg.gif);
         background-position : bottom;
         padding-left: 3px;
@@ -142,8 +160,8 @@ bblink a:hover {
 }
 
 .maintable {
-        border: 1px solid #ccd7e0;
-        background-color: #FFF;
+        border: 1px solid #CCD7E0;
+        background-color: #FFFFFFF;
         margin-top: 1px;
         margin-bottom: 1px;
 }
@@ -350,7 +368,7 @@ bblink a:hover {
 .admin_menu_thumb {
         font-family: Arial, Helvetica, sans-serif;
         font-size: 90%;
-        border: 1px solid #ccd7e0;
+        border: 1px solid #CCD7E0;
         background-image : url(images/button_bg.gif);
         background-position : bottom;
         color: #000000;
@@ -555,8 +573,8 @@ td #admin_menu_anim {
 
 .listbox_lang {
         color: #000666;
-        background-color: #f2f5f7;
-        border: 1px solid #f2f5f7;
+        background-color: #F2F5F7;
+        border: 1px solid #F2F5F7;
         font-size: 80%;
         font-family: Arial, Helvetica, sans-serif;
         vertical-align : middle;
