@@ -182,7 +182,11 @@ class cpg_udb extends core_udb {
 	
 	function collect_groups()
 	{
-		$sql ="SELECT * FROM {$this->groupstable} WHERE minposts=-1";
+		// Use this version to exclude true post based groups
+		//$sql ="SELECT * FROM {$this->groupstable} WHERE minposts=-1";
+	
+		// Use this version to include all SMF groups
+		$sql ="SELECT * FROM {$this->groupstable}";
 	
 		$result = cpg_db_query($sql, $this->link_id);
 		
