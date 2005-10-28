@@ -10,7 +10,7 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.4.2
+  Coppermine version: 1.4.1
   $Source$
   $Revision$
   $Author$
@@ -90,8 +90,6 @@ class cpg_udb extends core_udb {
 			'edituserprofile' => '/index.php?action=profile;u='
 		);
 		
-
-
 		// Group ids - admin and guest only.
 		$this->admingroups = array(1);
 		$this->guestgroup = $this->use_post_based_groups ? 1 : 3;
@@ -100,6 +98,61 @@ class cpg_udb extends core_udb {
 		$this->connect($db_connection);
 	}
 
+	// overriding authenticate() as we can let SMF do this all for us.
+	function authenticate()
+	{
+		global $USER_DATA, $user_settings;
+
+		if (!$user_settings){
+			$this->load_guest_data();
+		} else {
+		
+			$row = array(
+				'id' => $user_settings['ID_MEMBER'],
+				'username' => $user_settings['memberName'],
+				'group_id' => $user_settings['ID_GROUP']
+			);
+		
+			$this->load_user_data($row);
+		}
+		
+		$user_group_set = '(' . implode(',', $USER_DATA['groups']) . ')';
+
+        $USER_DATA = array_merge($USER_DATA, $this->get_user_data($USER_DATA['groups'][0], $USER_DATA['groups'], $this->guestgroup));
+
+		if ($this->use_post_based_groups){
+			$USER_DATA['has_admin_access'] = (in_array($USER_DATA['groups'][0] - 100,$this->admingroups)) ? 1 : 0;
+		} else {
+			$USER_DATA['has_admin_access'] = ($USER_DATA['groups'][0] == 1) ? 1 : 0;
+		}
+		
+		$USER_DATA['can_see_all_albums'] = $USER_DATA['has_admin_access'];
+		
+		// avoids a template error
+		if (!$USER_DATA['user_id']) $USER_DATA['can_create_albums'] = 0;
+		
+	    // For error checking
+		$CONFIG['TABLE_USERS'] = '**ERROR**';
+			
+		define('USER_ID', $USER_DATA['user_id']);
+        define('USER_NAME', addslashes($USER_DATA['user_name']));
+        define('USER_GROUP', $USER_DATA['group_name']);
+        define('USER_GROUP_SET', $user_group_set);
+        define('USER_IS_ADMIN', $USER_DATA['has_admin_access']);
+        define('USER_CAN_SEND_ECARDS', (int)$USER_DATA['can_send_ecards']);
+        define('USER_CAN_RATE_PICTURES', (int)$USER_DATA['can_rate_pictures']);
+        define('USER_CAN_POST_COMMENTS', (int)$USER_DATA['can_post_comments']);
+        define('USER_CAN_UPLOAD_PICTURES', (int)$USER_DATA['can_upload_pictures']);
+        define('USER_CAN_CREATE_ALBUMS', (int)$USER_DATA['can_create_albums']);
+        define('USER_UPLOAD_FORM', (int)$USER_DATA['upload_form_config']);
+        define('CUSTOMIZE_UPLOAD_FORM', (int)$USER_DATA['custom_user_upload']);
+        define('NUM_FILE_BOXES', (int)$USER_DATA['num_file_upload']);
+        define('NUM_URI_BOXES', (int)$USER_DATA['num_URI_upload']);
+		
+		$this->session_update();
+		
+	}
+	
 	function get_groups($row)
 	{
 		global $user_settings;
@@ -121,13 +174,15 @@ class cpg_udb extends core_udb {
 				$data[] = $group+$i;  //appends additionalGroups to the primary group.
 			}
 		}
+		
+		$data[] = $user_settings['ID_POST_GROUP'];
 
 		return $data;
 	}
 	
 	function collect_groups()
 	{
-		$sql ="SELECT * FROM {$this->groupstable}";
+		$sql ="SELECT * FROM {$this->groupstable} WHERE minposts=-1";
 	
 		$result = cpg_db_query($sql, $this->link_id);
 		
@@ -139,30 +194,6 @@ class cpg_udb extends core_udb {
 		}
 
 		return $udb_groups;
-	}
-	
-	// definition of how to extract id, name, group from a session cookie
-	function session_extraction()
-	{
-		global $user_settings;
-		
-		if (!$user_settings){
-            return false;
-		}
-
-		return array($user_settings['ID_MEMBER'], $user_settings['passwd']);
-	}
-	
-	// definition of how to extract an id and password hash from a cookie
-	function cookie_extraction()
-	{
-		return false; //unused
-	}
-	
-	// definition of actions required to convert a password from user database form to cookie form
-	function udb_hash_db($password)
-	{
-		return $password; // unused
 	}
 	
 	function login_page()
