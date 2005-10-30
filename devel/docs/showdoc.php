@@ -100,7 +100,7 @@ if ($string == '' && $header == '') {
 */
 
 if ($add_stylesheet != '') {
-    $string = "<html>\n<head>\n<title>Help</title>\n" . '<link rel="stylesheet" href="../themes/'.$add_stylesheet.'/style.css" />' . "\n</head>\n<body class=\"tableb\">\n<div style=\"padding: 5px;\">\n" . $string;
+    $string = "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n\t\"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n<html>\n<head>\n<title>Help</title>\n" . '<link href="../themes/'.$add_stylesheet.'/style.css" rel="stylesheet" type="text/css" />' . "\n</head>\n<body class=\"tableb\">\n<div style=\"padding: 5px;\">\n" . $string;
     $string .= $close_link."\n</div>\n</body>\n</html>";
 }
 
