@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /*************************
   Coppermine Photo Gallery
   ************************
@@ -115,7 +115,7 @@ $lang_main_menu = array(
   'alb_list_lnk' => 'Alben-Liste',
   'my_gal_title' => 'Gehe zu meiner persönlichen Galerie',
   'my_gal_lnk' => 'Meine Galerie',
-  'my_prof_title' => 'Gehe zu meiner Profil', //cpg1.4
+  'my_prof_title' => 'Gehe zu meinem Profil', //cpg1.4
   'my_prof_lnk' => 'Mein Profil',
   'adm_mode_title' => 'In den Admin-Modus wechseln',
   'adm_mode_lnk' => 'Admin-Modus',
@@ -283,7 +283,7 @@ $lang_get_pic_data = array(
 $lang_cpg_debug_output = array(
   'debug_info' => 'Debug-Info',
   'select_all' => 'Alles markieren',
-  'copy_and_paste_instructions' => 'Wenn Du Hilfe im Coppermine-Forum suchen willst, kopiere diese Debug-Ausgabe in Deinen Beitrag im Forum. Ersetze eventuell vorhandenen Passwörter in den Queries durch ***.<br />Anmerkung: Diese Ausgabe erfolgt nur zur Information und bedeutet nicht, dass ein Fehler in der Galerie vorliegt.', //cpg1.4
+  'copy_and_paste_instructions' => 'Wenn Du Hilfe im Coppermine-Forum suchen willst, kopiere diese Debug-Ausgabe in Deinen Beitrag im Forum. Ersetze eventuell vorhandene Passwörter in den Queries durch ***.<br />Anmerkung: Diese Ausgabe erfolgt nur zur Information und bedeutet nicht, dass ein Fehler in der Galerie vorliegt.', //cpg1.4
   'phpinfo' => 'phpinfo anzeigen',
   'notices' => 'Notices', //cpg1.4
 );
@@ -507,7 +507,7 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'error_no_special_chars' => 'Der Name der Bridge-Datei darf keine Sonderzeichen enthalten ausser Untertrich (_) und Bindestrich (-)!',
   'error_bridge_file_not_exist' => 'Die Bridge-datei %s existiert nicht auf dem Server. Überprüfe die Schreibweise und ob Du sie tatsächlich hochgeladen hast.',
   'finalize' => 'Forums-Integration aktivieren/deaktivieren',
-  'finalize_explanation' => 'Bisher wurden Deine Einstellungen in die Datenbank geschrieben, aber die Forums-Integration (Bridging) wurde noch nicht aktiviert. Du kannst die Integration jederzeit später an- oder abschalten. Merke Dir auf jeden Fall den Benutzernamen und das Passwort Deines Admin-Kontos (Coppermine ohne Bridging), da Du es später evtl. brauchst, um die Einstellungen zu ändern. Wenn etwas schief läuft, gehe zu %s und deaktiveire das Bridging dort (verwende dazu Dein Coppermine-Admin-Konto, das Du beim Installieren von Coppermine benutzt hast).',
+  'finalize_explanation' => 'Bisher wurden Deine Einstellungen in die Datenbank geschrieben, aber die Forums-Integration (Bridging) wurde noch nicht aktiviert. Du kannst die Integration jederzeit später an- oder abschalten. Merke Dir auf jeden Fall den Benutzernamen und das Passwort Deines Admin-Kontos (Coppermine ohne Bridging), da Du es später evtl. brauchst, um die Einstellungen zu ändern. Wenn etwas schief läuft, gehe zu %s und deaktiviere das Bridging dort (verwende dazu Dein Coppermine-Admin-Konto, das Du beim Installieren von Coppermine benutzt hast).',
   'your_bridge_settings' => 'Deine Bridge-Einstellungen',
   'title_enable' => 'Aktiviere/De-Aktiviere Integration/Bridging mit %s',
   'bridge_enable_yes' => 'aktivieren',
@@ -540,7 +540,7 @@ if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
   'recovery_wait_content' => 'Aus Sicherheitsgründen erlaubt das Skript keine fehlgeschlagenen Anmeldeversuche in kurzer Reihenfolge - deshalb musst Du ein bißchen warten, bevor Du wieder einen Anmelde-Versuch unternehmen darfst.',
   'wait' => 'warte',
   'create_redir_file' => 'Umleitungs-Datei anlegen (empfohlen)',
-  'create_redir_file_explanation' => 'Um Benutzer nach der Anmeldung im Forum wieder zu Coppermine umzuleiten brauchst Du eine Umleitungs-Datei in Deinem Forums-Verzeichnis. Wenn diese Option aktiviert ist wird der Bridge-Assistent versuchen, diese datei für Dich anzulegen, oder Dir den Code den Code für das manuelle Anlegen der Datei per markieren und kopieren zu erzeugen.',
+  'create_redir_file_explanation' => 'Um Benutzer nach der Anmeldung im Forum wieder zu Coppermine umzuleiten brauchst Du eine Umleitungs-Datei in Deinem Forums-Verzeichnis. Wenn diese Option aktiviert ist wird der Bridge-Assistent versuchen, diese datei für Dich anzulegen, oder Dir den Code für das manuelle Anlegen der Datei per markieren und kopieren zu erzeugen.',
   'browse' => 'durchsuchen',
 );
 
@@ -841,7 +841,7 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
   'err_invalid_img' => 'Die Datei, die Du hochgeladen hast, ist kein gültiger Bildtyp!',
   'allowed_img_types' => 'Du kannst nur %s Bilder hochladen.',
   'err_insert_pic' => 'Das Bild \'%s\' kann nicht in das Album eingefügt werden ',
-  'upload_success' => 'Deine Datei wurde erfolgreich hochgeladen.<br /><br />Es wird nach der Bestätigung durch den Admin sichtbar sein.',
+  'upload_success' => 'Deine Datei wurde erfolgreich hochgeladen.<br /><br />Sie wird nach der Bestätigung durch den Admin sichtbar sein.',
   'notify_admin_email_subject' => '%s - Upload-Benachrichtigung',
   'notify_admin_email_body' => '%s hat eine Datei hochgeladen, die bestätigt werden muss. Gehe zu %s',
   'info' => 'Information',
@@ -855,7 +855,7 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
   'email_comment_subject' => 'In der Coppermine Photo Gallery wurde ein Kommentar abgegeben',
   'email_comment_body' => 'Jemand hat einen Kommentar in Deiner Galerie abgegeben. Um den Kommentar anzusehen, klicke hier: ',
   'album_not_selected' => 'Kein Album ausgewählt', //cpg1.4
-  'com_author_error' => 'Ein registrierter Benutzer verwendet diesen Namen bereits, melde DIch an oder verwende einen anderen Namen.', //cpg1.4
+  'com_author_error' => 'Ein registrierter Benutzer verwendet diesen Namen bereits, melde Dich an oder verwende einen anderen Namen.', //cpg1.4
 );
 
 // ------------------------------------------------------------------------- //
@@ -1063,7 +1063,7 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
   'preview' => 'Vorschau der eCard', //cpg1.4
   'preview_button' => 'Vorschau', //cpg1.4
   'submit_button' => 'eCard senden', //cpg1.4
-  'preview_view_ecard' => 'Dies wird der Alternatgiv-Link zur eCard sein, sobald sie tatsächlich eerstellt wurde - funktioniert nicht für die Vorschau.', //cpg1.4
+  'preview_view_ecard' => 'Dies wird der Alternativ-Link zur eCard sein, sobald sie tatsächlich erstellt wurde - funktioniert nicht für die Vorschau.', //cpg1.4
 );
 
 // ------------------------------------------------------------------------- //
@@ -1186,7 +1186,7 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   array('Woher kann ich dieses Porgramm für meine Homepage bekommen?', 'Diese Seite läuft mit Coppermine. Coppermine ist eine kostenlose Multimedia-Galerie, die unter der Lizenz GNU GPL erscheint. Die Software ist voller Features und für einige Platformen erhältlich. Besuche die <a href="http://coppermine.sf.net/">Coppermine Home Page</a> für zusätzliche Informationen oder um die Software herunterzuladen.', 'offline', 0),
 
   'Navigation auf der Seite',
-  array('Was ist die &quot;Alben-Übersicht&quot;?', 'Zeigt die gesamte Kategorie an, in der Du Dich gerade befindest, mit einem Link zu jedem Album. Wenn Du Dich gerade nicht innerhalb einer Kategorie bnefindest zeigt Dir &quot;Alben-Übersicht&quot; die gesamte Galerie mit Links zu den einzelnen Kategorien an. Möglicherweise existieren Thumbnails als Links zu den einzelnen Kategorien.', 'offline', 0),
+  array('Was ist die &quot;Alben-Übersicht&quot;?', 'Zeigt die gesamte Kategorie an, in der Du Dich gerade befindest, mit einem Link zu jedem Album. Wenn Du Dich gerade nicht innerhalb einer Kategorie befindest zeigt Dir &quot;Alben-Übersicht&quot; die gesamte Galerie mit Links zu den einzelnen Kategorien an. Möglicherweise existieren Thumbnails als Links zu den einzelnen Kategorien.', 'offline', 0),
   array('Was ist &quot;meine Galerie&quot;?', 'Mit diesem Menüpunkt kannst Du Deine eigene Benutzer-Galerie erstellen und bearbeiten.', 'allow_private_albums', 1), //cpg1.4
   array('Was ist der Unterschied zwischen &quot;Admin-Modus&quot; und &quot;Benutzer-Modus&quot;?', 'Im Admin-Modus werden die Navigations-Elemente zum Erstellen und Ändern Deiner Benutzer-Galerie angezeigt; der Benutzer-Modus zeigt Dir, wie Deine Benutzer-Galerie für andere Benutzer aussieht (ohne die entsprechenden Menüpunkte).', 'allow_private_albums', 0),
   array('Was ist &quot;Dateien hochladen&quot;?', 'Dieses Feature ermöglicht es Benutzern, eigene Dateien hochzuladen und in Alben zu positionieren (Dateigröße und -typ wurden vom Admin festgelegt).', 'allow_private_albums', 0),
@@ -1253,7 +1253,7 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
   'error_group_empty' => 'Gruppen-Tabelle war leer!<br /><br />Standard-Gruppen wurden erstellt, bitte diese Seite erneut laden', //cpg1.4
   'explain_greyed_out_title' => 'Warum ist diese Zeile ausgegraut?', //cpg1.4
   'explain_guests_greyed_out_text' => 'Die Eigenschaften dieser Gruppe können nicht verändert werden, weil die Option &quot;Nicht-angemeldeten Besuchern (Gäste) Zugriff erlauben&quot; in der Coppermine-Knofiguration auf &quot;Nein&quot; gesetzt wurde. Alle Gäste (Mitglieder der Gruppe %s) können nichts tun außer sich anzumelden; daher sind keine der Gruppen-Verrechtungen für sie zutreffend.', //cpg1.4
-  'explain_banned_greyed_out_text' => 'Die Eigenschaften der Gruppe %s können nicht verändert werden, da deren Mitglieder sowieso nicht tun dürfen.', //cpg1.4
+  'explain_banned_greyed_out_text' => 'Die Eigenschaften der Gruppe %s können nicht verändert werden, da deren Mitglieder sowieso nichts tun dürfen.', //cpg1.4
   'group_assigned_album' => 'zugewiesene Alben', //cpg1.4
 );
 
@@ -1534,7 +1534,7 @@ $lang_register_php = array(
   'notify_admin_email_body' => 'Jemand mit dem Benutzernamen "%s" hat sich in Deiner Galerie registriert',
   'pic_count' => 'Hochgeladene Dateien', //cpg1.4
   'notify_admin_request_email_subject' => '%s - Registrierungsversuch', //cpg1.4
-  'thank_you_admin_activation' => 'Danke.<br /><br />Deine Registrierung wurde an den Administrator weitergeleitet zur Aktiverung. Du wirst nach erfolgter Aktiverung wirst Du eine eMail erhalten.', //cpg1.4
+  'thank_you_admin_activation' => 'Danke.<br /><br />Deine Registrierung wurde an den Administrator weitergeleitet zur Aktivierung. Nach erfolgter Aktiverung wirst Du eine eMail erhalten.', //cpg1.4
   'acct_active_admin_activation' => 'Das Benutzerkonto ist jetzt aktiv. Dem Benutzer wurde eine Benachrichtigung darüber per eMail gesendet.', //cpg1.4
   'notify_user_email_subject' => '%s - Aktivierungs-Benachrichtigung', //cpg1.4
 );
@@ -1558,7 +1558,7 @@ EOT;
 $lang_register_approve_email = <<<EOT
 Ein neuer Benutzer hat sich mit dem Benutzernamen "{USER_NAME}" in Deiner Galerie registriert.
 
-Um das benutzerkonto zu aktivieren, klicke auf den untenstehenden Link oder kopiere ihn in die Adresszeile Deines Browsers.
+Um das Benutzerkonto zu aktivieren, klicke auf den untenstehenden Link oder kopiere ihn in die Adresszeile Deines Browsers.
 
 <a href="{ACT_LINK}">{ACT_LINK}</a>
 
@@ -1921,7 +1921,7 @@ $lang_util_php = array(
   'thumbs_continue_wait' => 'Fortfahren mit der Aktualisierung der Thumbnails und/oder Bilder in Zwischengröße...',
   'titles_wait' => 'Aktualisiere Überschriften, bitte warten...',
   'delete_wait' => 'Lösche Überschriften, bitte warten...',
-  'replace_wait' => 'ösche Originale und ersetze sie mit Bilder in Zwischengröße, bitte warten...',
+  'replace_wait' => 'Lösche Originale und ersetze sie mit Bilder in Zwischengröße, bitte warten...',
   'instruction' => 'Kurzanleitung',
   'instruction_action' => 'Wähle Aktion',
   'instruction_parameter' => 'Wähle Parameter',
@@ -1983,14 +1983,14 @@ $lang_util_php = array(
 
 if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'title' => 'Versions-Check', //cpg1.4
-  'what_it_does' => 'Diese Seite ist für Benutzer gedacht, die ihre Version von Coppermine katualisiert haben. Dieses Skript durchläuft alle Dateien auf dem Webserver und versucht festzustellen, ob Deine lokalen Dateiversionen mit denen der Referenz auf http://coppermine.sourceforge.net übereinstimmen. Dadurch werden die Dateien, die irrtümlich nicht aktualisiert wirden angezeigt.<br />Alles, was korrigiert werden muss wird in rot angezeigt. Einträge in gelb müssen einer näheren Betrachtung unterzogen werden. Einträge in grün (oder Deiner Standard-Schriftfarbe) sind OK.<br />Klicke auf die Hilfe-Icons für Details.', //cpg1.4
+  'what_it_does' => 'Diese Seite ist für Benutzer gedacht, die ihre Version von Coppermine aktualisiert haben. Dieses Skript durchläuft alle Dateien auf dem Webserver und versucht festzustellen, ob Deine lokalen Dateiversionen mit denen der Referenz auf http://coppermine.sourceforge.net übereinstimmen. Dadurch werden die Dateien, die irrtümlich nicht aktualisiert wurden angezeigt.<br />Alles, was korrigiert werden muss wird in rot angezeigt. Einträge in gelb müssen einer näheren Betrachtung unterzogen werden. Einträge in grün (oder Deiner Standard-Schriftfarbe) sind OK.<br />Klicke auf die Hilfe-Icons für Details.', //cpg1.4
   'online_repository_unable' => 'Konnte nicht mit Referenz-Datei abgleichen', //cpg1.4
   'online_repository_noconnect' => 'Coppermine konnte sich nicht mit der Referenz-Datei abzugleichen. Dies kann 2 Gründe haben:', //cpg1.4
   'online_repository_reason1' => 'die Referenzdatei ist derzeit nicht online - überprüfe, ob Du mit dem Browser diese Seite anzeigen kannst: %s - falls nicht, versuche später noch einmal, den Versions-Check durchzuführen.', //cpg1.4
-  'online_repository_reason2' => 'Auf Deinem Webserver ist PHP so konfiguriert, dass %s deaktiviert ist (Standard-mässig ist diese Option aktiviert). Falls Du den Webserver administrieren kannst, aktiviere diese Option in Deiner <i>php.ini</i> (erlaube zumindest, dass die globale EInstellung mit %s temporär umgangen werden kann). Falls Du jedoch auf einem fremden Server gehostet bist musst Du wahrscheinlich damit leben, dass Du Deine Dateien nicht online vergleichen kannst. In diesem Fall wird diese Seite nur die Dateiversionen mit denen der Ditribution vergleichen - spätere Updates werden nicht in Betracht gezogen.', //cpg1.4
+  'online_repository_reason2' => 'Auf Deinem Webserver ist PHP so konfiguriert, dass %s deaktiviert ist (Standard-mässig ist diese Option aktiviert). Falls Du den Webserver administrieren kannst, aktiviere diese Option in Deiner <i>php.ini</i> (erlaube zumindest, dass die globale Einstellung mit %s temporär umgangen werden kann). Falls Du jedoch auf einem fremden Server gehostet bist musst Du wahrscheinlich damit leben, dass Du Deine Dateien nicht online vergleichen kannst. In diesem Fall wird diese Seite nur die Dateiversionen mit denen der Ditribution vergleichen - spätere Updates werden nicht in Betracht gezogen.', //cpg1.4
   'online_repository_skipped' => 'Verbindung mit der Referenz-Datei übersprungen', //cpg1.4
   'online_repository_to_local' => 'Das Skript benutzt jetzt die lokale Kopie der Versions-Dateien. Die Daten sind möglicherweise ungenau, falls Du Coppermine aktualisiert und nicht alle Dateien hochgeladen hast. Änderungen an Dateiversionen, die nach der Veröffentlichung des Pakets vorgenommen wurden werden nicht berücksichtigt.', //cpg1.4
-  'local_repository_unable' => 'Das Skript konnte sich nicht mit der Referenzdatei auf Deinem Server verbidnen', //cpg1.4
+  'local_repository_unable' => 'Das Skript konnte sich nicht mit der Referenzdatei auf Deinem Server verbinden', //cpg1.4
   'local_repository_explanation' => 'Coppermine konnte sich nicht mit der Refernzdatei %s auf Deinem Webserver verbinden. Das bedeutet wahrscheinlich, dass Du die Refernzdatei nicht auf den Server hochgeladen hast. Erledige das nun und versuche dann, diese Seite erneut zu laden (klicke auf "aktualisieren").<br />Falls das immer noch fehl schlägt, dann hat Dein Webhost möglicherweise Teile der <a href="http://www.php.net/manual/de/ref.filesystem.php">Dateifunktionen von PHP</a> komplett deaktiviert. In diesem Fall kannst Du dieses Tool leider gar nicht benutzen.', //cpg1.4
   'coppermine_version_header' => 'Installierte Coppermine-Version', //cpg1.4
   'coppermine_version_info' => 'Du hast derzeit installiert: %s', //cpg1.4
@@ -2018,7 +2018,7 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'help_not_writable1' => 'Verzeichnis nicht beschreibbar', //cpg1.4
   'help_not_writable2' => 'Ändere die Berechtigungen (CHMOD), um dem Skript Schreibrechte auf den Ordner %s und alles darin befindliche zu gewähren.', //cpg1.4
   'help_writable1' => 'Verzeichnis beschreibbar', //cpg1.4
-  'help_writable2' => 'Das Verzeichnis %s ist beschreibbar. DIes stellt ein unnötiges Sicherheitsrisiko dar, Coppermine benötigt nur Lese- und Ausfühgrungsrechte.', //cpg1.4
+  'help_writable2' => 'Das Verzeichnis %s ist beschreibbar. Dies stellt ein unnötiges Sicherheitsrisiko dar, Coppermine benötigt nur Lese- und Ausführungsrechte.', //cpg1.4
   'help_writable_undetermined' => 'Das Skript konnte nicht feststellen, ob das Verzeichnis beschreibbar ist.', //cpg1.4
   'your_file' => 'Deine Datei', //cpg1.4
   'reference_file' => 'Referenz-Datei', //cpg1.4
@@ -2074,11 +2074,11 @@ $lang_xp_publish_required = <<<EOT
 EOT;
 
 $lang_xp_publish_select = <<<EOT
-Wähle &quot;Zeil speichern unter..&quot;. Speichere die Datei auf Deiner Festplatte. Überprüfe beim Speichern, dass der vorgeschlagene Name  <b>cpg_###.reg</b> lautet (die ###-Symbole repräsentieren einen numerischen Zeitstempel). Ändere ggf. den Namen ab (aber lasse die Zahlen so, wie sie sind). Nach erfolgtem Download, dopperlklicke auf die heruntergeladene Datei, um den Coppermine-Server beim Web Publishing-Assistenten zu registrieren.</li></ul>
+Wähle &quot;Zeil speichern unter..&quot;. Speichere die Datei auf Deiner Festplatte. Überprüfe beim Speichern, dass der vorgeschlagene Name  <b>cpg_###.reg</b> lautet (die ###-Symbole repräsentieren einen numerischen Zeitstempel). Ändere ggf. den Namen ab (aber lasse die Zahlen so, wie sie sind). Nach erfolgtem Download, doppelklicke auf die heruntergeladene Datei, um den Coppermine-Server beim Web Publishing-Assistenten zu registrieren.</li></ul>
 EOT;
 
 $lang_xp_publish_testing = <<<EOT
-<h2>Testen</h2><ul><li>Markiere einige Grafik-Dateien im Windows Explorer und klicke dann auf <b>xxx im Internet veröffentlichen</b> in der linken Leiste des Explorers.</li><li>Bestätige Deine Dateiauswahl. Klicke auf <b>weiter</b>.</li><li>In der Liste der zur Verfügung stehenden Dienste, wähle Deine Foto-Galerie (der Eintrag hat den Namen Deiner Galerie). Falls der Diesnt nicht erscheint, überprüfe, ob Du <b>cpg_pub_wizard.reg</b> wie oben beschrieben installiert hats.</li><li>Gib Deine Zugangsinformationen ein, falls notwendig.</li><li>Wähle ein Album als Ziel der Bilder oder erzeuge ein neues Album.</li><li>Klicke auf <b>weiter</b>. Der Upload Deiner Bilder startet jetzt.</li><li>Wenn der Upload beendet ist, überprüfe auf der Galerie-Seite, dass alle Bilder korrekt hochgeladen wurden.</li></ul>
+<h2>Testen</h2><ul><li>Markiere einige Grafik-Dateien im Windows Explorer und klicke dann auf <b>xxx im Internet veröffentlichen</b> in der linken Leiste des Explorers.</li><li>Bestätige Deine Dateiauswahl. Klicke auf <b>weiter</b>.</li><li>In der Liste der zur Verfügung stehenden Dienste, wähle Deine Foto-Galerie (der Eintrag hat den Namen Deiner Galerie). Falls der Diesnt nicht erscheint, überprüfe, ob Du <b>cpg_pub_wizard.reg</b> wie oben beschrieben installiert hast.</li><li>Gib Deine Zugangsinformationen ein, falls notwendig.</li><li>Wähle ein Album als Ziel der Bilder oder erzeuge ein neues Album.</li><li>Klicke auf <b>weiter</b>. Der Upload Deiner Bilder startet jetzt.</li><li>Wenn der Upload beendet ist, überprüfe auf der Galerie-Seite, dass alle Bilder korrekt hochgeladen wurden.</li></ul>
 EOT;
 
 $lang_xp_publish_notes = <<<EOT
@@ -2094,7 +2094,7 @@ EOT;
 $lang_xp_publish_php = array(
   'title' => 'Coppermine - XP Web Publishing Assistent', //cpg1.4
   'welcome' => 'Willkommen <b>%s</b>,', //cpg1.4
-  'need_login' => 'Um diesen Assistenten zu nutzen musst Du Dich bei der Galerie mit Hilfe Deines Browsers (IE) anmelden.<p/><p>Vergiss nicht, die Option the &quot;<b>Immer angemeldet bleiben</b>&quot; bei der Anmeldung zu aktivieren, wenn vorhanden.', //cpg1.4
+  'need_login' => 'Um diesen Assistenten zu nutzen musst Du Dich bei der Galerie mit Hilfe Deines Browsers (IE) anmelden.<p/><p>Vergiss nicht, die Option &quot;<b>Immer angemeldet bleiben</b>&quot; bei der Anmeldung zu aktivieren, wenn vorhanden.', //cpg1.4
   'no_alb' => 'Leider gibt es keine Alben, in die Du berechtigt bist mit diesem Assistenten Bilder hochzuladen.', //cpg1.4
   'upload' => 'Lade Deine Bilder in ein bestehendes Album hoch', //cpg1.4
   'create_new' => 'Erstelle ein neues Album für Deine Bilder', //cpg1.4
