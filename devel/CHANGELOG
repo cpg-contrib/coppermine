@@ -306,3 +306,4 @@ Added fix for XSS vulnaribility in language selector - 20 September 2005, Aditya
 Added fix for forbidden characters (space and ampersand) issue - 20 September 2005, Abbas
 Added files to userpics and edit directory to avoid uploads to those folders - 01 October 2005, GauGau
 Added portuguese language file for cpg1.4.x (user contrib) - 20 October 2005, GauGau
+Added French translation of the FAQ to docs folder - 3 November 2005, GauGau
