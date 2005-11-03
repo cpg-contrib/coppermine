@@ -38,6 +38,19 @@ global $CONFIG, $lang_image_processor_php;
 
 //-----------------------------FUNCTION BLOCK---------------------------------
 
+function write_to_disk($image_type, $final, $path)
+{
+  global $lang_image_processor_php;
+  if ($image_type == "1") {
+        imagegif($final, $path) or die($lang_image_processor_php['no_write']);
+  } elseif ($image_type == "2") {
+        imagejpeg($final, $path, 100) or die($lang_image_processor_php['no_write']);
+  } elseif ($image_type == "3") {
+        imagepng($final, $path) or die($lang_image_processor_php['no_write']);
+  }
+  imagedestroy($final);
+}
+
 function rotate_image($path_to_primary_image, $degrees) {
 
 // This function takes $path_to_primary_image and $degrees
@@ -211,8 +224,9 @@ $image_handle = get_handle($path_to_primary_image);
 
 
 // Now let's write the image to disk.
+write_to_disk($source_image_type, $final_image_handle, $path_to_primary_image);
 
-if ($source_image_type == "2") {
+/*if ($source_image_type == "2") {
 
         imagejpeg($final_image_handle, $path_to_primary_image, 100) or die($lang_image_processor_php['no_write']);
 
@@ -224,7 +238,7 @@ if ($source_image_type == "2") {
 
 // Destroy the final image handle.
 
-imagedestroy($final_image_handle);
+imagedestroy($final_image_handle); */
 
 }
 
@@ -297,8 +311,8 @@ if ($degrees == "90") {
 }
 
 // Now let's write the image to disk.
-
-if ($source_image_type == "2") {
+write_to_disk($source_image_type, $final_image_handle, $path_to_primary_image);
+/*if ($source_image_type == "2") {
 
         imagejpeg($final_image_handle, $path_to_primary_image, 100) or die($lang_image_processor_php['no_write']);
 
@@ -310,7 +324,7 @@ if ($source_image_type == "2") {
 
 // Destroy the final image handle.
 
-imagedestroy($final_image_handle);
+imagedestroy($final_image_handle);*/
 
 
 }
@@ -319,7 +333,7 @@ imagedestroy($final_image_handle);
 
 function get_handle($path_to_primary_image) {
 
-global $lang_image_processor_php;
+global $lang_image_processor_php, $CONFIG;
 
 // Let's use this information to create the handle with which to hold our lovely
 // image. The variable $image_handle is the handle that points to the image's
@@ -334,15 +348,14 @@ $source_image_height = $source_image_size_and_type[1];
 $source_image_type = $source_image_size_and_type[2];
 
 if ($source_image_type == "1") {
+        // The image is a GIF file.  We must verify PHP/GD supports GIF
+        // creation.  If not, return an error.
 
-        // The image is a GIF file, which we cannot use due to the Unisys patent.
-        // The image can be read by GD, but GD cannot create it again. It is
-        // possible to convert a GIF to PNG format using a command line call to
-        // the appropriate program (i.e. GIF2PNG), but the installation of this
-        // program on servers is by no means consistent. Therefore, we will
-        // forgo GIF support. We will return an error.
-
-        cpg_die(CRITICAL_ERROR, $lang_image_processor_php['GD_GIF_Warning'], __FILE__, __LINE__);
+        if ($CONFIG['GIF_support'] == 1) {
+            $image_handle = imagecreatefromgif($path_to_primary_image);
+        } else {
+            cpg_die(CRITICAL_ERROR, $lang_image_processor_php['GD_GIF_Warning'], __FILE__, __LINE__);
+        }
 
 } elseif ($source_image_type == "2") {
 
@@ -363,8 +376,7 @@ if ($source_image_type == "1") {
         // The user has given us an image we do not wish to work with. We return an
         // error.
 
-
-cpg_die(CRITICAL_ERROR, $lang_image_processor_php['not_supported'], __FILE__, __LINE__);
+        cpg_die(CRITICAL_ERROR, $lang_image_processor_php['not_supported'], __FILE__, __LINE__);
 
 }
 
@@ -489,8 +501,9 @@ if ($method == "gd2") {
 imagedestroy($image_handle);
 
 // Write the image to disk.
+write_to_disk($source_image_type, $destination_image_handle, $path_to_preview_image);
 
-        if ($source_image_type == "2") {
+/*        if ($source_image_type == "2") {
 
                 imagejpeg($destination_image_handle, $path_to_preview_image) or die($lang_image_processor_php['no_write']);
 
@@ -503,7 +516,7 @@ imagedestroy($image_handle);
         }
 
 // Destroy $destination_image_handle.
-imagedestroy($destination_image_handle);
+imagedestroy($destination_image_handle); */
 
 } elseif ($method == "im") {
 
@@ -558,6 +571,8 @@ return $path_to_preview_image;
 
 //**************************************************************************
 
+/* commented out this function as newer versions are in upload.php and
+logger.inc.php
 function spring_cleaning($directory_path) {
 
 global $lang_image_processor_php;
@@ -599,6 +614,7 @@ while (!(($file = readdir($directory_handle)) === false)) {
 closedir($directory_handle);
 
 }
+*/
 
 //**********************************************************************************
 
