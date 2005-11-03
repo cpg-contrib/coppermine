@@ -29,42 +29,37 @@
 */
 
 /**
- * get_meta_album_set_data()
- *
- * Get the entire album set based on the current category, this function is called recursively.
- *
- * ** Experimental, may cause sql problems on galleries with large numbers of albums.
- *
- * @param integer $cid Parent Category
- * @param array $meta_album_set_array
- * @return void
- **/
+* get_meta_album_set_data()
+*
+* Get the entire album set based on the current category, this function is called recursively.
+*
+* ** Experimental, may cause sql problems on galleries with large numbers of albums.
+*
+* @param integer $cid Parent Category
+* @param array $meta_album_set_array
+* @return void
+**/
 function get_meta_album_set_data($cid,&$meta_album_set_array) //adapted from index.php get_subcat_data()
 {
-    global $CONFIG, $HIDE_USER_CAT, $FORBIDDEN_SET, $cpg_show_private_album, $cat;
-    $album_filter = '';
+    global $CONFIG, $cat;
 
-    if (!empty($FORBIDDEN_SET) && !$cpg_show_private_album) {
-        $album_filter .= ' and ' . str_replace('p.', 'a.', $FORBIDDEN_SET);
+    if ($cid == USER_GAL_CAT) {
+       $sql = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category>=" . FIRST_USER_CAT;
+       $result = cpg_db_query($sql);
+       $album_count = mysql_num_rows($result);
+       while ($row = mysql_fetch_array($result)) {
+           $meta_album_set_array[] = $row['aid'];
+       } // while
+       mysql_free_result($result);
+    } else {
+       $result = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = {$cid}");
+       $album_count = mysql_num_rows($result);
+       while ($row = mysql_fetch_array($result)) {
+           $meta_album_set_array[] = $row['aid'];
+       } // while
+
+       mysql_free_result($result);
     }
-            if ($cid == USER_GAL_CAT) {
-                $sql = "SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} as a WHERE category>=" . FIRST_USER_CAT . $album_filter;
-                $result = cpg_db_query($sql);
-                $album_count = mysql_num_rows($result);
-                while ($row = mysql_fetch_array($result)) {
-                    $meta_album_set_array[] = $row['aid'];
-                } // while
-                mysql_free_result($result);
-            } else {
-                $unaliased_album_filter = str_replace('a.', '', $album_filter);
-                $result = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = {$cid}" . $unaliased_album_filter);
-                $album_count = mysql_num_rows($result);
-                while ($row = mysql_fetch_array($result)) {
-                    $meta_album_set_array[] = $row['aid'];
-                } // while
-
-                mysql_free_result($result);
-            }
 
     $result = cpg_db_query("SELECT cid FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$cid'");
 
@@ -79,34 +74,48 @@ function get_meta_album_set_data($cid,&$meta_album_set_array) //adapted from ind
 }
 
 /**
- * get_meta_album_set()
- *
- * Get the entire album set based on the current category.
- *
- * @param integer $cat Category
- * @param array $meta_album_set_array
- * @return void
- **/
-function get_meta_album_set($cat, &$meta_album_set)  //adapted from index.php get_cat_list()
+* get_meta_album_set()
+*
+* Get the entire album set based on the current category.
+*
+* @param integer $cat Category
+* @param array $meta_album_set_array
+* @return void
+**/
+function get_meta_album_set($cat, &$meta_album_set)
 {
-    global $USER_DATA;
-    if ($cat < 0) {
-        $meta_album_set= 'AND aid IN (' . (- $cat) . ') ';
-    } elseif ($USER_DATA['can_see_all_albums'] && $cat == 0) {
+    global $USER_DATA, $FORBIDDEN_SET_DATA, $CONFIG;
+    if ($cpg_show_private_album || $USER_DATA['can_see_all_albums'] && $cat == 0) {
         $meta_album_set ='';
-    } else {
+    } elseif ($cat < 0) {
+        $meta_album_set= 'AND aid IN (' . (- $cat) . ') ';
+    } elseif ($cat > 0) {
        $meta_album_set_array=array();
         get_meta_album_set_data($cat,$meta_album_set_array);
+        $meta_album_set_array = array_diff($meta_album_set_array,$FORBIDDEN_SET_DATA);
 
-  //    if (count($meta_album_set_array) && $cat) {
         if (count($meta_album_set_array)) {
             $meta_album_set = "AND aid IN (" . implode(',',$meta_album_set_array) . ") ";
-  //    } elseif ($cat) {
+        } else {
+            $meta_album_set = "AND aid IN (-1) ";
+        }
+     } else {
+      $result = cpg_db_query("SELECT aid FROM {$CONFIG['TABLE_ALBUMS']}");
+        $album_count = mysql_num_rows($result);
+        while ($row = mysql_fetch_array($result)) {
+           $meta_album_set_array[] = $row['aid'];
+        }
+        mysql_free_result($result);
+        $meta_album_set_array = array_diff($meta_album_set_array,$FORBIDDEN_SET_DATA);
+
+        if (count($meta_album_set_array)) {
+            $meta_album_set = "AND aid IN (" . implode(',',$meta_album_set_array) . ") ";
         } else {
             $meta_album_set = "AND aid IN (-1) ";
         }
      }
 }
+
 
 /**
  * user_get_profile()
