@@ -489,7 +489,6 @@ EOT;
 } elseif (isset($_GET['startdir'])) {
     pageheader($lang_search_new_php['page_title']);
     $help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=ftp&amp;ae=ftp_end&amp;top=1#ftp_select_file', '550', '400');
-    starttable("100%");
     echo <<<EOT
         <script language="javascript" type="text/javascript">
         <!--
@@ -513,7 +512,10 @@ EOT;
         }
         -->
         </script>
-        <form method="post" action="{$_SERVER['PHP_SELF']}?insert=1" name="selectPics">
+        <form method="post" action="{$_SERVER['PHP_SELF']}?insert=1" name="selectPics" style="margin:0px;padding:0px">
+EOT;
+    starttable("100%");
+    echo <<<EOT
         <tr>
                 <td colspan="3" class="tableh1"><h2>{$lang_search_new_php['list_new_pic']}$help</h2></td>
         </tr>
@@ -531,7 +533,6 @@ EOT;
                         <input type="submit" class="button" name="insert" value="{$lang_search_new_php['insert_selected']}" />
                 </td>
         </tr>
-        </form>
 
 EOT;
     } else {
@@ -543,16 +544,17 @@ EOT;
                         <br /><br /><br />
                 </td>
         </tr>
-        </form>
 
 EOT;
     }
     endtable();
+    print '        </form>';
     pagefooter();
     ob_end_flush();
 } else {
     pageheader($lang_search_new_php['page_title']);
     $help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=ftp&amp;ae=ftp_end&amp;top=1', '600', '450');
+    print '<form name="interfaceconfig" action="'.$_SERVER['PHP_SELF'].'" method="post" style="margin:0px;padding:0px">';
     starttable(-1, $lang_search_new_php['select_dir'].$help);
 
     // write the interface change to the db
@@ -596,8 +598,6 @@ EOT;
                 </td>
         </tr>
         <tr>
-<form name="interfaceconfig" action="{$_SERVER['PHP_SELF']}" method="post">
-        <tr>
             <td class="tablef" colspan="6">
                         {$lang_search_new_php['browse_batch_add']}
                         $help
@@ -609,10 +609,10 @@ EOT;
                         <input type="hidden" name="update_config" value="1" />
                 </td>
         </tr>
-        </form>
 EOT;
 
     endtable();
+    print '        </form>';
     pagefooter();
     ob_end_flush();
 }
