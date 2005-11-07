@@ -50,12 +50,12 @@ $lang_error = 'Erreur';
 
 // The various date formats
 // See http://www.php.net/manual/en/function.strftime.php to define the variable below
-$album_date_fmt =  '%e %B %Y';
+$album_date_fmt =  '%d %B %Y';
 $lastcom_date_fmt =  '%d/%m/%y à %H:%M';
-$lastup_date_fmt = '%e %B %Y';
-$register_date_fmt = '%e %B %Y';
-$lasthit_date_fmt = ' %a %e %B %Y à %H:%M';
-$comment_date_fmt =  '%a %e %B %Y à %H:%M';
+$lastup_date_fmt = '%d %B %Y';
+$register_date_fmt = '%d %B %Y';
+$lasthit_date_fmt = ' %a %d %B %Y à %H:%M';
+$comment_date_fmt =  '%a %d %B %Y à %H:%M';
 
 // For the word censor
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*', 'merde', 'putain', 'enculé*', 'salope', 'bite', 'cul', 'pute', 'pénis', 'clito', 'couille', 'pétasse', 'connard', 'salaud');
@@ -408,6 +408,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   array('Nombre de colonnes sur la page des vignettes', 'thumbcols', 0),
   array('Nombre de lignes sur la page des vignettes', 'thumbrows', 0),
   array('Nombre maximal d\'onglets à afficher', 'max_tabs', 0),
+  array('Afficher le nombre d\'affichage à côté de la vignette', 'views_in_thumbview', 1), //cpg1.3.0
   array('Afficher la légende de l\'image (en plus de son titre) sous la vignette', 'caption_in_thumbview', 1),
   array('Afficher le nombre de commentaires sous les vignettes', 'display_comment_count', 1),
   array('Afficher le nom de l\'utilisateur sous la vignette', 'display_uploader', 1),
@@ -432,6 +433,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
   'Paramètres des images et vignettes',
   array('Qualité pour les fichiers JPG', 'jpeg_qual', 0),
   array('Dimension maximale pour les vignettes <b>*</b>', 'thumb_width', 0),
+  
   array('Utiliser la dimension (largeur ou hauteur ou aspect max pour la vignette)<b>**</b>', 'thumb_use', 7),
   array('Créer des images intermédiaires','make_intermediate',1),
   array('Largeur ou hauteur maximale pour une image intermédiaire <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0),
