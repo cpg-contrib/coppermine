@@ -469,3 +469,6 @@ DELETE FROM CPG_exif;
 DELETE FROM CPG_config WHERE `name` = 'randpos_interval';
 ALTER TABLE CPG_pictures DROP INDEX `randpos`;
 ALTER TABLE CPG_pictures DROP `randpos`;
+
+# MySQL 5 compat fix
+ALTER TABLE `CPG_pictures` CHANGE `mtime` `mtime` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00';
