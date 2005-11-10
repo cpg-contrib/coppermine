@@ -115,7 +115,7 @@ CREATE TABLE CPG_pictures (
   pwidth smallint(6) NOT NULL default '0',
   pheight smallint(6) NOT NULL default '0',
   hits int(10) NOT NULL default '0',
-  mtime datetime NULL default '',
+  mtime datetime NOT NULL default '0000-00-00 00:00:00' ,
   ctime int(11) NOT NULL default '0',
   owner_id int(11) NOT NULL default '0',
   owner_name varchar(40) NOT NULL default '',
