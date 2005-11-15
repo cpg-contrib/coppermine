@@ -42,6 +42,10 @@
 </ul>
         <ul class="level2">
                 <li class="level2"><a href="#how" class="menu2">2.1 How To Install The Script</a></li>
+        </ul>
+                <ul class="level3">
+                  <li class="level3"><a href="#install_screen_start">2.1.1 The install screen</a></li>
+                </ul>
                 <li class="level2"><a href="#getting" class="menu2">2.2 Getting Started</a></li>
                 <li class="level2"><a href="#xp" class="menu2">2.3 Using Windows XP Web Publishing Wizard with Coppermine</a></li>
         </ul>
@@ -72,6 +76,10 @@
                         <li class="level3"><a href="#versioncheck_options_start">3.5.2 Options</a></li>
                         <li class="level3"><a href="#versioncheck_comparison_start">3.5.3 Version comparison</a></li>
                 </ul>
+        <ul class="level2">
+                <li class="level2"><a href="#downgrading" class="menu2">3.6 Downgrading from cpg1.4.x</a></li>
+        </ul>
+
 <ul class="level1">
         <li class="level1"><a href="#administration" class="menu1">4. Configuration &amp; Administration</a></li>
 </ul>
@@ -261,12 +269,124 @@
   <li><b>Unpack the archive preserving the directory structure</b><br />(you can rename the coppermine folder, but not the files or folders within).</li>
   <li><b>Upload all files onto your webserver</b> (make sure to use the correct ftp mode)</li>
   <li><b>CHMOD the folders <i>albums</i> and <i>include</i> to 755 (or 777, depending on your server config)</b> - this step is really important, don't skip it!<p>There are a lot of tutorials for beginners how to use chmod available: <a href="http://www.google.com/search?q=chmod+tutorial" class="external">search chmod tutorials with google</a>. If you're on a windows server, you'll have to set permissions accordingly as well (usually the webserver on IIS runs under the user name &quot;IUSR_hostname&quot; - you'll have to set rwx-permissions for this user). </p><p>The reason these permissions need to be set is to allow Coppermine to store files inside the albums directory (the pics that are uploaded to the gallery) and to setup a file in the include directory that contains your database information. (This <i>config.inc.php</i> file is what you would edit if your database information changes after the installation). If you are unsure whether you require 777 or 755 then try 777 first and see if that works. If it does not work then try 755, if that fails then consult your server administrator.</p></li>
-  <li><b>Ensure you have correct information about your database</b> - you need to know the database name aswell as the details of a MySQL user account with which Coppermine should connect to the database. The database and the username must already exist, and the user must have access to the relevent database. Coppermine will create the tables in the database during installation, there is no need for you to add any tables yourself.</li>
-  <li><b>Run the install script on your server</b> (by going to http://your_server/coppermine_dir/install.php with your web browser)
+  <li><b>Ensure you have correct information about your database</b> - you need to <i>know</i> the database name as well as the details of a MySQL user account with which Coppermine should connect to the database. The database and the username must already exist, and the user must have access to the relevent database. Coppermine will not create the database for you, but it will create the tables in the database during installation, there is no need for you to add any tables yourself.</li>
+  <li><b>Run the install script on your server</b> (by going to <tt class="code">http://your_server/coppermine_dir/install.php</tt> with your web browser)
   and follow the instructions</li>
 </ul>
 <p><a class="back" href="#top">Back to top</a></p><hr />
-
+<a name="install_screen_start"></a>
+<h3>2.1.1 The install screen</h3>
+<table border="0" cellpadding="5" cellspacing="0">
+ <tr>
+  <td style="border-top:1px solid #0E72A4;border-left:1px solid #0E72A4;border-right:1px solid #0E72A4;" colspan="2"><b>Your admin account</b>
+  </td>
+  <td></td>
+ </tr>
+ <tr>
+  <td style="border-left:1px solid #0E72A4;border-right:1px solid #0E72A4;" colspan="2"> <span class="small">This section requires information to create your administration account. Use only alphanumeric characters. Enter the data carefully !</span>
+  </td>
+  <td><span class="small">Make up your admin username and password here. Make sure to memorize it well, or note it in a safe place; you won't be able to administer your site if you lose this data.</span></td>
+ </tr>
+ <tr>
+  <td style="border-left:1px solid #0E72A4;" width="20%"><b>Username</b>
+  </td>
+  <td style="border-right:1px solid #0E72A4;" width="20%">
+          <input type="text" style="width="100%" readonly="readonly" name="admin_username" value="" />
+  </td>
+  <td valign="top" width="60%"><span class="small">This will be the username for your everyday administration of coppermine - choose one that you can memorize and type easily. Pics that you will upload later using this admin account will have this name shown in the uploader field, and comments you make will show this name as well to others.</span></td>
+ </tr>
+ <tr>
+  <td style="border-left:1px solid #0E72A4;"><b>Password</b>
+  </td>
+  <td style="border-right:1px solid #0E72A4;">
+          <input type="text" style="width="100%" readonly="readonly" name="admin_password" value="" />
+  </td>
+  <td><span class="small">This will be the admin password of your coppermine install. Don't use trivial passwords - if an attacker finds out this password, he will be able to hack your entire site!</span></td>
+ </tr>
+ <tr>
+  <td style="border-left:1px solid #0E72A4;"><b>Email address</b>
+  </td>
+  <td style="border-right:1px solid #0E72A4;">
+          <input type="text" style="width="100%" readonly="readonly" name="admin_email" value="" />
+  </td>
+  <td><span class="small">This email address will be used to send emails from the webserver (e.g. the registration email, notifications and ecards). Make sure that it is valid.</span></td>
+ </tr>
+ <tr>
+  <td style="border-left:1px solid #0E72A4;border-right:1px solid #0E72A4;" colspan="2"><b>Your MySQL configuration</b>
+  </td>
+  <td></td>
+ </tr>
+ <tr>
+  <td style="border-left:1px solid #0E72A4;border-right:1px solid #0E72A4;" colspan="2"><span class="small">This section requires information on how to access your MySQL database. If you don't know how to fill them, check with your webhost support.</span>
+  </td>
+  <td></td>
+ </tr>
+ <tr>
+  <td style="border-left:1px solid #0E72A4;"><b>MySQL Host</b><br /><span class="small">(localhost is usually OK)</span>
+  </td>
+  <td style="border-right:1px solid #0E72A4;" valign="top">
+          <input type="text" style="width="100%" readonly="readonly" name="dbserver" value="localhost" />
+  </td>
+  <td></td>
+ </tr>
+ <tr>
+  <td style="border-left:1px solid #0E72A4;"><b>MySQL Database Name</b>
+  </td>
+  <td style="border-right:1px solid #0E72A4;">
+          <input type="text" style="width="100%" readonly="readonly" name="dbname" value="" />
+  </td>
+  <td></td>
+ </tr>
+ <tr>
+  <td style="border-left:1px solid #0E72A4;"><b>MySQL Username</b>
+  </td>
+  <td style="border-right:1px solid #0E72A4;">
+          <input type="text" style="width="100%" readonly="readonly" name="dbuser" value="" />
+  </td>
+  <td></td>
+ </tr>
+ <tr>
+  <td style="border-left:1px solid #0E72A4;"><b>MySQL Password</b>
+  </td>
+  <td style="border-right:1px solid #0E72A4;">
+          <input type="text" style="width="100%" readonly="readonly" name="dbpass" value="" />
+  </td>
+  <td></td>
+ </tr>
+ <tr>
+  <td style="border-left:1px solid #0E72A4;"><b>MySQL table prefix</b><br /><span class="small">(default value is OK; do not use dots!)</span>
+  </td>
+  <td style="border-right:1px solid #0E72A4;" valign="top">
+          <input type="text" style="width="100%" readonly="readonly" name="table_prefix" value="cpg140_" />
+  </td>
+  <td></td>
+ </tr>
+ <tr>
+  <td style="border-left:1px solid #0E72A4;border-right:1px solid #0E72A4;" colspan="2"><b>ImageMagick</b>
+  </td>
+  <td rowspan="3" valign="top"><span class="small">You can not make up the ImageMagick path, you have to <i>know</i> it. If you're not sure, leave this field empty - Coppermine will then try to use GD. You can edit the path later as well in the <a href="#admin_picture_thumb_advanced">config screen</a>.</span></td>
+ </tr>
+ <tr>
+  <td style="border-left:1px solid #0E72A4;border-right:1px solid #0E72A4;" colspan="2" valign="top"><span class="small">Coppermine can use the <a href="http://www.imagemagick.org/" rel="external" class="external">ImageMagick</a> 'convert' program to create thumbnails. Quality of images produced by ImageMagick is superior to GD1 but equivalent to GD2.<br /><br />
+  If ImageMagick is installed on your system and you want to use it, you need to input the full path to the 'convert' program below. On Windows the path should look like 'c:/ImageMagick/' (use / not \ in the path) and should not contain any space, on Unix is it something like '/usr/bin/X11/'.</span>
+  </td>
+ </tr>
+ <tr>
+  <td style="border-left:1px solid #0E72A4;" valign="top"><b>ImageMagick path</b>
+  </td>
+  <td style="border-right:1px solid #0E72A4;" valign="top">
+          <input type="text" style="width="100%" readonly="readonly" name="impath" value="" />
+  </td>
+ </tr>
+ <tr>
+  <td colspan="2" align="center" style="border-left:1px solid #0E72A4;border-right:1px solid #0E72A4;border-bottom:1px solid #0E72A4;"><br />
+   <input type="submit" value="Let's Go !" /><br /><br />
+  </td>
+  <td><span class="small">After having entered all required data, click this button to submit the form</span></td>
+ </tr>
+</table>
+<a name="install_screen_end"></a>
+<p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="getting"></a>
 <h2>2.2 Getting started</h2>
@@ -433,7 +553,7 @@ The process of uploading pictures is a matter of following a simple dialog. It t
         <li>If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme - refer to the <a href="theme/index.html">theme-upgrade guide</a>.</li>
         <li>You can not use language files from older versions of Coppermine - make sure to only have the language files that come with this package inside your lang folder (delete or rename all files from older versions within the lang folder)</li>
     </ul>
-<p>Please note: as there have been changes both in the coppermine files and the database from cpg1.3.0beta to cpg1.3.0 (final), users of the beta will have to apply all steps mentioned above: both the files have to be replaced and the update.php script has to be run once.</p>
+<p>Please note: as there have been changes both in the coppermine files and the database from cpg1.4.0beta to cpg1.4.2 (stable), users of the beta will have to apply all steps mentioned above: both the files have to be replaced and the update.php script has to be run once.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="versioncheck"></a>
@@ -505,6 +625,18 @@ The process of uploading pictures is a matter of following a simple dialog. It t
 </ul>
 <a name="versioncheck_comparison_end"></a>
 <a name="versioncheck_end"></a>
+<p><a class="back" href="#top">Back to top</a></p><hr />
+<a name="downgrading"></a>
+<h2>3.6 Downgrading from cpg1.4.x to an older version</h2>
+<p>CPG1.4.x has a lot of new features (compared to older versions), so we encourage all users to perform the upgrade. However, there may be some who want to test cpg1.4.x and decide later that they want to go back to an older version. You have to keep in mind that a full upgrade changes the overall layout of coppermine's database that includes converting the encoding to unicode. This process can't be reverted: once you have done the conversion, the only way back is to restore a complete mySQL database dump (of course you have to create this backup <b>before</b> you upgraded in the first place). Creating mySQL dumps (backups) is recommended anyway, so you should do so <b>now</b>.</p>
+<p>If you haven't converted your database to unicode (utf-8) encoding, you can downgrade as explained below. To make this absolutely clear: you can only downgrade if you used to have cpg1.3.x before and upgraded this version to cpg1.4.x without converting the database. If you <i>have</i> converted the database or if you have made a <i>fresh</i> install of cpg1.4.x, you can't downgrade at all!</p>
+<p>To actually perform the downgrade, replace all cpg1.4.x files on your server with the files from the older version (as if you were doing an upgrade, see above). You then have to undo some changes in the database structure. To do so, run a query like<br />
+<pre>ALTER TABLE `CPG_users` CHANGE `user_location`  `user_profile1` VARCHAR(255);
+ALTER TABLE `CPG_users` CHANGE `user_interests` `user_profile2` VARCHAR(255);
+ALTER TABLE `CPG_users` CHANGE `user_website` `user_profile3` VARCHAR(255);
+ALTER TABLE `CPG_users` CHANGE `user_occupation` `user_profile4` VARCHAR(255);</pre><br />
+using a tool like <a href="http://www.phpmyadmin.net/" rel="external" class="external">phpMyAdmin</a>, replacing <tt class="code">CPG_</tt> in the query with the prefix you have chosen during coppermine install.</p>
+<a name="downgrading_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="administration"></a>
