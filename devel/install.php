@@ -212,27 +212,27 @@ function html_installer_locked()
     global $DFLT;
 
     ?>
-      <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
-       <tr>
-            <form action="index.php">
-        <td class="tableh1" colspan="2"><h2>The installer is locked</h2>
-        </td>
-       </tr>
-       <tr>
-        <td class="tableh2" colspan="2" align="center"><span class="error">&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;ERROR&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</span>
-        </td>
-       </tr>
-       <tr>
-        <td class="tableb" colspan="2">The installer has already been run successfuly once and is now locked.<br /><br />If you want to run the installer again, you first need to delete the '<?php echo $DFLT['lck_f'] ?>' file that was created in the directory where you put Coppermine. You can do this with any FTP program.
-        </td>
-       </tr>
-       <tr>
-        <td colspan="2" align="center" class="tableb"><br />
-                <input type="submit" value="Go to the main page" /><br /><br />
-        </td>
-           </form>
-       </tr>
-      </table>
+      <form action="index.php" style="margin:0px;padding:0px">
+        <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
+         <tr>
+          <td class="tableh1" colspan="2"><h2>The installer is locked</h2>
+          </td>
+         </tr>
+         <tr>
+          <td class="tableh2" colspan="2" align="center"><span class="error">&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;ERROR&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</span>
+          </td>
+         </tr>
+         <tr>
+          <td class="tableb" colspan="2">The installer has already been run successfuly once and is now locked.<br /><br />If you want to run the installer again, you first need to delete the '<?php echo $DFLT['lck_f'] ?>' file that was created in the directory where you put Coppermine. You can do this with any FTP program.
+          </td>
+         </tr>
+         <tr>
+          <td colspan="2" align="center" class="tableb"><br />
+                  <input type="submit" value="Go to the main page" /><br /><br />
+          </td>
+         </tr>
+        </table>
+      </form>
 <?php
 }
 
@@ -240,27 +240,27 @@ function html_prereq_errors($error_msg)
 {
 
     ?>
-      <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
-       <tr>
-            <form action="install.php">
-        <td class="tableh1" colspan="2"><h2>Welcome to Coppermine installation</h2>
-        </td>
-       </tr>
-       <tr>
-        <td class="tableh2" colspan="2" align="center"><span class="error">&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;ERROR&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</span>
-        </td>
-       </tr>
-       <tr>
-        <td class="tableb" colspan="2"> Before you continue with Coppermine installation, there are some problems that need to be fixed.<br /><br /><b><?php echo $error_msg ?></b>Once you are done, hit the "Try again" button.<br />
-        </td>
-       </tr>
-       <tr>
-        <td colspan="2" align="center"><br />
-                <input type="submit" value="Try again !" /><br /><br />
-        </td>
-                </form>
-       </tr>
-      </table>
+      <form action="install.php" style="margin:0px;padding:0px">
+        <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
+         <tr>
+          <td class="tableh1" colspan="2"><h2>Welcome to Coppermine installation</h2>
+          </td>
+         </tr>
+         <tr>
+          <td class="tableh2" colspan="2" align="center"><span class="error">&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;ERROR&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</span>
+          </td>
+         </tr>
+         <tr>
+          <td class="tableb" colspan="2"> Before you continue with Coppermine installation, there are some problems that need to be fixed.<br /><br /><b><?php echo $error_msg ?></b>Once you are done, hit the "Try again" button.<br />
+          </td>
+         </tr>
+         <tr>
+          <td colspan="2" align="center"><br />
+                  <input type="submit" value="Try again !" /><br /><br />
+          </td>
+         </tr>
+        </table>
+      </form>
 <?php
 }
 
@@ -269,123 +269,123 @@ function html_input_config($error_msg = '')
     global $im_installed;
 
     ?>
-      <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
-       <tr>
-            <form action="install.php" method="post">
-        <td class="tableh1" colspan="2"><h2>Welcome to Coppermine installation</h2>
-        </td>
-       </tr>
+      <form action="install.php" method="post" style="margin:0px;padding:0px">
+        <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
+         <tr>
+          <td class="tableh1" colspan="2"><h2>Welcome to Coppermine installation</h2>
+          </td>
+         </tr>
 <?php
     if ($error_msg) {
 
         ?>
-       <tr>
-        <td class="tableh2" colspan="2" align="center"><span class="error">&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;ERROR&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</span>
-        </td>
-       </tr>
-       <tr>
-        <td class="tableb" colspan="2"> The following errors were encountered and need to be corrected first:<br /><br /><b><?php echo $error_msg ?></b>
-        </td>
-       </tr>
+         <tr>
+          <td class="tableh2" colspan="2" align="center"><span class="error">&#149;&nbsp;&#149;&nbsp;&#149;&nbsp;ERROR&nbsp;&#149;&nbsp;&#149;&nbsp;&#149;</span>
+          </td>
+         </tr>
+         <tr>
+          <td class="tableb" colspan="2"> The following errors were encountered and need to be corrected first:<br /><br /><b><?php echo $error_msg ?></b>
+          </td>
+         </tr>
 <?php
     }
 
     ?>
-       <tr>
-        <td class="tableh2" colspan="2"><b>Your admin account</b>
-        </td>
-       </tr>
-       <tr>
-        <td class="tableb" colspan="2"> This section requires information to create your administration account. Use only alphanumeric characters. Enter the data carefully !
-        </td>
-       </tr>
-       <tr>
-        <td width="40%" class="tableb"><b>Username</b>
-        </td>
-        <td width="60%" class="tableb">
-                <input type='text' class='textinput' name='admin_username' value='<?php echo $_POST['admin_username'] ?>' />
-        </td>
-       </tr>
-       <tr>
-        <td width="40%" class="tableb"><b>Password</b>
-        </td>
-        <td width="60%" class="tableb">
-                <input type='text' class='textinput' name='admin_password' value='<?php echo $_POST['admin_password'] ?>' />
-        </td>
-       </tr>
-             <tr>
-        <td width="40%" class="tableb"><b>Email address</b>
-        </td>
-        <td width="60%" class="tableb">
-                <input type='text' class='textinput' name='admin_email' value='<?php echo $_POST['admin_email'] ?>' />
-        </td>
-       </tr>
-       <tr>
-        <td class="tableh2" colspan="2"><b>Your MySQL configuration</b>
-        </td>
-       </tr>
-       <tr>
-        <td class="tableb" colspan="2"> This section requires information on how to access your MySQL database. If you don't know how to fill them, check with your webhost support.
-        </td>
-       </tr>
-       <tr>
-        <td width="40%" class="tableb"><b>MySQL Host</b><br />(localhost is usually OK)
-        </td>
-        <td width="60%" class="tableb" valign="top">
-                <input type='text' class='textinput' name='dbserver' value='<?php echo ($_POST['dbserver'] ? $_POST['dbserver'] : 'localhost') ?>' />
-        </td>
-       </tr>
-       <tr>
-        <td width="40%" class="tableb"><b>MySQL Database Name</b>
-        </td>
-        <td width="60%" class="tableb">
-                <input type='text' class='textinput' name='dbname' value='<?php echo $_POST['dbname'] ?>' />
-        </td>
-       </tr>
-       <tr>
-        <td width="40%" class="tableb"><b>MySQL Username</b>
-        </td>
-        <td width="60%" class="tableb">
-                <input type='text' class='textinput' name='dbuser' value='<?php echo $_POST['dbuser'] ?>' />
-        </td>
-       </tr>
-       <tr>
-        <td width="40%" class="tableb"><b>MySQL Password</b>
-        </td>
-        <td width="60%" class="tableb">
-                <input type='text' class='textinput' name='dbpass' value='<?php echo $_POST['dbpass'] ?>' />
-        </td>
-       </tr>
-       <tr>
-        <td width="40%" class="tableb"><b>MySQL table prefix</b><br />(default value is OK; do not use dots!)
-        </td>
-        <td width="60%" class="tableb" valign="top">
-                <input type='text' class='textinput' name='table_prefix' value='<?php echo ($_POST['table_prefix'] ? $_POST['table_prefix'] : 'cpg140_') ?>' />
-        </td>
-       </tr>
-       <tr>
-        <td class="tableh2" colspan="2"><b>ImageMagick</b>
-        </td>
-       </tr>
-       <tr>
-        <td class="tableb" colspan="2">Coppermine can use the <a href="http://www.imagemagick.org/" target="_blank">ImageMagick</a> 'convert' program to create thumbnails. Quality of images produced by ImageMagick is superior to GD1 but equivalent to GD2.<br /><br />
-        If ImageMagick is installed on your system and you want to use it, you need to input the full path to the 'convert' program below. On Windows the path should look like 'c:/ImageMagick/' (use / not \ in the path) and should not contain any space, on Unix is it something like '/usr/bin/X11/'.
-        </td>
-       </tr>
-       <tr>
-        <td width="40%" class="tableb"><b>ImageMagick path</b>
-        </td>
-        <td width="60%" class="tableb" valign="top">
-                <input type='text' class='textinput' name='impath' value='<?php echo $_POST['impath'] ?>' />
-        </td>
-       </tr>
-       <tr>
-        <td colspan="2" align="center" class="tableh2"><br />
-         <input type="submit" value="Let's Go !" /><br /><br />
-        </td>
-                </form>
-       </tr>
-      </table>
+         <tr>
+          <td class="tableh2" colspan="2"><b>Your admin account</b>
+          </td>
+         </tr>
+         <tr>
+          <td class="tableb" colspan="2"> This section requires information to create your administration account. Use only alphanumeric characters. Enter the data carefully !
+          </td>
+         </tr>
+         <tr>
+          <td width="40%" class="tableb"><b>Username</b>
+          </td>
+          <td width="60%" class="tableb">
+                  <input type="text" class="textinput" name="admin_username" value="<?php echo $_POST['admin_username'] ?>" />
+          </td>
+         </tr>
+         <tr>
+          <td width="40%" class="tableb"><b>Password</b>
+          </td>
+          <td width="60%" class="tableb">
+                  <input type="text" class="textinput" name="admin_password" value="<?php echo $_POST['admin_password'] ?>" />
+          </td>
+         </tr>
+               <tr>
+          <td width="40%" class="tableb"><b>Email address</b>
+          </td>
+          <td width="60%" class="tableb">
+                  <input type="text" class="textinput" name="admin_email" value="<?php echo $_POST['admin_email'] ?>" />
+          </td>
+         </tr>
+         <tr>
+          <td class="tableh2" colspan="2"><b>Your MySQL configuration</b>
+          </td>
+         </tr>
+         <tr>
+          <td class="tableb" colspan="2">This section requires information on how to access your MySQL database. If you don't know how to fill them, check with your webhost support.
+          </td>
+         </tr>
+         <tr>
+          <td width="40%" class="tableb"><b>MySQL Host</b><br />(localhost is usually OK)
+          </td>
+          <td width="60%" class="tableb" valign="top">
+                  <input type="text" class="textinput" name="dbserver" value="<?php echo ($_POST['dbserver'] ? $_POST['dbserver'] : 'localhost') ?>" />
+          </td>
+         </tr>
+         <tr>
+          <td width="40%" class="tableb"><b>MySQL Database Name</b>
+          </td>
+          <td width="60%" class="tableb">
+                  <input type="text" class="textinput" name="dbname" value="<?php echo $_POST['dbname'] ?>" />
+          </td>
+         </tr>
+         <tr>
+          <td width="40%" class="tableb"><b>MySQL Username</b>
+          </td>
+          <td width="60%" class="tableb">
+                  <input type="text" class="textinput" name="dbuser" value="<?php echo $_POST['dbuser'] ?>" />
+          </td>
+         </tr>
+         <tr>
+          <td width="40%" class="tableb"><b>MySQL Password</b>
+          </td>
+          <td width="60%" class="tableb">
+                  <input type="text" class="textinput" name="dbpass" value="<?php echo $_POST['dbpass'] ?>" />
+          </td>
+         </tr>
+         <tr>
+          <td width="40%" class="tableb"><b>MySQL table prefix</b><br />(default value is OK; do not use dots!)
+          </td>
+          <td width="60%" class="tableb" valign="top">
+                  <input type="text" class="textinput" name="table_prefix" value="<?php echo ($_POST['table_prefix'] ? $_POST['table_prefix'] : 'cpg140_') ?>" />
+          </td>
+         </tr>
+         <tr>
+          <td class="tableh2" colspan="2"><b>ImageMagick</b>
+          </td>
+         </tr>
+         <tr>
+          <td class="tableb" colspan="2">Coppermine can use the <a href="http://www.imagemagick.org/" target="_blank">ImageMagick</a> 'convert' program to create thumbnails. Quality of images produced by ImageMagick is superior to GD1 but equivalent to GD2.<br /><br />
+          If ImageMagick is installed on your system and you want to use it, you need to input the full path to the 'convert' program below. On Windows the path should look like 'c:/ImageMagick/' (use / not \ in the path) and should not contain any space, on Unix is it something like '/usr/bin/X11/'.
+          </td>
+         </tr>
+         <tr>
+          <td width="40%" class="tableb"><b>ImageMagick path</b>
+          </td>
+          <td width="60%" class="tableb" valign="top">
+                  <input type="text" class="textinput" name="impath" value="<?php echo $_POST['impath'] ?>" />
+          </td>
+         </tr>
+         <tr>
+          <td colspan="2" align="center" class="tableh2"><br />
+           <input type="submit" value="Let's Go !" /><br /><br />
+          </td>
+         </tr>
+        </table>
+      </form>
    <img src="install.php?test_gd1=1&amp;reload=<?php echo uniqid('') ?>" alt="" width="1" height="1" border="0" alt="" />
    <img src="install.php?test_gd2=1&amp;reload=<?php echo uniqid('') ?>" alt="" width="1" height="1" border="0" alt="" />
 <?php
@@ -396,25 +396,25 @@ function html_install_success($notes)
     global $DFLT;
 
     ?>
-      <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
-       <tr>
-            <form action="login.php" method="post">
-        <td class="tableh1" colspan="2"><h2>Installation completed</h2>
-        </td>
-       </tr>
-       <tr>
-        <td class="tableb" colspan="2"> <a href="index.php">Coppermine</a> is now properly configured and ready to roll.<br /><br /><a href="login.php?">Login</a> using the information you provided for your admin account. Do <b>not</b> hit back, do <b>not</b> re-submit the installer form!<?php echo $notes ?>
-        </td>
-       </tr>
-       <tr>
-        <td colspan="2" align="center" class="tableh2"><br />
-                 <input type="hidden" name="username" value="<?php echo $_POST['admin_username'] ?>" />
-                 <input type="hidden" name="password" value="<?php echo $_POST['admin_password'] ?>" />
-                <input type="submit" name="submitted" value="Let's continue !" /><br /><br />
-        </td>
-                </form>
-       </tr>
-      </table>
+      <form action="login.php" method="post" style="margin:0px;padding:0px">
+        <table width="100%" border="0" cellpadding="0" cellspacing="1" class="maintable">
+         <tr>
+          <td class="tableh1" colspan="2"><h2>Installation completed</h2>
+          </td>
+         </tr>
+         <tr>
+          <td class="tableb" colspan="2"> <a href="index.php">Coppermine</a> is now properly configured and ready to roll.<br /><br /><a href="login.php?">Login</a> using the information you provided for your admin account. Do <b>not</b> hit back, do <b>not</b> re-submit the installer form!<?php echo $notes ?>
+          </td>
+         </tr>
+         <tr>
+          <td colspan="2" align="center" class="tableh2"><br />
+                   <input type="hidden" name="username" value="<?php echo $_POST['admin_username'] ?>" />
+                   <input type="hidden" name="password" value="<?php echo $_POST['admin_password'] ?>" />
+                  <input type="submit" name="submitted" value="Let's continue !" /><br /><br />
+          </td>
+         </tr>
+        </table>
+      </form>
 <?php
 }
 
