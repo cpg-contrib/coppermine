@@ -46,18 +46,14 @@
                 <ul class="level3">
                   <li class="level3"><a href="#install_screen_start">2.1.1 The install screen</a></li>
                 </ul>
-                <li class="level2"><a href="#getting" class="menu2">2.2 Getting Started</a></li>
-                <li class="level2"><a href="#xp" class="menu2">2.3 Using Windows XP Web Publishing Wizard with Coppermine</a></li>
-        </ul>
-                <ul class="level3">
-                  <li class="level3"><a href="#xp_publish_setup">2.3.1 XP Web Publishing Wizard: Setup</a></li>
-                  <li class="level3"><a href="#xp_publish_upload">2.3.2 XP Web Publishing Wizard: Uploading pictures</a></li>
-                </ul>
         <ul class="level2">
-                <li class="level2"><a href="#creating" class="menu2">2.4 Creating or upgrading your own themes</a></li>
+                <li class="level2"><a href="#getting" class="menu2">2.2 Getting Started</a></li>
+        </ul>
+        <ul class="level2">
+                <li class="level2"><a href="#creating" class="menu2">2.3 Creating or upgrading your own themes</a></li>
 
-                <li class="level2"><a href="#safe" class="menu2">2.5 Safe mode issues</a></li>
-                <li class="level2"><a href="#smtp" class="menu2">2.6 Using SMTP to send emails</a></li>
+                <li class="level2"><a href="#safe" class="menu2">2.3 Safe mode issues</a></li>
+                <li class="level2"><a href="#smtp" class="menu2">2.5 Using SMTP to send emails</a></li>
         </ul>
 <ul class="level1">
         <li class="level1"><a href="#upgrade" class="menu1">3. Upgrading</a></li>
@@ -126,7 +122,18 @@
 
         <ul class="level2">
                 <li class="level2"><a href="#bbcode" class="menu2">4.10 Using bbcode to insert links and format in descriptions</a></li>
-                <li class="level2"><a href="#batch_add_pics" class="menu2">4.11 Uploading pics by FTP / Batch-Add Pictures</a></li>
+                <li class="level2"><a href="#uploading" class="menu2">4.11 Uploading pics/files</a></li>
+                <ul class="level3">
+                  <li class="level3"><a href="#batch_add_pics">4.11.1 Uploading pics by FTP / Batch-Add Pictures</a></li>
+                  <li class="level3"><a href="#upload_http">4.11.2 Uploading by HTTP</a></li>
+                </ul>
+        <ul class="level3">
+                <li class="level3"><a href="#xp">4.11.3 Using Windows XP Web Publishing Wizard with Coppermine</a></li>
+        </ul>
+                <ul class="level4">
+                  <li class="level4"><a href="#xp_publish_setup">4.11.3.1 XP Web Publishing Wizard: Setup</a></li>
+                  <li class="level4"><a href="#xp_publish_upload">4.11.3.2 XP Web Publishing Wizard: Uploading pictures</a></li>
+                </ul>
                 <li class="level2"><a href="#admin" class="menu2">4.12 The gallery configuration page</a></li>
         </ul>
                 <ul class="level3">
@@ -291,7 +298,7 @@
   <td style="border-left:1px solid #0E72A4;" width="20%"><b>Username</b>
   </td>
   <td style="border-right:1px solid #0E72A4;" width="20%">
-          <input type="text" style="width="100%" readonly="readonly" name="admin_username" value="" />
+          <input type="text" style="width:100%" readonly="readonly" name="admin_username" value="" />
   </td>
   <td valign="top" width="60%"><span class="small">This will be the username for your everyday administration of coppermine - choose one that you can memorize and type easily. Pics that you will upload later using this admin account will have this name shown in the uploader field, and comments you make will show this name as well to others.</span></td>
  </tr>
@@ -299,7 +306,7 @@
   <td style="border-left:1px solid #0E72A4;"><b>Password</b>
   </td>
   <td style="border-right:1px solid #0E72A4;">
-          <input type="text" style="width="100%" readonly="readonly" name="admin_password" value="" />
+          <input type="text" style="width:100%" readonly="readonly" name="admin_password" value="" />
   </td>
   <td><span class="small">This will be the admin password of your coppermine install. Don't use trivial passwords - if an attacker finds out this password, he will be able to hack your entire site!</span></td>
  </tr>
@@ -307,64 +314,64 @@
   <td style="border-left:1px solid #0E72A4;"><b>Email address</b>
   </td>
   <td style="border-right:1px solid #0E72A4;">
-          <input type="text" style="width="100%" readonly="readonly" name="admin_email" value="" />
+          <input type="text" style="width:100%" readonly="readonly" name="admin_email" value="" />
   </td>
   <td><span class="small">This email address will be used to send emails from the webserver (e.g. the registration email, notifications and ecards). Make sure that it is valid.</span></td>
  </tr>
  <tr>
   <td style="border-left:1px solid #0E72A4;border-right:1px solid #0E72A4;" colspan="2"><b>Your MySQL configuration</b>
   </td>
-  <td></td>
+  <td rowspan="2"><span class="small">MySQL is a database that is available on most webservers. If you don't have it, you can only install it if the server is yours to administer - if you're webhosted, you usually can't install it by yourself. It's mandatory to have a mySQL database to run Coppermine. You can not make the mySQL information up, you have to <b>know</b> it. If you're not sure, ask your webhost.</span></td>
  </tr>
  <tr>
   <td style="border-left:1px solid #0E72A4;border-right:1px solid #0E72A4;" colspan="2"><span class="small">This section requires information on how to access your MySQL database. If you don't know how to fill them, check with your webhost support.</span>
   </td>
-  <td></td>
  </tr>
  <tr>
   <td style="border-left:1px solid #0E72A4;"><b>MySQL Host</b><br /><span class="small">(localhost is usually OK)</span>
   </td>
   <td style="border-right:1px solid #0E72A4;" valign="top">
-          <input type="text" style="width="100%" readonly="readonly" name="dbserver" value="localhost" />
+          <input type="text" style="width:100%" readonly="readonly" name="dbserver" value="localhost" />
   </td>
-  <td></td>
+  <td><span class="small"></span></td>
  </tr>
  <tr>
   <td style="border-left:1px solid #0E72A4;"><b>MySQL Database Name</b>
   </td>
   <td style="border-right:1px solid #0E72A4;">
-          <input type="text" style="width="100%" readonly="readonly" name="dbname" value="" />
+          <input type="text" style="width:100%" readonly="readonly" name="dbname" value="" />
   </td>
-  <td></td>
+  <td><span class="small">Coppermine will <b>not</b> create this database for you - it has to exist already (or you have to create it if you have the power to do so).</span></td>
  </tr>
  <tr>
   <td style="border-left:1px solid #0E72A4;"><b>MySQL Username</b>
   </td>
   <td style="border-right:1px solid #0E72A4;">
-          <input type="text" style="width="100%" readonly="readonly" name="dbuser" value="" />
+          <input type="text" style="width:100%" readonly="readonly" name="dbuser" value="" />
   </td>
-  <td></td>
+  <td><span class="small">The mySQL user name does <b>not</b> equal the coppermine admin username, nor is it the necessarily the same as your FTP username (although this <i>can</i> be the case for some users, but only by sheer coincidence or on purpose, to make things easier for you).<br />
+  The mySQL user needs the permissions CREATE TABLE, INSERT, ALTER, UPDATE, DELETE, SELECT.</span></td>
  </tr>
  <tr>
   <td style="border-left:1px solid #0E72A4;"><b>MySQL Password</b>
   </td>
   <td style="border-right:1px solid #0E72A4;">
-          <input type="text" style="width="100%" readonly="readonly" name="dbpass" value="" />
+          <input type="text" style="width:100%" readonly="readonly" name="dbpass" value="" />
   </td>
-  <td></td>
+  <td><span class="small">The password that goes with your mySQL username.</span></td>
  </tr>
  <tr>
   <td style="border-left:1px solid #0E72A4;"><b>MySQL table prefix</b><br /><span class="small">(default value is OK; do not use dots!)</span>
   </td>
   <td style="border-right:1px solid #0E72A4;" valign="top">
-          <input type="text" style="width="100%" readonly="readonly" name="table_prefix" value="cpg140_" />
+          <input type="text" style="width:100%" readonly="readonly" name="table_prefix" value="cpg140_" />
   </td>
-  <td></td>
+  <td><span class="small">Coppermine's tables can co-exist in one database with tables used by other applications, because all coppermine tables will be using the prefix you specify here. You can even have several coppermine installs using one database - only the table prefixes have to differ in this case. Unless you know your way around, don't change the default value.</span></td>
  </tr>
  <tr>
   <td style="border-left:1px solid #0E72A4;border-right:1px solid #0E72A4;" colspan="2"><b>ImageMagick</b>
   </td>
-  <td rowspan="3" valign="top"><span class="small">You can not make up the ImageMagick path, you have to <i>know</i> it. If you're not sure, leave this field empty - Coppermine will then try to use GD. You can edit the path later as well in the <a href="#admin_picture_thumb_advanced">config screen</a>.</span></td>
+  <td rowspan="3" valign="top"><span class="small">You can not make up the ImageMagick path, you have to <i>know</i> it. If you're not sure, leave this field empty - Coppermine will then try to use GD. You can edit the path later as well in the <a href="#admin_picture_thumb_advanced">config screen</a>. You can only install ImageMagick or GD if the server is yours to administer - if you're webhosted, you usually can't. The user the webserver runs under needs read/write/execute permissions in the folder where ImageMagick's convert executable resides in.</span></td>
  </tr>
  <tr>
   <td style="border-left:1px solid #0E72A4;border-right:1px solid #0E72A4;" colspan="2" valign="top"><span class="small">Coppermine can use the <a href="http://www.imagemagick.org/" rel="external" class="external">ImageMagick</a> 'convert' program to create thumbnails. Quality of images produced by ImageMagick is superior to GD1 but equivalent to GD2.<br /><br />
@@ -375,7 +382,7 @@
   <td style="border-left:1px solid #0E72A4;" valign="top"><b>ImageMagick path</b>
   </td>
   <td style="border-right:1px solid #0E72A4;" valign="top">
-          <input type="text" style="width="100%" readonly="readonly" name="impath" value="" />
+          <input type="text" style="width:100%" readonly="readonly" name="impath" value="" />
   </td>
  </tr>
  <tr>
@@ -405,51 +412,9 @@
 <p>If you have installed the script succesfully but are having trouble getting it working properly you can enable the &quot;<b><a href="#debug_mode">debug mode</a></b>&quot; on the <b>Config page</b>. In this mode, the script outputs most of the warning/error messages produced by PHP in addition to some debug information. This can provide valuable information to understand what is wrong.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
-<a name="xp"></a>
-<h2>2.3 Using Windows XP Web Publishing Wizard with Coppermine</h2>
-<p>If you are using Windows XP, you can use its built-in web publishing wizard to upload your photos to your gallery.</p>
-<p>Once you have properly installed the script on your server, call the xp_publish.php file from your web browser (http://your_site.com/coppermine_dir/xp_publish.php).</p>
-<p>The script displays some information on how to do the installation on the client side and how to use the Wizard. Basically you will need to download a small file created by the script that needs to be loaded into your Windows registry.</p>
-<p>If you want to allow your users to use the Windows XP Web Publishing Wizard, it's advisable to promote it by showing a link to the file somewhere on your page.</p>
-
-<a name="xp_publish_setup"></a>
-<h3>2.3.1 XP Web Publishing Wizard: Setup</h3>
-Before you can use the XP Web Publishing Wizard, it needs to know the address of the your gallery.
-<ul>
-<li>Open your browser and type the following into the address box replacing "your_site.com" and "coppermine_dir" with your own Gallery address information : <tt class="code">http://your_site.com/coppermine_dir/xp_publish.php</tt></li>
-<li>On "File Download - Security Warning" click "Save" to save the cpg_###.reg file on your Desktop. (The ### represents a 10-digit numerical timestamp.)</li>
-<li>Open Windows Explorer</li>
-<li>Select Desktop from the left panel</li>
-<li>Double click on the file name that you just saved</li>
-<li>On Registry Editor's "Are you sure..." dialog click "Yes"</li>
-</ul>
-
-Above procedure needs to be done only once by users wishing to use the XP Publishing Wizard.
-
-<a name="xp_publish_upload"></a>
-<h3>2.3.2 XP Web Publishing Wizard: Uploading pictures</h3>
-The process of uploading pictures is a matter of following a simple dialog. It takes much longer to describe the process than do it.
-<ul>
-<li>Start Windows Explorer and locate the directory with your photographs and select one or more pictures for upload.</li>
-<li>If the Windows Explorer left panel is not titled "Picture Tasks", click on the "X" in the top right corner of the panel to close it and to reveal the Picture Tasks panel.</li>
-<li>Select "Publish xxxx to the Web" from "File and Folder Tasks" on the left panel. "xxxx" could say "this file, these files or this folder" depending on what is highlighted on the right panel.</li>
-<li>On Web Publishing Wizard's Welcome screen click "Next".</li>
-<li>You can change your selection if necessary on the Thumbnail window showing up. Click "Next" when you are ready.</li>
-<li>From the service provider window highlight your Photo Gallery name and click "Next".</li>
-<li>Enter your Coppermine username and password to login to your gallery and click "Next".</li>
-<li>From the "Welcome username" window you have an option of uploading your picture(s) into one of the existing albums or starting a new album. Click "Next" when you are ready.</li>
-<li>Click "Next" in the upload starting confirmation window.</li>
-<li>Select the picture sizes for the uploaded pictures. If you are unsure about acceptable picture sizes, verify with your Gallery administrator. Click "Next" when you are ready.</li>
-<li>You are presented with the last window of the dialog and given a choice of opening the Gallery when the upload is complete.</li>
-<li>Click "Finish" to end the XP Web Publishing Wizard and to enter the Gallery to check the new album contents.</li>
-</ul>
-
-
-<p class="small">[cpg1.1.1 or better required]</p>
-<p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="creating"></a>
-<h2>2.4 Creating or upgrading your own themes</h2>
+<h2>2.3 Creating or upgrading your own themes</h2>
 <p>To upgrade an existing custom theme, to version 1.4.x, read the <a href="theme/index.html">theme upgrade documentation</a>.</p>
 <p>Coppermine themes are stored in the &quot;<b>themes</b>&quot; directory, they consist of 3 files : </p>
 <ul>
@@ -476,7 +441,7 @@ The process of uploading pictures is a matter of following a simple dialog. It t
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="safe"></a>
-<h2>2.5 Safe mode issues</h2>
+<h2>2.4 Safe mode issues</h2>
 <p>A significant number of webhosts on the Internet run PHP in safe mode. Coppermine runs without any problem in safe mode and with the &quot;open basedir restriction&quot; active, provided safe mode is properly configured. Unfortunately on many hosts, safe mode is not configured properly.</p>
 <p>If your webhost is running PHP in safe mode but is misconfigured, you may need to do the following :</p>
 <ul>
@@ -487,7 +452,7 @@ The process of uploading pictures is a matter of following a simple dialog. It t
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="smtp"></a>
-<h2>2.6 Using SMTP to send emails</h2>
+<h2>2.5 Using SMTP to send emails</h2>
 <p>By default the script uses the PHP built-in <b>mail</b> function to send emails. In some cases, the PHP built-in function can't be used.</p>
 <p> If in order to send emails with PHP you need to supply a <b>hostname</b>, a <b>username</b> and a <b>password</b>, you need to edit the config section &quot;Email settings&quot; and put the correct values there. If you don't need a username and password to connect to your SMTP server, just leave them blank. If you don't know what settings to enter, contact your webhost.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
@@ -941,8 +906,19 @@ Right now, you can't.</li>
 <a name="bbcode_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
+<a name="ftp"></a><a name="uploading"></a>
+<h2>4.11 Uploading pics/files</h2>
+<p>There are several methods to upload files within Coppermine. You (as gallery admin) should use FTP-upload plus batch-add (only the admin can do this). Regular users are supposed to use the "regular" http upload or (if they have Windows XP) the XP Publisher.</p>
+<a name="uploading_end"></a>
+<p><a class="back" href="#top">Back to top</a></p><hr />
+
+<a name="ftp"></a><a name="upload_http"></a>
+<h3>4.11.2 Uploading by HTTP</h3>
+<a name="ftp"></a><a name="upload_http_end"></a>
+<p><a class="back" href="#top">Back to top</a></p><hr />
+
 <a name="ftp"></a><a name="batch_add_pics"></a>
-<h2>4.11 Uploading pics by FTP / Batch-Add Pictures</h2>
+<h3>4.11.1 Uploading pics by FTP / Batch-Add Pictures</h3>
 <p>It's recommended that the coppermine admin uses ftp to upload many pics in one go. Use your ftp software to create sub-folders within <i>your_coppermine_directory/albums/</i>, where your ftp uploads can go to. It's a good idea to have a folder structure within the <i>albums</i> folder that reflects your coppermine categories and albums, but it's not mandatory.</p><p><span class="important">Important</span>: do not create folders or upload to the <i>userpics</i>- nor the <i>edit</i>-folder by ftp: these folders are used by coppermine internally and mustn't be used for any other purpose! Folder names mustn't contain dots and it's even recommended not to use any special chars - only use a-z, numbers and maybe <tt class="code">-</tt> or <tt class="code">_</tt>. Make sure to upload in binary or auto-mode.</p>
 <p>Once you have uploaded your photos by ftp, click on the Batch Add Pictures button. The batch-add is done in three steps:</p>
 <ul>
@@ -966,6 +942,48 @@ If your browser times out, hit the reload button.
 <p>Once files have been added to coppermine's database, make sure not to rename or delete them by ftp - use coppermine's admin menu to remove files instead, since this way they will be removed both from the file system <b>and</b> the database.</p>
 <a name="ftp_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
+
+<a name="xp"></a>
+<h3>4.11.3 Using Windows XP Web Publishing Wizard with Coppermine</h3>
+<p>If you are using Windows XP, you can use its built-in web publishing wizard to upload your photos to your gallery.</p>
+<p>Once you have properly installed the script on your server, call the xp_publish.php file from your web browser (http://your_site.com/coppermine_dir/xp_publish.php).</p>
+<p>The script displays some information on how to do the installation on the client side and how to use the Wizard. Basically you will need to download a small file created by the script that needs to be loaded into your Windows registry.</p>
+<p>If you want to allow your users to use the Windows XP Web Publishing Wizard, it's advisable to promote it by showing a link to the file somewhere on your page.</p>
+
+<a name="xp_publish_setup"></a>
+<h4>4.11.3.1 XP Web Publishing Wizard: Setup</h4>
+Before you can use the XP Web Publishing Wizard, it needs to know the address of the your gallery.
+<ul>
+<li>Open your browser and type the following into the address box replacing "your_site.com" and "coppermine_dir" with your own Gallery address information : <tt class="code">http://your_site.com/coppermine_dir/xp_publish.php</tt></li>
+<li>On "File Download - Security Warning" click "Save" to save the cpg_###.reg file on your Desktop. (The ### represents a 10-digit numerical timestamp.)</li>
+<li>Open Windows Explorer</li>
+<li>Select Desktop from the left panel</li>
+<li>Double click on the file name that you just saved</li>
+<li>On Registry Editor's "Are you sure..." dialog click "Yes"</li>
+</ul>
+
+Above procedure needs to be done only once by users wishing to use the XP Publishing Wizard.
+
+<a name="xp_publish_upload"></a>
+<h4>4.11.3.2 XP Web Publishing Wizard: Uploading pictures</h4>
+The process of uploading pictures is a matter of following a simple dialog. It takes much longer to describe the process than do it.
+<ul>
+<li>Start Windows Explorer and locate the directory with your photographs and select one or more pictures for upload.</li>
+<li>If the Windows Explorer left panel is not titled "Picture Tasks", click on the "X" in the top right corner of the panel to close it and to reveal the Picture Tasks panel.</li>
+<li>Select "Publish xxxx to the Web" from "File and Folder Tasks" on the left panel. "xxxx" could say "this file, these files or this folder" depending on what is highlighted on the right panel.</li>
+<li>On Web Publishing Wizard's Welcome screen click "Next".</li>
+<li>You can change your selection if necessary on the Thumbnail window showing up. Click "Next" when you are ready.</li>
+<li>From the service provider window highlight your Photo Gallery name and click "Next".</li>
+<li>Enter your Coppermine username and password to login to your gallery and click "Next".</li>
+<li>From the "Welcome username" window you have an option of uploading your picture(s) into one of the existing albums or starting a new album. Click "Next" when you are ready.</li>
+<li>Click "Next" in the upload starting confirmation window.</li>
+<li>Select the picture sizes for the uploaded pictures. If you are unsure about acceptable picture sizes, verify with your Gallery administrator. Click "Next" when you are ready.</li>
+<li>You are presented with the last window of the dialog and given a choice of opening the Gallery when the upload is complete.</li>
+<li>Click "Finish" to end the XP Web Publishing Wizard and to enter the Gallery to check the new album contents.</li>
+</ul>
+<p class="small">[cpg1.1.1 or better required]</p>
+<p><a class="back" href="#top">Back to top</a></p><hr />
+
 
 <h2>4.12 The gallery configuration page<a name="admin"></a></h2>
 <p>This is the place where you configure the most important parts of your coppermine gallery. Some settings have an impact on the files you upload - changing the options once you have a large number of files in your gallery can be difficult, that's why you should make up your mind on those settings right after initial coppermine install, before you actually upload any pics or show the gallery to the public.</p>
