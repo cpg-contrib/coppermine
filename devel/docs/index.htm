@@ -134,6 +134,10 @@
                   <li class="level4"><a href="#xp_publish_setup">4.11.3.1 XP Web Publishing Wizard: Setup</a></li>
                   <li class="level4"><a href="#xp_publish_upload">4.11.3.2 XP Web Publishing Wizard: Uploading pictures</a></li>
                 </ul>
+        <ul class="level3">
+                <li class="level3"><a href="#upload_trouble">4.11.4 Upload troubleshooting</a></li>
+        </ul>
+        <ul class="level2">
                 <li class="level2"><a href="#admin" class="menu2">4.12 The gallery configuration page</a></li>
         </ul>
                 <ul class="level3">
@@ -914,7 +918,22 @@ Right now, you can't.</li>
 
 <a name="ftp"></a><a name="upload_http"></a>
 <h3>4.11.2 Uploading by HTTP</h3>
-<a name="ftp"></a><a name="upload_http_end"></a>
+<p>Regular HTTP uploads use the browser's built-in capabilities to upload files to a server. The maximum file size is determined by two basic factors: the speed and amount of data the web-browser can upload before timing out, and the allowed file size determined by server settings. Note that those settings are not determined by coppermine, but the server config (php.ini). Users who are webhosted usually can't edit php.ini, so they will have to live with the settings the webserver admin has set up. Those who actually run their own server and can edit php.ini should take a look at the settings if (large) http uploads fail:</p>
+<ol>
+<li><b>max_input_time</b>- 60 seconds is the default time limit for uploading files.<br />
+This time limit includes the time it takes for the files to upload, so if you exceed this limit, the file will not even parse, and the browser will not get a response. You can workaround this by trying to upload smaller or fewer files, or you can try uploading over broadband. The best solution, of course, is to increase the time limit to something more in line with your needs.</li>
+<li><b>upload_max_filesize</b> - 2MB is the default limit for individual files.</li>
+<li><b>post_max_size</b> - 8MB is the default limit for post requests.</li>
+<li><b>memory_limit</b> - 8MB is the default size.</li>
+<li>PHP's <b>LimitRequestBody</b> - 512KB default limit. (mainly an issue on Redhat/Apache systems.  Found in /etc/http/conf.d)<br />
+In general, upload_max_filesize &lt; post_max_size &lt; memory_limit in order for uploads to function properly. Coppermine may warn you if a file exceeds upload_max_filesize, but it cannot warn you if the total size of all the files exceeds the post limit or the memory limit.</li>
+<li><b>file_uploads</b> - This determines whether or not PHP will allow file uploads. It must be set to 'On'.</li>
+<li><b>upload_tmp_dir</b> - This specifies the temporary directory where PHP stores uploaded files.<br />
+The most common issue caused by this setting is an open_basedir warning.  In this situation, your server administrator has restricted the files that PHP can work with to a certain directory.  If he does not create and specify a temporary directory within the open_basedir restriction, PHP will attempt to use the OS temporary directory, and it will be rebuffed by the open_basedir restriction.</li>
+<li><b>allow_fopen_url</b> - This controls PHP's ability to read files using URL/URIs.  If it is disabled, Coppermine will not be able to upload from URLs.</li>
+</ol>
+<p>It should be obvious that the files have to be uploaded somewhere (into some folder) on your webserver - this is the albums folder within the folder you installed coppermine on your server. The HTTP uploads go into subfolders of the "userpics" folder (which resides within the "albums" folder). Obviously, the coppermine upload script needs write permissions to upload the files there. This is why you have to change permissions on the albums folder and everything within it during coppermine install - make it writable for the user the webserver runs under. This is done using the CHMOD command on Unix/Linux based servers. If you experience issues with uploading, make sure that you have set the permissions correctly.</p>
+<a name="upload_http_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="ftp"></a><a name="batch_add_pics"></a>
@@ -984,6 +1003,25 @@ The process of uploading pictures is a matter of following a simple dialog. It t
 <p class="small">[cpg1.1.1 or better required]</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
+<a name="upload_trouble"></a>
+<h3>4.11.4 Upload troubleshooting</h3>
+<p>If you are experiencing issues with coppermine's upload process, temporarily change your coppermine settings as suggested below to get more detailed error messages:</p>
+<ul>
+<li>Go to your coppermine page and log in as admin</li>
+<li>Go to the config screen</li>
+<li>Scroll to the bottom of the page</li>
+<li>Expand the "Maintenance settings" section by clicking on it</li>
+<li>Enable debug mode for everyone</li>
+<li>Leave display of notices switched off</li>
+<li>Save the new settings by clicking on "Save new configuration"</li>
+<li>Go to the "groups" panel</li>
+<li>Set the upload form configuration for all groups to "Single file uploads only"</li>
+<li>Save your new settings</li>
+</ul>
+<p>Then try to upload - you should get a more detailed error message that tells you what exactly goes wrong with your uploads. If the error message doesn't mean anything to you, <a href="http://coppermine-gallery.net/forum/index.php?action=search">search the support board</a> for the error message you get.<br />
+When asking for support on the coppermine forum, post a link to your site and a test user account (the test user mustn't be in the admin group!) with upload privileges, with the above mentioned settings in place - this way, supporters can see the error messages as well.</p>
+<a name="upload_trouble_end"></a>
+<p><a class="back" href="#top">Back to top</a></p><hr />
 
 <h2>4.12 The gallery configuration page<a name="admin"></a></h2>
 <p>This is the place where you configure the most important parts of your coppermine gallery. Some settings have an impact on the files you upload - changing the options once you have a large number of files in your gallery can be difficult, that's why you should make up your mind on those settings right after initial coppermine install, before you actually upload any pics or show the gallery to the public.</p>
