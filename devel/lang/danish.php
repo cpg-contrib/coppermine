@@ -22,16 +22,16 @@
 
 // info about translators and translated language 
 $lang_translation_info = array( 
-'lang_name_english' => 'Danish',  
-'lang_name_native' => 'Dansk', 
-'lang_country_code' => 'dk', 
-'trans_name'=> 'Laugesen', //the name of the translator - can be a nickname 
-'trans_email' => 'laugesen@tommerup.net', //translator's email address (optional) 
-'trans_website' => 'http://www.tommerup.net', //translator's website (optional) 
-'trans_name2'=> 'David Holm', //the name of the translator - can be a nickname 
+'lang_name_english' => 'Danish',
+'lang_name_native' => 'Dansk',
+'lang_country_code' => 'dk',
+'trans_name'=> 'Laugesen', //the name of the translator - can be a nickname
+'trans_email' => 'laugesen@tommerup.net', //translator's email address (optional)
+'trans_website' => 'http://www.tommerup.net', //translator's website (optional)
+'trans_name2'=> 'David Holm', //the name of the translator - can be a nickname
 'trans_email2' => 'wormie@alberg.dk', //translator's email address (optional)
 'trans_date' => '2003-22-03', //the date the translation was created / last modified
-); 
+);
 
 $lang_charset = 'iso-8859-1';
 $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
@@ -64,17 +64,17 @@ $comment_date_fmt =  '%d. %B, %Y kl. %H:%M'; //cpg1.3.0
 // For the word censor
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
 
-$lang_meta_album_names = array(  
+$lang_meta_album_names = array(
         'random' => 'Tilfældige files', //cpg1.3.0
-        'lastup' => 'Nyeste filer', 
-        'lastalb'=> 'Sidst opdaterede albums', 
-        'lastcom' => 'Nyeste kommentarer', 
-        'topn' => 'Mest viste', 
-        'toprated' => 'Mest populære', 
-        'lasthits' => 'Sidst viste', 
-        'search' => 'Søge resultat', 
+        'lastup' => 'Nyeste filer',
+        'lastalb'=> 'Sidst opdaterede albums',
+        'lastcom' => 'Nyeste kommentarer',
+        'topn' => 'Mest viste',
+        'toprated' => 'Mest populære',
+        'lasthits' => 'Sidst viste',
+        'search' => 'Søge resultat',
         'favpics'=> 'Foretrukne filer', //cpg1.3.0
-); 
+);
 
 $lang_errors = array(
         'access_denied' => 'Du har ikke tilladelse til at se denne side.',
@@ -91,8 +91,8 @@ $lang_errors = array(
         'directory_ro' => 'Mappen \'%s\' er skrivebeskyttet, filer kan ikke slettes', //cpg1.3.0
         'non_exist_comment' => 'Den valgte kommentar findes ikke.',
         'pic_in_invalid_album' => 'Filen er i et ikke eksisterende album (%s)!?', //cpg1.3.0
-        'banned' => 'Din adgang til denne side er spærret.', 
-        'not_with_udb' => 'Denne funktion er deaktiveret i Coppermine da den er integreret med forum software. Enten er det du ønsker at gøre ikke understøttet i denne opsætning eller også skal det gøres vha. forum software.', 
+        'banned' => 'Din adgang til denne side er spærret.',
+        'not_with_udb' => 'Denne funktion er deaktiveret i Coppermine da den er integreret med forum software. Enten er det du ønsker at gøre ikke understøttet i denne opsætning eller ogsÃ¥ skal det gøres vha. forum software.',
         'offline_title' => 'Offline', //cpg1.3.0
         'offline_text' => 'Galleriet er offline lige nu - prøv igen senere', //cpg1.3.0
         'ecards_empty' => 'Der findes ingen e-postkort lige nu. Kontroller at du har aktiveret e-postkort logning på opstænings siden!', //cpg1.3.0
@@ -132,7 +132,7 @@ $lang_main_menu = array(
         'memberlist_title' => 'Vis liste over medlemmer', //cpg1.3.0
         'memberlist_lnk' => 'Medlemsliste', //cpg1.3.0
         'faq_title' => 'Ofte Stillede Spørgsmål (FAQ) omkring galleriet &quot;Coppermine&quot;', //cpg1.3.0
-        'faq_lnk' => 'OSS (FAQ)', //cpg1.3.0
+        'faq_lnk' => '(FAQ)', //cpg1.3.0
 
 );
 
@@ -146,7 +146,7 @@ $lang_gallery_admin_menu = array(
         'comments_lnk' => 'Kommentarer', //cpg1.3.0
         'searchnew_lnk' => 'Masse tilføj filer', //cpg1.3.0
         'util_lnk' => 'Admin værktøjer', //cpg1.3.0
-        'ban_lnk' => 'Bloker brugere', 
+        'ban_lnk' => 'Bloker brugere',
         'db_ecard_lnk' => 'Vis e-postkort', //cpg1.3.0
 );
 
@@ -337,7 +337,7 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 
 if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
         'miss_param' => 'Parameter Parameters obligatorisk ved \'%s\'operation ej udført!',
-        'unknown_cat' => 'Valgte kategori eksister ikke i databasen',
+        'unknown_cat' => 'Valgte kategori eksisterer ikke i databasen',
         'usergal_cat_ro' => 'Bruger galleri kategorien kan ikke slettes!',
         'manage_cat' => 'Administrer kategorier',
         'confirm_delete' => 'Er du sikker på du ønsker at SLETTE denne kategori', //js-alert
@@ -396,7 +396,7 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
         array('Vis &quot;nulstil&quot; i valg af sprog', 'language_reset', 1), //cpg1.3.0
         array('Vis liste over temaer', 'theme_list', 8), //cpg1.3.0
         array('Vis &quot;nulstil&quot; i valg af tema', 'theme_reset', 1), //cpg1.3.0
-        array('Vis OSS (FAQ)', 'display_faq', 1), //cpg1.3.0
+        array('Vis FAQ', 'display_faq', 1), //cpg1.3.0
         array('Vis hjælp til bbcode', 'show_bbcode_help', 1), //cpg1.3.0
         array('Tegn sæt', 'charset', 4), //cpg1.3.0
 
@@ -509,7 +509,7 @@ if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
   'ecard_ascending' => 'stigende', //cpg1.3.0
   'ecard_descending' => 'faldende', //cpg1.3.0
   'ecard_sorted' => 'Sorteret', //cpg1.3.0
-  'ecard_by_date' => 'efter datp', //cpg1.3.0
+  'ecard_by_date' => 'efter dato', //cpg1.3.0
   'ecard_by_sender_name' => 'efter afsenders navn', //cpg1.3.0
   'ecard_by_sender_email' => 'efter afsenders e-mail', //cpg1.3.0
   'ecard_by_sender_ip' => 'efter afsenders IP adresse', //cpg1.3.0
@@ -722,7 +722,7 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   array('Hvor kan jeg uploade billeder til?', 'Du kan uploade billeder til en af dine albums i &quot;Mit Galleri&quot;. Adminstratoren kan også give tilladelse til at du kan uploade til et eller flere albums i hoved galleriet.', 'allow_private_albums', 0), //cpg1.3.0
   array('Hvilken størrelse og type af billeder kan jeg uploade?', 'Størrelsen og typen (jpg,gif,..osv.) er valgt af administratoren.', 'offline', 0), //cpg1.3.0
   array('Hvad er &quot;Mit Galleri&quot;?', '&quot;Mit Galleri&quot; er et personligt galleri som brugeren kan uploade til og administrere.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Hvordan opretter, omdøber eller sletter jeg et album i &quot;Mit Galleri&quot;?', 'Du burde allerede være i &quot;Administrator-Tilstand&quot;<br />Gå til &quot;Opret/rediger Mine Albums&quot;og tryk på &quot;Nyt&quot;. Ænder &quot;Nyt Album&quot; til det ønskede navn.<br />Du kan også omdøbe et eksisterende album.<br />Tryk på &quot;Godkend rettelser&quot;.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Hvordan opretter, omdøber eller sletter jeg et album i &quot;Mit Galleri&quot;?', 'Du burde allerede være i &quot;Administrator-Tilstand&quot;<br />Gå til &quot;Opret/rediger Mine Albums&quot;og tryk på &quot;Nyt&quot;. Ã†nder &quot;Nyt Album&quot; til det ønskede navn.<br />Du kan også omdøbe et eksisterende album.<br />Tryk på &quot;Godkend rettelser&quot;.', 'allow_private_albums', 0), //cpg1.3.0
   array('Hvordan kan jeg vælge hvem der kan se mine albums?', 'Du burde allerede være i  &quot;Admin. tilstand&quot;<br />Gå til &quot;Rediger Mine Albums.&quot; På &quot;Opdater album&quot; baren, og vælg det album du vil redigere.<br />Her kan du ændre navn, beskrivelse, minibillede, og begrænse visning og kommentar tilladelser.<br />Tryk på &quot;Opdater album&quot;.', 'allow_private_albums', 0), //cpg1.3.0
   array('Hvordan kan jeg se andre brugeres gallerier?', 'Gå til &quot;Album Liste&quot; og vælg &quot;Bruger gallerier&quot;.', 'allow_private_albums', 0), //cpg1.3.0
   array('Hvad er cookies?', 'Cookies er en tekst fil som sendes fra en hjemmesside og gemmes på din computer.<br />Cookies tillader brugeren at forlade en side og komme tilbage uden at logge ind igen og at tilpasse siden på forskellige måder.', 'offline', 0), //cpg1.3.0
@@ -784,7 +784,7 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
         'upload_form_config_values' => array( 'Kun upload af enkelte filer', 'Kun uploads af flere filer', 'Kun URI uploads', 'Kun ZIP uploads', 'Fil-URI', 'Fil-ZIP', 'URI-ZIP', 'Fil-URI-ZIP'), //cpg1.3.0
         'custom_user_upload'=>'Brugeren kan vælge antal upload bokse?', //cpg1.3.0
         'num_file_upload'=>'Max/eksakt antal upload bokse', //cpg1.3.0
-        'num_URI_upload'=>'Max/eksat antal URI upload bokse', //cpg1.3.0
+        'num_URI_upload'=>'Max/eksakt antal URI upload bokse', //cpg1.3.0
         'note1' => '<b>(1)</b> Upload i det offentlige album, kræver admin godkendelse',
         'note2' => '<b>(2)</b> Upload i et album som tilhører brugeren, kræver admin godkendelse',
         'notes' => 'Noter',
@@ -1053,19 +1053,19 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 
 // Void
 
-// ------------------------------------------------------------------------- // 
-// File banning.php 
-// ------------------------------------------------------------------------- // 
+// ------------------------------------------------------------------------- //
+// File banning.php
+// ------------------------------------------------------------------------- //
 
-if (defined('BANNING_PHP')) $lang_banning_php = array( 
-                'title' => 'Bloker brugere', 
-                'user_name' => 'Bruger navn', 
-                'ip_address' => 'IP Adresse', 
-                'expiry' => 'Udløber (efterlad tom for aldrig)', 
-                'edit_ban' => 'Gem ændringer', 
-                'delete_ban' => 'Slet', 
-                'add_new' => 'Tilføj ny blokering', 
-                'add_ban' => 'Tilføj', 
+if (defined('BANNING_PHP')) $lang_banning_php = array(
+                'title' => 'Bloker brugere',
+                'user_name' => 'Bruger navn',
+                'ip_address' => 'IP Adresse',
+                'expiry' => 'Udløber (efterlad tom for aldrig)',
+                'edit_ban' => 'Gem ændringer',
+                'delete_ban' => 'Slet',
+                'add_new' => 'Tilføj ny blokering',
+                'add_ban' => 'Tilføj',
                 'error_user' => 'Kan ikke finde bruger', //cpg1.3.0
                 'error_specify' => 'Du skal skrive enten et brugernavn eller en IP adresse', //cpg1.3.0
                 'error_ban_id' => 'Ugyldig blokerings ID!', //cpg1.3.0
@@ -1074,7 +1074,7 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
                 'error_ip_forbidden' => 'Du kan ikke blokere denne IP - der findes ingen rute til den!', //cpg1.3.0
                 'lookup_ip' => 'Slå en IP adresse op', //cpg1.3.0
                 'submit' => 'send!', //cpg1.3.0
-); 
+);
 
 // ------------------------------------------------------------------------- //
 // File upload.php
@@ -1091,7 +1091,7 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
         'cust_instr_6' => 'File upload bokse:', //cpg1.3.0
         'cust_instr_7' => 'Skriv venligst hvor mange af hver type upload bokse du ønsker og tryk \'Fortsæt\'. ', //cpg1.3.0
         'reg_instr_1' => 'Ugyldig handlig ved dannelse af skema.', //cpg1.3.0
-        'reg_instr_2' => 'Du kan nu uploade filer ved hjælp af upload boksene nedenfor. Størrelsen af hver enkelt fil må ikke overskride %s KB each. ZIP filer uploadet i \'Fil Upload\' og \'URI/URL Upload\' sektioner vil forblive komprimeret.', //cpg1.3.0
+        'reg_instr_2' => 'Du kan nu uploade filer ved hjælp af upload boksene nedenfor. Størelsen af hver enkelt fil må ikke overskride %s KB each. ZIP filer uploadet i \'Fil Upload\' og \'URI/URL Upload\' sektioner vil forblive komprimeret.', //cpg1.3.0
         'reg_instr_3' => 'Hvis du vil have zip filen eller arkivet pakket ud, skal du bruge fil upload boksen under \'ZIP Upload med udpakning\' området.', //cpg1.3.0
         'reg_instr_4' => 'Når du bruger URI/URL upload sektionen, så indtast venligst adressen til filen således: http://www.minhjemmeside.dk/images/eksempel.jpg', //cpg1.3.0
         'reg_instr_5' => 'Når du har udfyldt skemaet, så tryk venligst på \'Fortsæt\'.', //cpg1.3.0
@@ -1169,8 +1169,8 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
         'pic_d' => 'Billede tæller faldende',
         'disku_a' => 'Disk forbrug stigende',
         'disku_d' => 'Disk forbrug faldende',
-        'lv_a' => 'Sidste besøg stigende', //cpg1.3.0
-        'lv_d' => 'Sidste besøg faldende', //cpg1.3.0
+        'lv_a' => 'Sidste besøge stigende', //cpg1.3.0
+        'lv_d' => 'Sidste besøgte faldende', //cpg1.3.0
         'sort_by' => 'Sorter brugere efter',
         'err_no_users' => 'Bruger tabel er tom!',
         'err_edit_self' => 'Du kan ikke rette i egen profil, brug \'Min profil\' link til dette formål',
@@ -1183,7 +1183,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
         'pictures' => 'Filer',
         'disk_space' => 'Plads brugt / Kvote',
         'registered_on' => 'Registreret den',
-        'last_visit' => 'Sidste besøg', //cpg1.3.0
+        'last_visit' => 'Sidste besÃ¸gø //cpg1.3.0
         'u_user_on_p_pages' => '%d bruger på %d side(r)',
         'confirm_del' => 'Er du sikker på du vil SLETTE denne bruger? \\nAlle filer og albums vil også blive slettet.',
         'mail' => 'POST',
@@ -1204,55 +1204,55 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
         'never' => 'aldrig', //cpg1.3.0
 );
 
-// ------------------------------------------------------------------------- // 
-// File util.php 
-// ------------------------------------------------------------------------- // 
+// ------------------------------------------------------------------------- //
+// File util.php
+// ------------------------------------------------------------------------- //
 
-if (defined('UTIL_PHP')) $lang_util_php = array( 
-        'title' => 'Administrator værktøjer (Ændre billedstørrelse)', 
-        'what_it_does' => 'Gør dette', 
-        'what_update_titles' => 'Opdater titler fra filnavn', 
-        'what_delete_title' => 'Slet titler', 
-        'what_rebuild' => 'Genskab minibilleder og mellemstore billeder', 
-        'what_delete_originals' => 'Sletter billeder med original størrelse og erstatter dem med de mellemstore billeder', 
-        'file' => 'Fil', 
-        'title_set_to' => 'titel sat til', 
-        'submit_form' => 'Udfør', 
-        'updated_succesfully' => 'opdateret med succes', 
-        'error_create' => 'FEJL ved oprettelse af', 
-        'continue' => 'Fortsæt', 
-        'main_success' => 'Filen %s bliver nu brugt som original fil', 
-        'error_rename' => 'Fejl da filen skulle omdøbes fra %s til %s', 
-        'error_not_found' => 'Filen %s blev ikke fundet', 
-        'back' => 'tilbage til hovedmenu', 
-        'thumbs_wait' => 'Opdaterer minibilleder og/eller mellemstore billeder, vent venligst...', 
-        'thumbs_continue_wait' => 'Fortsætter med opdatering af minibilleder og/eller mellemstore billeder...', 
-        'titles_wait' => 'Opdaterer titler, vent venligst...', 
-        'delete_wait' => 'Slettet titler, vent venligst...', 
-        'replace_wait' => 'Sletter originale billeder og erstatter dem med de mellemstore, vent venligst...', 
-        'instruction' => 'Hurtig manual', 
-        'instruction_action' => 'Vælg funktion', 
-        'instruction_parameter' => 'Indstil parametre', 
-        'instruction_album' => 'Vælg album', 
-        'instruction_press' => 'Tryk %s', 
-        'update' => 'Opdater minibilleder og/eller mellemstore billeder', 
-        'update_what' => 'Hvad skal opdateres', 
-        'update_thumb' => 'Kun minibilleder', 
-        'update_pic' => 'Kun mellemstore billeder', 
-        'update_both' => 'Både mini- og mellemstore billeder', 
-        'update_number' => 'Antal behandlede billeder pr. klik', 
-        'update_option' => '(Prøv at sætte den værdi lavere hvis du oplever timeout fejl)', 
-        'filename_title' => 'Filnavn -> Billed titel', 
-        'filename_how' => 'Hvordan skal filnavnet modificeres', 
-        'filename_remove' => 'Fjern .jpg endelsen og erstat _ (underscore) med mellemrum', 
-        'filename_euro' => 'Omdøb 2003_11_23_13_20_20.jpg til 23/11/2003 13:20', 
-        'filename_us' => 'Omdøb 2003_11_23_13_20_20.jpg til 11/23/2003 13:20', 
-        'filename_time' => 'Omdøb 2003_11_23_13_20_20.jpg til 13:20', 
-        'delete' => 'Slet titler eller original størrelse filer', 
-        'delete_title' => 'Slet fil titler', 
-        'delete_original' => 'Slet original størrelse filer', 
-        'delete_replace' => 'Sletter de originale billeder og erstatter dem med de mellemstore', 
-        'select_album' => 'Vælg album', 
+if (defined('UTIL_PHP')) $lang_util_php = array(
+        'title' => 'Administrator værktøj (Ændre billedstørrelse)',
+        'what_it_does' => 'GÃ¸røette',
+        'what_update_titles' => 'Opdater titler fra filnavn',
+        'what_delete_title' => 'Slet titler',
+        'what_rebuild' => 'Genskab minibilleder og mellemstore billeder',
+        'what_delete_originals' => 'Sletter billeder med original størrelse og erstatter dem med de mellemstore billeder',
+        'file' => 'Fil',
+        'title_set_to' => 'titel sat til',
+        'submit_form' => 'Udfør',
+        'updated_succesfully' => 'opdateret med succes',
+        'error_create' => 'FEJL ved oprettelse af',
+        'continue' => 'Fortsæt',
+        'main_success' => 'Filen %s bliver nu brugt som original fil',
+        'error_rename' => 'Fejl da filen skulle omdøbes fra %s til %s',
+        'error_not_found' => 'Filen %s blev ikke fundet',
+        'back' => 'tilbage til hovedmenu',
+        'thumbs_wait' => 'Opdaterer minibilleder og/eller mellemstore billeder, vent venligst...',
+        'thumbs_continue_wait' => 'Fortsætter med opdatering af minibilleder og/eller mellemstore billeder...',
+        'titles_wait' => 'Opdaterer titler, vent venligst...',
+        'delete_wait' => 'Slettet titler, vent venligst...',
+        'replace_wait' => 'Sletter originale billeder og erstatter dem med de mellemstore, vent venligst...',
+        'instruction' => 'Hurtig manual',
+        'instruction_action' => 'Vælg funktion',
+        'instruction_parameter' => 'Indstil parametre',
+        'instruction_album' => 'Vælg album',
+        'instruction_press' => 'Tryk %s',
+        'update' => 'Opdater minibilleder og/eller mellemstore billeder',
+        'update_what' => 'Hvad skal opdateres',
+        'update_thumb' => 'Kun minibilleder',
+        'update_pic' => 'Kun mellemstore billeder',
+        'update_both' => 'Både mini- og mellemstore billeder',
+        'update_number' => 'Antal behandlede billeder pr. klik',
+        'update_option' => '(Prøv at sætte den værdi lavere hvis du oplever timeout fejl)',
+        'filename_title' => 'Filnavn -> Billed titel',
+        'filename_how' => 'Hvordan skal filnavnet modificeres',
+        'filename_remove' => 'Fjern .jpg endelsen og erstat _ (underscore) med mellemrum',
+        'filename_euro' => 'Omdøb 2003_ø_23_13_20_20.jpg til 23/11/2003 13:20',
+        'filename_us' => 'Omdøb 2003_1ø23_13_20_20.jpg til 11/23/2003 13:20',
+        'filename_time' => 'Omdøb 2003_11ø3_13_20_20.jpg til 13:20',
+        'delete' => 'Slet titler eller original størrelse fil',
+        'delete_title' => 'Slet fil titler',
+        'delete_original' => 'Slet original størrelse file,
+        'delete_replace' => 'Sletter de originale billeder og erstatter dem med de mellemstore',
+        'select_album' => 'Vælg Album',
         'delete_orphans' => 'Slet kommentarer som ikke har et album (virker på alle albums)', //cpg1.3.0
         'orphan_comment' => 'kommentarer uden album fundet', //cpg1.3.0
         'delete' => 'Slet', //cpg1.3.0
@@ -1261,8 +1261,8 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
         'nonexist' => 'til ikke eksisterende fil # ', //cpg1.3.0
         'phpinfo' => 'Vis phpinfo', //cpg1.3.0
         'update_db' => 'Opdater database', //cpg1.3.0
-        'update_db_explanation' => 'Hvis du har erstatter coppermine filer, tilføjet en modificering eller opdateret fra en tidliger udgave af coppermine, så kør venligst Opdater database en gang. Det vil oprette de nødvendige skemaer og/eller opsætnings værdier i din Coppermine database.', //cpg1.3.0
-); 
+        'update_db_explanation' => 'Hvis du har erstatter coppermine filer, tilføjet en modificering eller opdaterer fra en tidliger udgave af coppermine, sÃ kør venligst Opdater database en gang. Det vil oprette de nødvendige skemaer og/eller opsætnings værdier din Coppermine database.', //cpg1.3.0
+);
 
 ?>
 
