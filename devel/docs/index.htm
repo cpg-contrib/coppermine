@@ -44,7 +44,15 @@
                 <li class="level2"><a href="#how" class="menu2">2.1 How To Install The Script</a></li>
         </ul>
                 <ul class="level3">
-                  <li class="level3"><a href="#install_screen_start">2.1.1 The install screen</a></li>
+                  <li class="level3"><a href="#permissions">2.1.1 Setting permissions</a></li>
+                </ul>
+                <ul class="level4">
+                  <li class="level4"><a href="#permissions_chmod">2.1.1.1 Apache on Unix/Linux (CHMOD)</a></li>
+                  <li class="level4"><a href="#permissions_apache_windows">2.1.1.2 Apache on Windows</a></li>
+                  <li class="level4"><a href="#permissions_iis_windows">2.1.1.3 IIS on Windows</a></li>
+                </ul>
+                <ul class="level3">
+                  <li class="level3"><a href="#install_screen_start">2.1.2 The install screen</a></li>
                 </ul>
         <ul class="level2">
                 <li class="level2"><a href="#getting" class="menu2">2.2 Getting Started</a></li>
@@ -281,12 +289,45 @@
   <li><b>Upload all files onto your webserver</b> (make sure to use the correct ftp mode)</li>
   <li><b>CHMOD the folders <i>albums</i> and <i>include</i> to 755 (or 777, depending on your server config)</b> - this step is really important, don't skip it!<p>There are a lot of tutorials for beginners how to use chmod available: <a href="http://www.google.com/search?q=chmod+tutorial" class="external">search chmod tutorials with google</a>. If you're on a windows server, you'll have to set permissions accordingly as well (usually the webserver on IIS runs under the user name &quot;IUSR_hostname&quot; - you'll have to set rwx-permissions for this user). </p><p>The reason these permissions need to be set is to allow Coppermine to store files inside the albums directory (the pics that are uploaded to the gallery) and to setup a file in the include directory that contains your database information. (This <i>config.inc.php</i> file is what you would edit if your database information changes after the installation). If you are unsure whether you require 777 or 755 then try 777 first and see if that works. If it does not work then try 755, if that fails then consult your server administrator.</p></li>
   <li><b>Ensure you have correct information about your database</b> - you need to <i>know</i> the database name as well as the details of a MySQL user account with which Coppermine should connect to the database. The database and the username must already exist, and the user must have access to the relevent database. Coppermine will not create the database for you, but it will create the tables in the database during installation, there is no need for you to add any tables yourself.</li>
-  <li><b>Run the install script on your server</b> (by going to <tt class="code">http://your_server/coppermine_dir/install.php</tt> with your web browser)
-  and follow the instructions</li>
+  <li><b>Run the install script on your server</b> (by going to <tt class="code">http://your_server/coppermine_dir/install.php</tt> with your web browser) and follow the instructions</li>
 </ul>
 <p><a class="back" href="#top">Back to top</a></p><hr />
+
+<a name="permissions"></a>
+<h3>2.1.1 Setting permissions</h3>
+Coppermine needs write access to some files and folders on the webserver for three purposes:
+<ul>
+<li>during install, coppermine needs to write the file "config.inc.php" to the "include" folder to store the mySQL access data and the "install.lock" file in the same folder to keep the installer from being run a second time after successfull installs</li>
+<li>using http uploads, coppermine needs to write the files that are being uploaded into subfolders of the albums folder</li>
+<li>using any upload method, coppermine will create a thumbnail file and an intermediate file (if you have configured coppermine accordingly) and store it in a sub folder of the "albums" directory as well</li>
+</ul>
+<p>By default, files and folders on a webserver will not be writable, so you have to change permissions before installing for above mentioned reasons. It's really mandatory that you set/change permissions - you will run into issues sooner or later if you don't.</p>
+<p>To be able to set permissions correctly, you have to understand how they work: there are <i><b>r</b>ead</i>, <i><b>w</b>rite</i> and <i>e<b>x</b>ecute</i> permissions (abbreviated with <b>rwx</b>) for each folder and file. Permissions on a parent folder can propagate to a child folder or the files within it, but it's possible to set it up as well that permissions don't propagate.</p>
+<p>However, there are differences between the different operating systems that can be used as webservers, so there are different approaches. As coppermine is designed to run on many different setups, here are some basic instructions. Those who know their way around might find these instructions to be very generalized and missing some details.<br />Note: not you local client computer matters permission-wise, but the operating system of your webserver. If you're not sure what OS your server runs, try the CHMOD instructions first - most webservers run Unix/Linux. If you can't figure how to set permissions adequately, ask your webhost for support.</p>
+<p><a class="back" href="#top">Back to top</a></p><hr />
+
+<a name="permissions_chmod"></a>
+<h4>2.1.1.1 Apache on Unix/Linux (CHMOD)</h4>
+<p>tbc</p>
+<a name="permissions_chmod_end"></a>
+<p><a class="back" href="#top">Back to top</a></p><hr />
+
+<a name="permissions_apache_windows"></a>
+<h4>2.1.1.2 Apache on Windows</h4>
+<p>tbc</p>
+<a name="permissions_apache_windows_end"></a>
+<p><a class="back" href="#top">Back to top</a></p><hr />
+
+<a name="permissions_iis_windows"></a>
+<h4>2.1.1.3 IIS on Windows</h4>
+<p>tbc</p>
+<a name="permissions_iis_windows_end"></a>
+
+<a href="permissions_end"></a>
+<p><a class="back" href="#top">Back to top</a></p><hr />
+
 <a name="install_screen_start"></a>
-<h3>2.1.1 The install screen</h3>
+<h3>2.1.2 The install screen</h3>
 <table border="0" cellpadding="5" cellspacing="0">
  <tr>
   <td style="border-top:1px solid #0E72A4;border-left:1px solid #0E72A4;border-right:1px solid #0E72A4;" colspan="2"><b>Your admin account</b>
@@ -912,28 +953,8 @@ Right now, you can't.</li>
 
 <a name="ftp"></a><a name="uploading"></a>
 <h2>4.11 Uploading pics/files</h2>
-<p>There are several methods to upload files within Coppermine. You (as gallery admin) should use FTP-upload plus batch-add (only the admin can do this). Regular users are supposed to use the "regular" http upload or (if they have Windows XP) the XP Publisher.</p>
+<p>There are several methods to upload files within Coppermine. You (as gallery admin) should use <a href="#batch_add_pics">FTP-upload plus batch-add</a> (only the admin can do this). Regular users are supposed to use the "regular" <a href="#upload_http">http upload</a> or (if they have Windows XP) the <a href="#xp">XP Publisher</a>.</p>
 <a name="uploading_end"></a>
-<p><a class="back" href="#top">Back to top</a></p><hr />
-
-<a name="ftp"></a><a name="upload_http"></a>
-<h3>4.11.2 Uploading by HTTP</h3>
-<p>Regular HTTP uploads use the browser's built-in capabilities to upload files to a server. The maximum file size is determined by two basic factors: the speed and amount of data the web-browser can upload before timing out, and the allowed file size determined by server settings. Note that those settings are not determined by coppermine, but the server config (php.ini). Users who are webhosted usually can't edit php.ini, so they will have to live with the settings the webserver admin has set up. Those who actually run their own server and can edit php.ini should take a look at the settings if (large) http uploads fail:</p>
-<ol>
-<li><b>max_input_time</b>- 60 seconds is the default time limit for uploading files.<br />
-This time limit includes the time it takes for the files to upload, so if you exceed this limit, the file will not even parse, and the browser will not get a response. You can workaround this by trying to upload smaller or fewer files, or you can try uploading over broadband. The best solution, of course, is to increase the time limit to something more in line with your needs.</li>
-<li><b>upload_max_filesize</b> - 2MB is the default limit for individual files.</li>
-<li><b>post_max_size</b> - 8MB is the default limit for post requests.</li>
-<li><b>memory_limit</b> - 8MB is the default size.</li>
-<li>PHP's <b>LimitRequestBody</b> - 512KB default limit. (mainly an issue on Redhat/Apache systems.  Found in /etc/http/conf.d)<br />
-In general, upload_max_filesize &lt; post_max_size &lt; memory_limit in order for uploads to function properly. Coppermine may warn you if a file exceeds upload_max_filesize, but it cannot warn you if the total size of all the files exceeds the post limit or the memory limit.</li>
-<li><b>file_uploads</b> - This determines whether or not PHP will allow file uploads. It must be set to 'On'.</li>
-<li><b>upload_tmp_dir</b> - This specifies the temporary directory where PHP stores uploaded files.<br />
-The most common issue caused by this setting is an open_basedir warning.  In this situation, your server administrator has restricted the files that PHP can work with to a certain directory.  If he does not create and specify a temporary directory within the open_basedir restriction, PHP will attempt to use the OS temporary directory, and it will be rebuffed by the open_basedir restriction.</li>
-<li><b>allow_fopen_url</b> - This controls PHP's ability to read files using URL/URIs.  If it is disabled, Coppermine will not be able to upload from URLs.</li>
-</ol>
-<p>It should be obvious that the files have to be uploaded somewhere (into some folder) on your webserver - this is the albums folder within the folder you installed coppermine on your server. The HTTP uploads go into subfolders of the "userpics" folder (which resides within the "albums" folder). Obviously, the coppermine upload script needs write permissions to upload the files there. This is why you have to change permissions on the albums folder and everything within it during coppermine install - make it writable for the user the webserver runs under. This is done using the CHMOD command on Unix/Linux based servers. If you experience issues with uploading, make sure that you have set the permissions correctly.</p>
-<a name="upload_http_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="ftp"></a><a name="batch_add_pics"></a>
@@ -960,6 +981,26 @@ If your browser times out, hit the reload button.
 <p>Giving FTP-access to other users is a serious security threat, that's why batch-add is only available for the coppermine gallery admin.</p>
 <p>Once files have been added to coppermine's database, make sure not to rename or delete them by ftp - use coppermine's admin menu to remove files instead, since this way they will be removed both from the file system <b>and</b> the database.</p>
 <a name="ftp_end"></a>
+<p><a class="back" href="#top">Back to top</a></p><hr />
+
+<a name="upload_http"></a>
+<h3>4.11.2 Uploading by HTTP</h3>
+<p>Regular HTTP uploads use the browser's built-in capabilities to upload files to a server. The maximum file size is determined by two basic factors: the speed and amount of data the web-browser can upload before timing out, and the allowed file size determined by server settings. Note that those settings are not determined by coppermine, but the server config (php.ini). Users who are webhosted usually can't edit php.ini, so they will have to live with the settings the webserver admin has set up. Those who actually run their own server and can edit php.ini should take a look at the settings if (large) http uploads fail:</p>
+<ol>
+<li><b>max_input_time</b>- 60 seconds is the default time limit for uploading files.<br />
+This time limit includes the time it takes for the files to upload, so if you exceed this limit, the file will not even parse, and the browser will not get a response. You can workaround this by trying to upload smaller or fewer files, or you can try uploading over broadband. The best solution, of course, is to increase the time limit to something more in line with your needs.</li>
+<li><b>upload_max_filesize</b> - 2MB is the default limit for individual files.</li>
+<li><b>post_max_size</b> - 8MB is the default limit for post requests.</li>
+<li><b>memory_limit</b> - 8MB is the default size.</li>
+<li>PHP's <b>LimitRequestBody</b> - 512KB default limit. (mainly an issue on Redhat/Apache systems.  Found in /etc/http/conf.d)<br />
+In general, upload_max_filesize &lt; post_max_size &lt; memory_limit in order for uploads to function properly. Coppermine may warn you if a file exceeds upload_max_filesize, but it cannot warn you if the total size of all the files exceeds the post limit or the memory limit.</li>
+<li><b>file_uploads</b> - This determines whether or not PHP will allow file uploads. It must be set to 'On'.</li>
+<li><b>upload_tmp_dir</b> - This specifies the temporary directory where PHP stores uploaded files.<br />
+The most common issue caused by this setting is an open_basedir warning.  In this situation, your server administrator has restricted the files that PHP can work with to a certain directory.  If he does not create and specify a temporary directory within the open_basedir restriction, PHP will attempt to use the OS temporary directory, and it will be rebuffed by the open_basedir restriction.</li>
+<li><b>allow_fopen_url</b> - This controls PHP's ability to read files using URL/URIs.  If it is disabled, Coppermine will not be able to upload from URLs.</li>
+</ol>
+<p>It should be obvious that the files have to be uploaded somewhere (into some folder) on your webserver - this is the albums folder within the folder you installed coppermine on your server. The HTTP uploads go into subfolders of the "userpics" folder (which resides within the "albums" folder). Obviously, the coppermine upload script needs write permissions to upload the files there. This is why you have to change permissions on the albums folder and everything within it during coppermine install - make it writable for the user the webserver runs under. This is done using the CHMOD command on Unix/Linux based servers. If you experience issues with uploading, make sure that you have set the permissions correctly.</p>
+<a name="upload_http_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="xp"></a>
@@ -1018,7 +1059,7 @@ The process of uploading pictures is a matter of following a simple dialog. It t
 <li>Set the upload form configuration for all groups to "Single file uploads only"</li>
 <li>Save your new settings</li>
 </ul>
-<p>Then try to upload - you should get a more detailed error message that tells you what exactly goes wrong with your uploads. If the error message doesn't mean anything to you, <a href="http://coppermine-gallery.net/forum/index.php?action=search">search the support board</a> for the error message you get.<br />
+<p>Then try to upload (using http uploads, even if you experienced troubles using another upload method) - you should get a more detailed error message that tells you what exactly goes wrong with your uploads. If the error message doesn't mean anything to you, <a href="http://coppermine-gallery.net/forum/index.php?action=search" rel="external" class="external">search the support board</a> for the error message you get.<br />
 When asking for support on the coppermine forum, post a link to your site and a test user account (the test user mustn't be in the admin group!) with upload privileges, with the above mentioned settings in place - this way, supporters can see the error messages as well.</p>
 <a name="upload_trouble_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
