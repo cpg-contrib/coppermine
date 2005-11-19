@@ -372,3 +372,35 @@ dt {
         margin-top: 5px;
         margin-left: 30px;
 }
+
+.maintable {
+        border: 1px solid #0E72A4;
+        background-color: #efefef;
+        margin-top: 1px;
+        margin-bottom: 1px;
+}
+
+.tableh1 {
+        background : #0E72A4 ;
+        color : #FFFFFF;
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+}
+
+.tableb {
+        background: #EFEFEF ;
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+}
+
+.tablef {
+        background: #D1D7DC;
+        padding-top: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+        padding-left: 10px;
+}
