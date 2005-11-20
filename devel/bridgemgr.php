@@ -389,8 +389,22 @@ $default_bridge_data['mambo'] = array(
 
 // status: bridge ok, manager ok
 $default_bridge_data['phpbb'] = array(
-  'full_name' => 'phpBB 2.0.x',
+  'full_name' => 'phpBB versions prior to 2.0.18',
   'short_name' => 'phpbb20',
+  'support_url' => 'http://www.phpbb.com/',
+  'full_forum_url_default' => 'http://www.yoursite.com/board',
+  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
+  'relative_path_to_config_file_default' => '../board/',
+  'relative_path_to_config_file_used' => 'lookfor,config.php',
+  'use_post_based_groups_default' => '0',
+  'use_post_based_groups_used' => 'radio,1,0',
+   'cookie_prefix_default' => 'phpbb2mysql',
+   'cookie_prefix_used' => 'cookie',
+);
+
+$default_bridge_data['phpbb2018'] = array(
+  'full_name' => 'phpBB version 2.0.18 or better',
+  'short_name' => 'phpbb2018',
   'support_url' => 'http://www.phpbb.com/',
   'full_forum_url_default' => 'http://www.yoursite.com/board',
   'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
