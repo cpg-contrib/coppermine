@@ -525,7 +525,7 @@ function send_reg_file()
         $lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\PublishingWizard\Providers\\'. $CONFIG['gallery_name'] .']';
     $lines[] = '"displayname"="' . $CONFIG['gallery_name'] . '"';
     $lines[] = '"description"="' . $CONFIG['gallery_description'] . '"';
-    $lines[] = '"href"="' . "http://" . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'] . '?cmd=publish"';
+    $lines[] = '"href"="' . trim($CONFIG['site_url'], '/') . '/' . $_SERVER['PHP_SELF'] . '?cmd=publish"';
     $lines[] = '"icon"="' . "http://" . $_SERVER['HTTP_HOST'] . '/favicon.ico"';
     print join("\r\n", $lines);
     print "\r\n";
