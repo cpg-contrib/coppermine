@@ -309,3 +309,4 @@ Added portuguese language file for cpg1.4.x (user contrib) - 20 October 2005, Ga
 Added French translation of the FAQ to docs folder - 3 November 2005, GauGau
 Fixed issue with MySQL 5 - 10 November, Nibbler
 Added phpBB 2.0.18 bridge support - 20 November, Nibbler
+Applied speculative fixes to xp publisher component - 20 November, Nibbler

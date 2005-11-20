@@ -461,7 +461,7 @@ function startUpload() {
 
         for (i = 0; i < files.length; i++) {
                 var postTag = xml.createNode(1, 'post', '');
-                postTag.setAttribute('href', '<?php echo 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['PHP_SELF'] . '?cmd=add_picture'?>&amp;album=' + selform.album.value);
+                postTag.setAttribute('href', '<?php echo trim($CONFIG['site_url'], '/') . '/' . $_SERVER['PHP_SELF'] . '?cmd=add_picture'?>&amp;album=' + selform.album.value);
                 postTag.setAttribute('name', 'userpicture');
 
                 var dataTag = xml.createNode(1, 'formdata', '');
@@ -475,7 +475,7 @@ function startUpload() {
         var uploadTag = xml.createNode(1, 'uploadinfo', '');
         uploadTag.setAttribute('friendlyname', '<?php echo javascript_string($CONFIG['gallery_name'])?>');
         var htmluiTag = xml.createNode(1, 'htmlui', '');
-        htmluiTag.text = '<?php echo 'http://' . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . '/'?>';
+        htmluiTag.text = '<?php echo trim($CONFIG['site_url'], '/') . '/'?>';
         uploadTag.appendChild(htmluiTag);
 
         xml.documentElement.appendChild(uploadTag);
@@ -549,7 +549,7 @@ function form_login()
         return;
     }
 
-    $params = array('{POST_ACTION}' => $_SERVER['PHP_SELF'] . '?cmd=publish',
+    $params = array('{POST_ACTION}' => trim($CONFIG['site_url'], '/') . '/' . $_SERVER['PHP_SELF'] . '?cmd=publish',
         '{ENTER_LOGIN_PSWD}' => $lang_login_php['enter_login_pswd'],
         '{USERNAME}' => $lang_login_php['username'],
         '{PASSWORD}' => $lang_login_php['password'],
@@ -577,13 +577,13 @@ function process_login()
         user_save_profile();
 
         $params = array('{WELCOME}' => sprintf($lang_login_php['welcome'], USER_NAME),
-            '{POST_ACTION}' => $_SERVER['PHP_SELF'] . '?cmd=publish',
+            '{POST_ACTION}' => trim($CONFIG['site_url'], '/') . '/' . $_SERVER['PHP_SELF'] . '?cmd=publish',
             );
 
         echo template_eval($template_login_success, $params);
     } else {
         $params = array('{ERROR}' => $lang_login_php['err_login'],
-            '{POST_ACTION}' => $_SERVER['PHP_SELF'] . '?cmd=publish',
+            '{POST_ACTION}' => trim($CONFIG['site_url'], '/') . '/' . $_SERVER['PHP_SELF'] . '?cmd=publish',
             );
 
 
@@ -629,7 +629,7 @@ function form_publish()
             '{ALBUM}' => $lang_xp_publish_php['album'],
             '{CATEGORY}' => $lang_xp_publish_php['category'],
             '{SELECT_CATEGORY}' => $html_cat_list,
-            '{POST_ACTION}' => $_SERVER['PHP_SELF'] . '?cmd=create_album',
+            '{POST_ACTION}' => trim($CONFIG['site_url'], '/') . '/' . $_SERVER['PHP_SELF'] . '?cmd=create_album',
             );
 
         echo template_eval($template_select_album, $params);
@@ -649,7 +649,7 @@ function form_publish()
             '{CATEGORY}' => $lang_xp_publish_php['category'],
             '{SELECT_CATEGORY}' => $html_cat_list,
             '{CREATE_NEW}' => $lang_xp_publish_php['create_new'],
-            '{POST_ACTION}' => $_SERVER['PHP_SELF'] . '?cmd=create_album',
+            '{POST_ACTION}' => trim($CONFIG['site_url'], '/') . '/' . $_SERVER['PHP_SELF'] . '?cmd=create_album',
             );
 
         echo template_eval($template_select_album, $params);
