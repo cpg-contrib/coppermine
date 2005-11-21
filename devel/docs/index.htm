@@ -236,7 +236,7 @@
 
 <p>While testing CPG 1.4, please make certain to note any odd behavior you encounter.  This could include typographical errors, misleading instructions, or any other out-right error.  If you encounter a major error, please switch the debug mode to &quot;on&quot; in the configuration panel and copy the text in the debug window.  This will greatly aid the development team in hunting down the problem.</p>
 
-<p><b>Areas to be particularly mindful of:</b></p>
+<p><strong>Areas to be particularly mindful of:</strong></p>
 <ul>
 <li>Please test every facet of CPG, from the installation on to every feature available (and in as many themes and languages as possible).</li>
 <li>If you have the ability to test GD, GD2 and ImageMagick, please test all of them.</li>
@@ -244,7 +244,7 @@
 </ul>
 <p>Please report your test results to the <a href="http://coppermine.sourceforge.net/board/index.php?board=29.0">testing board</a>, but before starting a new thread make sure that the potential bug you're going to report hasn't been posted before.</p>
 
-<p><b>The report format should include:</b></p>
+<p><strong>The report format should include:</strong></p>
 <ul>
 <li>Server OS</li>
 <li>Web Server Software</li>
@@ -273,7 +273,7 @@
   <li>A MySQL database<br />
   You will need MySQL version 3.23.23 or better (4.x recommended). The MySQL user needs permissions to perform CREATE, ALTER, SELECT, UPDATE, DELETE data from the database. Most users have these permissions when webhosted. If you don't have them, you will not be able to use this or any other pre-made scripts at all. If you are uncertain about your permissions, please check with your webhost. Most hosting services can probably tell you whether coppermine can or cannot be run off of their servers.<br />
   A database needs to be set up that Coppermine can use - the install script will not create a database for you, but it will automatically create the tables and data structure in your database for you. In most webhosted environments, you will already have at least one database set up for you by your webhost. If not, you will need to create one. If you do need to create a database, check with your webhost on the proper procedures for doing so. Write down your database name, userID and password. You will require all three to successfully install Coppermine. </li>
-  <li>PHP (version 4.1.0 or better), either compiled with the support for the GD library or permission to use the exec() function for the ImageMagick &quot;convert&quot; utility in order to make thumbnails and reduced size images. <b>Note:</b> If your server is using PHP 5+, "register_long_arrays" must be turned "on." Verify that this is the case with your webhost before attempting to install Coppermine.</li>
+  <li>PHP (version 4.1.0 or better), either compiled with the support for the GD library or permission to use the exec() function for the ImageMagick &quot;convert&quot; utility in order to make thumbnails and reduced size images. <strong>Note:</strong> If your server is using PHP 5+, "register_long_arrays" must be turned "on." Verify that this is the case with your webhost before attempting to install Coppermine.</li>
   <li>An image library: either GD version 1.x or 2.x(PHP has to be compiled to support it) or ImageMagick.<br />
   (see <a href="faq.htm#whatIsImageMagick">What's ImageMagick</a> and <a href="faq.htm#WhatIsGD">What is GD</a>)</li>
   <li>It's always a good idea to contact your webhosting service first and ask them if they are aware of any known issues when installing Coppermine.<li>
@@ -287,38 +287,38 @@
 <a name="how"></a>
 <h2>2.1 How to install the script</h2>
 <ul>
-  <li><b>Unpack the archive preserving the directory structure.</b><br /> You can rename the coppermine folder, but not the files or folders within.</li>
-  <li><b>Upload all files onto your webserver</b> (making sure to use the correct ftp mode)</li>
-  <li><b>CHMOD the "<i>albums</i>" and "<i>include</i>" folders in your Coppermine directory to 755 (or 777, depending on your server config)</b> - <font color="#FF0000">this step is very important and must not be overlooked!</font>
-  <li><b>Ensure you have correct information about your database</b> - you need to <i>know</i> the database name as well as the details of a MySQL user account with which Coppermine should connect to the database. The database and the username must already exist, and the user must have access to the relevent database. Coppermine will not create the database for you, but it will create the tables in the database during installation, there is no need for you to add any tables yourself.</li>
-  <li><b>Run the install script on your server</b> (by going to <tt class="code">http://your_server/coppermine_dir/install.php</tt> with your web browser) and follow the instructions</li>
+  <li><strong>Unpack the archive preserving the directory structure.</strong><br /> You can rename the coppermine folder, but not the files or folders within.</li>
+  <li><strong>Upload all files onto your webserver</strong> (making sure to use the correct ftp mode)</li>
+  <li><strong>CHMOD the "<em>albums</em>" and "<em>include</em>" folders in your Coppermine directory to 755 (or 777, depending on your server config)</strong> - <font color="#FF0000">this step is very important and must not be overlooked!</font>
+  <li><strong>Ensure you have correct information about your database</strong> - you need to <em>know</em> the database name as well as the details of a MySQL user account with which Coppermine should connect to the database. The database and the username must already exist, and the user must have access to the relevent database. Coppermine will not create the database for you, but it will create the tables in the database during installation, there is no need for you to add any tables yourself.</li>
+  <li><strong>Run the install script on your server</strong> (by going to <tt class="code">http://your_server/coppermine_dir/install.php</tt> with your web browser) and follow the instructions</li>
 </ul>
-  <li><b>Confirm that you have all the correct information about the database that will be used for your Coppermine installation.</b> If no database exists for your website, you will need to create one, or have one created for you by your webhost. Your webhost can best provide you with instructions on how to go about doing this.  For installation purposes, you will need to know the path of the database server that you will be using with Coppermine and details of the MySQL user account through which Coppermine will connect to the server. You must have the database server path (usually 'localhost'), your MySQL username, MySQL password, and MySQL database name prior to installing Coppermine. The user installing Coppermine must have all relevant access rights to this database.
+  <li><strong>Confirm that you have all the correct information about the database that will be used for your Coppermine installation.</strong> If no database exists for your website, you will need to create one, or have one created for you by your webhost. Your webhost can best provide you with instructions on how to go about doing this.  For installation purposes, you will need to know the path of the database server that you will be using with Coppermine and details of the MySQL user account through which Coppermine will connect to the server. You must have the database server path (usually 'localhost'), your MySQL username, MySQL password, and MySQL database name prior to installing Coppermine. The user installing Coppermine must have all relevant access rights to this database.
 
  If you are using a newly created database, there is no need for you to manually add any tables. Coppermine will create the necessary tables in the database during installation process.</li>
 
-  <li><b>To run the install script on your server,</b> type the following URL into your web browser:&nbsp;&nbsp; http://your_server/coppermine_dir/install.php&nbsp;&nbsp; (<i>your_server</i> = your website, <i>coppermine_dir</i> = the folder in which you uploaded your Coppermine files.)   Follow the online instructions inserting the necessary information as requested.</li>
+  <li><strong>To run the install script on your server,</strong> type the following URL into your web browser:&nbsp;&nbsp; http://your_server/coppermine_dir/install.php&nbsp;&nbsp; (<em>your_server</em> = your website, <em>coppermine_dir</em> = the folder in which you uploaded your Coppermine files.)   Follow the online instructions inserting the necessary information as requested.</li>
 </ul>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="permissions"></a>
 <h3>2.1.1 Setting permissions</h3>
-Coppermine needs <i>write access</i> to a number of files and folders on the webserver in order to accomplish the following:
+Coppermine needs <em>write access</em> to a number of files and folders on the webserver in order to accomplish the following:
 <ul>
 <li>during install, coppermine needs to create and write to the file "config.inc.php" in the "include" folder in order to store the necessary mySQL access data to run coppermine and to create and write the "install.lock" file, also in the same folder to prevent the installer from being run a second time after a successful install.</li>
-<li>when using http uploads, coppermine needs to write the files that are being uploaded into the subfolders that you or your users create in the coppermine <i>albums</i> folder</li>
+<li>when using http uploads, coppermine needs to write the files that are being uploaded into the subfolders that you or your users create in the coppermine <em>albums</em> folder</li>
 <li>regardless of the upload method, coppermine will create a thumbnail file and an intermediate file (if you have configured coppermine accordingly) and store it in a sub-folder in the "albums" directory, as well</li>
 </ul>
 <p>By default, files and folders on a webserver are usually not writable, so you will probably have to change permissions before installion, for the reasons mentioned above. It's really mandatory that you set/change (CHMOD) permissions - or you will run into issues sooner or later.</p>
-<p>To be able to set permissions correctly, you have to understand how they work: there are <i><b>r</b>ead</i>, <i><b>w</b>rite</i> and <i>e<b>x</b>ecute</i> permissions (abbreviated with <b>rwx</b>) for each folder and file. Permissions on a parent folder can propagate to a child folder or the files within it, but it's possible to tweak your setup so that unwanted permissions will not propagate to child folders and resident files.</p>
+<p>To be able to set permissions correctly, you have to understand how they work: there are <em><strong>r</strong>ead</em>, <em><strong>w</strong>rite</em> and <em>e<strong>x</strong>ecute</em> permissions (abbreviated with <strong>rwx</strong>) for each folder and file. Permissions on a parent folder can propagate to a child folder or the files within it, but it's possible to tweak your setup so that unwanted permissions will not propagate to child folders and resident files.</p>
 <p>However, there are differences between the different operating systems that are used as webservers. As a result, there are a number of different approaches. As coppermine is designed to run on many different setups, we've included some basic instructions. Those who know their way around may find these instructions somewhat generalized and lacking in details.<br />Note: it is not your local, client computer that matters, permission-wise, but, rather, the operating system used by your webserver. If you're not sure what OS your server is running on, try the CHMOD instructions first - most webservers run a version of Unix/Linux. If you can't figure how to set permissions properly, ask your webhost for support.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="permissions_chmod"></a>
 <h4>2.1.1.1 Apache on Unix/Linux (CHMOD)</h4>
 <ul>
-<li><b>Basics</b><br />
+<li><strong>Basics</strong><br />
 There are different flavors of Unix/Linux - all of them share a similar, somewhat common approach. In referring to this architecture, the word "Lunix" is used for both Unix and Linux derivates. "Read" permissions apply to files that are not actively run, but only being served, e.g text or plain html files. "Write" permissions are needed to dynamically create files, modify or delete them. "Execute" permissions are needed to run executable files, for example, script files like PHP. To serve web pages that are php-powered properly, the most basic permissions that are needed, therefore, are "read" and "execute" (abbreviated as r-x).<br />
 Possible permissions settings are:
   <ul>
@@ -328,8 +328,8 @@ Possible permissions settings are:
   </ul>
 Needless to say, other combinations are technically possible (such as -wx, --x or -w-), but they make little sense in webserver setups and will be ignored in this tutorial.
 </li>
-<li><b>Groups in Lunix</b><br />
-Lunix uses a set of three-group permissions, each of which can be applied independently. These are: <i>owner</i>, <i>group</i> and <i>world</i>. Using this set, you can dictate if a user who owns a file has permission to modify or delete it (write permission)) while other users will only be able to read/view and possibly execute the file. On your server, these permission settings for the three possible groups are written in as a single line entry (in the order "owner", "group", "world"). <br />
+<li><strong>Groups in Lunix</strong><br />
+Lunix uses a set of three-group permissions, each of which can be applied independently. These are: <em>owner</em>, <em>group</em> and <em>world</em>. Using this set, you can dictate if a user who owns a file has permission to modify or delete it (write permission)) while other users will only be able to read/view and possibly execute the file. On your server, these permission settings for the three possible groups are written in as a single line entry (in the order "owner", "group", "world"). <br />
 Examples  :
   <ul>
   <li><tt class="code">rwxrwxrwx</tt> ... read, write and execute (rwx) permissions for all three groups</li>
@@ -337,12 +337,12 @@ Examples  :
   <li><tt class="code">r-xr-xr-x</tt> ... read and execute permissions for all groups, only</li>
   </ul>
 </li>
-<li><b>Webserver daemon</b><br />
+<li><strong>Webserver daemon</strong><br />
 Even though you (the user who owns the files on your server and who has control over the permissions) may be able to access a file (e.g. using your FTP app), the coppermine script may not be able to do so. This is often caused by a particular setup option for servers: services (in Lunix often called "daemons") may run in the context of a specific user that is different from the user who is allowed to access the files. On many such servers, the webserver (apache) service runs as user "nobody". This way, the server can be protected against hacker attacks. Therefore, setting permissions on a server for the "owner" only does not work on these particular setups, you must set permissions for both "group" and "world" (at least for the group the webserver daemon is in).
 </li>
-<li><b>Binary arithmetics</b><br />
-As you can see, permissions can be either "on" or "off" - this is the equivalent to the two different states that a bit of data can have in binary arithmetics (and therefore, also in the whole world of computing). 
-As we have three types of different permissions (read, write, execute), we will need three bits to assign a set of permissions. The highest bit is the "<i><b>r</b>ead</i>" bit - decimal "4" is used to represent it. The middle bit "<i><b>w</b>rite</i>" is assigned to decimal "2", the lowest bit "<i><b>e</b>xecute</i>" is represented by decimal "1". 
+<li><strong>Binary arithmetics</strong><br />
+As you can see, permissions can be either "on" or "off" - this is the equivalent to the two different states that a bit of data can have in binary arithmetics (and therefore, also in the whole world of computing).
+As we have three types of different permissions (read, write, execute), we will need three bits to assign a set of permissions. The highest bit is the "<em><strong>r</strong>ead</em>" bit - decimal "4" is used to represent it. The middle bit "<em><strong>w</strong>rite</em>" is assigned to decimal "2", the lowest bit "<em><strong>e</strong>xecute</em>" is represented by decimal "1".
 This may be a bit hard to understand or follow at first, especially if you haven't dealt with binary arithmetics before. If you would like to learn more, google for it. It's easier to understand if you look at some examples:
 <div style="float:left;margin-right:10px">
 <table border="0" cellspacing="0" cellpadding="0" class="maintable">
@@ -373,18 +373,21 @@ This may be a bit hard to understand or follow at first, especially if you haven
 </div>
 <div style="clear:left"></div>
 </li>
-<li><b>What good is all of this?</b><br />
+<li><strong>What good is all of this?</strong><br />
 Instead of having to remember and write <tt class="code">rwxrwxrwx</tt> for each file or folder in your setup, you can now write <tt class="code">777</tt> in its place. The same applies for <tt class="code">rwxr-xr-x</tt>, you can write <tt class="code">755</tt>, instead .
 </li>
-<li><b>Shell access</b><br />
-http://www.die.net/doc/linux/man/man1/chmod.1.html
+<li><strong>FTP application</strong><br />
+Setting the permissions using your FTP application will be the option available for most users who are webhosted. Depending on the FTP app you use, the user interface will slightly differ: some apps will allow you to enter the CHMOD command by entering the numbers (777 or 755), others will provide you with checkboxes where you can tick the permissions separately for each group. More advanced FTP apps may even provide you with both mechanisms. As this documentation can't cover all individual FTP apps that are available, the exact method might differ a bit from what you have.<br />
+Your FTP app will probably have two windows, one showing your local files, the other one showing the files on your server. In the window that shows the remote files on the server, navigate to the folder your coppermine files reside in. Highlight the "albums" folder that resides within the coppermine folder. From the context menu (right-click!), choose "properties" (might be named "chmod" or similar as well). The permissions dialog will then pop up. Choose the proper permissions as suggested above (777 or 755, depending on your server setup). If you have a checkbox that enables the permissions to propagate for all sub-folders and files, tick it. If you don't have it, nevermind. Then click "OK" on the dialog box to apply the permissions. Keep in mind that your FTP app might not have the power to actually find out about the current permissions that <strong>are</strong> applied, so you mustn't trust the information displayed in the dialog box: even if it appears that the permissions are already set as needed, this may not be the case, so you should re-apply the permissions no matter what.<br />
+After having applied the permissions for the albums folder, do the same thing for the include folder that resides within your coppermine folder.
 </li>
-<li><b>FTP application</b><br />
+<li><strong>Website control panel</strong><br />
+Some webhosts may not give you the option to access your site using FTP, or they may not allow your FTP client to execute the CHMOD command. If this is the case, you probably have a server setup interface (e.g. cpanel) to apply permission to folders and files. In fact, this doesn't matter, the method for applying permissions doesn't differ from the one described above in the section "FTP application": navigate to the albums folder and apply the permissions needed to give your webserver write access to all files and folders within the albums folder. Do the same thing for the include folder as well.
 </li>
-<li><b>Website control panel</b><br />
+<li><strong>Shell access</strong><br />
+If you have shell access to your server, you can apply the native <a href="http://www.die.net/doc/linux/man/man1/chmod.1.html" rel="external" class="external">CHMOD</a> command on your files and folders. Go to your coppermine folder using your shell access, then apply the permissions to the albums and include folder and everything within it. As explained above, the user the apache daemon runs under needs write access, so you should CHMOD to 777 or 755, depending on your server setup.
 </li>
 </ul>
-<p>tbc</p>
 <a name="permissions_chmod_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
@@ -396,7 +399,23 @@ http://www.die.net/doc/linux/man/man1/chmod.1.html
 
 <a name="permissions_iis_windows"></a>
 <h4>2.1.1.3 IIS on Windows</h4>
-<p>tbc</p>
+<p>Pre-requisites: you will need full admin privileges over your server to execute this process. If you do not run the webserver yourself, your webhost has probably set up a web-based interface to let you change permissions. If you're not sure, contact your webhost.</p>
+<p>The dialogs may differ slightly depending on the Windows version you have:</p>
+<ul>
+<li>Start Windows Explorer on your webserver and navigate to your coppermine folder</li>
+<li>right-click on the folder you want to change permissions for</li>
+<li>Choose "Properties"</li>
+<li>On the properties dialog, click on the "Security" tab</li>
+<li>Highlight the user "Internet guest account (hostname\IUSR_hostname). If it's not there already, use the "Add..." dialog to add this particular user</li>
+<li>Tick the "Allow"-checkbox for "Write"-access</li>
+<li>Click the "Advanced" button</li>
+<li>Just to make sure the write access propagates to all folders and files within the folder you're currently editing, tick the checkbox "Reset permissions on all child objects and enable propagation of inheritable permissions"</li>
+<li>click "OK"</li>
+<li>answer the confirmation dialog box that asks you if all permissions should be replaced with "Yes"</li>
+<li>depending on the number of child objects and your system's speed, wait until the permissions of all objects have been changed and the status window goes away.</li>
+<li>Click "OK" to close the permissions dialog</li>
+</ul>
+<p>You have to understand that there is no such thing as CHMOD on Windows operating systems - this command is available on Unix/Linux only, even if your FTP application displays a CHMOD option. If you try to apply CHMOD on Windows, the command will simply be ignored and do nothing. However, there are permissions on Windows as well.</p>
 <a name="permissions_iis_windows_end"></a>
 
 <a href="permissions_end"></a>
@@ -406,7 +425,7 @@ http://www.die.net/doc/linux/man/man1/chmod.1.html
 <h3>2.1.2 The install screen</h3>
 <table border="0" cellpadding="5" cellspacing="0">
  <tr>
-  <td style="border-top:1px solid #0E72A4;border-left:1px solid #0E72A4;border-right:1px solid #0E72A4;" colspan="2"><b>Your admin account</b>
+  <td style="border-top:1px solid #0E72A4;border-left:1px solid #0E72A4;border-right:1px solid #0E72A4;" colspan="2"><strong>Your admin account</strong>
   </td>
   <td></td>
  </tr>
@@ -416,7 +435,7 @@ http://www.die.net/doc/linux/man/man1/chmod.1.html
   <td><span class="small">Input an original admin username and password here. Make sure to either memorize it well, or note it down somewhere safe; you won't be able to administer your site if you lose this data. </span></td>
  </tr>
  <tr>
-  <td style="border-left:1px solid #0E72A4;" width="20%"><b>Username</b>
+  <td style="border-left:1px solid #0E72A4;" width="20%"><strong>Username</strong>
   </td>
   <td style="border-right:1px solid #0E72A4;" width="20%">
           <input type="text" style="width:100%" readonly="readonly" name="admin_username" value="" />
@@ -424,7 +443,7 @@ http://www.die.net/doc/linux/man/man1/chmod.1.html
   <td valign="top" width="60%"><span class="small">This will be the username for your everyday administration of coppermine - choose one that you can memorize and enter easily. This entry is case sensitive so give special consideration when creating a username. Pics that you upload later under this admin account will display the name shown in the uploader field. Comments you make will also display this name, as well, for others to see.</span></td>
  </tr>
  <tr>
-  <td style="border-left:1px solid #0E72A4;"><b>Password</b>
+  <td style="border-left:1px solid #0E72A4;"><strong>Password</strong>
   </td>
   <td style="border-right:1px solid #0E72A4;">
           <input type="text" style="width:100%" readonly="readonly" name="admin_password" value="" />
@@ -432,7 +451,7 @@ http://www.die.net/doc/linux/man/man1/chmod.1.html
   <td><span class="small">This will be your admin password to your coppermine install. Don't use trivial, overly abused passwords - if an attacker figures out your password, s/he will be able to hack your entire site! Use a combination of letters, numbers and special characters in your password. like " j3e4n5n6y* " Remember, passwords like your admin username are case sensitive. Be careful when creating your password. Write it down and keep it safe, preferably somewhere away from your computer.</span> </td>
  </tr>
  <tr>
-  <td style="border-left:1px solid #0E72A4;"><b>Email address</b>
+  <td style="border-left:1px solid #0E72A4;"><strong>Email address</strong>
   </td>
   <td style="border-right:1px solid #0E72A4;">
           <input type="text" style="width:100%" readonly="readonly" name="admin_email" value="" />
@@ -440,16 +459,16 @@ http://www.die.net/doc/linux/man/man1/chmod.1.html
   <td><span class="small">This email address will be used to send emails from the webserver (e.g. the registration email, notifications and ecards). Make sure that it is a valid email address.</span></td>
  </tr>
  <tr>
-  <td style="border-left:1px solid #0E72A4;border-right:1px solid #0E72A4;" colspan="2"><b>Your MySQL configuration</b>
+  <td style="border-left:1px solid #0E72A4;border-right:1px solid #0E72A4;" colspan="2"><strong>Your MySQL configuration</strong>
   </td>
-  <td rowspan="2"><span class="small">MySQL is the type of database service that is available on most webservers. If you don't have it, you cannot install it. That is, unless the server is yours to administer. If you are webhosted, you are probably out of luck. It's mandatory to have a mySQL database to run Coppermine or any other PHP-based script. You can not fake the mySQL information during install, you must <b>know</b> it before hand, and enter the information as required. If you're not sure about the information required, ask your webhost.</span></td>
+  <td rowspan="2"><span class="small">MySQL is the type of database service that is available on most webservers. If you don't have it, you cannot install it. That is, unless the server is yours to administer. If you are webhosted, you are probably out of luck. It's mandatory to have a mySQL database to run Coppermine or any other PHP-based script. You can not fake the mySQL information during install, you must <strong>know</strong> it before hand, and enter the information as required. If you're not sure about the information required, ask your webhost.</span></td>
  </tr>
  <tr>
 <td style="border-left:1px solid #0E72A4;border-right:1px solid #0E72A4;" colspan="2"><span class="small">This section requires information on how to access your MySQL database. If you don't know how to fill them, check with your webhost support.</span>
     </td>
  </tr>
  <tr>
-  <td style="border-left:1px solid #0E72A4;"><b>MySQL Host</b><br /><span class="small">(localhost is usually OK)</span>
+  <td style="border-left:1px solid #0E72A4;"><strong>MySQL Host</strong><br /><span class="small">(localhost is usually OK)</span>
   </td>
   <td style="border-right:1px solid #0E72A4;" valign="top">
           <input type="text" style="width:100%" readonly="readonly" name="dbserver" value="localhost" />
@@ -457,24 +476,24 @@ http://www.die.net/doc/linux/man/man1/chmod.1.html
   <td><span class="small"></span></td>
  </tr>
  <tr>
-  <td style="border-left:1px solid #0E72A4;"><b>MySQL Database Name</b>
+  <td style="border-left:1px solid #0E72A4;"><strong>MySQL Database Name</strong>
   </td>
   <td style="border-right:1px solid #0E72A4;">
           <input type="text" style="width:100%" readonly="readonly" name="dbname" value="" />
   </td>
-  <td><span class="small">Coppermine will <b>not</b> create this database for you - it must exist prior to any attempt at installing coppermine. (If you do not have a pre-designated database, you will have to create one, provided you have the authority on your site to do so).</span></td>
+  <td><span class="small">Coppermine will <strong>not</strong> create this database for you - it must exist prior to any attempt at installing coppermine. (If you do not have a pre-designated database, you will have to create one, provided you have the authority on your site to do so).</span></td>
  </tr>
  <tr>
-  <td style="border-left:1px solid #0E72A4;"><b>MySQL Username</b>
+  <td style="border-left:1px solid #0E72A4;"><strong>MySQL Username</strong>
   </td>
   <td style="border-right:1px solid #0E72A4;">
           <input type="text" style="width:100%" readonly="readonly" name="dbuser" value="" />
   </td>
-  <td><span class="small">The mySQL user name does <b>not</b> have to be your coppermine admin username, nor is it the necessarily the same as your FTP username (although this <i>can</i> be the case for some users, but only by sheer coincidence or deliberate intention, to simplify site administration).<br />
+  <td><span class="small">The mySQL user name does <strong>not</strong> have to be your coppermine admin username, nor is it the necessarily the same as your FTP username (although this <em>can</em> be the case for some users, but only by sheer coincidence or deliberate intention, to simplify site administration).<br />
   The mySQL user needs the permissions CREATE TABLE, INSERT, ALTER, UPDATE, DELETE, SELECT.</span></td>
  </tr>
  <tr>
-  <td style="border-left:1px solid #0E72A4;"><b>MySQL Password</b>
+  <td style="border-left:1px solid #0E72A4;"><strong>MySQL Password</strong>
   </td>
   <td style="border-right:1px solid #0E72A4;">
           <input type="text" style="width:100%" readonly="readonly" name="dbpass" value="" />
@@ -482,7 +501,7 @@ http://www.die.net/doc/linux/man/man1/chmod.1.html
   <td><span class="small">The password that goes with your mySQL username.</span></td>
  </tr>
  <tr>
-  <td style="border-left:1px solid #0E72A4;"><b>MySQL table prefix</b><br /><span class="small">(the default value is OK; do not use dots!)</span>
+  <td style="border-left:1px solid #0E72A4;"><strong>MySQL table prefix</strong><br /><span class="small">(the default value is OK; do not use dots!)</span>
   </td>
   <td style="border-right:1px solid #0E72A4;" valign="top">
           <input type="text" style="width:100%" readonly="readonly" name="table_prefix" value="cpg140_" />
@@ -490,9 +509,9 @@ http://www.die.net/doc/linux/man/man1/chmod.1.html
   <td><span class="small">Coppermine's tables can co-exist in an existing database which has tables used by other applications. All coppermine tables will be using a different prefix from these, as specified here. You can even have several coppermine installs using one database - only the table prefixes have to differ in each case. Unless you know what you are doing, don't change the default value.</span></td>
  </tr>
  <tr>
-  <td style="border-left:1px solid #0E72A4;border-right:1px solid #0E72A4;" colspan="2"><b>ImageMagick</b>
+  <td style="border-left:1px solid #0E72A4;border-right:1px solid #0E72A4;" colspan="2"><strong>ImageMagick</strong>
   </td>
-  <td rowspan="3" valign="top"><span class="small">You can not fake an ImageMagick path, you have to <i>know</i> it. If you're not sure, leave this field empty - Coppermine will then try to use GD by default. You can edit the path later as well in the <a href="#admin_picture_thumb_advanced">config screen</a>. You can only install ImageMagick or GD if the server is yours to administer - if you're webhosted, you probably can't. The user of the webserver, who wishes to use ImageMagick, will need read/write/execute permissions in the folder where ImageMagick's convert executable resides in.</span></td>
+  <td rowspan="3" valign="top"><span class="small">You can not fake an ImageMagick path, you have to <em>know</em> it. If you're not sure, leave this field empty - Coppermine will then try to use GD by default. You can edit the path later as well in the <a href="#admin_picture_thumb_advanced">config screen</a>. You can only install ImageMagick or GD if the server is yours to administer - if you're webhosted, you probably can't. The user of the webserver, who wishes to use ImageMagick, will need read/write/execute permissions in the folder where ImageMagick's convert executable resides in.</span></td>
  </tr>
  <tr>
   <td style="border-left:1px solid #0E72A4;border-right:1px solid #0E72A4;" colspan="2" valign="top"><span class="small">Coppermine can use the <a href="http://www.imagemagick.org/" rel="external" class="external">ImageMagick</a> 'convert' program to create thumbnails. Quality of images produced by ImageMagick is superior to GD1 but equivalent to GD2.<br /><br />
@@ -500,7 +519,7 @@ http://www.die.net/doc/linux/man/man1/chmod.1.html
   </td>
  </tr>
  <tr>
-  <td style="border-left:1px solid #0E72A4;" valign="top"><b>ImageMagick path</b>
+  <td style="border-left:1px solid #0E72A4;" valign="top"><strong>ImageMagick path</strong>
   </td>
   <td style="border-right:1px solid #0E72A4;" valign="top">
           <input type="text" style="width:100%" readonly="readonly" name="impath" value="" />
@@ -518,42 +537,42 @@ http://www.die.net/doc/linux/man/man1/chmod.1.html
 
 <a name="getting"></a>
 <h2>2.2 Getting started</h2>
-<p>Log in with the admin username and password you set up during install, click on the &quot;admin mode&quot; link if it is visible, go to the <b>Config</b> page and start to configure your gallery. Note that even if you are a member of the administrator group, you need to be in &quot;admin mode&quot; to configure your gallery.</p>
+<p>Log in with the admin username and password you set up during install, click on the &quot;admin mode&quot; link if it is visible, go to the <strong>Config</strong> page and start to configure your gallery. Note that even if you are a member of the administrator group, you need to be in &quot;admin mode&quot; to configure your gallery.</p>
 <p>There are some settings in config that can't be changed later (if there are already files in the database) - make sure to set them up correctly in the first place. Although you'll surely want to start using coppermine immediately it is advisable to configure those settings (marked with an asterisk &quot;*&quot;) properly at the very beginning.</p>
-<p>Use the &quot;<b><a href="#albmgr">Album Manager</a></b>&quot; (&quot;Albums&quot; link in the admin menu) in to create and order your albums. You'll need at least one album your files can go into.</p>
-<p>Use the <b>anonymous</b> group to define what non-registered users can and can't do (in the <a href="#group_cp">groups</a> panel).</p>
-<p>Use the <b><a href="#modif_alb_pics">properties</a></b> of an album to modify its description and permissions.
+<p>Use the &quot;<strong><a href="#albmgr">Album Manager</a></strong>&quot; (&quot;Albums&quot; link in the admin menu) in to create and order your albums. You'll need at least one album your files can go into.</p>
+<p>Use the <strong>anonymous</strong> group to define what non-registered users can and can't do (in the <a href="#group_cp">groups</a> panel).</p>
+<p>Use the <strong><a href="#modif_alb_pics">properties</a></strong> of an album to modify its description and permissions.
 </p>
 <p>In order for a user to be allowed to upload a file in album two conditions must be met:</p>
 <ul>
   <li> The user must be part of a <a href="#group_cp">group</a> that can upload files.</li>
-  <li>There must be at least one album where &quot;<b>Visitors can upload files</b>&quot; has been set to &quot;<b>Yes</b>&quot;,<br /> <b>OR</b> <br />The user has created an album in the 'user galleries', if allowed.</li>
+  <li>There must be at least one album where &quot;<strong>Visitors can upload files</strong>&quot; has been set to &quot;<strong>Yes</strong>&quot;,<br /> <strong>OR</strong> <br />The user has created an album in the 'user galleries', if allowed.</li>
 </ul>
-<p>The same applies to <b>picture rating</b> and <b>comment posting</b>.</p>
-<p>If you have installed the script succesfully but are having trouble getting it working properly you can enable the &quot;<b><a href="#debug_mode">debug mode</a></b>&quot; on the <b>Config page</b>. In this mode, the script outputs most of the warning/error messages produced by PHP in addition to some debug information. This can provide valuable information to understand what is wrong.</p>
+<p>The same applies to <strong>picture rating</strong> and <strong>comment posting</strong>.</p>
+<p>If you have installed the script succesfully but are having trouble getting it working properly you can enable the &quot;<strong><a href="#debug_mode">debug mode</a></strong>&quot; on the <strong>Config page</strong>. In this mode, the script outputs most of the warning/error messages produced by PHP in addition to some debug information. This can provide valuable information to understand what is wrong.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 
 <a name="creating"></a>
 <h2>2.3 Creating or upgrading your own themes</h2>
 <p>To upgrade an existing custom theme, to version 1.4.x, read the <a href="theme/index.html">theme upgrade documentation</a>.</p>
-<p>Coppermine themes are stored in the &quot;<b>themes</b>&quot; directory, each consists of 3 primary files : </p>
+<p>Coppermine themes are stored in the &quot;<strong>themes</strong>&quot; directory, each consists of 3 primary files : </p>
 <ul>
-  <li>&quot;<b>template.html</b>&quot; the main template in plain HTML.</li>
-  <li>&quot;<b>style.css</b>&quot; the stylesheet associated with the template</li>
-  <li>&quot;<b>theme.php</b>&quot; the PHP theme file</li>
+  <li>&quot;<strong>template.html</strong>&quot; the main template in plain HTML.</li>
+  <li>&quot;<strong>style.css</strong>&quot; the stylesheet associated with the template</li>
+  <li>&quot;<strong>theme.php</strong>&quot; the PHP theme file</li>
   </ul>
 <p>Your Coppermine installation also includes a &quot;sample&quot; theme directory. The &quot;sample&quot; theme includes each of these files but does not show up in the user selectable list of themes in your Coppermine display. Sample's theme.php also holds a copy of every themeable function and template for your reference. If you opt to use the &quot;sample&quot; theme to begin creating your own theme, you should follow the theme.php instructions in the &quot;<a href="theme/index.html">theme upgrade documentation</a>&quot; and begin with a blank theme.php.</p>
-<p>To create a new template, the best solution is to use an existing one as its core. To do that, make a copy of the folder of the theme you want to use as a basis. Then edit the &quot;<b>template.html</b>&quot; and &quot;<b>theme.php</b>&quot; files and replace all occurences of &quot;<b>themes/old_theme_dir</b>&quot; with &quot;<b>themes/new_theme_dir</b>&quot; in order for the links to point to the correct place.</p>
-<p>When editing the &quot;<b>template.html</b>&quot; file do not remove the elements between <b>{}</b> these are the placeholders used by the script. Also keep in mind that despite this file being located in the &quot;<b>themes/your_theme_dir</b>&quot; directory, it must be coded as if it was in the main directory of the coppermine installation. For example, in order to display an image, you must use <i>&lt;img src=&quot;<b>themes</b>/theme_dir/images/image.gif&quot; alt=&quot;&quot;/&gt;</i> and not just<i>&lt;img src=&quot;images/image.gif&quot; alt=&quot;&quot;/&gt;.</i> The same principle applies for the &quot;<b>theme.php</b>&quot; file.</p>
-<p>Be careful not to delete the line <i>&lt;script type="text/javascript" src="scripts.js"&gt;&lt;/script&gt;</i> this javascript is necessary for the full-size pop-ups and other t functions related to JavaScript.</p>
-<p>If you are using an HTML editor to design your template, the easist working solution might be to the &quot;<b>template.html</b>&quot; file into the main directory of your coppermine installation and edit it there. Whenever you load Coppermine, if the script finds a file named &quot;<b>template.html</b>&quot; in the main directory it will load it instead of the default one that you assigned in the CONFIG menu. Once you have finished  editing your theme be sure to move the file back into the directory it belongs.</p>
-<p>To modify the colors, fonts, font sizes, etc... used by the script, you should edit the &quot;<b>style.css</b>&quot; stylesheet whenever possible. For example, if you want to increase or decrease the size of the fonts you can simply modify the line with : <i>table { font-size: 12px; }</i>. Most of the font sizes used by the script are defined as a percentage of this size.</p>
-<p>The &quot;<b>theme.php</b>&quot; file contains all the HTML templates used by the script. You can edit them, as well. When making modifications to these templates, be careful that you do not alter the lines that start with <i>&lt;!-- BEGIN xxx --&gt;</i> and <i>&lt;!-- END xxx --&gt;</i>. These lines are often used to identify the start and end of specific code blocks that the script will use to display your gallery.</p>
+<p>To create a new template, the best solution is to use an existing one as its core. To do that, make a copy of the folder of the theme you want to use as a basis. Then edit the &quot;<strong>template.html</strong>&quot; and &quot;<strong>theme.php</strong>&quot; files and replace all occurences of &quot;<strong>themes/old_theme_dir</strong>&quot; with &quot;<strong>themes/new_theme_dir</strong>&quot; in order for the links to point to the correct place.</p>
+<p>When editing the &quot;<strong>template.html</strong>&quot; file do not remove the elements between <strong>{}</strong> these are the placeholders used by the script. Also keep in mind that despite this file being located in the &quot;<strong>themes/your_theme_dir</strong>&quot; directory, it must be coded as if it was in the main directory of the coppermine installation. For example, in order to display an image, you must use <em>&lt;img src=&quot;<strong>themes</strong>/theme_dir/images/image.gif&quot; alt=&quot;&quot;/&gt;</em> and not just<em>&lt;img src=&quot;images/image.gif&quot; alt=&quot;&quot;/&gt;.</em> The same principle applies for the &quot;<strong>theme.php</strong>&quot; file.</p>
+<p>Be careful not to delete the line <em>&lt;script type="text/javascript" src="scripts.js"&gt;&lt;/script&gt;</em> this javascript is necessary for the full-size pop-ups and other t functions related to JavaScript.</p>
+<p>If you are using an HTML editor to design your template, the easist working solution might be to the &quot;<strong>template.html</strong>&quot; file into the main directory of your coppermine installation and edit it there. Whenever you load Coppermine, if the script finds a file named &quot;<strong>template.html</strong>&quot; in the main directory it will load it instead of the default one that you assigned in the CONFIG menu. Once you have finished  editing your theme be sure to move the file back into the directory it belongs.</p>
+<p>To modify the colors, fonts, font sizes, etc... used by the script, you should edit the &quot;<strong>style.css</strong>&quot; stylesheet whenever possible. For example, if you want to increase or decrease the size of the fonts you can simply modify the line with : <em>table { font-size: 12px; }</em>. Most of the font sizes used by the script are defined as a percentage of this size.</p>
+<p>The &quot;<strong>theme.php</strong>&quot; file contains all the HTML templates used by the script. You can edit them, as well. When making modifications to these templates, be careful that you do not alter the lines that start with <em>&lt;!-- BEGIN xxx --&gt;</em> and <em>&lt;!-- END xxx --&gt;</em>. These lines are often used to identify the start and end of specific code blocks that the script will use to display your gallery.</p>
 <p>If you're not sure how to go about creating your own theme, you could also have a look at the download section of the coppermine homepage: there are many <a href="http://sourceforge.net/project/showfiles.php?group_id=89658&amp;package_id=98541">user-contributed themes</a> available for download that can be previewed on the <a href="http://coppermine.sourceforge.net/demo/">coppermine demo page</a>.</p>
 <p>While you're in the process of creating or testing a new theme, you might not want your theme to be displayed to visitors of your site, but you (as the coppermine admin) may want to still be able to preview your theme. To do that, simply add <tt class="code">theme=your_theme_name</tt> to the url in your browser.</p>
 <br />
-<b>Examples:</b>
+<strong>Examples:</strong>
 <ul>
 <li><tt class="code">http://yoursite.tld/coppermine/index.php?theme=your_theme_name</tt> will show the coppermine index page, using your theme</li>
 <li><tt class="code">http://yoursite.tld/coppermine/thumbnails.php?album=1&amp;theme=your_theme_name</tt> will show the thumbnail view of album 1, using your theme</li>
@@ -566,16 +585,16 @@ http://www.die.net/doc/linux/man/man1/chmod.1.html
 <p>A significant number of webhosts on the Internet run PHP in safe mode. Coppermine runs without any problem in safe mode and with the &quot;open basedir restriction&quot; active, provided safe mode is properly configured. Unfortunately, on many hosts, safe mode is not configured properly.</p>
 <p>If your webhost is running PHP in safe mode but is misconfigured, you may need to do the following :</p>
 <ul>
-  <li>With a FTP program, change the mode of Coppermine's &quot;<b>include</b>&quot; directory on your server to <b>0777</b>.</li>
-  <li>Do the same for the &quot;<b>albums</b>&quot; and &quot;<b>userpics</b>&quot; directories.</li>
-  <li>Check that at the beginning the the &quot;<b>include/config.inc.php</b>&quot; file, you have a line with : &quot;<b>define('SILLY_SAFE_MODE', 1);</b>&quot;</li>
+  <li>With a FTP program, change the mode of Coppermine's &quot;<strong>include</strong>&quot; directory on your server to <strong>0777</strong>.</li>
+  <li>Do the same for the &quot;<strong>albums</strong>&quot; and &quot;<strong>userpics</strong>&quot; directories.</li>
+  <li>Check that at the beginning the the &quot;<strong>include/config.inc.php</strong>&quot; file, you have a line with : &quot;<strong>define('SILLY_SAFE_MODE', 1);</strong>&quot;</li>
 </ul>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="smtp"></a>
 <h2>2.5 Using SMTP to send emails</h2>
-<p>By default the script uses the PHP built-in <b>mail</b> function to send emails. In some cases, the PHP built-in function can't be used.</p>
-<p> If, in order to send emails with PHP, you are required to supply a <b>hostname</b>, a <b>username</b> and a <b>password</b>, you will need to edit the CONFIG menu section &quot;Email settings&quot; and insert the correct values there. If you don't need a username and password to connect to your SMTP server, just leave these lines blank. If you don't know what settings to enter, you will need to check with your webhost.</p>
+<p>By default the script uses the PHP built-in <strong>mail</strong> function to send emails. In some cases, the PHP built-in function can't be used.</p>
+<p> If, in order to send emails with PHP, you are required to supply a <strong>hostname</strong>, a <strong>username</strong> and a <strong>password</strong>, you will need to edit the CONFIG menu section &quot;Email settings&quot; and insert the correct values there. If you don't need a username and password to connect to your SMTP server, just leave these lines blank. If you don't know what settings to enter, you will need to check with your webhost.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="upgrade"></a>
@@ -586,16 +605,16 @@ http://www.die.net/doc/linux/man/man1/chmod.1.html
 <p>If you already have installed version 1.0 and you want to transfer your albums to version 1.4x follow the following steps:</p>
 <ul>
   <li>First, make a backup (dump) of your database.</li>
-  <li> Install version 1.4.x as you normally would but in a directory different from the one where you v 1.0 is. Note that in order to use the upgrade script, <b>tables for version 1.0 and 1.4.x must be stored in the same database</b>.</li>
-  <li>Copy the &quot;<b>albums</b>&quot; directory of version 1.0 into the directory where you installed version 1.4.x</li>
-  <li>The upgrade script assumes that you used the &quot;<b>CPG_</b>&quot; prefix for tables (default value) when you installed version 1.0, if this is not the case, edit upgrade-1.0-to-1.2.php and edit the $prefix10 variable.</li>
+  <li> Install version 1.4.x as you normally would but in a directory different from the one where you v 1.0 is. Note that in order to use the upgrade script, <strong>tables for version 1.0 and 1.4.x must be stored in the same database</strong>.</li>
+  <li>Copy the &quot;<strong>albums</strong>&quot; directory of version 1.0 into the directory where you installed version 1.4.x</li>
+  <li>The upgrade script assumes that you used the &quot;<strong>CPG_</strong>&quot; prefix for tables (default value) when you installed version 1.0, if this is not the case, edit upgrade-1.0-to-1.2.php and edit the $prefix10 variable.</li>
   <li>Login to your 1.4.x Gallery, enter the admin mode</li>
   <li>And call the upgrade script, http://yousitename/coppermine_dir/upgrade-1.0-to-1.2.php</li>
-  <li><b>The upgrade from 1.0 to 1.4.x is a two-step process.</b> You must click the link which comes up on the bottom of the page to complete the upgrade!.</li>
-        <li><b>Delete upgrade-1.0-to-1.2.php from your server</b>.</li>
+  <li><strong>The upgrade from 1.0 to 1.4.x is a two-step process.</strong> You must click the link which comes up on the bottom of the page to complete the upgrade!.</li>
+        <li><strong>Delete upgrade-1.0-to-1.2.php from your server</strong>.</li>
         <li>If you get an error, go to Coppermine 1.4.x config page, enable <a href="#debug_mode">debug mode</a>, try to call the upgrade script again and check what errors you get.</li>
 </ul>
-<p> <b>This upgrade process leaves your v1.0 gallery untouched </b></p>
+<p> <strong>This upgrade process leaves your v1.0 gallery untouched </strong></p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="11"></a>
@@ -604,7 +623,7 @@ http://www.die.net/doc/linux/man/man1/chmod.1.html
       <li>First, make a backup (dump) of your database.</li>
       <li>Backup your include/config.inc.php file, your anycontent.php file and your "albums" directoy.</li>
       <li>Unpack the archive</li>
-      <li>If the file <b>install.php</b> exists in the root directory, delete it.</li>
+      <li>If the file <strong>install.php</strong> exists in the root directory, delete it.</li>
       <li>Upload all of the new files and directories</li>
       <li>CHMOD the albums directory and all subfolders once more to 755 or 777 (depending on your server config)</li>
       <li>Call the upgrade script http://yousitename/coppermine_dir/update.php</li>
@@ -618,8 +637,8 @@ http://www.die.net/doc/linux/man/man1/chmod.1.html
                 <li>First, make a backup (dump) of your database.</li>
         <li>Backup your include/config.inc.php file, your anycontent.php file and your "albums" directoy.</li>
         <li>Unpack the archive</li>
-        <li>If the file <b>install.php</b> exists in the root directory, delete it.</li>
-        <li><b>Except for the "albums" directory</b>, upload all of the new files and directories making sure not to overwrite the include/config.inc.php file, your anycontent.php file or the albums directory.</li>
+        <li>If the file <strong>install.php</strong> exists in the root directory, delete it.</li>
+        <li><strong>Except for the "albums" directory</strong>, upload all of the new files and directories making sure not to overwrite the include/config.inc.php file, your anycontent.php file or the albums directory.</li>
         <li>create a folder called &quot;edit&quot; within your &quot;albums&quot; directory - this folder will be used by coppermine as a temporary folder, do not ftp-upload files there. Make sure the new &quot;edit&quot;-folder is CHMODed the same way your albums-directory is (755 or 777, depending on your server's config)</li>
         <li>No database update is necessary, and you're ready to roll</li>
     </ul>
@@ -632,8 +651,8 @@ http://www.die.net/doc/linux/man/man1/chmod.1.html
                 <li>First, make a backup (dump) of your database.</li>
         <li>Backup your include/config.inc.php file, your anycontent.php file and your &quot;albums&quot; directoy.</li>
         <li>Unpack the archive</li>
-        <li>If the file <b>install.php</b> exists in the root directory, delete it.</li>
-        <li><b>Except for the &quot;albums&quot; directory</b>, upload all of the new files and directories making sure not to overwrite the include/config.inc.php file, your anycontent.php file or the albums directory.</li>
+        <li>If the file <strong>install.php</strong> exists in the root directory, delete it.</li>
+        <li><strong>Except for the &quot;albums&quot; directory</strong>, upload all of the new files and directories making sure not to overwrite the include/config.inc.php file, your anycontent.php file or the albums directory.</li>
         <li>If you have not already done so, create a folder called &quot;edit&quot; within your &quot;albums&quot; directory - this folder will be used by coppermine as a temporary folder, do not ftp-upload files there. Make sure the new &quot;edit&quot;-folder is CHMODed the same way your albums-directory is (755 or 777, depending on your server's config)</li>
         <li>Run the file &quot;update.php&quot; in the coppermine directory once in your browser (e.g. http://yourdomain.tld/coppermine/update.php). This will update your coppermine install by making all necessary changes in the database.</li>
         <li>If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme - refer to the <a href="theme/index.html">theme-upgrade guide</a>.</li>
@@ -654,7 +673,7 @@ http://www.die.net/doc/linux/man/man1/chmod.1.html
 <li>Section 1 explains what the versioncheck tool can be used for</li>
 <li>Section 2 (&quot;<a href="#versioncheck_options_start">Options</a>&quot;) displays the options you can chose</li>
 <li>Section 3 will display a warning if coppermine was not able to connect to the online repository (where the most recent version data is being stored). The script will default to a local copy of the repository file. If connection to the online repository was succesfull, there will of course be no error message (no section 3).</li>
-<li>Section 4 will show what version of coppermine you actually use. The versioncheck script draws this piece of information from the file <i>include/init.inc.php</i> - if you haven't replaced your copy of this file with the new version during upgrade, your old (outdated) version will appear in this section.</li>
+<li>Section 4 will show what version of coppermine you actually use. The versioncheck script draws this piece of information from the file <em>include/init.inc.php</em> - if you haven't replaced your copy of this file with the new version during upgrade, your old (outdated) version will appear in this section.</li>
 <li>Section 5 will show the core of versioncheck's file: the version comparison. The script will loop through all files that are suppossed to exist (based on repository data) and compare them to the files you actually have on your webserver.</li>
 <li>Section 6 will display a summary of the files and folders checked</li>
 </ul>
@@ -665,16 +684,16 @@ http://www.die.net/doc/linux/man/man1/chmod.1.html
 <p>The options screen lets you configure the versioncheck, or rather what is being displayed. The options aren't saved anywhere, so you will have to adjust them each time you run versioncheck. The default options should be OK for most users - only change them if you have good reasons to do so.</p>
 <img src="pics/versioncheck_options.gif" width="844" height="176" border="0" alt="" title="" />
 <ul>
-<li><i>show optional folders/files</i><br />Uncheck this to hide files that are tagged as &quot;optional&quot; (display mandatory files only)</li>
-<li><i>show mandatory files</i><br />Uncheck this to hide files that are tagged as &quot;mandatory&quot; (Note disabling both optional and mandatory files will of course result in no files being displayed at all)</li>
-<li><i>show additional information</i><br />Toggles whether informaton about the installed coppermine version and the repository connection status are being displayed. Uncheck if your're making screenshots to save space and reduce dimensions.</li>
-<li><i>show file versions</i><br />Toggles wether additional version information of a file that belongs to the release version you're using should be displayed. When viewing the source code of a coppermine file, the file version is the number that looks like this: <tt>Id: index.htm,v 1.66 2004/08/26 04:42:19 gaugau Exp</tt> (in this example the file version is 1.66)</li>
-<li><i>show folders/files with errors only</i><br />Toggles display of files that don't have errors. Enable this option if you want to make a screenshot and ask for support on the coppermine forum.</li>
-<li><i>coppermine is installed in the webroot</i><br />Experimental: if all your files are being displayed as &quot;non-existant&quot;, you probably have installed coppermine in your webroot, or you are using subdomains. Check this option only if you are experiencing problems. This option hasn't been tested thoroughly yet, there's no guarantee it will work on your setup.</li>
-<li><i>try connecting to the online repository</i><br />Toggles wether versioncheck should try to connect to the online repository (checked by default). Only uncheck this option if you're sure you can not access the online repository because of your server setup and you want to reduce the time the script needs to execute a bit.</li>
-<li><i>show folder permissions</i><br />Toggles the option to show/hide the read/write permissions of a folder.</li>
-<li><i>don't display web cvs link</i> / <i>display web cvs link to stable branch</i> / <i>display web cvs link to devel branch</i><br />Toggles wether to show an additional column that contains a link to the web cvs. Only recommended if your cpg version is OK (<span style="color:green;font-weight:bold">green</span>), but your file version appears to be outdated. You can then connect to the web cvs to get a more recent version of your file. Only recommended if you know what you're doing (or you have been told to do so from a supporter from the coppermine support board).</li>
-<li><i>show condensed ouput (for easier screenshots)</i><br />When checked, this options reduces the width of the version comparison columns. This will allow you to create screenshots with reduced dimensions and size.</li>
+<li><em>show optional folders/files</em><br />Uncheck this to hide files that are tagged as &quot;optional&quot; (display mandatory files only)</li>
+<li><em>show mandatory files</em><br />Uncheck this to hide files that are tagged as &quot;mandatory&quot; (Note disabling both optional and mandatory files will of course result in no files being displayed at all)</li>
+<li><em>show additional information</em><br />Toggles whether informaton about the installed coppermine version and the repository connection status are being displayed. Uncheck if your're making screenshots to save space and reduce dimensions.</li>
+<li><em>show file versions</em><br />Toggles wether additional version information of a file that belongs to the release version you're using should be displayed. When viewing the source code of a coppermine file, the file version is the number that looks like this: <tt>Id: index.htm,v 1.66 2004/08/26 04:42:19 gaugau Exp</tt> (in this example the file version is 1.66)</li>
+<li><em>show folders/files with errors only</em><br />Toggles display of files that don't have errors. Enable this option if you want to make a screenshot and ask for support on the coppermine forum.</li>
+<li><em>coppermine is installed in the webroot</em><br />Experimental: if all your files are being displayed as &quot;non-existant&quot;, you probably have installed coppermine in your webroot, or you are using subdomains. Check this option only if you are experiencing problems. This option hasn't been tested thoroughly yet, there's no guarantee it will work on your setup.</li>
+<li><em>try connecting to the online repository</em><br />Toggles wether versioncheck should try to connect to the online repository (checked by default). Only uncheck this option if you're sure you can not access the online repository because of your server setup and you want to reduce the time the script needs to execute a bit.</li>
+<li><em>show folder permissions</em><br />Toggles the option to show/hide the read/write permissions of a folder.</li>
+<li><em>don't display web cvs link</em> / <em>display web cvs link to stable branch</em> / <em>display web cvs link to devel branch</em><br />Toggles wether to show an additional column that contains a link to the web cvs. Only recommended if your cpg version is OK (<span style="color:green;font-weight:bold">green</span>), but your file version appears to be outdated. You can then connect to the web cvs to get a more recent version of your file. Only recommended if you know what you're doing (or you have been told to do so from a supporter from the coppermine support board).</li>
+<li><em>show condensed ouput (for easier screenshots)</em><br />When checked, this options reduces the width of the version comparison columns. This will allow you to create screenshots with reduced dimensions and size.</li>
 </ul>
 <a name="versioncheck_options_end"></a>
 
@@ -700,7 +719,7 @@ http://www.die.net/doc/linux/man/man1/chmod.1.html
 <li>The column &quot;cpg version&quot; displays what coppermine package your file on your webserver is from, and what version it should be from. The data is being extracted from the header of the file, that's why folders are shown as &quot;n/a&quot; - they have no header information containing their coppermine version (rows &quot;A&quot; to &quot;E&quot;).
 <p>Files that contain header information are being displayed with your file version and the cpg version of the file in the repository, separated with a slash. It is possible that a file version may differ from the version of your whole package - this doesn't matter as long as both your version and the repository versions match (the are displayed in <span style="color:green;font-weight:bold">green</span>) - in above example: rows &quot;F&quot;, &quot;J&quot; and &quot;K&quot;.</p>
 <p>Of course, version numbers from files that don't exist can't be extracted, that's why rows &quot;G&quot; and &quot;H&quot; have a dash as cpg version. If your cpg version is lower than the repository version, your version is  being displayed in <span style="color:red;font-weight:bold">red</span>: if this is the case, you probably haven't successfully uploaded the proper file of files from the coppermine package to your webserver (replacing files that may have already existed on your webserver) - you should do so now (row &quot;I&quot;).</p>
-<p>If your local version is being displayed in <span style="color:#FFBE00;font-weight:bold">yellow</span>, you are using a file that belongs to a higher coppermine version than the rest of your files - you probably downloaded a file from the devel branch: remember that using devel files go unsupported, do so on your own risk (if you know what you're doing). If most or all of your files are being displayed in <span style="color:#FFBE00;font-weight:bold">yellow</span>, you probably have upgraded some files, but you forgot to upgrade the file &quot;include/init.inc.php&quot; (that holds the version info for your install). Make sure to upload <b>all</b> files  from the package to your server.</p>
+<p>If your local version is being displayed in <span style="color:#FFBE00;font-weight:bold">yellow</span>, you are using a file that belongs to a higher coppermine version than the rest of your files - you probably downloaded a file from the devel branch: remember that using devel files go unsupported, do so on your own risk (if you know what you're doing). If most or all of your files are being displayed in <span style="color:#FFBE00;font-weight:bold">yellow</span>, you probably have upgraded some files, but you forgot to upgrade the file &quot;include/init.inc.php&quot; (that holds the version info for your install). Make sure to upload <strong>all</strong> files  from the package to your server.</p>
 </li>
 <li>
 <p>The column &quot;file version&quot; holds the individual file's version that get's increased during development of a new coppermine version (each time a developer modifies a certain file, the version number increases by one). As folders can't contain such version numbers, they are again labelled as &quot;n/a&quot; (rows &quot;A&quot; to &quot;E&quot;); the same applies to files that don't exist, that's why their file version is displayed as dash (rows &quot;G&quot; and &quot;H&quot;). Also the file version is irrelevant when comparing files from different coppermine packages, that's why row &quot;I&quot; has a dash as well.</p>
@@ -714,8 +733,8 @@ http://www.die.net/doc/linux/man/man1/chmod.1.html
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="downgrading"></a>
 <h2>3.6 Downgrading from cpg1.4.x to an older version</h2>
-<p>CPG1.4.x incorporates many new features (compared to older versions), so we encourage all users to upgrade. However, there may be some who want to test cpg1.4.x and decide later that they want to go back to an older version. You have to keep in mind that a full upgrade changes the overall layout of coppermine's database that includes converting the encoding to unicode. This process can't be reverted: once you have done the conversion, the only way back is to restore a complete mySQL database dump (of course you have to create this backup <b>before</b> you upgraded in the first place). Creating mySQL dumps (backups) is recommended anyway, so you should do so <b>now</b>.</p>
-<p>If you haven't converted your database to unicode (utf-8) encoding, you can downgrade as explained below. To make this absolutely clear: you can only downgrade if you used to have cpg1.3.x before and upgraded this version to cpg1.4.x without converting the database. If you <i>have</i> converted the database or if you have made a <i>fresh</i> install of cpg1.4.x, you can't downgrade at all!</p>
+<p>CPG1.4.x incorporates many new features (compared to older versions), so we encourage all users to upgrade. However, there may be some who want to test cpg1.4.x and decide later that they want to go back to an older version. You have to keep in mind that a full upgrade changes the overall layout of coppermine's database that includes converting the encoding to unicode. This process can't be reverted: once you have done the conversion, the only way back is to restore a complete mySQL database dump (of course you have to create this backup <strong>before</strong> you upgraded in the first place). Creating mySQL dumps (backups) is recommended anyway, so you should do so <strong>now</strong>.</p>
+<p>If you haven't converted your database to unicode (utf-8) encoding, you can downgrade as explained below. To make this absolutely clear: you can only downgrade if you used to have cpg1.3.x before and upgraded this version to cpg1.4.x without converting the database. If you <em>have</em> converted the database or if you have made a <em>fresh</em> install of cpg1.4.x, you can't downgrade at all!</p>
 <p>To actually perform the downgrade, replace all cpg1.4.x files on your server with the files from the older version (as if you were doing an upgrade, see above). You then have to undo some changes in the database structure. To do so, run a query like<br />
 <pre>ALTER TABLE `CPG_users` CHANGE `user_location`  `user_profile1` VARCHAR(255);
 ALTER TABLE `CPG_users` CHANGE `user_interests` `user_profile2` VARCHAR(255);
@@ -737,9 +756,9 @@ using a tool like <a href="http://www.phpmyadmin.net/" rel="external" class="ext
 </ul>
 
 <p>If you don't plan to have many albums, you really won't need to use the categories feature. If this applies to you, simply do not create any categories and all your albums will automatically appear on the main page of the script.</p>
-<p>There is, however, a special category named &quot;<b>User galleries</b>&quot;. This category can't be deleted. If a user belongs to the group &quot;can have a personal gallery&quot; and this is set to YES, he will have the right to create his own albums and his gallery will be a sub-category of &quot;User galleries&quot;. This link is not visible to visitors of your site, however, if you do not allow users to upload pics and have their own albums. </p>
+<p>There is, however, a special category named &quot;<strong>User galleries</strong>&quot;. This category can't be deleted. If a user belongs to the group &quot;can have a personal gallery&quot; and this is set to YES, he will have the right to create his own albums and his gallery will be a sub-category of &quot;User galleries&quot;. This link is not visible to visitors of your site, however, if you do not allow users to upload pics and have their own albums. </p>
 <p>The administrator can create albums in any category. Non-administrative users can only create albums in the &quot;User galleries/Their_username&quot;.</p>
-<p>You can, however rename the &quot;User Galleries&quot;. To rename the &quot;<b>User galleries</b>&quot; category and description, simply go to your <a href="#cat_cp">category control panel</a> and change the name there (e.g. to translate the words &quot;User galleries&quot; into your language).</p>
+<p>You can, however rename the &quot;User Galleries&quot;. To rename the &quot;<strong>User galleries</strong>&quot; category and description, simply go to your <a href="#cat_cp">category control panel</a> and change the name there (e.g. to translate the words &quot;User galleries&quot; into your language).</p>
 
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
@@ -747,20 +766,20 @@ using a tool like <a href="http://www.phpmyadmin.net/" rel="external" class="ext
 <p>When you are logged in as an administrator, the script provides two modes of operation : Admin mode &amp; User mode. You can switch between Admin &amp; User mode by clicking on the corresponding link in the menu bar at the top of the screen.</p>
 <p>When you are in admin mode, you can administer your gallery using the menu bar that appears when in admin mode, as shown below :</p>
 <p><a name="admin_menu"></a><img src="pics/admin_menu.gif" border="0" alt="Admin menu" /></p>
-<p>When you are in user mode you are still logged in as an admin user, but the admin controls (the admin menu bar etc.) are hidden from the screen to give you a basic preview of what the page would look like for "regular users". However (as you still are logged in as admin), certain permissions and options in user mode will still look the same as if you were in admin mode; you can <b>not</b> use "<i>User Mode</i>" to see what a non-admin user is actually allowed to see.  To see what a casual visitor can see and do on your site, simply log out.  To see what a registered user can see and do on your site, create a test user account (non-admin) and log in with this particular user (when doing this it is recommended that you use two different browsers, NOT  two instances of the same browswer, to view your site so you can stay logged in as admin on one and view what regular users see while making changes in admin mode. You will have to refresh the non-admin mode screen to see what changes you incorporated).</p>
+<p>When you are in user mode you are still logged in as an admin user, but the admin controls (the admin menu bar etc.) are hidden from the screen to give you a basic preview of what the page would look like for "regular users". However (as you still are logged in as admin), certain permissions and options in user mode will still look the same as if you were in admin mode; you can <strong>not</strong> use "<em>User Mode</em>" to see what a non-admin user is actually allowed to see.  To see what a casual visitor can see and do on your site, simply log out.  To see what a registered user can see and do on your site, create a test user account (non-admin) and log in with this particular user (when doing this it is recommended that you use two different browsers, NOT  two instances of the same browswer, to view your site so you can stay logged in as admin on one and view what regular users see while making changes in admin mode. You will have to refresh the non-admin mode screen to see what changes you incorporated).</p>
 <p>The items in the admin menu should be pretty self-explanatory:</p>
 <ul>
-  <li><b>Upload approval</b><br />See all pics that await approval by the admin (if you set admin approval as a required step on the settings in the &quot;<a href="#group_cp">groups</a>&quot; control panel)</li>
-  <li><b>Config</b><br />Configure the overall look of your gallery and the settings using the &quot;<a href="#admin">Config</a>&quot; button in the admin menu (note: you can not access the configuration by manually entering the url of the config file)</li>
-  <li><b>Categories</b><br />Create/edit/delete <a href="#cat_cp">categories</a></li>
-  <li><b>Albums</b><br />Create/edit/delete <a href="#albmgr">albums</a></li>
-  <li><b>Groups</b><br />Create/edit/delete <a href="#group_cp">groups</a></li>
-  <li><b>Users</b><br />Create/edit/delete <a href="#user_cp">users</a></li>
-  <li><b>Ban Users</b><br />Ban users based on hostname or IP address. Make sure not to ban yourself! Use this feature with extreme caution, as most users today do not have static IP addresses, this feature should only be employed if you really know what you're doing.<br />
+  <li><strong>Upload approval</strong><br />See all pics that await approval by the admin (if you set admin approval as a required step on the settings in the &quot;<a href="#group_cp">groups</a>&quot; control panel)</li>
+  <li><strong>Config</strong><br />Configure the overall look of your gallery and the settings using the &quot;<a href="#admin">Config</a>&quot; button in the admin menu (note: you can not access the configuration by manually entering the url of the config file)</li>
+  <li><strong>Categories</strong><br />Create/edit/delete <a href="#cat_cp">categories</a></li>
+  <li><strong>Albums</strong><br />Create/edit/delete <a href="#albmgr">albums</a></li>
+  <li><strong>Groups</strong><br />Create/edit/delete <a href="#group_cp">groups</a></li>
+  <li><strong>Users</strong><br />Create/edit/delete <a href="#user_cp">users</a></li>
+  <li><strong>Ban Users</strong><br />Ban users based on hostname or IP address. Make sure not to ban yourself! Use this feature with extreme caution, as most users today do not have static IP addresses, this feature should only be employed if you really know what you're doing.<br />
   <span class="small">[cpg1.3.0 or better required]</span>
   </li>
-  <li><b>Review Comments</b><br />edit/delete user's comments</li>
-  <li><a name="ecard_log"></a><b>Display Ecards</b><p>View the ecards sent by users.</p>
+  <li><strong>Review Comments</strong><br />edit/delete user's comments</li>
+  <li><a name="ecard_log"></a><strong>Display Ecards</strong><p>View the ecards sent by users.</p>
   <p>You must have ecard-logging enabled in the config menu, first (by default, logging is disabled). When enabled, all ecards that are being sent are written into the database, where the coppermine admin can view them.</p>
   <img src="pics/ecard_log.gif" border="0" alt="" /><br />
   You can sort the log by clicking on the arrow icons next to each heading, and you can delete single or multiple log entries (deleting the log entries will not disable the ecard recipient to view the ecard).<br />
@@ -768,10 +787,10 @@ using a tool like <a href="http://www.phpmyadmin.net/" rel="external" class="ext
   <span class="small">[cpg1.3.0 or better required]</span>
   <a name="ecard_log_end"></a>
   </li>
-  <li><b>Sort my pictures</b><p>Picture manager that can be used to custom-sort files within an album. By default, the thumbnail page that displays the contents of an album will be sorted by the sorting order specified in &quot;<a href="#admin_thumbnail_view">Default sort order for files</a>&quot; on the config page. The "sort my pictures" option overrides the default sorting mechanism and displays the thumbnails in the order you specify. As this means an additional effort in the maintenance of each album, it's recommended to use the default sorting by filename and (instead of specifying a custom sort order) and naming the files appropriately before upload.</p>
+  <li><strong>Sort my pictures</strong><p>Picture manager that can be used to custom-sort files within an album. By default, the thumbnail page that displays the contents of an album will be sorted by the sorting order specified in &quot;<a href="#admin_thumbnail_view">Default sort order for files</a>&quot; on the config page. The "sort my pictures" option overrides the default sorting mechanism and displays the thumbnails in the order you specify. As this means an additional effort in the maintenance of each album, it's recommended to use the default sorting by filename and (instead of specifying a custom sort order) and naming the files appropriately before upload.</p>
   <p>Note: each user (including the admin) can use the sorting controls on the album's thumbnails display page to manually override the sorting option that was specified in coppermine's config and the "Sort my pictures" option; this final method of changing the sort order is stored locally in a cookie of the client and reverts to the config settings when this cookie is discarded.</p></li>
-  <li><b>Batch add files</b><br /><a href="#batch_add_pics">Batch-add files</a> to the coppermine database that have been previously uploaded by FTP. Batch-add files does not upload files for you. You must upload files using your webhost's file manager or an FTP client software. You FTP files into folders that you create in the coppermine album directory.  You must not, however, create these folders in the <i>userpics</i> folder.</li>
-  <li><a name="admin_tools"></a><b>Admin Tools (Resize Pictures)</b><br />A collection of utilities to:
+  <li><strong>Batch add files</strong><br /><a href="#batch_add_pics">Batch-add files</a> to the coppermine database that have been previously uploaded by FTP. Batch-add files does not upload files for you. You must upload files using your webhost's file manager or an FTP client software. You FTP files into folders that you create in the coppermine album directory.  You must not, however, create these folders in the <em>userpics</em> folder.</li>
+  <li><a name="admin_tools"></a><strong>Admin Tools (Resize Pictures)</strong><br />A collection of utilities to:
         <dl>
       <dt>Rebuild or resize intermediate pictures and thumbnails.</dt>
       <dd><img src="pics/util_re-size.gif" alt="" border="0" /><br /><p>Use this if you have changed the settings for thumbnail or intermediate images in config, or if you have to replace corrupt versions.</p><p>Select the radio button for this action, then choose to rebuild the thumbnails, intermediates, or both.</p><p>This uses a lot of server resources, so if you experience timeout issues, try setting it to process smaller batches ( 45 is the current default ).</p></dd>
@@ -784,49 +803,49 @@ using a tool like <a href="http://www.phpmyadmin.net/" rel="external" class="ext
       <dt>Delete file titles.</dt>
       <dd>Use this to clear the file titles from one or more albums.</dd>
       <dt>View your server php info.</dt>
-      <dd><p>If, you after following the troubleshooting guides in the documents provided here, you are still having problems with your coppermine installation, these problems are sometimes caused by a misconfigured server setup.  Clicking this link will provide you with all your php and mySQL settings, as well as information on the GD library (if installed).  The information may be required by the support team, if you are unable to sort problems yourself.</p><p>It is not possible for visitors to your site to access this information, so if asked for it, copy and paste it on the support board. Do not post this information or any debug information unless requested first.  You may post <i>ERROR</i> messages verbatim, but refrain from posting <i>warning</i> messages.  </p></dd>
+      <dd><p>If, you after following the troubleshooting guides in the documents provided here, you are still having problems with your coppermine installation, these problems are sometimes caused by a misconfigured server setup.  Clicking this link will provide you with all your php and mySQL settings, as well as information on the GD library (if installed).  The information may be required by the support team, if you are unable to sort problems yourself.</p><p>It is not possible for visitors to your site to access this information, so if asked for it, copy and paste it on the support board. Do not post this information or any debug information unless requested first.  You may post <em>ERROR</em> messages verbatim, but refrain from posting <em>warning</em> messages.  </p></dd>
       <dt>Run a database update (update.php).</dt>
       <dd>After an update/upgrade, it is usually necessary to run update.php.  This can be done by typing the address directly into your browser, or by clicking this link.<a name="admin_tools_end"></a></dd>
           </dl>
   </li>
-  <li><b>My profile</b><br />Edit your own user profile</li>
+  <li><strong>My profile</strong><br />Edit your own user profile</li>
 </ul>
 <p>In previous beta versions of cpg1.4.x there used to be an admin mode and user mode for &quot;regular registered&quot; users, somewhat like those for the true administrator. This feature has been removed as it was both confusing for end users and really didn't serve any special purpose.</p>
 <p>The user with upload permissions has the following admin options:</p>
 <ul>
-  <li><b>Create / order my albums</b><br />similar to album manager in admin mode, the user can create albums within his user gallery</li>
-  <li><b>Modify my albums</b><br />The user can edit album title and description (similar to &quot;<a href="#album_prop">album properties</a>&quot; for the admin, but the user can't move his albums to other categories)</li>
-  <li><b>My profile</b><br />The user can edit his profile (changing passwords, edit location, interests, home page and occupation properties, view quota usage). When integrated with a bbs service, the &quot;My profile&quot; link will send the user to the bbs's profile page. </li>
+  <li><strong>Create / order my albums</strong><br />similar to album manager in admin mode, the user can create albums within his user gallery</li>
+  <li><strong>Modify my albums</strong><br />The user can edit album title and description (similar to &quot;<a href="#album_prop">album properties</a>&quot; for the admin, but the user can't move his albums to other categories)</li>
+  <li><strong>My profile</strong><br />The user can edit his profile (changing passwords, edit location, interests, home page and occupation properties, view quota usage). When integrated with a bbs service, the &quot;My profile&quot; link will send the user to the bbs's profile page. </li>
 </ul>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="group_cp"></a><h2>4.3 The group control panel</h2>
 <p><img src="pics/group_cp.gif" border="1" alt=""/></p>
-<p>This is where you define what members of a user <i>group</i> can and can't do.</p>
-<p>The disk quota applies only for groups where &quot;<i>Personal gallery</i>&quot; has been set to &quot;<b>Allowed</b>&quot;. Both files uploaded by a user in his personal gallery as well as files uploaded to public galleries are included in the quota.</p>
-<p>Use the <b>anonymous</b> group to define what non-registered users can and can't do. Quota and &quot;<i>Personal gallery</i>&quot; are meaningless for anonymous users.</p>
+<p>This is where you define what members of a user <em>group</em> can and can't do.</p>
+<p>The disk quota applies only for groups where &quot;<em>Personal gallery</em>&quot; has been set to &quot;<strong>Allowed</strong>&quot;. Both files uploaded by a user in his personal gallery as well as files uploaded to public galleries are included in the quota.</p>
+<p>Use the <strong>anonymous</strong> group to define what non-registered users can and can't do. Quota and &quot;<em>Personal gallery</em>&quot; are meaningless for anonymous users.</p>
 <a name="group_cp_permissions"></a>
-<p><i>Permissions</i> control what the user is allowed to do in the gallery (Rating/Sending Ecards/Posting Comments).</p>
-<p>Bear in mind that if a user is a member of a group where &quot;<i>Rating</i>&quot;, &quot;<i>Comments</i>&quot; or &quot;<i>Public albums upload</i>&quot; is set &quot;<i>YES</i>&quot;, s/he will have the right to perform these operations only in albums where they are allowed. ( ie. uploading files will only be possible in albums where &quot;<i>Visitors can upload files</i>&quot; has been set to <i>YES</i>.)</p>
+<p><em>Permissions</em> control what the user is allowed to do in the gallery (Rating/Sending Ecards/Posting Comments).</p>
+<p>Bear in mind that if a user is a member of a group where &quot;<em>Rating</em>&quot;, &quot;<em>Comments</em>&quot; or &quot;<em>Public albums upload</em>&quot; is set &quot;<em>YES</em>&quot;, s/he will have the right to perform these operations only in albums where they are allowed. ( ie. uploading files will only be possible in albums where &quot;<em>Visitors can upload files</em>&quot; has been set to <em>YES</em>.)</p>
 <a name="group_cp_permissions_end"></a>
 <a name="group_cp_personal"></a>
-<p>If &quot;<i>Personal gallery</i>&quot; is set to <i>Allowed</i>, the members of the group will be able to have their own gallery in the &quot;<i>User galleries</i>&quot; category where they will be able to create their own albums.</p>
-<p>If &quot;<i>Approval</i>&quot; is set to <i>NO</i>, files uploaded by members of the group in albums created in their own gallery won't need to be approved by the admin. If &quot;<i>Approval</i>&quot; is set to <i>YES</i>, the users in the particular group will be able to upload, however the uploaded files will only be shown after the admin (you) has approved them.</p>
+<p>If &quot;<em>Personal gallery</em>&quot; is set to <em>Allowed</em>, the members of the group will be able to have their own gallery in the &quot;<em>User galleries</em>&quot; category where they will be able to create their own albums.</p>
+<p>If &quot;<em>Approval</em>&quot; is set to <em>NO</em>, files uploaded by members of the group in albums created in their own gallery won't need to be approved by the admin. If &quot;<em>Approval</em>&quot; is set to <em>YES</em>, the users in the particular group will be able to upload, however the uploaded files will only be shown after the admin (you) has approved them.</p>
 <a name="group_cp_personal_end"></a>
 <p>The group control panel enables you to control the upload parameters of any group.</p>
 <a name="group_cp_upload_method"></a>
-<p><i>Upload method</i> lets you select the type of upload method that a particular group may use. Four forms or methods are currently available.</p>
+<p><em>Upload method</em> lets you select the type of upload method that a particular group may use. Four forms or methods are currently available.</p>
 <ul>
-<li><b>Single file uploads only</b> - Users of this group may not use advanced uploading features. They may upload one file at a time. To enable single file uploads only, set <i>File upload boxes</i> to &quot;1&quot;, <i>URI upload boxes</i> to &quot;0&quot; and <i>No. of boxes</i> to &quot;fixed&quot;</li>
-<li><b>Multiple file uploads only</b> - Users of this group may upload multiple files at one time. To enable multiple file uploads, set <i>File upload boxes</i> to any number higher than &quot;1&quot;, <i>URI upload boxes</i> to &quot;0&quot; - it's up to you to let users configure the <i>No. of boxes</i>, but it's recommended to set it to &quot;fixed&quot; to avoid confusion and to limit the load on your server should several users try to upload simultaneously.</li>
-<li><b>URI uploads only</b> - The group may only upload files using URIs. Acceptable URIs must begin with 'http://' or 'ftp://'. To enable URI uploads only, set <i>File upload boxes</i> to &quot;0&quot;, <i>URI upload boxes</i> to &quot;1&quot; or higher.</li>
-<li><b>File-URI</b> - Users of this group may upload files using file upload boxes and URIs. To enable both file and URI uploads, set <i>File upload boxes</i> to &quot;1&quot; or higher, <i>URI upload boxes</i> to &quot;1&quot; or higher</li>
+<li><strong>Single file uploads only</strong> - Users of this group may not use advanced uploading features. They may upload one file at a time. To enable single file uploads only, set <em>File upload boxes</em> to &quot;1&quot;, <em>URI upload boxes</em> to &quot;0&quot; and <em>No. of boxes</em> to &quot;fixed&quot;</li>
+<li><strong>Multiple file uploads only</strong> - Users of this group may upload multiple files at one time. To enable multiple file uploads, set <em>File upload boxes</em> to any number higher than &quot;1&quot;, <em>URI upload boxes</em> to &quot;0&quot; - it's up to you to let users configure the <em>No. of boxes</em>, but it's recommended to set it to &quot;fixed&quot; to avoid confusion and to limit the load on your server should several users try to upload simultaneously.</li>
+<li><strong>URI uploads only</strong> - The group may only upload files using URIs. Acceptable URIs must begin with 'http://' or 'ftp://'. To enable URI uploads only, set <em>File upload boxes</em> to &quot;0&quot;, <em>URI upload boxes</em> to &quot;1&quot; or higher.</li>
+<li><strong>File-URI</strong> - Users of this group may upload files using file upload boxes and URIs. To enable both file and URI uploads, set <em>File upload boxes</em> to &quot;1&quot; or higher, <em>URI upload boxes</em> to &quot;1&quot; or higher</li>
 </ul>
-<p><i>No. of boxes </i> set to &quot;variable&quot; allows the user to select the number of upload boxes for an upload. Usually, you will leave this option set to &quot;fixed&quot;, as it presents the user with an additional step in the upload wizard that is not necessary.</p>
-<p><i>File upload boxes</i> controls the number of file upload boxes presented to the user. If the user may customize the number of boxes (<i>No. of boxes </i> set to &quot;variable&quot;), this setting serves a maximum limit for the number of boxes he may request. Otherwise, this setting determines the number of boxes that will appear on the upload form.</p>
-<p><i>URI upload boxes</i> is the same type of control as <i>File upload boxes</i>, but it controls the presentation of URI upload boxes.</p>
+<p><em>No. of boxes </em> set to &quot;variable&quot; allows the user to select the number of upload boxes for an upload. Usually, you will leave this option set to &quot;fixed&quot;, as it presents the user with an additional step in the upload wizard that is not necessary.</p>
+<p><em>File upload boxes</em> controls the number of file upload boxes presented to the user. If the user may customize the number of boxes (<em>No. of boxes </em> set to &quot;variable&quot;), this setting serves a maximum limit for the number of boxes he may request. Otherwise, this setting determines the number of boxes that will appear on the upload form.</p>
+<p><em>URI upload boxes</em> is the same type of control as <em>File upload boxes</em>, but it controls the presentation of URI upload boxes.</p>
 <a name="group_cp_upload_method_end"></a>
-<p><b>Please note</b>: on unbridged installs (or standard, stand-alone coppermine installs), the group "banned" feature really doesn't accomplish much. A user who is member of this group is still able to log in and view pics, he's just not able to upload, rate, send ecards or post comments. If you truly want to place a full ban on someone you should use the "banning" feature (which isn't group-based but individually based), instead.</p>
+<p><strong>Please note</strong>: on unbridged installs (or standard, stand-alone coppermine installs), the group "banned" feature really doesn't accomplish much. A user who is member of this group is still able to log in and view pics, he's just not able to upload, rate, send ecards or post comments. If you truly want to place a full ban on someone you should use the "banning" feature (which isn't group-based but individually based), instead.</p>
 <a name="group_cp_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
@@ -838,8 +857,8 @@ using a tool like <a href="http://www.phpmyadmin.net/" rel="external" class="ext
 <ul>
 <li>You can sort the user management display by either clicking the arrow icons (<img src="../images/ascending.gif" width="9" height="9" border="0" alt="" title="ascending" /><img src="../images/descending.gif" width="9" height="9" border="0" alt="" title="descending" />) next to each column header or by choosing the sort order from the dropdown at the top right.</li>
 <li>If you have more than 25 users, a page tab will apear at the bottom right of the screen, allowing you to go to subsequent pages of your member list</li>
-<li>Clicking on a user's name will <b>display</b> the profile page of the individual user (read only)</li>
-<li>The edit icon (<img src="../images/edit.gif" width="16" height="16" border="0" alt="" title="edit" />) will send you to the user's profile in <b>edit</b> mode - you can change the password, email account and other user-related settings there</li>
+<li>Clicking on a user's name will <strong>display</strong> the profile page of the individual user (read only)</li>
+<li>The edit icon (<img src="../images/edit.gif" width="16" height="16" border="0" alt="" title="edit" />) will send you to the user's profile in <strong>edit</strong> mode - you can change the password, email account and other user-related settings there</li>
 <li>If a user has uploaded any files, a link of "recent uploads" will show up next to his name. Clicking on this link will display files that have been uploaded by that user</li>
 <li>The &quot;group&quot; column displays the primary member group the user is in</li>
 <li>The column &quot;Registered on&quot; will show the date that the user account was created</li>
@@ -850,7 +869,7 @@ using a tool like <a href="http://www.phpmyadmin.net/" rel="external" class="ext
 </ul>
 <a name="user_cp_page_end"></a>
 <a name="user_cp_search"></a><h3>4.4.2 Searching for user(s)</h3>
-<p>You can use the wildcards:  <tt class="code">*</tt> (for any <i>string</i>) and <tt class="code">?</tt> (<i>any single character</i>) or even <tt class="code">%expression%</tt>.<br />Example: searching for <tt class="code">j*</tt> will return both <tt class="code">Jack</tt> and <tt class="code">Jill</tt></p>
+<p>You can use the wildcards:  <tt class="code">*</tt> (for any <em>string</em>) and <tt class="code">?</tt> (<em>any single character</em>) or even <tt class="code">%expression%</tt>.<br />Example: searching for <tt class="code">j*</tt> will return both <tt class="code">Jack</tt> and <tt class="code">Jill</tt></p>
 <a name="user_cp_search_end"></a>
 <a name="user_cp_new"></a><h3>4.4.3 Creating new users</h3>
 <p>To create a new user, simply click on the button "Create new user" at the bottom of the page and fill in the form that will come up.</p>
@@ -872,9 +891,9 @@ category if it is a subcategory that is deleted or to the root of the category l
 <li>The <img src="pics/up.gif" width="16" height="16" alt="" /> and <img
 src="pics/down.gif" width="16" height="16" alt="" /> buttons allow you to
 order your categories.</li>
-<li>The &quot;<b>Move into</b>&quot; dropdown lists allow you to change the parent
+<li>The &quot;<strong>Move into</strong>&quot; dropdown lists allow you to change the parent
 of a specific category. </li></ul>
-<p>&quot;<b>User galleries</b>&quot; is a special category. It is not visible unless
+<p>&quot;<strong>User galleries</strong>&quot; is a special category. It is not visible unless
 you have some users that have created their own gallery. It can't be
 deleted but you can edit its title and description by using the <img
 src="pics/edit.gif" width="16" height="16" alt="" /> button. </p>
@@ -884,45 +903,45 @@ src="pics/edit.gif" width="16" height="16" alt="" /> button. </p>
 
 <a name="albmgr"></a><h2>4.6 The Album Manager</h2>
 <p><img src="pics/albmgr.gif" width="360" height="288" border="0" alt="" title="Album Manager" /></p>
-<p>Coppermine stores files inside of albums, so you'll need at least one album for your pictures/files to be placed in. Albums can be stored in categories (but they don't <i>HAVE</i> to be in a category, they can just as well go into the coppermine &quot;root&quot;).</p>
-<p>When you click on &quot;albums&quot; in the admin menu, you will see the <i>Album Manager</i>.</p>
+<p>Coppermine stores files inside of albums, so you'll need at least one album for your pictures/files to be placed in. Albums can be stored in categories (but they don't <em>HAVE</em> to be in a category, they can just as well go into the coppermine &quot;root&quot;).</p>
+<p>When you click on &quot;albums&quot; in the admin menu, you will see the <em>Album Manager</em>.</p>
 <h3><a name="albmgr_create"></a>4.6.1 Creating albums</h3>
 <ul>
-<li><b>Choose a category from the dropdown list</b> &quot;Select category&quot; and highlight the selection where you would like your album to reside in. (or choose &quot;* No category *&quot; if the album should go into the coppermine &quot;root&quot;). If you haven't created a category yet, go to the <a href="#cat_cp">categories control panel</a> first. Or, you can proceed with these steps to first create an album and move the album into a category later.  You can also perform this moving task by using the <a href="#album_prop">album properties</a> page.</li>
-<li><b>To create an album, click on the &quot;New&quot; button</b> - a new album will appear on the list, by default this album is labelled &quot;New album&quot;</li>
-<li><b>Click on the text input field at the bottom of the screen</b>, highlight the default name &quot;New album&quot; </li>
-<li><b>Then type in the album name you want to use</b></li>
+<li><strong>Choose a category from the dropdown list</strong> &quot;Select category&quot; and highlight the selection where you would like your album to reside in. (or choose &quot;* No category *&quot; if the album should go into the coppermine &quot;root&quot;). If you haven't created a category yet, go to the <a href="#cat_cp">categories control panel</a> first. Or, you can proceed with these steps to first create an album and move the album into a category later.  You can also perform this moving task by using the <a href="#album_prop">album properties</a> page.</li>
+<li><strong>To create an album, click on the &quot;New&quot; button</strong> - a new album will appear on the list, by default this album is labelled &quot;New album&quot;</li>
+<li><strong>Click on the text input field at the bottom of the screen</strong>, highlight the default name &quot;New album&quot; </li>
+<li><strong>Then type in the album name you want to use</strong></li>
 <li>(repeat steps 2 through 4 to add additional albums)</li>
-<li><b>Click &quot;Apply modifications&quot;</b> to submit your changes to the database. failure to do so will result in the loss of all the changes you just made.  You can always return to this panel to edit and change album names, sort them within their parent category, and/or move them to different parent categories.</li>
-<li><b>After clicking to Apply Modification, confirm your intent in the alert box with &the quot;OK&quot; </b> (<i>Are you sure you want to make these modifications ? button.</i>)</li>
+<li><strong>Click &quot;Apply modifications&quot;</strong> to submit your changes to the database. failure to do so will result in the loss of all the changes you just made.  You can always return to this panel to edit and change album names, sort them within their parent category, and/or move them to different parent categories.</li>
+<li><strong>After clicking to Apply Modification, confirm your intent in the alert box with &the quot;OK&quot; </strong> (<em>Are you sure you want to make these modifications ? button.</em>)</li>
 </ul>
 <h3><a name="albmgr_rename"></a>4.6.2 Renaming albums</h3>
 <ul>
-<li><b>Choose a category from the dropdown list</b></li>
-<li><b>Click on the album you want to change</b></li>
-<li><b>Click on the text input filed at the bottom of the screen</b>, highlighting the album name</li>
-<li><b>Type the album name you want to assign</b></li>
-<li><b>Click &quot;Apply modifications&quot;</b></li>
-<li><b>After clicking to Apply Modification, confirm your intent in the alert box with &the quot;OK&quot; </b> (<i>Are you sure you want to make these modifications ? button.</i>)</li>
+<li><strong>Choose a category from the dropdown list</strong></li>
+<li><strong>Click on the album you want to change</strong></li>
+<li><strong>Click on the text input filed at the bottom of the screen</strong>, highlighting the album name</li>
+<li><strong>Type the album name you want to assign</strong></li>
+<li><strong>Click &quot;Apply modifications&quot;</strong></li>
+<li><strong>After clicking to Apply Modification, confirm your intent in the alert box with &the quot;OK&quot; </strong> (<em>Are you sure you want to make these modifications ? button.</em>)</li>
 
 </ul>
 <h3><a name="albmgr_order"></a>4.6.3 Changing the album order</h3>
 <ul>
-<li><b>Choose a category from the dropdown list</b></li>
-<li><b>Click on the album you want to move up or down in the list</b></li>
-<li><b>Use the arrow buttons to move the album up<img src="../images/move_up.gif" width="26" height="21" border="0" alt="" title="move the album up" /> or down<img src="../images/move_down.gif" width="26" height="21" border="0" alt="" title="move the album down" /></b></li>
-<li><b>Click &quot;Apply modifications&quot;</b></li>
-<li><b>After clicking to Apply Modification, confirm your intent in the alert box with &the quot;OK&quot; </b> (<i>Are you sure you want to make these modifications ? button.</i>)</li>
+<li><strong>Choose a category from the dropdown list</strong></li>
+<li><strong>Click on the album you want to move up or down in the list</strong></li>
+<li><strong>Use the arrow buttons to move the album up<img src="../images/move_up.gif" width="26" height="21" border="0" alt="" title="move the album up" /> or down<img src="../images/move_down.gif" width="26" height="21" border="0" alt="" title="move the album down" /></strong></li>
+<li><strong>Click &quot;Apply modifications&quot;</strong></li>
+<li><strong>After clicking to Apply Modification, confirm your intent in the alert box with &the quot;OK&quot; </strong> (<em>Are you sure you want to make these modifications ? button.</em>)</li>
 
 </ul>
 <h3><a name="albmgr_delete"></a>4.3.4 Deleting albums</h3>
 <ul>
-<li><b>Choose a category from the dropdown list</b></li>
-<li><b>Click on the album you want to delete</b></li>
-<li><b>Click the &quot;Delete&quot; button</b></li>
-<li><b>Confirm the alert box with &quot;OK&quot;</b> (<i>Are you sure you want to delete this album ? All files and comments it contains will be lost !</i>)</li>
-<li><b>Click &quot;Apply modifications&quot;</b></li>
-<li><b>After clicking to Apply Modification, confirm your intent in the alert box with &the quot;OK&quot; </b> (<i>Are you sure you want to make these modifications ? button.</i>)</li>
+<li><strong>Choose a category from the dropdown list</strong></li>
+<li><strong>Click on the album you want to delete</strong></li>
+<li><strong>Click the &quot;Delete&quot; button</strong></li>
+<li><strong>Confirm the alert box with &quot;OK&quot;</strong> (<em>Are you sure you want to delete this album ? All files and comments it contains will be lost !</em>)</li>
+<li><strong>Click &quot;Apply modifications&quot;</strong></li>
+<li><strong>After clicking to Apply Modification, confirm your intent in the alert box with &the quot;OK&quot; </strong> (<em>Are you sure you want to make these modifications ? button.</em>)</li>
 
 </ul>
 <a name="albmgr_end"></a>
@@ -932,9 +951,9 @@ src="pics/edit.gif" width="16" height="16" alt="" /> button. </p>
 <p>When you are in admin mode there is a menu displayed next to each album</p>
 <p></p>
 <p><img src="pics/album_menu.gif" border="1" alt="" /></p>
-<p><b>Delete</b> allows you to delete the album and <b>(CAUTION</b>) all files within it.</p>
-<p><b><a href="#album_prop">Properties</a></b> allows you to modify the name, description and permissions of the album</p>
-<p><b><a href="#edit_pics">Edit files</a></b> allows you to modify the title/caption/keywords etc... of the files in the album</p>
+<p><strong>Delete</strong> allows you to delete the album and <strong>(CAUTION</strong>) all files within it.</p>
+<p><strong><a href="#album_prop">Properties</a></strong> allows you to modify the name, description and permissions of the album</p>
+<p><strong><a href="#edit_pics">Edit files</a></strong> allows you to modify the title/caption/keywords etc... of the files in the album</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="album_prop"></a><h2>4.8 Album properties</h2>
@@ -945,15 +964,15 @@ src="pics/edit.gif" width="16" height="16" alt="" /> button. </p>
 <p>If you have set &quot;Users can can have private albums&quot; to YES on the <a href="#admin">config page</a>, you can determin who will have permission to view the files of this album.</p>
 <p>When &quot;visitors can upload file&quot; is set to YES, it is possible for them to upload files into albums by enabling this permission.</p>
 <a name="album_prop_visitor_start"></a>
-<p><b>Note that only visitors who are members of a <i>group</i> for which the setting &quot;Can upload pictures&quot; is set to YES.</b> Members not in the permitted group will not be able to upload files into such an album. Non-registered users are members of the &quot;Anonymous&quot; group. </p>
+<p><strong>Note that only visitors who are members of a <em>group</em> for which the setting &quot;Can upload pictures&quot; is set to YES.</strong> Members not in the permitted group will not be able to upload files into such an album. Non-registered users are members of the &quot;Anonymous&quot; group. </p>
 <p>The same rules as above apply for &quot;Visitors can post comments&quot; and &quot;Visitors can rate files&quot;.</p>
 <a name="album_prop_visitor_end"></a>
 <a name="album_prop_keyword_start"></a>
-<p>In 1.4.x the <b>Album Keyword</b> is <i>no</i> longer being used for searching purposes, but, rather, to link images from other album into another. Using this method, files/images can be displayed in various albums while the file itself need only exists in one album on your webserver.  You simply upload a file to one album as you would normally do, then assign one or more keywords to the file. The keyword function reads blank spaces between words as a 'break' and assumes that these words are separate words.  If you must use phrases for your keywords, connect them with an underscore or by using the ascii space holder ctrl+Alt+0160 (NOTE: the latter option only works with latin based character sets.)  Each album can only have ONE (1) keyword or keyword phrase.  All pictures residing in different albums that you would like to be displayed in this album must have the same keyword or keyword phrase in their respective keyword fields.  Pictures, unlike albums can have multiple keywords or keyword phrases separated by spaces. This provides you with the option to display pictures in many albums.  For the visitor of these albums, it will appear as if the file/image had been uploaded to each. </p>
+<p>In 1.4.x the <strong>Album Keyword</strong> is <em>no</em> longer being used for searching purposes, but, rather, to link images from other album into another. Using this method, files/images can be displayed in various albums while the file itself need only exists in one album on your webserver.  You simply upload a file to one album as you would normally do, then assign one or more keywords to the file. The keyword function reads blank spaces between words as a 'break' and assumes that these words are separate words.  If you must use phrases for your keywords, connect them with an underscore or by using the ascii space holder ctrl+Alt+0160 (NOTE: the latter option only works with latin based character sets.)  Each album can only have ONE (1) keyword or keyword phrase.  All pictures residing in different albums that you would like to be displayed in this album must have the same keyword or keyword phrase in their respective keyword fields.  Pictures, unlike albums can have multiple keywords or keyword phrases separated by spaces. This provides you with the option to display pictures in many albums.  For the visitor of these albums, it will appear as if the file/image had been uploaded to each. </p>
 <a name="album_prop_keyword_end"></a>
 <a name="album_prop_password_start"></a>
-<p><b>Album Password</b>: you can specify an album to be password-protected (instead of relying on the "regular" group-based permissions). This way, you can even allow access for unlogged users (guests) who you provide the password to. Use this option, for example, to set up an album for your family members only by specifying a password that only they can come up with answering an additional password hint (e.g. "<i>What was the maiden name of aunt Emma?</i>"), or you could decide to send the particular password to specific friends, family or business associates by email. The optional <b>password hint</b> will be displayed at the password prompt, when set.</p>
-<p>Note: when setting an album password, the permission dropdown field "<i>Album can be viewed by</i>" will be switched automatically to "<i>me only</i>" - this is expected behaviour. If you change the "<i>Album can be viewed by</i>" to another selection, you must disable the album password as well.</p>
+<p><strong>Album Password</strong>: you can specify an album to be password-protected (instead of relying on the "regular" group-based permissions). This way, you can even allow access for unlogged users (guests) who you provide the password to. Use this option, for example, to set up an album for your family members only by specifying a password that only they can come up with answering an additional password hint (e.g. "<em>What was the maiden name of aunt Emma?</em>"), or you could decide to send the particular password to specific friends, family or business associates by email. The optional <strong>password hint</strong> will be displayed at the password prompt, when set.</p>
+<p>Note: when setting an album password, the permission dropdown field "<em>Album can be viewed by</em>" will be switched automatically to "<em>me only</em>" - this is expected behaviour. If you change the "<em>Album can be viewed by</em>" to another selection, you must disable the album password as well.</p>
 <a name="album_prop_password_end"></a>
 
 <a name="album_prop_reset_start"></a>
@@ -983,13 +1002,13 @@ Use keywords to link files to other albums (see description in the albums sectio
 
 <h3>4.9.2 Custom Thumbnails<a name="cust_thmb"></a></h3>
 <p><img src="pics/cust_thmb.gif" border="1" alt="" /></p>
-<p><b>Order of thumbnails:</b><br />
-<b class="important">Thumbnails are defined by different levels (these are: user-defined, theme-defined, global) then in the order of their type (file-specific, extension-specific, media-specific).</b> User-defined thumbnails are stored in the folder where the parent file is located. Theme-defined thumbnails are stored in the themes 'images' folder. Global thumbnails are stored within the 'images' folder of the Coppermine root. <b class="important">Thumbnails can be one of the following file types: 'gif', 'png', or 'jpg'.</b></p>
-<p><b>Types of thumbnails:</b><br />
-<b class="important">File-specific thumbnails must have the same base name as the file.</b> Using the above screenshot of a video file as an example, the thumbnails for this file could be 'thumb_<b>thailand_waterfall</b>.gif', 'thumb_<b>thailand_waterfall</b>.png', or 'thumb_<b>thailand_waterfall</b>.jpg', and searched for by cpg in that order.</p>
-<p><b class="important">Extension-specific thumbnails are named after the extension of the file.</b> (Examples: 'thumb_wmv.jpg', 'thumb_wav.jpg'.)</p>
-<p><b class="important">The base name for media-specific thumbnails are 'thumb_movie', 'thumb_document', and 'thumb_audio'.</b> Images use file-specific thumbnails by default.</p>
-<p><b>Uploading:</b><br />
+<p><strong>Order of thumbnails:</strong><br />
+<strong class="important">Thumbnails are defined by different levels (these are: user-defined, theme-defined, global) then in the order of their type (file-specific, extension-specific, media-specific).</strong> User-defined thumbnails are stored in the folder where the parent file is located. Theme-defined thumbnails are stored in the themes 'images' folder. Global thumbnails are stored within the 'images' folder of the Coppermine root. <strong class="important">Thumbnails can be one of the following file types: 'gif', 'png', or 'jpg'.</strong></p>
+<p><strong>Types of thumbnails:</strong><br />
+<strong class="important">File-specific thumbnails must have the same base name as the file.</strong> Using the above screenshot of a video file as an example, the thumbnails for this file could be 'thumb_<strong>thailand_waterfall</strong>.gif', 'thumb_<strong>thailand_waterfall</strong>.png', or 'thumb_<strong>thailand_waterfall</strong>.jpg', and searched for by cpg in that order.</p>
+<p><strong class="important">Extension-specific thumbnails are named after the extension of the file.</strong> (Examples: 'thumb_wmv.jpg', 'thumb_wav.jpg'.)</p>
+<p><strong class="important">The base name for media-specific thumbnails are 'thumb_movie', 'thumb_document', and 'thumb_audio'.</strong> Images use file-specific thumbnails by default.</p>
+<p><strong>Uploading:</strong><br />
 There are 2 ways to upload custom thumbnails:</p>
 <p>1. Have an image already uploaded then upload a video via the upload page. (or vice versa) The video will share the thumbnail of the image.<br />
 </p><br /><br />
@@ -1000,17 +1019,17 @@ There are 2 ways to upload custom thumbnails:</p>
 <p>Final result.</p>
 <p>Note: If the first method is used and the image later deleted, the thumbnail will also be deleted and the default Coppermine thumbnails will be displayed, instead.<br />
 If a previously uploaded video is to be uploaded again, via FTP, the accompanying thumbnail must also be uploaded, via FTP, to the same folder.</p>
-<p>Video uploads are permitted from verstion 1.30 of cpg (or better)and are included as part of the distribution package. For cpg1.2.1, this option is only available as a separate modification. The use of custom thumbnails aren't supported in versions prior to 1.3.0. <b class="important"> NOTE: Using the above instructions, a custom thumbnail can be applied to any file, not just videos.</b>
+<p>Video uploads are permitted from verstion 1.30 of cpg (or better)and are included as part of the distribution package. For cpg1.2.1, this option is only available as a separate modification. The use of custom thumbnails aren't supported in versions prior to 1.3.0. <strong class="important"> NOTE: Using the above instructions, a custom thumbnail can be applied to any file, not just videos.</strong>
 </p>
-<p><b>FAQS:</b></p>
+<p><strong>FAQS:</strong></p>
 <ul>
-<li><b>Quote</b><br /><div class="quote">I have a video named <b>'movie.wmv'</b>, when I upload a thumbnail for it <b>'thumb_movie.jpg'</b> it replaces the thumbnails for multiple videos!!!!</div>
-Duhh. <b>'thumb_movie.jpg'</b> is a <i>media-specific</i> thumbnail. Rename the video and the thumbnail with something other than just <b>'movie'</b>.</li>
-<li><b>Quote</b><br /><div class="quote">I can't find my user's folder!</div>
+<li><strong>Quote</strong><br /><div class="quote">I have a video named <strong>'movie.wmv'</strong>, when I upload a thumbnail for it <strong>'thumb_movie.jpg'</strong> it replaces the thumbnails for multiple videos!!!!</div>
+Duhh. <strong>'thumb_movie.jpg'</strong> is a <em>media-specific</em> thumbnail. Rename the video and the thumbnail with something other than just <strong>'movie'</strong>.</li>
+<li><strong>Quote</strong><br /><div class="quote">I can't find my user's folder!</div>
 From within Coppermine, browse to the user's album. Look in the url of your browser and you should see the folder's name. (See screenshot for an example.)<br />
 <img src="pics/user_folder_link.gif" alt=""/><br />
 Your users can upload their own thumbnails by using this trick: Create an album. Change the permissions on it so no one can view it except that specific user. Then upload the fullsized images of the thumbnails to this folder. Files outside this album will be able to use the thumbnails of these images. (See above for naming.)</li>
-<li><b>Quote</b><br /><div class="quote">How do I stop my users from creating their own custom thumbnails?</div>
+<li><strong>Quote</strong><br /><div class="quote">How do I stop my users from creating their own custom thumbnails?</div>
 Currently, this is not possible.</li>
 </ul>
 
@@ -1023,8 +1042,8 @@ Currently, this is not possible.</li>
 <h2>4.10 Using bbcode to insert links and special formatting in various description fields</h2>
 <p>Coppermine understands the following bbCodes (the same bbCodes that are used by phpBB and many other BBS apps) in image and album description</p>
 <ul>
-  <li><tt class="code">[b]Bold[/b]</tt> =&gt; <b>Bold</b></li>
-  <li><tt class="code">[i]Italic[/i]</tt> =&gt; <i>Italic</i></li>
+  <li><tt class="code">[b]Bold[/b]</tt> =&gt; <strong>Bold</strong></li>
+  <li><tt class="code">[i]Italic[/i]</tt> =&gt; <em>Italic</em></li>
   <li><tt class="code">[url=http://yoursite.com/]Url Text[/url]</tt> =&gt; <a href="http://yoursite.com">Url Text</a></li>
   <li><tt class="code">[email]user@domain.com[/email]</tt> =&gt; <a href="mailto:user@domain.com">user@domain.com</a></li>
   <li><tt class="code">[color=red]some text[/color]</tt> =&gt; <span style="color:red">some text</span></li>
@@ -1041,7 +1060,7 @@ Currently, this is not possible.</li>
 
 <a name="ftp"></a><a name="batch_add_pics"></a>
 <h3>4.11.1 Uploading pics by FTP / Batch-Add Pictures</h2>
-<p>It is recommended that the coppermine admin use ftp to upload multiple pics/files at a time. Use your ftp software to create sub-folders within <i>your_coppermine_directory/albums/</i>, where your ftp uploads can be saved. Though not mandatory, it's always a good idea to have a folder structure within the <i>albums</i> folder that reflects or mirrors your coppermine categories and albums.</p><p><span class="important">Important</span>: do not create folders or ftp upload to the <i>userpics</i>- nor to the <i>edit</i>-folder by ftp: these folders are used by coppermine internally and must not be used for any other purpose! <b><b>Folder names must not contain dots</b></b>. We also highly recommend refraining from the use of any other special characters - use only a-z, numbers and <tt class="code">-</tt> (dashes) or <tt class="code">_</tt> (underscores) to fill blank spaces. Make sure to upload in binary or auto-mode.</p>
+<p>It is recommended that the coppermine admin use ftp to upload multiple pics/files at a time. Use your ftp software to create sub-folders within <em>your_coppermine_directory/albums/</em>, where your ftp uploads can be saved. Though not mandatory, it's always a good idea to have a folder structure within the <em>albums</em> folder that reflects or mirrors your coppermine categories and albums.</p><p><span class="important">Important</span>: do not create folders or ftp upload to the <em>userpics</em>- nor to the <em>edit</em>-folder by ftp: these folders are used by coppermine internally and must not be used for any other purpose! <strong><strong>Folder names must not contain dots</strong></strong>. We also highly recommend refraining from the use of any other special characters - use only a-z, numbers and <tt class="code">-</tt> (dashes) or <tt class="code">_</tt> (underscores) to fill blank spaces. Make sure to upload in binary or auto-mode.</p>
 <p>Once you have uploaded your photos by ftp, click on the &quot;Batch Add Pictures&quot; button. The batch-add is performed in three steps:</p>
 <ul>
 <li>find the directory under which you have uploaded your photos. Select this directory by clicking on it.
@@ -1061,7 +1080,7 @@ Should your browser time out, hit the reload button.
 </li>
 </ul>
 <p>Giving FTP-access to other users can pose a serious security threat, this is why batch-add is only available for the coppermine gallery admin.</p>
-<p>Once files have been added to coppermine's database, make sure that you never rename or delete them via ftp - use coppermine's admin menu options to remove or rename files, instead.  Only in this way will these files be removed from both the file system <b>and</b> the database.</p>
+<p>Once files have been added to coppermine's database, make sure that you never rename or delete them via ftp - use coppermine's admin menu options to remove or rename files, instead.  Only in this way will these files be removed from both the file system <strong>and</strong> the database.</p>
 <a name="ftp_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
@@ -1069,17 +1088,17 @@ Should your browser time out, hit the reload button.
 <h3>4.11.2 Uploading by HTTP</h3>
 <p>Regular HTTP uploads use the browser's built-in capabilities to upload files to a server. The maximum file size is determined by two basic factors: the speed and amount of data the web-browser can upload before timing out, and the allowed file size determined by server settings. Note that those settings are not determined by coppermine, but the server config (php.ini). Users who are webhosted usually can't edit php.ini, so they will have to live with the settings the webserver admin has set up. Those who actually run their own server and can edit php.ini should take a look at the settings if (large) http uploads fail:</p>
 <ol>
-<li><b>max_input_time</b>- 60 seconds is the default time limit for uploading files.<br />
+<li><strong>max_input_time</strong>- 60 seconds is the default time limit for uploading files.<br />
 This time limit includes the time it takes for the files to upload, so if you exceed this limit, the file will not even parse, and the browser will not get a response. You can workaround this by trying to upload smaller or fewer files, or you can try uploading over broadband. The best solution, of course, is to increase the time limit to something more in line with your needs.</li>
-<li><b>upload_max_filesize</b> - 2MB is the default limit for individual files.</li>
-<li><b>post_max_size</b> - 8MB is the default limit for post requests.</li>
-<li><b>memory_limit</b> - 8MB is the default size.</li>
-<li>PHP's <b>LimitRequestBody</b> - 512KB default limit. (mainly an issue on Redhat/Apache systems.  Found in /etc/http/conf.d)<br />
+<li><strong>upload_max_filesize</strong> - 2MB is the default limit for individual files.</li>
+<li><strong>post_max_size</strong> - 8MB is the default limit for post requests.</li>
+<li><strong>memory_limit</strong> - 8MB is the default size.</li>
+<li>PHP's <strong>LimitRequestBody</strong> - 512KB default limit. (mainly an issue on Redhat/Apache systems.  Found in /etc/http/conf.d)<br />
 In general, upload_max_filesize &lt; post_max_size &lt; memory_limit in order for uploads to function properly. Coppermine may warn you if a file exceeds upload_max_filesize, but it cannot warn you if the total size of all the files exceeds the post limit or the memory limit.</li>
-<li><b>file_uploads</b> - This determines whether or not PHP will allow file uploads. It must be set to 'On'.</li>
-<li><b>upload_tmp_dir</b> - This specifies the temporary directory where PHP stores uploaded files.<br />
+<li><strong>file_uploads</strong> - This determines whether or not PHP will allow file uploads. It must be set to 'On'.</li>
+<li><strong>upload_tmp_dir</strong> - This specifies the temporary directory where PHP stores uploaded files.<br />
 The most common issue caused by this setting is an open_basedir warning.  In this situation, your server administrator has restricted the files that PHP can work with to a certain directory.  If he does not create and specify a temporary directory within the open_basedir restriction, PHP will attempt to use the OS temporary directory, and it will be rebuffed by the open_basedir restriction.</li>
-<li><b>allow_fopen_url</b> - This controls PHP's ability to read files using URL/URIs.  If it is disabled, Coppermine will not be able to upload from URLs.</li>
+<li><strong>allow_fopen_url</strong> - This controls PHP's ability to read files using URL/URIs.  If it is disabled, Coppermine will not be able to upload from URLs.</li>
 </ol>
 <p>It should be obvious that the files have to be uploaded somewhere (into some folder) on your webserver - this is the albums folder within the folder you installed coppermine on your server. The HTTP uploads go into subfolders of the "userpics" folder (which resides within the "albums" folder). Obviously, the coppermine upload script needs write permissions to upload the files there. This is why you have to change permissions on the albums folder and everything within it during coppermine install - make it writable for the user the webserver runs under. This is done using the CHMOD command on Unix/Linux based servers. If you experience issues with uploading, make sure that you have set the permissions correctly.</p>
 <a name="upload_http_end"></a>
@@ -1160,7 +1179,7 @@ When asking for support on the coppermine forum, post a link to your site and a 
 <p>All emails sent by the gallery will be sent using this email address. This must be a valid email address.</p>
 <a name="admin_general_email_end"></a>
 <a name="admin_general_coppermine-url"></a><h4>URL of your coppermine gallery folder</h4>
-<p>This is the URL where a user will be directed to when s/he clicks on the &quot;See more pictures&quot; link in an e-card. This <i>must</i> be the URL to the root of your coppermine installation followed by a forward slash (just the path to your coppermine folder, e.g. <i>http://yourdomain.tld/coppermine/</i>). Do not specify a specific file (such as index.php) or subfolder within the coppermine gallery in this field.</p><p>In previous versions of Coppermine, this field was called &quot;Target address for the 'See more pictures' link in e-cards&quot;, but as this url is now being used for other functions in coppermine, it has been changed, appropriately.</p>
+<p>This is the URL where a user will be directed to when s/he clicks on the &quot;See more pictures&quot; link in an e-card. This <em>must</em> be the URL to the root of your coppermine installation followed by a forward slash (just the path to your coppermine folder, e.g. <em>http://yourdomain.tld/coppermine/</em>). Do not specify a specific file (such as index.php) or subfolder within the coppermine gallery in this field.</p><p>In previous versions of Coppermine, this field was called &quot;Target address for the 'See more pictures' link in e-cards&quot;, but as this url is now being used for other functions in coppermine, it has been changed, appropriately.</p>
 <a name="admin_general_coppermine-url_end"></a>
 <a name="admin_general_home-url"></a><h4>URL of your home page</h4>
 <p>This is the URL where a user will be directed when he clicks on the &quot;Home&quot; button in the main menu.</p>
@@ -1168,7 +1187,7 @@ When asking for support on the coppermine forum, post a link to your site and a 
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_general_home-url_end"></a>
 <a name="admin_general_zip-download"></a><h4>Allow ZIP-download of favorites</h4>
-<p>When enabled, users of your site may download files that they previously saved into their <i>favorites</i> collection. These files are dowloaded from the user's &quot;My favorites&quot; page and saved onto their computers in a zip-file format. This option requires zlib to be installed on your server (run <a href="http://www.php.net/phpinfo" class="external">phpinfo</a> to check if this php library file exists on your server).</p>
+<p>When enabled, users of your site may download files that they previously saved into their <em>favorites</em> collection. These files are dowloaded from the user's &quot;My favorites&quot; page and saved onto their computers in a zip-file format. This option requires zlib to be installed on your server (run <a href="http://www.php.net/phpinfo" class="external">phpinfo</a> to check if this php library file exists on your server).</p>
 <p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_general_zip-download_end"></a>
 <a name="admin_general_time-offset"></a><h4>Timezone difference relative to GMT</h4>
@@ -1213,8 +1232,8 @@ Should you have difficulties using one, try the other. You can toggle between th
 <h3>4.12.2 Language &amp; Charset settings</h3>
 <p><img src="pics/config_language.gif" width="612" height="234" border="1" alt="" /></p>
 <a name="admin_language_language"></a><h4>Language</h4>
-<p>This sets the default language for your gallery. All language files are stored in the <b>lang</b> directory on your server.</p>
-<p>Language files with an "<b>-utf8</b>" suffix are unicode encoded files. If you select an -utf8 file as the default language and you set "Character encoding" to "Unicode (utf-8)" then the script will auto detect the preferred language of your visitors based on what default language is configured in their browsers. If the corresponding language is available in your language directory, it will be used. Otherwise, the default language file will be used.</p>
+<p>This sets the default language for your gallery. All language files are stored in the <strong>lang</strong> directory on your server.</p>
+<p>Language files with an "<strong>-utf8</strong>" suffix are unicode encoded files. If you select an -utf8 file as the default language and you set "Character encoding" to "Unicode (utf-8)" then the script will auto detect the preferred language of your visitors based on what default language is configured in their browsers. If the corresponding language is available in your language directory, it will be used. Otherwise, the default language file will be used.</p>
 <p>When the script auto detects the preferred language, it stores the result in a cookie on the visitor's computer. To reset this cookie (and thus force the script to do another auto detection) the user must call this autodetect function with something like: <a href="#">http://yoursite.com/coppermine_dir/index.php?lang=xxx</a></p>
 <p>Once you have added comments or files to your gallery, you should not change the character set of your gallery. If you do so, non-ASCII characters may display properly.</p>
 <a name="admin_language_language_end"></a>
@@ -1223,13 +1242,13 @@ Should you have difficulties using one, try the other. You can toggle between th
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_language_fallback_end"></a>
 <a name="admin_language_charset"></a><h4>Character encoding</h4>
-<p>This should normally be set to "Unicode (utf-8)" (or "Default (language file)"). See the discussion in the &quot;<b><a href="#admin_language">language</a></b>&quot; section of this page.</p>
+<p>This should normally be set to "Unicode (utf-8)" (or "Default (language file)"). See the discussion in the &quot;<strong><a href="#admin_language">language</a></strong>&quot; section of this page.</p>
 <a name="admin_language_list"></a><h4>Display language list</h4>
-<p>Enable this option if you want your users to be able to select a preferred language from a dropdown list (you can specify to display only the list itself or a label saying &quot;<b>Choose your language:</b>&quot; in front of the list). Edit your template file (/themes/yourtheme/template.html) to specify where the language dropdown list should appear on your gallery (look for the call tag: <b>{LANGUAGE_SELECT_LIST}</b>).</p>
+<p>Enable this option if you want your users to be able to select a preferred language from a dropdown list (you can specify to display only the list itself or a label saying &quot;<strong>Choose your language:</strong>&quot; in front of the list). Edit your template file (/themes/yourtheme/template.html) to specify where the language dropdown list should appear on your gallery (look for the call tag: <strong>{LANGUAGE_SELECT_LIST}</strong>).</p>
 <p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_language_list_end"></a>
 <a name="admin_language_flags"></a><h4>Display language flags</h4>
-<p>Enable this option if you would like the option of having your users select languages appropriate for their use by merely clicking on a flag icon which representing their language or country (you can specify to display the flags themselves or include a label that states: &quot;<b>Choose your language:</b>&quot; in front of the flags). Edit your template file (/themes/yourtheme/template.html) to specify where the flags should appear in your gallery (look for the call tag:<b>{LANGUAGE_SELECT_FLAGS}</b>).</p>
+<p>Enable this option if you would like the option of having your users select languages appropriate for their use by merely clicking on a flag icon which representing their language or country (you can specify to display the flags themselves or include a label that states: &quot;<strong>Choose your language:</strong>&quot; in front of the flags). Edit your template file (/themes/yourtheme/template.html) to specify where the flags should appear in your gallery (look for the call tag:<strong>{LANGUAGE_SELECT_FLAGS}</strong>).</p>
 <p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_language_flags_end"></a>
 <a name="admin_language_reset"></a><h4>Display &quot;reset&quot; in the language selection</h4>
@@ -1242,10 +1261,10 @@ Should you have difficulties using one, try the other. You can toggle between th
 <a name="admin_theme"></a>
 <h3>4.12.3 Themes settings</h3>
 <a name="admin_theme_theme"></a><h4>Theme</h4>
-<p>Use this dropdown list to select the default theme for your gallery (Themes are stored in sub-directories of the <b>themes</b> directory ).</p>
+<p>Use this dropdown list to select the default theme for your gallery (Themes are stored in sub-directories of the <strong>themes</strong> directory ).</p>
 <a name="admin_theme_theme_end"></a>
 <a name="admin_theme_theme_list"></a><h4>Display theme list</h4>
-<p>Enable this option if you want your users to be able to select other themes from a dropdown list (you can specify to display only the list itself or a label saying &quot;<b>Choose your theme:</b>&quot; in front of the list). Edit your template file (/themes/yourtheme/template.html) to specify where the theme dropdown list should appear on your gallery (look for <b>{THEME_SELECT_LIST}</b>).</p>
+<p>Enable this option if you want your users to be able to select other themes from a dropdown list (you can specify to display only the list itself or a label saying &quot;<strong>Choose your theme:</strong>&quot; in front of the list). Edit your template file (/themes/yourtheme/template.html) to specify where the theme dropdown list should appear on your gallery (look for <strong>{THEME_SELECT_LIST}</strong>).</p>
 <p>This option only makes sense if you have at least one alternative theme in your /themes/ folder other than your default theme. We recommend using this option only if there's are additional benefits for the user (for example a theme with less graphics in it that loads faster for users on a dial-up connection, or a theme with reduced color pallettes and good contrast).</p>
 <p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_theme_theme_list_end"></a>
@@ -1316,23 +1335,23 @@ Should you have difficulties using one, try the other. You can toggle between th
 <a name="admin_album_thumbnail-size_end"></a>
 <a name="admin_album_list_content"></a><a name="changing"></a><h4>The content of the main page</h4>
 <p>This option allows you to change the content of the main page displayed by the script.</p>
-<p>The default value is &quot;<b>catlist/alblist/random,2/lastup,2</b>&quot;</p>
+<p>The default value is &quot;<strong>catlist/alblist/random,2/lastup,2</strong>&quot;</p>
 <p>You can use the following "codes" to include other items:</p>
 <ul>
-  <li>'<b>breadcrumb</b>': navigation inside the gallery (e.g. &quot;home &gt; category &gt; subcategory &gt; album&quot;)</li>
-  <li>'<b>catlist</b>': category list</li>
-  <li>'<b>alblist</b>': album list</li>
-  <li>'<b>random</b>': random files (leaving random files &quot;on&quot; for huge galleries with more than 10,000 pics might result in performance problems; switch random &quot;off&quot; in this case)</li>
-  <li>'<b>lastup</b>': last uploads</li>
-  <li>'<b>topn</b>': most viewed</li>
-  <li>'<b>toprated</b>': top rated</li>
-  <li>'<b>lastcom</b>': last comments </li>
-  <li>'<b>lasthits</b>': last viewed </li>
-  <li>'<b>anycontent</b>': inserts php-generated content that has to reside within the file 'anycontent.php' into the index page. Can be used to include banner-rotation scripts or similar.</li>
-  <li>'<b>lastalb</b>': last created albums</li>
+  <li>'<strong>breadcrumb</strong>': navigation inside the gallery (e.g. &quot;home &gt; category &gt; subcategory &gt; album&quot;)</li>
+  <li>'<strong>catlist</strong>': category list</li>
+  <li>'<strong>alblist</strong>': album list</li>
+  <li>'<strong>random</strong>': random files (leaving random files &quot;on&quot; for huge galleries with more than 10,000 pics might result in performance problems; switch random &quot;off&quot; in this case)</li>
+  <li>'<strong>lastup</strong>': last uploads</li>
+  <li>'<strong>topn</strong>': most viewed</li>
+  <li>'<strong>toprated</strong>': top rated</li>
+  <li>'<strong>lastcom</strong>': last comments </li>
+  <li>'<strong>lasthits</strong>': last viewed </li>
+  <li>'<strong>anycontent</strong>': inserts php-generated content that has to reside within the file 'anycontent.php' into the index page. Can be used to include banner-rotation scripts or similar.</li>
+  <li>'<strong>lastalb</strong>': last created albums</li>
   </ul>
-<p>Unless you really know what you are doing you should always keep catlist and alblist in &quot;<i>the content of the main page</i>&quot;, as they make up the core parts of the index page or any gallery site, for that matter.</p>
-<p>The <b>,2</b> dictates that cpg should display 2 rows of thumbnails.</p>
+<p>Unless you really know what you are doing you should always keep catlist and alblist in &quot;<em>the content of the main page</em>&quot;, as they make up the core parts of the index page or any gallery site, for that matter.</p>
+<p>The <strong>,2</strong> dictates that cpg should display 2 rows of thumbnails.</p>
 <a name="admin_album_list_content_end"></a>
 <a name="admin_album_first-level_thumbs"></a>
 <h4>Show first level album thumbnails in categories</h4>
@@ -1344,7 +1363,7 @@ Should you have difficulties using one, try the other. You can toggle between th
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_album_list_alphasort_end"></a>
 <a name="admin_album_linked_files_start"></a><h4>Show number of linked files</h4>
-<p>If you use album keywords to display images/files in more than one album, enabling this option will display additional information for the album stats: if an album doesn't only contain &quot;regular&quot; files, but files linked via the "<a href="#album_prop_keyword_start">album keyword</a>" option as well, the number of linked files will be displayed separately like this "3 files, last one added on Oct 07, 2004<i>, 3 linked files, 6 files total</i>".</p>
+<p>If you use album keywords to display images/files in more than one album, enabling this option will display additional information for the album stats: if an album doesn't only contain &quot;regular&quot; files, but files linked via the "<a href="#album_prop_keyword_start">album keyword</a>" option as well, the number of linked files will be displayed separately like this "3 files, last one added on Oct 07, 2004<em>, 3 linked files, 6 files total</em>".</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_album_linked_files_end"></a>
 <a name="admin_album_list_end"></a>
@@ -1520,7 +1539,7 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 <a name="admin_picture_thumbnail_max_upload_dimension_end"></a>
 <a name="admin_picture_thumbnail_auto-resize"></a><h4>Auto resize images that are larger than max width or height</h4>
 <p>During the upload process, if images are larger than the maximum width or height allowed they will automatically be resized to the maximum allowable size. Users with especially large files should be advised to resize their pictures outside of coppermine before uploading as this process also consumes considerable resources when processed online.</p>
-<p><b>Note:</b> How the image is resized (width/height/max aspect) is set in the admin option &quot;<a href="#admin_picture_thumbnail_use-dimension">Use dimension (width or height or Max aspect for thumbnail)</a>&quot;</p>
+<p><strong>Note:</strong> How the image is resized (width/height/max aspect) is set in the admin option &quot;<a href="#admin_picture_thumbnail_use-dimension">Use dimension (width or height or Max aspect for thumbnail)</a>&quot;</p>
 <p>There are three options:</p>
 <ul><li>No - Disabled</li><li>Yes: Everyone - Enabled for all users, including the Admin during batch-add process.</li>
 <li>Yes: User only - Enabled only for regular users</li></ul>
@@ -1535,7 +1554,7 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 <h4>Albums can be private</h4>
 <p>If set to YES then your gallery can contain albums that are visible only to users that belong to a specified group. This is ideal for creating albums that contain files that you want accessible to only a select group of people.  You could also create a userID and password and inform specific users/customers of the ID and password needed to view these files. </p>
 <p>If a user is a member of a group that can have its own gallery and this option is turned on then this user will have the permission to hide any of his/her albums from other users.</p>
-<p>This option does <b>not</b> determine whether users can have personal galleries at all, <b>nor</b> does it determine who is allowed to upload and who is not (these settings are accessible in the <a href="#group_cp">groups manager</a>). You should only set this option to NO if you really know what you're doing (by default, it is set to YES).</p>
+<p>This option does <strong>not</strong> determine whether users can have personal galleries at all, <strong>nor</strong> does it determine who is allowed to upload and who is not (these settings are accessible in the <a href="#group_cp">groups manager</a>). You should only set this option to NO if you really know what you're doing (by default, it is set to YES).</p>
 <p class="important">Note: if you switch from 'yes' to 'no' all currently private albums will become public!</p>
 <a name="admin_picture_thumb_advanced_private_toggle_end"></a>
 <a name="admin_picture_thumb_advanced_private_icon_show"></a>
@@ -1549,12 +1568,12 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 <a name="admin_picture_thumb_advanced_filename_forbidden_chars_end"></a>
 <a name="admin_picture_thumb_advanced_pic_extensions"></a>
 <h4>Allowed image types</h4>
-<p>&quot;<i>ALL</i>&quot; will result in all allowed image file types that your image library (GD or ImageMagick) is capable of handling to be allowed as uploads and content in your gallery. If you want to restrict the allowed file types to certain types only, enter a slash-separated list of extensions, e.g. <tt class="code">jpg/bmp/tif</tt></p>
+<p>&quot;<em>ALL</em>&quot; will result in all allowed image file types that your image library (GD or ImageMagick) is capable of handling to be allowed as uploads and content in your gallery. If you want to restrict the allowed file types to certain types only, enter a slash-separated list of extensions, e.g. <tt class="code">jpg/bmp/tif</tt></p>
 <p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_picture_thumb_advanced_pic_extensions_end"></a>
 <a name="admin_thumbs_advanced_movie"></a>
 <h4>Allowed movie types</h4>
-<p>&quot;<i>ALL</i>&quot; will result in all allowed movie file types to be uploaded. If you want to restrict the allowable file types to certain extensions only, enter a slash-separated list of extensions, e.g. <tt class="code">wmv/avi/mov</tt>.</p>
+<p>&quot;<em>ALL</em>&quot; will result in all allowed movie file types to be uploaded. If you want to restrict the allowable file types to certain extensions only, enter a slash-separated list of extensions, e.g. <tt class="code">wmv/avi/mov</tt>.</p>
 <p>Note that being able to display a movie requires that the cpg-user have the necessary codecs properly configured on their computers to display the movie file, e.g. if you allow the file type <tt class="faq">mov</tt>, the user who wishes to view the file will need to have Apple's Quick-Time plug-in installed. Also note that <tt class="code">avi</tt> is just a container for different codecs - this means that a computer which is capable of playing movie1.avi may not be capable of playing movie2.avi if those files have been encoded with different 'avi' codecs.</p>
 <p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_thumbs_advanced_movie_end"></a>
@@ -1564,13 +1583,13 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 <a name="admin_movie_autoplay_end"></a>
 <a name="admin_picture_thumb_advanced_audio_extensions"></a>
 <h4>Allowed audio types</h4>
-<p>&quot;<i>ALL</i>&quot; will result in all allowable audio file types to be uploaded. If you want to restrict the allowed file types to certain extensions only, enter a slash-separated list of extensions, e.g. <tt class="code">wav/mp3/wma</tt>.</p>
+<p>&quot;<em>ALL</em>&quot; will result in all allowable audio file types to be uploaded. If you want to restrict the allowed file types to certain extensions only, enter a slash-separated list of extensions, e.g. <tt class="code">wav/mp3/wma</tt>.</p>
 <p>Note that being able to listen to an audio file requires that the cpg-user have the necessary codecs properly configured on their computers to hear these files, e.g. if you allow the file type <tt class="code">mp3</tt>, users who wish to listen to the file will need to have a media player installed on their computer that can handle mp3 files.</p>
 <p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_picture_thumb_advanced_audio_extensions_end"></a>
 <a name="admin_picture_thumb_advanced_doc_extensions"></a>
 <h4>Allowed document types</h4>
-<p>&quot;<i>ALL</i>&quot; will result in all allowable document file types to be uploaded. If you want to restrict the allowable file types to certain extensions only, enter a slash-separated list of extensions, e.g. <tt class="code">txt/pdf</tt>.</p>
+<p>&quot;<em>ALL</em>&quot; will result in all allowable document file types to be uploaded. If you want to restrict the allowable file types to certain extensions only, enter a slash-separated list of extensions, e.g. <tt class="code">txt/pdf</tt>.</p>
 <p>Note that being able to browse a document file requires the cpg-user to have a compatible software installed and configured properly on their computer that is capable of displaying the type of document in question, e.g. if you allow the file type <tt class="code">xls</tt>, users who wish to browse the file will need to have an application installed on their computer that can display MS-Excel sheets. Be extremely careful with  document that are known to be vulnerable to virus contamination, embedded or as macros. This is especially true if you plan to allow users the capability of uploading documents without admin approval.</p>
 <p class="small">[cpg1.3.0 or better required]</p>
 <a name="admin_picture_thumb_advanced_doc_extensions_end"></a>
@@ -1578,13 +1597,13 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 <h4>Method for resizing images</h4>
 <p>Set this to the type of image library you have on your server (must be either GD1, GD2 or ImageMagick). GD2 is the recommended setting.</p>
 <p>If you are using GD 1.x and the colors of your thumbnails or intermediate image do not display properly, then, chances are, you actually have GD2 on your server - switch this option to GD 2.x</p>
-<p>More recent distributions of PHP come pre-packaged with GD - if you're not sure what you have, set this option to GD2. You can also look at your PHP settings by pointing your browser to the phpinfo.php file in your gallery.  eg, <b>http://www.yourgallery.com/your_cpg_folder/phpinfo.php</b>. For more information on using PHP click on this link: <a href="http://www.php.net/phpinfo" rel="external" class="external">phpinfo</a>.</p>
+<p>More recent distributions of PHP come pre-packaged with GD - if you're not sure what you have, set this option to GD2. You can also look at your PHP settings by pointing your browser to the phpinfo.php file in your gallery.  eg, <strong>http://www.yourgallery.com/your_cpg_folder/phpinfo.php</strong>. For more information on using PHP click on this link: <a href="http://www.php.net/phpinfo" rel="external" class="external">phpinfo</a>.</p>
 <a name="admin_picture_thumb_advanced_resize_method_end"></a>
 <a name="admin_picture_thumb_advanced_im_path"></a>
 <h4>Path to ImageMagick 'convert' utility (example /usr/bin/X11/) </h4>
-<p>If you intend using ImageMagick convert utility to resize you picture, you must enter the name of the <u>directory</u> where the convert program is located in this line. Don't forget the trailing "<tt class="code">/</tt>" to close the path. This path must only indicate the <b>directory</b> where the convert utility is located, it should not point directly to the convert utility.</p>
+<p>If you intend using ImageMagick convert utility to resize you picture, you must enter the name of the <u>directory</u> where the convert program is located in this line. Don't forget the trailing "<tt class="code">/</tt>" to close the path. This path must only indicate the <strong>directory</strong> where the convert utility is located, it should not point directly to the convert utility.</p>
 <p>If your server is running under Windows, use / and not \ to separate components of the path (eg. use C:/ImageMagick/ and not C:\ImageMagick\). This path must not contain any spaces under Windows so that it will not put ImageMagick in the "Program files" directory.</p>
-<p><b>ImageMagick will not work properly if PHP on your server is running in SAFE mode and it is a real challenge to get it running under Windows. Please consider using GD in these cases and don't waste your time asking for support in the forum with ImageMagick installation questions. There are just too many things that can prevent ImageMagick from work properly and without physical access to your server it is extremely difficult to guess what is wrong.</b></p>
+<p><strong>ImageMagick will not work properly if PHP on your server is running in SAFE mode and it is a real challenge to get it running under Windows. Please consider using GD in these cases and don't waste your time asking for support in the forum with ImageMagick installation questions. There are just too many things that can prevent ImageMagick from work properly and without physical access to your server it is extremely difficult to guess what is wrong.</strong></p>
 <a name="admin_picture_thumb_advanced_im_path_end"></a>
 <a name="admin_picture_thumb_advanced_allowed_imagetypes"></a>
 <h4>Allowed image types (only valid for ImageMagick)</h4>
@@ -1608,7 +1627,7 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 <h4>The album directory</h4>
 <p>This is the base directory for your "Image Store". The path is relative to the main directory of the script. </p>
 <p>You can use ../ in the path to move-up one level in the directory tree.</p>
-<p>You can <b>not</b> use an absolute path there ("/var/my_images/" will not work) and the album directory must be visible by your web server.</p>
+<p>You can <strong>not</strong> use an absolute path there ("/var/my_images/" will not work) and the album directory must be visible by your web server.</p>
 <p>This setting mustn't be changed if you already have files in your database. If you do so, all references to your existing files will break.</p>
 <a name="admin_picture_thumb_advanced_albums_dir_end"></a>
 <a name="admin_picture_thumb_advanced_userpics_dir"></a>
@@ -1630,13 +1649,13 @@ Descending: latest comment at the top, oldest comment at the bottom</p>
 <a name="admin_picture_thumb_advanced_thumbs_prefix_end"></a>
 <a name="admin_picture_thumb_advanced_chmod_folder"></a>
 <h4>Default mode for directories</h4>
-<p>If, and only if, during the file upload or batch add process, the installer complains about the directory not having the right permissions, try setting this to <b>0777</b> . Failure to do so may prevent you from being able to delete directories created by the script with your FTP client should you ever decide it necessary to uninstall the coppermine script.</p>
-<p><span class="important">Note</span>: setting this option doesn't CHMOD the files or folders that are being uploaded. Instead, the setting is used when coppermine, itself, creates <b>new</b> folders for user uploads (within the userpics directory). If you experienced problems during the initial Coppermine setup related to permissions, this option is <b>not</b> what you have been looking for nor should it be changed ( for more information regarding CHMOD, see the <a href="faq.htm">FAQ.htm</a> document located in the DOCS folder of this installation package ).</p>
+<p>If, and only if, during the file upload or batch add process, the installer complains about the directory not having the right permissions, try setting this to <strong>0777</strong> . Failure to do so may prevent you from being able to delete directories created by the script with your FTP client should you ever decide it necessary to uninstall the coppermine script.</p>
+<p><span class="important">Note</span>: setting this option doesn't CHMOD the files or folders that are being uploaded. Instead, the setting is used when coppermine, itself, creates <strong>new</strong> folders for user uploads (within the userpics directory). If you experienced problems during the initial Coppermine setup related to permissions, this option is <strong>not</strong> what you have been looking for nor should it be changed ( for more information regarding CHMOD, see the <a href="faq.htm">FAQ.htm</a> document located in the DOCS folder of this installation package ).</p>
 <a name="admin_picture_thumb_advanced_chmod_folder_end"></a>
 <a name="admin_picture_thumb_advanced_chmod_files"></a>
 <h4>Default mode for files</h4>
-<p>If, and only if, during the file upload or batch add process, the installer complains about the directory not having the right permissions, try setting this to <b>0666</b>.</p>
-<p><span class="important">Note</span>: setting this option doesn't CHMOD the files or folders that are being uploaded. Instead, the setting is used when coppermine, itself, creates <b>new</b> folders for user uploads (within the userpics directory). If you experienced problems during the initial Coppermine setup related to permissions, this option is <b>not</b> what you have been looking for nor should it be changed ( for more information regarding CHMOD, see the <a href="faq.htm">FAQ.htm</a> document located in the DOCS folder of this installation package ).</p>
+<p>If, and only if, during the file upload or batch add process, the installer complains about the directory not having the right permissions, try setting this to <strong>0666</strong>.</p>
+<p><span class="important">Note</span>: setting this option doesn't CHMOD the files or folders that are being uploaded. Instead, the setting is used when coppermine, itself, creates <strong>new</strong> folders for user uploads (within the userpics directory). If you experienced problems during the initial Coppermine setup related to permissions, this option is <strong>not</strong> what you have been looking for nor should it be changed ( for more information regarding CHMOD, see the <a href="faq.htm">FAQ.htm</a> document located in the DOCS folder of this installation package ).</p>
 <a name="admin_picture_thumb_advanced_chmod_files_end"></a>
 <a name="admin_picture_thumb_advanced_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
@@ -1727,13 +1746,13 @@ address. Recommended setting is NO. As most internet users today have more than 
 <h4>4.12.13 Cookie settings</h4>
 <a name="admin_cookie_name"></a>
 <h4>Name of the cookie used by coppermine</h4>
-<p>Default value is &quot;cpg140&quot;. Even if you have multiple instances of the script running on the same server you can keep the default value.</p><p><span class="important">When using bbs integration, make sure it <b>differs</b> from the bbs's cookie name</span></p>
+<p>Default value is &quot;cpg140&quot;. Even if you have multiple instances of the script running on the same server you can keep the default value.</p><p><span class="important">When using bbs integration, make sure it <strong>differs</strong> from the bbs's cookie name</span></p>
 <a name="admin_cookie_name_end"></a>
 <a name="admin_cookie_path"></a>
 <h4>Path of the cookie used by the script</h4>
 <p>Default value is "/". Don't change this unless you know what you are doing. This may prevent you from logging in.</p>
 <p>If you have broken your gallery by modifying this value, use phpMyAdmin to edit the xxxx_config table in your database and restore the default value. </p>
-<p>When using bbs integration into Coppermine, make sure to use <b>different</b> cookie names for coppermine and your bbs! The paths in both applications have to be set so coppermine is able to read both. Usually the default value &quot;<tt class="code">/</tt>&quot; should be set as path both for coppermine install and the BBS app you bridge with.</p>
+<p>When using bbs integration into Coppermine, make sure to use <strong>different</strong> cookie names for coppermine and your bbs! The paths in both applications have to be set so coppermine is able to read both. Usually the default value &quot;<tt class="code">/</tt>&quot; should be set as path both for coppermine install and the BBS app you bridge with.</p>
 <a name="admin_cookie_path_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
@@ -1745,10 +1764,10 @@ address. Recommended setting is NO. As most internet users today have more than 
 If you leave this blank, sendmail (or a surrogate) will be used to send emails from your server. Sendmail exists on most Unix/Linux webservers. If you specify a SMTP hostname, Coppermine will try to send emails using SMTP (this usually is needed on Windows webservers).</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <h4>SMTP Username</h4>
-<p>The username needed to authenticate on the SMTP server (this is <b>not</b> your coppermine admin username).</p>
+<p>The username needed to authenticate on the SMTP server (this is <strong>not</strong> your coppermine admin username).</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <h4>SMTP Password</h4>
-<p>The password that goes with above mentioned username (<b>not</b> identical to your coppermine admin password).</p>
+<p>The password that goes with above mentioned username (<strong>not</strong> identical to your coppermine admin password).</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_email_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
@@ -1864,8 +1883,8 @@ To access the exif manager, go to coppermine's config and click within the secti
 <p>The login integration uses your bulletin board cookies, therefore it won't work if your board cookies are not visible by Coppermine. So unless you are an expert, keep things simple and install Coppermine and your bulletin board on the same domain. Examples :</p>
 <table border="0" cellspacing="5" cellpadding="5" class="border1">
 <tr>
-<td>This <b>will</b> work:</td>
-<td>This <b class="important">won't</b> work:</td>
+<td>This <strong>will</strong> work:</td>
+<td>This <strong class="important">won't</strong> work:</td>
 </tr>
 <tr>
 <td class="code">Bulletin board: http://yourdomain.com/board/<br />
@@ -1875,7 +1894,7 @@ Coppermine: http://gallery.yourdomain.com/</td>
 </tr>
 </table>
 <p>The cookie path in the forum's configuration should be set to '/' where this option is available.</p>
-<p><span class="important">Important</span>: the cookie names of your bbs and coppermine must <b>not</b> be the same - they <b>must</b> differ!</p>
+<p><span class="important">Important</span>: the cookie names of your bbs and coppermine must <strong>not</strong> be the same - they <strong>must</strong> differ!</p>
 <a name="integrating_cookie_end"></a>
 
 <a name="integrating_standalone_start"></a>
@@ -1905,7 +1924,7 @@ Coppermine: http://gallery.yourdomain.com/</td>
 <p>The bridge manager is a new feature in cpg1.4, it is not available in older versions. Instead of manually editing coppermine code files, you can enable/disable bridging in your browser, using a wizard-like user interface. To start the bridge manager, log in as admin, choose &quot;Admin Tools&quot; from the navigation and the &quot;bridge manager&quot;</p>
 <p><img src="pics/bridge_01_start.gif" width="429" height="72" border="0" alt="" align="right" />If you run the bridge manager for the first time, there will only be one button that let's you actually start the wizard (if you return to the bridge manager later, you will also find a switch to enable/disable bridging) click it.</p>
 <p class="important">Note: with each step in the wizard, some information is being written to the coppermine database. Unlike other wizards (mostly on your local machine), the bridge manager doesn't have a &quot;&quot;cancel&quot;-button! Once you have enabled bridging and everything is working fine, you shouldn't change any values just out of curiosity, as they will get written to the database, which might result in a bridging that used to work not working any more after &quot;playing&quot; with it.<br clear="all" /></p>
-<p><img src="pics/bridge_02_app.gif" width="581" height="347" border="0" alt="" align="right" />In the first actual step of the wizard &quot;choose application to bridge coppermine with&quot;, you have to choose the application you actually want to coppermine with. Note that you <b>must</b> have this application already installed on your webserver, it has to be properly configured and must be up-and-running. Don't use the bridge manager yet if you only <i>plan</i> to integrate coppermine with another application later.</p>
+<p><img src="pics/bridge_02_app.gif" width="581" height="347" border="0" alt="" align="right" />In the first actual step of the wizard &quot;choose application to bridge coppermine with&quot;, you have to choose the application you actually want to coppermine with. Note that you <strong>must</strong> have this application already installed on your webserver, it has to be properly configured and must be up-and-running. Don't use the bridge manager yet if you only <em>plan</em> to integrate coppermine with another application later.</p>
 <p>If you have a custom-made bridge file that is not available in the wizard, choose the radio button in front of the text field and enter the name of your bridge file there, without the extension &quot;.inc.php&quot; (the bridge file must reside in the coppermine sub-folder &quot;bridge&quot;).<br />
 Click &quot;next&quot;</p>
 <p>The next steps depend on the application you have chosen to bridge with: some applications need <acronym title="Uniform Resource Locator">URL</acronym>s to be entered, or paths. Some need mySQL table information or cookie data to be entered, others don't. The point of the wizard is that it will only &quot;ask&quot; you the relevant settings for your application - if one or more items of the following description doesn't turn up for your application, there's no need to worry - just keep filling in the mandatory information and then hit &quot;next&quot;. However, you have to understand that coppermine can proof-check only some of your input - some input goes unvalidated.</p>
@@ -1930,18 +1949,18 @@ Click &quot;next&quot;</p>
 <a name="bridge_manager_path_start"></a>
 <h4>5.3.1.2 path(s) used by your BBS app</h4>
 <ul>
-<li><b>Forum URL</b><br />
+<li><strong>Forum URL</strong><br />
 Full URL of your BBS app (including the leading http:// bit, e.g. http://www.yourdomain.tld/forum/)</li>
-<li><b>Relative forum path</b><br />
+<li><strong>Relative forum path</strong><br />
 Relative path to your BBS app from the webroot (Example: if your BBS is at http://www.yourdomain.tld/forum/, enter "/forum/" into this field)</li>
-<li><b>Relative path to your BBS's config file</b><br />
+<li><strong>Relative path to your BBS's config file</strong><br />
 Relative path to your BBS, seen from your Coppermine folder (e.g. "../forum/" if your BBS is at http://www.yourdomain.tld/forum/ and Coppermine at http://www.yourdomain.tld/gallery/)</li>
 </ul>
 <a name="bridge_manager_path_end"></a>
 <a name="bridge_manager_specific_start"></a>
 <h4>5.3.1.3 BBS-specific settings</h4>
 <ul>
-<li><b>Use post-based groups?</b><br />
+<li><strong>Use post-based groups?</strong><br />
 Should Coppermine import the special groups that exist in the forum ? If you select no, then Coppermine will use the standard groups (Administrator, Registered and Anonymous) which makes administration easier and is recommended. You can change this setting later as well.</li>
 </ul>
 <a name="bridge_manager_specific_end"></a>
@@ -1949,7 +1968,7 @@ Should Coppermine import the special groups that exist in the forum ? If you sel
 <h4>5.3.1.4 enable/disable BBS integration</h4>
 <p>This is the last step of the bridge manager - it summarizes up the settings you have made in previous steps - you can enable or disable integration here. By default, integration is set to &quot;disabled&quot; after the bridge manager has been run for the first time. You should only enable integration if you're sure your BBS app is set up correctly. Click the &quot;Finish&quot; button in any case to finally write to the database, even if you choose to keep the current settings (leaving integration &quot;disabled&quot;).</p>
 <ul>
-<li><b>Enable integration/bridging with XXX</b></li>
+<li><strong>Enable integration/bridging with XXX</strong></li>
 </ul>
 <a name="bridge_manager_enable_end"></a>
 <p class="small">[cpg1.4.0 or better required]</p>
@@ -1976,7 +1995,7 @@ Should Coppermine import the special groups that exist in the forum ? If you sel
 
 <a name="translating"></a>
 <h1>6. Translating Coppermine into other languages</h1>
-<p>Coppermine has a separate language file that make the translation of the script much more easy. The language files are stored in the <b>lang </b>directory. The files with the <b>utf-8</b> suffix are unicode encoded files. They are automatically generated with the <a href="http://www.iconv.com/iconv.htm" class="external">iconv</a> program so there is no need for you to make an unicode version of your translation.</p>
+<p>Coppermine has a separate language file that make the translation of the script much more easy. The language files are stored in the <strong>lang </strong>directory. The files with the <strong>utf-8</strong> suffix are unicode encoded files. They are automatically generated with the <a href="http://www.iconv.com/iconv.htm" class="external">iconv</a> program so there is no need for you to make an unicode version of your translation.</p>
 <p>If you select an utf-8 language file as the default one, then the script will be able to automatically select a language file based on the visitor browser configuration. For instance if the default language file is danish-utf-8 and an english visitor access your gallery, the english-utf-8 language file will be used by the script.</p>
 <p> If you have translated Coppermine into a language not already supported, please read the <a href="translation.htm">translator's guide</a> and visit the <a href="http://coppermine.sourceforge.net/board/index.php?topic=4623.0">Coppermine Web Site</a> at Sourceforge and follow the instructions for submitting your language.</p>
 <p></p>
@@ -2221,42 +2240,42 @@ Should Coppermine import the special groups that exist in the forum ? If you sel
 
 <a name="codebase"></a>
 <h2>8.3 Coppermine uses code from the following free softwares :</h2>
-<p><b>phpBB</b><br />
+<p><strong>phpBB</strong><br />
   Author: phpBBGroup <br />
   URL: <a href="http://www.phpbb.com/">http://www.phpbb.com/</a><br />
 </p>
-<p><b>phpMyAdmin</b><br />
+<p><strong>phpMyAdmin</strong><br />
   Author: phpMyAdmin devel team<br />
   URL: <a href="http://www.phpmyadmin.net/">http://www.phpmyadmin.net/</a><br />
 </p>
-<p><b>phpPhotoAlbum</b><br />
+<p><strong>phpPhotoAlbum</strong><br />
   Author: Henning St&oslash;verud<br />
   E-mail: henning AT stoverud DOT com<br />
   URL: <a href="http://www.stoverud.com/PHPhotoalbum/">http://www.stoverud.com/PHPhotoalbum/</a><br />
 </p>
-<p><b>DOM Tooltip 0.6.0</b><br />
+<p><strong>DOM Tooltip 0.6.0</strong><br />
   Author: Dan Allen<br />
   E-mail: dan AT mojavelinux DOT com<br />
   URL: <a href="http://www.mojavelinux.com/forum/viewtopic.php?t=127">http://www.mojavelinux.com/forum/viewtopic.php?t=127</a><br />
   Note: DOM Tooltip, which is being used with the theme &quot;styleguide&quot; only, is released under <a href="http://www.gnu.org/copyleft/lesser.html">LGPL</a><br />
 </p>
-<p><b>TAR/GZIP/ZIP Archive Classes</b><br />
+<p><strong>TAR/GZIP/ZIP Archive Classes</strong><br />
   Author: Devin Doucette<br />
   E-mail: darksnoopy AT shaw DOT ca<br />
 </p>
 
-<p><b>Exifixer</b><br />
+<p><strong>Exifixer</strong><br />
   Author: Jake Olefsky<br />
   URL: <a href="http://www.offsky.com/software/exif/index.php">http://www.offsky.com/software/exif/index.php</a><br />
 </p>
-<p><b>Codelifter Slideshow</b><br />
+<p><strong>Codelifter Slideshow</strong><br />
   URL: <a href="http://www.codelifter.com/">http://www.codelifter.com</a><br />
 </p>
-<p><b>PHPMailer</b><br />
+<p><strong>PHPMailer</strong><br />
   Author: <a href="http://sourceforge.net/project/memberlist.php?group_id=26031">PHPMailer Team</a><br />
   URL: <a href="http://phpmailer.sourceforge.net/">http://phpmailer.sourceforge.net/</a><br />
 </p>
-<p><b>PHP Calendar Class Version 1.4</b><br />
+<p><strong>PHP Calendar Class Version 1.4</strong><br />
   Author: David Wilkinson<br />
   E-mail: davidw AT cascade DOT org DOT uk<br />
   URL: <a href="http://www.cascade.org.uk/software/php/calendar/">http://www.cascade.org.uk/software/php/calendar/</a><br />
