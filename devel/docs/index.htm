@@ -393,7 +393,9 @@ If you have shell access to your server, you can apply the native <a href="http:
 
 <a name="permissions_apache_windows"></a>
 <h4>2.1.1.2 Apache on Windows</h4>
-<p>tbc</p>
+<p>You have to understand that there is no such thing as CHMOD on Windows operating systems - this command is available on Unix/Linux only, even if your FTP application displays a CHMOD option. If you try to apply CHMOD on Windows, the command will simply be ignored and do nothing. However, there are permissions on Windows as well.</p>
+<p>The apache webserver service runs under a particular user - if you have full access to the server, check the services control to find out which one it is. If you can't do this, ask your webhost.</p>
+<p>As a temporary workaround, set permissions on folder and file level as suggested in the section <a href="#permissions_iis_windows">IIS on Windows</a>, but not for the IUSR (which only exists on IIS), but for "everyone". </p>
 <a name="permissions_apache_windows_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
