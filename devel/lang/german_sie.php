@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /*************************
   Coppermine Photo Gallery
   ************************
@@ -2037,7 +2037,7 @@ if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
   'show_permissions' => 'Berechtigungen anzeigen', //cpg1.4
   'show_condensed_output' => 'Reduzierte Ausgabe (zur einfacheren Erstellung von Screenshots)', //cpg1.4
   'coppermine_in_webroot' => 'Coppermine ist im Wurzelverzeichnis der Domäne installiert', //cpg1.4
-  'connect_online_repository' => 'Verbindungsaufbau zur Referenzdateit versuchen', //cpg1.4
+  'connect_online_repository' => 'Verbindungsaufbau zur Referenzdatei versuchen', //cpg1.4
   'show_additional_information' => 'Zusatzinformationen anzeigen', //cpg1.4
   'no_webcvs_link' => 'Web-CVS-Links nicht anzeigen', //cpg1.4
   'stable_webcvs_link' => 'Web-CVS-Links zur "stable-branch" anzeigen', //cpg1.4
