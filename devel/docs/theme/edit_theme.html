@@ -9,7 +9,7 @@
 <meta name="copyright" content="Coppermine dev team" />
 <meta name="description" content="Coppermine Photo Gallery project - Theme Upgrade Documentation" />
 <!-- CVS version info: $Id$ -->
-	
+
 <link rel="stylesheet" type="text/css" href="style.css" />
 <link rel="start" href="index.html" title="Theme Upgrade Home" />
 <link rel="end" href="validation.html" title="Validation" />
@@ -20,12 +20,12 @@
 <body>
 
 <div class="globalNav">
-	<a 
-	href="index.html">Theme Upgrade Home</a><a 
-	href="edit_style.html">style.css</a><a 
-	href="edit_template.html">template.html</a><font 
-	class="globalNavSelect">&raquo; theme.php</font><a 
-	href="validation.html">Validation</a>
+        <a
+        href="index.html">Theme Upgrade Home</a><a
+        href="edit_style.html">style.css</a><a
+        href="edit_template.html">template.html</a><font
+        class="globalNavSelect">&raquo; theme.php</font><a
+        href="validation.html">Validation</a>
 </div>
 <a href="edit_template.html">Previous</a>&nbsp;|&nbsp;<a href="validation.html">Next</a>
 <!-- end nav links -->
@@ -64,7 +64,7 @@ items that are different than Coppermine's internal theme "Classic".</p>
     <li>Rename your theme.php to theme.old.php</li>
 
     <li>
-      Create a new theme.php file in it's place 
+      Create a new theme.php file in it's place
 
       <h6>Insert the following:</h6>
       <pre>&lt;?php
@@ -79,7 +79,7 @@ items that are different than Coppermine's internal theme "Classic".</p>
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.4.1
+  Coppermine version: 1.4.2
   $Source:
   $Revision:
   $Author:
@@ -94,7 +94,7 @@ items that are different than Coppermine's internal theme "Classic".</p>
     </li>
 
     <li>
-      Everything from this point forward should be added between these two lines: 
+      Everything from this point forward should be added between these two lines:
       <pre>**********************************************/
 
 
@@ -103,11 +103,11 @@ items that are different than Coppermine's internal theme "Classic".</p>
     </li>
 
     <li>
-      Evaluate the available defines and add them to your theme.php 
+      Evaluate the available defines and add them to your theme.php
 
       <ul>
         <li>
-          define('THEME_HAS_RATING_GRAPHICS', 1); 
+          define('THEME_HAS_RATING_GRAPHICS', 1);
 
           <p>The location for the ratings graphics will be directed to the themes images folder.</p>
 
@@ -131,7 +131,7 @@ items that are different than Coppermine's internal theme "Classic".</p>
         </li>
 
         <li>
-          define('THEME_HAS_NAVBAR_GRAPHICS', 1); 
+          define('THEME_HAS_NAVBAR_GRAPHICS', 1);
 
           <p>The location for the navbar graphics will be directed to the themes images folder.</p>
 
@@ -165,7 +165,7 @@ directly.</p>
         </li>
 
         <li>
-          define('THEME_HAS_FILM_STRIP_GRAPHIC', 1); 
+          define('THEME_HAS_FILM_STRIP_GRAPHIC', 1);
 
             <p>The location for the film strip graphic will be directed to the themes images folder.</p>
 
@@ -181,7 +181,7 @@ define specifies a single tile to be used for both locations.</p>
 </pre>
         </li>
 <li>
-          define('THEME_HAS_FILM_STRIP_GRAPHICS', 1); 
+          define('THEME_HAS_FILM_STRIP_GRAPHICS', 1);
 
           <p>The location for the film strip graphics will be directed to the themes images folder.</p>
 
@@ -200,7 +200,7 @@ define specifies TWO tiles. </p>
         </li>
 
         <li>
-          define('THEME_IS_XHTML10_TRANSITIONAL',1); 
+          define('THEME_IS_XHTML10_TRANSITIONAL',1);
 
           <p>If
 the theme is defined as XHTML10_TRANSITIONAL the VANITY footer will be
@@ -213,7 +213,7 @@ validation methodology discussed later in this document.</p>
         </li>
 
         <li>
-          define('THEME_HAS_NO_SYS_MENU_BUTTONS', 1); 
+          define('THEME_HAS_NO_SYS_MENU_BUTTONS', 1);
 
           <p>When
 present the system won't attempt to replace the token {BUTTONS} in the
@@ -231,7 +231,7 @@ as part of "$template_main_menu" or all of "$template_main_menu1".</h6>
         </li>
 
         <li>
-          define('THEME_HAS_NO_SUB_MENU_BUTTONS', 1); 
+          define('THEME_HAS_NO_SUB_MENU_BUTTONS', 1);
 
           <p>When present the system won't attempt to replace {BUTTONS} in the SUB_MENU template The entire block needs to be present.</p>
 
@@ -251,7 +251,7 @@ as part of "$template_main_menu" or all of "$template_main_menu2".</h6>
     <li>Take stock of what you have so far, test your theme.</li>
 
     <li>
-      Changing the menu item separator 
+      Changing the menu item separator
 
       <p>Classic uses a "::" separator between each menu option that you can override by modifying the "$template_sys_menu_spacer"</p>
       <pre>// HTML template for template sys_menu spacer
@@ -274,7 +274,7 @@ $template_sys_menu_spacer ="::";
     </li>
 
     <li>
-      If you need a separator before the first and after the last buttons you can use this example from "MAC_OX_X" 
+      If you need a separator before the first and after the last buttons you can use this example from "MAC_OX_X"
 
       <p>"$template_sys_menu_spacer" and "$template_sub_menu_spacer" are only rendered BETWEEN active elements.</p>
 
@@ -496,7 +496,7 @@ EOT;
     </li>
 
     <li>
-      You've reached another milestone in your theme upgrade. 
+      You've reached another milestone in your theme upgrade.
 
       <p>Take stock of what you have so far, test your theme.</p>
     </li>
@@ -602,34 +602,34 @@ EOT;
 
 
     <li>If your theme modifies $template_display_picture
-			replace it with $template_display_media
-			  <h6>Find all instances of:</h6>
-			<pre>$template_display_picture</pre>
-			<h6>Replace all with:</h6>
-			<pre>$template_display_media</pre>
-		</li>
+                        replace it with $template_display_media
+                          <h6>Find all instances of:</h6>
+                        <pre>$template_display_picture</pre>
+                        <h6>Replace all with:</h6>
+                        <pre>$template_display_media</pre>
+                </li>
     <li>
-			If you used a previous $template_display_picture replace tableb with display_media in $template_display_media block	
-			  <h6>Find:</h6>
-			<pre>&lt;td align="center" class="tableb" nowrap="nowrap"&gt;</pre>
-			
-			<h6>Replace with:</h6>
-			<pre>&lt;td align="center" class="display_media" nowrap="nowrap"&gt;</pre>
-		</li>
+                        If you used a previous $template_display_picture replace tableb with display_media in $template_display_media block
+                          <h6>Find:</h6>
+                        <pre>&lt;td align="center" class="tableb" nowrap="nowrap"&gt;</pre>
+
+                        <h6>Replace with:</h6>
+                        <pre>&lt;td align="center" class="display_media" nowrap="nowrap"&gt;</pre>
+                </li>
     <li>
-			If your theme modifies $template_cat_list replace tableh2 with catrow_noalb in the catrow_noalb block
-			  <h6>Find:</h6>
-			<pre>&lt;!-- BEGIN catrow_noalb --&gt;<br />        &lt;tr&gt;<br />                &lt;td class="tableh2" colspan="3"&gt;&lt;table border="0"&gt;&lt;tr&gt;&lt;td align="left"&gt;{CAT_THUMB}&lt;/td&gt;&lt;td align="left"&gt;&lt;span class="catlink"&gt;&lt;b&gt;{CAT_TITLE}&lt;/b&gt;&lt;/span&gt;{CAT_DESC}&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;<br />        &lt;/tr&gt;<br />&lt;!-- END catrow_noalb --&gt;</pre>
-			<h6>Replace with :</h6>
-			<pre>&lt;!-- BEGIN catrow_noalb --&gt;<br />        &lt;tr&gt;<br />                &lt;td class="catrow_noalb" colspan="3"&gt;&lt;table border="0"&gt;&lt;tr&gt;&lt;td align="left"&gt;{CAT_THUMB}&lt;/td&gt;&lt;td align="left"&gt;&lt;span class="catlink"&gt;&lt;b&gt;{CAT_TITLE}&lt;/b&gt;&lt;/span&gt;{CAT_DESC}&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;<br />        &lt;/tr&gt;<br />&lt;!-- END catrow_noalb --&gt;</pre>
-		</li>
+                        If your theme modifies $template_cat_list replace tableh2 with catrow_noalb in the catrow_noalb block
+                          <h6>Find:</h6>
+                        <pre>&lt;!-- BEGIN catrow_noalb --&gt;<br />        &lt;tr&gt;<br />                &lt;td class="tableh2" colspan="3"&gt;&lt;table border="0"&gt;&lt;tr&gt;&lt;td align="left"&gt;{CAT_THUMB}&lt;/td&gt;&lt;td align="left"&gt;&lt;span class="catlink"&gt;&lt;b&gt;{CAT_TITLE}&lt;/b&gt;&lt;/span&gt;{CAT_DESC}&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;<br />        &lt;/tr&gt;<br />&lt;!-- END catrow_noalb --&gt;</pre>
+                        <h6>Replace with :</h6>
+                        <pre>&lt;!-- BEGIN catrow_noalb --&gt;<br />        &lt;tr&gt;<br />                &lt;td class="catrow_noalb" colspan="3"&gt;&lt;table border="0"&gt;&lt;tr&gt;&lt;td align="left"&gt;{CAT_THUMB}&lt;/td&gt;&lt;td align="left"&gt;&lt;span class="catlink"&gt;&lt;b&gt;{CAT_TITLE}&lt;/b&gt;&lt;/span&gt;{CAT_DESC}&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;<br />        &lt;/tr&gt;<br />&lt;!-- END catrow_noalb --&gt;</pre>
+                </li>
     <li>
-			If your theme modifies $template_cat_list replace tableb with catrow in the catrow block
-			  <h6>Find:</h6>
-			<pre>&lt;!-- BEGIN catrow --&gt;<br />        &lt;tr&gt;<br />                &lt;td class="tableb" align="left"&gt;&lt;table border="0"&gt;&lt;tr&gt;&lt;td&gt;{CAT_THUMB}&lt;/td&gt;&lt;td&gt;&lt;span class="catlink"&gt;&lt;b&gt;{CAT_TITLE}&lt;/b&gt;&lt;/span&gt;{CAT_DESC}&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;<br />                &lt;td class="tableb" align="center"&gt;{ALB_COUNT}&lt;/td&gt;<br />                &lt;td class="tableb" align="center"&gt;{PIC_COUNT}&lt;/td&gt;<br />        &lt;/tr&gt;<br />        &lt;tr&gt;<br />            &lt;td class="tableb" colspan="3"&gt;{CAT_ALBUMS}&lt;/td&gt;<br />        &lt;/tr&gt;<br />&lt;!-- END catrow --&gt;</pre>
-			<h6>Replace with :</h6>
-			<pre>&lt;!-- BEGIN catrow --&gt;<br />        &lt;tr&gt;<br />                &lt;td class="catrow" align="left"&gt;&lt;table border="0"&gt;&lt;tr&gt;&lt;td&gt;{CAT_THUMB}&lt;/td&gt;&lt;td&gt;&lt;span class="catlink"&gt;&lt;b&gt;{CAT_TITLE}&lt;/b&gt;&lt;/span&gt;{CAT_DESC}&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;<br />                &lt;td class="catrow" align="center"&gt;{ALB_COUNT}&lt;/td&gt;<br />                &lt;td class="catrow" align="center"&gt;{PIC_COUNT}&lt;/td&gt;<br />        &lt;/tr&gt;<br />        &lt;tr&gt;<br />            &lt;td class="tableb" colspan="3"&gt;{CAT_ALBUMS}&lt;/td&gt;<br />        &lt;/tr&gt;<br />&lt;!-- END catrow --&gt;</pre>
-		</li>
+                        If your theme modifies $template_cat_list replace tableb with catrow in the catrow block
+                          <h6>Find:</h6>
+                        <pre>&lt;!-- BEGIN catrow --&gt;<br />        &lt;tr&gt;<br />                &lt;td class="tableb" align="left"&gt;&lt;table border="0"&gt;&lt;tr&gt;&lt;td&gt;{CAT_THUMB}&lt;/td&gt;&lt;td&gt;&lt;span class="catlink"&gt;&lt;b&gt;{CAT_TITLE}&lt;/b&gt;&lt;/span&gt;{CAT_DESC}&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;<br />                &lt;td class="tableb" align="center"&gt;{ALB_COUNT}&lt;/td&gt;<br />                &lt;td class="tableb" align="center"&gt;{PIC_COUNT}&lt;/td&gt;<br />        &lt;/tr&gt;<br />        &lt;tr&gt;<br />            &lt;td class="tableb" colspan="3"&gt;{CAT_ALBUMS}&lt;/td&gt;<br />        &lt;/tr&gt;<br />&lt;!-- END catrow --&gt;</pre>
+                        <h6>Replace with :</h6>
+                        <pre>&lt;!-- BEGIN catrow --&gt;<br />        &lt;tr&gt;<br />                &lt;td class="catrow" align="left"&gt;&lt;table border="0"&gt;&lt;tr&gt;&lt;td&gt;{CAT_THUMB}&lt;/td&gt;&lt;td&gt;&lt;span class="catlink"&gt;&lt;b&gt;{CAT_TITLE}&lt;/b&gt;&lt;/span&gt;{CAT_DESC}&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/td&gt;<br />                &lt;td class="catrow" align="center"&gt;{ALB_COUNT}&lt;/td&gt;<br />                &lt;td class="catrow" align="center"&gt;{PIC_COUNT}&lt;/td&gt;<br />        &lt;/tr&gt;<br />        &lt;tr&gt;<br />            &lt;td class="tableb" colspan="3"&gt;{CAT_ALBUMS}&lt;/td&gt;<br />        &lt;/tr&gt;<br />&lt;!-- END catrow --&gt;</pre>
+                </li>
     <li>For the majority of themes you are now done adding content to your theme.php.
 
       <p>Take stock of what you have so far, test your theme.</p>
@@ -647,16 +647,16 @@ your theme.</p>
   </ol>
 
 <div id="footer" style="border-top: 1px solid gray; margin-top: 30px; padding-top: 10px;">
-	<a href="edit_template.html">Previous</a>&nbsp;|&nbsp;<a href="validation.html">Next</a>
-	<div class="globalNav">
-		<a 
-		href="index.html">Theme Upgrade Home</a><a 
-		href="edit_style.html">style.css</a><a 
-		href="edit_template.html">template.html</a><font 
-		class="globalNavSelect">&raquo; theme.php</font><a 
-		href="validation.html">Validation</a>
-	</div>
-	<!-- end nav links -->
+        <a href="edit_template.html">Previous</a>&nbsp;|&nbsp;<a href="validation.html">Next</a>
+        <div class="globalNav">
+                <a
+                href="index.html">Theme Upgrade Home</a><a
+                href="edit_style.html">style.css</a><a
+                href="edit_template.html">template.html</a><font
+                class="globalNavSelect">&raquo; theme.php</font><a
+                href="validation.html">Validation</a>
+        </div>
+        <!-- end nav links -->
 </div>
 </body>
 </html>
