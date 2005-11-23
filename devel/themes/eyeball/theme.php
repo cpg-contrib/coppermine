@@ -1,6 +1,6 @@
 <?php
 // ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.4.1                                            //
+// Coppermine Photo Gallery 1.4.2                                            //
 // ------------------------------------------------------------------------- //
 // Copyright (C) 2002-2004 Gregory DEMAR                                     //
 // http://www.chezgreg.net/coppermine/                                       //
@@ -25,14 +25,14 @@ define('THEME_IS_XHTML10_TRANSITIONAL',1);  // Remove this if you edit this temp
                                             // you have validated it. See docs/theme.htm.
 // HTML template for template sys_menu spacer
 $template_sys_menu_spacer ='|';
-  
+
 // HTML template for template sub_menu
 $template_sub_menu = <<<EOT
                         <table cellpadding="0" cellspacing="0" border="0" class="top_menu_bttn">
                                 <tr>
                                         <td><img src="themes/eyeball/images/top_menu_left.gif" border="0" alt="" /><br /></td>
                                         <!-- BEGIN custom_link -->
-										<td style="background-image:url(themes/eyeball/images/top_menu_button.gif);">
+                                                                                <td style="background-image:url(themes/eyeball/images/top_menu_button.gif);">
                                                 <a href="{CUSTOM_LNK_TGT}" title="{CUSTOM_LNK_TITLE}">{CUSTOM_LNK_LNK}</a>
                                         </td>
                                         <td><img src="themes/eyeball/images/top_menu_spacer.gif" border="0" alt="" /><br /></td>

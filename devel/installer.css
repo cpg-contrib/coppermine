@@ -9,7 +9,7 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.4.1
+  Coppermine version: 1.4.2
   $Source$
   $Revision$
   $Author$
@@ -160,7 +160,7 @@ img.logo
     text-align: left;
 }
 
-.bigwarning, .warning, .failed 
+.bigwarning, .warning, .failed
 {
     color: red;
 }
@@ -173,8 +173,8 @@ td.warning
 
 p, div.warning
 {
-    margin: 10px; 
-    padding: 5px; 
+    margin: 10px;
+    padding: 5px;
 }
 
 table.maintable td
@@ -186,12 +186,12 @@ p.warning, div.warning
 {
     color: black;
     font-size: 120%;
-    border: 1px solid black; 
+    border: 1px solid black;
     background: #fdd;
 }
-    
 
-.check 
+
+.check
 {
     background-color: white;
     font-weight: bold;
@@ -203,7 +203,7 @@ p.warning, div.warning
     color: gray;
 }
 
-.done 
+.done
 {
     background-color: green;
     color: white;
