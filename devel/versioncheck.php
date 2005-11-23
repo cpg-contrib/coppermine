@@ -2790,10 +2790,12 @@ $return = '
 1.4.2|**fullpath**|||mandatory|w@
 1.4.2|**fullpath**/index.php|||optional|w@
 1.4.2|**fullpath**/edit/index.html|||optional|w@
+1.4.2|**fullpath**/edit/no_FTP-uploads_into_this_folder!|||optional|w@
 1.4.2|**fullpath**/edit|||mandatory|w@
 1.4.2|**fullpath**/edit/index.html|||optional|w@
 1.4.2|**fullpath**/**userpics**|||mandatory|w@
 1.4.2|**fullpath**/**userpics**/index.php|||optional|w@
+1.4.2|**fullpath**/**userpics**/no_FTP-uploads_into_this_folder!|||optional|w@
 1.4.2|bridge|||mandatory|r@
 1.4.2|bridge/coppermine.inc.php|1.4.2|1.21|mandatory|r@
 1.4.2|bridge/eblah.inc.php|1.4.2|1.5|optional|r@
@@ -2802,6 +2804,7 @@ $return = '
 1.4.2|bridge/mybb.inc.php|1.4.2|1.3|optional|r@
 1.4.2|bridge/phorum.inc.php|1.4.2|1.6|optional|r@
 1.4.2|bridge/phpbb.inc.php|1.4.2|1.44|optional|r@
+1.4.2|bridge/phpbb2018.inc.php|1.4.2|1.1|optional|r@
 1.4.2|bridge/phpbb22.inc.php|1.4.2|1.11|optional|r@
 1.4.2|bridge/punbb115.inc.php|1.4.2|1.6|optional|r@
 1.4.2|bridge/punbb12.inc.php|1.4.2|1.13|optional|r@
@@ -2813,7 +2816,9 @@ $return = '
 1.4.2|docs|||mandatory|r@
 1.4.2|docs/credits.html||1.13|optional|r@
 1.4.2|docs/faq.htm|||optional|r@
+1.4.2|docs/faq_fr.htm|||optional|r@
 1.4.2|docs/index.htm||1.12|mandatory|r@
+1.4.2|docs/index_fr.htm||1.2|mandatory|r@
 1.4.2|docs/README.html||1.17|optional|r@
 1.4.2|docs/showdoc.php|1.4.2|1.15|mandatory|r@
 1.4.2|docs/theme.htm||1.16|optional|r@
