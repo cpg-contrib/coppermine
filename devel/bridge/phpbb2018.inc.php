@@ -85,9 +85,9 @@ class cpg_udb extends core_udb {
 		
 		// Pages to redirect to
 		$this->page = array(
-			'register' => '/ucp.php?mode=register',
+			'register' => '/profile.php?mode=register',
 			'editusers' => '/memberlist.php',
-			'edituserprofile' => "/memberlist.php?mode=viewprofile&u=",
+			'edituserprofile' => "/profile.php?mode=viewprofile&u=",
 		);
 		
 		// Group ids - admin and guest only.
