@@ -1,20 +1,35 @@
-#*************************
-#  Coppermine Photo Gallery
-#  ************************
-#  Copyright (c) 2003-2005 Coppermine Dev Team
-#  v1.1 originaly written by Gregory DEMAR
+##  ********************************************
+##  Coppermine Photo Gallery
+##  ************************
+##  Copyright (c) 2003-2005 Coppermine Dev Team
+##  v1.1 originaly written by Gregory DEMAR
+##
+##  This program is free software; you can redistribute it and/or modify
+##  it under the terms of the GNU General Public License as published by
+##  the Free Software Foundation; either version 2 of the License, or
+##  (at your option) any later version.
+##  ********************************************
+##  Coppermine version: 1.4.2
+##  $Source$
+##  $Revision$
+##  $Author$
+##  $Date$
+##  ********************************************
+
+
 #
-#  This program is free software; you can redistribute it and/or modify
-#  it under the terms of the GNU General Public License as published by
-#  the Free Software Foundation; either version 2 of the License, or
-#  (at your option) any later version.
-#  ********************************************
-#  Coppermine version: 1.3.5
-#  $Source$
-#  $Revision$
-#  $Author$
-#  $Date$
-#**********************************************
+# Table structure for table `CPG_sessions`
+#
+
+CREATE TABLE IF NOT EXISTS CPG_sessions (
+  session_id varchar(40) NOT NULL default '',
+  user_id int(11) default '0',
+  time int(11) default NULL,
+  remember int(1) default '0',
+  PRIMARY KEY (session_id)
+) TYPE=MyISAM COMMENT='Used to store sessions';
+
+
 
 #
 # Table structure for table `CPG_filetypes`
@@ -28,57 +43,67 @@ CREATE TABLE IF NOT EXISTS CPG_filetypes (
 ) TYPE=MyISAM COMMENT='Used to store the file extensions';
 
 ALTER TABLE `CPG_filetypes` DROP INDEX `EXTENSION`, ADD PRIMARY KEY ( `extension` );
+ALTER TABLE `CPG_filetypes` ADD `player` VARCHAR( 5 ) ;
 
-INSERT INTO CPG_filetypes VALUES ('jpg', 'image/jpg', 'image');
-INSERT INTO CPG_filetypes VALUES ('jpeg', 'image/jpeg', 'image');
-INSERT INTO CPG_filetypes VALUES ('jpe', 'image/jpe', 'image');
-INSERT INTO CPG_filetypes VALUES ('gif', 'image/gif', 'image');
-INSERT INTO CPG_filetypes VALUES ('png', 'image/png', 'image');
-INSERT INTO CPG_filetypes VALUES ('psd', 'image/psd', 'image');
-INSERT INTO CPG_filetypes VALUES ('bmp', 'image/bmp', 'image');
-INSERT INTO CPG_filetypes VALUES ('jpc', 'image/jpc', 'image');
-INSERT INTO CPG_filetypes VALUES ('jp2', 'image/jp2', 'image');
-INSERT INTO CPG_filetypes VALUES ('jpx', 'image/jpx', 'image');
-INSERT INTO CPG_filetypes VALUES ('jb2', 'image/jb2', 'image');
-INSERT INTO CPG_filetypes VALUES ('swc', 'image/swc', 'image');
-INSERT INTO CPG_filetypes VALUES ('iff', 'image/iff', 'image');
+INSERT INTO CPG_filetypes VALUES ('jpg', 'image/jpg', 'image', '');
+INSERT INTO CPG_filetypes VALUES ('jpeg', 'image/jpeg', 'image', '');
+INSERT INTO CPG_filetypes VALUES ('jpe', 'image/jpe', 'image', '');
+INSERT INTO CPG_filetypes VALUES ('gif', 'image/gif', 'image', '');
+INSERT INTO CPG_filetypes VALUES ('png', 'image/png', 'image', '');
+INSERT INTO CPG_filetypes VALUES ('psd', 'image/psd', 'image', '');
+INSERT INTO CPG_filetypes VALUES ('bmp', 'image/bmp', 'image', '');
+INSERT INTO CPG_filetypes VALUES ('jpc', 'image/jpc', 'image', '');
+INSERT INTO CPG_filetypes VALUES ('jp2', 'image/jp2', 'image', '');
+INSERT INTO CPG_filetypes VALUES ('jpx', 'image/jpx', 'image', '');
+INSERT INTO CPG_filetypes VALUES ('jb2', 'image/jb2', 'image', '');
+INSERT INTO CPG_filetypes VALUES ('swc', 'image/swc', 'image', '');
+INSERT INTO CPG_filetypes VALUES ('iff', 'image/iff', 'image', '');
 UPDATE CPG_config SET value='ALL' WHERE name='allowed_img_types';
 
-INSERT INTO CPG_filetypes VALUES ('asf', 'video/x-ms-asf', 'movie');
-INSERT INTO CPG_filetypes VALUES ('asx', 'video/x-ms-asx', 'movie');
-INSERT INTO CPG_filetypes VALUES ('mpg', 'video/mpeg', 'movie');
-INSERT INTO CPG_filetypes VALUES ('mpeg', 'video/mpeg', 'movie');
-INSERT INTO CPG_filetypes VALUES ('wmv', 'video/x-ms-wmv', 'movie');
-INSERT INTO CPG_filetypes VALUES ('swf', 'application/x-shockwave-flash', 'movie');
-INSERT INTO CPG_filetypes VALUES ('avi', 'video/avi', 'movie');
-INSERT INTO CPG_filetypes VALUES ('mov', 'video/quicktime', 'movie');
+INSERT INTO CPG_filetypes VALUES ('asf', 'video/x-ms-asf', 'movie', 'WMP');
+INSERT INTO CPG_filetypes VALUES ('asx', 'video/x-ms-asx', 'movie', 'WMP');
+INSERT INTO CPG_filetypes VALUES ('mpg', 'video/mpeg', 'movie', 'WMP');
+INSERT INTO CPG_filetypes VALUES ('mpeg', 'video/mpeg', 'movie', 'WMP');
+INSERT INTO CPG_filetypes VALUES ('wmv', 'video/x-ms-wmv', 'movie', 'WMP');
+INSERT INTO CPG_filetypes VALUES ('swf', 'application/x-shockwave-flash', 'movie', 'SWF');
+INSERT INTO CPG_filetypes VALUES ('avi', 'video/avi', 'movie', 'WMP');
+INSERT INTO CPG_filetypes VALUES ('mov', 'video/quicktime', 'movie', 'QT');
 INSERT INTO CPG_config VALUES ('allowed_mov_types', 'ALL');
 
-INSERT INTO CPG_filetypes VALUES ('mp3', 'audio/mpeg3', 'audio');
-INSERT INTO CPG_filetypes VALUES ('midi', 'audio/midi', 'audio');
-INSERT INTO CPG_filetypes VALUES ('mid', 'audio/midi', 'audio');
-INSERT INTO CPG_filetypes VALUES ('wma', 'audio/x-ms-wma', 'audio');
-INSERT INTO CPG_filetypes VALUES ('wav', 'audio/wav', 'audio');
-INSERT INTO CPG_filetypes VALUES ('ogg', 'audio/ogg', 'audio');
+INSERT INTO CPG_filetypes VALUES ('mp3', 'audio/mpeg3', 'audio', 'WMP');
+INSERT INTO CPG_filetypes VALUES ('midi', 'audio/midi', 'audio', 'WMP');
+INSERT INTO CPG_filetypes VALUES ('mid', 'audio/midi', 'audio', 'WMP');
+INSERT INTO CPG_filetypes VALUES ('wma', 'audio/x-ms-wma', 'audio', 'WMP');
+INSERT INTO CPG_filetypes VALUES ('wav', 'audio/wav', 'audio', 'WMP');
+INSERT INTO CPG_filetypes VALUES ('ogg', 'audio/ogg', 'audio', '');
 INSERT INTO CPG_config VALUES ('allowed_snd_types', 'ALL');
 
-INSERT INTO CPG_filetypes VALUES ('ram', 'audio/x-pn-realaudio', 'document');
-INSERT INTO CPG_filetypes VALUES ('ra', 'audio/x-realaudio', 'document');
-INSERT INTO CPG_filetypes VALUES ('rm', 'audio/x-realmedia', 'document');
-INSERT INTO CPG_filetypes VALUES ('tiff', 'image/tiff', 'document');
-INSERT INTO CPG_filetypes VALUES ('tif', 'image/tif', 'document');
-INSERT INTO CPG_filetypes VALUES ('doc', 'application/msword', 'document');
-INSERT INTO CPG_filetypes VALUES ('txt', 'text/plain', 'document');
-INSERT INTO CPG_filetypes VALUES ('rtf', 'text/richtext', 'document');
-INSERT INTO CPG_filetypes VALUES ('pdf', 'application/pdf', 'document');
-INSERT INTO CPG_filetypes VALUES ('xls', 'application/excel', 'document');
-INSERT INTO CPG_filetypes VALUES ('pps', 'application/powerpoint', 'document');
-INSERT INTO CPG_filetypes VALUES ('ppt', 'application/powerpoint', 'document');
-INSERT INTO CPG_filetypes VALUES ('zip', 'application/zip', 'document');
-INSERT INTO CPG_filetypes VALUES ('rar', 'application/rar', 'document');
-INSERT INTO CPG_filetypes VALUES ('gz', 'application/gz', 'document');
-INSERT INTO CPG_filetypes VALUES ('mdb', 'application/msaccess', 'document');
+INSERT INTO CPG_filetypes VALUES ('ram', 'audio/x-pn-realaudio', 'document', 'RMP');
+INSERT INTO CPG_filetypes VALUES ('ra', 'audio/x-realaudio', 'document', 'RMP');
+INSERT INTO CPG_filetypes VALUES ('rm', 'audio/x-realmedia', 'document', 'RMP');
+INSERT INTO CPG_filetypes VALUES ('tiff', 'image/tiff', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('tif', 'image/tif', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('doc', 'application/msword', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('txt', 'text/plain', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('rtf', 'text/richtext', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('pdf', 'application/pdf', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('xls', 'application/excel', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('pps', 'application/powerpoint', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('ppt', 'application/powerpoint', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('zip', 'application/zip', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('rar', 'application/rar', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('gz', 'application/gz', 'document', '');
+INSERT INTO CPG_filetypes VALUES ('mdb', 'application/msaccess', 'document', '');
 INSERT INTO CPG_config VALUES ('allowed_doc_types', 'ALL');
+
+
+#
+# Add default media player for movie/audio files
+#
+UPDATE CPG_filetypes SET player='WMP' WHERE extension IN ('asf','asx','mpg','mpeg','wmv','avi','mp3','midi','mid','wma','wav');
+UPDATE CPG_filetypes SET player='QT' WHERE extension IN ('mov');
+UPDATE CPG_filetypes SET player='RMP' WHERE extension IN ('ra','ram','rm');
+UPDATE CPG_filetypes SET player='SWF' WHERE extension IN ('swc','swf');
 
 
 #
@@ -90,15 +115,16 @@ ALTER TABLE CPG_comments add msg_hdr_ip tinytext;
 ALTER TABLE CPG_pictures add pic_raw_ip tinytext;
 ALTER TABLE CPG_pictures add pic_hdr_ip tinytext;
 
-
 INSERT INTO CPG_config VALUES ('thumb_use', 'any');
 INSERT INTO CPG_config VALUES ('show_private', '0');
 INSERT INTO CPG_config VALUES ('first_level', '1');
 INSERT INTO CPG_config VALUES ('display_film_strip', '1');
+INSERT INTO CPG_config VALUES ('display_film_strip_filename', '0');
 INSERT INTO CPG_config VALUES ('max_film_strip_items', '5');
-INSERT INTO CPG_config VALUES ('comment_email_notification', '0');
 INSERT INTO CPG_config VALUES ('read_iptc_data', '0');
 INSERT INTO CPG_config VALUES ('display_uploader', '0');
+# INSERT INTO CPG_config VALUES ('display_admin_uploader','0');
+INSERT INTO CPG_config VALUES ('display_filename','0');
 
 #gtroll wil implement
 #INSERT INTO CPG_config VALUES ('picinfo_display_filename', '1');
@@ -108,7 +134,7 @@ INSERT INTO CPG_config VALUES ('display_uploader', '0');
 #INSERT INTO CPG_config VALUES ('picinfo_display_count_displayed', '1');
 #INSERT INTO CPG_config VALUES ('picinfo_display_URL', '1');
 #INSERT INTO CPG_config VALUES ('picinfo_display_URL_bookmark', '1');
-#INSERT INTO CPG_config VALUES ('picinfo_display_favorites', 1');
+#INSERT INTO CPG_config VALUES ('picinfo_display_favorites', '1');
 
 INSERT INTO CPG_config VALUES ('reg_notify_admin_email', '0');
 INSERT INTO CPG_config VALUES ('disable_comment_flood_protect', '0');
@@ -120,6 +146,7 @@ INSERT INTO CPG_config VALUES ('theme_list', '0');
 INSERT INTO CPG_config VALUES ('language_reset', '1');
 INSERT INTO CPG_config VALUES ('theme_reset', '1');
 INSERT INTO CPG_config VALUES ('offline', '0');
+INSERT INTO CPG_config VALUES ('vanity_block','1');
 
 INSERT INTO CPG_config VALUES ('allow_memberlist', '0');
 INSERT INTO CPG_config VALUES ('display_faq', '0');
@@ -131,6 +158,11 @@ INSERT INTO CPG_config VALUES ('enable_zipdownload', '1');
 INSERT INTO CPG_config VALUES ('debug_notice', '0');
 INSERT INTO CPG_config VALUES ('slideshow_interval', '5000');
 
+INSERT INTO CPG_config VALUES ('log_mode', '0');
+
+INSERT INTO CPG_config VALUES ('media_autostart', '1');
+
+INSERT INTO CPG_config VALUES ('enable_encrypted_passwords','0');
 
 # Modify structure for category thumb
 ALTER TABLE `CPG_categories` ADD `thumb` INT NOT NULL AFTER `parent` ;
@@ -205,6 +237,8 @@ PRIMARY KEY ( `unique_ID` )
 UPDATE `CPG_config` SET value='classic' WHERE (name='theme' AND value='default');
 DELETE FROM `CPG_filetypes` WHERE mime='text/html';
 
+UPDATE `CPG_config` SET value='$/\\\\:*?&quot;\'&lt;&gt;|` &amp;' WHERE name='forbiden_fname_char';
+
 #
 # Finally remove all user_lang references - Jack
 #
@@ -216,13 +250,225 @@ ALTER TABLE `CPG_users` CHANGE user_lang user_group_list varchar(255) NOT NULL d
 #
 ALTER TABLE CPG_pictures DROP INDEX `owner_id`;
 ALTER TABLE CPG_pictures DROP INDEX `owner_id_2`;
-ALTER TABLE CPG_pictures DROP INDEX `owner_id_3`;
-ALTER TABLE CPG_pictures DROP INDEX `owner_id_4`;
 ALTER TABLE CPG_pictures ADD INDEX owner_id( `owner_id` );
 
+
+#
+# Allows user gallery icons
+#
+ALTER TABLE CPG_pictures ADD `galleryicon` INT UNSIGNED DEFAULT '0' NOT NULL AFTER `approved`;
 
 #
 # Record the last hit IP
 #
 
 ALTER TABLE `CPG_pictures` ADD `lasthit_ip` TINYTEXT ;
+
+#
+# Table structure for table `CPG_favpics`
+#
+
+CREATE TABLE `CPG_favpics` (
+`user_id` INT( 11 ) NOT NULL ,
+`user_favpics` TEXT NOT NULL ,
+PRIMARY KEY ( `user_id` )
+) COMMENT = 'Stores the server side favourites';
+
+
+#
+# Table structure for table `CPG_dict`
+#
+
+CREATE TABLE CPG_dict (
+  keyId bigint(20) NOT NULL auto_increment,
+  keyword varchar(60) NOT NULL default '',
+  PRIMARY KEY  (keyId)
+) TYPE=MyISAM  COMMENT = 'Holds the keyword dictionary';
+
+#
+# Add config profile rows
+#
+
+ALTER TABLE `CPG_users` CHANGE `user_location`  `user_profile1` VARCHAR(255);
+ALTER TABLE `CPG_users` CHANGE `user_interests` `user_profile2` VARCHAR(255);
+ALTER TABLE `CPG_users` CHANGE `user_website` `user_profile3` VARCHAR(255);
+ALTER TABLE `CPG_users` CHANGE `user_occupation` `user_profile4` VARCHAR(255);
+
+ALTER TABLE `CPG_users` ADD `user_profile5` varchar(255) default '' NOT NULL;
+ALTER TABLE `CPG_users` ADD `user_profile6` varchar(255) default '' NOT NULL;
+
+#
+# Enlarge password field for MD5/SHA1 hash
+#
+
+ALTER TABLE `CPG_users` CHANGE `user_password` `user_password` VARCHAR( 40 ) NOT NULL;
+
+
+
+INSERT INTO CPG_config VALUES ('user_profile1_name', 'Location');
+INSERT INTO CPG_config VALUES ('user_profile2_name', 'Interests');
+INSERT INTO CPG_config VALUES ('user_profile3_name', 'Website');
+INSERT INTO CPG_config VALUES ('user_profile4_name', 'Occupation');
+INSERT INTO CPG_config VALUES ('user_profile5_name', '');
+INSERT INTO CPG_config VALUES ('user_profile6_name', 'Biography');
+
+
+INSERT INTO CPG_config VALUES ('language_fallback', '0');
+
+INSERT INTO CPG_config VALUES ('time_offset', '0');
+
+ALTER TABLE `CPG_users` CHANGE `user_profile6` `user_profile6` TEXT NOT NULL;
+
+ALTER TABLE `CPG_albums` ADD `alb_password` varchar(32) default '';
+
+INSERT INTO CPG_config VALUES ('ban_private_ip', '0');
+
+INSERT INTO CPG_config VALUES ('smtp_host', '');
+INSERT INTO CPG_config VALUES ('smtp_username', '');
+INSERT INTO CPG_config VALUES ('smtp_password', '');
+
+INSERT INTO CPG_config VALUES ('enable_plugins', '1');
+
+CREATE TABLE CPG_plugins (
+  plugin_id int(10) unsigned NOT NULL auto_increment,
+  name varchar(64) NOT NULL default '',
+  path varchar(128) NOT NULL default '',
+  priority int(10) unsigned NOT NULL default '0',
+  PRIMARY KEY  (plugin_id),
+  UNIQUE KEY name (name),
+  UNIQUE KEY path (path)
+) TYPE=MyISAM COMMENT='Stores the plugins';
+
+INSERT INTO CPG_config VALUES ('enable_help', '2');
+
+INSERT INTO CPG_config VALUES ('allow_email_change', '0');
+INSERT INTO CPG_config VALUES ('show_which_exif', '|0|0|0|0|0|0|0|0|1|0|1|1|0|0|0|0|0|0|0|0|0|0|0|1|0|0|0|1|0|0|0|1|1|0|0|0|0|1|0|0|0|1|0|0|1|1|0|0|0|0|0|1|0|1|1');
+INSERT INTO CPG_config VALUES ('alb_desc_thumb', '1');
+
+ALTER TABLE `CPG_albums` ADD `alb_password_hint` TEXT ;
+
+INSERT INTO CPG_config VALUES ('categories_alpha_sort', '0');
+ALTER TABLE `CPG_banned` ADD `brute_force` TINYINT( 5 ) DEFAULT '0' NOT NULL ;
+INSERT INTO CPG_config VALUES ('login_threshold', '5');
+INSERT INTO CPG_config VALUES ('login_expiry', '10');
+INSERT INTO CPG_config VALUES ('clickable_keyword_search', '1');
+INSERT INTO CPG_config VALUES ('link_pic_count', '0');
+ALTER TABLE CPG_pictures ADD position INT(11) DEFAULT '0' NOT NULL;
+
+INSERT INTO CPG_config VALUES ('auto_resize', '0');
+
+#
+# Table structure for table `CPG_bridge`
+#
+
+CREATE TABLE CPG_bridge (
+  name varchar(40) NOT NULL default '0',
+  value varchar(255) NOT NULL default '',
+  UNIQUE KEY name (name)
+) TYPE=MyISAM;
+
+#
+# Data for table `CPG_bridge`
+# Used for bridging by user interface
+#
+
+INSERT INTO CPG_bridge VALUES ('short_name', '');
+INSERT INTO CPG_bridge VALUES ('license_number', '');
+INSERT INTO CPG_bridge VALUES ('db_database_name', '');
+INSERT INTO CPG_bridge VALUES ('db_hostname', '');
+INSERT INTO CPG_bridge VALUES ('db_username', '');
+INSERT INTO CPG_bridge VALUES ('db_password', '');
+INSERT INTO CPG_bridge VALUES ('full_forum_url', '');
+INSERT INTO CPG_bridge VALUES ('relative_path_of_forum_from_webroot', '');
+INSERT INTO CPG_bridge VALUES ('relative_path_to_config_file', '');
+INSERT INTO CPG_bridge VALUES ('logout_flag', '');
+INSERT INTO CPG_bridge VALUES ('use_post_based_groups', '');
+INSERT INTO CPG_bridge VALUES ('cookie_prefix', '');
+INSERT INTO CPG_bridge VALUES ('table_prefix', '');
+INSERT INTO CPG_bridge VALUES ('user_table', '');
+INSERT INTO CPG_bridge VALUES ('session_table', '');
+INSERT INTO CPG_bridge VALUES ('group_table', '');
+INSERT INTO CPG_bridge VALUES ('group_relation_table', '');
+INSERT INTO CPG_bridge VALUES ('group_mapping_table', '');
+INSERT INTO CPG_bridge VALUES ('use_standard_groups', '1');
+INSERT INTO CPG_bridge VALUES ('validating_group', '');
+INSERT INTO CPG_bridge VALUES ('guest_group', '');
+INSERT INTO CPG_bridge VALUES ('member_group', '');
+INSERT INTO CPG_bridge VALUES ('admin_group', '');
+INSERT INTO CPG_bridge VALUES ('banned_group', '');
+INSERT INTO CPG_bridge VALUES ('global_moderators_group', '');
+INSERT INTO CPG_bridge VALUES ('recovery_logon_failures', '0');
+INSERT INTO CPG_bridge VALUES ('recovery_logon_timestamp', '');
+
+
+INSERT INTO CPG_config VALUES ('bridge_enable', '0');
+
+#
+# Table structure for table 'CPG_vote_stats'
+#
+CREATE TABLE CPG_vote_stats (
+  `sid` int(11) NOT NULL auto_increment,
+  `pid` varchar(100) NOT NULL default '',
+  `rating` smallint(6) NOT NULL default '0',
+  `ip` varchar(20) NOT NULL default '',
+  `sdate` bigint(20) NOT NULL default '0',
+  `referer` text NOT NULL,
+  `browser` varchar(255) NOT NULL default '',
+  `os` varchar(50) NOT NULL default '',
+  PRIMARY KEY  (`sid`)
+);
+
+INSERT INTO CPG_config VALUES ('vote_details', '0');
+
+CREATE TABLE CPG_hit_stats (
+  `sid` int(11) NOT NULL auto_increment,
+  `pid` varchar(100) NOT NULL default '',
+  `ip` varchar(20) NOT NULL default '',
+  `search_phrase` varchar(255) NOT NULL default '',
+  `sdate` bigint(20) NOT NULL default '0',
+  `referer` text NOT NULL,
+  `browser` varchar(255) NOT NULL default '',
+  `os` varchar(50) NOT NULL default '',
+  PRIMARY KEY  (`sid`)
+);
+
+INSERT INTO CPG_config VALUES ('hit_details', '0');
+
+INSERT INTO CPG_config VALUES ('browse_batch_add', '1');
+
+INSERT INTO CPG_config VALUES ('custom_header_path', '');
+INSERT INTO CPG_config VALUES ('custom_footer_path', '');
+
+INSERT INTO CPG_config VALUES ('comments_sort_descending', '0');
+
+INSERT INTO CPG_config VALUES ('report_post', '0');
+
+INSERT INTO CPG_config VALUES ('users_can_edit_pics', '0');
+
+INSERT INTO CPG_config VALUES ('allow_unlogged_access', '1');
+
+INSERT INTO CPG_config VALUES ('home_target', 'index.php');
+
+DELETE FROM CPG_config WHERE `name` = 'comment_email_notification';
+DELETE FROM CPG_config WHERE `name` = 'hide_admin_uploader';
+
+
+INSERT INTO CPG_config VALUES ('custom_lnk_name', '');
+INSERT INTO CPG_config VALUES ('custom_lnk_url', '');
+INSERT INTO CPG_config VALUES ('comments_anon_pfx', 'Guest_');
+
+DELETE FROM CPG_config WHERE `name` = 'admin_activate';
+INSERT INTO CPG_config VALUES ('admin_activation', '0');
+ALTER TABLE CPG_pictures CHANGE `mtime` `mtime` DATETIME;
+
+DELETE FROM CPG_exif;
+
+#
+# Remove support for random keying that has been abandoned.
+#
+DELETE FROM CPG_config WHERE `name` = 'randpos_interval';
+ALTER TABLE CPG_pictures DROP INDEX `randpos`;
+ALTER TABLE CPG_pictures DROP `randpos`;
+
+# MySQL 5 compat fix
+ALTER TABLE `CPG_pictures` CHANGE `mtime` `mtime` DATETIME NOT NULL DEFAULT '0000-00-00 00:00:00';
