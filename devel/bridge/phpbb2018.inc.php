@@ -191,7 +191,7 @@ class cpg_udb extends core_udb {
 		$cpg = parse_url($CONFIG['site_url']);
 		$bb = parse_url($this->boardurl);
 		$levels = count(explode('/', $bb['path'])) - 1;
-		$redirect = str_repeat('..', $levels) . rtrim($cpg['path'], '/') . '/';
+		$redirect = str_repeat('../', $levels) . rtrim($cpg['path'], '/') . '/';
 
 		$this->redirect("/login.php?redirect=$redirect");
 	}
