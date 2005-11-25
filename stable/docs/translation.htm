@@ -1,7 +1,7 @@
 <!doctype html public "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<title>Coppermine Photo Gallery 1.3.x - Translator's Guide</title>
+<title>Coppermine Photo Gallery - Translator's Guide</title>
 <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
 <style type="text/css">
 
@@ -87,14 +87,14 @@ $Id$
   <tr>
     <td>
 
-<h1>Coppermine Photo Gallery 1.3.x - Translator's Guide</h1>
+<h1>Coppermine Photo Gallery - Translator's Guide</h1>
 
 
 
 
 <h2>Translators wanted!</h2>
-<p>One of the major advantages of Coppermine is the fact that all page content can be displayed in different languages, with translations being only in one file (inside the <i>lang</i> directory within coppermine). If you like Coppermine and you want to give something back to the community, why don't you start a translation of coppermine into your language?</p>
-<p>There are, however, some rules and guidelines for translation outlined in this document...</p>
+<p>One of the major features of a Coppermine photo gallery is the fact that all page content can be displayed in different languages, with translations being contained in one file (located inside of the coppermine <i>lang</i> directory ). If you use Coppermine and feel that you would like to give something back to the community, why not start a translation of coppermine for your language?</p>
+<p>These are the rules and guidelines for translation to help you get started.</p>
 
 <h2>Why translate?</h2>
 <ul>
@@ -110,40 +110,41 @@ $Id$
 <ul>
 <li>Is the language you're looking for already included in the lang-folder of the coppermine package you downloaded?</li>
 <li>Is the language file already available as separate download in the language section of the coppermine project page? Visit <a href="http://sourceforge.net/project/showfiles.php?group_id=89658&package_id=98540">http://sourceforge.net/project/showfiles.php?group_id=89658&package_id=98540</a></li>
-<li>Has someone volunteered to do the translation recently on the Coppermine board thread &quot;<a href="http://coppermine.sourceforge.net/board/index.php?topic=4623.0">[Help wanted]: Translations for CPG1.3.x</a>&quot;? Please read the thread carefully to check if the translation has already been done or is in the works - it'd be a pity if two translators went through all the work submitted two versions of the same language.<br />
-You may find additional info there that didn't make it into this document you're reading...</li>
+<li>Has someone volunteered to do the translation recently on the Coppermine board thread &quot;<a href="http://coppermine-gallery.net/forum/index.php?topic=20355.0">[Help wanted]: Translations for CPG1.4.x</a>&quot;? Please read the thread carefully to check if the translation has already been done or is in the works. We appreciate your intent, and we also value your time, so it'd be a pity if you and another translators went through all the work to submit two versions of the same language.<br />
+You may find also find additional information there that didn't make it into this document ...</li>
 </ul>
 </p>
 <h2>Who can translate?</h2>
-<p>In theory, everybody can, but for the first &quot;phase&quot; of translations when a new version of coppermine comes out, the dev team will contact the translators of pervious versions and ask them to translate the new version as well. Those &quot;original&quot; translators are asked to give a feedback first if they're willing to do the translation (before they actually start to work on the translation); the languages of those who say they're not going to do the &quot;new&quot; translation or from those who don't reply at all will be put on a list on <a href="http://coppermine.sourceforge.net/board/index.php?topic=4623.0">[Help wanted]: Translations for CPG1.3.x</a>; anyone who is ready to do the translation for those &quot;orphaned&quot; languages should reply to the thread and assign the translation to himself.</p>
-<p>If you can speak a language that hasn't been translated yet and that nobody has assigned himself, please assign it to you.</p>
+<p>Anyone with a good grasp of a language can, but when a new version of coppermine is being prepped for released, the dev team will contact the translators of previous versions and ask them to translate for the new version, as well. These &quot;original&quot; translators are requested to advise the development team if they are willing and able to do the translation (before actual work on the translation starts). Languages previously assigned to those who respond that they're unable to do the &quot;new&quot; translation or those assigned to translators that fail to reply, over a prescribed time, will be placed on a list on &quot;<a href="http://coppermine-gallery.net/forum/index.php?topic=20355.0">[Help wanted]: Translations for CPG1.4.x</a>&quot;.  Anyone who is interested and ready to help with the translation for these &quot;orphaned&quot; languages should reply to the thread and assign the translation to him/herself.</p>
+<p>If you are fluent in a language that hasn't been translated yet and hasn't been assigned to anyone, please assign it to yourself.</p>
 
 <h2>Character encoding</h2>
-<p>Many languages have other alphabets than latin, or have additional characters (like &auml; &szlig; &agrave; &aacute; &acirc; &atilde; &aring; &aelig; &ccedil; &thorn; &eth; &oslash;). Many of those special chars have html equivalents (e.g. <i>&amp;auml;</i> for <i>&auml;</i>), but you must <b>not</b> use those html equivalents of your special characters in your translations, as unwanted side-effects may appear with the usage of JavaScript!</p>
+<p>Many languages have special alphabets other than the latin set, or have additional characters (like &auml; &szlig; &agrave; &aacute; &acirc; &atilde; &aring; &aelig; &ccedil; &thorn; &eth; &oslash;). Many of these special chars have what are called <i>html equivalents</i> (e.g. <i>&amp;auml;</i> for <i>&auml;</i>), but you <b>must not use</b> these html equivalents of your special language characters when doing your translations, as unwanted side-effects may appear with the usage of JavaScript!</p>
+
 <p>Coppermine adds a charset meta tag to the header of each ouput file to instruct the browser how to render special chars. You should add the name of the charset you're using for your translation at the very start of the language file, e.g.<pre>$lang_charset = 'iso-8859-1';</pre>. You can find a list of charsets at <a href="http://www.w3.org/International/O-charset-lang.html">http://www.w3.org/International/O-charset-lang.html</a>. Whenever possible, you shouldn't choose platform-dependant charset (e.g. <i>windows-1252</i>), but cross-platform ones (e.g. <i>iso-8859-1</i>).</p>
-<p>You'll have noticed that coppermine language files come in two &quot;flavours&quot;: one in ANSI and one in utf-8 encoding. You won't have to take care of the creation of the utf-8 files, so you'll only have to submit a &quot;normal&quot; language file.</p>
+<p>You'll have noticed that coppermine language files come in two &quot;flavors&quot;: one in ANSI and one in utf-8 encoding. You do not have to concern yourself with the creation of the utf-8 version, only have the &quot;standard&quot; language file.</p>
 
 <h2>Editors &amp; Tools</h2>
-<p>In fact you can use nearly any <b>text</b> editor you feel comfortable with that will store your text in ANSI format - in most cases, Windows Notepad (also known as &quot;Editor&quot; in Windows 2000/XP) will be fine.</p>
-<p>To find out wether your favorite text editor correctly handles encoding, just start the translation and translate a few lines (preferrably some that contain special chars from you language), save the translation file and close it. Then try to open it with a plain text editor on your system (e.g. Notepad) - if everything's showing up as expected, you should be fine.</p>
-<p>Recommended Tools: to see what has changed between the language files of cpg1.2.1 and cpg1.3.x, we recommend using a diff viewer that can hilight the differences in both files. Windows users should go for the great diff viewer <a href="http://winmerge.sourceforge.net/">WinMerge</a> (available as freeware; 1.95 MB, localizations available as well): You can even edit the files with this tool (352 of 1152 lines have been added or changed). All new/changed lines have a comment at the end like this one: <tt>//cpg1.3.0</tt></p>
+<p>In fact you can use nearly any <b>text</b> editor you feel comfortable with that will allow you to save your text in the ANSI format - Windows Notepad (also known as &quot;Editor&quot; in Windows 2000/XP) will do just fine.</p>
+<p>To determine whether or not your favorite text editor can correctly handle the necessary encoding, start the translation by translating only a few lines (preferrably some that contain special chars from you language), save the translation file and close it. Then try to open it with a plain text editor on your system (e.g. Notepad) - if everything displays as expected, your editor should work fine.</p>
+<p>Recommended Tools: to see what has changed between the language files of cpg1.3.x and cpg1.4.x, we recommend using a diff viewer that can highlight the differences in both files. Windows users should opt for the great, changes in file viewer <a href="http://winmerge.sourceforge.net/">WinMerge</a> (available as freeware; 1.95 MB, localizations available as well): You can even edit the files with this tool (352 of 1152 lines have been added or changed). All new/changed lines have a comment at the end like this one: <tt>//cpg1.3.0</tt></p>
 
 <h2>Full translations only</h2>
-<p>For the last version of coppermine we used to send out only the lines that had changed in the language files from previous versions to the translators. Although this seemed to be a very easy solution in the first place we later discovered that this method has severe drawbacks:
+<p>Up until version 1.2 of coppermine we only sent out the lines that had changed in the language files from previous versions to the translators. Although this seemed to be a very easy solution and approach, we soon discovered that this method had severe drawbacks:
 <ul>
-<li>The translators can't test their code immediately - if only one single quote is missing, the whole file won't work</li>
-<li>Corrections had to be send back on forth between the dev team and the translators very often</li>
-<li>The dev team had to merge the old language files with the bits that were newly translated - this resulted in a huge additional workload for the dev team, slowing down the new release and keeping them from what they do best</li>
-<li>The translators don't know the context some lines appeared in, making it impossible to give correct translations</li>
+<li>The translators couldn't test their code immediately - if a single quote is missing from the language file, the entire file won't work</li>
+<li>Too often, corrections had to be sent back and forth between the dev team and the translators</li>
+<li>The dev team had to merge the previous language files with the bits that were newly translated - this resulted in an additional heavy workload for the dev team, slowing down the new release and keeping them from what they do best</li>
+<li>The translators didn't know the exact context that some lines appeared in, making it impossible to provide the proper translations</li>
 </ul>
 </p>
-<p>For those reasons we decided to provide the translators with the most recent english language file along with all existing language files of previous versions for reference and the guide you're currently reading, asking them (the translators: <i>you</i> in this particular case) to translate the whole file. Of course, you can (and are even encouraged to) take a look at the language files from older versions and adopt the stuff that is already in the old version.</p>
+<p>For these reasons we now provide the translators with the most recent english language file along with all existing language files of previous versions as references. Additionally we provide this guide that you are currently reading, asking them (the translators: <i>you</i> in this particular case) to translate the file in its entirety. Of course, you can (and are even encouraged to) take a look at the language files from older versions and adopt (port) the contents that are already in the old version whenever they apply.</p>
 
 <h2>Step by step</h2>
-<p>Here are the steps for the translation in detail:</p>
+<p>Here are the detailed steps for translating coppermine language files:</p>
 <ol>
 <li>open english.php with your text editor</li>
-<li>Save the file immediately after opening with a different filename (to make sure you can always take another look at the unmodified english language file for reference) - the filenames of the language files will decide how the language name will look in the dropdown list of the coppermine backend - use the english name of your language as filename, everything lowercase, no spaces or special chars (except &quot;-&quot; and &quot;_&quot; and the dot to mark the extension. If the language name itself isn't self-explanatory, add info with an underscore.<br />
+<li>Save the file immediately after opening under a different filename (to make sure you always have an unmodified english language file that can be used as a reference) - the filenames of the language files will decide how the language name will look in the dropdown list of the coppermine backend - use the english(roman characters)name of your language as the final filename, using lowercase in the name with no spaces or special chars (except &quot;-&quot; and &quot;_&quot; and the dot to mark the extension. If the language name itself isn't self-explanatory, add info with an underscore.<br />
 <b>Examples</b>: german.php, italian.php, greek.php, brazilian_portuguese.php</li>
 <li>Edit the header info (example content is <span class="example">highlighted</span>):<br />
 <tt>// info about translators and translated language</tt><br />
@@ -152,12 +153,12 @@ You may find additional info there that didn't make it into this document you're
 <tt>'lang_name_native' => '<span class="example">Deutsch</span>',</tt>The name of your language in your mother tongue<br />
 <tt>'lang_country_code' => '<span class="example">de</span>',</tt>The country code representing your language. If your language is spoken in several countries, choose the one most people will relate to your language<br />
 <tt>'trans_name'=> '<span class="example">GauGau</span>',</tt>Your name (or rather the name you would like to appear on the credits page)<br />
-<tt>'trans_email' => '',</tt>Your email address you want to appear on the credits page (can be left blank)<br />
+<tt>'trans_email' => '',</tt>If you prefer, your email address, which would normally appear on the credits page, can be left blank<br />
 <tt>'trans_website' => '<span class="example">http://gaugau.de/</span>',</tt>Your website (goes to credit page). If you specify none, your profile page will be displayed instead<br />
 <tt>'trans_date' => '<span class="example">2004-03-17</span>',</tt>The date you translated/last changed the language file<br />
 <tt>);</tt><br />
 Fill in the data you want to appear on the credits page as shown in the example above.</li>
-<li>The coppermine language file actually fills php variables/arrays with content. There are different ways those arrays are being filled - as shown in these examples (stuff that needs to be translated is <span class="example">highlighted</span>):<br />
+<li>The coppermine language file is used to dynamically replace php variables/arrays with the correct content. There are different ways those arrays are being filled - as shown in these examples (stuff that needs to be translated is <span class="example">highlighted</span>):<br />
   <ul style="list-style-type:square" type="square">
   <li>
   <tt>$lang_day_of_week = array('<span class="example">Sun</span>', '<span class="example">Mon</span>', '<span class="example">Tue</span>', '<span class="example">Wed</span>', '<span class="example">Thu</span>', '<span class="example">Fri</span>', '<span class="example">Sat</span>');</tt>A plain list of values in an array. Translate each word inside the quotes.</li>
@@ -167,7 +168,7 @@ Fill in the data you want to appear on the credits page as shown in the example 
         'albums' => '<span class="example">Albums</span>',<br />
         'pictures' => '<span class="example">Files</span>',<br />
 );</tt></li>
-  <li><tt>if (defined('CONFIG_PHP')) $lang_config_data = array(</tt>Cascaded/multi-dimensional arrays. Translate the very first entry in each line.<br /><tt>
+  <li><tt>if (defined('ADMIN_PHP')) $lang_admin_data = array(</tt>Cascaded/multi-dimensional arrays. Translate the very first entry in each line.<br /><tt>
         '<span class="example">General settings</span>',<br />
         array('<span class="example">Gallery name</span>', 'gallery_name', 0),<br />
         array('<span class="example">Gallery description</span>', 'gallery_description', 0),<br />
@@ -181,38 +182,38 @@ Fill in the data you want to appear on the credits page as shown in the example 
 <span class="example">By clicking 'I agree' below you agree to be bound by these conditions.</span><br />
 EOT;</tt>Var definitions using the <a href="http://www.php.net/manual/en/language.types.string.php#language.types.string.syntax.heredoc">heredoc</a> syntax: make sure to only translate the plain text, leaving everything in curled braces and all html tags intact</li>
   </ul>
-<p>Translate the whole language file as described - you'll quickly find your way around, even if you're not a PHP coder.</p>
+<p>Translate the entire language file as described - you'll find your way around in no time, even if you're not a seasoned PHP coder.</p>
 </li>
-<li>Test your translation: upload your language file to the server and browse you gallery, adding and additional parameter <tt>lang=your_language_name</tt> to the URL (e.g. <tt>http://yoursite.tld/coppermine/?lang=german)</tt>. Make sure to test as many aspects as possible from the file, especially creating, renaming and deleting of users,categories, albums, pictures and comments.</li>
-<li>Proof-reading: if you can, let someone else (preferably non-tech user) test your translation as well. You'll be surprised what they will find out...</li>
-<li>Send your translation as attachment to <tt>gaugau AT users DOT sourceforge DOT net</tt>. Please make sure to have a proper subject line saying &quot;Coppermine Translation: XXX language file&quot; (I get so much spam these days - if the subject line doesn't look ok for me I might accidentally delete the email without reading it).<br />
-You can send the attachment as php file or you can put it inside a .zip archive, but please don't use exotic archive formats like .rar</li>
+<li>Test your translation: upload your language file to your server and browse your gallery, adding an additional parameter <tt>lang=your_language_name</tt> to the URL (e.g. <tt>http://yoursite.tld/coppermine/?lang=german)</tt>. Make sure to test as many aspects as possible from the file you creaeted, especially in the creation, renaming and deleting of users,categories, albums, pictures and comments.</li>
+<li>Proof-reading: if you can, let someone else (preferably non-tech user) test your translation as well. You might be surprised as to what they will discover...</li>
+<li>Send your translation as an attachment to <tt>gaugau AT users DOT sourceforge DOT net</tt> ( gaugau@users.sourceforge.net ). Please make sure to include a proper subject line saying &quot;Coppermine Translation: XXX language file&quot; (Devs often receive so much spam mail these days that if the subject line of an email doesn't look appropriate for him/her, the email may be deleted without having ever been read.<br />
+You can send the attachment as a php file or you can put it inside of a .zip archive, but please don't use other exotic archival formats such as .rar, .ace, etc. </li>
 </ol>
 
 <h2>Special issues</h2>
 <h3>Escaping single quotes</h3>
-<p>As you may have noted, all translation strings are put into single quotes - this is the proper way in PHP. If you want your translation to actually contain a single quote (apostrophe), you will have to &quot;tell&quot; PHP that the string that was started with a single quot; doesn't end at the next single quote. This is called <i>escaping</i> in programming languages. PHP uses the backslash (<span class="example">\</span>) to escape characters, that's why it must <b>not</b> be
-<pre>array('Target address for the 'See more pictures' link in e-cards', 'ecards_more_pic_target', 0),</pre>, but
+<p>As you may have already notice, all translation strings are contained between a pair of  single quotes or apostrophes - this is the proper method used in PHP. Therefore, if you want your translation to actually contain a single quote (apostrophe), you must &quot;instruct&quot; PHP that the apostrophe (single quote) contained in a text string is part of the string and not the end of the string. For this purpose, a backslash (<span class="example">\</span>) is used to instruct PHP that the character immediately following it is a "string" character and not part of the PHP code, itself. This is called <i>escaping</i> a character, in programing languages. PHP uses the backslash (<span class="example">\</span>) to escape characters, that's why care must be taken to <b>not</b> do this:
+<pre>array('Target address for the 'See more pictures' link in e-cards', 'ecards_more_pic_target', 0),</pre> <p>but, to do this, instead: </p>
 <pre>array('Target address for the \'See more pictures\' link in e-cards', 'ecards_more_pic_target', 0),</pre></p>
 <h3>Single quotes in JavaScript (//js-alert)</h3>
-<p>Things get even a bit more complicated if the output will not be only in plain HTML, but in JavaScript, as you have to escape the single quote in JavaScript with a backslash as well. That's why I marked the lines in the language file that will be JavaScript in Coppermine output later with a comment at the end of the line, saying <tt>//js-alert</tt>. If you want to have a single quote in the final output, you'll have to add 3 backslashes in front of the single quote, like in this example: <pre>'no_change' => 'Vous n\\\'avez effectué aucun changement !', //js-alert</pre></p>
-<h3>Placeholders with %</h3>
-<p>You'll notice that there are some places in the translation where the text contains a percent-sign (<span class="example">%</span>), followed by a letter. Those combinations mustn't be translated - they'll later be used as specifier arguments for some replacement or formating taking place.</p>
+<p>Things are a bit more complicated if the output is to be used not only in plain HTML, but in JavaScript, as well.  Single quotes that appear in the HTML output of the language file must also be escaped for use in any JavaScript routine with a backslash as well.  That's why specific lines in the language file that will be used as JavaScript in Coppermine's output have been tagged with a comment at the end of the line, which reads: <tt>//js-alert</tt>. If you intend to have a single quote in the final output, you'll have to add 3 backslashes in front of the single quote, as in this example: <pre>'no_change' => 'Vous n\\\'avez effectué aucun changement !', //js-alert</pre></p>
+<h3>Placeholders with " % "</h3>
+<p>You'll also notice that in several places of the language file, there are text that contain a percent-sign (<span class="example">%</span>), followed immediately by a letter. Those combinations must not be translated or separated - they are there intentionally and are used later as specifier arguments, or calls, for variable replacement and/or formating that needs to take place.</p>
 
 <h2>Language versions</h2>
 <h3>Found a typo/spelling error?</h3>
-<p>Maybe a translation for your language has already been done, but you're not happy with it: if there are bugs (spelling errors etc.), first check the <a href="http://sourceforge.net/project/showfiles.php?group_id=89658&package_id=98540">download section</a> if a fixed version has been done already. If not, report on the board along with your suggestion for a fix, like this:<br />
+<p>Maybe a translation for your language has already been done, but you're not happy with it: if there are bugs (spelling errors etc.), first check the <a href="http://sourceforge.net/project/showfiles.php?group_id=89658&package_id=98540">download section</a> to see if a fixed (updated) version has already been submitted. If not, report your finding(s) on the board along with your suggestion for a fix, like this:<br />
 <i>in lang/yourlanguage.php search for</i>
 <pre>  'some_definition' => 'bar foo',</pre>
 <i>and replace with</i>
 <pre>  'some_definition' => 'foo bar',</pre>
 </p>
 <h3>Another translation?</h3>
-<p>Everybody who knows languages knows that there is no such thing as &quot;one correct translation&quot; - there are always different ways to translate words, or whole sentences. Maybe you feel that an existing version of your language file doesn't fit your purpose; probably the translator had another audience /target group, or you want a more formal translation (in many languages there's as well a difference in grammar between formal and casual speech).<br />
-Please do not flame the original translator on the board, but provide an alternative translation along with details on what you changed and for whom your version is intended.</p>
+<p>Everybody who knows languages knows that there is no such thing as &quot;one correct translation&quot; - there are always differences in the way we to translate expressions, or whole sentences. Maybe you feel that an existing version of your language file doesn't suit your purpose; perhaps the translator had another audience /target group in mind, or you want a more formal translation (in many languages there are signifcant difference in grammar and expression between formal and casual speech or text).<br />
+Please do not flame (berate) the original translator on the board, but provide an alternative translation along with details on what you changed and for what target audience your version is intended.</p>
 
 <h2>Work in progress</h2>
-<p>Coppermine's a work in progress - as most web-based projects. Maybe your copy of the english.php (that should be the base for your translation) is outdated. That's why it's recommended that you always take a look at the <a href="http://sourceforge.net/project/showfiles.php?group_id=89658&package_id=98540">download section</a> and get the most recent english language file (translator version) available before starting your translation (and maybe and updated version of this document as well, since there may be questions turning up later, after initial release of this document). Remember: if an option is not translated, it won't be visible in your language at all.</p>
+<p>Coppermine, like everything else online, is a work in progress. Your copy of the english.php (that should always be used as the base reference file for your translation) may already be outdated. That's why it is critical that you always refer to the <a href="http://sourceforge.net/project/showfiles.php?group_id=89658&package_id=98540"> download section</a> or <a href="http://cvs.sourceforge.net/viewcvs.py/coppermine/devel/lang/"> CVS - Dev- Language Section </a>to make sure that you have the most recent english language file (translator version) on hand before starting your translation (and maybe even the most updated version of this document, as well, as there may be many questions along the way that need to be addressed in this document after the initial release of this document). Remember: if an option/replacement string is not translated, it will not be visible in your language at all.</p>
 
 <h2>Initial translation for release</h2>
 <p>When preparing for a release, the dev team sets up a feature freeze to allow the translators to submit their translations, halting the coppermine development during that period. If you're willing to translate, do so as soon as possible and send your translation back immediately to ensure that the new version of coppermine can be released <b>with</b> your language file.</p>
