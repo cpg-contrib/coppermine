@@ -14,7 +14,7 @@
 // the Free Software Foundation; either version 2 of the License, or         //
 // (at your option) any later version.                                       //
 // ------------------------------------------------------------------------- //
-// ENCODING CHECK; SHOULD BE YEN BETA MU: • ﬂ µ
+// ENCODING CHECK; SHOULD BE YEN BETA MU: ¬• √ü ¬µ
 // ------------------------------------------------------------------------- //
 // $Id$
 // ------------------------------------------------------------------------- //
@@ -24,13 +24,13 @@ $lang_translation_info = array(
   'lang_name_english' => 'Galician [Gallego]',
   'lang_name_native' => 'Galego',
   'lang_country_code' => 'es_gln',
-  'trans_name'=> 'Jes˙s Quintana',
+  'trans_name'=> 'Jes√∫s Quintana',
   'trans_email' => 'info@quinti.net',
   'trans_website' => 'http://www.quinti.net',
   'trans_date' => '11/08/2005/', 
 );
 
-$lang_charset = 'iso-8859-1';
+$lang_charset = 'utf-8';
 $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 
 // shortcuts for Byte, Kilo, Mega
@@ -66,35 +66,35 @@ $lang_meta_album_names = array(
 	'lastup' => 'Derradeiras Fotos Engadidas',
 	'lastalb'=> 'Derradeiros albums Atualizados',
 	'lastcom' => 'Derradeiros comentarios',
-	'topn' => 'Fotos M·is Visitadas',
-	'toprated' => 'Fotos con m·is Popularidade',
+	'topn' => 'Fotos M√°is Visitadas',
+	'toprated' => 'Fotos con m√°is Popularidade',
 	'lasthits' => 'Derradeiras Fotos Visitadas',
 	'search' => 'Resultado da Procura',
 	'favpics'=> 'Fotos Favoritas', //cpg1.3.0
 );
 
 $lang_errors = array(
-	'access_denied' => 'Vostede non ten permiso para visualizar esta p·xina.',
-	'perm_denied' => 'Vostede non ten permiso para executar esta operaciÛn.',
-	'param_missing' => 'Script executado sen os par·metros requeridos.',
+	'access_denied' => 'Vostede non ten permiso para visualizar esta p√°xina.',
+	'perm_denied' => 'Vostede non ten permiso para executar esta operaci√≥n.',
+	'param_missing' => 'Script executado sen os par√°metros requeridos.',
 	'non_exist_ap' => 'O album ou foto que Vostede seleccionou non foi atopado!',
-	'quota_exceeded' => 'A cuota de espazo para almacenamento excedeu o limite<br /><br />Vostede ten [quota]KB de espazo, as suas fotos actualmente utilizan [space]KB, engadir este arquivo ir· saturar  a sua cota permitida.',
-	'gd_file_type_err' => 'Estamos a usar un sistema que sÛ permite fotos JPEG e PNG.',
-	'invalid_image' => 'A foto que Vostede enviou est· corrupta ou non pode ser 
+	'quota_exceeded' => 'A cuota de espazo para almacenamento excedeu o limite<br /><br />Vostede ten [quota]KB de espazo, as suas fotos actualmente utilizan [space]KB, engadir este arquivo ir√° saturar  a sua cota permitida.',
+	'gd_file_type_err' => 'Estamos a usar un sistema que s√≥ permite fotos JPEG e PNG.',
+	'invalid_image' => 'A foto que Vostede enviou est√° corrupta ou non pode ser 
 interpretada pola biblioteca GD',
 	'resize_failed' => 'non foi posible Crear a miniatura ou redimensionar a foto.',
 	'no_img_to_display' => 'sen fotos para amosar',
 	'non_exist_cat' => 'A categoria seleccionada non existe',
-	'orphan_cat' => 'A categoria ten un paramento que non existe, v· para o administrador de categorias e corrixa o problema.',
-	'directory_ro' => 'O directorio \'%s\' non È grabable, as fotos non poden ser borradas',
+	'orphan_cat' => 'A categoria ten un paramento que non existe, v√° para o administrador de categorias e corrixa o problema.',
+	'directory_ro' => 'O directorio \'%s\' non √© grabable, as fotos non poden ser borradas',
 	'non_exist_coment' => 'O comentario seleccionado non existe.',
 	'pic_in_invalid_album' => 'Foto nun album inexisintente (%s)!?',
 	'banned' => 'Vstede esta baneado neste site.',
-	'not_with_udb' => 'Esta funcion esta desactivada na Galeria porque esta integrada cun programa de forum. O que Vostede est· tentando facer non È soportado nesta ConfiguraciÛn, ou a funcion debe ser chamada polo programa de forum.',
+	'not_with_udb' => 'Esta funcion esta desactivada na Galeria porque esta integrada cun programa de forum. O que Vostede est√° tentando facer non √© soportado nesta Configuraci√≥n, ou a funcion debe ser chamada polo programa de forum.',
 	'offline_title' => 'Offline.', //cpg1.3.0
-	'offline_text' => 'Estamos offline - intente entrar novamente m·is tarde', 
+	'offline_text' => 'Estamos offline - intente entrar novamente m√°is tarde', 
 //cpg1.3.0
-	'ecards_empty' => 'non hai nengun rexistro de ecards para visualizar. Verifique se Vostede activou a opcion de Loguear os Ecards na ConfiguraciÛn!', //cpg1.3.0
+	'ecards_empty' => 'non hai nengun rexistro de ecards para visualizar. Verifique se Vostede activou a opcion de Loguear os Ecards na Configuraci√≥n!', //cpg1.3.0
 	'action_failed' => 'erro. non foi posible Procesar o seu pedido.', //cpg1.3.0
 	'no_zip' => 'As bibliotecas necesarias para Procesar os arquivos en ZIP non estan disponibles. Por favor contacte co Administrador do site.', //cpg1.3.0
 	'zip_type' => 'Vostede non ten permiso para enviar arquivos ZIP.', //cpg1.3.0
@@ -102,7 +102,7 @@ interpretada pola biblioteca GD',
 
 
 $lang_bbcode_help = 'BBCode: Estes codigos poden ser de utilidade: 
-<li>[b]<b>Negrita</b>[/b]</li> <li>[i]<i>It·lico</i>[/i]</li> 
+<li>[b]<b>Negrita</b>[/b]</li> <li>[i]<i>It√°lico</i>[/i]</li> 
 <li>[url=http://www.oseusitio.oquesexa/]Url Text[/url]</li> 
 <li>[email]nome@provedor.com[/email]</li>'; //cpg1.3.0
 
@@ -113,10 +113,10 @@ $lang_bbcode_help = 'BBCode: Estes codigos poden ser de utilidade:
 //
 
 $lang_main_menu = array(
-	'alb_list_title' => 'Ir · lista de albums',
+	'alb_list_title' => 'Ir √° lista de albums',
 	'alb_list_lnk' => 'Albums',
-	'my_gal_title' => 'Ir para a miÒa Galeria Persoal',
-	'my_gal_lnk' => 'MiÒa Galeria',
+	'my_gal_title' => 'Ir para a mi√±a Galeria Persoal',
+	'my_gal_lnk' => 'Mi√±a Galeria',
 	'my_prof_lnk' => 'Meus datos',
 	'adm_mode_title' => 'Trocar para modo Admin',
 	'adm_mode_lnk' => 'Modo Admin',
@@ -130,20 +130,20 @@ $lang_main_menu = array(
 	'logout_lnk' => 'Logout',
 	'lastup_lnk' => 'Derradeiros envios',
 	'lastcom_lnk' => 'Derradeiros comentarios',
-	'topn_lnk' => 'M·is Vistas',
-	'toprated_lnk' => 'Fotos M·is Populares',
+	'topn_lnk' => 'M√°is Vistas',
+	'toprated_lnk' => 'Fotos M√°is Populares',
 	'search_lnk' => 'Procurar',
 	'fav_lnk' => 'Meus Favoritos',
 	'memberlist_title' => 'Lista de Membros', //cpg1.3.0
 	'memberlist_lnk' => 'Membros', //cpg1.3.0
-	'faq_title' => 'Cuestions m·is Frecontes sobre a Galeria', //cpg1.3.0
+	'faq_title' => 'Cuestions m√°is Frecontes sobre a Galeria', //cpg1.3.0
 	'faq_lnk' => 'FAQ', //cpg1.3.0
 
 );
 
 $lang_gallery_admin_menu = array(
 	'upl_app_lnk' => 'Aprobar Fotos',
-	'config_lnk' => 'ConfiguraciÛns',
+	'config_lnk' => 'Configuraci√≥ns',
 	'albums_lnk' => 'Albums',
 	'categories_lnk' => 'Categorias',
 	'users_lnk' => 'Usuarios',
@@ -168,14 +168,14 @@ $lang_cat_list = array(
 );
 
 $lang_album_list = array(
-	'album_on_page' => '%d album(s) na(s) %d p·xina(s)'
+	'album_on_page' => '%d album(s) na(s) %d p√°xina(s)'
 );
 
 $lang_thumb_view = array(
 	'date' => 'DATA',
 	//Ordenar por arquivo e titulo
 	'name' => 'ARQUIVO',
-	'title' => 'TÕTULO',
+	'title' => 'T√çTULO',
 	'sort_da' => 'Ordenado por data crecente',
 	'sort_dd' => 'Ordenado por data decrecente',
 	'sort_na' => 'Ordenado por nome ascendente',
@@ -183,27 +183,27 @@ $lang_thumb_view = array(
 	'sort_ta' => 'Ordenado por titulo ascendente',
 	'sort_td' => 'Ordenado por titulo descendente',
 	'download_zip' => 'Baixar arquivo ZIP co seu favoritos', //cpg1.3.0
-	'pic_on_page' => '%d arquivos en %d p·xina',
-	'user_on_page' => '%d usuario(s) na(s) %d p·xina(s)'
+	'pic_on_page' => '%d arquivos en %d p√°xina',
+	'user_on_page' => '%d usuario(s) na(s) %d p√°xina(s)'
 );
 
 $lang_img_nav_bar = array(
-	'thb_title' => 'Retornar · p·xina de miniaturas',
-	'pic_info_title' => 'Amosar/Esconder informaciÛns do arquivo',
+	'thb_title' => 'Retornar √° p√°xina de miniaturas',
+	'pic_info_title' => 'Amosar/Esconder informaci√≥ns do arquivo',
 	'slideshow_title' => 'SlideShow',
 	'ecard_title' => 'enviar esta foto como e-card (postal)',
 	'ecard_disabled' => 'os e-cards estan deshabilitados',
 	'ecard_disabled_msg' => 'Vostede non ten permiso para enviar e-cards',
 	'prev_title' => 'Ver foto anterior',
-	'next_title' => 'Ver prÛxima foto',
+	'next_title' => 'Ver pr√≥xima foto',
 	'pic_pos' => 'FOTO %s - TOTAL %s',
 );
 
 $lang_rate_pic = array(
 	'rate_this_pic' => 'Dea sua nota para esta foto ',
 	'no_votes' => '(nengun voto hata o momento)',
-	'rating' => '(MÈdia de votos : %s / 5 dos %s votos)',
-	'rubbish' => 'PÈsima',
+	'rating' => '(M√©dia de votos : %s / 5 dos %s votos)',
+	'rubbish' => 'P√©sima',
 	'poor' => 'Ruin',
 	'fair' => 'Satisfactoria',
 	'good' => 'Boa',
@@ -228,14 +228,14 @@ $lang_rate_pic = array(
 $lang_cpg_die = array(
 	INFORMATION => $lang_info,
 	ERROR => $lang_error,
-	CRITICAL_ERROR => 'ERRO CRÕTICO',
+	CRITICAL_ERROR => 'ERRO CR√çTICO',
 	'file' => 'Arquivo: ',
-	'line' => 'LiÒa: ',
+	'line' => 'Li√±a: ',
 );
 
 $lang_display_thbnails = array(
 	'filename' => 'Arquivo : ',
-	'filesize' => 'tamaÒo : ',
+	'filesize' => 'tama√±o : ',
 	'dimensions' => 'Dimension : ',
 	'date_added' => 'Data de Envio : '
 );
@@ -247,10 +247,10 @@ $lang_get_pic_data = array(
 );
 
 $lang_cpg_debug_output = array(
-  'debug_info' => 'informaciÛns de Debug', //cpg1.3.0
+  'debug_info' => 'informaci√≥ns de Debug', //cpg1.3.0
   'select_all' => 'Seleccionar Todo', //cpg1.3.0
-  'copy_and_paste_instructions' => 'Se Vostede vai pedir axuda Û soporte do 
-coppermine, copie e pegue isto no seu pedido de axuda. Aseg˙rese de ter 
+  'copy_and_paste_instructions' => 'Se Vostede vai pedir axuda √≥ soporte do 
+coppermine, copie e pegue isto no seu pedido de axuda. Aseg√∫rese de ter 
 eliminadas todas as contrasinais que apareceran antes de enviar.', //cpg1.3.0
   'phpinfo' => 'Amosar phpinfo', //cpg1.3.0
 );
@@ -288,7 +288,7 @@ $lang_theme_selection = array(
 //
 
 if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
-	'Exclamation' => 'ExclamaciÛn',
+	'Exclamation' => 'Exclamaci√≥n',
 	'Question' => 'Cuestion',
 	'Very Happy' => 'Moi Feliz',
 	'Smile' => 'Sorrisa',
@@ -297,7 +297,7 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 	'Shocked' => 'Chocado',
 	'Confused' => 'Confuso',
 	'comol' => 'Legal',
-	'Laughing' => 'RisoÒo',
+	'Laughing' => 'Riso√±o',
 	'Mad' => 'Tolo',
 	'Razz' => 'Razz',
 	'embarassed' => 'embarazado',
@@ -327,8 +327,8 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 //
 
 if (defined('ADMIN_PHP')) $lang_admin_php = array(
-	0 => 'Saindo da AdministraciÛn...',
-	1 => 'Entrando na AdministraciÛn...',
+	0 => 'Saindo da Administraci√≥n...',
+	1 => 'Entrando na Administraci√≥n...',
 );
 
 // ------------------------------------------------------------------------- 
@@ -343,10 +343,10 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 	'no_change' => 'Vostede non fixo nengun troco!',
 	'new_album' => 'Novo album',
 	'confirm_delete1' => 'ten a certeza que desexa remover este album ?',
-	'confirm_delete2' => '\nTodas as fotos e comentarios ser·n perdidos !',
+	'confirm_delete2' => '\nTodas as fotos e comentarios ser√°n perdidos !',
 	'select_first' => 'Primeiro Seleccione un album',
 	'alb_mrg' => 'Administrador de albums',
-	'my_gallery' => '* A miÒa Galeria *',
+	'my_gallery' => '* A mi√±a Galeria *',
 	'no_category' => '* sen categoria *',
 	'delete' => 'Apagar',
 	'new' => 'Novo',
@@ -361,22 +361,22 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 //
 
 if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
-	'miss_param' => 'Parametros requeridos para operaciÛn \'%s\' non postos 
+	'miss_param' => 'Parametros requeridos para operaci√≥n \'%s\' non postos 
 !',
 	'unknown_cat' => 'A categoria seleccionada non existe no noso banco de 
 datos',
-	'usergal_cat_ro' => 'A categoria do usuario non pode ser excluÌda !',
+	'usergal_cat_ro' => 'A categoria do usuario non pode ser exclu√≠da !',
 	'manage_cat' => 'administrar categorias',
 	'confirm_delete' => 'Vostede ten a certeza que desexa ELIMINAR esta categoria ? 
 ',
 	'category' => 'Categoria',
-	'operations' => 'OperaciÛns',
+	'operations' => 'Operaci√≥ns',
 	'move_into' => 'Mover a',
 	'update_create' => 'actualizar/Crear categoria',
 	'parent_cat' => 'Categoria Pai',
-	'cat_title' => 'TÌtulo da categoria',
+	'cat_title' => 'T√≠tulo da categoria',
 	'cat_thb' => 'Miniatura da categoria', //cpg1.3.0
-	'cat_desc' => 'DescripciÛn da categoria',
+	'cat_desc' => 'Descripci√≥n da categoria',
 );
 
 // ------------------------------------------------------------------------- 
@@ -386,33 +386,33 @@ datos',
 //
 
 if (defined('CONFIG_PHP')) $lang_config_php = array(
-	'title' => 'ConfiguraciÛn',
-	'restore_cfg' => 'Restaurar ConfiguraciÛn por defecto',
-	'save_cfg' => 'Gardar nova ConfiguraciÛn',
+	'title' => 'Configuraci√≥n',
+	'restore_cfg' => 'Restaurar Configuraci√≥n por defecto',
+	'save_cfg' => 'Gardar nova Configuraci√≥n',
 	'notes' => 'Notas',
-	'info' => 'InformaciÛn',
-	'upd_success' => 'ConfiguraciÛns atualizadas!',
-	'restore_success' => 'ConfiguraciÛn padre restaurada',
+	'info' => 'Informaci√≥n',
+	'upd_success' => 'Configuraci√≥ns atualizadas!',
+	'restore_success' => 'Configuraci√≥n padre restaurada',
 	'name_a' => 'Nome ascendente',
 	'name_d' => 'Nome descendente',
-	'title_a' => 'TÌtulo ascendente',
-	'title_d' => 'TÌtulo descendente',
+	'title_a' => 'T√≠tulo ascendente',
+	'title_d' => 'T√≠tulo descendente',
 	'date_a' => 'Data Crecente',
 	'date_d' => 'Data Decrecente',
-	'th_any' => 'Aspecto M·ximo',
+	'th_any' => 'Aspecto M√°ximo',
 	'th_ht' => 'Altura',
 	'th_wd' => 'Ancho',
 	'label' => 'etiqueta', //cpg1.3.0
 	'item' => 'item', //cpg1.3.0
 	'debug_everyone' => 'Todos', //cpg1.3.0
-	'debug_admin' => 'sÛ o admin', //cpg1.3.0
+	'debug_admin' => 's√≥ o admin', //cpg1.3.0
         );
 
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
-	'ConfiguraciÛns xerais',
+	'Configuraci√≥ns xerais',
 	array('Nome da Galeria', 'gallery_name', 0),
-	array('DescripciÛn da Galeria', 'gallery_description', 0),
+	array('Descripci√≥n da Galeria', 'gallery_description', 0),
 	array('email do Administrador', 'gallery_admin_email', 0),
 	array('URL da Galeria (para aparecer no ecard e no link directo para a
 imaxe)', 'ecards_more_pic_target', 0),
@@ -421,83 +421,83 @@ imaxe)', 'ecards_more_pic_target', 0),
 	array('Permitir download de ZIP dos favoritos', 'enable_zipdownload', 1), 
 //cpg1.3.0
 
-	'Idioma, temas &amp; ConfiguraciÛn de Caracteres',
+	'Idioma, temas &amp; Configuraci√≥n de Caracteres',
 	array('Idioma', 'lang', 5),
 	array('tema', 'theme', 6),
 	array('Amosar lista de idiomas', 'language_list', 1), //cpg1.3.0
 	array('Amosar bandeiras en vez dos nomes', 'language_flags', 8), 
 //cpg1.3.0
-	array('Amosar &quot;resetar&quot; na selecciÛn de idioma', 'language_reset', 
+	array('Amosar &quot;resetar&quot; na selecci√≥n de idioma', 'language_reset', 
 1), //cpg1.3.0
 	array('Amosar a lista de temas', 'theme_list', 1), //cpg1.3.0
-	array('Amosar &quot;resetar&quot; na selecciÛn de tema', 'theme_reset', 1), 
+	array('Amosar &quot;resetar&quot; na selecci√≥n de tema', 'theme_reset', 1), 
 //cpg1.3.0
 	array('Amosar FAQ', 'display_faq', 1), //cpg1.3.0
 	array('Amosar axuda para o bbcode', 'show_bbcode_help', 1), //cpg1.3.0
-	array('CodificaciÛn de Caracteres', 'charset', 4), //cpg1.3.0
+	array('Codificaci√≥n de Caracteres', 'charset', 4), //cpg1.3.0
 
 
-	'VisualizaciÛn da Lista de albums',
+	'Visualizaci√≥n da Lista de albums',
 	array('Ancho da tabela principal (en pixels ou %)', 'main_table_width', 
 0),
 	array('numero de Niveis de categorias para visualizar', 'subcat_level', 0),
 	array('numero de albums para visualizar', 'albums_per_page', 0),
 	array('numero de columnas para a lista de albums', 'album_list_cols', 0),
-	array('tamaÒo das miniaturas en pixels', 'alb_list_thumb_size', 0),
-	array('ConteÌdo da p·xina principal', 'main_page_layout', 0),
+	array('tama√±o das miniaturas en pixels', 'alb_list_thumb_size', 0),
+	array('Conte√≠do da p√°xina principal', 'main_page_layout', 0),
 	array('Amosar o primeiro nivel das miniaturas do album nas 
 categorias','first_level',1),
 
-	'VisualizaciÛn das miniaturas',
-	array('numero de columnas na p·xina das miniaturas', 'thumbcols', 0),
-	array('numero de liÒas na p·xina das miniaturas', 'thumbrows', 0),
-	array('numero m·ximo de tabelas', 'max_tabs', 0),
+	'Visualizaci√≥n das miniaturas',
+	array('numero de columnas na p√°xina das miniaturas', 'thumbcols', 0),
+	array('numero de li√±as na p√°xina das miniaturas', 'thumbrows', 0),
+	array('numero m√°ximo de tabelas', 'max_tabs', 0),
 	array('Subtitulo da foto (xuntamente co titulo) abaixo da miniatura', 
 'caption_in_thumbview', 1),
-	array('Amosar o numero de visualizaciÛn embaixo da miniatura', 
+	array('Amosar o numero de visualizaci√≥n embaixo da miniatura', 
 'views_in_thumbview', 1), //cpg1.3.0
 	array('Total de comentarios abaixo da miniatura', 'display_coment_count', 
 1),
 	array('Amosar o nome de quen enviou enbaixo da miniatura', 
 'display_uploader', 1), //cpg1.3.0
-	array('Modo de organizaciÛn das fotos', 'default_sort_order', 3),
+	array('Modo de organizaci√≥n das fotos', 'default_sort_order', 3),
 	array('numero minimo de votos para unha foto', 'min_votes_for_rating', 0),
 
-	'VisualizaciÛn das Fotos &amp; ConfiguraciÛn dos comentarios',
-	array('Anchura da Tabela para visualizaciÛn das fotos (en pixels ou %)', 
+	'Visualizaci√≥n das Fotos &amp; Configuraci√≥n dos comentarios',
+	array('Anchura da Tabela para visualizaci√≥n das fotos (en pixels ou %)', 
 'picture_table_width', 0),
-	array('Amosar informaciÛns da foto por padre', 'display_pic_info', 1),
+	array('Amosar informaci√≥ns da foto por padre', 'display_pic_info', 1),
 	array('Censurar palabras nos comentarios', 'filter_bad_words', 1),
-	array('activar cariÒas', 'enable_smilies', 1),
+	array('activar cari√±as', 'enable_smilies', 1),
 	array('Permitir comentarios consecutivos vindo do mesmo usuario (desactivar 
 proteccion de flood)', 'disable_comemt_flood_protect', 1), //cpg1.3.0
-	array('tamaÒo m·ximo para a DescripciÛn dunha foto', 'max_img_desc_length', 
+	array('tama√±o m√°ximo para a Descripci√≥n dunha foto', 'max_img_desc_length', 
 0),
-	array('numero m·ximo de caracteres nunha palabra', 'max_co_wlength', 0),
-	array('numero m·ximo de liÒas nun comentario', 'max_co_lines', 0),
-	array('tamaÒo m·ximo dun comentario', 'max_co_size', 0),
+	array('numero m√°ximo de caracteres nunha palabra', 'max_co_wlength', 0),
+	array('numero m√°ximo de li√±as nun comentario', 'max_co_lines', 0),
+	array('tama√±o m√°ximo dun comentario', 'max_co_size', 0),
 	array('Amosar tira de filme abaixo da foto', 'display_film_strip', 1),
 	array('numero de items na tira de filme', 'max_film_strip_items', 0),
-	array('Notificar Û admin sobre comentarios por email', 
+	array('Notificar √≥ admin sobre comentarios por email', 
 'email_coment_notification', 1), //cpg1.3.0
 	array('Intervalo en milisegundos para o Slideshow (1 segundo = 1000 
 milisegundos)', 'slideshow_interval', 0), //cpg1.3.0
 
-	'ConfiguraciÛns de Fotos e Miniaturas',
+	'Configuraci√≥ns de Fotos e Miniaturas',
 	array('Calidade das fotos en JPEG', 'jpeg_qual', 0),
-	array('tamaÒo m·ximo da dimenson das miniaturas <a href="#notice2" 
+	array('tama√±o m√°ximo da dimenson das miniaturas <a href="#notice2" 
 class="clickable_option">**</a>', 'thumb_width', 0),
-	array('Usar dimenson ( Anchura ou altura ou Aspecto M·ximo para miniaturas 
+	array('Usar dimenson ( Anchura ou altura ou Aspecto M√°ximo para miniaturas 
 )<b>**</b>', 'thumb_use', 7),
 	array('Fotos intermediarias','make_intermediate',1),
-	array('Anchura ou altura m·xima dunha foto intermediaria <a 
+	array('Anchura ou altura m√°xima dunha foto intermediaria <a 
 href="#notice2" class="clickable_option">**</a>', 'picture_width', 0),
-	array('tamaÒo m·ximo dunha foto enviada por upload (KB)', 'max_upl_size', 
+	array('tama√±o m√°ximo dunha foto enviada por upload (KB)', 'max_upl_size', 
 0),
-	array('Anchura ou altura m·xima dunha foto enviada por upload (en 
+	array('Anchura ou altura m√°xima dunha foto enviada por upload (en 
 pixels)', 'max_upl_width_height', 0),
 
-	'ConfiguraciÛns avanzadas das fotos e das miniaturas',
+	'Configuraci√≥ns avanzadas das fotos e das miniaturas',
 	array('Amosar icono do album privado para un usuario non 
 logueado','show_private',1), //cpg1.3.0
 	array('Caracteres proibidos nos arquivos', 'forbiden_fname_char',0),
@@ -506,12 +506,12 @@ logueado','show_private',1), //cpg1.3.0
 	array('Tipos de videos permitidos', 'allowed_mov_types',0), //cpg1.3.0
 	array('Tipos de audios permitidos', 'allowed_snd_types',0), //cpg1.3.0
 	array('Tipos de documentos permitidos', 'allowed_doc_types',0), //cpg1.3.0
-	array('MÈtodo para redimensionar as fotos','thumb_method',2),
+	array('M√©todo para redimensionar as fotos','thumb_method',2),
 	array('Cartafol do utilidade para \'converter\' fotos imagemagick (exemplo /usr/bin/X11/)', 'impath', 0),
-	//array('Tipos de fotos permitidas (valido sÛ para imagemagick)', 'allowed_img_types',0),
-	array('LiÒa de comandos para o imagemagick', 'im_options', 0),
-	array('Amosar a informaciÛn EXIF dos arquivos JPEG?', 'read_exif_data', 1),
-	array('Amosar a informaciÛn IPTC dos arquivos JPEG?', 'read_iptc_data', 1), //cpg1.3.0
+	//array('Tipos de fotos permitidas (valido s√≥ para imagemagick)', 'allowed_img_types',0),
+	array('Li√±a de comandos para o imagemagick', 'im_options', 0),
+	array('Amosar a informaci√≥n EXIF dos arquivos JPEG?', 'read_exif_data', 1),
+	array('Amosar a informaci√≥n IPTC dos arquivos JPEG?', 'read_iptc_data', 1), //cpg1.3.0
 	array('Cartafol do album <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0),
 	array('Cartafol para as fotos dos usuarios <b>*</b>', 'userpics', 0),
 	array('Prefixo para as fotos intermediarias <b>*</b>', 'normal_pfx', 0),
@@ -519,29 +519,29 @@ logueado','show_private',1), //cpg1.3.0
 	array('permiso CHMOD para os directorios', 'default_dir_mode', 0),
 	array('permiso CHMOD para as fotos', 'default_file_mode', 0),
 
-	'ConfiguraciÛns de usuarios',
+	'Configuraci√≥ns de usuarios',
 	array('Permitir o rexistro de novos usuarios?', 'allow_user_registration', 
 1),
-	array('O rexistro dun usuario require a verificaciÛn por email?', 
+	array('O rexistro dun usuario require a verificaci√≥n por email?', 
 'reg_requires_valid_email', 1),
-	array('Notificar Û administrador sobre os novos rexistros por email', 
+	array('Notificar √≥ administrador sobre os novos rexistros por email', 
 'reg_notify_admin_email', 1), //cpg1.3.0
-	array('Permitir que dous usuarios teÒan o mesmo email?', 
+	array('Permitir que dous usuarios te√±an o mesmo email?', 
 'allow_duplicate_emails_addr', 1),
 	array('usuarios poden ter albums privados?', 'allow_private_albums', 1),
-	array('Notificar por email Û administrador sobre novos uploads para 
-aprobaciÛn', 'upl_notify_admin_email', 1), //cpg1.3.0
+	array('Notificar por email √≥ administrador sobre novos uploads para 
+aprobaci√≥n', 'upl_notify_admin_email', 1), //cpg1.3.0
 	array('Permitir que usuarios logueados visualicen a lista de membros', 
 'allow_memberlist', 1), //cpg1.3.0
 
-	'Campos personalizables para DescripciÛn das fotos (deixe en branco se non vai a 
+	'Campos personalizables para Descripci√≥n das fotos (deixe en branco se non vai a 
 usar)',
 	array('Nome do Campo 1', 'user_field1_name', 0),
 	array('Nome do Campo 2', 'user_field2_name', 0),
 	array('Nome do Campo 3', 'user_field3_name', 0),
 	array('Nome do Campo 4', 'user_field4_name', 0),
 
-	'ConfiguraciÛn de cookies',
+	'Configuraci√≥n de cookies',
 	array('Nome do coookie usado polo script', 'cookie_name', 0),
 	array('cartafol do cookie usado polo script', 'cookie_path', 0),
 
@@ -550,12 +550,12 @@ usar)',
 
 	array('Amosar noticias no modo debug', 'debug_notice', 1), //cpg1.3.0
 
-  '<br /><div align="left"><a name="notice1"></a>(*) Estas configuraciÛns 
+  '<br /><div align="left"><a name="notice1"></a>(*) Estas configuraci√≥ns 
 marcadas non deben ser modificadas se Vostede xa ten algunha foto engadida
 na galeria.<br />
-  <a name="notice2"></a>(**) Se troca esta ConfiguraciÛn, sÛ os 
-arquivos adicionados a partir deste punto ter·n efeito, enton esta avisado 
-que esta ConfiguraciÛn non debe ser trocada se Vostede xa tivo adicionado 
+  <a name="notice2"></a>(**) Se troca esta Configuraci√≥n, s√≥ os 
+arquivos adicionados a partir deste punto ter√°n efeito, enton esta avisado 
+que esta Configuraci√≥n non debe ser trocada se Vostede xa tivo adicionado 
 algun arquivo na galeria. Entretanto, Vostede pode aplicar modificacions nos 
 arquivos existentes usando as &quot;<a href="util.php">Ferramentas 
 Administrativas</a> (redimensionar fotos)&quot; do menu 
@@ -587,14 +587,14 @@ if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
   'ecard_by_recipient_name' => 'polo nome do destinatario', //cpg1.3.0
   'ecard_by_recipient_email' => 'polo email do destinatario', //cpg1.3.0
   'ecard_number' => 'visualizando rexistro %s para %s de %s', //cpg1.3.0
-  'ecard_goto_page' => 'ir para p·xina', //cpg1.3.0
-  'ecard_records_per_page' => 'rexistros por p·xina', //cpg1.3.0
+  'ecard_goto_page' => 'ir para p√°xina', //cpg1.3.0
+  'ecard_records_per_page' => 'rexistros por p√°xina', //cpg1.3.0
   'check_all' => 'Marcar Todos', //cpg1.3.0
   'uncheck_all' => 'Desmarcar Todos', //cpg1.3.0
   'ecards_delete_selected' => 'Borrar os ecards seleccionados', //cpg1.3.0
   'ecards_delete_confirm' => 'Vostede ten a certeza que desexa Borrar os ecard 
-seleccionados? Marque a caixa de verificacciÛn!', //cpg1.3.0
-  'ecards_delete_sure' => 'Eu teÒo a certeza', //cpg1.3.0
+seleccionados? Marque a caixa de verificacci√≥n!', //cpg1.3.0
+  'ecards_delete_sure' => 'Eu te√±o a certeza', //cpg1.3.0
 );
 
 
@@ -608,43 +608,43 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 	'empty_name_or_co' => 'Vostede debe inserir un nome e o comentario',
 	'co_added' => 'seu comentario foi inserido',
 	'alb_need_title' => 'Vostede debe definir un nome para o album !',
-	'no_udp_needed' => 'AtualizaciÛn non necesaria.',
+	'no_udp_needed' => 'Atualizaci√≥n non necesaria.',
 	'alb_updated' => 'O album foi atualizado',
 	'unknown_album' => 'O album seleccionado non existe ou Vostede non ten 
-permiso para enviar fotos para Èl',
+permiso para enviar fotos para √©l',
 	'no_pic_uploaded' => 'nengunha foto enviada !<br /><br />Se Vostede realmente 
 selecionou unha foto para enviar, verifique se o servidor permite 
 envios...',
-	'err_mkdir' => 'erro Û Crear directorio %s !',
+	'err_mkdir' => 'erro √≥ Crear directorio %s !',
 	'dest_dir_ro' => 'directorio de destino %s non pode ser grabado polo script 
 !',
 	'err_move' => 'Imposible mover %s para %s !',
-	'err_fsize_too_large' => 'A foto que Vostede est· tentando enviar È moi 
-grande (m·ximo permitido %s x %s) !',
-	'err_imgsize_too_large' => 'O tamaÒo da foto È maior que o permitido 
-(m·ximo permitido %s KB) !',
-	'err_invalid_img' => 'O arquivo que Vostede est· tentando enviar non È un 
-arquivo de foto v·lido !',
-	'allowed_img_types' => 'Vostede sÛ pode enviar %s fotos.',
+	'err_fsize_too_large' => 'A foto que Vostede est√° tentando enviar √© moi 
+grande (m√°ximo permitido %s x %s) !',
+	'err_imgsize_too_large' => 'O tama√±o da foto √© maior que o permitido 
+(m√°ximo permitido %s KB) !',
+	'err_invalid_img' => 'O arquivo que Vostede est√° tentando enviar non √© un 
+arquivo de foto v√°lido !',
+	'allowed_img_types' => 'Vostede s√≥ pode enviar %s fotos.',
 	'err_insert_pic' => 'A foto \'%s\' non pode ser inserida no album ',
-	'upload_success' => 'A Sua foto foi enviada con exito<br /><br />sÛ 
-ser· visible despois da aprobaciÛn do Administrador.',
-	'notify_admin_email_subject' => '%s - NotificaciÛn de Envio', //cpg1.3.0
+	'upload_success' => 'A Sua foto foi enviada con exito<br /><br />s√≥ 
+ser√° visible despois da aprobaci√≥n do Administrador.',
+	'notify_admin_email_subject' => '%s - Notificaci√≥n de Envio', //cpg1.3.0
 	'notify_admin_email_body' => 'unha foto foi enviada por %s e precisa da sua 
-aprobaciÛn. Entre %s', //cpg1.3.0
-	'info' => 'InformaciÛn',
+aprobaci√≥n. Entre %s', //cpg1.3.0
+	'info' => 'Informaci√≥n',
 	'co_added' => 'comentario adicionado',
 	'alb_updated' => 'album atualizado',
-	'err_coment_empty' => 'O Seu comentario est· valeiro !',
+	'err_coment_empty' => 'O Seu comentario est√° valeiro !',
 	'err_invalid_fext' => 'Soamente os arquivos coas seguintes extensions son 
 permitidos : <br /><br />%s.',
-	'no_flood' => 'Desculpe, pero Vostede È o ˙ltimo autor en enviar un comentario<br 
+	'no_flood' => 'Desculpe, pero Vostede √© o √∫ltimo autor en enviar un comentario<br 
 /><br />Edite o comentario se desexa trocalo',
-	'redirect_msg' => 'Vostede est· sendo redireccionado.<br /><br /><br />Clique 
-\'CONTINUE\' se a p·xina non se actualizar automaticamente',
+	'redirect_msg' => 'Vostede est√° sendo redireccionado.<br /><br /><br />Clique 
+\'CONTINUE\' se a p√°xina non se actualizar automaticamente',
 	'upl_success' => 'Sua foto foi engadida con exito',
 	'email_coment_subject' => 'comentario pinserido', //cpg1.3.0
-	'email_coment_body' => 'Alguen posteou un comentario na sua galeria. vÈxao 
+	'email_coment_body' => 'Alguen posteou un comentario na sua galeria. v√©xao 
 en', //cpg1.3.0
 );
 
@@ -655,19 +655,19 @@ en', //cpg1.3.0
 //
 
 if (defined('DELETE_PHP')) $lang_delete_php = array(
-	'caption' => 'Sub-TÌtulo',
-	'fs_pic' => 'tamaÒo total da foto',
+	'caption' => 'Sub-T√≠tulo',
+	'fs_pic' => 'tama√±o total da foto',
 	'del_success' => 'borrado con exito',
-	'ns_pic' => 'tamaÒo normal da foto',
-	'err_del' => 'non pode ser excluÌdo',
+	'ns_pic' => 'tama√±o normal da foto',
+	'err_del' => 'non pode ser exclu√≠do',
 	'thumb_pic' => 'miniatura',
 	'coment' => 'comentario',
 	'im_in_alb' => 'foto no album',
 	'alb_del_success' => 'album \'%s\' borraDO',
 	'alb_mgr' => 'Administrador de albums',
-	'err_invalid_data' => 'datos recibidos inv·lidos \'%s\'',
+	'err_invalid_data' => 'datos recibidos inv√°lidos \'%s\'',
 	'create_alb' => 'Creando album \'%s\'',
-	'update_alb' => 'actualizando album \'%s\' tÌtulo \'%s\' Ìndice \'%s\'',
+	'update_alb' => 'actualizando album \'%s\' t√≠tulo \'%s\' √≠ndice \'%s\'',
 	'del_pic' => 'Borrar arquivo',
 	'del_alb' => 'Borrar album',
 	'del_user' => 'usuario usuario',
@@ -693,14 +693,14 @@ if (defined('DISPLAYIMAGE_PHP')){
 
 $lang_display_image_php = array(
 	'confirm_del' => 'ten a certeza que desexa ELIMINAR esta foto ? \\ncomentarios 
-vinculados tamÈn ser·n excluÌdos.',
+vinculados tam√©n ser√°n exclu√≠dos.',
 	'del_pic' => 'APAGAR ESTA FOTO',
 	'size' => '%s x %s pixels',
 	'views' => '%s veces',
 	'slideshow' => 'Slideshow',
 	'stop_slideshow' => 'PARAR SLIDESHOW',
 	'view_fs' => 'Clique para ver a foto ampliada',
-	'edit_pic' => 'Editar DescripciÛn', //cpg1.3.0
+	'edit_pic' => 'Editar Descripci√≥n', //cpg1.3.0
 	'crop_pic' => 'Xirar', //cpg1.3.0
 );
 
@@ -708,9 +708,9 @@ $lang_picinfo = array(
 	'title' =>'INFORMACIONS DA FOTO',
 	'Filename' => 'Arquivo',
 	'album name' => 'album',
-	'Rating' => 'ClasificaciÛn (%s voto(s))',
+	'Rating' => 'Clasificaci√≥n (%s voto(s))',
 	'Keywords' => 'Palabras-chave',
-	'File Size' => 'tamaÒo do arquivo',
+	'File Size' => 'tama√±o do arquivo',
 	'Dimensions' => 'Dimensions',
 	'Displayed' => 'Visualizada',
 	'Camera' => 'Camara',
@@ -755,21 +755,21 @@ $lang_fullsize_popup = array(
 if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php 
 =array(
 	'title' => 'Enviar unha e-card',
-	'invalid_email' => '<b>Aviso</b> : email inv·lido !',
+	'invalid_email' => '<b>Aviso</b> : email inv√°lido !',
 	'ecard_title' => '%s envioulle unha postal!',
-	'error_not_image' => 'sÛ as imaxes poden ser enviadas como ecard.', 
+	'error_not_image' => 's√≥ as imaxes poden ser enviadas como ecard.', 
 //cpg1.3.0
 	'view_ecard' => 'Se Vostede non consegue visualizar nada clique aqui',
-	'view_more_pics' => 'Clique aqui para ver m·is fotos !',
-	'send_success' => 'A s˙a e-card foi enviada!',
-	'send_failed' => 'Desculpe, pero o servidor non pode enviar a s˙a e-card...',
+	'view_more_pics' => 'Clique aqui para ver m√°is fotos !',
+	'send_success' => 'A s√∫a e-card foi enviada!',
+	'send_failed' => 'Desculpe, pero o servidor non pode enviar a s√∫a e-card...',
 	'from' => 'Remitente',
 	'your_name' => 'O seu nome',
 	'your_email' => 'O seu e-mail',
 	'to' => 'Para',
 	'rcpt_name' => 'Destinatario',
 	'rcpt_email' => 'E-mail do destinatario',
-	'greetings' => 'TÌtulo',
+	'greetings' => 'T√≠tulo',
 	'message' => 'Mensaxe',
 'preview' => 'Vista previa da Postal',
   'preview_button' => 'Vista previa',
@@ -786,12 +786,12 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php
 if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 	'pic_info' => '&nbsp;Info da Foto',
 	'album' => 'album',
-	'title' => 'TÌtulo',
-	'desc' => 'DescripciÛn',
+	'title' => 'T√≠tulo',
+	'desc' => 'Descripci√≥n',
 	'keywords' => 'Palabras-chave',
 	'pic_info_str' => '%sx%s - %sKB - %s visitas - %s votos',
 	'approve' => 'Aprobar foto',
-	'postpone_app' => 'PospoÒer aprobacion',
+	'postpone_app' => 'Pospo√±er aprobacion',
 	'del_pic' => 'Apagar foto',
 	'read_exif' => 'Ler EXIF novamente', //cpg1.3.0
 	'reset_view_count' => 'Xerar contador',
@@ -799,10 +799,10 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 	'del_com' => 'ELIMINAR comentarios',
 	'upl_approval' => 'Aprobar envio',
 	'edit_pics' => 'Editar fotos',
-	'see_next' => 'Ver prÛximas fotos',
+	'see_next' => 'Ver pr√≥ximas fotos',
 	'see_prev' => 'Ver fotos anteriores',
 	'n_pic' => '%s fotos',
-	'n_of_pic_to_disp' => 'N˙mero de fotos a amosar',
+	'n_of_pic_to_disp' => 'N√∫mero de fotos a amosar',
 	'apply' => 'Aplicar modificacions',
 	'crop_title' => 'Editor de Fotos', //cpg1.3.0
 	'preview' => 'Previsualizar', //cpg1.3.0
@@ -821,47 +821,47 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 //
 
 if (defined('FAQ_PHP')) $lang_faq_php = array(
-  'faq' => 'Preguntas m·is frecontes', //cpg1.3.0
+  'faq' => 'Preguntas m√°is frecontes', //cpg1.3.0
   'toc' => 'contido', //cpg1.3.0
   'question' => 'Pregunta: ', //cpg1.3.0
   'answer' => 'Resposta: ', //cpg1.3.0
 );
 
-if (defined('FAQ_PHP')) $lang_faq_data = array('D˙vidas xerais', //cpg1.3.0
+if (defined('FAQ_PHP')) $lang_faq_data = array('D√∫vidas xerais', //cpg1.3.0
 
-  array('Por quÈ me teÒo que rexistrar?', 'O Rexistro pode ou non ser requerido polo administrador. O rexistro do usuario, caracterÌsticas adicionais como envio de fotos, listas favoritas, votar e engadir comentarios.', 'allow_user_registration', '0'), //cpg1.3.0
-  array('CÛmo fago para rexistrarme?', 'Vaia a &quot;rexistrarse&quot; e rechee os campos obrigatorios (e os opcionais tamÈn se Vostede quere).<br />Se o Administrador tivera a activaciÛn de usuarios por email activada, entÛn Vostede recibir· un email inform·ndoo sobre o rexistro e  dandolle InstrucciÛns para a activaciÛn da conta. A Sua conta debe ser activada antes de que Vostede tente loguearse.', 'allow_user_registration', '1'), //cpg1.3.0
-  array('CÛmo fago para loguear/entrar?', 'Vaia a &quot;Login&quot;, insira seu usuario e contrasinal (marque &quot;Gardar contrasinal&quot; no caso de que Vostede queira loguearse  automaticamente), despois disto Vostede estar· logueado.<br /><b>IMPORTANTE: O Seu navegador debe estar habilitado para aceptar cookies/(galletas) e non deben ser borradas se Vostede quere manter a funcionalidade da ocpion &quot;Gardar 
+  array('Por qu√© me te√±o que rexistrar?', 'O Rexistro pode ou non ser requerido polo administrador. O rexistro do usuario, caracter√≠sticas adicionais como envio de fotos, listas favoritas, votar e engadir comentarios.', 'allow_user_registration', '0'), //cpg1.3.0
+  array('C√≥mo fago para rexistrarme?', 'Vaia a &quot;rexistrarse&quot; e rechee os campos obrigatorios (e os opcionais tam√©n se Vostede quere).<br />Se o Administrador tivera a activaci√≥n de usuarios por email activada, ent√≥n Vostede recibir√° un email inform√°ndoo sobre o rexistro e  dandolle Instrucci√≥ns para a activaci√≥n da conta. A Sua conta debe ser activada antes de que Vostede tente loguearse.', 'allow_user_registration', '1'), //cpg1.3.0
+  array('C√≥mo fago para loguear/entrar?', 'Vaia a &quot;Login&quot;, insira seu usuario e contrasinal (marque &quot;Gardar contrasinal&quot; no caso de que Vostede queira loguearse  automaticamente), despois disto Vostede estar√° logueado.<br /><b>IMPORTANTE: O Seu navegador debe estar habilitado para aceptar cookies/(galletas) e non deben ser borradas se Vostede quere manter a funcionalidade da ocpion &quot;Gardar 
 contrasinal&quot;.</b>', 'offline', 0), //cpg1.3.0
-  array('Por quÈ non consigo loguear?', 'Vostede se rexistrou e activou a sua conta?. … necesario activar a conta antes de loguearse. Para outros tipos de problema para acceder a conta entre en contato co o administrador do site.', 'offline', 0), //cpg1.3.0
-  array('QuÈ acontece se eu esquezo a miÒa contrasinal?', 'Se este site tivera o link &quot;Esquecin miÒa contrasinal&quot;, ˙seo. Se non o houbera, contacte co administrador para pedir unha nova contrasinal.', 'offline', 0), //cpg1.3.0
+  array('Por qu√© non consigo loguear?', 'Vostede se rexistrou e activou a sua conta?. √â necesario activar a conta antes de loguearse. Para outros tipos de problema para acceder a conta entre en contato co o administrador do site.', 'offline', 0), //cpg1.3.0
+  array('Qu√© acontece se eu esquezo a mi√±a contrasinal?', 'Se este site tivera o link &quot;Esquecin mi√±a contrasinal&quot;, √∫seo. Se non o houbera, contacte co administrador para pedir unha nova contrasinal.', 'offline', 0), //cpg1.3.0
   //array('What if I changed my email address?', 'Just simply login and change yor email address through quot;Profile&quot;', 'offline', 0), //cpg1.3.0
-  array('CÛmo gardo unha imaxe en &quot;Meus Favoritos&quot;?', 'Clique na figura e depois clique en &quot;informaciÛns da foto&quot; (<img src="images/info.gif" width="16" height="16" border="0" alt="informaciÛns da Foto" />); procure un pouco m·is abaixo e enton clique en &quot;engadir a favoritos&quot;.<br />O administrador debe ter a opcion de &quot;informaciÛns da Foto&quot; activada por defecto.<br />IMPORTANT:cookies debe estar habilitadas en non deben ser borradas.', 'offline', 0), //cpg1.3.
-  array('CÛmo voto nunha foto?', 'Na p·xina da foto, abaixo dela, ten 6 opcions de voto.', 'offline', 0), //cpg1.3.0
-  array('CÛmo poÒo un comentario para unha foto?', 'Na p·xina da foto ten un campo disponible para que Vostede engada o seu comentario.', 'offline', 0), //cpg1.3.0
-  array('CÛmo envio unha foto?', 'Vaia en &quot;Enviar foto&quot;e Seleccione o album para o cal Vostede desexa enviar a foto, clique en &quot;Procurar&quot; e procure a foto para enviar entan clique en &quot;Abrir&quot; (adicione un titulo e unha DescripciÛn se Vostede desexa) e clique en &quot;CONTINUAR&quot;', 'allow_private_albums', 0), //cpg1.3.0
-  array('Onde podo enviar a foto?', 'Vostede podera&quot; enviar a foto para un dos albums que tivera na &quot;miÒa Galeria&quot;. O administrador pode permitir que Vostede envie unha foto para un ou m·is albums da galeria Principal.', 'allow_private_albums', 0), //cpg1.3.0
-  array('QuÈ tipo e quÈ tamaÒo de foto podo enviar?', 'O tamaÒo e o tipo da foto (jpg,gif,..etc.) depende do administrador.', 'offline', 0), //cpg1.3.0
-  array('O que È a &quot;miÒa Galeria&quot;?', '&quot;miÒa Galeria&quot; È unha galeria Persoal onde o usuario pode enviar as suas fotos e administralas.', 'allow_private_albums', 0), //cpg1.3.0
-  array('CÛmo creo, renomeo ou borro un album na &quot;miÒa Galeria&quot;?', 'Vostede debe estar no &quot;Modo-Admin&quot;<br />Vaia a &quot;Crear/Ordenar Meus albums&quot;e clique en&quot;Novo&quot;. Troque o nome &quot;Novo album&quot; para poÒer o nome que Vostede desexe.<br />Vostede tamen pode renomear calqueira album na sua galeria.<br />Para rematar clique en &quot;Aplicar modificacions&quot;.', 'allow_private_albums', 0), //cpg1.3.0
-  array('CÛmo podo restrinxir usuarios de ollar os meus albums?', 'Vostede debe estar no &quot;Modo-Admin&quot;<br />Vaia a &quot;Modificar Meus albums. Na barra &quot;actualizar album&quot;, Seleccione o album que Vostede desexa modificar.<br />Aqui Vostede pode trocar o nome, a DescripciÛn, a figura da miniatura, restrinxir a visualizaciÛn e/ou engadir comentarios/votar.<br 
+  array('C√≥mo gardo unha imaxe en &quot;Meus Favoritos&quot;?', 'Clique na figura e depois clique en &quot;informaci√≥ns da foto&quot; (<img src="images/info.gif" width="16" height="16" border="0" alt="informaci√≥ns da Foto" />); procure un pouco m√°is abaixo e enton clique en &quot;engadir a favoritos&quot;.<br />O administrador debe ter a opcion de &quot;informaci√≥ns da Foto&quot; activada por defecto.<br />IMPORTANT:cookies debe estar habilitadas en non deben ser borradas.', 'offline', 0), //cpg1.3.
+  array('C√≥mo voto nunha foto?', 'Na p√°xina da foto, abaixo dela, ten 6 opcions de voto.', 'offline', 0), //cpg1.3.0
+  array('C√≥mo po√±o un comentario para unha foto?', 'Na p√°xina da foto ten un campo disponible para que Vostede engada o seu comentario.', 'offline', 0), //cpg1.3.0
+  array('C√≥mo envio unha foto?', 'Vaia en &quot;Enviar foto&quot;e Seleccione o album para o cal Vostede desexa enviar a foto, clique en &quot;Procurar&quot; e procure a foto para enviar entan clique en &quot;Abrir&quot; (adicione un titulo e unha Descripci√≥n se Vostede desexa) e clique en &quot;CONTINUAR&quot;', 'allow_private_albums', 0), //cpg1.3.0
+  array('Onde podo enviar a foto?', 'Vostede podera&quot; enviar a foto para un dos albums que tivera na &quot;mi√±a Galeria&quot;. O administrador pode permitir que Vostede envie unha foto para un ou m√°is albums da galeria Principal.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Qu√© tipo e qu√© tama√±o de foto podo enviar?', 'O tama√±o e o tipo da foto (jpg,gif,..etc.) depende do administrador.', 'offline', 0), //cpg1.3.0
+  array('O que √© a &quot;mi√±a Galeria&quot;?', '&quot;mi√±a Galeria&quot; √© unha galeria Persoal onde o usuario pode enviar as suas fotos e administralas.', 'allow_private_albums', 0), //cpg1.3.0
+  array('C√≥mo creo, renomeo ou borro un album na &quot;mi√±a Galeria&quot;?', 'Vostede debe estar no &quot;Modo-Admin&quot;<br />Vaia a &quot;Crear/Ordenar Meus albums&quot;e clique en&quot;Novo&quot;. Troque o nome &quot;Novo album&quot; para po√±er o nome que Vostede desexe.<br />Vostede tamen pode renomear calqueira album na sua galeria.<br />Para rematar clique en &quot;Aplicar modificacions&quot;.', 'allow_private_albums', 0), //cpg1.3.0
+  array('C√≥mo podo restrinxir usuarios de ollar os meus albums?', 'Vostede debe estar no &quot;Modo-Admin&quot;<br />Vaia a &quot;Modificar Meus albums. Na barra &quot;actualizar album&quot;, Seleccione o album que Vostede desexa modificar.<br />Aqui Vostede pode trocar o nome, a Descripci√≥n, a figura da miniatura, restrinxir a visualizaci√≥n e/ou engadir comentarios/votar.<br 
 />Click &quot;Update album&quot;.', 'allow_private_albums', 0), //cpg1.3.0
-  array('CÛmo podo ver outros usuarios da galeria?', 'Vaia a &quot;albums&quot; e depois clique en Membros &quot;Membros&quot;.', 'allow_private_albums', 0), //cpg1.3.0
-  array('QuÈ son as cookies?', 'cookies son arquivos que conteÒen informaciÛns que se gardan no seu computador.<br />as cookies xeralmente permiten Û usuario sair e cando volten Û sitio ter varias informaciÛns gardadas incluindo contrasinal e o login.', 'offline', 0), //cpg1.3.0
+  array('C√≥mo podo ver outros usuarios da galeria?', 'Vaia a &quot;albums&quot; e depois clique en Membros &quot;Membros&quot;.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Qu√© son as cookies?', 'cookies son arquivos que conte√±en informaci√≥ns que se gardan no seu computador.<br />as cookies xeralmente permiten √≥ usuario sair e cando volten √≥ sitio ter varias informaci√≥ns gardadas incluindo contrasinal e o login.', 'offline', 0), //cpg1.3.0
   //array('Onde podo encontrar este programa para o meu site?', 'Coppermine is a free Multimedia Gallery, released under GNU GPL. It is full of features and has been ported to various platforms. Visit the <a href="http://coppermine.sf.net/">Coppermine Home Page</a> to find out more or download it.', 'offline', 0), //cpg1.3.0
 
   'Navegando no Site', //cpg1.3.0
-  array('QuÈ È o boton &quot;albums&quot;?', 'Isto amosar· toda a galeria co link de cada categoria. As Miniaturas poden ser un link para unha categoria.', 'offline', 0), //cpg1.3.0
-  array('QuÈ È o boton &quot;miÒa Galeria&quot;?', 'Esta È unha caracteristica que permite Û usuario ter a sua propia galeria, engadir, Borrar ou modificar albums ou ben enviar fotos.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Cal È a diferencia entre &quot;Modo Admin&quot; e &quot;Modo usuario&quot;?', 'Esta È unha caracteristica que permite Û usuario, cando esta modo-admin, modificar as suas galerias (e outras cousas se esta permitido polo administrador).', 'allow_private_albums', 0), //cpg1.3.0
-  array('QuÈ È o boton &quot;Enviar foto&quot;?', 'Isto permite Û usuario enviar unha foto (tamaÒo e tipo son definidos polo adminstrador do site) para a galeria selecionada por Vostede ou polo administrador.', 'allow_private_albums', 0), //cpg1.3.0
-  array('QuÈ È o boton &quot;Derradeiros envios&quot;?', 'Neste link Vostede ver· a lista das ultimas fotos engadidas Û site.', 'offline', 0), //cpg1.3.0
-  array('QuÈ È o boton &quot;Derradeiros comentarios&quot;?', 'Aqui Vostede ver· os ultimos comentarios conxuntamente coas suas respectivas fotos en miniatura.', 'offline', 0), //cpg1.3.0
-  array('QuÈ È o boton &quot;m·is visualizadas&quot;?', 'Aqui Vostede ver· as fotos listadas por \'m·is Visualizadas\' (tanto por usuarios rexistrados ou non).', 'offline', 0), //cpg1.3.0
-  array('QuÈ È o boton &quot;m·is Popularidade&quot;?', 'Nesta parte Vostede ver· as fotos que teÒen m·is popularidade, incluindo os datos desa popularidade (ex: 5 usuarios votaron <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />: calific·ndoa como 1 para 5 (1,2,3,4,5) o que resultar· nunha media de <img src="images/rating3.gif" 
+  array('Qu√© √© o boton &quot;albums&quot;?', 'Isto amosar√° toda a galeria co link de cada categoria. As Miniaturas poden ser un link para unha categoria.', 'offline', 0), //cpg1.3.0
+  array('Qu√© √© o boton &quot;mi√±a Galeria&quot;?', 'Esta √© unha caracteristica que permite √≥ usuario ter a sua propia galeria, engadir, Borrar ou modificar albums ou ben enviar fotos.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Cal √© a diferencia entre &quot;Modo Admin&quot; e &quot;Modo usuario&quot;?', 'Esta √© unha caracteristica que permite √≥ usuario, cando esta modo-admin, modificar as suas galerias (e outras cousas se esta permitido polo administrador).', 'allow_private_albums', 0), //cpg1.3.0
+  array('Qu√© √© o boton &quot;Enviar foto&quot;?', 'Isto permite √≥ usuario enviar unha foto (tama√±o e tipo son definidos polo adminstrador do site) para a galeria selecionada por Vostede ou polo administrador.', 'allow_private_albums', 0), //cpg1.3.0
+  array('Qu√© √© o boton &quot;Derradeiros envios&quot;?', 'Neste link Vostede ver√° a lista das ultimas fotos engadidas √≥ site.', 'offline', 0), //cpg1.3.0
+  array('Qu√© √© o boton &quot;Derradeiros comentarios&quot;?', 'Aqui Vostede ver√° os ultimos comentarios conxuntamente coas suas respectivas fotos en miniatura.', 'offline', 0), //cpg1.3.0
+  array('Qu√© √© o boton &quot;m√°is visualizadas&quot;?', 'Aqui Vostede ver√° as fotos listadas por \'m√°is Visualizadas\' (tanto por usuarios rexistrados ou non).', 'offline', 0), //cpg1.3.0
+  array('Qu√© √© o boton &quot;m√°is Popularidade&quot;?', 'Nesta parte Vostede ver√° as fotos que te√±en m√°is popularidade, incluindo os datos desa popularidade (ex: 5 usuarios votaron <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />: calific√°ndoa como 1 para 5 (1,2,3,4,5) o que resultar√° nunha media de <img src="images/rating3.gif" 
 width="65" height="14" border="0" alt="" /> .)<br />As calificacions van de <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> (boa) hata <img src="images/rating0.gif" width="65" height="14" border="0" 
 alt="worst" /> (terrible).', 'offline', 0), //cpg1.3.0
-  array('QuÈ È o boton &quot;Meus favoritos&quot;?', 'Nesta ·rea Vostede poder· ver as fotos que Vostede engadÌu nos seu favoritos. Estes favoritos ser·n gardados como cookie e ficar·n no seu computador.', 'offline', 0), //cpg1.3.0
+  array('Qu√© √© o boton &quot;Meus favoritos&quot;?', 'Nesta √°rea Vostede poder√° ver as fotos que Vostede engad√≠u nos seu favoritos. Estes favoritos ser√°n gardados como cookie e ficar√°n no seu computador.', 'offline', 0), //cpg1.3.0
 );
 
 
@@ -905,23 +905,23 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
 	'apply' => 'Aplicar modificacions',
 	'create_new_group' => 'Crear novo grupo',
 	'del_groups' => 'Apagar grupo(s) seleccionado(s)',
-	'confirm_del' => 'coidado: Û remover un grupo seu contido ser· 
+	'confirm_del' => 'coidado: √≥ remover un grupo seu contido ser√° 
 transferido para \'Rexistrado\' !\n\nquere continuar ?',
 	'title' => 'administrar grupos',
-	'approval_1' => 'AprobaciÛn p˙blica (1)',
-	'approval_2' => 'AprobaciÛn privada (2)',
-	'upload_form_config' => 'formulario de ConfiguraciÛn de upload', //cpg1.3.0
+	'approval_1' => 'Aprobaci√≥n p√∫blica (1)',
+	'approval_2' => 'Aprobaci√≥n privada (2)',
+	'upload_form_config' => 'formulario de Configuraci√≥n de upload', //cpg1.3.0
   	'upload_form_config_values' => array( 'Envio de un arquivo', 'Envio de 
-v·rios arquivos', 'Envio de URI', 'Envio de ZIP', 'Arquivo-URI', 
+v√°rios arquivos', 'Envio de URI', 'Envio de ZIP', 'Arquivo-URI', 
 'Arquivo-ZIP', 'URI-ZIP', 'Arquivo-URI-ZIP'), //cpg1.3.0
 	'custom_user_upload'=>'usuarios poden personalizar o numero de caixas de 
 envio?', //cpg1.3.0
-	'num_file_upload'=>'numero m·ximo ou exacto de caixas de envio', //cpg1.3.0
-	'num_URI_upload'=>'numero m·ximo ou exacto de caixas de envio URI', 
+	'num_file_upload'=>'numero m√°ximo ou exacto de caixas de envio', //cpg1.3.0
+	'num_URI_upload'=>'numero m√°ximo ou exacto de caixas de envio URI', 
 //cpg1.3.0
-	'note1' => '<b>(1)</b> Envios para un album p˙blico requeren aprobaciÛn do 
+	'note1' => '<b>(1)</b> Envios para un album p√∫blico requeren aprobaci√≥n do 
 administrador',
-	'note2' => '<b>(2)</b> Envios requeren aprobaciÛn do administrador',
+	'note2' => '<b>(2)</b> Envios requeren aprobaci√≥n do administrador',
 	'notes' => 'Notas'
 );
 
@@ -939,7 +939,7 @@ $lang_index_php = array(
 
 $lang_album_admin_menu = array(
 	'confirm_delete' => 'ten a certeza que desexa ELIMINAR este album ? \\nTodas 
-as fotos e comentarios ser·n excluÌdos.',
+as fotos e comentarios ser√°n exclu√≠dos.',
 	'delete' => 'ELIMINAR',
 	'modify' => 'PROPIEDADES',
 	'edit_pics' => 'EDITAR FOTOS',
@@ -959,7 +959,7 @@ $lang_list_categories = array(
 
 $lang_list_users = array(
 	'user_list' => 'Lista de usuarios',
-	'no_user_gal' => 'nengun usuario È permitido a ter albums',
+	'no_user_gal' => 'nengun usuario √© permitido a ter albums',
 	'n_albums' => '%s album(s)',
 	'n_pics' => '%s foto(s)'
 );
@@ -986,7 +986,7 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
   'welcome' => 'Sexa Benvindo(a) %s ...',
   'err_login' => '*** non foi posible loguear. intente novamente ***',
   'err_already_logged_in' => 'Vostede xa esta logueado !',
-  'forgot_password_link' => 'Esquecin a miÒa contrasinal', //cpg1.3.0
+  'forgot_password_link' => 'Esquecin a mi√±a contrasinal', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- 
@@ -1009,13 +1009,13 @@ if (defined('LOGOUT_PHP')) $lang_logout_php = array(
 
 if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
   'php_info' => 'Info PHP', //cpg1.3.0
-  'explanation' => 'Esta È a saida gerada pela funcion <a 
-href="http://www.php.net/phpinfo">phpinfo()</a>, mostrada co as informaciÛns 
+  'explanation' => 'Esta √© a saida gerada pela funcion <a 
+href="http://www.php.net/phpinfo">phpinfo()</a>, mostrada co as informaci√≥ns 
 da galeria.', //cpg1.3.0
   'no_link' => 'Deixar que outras pessoas vexan a sua saida phpinfo() pode ser 
-un risco de seguridade, este È o motivo desta p·xina so sera mostrada cando 
-Vostede estea logueado como admin. Vostede non pode engadir o link desta p·xina para 
-outros, eles ter·n acesso negado.', //cpg1.3.0
+un risco de seguridade, este √© o motivo desta p√°xina so sera mostrada cando 
+Vostede estea logueado como admin. Vostede non pode engadir o link desta p√°xina para 
+outros, eles ter√°n acesso negado.', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- 
@@ -1026,10 +1026,10 @@ outros, eles ter·n acesso negado.', //cpg1.3.0
 
 if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 	'upd_alb_n' => 'actualizar album %s',
-	'general_settings' => 'ConfiguraciÛns xerais',
-	'alb_title' => 'TÌtulo do album',
+	'general_settings' => 'Configuraci√≥ns xerais',
+	'alb_title' => 'T√≠tulo do album',
 	'alb_cat' => 'Categoria do album',
-	'alb_desc' => 'DescripciÛn do album',
+	'alb_desc' => 'Descripci√≥n do album',
 	'alb_thumb' => 'Miniatura do album',
 	'alb_perm' => 'permisos para este album',
 	'can_view' => 'album pode ser visto por',
@@ -1039,15 +1039,15 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 	'user_gal' => 'Galeria do usuario',
 	'no_cat' => '* sen categoria *',
 	'alb_empty' => 'album valeiro',
-	'last_uploaded' => '⁄ltimo envio',
-	'public_alb' => 'Todos (album p˙blico)',
-	'me_only' => 'sÛ eu',
-	'owner_only' => 'sÛ o dono do album (%s)',
+	'last_uploaded' => '√öltimo envio',
+	'public_alb' => 'Todos (album p√∫blico)',
+	'me_only' => 's√≥ eu',
+	'owner_only' => 's√≥ o dono do album (%s)',
 	'groupp_only' => 'Membros do grupo\'%s\' ',
 	'err_no_alb_to_modify' => 'Vostede non pode modificar nengun album no banco de 
 datos.',
 	'update' => 'actualizar album',
-  	'notice1' => '(*) dependendo das configuraÁıes dos %sgrupos%s', 
+  	'notice1' => '(*) dependendo das configura√ß√µes dos %sgrupos%s', 
 //cpg1.3.0 (do not translate %s!)
 );
 
@@ -1073,24 +1073,24 @@ if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
 En canto os administradores do site ( {SITE_NAME} ) tentaran remover 
-qualqueira contido indesexable, È imposible revisar todas as 
-fotos, Vostede recoÒece que todas as fotos feitas por Vostede neste site 
-expresan as suas opnions e non as dos administradores ou do webmaster (Ag·s os seus mesmos) desfacÈndose de calqueira 
+qualqueira contido indesexable, √© imposible revisar todas as 
+fotos, Vostede reco√±ece que todas as fotos feitas por Vostede neste site 
+expresan as suas opnions e non as dos administradores ou do webmaster (Ag√°s os seus mesmos) desfac√©ndose de calqueira 
 responsabilidade.<br />
 <br />
 Vostede acorda non postear nengun material abusivo, obsceno, vulgar, odiable, 
 que indique sexualidade ou calqueira outro material que viole calqueira lei 
 aplicable. Vostede concorda que calqueira Webmaster, Administrador e moderador 
-do site ( {SITE_NAME} ) ten o dereito de remover, editar calqueira conteÌdo a 
+do site ( {SITE_NAME} ) ten o dereito de remover, editar calqueira conte√≠do a 
 calqueira hora que sexa necesario. Como usuario Vostede concorda que todas as 
-informaciÛns dadas por Vostede ser·n gardadas no noso banco de datos, e
-que estas informaciÛns non sexan enviadas a nengunha terceira persoa sen o seu 
-consentimento. O Webmaster e o Administrador non se responsibilizar·n por 
-nengunha acciÛn hacker que poida comprometer os datos.<br />
+informaci√≥ns dadas por Vostede ser√°n gardadas no noso banco de datos, e
+que estas informaci√≥ns non sexan enviadas a nengunha terceira persoa sen o seu 
+consentimento. O Webmaster e o Administrador non se responsibilizar√°n por 
+nengunha acci√≥n hacker que poida comprometer os datos.<br />
 <br />
-Este site usa cookies para almacenar informaciÛns no seu computador. Estas 
-cookies serven sÛ para proveer de maior tecnoloxia Û site. O seu email È 
-usado sÛ para confirmar os detalles do seu rexistro e sua contrasinal.<br />
+Este site usa cookies para almacenar informaci√≥ns no seu computador. Estas 
+cookies serven s√≥ para proveer de maior tecnoloxia √≥ site. O seu email √© 
+usado s√≥ para confirmar os detalles do seu rexistro e sua contrasinal.<br />
 <br />
 Clicando en 'Estou dacordo', Vostede concorda con todos estas condicions.
 EOT;
@@ -1104,15 +1104,15 @@ $lang_register_php = array(
 outro',
 	'err_password_mismatch' => 'As duas contrasinais non concordan. Insira 
 novamente',
-	'err_unhame_short' => 'Nome de usuario precisa ter mÌnimo 2 caracteres',
-	'err_password_short' => 'Sua contrasinal ten que ter un mÌnimo de 2 caracteres',
+	'err_unhame_short' => 'Nome de usuario precisa ter m√≠nimo 2 caracteres',
+	'err_password_short' => 'Sua contrasinal ten que ter un m√≠nimo de 2 caracteres',
 	'err_unhame_pass_diff' => 'Nome de usuario e contrasinal deben ser diferentes',
-	'err_invalid_email' => 'Enderezo de e-mail inv·lido',
+	'err_invalid_email' => 'Enderezo de e-mail inv√°lido',
 	'err_duplicate_email' => 'xa existe outro usuario Rexistrado con este 
 e-mail',
-	'enter_info' => 'Entre coas informaciÛns de rexistro',
-	'required_info' => 'InformaciÛn Obrigatoria',
-	'optional_info' => 'InformaciÛn Opcional',
+	'enter_info' => 'Entre coas informaci√≥ns de rexistro',
+	'required_info' => 'Informaci√≥n Obrigatoria',
+	'optional_info' => 'Informaci√≥n Opcional',
 	'username' => 'usuario',
 	'password' => 'contrasinal',
 	'password_again' => 'reescriba a contrasinal',
@@ -1120,20 +1120,20 @@ e-mail',
 	'location' => 'Enderezo',
 	'interests' => 'Intereses',
 	'website' => 'Home page',
-	'occupation' => 'ProfesiÛn',
+	'occupation' => 'Profesi√≥n',
 	'error' => 'ERRO',
 	'confirm_email_subject' => '%s - CONFIRMACION DE rexistro',
-	'information' => 'InformaciÛn',
-	'failed_sending_email' => 'O e-mail de confirmaciÛn de rexistro non pode ser 
+	'information' => 'Informaci√≥n',
+	'failed_sending_email' => 'O e-mail de confirmaci√≥n de rexistro non pode ser 
 enviado !',
-	'thank_you' => 'GraciÒas por rexistrarse.<br /><br />As informaciÛns para 
+	'thank_you' => 'Graci√±as por rexistrarse.<br /><br />As informaci√≥ns para 
 finalizar o seu rexistro foron enviadas para o seu e-mail.',
 	'acct_created' => 'A Sua conta foi creada e agora Vostede pode entrar co seu 
 usuario e sua contrasinal',
-	'acct_active' => 'A Sua conta xa est· activa. Entre co seu usuario e contrasinal 
+	'acct_active' => 'A Sua conta xa est√° activa. Entre co seu usuario e contrasinal 
 para loguear',
-	'acct_already_act' => 'Sua conta xa est· activa !',
-	'acct_act_failed' => 'Esta conta ainda non est· activa  !',
+	'acct_already_act' => 'Sua conta xa est√° activa !',
+	'acct_act_failed' => 'Esta conta ainda non est√° activa  !',
 	'err_unk_user' => 'usuario seleccionado non existe !',
 	'x_s_profile' => 'Perfil de %s',
 	'group' => 'Grupo',
@@ -1145,27 +1145,27 @@ para loguear',
 	'new_pass_again' => 'reescriba a nova contrasinal',
 	'err_curr_pass' => 'contrasinal atual INCORRECTA',
 	'apply_modif' => 'Gardar modificacions',
-	'change_pass' => 'trocar miÒa contrasinal',
+	'change_pass' => 'trocar mi√±a contrasinal',
 	'update_success' => 'Seus datos foron atualizados',
 	'pass_chg_success' => 'Sua contrasinal foi trocada',
 	'pass_chg_error' => 'Sua contrasinal non foi trocada',
-	'notify_admin_email_subject' => '%s - NotificacciÛn de rexistro', //cpg1.3.0
+	'notify_admin_email_subject' => '%s - Notificacci√≥n de rexistro', //cpg1.3.0
 	'notify_admin_email_body' => 'O usuario "%s" foi Rexistrado na sua 
 galeria', //cpg1.3.0
 );
 
 $lang_register_confirm_email = <<<EOT
-GraciÒas por rexistrarse na {SITE_NAME}
+Graci√±as por rexistrarse na {SITE_NAME}
 
-Seu usuario È : "{USER_NAME}"
-Sua contrasinal È : "{PASSWORD}"
+Seu usuario √© : "{USER_NAME}"
+Sua contrasinal √© : "{PASSWORD}"
 
-Para activar a sua conta Vostede precisa acceder Û link de abaixo:
+Para activar a sua conta Vostede precisa acceder √≥ link de abaixo:
 Clique ou copie e pegue no seu navegador
 
 {ACT_LINK}
 
-GraciÒas polo rexistro,
+Graci√±as polo rexistro,
 
 deica logo,
 Administrador
@@ -1185,9 +1185,9 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
 	'title' => 'Revisar comentarios',
 	'no_comment' => 'non hai comentarios para revisar',
 	'n_comm_del' => '%s comentario(s) borrado(s)',
-	'n_comm_disp' => 'N˙mero de comentarios para visualizar',
+	'n_comm_disp' => 'N√∫mero de comentarios para visualizar',
 	'see_prev' => 'Anterior',
-	'see_next' => 'PrÛximo',
+	'see_next' => 'Pr√≥ximo',
 	'del_comm' => 'Borrar comentarios seleccionados',
 );
 
@@ -1226,24 +1226,24 @@ permiso 755 ou 777 !',
 	'result' => 'Resultado',
 	'dir_ro' => 'non grabable. ',
 	'dir_cant_read' => 'non pode ser lido. ',
-	'insert' => 'Adicionando novas fotos · galeria',
+	'insert' => 'Adicionando novas fotos √° galeria',
 	'list_new_pic' => 'Lista das novas fotos',
 	'insert_selected' => 'Inserir fotos seleccionadas',
 	'no_pic_found' => 'nengunha foto nova foi encontrada',
-	'be_patient' => 'Por favor teÒa pacenza. O sistema nescesita de tempo 
+	'be_patient' => 'Por favor te√±a pacenza. O sistema nescesita de tempo 
 para enviar as fotos',
 	'notes' =>  '<ul>'.
 				'<li><b>OK</b> : Significa que foi enviado con exito'.
 				'<li><b>DP</b> : Significa que existe un duplicado na base de datos'.
 				'<li><b>PB</b> : Significa que non pode ser enviado, verifique sua 
-ConfiguraciÛn e os permisos dos directorios.'.
+Configuraci√≥n e os permisos dos directorios.'.
 				'<li><b>NA</b> : Significa que Vostede non seleccionou nengun album para 
 engadir as fotos, clique en \'<a 
 href="javascript:history.back(1)">voltar</a>\' e seleccione un album. Se Vostede 
 non ten un album <a href="albmgr.php">cree un primeiro</a></li>'.
 				'<li>Se un dos \'simbolos\' OK, DP ou PB non apareceren clique no 
 simbolo co problema para recibir a Mensaxe de erro'.
-				'<li>Se o tempo expira, intente novamente actualizando a p·xina'.
+				'<li>Se o tempo expira, intente novamente actualizando a p√°xina'.
 				'</ul>', //cpg1.3.0
 	'select_album' => 'seleccionar album', //cpg1.3.0
 	'check_all' => 'Marcar Todo', //cpg1.3.0
@@ -1269,18 +1269,18 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
 	'title' => 'Banear usuarios',
 	'user_name' => 'Nome do usuario',
 	'ip_address' => 'IP',
-	'expiry' => 'Expira en (en branco significa que È permanente)',
+	'expiry' => 'Expira en (en branco significa que √© permanente)',
 	'edit_ban' => 'Gardar cambios',
 	'delete_ban' => 'Borrar',
 	'add_new' => 'engadir novo Ban',
 	'add_ban' => 'engadir',
 	'error_user' => 'non foi posible encontrar o usuario', //cpg1.3.0
 	'error_specify' => 'Vostede precisa especificar un usuario ou IP', //cpg1.3.0
-	'error_ban_id' => 'ID de ban inv·lido!', //cpg1.3.0
+	'error_ban_id' => 'ID de ban inv√°lido!', //cpg1.3.0
 	'error_admin_ban' => 'Vostede non pode banir Vostede mesmo!', //cpg1.3.0
-	'error_server_ban' => 'Vostede vai banir seu prÛprio servidor? Vostede non pode 
+	'error_server_ban' => 'Vostede vai banir seu pr√≥prio servidor? Vostede non pode 
 facer isso...', //cpg1.3.0
-	'error_ip_forbidden' => 'Vostede non pode banir este IP - este non È 
+	'error_ip_forbidden' => 'Vostede non pode banir este IP - este non √© 
 roteavel!', //cpg1.3.0
 	'lookup_ip' => 'Olle un IP acima', //cpg1.3.0
 	'submit' => 'Enviar!', //cpg1.3.0
@@ -1296,7 +1296,7 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'title' => 'Envio de Foto', //cpg1.3.0
   'custom_title' => 'Formulario de Pedidos personalizable', //cpg1.3.0
   'cust_instr_1' => 'Vostede debe selecionar un numero personalizable de caixas 
-de envio. mentres Vostede non pode selecionar m·is do que os limites amosados 
+de envio. mentres Vostede non pode selecionar m√°is do que os limites amosados 
 abaixo.', //cpg1.3.0
   'cust_instr_2' => 'numero de Caixas de Pedidos', //cpg1.3.0
   'cust_instr_3' => 'Caixas de envio de arquivo: %s', //cpg1.3.0
@@ -1305,41 +1305,41 @@ abaixo.', //cpg1.3.0
   'cust_instr_6' => 'Caixas de envio de arquivo:', //cpg1.3.0
   'cust_instr_7' => 'Por favor insira o numero de cada tipo de caixa de 
 envio que Vostede desexa desta vez e clique en \'Continuar\'. ', //cpg1.3.0
-  'reg_instr_1' => 'acciÛn inv·lida para o formulario de creacion.', //cpg1.3.0
+  'reg_instr_1' => 'acci√≥n inv√°lida para o formulario de creacion.', //cpg1.3.0
   'reg_instr_2' => 'Agora Vostede debe enviar seus arquivos usando as caixas de 
 envio de abaixo. Os arquivos a seren enviados para o servidor non poden exceder 
-o tamaÒo de %s KB cada. Arquivos ZIP enviados para a seccion de \'Envio de 
+o tama√±o de %s KB cada. Arquivos ZIP enviados para a seccion de \'Envio de 
 Arquivo\' e \'Envio de URI/URL\' iran permanecer copactados.', //cpg1.3.0
   'reg_instr_3' => 'Se Vostede quiser o arquivo zipado ou que o arquivo seja 
 descopactado, Vostede debe usar a caixa de envio especial para isto, area 
-\'Envio de ZIP co descopactacciÛn\'.', //cpg1.3.0
+\'Envio de ZIP co descopactacci√≥n\'.', //cpg1.3.0
   'reg_instr_4' => 'cando usar a seccion de envio URI/URL, por favor insira o 
 caminho para o arquivo. Ex: http://www.meusite.co.br/imaxes/foto.jpg', 
 //cpg1.3.0
   'reg_instr_5' => 'cando Vostede remate de completar o formulario, por 
 favor clique en \'Continuar\'.', //cpg1.3.0
-  'reg_instr_6' => 'Envio de ZIP co descopactacciÛn:', //cpg1.3.0
+  'reg_instr_6' => 'Envio de ZIP co descopactacci√≥n:', //cpg1.3.0
   'reg_instr_7' => 'Envio de arquivos:', //cpg1.3.0
   'reg_instr_8' => 'Envio de URI/URL:', //cpg1.3.0
-  'error_report' => 'RelatÛrio de Erro', //cpg1.3.0
+  'error_report' => 'Relat√≥rio de Erro', //cpg1.3.0
   'error_instr' => 'ocorreran erros nos seguintes envios:', //cpg1.3.0
   'file_name_url' => 'Arquivo/URL', //cpg1.3.0
   'error_message' => 'Mensaxe de Erro', //cpg1.3.0
   'no_post' => 'nengun arquivo seleccionado.', //cpg1.3.0
   'forb_ext' => 'extension de arquivo proibida.', //cpg1.3.0
-  'exc_php_ini' => 'tamaÒo de arquivo excedido permitido para o php.ini.', 
+  'exc_php_ini' => 'tama√±o de arquivo excedido permitido para o php.ini.', 
 //cpg1.3.0
-  'exc_file_size' => 'tamaÒo de arquivo excedido permitido para a galeria.', 
+  'exc_file_size' => 'tama√±o de arquivo excedido permitido para a galeria.', 
 //cpg1.3.0
-  'partial_upload' => 'sÛ envio parcial.', //cpg1.3.0
+  'partial_upload' => 's√≥ envio parcial.', //cpg1.3.0
   'no_upload' => 'nengun envio ocorrido.', //cpg1.3.0
-  'unknown_code' => 'Codigo de erro PHP de envio, inv·lido.', //cpg1.3.0
+  'unknown_code' => 'Codigo de erro PHP de envio, inv√°lido.', //cpg1.3.0
   'no_temp_name' => 'nengun envio - nengun nome temporal.', //cpg1.3.0
   'no_file_size' => 'Esta en branco/corrupto', //cpg1.3.0
   'impossible' => 'Imposible mover.', //cpg1.3.0
-  'not_image' => 'non È unha imaxe/corrupta', //cpg1.3.0
-  'not_GD' => 'non È unha extension GD.', //cpg1.3.0
-  'pixel_allowance' => 'tamaÒo de pixel excedido.', //cpg1.3.0
+  'not_image' => 'non √© unha imaxe/corrupta', //cpg1.3.0
+  'not_GD' => 'non √© unha extension GD.', //cpg1.3.0
+  'pixel_allowance' => 'tama√±o de pixel excedido.', //cpg1.3.0
   'incorrect_prefix' => 'Prefixo de URI/URL incorrecto', //cpg1.3.0
   'could_not_open_URI' => 'non foi posible abrir a URI.', //cpg1.3.0
   'unsafe_URI' => 'seguridade non verificable.', //cpg1.3.0
@@ -1351,7 +1351,7 @@ favor clique en \'Continuar\'.', //cpg1.3.0
   'http_500' => '500 Internal Server Error', //cpg1.3.0
   'http_503' => '503 Service unhavailable', //cpg1.3.0
   'MIME_extraction_failure' => 'MIME non pode ser determinado.', //cpg1.3.0
-  'MIME_type_unknown' => 'Tipo de MIME inv·lido', //cpg1.3.0
+  'MIME_type_unknown' => 'Tipo de MIME inv√°lido', //cpg1.3.0
   'cant_create_write' => 'non foi posible Crear un arquivo grabable.', 
 //cpg1.3.0
   'not_writable' => 'non foi posible grabar nun arquivo grabable.', 
@@ -1362,26 +1362,26 @@ grabable.', //cpg1.3.0
   'cant_write_write_file' => 'non foi posible grabar no arquivo URI 
 grabable.', //cpg1.3.0
   'cant_unzip' => 'non foi posible descomprimir.', //cpg1.3.0
-  'unknown' => 'Erro inv·lido', //cpg1.3.0
+  'unknown' => 'Erro inv√°lido', //cpg1.3.0
   'succ' => 'Envio realizado con exito', //cpg1.3.0
   'success' => '%s envios con exito.', //cpg1.3.0
   'add' => 'Por favor clique en \'Continuar\' para engadir os arquivos nos 
 aalbums.', //cpg1.3.0
   'failure' => 'erro de envio', //cpg1.3.0
-  'f_info' => 'InformaciÛn do Arquivo', //cpg1.3.0
+  'f_info' => 'Informaci√≥n do Arquivo', //cpg1.3.0
   'no_place' => 'O arquivo anterior non pode ser inserido.', //cpg1.3.0
   'yes_place' => 'O arquivo anterior foi inserido con exito.', //cpg1.3.0
-  'max_fsize' => 'O tamaÒo m·ximo permitido de arquivo È %s KB',
+  'max_fsize' => 'O tama√±o m√°ximo permitido de arquivo √© %s KB',
   'album' => 'album',
   'picture' => 'Foto', //cpg1.3.0
   'pic_title' => 'Titulo da Foto', //cpg1.3.0
-  'description' => 'DescripciÛn da Foto', //cpg1.3.0
+  'description' => 'Descripci√≥n da Foto', //cpg1.3.0
   'keywords' => 'Palabras-Chave (separado con espazos)',
   'err_no_alb_uploadables' => 'Desculpe, Vostede non esta autorizado a enviar 
 arquivos para nengun album', //cpg1.3.0
   'place_instr_1' => 'Por favor insira os arquivos no album agora. Vostede debe 
-tamen inserir informaciÛns sobre cada arquivo agora.', //cpg1.3.0
-  'place_instr_2' => 'm·is arquivos precisan ser colocados. Por favor clique 
+tamen inserir informaci√≥ns sobre cada arquivo agora.', //cpg1.3.0
+  'place_instr_2' => 'm√°is arquivos precisan ser colocados. Por favor clique 
 en \'Continuar\'.', //cpg1.3.0
   'process_coplete' => 'Vostede inseriu con exito todo-los arquivos.', 
 //cpg1.3.0
@@ -1408,7 +1408,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 	'lv_a' => 'Ultima visita Ascendente', //cpg1.3.0
 	'lv_d' => 'Ultima visita Descendente', //cpg1.3.0
 	'sort_by' => 'Listar usuarios por',
-	'err_no_users' => 'A Tabela de usuarios est· vacia !',
+	'err_no_users' => 'A Tabela de usuarios est√° vacia !',
 	'err_edit_self' => 'Vostede non pode trocar os seus datos \'persoais\', use o 
 link \'Meus datos\' para isto ',
 	'edit' => 'EDITAR',
@@ -1421,9 +1421,9 @@ link \'Meus datos\' para isto ',
 	'disk_space' => 'espazo usado / cuota',
 	'registered_on' => 'Rexistrado en',
 	'last_visit' => 'Ultima Visita', //cpg1.3.0
-	'u_user_on_p_pages' => '%d usuario(s) en %d p·xina(s)',
+	'u_user_on_p_pages' => '%d usuario(s) en %d p√°xina(s)',
 	'confirm_del' => 'ten a certeza de que quere ELIMINAR este usuario ? \\nTodas as 
-fotos e albums del ser·n removidos.',
+fotos e albums del ser√°n removidos.',
 	'mail' => 'EMAIL',
 	'err_unknown_user' => 'usuario seleccionado non existe !',
 	'modify_user' => 'Modificar usuario',
@@ -1461,30 +1461,30 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
   'submit_form' => 'enviar',
   'updated_succesfully' => 'actualizado con exito',
   'error_create' => 'ERRO creando',
-  'continue' => 'Procesar m·is imaxes',
+  'continue' => 'Procesar m√°is imaxes',
   'main_success' => 'O arquivo %s foi co arquivo principal', //cpg1.3.0
   'error_rename' => 'Erro renomeando %s para %s',
   'error_not_found' => 'O arquivo %s non foi atopado',
-  'back' => 'voltar para a p·xina principal',
+  'back' => 'voltar para a p√°xina principal',
   'thumbs_wait' => 'Actualizando miniaturas e/ou imaxes redimensionadas, por 
 favor agarde...',
   'thumbs_continue_wait' => 'Continuando a actualizar miniaturas e/ou imaxes 
 redimensionadas...',
   'titles_wait' => 'actualizando titulos, por favor agarde...',
   'delete_wait' => 'Borrando titulos, por favor agarde...',
-  'replace_wait' => 'Borrando orixinais e repoÒÈndoas c·s imaxes 
+  'replace_wait' => 'Borrando orixinais e repo√±√©ndoas c√°s imaxes 
 redimensionadas, por favor agarde..',
-  'instruction' => 'InstrucciÛns r·pidas',
-  'instruction_action' => 'Seleccione a acciÛn',
+  'instruction' => 'Instrucci√≥ns r√°pidas',
+  'instruction_action' => 'Seleccione a acci√≥n',
   'instruction_parameter' => 'Axuste os paramentos',
   'instruction_album' => 'Seleccione o album',
   'instruction_press' => 'Prema %s',
   'update' => 'actualizar miniaturas e/ou redimensionar fotos',
   'update_what' => 'O que debe ser atualizado',
-  'update_thumb' => 'sÛ miniaturas',
-  'update_pic' => 'sÛ imaxes redimensionadas',
+  'update_thumb' => 's√≥ miniaturas',
+  'update_pic' => 's√≥ imaxes redimensionadas',
   'update_both' => 'Miniaturas e imaxes redimensionadas',
-  'update_number' => 'N˙mero de imaxes procesadas por clic',
+  'update_number' => 'N√∫mero de imaxes procesadas por clic',
   'update_option' => '(intente un numero menor no caso de que Vostede siga tendo 
 problemas co timeout)',
   'filename_title' => 'Arquivo &rArr; Titulo do arquivo', //cpg1.3.0
@@ -1495,16 +1495,16 @@ espazos',
 13:20',
   'filename_us' => 'trocar 2003_11_23_13_20_20.jpg para 11/23/2003 13:20',
   'filename_time' => 'trocar 2003_11_23_13_20_20.jpg para 13:20',
-  'delete' => 'Borrar tÌtulo de arquivos ou tamaÒos orixinais de fotos', 
+  'delete' => 'Borrar t√≠tulo de arquivos ou tama√±os orixinais de fotos', 
 //cpg1.3.0
   'delete_title' => 'Borrar titulo de arquivos', //cpg1.3.0
-  'delete_orixinal' => 'Borrar tamaÒo orixinal de fotos',
-  'delete_replace' => 'borra as imaxes orixinais repoÒÈndoas c· version 
+  'delete_orixinal' => 'Borrar tama√±o orixinal de fotos',
+  'delete_replace' => 'borra as imaxes orixinais repo√±√©ndoas c√° version 
 redimensionada',
   'select_album' => 'Seleccione o album',
-  'delete_orphans' => 'Borrar comentarios Ûrfanos (funciona en todos os 
+  'delete_orphans' => 'Borrar comentarios √≥rfanos (funciona en todos os 
 albums)', //cpg1.3.0
-  'orphan_coment' => 'comentarios Ûrfanos atopados', //cpg1.3.0
+  'orphan_coment' => 'comentarios √≥rfanos atopados', //cpg1.3.0
   'delete' => 'Borrar', //cpg1.3.0
   'delete_all' => 'Borrar todos', //cpg1.3.0
   'coment' => 'comentario: ', //cpg1.3.0
@@ -1512,9 +1512,9 @@ albums)', //cpg1.3.0
   'phpinfo' => 'Amosar phpinfo', //cpg1.3.0
   'update_db' => 'actualizar banco de datos', //cpg1.3.0
   'update_db_explanation' => 'Se Vostede sustituiu arquivos da galeria, 
-engadÌu algunha modificacciÛn ou actualizou dunha version anterior da galeria, 
-teÒa aseg˙rese de darlle a atualizacciÛn do banco de datos unha vez. Isto 
-crear· as tabelas necesarias e/ou valores de configuraciÛn no seu banco 
+engad√≠u algunha modificacci√≥n ou actualizou dunha version anterior da galeria, 
+te√±a aseg√∫rese de darlle a atualizacci√≥n do banco de datos unha vez. Isto 
+crear√° as tabelas necesarias e/ou valores de configuraci√≥n no seu banco 
 de datos.', //cpg1.3.0
 );
 
