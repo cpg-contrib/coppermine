@@ -10,7 +10,7 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.3.5
+  Coppermine version: 1.4.2
   $Source$
   $Revision$
   $Author$
@@ -55,7 +55,8 @@ function makethumbnail($src_file, $newSize, $method)
         exit;
     }
     // GD can't handle gif images
-    if ($imginfo[2] == GIS_GIF && ($method == 'gd1' || $method == 'gd2')) {
+    //if ($imginfo[2] == GIS_GIF && ($method == 'gd1' || $method == 'gd2')) {
+    if ($imginfo[2] == GIS_GIF && $CONFIG['GIF_support'] == 0) {
         header("Content-type: image/gif");
         fpassthru(fopen(GIF_ICON, 'rb'));
         exit;
@@ -82,11 +83,16 @@ function makethumbnail($src_file, $newSize, $method)
             break;
 
         case "gd2" :
-            if ($imginfo[2] == GIS_JPG)
+            if ($imginfo[2] == GIS_GIF && $CONFIG['GIF_support'] == 1)
+                $src_img = imagecreatefromgif($src_file);
+            elseif ($imginfo[2] == GIS_JPG)
                 $src_img = imagecreatefromjpeg($src_file);
             else
                 $src_img = imagecreatefrompng($src_file);
-            $dst_img = imagecreatetruecolor($destWidth, $destHeight);
+            if ($imginfo[2] == GIS_GIF)
+              $dst_img = imagecreate($destWidth, $destHeight);
+            else
+              $dst_img = imagecreatetruecolor($destWidth, $destHeight);
             imagecopyresampled($dst_img, $src_img, 0, 0, 0, 0, $destWidth, (int)$destHeight, $srcWidth, $srcHeight);
             header("Content-type: image/jpeg");
             imagejpeg($dst_img);
@@ -109,6 +115,6 @@ function makethumbnail($src_file, $newSize, $method)
     }
 }
 
-makethumbnail($CONFIG['fullpath'] . $HTTP_GET_VARS['picfile'], $HTTP_GET_VARS['size'], $CONFIG['thumb_method']);
+makethumbnail($CONFIG['fullpath'] . $_GET['picfile'], $_GET['size'], $CONFIG['thumb_method']);
 
 ?>

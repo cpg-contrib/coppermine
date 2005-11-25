@@ -10,7 +10,7 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.3.5
+  Coppermine version: 1.4.2
   $Source$
   $Revision$
   $Author$
@@ -18,7 +18,7 @@
 **********************************************/
 
 define('IN_COPPERMINE', true);
-define('CONFIG_PHP', true);
+define('ADMIN_PHP', true);
 
 define('LANG_DIR', 'lang');
 
@@ -34,8 +34,8 @@ while ($file = readdir($dir)) {
 closedir($dir);
 asort($lang_files);
 
-if (isset($HTTP_GET_VARS['get'])) {
-    $file_index = (int)$HTTP_GET_VARS['get'];
+if (isset($_GET['get'])) {
+    $file_index = (int)$_GET['get'];
     if ((isset($lang_files[$file_index]))) {
         header("Content-type: application/php");
         header("Content-Disposition: attachment; filename={$lang_files[$file_index]}");
@@ -50,7 +50,7 @@ foreach($lang_files as $index => $file) {
     echo <<<EOT
                 <tr>
                         <td class="tableb">
-                                <img src="images/folder.gif" alt="">&nbsp;<a href="$PHP_SELF?get=$index">$file</a>
+                                <img src="images/folder.gif" alt="">&nbsp;<a href="{$_SERVER['PHP_SELF']}?get=$index">$file</a>
                         </td>
                 </tr>
 EOT;

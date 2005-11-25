@@ -10,7 +10,7 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.3.5
+  Coppermine version: 1.4.2
   $Source$
   $Revision$
   $Author$
@@ -25,19 +25,15 @@ require('include/init.inc.php');
 
 if ($_REQUEST['action'] == 'banning') {
 ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
-    <title>Calendar</title>
-<link rel="stylesheet" href="themes/
-<?php
-if ($USER['theme']) {
-    print $USER['theme'];
-} else {
-    print $CONFIG['theme'];
-}
-?>
+    <title><?php print $lang_calendar_php['title']; ?></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=<?php echo 'language file' ? $lang_charset : $CONFIG['charset']; ?>" />
+    <meta http-equiv="Pragma" content="no-cache" />
+<link rel="stylesheet" href="themes/<?php echo $CONFIG['theme']; ?>
 /style.css" />
-<script language="JavaScript">
+<script language="javascript" type="text/javascript">
 
 // get the date format
 var calendarFormat = 'y-m-d';
@@ -52,8 +48,8 @@ function sendDate(month, day, year)
     selectedDate = selectedDate.replace(/m/, month);
     selectedDate = selectedDate.replace(/d/, day);
     selectedDate = selectedDate.replace(/y/, year);
-    selectedDate = selectedDate + ' 00:00:00';
-    if (selectedDate == '-0-0 00:00:00') {
+    //selectedDate = selectedDate + ' 00:00:00';
+    if (selectedDate == '-0-0') {
        selectedDate = '';
        }
     targetDateField.value = selectedDate;
@@ -70,22 +66,31 @@ class MyCalendar extends Calendar
     {
         // Redisplay the current page, but with some parameters
         // to set the new month and year
-        $s = getenv('SCRIPT_NAME');
-        return "$s?action=".$_REQUEST['action']."&month=$month&year=$year";
+        
+        // Fixed possible security hole
+        $s = $_SERVER['PHP_SELF']; //getenv('SCRIPT_NAME');
+        return "$s?action=".$_REQUEST['action']."&amp;month=$month&amp;year=$year";
     }
 
     function getDateLink($day, $month, $year)
     {
-            $link = "<a href=\"#\" onclick=\"sendDate('".$month."', '".$day."', '".$year."');\" class=\"user_thumb_infobox\">";
+            $link = (mktime(0,0,0,$month, $day, $year) > localised_timestamp())  ? "<a href=\"#\" onclick=\"sendDate('".$month."', '".$day."', '".$year."');\" class=\"user_thumb_infobox\">" : '';
         return $link;
     }
 }
 
+$today = getdate();
 
+$month = (int) $_REQUEST['month'];
+$year = (int) $_REQUEST['year'];
 
+if ($year == 0) {
+    $year = $today['year'];
+}
 
-$month = $_REQUEST['month'];
-$year = $_REQUEST['year'];
+if ($month == 0) {
+    $month = $today['mon'];
+}
 
 $cal = new MyCalendar;
 $cal->setMonthNames($lang_month);
@@ -94,9 +99,10 @@ $cal->setStartDay(1);
 echo $cal->getMonthView($month, $year);
 
 ?>
-<div align="center"><a href="javascript:window.close()" class="admin_menu">close</a> <a href="#" onclick="sendDate('', '', '');" class="admin_menu">clear date</a></div>
+<div align="center"><a href="javascript:window.close()" class="admin_menu"><?php print $lang_calendar_php['close']; ?></a> <a href="#" onclick="sendDate('', '', '');" class="admin_menu"><?php print $lang_calendar_php['clear_date']; ?></a></div>
 <br />
 </body>
+</html>
 <?php
 } // end action=banning
 
@@ -242,7 +248,7 @@ class Calendar
     */
     function getCurrentMonthView()
     {
-        $d = getdate(time());
+        $d = getdate(localised_timestamp());
         return $this->getMonthView($d["mon"], $d["year"]);
     }
 
@@ -252,7 +258,7 @@ class Calendar
     */
     function getCurrentYearView()
     {
-        $d = getdate(time());
+        $d = getdate(localised_timestamp());
         return $this->getYearView($d["year"]);
     }
 
@@ -355,7 +361,7 @@ class Calendar
 
       $header = $monthName . (($showYear > 0) ? " " . $year : "");
 
-      $s .= "<table class=\"maintable\">\n";
+      $s .= "<table class=\"maintable\" align=\"center\">\n";
       $s .= "<tr>\n";
       $s .= "<td align=\"center\" valign=\"top\">" . (($prevMonth == "") ? "&nbsp;" : "<a href=\"$prevMonth\" class=\"user_thumb_infobox\">&laquo;</a>")  . "</td>\n";
       $s .= "<td align=\"center\" valign=\"top\" class=\"tableh1\" colspan=\"5\">$header</td>\n";

@@ -10,7 +10,7 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.3.5
+  Coppermine version: 1.4.2
   $Source$
   $Revision$
   $Author$
@@ -21,7 +21,7 @@
 define('IN_COPPERMINE', true);
 define('UPLOAD_PHP', true);
 define('DB_INPUT_PHP', true);
-define('CONFIG_PHP', true);
+define('ADMIN_PHP', true);
 
 // Call basic functions, etc.
 require('include/init.inc.php');
@@ -70,19 +70,26 @@ EOT;
 
 // The hidden form input function. Takes the hidden input field name and value.
 function hidden_input($name, $value) {
-        echo "        <input type=\"hidden\" name=\"$name\" value=\"$value\">\n";
+        echo <<<EOT
+        <tr>
+            <td colspan="2">
+                   <input type="hidden" name="$name" value="$value" />
+            </td>
+        </tr>
+
+EOT;
 }
 
 // The text box form input function. Takes the text label for the box, the input name, the maximum length for text boxes,
 // and the number of iterations.
-function text_box_input($text, $name, $max_length, $iterations) {
+function text_box_input($text, $name, $max_length, $iterations, $default='') {
 
     global $CONFIG;
 
     $ordinal = '';
 
     if (($text == '') and ($iterations == '')) {
-        echo "        <input type=\"hidden\" name=\"$name\" value=\"\">\n";
+        echo "        <input type=\"hidden\" name=\"$name\" value=\"$default\" />\n";
         return;
     }
 
@@ -102,7 +109,7 @@ function text_box_input($text, $name, $max_length, $iterations) {
                         $text  $ordinal
         </td>
         <td width="60%" class="tableb" valign="top">
-                <input type="text" style="width: 100%" name="$name" maxlength="$max_length" value="" class="textinput">
+                <input type="text" style="width: 100%" name="$name" maxlength="$max_length" value="$default" class="textinput" />
                 </td>
         </tr>
 
@@ -131,7 +138,7 @@ function file_input($text, $name, $iterations) {
                         $text  $ordinal
         </td>
         <td class="tableb" valign="top">
-                        <input type="file" name="$name" size="40" class="listbox">
+                        <input type="file" name="$name" size="40" class="listbox" />
                 </td>
         </tr>
 
@@ -140,7 +147,7 @@ EOT;
 }
 
 // The function for text areas on forms. Takes the label, field name, and maximum length as arguments.
-function text_area_input($text, $name, $max_length) {
+function text_area_input($text, $name, $max_length,$default='') {
 
     // Create the text area.
     echo <<<EOT
@@ -149,7 +156,7 @@ function text_area_input($text, $name, $max_length) {
                         $text
                 </td>
                 <td class="tableb" valign="top">
-                        <textarea name="$name" rows="5" cols="40" wrap="virtual"  class="textinput" style="width: 100%;" onKeyDown="textCounter(this, $max_length);" onKeyUp="textCounter(this, $max_length);"></textarea>
+<f></f>                        <textarea name="$name" rows="5" cols="40" class="textinput" style="width: 100%;" onKeyDown="textCounter(this, $max_length);" onKeyUp="textCounter(this, $max_length);">$default</textarea>
                 </td>
         </tr>
 EOT;
@@ -157,18 +164,18 @@ EOT;
 
 // The function to create the album list drop down.
 function form_alb_list_box($text, $name) {
-//Vodovnik.com modified this code to allow display of Categories besides album names
+// frogfoot re-wrote this function to present the list in categorized, sorted and nicely formatted order
 
-    // Pull the $CONFIG array and the GET array into the function.
-    global $CONFIG, $HTTP_GET_VARS;
+    // Pull the $CONFIG array and the GET array into the function
+    global $CONFIG, $lang_upload_php;
 
-    // Also pull the album lists into the function.
+    // Also pull the album lists into the function
     global $user_albums_list, $public_albums_list;
 
     // Check to see if an album has been preselected by URL addition. If so, make $sel_album the album number. Otherwise, make $sel_album 0.
-    $sel_album = isset($HTTP_GET_VARS['album']) ? $HTTP_GET_VARS['album'] : 0;
+    $sel_album = isset($_GET['album']) ? $_GET['album'] : 0;
 
-    // Create the opening of the drop down box.
+    // Create the opening of the drop down box
     echo <<<EOT
     <tr>
         <td class="tableb">
@@ -179,47 +186,58 @@ function form_alb_list_box($text, $name) {
 
 EOT;
 
-    //Cylce through the User albums.
+    // Reset counter
+    $list_count = 0;
+
+    // Cycle through the User albums
     foreach($user_albums_list as $album) {
 
-        // Set $album_id to the actual album ID.
-        $album_id = $album['aid'];
-
-        //Query the database to determine the category the album belongs to.
-        $vQuery = "SELECT category FROM " . $CONFIG['TABLE_ALBUMS'] . " WHERE aid='" . $album_id . "'";
-        $vRes = db_query($vQuery);
-        $vRes = mysql_fetch_array($vRes);
-
-        // Query the database to get the category name.
-        $vQuery = "SELECT name FROM " . $CONFIG['TABLE_CATEGORIES'] . " WHERE cid='" . $vRes['category'] . "'";
-        $vRes = db_query($vQuery);
-        $vRes = mysql_fetch_array($vRes);
-
-        // Create the option for the drop down list.
-        echo '                <option value="' . $album['aid'] . '"' . ($album['aid'] == $sel_album ? ' selected' : '') . '>' . (($vRes['name']) ? '(' . $vRes['name'] . ') ' : '') . $album['title'] . "</option>\n";
+        // Add to multi-dim array for later sorting
+        $listArray[$list_count]['cat'] = $lang_upload_php['personal_albums'];
+        $listArray[$list_count]['aid'] = $album['aid'];
+        $listArray[$list_count]['title'] = $album['title'];
+        $list_count++;
     }
 
-    //Cycle through the public albums.
+    // Cycle through the public albums
     foreach($public_albums_list as $album) {
 
-        // Set $album_id to the actual album ID.
+        // Set $album_id to the actual album ID
         $album_id = $album['aid'];
 
-        //Query the database to determine the category the album belongs to.
-        $vQuery = "SELECT category FROM " . $CONFIG['TABLE_ALBUMS'] . " WHERE aid='" . $album_id . "'";
-        $vRes = db_query($vQuery);
+        // Get the category name
+        $vQuery = "SELECT cat.name FROM " . $CONFIG['TABLE_CATEGORIES'] . " cat, " . $CONFIG['TABLE_ALBUMS'] . " alb WHERE alb.aid='" . $album_id . "' AND cat.cid=alb.category";
+        $vRes = cpg_db_query($vQuery);
         $vRes = mysql_fetch_array($vRes);
 
-        // Query the database to get the category name.
-        $vQuery = "SELECT name FROM " . $CONFIG['TABLE_CATEGORIES'] . " WHERE cid='" . $vRes['category'] . "'";
-        $vRes = db_query($vQuery);
-        $vRes = mysql_fetch_array($vRes);
-
-        // Create the option for the drop down list.
-        echo '                <option value="' . $album['aid'] . '"' . ($album['aid'] == $sel_album ? ' selected' : '') . '>' . (($vRes['name']) ? '(' . $vRes['name'] . ') ' : '') . $album['title'] . "</option>\n";
+        // Add to multi-dim array for sorting later
+        if ($vRes['name']) {
+            $listArray[$list_count]['cat'] = $vRes['name'];
+        } else {
+            $listArray[$list_count]['cat'] = $lang_upload_php['albums_no_category'];
+        }
+        $listArray[$list_count]['aid'] = $album['aid'];
+        $listArray[$list_count]['title'] = $album['title'];
+        $list_count++;
     }
 
-    // Close the drop down.
+    // Sort the pulldown options by category and album name
+    $listArray = array_csort($listArray,'cat','title');
+
+    // Finally, print out the nicely sorted and formatted drop down list
+    $alb_cat = '';
+        echo '                <option value="">' . $lang_upload_php['select_album'] . "</option>\n";
+    foreach ($listArray as $val) {
+        if ($val['cat'] != $alb_cat) {
+if ($alb_cat) echo "                </optgroup>\n";
+            echo '                <optgroup label="' . $val['cat'] . '">' . "\n";
+            $alb_cat = $val['cat'];
+        }
+        echo '                <option value="' . $val['aid'] . '"' . ($val['aid'] == $sel_album ? ' selected' : '') . '>   ' . $val['title'] . "</option>\n";
+    }
+    if ($alb_cat) echo "                </optgroup>\n";
+
+    // Close the drop down
     echo <<<EOT
             </select>
         </td>
@@ -227,6 +245,7 @@ EOT;
 
 EOT;
 }
+
 
 // The create form function. Takes the $data array as its object.
 //
@@ -238,7 +257,7 @@ EOT;
 // 4 => hidden input
 function create_form(&$data) {
 
-    global $CONFIG;
+    global $CONFIG, $lang_upload_php;
 
     // Cycle through the elements in the data array.
     foreach($data as $element) {
@@ -253,7 +272,7 @@ function create_form(&$data) {
                 case 0 :
 
                     //Call the form input function.
-                    text_box_input($element[0], $element[1], $element[3], $element[4]);
+                    text_box_input($element[0], $element[1], $element[3], $element[4], (isset($element[5])) ? $element[5] : '');
                     break;
 
                 // If the type is a file input.
@@ -274,7 +293,7 @@ function create_form(&$data) {
                 case 3 :
 
                     // Call the text area function.
-                    text_area_input($element[0], $element[1], $element[3]);
+                    text_area_input($element[0], $element[1], $element[3], (isset($element[4])) ? $element[4] : '');
                     break;
 
                 // If the type is a hidden form
@@ -301,14 +320,13 @@ function create_form(&$data) {
 function open_form($path) {
 
     echo <<<EOT
-    <script language="JavaScript">
+    <script language="javascript" type="text/javascript">
     function textCounter(field, maxlimit) {
             if (field.value.length > maxlimit) // if too long...trim it!
             field.value = field.value.substring(0, maxlimit);
     }
     </script>
-    <form method="post" action="$path" ENCTYPE="multipart/form-data">
-    </td>
+    <form method="post" action="$path" enctype="multipart/form-data">
 EOT;
 }
 
@@ -322,9 +340,9 @@ global $lang_upload_php;
 echo <<<EOT
         <tr>
                 <td colspan="2" align="center" class="tablef">
-                        <input type="submit" value="{$button_value}" class="button">
+                        <input type="submit" value="{$button_value}" class="button" />
                 </td>
-                </form>
+
         </tr>
 
 EOT;
@@ -398,9 +416,10 @@ function get_and_convert_to_bytes ($ini_variable_name) {
 
     }
 }
-
+// Moved to 'logger.inc.php' - omni
 // The function spring_cleaning is a garbage collection routine used to purge a directory of old files.
-function& spring_cleaning($directory_path, $cache_time = 86400, $exclusion_list = array('index.html')) {
+if (!function_exists('spring_cleaning')){
+function spring_cleaning($directory_path, $cache_time = 86400, $exclusion_list = array('index.html')) {
 
     //Storage the deleted files
     $deleted_list = array();
@@ -458,8 +477,8 @@ function& spring_cleaning($directory_path, $cache_time = 86400, $exclusion_list 
     // Don't forget to close the directory.
     closedir($directory_handle);
     return $deleted_list;
+        }
 }
-
 // The create_record function. Takes the encoded string. Returns the unique record ID.
 function create_record($encoded_string) {
 
@@ -471,7 +490,7 @@ function create_record($encoded_string) {
     $generic_array = array();
 
     // Get all IDs from the table.
-    $result = db_query("SELECT unique_ID FROM {$CONFIG['TABLE_TEMPDATA']}");
+    $result = cpg_db_query("SELECT unique_ID FROM {$CONFIG['TABLE_TEMPDATA']}");
 
     // Create unique ID array.
     if (mysql_num_rows($result)) {
@@ -498,7 +517,7 @@ function create_record($encoded_string) {
     do {
 
         // Create a random string by taking the first 8 characters of an MD5 hash of a concatenation of the current UNIX epoch time and the current server process ID.
-        $unique_ID = substr(md5(microtime().getmypid()), 0, 8);
+        $unique_ID = substr(md5(uniqid("")), 0, 8);
 
     } while (in_array($unique_ID, $unique_ID_array));
 
@@ -506,7 +525,7 @@ function create_record($encoded_string) {
     $timestamp = time();
 
     // Insert the new record.
-    $result = db_query("INSERT INTO {$CONFIG['TABLE_TEMPDATA']} VALUES ('$unique_ID', '$encoded_string', '$timestamp')");
+    $result = cpg_db_query("INSERT INTO {$CONFIG['TABLE_TEMPDATA']} VALUES ('$unique_ID', '$encoded_string', '$timestamp')");
 
     // Return the unique ID if insertion was successful. Otherwise, return false.
     if ($result) {
@@ -528,7 +547,7 @@ function update_record($unique_ID, $encoded_string) {
     global $CONFIG;
 
     // Update record.
-    $result = db_query("UPDATE {$CONFIG['TABLE_TEMPDATA']} SET encoded_string = '$encoded_string' WHERE unique_ID = '$unique_ID'");
+    $result = cpg_db_query("UPDATE {$CONFIG['TABLE_TEMPDATA']} SET encoded_string = '$encoded_string' WHERE unique_ID = '$unique_ID'");
 
     // Return true if successful.
     if ($result) {
@@ -550,7 +569,7 @@ function delete_record($unique_ID) {
     global $CONFIG;
 
     // Delete record.
-    $result = db_query("DELETE FROM {$CONFIG['TABLE_TEMPDATA']} WHERE unique_ID = '$unique_ID'");
+    $result = cpg_db_query("DELETE FROM {$CONFIG['TABLE_TEMPDATA']} WHERE unique_ID = '$unique_ID'");
 
     // Return true if successful.
     if ($result) {
@@ -572,7 +591,7 @@ function retrieve_record($unique_ID) {
     global $CONFIG;
 
     // Retrieve record.
-    $result = db_query("SELECT encoded_string FROM {$CONFIG['TABLE_TEMPDATA']} WHERE unique_ID = '$unique_ID'");
+    $result = cpg_db_query("SELECT encoded_string FROM {$CONFIG['TABLE_TEMPDATA']} WHERE unique_ID = '$unique_ID'");
 
     // Return string if successful.
     if (mysql_num_rows($result)) {
@@ -611,7 +630,7 @@ function clean_table() {
     $comparative_timestamp = time() - 3600;
 
     // Delete record.
-    $result = db_query("DELETE FROM {$CONFIG['TABLE_TEMPDATA']} WHERE timestamp < $comparative_timestamp");
+    $result = cpg_db_query("DELETE FROM {$CONFIG['TABLE_TEMPDATA']} WHERE timestamp < $comparative_timestamp");
 
     // Return true if successful.
     if ($result) {
@@ -820,20 +839,20 @@ if ((CUSTOMIZE_UPLOAD_FORM) and (!isset($_REQUEST['file_upload_request'])) and (
 // Get public and private albums, and set maximum individual file size.
 
 if (GALLERY_ADMIN_MODE) {
-    $public_albums = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
+    $public_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
 } else {
-	$public_albums = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " AND uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.") ORDER BY title");
+	$public_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " AND uploads='YES' AND (visibility = '0' OR visibility IN ".USER_GROUP_SET.") ORDER BY title");
 }
 if (mysql_num_rows($public_albums)) {
-    $public_albums_list = db_fetch_rowset($public_albums);
+    $public_albums_list = cpg_db_fetch_rowset($public_albums);
 } else {
     $public_albums_list = array();
 }
 
 if (USER_ID) {
-    $user_albums = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' ORDER BY title");
+    $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' ORDER BY title");
     if (mysql_num_rows($user_albums)) {
-        $user_albums_list = db_fetch_rowset($user_albums);
+        $user_albums_list = cpg_db_fetch_rowset($user_albums);
     } else {
         $user_albums_list = array();
     }
@@ -853,7 +872,7 @@ $max_file_size = $CONFIG['max_upl_size'] << 10;
 if (!isset($_REQUEST['control'])) {
 
     // Do some cleanup in the edit directory.
-    spring_cleaning("./{$CONFIG['fullpath']}edit",3600);
+    spring_cleaning('./'.$CONFIG['fullpath'].'edit',CPG_HOUR);
 
     // Do some cleaning in the temp data table.
     clean_table();
@@ -861,22 +880,25 @@ if (!isset($_REQUEST['control'])) {
     // Create upload form headers.
     pageheader($lang_upload_php['title']);
 
-    // Open the form table.
-    starttable("100%", $lang_upload_php['title'], 2);
 
     // Select the form action.
     if (USER_UPLOAD_FORM == '0') {
 
         // The user has the single upload only form. Send the request to db_input.php.
         open_form('db_input.php');
-
+        // Open the form table.
+        starttable("100%", $lang_upload_php['title'], 2);
     } else {
 
         // Direct the request to this script and print the form instructions.
         open_form($_SERVER['PHP_SELF']);
+        // Open the form table.
+        starttable("100%", $lang_upload_php['title'], 2);
         form_instructions();
 
     }
+
+
 
     // Use a if-then-else construct to create the upload form for the user based on the setting in the
     // groups panel.
@@ -886,7 +908,7 @@ if (!isset($_REQUEST['control'])) {
 
         // Declare an array containing the various upload form box definitions.
         $captionLabel = $lang_upload_php['description'];
-        if ($CONFIG['show_bbcode_help']) {$captionLabel .= '<hr />'.$lang_bbcode_help;}
+        if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
         $form_array = array(
         sprintf($lang_upload_php['max_fsize'], $CONFIG['max_upl_size']),
         array($lang_upload_php['album'], 'album', 2),
@@ -969,6 +991,8 @@ if (!isset($_REQUEST['control'])) {
     // Create the form.
     create_form($form_array);
 
+
+
     // Close the form.
     if (USER_UPLOAD_FORM == '0') {
 
@@ -983,8 +1007,8 @@ if (!isset($_REQUEST['control'])) {
     }
 
     // Close the table, create footers, and flush the output buffer.
-
     endtable();
+    echo "</form>";
     pagefooter();
     ob_end_flush();
 
@@ -1085,14 +1109,11 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                     // Initialise the $matches array.
                     $matches = array();
 
-                    // Get the forbidden characters from the Config console string, and do any necessary translation. Return the translated string.
-                    $forbidden_chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>'));
-
                     // If magic quotes is on, remove the slashes it added to the file name.
                     if (get_magic_quotes_gpc()) $_FILES['file_upload_array']['name'][$counter] = stripslashes($_FILES['file_upload_array']['name'][$counter]);
 
                     // Create the holder $picture_name by translating the file name. Translate any forbidden character into an underscore.
-                    $picture_name = strtr($_FILES['file_upload_array']['name'][$counter], $forbidden_chars, str_repeat('_', strlen($CONFIG['forbiden_fname_char'])));
+                    $picture_name = replace_forbidden($_FILES['file_upload_array']['name'][$counter]);
 
                     // Analyze the file extension using regular expressions.
                     if (!preg_match("/(.+)\.(.*?)\Z/", $picture_name, $matches)) {
@@ -1183,10 +1204,10 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
             do {
 
                 // Create a random seed by taking the first 8 characters of an MD5 hash of a concatenation of the current UNIX epoch time and the current server process ID.
-                $seed = substr(md5(microtime().getmypid()), 0, 8);
+                $seed = substr(md5(uniqid("")), 0, 8);
 
                 // Assemble the file path.
-                $path_to_image = "./{$CONFIG['fullpath']}edit/". $prefix . $seed . '.' . $suffix;
+                $path_to_image = './'.$CONFIG['fullpath'].'edit/'. $prefix . $seed . '.' . $suffix;
 
             } while (file_exists($path_to_image));
 
@@ -1206,7 +1227,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
             }
 
             // Change file permission
-            chmod($path_to_image, octdec($CONFIG['default_file_mode']));
+            @chmod($path_to_image, octdec($CONFIG['default_file_mode'])); //silence the output in case chmod is disabled
 
             // Create a testing alias.
             $picture_alias = $matches[1].".".$matches[2];
@@ -1228,7 +1249,8 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                     continue;
 
                 // JPEG and PNG only are allowed with GD. If the image is not allowed for GD,delete it.
-                } elseif ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && ($CONFIG['thumb_method'] == 'gd1' || $CONFIG['thumb_method'] == 'gd2')) {
+                //} elseif ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && ($CONFIG['thumb_method'] == 'gd1' || $CONFIG['thumb_method'] == 'gd2')) {
+                } elseif ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && $CONFIG['GIF_support'] == 0) {
                     @unlink($path_to_image);
 
                     // The file upload has failed -- the image is not allowed with GD.
@@ -1239,6 +1261,13 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
 
                 // Check that picture size (in pixels) is lower than the maximum allowed. If not, delete it.
                 } elseif (max($imginfo[0], $imginfo[1]) > $CONFIG['max_upl_width_height']) {
+                  if ((USER_IS_ADMIN && $CONFIG['auto_resize'] == 1) || (!USER_IS_ADMIN && $CONFIG['auto_resize'] > 0)) //($CONFIG['auto_resize']==1)
+                  {
+                    //resize_image($uploaded_pic, $uploaded_pic, $CONFIG['max_upl_width_height'], $CONFIG['thumb_method'], $imginfo[0] > $CONFIG['max_upl_width_height'] ? 'wd' : 'ht');
+                    resize_image($uploaded_pic, $uploaded_pic, $CONFIG['max_upl_width_height'], $CONFIG['thumb_method'], $CONFIG['thumb_use']);
+                  }
+                  else
+                  {
                     @unlink($path_to_image);
 
                     // The file upload has failed -- the image dimensions exceed the allowed amount.
@@ -1246,6 +1275,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
 
                     // There is no need for further tests or action, so skip the remainder of the iteration.
                     continue;
+                  }
                 }
 
             // Image is ok
@@ -1322,11 +1352,8 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
             // Initialise the $matches array.
             $matches = array();
 
-            // Get the forbidden characters from the Config console string, and do any necessary translation. Return the translated string.
-            $forbidden_chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>'));
-
             // Create the holder $picture_name by translating the possible file name. Translate any forbidden character into an underscore.
-            $picture_name = strtr($possible_file_name, $forbidden_chars, str_repeat('_', strlen($CONFIG['forbiden_fname_char'])));
+            $picture_name = replace_forbidden($possible_file_name);
 
             // Analyze the file extension using regular expressions.
             if (!preg_match("/(.+)\.(.*?)\Z/", $picture_name, $matches)) {
@@ -1345,7 +1372,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
             if ($matches[2] == '' || !is_known_filetype($matches)) {
 
                 // Check for stream_get_meta_data support.
-                if (!function_exists(stream_get_meta_data)) {
+                if (!function_exists('stream_get_meta_data')) {
 
                     // We cannot get the header information for the file, so we reject the URI as unsafe.
                     $URI_failure_array[] = array( 'failure_ordinal'=>$failure_ordinal, 'URI_name'=> $_POST['URI_array'][$counter], 'error_code'=>$lang_upload_php['unsafe_URI']);
@@ -1568,7 +1595,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
 
                 } else {
                     // We will try to get the extension from the database.
-                    $MIME_result = db_query("SELECT extension FROM {$CONFIG['TABLE_FILETYPES']} WHERE mime='$URI_MIME_type'");
+                    $MIME_result = cpg_db_query("SELECT extension FROM {$CONFIG['TABLE_FILETYPES']} WHERE mime='$URI_MIME_type'");
 
                     // Check to see if any results were returned.
                     if (!mysql_num_rows($MIME_result)) {
@@ -1612,10 +1639,10 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
             do {
 
                 // Create a random seed by taking the first 8 characters of an MD5 hash of a concatenation of the current UNIX epoch time and the current server process ID.
-                $seed = substr(md5(microtime().getmypid()), 0, 8);
+                $seed = substr(md5(uniqid("")), 0, 8);
 
                 // Assemble the file path.
-                $path_to_image = "./{$CONFIG['fullpath']}/edit/". $prefix . $seed . '.' . $suffix;
+                $path_to_image = './'.$CONFIG['fullpath'].'edit/'. $prefix . $seed . '.' . $suffix;
 
             } while (file_exists($path_to_image));
 
@@ -1690,7 +1717,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
             } else {
 
                 // Obtain header info if possible.
-                if (function_exists(stream_get_meta_data)) {
+                if (function_exists('stream_get_meta_data')) {
 
                     // Store header data in $header.
                     $header = stream_get_meta_data($fp);
@@ -1856,7 +1883,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
             // The file is located at $path_to_image.  We now need to continue with on server testing.
 
             // Change file permission
-            chmod($path_to_image, octdec($CONFIG['default_file_mode']));
+            @chmod($path_to_image, octdec($CONFIG['default_file_mode'])); //silence the output in case chmod is disabled
 
             // Create a testing alias. Use the temp name if a MIME type eas discovered.
             if ($URI_MIME_type) {
@@ -1900,7 +1927,8 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_1')) {
                     continue;
 
                 // JPEG and PNG only are allowed with GD. If the image is not allowed for GD,delete it.
-                } elseif ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && ($CONFIG['thumb_method'] == 'gd1' || $CONFIG['thumb_method'] == 'gd2')) {
+                //} elseif ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && ($CONFIG['thumb_method'] == 'gd1' || $CONFIG['thumb_method'] == 'gd2')) {
+                } elseif ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && $CONFIG['GIF_support'] == 0) {
                     @unlink($path_to_image);
 
                     // The file upload has failed -- the image is not allowed with GD.
@@ -2071,6 +2099,13 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
     // Check for incoming album placement data.
     if ((isset($_POST['album'])) and (isset($_POST['unique_ID']))) {
 
+            // Check if user selected an album to upload picture to. If not, die with error.
+        // added by frogfoot
+        $album = (int)$_POST['album'];
+        if (!$album){
+                        cpg_die(ERROR, $lang_db_input_php['album_not_selected'], __FILE__, __LINE__);
+                }
+
         if (isset($_POST['unique_ID'])) {
 
             // The unique ID is set, so let us retrieve the record.
@@ -2139,45 +2174,45 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
 
         // We have incoming placement data. Let's capture it.
 
-        $album = (int)$HTTP_POST_VARS['album'];
-        $title = addslashes($HTTP_POST_VARS['title']);
-        $caption = addslashes($HTTP_POST_VARS['caption']);
-        $keywords = addslashes($HTTP_POST_VARS['keywords']);
-        $user1 = addslashes($HTTP_POST_VARS['user1']);
-        $user2 = addslashes($HTTP_POST_VARS['user2']);
-        $user3 = addslashes($HTTP_POST_VARS['user3']);
-        $user4 = addslashes($HTTP_POST_VARS['user4']);
+        $album = (int)$_POST['album'];
+        $title = addslashes($_POST['title']);
+        $caption = addslashes($_POST['caption']);
+        $keywords = addslashes($_POST['keywords']);
+        $user1 = addslashes($_POST['user1']);
+        $user2 = addslashes($_POST['user2']);
+        $user3 = addslashes($_POST['user3']);
+        $user4 = addslashes($_POST['user4']);
 
         // Capture movie or audio width and height if sent.
-        if(isset($HTTP_POST_VARS['movie_wd'])) {
+        if(isset($_POST['movie_wd'])) {
 
-            $movie_wd = (int)$HTTP_POST_VARS['movie_wd'];
+            $movie_wd = (int)$_POST['movie_wd'];
 
         } else {
 
-            $movie_wd = 0;
+            $movie_wd = 320;
 
         }
 
-        if(isset($HTTP_POST_VARS['movie_ht'])) {
+        if(isset($_POST['movie_ht'])) {
 
-            $movie_ht = (int)$HTTP_POST_VARS['movie_ht'];
+            $movie_ht = (int)$_POST['movie_ht'];
 
         } else {
 
-            $movie_ht = 0;
+            $movie_ht = 240;
 
         }
 
         // Check if the album id provided is valid
         if (!GALLERY_ADMIN_MODE) {
-            $result = db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album' and (uploads = 'YES' OR category = '" . (USER_ID + FIRST_USER_CAT) . "')");
+            $result = cpg_db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album' and (uploads = 'YES' OR category = '" . (USER_ID + FIRST_USER_CAT) . "')");
             if (mysql_num_rows($result) == 0)cpg_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
             $row = mysql_fetch_array($result);
             mysql_free_result($result);
             $category = $row['category'];
         } else {
-            $result = db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
+            $result = cpg_db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
             if (mysql_num_rows($result) == 0)cpg_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
             $row = mysql_fetch_array($result);
             mysql_free_result($result);
@@ -2191,7 +2226,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
             if (!is_dir($dest_dir)) {
                 mkdir($dest_dir, octdec($CONFIG['default_dir_mode']));
                 if (!is_dir($dest_dir)) cpg_die(CRITICAL_ERROR, sprintf($lang_db_input_php['err_mkdir'], $dest_dir), __FILE__, __LINE__, true);
-                chmod($dest_dir, octdec($CONFIG['default_dir_mode']));
+                @chmod($dest_dir, octdec($CONFIG['default_dir_mode'])); //silence the output in case chmod is disabled
                 $fp = fopen($dest_dir . '/index.html', 'w');
                 fwrite($fp, ' ');
                 fclose($fp);
@@ -2220,7 +2255,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
         $uploaded_pic = $dest_dir . $picture_name;
 
         // Form path to temporary image.
-        $path_to_image = "./{$CONFIG['fullpath']}edit/".$file_set[1];
+        $path_to_image = './'.$CONFIG['fullpath'].'edit/'.$file_set[1];
 
                 // prevent moving the edit directory...
                 if (is_dir($path_to_image)) cpg_die(CRITICAL_ERROR, $lang_upload_php['failure'] . " - '$path_to_image'", __FILE__, __LINE__, true);
@@ -2229,10 +2264,10 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
         if (rename($path_to_image, $uploaded_pic)) {
 
             // Change file permission
-            chmod($uploaded_pic, octdec($CONFIG['default_file_mode']));
+            @chmod($uploaded_pic, octdec($CONFIG['default_file_mode'])); //silence the output in case chmod is disabled
 
             // Create thumbnail and internediate image and add the image into the DB
-            $result = add_picture($album, $filepath, $picture_name, $title, $caption, $keywords, $user1, $user2, $user3, $user4, $category, $raw_ip, $hdr_ip, $movie_wd, $movie_ht);
+            $result = add_picture($album, $filepath, $picture_name, 0,$title, $caption, $keywords, $user1, $user2, $user3, $user4, $category, $raw_ip, $hdr_ip, $movie_wd, $movie_ht);
 
             if (!$result) {
 
@@ -2305,7 +2340,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
                     include_once('include/mailer.inc.php');
 
                     // Send the message.
-                    cpg_mail($CONFIG['gallery_admin_email'], sprintf($lang_db_input_php['notify_admin_email_subject'], $CONFIG['gallery_name']), sprintf($lang_db_input_php['notify_admin_email_body'], USER_NAME,  $CONFIG['ecards_more_pic_target'].'editpics.php?mode=upload_approval' ));
+                    cpg_mail('admin', sprintf($lang_db_input_php['notify_admin_email_subject'], $CONFIG['gallery_name']), sprintf($lang_db_input_php['notify_admin_email_body'], USER_NAME,  $CONFIG['ecards_more_pic_target']. (substr( $CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') .'editpics.php?mode=upload_approval' ));
                 }
                 cpg_send_upload_notification();
             }
@@ -2372,7 +2407,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
     // Create preview image.
 
     // Create path to image.
-    $path_to_image = "./{$CONFIG['fullpath']}edit/".$file_set[1];
+    $path_to_image = './'.$CONFIG['fullpath'].'edit/'.$file_set[1];
 
     // Create the preview function.
 
@@ -2392,10 +2427,10 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
         do {
 
             // Create a random seed by taking the first 8 characters of an MD5 hash of a concatenation of the current UNIX epoch time and the current server process ID.
-            $seed = substr(md5(microtime().getmypid()), 0, 8);
+            $seed = substr(md5(uniqid("")), 0, 8);
 
             // Assemble the file path.
-            $path_to_preview = "./{$CONFIG['fullpath']}edit/preview_" . $seed . '.' . $extension;
+            $path_to_preview = './'.$CONFIG['fullpath'].'edit/preview_' . $seed . '.' . $extension;
 
         } while (file_exists($path_to_preview));
 
@@ -2404,6 +2439,10 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
 
         // The file is an image, we must resize it for a preview image.
         resize_image($path_to_image, $path_to_preview, '150', $CONFIG['thumb_method'], 'wd');
+
+        if ($CONFIG['read_iptc_data']) {
+           $iptc = get_IPTC($path_to_image);
+        }
 
     } else {
 
@@ -2442,7 +2481,7 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
     open_form($_SERVER['PHP_SELF']);
 
     // Create image tag and echo it to the output buffer.
-    echo "<tr><td class=\"tableh2\"><img class=\"image\" src=\"".$path_to_preview."\" ></td>";
+    echo "<tr><td class=\"tableh2\"><img class=\"image\" src=\"".$path_to_preview."\"  /></td>";
 
     // Echo instructions.
     echo "<td class=\"tableh2\">{$lang_upload_php['picture']} - {$file_set[0]}<br /><br />{$lang_upload_php['place_instr_1']}<br /><br />";
@@ -2468,14 +2507,23 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
 
     // Declare an array containing the various upload form box definitions.
     $captionLabel = $lang_upload_php['description'];
-    if ($CONFIG['show_bbcode_help']) {$captionLabel .= '<hr />'.$lang_bbcode_help;}
+    if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=index.html&amp;base=64&amp;h='.urlencode(base64_encode(serialize($lang_bbcode_help_title))).'&amp;t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
     //$printed_file_name = "{$lang_upload_php['picture']} - {$file_set[0]}";
-
+    
+    //Use the IPTC title or headline for the Coppermine title if available.
+    if (isset($iptc['Title']) && !empty($iptc['Title'])) {
+        $title=$iptc['Title'];
+    } elseif (isset($iptc['Headline']) && !empty($iptc['Headline'])) {
+        $title=$iptc['Headline'];
+    } else {
+        $title='';
+    }
+    
     $form_array = array(
     array($lang_upload_php['album'], 'album', 2),
-    array($lang_upload_php['pic_title'], 'title', 0, 255, 1),
-    array($captionLabel, 'caption', 3, $CONFIG['max_img_desc_length']),
-    array($lang_upload_php['keywords'], 'keywords', 0, 255, 1),
+    array($lang_upload_php['pic_title'], 'title', 0, 255, 1, $title),
+    array($captionLabel, 'caption', 3, $CONFIG['max_img_desc_length'], (isset($iptc['Caption'])) ? $iptc['Caption'] : ''),
+    array($lang_upload_php['keywords'], 'keywords', 0, 255, 1,(isset($iptc['Keywords'])) ? implode(' ',$iptc['Keywords']): ''),
     array('control', 'phase_2', 4),
     array('unique_ID', $_POST['unique_ID'], 4),
     );
@@ -2502,8 +2550,8 @@ if ((isset($_POST['control'])) and ($_POST['control'] == 'phase_2')) {
     if((is_movie($file_set[1])) or (is_audio($file_set[1]))) {
 
         //Add width and height boxes to the form.
-        $form_array[] = array($lang_config_php['th_wd'],'movie_wd', 0, 4, 1);
-        $form_array[] = array($lang_config_php['th_ht'],'movie_ht', 0, 4, 1);
+        $form_array[] = array($lang_admin_php['th_wd'],'movie_wd', 0, 4, 1);
+        $form_array[] = array($lang_admin_php['th_ht'],'movie_ht', 0, 4, 1);
 
     }
 

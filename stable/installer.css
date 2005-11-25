@@ -2,19 +2,20 @@
   Coppermine Photo Gallery
   ************************
   Copyright (c) 2003-2005 Coppermine Dev Team
-  v1.1 originaly written by Gregory DEMAR
+  v1.1 originally written by Gregory DEMAR
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.3.5
+  Coppermine version: 1.4.2
   $Source$
   $Revision$
   $Author$
   $Date$
 **********************************************/
+
 body {
         font-family : Verdana, Arial, Helvetica, sans-serif;
         font-size: 12px;
@@ -23,15 +24,15 @@ body {
         margin: 0px;
 }
 
-h2 {
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 18px;
-        margin: 0px;
+h1
+{
+    font-size: 24px;
+    font-weight: normal;
+    padding: 5px;
 }
 
+
 p {
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 12px;
         margin: 2px 0px;
 }
 
@@ -45,21 +46,15 @@ hr {
 }
 
 .textinput {
-        font-family: Verdana, Arial, Helvetica, sans-serif;
-        font-size: 12px;
         border: groove 1px;
         width: 100%;
 }
 
 .listbox {
-        font-family: Verdana, Arial, Helvetica, sans-serif;
-        font-size: 12px;
         border: groove 1px;
 }
 
 .button {
-        font-family: Verdana, Arial, Helvetica, sans-serif;
-        font-size: 12px;
         border: raised 1px;
 }
 
@@ -73,13 +68,13 @@ a:hover {
         text-decoration: underline;
 }
 
-.tableh1 {
+.tableh1, h2 {
         background : #0E72A4 ;
         color : #FFFFFF;
         padding-top: 3px;
         padding-right: 10px;
         padding-bottom: 3px;
-        padding-left: 10px;
+        padding-left: 2px;
 }
 
 .tableh2 {
@@ -88,7 +83,8 @@ a:hover {
         padding-top: 3px;
         padding-right: 10px;
         padding-bottom: 3px;
-        padding-left: 10px;
+        padding-left: 2px;
+        border: 1px black solid;
 }
 
 .tableb {
@@ -96,7 +92,8 @@ a:hover {
         padding-top: 8px;
         padding-right: 10px;
         padding-bottom: 8px;
-        padding-left: 10px;
+        padding-left: 2px;
+        border: 1px black solid;
 }
 
 .updatesOK {
@@ -104,7 +101,7 @@ a:hover {
         padding-top: 8px;
         padding-right: 10px;
         padding-bottom: 8px;
-        padding-left: 10px;
+        padding-left: 2px;
         font-weight: bold;
         color: green;
 }
@@ -114,7 +111,7 @@ a:hover {
         padding-top: 8px;
         padding-right: 10px;
         padding-bottom: 8px;
-        padding-left: 10px;
+        padding-left: 2px;
 }
 
 .maintable {
@@ -123,7 +120,108 @@ a:hover {
         margin: 2px;
 }
 
- .error {
+.charsetchecktable
+{
+
+}
+
+.charsetchecktable td, .charsetchecktable th
+{
+    padding: 2px;
+    border: 1px solid gray;
+}
+
+.charsetchecktable td
+{
+    font-size: 10px;
+}
+
+.charsetchecktable td.check
+{
+    font-size: 12px;
+}
+
+
+
+ .error, .bigwarning {
         color : Red;
         font-weight : bold;
+}
+
+h2.error
+{
+    text-align: center;
+    background-color: #EFEFEF;
+}
+
+img.logo
+{
+    background-color: #EFEFEF;
+    text-align: left;
+}
+
+.bigwarning, .warning, .failed
+{
+    color: red;
+}
+
+td.warning
+{
+    background-color: red;
+    color: white;
+}
+
+p, div.warning
+{
+    margin: 10px;
+    padding: 5px;
+}
+
+table.maintable td
+{
+    padding: 2px;
+}
+
+p.warning, div.warning
+{
+    color: black;
+    font-size: 120%;
+    border: 1px solid black;
+    background: #fdd;
+}
+
+
+.check
+{
+    background-color: white;
+    font-weight: bold;
+    color: blue;
+}
+
+.nocheck
+{
+    color: gray;
+}
+
+.done
+{
+    background-color: green;
+    color: white;
+    text-align: center;
+}
+
+.input
+{
+    text-align: center;
+}
+
+fieldset
+{
+    width: 90ex;
+    margin: 5px auto;
+}
+
+fieldset form
+{
+    margin: auto 10px;
 }

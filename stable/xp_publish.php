@@ -10,47 +10,31 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.3.5
+  Coppermine version: 1.4.2
   $Source$
   $Revision$
   $Author$
   $Date$
-  **********************************************
-  Coppermine Windows XP Web Publishing Wizard Client
-  Based on the article posted by Sebastian Delmont
-  http://www.zonageek.com/code/misc/wizards/
-  **********************************************
-  Other information can be found on Microsoft web site
-  http://www.microsoft.com/whdc/hwdev/tech/WIA/imaging/webwizard.mspx
-  http://msdn.microsoft.com/library/default.asp?url=/library/en-us/shellcc/platform/shell/programmersguide/shell_basics/shell_basics_extending/publishing_wizard/pubwiz_intro.asp
-  **********************************************
-  Original implementation comes from Gallery
-  http://gallery.menalto.com
-  **********************************************/
+**********************************************/
+
+// ------------------------------------------------------------------------- //
+// Coppermine Windows XP Web Publishing Wizard Client                        //
+// Based on the article posted by Sebastian Delmont                          //
+// http://www.zonageek.com/code/misc/wizards/                                //
+// ------------------------------------------------------------------------- //
+// Other information can be found on Microsoft web site                      //
+// http://www.microsoft.com/whdc/hwdev/tech/WIA/imaging/webwizard.mspx       //
+// http://msdn.microsoft.com/library/default.asp?url=/library/en-us/shellcc/platform/shell/programmersguide/shell_basics/shell_basics_extending/publishing_wizard/pubwiz_intro.asp
+// ------------------------------------------------------------------------- //
+// Original implementation comes from Gallery                                //
+// http://gallery.menalto.com                                                //
+// ------------------------------------------------------------------------- //
 
 // Declare we are in Coppermine.
 define('IN_COPPERMINE', true);
 
 // Set the language block.
 define('XP_PUBLISH_PHP', true);
-
-// Language file entry for xp_publish.php
-// You can copy and paste the code below in your language file and translate it.
-// ------------------------------------------------------------------------- //
-// File xp_publish.php
-// ------------------------------------------------------------------------- //
-if (defined('XP_PUBLISH_PHP')) $lang_xp_publish_php = array('title' => 'Coppermine - XP Web Publishing Wizard',
-        'welcome' => 'Welcome <b>%s</b>,',
-        'need_login' => 'You need to login to the gallery using your web browser before you can use this wizard.<p/><p>When you login don\'t forget to select the <b>remember me</b> option if it is present.',
-        'no_alb' => 'Sorry but there is no album where you are allowed to upload pictures with this wizard.',
-        'upload' => 'Upload your pictures into an existing album',
-        'create_new' => 'Create a new album for your pictures',
-        'album' => 'Album',
-        'category' => 'Category',
-        'new_alb_created' => 'Your new album &quot;<b>%s</b>&quot; was created.',
-        'continue' => 'Press &quot;Next&quot; to start to upload your pictures',
-        );
-// ------------------------------------------------------------------------- //
 
 // Activate more language block sets.
 define('LOGIN_PHP', true);
@@ -89,7 +73,7 @@ $template_login_success = <<< EOT
         <form method="post" id="dummy" action="{POST_ACTION}">
                 <input type="hidden" name="dummy_val" value="1" />
         </form>
-<script language="javascript">
+<script language="javascript" type="text/javascript">
 dummy.submit();
 </script>
 EOT;
@@ -148,7 +132,7 @@ $template_create_album = <<<EOT
         <p>{NEW_ALB_CREATED}</p>
         <p>{CONTINUE}</p>
         <form id="selform">
-                <input type="hidden" id="album" name="album" value ="{ALBUM_ID}">
+                <input type="hidden" id="album" name="album" value ="{ALBUM_ID}" />
         </form>
 
 EOT;
@@ -189,9 +173,9 @@ function get_subcat_data($parent, $ident = '')
 {
     global $CONFIG, $CAT_LIST;
 
-    $result = db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent' AND cid != 1 ORDER BY pos");
+    $result = cpg_db_query("SELECT cid, name, description FROM {$CONFIG['TABLE_CATEGORIES']} WHERE parent = '$parent' AND cid != 1 ORDER BY pos");
     if (mysql_num_rows($result) > 0) {
-        $rowset = db_fetch_rowset($result);
+        $rowset = cpg_db_fetch_rowset($result);
         foreach ($rowset as $subcat) {
             $CAT_LIST[] = array($subcat['cid'], $ident . $subcat['name']);
             get_subcat_data($subcat['cid'], $ident . '&nbsp;&nbsp;&nbsp;');
@@ -205,9 +189,9 @@ function html_album_list(&$alb_count)
     global $CONFIG;
 
     if (USER_IS_ADMIN) {
-        $public_albums = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
+        $public_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
         if (mysql_num_rows($public_albums)) {
-            $public_albums_list = db_fetch_rowset($public_albums);
+            $public_albums_list = cpg_db_fetch_rowset($public_albums);
         } else {
             $public_albums_list = array();
         }
@@ -216,9 +200,9 @@ function html_album_list(&$alb_count)
     }
 
     if (USER_ID) {
-        $user_albums = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' ORDER BY title");
+        $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='" . (FIRST_USER_CAT + USER_ID) . "' ORDER BY title");
         if (mysql_num_rows($user_albums)) {
-            $user_albums_list = db_fetch_rowset($user_albums);
+            $user_albums_list = cpg_db_fetch_rowset($user_albums);
         } else {
             $user_albums_list = array();
         }
@@ -261,7 +245,8 @@ function html_cat_list()
 // Display information on how to use/install the wizard client
 function display_instructions()
 {
-    global $PHP_SELF;
+    //global $PHP_SELF;
+        global $lang_xp_publish_required, $lang_xp_publish_client, $lang_xp_publish_select, $lang_xp_publish_testing, $lang_xp_publish_notes, $lang_xp_publish_flood, $lang_xp_publish_php;
 
     ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -337,48 +322,13 @@ li {
 </head>
 
 <body>
-<h1><img src="images/coppermine_logo.png" width="300" height="75" alt="Coppermine Photo Gallery"/></h1>
-<h1>XP Web Publishing Wizard Client</h1>
-<p>This module allows to use <b>Windows XP</b> web publishing wizard with
-Coppermine.</p>
-<p>Code is based on article posted by Sebastian Delmont
-<a href="http://www.zonageek.com/code/misc/wizards/">Creating your own XP Publishing Wizard</a>.</p>
+<?php echo $lang_xp_publish_client ?> Sebastian Delmont <a href="http://www.zonageek.com/code/misc/wizards/">Creating your own XP Publishing Wizard</a>.</p>
 
-<h2>What is required</h2>
-<ul>
-  <li>Windows XP in order to have the wizard.</li>
-  <li>A working installation of Coppermine on which <b>the web upload function works properly.</b></li>
-</ul>
-<h2>How to install on client side</h2>
-<ul>
-  <li>Right click on <a href="<?php echo $PHP_SELF ?>?cmd=send_reg">this link</a>. Select &quot;save
-   target as..&quot;. Save the file on your hard drive. When saving the file, check that the proposed
-   file name is <b>cpg_###.reg</b> (the ### represents a numerical timestamp). Change it to that name if necessary (leave the numbers). When downloaded, double click on the
-   file in order to register your server with the web publishing wizard.</li>
-</ul>
-<h2>Testing</h2>
-<ul>
-  <li>In Windows Explorer, select some files and click on <b>Publish xxx on the web</b>
-  in the left pane.</li>
-  <li>Confirm your file selection. Click on <b>Next</b>.</li>
-  <li>In the list of services that appear, select the one for your photo gallery (it has the name
-  of your gallery). If the service does not appear, check that you have installed
-  <b>cpg_pub_wizard.reg</b> as described above.</li>
-  <li>Input your login information if required.</li>
-  <li>Select the target album for your pictures or create a new one.</li>
-  <li>Click on <b>next</b>. The upload of your pictures starts.</li>
-  <li>When it is completed, check your gallery to see if pictures have been properly added.</li>
-</ul>
-<h2>Notes :</h2>
-<ul>
-  <li>Once the upload has started, the wizard can't display any error message returned by
-  the script so you can't know if the upload failed or succeeded until you check your gallery.</li>
-  <li>If the upload fails, enable &quot;Debug mode&quot; on the Coppermine config page,
-  try with one single picture and check error messages in the
-  <a href="<?php echo dirname($PHP_SELF) . '/' . LOGFILE ?>"><?php echo LOGFILE ?></a> file
-  that is located in Coppermine directory on your server.</li>
-  <li>In order to avoid that the gallery be <i>flooded</i> by pictures uploaded through the wizard,
-  only the <b>gallery admins</b> and <b>users that can have their own albums</b> can use this feature.</li>
+<?php echo $lang_xp_publish_required ?> <a href="<?php echo $_SERVER['PHP_SELF'] ?>?cmd=send_reg"><?php echo $lang_xp_publish_php['link'] ?></a>. <?php echo $lang_xp_publish_select,
+$lang_xp_publish_testing,
+$lang_xp_publish_notes; ?>
+  <a href="<?php echo dirname($_SERVER['PHP_SELF']) . '/' . LOGFILE ?>"><?php echo LOGFILE ?></a>
+<?php echo $lang_xp_publish_flood ?>
 </body>
 </html>
 <?php
@@ -482,13 +432,13 @@ input {
 function output_footer()
 {
     global $WIZARD_BUTTONS, $ONBACK_SCRIPT, $ONNEXT_SCRIPT;
-    global $HTTP_SERVER_VARS, $PHP_SELF, $CONFIG;
+    global $CONFIG; //$PHP_SELF,
 
     ?>
 
 <div id="content"></div>
 
-<script language='javascript'>
+<script language="javascript" type="text/javascript">
 function create_alb() {
         if (createAlb.newAlbName.value == ''){
                 return false;
@@ -511,7 +461,7 @@ function startUpload() {
 
         for (i = 0; i < files.length; i++) {
                 var postTag = xml.createNode(1, 'post', '');
-                postTag.setAttribute('href', '<?php echo 'http://' . $HTTP_SERVER_VARS['HTTP_HOST'] . $PHP_SELF . '?cmd=add_picture'?>&album=' + selform.album.value);
+                postTag.setAttribute('href', '<?php echo trim($CONFIG['site_url'], '/') . '/' . $_SERVER['PHP_SELF'] . '?cmd=add_picture'?>&amp;album=' + selform.album.value);
                 postTag.setAttribute('name', 'userpicture');
 
                 var dataTag = xml.createNode(1, 'formdata', '');
@@ -525,7 +475,7 @@ function startUpload() {
         var uploadTag = xml.createNode(1, 'uploadinfo', '');
         uploadTag.setAttribute('friendlyname', '<?php echo javascript_string($CONFIG['gallery_name'])?>');
         var htmluiTag = xml.createNode(1, 'htmlui', '');
-        htmluiTag.text = '<?php echo 'http://' . $HTTP_SERVER_VARS['HTTP_HOST'] . dirname($PHP_SELF) . '/'?>';
+        htmluiTag.text = '<?php echo trim($CONFIG['site_url'], '/') . '/'?>';
         uploadTag.appendChild(htmluiTag);
 
         xml.documentElement.appendChild(uploadTag);
@@ -564,7 +514,7 @@ function window.onload() {
 // Send the file needed to register the service under Windows XP
 function send_reg_file()
 {
-    global $CONFIG, $HTTP_SERVER_VARS, $PHP_SELF;
+    global $CONFIG; //, $PHP_SELF;
 
     header("Content-Type: application/octet-stream");
     $time_stamp = time();
@@ -575,8 +525,8 @@ function send_reg_file()
         $lines[] = '[HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\PublishingWizard\PublishingWizard\Providers\\'. $CONFIG['gallery_name'] .']';
     $lines[] = '"displayname"="' . $CONFIG['gallery_name'] . '"';
     $lines[] = '"description"="' . $CONFIG['gallery_description'] . '"';
-    $lines[] = '"href"="' . "http://" . $HTTP_SERVER_VARS['HTTP_HOST'] . $PHP_SELF . '?cmd=publish"';
-    $lines[] = '"icon"="' . "http://" . $HTTP_SERVER_VARS['HTTP_HOST'] . '/favicon.ico"';
+    $lines[] = '"href"="' . trim($CONFIG['site_url'], '/') . '/' . $_SERVER['PHP_SELF'] . '?cmd=publish"';
+    $lines[] = '"icon"="' . "http://" . $_SERVER['HTTP_HOST'] . '/favicon.ico"';
     print join("\r\n", $lines);
     print "\r\n";
     exit;
@@ -585,14 +535,13 @@ function send_reg_file()
 // Display the login page
 function form_login()
 {
-    global $PHP_SELF;
+    //global $PHP_SELF;
     global $ONNEXT_SCRIPT, $ONBACK_SCRIPT, $WIZARD_BUTTONS;
     global $template_login;
-    global $lang_login_php, $lang_xp_publish_php;
+    global $lang_login_php, $lang_xp_publish_php, $cpg_udb;
 
-    global $HTTP_COOKIE_VARS;
 
-    if (defined('UDB_INTEGRATION')) {
+    if (!method_exists($cpg_udb,'login')) {
         echo '<p>' . $lang_xp_publish_php['need_login'] . '</p>';
         $ONNEXT_SCRIPT = '';
         $ONBACK_SCRIPT = 'window.external.FinalBack();';
@@ -600,7 +549,7 @@ function form_login()
         return;
     }
 
-    $params = array('{POST_ACTION}' => $PHP_SELF . '?cmd=publish',
+    $params = array('{POST_ACTION}' => trim($CONFIG['site_url'], '/') . '/' . $_SERVER['PHP_SELF'] . '?cmd=publish',
         '{ENTER_LOGIN_PSWD}' => $lang_login_php['enter_login_pswd'],
         '{USERNAME}' => $lang_login_php['username'],
         '{PASSWORD}' => $lang_login_php['password'],
@@ -616,30 +565,27 @@ function form_login()
 // Process login information
 function process_login()
 {
-    global $CONFIG, $HTTP_POST_VARS, $PHP_SELF, $USER;
+    global $CONFIG, $USER; //$PHP_SELF,
     global $ONNEXT_SCRIPT, $ONBACK_SCRIPT, $WIZARD_BUTTONS;
-    global $template_login_success, $template_login_failure;
-    global $lang_login_php;
+    global $template_login_success, $template_login_failure,$template_login;
+    global $lang_login_php, $cpg_udb;
 
-    $results = db_query("SELECT user_id, user_name, user_password FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '" . addslashes($HTTP_POST_VARS['username']) . "' AND BINARY user_password = '" . addslashes($HTTP_POST_VARS['password']) . "' AND user_active = 'YES'");
-    if (mysql_num_rows($results)) {
-        $USER_DATA = mysql_fetch_array($results);
+    $tt = 'worked';
 
-        $cookie_life_time = 86400;
-        setcookie($CONFIG['cookie_name'] . '_uid', $USER_DATA['user_id'], time() + $cookie_life_time, $CONFIG['cookie_path']);
-        setcookie($CONFIG['cookie_name'] . '_pass', md5($HTTP_POST_VARS['password']), time() + $cookie_life_time, $CONFIG['cookie_path']);
+    if ( $USER_DATA = $cpg_udb->login(addslashes($_POST['username']), addslashes($_POST['password'])) ) {
         $USER['am'] = 1;
         user_save_profile();
 
         $params = array('{WELCOME}' => sprintf($lang_login_php['welcome'], USER_NAME),
-            '{POST_ACTION}' => $PHP_SELF . '?cmd=publish',
+            '{POST_ACTION}' => trim($CONFIG['site_url'], '/') . '/' . $_SERVER['PHP_SELF'] . '?cmd=publish',
             );
 
         echo template_eval($template_login_success, $params);
     } else {
         $params = array('{ERROR}' => $lang_login_php['err_login'],
-            '{POST_ACTION}' => $PHP_SELF . '?cmd=publish',
+            '{POST_ACTION}' => trim($CONFIG['site_url'], '/') . '/' . $_SERVER['PHP_SELF'] . '?cmd=publish',
             );
+
 
         echo template_eval($template_login_failure, $params);
     }
@@ -652,7 +598,7 @@ function process_login()
 // Display the form that allows to choose/create the destination album
 function form_publish()
 {
-    global $CONFIG, $CAT_LIST, $PHP_SELF;
+    global $CONFIG, $CAT_LIST; //, $PHP_SELF;
     global $ONNEXT_SCRIPT, $ONBACK_SCRIPT, $WIZARD_BUTTONS;
     global $template_select_album;
     global $lang_xp_publish_php;
@@ -683,7 +629,7 @@ function form_publish()
             '{ALBUM}' => $lang_xp_publish_php['album'],
             '{CATEGORY}' => $lang_xp_publish_php['category'],
             '{SELECT_CATEGORY}' => $html_cat_list,
-            '{POST_ACTION}' => $PHP_SELF . '?cmd=create_album',
+            '{POST_ACTION}' => trim($CONFIG['site_url'], '/') . '/' . $_SERVER['PHP_SELF'] . '?cmd=create_album',
             );
 
         echo template_eval($template_select_album, $params);
@@ -703,7 +649,7 @@ function form_publish()
             '{CATEGORY}' => $lang_xp_publish_php['category'],
             '{SELECT_CATEGORY}' => $html_cat_list,
             '{CREATE_NEW}' => $lang_xp_publish_php['create_new'],
-            '{POST_ACTION}' => $PHP_SELF . '?cmd=create_album',
+            '{POST_ACTION}' => trim($CONFIG['site_url'], '/') . '/' . $_SERVER['PHP_SELF'] . '?cmd=create_album',
             );
 
         echo template_eval($template_select_album, $params);
@@ -717,7 +663,7 @@ function form_publish()
 // Create a new album where pictures will be uploaded
 function create_album()
 {
-    global $CONFIG, $HTTP_POST_VARS;
+    global $CONFIG;
     global $ONNEXT_SCRIPT, $ONBACK_SCRIPT, $WIZARD_BUTTONS;
     global $template_create_album;
     global $lang_errors, $lang_xp_publish_php;
@@ -725,15 +671,15 @@ function create_album()
     if (!(USER_CAN_CREATE_ALBUMS || USER_IS_ADMIN)) simple_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
     if (USER_IS_ADMIN) {
-        $category = (int)$HTTP_POST_VARS['cat'];
+        $category = (int)$_POST['cat'];
     } else {
         $category = FIRST_USER_CAT + USER_ID;
     }
 
-    $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos) VALUES ('$category', '" . addslashes($HTTP_POST_VARS['new_alb_name']) . "', 'NO',  '0')";
-    db_query($query);
+    $query = "INSERT INTO {$CONFIG['TABLE_ALBUMS']} (category, title, uploads, pos) VALUES ('$category', '" . addslashes($_POST['new_alb_name']) . "', 'NO',  '0')";
+    cpg_db_query($query);
 
-    $params = array('{NEW_ALB_CREATED}' => sprintf($lang_xp_publish_php['new_alb_created'], $HTTP_POST_VARS['new_alb_name']),
+    $params = array('{NEW_ALB_CREATED}' => sprintf($lang_xp_publish_php['new_alb_created'], $_POST['new_alb_name']),
         '{CONTINUE}' => $lang_xp_publish_php['continue'],
         '{ALBUM_ID}' => mysql_insert_id(),
         );
@@ -748,14 +694,14 @@ function create_album()
 // Add a picture
 function process_picture()
 {
-    global $HTTP_POST_VARS, $HTTP_GET_VARS, $HTTP_POST_FILES, $CONFIG, $IMG_TYPES;
+    global $CONFIG, $IMG_TYPES;
     global $lang_db_input_php, $lang_errors;
 
     @unlink(LOGFILE);
 
     if (!USER_ID || !USER_CAN_UPLOAD_PICTURES) simple_die(ERROR, $lang_errors['perm_denied'], __FILE__, __LINE__);
 
-    $album = (int)$HTTP_GET_VARS['album'];
+    $album = (int)$_GET['album'];
     $title = '';
     $caption = '';
     $keywords = '';
@@ -763,22 +709,38 @@ function process_picture()
     $user2 = '';
     $user3 = '';
     $user4 = '';
+    $position = 0;
     // Check if the album id provided is valid
     if (!USER_IS_ADMIN) {
-        $result = db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album' and category = '" . (USER_ID + FIRST_USER_CAT) . "'");
+        $result = cpg_db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album' and category = '" . (USER_ID + FIRST_USER_CAT) . "'");
         if (mysql_num_rows($result) == 0) simple_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
         $row = mysql_fetch_array($result);
         mysql_free_result($result);
         $category = $row['category'];
     } else {
-        $result = db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
+        $result = cpg_db_query("SELECT category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='$album'");
         if (mysql_num_rows($result) == 0) simple_die(ERROR, $lang_db_input_php['unknown_album'], __FILE__, __LINE__);
         $row = mysql_fetch_array($result);
         mysql_free_result($result);
         $category = $row['category'];
     }
+
+    // Get position
+    $result = cpg_db_query("SELECT position FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' order by position desc");
+    if (mysql_num_rows($result) == 0) {
+             $position = 100;
+    } else {
+             $row = mysql_fetch_array($result);
+             mysql_free_result($result);
+                     if ($row['position']) {
+                     $position = $row['position'];
+                             $position++;
+                                         }
+    }
+
+
     // Test if the filename of the temporary uploaded picture is empty
-    if ($HTTP_POST_FILES['userpicture']['tmp_name'] == '') simple_die(ERROR, $lang_db_input_php['no_pic_uploaded'], __FILE__, __LINE__);
+    if ($_FILES['userpicture']['tmp_name'] == '') simple_die(ERROR, $lang_db_input_php['no_pic_uploaded'], __FILE__, __LINE__);
     // Create destination directory for pictures
     if (USER_ID && !defined('SILLY_SAFE_MODE')) {
         if (USER_IS_ADMIN && ($category != (USER_ID + FIRST_USER_CAT))) {
@@ -806,10 +768,9 @@ function process_picture()
 
     $matches = array();
 
-    if (get_magic_quotes_gpc()) $HTTP_POST_FILES['userpicture']['name'] = stripslashes($HTTP_POST_FILES['userpicture']['name']);
+    if (get_magic_quotes_gpc()) $_FILES['userpicture']['name'] = stripslashes($_FILES['userpicture']['name']);
     // Replace forbidden chars with underscores
-    $forbidden_chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>'));
-    $picture_name = strtr($HTTP_POST_FILES['userpicture']['name'], $forbidden_chars, str_repeat('_', strlen($CONFIG['forbiden_fname_char'])));
+    $picture_name = replace_forbidden($_FILES['userpicture']['name']);
     // Check that the file uploaded has a valid extension
     if (!preg_match("/(.+)\.(.*?)\Z/", $picture_name, $matches)) {
         $matches[1] = 'invalid_fname';
@@ -828,7 +789,7 @@ function process_picture()
     }
     $uploaded_pic = $dest_dir . $picture_name;
     // Move the picture into its final location
-    if (!move_uploaded_file($HTTP_POST_FILES['userpicture']['tmp_name'], $uploaded_pic))
+    if (!move_uploaded_file($_FILES['userpicture']['tmp_name'], $uploaded_pic))
         simple_die(CRITICAL_ERROR, sprintf($lang_db_input_php['err_move'], $picture_name, $dest_dir), __FILE__, __LINE__, true);
     // Change file permission
     chmod($uploaded_pic, octdec($CONFIG['default_file_mode']));
@@ -849,21 +810,31 @@ function process_picture()
         }
 
         // JPEG and PNG only are allowed with GD
-        if ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && ($CONFIG['thumb_method'] == 'gd1' || $CONFIG['thumb_method'] == 'gd2')) {
+        //if ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && ($CONFIG['thumb_method'] == 'gd1' || $CONFIG['thumb_method'] == 'gd2')) {
+        if ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && $CONFIG['GIF_support'] == 0) {
             @unlink($uploaded_pic);
             simple_die(ERROR, $lang_errors['gd_file_type_err'], __FILE__, __LINE__, true);
         }
 
         // Check that picture size (in pixels) is lower than the maximum allowed
         if (max($imginfo[0], $imginfo[1]) > $CONFIG['max_upl_width_height']) {
-            @unlink($uploaded_pic);
-            simple_die(ERROR, sprintf($lang_db_input_php['err_fsize_too_large'], $CONFIG['max_upl_width_height'], $CONFIG['max_upl_width_height']), __FILE__, __LINE__);
+            if ((USER_IS_ADMIN && $CONFIG['auto_resize'] == 1) || (!USER_IS_ADMIN && $CONFIG['auto_resize'] > 0)) //($CONFIG['auto_resize']==1)
+            {
+              //resize_image($uploaded_pic, $uploaded_pic, $CONFIG['max_upl_width_height'], $CONFIG['thumb_method'], $imginfo[0] > $CONFIG['max_upl_width_height'] ? 'wd' : 'ht');
+              resize_image($uploaded_pic, $uploaded_pic, $CONFIG['max_upl_width_height'], $CONFIG['thumb_method'], $CONFIG['thumb_use']);
+            }
+            else
+            {
+              @unlink($uploaded_pic);
+              simple_die(ERROR, sprintf($lang_db_input_php['err_fsize_too_large'], $CONFIG['max_upl_width_height'], $CONFIG['max_upl_width_height']), __FILE__, __LINE__);
+            }
         }
 
     }
 
     // Create thumbnail and internediate image and add the image into the DB
-    $result = add_picture($album, $filepath, $picture_name, $title, $caption, $keywords, $user1, $user2, $user3, $user4, $category);
+    $result = add_picture($album, $filepath, $picture_name, $position, $title, $caption, $keywords, $user1, $user2, $user3, $user4, $category);
+
     if (!$result) {
         @unlink($uploaded_pic);
         simple_die(CRITICAL_ERROR, sprintf($lang_db_input_php['err_insert_pic'], $uploaded_pic) . '<br /><br />' . $ERROR, __FILE__, __LINE__, true);
@@ -879,10 +850,10 @@ if (USER_IS_ADMIN && !GALLERY_ADMIN_MODE) {
     user_save_profile();
 }
 
-$cmd = empty($HTTP_GET_VARS['cmd']) ? '' : $HTTP_GET_VARS['cmd'];
+$cmd = empty($_GET['cmd']) ? '' : $_GET['cmd'];
 
 if (!USER_ID && $cmd && $cmd != 'send_reg') $cmd = 'login';
-if (!empty($HTTP_POST_VARS['username'])) $cmd = 'process_login';
+if (!empty($_POST['username'])) $cmd = 'process_login';
 
 switch ($cmd) {
     case 'login' :

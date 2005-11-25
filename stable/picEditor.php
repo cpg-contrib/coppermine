@@ -10,7 +10,7 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.3.5
+  Coppermine version: 1.4.2
   $Source$
   $Revision$
   $Author$
@@ -66,23 +66,20 @@ require('include/picmgmt.inc.php');
 
 define('IMG_DIR', $CONFIG['fullpath'].'edit/');
 
-if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
-
-
-if (isset($HTTP_GET_VARS['id'])) {
-        $pid = (int)$HTTP_GET_VARS['id'];
-} elseif (isset($HTTP_POST_VARS['id'])) {
-        $pid = (int)$HTTP_POST_VARS['id'];
+if (isset($_GET['id'])) {
+        $pid = (int)$_GET['id'];
+} elseif (isset($_POST['id'])) {
+        $pid = (int)$_POST['id'];
 } else {
         $pid = -1;
 }
 if ($pid > 0){
 
-        $result = db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = '$pid'");
+        $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = '$pid'");
         $CURRENT_PIC = mysql_fetch_array($result);
+                if (!(GALLERY_ADMIN_MODE || ($CONFIG['users_can_edit_pics'] && $CURRENT_PIC['owner_id'] == USER_ID)) || !USER_ID) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
         mysql_free_result($result);
         $pic_url = get_pic_url($CURRENT_PIC,'fullsize');
-
 }
 
 //Garbage collection run at an probability of 25% and delete all files older than one hour
@@ -172,7 +169,7 @@ if ($_GET['id']){
                        $total_filesize = $filesize + (file_exists($normal) ? filesize($normal) : 0) + filesize($thumbnail);
 
           //Update the image size in the DB
-          db_query("UPDATE {$CONFIG['TABLE_PICTURES']}
+          cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']}
                           SET pheight = $height,
                             pwidth = $width,
                                                         filesize = $filesize,
@@ -211,7 +208,7 @@ if ($_GET['id']){
         $total_filesize = filesize($currentPic) + (file_exists($normal) ? filesize($normal) : 0) + filesize($thumbnail);
 
           //Update the image size in the DB
-          db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET total_filesize = $total_filesize WHERE pid = '$pid'");
+          cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET total_filesize = $total_filesize WHERE pid = '$pid'");
 
 
         $message = "Thumbnail successfully saved - you can close this window now";
@@ -515,7 +512,7 @@ if ($_GET['id']){
     <style>
     #lefttopdiv{
     position:absolute;
-    background-image:url(<?php echo $PHP_SELF?>?img=left);
+    background-image:url(<?php echo $_SERVER['PHP_SELF']?>?img=left);
     left:0px;
     top:100px;
     height:25px;
@@ -526,7 +523,7 @@ if ($_GET['id']){
     }
     #rightbottomdiv{
     position:absolute;
-    background-image:url(<?php echo $PHP_SELF?>?img=right);
+    background-image:url(<?php echo $_SERVER['PHP_SELF']?>?img=right);
     left:0px;
     top:225px;
     height:25px;
@@ -554,10 +551,10 @@ if ($_GET['id']){
 
 <form name="mainform" method="POST" enctype="multipart/form-data" action="picEditor.php">
 
-<input type="hidden" name="clipval" value="">
-<input type="hidden" name="newimage" value="<?php print $newimage ; ?>">
-<input type="hidden" name="img_dir" value="<?php print $img_dir ; ?>">
-<input type="hidden" name="id" value="<?php print (isset($_GET['id']))?$_GET['id']:$_POST['id']; ?>">
+<input type="hidden" name="clipval" value="" />
+<input type="hidden" name="newimage" value="<?php print $newimage ; ?>" />
+<input type="hidden" name="img_dir" value="<?php print $img_dir ; ?>" />
+<input type="hidden" name="id" value="<?php print (isset($_GET['id']))?$_GET['id']:$_POST['id']; ?>" />
 
 <? starttable("100%", $lang_editpics_php['crop_title'], 3); ?>
 <tr>
@@ -577,7 +574,7 @@ if ($_GET['id']){
    </td>
    <!--
    <td >
-    <input valign="bottom" type="checkbox" class="checkbox" name="mirror" value="true">
+    <input valign="bottom" type="checkbox" class="checkbox" name="mirror" value="true" />
       Mirror
     </td>
 
@@ -601,14 +598,14 @@ if ($_GET['id']){
        </select>
    </td>
    <td>
-       <input type="text" size="3" name="newsize" class="textinput"> px
+       <input type="text" size="3" name="newsize" class="textinput" /> px
    </td>
    -->
 
 
 
    <td>
-     <input type="checkbox" class="checkbox" name="cropping" value="true" onclick="showCorners(this)">
+     <input type="checkbox" class="checkbox" name="cropping" value="true" onclick="showCorners(this)" />
      Enable clipping, apply to crop
    </td>
    <td title="Less quality creates a smaller file, default is 80%" >
@@ -618,9 +615,9 @@ if ($_GET['id']){
 
         </select>
    </td>
-   <td><input type="submit" name="submit" class="button" value=" <?php echo $lang_editpics_php['preview'] ?> "></td>
-   <td><input type="submit" name="save" class="button" value=" <?php echo $lang_editpics_php['save'] ?> "></td>
-   <td><input type="submit" name="save_thumb" class="button" value=" <?php echo $lang_editpics_php['save_thumb'] ?> "></td>
+   <td><input type="submit" name="submit" class="button" value=" <?php echo $lang_editpics_php['preview'] ?> " /></td>
+   <td><input type="submit" name="save" class="button" value=" <?php echo $lang_editpics_php['save'] ?> " /></td>
+   <td><input type="submit" name="save_thumb" class="button" value=" <?php echo $lang_editpics_php['save_thumb'] ?> " /></td>
  </tr>
 </table>
 </td>
@@ -639,7 +636,7 @@ if ($_GET['id']){
 
 <div id="imgdiv">
 <?php if ($imgObj){ ?>
-<IMG src="<?php echo $imgObj->directory.$imgObj->filename?>?<?php echo rand(); ?>" <?php echo $imgObj->string; ?> align="absmiddle">
+<img src="<?php echo $imgObj->directory.$imgObj->filename?>?<?php echo rand(); ?>" <?php echo $imgObj->string; ?> align="absmiddle" />
 <?php } ?>
 </div>
 

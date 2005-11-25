@@ -10,7 +10,7 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.3.5
+  Coppermine version: 1.4.2
   $Source$
   $Revision$
   $Author$
@@ -23,432 +23,499 @@ define('UTIL_PHP', true);
 require('include/init.inc.php');
 require('include/picmgmt.inc.php');
 
-pageheader($lang_util_php['title']);
-
-// USER CONFIGURATION
 // Default number of pictures to process at a time when rebuilding thumbs or normals:
 $defpicnum = 45;
-// END USER CONFIGURATION
 
-if (!GALLERY_ADMIN_MODE) die('Access denied');
+if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
-global $albumtbl, $picturetbl, $categorytbl, $usertbl, $lang_util_php;
-$albumtbl = $CONFIG['TABLE_PREFIX'] . 'albums';
-$picturetbl = $CONFIG['TABLE_PREFIX'] . 'pictures';
-$categorytbl = $CONFIG['TABLE_PREFIX'] . 'categories';
-$usertbl = $CONFIG['TABLE_PREFIX'] . 'users';
+pageheader($lang_util_php['title']);
 
-// initialize vars
-$startpic = '';
-$action = "";
-$action = $_POST['action'];
+// 'action name (for the $_REQUEST)' => array('function name','title for main page','description/options for main page')
 
+$tasks =  array(
 
-MYSQL_CONNECT($CONFIG['dbserver'], $CONFIG['dbuser'], $CONFIG['dbpass']) or die("can't connect to mysql server");
-MYSQL_SELECT_DB($CONFIG['dbname']);
+        'update_thumbs' => array('update_thumbs', $lang_util_php['update'],'
+
+                <b>'.$lang_util_php['update_what'].' (2):</b><br />
+                <input type="radio" name="updatetype" id="updatetype1" value="0" class="nobg" /><label for="updatetype1" class="clickable_option">'.$lang_util_php['update_thumb'].'</label><br />
+                <input type="radio" name="updatetype" id="updatetype2" value="1" class="nobg" /><label for="updatetype2" class="clickable_option">'.$lang_util_php['update_pic'].'</label><br />
+                <input type="radio" name="updatetype" id="updatetype3" value="2" checked="checked" class="nobg" /><label for="updatetype3" class="clickable_option">'.$lang_util_php['update_both'].'</label><br />'.$lang_util_php['update_number'].'
+                <input type="text" name="numpics" value="'.$defpicnum.'" size="5" class="textinput" /><br />'.$lang_util_php['update_option'].'<br /><br />'),
+
+        'filename_to_title' => array('filename_to_title', $lang_util_php['filename_title'],'
+
+                <b>'.$lang_util_php['filename_how'].' (2):</b><br />
+        <input type="radio" name="parsemode" id="parsemode1" value="0" checked="checked" class="nobg" /><label for="parsemode1" class="clickable_option">' . $lang_util_php['filename_remove'] . '</label><br />
+                <input type="radio" name="parsemode" id="parsemode2" value="1" class="nobg" /><label for="parsemode2" class="clickable_option">'.$lang_util_php['filename_euro'].'</label><br />
+                <input type="radio" name="parsemode" id="parsemode3" value="2" class="nobg" /><label for="parsemode3" class="clickable_option">'.$lang_util_php['filename_us'].'</label><br />
+                <input type="radio" name="parsemode" id="parsemode4" value="3" class="nobg" /><label for="parsemode4" class="clickable_option">'.$lang_util_php['filename_time'].'</label><br /><br />'),
+
+        'del_titles' => array('del_titles', $lang_util_php['delete_title'], $lang_util_php['delete_title_explanation']),
+
+        'del_orig' => array('del_orig', $lang_util_php['delete_original'], $lang_util_php['delete_original_explanation']),
+
+        'del_norm' => array('del_norm', $lang_util_php['delete_intermediate'], $lang_util_php['delete_intermediate_explanation']),
+
+        'del_orphans' => array('del_orphans', $lang_util_php['delete_orphans'], $lang_util_php['delete_orphans_explanation']),
+
+        'refresh_db' => array('refresh_db', $lang_util_php['refresh_db'], $lang_util_php['refresh_db'].'<br />' . $lang_util_php['update_number'].'
+
+                <input type="text" name="refresh_numpics" value="'.$defpicnum.'" size="5" class="textinput" /><br />'.$lang_util_php['update_option']),
+
+        'reset_views' => array('reset_views', $lang_util_php['reset_views'], $lang_util_php['reset_views_explanation']),
+
+        'php_info' => array('', '<a href="phpinfo.php" class="statlink">' . $lang_util_php['phpinfo'] . '</a>', $lang_util_php['phpinfo_explanation']),
+
+        'upd_db' => array('', '<a href="update.php" class="statlink">' . $lang_util_php['update_db'].'</a>',$lang_util_php['update_db_explanation']),
+
+        'view_log' => array('', '<a href="viewlog.php" class="statlink">' . $lang_util_php['view_log'] . '</a>', $lang_util_php['view_log_explanation']),
+
+        'versioncheck' => array('', '<a href="versioncheck.php" class="statlink">' . $lang_util_php['versioncheck'] . '</a>', $lang_util_php['versioncheck_explanation']),
+
+        'bridgemgr' => array('', '<a href="bridgemgr.php" class="statlink">' . $lang_util_php['bridgemanager'] . '</a>', $lang_util_php['bridgemanager_explanation']),
+
+        );
+
+$action = (isset($_REQUEST['action'])) ? $_REQUEST['action'] : '';
+
+if (array_key_exists($action, $tasks)){
+        call_user_func($action);
+        echo "<br /><a href=\"util.php\">{$lang_util_php['back']}</a>";
+} else {
+
+        $help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=admin_tools&amp;ae=admin_tools_end&amp;top=1', '600', '400');
+
+        starttable('100%', $lang_util_php['title'].$help, 2);
+
+        echo '<tr>
+                        <td class="tablef"><b>'.$lang_util_php['what_it_does'] . '</b>:
+                                <ul style="margin-top:0px;margin-bottom:0px;list-style-type:square">';
+        foreach($lang_util_desc_php as $value) {
+        echo "<li>$value</li>\n";
+        }
+        echo '                        </ul>
+                          </td>
+                        <td class="tableb"><b>' . $lang_util_php['instruction'] . '</b>:<br />
+                                (1) ' . $lang_util_php['instruction_action'] . '<br />
+                              (2) ' . $lang_util_php['instruction_parameter'] . '<br />
+                              (3) ' . $lang_util_php['instruction_album'] . '<br />
+                              (4) ' . sprintf($lang_util_php['instruction_press'], $lang_util_php['submit_form']).'
+                          </td>
+              </tr>';
+
+        endtable();
+
+        echo '<br /><form action="util.php" method="post">';
+
+        foreach ($tasks as $task){
+
+            list($name, $title, $options) = $task;
+
+                if ($name){
+                    starttable('100%', "<input type=\"radio\" name=\"action\" value=\"$name\" id=\"$name\" checked=\"checked\" class=\"nobg\" /><label for=\"$name\" class=\"clickable_option\" >$title</label> (1)");
+                } else {
+                          starttable('100%', $title);
+                }
+                echo "<tr><td class=\"tablef\">$options</td></tr>";
+                endtable();
+            echo '<br />';
+        }
+
+        starttable('100%', $lang_util_php['select_album']);
+        echo '<tr><td class="tablef"><br />';
+        //if (defined('UDB_INTEGRATION')){
+                $cpg_udb->util_filloptions();
+        /*} else {
+                filloptions();
+        }*/
+        echo '<br /></td></tr>';
+        endtable();
+        echo '</form>';
+}
 
 function my_flush()
 {
-    print str_repeat(" ", 4096); // force a flush
+        print str_repeat(" ", 4096); // force a flush;
 }
 
-function filenametotitle($delete)
+function del_titles()
 {
-    $albumid = $_POST['albumid'];
-    $parsemode = $_POST['parsemode'];
-    global $picturetbl, $lang_util_php;
+        global $CONFIG, $lang_util_php;
 
-    $query = "SELECT * FROM $picturetbl WHERE aid = '$albumid'";
-    $result = db_query($query);
-    $num = mysql_numrows($result);
+        $albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
+        $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
+        echo "<h2>{$lang_util_php['delete_wait']}</h2>";
+        $query = cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET title = '' $albstr");
+        if ($query) {
+                echo $lang_util_php['titles_deleted']."<br />";
+        }
+}
 
-    $i = 0;
-    while ($i < $num) {
-        $filename = mysql_result($result, $i, "filename");
-        $pid = mysql_result($result, $i, "pid");
+function filename_to_title()
+{
+        global $CONFIG, $lang_util_php;
+
+        $albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
+        $albstr = ($albumid) ? " WHERE aid = $albumid" : '';
+        $parsemode = $_POST['parsemode'];
+
+        $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr");
+
+        echo "<h2>{$lang_util_php['titles_wait']}</h2>";
+
+        while ($row = mysql_fetch_assoc($result)){
+
+        $filename = $row['filename'];
+        $pid = $row['pid'];
         // //////////////////////////////////////////
         // ADD YOUR OWN PARSEMODES HERE //
         // /////////////////////////////////////////
         $pattern = "/(\d+)(.)(\d+)(.)(\d+)(.)(\d+)(.)(\d+)(.)(\d+)(.+)/";
 
-        if ($delete == '0') {
-            if ($parsemode == 0) {
-                // REMOVE .JPG AND REPLACE _ WITH [ ]
-                $filename = substr($filename, 0, -4);
-                $newtitle = str_replace("_", " ", $filename);
-            } else if ($parsemode == 1) {
-                // CHANGE 2003_11_23_13_20_20.jpg TO 23/11/2003 13:20
-                $newtitle = str_replace("%20", " ", $filename);
-                $replacement = "$5/$3/$1 $7:$9";
-                $newtitle = preg_replace($pattern, $replacement, $filename);
-            } else if ($parsemode == 2) {
-                // CHANGE 2003_11_23_13_20_20.jpg TO 11/23/2003 13:20
-                $newtitle = str_replace("%20", " ", $filename);
-                $replacement = "$3/$5/$1 $7:$9";
-                $newtitle = preg_replace($pattern, $replacement, $filename);
-            } else if ($parsemode == 3) {
-                // CHANGE 2003_11_23_13_20_20.jpg TO 13:20
-                $newtitle = str_replace("%20", " ", $filename);
-                $replacement = "$7:$9";
-                $newtitle = preg_replace($pattern, $replacement, $filename);
-            }
-        } else {
-            $newtitle = '';
+        switch ($parsemode){
+
+                case 0: // REMOVE .JPG AND REPLACE _ WITH [ ]
+                        $filename = substr($filename, 0, -4);
+                        $newtitle = str_replace("_", " ", $filename);
+                        break;
+                case 1: // CHANGE 2003_11_23_13_20_20.jpg TO 23/11/2003 13:20
+                        $newtitle = str_replace("%20", " ", $filename);
+                        $replacement = "$5/$3/$1 $7:$9";
+                        $newtitle = preg_replace($pattern, $replacement, $filename);
+                        break;
+                case 2: // CHANGE 2003_11_23_13_20_20.jpg TO 11/23/2003 13:20
+                        $newtitle = str_replace("%20", " ", $filename);
+                        $replacement = "$3/$5/$1 $7:$9";
+                        $newtitle = preg_replace($pattern, $replacement, $filename);
+                        break;
+                case 3: // CHANGE 2003_11_23_13_20_20.jpg TO 13:20
+                        $newtitle = str_replace("%20", " ", $filename);
+                        $replacement = "$7:$9";
+                        $newtitle = preg_replace($pattern, $replacement, $filename);
+                        break;
         }
 
-        print $lang_util_php['file'] . ': '.$filename.' ' . $lang_util_php['title_set_to'] . ':'. $newtitle.'<br />';
+        $query = cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET title = '$newtitle' WHERE pid = '$pid'");
+        if ($query){
+                echo "{$lang_util_php['file']} : $filename {$lang_util_php['title_set_to']} : $newtitle<br />";
+        }
+
         my_flush();
 
-        $query = "UPDATE $picturetbl SET title='$newtitle' WHERE pid='$pid' ";
-        db_query($query);
-
-        ++$i;
-    }
+        }
 }
 
 function filloptions()
 {
-    global $albumtbl, $picturetbl, $categorytbl, $usertbl, $lang_util_php;
+        global $CONFIG, $lang_util_php;
 
-    $query = "SELECT aid, category, IF(user_name IS NOT NULL, CONCAT('(', user_name, ') ',title), CONCAT(' - ', title)) AS title " . "FROM $albumtbl AS a " . "LEFT JOIN $usertbl AS u ON category = (" . FIRST_USER_CAT . " + user_id) " . "ORDER BY category, title";
-    $result = db_query($query);
-    // $num=mysql_numrows($result);
-    echo '<select size="1" name="albumid">';
+        $result = cpg_db_query("SELECT aid, category, IF(user_name IS NOT NULL, CONCAT('(', user_name, ') ',title), CONCAT(' - ', title)) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "LEFT JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id) " . "ORDER BY category, title");
 
-    while ($row = mysql_fetch_array($result)) {
-        $sql = "SELECT name FROM $categorytbl WHERE cid = " . $row["category"];
-        $result2 = db_query($sql);
-        $row2 = mysql_fetch_array($result2);
+        echo '&nbsp;&nbsp;&nbsp;&nbsp;<select size="1" name="albumid" class="listbox"><option value="0">All Albums</option>';
 
-        print "<option value=\"" . $row["aid"] . "\">" . $row2["name"] . $row["title"] . "</option>\n";
-    }
+        while ($row = mysql_fetch_array($result)){
+                $result2 = cpg_db_query("SELECT name FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = {$row['category']}");
+                $row2 = mysql_fetch_assoc($result2);
+                echo "<option value=\"{$row['aid']}\">{$row2['name']} {$row['title']}</option>";
+        }
 
-    print '</select> (3)';
-    print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="button" /> (4)';
-    print '</form>';
+        echo '</select> (3)&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="button" /> (4)';
 }
 
-function updatethumbs()
+function update_thumbs()
 {
-    global $picturetbl, $CONFIG, $lang_util_php;
-    $phpself = $_SERVER['PHP_SELF'];
-    $albumid = $_POST['albumid'];
-    $updatetype = $_POST['updatetype'];
-    $numpics = $_POST['numpics'];
-    $startpic = 0;
-    $startpic = $_POST['startpic'];
+        global $CONFIG, $lang_util_php;
 
-    $query = "SELECT * FROM $picturetbl WHERE aid = '$albumid'";
-    $result = db_query($query);
-    $totalpics = mysql_numrows($result);
+        $albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
+        $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
 
-    if ($startpic == 0) {
-        // 0 - numpics
-        $num = $totalpics;
-        // Over picture limit
-        if ($totalpics > $numpics) $num = $startpic + $numpics;
-    } else {
-        // startpic - numpics
-        $num = $startpic + $numpics;
-        if ($num > $totalpics) $num = $totalpics;
-    }
+        $updatetype = $_POST['updatetype'];
+        $numpics = $_POST['numpics'];
+        $startpic = (isset($_POST['startpic'])) ? $_POST['startpic'] : 0;
 
-    $i = $startpic;
-    while ($i < $num) {
-        $image = $CONFIG['fullpath'] . mysql_result($result, $i, "filepath") . mysql_result($result, $i, "filename");
+        echo "<h2>{$lang_util_php['thumbs_wait']}</h2>";
 
-        if ($updatetype == 0 || $updatetype == 2) {
-            $thumb = $CONFIG['fullpath'] . mysql_result($result, $i, "filepath") . $CONFIG['thumb_pfx'] . mysql_result($result, $i, "filename");
+        $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr LIMIT $startpic, $numpics");
+        $count = mysql_num_rows($result);
 
-            if (resize_image($image, $thumb, $CONFIG['thumb_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use'])) {
-                print $thumb .' '. $lang_util_php['updated_succesfully'] . '!<br />';
-                my_flush();
-            } else {
-                print $lang_util_php['error_create'] . ':$thumb<br />';
-                my_flush();
-            }
-        }
+        while ($row = mysql_fetch_assoc($result)){
 
-        if ($updatetype == 1 || $updatetype == 2) {
-            $normal = $CONFIG['fullpath'] . mysql_result($result, $i, "filepath") . $CONFIG['normal_pfx'] . mysql_result($result, $i, "filename");
+                $image = $CONFIG['fullpath'] . $row['filepath'] . $row['filename'];
+                $normal = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['normal_pfx'] . $row['filename'];
+                $thumb = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['thumb_pfx'] . $row['filename'];
 
-            $imagesize = getimagesize($image);
-            if (max($imagesize[0], $imagesize[1]) > $CONFIG['picture_width'] && $CONFIG['make_intermediate']) {
-                if (resize_image($image, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use'])) {
-                    print $normal . $lang_util_php['updated_succesfully'] . '!<br />';
-                    my_flush();
-                } else {
-                    print $lang_util_php['error_create'] . ':$normal<br />';
-                    my_flush();
-                }
-            }
-        }
-
-        ++$i;
-    }
-    $startpic = $i;
-
-    if ($startpic < $totalpics) {
-
-        ?>
-            <form action="<?php echo $phpself; ?>" method="post">
-                    <input type="hidden" name="action" value="continuethumbs" />
-                    <input type="hidden" name="numpics" value="<?php echo $numpics?>" />
-                    <input type="hidden" name="startpic" value="<?php echo $startpic?>" />
-                    <input type="hidden" name="updatetype" value="<?php echo $updatetype?>" />
-            <input type="hidden" name="albumid" value="<?php echo $albumid?>" />
-            <input type="submit" value="<?php print $lang_util_php['continue'];
-        ?>" class="button" /></form>
-                    <?php
-    }
-}
-
-function deleteorig()
-{
-    global $picturetbl, $CONFIG, $lang_util_php;
-    $albumid = $_POST['albumid'];
-
-    $query = "SELECT * FROM $picturetbl WHERE aid = '$albumid'";
-    $result = db_query($query);
-    $num = mysql_numrows($result);
-
-    $i = 0;
-    while ($i < $num) {
-        $pid = mysql_result($result, $i, "pid");
-        $image = $CONFIG['fullpath'] . mysql_result($result, $i, "filepath") . mysql_result($result, $i, "filename");
-        $normal = $CONFIG['fullpath'] . mysql_result($result, $i, "filepath") . $CONFIG['normal_pfx'] . mysql_result($result, $i, "filename");
-        $thumb = $CONFIG['fullpath'] . mysql_result($result, $i, "filepath") . $CONFIG['thumb_pfx'] . mysql_result($result, $i, "filename");
-
-        if (file_exists($normal)) {
-                        unlink($image);
-                        $test = rename($normal, $image);
-            if ($test == true) {
-                $imagesize = getimagesize($image);
-                $image_filesize = filesize($image);
-                $total_filesize = $image_filesize + filesize($thumb);
-
-                $query = "UPDATE $picturetbl SET filesize='$image_filesize' WHERE pid='$pid' ";
-                db_query($query);
-
-                $query = "UPDATE $picturetbl SET total_filesize='$total_filesize' WHERE pid='$pid' ";
-                db_query($query);
-
-                $query = "UPDATE $picturetbl SET pwidth='{$imagesize[0]}' WHERE pid='$pid' ";
-                db_query($query);
-
-                $query = "UPDATE $picturetbl SET pheight='{$imagesize[1]}' WHERE pid='$pid' ";
-                db_query($query);
-                printf($lang_util_php['main_success'], $normal);
-                print '!<br>';
-            } else {
-                printf($lang_util_php['error_rename'], $normal, $image);
-            }
-        } else {
-            printf($lang_util_php['error_not_found'], $normal);
-            print '<br>';
-        }
-
-        ++$i;
-    }
-}
-
-function deleteorphans()
-{
-        global $picturetbl, $CONFIG, $lang_util_php;
-        $phpself = $_SERVER['PHP_SELF'];
-        $del = $_POST['del'];
-        $single = $_POST['single'];
-        $count = 0;
-
-        if ($single) {
-          $delone = db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id=$single") or die ("failed to delete msgs - " . mysql_error());
-        }
-
-        $result = db_query("SELECT pid,msg_id,msg_body FROM {$CONFIG['TABLE_COMMENTS']} WHERE 1");
-
-        while ($row = mysql_fetch_array($result)) {
-                $pid = $row['pid'];
-                $msg_id = $row['msg_id'];
-                $msg_body = $row['msg_body'];
-                $result2 = db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE pid=$pid");
-                if (!mysql_num_rows($result2)) {
-                        if ($del == "all")
-                        {
-                        $Deletions = db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id=$msg_id") or die ("failed to delete msgs - " . mysql_error());
+                if ($updatetype == 0 || $updatetype == 2){
+                        if (resize_image($image, $thumb, $CONFIG['thumb_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use'])){
+                                echo "$thumb {$lang_util_php['updated_succesfully']} !<br />";
+                                my_flush();
                         } else {
-                                $count++;
-                                ?>
-                                <form action="<?php echo $phpself;?>" method="post">
-                                <input type="hidden" name="action" value="delorphans" />
-                                <input type="hidden" name="single" value="<?php echo $msg_id; ?>" />
-                                <?php echo $lang_util_php['comment'].' "'.$msg_body.'" '.$lang_util_php['nonexist'].' '.$pid; ?>
-                                <input type="submit" value="<?php print $lang_util_php['delete'];?>" class="button" /></form>
-                                 <?php
+                                echo "{$lang_util_php['error_create']} : $thumb<br />";
+                                my_flush();
                         }
                 }
 
+                if ($updatetype == 1 || $updatetype == 2){
+
+                        $imagesize = getimagesize($image);
+
+                        if (max($imagesize[0], $imagesize[1]) > $CONFIG['picture_width'] && $CONFIG['make_intermediate']){
+                                if (resize_image($image, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use'])){
+                                        echo "$normal {$lang_util_php['updated_succesfully']} !<br />";
+                                        my_flush();
+                                } else {
+                                        echo "{$lang_util_php['error_create']} : $normal<br />";
+                                        my_flush();
+                                }
+                        }
+                }
         }
 
-        echo '<br>'.$count.' '.$lang_util_php['orphan_comment'].'<br><br>';
-        if ($count>=1) {
-        ?>
-        <form action="<?php echo $phpself;?>" method="post">
-        <input type="hidden" name="action" value="delorphans" />
-        <input type="hidden" name="del" value="all" />
-        Delete all orphans?
-        <input type="submit" value="<?php print $lang_util_php['delete_all'];?>" class="button" /></form>
-         <?php
+        if ($count == $numpics){
+
+                $startpic += $numpics;
+
+        echo <<< EOT
+                <form action="util.php" method="post">
+                                <input type="hidden" name="action" value="update_thumbs" />
+                                <input type="hidden" name="numpics" value="$numpics" />
+                                <input type="hidden" name="startpic" value="$startpic" />
+                                <input type="hidden" name="updatetype" value="$updatetype" />
+                                <input type="hidden" name="albumid" value="$albumid" />
+                                <input type="submit" value="{$lang_util_php['continue']}" class="button" />
+                        </form>
+EOT;
         }
 }
 
+function del_orig()
+{
+        global $CONFIG, $lang_util_php;
 
-$phpself = $_SERVER['PHP_SELF'];
-// start output
-print '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
-<head>
-<title>' . $lang_util_php['title'] . '</title>
-</head>
-<style type="text/css">
-.labelradio { cursor : hand;}
-/*.accesskey {text-decoration:underline}*/
-</style>
-<body>';
+        $albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
+        $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
 
-if ($action == 'thumbs') {
-    global $picturetbl, $CONFIG;
+        $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr");
+        $num = mysql_num_rows($result);
+        echo "<h2>{$lang_util_php['replace_wait']}</h2>";
 
-    print '<a href="' . $phpself . '">' . $lang_util_php['back'] . '</a><br />';
-    print '<h2>' . $lang_util_php['thumbs_wait'] . '</h2>';
+        while ($row = mysql_fetch_assoc($result)) {
 
-    updatethumbs();
+                $pid = $row['pid'];
+                $image = $CONFIG['fullpath'] . $row['filepath'] . $row['filename'];
+                $normal = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['normal_pfx'] . $row['filename'];
+                $thumb = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['thumb_pfx'] . $row['filename'];
 
-    echo '<br /><a href="' . $phpself . '">' . $lang_util_php['back'] . '</a>';
-} else if ($action == 'continuethumbs') {
-    print '<a href="' . $phpself . '">' . $lang_util_php['back'] . '</a><br />';
-    print '<h2>' . $lang_util_php['thumbs_continue_wait'] . '</h2>';
+                if (file_exists($normal)) {
+                        $deleted = unlink($image);
+                        $renamed = rename($normal, $image);
+                        if ($deleted AND $renamed){
+                                $imagesize = getimagesize($image); // dimensions
+                                $image_filesize = filesize($image); // bytes
+                                $total_filesize = $image_filesize + filesize($thumb);
+                                cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET filesize='$image_filesize', total_filesize='$total_filesize', pwidth='{$imagesize[0]}', pheight='{$imagesize[1]}' WHERE pid='$pid' ");
+                                printf($lang_util_php['main_success'], $normal);
+                        } else {
+                                echo (!$renamed) ? sprintf($lang_util_php['error_rename'], $normal, $image) : sprintf($lang_util_php['error_deleting'], $image);;
+                        }
+                } else {
+                        printf($lang_util_php['error_not_found'], $normal);
+                }
+                echo '<br />';
+           }
+}
 
-    updatethumbs();
+function del_norm()
+{
+        global $CONFIG, $lang_util_php;
 
-    echo '<br /><a href="' . $phpself . '">' . $lang_util_php['back'] . '</a>';
-} else if ($action == 'title') {
-    echo '<a href="' . $phpself . '">' . $lang_util_php['back'] . '</a><br />';
-    print '<h2>' . $lang_util_php['titles_wait'] . '</h2>';
+        $albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
+        $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
+        $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr");
+        $num = mysql_num_rows($result);
+        echo "<h2>".$lang_util_php['deleting_intermediates']."</h2>";
 
-    filenametotitle(0);
+        while ($row = mysql_fetch_assoc($result)){
 
-    echo '<br /><a href="' . $phpself . '">' . $lang_util_php['back'] . '</a>';
-} else if ($action == 'deltit') {
-    print '<a href="' . $phpself . '">' . $lang_util_php['back'] . '</a><br />';
-    print '<h2>' . $lang_util_php['delete_wait'] . '</h2>';
+                $pid = $row['pid'];
+                $image = $CONFIG['fullpath'] . $row['filepath'] . $row['filename'];
+                $normal = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['normal_pfx'] . $row['filename'];
+                $thumb = $CONFIG['fullpath'] . $row['filepath'] . $CONFIG['thumb_pfx'] . $row['filename'];
 
-    filenametotitle(1);
+                if (file_exists($normal)){
+                        $test = unlink($normal);
+                        if ($test){
+                                $total_filesize = filesize($image) + filesize($thumb);
+                                cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET total_filesize='$total_filesize' WHERE pid='$pid'");
+                                printf('The intermediate pic %s was successfully deleted', $normal);
+                                print '<br />';
+                        } else {
+                                printf('Error deleting %s !', $normal);
+                        }
+                } else {
+                        printf($lang_util_php['error_not_found'], $normal);
+                        print '<br />';
+                }
+           }
+}
 
-    echo '<br /><a href="' . $phpself . '">' . $lang_util_php['back'] . '</a>';
-} else if ($action == 'delnorm') {
-    print '<a href="' . $phpself . '">' . $lang_util_php['back'] . '</a><br />';
-    print '<h2>' . $lang_util_php['replace_wait'] . '</h2>';
+function del_orphans()
+{
+        global $CONFIG, $lang_util_php;
 
-    deleteorig();
+        $count = 0;
+        echo "<h2>".$lang_util_php['searching_orphans']."</h2><br />";
+        my_flush();
 
-    echo '<br /><a href="' . $phpself . '">' . $lang_util_php['back'] . '</a>';
-} else if ($action == 'delorphans') {
-    deleteorphans();
-    echo '<br /><a href="' . $phpself . '">' . $lang_util_php['back'] . '</a>';
-} else {
-    starttable('100%');
+        if (isset($_GET['single'])){
+                $delone = cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id= '{$_GET['single']}' LIMIT 1");
+        }
 
-    print '<tr><td>';
-    starttable('100%', $lang_util_php['title'] . ' (util.mod)', 2);
-    print '<tr><td class="tablef"><b>';
-    print $lang_util_php['what_it_does'] . '</b>:
-<ul style="margin-top:0px;margin-bottom:0px;list-style-type:square">
-<li>' . $lang_util_php['what_update_titles'] . '</li>
-<li>' . $lang_util_php['what_delete_title'] . '</li>
-<li>' . $lang_util_php['what_rebuild'] . '</li>
-<li>' . $lang_util_php['what_delete_originals'] . '</li>
-</ul></td>
-<td class="tableb"><b>
-' . $lang_util_php['instruction'] . '</b>:
-<br />
-(1) ' . $lang_util_php['instruction_action'] . '<br />
-(2) ' . $lang_util_php['instruction_parameter'] . '<br />
-(3) ' . $lang_util_php['instruction_album'] . '<br />
-(4) ';
-    printf($lang_util_php['instruction_press'], $lang_util_php['submit_form']);
-    print '
-';
+        $result = cpg_db_query("SELECT pid FROM {$CONFIG['TABLE_PICTURES']}");
 
-    print '</td></tr>';
-    endtable();
-    print '<br />
-<form action="' . $phpself . '" method="post">
-';
+        while ($row = mysql_fetch_assoc($result)){
+                $ok_array[] = $row['pid'];
+        }
 
-    starttable('100%', '<input type="radio" name="action" checked="checked" value="thumbs" id="thumbs" class="nobg" /><label for="thumbs" accesskey="t" class="labelradio">' . $lang_util_php['update'] . '</label> (1)');
-    print '
-<tr><td>
-' . $lang_util_php['update_what'] . ' (2):<br />
-<input type="radio" name="updatetype" value="0" id="thumb" class="nobg" /><label for="thumb" accesskey="t" class="labelradio">' . $lang_util_php['update_thumb'] . '</label><br />
-<input type="radio" name="updatetype" value="1" id="resized" class="nobg" /><label for="resized" accesskey="r" class="labelradio">' . $lang_util_php['update_pic'] . '</label><br />
-<input type="radio" name="updatetype" value="2" checked="checked" id="all" class="nobg" /><label for="all" accesskey="a" class="labelradio">' . $lang_util_php['update_both'] . '</label><br />
-' . $lang_util_php['update_number'] . '
-<input type="text" name="numpics" value="' . $defpicnum . '" size="5" /><br />
-' . $lang_util_php['update_option'] . '<br /><br />
-</td></tr>';
-    endtable();
+        $check_str = '(' . implode(',',$ok_array) . ')';
+        $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid NOT IN $check_str");
 
-    print '<br />';
+        while ($row = mysql_fetch_array($result)){
 
-    starttable('100%', '<input type="radio" name="action" value="title" id="title" class="nobg" /><label for="title" accesskey="F" class="labelradio">' . $lang_util_php['filename_title'] . '</label> (1)');
-    print '
-<tr><td>
-' . $lang_util_php['filename_how'] . ' (2):<br />
-<input type="radio" name="parsemode" checked="checked" value="0" id="remove" class="nobg" /><label for="remove" accesskey="s" class="labelradio">' . $lang_util_php['filename_remove'] . '</label><br />
-<input type="radio" name="parsemode" value="1" id="euro" class="nobg" /><label for="euro" accesskey="e" class="labelradio">' . $lang_util_php['filename_euro'] . '</label><br />
-<input type="radio" name="parsemode" value="2" id="us" class="nobg" /><label for="us" accesskey="u" class="labelradio">' . $lang_util_php['filename_us'] . '</label><br />
-<input type="radio" name="parsemode" value="3" id="hour" class="nobg" /><label for="hour" accesskey="h" class="labelradio">' . $lang_util_php['filename_time'] . '</label><br /><br />
-</td></tr>';
-    endtable();
+                $pid = $row['pid'];
+                $msg_id = $row['msg_id'];
+                $msg_body = $row['msg_body'];
 
-    print '<br />';
+                if (isset($_POST['del'])){
+                        cpg_db_query("DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE msg_id= $msg_id");
+                        echo "{$lang_util_php['comment']} $msg_body {$lang_util_php['nonexist']} $pid - <a href=\"util.php?action=del_orphans&amp;single=$msg_id\">{$lang_util_php['delete']}</a><br />";
+        }
 
-    starttable('100%', '<input type="radio" name="action" value="deltit" id="deltit" class="nobg" /><label for="deltit" accesskey="D" class="labelradio">' . $lang_util_php['delete_title'] . '</label> (1)');
-    endtable();
-    print '<br />';
+                $count = mysql_num_rows($result);
+        echo "<br /><br />$count {$lang_util_php['orphan_comment']}<br /><br />";
+        if ($count > 1){
+                        echo <<< EOT
+                        <form action="util.php" method="post">
+                                <input type="hidden" name="action" value="del_orphans" />
+                                <input type="hidden" name="del" value="all" />
+                                {$lang_util_php['delete_all_orphans']}
+                                <input type="submit" value="{$lang_util_php['delete_all']}" class="button" />
+                        </form>
+EOT;
+        }
+        }
+}
 
-    starttable('100%', '<input type="radio" name="action" value="delorphans" id="delorphans" class="nobg" /><label for="delorphans" accesskey="O" class="labelradio">' . $lang_util_php['delete_orphans'] . '</label> (1)');
-    endtable();
-    print '<br />';
+function reset_views()
+{
+        global $CONFIG, $lang_util_php;
 
-    starttable('100%', '<input type="radio" name="action" value="delnorm" id="delnorm" class="nobg" /><label for="delnorm" accesskey="e" class="labelradio">' . $lang_util_php['delete_original'] . '</label> (1)');
-    endtable();
-    print '<br />';
+        $albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
+        $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
 
-    starttable('100%', '<a href="phpinfo.php">' . $lang_util_php['phpinfo'] . '</a> (1)');
-    endtable();
-    print '<br />';
-
-    starttable('100%', '<a href="update.php">' . $lang_util_php['update_db'] . '</a> (1)');
-    print '<tr><td>'.$lang_util_php['update_db_explanation'].'</td></tr>';
-    endtable();
-    print '<br />';
-
-    print '&nbsp;<br />';
-
-    print '<h2>'.$lang_util_php['select_album'].'</h2>';
-
-    if (defined('UDB_INTEGRATION')) {
-        udb_util_filloptions();
-    } else {
-        filloptions();
-    }
+        if (cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET hits ='0' $albstr")) echo 'Reset successful';
 
 }
-print '</td></tr>';
-endtable();
-echo 'Util.mod 1.4 - Created by David Alberg Holm';
+function refresh_db()
+{
+        global $CONFIG, $lang_util_php;
+
+        $albumid = (isset($_POST['albumid'])) ? $_POST['albumid'] : 0;
+        $albstr = ($albumid) ? "WHERE aid = $albumid" : '';
+        $numpics = $_POST['refresh_numpics'];
+        $startpic = (isset($_POST['refresh_startpic'])) ? $_POST['refresh_startpic'] : 0;
+
+        starttable('100%', "Update results", 3);
+
+        echo "<tr><th class=\"tableh2\">{$lang_util_php['file']}</th><th class=\"tableh2\">{$lang_util_php['problem']}</th><th class=\"tableh2\">{$lang_util_php['status']}</th></tr>";
+
+        $outcome = 'none';
+        $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} $albstr ORDER BY pid ASC LIMIT $startpic, $numpics");
+        $count = mysql_num_rows($result);
+        $found = 0;
+
+        while ($row = mysql_fetch_assoc($result)){
+
+                extract($row, EXTR_PREFIX_ALL, "db");
+                unset($prob);
+
+                $full_pic_url = $CONFIG['fullpath'] . $db_filepath . $db_filename;
+                $thumb_url = $CONFIG['fullpath'] . $db_filepath . $CONFIG['thumb_pfx'] . $db_filename;
+                $normal_url = $CONFIG['fullpath'] . $db_filepath . $CONFIG['normal_pfx'] . $db_filename;
+                $url = '<a href="' . $CONFIG["ecards_more_pic_target"] . (substr($CONFIG["ecards_more_pic_target"], -1) == '/' ? '' : '/') ."displayimage.php?pos=-$db_pid" . '" target="_blank">' . "$db_title ($db_pid)" . '</a>';
+
+                if (@file_exists($full_pic_url)){
+
+                        $filesize = @filesize($full_pic_url);
+                        $dimensions = @getimagesize($full_pic_url);
+
+                        if ($filesize){
+
+                                $thumb_filesize = @filesize($thumb_url);
+                                $normal_filesize = @filesize($normal_url);
+                                $total_filesize = $filesize + $thumb_filesize + $normal_filesize;
+
+                                if ($total_filesize <> $db_total_filesize){
+
+                                        $prob .= "Total filesize is incorrect<br />Database: {$db_total_filesize} bytes<br /> Actual: {$total_filesize} bytes<br />";
+                                        $fs1_upd = @cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET total_filesize = '$total_filesize' WHERE pid = '$db_pid' LIMIT 1");
+                                        $outcome = ($fs1_upd) ? 'Updated' : 'Update failed.';
+                                }
+
+                                if ($filesize <> $db_filesize){
+
+                                        $prob .= "Total filesize is incorrect<br />Database: {$db_filesize} bytes<br />Actual: {$filesize} bytes<br />";
+                                        $fs2_upd = @cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET filesize = '$filesize' WHERE pid = '$db_pid' LIMIT 1");
+                                        $outcome = ($fs2_upd) ? 'Updated' : 'Update failed.';
+                                }
+                        } else {
+                                $prob .= "Could not obtain file size (may be invalid file), skipping....<br />";
+                                $outcome = "Skipped";
+                        }
+
+                        if ($dimensions){
+                                if (($dimensions[0] <> $db_pwidth) ||  ($dimensions[1] <> $db_pheight)){
+
+                                        $prob .= "Dimensions are incorrect<br />Database: {$db_pwidth}x{$db_pheight}<br />Actual:{$dimensions[0]}x{$dimensions[1]}<br />";
+                                        $dim_upd = @cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET `pwidth` = '{$dimensions[0]}', `pheight` = '{$dimensions[1]}' WHERE `pid` = '$db_pid' LIMIT 1");
+                                        $outcome = ($dim_upd) ? 'Updated' : 'Update failed - '.mysql_error();
+                                }
+                        } else {
+                                $prob .= "Could not obtain dimension info, skipping....<br />";
+                                $outcome = "Skipped";
+                        }
+                } else {
+                        $prob .= "File $full_pic_url does not exist !<br />";
+                        $outcome = "Cannot fix";
+                }
+
+                if ($prob){
+
+                        $found++;
+                        echo "<tr><td class=\"tableb\">$url</td><td class=\"tableb\">$prob</td><td class=\"tableb\">$outcome</td></tr>";
+                } else {
+                        echo "<tr><td class=\"tableb\">$url</td><td class=\"tableb\">No problems detected</td><td class=\"tableb\">OK</td></tr>";
+                }
+                my_flush();
+
+        }
+
+        endtable();
+
+        if ($outcome == 'none') echo 'No problems were found.';
+
+        if ($count == $numpics){
+                   $startpic += $numpics;
+                echo <<< EOT
+                        <form action="util.php" method="post">
+                                <input type="hidden" name="action" value="refresh_db" />
+                                <input type="hidden" name="refresh_numpics" value="$numpics" />
+                                <input type="hidden" name="refresh_startpic" value="$startpic" />
+                                <input type="hidden" name="albumid" value="$albumid" />
+                                <input type="submit" value="{$lang_util_php['continue']}" class="button" />
+                        </form>
+EOT;
+        }
+}
 pagefooter();
 ob_end_flush();
-
 ?>

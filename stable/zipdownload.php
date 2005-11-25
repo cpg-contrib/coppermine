@@ -10,7 +10,7 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.3.5
+  Coppermine version: 1.4.2
   $Source$
   $Revision$
   $Author$
@@ -47,8 +47,8 @@ if (count($FAVPICS)>0){
 
         $select_columns = 'filepath,filename';
 
-        $result = db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES'AND pid IN ($favs)");
-        $rowset = db_fetch_rowset($result);
+        $result = cpg_db_query("SELECT $select_columns FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'YES'AND pid IN ($favs)");
+        $rowset = cpg_db_fetch_rowset($result);
         foreach ($rowset as $key => $row){
 
                 $filelist[] = $rowset[$key]['filepath'].$rowset[$key]['filename'];
@@ -57,7 +57,6 @@ if (count($FAVPICS)>0){
 }
 
 $flags['storepath'] = 0;
-// $cwd = './albums';
 $cwd = "./{$CONFIG['fullpath']}";
 $cwd = substr($cwd, 0, -1);
 

@@ -10,7 +10,7 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.3.5
+  Coppermine version: 1.4.2
   $Source$
   $Revision$
   $Author$
@@ -24,46 +24,57 @@ require('include/init.inc.php');
 
 if (USER_ID) cpg_die(ERROR, $lang_login_php['err_already_logged_in'], __FILE__, __LINE__);
 
-if (defined('UDB_INTEGRATION')) udb_login_page();
+if (defined('UDB_INTEGRATION')) $cpg_udb->login_page();
 
-$referer = $HTTP_GET_VARS['referer'] ? $HTTP_GET_VARS['referer'] : 'index.php';
+$referer = $_GET['referer'] ? $_GET['referer'] : 'index.php';
+if (strpos($referer, "http") !== false) {
+  $referer = "index.php";
+}
 $login_failed = '';
 $cookie_warning = '';
 
-if (isset($HTTP_POST_VARS['submitted'])) {
-    $results = db_query("SELECT user_id, user_name, user_password FROM {$CONFIG['TABLE_USERS']} WHERE user_name = '" . addslashes($HTTP_POST_VARS['username']) . "' AND BINARY user_password = '" . addslashes($HTTP_POST_VARS['password']) . "' AND user_active = 'YES'");
-    $lastvisit = db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_lastvisit = NOW() WHERE user_name = '" . addslashes($HTTP_POST_VARS['username']) . "' AND BINARY user_password = '" . addslashes($HTTP_POST_VARS['password']) . "' AND user_active = 'YES'");
-    if (mysql_num_rows($results)) {
-        $USER_DATA = mysql_fetch_array($results);
-        if (isset($HTTP_POST_VARS['remember_me'])) {
-            $cookie_life_time = 86400 * 30;
-        } else {
-            $cookie_life_time = 86400;
-        }
-        setcookie($CONFIG['cookie_name'] . '_uid', $USER_DATA['user_id'], time() + $cookie_life_time, $CONFIG['cookie_path']);
-        setcookie($CONFIG['cookie_name'] . '_pass', md5($HTTP_POST_VARS['password']), time() + $cookie_life_time, $CONFIG['cookie_path']);
-
+if (isset($_POST['submitted'])) {
+    if ( $USER_DATA = $cpg_udb->login( addslashes($_POST['username']), addslashes($_POST['password']), isset($_POST['remember_me']) ) ) {
+        $referer=preg_replace("'&amp;'","&",$referer);
         pageheader($lang_login_php['login'], "<META http-equiv=\"refresh\" content=\"3;url=$referer\">");
         msg_box($lang_login_php['login'], sprintf($lang_login_php['welcome'], $USER_DATA['user_name']), $lang_continue, $referer);
         pagefooter();
         exit;
     } else {
+        log_write("Failed login attempt with Username: {$_POST['username']} from IP {$_SERVER['REMOTE_ADDR']} on " . localised_date(-1,$log_date_fmt),CPG_SECURITY_LOG);
+
         $login_failed = <<<EOT
                   <tr>
                           <td colspan="2" align="center" class="tableh2">
                         <font size="1" color="red"><b>{$lang_login_php['err_login']}<b></font>
                         </td>
                   </tr>
-
 EOT;
+
+        // get IP address of the person who tried to log in, look it up on the banning table and increase the brute force counter. If the brute force counter has reached a critical limit, set a regular banning record
+        $result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_BANNED']} WHERE ip_addr='$raw_ip' OR ip_addr='$hdr_ip'");
+        $failed_logon_counter = mysql_fetch_array($result);
+        mysql_free_result($result);
+        $expiry_date = date("Y-m-d H:i:s", mktime(date('H'), date('i')+$CONFIG['login_expiry'], date('s'), date('m'), date('d'),date('Y')));
+
+        if ($failed_logon_counter['brute_force']) {
+            $failed_logon_counter['brute_force'] = $failed_logon_counter['brute_force'] - 1;
+            $query_string = "UPDATE {$CONFIG['TABLE_BANNED']} SET brute_force='".$failed_logon_counter['brute_force']."',  expiry='".$expiry_date."' WHERE ban_id=".$failed_logon_counter['ban_id'];
+        }else{
+            $failed_logon_counter['brute_force'] = $CONFIG['login_threshold'];
+            $query_string = "INSERT INTO {$CONFIG['TABLE_BANNED']} (ip_addr, expiry, brute_force) VALUES ('$raw_ip', '$expiry_date','".$failed_logon_counter['brute_force']."')";
+        }
+
+        //write the logon counter to the database
+        cpg_db_query($query_string);
     }
 }
 
-if (!isset($HTTP_COOKIE_VARS[$CONFIG['cookie_name'] . '_data'])) {
+if (!isset($_COOKIE[$CONFIG['cookie_name'] . '_data'])) {
     $cookie_warning = <<<EOT
                   <tr>
                           <td colspan="2" align="center" class="tableh2">
-                        <font size="1" color="red"><b>Warning your browser does not accept script's cookies<b></font>
+                        <font size="1" color="red"><b>{$lang_login_php['cookie_warning']}<b></font>
                         </td>
                   </tr>
 
@@ -79,7 +90,7 @@ echo <<< EOT
                   <tr>
                     <form action="login.php?referer=$referer" method="post" name="loginbox">
                         <td class="tableb" width="40%">{$lang_login_php['username']}</td>
-                        <td class="tableb" width="60%"><input type="text" class="textinput" name="username" style="width: 100%"></td>
+                        <td class="tableb" width="60%"><input type="text" class="textinput" name="username" style="width: 100%" tabindex="1" /></td>
                         <script language="javascript" type="text/javascript">
                         <!--
                         document.loginbox.username.focus();
@@ -88,14 +99,14 @@ echo <<< EOT
                   </tr>
                   <tr>
                           <td class="tableb">{$lang_login_php['password']}</td>
-                        <td class="tableb"><input type="password" class="textinput" name="password" style="width: 100%"></td>
+                        <td class="tableb"><input type="password" class="textinput" name="password" style="width: 100%" tabindex="2" /></td>
                   </tr>
                   <tr>
-                    <td colspan="2" align="center" class="tableb">{$lang_login_php['remember_me']} <input name="remember_me" type="checkbox" class="checkbox" value="1"></td>
+                    <td colspan="2" align="center" class="tableb">{$lang_login_php['remember_me']} <input name="remember_me" type="checkbox" class="checkbox" value="1" tabindex="3" /></td>
                   </tr>
                   <tr>
                     <td align="center" class="tablef"><a href="forgot_passwd.php" class="topmenu">{$lang_login_php['forgot_password_link']}</a></td>
-                    <td align="left" class="tablef"><input name="submitted" type="submit" class="button" value="{$lang_login_php['login']}"></td>
+                    <td align="left" class="tablef"><input name="submitted" type="submit" class="button" value="{$lang_login_php['login']}" tabindex="4" /></td>
                     </form>
                   </tr>
 

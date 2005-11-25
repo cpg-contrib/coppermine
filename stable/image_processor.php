@@ -10,7 +10,7 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.3.5
+  Coppermine version: 1.4.2
   $Source$
   $Revision$
   $Author$
@@ -37,6 +37,19 @@ global $CONFIG, $lang_image_processor_php;
 
 
 //-----------------------------FUNCTION BLOCK---------------------------------
+
+function write_to_disk($image_type, $final, $path)
+{
+  global $lang_image_processor_php;
+  if ($image_type == "1") {
+        imagegif($final, $path) or die($lang_image_processor_php['no_write']);
+  } elseif ($image_type == "2") {
+        imagejpeg($final, $path, 100) or die($lang_image_processor_php['no_write']);
+  } elseif ($image_type == "3") {
+        imagepng($final, $path) or die($lang_image_processor_php['no_write']);
+  }
+  imagedestroy($final);
+}
 
 function rotate_image($path_to_primary_image, $degrees) {
 
@@ -211,8 +224,9 @@ $image_handle = get_handle($path_to_primary_image);
 
 
 // Now let's write the image to disk.
+write_to_disk($source_image_type, $final_image_handle, $path_to_primary_image);
 
-if ($source_image_type == "2") {
+/*if ($source_image_type == "2") {
 
         imagejpeg($final_image_handle, $path_to_primary_image, 100) or die($lang_image_processor_php['no_write']);
 
@@ -224,7 +238,7 @@ if ($source_image_type == "2") {
 
 // Destroy the final image handle.
 
-imagedestroy($final_image_handle);
+imagedestroy($final_image_handle); */
 
 }
 
@@ -297,8 +311,8 @@ if ($degrees == "90") {
 }
 
 // Now let's write the image to disk.
-
-if ($source_image_type == "2") {
+write_to_disk($source_image_type, $final_image_handle, $path_to_primary_image);
+/*if ($source_image_type == "2") {
 
         imagejpeg($final_image_handle, $path_to_primary_image, 100) or die($lang_image_processor_php['no_write']);
 
@@ -310,7 +324,7 @@ if ($source_image_type == "2") {
 
 // Destroy the final image handle.
 
-imagedestroy($final_image_handle);
+imagedestroy($final_image_handle);*/
 
 
 }
@@ -319,7 +333,7 @@ imagedestroy($final_image_handle);
 
 function get_handle($path_to_primary_image) {
 
-global $lang_image_processor_php;
+global $lang_image_processor_php, $CONFIG;
 
 // Let's use this information to create the handle with which to hold our lovely
 // image. The variable $image_handle is the handle that points to the image's
@@ -334,15 +348,14 @@ $source_image_height = $source_image_size_and_type[1];
 $source_image_type = $source_image_size_and_type[2];
 
 if ($source_image_type == "1") {
+        // The image is a GIF file.  We must verify PHP/GD supports GIF
+        // creation.  If not, return an error.
 
-        // The image is a GIF file, which we cannot use due to the Unisys patent.
-        // The image can be read by GD, but GD cannot create it again. It is
-        // possible to convert a GIF to PNG format using a command line call to
-        // the appropriate program (i.e. GIF2PNG), but the installation of this
-        // program on servers is by no means consistent. Therefore, we will
-        // forgo GIF support. We will return an error.
-
-        cpg_die(CRITICAL_ERROR, $lang_image_processor_php['GD_GIF_Warning'], __FILE__, __LINE__);
+        if ($CONFIG['GIF_support'] == 1) {
+            $image_handle = imagecreatefromgif($path_to_primary_image);
+        } else {
+            cpg_die(CRITICAL_ERROR, $lang_image_processor_php['GD_GIF_Warning'], __FILE__, __LINE__);
+        }
 
 } elseif ($source_image_type == "2") {
 
@@ -363,8 +376,7 @@ if ($source_image_type == "1") {
         // The user has given us an image we do not wish to work with. We return an
         // error.
 
-
-cpg_die(CRITICAL_ERROR, $lang_image_processor_php['not_supported'], __FILE__, __LINE__);
+        cpg_die(CRITICAL_ERROR, $lang_image_processor_php['not_supported'], __FILE__, __LINE__);
 
 }
 
@@ -415,7 +427,7 @@ $source_image_type = $source_image_size_and_type[2];
         // Generate the unique name.
 
         do {
-                $seed = substr(md5(microtime().getmypid()), 0, 8);
+                $seed = substr(md5(uniqid('')), 0, 8);
                 $path_to_preview_image = $preview_image_directory . $prefix . $seed . $suffix;
             } while (file_exists($path_to_preview_image));
 
@@ -489,8 +501,9 @@ if ($method == "gd2") {
 imagedestroy($image_handle);
 
 // Write the image to disk.
+write_to_disk($source_image_type, $destination_image_handle, $path_to_preview_image);
 
-        if ($source_image_type == "2") {
+/*        if ($source_image_type == "2") {
 
                 imagejpeg($destination_image_handle, $path_to_preview_image) or die($lang_image_processor_php['no_write']);
 
@@ -498,10 +511,12 @@ imagedestroy($image_handle);
 
                 imagepng($destination_image_handle, $path_to_preview_image) or die($lang_image_processor_php['no_write']);
 
+        } elseif ($source_image_type == "1" && $CONFIG['GIF_support'] == 1) {
+                imagegif($destination_image_handle, $path_to_preview_image) or die($lang_image_processor_php['no_write']);
         }
 
 // Destroy $destination_image_handle.
-imagedestroy($destination_image_handle);
+imagedestroy($destination_image_handle); */
 
 } elseif ($method == "im") {
 
@@ -556,6 +571,8 @@ return $path_to_preview_image;
 
 //**************************************************************************
 
+/* commented out this function as newer versions are in upload.php and
+logger.inc.php
 function spring_cleaning($directory_path) {
 
 global $lang_image_processor_php;
@@ -597,6 +614,7 @@ while (!(($file = readdir($directory_handle)) === false)) {
 closedir($directory_handle);
 
 }
+*/
 
 //**********************************************************************************
 
@@ -621,39 +639,39 @@ header("Pragma: no-cache"); // HTTP/1.0
 
 pageheader($lang_image_processor_php['page_title']);
 
-print "<br><br><br>";
+print "<br /><br /><br />";
 
 print "<center>";
 
-print "<img src=\"$path_to_preview_image\" alt=\"{$lang_image_processor_php['preview_image_alt_text']}\">";
+print "<img src=\"$path_to_preview_image\" alt=\"{$lang_image_processor_php['preview_image_alt_text']}\" />";
 
 print "</center>";
 
-print "<br>";
-print "<br>";
+print "<br />";
+print "<br />";
 print "<form action=\"$next_form_action\" method=\"post\">";
-print "<input type=\"hidden\" name=\"album\" value=\"$album\">";
-print "<input type=\"hidden\" name=\"title\" value=\"$title\">";
-print "<input type=\"hidden\" name=\"caption\" value=\"$caption\">";
-print "<input type=\"hidden\" name=\"keywords\" value=\"$keywords\">";
-print "<input type=\"hidden\" name=\"user1\" value=\"$user1\">";
-print "<input type=\"hidden\" name=\"user2\" value=\"$user2\">";
-print "<input type=\"hidden\" name=\"user3\" value=\"$user3\">";
-print "<input type=\"hidden\" name=\"user4\" value=\"$user4\">";
-print "<input type=\"hidden\" name=\"event\" value=\"$event\">";
-print "<input type=\"hidden\" name=\"file_name\" value=\"$file_name\">";
-print "<input type=\"hidden\" name=\"transitory_image_path\" value=\"$path_to_primary_image\">";
-print "<input type=\"hidden\" name=\"preview_image_path\" value=\"$path_to_preview_image\">";
+print "<input type=\"hidden\" name=\"album\" value=\"$album\" />";
+print "<input type=\"hidden\" name=\"title\" value=\"$title\" />";
+print "<input type=\"hidden\" name=\"caption\" value=\"$caption\" />";
+print "<input type=\"hidden\" name=\"keywords\" value=\"$keywords\" />";
+print "<input type=\"hidden\" name=\"user1\" value=\"$user1\" />";
+print "<input type=\"hidden\" name=\"user2\" value=\"$user2\" />";
+print "<input type=\"hidden\" name=\"user3\" value=\"$user3\" />";
+print "<input type=\"hidden\" name=\"user4\" value=\"$user4\" />";
+print "<input type=\"hidden\" name=\"event\" value=\"$event\" />";
+print "<input type=\"hidden\" name=\"file_name\" value=\"$file_name\" />";
+print "<input type=\"hidden\" name=\"transitory_image_path\" value=\"$path_to_primary_image\" />";
+print "<input type=\"hidden\" name=\"preview_image_path\" value=\"$path_to_preview_image\" />";
 
 print "<p>{$lang_image_processor_php['manipulation_query']}</p>";
 
-print "<br>";
-print "<input type=\"radio\" name=\"degrees\" value=\"no\" checked>{$lang_image_processor_php['no_manipulation']}&nbsp;&nbsp;&nbsp;&nbsp;";
-print "<input type=\"radio\" name=\"degrees\" value=\"90\">90&#176;&nbsp;&nbsp;&nbsp;&nbsp;";
-print "<input type=\"radio\" name=\"degrees\" value=\"180\">180&#176;&nbsp;&nbsp;&nbsp;&nbsp;";
-print "<input type=\"radio\" name=\"degrees\" value=\"270\">270&#176;&nbsp;&nbsp;&nbsp;&nbsp;";
-print "<br><br>";
-print "<input type=\"submit\" value=\"Continue\">";
+print "<br />";
+print "<input type=\"radio\" name=\"degrees\" value=\"no\" checked=\"checked\" />{$lang_image_processor_php['no_manipulation']}&nbsp;&nbsp;&nbsp;&nbsp;";
+print "<input type=\"radio\" name=\"degrees\" value=\"90\" />90&#176;&nbsp;&nbsp;&nbsp;&nbsp;";
+print "<input type=\"radio\" name=\"degrees\" value=\"180\" />180&#176;&nbsp;&nbsp;&nbsp;&nbsp;";
+print "<input type=\"radio\" name=\"degrees\" value=\"270\" />270&#176;&nbsp;&nbsp;&nbsp;&nbsp;";
+print "<br /><br />";
+print "<input type=\"submit\" value=\"Continue\" />";
 print "</form>";
 
 pagefooter();
@@ -669,7 +687,7 @@ if (!USER_CAN_UPLOAD_PICTURES) cpg_die(ERROR, $lang_errors['perm_denied'], __FIL
 // Let us define the directories where images will be temporarily stored.
 
 $transitory_file_directory = "./{$CONFIG['fullpath']}manipulation/transitory/";
-$preview_image_directory = "./{$CONFIG['fullpath']}transitory/previews/";
+$preview_image_directory = "./{$CONFIG['fullpath']}manipulation/transitory/previews/";
 
 // We can also create a rudimentary language array to make integration into CPG easier at a later date.
 $lang_image_processor_php = array('finished_manipulation'=>'You have finished manipulating the image. Please click the Proceed button to finish uploading the image.',
@@ -709,50 +727,47 @@ $maximum_width = $CONFIG['thumb_width'];
 
 // First, we test for the variable $degrees to determine script action.
 
-if (!isset($HTTP_POST_VARS['degrees'])) {
+if (!isset($_POST['degrees'])) {
 
         // Display initial form.
 
         // First, we must capture all the data sent to us by upload.php.
 
-        $event    = $HTTP_POST_VARS['event'];
-        $album    = (int)$HTTP_POST_VARS['album'];
-        $title    = $HTTP_POST_VARS['title'];
-        $caption  = $HTTP_POST_VARS['caption'];
-        $keywords = $HTTP_POST_VARS['keywords'];
-        $user1    = $HTTP_POST_VARS['user1'];
-        $user2    = $HTTP_POST_VARS['user2'];
-        $user3    = $HTTP_POST_VARS['user3'];
-        $user4    = $HTTP_POST_VARS['user4'];
+        $event    = $_POST['event'];
+        $album    = (int)$_POST['album'];
+        $title    = $_POST['title'];
+        $caption  = $_POST['caption'];
+        $keywords = $_POST['keywords'];
+        $user1    = $_POST['user1'];
+        $user2    = $_POST['user2'];
+        $user3    = $_POST['user3'];
+        $user4    = $_POST['user4'];
 
         // First things first. Let's analyze the image file.
 
         // We already have the file size in bytes and  the temporary name in the file
         // upload global array.
 
-        // The file size is $HTTP_POST_FILES['userpicture']['size'].
+        // The file size is $_FILES['userpicture']['size'].
 
-        $file_size = $HTTP_POST_FILES['userpicture']['size'];
+        $file_size = $_FILES['userpicture']['size'];
 
-        // The temporary name is $HTTP_POST_FILES['userpicture']['tmp_name'].
+        // The temporary name is $_FILES['userpicture']['tmp_name'].
 
-        $temporary_name = $HTTP_POST_FILES['userpicture']['tmp_name'];
+        $temporary_name = $_FILES['userpicture']['tmp_name'];
 
-        // The file name is $HTTP_POST_FILES['userpicture']['name'].
+        // The file name is $_FILES['userpicture']['name'].
 
-        $file_name = $HTTP_POST_FILES['userpicture']['name'];
+        $file_name = $_FILES['userpicture']['name'];
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         // We must check the file name for security reasons.
-
-        // Replace forbidden chars with underscores
-        $matches = array();
-        $forbidden_chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>'));
-
-        // Check that the file uploaded has a valid extension
         if (get_magic_quotes_gpc()) $file_name = stripslashes($file_name);
-        $picture_name = strtr($file_name, $forbidden_chars, str_repeat('_', strlen($CONFIG['forbiden_fname_char'])));
+        // Replace forbidden chars with underscores
+		$picture_name = replace_forbidden($file_name);
+        // Check that the file uploaded has a valid extension
+        $matches = array();
         if (!preg_match("/(.+)\.(.*?)\Z/", $picture_name, $matches)){
                 $matches[1] = 'invalid_fname';
                 $matches[2] = 'xxx';
@@ -821,7 +836,7 @@ if (!isset($HTTP_POST_VARS['degrees'])) {
                 // Generate the unique name.
 
                 do {
-                        $seed = substr(md5(microtime().getmypid()), 0, 8);
+                        $seed = substr(md5(uniqid('')), 0, 8);
                         $path_to_primary_image = $transitory_file_directory . $prefix . $seed . $suffix;
                     } while (file_exists($path_to_primary_image));
 
@@ -849,31 +864,28 @@ if (!isset($HTTP_POST_VARS['degrees'])) {
 
         // First, we must capture all the data sent to us by the initial form.
 
-        $degrees  = $HTTP_POST_VARS['degrees'];
-        $event    = $HTTP_POST_VARS['event'];
-        $path_to_primary_image = $HTTP_POST_VARS['transitory_image_path'];
-        $path_to_preview_image = $HTTP_POST_VARS['preview_image_path'];
-        $transitory_file_name = $HTTP_POST_VARS['file_name'];
-        $album    = (int)$HTTP_POST_VARS['album'];
-        $title    = $HTTP_POST_VARS['title'];
-        $caption  = $HTTP_POST_VARS['caption'];
-        $keywords = $HTTP_POST_VARS['keywords'];
-        $user1    = $HTTP_POST_VARS['user1'];
-        $user2    = $HTTP_POST_VARS['user2'];
-        $user3    = $HTTP_POST_VARS['user3'];
-        $user4    = $HTTP_POST_VARS['user4'];
+        $degrees  = $_POST['degrees'];
+        $event    = $_POST['event'];
+        $path_to_primary_image = $_POST['transitory_image_path'];
+        $path_to_preview_image = $_POST['preview_image_path'];
+        $transitory_file_name = $_POST['file_name'];
+        $album    = (int)$_POST['album'];
+        $title    = $_POST['title'];
+        $caption  = $_POST['caption'];
+        $keywords = $_POST['keywords'];
+        $user1    = $_POST['user1'];
+        $user2    = $_POST['user2'];
+        $user3    = $_POST['user3'];
+        $user4    = $_POST['user4'];
 
 //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
         // We must check the file name for security reasons.
-
-        // Replace forbidden chars with underscores
-        $matches = array();
-        $forbidden_chars = strtr($CONFIG['forbiden_fname_char'], array('&amp;' => '&', '&quot;' => '"', '&lt;' => '<', '&gt;' => '>'));
-
-        // Check that the file uploaded has a valid extension
         if (get_magic_quotes_gpc()) $transitory_file_name = stripslashes($transitory_file_name);
-        $picture_name = strtr($transitory_file_name, $forbidden_chars, str_repeat('_', strlen($CONFIG['forbiden_fname_char'])));
+        // Replace forbidden chars with underscores
+		$picture_name = replace_forbidden($transitory_file_name);
+        // Check that the file uploaded has a valid extension
+        $matches = array();
         if (!preg_match("/(.+)\.(.*?)\Z/", $picture_name, $matches)){
                 $matches[1] = 'invalid_fname';
                 $matches[2] = 'xxx';
@@ -947,26 +959,26 @@ if (!isset($HTTP_POST_VARS['degrees'])) {
 
                 pageheader($lang_image_processor_php['page_title']);
 
-                print "<br><br><br>";
+                print "<br /><br /><br />";
 
                 print "<form action=\"db_input.php\" method=\"post\">";
-                print "<input type=\"hidden\" name=\"album\" value=\"$album\">";
-                print "<input type=\"hidden\" name=\"title\" value=\"$title\">";
-                print "<input type=\"hidden\" name=\"caption\" value=\"$caption\">";
-                print "<input type=\"hidden\" name=\"keywords\" value=\"$keywords\">";
-                print "<input type=\"hidden\" name=\"user1\" value=\"$user1\">";
-                print "<input type=\"hidden\" name=\"user2\" value=\"$user2\">";
-                print "<input type=\"hidden\" name=\"user3\" value=\"$user3\">";
-                print "<input type=\"hidden\" name=\"user4\" value=\"$user4\">";
-                print "<input type=\"hidden\" name=\"event\" value=\"$event\">";
-                print "<input type=\"hidden\" name=\"transitory_image_path\" value=\"$path_to_primary_image\">";
-                print "<input type=\"hidden\" name=\"file_name\" value=\"$transitory_file_name\">";
+                print "<input type=\"hidden\" name=\"album\" value=\"$album\" />";
+                print "<input type=\"hidden\" name=\"title\" value=\"$title\" />";
+                print "<input type=\"hidden\" name=\"caption\" value=\"$caption\" />";
+                print "<input type=\"hidden\" name=\"keywords\" value=\"$keywords\" />";
+                print "<input type=\"hidden\" name=\"user1\" value=\"$user1\" />";
+                print "<input type=\"hidden\" name=\"user2\" value=\"$user2\" />";
+                print "<input type=\"hidden\" name=\"user3\" value=\"$user3\" />";
+                print "<input type=\"hidden\" name=\"user4\" value=\"$user4\" />";
+                print "<input type=\"hidden\" name=\"event\" value=\"$event\" />";
+                print "<input type=\"hidden\" name=\"transitory_image_path\" value=\"$path_to_primary_image\" />";
+                print "<input type=\"hidden\" name=\"file_name\" value=\"$transitory_file_name\" />";
 
                 print "<p>{$lang_image_processor_php['finished_manipulation']}</p>";
 
-                print "<br>";
+                print "<br />";
 
-                print "<input type=\"submit\" value=\"{$lang_image_processor_php['finished_manipulation_button']}\">";
+                print "<input type=\"submit\" value=\"{$lang_image_processor_php['finished_manipulation_button']}\" />";
                 print "</form>";
 
                 pagefooter();

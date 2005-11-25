@@ -10,7 +10,7 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.3.5
+  Coppermine version: 1.4.2
   $Source$
   $Revision$
   $Author$
@@ -43,7 +43,7 @@ if (isset($_REQUEST['eid'])) {
     //print $key;
     //print "<br>";
     $query = "DELETE FROM {$CONFIG['TABLE_ECARDS']} WHERE eid='$key'";
-    $result = db_query($query);
+    $result = cpg_db_query($query);
     }
 }
 
@@ -107,11 +107,11 @@ switch ($sort) {
 if ($sortDirection == 'ASC'){$sortDirectionText = $lang_db_ecard_php['ecard_ascending'];}
 
 // determine the total number of entries
-$result = db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_ECARDS']}");
+$result = cpg_db_query("SELECT COUNT(*) FROM {$CONFIG['TABLE_ECARDS']}");
 if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['ecards_empty'], __FILE__, __LINE__, false);
 $totalEcards = mysql_fetch_array($result);
 $totalEcards = $totalEcards[0];
-$result = db_query("SELECT eid, sender_name, sender_email, recipient_name, recipient_email, link, date, sender_ip FROM {$CONFIG['TABLE_ECARDS']} ORDER BY $sortBy $sortDirection LIMIT $startFrom,$countTo");
+$result = cpg_db_query("SELECT eid, sender_name, sender_email, recipient_name, recipient_email, link, date, sender_ip FROM {$CONFIG['TABLE_ECARDS']} ORDER BY $sortBy $sortDirection LIMIT $startFrom,$countTo");
 if (!mysql_num_rows($result)) cpg_die(ERROR, $lang_errors['ecards_empty'], __FILE__, __LINE__, false);
 
 pageheader($lang_db_ecard_php['title']);
@@ -119,6 +119,7 @@ pageheader($lang_db_ecard_php['title']);
 $formTarget = cpgGetUrlVars('count');
 print '<form method="post" name="ecardselect" action="'.$formTarget.'" onSubmit="return defaultagree(this)">';
 ?>
+
 <script language="javascript" type="text/javascript">
 <!--
 function checkAll(field)
@@ -172,7 +173,7 @@ foreach ($_GET as $key => $value) {
 //step 3: loop through the pages & create the links
 for ($page = 1 ; $page <= $pageTotal; $page++) {
 if ($page != $startFrom/$countTo+1) {
-  $tabOutput .= '<a href="'.$urlWithoutStart.'start='.($page-1)*$countTo.'&count='.$countTo.'">';
+  $tabOutput .= '<a href="'.$urlWithoutStart.'start='.($page-1)*$countTo.'&amp;count='.$countTo.'">';
   }
 else {
   $currentPage = $page;
@@ -189,8 +190,8 @@ $tabOutput .= '&nbsp;';
 }
 $maxPage =  $page-1;
 
-
-$tableHeader1 = $lang_db_ecard_php['title']." (".$lang_db_ecard_php['ecard_sorted']." ".$sortText.", ".$sortDirectionText.")";
+$help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=ecard_log&amp;ae=ecard_log_end&top=1', '830', '400');
+$tableHeader1 = $lang_db_ecard_php['title']." (".$lang_db_ecard_php['ecard_sorted']." ".$sortText.", ".$sortDirectionText.")" . $help;
 starttable('100%',$tableHeader1,3);
 print '<tr><td class="tableb_compact">';
 printf($lang_db_ecard_php['ecard_number'], $currentStart, $currentEnd, $totalEcards);
@@ -234,7 +235,7 @@ print "<tr>
 $tempClass = ' class="tableb"';
 while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
    print "\t<tr>\n";
-   print "<td".$tempClass." align=\"center\"><input type=\"Checkbox\" name=\"eid[]\" value=\"".$line['eid']."\" id=\"eidselector\" class=\"checkbox\"></td>\n";
+   print "<td".$tempClass." align=\"center\"><input type=\"Checkbox\" name=\"eid[]\" value=\"".$line['eid']."\" id=\"eidselector\" class=\"checkbox\" /></td>\n";
    print "<td".$tempClass."><b class=\"thumb_caption\">".$line['sender_name']."</b></td>\n";
    print "<td".$tempClass."><span class=\"thumb_caption\"><a href=\"mailto:".$line['sender_email']."\">".$line['sender_email']."</a></span></td>\n";
    print "<td".$tempClass."><span class=\"thumb_caption\"><a href=\"http://ws.arin.net/cgi-bin/whois.pl?queryinput=".$line['sender_ip']."\">".$line['sender_ip']."</a></span></td>\n";
@@ -248,12 +249,12 @@ while ($line = mysql_fetch_array($result, MYSQL_ASSOC)) {
 
 print '<tr><td class="tableh1_compact" align="center"><img src="images/arrow_upleft.gif" width="31" height="22" border="0" alt="" /></td>';
 print '<td colspan="3" class="tableh1_compact">';
-print '<input type="button" name="CheckAll" class="button" value="'.$lang_db_ecard_php['check_all'].'" onClick="checkAll(document.ecardselect.eidselector)">&nbsp;';
-print '<input type="button" name="UnCheckAll" class="button" value="'.$lang_db_ecard_php['uncheck_all'].'" onClick="uncheckAll(document.ecardselect.eidselector)">';
+print '<input type="button" name="CheckAll" class="button" value="'.$lang_db_ecard_php['check_all'].'" onClick="checkAll(document.ecardselect.eidselector)" />&nbsp;';
+print '<input type="button" name="UnCheckAll" class="button" value="'.$lang_db_ecard_php['uncheck_all'].'" onClick="uncheckAll(document.ecardselect.eidselector)" />';
 print '</td>';
 print '<td colspan="4" class="tableh1_compact" align="left">';
-print '<input type="submit" class="button" name="delete" value="'.$lang_db_ecard_php['ecards_delete_selected'].'" disabled="disabled">&nbsp;';
-print '<input name="agreecheck" type="checkbox" onClick="agreesubmit(this)">'.$lang_db_ecard_php['ecards_delete_sure'];
+print '<input type="submit" class="button" name="delete" value="'.$lang_db_ecard_php['ecards_delete_selected'].'" disabled="disabled" />&nbsp;';
+print '<input name="agreecheck" type="checkbox" onClick="agreesubmit(this)" />'.$lang_db_ecard_php['ecards_delete_sure'];
 print '</td>';
 print '</tr>';
 endtable();

@@ -10,7 +10,7 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.3.5
+  Coppermine version: 1.4.2
   $Source$
   $Revision$
   $Author$
@@ -24,13 +24,13 @@ require('include/init.inc.php');
 
 if (!(GALLERY_ADMIN_MODE || USER_ADMIN_MODE)) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
-define('UPLOAD_APPROVAL_MODE', isset($HTTP_GET_VARS['mode']));
-define('EDIT_PICTURES_MODE', !isset($HTTP_GET_VARS['mode']));
+define('UPLOAD_APPROVAL_MODE', isset($_GET['mode']));
+define('EDIT_PICTURES_MODE', !isset($_GET['mode']));
 
-if (isset($HTTP_GET_VARS['album'])) {
-        $album_id = (int)$HTTP_GET_VARS['album'];
-} elseif (isset($HTTP_GET_VARS['album'])) {
-        $album_id = (int)$HTTP_POST_VARS['album'];
+if (isset($_GET['album'])) {
+        $album_id = (int)$_GET['album'];
+} elseif (isset($_GET['album'])) {
+        $album_id = (int)$_POST['album'];
 } else {
         $album_id = -1;
 }
@@ -38,7 +38,7 @@ if (isset($HTTP_GET_VARS['album'])) {
 if (UPLOAD_APPROVAL_MODE && !GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__, __LINE__);
 
 if (EDIT_PICTURES_MODE) {
-    $result = db_query("SELECT title, category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid = '$album_id'");
+    $result = cpg_db_query("SELECT title, category FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid = '$album_id'");
         if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
         $ALBUM_DATA=mysql_fetch_array($result);
         mysql_free_result($result);
@@ -55,14 +55,14 @@ if ($CONFIG['user_field2_name'] != '') $THUMB_ROWSPAN++;
 if ($CONFIG['user_field3_name'] != '') $THUMB_ROWSPAN++;
 if ($CONFIG['user_field4_name'] != '') $THUMB_ROWSPAN++;
 
-$USER_ALBUMS_ARRAY=array(0 => array());
+// $USER_ALBUMS_ARRAY=array(0 => array());
 
 // Type 0 => input
 //      1 => album list
 //      2 => text_area
 //      3 => picture information
 $captionLabel = $lang_editpics_php['desc'];
-if ($CONFIG['show_bbcode_help']) {$captionLabel .= '<hr />'.$lang_bbcode_help;}
+if ($CONFIG['show_bbcode_help']) {$captionLabel .= '&nbsp;'. cpg_display_help('f=index.html&base=64&h='.urlencode(base64_encode(serialize($lang_bbcode_help_title.'&nbsp;'))).'&t='.urlencode(base64_encode(serialize($lang_bbcode_help))),470,245);}
 $data = array(
         array($lang_editpics_php['pic_info'], '', 3),
         array($lang_editpics_php['album'], 'aid', 1),
@@ -78,23 +78,26 @@ $data = array(
 
 function get_post_var($var, $pid)
 {
-        global $HTTP_POST_VARS, $lang_errors;
+        global $lang_errors;
 
         $var_name = $var.$pid;
-        if(!isset($HTTP_POST_VARS[$var_name])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing']." ($var_name)", __FILE__, __LINE__);
-        return $HTTP_POST_VARS[$var_name];
+        if(!isset($_POST[$var_name])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing']." ($var_name)", __FILE__, __LINE__);
+        return $_POST[$var_name];
 }
 
 function process_post_data()
 {
-        global $HTTP_POST_VARS, $CONFIG;
+        global $CONFIG;
         global $user_albums_list, $lang_errors;
 
         $user_album_set = array();
         foreach($user_albums_list as $album) $user_album_set[$album['aid']] = 1;
 
-        if (!is_array($HTTP_POST_VARS['pid'])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
-        $pid_array = &$HTTP_POST_VARS['pid'];
+        if (!is_array($_POST['pid'])) cpg_die(CRITICAL_ERROR, $lang_errors['param_missing'], __FILE__, __LINE__);
+        $pid_array = &$_POST['pid'];
+
+                $galleryicon = (int) $_POST['galleryicon'];
+
         foreach($pid_array as $pid){
                 $pid = (int)$pid;
 
@@ -107,13 +110,15 @@ function process_post_data()
                 $user3       = get_post_var('user3', $pid);
                 $user4       = get_post_var('user4', $pid);
 
-                $delete       = isset($HTTP_POST_VARS['delete'.$pid]);
-                $reset_vcount = isset($HTTP_POST_VARS['reset_vcount'.$pid]);
-                $reset_votes  = isset($HTTP_POST_VARS['reset_votes'.$pid]);
-                $del_comments = isset($HTTP_POST_VARS['del_comments'.$pid]) || $delete;
+                                $isgalleryicon = ($galleryicon===$pid);
 
-                $query = "SELECT category, filepath, filename FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND pid='$pid'";
-                $result = db_query($query);
+                $delete       = isset($_POST['delete'.$pid]);
+                $reset_vcount = isset($_POST['reset_vcount'.$pid]);
+                $reset_votes  = isset($_POST['reset_votes'.$pid]);
+                $del_comments = isset($_POST['del_comments'.$pid]) || $delete;
+
+                $query = "SELECT category, filepath, filename, owner_id FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND pid='$pid'";
+                $result = cpg_db_query($query);
                 if (!mysql_num_rows($result)) cpg_die(CRITICAL_ERROR, $lang_errors['non_exist_ap'], __FILE__, __LINE__);
                 $pic = mysql_fetch_array($result);
                 mysql_free_result($result);
@@ -131,12 +136,19 @@ function process_post_data()
                 $update .= ", user2 = '".addslashes($user2)."'";
                 $update .= ", user3 = '".addslashes($user3)."'";
                 $update .= ", user4 = '".addslashes($user4)."'";
-        if (is_movie($pic['filename'])) {
-            $pwidth = get_post_var('pwidth', $pid);
-            $pheight = get_post_var('pheight', $pid);
-            $update .= ", pwidth = " .  (int) $pwidth;
-            $update .= ", pheight = " . (int) $pheight;
-        }
+
+                if ($isgalleryicon && $pic['category']>FIRST_USER_CAT) {
+                                        $sql = 'update '.$CONFIG['TABLE_PICTURES'].' set galleryicon=0 where owner_id='.$pic['owner_id'].';';
+                                        cpg_db_query($sql);
+                                        $update .= ", galleryicon = ".addslashes($galleryicon);
+                                }
+
+                                if (is_movie($pic['filename'])) {
+                                        $pwidth = get_post_var('pwidth', $pid);
+                                        $pheight = get_post_var('pheight', $pid);
+                                        $update .= ", pwidth = " .  (int) $pwidth;
+                                        $update .= ", pheight = " . (int) $pheight;
+                                }
 
                 if ($reset_vcount) $update .= ", hits = '0'";
                 if ($reset_votes) $update .= ", pic_rating = '0', votes = '0'";
@@ -153,7 +165,7 @@ function process_post_data()
 
                 if ($del_comments) {
                         $query = "DELETE FROM {$CONFIG['TABLE_COMMENTS']} WHERE pid='$pid'";
-                        $result =db_query($query);
+                        $result =cpg_db_query($query);
                 }
 
                 if ($delete) {
@@ -168,10 +180,10 @@ function process_post_data()
                         }
 
                         $query = "DELETE FROM {$CONFIG['TABLE_PICTURES']} WHERE pid='$pid' LIMIT 1";
-                        $result = db_query($query);
+                        $result = cpg_db_query($query);
                 } else {
                         $query = "UPDATE {$CONFIG['TABLE_PICTURES']} SET $update WHERE pid='$pid' LIMIT 1";
-                        $result = db_query($query);
+                        $result = cpg_db_query($query);
                 }
         }
 }
@@ -209,11 +221,11 @@ function form_pic_info($text)
         }
 
         $thumb_url = get_pic_url($CURRENT_PIC, 'thumb');
-        $thumb_link = 'displayimage.php?&pos='.(-$CURRENT_PIC['pid']);
+        $thumb_link = 'displayimage.php?&amp;pos='.(-$CURRENT_PIC['pid']);
         $filename = htmlspecialchars($CURRENT_PIC['filename']);
 
         echo <<<EOT
-        <input type="hidden" name="pid[]" value="{$CURRENT_PIC['pid']}">
+        <input type="hidden" name="pid[]" value="{$CURRENT_PIC['pid']}" />
         <tr>
                 <td class="tableh2" colspan="3">
                         <b>$filename</b>
@@ -227,7 +239,7 @@ function form_pic_info($text)
                         $pic_info
                 </td>
                    <td class="tableb" align="center" rowspan="$THUMB_ROWSPAN">
-                        <a href="$thumb_link" target="_blank"><img src="$thumb_url" class="image" border="0"><br /></a>
+                        <a href="$thumb_link" target="_blank"><img src="$thumb_url" class="image" border="0" alt="" /><br /></a>
             </td>
         </tr>
 
@@ -238,13 +250,16 @@ function form_options()
 {
         global $CURRENT_PIC, $lang_editpics_php;
 
+                $isgalleryicon_selected = ($CURRENT_PIC['galleryicon']) ? 'checked="checked" ':'';
+                $isgalleryicon_disabled = ($CURRENT_PIC['category'] < FIRST_USER_CAT) ? 'disabled="disabled" ':'';
+
         if (UPLOAD_APPROVAL_MODE) {
                 echo <<<EOT
         <tr>
                 <td class="tableb" colspan="3" align="center">
-                        <b><input type="radio" name="approved{$CURRENT_PIC['pid']}" value="YES" class="radio">{$lang_editpics_php['approve']}</b>&nbsp;
-                        <b><input type="radio" name="approved{$CURRENT_PIC['pid']}" value="NO" class="radio" checked>{$lang_editpics_php['postpone_app']}</b>&nbsp;
-                        <b><input type="radio" name="approved{$CURRENT_PIC['pid']}" value="DELETE" class="radio">{$lang_editpics_php['del_pic']}</b>&nbsp;
+                        <input type="radio" name="approved{$CURRENT_PIC['pid']}" id="approved{$CURRENT_PIC['pid']}yes" value="YES" class="radio" /><label for="approved{$CURRENT_PIC['pid']}yes" class="clickable_option">{$lang_editpics_php['approve']}</label>&nbsp;
+                        <input type="radio" name="approved{$CURRENT_PIC['pid']}" id="approved{$CURRENT_PIC['pid']}no" value="NO" class="radio" checked="checked" /><label for="approved{$CURRENT_PIC['pid']}no" class="clickable_option">{$lang_editpics_php['postpone_app']}</label>&nbsp;
+                        <input type="radio" name="approved{$CURRENT_PIC['pid']}" id="approved{$CURRENT_PIC['pid']}del" value="DELETE" class="radio" /><label for="approved{$CURRENT_PIC['pid']}del" class="clickable_option">{$lang_editpics_php['del_pic']}</label>&nbsp;
                 </td>
         </tr>
 
@@ -253,10 +268,15 @@ EOT;
                 echo <<<EOT
         <tr>
                 <td class="tableb" colspan="3" align="center">
-                        <b><input type="checkbox" name="delete{$CURRENT_PIC['pid']}" value="1" class="checkbox">{$lang_editpics_php['del_pic']}</b>&nbsp;
-                        <b><input type="checkbox" name="reset_vcount{$CURRENT_PIC['pid']}" value="1" class="checkbox">{$lang_editpics_php['reset_view_count']}</b>&nbsp;
-                        <b><input type="checkbox" name="reset_votes{$CURRENT_PIC['pid']}" value="1" class="checkbox">{$lang_editpics_php['reset_votes']}</b>&nbsp;
-                        <b><input type="checkbox" name="del_comments{$CURRENT_PIC['pid']}" value="1" class="checkbox">{$lang_editpics_php['del_comm']}</b>&nbsp;
+                    <table border="0" cellspacing="0" cellpadding="0" width="100%">
+                        <tr>
+                            <td width="20%" align="center"><input type="radio" name="galleryicon" id="galleryicon{$CURRENT_PIC['pid']}" value="{$CURRENT_PIC['pid']}" {$isgalleryicon_selected}{$isgalleryicon_disabled}class="checkbox" />{$lang_editpics_php['gallery_icon']}</td>
+                            <td width="20%" align="center"><input type="checkbox" name="delete{$CURRENT_PIC['pid']}" id="delete{$CURRENT_PIC['pid']}" value="1" class="checkbox" /><label for="delete{$CURRENT_PIC['pid']}" class="clickable_option">{$lang_editpics_php['del_pic']}</label></td>
+                            <td width="20%" align="center"><input type="checkbox" name="reset_vcount{$CURRENT_PIC['pid']}" id="reset_vcount{$CURRENT_PIC['pid']}" value="1" class="checkbox" /><label for="reset_vcount{$CURRENT_PIC['pid']}" class="clickable_option">{$lang_editpics_php['reset_view_count']}</label></td>
+                            <td width="20%" align="center"><input type="checkbox" name="reset_votes{$CURRENT_PIC['pid']}" id="reset_votes{$CURRENT_PIC['pid']}" value="1" class="checkbox" /><label for="reset_votes{$CURRENT_PIC['pid']}" class="clickable_option">{$lang_editpics_php['reset_votes']}</label></td>
+                            <td width="20%" align="center"><input type="checkbox" name="del_comments{$CURRENT_PIC['pid']}" id="del_comments{$CURRENT_PIC['pid']}" value="1" class="checkbox" /><label for="del_comments{$CURRENT_PIC['pid']}" class="clickable_option">{$lang_editpics_php['del_comm']}</label></td>
+                        </tr>
+                    </table>
                 </td>
         </tr>
 
@@ -271,7 +291,7 @@ function form_input($text, $name, $max_length,$field_width=100)
     $value = $CURRENT_PIC[$name];
     $name .= $CURRENT_PIC['pid'];
     if ($text == '') {
-        echo "        <input type=\"hidden\" name=\"$name\" value=\"\">\n";
+        echo "        <input type=\"hidden\" name=\"$name\" value=\"\" />\n";
         return;
     }
 
@@ -281,7 +301,7 @@ function form_input($text, $name, $max_length,$field_width=100)
                         $text
         </td>
         <td width="100%" class="tableb" valign="top">
-                <input type="text" style="width: {$field_width}%" name="$name" maxlength="$max_length" value="$value" class="textinput">
+                <input type="text" style="width: {$field_width}%" name="$name" maxlength="$max_length" value="$value" class="textinput" />
                 </td>
         </tr>
 
@@ -333,7 +353,7 @@ function form_textarea($text, $name, $max_length)
                         $text
                 </td>
                 <td class="tableb" valign="top">
-                        <textarea name="$name" ROWS="5" COLS="40" WRAP="virtual"  class="textinput" STYLE="WIDTH: 100%;" onKeyDown="textCounter(this, $max_length);" onKeyUp="textCounter(this, $max_length);">$value</textarea>
+                        <textarea name="$name" rows="5" cols="40" class="textinput" style="width: 100%;" onkeydown="textCounter(this, $max_length);" onkeyup="textCounter(this, $max_length);">$value</textarea>
                 </td>
         </tr>
 EOT;
@@ -368,29 +388,36 @@ function create_form(&$data)
         }
 }
 
-function get_user_albums($user_id)
+function get_user_albums($user_id = '')
 {
-        global $CONFIG, $USER_ALBUMS_ARRAY, $user_albums_list;
+        global $CONFIG, $user_albums_list;
 
-        if (!isset($USER_ALBUMS_ARRAY[$user_id])) {
-                $user_albums = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='".(FIRST_USER_CAT + $user_id)."' ORDER BY title");
+        $USER_ALBUMS_ARRAY=array(0 => array());
+
+        if ($user_id != '') {
+                $or = " OR category='" . (FIRST_USER_CAT + $user_id) . "'";
+        }
+
+        if (!isset($USER_ALBUMS_ARRAY[USER_ID])) {
+                $user_albums = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category='".(FIRST_USER_CAT + USER_ID)."' $or ORDER BY title");
+
                 if (mysql_num_rows($user_albums)) {
-                    $user_albums_list=db_fetch_rowset($user_albums);
+                    $user_albums_list=cpg_db_fetch_rowset($user_albums);
                 } else {
                         $user_albums_list = array();
                 }
                 mysql_free_result($user_albums);
-                $USER_ALBUMS_ARRAY[$user_id] = $user_albums_list;
+                $USER_ALBUMS_ARRAY[USER_ID] = $user_albums_list;
         } else {
-                $user_albums_list = &$USER_ALBUMS_ARRAY[$user_id];
+                $user_albums_list = &$USER_ALBUMS_ARRAY[USER_ID];
         }
 }
 
 
 if (GALLERY_ADMIN_MODE) {
-    $public_albums = db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']}, {$CONFIG['TABLE_CATEGORIES']} WHERE category < '" . FIRST_USER_CAT . "' AND (category = 0 OR category = cid) ORDER BY cat_title");
+    $public_albums = cpg_db_query("SELECT DISTINCT aid, title, IF(category = 0, CONCAT('&gt; ', title), CONCAT(name,' &lt; ',title)) AS cat_title FROM {$CONFIG['TABLE_ALBUMS']}, {$CONFIG['TABLE_CATEGORIES']} WHERE category < '" . FIRST_USER_CAT . "' AND (category = 0 OR category = cid) ORDER BY cat_title");
         if (mysql_num_rows($public_albums)) {
-            $public_albums_list=db_fetch_rowset($public_albums);
+            $public_albums_list=cpg_db_fetch_rowset($public_albums);
         } else {
                 $public_albums_list = array();
         }
@@ -401,42 +428,42 @@ if (GALLERY_ADMIN_MODE) {
 
 get_user_albums(USER_ID);
 
-if (count($HTTP_POST_VARS)) process_post_data();
+if (count($_POST)) process_post_data();
 
-$start = isset($HTTP_GET_VARS['start']) ? (int)$HTTP_GET_VARS['start'] : 0;
-$count = isset($HTTP_GET_VARS['count']) ? (int)$HTTP_GET_VARS['count'] : 25;
-$next_target = $PHP_SELF.'?album='.$album_id.'&start='.($start+$count).'&count='.$count.((UPLOAD_APPROVAL_MODE==1)?"&mode=upload_approval":"");
-$prev_target = $PHP_SELF.'?album='.$album_id.'&start='.max(0,$start-$count).'&count='.$count.((UPLOAD_APPROVAL_MODE==1)?"&mode=upload_approval":"");
+$start = isset($_GET['start']) ? (int)$_GET['start'] : 0;
+$count = isset($_GET['count']) ? (int)$_GET['count'] : 25;
+$next_target = $_SERVER['PHP_SELF'].'?album='.$album_id.'&amp;start='.($start+$count).'&amp;count='.$count.((UPLOAD_APPROVAL_MODE==1)?"&amp;mode=upload_approval":"");
+$prev_target = $_SERVER['PHP_SELF'].'?album='.$album_id.'&amp;start='.max(0,$start-$count).'&amp;count='.$count.((UPLOAD_APPROVAL_MODE==1)?"&amp;mode=upload_approval":"");
 $s50 = $count == 50 ? 'selected' : '';
 $s75 = $count == 75 ? 'selected' : '';
 $s100 = $count == 100 ? 'selected' : '';
 
 if (UPLOAD_APPROVAL_MODE) {
-        $result=db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'NO'");
+        $result=cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE approved = 'NO'");
         $nbEnr = mysql_fetch_array($result);
         $pic_count = $nbEnr[0];
 
         // Update user names for pictures
         $sql = "SELECT pid, owner_id FROM {$CONFIG['TABLE_PICTURES']} WHERE owner_id != 0 AND owner_name = ''";
-        $result = db_query($sql);
+        $result = cpg_db_query($sql);
         while($row = mysql_fetch_array($result)){
-                if(defined('UDB_INTEGRATION')){
-                        $owner_name = udb_get_user_name($row['owner_id']);
-                } else {
-                    $result2 = db_query("SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '".$row['owner_id']."'");
+                //if(defined('UDB_INTEGRATION')){
+                        $owner_name = $cpg_udb->get_user_name($row['owner_id']);
+                /*} else {
+                    $result2 = cpg_db_query("SELECT user_name FROM {$CONFIG['TABLE_USERS']} WHERE user_id = '".$row['owner_id']."'");
                         if (mysql_num_rows($result2)){
                                 $row2 = mysql_fetch_array($result2);
                                 mysql_free_result($result2);
                                 $owner_name = $row2['user_name'];
                         } else {
                                 $owner_name = '';
-                        }
-                }
+                        }*/
+                //}
 
                 if($owner_name){
-                        db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET owner_name = '$owner_name' WHERE pid = {$row['pid']} LIMIT 1");
+                        cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET owner_name = '$owner_name' WHERE pid = {$row['pid']} LIMIT 1");
                 } else {
-                        db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET owner_id = 0 WHERE pid = {$row['pid']} LIMIT 1");
+                        cpg_db_query("UPDATE {$CONFIG['TABLE_PICTURES']} SET owner_id = 0 WHERE pid = {$row['pid']} LIMIT 1");
                 }
         }
         mysql_free_result($result);
@@ -446,18 +473,24 @@ if (UPLOAD_APPROVAL_MODE) {
                         "WHERE approved = 'NO' ".
                         "ORDER BY pid ".
                         "LIMIT $start, $count";
-        $result = db_query($sql);
-        $form_target = $PHP_SELF.'?mode=upload_approval&start='.$start.'&count='.$count;
+        $result = cpg_db_query($sql);
+        $form_target = $_SERVER['PHP_SELF'].'?mode=upload_approval&amp;start='.$start.'&amp;count='.$count;
         $title = $lang_editpics_php['upl_approval'];
+        $help = '';
 } else {
-        $result=db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = '$album_id'");
+        $result=cpg_db_query("SELECT count(*) FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = '$album_id'");
         $nbEnr = mysql_fetch_array($result);
         $pic_count = $nbEnr[0];
         mysql_free_result($result);
-
-    $result = db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE aid = '$album_id' ORDER BY filename LIMIT $start, $count");
-        $form_target = $PHP_SELF.'?album='.$album_id.'&start='.$start.'&count='.$count;
+                $sql = "SELECT p.*,a.category FROM {$CONFIG['TABLE_PICTURES']} as p ".
+                           "INNER JOIN {$CONFIG['TABLE_ALBUMS']} as a ".
+                           "ON a.aid=p.aid ".
+                           "WHERE p.aid = '$album_id' ".
+                           "ORDER BY p.filename LIMIT $start, $count";
+                $result = cpg_db_query($sql);
+        $form_target = $_SERVER['PHP_SELF'].'?album='.$album_id.'&amp;start='.$start.'&amp;count='.$count;
         $title = $lang_editpics_php['edit_pics'];
+        $help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=edit_pics&amp;ae=edit_pics_end&amp;top=1', '800', '500');
 }
 
 if (!mysql_num_rows($result)) cpg_die(INFORMATION, $lang_errors['no_img_to_display'], __FILE__, __LINE__);
@@ -477,37 +510,104 @@ if ($start > 0) {
 $pic_count_text = sprintf($lang_editpics_php['n_pic'], $pic_count);
 
 pageheader($title);
-starttable("100%", $title, 3);
+starttable("100%", $title.$help, 3);
 echo <<<EOT
-<SCRIPT LANGUAGE="JavaScript">
+<script type="text/javascript" language="javascript">
+<!--
 function textCounter(field, maxlimit) {
         if (field.value.length > maxlimit) // if too long...trim it!
         field.value = field.value.substring(0, maxlimit);
 }
+
+function selectAll(d,box) {
+  var f = document.editForm;
+  for (i = 0; i < f.length; i++) {
+    if (f[i].type == "checkbox" && f[i].name.indexOf(box) >= 0) {
+      if (d.checked) {
+        f[i].checked = true;
+      } else {
+        f[i].checked = false;
+      }
+    }
+  }
+}
+-->
 </script>
 EOT;
-$mode= (UPLOAD_APPROVAL_MODE==1) ? "&mode=upload_approval":"";
+$mode= (UPLOAD_APPROVAL_MODE==1) ? "&amp;mode=upload_approval":"";
+$cat_l = (isset($actual_cat))? "?cat=$actual_cat" : (isset($cat) ? "?cat=$cat" : '');
 echo <<<EOT
         <tr>
-                <td class="tableb" colspan="3" align="center">
-                <form method="post" action="$form_target$mode">
+                <td class="tableh2" colspan="3" align="center" valign="middle">
+                <form method="post" name="editForm" action="$form_target$mode">
                         <b>$pic_count_text</b>&nbsp;&nbsp;-&nbsp;&nbsp;
                         $prev_link
                         $next_link
                         <b>{$lang_editpics_php['n_of_pic_to_disp']}</b>
-                        <select onChange="if(this.options[this.selectedIndex].value) window.location.href='$PHP_SELF?album=$album_id$mode&start=$start&count='+this.options[this.selectedIndex].value;"  name="count" class="listbox">
+                        <select onChange="if(this.options[this.selectedIndex].value) window.location.href='{$_SERVER['PHP_SELF']}?album=$album_id$mode&amp;start=$start&amp;count='+this.options[this.selectedIndex].value;"  name="count" class="listbox">
                                 <option value="25">25</option>
                                 <option value="50" $s50>50</option>
                                 <option value="75" $s75>75</option>
                                 <option value="100" $s100>100</option>
                         </select>
+EOT;
+if (UPLOAD_APPROVAL_MODE!=1) {
+echo <<<EOT
+                        &nbsp;&nbsp;-&nbsp;&nbsp;<a href="modifyalb.php?album=$album_id" class="admin_menu">{$lang_editpics_php['album_properties']}</a>&nbsp;&nbsp;-&nbsp;&nbsp;
+                        <a href="index.php$cat_l" class="admin_menu">{$lang_editpics_php['parent_category']}</a>&nbsp;&nbsp;-&nbsp;&nbsp;
+                        <a href="thumbnails.php?album=$album_id" class="admin_menu">{$lang_editpics_php['thumbnail_view']}</a>
+EOT;
+}
+echo <<<EOT
                 </td>
         </tr>
+EOT;
 
+echo <<<EOT
+        <tr>
+            <td class="tableb" colspan="3" align="center">
+                <table border="0" cellspacing="0" cellpadding="0" width="100%" style="padding-top:5px;padding-bottom:5px">
+                    <tr>
+                        <td width="20%" align="right">
+                            <b>{$lang_editpics_php['select_unselect']}:</b>
+                        </td>
+                        <td width="20%" align="center">
+                            <span class="admin_menu">
+                                <input type="checkbox" name="deleteAll" onclick="selectAll(this,'delete');" class="checkbox" id="deleteAll" />
+                                <label for="deleteAll" class="clickable_option">{$lang_editpics_php['del_all']}</label>
+                            </span>
+                        </td>
+                        <td width="20%" align="center">
+                            <span class="admin_menu">
+                                <input type="checkbox" name="reset_vcountAll" onclick="selectAll(this,'reset_vcount');" class="checkbox" id="reset_vcountAll" />
+                                <label for="reset_vcountAll" class="clickable_option">{$lang_editpics_php['reset_all_view_count']}</label>
+                            </span>
+                        </td>
+                        <td width="20%" align="center">
+                            <span class="admin_menu">
+                                <input type="checkbox" name="reset_votesAll" onclick="selectAll(this,'reset_votes');" class="checkbox" id="reset_votesAll" />
+                                <label for="reset_votesAll" class="clickable_option">{$lang_editpics_php['reset_all_votes']}</label>
+                            </span>
+                        </td>
+                        <td width="20%" align="center">
+                            <span class="admin_menu">
+                                <input type="checkbox" name="del_commentsAll" onclick="selectAll(this,'del_comments');" class="checkbox"reset_votesAll" id="del_commentsAll" />
+                                <label for="del_commentsAll" class="clickable_option">{$lang_editpics_php['del_all_comm']}</label>
+                            </span>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
 EOT;
 
 while($CURRENT_PIC = mysql_fetch_array($result)){
-        if (GALLERY_ADMIN_MODE) get_user_albums($CURRENT_PIC['owner_id']);
+
+        if (GALLERY_ADMIN_MODE && $CURRENT_PIC['owner_id'] != USER_ID) {
+              get_user_albums($CURRENT_PIC['owner_id']);
+        } else {
+              get_user_albums();
+        }
         create_form($data);
         flush();
 } // while
@@ -516,7 +616,7 @@ mysql_free_result($result);
 echo <<<EOT
         <tr>
                 <td colspan="3" align="center" class="tablef">
-                        <input type="submit" value="{$lang_editpics_php['apply']}" class="button">
+                        <input type="submit" value="{$lang_editpics_php['apply']}" class="button" />
                 </td>
                 </form>
         </tr>

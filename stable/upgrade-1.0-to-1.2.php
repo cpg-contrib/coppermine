@@ -10,7 +10,7 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.3.5
+  Coppermine version: 1.4.2
   $Source$
   $Revision$
   $Author$
@@ -40,11 +40,11 @@ echo "Upgrading Coppermine 1.0 tables to 1.1<br />";
 echo "Prefix used for 1.0 tables : $prefix10<br /><br />";
 // Upgrade for the picture table
 $sql = "INSERT INTO $cpg11_pictures " . "(approved, pid, aid, caption, filepath, filename, filesize, pwidth, pheight, hits, mtime," . " ctime) " . "SELECT 'yes' as approved, p.pid, aid, msg_body AS caption, filepath, filename, filesize, " . "pwidth, pheight, hits, mtime, UNIX_TIMESTAMP(ctime)" . "FROM $CPG_pictures AS p " . "LEFT JOIN $CPG_comments AS c ON p.caption = c.msg_id ";
-db_query($sql);
+cpg_db_query($sql);
 echo "Picture table upgraded<br />";
 // Get the list of comments that are used a image captions
 $sql = "SELECT msg_id FROM $CPG_pictures AS p, $CPG_comments AS c " . "WHERE p.caption = c.msg_id";
-$result = db_query($sql);
+$result = cpg_db_query($sql);
 $msg_id_set = '';
 if ((mysql_num_rows($result))) {
     $set = '';
@@ -56,11 +56,11 @@ if ((mysql_num_rows($result))) {
 mysql_free_result($result);
 // Upgrade the comment table
 $sql = "INSERT INTO $cpg11_comments " . "(pid, msg_id, msg_author, msg_body, msg_date)" . "SELECT pid, msg_id, msg_author, msg_body, msg_date " . "FROM $CPG_comments " . "WHERE 1 $msg_id_set";
-db_query($sql);
+cpg_db_query($sql);
 echo "Comment table upgraded<br />";
 // Upgrade the album table
 $sql = "INSERT INTO $cpg11_albums " . "(aid, title, description, uploads, pos)" . "SELECT aid, title, description, uploads, UNIX_TIMESTAMP(date) " . "FROM $CPG_albums";
-db_query($sql);
+cpg_db_query($sql);
 echo "Album table upgraded<br />";
 echo "<br />First step of upgrade completed!<br />";
 

@@ -10,7 +10,7 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.3.5
+  Coppermine version: 1.4.2
   $Source$
   $Revision$
   $Author$
@@ -37,37 +37,69 @@ if (!GALLERY_ADMIN_MODE) cpg_die(ERROR, $lang_errors['access_denied'], __FILE__,
  * @param string $id the name of the listbox
  * @return the HTML code
  */
-function albumselect($id = "album")
-{
-    global $CONFIG, $lang_search_new_php;
+
+
+ function albumselect($id = "album") {
+// frogfoot re-wrote this function to present the list in categorized, sorted and nicely formatted order
+
+    global $CONFIG, $lang_search_new_php, $cpg_udb;
     static $select = "";
 
+    // Reset counter
+    $list_count = 0;
+
     if ($select == "") {
-        $result = db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0 ORDER BY title");
-        $rowset = db_fetch_rowset($result);
-        mysql_free_result($result);
-
-        $result = db_query("SELECT DISTINCT a.aid as aid, a.title as title, c.name as cname FROM {$CONFIG['TABLE_ALBUMS']} as a, {$CONFIG['TABLE_CATEGORIES']} as c WHERE a.category = c.cid AND a.category < '" . FIRST_USER_CAT . "' ORDER BY cname,title");
+        $result = cpg_db_query("SELECT aid, title FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = 0");
         while ($row = mysql_fetch_array($result)) {
-            $row['title'] = $row['cname'] . " - " . $row['title'];
-            $rowset[] = $row;
+            // Add to multi-dim array for later sorting
+            $listArray[$list_count]['cat'] = $lang_search_new_php['albums_no_category'];
+            $listArray[$list_count]['aid'] = $row['aid'];
+            $listArray[$list_count]['title'] = $row['title'];
+            $list_count++;
         }
         mysql_free_result($result);
 
-        if (defined('UDB_INTEGRATION')) {
-            $sql = udb_get_admin_album_list();
-        } else {
-            $sql = "SELECT aid, CONCAT('(', user_name, ') ', title) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id) " . "ORDER BY title";
+        $result = cpg_db_query("SELECT DISTINCT a.aid as aid, a.title as title, c.name as cname FROM {$CONFIG['TABLE_ALBUMS']} as a, {$CONFIG['TABLE_CATEGORIES']} as c WHERE a.category = c.cid AND a.category < '" . FIRST_USER_CAT . "'");
+        while ($row = mysql_fetch_array($result)) {
+            // Add to multi-dim array for later sorting
+            $listArray[$list_count]['cat'] = $row['cname'];
+            $listArray[$list_count]['aid'] = $row['aid'];
+            $listArray[$list_count]['title'] = $row['title'];
+            $list_count++;
         }
-        $result = db_query($sql);
-        while ($row = mysql_fetch_array($result)) $rowset[] = $row;
         mysql_free_result($result);
 
-        $select = '<option value="0">' . $lang_search_new_php['select_album'] . '</option>\n';
-
-        foreach ($rowset as $row) {
-            $select .= "<option value=\"" . $row["aid"] . "\">" . $row["title"] . "</option>\n";
+        //if (defined('UDB_INTEGRATION')) {
+            $sql = $cpg_udb->get_admin_album_list();
+        /*} else {
+            $sql = "SELECT aid, CONCAT('(', user_name, ') ', title) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} AS a " . "INNER JOIN {$CONFIG['TABLE_USERS']} AS u ON category = (" . FIRST_USER_CAT . " + user_id)";
+        }*/
+        $result = cpg_db_query($sql);
+        while ($row = mysql_fetch_array($result)) {
+            // Add to multi-dim array for later sorting
+            $listArray[$list_count]['cat'] = $lang_search_new_php['personal_albums'];
+            $listArray[$list_count]['aid'] = $row['aid'];
+            $listArray[$list_count]['title'] = $row['title'];
+            $list_count++;
         }
+        mysql_free_result($result);
+
+        $select = '<option value="0">' . $lang_search_new_php['select_album'] . "</option>\n";
+
+        // Sort the pulldown options by category and album name
+        $listArray = array_csort($listArray,'cat','title');
+
+        // Create the nicely sorted and formatted drop down list
+        $alb_cat = '';
+        foreach ($listArray as $val) {
+            if ($val['cat'] != $alb_cat) {
+          if ($alb_cat) $select .= "</optgroup>\n";
+                $select .= '<optgroup label="' . $val['cat'] . '">' . "\n";
+                $alb_cat = $val['cat'];
+            }
+            $select .= '<option value="' . $val['aid'] . '"' . ($val['aid'] == $sel_album ? ' selected' : '') . '>   ' . $val['title'] . "</option>\n";
+        }
+        if ($alb_cat) $select .= "</optgroup>\n";
     }
 
     return "\n<select name=\"$id\" class=\"listbox\">\n$select</select>\n";
@@ -85,12 +117,12 @@ function albumselect($id = "album")
  */
 function dirheader($dir, $dirid)
 {
-    global $CONFIG, $lang_search_new_php;
+    global $CONFIG, $lang_search_new_php,$lang_check_uncheck_all;
     $warning = '';
 
     if (!is_writable($CONFIG['fullpath'] . $dir))
         $warning = "<tr><td class=\"tableh2\" valign=\"middle\" colspan=\"3\">\n" . "<b>{$lang_search_new_php['warning']}</b>: {$lang_search_new_php['change_perm']}</td></tr>\n";
-    return "<tr><td class=\"tableh2\" valign=\"middle\" colspan=\"3\">\n" .
+    return "<tr><td class=\"tableh2\"><input type=\"checkbox\" name=\"checkAll2\" onClick=\"selectAll(this,'pics');\" class=\"checkbox\" title=\"".$lang_check_uncheck_all."\" /></td><td class=\"tableh2\" valign=\"middle\" align=\"right\" colspan=\"2\">\n" .
     sprintf($lang_search_new_php['target_album'], $dir, albumselect($dirid)) . "</td></tr>\n" . $warning;
 }
 
@@ -118,17 +150,17 @@ function picrow($picfile, $picid, $albid)
     if (file_exists($thumb_file)) {
         $thumb_info = getimagesize($picname);
         $thumb_size = compute_img_size($thumb_info[0], $thumb_info[1], 48);
-        $img = '<img src="' . path2url($thumb_file) . '" ' . $thumb_size['geom'] . ' class="thumbnail" border="0" />';
+        $img = '<img src="' . path2url($thumb_file) . '" ' . $thumb_size['geom'] . ' class="thumbnail" border="0" alt="" />';
     } elseif (is_image($picname)) {
-        $img = '<img src="showthumb.php?picfile=' . $pic_url . '&size=48" class="thumbnail" border="0">';
+        $img = '<img src="showthumb.php?picfile=' . $pic_url . '&amp;size=48" class="thumbnail" border="0" alt="" />';
     } else {
         $file['filepath'] = $pic_dirname.'/'; //substr($picname,0,strrpos($picname,'/'))
         $file['filename'] = $pic_fname;
         $filepathname = get_pic_url($file,'thumb');
-        //$mime_content = get_type($picname);
+        //$mime_content = cpg_get_type($picname);
         //$extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
-        //$img = '<img src="images/thumb_'.$extension.'.jpg" class="thumbnail" width="48" border="0">';
-        $img = '<img src="'.$filepathname.'" class="thumbnail" width="48" border="0">';
+        //$img = '<img src="images/thumb_'.$extension.'.jpg" class="thumbnail" width="48" border="0" alt="" />';
+        $img = '<img src="'.$filepathname.'" class="thumbnail" width="48" border="0" alt="" />';
     }
 
     if (filesize($picname) && is_readable($picname)) {
@@ -148,10 +180,10 @@ function picrow($picfile, $picid, $albid)
                         <input name="picfile_$picid" type="hidden" value="$encoded_picfile" />
                 </td>
                 <td class="tableb" valign="middle" width="100%">
-                        <a href="javascript:;" onClick= "MM_openBrWindow('displayimage.php?&fullsize=1&picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')">$pic_fname</a>
+                        <a href="javascript:;" onclick= "MM_openBrWindow('displayimage.php?fullsize=1&amp;picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')">$pic_fname</a>
                 </td>
                 <td class="tableb" valign="middle" align="center">
-                        <a href="javascript:;" onClick= "MM_openBrWindow('displayimage.php?&fullsize=1&picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')"><img src="images/spacer.gif" width="1" height="48" alt="" border="0" />$img<br /></a>
+                        <a href="javascript:;" onclick= "MM_openBrWindow('displayimage.php?fullsize=1&amp;picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')"><img src="images/spacer.gif" width="1" height="48" border="0" alt="" />$img<br /></a>
                 </td>
         </tr>
 EOT;
@@ -167,7 +199,7 @@ EOT;
                         <i>$pic_fname</i>
                 </td>
                 <td class="tableb" valign="middle" align="center">
-                        <a href="javascript:;" onClick= "MM_openBrWindow('displayimage.php?&fullsize=1&picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')"><img src="showthumb.php?picfile=$pic_url&size=48" class="thumbnail" border="0" /><br /></a>
+                        <a href="javascript:;" onclick= "MM_openBrWindow('displayimage.php?fullsize=1&amp;picfile=$pic_url', 'ImageViewer', 'toolbar=yes, status=yes, resizable=yes, width=$winsizeX, height=$winsizeY')"><img src="showthumb.php?picfile=$pic_url&amp;size=48" class="thumbnail" border="0" alt="" /><br /></a>
                 </td>
         </tr>
 EOT;
@@ -191,12 +223,36 @@ function getfoldercontent($folder, &$dir_array, &$pic_array, &$expic_array)
     $dir = opendir($CONFIG['fullpath'] . $folder);
     while ($file = readdir($dir)) {
         if (is_dir($CONFIG['fullpath'] . $folder . $file)) {
-            if ($file != "." && $file != "..")
+            if ($file != "." && $file != ".." && $CONFIG['fullpath'] . $folder . $file != $CONFIG['fullpath'].'/edit' && $CONFIG['fullpath'] . $folder . $file != $CONFIG['fullpath'].'/'.substr($CONFIG['userpics'],0,strlen($CONFIG['userpics'])-1)) {
                 $dir_array[] = $file;
+            }
         }
         if (is_file($CONFIG['fullpath'] . $folder . $file)) {
-            if (strncmp($file, $CONFIG['thumb_pfx'], strlen($CONFIG['thumb_pfx'])) != 0 && strncmp($file, $CONFIG['normal_pfx'], strlen($CONFIG['normal_pfx'])) != 0 && $file != 'index.html')
+            if (strncmp($file, $CONFIG['thumb_pfx'], strlen($CONFIG['thumb_pfx'])) != 0 && strncmp($file, $CONFIG['normal_pfx'], strlen($CONFIG['normal_pfx'])) != 0 && $file != 'index.html') {
+                $newfile = replace_forbidden($file);
+                if ($newfile != $file) {
+                  //File name has been changed, let's get a unique filename and rename the existing file.
+                  $matches = array();
+                  if (!preg_match("/(.+)\.(.*?)\Z/", $newfile, $matches)) {
+                      $matches[1] = 'invalid_fname';
+                      $matches[2] = 'xxx';
+                  }
+
+                  if ($matches[2] == '' || !is_known_filetype($matches)) {
+                      cpg_die(ERROR, sprintf($lang_db_input_php['err_invalid_fext'], $CONFIG['allowed_file_extensions']), __FILE__, __LINE__);
+                  }
+
+                  // Create a unique name for the uploaded file
+                  $nr = 0;
+                  $picture_name = $matches[1] . '.' . $matches[2];
+                  while (file_exists($CONFIG['fullpath'] . $folder . $picture_name)) {
+                    $picture_name = $matches[1] . '~' . $nr++ . '.' . $matches[2];
+                  }
+                  @rename($CONFIG['fullpath'] . $folder . $file, $CONFIG['fullpath'] . $folder . $picture_name);
+                  $file = $picture_name;
+                }
                 $pic_array[] = $file;
+            }
         }
     }
     closedir($dir);
@@ -207,36 +263,51 @@ function getfoldercontent($folder, &$dir_array, &$pic_array, &$expic_array)
 
 function display_dir_tree($folder, $ident)
 {
-    global $CONFIG, $PHP_SELF, $lang_search_new_php;
+    global $CONFIG, $lang_search_new_php; //$PHP_SELF,
     $dir_path = $CONFIG['fullpath'] . $folder;
-
 
     if (!is_readable($dir_path)) return;
 
     $dir = opendir($dir_path);
-    while ($file = readdir($dir)) {
-        //if (is_dir($CONFIG['fullpath'] . $folder . $file) && $file != "." && $file != "..") { // removed by following line for 'do not show folders with dots': gaugau 03-11-02
-        if (is_dir($CONFIG['fullpath'] . $folder . $file) && substr($file,0,1) != "." && strpos($file,"'") == FALSE && $file != substr($CONFIG['userpics'],0,strlen($CONFIG['userpics'])-1)  && $file != "edit" ) {
-            $start_target = $folder . $file;
-            $dir_path = $CONFIG['fullpath'] . $folder . $file;
+    static $dirCounter = 0;
+    while ($file = readdir($dir)) { // loop looking for files - start
+        if (is_dir($CONFIG['fullpath'] . $folder . $file) &&
+            substr($file,0,1) != "." &&
+            strpos($file,"'") == FALSE &&
+            strpos($file,trim($CONFIG['userpics'],'/')) === FALSE &&
+            strpos($file,'edit') === FALSE &&
+            strpos($file,'CVS') === FALSE) {
+                $start_target = $folder . $file;
+                $dir_path = $CONFIG['fullpath'] . $folder . $file;
 
-            $warnings = '';
-            if (!is_writable($dir_path)) $warnings .= $lang_search_new_php['dir_ro'];
-            if (!is_readable($dir_path)) $warnings .= $lang_search_new_php['dir_cant_read'];
+                $warnings = '';
+                if (!is_writable($dir_path)) $warnings .= $lang_search_new_php['dir_ro'];
+                if (!is_readable($dir_path)) $warnings .= $lang_search_new_php['dir_cant_read'];
 
-            if ($warnings) $warnings = '&nbsp;&nbsp;&nbsp;<b>' . $warnings . '<b>';
+                if ($warnings) $warnings = '&nbsp;&nbsp;&nbsp;<b>' . $warnings . '<b>';
 
-            echo <<<EOT
-                        <tr>
-                                <td class="tableb">
-                                        $ident<img src="images/folder.gif" alt="" />&nbsp;<a href= "$PHP_SELF?startdir=$start_target">$file</a>$warnings
-                                </td>
-                        </tr>
+                echo <<<EOT
+                            <tr>
+                                    <td class="tableb">
+                                            $ident<img src="images/folder.gif" border="0" alt="" />&nbsp;<a href= "{$_SERVER['PHP_SELF']}?startdir=$start_target">$file</a>$warnings
+                                    </td>
+                            </tr>
 EOT;
-            display_dir_tree($folder . $file . '/', $ident . '&nbsp;&nbsp;&nbsp;&nbsp;');
+                $dirCounter++;
+                display_dir_tree($folder . $file . '/', $ident . '&nbsp;&nbsp;&nbsp;&nbsp;');
         }
-    }
+    } // loop looking for files - end
     closedir($dir);
+    if ($dirCounter == 0) {
+    echo '
+                        <tr>
+                                <td class="tableb">';
+    echo '                                   ' . sprintf($lang_search_new_php['no_folders'],trim($CONFIG['fullpath'],'/'),trim($CONFIG['fullpath'],'/'),trim($CONFIG['userpics'],'/'));
+    echo '
+                                    </td>
+                        </tr>';
+    }
+
 }
 
 /**
@@ -252,7 +323,7 @@ function getallpicindb(&$pic_array, $startdir)
     global $CONFIG;
 
     $sql = "SELECT filepath, filename " . "FROM {$CONFIG['TABLE_PICTURES']} " . "WHERE filepath LIKE '$startdir%'";
-    $result = db_query($sql);
+    $result = cpg_db_query($sql);
     while ($row = mysql_fetch_array($result)) {
         $pic_file = $row['filepath'] . $row['filename'];
         $pic_array[$pic_file] = 1;
@@ -274,7 +345,7 @@ function getallalbumsindb(&$album_array)
     global $CONFIG;
 
     $sql = "SELECT aid, title " . "FROM {$CONFIG['TABLE_ALBUMS']} " . "WHERE 1";
-    $result = db_query($sql);
+    $result = cpg_db_query($sql);
 
     while ($row = mysql_fetch_array($result)) {
         $album_array[$row['aid']] = $row['title'];
@@ -302,7 +373,6 @@ function CPGscandir($dir, &$expic_array)
 
     $pic_array = array();
     $dir_array = array();
-
     getfoldercontent($dir, $dir_array, $pic_array, $expic_array);
 
     if (count($pic_array) > 0) {
@@ -330,16 +400,19 @@ function CPGscandir($dir, &$expic_array)
 $album_array = array();
 getallalbumsindb($album_array);
 // We need at least one album
-if (!count($album_array)) cpg_die(ERROR, $lang_search_new_php['need_one_album'], __FILE__, __LINE__);
+if (!count($album_array)) {
+    cpg_die(ERROR, $lang_search_new_php['need_one_album'], __FILE__, __LINE__);
+}
 
-if (isset($HTTP_POST_VARS['insert'])) {
-    if (!isset($HTTP_POST_VARS['pics'])) cpg_die(ERROR, $lang_search_new_php['no_pic_to_add'], __FILE__, __LINE__);
+if (isset($_POST['insert'])) {
+    if (!isset($_POST['pics'])) cpg_die(ERROR, $lang_search_new_php['no_pic_to_add'], __FILE__, __LINE__);
 
     pageheader($lang_search_new_php['page_title']);
+    $help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=ftp&amp;ae=ftp_end&amp;top=1#ftp_show_result', '600', '400');
     starttable("100%");
     echo <<<EOT
         <tr>
-                <td colspan="4" class="tableh1"><h2>{$lang_search_new_php['insert']}</h2></td>
+                <td colspan="4" class="tableh1"><h2>{$lang_search_new_php['insert']}$help</h2></td>
         </tr>
         <tr>
                 <td class="tableh2" valign="middle" align="center"><b>{$lang_search_new_php['folder']}</b></td>
@@ -350,19 +423,22 @@ if (isset($HTTP_POST_VARS['insert'])) {
 EOT;
 
     $count = 0;
-    foreach ($HTTP_POST_VARS['pics'] as $pic_id) {
-        $album_lb_id = $HTTP_POST_VARS['album_lb_id_' . $pic_id];
-        $album_id = $HTTP_POST_VARS[$album_lb_id];
+    foreach ($_POST['pics'] as $pic_id) {
+        $album_lb_id = $_POST['album_lb_id_' . $pic_id];
+        $album_id = $_POST[$album_lb_id];
 
-        $pic_file = base64_decode($HTTP_POST_VARS['picfile_' . $pic_id]);
+        $edit_album_array[] = $album_id; //Load the album number into an array for later
+
+        $pic_file = base64_decode($_POST['picfile_' . $pic_id]);
         $dir_name = dirname($pic_file) . "/";
         $file_name = basename($pic_file);
 
         if ($album_id) {
             // To avoid problems with PHP scripts max execution time limit, each picture is
             // added individually using a separate script that returns an image
-            $status = "<a href=\"addpic.php?aid=$album_id&pic_file=" . ($HTTP_POST_VARS['picfile_' . $pic_id]) . "&reload=" . uniqid('') . "\"><img src=\"addpic.php?aid=$album_id&pic_file=" . ($HTTP_POST_VARS['picfile_' . $pic_id]) . "&reload=" . uniqid('') . "\" class=\"thumbnail\" border=\"0\" width=\"24\" height=\"24\" alt=\"\" /><br /></a>";
+            $status = "<a href=\"addpic.php?aid=$album_id&pic_file=" . ($_POST['picfile_' . $pic_id]) . "&amp;reload=" . uniqid('') . "\"><img src=\"addpic.php?aid=$album_id&amp;pic_file=" . ($_POST['picfile_' . $pic_id]) . "&amp;reload=" . uniqid('') . "\" class=\"thumbnail\" border=\"0\" width=\"24\" height=\"24\" alt=\"{$lang_search_new_php['result_icon']}\" /><br /></a>";
             $album_name = $album_array[$album_id];
+            //$edit_pics_content .= '<a href="editpics.php?album='.$album_id. '">' . $lang_search_new_php['edit_pics'] . ' : ' . $album_name . '</a><br />';
         } else {
             $album_name = $lang_search_new_php['no_album'];
             $status = "<img src=\"images/up_na.gif\" alt=\"" . $lang_search_new_php['no_album'] . "\" class=\"thumbnail\" border=\"0\" width=\"24\" height=\"24\" /><br />";
@@ -376,6 +452,19 @@ EOT;
         $count++;
         flush();
     }
+
+    // Eliminate the duplicate albums from the edit_album_array
+    $edit_album_array = array_unique($edit_album_array);
+    // Display the albums that have new pictures added
+    foreach ($edit_album_array as $edit_album)
+    {
+      $edit_pics_content .= $lang_search_new_php['album'] . ' &laquo;' . $album_array[$edit_album] .'&raquo;: ';
+      $edit_pics_content .= '<a href="editpics.php?album='.$edit_album. '" class="admin_menu">' . $lang_search_new_php['edit_pics'] . '</a> ';
+      $edit_pics_content .= '<a href="modifyalb.php?album='.$edit_album. '" class="admin_menu">' . $lang_search_new_php['edit_properties'] . '</a> ';
+      $edit_pics_content .= '<a href="thumbnails.php?album='.$edit_album. '" class="admin_menu">' . $lang_search_new_php['view_thumbs'] . '</a> ';
+      $edit_pics_content .= '<br />';
+    }
+
     echo <<<EOT
         <tr>
                 <td class="tableh2" colspan="4">
@@ -387,61 +476,63 @@ EOT;
                         {$lang_search_new_php['notes']}
                 </td>
         </tr>
+        <tr>
+                <td class="tableb" colspan="4">
+                <p align="center">{$edit_pics_content}</p>
+                </td>
+        </tr>
 
 EOT;
     endtable();
     pagefooter();
     ob_end_flush();
-} elseif (isset($HTTP_GET_VARS['startdir'])) {
+} elseif (isset($_GET['startdir'])) {
     pageheader($lang_search_new_php['page_title']);
+    $help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=ftp&amp;ae=ftp_end&amp;top=1#ftp_select_file', '550', '400');
+    echo <<<EOT
+        <script language="javascript" type="text/javascript">
+        <!--
+        function selectAll(d,box) {
+          var f = document.selectPics;
+          for (i = 0; i < f.length; i++) {
+            //alert (f[i].name.indexOf(box));
+            if (f[i].type == "checkbox" && f[i].name.indexOf(box) >= 0) {
+              if (d.checked) {
+                f[i].checked = true;
+              } else {
+                f[i].checked = false;
+              }
+            }
+          }
+          if (d.name == "checkAll") {
+              document.getElementsByName('checkAll2')[0].checked = document.getElementsByName('checkAll')[0].checked;
+          } else {
+              document.getElementsByName('checkAll')[0].checked = document.getElementsByName('checkAll2')[0].checked;
+          }
+        }
+        -->
+        </script>
+        <form method="post" action="{$_SERVER['PHP_SELF']}?insert=1" name="selectPics" style="margin:0px;padding:0px">
+EOT;
     starttable("100%");
     echo <<<EOT
-        <form method="post" action="$PHP_SELF?insert=1" name="selectPics">
         <tr>
-                <td colspan="3" class="tableh1"><h2>{$lang_search_new_php['list_new_pic']}</h2></td>
+                <td colspan="3" class="tableh1"><h2>{$lang_search_new_php['list_new_pic']}$help</h2></td>
         </tr>
 
 EOT;
     $expic_array = array();
-    $check_all = $lang_search_new_php['check_all'];
-    $uncheck_all = $lang_search_new_php['uncheck_all'];
-    // added below table, JavaScript and additional check/uncheck options: gaugau 03-11-02
-
-    getallpicindb($expic_array, $HTTP_GET_VARS['startdir']);
-    if (CPGscandir($HTTP_GET_VARS['startdir'] . '/', $expic_array)) {
-
+    getallpicindb($expic_array, $_GET['startdir']);
+    if (CPGscandir($_GET['startdir'] . '/', $expic_array)) {
         echo <<<EOT
         <tr>
-                <td colspan="3" align="center" class="tablef">
-                                <script language="javascript" type="text/javascript">
-                                <!--
-                                function checkAll(field)
-                                {
-                                for (i = 0; i < field.length; i++)
-                                  field[i].checked = true ;
-                                }
-
-                                function uncheckAll(field)
-                                {
-                                for (i = 0; i < field.length; i++)
-                                  field[i].checked = false ;
-                                }
-                                -->
-                                </script>
-                        <table border="0" cellspacing="0" cellpadding="0" width="100%">
-                        <tr>
-                        <td align="left">
-                        <input type="button" name="CheckAll" class="button" value="$check_all" onClick="checkAll(document.selectPics.picselector)">
-                        <input type="button" name="UnCheckAll" class="button" value="$uncheck_all" onClick="uncheckAll(document.selectPics.picselector)">
-                        </td>
-                        <td align="center">
-                        <input type="submit" class="button" name="insert" value="{$lang_search_new_php['insert_selected']}">
-                        </td>
-                        </tr>
-                        </table>
+                <td class="tablef">
+                    <input type="checkbox" name="checkAll" onClick="selectAll(this,'pics');" class="checkbox" title="$lang_check_uncheck_all" />
+                </td>
+                <td colspan="2" align="center" class="tablef">
+                        <input type="submit" class="button" name="insert" value="{$lang_search_new_php['insert_selected']}" />
                 </td>
         </tr>
-        </form>
 
 EOT;
     } else {
@@ -453,26 +544,75 @@ EOT;
                         <br /><br /><br />
                 </td>
         </tr>
-        </form>
 
 EOT;
     }
     endtable();
+    print '        </form>';
     pagefooter();
     ob_end_flush();
 } else {
     pageheader($lang_search_new_php['page_title']);
-    starttable(-1, $lang_search_new_php['select_dir']);
+    $help = '&nbsp;'.cpg_display_help('f=index.htm&amp;as=ftp&amp;ae=ftp_end&amp;top=1', '600', '450');
+    print '<form name="interfaceconfig" action="'.$_SERVER['PHP_SELF'].'" method="post" style="margin:0px;padding:0px">';
+    starttable(-1, $lang_search_new_php['select_dir'].$help);
+
+    // write the interface change to the db
+    if (isset($_POST['update_config'])) {
+        $value = $_POST['browse_batch_add'];
+        cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'browse_batch_add'");
+        $CONFIG['browse_batch_add'] = $value;
+        if ($CONFIG['log_mode'] == CPG_LOG_ALL) {
+            log_write('CONFIG UPDATE SQL: '.
+              "UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '$value' WHERE name = 'browse_batch_add'\n".
+              'TIME: '.date("F j, Y, g:i a")."\n".
+              'USER: '.$USER_DATA['user_name'],
+              CPG_DATABASE_LOG
+              );
+        }
+    }
+
+
+    $iframe_startfolder .= str_replace('searchnew.php', '', __FILE__).rtrim($CONFIG['fullpath'], '/').'/';
+    $iframe_hide = rawurlencode('.,..,CVS,edit,'.rtrim($CONFIG['userpics'], '/'));
+    print '    <tr>'."\n";
+    print '        <td class="tableb" align="center">'."\n";
+    if ($CONFIG['browse_batch_add'] == 1) {
+        print '            <iframe src="minibrowser.php?startfolder='.$iframe_startfolder.'&amp;parentform=choosefolder&amp;formelementname=startdir&amp;no_popup=1&amp;limitfolder='.$iframe_startfolder.'&amp;hidefolders='.$iframe_hide.'&amp;linktarget='.$_SERVER['PHP_SELF'].'&amp;searchnew_php=1&amp;radio=0" width="95%" height="400" name="popup_in_a_box">'."\n";
+    }
     display_dir_tree('', '');
+    if ($CONFIG['browse_batch_add'] == 1) {
+        print '            </iframe>'."\n";
+    }
+    print '        </td>'."\n";
+    print '    </tr>'."\n";
+
+    // configure batch-add interface (classic or browsable)
+    $yes_selected = $CONFIG['browse_batch_add'] ? 'checked="checked"' : '';
+    $no_selected = !$CONFIG['browse_batch_add'] ? 'checked="checked"' : '';
+    $help = cpg_display_help('f=index.htm&amp;as=admin_misc_browsable_batch_add&amp;ae=admin_misc_browsable_batch_add_end', '500', '300');
     echo <<<EOT
         <tr>
-                <td class="tablef">
+                <td class="tableb">
                         <b>{$lang_search_new_php['select_dir_msg']}</b>
                 </td>
         </tr>
-
+        <tr>
+            <td class="tablef" colspan="6">
+                        {$lang_search_new_php['browse_batch_add']}
+                        $help
+                        &nbsp;&nbsp;
+                        <input type="radio" id="browse_batch_add1" name="browse_batch_add" value="1"  onclick="document.interfaceconfig.submit();" $yes_selected /><label for="browse_batch_add1" class="clickable_option">$lang_yes</label>
+                        &nbsp;&nbsp;
+                        <input type="radio" id="browse_batch_add0" name="browse_batch_add" value="0"  onclick="document.interfaceconfig.submit();" $no_selected /><label for="browse_batch_add0" class="clickable_option">$lang_no</label>
+                        &nbsp;&nbsp;
+                        <input type="hidden" name="update_config" value="1" />
+                </td>
+        </tr>
 EOT;
+
     endtable();
+    print '        </form>';
     pagefooter();
     ob_end_flush();
 }
