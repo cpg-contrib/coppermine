@@ -9,19 +9,40 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.3.5
+  Coppermine version: 1.4.2
   $Source$
   $Revision$
   $Author$
   $Date$
 **********************************************/
 
+/* Colors used in this style sheet:
+    Hex 000000 = RBG   0,   0,   0 = black
+    Hex 222222 = RBG  34,  34,  34 = black
+    Hex 343333 = RBG  52,  51,  51 = black
+    Hex 3F3F3F = RBG  63,  63,  63 = light black
+    Hex 454444 = RBG  69,  68,  68 = light black
+    Hex 4A4A4A = RBG  74,  74,  74 = dark grey
+    Hex 5F5F5F = RBG  95,  95,  95 = dark grey
+    Hex 666666 = RBG 102, 102, 102 = dark grey
+    Hex 838383 = RBG 131, 131, 131 = medium grey
+    Hex BDBEBD = RBG 189, 190, 189 = medium grey
+    Hex BFC0C3 = RBG 191, 192, 195 = medium grey
+    Hex C6B78E = RBG 198, 183, 142 = beige
+    Hex E6E6E6 = RBG 230, 230, 230 = light grey
+    Hex EFEFEF = RBG 239, 239, 239 = light grey
+    Hex F0AF00 = RBG 240, 175,   0 = orange
+    Hex ff0000 = RBG 255,   0,   0 = red
+    Hex FFFFCC = RBG 255, 255, 204 = light yellow
+    Hex FFFFFF = RBG 255, 255, 255 = white
+*/
+
 /* Foreground color definition */
 body { color : #C6B78E; }
 .topmenu, .topmenu a { color : #E6E6E6; }
 .topmenu a:hover { color : #FFFFCC; }
 .tableh1, .tableh1a, .tableh1_compact, .navmenu, .navmenu a, .sortorder_cell, .sortorder_options, .statlink, .statlink a, .statlink a:hover { color : #C6B78E; }
-.tableh2, .tableh2_compact { color : #FFFFCC; }
+.tableh2, .tableh2_compact, .catrow_noalb { color : #FFFFCC; }
 .textinput, .listbox, .radio, .checkbox { color: #FFFFCC; }
 .alblink, .alblink a, .catlink, .catlink a { color : #FFFFCC; }
 a,  .bblink a, .user_thumb_infobox a  { color: #FFFFCC; }
@@ -34,8 +55,8 @@ a:hover, .bblink a:hover, .user_thumb_infobox a:hover, .alblink a:hover, .catlin
 body { background-color: #4A4A4A; }
 .textinput, .listbox, .radio, .checkbox { background-color: #4A4A4A; }
 .tableh1, .tableh1_compact, .navmenu, .navmenu a, .navmenu a:hover  {         background : #3F3F3F ; }
-.tableh2, .tableh2_compact, .tablef, .img_caption_table th {         background : #343333 ; }
-.tableb, .tableb_compact, .thumbnails, .img_caption_table td { background : #454444 ; }
+.tableh2, .catrow_noalb, .tableh2_compact, .tablef, .img_caption_table th {         background : #343333 ; }
+.tableb, .catrow, .display_media, .tableb_compact, .thumbnails, .img_caption_table td { background : #454444 ; }
 
 /* Borders for input controls */
 .textinput, .listbox, .button, .comment_button, .admin_menu, .admin_menu_thumb  {        border: 1px solid #666666; }
@@ -48,7 +69,7 @@ body { background-color: #4A4A4A; }
 
 /* Fonts definition */
 body { font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif; }
-.tableh1, .tableh1a, .catlink, .tableh2 { font-family: Verdana, Geneva, Arial, sans-serif; }
+.tableh1, .tableh1a, .catlink, .tableh2, .catrow_noalb { font-family: Verdana, Geneva, Arial, sans-serif; }
 .textinput, .listbox, .radio, .checkbox { font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif; }
 .button, .comment_button, .sortorder_options, .admin_menu_thumb { font-family: Arial, Helvetica, sans-serif; }
 
@@ -59,6 +80,7 @@ table {
 body {
         font-size : 12px;
         margin: 0px;
+        padding:0px;
 }
 
 h1{
@@ -109,40 +131,87 @@ li {
         list-style-type: disc;
 }
 
-.top_panel td {
-        white-space: nowrap;
+.top_panel {
+                background-image: url(images/top_panel_r1_c4.jpg);
+                background-repeat : repeat-x;
+                border-collapse:collapse;
+                margin: 0;
+                padding: 0;
 }
 
+.top_panel_left {
+                background-image: url(images/top_panel_r1_c1.jpg);
+                background-repeat : no-repeat;
+                background-position: top left;
+                margin: 0;
+                padding: 0;
+}
+
+.top_panel_right {
+                background-image: url(images/top_panel_r1_c2.jpg);
+                background-repeat : no-repeat;
+                background-position: top right;
+                margin: 0;
+                padding: 0;
+}
+
+
+
+.top_panel_btm {
+
+                    background: #4A4A4A;
+                    background-image: url(images/top_panel_r2_c3.jpg);
+                    background-repeat : no-repeat;
+                    background-position:right;
+                    padding-top : 0;
+            padding-bottom : 0;
+
+}
+
+.top_menu_left_bttn {
+        white-space:nowrap;
+}
 .top_menu_left_bttn a {
+               background: #4A4A4A;
         background-image : url(images/left_menu_button.gif);
         background-repeat : no-repeat;
         background-position : left;
         padding-left : 12px;
         padding-right : 6px;
-        position: relative;
+                   padding-top :3px;
+        padding-bottom : 0;
         display: block;
         height : 35px;
         line-height : 35px;
         text-decoration: none;
         color: #C6B78E;
         font-size: 14px;
+
 }
 
 .top_menu_left_bttn a:hover {
+                background: #4A4A4A;
         background-image : url(images/left_menu_button_over.gif);
         background-position : left;
         background-repeat : no-repeat;
         text-decoration: none;
         color: #F0AF00;
+
+}
+
+.top_menu_right_bttn {
+        white-space:nowrap;
 }
 
 .top_menu_right_bttn a {
+                background: #4A4A4A;
         background-image : url(images/right_menu_button.gif);
         background-repeat : no-repeat;
         background-position : right;
         padding-right : 22px;
         padding-left : 6px;
-        position: relative;
+            padding-top : 3px;
+        padding-bottom : 0;
         display: block;
         height : 35px;
         line-height : 35px;
@@ -152,6 +221,7 @@ li {
 }
 
 .top_menu_right_bttn a:hover {
+                background: #4A4A4A;
         background-image : url(images/right_menu_button_over.gif);
         background-position : right;
         background-repeat : no-repeat;
@@ -159,12 +229,17 @@ li {
         color: #F0AF00;
 }
 
+.top_menu_bttn {
+  white-space:nowrap;
+}
 .top_menu_bttn a {
+                background: #4A4A4A;
         background-image : url(images/menu_button.gif);
         background-position : left;
         padding-left : 6px;
         padding-right : 6px;
-        position: relative;
+                padding-top : 3px;
+        padding-bottom : 0;
         display: block;
         height : 35px;
         line-height : 35px;
@@ -174,6 +249,7 @@ li {
 }
 
 .top_menu_bttn a:hover {
+                background: #4A4A4A;
         background-image : url(images/menu_button_over.gif);
         text-decoration: none;
         color:         #F0AF00;
@@ -318,9 +394,28 @@ a:hover {
         padding-left: 10px;
 }
 
+.catrow_noalb {
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+}
+
+.catrow {
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+}
+
 .album_stat {
         font-size : 85%;
         margin: 5px 0px;
+}
+
+.thumb_filename {
+        font-size: 100%;
+        display: block;
 }
 
 .thumb_title {
@@ -392,7 +487,8 @@ a:hover {
 }
 
 .navmenu img {
-        display: block;
+        margin-top: 5px;
+
 }
 
 .navmenu a {
@@ -466,6 +562,10 @@ a:hover {
         text-decoration: underline;
 }
 
+td #admin_menu_anim {
+        background-image : url(images/button_bg_anim.gif);
+}
+
 .comment_date{
         font-size: 90%;
         vertical-align : middle;
@@ -473,6 +573,13 @@ a:hover {
 
 .image {
         margin: 2px;
+}
+
+.display_media {
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
 }
 
 .thumbnails {
@@ -552,6 +659,7 @@ a:hover {
         padding-right: 10px;
         padding-bottom: 6px;
         padding-left: 10px;
+        white-space: normal;
 }
 
 .debug_text {
@@ -563,7 +671,7 @@ a:hover {
 
 .clickable_option {
         font-weight: bold;
-        cursor : hand;
+        cursor : default;
 }
 
 .listbox_lang {
@@ -574,3 +682,48 @@ a:hover {
         font-family: Arial, Helvetica, sans-serif;
         vertical-align : middle;
 }
+
+#SELECT_LISTS {
+        width: 300px;
+        height: 50px;
+        text-align:right;
+        float: right;
+}
+
+
+#SUB_MENU {
+            background-image: url(images/top_panel_r2_c2.jpg);
+        background-position: left;
+        padding-left: 20px;
+}
+#SYS_MENU {
+        position:relative;
+        width:800px;
+        height:30px;
+        left: 35px;
+        top: 5px;
+        margin:-10px;
+        padding:0;
+        z-index:1;
+        visibility: hidden;
+}
+
+#SELECT_FLAGS {
+        text-align: center;
+}
+
+#vanity a {
+        display:block;
+        width:57px;
+        height:20px;
+        margin: 3px 20px;
+}
+#vanity img {border:0}
+#v_php {float:left;background-image:url(../../images/powered-php.gif);}
+#v_php:hover {background-image:url(../../images/h_powered-php.gif);}
+#v_mysql {float:left;background-image:url(../../images/powered-mysql.gif);}
+#v_mysql:hover  {background-image:url(../../images/h_powered-mysql.gif);}
+#v_xhtml {float:right;background-image:url(../../images/valid-xhtml10.gif);}
+#v_xhtml:hover {background-image:url(../../images/h_valid-xhtml10.gif);}
+#v_css {float:right;background-image:url(../../images/valid-css.gif);}
+#v_css:hover{background-image:url(../../images/h_valid-css.gif);}

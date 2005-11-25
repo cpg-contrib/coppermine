@@ -9,15 +9,30 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.3.5
+  Coppermine version: 1.4.2
   $Source$
   $Revision$
   $Author$
   $Date$
 **********************************************/
 
+/* Colors used in this style sheet:
+   Hex 000000 = RBG   0,   0,   0 = black
+   Hex 666666 = RBG 102, 102, 102 = light black
+   Hex 999999 = RBG 153, 153, 153 = dark grey
+   Hex BDBEBD = RBG 189, 190, 189 = medium grey
+   Hex EFEFEF = RBG 239, 239, 239 = light grey
+   Hex FFFFFF = RBG 255, 255, 255 = white
+   Hex FFC956 = RBG 255, 201,  86 = medium orange
+   Hex FFE8B7 = RBG 255, 232, 183 = light orange
+   Hex 447AC9 = RBG  68, 122, 201 = darker blue
+   Hex 0397FF = RBG   3, 151, 255 = lighter blue
+*/
+
 /* Foreground color definition */
 body { color : #FFFFFF; }
+
+table { border-collapse: collapse; }
 
 .topmenu, .topmenu a { color : #FFFFFF; }
 
@@ -25,7 +40,7 @@ body { color : #FFFFFF; }
 
 .tableh1, .tableh1a, .tableh1_compact, .navmenu, .navmenu a, .sortorder_cell, .sortorder_options, .statlink, .statlink a, .statlink a:hover { color : #FFC956; }
 
-.tableh2, .tableh2_compact { color : #FFC956; }
+.tableh2, .tableh2_compact, .catrow_noalb { color : #FFC956; }
 
 .textinput, .listbox, .radio, .checkbox { color: #FFFFFF; }
 
@@ -51,9 +66,9 @@ body { background-color: #000000; }
 
 .tableh1, .tableh1_compact, .navmenu, .navmenu a, .navmenu a:hover  {         background : #000000 ; }
 
-.tableh2, .tableh2_compact, .tablef, .img_caption_table th {         background : #000000 ; }
+.tableh2, .catrow_noalb, .tableh2_compact, .tablef, .img_caption_table th {         background : #000000 ; }
 
-.tableb, .tableb_compact, .thumbnails, .img_caption_table td { background : #000000 ; }
+.tableb, .catrow, .tableb_compact, .thumbnails, .img_caption_table td { background : #000000 ; }
 
 
 /* Borders for input controls */
@@ -78,7 +93,7 @@ body { background-color: #000000; }
 /* Fonts definition */
 body { font-family: Arial, Helvetica, sans-serif; }
 
-.tableh1, .tableh1a, .catlink, .tableh2 { font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; }
+.tableh1, .tableh1a, .catlink, .tableh2, .catrow_noalb { font-family: Verdana, Geneva, Arial, Helvetica, sans-serif; }
 
 .textinput, .listbox, .radio, .checkbox { font-family: Arial, Helvetica, sans-serif; }
 
@@ -101,7 +116,7 @@ h1{
         font-size: 24px;
         font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
         text-decoration: none;
-        color: #000000;
+        color: #EEEEEE;
         margin: 0px;
 }
 
@@ -142,6 +157,7 @@ li {
         list-style-position: outside;
         list-style-type: disc;
 }
+
 
 
 .top_panel td {
@@ -282,7 +298,6 @@ a:hover {
         padding-left: 10px;
 }
 
-
 .tableh2_compact {
         padding-top: 2px;
         padding-right: 5px;
@@ -297,7 +312,6 @@ a:hover {
         padding-bottom: 3px;
         padding-left: 10px;
 }
-
 
 .tableb_compact {
         padding-top: 2px;
@@ -314,12 +328,29 @@ a:hover {
         padding-left: 10px;
 }
 
+.catrow_noalb {
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+}
+
+.catrow {
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+}
 
 .album_stat {
         font-size : 85%;
         margin: 5px 0px;
 }
 
+.thumb_filename {
+        font-size: 80%;
+        display: block;
+}
 
 .thumb_title {
         font-weight : bold;
@@ -476,6 +507,9 @@ a:hover {
         text-decoration: underline;
 }
 
+td #admin_menu_anim {
+        background-image : url(images/button_bg_anim.gif);
+}
 
 .comment_date{
         font-size: 90%;
@@ -487,6 +521,12 @@ a:hover {
         margin: 2px;
 }
 
+.display_media {
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+}
 
 .thumbnails {
         padding: 10px;
@@ -581,6 +621,7 @@ a:hover {
         padding-right: 10px;
         padding-bottom: 6px;
         padding-left: 10px;
+        white-space: normal;
 }
 
 .debug_text {
@@ -591,8 +632,7 @@ a:hover {
 }
 
 .clickable_option {
-        border-bottom : 1px dotted blue;
-        cursor : hand;
+        cursor : default;
 }
 
 .listbox_lang {
@@ -604,3 +644,35 @@ a:hover {
         vertical-align : middle;
 }
 
+/* Modified Holly-Hack to fix IE 3px bug */
+
+/* Hides from IE-mac \*/
+
+* html .ie_fix {margin-bottom: -3px;}
+/* End hide from IE-mac */
+
+
+#Menu1 {
+         position:relative;
+         width:780px;
+         height:15px;
+         top: 3px;
+         left: 20px;
+         visibility: hidden;
+}
+
+#vanity a {
+        display:block;
+        width:57px;
+        height:20px;
+        margin: 3px 20px;
+}
+#vanity img {border:0}
+#v_php {float:left;background-image:url(../../images/powered-php.gif);}
+#v_php:hover {background-image:url(../../images/h_powered-php.gif);}
+#v_mysql {float:left;background-image:url(../../images/powered-mysql.gif);}
+#v_mysql:hover  {background-image:url(../../images/h_powered-mysql.gif);}
+#v_xhtml {float:right;background-image:url(../../images/valid-xhtml10.gif);}
+#v_xhtml:hover {background-image:url(../../images/h_valid-xhtml10.gif);}
+#v_css {float:right;background-image:url(../../images/valid-css.gif);}
+#v_css:hover{background-image:url(../../images/h_valid-css.gif);}

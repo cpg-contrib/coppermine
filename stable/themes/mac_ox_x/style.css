@@ -9,12 +9,26 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.3.5
+  Coppermine version: 1.4.2
   $Source$
   $Revision$
   $Author$
   $Date$
 **********************************************/
+
+/* Colors used:                                */
+/* --------------------------------------------*/
+/* #000000 = RBG   0,  0,  0 = (black)         */
+/* #7F7F7F = RBG 127,127,127 = (dark grey)     */
+/* #666666 = RBG 102,102,102 = (medium grey)   */
+/* #999999 = RBG 153,153,153 = (light grey)    */
+/* #FAFAFA = RBG 250,250,250 = (light grey)    */
+/* #BDBEBD = RBG 189,190,189 = (light grey)    */
+/* #EFF0F1 = RBG 239,240,241 = (dark white)    */
+/* #EFEFEF = RBG 239,239,239 = (dark white)    */
+/* #FFFFFF = RBG 255,255,255 = (white)         */
+/* if you don't like a color, just do a search */
+/* and replace on the hex color...             */
 
 /* Foreground color definition */
 body { color : #000000; }
@@ -25,7 +39,7 @@ body { color : #000000; }
 
 .tableh1, .tableh1a, .tableh1_compact, .navmenu, .navmenu a, .sortorder_cell, .sortorder_options, .statlink, .statlink a, .statlink a:hover { color : #000000; }
 
-.tableh2, .tableh2_compact { color : #000000; }
+.tableh2, .tableh2_compact, .catrow_noalb { color : #000000; }
 
 .textinput, .listbox, .radio, .checkbox { color: #000000; }
 
@@ -49,9 +63,9 @@ body { background-color: #FAFAFA; }
 
 .tableh1, .tableh1_compact, .navmenu, .navmenu a, .navmenu a:hover  {         background : #FFFFFF ; }
 
-.tableh2, .tableh2_compact, .tablef, .img_caption_table th {         background : #FFFFFF ; }
+.tableh2, .catrow_noalb, .tableh2_compact, .tablef, .img_caption_table th {         background : #FFFFFF ; }
 
-.tableb, .tableb_compact, .thumbnails, .img_caption_table td { background : #FFFFFF ; }
+.tableb, .catrow, .display_media, .tableb_compact, .thumbnails, .img_caption_table td { background : #FFFFFF ; }
 
 
 /* Borders for input controls */
@@ -69,11 +83,7 @@ body { background-color: #FAFAFA; }
 /* Fonts definition */
 body { font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif; }
 
-.tableh1, .tableh1a, .catlink, .tableh2 { font-family: Verdana, Geneva, Arial, sans-serif; }
 
-.textinput, .listbox, .radio, .checkbox { font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif; }
-
-.button, .comment_button, .sortorder_options, .admin_menu_thumb { font-family: Arial, Helvetica, sans-serif; }
 
 
 table {
@@ -90,7 +100,6 @@ body {
 h1{
         font-weight: normal;
         font-size: 24px;
-        font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
         text-decoration: none;
         color: #000000;
         margin: 0px;
@@ -98,7 +107,6 @@ h1{
 
 
 h2 {
-        font-family: Arial, Helvetica, sans-serif;
         font-size: 18px;
         margin: 0px;
 }
@@ -106,7 +114,6 @@ h2 {
 
 h3 {
         font-weight: normal;
-        font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
         font-size: 14px;
         color: #999999;
         margin: 0px;
@@ -134,19 +141,19 @@ li {
         list-style-type: disc;
 }
 
-
-.top_panel_tr {
+.top_panel {
         background-image: url(images/top_panel_r1_c1b.gif);
-        background-color: White;
-        background-position: left;
         background-repeat: no-repeat;
-        padding-left: 200px;
+        background-color: #FFFFFF;
+        background-position: left;
 }
 
-
-.top_panel td {
-        white-space: nowrap;
+.top_panel_r {
+        background-image:url(images/top_panel_r1_c2.jpg);
+        background-repeat:no-repeat;
+        background-position:right;
 }
+
 
 
 .top_menu_bttn a {
@@ -296,7 +303,6 @@ a:hover {
         padding-left: 10px;
 }
 
-
 .tableb_compact {
         padding-top: 2px;
         padding-right: 5px;
@@ -312,12 +318,30 @@ a:hover {
         padding-left: 10px;
 }
 
+.catrow_noalb {
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+        background-image: url(images/tableh2_bg.gif);
+}
+
+.catrow {
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+}
 
 .album_stat {
         font-size : 85%;
         margin: 5px 0px;
 }
 
+.thumb_filename {
+        font-size: 80%;
+        display: block;
+}
 
 .thumb_title {
         font-weight : bold;
@@ -419,11 +443,14 @@ a:hover {
         text-decoration: none;
 }
 
+.navmenu_pic {
+        margin-top: 5px;
+}
 
 .admin_menu_thumb {
         font-size: 90%;
-        background-image : url(images/button_bg.gif);
-        background-position : bottom;
+        background-image: url(images/button_bg.gif);
+        background-position: bottom;
         font-weight: bold;
         margin-top: 0px;
         margin-bottom: 0px;
@@ -474,6 +501,9 @@ a:hover {
         text-decoration: underline;
 }
 
+td #admin_menu_anim {
+        background-image : url(images/button_bg_anim.gif);
+}
 
 .comment_date{
         font-size: 90%;
@@ -485,6 +515,12 @@ a:hover {
         margin: 2px;
 }
 
+.display_media {
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+}
 
 .thumbnails {
         padding: 5px;
@@ -579,6 +615,7 @@ a:hover {
         padding-right: 10px;
         padding-bottom: 6px;
         padding-left: 10px;
+        white-space: normal;
 }
 
 .debug_text {
@@ -589,7 +626,7 @@ a:hover {
 }
 
 .clickable_option {
-        cursor : hand;
+        cursor : default;
 }
 
 .listbox_lang {
@@ -597,7 +634,64 @@ a:hover {
         background-color: #FAFAFA;
         border: 1px solid #FAFAFA;
         font-size: 80%;
-        font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
-        vertical-align : middle;
+        display: inline;
 }
 
+#SUB_MENU {
+}
+
+#SUB_MENU a {
+        white-space: nowrap;
+}
+#SYS_MENU {
+        position: relative;
+        bottom: 10px;
+        left: 10px;
+        width:800px;
+        height:15px;
+        z-index:1;
+        text-align:left;
+        margin:0;
+        padding:0;
+        visibility: hidden;
+}
+
+#GAL_NAME {
+          width:400px;
+          height: 65px;
+          margin-left: auto;
+          margin-right: auto;
+          text-align: center;
+}
+
+#MENUS {
+          background-image:url(images/top_panel_r2_c1b.gif);
+          background-repeat: repeat-x;
+          border-collapse: collapse;
+          margin:0;
+          padding:0;
+}
+
+#SELECT_LISTS, #SELECT_FLAGS {
+        text-align: center;
+}
+
+#CUSTOM_FOOTER,#CUSTOM_HEADER {
+        margin:0;
+        padding:0;
+}
+#vanity a {
+        display:block;
+        width:57px;
+        height:20px;
+        margin: 3px 20px;
+}
+#vanity img {border:0}
+#v_php {float:left;background-image:url(../../images/powered-php.gif);}
+#v_php:hover {background-image:url(../../images/h_powered-php.gif);}
+#v_mysql {float:left;background-image:url(../../images/powered-mysql.gif);}
+#v_mysql:hover  {background-image:url(../../images/h_powered-mysql.gif);}
+#v_xhtml {float:right;background-image:url(../../images/valid-xhtml10.gif);}
+#v_xhtml:hover {background-image:url(../../images/h_valid-xhtml10.gif);}
+#v_css {float:right;background-image:url(../../images/valid-css.gif);}
+#v_css:hover{background-image:url(../../images/h_valid-css.gif);}

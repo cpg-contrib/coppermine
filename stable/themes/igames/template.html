@@ -1,20 +1,13 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html dir="{LANG_DIR}">
 <head>
 <title>{TITLE}</title>
 <meta http-equiv="Content-Type" content="text/html; charset={CHARSET}" />
 <meta http-equiv="Pragma" content="no-cache" />
 {META}
-<link rel="stylesheet" href="themes/igames/style.css" />
+<link rel="stylesheet" href="themes/igames/style.css" type="text/css" />
 <script type="text/javascript" src="scripts.js"></script>
-<!--
-  Coppermine version: 1.3.5
-  $Source$
-  $Revision$
-  $Author$
-  $Date$
--->
-</head>
 <script language="JavaScript" type="text/JavaScript">
 <!--
 function MM_findObj(n, d) { //v4.01
@@ -33,49 +26,56 @@ function MM_showHideLayers() { //v6.0
 }
 //-->
 </script>
+<!-- $Id$ -->
+</head>
 <body>
-<div id="Menu1" style="position:absolute; width:800px; height:30px; z-index:1; left: 20px; top: 100px; visibility: hidden;">
-                <span class="topmenu">
-                        <table border="0" cellpadding="0" cellspacing="0">
-                                <tr>
-                                        <td>
-                                        {MAIN_MENU1}
-                                        </td>
-                                </tr>
-                        </table>
-                </span>
+<div id="CUSTOM_HEADER">
+  {CUSTOM_HEADER}
+  </div>
+  
+
+  
+<div class="top_panel">
+  <div class="top_panel_left">
+    <div class="top_panel_right">
+      <div id="SELECT_LISTS">
+        {THEME_SELECT_LIST}
+        {LANGUAGE_SELECT_LIST}
+      </div>
+      <h1>{GAL_NAME}</h1>
+      <h3>{GAL_DESCRIPTION}</h3>
+    </div>
+  </div>
 </div>
-<table border="0" cellpadding="0" cellspacing="0" width="100%" class="top_panel">
-  <!-- fwtable fwsrc="top_panel.png" fwbase="top_panel" fwstyle="Dreamweaver" fwdocid = "742308039" fwnested="1" -->
-  <tr>
-    <td><table border="0" cellpadding="0" cellspacing="0" width="100%">
-        <tr>
-          <td background="themes/igames/images/top_panel_r1_c1.jpg">
-            <h1>{GAL_NAME}</h1>
-            <h3>{GAL_DESCRIPTION}</h3></td>
-            <td background="themes/igames/images/top_panel_r1_c4.jpg" ><img src="../../images/spacer.gif" width="1" height="70" border="0" alt="" /></td>
-          <td width="50%" background="themes/igames/images/top_panel_r1_c4.jpg" valign="center" align="right">{THEME_SELECT_LIST}&nbsp;{LANGUAGE_SELECT_LIST}&nbsp;</td>
-        </tr>
-      </table></td>
-  </tr>
-  <tr>
-    <td><table border="0" cellpadding="0" cellspacing="0" width="100%">
-        <tr>
-          <td><img name="top_panel_r2_c1" src="themes/igames/images/top_panel_r2_c1.jpg" width="20" height="35" border="0" id="top_panel_r2_c1" alt="" /></td>
-          <td background="themes/igames/images/top_panel_r2_c2.jpg">{MAIN_MENU2}</td>
-          <td width="100%" background="themes/igames/images/top_panel_r2_c3.jpg" style="background-repeat : no-repeat;
-background-position : right;
-">&nbsp;</td>
-        </tr>
-      </table></td>
-  </tr>
-</table>
-<table width="100%" border="0" cellspacing="0" cellpadding="20">
-  <tr>
-    <td align="center">{ADMIN_MENU} {GALLERY} </td>
-  </tr>
-</table>
-<p>&nbsp;</p>
-{LANGUAGE_SELECT_FLAGS}
+
+<div class="top_panel_btm">
+
+</div>
+
+
+<div id="MENUS">
+  <div id="SUB_MENU">
+    {SUB_MENU}
+  </div>
+  <div id="SYS_MENU">
+    {SYS_MENU}
+  </div>
+</div>
+
+
+<div id="GALLERY">
+      {ADMIN_MENU}
+      {GALLERY}
+</div>
+<div id="SELECT_FLAGS">
+ {LANGUAGE_SELECT_FLAGS}
+ </div>
+ <div id="CUSTOM_FOOTER">
+  {CUSTOM_FOOTER}
+  </div>
+  <div id="VANITY">
+  {VANITY}
+  </div>
+
 </body>
 </html>

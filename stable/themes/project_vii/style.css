@@ -9,12 +9,30 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.3.5
+  Coppermine version: 1.4.2
   $Source$
   $Revision$
   $Author$
   $Date$
 **********************************************/
+
+/* Colors used:                                */
+/* --------------------------------------------*/
+/* #000000 = RBG   0,  0,  0 = (black)         */
+/* #333333 = RBG  51, 51, 51 = (dark grey)     */
+/* #5F5F5F = RBG  95, 95, 95 = (dark grey)     */
+/* #666666 = RBG 102,102,102 = (medium grey)   */
+/* #999999 = RBG 153,153,153 = (medium grey)   */
+/* #FAFAFA = RBG 250,250,250 = (light grey)    */
+/* #BDBDBD = RBG 189,190,189 = (light grey)    */
+/* #BDBEBD = RBG 189,190,189 = (light grey)    */
+/* #E6E6E6 = RBG 230,230,230 = (dark white)    */
+/* #EFEFEF = RBG 239,239,239 = (dark white)    */
+/* #FFFFFF = RBG 255,255,255 = (white)         */
+/* #87CFED = RBG 135,207,237 = (cyan)          */
+/* #FF6600 = RBG 255,102,  0 = (orange)        */
+/* if you don't like a color, just do a search */
+/* and replace on the hex color...             */
 
 body {
         background-color: #FAFAFA;
@@ -31,15 +49,13 @@ table {
 h1{
         font-weight: normal;
         font-size: 28px;
-        font-family: "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
         text-decoration: none;
         padding-left : 20px;
-        color: #FFFFFF;
+        color: #333333;
         margin: 2px;
 }
 
 h2 {
-        font-family: Arial, Helvetica, sans-serif;
         background-image : url(images/box_left_icon.gif);
         background-repeat : no-repeat;
         background-position : left;
@@ -50,7 +66,6 @@ h2 {
 
 h3 {
         font-weight: bold;
-        font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
         font-size: 14px;
         padding-left : 20px;
         color: #646464;
@@ -58,7 +73,6 @@ h3 {
 }
 
 p {
-        font-family: Arial, Helvetica, sans-serif;
         font-size: 100%;
         margin: 2px 0px;
 }
@@ -124,7 +138,7 @@ li {
         background-position : right;
         background-repeat : no-repeat;
         text-decoration: none;
-        color:         #000000;
+        color:#000000;
 }
 
 .top_menu_bttn a {
@@ -148,7 +162,6 @@ li {
 }
 
 .textinput {
-        font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
         font-size: 100%;
         border: 1px solid #666666;
         padding-right: 3px;
@@ -156,14 +169,12 @@ li {
 }
 
 .listbox {
-        font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
         font-size: 100%;
         border: 1px solid #666666;
         vertical-align : middle;
 }
 
 .button {
-        font-family: Arial, Helvetica, sans-serif;
         font-size: 100%;
         border: 1px solid #666666;
         background-image : url(images/button_bg.gif);
@@ -171,7 +182,6 @@ li {
 }
 
 .comment_button {
-        font-family: Arial, Helvetica, sans-serif;
         font-size: 100%;
         border: 1px solid #666666;
         background-image : url(images/button_bg.gif);
@@ -181,13 +191,11 @@ li {
 }
 
 .radio {
-        font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
         font-size: 100%;
         vertical-align : middle;
 }
 
 .checkbox {
-        font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
         font-size: 100%;
         vertical-align : middle;
 }
@@ -213,13 +221,12 @@ bblink a:hover {
 }
 
 .maintable {
-        background-color: #333333;
+        background-color: #999999;
         margin-top: 2px;
         margin-bottom: 2px;
 }
 
 .tableh1 {
-        font-family:  Verdana, Geneva, Arial, sans-serif;
         background : #BDBDBD ;
         color: #FFFFFF;
         padding-top: 3px;
@@ -229,7 +236,6 @@ bblink a:hover {
 }
 
 .tableh1_compact {
-        font-family:  Verdana, Geneva, Arial, sans-serif;
         background : #BDBDBD ;
         color: #FFFFFF;
         padding-top: 2px;
@@ -239,7 +245,6 @@ bblink a:hover {
 }
 
 .tableh2 {
-        font-family:  Verdana, Geneva, Arial, sans-serif;
         background: #E6E6E6 ;
         color : #000000;
         padding-top: 3px;
@@ -249,7 +254,6 @@ bblink a:hover {
 }
 
 .tableh2_compact {
-        font-family:  Verdana, Geneva, Arial, sans-serif;
         background: #E6E6E6 ;
         color : #000000;
         padding-top: 2px;
@@ -282,9 +286,31 @@ bblink a:hover {
         padding-left: 10px;
 }
 
+.catrow_noalb {
+        background: #E6E6E6 ;
+        color : #000000;
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+}
+
+.catrow {
+        background: #FFFFFF ;
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+}
+
 .album_stat {
         font-size : 85%;
         margin: 5px 0px;
+}
+
+.thumb_filename {
+        font-size: 80%;
+        display: block;
 }
 
 .thumb_title {
@@ -355,7 +381,6 @@ bblink a:hover {
 }
 
 .sortorder_options {
-        font-family: Verdana, Arial, Helvetica, sans-serif;
         background : #BDBDBD ;
         color: #FFFFFF;
         padding: 0px;
@@ -366,7 +391,6 @@ bblink a:hover {
 }
 
 .navmenu {
-        font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
         color: #FFFFFF;
         font-weight: bold;
         background : #BDBDBD ;
@@ -398,7 +422,6 @@ bblink a:hover {
 }
 
 .admin_menu_thumb {
-        font-family: Arial, Helvetica, sans-serif;
         font-size: 90%;
         border: 1px solid #666666;
         background-image : url(images/button_bg.gif);
@@ -428,7 +451,6 @@ bblink a:hover {
 }
 
 .admin_menu {
-        font-family: Arial, Helvetica, sans-serif;
         font-size: 90%;
         border: 1px solid #666666;
         background-image : url(images/button_bg.gif);
@@ -457,6 +479,10 @@ bblink a:hover {
         text-decoration: underline;
 }
 
+td #admin_menu_anim {
+        background-image : url(images/button_bg_anim.gif);
+}
+
 .comment_date{
         color : #5F5F5F;
         font-size: 90%;
@@ -475,6 +501,14 @@ bblink a:hover {
         background-color: #FFFFFF;
         margin-top: 30px;
         margin-bottom: 30px;
+}
+
+.display_media {
+        background: #FFFFFF ;
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
 }
 
 .thumbnails {
@@ -522,7 +556,6 @@ bblink a:hover {
 }
 
 .catlink {
-        font-family:  Verdana, Geneva, Arial, sans-serif;
         display: block;
         margin-bottom: 2px;
 }
@@ -538,7 +571,6 @@ bblink a:hover {
 }
 
 .topmenu {
-        font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
         line-height : 130%;
         font-size : 110%;
 }
@@ -578,6 +610,7 @@ bblink a:hover {
         padding-bottom: 6px;
         padding-left: 10px;
         border-top : 1px solid #000000;
+        white-space: normal;
 }
 
 .debug_text {
@@ -588,7 +621,7 @@ bblink a:hover {
 }
 
 .clickable_option {
-        cursor : hand;
+        cursor : default;
 }
 
 .listbox_lang {
@@ -596,6 +629,51 @@ bblink a:hover {
         background-color: #FAFAFA;
         border: 1px solid #FAFAFA;
         font-size: 80%;
-        font-family: "Trebuchet MS", Verdana, Geneva, Arial, sans-serif;
         vertical-align : middle;
 }
+#SUB_MENU {
+        width:100%;
+        padding: 0 20px;
+}
+
+#SYS_MENU {
+        position:relative;
+        bottom:3px;
+        display: block;
+        width:800px;
+        height:10px;
+        padding: 0px;
+        z-index:1;
+        visibility: hidden;
+}
+
+#GALLERY {
+        padding: 0 20px;
+}
+
+#SELECT_LISTS, #SELECT_FLAGS {
+        padding: 0 20px;
+        text-align: center;
+
+}
+
+#CUSTOM_FOOTER,#CUSTOM_HEADER {
+        margin:0;
+        padding:0;
+}
+
+#vanity a {
+        display:block;
+        width:57px;
+        height:20px;
+        margin: 3px 20px;
+}
+#vanity img {border:0}
+#v_php {float:left;background-image:url(../../images/powered-php.gif);}
+#v_php:hover {background-image:url(../../images/h_powered-php.gif);}
+#v_mysql {float:left;background-image:url(../../images/powered-mysql.gif);}
+#v_mysql:hover  {background-image:url(../../images/h_powered-mysql.gif);}
+#v_xhtml {float:right;background-image:url(../../images/valid-xhtml10.gif);}
+#v_xhtml:hover {background-image:url(../../images/h_valid-xhtml10.gif);}
+#v_css {float:right;background-image:url(../../images/valid-css.gif);}
+#v_css:hover{background-image:url(../../images/h_valid-css.gif);}

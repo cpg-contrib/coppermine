@@ -9,17 +9,30 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.3.5
+  Coppermine version: 1.4.2
   $Source$
   $Revision$
   $Author$
   $Date$
 **********************************************/
 
+/* Colors used in this style sheet:
+   Hex 000000 = RBG   0,   0,   0 = black
+   Hex 5F5F5F = RBG  95,  95,  95 = light black
+   Hex BDBEBD = RBG 189, 190, 189 = dark grey
+   Hex D1D7DC = RBG 209, 215, 220 = medium grey
+   Hex CCCCCC = RBG 204, 204, 204 = medium grey
+   Hex EFEFEF = RBG 239, 239, 239 = dark white
+   Hex FFFFFF = RBG 255, 255, 255 = white
+   Hex 005D8C = RBG   0,  93, 140 = dark blue
+   Hex 0033CC = RBG   0,  91, 104 = medium blue
+   Hex 0E72A4 = RBG  14, 114, 164 = light blue
+*/
+
 body {
         font-family : Verdana, Arial, Helvetica, sans-serif;
         font-size: 12px;
-        background : #F7F7F7 ;
+        background : #CCCCCC;
         color : Black;
         margin: 0px;
 }
@@ -138,7 +151,8 @@ bblink a:hover {
 
 .maintable {
         border: 1px solid #0E72A4;
-        background-color: #FFFFFF;
+/*        background-color: #FFFFFF;*/
+        background-color: #efefef;
         margin-top: 1px;
         margin-bottom: 1px;
 }
@@ -187,6 +201,7 @@ bblink a:hover {
         padding-left: 10px;
 }
 
+
 .tableb_compact {
         background: #EFEFEF ;
         padding-top: 2px;
@@ -203,9 +218,31 @@ bblink a:hover {
         padding-left: 10px;
 }
 
+.catrow_noalb {
+        background: #D1D7DC ;
+        color : #000000;
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+}
+
+.catrow {
+        background: #EFEFEF ;
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
+}
+
 .album_stat {
         font-size: 85%;
         margin: 5px 0px;
+}
+
+.thumb_filename {
+        font-size: 80%;
+        display: block;
 }
 
 .thumb_title {
@@ -349,11 +386,16 @@ bblink a:hover {
         font-family: Arial, Helvetica, sans-serif;
         font-size: 85%;
         border: 1px solid #005D8C;
+        background-color:#EFEFEF;
         background-image : url(images/button_bg.gif);
         background-position : bottom;
         color: #000000;
         margin-top: 0px;
         margin-bottom: 0px;
+        padding-top:2px;
+        padding-bottom:2px;
+        padding-left:1px;
+        padding-right:1px;
         text-align: center;
 }
 
@@ -371,6 +413,10 @@ bblink a:hover {
 .admin_menu a:hover {
         color: #000000;
         text-decoration: underline;
+}
+
+td #admin_menu_anim {
+        background-image : url(images/button_bg_anim.gif);
 }
 
 .comment_date{
@@ -391,6 +437,14 @@ bblink a:hover {
         background-color: #FFFFFF;
         margin-top: 30px;
         margin-bottom: 30px;
+}
+
+.display_media {
+        background: #EFEFEF ;
+        padding-top: 3px;
+        padding-right: 10px;
+        padding-bottom: 3px;
+        padding-left: 10px;
 }
 
 .thumbnails {
@@ -491,6 +545,7 @@ bblink a:hover {
         padding-bottom: 6px;
         padding-left: 10px;
         border-top : 1px solid #FFFFFF;
+        white-space: normal;
 }
 
 .debug_text {
@@ -501,8 +556,7 @@ bblink a:hover {
 }
 
 .clickable_option {
-        border-bottom : 1px dotted blue;
-        cursor : hand;
+        cursor : default;
 }
 
 .listbox_lang {
@@ -514,3 +568,18 @@ bblink a:hover {
         vertical-align : middle;
 
 }
+#vanity a {
+        display:block;
+        width:57px;
+        height:20px;
+        margin: 3px 20px;
+}
+#vanity img {border:0}
+#v_php {float:left;background-image:url(../../images/powered-php.gif);}
+#v_php:hover {background-image:url(../../images/h_powered-php.gif);}
+#v_mysql {float:left;background-image:url(../../images/powered-mysql.gif);}
+#v_mysql:hover  {background-image:url(../../images/h_powered-mysql.gif);}
+#v_xhtml {float:right;background-image:url(../../images/valid-xhtml10.gif);}
+#v_xhtml:hover {background-image:url(../../images/h_valid-xhtml10.gif);}
+#v_css {float:right;background-image:url(../../images/valid-css.gif);}
+#v_css:hover{background-image:url(../../images/h_valid-css.gif);}
