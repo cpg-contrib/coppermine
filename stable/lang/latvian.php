@@ -1,18 +1,21 @@
 <?php
-// ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
-// ------------------------------------------------------------------------- //
-// Copyright (C) 2002-2004 Gregory DEMAR                                     //
-// http://www.chezgreg.net/coppermine/                                       //
-// ------------------------------------------------------------------------- //
-// Updated by the Coppermine Dev Team                                        //
-// (http://coppermine.sf.net/team/)                                          //
-// see /docs/credits.html for details                                        //
-// ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2005 Coppermine Dev Team
+  v1.1 originally written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  ********************************************
+  Coppermine version: 1.4.1
+  $Source$
+  $Revision$
+  $Author$
+  $Date$
+**********************************************/
 // ------------------------------------------------------------------------- //
 // $Id$
 // ------------------------------------------------------------------------- //
@@ -28,7 +31,7 @@ $lang_translation_info = array(
 'trans_date' => '2004-11-06', //the date the translation was created / last modified
 );
 
-$lang_charset = 'ISO-8859-4';
+$lang_charset = 'iso-8859-4';
 $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 
 // shortcuts for Byte, Kilo, Mega
@@ -36,15 +39,15 @@ $lang_byte_units = array('B', 'KB', 'MB');
 
 // Day of weeks and months
 $lang_day_of_week = array('Sv', 'Pr', 'Ot', 'Tr', 'Ct', 'Pt', 'Ss');
-$lang_month = array('Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jûn', 'Jûl', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec');
+$lang_month = array('Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'JÃ»n', 'JÃ»l', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec');
 
 // Some common strings
-$lang_yes = 'Jâ';
-$lang_no  = 'Nç';
+$lang_yes = 'JÃ¢';
+$lang_no  = 'NÄ¯';
 $lang_back = 'ATGRIEZTIES';
-$lang_continue = 'TURPINÂT';
-$lang_info = 'Informâcija';
-$lang_error = 'Kïûda';
+$lang_continue = 'TURPINÃ‚T';
+$lang_info = 'InformÃ¢cija';
+$lang_error = 'KÄ«Ã»da';
 
 // The various date formats
 // See http://www.php.net/manual/en/function.strftime.php to define the variable below
@@ -57,47 +60,47 @@ $comment_date_fmt = '%d/%m/%Y %H:%M';
 
 
 // For the word censor
-$lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*', 'pimp*', 'peş*', 'pipel*', 'bïaì*', 'nahu*', 'pist*', 'pisien*', 'mirl*', 'sûd*', 'bled', 'blad', 'pizde*', 'mauka', 'maucî*', 'ânus*', 'kaka', 'sûkâ');
+$lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*', 'pimp*', 'peÅ«*', 'pipel*', 'bÄ«aÄ—*', 'nahu*', 'pist*', 'pisien*', 'mirl*', 'sÃ»d*', 'bled', 'blad', 'pizde*', 'mauka', 'maucÃ®*', 'Ã¢nus*', 'kaka', 'sÃ»kÃ¢');
 
 $lang_meta_album_names = array(
-    'random' => 'Izlases veida attçli',
-    'lastup' => 'Jaunâkie papildinâjumi',
-    'lastalb'=> 'Pçdçjie atjaunotie albumi', //new in cpg1.2.0
-    'lastcom' => 'Jaunâkie komentâri',
-    'topn' => 'Skatîtâkie',
-    'toprated' => 'Vispopulârâkie',
-    'lasthits' => 'Pçdçjie skatîtie',
-    'search' => 'Meklçğanas rezultâti', //new in cpg1.2.0
-    'favpics'=> 'Attçlu favorîti' //new in cpg1.2.0
+    'random' => 'Izlases veida attÄ¯li',
+    'lastup' => 'JaunÃ¢kie papildinÃ¢jumi',
+    'lastalb'=> 'PÄ¯dÄ¯jie atjaunotie albumi', //new in cpg1.2.0
+    'lastcom' => 'JaunÃ¢kie komentÃ¢ri',
+    'topn' => 'SkatÃ®tÃ¢kie',
+    'toprated' => 'VispopulÃ¢rÃ¢kie',
+    'lasthits' => 'PÄ¯dÄ¯jie skatÃ®tie',
+    'search' => 'MeklÄ¯Ä‘anas rezultÃ¢ti', //new in cpg1.2.0
+    'favpics'=> 'AttÄ¯lu favorÃ®ti' //new in cpg1.2.0
 );
 
 $lang_errors = array(
-        'access_denied' => 'Tev nav pieejas tiesîbu ğai lapai.',
-        'perm_denied' => 'Tev nav tiesîbu veikt ğâdu darbîbu.',
+        'access_denied' => 'Tev nav pieejas tiesÃ®bu Ä‘ai lapai.',
+        'perm_denied' => 'Tev nav tiesÃ®bu veikt Ä‘Ã¢du darbÃ®bu.',
         'param_missing' => 'Tika izsaukta komanda bez parametriem.',
-        'non_exist_ap' => 'Izvçlçtais albums/attçls neeksistç!',
-        'quota_exceeded' => 'Nav vietas uz diska.<br /><br />Tev ir pieğíirts ierobeşojums [quota]K, bet pağlaik jau aizòemti [space]K, tâpçc ğî attçla pievienoğana nav ieteicama (tiks pârsniegts ierobeşojums).',
-        'gd_file_type_err' => 'Izmantojot GD attçlu bibliotçku, atïauts izmantot tikai JPEG un PNG formâtus.',
-        'invalid_image' => 'Attçls bojâts vai arî sistçmas GD attçlu bibliotçka nespçj to atkodçt.',
-        'resize_failed' => 'Nav iespçjams izveidot mazo attçlu vai izmainît tâ izmçrus.',
-        'no_img_to_display' => 'Nav attçla',
-        'non_exist_cat' => 'Izvçlçtâ sadaïa neeksistç',
-        'orphan_cat' => 'Ğai apakğsadaïai nav sadaïas, kam tâ piederçtu, lûdzu izmanto sadaïu menedşeri, lai atrisinâtu problçmu.',
-        'directory_ro' => 'Direktorijâ \'%s\' nav atïauts rakstît, tâpçc attçlus nav iespçjams izdzçst.',
-        'non_exist_comment' => 'Izvçlçtais komentârs neeksistç.',
-        'pic_in_invalid_album' => 'Attçls atrodas neeksistçjoğâ albumâ (%s)!?', //new in cpg1.2.0
+        'non_exist_ap' => 'IzvÄ¯lÄ¯tais albums/attÄ¯ls neeksistÄ¯!',
+        'quota_exceeded' => 'Nav vietas uz diska.<br /><br />Tev ir pieÄ‘Ã­irts ierobeÅ«ojums [quota]K, bet paÄ‘laik jau aizÅemti [space]K, tÃ¢pÄ¯c Ä‘Ã® attÄ¯la pievienoÄ‘ana nav ieteicama (tiks pÃ¢rsniegts ierobeÅ«ojums).',
+        'gd_file_type_err' => 'Izmantojot GD attÄ¯lu bibliotÄ¯ku, atÄ«auts izmantot tikai JPEG un PNG formÃ¢tus.',
+        'invalid_image' => 'AttÄ¯ls bojÃ¢ts vai arÃ® sistÄ¯mas GD attÄ¯lu bibliotÄ¯ka nespÄ¯j to atkodÄ¯t.',
+        'resize_failed' => 'Nav iespÄ¯jams izveidot mazo attÄ¯lu vai izmainÃ®t tÃ¢ izmÄ¯rus.',
+        'no_img_to_display' => 'Nav attÄ¯la',
+        'non_exist_cat' => 'IzvÄ¯lÄ¯tÃ¢ sadaÄ«a neeksistÄ¯',
+        'orphan_cat' => 'Äai apakÄ‘sadaÄ«ai nav sadaÄ«as, kam tÃ¢ piederÄ¯tu, lÃ»dzu izmanto sadaÄ«u menedÅ«eri, lai atrisinÃ¢tu problÄ¯mu.',
+        'directory_ro' => 'DirektorijÃ¢ \'%s\' nav atÄ«auts rakstÃ®t, tÃ¢pÄ¯c attÄ¯lus nav iespÄ¯jams izdzÄ¯st.',
+        'non_exist_comment' => 'IzvÄ¯lÄ¯tais komentÃ¢rs neeksistÄ¯.',
+        'pic_in_invalid_album' => 'AttÄ¯ls atrodas neeksistÄ¯joÄ‘Ã¢ albumÃ¢ (%s)!?', //new in cpg1.2.0
         'banned' => 'Pieeja foto galerijai aizliegta.', //new in cpg1.2.0
-        'not_with_udb' => 'Ğî iespçja ir atslçgta, jo tai jâbût integrçtai kopâ ar foruma programmatûru. Trûkst attiecîgâs konfigurâcijas, vai nepiecieğams uzinstalçt forumu.', //new in cpg1.2.0
-        'offline_title' => 'Paziòojums', //cpg1.3.0
-        'offline_text' => 'Pağlaik notiek tehniski uzlabojumi - ienâc vçlâk', //cpg1.3.0
-        'ecards_empty' => 'E-karğu sistçma nav aktivizçta!', //cpg1.3.0
-        'action_failed' => 'Operâcija pârtraukta, jo notikusi kïûda.', //cpg1.3.0
-        'no_zip' => 'Kompresçğana ZIP formâtâ nav pieejama.', //cpg1.3.0
-        'zip_type' => 'Nav atïaujas pievienot ZIP formâta failus.', //cpg1.3.0
+        'not_with_udb' => 'ÄÃ® iespÄ¯ja ir atslÄ¯gta, jo tai jÃ¢bÃ»t integrÄ¯tai kopÃ¢ ar foruma programmatÃ»ru. TrÃ»kst attiecÃ®gÃ¢s konfigurÃ¢cijas, vai nepiecieÄ‘ams uzinstalÄ¯t forumu.', //new in cpg1.2.0
+        'offline_title' => 'PaziÅojums', //cpg1.3.0
+        'offline_text' => 'PaÄ‘laik notiek tehniski uzlabojumi - ienÃ¢c vÄ¯lÃ¢k', //cpg1.3.0
+        'ecards_empty' => 'E-karÄ‘u sistÄ¯ma nav aktivizÄ¯ta!', //cpg1.3.0
+        'action_failed' => 'OperÃ¢cija pÃ¢rtraukta, jo notikusi kÄ«Ã»da.', //cpg1.3.0
+        'no_zip' => 'KompresÄ¯Ä‘ana ZIP formÃ¢tÃ¢ nav pieejama.', //cpg1.3.0
+        'zip_type' => 'Nav atÄ«aujas pievienot ZIP formÃ¢ta failus.', //cpg1.3.0
 
 );
 
-$lang_bbcode_help = 'Teksta formatçğanai atïauts izmantot: <li>[b]<b>trekni</b>[/b]</li> <li>[i]<i>slîpi</i>[/i]</li> <li>[url=http://adrese.com/]Norâdes teksts[/url]</li> <li>[email]vards@adrese.com[/email]</li>'; //cpg1.3.0
+$lang_bbcode_help = 'Teksta formatÄ¯Ä‘anai atÄ«auts izmantot: <li>[b]<b>trekni</b>[/b]</li> <li>[i]<i>slÃ®pi</i>[/i]</li> <li>[url=http://adrese.com/]NorÃ¢des teksts[/url]</li> <li>[email]vards@adrese.com[/email]</li>'; //cpg1.3.0
 
 // ------------------------------------------------------------------------- //
 // File theme.php
@@ -109,56 +112,56 @@ $lang_main_menu = array(
     'my_gal_title' => 'Uz manu galeriju',
     'my_gal_lnk' => 'Mana galerija',
     'my_prof_lnk' => 'My profails',
-    'adm_mode_title' => 'Pârslçgties Administratora reşîmâ',
-    'adm_mode_lnk' => 'Administratora reşîms',
-    'usr_mode_title' => 'Pârslçgties lietotâja reşîmâ',
-    'usr_mode_lnk' => 'Lietotâja reşîms',
-    'upload_pic_title' => 'Ielikt attçlu albumâ',
-    'upload_pic_lnk' => 'Pievienot attçlu',
+    'adm_mode_title' => 'PÃ¢rslÄ¯gties Administratora reÅ«Ã®mÃ¢',
+    'adm_mode_lnk' => 'Administratora reÅ«Ã®ms',
+    'usr_mode_title' => 'PÃ¢rslÄ¯gties lietotÃ¢ja reÅ«Ã®mÃ¢',
+    'usr_mode_lnk' => 'LietotÃ¢ja reÅ«Ã®ms',
+    'upload_pic_title' => 'Ielikt attÄ¯lu albumÃ¢',
+    'upload_pic_lnk' => 'Pievienot attÄ¯lu',
     'register_title' => 'Izveidot kontu',
-    'register_lnk' => 'Reìistrçties',
-    'login_lnk' => 'Pieslçgties',
+    'register_lnk' => 'ReÄ—istrÄ¯ties',
+    'login_lnk' => 'PieslÄ¯gties',
     'logout_lnk' => 'Beigt darbu',
-    'lastup_lnk' => 'Jaunâkie attçli',
-    'lastcom_lnk' => 'Jaunâkie komentâri',
-    'topn_lnk' => 'Skatîtâkie attçli',
-    'toprated_lnk' => 'Vispopulârâkie',
-    'search_lnk' => 'Meklçt',
-    'fav_lnk' => 'Favorîti', //new in cpg1.2.0
-  'memberlist_title' => 'Visi dalîbnieki', //cpg1.3.0
-  'memberlist_lnk' => 'Dalîbnieku saraksts', //cpg1.3.0
-  'faq_title' => 'Bieşâk uzdotie jautâjumi par &quot;Coppermine&quot;', //cpg1.3.0
+    'lastup_lnk' => 'JaunÃ¢kie attÄ¯li',
+    'lastcom_lnk' => 'JaunÃ¢kie komentÃ¢ri',
+    'topn_lnk' => 'SkatÃ®tÃ¢kie attÄ¯li',
+    'toprated_lnk' => 'VispopulÃ¢rÃ¢kie',
+    'search_lnk' => 'MeklÄ¯t',
+    'fav_lnk' => 'FavorÃ®ti', //new in cpg1.2.0
+  'memberlist_title' => 'Visi dalÃ®bnieki', //cpg1.3.0
+  'memberlist_lnk' => 'DalÃ®bnieku saraksts', //cpg1.3.0
+  'faq_title' => 'BieÅ«Ã¢k uzdotie jautÃ¢jumi par &quot;Coppermine&quot;', //cpg1.3.0
   'faq_lnk' => 'FAQ', //cpg1.3.0
 );
 
 $lang_gallery_admin_menu = array(
-    'upl_app_lnk' => 'Apstiprinât',
-    'config_lnk' => 'Konfigurçt',
+    'upl_app_lnk' => 'ApstiprinÃ¢t',
+    'config_lnk' => 'KonfigurÄ¯t',
     'albums_lnk' => 'Albumi',
-    'categories_lnk' => 'Sadaïas',
-    'users_lnk' => 'Lietotâji',
+    'categories_lnk' => 'SadaÄ«as',
+    'users_lnk' => 'LietotÃ¢ji',
     'groups_lnk' => 'Grupas',
-    'comments_lnk' => 'Komentâri',
-    'searchnew_lnk' => 'Attçlu grupas...',
-    'util_lnk' => 'Mainît attçla izmçrus', //new in cpg1.2.0
-    'ban_lnk' => 'Aiziegt piekïuvi', //new in cpg1.2.0
+    'comments_lnk' => 'KomentÃ¢ri',
+    'searchnew_lnk' => 'AttÄ¯lu grupas...',
+    'util_lnk' => 'MainÃ®t attÄ¯la izmÄ¯rus', //new in cpg1.2.0
+    'ban_lnk' => 'Aiziegt piekÄ«uvi', //new in cpg1.2.0
         'db_ecard_lnk' => 'E-kartes', //cpg1.3.0
 );
 
 $lang_user_admin_menu = array(
     'albmgr_lnk' => 'Izveidot manu albumu',
-    'modifyalb_lnk' => 'Mainît manu albumu',
+    'modifyalb_lnk' => 'MainÃ®t manu albumu',
     'my_prof_lnk' => 'Profails',
 );
 
 $lang_cat_list = array(
-    'category' => 'Sadaïas',
+    'category' => 'SadaÄ«as',
     'albums' => 'Albumi',
-    'pictures' => 'Attçli',
+    'pictures' => 'AttÄ¯li',
 );
 
 $lang_album_list = array(
-    'album_on_page' => '%d albums(-i) %d lapâ(s)'
+    'album_on_page' => '%d albums(-i) %d lapÃ¢(s)'
 );
 
 $lang_thumb_view = array(
@@ -166,34 +169,34 @@ $lang_thumb_view = array(
     //Sort by filename and title
     'name' => 'NOSAUKUMS', //new in cpg1.2.0
     'title' => 'VIRSRAKSTS', //new in cpg1.2.0
-    'sort_da' => 'pçc datuma augoği',
-    'sort_dd' => 'pçc datuma dilstoği',
-    'sort_na' => 'pçc nosaukuma augoği',
-    'sort_nd' => 'pçc nosaukuma dilstoği',
-    'sort_ta' => 'pçc virsraksta augoği', //new in cpg1.2.0
-    'pic_on_page' => '%d attçls(-i) %d lapâ(s)',
-    'user_on_page' => '%d dalîbnieks(-i) %d lapâ(s)'
+    'sort_da' => 'pÄ¯c datuma augoÄ‘i',
+    'sort_dd' => 'pÄ¯c datuma dilstoÄ‘i',
+    'sort_na' => 'pÄ¯c nosaukuma augoÄ‘i',
+    'sort_nd' => 'pÄ¯c nosaukuma dilstoÄ‘i',
+    'sort_ta' => 'pÄ¯c virsraksta augoÄ‘i', //new in cpg1.2.0
+    'pic_on_page' => '%d attÄ¯ls(-i) %d lapÃ¢(s)',
+    'user_on_page' => '%d dalÃ®bnieks(-i) %d lapÃ¢(s)'
 );
 
 $lang_img_nav_bar = array(
-    'thumb_title' => 'Atgriezties uz attçlu indeksu',
-    'pic_info_title' => 'Râdît/paslçpt informâciju par attçlu',
-    'slideshow_title' => 'Slaidğovs',
-    'ecard_title' => 'Sûtît kâ e-kartiòu',
-    'ecard_disabled' => 'e-kartiòu sûtîğana atslçgta',
-    'ecard_disabled_msg' => 'Tev nav pietiekamu tiesîbu, lai sûtîtu e-kartiòas',
-    'prev_title' => 'Iepriekğçjais attçls',
-    'next_title' => 'Nâkamais attçls',
-    'pic_pos' => 'ATTÇLS %s/%s',
+    'thumb_title' => 'Atgriezties uz attÄ¯lu indeksu',
+    'pic_info_title' => 'RÃ¢dÃ®t/paslÄ¯pt informÃ¢ciju par attÄ¯lu',
+    'slideshow_title' => 'SlaidÄ‘ovs',
+    'ecard_title' => 'SÃ»tÃ®t kÃ¢ e-kartiÅu',
+    'ecard_disabled' => 'e-kartiÅu sÃ»tÃ®Ä‘ana atslÄ¯gta',
+    'ecard_disabled_msg' => 'Tev nav pietiekamu tiesÃ®bu, lai sÃ»tÃ®tu e-kartiÅas',
+    'prev_title' => 'IepriekÄ‘Ä¯jais attÄ¯ls',
+    'next_title' => 'NÃ¢kamais attÄ¯ls',
+    'pic_pos' => 'ATTÄ®LS %s/%s',
 );
 
 $lang_rate_pic = array(
-    'rate_this_pic' => 'Novçrtçt ',
-    'no_votes' => '(novçrtçjuma nav)',
-    'rating' => '(novçrtçjums: %s balsis no 5 (balsots %s reizi(-es))',
-    'rubbish' => 'Mçsls',
-    'poor' => 'Vâji',
-    'fair' => 'Viduvçji',
+    'rate_this_pic' => 'NovÄ¯rtÄ¯t ',
+    'no_votes' => '(novÄ¯rtÄ¯juma nav)',
+    'rating' => '(novÄ¯rtÄ¯jums: %s balsis no 5 (balsots %s reizi(-es))',
+    'rubbish' => 'MÄ¯sls',
+    'poor' => 'VÃ¢ji',
+    'fair' => 'ViduvÄ¯ji',
     'good' => 'Labi',
     'excellent' => 'Teicami',
     'great' => 'Lieliski',
@@ -212,7 +215,7 @@ $lang_rate_pic = array(
 $lang_cpg_die = array(
     INFORMATION => $lang_info,
     ERROR => $lang_error,
-    CRITICAL_ERROR => 'Kritiska kïûda',
+    CRITICAL_ERROR => 'Kritiska kÄ«Ã»da',
     'file' => 'Fails: ',
     'line' => 'Rinda: ',
 );
@@ -220,14 +223,14 @@ $lang_cpg_die = array(
 $lang_display_thumbnails = array(
     'filename' => 'Nosaukums : ',
     'filesize' => 'Lielums : ',
-    'dimensions' => 'Izmçrs : ',
+    'dimensions' => 'IzmÄ¯rs : ',
     'date_added' => 'Pievienots : '
 );
 
 $lang_get_pic_data = array(
-    'n_comments' => 'komentâri: <b>%s</b>',
-    'n_views' => 'skatîjumi: <b>%s</b>',
-    'n_votes' => 'vçrtçjumi: <b>%s</b>'
+    'n_comments' => 'komentÃ¢ri: <b>%s</b>',
+    'n_views' => 'skatÃ®jumi: <b>%s</b>',
+    'n_votes' => 'vÄ¯rtÄ¯jumi: <b>%s</b>'
 );
 
 $lang_cpg_debug_output = array(
@@ -238,13 +241,13 @@ $lang_cpg_debug_output = array(
 );
 
 $lang_language_selection = array(
-  'reset_language' => 'Valoda pçc noklusçğanas', //cpg1.3.0
-  'choose_language' => 'Izvçlies valodu', //cpg1.3.0
+  'reset_language' => 'Valoda pÄ¯c noklusÄ¯Ä‘anas', //cpg1.3.0
+  'choose_language' => 'IzvÄ¯lies valodu', //cpg1.3.0
 );
 
 $lang_theme_selection = array(
-  'reset_theme' => 'Tçma pçc noklusçğanas', //cpg1.3.0
-  'choose_theme' => 'Izvçlies tçmu', //cpg1.3.0
+  'reset_theme' => 'TÄ¯ma pÄ¯c noklusÄ¯Ä‘anas', //cpg1.3.0
+  'choose_theme' => 'IzvÄ¯lies tÄ¯mu', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -299,8 +302,8 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ADMIN_PHP')) $lang_admin_php = array(
-    0 => 'Pametam administrçğanas reşîmu...',
-    1 => 'Uz administrçğanas reşîmu...',
+    0 => 'Pametam administrÄ¯Ä‘anas reÅ«Ã®mu...',
+    1 => 'Uz administrÄ¯Ä‘anas reÅ«Ã®mu...',
 );
 
 // ------------------------------------------------------------------------- //
@@ -308,20 +311,20 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
-    'alb_need_name' => 'Kâ sauksim albumu?',
-    'confirm_modifs' => 'Apstiprinât veiktâs izmaiòas?',
-    'no_change' => 'Nekas nav mainîts!',
+    'alb_need_name' => 'KÃ¢ sauksim albumu?',
+    'confirm_modifs' => 'ApstiprinÃ¢t veiktÃ¢s izmaiÅas?',
+    'no_change' => 'Nekas nav mainÃ®ts!',
     'new_album' => 'Jauns albums',
-    'confirm_delete1' => 'Tieğâm dzçst ğo albumu?',
-    'confirm_delete2' => '\nVisi attçli un komentâri tajâ tiks izdzçsti!',
-    'select_first' => 'Vispirms jâizvçlas albumu',
-    'alb_mrg' => 'Albumu menedşeris',
+    'confirm_delete1' => 'TieÄ‘Ã¢m dzÄ¯st Ä‘o albumu?',
+    'confirm_delete2' => '\nVisi attÄ¯li un komentÃ¢ri tajÃ¢ tiks izdzÄ¯sti!',
+    'select_first' => 'Vispirms jÃ¢izvÄ¯las albumu',
+    'alb_mrg' => 'Albumu menedÅ«eris',
     'my_gallery' => '* Mana galerija *',
-    'no_category' => '* Mana sadaïa *',
-    'delete' => 'Dzçst',
+    'no_category' => '* Mana sadaÄ«a *',
+    'delete' => 'DzÄ¯st',
     'new' => 'Jauns',
-    'apply_modifs' => 'Apstiprinât izmaiòas',
-    'select_category' => 'Izvçlçties sadaïu',
+    'apply_modifs' => 'ApstiprinÃ¢t izmaiÅas',
+    'select_category' => 'IzvÄ¯lÄ¯ties sadaÄ«u',
 );
 
 // ------------------------------------------------------------------------- //
@@ -329,19 +332,19 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
-    'miss_param' => 'Komandas \'%s\' izpildîğanai trûkst nepiecieğamie parametri!',
-    'unknown_cat' => 'Izvçlçtâ sadaïa datu bâzç neeksistç',
-    'usergal_cat_ro' => 'Lietotâja galerijas sadaïa nevar tikt dzçsta!',
-    'manage_cat' => 'Administrçt sadaïas',
-    'confirm_delete' => 'Tieğâm dzçst ğo sadaïu',
-    'category' => 'Sadaïa',
-    'operations' => 'Darbîbas',
-    'move_into' => 'Pârvietot uz',
-    'update_create' => 'Modificçt/izveidot sadaïu',
-    'parent_cat' => 'Pieder sadaïai',
-    'cat_title' => 'Sadaïas virsraksts',
-        'cat_thumb' => 'Sadaïas starpattçls', //cpg1.3.0
-    'cat_desc' => 'Sadaïas apraksts'
+    'miss_param' => 'Komandas \'%s\' izpildÃ®Ä‘anai trÃ»kst nepiecieÄ‘amie parametri!',
+    'unknown_cat' => 'IzvÄ¯lÄ¯tÃ¢ sadaÄ«a datu bÃ¢zÄ¯ neeksistÄ¯',
+    'usergal_cat_ro' => 'LietotÃ¢ja galerijas sadaÄ«a nevar tikt dzÄ¯sta!',
+    'manage_cat' => 'AdministrÄ¯t sadaÄ«as',
+    'confirm_delete' => 'TieÄ‘Ã¢m dzÄ¯st Ä‘o sadaÄ«u',
+    'category' => 'SadaÄ«a',
+    'operations' => 'DarbÃ®bas',
+    'move_into' => 'PÃ¢rvietot uz',
+    'update_create' => 'ModificÄ¯t/izveidot sadaÄ«u',
+    'parent_cat' => 'Pieder sadaÄ«ai',
+    'cat_title' => 'SadaÄ«as virsraksts',
+        'cat_thumb' => 'SadaÄ«as starpattÄ¯ls', //cpg1.3.0
+    'cat_desc' => 'SadaÄ«as apraksts'
 );
 
 // ------------------------------------------------------------------------- //
@@ -349,160 +352,160 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('CONFIG_PHP')) $lang_config_php = array(
-    'title' => 'Konfigurâcija',
-    'restore_cfg' => 'Atjaunot noklusçtâs vçrtîbas',
-    'save_cfg' => 'Saglabât jaunos uzstâdîjumus',
-    'notes' => 'Piezîmes',
-    'info' => 'Informâcija',
-    'upd_success' => 'Coppermine konfigurâcija saglabâta',
-    'restore_success' => 'Coppermine noklusçtâ konfigurâcija uzstâdîta',
-    'name_a' => 'Nosaukums augoği',
-    'name_d' => 'Nosaukums dilstoği',
-    'title_a' => 'Virsraksts augoği', //new in cpg1.2.0
-    'title_d' => 'Virsraksts dilstoği', //new in cpg1.2.0
-    'date_a' => 'Datums augoği',
-    'date_d' => 'Datums dilstoği',
+    'title' => 'KonfigurÃ¢cija',
+    'restore_cfg' => 'Atjaunot noklusÄ¯tÃ¢s vÄ¯rtÃ®bas',
+    'save_cfg' => 'SaglabÃ¢t jaunos uzstÃ¢dÃ®jumus',
+    'notes' => 'PiezÃ®mes',
+    'info' => 'InformÃ¢cija',
+    'upd_success' => 'Coppermine konfigurÃ¢cija saglabÃ¢ta',
+    'restore_success' => 'Coppermine noklusÄ¯tÃ¢ konfigurÃ¢cija uzstÃ¢dÃ®ta',
+    'name_a' => 'Nosaukums augoÄ‘i',
+    'name_d' => 'Nosaukums dilstoÄ‘i',
+    'title_a' => 'Virsraksts augoÄ‘i', //new in cpg1.2.0
+    'title_d' => 'Virsraksts dilstoÄ‘i', //new in cpg1.2.0
+    'date_a' => 'Datums augoÄ‘i',
+    'date_d' => 'Datums dilstoÄ‘i',
     'th_any' => 'Max Aspect',
     'th_ht' => 'Augstums',
     'th_wd' => 'Platums',
     'label' => 'Teksts', //cpg1.3.0
     'item' => 'att.', //cpg1.3.0
-    'debug_everyone' => 'Jebkurğ', //cpg1.3.0
+    'debug_everyone' => 'JebkurÄ‘', //cpg1.3.0
     'debug_admin' => 'Tikai administrators', //cpg1.3.0
 );
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
-    'Galvenie uzstâdîjumi',
+    'Galvenie uzstÃ¢dÃ®jumi',
     array('Nosaukums', 'gallery_name', 0),
     array('Apraksts', 'gallery_description', 0),
     array('Administrators', 'gallery_admin_email', 0),
-    array('Adrese, kas bûs e-kartiòâ pie teksta \'Citi attçli...\'', 'ecards_more_pic_target', 0),
-        array('Norit tehniski darbi. Galerija ir atslçgta.', 'offline', 1), //cpg1.3.0
+    array('Adrese, kas bÃ»s e-kartiÅÃ¢ pie teksta \'Citi attÄ¯li...\'', 'ecards_more_pic_target', 0),
+        array('Norit tehniski darbi. Galerija ir atslÄ¯gta.', 'offline', 1), //cpg1.3.0
         array('Log ecards', 'log_ecards', 1), //cpg1.3.0
-        array('Atïaut lejupielâdçt ZIP attçlus', 'enable_zipdownload', 1), //cpg1.3.0
+        array('AtÄ«aut lejupielÃ¢dÄ¯t ZIP attÄ¯lus', 'enable_zipdownload', 1), //cpg1.3.0
 
-        'Valodas, Tçmas &amp; kodçğana',
+        'Valodas, TÄ¯mas &amp; kodÄ¯Ä‘ana',
     array('Valoda', 'lang', 5),
-    array('Tçma', 'theme', 6),
-        array('Râdît valodu izvçli', 'language_list', 1), //cpg1.3.0
-        array('Râdît karodziòus', 'language_flags', 8), //cpg1.3.0
-        array('Râdît &quot;reset&quot; valodu izvçlç', 'language_reset', 1), //cpg1.3.0
-        array('Râdît tçmu sarakstu', 'theme_list', 1), //cpg1.3.0
-        array('Râdît &quot;reset&quot; tçmu izvçlç', 'theme_reset', 1), //cpg1.3.0
-        array('Râdît FAQ', 'display_faq', 1), //cpg1.3.0
-        array('Râdît bbcode palîdzîbu un piemçrus', 'show_bbcode_help', 1), //cpg1.3.0
-        array('Kodçjums (Character encoding)', 'charset', 4), //cpg1.3.0
+    array('TÄ¯ma', 'theme', 6),
+        array('RÃ¢dÃ®t valodu izvÄ¯li', 'language_list', 1), //cpg1.3.0
+        array('RÃ¢dÃ®t karodziÅus', 'language_flags', 8), //cpg1.3.0
+        array('RÃ¢dÃ®t &quot;reset&quot; valodu izvÄ¯lÄ¯', 'language_reset', 1), //cpg1.3.0
+        array('RÃ¢dÃ®t tÄ¯mu sarakstu', 'theme_list', 1), //cpg1.3.0
+        array('RÃ¢dÃ®t &quot;reset&quot; tÄ¯mu izvÄ¯lÄ¯', 'theme_reset', 1), //cpg1.3.0
+        array('RÃ¢dÃ®t FAQ', 'display_faq', 1), //cpg1.3.0
+        array('RÃ¢dÃ®t bbcode palÃ®dzÃ®bu un piemÄ¯rus', 'show_bbcode_help', 1), //cpg1.3.0
+        array('KodÄ¯jums (Character encoding)', 'charset', 4), //cpg1.3.0
 
-        'Albumu saraksta skatîjums',
-        array('Galvenâs tabulas platums (pikseïos vai %)', 'main_table_width', 0),
-    array('Cik lîmeòos sadaïas atspoguïot', 'subcat_level', 0),
-    array('Cik albumus atspoguïot', 'albums_per_page', 0),
-    array('Cik kolonnâs atspoguïot albûmus', 'album_list_cols', 0),
-    array('Cik lieli pikseïos bûs mazie attçli', 'alb_list_thumb_size', 0),
-    array('Galvenâs lapas saturs', 'main_page_layout', 0),
-    array('Râdît pirmâ lîmeòa mazos attçlus pa sadaïâm','first_level',1), //new in cpg1.2.0
+        'Albumu saraksta skatÃ®jums',
+        array('GalvenÃ¢s tabulas platums (pikseÄ«os vai %)', 'main_table_width', 0),
+    array('Cik lÃ®meÅos sadaÄ«as atspoguÄ«ot', 'subcat_level', 0),
+    array('Cik albumus atspoguÄ«ot', 'albums_per_page', 0),
+    array('Cik kolonnÃ¢s atspoguÄ«ot albÃ»mus', 'album_list_cols', 0),
+    array('Cik lieli pikseÄ«os bÃ»s mazie attÄ¯li', 'alb_list_thumb_size', 0),
+    array('GalvenÃ¢s lapas saturs', 'main_page_layout', 0),
+    array('RÃ¢dÃ®t pirmÃ¢ lÃ®meÅa mazos attÄ¯lus pa sadaÄ«Ã¢m','first_level',1), //new in cpg1.2.0
 
-    'Mazo attçlu skatîjums',
-    array('Cik kolonnâs râdît mazos attçlus', 'thumbcols', 0),
-    array('Cik rindâs râdît mazos attçlus', 'thumbrows', 0),
-    array('Cik tabulas atspoguïot', 'max_tabs', 0),
-    array('Blakus mazajam attçlam atspoguïot ne tikai attçla virsrakstu, bet arî aprakstu', 'caption_in_thumbview', 1),
-        array('Râdît skatîğanâs reişu skaitu blakus mazajam attçlam', 'views_in_thumbview', 1), //cpg1.3.0
-    array('Atspoguïot komentâru skaitu', 'display_comment_count', 1),
-        array('Râdît, kurğ uzlicis attçlu', 'display_uploader', 1), //cpg1.3.0
-    array('Kâ kârtot attçlus', 'default_sort_order', 3),
-    array('Minimâlais balsu skaits, lai attçls tiktu iekïauts vispopulârâko sarakstâ', 'min_votes_for_rating', 0),
+    'Mazo attÄ¯lu skatÃ®jums',
+    array('Cik kolonnÃ¢s rÃ¢dÃ®t mazos attÄ¯lus', 'thumbcols', 0),
+    array('Cik rindÃ¢s rÃ¢dÃ®t mazos attÄ¯lus', 'thumbrows', 0),
+    array('Cik tabulas atspoguÄ«ot', 'max_tabs', 0),
+    array('Blakus mazajam attÄ¯lam atspoguÄ«ot ne tikai attÄ¯la virsrakstu, bet arÃ® aprakstu', 'caption_in_thumbview', 1),
+        array('RÃ¢dÃ®t skatÃ®Ä‘anÃ¢s reiÅ«u skaitu blakus mazajam attÄ¯lam', 'views_in_thumbview', 1), //cpg1.3.0
+    array('AtspoguÄ«ot komentÃ¢ru skaitu', 'display_comment_count', 1),
+        array('RÃ¢dÃ®t, kurÄ‘ uzlicis attÄ¯lu', 'display_uploader', 1), //cpg1.3.0
+    array('KÃ¢ kÃ¢rtot attÄ¯lus', 'default_sort_order', 3),
+    array('MinimÃ¢lais balsu skaits, lai attÄ¯ls tiktu iekÄ«auts vispopulÃ¢rÃ¢ko sarakstÃ¢', 'min_votes_for_rating', 0),
 
-    'Attçlu skatîğanâs &amp; Komentâri',
-    array('Attçla tabulas platums (pikseïos vai %)', 'picture_table_width', 0),
-    array('Attçla informâcija redzama pçc noklusçğanas', 'display_pic_info', 1),
-    array('Filtrçt sliktus vârdus komentâros', 'filter_bad_words', 1),
-    array('Atïaut sejiòas komentâros', 'enable_smilies', 1),
-        array('Atïaut vairâkkârtçjus komentârus no vienas personas par vienu attçlu (atslçgt -flood protection-)', 'disable_comment_flood_protect', 1), //cpg1.3.0
-    array('Max attçla apraksta garums', 'max_img_desc_length', 0),
-    array('Max simbolu skaits vienâ vârdâ', 'max_com_wlength', 0),
-    array('Max rindu skaits komentârâ', 'max_com_lines', 0),
-    array('Max komentâra garums', 'max_com_size', 0),
-    array('Filmas skatîjums', 'display_film_strip', 1), //new in cpg1.2.0
-    array('Attçlu skaits filmas skatîjumâ', 'max_film_strip_items', 0), //new in cpg1.2.0
-        array('Paziòot Administratoram par jaunu komentâru', 'email_comment_notification', 1), //cpg1.3.0
-        array('Slaidğova intervâls (1 sek. = 1000 milisek.)', 'slideshow_interval', 0), //cpg1.3.0
-
-
-    'Lielo un mazo attçlu kvalitâte',
-    array('JPEG failu kvalitâte', 'jpeg_qual', 0),
-    array('Max mazâ attçla platums vai augstums <b>*</b>', 'thumb_width', 0),
-    array('Izmantojamie izmçri ( platums vai augstums )<b>*</b>', 'thumb_use', 0), //new in cpg1.2.0
-    array('Izveidot arî \'starpattçlus\'','make_intermediate', 1),
-    array('Max \'starpattçla\' platums vai augstums <b>*</b>', 'picture_width', 0),
-    array('Max uzliktâ attçla lielums (KB)', 'max_upl_size', 0),
-    array('Max uzliktâ attçla platums vai augstums (pikseïos)', 'max_upl_width_height', 0),
+    'AttÄ¯lu skatÃ®Ä‘anÃ¢s &amp; KomentÃ¢ri',
+    array('AttÄ¯la tabulas platums (pikseÄ«os vai %)', 'picture_table_width', 0),
+    array('AttÄ¯la informÃ¢cija redzama pÄ¯c noklusÄ¯Ä‘anas', 'display_pic_info', 1),
+    array('FiltrÄ¯t sliktus vÃ¢rdus komentÃ¢ros', 'filter_bad_words', 1),
+    array('AtÄ«aut sejiÅas komentÃ¢ros', 'enable_smilies', 1),
+        array('AtÄ«aut vairÃ¢kkÃ¢rtÄ¯jus komentÃ¢rus no vienas personas par vienu attÄ¯lu (atslÄ¯gt -flood protection-)', 'disable_comment_flood_protect', 1), //cpg1.3.0
+    array('Max attÄ¯la apraksta garums', 'max_img_desc_length', 0),
+    array('Max simbolu skaits vienÃ¢ vÃ¢rdÃ¢', 'max_com_wlength', 0),
+    array('Max rindu skaits komentÃ¢rÃ¢', 'max_com_lines', 0),
+    array('Max komentÃ¢ra garums', 'max_com_size', 0),
+    array('Filmas skatÃ®jums', 'display_film_strip', 1), //new in cpg1.2.0
+    array('AttÄ¯lu skaits filmas skatÃ®jumÃ¢', 'max_film_strip_items', 0), //new in cpg1.2.0
+        array('PaziÅot Administratoram par jaunu komentÃ¢ru', 'email_comment_notification', 1), //cpg1.3.0
+        array('SlaidÄ‘ova intervÃ¢ls (1 sek. = 1000 milisek.)', 'slideshow_interval', 0), //cpg1.3.0
 
 
-        'Failu un mazo attçlu sîkâki uzstâdîjumi', //cpg1.3.0
-        array('Râdît privâta albûma ikonu tiem, kas nav pieslçguğies','show_private',1), //cpg1.3.0
+    'Lielo un mazo attÄ¯lu kvalitÃ¢te',
+    array('JPEG failu kvalitÃ¢te', 'jpeg_qual', 0),
+    array('Max mazÃ¢ attÄ¯la platums vai augstums <b>*</b>', 'thumb_width', 0),
+    array('Izmantojamie izmÄ¯ri ( platums vai augstums )<b>*</b>', 'thumb_use', 0), //new in cpg1.2.0
+    array('Izveidot arÃ® \'starpattÄ¯lus\'','make_intermediate', 1),
+    array('Max \'starpattÄ¯la\' platums vai augstums <b>*</b>', 'picture_width', 0),
+    array('Max uzliktÃ¢ attÄ¯la lielums (KB)', 'max_upl_size', 0),
+    array('Max uzliktÃ¢ attÄ¯la platums vai augstums (pikseÄ«os)', 'max_upl_width_height', 0),
+
+
+        'Failu un mazo attÄ¯lu sÃ®kÃ¢ki uzstÃ¢dÃ®jumi', //cpg1.3.0
+        array('RÃ¢dÃ®t privÃ¢ta albÃ»ma ikonu tiem, kas nav pieslÄ¯guÄ‘ies','show_private',1), //cpg1.3.0
         array('Aizliegtie simboli failu nosaukumos', 'forbiden_fname_char',0), //cpg1.3.0
         //array('Accepted file extensions for uploaded pictures', 'allowed_file_extensions',0), //cpg1.3.0
-        array('Atïautie attçlu formâti', 'allowed_img_types',0), //cpg1.3.0
-        array('Atïautie îsfilmu formâti', 'allowed_mov_types',0), //cpg1.3.0
-        array('Atïautie audio formâti', 'allowed_snd_types',0), //cpg1.3.0
-        array('Atïautie dokumentu formâti', 'allowed_doc_types',0), //cpg1.3.0
-        array('Attçlu izmçru koriìçğanas metode','thumb_method',2), //cpg1.3.0
-        array('Kur sistçmâ atrodas ImageMagick \'convert\' utilîta (piemçram, /usr/bin/X11/)', 'impath', 0), //cpg1.3.0
+        array('AtÄ«autie attÄ¯lu formÃ¢ti', 'allowed_img_types',0), //cpg1.3.0
+        array('AtÄ«autie Ã®sfilmu formÃ¢ti', 'allowed_mov_types',0), //cpg1.3.0
+        array('AtÄ«autie audio formÃ¢ti', 'allowed_snd_types',0), //cpg1.3.0
+        array('AtÄ«autie dokumentu formÃ¢ti', 'allowed_doc_types',0), //cpg1.3.0
+        array('AttÄ¯lu izmÄ¯ru koriÄ—Ä¯Ä‘anas metode','thumb_method',2), //cpg1.3.0
+        array('Kur sistÄ¯mÃ¢ atrodas ImageMagick \'convert\' utilÃ®ta (piemÄ¯ram, /usr/bin/X11/)', 'impath', 0), //cpg1.3.0
         //array('Allowed image types (only valid for ImageMagick)', 'allowed_img_types',0), //cpg1.3.0
         array('ImageMagick komandrindas opcijas', 'im_options', 0), //cpg1.3.0
-        array('Lasît EXIF informâciju no JPEG failiem', 'read_exif_data', 1), //cpg1.3.0
-        array('Lasît IPTC informâciju no JPEG failiem', 'read_iptc_data', 1), //cpg1.3.0
-        array('Albûma direktorija <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0), //cpg1.3.0
-        array('Dalîbnieku failu direktorija <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0), //cpg1.3.0
-        array('Direktorija vidçja izmçra attçlu glabâğanai <a href="#notice1" class="clickable_option">*</a>', 'normal_pfx', 0), //cpg1.3.0
-        array('Mazo attçlu prefikss <a href="#notice1" class="clickable_option">*</a>', 'thumb_pfx', 0), //cpg1.3.0
+        array('LasÃ®t EXIF informÃ¢ciju no JPEG failiem', 'read_exif_data', 1), //cpg1.3.0
+        array('LasÃ®t IPTC informÃ¢ciju no JPEG failiem', 'read_iptc_data', 1), //cpg1.3.0
+        array('AlbÃ»ma direktorija <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0), //cpg1.3.0
+        array('DalÃ®bnieku failu direktorija <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0), //cpg1.3.0
+        array('Direktorija vidÄ¯ja izmÄ¯ra attÄ¯lu glabÃ¢Ä‘anai <a href="#notice1" class="clickable_option">*</a>', 'normal_pfx', 0), //cpg1.3.0
+        array('Mazo attÄ¯lu prefikss <a href="#notice1" class="clickable_option">*</a>', 'thumb_pfx', 0), //cpg1.3.0
         array('Direktoriju opcijas', 'default_dir_mode', 0), //cpg1.3.0
         array('Failu opcijas', 'default_file_mode', 0), //cpg1.3.0
 
 
-    'Lietotâju uzstâdîjumi',
-    array('Atïaut jaunu lietotâju piereìistrçğanos', 'allow_user_registration', 1),
-    array('Lietotâja sekmîgai reìistrâcija nepiecieğams e-pasta apstiprinâjums', 'reg_requires_valid_email', 1),
-        array('Paziòot administratoram par jaunu dalîbnieka reìistrâciju', 'reg_notify_admin_email', 1), //cpg1.3.0
-    array('Atïaut diviem daşâdiem lietotâjiem izmantot vienâdas e-pasta adreses', 'allow_duplicate_emails_addr', 1),
-    array('Lietotâjs drîkst veidot personîgus albûmus', 'allow_private_albums', 1),
-        array('Paziòot Administratoram par dalîbnieku, kam jâapstiprina faila pievienoğana', 'upl_notify_admin_email', 1), //cpg1.3.0
-        array('Atïaut skatîties informâciju par citiem dalîbniekiem, ja ir notikusi veiksmîga pieslçgğanâs sistçmai', 'allow_memberlist', 1), //cpg1.3.0
+    'LietotÃ¢ju uzstÃ¢dÃ®jumi',
+    array('AtÄ«aut jaunu lietotÃ¢ju piereÄ—istrÄ¯Ä‘anos', 'allow_user_registration', 1),
+    array('LietotÃ¢ja sekmÃ®gai reÄ—istrÃ¢cija nepiecieÄ‘ams e-pasta apstiprinÃ¢jums', 'reg_requires_valid_email', 1),
+        array('PaziÅot administratoram par jaunu dalÃ®bnieka reÄ—istrÃ¢ciju', 'reg_notify_admin_email', 1), //cpg1.3.0
+    array('AtÄ«aut diviem daÅ«Ã¢diem lietotÃ¢jiem izmantot vienÃ¢das e-pasta adreses', 'allow_duplicate_emails_addr', 1),
+    array('LietotÃ¢js drÃ®kst veidot personÃ®gus albÃ»mus', 'allow_private_albums', 1),
+        array('PaziÅot Administratoram par dalÃ®bnieku, kam jÃ¢apstiprina faila pievienoÄ‘ana', 'upl_notify_admin_email', 1), //cpg1.3.0
+        array('AtÄ«aut skatÃ®ties informÃ¢ciju par citiem dalÃ®bniekiem, ja ir notikusi veiksmÃ®ga pieslÄ¯gÄ‘anÃ¢s sistÄ¯mai', 'allow_memberlist', 1), //cpg1.3.0
 
-    'Rezerves lauki attçla aprakstam (ja neizmanto, atstâj tukğus)',
+    'Rezerves lauki attÄ¯la aprakstam (ja neizmanto, atstÃ¢j tukÄ‘us)',
     array('Lauka 1 nosaukums', 'user_field1_name', 0),
     array('Lauka 2 nosaukums', 'user_field2_name', 0),
     array('Lauka 3 nosaukums', 'user_field3_name', 0),
     array('Lauka 4 nosaukums', 'user_field4_name', 0),
 
-    'Lielo un mazo attçlu îpağie uzstâdîjumi',
-    array('Râdît personîgâ albuma ikonu anonîmajiem apmeklçtâjiem','show_private',1), //new in cpg1.2.0
-    array('Kâdi simboli aizliegti failu nosaukumos', 'forbiden_fname_char',0),
-    array('Uzliekamo attçlu atïautie failu paplağinâjumi', 'allowed_file_extensions',0),
-    array('Attçlu izmçru mainîğanas metodes','thumb_method',2),
-    array('Ceïğ uz ImageMagick \'convert\' utilîtu (piemçram, /usr/bin/X11/)', 'impath', 0),
-    array('Atïauti attçlu formâti (tikai priekğ ImageMagick)', 'allowed_img_types',0),
-    array('Komandrindas parametri ImageMagick utilîtai', 'im_options', 0),
-    array('Izmantot JPEG attçlu EXIF informâciju', 'read_exif_data', 1),
+    'Lielo un mazo attÄ¯lu Ã®paÄ‘ie uzstÃ¢dÃ®jumi',
+    array('RÃ¢dÃ®t personÃ®gÃ¢ albuma ikonu anonÃ®majiem apmeklÄ¯tÃ¢jiem','show_private',1), //new in cpg1.2.0
+    array('KÃ¢di simboli aizliegti failu nosaukumos', 'forbiden_fname_char',0),
+    array('Uzliekamo attÄ¯lu atÄ«autie failu paplaÄ‘inÃ¢jumi', 'allowed_file_extensions',0),
+    array('AttÄ¯lu izmÄ¯ru mainÃ®Ä‘anas metodes','thumb_method',2),
+    array('CeÄ«Ä‘ uz ImageMagick \'convert\' utilÃ®tu (piemÄ¯ram, /usr/bin/X11/)', 'impath', 0),
+    array('AtÄ«auti attÄ¯lu formÃ¢ti (tikai priekÄ‘ ImageMagick)', 'allowed_img_types',0),
+    array('Komandrindas parametri ImageMagick utilÃ®tai', 'im_options', 0),
+    array('Izmantot JPEG attÄ¯lu EXIF informÃ¢ciju', 'read_exif_data', 1),
     array('Albumu direktorija <b>*</b>', 'fullpath', 0),
-    array('Lietotâju albumu direktorija <b>*</b>', 'userpics', 0),
-    array('Starpattçlu prefikss <b>*</b>', 'normal_pfx', 0),
-    array('Mazo attçlu prefikss <b>*</b>', 'thumb_pfx', 0),
-    array('Direktoriju skatîjuma reşîms pçc noklusçğanas', 'default_dir_mode', 0),
-    array('Attçlu reşîms', 'default_file_mode', 0),
-    array('Atslçgt peles labo taustiòu uz lielajiem attçliem (JavaScript)', 'disable_popup_rightclick', 1), //new in cpg1.2.0
-    array('Atslçgt peles labo taustiòu &quot;parastajâs&quot; lapâs (JavaScript)', 'disable_gallery_rightclick', 1), //new in cpg1.2.0
+    array('LietotÃ¢ju albumu direktorija <b>*</b>', 'userpics', 0),
+    array('StarpattÄ¯lu prefikss <b>*</b>', 'normal_pfx', 0),
+    array('Mazo attÄ¯lu prefikss <b>*</b>', 'thumb_pfx', 0),
+    array('Direktoriju skatÃ®juma reÅ«Ã®ms pÄ¯c noklusÄ¯Ä‘anas', 'default_dir_mode', 0),
+    array('AttÄ¯lu reÅ«Ã®ms', 'default_file_mode', 0),
+    array('AtslÄ¯gt peles labo taustiÅu uz lielajiem attÄ¯liem (JavaScript)', 'disable_popup_rightclick', 1), //new in cpg1.2.0
+    array('AtslÄ¯gt peles labo taustiÅu &quot;parastajÃ¢s&quot; lapÃ¢s (JavaScript)', 'disable_gallery_rightclick', 1), //new in cpg1.2.0
 
-    'Cepumi (cookies) &amp; Kodçjums',
+    'Cepumi (cookies) &amp; KodÄ¯jums',
     array('Cookie nosaukumus', 'cookie_name', 0),
-    array('Cookie ceïğ', 'cookie_path', 0),
-    array('Teksta kodçjums', 'charset', 4),
+    array('Cookie ceÄ«Ä‘', 'cookie_path', 0),
+    array('Teksta kodÄ¯jums', 'charset', 4),
 
-    'Citi uzstâdîjumi',
-    array('Debug reşîms', 'debug_mode', 1),
+    'Citi uzstÃ¢dÃ®jumi',
+    array('Debug reÅ«Ã®ms', 'debug_mode', 1),
 
-    '<br /><div align="center">(*) Ar * atzîmçtos parametrus nav ieteicams mainît, ja galerîjâs jau ir attçli</div><br /><a name="notice2"></a>(**) Ğî konfigurâcijas opcija neiespaidos lîdz ğim pievienotos attçlus, bet iespaidos turpmâkâs operâcijas. Jau esoğos failus iespçjams modificçt &quot;<a href="util.php">ar Administratora lîdzekïiem</a> (resize opcija no Administratora izvçlnes)&quot;.</div><br />', //cpg1.3.0
+    '<br /><div align="center">(*) Ar * atzÃ®mÄ¯tos parametrus nav ieteicams mainÃ®t, ja galerÃ®jÃ¢s jau ir attÄ¯li</div><br /><a name="notice2"></a>(**) ÄÃ® konfigurÃ¢cijas opcija neiespaidos lÃ®dz Ä‘im pievienotos attÄ¯lus, bet iespaidos turpmÃ¢kÃ¢s operÃ¢cijas. Jau esoÄ‘os failus iespÄ¯jams modificÄ¯t &quot;<a href="util.php">ar Administratora lÃ®dzekÄ«iem</a> (resize opcija no Administratora izvÄ¯lnes)&quot;.</div><br />', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -510,31 +513,31 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
-  'title' => 'Nosûtît e-kartiòu', //cpg1.3.0
-  'ecard_sender' => 'Sûtîtâjs', //cpg1.3.0
-  'ecard_recipient' => 'Saòçmçjs', //cpg1.3.0
+  'title' => 'NosÃ»tÃ®t e-kartiÅu', //cpg1.3.0
+  'ecard_sender' => 'SÃ»tÃ®tÃ¢js', //cpg1.3.0
+  'ecard_recipient' => 'SaÅÄ¯mÄ¯js', //cpg1.3.0
   'ecard_date' => 'Datums', //cpg1.3.0
-  'ecard_display' => 'Râdît e-kartiòu', //cpg1.3.0
-  'ecard_name' => 'Vârds', //cpg1.3.0
+  'ecard_display' => 'RÃ¢dÃ®t e-kartiÅu', //cpg1.3.0
+  'ecard_name' => 'VÃ¢rds', //cpg1.3.0
   'ecard_email' => 'Epasts', //cpg1.3.0
   'ecard_ip' => 'IP #', //cpg1.3.0
-  'ecard_ascending' => 'augoği', //cpg1.3.0
-  'ecard_descending' => 'dilstoği', //cpg1.3.0
-  'ecard_sorted' => 'Sakârtots', //cpg1.3.0
-  'ecard_by_date' => 'pçc datuma', //cpg1.3.0
-  'ecard_by_sender_name' => 'pçc vârda', //cpg1.3.0
-  'ecard_by_sender_email' => 'pçc sûtîtâja epasta adreses', //cpg1.3.0
-  'ecard_by_sender_ip' => 'pçc sûtîtâja IP adreses', //cpg1.3.0
-  'ecard_by_recipient_name' => 'pçc saòçmçja vârda', //cpg1.3.0
-  'ecard_by_recipient_email' => 'pçc saòçmçja epasta', //cpg1.3.0
-  'ecard_number' => 'atspoguïoti %s ieraksti no %s (kopâ %s)', //cpg1.3.0
+  'ecard_ascending' => 'augoÄ‘i', //cpg1.3.0
+  'ecard_descending' => 'dilstoÄ‘i', //cpg1.3.0
+  'ecard_sorted' => 'SakÃ¢rtots', //cpg1.3.0
+  'ecard_by_date' => 'pÄ¯c datuma', //cpg1.3.0
+  'ecard_by_sender_name' => 'pÄ¯c vÃ¢rda', //cpg1.3.0
+  'ecard_by_sender_email' => 'pÄ¯c sÃ»tÃ®tÃ¢ja epasta adreses', //cpg1.3.0
+  'ecard_by_sender_ip' => 'pÄ¯c sÃ»tÃ®tÃ¢ja IP adreses', //cpg1.3.0
+  'ecard_by_recipient_name' => 'pÄ¯c saÅÄ¯mÄ¯ja vÃ¢rda', //cpg1.3.0
+  'ecard_by_recipient_email' => 'pÄ¯c saÅÄ¯mÄ¯ja epasta', //cpg1.3.0
+  'ecard_number' => 'atspoguÄ«oti %s ieraksti no %s (kopÃ¢ %s)', //cpg1.3.0
   'ecard_goto_page' => 'uz lapu', //cpg1.3.0
-  'ecard_records_per_page' => 'ieraksti vienâ lapâ', //cpg1.3.0
-  'check_all' => 'Ieíeksçt visus', //cpg1.3.0
-  'uncheck_all' => 'Atíeksçt visus', //cpg1.3.0
-  'ecards_delete_selected' => 'Dzçst izvçlçtâs kartiòas', //cpg1.3.0
-  'ecards_delete_confirm' => 'Vai tieğâm dzçst? Apstiprini!', //cpg1.3.0
-  'ecards_delete_sure' => 'Esmu guvis nelauşamu pârliecîbu, ka tâ jâdara', //cpg1.3.0
+  'ecard_records_per_page' => 'ieraksti vienÃ¢ lapÃ¢', //cpg1.3.0
+  'check_all' => 'IeÃ­eksÄ¯t visus', //cpg1.3.0
+  'uncheck_all' => 'AtÃ­eksÄ¯t visus', //cpg1.3.0
+  'ecards_delete_selected' => 'DzÄ¯st izvÄ¯lÄ¯tÃ¢s kartiÅas', //cpg1.3.0
+  'ecards_delete_confirm' => 'Vai tieÄ‘Ã¢m dzÄ¯st? Apstiprini!', //cpg1.3.0
+  'ecards_delete_sure' => 'Esmu guvis nelauÅ«amu pÃ¢rliecÃ®bu, ka tÃ¢ jÃ¢dara', //cpg1.3.0
 );
 
 
@@ -543,32 +546,32 @@ if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
-    'empty_name_or_com' => 'Ja nebûs vârds un komentâra teksts, nekas nesanâks',
-    'com_added' => 'Komentârs pievienots',
-    'alb_need_title' => 'Kâds ir albuma virsraksts (nosaukums)?',
-    'no_udp_needed' => 'Izmaiòas nav nepiecieğamas.',
-    'alb_updated' => 'Albumâ veiksmîgi veiktas izmaiòas',
-    'unknown_album' => 'Izvçlçtais albums neeksistç vai arî nav tiesîbu tajâ pievienot attçlus',
-    'no_pic_uploaded' => 'Attçls netika uzlikts!<br /><br />Vai uz servera ir uzlikta atïauja ğâdâm operâcijâm?',
+    'empty_name_or_com' => 'Ja nebÃ»s vÃ¢rds un komentÃ¢ra teksts, nekas nesanÃ¢ks',
+    'com_added' => 'KomentÃ¢rs pievienots',
+    'alb_need_title' => 'KÃ¢ds ir albuma virsraksts (nosaukums)?',
+    'no_udp_needed' => 'IzmaiÅas nav nepiecieÄ‘amas.',
+    'alb_updated' => 'AlbumÃ¢ veiksmÃ®gi veiktas izmaiÅas',
+    'unknown_album' => 'IzvÄ¯lÄ¯tais albums neeksistÄ¯ vai arÃ® nav tiesÃ®bu tajÃ¢ pievienot attÄ¯lus',
+    'no_pic_uploaded' => 'AttÄ¯ls netika uzlikts!<br /><br />Vai uz servera ir uzlikta atÄ«auja Ä‘Ã¢dÃ¢m operÃ¢cijÃ¢m?',
     'err_mkdir' => 'Direktorija %s NEtika izveidota!',
-    'dest_dir_ro' => 'Nav tiesîbu veikt ierakstu direktrijâ %s!',
-    'err_move' => 'Nav iespçjams pârvietot %s uz %s !',
-    'err_fsize_too_large' => 'Uzliekamâ attçla izmçrs pârsniedz max atïauto (max atïautais ir %s x %s) !',
-    'err_imgsize_too_large' => 'Uzliekamâ attçla faila izmçrs pârsniedz max atïauto (max atïautais ir %s KB) !',
-    'err_invalid_img' => 'Uzliekamais fails nav klasificçjams kâ attçls!',
-    'allowed_img_types' => 'Tu drîksti uzlikt %s attçlus.',
-    'err_insert_pic' => 'Attçls \'%s\' nevar tikt pievienots ',
-    'upload_success' => 'Attçls veiksmîgi uzlikts<br /><br />Tas bûs redzams galerijâ, tiklîdz Administrators to bûs akceptçjis.',
-    'info' => 'Informâcija',
-    'com_added' => 'Komentârs pievienots',
-    'alb_updated' => 'Albums modificçts',
-    'err_comment_empty' => 'Nav komentâra!',
-    'err_invalid_fext' => 'Atïauti faili ar ğâdiem paplağinâjumiem : <br /><br />%s.',
-    'no_flood' => 'Atvaino, bet tieği tu arî esi pçdçjâ iesûtîtâ komentâra autors.<br /><br />Modificç sava pçdçjâ iesûtîtâ komentâra tekstu',
-    'redirect_msg' => 'Notiek pâradresâcija.<br /><br /><br />Spied uz \'TURPINÂT\', ja lapa nepârlâdçjas',
-    'upl_success' => 'Attçls veiksmîgi pievienots',
-        'email_comment_subject' => 'Jauns foto galerijas komentârs', //cpg1.3.0
-        'email_comment_body' => 'Kâds pievienojis komentâru, apskaties', //cpg1.3.0
+    'dest_dir_ro' => 'Nav tiesÃ®bu veikt ierakstu direktrijÃ¢ %s!',
+    'err_move' => 'Nav iespÄ¯jams pÃ¢rvietot %s uz %s !',
+    'err_fsize_too_large' => 'UzliekamÃ¢ attÄ¯la izmÄ¯rs pÃ¢rsniedz max atÄ«auto (max atÄ«autais ir %s x %s) !',
+    'err_imgsize_too_large' => 'UzliekamÃ¢ attÄ¯la faila izmÄ¯rs pÃ¢rsniedz max atÄ«auto (max atÄ«autais ir %s KB) !',
+    'err_invalid_img' => 'Uzliekamais fails nav klasificÄ¯jams kÃ¢ attÄ¯ls!',
+    'allowed_img_types' => 'Tu drÃ®ksti uzlikt %s attÄ¯lus.',
+    'err_insert_pic' => 'AttÄ¯ls \'%s\' nevar tikt pievienots ',
+    'upload_success' => 'AttÄ¯ls veiksmÃ®gi uzlikts<br /><br />Tas bÃ»s redzams galerijÃ¢, tiklÃ®dz Administrators to bÃ»s akceptÄ¯jis.',
+    'info' => 'InformÃ¢cija',
+    'com_added' => 'KomentÃ¢rs pievienots',
+    'alb_updated' => 'Albums modificÄ¯ts',
+    'err_comment_empty' => 'Nav komentÃ¢ra!',
+    'err_invalid_fext' => 'AtÄ«auti faili ar Ä‘Ã¢diem paplaÄ‘inÃ¢jumiem : <br /><br />%s.',
+    'no_flood' => 'Atvaino, bet tieÄ‘i tu arÃ® esi pÄ¯dÄ¯jÃ¢ iesÃ»tÃ®tÃ¢ komentÃ¢ra autors.<br /><br />ModificÄ¯ sava pÄ¯dÄ¯jÃ¢ iesÃ»tÃ®tÃ¢ komentÃ¢ra tekstu',
+    'redirect_msg' => 'Notiek pÃ¢radresÃ¢cija.<br /><br /><br />Spied uz \'TURPINÃ‚T\', ja lapa nepÃ¢rlÃ¢dÄ¯jas',
+    'upl_success' => 'AttÄ¯ls veiksmÃ®gi pievienots',
+        'email_comment_subject' => 'Jauns foto galerijas komentÃ¢rs', //cpg1.3.0
+        'email_comment_body' => 'KÃ¢ds pievienojis komentÃ¢ru, apskaties', //cpg1.3.0
 
 );
 
@@ -578,23 +581,23 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 
 if (defined('DELETE_PHP')) $lang_delete_php = array(
     'caption' => 'Teksts',
-    'fs_pic' => 'pilnâ izmçra attçls',
-    'del_success' => 'veiksmîgi izdzçsts',
-    'ns_pic' => 'normâla izmçra attçls',
-    'err_del' => 'nevar tikt izdzçsts',
-    'thumb_pic' => 'mazais attçls',
-    'comment' => 'komentârs',
-    'im_in_alb' => 'attçls albumâ',
-    'alb_del_success' => 'Albums \'%s\' izdzçsts',
-    'alb_mgr' => 'Albuma menedşeris',
-    'err_invalid_data' => 'Saòemta nekorekta informâcija \'%s\'',
+    'fs_pic' => 'pilnÃ¢ izmÄ¯ra attÄ¯ls',
+    'del_success' => 'veiksmÃ®gi izdzÄ¯sts',
+    'ns_pic' => 'normÃ¢la izmÄ¯ra attÄ¯ls',
+    'err_del' => 'nevar tikt izdzÄ¯sts',
+    'thumb_pic' => 'mazais attÄ¯ls',
+    'comment' => 'komentÃ¢rs',
+    'im_in_alb' => 'attÄ¯ls albumÃ¢',
+    'alb_del_success' => 'Albums \'%s\' izdzÄ¯sts',
+    'alb_mgr' => 'Albuma menedÅ«eris',
+    'err_invalid_data' => 'SaÅemta nekorekta informÃ¢cija \'%s\'',
     'create_alb' => 'Tiek veidots albums \'%s\'',
-    'update_alb' => 'Tiek modificçts albums \'%s\' ar virsrakstu \'%s\' un indeksu \'%s\'',
-    'del_pic' => 'Dzçst attçlu',
-    'del_alb' => 'Dzçst albumu',
-    'del_user' => 'Dzçst lietotâju',
-    'err_unknown_user' => 'Izvçlçtais lietotâjs neeksistç!',
-    'comment_deleted' => 'Komentârs veiksmîgi izdzçsts',
+    'update_alb' => 'Tiek modificÄ¯ts albums \'%s\' ar virsrakstu \'%s\' un indeksu \'%s\'',
+    'del_pic' => 'DzÄ¯st attÄ¯lu',
+    'del_alb' => 'DzÄ¯st albumu',
+    'del_user' => 'DzÄ¯st lietotÃ¢ju',
+    'err_unknown_user' => 'IzvÄ¯lÄ¯tais lietotÃ¢js neeksistÄ¯!',
+    'comment_deleted' => 'KomentÃ¢rs veiksmÃ®gi izdzÄ¯sts',
 );
 
 // ------------------------------------------------------------------------- //
@@ -610,35 +613,35 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 if (defined('DISPLAYIMAGE_PHP')){
 
 $lang_display_image_php = array(
-    'confirm_del' => 'Tieğâm DZÇST ğo attçlu? \\nArî komentâri tiks izdzçsti.',
-    'del_pic' => 'IZDZÇST ĞO ATTÇLU',
+    'confirm_del' => 'TieÄ‘Ã¢m DZÄ®ST Ä‘o attÄ¯lu? \\nArÃ® komentÃ¢ri tiks izdzÄ¯sti.',
+    'del_pic' => 'IZDZÄ®ST ÄO ATTÄ®LU',
     'size' => '%s x %s px',
     'views' => '%s reizes',
-    'slideshow' => 'Slaidğovs',
-    'stop_slideshow' => 'APSTÂDINÂT SLAIDĞOVU',
-    'view_fs' => 'Uzspied, lai redzçtu pilna izmçra attçlu',
-        'edit_pic' => 'Rediìçt aprakstu', //cpg1.3.0
+    'slideshow' => 'SlaidÄ‘ovs',
+    'stop_slideshow' => 'APSTÃ‚DINÃ‚T SLAIDÄOVU',
+    'view_fs' => 'Uzspied, lai redzÄ¯tu pilna izmÄ¯ra attÄ¯lu',
+        'edit_pic' => 'RediÄ—Ä¯t aprakstu', //cpg1.3.0
         'crop_pic' => 'Izgriezt un sagriezt (Crop and Rotate)', //cpg1.3.0
 );
 
 $lang_picinfo = array(
-    'title' =>'Informâcija par attçlu',
-    'Filename' => 'Attçls',
+    'title' =>'InformÃ¢cija par attÄ¯lu',
+    'Filename' => 'AttÄ¯ls',
     'Album name' => 'Albums',
-    'Rating' => 'Vçrtçjums (%s balsis)',
-    'Keywords' => 'Atslçgas vârdi',
+    'Rating' => 'VÄ¯rtÄ¯jums (%s balsis)',
+    'Keywords' => 'AtslÄ¯gas vÃ¢rdi',
     'File Size' => 'Faila lielums',
-    'Dimensions' => 'Izmçrs',
-    'Displayed' => 'Attçlots',
+    'Dimensions' => 'IzmÄ¯rs',
+    'Displayed' => 'AttÄ¯lots',
     'Camera' => 'Kamera',
-    'Date taken' => 'Uzòemğanas datums',
-    'Aperture' => 'Objektîva diametrs',
-    'Exposure time' => 'Ekspozîcijas laiks',
+    'Date taken' => 'UzÅemÄ‘anas datums',
+    'Aperture' => 'ObjektÃ®va diametrs',
+    'Exposure time' => 'EkspozÃ®cijas laiks',
     'Focal length' => 'Fokuss',
-    'Comment' => 'Komentâri',
-    'addFav'=>'Uz favorîtiem', //new in cpg1.2.0
-    'addFavPhrase'=>'Favorîti', //new in cpg1.2.0
-    'remFav'=>'Dzçst no favorîtiem', //new in cpg1.2.0
+    'Comment' => 'KomentÃ¢ri',
+    'addFav'=>'Uz favorÃ®tiem', //new in cpg1.2.0
+    'addFavPhrase'=>'FavorÃ®ti', //new in cpg1.2.0
+    'remFav'=>'DzÄ¯st no favorÃ®tiem', //new in cpg1.2.0
         'iptcTitle'=>'IPTC Title', //cpg1.3.0
         'iptcCopyright'=>'IPTC Copyright', //cpg1.3.0
         'iptcKeywords'=>'IPTC Keywords', //cpg1.3.0
@@ -649,16 +652,16 @@ $lang_picinfo = array(
 
 $lang_display_comments = array(
     'OK' => 'OK',
-    'edit_title' => 'Modificçt komentâru',
-    'confirm_delete' => 'Tieğâm DZÇST ğo komentâru?',
-    'add_your_comment' => 'Pievienot komentâru',
-    'name'=>'Vârds', //new in cpg1.2.0
-    'comment'=>'Komentârs', //new in cpg1.2.0
-    'your_name' => 'Anonîms', //new in cpg1.2.0
+    'edit_title' => 'ModificÄ¯t komentÃ¢ru',
+    'confirm_delete' => 'TieÄ‘Ã¢m DZÄ®ST Ä‘o komentÃ¢ru?',
+    'add_your_comment' => 'Pievienot komentÃ¢ru',
+    'name'=>'VÃ¢rds', //new in cpg1.2.0
+    'comment'=>'KomentÃ¢rs', //new in cpg1.2.0
+    'your_name' => 'AnonÃ®ms', //new in cpg1.2.0
 );
 
 $lang_fullsize_popup = array(
-        'click_to_close' => 'Uzklikğíini uz attçla, lai aizvçrtu ğo logu', //new in cpg1.2.0
+        'click_to_close' => 'UzklikÄ‘Ã­ini uz attÄ¯la, lai aizvÄ¯rtu Ä‘o logu', //new in cpg1.2.0
 );
 
 }
@@ -668,19 +671,19 @@ $lang_fullsize_popup = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array(
-    'title' => 'Nosûtît e-kartiòu',
-    'invalid_email' => '<b>UZMANÎBU</b> : kïûdaina adrese!',
+    'title' => 'NosÃ»tÃ®t e-kartiÅu',
+    'invalid_email' => '<b>UZMANÃBU</b> : kÄ«Ã»daina adrese!',
     'ecard_title' => 'Sveiciens no %s',
-    'view_ecard' => 'Ğo sveicienu var redzçt arî sekojoğa adresç',
-    'view_more_pics' => 'Citi forği attçli...',
-    'send_success' => 'E-kartiòa nosûtîta',
-    'send_failed' => 'Atvaino, serveris nevar nosûtît tavu E-kartiòu...',
-    'from' => 'No kâ',
-    'your_name' => 'Vârds',
+    'view_ecard' => 'Äo sveicienu var redzÄ¯t arÃ® sekojoÄ‘a adresÄ¯',
+    'view_more_pics' => 'Citi forÄ‘i attÄ¯li...',
+    'send_success' => 'E-kartiÅa nosÃ»tÃ®ta',
+    'send_failed' => 'Atvaino, serveris nevar nosÃ»tÃ®t tavu E-kartiÅu...',
+    'from' => 'No kÃ¢',
+    'your_name' => 'VÃ¢rds',
     'your_email' => 'E-pasta adrese',
     'to' => 'Kam',
-    'rcpt_name' => 'Saòemçja vârds',
-    'rcpt_email' => 'Saòçmçja e-pasta adrese',
+    'rcpt_name' => 'SaÅemÄ¯ja vÃ¢rds',
+    'rcpt_email' => 'SaÅÄ¯mÄ¯ja e-pasta adrese',
     'greetings' => 'Sveiciens',
     'message' => 'Pilnais teksts',
 );
@@ -690,25 +693,25 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
 // ------------------------------------------------------------------------- //
 
 if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
-    'pic_info' => 'Attçla&nbsp;dati',
+    'pic_info' => 'AttÄ¯la&nbsp;dati',
     'album' => 'Albums',
     'title' => 'Virsraksts',
     'desc' => 'Apraksts',
-    'keywords' => 'Atslçgas vârdi',
-    'pic_info_str' => '%sx%s - %sKB - %s skatîjumi - %s balsis',
-    'approve' => 'Apstiprinât attçla pievienoğanu',
-    'postpone_app' => 'Noraidît attçla pievienoğanu',
-    'del_pic' => 'Dzçst attçlu',
-    'reset_view_count' => 'Nodzçst skatîjumi skaitîtâju',
-    'reset_votes' => 'Nodzçst balsojumu skaitu',
-    'del_comm' => 'Dzçst komentârus',
-    'upl_approval' => 'Uzlikğanas apstiprinâjums',
-    'edit_pics' => 'Modificçt attçlus',
-    'see_next' => 'Iepriekğçjie attçli',
-    'see_prev' => 'Nâkamie attçli',
-    'n_pic' => '%s attçli',
-    'n_of_pic_to_disp' => 'Cik attçlus atspoguïot',
-    'apply' => 'Apstiprinât izmaiòas'
+    'keywords' => 'AtslÄ¯gas vÃ¢rdi',
+    'pic_info_str' => '%sx%s - %sKB - %s skatÃ®jumi - %s balsis',
+    'approve' => 'ApstiprinÃ¢t attÄ¯la pievienoÄ‘anu',
+    'postpone_app' => 'NoraidÃ®t attÄ¯la pievienoÄ‘anu',
+    'del_pic' => 'DzÄ¯st attÄ¯lu',
+    'reset_view_count' => 'NodzÄ¯st skatÃ®jumi skaitÃ®tÃ¢ju',
+    'reset_votes' => 'NodzÄ¯st balsojumu skaitu',
+    'del_comm' => 'DzÄ¯st komentÃ¢rus',
+    'upl_approval' => 'UzlikÄ‘anas apstiprinÃ¢jums',
+    'edit_pics' => 'ModificÄ¯t attÄ¯lus',
+    'see_next' => 'IepriekÄ‘Ä¯jie attÄ¯li',
+    'see_prev' => 'NÃ¢kamie attÄ¯li',
+    'n_pic' => '%s attÄ¯li',
+    'n_of_pic_to_disp' => 'Cik attÄ¯lus atspoguÄ«ot',
+    'apply' => 'ApstiprinÃ¢t izmaiÅas'
 );
 
 // ------------------------------------------------------------------------- //
@@ -761,18 +764,18 @@ array('How do I upload a file?', 'Go to &quot;Upload&quot;and select the album t
 // ------------------------------------------------------------------------- //
 
 if (defined('FORGOT_PASSWD_PHP')) $lang_forgot_passwd_php = array(
-  'forgot_passwd' => 'Paroles atgâdinâtâjs', //cpg1.3.0
-  'err_already_logged_in' => 'Tu jau esi pieslçdzies!', //cpg1.3.0
-  'enter_username_email' => 'Tavs dalîbnieka vârds vai epasta adrese', //cpg1.3.0
+  'forgot_passwd' => 'Paroles atgÃ¢dinÃ¢tÃ¢js', //cpg1.3.0
+  'err_already_logged_in' => 'Tu jau esi pieslÄ¯dzies!', //cpg1.3.0
+  'enter_username_email' => 'Tavs dalÃ®bnieka vÃ¢rds vai epasta adrese', //cpg1.3.0
   'submit' => 'Aiziet!', //cpg1.3.0
-  'failed_sending_email' => 'Neko neav iespçjams nosûtît!', //cpg1.3.0
-  'email_sent' => 'Vçstule ar dalîbnieka informâciju tika nosûtîta uz %s', //cpg1.3.0
-  'err_unk_user' => 'Nav tâda dalîbnieka!', //cpg1.3.0
-  'passwd_reminder_subject' => '%s - Paroles atgâdinâtâjs', //cpg1.3.0
-  'passwd_reminder_body' => 'Saòçmâm pieprasîjumu par dalîbnieku:
+  'failed_sending_email' => 'Neko neav iespÄ¯jams nosÃ»tÃ®t!', //cpg1.3.0
+  'email_sent' => 'VÄ¯stule ar dalÃ®bnieka informÃ¢ciju tika nosÃ»tÃ®ta uz %s', //cpg1.3.0
+  'err_unk_user' => 'Nav tÃ¢da dalÃ®bnieka!', //cpg1.3.0
+  'passwd_reminder_subject' => '%s - Paroles atgÃ¢dinÃ¢tÃ¢js', //cpg1.3.0
+  'passwd_reminder_body' => 'SaÅÄ¯mÃ¢m pieprasÃ®jumu par dalÃ®bnieku:
 Username: %s
 Password: %s
-Spied %s un pieslçdzies.', //cpg1.3.0
+Spied %s un pieslÄ¯dzies.', //cpg1.3.0
 );
 
 
@@ -782,27 +785,27 @@ Spied %s un pieslçdzies.', //cpg1.3.0
 
 if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
     'group_name' => 'Grupa',
-    'disk_quota' => 'Kvota (atmiòas ierobeşojumi)',
-    'can_rate' => 'Drîkst vçrtçt attçlus',
-    'can_send_ecards' => 'Drîkst sûtît e-kartiòas',
-    'can_post_com' => 'Drîkst komentçt',
-    'can_upload' => 'Drîkst likt attçlus',
-    'can_have_gallery' => 'Drîkst bût personîga galerija',
-    'apply' => 'Apstiprinât izmaiòas',
+    'disk_quota' => 'Kvota (atmiÅas ierobeÅ«ojumi)',
+    'can_rate' => 'DrÃ®kst vÄ¯rtÄ¯t attÄ¯lus',
+    'can_send_ecards' => 'DrÃ®kst sÃ»tÃ®t e-kartiÅas',
+    'can_post_com' => 'DrÃ®kst komentÄ¯t',
+    'can_upload' => 'DrÃ®kst likt attÄ¯lus',
+    'can_have_gallery' => 'DrÃ®kst bÃ»t personÃ®ga galerija',
+    'apply' => 'ApstiprinÃ¢t izmaiÅas',
     'create_new_group' => 'Izveidot jaunu grupu',
-    'del_groups' => 'Dzçst grupu(-as)',
-    'confirm_del' => 'Uzmanîbu! Dzçğot grupu, visi tai piederîgie lietotâji tiks pârvietoti uz reìistrçto lietotâju grupu!\n\nTurpinât?',
-    'title' => 'Administrçt lietotâju grupas',
-    'approval_1' => 'Publisks uzlikğanas apstiprinâjums (1)',
-    'approval_2' => 'Privâts uzlikğanas apstiprinâjums (2)',
-        'upload_form_config' => 'Pievienoğanas formas rediìçğana', //cpg1.3.0
+    'del_groups' => 'DzÄ¯st grupu(-as)',
+    'confirm_del' => 'UzmanÃ®bu! DzÄ¯Ä‘ot grupu, visi tai piederÃ®gie lietotÃ¢ji tiks pÃ¢rvietoti uz reÄ—istrÄ¯to lietotÃ¢ju grupu!\n\nTurpinÃ¢t?',
+    'title' => 'AdministrÄ¯t lietotÃ¢ju grupas',
+    'approval_1' => 'Publisks uzlikÄ‘anas apstiprinÃ¢jums (1)',
+    'approval_2' => 'PrivÃ¢ts uzlikÄ‘anas apstiprinÃ¢jums (2)',
+        'upload_form_config' => 'PievienoÄ‘anas formas rediÄ—Ä¯Ä‘ana', //cpg1.3.0
         'upload_form_config_values' => array( 'Tikai pa vienam failam', 'Multiple file uploads only', 'URI uploads only', 'ZIP upload only', 'File-URI', 'File-ZIP', 'URI-ZIP', 'File-URI-ZIP'), //cpg1.3.0
-        'custom_user_upload'=>'Vai dalîbniekam ir atïauts mainît rediìçğanas formu?', //cpg1.3.0
-        'num_file_upload'=>'Cik failu pievienoğanas lauciòus râdît?', //cpg1.3.0
-        'num_URI_upload'=>'Cik URI lauciòus râdît?', //cpg1.3.0
-    'note1' => '<b>(1)</b> Attçlu uzlikğanai publiskâ albûmâ ir nepiecieğama administratora atïauja',
-    'note2' => '<b>(2)</b> Attçlu pievienoğanai albumâ, kas pieder ğim lietotâjam, nepiecieğama administratora atïauja',
-    'notes' => 'Piezîmes'
+        'custom_user_upload'=>'Vai dalÃ®bniekam ir atÄ«auts mainÃ®t rediÄ—Ä¯Ä‘anas formu?', //cpg1.3.0
+        'num_file_upload'=>'Cik failu pievienoÄ‘anas lauciÅus rÃ¢dÃ®t?', //cpg1.3.0
+        'num_URI_upload'=>'Cik URI lauciÅus rÃ¢dÃ®t?', //cpg1.3.0
+    'note1' => '<b>(1)</b> AttÄ¯lu uzlikÄ‘anai publiskÃ¢ albÃ»mÃ¢ ir nepiecieÄ‘ama administratora atÄ«auja',
+    'note2' => '<b>(2)</b> AttÄ¯lu pievienoÄ‘anai albumÃ¢, kas pieder Ä‘im lietotÃ¢jam, nepiecieÄ‘ama administratora atÄ«auja',
+    'notes' => 'PiezÃ®mes'
 );
 
 // ------------------------------------------------------------------------- //
@@ -812,34 +815,34 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
 if (defined('INDEX_PHP')){
 
 $lang_index_php = array(
-    'welcome' => 'Laipni lûdzam!'
+    'welcome' => 'Laipni lÃ»dzam!'
 );
 
 $lang_album_admin_menu = array(
-    'confirm_delete' => 'Tieğâm DZÇST ğo albumu? \\nVisi attçli un komentâri tajâ tiks izdzçsti.',
-    'delete' => 'IZDZÇST',
-    'modify' => 'UZSTÂDÎJUMI',
-    'edit_pics' => 'MODIFICÇT ATTÇLUS',
+    'confirm_delete' => 'TieÄ‘Ã¢m DZÄ®ST Ä‘o albumu? \\nVisi attÄ¯li un komentÃ¢ri tajÃ¢ tiks izdzÄ¯sti.',
+    'delete' => 'IZDZÄ®ST',
+    'modify' => 'UZSTÃ‚DÃJUMI',
+    'edit_pics' => 'MODIFICÄ®T ATTÄ®LUS',
 );
 
 $lang_list_categories = array(
-    'home' => 'Galvenâ lapa',
-    'stat1' => 'attçli: <b>[pictures]</b> | albumi: <b>[albums]</b> | sadaïas: <b>[cat]</b> | komentâri: <b>[comments]</b> | <b>skatîts [views]</b> reizes',
-    'stat2' => 'attçli: <b>[pictures]</b> | albumi: <b>[albums]</b> | skatîti <b>[views]</b> reizes',
+    'home' => 'GalvenÃ¢ lapa',
+    'stat1' => 'attÄ¯li: <b>[pictures]</b> | albumi: <b>[albums]</b> | sadaÄ«as: <b>[cat]</b> | komentÃ¢ri: <b>[comments]</b> | <b>skatÃ®ts [views]</b> reizes',
+    'stat2' => 'attÄ¯li: <b>[pictures]</b> | albumi: <b>[albums]</b> | skatÃ®ti <b>[views]</b> reizes',
     'xx_s_gallery' => 'Autors %s',
-    'stat3' => '<b>[pictures]</b> attçli | <b>[albums]</b> albumi | <b>[comments]</b> komentâri | skatîti <b>[views]</b> reizes'
+    'stat3' => '<b>[pictures]</b> attÄ¯li | <b>[albums]</b> albumi | <b>[comments]</b> komentÃ¢ri | skatÃ®ti <b>[views]</b> reizes'
 );
 
 $lang_list_users = array(
-    'user_list' => 'Lietotâju saraksts',
-    'no_user_gal' => 'Nav lietotâju galerijas',
+    'user_list' => 'LietotÃ¢ju saraksts',
+    'no_user_gal' => 'Nav lietotÃ¢ju galerijas',
     'n_albums' => 'albumi: <b>%s</b>',
-    'n_pics' => 'attçli: <b>%s</b>'
+    'n_pics' => 'attÄ¯li: <b>%s</b>'
 );
 
 $lang_list_albums = array(
-    'n_pictures' => '<b>%s</b> attçli',
-    'last_added' => ', pçdçjais pievienots <b>%s</b>'
+    'n_pictures' => '<b>%s</b> attÄ¯li',
+    'last_added' => ', pÄ¯dÄ¯jais pievienots <b>%s</b>'
 );
 
 }
@@ -853,14 +856,14 @@ $lang_list_albums = array(
 //
 
 if (defined('LOGIN_PHP')) $lang_login_php = array(
-    'login' => 'Pieslçgties',
-    'enter_login_pswd' => 'Pieslçdzies ar savu lietotâja vârdu un paroli',
-    'username' => 'Vârds',
+    'login' => 'PieslÄ¯gties',
+    'enter_login_pswd' => 'PieslÄ¯dzies ar savu lietotÃ¢ja vÃ¢rdu un paroli',
+    'username' => 'VÃ¢rds',
     'password' => 'Parole',
-    'remember_me' => 'Atcerçties mani arî turpmâk',
-    'welcome' => 'Sveicinâts, %s ...',
-    'err_login' => '*** Vârds vai/un parole nepareizi. Mçìinâsi vçlreiz? ***',
-    'err_already_logged_in' => 'Tu jau esi sistçmâ!',
+    'remember_me' => 'AtcerÄ¯ties mani arÃ® turpmÃ¢k',
+    'welcome' => 'SveicinÃ¢ts, %s ...',
+    'err_login' => '*** VÃ¢rds vai/un parole nepareizi. MÄ¯Ä—inÃ¢si vÄ¯lreiz? ***',
+    'err_already_logged_in' => 'Tu jau esi sistÄ¯mÃ¢!',
         'forgot_password_link' => 'Aizmirsu paroli!', //cpg1.3.0
 );
 
@@ -871,7 +874,7 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
 if (defined('LOGOUT_PHP')) $lang_logout_php = array(
     'logout' => 'Iziet',
     'bye' => 'Visu labu,  %s ...',
-    'err_not_loged_in' => 'Jâpieslçdzas sistçmai!',
+    'err_not_loged_in' => 'JÃ¢pieslÄ¯dzas sistÄ¯mai!',
 );
 
 // ------------------------------------------------------------------------- //
@@ -889,27 +892,27 @@ if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
-    'upd_alb_n' => 'Modificçt albumu %s',
-    'general_settings' => 'Galvenie uzstâdîjumi',
+    'upd_alb_n' => 'ModificÄ¯t albumu %s',
+    'general_settings' => 'Galvenie uzstÃ¢dÃ®jumi',
     'alb_title' => 'Albuma virsraksts',
-    'alb_cat' => 'Sadaïa',
+    'alb_cat' => 'SadaÄ«a',
     'alb_desc' => 'Albuma apraksts',
-    'alb_thumb' => 'Albuma mazais attçls',
-    'alb_perm' => 'Albuma lietotâju tiesîbas',
-    'can_view' => 'Albumu var skatîties',
-    'can_upload' => 'Apmeklçtâjie drîkst pievienot attçlus',
-    'can_post_comments' => 'Apmeklçtâji drîkst komentçt',
-    'can_rate' => 'Apmeklçtâji drîkst vçrtçt attçlus',
-    'user_gal' => 'Lietotâja galerija',
+    'alb_thumb' => 'Albuma mazais attÄ¯ls',
+    'alb_perm' => 'Albuma lietotÃ¢ju tiesÃ®bas',
+    'can_view' => 'Albumu var skatÃ®ties',
+    'can_upload' => 'ApmeklÄ¯tÃ¢jie drÃ®kst pievienot attÄ¯lus',
+    'can_post_comments' => 'ApmeklÄ¯tÃ¢ji drÃ®kst komentÄ¯t',
+    'can_rate' => 'ApmeklÄ¯tÃ¢ji drÃ®kst vÄ¯rtÄ¯t attÄ¯lus',
+    'user_gal' => 'LietotÃ¢ja galerija',
     'no_cat' => '* Kategorijas nav *',
-    'alb_empty' => 'Albums ir tukğs',
-    'last_uploaded' => 'Pçdejoreiz uzlikts attçls',
+    'alb_empty' => 'Albums ir tukÄ‘s',
+    'last_uploaded' => 'PÄ¯dejoreiz uzlikts attÄ¯ls',
     'public_alb' => 'Ikviens (publiskais albums)',
     'me_only' => 'Tikai es',
-    'owner_only' => 'Tikai albuma îpağnieks (%s)',
-    'groupp_only' => 'Tikai \'%s\' grupâ esoğie',
-    'err_no_alb_to_modify' => 'Tev nav tiesîbu modificçt albumus.',
-    'update' => 'Saglabât izmaiòas'
+    'owner_only' => 'Tikai albuma Ã®paÄ‘nieks (%s)',
+    'groupp_only' => 'Tikai \'%s\' grupÃ¢ esoÄ‘ie',
+    'err_no_alb_to_modify' => 'Tev nav tiesÃ®bu modificÄ¯t albumus.',
+    'update' => 'SaglabÃ¢t izmaiÅas'
 );
 
 // ------------------------------------------------------------------------- //
@@ -917,9 +920,9 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
-    'already_rated' => 'Atvaino, bet tu jau esi iesniedzis savu vçrtçjumu',
-    'rate_ok' => 'Vçrtçjums pieòemts',
-        'forbidden' => 'Vçrtçsi pats savus attçlus?', //cpg1.3.0
+    'already_rated' => 'Atvaino, bet tu jau esi iesniedzis savu vÄ¯rtÄ¯jumu',
+    'rate_ok' => 'VÄ¯rtÄ¯jums pieÅemts',
+        'forbidden' => 'VÄ¯rtÄ¯si pats savus attÄ¯lus?', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -929,81 +932,81 @@ if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
-Ar ğo Tu apòemies neievietot citus aizskaroğus, piedauzîgus, vulgârus,
-apmelojoğus, pretîgus, draudoğus, seksuâli orientçtus, vai jebkâdus citus
-materiâlus, kas pârkâpj jebkâdus likumus. Likumu nezinâğana neatbrîvo
-no atbildîbas!!! Tu piekrîti, ka ğîs lapas webmasters, administrators un
-moderators ir tiesîgi izdzçst vai mainît saturu jebkurâ laikâ, kad vien
-vçlâs. Kâ lietotâjs Tu piekrîti, ka visa informâcija ko Tu ievadîsi
-tiks saglabâta datubâzç.<br />
+Ar Ä‘o Tu apÅemies neievietot citus aizskaroÄ‘us, piedauzÃ®gus, vulgÃ¢rus,
+apmelojoÄ‘us, pretÃ®gus, draudoÄ‘us, seksuÃ¢li orientÄ¯tus, vai jebkÃ¢dus citus
+materiÃ¢lus, kas pÃ¢rkÃ¢pj jebkÃ¢dus likumus. Likumu nezinÃ¢Ä‘ana neatbrÃ®vo
+no atbildÃ®bas!!! Tu piekrÃ®ti, ka Ä‘Ã®s lapas webmasters, administrators un
+moderators ir tiesÃ®gi izdzÄ¯st vai mainÃ®t saturu jebkurÃ¢ laikÃ¢, kad vien
+vÄ¯lÃ¢s. KÃ¢ lietotÃ¢js Tu piekrÃ®ti, ka visa informÃ¢cija ko Tu ievadÃ®si
+tiks saglabÃ¢ta datubÃ¢zÄ¯.<br />
 <br />
-Ğî lapa izmanto <em>cookies</em> tehnoloìiju, lai saglabâtu informâciju tavâ datorâ.
-<em>Cookies</em> vienîgi uzlabo lapas parâdîğanas kvalitâti. E-pasta adrese
-tiek izmantota vienîgi Tavas reìistrâcijas apstiprinâğanai,
-lai nosûtîtu paroli.<br />
+ÄÃ® lapa izmanto <em>cookies</em> tehnoloÄ—iju, lai saglabÃ¢tu informÃ¢ciju tavÃ¢ datorÃ¢.
+<em>Cookies</em> vienÃ®gi uzlabo lapas parÃ¢dÃ®Ä‘anas kvalitÃ¢ti. E-pasta adrese
+tiek izmantota vienÃ®gi Tavas reÄ—istrÃ¢cijas apstiprinÃ¢Ä‘anai,
+lai nosÃ»tÃ®tu paroli.<br />
 <br />
-Izvçloties zemâk <bold>Es piekrîtu</bold> Tu piekrîti visam iepriekğ rakstîtajam.
+IzvÄ¯loties zemÃ¢k <bold>Es piekrÃ®tu</bold> Tu piekrÃ®ti visam iepriekÄ‘ rakstÃ®tajam.
 EOT;
 
 $lang_register_php = array(
-    'page_title' => 'Lietotâja reìistrâcija',
-    'term_cond' => 'Vienoğanâs nosacîjumi',
-    'i_agree' => 'Es piekrîtu',
-    'submit' => 'Apstiprinât reìistrâciju',
-    'err_user_exists' => 'Ğis lietotâja vârds jau ir reìistrçts, izvçlies citu',
-    'err_password_mismatch' => 'Paroles nesakrît, raksti vçlreiz',
-    'err_uname_short' => 'Lietotâja vârda minimâlais simbolu skaits ir 2',
-    'err_password_short' => 'Parolç jâbût ne mazâk kâ 2 simboliem',
-    'err_uname_pass_diff' => 'Lietotâja vârds un parole nedrîkst bût vienâdi',
+    'page_title' => 'LietotÃ¢ja reÄ—istrÃ¢cija',
+    'term_cond' => 'VienoÄ‘anÃ¢s nosacÃ®jumi',
+    'i_agree' => 'Es piekrÃ®tu',
+    'submit' => 'ApstiprinÃ¢t reÄ—istrÃ¢ciju',
+    'err_user_exists' => 'Äis lietotÃ¢ja vÃ¢rds jau ir reÄ—istrÄ¯ts, izvÄ¯lies citu',
+    'err_password_mismatch' => 'Paroles nesakrÃ®t, raksti vÄ¯lreiz',
+    'err_uname_short' => 'LietotÃ¢ja vÃ¢rda minimÃ¢lais simbolu skaits ir 2',
+    'err_password_short' => 'ParolÄ¯ jÃ¢bÃ»t ne mazÃ¢k kÃ¢ 2 simboliem',
+    'err_uname_pass_diff' => 'LietotÃ¢ja vÃ¢rds un parole nedrÃ®kst bÃ»t vienÃ¢di',
     'err_invalid_email' => 'E-pasta adres ir nepareiza',
-    'err_duplicate_email' => 'Ğâda email adrese jau ir datu bâzç',
-    'enter_info' => 'Reìistrâcijas informâcija',
-    'required_info' => 'Nepiecieğamâ informâcija',
-    'optional_info' => 'Neobligâtâ informâcija',
-    'username' => 'Lietotâja vârds',
+    'err_duplicate_email' => 'ÄÃ¢da email adrese jau ir datu bÃ¢zÄ¯',
+    'enter_info' => 'ReÄ—istrÃ¢cijas informÃ¢cija',
+    'required_info' => 'NepiecieÄ‘amÃ¢ informÃ¢cija',
+    'optional_info' => 'NeobligÃ¢tÃ¢ informÃ¢cija',
+    'username' => 'LietotÃ¢ja vÃ¢rds',
     'password' => 'Parole',
-    'password_again' => 'Vçlreiz parole',
+    'password_again' => 'VÄ¯lreiz parole',
     'email' => 'E-pasts',
-    'location' => 'Atrağanâs vieta',
+    'location' => 'AtraÄ‘anÃ¢s vieta',
     'interests' => 'Intereses',
-    'website' => 'Mâjas lapa',
-    'occupation' => 'Nodarboğanâs',
-    'error' => 'KÏÛDA',
-    'confirm_email_subject' => '%s - Reìistrâcijas apstiprinâjums',
-    'information' => 'Informâcija',
-    'failed_sending_email' => 'Nevar tikt nosûtîta reìistrâcijas apstiprinâjuma vçstule!',
-    'thank_you' => 'Paldies par reìistrçğanos.<br /><br />Vçstule ar sîkâku informâciju, kâ pabeigt reìistrçğanâs procesu, tika nosûtîta uz iepriekğ minçto adresi.',
-    'acct_created' => 'Konts izveidots un tu vari pieslçgties ar savu lietotâja vârdu un paroli',
-    'acct_active' => 'Konts ir aktîvs un tu tagad vari pieslçgties sistçmai',
-    'acct_already_act' => 'Konts jau ir aktîvs!',
-    'acct_act_failed' => 'Ğis konts nevar tikt aktivizçts!',
-    'err_unk_user' => 'Izvçlçtais lietotâjs neeksistç!',
+    'website' => 'MÃ¢jas lapa',
+    'occupation' => 'NodarboÄ‘anÃ¢s',
+    'error' => 'KÄªÃ›DA',
+    'confirm_email_subject' => '%s - ReÄ—istrÃ¢cijas apstiprinÃ¢jums',
+    'information' => 'InformÃ¢cija',
+    'failed_sending_email' => 'Nevar tikt nosÃ»tÃ®ta reÄ—istrÃ¢cijas apstiprinÃ¢juma vÄ¯stule!',
+    'thank_you' => 'Paldies par reÄ—istrÄ¯Ä‘anos.<br /><br />VÄ¯stule ar sÃ®kÃ¢ku informÃ¢ciju, kÃ¢ pabeigt reÄ—istrÄ¯Ä‘anÃ¢s procesu, tika nosÃ»tÃ®ta uz iepriekÄ‘ minÄ¯to adresi.',
+    'acct_created' => 'Konts izveidots un tu vari pieslÄ¯gties ar savu lietotÃ¢ja vÃ¢rdu un paroli',
+    'acct_active' => 'Konts ir aktÃ®vs un tu tagad vari pieslÄ¯gties sistÄ¯mai',
+    'acct_already_act' => 'Konts jau ir aktÃ®vs!',
+    'acct_act_failed' => 'Äis konts nevar tikt aktivizÄ¯ts!',
+    'err_unk_user' => 'IzvÄ¯lÄ¯tais lietotÃ¢js neeksistÄ¯!',
     'x_s_profile' => '%s : profails',
     'group' => 'Grupa',
     'reg_date' => 'Pievienojies',
-    'disk_usage' => 'Diska izmantoğana',
-    'change_pass' => 'Nomainît paroli',
-    'current_pass' => 'Pağreizçjâ parole',
+    'disk_usage' => 'Diska izmantoÄ‘ana',
+    'change_pass' => 'NomainÃ®t paroli',
+    'current_pass' => 'PaÄ‘reizÄ¯jÃ¢ parole',
     'new_pass' => 'Jauna parole',
-    'new_pass_again' => 'Vçlreiz jaunâ parole',
-    'err_curr_pass' => 'Pağreizçjâ parole nepareiza',
-    'apply_modif' => 'Apstiprinât izmaiòas',
-    'change_pass' => 'Nomainît paroli',
-    'update_success' => 'Profails izmainîts',
-    'pass_chg_success' => 'Parole nomainîta',
-    'pass_chg_error' => 'Parole netika nomainîta',
-        'notify_admin_email_subject' => '%s - reìistrâcijas paziòojums', //cpg1.3.0
-        'notify_admin_email_body' => 'Jauns dalîbnieks "%s" piereìistrçjies', //cpg1.3.0
+    'new_pass_again' => 'VÄ¯lreiz jaunÃ¢ parole',
+    'err_curr_pass' => 'PaÄ‘reizÄ¯jÃ¢ parole nepareiza',
+    'apply_modif' => 'ApstiprinÃ¢t izmaiÅas',
+    'change_pass' => 'NomainÃ®t paroli',
+    'update_success' => 'Profails izmainÃ®ts',
+    'pass_chg_success' => 'Parole nomainÃ®ta',
+    'pass_chg_error' => 'Parole netika nomainÃ®ta',
+        'notify_admin_email_subject' => '%s - reÄ—istrÃ¢cijas paziÅojums', //cpg1.3.0
+        'notify_admin_email_body' => 'Jauns dalÃ®bnieks "%s" piereÄ—istrÄ¯jies', //cpg1.3.0
 
 );
 
 $lang_register_confirm_email = <<<EOT
-Paldies par reìistrçğanos {SITE_NAME}
+Paldies par reÄ—istrÄ¯Ä‘anos {SITE_NAME}
 
-Lietotâja vârds : "{USER_NAME}"
-Lietotâja parole : "{PASSWORD}"
+LietotÃ¢ja vÃ¢rds : "{USER_NAME}"
+LietotÃ¢ja parole : "{PASSWORD}"
 
-Lai aktivizçtu savu kontu, nepiecieğams ielâdçt zemâk redzamo lapu.
+Lai aktivizÄ¯tu savu kontu, nepiecieÄ‘ams ielÃ¢dÄ¯t zemÃ¢k redzamo lapu.
 
 {ACT_LINK}
 
@@ -1020,13 +1023,13 @@ EOT;
 // ------------------------------------------------------------------------- //
 
 if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
-    'title' => 'Apskatîties komentârus',
-    'no_comment' => 'Komentâru nav',
-    'n_comm_del' => '%s komentâri izdzçsti',
-    'n_comm_disp' => 'Cik komentârus atspoguïot',
-    'see_prev' => 'Iepriekğçjie',
-    'see_next' => 'Nâkamie',
-    'del_comm' => 'Dzçst izvçlçtos komentârus',
+    'title' => 'ApskatÃ®ties komentÃ¢rus',
+    'no_comment' => 'KomentÃ¢ru nav',
+    'n_comm_del' => '%s komentÃ¢ri izdzÄ¯sti',
+    'n_comm_disp' => 'Cik komentÃ¢rus atspoguÄ«ot',
+    'see_prev' => 'IepriekÄ‘Ä¯jie',
+    'see_next' => 'NÃ¢kamie',
+    'del_comm' => 'DzÄ¯st izvÄ¯lÄ¯tos komentÃ¢rus',
 );
 
 
@@ -1035,7 +1038,7 @@ if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCH_PHP')) $lang_search_php = array(
-    0 => 'Meklçt attçlu kolekcijâ',
+    0 => 'MeklÄ¯t attÄ¯lu kolekcijÃ¢',
 );
 
 // ------------------------------------------------------------------------- //
@@ -1043,37 +1046,37 @@ if (defined('SEARCH_PHP')) $lang_search_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
-    'page_title' => 'Meklçt jaunus attçlus',
-    'select_dir' => 'Izvçlçties direktoriju',
-    'select_dir_msg' => 'Ğî funkcija ïauj pievienot daudzus attçlus vienlaikus, ja tie iepriekğ uzlikti ar FTP.<br /><br />Izvçlies direktoriju, kur tika uzlikti attçli',
-    'no_pic_to_add' => 'Nav attçlu, ko varçtu pievienot',
-    'need_one_album' => 'Lai izmantotu ğo funkciju, nepiecieğams vismaz viens albums',
-    'warning' => 'Uzmanîbu',
-    'change_perm' => 'nav pieeja direktorijai, tai jâizmaina tiesîbas (chmod) no 755 uz 777, lai varçtu pievienot attçlus!',
-    'target_album' => '<b>Ievietot attçlus &quot;</b>%s<b>&quot; </b>%s',
+    'page_title' => 'MeklÄ¯t jaunus attÄ¯lus',
+    'select_dir' => 'IzvÄ¯lÄ¯ties direktoriju',
+    'select_dir_msg' => 'ÄÃ® funkcija Ä«auj pievienot daudzus attÄ¯lus vienlaikus, ja tie iepriekÄ‘ uzlikti ar FTP.<br /><br />IzvÄ¯lies direktoriju, kur tika uzlikti attÄ¯li',
+    'no_pic_to_add' => 'Nav attÄ¯lu, ko varÄ¯tu pievienot',
+    'need_one_album' => 'Lai izmantotu Ä‘o funkciju, nepiecieÄ‘ams vismaz viens albums',
+    'warning' => 'UzmanÃ®bu',
+    'change_perm' => 'nav pieeja direktorijai, tai jÃ¢izmaina tiesÃ®bas (chmod) no 755 uz 777, lai varÄ¯tu pievienot attÄ¯lus!',
+    'target_album' => '<b>Ievietot attÄ¯lus &quot;</b>%s<b>&quot; </b>%s',
     'folder' => 'Direktorija',
-    'image' => 'Attçls',
+    'image' => 'AttÄ¯ls',
     'album' => 'Albums',
-    'result' => 'Rezultâti',
-    'dir_ro' => 'Nav rakstîğanas tiesîbu. ',
-    'dir_cant_read' => 'Nav lasîğanas tiesîbu. ',
-    'insert' => 'Jaunu attçlu pievienoğana',
-    'list_new_pic' => 'Jauno attçlu saraksts',
-    'insert_selected' => 'Pievienot izvçlçtos attçlus',
-    'no_pic_found' => 'Jauni attçli netika atrasti',
-    'be_patient' => 'Lûdzu esiet pacietîgi, kamçr tiek pievienoti jaunie attçli',
-        'no_album' => 'Albûms nav izvçlçts',  //cpg1.3.0
+    'result' => 'RezultÃ¢ti',
+    'dir_ro' => 'Nav rakstÃ®Ä‘anas tiesÃ®bu. ',
+    'dir_cant_read' => 'Nav lasÃ®Ä‘anas tiesÃ®bu. ',
+    'insert' => 'Jaunu attÄ¯lu pievienoÄ‘ana',
+    'list_new_pic' => 'Jauno attÄ¯lu saraksts',
+    'insert_selected' => 'Pievienot izvÄ¯lÄ¯tos attÄ¯lus',
+    'no_pic_found' => 'Jauni attÄ¯li netika atrasti',
+    'be_patient' => 'LÃ»dzu esiet pacietÃ®gi, kamÄ¯r tiek pievienoti jaunie attÄ¯li',
+        'no_album' => 'AlbÃ»ms nav izvÄ¯lÄ¯ts',  //cpg1.3.0
     'notes' =>  '<ul>'.
-                '<li><b>OK</b> : attçls veiksmîgi pievienots'.
-                '<li><b>DP</b> : nozîmç, ka tâds attçls jau ir datu bâzç'.
-                '<li><b>PB</b> : attçlu nevar pievienot, jâpârbauda pieejas tiesîbas'.
-                                '<li><b>NA</b> : nozîmç, ka neesi izvçlçjies albûmu, kur ievietot ğos foto. Spied \'<a href="javascript:history.back(1)">atpakaï pogu</a>\' un izvçlies. Ja nav neviena albûma, <a href="albmgr.php">vispirms izveidot</a></li>'.
-                '<li>Ja OK, DP, PB \'zîmes\' neparâdâs, jâklikğíina uz attçla, kas parâdâs, lai iegûtu detalizçtâku kïûdas aprakstu'.
-                '<li>Ja pârlûkâ parâdâs paziòojums par taimautu, lapa ir jâpârlâdç'.
+                '<li><b>OK</b> : attÄ¯ls veiksmÃ®gi pievienots'.
+                '<li><b>DP</b> : nozÃ®mÄ¯, ka tÃ¢ds attÄ¯ls jau ir datu bÃ¢zÄ¯'.
+                '<li><b>PB</b> : attÄ¯lu nevar pievienot, jÃ¢pÃ¢rbauda pieejas tiesÃ®bas'.
+                                '<li><b>NA</b> : nozÃ®mÄ¯, ka neesi izvÄ¯lÄ¯jies albÃ»mu, kur ievietot Ä‘os foto. Spied \'<a href="javascript:history.back(1)">atpakaÄ« pogu</a>\' un izvÄ¯lies. Ja nav neviena albÃ»ma, <a href="albmgr.php">vispirms izveidot</a></li>'.
+                '<li>Ja OK, DP, PB \'zÃ®mes\' neparÃ¢dÃ¢s, jÃ¢klikÄ‘Ã­ina uz attÄ¯la, kas parÃ¢dÃ¢s, lai iegÃ»tu detalizÄ¯tÃ¢ku kÄ«Ã»das aprakstu'.
+                '<li>Ja pÃ¢rlÃ»kÃ¢ parÃ¢dÃ¢s paziÅojums par taimautu, lapa ir jÃ¢pÃ¢rlÃ¢dÄ¯'.
                 '</ul>',
-        'select_album' => 'izvçlçties albûmu', //cpg1.3.0
-        'check_all' => 'ieíeksçt visu', //cpg1.3.0
-        'uncheck_all' => 'atíeksçt visu', //cpg1.3.0
+        'select_album' => 'izvÄ¯lÄ¯ties albÃ»mu', //cpg1.3.0
+        'check_all' => 'ieÃ­eksÄ¯t visu', //cpg1.3.0
+        'uncheck_all' => 'atÃ­eksÄ¯t visu', //cpg1.3.0
 );
 
 
@@ -1089,19 +1092,19 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 
 if (defined('BANNING_PHP')) $lang_banning_php = array(
                 'title' => 'Aizliegt pieeju', //new in cpg1.2.0
-                'user_name' => 'Lietotâjs', //new in cpg1.2.0
+                'user_name' => 'LietotÃ¢js', //new in cpg1.2.0
                 'ip_address' => 'IP adrese', //new in cpg1.2.0
-                'expiry' => 'Darbojas lîdz (tukğs nozîmç - bezgalîgi)', //new in cpg1.2.0
-                'edit_ban' => 'Saglabât', //new in cpg1.2.0
-                'delete_ban' => 'Dzçst', //new in cpg1.2.0
+                'expiry' => 'Darbojas lÃ®dz (tukÄ‘s nozÃ®mÄ¯ - bezgalÃ®gi)', //new in cpg1.2.0
+                'edit_ban' => 'SaglabÃ¢t', //new in cpg1.2.0
+                'delete_ban' => 'DzÄ¯st', //new in cpg1.2.0
                 'add_new' => 'Jauns ieraksts', //new in cpg1.2.0
                 'add_ban' => 'Pievienot', //new in cpg1.2.0
-                                'error_user' => 'Nevar atrast tâdu dalîbnieku', //cpg1.3.0
-                                'error_specify' => 'Nepiecieğams dalîbnieka vârds vai IP adrese', //cpg1.3.0
+                                'error_user' => 'Nevar atrast tÃ¢du dalÃ®bnieku', //cpg1.3.0
+                                'error_specify' => 'NepiecieÄ‘ams dalÃ®bnieka vÃ¢rds vai IP adrese', //cpg1.3.0
                                 'error_ban_id' => 'Nepareizs aizlieguma ID!', //cpg1.3.0
                                 'error_admin_ban' => 'Sevi nevar aizliegt!', //cpg1.3.0
-                                'error_server_ban' => 'Aizliegt piekïuvi no savas adreses? Neprâts...', //cpg1.3.0
-                                'error_ip_forbidden' => 'Nevar aizliegt piekïuvi ğâdai IP adresei! (not routable)', //cpg1.3.0
+                                'error_server_ban' => 'Aizliegt piekÄ«uvi no savas adreses? NeprÃ¢ts...', //cpg1.3.0
+                                'error_ip_forbidden' => 'Nevar aizliegt piekÄ«uvi Ä‘Ã¢dai IP adresei! (not routable)', //cpg1.3.0
                                 'lookup_ip' => 'Lookup an IP address', //cpg1.3.0
                                 'submit' => 'aiziet!', //cpg1.3.0
 );
@@ -1112,43 +1115,43 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
 
 if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'title' => 'Pievienot', //cpg1.3.0
-  'custom_title' => 'Modificçta pievienoğanas forma', //cpg1.3.0
-  'cust_instr_1' => 'Izvçlies, cik lauciòus atspoguïot (ierobeşots lielums).', //cpg1.3.0
-  'cust_instr_2' => 'Pievienoğanas lauciòu skaits', //cpg1.3.0
-  'cust_instr_3' => 'Max pievienoğanas lauciòu skaits: %s', //cpg1.3.0
-  'cust_instr_4' => 'URI/URL lauciòu skaits: %s', //cpg1.3.0
-  'cust_instr_5' => 'URI/URL lauciòu skaits:', //cpg1.3.0
-  'cust_instr_6' => 'Pievienoğanas lauciòu skaits:', //cpg1.3.0
-  'cust_instr_7' => 'Izvçlies katra tipa lauciòu skaitu. pçc tam spied \'Turpinât\'. ', //cpg1.3.0
-  'reg_instr_1' => 'Kïûda opcijâs.', //cpg1.3.0
-  'reg_instr_2' => '<small style="color:white;">Iespçjama vairâku failu vienlaicîga pievienoğana. Failiem nevajadzçtu bût lielâkiem par %s KB (katram). Pievienojot ZIP failus, tie paliek tâdâ pağâ formâtâ (netiek atvçrti).</small>', //cpg1.3.0
-  'reg_instr_3' => 'Ja vçlies, lai ZIP formâta faili tiktu atkompresçti automâtiski, pievieno tos sadaïâ \'Decompressive ZIP Upload\'.', //cpg1.3.0
-  'reg_instr_4' => '<small style="color:white;">Izmantojot URI/URL, izmanto pilnu ceïu uz failu: <code>http://www.mysite.com/images/example.jpg</code></small>', //cpg1.3.0
-  'reg_instr_5' => '<small style="color:white;">Ja viss aizpildît un pârbaudîts, spied \'Turpinât\'.</small><br/>', //cpg1.3.0
+  'custom_title' => 'ModificÄ¯ta pievienoÄ‘anas forma', //cpg1.3.0
+  'cust_instr_1' => 'IzvÄ¯lies, cik lauciÅus atspoguÄ«ot (ierobeÅ«ots lielums).', //cpg1.3.0
+  'cust_instr_2' => 'PievienoÄ‘anas lauciÅu skaits', //cpg1.3.0
+  'cust_instr_3' => 'Max pievienoÄ‘anas lauciÅu skaits: %s', //cpg1.3.0
+  'cust_instr_4' => 'URI/URL lauciÅu skaits: %s', //cpg1.3.0
+  'cust_instr_5' => 'URI/URL lauciÅu skaits:', //cpg1.3.0
+  'cust_instr_6' => 'PievienoÄ‘anas lauciÅu skaits:', //cpg1.3.0
+  'cust_instr_7' => 'IzvÄ¯lies katra tipa lauciÅu skaitu. pÄ¯c tam spied \'TurpinÃ¢t\'. ', //cpg1.3.0
+  'reg_instr_1' => 'KÄ«Ã»da opcijÃ¢s.', //cpg1.3.0
+  'reg_instr_2' => '<small style="color:white;">IespÄ¯jama vairÃ¢ku failu vienlaicÃ®ga pievienoÄ‘ana. Failiem nevajadzÄ¯tu bÃ»t lielÃ¢kiem par %s KB (katram). Pievienojot ZIP failus, tie paliek tÃ¢dÃ¢ paÄ‘Ã¢ formÃ¢tÃ¢ (netiek atvÄ¯rti).</small>', //cpg1.3.0
+  'reg_instr_3' => 'Ja vÄ¯lies, lai ZIP formÃ¢ta faili tiktu atkompresÄ¯ti automÃ¢tiski, pievieno tos sadaÄ«Ã¢ \'Decompressive ZIP Upload\'.', //cpg1.3.0
+  'reg_instr_4' => '<small style="color:white;">Izmantojot URI/URL, izmanto pilnu ceÄ«u uz failu: <code>http://www.mysite.com/images/example.jpg</code></small>', //cpg1.3.0
+  'reg_instr_5' => '<small style="color:white;">Ja viss aizpildÃ®t un pÃ¢rbaudÃ®ts, spied \'TurpinÃ¢t\'.</small><br/>', //cpg1.3.0
   'reg_instr_6' => 'Decompressive ZIP Uploads:', //cpg1.3.0
   'reg_instr_7' => 'Faili:', //cpg1.3.0
   'reg_instr_8' => 'URI/URL:', //cpg1.3.0
-  'error_report' => 'Kïûdas', //cpg1.3.0
-  'error_instr' => 'Bija sekojoğas kïûdas:', //cpg1.3.0
+  'error_report' => 'KÄ«Ã»das', //cpg1.3.0
+  'error_instr' => 'Bija sekojoÄ‘as kÄ«Ã»das:', //cpg1.3.0
   'file_name_url' => 'Fails nosaukums/URL', //cpg1.3.0
-  'error_message' => 'Kïûdas paziòojums', //cpg1.3.0
+  'error_message' => 'KÄ«Ã»das paziÅojums', //cpg1.3.0
   'no_post' => 'Fails netika pievienots ar POST metodi.', //cpg1.3.0
-  'forb_ext' => 'Aizliegts faila formâts.', //cpg1.3.0
-  'exc_php_ini' => 'Pârsniegts php.ini norâdîtais pievienojamo failu lielums.', //cpg1.3.0
-  'exc_file_size' => 'Pârsniegts CPG uzstâdîtais failu lielums.', //cpg1.3.0
+  'forb_ext' => 'Aizliegts faila formÃ¢ts.', //cpg1.3.0
+  'exc_php_ini' => 'PÃ¢rsniegts php.ini norÃ¢dÃ®tais pievienojamo failu lielums.', //cpg1.3.0
+  'exc_file_size' => 'PÃ¢rsniegts CPG uzstÃ¢dÃ®tais failu lielums.', //cpg1.3.0
   'partial_upload' => 'Only a partial upload.', //cpg1.3.0
-  'no_upload' => 'Pievienoğana nenotika.', //cpg1.3.0
-  'unknown_code' => 'Nezinâma PHP kïûda.', //cpg1.3.0
+  'no_upload' => 'PievienoÄ‘ana nenotika.', //cpg1.3.0
+  'unknown_code' => 'NezinÃ¢ma PHP kÄ«Ã»da.', //cpg1.3.0
   'no_temp_name' => 'No upload - No temp name.', //cpg1.3.0
   'no_file_size' => 'Contains no data/Corrupted', //cpg1.3.0
   'impossible' => 'Impossible to move.', //cpg1.3.0
-  'not_image' => 'Tas nav attçls/attçls ir íïûdains', //cpg1.3.0
+  'not_image' => 'Tas nav attÄ¯ls/attÄ¯ls ir Ã­Ä«Ã»dains', //cpg1.3.0
   'not_GD' => 'Not a GD extension.', //cpg1.3.0
-  'pixel_allowance' => 'Pârâk daudz pikseïi.', //cpg1.3.0
-  'incorrect_prefix' => 'Nepareiza formâta URI/URL', //cpg1.3.0
-  'could_not_open_URI' => 'Nav iespçjams atvçrt URI.', //cpg1.3.0
+  'pixel_allowance' => 'PÃ¢rÃ¢k daudz pikseÄ«i.', //cpg1.3.0
+  'incorrect_prefix' => 'Nepareiza formÃ¢ta URI/URL', //cpg1.3.0
+  'could_not_open_URI' => 'Nav iespÄ¯jams atvÄ¯rt URI.', //cpg1.3.0
   'unsafe_URI' => 'Safety not verifiable.', //cpg1.3.0
-  'meta_data_failure' => 'Meta data kïûda', //cpg1.3.0
+  'meta_data_failure' => 'Meta data kÄ«Ã»da', //cpg1.3.0
   'http_401' => '401 Unauthorized', //cpg1.3.0
   'http_402' => '402 Payment Required', //cpg1.3.0
   'http_403' => '403 Forbidden', //cpg1.3.0
@@ -1162,37 +1165,37 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'cant_read_URI' => 'Cannot read URI/URL', //cpg1.3.0
   'cant_open_write_file' => 'Cannot open URI write file.', //cpg1.3.0
   'cant_write_write_file' => 'Cannot write to URI write file.', //cpg1.3.0
-  'cant_unzip' => 'Nav iespçjams atkompresçt.', //cpg1.3.0
-  'unknown' => 'Nedefinçta kïuda', //cpg1.3.0
-  'succ' => 'Veiksmîgi pievienots', //cpg1.3.0
-  'success' => '<small style="color:white;">Fails nr. %s veiksmîgi pievienots</small>', //cpg1.3.0
-  'add' => '<small style="color:white;">Spied uz \'Turpinât\', lai albûmam pievienotu attçlus.<br/></small>', //cpg1.3.0
-  'failure' => 'Pievienoğanas kïûda', //cpg1.3.0
-  'f_info' => 'Informâcija par datiem', //cpg1.3.0
-  'no_place' => 'Nav iespçjams nomainît jau esoğu failu.', //cpg1.3.0
-  'yes_place' => 'Iepriekğçjais fails veiksmîgi pievienots.', //cpg1.3.0
-  'max_fsize' => 'Atïautais viena faila lielums %s KB',
-  'album' => 'Albûms',
+  'cant_unzip' => 'Nav iespÄ¯jams atkompresÄ¯t.', //cpg1.3.0
+  'unknown' => 'NedefinÄ¯ta kÄ«uda', //cpg1.3.0
+  'succ' => 'VeiksmÃ®gi pievienots', //cpg1.3.0
+  'success' => '<small style="color:white;">Fails nr. %s veiksmÃ®gi pievienots</small>', //cpg1.3.0
+  'add' => '<small style="color:white;">Spied uz \'TurpinÃ¢t\', lai albÃ»mam pievienotu attÄ¯lus.<br/></small>', //cpg1.3.0
+  'failure' => 'PievienoÄ‘anas kÄ«Ã»da', //cpg1.3.0
+  'f_info' => 'InformÃ¢cija par datiem', //cpg1.3.0
+  'no_place' => 'Nav iespÄ¯jams nomainÃ®t jau esoÄ‘u failu.', //cpg1.3.0
+  'yes_place' => 'IepriekÄ‘Ä¯jais fails veiksmÃ®gi pievienots.', //cpg1.3.0
+  'max_fsize' => 'AtÄ«autais viena faila lielums %s KB',
+  'album' => 'AlbÃ»ms',
   'picture' => 'Fails', //cpg1.3.0
   'pic_title' => 'Faila nosaukums (virsraksts)', //cpg1.3.0
   'description' => 'Fila apraksts', //cpg1.3.0
-  'keywords' => 'Atslçgas vârdi (vairâkus atdali ar atstarpçm)',
-  'err_no_alb_uploadables' => 'Atvaino, bet nav neviena albûma, kur tu varçtu likt attçlus', //cpg1.3.0
-  'place_instr_1' => 'Ievieto katru attçlu vajadzîgajâ albûmâ, ja vajadzîgs, katram pievieno sîkâku informâciju.', //cpg1.3.0
-  'place_instr_2' => 'Spied uz \'Turpinât\' un norâdi, kur ievietot pârçjos failus.', //cpg1.3.0
-  'process_complete' => 'Visi dati veiksmîgi pievienoti.', //cpg1.3.0
+  'keywords' => 'AtslÄ¯gas vÃ¢rdi (vairÃ¢kus atdali ar atstarpÄ¯m)',
+  'err_no_alb_uploadables' => 'Atvaino, bet nav neviena albÃ»ma, kur tu varÄ¯tu likt attÄ¯lus', //cpg1.3.0
+  'place_instr_1' => 'Ievieto katru attÄ¯lu vajadzÃ®gajÃ¢ albÃ»mÃ¢, ja vajadzÃ®gs, katram pievieno sÃ®kÃ¢ku informÃ¢ciju.', //cpg1.3.0
+  'place_instr_2' => 'Spied uz \'TurpinÃ¢t\' un norÃ¢di, kur ievietot pÃ¢rÄ¯jos failus.', //cpg1.3.0
+  'process_complete' => 'Visi dati veiksmÃ®gi pievienoti.', //cpg1.3.0
 );
 
 /*
 if (defined('UPLOAD_PHP')) $lang_upload_php = array(
-    'title' => 'Uzlikt attçlu',
-    'max_fsize' => 'Max pievienojamâ faila lielums %s KB',
+    'title' => 'Uzlikt attÄ¯lu',
+    'max_fsize' => 'Max pievienojamÃ¢ faila lielums %s KB',
     'album' => 'Albums',
-    'picture' => 'Attçls',
-    'pic_title' => 'Attçla virsraksts',
-    'description' => 'Attçla apraksts',
-    'keywords' => 'Atslçgas vârdi (atdalît ar atstarpçm)',
-    'err_no_alb_uploadables' => 'Atvaino, nav neviena albuma, kurâ tu varçtu ievietot savus attçlus',
+    'picture' => 'AttÄ¯ls',
+    'pic_title' => 'AttÄ¯la virsraksts',
+    'description' => 'AttÄ¯la apraksts',
+    'keywords' => 'AtslÄ¯gas vÃ¢rdi (atdalÃ®t ar atstarpÄ¯m)',
+    'err_no_alb_uploadables' => 'Atvaino, nav neviena albuma, kurÃ¢ tu varÄ¯tu ievietot savus attÄ¯lus',
 );
 */
 
@@ -1201,49 +1204,49 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
-    'title' => 'Administrçt lietotâjus',
-    'name_a' => 'Vârds augoği',
-    'name_d' => 'Vârds dilstoği',
-    'group_a' => 'Grupa augoği',
-    'group_d' => 'Grupa dilstoği',
-    'reg_a' => 'Reg datums augoği',
-    'reg_d' => 'Reg datums dilstoği',
-    'pic_a' => 'Attçlu skaits augoği',
-    'pic_d' => 'Attçlu skaits dilstoği',
-    'disku_a' => 'Diska atmiòa augoği',
-    'disku_d' => 'Diska atmiòa dilstoği',
-        'lv_a' => 'Pedçjais apmeklçjums augoği', //cpg1.3.0
-        'lv_d' => 'Pçdçjais apmeklçjums dilstoği', //cpg1.3.0
-    'sort_by' => 'Kârtot',
-    'err_no_users' => 'Lietotâju tabulâ nav datu!',
+    'title' => 'AdministrÄ¯t lietotÃ¢jus',
+    'name_a' => 'VÃ¢rds augoÄ‘i',
+    'name_d' => 'VÃ¢rds dilstoÄ‘i',
+    'group_a' => 'Grupa augoÄ‘i',
+    'group_d' => 'Grupa dilstoÄ‘i',
+    'reg_a' => 'Reg datums augoÄ‘i',
+    'reg_d' => 'Reg datums dilstoÄ‘i',
+    'pic_a' => 'AttÄ¯lu skaits augoÄ‘i',
+    'pic_d' => 'AttÄ¯lu skaits dilstoÄ‘i',
+    'disku_a' => 'Diska atmiÅa augoÄ‘i',
+    'disku_d' => 'Diska atmiÅa dilstoÄ‘i',
+        'lv_a' => 'PedÄ¯jais apmeklÄ¯jums augoÄ‘i', //cpg1.3.0
+        'lv_d' => 'PÄ¯dÄ¯jais apmeklÄ¯jums dilstoÄ‘i', //cpg1.3.0
+    'sort_by' => 'KÃ¢rtot',
+    'err_no_users' => 'LietotÃ¢ju tabulÃ¢ nav datu!',
     'err_edit_self' => 'Nemaini te savu profailu, tam izmanto \'Mans profails\'',
-    'edit' => 'MODIFICÇT',
-    'delete' => 'DZÇST',
-    'name' => 'Lietotâjs',
+    'edit' => 'MODIFICÄ®T',
+    'delete' => 'DZÄ®ST',
+    'name' => 'LietotÃ¢js',
     'group' => 'Grupa',
-    'inactive' => 'Neaktîvs',
-    'operations' => 'Darbîbas',
-    'pictures' => 'Attçli',
-    'disk_space' => 'Izmantotâ atmiòa / Ierobeşojums',
-    'registered_on' => 'Reìistrçts',
-        'last_visit' => 'Pçdçjais apmeklçjums', //cpg1.3.0
-    'u_user_on_p_pages' => '%d lietotâji %d lapâ(s)',
-    'confirm_del' => 'Tieğâm DZÇST ğo lietotâju? \\nVisi viòa attçli un komentâri arî tiks izdzçsti',
+    'inactive' => 'NeaktÃ®vs',
+    'operations' => 'DarbÃ®bas',
+    'pictures' => 'AttÄ¯li',
+    'disk_space' => 'IzmantotÃ¢ atmiÅa / IerobeÅ«ojums',
+    'registered_on' => 'ReÄ—istrÄ¯ts',
+        'last_visit' => 'PÄ¯dÄ¯jais apmeklÄ¯jums', //cpg1.3.0
+    'u_user_on_p_pages' => '%d lietotÃ¢ji %d lapÃ¢(s)',
+    'confirm_del' => 'TieÄ‘Ã¢m DZÄ®ST Ä‘o lietotÃ¢ju? \\nVisi viÅa attÄ¯li un komentÃ¢ri arÃ® tiks izdzÄ¯sti',
     'mail' => 'MAIL',
-    'err_unknown_user' => 'Izvçlçtais lietotâjs neeksistç!',
-    'modify_user' => 'Mainît datus',
-    'notes' => 'Piezîmes',
-    'note_list' => '<li>Ja nevçlies mainît paroli, atstâj paroles lauku tukğu',
+    'err_unknown_user' => 'IzvÄ¯lÄ¯tais lietotÃ¢js neeksistÄ¯!',
+    'modify_user' => 'MainÃ®t datus',
+    'notes' => 'PiezÃ®mes',
+    'note_list' => '<li>Ja nevÄ¯lies mainÃ®t paroli, atstÃ¢j paroles lauku tukÄ‘u',
     'password' => 'Parole',
-    'user_active' => 'Lietotâjs aktîvs',
+    'user_active' => 'LietotÃ¢js aktÃ®vs',
     'user_group' => 'Grupa',
     'user_email' => 'Emails',
-    'user_web_site' => 'Mâjas lapa',
+    'user_web_site' => 'MÃ¢jas lapa',
     'create_new_user' => 'Izveidot',
-    'user_location' => 'Atrağanâs',
+    'user_location' => 'AtraÄ‘anÃ¢s',
     'user_interests' => 'Intereses',
-    'user_occupation' => 'Nodarboğanâs',
-        'latest_upload' => 'Pçdçjie pievienotie faili', //cpg1.3.0
+    'user_occupation' => 'NodarboÄ‘anÃ¢s',
+        'latest_upload' => 'PÄ¯dÄ¯jie pievienotie faili', //cpg1.3.0
         'never' => 'nekad', //cpg1.3.0
 );
 
@@ -1252,58 +1255,58 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UTIL_PHP')) $lang_util_php = array(
-        'title' => 'Attçlu izmçri', //new in cpg1.2.0
+        'title' => 'AttÄ¯lu izmÄ¯ri', //new in cpg1.2.0
         'what_it_does' => 'Funkcijas', //new in cpg1.2.0
-        'what_update_titles' => 'Virsraksti tiek òemti no failu nosaukumiem', //new in cpg1.2.0
-        'what_delete_title' => 'Dzçst virsrakstus', //new in cpg1.2.0
-        'what_rebuild' => 'Pârveidot attçlus', //new in cpg1.2.0
-        'what_delete_originals' => 'Dzçst oriìinâlos attçlus un nomainît tos ar samazinâtajiem/palielinâtajiem', //new in cpg1.2.0
+        'what_update_titles' => 'Virsraksti tiek Åemti no failu nosaukumiem', //new in cpg1.2.0
+        'what_delete_title' => 'DzÄ¯st virsrakstus', //new in cpg1.2.0
+        'what_rebuild' => 'PÃ¢rveidot attÄ¯lus', //new in cpg1.2.0
+        'what_delete_originals' => 'DzÄ¯st oriÄ—inÃ¢los attÄ¯lus un nomainÃ®t tos ar samazinÃ¢tajiem/palielinÃ¢tajiem', //new in cpg1.2.0
         'file' => 'Fails', //new in cpg1.2.0
         'title_set_to' => 'virsraksts', //new in cpg1.2.0
-        'submit_form' => 'Apstiprinât', //new in cpg1.2.0
-        'updated_succesfully' => 'Veiksmîgi izmanîts', //new in cpg1.2.0
-        'error_create' => 'Kïûda', //new in cpg1.2.0
-        'continue' => 'Turpinât ar citiem attçliem', //new in cpg1.2.0
-        'main_success' => 'Fails %s tiek izmantots kâ galvenais attçls', //new in cpg1.2.0
-        'error_rename' => 'Kïûda %s pârsaucot par %s', //new in cpg1.2.0
+        'submit_form' => 'ApstiprinÃ¢t', //new in cpg1.2.0
+        'updated_succesfully' => 'VeiksmÃ®gi izmanÃ®ts', //new in cpg1.2.0
+        'error_create' => 'KÄ«Ã»da', //new in cpg1.2.0
+        'continue' => 'TurpinÃ¢t ar citiem attÄ¯liem', //new in cpg1.2.0
+        'main_success' => 'Fails %s tiek izmantots kÃ¢ galvenais attÄ¯ls', //new in cpg1.2.0
+        'error_rename' => 'KÄ«Ã»da %s pÃ¢rsaucot par %s', //new in cpg1.2.0
         'error_not_found' => 'Fails %s nav atrasts', //new in cpg1.2.0
         'back' => 'Atgriezties', //new in cpg1.2.0
-        'thumbs_wait' => 'Notiek mazo un normâlo attçlu modificçğana, lûdzu uzgaidi...', //new in cpg1.2.0
-        'thumbs_continue_wait' => 'Turpinam modificçt mazos un normâlos attçlus...', //new in cpg1.2.0
-        'titles_wait' => 'Norit sparîga virsrakstu modificçğana, uzgaidi...', //new in cpg1.2.0
-        'delete_wait' => 'Dzçğu virsrakstus, lûdzu uzgaidi...', //new in cpg1.2.0
-        'replace_wait' => 'Dzçğu oriìinâlus, nomainot tos ar modificçtajiem attçliem, lûdzu uzgaidi...', //new in cpg1.2.0
+        'thumbs_wait' => 'Notiek mazo un normÃ¢lo attÄ¯lu modificÄ¯Ä‘ana, lÃ»dzu uzgaidi...', //new in cpg1.2.0
+        'thumbs_continue_wait' => 'Turpinam modificÄ¯t mazos un normÃ¢los attÄ¯lus...', //new in cpg1.2.0
+        'titles_wait' => 'Norit sparÃ®ga virsrakstu modificÄ¯Ä‘ana, uzgaidi...', //new in cpg1.2.0
+        'delete_wait' => 'DzÄ¯Ä‘u virsrakstus, lÃ»dzu uzgaidi...', //new in cpg1.2.0
+        'replace_wait' => 'DzÄ¯Ä‘u oriÄ—inÃ¢lus, nomainot tos ar modificÄ¯tajiem attÄ¯liem, lÃ»dzu uzgaidi...', //new in cpg1.2.0
         'instruction' => 'Ieteikumi', //new in cpg1.2.0
-        'instruction_action' => 'Izvçlies darbîbu', //new in cpg1.2.0
+        'instruction_action' => 'IzvÄ¯lies darbÃ®bu', //new in cpg1.2.0
         'instruction_parameter' => 'Uzliec parametrus', //new in cpg1.2.0
-        'instruction_album' => 'Izvçlies albumu', //new in cpg1.2.0
+        'instruction_album' => 'IzvÄ¯lies albumu', //new in cpg1.2.0
         'instruction_press' => 'Nospied %s', //new in cpg1.2.0
-        'update' => 'Modificç mazos un/vai normâlos attçlus', //new in cpg1.2.0
-        'update_what' => 'Kas jâmodificç', //new in cpg1.2.0
-        'update_thumb' => 'Tikai mazos attçlus', //new in cpg1.2.0
-        'update_pic' => 'Tikai modificçtos attçlus', //new in cpg1.2.0
-        'update_both' => 'Gan mazie, gan normâlie attçli', //new in cpg1.2.0
-        'update_number' => 'Cik attçlus var modificçt ar vienu klikğíi', //new in cpg1.2.0
-        'update_option' => '(Ğo parametru samazini, ja ir problçmas ar modificçğanu)', //new in cpg1.2.0
-        'filename_title' => 'Faila nosaukums &rArr; Attçla virsraksts', //new in cpg1.2.0
-        'filename_how' => 'Kâ modificçt attçlu', //new in cpg1.2.0
-        'filename_remove' => 'Dzçst .jpg paplağinâjumu un _ nomainît ar atstarpi', //new in cpg1.2.0
-        'filename_euro' => 'Konvertçt 2003_11_23_13_20_20.jpg uz 23/11/2003 13:20', //new in cpg1.2.0
-        'filename_us' => 'Konevertçt 2003_11_23_13_20_20.jpg uz 11/23/2003 13:20', //new in cpg1.2.0
-        'filename_time' => 'Konvertçt 2003_11_23_13_20_20.jpg uz 13:20', //new in cpg1.2.0
-        'delete' => 'Attçlu virsrakstu un attçlu dzçğana', //new in cpg1.2.0
-        'delete_title' => 'Dzçst attçlu virsrakstus', //new in cpg1.2.0
-        'delete_original' => 'Dzçst oriìinâlus', //new in cpg1.2.0
-        'delete_replace' => 'Dzçst oriìinâlus aizstâjot tos ar modificçtajiem attçliem', //new in cpg1.2.0
-        'select_album' => 'Izvçlies albumu', //new in cpg1.2.0
+        'update' => 'ModificÄ¯ mazos un/vai normÃ¢los attÄ¯lus', //new in cpg1.2.0
+        'update_what' => 'Kas jÃ¢modificÄ¯', //new in cpg1.2.0
+        'update_thumb' => 'Tikai mazos attÄ¯lus', //new in cpg1.2.0
+        'update_pic' => 'Tikai modificÄ¯tos attÄ¯lus', //new in cpg1.2.0
+        'update_both' => 'Gan mazie, gan normÃ¢lie attÄ¯li', //new in cpg1.2.0
+        'update_number' => 'Cik attÄ¯lus var modificÄ¯t ar vienu klikÄ‘Ã­i', //new in cpg1.2.0
+        'update_option' => '(Äo parametru samazini, ja ir problÄ¯mas ar modificÄ¯Ä‘anu)', //new in cpg1.2.0
+        'filename_title' => 'Faila nosaukums &rArr; AttÄ¯la virsraksts', //new in cpg1.2.0
+        'filename_how' => 'KÃ¢ modificÄ¯t attÄ¯lu', //new in cpg1.2.0
+        'filename_remove' => 'DzÄ¯st .jpg paplaÄ‘inÃ¢jumu un _ nomainÃ®t ar atstarpi', //new in cpg1.2.0
+        'filename_euro' => 'KonvertÄ¯t 2003_11_23_13_20_20.jpg uz 23/11/2003 13:20', //new in cpg1.2.0
+        'filename_us' => 'KonevertÄ¯t 2003_11_23_13_20_20.jpg uz 11/23/2003 13:20', //new in cpg1.2.0
+        'filename_time' => 'KonvertÄ¯t 2003_11_23_13_20_20.jpg uz 13:20', //new in cpg1.2.0
+        'delete' => 'AttÄ¯lu virsrakstu un attÄ¯lu dzÄ¯Ä‘ana', //new in cpg1.2.0
+        'delete_title' => 'DzÄ¯st attÄ¯lu virsrakstus', //new in cpg1.2.0
+        'delete_original' => 'DzÄ¯st oriÄ—inÃ¢lus', //new in cpg1.2.0
+        'delete_replace' => 'DzÄ¯st oriÄ—inÃ¢lus aizstÃ¢jot tos ar modificÄ¯tajiem attÄ¯liem', //new in cpg1.2.0
+        'select_album' => 'IzvÄ¯lies albumu', //new in cpg1.2.0
         'delete_orphans' => 'Delete orphaned comments (works on all albums)', //cpg1.3.0
         'orphan_comment' => 'orphan comments found', //cpg1.3.0
-        'delete' => 'Dzçst', //cpg1.3.0
-        'delete_all' => 'Dzçst visu', //cpg1.3.0
-        'comment' => 'Komentâri: ', //cpg1.3.0
-        'nonexist' => 'Pievienots neeksistçjoğam dailam # ', //cpg1.3.0
-        'phpinfo' => 'Râdît phpinfo', //cpg1.3.0
-        'update_db' => 'Atjaunot datu bâzi', //cpg1.3.0
+        'delete' => 'DzÄ¯st', //cpg1.3.0
+        'delete_all' => 'DzÄ¯st visu', //cpg1.3.0
+        'comment' => 'KomentÃ¢ri: ', //cpg1.3.0
+        'nonexist' => 'Pievienots neeksistÄ¯joÄ‘am dailam # ', //cpg1.3.0
+        'phpinfo' => 'RÃ¢dÃ®t phpinfo', //cpg1.3.0
+        'update_db' => 'Atjaunot datu bÃ¢zi', //cpg1.3.0
         'update_db_explanation' => 'If you have replaced coppermine files, added a modification or upgraded from a previous version of coppermine, make sure to run the database update once. This will create the necessary tables and/or config  values in your coppermine database.', //cpg1.3.0
 
 );

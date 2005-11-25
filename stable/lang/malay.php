@@ -1,20 +1,21 @@
 <?php
-// ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.0                                            //
-// ------------------------------------------------------------------------- //
-// Copyright (C) 2002-2004 Gregory DEMAR                                     //
-// http://www.chezgreg.net/coppermine/                                       //
-// ------------------------------------------------------------------------- //
-// Updated by the Coppermine Dev Team                                        //
-// (http://coppermine.sf.net/team/)                                          //
-// see /docs/credits.html for details                                        //
-// ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
-// ------------------------------------------------------------------------- //
-// ENCODING CHECK; SHOULD BE YEN BETA MU: ¥ ß µ
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2005 Coppermine Dev Team
+  v1.1 originally written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  ********************************************
+  Coppermine version: 1.4.1
+  $Source$
+  $Revision$
+  $Author$
+  $Date$
+**********************************************/
 // ------------------------------------------------------------------------- //
 // $Id$
 // ------------------------------------------------------------------------- //
@@ -656,7 +657,7 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
   'error_not_image' => 'Hanya gambar yang boleh dikirimkan sebagai e-card', //cpg1.3.0
   'view_ecard' => 'Sekiranya e-card tidak dipaparkan dengan baik, sila tekan ini',
   'view_more_pics' => 'Sila tekan untuk gambar bersaiz penuh!',
-  'send_success' => 'Ecard anda telah dikirimkan',
+  'send_success' => 'E-card anda telah dikirimkan',
   'send_failed' => 'Harap maaf. Masalah untuk mengirimkan e-card...',
   'from' => 'Daripada',
   'your_name' => 'Nama pengirim',
@@ -736,7 +737,6 @@ if (defined('FAQ_PHP')) $lang_faq_data = array(
   array('Apakah &quot;Senarai album&quot;?', 'Halaman ini menampilkan semua kategori yang boleh anda lawati. Sekiranya anda telah berada di dalam satu-satu kategori, dengan menekan &quot;Senarai album&quot;, kesemua album di dalam kategori ini akan ditampilkan. Selain itu, gambar-gambar <i>thumbnail</i> juga akan ditampilkan di mana setiap <i>thumbnail</i> terkandung di dalam kategori yang sama ataupun kategori yang lain.', 'offline', 0), //cpg1.3.0
   array('Apakah &quot;Galeriku&quot;?', '&quot;Galeriku&quot; ialah galeri peribadi untuk setiap pengguna yang telah mendaftar. Menerusi galeri peribadi, anda boleh mencipta album-album baru dan menambah gambar ke dalam album-album tersebut', 'allow_private_albums', 0), //cpg1.3.0
   array('Apakah perbezaan di antara &quot;Mod Penyelaras&quot; dan &quot;Mod Pengguna&quot;?', 'Sekiranya anda berada di dalam mod penyelaras, anda boleh mengemaskini dan menambah gambar ke dalam album peribadi anda (anda juga boleh mengemaskini dan menambah gambar ke dalam album lain selain daripada album peribadi - ini tertakluk kepada kebenaran penyelaras utama sistem).', 'allow_private_albums', 0), //cpg1.3.0
-  array('Apakah &quot;Tambah gambar&quot;?', 'Fungsi ini membenarkan anda menambah gambar ke dalam album peribadi ataupun ke album yang hanya dibenarkan oleh penyelaras utama sistem (jenis dan saiz gambar ditentukan oleh penyelaras utama).', 'allow_private_albums', 0), //cpg1.3.0
   array('Apakah &quot;Tambahan terkini&quot;?', 'Fungsi ini menampilkan gambar-gambar terkini yang telah ditambah oleh pengguna-pengguna sistem.', 'offline', 0), //cpg1.3.0
   array('Apakah &quot;Ulasan terkini&quot;?', 'Fungsi ini menampilkan ulasan terkini bersama-sama fail yang telah dimasukkan oleh pengguna-pengguna sistem.', 'offline', 0), //cpg1.3.0
   array('Apakah &quot;Terbanyak Dilihat&quot;?', 'Fungsi ini menampilkan gambar-gambar yang paling banyak dilihat oleh pengunjung (sama ada pengguna sistem ataupun bukan pengguna).', 'offline', 0), //cpg1.3.0
