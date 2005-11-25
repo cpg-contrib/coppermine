@@ -1,18 +1,21 @@
 <?php
-// ------------------------------------------------------------------------- //
-// Coppermine Photo Gallery 1.3.2                                            //
-// ------------------------------------------------------------------------- //
-// Copyright (C) 2002-2004 Gregory DEMAR                                     //
-// http://www.chezgreg.net/coppermine/                                       //
-// ------------------------------------------------------------------------- //
-// Updated by the Coppermine Dev Team                                        //
-// (http://coppermine.sf.net/team/)                                          //
-// see /docs/credits.html for details                                        //
-// ------------------------------------------------------------------------- //
-// This program is free software; you can redistribute it and/or modify      //
-// it under the terms of the GNU General Public License as published by      //
-// the Free Software Foundation; either version 2 of the License, or         //
-// (at your option) any later version.                                       //
+/*************************
+  Coppermine Photo Gallery
+  ************************
+  Copyright (c) 2003-2005 Coppermine Dev Team
+  v1.1 originally written by Gregory DEMAR
+
+  This program is free software; you can redistribute it and/or modify
+  it under the terms of the GNU General Public License as published by
+  the Free Software Foundation; either version 2 of the License, or
+  (at your option) any later version.
+  ********************************************
+  Coppermine version: 1.4.1
+  $Source$
+  $Revision$
+  $Author$
+  $Date$
+**********************************************/
 // ------------------------------------------------------------------------- //
 // CVS version: $Id$
 // ------------------------------------------------------------------------- //
@@ -20,7 +23,7 @@
 // info about translators and translated language
 $lang_translation_info = array(
   'lang_name_turkish' => 'Turkish',
-  'lang_name_native' => 'Türkçe',
+  'lang_name_native' => 'TÃ¼rkÃ§e',
   'lang_country_code' => 'tr',
   'trans_name'=> 'Ibrahim ALTINOK',
   'trans_email' => 'ibrahim@lavinya.net',
@@ -35,13 +38,13 @@ $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 $lang_byte_units = array('Bytes', 'KB', 'MB');
 
 // Day of weeks and months
-$lang_day_of_week = array('Paz', 'Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt');
-$lang_month = array('Ock', 'Şub', 'Mrt', 'Nis', 'May', 'Haz', 'Tem', 'Agu', 'Eyl', 'Ekm', 'Kas', 'Arl');
+$lang_day_of_week = array('Paz', 'Pzt', 'Sal', 'Ã‡ar', 'Per', 'Cum', 'Cmt');
+$lang_month = array('Ock', 'Åub', 'Mrt', 'Nis', 'May', 'Haz', 'Tem', 'Agu', 'Eyl', 'Ekm', 'Kas', 'Arl');
 
 // Some common strings
 $lang_yes = 'Evet';
-$lang_no  = 'Hayır';
-$lang_back = 'GERİ';
+$lang_no  = 'HayÄ±r';
+$lang_back = 'GERÄ°';
 $lang_continue = 'DEVAM ET';
 $lang_info = 'Bilgi';
 $lang_error = 'Hata';
@@ -61,92 +64,92 @@ $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clit
 $lang_meta_album_names = array(
   'random' => 'Rastgele Resim', //cpg1.3.0
   'lastup' => 'Son Eklenen',
-  'lastalb'=> 'Son Yorum Yapılanlar',
+  'lastalb'=> 'Son Yorum YapÄ±lanlar',
   'lastcom' => 'Son Yorumlar',
-  'topn' => 'En Son Bakınlan',
-  'toprated' => 'En Beğenilen',
-  'lasthits' => 'Son Bakılan',
-  'search' => 'Arama Sonuçları',
+  'topn' => 'En Son BakÄ±nlan',
+  'toprated' => 'En BeÄŸenilen',
+  'lasthits' => 'Son BakÄ±lan',
+  'search' => 'Arama SonuÃ§larÄ±',
   'favpics'=> 'Favori Resimler', //cpg1.3.0
 );
 
 $lang_errors = array(
-  'access_denied' => 'Bu Sayfaya erişim hakkınız yok.',
-  'perm_denied' => 'Bu işlemi yapma hakkınız yok.',
+  'access_denied' => 'Bu Sayfaya eriÅŸim hakkÄ±nÄ±z yok.',
+  'perm_denied' => 'Bu iÅŸlemi yapma hakkÄ±nÄ±z yok.',
   'param_missing' => 'Eksik parametre(ler)!',
-  'non_exist_ap' => 'Böyle bir Album, Resim yok !',
-  'quota_exceeded' => 'Diks alanı aşıldı<br /><br />[quota]K da boş bir alanınız var, resimleriniz şuanda kullanılıyor [space]K, bu resmi eklemek alanınızı aşıracaktır.', //cpg1.3.0
-  'gd_file_type_err' => 'Eğer GD image library kullanılıyorsa sadece JPEG ve PNG formatları işlenebilir.',
-  'invalid_image' => 'Yolladığınız resim hasarlı yada GD library tarafından işlenemiyor',
-  'resize_failed' => 'Simge yada Düşürülmüş kalite resmi yaratılmadı.',
-  'no_img_to_display' => 'Gösterilebilcek resim yok',
-  'non_exist_cat' => 'Seçili Kategori yok',
-  'orphan_cat' => 'Katagorinin Üst katagorisi belli değil, Düzeltmek için katagori yönete gidiniz.', //cpg1.3.0
-  'directory_ro' => ' \'%s\'  klasörü yazılabilir değil, resimler silinemedi.', //cpg1.3.0
-  'non_exist_comment' => 'Seçili Yorum aslında yok.',
-  'pic_in_invalid_album' => 'Seçili resim geçersiz bir albumde (%s)!?', //cpg1.3.0
-  'banned' => 'Kullanılan bu siteden banlandınız',
-  'not_with_udb' => 'Bu fonksiyon Coppermine da kullanılamaz çünkü forum yazılımı ile bütünleştirildi. Yapmaya çalıştığınız şey bü şekilde kaldırılamadı, yada fonksiyon forum yazlımı tarafından elegeçirildi.',
-  'offline_title' => 'Kapalı', //cpg1.3.0
-  'offline_text' => 'Galeri kapalı- ilerde tekrar deneyin', //cpg1.3.0
-  'ecards_empty' => 'Ekart kayıtı bulunmamaktadır. Coppermine seçeneklerindeki  ekart giriş imkanını kontrol edin!', //cpg1.3.0
-  'action_failed' => 'İşlem olmadı.  Coppermine sizin talebinizi işleyemedi.', //cpg1.3.0
-  'no_zip' => 'ZIP resimleri için Gerekli librarilere ulaşılamaz.  Lütfen Coppermine admininiz ile iletişime geçin.', //cpg1.3.0
-  'zip_type' => 'ZIP dosyalarını yüklemeye izniniz yok.', //cpg1.3.0
+  'non_exist_ap' => 'BÃ¶yle bir Album, Resim yok !',
+  'quota_exceeded' => 'Diks alanÄ± aÅŸÄ±ldÄ±<br /><br />[quota]K da boÅŸ bir alanÄ±nÄ±z var, resimleriniz ÅŸuanda kullanÄ±lÄ±yor [space]K, bu resmi eklemek alanÄ±nÄ±zÄ± aÅŸÄ±racaktÄ±r.', //cpg1.3.0
+  'gd_file_type_err' => 'EÄŸer GD image library kullanÄ±lÄ±yorsa sadece JPEG ve PNG formatlarÄ± iÅŸlenebilir.',
+  'invalid_image' => 'YolladÄ±ÄŸÄ±nÄ±z resim hasarlÄ± yada GD library tarafÄ±ndan iÅŸlenemiyor',
+  'resize_failed' => 'Simge yada DÃ¼ÅŸÃ¼rÃ¼lmÃ¼ÅŸ kalite resmi yaratÄ±lmadÄ±.',
+  'no_img_to_display' => 'GÃ¶sterilebilcek resim yok',
+  'non_exist_cat' => 'SeÃ§ili Kategori yok',
+  'orphan_cat' => 'Katagorinin Ãœst katagorisi belli deÄŸil, DÃ¼zeltmek iÃ§in katagori yÃ¶nete gidiniz.', //cpg1.3.0
+  'directory_ro' => ' \'%s\'  klasÃ¶rÃ¼ yazÄ±labilir deÄŸil, resimler silinemedi.', //cpg1.3.0
+  'non_exist_comment' => 'SeÃ§ili Yorum aslÄ±nda yok.',
+  'pic_in_invalid_album' => 'SeÃ§ili resim geÃ§ersiz bir albumde (%s)!?', //cpg1.3.0
+  'banned' => 'KullanÄ±lan bu siteden banlandÄ±nÄ±z',
+  'not_with_udb' => 'Bu fonksiyon Coppermine da kullanÄ±lamaz Ã§Ã¼nkÃ¼ forum yazÄ±lÄ±mÄ± ile bÃ¼tÃ¼nleÅŸtirildi. Yapmaya Ã§alÄ±ÅŸtÄ±ÄŸÄ±nÄ±z ÅŸey bÃ¼ ÅŸekilde kaldÄ±rÄ±lamadÄ±, yada fonksiyon forum yazlÄ±mÄ± tarafÄ±ndan elegeÃ§irildi.',
+  'offline_title' => 'KapalÄ±', //cpg1.3.0
+  'offline_text' => 'Galeri kapalÄ±- ilerde tekrar deneyin', //cpg1.3.0
+  'ecards_empty' => 'Ekart kayÄ±tÄ± bulunmamaktadÄ±r. Coppermine seÃ§eneklerindeki  ekart giriÅŸ imkanÄ±nÄ± kontrol edin!', //cpg1.3.0
+  'action_failed' => 'Ä°ÅŸlem olmadÄ±.  Coppermine sizin talebinizi iÅŸleyemedi.', //cpg1.3.0
+  'no_zip' => 'ZIP resimleri iÃ§in Gerekli librarilere ulaÅŸÄ±lamaz.  LÃ¼tfen Coppermine admininiz ile iletiÅŸime geÃ§in.', //cpg1.3.0
+  'zip_type' => 'ZIP dosyalarÄ±nÄ± yÃ¼klemeye izniniz yok.', //cpg1.3.0
 );
 
-$lang_bbcode_help = 'Yapılan kodlar yararlı olmalıdır: <li>[b]<b>Kalın</b>[/b]</li> <li>[i]<i>İtalik</i>[/i]</li> <li>[url=http://yoursite.com/]Url Text[/url]</li> <li>[email]user@domain.com[/email]</li>'; //cpg1.3.0
+$lang_bbcode_help = 'YapÄ±lan kodlar yararlÄ± olmalÄ±dÄ±r: <li>[b]<b>KalÄ±n</b>[/b]</li> <li>[i]<i>Ä°talik</i>[/i]</li> <li>[url=http://yoursite.com/]Url Text[/url]</li> <li>[email]user@domain.com[/email]</li>'; //cpg1.3.0
 
 // ------------------------------------------------------------------------- //
 // File theme.php
 // ------------------------------------------------------------------------- //
 
 $lang_main_menu = array(
-  'alb_list_title' => 'Albüm listesine git',
-  'alb_list_lnk' => 'Albüm Listesi',
-  'my_gal_title' => 'Kişisel galerime git',
+  'alb_list_title' => 'AlbÃ¼m listesine git',
+  'alb_list_lnk' => 'AlbÃ¼m Listesi',
+  'my_gal_title' => 'KiÅŸisel galerime git',
   'my_gal_lnk' => 'Galerim',
   'my_prof_lnk' => 'Profilim',
-  'adm_mode_title' => 'Yönetici moduna Geç',
+  'adm_mode_title' => 'YÃ¶netici moduna GeÃ§',
   'adm_mode_lnk' => 'Admin modu',
-  'usr_mode_title' => 'Kullanıcı moduna Geç',
-  'usr_mode_lnk' => 'Kullanıcı modu',
-  'upload_pic_title' => 'Bir Albüme Resim Ekle', //cpg1.3.0
-  'upload_pic_lnk' => 'Resim yükle', //cpg1.3.0
-  'register_title' => 'Albüme resim ekle',
-  'register_lnk' => 'Kayıt ol',
-  'login_lnk' => 'Giriş',
-  'logout_lnk' => 'Çıkış',
-  'lastup_lnk' => 'Son yüklenenler',
+  'usr_mode_title' => 'KullanÄ±cÄ± moduna GeÃ§',
+  'usr_mode_lnk' => 'KullanÄ±cÄ± modu',
+  'upload_pic_title' => 'Bir AlbÃ¼me Resim Ekle', //cpg1.3.0
+  'upload_pic_lnk' => 'Resim yÃ¼kle', //cpg1.3.0
+  'register_title' => 'AlbÃ¼me resim ekle',
+  'register_lnk' => 'KayÄ±t ol',
+  'login_lnk' => 'GiriÅŸ',
+  'logout_lnk' => 'Ã‡Ä±kÄ±ÅŸ',
+  'lastup_lnk' => 'Son yÃ¼klenenler',
   'lastcom_lnk' => 'Son yorumlar',
-  'topn_lnk' => 'En Çok Bakılanlar',
-  'toprated_lnk' => 'En beğenilenler',
+  'topn_lnk' => 'En Ã‡ok BakÄ±lanlar',
+  'toprated_lnk' => 'En beÄŸenilenler',
   'search_lnk' => 'Ara',
   'fav_lnk' => 'Favorilerim',
-  'memberlist_title' => 'Üye listesini göster', //cpg1.3.0
-  'memberlist_lnk' => 'Üye listesi', //cpg1.3.0
-  'faq_title' => 'Resim galerisi üzerindeki Sorulan Soru &quot;Coppermine&quot;', //cpg1.3.0
+  'memberlist_title' => 'Ãœye listesini gÃ¶ster', //cpg1.3.0
+  'memberlist_lnk' => 'Ãœye listesi', //cpg1.3.0
+  'faq_title' => 'Resim galerisi Ã¼zerindeki Sorulan Soru &quot;Coppermine&quot;', //cpg1.3.0
   'faq_lnk' => 'FAQ', //cpg1.3.0
 );
 
 $lang_gallery_admin_menu = array(
-  'upl_app_lnk' => 'Resim yükleme onayları',
-  'config_lnk' => 'Seçenekler',
-  'albums_lnk' => 'Albümler',
+  'upl_app_lnk' => 'Resim yÃ¼kleme onaylarÄ±',
+  'config_lnk' => 'SeÃ§enekler',
+  'albums_lnk' => 'AlbÃ¼mler',
   'categories_lnk' => 'Kategoriler',
-  'users_lnk' => 'Kullanıcılar',
+  'users_lnk' => 'KullanÄ±cÄ±lar',
   'groups_lnk' => 'Gruplar',
   'comments_lnk' => 'Yorumlar', //cpg1.3.0
-  'searchnew_lnk' => 'Çoklu resim ekleme', //cpg1.3.0
-  'util_lnk' => 'Admin sçenekleri', //cpg1.3.0
-  'ban_lnk' => 'Kullanıcıları Banla',
-  'db_ecard_lnk' => 'Ekart gösterimi', //cpg1.3.0
+  'searchnew_lnk' => 'Ã‡oklu resim ekleme', //cpg1.3.0
+  'util_lnk' => 'Admin sÃ§enekleri', //cpg1.3.0
+  'ban_lnk' => 'KullanÄ±cÄ±larÄ± Banla',
+  'db_ecard_lnk' => 'Ekart gÃ¶sterimi', //cpg1.3.0
 );
 
 $lang_user_admin_menu = array(
-  'albmgr_lnk' => 'Album YARAT / DÜZENLE',
-  'modifyalb_lnk' => 'Albüm Seçenekleri',
-  'my_prof_lnk' => 'Kişisel Profilim',
+  'albmgr_lnk' => 'Album YARAT / DÃœZENLE',
+  'modifyalb_lnk' => 'AlbÃ¼m SeÃ§enekleri',
+  'my_prof_lnk' => 'KiÅŸisel Profilim',
 );
 
 $lang_cat_list = array(
@@ -160,43 +163,43 @@ $lang_album_list = array(
 );
 
 $lang_thumb_view = array(
-  'date' => 'TARİH',
+  'date' => 'TARÄ°H',
   //Sort by filename and title
   'name' => 'Ad',
   'title' => 'Konu',
-  'sort_da' => 'Tarihe göre ARTAN Sırala',
-  'sort_dd' => 'Tarihe göre AZALAN Sırala',
-  'sort_na' => 'Ada göre ARTAN Sırala',
-  'sort_nd' => 'Ada göre AZALAN Sırala',
-  'sort_ta' => 'Konuya göre ARTAN Sırala',
-  'sort_td' => 'Konuya göre AZALAN Sırala',
-  'download_zip' => 'Zip dosyası olarak indir', //cpg1.3.0
+  'sort_da' => 'Tarihe gÃ¶re ARTAN SÄ±rala',
+  'sort_dd' => 'Tarihe gÃ¶re AZALAN SÄ±rala',
+  'sort_na' => 'Ada gÃ¶re ARTAN SÄ±rala',
+  'sort_nd' => 'Ada gÃ¶re AZALAN SÄ±rala',
+  'sort_ta' => 'Konuya gÃ¶re ARTAN SÄ±rala',
+  'sort_td' => 'Konuya gÃ¶re AZALAN SÄ±rala',
+  'download_zip' => 'Zip dosyasÄ± olarak indir', //cpg1.3.0
   'pic_on_page' => '%d resim var %d sayfada',
-  'user_on_page' => '%d kullanıcı var %d sayfada', //cpg1.3.0
+  'user_on_page' => '%d kullanÄ±cÄ± var %d sayfada', //cpg1.3.0
 );
 
 $lang_img_nav_bar = array(
-  'thumb_title' => 'Küçük Resim Sayfasına Dön',
-  'pic_info_title' => 'Resim Özelliklerini Göster/Sakla', //cpg1.3.0
-  'slideshow_title' => 'Ard-arda Gösterim',
+  'thumb_title' => 'KÃ¼Ã§Ã¼k Resim SayfasÄ±na DÃ¶n',
+  'pic_info_title' => 'Resim Ã–zelliklerini GÃ¶ster/Sakla', //cpg1.3.0
+  'slideshow_title' => 'Ard-arda GÃ¶sterim',
   'ecard_title' => 'Bu resmi bir e-kartpostal olrak yolla ', //cpg1.3.0
-  'ecard_disabled' => 'e-kartpostal özelliği etkin değil',
+  'ecard_disabled' => 'e-kartpostal Ã¶zelliÄŸi etkin deÄŸil',
   'ecard_disabled_msg' => 'E-kartpostal yollama izniniz YOK', //js-alert //cpg1.3.0
-  'prev_title' => 'Önceki Resme Bak', //cpg1.3.0
+  'prev_title' => 'Ã–nceki Resme Bak', //cpg1.3.0
   'next_title' => 'Sonraki Resme Bak', //cpg1.3.0
-  'pic_pos' => 'RESİM %s/%s', //cpg1.3.0
+  'pic_pos' => 'RESÄ°M %s/%s', //cpg1.3.0
 );
 
 $lang_rate_pic = array(
   'rate_this_pic' => 'Resimi Puanla', //cpg1.3.0
   'no_votes' => '(Puanlama henuz yok)',
-  'rating' => '(Güncel Beğeni Oranı : %s / 5 etkiyen %s oy',
+  'rating' => '(GÃ¼ncel BeÄŸeni OranÄ± : %s / 5 etkiyen %s oy',
   'rubbish' => 'Berbat',
-  'poor' => 'Değersiz',
-  'fair' => 'İdare Eder',
-  'good' => 'İyi',
-  'excellent' => 'Çok İyi',
-  'great' => 'Mükemmel',
+  'poor' => 'DeÄŸersiz',
+  'fair' => 'Ä°dare Eder',
+  'good' => 'Ä°yi',
+  'excellent' => 'Ã‡ok Ä°yi',
+  'great' => 'MÃ¼kemmel',
 );
 
 // ------------------------------------------------------------------------- //
@@ -214,37 +217,37 @@ $lang_cpg_die = array(
   ERROR => $lang_error,
   CRITICAL_ERROR => 'Kritik Hata',
   'file' => 'Dosya: ',
-  'line' => 'Satır: ',
+  'line' => 'SatÄ±r: ',
 );
 
 $lang_display_thumbnails = array(
-  'filename' => 'Dosya Adı : ',
-  'filesize' => 'Dosya Büyüklüğü: ',
-  'dimensions' => 'Ölçüler : ',
-  'date_added' => 'Eklendiği Tarih : '
+  'filename' => 'Dosya AdÄ± : ',
+  'filesize' => 'Dosya BÃ¼yÃ¼klÃ¼ÄŸÃ¼: ',
+  'dimensions' => 'Ã–lÃ§Ã¼ler : ',
+  'date_added' => 'EklendiÄŸi Tarih : '
 );
 
 $lang_get_pic_data = array(
-  'n_comments' => '%s yorum yapıldı',
-  'n_views' => '%s kez bakıldı',
+  'n_comments' => '%s yorum yapÄ±ldÄ±',
+  'n_views' => '%s kez bakÄ±ldÄ±',
   'n_votes' => '(%s oy verildi)'
 );
 
 $lang_cpg_debug_output = array(
   'debug_info' => 'Debug Info', //cpg1.3.0
-  'select_all' => 'Tümünü Seç', //cpg1.3.0
-  'copy_and_paste_instructions' => 'Coppermine den yardım talebinde bulunacaksanız,debug çıkışını yolladığınıza copyalayıp yapıştırın. Yollamadan önce *** ile olan yerleri tekrar doldurun.', //cpg1.3.0
-  'phpinfo' => 'phpbilgi gösterimi', //cpg1.3.0
+  'select_all' => 'TÃ¼mÃ¼nÃ¼ SeÃ§', //cpg1.3.0
+  'copy_and_paste_instructions' => 'Coppermine den yardÄ±m talebinde bulunacaksanÄ±z,debug Ã§Ä±kÄ±ÅŸÄ±nÄ± yolladÄ±ÄŸÄ±nÄ±za copyalayÄ±p yapÄ±ÅŸtÄ±rÄ±n. Yollamadan Ã¶nce *** ile olan yerleri tekrar doldurun.', //cpg1.3.0
+  'phpinfo' => 'phpbilgi gÃ¶sterimi', //cpg1.3.0
 );
 
 $lang_language_selection = array(
-  'reset_language' => 'Geçerli dil', //cpg1.3.0
-  'choose_language' => 'Dilinizi seçin', //cpg1.3.0
+  'reset_language' => 'GeÃ§erli dil', //cpg1.3.0
+  'choose_language' => 'Dilinizi seÃ§in', //cpg1.3.0
 );
 
 $lang_theme_selection = array(
-  'reset_theme' => 'Geçerli konu', //cpg1.3.0
-  'choose_theme' => 'Bir konu seçiniz', //cpg1.3.0
+  'reset_theme' => 'GeÃ§erli konu', //cpg1.3.0
+  'choose_theme' => 'Bir konu seÃ§iniz', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -264,28 +267,28 @@ $lang_theme_selection = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
-  'Exclamation' => 'Ünlem',
+  'Exclamation' => 'Ãœnlem',
   'Question' => 'Soru',
-  'Very Happy' => 'Çok Mutlu',
-  'Smile' => 'Gülümsiyen',
-  'Sad' => 'Üzgün',
-  'Surprised' => 'Şaşırmış',
-  'Shocked' => 'Şok olmuş',
-  'Confused' => 'Kafası Karışık',
+  'Very Happy' => 'Ã‡ok Mutlu',
+  'Smile' => 'GÃ¼lÃ¼msiyen',
+  'Sad' => 'ÃœzgÃ¼n',
+  'Surprised' => 'ÅaÅŸÄ±rmÄ±ÅŸ',
+  'Shocked' => 'Åok olmuÅŸ',
+  'Confused' => 'KafasÄ± KarÄ±ÅŸÄ±k',
   'Cool' => 'Cool',
-  'Laughing' => 'Gülen',
+  'Laughing' => 'GÃ¼len',
   'Mad' => 'Deli',
   'Razz' => 'Razz',
-  'Embarassed' => 'Utanmış',
-  'Crying or Very sad' => 'Çok üzgün veya ağlama',
-  'Evil or Very Mad' => 'Şeytan veye manyak',
-  'Twisted Evil' => 'Sapıtmış Seytan',
-  'Rolling Eyes' => 'Gözü dönmüş',
-  'Wink' => 'Gözkırpan',
-  'Idea' => 'Ampül Fikirli',
+  'Embarassed' => 'UtanmÄ±ÅŸ',
+  'Crying or Very sad' => 'Ã‡ok Ã¼zgÃ¼n veya aÄŸlama',
+  'Evil or Very Mad' => 'Åeytan veye manyak',
+  'Twisted Evil' => 'SapÄ±tmÄ±ÅŸ Seytan',
+  'Rolling Eyes' => 'GÃ¶zÃ¼ dÃ¶nmÃ¼ÅŸ',
+  'Wink' => 'GÃ¶zkÄ±rpan',
+  'Idea' => 'AmpÃ¼l Fikirli',
   'Arrow' => 'Ok',
-  'Neutral' => 'Doğal',
-  'Mr. Green' => 'Bay Yeşil',
+  'Neutral' => 'DoÄŸal',
+  'Mr. Green' => 'Bay YeÅŸil',
 );
 
 // ------------------------------------------------------------------------- //
@@ -299,8 +302,8 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ADMIN_PHP')) $lang_admin_php = array(
-  0 => 'Yönetici modu terkediliyor...',
-  1 => 'Yönetici moduna Geçiliyor...',
+  0 => 'YÃ¶netici modu terkediliyor...',
+  1 => 'YÃ¶netici moduna GeÃ§iliyor...',
 );
 
 // ------------------------------------------------------------------------- //
@@ -308,20 +311,20 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
-  'alb_need_name' => 'Albumlerin adı olmalı!', //js-alert
-  'confirm_modifs' => 'Bu değişiklikleri Yapmak istediğinizden eminmisiniz ?', //js-alert
-  'no_change' => 'Değişiklik yapmadınız ki !', //js-alert
-  'new_album' => 'Yeni Albüm',
-  'confirm_delete1' => 'BU albumu silmek istediğinizden eminmisiniz ?', //js-alert
-  'confirm_delete2' => '\nBütün RESİMLER,YORUMLAR ve İÇERİĞİ YOK OLACAK !', //js-alert
-  'select_first' => 'İlk önce bir album seçiniz', //js-alert
-  'alb_mrg' => 'Album Yöneticisi',
-  'my_gallery' => '* Kişisel Galerim *',
+  'alb_need_name' => 'Albumlerin adÄ± olmalÄ±!', //js-alert
+  'confirm_modifs' => 'Bu deÄŸiÅŸiklikleri Yapmak istediÄŸinizden eminmisiniz ?', //js-alert
+  'no_change' => 'DeÄŸiÅŸiklik yapmadÄ±nÄ±z ki !', //js-alert
+  'new_album' => 'Yeni AlbÃ¼m',
+  'confirm_delete1' => 'BU albumu silmek istediÄŸinizden eminmisiniz ?', //js-alert
+  'confirm_delete2' => '\nBÃ¼tÃ¼n RESÄ°MLER,YORUMLAR ve Ä°Ã‡ERÄ°ÄÄ° YOK OLACAK !', //js-alert
+  'select_first' => 'Ä°lk Ã¶nce bir album seÃ§iniz', //js-alert
+  'alb_mrg' => 'Album YÃ¶neticisi',
+  'my_gallery' => '* KiÅŸisel Galerim *',
   'no_category' => '* Katagori Yok *',
   'delete' => 'Sil',
   'new' => 'Yeni',
-  'apply_modifs' => 'Değişiklikleri Yap',
-  'select_category' => 'Katagori Seç',
+  'apply_modifs' => 'DeÄŸiÅŸiklikleri Yap',
+  'select_category' => 'Katagori SeÃ§',
 );
 
 // ------------------------------------------------------------------------- //
@@ -329,18 +332,18 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
-  'miss_param' => '\'%s\' işlemi için gerekli parametreler eksik !',
-  'unknown_cat' => 'Seçili Katagaori Veritabanında yok',
-  'usergal_cat_ro' => 'Kullanıcı Galerileri Katagorisi Silinemez!',
-  'manage_cat' => 'Katagorileri Yönet',
-  'confirm_delete' => 'BU katagoriyi silmek istediğinizden eminmisiniz ?', //js-alert
+  'miss_param' => '\'%s\' iÅŸlemi iÃ§in gerekli parametreler eksik !',
+  'unknown_cat' => 'SeÃ§ili Katagaori VeritabanÄ±nda yok',
+  'usergal_cat_ro' => 'KullanÄ±cÄ± Galerileri Katagorisi Silinemez!',
+  'manage_cat' => 'Katagorileri YÃ¶net',
+  'confirm_delete' => 'BU katagoriyi silmek istediÄŸinizden eminmisiniz ?', //js-alert
   'category' => 'Katagori',
-  'operations' => 'İşlemler',
-  'move_into' => 'Taşı',
-  'update_create' => 'Katagori Güncelle/Ekle',
-  'parent_cat' => 'ÜST Katagori',
+  'operations' => 'Ä°ÅŸlemler',
+  'move_into' => 'TaÅŸÄ±',
+  'update_create' => 'Katagori GÃ¼ncelle/Ekle',
+  'parent_cat' => 'ÃœST Katagori',
   'cat_title' => 'Katagori ADI',
-  'cat_desc' => 'Katagori Tanımı'
+  'cat_desc' => 'Katagori TanÄ±mÄ±'
 );
 
 // ------------------------------------------------------------------------- //
@@ -349,19 +352,19 @@ if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
 
 if (defined('CONFIG_PHP')) $lang_config_php = array(
   'title' => 'Ayarlamalar',
-  'restore_cfg' => 'Fabrika ayarlarına GeriDÖN',
-  'save_cfg' => 'Yeni Ayarları kaydet',
+  'restore_cfg' => 'Fabrika ayarlarÄ±na GeriDÃ–N',
+  'save_cfg' => 'Yeni AyarlarÄ± kaydet',
   'notes' => 'Notlar',
   'info' => 'Bilgi',
-  'upd_success' => 'Coppermine Galeri Ayarları Güncellendi',
-  'restore_success' => 'Coppermine Galeri Ayarları Varsayılana Döndü',
-  'name_a' => 'Ada göre ARTAN',
-  'name_d' => 'Ada göre AZALAN',
-  'date_a' => 'Tarihe göre ARTAN',
-  'date_d' => 'Tarihe göre AZALAN',
+  'upd_success' => 'Coppermine Galeri AyarlarÄ± GÃ¼ncellendi',
+  'restore_success' => 'Coppermine Galeri AyarlarÄ± VarsayÄ±lana DÃ¶ndÃ¼',
+  'name_a' => 'Ada gÃ¶re ARTAN',
+  'name_d' => 'Ada gÃ¶re AZALAN',
+  'date_a' => 'Tarihe gÃ¶re ARTAN',
+  'date_d' => 'Tarihe gÃ¶re AZALAN',
   'th_any' => 'Maksimum Aspect',
-  'th_ht' => 'Yükseklik',
-  'th_wd' => 'Genişlik',
+  'th_ht' => 'YÃ¼kseklik',
+  'th_wd' => 'GeniÅŸlik',
   'label' => 'label', //cpg1.3.0
   'item' => 'item', //cpg1.3.0
   'debug_everyone' => 'Herkes', //cpg1.3.0
@@ -370,116 +373,116 @@ if (defined('CONFIG_PHP')) $lang_config_php = array(
 
 if (defined('CONFIG_PHP')) $lang_config_data = array(
   'General settings',
-  array('Galeri adı', 'gallery_name', 0),
-  array('Galeri tanıtımı', 'gallery_description', 0),
+  array('Galeri adÄ±', 'gallery_name', 0),
+  array('Galeri tanÄ±tÄ±mÄ±', 'gallery_description', 0),
   array('Galeri admin emaili', 'gallery_admin_email', 0),
   array('E-kartpostallardaki linkin hedef adresi', 'ecards_more_pic_target', 0),
-  array('Galeri kapalı', 'offline', 1), //cpg1.3.0
-  array('Ekartları logla', 'log_ecards', 1), //cpg1.3.0
+  array('Galeri kapalÄ±', 'offline', 1), //cpg1.3.0
+  array('EkartlarÄ± logla', 'log_ecards', 1), //cpg1.3.0
   array('Favori ZIP-indirmelerini takip et', 'enable_zipdownload', 1), //cpg1.3.0
 
   'Language, Themes &amp; Charset settings',
   array('Dil', 'lang', 5),
   array('Konu', 'theme', 6),
-  array('Dil listesini göster', 'language_list', 1), //cpg1.3.0
-  array('Dil bayraklarını göster', 'language_flags', 8), //cpg1.3.0
-  array(' &quot;reset&quot; dil seçimlerinde göster', 'language_reset', 1), //cpg1.3.0
-  array('Konu listesini göster', 'theme_list', 1), //cpg1.3.0
-  array(' &quot;reset&quot; konu seçeneğinde göster', 'theme_reset', 1), //cpg1.3.0
-  array('FAQ göster', 'display_faq', 1), //cpg1.3.0
-  array('Bbcode yardımı göster', 'show_bbcode_help', 1), //cpg1.3.0
-  array('Karakter seçeneği', 'charset', 4), //cpg1.3.0
+  array('Dil listesini gÃ¶ster', 'language_list', 1), //cpg1.3.0
+  array('Dil bayraklarÄ±nÄ± gÃ¶ster', 'language_flags', 8), //cpg1.3.0
+  array(' &quot;reset&quot; dil seÃ§imlerinde gÃ¶ster', 'language_reset', 1), //cpg1.3.0
+  array('Konu listesini gÃ¶ster', 'theme_list', 1), //cpg1.3.0
+  array(' &quot;reset&quot; konu seÃ§eneÄŸinde gÃ¶ster', 'theme_reset', 1), //cpg1.3.0
+  array('FAQ gÃ¶ster', 'display_faq', 1), //cpg1.3.0
+  array('Bbcode yardÄ±mÄ± gÃ¶ster', 'show_bbcode_help', 1), //cpg1.3.0
+  array('Karakter seÃ§eneÄŸi', 'charset', 4), //cpg1.3.0
 
-  'Albüm listesi Gösterimi',
-  array('Ana Tablo Genişliği (pixel yada %)', 'main_table_width', 0),
-  array('Gösterilecek Alt Katagori Düzeyi', 'subcat_level', 0),
-  array('Bir Sayfada gösterilecek Album sayısı', 'albums_per_page', 0),
-  array('Album Listesinin Sütün sayısı', 'album_list_cols', 0),
-  array('Küçük Resim(Pul) Boyutu (Pixel olarak)', 'alb_list_thumb_size', 0),
-  array('Ana Sayfa İçeriği', 'main_page_layout', 0),
-  array('Kategorilerdeki küçük resimleri birinci seviye göster','first_level',1),
+  'AlbÃ¼m listesi GÃ¶sterimi',
+  array('Ana Tablo GeniÅŸliÄŸi (pixel yada %)', 'main_table_width', 0),
+  array('GÃ¶sterilecek Alt Katagori DÃ¼zeyi', 'subcat_level', 0),
+  array('Bir Sayfada gÃ¶sterilecek Album sayÄ±sÄ±', 'albums_per_page', 0),
+  array('Album Listesinin SÃ¼tÃ¼n sayÄ±sÄ±', 'album_list_cols', 0),
+  array('KÃ¼Ã§Ã¼k Resim(Pul) Boyutu (Pixel olarak)', 'alb_list_thumb_size', 0),
+  array('Ana Sayfa Ä°Ã§eriÄŸi', 'main_page_layout', 0),
+  array('Kategorilerdeki kÃ¼Ã§Ã¼k resimleri birinci seviye gÃ¶ster','first_level',1),
 
-  'Küçük resim (Pul)Gösterimi',
-  array('Küçük Resim(Pul) sayfası sütün sayısı', 'thumbcols', 0),
-  array('Küçük Resim(Pul) sayfası sıra sayısı', 'thumbrows', 0),
+  'KÃ¼Ã§Ã¼k resim (Pul)GÃ¶sterimi',
+  array('KÃ¼Ã§Ã¼k Resim(Pul) sayfasÄ± sÃ¼tÃ¼n sayÄ±sÄ±', 'thumbcols', 0),
+  array('KÃ¼Ã§Ã¼k Resim(Pul) sayfasÄ± sÄ±ra sayÄ±sÄ±', 'thumbrows', 0),
   array('En fazla Pul', 'max_tabs', 0), //cpg1.3.0
-  array('Pulun adının altında tanımınıda göster', 'caption_in_thumbview', 1), //cpg1.3.0
-  array('Küçük resimleri bakılma sayısına göre göster', 'views_in_thumbview', 1), //cpg1.3.0
-  array('Pulun adının altında yapılan yorum sayısınıda göster', 'display_comment_count', 1),
-  array('Küçük resimleri ada göre göster', 'display_uploader', 1), //cpg1.3.0
-  array('Geçerli sıraya koy', 'default_sort_order', 3), //cpg1.3.0
-  array('Pulun adının altında yapılan yorum sayısınıda göster', 'display_comment_count', 1), //cpg1.3.0
+  array('Pulun adÄ±nÄ±n altÄ±nda tanÄ±mÄ±nÄ±da gÃ¶ster', 'caption_in_thumbview', 1), //cpg1.3.0
+  array('KÃ¼Ã§Ã¼k resimleri bakÄ±lma sayÄ±sÄ±na gÃ¶re gÃ¶ster', 'views_in_thumbview', 1), //cpg1.3.0
+  array('Pulun adÄ±nÄ±n altÄ±nda yapÄ±lan yorum sayÄ±sÄ±nÄ±da gÃ¶ster', 'display_comment_count', 1),
+  array('KÃ¼Ã§Ã¼k resimleri ada gÃ¶re gÃ¶ster', 'display_uploader', 1), //cpg1.3.0
+  array('GeÃ§erli sÄ±raya koy', 'default_sort_order', 3), //cpg1.3.0
+  array('Pulun adÄ±nÄ±n altÄ±nda yapÄ±lan yorum sayÄ±sÄ±nÄ±da gÃ¶ster', 'display_comment_count', 1), //cpg1.3.0
 
-  'Resim Gösterimi &amp; Yorum Seçenekleri',
-  array('Resim Tablosu Genişliği (pixel yada %)', 'picture_table_width', 0), //cpg1.3.0
-  array('Resim özellikleri öntanımlı açılsın mı?', 'display_pic_info', 1), //cpg1.3.0
-  array('Yorumlardaki kötü kelimeleri sansürle', 'filter_bad_words', 1),
-  array('Gülücüklere yorumlarda izin ver', 'enable_smilies', 1),
+  'Resim GÃ¶sterimi &amp; Yorum SeÃ§enekleri',
+  array('Resim Tablosu GeniÅŸliÄŸi (pixel yada %)', 'picture_table_width', 0), //cpg1.3.0
+  array('Resim Ã¶zellikleri Ã¶ntanÄ±mlÄ± aÃ§Ä±lsÄ±n mÄ±?', 'display_pic_info', 1), //cpg1.3.0
+  array('Yorumlardaki kÃ¶tÃ¼ kelimeleri sansÃ¼rle', 'filter_bad_words', 1),
+  array('GÃ¼lÃ¼cÃ¼klere yorumlarda izin ver', 'enable_smilies', 1),
   array('Allow several consecutive comments on one file from the same user (disable flood protection)', 'disable_comment_flood_protect', 1), //cpg1.3.0
-  array('Resim tanımı uzunluğu En-fazla?', 'max_img_desc_length', 0),
-  array('Bir kelimeki karakter sayısı En-çok?', 'max_com_wlength', 0),
-  array('Bir Yorumdaki Satır sayısı En-çok?', 'max_com_lines', 0),
-  array('Bir Yorumun uzunluğu En-fazla?', 'max_com_size', 0),
-  array('Film şeridini göster', 'display_film_strip', 1),
-  array('Şeritdeki parçaların numarası', 'max_film_strip_items', 0),
-  array('Yorumları admine email aracılığı ile haber ver', 'email_comment_notification', 1), //cpg1.3.0
-  array('Ardarda gösterimi aralıklarını milisaniyelerle yap (1 saniye = 1000 milisaniye)', 'slideshow_interval', 0), //cpg1.3.0
+  array('Resim tanÄ±mÄ± uzunluÄŸu En-fazla?', 'max_img_desc_length', 0),
+  array('Bir kelimeki karakter sayÄ±sÄ± En-Ã§ok?', 'max_com_wlength', 0),
+  array('Bir Yorumdaki SatÄ±r sayÄ±sÄ± En-Ã§ok?', 'max_com_lines', 0),
+  array('Bir Yorumun uzunluÄŸu En-fazla?', 'max_com_size', 0),
+  array('Film ÅŸeridini gÃ¶ster', 'display_film_strip', 1),
+  array('Åeritdeki parÃ§alarÄ±n numarasÄ±', 'max_film_strip_items', 0),
+  array('YorumlarÄ± admine email aracÄ±lÄ±ÄŸÄ± ile haber ver', 'email_comment_notification', 1), //cpg1.3.0
+  array('Ardarda gÃ¶sterimi aralÄ±klarÄ±nÄ± milisaniyelerle yap (1 saniye = 1000 milisaniye)', 'slideshow_interval', 0), //cpg1.3.0
 
-  'Resim ve Pul Seçenekleri', //cpg1.3.0
-  array('JPEG dosyaları için kalite ayarı', 'jpeg_qual', 0),
-  array('Küçük resim içn maksimum boyut <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0), //cpg1.3.0
-  array('Boyut kullan ( genişlik yadayğkseklik yada küçük resim için maksimum görünüş )<b>**</b>', 'thumb_use', 7),
-  array('Orta seviye resim oluştur','make_intermediate',1),
-  array('Orta seviye resim/video için maksimum genişlik yada yükseklik <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0), //cpg1.3.0
-  array('Yülenen resim için en büyük boyut (KB)', 'max_upl_size', 0), //cpg1.3.0
-  array('Yüklene resimler/videolar için en büyük genişlik ve boyut (pixels)', 'max_upl_width_height', 0), //cpg1.3.0
+  'Resim ve Pul SeÃ§enekleri', //cpg1.3.0
+  array('JPEG dosyalarÄ± iÃ§in kalite ayarÄ±', 'jpeg_qual', 0),
+  array('KÃ¼Ã§Ã¼k resim iÃ§n maksimum boyut <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0), //cpg1.3.0
+  array('Boyut kullan ( geniÅŸlik yadayÄŸkseklik yada kÃ¼Ã§Ã¼k resim iÃ§in maksimum gÃ¶rÃ¼nÃ¼ÅŸ )<b>**</b>', 'thumb_use', 7),
+  array('Orta seviye resim oluÅŸtur','make_intermediate',1),
+  array('Orta seviye resim/video iÃ§in maksimum geniÅŸlik yada yÃ¼kseklik <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0), //cpg1.3.0
+  array('YÃ¼lenen resim iÃ§in en bÃ¼yÃ¼k boyut (KB)', 'max_upl_size', 0), //cpg1.3.0
+  array('YÃ¼klene resimler/videolar iÃ§in en bÃ¼yÃ¼k geniÅŸlik ve boyut (pixels)', 'max_upl_width_height', 0), //cpg1.3.0
 
-  'Resim ve Pul Gelişmiş Seçenekleri', //cpg1.3.0
-  array('Özel albüm ikonunu giriş yapmayan kullanıcıya göster','show_private',1), //cpg1.3.0
-  array('Dosya adlarında Yasaklanmış Karakterler', 'forbiden_fname_char',0), //cpg1.3.0
-  //array('Dosya adlarında Yasaklanmış Karakterler', 'forbiden_fname_char',0), //cpg1.3.0
-  array('İzin verilen imaj türleri', 'allowed_img_types',0), //cpg1.3.0
-  array('İzin verilen movie türleri', 'allowed_mov_types',0), //cpg1.3.0
-  array('İzin verilen audio türleri', 'allowed_snd_types',0), //cpg1.3.0
-  array('İzin verilen döküman türleri', 'allowed_doc_types',0), //cpg1.3.0
-  array('Resim boyutlandırması için kullanılacak yöntem','thumb_method',2), //cpg1.3.0
-  array('ImageMagick \'dönüştürücü\' programının yolu (örn /usr/bin/X11/)', 'impath', 0), //cpg1.3.0
-  //array('İzinli Resim tipleri (sadece ImageMagick için geçerli)', 'allowed_img_types',0), //cpg1.3.0
-  array('ImageMagick için ek komut satırı seçenekleri', 'im_options', 0), //cpg1.3.0
-  array('JPEG dosyalrındaki EXIF verisini oku', 'read_exif_data', 1), //cpg1.3.0
-  array('JPEG dosyalarındaki IPTC verisini oku', 'read_iptc_data', 1), //cpg1.3.0
-  array('Albüm Klasörü <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0), //cpg1.3.0
-  array('Kullanıcı resimleri klasörü <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0), //cpg1.3.0
-  array('Orta Seviye RES. için ad ön takısı <a href="#notice1" class="clickable_option">*</a>', 'normal_pfx', 0), //cpg1.3.0
-  array('Pullar için ad ön takısı <a href="#notice1" class="clickable_option">*</a>', 'thumb_pfx', 0), //cpg1.3.0
-  array('Klasörler için geçerli olan Cmode', 'default_dir_mode', 0), //cpg1.3.0
-  array('Resimler için geçerli olan Cmode', 'default_file_mode', 0), //cpg1.3.0
+  'Resim ve Pul GeliÅŸmiÅŸ SeÃ§enekleri', //cpg1.3.0
+  array('Ã–zel albÃ¼m ikonunu giriÅŸ yapmayan kullanÄ±cÄ±ya gÃ¶ster','show_private',1), //cpg1.3.0
+  array('Dosya adlarÄ±nda YasaklanmÄ±ÅŸ Karakterler', 'forbiden_fname_char',0), //cpg1.3.0
+  //array('Dosya adlarÄ±nda YasaklanmÄ±ÅŸ Karakterler', 'forbiden_fname_char',0), //cpg1.3.0
+  array('Ä°zin verilen imaj tÃ¼rleri', 'allowed_img_types',0), //cpg1.3.0
+  array('Ä°zin verilen movie tÃ¼rleri', 'allowed_mov_types',0), //cpg1.3.0
+  array('Ä°zin verilen audio tÃ¼rleri', 'allowed_snd_types',0), //cpg1.3.0
+  array('Ä°zin verilen dÃ¶kÃ¼man tÃ¼rleri', 'allowed_doc_types',0), //cpg1.3.0
+  array('Resim boyutlandÄ±rmasÄ± iÃ§in kullanÄ±lacak yÃ¶ntem','thumb_method',2), //cpg1.3.0
+  array('ImageMagick \'dÃ¶nÃ¼ÅŸtÃ¼rÃ¼cÃ¼\' programÄ±nÄ±n yolu (Ã¶rn /usr/bin/X11/)', 'impath', 0), //cpg1.3.0
+  //array('Ä°zinli Resim tipleri (sadece ImageMagick iÃ§in geÃ§erli)', 'allowed_img_types',0), //cpg1.3.0
+  array('ImageMagick iÃ§in ek komut satÄ±rÄ± seÃ§enekleri', 'im_options', 0), //cpg1.3.0
+  array('JPEG dosyalrÄ±ndaki EXIF verisini oku', 'read_exif_data', 1), //cpg1.3.0
+  array('JPEG dosyalarÄ±ndaki IPTC verisini oku', 'read_iptc_data', 1), //cpg1.3.0
+  array('AlbÃ¼m KlasÃ¶rÃ¼ <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0), //cpg1.3.0
+  array('KullanÄ±cÄ± resimleri klasÃ¶rÃ¼ <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0), //cpg1.3.0
+  array('Orta Seviye RES. iÃ§in ad Ã¶n takÄ±sÄ± <a href="#notice1" class="clickable_option">*</a>', 'normal_pfx', 0), //cpg1.3.0
+  array('Pullar iÃ§in ad Ã¶n takÄ±sÄ± <a href="#notice1" class="clickable_option">*</a>', 'thumb_pfx', 0), //cpg1.3.0
+  array('KlasÃ¶rler iÃ§in geÃ§erli olan Cmode', 'default_dir_mode', 0), //cpg1.3.0
+  array('Resimler iÃ§in geÃ§erli olan Cmode', 'default_file_mode', 0), //cpg1.3.0
 
-  'Kullanıcı Ayarları',
-  array('Yeni Kullanıcı Kaydına izin ver', 'allow_user_registration', 1),
-  array('Kullanıcı Kaydına email onayı gerektirir', 'reg_requires_valid_email', 1),
-  array('Kullanıcı kayıtlarını email yoluyla admine haber ver', 'reg_notify_admin_email', 1), //cpg1.3.0
-  array('Birden fazla kullanıcı aynı email adresine sahip olabilir', 'allow_duplicate_emails_addr', 1),
-  array('Kullanıcılar özel albüme sahip olabilirler (Not:Eğer \'evet\' i \'hayır\' a çevirirseniz özel albümler herkese açık olmayacaktır)', 'allow_private_albums', 1), //cpg1.3.0
-  array('Kullanıcıların bekleyen yüklemelerini admine haber ver', 'upl_notify_admin_email', 1), //cpg1.3.0
-  array('Giriş yapan kullanıcıları üye listesini göstermeye izin ver', 'allow_memberlist', 1), //cpg1.3.0
+  'KullanÄ±cÄ± AyarlarÄ±',
+  array('Yeni KullanÄ±cÄ± KaydÄ±na izin ver', 'allow_user_registration', 1),
+  array('KullanÄ±cÄ± KaydÄ±na email onayÄ± gerektirir', 'reg_requires_valid_email', 1),
+  array('KullanÄ±cÄ± kayÄ±tlarÄ±nÄ± email yoluyla admine haber ver', 'reg_notify_admin_email', 1), //cpg1.3.0
+  array('Birden fazla kullanÄ±cÄ± aynÄ± email adresine sahip olabilir', 'allow_duplicate_emails_addr', 1),
+  array('KullanÄ±cÄ±lar Ã¶zel albÃ¼me sahip olabilirler (Not:EÄŸer \'evet\' i \'hayÄ±r\' a Ã§evirirseniz Ã¶zel albÃ¼mler herkese aÃ§Ä±k olmayacaktÄ±r)', 'allow_private_albums', 1), //cpg1.3.0
+  array('KullanÄ±cÄ±larÄ±n bekleyen yÃ¼klemelerini admine haber ver', 'upl_notify_admin_email', 1), //cpg1.3.0
+  array('GiriÅŸ yapan kullanÄ±cÄ±larÄ± Ã¼ye listesini gÃ¶stermeye izin ver', 'allow_memberlist', 1), //cpg1.3.0
 
-  'Özel Tanım Alanları (Kullanım Dışıysa Boş Bırakabilirsiniz)',
-  array('Alan 1 adı', 'user_field1_name', 0),
-  array('Alan 2 adı', 'user_field2_name', 0),
-  array('Alan 3 adı', 'user_field3_name', 0),
-  array('Alan 4 adı', 'user_field4_name', 0),
+  'Ã–zel TanÄ±m AlanlarÄ± (KullanÄ±m DÄ±ÅŸÄ±ysa BoÅŸ BÄ±rakabilirsiniz)',
+  array('Alan 1 adÄ±', 'user_field1_name', 0),
+  array('Alan 2 adÄ±', 'user_field2_name', 0),
+  array('Alan 3 adÄ±', 'user_field3_name', 0),
+  array('Alan 4 adÄ±', 'user_field4_name', 0),
 
-  'Cookies Seçenekleri',
-  array('Script tarafından kullanılan cookie nin adı', 'cookie_name', 0),
-  array('Script tarafından cookie için geçerli yol', 'cookie_path', 0),
+  'Cookies SeÃ§enekleri',
+  array('Script tarafÄ±ndan kullanÄ±lan cookie nin adÄ±', 'cookie_name', 0),
+  array('Script tarafÄ±ndan cookie iÃ§in geÃ§erli yol', 'cookie_path', 0),
 
-  'Diğer Seçenekler',
-  array('Debug moduna ulaşılamaz', 'debug_mode', 9), //cpg1.3.0
-  array('Debug modundaki notları göster', 'debug_notice', 1), //cpg1.3.0
+  'DiÄŸer SeÃ§enekler',
+  array('Debug moduna ulaÅŸÄ±lamaz', 'debug_mode', 9), //cpg1.3.0
+  array('Debug modundaki notlarÄ± gÃ¶ster', 'debug_notice', 1), //cpg1.3.0
 
-  '<br /><div align="left"><a name="notice1"></a>(*) ile işeretli alanlar eğer zaten galerilerinizde resim varsa değiştirilmemelidir<br />
-  <a name="notice2"></a>(**) ile işaretli yerleri değiştirdiğiniz zaman, sadece eklediğiniz noktadaki dosyaları etkiler, bundan dolayı galeride eğer resimler varsa ayarların değiştirilmemesi daha mantıklı. Siz, bununla birlikte, &quot mevcut olan dosyaları da ; <a href="util.php">admin seçenekleri</a> le değiştirmiş olacaksınız (resimleri yeniden boyutlandır)&quot; admin menüsünden faydalanın.</div><br />', //cpg1.3.0
+  '<br /><div align="left"><a name="notice1"></a>(*) ile iÅŸeretli alanlar eÄŸer zaten galerilerinizde resim varsa deÄŸiÅŸtirilmemelidir<br />
+  <a name="notice2"></a>(**) ile iÅŸaretli yerleri deÄŸiÅŸtirdiÄŸiniz zaman, sadece eklediÄŸiniz noktadaki dosyalarÄ± etkiler, bundan dolayÄ± galeride eÄŸer resimler varsa ayarlarÄ±n deÄŸiÅŸtirilmemesi daha mantÄ±klÄ±. Siz, bununla birlikte, &quot mevcut olan dosyalarÄ± da ; <a href="util.php">admin seÃ§enekleri</a> le deÄŸiÅŸtirmiÅŸ olacaksÄ±nÄ±z (resimleri yeniden boyutlandÄ±r)&quot; admin menÃ¼sÃ¼nden faydalanÄ±n.</div><br />', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -488,29 +491,29 @@ if (defined('CONFIG_PHP')) $lang_config_data = array(
 
 if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
   'title' => 'Ekart yollama', //cpg1.3.0
-  'ecard_sender' => 'Gönderen', //cpg1.3.0
+  'ecard_sender' => 'GÃ¶nderen', //cpg1.3.0
   'ecard_recipient' => 'Recipient', //cpg1.3.0
   'ecard_date' => 'Tarih', //cpg1.3.0
-  'ecard_display' => 'Ekart gösterimi', //cpg1.3.0
+  'ecard_display' => 'Ekart gÃ¶sterimi', //cpg1.3.0
   'ecard_name' => 'Ad', //cpg1.3.0
   'ecard_email' => 'Email', //cpg1.3.0
   'ecard_ip' => 'IP #', //cpg1.3.0
-  'ecard_ascending' => 'yükselim', //cpg1.3.0
-  'ecard_descending' => 'alçalım', //cpg1.3.0
-  'ecard_sorted' => 'Sıralandı', //cpg1.3.0
-  'ecard_by_date' => 'tarihe göre', //cpg1.3.0
+  'ecard_ascending' => 'yÃ¼kselim', //cpg1.3.0
+  'ecard_descending' => 'alÃ§alÄ±m', //cpg1.3.0
+  'ecard_sorted' => 'SÄ±ralandÄ±', //cpg1.3.0
+  'ecard_by_date' => 'tarihe gÃ¶re', //cpg1.3.0
   'ecard_by_sender_name' => 'by sender\'s name', //cpg1.3.0
   'ecard_by_sender_email' => 'by sender\'s email', //cpg1.3.0
   'ecard_by_sender_ip' => 'by sender\'s IP address', //cpg1.3.0
   'ecard_by_recipient_name' => 'by recipient\'s name', //cpg1.3.0
   'ecard_by_recipient_email' => 'by recipient\'s email', //cpg1.3.0
-  'ecard_number' => 'gösterim kayıtı %s to %s of %s', //cpg1.3.0
+  'ecard_number' => 'gÃ¶sterim kayÄ±tÄ± %s to %s of %s', //cpg1.3.0
   'ecard_goto_page' => 'sayfaya git', //cpg1.3.0
-  'ecard_records_per_page' => 'Sayfa başındaki kayıtlar', //cpg1.3.0
-  'check_all' => 'Tümünü kontrol et', //cpg1.3.0
-  'uncheck_all' => 'Hiçbirini kontrol etme', //cpg1.3.0
-  'ecards_delete_selected' => 'Seçilen ekartları sil', //cpg1.3.0
-  'ecards_delete_confirm' => 'Silmek istediğinizden emin misiniz?Kontrol kutusunu işaretleyin!', //cpg1.3.0
+  'ecard_records_per_page' => 'Sayfa baÅŸÄ±ndaki kayÄ±tlar', //cpg1.3.0
+  'check_all' => 'TÃ¼mÃ¼nÃ¼ kontrol et', //cpg1.3.0
+  'uncheck_all' => 'HiÃ§birini kontrol etme', //cpg1.3.0
+  'ecards_delete_selected' => 'SeÃ§ilen ekartlarÄ± sil', //cpg1.3.0
+  'ecards_delete_confirm' => 'Silmek istediÄŸinizden emin misiniz?Kontrol kutusunu iÅŸaretleyin!', //cpg1.3.0
   'ecards_delete_sure' => 'Eminim', //cpg1.3.0
 );
 
@@ -520,34 +523,34 @@ if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
-  'empty_name_or_com' => ' Adınızı ve bir yorum yazmalısınız',
+  'empty_name_or_com' => ' AdÄ±nÄ±zÄ± ve bir yorum yazmalÄ±sÄ±nÄ±z',
   'com_added' => 'Yorumunuz eklendi',
-  'alb_need_title' => 'Albüm için bir başlık seçmelisiniz !',
-  'no_udp_needed' => 'Güncellemeye gerek yok.',
-  'alb_updated' => 'Albüm güncelleşti',
-  'unknown_album' => 'Seçilen albüm bulunamadı yada bu albüme yükleme izniniz yok',
-  'no_pic_uploaded' => 'Resim Yüklenmedi !<br /><br />Eğer gerçekten yüklemek için resim seçtiyseniz, sunucunun izin veridiği resim yüklemelerini kontrol edin...', //cpg1.3.0
-  'err_mkdir' => 'Yaratma klasörü başarısız %s !',
-  'dest_dir_ro' => 'Gönderilen adres %s script tarafından yazılamaz !',
-  'err_move' => '%s ya %s geçmek imkansız!',
-  'err_fsize_too_large' => 'Yüklediğiniz resim çok büyük(izin verilen maksimum büyklük %s x %s) !', //cpg1.3.0
-  'err_imgsize_too_large' => 'Yüklediğiniz resim boyuttu çok geniş (izin verilen maksimum genişlik %s KB) !',
-  'err_invalid_img' => 'Yüklediğiniz resim geçerli değil !',
-  'allowed_img_types' => 'sadece %s imajları yükleyebilirsiniz.',
-  'err_insert_pic' => ' \'%s\' resim albüme yerleşmedi ', //cpg1.3.0
-  'upload_success' => 'Resminiz başarı ile yüklendi.<br /><br />Admin onayından sonra resminiz eklenecektir.', //cpg1.3.0
-  'notify_admin_email_subject' => '%s - Yükleme bildirisi', //cpg1.3.0
-  'notify_admin_email_body' => ' %s tarafından onayınızı bekleyen resim eklendi. %s bak', //cpg1.3.0
+  'alb_need_title' => 'AlbÃ¼m iÃ§in bir baÅŸlÄ±k seÃ§melisiniz !',
+  'no_udp_needed' => 'GÃ¼ncellemeye gerek yok.',
+  'alb_updated' => 'AlbÃ¼m gÃ¼ncelleÅŸti',
+  'unknown_album' => 'SeÃ§ilen albÃ¼m bulunamadÄ± yada bu albÃ¼me yÃ¼kleme izniniz yok',
+  'no_pic_uploaded' => 'Resim YÃ¼klenmedi !<br /><br />EÄŸer gerÃ§ekten yÃ¼klemek iÃ§in resim seÃ§tiyseniz, sunucunun izin veridiÄŸi resim yÃ¼klemelerini kontrol edin...', //cpg1.3.0
+  'err_mkdir' => 'Yaratma klasÃ¶rÃ¼ baÅŸarÄ±sÄ±z %s !',
+  'dest_dir_ro' => 'GÃ¶nderilen adres %s script tarafÄ±ndan yazÄ±lamaz !',
+  'err_move' => '%s ya %s geÃ§mek imkansÄ±z!',
+  'err_fsize_too_large' => 'YÃ¼klediÄŸiniz resim Ã§ok bÃ¼yÃ¼k(izin verilen maksimum bÃ¼yklÃ¼k %s x %s) !', //cpg1.3.0
+  'err_imgsize_too_large' => 'YÃ¼klediÄŸiniz resim boyuttu Ã§ok geniÅŸ (izin verilen maksimum geniÅŸlik %s KB) !',
+  'err_invalid_img' => 'YÃ¼klediÄŸiniz resim geÃ§erli deÄŸil !',
+  'allowed_img_types' => 'sadece %s imajlarÄ± yÃ¼kleyebilirsiniz.',
+  'err_insert_pic' => ' \'%s\' resim albÃ¼me yerleÅŸmedi ', //cpg1.3.0
+  'upload_success' => 'Resminiz baÅŸarÄ± ile yÃ¼klendi.<br /><br />Admin onayÄ±ndan sonra resminiz eklenecektir.', //cpg1.3.0
+  'notify_admin_email_subject' => '%s - YÃ¼kleme bildirisi', //cpg1.3.0
+  'notify_admin_email_body' => ' %s tarafÄ±ndan onayÄ±nÄ±zÄ± bekleyen resim eklendi. %s bak', //cpg1.3.0
   'info' => 'Bilgi',
   'com_added' => 'Yorum eklendi',
   'alb_updated' => 'Album updated',
-  'err_comment_empty' => 'Yorumunuz boş !',
-  'err_invalid_fext' => 'Sadece izin verilen resimler büyütülebilir : <br /><br />%s.',
-  'no_flood' => 'Üzgümün ama bu dosya için son yorumun yazarı sizsiniz<br /><br /> Eğer istiyorsanız yorumunuzu düzeltin', //cpg1.3.0
-  'redirect_msg' => 'Adresiniz değiştiriliyor.<br /><br /><br />Click \'DEVAM\' eğer sayfa otomatik olarak yenilenmezse',
-  'upl_success' => 'Resminiz başarılyla eklendi', //cpg1.3.0
-  'email_comment_subject' => 'Yorum İbrahim ALTINOK Galeri de yolandı', //cpg1.3.0
-  'email_comment_body' => 'Birisi galerinize bir yorum yolladı. Buradan bakın', //cpg1.3.0
+  'err_comment_empty' => 'Yorumunuz boÅŸ !',
+  'err_invalid_fext' => 'Sadece izin verilen resimler bÃ¼yÃ¼tÃ¼lebilir : <br /><br />%s.',
+  'no_flood' => 'ÃœzgÃ¼mÃ¼n ama bu dosya iÃ§in son yorumun yazarÄ± sizsiniz<br /><br /> EÄŸer istiyorsanÄ±z yorumunuzu dÃ¼zeltin', //cpg1.3.0
+  'redirect_msg' => 'Adresiniz deÄŸiÅŸtiriliyor.<br /><br /><br />Click \'DEVAM\' eÄŸer sayfa otomatik olarak yenilenmezse',
+  'upl_success' => 'Resminiz baÅŸarÄ±lyla eklendi', //cpg1.3.0
+  'email_comment_subject' => 'Yorum Ä°brahim ALTINOK Galeri de yolandÄ±', //cpg1.3.0
+  'email_comment_body' => 'Birisi galerinize bir yorum yolladÄ±. Buradan bakÄ±n', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -555,24 +558,24 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DELETE_PHP')) $lang_delete_php = array(
-  'caption' => 'Başlık',
-  'fs_pic' => 'Tam boy görüntü',
-  'del_success' => 'Başarıyla silindi',
-  'ns_pic' => 'Normal boy görüntü',
+  'caption' => 'BaÅŸlÄ±k',
+  'fs_pic' => 'Tam boy gÃ¶rÃ¼ntÃ¼',
+  'del_success' => 'BaÅŸarÄ±yla silindi',
+  'ns_pic' => 'Normal boy gÃ¶rÃ¼ntÃ¼',
   'err_del' => 'silinemedi',
-  'thumb_pic' => 'küçük resim',
+  'thumb_pic' => 'kÃ¼Ã§Ã¼k resim',
   'comment' => 'yorum',
-  'im_in_alb' => 'albümde görüntü',
-  'alb_del_success' => '\'%s\' albüm silindi',
-  'alb_mgr' => 'Albüm Yöneticisi',
+  'im_in_alb' => 'albÃ¼mde gÃ¶rÃ¼ntÃ¼',
+  'alb_del_success' => '\'%s\' albÃ¼m silindi',
+  'alb_mgr' => 'AlbÃ¼m YÃ¶neticisi',
   'err_invalid_data' => '\'%s\' da Veri almada hata',
-  'create_alb' => 'Albüm oluşturma\'%s\'',
-  'update_alb' => 'Albüm güncelleme\'%s\' başlıkla \'%s\' ve index \'%s\'',
+  'create_alb' => 'AlbÃ¼m oluÅŸturma\'%s\'',
+  'update_alb' => 'AlbÃ¼m gÃ¼ncelleme\'%s\' baÅŸlÄ±kla \'%s\' ve index \'%s\'',
   'del_pic' => 'Resmi sil', //cpg1.3.0
-  'del_alb' => 'Albümü sil',
-  'del_user' => 'Kullanıcıyı sil',
-  'err_unknown_user' => 'Seçilen kullanıcı bulunamadı !',
-  'comment_deleted' => 'Yorum başarıyla silindi',
+  'del_alb' => 'AlbÃ¼mÃ¼ sil',
+  'del_user' => 'KullanÄ±cÄ±yÄ± sil',
+  'err_unknown_user' => 'SeÃ§ilen kullanÄ±cÄ± bulunamadÄ± !',
+  'comment_deleted' => 'Yorum baÅŸarÄ±yla silindi',
 );
 
 // ------------------------------------------------------------------------- //
@@ -588,37 +591,37 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 if (defined('DISPLAYIMAGE_PHP')){
 
 $lang_display_image_php = array(
-  'confirm_del' => 'Bu resmi SİLMEK istediğinizden emin misiniz ? \\nYorum silinmiş olmalı.', //js-alert //cpg1.3.0
-  'del_pic' => 'BU RESMİ SİL', //cpg1.3.0
+  'confirm_del' => 'Bu resmi SÄ°LMEK istediÄŸinizden emin misiniz ? \\nYorum silinmiÅŸ olmalÄ±.', //js-alert //cpg1.3.0
+  'del_pic' => 'BU RESMÄ° SÄ°L', //cpg1.3.0
   'size' => '%s x %s pixels',
   'views' => '%s zamanlar',
-  'slideshow' => 'Ardarda gösterim',
-  'stop_slideshow' => 'Gösterimi durdur',
-  'view_fs' => 'Tam boy görünüm için tıklayın',
-  'edit_pic' => 'Açıklamayı düzenle', //cpg1.3.0
-  'crop_pic' => 'Kes ve yer değiştir', //cpg1.3.0
+  'slideshow' => 'Ardarda gÃ¶sterim',
+  'stop_slideshow' => 'GÃ¶sterimi durdur',
+  'view_fs' => 'Tam boy gÃ¶rÃ¼nÃ¼m iÃ§in tÄ±klayÄ±n',
+  'edit_pic' => 'AÃ§Ä±klamayÄ± dÃ¼zenle', //cpg1.3.0
+  'crop_pic' => 'Kes ve yer deÄŸiÅŸtir', //cpg1.3.0
 );
 
 $lang_picinfo = array(
   'title' =>'Resim bilgisi', //cpg1.3.0
-  'Filename' => 'Resim Adı',
-  'Album name' => 'Albüm Adı',
+  'Filename' => 'Resim AdÄ±',
+  'Album name' => 'AlbÃ¼m AdÄ±',
   'Rating' => 'Oylar (%s votes)',
   'Keywords' => 'Anahtar Kelimeler',
   'File Size' => 'Resim boyutu',
   'Dimensions' => 'Boyutlar',
-  'Displayed' => 'Gösterilme',
+  'Displayed' => 'GÃ¶sterilme',
   'Camera' => 'Kamera',
-  'Date taken' => 'Çekilen tarih',
+  'Date taken' => 'Ã‡ekilen tarih',
   'ISO'=>'ISO',
-  'Aperture' => 'Boşluk',
-  'Exposure time' => 'Ortaya çıkma zamanı',
+  'Aperture' => 'BoÅŸluk',
+  'Exposure time' => 'Ortaya Ã§Ä±kma zamanÄ±',
   'Focal length' => 'Uzunluk',
   'Comment' => 'Yorum',
   'addFav'=>'Favorilere ekle', //cpg1.3.0
   'addFavPhrase'=>'Favoriler', //cpg1.3.0
-  'remFav'=>'Favorilerden ayrıl', //cpg1.3.0
-  'iptcTitle'=>'IPTC Başlık', //cpg1.3.0
+  'remFav'=>'Favorilerden ayrÄ±l', //cpg1.3.0
+  'iptcTitle'=>'IPTC BaÅŸlÄ±k', //cpg1.3.0
   'iptcCopyright'=>'IPTC Kopyalama', //cpg1.3.0
   'iptcKeywords'=>'IPTC Anahtar kelimeler', //cpg1.3.0
   'iptcCategory'=>'IPTC Kategori', //cpg1.3.0
@@ -627,16 +630,16 @@ $lang_picinfo = array(
 
 $lang_display_comments = array(
   'OK' => 'TAMAM',
-  'edit_title' => 'Bu yorumu düzenle',
-  'confirm_delete' => 'Bu yorumu silmek istediğinizden emin misiniz?', //js-alert
+  'edit_title' => 'Bu yorumu dÃ¼zenle',
+  'confirm_delete' => 'Bu yorumu silmek istediÄŸinizden emin misiniz?', //js-alert
   'add_your_comment' => 'Yorumunuzu ekleyin',
-  'name'=>'İsim',
+  'name'=>'Ä°sim',
   'comment'=>'Yorum',
   'your_name' => 'Anon',
 );
 
 $lang_fullsize_popup = array(
-  'click_to_close' => 'Bu pencereyi kapatmak için götüntüye tıklayın',
+  'click_to_close' => 'Bu pencereyi kapatmak iÃ§in gÃ¶tÃ¼ntÃ¼ye tÄ±klayÄ±n',
 );
 
 }
@@ -646,22 +649,22 @@ $lang_fullsize_popup = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array(
-  'title' => 'Ekart gönder',
-  'invalid_email' => '<b>Uyarı</b> : geçersiz email adres !',
-  'ecard_title' => ' %s den sizin için bir ekart ',
-  'error_not_image' => 'Sadece görüntüler ekart olarak gönderilebilir', //cpg1.3.0
-  'view_ecard' => 'Eğer ekart tam olarak görünmezse bu linki yıklayınız',
-  'view_more_pics' => 'Daha fazla resim resim için bu linki tıklayınız !',
-  'send_success' => 'Ekartınız yolandı',
-  'send_failed' => 'Üzgünüm ama sunucu ekartınızı yollayamadı...',
+  'title' => 'Ekart gÃ¶nder',
+  'invalid_email' => '<b>UyarÄ±</b> : geÃ§ersiz email adres !',
+  'ecard_title' => ' %s den sizin iÃ§in bir ekart ',
+  'error_not_image' => 'Sadece gÃ¶rÃ¼ntÃ¼ler ekart olarak gÃ¶nderilebilir', //cpg1.3.0
+  'view_ecard' => 'EÄŸer ekart tam olarak gÃ¶rÃ¼nmezse bu linki yÄ±klayÄ±nÄ±z',
+  'view_more_pics' => 'Daha fazla resim resim iÃ§in bu linki tÄ±klayÄ±nÄ±z !',
+  'send_success' => 'EkartÄ±nÄ±z yolandÄ±',
+  'send_failed' => 'ÃœzgÃ¼nÃ¼m ama sunucu ekartÄ±nÄ±zÄ± yollayamadÄ±...',
   'from' => 'Nereden',
-  'your_name' => 'Adınız',
+  'your_name' => 'AdÄ±nÄ±z',
   'your_email' => 'Email adresiniz',
   'to' => 'Kime',
-  'rcpt_name' => 'Alıcının Adı',
-  'rcpt_email' => 'Alıcının email adresi',
-  'greetings' => 'Başlık',
-  'message' => 'Mesajınız',
+  'rcpt_name' => 'AlÄ±cÄ±nÄ±n AdÄ±',
+  'rcpt_email' => 'AlÄ±cÄ±nÄ±n email adresi',
+  'greetings' => 'BaÅŸlÄ±k',
+  'message' => 'MesajÄ±nÄ±z',
 );
 
 // ------------------------------------------------------------------------- //
@@ -670,30 +673,30 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
 
 if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
   'pic_info' => 'Rsim bilgisi', //cpg1.3.0
-  'album' => 'Albüm',
-  'title' => 'Başlık',
-  'desc' => 'Açıklama',
+  'album' => 'AlbÃ¼m',
+  'title' => 'BaÅŸlÄ±k',
+  'desc' => 'AÃ§Ä±klama',
   'keywords' => 'Anahtar kelimeler',
   'pic_info_str' => '%s &times; %s - %s KB - %s views - %s votes',
   'approve' => 'Resmi onayla', //cpg1.3.0
-  'postpone_app' => 'Onayı ertele',
+  'postpone_app' => 'OnayÄ± ertele',
   'del_pic' => 'Resmi sil', //cpg1.3.0
   'read_exif' => 'EXIF bilgisini tekrar okuyunuz', //cpg1.3.0
-  'reset_view_count' => 'Görüntü sayacını yenile',
-  'reset_votes' => 'Oyları yenile',
-  'del_comm' => 'Yorumları sil',
-  'upl_approval' => 'Onay gönder',
-  'edit_pics' => 'Resimleri Düzenle', //cpg1.3.0
-  'see_next' => 'Diğer resimlere bak', //cpg1.3.0
+  'reset_view_count' => 'GÃ¶rÃ¼ntÃ¼ sayacÄ±nÄ± yenile',
+  'reset_votes' => 'OylarÄ± yenile',
+  'del_comm' => 'YorumlarÄ± sil',
+  'upl_approval' => 'Onay gÃ¶nder',
+  'edit_pics' => 'Resimleri DÃ¼zenle', //cpg1.3.0
+  'see_next' => 'DiÄŸer resimlere bak', //cpg1.3.0
   'see_prev' => 'Gerideki resimlere bak', //cpg1.3.0
   'n_pic' => '%s resimler', //cpg1.3.0
-  'n_of_pic_to_disp' => 'Gösterim için resimlerin numaraları', //cpg1.3.0
-  'apply' => 'Değişiklikleri Kaydet', //cpg1.3.0
+  'n_of_pic_to_disp' => 'GÃ¶sterim iÃ§in resimlerin numaralarÄ±', //cpg1.3.0
+  'apply' => 'DeÄŸiÅŸiklikleri Kaydet', //cpg1.3.0
   'crop_title' => 'Coppermine Picture Editor', //cpg1.3.0
-  'preview' => 'Özel gösterim', //cpg1.3.0
+  'preview' => 'Ã–zel gÃ¶sterim', //cpg1.3.0
   'save' => 'Rsimleri kaydet', //cpg1.3.0
-  'save_thumb' =>'Küçük resim olarak kaydet', //cpg1.3.0
-  'sel_on_img' =>'Seçim tümüyle resimler üzerinde olmalıdır!', //js-alert //cpg1.3.0
+  'save_thumb' =>'KÃ¼Ã§Ã¼k resim olarak kaydet', //cpg1.3.0
+  'sel_on_img' =>'SeÃ§im tÃ¼mÃ¼yle resimler Ã¼zerinde olmalÄ±dÄ±r!', //js-alert //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -701,16 +704,16 @@ if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('FAQ_PHP')) $lang_faq_php = array(
-  'faq' => 'Sık Sorulan Sorular', //cpg1.3.0
-  'toc' => 'İçeriklerin çizelgesi', //cpg1.3.0
+  'faq' => 'SÄ±k Sorulan Sorular', //cpg1.3.0
+  'toc' => 'Ä°Ã§eriklerin Ã§izelgesi', //cpg1.3.0
   'question' => 'Sorular: ', //cpg1.3.0
   'answer' => 'Cevap: ', //cpg1.3.0
 );
 
 if (defined('FAQ_PHP')) $lang_faq_data = array(
   'General FAQ', //cpg1.3.0
-  array('Neden kayıt olmaya ihtiyaç var?', 'Kayıt admin tarafından onaylanabilir veya onaylanmaz. Kayıt işlemi üyeye ek olarak resim yükleme özelliği verir, favori listesine sahip olurlar, resimlere oy verebilir ve onlara yorum yazabilirler ve benzeri.', 'allow_user_registration', '1'), //cpg1.3.0
-  array('Nasıl kayıt olabilirim?', '&quot;Register&quot; a gidin ve istenilen boşlukları doldurun (eğer isterseniz).<br />Eğer admin If the Administrator has Email Activation enabled ,then after submitting your information you should recieve an email message at the address that you have submitted while registering, giving you instructions on how to activate your membership. Your membership must be activated in order for you to login.', 'allow_user_registration', '1'), //cpg1.3.0
+  array('Neden kayÄ±t olmaya ihtiyaÃ§ var?', 'KayÄ±t admin tarafÄ±ndan onaylanabilir veya onaylanmaz. KayÄ±t iÅŸlemi Ã¼yeye ek olarak resim yÃ¼kleme Ã¶zelliÄŸi verir, favori listesine sahip olurlar, resimlere oy verebilir ve onlara yorum yazabilirler ve benzeri.', 'allow_user_registration', '1'), //cpg1.3.0
+  array('NasÄ±l kayÄ±t olabilirim?', '&quot;Register&quot; a gidin ve istenilen boÅŸluklarÄ± doldurun (eÄŸer isterseniz).<br />EÄŸer admin If the Administrator has Email Activation enabled ,then after submitting your information you should recieve an email message at the address that you have submitted while registering, giving you instructions on how to activate your membership. Your membership must be activated in order for you to login.', 'allow_user_registration', '1'), //cpg1.3.0
   array('How Do I login?', 'Go to &quot;Login&quot;, submit your username and password and check &quot;Remember Me&quot; so you will be logged in on the site if you should leave it.<br /><b>IMPORTANT:Cookies must be enabled and the cookie from this site must not be deleted in order to use &quot;Remember Me&quot;.</b>', 'offline', 0), //cpg1.3.0
   array('Why can I not login?', 'Did you register and click the link that was sent to you via email?. The link will activate your account. For other login problems contact the site administrator.', 'offline', 0), //cpg1.3.0
   array('What if I forgot my password?', 'If this site has a &quot;Forgot password&quot; link then use it. Other than that contact the site administrator for a new password.', 'offline', 0), //cpg1.3.0
@@ -746,18 +749,18 @@ array('How do I upload a file?', 'Go to &quot;Upload&quot;and select the album t
 // ------------------------------------------------------------------------- //
 
 if (defined('FORGOT_PASSWD_PHP')) $lang_forgot_passwd_php = array(
-  'forgot_passwd' => 'Şifremi unuttum', //cpg1.3.0
-  'err_already_logged_in' => 'Daha önceden giriş yapmışsınız !', //cpg1.3.0
-  'enter_username_email' => 'Kullanıcı adınızı veya email adresinizi yazın', //cpg1.3.0
+  'forgot_passwd' => 'Åifremi unuttum', //cpg1.3.0
+  'err_already_logged_in' => 'Daha Ã¶nceden giriÅŸ yapmÄ±ÅŸsÄ±nÄ±z !', //cpg1.3.0
+  'enter_username_email' => 'KullanÄ±cÄ± adÄ±nÄ±zÄ± veya email adresinizi yazÄ±n', //cpg1.3.0
   'submit' => 'git', //cpg1.3.0
-  'failed_sending_email' => 'Şifreniz yollanamadı !', //cpg1.3.0
-  'email_sent' => 'Kullanıcı adınız ve şifrenize mail yoluyla %s a yollandı', //cpg1.3.0
-  'err_unk_user' => 'Seçilen kullanıcı bulunamadı!', //cpg1.3.0
-  'passwd_reminder_subject' => '%s - Şifremi unuttum', //cpg1.3.0
-  'passwd_reminder_body' => 'Giriş verilerinizi öğrenmek istemişsiniz:
-Kullanıcı adı: %s
-Şifre: %s
-Giriş için %s i tıklayın.', //cpg1.3.0
+  'failed_sending_email' => 'Åifreniz yollanamadÄ± !', //cpg1.3.0
+  'email_sent' => 'KullanÄ±cÄ± adÄ±nÄ±z ve ÅŸifrenize mail yoluyla %s a yollandÄ±', //cpg1.3.0
+  'err_unk_user' => 'SeÃ§ilen kullanÄ±cÄ± bulunamadÄ±!', //cpg1.3.0
+  'passwd_reminder_subject' => '%s - Åifremi unuttum', //cpg1.3.0
+  'passwd_reminder_body' => 'GiriÅŸ verilerinizi Ã¶ÄŸrenmek istemiÅŸsiniz:
+KullanÄ±cÄ± adÄ±: %s
+Åifre: %s
+GiriÅŸ iÃ§in %s i tÄ±klayÄ±n.', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -765,27 +768,27 @@ Giriş için %s i tıklayın.', //cpg1.3.0
 // ------------------------------------------------------------------------- //
 
 if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
-  'group_name' => 'Grup Adı',
+  'group_name' => 'Grup AdÄ±',
   'disk_quota' => 'Disk boyutu',
-  'can_rate' => 'Resim oranı', //cpg1.3.0
+  'can_rate' => 'Resim oranÄ±', //cpg1.3.0
   'can_send_ecards' => 'Ekart yollama',
   'can_post_com' => 'Yorum yolama',
-  'can_upload' => 'Resim yükleme', //cpg1.3.0
-  'can_have_gallery' => 'Kişisel galeri sahibi olma',
-  'apply' => 'Değişiklikleri kaydet',
+  'can_upload' => 'Resim yÃ¼kleme', //cpg1.3.0
+  'can_have_gallery' => 'KiÅŸisel galeri sahibi olma',
+  'apply' => 'DeÄŸiÅŸiklikleri kaydet',
   'create_new_group' => 'Yeni grup ',
-  'del_groups' => 'Seçilen grup (-ları) sil',
-  'confirm_del' => 'Uyarı, ne zaman bir grubu silerseniz, o gruba ait olan kullanıcılar \'Registered\' grubuna transfar edilecektir !\n\nDevam etma istiyor musunuz?', //js-alert //cpg1.3.0
-  'title' => 'Kullanıcı gruplarını yönet',
-  'approval_1' => 'herkese açık yüklemeyi onayla (1)',
-  'approval_2' => 'özel yüklemeyi onayla (2)',
-  'upload_form_config' => 'Yükleme formu biçimleri', //cpg1.3.0
-  'upload_form_config_values' => array( 'Sadece tek resim yüklemeler', 'Sadece çoklu yüklemeler ', 'Sadece URI yüklemeler', 'Sadece ZIP Yüklemeler', 'resim-URI', 'resim-ZIP', 'URI-ZIP', 'resim-URI-ZIP'), //cpg1.3.0
-  'custom_user_upload'=>'Kullanıcı yükleme kutusunun numarasını düzenleyebilir mi?', //cpg1.3.0
-  'num_file_upload'=>'Yükleme kutularının maksimum resim numarası', //cpg1.3.0
-  'num_URI_upload'=>'Yükleme kutularının maksimum URI numarası', //cpg1.3.0
-  'note1' => '<b>(1)</b> Herkese açık albümdeki yüklemelere admin onayı gerekmektedir',
-  'note2' => '<b>(2)</b> Bir albüme yükleme yapmak için kullanıcı admin onayı almalıdır',
+  'del_groups' => 'SeÃ§ilen grup (-larÄ±) sil',
+  'confirm_del' => 'UyarÄ±, ne zaman bir grubu silerseniz, o gruba ait olan kullanÄ±cÄ±lar \'Registered\' grubuna transfar edilecektir !\n\nDevam etma istiyor musunuz?', //js-alert //cpg1.3.0
+  'title' => 'KullanÄ±cÄ± gruplarÄ±nÄ± yÃ¶net',
+  'approval_1' => 'herkese aÃ§Ä±k yÃ¼klemeyi onayla (1)',
+  'approval_2' => 'Ã¶zel yÃ¼klemeyi onayla (2)',
+  'upload_form_config' => 'YÃ¼kleme formu biÃ§imleri', //cpg1.3.0
+  'upload_form_config_values' => array( 'Sadece tek resim yÃ¼klemeler', 'Sadece Ã§oklu yÃ¼klemeler ', 'Sadece URI yÃ¼klemeler', 'Sadece ZIP YÃ¼klemeler', 'resim-URI', 'resim-ZIP', 'URI-ZIP', 'resim-URI-ZIP'), //cpg1.3.0
+  'custom_user_upload'=>'KullanÄ±cÄ± yÃ¼kleme kutusunun numarasÄ±nÄ± dÃ¼zenleyebilir mi?', //cpg1.3.0
+  'num_file_upload'=>'YÃ¼kleme kutularÄ±nÄ±n maksimum resim numarasÄ±', //cpg1.3.0
+  'num_URI_upload'=>'YÃ¼kleme kutularÄ±nÄ±n maksimum URI numarasÄ±', //cpg1.3.0
+  'note1' => '<b>(1)</b> Herkese aÃ§Ä±k albÃ¼mdeki yÃ¼klemelere admin onayÄ± gerekmektedir',
+  'note2' => '<b>(2)</b> Bir albÃ¼me yÃ¼kleme yapmak iÃ§in kullanÄ±cÄ± admin onayÄ± almalÄ±dÄ±r',
   'notes' => 'Notlar',
 );
 
@@ -796,28 +799,28 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
 if (defined('INDEX_PHP')){
 
 $lang_index_php = array(
-  'welcome' => 'Hoşgeldiniz !',
+  'welcome' => 'HoÅŸgeldiniz !',
 );
 
 $lang_album_admin_menu = array(
-  'confirm_delete' => 'Bu albümü SİLMEK istediğinizden emin misiniz ? \\nBütün resimler ve yorumlar silinmiş olacaktır.', //js-alert //cpg1.3.0
-  'delete' => 'SİL',
-  'modify' => 'ÖZELLİKLER',
-  'edit_pics' => 'RESİMLERİ DÜZENLE', //cpg1.3.0
+  'confirm_delete' => 'Bu albÃ¼mÃ¼ SÄ°LMEK istediÄŸinizden emin misiniz ? \\nBÃ¼tÃ¼n resimler ve yorumlar silinmiÅŸ olacaktÄ±r.', //js-alert //cpg1.3.0
+  'delete' => 'SÄ°L',
+  'modify' => 'Ã–ZELLÄ°KLER',
+  'edit_pics' => 'RESÄ°MLERÄ° DÃœZENLE', //cpg1.3.0
 );
 
 $lang_list_categories = array(
   'home' => 'Ana sayfa',
-  'stat1' => '<b>[pictures]</b> daki resimler <b>[albums]</b> albümler ve <b>[cat]</b> kategoriler <b>[comments]</b> yorumlar gösterildi <b>[views]</b> zaman', //cpg1.3.0
-  'stat2' => '<b>[pictures]</b> daki resimler <b>[albums]</b> albümler gösterildi <b>[views]</b> zaman', //cpg1.3.0
+  'stat1' => '<b>[pictures]</b> daki resimler <b>[albums]</b> albÃ¼mler ve <b>[cat]</b> kategoriler <b>[comments]</b> yorumlar gÃ¶sterildi <b>[views]</b> zaman', //cpg1.3.0
+  'stat2' => '<b>[pictures]</b> daki resimler <b>[albums]</b> albÃ¼mler gÃ¶sterildi <b>[views]</b> zaman', //cpg1.3.0
   'xx_s_gallery' => '%s\'s Geleri',
-  'stat3' => '<b>[pictures]</b> daki resimler <b>[albums]</b> albümler <b>[comments]</b> yorumlar gösterildi <b>[views]</b> zaman', //cpg1.3.0
+  'stat3' => '<b>[pictures]</b> daki resimler <b>[albums]</b> albÃ¼mler <b>[comments]</b> yorumlar gÃ¶sterildi <b>[views]</b> zaman', //cpg1.3.0
 );
 
 $lang_list_users = array(
-  'user_list' => 'Kullanıcı listesi',
-  'no_user_gal' => 'Kullanıcı galerisi yok',
-  'n_albums' => '%s albüm(-ler)',
+  'user_list' => 'KullanÄ±cÄ± listesi',
+  'no_user_gal' => 'KullanÄ±cÄ± galerisi yok',
+  'n_albums' => '%s albÃ¼m(-ler)',
   'n_pics' => '%s resim(-ler)', //cpg1.3.0
 );
 
@@ -833,15 +836,15 @@ $lang_list_albums = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('LOGIN_PHP')) $lang_login_php = array(
-  'login' => 'Giriş',
-  'enter_login_pswd' => 'Giriş yapmak için kullanıcı adınızı ve şifrenizi yazın',
-  'username' => 'Kullanıcı adı',
-  'password' => 'Şifre',
-  'remember_me' => 'Beni hatırla',
-  'welcome' => 'Hoşgeldin %s ...',
-  'err_login' => '*** Giriş yapılamadı! Lütfen tekrar deneyin ***',
-  'err_already_logged_in' => 'Daha önceden giriş yapmışsınız !',
-  'forgot_password_link' => 'Şifremi unuttum', //cpg1.3.0
+  'login' => 'GiriÅŸ',
+  'enter_login_pswd' => 'GiriÅŸ yapmak iÃ§in kullanÄ±cÄ± adÄ±nÄ±zÄ± ve ÅŸifrenizi yazÄ±n',
+  'username' => 'KullanÄ±cÄ± adÄ±',
+  'password' => 'Åifre',
+  'remember_me' => 'Beni hatÄ±rla',
+  'welcome' => 'HoÅŸgeldin %s ...',
+  'err_login' => '*** GiriÅŸ yapÄ±lamadÄ±! LÃ¼tfen tekrar deneyin ***',
+  'err_already_logged_in' => 'Daha Ã¶nceden giriÅŸ yapmÄ±ÅŸsÄ±nÄ±z !',
+  'forgot_password_link' => 'Åifremi unuttum', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -849,9 +852,9 @@ if (defined('LOGIN_PHP')) $lang_login_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('LOGOUT_PHP')) $lang_logout_php = array(
-  'logout' => 'Çıkış',
+  'logout' => 'Ã‡Ä±kÄ±ÅŸ',
   'bye' => 'Bye bye %s ...',
-  'err_not_loged_in' => 'Giriş yapmamışsınız !',
+  'err_not_loged_in' => 'GiriÅŸ yapmamÄ±ÅŸsÄ±nÄ±z !',
 );
 
 // ------------------------------------------------------------------------- //
@@ -869,27 +872,27 @@ if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
-  'upd_alb_n' => 'Güncellenen albüm %s',
+  'upd_alb_n' => 'GÃ¼ncellenen albÃ¼m %s',
   'general_settings' => 'Genel ayarlar',
-  'alb_title' => 'Albüm başlığı',
-  'alb_cat' => 'Albüm kategorisi',
-  'alb_desc' => 'Albüm açıklaması',
-  'alb_thumb' => 'Albüm küçük resmi',
-  'alb_perm' => 'Bu albüm için izinler',
-  'can_view' => 'Albüm tarafından görüntülenebilir',
-  'can_upload' => 'Ziyaretçiler resim yükleyebilirler',
-  'can_post_comments' => 'Ziyaretçiler yorum ekleyebilirler',
-  'can_rate' => 'Ziyaretçiler oy verebilirler',
-  'user_gal' => 'Kullanıcı galerisi',
+  'alb_title' => 'AlbÃ¼m baÅŸlÄ±ÄŸÄ±',
+  'alb_cat' => 'AlbÃ¼m kategorisi',
+  'alb_desc' => 'AlbÃ¼m aÃ§Ä±klamasÄ±',
+  'alb_thumb' => 'AlbÃ¼m kÃ¼Ã§Ã¼k resmi',
+  'alb_perm' => 'Bu albÃ¼m iÃ§in izinler',
+  'can_view' => 'AlbÃ¼m tarafÄ±ndan gÃ¶rÃ¼ntÃ¼lenebilir',
+  'can_upload' => 'ZiyaretÃ§iler resim yÃ¼kleyebilirler',
+  'can_post_comments' => 'ZiyaretÃ§iler yorum ekleyebilirler',
+  'can_rate' => 'ZiyaretÃ§iler oy verebilirler',
+  'user_gal' => 'KullanÄ±cÄ± galerisi',
   'no_cat' => '* Kategori yok *',
-  'alb_empty' => 'Albüm boş',
-  'last_uploaded' => 'Son yüklenenler',
-  'public_alb' => 'Herkes (Herkese açık albüm)',
+  'alb_empty' => 'AlbÃ¼m boÅŸ',
+  'last_uploaded' => 'Son yÃ¼klenenler',
+  'public_alb' => 'Herkes (Herkese aÃ§Ä±k albÃ¼m)',
   'me_only' => 'Sadece ben',
-  'owner_only' => 'Sadece (%s) albüm sahibi',
-  'groupp_only' => ' \'%s\' grubunun üyeleri',
-  'err_no_alb_to_modify' => 'Veritabanında albüm düzenleyemazsiniz.',
-  'update' => 'Albümü güncelle', //cpg1.3.0
+  'owner_only' => 'Sadece (%s) albÃ¼m sahibi',
+  'groupp_only' => ' \'%s\' grubunun Ã¼yeleri',
+  'err_no_alb_to_modify' => 'VeritabanÄ±nda albÃ¼m dÃ¼zenleyemazsiniz.',
+  'update' => 'AlbÃ¼mÃ¼ gÃ¼ncelle', //cpg1.3.0
   'notice1' => '(*)  %sgroups%s ayarlar', //cpg1.3.0 (do not translate %s!)
 );
 
@@ -898,7 +901,7 @@ if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
-  'already_rated' => 'Üzgünüm ama bu resme daha önceden oy verdiniz', //cpg1.3.0
+  'already_rated' => 'ÃœzgÃ¼nÃ¼m ama bu resme daha Ã¶nceden oy verdiniz', //cpg1.3.0
   'rate_ok' => 'Oyunuz kabul edildi',
   'forbidden' => 'Kendi resminize oy veremezsiniz.', //cpg1.3.0
 );
@@ -920,70 +923,70 @@ By clicking 'I agree' below you agree to be bound by these conditions.
 EOT;
 
 $lang_register_php = array(
-  'page_title' => 'Kullanıcı kayıdı',
-  'term_cond' => 'Durumlar ve süreler',
-  'i_agree' => 'Katılıyorum',
-  'submit' => 'Anlaşmayı Yolla',
-  'err_user_exists' => 'Yazdığınız kullanıcı adı bulunamadı, lütfen başka birtane seçin',
-  'err_password_mismatch' => 'İki şifre birbirine uymuyor, lütfen tekrar yazın',
-  'err_uname_short' => 'Kullanıcı dı en az 2 karakterden fazla olmalıdır',
-  'err_password_short' => 'Şifre en az 2 karakterden fazla olmalıdır',
-  'err_uname_pass_diff' => 'Kullanıcı adı ve şifre birbirinden farklı olmalıdır',
-  'err_invalid_email' => 'Email adresi geçersiz',
-  'err_duplicate_email' => 'Başka bir kullanıcı yazdığınız e mail adresini yazmıştır',
-  'enter_info' => 'Kayıt bilgilerini girin',
+  'page_title' => 'KullanÄ±cÄ± kayÄ±dÄ±',
+  'term_cond' => 'Durumlar ve sÃ¼reler',
+  'i_agree' => 'KatÄ±lÄ±yorum',
+  'submit' => 'AnlaÅŸmayÄ± Yolla',
+  'err_user_exists' => 'YazdÄ±ÄŸÄ±nÄ±z kullanÄ±cÄ± adÄ± bulunamadÄ±, lÃ¼tfen baÅŸka birtane seÃ§in',
+  'err_password_mismatch' => 'Ä°ki ÅŸifre birbirine uymuyor, lÃ¼tfen tekrar yazÄ±n',
+  'err_uname_short' => 'KullanÄ±cÄ± dÄ± en az 2 karakterden fazla olmalÄ±dÄ±r',
+  'err_password_short' => 'Åifre en az 2 karakterden fazla olmalÄ±dÄ±r',
+  'err_uname_pass_diff' => 'KullanÄ±cÄ± adÄ± ve ÅŸifre birbirinden farklÄ± olmalÄ±dÄ±r',
+  'err_invalid_email' => 'Email adresi geÃ§ersiz',
+  'err_duplicate_email' => 'BaÅŸka bir kullanÄ±cÄ± yazdÄ±ÄŸÄ±nÄ±z e mail adresini yazmÄ±ÅŸtÄ±r',
+  'enter_info' => 'KayÄ±t bilgilerini girin',
   'required_info' => 'Talep bilgileri',
-  'optional_info' => 'İsteğe bağlı bilgi',
-  'username' => 'Kullanıcı adı',
-  'password' => 'Şifre',
-  'password_again' => 'Şifreyi tekrar yazın',
+  'optional_info' => 'Ä°steÄŸe baÄŸlÄ± bilgi',
+  'username' => 'KullanÄ±cÄ± adÄ±',
+  'password' => 'Åifre',
+  'password_again' => 'Åifreyi tekrar yazÄ±n',
   'email' => 'Email',
   'location' => 'Nereden',
   'interests' => 'Hobiler',
   'website' => 'Web sitesi',
   'occupation' => 'Meslek',
   'error' => 'HATA',
-  'confirm_email_subject' => '%s - Kayıt Doğrulama',
+  'confirm_email_subject' => '%s - KayÄ±t DoÄŸrulama',
   'information' => 'Bilgi',
-  'failed_sending_email' => 'Kayıt doğrulama maili yollanamadı !',
-  'thank_you' => 'Kayıt olduğunuz için teşekkürler.<br /><br />Email adresinize üyeliğinizi aktif etmeniz için bir mail gönderildi.',
-  'acct_created' => 'Üyeliğiniz oluşturuldu ve şimdi siteye girip kullanıcı adınız ve şifrenizle giriş yapabilirsiniz',
-  'acct_active' => 'Üyeliğiniz şu an aktif ve kullanıcı adınızla ve şifrenizle giriş yapabilirsiniz',
-  'acct_already_act' => 'Üyeliğiniz daha önceden aktif edilmiş !',
-  'acct_act_failed' => 'Bu üyelik aktif edilemez !',
-  'err_unk_user' => 'Seçilen kullanıcı bulunamadı !',
+  'failed_sending_email' => 'KayÄ±t doÄŸrulama maili yollanamadÄ± !',
+  'thank_you' => 'KayÄ±t olduÄŸunuz iÃ§in teÅŸekkÃ¼rler.<br /><br />Email adresinize Ã¼yeliÄŸinizi aktif etmeniz iÃ§in bir mail gÃ¶nderildi.',
+  'acct_created' => 'ÃœyeliÄŸiniz oluÅŸturuldu ve ÅŸimdi siteye girip kullanÄ±cÄ± adÄ±nÄ±z ve ÅŸifrenizle giriÅŸ yapabilirsiniz',
+  'acct_active' => 'ÃœyeliÄŸiniz ÅŸu an aktif ve kullanÄ±cÄ± adÄ±nÄ±zla ve ÅŸifrenizle giriÅŸ yapabilirsiniz',
+  'acct_already_act' => 'ÃœyeliÄŸiniz daha Ã¶nceden aktif edilmiÅŸ !',
+  'acct_act_failed' => 'Bu Ã¼yelik aktif edilemez !',
+  'err_unk_user' => 'SeÃ§ilen kullanÄ±cÄ± bulunamadÄ± !',
   'x_s_profile' => '%s\'s profil',
   'group' => 'Grup',
-  'reg_date' => 'Katıldı',
-  'disk_usage' => 'Kullanılan disk',
-  'change_pass' => 'Şifre değiş',
-  'current_pass' => 'Şimdiki şifre',
-  'new_pass' => 'Yeni şifre',
-  'new_pass_again' => 'Yeni şifre tekrarı',
-  'err_curr_pass' => 'Şimdiki şifreniz yanlış',
-  'apply_modif' => 'Değişiklikleri kaydet',
-  'change_pass' => 'Şifremi değiş',
-  'update_success' => 'Profiliniz güncellendi',
-  'pass_chg_success' => 'Şifreniz değişti',
-  'pass_chg_error' => 'Şifreniz değişmedi',
-  'notify_admin_email_subject' => '%s - Kayıt Bildirisi', //cpg1.3.0
-  'notify_admin_email_body' => 'Yeni bi kullanıcı "%s" galerinize kayıt oldu', //cpg1.3.0
+  'reg_date' => 'KatÄ±ldÄ±',
+  'disk_usage' => 'KullanÄ±lan disk',
+  'change_pass' => 'Åifre deÄŸiÅŸ',
+  'current_pass' => 'Åimdiki ÅŸifre',
+  'new_pass' => 'Yeni ÅŸifre',
+  'new_pass_again' => 'Yeni ÅŸifre tekrarÄ±',
+  'err_curr_pass' => 'Åimdiki ÅŸifreniz yanlÄ±ÅŸ',
+  'apply_modif' => 'DeÄŸiÅŸiklikleri kaydet',
+  'change_pass' => 'Åifremi deÄŸiÅŸ',
+  'update_success' => 'Profiliniz gÃ¼ncellendi',
+  'pass_chg_success' => 'Åifreniz deÄŸiÅŸti',
+  'pass_chg_error' => 'Åifreniz deÄŸiÅŸmedi',
+  'notify_admin_email_subject' => '%s - KayÄ±t Bildirisi', //cpg1.3.0
+  'notify_admin_email_body' => 'Yeni bi kullanÄ±cÄ± "%s" galerinize kayÄ±t oldu', //cpg1.3.0
 );
 
 $lang_register_confirm_email = <<<EOT
-{SITE_NAME}e kayıt olduğunuz için teşekkürler.
+{SITE_NAME}e kayÄ±t olduÄŸunuz iÃ§in teÅŸekkÃ¼rler.
 
-Kullanıcı adınız : "{USER_NAME}"
-Şifreniz : "{PASSWORD}"
+KullanÄ±cÄ± adÄ±nÄ±z : "{USER_NAME}"
+Åifreniz : "{PASSWORD}"
 
-Üyeliğinizi aktif etmek için, aşağıdaki linki tıklamalısınız
-ya da web browserınıza copyalayıp yapıştırın.
+ÃœyeliÄŸinizi aktif etmek iÃ§in, aÅŸaÄŸÄ±daki linki tÄ±klamalÄ±sÄ±nÄ±z
+ya da web browserÄ±nÄ±za copyalayÄ±p yapÄ±ÅŸtÄ±rÄ±n.
 
 {ACT_LINK}
 
-Teşekkürler,
+TeÅŸekkÃ¼rler,
 
-{SITE_NAME} yönetimi
+{SITE_NAME} yÃ¶netimi
 
 EOT;
 
@@ -994,13 +997,13 @@ EOT;
 // ------------------------------------------------------------------------- //
 
 if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
-  'title' => 'Yorumları inceleme',
-  'no_comment' => 'İnceleme için bir yorum bulunamadı',
+  'title' => 'YorumlarÄ± inceleme',
+  'no_comment' => 'Ä°nceleme iÃ§in bir yorum bulunamadÄ±',
   'n_comm_del' => '%s yorum(-lar) silindi',
-  'n_comm_disp' => 'Gösterim için yorumların numarası',
+  'n_comm_disp' => 'GÃ¶sterim iÃ§in yorumlarÄ±n numarasÄ±',
   'see_prev' => 'Geriye bak',
-  'see_next' => 'İleriye bak',
-  'del_comm' => 'Seçilen yorumları sil',
+  'see_next' => 'Ä°leriye bak',
+  'del_comm' => 'SeÃ§ilen yorumlarÄ± sil',
 );
 
 
@@ -1018,36 +1021,36 @@ if (defined('SEARCH_PHP')) $lang_search_php = array(
 
 if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
   'page_title' => 'Yeni resimler ara', //cpg1.3.0
-  'select_dir' => 'Klasör seç',
-  'select_dir_msg' => 'Bu fonksiyon size FTP ile sunucunuza resim grubu eklemenize izin verir.<br /><br />Resimlerinizi eklediğiniz klsörü seçin', //cpg1.3.0
-  'no_pic_to_add' => 'Eklemek için resim bulunamadı', //cpg1.3.0
-  'need_one_album' => 'Son olarak Bu fonksiyonu kullanabilmek için bir albüme ihtiyacınız var',
-  'warning' => 'Uyarı',
-  'change_perm' => 'Script bu klasörü yazamaz , modunu resimleri eklemeden önce 755 e vaya 777 ye çevirmeniz gerekir !', //cpg1.3.0
-  'target_album' => '<b>Resimlerini koy &quot;</b>%s<b>&quot; içine </b>%s', //cpg1.3.0
-  'folder' => 'Klasör',
+  'select_dir' => 'KlasÃ¶r seÃ§',
+  'select_dir_msg' => 'Bu fonksiyon size FTP ile sunucunuza resim grubu eklemenize izin verir.<br /><br />Resimlerinizi eklediÄŸiniz klsÃ¶rÃ¼ seÃ§in', //cpg1.3.0
+  'no_pic_to_add' => 'Eklemek iÃ§in resim bulunamadÄ±', //cpg1.3.0
+  'need_one_album' => 'Son olarak Bu fonksiyonu kullanabilmek iÃ§in bir albÃ¼me ihtiyacÄ±nÄ±z var',
+  'warning' => 'UyarÄ±',
+  'change_perm' => 'Script bu klasÃ¶rÃ¼ yazamaz , modunu resimleri eklemeden Ã¶nce 755 e vaya 777 ye Ã§evirmeniz gerekir !', //cpg1.3.0
+  'target_album' => '<b>Resimlerini koy &quot;</b>%s<b>&quot; iÃ§ine </b>%s', //cpg1.3.0
+  'folder' => 'KlasÃ¶r',
   'image' => 'Dosya',
-  'album' => 'Albüm',
-  'result' => 'Sonuç',
-  'dir_ro' => 'Yazılamaz. ',
+  'album' => 'AlbÃ¼m',
+  'result' => 'SonuÃ§',
+  'dir_ro' => 'YazÄ±lamaz. ',
   'dir_cant_read' => 'Okunamaz. ',
   'insert' => 'Galeriye yeni resimler ekleme', //cpg1.3.0
   'list_new_pic' => 'Yeni resimlerin listesi', //cpg1.3.0
-  'insert_selected' => 'Seçilen resimleri ekle', //cpg1.3.0
-  'no_pic_found' => 'Yeni resim bulunamadı', //cpg1.3.0
-  'be_patient' => 'Lütfen sabırlı olun, scriptin resimleri eklemek için zamana ihtiyacı var', //cpg1.3.0
-  'no_album' => 'Albüm seçilmedi',  //cpg1.3.0
+  'insert_selected' => 'SeÃ§ilen resimleri ekle', //cpg1.3.0
+  'no_pic_found' => 'Yeni resim bulunamadÄ±', //cpg1.3.0
+  'be_patient' => 'LÃ¼tfen sabÄ±rlÄ± olun, scriptin resimleri eklemek iÃ§in zamana ihtiyacÄ± var', //cpg1.3.0
+  'no_album' => 'AlbÃ¼m seÃ§ilmedi',  //cpg1.3.0
   'notes' =>  '<ul>'.
-                          '<li><b>OK</b> : anlamı resim başarıyla eklendi'.
-                          '<li><b>DP</b> : anlamı resim aynı ve daha öneceden veri tabanın içinde'.
-                          '<li><b>PB</b> : anlamı resim eklanamedi, biçiminizi ve resimlerin nerede kloasör izninine sahip olduğunuzu konyrol ediniz'.
-                          '<li><b>NA</b> : anlamı resime gidebilmek için bir albüm seçmediniz, \' <a href="javascript:history.back(1)">geriye gidin</a>\' ve bir albüm seçin. Eğer albümünüz yoksa<a href="albmgr.php">birtane oluşturun</a></li>'.
-                          '<li>Eğer TAMAM, DP, PB \'signs\' gözükmüyorsa hata görmemek için resme tıklayın'.
-                          '<li>Eğer browserınız timeout ise, tekrar yükle butonunu tıklayınız'.
+                          '<li><b>OK</b> : anlamÄ± resim baÅŸarÄ±yla eklendi'.
+                          '<li><b>DP</b> : anlamÄ± resim aynÄ± ve daha Ã¶neceden veri tabanÄ±n iÃ§inde'.
+                          '<li><b>PB</b> : anlamÄ± resim eklanamedi, biÃ§iminizi ve resimlerin nerede kloasÃ¶r izninine sahip olduÄŸunuzu konyrol ediniz'.
+                          '<li><b>NA</b> : anlamÄ± resime gidebilmek iÃ§in bir albÃ¼m seÃ§mediniz, \' <a href="javascript:history.back(1)">geriye gidin</a>\' ve bir albÃ¼m seÃ§in. EÄŸer albÃ¼mÃ¼nÃ¼z yoksa<a href="albmgr.php">birtane oluÅŸturun</a></li>'.
+                          '<li>EÄŸer TAMAM, DP, PB \'signs\' gÃ¶zÃ¼kmÃ¼yorsa hata gÃ¶rmemek iÃ§in resme tÄ±klayÄ±n'.
+                          '<li>EÄŸer browserÄ±nÄ±z timeout ise, tekrar yÃ¼kle butonunu tÄ±klayÄ±nÄ±z'.
                           '</ul>', //cpg1.3.0
-  'select_album' => 'albüm seç', //cpg1.3.0
-  'check_all' => 'Tümünü kontrol et', //cpg1.3.0
-  'uncheck_all' => 'Tümünü kontrol etme', //cpg1.3.0
+  'select_album' => 'albÃ¼m seÃ§', //cpg1.3.0
+  'check_all' => 'TÃ¼mÃ¼nÃ¼ kontrol et', //cpg1.3.0
+  'uncheck_all' => 'TÃ¼mÃ¼nÃ¼ kontrol etme', //cpg1.3.0
 );
 
 
@@ -1062,20 +1065,20 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('BANNING_PHP')) $lang_banning_php = array(
-  'title' => 'Kullanıcıları banla',
-  'user_name' => 'Kullanıcı Adı',
+  'title' => 'KullanÄ±cÄ±larÄ± banla',
+  'user_name' => 'KullanÄ±cÄ± AdÄ±',
   'ip_address' => 'IP Adresi',
-  'expiry' => 'Süresi dolanlar (Sürekli ise boş bırak)',
-  'edit_ban' => 'Değişiklikleri kaydet',
+  'expiry' => 'SÃ¼resi dolanlar (SÃ¼rekli ise boÅŸ bÄ±rak)',
+  'edit_ban' => 'DeÄŸiÅŸiklikleri kaydet',
   'delete_ban' => 'Sil',
   'add_new' => 'Yeni ban ekle',
   'add_ban' => 'Ekle',
-  'error_user' => 'Kullanıcı bulunamadı', //cpg1.3.0
-  'error_specify' => 'Kullanıcı adını veya IP edresini açıkça belirtin', //cpg1.3.0
-  'error_ban_id' => 'Geçersiz ID!', //cpg1.3.0
-  'error_admin_ban' => 'Kendini banlayamazsın!', //cpg1.3.0
-  'error_server_ban' => 'Sunucunu banlayacaksın? Tsk tsk, Bunu yapamazsın...', //cpg1.3.0
-  'error_ip_forbidden' => 'Bu IP adresini banlayamazsın - Dokunulmazlığı var!', //cpg1.3.0
+  'error_user' => 'KullanÄ±cÄ± bulunamadÄ±', //cpg1.3.0
+  'error_specify' => 'KullanÄ±cÄ± adÄ±nÄ± veya IP edresini aÃ§Ä±kÃ§a belirtin', //cpg1.3.0
+  'error_ban_id' => 'GeÃ§ersiz ID!', //cpg1.3.0
+  'error_admin_ban' => 'Kendini banlayamazsÄ±n!', //cpg1.3.0
+  'error_server_ban' => 'Sunucunu banlayacaksÄ±n? Tsk tsk, Bunu yapamazsÄ±n...', //cpg1.3.0
+  'error_ip_forbidden' => 'Bu IP adresini banlayamazsÄ±n - DokunulmazlÄ±ÄŸÄ± var!', //cpg1.3.0
   'lookup_ip' => 'IP adresi bak', //cpg1.3.0
   'submit' => 'git!', //cpg1.3.0
 );
@@ -1086,75 +1089,75 @@ if (defined('BANNING_PHP')) $lang_banning_php = array(
 
 if (defined('UPLOAD_PHP')) $lang_upload_php = array(
   'title' => 'Upload file', //cpg1.3.0
-  'custom_title' => 'Talep Formu Düzenleme', //cpg1.3.0
-  'cust_instr_1' => 'Yükleme kutularının numarasını seçebilirisin. Bununla birlikte, Aşağıda listelenen limitin üstünde seçim yapamzsınız.', //cpg1.3.0
-  'cust_instr_2' => 'Kutu numarası talebi', //cpg1.3.0
-  'cust_instr_3' => 'Resim yükleme kutuları: %s', //cpg1.3.0
-  'cust_instr_4' => 'URI/URL yükleme kutulrı: %s', //cpg1.3.0
-  'cust_instr_5' => 'URI/URL yükleme kutuları:', //cpg1.3.0
-  'cust_instr_6' => 'Resim yükleme kutuları:', //cpg1.3.0
-  'cust_instr_7' => 'Lütfen istediğiniz yükleme kutusunun numarasını girin.  sonra tıklayın \'Continue\'. ', //cpg1.3.0
-  'reg_instr_1' => 'Forum aluşumunda geçersiz durum.', //cpg1.3.0
-  'reg_instr_2' => 'Şidi aşağıda kullanılan yükleme kutularından resimlerinizi yükleyebilirsiniz. Sunucuya yüklediğiniz resimler boyutu aşmamalıdır ve herbiri için %s KB olmalıdır. ZIP resimleri \'File Upload\' e yüklendi ve  \'URI/URL Upload\' bölümleri sıkışmış olarak kalacaktır.', //cpg1.3.0
-  'reg_instr_3' => 'Eğer sıkıştırılmış resimleri açmak istiyorsanız, \'Decompressive ZIP Upload\' daki yükleme kutusunu kullanmalısınız.', //cpg1.3.0
-  'reg_instr_4' => 'URI/URL yükleme seçeneklerini kullandığınız zaman, lütfen örnekteki gibi: http://www.mysite.com/images/example.jpg yol verin', //cpg1.3.0
-  'reg_instr_5' => 'Formu tamamladığınızda, lütfen tıklayın \'Continue\'.', //cpg1.3.0
-  'reg_instr_6' => 'Zipli dosyaları açma:', //cpg1.3.0
-  'reg_instr_7' => 'Resim yüklemeleri:', //cpg1.3.0
-  'reg_instr_8' => 'URI/URL Yüklemeleri:', //cpg1.3.0
+  'custom_title' => 'Talep Formu DÃ¼zenleme', //cpg1.3.0
+  'cust_instr_1' => 'YÃ¼kleme kutularÄ±nÄ±n numarasÄ±nÄ± seÃ§ebilirisin. Bununla birlikte, AÅŸaÄŸÄ±da listelenen limitin Ã¼stÃ¼nde seÃ§im yapamzsÄ±nÄ±z.', //cpg1.3.0
+  'cust_instr_2' => 'Kutu numarasÄ± talebi', //cpg1.3.0
+  'cust_instr_3' => 'Resim yÃ¼kleme kutularÄ±: %s', //cpg1.3.0
+  'cust_instr_4' => 'URI/URL yÃ¼kleme kutulrÄ±: %s', //cpg1.3.0
+  'cust_instr_5' => 'URI/URL yÃ¼kleme kutularÄ±:', //cpg1.3.0
+  'cust_instr_6' => 'Resim yÃ¼kleme kutularÄ±:', //cpg1.3.0
+  'cust_instr_7' => 'LÃ¼tfen istediÄŸiniz yÃ¼kleme kutusunun numarasÄ±nÄ± girin.  sonra tÄ±klayÄ±n \'Continue\'. ', //cpg1.3.0
+  'reg_instr_1' => 'Forum aluÅŸumunda geÃ§ersiz durum.', //cpg1.3.0
+  'reg_instr_2' => 'Åidi aÅŸaÄŸÄ±da kullanÄ±lan yÃ¼kleme kutularÄ±ndan resimlerinizi yÃ¼kleyebilirsiniz. Sunucuya yÃ¼klediÄŸiniz resimler boyutu aÅŸmamalÄ±dÄ±r ve herbiri iÃ§in %s KB olmalÄ±dÄ±r. ZIP resimleri \'File Upload\' e yÃ¼klendi ve  \'URI/URL Upload\' bÃ¶lÃ¼mleri sÄ±kÄ±ÅŸmÄ±ÅŸ olarak kalacaktÄ±r.', //cpg1.3.0
+  'reg_instr_3' => 'EÄŸer sÄ±kÄ±ÅŸtÄ±rÄ±lmÄ±ÅŸ resimleri aÃ§mak istiyorsanÄ±z, \'Decompressive ZIP Upload\' daki yÃ¼kleme kutusunu kullanmalÄ±sÄ±nÄ±z.', //cpg1.3.0
+  'reg_instr_4' => 'URI/URL yÃ¼kleme seÃ§eneklerini kullandÄ±ÄŸÄ±nÄ±z zaman, lÃ¼tfen Ã¶rnekteki gibi: http://www.mysite.com/images/example.jpg yol verin', //cpg1.3.0
+  'reg_instr_5' => 'Formu tamamladÄ±ÄŸÄ±nÄ±zda, lÃ¼tfen tÄ±klayÄ±n \'Continue\'.', //cpg1.3.0
+  'reg_instr_6' => 'Zipli dosyalarÄ± aÃ§ma:', //cpg1.3.0
+  'reg_instr_7' => 'Resim yÃ¼klemeleri:', //cpg1.3.0
+  'reg_instr_8' => 'URI/URL YÃ¼klemeleri:', //cpg1.3.0
   'error_report' => 'Hata raporu', //cpg1.3.0
-  'error_instr' => 'Takip edilen yükleme karşılaştırma hataları:', //cpg1.3.0
-  'file_name_url' => 'Resim Adı/URL', //cpg1.3.0
-  'error_message' => 'Hata Mesajı', //cpg1.3.0
-  'no_post' => 'Resim yüklenemedi.', //cpg1.3.0
-  'forb_ext' => 'Resim büyütmek yasaktır.', //cpg1.3.0
-  'exc_php_ini' => 'php.ini de izinverilen dasya boyutu aşıldı.', //cpg1.3.0
-  'exc_file_size' => 'CPG tarafından izin verilen dosya boyutu aşıldı.', //cpg1.3.0
-  'partial_upload' => 'Sadece kısmi yükleme.', //cpg1.3.0
-  'no_upload' => 'Yükleme yok.', //cpg1.3.0
-  'unknown_code' => 'Bilinmeyen PHP yükleme hata kodu.', //cpg1.3.0
-  'no_temp_name' => 'Yükleme yok - Temp adı yok.', //cpg1.3.0
-  'no_file_size' => 'İçerilen veri bulunamadı/Bozulmuş', //cpg1.3.0
-  'impossible' => 'Hareket etmek imkansız.', //cpg1.3.0
-  'not_image' => 'İmaj notu/bozma', //cpg1.3.0
-  'not_GD' => 'GD genişletme değil.', //cpg1.3.0
-  'pixel_allowance' => 'Piksel izini aşıldı.', //cpg1.3.0
-  'incorrect_prefix' => 'Yanlış URI/URL ', //cpg1.3.0
-  'could_not_open_URI' => 'URI açılamadı.', //cpg1.3.0
-  'unsafe_URI' => 'Güvenlik kanıtlanamadı.', //cpg1.3.0
-  'meta_data_failure' => 'Meta verisi başarısız', //cpg1.3.0
+  'error_instr' => 'Takip edilen yÃ¼kleme karÅŸÄ±laÅŸtÄ±rma hatalarÄ±:', //cpg1.3.0
+  'file_name_url' => 'Resim AdÄ±/URL', //cpg1.3.0
+  'error_message' => 'Hata MesajÄ±', //cpg1.3.0
+  'no_post' => 'Resim yÃ¼klenemedi.', //cpg1.3.0
+  'forb_ext' => 'Resim bÃ¼yÃ¼tmek yasaktÄ±r.', //cpg1.3.0
+  'exc_php_ini' => 'php.ini de izinverilen dasya boyutu aÅŸÄ±ldÄ±.', //cpg1.3.0
+  'exc_file_size' => 'CPG tarafÄ±ndan izin verilen dosya boyutu aÅŸÄ±ldÄ±.', //cpg1.3.0
+  'partial_upload' => 'Sadece kÄ±smi yÃ¼kleme.', //cpg1.3.0
+  'no_upload' => 'YÃ¼kleme yok.', //cpg1.3.0
+  'unknown_code' => 'Bilinmeyen PHP yÃ¼kleme hata kodu.', //cpg1.3.0
+  'no_temp_name' => 'YÃ¼kleme yok - Temp adÄ± yok.', //cpg1.3.0
+  'no_file_size' => 'Ä°Ã§erilen veri bulunamadÄ±/BozulmuÅŸ', //cpg1.3.0
+  'impossible' => 'Hareket etmek imkansÄ±z.', //cpg1.3.0
+  'not_image' => 'Ä°maj notu/bozma', //cpg1.3.0
+  'not_GD' => 'GD geniÅŸletme deÄŸil.', //cpg1.3.0
+  'pixel_allowance' => 'Piksel izini aÅŸÄ±ldÄ±.', //cpg1.3.0
+  'incorrect_prefix' => 'YanlÄ±ÅŸ URI/URL ', //cpg1.3.0
+  'could_not_open_URI' => 'URI aÃ§Ä±lamadÄ±.', //cpg1.3.0
+  'unsafe_URI' => 'GÃ¼venlik kanÄ±tlanamadÄ±.', //cpg1.3.0
+  'meta_data_failure' => 'Meta verisi baÅŸarÄ±sÄ±z', //cpg1.3.0
   'http_401' => '401 Yetkisiz', //cpg1.3.0
-  'http_402' => '402 Ödeme gerekli', //cpg1.3.0
+  'http_402' => '402 Ã–deme gerekli', //cpg1.3.0
   'http_403' => '403 Yasak', //cpg1.3.0
-  'http_404' => '404 Bulunamadı', //cpg1.3.0
-  'http_500' => '500 Sunucu hatası', //cpg1.3.0
-  'http_503' => '503 Servis bulunamadı', //cpg1.3.0
+  'http_404' => '404 BulunamadÄ±', //cpg1.3.0
+  'http_500' => '500 Sunucu hatasÄ±', //cpg1.3.0
+  'http_503' => '503 Servis bulunamadÄ±', //cpg1.3.0
   'MIME_extraction_failure' => 'MIME belirtilemedi.', //cpg1.3.0
-  'MIME_type_unknown' => 'Bilinmeyen MIME türü', //cpg1.3.0
-  'cant_create_write' => 'Yazı dosyası oluşturulamadı.', //cpg1.3.0
-  'not_writable' => 'Yazı dosyası yazamazsınız.', //cpg1.3.0
+  'MIME_type_unknown' => 'Bilinmeyen MIME tÃ¼rÃ¼', //cpg1.3.0
+  'cant_create_write' => 'YazÄ± dosyasÄ± oluÅŸturulamadÄ±.', //cpg1.3.0
+  'not_writable' => 'YazÄ± dosyasÄ± yazamazsÄ±nÄ±z.', //cpg1.3.0
   'cant_read_URI' => 'URI/URL okunamaz', //cpg1.3.0
-  'cant_open_write_file' => 'URI yazma dosyası açılamadı.', //cpg1.3.0
-  'cant_write_write_file' => 'URI yazma dosyasına yazamazsınız.', //cpg1.3.0
-  'cant_unzip' => 'Uzip yapamazsınız.', //cpg1.3.0
+  'cant_open_write_file' => 'URI yazma dosyasÄ± aÃ§Ä±lamadÄ±.', //cpg1.3.0
+  'cant_write_write_file' => 'URI yazma dosyasÄ±na yazamazsÄ±nÄ±z.', //cpg1.3.0
+  'cant_unzip' => 'Uzip yapamazsÄ±nÄ±z.', //cpg1.3.0
   'unknown' => 'Bilinmeyen hata', //cpg1.3.0
-  'succ' => 'Başarılı Yüklemeler', //cpg1.3.0
-  'success' => '%s yüklemesi başarılı.', //cpg1.3.0
-  'add' => 'Lütfen albüme resim eklemek için tıklayın \'Continue\' .', //cpg1.3.0
-  'failure' => 'Yükleme başarısız', //cpg1.3.0
+  'succ' => 'BaÅŸarÄ±lÄ± YÃ¼klemeler', //cpg1.3.0
+  'success' => '%s yÃ¼klemesi baÅŸarÄ±lÄ±.', //cpg1.3.0
+  'add' => 'LÃ¼tfen albÃ¼me resim eklemek iÃ§in tÄ±klayÄ±n \'Continue\' .', //cpg1.3.0
+  'failure' => 'YÃ¼kleme baÅŸarÄ±sÄ±z', //cpg1.3.0
   'f_info' => 'Resim bilgisi', //cpg1.3.0
-  'no_place' => 'Önceki resim yerleştirilemedi.', //cpg1.3.0
-  'yes_place' => 'Önceki resim başarıyla yerleştirildi.', //cpg1.3.0
+  'no_place' => 'Ã–nceki resim yerleÅŸtirilemedi.', //cpg1.3.0
+  'yes_place' => 'Ã–nceki resim baÅŸarÄ±yla yerleÅŸtirildi.', //cpg1.3.0
   'max_fsize' => 'Maksimum resim boyutu %s KB',
-  'album' => 'Albüm',
+  'album' => 'AlbÃ¼m',
   'picture' => 'Resim', //cpg1.3.0
-  'pic_title' => 'Resim başlığı', //cpg1.3.0
-  'description' => 'Resim açıklaması', //cpg1.3.0
-  'keywords' => 'Anahtar kelimeler (aralarına boluk bırakınız)',
-  'err_no_alb_uploadables' => 'Üzgünüm Yaptığınız yüklemelerde albüm bulunamadı', //cpg1.3.0
-  'place_instr_1' => 'Lütfen resimleri yerleştirin.  Her resim için gerekli bilgiyi girin.', //cpg1.3.0
-  'place_instr_2' => 'Daha fazla resim alana ihtiyaç duyar. Lütfen tıklayın \'Continue\'.', //cpg1.3.0
-  'process_complete' => 'Başarıyla bütün resimleri yerleştirdiniz.', //cpg1.3.0
+  'pic_title' => 'Resim baÅŸlÄ±ÄŸÄ±', //cpg1.3.0
+  'description' => 'Resim aÃ§Ä±klamasÄ±', //cpg1.3.0
+  'keywords' => 'Anahtar kelimeler (aralarÄ±na boluk bÄ±rakÄ±nÄ±z)',
+  'err_no_alb_uploadables' => 'ÃœzgÃ¼nÃ¼m YaptÄ±ÄŸÄ±nÄ±z yÃ¼klemelerde albÃ¼m bulunamadÄ±', //cpg1.3.0
+  'place_instr_1' => 'LÃ¼tfen resimleri yerleÅŸtirin.  Her resim iÃ§in gerekli bilgiyi girin.', //cpg1.3.0
+  'place_instr_2' => 'Daha fazla resim alana ihtiyaÃ§ duyar. LÃ¼tfen tÄ±klayÄ±n \'Continue\'.', //cpg1.3.0
+  'process_complete' => 'BaÅŸarÄ±yla bÃ¼tÃ¼n resimleri yerleÅŸtirdiniz.', //cpg1.3.0
 );
 
 // ------------------------------------------------------------------------- //
@@ -1162,49 +1165,49 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
-  'title' => 'Kullanıcıları yönet',
-  'name_a' => 'Ada göre artan',
-  'name_d' => 'Ada göre azalan',
-  'group_a' => 'Gruba göre artan',
-  'group_d' => 'Gruba göre azalan',
-  'reg_a' => 'Rege göre artan',
-  'reg_d' => 'Rege göre azalan',
-  'pic_a' => 'Resim içeriğine göre artan',
-  'pic_d' => 'Resim içeriğine göre azalan',
-  'disku_a' => 'Disk kullanımına göreartan',
-  'disku_d' => 'Disk kullanımına göre azalan',
-  'lv_a' => 'Son ziyarete göre artan', //cpg1.3.0
-  'lv_d' => 'Son ziyarete göreazalan', //cpg1.3.0
-  'sort_by' => 'kullanıcıları sırala',
-  'err_no_users' => 'Kullanıcı çizelgesi boş !',
-  'err_edit_self' => 'Kendi profilinizi düzeltemezsiniz,  \'My profile\' linkini kullanın',
-  'edit' => 'DÜZELT',
-  'delete' => 'SİL',
-  'name' => 'Kullanıcı adı',
+  'title' => 'KullanÄ±cÄ±larÄ± yÃ¶net',
+  'name_a' => 'Ada gÃ¶re artan',
+  'name_d' => 'Ada gÃ¶re azalan',
+  'group_a' => 'Gruba gÃ¶re artan',
+  'group_d' => 'Gruba gÃ¶re azalan',
+  'reg_a' => 'Rege gÃ¶re artan',
+  'reg_d' => 'Rege gÃ¶re azalan',
+  'pic_a' => 'Resim iÃ§eriÄŸine gÃ¶re artan',
+  'pic_d' => 'Resim iÃ§eriÄŸine gÃ¶re azalan',
+  'disku_a' => 'Disk kullanÄ±mÄ±na gÃ¶reartan',
+  'disku_d' => 'Disk kullanÄ±mÄ±na gÃ¶re azalan',
+  'lv_a' => 'Son ziyarete gÃ¶re artan', //cpg1.3.0
+  'lv_d' => 'Son ziyarete gÃ¶reazalan', //cpg1.3.0
+  'sort_by' => 'kullanÄ±cÄ±larÄ± sÄ±rala',
+  'err_no_users' => 'KullanÄ±cÄ± Ã§izelgesi boÅŸ !',
+  'err_edit_self' => 'Kendi profilinizi dÃ¼zeltemezsiniz,  \'My profile\' linkini kullanÄ±n',
+  'edit' => 'DÃœZELT',
+  'delete' => 'SÄ°L',
+  'name' => 'KullanÄ±cÄ± adÄ±',
   'group' => 'Grup',
   'inactive' => 'Inaktif',
-  'operations' => 'İşlemler',
+  'operations' => 'Ä°ÅŸlemler',
   'pictures' => 'Resimler', //cpg1.3.0
-  'disk_space' => 'Alan kulanıldı / kontenjan',
-  'registered_on' => 'Kayıt ol',
+  'disk_space' => 'Alan kulanÄ±ldÄ± / kontenjan',
+  'registered_on' => 'KayÄ±t ol',
   'last_visit' => 'Son ziyaret edilen', //cpg1.3.0
-  'u_user_on_p_pages' => '%d kullanıcılar %d sayfa(-lar)da',
-  'confirm_del' => 'Bu kullanıcıyı silmek istediğinizden emin misiniz? \\nOnun büyünresimleri ve albümleri silinecek.', //js-alert //cpg1.3.0
-  'mail' => 'MAİL',
-  'err_unknown_user' => 'Seçilen kullanıcı bulunamadı !',
-  'modify_user' => 'Kullanıcıyı düzenle',
+  'u_user_on_p_pages' => '%d kullanÄ±cÄ±lar %d sayfa(-lar)da',
+  'confirm_del' => 'Bu kullanÄ±cÄ±yÄ± silmek istediÄŸinizden emin misiniz? \\nOnun bÃ¼yÃ¼nresimleri ve albÃ¼mleri silinecek.', //js-alert //cpg1.3.0
+  'mail' => 'MAÄ°L',
+  'err_unknown_user' => 'SeÃ§ilen kullanÄ±cÄ± bulunamadÄ± !',
+  'modify_user' => 'KullanÄ±cÄ±yÄ± dÃ¼zenle',
   'notes' => 'Notlar',
-  'note_list' => '<li>Şimdiki şifreni değiştirmek istemiyorsan, "şifre" alanını boş bırakınız',
-  'password' => 'Şifre',
-  'user_active' => 'Kullanıcı Aktif',
-  'user_group' => 'Kullanıcı grubu',
-  'user_email' => 'Kullanıcı emaili',
-  'user_web_site' => 'Kullanıcı web sitesi',
-  'create_new_user' => 'Yeni kullanıcı oluştur',
-  'user_location' => 'Kullanıcı yeri',
-  'user_interests' => 'Kullanıcı hobileri',
-  'user_occupation' => 'Kullanıcı mesleği',
-  'latest_upload' => 'Yakınlardaki yüklemeler', //cpg1.3.0
+  'note_list' => '<li>Åimdiki ÅŸifreni deÄŸiÅŸtirmek istemiyorsan, "ÅŸifre" alanÄ±nÄ± boÅŸ bÄ±rakÄ±nÄ±z',
+  'password' => 'Åifre',
+  'user_active' => 'KullanÄ±cÄ± Aktif',
+  'user_group' => 'KullanÄ±cÄ± grubu',
+  'user_email' => 'KullanÄ±cÄ± emaili',
+  'user_web_site' => 'KullanÄ±cÄ± web sitesi',
+  'create_new_user' => 'Yeni kullanÄ±cÄ± oluÅŸtur',
+  'user_location' => 'KullanÄ±cÄ± yeri',
+  'user_interests' => 'KullanÄ±cÄ± hobileri',
+  'user_occupation' => 'KullanÄ±cÄ± mesleÄŸi',
+  'latest_upload' => 'YakÄ±nlardaki yÃ¼klemeler', //cpg1.3.0
   'never' => 'asla', //cpg1.3.0
 );
 
@@ -1213,59 +1216,59 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('UTIL_PHP')) $lang_util_php = array(
-  'title' => 'Admin İşlevleri (Resimleri yeniden boyutlandır)', //cpg1.3.0
+  'title' => 'Admin Ä°ÅŸlevleri (Resimleri yeniden boyutlandÄ±r)', //cpg1.3.0
   'what_it_does' => 'Ne yapar',
-  'what_update_titles' => 'Resim adından güncelleme başlıkları',
-  'what_delete_title' => 'Başlıkları siler',
-  'what_rebuild' => 'Küçük resimleri ve yeniden boyutlanmış fotoğrafları yeniden oluşturur',
-  'what_delete_originals' => 'Yeniden boyutlanma versiyonu ile fotoğrafları orjinal boyutlarını siler',
+  'what_update_titles' => 'Resim adÄ±ndan gÃ¼ncelleme baÅŸlÄ±klarÄ±',
+  'what_delete_title' => 'BaÅŸlÄ±klarÄ± siler',
+  'what_rebuild' => 'KÃ¼Ã§Ã¼k resimleri ve yeniden boyutlanmÄ±ÅŸ fotoÄŸraflarÄ± yeniden oluÅŸturur',
+  'what_delete_originals' => 'Yeniden boyutlanma versiyonu ile fotoÄŸraflarÄ± orjinal boyutlarÄ±nÄ± siler',
   'file' => 'Resim',
-  'title_set_to' => 'ayarlama için başlık',
-  'submit_form' => 'gönder',
-  'updated_succesfully' => 'Güncelleme başarılı',
-  'error_create' => 'Oluşturmada HATA',
-  'continue' => 'daha fazla görüntü',
-  'main_success' => 'Resim %s ana dosyada kullanılıyor', //cpg1.3.0
-  'error_rename' => ' %s  %s ye yeni adlandırmada hata ',
-  'error_not_found' => 'Resim %s bulunamadı',
-  'back' => 'ana sayfaya dön',
-  'thumbs_wait' => 'Küçük resimler ve/veya yeniden boyutlanan resimler Güncelleniyor, lütfen bekliyor...',
-  'thumbs_continue_wait' => 'Küçük resimleri ve/veya yeniden boyutlanan resimleri gücelleme devam ediyor...',
-  'titles_wait' => 'Başlıklar güncelleniyor, Lütfen bekleyin...',
-  'delete_wait' => 'Başlılar siliniyor, lütfen bekleiyin...',
-  'replace_wait' => 'Orjinal resimler yeniden boyutlanana resimler ile orjinal halde siliniyor, lütfen bekleyin..',
-  'instruction' => 'Hızlı talimat',
-  'instruction_action' => 'İşlem seç',
+  'title_set_to' => 'ayarlama iÃ§in baÅŸlÄ±k',
+  'submit_form' => 'gÃ¶nder',
+  'updated_succesfully' => 'GÃ¼ncelleme baÅŸarÄ±lÄ±',
+  'error_create' => 'OluÅŸturmada HATA',
+  'continue' => 'daha fazla gÃ¶rÃ¼ntÃ¼',
+  'main_success' => 'Resim %s ana dosyada kullanÄ±lÄ±yor', //cpg1.3.0
+  'error_rename' => ' %s  %s ye yeni adlandÄ±rmada hata ',
+  'error_not_found' => 'Resim %s bulunamadÄ±',
+  'back' => 'ana sayfaya dÃ¶n',
+  'thumbs_wait' => 'KÃ¼Ã§Ã¼k resimler ve/veya yeniden boyutlanan resimler GÃ¼ncelleniyor, lÃ¼tfen bekliyor...',
+  'thumbs_continue_wait' => 'KÃ¼Ã§Ã¼k resimleri ve/veya yeniden boyutlanan resimleri gÃ¼celleme devam ediyor...',
+  'titles_wait' => 'BaÅŸlÄ±klar gÃ¼ncelleniyor, LÃ¼tfen bekleyin...',
+  'delete_wait' => 'BaÅŸlÄ±lar siliniyor, lÃ¼tfen bekleiyin...',
+  'replace_wait' => 'Orjinal resimler yeniden boyutlanana resimler ile orjinal halde siliniyor, lÃ¼tfen bekleyin..',
+  'instruction' => 'HÄ±zlÄ± talimat',
+  'instruction_action' => 'Ä°ÅŸlem seÃ§',
   'instruction_parameter' => 'Parametreleri ayarla',
-  'instruction_album' => 'Albüm seç',
+  'instruction_album' => 'AlbÃ¼m seÃ§',
   'instruction_press' => 'Bas %s',
-  'update' => 'Küçük resimleri ve/veya yeniden boyutlandırılan resimler güncelleniyor',
-  'update_what' => 'Ne güncellenmeli',
-  'update_thumb' => 'Sadece küçük resimler',
-  'update_pic' => 'Sadece yeniden boyutlandırılan resimler',
-  'update_both' => 'Küçük resimler ve yeniden boyutlandırılan reimler',
-  'update_number' => 'Resimleri tılama sürecini numaralandır',
-  'update_option' => '(Bu tecihi azaltma ayarlarını deneyin eğer timeout problemlerinde tecrübeliysen)',
-  'filename_title' => 'Resim adı &rArr; Resim başlığı', //cpg1.3.0
-  'filename_how' => 'Resim adı nasıl düzenlenmeli',
-  'filename_remove' => ' .jpg sonlandırmasından ayrıl ve boşlulklarla yerine _ (alt tire) ekle ',
-  'filename_euro' => '2003_11_23_13_20_20.jpg ği  23/11/2003 13:20 ğe çevir',
-  'filename_us' => '2003_11_23_13_20_20.jpg ği  23/11/2003 13:20 ğe çevir',
-  'filename_time' => '2003_11_23_13_20_20.jpg ği  13:20 e çevir',
-  'delete' => 'Resim adlarını yada orjinal forğraf boyutlarını sil', //cpg1.3.0
-  'delete_title' => 'Resim başlıklarını sil', //cpg1.3.0
-  'delete_original' => 'Orjinal foroğraf boyutlarını sil',
-  'delete_replace' => 'Yeniden boyutlanma versiyonu ile fotoğrafları orjinal boyutlarını siler',
-  'select_album' => 'Albüm seç',
-  'delete_orphans' => 'Yorumları sil (bütün albümlerin üzerinde çalışır)', //cpg1.3.0
+  'update' => 'KÃ¼Ã§Ã¼k resimleri ve/veya yeniden boyutlandÄ±rÄ±lan resimler gÃ¼ncelleniyor',
+  'update_what' => 'Ne gÃ¼ncellenmeli',
+  'update_thumb' => 'Sadece kÃ¼Ã§Ã¼k resimler',
+  'update_pic' => 'Sadece yeniden boyutlandÄ±rÄ±lan resimler',
+  'update_both' => 'KÃ¼Ã§Ã¼k resimler ve yeniden boyutlandÄ±rÄ±lan reimler',
+  'update_number' => 'Resimleri tÄ±lama sÃ¼recini numaralandÄ±r',
+  'update_option' => '(Bu tecihi azaltma ayarlarÄ±nÄ± deneyin eÄŸer timeout problemlerinde tecrÃ¼beliysen)',
+  'filename_title' => 'Resim adÄ± &rArr; Resim baÅŸlÄ±ÄŸÄ±', //cpg1.3.0
+  'filename_how' => 'Resim adÄ± nasÄ±l dÃ¼zenlenmeli',
+  'filename_remove' => ' .jpg sonlandÄ±rmasÄ±ndan ayrÄ±l ve boÅŸlulklarla yerine _ (alt tire) ekle ',
+  'filename_euro' => '2003_11_23_13_20_20.jpg ÄŸi  23/11/2003 13:20 ÄŸe Ã§evir',
+  'filename_us' => '2003_11_23_13_20_20.jpg ÄŸi  23/11/2003 13:20 ÄŸe Ã§evir',
+  'filename_time' => '2003_11_23_13_20_20.jpg ÄŸi  13:20 e Ã§evir',
+  'delete' => 'Resim adlarÄ±nÄ± yada orjinal forÄŸraf boyutlarÄ±nÄ± sil', //cpg1.3.0
+  'delete_title' => 'Resim baÅŸlÄ±klarÄ±nÄ± sil', //cpg1.3.0
+  'delete_original' => 'Orjinal foroÄŸraf boyutlarÄ±nÄ± sil',
+  'delete_replace' => 'Yeniden boyutlanma versiyonu ile fotoÄŸraflarÄ± orjinal boyutlarÄ±nÄ± siler',
+  'select_album' => 'AlbÃ¼m seÃ§',
+  'delete_orphans' => 'YorumlarÄ± sil (bÃ¼tÃ¼n albÃ¼mlerin Ã¼zerinde Ã§alÄ±ÅŸÄ±r)', //cpg1.3.0
   'orphan_comment' => 'Yorumlar bulundu', //cpg1.3.0
   'delete' => 'Sil', //cpg1.3.0
-  'delete_all' => 'Tümünü sil', //cpg1.3.0
+  'delete_all' => 'TÃ¼mÃ¼nÃ¼ sil', //cpg1.3.0
   'comment' => 'Yorum: ', //cpg1.3.0
   'nonexist' => 'attached to non existant file # ', //cpg1.3.0
-  'phpinfo' => 'phpinfo gösterimi', //cpg1.3.0
-  'update_db' => 'Veritabanını güncelle', //cpg1.3.0
-  'update_db_explanation' => 'Eğer coppermine resimlerini tekrar yerleştirmek istiyorsan, değişiklik eklendi yada copperminenin önceki versiyonundan yüklendiğini, veritabanın güncellendiğinden emin ol. Bu gerekli çizelgeleri ve/veya seçenekleri coppermine veri tabanında değerlendirir.', //cpg1.3.0
+  'phpinfo' => 'phpinfo gÃ¶sterimi', //cpg1.3.0
+  'update_db' => 'VeritabanÄ±nÄ± gÃ¼ncelle', //cpg1.3.0
+  'update_db_explanation' => 'EÄŸer coppermine resimlerini tekrar yerleÅŸtirmek istiyorsan, deÄŸiÅŸiklik eklendi yada copperminenin Ã¶nceki versiyonundan yÃ¼klendiÄŸini, veritabanÄ±n gÃ¼ncellendiÄŸinden emin ol. Bu gerekli Ã§izelgeleri ve/veya seÃ§enekleri coppermine veri tabanÄ±nda deÄŸerlendirir.', //cpg1.3.0
 );
 
 ?>
