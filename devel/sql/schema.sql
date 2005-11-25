@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS CPG_sessions (
 CREATE TABLE CPG_albums (
   aid int(11) NOT NULL auto_increment,
   title varchar(255) NOT NULL default '',
-  description text NOT NULL,
+  description text NOT NULL default '',
   visibility int(11) NOT NULL default '0',
   uploads enum('YES','NO') NOT NULL default 'NO',
   comments enum('YES','NO') NOT NULL default 'YES',
