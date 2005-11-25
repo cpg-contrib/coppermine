@@ -56,7 +56,8 @@ class cpg_udb extends core_udb {
 			'users' => 'users',
 			'groups' => 'groups',
 			'sessions' => 'sessions',
-			'usergroups' => 'user_group'
+			'usergroups' => 'user_group',
+			'sessionskeys' => 'sessions_keys'
 		);
 
 		// Derived full table names
@@ -64,6 +65,7 @@ class cpg_udb extends core_udb {
 		$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
 		$this->sessionstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessions'];
 		$this->usergroupstable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['usergroups'];
+		$this->sessionskeystable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessionskeys'];
 		
 		// Table field names
 		$this->field = array(
@@ -121,10 +123,10 @@ class cpg_udb extends core_udb {
 	// definition of how to extract id, name, group from a session cookie
 	function session_extraction()
 	{
-		if (isset($_COOKIE[$this->cookie_name . '_sid'])) {			
-			$session_id = addslashes($_COOKIE[$this->cookie_name . '_sid']);
+		if (isset($_COOKIE[$this->cookie_name . '_sid'])) {
+			$this->sid = addslashes($_COOKIE[$this->cookie_name . '_sid']);
 
-			$sql = "SELECT u.{$this->field['user_id']} AS user_id, u.{$this->field['password']} AS password FROM {$this->usertable} AS u, {$this->sessionstable} AS s WHERE u.{$this->field['user_id']}=s.session_user_id AND s.session_id = '$session_id' AND u.user_id > 0";
+			$sql = "SELECT u.{$this->field['user_id']} AS user_id, u.{$this->field['password']} AS password FROM {$this->usertable} AS u, {$this->sessionstable} AS s WHERE u.{$this->field['user_id']}=s.session_user_id AND s.session_id = '{$this->sid}' AND u.user_id > 0";
 			
 			$result = cpg_db_query($sql, $this->link_id);
 
@@ -164,8 +166,13 @@ class cpg_udb extends core_udb {
 
         if (isset($_COOKIE[$this->cookie_name.'_data'])){
 			$sessiondata = unserialize($_COOKIE[$this->cookie_name.'_data']);
-			$id = $sessiondata['userid'] > 1 ? intval($sessiondata['userid']) : 0;
-            $pass = (isset($sessiondata['autologinid'])) ? addslashes($sessiondata['autologinid']) : '';
+			$cookieid = $sessiondata['userid'] > 1 ? intval($sessiondata['userid']) : 0;
+			$cookiepass = (isset($sessiondata['autologinid'])) ? addslashes($sessiondata['autologinid']) : '';
+			$sql = "SELECT u.user_id, u.user_password FROM {$this->sessionskeystable} AS s 
+							INNER JOIN {$this->usertable} AS u ON s.user_id = u.user_id WHERE u.user_id = '$cookieid' AND u.user_active = 1 AND s.key_id = MD5('$cookiepass')";
+			$result = cpg_db_query($sql, $UDB_DB_LINK_ID);
+			list($id, $pass) = mysql_fetch_row($result);
+			$this->sid = 0;
 		}
 		
 		return ($id) ? array($id, $pass) : false;
@@ -198,7 +205,7 @@ class cpg_udb extends core_udb {
 		$levels = count(explode('/', $bb['path'])) - 1;
 		$redirect = str_repeat('../', $levels) . trim($cpg['path'], '/') . '/';
 		
-		$this->redirect("/login.php?logout=true&redirect=$redirect");
+		$this->redirect("/login.php?logout=true&sid={$this->sid}&redirect=$redirect");
 	}
 
 	function view_users() {}
