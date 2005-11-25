@@ -10,15 +10,17 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.3.5
+  Coppermine version: 1.4.2
   $Source$
   $Revision$
   $Author$
   $Date$
 **********************************************/
 
-// REQUIRES GLOBAL VAR: CONFIG
-// REQUIRES GLOBAL FUNCTION: db_query
+// REQUIRES GLOBAL VAR: ADMIN
+// REQUIRES GLOBAL FUNCTION: cpg_db_query
+
+if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
 global $FILE_TYPES;
 
@@ -27,7 +29,7 @@ $content_types_to_vars = array('image'=>'allowed_img_types','audio'=>'allowed_sn
 $CONFIG['allowed_file_extensions'] = '';
 
 if (count($FILE_TYPES)==0) {
-         $result = db_query('SELECT extension, mime, content FROM '.$CONFIG['TABLE_FILETYPES'].';');
+         $result = cpg_db_query('SELECT extension, mime, content, player FROM '.$CONFIG['TABLE_FILETYPES'].';');
          while ($row = mysql_fetch_array($result)) {
              // Only add types that are in both the database and user defined parameter
         if ($CONFIG[$content_types_to_vars[$row['content']]]=='ALL' || is_int(strpos('/'.$CONFIG[$content_types_to_vars[$row['content']]].'/','/'.$row['extension'].'/')))
@@ -40,7 +42,7 @@ if (count($FILE_TYPES)==0) {
 
 $CONFIG['allowed_file_extensions'] = substr($CONFIG['allowed_file_extensions'],1);
 
-function get_type($filename,$filter=null)
+function cpg_get_type($filename,$filter=null)
 {
     global $FILE_TYPES;
     if (!is_array($filename))
@@ -58,22 +60,22 @@ function get_type($filename,$filter=null)
 
 function is_image(&$file)
 {
-    return get_type($file,'image');
+    return cpg_get_type($file,'image');
 }
 
 function is_movie(&$file)
 {
-    return get_type($file,'movie');
+    return cpg_get_type($file,'movie');
 }
 
 function is_audio(&$file)
 {
-    return get_type($file,'audio');
+    return cpg_get_type($file,'audio');
 }
 
 function is_document(&$file)
 {
-    return get_type($file,'document');
+    return cpg_get_type($file,'document');
 }
 
 function is_known_filetype($file)
@@ -87,7 +89,7 @@ function cpg_file_html(&$file,$type='thumb',$file_title='')
 {
     global $CONFIG, $pic_title;
 
-    $mime_content = get_type($file['filename']);
+    $mime_content = cpg_get_type($file['filename']);
     $extension = file_exists("images/thumb_{$mime_content['extension']}.jpg") ? $mime_content['extension']:$mime_content['content'];
 
     if ($mime_content['content']=='image' && $type=='thumb') {
@@ -112,10 +114,10 @@ function cpg_file_html(&$file,$type='thumb',$file_title='')
             $file_html = "<a href=\"javascript:;\" onClick=\"MM_openBrWindow('displayimage.php?pid=$pid&fullsize=1','" . uniqid(rand()) . "','scrollbars=yes,toolbar=yes,status=yes,resizable=yes,width=" . $file['pwidth']+16 . ",height=" . $file['pheight']+16 . "')\">"
             $file_title = ""
         }
-        return "<img src=\"" . $file_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$file['filename']}\" title=\"$pic_title\">";
+        return "<img src=\"" . $file_url . "\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$file['filename']}\" title=\"$pic_title\" />";
     }
     elseif ($type=='thumb')
-        return "<img src=\"images/thumb_{$extension}.jpg\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$file['filename']}\" title=\"$pic_title\">";
+        return "<img src=\"images/thumb_{$extension}.jpg\" class=\"image\" {$image_size['geom']} border=\"0\" alt=\"{$file['filename']}\" title=\"$pic_title\" />";
     elseif ($mime_content['content']=='movie')
         return "<object {$image_size['geom']}><param name=\"movie\" value=\"". $file_url . "\"><embed {$image_size['geom']} src=\"". $file_url . "\"></embed></object>\n";
     elseif ($mime_content['content']=='audio')

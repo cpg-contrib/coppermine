@@ -10,15 +10,21 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.3.5
+  Coppermine version: 1.4.2
   $Source$
   $Revision$
   $Author$
   $Date$
 **********************************************/
 
+if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
+
+if($CONFIG['read_iptc_data'] ){
+        include("include/iptc.inc.php");
+}
+
 // Add a picture to an album
-function add_picture($aid, $filepath, $filename, $title = '', $caption = '', $keywords = '', $user1 = '', $user2 = '', $user3 = '', $user4 = '', $category = 0, $raw_ip = '', $hdr_ip = '',$iwidth=0,$iheight=0)
+function add_picture($aid, $filepath, $filename, $position = 0, $title = '', $caption = '', $keywords = '', $user1 = '', $user2 = '', $user3 = '', $user4 = '', $category = 0, $raw_ip = '', $hdr_ip = '', $iwidth = 0, $iheight = 0)
 {
     global $CONFIG, $ERROR, $USER_DATA, $PIC_NEED_APPROVAL;
     global $lang_errors;
@@ -27,14 +33,32 @@ function add_picture($aid, $filepath, $filename, $title = '', $caption = '', $ke
     $normal = $CONFIG['fullpath'] . $filepath . $CONFIG['normal_pfx'] . $filename;
     $thumb = $CONFIG['fullpath'] . $filepath . $CONFIG['thumb_pfx'] . $filename;
 
+
+	
     if (!is_known_filetype($image)) {
         return false;
     } elseif (is_image($filename)) {
+        $imagesize = getimagesize($image);
+
+        if ($CONFIG['read_iptc_data']) {
+           $iptc = get_IPTC($image);
+           if (is_array($iptc) && !$title && !$caption && !$keywords) {  //if any of those 3 are filled out we don't want to override them, they may be blank on purpose.
+               $title = (isset($iptc['Title'])) ? $iptc['Title'] : $title;
+               $caption = (isset($iptc['Caption'])) ? $iptc['Caption'] : $caption;
+               $keywords = (isset($iptc['Keywords'])) ? implode(' ',$iptc['Keywords']) : $keywords;
+           }
+        }
+
+        if (((USER_IS_ADMIN && $CONFIG['auto_resize'] == 1) || (!USER_IS_ADMIN && $CONFIG['auto_resize'] > 0)) && max($imagesize[0], $imagesize[1]) > $CONFIG['max_upl_width_height']) //$CONFIG['auto_resize']==1
+        {
+          //resize_image($image, $image, $CONFIG['max_upl_width_height'], $CONFIG['thumb_method'], $imagesize[0] > $CONFIG['max_upl_width_height'] ? 'wd' : 'ht');
+          resize_image($image, $image, $CONFIG['max_upl_width_height'], $CONFIG['thumb_method'], $CONFIG['thumb_use']);
+          $imagesize = getimagesize($image);
+        }
         if (!file_exists($thumb)) {
             if (!resize_image($image, $thumb, $CONFIG['thumb_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use']))
                 return false;
         }
-        $imagesize = getimagesize($image);
         if (max($imagesize[0], $imagesize[1]) > $CONFIG['picture_width'] && $CONFIG['make_intermediate'] && !file_exists($normal)) {
             if (!resize_image($image, $normal, $CONFIG['picture_width'], $CONFIG['thumb_method'], $CONFIG['thumb_use']))
                 return false;
@@ -50,7 +74,7 @@ function add_picture($aid, $filepath, $filename, $title = '', $caption = '', $ke
 
     // Test if disk quota exceeded
     if (!GALLERY_ADMIN_MODE && $USER_DATA['group_quota']) {
-        $result = db_query("SELECT sum(total_filesize) FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE  {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND category = '" . (FIRST_USER_CAT + USER_ID) . "'");
+        $result = cpg_db_query("SELECT sum(total_filesize) FROM {$CONFIG['TABLE_PICTURES']}, {$CONFIG['TABLE_ALBUMS']} WHERE  {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND category = '" . (FIRST_USER_CAT + USER_ID) . "'");
         $record = mysql_fetch_array($result);
         $total_space_used = $record[0];
         mysql_free_result($result);
@@ -80,8 +104,31 @@ function add_picture($aid, $filepath, $filename, $title = '', $caption = '', $ke
     // User ID is now recorded when in admin mode (casper)
     $user_id = USER_ID;
     $username= USER_NAME;
-    $query = "INSERT INTO {$CONFIG['TABLE_PICTURES']} (pid, aid, filepath, filename, filesize, total_filesize, pwidth, pheight, ctime, owner_id, owner_name, title, caption, keywords, approved, user1, user2, user3, user4, pic_raw_ip, pic_hdr_ip) VALUES ('', '$aid', '" . addslashes($filepath) . "', '" . addslashes($filename) . "', '$image_filesize', '$total_filesize', '{$imagesize[0]}', '{$imagesize[1]}', '" . time() . "', '$user_id', '$username', '" . addslashes($title) . "', '" . addslashes($caption) . "', '" . addslashes($keywords) . "', '$approved', '$user1', '$user2', '$user3', '$user4', '$raw_ip', '$hdr_ip')";
-    $result = db_query($query);
+    // Populate Array to pass to plugins, then to SQL.
+    $CURRENT_PIC_DATA['aid'] = $aid;
+    $CURRENT_PIC_DATA['filepath'] = $filepath;
+    $CURRENT_PIC_DATA['filename'] = $filename;
+    $CURRENT_PIC_DATA['filesize'] = $image_filesize;
+    $CURRENT_PIC_DATA['total_filesize'] = $total_filesize;
+    $CURRENT_PIC_DATA['pwidth'] = $imagesize[0];
+    $CURRENT_PIC_DATA['pheight'] = $imagesize[1];
+    $CURRENT_PIC_DATA['owner_id'] = $user_id;
+    $CURRENT_PIC_DATA['owner_name'] = $username;
+    $CURRENT_PIC_DATA['title'] = $title;
+    $CURRENT_PIC_DATA['caption'] = $caption;
+    $CURRENT_PIC_DATA['keywords'] = $keywords;
+    $CURRENT_PIC_DATA['approved'] = $approved;
+    $CURRENT_PIC_DATA['user1'] = $user1;
+    $CURRENT_PIC_DATA['user2'] = $user2;
+    $CURRENT_PIC_DATA['user3'] = $user3;
+    $CURRENT_PIC_DATA['user4'] = $user4;
+    $CURRENT_PIC_DATA['pic_raw_ip'] = $raw_ip;
+    $CURRENT_PIC_DATA['pic_hdr_ip'] = $hdr_ip;
+    $CURRENT_PIC_DATA['position'] = $position;
+    $CURRENT_PIC_DATA = CPGPluginAPI::filter('add_file_data',$CURRENT_PIC_DATA);
+
+    $query = "INSERT INTO {$CONFIG['TABLE_PICTURES']} (pid, aid, filepath, filename, filesize, total_filesize, pwidth, pheight, ctime, owner_id, owner_name, title, caption, keywords, approved, user1, user2, user3, user4, pic_raw_ip, pic_hdr_ip, position) VALUES ('', '{$CURRENT_PIC_DATA['aid']}', '" . addslashes($CURRENT_PIC_DATA['filepath']) . "', '" . addslashes($CURRENT_PIC_DATA['filename']) . "', '{$CURRENT_PIC_DATA['filesize']}', '{$CURRENT_PIC_DATA['total_filesize']}', '{$CURRENT_PIC_DATA['pwidth']}', '{$CURRENT_PIC_DATA['pheight']}', '" . time() . "', '{$CURRENT_PIC_DATA['owner_id']}', '{$CURRENT_PIC_DATA['owner_name']}','{$CURRENT_PIC_DATA['title']}', '{$CURRENT_PIC_DATA['caption']}', '{$CURRENT_PIC_DATA['keywords']}', '{$CURRENT_PIC_DATA['approved']}', '{$CURRENT_PIC_DATA['user1']}', '{$CURRENT_PIC_DATA['user2']}', '{$CURRENT_PIC_DATA['user3']}', '{$CURRENT_PIC_DATA['user4']}', '{$CURRENT_PIC_DATA['pic_raw_ip']}', '{$CURRENT_PIC_DATA['pic_hdr_ip']}', '{$CURRENT_PIC_DATA['position']}')";
+    $result = cpg_db_query($query);
 
     return $result;
 }
@@ -119,7 +166,8 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use)
     if ($imginfo == null)
         return false;
         // GD can only handle JPG & PNG images
-    if ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && ($method == 'gd1' || $method == 'gd2')) {
+    //if ($imginfo[2] != GIS_JPG && $imginfo[2] != GIS_PNG && ($method == 'gd1' || $method == 'gd2')) {
+    if ($imginfo[2] != GIS_JPG && $imageinfo[2] != GIS_PNG && $CONFIG['GIF_support'] == 0) {
         $ERROR = $lang_errors['gd_file_type_err'];
         return false;
     }
@@ -203,9 +251,11 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use)
                 cpg_die(CRITICAL_ERROR, 'PHP running on your server does not support the GD image library, check with your webhost if ImageMagick is installed', __FILE__, __LINE__);
             }
             if (!function_exists('imagecreatetruecolor')) {
-                cpg_die(CRITICAL_ERROR, 'PHP running on your server does not support GD version 2.x, please switch to GD version 1.x on the config page', __FILE__, __LINE__);
+                cpg_die(CRITICAL_ERROR, 'PHP running on your server does not support GD version 2.x, please switch to GD version 1.x on the admin page', __FILE__, __LINE__);
             }
-            if ($imginfo[2] == GIS_JPG)
+            if ($imginfo[2] == GIS_GIF && $CONFIG['GIF_support'] == 1)
+                $src_img = imagecreatefromgif($src_file);
+            elseif ($imginfo[2] == GIS_JPG)
                 $src_img = imagecreatefromjpeg($src_file);
             else
                 $src_img = imagecreatefrompng($src_file);
@@ -213,7 +263,10 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use)
                 $ERROR = $lang_errors['invalid_image'];
                 return false;
             }
-            $dst_img = imagecreatetruecolor($destWidth, $destHeight);
+            if ($imginfo[2] == GIS_GIF)
+              $dst_img = imagecreate($destWidth, $destHeight);
+            else
+              $dst_img = imagecreatetruecolor($destWidth, $destHeight);
             imagecopyresampled($dst_img, $src_img, 0, 0, 0, 0, $destWidth, (int)$destHeight, $srcWidth, $srcHeight);
             imagejpeg($dst_img, $dest_file, $CONFIG['jpeg_qual']);
             imagedestroy($src_img);
@@ -221,7 +274,7 @@ function resize_image($src_file, $dest_file, $new_size, $method, $thumb_use)
             break;
     }
     // Set mode of uploaded picture
-    chmod($dest_file, octdec($CONFIG['default_file_mode']));
+    @chmod($dest_file, octdec($CONFIG['default_file_mode'])); //silence the output in case chmod is disabled
     // We check that the image is valid
     $imginfo = getimagesize($dest_file);
     if ($imginfo == null) {

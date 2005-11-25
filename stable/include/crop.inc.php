@@ -1,21 +1,21 @@
 <?php
-/*************************
-  Coppermine Photo Gallery
-  ************************
-  Copyright (c) 2003-2005 Coppermine Dev Team
-  v1.1 originaly written by Gregory DEMAR
-
-  This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
-  ********************************************
-  Coppermine version: 1.3.5
-  $Source$
-  $Revision$
-  $Author$
-  $Date$
-**********************************************/
+// ------------------------------------------------------------------------- //
+// Coppermine Photo Gallery 1.4.2                                            //
+// ------------------------------------------------------------------------- //
+// Copyright (C) 2002,2003 Gregory DEMAR                                     //
+// http://www.chezgreg.net/coppermine/                                       //
+// ------------------------------------------------------------------------- //
+// Updated by the Coppermine Dev Team                                        //
+// (http://coppermine.sf.net/team/)                                          //
+// see /docs/credits.html for details                                        //
+// ------------------------------------------------------------------------- //
+// This program is free software; you can redistribute it and/or modify      //
+// it under the terms of the GNU General Public License as published by      //
+// the Free Software Foundation; either version 2 of the License, or         //
+// (at your option) any later version.                                       //
+// ------------------------------------------------------------------------- //
+// $Id$
+// ------------------------------------------------------------------------- //
 
 if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 //////////////////// Variables //////////////////////////////
@@ -27,7 +27,7 @@ $txt['down'] = "v";
 $txt['closewindow'] = "Close window";
 
 
-$result = db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = '$pid'");
+$result = cpg_db_query("SELECT * FROM {$CONFIG['TABLE_PICTURES']} WHERE pid = '$pid'");
 $CURRENT_PIC = mysql_fetch_array($result);
 mysql_free_result($result);
 $pic_url = get_pic_url($CURRENT_PIC,'fullsize');
@@ -35,8 +35,8 @@ $pic_url = get_pic_url($CURRENT_PIC,'fullsize');
 
 
 echo <<<cropUIjs
-<script language="JavaScript" src="dhtmlLib.js"></script>
-<script language="JavaScript">
+<script language="javascript" type="text/javascript" src="dhtmlLib.js"></script>
+<script language="javascript" type="text/javascript">
 <!--
 
 function libinit(){
@@ -150,7 +150,7 @@ echo <<<EOT
 <table cellspacing="0" cellpadding="5" border="0" align="center">
 <tr><td>
 <table cellspacing="0" cellpadding="5" border="0" align="center">
-<tr><td align="center" valign="top"><div ID="imgDiv"><img src="$pic_url"></div></td></tr>
+<tr><td align="center" valign="top"><div id="imgDiv"><img src="$pic_url" /></div></td></tr>
 </table>
 <table border="0">
 <tr>
@@ -172,9 +172,9 @@ echo <<<EOT
 </table>
 
 <div id="cropDiv">
-  <table width="100%" height="100%" border="1" cellpadding="0" cellspacing="0" bordercolor="#000000">
+  <table width="100%" border="0" cellpadding="0" cellspacing="0" style="border:1px solid #000000">
 <tr>
-      <td><img src="images/spacer.gif"></td>
+      <td><img src="images/spacer.gif" border="0" alt="" /></td>
     </tr>
   </table>
 </div>
