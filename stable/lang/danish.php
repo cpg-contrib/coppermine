@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /*************************
   Coppermine Photo Gallery
   ************************
@@ -1183,7 +1183,7 @@ if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
         'pictures' => 'Filer',
         'disk_space' => 'Plads brugt / Kvote',
         'registered_on' => 'Registreret den',
-        'last_visit' => 'Sidste besÃ¸gø //cpg1.3.0
+        'last_visit' => 'Sidste besÃ¸gø', //cpg1.3.0
         'u_user_on_p_pages' => '%d bruger på %d side(r)',
         'confirm_del' => 'Er du sikker på du vil SLETTE denne bruger? \\nAlle filer og albums vil også blive slettet.',
         'mail' => 'POST',
@@ -1250,7 +1250,7 @@ if (defined('UTIL_PHP')) $lang_util_php = array(
         'filename_time' => 'Omdøb 2003_11ø3_13_20_20.jpg til 13:20',
         'delete' => 'Slet titler eller original størrelse fil',
         'delete_title' => 'Slet fil titler',
-        'delete_original' => 'Slet original størrelse file,
+        'delete_original' => 'Slet original størrelse file',
         'delete_replace' => 'Sletter de originale billeder og erstatter dem med de mellemstore',
         'select_album' => 'Vælg Album',
         'delete_orphans' => 'Slet kommentarer som ikke har et album (virker på alle albums)', //cpg1.3.0
