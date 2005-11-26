@@ -1085,7 +1085,7 @@ case "finalize":
 
                 // sync groups here now :)
                 if ($CONFIG['bridge_enable']){
-                        if (!isset($cpg_udb)) include_once 'bridge/' . $BRIDGE['short_name'] . '.inc.php';
+						if (!isset($cpg_udb)) include_once 'bridge/' . $BRIDGE['short_name'] . '.inc.php';
                         $cpg_udb->synchronize_groups();
                 } else {
                         // ok, then restore group table
@@ -1297,6 +1297,18 @@ else { // not in gallery admin mode --- start
             cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '0' WHERE name = 'bridge_enable'");
             cpg_db_query("UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = '0' WHERE name = 'recovery_logon_failures'");
             cpg_db_query("UPDATE {$CONFIG['TABLE_BRIDGE']} SET value = NOW() WHERE name = 'recovery_logon_timestamp'");
+			
+			// ok, then restore group table
+				cpg_db_query("DELETE FROM {$CONFIG['TABLE_USERGROUPS']} WHERE 1");
+				cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+				VALUES (1, 'Administrators', 0, 1, 1, 1, 1, 1, 1, 0, 0, 3, 0, 5, 3)");
+				cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+				VALUES (2, 'Registered', 1024, 0, 1, 1, 1, 1, 1, 1, 0, 3, 0, 5, 3)");
+				cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+				VALUES (3, 'Anonymous', 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
+				cpg_db_query("INSERT INTO {$CONFIG['TABLE_USERGROUPS']}
+				VALUES (4, 'Banned', 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 5, 3)");
+
             if (USER_ID) { //user already logged in
                 msg_box($lang_bridgemgr_php['recovery_success_title'], $lang_bridgemgr_php['recovery_success_content'], $lang_bridgemgr_php['goto_bridgemgr'], $_SERVER['PHP_SELF'], "-1");
             } else { // user not logged in yet
