@@ -1160,12 +1160,15 @@ function pageheader($section, $meta = '')
 
     $custom_header = cpg_get_custom_include($CONFIG['custom_header_path']);
 
+	$charset = ($CONFIG['charset'] == 'language file') ? $lang_charset : $CONFIG['charset'];
+
     header('P3P: CP="CAO DSP COR CURa ADMa DEVa OUR IND PHY ONL UNI COM NAV INT DEM PRE"');
+	header("Content-Type: text/html; charset=$charset");
     user_save_profile();
 
     $template_vars = array('{LANG_DIR}' => $lang_text_dir,
         '{TITLE}' => $CONFIG['gallery_name'] . ' - ' . strip_tags(bb_decode($section)),
-        '{CHARSET}' => $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'],
+        '{CHARSET}' => $charset,
         '{META}' => $meta,
         '{GAL_NAME}' => $CONFIG['gallery_name'],
         '{GAL_DESCRIPTION}' => $CONFIG['gallery_description'],
