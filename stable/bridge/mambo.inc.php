@@ -97,19 +97,19 @@ class cpg_udb extends core_udb {
 		$this->admingroups = array(24,25);
 		$this->guestgroup = $this->use_post_based_groups ? 1 : 3;
 		
+		// Connect to db
+		$this->connect();
+		
 		// Delete old sessions
 		$past = time()-$mosConfig_lifetime;
 		$sql = 'delete from '.$this->sessionstable.' where (time < '.$past.');';
-		cpg_db_query($sql);
-		
-		// Connect to db
-		$this->connect();
+		cpg_db_query($sql, $this->link_id);
 	}
 
 	function session_update() {
 		$sql = 'update '.$this->sessionstable.' set time="'.time().'" '.
 		       'where session_id=md5("'.$this->session_id.'");';
-		$result = cpg_db_query($sql);
+		$result = cpg_db_query($sql, $this->link_id);
 	}
 	
 	function collect_groups()
