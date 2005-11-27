@@ -169,7 +169,7 @@ class core_udb {
 		static $user_count = 0;
 		
 		if (!$user_count) {
-            $result = cpg_db_query("SELECT count(*) FROM {$this->usertable} WHERE 1");
+            $result = cpg_db_query("SELECT count(*) FROM {$this->usertable} WHERE 1", $this->link_id);
             $nbEnr = mysql_fetch_array($result);
             $user_count = $nbEnr[0];
             mysql_free_result($result);
@@ -221,7 +221,7 @@ class core_udb {
                "GROUP BY user_id " . "ORDER BY " . $sort_codes[$options['sort']] . " ".
                "LIMIT {$options['lower_limit']}, {$options['users_per_page']};";
 
-		$result = cpg_db_query($sql);
+		$result = cpg_db_query($sql, $this->link_id);
 		
 		// If no records, return empty value
 		if (!$result) {
