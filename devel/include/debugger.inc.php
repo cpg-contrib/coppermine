@@ -30,7 +30,7 @@ class cpg_debugger {
 
     var $logfile;
     var $report;
-    var $active;
+    var $active = false;
     var $error_level;
     var $basepath_len;
 
