@@ -90,8 +90,9 @@ if (isset($_POST['search'])) {
             $_POST['params'][$key] = $_POST[$key];
         }
     }
-    $USER['search'] = $_POST;
-        $album = 'search';
+	$USER['search'] = $_POST;
+	$USER['search']['search'] = utf_replace($USER['search']['search']);
+	$album = 'search';
 }
 if (isset($_GET['search'])) {
     $USER['search']['search'] = $_GET['search'];

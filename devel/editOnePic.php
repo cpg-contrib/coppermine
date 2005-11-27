@@ -38,7 +38,7 @@ function process_post_data()
     $pheight      = (int)$_POST['pheight'];
     $title        = $_POST['title'];
     $caption      = $_POST['caption'];
-    $keywords     = $_POST['keywords'];
+    $keywords     = utf_replace($_POST['keywords']);
     $user1        = $_POST['user1'];
     $user2        = $_POST['user2'];
     $user3        = $_POST['user3'];

@@ -2889,6 +2889,18 @@ function utf_ucfirst($str)
   return mb_strtoupper(mb_substr($str, 0, 1)).mb_substr($str, 1);
 }
 
+/*
+  This function replaces special UTF characters to their ANSI equivelant for
+  correct processing by MySQL, keywords, search, etc. since a bug has been
+  found:  http://coppermine-gallery.net/forum/index.php?topic=17366.0
+*/
+function utf_replace($str)
+{
+	# replace unicode spaces
+	$str = preg_replace('#[\xC2\xA0]|[\xE3][\x80][\x80]#', ' ', $str);
+	return $str;
+}
+
 function replace_forbidden($str)
 {
   static $forbidden_chars;
