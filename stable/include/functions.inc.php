@@ -930,7 +930,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
                 $approved = GALLERY_ADMIN_MODE ? '' : 'AND approved=\'YES\'';
 
-                $query = "SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE (aid='$album' $forbidden_set_string ) $keyword $approved $ALBUM_SET";
+                $query = "SELECT COUNT(*) from {$CONFIG['TABLE_PICTURES']} WHERE ((aid='$album' $forbidden_set_string ) $keyword) $approved $ALBUM_SET";
                 $result = cpg_db_query($query);
                 $nbEnr = mysql_fetch_array($result);
                 $count = $nbEnr[0];
@@ -938,7 +938,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
 
                 if($select_columns != '*') $select_columns .= ', title, caption,hits,owner_id,owner_name';
 
-                $query = "SELECT $select_columns from {$CONFIG['TABLE_PICTURES']} WHERE (aid='$album' $forbidden_set_string ) $keyword $approved $ALBUM_SET ORDER BY $sort_order $limit";
+                $query = "SELECT $select_columns from {$CONFIG['TABLE_PICTURES']} WHERE ((aid='$album' $forbidden_set_string ) $keyword) $approved $ALBUM_SET ORDER BY $sort_order $limit";
 
                 $result = cpg_db_query($query);
                 $rowset = cpg_db_fetch_rowset($result);
