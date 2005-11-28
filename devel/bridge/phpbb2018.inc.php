@@ -39,7 +39,7 @@ class phpbb2018_udb extends core_udb {
 			require_once($BRIDGE['relative_path_to_config_file'] . 'config.php');
 			$this->use_post_based_groups = $BRIDGE['use_post_based_groups'];
 		}
-		
+		$this->use_post_based_groups = 0;
 		$this->multigroups = 1;
 		
 		// Database connection settings
@@ -175,7 +175,7 @@ class phpbb2018_udb extends core_udb {
 			$cookiepass = (isset($sessiondata['autologinid'])) ? addslashes($sessiondata['autologinid']) : '';
 			$sql = "SELECT u.user_id, u.user_password FROM {$this->sessionskeystable} AS s 
 							INNER JOIN {$this->usertable} AS u ON s.user_id = u.user_id WHERE u.user_id = '$cookieid' AND u.user_active = 1 AND s.key_id = MD5('$cookiepass')";
-			$result = cpg_db_query($sql, $UDB_DB_LINK_ID);
+			$result = cpg_db_query($sql, $this->link_id);
 			list($id, $pass) = mysql_fetch_row($result);
 			$this->sid = 0;
 		}
