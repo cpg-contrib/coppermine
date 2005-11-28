@@ -21,7 +21,7 @@
   <tr>
     <td>
                         <p><img src="../images/coppermine_logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" />
-<h1>Coppermine Photo Gallery v1.4.2: Documentation and Manual</h1>
+<h1>Coppermine Photo Gallery v1.5.0: Documentation and Manual</h1>
 <h1>About Coppermine</h1>
 <p>Coppermine Photo Gallery is an advanced, user friendly, picture gallery script with built-in support for other multi-media/data files.  The gallery can be private, accessible to registered users only, and/or open to all visitors to your site. Users, if permitted, can upload pictures with their web browser (thumbnail and intermediate sized images are created on the fly), rate pictures, add comments and even send e-cards. The site administrator determines which of the features listed above are accessible by registered and non-registered users. The site administrator can also manage galleries and batch process large numbers of pictures that have been uploaded onto the server by FTP.</p>
 <p>Image files are stored in albums and albums can be grouped into categories, which in turn, can be further grouped under parent categories. The script supports multiple users and provides the administrator of the website with tools to manage which user groups can or cannot have personal albums, send ecards, or add comments. Users may also upload to public albums if the website administrator permits it. Permissions to create albums, upload and delete files are all determined by the website administrator.</p>
@@ -71,7 +71,7 @@
 
                 <li class="level2"><a href="#11" class="menu2">3.2 Upgrading from releases of version 1.1</a></li>
                 <li class="level2"><a href="#12" class="menu2">3.3 Upgrading from cpg1.2.0rc2 or cpg1.2.0final to version cpg1.2.1</a></li>
-                <li class="level2"><a href="#13" class="menu2">3.4 Upgrading from cpg1.2.0 (or better) to version cpg1.4.2</a></li>
+                <li class="level2"><a href="#13" class="menu2">3.4 Upgrading from cpg1.2.0 (or better) to version cpg1.5.0</a></li>
                 <li class="level2"><a href="#versioncheck" class="menu2">3.5 The version check tool</a></li>
         </ul>
                 <ul class="level3">
@@ -81,7 +81,7 @@
                         <li class="level3"><a href="#versioncheck_comparison_start">3.5.3 Version comparison</a></li>
                 </ul>
         <ul class="level2">
-                <li class="level2"><a href="#downgrading" class="menu2">3.6 Downgrading from cpg1.4.x</a></li>
+                <li class="level2"><a href="#downgrading" class="menu2">3.6 Downgrading from cpg1.5.x</a></li>
         </ul>
 
 <ul class="level1">
@@ -228,10 +228,10 @@
       <hr />
 
 <a name="testVersion"></a>
-<!--
+
 <h1>0. Beta (Testing) version</h1>
 <p>Dear Tester,</p>
-<p>Thank you for taking the time to test Coppermine Photo Gallery. Please be rough on the program so that we can track down and eliminate bugs from our public release of version 1.4.</p>
+<p>Thank you for taking the time to test Coppermine Photo Gallery. Please be rough on the program so that we can track down and eliminate bugs from our public release of version 1.5.</p>
 <p>Please understand that this is still beta software that is meant to be used for testing purposes and not for production, so there is no support for cpg1.4.2 yet.</p>
 
 <p>While testing CPG 1.4, please make certain to note any odd behavior you encounter.  This could include typographical errors, misleading instructions, or any other out-right error.  If you encounter a major error, please switch the debug mode to &quot;on&quot; in the configuration panel and copy the text in the debug window.  This will greatly aid the development team in hunting down the problem.</p>
@@ -263,7 +263,7 @@
 
 <p>Coppermine Development Team</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
--->
+
 
 
 <a name="what"></a>
@@ -557,7 +557,7 @@ If you have shell access to your server, you can apply the native <a href="http:
 
 <a name="creating"></a>
 <h2>2.3 Creating or upgrading your own themes</h2>
-<p>To upgrade an existing custom theme, to version 1.4.x, read the <a href="theme/index.html">theme upgrade documentation</a>.</p>
+<p>To upgrade an existing custom theme, to version 1.5.x, read the <a href="theme/index.html">theme upgrade documentation</a>.</p>
 <p>Coppermine themes are stored in the &quot;<strong>themes</strong>&quot; directory, each consists of 3 primary files : </p>
 <ul>
   <li>&quot;<strong>template.html</strong>&quot; the main template in plain HTML.</li>
@@ -604,17 +604,17 @@ If you have shell access to your server, you can apply the native <a href="http:
 <a name="10"></a>
 <h2>3.1 Upgrading from version 1.0</h2>
 
-<p>If you already have installed version 1.0 and you want to transfer your albums to version 1.4x follow the following steps:</p>
+<p>If you already have installed version 1.0 and you want to transfer your albums to version 1.5.x follow the following steps:</p>
 <ul>
   <li>First, make a backup (dump) of your database.</li>
-  <li> Install version 1.4.x as you normally would but in a directory different from the one where you v 1.0 is. Note that in order to use the upgrade script, <strong>tables for version 1.0 and 1.4.x must be stored in the same database</strong>.</li>
-  <li>Copy the &quot;<strong>albums</strong>&quot; directory of version 1.0 into the directory where you installed version 1.4.x</li>
+  <li> Install version 1.5.x as you normally would but in a directory different from the one where you v 1.0 is. Note that in order to use the upgrade script, <strong>tables for version 1.0 and 1.5.x must be stored in the same database</strong>.</li>
+  <li>Copy the &quot;<strong>albums</strong>&quot; directory of version 1.0 into the directory where you installed version 1.5.x</li>
   <li>The upgrade script assumes that you used the &quot;<strong>CPG_</strong>&quot; prefix for tables (default value) when you installed version 1.0, if this is not the case, edit upgrade-1.0-to-1.2.php and edit the $prefix10 variable.</li>
-  <li>Login to your 1.4.x Gallery, enter the admin mode</li>
+  <li>Login to your 1.5.x Gallery, enter the admin mode</li>
   <li>And call the upgrade script, http://yousitename/coppermine_dir/upgrade-1.0-to-1.2.php</li>
-  <li><strong>The upgrade from 1.0 to 1.4.x is a two-step process.</strong> You must click the link which comes up on the bottom of the page to complete the upgrade!.</li>
+  <li><strong>The upgrade from 1.0 to 1.5.x is a two-step process.</strong> You must click the link which comes up on the bottom of the page to complete the upgrade!.</li>
         <li><strong>Delete upgrade-1.0-to-1.2.php from your server</strong>.</li>
-        <li>If you get an error, go to Coppermine 1.4.x config page, enable <a href="#debug_mode">debug mode</a>, try to call the upgrade script again and check what errors you get.</li>
+        <li>If you get an error, go to Coppermine 1.5.x config page, enable <a href="#debug_mode">debug mode</a>, try to call the upgrade script again and check what errors you get.</li>
 </ul>
 <p> <strong>This upgrade process leaves your v1.0 gallery untouched </strong></p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
@@ -648,7 +648,7 @@ If you have shell access to your server, you can apply the native <a href="http:
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="13"></a>
-<h2>3.4 Upgrading from cpg1.2.x or cpg1.3.x  to version cpg1.4.2</h2>
+<h2>3.4 Upgrading from cpg1.2.x or cpg1.3.x  to version cpg1.5.0</h2>
     <ul>
                 <li>First, make a backup (dump) of your database.</li>
         <li>Backup your include/config.inc.php file, your anycontent.php file and your &quot;albums&quot; directoy.</li>
@@ -660,15 +660,15 @@ If you have shell access to your server, you can apply the native <a href="http:
         <li>If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme - refer to the <a href="theme/index.html">theme-upgrade guide</a>.</li>
         <li>You can not use language files from older versions of Coppermine - make sure you only have the language files that come with this package inside of your lang folder (delete or rename all files from older versions within the lang folder)</li>
     </ul>
-<p>Please note: as there have been changes both in the coppermine files and the database from cpg1.3.0beta to cpg1.3.0 (final) and then on to cpg1.4.x, users of the beta will have to apply all steps mentioned above: both the files have to be replaced and the update.php script has to be run once.</p>
+<p>Please note: as there have been changes both in the coppermine files and the database from cpg1.3.0beta to cpg1.3.0 (final) and then on to cpg1.5.x, users of the beta will have to apply all steps mentioned above: both the files have to be replaced and the update.php script has to be run once.</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="versioncheck"></a>
 <h2>3.5 The version check tool</h2>
-<p>Since the release of cpg1.3.2 Coppermine comes with an additional version checking tool to help you resolve issues with upgrades and updates easily. Except for specific files of coppermine that will only work for the version that it had been originally designed for, the versioncheck tool can be used with all versions starting from cpg1.2.1. To launch the versioncheck, simply add <tt>versioncheck.php</tt> to your browser's address bar after being logged into coppermine as admin (example: <tt>http://yourdomain.tld/your_coppermine_folder/versioncheck.php</tt>).  With version 1.4x, you can run the versioncheck utility from the Admin Tools menu.</p>
+<p>Since the release of cpg1.3.2 Coppermine comes with an additional version checking tool to help you resolve issues with upgrades and updates easily. Except for specific files of coppermine that will only work for the version that it had been originally designed for, the versioncheck tool can be used with all versions starting from cpg1.2.1. To launch the versioncheck, simply add <tt>versioncheck.php</tt> to your browser's address bar after being logged into coppermine as admin (example: <tt>http://yourdomain.tld/your_coppermine_folder/versioncheck.php</tt>).  With version 1.5.x, you can run the versioncheck utility from the Admin Tools menu.</p>
 <a name="versioncheck_description_start"></a>
 <h3>3.5.1 What it does</h3>
-<p>The script &quot;versioncheck&quot; is meant for users who have updated their coppermine install. This script goes through the files on your webserver and tries to determine if the local file versions on your webserver are the identical to the ones at the repository of http://coppermine.sourceforge.net. Files that do not match are displayed and are the files you should update as well. In Cpg1.4.x you can toggle the URL to the latest update for individual files in the versioncheck page.</p>
+<p>The script &quot;versioncheck&quot; is meant for users who have updated their coppermine install. This script goes through the files on your webserver and tries to determine if the local file versions on your webserver are the identical to the ones at the repository of http://coppermine.sourceforge.net. Files that do not match are displayed and are the files you should update as well. In Cpg1.5.x you can toggle the URL to the latest update for individual files in the versioncheck page.</p>
 <p>It will show everything in <span style="color:red;font-weight:bold">red</span> that needs to be fixed. Entries in <span style="color:#FFBE00;font-weight:bold">yellow</span> need looking into. Entries in <span style="color:green;font-weight:bold">green</span> (or your theme's default font color) are OK and should be left alone. When an entry is <span style="color:red;font-weight:bold">red</span> or <span style="color:#FFBE00;font-weight:bold">yellow</span>, a help icon will appear next to it. Click it to find out more. Hovering with your mouse over an item will display additional information as well (tooltip).</p>
 <p>The versioncheck screen has several sections:</p>
 <ul>
@@ -734,10 +734,10 @@ If you have shell access to your server, you can apply the native <a href="http:
 <a name="versioncheck_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="downgrading"></a>
-<h2>3.6 Downgrading from cpg1.4.x to an older version</h2>
-<p>CPG1.4.x incorporates many new features (compared to older versions), so we encourage all users to upgrade. However, there may be some who want to test cpg1.4.x and decide later that they want to go back to an older version. You have to keep in mind that a full upgrade changes the overall layout of coppermine's database that includes converting the encoding to unicode. This process can't be reverted: once you have done the conversion, the only way back is to restore a complete mySQL database dump (of course you have to create this backup <strong>before</strong> you upgraded in the first place). Creating mySQL dumps (backups) is recommended anyway, so you should do so <strong>now</strong>.</p>
-<p>If you haven't converted your database to unicode (utf-8) encoding, you can downgrade as explained below. To make this absolutely clear: you can only downgrade if you used to have cpg1.3.x before and upgraded this version to cpg1.4.x without converting the database. If you <em>have</em> converted the database or if you have made a <em>fresh</em> install of cpg1.4.x, you can't downgrade at all!</p>
-<p>To actually perform the downgrade, replace all cpg1.4.x files on your server with the files from the older version (as if you were doing an upgrade, see above). You then have to undo some changes in the database structure. To do so, run a query like<br />
+<h2>3.6 Downgrading from cpg1.5.x to an older version</h2>
+<p>CPG1.5.x incorporates many new features (compared to older versions), so we encourage all users to upgrade. However, there may be some who want to test cpg1.5.x and decide later that they want to go back to an older version. You have to keep in mind that a full upgrade changes the overall layout of coppermine's database that includes converting the encoding to unicode. This process can't be reverted: once you have done the conversion, the only way back is to restore a complete mySQL database dump (of course you have to create this backup <strong>before</strong> you upgraded in the first place). Creating mySQL dumps (backups) is recommended anyway, so you should do so <strong>now</strong>.</p>
+<p>If you haven't converted your database to unicode (utf-8) encoding, you can downgrade as explained below. To make this absolutely clear: you can only downgrade if you used to have cpg1.3.x before and upgraded this version to cpg1.5.x without converting the database. If you <em>have</em> converted the database or if you have made a <em>fresh</em> install of cpg1.5.x, you can't downgrade at all!</p>
+<p>To actually perform the downgrade, replace all cpg1.5.x files on your server with the files from the older version (as if you were doing an upgrade, see above). You then have to undo some changes in the database structure. To do so, run a query like<br />
 <pre>ALTER TABLE `CPG_users` CHANGE `user_location`  `user_profile1` VARCHAR(255);
 ALTER TABLE `CPG_users` CHANGE `user_interests` `user_profile2` VARCHAR(255);
 ALTER TABLE `CPG_users` CHANGE `user_website` `user_profile3` VARCHAR(255);
@@ -970,7 +970,7 @@ src="pics/edit.gif" width="16" height="16" alt="" /> button. </p>
 <p>The same rules as above apply for &quot;Visitors can post comments&quot; and &quot;Visitors can rate files&quot;.</p>
 <a name="album_prop_visitor_end"></a>
 <a name="album_prop_keyword_start"></a>
-<p>In 1.4.x the <strong>Album Keyword</strong> is <em>no</em> longer being used for searching purposes, but, rather, to link images from other album into another. Using this method, files/images can be displayed in various albums while the file itself need only exists in one album on your webserver.  You simply upload a file to one album as you would normally do, then assign one or more keywords to the file. The keyword function reads blank spaces between words as a 'break' and assumes that these words are separate words.  If you must use phrases for your keywords, connect them with an underscore or by using the ascii space holder ctrl+Alt+0160 (NOTE: the latter option only works with latin based character sets.)  Each album can only have ONE (1) keyword or keyword phrase.  All pictures residing in different albums that you would like to be displayed in this album must have the same keyword or keyword phrase in their respective keyword fields.  Pictures, unlike albums can have multiple keywords or keyword phrases separated by spaces. This provides you with the option to display pictures in many albums.  For the visitor of these albums, it will appear as if the file/image had been uploaded to each. </p>
+<p>In 1.4.x and better the <strong>Album Keyword</strong> is <em>no</em> longer being used for searching purposes, but, rather, to link images from other album into another. Using this method, files/images can be displayed in various albums while the file itself need only exists in one album on your webserver.  You simply upload a file to one album as you would normally do, then assign one or more keywords to the file. The keyword function reads blank spaces between words as a 'break' and assumes that these words are separate words.  If you must use phrases for your keywords, connect them with an underscore or by using the ascii space holder ctrl+Alt+0160 (NOTE: the latter option only works with latin based character sets.)  Each album can only have ONE (1) keyword or keyword phrase.  All pictures residing in different albums that you would like to be displayed in this album must have the same keyword or keyword phrase in their respective keyword fields.  Pictures, unlike albums can have multiple keywords or keyword phrases separated by spaces. This provides you with the option to display pictures in many albums.  For the visitor of these albums, it will appear as if the file/image had been uploaded to each. </p>
 <a name="album_prop_keyword_end"></a>
 <a name="album_prop_password_start"></a>
 <p><strong>Album Password</strong>: you can specify an album to be password-protected (instead of relying on the "regular" group-based permissions). This way, you can even allow access for unlogged users (guests) who you provide the password to. Use this option, for example, to set up an album for your family members only by specifying a password that only they can come up with answering an additional password hint (e.g. "<em>What was the maiden name of aunt Emma?</em>"), or you could decide to send the particular password to specific friends, family or business associates by email. The optional <strong>password hint</strong> will be displayed at the password prompt, when set.</p>

@@ -98,8 +98,8 @@ a.external {
 </style>
 </head>
 <body>
-<h1><b>Coppermine 1.4.2 FAQ</b></h1>
-<p>FAQ for <a href="http://coppermine.sourceforge.net/">Coppermine Photo Gallery v1.4.2</a><br />
+<h1><b>Coppermine 1.5.x FAQ</b></h1>
+<p>FAQ for <a href="http://coppermine.sourceforge.net/">Coppermine Photo Gallery v1.5.x</a><br />
 For credits and copyrights, see <a href="index.htm#credits">Coppermine documentation</a></p>
 
 
@@ -110,7 +110,7 @@ For credits and copyrights, see <a href="index.htm#credits">Coppermine documenta
 <ul class="nomargin">
 <li><b>Installation</b></li>
 <ul class="nomargin">
-<li><a class="content" href="#MinimumRequirements">What are the <b>minimum requirements</b> for the installation and use of Coppermine 1.4.2 ?</a></li>
+<li><a class="content" href="#MinimumRequirements">What are the <b>minimum requirements</b> for the installation and use of Coppermine 1.5.x ?</a></li>
 <li><a class="content" href="#whatIsImageMagick">What's <b>ImageMagick</b> and how can I get it?</a></li>
 <li><a class="content" href="#WhatIsGD">What's <b>GD</b> and how can I get it?</a></li>
 <li><a class="content" href="#VersionPHP">How do I find out <b>which version of PHP</b> I have?</a></li>
@@ -199,7 +199,7 @@ For credits and copyrights, see <a href="index.htm#credits">Coppermine documenta
 
 <br />&nbsp;<br />
 <h2>Installation</h2><a name="MinimumRequirements"></a>
-<h3>What are the <b>minimum requirements</b> for the use of Coppermine 1.4.0 ?</h3>
+<h3>What are the <b>minimum requirements</b> for the use of Coppermine 1.5.x ?</h3>
 <p>
     <ul>
         <li>any webserver, Apache recommended (Coppermine has been reported to work with <a href="http://httpd.apache.org/" class="external">Apache</a>, <a href="http://www.microsoft.com/iis/" class="external">Microsoft Internet Information Server</a> (IIS), <a href="http://www.roxen.com/products/webserver/" class="external">Roxen WebServer</a>, <a href="http://www.aprelium.com/" class="external">Abyss</a>, <a href="http://www.janaserver.de/" class="external">JanaServer</a>)</li>
@@ -251,7 +251,7 @@ For credits and copyrights, see <a href="index.htm#credits">Coppermine documenta
 <li>Upon successfull installation, delete the install.php file from your website.</li>
 <li>Point your browser to http://www.yoursite.com/coppermine/ , and login as admin using the ID and Password you provided during install. In admin mode, click on the CONFIG menu button to start customizing your coppermine photo gallery.</li>
 <li>Experiment with your new install, create a few categories, sub-categories, and albums. Upload a few pics (not too many, just yet), test if everything works. </li>
-<li>Point your browser to http://www.yoursite.com/coppermine/docs/ and READ the docs. The documents included with CPG1.42 have been updated from previous versions to help answer your questions and issues so that you can get the site you want the first time out. Reading the docs takes but a few minutes. Resolving issues after the fact can take days, even weeks.</li>
+<li>Point your browser to http://www.yoursite.com/coppermine/docs/ and READ the docs. The documents included with CPG1.5.x have been updated from previous versions to help answer your questions and issues so that you can get the site you want the first time out. Reading the docs takes but a few minutes. Resolving issues after the fact can take days, even weeks.</li>
 <li>If your new Coppermine install is in a sub folder on your site, publish your site by linking it to your homepage.</li>
 </ol><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 
@@ -278,7 +278,7 @@ Example: if you're using the theme &quot;Eyeball&quot; that comes with coppermin
 <br /><div class="totop">Webspace that can be saved (maximum): 1 MB</div>
 </li>
 <li><b>Remove some docs from the docs folder</b><br />
-The docs folder contains documents that are meant to help you set up and administer coppermine. In cpg1.4.2 or better, there are some files in this folder that are mandatory to have on the server for the help icons to work; others are optional. You can remove the files &quot;credits.html&quot;, &quot;faq.html&quot;, &quot;README.html&quot;, &quot;theme.htm&quot; and &quot;translation.htm&quot;. All other files (and the subfolder &quot;pics&quot;) have to remain on the webserver if you want to use the help icons (recommended).
+The docs folder contains documents that are meant to help you set up and administer coppermine. In cpg1.5.x or better, there are some files in this folder that are mandatory to have on the server for the help icons to work; others are optional. You can remove the files &quot;credits.html&quot;, &quot;faq.html&quot;, &quot;README.html&quot;, &quot;theme.htm&quot; and &quot;translation.htm&quot;. All other files (and the subfolder &quot;pics&quot;) have to remain on the webserver if you want to use the help icons (recommended).
 <br /><div class="totop">Webspace that can be saved (maximum): 164 KB</div>
 </li>
 <li><b>Remove bridge files</b><br />
@@ -303,7 +303,7 @@ Summary: a minimum install of coppermine will need approx. 3.3 MB of webspace.
 
 <a name="uploadGeneralTroubleshooting"></a>
 <h3>General Upload Troubleshooting</h3>
-<p>When troubleshooting uploads in CPG 1.4, you are advised to change the upload settings in the Groups console to 'Single uploads only' and to activate 'Debug mode' in the config console.  Changing this setting negates some of the error masking done in the multiple upload setting.  This will allow you to access more detailed error messages.</p>
+<p>When troubleshooting uploads in CPG 1.5, you are advised to change the upload settings in the Groups console to 'Single uploads only' and to activate 'Debug mode' in the config console.  Changing this setting negates some of the error masking done in the multiple upload setting.  This will allow you to access more detailed error messages.</p>
 <p><span class="important"><fieldset><legend><b>First and foremost:</b></legend>Check your folder and file permission settings on the /albums, /albums/userpics, and /albums/edit directories.  All should be 777 or 755.</span><br /><br />If you don't know what we mean by <i>777</i> or <i>755</i>,  you need to do a Google search on <i>UNIX file permissions</i>. Windows has a similar set of file permissions. You can usually set these permissions using an <i>FTP client</i> (If you don't know what an <i>FTP client</i> is, Google for <i>FTP client</i>).<br /> </fieldset> <br />
 For those of you who skim over statements written in red letters, I will repeat to try to get your attention:
 <br />  <br />
@@ -392,7 +392,7 @@ If the <i>open basedir restriction</i> is in effect on your site then the temp d
 <ul>
 <li>Make sure you have a folder named 'edit' in your albums folder.</li>
 <li>Make sure the edit directory has been chmod to 777/755.</li>
-<li>Make sure you have completely upgraded to Coppermine 1.4.0</li>
+<li>Make sure you have completely upgraded to Coppermine 1.5.x</li>
 </ul><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 
 <a name="httpPostVars"></a>
@@ -466,7 +466,7 @@ and replace it with<br />
 <li>if you want to add static html-content (for example your site logo), edit <tt class="code">/themes/yourtheme/template.html</tt> - add/remove anything you want, but be sure to leave everything in that is in brackets.</li>
 <li>if you want dynamic content (or want to add PHP-code), edit the file <tt class="code">/themes/yourtheme/theme.php</tt></li>
 <li>if you want the edit the color scheme of a theme to match the &quot;look-and-feel&quot; of your site, edit <tt class="code">/themes/yourtheme/style.css</tt></li>
-<li>for experienced php users, cpg 1.42 introduces an alternative method of adding intricate custom headers or footers. Create a php file for your header and one for your footer using a format similar to the following: <br />
+<li>for experienced php users, cpg 1.5.x introduces an alternative method of adding intricate custom headers or footers. Create a php file for your header and one for your footer using a format similar to the following: <br />
 <pre><blockquote>&lt;?php <br />
 echo &lt;&lt;&lt;EOT  <br /><br />
 Enter your header/footer content here.  What you enter here will be displayed<br />at the top of my page if it is a header and at the bottom of my page if it is a footer. <br /> <br />
