@@ -440,27 +440,87 @@ class core_udb {
         if ($PAGE > $totalPages) $PAGE = 1;
         $lower_limit = ($PAGE-1) * $users_per_page;
 
-		$sql  = "SELECT {$f['user_id']} as user_id,";
-        $sql .= "{$f['username']} as user_name,";
-        $sql .= "COUNT(DISTINCT a.aid) as alb_count,";
-        $sql .= "COUNT(DISTINCT pid) as pic_count,";
-        $sql .= "MAX(pid) as thumb_pid, ";
-        $sql .= "MAX(galleryicon) as gallery_pid ";
-        $sql .= "FROM {$CONFIG['TABLE_ALBUMS']} AS a ";
-        $sql .= "INNER JOIN {$this->usertable} as u on u.{$f['user_id']} = a.category - " . FIRST_USER_CAT . " ";
-        $sql .= "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid ";
-        $sql .= "WHERE ((isnull(approved) or approved='YES') AND category > " . FIRST_USER_CAT . ") $forbidden_with_icon GROUP BY category ";
-        $sql .= "ORDER BY category ";
-        $sql .= "LIMIT $lower_limit, $users_per_page ";
+		if (UDB_CAN_JOIN_TABLES){
+			
+			$sql  = "SELECT {$f['user_id']} as user_id,";
+			$sql .= "{$f['username']} as user_name,";
+			$sql .= "COUNT(DISTINCT a.aid) as alb_count,";
+			$sql .= "COUNT(DISTINCT pid) as pic_count,";
+			$sql .= "MAX(pid) as thumb_pid, ";
+			$sql .= "MAX(galleryicon) as gallery_pid ";
+			$sql .= "FROM {$CONFIG['TABLE_ALBUMS']} AS a ";
+			$sql .= "INNER JOIN {$this->usertable} as u on u.{$f['user_id']} = a.category - " . FIRST_USER_CAT . " ";
+			$sql .= "INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid ";
+			$sql .= "WHERE ((isnull(approved) or approved='YES') AND category > " . FIRST_USER_CAT . ") $forbidden_with_icon GROUP BY category ";
+			$sql .= "ORDER BY category ";
+			$sql .= "LIMIT $lower_limit, $users_per_page ";
+	
+	
+			$result = cpg_db_query($sql);
+	
+			while ($row = mysql_fetch_array($result)) {
+				$users[] = $row;
+			}
+			mysql_free_result($result);
+			
+		} else {
+			// This is the way we collect the data without a direct join to the forum's user table
 
-
-		$result = cpg_db_query($sql);
-
-        while ($row = mysql_fetch_array($result)) {
-            $users[] = $row;
-        }
-        mysql_free_result($result);
-
+			// This query determines which users we need to collect usernames of - ie just those which have albums with pics
+			// and are on the page we are looking at
+			$sql  = "SELECT category - 10000 as user_id ";
+			$sql .= "FROM {$CONFIG['TABLE_ALBUMS']} AS a ";
+			$sql .= "INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid ";
+			$sql .= "WHERE ((isnull(approved) or approved='YES') ";
+			$sql .= "AND category > " . FIRST_USER_CAT . ") $forbidden_with_icon GROUP BY category ";
+			$sql .= "LIMIT $lower_limit, $users_per_page ";
+	
+			$result = cpg_db_query($sql);
+			
+			$user_ids = array();
+			
+			while ($row = mysql_fetch_array($result)) {
+				$user_ids[] = $row['user_id'];
+			}
+			mysql_free_result($result);
+			
+			$userlist = implode(',', $user_ids);
+			
+			// This query collects an array of user_id -> username mappings for the user ids collected above 
+			$result = cpg_db_query("SELECT {$this->field['user_id']} AS user_id, {$this->field['username']} AS user_name FROM {$this->usertable} WHERE {$this->field['user_id']} IN ($userlist)", $this->link_id);
+		
+			$userdata = array();
+			
+			while ($row = mysql_fetch_array($result)) {
+				$userdata[$row['user_id']] = $row['user_name'];
+			}
+			
+			mysql_free_result($result);
+			
+			// This is the main query, similar to the one in the join implementation above but without the join to the user table
+			// We use the pic's owner_id field as the user_id instead of using category - 10000 as the user_id
+			$sql  = "SELECT owner_id as user_id,";
+			//$sql .= "{$f['username']} as user_name,";
+			$sql .= "COUNT(DISTINCT a.aid) as alb_count,";
+			$sql .= "COUNT(DISTINCT pid) as pic_count,";
+			$sql .= "MAX(pid) as thumb_pid, ";
+			$sql .= "MAX(galleryicon) as gallery_pid ";
+			$sql .= "FROM {$CONFIG['TABLE_ALBUMS']} AS a ";
+		   // $sql .= "INNER JOIN {$this->usertable} as u on u.{$f['user_id']}+".FIRST_USER_CAT."=a.category ";
+			$sql .= "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid ";
+			$sql .= "WHERE ((isnull(approved) or approved='YES') AND category > " . FIRST_USER_CAT . ") $forbidden_with_icon GROUP BY category ";
+			$sql .= "ORDER BY category ";
+			$sql .= "LIMIT $lower_limit, $users_per_page ";
+	
+			$result = cpg_db_query($sql);
+			
+			// Here we associate the username with the album details.
+			while ($row = mysql_fetch_array($result)) {
+				$users[] = array_merge($row, array('user_name' => $userdata[$row['user_id']]));
+			}
+			
+			mysql_free_result($result);
+		}
 		return $users;
 	}
 
