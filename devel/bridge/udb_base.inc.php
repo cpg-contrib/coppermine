@@ -419,10 +419,11 @@ class core_udb {
 			$forbidden = '';
 		}
 
-        // Get the total number of users with albums
+		// Get the total number of users with albums
         $sql  = "select null ";
         $sql .= "from {$CONFIG['TABLE_ALBUMS']} as p ";
-        $sql .= "where ( category>".FIRST_USER_CAT." $forbidden) ";
+        $sql .= " INNER JOIN {$CONFIG['TABLE_PICTURES']} AS pics ON pics.aid = p.aid ";
+		$sql .= "where ( category>".FIRST_USER_CAT." $forbidden) ";
         $sql .= "group by category;";
 
         $result = cpg_db_query($sql);
@@ -446,7 +447,7 @@ class core_udb {
         $sql .= "MAX(pid) as thumb_pid, ";
         $sql .= "MAX(galleryicon) as gallery_pid ";
         $sql .= "FROM {$CONFIG['TABLE_ALBUMS']} AS a ";
-        $sql .= "INNER JOIN {$this->usertable} as u on u.{$f['user_id']}+".FIRST_USER_CAT."=a.category ";
+        $sql .= "INNER JOIN {$this->usertable} as u on u.{$f['user_id']} = a.category - " . FIRST_USER_CAT . " ";
         $sql .= "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid ";
         $sql .= "WHERE ((isnull(approved) or approved='YES') AND category > " . FIRST_USER_CAT . ") $forbidden_with_icon GROUP BY category ";
         $sql .= "ORDER BY category ";
