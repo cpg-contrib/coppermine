@@ -221,8 +221,12 @@ class cpg_udb extends core_udb {
         $this->redirect($matches[1]);
         }
 
-        function view_users() {}
-        function view_profile() {}
+	function view_users()
+	{
+		$this->redirect($this->page['editusers']);
+	}
+	
+	function view_profile() {}
 }
 
 
