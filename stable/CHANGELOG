@@ -313,3 +313,4 @@ Applied speculative fixes to xp publisher component - 20 November, Nibbler
 Moved files from devel branch of CVS to stable branch - 25 November, Abbas Ali
 Fixed example for template_sub_menu to include custom_link button in the docs - 24 November, Donnoman
 Fixed non-approved images from showing up errantly in albums with keywords set - 24 November, Donnoman
+Increased version count from cpg1.4.2 to cpg1.4.3 - 28 November 2005, GauGau
