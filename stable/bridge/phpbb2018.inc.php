@@ -278,7 +278,7 @@ class phpbb2018_udb extends core_udb {
 		}
 
 
-        $sql = "SELECT u.{$f['user_id']} as user_id, MIN(ug.{$f['grouptbl_group_id']}) AS user_group, {$f['username']} as user_name, {$f['email']} as user_email, {$f['regdate']} as user_regdate, {$f['lastvisit']} as user_lastvisit, '' as user_active, 0 as pic_count, 0 as disk_usage ".
+        $sql = "SELECT u.{$f['user_id']} as user_id, u.user_level, MIN(ug.{$f['grouptbl_group_id']}) AS user_group, {$f['username']} as user_name, {$f['email']} as user_email, {$f['regdate']} as user_regdate, {$f['lastvisit']} as user_lastvisit, '' as user_active, 0 as pic_count, 0 as disk_usage ".
                "FROM {$this->usertable} AS u ".
 			   "INNER JOIN {$this->usergroupstable} AS ug ON u.{$this->field['user_id']}=ug.{$this->field['user_id']}    ".   
                "WHERE u.{$f['user_id']} > 0 " . $options['search'].
@@ -301,11 +301,11 @@ class phpbb2018_udb extends core_udb {
 				if (in_array($user['user_group'], $udb_groups)){
 					$gid = $user['user_group'] + 100;
 		
-				} elseif (in_array($user['user_group'], $this->admingroups)){
+				} elseif ($user['user_level'] == 1 || in_array($user['user_group'], $this->admingroups)){
 					$gid = 102;
 				}
 			} else {
-				if (in_array($user['user_group'], $this->admingroups)){
+				if ($user['user_level'] == 1 || in_array($user['user_group'], $this->admingroups)){
 					$gid = 1;
 				}
 			}

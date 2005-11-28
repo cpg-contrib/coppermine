@@ -301,11 +301,11 @@ class phpbb2018_udb extends core_udb {
 				if (in_array($user['user_group'], $udb_groups)){
 					$gid = $user['user_group'] + 100;
 		
-				} elseif (in_array($user['user_group'], $this->admingroups)){
+				} elseif ($user['user_level'] == 1 || in_array($user['user_group'], $this->admingroups)){
 					$gid = 102;
 				}
 			} else {
-				if (in_array($user['user_group'], $this->admingroups)){
+				if ($user['user_level'] == 1 || in_array($user['user_group'], $this->admingroups)){
 					$gid = 1;
 				}
 			}
