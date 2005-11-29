@@ -385,7 +385,7 @@ class core_udb {
 	{
         global $lang_register_php;
 
-		$sql = "SELECT {$this->field['username']} AS user_name, 
+		$sql = "SELECT *, {$this->field['username']} AS user_name, 
 										{$this->field['email']} AS user_email, 
 										{$this->field['regdate']} AS user_regdate, 
 										{$this->field['location']} AS user_location, 
