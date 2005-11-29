@@ -24,9 +24,9 @@ define('USE_BRIDGEMGR', 1);
 
 require 'bridge/udb_base.inc.php';
 
-class cpg_udb extends core_udb {
+class phpbb_udb extends core_udb {
 
-	function cpg_udb()
+	function phpbb_udb()
 	{
 		global $BRIDGE;
 		
@@ -124,12 +124,13 @@ class cpg_udb extends core_udb {
 		if (isset($_COOKIE[$this->cookie_name . '_sid'])) {			
 			$session_id = addslashes($_COOKIE[$this->cookie_name . '_sid']);
 
-			$sql = "SELECT u.{$this->field['user_id']} AS user_id, u.{$this->field['password']} AS password FROM {$this->usertable} AS u, {$this->sessionstable} AS s WHERE u.{$this->field['user_id']}=s.session_user_id AND s.session_id = '$session_id' AND u.user_id > 0";
+			$sql = "SELECT u.{$this->field['user_id']} AS user_id, u.{$this->field['password']} AS password, u.user_level FROM {$this->usertable} AS u, {$this->sessionstable} AS s WHERE u.{$this->field['user_id']}=s.session_user_id AND s.session_id = '$session_id' AND u.user_id > 0";
 			
 			$result = cpg_db_query($sql, $this->link_id);
 
 			if (mysql_num_rows($result)){
 				$row = mysql_fetch_array($result);
+				$this->userlevel = $row['user_level'];
 				return $row;
 			} else {
 			    return false;
@@ -140,17 +141,22 @@ class cpg_udb extends core_udb {
 	// Get groups of which user is member
 	function get_groups($row)
 	{
+		$data = array();
+		
 		if ($this->use_post_based_groups){
 
 			$sql = "SELECT ug.{$this->field['usertbl_group_id']}+100 AS group_id FROM {$this->usertable} AS u, {$this->usergroupstable} AS ug, {$this->groupstable} as g WHERE u.{$this->field['user_id']}=ug.{$this->field['user_id']} AND u.{$this->field['user_id']}='{$row['id']}' AND g.{$this->field['grouptbl_group_id']} = ug.{$this->field['grouptbl_group_id']}";
 
 			$result = cpg_db_query($sql, $this->link_id);
 
-			while ($row = mysql_fetch_array($result)) {
-				$data[] = $row['group_id'];
+			while ($row2 = mysql_fetch_array($result)) {
+				$data[] = $row2['group_id'];
 			}
+
+			if ($this->userlevel == 1 || in_array($row[$this->field['usertbl_group_id']] , $this->admingroups)) array_unshift($data, 102);
+			if ($this->userlevel == 0) array_unshift($data, 2);
 		} else {
-			$data[0] = in_array($row[$this->field['usertbl_group_id']] , $this->admingroups) ? 1 : 2;
+			$data[0] = ($this->userlevel == 1 || in_array($row[$this->field['usertbl_group_id']] , $this->admingroups)) ? 1 : 2;
 		}
 		
 		return $data;
@@ -184,7 +190,7 @@ class cpg_udb extends core_udb {
 		$cpg = parse_url($CONFIG['site_url']);
 		$bb = parse_url($this->boardurl);
 		$levels = count(explode('/', $bb['path'])) - 1;
-		$redirect = str_repeat('..', $levels) . rtrim($cpg['path'], '/') . '/';
+		$redirect = str_repeat('../', $levels) . trim($cpg['path'], '/') . '/';
 
 		$this->redirect("/login.php?redirect=$redirect");
 	}
@@ -198,7 +204,7 @@ class cpg_udb extends core_udb {
 		$levels = count(explode('/', $bb['path'])) - 1;
 		$redirect = str_repeat('../', $levels) . trim($cpg['path'], '/') . '/';
 		
-		$this->redirect("/login.php?logout=true&redirect=$redirect");
+		$this->redirect("/login.php?logout=true&sid={$this->sid}&redirect=$redirect");
 	}
 
 	function view_users() {}
@@ -329,5 +335,5 @@ class cpg_udb extends core_udb {
 }
 
 // and go !
-$cpg_udb = new cpg_udb;
+$cpg_udb = new phpbb_udb;
 ?>
