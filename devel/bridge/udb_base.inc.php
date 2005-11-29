@@ -26,13 +26,13 @@ class core_udb {
 		global $CONFIG;
 
 		// Define wheter we can join tables or not in SQL queries (same host & same db or user)
-		define('UDB_CAN_JOIN_TABLES', ($this->db['host'] == $CONFIG['dbserver'] && ($this->db['name'] == $CONFIG['dbname'] || $this->db['user'] == $CONFIG['dbuser'])));
-		
+		$this->can_join_tables = ($this->db['host'] == $CONFIG['dbserver'] && ($this->db['name'] == $CONFIG['dbname'] || $this->db['user'] == $CONFIG['dbuser']));
+
 		if ($id){
 			$this->link_id = $id;
 		} else {
 			// Connect to udb database if necessary
-			if (!UDB_CAN_JOIN_TABLES) {
+			if (!$this->can_join_tables) {
 				$this->link_id = mysql_connect($this->db['host'], $this->db['user'], $this->db['password']);
 				if (!$this->link_id) die("<b>Coppermine critical error</b>:<br />Unable to connect to UDB database !<br /><br />MySQL said: <b>" . mysql_error() . "</b>");
 				mysql_select_db ($this->db['name'], $this->link_id);
@@ -440,7 +440,7 @@ class core_udb {
         if ($PAGE > $totalPages) $PAGE = 1;
         $lower_limit = ($PAGE-1) * $users_per_page;
 
-		if (UDB_CAN_JOIN_TABLES){
+		if ($this->can_join_tables){
 			
 			$sql  = "SELECT {$f['user_id']} as user_id,";
 			$sql .= "{$f['username']} as user_name,";
@@ -591,7 +591,7 @@ class core_udb {
 	{
 		global $CONFIG;
 
-		if (UDB_CAN_JOIN_TABLES) {
+		if ($this->can_join_tables) {
 			$sql = "SELECT aid, CONCAT('(', {$this->field['username']}, ') ', a.title) AS title
 							FROM {$CONFIG['TABLE_ALBUMS']} AS a 
 							INNER JOIN {$this->usertable} AS u
@@ -607,7 +607,7 @@ class core_udb {
 	{
 		global $lang_util_php, $CONFIG;
 
-		if (UDB_CAN_JOIN_TABLES) {
+		if ($this->can_join_tables) {
 
 			$query = "SELECT aid, category, IF({$this->field['username']} IS NOT NULL, 
 								CONCAT('(', {$this->field['username']}, ') ', a.title), 
