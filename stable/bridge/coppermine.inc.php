@@ -25,9 +25,9 @@ define('USE_BRIDGEMGR', 1);
 
 require 'bridge/udb_base.inc.php';
 
-class cpg_udb extends core_udb {
+class coppermine_udb extends core_udb {
 
-        function cpg_udb()
+        function coppermine_udb()
         {
                 global $BRIDGE,$CONFIG;
 
@@ -449,5 +449,5 @@ class cpg_udb extends core_udb {
 }
 
 // and go !
-$cpg_udb = new cpg_udb;
+$cpg_udb = new coppermine_udb;
 ?>

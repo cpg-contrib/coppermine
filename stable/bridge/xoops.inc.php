@@ -22,7 +22,7 @@ if (!defined('IN_COPPERMINE')) die('Not in Coppermine...');
 // Switch that allows overriding the bridge manager with hard-coded values
 define('USE_BRIDGEMGR', 1);
 
-require 'bridge/udb_base.inc.php';
+require_once 'bridge/udb_base.inc.php';
 
 if (!USE_BRIDGEMGR) {
 	require_once('../xoops/mainfile.php');
