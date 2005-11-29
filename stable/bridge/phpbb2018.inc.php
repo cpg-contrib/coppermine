@@ -39,7 +39,7 @@ class phpbb2018_udb extends core_udb {
 			require_once($BRIDGE['relative_path_to_config_file'] . 'config.php');
 			$this->use_post_based_groups = $BRIDGE['use_post_based_groups'];
 		}
-		$this->use_post_based_groups = 0;
+
 		$this->multigroups = 1;
 		
 		// Database connection settings
