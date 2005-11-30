@@ -461,7 +461,7 @@ function list_albums()
         if ($CONFIG['link_pic_count'] == 1) {
           if (!empty($value['keyword'])) {
             $value['keyword'] = addslashes($value['keyword']);
-            $query = "SELECT count(pid) AS link_pic_count
+            $query = "SELECT count(pid) AS link_pic_count, max(pid) AS link_last_pid
                       FROM {$CONFIG['TABLE_PICTURES']}
                         WHERE aid != {$value['aid']} AND
                         keywords LIKE '%{$value['keyword']}%' AND
@@ -470,6 +470,7 @@ function list_albums()
             $link_stat = mysql_fetch_array ($result);
             mysql_free_result($result);
             $alb_stats[$key]['link_pic_count'] = $link_stat['link_pic_count'];
+            $alb_stats[$key]['last_pid'] = $alb_stats[$key]['last_pid'] ? $alb_stats[$key]['last_pid'] : $link_stat['link_last_pid'];
           }
        }
     }
@@ -489,7 +490,7 @@ function list_albums()
         $visibility = $alb_thumb['visibility'];
 
                 if (!in_array($aid,$FORBIDDEN_SET_DATA) || $CONFIG['allow_private_albums'] == 0) {
-            if ($count > 0) {
+            if ($count > 0 || $alb_stats[$alb_idx]['link_pic_count'] > 0) {
                 if ($alb_thumb['filename']) {
                     $picture = &$alb_thumb;
                 } else {

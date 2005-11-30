@@ -193,7 +193,10 @@ function form_alb_thumb($text, $name)
 
     $cpg_nopic_data = cpg_get_system_thumb('nopic.jpg',$USER_DATA['user_id']);
 
-    $results = cpg_db_query("SELECT pid, filepath, filename, url_prefix FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' AND approved='YES' ORDER BY filename");
+    if ($ALBUM_DATA['keyword']) {
+        $keyword = "OR (keywords like '%{$ALBUM_DATA['keyword']}%')";
+    }
+    $results = cpg_db_query("SELECT pid, filepath, filename, url_prefix FROM {$CONFIG['TABLE_PICTURES']} WHERE aid='$album' $keyword AND approved='YES' ORDER BY filename");
     if (mysql_num_rows($results) == 0) {
         echo <<<EOT
         <tr>
