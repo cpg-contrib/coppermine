@@ -542,7 +542,7 @@ class core_udb {
 	
 				while ($row = mysql_fetch_assoc($result))
 				{
-					$udb_groups[$row[$this->field['grouptbl_group_id']]+100] = utf_ucfirst(utf_strtolower($row[$this->field['grouptbl_group_name']]));
+					$udb_groups[$row[$this->field['grouptbl_group_id']]+100] = $row[$this->field['grouptbl_group_name']];
 				}
 			}
 		} else {
