@@ -1160,10 +1160,10 @@ function pageheader($section, $meta = '')
 
     $custom_header = cpg_get_custom_include($CONFIG['custom_header_path']);
 
-	$charset = ($CONFIG['charset'] == 'language file') ? $lang_charset : $CONFIG['charset'];
+        $charset = ($CONFIG['charset'] == 'language file') ? $lang_charset : $CONFIG['charset'];
 
     header('P3P: CP="CAO DSP COR CURa ADMa DEVa OUR IND PHY ONL UNI COM NAV INT DEM PRE"');
-	header("Content-Type: text/html; charset=$charset");
+        header("Content-Type: text/html; charset=$charset");
     user_save_profile();
 
     $template_vars = array('{LANG_DIR}' => $lang_text_dir,
@@ -1714,7 +1714,7 @@ if (!function_exists('theme_display_thumbnails')) {  //{THEMES}
 function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $cat, $page, $total_pages, $sort_options, $display_tabs, $mode = 'thumb')
 {
     global $CONFIG;
-    global $template_thumb_view_title_row,$template_fav_thumb_view_title_row, $lang_thumb_view, $template_tab_display, $template_thumbnail_view;
+    global $template_thumb_view_title_row,$template_fav_thumb_view_title_row, $lang_thumb_view, $template_tab_display, $template_thumbnail_view, $lang_album_list;
 
     static $header = '';
     static $thumb_cell = '';
@@ -1739,7 +1739,7 @@ function theme_display_thumbnails(&$thumb_list, $nbThumb, $album_name, $aid, $ca
     $theme_thumb_tab_tmpl = $template_tab_display;
 
     if ($mode == 'thumb') {
-        $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $lang_thumb_view['pic_on_page']));
+        $theme_thumb_tab_tmpl['left_text'] = strtr($theme_thumb_tab_tmpl['left_text'], array('{LEFT_TEXT}' => $aid == 'lastalb' ? $lang_album_list['album_on_page'] : $lang_thumb_view['pic_on_page']));
         $theme_thumb_tab_tmpl['inactive_tab'] = strtr($theme_thumb_tab_tmpl['inactive_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . '&amp;page=%d'));
         $theme_thumb_tab_tmpl['inactive_next_tab'] = strtr($theme_thumb_tab_tmpl['inactive_next_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . '&amp;page=%d'));
         $theme_thumb_tab_tmpl['inactive_prev_tab'] = strtr($theme_thumb_tab_tmpl['inactive_prev_tab'], array('{LINK}' => 'thumbnails.php?album=' . $aid . $cat_link . '&amp;page=%d'));
