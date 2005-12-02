@@ -315,3 +315,4 @@ Fixed example for template_sub_menu to include custom_link button in the docs - 
 Fixed non-approved images from showing up errantly in albums with keywords set - 24 November, Donnoman
 Increased version count from cpg1.4.2 to cpg1.4.3 - 28 November 2005, GauGau
 Fixed minor typo in english.php regarding "Create intermediate pictures" - 01 December 2005, Donnoman
+Added fix for showing correct number of tabs and pages when viewing lastalb meta album - 02 December 2005, Abbas
