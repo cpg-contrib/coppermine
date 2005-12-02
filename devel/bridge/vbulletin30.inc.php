@@ -10,7 +10,7 @@
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
   ********************************************
-  Coppermine version: 1.5.0
+  Coppermine version: 1.4.3
   $Source$
   $Revision$
   $Author$
@@ -43,13 +43,27 @@ class cpg_udb extends core_udb {
 		$this->multigroups = 1;
 		
 		// Database connection settings
-		$this->db = array(
-			'name' => $dbname,
-			'host' => $servername ? $servername : 'localhost',
-			'user' => $dbusername,
-			'password' => $dbpassword,
-			'prefix' =>$tableprefix
-		);
+		
+		if (isset($config['Database']['dbname']))
+		{
+		  // Running on vBulletin 3.5.x
+		    $this->db = array(
+		        'name' => $config['Database']['dbname'],
+		        'host' => $config['MasterServer']['servername'] ? $config['MasterServer']['servername'] : 'localhost',
+		        'user' => $config['MasterServer']['username'],
+		        'password' => $config['MasterServer']['password'],
+		        'prefix' => $config['Database']['tableprefix']
+			);
+		} else {
+		  // Running on vBulletin 3.0.x
+		    $this->db = array(
+		    	'name' => $dbname,
+		    	'host' => $servername ? $servername : 'localhost',
+		    	'user' => $dbusername,
+		    	'password' => $dbpassword,
+		    	'prefix' =>$tableprefix
+			);
+		}
 		
 		// Board table names
 		$this->table = array(
@@ -81,7 +95,7 @@ class cpg_udb extends core_udb {
 		$this->page = array(
 			'register' => '/register.php',
 			'editusers' => '/memberlist.php',
-			'edituserprofile' => "/membe.php?u=",
+			'edituserprofile' => "/member.php?u=",
 		);
 		
 		// Group ids - admin and guest only.
@@ -92,7 +106,14 @@ class cpg_udb extends core_udb {
 		$this->group_overrride = 0;
 		
 		// Cookie settings - used in following functions only
-		$this->cookie_name = $cookieprefix;
+		if (isset($config['Misc']['cookieprefix']))
+		{
+		  // get cookieprefix from vb3.5.x
+		  $this->cookie_name = $config['Misc']['cookieprefix'];
+		} else {
+		  // get cookieprefix from vb3.0.x
+		  $this->cookie_name = $cookieprefix;
+		}
 		
 		// Connect to db
 		$this->connect();
@@ -104,7 +125,7 @@ class cpg_udb extends core_udb {
 		if (isset($_COOKIE[$this->cookie_name . 'sessionhash'])) {
 			$session_id = addslashes($_COOKIE[$this->cookie_name . 'sessionhash']);
 			
-			$sql = "SELECT u.{$this->field['user_id']}, u.{$this->field['username']}, u.{$this->field['grouptbl_group_id']}+100 AS usergroupid FROM {$this->usertable} AS u, {$this->sessionstable} AS s WHERE s.{$this->field['user_id']}=u.{$this->field['user_id']} AND s.sessionhash='$session_id'";
+			$sql = "SELECT u.{$this->field['user_id']}, u.{$this->field['password']}, u.{$this->field['grouptbl_group_id']}+100 AS usergroupid FROM {$this->usertable} AS u, {$this->sessionstable} AS s WHERE s.{$this->field['user_id']}=u.{$this->field['user_id']} AND s.sessionhash='$session_id'";
 			
 			$result = cpg_db_query($sql, $this->link_id);
 			
@@ -120,10 +141,10 @@ class cpg_udb extends core_udb {
 	// Get groups of which user is member
 	function get_groups($row)
 	{
-		$data[0] = in_array($row[$this->field['usertbl_group_id']] - 100, $this->admingroups) ? 1 : 2;
+		$data[0] = in_array($row['group_id'] - 100, $this->admingroups) ? 1 : 2;
 		
 		if ($this->use_post_based_groups){
-			$sql = "SELECT g.{$this->field['usertbl_group_id']}+100 AS group_id, u.* FROM {$this->usertable} AS u, {$this->groupstable} as g WHERE g.{$this->field['grouptbl_group_id']} = u.{$this->field['usertbl_group_id']} AND u.{$this->field['user_id']} = '{$row[$this->field['user_id']]}'";
+			$sql = "SELECT g.{$this->field['usertbl_group_id']}+100 AS group_id, u.* FROM {$this->usertable} AS u, {$this->groupstable} as g WHERE g.{$this->field['grouptbl_group_id']} = u.{$this->field['usertbl_group_id']} AND u.{$this->field['user_id']} = '{$row['id']}'";
 
 			$result = cpg_db_query($sql, $this->link_id);
         
