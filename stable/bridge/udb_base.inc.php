@@ -828,5 +828,14 @@ if ($alb_cat) echo "                </optgroup>\n";
 			return false;
 		}
 	}
+	
+	function adv_sort($a, $b)
+	{
+		if ($this->sortdir == 'ASC'){
+			return strcmp($a[$this->sortfield], $b[$this->sortfield]);
+		 } else {
+			return strcmp($b[$this->sortfield], $a[$this->sortfield]);
+		}
+	}
 }
 ?>
