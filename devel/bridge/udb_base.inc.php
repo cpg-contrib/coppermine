@@ -507,7 +507,7 @@ class core_udb {
 			$sql .= "MAX(galleryicon) as gallery_pid ";
 			$sql .= "FROM {$CONFIG['TABLE_ALBUMS']} AS a ";
 		   // $sql .= "INNER JOIN {$this->usertable} as u on u.{$f['user_id']}+".FIRST_USER_CAT."=a.category ";
-			$sql .= "LEFT JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid ";
+			$sql .= "INNER JOIN {$CONFIG['TABLE_PICTURES']} AS p ON p.aid = a.aid ";
 			$sql .= "WHERE ((isnull(approved) or approved='YES') AND category > " . FIRST_USER_CAT . ") $forbidden_with_icon GROUP BY category ";
 			$sql .= "ORDER BY category ";
 			$sql .= "LIMIT $lower_limit, $users_per_page ";
@@ -529,7 +529,7 @@ class core_udb {
 	function synchronize_groups()
 	{
 		global $CONFIG ;
-	
+
 		if ($this->use_post_based_groups){
 			if ($this->group_overrride){
 				$udb_groups = $this->collect_groups();
@@ -608,25 +608,74 @@ class core_udb {
 		global $lang_util_php, $CONFIG;
 
 		if ($this->can_join_tables) {
+				
+    // Reset counter
+    $list_count = 0;
 
-			$query = "SELECT aid, category, IF({$this->field['username']} IS NOT NULL, 
+	$user_albums = cpg_db_query("SELECT aid, IF({$this->field['username']} IS NOT NULL, 
 								CONCAT('(', {$this->field['username']}, ') ', a.title), 
 								CONCAT(' - ', a.title)) AS title 
 								FROM {$CONFIG['TABLE_ALBUMS']} AS a 
-								LEFT JOIN {$this->usertable} AS u 
+								INNER JOIN {$this->usertable} AS u 
 								ON category = (" . FIRST_USER_CAT . " + {$this->field['user_id']}) 
-								ORDER BY category, title";
-								
-			$result = cpg_db_query($query, $this->link_id);
+								ORDER BY a.title");
+	$user_albums_list = cpg_db_fetch_rowset($user_albums);
+	
+	$public_albums = cpg_db_query("SELECT aid, title, name FROM {$CONFIG['TABLE_ALBUMS']} LEFT JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
+	$public_albums_list = cpg_db_fetch_rowset($public_albums);
+	
+    // Cycle through the User albums
+    foreach($user_albums_list as $album) {
 
-			echo '&nbsp;&nbsp;&nbsp;&nbsp;<select size="1" name="albumid" class="listbox"><option value="0">All Albums</option>';
+        // Add to multi-dim array for later sorting
+        //$listArray[$list_count]['cat'] = $lang_upload_php['personal_albums'];
+        $listArray[$list_count]['cat'] = "* Personal Albums";
+		$listArray[$list_count]['aid'] = $album['aid'];
+        $listArray[$list_count]['title'] = $album['title'];
+        $list_count++;
+    }
 
-			while ($row = mysql_fetch_array($result)) {
-				$sql = "SELECT name FROM {$CONFIG['TABLE_CATEGORIES']} WHERE cid = " . $row["category"];
-				$result2 = cpg_db_query($sql);
-				$row2 = mysql_fetch_array($result2);
-				print "<option value=\"" . $row["aid"] . "\">" . $row2["name"] . $row["title"] . "</option>\n";
-			}
+    // Cycle through the public albums
+    foreach($public_albums_list as $album) {
+
+        // Set $album_id to the actual album ID
+        $album_id = $album['aid'];
+
+        // Get the category name
+       // $vQuery = "SELECT cat.name FROM " . $CONFIG['TABLE_CATEGORIES'] . " cat, " . $CONFIG['TABLE_ALBUMS'] . " alb WHERE alb.aid='" . $album_id . "' AND cat.cid=alb.category";
+        //$vRes = cpg_db_query($vQuery);
+        //$vRes = mysql_fetch_array($vRes);
+
+        // Add to multi-dim array for sorting later
+		$vRes['name'] = $album['name'];
+        if ($vRes['name']) {
+            $listArray[$list_count]['cat'] = $vRes['name'];
+        } else {
+            //$listArray[$list_count]['cat'] = $lang_upload_php['albums_no_category'];
+			$listArray[$list_count]['cat'] = "Albums with no category";
+        }
+        $listArray[$list_count]['aid'] = $album['aid'];
+        $listArray[$list_count]['title'] = $album['title'];
+        $list_count++;
+    }
+
+    // Sort the pulldown options by category and album name
+    $listArray = array_csort($listArray,'cat','title');
+
+    // Finally, print out the nicely sorted and formatted drop down list
+    $alb_cat = '';
+				echo '&nbsp;&nbsp;&nbsp;&nbsp;<select size="1" name="albumid" class="listbox"><option value="0">All Albums</option>';
+
+    foreach ($listArray as $val) {
+        if ($val['cat'] != $alb_cat) {
+if ($alb_cat) echo "                </optgroup>\n";
+            echo '                <optgroup label="' . $val['cat'] . '">' . "\n";
+            $alb_cat = $val['cat'];
+        }
+        echo '                <option value="' . $val['aid'] . '"' . ($val['aid'] == $sel_album ? ' selected' : '') . '>   ' . $val['title'] . "</option>\n";
+    }
+    if ($alb_cat) echo "                </optgroup>\n";
+
 
 			print '</select> (3)';
 			print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="submit" /> (4)';
@@ -777,6 +826,15 @@ class core_udb {
 			return $USER_DATA;
 		} else {
 			return false;
+		}
+	}
+	
+	function adv_sort($a, $b)
+	{
+		if ($this->sortdir == 'ASC'){
+			return strcmp($a[$this->sortfield], $b[$this->sortfield]);
+		 } else {
+			return strcmp($b[$this->sortfield], $a[$this->sortfield]);
 		}
 	}
 }
