@@ -316,3 +316,5 @@ Increased version count from cpg1.4.2 to cpg1.5.0 - 28 November 2005, GauGau
 Added fix for selecting thumbnail for the album which contains only linked files - 29 November 2005, Abbas
 Fixed minor typo in english.php regarding "Create intermediate pictures" - 01 December 2005, Donnoman
 Added fix for showing correct number of tabs and pages when viewing lastalb meta album - 02 December 2005, Abbas
+Fixed moved title after setting the charset - 02 December 2005, Donnoman
+Fixed XHTML compliance and charset missing from picEditor.php - 02, December 2005, Donnoman
