@@ -632,7 +632,8 @@ td #admin_menu_anim {
         vertical-align : middle;
 }
 #SUB_MENU {
-        padding: 0 0 0 20px;
+        width:100%;
+        padding: 0 20px;
 }
 
 #SYS_MENU {
