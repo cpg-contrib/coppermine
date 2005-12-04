@@ -216,13 +216,15 @@ if ($_GET['id']){
    }
 
 ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
-<meta http-equiv="imagetoolbar" content="no" />
-<head>
+  <head>
+  <meta http-equiv="imagetoolbar" content="no" />
+  <meta http-equiv="content-type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'] ?>" />  
     <title><?php echo $lang_editpics_php['crop_title'] ?></title>
     <?php if($imgObj){?>
-    <script language="JavaScript1.2">
-
+    <script type="text/javascript">
+    <![CDATA[
     /****************************************************************************
     DHTML library from DHTMLCentral.com
     *   Copyright (C) 2001 Thomas Brattli 2001
@@ -506,10 +508,10 @@ if ($_GET['id']){
         resetClip();
        }
     }
-
+    ]]>
     </script>
 <?php }?>
-    <style>
+    <style type="text/css">
     #lefttopdiv{
     position:absolute;
     background-image:url(<?php echo $_SERVER['PHP_SELF']?>?img=left);
@@ -544,12 +546,12 @@ if ($_GET['id']){
     <?php if (!$imgObj->imgRes) print "visibility:hidden;\n";?>
     }
     </style>
-    <link rel="stylesheet" href="themes/<?php echo $CONFIG['theme'];?>/style.css" />
+    <link rel="stylesheet" type="text/css" href="themes/<?php echo $CONFIG['theme'];?>/style.css" />
 </head>
 
 <body <?php if ($imgObj) print "onload=\"libinit()\"";?>>
 
-<form name="mainform" method="POST" enctype="multipart/form-data" action="picEditor.php">
+<form name="mainform" method="post" enctype="multipart/form-data" action="picEditor.php">
 
 <input type="hidden" name="clipval" value="" />
 <input type="hidden" name="newimage" value="<?php print $newimage ; ?>" />
@@ -566,10 +568,10 @@ if ($_GET['id']){
 
    <td>
       <select name="angle" class="listbox">
-      <option value="0" selected>Rotate
-      <option value="90">-90&#176;
-      <option value="180">180&#176;
-      <option value="270">+90&#176;
+      <option value="0" selected="selected">Rotate</option>
+      <option value="90">-90&#176;</option>
+      <option value="180">180&#176;</option>
+      <option value="270">+90&#176;</option>
       </select>
    </td>
    <!--
@@ -610,9 +612,13 @@ if ($_GET['id']){
    </td>
    <td title="Less quality creates a smaller file, default is 80%" >
         <select id="quality" name="quality" class="listbox" >
-        <option value="80" selected>JPEG Output Quality
-        <option value="10">10<option value="11">11<option value="12">12<option value="13">13<option value="14">14<option value="15">15<option value="16">16<option value="17">17<option value="18">18<option value="19">19<option value="20">20<option value="21">21<option value="22">22<option value="23">23<option value="24">24<option value="25">25<option value="26">26<option value="27">27<option value="28">28<option value="29">29<option value="30">30<option value="31">31<option value="32">32<option value="33">33<option value="34">34<option value="35">35<option value="36">36<option value="37">37<option value="38">38<option value="39">39<option value="40">40<option value="41">41<option value="42">42<option value="43">43<option value="44">44<option value="45">45<option value="46">46<option value="47">47<option value="48">48<option value="49">49<option value="50">50<option value="51">51<option value="52">52<option value="53">53<option value="54">54<option value="55">55<option value="56">56<option value="57">57<option value="58">58<option value="59">59<option value="60">60<option value="61">61<option value="62">62<option value="63">63<option value="64">64<option value="65">65<option value="66">66<option value="67">67<option value="68">68<option value="69">69<option value="70">70<option value="71">71<option value="72">72<option value="73">73<option value="74">74<option value="75">75<option value="76">76<option value="77">77<option value="78">78<option value="79">79<option value="80">80<option value="81">81<option value="82">82<option value="83">83<option value="84">84<option value="85">85<option value="86">86<option value="87">87<option value="88">88<option value="89">89<option value="90">90<option value="91">91<option value="92">92<option value="93">93<option value="94">94<option value="95">95<option value="96">96<option value="97">97<option value="98">98<option value="99">99<option value="100">100</option>
-
+        <option value="80" selected="selected">JPEG Output Quality</option>
+        <?php
+        for ( $counter = 10; $counter <= 100; $counter += 5) {
+            $selected = ($imgObj->quality == $counter) ? 'selected="selected" ' : '';
+            echo "<option value=\"$counter\" $selected>$counter</option>";
+        }
+        ?>
         </select>
    </td>
    <td><input type="submit" name="submit" class="button" value=" <?php echo $lang_editpics_php['preview'] ?> " /></td>
@@ -636,9 +642,9 @@ if ($_GET['id']){
 
 <div id="imgdiv">
 <?php if ($imgObj){ ?>
-<img src="<?php echo $imgObj->directory.$imgObj->filename?>?<?php echo rand(); ?>" <?php echo $imgObj->string; ?> align="absmiddle" />
+<img src="<?php echo $imgObj->directory.$imgObj->filename?>?<?php echo rand(); ?>" <?php echo $imgObj->string; ?> style="vertical-align: middle;" alt="" />
 <?php } ?>
 </div>
-
+</form>
 </body>
 </html>
