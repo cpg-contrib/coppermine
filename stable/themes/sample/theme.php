@@ -894,8 +894,8 @@ $template_ecard = <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="{LANG_DIR}">
 <head>
-<title>{TITLE}</title>
 <meta http-equiv="content-type" content="text/html; charset={CHARSET}" />
+<title>{TITLE}</title>
 </head>
 <body bgcolor="#FFFFFF" text="#0F5475" link="#0F5475" vlink="#0F5475" alink="#0F5475">
 <br />
@@ -966,8 +966,8 @@ $template_report = <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="{LANG_DIR}">
 <head>
-<title>{TITLE}</title>
 <meta http-equiv="content-type" content="text/html; charset={CHARSET}" />
+<title>{TITLE}</title>
 </head>
 <body bgcolor="#FFFFFF" text="#0F5475" link="#0F5475" vlink="#0F5475" alink="#0F5475">
 <br />
@@ -1029,8 +1029,8 @@ $template_report_comment = <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="{LANG_DIR}">
 <head>
-<title>{TITLE}</title>
 <meta http-equiv="content-type" content="text/html; charset={CHARSET}" />
+<title>{TITLE}</title>
 </head>
 <body bgcolor="#FFFFFF" text="#0F5475" link="#0F5475" vlink="#0F5475" alink="#0F5475">
 <br />
@@ -1072,8 +1072,8 @@ $template_report_comment_email = <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="{LANG_DIR}">
 <head>
-<title>{TITLE}</title>
 <meta http-equiv="content-type" content="text/html; charset={CHARSET}" />
+<title>{TITLE}</title>
 </head>
 <body bgcolor="#FFFFFF" text="#0F5475" link="#0F5475" vlink="#0F5475" alink="#0F5475">
 <p><a href="{VIEW_REPORT_TGT}">{VIEW_COMMENT_LNK}</a></p>

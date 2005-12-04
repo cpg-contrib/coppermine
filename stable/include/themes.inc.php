@@ -933,8 +933,8 @@ $template_ecard = <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="{LANG_DIR}">
 <head>
-<title>{TITLE}</title>
 <meta http-equiv="content-type" content="text/html; charset={CHARSET}" />
+<title>{TITLE}</title>
 </head>
 <body bgcolor="#FFFFFF" text="#0F5475" link="#0F5475" vlink="#0F5475" alink="#0F5475">
 <br />
@@ -1007,8 +1007,8 @@ $template_report = <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="{LANG_DIR}">
 <head>
-<title>{TITLE}</title>
 <meta http-equiv="content-type" content="text/html; charset={CHARSET}" />
+<title>{TITLE}</title>
 </head>
 <body bgcolor="#FFFFFF" text="#0F5475" link="#0F5475" vlink="#0F5475" alink="#0F5475">
 <br />
@@ -1071,8 +1071,8 @@ $template_report_comment = <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="{LANG_DIR}">
 <head>
-<title>{TITLE}</title>
 <meta http-equiv="content-type" content="text/html; charset={CHARSET}" />
+<title>{TITLE}</title>
 </head>
 <body bgcolor="#FFFFFF" text="#0F5475" link="#0F5475" vlink="#0F5475" alink="#0F5475">
 <br />
@@ -1114,8 +1114,8 @@ $template_report_comment_email = <<<EOT
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html dir="{LANG_DIR}">
 <head>
-<title>{TITLE}</title>
 <meta http-equiv="content-type" content="text/html; charset={CHARSET}" />
+<title>{TITLE}</title>
 </head>
 <body bgcolor="#FFFFFF" text="#0F5475" link="#0F5475" vlink="#0F5475" alink="#0F5475">
 <p><a href="{VIEW_REPORT_TGT}">{VIEW_COMMENT_LNK}</a></p>
@@ -2462,9 +2462,9 @@ function theme_display_fullsize_pic()
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
+  <meta http-equiv="content-type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'] ?>" />  
   <title><?php echo $CONFIG['gallery_name'] ?>: <?php echo $lang_fullsize_popup['click_to_close'];
       ?></title>
-  <meta http-equiv="content-type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'] ?>" />
   <script type="text/javascript" src="scripts.js"></script>
   <style type="text/css">
   body { margin: 0; padding: 0; background-color: gray; }
