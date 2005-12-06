@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /*************************
   Coppermine Photo Gallery
   ************************
@@ -978,7 +978,7 @@ $lang_picinfo = array(
   'YCbCrPositioning' => 'YCbCr-Positionierung', //cpg1.4
   'ExifOffset' => 'Exif Versatz', //cpg1.4
   'IFD1Offset' => 'IFD1 Versatz', //cpg1.4
-  'FNumber' => 'FNummer', //cpg1.4
+  'FNumber' => 'Blende', //cpg1.4
   'ExifVersion' => 'Exif Version', //cpg1.4
   'DateTimeOriginal' => 'Datum & Uhrzeit Original', //cpg1.4
   'DateTimedigitized' => 'Datum & Uhrzeit Digitaliserung', //cpg1.4
