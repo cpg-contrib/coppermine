@@ -311,7 +311,7 @@ function form_theme($text, $name, $help = '')
 
     $dir = opendir($theme_dir);
     while ($file = readdir($dir)) {
-        if (is_dir($theme_dir . $file) && $file != "." && $file != "..") {
+        if (is_dir($theme_dir . $file) && $file != "." && $file != ".." && $file != 'CVS' && $file != 'sample') {        
             $theme_array[] = $file;
         }
     }

@@ -318,3 +318,4 @@ Fixed minor typo in english.php regarding "Create intermediate pictures" - 01 De
 Added fix for showing correct number of tabs and pages when viewing lastalb meta album - 02 December 2005, Abbas
 Fixed moved title after setting the charset - 02 December 2005, Donnoman
 Fixed XHTML compliance and charset missing from picEditor.php - 02, December 2005, Donnoman
+Fixed selecting sample theme from admin.php - 10, December 2005, Donnoman
