@@ -894,7 +894,7 @@ echo <<<EOT
                                     <td width="67%" align="center">
                                         <input type="submit" class="button" name="update_config" value="{$lang_admin_php['save_cfg']}" />
                                 &nbsp;&nbsp;
-                                    <input type="submit" class="button" name="restore_config" value="{$lang_admin_php['restore_cfg']}" />
+										<input type="submit" onclick="return confirm('{$lang_admin_php['restore_cfg']}');" class="button" name="restore_config" value="{$lang_admin_php['restore_cfg']}" />
                                     </td>
                                 </tr>
                             </table>
