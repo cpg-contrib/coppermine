@@ -161,41 +161,24 @@ class coppermine_udb extends core_udb {
                 $sql  = "update {$this->sessionstable} set user_id = 0, remember=0 where session_id=md5('$session_id');";
                 cpg_db_query($sql, $this->link_id);
         }
-
-
-        // Get groups of which user is member
+		
         function get_groups( &$user )
         {
+			$groups = array($user['group_id'] - 100);
 
-                $group_list = in_array($user['group_id'] - 100, $this->admingroups) ? 1 : 2;
+			$sql = "SELECT user_group_list FROM {$this->usertable} AS u WHERE {$this->field['user_id']}='{$user['id']}' and user_group_list <> '';";
 
-                $sql = "SELECT user_group_list FROM {$this->usertable} AS u WHERE {$this->field['user_id']}='{$user['id']}' and user_group_list <> '';";
+			$result = cpg_db_query($sql, $this->link_id);
 
-                $result = cpg_db_query($sql, $this->link_id);
+			if ($row = mysql_fetch_array($result)){
+				$groups = array_merge($groups, explode(',', $row['user_group_list']));
+			}
+			
+			mysql_free_result($result);
 
-                if ( $row = mysql_fetch_array($result) ) {
-
-                        if ($row['user_group_list']) {
-                                $group_list .= ','.$row['user_group_list'];
-                        }
-
-                        mysql_free_result($result);
-                }
-
-                $all_groups = explode(',',$group_list);
-
-                if ( $admin_groups = array_intersect($this->admingroups, $all_groups) ) {
-                        $all_groups[0] = 1;
-                }
-
-                if ( !in_array($user['group_id'] - 100, $all_groups) ) {
-                        $all_groups[] = intval($user['group_id'] - 100);
-                }
-
-                return $all_groups;
+			return $groups;
         }
-
-
+		
         // definition of actions required to convert a password from user database form to cookie form
         function udb_hash_db($password)
         {
