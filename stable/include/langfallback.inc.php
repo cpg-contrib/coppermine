@@ -347,7 +347,7 @@ if (defined('MINIBROWSER_PHP')) {
 
 if (defined('MODE_PHP')) {
   $lang_mode_php_en = cpg_get_default_lang_var('lang_mode_php','english');
-  $lang_mode_php = array_merge($lang_mode_php_en, $lang_mode_php);
+  $lang_mode_php = isset($lang_mode_php) ? $lang_mode_php : $lang_mode_php_en;
 }
 
 // ------------------------------------------------------------------------- //
