@@ -847,7 +847,10 @@ if (count($_POST) > 0) {
 
         $sql_count = count($sql_query);
         for($i = 0; $i < $sql_count; $i++) if (strpos($sql_query[$i],'config VALUES') || strpos($sql_query[$i],'filetypes VALUES')) cpg_db_query($sql_query[$i]);
-        pageheader($lang_admin_php['title']);
+		$f= cpg_db_query("UPDATE {$CONFIG['TABLE_CONFIG']} SET value = '{$CONFIG['enable_encrypted_passwords']}' WHERE name = 'enable_encrypted_passwords'");
+		var_dump($f);
+		var_dump(mysql_affected_rows());
+		pageheader($lang_admin_php['title']);
             //msg_box($lang_admin_php['info'], $lang_admin_php['restore_success'], $lang_continue, $PHP_SELF);
             msg_box($lang_admin_php['info'], $lang_admin_php['restore_success'], $lang_continue, $_SERVER['PHP_SELF']);
     }
