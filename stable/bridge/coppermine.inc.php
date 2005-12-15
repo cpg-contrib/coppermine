@@ -299,7 +299,8 @@ class coppermine_udb extends core_udb {
                         $session_id = $randnum.$this->client_id;
                         if ($randnum != "") {
                                 $sql = "SELECT session_id FROM {$this->sessionstable} WHERE session_id=MD5('$session_id')";
-                                if (!$result = cpg_db_query($sql, $this->link_id)) {
+								$result = cpg_db_query($sql, $this->link_id);
+                                if (!mysql_num_rows($result)) {
                                         break;
                                 }
                                 mysql_free_result($result);
