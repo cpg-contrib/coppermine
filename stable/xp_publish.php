@@ -461,7 +461,7 @@ function startUpload() {
 
         for (i = 0; i < files.length; i++) {
                 var postTag = xml.createNode(1, 'post', '');
-                postTag.setAttribute('href', '<?php echo trim($CONFIG['site_url'], '/') . '/' . $_SERVER['PHP_SELF'] . '?cmd=add_picture'?>&amp;album=' + selform.album.value);
+                postTag.setAttribute('href', '<?php echo trim($CONFIG['site_url'], '/') . '/' . $_SERVER['PHP_SELF'] . '?cmd=add_picture'?>&album=' + selform.album.value);
                 postTag.setAttribute('name', 'userpicture');
 
                 var dataTag = xml.createNode(1, 'formdata', '');
@@ -539,6 +539,7 @@ function form_login()
     global $ONNEXT_SCRIPT, $ONBACK_SCRIPT, $WIZARD_BUTTONS;
     global $template_login;
     global $lang_login_php, $lang_xp_publish_php, $cpg_udb;
+	global $CONFIG;
 
 
     if (!method_exists($cpg_udb,'login')) {
