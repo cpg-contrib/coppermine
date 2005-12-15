@@ -603,186 +603,113 @@ class core_udb {
 		return $sql;
 	}
 	
+// Used to generate the album selection box in Admin tools (util.php)
 	function util_filloptions()
 	{
-		global $lang_util_php, $CONFIG;
+		global $lang_util_php, $CONFIG, $lang_upload_php;
 
+		// Reset counter
+		$list_count = 0;
+			
 		if ($this->can_join_tables) {
 				
-    // Reset counter
-    $list_count = 0;
-
-	$user_albums = cpg_db_query("SELECT aid, IF({$this->field['username']} IS NOT NULL, 
-								CONCAT('(', {$this->field['username']}, ') ', a.title), 
-								CONCAT(' - ', a.title)) AS title 
-								FROM {$CONFIG['TABLE_ALBUMS']} AS a 
-								INNER JOIN {$this->usertable} AS u 
-								ON category = (" . FIRST_USER_CAT . " + {$this->field['user_id']}) 
-								ORDER BY a.title");
-	$user_albums_list = cpg_db_fetch_rowset($user_albums);
-	
-	$public_albums = cpg_db_query("SELECT aid, title, name FROM {$CONFIG['TABLE_ALBUMS']} LEFT JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
-	$public_albums_list = cpg_db_fetch_rowset($public_albums);
-	
-    // Cycle through the User albums
-    foreach($user_albums_list as $album) {
-
-        // Add to multi-dim array for later sorting
-        //$listArray[$list_count]['cat'] = $lang_upload_php['personal_albums'];
-        $listArray[$list_count]['cat'] = "* Personal Albums";
-		$listArray[$list_count]['aid'] = $album['aid'];
-        $listArray[$list_count]['title'] = $album['title'];
-        $list_count++;
-    }
-
-    // Cycle through the public albums
-    foreach($public_albums_list as $album) {
-
-        // Set $album_id to the actual album ID
-        $album_id = $album['aid'];
-
-        // Get the category name
-       // $vQuery = "SELECT cat.name FROM " . $CONFIG['TABLE_CATEGORIES'] . " cat, " . $CONFIG['TABLE_ALBUMS'] . " alb WHERE alb.aid='" . $album_id . "' AND cat.cid=alb.category";
-        //$vRes = cpg_db_query($vQuery);
-        //$vRes = mysql_fetch_array($vRes);
-
-        // Add to multi-dim array for sorting later
-		$vRes['name'] = $album['name'];
-        if ($vRes['name']) {
-            $listArray[$list_count]['cat'] = $vRes['name'];
-        } else {
-            //$listArray[$list_count]['cat'] = $lang_upload_php['albums_no_category'];
-			$listArray[$list_count]['cat'] = "Albums with no category";
-        }
-        $listArray[$list_count]['aid'] = $album['aid'];
-        $listArray[$list_count]['title'] = $album['title'];
-        $list_count++;
-    }
-
-    // Sort the pulldown options by category and album name
-    $listArray = array_csort($listArray,'cat','title');
-
-    // Finally, print out the nicely sorted and formatted drop down list
-    $alb_cat = '';
-				echo '&nbsp;&nbsp;&nbsp;&nbsp;<select size="1" name="albumid" class="listbox"><option value="0">All Albums</option>';
-
-    foreach ($listArray as $val) {
-        if ($val['cat'] != $alb_cat) {
-if ($alb_cat) echo "                </optgroup>\n";
-            echo '                <optgroup label="' . $val['cat'] . '">' . "\n";
-            $alb_cat = $val['cat'];
-        }
-        echo '                <option value="' . $val['aid'] . '"' . ($val['aid'] == $sel_album ? ' selected' : '') . '>   ' . $val['title'] . "</option>\n";
-    }
-    if ($alb_cat) echo "                </optgroup>\n";
-
-
-			print '</select> (3)';
-			print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="submit" /> (4)';
-			print '</form>';
-
+			$user_albums = cpg_db_query("SELECT {$this->field['username']} AS user_name, aid, a.title 
+										FROM {$CONFIG['TABLE_ALBUMS']} AS a 
+										LEFT JOIN {$this->usertable} AS u 
+										ON (category - " . FIRST_USER_CAT . ") = {$this->field['user_id']}
+										WHERE category > " . FIRST_USER_CAT);
+			$user_albums_list = cpg_db_fetch_rowset($user_albums);
+			mysql_free_result($user_albums);
+			
+			// Cycle through the User albums
+			foreach($user_albums_list as $album) {
+		
+				// Add to multi-dim array for later sorting
+				$listArray[$list_count]['cat'] = $lang_upload_php['personal_albums'];
+				$listArray[$list_count]['aid'] = $album['aid'];
+				$username = is_null($album['user_name']) ? 'Mr. X' : $album['user_name'];
+				$listArray[$list_count]['title'] = '(' . $username . ') ' . $album['title'];
+				$list_count++;
+			}
+		
 		} else {
 
-        // Query for list of public albums
+			$user_albums = cpg_db_query("SELECT aid, title, category FROM {$CONFIG['TABLE_ALBUMS']} WHERE category > " . FIRST_USER_CAT);
 
-			$public_albums = cpg_db_query("SELECT aid, title, category FROM {$CONFIG['TABLE_ALBUMS']} WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
-
-			if (mysql_num_rows($public_albums)) {
-				$public_result = cpg_db_fetch_rowset($public_albums);
-			} else {
-				$public_result = array();
+			$user_albums_list = $user_ids = array();
+			
+			while ($row = cpg_db_fetch_row($user_albums)){
+				$user_albums_list[] = $row;
+				$user_ids[] = $row['category'] - FIRST_USER_CAT;
 			}
-
-			// Initialize $merged_array
-			$merged_array = array();
-
-			// Count the number of albums returned.
-			$end = count($public_result);
-
-			// Cylce through the User albums.
-			for($i=0;$i<$end;$i++) {
-
-				//Create a new array sow we may sort the final results.
-				$merged_array[$i]['id'] = $public_result[$i]['aid'];
-				$merged_array[$i]['album_name'] = $public_result[$i]['title'];
-
-				// Query the database to get the category name.
-				$vQuery = "SELECT name, parent FROM " . $CONFIG['TABLE_CATEGORIES'] . " WHERE cid='" . $public_result[$i]['category'] . "'";
-				$vRes = mysql_query($vQuery);
-				$vRes = mysql_fetch_array($vRes);
-				if (isset($merged_array[$i]['username_category'])) {
-					$merged_array[$i]['username_category'] = (($vRes['name']) ? '(' . $vRes['name'] . ') ' : '').$merged_array[$i]['username_category'];
-				} else {
-					$merged_array[$i]['username_category'] = (($vRes['name']) ? '(' . $vRes['name'] . ') ' : '');
-				}
+			mysql_free_result($user_albums);
+			
+			$user_id_list = implode(', ', array_unique($user_ids));
+										
+			$user_names = cpg_db_query("SELECT {$this->field['username']} AS user_name, {$this->field['user_id']} AS user_id  FROM {$this->usertable} WHERE {$this->field['user_id']} IN ($user_id_list)");
+			
+			while ($row = cpg_db_fetch_row($user_names)){
+				$user_names_list[$row['user_id']] = $row['user_name'];
 			}
-
-			// We transpose and divide the matrix into columns to prepare it for use in array_multisort().
-			foreach ($merged_array as $key => $row) {
-			   $aid[$key] = $row['id'];
-			   $title[$key] = $row['album_name'];
-			   $album_lineage[$key] = $row['username_category'];
+			mysql_free_result($user_names);
+			
+			// Cycle through the User albums
+			foreach($user_albums_list as $album) {
+		
+				// Add to multi-dim array for later sorting
+				$listArray[$list_count]['cat'] = $lang_upload_php['personal_albums'];
+				$listArray[$list_count]['aid'] = $album['aid'];
+				$username = isset($user_names_list[$album['category'] - FIRST_USER_CAT]) ? $user_names_list[$album['category'] - FIRST_USER_CAT] : 'Mr. X';
+				$listArray[$list_count]['title'] = '(' . $username . ') ' . $album['title'];
+				$list_count++;
 			}
-
-			// We sort all columns in descending order and plug in $album_menu at the end so it is sorted by the common key.
-			array_multisort($album_lineage, SORT_ASC, $title, SORT_ASC, $aid, SORT_ASC, $merged_array);
-
-			// Query for list of user albums
-
-			$user_albums = cpg_db_query("SELECT aid, title, category FROM {$CONFIG['TABLE_ALBUMS']} WHERE category >= " . FIRST_USER_CAT . " ORDER BY aid");
-			if (mysql_num_rows($user_albums)) {
-				$user_albums_list = cpg_db_fetch_rowset($user_albums);
-			} else {
-				$user_albums_list = array();
-			}
-
-			// Query for list of user IDs and names
-
-			$user_album_ids_and_names = cpg_db_query("
-				SELECT ({$this->field['user_id']} + ".FIRST_USER_CAT.") AS id,
-				CONCAT('(', {$this->field['username']}, ') ') as name 
-				FROM {$this->usertable} 
-				ORDER BY name ASC",$this->link_id);
-
-			if (mysql_num_rows($user_album_ids_and_names)) {
-				$user_album_ids_and_names_list = cpg_db_fetch_rowset($user_album_ids_and_names);
-			} else {
-				$user_album_ids_and_names_list = array();
-			}
-
-			// Glue what we've got together.
-
-			// Initialize $udb_i as a counter.
-			if (count($merged_array)) {
-				$udb_i = count($merged_array);
-			} else {
-            $udb_i = 0;
-			}
-
-			//Begin a set of nested loops to merge the various query results.
-			foreach ($user_albums_list as $aq) {
-				foreach ($user_album_ids_and_names_list as $uq) {
-					if ($aq['category'] == $uq['id']) {
-						$merged_array[$udb_i]['id']= $aq['category'];
-						$merged_array[$udb_i]['album_name']= $aq['title'];
-						$merged_array[$udb_i]['username_category']= $uq['name'];
-						$udb_i++;
-					}
-				}
-			}
-
-			// The user albums and public albums have been merged into one list. Print the dropdown.
-			echo '&nbsp;&nbsp;&nbsp;&nbsp;<select size="1" name="albumid" class="listbox"><option value="0">All Albums</option>';
-
-			foreach ($merged_array as $menu_item) {
-				echo "<option value=\"" . $menu_item['id'] . "\">" . (isset($menu_item['username_category']) ? $menu_item['username_category'] : '') . $menu_item['album_name'] . "</option>\n";
-			}
-
-			// Close list, etc.
-			print '</select> (3)';
-			print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="submit" /> (4)';
-			print '</form>';
+						
 		}
+		
+		$public_albums = cpg_db_query("SELECT aid, title, name FROM {$CONFIG['TABLE_ALBUMS']} LEFT JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
+		$public_albums_list = cpg_db_fetch_rowset($public_albums);
+		mysql_free_result($public_albums);
+			
+		// Cycle through the public albums
+		foreach($public_albums_list as $album) {
+		
+			// Set $album_id to the actual album ID
+			$album_id = $album['aid'];
+		
+			// Add to multi-dim array for sorting later
+			$vRes['name'] = $album['name'];
+			if ($vRes['name']) {
+				$listArray[$list_count]['cat'] = $vRes['name'];
+			} else {
+				$listArray[$list_count]['cat'] = $lang_upload_php['albums_no_category'];
+			}
+			$listArray[$list_count]['aid'] = $album['aid'];
+			$listArray[$list_count]['title'] = $album['title'];
+			$list_count++;
+		}
+		
+		// Sort the pulldown options by category and album name
+		$listArray = array_csort($listArray,'cat','title');
+		
+		// Finally, print out the nicely sorted and formatted drop down list
+		$alb_cat = '';
+		
+		echo '&nbsp;&nbsp;&nbsp;&nbsp;<select size="1" name="albumid" class="listbox"><option value="0">All Albums</option>';
+		
+		foreach ($listArray as $val) {
+			if ($val['cat'] != $alb_cat) {
+				if ($alb_cat) echo "                </optgroup>\n";
+				echo '                <optgroup label="' . $val['cat'] . '">' . "\n";
+				$alb_cat = $val['cat'];
+			}
+			echo '                <option value="' . $val['aid'] . '">   ' . $val['title'] . "</option>\n";
+		}
+			
+		if ($alb_cat) echo "                </optgroup>\n";
+		
+		print '</select> (3)';
+		print '&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="'.$lang_util_php['submit_form'].'" class="submit" /> (4)';
+		print '</form>';
 	}
 
 	// Taken from Mambo (com_registration.php)
