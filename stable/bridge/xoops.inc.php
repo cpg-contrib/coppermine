@@ -30,15 +30,12 @@ if (!USE_BRIDGEMGR) {
 	require_once($BRIDGE['relative_path_to_config_file'] . 'mainfile.php');
 }
 
-//print_r($_SESSION);
-//print_r($xoopsDB);
-
 // reset to cpg db
 mysql_select_db($CONFIG['dbname']);
 
-class cpg_udb extends core_udb {
+class xoops_udb extends core_udb {
 
-	function cpg_udb()
+	function xoops_udb()
 	{
 		global $BRIDGE, $xoopsDB;
 
@@ -74,11 +71,11 @@ class cpg_udb extends core_udb {
 			'user_id' => 'uid', // name of 'id' field in users table
 			'password' => 'pass', // name of the password field in the users table
 			'email' => 'email', // name of 'email' field in users table
-			'regdate' => 'user_regdate', // name of 'registered' field in users table
+			'regdate' => "''", // name of 'registered' field in users table
 			'lastvisit' => 'last_login', // last time user logged in
 			'active' => "''", // is user account active?
 			'location' => "''", // name of 'location' field in users table
-			'website' => 'url', // name of 'website' field in users table
+			'website' => "''", // name of 'website' field in users table
 			'usertbl_group_id' => 'uid', // name of 'group id' field in users table
 			'grouptbl_group_id' => 'groupid', // name of 'group id' field in groups table
 			'grouptbl_group_name' => 'name' // name of 'group name' field in groups table
