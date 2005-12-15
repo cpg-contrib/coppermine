@@ -91,7 +91,7 @@ $lang_rate_pic = array_merge($lang_rate_pic_en, $lang_rate_pic);
 // ------------------------------------------------------------------------- //
 
 $lang_cpg_die_en = cpg_get_default_lang_var('lang_cpg_die','english');
-$lang_cpg_die = array_merge($lang_cpg_die_en, $lang_cpg_die);
+$lang_cpg_die = isset($lang_cpg_die) ? $lang_cpg_die : $lang_cpg_die_en;
 
 $lang_display_thumbnails_en = cpg_get_default_lang_var('lang_display_thumbnails','english');
 $lang_display_thumbnails = array_merge($lang_display_thumbnails_en, $lang_display_thumbnails);
