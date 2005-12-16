@@ -47,7 +47,7 @@ function check_comment(&$str)
     $com_words=explode(' ',strip_tags(bb_decode($str)));
     $replacements=array();
     foreach($com_words as $key => $word) {
-       if (strlen($word) > $CONFIG['max_com_wlength'] ) {
+       if (utf_strlen($word) > $CONFIG['max_com_wlength'] ) {
           $replacements[] = $word;
        }
     }
