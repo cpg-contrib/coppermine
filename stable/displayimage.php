@@ -305,8 +305,8 @@ if (isset($_GET['fullsize'])) {
     $pic_info = html_picinfo();
     $comments = theme_html_comments($CURRENT_PIC_DATA['pid']);
     if ($CURRENT_PIC_DATA['keywords']) { $meta_keywords = "<meta name=\"keywords\" content=\"".$CURRENT_PIC_DATA['keywords']."\"/>"; }
-        $meta_nav .= "<link rel=\"alternate\" type=\"text/xml\" title=\"RSS feed\" href=\"rss.php\" />
-        ";
+        //$meta_nav .= "<link rel=\"alternate\" type=\"text/xml\" title=\"RSS feed\" href=\"rss.php\" />
+       // ";
         $meta_keywords .= $meta_nav;
     pageheader($album_name . '/' . $picture_title, $meta_keywords, false);
     // Display Breadcrumbs
