@@ -611,7 +611,7 @@ class core_udb {
 		// Reset counter
 		$list_count = 0;
 			
-		if ($this->can_join_tables) {
+		if (!$this->can_join_tables) {
 				
 			$user_albums = cpg_db_query("SELECT {$this->field['username']} AS user_name, aid, a.title 
 										FROM {$CONFIG['TABLE_ALBUMS']} AS a 
@@ -638,32 +638,36 @@ class core_udb {
 
 			$user_albums_list = $user_ids = array();
 			
-			while ($row = cpg_db_fetch_row($user_albums)){
-				$user_albums_list[] = $row;
-				$user_ids[] = $row['category'] - FIRST_USER_CAT;
-			}
-			mysql_free_result($user_albums);
+			if (mysql_num_rows($user_albums)){
+				
+				while ($row = cpg_db_fetch_row($user_albums)){
+					$user_albums_list[] = $row;
+					$user_ids[] = $row['category'] - FIRST_USER_CAT;
+				}
+				mysql_free_result($user_albums);
+				
+				$user_id_list = implode(', ', array_unique($user_ids));
+											
+				$user_names = cpg_db_query("SELECT {$this->field['username']} AS user_name, {$this->field['user_id']} AS user_id  FROM {$this->usertable} WHERE {$this->field['user_id']} IN ($user_id_list)");
+				
+				while ($row = cpg_db_fetch_row($user_names)){
+					$user_names_list[$row['user_id']] = $row['user_name'];
+				}
+				mysql_free_result($user_names);
+				
+				// Cycle through the User albums
+				foreach($user_albums_list as $album) {
 			
-			$user_id_list = implode(', ', array_unique($user_ids));
-										
-			$user_names = cpg_db_query("SELECT {$this->field['username']} AS user_name, {$this->field['user_id']} AS user_id  FROM {$this->usertable} WHERE {$this->field['user_id']} IN ($user_id_list)");
-			
-			while ($row = cpg_db_fetch_row($user_names)){
-				$user_names_list[$row['user_id']] = $row['user_name'];
+					// Add to multi-dim array for later sorting
+					$listArray[$list_count]['cat'] = $lang_upload_php['personal_albums'];
+					$listArray[$list_count]['aid'] = $album['aid'];
+					$username = isset($user_names_list[$album['category'] - FIRST_USER_CAT]) ? $user_names_list[$album['category'] - FIRST_USER_CAT] : 'Mr. X';
+					$listArray[$list_count]['title'] = '(' . $username . ') ' . $album['title'];
+					$list_count++;
+				}
+			} else {
+				mysql_free_result($user_albums);
 			}
-			mysql_free_result($user_names);
-			
-			// Cycle through the User albums
-			foreach($user_albums_list as $album) {
-		
-				// Add to multi-dim array for later sorting
-				$listArray[$list_count]['cat'] = $lang_upload_php['personal_albums'];
-				$listArray[$list_count]['aid'] = $album['aid'];
-				$username = isset($user_names_list[$album['category'] - FIRST_USER_CAT]) ? $user_names_list[$album['category'] - FIRST_USER_CAT] : 'Mr. X';
-				$listArray[$list_count]['title'] = '(' . $username . ') ' . $album['title'];
-				$list_count++;
-			}
-						
 		}
 		
 		$public_albums = cpg_db_query("SELECT aid, title, name FROM {$CONFIG['TABLE_ALBUMS']} LEFT JOIN {$CONFIG['TABLE_CATEGORIES']} ON cid = category WHERE category < " . FIRST_USER_CAT . " ORDER BY title");
