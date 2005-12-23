@@ -611,7 +611,7 @@ class core_udb {
 		// Reset counter
 		$list_count = 0;
 			
-		if (!$this->can_join_tables) {
+		if ($this->can_join_tables) {
 				
 			$user_albums = cpg_db_query("SELECT {$this->field['username']} AS user_name, aid, a.title 
 										FROM {$CONFIG['TABLE_ALBUMS']} AS a 
@@ -648,7 +648,7 @@ class core_udb {
 				
 				$user_id_list = implode(', ', array_unique($user_ids));
 											
-				$user_names = cpg_db_query("SELECT {$this->field['username']} AS user_name, {$this->field['user_id']} AS user_id  FROM {$this->usertable} WHERE {$this->field['user_id']} IN ($user_id_list)");
+				$user_names = cpg_db_query("SELECT {$this->field['username']} AS user_name, {$this->field['user_id']} AS user_id  FROM {$this->usertable} WHERE {$this->field['user_id']} IN ($user_id_list)", $this->link_id);
 				
 				while ($row = cpg_db_fetch_row($user_names)){
 					$user_names_list[$row['user_id']] = $row['user_name'];
