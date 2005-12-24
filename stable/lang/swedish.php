@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /*************************
   Coppermine Photo Gallery
   ************************
@@ -16,147 +16,181 @@
   $Author$
   $Date$
 **********************************************/
-// ------------------------------------------------------------------------- //
-/*
- $Id$
-*/
+
+if (!defined('IN_COPPERMINE')) { die('Not in Coppermine...');}
 
 // info about translators and translated language
 $lang_translation_info = array(
-  'lang_name_english' => 'Swedish',
-  'lang_name_native' => 'Svenska',
-  'lang_country_code' => 'se',
-  'trans_name'=> 'Musicalg and JMG',
-  'trans_email' => 'musikalgalning@yahoo.se',
-  'trans_website' => 'fotoalbum.jimmysvensson.com',
-  'trans_date' => '2004-06-23',
+  'lang_name_english' => 'Swedish', //cpg1.4
+  'lang_name_native' => 'Svenska', //cpg1.4
+  'lang_country_code' => 'se', //cpg1.4
+  'trans_name'=> 'Danny Swälas (ecto) & SeB',
+  'trans_email' => 'ecto: coppermine@danny.swalas.org, SeB: sebastian@sweetfabrik.se',
+  'trans_website' => 'ecto: http://danny.swalas.org/gallery/, SeB: http://www.sweetfabrik.se, big thanks to http://www.fotosidan.se/forum/ for help with Exif translations!',
+  'trans_date' => '2005-12-23',
 );
 
-$lang_charset = 'iso-8859-1';
+$lang_charset = 'utf-8';
 $lang_text_dir = 'ltr'; // ('ltr' for left to right, 'rtl' for right to left)
 
 // shortcuts for Byte, Kilo, Mega
-$lang_byte_units = array('Bytes', 'KB', 'MB');
+$lang_byte_units = array('Byte', 'KB', 'MB');
 
 // Day of weeks and months
-$lang_day_of_week = array('Sön', 'Mån', 'Tis', 'Ons', 'Tors', 'Fre', 'Lör');
-$lang_month = array('Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sept', 'Okt', 'Nov', 'Dec');
+$lang_day_of_week = array('sön', 'mån', 'tis', 'ons', 'tor', 'fre', 'lör');
+$lang_month = array('jan', 'feb', 'mar', 'apr', 'maj', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec');
 
 // Some common strings
 $lang_yes = 'Ja';
 $lang_no  = 'Nej';
-$lang_back = 'TILLBAKA';
-$lang_continue = 'FORTSÄTT';
+$lang_back = 'Tillbaka';
+$lang_continue = 'Fortsätt';
 $lang_info = 'Information';
 $lang_error = 'Fel';
+$lang_check_uncheck_all = 'Markera/avmarkera alla'; //cpg1.4
 
 // The various date formats
 // See http://www.php.net/manual/en/function.strftime.php to define the variable below
-$album_date_fmt =    '%d %B %Y';
-$lastcom_date_fmt =  '%d %B %Y %H:%M'; //cpg1.3.0
-$lastup_date_fmt = '%d %B %Y';
-$register_date_fmt = '%d %B %Y';
-$lasthit_date_fmt = '%d %B %Y %H:%M'; //cpg1.3.0
-$comment_date_fmt =  '%d %B %Y %H:%M'; //cpg1.3.0
+$album_date_fmt =    '%e %B %Y';
+$lastcom_date_fmt =  '%Y-%m-%d kl. %H.%M';
+$lastup_date_fmt =   '%e %B %Y';
+$register_date_fmt = '%Y-%m-%d kl. %H:%M';
+$lasthit_date_fmt =  '%Y-%m-%d kl. %H:%M';
+$comment_date_fmt =  '%Y-%m-%d kl. %H:%M';
+$log_date_fmt =      '%Y-%m-%d kl. %H.%M.%S'; //cpg 1.4
 
 // For the word censor
-$lang_bad_words = array('*knulla*', 'fitta', 'arsle', 'kuk', 'mutta', 'fan', 'helvete', 'blatte', 'nigger', 'svarting', 'nasse', 'rˆv', 'ollon', 'dildo', 'fanculo', 'pattar', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
+$lang_bad_words = array('*knulla*', 'fitta', 'arsle', 'kuk', 'mutta', 'fan', 'helvete', 'blatte*', '*nigger*', '*neger*', 'svarting', 'röv', 'ollon', 'dildo', 'pattar', 'penis', 'skit', 'balle', 'hora', 'jävla*');
 
 $lang_meta_album_names = array(
-  'random' => 'Slumpmässiga objekt', //cpg1.3.0
-  'lastup' => 'Senast inlagda',
+  'random' => 'Slumpmässiga filer',
+  'lastup' => 'Senast tillagda',
   'lastalb'=> 'Senast uppdaterade album',
   'lastcom' => 'Senaste kommentarer',
   'topn' => 'Mest visade',
   'toprated' => 'Topplista',
   'lasthits' => 'Senast visade',
   'search' => 'Sökresultat',
-  'favpics'=> 'Mina Favoriter', //cpg1.3.0
+  'favpics'=> 'Favoriter',  //cpg1.4
 );
 
 $lang_errors = array(
   'access_denied' => 'Du har inte behörighet till den här sidan.',
-  'perm_denied' => 'Du är inte behörighet att utföra denna operation.',
-  'param_missing' => 'Parametrar saknars för att kunna utföra operationen.',
-  'non_exist_ap' => 'Det valda objektet finns inte', //cpg1.3.0
-  'quota_exceeded' => 'Tilldelat diskutrymme överskridet<br /><br />Du har ett diskutrymme på [quota]K och ditt objekt är på [space]K. Skulle detta objekt läggas till överskrids ditt diskutrymme.', //cpg1.3.0
-  'gd_file_type_err' => 'Vid användande av GD image library är endast bilder i JPEG- och PNG-format tillåtna.',
-  'invalid_image' => 'Bilden du laddade upp är skadad eller kan inte hanteras av GD image library',
-  'resize_failed' => 'Kan inte skapa miniatyr eller ändra storleken på objektet.',
-  'no_img_to_display' => 'Inget objekt att visa',
+  'perm_denied' => 'Du har inte behörighet att utföra denna operation.',
+  'param_missing' => 'Parametrar saknas för att kunna utföra operationen.',
+  'non_exist_ap' => 'Albumet/filen du valt finns inte!', //cpg1.3.0
+  'quota_exceeded' => 'Tilldelat diskutrymme överskridet<br /><br />Du har ett diskutrymme på [quota]K och din fil är på [space]K. Skulle denna fil läggas till överskrids ditt diskutrymme.', //cpg1.3.0
+  'gd_file_type_err' => 'Vid användande av GD image library är endast filer i JPEG- och PNG-format tillåtna.',
+  'invalid_image' => 'Filen du laddade upp är skadad eller kan inte hanteras av GD image library',
+  'resize_failed' => 'Kan inte skapa tumnagel eller ändra storleken på filen.',
+  'no_img_to_display' => 'Ingenting att visa',
   'non_exist_cat' => 'Den valda kategorin finns inte',
-  'orphan_cat' => 'En kategori saknar root, kör category manager för att rätta till problemet', //cpg1.3.0
-  'directory_ro' => 'Du saknar rättigheter i biblioteket \'%s\'. Objektet kan inte raderas.', //cpg1.3.0
+  'orphan_cat' => 'En kategori saknar rot, använd kategorihanteraren för att rätta till problemet', //cpg1.3.0
+  'directory_ro' => 'Mappen \'%s\' är inte skrivbar. Filen kan inte raderas.', //cpg1.3.0
   'non_exist_comment' => 'Den valda kommentaren finns inte.',
-  'pic_in_invalid_album' => 'Objektet finns i ett icke existerande album (%s)!?', //cpg1.3.0
+  'pic_in_invalid_album' => 'Filen finns i ett icke existerande album (%s)!?', //cpg1.3.0
   'banned' => 'Du är för tillfället blockerad från den här sajten.',
-  'not_with_udb' => 'Den här funktionen är inaktiverad i Commermine eftersom den är integrerad med forumets mjukvara. Antingen stöds inte det du försöker göra i den här funktionen eller så funktionen hanteras av forumets mjukvara..',
-  'offline_title' => 'Ej online', //cpg1.3.0
-  'offline_text' => 'Biblioteket är för tillfället inte online - försök igen om en stund', //cpg1.3.0
-  'ecards_empty' => 'Det finns för tillfället inte några e-vykort att visa. Kontrollera att du aktiverat e-vykort i Coppermines inställningar!', //cpg1.3.0
-  'action_failed' => 'Uppgiften misslyckades.  Coppermine kan inte utföra önskad uppgift.', //cpg1.3.0
-  'no_zip' => 'Filerna som behövs för att hantera ZIP-filer kan inte hittas.  Kontakta Coppermineadministratören.', //cpg1.3.0
-  'zip_type' => 'Du har inte behörighet att ladda upp ZIP-filer.', //cpg1.3.0
+  'not_with_udb' => 'Den här funktionen är inaktiverad i galleriet eftersom det är länkat med ett forum. Antingen stöds inte det du försöker göra i den här funktionen eller så hanteras funktionen av forumets mjukvara.',
+  'offline_title' => 'Avstängt (offline)', //cpg1.3.0
+  'offline_text' => 'Galleriet är för tillfället avstängt (offline) - försök igen om en stund.', //cpg1.3.0
+  'ecards_empty' => 'Det finns för tillfället inte några e-vykort att visa. Kontrollera att du aktiverat e-vykort i galleriets inställningar!', //cpg1.3.0
+  'action_failed' => 'Uppgiften misslyckades. Kan inte utföra önskad funktion.', //cpg1.3.0
+  'no_zip' => 'Filerna som behövs för att hantera Zip-filer kan inte hittas.  Kontakta administratören.', //cpg1.3.0
+  'zip_type' => 'Du har inte behörighet att ladda upp Zip-filer.', //cpg1.3.0
+  'database_query' => 'Det uppstod ett fel under förfrågan till databasen', //cpg1.4
+  'non_exist_comment' => 'Den valda kommentaren finns inte', //cpg1.4
 );
 
-$lang_bbcode_help = 'Följande tags kan användas: <li>[b]<b>Fetstil</b>[/b]</li> <li>[i]<i>Kursiverad</i>[/i]</li> <li>[url=http://dinsajt.com/]Url Text[/url]</li> <li>[email]användare@domän.com[/email]</li>'; //cpg1.3.0
+$lang_bbcode_help_title = 'Hjälp med BBkod'; //cpg1.4
+$lang_bbcode_help = 'Du kan lägga till klickbara länkar och enkel textformatering här genom att använda BBkod: <li>[b]Fet[/b] =&gt; <b>Fet</b></li><li>[i]Kursiv[/i] =&gt; <i>Kursiv</i></li><li>[url=http://dinsajt.se/]URL-text[/url] =&gt; <a href="http://dinsajt.se">URL-text</a></li><li>[email]användare@sajt.se[/email] =&gt; <a href="mailto:användare@sajt.se">användare@sajt.se</a></li><li>[color=red]Text[/color] =&gt; <span style="color:red">Text</span></li><li>[img]http://coppermine.sf.net/demo/images/red.gif[/img] => <img src="../images/red.gif" border="0" alt="" /></li>'; //cpg1.4
 
 // ------------------------------------------------------------------------- //
 // File theme.php
 // ------------------------------------------------------------------------- //
 
 $lang_main_menu = array(
+  'home_title' => 'Gå till startsidan',
+  'home_lnk' => 'Startsida',
   'alb_list_title' => 'Gå till albumlistan',
   'alb_list_lnk' => 'Albumlista',
-  'my_gal_title' => 'Gå till mitt privata galleri',
+  'my_gal_title' => 'Gå till mitt personliga galleri',
   'my_gal_lnk' => 'Mitt galleri',
+  'my_prof_title' => 'Gå till min profil', //cpg1.4
   'my_prof_lnk' => 'Min profil',
-  'adm_mode_title' => 'Växla till adminläge',
+  'adm_mode_title' => 'Byt till administratörsläge',
   'adm_mode_lnk' => 'Adminläge',
-  'usr_mode_title' => 'Växla till användarläge',
+  'usr_mode_title' => 'Byt till användarläge',
   'usr_mode_lnk' => 'Användarläge',
-  'upload_pic_title' => 'Ladda upp objekt till album', //cpg1.3.0
-  'upload_pic_lnk' => 'Ladda upp objekt', //cpg1.3.0
-  'register_title' => 'Skapa nytt konto',
+  'upload_pic_title' => 'Ladda upp fil till ett album',
+  'upload_pic_lnk' => 'Ladda upp fil',
+  'register_title' => 'Lägg till användare',
   'register_lnk' => 'Registrera',
+  'login_title' => 'Logga in', //cpg1.4
   'login_lnk' => 'Logga in',
+  'logout_title' => 'Logga ut', //cpg1.4
   'logout_lnk' => 'Logga ut',
-  'lastup_lnk' => 'Senast inlagda',
+  'lastup_title' => 'Visa senast tillagda', //cpg1.4
+  'lastup_lnk' => 'Senast tillagda',
+  'lastcom_title' => 'Visa senaste kommentarer', //cpg1.4
   'lastcom_lnk' => 'Senaste kommentarer',
+  'topn_title' => 'Visa mest visade filer', //cpg1.4
   'topn_lnk' => 'Mest visade',
+  'toprated_title' => 'Visa filer med högst betyg', //cpg1.4
   'toprated_lnk' => 'Topplista',
+  'search_title' => 'Sök i galleriet', //cpg1.4
   'search_lnk' => 'Sök',
+  'fav_title' => 'Gå till mina favoriter', //cpg1.4
   'fav_lnk' => 'Mina favoriter',
-  'memberlist_title' => 'Visa medlemmar', //cpg1.3.0
-  'memberlist_lnk' => 'Medlemmar', //cpg1.3.0
-  'faq_title' => 'FAQ kring bildgalleriet &quot;Coppermine&quot;', //cpg1.3.0
-  'faq_lnk' => 'FAQ', //cpg1.3.0
+  'memberlist_title' => 'Visa medlemslista',
+  'memberlist_lnk' => 'Medlemmar',
+  'faq_title' => 'Vanliga frågor om galleriet',
+  'faq_lnk' => 'FAQ',
 );
 
 $lang_gallery_admin_menu = array(
-  'upl_app_lnk' => 'Klara för publicering',
-  'config_lnk' => 'Inställningar',
+  'upl_app_title' => 'Godkänn uppladdade filer', //cpg1.4
+  'upl_app_lnk' => 'Godkänn uppladdningar',
+  'admin_title' => 'Konfigurera galleriet', //cpg1.4
+  'admin_lnk' => 'Inställningar', //cpg1.4
+  'albums_title' => 'Administrera album', //cpg1.4
   'albums_lnk' => 'Album',
+  'categories_title' => 'Administrera kategorier', //cpg1.4
   'categories_lnk' => 'Kategorier',
+  'users_title' => 'Administrera användare', //cpg1.4
   'users_lnk' => 'Användare',
+  'groups_title' => 'Administrera grupper', //cpg1.4
   'groups_lnk' => 'Grupper',
-  'comments_lnk' => 'Läs kommentarer', //cpg1.3.0
-  'searchnew_lnk' => 'Lägg till flera objekt på en gång', //cpg1.3.0
-  'util_lnk' => 'Adminverktyg', //cpg1.3.0
+  'comments_title' => 'Granska kommentarer', //cpg1.4
+  'comments_lnk' => 'Kommentarer',
+  'searchnew_title' => 'Lägg till flera filer på en gång', //cpg1.4
+  'searchnew_lnk' => 'Lägg till flera filer',
+  'util_title' => 'Gå till administrationsverktyg', //cpg1.4
+  'util_lnk' => 'Adminverktyg',
+  'key_title' => 'Gå till ordlistan med nyckelord', //cpg1.4
+  'key_lnk' => 'Nyckelord', //cpg1.4
+  'ban_title' => 'Hantera blockering av användare', //cpg1.4
   'ban_lnk' => 'Blockera användare',
-  'db_ecard_lnk' => 'Visa e-vykort', //cpg1.3.0
+  'db_ecard_title' => 'Gå till administration av e-vykort', //cpg1.4
+  'db_ecard_lnk' => 'E-vykort',
+  'pictures_title' => 'Sortera filer', //cpg1.4
+  'pictures_lnk' => 'Sortera filer', //cpg1.4
+  'documentation_lnk' => 'Dokumentation', //cpg1.4
+  'documentation_title' => 'Manual till Coppermine', //cpg1.4
 );
 
 $lang_user_admin_menu = array(
+  'albmgr_title' => 'Skapa och sortera mina album', //cpg1.4
   'albmgr_lnk' => 'Skapa / sortera mina album',
-  'modifyalb_lnk' => 'Ändra i mina album',
+  'modifyalb_title' => 'Gå till redigering av mina album',  //cpg1.4
+  'modifyalb_lnk' => 'Redigera mina album',
+  'my_prof_title' => 'Gå till min profil', //cpg1.4
   'my_prof_lnk' => 'Min profil',
 );
 
 $lang_cat_list = array(
   'category' => 'Kategori',
   'albums' => 'Album',
-  'pictures' => 'Objekt', //cpg1.3.0
+  'pictures' => 'Filer',
 );
 
 $lang_album_list = array(
@@ -168,39 +202,54 @@ $lang_thumb_view = array(
   //Sort by filename and title
   'name' => 'FILNAMN',
   'title' => 'TITEL',
-  'sort_da' => 'Sortera per datum, stigande',
-  'sort_dd' => 'Sortera per datum, fallande',
-  'sort_na' => 'Sortera per namn, stigande',
-  'sort_nd' => 'Sortera per namn, fallande',
-  'sort_ta' => 'Sortera per tite, stigande',
-  'sort_td' => 'Sortera per titel, fallande',
-  'download_zip' => 'Ladda ner som ZIP-fil', //cpg1.3.0
-  'pic_on_page' => '%d objekt på %d sida(or)',
-  'user_on_page' => '%d användare på %d sida(or)', //cpg1.3.0
+  'sort_da' => 'Sortera efter datum, stigande',
+  'sort_dd' => 'Sortera efter datum, fallande',
+  'sort_na' => 'Sortera efter namn, stigande',
+  'sort_nd' => 'Sortera efter namn, fallande',
+  'sort_ta' => 'Sortera efter titel, stigande',
+  'sort_td' => 'Sortera efter titel, fallande',
+  'exifdate' => 'DATUM (Exif)', //Exif date mod
+  'sort_ea' => 'Sortera efter Exif-datum, stigande', //Exif date mod
+  'sort_ed' => 'Sortera efter Exif-datum, fallande', //Exif date mod
+  'position' => 'POSITION', //cpg1.4
+  'sort_pa' => 'Sortera efter position, stigande', //cpg1.4
+  'sort_pd' => 'Sortera efter position, fallande', //cpg1.4
+  'download_zip' => 'Ladda ned som Zip-fil',
+  'pic_on_page' => '%d filer på %d sida(or)',
+  'user_on_page' => '%d användare på %d sida(or)',
+  'enter_alb_pass' => 'Skriv in lösenord för album',
+  'invalid_pass' => 'Ogiltigt lösenord',
+  'pass' => 'Lösenord', //cpg1.4
+  'submit' => 'Skicka' //cpg1.4
 );
 
 $lang_img_nav_bar = array(
-  'thumb_title' => 'Återvänd till miniatyrsidan',
-  'pic_info_title' => 'Visa/dölj objektinformation', //cpg1.3.0
+  'thumb_title' => 'Tilbaka till tumnaglar',
+  'pic_info_title' => 'Visa/dölj filinformation',
   'slideshow_title' => 'Bildspel',
-  'ecard_title' => 'Skicka denna bild som ett e-vykort', //cpg1.3.0
-  'ecard_disabled' => 'e-vykort är inaktiverat',
-  'ecard_disabled_msg' => 'Du har inte behörighet att skicka e-vykort', //js-alert //cpg1.3.0
-  'prev_title' => 'Se föregående objekt', //cpg1.3.0
-  'next_title' => 'Se nästa objekt', //cpg1.3.0
-  'pic_pos' => 'OBJEKT %s/%s', //cpg1.3.0
+  'ecard_title' => 'Skicka denna fil som ett e-vykort',
+  'ecard_disabled' => 'E-vykort är inte aktiverat',
+  'ecard_disabled_msg' => 'Du har inte behörighet att skicka e-vykort', //js-alert
+  'prev_title' => 'Se föregående fil',
+  'next_title' => 'Se nästa fil',
+  'pic_pos' => 'FIL %s/%s',
+  'report_title' => 'Rapportera denna fil till administratören', //cpg1.4
+  'go_album_end' => 'Gå till sista', //cpg1.4
+  'go_album_start' => 'Gå till första', //cpg1.4
+  'go_back_x_items' => 'gå tillbaka %s filer', //cpg1.4
+  'go_forward_x_items' => 'gå fram %s filer', //cpg1.4
 );
 
 $lang_rate_pic = array(
-  'rate_this_pic' => 'Betygsätt den här bilden ', //cpg1.3.0
-  'no_votes' => '(Ingen röst ännu)',
-  'rating' => '(nuvarade betyg : %s / 5 från %s röster)',
+  'rate_this_pic' => 'Betygsätt den här filen ',
+  'no_votes' => '(inga röster än)',
+  'rating' => '(Betyg : %s / 5 med %s röster)',
   'rubbish' => 'Skräp',
-  'poor' => 'Kass',
+  'poor' => 'Dålig',
   'fair' => 'Godkänd',
   'good' => 'Bra',
   'excellent' => 'Mycket bra',
-  'great' => 'Bäst',
+  'great' => 'Toppen',
 );
 
 // ------------------------------------------------------------------------- //
@@ -216,43 +265,61 @@ $lang_rate_pic = array(
 $lang_cpg_die = array(
   INFORMATION => $lang_info,
   ERROR => $lang_error,
-  CRITICAL_ERROR => 'Kritiskt fel',
+  CRITICAL_ERROR => 'Kritisk fel',
   'file' => 'Fil: ',
   'line' => 'Rad: ',
 );
 
 $lang_display_thumbnails = array(
-  'filename' => 'Filnamn : ',
-  'filesize' => 'Filstorlek : ',
-  'dimensions' => 'Bildstorlek : ',
-  'date_added' => 'Inlagd den : ', //cpg1.3.0
+  'filename' => 'Filnamn: ', //cpg1.4
+  'filesize' => 'Filstorlek: ', //cpg1.4
+  'dimensions' => 'Dimensioner: ', //cpg1.4
+  'date_added' => 'Tillagd den: ', //cpg1.4
 );
 
 $lang_get_pic_data = array(
   'n_comments' => '%s kommentarer',
-  'n_views' => 'visad %s gånger',
+  'n_views' => '%s visningar',
   'n_votes' => '(%s röster)',
 );
 
 $lang_cpg_debug_output = array(
-  'debug_info' => 'Debuginformation', //cpg1.3.0
-  'select_all' => 'Välj alla', //cpg1.3.0
-  'copy_and_paste_instructions' => 'Om du vill ha hjälp på Commermines supportforum, kopiera den här debuginformationen och klista in den i ditt inlägg. Var noga med att ersätta känslig information (t.ex. lösenord) med *** innan du postar inlägget.', //cpg1.3.0
-  'phpinfo' => 'visa phpinfo', //cpg1.3.0
+  'debug_info' => 'Debuginformation',
+  'select_all' => 'Välj alla',
+  'copy_and_paste_instructions' => 'Om du vill ha hjälp på Coppermines supportforum, kopiera den här debuginformationen och klista in den i ditt inlägg, tillsammans med eventuellt felmeddelande du får (om något). Var noga med att ersätta känslig information (t.ex. lösenord) med *** innan du postar inlägget.<br />Obs: detta är endast för information och betyder inte nödvändigtvis att det är något fel på ditt galleri.', //cpg1.4
+  'phpinfo' => 'Visa phpinfo',
+  'notices' => 'Anmärkningar', //cpg1.4
 );
 
 $lang_language_selection = array(
-  'reset_language' => 'Standardspråk', //cpg1.3.0
-  'choose_language' => 'Välj språk', //cpg1.3.0
+  'reset_language' => 'Standardspråk',
+  'choose_language' => 'Välj språk',
 );
 
 $lang_theme_selection = array(
-  'reset_theme' => 'Standardtema', //cpg1.3.0
-  'choose_theme' => 'Välj ett tema', //cpg1.3.0
+  'reset_theme' => 'Standardtema',
+  'choose_theme' => 'Välj tema',
+);
+
+$lang_version_alert = array(
+  'version_alert' => 'Ej stödd version!', //cpg1.4
+  'no_stable_version' => 'Du kör Coppermine  %s (%s) som är avsett för erfarna användare - denna versionen kommer utan någon form av support eller garantier. Använd den på egen risk, eller ladda ned den senaste stabila versionen om du behöver support!', //cpg1.4
+  'gallery_offline' => 'Galleriet är avstängt för underhåll och är bara vara tillgängligt för dig som administratör. Glöm inte att öppna det igen det när du är färdig med underhållet.', //cpg1.4
+);
+
+$lang_create_tabs = array(
+  'previous' => 'Föregående', //cpg1.4
+  'next' => 'Nästa', //cpg1.4
 );
 
 // ------------------------------------------------------------------------- //
 // File include/init.inc.php
+// ------------------------------------------------------------------------- //
+
+// void
+
+// ------------------------------------------------------------------------- //
+// File keyword.inc.php                                                      //
 // ------------------------------------------------------------------------- //
 
 // void
@@ -264,6 +331,16 @@ $lang_theme_selection = array(
 // void
 
 // ------------------------------------------------------------------------- //
+// File include/plugin_api.inc.php
+// ------------------------------------------------------------------------- //
+$lang_plugin_api = array(
+  'error_wakeup' => "Kan inte sätta på plugin '%s'", //cpg1.4
+  'error_install' => "Kan inte installera plugin '%s'", //cpg1.4
+  'error_uninstall' => "Kan inte avinstallera plugin '%s'", //cpg1.4
+  'error_sleep' => "Kan inte stänga av plugin '%s'<br />", //cpg1.4
+);
+
+// ------------------------------------------------------------------------- //
 // File include/smilies.inc.php
 // ------------------------------------------------------------------------- //
 
@@ -271,10 +348,10 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
   'Exclamation' => 'Utrop',
   'Question' => 'Fråga',
   'Very Happy' => 'Mycket glad',
-  'Smile' => 'Smil',
+  'Smile' => 'Leende',
   'Sad' => 'Ledsen',
   'Surprised' => 'Överraskad',
-  'Shocked' => 'Shockad',
+  'Shocked' => 'Chockad',
   'Confused' => 'Förbryllad',
   'Cool' => 'Cool',
   'Laughing' => 'Skrattande',
@@ -299,10 +376,10 @@ if (defined('SMILIES_PHP')) $lang_smilies_inc_php = array(
 // void
 
 // ------------------------------------------------------------------------- //
-// File admin.php
+// File mode.php //cpg1.4
 // ------------------------------------------------------------------------- //
 
-if (defined('ADMIN_PHP')) $lang_admin_php = array(
+if (defined('MODE_PHP')) $lang_mode_php = array(
   0 => 'Lämnar adminläge...',
   1 => 'Startar adminläge...',
 );
@@ -312,20 +389,172 @@ if (defined('ADMIN_PHP')) $lang_admin_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
-  'alb_need_name' => 'Album måste namnges !', //js-alert
+  'alb_need_name' => 'Album måste namnges!', //js-alert
   'confirm_modifs' => 'Är du säker på att du vill göra dessa förändringar?', //js-alert
   'no_change' => 'Du gjorde ingen förändring!', //js-alert
   'new_album' => 'Nytt album',
   'confirm_delete1' => 'Är du säker på att du vill radera detta album?', //js-alert
-  'confirm_delete2' => '\nAlla objekt dess kommentarer kommer att förkloras', //js-alert
+  'confirm_delete2' => '\nAlla filer och deras kommentarer kommer att förloras', //js-alert
   'select_first' => 'Välj ett album först', //js-alert
   'alb_mrg' => 'Administrera album',
   'my_gallery' => '* Mitt galleri *',
   'no_category' => '* Ingen kategori *',
   'delete' => 'Radera',
   'new' => 'Nytt',
-  'apply_modifs' => 'Verkställ förändringar',
+  'apply_modifs' => 'Utför ändringar',
   'select_category' => 'Välj kategori',
+);
+
+// ------------------------------------------------------------------------- //
+// File banning.php
+// ------------------------------------------------------------------------- //
+
+if (defined('BANNING_PHP')) $lang_banning_php = array(
+  'title' => 'Blockera användare', //cpg1.4
+  'user_name' => 'Användarnamn', //cpg1.4
+  'ip_address' => 'IP-adress', //cpg1.4
+  'expiry' => 'Gäller till (blankt är permanent)', //cpg1.4
+  'edit_ban' => 'Spara ändringar', //cpg1.4
+  'delete_ban' => 'Ta bort', //cpg1.4
+  'add_new' => 'Ny blockering', //cpg1.4
+  'add_ban' => 'Blockera användare', //cpg1.4
+  'error_user' => 'Hittar inte användaren', //cpg1.4
+  'error_specify' => 'Du måste specificera användarnamn eller IP-adress.', //cpg1.4
+  'error_ban_id' => 'Ogiltigt blockeringsID!', //cpg1.4
+  'error_admin_ban' => 'Du kan inte blockera dig själv!', //cpg1.4
+  'error_server_ban' => 'Tänkte du blockera din egen server? Tsk tsk...', //cpg1.4
+  'error_ip_forbidden' => 'Du kan inte blockera detta IP - det är icke-routbar (privat) ändå!<br />Om du vill tillåta blockering av privata IP-adresser, ändra detta i <a href="admin.php">inställningar</a> (det är bara aktuelt om Coppermine körs i ett LAN).', //cpg1.4
+  'lookup_ip' => 'Slå upp en IP-adress', //cpg1.4
+  'submit' => 'OK!', //cpg1.4
+  'select_date' => 'Välj datum', //cpg1.4
+);
+
+// ------------------------------------------------------------------------- //
+// File bridgemgr.php //cpg1.4
+// ------------------------------------------------------------------------- //
+
+if (defined('BRIDGEMGR_PHP')) $lang_bridgemgr_php = array(
+  'title' => 'Länkningsguide (Bridge Guide)',
+  'warning' => 'Varning: När du använder denna guide kommer känslig data att skickas med oskyddade html-formulär. Kör guiden bara på din egen dator (inte på en offentlig dator på t.ex. ett internetcafé). Var även nogrann med att rensa webbläsarens cache och tillfälliga filer när du är färdig, annars kan andra komma åt din data!',
+  'back' => 'Föregående',
+  'next' => 'Nästa',
+  'start_wizard' => 'Starta länkningsguide',
+  'finish' => 'Avsluta',
+  'hide_unused_fields' => 'Göm oanvända formulärfält (rekommenderat)',
+  'clear_unused_db_fields' => 'Rensa ogilltiga databasposter (rekommenderat)',
+  'custom_bridge_file' => 'Namn på din länkningsfil (bridge-fil) (om filen heter <i>myfile.inc.php</i> skriv <i>myfile</i> här)',
+  'no_action_needed' => 'Inget behöver göras här. Tryck bara "Nästa" för att fortsätta',
+  'reset_to_default' => 'Återställ förinställda värden',
+  'choose_bbs_app' => 'Välj program att länka samman Coppermine med',
+  'support_url' => 'Gå hit för support för detta program',
+  'settings_path' => 'sökväg(ar) som används av ditt forum',
+  'database_connection' => 'Databasanslutning (connection)',
+  'database_tables' => 'Databastabeller (tables)',
+  'bbs_groups' => 'Forumgrupper (groups)',
+  'license_number' => 'Licensnummer',
+  'license_number_explanation' => 'Ange ditt licensnummer (om möjligt)',
+  'db_database_name' => 'Databasnamn',
+  'db_database_name_explanation' => 'Ange namnet på databasen ditt forum använder',
+  'db_hostname' => 'Databasvärd (host)',
+  'db_hostname_explanation' => 'Värdnamn där din MySQL-databas finns, vanligtvis &quot;localhost&quot;',
+  'db_username' => 'Databasens användarnamn (user account)',
+  'db_username_explanation' => 'MySQL-databasens användarnamn för anslutning till forumet',
+  'db_password' => 'Databasens lösenord',
+  'db_password_explanation' => 'Lösenord för MySQL-användarnamnet',
+  'full_forum_url' => 'Forum-URL',
+  'full_forum_url_explanation' => 'Fullständig URL till ditt forum (inkl http://, t.ex. http://www.yourdomain.tld/forum)',
+  'relative_path_of_forum_from_webroot' => 'Relativ sökväg',
+  'relative_path_of_forum_from_webroot_explanation' => 'Relativ sökväg till ditt forum från din URL (Exempel: om ditt forum finns på http://www.yourdomain.tld/forum/, skriv &quot;/forum/&quot; här)',
+  'relative_path_to_config_file' => 'Relativ sökväg till ditt forums konfigurationsfil',
+  'relative_path_to_config_file_explanation' => 'Relativ sökväg till ditt forum, sett från din Coppermine-mapp (t.ex. &quot;../forum/&quot, om ditt forum finns på http://www.yourdomain.tld/forum/ och Coppermine på http://www.yourdomain.tld/gallery/)',
+  'cookie_prefix' => 'Prefix för cookies',
+  'cookie_prefix_explanation' => 'Detta måste vara samma namn som ditt forum använder för cookies',
+  'table_prefix' => 'Prefix för tabeller',
+  'table_prefix_explanation' => 'Måste vara samma prefix som ditt forum använder.',
+  'user_table' => 'Tabell för användare',
+  'user_table_explanation' => '(det förinställda namnet brukar fungera, så länge ditt forum använder standardinställningarna)',
+  'session_table' => 'Tabell för sessioner',
+  'session_table_explanation' => '(det förinställda namnet brukar fungera, så länge ditt forum använder standardinställningarna)',
+  'group_table' => 'Tabell för grupper',
+  'group_table_explanation' => '(det förinställda namnet brukar fungera, så länge ditt forum använder standardinställningarna)',
+  'group_relation_table' => 'Tabell för grupprelationer',
+  'group_relation_table_explanation' => '(det förinställda namnet brukar fungera, så länge ditt forum använder standardinställningarna)',
+  'group_mapping_table' => 'Tabell för mappning av grupper',
+  'group_mapping_table_explanation' => '(det förinställda namnet brukar fungera, så länge ditt forum använder standardinställningarna)',
+  'use_standard_groups' => 'Använd standard för forumgrupper',
+  'use_standard_groups_explanation' => 'Använd standardgrupper (inbyggda, rekommenderat). Detta kommer att göra alla inställningar för grupper gjorda på denna sida ogiltiga. Avmarkera detta alternativ ENDAST om vet vad du gör!',
+  'validating_group' => 'Bekräfta grupp',
+  'validating_group_explanation' => 'Grupp-ID i forumet där användarkonton som måste bekräftas finns (det förinställda namnet brukar fungera, ändra bara om du vet att det ska vara något annat!)',
+  'guest_group' => 'Grupp för gäster',
+  'guest_group_explanation' => 'Grupp-ID i forumet där gäster (anonyma användare) finns (det förinställda namnet brukar fungera, ändra bara om du vet att det ska vara något annat!)',
+  'member_group' => 'Grupp för medlemmar',
+  'member_group_explanation' => 'Grupp-ID i forumet där &quot;vanliga&quot; användare finns (det förinställda namnet brukar fungera, ändra bara om du vet att det ska vara något annat!)',
+  'admin_group' => 'Grupp för administratörer',
+  'admin_group_explanation' => 'Grupp-ID i forumet där administratörer finns (det förinställda namnet brukar fungera, ändra bara om du vet att det ska vara något annat!)',
+  'banned_group' => 'Grupp för blockerade användare',
+  'banned_group_explanation' => 'Grupp-ID i forumet där blockerade användare finns (det förinställda namnet brukar fungera, ändra bara om du vet att det ska vara något annat!)',
+  'global_moderators_group' => 'Grupp för globala moderatorer',
+  'global_moderators_group_explanation' => 'Grupp-ID i forumet där globala moderatorer finns (det förinställda namnet brukar fungera, ändra bara om du vet att det ska vara något annat!)',
+  'special_settings' => 'Forum-specifika inställningar',
+  'logout_flag' => 'phpBB-version (logout flag)',
+  'logout_flag_explanation' => 'Vilken version har ditt forum (inställningen bestämmer hur utloggningar hanteras)',
+  'use_post_based_groups' => 'Använd inläggsbaserade grupper?',
+  'logout_flag_yes' => '2.0.5 eller högre',
+  'logout_flag_no' => '2.0.4 eller lägre',
+  'use_post_based_groups_explanation' => 'Ska grupper i forumet som baseras på antal inlägg användas (tillåter finstyrning av behörigheter) eller ska de förinställda grupperna användas (enklare administration, rekommenderas). Du kan ändra detta senare.',
+  'use_post_based_groups_yes' => 'Ja',
+  'use_post_based_groups_no' => 'Nej',
+  'error_title' => 'Du måste rätta till dessa fel innan du kan fortsätta. Gå till föregående sida.',
+  'error_specify_bbs' => 'Du måste ange vilket program du vill länka Coppermine med.',
+  'error_no_blank_name' => ' Du kan inte lämna fältet för länkningsfil tomt.',
+  'error_no_special_chars' => 'Länkningsfilens namn får inte innehålla några specialtecken annat än understreck (_) eller streck (-)!',
+  'error_bridge_file_not_exist' => 'Länkningsfilen %s finns inte på servern. Se till att den är uppladdad.',
+  'finalize' => 'Aktivera/avaktivera länkning med forum',
+  'finalize_explanation' => 'Så här långt har dina inställningar sparats i databasen, men integrationen har inte aktiverats. Du kan slå på/av länkningen senare. Var noga med att komma ihåg administratörerens användarnamn och lösenord från installationen av Coppermine, du kan behöva det senare för att göra ändringar. Om något går fel, gå till %s och avaktivera länkningen med forumet där, genom att använda det icke länkade administratörskontot (vanligtvis det konto du satte upp när du installerade Coppermine).',
+  'your_bridge_settings' => 'Dina inställningar för länkningen',
+  'title_enable' => 'Aktivera / avaktivera integration/länkning med %s',
+  'bridge_enable_yes' => 'Aktivera',
+  'bridge_enable_no' => 'Avaktivera',
+  'error_must_not_be_empty' => 'Kan inte lämnas tom',
+  'error_either_be' => 'Måste vara %s eller %s',
+  'error_folder_not_exist' => '%s finns inte. Rätta till värdet du angav för %s.',
+  'error_cookie_not_readible' => 'Coppermine kan inte läsa cookien med namn %s. Rätta till värdet du angav för %s, eller gå till administratörsinställningarna och kontrollera att sökvägen är läsbar för Coppermine.',
+  'error_mandatory_field_empty' => 'Du kan inte lämna fältet %s tomt - fyll i korrekt värde.',
+  'error_no_trailing_slash' => 'Det får inte vara något avslutande snedstreck i fältet %s.',
+  'error_trailing_slash' => 'Det måste vara ett avslutande snedstreck i fältet %s.',
+  'error_db_connect' => 'Kunde inte ansluta till MySQL-databasen med det du angivit. MySQL svarade:',
+  'error_db_name' => 'Coppermine kunde etablera kontakt men kunde inte ansluta till databasen %s. Kontrollera att du angivit %s korrekt. MySQL svarade:',
+  'error_prefix_and_table' => '%s och ',
+  'error_db_table' => 'Kunde inte hitta tabellen %s. Kontrollera att du angivit %s korrekt.',
+  'recovery_title' => 'Länkningsguide: kritisk återställning',
+  'recovery_explanation' => 'Om du kom hit för att administrera Coppermines forumlänkning måste du logga in som administratör först. Om du inte kan logga in för att länkningen inte fungerar som den ska kan du avaktivera länkningen på den här sidan. Om du anger ditt användarnamn och ditt lösenord kommer du inte att bli inloggad, utan bara avaktivera länkningen med forumet. Läs dokumentationen för mer information.',
+  'username' => 'Användarnamn',
+  'password' => 'Lösenord',
+  'disable_submit' => 'Skicka',
+  'recovery_success_title' => 'Autentiseringen lyckades',
+  'recovery_success_content' => 'Du har avaktiverat länkningen med forumet. Din Coppermine-installation körs nu självständigt.',
+  'recovery_success_advice_login' => 'Logga in som administratör för att ändra länkningsinställningarna och/eller aktivera länkningen med forumet igen.',
+  'goto_login' => 'Gå till login-sidan',
+  'goto_bridgemgr' => 'Gå till länkningsguiden',
+  'recovery_failure_title' => 'Autentiseringen misslyckades',
+  'recovery_failure_content' => 'Du angav felaktiga uppgifter. Du måste ange uppgifter för administratörskontot för den fristående installationen av Coppermine (vanligtvis kontot som skapades i samband med installationen).',
+  'try_again' => 'Försök igen',
+  'recovery_wait_title' => 'Tiden för fördröjning har inte löpt ut.',
+  'recovery_wait_content' => 'Av säkerhetsskäl kan du inte försöka logga in efter misslyckade försök med så kort tid emellan. Var god försök igen lite senare.',
+  'wait' => 'Vänta',
+  'create_redir_file' => 'Skapa fil för vidarebefordran (rekommenderat)',
+  'create_redir_file_explanation' => 'För att vidarebefordra användare tillbaka till Coppermine när de loggat in via forumet behöver en fil för vidarebefordran skapas i din forum-mapp. När detta val är markerat kommer länkningsguiden att skapa den filen, i annat fall får du koden, redo att klistras in vid manuellt skapande av filen.',
+  'browse' => 'Bläddra',
+);
+
+// ------------------------------------------------------------------------- //
+// File calendar.php //cpg1.4
+// ------------------------------------------------------------------------- //
+
+if (defined('CALENDAR_PHP')) $lang_calendar_php = array(
+  'title' => 'Kalender', //cpg1.4
+  'close' => 'Avsluta', //cpg1.4
+  'clear_date' => 'Rensa datum', //cpg1.4
 );
 
 // ------------------------------------------------------------------------- //
@@ -333,192 +562,269 @@ if (defined('ALBMGR_PHP')) $lang_albmgr_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('CATMGR_PHP')) $lang_catmgr_php = array(
-  'miss_param' => 'Parametrar som krävs för \'%s\'operationen stöds inte!',
+  'miss_param' => 'Parametrar som krävs för \'%s\' operationen stöds inte!',
   'unknown_cat' => 'Vald kategori finns inte i databasen',
-  'usergal_cat_ro' => 'Kategorin Användargalleri kan inte raderas!',
+  'usergal_cat_ro' => 'Kategorin användargallerier kan inte raderas!',
   'manage_cat' => 'Inställningar för kategorier',
   'confirm_delete' => 'Är du säker på att du vill RADERA denna kategori?', //js-alert
   'category' => 'Kategori',
   'operations' => 'Operationer',
   'move_into' => 'Flytta till',
-  'update_create' => 'Uppdatera/Skapa galleri',
+  'update_create' => 'Uppdatera/skapa galleri',
   'parent_cat' => 'Huvudkategori',
   'cat_title' => 'Kategorititel',
-  'cat_thumb' => 'Kategoriminiatyr', //cpg1.3.0
+  'cat_thumb' => 'Kategoritumnagel', //cpg1.3.0
   'cat_desc' => 'Kategoribeskrivning',
+  'categories_alpha_sort' => 'Sortera kategorier alfabetisk (istället för vald sorting)', //cpg1.4
+  'save_cfg' => 'Spara inställningar', //cpg1.4
 );
 
 // ------------------------------------------------------------------------- //
-// File config.php
+// File admin.php //cpg1.4
 // ------------------------------------------------------------------------- //
 
-if (defined('CONFIG_PHP')) $lang_config_php = array(
-  'title' => 'Inställningar',
-  'restore_cfg' => 'Återställ systemets grundinställning',
+if (defined('ADMIN_PHP')) $lang_admin_php = array(
+  'title' => 'Gallerikonfiguration', //cpg1.4
+  'manage_exif' => 'Administrera visning av Exif-information', //cpg1.4
+  'manage_plugins' => 'Administrera insticksmoduler', //cpg1.4
+  'manage_keyword' => 'Administrera nyckelord', //cpg1.4
+  'restore_cfg' => 'Återställ till systemets grundinställning',
   'save_cfg' => 'Spara inställningar',
   'notes' => 'Anmärkningar',
   'info' => 'Information',
-  'upd_success' => 'Coppermines inställningar uppdaterades',
-  'restore_success' => 'Coppermines grundinställning återskapades',
-  'name_a' => 'Namn stigande',
-  'name_d' => 'Namn fallande',
-  'title_a' => 'Titel stigande',
-  'title_d' => 'Titel fallande',
-  'date_a' => 'Datum stigande',
-  'date_d' => 'Datum fallande',
-  'th_any' => 'Max Aspect',
+  'upd_success' => 'Galleriets inställningar har uppdaterats',
+  'restore_success' => 'Galleriets grundinställningar har återställts',
+  'name_a' => 'Namn, stigande',
+  'name_d' => 'Namn, fallande',
+  'title_a' => 'Titel, stigande',
+  'title_d' => 'Titel, fallande',
+  'date_a' => 'Datum, stigande',
+  'date_d' => 'Datum, fallande',
+  'exifdate_a' => 'Exif-datum, stigande', //Exif date mod
+  'exifdate_d' => 'Exif-datum, fallande', //Exif date mod
+  'pos_a' => 'Position, stigande', //cpg1.4
+  'pos_d' => 'Position, fallande', //cpg1.4
+  'th_any' => 'Max sida',
   'th_ht' => 'Höjd',
   'th_wd' => 'Bredd',
-  'label' => 'rubrik', //cpg1.3.0
-  'item' => 'alternativ', //cpg1.3.0
-  'debug_everyone' => 'Alla', //cpg1.3.0
-  'debug_admin' => 'Enbart admin', //cpg1.3.0
-        );
-
-if (defined('CONFIG_PHP')) $lang_config_data = array(
-  'Allmänna inställningar',
-  array('Gallerinamn', 'gallery_name', 0),
-  array('Galleribeskrivning', 'gallery_description', 0),
-  array('Galleriadministratörens e-post', 'gallery_admin_email', 0),
-  array('Måladress för \'Se fler bilder\' länk i e-vykort', 'ecards_more_pic_target', 0),
-  array('Galleriet offline', 'offline', 1), //cpg1.3.0
-  array('Logga e-vykort', 'log_ecards', 1), //cpg1.3.0
-  array('Tillåt nedladdning av favoriter i ZIP-format', 'enable_zipdownload', 1), //cpg1.3.0
-
-  'Språk-, tema- &amp; teckenuppsättningsinställningar',
-  array('Språk', 'lang', 5),
-  array('Tema', 'theme', 6),
-  array('Visa lista med språk', 'language_list', 8), //cpg1.3.0
-  array('Visa språkflaggor', 'language_flags', 8), //cpg1.3.0
-  array('Visa &quot;återställ&quot; i språkinställningarna', 'language_reset', 1), //cpg1.3.0
-  array('Visa lista med teman', 'theme_list', 8), //cpg1.3.0
-  array('Visa &quot;återställ&quot; i temalistan', 'theme_reset', 1), //cpg1.3.0
-  array('Visa FAQ', 'display_faq', 1), //cpg1.3.0
-  array('Visa bbcode-hjälp', 'show_bbcode_help', 1), //cpg1.3.0
-  array('Teckenkodning', 'charset', 4), //cpg1.3.0
-
-  'Utseende på albumlista',
-  array('Bredd på huvudtabell (i pixlar eller %)', 'main_table_width', 0),
-  array('Antal underkategorier som visas', 'subcat_level', 0),
-  array('Antal album som visas', 'albums_per_page', 0),
-  array('Antal kolumner i albumlistan', 'album_list_cols', 0),
-  array('Storlek på miniatyrer (i pixlar)', 'alb_list_thumb_size', 0),
-  array('Innehåll på huvudsidan', 'main_page_layout', 0),
-  array('Visa första underkategorins miniatyrer i kategorierna','first_level',1),
-
-  'Utseende på miniatyrer',
-  array('Antal kolumner på miniatyrsida', 'thumbcols', 0),
-  array('Antal rader på miniatyrsida', 'thumbrows', 0),
-  array('Max antal flikar som visas', 'max_tabs', 10), //cpg1.3.0
-  array('Visa bildrubrik (tillsammans med titeln) nedanför miniatyrerna', 'caption_in_thumbview', 1), //cpg1.3.0
-  array('Visa antalet visningar nedanför miniatyrerna', 'views_in_thumbview', 1), //cpg1.3.0
-  array('Visa antalet kommentarer under miniatyrerna', 'display_comment_count', 1),
-  array('Visa vem som laddat upp bilden under miniatyrerna', 'display_uploader', 1), //cpg1.3.0
-  array('Grundinställning för sortering av bilder', 'default_sort_order', 3), //cpg1.3.0
-  array('Minsta antal röster för att en bild ska synas i \'topplistan\'', 'min_votes_for_rating', 0), //cpg1.3.0
-
-  'Utseende på bilder samt inställningar för kommentarer',
-  array('Tabellbredd för bildvisning (pixlar eller %)', 'picture_table_width', 0), //cpg1.3.0
-  array('Bildinformation är synlig som standard', 'display_pic_info', 1), //cpg1.3.0
-  array('Filtrera bort fula ord i kommentarer', 'filter_bad_words', 1),
-  array('Tillåt smilies i kommentarer', 'enable_smilies', 1),
-  array('Tillåt flera kommentarer från en och samma användare på samma bild (stänger av masspostningsskyddet)', 'disable_comment_flood_protect', 1), //cpg1.3.0
-  array('Max längd på bildbeskrivning', 'max_img_desc_length', 0),
-  array('Max antal tecken i ett ord', 'max_com_wlength', 0),
-  array('Max antal rader i en kommentar', 'max_com_lines', 0),
-  array('Max längd på en kommentar', 'max_com_size', 0),
-  array('Visa filmrutor', 'display_film_strip', 1),
-  array('Antal objekt i filmrutorna', 'max_film_strip_items', 0),
-  array('Underrätta admin om kommentarer via e-post', 'email_comment_notification', 1), //cpg1.3.0
-  array('Visning av varje bild i bildspel, anges i millisekunder (1 sekund = 1000 millisekunder)', 'slideshow_interval', 0), //cpg1.3.0
-
-  'Bild- och miniatyrinställningar', //cpg1.3.0
-  array('Kvalitet på JPEG-bilder', 'jpeg_qual', 0),
-  array('Max dimension på en miniatyr <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0), //cpg1.3.0
-  array('Använd dimension ( bredd eller höjd eller maxstorlek på miniatyr)<b>**</b>', 'thumb_use', 7),
-  array('Skapa mellanliggande bilder','make_intermediate',1),
-  array('Max bredd eller höjd på en mellanliggande bild/film <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0), //cpg1.3.0
-  array('Max storlek på uppladdade objekt (KB)', 'max_upl_size', 0), //cpg1.3.0
-  array('Max bredd eller höjd för uppladdade bilder/filmer (i pixlar)', 'max_upl_width_height', 0), //cpg1.3.0
-
-  'Avancerade inställningar för bilder och miniatyrer', //cpg1.3.0
-  array('Visa ikon för privata album för ej inloggade användare','show_private',1), //cpg1.3.0
-  array('Förbjudna tecken i filnamn', 'forbiden_fname_char',0), //cpg1.3.0
-  //array('Accepted file extensions for uploaded pictures', 'allowed_file_extensions',0), //cpg1.3.0
-  array('Accepterade filändelser för bilder', 'allowed_img_types',0), //cpg1.3.0
-  array('Accepterade filändelser för filmer', 'allowed_mov_types',0), //cpg1.3.0
-  array('Accepterade filändelser för ljud', 'allowed_snd_types',0), //cpg1.3.0
-  array('Accepterade filändelser för dokument', 'allowed_doc_types',0), //cpg1.3.0
-  array('Metod för att ändra storlek på bilder','thumb_method',2), //cpg1.3.0
-  array('Sökväg till ImageMagick \'konverteringsfunktion\' (t.ex. /usr/bin/X11/)', 'impath', 0), //cpg1.3.0
-  //array('Allowed image types (only valid for ImageMagick)', 'allowed_img_types',0), //cpg1.3.0
-  array('Command line för ImageMagick', 'im_options', 0), //cpg1.3.0
-  array('Läs ut EXIF-information ur JPEG-filer', 'read_exif_data', 1), //cpg1.3.0
-  array('Läs ut IPTC-information ur JPEG-filer', 'read_iptc_data', 1), //cpg1.3.0
-  array('Katalog för album <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0), //cpg1.3.0
-  array('Katalog för användarnas objekt<a href="#notice1" class="clickable_option">*</a>', 'userpics', 0), //cpg1.3.0
-  array('Prefix på mellanliggande bilder <a href="#notice1" class="clickable_option">*</a>', 'normal_pfx', 0), //cpg1.3.0
-  array('Prefix på miniatyrer <a href="#notice1" class="clickable_option">*</a>', 'thumb_pfx', 0), //cpg1.3.0
-  array('Standardinställning för kataloger', 'default_dir_mode', 0), //cpg1.3.0
-  array('Standardinställning för filer', 'default_file_mode', 0), //cpg1.3.0
-
-  'Användarinställningar',
-  array('Tillåt att nya användare registrerar sig', 'allow_user_registration', 1),
-  array('Användarregistrering kräver e-postverifiering', 'reg_requires_valid_email', 1),
-  array('Underrätta admin via e-post när ny användare registrerats', 'reg_notify_admin_email', 1), //cpg1.3.0
-  array('Tillåt två användare att ha samma e-postadress', 'allow_duplicate_emails_addr', 1),
-  array('Användare kan ha privata album (Om du byter från \'ja\' to \'nej\' blir alla existerande album offentliga)', 'allow_private_albums', 1), //cpg1.3.0
-  array('Underrätta admin om uppladdade användarbilder som väntar på godkännande', 'upl_notify_admin_email', 1), //cpg1.3.0
-  array('Tillåt att inloggade användare ser användarlistan', 'allow_memberlist', 1), //cpg1.3.0
-
-  'Valfria fält för bildbeskrivningar (lämna blankt om du inte vill använda funktionen)',
-  array('Fält 1 namn', 'user_field1_name', 0),
-  array('Fält 2 namn', 'user_field2_name', 0),
-  array('Fält 3 namn', 'user_field3_name', 0),
-  array('Fält 4 namn', 'user_field4_name', 0),
-
-  'Inställningar för Cookies',
-  array('Namn på Cookien scriptet använder sig av (om du använder bbs-integrationen, se till att denna skiljer sig från namnet på bbs:ens cookie)', 'cookie_name', 0),
-  array('Sökväg till cookie som scripten använder sig av', 'cookie_path', 0),
-
-  'Övriga inställningar',
-  array('Aktivera debug mode', 'debug_mode', 9), //cpg1.3.0
-  array('Visa meddelanden i debug mode', 'debug_notice', 1), //cpg1.3.0
-
-  '<br /><div align="left"><a name="notice1"></a>(*) Denna inställning får inte ändras om du redan har bilder i din databas.<br />
-  <a name="notice2"></a>(**) Om du ändrar inställningen kommer enbart de filer som läggs in i databasen framöver att påverkas, därför rekommenderas det att man underviker att ändra denna parameter när det redan finns bilder i databasen. Du kan dock tillämpa ändringarna på gamla bilder genom  &quot;<a href="util.php">Administrationsverktygs</a> (Ändra storlek på bilder)&quot; funktionen från administrationsmenyn.</div><br />', //cpg1.3.0
+  'label' => ' markering', //cpg1.3.0
+  'item' => ' alternativ', //cpg1.3.0
+  'debug_everyone' => ' alla', //cpg1.3.0
+  'debug_admin' => ' enbart admin', //cpg1.3.0
+  'no_logs'=> 'Av', //cpg1.4
+  'log_normal'=> 'Normal', //cpg1.4
+  'log_all' => 'Alla', //cpg1.4
+  'view_logs' => 'Visa loggar', //cpg1.4
+  'click_expand' => 'Klicka på sektionsnamnet för att expandera', //cpg1.4
+  'expand_all' => 'Expandera alla', //cpg1.4
+  'notice1' => '(*) Dessa inställningarna bör inte ändras om du har filer i din databas.', //cpg1.4 - (relocated)
+  'notice2' => '(**) När den här ändringen görs kommer bara filer som läggs till efteråt att påverkas. Det är därför att rekommendera att inte göra ändringar när det finns filer i galleriet. Du kan välja att låta ändringarna gälla även existerande filer med hjälp av &quot;<a href="util.php">administratörsverktyget</a>&quot; (funktionen för att skala om bilder).', //cpg1.4 - (relocated)
+  'notice3' => '(***) Alla loggfiler är skrivna på engelska.', //cpg1.4 - (relocated)
+  'bbs_disabled' => 'Funktionen är inaktiverad i och med länkning med forum', //cpg1.4
+  'auto_resize_everyone' => ' alla', //cpg1.4
+  'auto_resize_user' => ' endast medlemmar', //cpg1.4
+  'ascending' => 'stigande', //cpg1.4
+  'descending' => 'fallande', //cpg1.4
 );
 
+if (defined('ADMIN_PHP')) $lang_admin_data = array(
+  'Allmänna inställningar',
+  array('Galleriets namn', 'gallery_name', 0, 'f=index.htm&amp;as=admin_general_name&amp;ae=admin_general_name_end'), //cpg1.4
+  array('Galleriets beskrivning', 'gallery_description', 0, 'f=index.htm&amp;as=admin_general_description&amp;ae=admin_general_description_end'), //cpg1.4
+  array('Galleriadministratörens e-post', 'gallery_admin_email', 0, 'f=index.htm&amp;as=admin_general_email&amp;ae=admin_general_email_end'), //cpg1.4
+  array('URL till din mapp med Coppermine (inget "index.php" eller liknande i slutet)', 'ecards_more_pic_target', 0, 'f=index.htm&amp;as=admin_general_coppermine-url&amp;ae=admin_general_coppermine-url_end'), //cpg1.4
+  array('URL till startsidan', 'home_target', 0, 'f=index.htm&amp;as=admin_general_home-url&amp;ae=admin_general_home-url_end'), //cpg1.4
+  array('Tillåt nedladdning av favoriter som Zip-fil', 'enable_zipdownload', 1, 'f=index.htm&amp;as=admin_general_zip-download&amp;ae=admin_general_zip-download_end'), //cpg1.4
+  array('Skillnad i tidszon jämfört med GMT (nuvarande tid: ' . localised_date(-1, $comment_date_fmt) . ')','time_offset',0, 'f=index.htm&amp;as=admin_general_time-offset&amp;ae=admin_general_time-offset_end&amp;top=1'), //cpg1.4
+  array('Aktivera krypterade lösenord (kan inte ångras)','enable_encrypted_passwords',1, 'f=index.htm&amp;as=admin_general_encrypt_password_start&amp;ae=admin_general_encrypt_password_end&amp;top=1'), // cpg 1.4
+  array('Aktivera hjälpikoner (hjälp endast tillgänglig på engelska)','enable_help',9, 'f=index.htm&amp;as=admin_general_help&amp;ae=admin_general_help_end'), //cpg1.4
+  array('Aktivera klickbara nyckelord i sökfunktionen','clickable_keyword_search',14, 'f=index.htm&amp;as=admin_general_keywords_start&amp;ae=admin_general_keywords_end'), //cpg1.4
+  array('Aktivera insticksmoduler (plugins)', 'enable_plugins', 12, 'f=index.htm&amp;as=admin_general_enable-plugins&amp;ae=admin_general_enable-plugins_end'),  //cpg1.4
+  array('Tillåt blockering av non-routable (privata) IP adresser', 'ban_private_ip', 1,  'f=index.htm&amp;as=admin_general_private-ip&amp;ae=admin_general_private-ip_end'), //cpg1.4
+  array('Bläddringsbart gränssnitt för "Lägg till flera filer"', 'browse_batch_add', 1, 'f=index.htm&amp;as=admin_general_browsable_batch_add&amp;ae=admin_general_browsable_batch_add_end'), //cpg1.4
+
+  'Språk &amp; teckenuppsättning',
+  array('Språk', 'lang', 5, 'f=index.htm&amp;as=admin_language_language&amp;ae=admin_language_language_end'), //cpg1.4
+  array('Använd engelska om fras inte finns översatt', 'language_fallback', 1, 'f=index.htm&amp;as=admin_language_fallback&amp;ae=admin_language_fallback_end'), //cpg1.4
+  array('Teckenuppsättning', 'charset', 4, 'f=index.htm&amp;as=admin_language_charset&amp;ae=admin_language_charset_end'), //cpg1.4
+  array('Visa lista över språk', 'language_list', 1, 'f=index.htm&amp;as=admin_language_list&amp;ae=admin_language_list_end'), //cpg1.4
+  array('Visa flaggor för språk', 'language_flags', 8, 'f=index.htm&amp;as=admin_language_flags&amp;ae=admin_language_flags_end&amp;top=1'), //cpg1.4
+  array('Visa &quot;återställ&quot; i språkvalen', 'language_reset', 1, 'f=index.htm&amp;as=admin_language_reset&amp;ae=admin_language_reset_end&amp;top=1'), //cpg1.4
+  //array('Visa föregående/nästa på flikade sidor', 'previous_next_tab', 1), //cpg1.4
+
+  'Tema',
+  array('Tema', 'theme', 6, 'f=index.htm&amp;as=admin_theme_theme&amp;ae=admin_theme_theme_end'), //cpg1.4
+  array('Visa lista med teman', 'theme_list', 1, 'f=index.htm&amp;as=admin_theme_theme_list&amp;ae=admin_theme_theme_list_end'), //cpg1.4
+  array('Visa &quot;återställ&quot; i temavalen', 'theme_reset', 1, 'f=index.htm&amp;as=admin_theme_theme_reset&amp;ae=admin_theme_theme_reset_end'), //cpg1.4
+  array('Visa FAQ', 'display_faq', 1, 'f=index.htm&amp;as=admin_theme_faq&amp;ae=admin_theme_faq_end'), //cpg1.4
+  array('Anpassat namn på menylänk', 'custom_lnk_name', 0,'f=index.htm&amp;as=admin_theme_custom_lnk_name&amp;ae=admin_theme_custom_lnk_name_end'), //cpg1.4
+  array('Anpassat namn på menylänk (URL)', 'custom_lnk_url', 0,'f=index.htm&amp;as=admin_language_custom_lnk_url&amp;ae=admin_language_custom_lnk_url_end'), //cpg1.4
+  array('Visa BBcode-hjälp', 'show_bbcode_help', 1, 'f=index.htm&amp;as=admin_theme_bbcode&amp;ae=admin_theme_bbcode_end&amp;top=1'), //cpg1.4
+  array('Visa "stilblock" för teman som är överensstämmer med XHTML- och CSS-standarderna ','vanity_block',1, 'f=index.htm&amp;as=vanity_block&amp;ae=vanity_block_end'), //cpg1.4
+  array('Sökväg till anpassat sidhuvud (header include)', 'custom_header_path', 0, 'f=index.htm&amp;as=admin_theme_include_path_start&amp;ae=admin_theme_include_path_end'), //cpg1.4
+  array('Sökväg till anpassat sidfot (footer include)', 'custom_footer_path', 0, 'f=index.htm&amp;as=admin_theme_include_path_start&amp;ae=admin_theme_include_path_end'), //cpg1.4
+
+  'Albumlista',
+  array('Bredd på huvudtabellen (pixlar eller %)', 'main_table_width', 0, 'f=index.htm&amp;as=admin_album_table-width&amp;ae=admin_album_table-width_end'), //cpg1.4
+  array('Antal kategorinivåer som visas', 'subcat_level', 0, 'f=index.htm&amp;as=admin_album_category-levels&amp;ae=admin_album_category-levels_end'), //cpg1.4
+  array('Antal album som visas', 'albums_per_page', 0, 'f=index.htm&amp;as=admin_album_number&amp;ae=admin_album_number_end'), //cpg1.4
+  array('Antal kolumner i albumlistan', 'album_list_cols', 0, 'f=index.htm&amp;as=admin_album_columns&amp;ae=admin_album_columns_end'), //cpg1.4
+  array('Storlek på tumnagel i pixlar', 'alb_list_thumb_size', 0, 'f=index.htm&amp;as=admin_album_thumbnail-size&amp;ae=admin_album_thumbnail-size_end'), //cpg1.4
+  array('Innehåll på förstasidan', 'main_page_layout', 0, 'f=index.htm&amp;as=admin_album_list_content&amp;ae=admin_album_list_content_end'), //cpg1.4
+  array('Visa tumnagel för albumet på översta nivån','first_level',1, 'f=index.htm&amp;as=admin_album_first-level_thumbs&amp;ae=admin_album_first-level_thumbs_end'), //cpg1.4
+  array('Sortera kategorier alfabetiskt (istället för vald ordning)','categories_alpha_sort',1, 'f=index.htm&amp;as=admin_album_list_alphasort_start&amp;ae=admin_album_list_alphasort_end'), //cpg1.4
+  array('Visa antal länkade filer','link_pic_count',1, 'f=index.htm&amp;as=admin_album_linked_files_start&amp;ae=admin_album_linked_files_end'), //cpg1.4
+
+  'Tumnaglar',
+  array('Antal kolumner på tumnagelsidan', 'thumbcols', 0, 'f=index.htm&amp;as=admin_thumbnail_columns&amp;ae=admin_thumbnail_columns_end'), //cpg1.4
+  array('Antal rader på tumnagelsidan', 'thumbrows', 0, 'f=index.htm&amp;as=admin_thumbnail_rows&amp;ae=admin_thumbnail_rows_end'), //cpg1.4
+  array('Maximalt antal flikar att visa', 'max_tabs', 10, 'f=index.htm&amp;as=admin_thumbnail_tabs&amp;ae=admin_thumbnail_tabs_end'), //cpg1.4
+  array('Visa rubrik (utöver titel) under tumnageln', 'caption_in_thumbview', 1, 'f=index.htm&amp;as=admin_thumbnail_display_caption&amp;ae=admin_thumbnail_display_caption_end'), //cpg1.4
+  array('Visa antal visningar under tumnageln', 'views_in_thumbview', 1, 'f=index.htm&amp;as=admin_thumbnail_display_views&amp;ae=admin_thumbnail_display_views_end'), //cpg1.4
+  array('Visa antal kommentarer under tumnageln', 'display_comment_count', 1, 'f=index.htm&amp;as=admin_thumbnail_display_comments&amp;ae=admin_thumbnail_display_comments_end'), //cpg1.4
+  array('Visa vem som lagt in filen under tumnageln', 'display_uploader', 1, 'f=index.htm&amp;as=admin_thumbnail_display_uploader&amp;ae=admin_thumbnail_display_uploader_end'), //cpg1.4
+  //array('Visa vilken administratör som lagt in filen under tumnageln', 'display_admin_uploader', 1, 'f=index.htm&amp;as=admin_thumbnail_display_admin_uploader&amp;ae=admin_thumbnail_display_admin_uploader_end'), //cpg1.4
+  array('Visa filnamnet under tumnageln', 'display_filename', 1, 'f=index.htm&amp;as=admin_thumbnail_display_filename&amp;ae=admin_thumbnail_display_filename_end'), //cpg1.4
+  array('Visa beskrivning av album', 'alb_desc_thumb', 1, 'f=index.htm&amp;as=admin_thumbnail_display_description&amp;ae=admin_thumbnail_display_description_end'), //cpg1.4
+  array('Förvald sorteringsordning', 'default_sort_order', 3, 'f=index.htm&amp;as=admin_thumbnail_default_sortorder&amp;ae=admin_thumbnail_default_sortorder_end'), //cpg1.4
+  array('Minsta antal röster för att en fil ska hamna på topplistan', 'min_votes_for_rating', 0, 'f=index.htm&amp;as=admin_thumbnail_minimum_votes&amp;ae=admin_thumbnail_minimum_votes_end'), //cpg1.4
+
+  'Filvisning', //cpg1.4
+  array('Bredd på tabell för filvisning (pixlar eller %)', 'picture_table_width', 0, 'f=index.htm&amp;as=admin_image_comment_table-width&amp;ae=admin_image_comment_table-width_end'), //cpg1.4
+  array('Filinformation synlig som standard', 'display_pic_info', 1, 'f=index.htm&amp;as=admin_image_comment_info_visible&amp;ae=admin_image_comment_info_visible_end'), //cpg1.4
+  array('Maximal längd för filbeskrivning', 'max_img_desc_length', 0, 'f=index.htm&amp;as=admin_image_comment_descr_length&amp;ae=admin_image_comment_descr_length_end'), //cpg1.4
+  array('Maximalt antal tecken i ett ord', 'max_com_wlength', 0, 'f=index.htm&amp;as=admin_image_comment_chars_per_word&amp;ae=admin_image_comment_chars_per_word_end'), //cpg1.4
+  array('Visa filmremsa', 'display_film_strip', 1, 'f=index.htm&amp;as=admin_image_comment_filmstrip_toggle&amp;ae=admin_image_comment_filmstrip_toggle_end'), //cpg1.4
+  array('Visa filnamn under tumnageln i filmremsan', 'display_film_strip_filename', 1, 'f=index.htm&amp;as=admin_image_comment_display_film_strip_filename&amp;ae=admin_image_comment_display_film_strip_filename_end'), //cpg1.4
+  array('Antal filer i filmremsan', 'max_film_strip_items', 0, 'f=index.htm&amp;as=admin_image_comment_filmstrip_number&amp;ae=admin_image_comment_filmstrip_number_end'), //cpg1.4
+  array('Bildspelets intervall i millisekunder (1 sekund = 1000 millisekunder)', 'slideshow_interval', 0, 'f=index.htm&amp;as=admin_image_comment_slideshow_interval&amp;ae=admin_image_comment_slideshow_interval_end'), //cpg1.4
+
+  'Kommentarer', //cpg1.4
+  array('Filtrera fula ord i kommentarer', 'filter_bad_words', 1, 'f=index.htm&amp;as=admin_image_comment_bad_words&amp;ae=admin_image_comment_bad_words_end'), //cpg1.4
+  array('Tillåt smilies i kommentarer', 'enable_smilies', 1, 'f=index.htm&amp;as=admin_image_comment_smilies&amp;ae=admin_image_comment_smilies_end'), //cpg1.4
+  array('Tillåt upprepade kommentarer på en fil av samma användare (ta bort skydd mot "flooding")', 'disable_comment_flood_protect', 1, 'f=index.htm&amp;as=admin_image_comment_flood&amp;ae=admin_image_comment_flood_end'), //cpg1.4
+  array('Maximalt antal rader i en kommentar', 'max_com_lines', 0, 'f=index.htm&amp;as=admin_image_comment_lines&amp;ae=admin_image_comment_lines_end'), //cpg1.4
+  array('Maximal längd på en kommentar', 'max_com_size', 0, 'f=index.htm&amp;as=admin_image_comment_length&amp;ae=admin_image_comment_length_end'), //cpg1.4
+  array('Meddela administratören via e-post vid ny kommentar', 'email_comment_notification', 1, 'f=index.htm&amp;as=admin_image_comment_admin_notify&amp;ae=admin_image_comment_admin_notify_end'), //cpg1.4
+  array('Sorteringsordning för kommentarer', 'comments_sort_descending', 17, 'f=index.htm&amp;as=admin_comment_sort_start&amp;ae=admin_comment_sort_end'), //cpg1.4
+  array('Prefix för kommentarer av gäster/anonyma användare', 'comments_anon_pfx', 0, 'f=index.htm&amp;as=comments_anon_pfx&amp;ae=comments_anon_pfx_end'), //cpg1.4
+
+  'Filer och tumnaglar',
+  array('Kvalitet på JPEG-filer', 'jpeg_qual', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_jpeg_quality&amp;ae=admin_picture_thumbnail_jpeg_quality_end'), //cpg1.4
+  array('Maximal dimension för tumnagel <a href="#notice2" class="clickable_option">**</a>', 'thumb_width', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max-dimension&amp;ae=admin_picture_thumbnail_max-dimension_end'), //cpg1.4
+  array('Använd dimension (bredd, höjd eller maximal sida för tumnageln ) <a href="#notice2" class="clickable_option">**</a>', 'thumb_use', 7, 'f=index.htm&amp;as=admin_picture_thumbnail_use-dimension&amp;ae=admin_picture_thumbnail_use-dimension_end'), //cpg1.4
+  array('Skapa mellanliggande bilder','make_intermediate',1, 'f=index.htm&amp;as=admin_picture_thumbnail_intermediate_toggle&amp;ae=admin_picture_thumbnail_intermediate_toggle_end'), //cpg1.4
+  array('Maximal bredd eller höjd på en mellanliggande bild/film <a href="#notice2" class="clickable_option">**</a>', 'picture_width', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_intermediate_dimension&amp;ae=admin_picture_thumbnail_intermediate_dimension_end'), //cpg1.4
+  array('Maximal filstorlek på uppladdade filer (KB)', 'max_upl_size', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max_upload_size&amp;ae=admin_picture_thumbnail_max_upload_size_end'), //cpg1.4
+  array('Maximal bredd eller höjd på uppladdade bilder/filmer (pixlar)', 'max_upl_width_height', 0, 'f=index.htm&amp;as=admin_picture_thumbnail_max_upload_dimension&amp;ae=admin_picture_thumbnail_max_upload_dimension_end'), //cpg1.4
+  array('Skala om bilder som är större än maxbredd eller maxhöjd automatiskt', 'auto_resize', 16, 'f=index.htm&amp;as=admin_picture_thumbnail_auto-resize&amp;ae=admin_picture_thumbnail_auto-resize_end'), //cpg1.4
+
+  'Filer och tumnaglar - avancerade inställningar',
+  array('Album kan vara privata (notera: om du ändrar från "Ja" till "Nej" blir alla nuvarande privata album publika)', 'allow_private_albums', 1, 'f=index.htm&amp;as=admin_picture_thumb_advanced_private_toggle&amp;ae=admin_picture_thumb_advanced_private_toggle_end'), //cpg1.4
+  array('Visa privata album som ikon för icke inloggade användare','show_private',1, 'f=index.htm&amp;as=admin_picture_thumb_advanced_private_icon_show&amp;ae=admin_picture_thumb_advanced_private_icon_show_end'), //cpg1.4
+  array('Förbjudna tecken i filnamn', 'forbiden_fname_char',0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_filename_forbidden_chars&amp;ae=admin_picture_thumb_advanced_filename_forbidden_chars_end'), //cpg1.4
+  //array('Godkända filändelser för uppladdade filer', 'allowed_file_extensions',0, 'f=index.htm&amp;as=&amp;ae=_end'), //cpg1.4
+  array('Tillåtna bildformat', 'allowed_img_types',0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_pic_extensions&amp;ae=admin_picture_thumb_advanced_pic_extensions_end'), //cpg1.4
+  array('Tillåtna videoformat', 'allowed_mov_types',0, 'f=index.htm&amp;as=admin_thumbs_advanced_movie&amp;ae=admin_thumbs_advanced_movie_end'), //cpg1.4
+  array('Autostart för videouppspelning', 'media_autostart',1, 'f=index.htm&amp;as=admin_movie_autoplay&amp;ae=admin_movie_autoplay_end'), //cpg1.4
+  array('Tillåtna ljudformat', 'allowed_snd_types',0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_audio_extensions&amp;ae=admin_picture_thumb_advanced_audio_extensions_end'), //cpg1.4
+  array('Tillåtna dokumentformat', 'allowed_doc_types',0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_doc_extensions&amp;ae=admin_picture_thumb_advanced_doc_extensions_end'), //cpg1.4
+  array('Metod för att skala om bilder','thumb_method',2, 'f=index.htm&amp;as=admin_picture_thumb_advanced_resize_method&amp;ae=admin_picture_thumb_advanced_resize_method_end'), //cpg1.4
+  array('Sökväg till ImageMagick (t.ex. /usr/bin/X11/)', 'impath', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_im_path&amp;ae=admin_picture_thumb_advanced_im_path_end'), //cpg1.4
+  //array('Tillåtna bildformat (gäller endast ImageMagick)', 'allowed_img_types',0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_allowed_imagetypes&amp;ae=admin_picture_thumb_advanced_allowed_imagetypes_end'), //cpg1.4
+  array('Kommandoval (Command line options) för ImageMagick', 'im_options', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_im_commandline&amp;ae=admin_picture_thumb_advanced_im_commandline_end'), //cpg1.4
+  array('Läs Exif-data i JPEG-filer', 'read_exif_data', 13, 'f=index.htm&amp;as=admin_picture_thumb_advanced_exif&amp;ae=admin_picture_thumb_advanced_exif_end'), //cpg1.4
+  array('Läs IPTC-data i JPEG-filer', 'read_iptc_data', 1, 'f=index.htm&amp;as=admin_picture_thumb_advanced_iptc&amp;ae=admin_picture_thumb_advanced_iptc_end'), //cpg1.4
+  array('Mapp för album <a href="#notice1" class="clickable_option">*</a>', 'fullpath', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_albums_dir&amp;ae=admin_picture_thumb_advanced_albums_dir_end'), //cpg1.4
+  array('Mapp för användarnas filer <a href="#notice1" class="clickable_option">*</a>', 'userpics', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_userpics_dir&amp;ae=admin_picture_thumb_advanced_userpics_dir_end'), //cpg1.4
+  array('Prefix för mellanliggande bilder <a href="#notice1" class="clickable_option">*</a>', 'normal_pfx', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_intermediate_prefix&amp;ae=admin_picture_thumb_advanced_intermediate_prefix_end'), //cpg1.4
+  array('Prefix för tumnaglar <a href="#notice1" class="clickable_option">*</a>', 'thumb_pfx', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_thumbs_prefix&amp;ae=admin_picture_thumb_advanced_thumbs_prefix_end'), //cpg1.4
+  array('Förvalt läge för mappar', 'default_dir_mode', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_chmod_folder&amp;ae=admin_picture_thumb_advanced_chmod_folder_end'), //cpg1.4
+  array('Förvalt läge för filer', 'default_file_mode', 0, 'f=index.htm&amp;as=admin_picture_thumb_advanced_chmod_files&amp;ae=admin_picture_thumb_advanced_chmod_files_end'), //cpg1.4
+
+  'Användare',
+  array('Tillåt registrering av nya användare', 'allow_user_registration', 1, 'f=index.htm&amp;as=admin_allow_registration&amp;ae=admin_allow_registration_end'), //cpg1.4
+  array('Tillåta icke inloggade användare (gäst eller anonym)', 'allow_unlogged_access', 1, 'f=index.htm&amp;as=admin_allow_unlogged_access&amp;ae=admin_allow_unlogged_access_end'), //cpg1.4
+  array('Registrering kräver verifiering med e-post', 'reg_requires_valid_email', 1, 'f=index.htm&amp;as=admin_registration_verify&amp;ae=admin_registration_verify_end'), //cpg1.4
+  array('Meddela adminstratören vid registrering med e-post', 'reg_notify_admin_email', 1, 'f=index.htm&amp;as=admin_registration_notify&amp;ae=admin_registration_notify_end'), //cpg1.4
+  array('Administratören måste godkänna registrering', 'admin_activation', 1, 'f=index.htm&amp;as=admin_activation&amp;ae=admin_activation_end'),  //cpg1.4
+  array('Tillåt två användare att ha samma e-postadress', 'allow_duplicate_emails_addr', 1, 'f=index.htm&amp;as=admin_allow_duplicate_emails_addr&amp;ae=admin_allow_duplicate_emails_addr_end'), //cpg1.4
+  array('Meddela administratören att det finns uppladdningar som behöver godkännas', 'upl_notify_admin_email', 1, 'f=index.htm&amp;as=admin_approval_notify&amp;ae=admin_approval_notify_end'), //cpg1.4
+  array('Tillåt inloggade användare att se medlemslistan', 'allow_memberlist', 1, 'f=index.htm&amp;as=admin_user_memberlist&amp;ae=admin_user_memberlist_end'), //cpg1.4
+  array('Tillåt användare att ändra e-postadress i sin profil', 'allow_email_change', 1, 'f=index.htm&amp;as=admin_user_allow_email_change&amp;ae=admin_user_allow_email_change_end'), //cpg1.4
+  array('Tillåt användare att ha kontroll över sina bilder i publika gallerier', 'users_can_edit_pics', 1, 'f=index.htm&amp;as=admin_user_editpics_public_start&amp;ae=admin_user_editpics_public_end'), //cpg1.4
+  array('Antal misslyckade loginförsök innan tillfällig blockering (för att undvika attacker)', 'login_threshold', 0, 'f=index.htm&amp;as=admin_user_login_start&amp;ae=admin_user_login_end'), //cpg1.4
+  array('Varaktighet för tillfälling blockering efter misslyckade loginförsök', 'login_expiry', 0, 'f=index.htm&amp;as=admin_user_login_start&amp;ae=admin_user_login_end'), //cpg1.4
+  array('Aktivera rapport till administratören', 'report_post', 1, 'f=index.htm&amp;as=admin_user_enable_report&amp;ae=admin_user_enable_report_end'),  //cpg1.4
+
+// custom profile fields,  //cpg1.4
+  'Anpassade fält för användarprofiler (lämnas tomma om de inte används).
+  Använd Profil 6 för längre texter, såsom biografier.', //cpg1.4
+  array('Profil 1, namn', 'user_profile1_name', 0, 'f=index.htm&amp;as=admin_custom&amp;ae=admin_custom_end'), //cpg1.4
+  array('Profil 2, namn', 'user_profile2_name', 0), //cpg1.4
+  array('Profil 3, namn', 'user_profile3_name', 0), //cpg1.4
+  array('Profil 4, namn', 'user_profile4_name', 0), //cpg1.4
+  array('Profil 5, namn', 'user_profile5_name', 0), //cpg1.4
+  array('Profil 6, namn', 'user_profile6_name', 0), //cpg1.4
+
+  'Anpassade fält för bildbeskrivningar (lämnas tomma om de inte används)',
+  array('Fält 1, namn', 'user_field1_name', 0, 'f=index.htm&amp;as=admin_custom_image&amp;ae=admin_custom_image_end'), //cpg1.4
+  array('Fält 2, namn', 'user_field2_name', 0),
+  array('Fält 3, namn', 'user_field3_name', 0),
+  array('Fält 4, namn', 'user_field4_name', 0),
+
+  'Cookies',
+  array('Namn på cookie', 'cookie_name', 0, 'f=index.htm&amp;as=admin_cookie_name&amp;ae=admin_cookie_name_end'), //cpg1.4
+  array('Sökväg till cookie', 'cookie_path', 0, 'f=index.htm&amp;as=admin_cookie_path&amp;ae=admin_cookie_path_end'), //cpg1.4
+
+  'E-post (oftast behöver inget ändras här, lämna allt blankt om du är osäker)', //cpg1.4
+  array('SMTP-värd (om den lämnas tom används Sendmail)', 'smtp_host', 0, 'f=index.htm&amp;as=admin_email&amp;ae=admin_email_end'), //cpg1.4
+  array('SMTP-användarnamn', 'smtp_username', 0), //cpg1.4
+  array('SMTP-lösenord', 'smtp_password', 0), //cpg1.4
+
+  'Loggning och statistik', //cpg1.4
+  array('Loggningsläge <a href="#notice3" class="clickable_option">***</a>', 'log_mode', 11, 'f=index.htm&amp;as=admin_logging_log_mode&amp;ae=admin_logging_log_mode_end'), //cpg1.4
+  array('Logga e-vykort', 'log_ecards', 1, 'f=index.htm&amp;as=admin_general_log_ecards&amp;ae=admin_general_log_ecards_end'), //cpg1.4
+  array('För detaljerad statistik över röstningar','vote_details',1, 'f=index.htm&amp;as=admin_logging_votedetails&amp;ae=admin_logging_votedetails_end'), //cpg1.4
+  array('För detaljerad statistik över träffar','hit_details',1, 'f=index.htm&amp;as=admin_logging_hitdetails&amp;ae=admin_logging_hitdetails_end'), //cpg1.4
+
+  'Underhåll', //cpg1.4
+  array('Aktivera debug-läge', 'debug_mode', 9, 'f=index.htm&amp;as=debug_mode&amp;ae=debug_mode_end'), //cpg1.4
+  array('Visa anmärkningar i debug-läge', 'debug_notice', 1, 'f=index.htm&amp;as=admin_misc_debug_notices&amp;ae=admin_misc_debug_notices_end'), //cpg1.4
+  array('Galleriet är avstängt', 'offline', 1, 'f=index.htm&amp;as=admin_general_offline&amp;ae=admin_general_offline_end'), //cpg1.4
+);
+
+
 // ------------------------------------------------------------------------- //
-// File db_ecard.php //cpg1.3.0
+// File db_ecard.php
 // ------------------------------------------------------------------------- //
 
 if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
-  'title' => 'Skickade e-vykort', //cpg1.3.0
-  'ecard_sender' => 'Avsändare', //cpg1.3.0
-  'ecard_recipient' => 'Mottagare', //cpg1.3.0
-  'ecard_date' => 'Datum', //cpg1.3.0
-  'ecard_display' => 'Visa e-vykort', //cpg1.3.0
-  'ecard_name' => 'Namn', //cpg1.3.0
-  'ecard_email' => 'E-post', //cpg1.3.0
-  'ecard_ip' => 'IP #', //cpg1.3.0
-  'ecard_ascending' => 'stigande', //cpg1.3.0
-  'ecard_descending' => 'fallande', //cpg1.3.0
-  'ecard_sorted' => 'Sorterad', //cpg1.3.0
-  'ecard_by_date' => 'efter datum', //cpg1.3.0
-  'ecard_by_sender_name' => 'efter avsändarens namn', //cpg1.3.0
-  'ecard_by_sender_email' => 'efter avständarens e-post', //cpg1.3.0
-  'ecard_by_sender_ip' => 'efter avsändarens IP-address', //cpg1.3.0
-  'ecard_by_recipient_name' => 'efter mottagarens namn', //cpg1.3.0
-  'ecard_by_recipient_email' => 'efter mottagaren e-post', //cpg1.3.0
-  'ecard_number' => 'visar poster %s till %s av %s', //cpg1.3.0
-  'ecard_goto_page' => 'gå till sida', //cpg1.3.0
-  'ecard_records_per_page' => 'Poster per sida', //cpg1.3.0
-  'check_all' => 'Markera alla', //cpg1.3.0
-  'uncheck_all' => 'Avmarkera alla', //cpg1.3.0
-  'ecards_delete_selected' => 'Radera markerade e-vykort', //cpg1.3.0
-  'ecards_delete_confirm' => 'Är du säker på att du vill radera alla dessa poster? Markera i kryssrutan!', //cpg1.3.0
-  'ecards_delete_sure' => 'Jag är säker!', //cpg1.3.0
+  'title' => 'Skickade e-vykort',
+  'ecard_sender' => 'Avsändare',
+  'ecard_recipient' => 'Mottagare',
+  'ecard_date' => 'Datum',
+  'ecard_display' => 'Visa e-vykort',
+  'ecard_name' => 'Namn',
+  'ecard_email' => 'E-post',
+  'ecard_ip' => 'IP',
+  'ecard_ascending' => 'stigande',
+  'ecard_descending' => 'fallande',
+  'ecard_sorted' => 'sorterade',
+  'ecard_by_date' => 'efter datum',
+  'ecard_by_sender_name' => 'efter avsändarens namn',
+  'ecard_by_sender_email' => 'efter avsändarens e-post',
+  'ecard_by_sender_ip' => 'efter avsändarens IP-nummer',
+  'ecard_by_recipient_name' => 'efter mottagarens namn',
+  'ecard_by_recipient_email' => 'efter mottagarens e-post',
+  'ecard_number' => 'Visar kort %s till %s av %s',
+  'ecard_goto_page' => 'Gå till sida',
+  'ecard_records_per_page' => 'Kort per sida',
+  'check_all' => 'Markera alla',
+  'uncheck_all' => 'Avmarkera alla',
+  'ecards_delete_selected' => 'Radera markerade kort',
+  'ecards_delete_confirm' => 'Är du säker på att du vill radera e-vykorten? Klicka i boxen!',
+  'ecards_delete_sure' => 'Jag är säker!',
 );
 
 
@@ -527,34 +833,36 @@ if (defined('DB_ECARD_PHP')) $lang_db_ecard_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
-  'empty_name_or_com' => 'Du måste skriva ditt namn och en kommentar',
-  'com_added' => 'Din kommentar är inlagd',
-  'alb_need_title' => 'Du måste ge albumet en titel!',
-  'no_udp_needed' => 'Ingen uppdatering behövdes.',
-   'alb_updated' => 'Albumet uppdaterades',
-  'unknown_album' => 'Valt album existerar inte eller så har du inte behörighet att ladda upp i detta album',
-  'no_pic_uploaded' => 'Ingen bild laddades upp<br /><br />Om du är säker på att du valt en bild för uppladdning, kontrollera att servern tillåter uppladdning...', //cpg1.3.0
-  'err_mkdir' => 'Misslyckades att skapa katalogen %s !',
-  'dest_dir_ro' => 'Målkatalogen %s är inte skrivbart av scriptet!',
-  'err_move' => 'Omöjligt att flytta %s till %s !',
-  'err_fsize_too_large' => 'Bilden du laddat upp är för stor (max tillåtet är %s x %s) !', //cpg1.3.0
-  'err_imgsize_too_large' => 'Filstorleken på bilden du laddat upp är för stor (max tillåtet är %s KB) !',
-  'err_invalid_img' => 'Filen du laddat upp är inte i giltigt format!',
+  'empty_name_or_com' => 'Du måste skriva ditt namn och kommentar.',
+  'com_added' => 'Din kommentar har lagts till.',
+  'alb_need_title' => 'Du måste ha en titel på ditt album!',
+  'no_udp_needed' => 'Ingen uppdatering behövs.',
+  'alb_updated' => 'Albumet har uppdaterats.',
+  'unknown_album' => 'Valt album finns inte eller så saknar du behörighet att lägga till bilder i detta album.',
+  'no_pic_uploaded' => 'Ingen fil laddades upp!<br /><br />Om du verkligen valde en fil att ladda upp, kontrollera att servern tillåter uppladdning...',
+  'err_mkdir' => 'Kan inte skapa mapp %s!',
+  'dest_dir_ro' => 'Mappen %s är skrivskyddad!',
+  'err_move' => 'Det går inte att flytta %s till %s!',
+  'err_fsize_too_large' => 'Bildstorleken är för stor (max storlek är %s x %s)!', //obsolete since cpg1.3 - consider removal in cpg1.4 once upload.php has been overhauled
+  'err_imgsize_too_large' => 'Filstorleken är för stor (max storlek är %s KB)!', //obsolete since cpg1.3 - consider removal in cpg1.4 once upload.php has been overhauled
+  'err_invalid_img' => 'Filformatet är inte ett godkänt filformat!',
   'allowed_img_types' => 'Du kan bara ladda upp %s bilder.',
-  'err_insert_pic' => 'Bilden \'%s\' kan inte infogas i albumet', //cpg1.3.0
-  'upload_success' => 'Din bild laddades upp utan problem<br /><br />Den kommer att bli synlig när admin godkänt den', //cpg1.3.0
-  'notify_admin_email_subject' => '%s - Bild eller film uppladdad', //cpg1.3.0
-  'notify_admin_email_body' => '%s har laddat upp en bild eller film som behöver godkännas. Gå in på %s', //cpg1.3.0
+  'err_insert_pic' => 'Filen \'%s\' kan inte läggas till i albumet ',
+  'upload_success' => 'Din fil laddades upp.<br /><br />Den kommer att visas efter att administratören har godkänt den.',
+  'notify_admin_email_subject' => '%s - Meddelande om uppladdning',
+  'notify_admin_email_body' => 'En fil har laddats upp av %s och behöver godkännas av dig. Gå till %s',
   'info' => 'Information',
-  'com_added' => 'Kommentar inlagd',
-  'alb_updated' => 'Album uppdaterat',
+  'com_added' => 'Kommmentar tillagd',
+  'alb_updated' => 'Albumet har uppdaterats',
   'err_comment_empty' => 'Din kommentar är tom!',
-  'err_invalid_fext' => 'Enbart filer med följande ändelser är tillåtna: <br /><br />%s.',
-  'no_flood' => 'Det var du som skrev den senaste kommentaren för den här bilden<br /><br />Ändra den redan inlagda kommentaren om du vill ändra något', //cpg1.3.0
-  'redirect_msg' => 'Du skickas vidare.<br /><br /><br />Klicka \'FORTSÄTT\' om inte sidan uppdateras automatiskt',
-  'upl_success' => 'Din bild infogades utan problem', //cpg1.3.0
-  'email_comment_subject' => 'Ny kommentar på Coppermine Photo Gallery', //cpg1.3.0
-  'email_comment_body' => 'Någon har skrivit en ny kommentar i ditt galleri. Läs den på', //cpg1.3.0
+  'err_invalid_fext' => 'Bara filer med följande filändelser är tillåtna:<br /><br />%s.',
+  'no_flood' => 'Du har gjort den senaste kommentaren för denna fil.<br /><br />Du kan ändra kommentaren om du vill.',
+  'redirect_msg' => 'Du flyttas till ny sida.<br /><br /><br />Klicka på "Fortsätt" om sidan inte laddas automatiskt.',
+  'upl_success' => 'Din fil har lagts till.',
+  'email_comment_subject' => 'Kommmentar har lagts till i bildgalleriet.',
+  'email_comment_body' => 'Någon har postat en kommentar i ditt galleri. Se den på: ',
+  'album_not_selected' => 'Inget album valt', //cpg1.4
+  'com_author_error' => 'En registrerad användare har redan det smeknamnet, logga in eller välj ett annat.', //cpg1.4
 );
 
 // ------------------------------------------------------------------------- //
@@ -563,30 +871,58 @@ if (defined('DB_INPUT_PHP')) $lang_db_input_php = array(
 
 if (defined('DELETE_PHP')) $lang_delete_php = array(
   'caption' => 'Rubrik',
-  'fs_pic' => 'full storlek på bild',
-  'del_success' => 'radering lyckades',
-  'ns_pic' => 'normal storlek på bild',
+  'fs_pic' => 'full bildstorlek',
+  'del_success' => 'Raderingen lyckades!',
+  'ns_pic' => 'normal bildstorlek',
   'err_del' => 'kan inte raderas',
-  'thumb_pic' => 'miniatyr',
+  'thumb_pic' => 'tumnagel',
   'comment' => 'kommentar',
   'im_in_alb' => 'bild i album',
-  'alb_del_success' => 'Album \'%s\' raderades',
+  'alb_del_success' => 'Albumet &laquo;%s&raquo; är raderat', //cpg1.4
   'alb_mgr' => 'Albumhanterare',
-  'err_invalid_data' => 'Ogiltig data togs emot i \'%s\'',
+  'err_invalid_data' => 'ogiltig data mottagen i \'%s\'',
   'create_alb' => 'Skapar album \'%s\'',
-  'update_alb' => 'Uppdaterar albumet \'%s\' med titeln \'%s\' och index \'%s\'',
-  'del_pic' => 'Radera bild', //cpg1.3.0
+  'update_alb' => 'Uppdaterar album \'%s\' med titel \'%s\' och index \'%s\'',
+  'del_pic' => 'Radera fil',
   'del_alb' => 'Radera album',
   'del_user' => 'Radera användare',
-  'err_unknown_user' => 'Den valda användaren finns inte!',
-  'comment_deleted' => 'Kommentaren raderades utan problem',
+  'err_unknown_user' => 'Vald användare finns inte!',
+  'err_empty_groups' => 'Det finns ingen tabell för grupper eller så är tabellen är tom!', //cpg1.4
+  'comment_deleted' => 'Kommentaren har raderats',
+  'npic' => 'Bild', //cpg1.4
+  'pic_mgr' => 'Bildhanterare', //cpg1.4
+  'update_pic' => 'Uppdaterar bild \'%s\' med filnamn \'%s\' och index \'%s\'', //cpg1.4
+  'username' => 'Användarnamn', //cpg1.4
+  'anonymized_comments' => '%s kommentarer är gjorda anonyma', //cpg1.4
+  'anonymized_uploads' => '%s publika uppladdningar är gjorda anonyma', //cpg1.4
+  'deleted_comments' => '%s kommentarer raderade', //cpg1.4
+  'deleted_uploads' => '%s publika uppladdningar raderade', //cpg1.4
+  'user_deleted' => 'Användaren %s raderad', //cpg1.4
+  'activate_user' => 'Aktivera användare', //cpg1.4
+  'user_already_active' => 'Användaren har redan aktiverats', //cpg1.4
+  'activated' => 'Aktiverad', //cpg1.4
+  'deactivate_user' => 'Avaktivera användare', //cpg1.4
+  'user_already_inactive' => 'Användaren har redan avaktiverats', //cpg1.4
+  'deactivated' => 'Avaktiverad', //cpg1.4
+  'reset_password' => 'Ändra lösenord', //cpg1.4
+  'password_reset' => 'Lösenord ändrat till %s', //cpg1.4
+  'change_group' => 'Ändra primär grupp', //cpg1.4
+  'change_group_to_group' => 'Primär grupp ändrad från %s till %s', //cpg1.4
+  'add_group' => 'Lägg till sekundär grupp', //cpg1.4
+  'add_group_to_group' => 'Lägger till användare %s till grupp %s. Användaren är nu medlem i %s som primär grupp och i %s som sekundär(a) grupp(er).', //cpg1.4
+  'status' => 'Status', //cpg1.4
 );
 
 // ------------------------------------------------------------------------- //
 // File displayecard.php
 // ------------------------------------------------------------------------- //
 
-// Void
+if (defined('DISPLAYECARD_PHP')) {
+
+$lang_displayecard_php = array(
+  'invalid_data' => 'Innehållet i ditt e-vykort har blivit korrupt av din e-postklient. Kontrollera att länken är korrekt.', //cpg1.4
+);
+}
 
 // ------------------------------------------------------------------------- //
 // File displayimage.php
@@ -595,54 +931,143 @@ if (defined('DELETE_PHP')) $lang_delete_php = array(
 if (defined('DISPLAYIMAGE_PHP')){
 
 $lang_display_image_php = array(
-  'confirm_del' => 'Är du säker på att du vill RADERA denna bild ? \\nÄven dess kommentarer kommer att raderas.', //js-alert //cpg1.3.0
-  'del_pic' => 'RADERA DENNA BILD', //cpg1.3.0
+  'confirm_del' => 'Är du säker på att du vill RADERA filen? \\nKommentarer kommer också att raderas.', //js-alert
+  'del_pic' => 'RADERA DENNA FIL',
   'size' => '%s x %s pixlar',
   'views' => '%s gånger',
   'slideshow' => 'Bildspel',
   'stop_slideshow' => 'STOPPA BILDSPEL',
-  'view_fs' => 'Klicka här för att se bilden i fullstorlek',
-  'edit_pic' => 'Ändra beskrivning', //cpg1.3.0
-  'crop_pic' => 'Beskär och rotera', //cpg1.3.0
+  'view_fs' => 'Klicka för stor bild',
+  'edit_pic' => 'Ändra filinformation', //cpg1.4
+  'crop_pic' => 'Beskär och rotera',
+  'set_player' => 'Ändra spelare',
 );
 
 $lang_picinfo = array(
-  'title' =>'Bildinformation', //cpg1.3.0
+  'title' =>'Filinformation',
   'Filename' => 'Filnamn',
-  'Album name' => 'Albumnamn',
+  'Album name' => 'Albumnamm',
   'Rating' => 'Betyg (%s röster)',
   'Keywords' => 'Nyckelord',
   'File Size' => 'Filstorlek',
+  'Date Added' => 'Datum tillagd', //cpg1.4
   'Dimensions' => 'Dimensioner',
   'Displayed' => 'Visad',
-  'Camera' => 'Kamera',
-  'Date taken' => 'Datum för fototillfälle',
-  'Aperture' => 'Slutare',
-  'Exposure time' => 'Exponeringstid',
-  'Focal length' => 'Fokallängd',
-  'Comment' => 'Kommentar',
-  'addFav'=>'Lägg till favoriter', //cpg1.3.0
-  'addFavPhrase'=>'Favoriter', //cpg1.3.0
-  'remFav'=>'Ta bort från favoriter', //cpg1.3.0
-  'iptcTitle'=>'IPTC-titel', //cpg1.3.0
-  'iptcCopyright'=>'IPTC-copyright', //cpg1.3.0
-  'iptcKeywords'=>'IPTC-nyckelord', //cpg1.3.0
-  'iptcCategory'=>'IPTC-kategori', //cpg1.3.0
-  'iptcSubCategories'=>'IPTC-underkategorier', //cpg1.3.0
+  'URL' => 'URL', //cpg1.4
+  'submit' => 'Skicka', //cpg1.4
+  'success' => 'Informationen har uppdaterats.', //cpg1.4
+  'details' => 'Detaljer', //cpg1.4
+  'addFav'=>'Lägg till i favoriter',
+  'addFavPhrase'=>'Favoriter',
+  'remFav'=>'Ta bort från favoriter',
+  'ManageExifDisplay' => 'Hantera visning av Exif-information', //cpg1.4
+
+// IPTC tags
+  'iptcTitle'=>'IPTC: titel',
+  'iptcCopyright'=>'IPTC: copyright',
+  'iptcKeywords'=>'IPTC: nyckelord',
+  'iptcCategory'=>'IPTC: kategori',
+  'iptcSubCategories'=>'IPTC: underkategorier',
+
+// Exif tag descriptions made by ecto, most info from:
+// * http://park2.wakwak.com/~tsuruzoh/Computer/Digicams/exif-e.html
+// * http://www.exif.org/Exif2-1.PDF & http://www.exif.org/Exif2-2.PDF
+
+//***** Exif tags which are in the official Exif specification *****//
+
+// Tags relating to version
+  'FlashPixVersion' => 'Flash Pix-version', //cpg1.4
+  'ExifVersion' => 'Exif-version', //cpg1.4
+
+// Tags relating to image configuration/data structure
+  'ColorSpace' => 'Färgrymd', //cpg1.4 (sRGB or Uncalibrated)
+  'ComponentsConfiguration' => 'Komponentkonfiguration', //cpg1.4 (i.e. YCbCr or RGB)
+  'CompressedBitsPerPixel' => 'Bitar per pixel', //cpg1.4 (Information specific to compressed data. The compression mode used for a compressed image is indicated in unit bits per pixel. 8/[this value] should give an estimated JPEG compression ratio.)
+  'xResolution' => 'X-upplösning', //cpg1.4 (The number of pixels per ResolutionUnit (not to be confused with image dimension!))
+  'yResolution' => 'Y-upplösning', //cpg1.4 (The number of pixels per ResolutionUnit (not to be confused with image dimension!))
+  'ExifImageWidth' => 'Bildbredd', //cpg1.4 (This is actually the Exif tag "PixelXDimension")
+  'ExifImageHeight' => 'Bildhöjd', //cpg1.4 (This is actually the Exif tag "PixelYDimension")
+  'Orientation' => 'Bildorientering', //cpg1.4 (The image orientation)  
+  'YCbCrPositioning' => 'YCbCr-positionering', //cpg1.4 (The position of chrominance components in relation to the luminance component)
+  'ResolutionUnit' => 'Upplösningens måttenhet', //cpg1.4 (The unit for measuring XResolution and YResolution, i.e. inches/centimeters. The same unit is used for both XResolution and YResolution.)
+
+// Tags relating to date and time
+  'DateTime' => 'Datum och tid', //cpg1.4 (The date and time the file was changed)
+  'DateTimeOriginal' => 'Datum och tid (original)', //cpg1.4 (The date and time when the original image data was generated)
+  'DateTimedigitized' => 'Datum och tid (digitaliserad)', //cpg1.4 (The date and time when the image was stored as digital data)
+
+// Tags relating to picture-taking conditions
+  'ExposureTime' => 'Exponeringstid', //cpg1.4 (Exposure time, given in seconds)
+  'ExposureBiasValue' => 'Exponeringskompensation', //cpg1.4 (The exposure bias)
+  'ExposureProgram' => 'Exponeringsprogram', //cpg1.4 (The class of the program used by the camera to set exposure when the picture is taken, i.e. Aperture priority/Shutter priority etc)
+  'ExposureMode' => 'Exponeringsmetod', //cpg1.4 (This tag indicates the exposure mode set when the image was shot, i.e. Auto exposure/Manual exposure/Auto bracket)
+
+  'FNumber' => 'Bländartal', //cpg1.4 (The F number)
+  'MaxApertureValue' => 'Största bländartal', //cpg1.4 (The smallest F number of the lens)
+  'FocalLength' => 'Brännvidd', //cpg1.4 (The actual focal length of the lens, in mm. Conversion is not made to the focal length of a 35 mm film camera.)
+  'ISOSpeedRatings'=>'ISO', //cpg1.4 (Indicates the ISO Speed)
+  'MeteringMode' => 'Ljusmätningsmetod', //cpg1.4 (The metering mode, i.e. Spot/Center weighted average etc)  
+  'LightSource' => 'Ljuskälla (vitbalans)', //cpg1.4 (This is actually the whitebalance setting, i.e. Tungsten/Fluorescent etc)
+  'WhiteBalance' => 'Metod för val av vitbalans', //cpg1.4 (This tag indicates the white balance mode set when the image was shot, i.e. Auto white balance/Manual white balance)
+  'SceneCaptureMode' => 'Typ av motiv', //cpg1.4 (This is actually called "SceneCaptureType" according to Exif 2.2 specifications - Landscape/Portrait/Night scene etc)
+  'SceneType' => 'Scentyp', //cpg1.4 (Indicates the type of scene. If a DSC recorded the image, this tag value shall always be set to 1, indicating that the image was directly photographed.)
+  'Flash' => 'Blixt', //cpg1.4 (This tag indicates the status of flash when the image was shot)
+  'DigitalZoomRatio' => 'Digital zoomfaktor', //cpg1.4 (This tag indicates the digital zoom ratio when the image was shot)
+  
+  'GainControl' => 'Bildförstärkning', //cpg1.4 (This tag indicates the degree of overall image gain adjustment i.e. Low/High gain up and Low/High gain down)
+  'Contrast' => 'Kontrast', //cpg1.4 (This tag indicates the direction of contrast processing applied by the camera when the image was shot i.e. Normal/Soft/Hard)  
+  'Saturation' => 'Färgmättnad', //cpg1.4 (This tag indicates the direction of saturation processing applied by the camera when the image was shot i.e. Normal/Low saturation/High saturation)
+  'Sharpness' => 'Skärpa', //cpg1.4 (This tag indicates the direction of sharpness processing applied by the camera when the image was shot i.e. Normal/Soft/Hard)
+
+  'FileSource' => 'Filkälla', //cpg1.4 (Indicates the image source)
+  'CustomerRender' => 'Anpassad bildbearbetning', //cpg1.4 (Actually called "CustomRendered" according to Exif 2.2 specifications - This tag indicates the use of special processing on image data, such as rendering geared to output. When special processing is performed, the reader is expected to disable or minimize any further processing.)
+  
+// Other tags
+  'Make' => 'Tillverkare', //cpg1.4 (The manufacturer of the recording equipment)
+  'Model' => 'Modell', //cpg1.4 (The model name or model number of the equipment)
+  'Software' => 'Programvara', //cpg1.4 (This tag records the name and version of the software or firmware of the camera or image input device used to generate the image)
+  'ImageDescription' => ' Bildbeskrivning', //cpg1.4 (A character string giving the title of the image)
+  'ExifOffset' => 'Exif-index', //cpg1.4 (Where SubIFD area starts, actually called "Exif IFD Pointer" in Exif specs)
+  'IFD1Offset' => 'IFD1-index', //cpg1.4 (Where IFD1 area starts (thumbnail data))
+  'ExifInteroperabilityOffset' => 'Index för Exif-kompatibilitetsdata', //cpg1.4 (Indicates the identification of the Interoperability rule)
+
+//***** End Exif tags which are in the official Exif specification *****//
+
+  
+//***** Non-standard Exif tags (i.e. manufacturer specific tags - for example, in Nikon digicams "ISOSetting" means the same as "ISOSpeedRatings") *****//
+  'ISOSetting' => 'ISO', //cpg1.4 (Should be translated the same way as the "ISOSpeedRatings" tag)
+  'ISOSelection' => 'Metod för val av ISO', //cpg1.4 (Auto/Manual etc)
+
+  'ColorMode' => 'Färgläge', //cpg1.4 (Color/B&W/Monochrome etc)
+  'Quality' => 'Kvalitet', //cpg1.4 (Quality setting)
+  'ImageSharpening' => 'Skärpeinställning', //cpg1.4 (Auto/High etc)
+  'ImageAdjustment' => 'Bildjustering', //cpg1.4 (Auto/Manual/Contrast+/Contrast- etc)
+  'NoiseReduction' => 'Brusreducering', //cpg1.4
+
+  'FocusMode' => 'Fokuseringsmetod', //cpg1.4 (Auto/Manual, Single/Continuous etc)
+  'ManualFocusDistance' => 'Manuellt fokusavstånd', //cpg1.4 (Distance in meters if focus was manually selected, otherwise 0)
+  'AFFocusPosition' => 'Fokusposition vid autofokus', //cpg1.4 (Where focus was when using autofocus, i.e. Center/Top/Bottom/Left/Right etc)
+  'DigitalZoom' => 'Digital zoomfaktor', //cpg1.4 (Same as "DigitalZoomRatio" but manufacturer specific values, should be translated the same way as the "DigitalZoomRatio" tag)
+  'FlashSetting' => 'Blixt', //cpg1.4 (Normal/Red eye etc, should be translated the same way as the "Flash" tag)
+
+  'Comment' => 'Kommentar', // (Note: this is not the Exif tag "UserComment")
+  'Adapter' => 'Konverter', //cpg1.4 (An adapter is what you put over the lens to change the focal length, i.e. this tag shows Off/Fish eye/Wide etc)
+//***** End non-standard Exif tags *****//
 );
 
 $lang_display_comments = array(
   'OK' => 'OK',
-  'edit_title' => 'Redigera denna kommentar',
-  'confirm_delete' => 'Är du säker på att du vill radera denna kommentar?', //js-alert
-  'add_your_comment' => 'Lägg till din kommentar',
+  'edit_title' => 'Ändra denna kommentar',
+  'confirm_delete' => 'Är du säker på att du vill radera kommentaren?', //js-alert
+  'add_your_comment' => 'Lägg till kommentar',
   'name'=>'Namn',
   'comment'=>'Kommentar',
   'your_name' => 'Anonym',
+  'report_comment_title' => 'Rapportera kommentar till administratören', //cpg1.4
 );
 
 $lang_fullsize_popup = array(
-  'click_to_close' => 'Klicka på bilden för att stänga det här fönstret',
+  'click_to_close' => 'Klicka på bilden för att stänga fönstret',
 );
 
 }
@@ -653,21 +1078,65 @@ $lang_fullsize_popup = array(
 
 if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array(
   'title' => 'Skicka ett e-vykort',
-  'invalid_email' => '<b>Varning</b> : E-postadressen är ej giltig!',
-  'ecard_title' => 'Du har fått ett e-vykort från %s',
-  'error_not_image' => 'Enbart bilder kan skickas som e-vykort.', //cpg1.3.0
-  'view_ecard' => 'Klicka på den här länken om du inte ser något e-vykort',
-  'view_more_pics' => 'Klicka på den här länken för att se fler bilder!',
-  'send_success' => 'Din e-vykort skickades',
-  'send_failed' => 'Servern kan tyvärr inte skicka ditt e-vykort...',
+  'invalid_email' => '<font color="red"><b>Varning</b></font>: ogiltig e-postadress:', //cpg1.4
+  'ecard_title' => 'Ett e-vykort till dig från %s',
+  'error_not_image' => 'Bara bilder kan skickas som e-vykort.',
+  'view_ecard' => 'Alternativ länk om e-vykortet inte visas korrekt', //cpg1.4
+  'view_ecard_plaintext' => 'För att se e-vykortet, kopiera denna URL och klistra in den i din webbläsare:', //cpg1.4
+  'view_more_pics' => 'Se fler bilder!', //cpg1.4
+  'send_success' => 'Ditt e-vykort har skickats!',
+  'send_failed' => 'Servern kan inte skicka ditt e-vykort...',
   'from' => 'Från',
   'your_name' => 'Ditt namn',
   'your_email' => 'Din e-postadress',
   'to' => 'Till',
   'rcpt_name' => 'Mottagarens namn',
   'rcpt_email' => 'Mottagarens e-postadress',
-  'greetings' => 'Hej',
-  'message' => 'Meddelande',
+  'greetings' => 'Rubrik', //cpg1.4
+  'message' => 'Meddelande', //cpg1.4
+  'ecards_footer' => 'Skickat av  %s från IP %s vid %s (galleriets tid)', //cpg1.4
+  'preview' => 'Förhandsgranskning av e-vykort', //cpg1.4
+  'preview_button' => 'Granska', //cpg1.4
+  'submit_button' => 'Skicka kort', //cpg1.4
+  'preview_view_ecard' => 'Detta kommer att vara en länk när e-vykortet har skapats. Den fungerar inte för förhandsgranskningar.', //cpg1.4
+);
+
+// ------------------------------------------------------------------------- //
+// File report_file.php //cpg1.4
+// ------------------------------------------------------------------------- //
+
+if (defined('REPORT_FILE_PHP') || defined('DISPLAYREPORT_PHP')) $lang_report_php =array(
+  'title' => 'Rapportera till administratör', //cpg1.4
+  'invalid_email' => '<b>Varning</b>: ogiltig e-postadress!', //cpg1.4
+  'report_subject' => 'En rapport från %s gällande galleri %s', //cpg1.4
+  'view_report' => 'Alternativ länk om rapporteringen inte visas korrekt', //cpg1.4
+  'view_report_plaintext' => 'För att se rapporteringen, kopiera denna URL och klistra in den i din webbläsare:', //cpg1.4
+  'view_more_pics' => 'Galleri', //cpg1.4
+  'send_success' => 'Din rapportering har skickats!', //cpg1.4
+  'send_failed' => 'Servern kan inte skicka din rapport...', //cpg1.4
+  'from' => 'Från', //cpg1.4
+  'your_name' => 'Ditt namn', //cpg1.4
+  'your_email' => 'Din e-postadres', //cpg1.4
+  'to' => 'Till', //cpg1.4
+  'administrator' => 'Administratör/moderator', //cpg1.4
+  'subject' => 'Ämne', //cpg1.4
+  'comment_field_name' => 'Rapportering gällande kommentar av "%s"', //cpg1.4
+  'reason' => 'Anledning', //cpg1.4
+  'message' => 'Meddelande', //cpg1.4
+  'report_footer' => 'Skickat av %s från IP %s vid %s (galleriets tid)', //cpg1.4
+  'obscene' => 'Obscent', //cpg1.4
+  'offensive' => 'Stötande', //cpg1.4
+  'misplaced' => 'Utanför ämne/felplacerad', //cpg1.4
+  'missing' => 'Saknas', //cpg1.4
+  'issue' => 'Fel/visas inte', //cpg1.4
+  'other' => 'Annat', //cpg1.4
+  'refers_to' => 'Rapporteringen avser fil', //cpg1.4
+  'reasons_list_heading' => 'Anledning till rapportering:', //cpg1.4
+  'no_reason_given' => 'Ingen anledning har angetts', //cpg1.4
+  'go_comment' => 'Gå till kommentar', //cpg1.4
+  'view_comment' => 'Visa fullständig rapportering med kommentar', //cpg1.4
+  'type_file' => 'Fil', //cpg1.4
+  'type_comment' => 'Kommentar', //cpg1.4
 );
 
 // ------------------------------------------------------------------------- //
@@ -675,95 +1144,118 @@ if (defined('ECARDS_PHP') || defined('DISPLAYECARD_PHP')) $lang_ecard_php =array
 // ------------------------------------------------------------------------- //
 
 if (defined('EDITPICS_PHP')) $lang_editpics_php = array(
-  'pic_info' => 'Bild&nbsp;info', //cpg1.3.0
+  'pic_info' => 'Filinformation',
   'album' => 'Album',
   'title' => 'Titel',
+  'filename' => 'Filnamn', //cpg1.4
   'desc' => 'Beskrivning',
-  'keywords' => 'Nyckelord',
-  'pic_info_str' => '%s &times; %s - %s KB - visad %s gånger - %s röster',
-  'approve' => 'Godkänn bild', //cpg1.3.0
-  'postpone_app' => 'Senarelägg godkännande',
-  'del_pic' => 'Radera bild', //cpg1.3.0
-  'read_exif' => 'Läs EXIF-informationen på nytt', //cpg1.3.0
-  'reset_view_count' => 'Nollställ besökarräknaren',
-  'reset_votes' => 'Nollställ röster',
+  'keywords' => 'Nyckelord<br />(separerade med mellanslag)',
+  'new_keyword' => 'Nya nyckelord', //cpg1.4
+  'new_keywords' => 'Nya nyckelord hittade', //cpg1.4
+  'existing_keyword' => 'Nuvarande nyckelord', //cpg1.4
+  'pic_info_str' => '%s x %s - %s KB - %s visningar - %s röster',
+  'approve' => 'Godkänn fil',
+  'postpone_app' => 'Skjut upp godkännande',
+  'del_pic' => 'Radera fil',
+  'del_all' => 'Radera ALLA filer', //cpg1.4
+  'read_exif' => 'Läs Exif-informationen igen',
+  'reset_view_count' => 'Nollställ räknaren för visningar',
+  'reset_all_view_count' => 'Nollställ ALLA räknare för visningar', //cpg1.4
+  'reset_votes' => 'Nollställ röstningar',
+  'reset_all_votes' => 'Nollställ ALLA röstningar', //cpg1.4
   'del_comm' => 'Radera kommentarer',
-  'upl_approval' => 'Godkännande för uppladdning',
-  'edit_pics' => 'Redigera bild', //cpg1.3.0
-  'see_next' => 'Se kommande bilder', //cpg1.3.0
-  'see_prev' => 'Se föregående bilder', //cpg1.3.0
-  'n_pic' => '%s bilder', //cpg1.3.0
-  'n_of_pic_to_disp' => 'Antal bilder att visa', //cpg1.3.0
-  'apply' => 'Verkställ förändringar', //cpg1.3.0
-  'crop_title' => 'Commermine Bildredigerare', //cpg1.3.0
-  'preview' => 'Visa utkast', //cpg1.3.0
-  'save' => 'Spara bild', //cpg1.3.0
-  'save_thumb' =>'Spara som miniatyr', //cpg1.3.0
-  'sel_on_img' =>'Det valda området måste helt vara inom bildens yta', //js-alert //cpg1.3.0
+  'del_all_comm' => 'Radera ALLA kommentarer', //cpg1.4
+  'upl_approval' => 'Godkänn uppladdning', //cpg1.4
+  'edit_pics' => 'Redigera filer',
+  'see_next' => 'Se nästa filer',
+  'see_prev' => 'Se föregående filer',
+  'n_pic' => '%s filer',
+  'n_of_pic_to_disp' => 'Antal filer att visa',
+  'apply' => 'Utför ändringar',
+  'crop_title' => 'Coppermines bildredigerare',
+  'preview' => 'Förhandsgranska',
+  'save' => 'Spara bild',
+  'save_thumb' =>'Spara som tumnagel',
+  'gallery_icon' => 'Använd som min ikon', //cpg1.4
+  'sel_on_img' =>'Markeringen måste vara inom bilden!', //js-alert
+  'album_properties' =>'Albumets egenskaper', //cpg1.4
+  'parent_category' =>'Överliggande kategori', //cpg1.4
+  'thumbnail_view' =>'Tumnagelvisning', //cpg1.4
+  'select_unselect' =>'Markera/avmarkera alla', //cpg1.4
+  'file_exists' => "Filen '%s' finns redan.", //cpg1.4
+  'rename_failed' => "Kan inte byta namn från '%s' till '%s'.", //cpg1.4
+  'src_file_missing' => "Källfil '%s' saknas.", // cpg 1.4
+  'mime_conv' => "Kan inte konvertera filen från '%s' till '%s'",//cpg1.4
+  'forb_ext' => 'Otillåten filändelse.',//cpg1.4
 );
 
 // ------------------------------------------------------------------------- //
-// File faq.php //cpg1.3.0
+// File faq.php
 // ------------------------------------------------------------------------- //
 
 if (defined('FAQ_PHP')) $lang_faq_php = array(
-  'faq' => 'Vanliga frågor', //cpg1.3.0
-  'toc' => 'Kapitelförteckning', //cpg1.3.0
-  'question' => 'Fråga: ', //cpg1.3.0
-  'answer' => 'Svar: ', //cpg1.3.0
+  'faq' => 'Vanliga frågor',
+  'toc' => 'Innehåll',
+  'question' => 'Fråga: ',
+  'answer' => 'Svar: ',
 );
 
 if (defined('FAQ_PHP')) $lang_faq_data = array(
-  'Allmän FAQ', //cpg1.3.0
-  array('Varför måste jag registera mig?', 'Det är upp till administratören att bestämma om registrering krävs. Som registrerad får du dock tillgång till ytterligare funktioner, t.ex. ladda upp objekt, skapa en favoritlista, betygsätta bilder och skriva kommentarer mm.', '0'), //cpg1.3.0
-  array('Hur registrerar jag mig?', 'Gå till &quot;Registrera dig&quot; och fyll i de obligatoriska fälten (och de frivilliga efter önskemål).<br />Om administratören har aktiverat e-postaktivering kommer du att få ett mejl till den adress du angav när du registrerade dig med vidare instruktioner om hur du ska göra för att ditt medlemsskap ska aktiveras. Ditt konto måste därefter aktiveras innan du kan logga in.', 'allow_user_registration', '1'), //cpg1.3.0
-  array('Hur loggar jag in?', 'Gå till &quot;Logga in&quot; och skriv ditt användarnamn och lösenord. Om du markerar &quot;Kom ihåg mig&quot; kommer du automatiskt att loggas in varje gång du kommer tillbaka.<br /><b>VIKTIGT: cookies måste vara aktiverade i din webbläsare och du får inte radera Cookien från den här sajten om du ska kunna använda &quot;Kom ihåg mig&quot;.</b>', 'offline', 0), //cpg1.3.0
-  array('Varför kan jag inte logga in?', 'Har du registrerat dig och sedan klickat på länken som du fick via e-post? Genom att göra så aktiveras ditt konto. Om inte detta löste problemet kontakta sajtens administratör.', 'offline', 0), //cpg1.3.0
-  array('Vad gör jag om jag glömt mitt lösenord?', 'Om den här sajten har har länk med texten &quot;Glömt bort lösenord&quot; så använd den. I annat fall måste du kontakta sajtens administratör för att få ett nytt lösen.', 'offline', 0), //cpg1.3.0
-  //array('Hur gör jag om jag byter e-postadress', 'Logga in och ändra din e-postadress i &quot;Profil&quot;', 'offline', 0), //cpg1.3.0
-  array('Hur lägger jag till en bild i &quot;Mina favoriter&quot;?', 'Klicka på en bild och klicka därefter på &quot;bildinformation&quot;-länken (<img src="images/info.gif" width="16" height="16" border="0" alt="Picture information" />); Rulla ner till ställ in bildinformation och klicka på &quot;Lägg till favoriter&quot;.<br />Administratören måste ha ställt in att &quot;bildinformation&quot; visas som standard.<br />VIKTIGT: Cookies måste vara aktiverat i din webbläsare och cookien från den här sajten får inte raderas om funktionen ska fungera.', 'offline', 0), //cpg1.3.0
-  array('Hur betygsätter jag en bild eller film?', 'Klicka på miniatyren och betygsätt den sedan en bit ner på sidan.', 'offline', 0), //cpg1.3.0
-  array('Hur kommenterar jag en bild?', 'Klicka på miniatyren och skriv sedan en kommentar längst ner på sidan (under betygsättningen).', 'offline', 0), //cpg1.3.0
-array('Hur laddar jag upp en bild?', 'Gå till &quot;Ladda upp&quot; och välj vilket album du vill ladda upp bilden till. Klicka sedan på &quot;välj fil&quot; och välj vilken fil du vill ladda upp. Klicka därefter på &quot;öppna&quot; (här har du även möjlighet att skriva in en titel och beskrivning av bilden) och sedan på &quot;Skicka&quot; (kommandona är beroende av vilken webbläsare du använder och kan därför variera något)', 'allow_private_albums', 0), //cpg1.3.0
-  array('Var hamnar mina uppladdade bilder?', 'Du har möjlighet att ladda upp bilder eller filmer till något av dina album i &quot;Mitt Galleri&quot;. Administratören har också möjlighet att ge dig behörighet att ladda upp material till andra album i Huvudgalleriet.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Vilka format och hur stora filer kan jag ladda upp?', 'Tillåten filstorlek och filtyp (jpg, png, etc.) bestäms av administratören.', 'offline', 0), //cpg1.3.0
-  array('Vad är &quot;Mitt galleri&quot;?', '&quot;Mitt galleri&quot; är ett personligt galleri som användaren dit användare kan ladda upp sina bilder och sedan själv hantera.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Hur skapar jag, döper om, eller raderar jag album i &quot;Mitt Galleri&quot;?', 'Du borde redan vara i &quot;Adminläge&quot;<br />Gå till &quot;Skapa/Organsiera mina album&quot; och klicka på &quot;Nytt&quot;. Ändra &quot;Nytt Album&quot; till önskat namn.<br />Du kan även döpa om albumen som finns i ditt galleri.<br />Klicka på &quot;Verkställ förändringar&quot; för att verkställa ändringarna.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Hur kontrollerar jag vilka användare som har tillgång till mina album?', 'Du borde redan vara i  &quot;Adminläge&quot;<br />Gå till&quot;Ändra mina album. Välj det album du vill ändra på&quot;Uppdatera Album&quot;-raden.<br />Här kan du ändra namn, beskrivning, miniatyr och användarnas rättigheter för att kunna kommentera och rösta på bilderna.<br />Klicka &quot;Uppdatera album&quot; när du gjort dina ändringar.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Hur kan jg se andra användares gallerier?', 'Gå till &quot;Albumlista&quot; och välj &quot;Användargallerier&quot;.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Vad är cookies och hur använder denna sajt dem?', 'Cookies är en liten text fil innehållande information som skickas från webbsajter och som lagras på din dators hårddisk.<br />Normalt sett användes cookies för att kunna lagra information som behövs för att man ska kunna lämna en sajt och sedan kunna komma tillbaka och få upp sin information igen utan att behöva göra alla inställningar på nytt.<br />Coppermine använder cookies får att lagra din inloggningsinformation (så du slipper logga in på nytt varje gång du besöker sajten) om Kom ihåg mig är valt. Coppermine använder även cookies för att komma ihåg vilka bilder som ligger i mina favoriter. Cookies används dock inte för at samla in någon personlig information och används inte heller i syfte att kartlägga dig eller använda uppgifter i kommersiella syften.', 'offline', 0), //cpg1.3.0
-  array('Hur kan jag få tag på Coppermine till min egen sajt?', 'Coppermine är ett gratis multimediagalleri som faller under GNU GPL. Det innehåller massor av funktioner och finns för flera olika plattformar. Besök <a href="http://coppermine.sf.net/">Coppermine Home Page</a> för mer information eller för att ladda ner det.', 'offline', 0), //cpg1.3.0
+  'Allmän FAQ',
+  array('Varför måste jag registrera mig?', 'Det är administratören som bestämmer om registrering behövs eller inte. Registrering ger medlemmarna fler funktioner så som ladda upp filer, personliga favoritbilder, betygsättning av bilder, göra kommentarer, etc.', 'allow_user_registration', '1'),
+  array('Hur registrerar jag mig?', 'Gå till &quot;Registrera&quot; och fyll i de obligatoriska fälten (och de frivillga om du vill).<br />Om administratören har aktiverat Bekräftelse via e-post kommer du att få ett e-brev till adressen du fyllde i. Där finns instruktioner om hur du ska göra för att aktivera ditt medlemskap. Ditt medlemskap måste vara aktiverat för att du ska kunna logga in.', 'allow_user_registration', '1'), //cpg1.4
+  array('Hur loggar jag in?', 'Gå till &quot;Login&quot; och fyll i ditt användarnamn och ditt lösenord. Du kan kryssa i &quot;Kom ihåg mig&quot; för att alltid loggas in när du besöker sajten.<br /><b>VIKTIGT: Cookies måste vara påslagna i din webbläsare och inte raderas för att &quot;Kom ihåg mig&quot; skall fungera.</b>', 'offline', 0),
+  array('Varför kan jag inte logga in?', 'Har du registrerat dig och klickat på länken i e-brevet som skickades till dig? Länken i e-brevet aktiverar ditt konto. Har du andra problem, kontakta administratören.', 'offline', 0),
+  array('Vad gör jag om jag glömt mitt lösenord?', 'Om sajten har en länk för &quot;Jag har glömt mitt lösenord&quot;, använd den. Annars kontakta administratören för ett nytt.', 'offline', 0),
+  //array('What if I changed my email address?', 'Just simply login and change your email address through &quot;Profile&quot;', 'offline', 0),
+  array('Hur sparar jag en bild i &quot;Mina favoriter&quot;?', 'Klicka på en bild och sedan klickar du på länken &quot;Visa/dölj filinformation&quot; (<img src="images/info.gif" width="16" height="16" border="0" alt="Filinformation" />). Rulla sedan ned på sidan och klicka på &quot;Mina favoriter&quot; som finns under "Filinformation".<br />Administratören kan ha valt att visa filinformationen direkt, i sådant fall behöver du inte klicka på "Visa/dölj filinformation".<br />VIKTIGT: Cookies måste vara påslagna i din webbläsare och inte raderas fär att detta ska fungera.', 'offline', 0),
+  array('Hur betygsätter jag en fil?', 'Klicka på en tumnagel och gå längst ned på sidan och välj det betyg du vill ge.', 'offline', 0),
+  array('Hur lägger jag till en kommentar till en bild?', 'Klicka på en tumnagel och gå längst ned på sidan och skriv in din kommentar.', 'offline', 0),
+  array('Hur laddar jag upp en fil?', 'Gå till &quot;Ladda upp fil&quot; och klicka på &quot;Bläddra&quot;. Hitta filen du vill ladda upp klicka på &quot;Öppna&quot;. Klicka sedan på "Fortsätt" och sedan på "Fortsätt" igen. Välj det album du vill ladda upp filen till och lägg till en titel och beskrivning om du vill. Klicka på &quot;Fortsätt&quot; igen och uppladdningen är klar.<br /><br />Alternativt om du använder <b>Windows XP</b> så kan du ladda upp flera filer samtidigt direkt till ditt privata album genom att använda webbpubliceringsguiden i Windows XP. För instruktioner om hur du gör det och hur du skaffar de nödvändiga filerna, klicka <a href="xp_publish.php">här</a>.', 'allow_private_albums', 1), //cpg1.4
+  array('Vart kan jag ladda upp bilder?', 'Du kan ladda upp filer till ett av dina album i&quot;Mina album&quot;. Administratören kan även låta dig ladda upp filer till ett eller flera av albumen i huvudgalleriet.', 'allow_private_albums', 0),
+  array('Vilken sort och storlek kan det vara på bilderna jag laddar upp?', 'Både storlek och filtyper (jpg, png, etc) är upp till administratören.', 'offline', 0),
+  array('Hur skapar jag, byter namn eller tar bort ett album i &quot;Mitt galleri&quot;?', 'Du ska redan var inloggad som &quot;administratör&quot;<br /> Gå till&quot;Skapa/Sortera mina album och klicka på &quot;Nytt album&quot;. Ändra &quot;Nytt album&quot; till önskat namn.<br />Du kan även döpa om övriga album i galleriet.<br />Klicka på &quot;utför ändringar&quot;.', 'allow_private_albums', 0),
+  array('Hur kan jag ändra och begränsa användarnas tillgång till mitt album?', 'Du ska redan var inloggad som &quot;administratör&quot;<br />Gå till &quot;Ändra mina album&quot;. I &quot;Uppdatera album&quot; menyn, välj vilket album du vil ändra.<br />Här kan du ändra namn, beskrivning, tumnagel, begränsa åtkomst och behörighet för betygsättning och kommentarer.<br />Klicka på &quot;Uppdatera album.', 'allow_private_albums', 0),
+  array('Hur kan jag titta på andra användares gallerier?', 'Gå till &quot;Albumlista&quot; och välj &quot;Användargallerier&quot;.', 'allow_private_albums', 0),
+  array('Vad är cookies?', 'Cookies är textfiler som innehåller en bit data som skickas från webbplatsen till din dator och sparas där.<br />Cookies används för att kunna spara viss information, ofta för att personen ska kunna komma tillbaka utan att behöva logga in igen.', 'offline', 0),
+  array('Var kan jag skaffa detta galleri till min egen webbplats?', 'Coppermine är ett gratis <a href="http://www.opensource.org/">open source</a> multimediagalleri. Det är släppt under GNU GPL-licens. Det är fyllt av funktioner och finns till olika plattformar. Besök <a href="http://coppermine.sf.net/">Coppermines webbplats</a> för att läsa mer och ladda ned det.', 'offline', 0),
 
-  'Hitta på sajten', //cpg1.3.0
-  array('Vad är &quot;Albumlista&quot;?', 'I albumlistan ser du alla album tillhörande den kategori som du är inne i. Om du inte är inne i någon kategori kommer du istället att se hela galleriet med länkar till varje kategori. Varje miniatyrer kan vara en länk till en kategori.', 'offline', 0), //cpg1.3.0
-  array('Vad är &quot;Mitt galleri&quot;?', 'Denna funktion tillåter användare att skapa sitt eget galleri dit de kan lägga till, ändra och skapa egna album och även ladda upp bilder i dessa.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Vad är skillnaden mellan &quot;Adminläge&quot; and &quot;Användarläge&quot;?', 'När användare går in i &quot;Adminläge&quot kan de modifiera sina gallerier, medan det enbart går att titta på dem i &quot;Användarläge&quot;.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Vad ärt;Ladda upp bild&quot;?', 'Denna funktion gör det möjlgit för användare att ladda upp en fil (tillåten storlek och typ bestäms av administratören) till ett galleri som antingen valts av användaren eller administratören.', 'allow_private_albums', 0), //cpg1.3.0
-  array('Vad är &quot;Senast inlagda&quot;?', 'Den här funktionen visar de senast uppladdade objekten till sajten.', 'offline', 0), //cpg1.3.0
-  array('Vad är &quot;Senast kommenterades&quot;?', 'Den här funktionen visar de senaste objekten som kommenterats tillsammans med dess kommentarer.', 'offline', 0), //cpg1.3.0
-  array('Vad är &quot;Mest visade&quot;?', 'Den här funktionen visar vilka objekt som är visade flest gånger (både för inloggade och ej inloggade användare).', 'offline', 0), //cpg1.3.0
-  array('Vad är &quot;Topplista&quot;?', 'Den här funktionen visar de objekt som fått högst genomsnittligt betyg av använderna (t.ex. om fem användare vardera ger <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> får objektet ett genomsnitt på <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />. Om fem användare istället ger betyget 1 till 5 (1,2,3,4,5) ger detta objektet ett genomsnitt på <img src="images/rating3.gif" width="65" height="14" border="0" alt="" /> .)<br /> Betygen går från <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> (bäst) till <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" /> (sämst).', 'offline', 0), //cpg1.3.0
-  array('Vad är &quot;Mina favoriter&quot;?', 'Den här funktionen låter användaren spara en lista över sina favoritobjekt i en cookie som lagras på användarens hårddisk.', 'offline', 0), //cpg1.3.0
+  'Navigering på webbplatsen',
+  array('Vad är &quot;Albumlista&quot;?', 'Här visas hela den kategori som du just nu befinner dig i, med en länk till varje album. Om du inte befinner dig i någon kategori visas hela galleriet med länkar till alla album. Tumnaglarna kan vara länkar till kategorier.', 'offline', 0),
+  array('Vad är &quot;Mitt galleri&quot;?', 'Här kan användare själva skapa sitt eget galleri och lägga till, ta bort eller ändra album och även ladda upp bilder till dem.', 'allow_private_albums', 1), //cpg1.4
+  array('Vad är det för skillnad mellan &quot;Administratörsläge&quot; och &quot;Användarläge&quot;?', 'Det låter en användare, inloggad som administratör, förändra sitt galleri (likväl som andra om det tillåts av konfigureringen).', 'allow_private_albums', 0),
+  array('Vad är &quot;Ladda upp bilder&quot;?', 'Här kan användare ladda upp filer (storlek och filtyp bestäms av administratören) till ett galleri bestämt av administratören.', 'allow_private_albums', 0),
+  array('Vad är &quot;Senast tillagda&quot;?', 'Här visas de senast uppladdade filerna i galleriet.', 'offline', 0),
+  array('Vad är &quot;Senaste kommentarer&quot;?', 'Här visas de senaste kommentarerna i galleriet.', 'offline', 0),
+  array('Vad är &quot;Mest visade&quot;?', 'Här visas de filer som är mest visade för besökare (inloggade eller inte).', 'offline', 0),
+  array('Vad är &quot;Topplista&quot;?', 'Här visas de filer som besökare har givit de högsta betygen (i genomsnitt, t.ex. om fem användare vardera har givit betyget <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />, så får filen då ett genomsnittsbetyg på <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />. Om fem användare betygsätter en fil från 1 till 5 (1,2,3,4,5) ger det ett genomsnittsbetyg på <img src="images/rating3.gif" width="65" height="14" border="0" alt="" />).<br /><br />Betygsskalan går från <img src="images/rating5.gif" width="65" height="14" border="0" alt="best" /> (bäst) till <img src="images/rating0.gif" width="65" height="14" border="0" alt="worst" /> (sämst).', 'offline', 0),
+  array('Vad är &quot;Mina favoriter&quot;?', 'Här kan en användare lagra sina favoritfiler, detta lagras i en cookie på din dator.', 'offline', 0),
 );
 
 
 // ------------------------------------------------------------------------- //
-// File forgot_passwd.php //cpg1.3.0
+// File forgot_passwd.php
 // ------------------------------------------------------------------------- //
 
 if (defined('FORGOT_PASSWD_PHP')) $lang_forgot_passwd_php = array(
-  'forgot_passwd' => 'Jag har glömt bort mitt lösen', //cpg1.3.0
-  'err_already_logged_in' => 'Du är redan inloggad!', //cpg1.3.0
-  'enter_username_email' => 'Skriv in ditt användarnamn eller e-postadress', //cpg1.3.0
-  'submit' => 'Skicka', //cpg1.3.0
-  'failed_sending_email' => 'Ditt lösen kan inte skickas!', //cpg1.3.0
-  'email_sent' => 'Ett mejl med ditt användarnamn och lösenord har skickats till  %s', //cpg1.3.0
-  'err_unk_user' => 'Användaren finns inte!', //cpg1.3.0
-  'passwd_reminder_subject' => '%s - Bortglömt lösen', //cpg1.3.0
-  'passwd_reminder_body' => 'Du har begärt att få dina inloggningsuppgifter på nytt:
+  'forgot_passwd' => 'Glömt lösenord',
+  'err_already_logged_in' => 'Du är redan inloggad!',
+  'enter_email' => 'Ange din e-postadress', //cpg1.4
+  'submit' => 'Vidare',
+  'illegal_session' => 'Session för glömt lösenord har gått ut eller är ogiltig.', //cpg1.4
+  'failed_sending_email' => 'Lösenordet kan inte skickas!',
+  'email_sent' => 'Ett e-brev med ditt användarnamn och ett nytt lösenord har skickats till %s', //cpg1.4
+  'verify_email_sent' => 'Ett e-brev har skickats till %s. Var vänlig läs din e-post för att avsluta processen.', //cpg1.4
+  'err_unk_user' => 'Vald användare finns inte!',
+  'account_verify_subject' => '%s - Begäran om nytt lösenord', //cpg1.4
+  'account_verify_body' => 'Du har begärt ett nytt lösenord. Om du vill fortsätta och få ett nytt lösenord skickat till dig, klicka på följade länk:
+
+%s', //cpg1.4
+  'passwd_reset_subject' => '%s - Ditt nya lösenord', //cpg1.4
+  'passwd_reset_body' => 'Här är ditt nya lösenord:
 Användarnamn: %s
-Lösen: %s
-Klicka pp %s för att logga in.', //cpg1.3.0
+Lösenord: %s
+Klicka %s för att logga in.', //cpg1.4
 );
 
 // ------------------------------------------------------------------------- //
@@ -771,28 +1263,33 @@ Klicka pp %s för att logga in.', //cpg1.3.0
 // ------------------------------------------------------------------------- //
 
 if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
-  'group_name' => 'Gruppnamn',
-  'disk_quota' => 'Diskutrymme',
-  'can_rate' => 'Kan betygsätta objekt', //cpg1.3.0
-  'can_send_ecards' => 'Kan skicka e-vykort',
-  'can_post_com' => 'Kan skriva kommentarer',
-  'can_upload' => 'Kan ladda upp objekt', //cpg1.3.0
-  'can_have_gallery' => 'Kan ha ett personligt galleri',
-  'apply' => 'Verkställ förändringar',
-  'create_new_group' => 'Create new group',
-  'del_groups' => 'Radera vald(a) grupp(er)',
-  'confirm_del' => 'Varning! När du raderar en grupp kommer användare i den gruppen att flyttas till gruppen \'Registrerad\' !\n\nVill du fortsätta?', //js-alert //cpg1.3.0
-  'title' => 'Administrera användargrupper',
-  'approval_1' => 'Godkänn publika uppladdningar (1)',
-  'approval_2' => 'Godkänn personliga uppladdningar (2)',
-  'upload_form_config' => 'Konfiguerera uppladdningsformulär', //cpg1.3.0
-  'upload_form_config_values' => array( 'Ladda enbart upp enstaka objekt', 'Ladda enbart upp flera objekt samtidigt', 'Enbart URI-uppladdningar', 'Enbart ZIP-uplladningar', 'Fil-URI', 'Fil-ZIP', 'URI-ZIP', 'Fil-URI-ZIP'), //cpg1.3.0
-  'custom_user_upload'=>'Användaren kan välja antalet uppladdningsfält', //cpg1.3.0
-  'num_file_upload'=>'Max/exakt antal uppladdningsfält', //cpg1.3.0
-  'num_URI_upload'=>'Max/exakt antal URI uppladdningsfält', //cpg1.3.0
-  'note1' => '<b>(1)</b> Uppladdningar i ett publikt album kräver admins godkännande',
-  'note2' => '<b>(2)</b> Uppladdningar i ett album som tillhör användare kräver admins godkännande',
-  'notes' => 'Anmärkningar',
+  'group_name' => 'Grupp', //cpg1.4
+  'permissions' => 'Behörigheter', //cpg1.4
+  'public_albums' => 'Ladda upp till publika album', //cpg1.4
+  'personal_gallery' => 'Personligt galleri', //cpg1.4
+  'upload_method' => 'Uppladdningssätt', //cpg1.4
+  'disk_quota' => 'Kvot', //cpg1.4
+  'rating' => 'Betyg', //cpg1.4
+  'ecards' => 'E-vykort', //cpg1.4
+  'comments' => 'Kommentarer', //cpg1.4
+  'allowed' => 'Tillåt', //cpg1.4
+  'approval' => 'Godkännande', //cpg1.4
+  'boxes_number' => 'Antal fält', //cpg1.4
+  'variable' => 'variabelt', //cpg1.4
+  'fixed' => 'fixerat', //cpg1.4
+  'apply' => 'Utför ändringar',
+  'create_new_group' => 'Skapa ny grupp',
+  'del_groups' => 'Radera markerade grupper',
+  'confirm_del' => 'Varning, när du raderar en grupp kommer medlemmar som tillhör den gruppen att flyttas till till gruppen "Registered"!\n\nVill du verkligen fortsätta?', //js-alert
+  'title' => 'Hantera grupper',
+  'num_file_upload' => 'Fält för uppladdning av filer', //cpg1.4
+  'num_URI_upload' => 'Fält för URI-uppladdning', //cpg1.4
+  'reset_to_default' => 'Återgå till förvalt namn (%s) - rekommenderat!', //cpg1.4
+  'error_group_empty' => 'Tabellen för grupper är tom!<br /><br />Förinställda grupper har skapats, ladda om denna sida.', //cpg1.4
+  'explain_greyed_out_title' => 'Varför är denna rad grå?', //cpg1.4
+  'explain_guests_greyed_out_text' => 'Du kan inte ändra egenskaperna för denna grupp eftersom du satt &quot;Tillåta icke inloggade användare (gäst eller anonym)&quot; till &quot;Nej&quot; på konfigurationssidan. Alla gäster (medlemmar tillhörande gruppen %s) kan inte göra något annat än att logga in, därför gäller inte inställningarna för dem.', //cpg1.4
+  'explain_banned_greyed_out_text' => 'Du kan inte ändra egenskaperna för gruppen %s eftersom dess medlemmar inte kan göra något ändå.', //cpg1.4
+  'group_assigned_album' => 'Tilldelade album', //cpg1.4
 );
 
 // ------------------------------------------------------------------------- //
@@ -802,37 +1299,54 @@ if (defined('GROUPMGR_PHP')) $lang_groupmgr_php = array(
 if (defined('INDEX_PHP')){
 
 $lang_index_php = array(
-  'welcome' => 'Välkommen !',
+  'welcome' => 'Välkommen!',
 );
 
 $lang_album_admin_menu = array(
-  'confirm_delete' => 'Är du säker på att du vill radera detta album? \\nAlla objekt och kommentarer kommer att raderas.', //js-alert //cpg1.3.0
-  'delete' => 'RADERA',
-  'modify' => 'EGENSKAPER',
-  'edit_pics' => 'REDIGERA OBJEKT', //cpg1.3.0
+  'confirm_delete' => 'Är du säker på att du vill RADERA detta album? \\nAlla filer och kommentarer kommer också att raderas.', //js-alert
+  'delete' => 'Radera',
+  'modify' => 'Egenskaper',
+  'edit_pics' => 'Ändra filer',
 );
 
 $lang_list_categories = array(
   'home' => 'Hem',
-  'stat1' => '<b>[pictures]</b> objekt i <b>[albums]</b> album och <b>[cat]</b> kategorier med <b>[comments]</b> kommentarer visade <b>[views]</b> gånger', //cpg1.3.0
-  'stat2' => '<b>[pictures]</b> objekt i <b>[albums]</b> album visade <b>[views]</b> gånger', //cpg1.3.0
+  'stat1' => '<b>[pictures]</b> filer i <b>[albums]</b> album och <b>[cat]</b> kategorier med <b>[comments]</b> kommentarer, totalt <b>[views]</b> visningar',
+  'stat2' => '<b>[pictures]</b> filer i <b>[albums]</b> album, totalt <b>[views]</b> visningar',
   'xx_s_gallery' => '%ss galleri',
-  'stat3' => '<b>[pictures]</b> objekt i <b>[albums]</b> album med <b>[comments]</b> kommentarer visade <b>[views]</b> gånger', //cpg1.3.0
+  'stat3' => '<b>[pictures]</b> filer i <b>[albums]</b> album med <b>[comments]</b> kommentarer, totalt <b>[views]</b> visningar',
 );
 
 $lang_list_users = array(
-  'user_list' => 'Användarlista',
-  'no_user_gal' => 'Det fins inga användargallerier',
+  'user_list' => 'Lista över medlemmar',
+  'no_user_gal' => 'Det finns inga medlemsgallerier',
   'n_albums' => '%s album',
-  'n_pics' => '%s objekt', //cpg1.3.0
+  'n_pics' => '%s fil(er)',
 );
 
 $lang_list_albums = array(
-  'n_pictures' => '%s objekt', //cpg1.3.0
-  'last_added' => ', senaste inlagd %s',
+  'n_pictures' => '%s filer',
+  'last_added' => ', senaste tillagd den %s',
+  'n_link_pictures' => '%s länkade filer', //cpg1.4
+  'total_pictures' => '%s filer totalt', //cpg1.4
 );
 
 }
+
+// ------------------------------------------------------------------------- //
+// File keywordmgr.php //cpg1.4
+// ------------------------------------------------------------------------- //
+
+if (defined('KEYWORDMGR_PHP')) $lang_keywordmgr_php = array(
+  'title' => 'Hantera nyckelord', //cpg1.4
+  'edit' => 'Ändra', //cpg1.4
+  'delete' => 'Radera', //cpg1.4
+  'search' => 'Sök', //cpg1.4
+  'keyword_test_search' => 'Sök efter %s i ett nytt fönster', //cpg1.4
+  'keyword_del' => 'Ta bort nyckelord %s', //cpg1.4
+  'confirm_delete' => 'Är du säker på att du vill ta bort nyckelordet %s från galleriet?', //cpg1.4  // js-alert
+  'change_keyword' => 'Ändra nyckelord', //cpg1.4
+);
 
 // ------------------------------------------------------------------------- //
 // File login.php
@@ -840,14 +1354,15 @@ $lang_list_albums = array(
 
 if (defined('LOGIN_PHP')) $lang_login_php = array(
   'login' => 'Logga in',
-  'enter_login_pswd' => 'Skriv ditt användarnamn och lösenord för att logga in',
+  'enter_login_pswd' => 'Ange ditt användarnamn och lösenord för att logga in',
   'username' => 'Användarnamn',
   'password' => 'Lösenord',
   'remember_me' => 'Kom ihåg mig',
   'welcome' => 'Välkommen %s ...',
-  'err_login' => '*** Kunde inte logga in. Försök igen ***',
+  'err_login' => '*** Kunde inte logga in. Försök igen. ***',
   'err_already_logged_in' => 'Du är redan inloggad!',
-  'forgot_password_link' => 'Jag har glömt mitt lösenord', //cpg1.3.0
+  'forgot_password_link' => 'Jag har glömt mitt lösenord',
+  'cookie_warning' => 'Varning! Din webbläsare hanterar inte cookies!', //cpg1.4
 );
 
 // ------------------------------------------------------------------------- //
@@ -861,13 +1376,16 @@ if (defined('LOGOUT_PHP')) $lang_logout_php = array(
 );
 
 // ------------------------------------------------------------------------- //
-// File phpinfo.php //cpg1.3.0
+// File minibrowser.php  //cpg1.4
 // ------------------------------------------------------------------------- //
 
-if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
-  'php_info' => 'PHP info', //cpg1.3.0
-  'explanation' => 'Det här informationen är genererad av PHP-funktionen <a href="http://www.php.net/phpinfo">phpinfo()</a> och visas inom Coppermine (du kan kontrollera storleken i det högra hörnet).', //cpg1.3.0
-  'no_link' => 'Det kan vara en säkerhetsrisk att låta andra se din phpinfo, av den anledningen är den här sidan enbart tillgänglig när du är inloggad som admin. Du kan därför inte skicka denna sida som länk till någon annan, de har inte behörighet att se sidan.', //cpg1.3.0
+if (defined('MINIBROWSER_PHP')) $lang_minibrowser_php = array(
+  'close' => 'Stäng', //cpg1.4
+  'submit' => 'OK', //cpg1.4
+  'up' => 'Upp en nivå', //cpg1.4
+  'current_path' => 'Nuvarande sökväg', //cpg1.4
+  'select_directory' => 'Välj en mapp', //cpg1.4
+  'click_to_close' => 'Klicka på bilden för att stänga fönstret',
 );
 
 // ------------------------------------------------------------------------- //
@@ -877,36 +1395,109 @@ if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
 if (defined('MODIFYALB_PHP')) $lang_modifyalb_php = array(
   'upd_alb_n' => 'Uppdatera album %s',
   'general_settings' => 'Allmänna inställningar',
-  'alb_title' => 'Albumtitel',
-  'alb_cat' => 'Albumkategori',
-  'alb_desc' => 'Albumbeskrivning',
-  'alb_thumb' => 'Albumminiatyr',
-  'alb_perm' => 'Rättigheter för detta album',
-  'can_view' => 'Album kan ses av',
-  'can_upload' => 'Besökare kan ladda upp bilder',
-  'can_post_comments' => 'Besökare kan kommentera',
-  'can_rate' => 'Besökare kan betygsätta bilder',
-  'user_gal' => 'Användaregalleri',
+  'alb_title' => 'Albumets titel',
+  'alb_cat' => 'Albumets kategori',
+  'alb_desc' => 'Albumets beskrivning',
+  'alb_keyword' => 'Albumets nyckelord', //cpg1.4
+  'alb_thumb' => 'Albumets tumnagel',
+  'alb_perm' => 'Albumets behörigheter',
+  'can_view' => 'Albumet kan ses av',
+  'can_upload' => 'Besökare kan ladda upp filer',
+  'can_post_comments' => 'Besökare kan posta kommentarer',
+  'can_rate' => 'Besökare kan betygsätta filer',
+  'user_gal' => 'Användargallerier',
   'no_cat' => '* Ingen kategori *',
-  'alb_empty' => 'Album är tomt',
-  'last_uploaded' => 'Senast uppladdat',
+  'alb_empty' => 'Albumet är tomt',
+  'last_uploaded' => 'Senast uppladdade',
   'public_alb' => 'Alla (publikt album)',
-  'me_only' => 'Endast jag',
-  'owner_only' => 'Endast albumägare (%s)',
-  'groupp_only' => 'Medlemmar av gruppen \'%s\'',
-  'err_no_alb_to_modify' => 'Inget album att redigera i databasen.',
-  'update' => 'Uppdatera album', //cpg1.3.0
-  'notice1' => '(*) beroende av inställningar för %sgrupper%s', //cpg1.3.0 (do not translate %s!)
+  'me_only' => 'Bara jag',
+  'owner_only' => 'Albumets ägare (%s)',
+  'groupp_only' => 'Medlemmar i gruppen \'%s\'',
+  'err_no_alb_to_modify' => 'Inget album du kan ändra i databasen.',
+  'update' => 'Uppdatera album',
+  'reset_album' => 'Återställ album', //cpg1.4
+  'reset_views' => 'Ställ räknare till &quot;0&quot; i %s', //cpg1.4
+  'reset_rating' => 'Återställ betyg för alla filer i %s', //cpg1.4
+  'delete_comments' => 'Radera alla kommentarer i %s', //cpg1.4
+  'delete_files' => '%sOåterkalleligen%s radera alla filer i %s', //cpg1.4
+  'views' => 'visningar', //cpg1.4
+  'votes' => 'röster', //cpg1.4
+  'comments' => 'kommentarer', //cpg1.4
+  'files' => 'filer', //cpg1.4
+  'submit_reset' => 'Skicka ändringar', //cpg1.4
+  'reset_views_confirm' => 'Jag är säker', //cpg1.4
+  'notice1' => '(*) Beror på %sgruppinställningar%s',  //cpg1.4 //(do not translate %s!)
+  'alb_password' => 'Lösenord för album', //cpg1.4
+  'alb_password_hint' => 'Ledtråd till albumets lösenord', //cpg1.4
+  'edit_files' =>'Ändra filer', //cpg1.4
+  'parent_category' =>'Överliggande kategori', //cpg1.4
+  'thumbnail_view' =>'Visa tumnagel', //cpg1.4
 );
+
+// ------------------------------------------------------------------------- //
+// File phpinfo.php
+// ------------------------------------------------------------------------- //
+
+if (defined('PHPINFO_PHP')) $lang_phpinfo_php = array(
+  'php_info' => 'PHP info',
+  'explanation' => 'Detta är en presentation genererad av PHP-funktionen <a href="http://www.php.net/phpinfo">phpinfo()</a>, och visas i Coppermine.',
+  'no_link' => 'Att låta andra se din phpinfo kan vara en säkerhetsrisk, därför kan bara du som administratör se denna sida. Du kan inte skicka denna länk till någon annan, de kommer att vägras tillträde.',
+);
+
+// ------------------------------------------------------------------------- //
+// File picmgr.php //cpg1.4
+// ------------------------------------------------------------------------- //
+if (defined('PICMGR_PHP')) $lang_picmgr_php = array(
+  'pic_mgr' => 'Sortera bilder', //cpg1.4
+  'select_album' => 'Välj album', //cpg1.4
+  'delete' => 'Radera', //cpg1.4
+  'confirm_delete1' => 'Är du säker på att du vill radera bilden?', //cpg1.4
+  'confirm_delete2' => '\nBilden kommer att raderas permanent.', //cpg1.4
+  'apply_modifs' => 'Utför ändringar', //cpg1.4
+  'confirm_modifs' => 'Bekräfta ändringar', //cpg1.4
+  'pic_need_name' => 'Bilden måste ha ett namn!', //cpg1.4
+  'no_change' => 'Du har inte gjort några ändringar!', //cpg1.4
+  'no_album' => '* Inget album *', //cpg1.4
+  'explanation_header' => 'Den anpassade sorteringordningen som du kan välja på denna sida kommer bara att användas om', //cpg1.4
+  'explanation1' => 'Administratören har i konfigurationen satt "Förvald sorteringsordning" till "Position, stigande" eller "Position, fallande" (allmän inställning för alla användare som inte själva har valt någon annan sorteringsordning).', //cpg1.4
+  'explanation2' => 'Användaren har valt "Position, stigande" eller "Position, fallande" på tumnagelsidan (per användare).', //cpg1.4
+);
+
+
+// ------------------------------------------------------------------------- //
+// File pluginmgr.php //cpg1.4
+// ------------------------------------------------------------------------- //
+
+if (defined('PLUGINMGR_PHP')){
+
+$lang_pluginmgr_php = array(
+  'confirm_uninstall' => 'Är du säker på att du vill AVINSTALLERA denna insticksmodul', //cpg1.4
+  'confirm_delete' => 'Är du säker på att du vill RADERA denna insticksmodul', //cpg1.4
+  'pmgr' => 'Hantering av insticksmoduler (plugins)', //cpg1.4
+  'name' => 'Namn:', //cpg1.4
+  'author' => 'Skapare:', //cpg1.4
+  'desc' => 'Beskrivning:', //cpg1.4
+  'vers' => 'v', //cpg1.4
+  'i_plugins' => 'Installerade insticksmoduler (plugins)', //cpg1.4
+  'n_plugins' => 'Ej installerade insticksmoduler', //cpg1.4
+  'none_installed' => 'Ingen installerad', //cpg1.4
+  'operation' => 'Funktion', //cpg1.4
+  'not_plugin_package' => 'Den uppladdade filen är inte ett paket för insticksmodul (plugin package).', //cpg1.4
+  'copy_error' => 'Det uppstod ett fel vid kopiering av insticksmodulen till mappen för insticksmoduler.', //cpg1.4
+  'upload' => 'Ladda upp', //cpg1.4
+  'configure_plugin' => 'Konfigurera insticksmodul', //cpg1.4
+  'cleanup_plugin' => 'Rensa insticksmodul', //cpg1.4
+);
+}
 
 // ------------------------------------------------------------------------- //
 // File ratepic.php
 // ------------------------------------------------------------------------- //
 
 if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
-  'already_rated' => 'Du har redan betygsatt detta objekt', //cpg1.3.0
-  'rate_ok' => 'Ditt betyg är registrerat',
-  'forbidden' => 'Du kan inte betygsätta dina egna objekt.', //cpg1.3.0
+  'already_rated' => 'Du har redan betygsatt denna fil',
+  'rate_ok' => 'Din röst har godkänts',
+  'forbidden' => 'Du kan inte betygsätta dina egna filer.',
 );
 
 // ------------------------------------------------------------------------- //
@@ -916,84 +1507,109 @@ if (defined('RATEPIC_PHP')) $lang_rate_pic_php = array(
 if (defined('REGISTER_PHP') || defined('PROFILE_PHP')) {
 
 $lang_register_disclamer = <<<EOT
-Trots att administratörerna här på (SITE_NAME) försöker att ta bort eller ändra allt störande eller stötande material så fort som möjligt, är det omöjligt att gå igenom alla meddelanden. Därför måste alla inlägg som skrivits på denna sajt betraktas som ett uttryck av författarens personliga tankar och åsikter, och administratörer eller webmaster kan inte stå till ansvar för det (givetvis bortsett från vad de själv skrivit).<br />
+Administratörerna på {SITE_NAME} försöker ta bort och ändra stötande material så fort som möjligt, dock är det inte möjligt att granska alla inlägg som görs. Du intygar och accepterar därför härmed att alla inlägg som görs här uttrycker författarens åsikter och inte administratörens eller webbmasterns (utom inlägg gjorda av dem själva), och de kan därför inte hållas ansvariga.<br />
 <br />
-Du går med på att inte posta något störande, stötande, rasistiskt, sexistiskt, vulgärt, hatiskt, hotande eller annat material som kan tänkas bryta mot någon tillämplig lag. Om du bryter mot det här kan det leda till att du blir permanent avstängd från sajten (och din internetleverantör blir kontaktad). Vid varje inlägg sparas författarens IP-adress för att kunna användas vid sådana här situationer (dock enbart synlig för administratörerna). Som användare går du med på att webmaster, administratör och moderatorer har rätt att ta bort, ändra, flytta eller stänga vilka inlägg som helst när som helst. Som en användare går du med på att all information som du skrivit in sparas elektroniskt i databasen. Information på denna sajt kommer INTE att distribueras till någon 3:e part utan ditt samtycke. Webmastern, administratören eller moderatorer kan inte hållas ansvariga vid hackningsförsök som kan leda till att data stjäls. <br />
+Du godkänner att inte göra inlägg som är skändliga, obscena, vulgära, innehåller förtal, hatiska, hotande, sexuella eller inlägg som strider mot gällade lag. Du godkänner att administratörer, moderatorer eller webbmastern för {SITE_NAME} har full rätt att ta bort eller ändra innehållet så att det överensstämmer med ovanstående. Som användare godkänner du att användarinformation lagras i en databas och används på denna webbplats. Även om informationen inte kommer att göras tillgänglig för tredje part kan webmastern inte hållas ansvarig för eventuell hackning som gör att informationen sprids.<br />
 <br />
-Denna sajt använder cookies för att spara information på din dator. Dessa cookies innehåller inte något av den information du skrivit in, utan används endast för att göra ditt användande av forumet bättre och smidigare. Din e-postadress används enbart för att aktivera din registrering, samt för omregistrering vid t.ex. byte av din e-post adress.<br />
+Den här webbplatsen använder cookies för att lagra information på din dator. Dessa cookies fungerar enbart för att webbplatsen ska fungera och se bra ut för dig som användare. E-postadressen du anger är enbart till för att skicka detaljer om registreringen.<br />
 <br />
-Genom att klicka på knappen "Jag godkänner" nedan godkänner du ovan vilkor.
+Genom att klicka "Jag godkänner" nedan godkänner du ovanstående villkor och att du är bunden att följa dem.
 EOT;
 
 $lang_register_php = array(
-  'page_title' => 'Användarregistrering',
-  'term_cond' => 'Användarvillkor',
-  'i_agree' => 'Jag godkänner',
-  'submit' => 'Skicka registrering',
-  'err_user_exists' => 'Användarnamnet du skrev in finns redan, välj ett nytt',
-  'err_password_mismatch' => 'Lösenorden stämmer inte överens med varandra. Skriv in dem igen.',
-  'err_uname_short' => 'Användarnamnet måste vara minst 2 tecken långt',
-  'err_password_short' => 'Lösenordet måste vara minst 2 tecken långt',
-  'err_uname_pass_diff' => 'Användarnamn och lösenord får inte vara lika',
-  'err_invalid_email' => 'E-postadressen är ogiltig',
-  'err_duplicate_email' => 'En annan användare är redan registrerad med din e-postadress',
-  'enter_info' => 'Fyll i registeringsuppgifter',
+  'page_title' => 'Registrering av användare',
+  'term_cond' => 'Regler och villkor',
+  'i_agree' => 'Jag godkänner!',
+  'submit' => 'Skicka',
+  'err_user_exists' => 'Användarnamnet du valt finns redan, välj ett annat.',
+  'err_password_mismatch' => 'De två skrivna lösenorden stämmer inte överens, skriv in dem igen.',
+  'err_uname_short' => 'Användarnamnet måste vara minst 2 tecken långt.',
+  'err_password_short' => 'Lösenordet måste vara minst 2 tecken långt.',
+  'err_uname_pass_diff' => 'Användarnamn och lösenord måste vara olika.',
+  'err_invalid_email' => 'E-postadressen är ogiltig.',
+  'err_duplicate_email' => 'E-postadressen du angav finns redan registrerad.',
+  'enter_info' => 'Fyll i informationen för registrering',
   'required_info' => 'Obligatorisk information',
   'optional_info' => 'Frivillig information',
   'username' => 'Användarnamn',
   'password' => 'Lösenord',
-  'password_again' => 'Skriv lösenordet igen',
-  'email' => 'E-post',
-  'location' => 'Finns i',
+  'password_again' => 'Lösenord igen',
+  'email' => 'E-postadress',
+  'location' => 'Kommer från',
   'interests' => 'Intressen',
   'website' => 'Hemsida',
-  'occupation' => 'Yrke',
+  'occupation' => 'Sysselsättning',
   'error' => 'FEL',
-  'confirm_email_subject' => '%s - Bekräftande av registrering',
+  'confirm_email_subject' => '%s - Registreringen bekräftas',
   'information' => 'Information',
-  'failed_sending_email' => 'Registeringsinformation kan inte skickas!',
-  'thank_you' => 'Tack för din registrering.<br /><br />Ett e-postmeddelande med information om hur di ska aktivera ditt konto skickades till den e-postadress du angav.',
+  'failed_sending_email' => 'E-brev med bekräftelsen av registrerigen kan inte skickas!',
+  'thank_you' => 'Tack för att du registrerade dig!<br /><br />Ett e-brev med information om hur du ska aktivera ditt konto har skickats till den e-postadress du angav.',
   'acct_created' => 'Ditt konto har skapats och du kan nu logga in med ditt användarnamn och lösenord.',
-  'acct_active' => 'Ditt konto är nu aktiverat och du kan logga in med ditt användarnamn och lösenord.',
-  'acct_already_act' => 'Ditt konto är redan aktiverat!',
-  'acct_act_failed' => 'Detta konto kan inte aktiveras!',
-  'err_unk_user' => 'Vald användare finns inte!',
+  'acct_active' => 'Ditt konto är nu aktiverat och du kan nu logga in med ditt användarnamn och lösenord.',
+  'acct_already_act' => 'Kontot är redan aktiverat!', //cpg1.4
+  'acct_act_failed' => 'Kontot kan inte aktiveras!',
+  'err_unk_user' => 'Vald användare finns inte.',
   'x_s_profile' => '%ss profil',
   'group' => 'Grupp',
-  'reg_date' => 'Blev medlem',
+  'reg_date' => 'Registrerade sig',
   'disk_usage' => 'Diskanvändning',
-  'change_pass' => 'Byt lösenord',
+  'change_pass' => 'Ändra lösenord',
   'current_pass' => 'Nuvarande lösenord',
   'new_pass' => 'Nytt lösenord',
   'new_pass_again' => 'Nytt lösenord igen',
-  'err_curr_pass' => 'Detta lösenord är inte korrekt',
-  'apply_modif' => 'Verkställ ändringar',
+  'err_curr_pass' => 'Nuvarande lösenord är felaktigt',
+  'apply_modif' => 'Utför ändringar',
   'change_pass' => 'Ändra mitt lösenord',
-  'update_success' => 'Din profil uppdaterade',
-  'pass_chg_success' => 'Ditt lösenord ändrades',
-  'pass_chg_error' => 'Ditt lösenord ändrades inte',
-  'notify_admin_email_subject' => '%s - Ny användare registrerad', //cpg1.3.0
-  'notify_admin_email_body' => 'En användare med användarnamn "%s" har registrerat sig i ditt galleri.', //cpg1.3.0
+  'update_success' => 'Din profil har uppdaterats',
+  'pass_chg_success' => 'Ditt lösenord har ändrats',
+  'pass_chg_error' => 'Ditt lösenord har inte ändrats!',
+  'notify_admin_email_subject' => '%s - Meddelande om registrering',
+  'last_uploads' => 'Senast uppladdade fil.<br />Klicka för att se alla uppladdningar av', //cpg1.4
+  'last_comments' => 'Senaste kommentar.<br />Klicka för att se alla kommentarer gjorda av', //cpg1.4
+  'notify_admin_email_body' => 'En ny användare med användarnamn "%s" har registrerats i galleriet',
+  'pic_count' => 'Filer uppladdade', //cpg1.4
+  'notify_admin_request_email_subject' => '%s - Meddelande om registrering', //cpg1.4
+  'thank_you_admin_activation' => 'Tack.<br /><br />Din begäran om aktivering av konto har skickats till administratören. Du kommer få ett e-brev om du blir godkänd.', //cpg1.4
+  'acct_active_admin_activation' => 'Kontot är nu aktiverat och ett e-brev har skickats till användaren.', //cpg1.4
+  'notify_user_email_subject' => '%s - Meddelande om aktivering', //cpg1.4
 );
 
 $lang_register_confirm_email = <<<EOT
-Tack för att du registerade dig på {SITE_NAME}
+Tack för att du registrerar dig hos {SITE_NAME}
 
-Ditt användarnamn är : "{USER_NAME}"
-Ditt lösenord är : "{PASSWORD}"
+För att aktivera ditt konto med användarnamn "{USER_NAME}", måste du klicka på länken eller kopiera den och klistra in den i din webbläsare.
 
-För att ditt konto ska aktiveras måste du klicka på nedanstående länk
-eller kopiera den och klista in den i din webbläsare.
+<a href="{ACT_LINK}">{ACT_LINK}</a>
 
-{ACT_LINK}
 
-Vänligen
-
-Administratören av {SITE_NAME}
+Med vänliga hälsningar,
+{SITE_NAME}
 
 EOT;
 
+
+$lang_register_approve_email = <<<EOT
+En ny användare med användarnamn "{USER_NAME}" har registrerat sig i galleriet.
+
+För att kontot ska aktiveras måste du klicka på länken eller kopiera den och klistra in den i din webbläsare.
+
+<a href="{ACT_LINK}">{ACT_LINK}</a>
+
+EOT;
+
+$lang_register_activated_email = <<<EOT
+Ditt konto har blivit godkänt och har aktiverats.
+
+Du kan nu logga in på <a href="{SITE_LINK}">{SITE_LINK}</a> med användarnamn "{USER_NAME}"
+
+
+Med vänliga hälsningar,
+{SITE_NAME}
+
+EOT;
 }
+
+
 
 // ------------------------------------------------------------------------- //
 // File reviewcom.php
@@ -1001,61 +1617,132 @@ EOT;
 
 if (defined('REVIEWCOM_PHP')) $lang_reviewcom_php = array(
   'title' => 'Granska kommentarer',
-  'no_comment' => 'Det finns ingen kommentar att granska',
-  'n_comm_del' => '%s kommentar(er) raderad(e)',
+  'no_comment' => 'Det finns inga kommentarer.',
+  'n_comm_del' => '%s kommentarer raderade',
   'n_comm_disp' => 'Antal kommentarer att visa',
   'see_prev' => 'Se föregående',
   'see_next' => 'Se nästa',
-  'del_comm' => 'Radera valda kommentarer',
+  'del_comm' => 'Radera markerade kommentarer',
+  'user_name' => 'Namn', //cpg1.4
+  'date' => 'Datum', //cpg1.4
+  'comment' => 'Kommentar', //cpg1.4
+  'file' => 'Fil', //cpg1.4
+  'name_a' => 'Användarnamn, stigande', //cpg1.4
+  'name_d' => 'Användarnamn, fallande', //cpg1.4
+  'date_a' => 'Datum, stigande', //cpg1.4
+  'date_d' => 'Datum, fallande', //cpg1.4
+  'comment_a' => 'Kommentar, stigande', //cpg1.4
+  'comment_d' => 'Kommentar, fallande', //cpg1.4
+  'file_a' => 'Fil, stigande', //cpg1.4
+  'file_d' => 'Fil, fallande', //cpg1.4
 );
 
 
 // ------------------------------------------------------------------------- //
-// File search.php - OK
+// File search.php                                                           //
 // ------------------------------------------------------------------------- //
 
-if (defined('SEARCH_PHP')) $lang_search_php = array(
-  0 => 'Sök bland objekten',
+
+if (defined('SEARCH_PHP')){
+
+$lang_search_php = array(
+  'title' => 'Sök bland filer', //cpg1.4
+  'submit_search' => 'sök', //cpg1.4
+  'keyword_list_title' => 'Lista med nyckelord', //cpg1.4
+  'keyword_msg' => 'Ovanstående lista är inte heltäckande. Den täcker inte ord från titlar på bilder eller beskrivningar. Testa en fulltextsökning.',  //cpg1.4
+  'edit_keywords' => 'Ändra nyckelord', //cpg1.4
+  'search in' => 'Sök i:', //cpg1.4
+  'ip_address' => 'IP', //cpg1.4
+  'fields' => 'Sök i', //cpg1.4
+  'age' => 'Ålder', //cpg1.4
+  'newer_than' => 'Nyare än', //cpg1.4
+  'older_than' => 'Äldre än', //cpg1.4
+  'days' => 'dagar', //cpg1.4
+  'all_words' => 'Matcha alla ord (AND)', //cpg1.4
+  'any_words' => 'Matcha något ord (OR)', //cpg1.4
 );
+
+$lang_adv_opts = array(
+  'title' => 'Titel', //cpg1.4
+  'caption' => 'Rubrik', //cpg1.4
+  'keywords' => 'Nyckelord', //cpg1.4
+  'owner_name' => 'Ägarens namn', //cpg1.4
+  'filename' => 'Filnamn', //cpg1.4
+);
+
+}
 
 // ------------------------------------------------------------------------- //
 // File searchnew.php
 // ------------------------------------------------------------------------- //
 
 if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
-  'page_title' => 'Sök efter nya objekt', //cpg1.3.0
-  'select_dir' => 'Välj katalog',
-  'select_dir_msg' => 'Den här funktionen gör det möjligt att lägga till ett parti med objekt som du laddat upp på servern via FTP.<br /><br />Välj katalogen dit du laddade upp dina bilder', //cpg1.3.0
-  'no_pic_to_add' => 'Det finns inga objekt att lägga till', //cpg1.3.0
-  'need_one_album' => 'Du måste ha minst album för att använda denna funktion',
+  'page_title' => 'Sök nya filer',
+  'select_dir' => 'Välj mapp',
+  'select_dir_msg' => '<br />Denna funktion låter dig lägga in flera filer samtidigt som du har laddat upp till servern via FTP.<br />Välj den mapp du laddade upp filerna till.', //cpg1.4
+  'no_pic_to_add' => 'Det finns ingen fil att lägga till',
+  'need_one_album' => 'Det måste finnas minst ett album för att använda denna funktion',
   'warning' => 'Varning',
-  'change_perm' => 'Scriptet kan inte skriva i denna katalog. Du måste ändra dess rättigheter till 755 eller 77 innan du kan lägga till objekten!', //cpg1.3.0
-  'target_album' => '<b>Lägg objekten &quot;</b>%s<b>&quot; i </b>%s', //cpg1.3.0
-  'folder' => 'Katalog',
-  'image' => 'Objekt',
+  'change_perm' => 'kan inte skriva till mappen, du måste ändra rättigheterna för mappen till 755 eller 777 innan filerna kan läggas till! Det görs lättast med en FTP-klient',
+  'target_album' => '<b>Lägg filer från &quot;</b>%s<b>&quot; i </b>%s',
+  'folder' => 'Mapp',
+  'image' => 'Fil',
   'album' => 'Album',
   'result' => 'Resultat',
-  'dir_ro' => 'Inte skrivbart. ',
-  'dir_cant_read' => 'Inte läsbart. ',
-  'insert' => 'Lägger till nya objekt i galleriet', //cpg1.3.0
-  'list_new_pic' => 'Förteckning över nya objekt', //cpg1.3.0
-  'insert_selected' => 'Sätt in valda objekt', //cpg1.3.0
-  'no_pic_found' => 'Inga nya objekt hittades', //cpg1.3.0
-  'be_patient' => 'Ha tålamod, scriptet behöver lite tid att bearbeta objekten', //cpg1.3.0
-  'no_album' => 'inget album valt',  //cpg1.3.0
+  'dir_ro' => 'Ej skrivbar. ',
+  'dir_cant_read' => 'Ej läsbar. ',
+  'insert' => 'Lägger till nya filer i galleriet',
+  'list_new_pic' => 'Lista över nya filer',
+  'insert_selected' => 'Lägg till markerade filer',
+  'no_pic_found' => 'Inga filer hittades',
+  'be_patient' => 'Var god vänta, det tar lite tid att lägga till filerna...',
+  'no_album' => 'inget album är valt',
+  'result_icon' => 'klicka för detaljer eller för att ladda om',  //cpg1.4
   'notes' =>  '<ul>'.
-                          '<li><b>OK</b> : betyder att objektet blev inlagda'.
-                          '<li><b>DP</b> : betyder att objektet är en kopia av ett objekt som redan finns i databasen'.
-                          '<li><b>PB</b> : betyder att objektet inte kunde läggas till, kontrollera din konfiguration och rättigheterna i katalogen objekten ska placeras i'.
-                          '<li><b>NA</b> : means that you haven\'t selected an album the files should go to, hit \'<a href="javascript:history.back(1)">back</a>\' and select an album. If you don\'t have an album <a href="albmgr.php">create one first</a></li>'.
-                          '<li>Om OK, DP, PB \'symbolerna\' inte visas, klicka på det felaktiga objektet för att se felmeddelandet som skapats av PHP'.
-                          '<li>Om din webbläsare gör timeout, tryck på knappen \'Uppdatera\''.
-                          '</ul>', //cpg1.3.0
-  'select_album' => 'välj album', //cpg1.3.0
-  'check_all' => 'Markera alla', //cpg1.3.0
-  'uncheck_all' => 'Avmarkera alla', //cpg1.3.0
+                          '<li><b>OK</b> : betyder att filen är tillagd'.
+                          '<li><b>DP</b> : betyder att filen är en dubblett och att den redan finns i databasen'.
+                          '<li><b>PB</b> : betyder att filen inte kunde läggas till, kontrollera konfigurationen och rättigheterna på mappen där filerna finns'.
+                          '<li><b>NA</b> : betyder att du inte har valt något album som filerna ska läggas till i, tryck på "<a href="javascript:history.back(1)">tillbaka</a>" och välj ett album (om du inte har något album så <a href="albmgr.php">skapa ett först</a>)</li>'.
+                          '<li>Om "skyltarna" med OK, DP, PB inte visas, klicka på den trasiga filen för att se felmeddelandet som genererats av PHP'.
+                          '<li>Om du får "timeout" i din webbläsare, klicka på Ladda om-knappen i din webbläsare'.
+                          '</ul>',
+  'select_album' => 'välj album',
+  'check_all' => 'Markera alla',
+  'uncheck_all' => 'Avmarkera alla',
+  'no_folders' => 'Det finns inga mappar i albumet än. Skapa minst en egen mapp i mappen "albums" och ladda upp dina filer dit. Du ska inte ladda upp dem till mapparna "userpics" eller "edit", de är reserverade för uppladdning via http och interna syften.', //cpg1.4
+   'albums_no_category' => 'Album utan kategori', //cpg1.4 // album pulldown mod, added by frogfoot
+  'personal_albums' => '* Personliga album', //cpg1.4 // album pulldown mod, added by frogfoot
+  'browse_batch_add' => 'Bläddringsbart gränssnitt (rekommenderat)', //cpg1.4
+  'edit_pics' => 'Ändra filer', //cpg1.4
+  'edit_properties' => 'Egenskaper för album', //cpg1.4
+  'view_thumbs' => 'Visning av tumnaglar', //cpg1.4
 );
 
+// ------------------------------------------------------------------------- //
+// File stat_details.php //cpg1.4
+// ------------------------------------------------------------------------- //
+
+if (defined('STAT_DETAILS_PHP')) $lang_stat_details_php = array(
+  'show_hide' => 'visa/dölj denna kolumn', //cpg1.4
+  'vote' => 'Detaljer för röstning', //cpg1.4
+  'hits' => 'Detaljer för träffar', //cpg1.4
+  'stats' => 'Statistik för röstning', //cpg1.4
+  'sdate' => 'Datum', //cpg1.4
+  'rating' => 'Betyg', //cpg1.4
+  'search_phrase' => 'Fraser för sökning', //cpg1.4
+  'referer' => 'Hänvisningar', //cpg1.4
+  'browser' => 'Webbläsare', //cpg1.4
+  'os' => 'Operativsystem', //cpg1.4
+  'ip' => 'IP', //cpg1.4
+  'sort_by_xxx' => 'Sortera efter %s', //cpg1.4
+  'ascending' => 'stigande', //cpg1.4
+  'descending' => 'fallande', //cpg1.4
+  'internal' => 'intern', //cpg1.4
+  'close' => 'Stäng', //cpg1.4
+  'hide_internal_referers' => 'Dölj interna hänvisningar', //cpg1.4
+  'date_display' => 'Datumvisning', //cpg1.4
+  'submit' => 'Skicka / ladda om', //cpg1.4
+);
 
 // ------------------------------------------------------------------------- //
 // File thumbnails.php
@@ -1064,103 +1751,87 @@ if (defined('SEARCHNEW_PHP')) $lang_search_new_php = array(
 // Void
 
 // ------------------------------------------------------------------------- //
-// File banning.php
-// ------------------------------------------------------------------------- //
-
-if (defined('BANNING_PHP')) $lang_banning_php = array(
-  'title' => 'Blockera användare',
-  'user_name' => 'Användarnamn',
-  'ip_address' => 'IP-address',
-  'expiry' => 'Förfaller (blankt innebär permanent)',
-  'edit_ban' => 'Spara ändringar',
-  'delete_ban' => 'Radera',
-  'add_new' => 'Lägg till ny blockering',
-  'add_ban' => 'Lägg till',
-  'error_user' => 'Användaren finns inte', //cpg1.3.0
-  'error_specify' => 'Du måste specifiera antingen ett användarnamn eller en IP-adress', //cpg1.3.0
-  'error_ban_id' => 'Ogiltig blockerings-ID!', //cpg1.3.0
-  'error_admin_ban' => 'Du kan inte blockera dig själv!', //cpg1.3.0
-  'error_server_ban' => 'Du höll på att blocka din egen server? Tsk tsk, glöm det...', //cpg1.3.0
-  'error_ip_forbidden' => 'Du kan inte banna den här IP-adressen, den går inte att routa!', //cpg1.3.0
-  'lookup_ip' => 'Slå upp en IP-adress', //cpg1.3.0
-  'submit' => 'Slå upp', //cpg1.3.0
-);
-
-// ------------------------------------------------------------------------- //
 // File upload.php
 // ------------------------------------------------------------------------- //
 
 if (defined('UPLOAD_PHP')) $lang_upload_php = array(
-  'title' => 'Ladda upp objekt', //cpg1.3.0
-  'custom_title' => 'Anpassat uppladdningsforumlär', //cpg1.3.0
-  'cust_instr_1' => 'YDu kan välja et antal fält för uppladdning, du kan dock inte överskrida gränsen angiven nedan.', //cpg1.3.0
-  'cust_instr_2' => 'Antal uppladdningsfält', //cpg1.3.0
-  'cust_instr_3' => 'Filuppladdningsfält: %s', //cpg1.3.0
-  'cust_instr_4' => 'URI/URL-uppladdningsfält: %s', //cpg1.3.0
-  'cust_instr_5' => 'URI/URL-uppladdningsfält:', //cpg1.3.0
-  'cust_instr_6' => 'Filuppladdningsfält:', //cpg1.3.0
-  'cust_instr_7' => 'Ange antal uppladdningsfält av varje typ. Klicka sedan på \'Fortsätt\'. ', //cpg1.3.0
-  'reg_instr_1' => 'Ogiltig åtgärd när formuläret skapades.', //cpg1.3.0
-  'reg_instr_2' => 'Du kan nu ladda upp dina objekt genom fälten nedan. Storleken på filerna du laddar upp får vardera inte överskrida %s KB. ZIP-filer som laddas upp i \'Ladda upp fil\' och \'Ladda upp URI/URL\' kommer att förbli packade.', //cpg1.3.0
-  'reg_instr_3' => 'Om du vill packa upp en zippad fil eller arkiv att packas upp måste du använda uppladdningsformuläret som finns i \'ZIP-uppladdning med uppackning\'', //cpg1.3.0
-  'reg_instr_4' => 'När du använder URI/URL-uppladdning ange sökvägen i form av: http://www.minsajt.se/bilder/exempel.jpg', //cpg1.3.0
-  'reg_instr_5' => 'Klicka på  \'Fortsätt\' när du valt alla filer du vill ladda upp.', //cpg1.3.0
-  'reg_instr_6' => 'ZIP-uppladdning med uppackning:', //cpg1.3.0
-  'reg_instr_7' => 'Filuppladdning:', //cpg1.3.0
-  'reg_instr_8' => 'URI/URL-uppladdning:', //cpg1.3.0
-  'error_report' => 'Felrapport', //cpg1.3.0
-  'error_instr' => 'Följande uppladdningar råkade ut för problem:', //cpg1.3.0
-  'file_name_url' => 'Filnamn/URL', //cpg1.3.0
-  'error_message' => 'Felmeddelande', //cpg1.3.0
-  'no_post' => 'Filen inte uppladdad genom POST.', //cpg1.3.0
-  'forb_ext' => 'Ej tillåten filändelse.', //cpg1.3.0
-  'exc_php_ini' => 'Filstorlek större än php.ini tillåter.', //cpg1.3.0
-  'exc_file_size' => 'Filstorlek större än Coppermine tillåter.', //cpg1.3.0
-  'partial_upload' => 'Enbart delvis uppladdad.', //cpg1.3.0
-  'no_upload' => 'Det var inget som laddades upp.', //cpg1.3.0
-  'unknown_code' => 'Okänd PHP felkod.', //cpg1.3.0
-  'no_temp_name' => 'Ingenting laddades upp - Inget temporärt namn.', //cpg1.3.0
-  'no_file_size' => 'Innehåller ingen data/filfel', //cpg1.3.0
-  'impossible' => 'Gick inte att flytta filen.', //cpg1.3.0
-  'not_image' => 'Ingen bild/filfel', //cpg1.3.0
-  'not_GD' => 'Ingen GD-filändelse.', //cpg1.3.0
-  'pixel_allowance' => 'Antal tillåtna pixlar överskridet.', //cpg1.3.0
-  'incorrect_prefix' => 'Felaktigt URI/URL-prefix', //cpg1.3.0
-  'could_not_open_URI' => 'Kunde inte öppna URI.', //cpg1.3.0
-  'unsafe_URI' => 'Säkerheten inte kontrollerbar.', //cpg1.3.0
-  'meta_data_failure' => 'Metadatafel', //cpg1.3.0
-  'http_401' => '401 Ej tillåten', //cpg1.3.0
-  'http_402' => '402 Betalning krävs', //cpg1.3.0
-  'http_403' => '403 Förbjuden', //cpg1.3.0
-  'http_404' => '404 Ej hittad', //cpg1.3.0
-  'http_500' => '500 Internt serverfel', //cpg1.3.0
-  'http_503' => '503 Service otillgänglig', //cpg1.3.0
-  'MIME_extraction_failure' => 'MIME-typ kunde inte fastställas.', //cpg1.3.0
-  'MIME_type_unknown' => 'Okänd MIME-typ', //cpg1.3.0
-  'cant_create_write' => 'Kan inte skapa fil.', //cpg1.3.0
-  'not_writable' => 'Kan inte skriva till fil.', //cpg1.3.0
-  'cant_read_URI' => 'Kan inte läsa URI/URL', //cpg1.3.0
-  'cant_open_write_file' => 'Kan inte öppna URI-fil.', //cpg1.3.0
-  'cant_write_write_file' => 'Kan inte skriva till URI-fil.', //cpg1.3.0
-  'cant_unzip' => 'Kan inte packa upp.', //cpg1.3.0
-  'unknown' => 'Okänt fel', //cpg1.3.0
-  'succ' => 'Uppladdning lyckades', //cpg1.3.0
-  'success' => '%s uppladdningar lyckades.', //cpg1.3.0
-  'add' => 'Klicka på \'Fortsätt\' för att lägga objekten i album.', //cpg1.3.0
-  'failure' => 'Fel vid uppladdning', //cpg1.3.0
-  'f_info' => 'Filinformation', //cpg1.3.0
-  'no_place' => 'Den föregående filen kunde inte placeras.', //cpg1.3.0
-  'yes_place' => 'Den föregående filen placerades.', //cpg1.3.0
-  'max_fsize' => 'Max tillåten filstorlek för uppladdning är %s KB',
+  'title' => 'Ladda upp fil',
+  'custom_title' => 'Anpassat formulär för begäran',
+  'cust_instr_1' => 'Du kan själv välja antal fält för uppladdning. Du kan dock inte välja fler än vad som anges nedan.',
+  'cust_instr_2' => 'Antal fält för begäran',
+  'cust_instr_3' => 'Fält för uppladdning: %s',
+  'cust_instr_4' => 'Fält för uppladdning via URI/URL: %s',
+  'cust_instr_5' => 'Fält för uppladdning via URI/URL:',
+  'cust_instr_6' => 'Fält för uppladdning:',
+  'cust_instr_7' => 'Skriv in antal för varje typ av uppladdningsfält du vill ha vid detta tillfälle. Klicka sedan på "Fortsätt".',
+  'reg_instr_1' => 'Ogiltig funktion för skapande av formulär.',
+  'reg_instr_2' => 'Här kan du ladda upp dina filer med hjälp av fälten nedan. Storleken på filerna du laddar upp får inte överstiga %s KB styck. Zip-filer som laddas upp kommer att fortsätta vara komprimerade, oavsett om du använder "Filuppladdningar" eller "URI/URL-uppladdningar" nedan.',
+  'reg_instr_3' => 'Om du vill att Zip-filer ska packas upp måste du använda uppladdningsfältet som finns i "Packa upp Zip-filer".',
+  'reg_instr_4' => 'När du använder "URI/URL-uppladdning", ange sökvägen till filen så här: http://www.minsajt.com/bilder/exempel.jpg',
+  'reg_instr_5' => 'Klicka på "Fortsätt" när du är färdig.',
+  'reg_instr_6' => 'Uppackade Zip-uppladdningar:',
+  'reg_instr_7' => 'Filuppladdningar:',
+  'reg_instr_8' => 'URI/URL-uppladdningar:',
+  'error_report' => 'Felrapport',
+  'error_instr' => 'Följande uppladdningar stötte på fel:',
+  'file_name_url' => 'Filnamn/URL',
+  'error_message' => 'Felmeddelande',
+  'no_post' => 'Filen laddades inte upp med POST.',
+  'forb_ext' => 'Otillåten filändelse.',
+  'exc_php_ini' => 'Överskriden tillåten filstorlek i php.ini.',
+  'exc_file_size' => 'Överskriden tillåten filstorlek satt av administratören.',
+  'partial_upload' => 'Endast en del laddades upp.',
+  'no_upload' => 'Ingen uppladdning skedde.',
+  'unknown_code' => 'Okänt PHP-uppladdningsfel inträffade.',
+  'no_temp_name' => 'Ingen uppladdning - inget tillfälligt namn.',
+  'no_file_size' => 'Innehåller ingen eller korrupt data',
+  'impossible' => 'Kan inte flyttas.',
+  'not_image' => 'Inte en bild/korrupt bild',
+  'not_GD' => 'Inte en GD-ändelse.',
+  'pixel_allowance' => 'Höjden eller bredden på de uppladdade bilderna överskrider vad som tillåts.', //cpg1.4
+  'incorrect_prefix' => 'Felaktigt prefix för URI/URL',
+  'could_not_open_URI' => 'Kan inte öppna URI.',
+  'unsafe_URI' => 'Säkerhet inte verifierbar.',
+  'meta_data_failure' => 'Fel i metadatan',
+  'http_401' => '401 Unauthorized',
+  'http_402' => '402 Payment Required',
+  'http_403' => '403 Forbidden',
+  'http_404' => '404 Not Found',
+  'http_500' => '500 Internal Server Error',
+  'http_503' => '503 Service Unavailable',
+  'MIME_extraction_failure' => 'MIME-typ kunde inte bestämmas.',
+  'MIME_type_unknown' => 'Okänd MIME-typ',
+  'cant_create_write' => 'Kan inte skapa skrivfil.',
+  'not_writable' => 'Kan inte skriva till skrivfil.',
+  'cant_read_URI' => 'Kan inte läsa URI/URL',
+  'cant_open_write_file' => 'Kan inte öppna URI-skrivfil.',
+  'cant_write_write_file' => 'Kan inte skriva till URI-skrivfil.',
+  'cant_unzip' => 'Kan inte packa upp Zip-fil.',
+  'unknown' => 'Okänt fel',
+  'succ' => 'Uppladdningen lyckades',
+  'success' => '%s uppladdning(ar) lyckades.',
+  'add' => 'Klicka på "Fortsätt" för att lägga till filen/filerna i album.',
+  'failure' => 'Uppladdningen misslyckades',
+  'f_info' => 'Filinformation',
+  'no_place' => 'Den föregående filen kunde inte placeras.',
+  'yes_place' => 'Den föregående filen har placerats.',
+  'max_fsize' => 'Största tillåtna filstorlek är %s KB',
   'album' => 'Album',
-  'picture' => 'Objekt', //cpg1.3.0
-  'pic_title' => 'Objektets titel', //cpg1.3.0
-  'description' => 'Objektets beskrivning', //cpg1.3.0
-  'keywords' => 'Nyckelord (avskiljda med mellanslag)',
-  'err_no_alb_uploadables' => 'Det finns inget album du har behörighet att ladda upp bilder till', //cpg1.3.0
-  'place_instr_1' => 'Lägg objekten i album. Du kan också lägga in information om varje objekt nu.', //cpg1.3.0
-  'place_instr_2' => 'Fler objekt måste placeras i album. Klicka på \'Fortsätt\'.', //cpg1.3.0
-  'process_complete' => 'Du har placerat alla objekten i album.', //cpg1.3.0
+  'picture' => 'Fil',
+  'pic_title' => 'Filtitel',
+  'description' => 'Beskrivning av fil',
+  'keywords' => 'Nyckelord (separerade med mellanslag)<br /><a href="#" onClick="return MM_openBrWindow(\'keyword_select.php\',\'selectKey\',\'width=250, height=400, scrollbars=yes,toolbar=no,status=yes,resizable=yes\')">Infoga från lista</a>', //cpg1.4
+  'keywords_sel' =>'Välj ett nyckelord', //cpg1.4
+  'err_no_alb_uploadables' => 'Det finns inga album där du har behörighet att ladda upp filer',
+  'place_instr_1' => 'Placera filerna i album nu. Du kan även ange relevant information om varje fil nu.',
+  'place_instr_2' => 'Fler filer behöver placeras. Klicka på "Fortsätt".',
+  'process_complete' => 'Alla filer har nu placerats.',
+   'albums_no_category' => 'Album utan kategori', //cpg1.4. //album pulldown mod, added by frogfoot
+  'personal_albums' => '* Personliga album', //cpg1.4 //album pulldown mod, added by frogfoot
+  'select_album' => 'Välj album', //cpg1.4 //album pulldown mod, added by frogfoot
+  'close' => 'Stäng', //cpg1.4
+  'no_keywords' => 'Inga nyckelord finns tillgängliga!', //cpg1.4
+  'regenerate_dictionary' => 'Återskapa ordlista', //cpg1.4
 );
 
 // ------------------------------------------------------------------------- //
@@ -1168,110 +1839,304 @@ if (defined('UPLOAD_PHP')) $lang_upload_php = array(
 // ------------------------------------------------------------------------- //
 
 if (defined('USERMGR_PHP')) $lang_usermgr_php = array(
-  'title' => 'Administrera användare',
-  'name_a' => 'Namn stigande',
-  'name_d' => 'Namn fallande',
-  'group_a' => 'Grupp stigande',
-  'group_d' => 'Grupp fallande',
-  'reg_a' => 'Registreringsdatum stigande',
-  'reg_d' => 'Registreringsdatum fallande',
-  'pic_a' => 'Objekträknare stigande',
-  'pic_d' => 'Objekträknare fallande',
-  'disku_a' => 'Diskanvändande stigande',
-  'disku_d' => 'Diskanvändande fallande',
-  'lv_a' => 'Senaste besök stigande', //cpg1.3.0
-  'lv_d' => 'Senaste besök fallande', //cpg1.3.0
+  'memberlist' => 'Användarlista', //cpg1.4
+  'user_manager' => 'Hantera användare', //cpg1.4
+  'title' => 'Hantera användare',
+  'name_a' => 'Namn, stigande',
+  'name_d' => 'Namn, fallande',
+  'group_a' => 'Grupp, stigande',
+  'group_d' => 'Grupp, fallande',
+  'reg_a' => 'Reg. datum, stigande',
+  'reg_d' => 'Reg. datum, fallande',
+  'pic_a' => 'Antal filer, stigande',
+  'pic_d' => 'Antal filer, fallande',
+  'disku_a' => 'Diskutnyttjande, stigande',
+  'disku_d' => 'Diskutnyttjande, fallande',
+  'lv_a' => 'Senaste besök, stigande',
+  'lv_d' => 'Senaste besök, fallande',
   'sort_by' => 'Sortera användare efter',
-  'err_no_users' => 'Användartabellen är tom!',
-  'err_edit_self' => 'Du kan inte redigera din egen profil här. Gå istället in på \'Min profil\'.',
-  'edit' => 'REDIGERA',
-  'delete' => 'RADERA',
+  'err_no_users' => 'Tabellen med användare är tom!',
+  'err_edit_self' => 'Du kan inte ändra din egen profil, använd "Min profil" för det',
+  'edit' => 'Ändra', //cpg1.4
+  'with_selected' => 'Med vald:', //cpg1.4
+  'delete' => 'Radera', //cpg1.4
+  'delete_files_no' => 'behåll publika filer (men gör dem anonyma)', //cpg1.4
+  'delete_files_yes' => 'radera även pubika filer', //cpg1.4
+  'delete_comments_no' => 'behåll kommentarer (men gör dem anonyma)', //cpg1.4
+  'delete_comments_yes' => 'radera även kommentarer', //cpg1.4
+  'activate' => 'Aktivera', //cpg1.4
+  'deactivate' => 'Avaktivera', //cpg1.4
+  'reset_password' => 'Återställ lösenord', //cpg1.4
+  'change_primary_membergroup' => 'Ändra primär medlemsgrupp', //cpg1.4
+  'add_secondary_membergroup' => 'Lägg till sekundär medlemsgrupp', //cpg1.4
   'name' => 'Användarnamn',
   'group' => 'Grupp',
   'inactive' => 'Inaktiv',
   'operations' => 'Funktioner',
-  'pictures' => 'Objekt', //cpg1.3.0
-  'disk_space' => 'Diskutrymme använt / Tilldelat',
-  'registered_on' => 'Registrerades',
-  'last_visit' => 'Senaste besök', //cpg1.3.0
+  'pictures' => 'Filer',
+  'disk_space_used' => 'Använt diskutrymme', //cpg1.4
+  'disk_space_quota' => 'Kvot för diskutrymme', //cpg1.4
+  'registered_on' => 'Registrerad', //cpg1.4
+  'last_visit' => 'Senaste besök',
   'u_user_on_p_pages' => '%d användare på %d sida(or)',
-  'confirm_del' => 'Är du säker på att du vill RADERA denna användare? \\nAlla hans/hennes objekt och album kommer att raderas.', //js-alert //cpg1.3.0
-  'mail' => 'E-POST',
+  'confirm_del' => 'Är du säker på att du vill RADERA användaren? \\nAlla användarens filer och kommentarer kommer att raderas.', //js-alert
+  'mail' => 'E-post',
   'err_unknown_user' => 'Vald användare finns inte!',
-  'modify_user' => 'Spara användare',
+  'modify_user' => 'Redigera användare',
   'notes' => 'Anmärkningar',
-  'note_list' => '<li>Om du inte vill byta ut ditt nuvarande lösenord, lämna "lösenord"-fältet blankt.',
+  'note_list' => '<li>Om du inte vill ändra lösenord, lämna fältet "Lösenord" tomt.',
   'password' => 'Lösenord',
   'user_active' => 'Användaren är aktiv',
-  'user_group' => 'Användargrupp',
+  'user_group' => 'Användarens gruppmedlemskap',
   'user_email' => 'Användarens e-post',
   'user_web_site' => 'Användarens hemsida',
   'create_new_user' => 'Skapa ny användare',
-  'user_location' => 'Användaren finns i',
+  'user_location' => 'Användarens kommer från',
   'user_interests' => 'Användarens intressen',
-  'user_occupation' => 'Användarens yrke',
-  'latest_upload' => 'Nyligen uppladdade', //cpg1.3.0
-  'never' => 'aldrig', //cpg1.3.0
+  'user_occupation' => 'Användarens sysselsättning',
+  'user_profile1' => '$user_profile1', //cpg1.4
+  'user_profile2' => '$user_profile2', //cpg1.4
+  'user_profile3' => '$user_profile3', //cpg1.4
+  'user_profile4' => '$user_profile4', //cpg1.4
+  'user_profile5' => '$user_profile5', //cpg1.4
+  'user_profile6' => '$user_profile6', //cpg1.4
+  'latest_upload' => 'Senaste uppladdningar',
+  'never' => 'Aldrig',
+  'search' => 'Sök bland användare', //cpg1.4
+  'submit' => 'Skicka', //cpg1.4
+  'search_submit' => 'Utför!', //cpg1.4
+  'search_result' => 'Sökresultat för: ', //cpg1.4
+  'alert_no_selection' => 'Du måste välja minst en användare!', //cpg1.4 //js-alert
+  'password' => 'Lösenord', //cpg1.4
+  'select_group' => 'Välj grupp', //cpg1.4
+  'groups_alb_access' => 'Albumbehörighet beroende på grupp', //cpg1.4
+  'album' => 'Album', //cpg1.4
+  'category' => 'Kategori', //cpg1.4
+  'modify' => 'Ändra?', //cpg1.4
+  'group_no_access' => 'Den här gruppen har inga specifika album tilldelade.', //cpg1.4
+  'notice' => 'Anmärkning', //cpg1.4
+  'group_can_access' => 'Album som bara "%s" kan komma åt', //cpg1.4
 );
 
 // ------------------------------------------------------------------------- //
 // File util.php
 // ------------------------------------------------------------------------- //
 
-if (defined('UTIL_PHP')) $lang_util_php = array(
-  'title' => 'Administrationsvertyg (ändra storlek på bilder)', //cpg1.3.0
-  'what_it_does' => 'Här kan du',
-  'what_update_titles' => 'Uppdatera titlar från filnamnet',
-  'what_delete_title' => 'Radera titlar',
-  'what_rebuild' => 'Återuppbygga miniatyrbilder och storleksändrade bilder',
-  'what_delete_originals' => 'Radera original och ersätta det med en storleksändrad versione',
+if (defined('UTIL_PHP')) {
+$lang_util_desc_php = array(
+'Uppdatera titlar från filnamn', //cpg1.4
+'Radera titlar', //cpg1.4
+'Bygga om tumnaglar och omskalade bilder', //cpg1.4
+'Radera originalbilder och ersätta dem med den omskalade varianten', //cpg1.4
+'Radera originalbilder eller mellanliggande bilder för att spara diskutrymme', //cpg1.4
+'Radera övergivna kommentarer (utan tillhörande fil)', //cpg1.4
+'Uppdatera filstorlekar och dimensioner (om du har ändrat bilder manuellt)', //cpg1.4
+'Återställa antal visningar', //cpg1.4
+'Visa phpinfo', //cpg1.4
+'Uppdatera databasen', //cpg1.4
+'Visa loggfiler', //cpg1.4
+);
+$lang_util_php = array(
+  'title' => 'Administratörsverktyg',
+  'what_it_does' => 'Vad verktyget kan göra',
   'file' => 'Fil',
-  'title_set_to' => 'titel satt till',
-  'submit_form' => 'skicka',
-  'updated_succesfully' => 'uppdatering lyckades',
-  'error_create' => 'fel vid skapande av',
+  'problem' => 'Problem', //cpg1.4
+  'status' => 'Status', //cpg1.4
+  'title_set_to' => '- titel bestäms till',
+  'submit_form' => 'Skicka',
+  'updated_succesfully' => 'Uppdateringen klar',
+  'error_create' => 'FEL vid skapande',
   'continue' => 'Bearbeta fler bilder',
-  'main_success' => 'Filen %s används nu som huvudobjekt', //cpg1.3.0
-  'error_rename' => 'Misslyckades att byta namn från %s till %s',
+  'main_success' => 'Filen %s används som huvudfil',
+  'error_rename' => 'Kan inte döpa om %s till %s',
   'error_not_found' => 'Filen %s hittades inte',
-  'back' => 'tillbaka till huvudsidan',
-  'thumbs_wait' => 'Uppdaterar miniatyrer och/eller storleksändrade bilder. Var god vänta...',
-  'thumbs_continue_wait' => 'Fortsätter att uppdatera miniatyrer och/eller storleksändrade bilder...',
+  'back' => 'Tillbaka',
+  'thumbs_wait' => 'Uppdaterar tumnaglar och/eller omskalade bilder, var god vänta...',
+  'thumbs_continue_wait' => 'Fortsätt att uppdatera tumnaglar och/eller omskalade bilder...',
   'titles_wait' => 'Uppdaterar titlar, var god vänta...',
   'delete_wait' => 'Raderar titlar, var god vänta...',
-  'replace_wait' => 'Raderar original och ersätter dem med storleksförändrade bilder, var god vänta....',
+  'replace_wait' => 'Raderar original och ersätter dem med omskalade bilder, var god vänta...',
   'instruction' => 'Snabbinstruktioner',
   'instruction_action' => 'Välj funktion',
   'instruction_parameter' => 'Sätt parametrar',
   'instruction_album' => 'Välj album',
-  'instruction_press' => 'Tryck %s',
-  'update' => 'Uppdatera miniatyrer och/eller storleksförändra bilder',
+  'instruction_press' => 'Tryck på %s',
+  'update' => 'Uppdatera tumnaglar och/eller omskalade bilder',
   'update_what' => 'Vad ska uppdateras',
-  'update_thumb' => 'Enbart miniatyrer',
-  'update_pic' => 'Enbart storleksförändrade bilder',
-  'update_both' => 'Både miniatyrer och storleksförändrade bilder',
-  'update_number' => 'Antal bearbetade bilder per klick',
-  'update_option' => '(Försök välja ett lägre värde om du får timeout-problem)',
-  'filename_title' => 'Filnamn &rArr; Objektets titel', //cpg1.3.0
+  'update_thumb' => 'Bara tumnaglar',
+  'update_pic' => 'Bara omskalade bilder',
+  'update_both' => 'Både tumnaglar och omskalade bilder',
+  'update_number' => 'Antal behandlade bilder per klick: ',
+  'update_option' => '(Försök med att minska antalet om du får problem med "timeout")',
+  'filename_title' => 'Filnamn &rArr; filtitel',
   'filename_how' => 'Hur ska filnamnet ändras',
-  'filename_remove' => 'Ta bort .jpg-ändelsen och ersätt _ (underscore) med mellanslag',
+  'filename_remove' => 'Ta bort .jpg-ändelsen och byt ut _ (understreck) med mellanslag',
   'filename_euro' => 'Ändra 2003_11_23_13_20_20.jpg till 23/11/2003 13:20',
   'filename_us' => 'Ändra 2003_11_23_13_20_20.jpg till 11/23/2003 13:20',
   'filename_time' => 'Ändra 2003_11_23_13_20_20.jpg till 13:20',
-  'delete' => 'Radera objekttitlar eller objekt i originalstorle', //cpg1.3.0
-  'delete_title' => 'Radera objekttitlar', //cpg1.3.0
-  'delete_original' => 'Radera originalbildstorlek',
-  'delete_replace' => 'Radera originalbilder och ersätter dem med storleksförändrade versioner',
+  'delete' => 'Radera filtitlar och originalbilder',
+  'delete_title' => 'Radera filtitlar',
+  'delete_title_explanation' => 'Alla titlar i valt album kommer att raderas.', //cpg1.4
+  'delete_original' => 'Radera bilder i originalstorlek',
+  'delete_original_explanation' => 'Raderar bilder i full storlek.', //cpg1.4
+  'delete_intermediate' => 'Radera mellanliggande bilder', //cpg1.4
+  'delete_intermediate_explanation' => 'Raderar mellanliggande (normalstora) bilder.<br />Använd denna funktion för att frigöra diskutrymme om du har avaktiverat "Skapa mellanliggande bilder" i konfigurationen efter att du redan lagt till bilder.', //cpg1.4
+  'delete_replace' => 'Raderar originalbilderna och byter ut dem mot omskalade versioner.',
+  'titles_deleted' => 'Alla titlar i valt album är raderade', //cpg1.4
+  'deleting_intermediates' => 'Raderar mellanliggande bilder, var god vänta...', //cpg1.4
+  'searching_orphans' => 'Söker efter övergivna poster, var god vänta...', //cpg1.4
   'select_album' => 'Välj album',
-  'delete_orphans' => 'Radera kommentarer som inte längre är länkade till någon bild (fungerar i alla album)', //cpg1.3.0
-  'orphan_comment' => 'Kommentarer som inte är länkade till något objekt hittade', //cpg1.3.0
-  'delete' => 'Radera', //cpg1.3.0
-  'delete_all' => 'Radera alla', //cpg1.3.0
-  'comment' => 'Kommentar: ', //cpg1.3.0
-  'nonexist' => 'kopplad till ej existerande fil # ', //cpg1.3.0
-  'phpinfo' => 'Visa phpinfo', //cpg1.3.0
-  'update_db' => 'Uppdatera databas', //cpg1.3.0
-  'update_db_explanation' => 'Om du har ersatt Coppermineobjekt, ändrat dem eller uppgraderat från en äldre version av Coppermine så kör Uppdatera databas. Detta kommer att skapa nödvändiga tabeller och ändra nödvändiga konfigurationer i din Copperminedatabas.', //cpg1.3.0
+  'delete_orphans' => 'Radera kommentarer för saknade filer', //cpg1.4
+  'delete_orphans_explanation' => 'Detta låter dig identifiera och ta bort kommentarer som inte längre hör till någon fil i galleriet.<br />Funktionen går igenom alla album.', //cpg1.4
+  'refresh_db' => 'Ladda om information om filernas filstorlek och dimensioner.', //cpg1.4
+  'refresh_db_explanation' => 'Detta kommer att uppdatera filstorlek och dimensioner. Använd detta om en användares diskkvot är felaktig eller om du har ändrat filer manuellt.', //cpg1.4
+  'reset_views' => 'Nollställ visningar', //cpg1.4
+  'reset_views_explanation' => 'Sätter alla visningar till noll i valt album.', //cpg1.4
+  'orphan_comment' => 'Övergivna kommentarer hittade',
+  'delete' => 'Radera',
+  'delete_all' => 'Radera alla',
+  'delete_all_orphans' => 'Radera alla övergivna?', //cpg1.4
+  'comment' => 'Kommentar: ',
+  'nonexist' => 'tillhör icke-existerande fil # ',
+  'phpinfo' => 'Visa phpinfo',
+  'phpinfo_explanation' => 'Innehåller teknisk information om din server.<br /> - Du kan bli frågad om information härifrån om du behöver support.', //cpg1.4
+  'update_db' => 'Uppdatera databasen',
+  'update_db_explanation' => 'Om du har ersatt filer i Coppermine, lagt till någon modifikation eller uppgraderat från en tidigare version, var noga med att göra en uppdatering av databasen en gång. Det kommer att skapa de nödvändiga databastabellerna och konfigurera dem.',
+  'view_log' => 'Visa loggfiler', //cpg1.4
+  'view_log_explanation' => 'Coppermine kan hålla reda på olika funktioner användarna utför. Du kan bläddra igenom de loggarna om du har aktiverat loggning i <a href="admin.php">konfigurationen</a>.', //cpg1.4
+  'versioncheck' => 'Kontrollera versioner', //cpg1.4
+  'versioncheck_explanation' => 'Kontrollerar versionen på dina filer för att se om du har ersatt alla filer efter en uppdatering eller om Coppermines källfiler har uppdaterats efter utgivandet av en uppdatering.', //cpg1.4
+  'bridgemanager' => 'Länkningsguide', //cpg1.4
+  'bridgemanager_explanation' => 'Aktivera/avaktivera länkning med andra program (t.ex. ditt forum).', //cpg1.4
+);
+}
+
+// ------------------------------------------------------------------------- //
+// File versioncheck.php //cpg1.4
+// ------------------------------------------------------------------------- //
+
+if (defined('VERSIONCHECK_PHP')) $lang_versioncheck_php = array(
+  'title' => 'Versionskontroll', //cpg1.4
+  'what_it_does' => 'Den här sidan är till för de som har uppdaterat sin installation av Coppermine. Sidan går igenom filerna på din webbserver och försöker bestämma om de är samma som de som finns i online-filutrymmet på http://coppermine.sourceforge.net. På så sätt ser du förutom dina egna filer även alla filer som det var meningen att du skulle uppdatera.<br /> Allt som visas i rött behöver uppdateras. Det som visas i gult behöver kontrolleras. Det som visas i grönt (eller din förvalda färg) är OK.<br />Klicka på hjälpikonerna för ytterligare information.', //cpg1.4
+  'online_repository_unable' => 'Kan inte ansluta till online-filutrymmet', //cpg1.4
+  'online_repository_noconnect' => 'Coppermine kunde inte ansluta till online-filutrymmet. Det kan ha två orsaker:', //cpg1.4
+  'online_repository_reason1' => 'Online-filutrymmet är tillfälligt nere - kontrollera om din webbläsare kan hitta denna sida: %s - kan du inte ansluta till sidan så försök igen senare.', //cpg1.4
+  'online_repository_reason2' => 'PHP på din webbserver är konfigurerat med %s avstängt (som standard är det påslaget). Om det är du som administrerar webbservern, slå på det i <i>php.ini</i> (eller tillåt åtminstone att det blir åsidosatt av %s). Om du har galleriet på ett webbhotell så måste du antagligen leva med faktumet att du inte kan jämföra dina filer med de i online-filutrymmet. Den här sidan kommer bara att visa de filer som kom med ditt installationsfil - uppdateringar kommer inte att visas.', //cpg1.4
+  'online_repository_skipped' => 'Anslutning till filutrymmet hoppades över', //cpg1.4
+  'online_repository_to_local' => 'Sidan håller på att bestämma förvalda filer i din versionsfil. Det kan vara så att det du ser inte stämmer om du har uppdaterat och inte laddat upp alla filer. Ändringar gjorda efter släppet kommer heller inte att tas med.', //cpg1.4
+  'local_repository_unable' => 'Kan inte ansluta till filurymmet på din server', //cpg1.4
+  'local_repository_explanation' => 'Coppermine kunde inte ansluta till filen för filutrymme %s på din webbserver. Det betyder antagligen att du inte laddat upp den till servern. Gör det och försök köra denna sida igen (ladda om sidan).<br />Om felet kvarstår kan din webbserver ha avaktiverat delen med <a href="http://www.php.net/manual/en/ref.filesystem.php">PHP:s funktion för filsystem</a> helt och hållet. Om så är fallet, kan du helt enkelt inte använda detta verktyg, tyvärr.', //cpg1.4
+  'coppermine_version_header' => 'Installerad version av Coppermine', //cpg1.4
+  'coppermine_version_info' => 'Du har installerat: %s', //cpg1.4
+  'coppermine_version_explanation' => 'Om du tror detta är helt fel och du kör en senare version av Coppermine har du antagligen inte laddat upp den senaste versionen av filen <i>include/init.inc.php</i>.', //cpg1.4
+  'version_comparison' => 'Versionsjämförelse', //cpg1.4
+  'folder_file' => 'Fil/mapp', //cpg1.4
+  'coppermine_version' => 'Coppermineversion', //cpg1.4
+  'file_version' => 'Filversion', //cpg1.4
+  'webcvs' => 'Webb-CVS', //cpg1.4
+  'writable' => 'Skrivbar', //cpg1.4
+  'not_writable' => 'Ej skrivbar', //cpg1.4
+  'help' => 'Hjälp', //cpg1.4
+  'help_file_not_exist_optional1' => 'Fil/mapp finns inte', //cpg1.4
+  'help_file_not_exist_optional2' => 'Filen/mappen %s hittades inte på din webbserver. Även om det är frivilligt bör du ladda upp den (med en FTP-klient) till din webbserver om du har problem.', //cpg1.4
+  'help_file_not_exist_mandatory1' => 'Fil/mapp finns inte', //cpg1.4
+  'help_file_not_exist_mandatory2' => 'Filen/mappen %s hittades inte på din webbserver, trots att den är nödvändig. Ladda upp den till din server med en FTP-klient.', //cpg1.4
+  'help_no_local_version1' => 'Ingen lokal filversion', //cpg1.4
+  'help_no_local_version2' => 'Sidan kan inte utläsa en lokal filversion - din fil är antingen för gammal eller har blivit ändrad så att header-informationen försvunnit. Det rekommenderas att du uppdaterar filen.', //cpg1.4
+  'help_local_version_outdated1' => 'Lokal version för gammal', //cpg1.4
+  'help_local_version_outdated2' => 'Din version av denna fil verkar vara från en äldre version av Coppermine (du har antagligen uppdaterat). Se till att denna fil också blir uppdaterad.', //cpg1.4
+  'help_local_version_na1' => 'Kan inte utläsa CVS-versionen', //cpg1.4
+  'help_local_version_na2' => 'Sidan kan inte avgöra vilken CVS-version filen på din webbserver har. Du bör uppdatera filen från din installationsfil.', //cpg1.4
+  'help_local_version_dev1' => 'Utvecklarversion', //cpg1.4
+  'help_local_version_dev2' => 'Filen på din webbserver verkar vara nyare än din version av Coppermine. Antingen använder du en utvecklarversion (vilket du bara ska göra om du vet vad du gör) eller så har du uppdaterat Coppermine och inte laddat upp include/init.inc.php.', //cpg1.4
+  'help_not_writable1' => 'Mappen är inte skrivbar', //cpg1.4
+  'help_not_writable2' => 'Ändra rättigheterna (CHMOD) så att sidan kan skriva till mappen %s och allt i den.', //cpg1.4
+  'help_writable1' => 'Mappen är skrivbar', //cpg1.4
+  'help_writable2' => 'Mappen %s är skrivbar. Detta är en onödig risk, Coppermine behöver bara läs- och exekveringsrättigheter.', //cpg1.4
+  'help_writable_undetermined' => 'Coppermine kunde inte avgöra om mappen är skrivbar eller inte.', //cpg1.4
+  'your_file' => 'Din fil', //cpg1.4
+  'reference_file' => 'Referensfil', //cpg1.4
+  'summary' => 'Summering', //cpg1.4
+  'total' => 'Antal filer/mappar kontrollerade', //cpg1.4
+  'mandatory_files_missing' => 'Nödvändiga filer som saknas', //cpg1.4
+  'optional_files_missing' => 'Frivilliga filer som fattas', //cpg1.4
+  'files_from_older_version' => 'Överblivna filer från gammal version av Coppermine', //cpg1.4
+  'file_version_outdated' => 'Filer med gammal version', //cpg1.4
+  'error_no_data' => 'Sidan misslyckades, kunde inte samla in någon information.', //cpg1.4
+  'go_to_webcvs' => 'Gå till %s', //cpg1.4
+  'options' => 'Val', //cpg1.4
+  'show_optional_files' => 'Visa frivilliga filer/mappar', //cpg1.4
+  'show_mandatory_files' => 'Visa nödvändiga filer', //cpg1.4
+  'show_file_versions' => 'Visa filversioner', //cpg1.4
+  'show_errors_only' => 'Visa bara filer/mappar med fel', //cpg1.4
+  'show_permissions' => 'Visa rättigheter för mappar', //cpg1.4
+  'show_condensed_output' => 'Visa koncentrerat innehåll (för enklare skärmdumpar)', //cpg1.4
+  'coppermine_in_webroot' => 'Coppermine är installerat i webbrooten', //cpg1.4
+  'connect_online_repository' => 'Försök ansluta till filutrymmet', //cpg1.4
+  'show_additional_information' => 'Visa ytterligare innehåll', //cpg1.4
+  'no_webcvs_link' => 'Visa inte länk till CVS', //cpg1.4
+  'stable_webcvs_link' => 'Visa länk till CVS stabila gren', //cpg1.4
+  'devel_webcvs_link' => 'Visa länk till CVS utvecklargren', //cpg1.4
+  'submit' => 'Utför ändringar/uppdatera', //cpg1.4
+  'reset_to_defaults' => 'Återställ förinställda värden', //cpg1.4
 );
 
+// ------------------------------------------------------------------------- //
+// File view_log.php  //cpg1.4
+// ------------------------------------------------------------------------- //
+
+if (defined('VIEWLOG_PHP')) $lang_viewlog_php = array(
+  'delete_all' => 'Radera alla loggar', //cpg1.4
+  'delete_this' => 'Radera denna logg', //cpg1.4
+  'view_logs' => 'Visa loggar', //cpg1.4
+  'no_logs' => 'Inga loggar skapade.', //cpg1.4
+);
+
+
+// ------------------------------------------------------------------------- //
+// File xp_publish.php //cpg1.4
+// ------------------------------------------------------------------------- //
+
+if (defined('XP_PUBLISH_PHP')) {
+
+$lang_xp_publish_client = <<<EOT
+<h1>Guide till klient för XP Webbpublicering</h1><p>Den hör modulen låter dig använda <b>Windows XP</b> guide för webbpublicering tillsammans med Coppermine.</p><p>Koden är baserad på en artikel av
+EOT;
+
+$lang_xp_publish_required = <<<EOT
+<h2>Vad som behövs</h2><ul><li>Windows XP för att ha tillgång till guiden.</li><li>En fungerande installation av Coppermine <b>med fungerande uppladdning via webb.</b></li></ul><h2>Hur installationen sker på klientsidan.</h2><ul><li>Högerklicka på
+EOT;
+
+$lang_xp_publish_select = <<<EOT
+Välj &quot;Spara som...&quot;. Spara filen på din hårddisk. När du sparar filen se till att det föreslagna namnet är <b>cpg_###.reg</b> (där ### är en numerisk tidsangivelse). Ändra till det namnet om nödvändigt (lämna nummerna intakt). När filen är nedladdad, dubbelklicka på den för att registrera din server med guiden.</li></ul>
+EOT;
+
+$lang_xp_publish_testing = <<<EOT
+<h2>Testa</h2><ul><li>I Windows Explorer, välj dina filer och klicka på <b>Publicera xxx på webben</b> i vänster panel.</li><li>Bekräfta ditt val av filer. Klicka på <b>Nästa</b>.</li><li>I listan över tjänster som visas, välj den för dit fotogalleri (den har samma namn som ditt galleri). Om tjänsten inte visas, kontrollera att du installerat <b>cpg_pub_wizard.reg</b> som beskrivits ovan.</li><li>Skriv in dina loginuppgifter om det behövs.</li><li>Välj album för dina bilder eller skapa ett nytt.</li><li>Klicka på <b>nästa</b>. Uppladdningen av dina bilder påbörjas.</li><li>När det är klart, kontrollera ditt galleri så att bilderna har lagts till som de skulle.</li></ul>
+EOT;
+
+$lang_xp_publish_notes = <<<EOT
+<h2>Anmärkningar:</h2><ul><li>När uppladdningen har startat kan guiden inte visa några felmeddelanden, därför kan du inte veta om uppladdningen har lyckats eller inte förrän du tittat i ditt galleri.</li><li>Om uppladdningen misslyckas, aktivera &quot;Debugläge&quot; på konfigurationssidan, försök sedan ladda upp en bild i taget och granska felmeddelandena i filen
+EOT;
+
+$lang_xp_publish_flood = <<<EOT
+som finns i Coppermine-mappen på webbservern.</li><li>För att undvika att galleriet blir <i>översvämmat (flooded)</i> av bilder som laddas upp med guiden kan bara <b>administratörer</b> och <b>användare som står som ägare till albumet</b> använda denna guide.</li>
+EOT;
+
+
+
+$lang_xp_publish_php = array(
+  'title' => 'Coppermine - XP Webbpubliceringsguide', //cpg1.4
+  'welcome' => 'Välkommen <b>%s</b>,', //cpg1.4
+  'need_login' => 'Du behöver logga in på galleriet med din webbläsare innan du kan använda denna guide.<p/><p>När du loggar in, glöm inte att kryssa i <b>Kom ihåg mig</b>-rutan om den finns.', //cpg1.4
+  'no_alb' => 'Det finns inga album där du har behörighet att ladda upp bilder med denna guide.', //cpg1.4
+  'upload' => 'Ladda upp dina bilder till ett befintligt album', //cpg1.4
+  'create_new' => 'Skapa ett nytt album för dina bilder', //cpg1.4
+  'album' => 'Album', //cpg1.4
+  'category' => 'Kategori', //cpg1.4
+  'new_alb_created' => 'Ditt nya album &quot;<b>%s</b>&quot; har skapats.', //cpg1.4
+  'continue' => 'Tryck på &quot;Nästa&quot; för att börja ladda upp bilderna', //cpg1.4
+  'link' => 'den här länken', //cpg1.4
+);
+}
 ?>
