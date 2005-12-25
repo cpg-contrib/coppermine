@@ -300,6 +300,8 @@ $lang_theme_selection = array(
 
 $lang_version_alert = array(
   'version_alert' => 'Unsupported version!', //cpg1.4
+  'security_alert' => 'Security Alert!', //cpg1.4.3
+  'relocate_exists' => 'Remove the <a href="http://coppermine-gallery.net/forum/index.php?topic=24217.0" target=_blank>relocate_server.php</a> file from your website!',
   'no_stable_version' => 'You are running Coppermine %s (%s) which is only meant for very experienced users - this version comes without support nor any warranties. Use it at your own risk or downgrade to the latest stable version if you need support!', //cpg1.4
   'gallery_offline' => 'The gallery is currently offline and will be only visible for you as admin. Don\'t forget to switch it back online after finishing maintenance.', //cpg1.4
 );
