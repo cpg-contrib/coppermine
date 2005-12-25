@@ -319,4 +319,5 @@ Added fix for showing correct number of tabs and pages when viewing lastalb meta
 Fixed moved title after setting the charset - 02 December 2005, Donnoman
 Fixed XHTML compliance and charset missing from picEditor.php - 02, December 2005, Donnoman
 Fixed selecting sample theme from admin.php - 10, December 2005, Donnoman
-Added a security alert for the admin if relocate_server.php exists -  10, December 25, Donnoman
+Added a security alert for the admin if relocate_server.php exists -  25, December 2005, Donnoman
+Fixed Duplicate keys in $lang_picinfo in english.php - 25, December 2005, Donnoman
