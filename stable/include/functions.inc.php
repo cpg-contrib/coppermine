@@ -2613,7 +2613,7 @@ function cpg_alert_dev_version() {
             print '</td></tr>';
             endtable();
             print '<br />';
-            $return = ob_get_contents();
+            $return .= ob_get_contents();
             ob_end_clean();            
         } 
         // check if gallery is offline
