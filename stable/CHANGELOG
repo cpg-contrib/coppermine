@@ -321,3 +321,4 @@ Fixed XHTML compliance and charset missing from picEditor.php - 02, December 200
 Fixed selecting sample theme from admin.php - 10, December 2005, Donnoman
 Added a security alert for the admin if relocate_server.php exists -  25, December 2005, Donnoman
 Fixed Duplicate keys in $lang_picinfo in english.php - 25, December 2005, Donnoman
+Removed cpg1.3.x language files - 26, December 2005, GauGau
