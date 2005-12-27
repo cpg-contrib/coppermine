@@ -3040,7 +3040,7 @@ $return = '
 1.4.3|upload.php|1.4.3|1.19|mandatory|r@
 1.4.3|usermgr.php|1.4.3|1.11|mandatory|r@
 1.4.3|util.php|1.4.3|1.18|mandatory|r@
-1.4.3|versioncheck.php|1.4.3|1.19|mandatory|r@
+1.4.3|versioncheck.php|1.4.3|1.22|mandatory|r@
 1.4.3|viewlog.php|1.4.3|1.2|mandatory|r@
 1.4.3|xp_publish.php|1.4.3|1.13|mandatory|r@
 1.4.3|zipdownload.php|1.4.3|1.9|mandatory|r@
