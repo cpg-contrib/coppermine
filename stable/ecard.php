@@ -283,9 +283,9 @@ echo <<<EOT
         </tr>
         <tr>
                 <td colspan="3" align="center" class="tablef">
-                        <input type="submit" class="button" name="preview" title="preview" value="{$lang_ecard_php['preview_button']}" />
+                        <input type="submit" class="button" name="preview" title="{$lang_ecard_php['preview_button']}" value="{$lang_ecard_php['preview_button']}" />
                                                                                                 &nbsp;&nbsp;
-                        <input type="submit" class="button" name="submit" title="submit" value="{$lang_ecard_php['submit_button']}" />
+                        <input type="submit" class="button" name="submit" title="{$lang_ecard_php['submit_button']}" value="{$lang_ecard_php['submit_button']}" />
                         </form>
                 </td>
         </tr>
