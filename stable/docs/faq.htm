@@ -162,7 +162,9 @@ For credits and copyrights, see <a href="index.htm#credits">Coppermine documenta
 <li><a class="content" href="#deleteIntermediates">I don't use the <b>intermediate pictures</b> anymore. How can I <b>delete</b> them to gain disk space?</a></li>
 <li><a class="content" href="#howAlbumsFolderWork">How do <b>albums and folders</b> work in coppermine?</a></li>
 <li><a class="content" href="#howMoveAlbum">How can I <b>move albums from one category to another</b>?</a></li>
-<li><a class="content" href="#moveGallery">Move gallery</a></li>
+<li><a class="content" href="#moveGallery">How do I <b>move a gallery</b>?</a></li>
+<li><a class="content" href="#oneFileMultipleAlbums">How do I <b>show the same file in multiple albums</b>?</a></li>
+
 </ul>
 <li><b>Add-ons / Modifications / Hacks</b></li>
 <ul class="nomargin">
@@ -651,8 +653,13 @@ Greg</blockquote></p></td></tr></table><br /></p><br /><div class="totop">[<a hr
 <li>restore the mySQL table by running the queries of the dump files you created in step 2</li>
 <li>test-drive your coppermine gallery - you should be done</li>
 </ul>
+<br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
 
-<br />&nbsp;<br />
+<a name="oneFileMultipleAlbums"></a>
+<h3>How do I <b>show the same file in multiple albums</b>?</h3>
+<p>The <b>Album Keyword</b> in <a href="http://coppermine-gallery.net/demo/cpg14x/docs/index.htm#album_prop">Album Properties</a> is used to link images from one album into another. Using this method, files/images can be displayed in various albums while the file itself need only exists in one album on your webserver.  You simply upload a file to one album as you would normally do, then assign one or more keywords to the file. The keyword function reads blank spaces between words as a 'break' and assumes that these words are separate words.  If you must use phrases for your keywords, connect them with an underscore or by using the ascii space holder ctrl+Alt+0160 (NOTE: the latter option only works with latin based character sets.)  Each album can only have ONE (1) keyword or keyword phrase.  All pictures residing in different albums that you would like to be displayed in this album must have the same keyword or keyword phrase in their respective keyword fields.  Pictures, unlike albums, can have multiple keywords or keyword phrases separated by spaces. This provides you with the option to display pictures in many albums.  For the visitor of these albums, it will appear as if the file/image had been uploaded to each. </p>
+<br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr />
+
 <h2>Add-ons / Modifications / Hacks</h2><a name="letUserSelectTheme"></a>
 <a name="changeOrderEdit"></a>
 <h3>How can I change the order of the pics <u>when <b>editing</b> them</u>?</h3>
