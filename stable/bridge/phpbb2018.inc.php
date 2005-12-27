@@ -173,6 +173,7 @@ class phpbb2018_udb extends core_udb {
 			$sessiondata = unserialize($_COOKIE[$this->cookie_name.'_data']);
 			$cookieid = $sessiondata['userid'] > 1 ? intval($sessiondata['userid']) : 0;
 			$cookiepass = (isset($sessiondata['autologinid'])) ? addslashes($sessiondata['autologinid']) : '';
+			if (!$cookiepass) return false;
 			$sql = "SELECT u.user_id, u.user_password, u.user_level FROM {$this->sessionskeystable} AS s 
 							INNER JOIN {$this->usertable} AS u ON s.user_id = u.user_id WHERE u.user_id = '$cookieid' AND u.user_active = 1 AND s.key_id = MD5('$cookiepass')";
 			$result = cpg_db_query($sql, $this->link_id);
