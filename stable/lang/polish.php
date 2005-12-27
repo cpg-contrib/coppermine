@@ -53,13 +53,13 @@ $lang_check_uncheck_all = 'zaznacz/odznacz wszytskie'; //cpg1.4
 
 // The various date formats
 // See http://www.php.net/manual/en/function.strftime.php to define the variable below
-$album_date_fmt =    '%B %d, %Y';
+$album_date_fmt =    '%d %B %Y';
 $lastcom_date_fmt =  '%m/%d/%y at %H:%M';
-$lastup_date_fmt = '%B %d, %Y';
-$register_date_fmt = '%B %d, %Y';
-$lasthit_date_fmt = '%B %d, %Y at %I:%M %p';
-$comment_date_fmt =  '%B %d, %Y at %I:%M %p';
-$log_date_fmt = '%B %d, %Y at %I:%M %p'; //cpg1.4
+$lastup_date_fmt = '%d %B %Y';
+$register_date_fmt = '%d %B %Y';
+$lasthit_date_fmt = '%d %B %Y o %H:%M';
+$comment_date_fmt =  '%d %B %Y o %H:%M';
+$log_date_fmt = '%d %B %Y o %H:%M'; //cpg1.4
 // For the word censor
 $lang_bad_words = array('*fuck*', 'asshole', 'assramer', 'bitch*', 'c0ck', 'clits', 'Cock', 'cum', 'cunt*', 'dago', 'daygo', 'dego', 'dick*', 'dildo', 'fanculo', 'feces', 'foreskin', 'Fu\(*', 'fuk*', 'honkey', 'hore', 'injun', 'kike', 'lesbo', 'masturbat*', 'motherfucker', 'nazis', 'nigger*', 'nutsack', 'penis', 'phuck', 'poop', 'pussy', 'scrotum', 'shit', 'slut', 'titties', 'titty', 'twaty', 'wank*', 'whore', 'wop*');
 
@@ -110,6 +110,8 @@ $lang_bbcode_help = 'Możesz używać następujących tagów bbcode: <li>[b]Bold
 // ------------------------------------------------------------------------- //
 
 $lang_main_menu = array(
+  'home_title' => 'Przejdź do strony domowej',
+  'home_lnk' => 'Strona domowa',
   'alb_list_title' => 'Przejdź do listy albumów',
   'alb_list_lnk' => 'Albumy',
   'my_gal_title' => 'Do prywatnej galerii',
@@ -968,9 +970,9 @@ $lang_picinfo = array(
   'iptcSubCategories'=>'Podkategorie IPTC', 
   'Date Added' => 'Data dodania', //cpg1.4
   'URL' => 'URL', //cpg1.4
-  'Make' => 'Zrobione', //cpg1.4
+  'Make' => 'Producent', //cpg1.4
   'Model' => 'Model', //cpg1.4
-  'DateTime' => 'Data Czas', //cpg1.4
+  'DateTime' => 'Data i czas umieszczenia', //cpg1.4
   'DateTimeOriginal' => 'Data zrobienia', //cpg1.4
   'ISOSpeedRatings'=>'ISO', //cpg1.4
   'MaxApertureValue' => 'Maks. przysłona', //cpg1.4
@@ -978,7 +980,7 @@ $lang_picinfo = array(
   'ColorSpace' => 'Przestrzeń barw', //cpg1.4
   'ExposureProgram' => 'Tryb ekspozycji', //cpg1.4
   'Flash' => 'Lampa błyskowa', //cpg1.4
-  'MeteringMode' => 'Tryb pomiary światła', //cpg1.4
+  'MeteringMode' => 'Tryb pomiaru światła', //cpg1.4
   'ExposureTime' => 'Czas ekspozycji', //cpg1.4
   'ExposureBiasValue' => 'Korekta ekspozycji', //cpg1.4
   'ImageDescription' => ' Opis zdjęcia', //cpg1.4
@@ -990,10 +992,10 @@ $lang_picinfo = array(
   'YCbCrPositioning' => 'YCbCrPositioning', //cpg1.4
   'ExifOffset' => 'Offset EXIF', //cpg1.4
   'IFD1Offset' => 'Offset IFD1', //cpg1.4
-  'FNumber' => 'FNumber', //cpg1.4
+  'FNumber' => 'Przysłona', //cpg1.4
   'ExifVersion' => 'Wersja EXIF', //cpg1.4
-  'DateTimeOriginal' => 'DateTime oryginału', //cpg1.4
-  'DateTimedigitized' => 'DateTime digitalizacji', //cpg1.4
+  'DateTimeOriginal' => 'Data oryginału', //cpg1.4
+  'DateTimedigitized' => 'Data digitalizacji', //cpg1.4
   'ComponentsConfiguration' => 'Konfiguracja składników', //cpg1.4
   'CompressedBitsPerPixel' => 'Kompresja bitów na piksel', //cpg1.4
   'LightSource' => 'Źródło światła', //cpg1.4
