@@ -3061,7 +3061,7 @@ $return = '
 1.4.3|bridge/mybb.inc.php|1.4.3|1.3|optional|r@
 1.4.3|bridge/phorum.inc.php|1.4.3|1.3|optional|r@
 1.4.3|bridge/phpbb.inc.php|1.4.3|1.17|optional|r@
-1.4.3|bridge/phpbb2018.inc.php|1.4.3|1.8|optional|r@
+1.4.3|bridge/phpbb2018.inc.php|1.4.3|1.10|optional|r@
 1.4.3|bridge/phpbb22.inc.php|1.4.3|1.3|optional|r@
 1.4.3|bridge/punbb115.inc.php|1.4.3|1.3|optional|r@
 1.4.3|bridge/punbb12.inc.php|1.4.3|1.4|optional|r@
