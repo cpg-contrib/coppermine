@@ -1393,15 +1393,17 @@ function theme_admin_mode_menu()
 
     // Populate the admin menu only if empty to avoid template errors
     if ($admin_menu == '') {
-        if ($CONFIG['log_ecards'] == 0) {
-            template_extract_block($template_gallery_admin_menu, 'log_ecards');
-        }
-
-        if (cpg_get_pending_approvals() == 0) {
-             template_extract_block($template_gallery_admin_menu, 'admin_approval');
-        }
 
         if (GALLERY_ADMIN_MODE) {
+			
+			if ($CONFIG['log_ecards'] == 0) {
+				template_extract_block($template_gallery_admin_menu, 'log_ecards');
+			}
+
+			if (cpg_get_pending_approvals() == 0) {
+				template_extract_block($template_gallery_admin_menu, 'admin_approval');
+			}
+			
             // do the docs exist on the webserver?
             if (file_exists('docs/index.htm') == true) {
                 $documentation_href = 'docs/index.htm';
