@@ -319,3 +319,6 @@ Added fix for showing correct number of tabs and pages when viewing lastalb meta
 Fixed moved title after setting the charset - 02 December 2005, Donnoman
 Fixed XHTML compliance and charset missing from picEditor.php - 02, December 2005, Donnoman
 Fixed selecting sample theme from admin.php - 10, December 2005, Donnoman
+Removed cpg1.3.x language files - 26, December 2005, GauGau
+Internationalized ecard button titles - 27, December 2005, TranzNDance
+Fixed issue with topn images not working in keyworded albums, provided by donnoman - 27, December 2005, TranzNDance
