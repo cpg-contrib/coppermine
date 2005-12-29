@@ -248,6 +248,14 @@ if (!is_numeric($album) && $cat) { // Meta albums, we need to restrict the album
 get_meta_album_set($cat,$ALBUM_SET);
 $META_ALBUM_SET = $ALBUM_SET; //displayimage uses $ALBUM_SET but get_pic_data in functions now uses $META_ALBUM_SET
 
+//attempt to fix topn images for keyworded albums
+if ($cat < 0) {
+    $result = cpg_db_query("SELECT category, title, aid, keyword, description, alb_password_hint FROM {$CONFIG['TABLE_ALBUMS']} WHERE aid='" . (- $cat) . "'");
+    if (mysql_num_rows($result) > 0) {
+        $CURRENT_ALBUM_DATA = mysql_fetch_array($result);
+        $CURRENT_ALBUM_KEYWORD = $CURRENT_ALBUM_DATA['keyword'];
+    }
+}
 // Retrieve data for the current picture
 if ($pos < 0 || $pid > 0) {
     $pid = ($pos < 0) ? -$pos : $pid;
@@ -305,8 +313,8 @@ if (isset($_GET['fullsize'])) {
     $pic_info = html_picinfo();
     $comments = theme_html_comments($CURRENT_PIC_DATA['pid']);
     if ($CURRENT_PIC_DATA['keywords']) { $meta_keywords = "<meta name=\"keywords\" content=\"".$CURRENT_PIC_DATA['keywords']."\"/>"; }
-        $meta_nav .= "<link rel=\"alternate\" type=\"text/xml\" title=\"RSS feed\" href=\"rss.php\" />
-        ";
+        //$meta_nav .= "<link rel=\"alternate\" type=\"text/xml\" title=\"RSS feed\" href=\"rss.php\" />
+       // ";
         $meta_keywords .= $meta_nav;
     pageheader($album_name . '/' . $picture_title, $meta_keywords, false);
     // Display Breadcrumbs
