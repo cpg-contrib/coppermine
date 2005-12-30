@@ -213,5 +213,5 @@ class xoops_udb extends core_udb {
 
 
 // and go !
-$cpg_udb = new cpg_udb;
+$cpg_udb = new xoops_udb;
 ?>
