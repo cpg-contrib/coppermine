@@ -91,7 +91,7 @@ class cpg_udb extends core_udb {
                 );
 
                 // Group ids - admin and guest only.
-                $this->admingroups = array(1);
+                $this->admingroups = array($this->use_post_based_groups ? 101 : 1);
                 $this->guestgroup = $this->use_post_based_groups ? 1 : 3;
 
                 // Connect to db - or supply a connection id to be used instead of making own connection.
@@ -118,36 +118,30 @@ class cpg_udb extends core_udb {
 
                 $user_group_set = '(' . implode(',', $USER_DATA['groups']) . ')';
 
-        $USER_DATA = array_merge($USER_DATA, $this->get_user_data($USER_DATA['groups'][0], $USER_DATA['groups'], $this->guestgroup));
+				$USER_DATA = array_merge($USER_DATA, $this->get_user_data($USER_DATA['groups'][0], $USER_DATA['groups'], $this->guestgroup));
 
-                if ($this->use_post_based_groups){
-                        $USER_DATA['has_admin_access'] = (in_array($USER_DATA['groups'][0] - 100,$this->admingroups)) ? 1 : 0;
-                } else {
-                        $USER_DATA['has_admin_access'] = ($USER_DATA['groups'][0] == 1) ? 1 : 0;
-                }
-
-                $USER_DATA['can_see_all_albums'] = $USER_DATA['has_admin_access'];
+                 $USER_DATA['can_see_all_albums'] = $USER_DATA['has_admin_access'] = array_intersect($USER_DATA['groups'],$this->admingroups) ? 1 : 0;
 
                 // avoids a template error
                 if (!$USER_DATA['user_id']) $USER_DATA['can_create_albums'] = 0;
 
-            // For error checking
+				// For error checking
                 $CONFIG['TABLE_USERS'] = '**ERROR**';
 
                 define('USER_ID', $USER_DATA['user_id']);
-        define('USER_NAME', addslashes($USER_DATA['user_name']));
-        define('USER_GROUP', $USER_DATA['group_name']);
-        define('USER_GROUP_SET', $user_group_set);
-        define('USER_IS_ADMIN', $USER_DATA['has_admin_access']);
-        define('USER_CAN_SEND_ECARDS', (int)$USER_DATA['can_send_ecards']);
-        define('USER_CAN_RATE_PICTURES', (int)$USER_DATA['can_rate_pictures']);
-        define('USER_CAN_POST_COMMENTS', (int)$USER_DATA['can_post_comments']);
-        define('USER_CAN_UPLOAD_PICTURES', (int)$USER_DATA['can_upload_pictures']);
-        define('USER_CAN_CREATE_ALBUMS', (int)$USER_DATA['can_create_albums']);
-        define('USER_UPLOAD_FORM', (int)$USER_DATA['upload_form_config']);
-        define('CUSTOMIZE_UPLOAD_FORM', (int)$USER_DATA['custom_user_upload']);
-        define('NUM_FILE_BOXES', (int)$USER_DATA['num_file_upload']);
-        define('NUM_URI_BOXES', (int)$USER_DATA['num_URI_upload']);
+				define('USER_NAME', addslashes($USER_DATA['user_name']));
+				define('USER_GROUP', $USER_DATA['group_name']);
+				define('USER_GROUP_SET', $user_group_set);
+				define('USER_IS_ADMIN', $USER_DATA['has_admin_access']);
+				define('USER_CAN_SEND_ECARDS', (int)$USER_DATA['can_send_ecards']);
+				define('USER_CAN_RATE_PICTURES', (int)$USER_DATA['can_rate_pictures']);
+				define('USER_CAN_POST_COMMENTS', (int)$USER_DATA['can_post_comments']);
+				define('USER_CAN_UPLOAD_PICTURES', (int)$USER_DATA['can_upload_pictures']);
+				define('USER_CAN_CREATE_ALBUMS', (int)$USER_DATA['can_create_albums']);
+				define('USER_UPLOAD_FORM', (int)$USER_DATA['upload_form_config']);
+				define('CUSTOMIZE_UPLOAD_FORM', (int)$USER_DATA['custom_user_upload']);
+				define('NUM_FILE_BOXES', (int)$USER_DATA['num_file_upload']);
+				define('NUM_URI_BOXES', (int)$USER_DATA['num_URI_upload']);
 
                 $this->session_update();
 
@@ -158,7 +152,8 @@ class cpg_udb extends core_udb {
                 global $user_settings;
 
                 $i = $this->use_post_based_groups ? 100 : 0;
-
+				$data = array();
+				
                 if ($user_settings['ID_GROUP'] == 0){
                         $data[0] = 2;
                 } else {
@@ -175,7 +170,7 @@ class cpg_udb extends core_udb {
                         }
                 }
 
-                $data[] = $user_settings['ID_POST_GROUP'];
+                if ($this->use_post_based_groups) $data[] = $user_settings['ID_POST_GROUP'] + $i;
 
                 return $data;
         }
