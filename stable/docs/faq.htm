@@ -710,12 +710,7 @@ will become<br />
 <br />and add <b>before</b> it<br />
 <tt class="code">$referer = &#39;index.php?cat=&#39;.(FIRST_USER_CAT+$USER_DATA[&#39;user_id&#39;]); </tt><br /><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="registeredUsersOnly"></a>
 <h3>How can I <b>prevent unregistered users</b> from viewing the gallery?</h3>
-<p>edit<br /><tt class="code">displayimage.php</tt><br />and search for<br />
-<pre>/**************************************************************************
-* Local functions definition
-**************************************************************************/</pre>
-<br />and add <b>before</b> it<br />
-<tt class="code">if (!USER_ID) cpg_die(ERROR, &#39;You need to register to access this page&#39;, __FILE__, __LINE__);</tt><br /><br /></p><br /><div class="totop">[<a href="#top" class="nodeco">top of page</a>]</div><hr /><a name="displayUploaderName"></a>
+<p>In Config, when &quot;Allow unlogged users (guest or anonymous) access&quot; is set to &quot;No&quot;, unlogged users (i.e. guests or anonymous users) can not access anything in your gallery except the login screen (and the registration screen, if you allow registrations). Completely disabling anonymous access will probably decrease your site's popularity. Use this option only if you need your gallery to be absolutely private. The recommended setting is to leave anonymous access enabled and use the more specific permissions by groups and albums settings instead.<br /><br />
 <h3>How can I <b>display the name of the uploader</b> with the picture info?</h3>
 <p><b>Warning</b>: this is quite a complicated hack for a newbie to perform! Make sure to back up your original files before attempting this.<br />Edit displayimage.php and search for:<br />
 <tt class="code">   $info[$lang_picinfo[&#39;Filename&#39;]]   = htmlspecialchars($CURRENT_PIC_DATA[&#39;filename&#39;]);</tt><br />add after it:<br />
