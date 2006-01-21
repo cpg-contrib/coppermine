@@ -146,7 +146,7 @@ class phpbb2018_udb extends core_udb {
 		
 		if ($this->use_post_based_groups){
 
-			$sql = "SELECT ug.{$this->field['usertbl_group_id']}+100 AS group_id FROM {$this->usertable} AS u, {$this->usergroupstable} AS ug, {$this->groupstable} as g WHERE u.{$this->field['user_id']}=ug.{$this->field['user_id']} AND u.{$this->field['user_id']}='{$row['id']}' AND g.{$this->field['grouptbl_group_id']} = ug.{$this->field['grouptbl_group_id']}";
+			$sql = "SELECT ug.{$this->field['usertbl_group_id']}+100 AS group_id FROM {$this->usertable} AS u, {$this->usergroupstable} AS ug, {$this->groupstable} as g WHERE u.{$this->field['user_id']}=ug.{$this->field['user_id']} AND u.{$this->field['user_id']}='{$row['id']}' AND g.{$this->field['grouptbl_group_id']} = ug.{$this->field['grouptbl_group_id']} AND  group_single_user = 0";
 
 			$result = cpg_db_query($sql, $this->link_id);
 
@@ -155,7 +155,7 @@ class phpbb2018_udb extends core_udb {
 			}
 
 			if ($this->userlevel == 1 || in_array($row[$this->field['usertbl_group_id']] , $this->admingroups)) array_unshift($data, 102);
-			if ($this->userlevel == 0) array_unshift($data, 2);
+			if ($this->userlevel == 0 || $this->userlevel == 2) array_unshift($data, 2);
 		} else {
 			$data[0] = ($this->userlevel == 1 || in_array($row[$this->field['usertbl_group_id']] , $this->admingroups)) ? 1 : 2;
 		}
