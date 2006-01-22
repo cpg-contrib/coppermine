@@ -207,7 +207,7 @@ $thumb_url = get_pic_url($CURRENT_PIC, 'thumb');
 $thumb_link = 'displayimage.php?pos='.(-$CURRENT_PIC['pid']);
 $filename = htmlspecialchars($CURRENT_PIC['filename']);
 
-$THUMB_ROWSPAN=5;
+$THUMB_ROWSPAN=6;
 if ($CONFIG['user_field1_name'] != '') $THUMB_ROWSPAN++;
 if ($CONFIG['user_field2_name'] != '') $THUMB_ROWSPAN++;
 if ($CONFIG['user_field3_name'] != '') $THUMB_ROWSPAN++;
