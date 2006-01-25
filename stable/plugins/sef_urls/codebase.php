@@ -45,6 +45,9 @@ function sef_urls_convert(&$html) {
 
     // Rewrite index.php?cat=[category] URLs to index-[category].html
     $html = preg_replace('/index\.php\?cat=([0-9]+)/i','index-$1.html',$html);
+    
+    // Rewrite thumnails.php?album=[album]&cat=[category]&page=[category] URLs to thumbnails-[album]-[category]-page-[page].html
+    $html = preg_replace('/thumbnails\.php\?album=([a-z0-9]+)(\&|\&amp;)cat=([0-9]+)(\&|\&amp;)page=([0-9]+)/i','thumbnails-$1-$3-page-$5.html',$html);
 
     // Rewrite thumnails.php?album=[album]&cat=[category] URLs to thumbnails-[album]-[category].html
     $html = preg_replace('/thumbnails\.php\?album=([a-z0-9]+)(\&|\&amp;)cat=([0-9]+)/i','thumbnails-$1-$3.html',$html);
