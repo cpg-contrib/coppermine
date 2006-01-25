@@ -1,4 +1,8 @@
+<<<<<<< CHANGELOG
 $Id$
+=======
+$Id$
+>>>>>>> 1.59
 
 Added Title option to sort in albums, Tarique
 Separated the breadcrumb block so that it can be placed independently of category, Tarique
@@ -328,6 +332,11 @@ Fixed issue with topn images not working in keyworded albums, provided by donnom
 Added Russian translation - 21 January 2006, GauGau
 Added Galician translation - 24 January 2006, GauGau
 Added Ukrainian translation - 24 January 2006, GauGau
+Fixed typo in dutch language file - 25 January 2006, GauGau
+Fixed issue "gif can't be added to favorites" - 25 January 2006, GauGau
+Fixed css class glitch ("button" instead of "submit") - 25 January 2006, GauGau
+=======
 Fixed typo in dutch language file - 25 January, GauGau
-Fixed issue "gif can't be added to favorites" - 25 January, GauGau
+Fixed issue "gif can't be added to favorites" - 25 January 2006, GauGau
 Fixed the Search Engine friendly URLs bug in displaying multipage thumbnails and albums - 25 Jan 2006, Abbas
+Fixed css class glitch ("button" instead of "submit") - 25 January 2006, GauGau
