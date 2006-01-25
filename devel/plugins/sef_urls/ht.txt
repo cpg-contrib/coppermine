@@ -31,12 +31,16 @@ RewriteEngine on
 #
 RewriteRule index-([0-9]*)\.html index.php?cat=$1 [NC]
 
+RewriteRule index-([0-9]*)-page-([0-9]*)\.html index.php?cat=$1&page=$2 [NC]
+
 #
 # Rewrite thumbnail urls
 #
 RewriteRule thumbnails-([a-z0-9]*)-([0-9]*)\.html thumbnails.php?album=$1&cat=$2 [NC]
 
 RewriteRule thumbnails-([a-z0-9]*)-page-([0-9]*)\.html thumbnails.php?album=$1&page=$2 [NC]
+
+RewriteRule thumbnails-([a-z0-9]*)-([0-9]*)-page-([0-9]*)\.html thumbnails.php?album=$1&cat=$2&page=$3 [NC]
 
 RewriteRule thumbnails-([a-z0-9]*)\.html thumbnails.php?album=$1 [NC]
 
