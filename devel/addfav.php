@@ -64,7 +64,7 @@ if (USER_ID > 0) {
     $sql = "UPDATE {$CONFIG['TABLE_FAVPICS']} SET user_favpics = '$data' WHERE user_id = " . USER_ID;
     cpg_db_query($sql);
     // User never stored a fav... so insert new row
-    if (!mysql_affected_rows()) {
+    if (!mysql_affected_rows($CONFIG['LINK_ID'])) {
         $sql = "INSERT INTO {$CONFIG['TABLE_FAVPICS']} ( user_id, user_favpics) VALUES (" . USER_ID . ", '$data')";
         cpg_db_query($sql);
     }
