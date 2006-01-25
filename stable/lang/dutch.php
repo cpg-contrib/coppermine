@@ -1060,8 +1060,8 @@
 		'greetings' => 'Onderwerp', //cpg1.4
 		'message' => 'Bericht', //cpg1.4
 		'ecards_footer' => 'Gestuurd door %s vanaf IP adres %s om %s (Gallerij tijd)', //cpg1.4
-		'preview' => 'Voorbeeldweergage van de e-card', //cpg1.4
-		'preview_button' => 'Voorbeeldweergage', //cpg1.4
+		'preview' => 'Voorbeeldweergave van de e-card', //cpg1.4
+		'preview_button' => 'Voorbeeldweergave', //cpg1.4
 		'submit_button' => 'E-card versturen', //cpg1.4
 		'preview_view_ecard' => 'Dit zal een alternatieve link zijn naar de aangemaakte e-card. Deze zal niet werken in de voorbeeldweergave.', //cpg1.4
 	); 
@@ -1526,7 +1526,7 @@ EOT;
 			'notify_admin_email_body' => 'Een nieuwe gebruiker met gebruikersnaam \'%s\' heeft zichzelf voor je gallerij geregistreerd', //cpg1.4
 			'pic_count' => 'Bestanden geupload', //cpg1.4
 			'notify_admin_request_email_subject' => '%s - Registratie verzoek', //cpg1.4
-			'thank_you_admin_activation' => 'Bedankt.<br/><br/>Je verozek tot toegang is verzonden aan de beheerder. Zo snel als je gebruikersnaam is geaccepteerd ontvang je een e-mail.', //cpg1.4
+			'thank_you_admin_activation' => 'Bedankt.<br/><br/>Je verzoek tot toegang is verzonden aan de beheerder. Zo snel als je gebruikersnaam is geaccepteerd ontvang je een e-mail.', //cpg1.4
 			'acct_active_admin_activation' => 'De gebruikersnaam is nu geactiveerd en de gebruiker krijgt daarvan een bevestiging over de e-mail.', //cpg1.4
 			'notify_user_email_subject' => '%s - Activatie bevestiging', //cpg1.4
 		); 
