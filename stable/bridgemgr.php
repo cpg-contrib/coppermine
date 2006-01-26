@@ -480,17 +480,6 @@ $default_bridge_data['vbulletin30'] = array(
   'use_post_based_groups_used' => 'radio,1,0',
 );
 
-// status: bridge unknown, manager unknown
-$default_bridge_data['woltlab21'] = array(
-  'full_name' => 'Woltlab Burning Board 2.1',
-  'short_name' => 'woltlab21',
-  'support_url' => 'http://www.woltlab.de/',
-  'full_forum_url_default' => 'http://www.yoursite.com/board',
-  'full_forum_url_used' => 'mandatory,not_empty,no_trailing_slash',
-  'relative_path_to_config_file_default' => '../board/',
-  'relative_path_to_config_file_used' => 'lookfor,index.php',
-);
-
 $default_bridge_data['mybb'] = array(
   'full_name' => 'MyBB Release Candidate 4',
   'short_name' => 'mybb',
