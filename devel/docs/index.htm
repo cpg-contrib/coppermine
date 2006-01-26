@@ -7,8 +7,8 @@
 <meta name="author"      content="Coppermine dev team">
 <meta name="copyright"   content="Coppermine dev team">
 <meta name="description" content="Coppermine Photo Gallery project - Coppermine is an easily set-up, fast, feature-rich photo gallery script with mySQL database, user management, private galleries, automatic thumbnail creation, ecard feature and a template system for easy customization to match the rest of a site.">
-<meta name="keywords"    content="photo,gallery,galery,image,coppermine,php,mysql,easy,feature,phpnuke,thumbnail,automatic,creation,gd,Image Magick,ecard">
-<meta name="page-topic"    content="photo,gallery,galery,image,coppermine,php,mysql,easy,feature,phpnuke,thumbnail,automatic,creation,gd,Image Magick,ecard">
+<meta name="keywords"    content="photo gallery,galery,image,coppermine,php,mysql,easy,feature,thumbnail,automatic,creation,gd,Image Magick,ecard">
+<meta name="page-topic"    content="photo gallery,galery,image,coppermine,php,mysql,easy,feature,thumbnail,automatic,creation,gd,Image Magick,ecard">
 <meta http-equiv="Content-Style-Type" content="text/css">
 <meta name="MSSmartTagsPreventParsing" content="true">
 <meta http-equiv="imagetoolbar" content="no">
@@ -131,12 +131,11 @@
         <ul class="level2">
                 <li class="level2"><a href="#bbcode" class="menu2">4.10 Using bbcode to insert links and format in descriptions</a></li>
                 <li class="level2"><a href="#uploading" class="menu2">4.11 Uploading pics/files</a></li>
+        </ul>
                 <ul class="level3">
                   <li class="level3"><a href="#batch_add_pics">4.11.1 Uploading pics by FTP / Batch-Add Pictures</a></li>
                   <li class="level3"><a href="#upload_http">4.11.2 Uploading by HTTP</a></li>
-                </ul>
-        <ul class="level3">
-                <li class="level3"><a href="#xp">4.11.3 Using Windows XP Web Publishing Wizard with Coppermine</a></li>
+                  <li class="level3"><a href="#xp">4.11.3 Using Windows XP Web Publishing Wizard with Coppermine</a></li>
         </ul>
                 <ul class="level4">
                   <li class="level4"><a href="#xp_publish_setup">4.11.3.1 XP Web Publishing Wizard: Setup</a></li>
@@ -174,6 +173,23 @@
         </ul>
                 <ul class="level3">
                         <li class="level3"><a href="#exif_manager">4.13.1 The EXIF manager</a></li>
+                </ul>
+        <ul class="level2">
+            <li class="level2"><a href="#plugin" class="menu2">4.14 Plugins</a></li>
+        </ul>
+                <ul class="level3">
+                        <li class="level3"><a href="#plugin_definition">4.14.1 What is a plugin?</a></li>
+                        <li class="level3"><a href="#plugin_api">4.14.2 The Plugin API</a></li>
+                        <li class="level3"><a href="#plugin_manager">4.14.3 The Plugin Manager</a></li>
+                </ul>
+                     <ul class="level4">
+                         <li class="level4"><a href="#plugin_manager_upload">4.14.3.1 Uploading a plugin</a></li>
+                         <li class="level4"><a href="#plugin_manager_install">4.14.3.2 Installing a plugin</a></li>
+                         <li class="level4"><a href="#plugin_manager_configuration">4.14.3.3 Plugin Configuration</a></li>
+                         <li class="level4"><a href="#plugin_manager_uninstall">4.14.3.4 Uninstalling a plugin</a></li>
+                     </ul>
+                <ul class="level3">
+                        <li class="level3"><a href="#plugin_writing">4.14.4 Writing plugins</a></li>
                 </ul>
 
 <ul class="level1">
@@ -1843,18 +1859,95 @@ All log files are written in english</p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="exif"></a>
-<h2>4.12 EXIF data</h2>
+<h2>4.13 EXIF data</h2>
 <p>The &quot;Exchangeable image file&quot; format (Exif) is a specification for the image file format used by digital cameras with the addition of specific metadata tags. The meta data are written by the camera and can be post-processed using certain desktop applications. Coppermine is capable of displaying some of the EXIF data within the pic info section, like date and time information, camera settings, location information, descriptions and copyright information.<br />
 <img src="pics/exif_data_cpg1.4.x.jpg" width="400" height="202" border="0" alt="Exif data in pic info section" />
 </p>
 
 <a name="exif_manager"></a>
-<h2>4.12.1 EXIF manager</h2>
+<h3>4.13.1 EXIF manager</h3>
 <p><img src="pics/exifmanager_cpg1.4.x.gif" width="600" height="439" border="0" alt="" align="right" />CPG1.4.x (or better) comes with an EXIF manager that let's the coppermine admin decide what EXIF data should be displayed within coppermine. Please note: if the exif data don't exist within a particular image, coppermine will of course not be able to display them. Coppermine is not an editor for exif data - it just displays the exif data that exists in your pics.<br />
 To access the exif manager, go to coppermine's config and click within the section <a href="#admin_picture_thumb_advanced">Files and thumbnails advanced settings</a> at &quot;Manage exif display&quot; next to the line &quot;<a href="#admin_picture_thumb_advanced_exif">Read EXIF data in JPEG files</a>&quot;. Alternatively, you can directly enter http://yoursite.tld/your_coppermine_folder/exifmgr.php into your browser's address bar.</p>
 <p>Tick the checkboxes in the exif manager that you want to show up in coppermine's pic info section (if the image file actually holds this particular set of information).</p>
 <br clear="all" />
+<p><a class="back" href="#top">Back to top</a></p><hr />
 
+<a name="plugin_start"></a>
+<a name="plugin"></a>
+<h2>4.14 Plugins</h2>
+<p class="small">[cpg1.4.0 or better required]</p>
+<a name="plugin_definition"></a>
+<h3>4.14.1 What is a plugin?</h3>
+<p>Starting from cpg1.4.0, coppermine comes with a plugin <acronym title="Application Programming Interface">API</acronym> that enables plugin authors to modify coppermine features without hacking the core code, making upgrading easier, as modifications don't have to be re-applied every time you upgrade your coppermine version. It's recommended to use plugins instead of code modifications that require hacking the core code.</p>
+<a name="plugin_definition_end"></a>
+<a name="plugin_api"></a>
+<h3>4.14.2 The Plugin API</h3>
+<p>The plugin API consists of several "hooks" all over the core code of coppermine that allows plugin authors to interact with coppermine functions, overriding or adding features. There are limitations to what can be done using a plugin, as the number of hooks is limited. As a result, not every change of coppermine behaviour that could be accomplished by hacking the core code is possible to achieve using the plugin API. However, using a plugin is more elegant and usually much easier to install and get running (at least for the end user) than a crude core code hack. Installing and configuring a plugin doesn't require the coppermine admin to mess with the source code - you simply upload the plugin, install it, configure it and you're done. If the plugin has been coded as suggested and is mature enough, it should come with a configuration screen that makes editing source code irrelevant.<br />
+Unfortunately, there is no API documentation available yet.</p>
+<a name="plugin_api_end"></a>
+<a name="plugin_manager"></a>
+<h3>4.14.3 The Plugin Manager</h3>
+<p>The plugin manager is the central place from where you upload, install, configure and remove plugins. It can be acceessed in two ways:</p>
+<ul>
+    <li><strong>Using Coppermine's navigation:</strong><br />
+    Log in as admin, go to coppermine's config, expand the "General settings" section, on click "Manage plugins" next to "Enable plugins" (make sure that you have set "Enable plugins" to "Yes") if you plan using plugins.</li>
+    <li><strong>Directly accessing the plugin manager</strong><br />
+    Make sure that you are logged in as admin, then directly enter the plugin manager's url in the address bar of your browser, e.g. http://yoursite.tld/your_coppermine_folder/pluginmgr.php</li>
+</ul>
+<p>The plugin manager is separated into two sections:</p>
+<ul>
+    <li>the plugins that are actually installed (upper section)</li>
+    <li>the plugins that exist within the plugin folder of your server's hard drive that have not been installed and therefor aren't being taken into account when coppermine is executed (deactivated plugins, lower section)</li>
+</ul>
+<p>By default, coppermine comes with some sample or code plugins (none of them are enabled by default though), additional plugins can be found on the corresponding section of coppermine's forum.</p>
+<a name="plugin_manager_upload"></a>
+<h4>4.14.3.1 Uploading a plugin</h4>
+<p>Unless you're going to code your own plugins, they usually come packaged up already, compressed into a zip file. There are two options how to upload a plugin:</p>
+<ul>
+    <li>Method 1: <strong>Using the upload interface on coppermine's plugin manager page</strong><br />
+    <ul>
+        <li>Download the plugin you need from the internet (usually the <a href="http://coppermine-gallery.net/">coppermine page</a>) to your local hard drive</li>
+        <li>Click the "browse" button</li>
+        <li>Navigate to the plugin zip file you just have downloaded to your local PC's hard drive</li>
+        <li>Click "upload"</li>
+    </ul>
+    This is the more elegant and easier method - you just use the upload control on the plugin manager page and the zip file you uploaded gets extracted from the archive and stored on the server within the proper folder. There are two pre-requisites though:
+    <ul>
+        <li>PHP running on your webserver needs zip support - not all webserver have zip support enabled.</li>
+        <li>the script needs write permissions within the plugins folder.</li>
+    </ul>
+    If you fail to fullfil those two pre-requisites, this simple method (upload interface) won't work for you (i.e. you will get error messages when trying, or the plugin will even simply fail to work without an error message at all). If this is the case for you, it's recommended not to mess with server setup (unless you're an expert and the server is yours to administer>, but just to use the second upload option described below.</li>
+    <li>Method 2: <strong>Uploading the unzipped plugin files using your FTP app</strong><br />
+        <ul>
+            <li>Download the plugin you need from the internet to your local hard drive (same step as above)</li>
+            <li>Unpack the zip file into a folder on your hard drive (preserving the folder structure of the plugin)</li>
+            <li>Use your FTP app to upload the unpacked plugin files into the plugin folder of your coppermine install on your server, preserving the structure of the zip archive.<br />
+            Example: if the plugin contained the folder "foobar", which held the actual plugin files, you upload the whole folder "foobar" and all of it's content into the plugin folder. The resulting folder structure on your server should be something like <tt class="code">/your_coppermine_folder/plugins/foobar/</tt></li>
+        </ul>
+    </li>
+</ul>
+<p>After having uploaded (you may need to refresh the plugin manager page), the plugin you just uploaded should show in the list "Plugins Not installed". If it does, you can continue to the next step and <a href="#plugin_manager_install">install</a> the plugin.</p>
+<a name="plugin_manager_upload_end"></a>
+<a name="plugin_manager_install"></a>
+<h4>4.14.3.2 Installing a plugin</h4>
+<p>Installing a plugin is fairly straightforward - just click on the <img src="../images/info.gif" width="16" height="16" border="0" alt="" />-icon next to the plugin. The install will enable the plugin to be executed when coppermine is being run (depending on the plugin's purpose). Some plugins come with a configuration screen that is being executed right after the install - if this is the case, configure it accordingly.</p>
+<a name="plugin_manager_install_end"></a>
+<a name="plugin_manager_configuration"></a>
+<h4>4.14.3.3 Plugin Configuration</h4>
+<p>Some plugins may need to be configured during install, others may have a separate configuration page that can be accessed at any time. This depends on how the plugin author wrote the plugin, so we can't give any recommendations within this documentation. Some plugins may even need to be configured before actually being uploaded (especially plugins in alpha or beta stage may come without a browser-driven configuration page). If unsure, take a look into the unzipped plugin archive on your hard-drive - usually, plugins that require you to edit or configure anything come with a readme file.</p>
+<a name="plugin_manager_configuration_end"></a>
+<a name="plugin_manager_uninstall"></a>
+<h4>4.14.3.4 Uninstalling a plugin</h4>
+<p>Executing a plugin might be consuming resources or not work as expected, so you might want to uninstall a plugin at some time (maybe because you just tried it out and it doesn't work as expected for you). It's recommended not to just delete the plugin's subfolder using your FTP app (because the plugin might have applied database changes that need to be undone). Instead, you should go to the plugin manager and click on the <img src="../images/delete.gif" width="16" height="16" border="0" alt="" />-icon next to an active (installed) plugin. The plugin then should get uninstalled and turn up in the list "Plugins Not installed". It's safe to leave the sources of an unneeded plugin on the server, so there should be no need to delete the plugin right after uninstall, however you may as well delete it, especially if you're short on webspace and the plugin eats up a lot of space.<br />
+To finally delete an inactive plugin from your server's plugin folder, click the <img src="../images/delete.gif" width="16" height="16" border="0" alt="" />-icon next to a plugin that is in the list "Plugins Not installed". If the script fails to delete a plugin this way (because of lacking permissions to do so on file/folder level)</p>
+<a name="plugin_manager_uninstall_end"></a>
+<a name="plugin_manager_end"></a>
+<a name="plugin_writing"></a>
+<h3>4.14.4 Writing plugins</h3>
+<p>As suggested above, there's no documentation available yet for plugin authors, so the only method to learn how plugins work is by looking at the source code. Examine the code of the plugins that come with coppermine, or take a look at some that are available for download from the plugin contributions sub-board on the coppermine web page.<br />
+If you accomplished writing a plugin, we ask you to share it with the coppermine community by posting it on the appropriate board (this is of course not mandatory, but we'd appreciate to see your contribution). We would welcome a user-contributed API documentation or a list of hooks as well, or other related documentation</p>
+<a name="plugin_writing_end"></a>
+<a name="plugin_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="integrating"></a>
