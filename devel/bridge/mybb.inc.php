@@ -62,17 +62,19 @@ class cpg_udb extends core_udb {
 		$this->table = array(
 			'users' => 'users',
 			'groups' => 'usergroups',
+			'sessions' => 'sessions',
 		);
 
 		// Derived full table names
 		$this->usertable = '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['users'];
 		$this->groupstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['groups'];
+		$this->sessionstable =  '`' . $this->db['name'] . '`.' . $this->db['prefix'] . $this->table['sessions'];
 		
 		// Table field names
 		$this->field = array(
 			'username' => 'username', // name of 'username' field in users table
 			'user_id' => 'uid', // name of 'id' field in users table
-			'password' => 'password', // name of 'password' field in users table
+			'password' => 'loginkey', // name of 'password' field in users table
 			'email' => 'email', // name of 'email' field in users table
 			'regdate' => 'regdate', // name of 'registered' field in users table
 			'location' => "''", // name of 'location' field in users table
@@ -93,9 +95,6 @@ class cpg_udb extends core_udb {
 		$this->admingroups = array(4);
 		$this->guestgroup = $this->use_post_based_groups ? 101 : 3;
 		
-		// Cookie settings - used in following functions only
-		$this->cookie_name = 'mybb';
-		
 		// Connect to db
 		$this->connect();
 	}
@@ -103,23 +102,60 @@ class cpg_udb extends core_udb {
 	// definition of how to extract id, name, group from a session cookie
 	function session_extraction()
 	{
-			return false; // unused
+		if (!isset($_COOKIE['sid'])) return false;
+	
+		$this->sid = addslashes($_COOKIE['sid']);
+		
+		if (!$this->sid) return false;
+		
+		$this->ipaddress = $this->getip();
+		
+		$result = cpg_db_query("SELECT u.{$this->field['user_id']}, u.{$this->field['password']} FROM {$this->sessionstable} AS s INNER JOIN {$this->usertable} AS u ON u.uid = s.uid WHERE sid='".$this->sid."' AND ip='".$this->ipaddress."'", $this->link_id);
+		
+		if (!mysql_num_rows($result)) return false;
+		
+		$row = mysql_fetch_row($result);
+
+		return $row; 
 	}
 	
 	// definition of how to extract an id and password hash from a cookie
 	function cookie_extraction()
 	{
-	    $id = 0;
-	    $pass_hash = '';
-
-        if (isset($_COOKIE[$this->cookie_name])){
-			$id = $_COOKIE[$this->cookie_name]['uid'];
-			$pass_hash = $_COOKIE[$this->cookie_name]['password'];
-		}
-
-		return ($id) ? array($id, $pass_hash) : false;
+		return  isset($_COOKIE['mybbuser']) ? array_map('addslashes', explode("_", $_COOKIE['mybbuser'], 2)) : false;
 	}
 	
+	// imported function
+	function getip() {
+
+		if($_SERVER['HTTP_X_FORWARDED_FOR'])
+		{
+			if(preg_match_all("#[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}#s", $_SERVER['HTTP_X_FORWARDED_FOR'], $addresses))
+			{
+				while(list($key, $val) = each($addresses[0]))
+				{
+					if(!preg_match("#^(10|172\.16|192\.168)\.#", $val))
+					{
+						$ip = $val;
+						break;
+					}
+				}
+			}
+		}
+		if(!$ip)
+		{
+			if($_SERVER['HTTP_CLIENT_IP'])
+			{
+				$ip = $_SERVER['HTTP_CLIENT_IP'];
+			}
+			else
+			{
+				$ip = $_SERVER['REMOTE_ADDR'];
+			}
+		}
+		return $ip;
+	}
+
 	// definition of actions required to convert a password from user database form to cookie form
 	function udb_hash_db($password)
 	{
@@ -135,7 +171,7 @@ class cpg_udb extends core_udb {
 	// Logout
 	function logout_page()
 	{
-		$this->redirect('/member.php?action=logout');
+		$this->redirect('/member.php?action=logout&uid=' . USER_ID);
 	}
 	
 	function view_users()
@@ -143,65 +179,11 @@ class cpg_udb extends core_udb {
 		if (!$this->use_post_based_groups) $this->redirect($this->page['editusers']);
 	}
 	
-	    function get_users($options = array())
+	function get_users($options = array())
     {
-    	global $CONFIG;
-
-		// Copy UDB fields and config variables (just to make it easier to read)
-    	$f =& $this->field;
-		$C =& $CONFIG;
-		
-		// Sort codes
-        $sort_codes = array('name_a' => 'user_name ASC',
-                            'name_d' => 'user_name DESC',
-                            'group_a' => 'group_name ASC',
-                            'group_d' => 'group_name DESC',
-                            'reg_a' => 'user_regdate ASC',
-                            'reg_d' => 'user_regdate DESC',
-                            'pic_a' => 'pic_count ASC',
-                            'pic_d' => 'pic_count DESC',
-                            'disku_a' => 'disk_usage ASC',
-                            'disku_d' => 'disk_usage DESC',
-                            'lv_a' => 'user_lastvisit ASC',
-                            'lv_d' => 'user_lastvisit DESC',
-                           );
-
-        // Fix the group id, if bridging is enabled
-        if ($CONFIG['bridge_enable']) {
-            $f['usertbl_group_id'] .= '+100';
-        }
-        
-		// Build WHERE clause, if this is a username search
-        if ($options['search']) {
-            $options['search'] = 'AND u.'.$f['username'].' LIKE "'.$options['search'].'" ';
-        }
-
-		// Build SQL table, should work with all bridges
-        $sql = "SELECT {$f['user_id']} as user_id, {$f['username']} as user_name, {$f['email']} as user_email, {$f['regdate']} as user_regdate, lastvisit as user_lastvisit, '' as user_active, ".
-               "COUNT(pid) as pic_count, ROUND(SUM(total_filesize)/1024) as disk_usage, group_name, group_quota ".
-               "FROM {$this->usertable} AS u ".
-               "INNER JOIN {$C['TABLE_USERGROUPS']} AS g ON u.{$f['usertbl_group_id']} = g.group_id ".
-               "LEFT JOIN {$C['TABLE_PICTURES']} AS p ON p.owner_id = u.{$f['user_id']} WHERE 1 ".
-               $options['search'].
-               "GROUP BY user_id " . "ORDER BY " . $sort_codes[$options['sort']] . " ".
-               "LIMIT {$options['lower_limit']}, {$options['users_per_page']};";
-
-		$result = cpg_db_query($sql);
-		
-		// If no records, return empty value
-		if (!$result) {
-			return array();
-		}
-		
-		// Extract user list to an array
-		while ($user = mysql_fetch_assoc($result)) {
-			$userlist[] = $user;
-		}	
-
-        return $userlist;
     }
 	
-		function view_profile($uid)
+	function view_profile($uid)
 	{
 	}
 }

@@ -481,7 +481,7 @@ $default_bridge_data['vbulletin30'] = array(
 );
 
 $default_bridge_data['mybb'] = array(
-  'full_name' => 'MyBB Release Candidate 4',
+  'full_name' => 'MyBB 1.02',
   'short_name' => 'mybb',
   'support_url' => 'http://www.mybboard.com/',
   'full_forum_url_default' => 'http://www.yoursite.com/board',
