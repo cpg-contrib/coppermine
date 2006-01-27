@@ -72,16 +72,17 @@
                 <li class="level2"><a href="#11" class="menu2">3.2 Upgrading from releases of version 1.1</a></li>
                 <li class="level2"><a href="#12" class="menu2">3.3 Upgrading from cpg1.2.0rc2 or cpg1.2.0final to version cpg1.2.1</a></li>
                 <li class="level2"><a href="#13" class="menu2">3.4 Upgrading from cpg1.2.0 (or better) to version cpg1.4.3</a></li>
-                <li class="level2"><a href="#versioncheck" class="menu2">3.5 The version check tool</a></li>
+                <li class="level2"><a href="#14" class="menu2">3.5 Upgrading from cpg1.4.0 (or better) to version cpg1.4.3</a></li>
+                <li class="level2"><a href="#versioncheck" class="menu2">3.6 The version check tool</a></li>
         </ul>
                 <ul class="level3">
-                        <li class="level3"><a href="#versioncheck_description_start">3.5.1 What it does</a></li>
+                        <li class="level3"><a href="#versioncheck_description_start">3.6.1 What it does</a></li>
 
-                        <li class="level3"><a href="#versioncheck_options_start">3.5.2 Options</a></li>
-                        <li class="level3"><a href="#versioncheck_comparison_start">3.5.3 Version comparison</a></li>
+                        <li class="level3"><a href="#versioncheck_options_start">3.6.2 Options</a></li>
+                        <li class="level3"><a href="#versioncheck_comparison_start">3.6.3 Version comparison</a></li>
                 </ul>
         <ul class="level2">
-                <li class="level2"><a href="#downgrading" class="menu2">3.6 Downgrading from cpg1.4.x</a></li>
+                <li class="level2"><a href="#downgrading" class="menu2">3.7 Downgrading from cpg1.4.x</a></li>
         </ul>
 
 <ul class="level1">
@@ -305,7 +306,7 @@
 <ul>
   <li><strong>Unpack the archive preserving the directory structure.</strong><br /> You can rename the coppermine folder, but not the files or folders within.</li>
   <li><strong>Upload all files onto your webserver</strong> (making sure to use the correct ftp mode)</li>
-  <li><strong>CHMOD the "<em>albums</em>" and "<em>include</em>" folders in your Coppermine directory to 755 (or 777, depending on your server config)</strong> - <font color="#FF0000">this step is very important and must not be overlooked!</font>
+  <li><strong><a href="#permissions">Set permissions</a> on the "<em>albums</em>" and "<em>include</em>" folders in your Coppermine directory</strong>. Usually, you have to apply the CHMOD command, setting the permissions to 755 (or 777, depending on your server config)- <span class="important">this step is very important and must not be overlooked!</span></li>
   <li><strong>Ensure you have correct information about your database</strong> - you need to <em>know</em> the database name as well as the details of a MySQL user account with which Coppermine should connect to the database. The database and the username must already exist, and the user must have access to the relevent database. Coppermine will not create the database for you, but it will create the tables in the database during installation, there is no need for you to add any tables yourself.</li>
   <li><strong>Run the install script on your server</strong> (by going to <tt class="code">http://your_server/coppermine_dir/install.php</tt> with your web browser) and follow the instructions</li>
 </ul>
@@ -328,7 +329,7 @@ Coppermine needs <em>write access</em> to a number of files and folders on the w
 </ul>
 <p>By default, files and folders on a webserver are usually not writable, so you will probably have to change permissions before installion, for the reasons mentioned above. It's really mandatory that you set/change (CHMOD) permissions - or you will run into issues sooner or later.</p>
 <p>To be able to set permissions correctly, you have to understand how they work: there are <em><strong>r</strong>ead</em>, <em><strong>w</strong>rite</em> and <em>e<strong>x</strong>ecute</em> permissions (abbreviated with <strong>rwx</strong>) for each folder and file. Permissions on a parent folder can propagate to a child folder or the files within it, but it's possible to tweak your setup so that unwanted permissions will not propagate to child folders and resident files.</p>
-<p>However, there are differences between the different operating systems that are used as webservers. As a result, there are a number of different approaches. As coppermine is designed to run on many different setups, we've included some basic instructions. Those who know their way around may find these instructions somewhat generalized and lacking in details.<br />Note: it is not your local, client computer that matters, permission-wise, but, rather, the operating system used by your webserver. If you're not sure what OS your server is running on, try the CHMOD instructions first - most webservers run a version of Unix/Linux. If you can't figure how to set permissions properly, ask your webhost for support.</p>
+<p>However, there are differences between the different operating systems that are used as webservers. As a result, there are a number of different approaches. As coppermine is designed to run on many different setups, we've included some basic instructions. Those who know their way around may find these instructions somewhat generalized and lacking in details.<br />Note: it is not your local, client computer that matters, permission-wise, but, rather, the operating system used by your webserver. If you're not sure what OS your server is running on, try the CHMOD instructions first - most webservers run a version of Unix/Linux. <span class="important">If you can't figure how to set permissions properly, ask your webhost for support.</span></p>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="permissions_chmod"></a>
@@ -345,7 +346,7 @@ Possible permissions settings are:
 Needless to say, other combinations are technically possible (such as -wx, --x or -w-), but they make little sense in webserver setups and will be ignored in this tutorial.
 </li>
 <li><strong>Groups in Lunix</strong><br />
-Lunix uses a set of three-group permissions, each of which can be applied independently. These are: <em>owner</em>, <em>group</em> and <em>world</em>. Using this set, you can dictate if a user who owns a file has permission to modify or delete it (write permission)) while other users will only be able to read/view and possibly execute the file. On your server, these permission settings for the three possible groups are written in as a single line entry (in the order "owner", "group", "world"). <br />
+Lunix uses a set of three-group permissions, each of which can be applied independently. These are: <em>owner</em>, <em>group</em> and <em>world</em>. Using this set, you can dictate if a user who owns a file has permission to modify or delete it (write permission) while other users will only be able to read/view and possibly execute the file. On your server, these permission settings for the three possible groups are written in as a single line entry (in the order "owner", "group", "world"). <br />
 Examples  :
   <ul>
   <li><tt class="code">rwxrwxrwx</tt> ... read, write and execute (rwx) permissions for all three groups</li>
@@ -358,7 +359,7 @@ Even though you (the user who owns the files on your server and who has control 
 </li>
 <li><strong>Binary arithmetics</strong><br />
 As you can see, permissions can be either "on" or "off" - this is the equivalent to the two different states that a bit of data can have in binary arithmetics (and therefore, also in the whole world of computing).
-As we have three types of different permissions (read, write, execute), we will need three bits to assign a set of permissions. The highest bit is the "<em><strong>r</strong>ead</em>" bit - decimal "4" is used to represent it. The middle bit "<em><strong>w</strong>rite</em>" is assigned to decimal "2", the lowest bit "<em><strong>e</strong>xecute</em>" is represented by decimal "1".
+As we have three types of different permissions (read, write, execute), we will need three bits to assign a set of permissions. The highest bit is the "<em><strong>r</strong>ead</em>" bit - decimal "4" is used to represent it. The middle bit "<em><strong>w</strong>rite</em>" is assigned to decimal "2", the lowest bit "<em>e<strong>x</strong>ecute</em>" is represented by decimal "1".
 This may be a bit hard to understand or follow at first, especially if you haven't dealt with binary arithmetics before. If you would like to learn more, google for it. It's easier to understand if you look at some examples:
 <div style="float:left;margin-right:10px">
 <table border="0" cellspacing="0" cellpadding="0" class="maintable">
@@ -411,7 +412,7 @@ If you have shell access to your server, you can apply the native <a href="http:
 <h4>2.1.1.2 Apache on Windows</h4>
 <p>You have to understand that there is no such thing as CHMOD on Windows operating systems - this command is available on Unix/Linux only, even if your FTP application displays a CHMOD option. If you try to apply CHMOD on Windows, the command will simply be ignored and do nothing. However, there are permissions on Windows as well.</p>
 <p>The apache webserver service runs under a particular user - if you have full access to the server, check the services control to find out which one it is. If you can't do this, ask your webhost.</p>
-<p>As a temporary workaround, set permissions on folder and file level as suggested in the section <a href="#permissions_iis_windows">IIS on Windows</a>, but not for the IUSR (which only exists on IIS), but for "everyone". </p>
+<p>As a temporary workaround, set permissions on folder and file level as suggested in the section <a href="#permissions_iis_windows">IIS on Windows</a>, but not for the IUSR (which only exists on IIS), but for "everyone". However, allowing "everyone" to have read, write and execute permissions might be a security risk and is not recommended at all.</p>
 <a name="permissions_apache_windows_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
@@ -664,7 +665,7 @@ If you have shell access to your server, you can apply the native <a href="http:
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="13"></a>
-<h2>3.4 Upgrading from cpg1.2.x or cpg1.3.x  to version cpg1.4.3</h2>
+<h2>3.4 Upgrading from cpg1.2.x or cpg1.3.x to version cpg1.4.3</h2>
     <ul>
                 <li>First, make a backup (dump) of your database.</li>
         <li>Backup your include/config.inc.php file, your anycontent.php file and your &quot;albums&quot; directoy.</li>
@@ -675,16 +676,39 @@ If you have shell access to your server, you can apply the native <a href="http:
         <li>If you have not already done so, create a folder called &quot;edit&quot; within your &quot;albums&quot; directory - this folder will be used by coppermine as a temporary folder, do not ftp-upload files there. Make sure the new &quot;edit&quot;-folder is CHMODed the same way your albums-directory is (755 or 777, depending on your server's config)</li>
         <li>Run the file &quot;update.php&quot; in the coppermine directory once in your browser (e.g. http://yourdomain.tld/coppermine/update.php). This will update your coppermine install by making all necessary changes in the database.</li>
         <li>If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme - refer to the <a href="theme/index.html">theme-upgrade guide</a>.</li>
-        <li>You can not use language files from older versions of Coppermine - make sure you only have the language files that come with this package inside of your lang folder (delete or rename all files from older versions within the lang folder)</li>
+        <li>You can not use language files from older versions of Coppermine as primary language (the language the admin will use) - make sure you only have the language files that come with this package inside of your lang folder (delete or rename all files from older versions within the lang folder).<br />
+        If you need to use a language that hasn't been translated for cpg1.4.x, you can try using the language file from cpg1.3.x, however there are certain caveats:
+          <ul>
+            <li>You need to enable the language fallback option in coppermine's config page</li>
+            <li>cpg1.4.x-phrases that don't exist in your old language file will go untranslated or show in english</li>
+            <li>Coppermine can't be administered using an old language file - the admin needs to use a "true" cpg1.4.x language file</li>
+            <li>You're free to try using old language files, however when running into issues or error messages, switch to US-English and see if the issue goes away then. Using outdated language files goes unsupported</li>
+          </ul>
+        </li>
+        <li>The bridging method has changed from cpg1.3.x to cpg1.4.x. When upgrading, your bridged coppermine install will be unbridged - you will have to re-apply the bridging using the <a href="#integrating">bridge-manager</a> (using your standalone admin account you initially used to set up coppermine). You will not lose anything though, don't worry.</li>
     </ul>
-<p>Please note: as there have been changes both in the coppermine files and the database from cpg1.3.0beta to cpg1.3.0 (final) and then on to cpg1.4.x, users of the beta will have to apply all steps mentioned above: both the files have to be replaced and the update.php script has to be run once.</p>
+<p>Please note: as there have been changes both in the coppermine files and the database from cpg1.3.0 or better to cpg1.4.x, users of previous versions will have to apply all steps mentioned above: both the files have to be replaced and the update.php script has to be run once.</p>
+
+<a name="14"></a>
+<h2>3.5 Upgrading from cpg1.4.0 or better to version cpg1.4.3</h2>
+    <ul>
+        <li>First, make a backup (dump) of your database.</li>
+        <li>Backup your include/config.inc.php file, your anycontent.php file and your &quot;albums&quot; directoy.</li>
+        <li>Unpack the archive</li>
+        <li>If the file <strong>install.php</strong> exists in the root directory, delete it. When performing an upgrade, it is not needed.</li>
+        <li><strong>Except for the &quot;albums&quot; directory</strong>, upload all of the new files and directories making sure not to overwrite the include/config.inc.php file, your anycontent.php file or the albums directory.</li>
+        <li>Run the file &quot;update.php&quot; in the coppermine directory once in your browser (e.g. http://yourdomain.tld/coppermine/update.php). This will update your coppermine install by making all necessary changes in the database.</li>
+        <li>If you have made a custom theme, apply the changes that were introduced in the themes structure to your custom-made theme - refer to the <a href="theme/index.html">theme-upgrade guide</a>.</li>
+    </ul>
+<p>Please note: as there have been changes both in the coppermine files and the database from cpg1.4.0 or better to cpg1.4.3, users of older versions than cpg1.4.3 will have to apply all steps mentioned above: both the files have to be replaced and the update.php script has to be run once.</p>
+
 <p><a class="back" href="#top">Back to top</a></p><hr />
 
 <a name="versioncheck"></a>
-<h2>3.5 The version check tool</h2>
+<h2>3.6 The version check tool</h2>
 <p>Since the release of cpg1.3.2 Coppermine comes with an additional version checking tool to help you resolve issues with upgrades and updates easily. Except for specific files of coppermine that will only work for the version that it had been originally designed for, the versioncheck tool can be used with all versions starting from cpg1.2.1. To launch the versioncheck, simply add <tt>versioncheck.php</tt> to your browser's address bar after being logged into coppermine as admin (example: <tt>http://yourdomain.tld/your_coppermine_folder/versioncheck.php</tt>).  With version 1.4x, you can run the versioncheck utility from the Admin Tools menu.</p>
 <a name="versioncheck_description_start"></a>
-<h3>3.5.1 What it does</h3>
+<h3>3.6.1 What it does</h3>
 <p>The script &quot;versioncheck&quot; is meant for users who have updated their coppermine install. This script goes through the files on your webserver and tries to determine if the local file versions on your webserver are the identical to the ones at the repository of http://coppermine.sourceforge.net. Files that do not match are displayed and are the files you should update as well. In Cpg1.4.x you can toggle the URL to the latest update for individual files in the versioncheck page.</p>
 <p>It will show everything in <span style="color:red;font-weight:bold">red</span> that needs to be fixed. Entries in <span style="color:#FFBE00;font-weight:bold">yellow</span> need looking into. Entries in <span style="color:green;font-weight:bold">green</span> (or your theme's default font color) are OK and should be left alone. When an entry is <span style="color:red;font-weight:bold">red</span> or <span style="color:#FFBE00;font-weight:bold">yellow</span>, a help icon will appear next to it. Click it to find out more. Hovering with your mouse over an item will display additional information as well (tooltip).</p>
 <p>The versioncheck screen has several sections:</p>
@@ -699,7 +723,7 @@ If you have shell access to your server, you can apply the native <a href="http:
 <a name="versioncheck_description_end"></a>
 
 <a name="versioncheck_options_start"></a>
-<h3>3.5.2 Options</h3>
+<h3>3.6.2 Options</h3>
 <p>The options screen lets you configure the versioncheck, or rather what is being displayed. The options aren't saved anywhere, so you will have to adjust them each time you run versioncheck. The default options should be OK for most users - only change them if you have good reasons to do so.</p>
 <img src="pics/versioncheck_options.gif" width="844" height="176" border="0" alt="" title="" />
 <ul>
@@ -717,7 +741,7 @@ If you have shell access to your server, you can apply the native <a href="http:
 <a name="versioncheck_options_end"></a>
 
 <a name="versioncheck_comparison_start"></a>
-<h3>3.5.3 Version comparison</h3>
+<h3>3.6.3 Version comparison</h3>
 <p>There is a lot of information packed into a small space. Here's an example of a possible output and what the output means:</p>  <br />
 <img src="pics/versioncheck_comparison.gif" width="411" height="279" border="0" alt="" title="version comparison" />
 <ul>
@@ -751,7 +775,7 @@ If you have shell access to your server, you can apply the native <a href="http:
 <a name="versioncheck_end"></a>
 <p><a class="back" href="#top">Back to top</a></p><hr />
 <a name="downgrading"></a>
-<h2>3.6 Downgrading from cpg1.4.x to an older version</h2>
+<h2>3.7 Downgrading from cpg1.4.x to an older version</h2>
 <p>CPG1.4.x incorporates many new features (compared to older versions), so we encourage all users to upgrade. However, there may be some who want to test cpg1.4.x and decide later that they want to go back to an older version. You have to keep in mind that a full upgrade changes the overall layout of coppermine's database that includes converting the encoding to unicode. This process can't be reverted: once you have done the conversion, the only way back is to restore a complete mySQL database dump (of course you have to create this backup <strong>before</strong> you upgraded in the first place). Creating mySQL dumps (backups) is recommended anyway, so you should do so <strong>now</strong>.</p>
 <p>If you haven't converted your database to unicode (utf-8) encoding, you can downgrade as explained below. To make this absolutely clear: you can only downgrade if you used to have cpg1.3.x before and upgraded this version to cpg1.4.x without converting the database. If you <em>have</em> converted the database or if you have made a <em>fresh</em> install of cpg1.4.x, you can't downgrade at all!</p>
 <p>To actually perform the downgrade, replace all cpg1.4.x files on your server with the files from the older version (as if you were doing an upgrade, see above). You then have to undo some changes in the database structure. To do so, run a query like<br />
@@ -1230,7 +1254,7 @@ The process of uploading pictures is a matter of following a simple dialog. It t
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_general_keywords_end"></a>
 <a name="admin_general_enable-plugins"></a><h4>Enable plugins</h4>
-<p>Enable plugins. This is a brand-new feature of coppermine. There is no official documentation available for it, yet.  Included in your coppermine setup are three basic plugins. You should search the coppermine support forum for instructions on their use.  This feature allows advanced copperminers to create plug-ins that can control the way coppermine looks and behaves without modifying the inherent code pf the script, itself. We anticipate many exciting, user-contributed, plug-ins in the near future.</p>
+<p>Enable <a href="#plugins">plugins</a>. This is a brand-new feature of coppermine. This feature allows advanced copperminers to create plug-ins that can control the way coppermine looks and behaves without modifying the inherent code pf the script, itself. We anticipate many exciting, user-contributed, plug-ins in the near future.</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_general_enable-plugins_end"></a>
 
@@ -1875,6 +1899,7 @@ To access the exif manager, go to coppermine's config and click within the secti
 <a name="plugin_start"></a>
 <a name="plugin"></a>
 <h2>4.14 Plugins</h2>
+<p>Included in your coppermine setup are three basic plugins.</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="plugin_definition"></a>
 <h3>4.14.1 What is a plugin?</h3>
