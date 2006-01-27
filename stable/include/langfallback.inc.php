@@ -46,11 +46,8 @@ $lang_byte_units_en = cpg_get_default_lang_var('lang_byte_units','english');
 $lang_byte_units = array_merge($lang_byte_units_en, $lang_byte_units);
 
 // Day of weeks and months
-$lang_day_of_week_en = cpg_get_default_lang_var('lang_day_of_week','english');
-$lang_day_of_week = array_merge($lang_day_of_week_en, $lang_day_of_week);
-
-$lang_month_en = cpg_get_default_lang_var('lang_month','english');
-$lang_month = array_merge($lang_month_en, $lang_month);
+if (!isset($lang_day_of_week)) $lang_day_of_week = cpg_get_default_lang_var('lang_day_of_week','english');
+if (!isset($lang_month)) $lang_month = cpg_get_default_lang_var('lang_month','english');
 
 
 $lang_meta_album_names_en = cpg_get_default_lang_var('lang_meta_album_names','english');
