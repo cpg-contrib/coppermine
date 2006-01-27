@@ -1907,7 +1907,7 @@ Unfortunately, there is no API documentation available yet.</p>
     <li>Method 1: <strong>Using the upload interface on coppermine's plugin manager page</strong><br />
     <ul>
         <li>Download the plugin you need from the internet (usually the <a href="http://coppermine-gallery.net/">coppermine page</a>) to your local hard drive</li>
-        <li>Click the "browse" button</li>
+        <li>Click the "browse" button on the plugin manager page</li>
         <li>Navigate to the plugin zip file you just have downloaded to your local PC's hard drive</li>
         <li>Click "upload"</li>
     </ul>
@@ -1916,7 +1916,7 @@ Unfortunately, there is no API documentation available yet.</p>
         <li>PHP running on your webserver needs zip support - not all webserver have zip support enabled.</li>
         <li>the script needs write permissions within the plugins folder.</li>
     </ul>
-    If you fail to fullfil those two pre-requisites, this simple method (upload interface) won't work for you (i.e. you will get error messages when trying, or the plugin will even simply fail to work without an error message at all). If this is the case for you, it's recommended not to mess with server setup (unless you're an expert and the server is yours to administer>, but just to use the second upload option described below.</li>
+    If you fail to fullfil those two pre-requisites, this simple method (upload interface) won't work for you (i.e. you will get error messages when trying, or the plugin will even simply fail to work without an error message at all). If this is the case for you, it's recommended not to mess with server setup (unless you're an expert and the server is yours to administer), but just to use the second upload method described below.</li>
     <li>Method 2: <strong>Uploading the unzipped plugin files using your FTP app</strong><br />
         <ul>
             <li>Download the plugin you need from the internet to your local hard drive (same step as above)</li>
@@ -1939,7 +1939,7 @@ Unfortunately, there is no API documentation available yet.</p>
 <a name="plugin_manager_uninstall"></a>
 <h4>4.14.3.4 Uninstalling a plugin</h4>
 <p>Executing a plugin might be consuming resources or not work as expected, so you might want to uninstall a plugin at some time (maybe because you just tried it out and it doesn't work as expected for you). It's recommended not to just delete the plugin's subfolder using your FTP app (because the plugin might have applied database changes that need to be undone). Instead, you should go to the plugin manager and click on the <img src="../images/delete.gif" width="16" height="16" border="0" alt="" />-icon next to an active (installed) plugin. The plugin then should get uninstalled and turn up in the list "Plugins Not installed". It's safe to leave the sources of an unneeded plugin on the server, so there should be no need to delete the plugin right after uninstall, however you may as well delete it, especially if you're short on webspace and the plugin eats up a lot of space.<br />
-To finally delete an inactive plugin from your server's plugin folder, click the <img src="../images/delete.gif" width="16" height="16" border="0" alt="" />-icon next to a plugin that is in the list "Plugins Not installed". If the script fails to delete a plugin this way (because of lacking permissions to do so on file/folder level)</p>
+To finally delete an inactive plugin from your server's plugin folder, click the <img src="../images/delete.gif" width="16" height="16" border="0" alt="" />-icon next to a plugin that is in the list "Plugins Not installed". If the script fails to delete a plugin this way (because of lacking permissions to do so on file/folder level), you can use your FTP app to delete the particular plugin's sub-folder within coppermine's "plugins" folder (deleting manually). As with all delete operations, you should make a local backup before deleting if you're not absolutely sure what you're doing.</p>
 <a name="plugin_manager_uninstall_end"></a>
 <a name="plugin_manager_end"></a>
 <a name="plugin_writing"></a>
