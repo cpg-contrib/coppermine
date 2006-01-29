@@ -1542,7 +1542,7 @@ $lang_register_confirm_email = <<<EOT
 Danke für Ihre Registrierung bei {SITE_NAME}
 
 Ihr Benutzername ist : "{USER_NAME}"
-Ihr Passwort lautet : "{PASSWORD}"
+
 
 Um Ihr Benutzerkonto zu aktivieren, müssen Sie auf den untenstehenden Link klicken
 oder ihn kopieren und in der Adresszeile Ihres Browsers einfügen.

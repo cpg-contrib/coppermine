@@ -1572,7 +1572,7 @@ Mila esker {SITE_NAME}n errejistratzeagatik
 
 
 Zure erabiltzaile izena: "{USER_NAME}"
-Zure pasahitza: "{PASSWORD}"
+
 
 
 
