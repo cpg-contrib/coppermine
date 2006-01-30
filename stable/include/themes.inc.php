@@ -834,17 +834,18 @@ EOT;
 
 if (!isset($template_add_your_comment))  //{THEMES}
 $template_add_your_comment = <<<EOT
-<table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
-        <tr>
-                <td width="100%" class="tableh2_compact"><b>{ADD_YOUR_COMMENT}</b></td>
-        </tr>
-        <tr>
-                <td colspan="3">
-                <form method="post" name="post" action="db_input.php">
+	<form method="post" name="post" action="db_input.php">
+		<table align="center" width="{WIDTH}" cellspacing="1" cellpadding="0" class="maintable">
+			<tr>
+					<td width="100%" class="tableh2_compact"><b>{ADD_YOUR_COMMENT}</b></td>
+			</tr>
+			<tr>
+                <td colspan="1">
                         <table width="100%" cellpadding="0" cellspacing="0">
 
 <!-- BEGIN user_name_input -->
-                                <tr><td class="tableb_compact">
+							<tr>
+								<td class="tableb_compact">
                                         {NAME}
                                 </td>
                                 <td class="tableb_compact">
@@ -853,21 +854,27 @@ $template_add_your_comment = <<<EOT
 <!-- END user_name_input -->
 <!-- BEGIN input_box_smilies -->
                                 <td class="tableb_compact">
-                                {COMMENT} </td>
+                                {COMMENT}
+								</td>
                                 <td width="100%" class="tableb_compact">
-                                <input type="text" class="textinput" id="message" name="msg_body" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" maxlength="{MAX_COM_LENGTH}" style="width: 100%;" />                                        <!-- END input_box_smilies -->
+                                <input type="text" class="textinput" id="message" name="msg_body" onselect="storeCaret_post(this);" onclick="storeCaret_post(this);" onkeyup="storeCaret_post(this);" maxlength="{MAX_COM_LENGTH}" style="width: 100%;" />
+								</td>
+<!-- END input_box_smilies -->
 <!-- BEGIN input_box_no_smilies -->
                                 <td class="tableb_compact">
+                                {COMMENT}
+								</td>
+                                <td width="100%" class="tableb_compact">
                                 <input type="text" class="textinput" id="message" name="msg_body"  maxlength="{MAX_COM_LENGTH}" style="width: 100%;" />
-<!-- END input_box_no_smilies -->
                                 </td>
+<!-- END input_box_no_smilies -->
                                 <td class="tableb_compact">
                                 <input type="hidden" name="event" value="comment" />
                                 <input type="hidden" name="pid" value="{PIC_ID}" />
                                 <input type="submit" class="comment_button" name="submit" value="{OK}" />
-                                </td></tr>
+                                </td>
+							</tr>
                         </table>
-                </form>
                 </td>
         </tr>
 <!-- BEGIN smilies -->
@@ -876,9 +883,9 @@ $template_add_your_comment = <<<EOT
                         {SMILIES}
                 </td>
         </tr>
-</table>
 <!-- END smilies -->
-
+		</table>
+	</form>
 EOT;
 // HTML template used by the cpg_die function
 if (!isset($template_cpg_die))  //{THEMES}
@@ -1396,14 +1403,14 @@ function theme_admin_mode_menu()
 
         if (GALLERY_ADMIN_MODE) {
 			
-			if ($CONFIG['log_ecards'] == 0) {
-				template_extract_block($template_gallery_admin_menu, 'log_ecards');
-			}
+        if ($CONFIG['log_ecards'] == 0) {
+            template_extract_block($template_gallery_admin_menu, 'log_ecards');
+        }
 
-			if (cpg_get_pending_approvals() == 0) {
-				template_extract_block($template_gallery_admin_menu, 'admin_approval');
-			}
-			
+        if (cpg_get_pending_approvals() == 0) {
+             template_extract_block($template_gallery_admin_menu, 'admin_approval');
+        }
+
             // do the docs exist on the webserver?
             if (file_exists('docs/index.htm') == true) {
                 $documentation_href = 'docs/index.htm';
@@ -2466,7 +2473,7 @@ function theme_display_fullsize_pic()
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
   <head>
-  <meta http-equiv="content-type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'] ?>" />
+  <meta http-equiv="content-type" content="text/html; charset=<?php echo $CONFIG['charset'] == 'language file' ? $lang_charset : $CONFIG['charset'] ?>" />  
   <title><?php echo $CONFIG['gallery_name'] ?>: <?php echo $lang_fullsize_popup['click_to_close'];
       ?></title>
   <script type="text/javascript" src="scripts.js"></script>
