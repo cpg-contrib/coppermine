@@ -327,3 +327,4 @@ Fixed the Search Engine friendly URLs (plugin) bug in displaying multipage thumb
 Fixed css class glitch ("button" instead of "submit") - 25 January 2006, GauGau
 Removed "user mode" paragraph from faq section of language file - 25 January 2006, GauGau
 Added plugin section to docs - 26 January 2006, GauGau
+Fixed bug -  smilies coming broken in notification email - 31 Jan 2006, Abbas
