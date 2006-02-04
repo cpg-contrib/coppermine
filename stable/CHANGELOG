@@ -1,8 +1,4 @@
-<<<<<<< CHANGELOG
 $Id$
-=======
-$Id$
->>>>>>> 1.59
 
 Added Title option to sort in albums, Tarique
 Separated the breadcrumb block so that it can be placed independently of category, Tarique
@@ -294,7 +290,6 @@ Fixed omission about privacy settings in french language file - 04 July, GauGau
 Updated the translator's guide - 04 July 2005, GauGau
 Fixed typos in finnish language file - 05 July 2005, GauGau
 Added improved XP publisher section to docs - 19 September 2005, GauGau
-
 Removed depreciated randomizing code from index.php - 24 July 2005, Donnoman
 Changed to not automatically include init.inc.php for included files via the query string (?file=) - 24 July 2005, Donnoman
 Fixed mulitple keywords getting filtered out from iptc on upload - 07 Aug 2005, Donnoman
@@ -335,7 +330,6 @@ Added Ukrainian translation - 24 January 2006, GauGau
 Fixed typo in dutch language file - 25 January 2006, GauGau
 Fixed issue "gif can't be added to favorites" - 25 January 2006, GauGau
 Fixed css class glitch ("button" instead of "submit") - 25 January 2006, GauGau
-=======
 Fixed typo in dutch language file - 25 January, GauGau
 Fixed issue "gif can't be added to favorites" - 25 January 2006, GauGau
 Fixed the Search Engine friendly URLs bug in displaying multipage thumbnails and albums - 25 Jan 2006, Abbas
