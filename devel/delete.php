@@ -628,7 +628,7 @@ switch ($what) {
                             print '</b></td>';
                             print '<td class="tableb">';
                             // set this user's password
-                            $new_password = addslashes($_REQUEST['new_password']);
+                            $new_password = $CONFIG['enable_encrypted_passwords'] ? md5(addslashes($_REQUEST['new_password'])) : addslashes($_REQUEST['new_password']);
                             cpg_db_query("UPDATE {$CONFIG['TABLE_USERS']} SET user_password = '$new_password' WHERE  user_id = '$key'");
                             printf($lang_delete_php['password_reset'], '&laquo;'.$_REQUEST['new_password'].'&raquo;');
                             print '</b></td>';
