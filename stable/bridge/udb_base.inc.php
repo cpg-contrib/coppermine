@@ -603,6 +603,21 @@ class core_udb {
                 return $sql;
         }
 
+        // Retrieve the user album list used in gallery admin mode during batch add process.
+        function get_batch_add_album_list()
+        {
+                global $CONFIG;
+                if ($this->can_join_tables) {
+                        $sql = "SELECT aid, CONCAT('(', {$this->field['username']}, ') ', a.title) AS title
+                                                        FROM {$CONFIG['TABLE_ALBUMS']} AS a
+                                                        INNER JOIN {$this->usertable} AS u
+                                                        ON category = (" . FIRST_USER_CAT . " + ".USER_ID.") AND {$this->field['user_id']} = ".USER_ID." ORDER BY title";
+                } else {
+                        $sql = "SELECT aid, IF(category > " . FIRST_USER_CAT . ", CONCAT('* ', title), CONCAT(' ', title)) AS title " . "FROM {$CONFIG['TABLE_ALBUMS']} WHERE category = ".(FIRST_USER_CAT+USER_ID)." ORDER BY title";
+                }
+                return $sql;
+        }
+
 // Used to generate the album selection box in Admin tools (util.php)
         function util_filloptions()
         {
