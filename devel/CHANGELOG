@@ -330,3 +330,4 @@ Added plugin section to docs - 26 January 2006, GauGau
 Fixed bug -  smilies coming broken in notification email - 31 Jan 2006, Abbas
 Added function get_batch_add_album_list to get the personal albums for admin on batch add page - 4th Feb 2006, Abbas
 Fixed reset password bug - 4th Feb 2006, Abbas
+Added ukrainian language string to language selector, fixed slovak flag - 5th Feb 2006, GauGau

@@ -1259,7 +1259,7 @@ function get_pic_data($album, &$count, &$album_name, $limit1=-1, $limit2=-1, $se
                 $META_ALBUM_SET = str_replace( "aid", $CONFIG['TABLE_PICTURES'].".aid" , $META_ALBUM_SET );
 
                 $query = "SELECT count({$CONFIG['TABLE_ALBUMS']}.aid) FROM {$CONFIG['TABLE_PICTURES']},{$CONFIG['TABLE_ALBUMS']} WHERE {$CONFIG['TABLE_PICTURES']}.aid = {$CONFIG['TABLE_ALBUMS']}.aid AND approved = 'YES' $META_ALBUM_SET GROUP  BY {$CONFIG['TABLE_PICTURES']}.aid";
-                
+
                 $result = cpg_db_query($query);
                 $count = mysql_num_rows($result);
                 mysql_free_result($result);
@@ -2446,13 +2446,14 @@ $lang_language_data['polish'] = array('Polish','Polski','pl');
 $lang_language_data['portuguese'] = array('Portuguese [Portugal]','Portugu&ecirc;s','pt');
 $lang_language_data['romanian'] = array('Romanian','Rom&acirc;n&atilde;','ro');
 $lang_language_data['russian'] = array('Russian','&#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081;','ru');
-$lang_language_data['slovak'] = array('Slovak','Slovensky','sl');
+$lang_language_data['slovak'] = array('Slovak','Slovensky','sk');
 $lang_language_data['slovenian'] = array('Slovenian','Slovensko','si');
 $lang_language_data['spanish'] = array('Spanish','Espa&ntilde;ol','es');
 $lang_language_data['swedish'] = array('Swedish','Svenska','se');
 $lang_language_data['thai'] = array('Thai','&#3652;&#3607;&#3618;','th');
 $lang_language_data['turkish'] = array('Turkish','T&uuml;rk&ccedil;e','tr');
 $lang_language_data['uighur'] = array('Uighur','Uighur','cn-xj');
+$lang_language_data['ukrainian'] = array('Ukrainian','&#1059;&#1082;&#1088;&#1072;&#1111;&#1085;&#1089;&#1100;&#1082;&#1072;','ua');
 $lang_language_data['vietnamese'] = array('Vietnamese','Tieng Viet','vn');
 
 // get list of available languages
@@ -2614,8 +2615,8 @@ function cpg_alert_dev_version() {
             endtable();
             print '<br />';
             $return .= ob_get_contents();
-            ob_end_clean();            
-        } 
+            ob_end_clean();
+        }
         // check if gallery is offline
         if ($CONFIG['offline'] == 1 && GALLERY_ADMIN_MODE) {
             $return .= '<span style="color:red;font-weight:bold">'.$lang_version_alert['gallery_offline'].'</span><br />&nbsp;<br />';
