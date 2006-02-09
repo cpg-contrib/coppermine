@@ -23,7 +23,7 @@
                         <p><img src="../images/coppermine_logo.png" alt="Coppermine Photo Gallery - Your Online Photo Gallery" />
 <h1>Coppermine Photo Gallery v1.4.3: Documentation and Manual</h1>
 <h1>About Coppermine</h1>
-<p>Coppermine Photo Gallery is an advanced, user friendly, picture gallery script with built-in support for other multi-media/data files.  The gallery can be private, accessible to registered users only, and/or open to all visitors to your site. Users, if permitted, can upload pictures with their web browser (thumbnail and intermediate sized images are created on the fly), rate pictures, add comments and even send e-cards. The site administrator determines which of the features listed above are accessible by registered and non-registered users. The site administrator can also manage galleries and batch process large numbers of pictures that have been uploaded onto the server by FTP.</p>
+<p>Coppermine Photo Gallery is an advanced, user-friendly, picture gallery script with built-in support for other multi-media/data files.  The gallery can be private, accessible to registered users only, and/or open to all visitors to your site. Users, if permitted, can upload pictures with their web browser (thumbnail and intermediate sized images are created on the fly), rate pictures, add comments and even send e-cards. The site administrator determines which of the features listed above are accessible by registered and non-registered users. The site administrator can also manage galleries and batch process large numbers of pictures that have been uploaded onto the server by FTP.</p>
 <p>Image files are stored in albums and albums can be grouped into categories, which in turn, can be further grouped under parent categories. The script supports multiple users and provides the administrator of the website with tools to manage which user groups can or cannot have personal albums, send ecards, or add comments. Users may also upload to public albums if the website administrator permits it. Permissions to create albums, upload and delete files are all determined by the website administrator.</p>
 <p>Coppermine has an optional user selectable theme system with a number of themes pre-installed. It also supports the use of multiple languages and contains it's own language library. These language files provide, users of your gallery, access in their preferred languages. Coppermine uses PHP, a MySQL database, and either the GD library (version 1.x or 2.x) or ImageMagick to generate and keep records and file information of all thumbnails, intermediate, and full-sized images. Coppermine generates the html code necessary to display its various categories, sub-categories, albums, intermediate, and full-sized image displays dynamically. This drastically cuts down on the number of files and space your gallery would require using standard HTML. The install script (install.php) makes it quick and easy to get started.</p>
 
@@ -291,9 +291,9 @@
   You will need MySQL version 3.23.23 or better (4.x recommended). The MySQL user needs permissions to perform CREATE, ALTER, SELECT, UPDATE, DELETE data from the database. Most users have these permissions when webhosted. If you don't have them, you will not be able to use this or any other pre-made scripts at all. If you are uncertain about your permissions, please check with your webhost. Most hosting services can probably tell you whether coppermine can or cannot be run off of their servers.<br />
   A database needs to be set up that Coppermine can use - the install script will not create a database for you, but it will automatically create the tables and data structure in your database for you. In most webhosted environments, you will already have at least one database set up for you by your webhost. If not, you will need to create one. If you do need to create a database, check with your webhost on the proper procedures for doing so. Write down your database name, userID and password. You will require all three to successfully install Coppermine. </li>
   <li>PHP (version 4.1.0 or better), either compiled with the support for the GD library or permission to use the exec() function for the ImageMagick &quot;convert&quot; utility in order to make thumbnails and reduced size images. <strong>Note:</strong> If your server is using PHP 5+, "register_long_arrays" must be turned "on." Verify that this is the case with your webhost before attempting to install Coppermine.</li>
-  <li>An image library: either GD version 1.x or 2.x(PHP has to be compiled to support it) or ImageMagick.<br />
+  <li>An image library: either GD version 1.x or 2.x (PHP has to be compiled to support it) or ImageMagick.<br />
   (see <a href="faq.htm#whatIsImageMagick">What's ImageMagick</a> and <a href="faq.htm#WhatIsGD">What is GD</a>)</li>
-  <li>It's always a good idea to contact your webhosting service first and ask them if they are aware of any known issues when installing Coppermine.<li>
+  <li>It's always a good idea to contact your webhosting service first and ask them if they are aware of any known issues when installing Coppermine.</li>
 
 </ul>
 
@@ -306,7 +306,7 @@
 <ul>
   <li><strong>Unpack the archive preserving the directory structure.</strong><br /> You can rename the coppermine folder, but not the files or folders within.</li>
   <li><strong>Upload all files onto your webserver</strong> (making sure to use the correct ftp mode)</li>
-  <li><strong><a href="#permissions">Set permissions</a> on the "<em>albums</em>" and "<em>include</em>" folders in your Coppermine directory</strong>. Usually, you have to apply the CHMOD command, setting the permissions to 755 (or 777, depending on your server config)- <span class="important">this step is very important and must not be overlooked!</span></li>
+  <li><strong><a href="#permissions">Set permissions</a> on the "<em>albums</em>" and "<em>include</em>" folders in your Coppermine directory</strong>. Usually, you have to apply the CHMOD command, setting the permissions to 755 (or 777, depending on your server config).  <span class="important">This step is very important and must not be overlooked!</span></li>
   <li><strong>Ensure you have correct information about your database</strong> - you need to <em>know</em> the database name as well as the details of a MySQL user account with which Coppermine should connect to the database. The database and the username must already exist, and the user must have access to the relevent database. Coppermine will not create the database for you, but it will create the tables in the database during installation, there is no need for you to add any tables yourself.</li>
   <li><strong>Run the install script on your server</strong> (by going to <tt class="code">http://your_server/coppermine_dir/install.php</tt> with your web browser) and follow the instructions</li>
 </ul>
@@ -364,34 +364,34 @@ This may be a bit hard to understand or follow at first, especially if you haven
 <div style="float:left;margin-right:10px">
 <table border="0" cellspacing="0" cellpadding="0" class="maintable">
 <tr><td class="tableh1">permission</td><td class="tableh1">bit value</td><td class="tableh1">set?</td><td class="tableh1">value</td></tr>
-<tr><td class="tableb">read</td><td class="tableb">4</td><td class="tableb"><input type="checkbox" checked="checked" disabled="disabled" /></td><td class="tableb">4</td></tr>
-<tr><td class="tableb">write</td><td class="tableb">2</td><td class="tableb"><input type="checkbox" checked="checked" disabled="disabled" /></td><td class="tableb">2</td></tr>
-<tr><td class="tableb">execute</td><td class="tableb">1</td><td class="tableb"><input type="checkbox" checked="checked" disabled="disabled" /></td><td class="tableb">1</td></tr>
+<tr><td class="tableb">read</td><td class="tableb">4</td><td class="tableb"><input type="checkbox" checked="checked" onclick="javascript:this.checked=true"/></td><td class="tableb">4</td></tr>
+<tr><td class="tableb">write</td><td class="tableb">2</td><td class="tableb"><input type="checkbox" checked="checked" onclick="javascript:this.checked=true" /></td><td class="tableb">2</td></tr>
+<tr><td class="tableb">execute</td><td class="tableb">1</td><td class="tableb"><input type="checkbox" checked="checked" onclick="javascript:this.checked=true" /></td><td class="tableb">1</td></tr>
 <tr><td colspan="3" class="tablef">sum (resulting byte value)</td><td class="tablef">7</td></tr>
 </table>
 </div>
 <div style="float:left;margin-right:10px">
 <table border="0" cellspacing="0" cellpadding="0" class="maintable">
 <tr><td class="tableh1">permission</td><td class="tableh1">bit value</td><td class="tableh1">set?</td><td class="tableh1">value</td></tr>
-<tr><td class="tableb">read</td><td class="tableb">4</td><td class="tableb"><input type="checkbox" checked="checked" disabled="disabled" /></td><td class="tableb">4</td></tr>
-<tr><td class="tableb">write</td><td class="tableb">2</td><td class="tableb"><input type="checkbox" disabled="disabled" /></td><td class="tableb">-</td></tr>
-<tr><td class="tableb">execute</td><td class="tableb">1</td><td class="tableb"><input type="checkbox" checked="checked" disabled="disabled" /></td><td class="tableb">1</td></tr>
+<tr><td class="tableb">read</td><td class="tableb">4</td><td class="tableb"><input type="checkbox" checked="checked" onclick="javascript:this.checked=true" /></td><td class="tableb">4</td></tr>
+<tr><td class="tableb">write</td><td class="tableb">2</td><td class="tableb"><input type="checkbox" onclick="javascript:this.checked=false" /></td><td class="tableb">-</td></tr>
+<tr><td class="tableb">execute</td><td class="tableb">1</td><td class="tableb"><input type="checkbox" checked="checked" onclick="javascript:this.checked=true" /></td><td class="tableb">1</td></tr>
 <tr><td colspan="3" class="tablef">sum (resulting byte value)</td><td class="tablef">5</td></tr>
 </table>
 </div>
 <div style="float:left;margin-right:10px">
 <table border="0" cellspacing="0" cellpadding="0" class="maintable">
 <tr><td class="tableh1">permission</td><td class="tableh1">bit value</td><td class="tableh1">set?</td><td class="tableh1">value</td></tr>
-<tr><td class="tableb">read</td><td class="tableb">4</td><td class="tableb"><input type="checkbox" checked="checked" disabled="disabled" /></td><td class="tableb">4</td></tr>
-<tr><td class="tableb">write</td><td class="tableb">2</td><td class="tableb"><input type="checkbox" checked="checked" disabled="disabled" /></td><td class="tableb">2</td></tr>
-<tr><td class="tableb">execute</td><td class="tableb">1</td><td class="tableb"><input type="checkbox" disabled="disabled" /></td><td class="tableb">-</td></tr>
+<tr><td class="tableb">read</td><td class="tableb">4</td><td class="tableb"><input type="checkbox" checked="checked" onclick="javascript:this.checked=true" /></td><td class="tableb">4</td></tr>
+<tr><td class="tableb">write</td><td class="tableb">2</td><td class="tableb"><input type="checkbox" checked="checked" onclick="javascript:this.checked=true" /></td><td class="tableb">2</td></tr>
+<tr><td class="tableb">execute</td><td class="tableb">1</td><td class="tableb"><input type="checkbox" onclick="javascript:this.checked=false" /></td><td class="tableb">-</td></tr>
 <tr><td colspan="3" class="tablef">sum (resulting byte value)</td><td class="tablef">6</td></tr>
 </table>
 </div>
 <div style="clear:left"></div>
 </li>
 <li><strong>What good is all of this?</strong><br />
-Instead of having to remember and write <tt class="code">rwxrwxrwx</tt> for each file or folder in your setup, you can now write <tt class="code">777</tt> in its place. The same applies for <tt class="code">rwxr-xr-x</tt>, you can write <tt class="code">755</tt>, instead .
+Instead of having to remember and write <tt class="code">rwxrwxrwx</tt> for each file or folder in your setup, you can now write <tt class="code">777</tt> in its place. The same applies for <tt class="code">rwxr-xr-x</tt>, you can write <tt class="code">755</tt>, instead.
 </li>
 <li><strong>FTP application</strong><br />
 Setting the permissions using your FTP application will be the option available for most users who are webhosted. Depending on the FTP app you use, the user interface will slightly differ: some apps will allow you to enter the CHMOD command by entering the numbers (777 or 755), others will provide you with checkboxes where you can tick the permissions separately for each group. More advanced FTP apps may even provide you with both mechanisms. As this documentation can't cover all individual FTP apps that are available, the exact method might differ a bit from what you have.<br />
@@ -1817,9 +1817,9 @@ If you leave this blank, sendmail (or a surrogate) will be used to send emails f
 
 <a name="admin_logging"></a>
 <h3>4.12.15 Logging &amp; statistics</h3>
-<p>Like all logs (that record data that would get dropped if logging was disabled), the logging features of Coppermine will have a slight performance impact as well as an impact on webspace and database usage. You should make up your mind if you actually will need the logs before enabling the feature. A log is only helpfull if the admin actually looks into it.</p>
+<p>Like all logs (that record data that would get dropped if logging was disabled), the logging features of Coppermine will have a slight performance impact as well as an impact on webspace and database usage. You should make up your mind if you actually will need the logs before enabling the feature. A log is only helpful if the admin actually looks into it.</p>
 <a name="admin_logging_log_mode"></a><h4>Logging mode</h4>
-<p>Set, what kind of logging you want to enable. This feature records all changes that are done in coppermine's database, which is especially helpfull if you're trying to debug or if there are various admins on a gallery.<br />
+<p>Set, what kind of logging you want to enable. This feature records all changes that are done in coppermine's database, which is especially helpful if you're trying to debug or if there are various admins on a gallery.<br />
 All log files are written in english</p>
 <p class="small">[cpg1.4.0 or better required]</p>
 <a name="admin_logging_log_mode_end"></a>
@@ -1868,9 +1868,9 @@ All log files are written in english</p>
 <h3>4.12.16 Miscellaneous settings</h3>
 <a name="debug_mode"></a><h4>Enable debug mode</h4>
 <p>CPG will show error messages which are normally suppressed.  This is helpful in troubleshooting problems with your gallery or when asking      for help on the <a href="http://coppermine.sourceforge.net/board/">CPG Support Forums</a>. Turn this feature off if you don't experience problems.</p>
-<p>Turn it on (option &quot;Everyone&quot;) if you are requesting help on the <a href="http://coppermine.sourceforge.net/board/">coppermine support board</a>, so the supporters can have a look at the debug output as well. Choose the option &quot;Admin only&quot; when trouble-shooting on your own - debug output will be only visible when you're logged in as admin, regular users or guests won't see the debug output.</p>
+<p>Turn it on (option &quot;Everyone&quot;) if you are requesting help on the <a href="http://coppermine.sourceforge.net/board/">coppermine support board</a>, so the supporters can have a look at the debug output as well. Choose the option &quot;Admin only&quot; when troubleshooting on your own - debug output will be only visible when you're logged in as admin, regular users or guests won't see the debug output.</p>
 <a name="admin_misc_debug_notices"></a><h4>Display notices in debug mode</h4>
-<p>May be helpfull to trouble-shoot problems with your coppermine install - only recommended if you know a little PHP and you can understand the additional error messages this option shows. This option only applies if debug mode is enabled.</p>
+<p>May be helpful to troubleshoot problems with your coppermine install - only recommended if you know a little PHP and you can understand the additional error messages this option shows. This option only applies if debug mode is enabled.</p>
 <a name="admin_misc_debug_notices_end"></a>
 <a name="debug_mode_end"></a>
 
